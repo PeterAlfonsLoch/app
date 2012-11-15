@@ -1,6 +1,6 @@
 /** \file resolv_socket.h
- **   \date  2005-03-24
- **   \author grymse@alhem.net
+**   \date  2005-03-24
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
@@ -29,58 +29,70 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace sockets
+
+namespace bsd
 {
 
-   /** Async DNS resolver socket. 
-      \ingroup async */
-   class resolv_socket : public tcp_socket
+
+   namespace sockets
    {
-   public:
-      
-      
-      /* type, host, result */
-      typedef ::collection::string_map < ::string_to_string_map > cache_t;
 
-      /* type, host, time */
-      typedef ::collection::string_map < ::collection::string_map < time_t > > timeout_t; 
+      /** Async DNS resolver socket. 
+      \ingroup async */
+      class resolv_socket : public tcp_socket
+      {
+      public:
 
 
-      string m_query;
-      string m_data;
-      bool m_bServer;
-      socket *m_parent;
-      int m_resolv_id;
-      string m_resolv_host;
-      port_t m_resolv_port;
-      ipaddr_t m_resolv_address;
+         /* type, host, result */
+         typedef ::collection::string_map < ::string_to_string_map > cache_t;
+
+         /* type, host, time */
+         typedef ::collection::string_map < ::collection::string_map < time_t > > timeout_t; 
+
+
+         string m_query;
+         string m_data;
+         bool m_bServer;
+         socket *m_parent;
+         int m_resolv_id;
+         string m_resolv_host;
+         port_t m_resolv_port;
+         ipaddr_t m_resolv_address;
 #if !core_level_1
-      bool m_resolve_ipv6;
-      in6_addr m_resolv_address6;
+         bool m_resolve_ipv6;
+         in6_addr m_resolv_address6;
 #endif
-      bool m_cached;
+         bool m_cached;
 
 
-      resolv_socket(socket_handler_base&);
-      resolv_socket(socket_handler_base&, socket *parent, const string & host, port_t port, bool ipv6 = false);
-      resolv_socket(socket_handler_base&, socket *parent, ipaddr_t);
-      resolv_socket(socket_handler_base&, socket *parent, in6_addr&);
-      ~resolv_socket();
+         resolv_socket(socket_handler_base&);
+         resolv_socket(socket_handler_base&, socket *parent, const string & host, port_t port, bool ipv6 = false);
+         resolv_socket(socket_handler_base&, socket *parent, ipaddr_t);
+         resolv_socket(socket_handler_base&, socket *parent, in6_addr&);
+         ~resolv_socket();
 
-      void OnAccept() { m_bServer = true; }
-      void OnLine(const string & line);
-      void OnDetached();
-      void OnDelete();
+         void OnAccept() { m_bServer = true; }
+         void OnLine(const string & line);
+         void OnDetached();
+         void OnDelete();
 
-      void SetId(int x) { m_resolv_id = x; }
-      int GetId() { return m_resolv_id; }
+         void SetId(int x) { m_resolv_id = x; }
+         int GetId() { return m_resolv_id; }
 
-      void OnConnect();
+         void OnConnect();
 
 #if !core_level_1
-      void SetResolveIpv6(bool x = true) { m_resolve_ipv6 = x; }
+         void SetResolveIpv6(bool x = true) { m_resolve_ipv6 = x; }
 #endif
 
-   };
+      };
 
-} // namespace sockets
+
+   } // namespace sockets
+
+
+} // namespace bsd
+
+
+

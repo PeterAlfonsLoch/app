@@ -1,7 +1,7 @@
 /**
- **   \file ipv6_address.h
- **   \date  2006-09-21
- **   \author grymse@alhem.net
+**   \file ipv6_address.h
+**   \date  2006-09-21
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2007  Anders Hedstrom
@@ -23,69 +23,79 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-namespace sockets
+namespace bsd
 {
 
-
-   /** Ipv6 address implementation.
-      \ingroup basic */
-   class CLASS_DECL_ca ipv6_address : 
-      public address
+   namespace sockets
    {
-   public:
-      /** create is_empty Ipv6 address structure.
+
+
+      /** Ipv6 address implementation.
+      \ingroup basic */
+      class CLASS_DECL_ca ipv6_address : 
+         public address
+      {
+      public:
+         /** create is_empty Ipv6 address structure.
          \param port Port number */
-      ipv6_address(::ca::application * papp, port_t port = 0);
-      /** create Ipv6 address structure.
+         ipv6_address(::ca::application * papp, port_t port = 0);
+         /** create Ipv6 address structure.
          \param a socket address in network byte order
          \param port Port number in host byte order */
-      ipv6_address(::ca::application * papp, struct in6_addr& a,port_t port);
-      /** create Ipv6 address structure.
+         ipv6_address(::ca::application * papp, struct in6_addr& a,port_t port);
+         /** create Ipv6 address structure.
          \param host Hostname to be resolved
          \param port Port number in host byte order */
-      ipv6_address(::ca::application * papp, const string & host,port_t port);
-      ipv6_address(::ca::application * papp, struct sockaddr_in6&);
-      ipv6_address(const ipv6_address & addr);
-      ~ipv6_address();
+         ipv6_address(::ca::application * papp, const string & host,port_t port);
+         ipv6_address(::ca::application * papp, struct sockaddr_in6&);
+         ipv6_address(const ipv6_address & addr);
+         ~ipv6_address();
 
-      // sockets::address implementation
+         // sockets::address implementation
 
-      operator struct sockaddr *();
-      operator socklen_t();
-      bool operator==(address &);
+         operator struct sockaddr *();
+         operator socklen_t();
+         bool operator==(address &);
 
-      void SetPort(port_t port);
-      port_t GetPort();
+         void SetPort(port_t port);
+         port_t GetPort();
 
-      void SetAddress(struct sockaddr *sa);
-      int GetFamily();
+         void SetAddress(struct sockaddr *sa);
+         int GetFamily();
 
-      bool IsValid();
+         bool IsValid();
 
-      /** Convert address struct to text. */
-      string Convert(bool include_port = false);
-      string Reverse();
+         /** Convert address struct to text. */
+         string Convert(bool include_port = false);
+         string Reverse();
 
-      /** Resolve hostname. */
-      static bool Resolve(::ca::application * papp, const string & hostname, in6_addr& a);
-      /** Reverse resolve (IP to hostname). */
-      static bool Reverse(::ca::application * papp, in6_addr& a, string & name);
-      /** Convert address struct to text. */
-      static string Convert(::ca::application * papp, in6_addr& a, bool mixed = false);
+         /** Resolve hostname. */
+         static bool Resolve(::ca::application * papp, const string & hostname, in6_addr& a);
+         /** Reverse resolve (IP to hostname). */
+         static bool Reverse(::ca::application * papp, in6_addr& a, string & name);
+         /** Convert address struct to text. */
+         static string Convert(::ca::application * papp, in6_addr& a, bool mixed = false);
 
-      void SetFlowinfo(uint32_t);
-      uint32_t GetFlowinfo();
-   #ifndef _WIN32
-      void SetScopeId(uint32_t);
-      uint32_t GetScopeId();
-   #endif
+         void SetFlowinfo(uint32_t);
+         uint32_t GetFlowinfo();
+#ifndef _WIN32
+         void SetScopeId(uint32_t);
+         uint32_t GetScopeId();
+#endif
 
-      ipv6_address & operator = (const ipv6_address &);
+         ipv6_address & operator = (const ipv6_address &);
 
-   private:
-      struct sockaddr_in6 m_addr;
-      bool m_valid;
-   };
+      private:
+         struct sockaddr_in6 m_addr;
+         bool m_valid;
+      };
 
-} // namespace sockets
+
+   } // namespace sockets
+
+
+
+} //  namespace bsd
+
+
 

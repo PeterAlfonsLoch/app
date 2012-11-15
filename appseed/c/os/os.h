@@ -22,6 +22,7 @@
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
+#define HAVE_OPENSSL
 
 #elif defined(METROWIN)
 
@@ -35,17 +36,14 @@
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL
-
-#endif
-
-
-
-
-
-/* OpenSSL support. */
-#if defined(BSD_STYLE_SOCKETS) && !defined(MACOS)
 #define HAVE_OPENSSL
+
 #endif
+
+
+
+
+
 
 
 

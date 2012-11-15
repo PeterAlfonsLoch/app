@@ -1,5 +1,5 @@
 /** \file http_debug_socket.h
- **   \date  2004-09-27
+**   \date  2004-09-27
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedström (grymse@alhem.net)
@@ -28,36 +28,50 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace sockets
+
+namespace bsd
 {
 
-   class socket_handler_base;
 
-   /** HTTP request "echo" class. This class echoes a http request/body
-   with a html formatted page. 
-      \ingroup http */
-   class CLASS_DECL_ca http_debug_socket : 
-      public http_socket
+   namespace sockets
    {
-   public:
-      
-      
-      int m_content_length;
-      int m_read_ptr;
 
 
-      http_debug_socket(socket_handler_base&);
-      ~http_debug_socket();
-
-      void Init();
-
-      void OnFirst();
-      void OnHeader(const string & key,const string & value, const string & lowvalue);
-      void OnHeaderComplete();
-      void OnData(const char *,size_t);
-      void OnDataComplete();
-
-   };
+      class socket_handler_base;
 
 
-} // namespace sockets
+      /** HTTP request "echo" class. This class echoes a http request/body
+      with a html formatted page. 
+      \ingroup http */
+      class CLASS_DECL_ca http_debug_socket : 
+         public http_socket
+      {
+      public:
+
+
+         int m_content_length;
+         int m_read_ptr;
+
+
+         http_debug_socket(socket_handler_base&);
+         ~http_debug_socket();
+
+         void Init();
+
+         void OnFirst();
+         void OnHeader(const string & key,const string & value, const string & lowvalue);
+         void OnHeaderComplete();
+         void OnData(const char *,size_t);
+         void OnDataComplete();
+
+      };
+
+
+   } // namespace sockets
+
+
+} // namespace bsd
+
+
+
+

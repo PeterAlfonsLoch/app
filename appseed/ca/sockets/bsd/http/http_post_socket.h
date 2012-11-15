@@ -1,6 +1,6 @@
 /** \file http_post_socket.h
- **   \date  2004-10-30
- **   \author grymse@alhem.net
+**   \date  2004-10-30
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
@@ -29,54 +29,66 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace sockets
+
+namespace bsd
 {
 
 
-   class socket_handler_base;
-
-   /** Generate a http post request, get response. 
-      \ingroup http */
-   class CLASS_DECL_ca http_post_socket : 
-      virtual public http_client_socket
+   namespace sockets
    {
-   public:
-      
-      
-      string                              m_boundary;
-      string_to_string_map                m_mapFiles;
-      ::collection::string_map < long >   m_mapContentLength;
-      string_to_string_map                m_mapContentType;
-      bool                                m_bMultipart;
-      //static int m_boundary_count;
-      //static mutex m_boundary_mutex;
 
 
-      http_post_socket(socket_handler_base&);
-      /* client constructor, 
+      class socket_handler_base;
+
+      /** Generate a http post request, get response. 
+      \ingroup http */
+      class CLASS_DECL_ca http_post_socket : 
+         virtual public http_client_socket
+      {
+      public:
+
+
+         string                              m_boundary;
+         string_to_string_map                m_mapFiles;
+         ::collection::string_map < long >   m_mapContentLength;
+         string_to_string_map                m_mapContentType;
+         bool                                m_bMultipart;
+         //static int m_boundary_count;
+         //static mutex m_boundary_mutex;
+
+
+         http_post_socket(socket_handler_base&);
+         /* client constructor, 
          \param url_in = 'http://host:port/resource' */
-      http_post_socket(socket_handler_base&,const string & url_in);
-      ~http_post_socket();
+         http_post_socket(socket_handler_base&,const string & url_in);
+         ~http_post_socket();
 
-      // these must be specified before connecting / adding to handler
-      /** add field to post. */
-      void AddField(const string & name,const string & value);
-      /** add multiline field to post. */
-      void AddMultilineField(const string & name, stringa & values);
-      /** add file to post. */
-      void AddFile(const string & name,const string & filename,const string & type);
+         // these must be specified before connecting / adding to handler
+         /** add field to post. */
+         void AddField(const string & name,const string & value);
+         /** add multiline field to post. */
+         void AddMultilineField(const string & name, stringa & values);
+         /** add file to post. */
+         void AddFile(const string & name,const string & filename,const string & type);
 
-      /** use this to post with content-type multipart/form-data.
-      // when adding a file to the post, this is the default and only content-type */
-      void SetMultipart();
+         /** use this to post with content-type multipart/form-data.
+         // when adding a file to the post, this is the default and only content-type */
+         void SetMultipart();
 
-      /** http put client implemented in OnConnect */
-      void step();
+         /** http put client implemented in OnConnect */
+         void step();
 
-      gen::property_set m_fields;
-      void DoMultipartPost();
-      //
-   
-   };
+         gen::property_set m_fields;
+         void DoMultipartPost();
+         //
 
-} // namespace sockets
+      };
+
+
+   } // namespace sockets
+
+
+} // namespace bsd
+
+
+

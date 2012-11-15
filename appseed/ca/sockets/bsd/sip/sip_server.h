@@ -1,5 +1,8 @@
 #pragma once
 
+namespace bsd
+{
+
 namespace sockets
 {
 
@@ -17,3 +20,6 @@ namespace sockets
    };
 
 } // namespace sockets
+
+
+} // namespace bsd

@@ -6,8 +6,7 @@ namespace ca4
 
 
    class CLASS_DECL_ca application :
-      virtual public colorertake5::application,
-      virtual public ::ca::interface_application < sockets::application_interface >
+      virtual public ::sockets::application
    {
    public:
 

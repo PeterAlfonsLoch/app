@@ -1,6 +1,6 @@
 /** \file tcp_socket.h
- **   \date  2004-02-13
- **   \author grymse@alhem.net
+**   \date  2004-02-13
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
@@ -34,265 +34,275 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define TCP_OUTPUT_CAPACITY 1024000
 
 
-namespace sockets
+namespace bsd
 {
 
 
-   class address;
-
-
-   /** socket implementation for TCP.
-      \ingroup basic */
-   class CLASS_DECL_ca tcp_socket :
-      virtual public stream_socket
+   namespace sockets
    {
-      /** \defgroup internal Internal utility */
-   protected:
-      /** Output buffer struct.
+
+
+      class address;
+
+
+      /** socket implementation for TCP.
+      \ingroup basic */
+      class CLASS_DECL_ca tcp_socket :
+         virtual public stream_socket
+      {
+         /** \defgroup internal Internal utility */
+      protected:
+         /** Output buffer struct.
          \ingroup internal */
-      struct OUTPUT {
-         OUTPUT() : _b(0), _t(0), _q(0) {}
-         OUTPUT(const char *buf, size_t len) : _b(0), _t(len), _q(len) {
-            memcpy(_buf, buf, len);
-         }
-         size_t Space() {
-            return TCP_OUTPUT_CAPACITY - _t;
-         }
-         void add(const char *buf, size_t len) {
-            memcpy(_buf + _t, buf, len);
-            _t += len;
-            _q += len;
-         }
-         size_t remove(size_t len) {
-            _b += len;
-            _q -= len;
-            return _q;
-         }
-         const char *Buf() {
-            return _buf + _b;
-         }
-         size_t Len() {
-            return _q;
-         }
-         size_t _b;
-         size_t _t;
-         size_t _q;
-         char _buf[TCP_OUTPUT_CAPACITY];
-      };
-      typedef ::collection::list<OUTPUT *> output_list;
+         struct OUTPUT {
+            OUTPUT() : _b(0), _t(0), _q(0) {}
+            OUTPUT(const char *buf, size_t len) : _b(0), _t(len), _q(len) {
+               memcpy(_buf, buf, len);
+            }
+            size_t Space() {
+               return TCP_OUTPUT_CAPACITY - _t;
+            }
+            void add(const char *buf, size_t len) {
+               memcpy(_buf + _t, buf, len);
+               _t += len;
+               _q += len;
+            }
+            size_t remove(size_t len) {
+               _b += len;
+               _q -= len;
+               return _q;
+            }
+            const char *Buf() {
+               return _buf + _b;
+            }
+            size_t Len() {
+               return _q;
+            }
+            size_t _b;
+            size_t _t;
+            size_t _q;
+            char _buf[TCP_OUTPUT_CAPACITY];
+         };
+         typedef ::collection::list<OUTPUT *> output_list;
 
-   public:
-      //
-      bool m_b_input_buffer_disabled;
-      uint64_t m_bytes_sent;
-      uint64_t m_bytes_received;
-   #ifdef SOCKETS_DYNAMIC_TEMP
-      char *m_buf; ///< temporary read buffer
-   #endif
-      output_list m_obuf; ///< output buffer
-      OUTPUT *m_obuf_top; ///< output buffer on top
-      size_t m_transfer_limit;
-      size_t m_output_length;
+      public:
+         //
+         bool m_b_input_buffer_disabled;
+         uint64_t m_bytes_sent;
+         uint64_t m_bytes_received;
+#ifdef SOCKETS_DYNAMIC_TEMP
+         char *m_buf; ///< temporary read buffer
+#endif
+         output_list m_obuf; ///< output buffer
+         OUTPUT *m_obuf_top; ///< output buffer on top
+         size_t m_transfer_limit;
+         size_t m_output_length;
 
-   //static   SSLInitializer m_ssl_init;
-      SSL_CTX *m_ssl_ctx; ///< ssl context
-      SSL *m_ssl; ///< ssl 'socket'
-      BIO *m_sbio; ///< ssl bio
-      string m_password; ///< ssl password
+         //static   SSLInitializer m_ssl_init;
+         SSL_CTX *m_ssl_ctx; ///< ssl context
+         SSL *m_ssl; ///< ssl 'socket'
+         BIO *m_sbio; ///< ssl bio
+         string m_password; ///< ssl password
 
-      int m_socks4_state; ///< socks4 support
-      char m_socks4_vn; ///< socks4 support, temporary var
-      char m_socks4_cd; ///< socks4 support, temporary var
-      unsigned short m_socks4_dstport; ///< socks4 support
-      unsigned long m_socks4_dstip; ///< socks4 support
+         int m_socks4_state; ///< socks4 support
+         char m_socks4_vn; ///< socks4 support, temporary var
+         char m_socks4_cd; ///< socks4 support, temporary var
+         unsigned short m_socks4_dstport; ///< socks4 support
+         unsigned long m_socks4_dstip; ///< socks4 support
 
-      int m_resolver_id; ///< Resolver id (if any) for current open call
+         int m_resolver_id; ///< Resolver id (if any) for current open call
 
-      bool m_bReconnect; ///< Reconnect on lost connection flag
-      bool m_bTryingReconnect; ///< Trying to reconnect
-      string m_strHost;
+         bool m_bReconnect; ///< Reconnect on lost connection flag
+         bool m_bTryingReconnect; ///< Trying to reconnect
+         string m_strHost;
 
-   public:
+      public:
 
-      bool m_bCertCommonNameCheckEnabled;
+         bool m_bCertCommonNameCheckEnabled;
 
-      sp(ssl_client_context)     m_spsslclientcontext;
-      string                     m_strInitSSLClientContext;
+         sp(ssl_client_context)     m_spsslclientcontext;
+         string                     m_strInitSSLClientContext;
 
-      /** Constructor with standard values on input/output buffers. */
-      tcp_socket(socket_handler_base& );
-      /** Constructor with custom values for i/o buffer.
+         /** Constructor with standard values on input/output buffers. */
+         tcp_socket(socket_handler_base& );
+         /** Constructor with custom values for i/o buffer.
          \param h socket_handler_base reference
          \param isize Input buffer size
          \param osize Output buffer size */
-      tcp_socket(socket_handler_base& h,size_t isize,size_t osize);
-      ~tcp_socket();
+         tcp_socket(socket_handler_base& h,size_t isize,size_t osize);
+         ~tcp_socket();
 
-      /** open a connection to a remote server.
-          If you want your socket to connect to a server,
-          always call open before add'ing a socket to the sockethandler.
-          If not, the connection attempt will not be monitored by the
-          socket handler...
+         /** open a connection to a remote server.
+         If you want your socket to connect to a server,
+         always call open before add'ing a socket to the sockethandler.
+         If not, the connection attempt will not be monitored by the
+         socket handler...
          \param ip IP address
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
-      bool open(ipaddr_t ip,port_t port,bool skip_socks = false);
-      /** open connection.
+         bool open(ipaddr_t ip,port_t port,bool skip_socks = false);
+         /** open connection.
          \param ip Ipv6 address
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
-      bool open(in6_addr ip,port_t port,bool skip_socks = false);
-      bool open(sockets::address&,bool skip_socks = false);
-      bool open(sockets::address&,sockets::address& bind_address,bool skip_socks = false);
-      /** open connection.
+         bool open(in6_addr ip,port_t port,bool skip_socks = false);
+         bool open(sockets::address&,bool skip_socks = false);
+         bool open(sockets::address&,sockets::address& bind_address,bool skip_socks = false);
+         /** open connection.
          \param host Hostname
          \param port Port number */
-      bool open(const string &host,port_t port);
+         bool open(const string &host,port_t port);
 
-      /** Connect timeout callback. */
-      void OnConnectTimeout();
-   #ifdef _WIN32
-      /** Connection failed reported as exception on win32 */
-      void OnException();
-   #endif
+         /** Connect timeout callback. */
+         void OnConnectTimeout();
+#ifdef _WIN32
+         /** Connection failed reported as exception on win32 */
+         void OnException();
+#endif
 
-      /** close file descriptor - internal use only.
+         /** close file descriptor - internal use only.
          \sa SetCloseAndDelete */
-      int close();
+         int close();
 
-      /** Send a string.
+         /** Send a string.
          \param s string to send
          \param f Dummy flags -- not used */
-      void Send(const string &s,int f = 0);
-      /** Send string using printf formatting. */
-      void Sendf(const char *format, ...);
-      /** Send buffer of bytes.
+         void Send(const string &s,int f = 0);
+         /** Send string using printf formatting. */
+         void Sendf(const char *format, ...);
+         /** Send buffer of bytes.
          \param buf buffer pointer
          \param len Length of data
          \param f Dummy flags -- not used */
-      void SendBuf(const char *buf,size_t len,int f = 0);
-      /** This callback is executed after a successful read from the socket.
+         void SendBuf(const char *buf,size_t len,int f = 0);
+         /** This callback is executed after a successful read from the socket.
          \param buf Pointer to the data
          \param len Length of the data */
-      virtual void OnRawData(char *buf,size_t len);
+         virtual void OnRawData(char *buf,size_t len);
 
-      /** Called when output buffer has been sent.
-          Note: Will only be called IF the output buffer has been used.
-          Send's that was successful without needing the output buffer
-          will not generate a call to this method. */
-      virtual void OnWriteComplete();
-      /** Number of bytes in input buffer. */
-      size_t GetInputLength();
-      /** Number of bytes in output buffer. */
-      size_t GetOutputLength();
+         /** Called when output buffer has been sent.
+         Note: Will only be called IF the output buffer has been used.
+         Send's that was successful without needing the output buffer
+         will not generate a call to this method. */
+         virtual void OnWriteComplete();
+         /** Number of bytes in input buffer. */
+         size_t GetInputLength();
+         /** Number of bytes in output buffer. */
+         size_t GetOutputLength();
 
-      /** Callback fires when a socket in line protocol has read one full line.
+         /** Callback fires when a socket in line protocol has read one full line.
          \param line Line read */
-      void OnLine(const string & line);
-      /** get counter of number of bytes received. */
-      uint64_t GetBytesReceived(bool clear = false);
-      /** get counter of number of bytes sent. */
-      uint64_t GetBytesSent(bool clear = false);
+         void OnLine(const string & line);
+         /** get counter of number of bytes received. */
+         uint64_t GetBytesReceived(bool clear = false);
+         /** get counter of number of bytes sent. */
+         uint64_t GetBytesSent(bool clear = false);
 
-      /** Socks4 specific callback. */
-      void OnSocks4Connect();
-      /** Socks4 specific callback. */
-      void OnSocks4ConnectFailed();
-      /** Socks4 specific callback.
+         /** Socks4 specific callback. */
+         void OnSocks4Connect();
+         /** Socks4 specific callback. */
+         void OnSocks4ConnectFailed();
+         /** Socks4 specific callback.
          \return 'need_more' */
-      bool OnSocks4Read();
+         bool OnSocks4Read();
 
-      /** Callback executed when resolver thread has finished a resolve request. */
-      void OnResolved(int id,ipaddr_t a,port_t port);
-      void OnResolved(int id,in6_addr& a,port_t port);
-      /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
-      void OnSSLConnect();
-      /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
-      void OnSSLAccept();
-      /** This method must be implemented to initialize
+         /** Callback executed when resolver thread has finished a resolve request. */
+         void OnResolved(int id,ipaddr_t a,port_t port);
+         void OnResolved(int id,in6_addr& a,port_t port);
+         /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
+         void OnSSLConnect();
+         /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
+         void OnSSLAccept();
+         /** This method must be implemented to initialize
          the ssl context for an outgoing connection. */
-      virtual void InitSSLClient();
-      /** This method must be implemented to initialize
+         virtual void InitSSLClient();
+         /** This method must be implemented to initialize
          the ssl context for an incoming connection. */
-      virtual void InitSSLServer();
+         virtual void InitSSLServer();
 
-      /** Flag that says a broken connection will try to reconnect. */
-      void SetReconnect(bool = true);
-      /** Check reconnect on lost connection flag status. */
-      bool Reconnect();
-      /** Flag to determine if a reconnect is in progress. */
-      void SetIsReconnect(bool x = true);
-      /** socket is reconnecting. */
-      bool IsReconnect();
+         /** Flag that says a broken connection will try to reconnect. */
+         void SetReconnect(bool = true);
+         /** Check reconnect on lost connection flag status. */
+         bool Reconnect();
+         /** Flag to determine if a reconnect is in progress. */
+         void SetIsReconnect(bool x = true);
+         /** socket is reconnecting. */
+         bool IsReconnect();
 
-      void DisableInputBuffer(bool = true);
+         void DisableInputBuffer(bool = true);
 
-      void OnOptions(int,int,int,SOCKET);
+         void OnOptions(int,int,int,SOCKET);
 
-      void SetLineProtocol(bool = true);
+         void SetLineProtocol(bool = true);
 
-      // TCP options
-      bool SetTcpNodelay(bool = true);
+         // TCP options
+         bool SetTcpNodelay(bool = true);
 
-      virtual int Protocol();
+         virtual int Protocol();
 
-      /** Trigger limit for callback OnTransferLimit. */
-      void SetTransferLimit(size_t sz);
-      /** This callback fires when the output buffer drops below the value
-          set by SetTransferLimit. Default: 0 (disabled). */
-      virtual void OnTransferLimit();
+         /** Trigger limit for callback OnTransferLimit. */
+         void SetTransferLimit(size_t sz);
+         /** This callback fires when the output buffer drops below the value
+         set by SetTransferLimit. Default: 0 (disabled). */
+         virtual void OnTransferLimit();
 
-      tcp_socket(const tcp_socket& );
-      void OnRead();
-      virtual void OnRead( char *buf, size_t n );
-      void OnWrite();
+         tcp_socket(const tcp_socket& );
+         void OnRead();
+         virtual void OnRead( char *buf, size_t n );
+         void OnWrite();
 
 
-      virtual long cert_common_name_check(const char * common_name);
-      virtual void enable_cert_common_name_check(bool bEnable = true);
+         virtual long cert_common_name_check(const char * common_name);
+         virtual void enable_cert_common_name_check(bool bEnable = true);
 
-      /** SSL; Initialize ssl context for a client socket.
+         /** SSL; Initialize ssl context for a client socket.
          \param meth_in SSL method */
-      void InitializeContext(const string & context, const SSL_METHOD *meth_in = NULL);
-      /** SSL; Initialize ssl context for a server socket.
+         void InitializeContext(const string & context, const SSL_METHOD *meth_in = NULL);
+         /** SSL; Initialize ssl context for a server socket.
          \param keyfile Combined private key/certificate file
          \param password Password for private key
          \param meth_in SSL method */
-      void InitializeContext(const string & context, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
-      /** SSL; Initialize ssl context for a server socket.
+         void InitializeContext(const string & context, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
+         /** SSL; Initialize ssl context for a server socket.
          \param certfile Separate certificate file
          \param keyfile Combined private key/certificate file
          \param password Password for private key
          \param meth_in SSL method */
-      void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
-      /** SSL; Password callback method. */
-      static   int SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
-      /** SSL; get pointer to ssl context structure. */
-      virtual SSL_CTX *GetSslContext();
-      /** SSL; get pointer to ssl structure. */
-      virtual SSL *GetSsl();
-      /** ssl; still negotiating connection. */
-      bool SSLNegotiate();
-      /** SSL; get ssl password. */
-      const string & GetPassword();
+         void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
+         /** SSL; Password callback method. */
+         static   int SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
+         /** SSL; get pointer to ssl context structure. */
+         virtual SSL_CTX *GetSslContext();
+         /** SSL; get pointer to ssl structure. */
+         virtual SSL *GetSsl();
+         /** ssl; still negotiating connection. */
+         bool SSLNegotiate();
+         /** SSL; get ssl password. */
+         const string & GetPassword();
 
-      ex1::circular_buffer ibuf; ///< Circular input buffer
-   public:
+         ex1::circular_buffer ibuf; ///< Circular input buffer
+      public:
 
-      virtual string get_url();
+         virtual string get_url();
 
-      string m_strUrl;
+         string m_strUrl;
 
-   private:
-      tcp_socket& operator=(const tcp_socket& ) { return *this; }
+      private:
+         tcp_socket& operator=(const tcp_socket& ) { return *this; }
 
-      /** the actual send() */
-      int TryWrite(const char *buf, size_t len);
-      /** add data to output buffer top */
-      void buffer(const char *buf, size_t len);
-
-
-   };
+         /** the actual send() */
+         int TryWrite(const char *buf, size_t len);
+         /** add data to output buffer top */
+         void buffer(const char *buf, size_t len);
 
 
-} // namespace sockets
+      };
+
+
+   } // namespace sockets
+
+
+
+} // namespace bsd
+
+

@@ -41,6 +41,10 @@ public:
    void prepare_headers();
 };
 
+namespace bsd
+{
+
+
 namespace sockets
 {
    /** Smtp server base class. */
@@ -110,3 +114,7 @@ namespace sockets
    };
 
 } // namespace sockets
+
+
+
+} // namespace bsd

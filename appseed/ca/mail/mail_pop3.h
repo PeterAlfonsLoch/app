@@ -2,8 +2,6 @@
 
 
 
-#pragma once
-
 namespace mail
 {
 
@@ -24,7 +22,7 @@ namespace mail
 
       virtual void set_list_size(int iSize);
 
-      ::sockets::socket_handler     m_handler;
+      //::bsd::sockets::socket_handler     m_handler;
       pop3_socket *                 m_psocket;
       event                        m_evFinish;
       bool                          m_bRun;

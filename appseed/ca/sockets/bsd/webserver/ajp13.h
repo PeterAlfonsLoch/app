@@ -20,12 +20,13 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
-#ifndef _SOCKETS_Ajp13_H
-#define _SOCKETS_Ajp13_H
 
-#ifdef sockets
+#pragma once
+
+
+namespace bsd
+{
 namespace sockets {
-#endif
 
 #define HTTP_REQUEST_ACCEPT       0xa001
 #define HTTP_REQUEST_ACCEPT_CHARSET    0xa002
@@ -83,9 +84,7 @@ namespace sockets {
 #define ATTR_SECRET        12
 #define ATTR_STORED_METHOD 13
 
-#ifdef sockets
-} // namespace sockets {
-#endif
+} // namespace sockets
 
-#endif // _SOCKETS_Ajp13_H
+} // namespace bsd
 

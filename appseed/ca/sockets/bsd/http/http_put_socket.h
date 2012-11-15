@@ -1,6 +1,6 @@
 /** \file http_put_socket.h
- **   \date  2004-10-30
- **   \author grymse@alhem.net
+**   \date  2004-10-30
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
@@ -29,40 +29,53 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace sockets
+
+namespace bsd
 {
 
-   class socket_handler_base;
 
-   /** Put http page. 
-      \ingroup http */
-   class CLASS_DECL_ca http_put_socket : 
-      virtual public http_client_socket
+   namespace sockets
    {
-   public:
-      
-      
-      string            m_filename;
-      //string            m_content_type;
-      //long              m_content_length;
-      ::ex1::filesp     m_file;
 
-      
-      http_put_socket(socket_handler_base&);
-      /** client constructor, 
+      class socket_handler_base;
+
+      /** Put http page. 
+      \ingroup http */
+      class CLASS_DECL_ca http_put_socket : 
+         virtual public http_client_socket
+      {
+      public:
+
+
+         string            m_filename;
+         //string            m_content_type;
+         //long              m_content_length;
+         ::ex1::filesp     m_file;
+
+
+         http_put_socket(socket_handler_base&);
+         /** client constructor, 
          \param url_in = 'http://host:port/resource' */
-      http_put_socket(socket_handler_base&,const string & url_in);
-      ~http_put_socket();
+         http_put_socket(socket_handler_base&,const string & url_in);
+         ~http_put_socket();
 
-      // these must be specified before connecting / adding to handler
-      /** Set filename to send. */
-      void SetFile(const string & );
-      /** Set mimetype of file to send. */
-      void SetContentType(const string & );
+         // these must be specified before connecting / adding to handler
+         /** Set filename to send. */
+         void SetFile(const string & );
+         /** Set mimetype of file to send. */
+         void SetContentType(const string & );
 
-      /** http put client implemented in OnConnect */
-      virtual void step();
+         /** http put client implemented in OnConnect */
+         virtual void step();
 
-   };
+      };
 
-} // namespace sockets
+
+   } // namespace sockets
+
+
+} // namespace bsd
+
+
+
+

@@ -1,6 +1,6 @@
 /** \file socket_handler.h
- **   \date  2004-02-13
- **   \author grymse@alhem.net
+**   \date  2004-02-13
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
@@ -29,192 +29,198 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace sockets
+namespace bsd
 {
 
-   class socket;
-   class resolv_server;
-
-   /** socket container class, event generator.
-      \ingroup basic */
-   class CLASS_DECL_ca socket_handler : public socket_handler_base
+   namespace sockets
    {
-   protected:
-      /** Map type for holding file descriptors/socket object pointers. */
+
+      class socket;
+      class resolv_server;
+
+      /** socket container class, event generator.
+      \ingroup basic */
+      class CLASS_DECL_ca socket_handler : public socket_handler_base
+      {
+      protected:
+         /** Map type for holding file descriptors/socket object pointers. */
 
 
-   public:
-      /** socket_handler constructor.
+      public:
+         /** socket_handler constructor.
          \param log Optional log class pointer */
-      socket_handler(::ca::application * papp, StdLog *log = NULL);
+         socket_handler(::ca::application * papp, StdLog *log = NULL);
 
-      /** socket_handler threadsafe constructor.
+         /** socket_handler threadsafe constructor.
          \param mutex Externally declared mutex var
          \param log Optional log class pointer */
-      socket_handler(::ca::application * papp, mutex & mutex,StdLog *log = NULL);
+         socket_handler(::ca::application * papp, mutex & mutex,StdLog *log = NULL);
 
-      ~socket_handler();
+         ~socket_handler();
 
-      /** get mutex reference for threadsafe operations. */
-      mutex & GetMutex() const;
+         /** get mutex reference for threadsafe operations. */
+         mutex & GetMutex() const;
 
-      /** Register StdLog object for error callback.
+         /** Register StdLog object for error callback.
          \param log Pointer to log class */
-      void RegStdLog(StdLog *log);
+         void RegStdLog(StdLog *log);
 
-      /** Log error to log class for print out / storage. */
-      void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::gen::log::level::e_level elevel = ::gen::log::level::warning);
+         /** Log error to log class for print out / storage. */
+         void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::gen::log::level::e_level elevel = ::gen::log::level::warning);
 
-      /** add socket instance to socket ::collection::map. Removal is always automatic. */
-      void add(socket *);
+         /** add socket instance to socket ::collection::map. Removal is always automatic. */
+         void add(socket *);
 
-      /** get status of read/write/exception file descriptor set for a socket. */
-      void get(SOCKET s,bool& r,bool& w,bool& e);
+         /** get status of read/write/exception file descriptor set for a socket. */
+         void get(SOCKET s,bool& r,bool& w,bool& e);
 
-      /** Set read/write/exception file descriptor sets (fd_set). */
-      void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
+         /** Set read/write/exception file descriptor sets (fd_set). */
+         void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
 
-      /** Wait for events, generate callbacks. */
-      int Select(long sec,long usec);
+         /** Wait for events, generate callbacks. */
+         int Select(long sec,long usec);
 
-      /** This method will not return until an event has been detected. */
-      int Select();
+         /** This method will not return until an event has been detected. */
+         int Select();
 
-      /** Wait for events, generate callbacks. */
-      int Select(struct timeval *tsel);
+         /** Wait for events, generate callbacks. */
+         int Select(struct timeval *tsel);
 
-      /** Check that a socket really is handled by this socket handler. */
-      bool Valid(socket *);
+         /** Check that a socket really is handled by this socket handler. */
+         bool Valid(socket *);
 
-      /** Return number of sockets handled by this handler.  */
-      size_t get_count();
+         /** Return number of sockets handled by this handler.  */
+         size_t get_count();
 
-      /** Override and return false to deny all incoming connections.
+         /** Override and return false to deny all incoming connections.
          \param p listen_socket class pointer (use GetPort to identify which one) */
-      bool OkToAccept(socket *p);
+         bool OkToAccept(socket *p);
 
-      /** Called by socket when a socket changes state. */
-      void AddList(SOCKET s,list_t which_one,bool add);
+         /** Called by socket when a socket changes state. */
+         void AddList(SOCKET s,list_t which_one,bool add);
 
-      // Connection pool
-      /** find available open connection (used by connection pool). */
-      socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&);
-      /** Enable connection pool (by default disabled). */
-      void EnablePool(bool x = true);
-      /** Check pool status.
+         // Connection pool
+         /** find available open connection (used by connection pool). */
+         socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&);
+         /** Enable connection pool (by default disabled). */
+         void EnablePool(bool x = true);
+         /** Check pool status.
          \return true if connection pool is enabled */
-      bool PoolEnabled();
+         bool PoolEnabled();
 
-      // Socks4
-      /** Set socks4 server ip that all new tcp sockets should use. */
-      void SetSocks4Host(ipaddr_t);
-      /** Set socks4 server hostname that all new tcp sockets should use. */
-      void SetSocks4Host(const string & );
-      /** Set socks4 server port number that all new tcp sockets should use. */
-      void SetSocks4Port(port_t);
-      /** Set optional socks4 userid. */
-      void SetSocks4Userid(const string & );
-      /** If connection to socks4 server fails, immediately try direct connection to final host. */
-      void SetSocks4TryDirect(bool x = true);
-      /** get socks4 server ip.
+         // Socks4
+         /** Set socks4 server ip that all new tcp sockets should use. */
+         void SetSocks4Host(ipaddr_t);
+         /** Set socks4 server hostname that all new tcp sockets should use. */
+         void SetSocks4Host(const string & );
+         /** Set socks4 server port number that all new tcp sockets should use. */
+         void SetSocks4Port(port_t);
+         /** Set optional socks4 userid. */
+         void SetSocks4Userid(const string & );
+         /** If connection to socks4 server fails, immediately try direct connection to final host. */
+         void SetSocks4TryDirect(bool x = true);
+         /** get socks4 server ip.
          \return socks4 server ip */
-      ipaddr_t GetSocks4Host();
-      /** get socks4 port number.
+         ipaddr_t GetSocks4Host();
+         /** get socks4 port number.
          \return socks4 port number */
-      port_t GetSocks4Port();
-      /** get socks4 userid (optional).
+         port_t GetSocks4Port();
+         /** get socks4 userid (optional).
          \return socks4 userid */
-      const string & GetSocks4Userid();
-      /** Check status of socks4 try direct flag.
+         const string & GetSocks4Userid();
+         /** Check status of socks4 try direct flag.
          \return true if direct connection should be tried if connection to socks4 server fails */
-      bool Socks4TryDirect();
+         bool Socks4TryDirect();
 
-      // DNS resolve server
-      /** Enable asynchronous DNS.
+         // DNS resolve server
+         /** Enable asynchronous DNS.
          \param port Listen port of asynchronous dns server */
-      void EnableResolver(port_t port = 16667);
-      /** Check resolver status.
+         void EnableResolver(port_t port = 16667);
+         /** Check resolver status.
          \return true if resolver is enabled */
-      bool ResolverEnabled();
-      /** Queue a dns request.
+         bool ResolverEnabled();
+         /** Queue a dns request.
          \param host Hostname to be resolved
          \param port Port number will be echoed in socket::OnResolved callback */
-      int Resolve(socket *,const string & host,port_t port);
-      int Resolve6(socket *,const string & host,port_t port);
-      /** Do a reverse dns lookup. */
-      int Resolve(socket *,ipaddr_t a);
-      int Resolve(socket *,in6_addr& a);
-      /** get listen port of asynchronous dns server. */
-      port_t GetResolverPort();
-      /** Resolver thread ready for queries. */
-      bool ResolverReady();
-      /** Returns true if the socket is waiting for a resolve event. */
-      bool Resolving(socket *);
+         int Resolve(socket *,const string & host,port_t port);
+         int Resolve6(socket *,const string & host,port_t port);
+         /** Do a reverse dns lookup. */
+         int Resolve(socket *,ipaddr_t a);
+         int Resolve(socket *,in6_addr& a);
+         /** get listen port of asynchronous dns server. */
+         port_t GetResolverPort();
+         /** Resolver thread ready for queries. */
+         bool ResolverReady();
+         /** Returns true if the socket is waiting for a resolve event. */
+         bool Resolving(socket *);
 
-      /** Fetch unique trigger id. */
-      int TriggerID(socket *src);
-      /** Subscribe socket to trigger id. */
-      bool Subscribe(int id, socket *dst);
-      /** Unsubscribe socket from trigger id. */
-      bool Unsubscribe(int id, socket *dst);
-      /** Execute OnTrigger for subscribed sockets.
+         /** Fetch unique trigger id. */
+         int TriggerID(socket *src);
+         /** Subscribe socket to trigger id. */
+         bool Subscribe(int id, socket *dst);
+         /** Unsubscribe socket from trigger id. */
+         bool Unsubscribe(int id, socket *dst);
+         /** Execute OnTrigger for subscribed sockets.
          \param id Trigger ID
          \param data Data passed from source to destination
          \param erase Empty trigger id source and destination maps if 'true',
-            Leave them in place if 'false' - if a trigger should be called many times */
-      void Trigger(int id, socket::TriggerData& data, bool erase = true);
+         Leave them in place if 'false' - if a trigger should be called many times */
+         void Trigger(int id, socket::TriggerData& data, bool erase = true);
 
-      /** Indicates that the handler runs under socket_thread. */
-      void SetSlave(bool x = true);
-      /** Indicates that the handler runs under socket_thread. */
-      bool IsSlave();
+         /** Indicates that the handler runs under socket_thread. */
+         void SetSlave(bool x = true);
+         /** Indicates that the handler runs under socket_thread. */
+         bool IsSlave();
 
-      /** Sanity check of those accursed lists. */
-      void CheckSanity();
+         /** Sanity check of those accursed lists. */
+         void CheckSanity();
 
-   public:
-      socket_map     m_sockets; ///< Active sockets ::collection::map
-      socket_map     m_add; ///< Sockets to be added to sockets ::collection::map
-      socket_list    m_delete; ///< Sockets to be deleted (failed when add)
-   protected:
-      StdLog *m_stdlog; ///< Registered log class, or NULL
-      mutex & m_mutex; ///< Thread safety mutex
-      bool m_b_use_mutex; ///< mutex correctly initialized
+      public:
+         socket_map     m_sockets; ///< Active sockets ::collection::map
+         socket_map     m_add; ///< Sockets to be added to sockets ::collection::map
+         socket_list    m_delete; ///< Sockets to be deleted (failed when add)
+      protected:
+         StdLog *m_stdlog; ///< Registered log class, or NULL
+         mutex & m_mutex; ///< Thread safety mutex
+         bool m_b_use_mutex; ///< mutex correctly initialized
 
-   private:
-      void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
-      /** remove socket from socket ::collection::map, used by socket class. */
-      void remove(socket *);
-      SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
-      fd_set m_rfds; ///< file descriptor set monitored for read events
-      fd_set m_wfds; ///< file descriptor set monitored for write events
-      fd_set m_efds; ///< file descriptor set monitored for exceptions
-      int m_preverror; ///< debug select() error
-      int m_errcnt; ///< debug select() error
-      time_t m_tlast; ///< timeout control
+      private:
+         void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
+         /** remove socket from socket ::collection::map, used by socket class. */
+         void remove(socket *);
+         SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
+         fd_set m_rfds; ///< file descriptor set monitored for read events
+         fd_set m_wfds; ///< file descriptor set monitored for write events
+         fd_set m_efds; ///< file descriptor set monitored for exceptions
+         int m_preverror; ///< debug select() error
+         int m_errcnt; ///< debug select() error
+         time_t m_tlast; ///< timeout control
 
-      // state lists
-      socket_id_list m_fds; ///< Active file descriptor list
-      socket_id_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
-      socket_id_list m_fds_callonconnect; ///< checklist CallOnConnect
-      socket_id_list m_fds_detach; ///< checklist detach
-      socket_id_list m_fds_timeout; ///< checklist timeout
-      socket_id_list m_fds_retry; ///< checklist retry client connect
-      socket_id_list m_fds_close; ///< checklist close and delete
-      ipaddr_t m_socks4_host; ///< Socks4 server host ip
-      port_t m_socks4_port; ///< Socks4 server port number
-      string m_socks4_userid; ///< Socks4 userid
-      bool m_bTryDirect; ///< Try direct connection if socks4 server fails
-      int m_resolv_id; ///< Resolver id counter
-      resolv_server *m_resolver; ///< Resolver thread pointer
-      port_t m_resolver_port; ///< Resolver listen port
-      ::collection::map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
-      bool m_b_enable_pool; ///< Connection pool enabled if true
-      int m_next_trigger_id; ///< Unique trigger id counter
-      ::collection::map<int, int, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
-      ::collection::map<int, int, ::collection::map<socket *, socket *, bool, bool>, ::collection::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
-      bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
-   };
+         // state lists
+         socket_id_list m_fds; ///< Active file descriptor list
+         socket_id_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
+         socket_id_list m_fds_callonconnect; ///< checklist CallOnConnect
+         socket_id_list m_fds_detach; ///< checklist detach
+         socket_id_list m_fds_timeout; ///< checklist timeout
+         socket_id_list m_fds_retry; ///< checklist retry client connect
+         socket_id_list m_fds_close; ///< checklist close and delete
+         ipaddr_t m_socks4_host; ///< Socks4 server host ip
+         port_t m_socks4_port; ///< Socks4 server port number
+         string m_socks4_userid; ///< Socks4 userid
+         bool m_bTryDirect; ///< Try direct connection if socks4 server fails
+         int m_resolv_id; ///< Resolver id counter
+         resolv_server *m_resolver; ///< Resolver thread pointer
+         port_t m_resolver_port; ///< Resolver listen port
+         ::collection::map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
+         bool m_b_enable_pool; ///< Connection pool enabled if true
+         int m_next_trigger_id; ///< Unique trigger id counter
+         ::collection::map<int, int, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
+         ::collection::map<int, int, ::collection::map<socket *, socket *, bool, bool>, ::collection::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
+         bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
+      };
 
 
-}
+   } // namespace sockets
+
+
+} // namespace bsd

@@ -32,6 +32,11 @@ namespace http
    class form;
 }
 
+
+namespace bsd
+{
+
+
 namespace sockets
 {
 
@@ -68,3 +73,9 @@ namespace sockets
 
 
 } // namespace sockets
+
+
+
+} // namespace bsd
+
+

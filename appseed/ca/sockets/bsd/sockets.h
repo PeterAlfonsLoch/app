@@ -7,7 +7,6 @@
 
 #ifndef _RUN_DP
 /* First undefine symbols if already defined. */
-#undef HAVE_OPENSSL
 #undef ENABLE_IPV6
 #undef USE_SCTP
 #undef NO_GETADDRINFO
@@ -241,6 +240,9 @@ CLASS_DECL_ca const char *StrError(int x);
 #define Errno WSAGetLastError()
 CLASS_DECL_ca const char *StrError(int x);
 
+namespace bsd
+{
+
 namespace sockets {
 
 
@@ -265,19 +267,26 @@ private:
 
 } // namespace sockets
 
+} // namespace bsd
+
 #else
 // ----------------------------------------
 // LINUX
 typedef unsigned long ipaddr_t;
 typedef unsigned short port_t;
+
+namespace bsd
+{
 namespace sockets {
 // no defs
 
-}
-
+} // namespace sockets
+} // namespace bsd
 
 #endif
 
+namespace bsd
+{
 
 namespace sockets
 {
@@ -289,7 +298,7 @@ namespace sockets
 
 } // namespace sockets
 
-
+} // namespace bsd
 // getaddrinfo / getnameinfo replacements
 #ifdef NO_GETADDRINFO
 #ifndef AI_NUMERICHOST
@@ -301,6 +310,8 @@ namespace sockets
 #endif
 
 #include "ca/ca_log.h"
+
+#include "basic/address.h"
 #include "basic/ipv4_address.h"
 #include "basic/ipv6_address.h"
 #include "basic/sockets_ssl_client_context.h"
@@ -313,8 +324,6 @@ namespace sockets
 
 #include "basic/tls_socket.h"
 
-#include "http_file.h"
-#include "http_memory_file.h"
 
 #include "log/StdLog.h"
 
@@ -377,8 +386,6 @@ namespace sockets
 #include "asynch_dns/resolv_socket.h"
 #include "asynch_dns/resolv_server.h"
 
-#include "sockets_http_file.h"
-#include "sockets_http_batch_file.h"
 
 #include "log/StdLog.h"
 #include "log/trace_log.h"

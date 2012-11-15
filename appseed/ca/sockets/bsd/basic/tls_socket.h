@@ -1,22 +1,33 @@
 #pragma once
 
-namespace sockets
+
+namespace bsd
 {
 
-   class CLASS_DECL_ca tls_socket : 
-      virtual public tcp_socket
+
+   namespace sockets
    {
-   public:
+
+      class CLASS_DECL_ca tls_socket : 
+         virtual public tcp_socket
+      {
+      public:
 
 
-      tls_socket(socket_handler_base& );
-      ~tls_socket();
+         tls_socket(socket_handler_base& );
+         ~tls_socket();
 
 
-      virtual void InitSSLClient();
+         virtual void InitSSLClient();
 
-   };
+      };
 
 
 
-} // namespace sockets
+   } // namespace sockets
+
+
+} // namespace bsd
+
+
+

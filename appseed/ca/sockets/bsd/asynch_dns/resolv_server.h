@@ -1,6 +1,6 @@
 /** \file resolv_server.h
- **   \date  2005-03-24
- **   \author grymse@alhem.net
+**   \date  2005-03-24
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
@@ -29,32 +29,43 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #pragma once
 
-namespace sockets
+
+namespace bsd
 {
 
-   /** \defgroup async Asynchronous DNS */
-   /** Async DNS resolver thread. 
-      \ingroup async */
-   class resolv_server : 
-      public go_thread
+
+   namespace sockets
    {
-   public:
-      resolv_server(::ca::application * papp, port_t);
-      ~resolv_server();
 
-      virtual void go();
-      void Quit();
+      /** \defgroup async Asynchronous DNS */
+      /** Async DNS resolver thread. 
+      \ingroup async */
+      class resolv_server : 
+         public go_thread
+      {
+      public:
+         resolv_server(::ca::application * papp, port_t);
+         ~resolv_server();
 
-      bool Ready();
+         virtual void go();
+         void Quit();
 
-   private:
-      resolv_server(const resolv_server& s);  // copy constructor
-      resolv_server& operator=(const resolv_server& ) { return *this; } // assignment operator
+         bool Ready();
 
-      bool m_quit;
-      port_t m_port;
-      bool m_ready;
-   };
+      private:
+         resolv_server(const resolv_server& s);  // copy constructor
+         resolv_server& operator=(const resolv_server& ) { return *this; } // assignment operator
 
-} // namespace sockets
+         bool m_quit;
+         port_t m_port;
+         bool m_ready;
+      };
+
+   } // namespace sockets
+
+
+
+} // namespace bsd
+
+
 

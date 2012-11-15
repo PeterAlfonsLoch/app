@@ -1,6 +1,6 @@
 /** \file http_request_socket.h
- **   \date  2004-02-13
- **   \author grymse@alhem.net
+**   \date  2004-02-13
+**   \author grymse@alhem.net
 **/
 /*
 Copyright (C) 2004-2007  Anders Hedstrom
@@ -30,34 +30,43 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-namespace sockets
+namespace bsd
 {
 
 
-   /** get http page. 
-      \ingroup http */
-   class CLASS_DECL_ca http_request_socket : 
-      virtual public http_client_socket
+   namespace sockets
    {
-   public:
-
-      
-      string      m_strMethod;
 
 
-      http_request_socket(socket_handler_base & handler);
-      http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & url);
-      http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & host, port_t port, const string & url);
-      ~http_request_socket();
+      /** get http page. 
+      \ingroup http */
+      class CLASS_DECL_ca http_request_socket : 
+         virtual public http_client_socket
+      {
+      public:
 
 
-      void step();
+         string      m_strMethod;
 
 
-   };
+         http_request_socket(socket_handler_base & handler);
+         http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & url);
+         http_request_socket(socket_handler_base & handler, const char * pszMethod, const string & host, port_t port, const string & url);
+         ~http_request_socket();
 
 
-} // namespace sockets
+         void step();
+
+
+      };
+
+
+   } // namespace sockets
+
+
+
+} // namespace bsd
+
 
 
 
