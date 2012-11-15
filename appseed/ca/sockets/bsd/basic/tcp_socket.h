@@ -95,10 +95,8 @@ namespace sockets
       size_t m_output_length;
 
    //static   SSLInitializer m_ssl_init;
-#ifdef BSD_STYLE_SOCKETS
       SSL_CTX *m_ssl_ctx; ///< ssl context
       SSL *m_ssl; ///< ssl 'socket'
-#endif // BSD_STYLE_SOCKETS
       BIO *m_sbio; ///< ssl bio
       string m_password; ///< ssl password
 
@@ -110,18 +108,16 @@ namespace sockets
 
       int m_resolver_id; ///< Resolver id (if any) for current open call
 
-      bool m_b_reconnect; ///< Reconnect on lost connection flag
-      bool m_b_is_reconnect; ///< Trying to reconnect
+      bool m_bReconnect; ///< Reconnect on lost connection flag
+      bool m_bTryingReconnect; ///< Trying to reconnect
       string m_strHost;
 
    public:
 
       bool m_bCertCommonNameCheckEnabled;
 
-#ifdef BSD_STYLE_SOCKETS
       sp(ssl_client_context)     m_spsslclientcontext;
       string                     m_strInitSSLClientContext;
-#endif
 
       /** Constructor with standard values on input/output buffers. */
       tcp_socket(socket_handler_base& );
@@ -231,9 +227,7 @@ namespace sockets
 
       void DisableInputBuffer(bool = true);
 
-#ifdef BSD_STYLE_SOCKETS
       void OnOptions(int,int,int,SOCKET);
-#endif
 
       void SetLineProtocol(bool = true);
 
@@ -257,7 +251,6 @@ namespace sockets
       virtual long cert_common_name_check(const char * common_name);
       virtual void enable_cert_common_name_check(bool bEnable = true);
 
-#ifdef BSD_STYLE_SOCKETS
       /** SSL; Initialize ssl context for a client socket.
          \param meth_in SSL method */
       void InitializeContext(const string & context, const SSL_METHOD *meth_in = NULL);
@@ -280,7 +273,6 @@ namespace sockets
       virtual SSL *GetSsl();
       /** ssl; still negotiating connection. */
       bool SSLNegotiate();
-#endif // BSD_SYTLE_SOCKETS
       /** SSL; get ssl password. */
       const string & GetPassword();
 

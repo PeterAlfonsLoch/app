@@ -66,7 +66,7 @@ namespace sockets
             h.m_sockets.set_at(key, this);
          }
       }
-      m_ssl = psocket->GetSsl();
+      m_bSsl = psocket->GetSsl();
       m_socket = psocket->m_socket;
 
       m_bConnecting        = psocket->m_bConnecting; ///< Flag indicating connection in progress
@@ -78,11 +78,11 @@ namespace sockets
       m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
       m_shutdown           = psocket->m_shutdown; ///< Shutdown status
 
-      m_b_ssl              = psocket->m_b_ssl;
-      m_b_reconnect        = psocket->m_b_reconnect;
-      m_ssl                = psocket->m_ssl;
-      m_b_ssl_server       = psocket->m_b_ssl_server;
-      m_b_enable_ssl       = psocket->m_b_enable_ssl;
+      m_bSsl               = psocket->m_bSsl;
+      m_bReconnect         = psocket->m_bReconnect;
+      m_bSsl               = psocket->m_bSsl;
+      m_bSslServer         = psocket->m_bSslServer;
+      m_bEnableSsl         = psocket->m_bEnableSsl;
 
    }
 

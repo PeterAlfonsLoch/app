@@ -83,11 +83,11 @@ namespace sockets
       m_b_retry_connect    = psocket->m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
       m_shutdown           = psocket->m_shutdown; ///< Shutdown status
 
-      m_b_ssl              = psocket->m_b_ssl;
-      m_b_reconnect        = psocket->m_b_reconnect;
-      m_ssl                = psocket->m_ssl;
-      m_b_ssl_server       = psocket->m_b_ssl_server;
-      m_b_enable_ssl       = psocket->m_b_enable_ssl;
+      m_bSsl               = psocket->m_bSsl;
+      m_bReconnect         = psocket->m_bReconnect;
+      m_bSsl               = psocket->m_bSsl;
+      m_bSslServer         = psocket->m_bSslServer;
+      m_bEnableSsl         = psocket->m_bEnableSsl;
 
    }
 

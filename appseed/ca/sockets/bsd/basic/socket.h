@@ -692,12 +692,10 @@ namespace sockets
       void DetachSocket();
       //@}
 
-#ifdef BSD_STYLE_SOCKETS
       /** write traffic to an IFile. socket will not delete this object. */
-      void SetTrafficMonitor(ex1::file *p) { m_traffic_monitor = p; }
+      void SetTrafficMonitor(ex1::file *p) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      ex1::file *GetTrafficMonitor() { return m_traffic_monitor; }
-#endif // BSD_STYLE_SOCKETS
+      ex1::file *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

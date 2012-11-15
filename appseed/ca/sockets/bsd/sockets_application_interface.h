@@ -10,7 +10,7 @@ namespace sockets
    {
    public:
 
-#ifdef BSD_STYLE_SOCKETS
+#ifdef HAVE_OPENSSL
       ssl_client_context_map                       m_clientcontextmap;
 #endif
       AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;

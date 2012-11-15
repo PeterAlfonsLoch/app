@@ -63,13 +63,11 @@ namespace sockets
       /** close file descriptor. */
       int close()
       {
-#ifdef BSD_STYLE_SOCKETS
 
          if (GetSocket() != INVALID_SOCKET)
          {
             ::closesocket(GetSocket());
          }
-#endif
          return 0;
       }
 
@@ -224,14 +222,9 @@ namespace sockets
          \param ad Interface address
          \param protocol Network protocol
          \param depth Listen queue depth */
-      int Bind(sockets::address& ad,const string & protocol,int depth) {
-#ifdef METROWIN
+      int Bind(sockets::address& ad,const string & protocol,int depth)
+      {
 
-         m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener();
-
-         m_listener->BindEndpointAsync(ad.get_os_host_name(), ad.get_os_service_name());
-
-#ifdef BSD_STYLE_SOCKETS
          SOCKET s;
          m_iBindPort = ad.GetPort();
          if ( (s = CreateSocket(ad.GetFamily(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
@@ -254,9 +247,6 @@ namespace sockets
          m_depth = depth;
          attach(s);
          return 0;
-#else
-         return 0;
-#endif
       }
 
       /** Return assigned port number. */
@@ -274,8 +264,6 @@ namespace sockets
       /** OnRead on a listen_socket receives an incoming connection. */
       void OnRead()
       {
-
-#ifdef BSD_STYLE_SOCKETS
 
          struct sockaddr sa;
          socklen_t sa_len = sizeof(struct sockaddr);
@@ -355,27 +343,22 @@ namespace sockets
             tmp -> OnAccept();
          }
 
-#endif
 
       }
 
-#ifdef BSD_STYLE_SOCKETS
       /** Please don't use this method.
          "accept()" is handled automatically in the OnRead() method. */
       virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
       {
                return accept(socket, saptr, lenptr);
       }
-#endif
 
            bool HasCreator() { return m_bHasCreate; }
 
-#ifdef BSD_STYLE_SOCKETS
       void OnOptions(int,int,int,SOCKET)
       {
          SetSoReuseaddr(true);
       }
-#endif
 
    protected:
       listen_socket(const listen_socket& s) : socket(s) {}

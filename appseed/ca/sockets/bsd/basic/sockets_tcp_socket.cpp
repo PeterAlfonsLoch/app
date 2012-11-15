@@ -89,8 +89,8 @@ namespace sockets
    #endif
    ,m_socks4_state(0)
    ,m_resolver_id(0)
-   ,m_b_reconnect(false)
-   ,m_b_is_reconnect(false)
+   ,m_bReconnect(false)
+   ,m_bTryingReconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
    }
@@ -123,8 +123,8 @@ namespace sockets
    #endif
    ,m_socks4_state(0)
    ,m_resolver_id(0)
-   ,m_b_reconnect(false)
-   ,m_b_is_reconnect(false)
+   ,m_bReconnect(false)
+   ,m_bTryingReconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
       UNREFERENCED_PARAMETER(osize);
@@ -1338,9 +1338,9 @@ namespace sockets
    #endif
 
 
-   void tcp_socket::SetReconnect(bool x)
+   void tcp_socket::SetReconnect(bool bReconnect)
    {
-      m_b_reconnect = x;
+      m_bReconnect = bReconnect;
    }
 
    void tcp_socket::OnRawData(char * buf_in, size_t len)
@@ -1381,19 +1381,18 @@ namespace sockets
 
    bool tcp_socket::Reconnect()
    {
-      return m_b_reconnect;
+      return m_bReconnect;
    }
 
 
-   void tcp_socket::SetIsReconnect(bool x)
+   void tcp_socket::SetIsReconnect(bool bTryingReconnect)
    {
-      m_b_is_reconnect = x;
+      m_bTryingReconnect = bTryingReconnect;
    }
-
 
    bool tcp_socket::IsReconnect()
    {
-      return m_b_is_reconnect;
+      return m_bTryingReconnect;
    }
 
    const string & tcp_socket::GetPassword()

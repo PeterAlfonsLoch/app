@@ -57,23 +57,23 @@ namespace sockets
    //:m_flags(0)
    :m_handler(h)
    ,m_socket( INVALID_SOCKET )
-   ,m_bDel(false)
+   ,m_bDelete(false)
    ,m_bClose(false)
-   ,m_tCreate(time(NULL))
-   ,m_parent(NULL)
-   ,m_b_disable_read(false)
-   ,m_connected(false)
-   ,m_b_erased_by_handler(false)
-   ,m_tClose(0)
-   ,m_client_remote_address()
-   ,m_remote_address()
-   ,m_traffic_monitor(NULL)
+   ,m_timeCreate(time(NULL))
+   ,m_psocketParent(NULL)
+   ,m_bDisableRead(false)
+   ,m_bConnected(false)
+   ,m_bErasedByHandler(false)
+   ,m_timeClose(0)
+   ,m_addressRemoteClient()
+   ,m_addressRemote()
+   ,m_pfileTrafficMonitor(NULL)
    ,m_bLost(false)
-   ,m_b_enable_ssl(false)
-   ,m_b_ssl(false)
-   ,m_b_ssl_server(false)
-   ,m_ipv6(false)
-   ,m_socket_type(0)
+   ,m_bEnableSsl(false)
+   ,m_bSsl(false)
+   ,m_bSslServer(false)
+   ,m_bIpv6(false)
+   ,m_iSocketType(0)
    ,m_bClient(false)
    ,m_bRetain(false)
    ,m_bSocks4(false)
@@ -173,16 +173,16 @@ namespace sockets
    }
 
 
-   SOCKET socket::CreateSocket(int af,int type, const string & protocol)
+   SOCKET socket::CreateSocket(int af,int iType, const string & strProtocol)
    {
       struct protoent *p = NULL;
       SOCKET s;
 
-      m_socket_type = type;
-      m_socket_protocol = protocol;
-      if (protocol.get_length())
+      m_iSocketType = iType;
+      m_strSocketProtocol = strProtocol;
+      if (strProtocol.get_length())
       {
-         p = getprotobyname( protocol );
+         p = getprotobyname( strProtocol );
          if (!p)
          {
             Handler().LogError(this, "getprotobyname", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -193,7 +193,7 @@ namespace sockets
       }
       int protno = p ? p -> p_proto : 0;
 
-      s = ::socket(af, type, protno);
+      s = ::socket(af, iType, protno);
       if (s == INVALID_SOCKET)
       {
          Handler().LogError(this, "socket", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -202,7 +202,7 @@ namespace sockets
          return INVALID_SOCKET;
       }
       attach(s);
-      OnOptions(af, type, protno, s);
+      OnOptions(af, iType, protno, s);
       attach(INVALID_SOCKET);
       return s;
    }
@@ -222,13 +222,13 @@ namespace sockets
 
    void socket::SetDeleteByHandler(bool x)
    {
-      m_bDel = x;
+      m_bDelete = x;
    }
 
 
    bool socket::DeleteByHandler()
    {
-      return m_bDel;
+      return m_bDelete;
    }
 
 
@@ -240,7 +240,7 @@ namespace sockets
          m_bClose = x;
          if (x)
          {
-            m_tClose = time(NULL);
+            m_timeClose = time(NULL);
          }
       }
    }
@@ -254,14 +254,14 @@ namespace sockets
 
    void socket::SetRemoteAddress(sockets::address & ad) //struct sockaddr* sa, socklen_t l)
    {
-      m_remote_address(System.cast_clone < sockets::address > (&ad));
+      m_addressRemote(System.cast_clone < sockets::address > (&ad));
    }
 
 
    sockets::address_sp socket::GetRemoteSocketAddress()
    {
       sockets::address_sp addr;
-      addr(dynamic_cast < sockets::address * > (System.clone(m_remote_address.m_p)));
+      addr(dynamic_cast < sockets::address * > (System.clone(m_addressRemote.m_p)));
       return addr;
    }
 
@@ -283,13 +283,13 @@ namespace sockets
    ipaddr_t socket::GetRemoteIP4()
    {
       ipaddr_t l = 0;
-      if (m_ipv6)
+      if(m_bIpv6)
       {
          Handler().LogError(this, "GetRemoteIP4", 0, "get ipv4 address for ipv6 socket", ::gen::log::level::warning);
       }
-      if(m_remote_address.m_p != NULL)
+      if(m_addressRemote.m_p != NULL)
       {
-         struct sockaddr *p = *m_remote_address;
+         struct sockaddr *p = *m_addressRemote;
          struct sockaddr_in *sa = (struct sockaddr_in *)p;
          memcpy(&l, &sa -> sin_addr, sizeof(struct in_addr));
       }
@@ -299,14 +299,14 @@ namespace sockets
 
    struct in6_addr socket::GetRemoteIP6()
    {
-      if (!m_ipv6)
+      if(!m_bIpv6)
       {
          Handler().LogError(this, "GetRemoteIP6", 0, "get ipv6 address for ipv4 socket", ::gen::log::level::warning);
       }
       struct sockaddr_in6 fail;
-      if (m_remote_address.m_p != NULL)
+      if (m_addressRemote.m_p != NULL)
       {
-         struct sockaddr *p = *m_remote_address;
+         struct sockaddr *p = *m_addressRemote;
          memcpy(&fail, p, sizeof(struct sockaddr_in6));
       }
       else
@@ -319,31 +319,31 @@ namespace sockets
 
    port_t socket::GetRemotePort()
    {
-      if(m_remote_address.m_p == NULL)
+      if(m_addressRemote.m_p == NULL)
       {
          return 0;
       }
-      return m_remote_address -> GetPort();
+      return m_addressRemote -> GetPort();
    }
 
 
    string socket::GetRemoteAddress()
    {
-      if(m_remote_address.m_p == NULL)
+      if(m_addressRemote.m_p == NULL)
       {
          return "";
       }
-      return m_remote_address -> Convert(false);
+      return m_addressRemote -> Convert(false);
    }
 
 
    string socket::GetRemoteHostname()
    {
-      if(m_remote_address.m_p == NULL)
+      if(m_addressRemote.m_p == NULL)
       {
          return "";
       }
-      return m_remote_address -> Reverse();
+      return m_addressRemote -> Reverse();
    }
 
 
@@ -446,13 +446,13 @@ namespace sockets
 
    socket *socket::get_parent()
    {
-      return m_parent;
+      return m_psocketParent;
    }
 
 
-   void socket::set_parent(socket *x)
+   void socket::set_parent(socket * psocketParent)
    {
-      m_parent = x;
+      m_psocketParent = psocketParent;
    }
 
 
@@ -474,30 +474,30 @@ namespace sockets
 
    time_t socket::Uptime()
    {
-      return time(NULL) - m_tCreate;
+      return time(NULL) - m_timeCreate;
    }
 
 
-   void socket::SetIpv6(bool x)
+   void socket::SetIpv6(bool bIpv6)
    {
-      m_ipv6 = x;
+      m_bIpv6 = bIpv6;
    }
 
 
    bool socket::IsIpv6()
    {
-      return m_ipv6;
+      return m_bIpv6;
    }
 
    void socket::DisableRead(bool x)
    {
-      m_b_disable_read = x;
+      m_bDisableRead = x;
    }
 
 
    bool socket::IsDisableRead()
    {
-      return m_b_disable_read;
+      return m_bDisableRead;
    }
 
 
@@ -511,15 +511,15 @@ namespace sockets
    }
 
 
-   void socket::SetConnected(bool x)
+   void socket::SetConnected(bool bConnected)
    {
-      m_connected = x;
+      m_bConnected = bConnected;
    }
 
 
    bool socket::IsConnected()
    {
-      return m_connected;
+      return m_bConnected;
    }
 
 
@@ -540,21 +540,21 @@ namespace sockets
    }
 
 
-   void socket::SetErasedByHandler(bool x)
+   void socket::SetErasedByHandler(bool bErasedByHandler)
    {
-      m_b_erased_by_handler = x;
+      m_bErasedByHandler = bErasedByHandler;
    }
 
 
    bool socket::ErasedByHandler()
    {
-      return m_b_erased_by_handler;
+      return m_bErasedByHandler;
    }
 
 
    time_t socket::TimeSinceClose()
    {
-      return time(NULL) - m_tClose;
+      return time(NULL) - m_timeClose;
    }
 
 
@@ -564,17 +564,17 @@ namespace sockets
       {
          Handler().LogError(this, "SetClientRemoteAddress", 0, "remote address not valid", ::gen::log::level::error);
       }
-      m_client_remote_address = System.cast_clone < sockets::address > (&ad);
+      m_addressRemoteClient = System.cast_clone < sockets::address > (&ad);
    }
 
 
    ::ca::smart_pointer < sockets::address > socket::GetClientRemoteAddress()
    {
-      if (m_client_remote_address.m_p == NULL)
+      if (m_addressRemoteClient.m_p == NULL)
       {
          Handler().LogError(this, "GetClientRemoteAddress", 0, "remote address not yet set", ::gen::log::level::error);
       }
-      return System.cast_clone < sockets::address > (m_client_remote_address.m_p);
+      return System.cast_clone < sockets::address > (m_addressRemoteClient.m_p);
    }
 
 
@@ -673,27 +673,27 @@ namespace sockets
    }
 
 
-   void socket::SetSocketType(int x)
+   void socket::SetSocketType(int iSocketType)
    {
-      m_socket_type = x;
+      m_iSocketType = iSocketType;
    }
 
 
    int socket::GetSocketType()
    {
-      return m_socket_type;
+      return m_iSocketType;
    }
 
 
-   void socket::SetSocketProtocol(const string & x)
+   void socket::SetSocketProtocol(const string & strProtocol)
    {
-      m_socket_protocol = x;
+      m_strSocketProtocol = strProtocol;
    }
 
 
    const string & socket::GetSocketProtocol()
    {
-      return m_socket_protocol;
+      return m_strSocketProtocol;
    }
 
 
@@ -1718,8 +1718,8 @@ namespace sockets
          return;
       }
       Handler().AddList(m_socket, LIST_TIMEOUT, true);
-      m_timeout_start = time(NULL);
-      m_timeout_limit = secs;
+      m_timeTimeoutStart = time(NULL);
+      m_timeTimeoutLimit = secs;
    }
 
 
@@ -1735,7 +1735,7 @@ namespace sockets
 
    bool socket::Timeout(time_t tnow)
    {
-      if (tnow - m_timeout_start > m_timeout_limit)
+      if (tnow - m_timeTimeoutStart > m_timeTimeoutLimit)
          return true;
       return false;
    }

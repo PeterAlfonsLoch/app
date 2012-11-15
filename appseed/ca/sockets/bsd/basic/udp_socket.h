@@ -177,9 +177,7 @@ namespace sockets
       bool IsBound();
       /** Return Bind port number */
       port_t GetPort();
-#ifdef BSD_STYLE_SOCKETS
       void OnOptions(int,int,int,SOCKET) {}
-#endif
       int GetLastSizeWritten();
 
       /** Also read timestamp information from incoming message */

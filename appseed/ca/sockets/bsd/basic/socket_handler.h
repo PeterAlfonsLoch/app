@@ -68,13 +68,11 @@ namespace sockets
       /** add socket instance to socket ::collection::map. Removal is always automatic. */
       void add(socket *);
 
-#ifdef BSD_STYLE_SOCKETS
       /** get status of read/write/exception file descriptor set for a socket. */
       void get(SOCKET s,bool& r,bool& w,bool& e);
 
       /** Set read/write/exception file descriptor sets (fd_set). */
       void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
-#endif
 
       /** Wait for events, generate callbacks. */
       int Select(long sec,long usec);
@@ -95,10 +93,8 @@ namespace sockets
          \param p listen_socket class pointer (use GetPort to identify which one) */
       bool OkToAccept(socket *p);
 
-#ifdef BSD_STYLE_SOCKETS
       /** Called by socket when a socket changes state. */
       void AddList(SOCKET s,list_t which_one,bool add);
-#endif
 
       // Connection pool
       /** find available open connection (used by connection pool). */
@@ -177,33 +173,26 @@ namespace sockets
       void CheckSanity();
 
    public:
-#ifdef BSD_STYLE_SOCKETS
       socket_map     m_sockets; ///< Active sockets ::collection::map
       socket_map     m_add; ///< Sockets to be added to sockets ::collection::map
       socket_list    m_delete; ///< Sockets to be deleted (failed when add)
-#endif
    protected:
       StdLog *m_stdlog; ///< Registered log class, or NULL
       mutex & m_mutex; ///< Thread safety mutex
       bool m_b_use_mutex; ///< mutex correctly initialized
 
    private:
-#ifdef BSD_STYLE_SOCKETS
       void CheckList(socket_id_list&,const string &); ///< Used by CheckSanity
-#endif
       /** remove socket from socket ::collection::map, used by socket class. */
       void remove(socket *);
-#ifdef BSD_STYLE_SOCKETS
       SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
       fd_set m_rfds; ///< file descriptor set monitored for read events
       fd_set m_wfds; ///< file descriptor set monitored for write events
       fd_set m_efds; ///< file descriptor set monitored for exceptions
-#endif
       int m_preverror; ///< debug select() error
       int m_errcnt; ///< debug select() error
       time_t m_tlast; ///< timeout control
 
-#ifdef BSD_STYLE_SOCKETS
       // state lists
       socket_id_list m_fds; ///< Active file descriptor list
       socket_id_list m_fds_erase; ///< File descriptors that are to be erased from m_sockets
@@ -212,7 +201,6 @@ namespace sockets
       socket_id_list m_fds_timeout; ///< checklist timeout
       socket_id_list m_fds_retry; ///< checklist retry client connect
       socket_id_list m_fds_close; ///< checklist close and delete
-#endif
       ipaddr_t m_socks4_host; ///< Socks4 server host ip
       port_t m_socks4_port; ///< Socks4 server port number
       string m_socks4_userid; ///< Socks4 userid

@@ -525,10 +525,10 @@ namespace sockets
 
       m_ssl             = psocket->m_ssl;
       m_socket          = psocket->m_socket;
-      m_b_ssl           = psocket->m_b_ssl;
-      m_b_ssl_server    = psocket->m_b_ssl_server;
-      m_b_enable_ssl    = psocket->m_b_enable_ssl;
-      m_connected       = psocket->m_connected;
+      m_bSsl            = psocket->m_bSsl;
+      m_bSslServer      = psocket->m_bSslServer;
+      m_bEnableSsl      = psocket->m_bEnableSsl;
+      m_bConnected      = psocket->m_bConnected;
 
       SetRemoteAddress(psocket->GetRemoteSocketAddress());
 

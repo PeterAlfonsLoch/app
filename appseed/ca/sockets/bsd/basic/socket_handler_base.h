@@ -70,9 +70,7 @@ namespace sockets
             Handler().LogError(this, "OnRead", 0, "data on hibernating socket", ::gen::log::level::fatal);
             SetCloseAndDelete();
          }
-#ifdef BSD_STYLE_SOCKETS
          void OnOptions(int,int,int,SOCKET) {}
-#endif
 
       };
 
@@ -104,12 +102,10 @@ namespace sockets
       virtual void remove(socket *) = 0;
    public:
 
-#ifdef BSD_STYLE_SOCKETS
       /** get status of read/write/exception file descriptor set for a socket. */
       virtual void get(SOCKET s,bool& r,bool& w,bool& e) = 0;
       /** Set read/write/exception file descriptor sets (fd_set). */
       virtual void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
-#endif
       /** Wait for events, generate callbacks. */
       virtual int Select(long sec,long usec) = 0;
       /** This method will not return until an event has been detected. */
@@ -126,10 +122,8 @@ namespace sockets
          \param p listen_socket class pointer (use GetPort to identify which one) */
       virtual bool OkToAccept(socket *p) = 0;
 
-#ifdef BSD_STYLE_SOCKETS
       /** Called by socket when a socket changes state. */
       virtual void AddList(SOCKET s,list_t which_one,bool add) = 0;
-#endif
       // -------------------------------------------------------------------------
       // Connection pool
       // -------------------------------------------------------------------------

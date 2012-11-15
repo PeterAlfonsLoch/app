@@ -87,7 +87,7 @@ namespace sockets
       ca(papp)
    {
 
-#if defined(BSD_STYLE_SOCKETS) && !defined(MACOS)
+
       
       TRACE("SSLInitializer()\n");
 
@@ -178,8 +178,6 @@ namespace sockets
 
       //RAND_seed(memstorage.get_data(), memstorage.get_size());
       
-#endif
-
    }
 
 
@@ -236,4 +234,4 @@ namespace sockets
 } // namespace sockets
 
 
-#endif
+#endif // HAVE_OPENSSL

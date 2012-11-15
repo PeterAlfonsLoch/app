@@ -21,10 +21,6 @@
 #endif // _RUN_DP
 
 
-/* OpenSSL support. */
-#ifdef BSD_STYLE_SOCKETS
-#define HAVE_OPENSSL
-#endif
 
 
 /* Ipv6 support. */
@@ -282,7 +278,6 @@ namespace sockets {
 
 #endif
 
-#ifdef BSD_STYLE_SOCKETS
 
 namespace sockets
 {
@@ -294,7 +289,6 @@ namespace sockets
 
 } // namespace sockets
 
-#endif
 
 // getaddrinfo / getnameinfo replacements
 #ifdef NO_GETADDRINFO
@@ -309,10 +303,8 @@ namespace sockets
 #include "ca/ca_log.h"
 #include "basic/ipv4_address.h"
 #include "basic/ipv6_address.h"
-#ifdef BSD_STYLE_SOCKETS
 #include "basic/sockets_ssl_client_context.h"
 #include "basic/sockets_ssl_client_context_map.h"
-#endif
 #include "basic/socket.h"
 #include "basic/stream_socket.h"
 #include "basic/sctp_socket.h"
