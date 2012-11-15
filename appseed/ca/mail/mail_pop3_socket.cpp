@@ -1,7 +1,5 @@
 #include "framework.h"
-#ifdef BSD_STYLE_SOCKETS
 #include <openssl/ssl.h>
-#endif
 
 #if defined(LINUX)
 #include <ctype.h>
@@ -421,7 +419,7 @@ namespace mail
 
    void pop3_socket::InitSSLClient()
    {
-#if defined(BSD_STYLE_SOCKETS) && !defined(MACOS)
+#if defined(HAVE_OPENSSL)
       if(m_bTls)
       {
          InitializeContext("", TLSv1_method());
