@@ -17,7 +17,7 @@ semaphore::semaphore(::ca::application * papp, LONG lInitialCount, LONG lMaxCoun
 
 #ifdef WINDOWS
 
-   m_object = ::CreateSemaphoreEx(lpsaAttributes, lInitialCount, lMaxCount, gen::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   m_object = ::CreateSemaphoreExW(lpsaAttributes, lInitialCount, lMaxCount, gen::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
    if (m_object == NULL)
       throw resource_exception(papp);
 #else
