@@ -254,15 +254,10 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
    }
 
 #ifdef WINDOWSEX
-      hFileMap = CreateFileMappingFromApp(
-         hFile,
-         NULL,
-         PAGE_READWRITE,
-         dwBufLen,
-         NULL);
-#else
    // create a file-mapping object for the file
    hFileMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0L, 0L, NULL);
+#else
+   hFileMap = ::CreateFileMappingFromApp(hFile, NULL, PAGE_READONLY, dwBufLen, NULL);
 #endif
    if (hFileMap == NULL)
    {
@@ -272,15 +267,11 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
       goto LError;
    }
 
-#ifdef METROWIN
-      lpsz = (const char *) MapViewOfFileFromApp(
-         hFileMap,
-         FILE_MAP_READ | FILE_MAP_WRITE,
-         0,
-         0);
-#else
+#ifdef WINDOWSEX
    // ::collection::map the entire file into the address-space of the application
    lpsz = (const char *)::MapViewOfFile(hFileMap, FILE_MAP_READ, 0L, 0L, 0L);
+#else
+   lpsz = (const char *) ::MapViewOfFileFromApp(hFileMap, FILE_MAP_READ, 0, 0);
 #endif
    if (lpsz == NULL)
    {
