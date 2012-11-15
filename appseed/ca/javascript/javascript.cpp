@@ -1159,7 +1159,7 @@ void CScriptVar::trace(string indentStr, const string &name) {
         name.c_str(),
         getString().c_str(),
         getFlagsAsString().c_str());
-   ::OutputDebugString(str);
+   ::OutputDebugStringW(gen::international::utf8_to_unicode(str));
     string indent = indentStr+" ";
     CScriptVarLink *link = firstChild;
     while (link) {

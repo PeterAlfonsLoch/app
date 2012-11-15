@@ -14,7 +14,7 @@ public:
 
 #endif
 
-   semaphore(::ca::application * papp, LONG lInitialCount = 1, LONG lMaxCount = 1, LPCTSTR pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
+   semaphore(::ca::application * papp, LONG lInitialCount = 1, LONG lMaxCount = 1, const char * pstrName=NULL, LPSECURITY_ATTRIBUTES lpsaAttributes = NULL);
    virtual ~semaphore();
 
 

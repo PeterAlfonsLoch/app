@@ -227,7 +227,6 @@ short int GeoIP_update_database (::ca::application * papp, char * license_key, i
 #ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;
    SOCKET sock;
-#endif
 
    char * buf;
    struct sockaddr_in sa;
@@ -276,6 +275,7 @@ short int GeoIP_update_database (::ca::application * papp, char * license_key, i
    }
 
    hostlist = GeoIP_get_host_or_proxy();
+
 
    if (hostlist == NULL)
       return GEOIP_DNS_ERR;
@@ -481,9 +481,18 @@ short int GeoIP_update_database (::ca::application * papp, char * license_key, i
       GeoIP_printf(f,"Done\n");
 
    return 0;
+
+#else
+
+   throw todo(papp);
+
+#endif
+
 }
 
 short int GeoIP_update_database_general (::ca::application * papp, char * user_id,char * license_key,char *data_base_type, int verbose,char ** client_ipaddr, void (*f)( char *)) {
+
+#ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;
    SOCKET sock;
    char * buf;
@@ -515,6 +524,7 @@ short int GeoIP_update_database_general (::ca::application * papp, char * user_i
    size_t len;
    size_t request_uri_len;
    size_t size;
+
 
    hostlist = GeoIP_get_host_or_proxy();
 
@@ -971,4 +981,13 @@ short int GeoIP_update_database_general (::ca::application * papp, char * user_i
       GeoIP_printf(f,"Done\n");
    free(geoipfilename);
    return 0;
+
+
+#else
+
+   throw todo(papp);
+
+#endif
+
+
 }

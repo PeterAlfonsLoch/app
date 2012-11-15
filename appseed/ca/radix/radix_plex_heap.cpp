@@ -116,7 +116,15 @@ void plex_heap_alloc_sync::NewBlock()
 plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 {
 
+#ifndef METROWIN
+
    int iShareCount = ::get_current_process_maximum_affinity() + 1;
+
+#else
+
+   int iShareCount = 0;
+
+#endif
 
    if(iShareCount <= 0)
       iShareCount = 4;

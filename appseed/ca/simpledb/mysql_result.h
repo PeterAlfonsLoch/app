@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef METROWIN
+
+
 namespace mysql
 {
 
@@ -29,3 +32,6 @@ namespace mysql
 
 
 } //   namespace mysql
+
+
+#endif

@@ -1,10 +1,9 @@
 #include "framework.h"
-#include "stream_socket.h"
-#include "socket_handler_base.h"
 
 
 namespace sockets
 {
+
 
    stream_socket::stream_socket(socket_handler_base& h) : 
       ::ca::ca(h.get_app()),
@@ -23,6 +22,25 @@ namespace sockets
 
    stream_socket::~stream_socket()
    {
+   }
+
+
+   SOCKET stream_socket::CreateSocket(int af, int type,const string & protocol)
+   {
+
+      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+
+      return m_streamsocket;
+
+   }
+
+   int stream_socket::close_socket()
+   {
+
+      m_streamsocket->Close();
+
+      return 0;
+
    }
 
 
@@ -51,9 +69,13 @@ namespace sockets
 
    bool stream_socket::Ready()
    {
+#ifdef BSD_STYLE_SOCKETS
       if (GetSocket() != INVALID_SOCKET && !Connecting() && !CloseAndDelete())
          return true;
       return false;
+#else
+      return true;
+#endif
    }
 
 
@@ -113,7 +135,9 @@ namespace sockets
 
    void stream_socket::SetCallOnConnect(bool x)
    {
+#ifndef METROWIN
       Handler().AddList(GetSocket(), LIST_CALLONCONNECT, x);
+#endif
       m_call_on_connect = x;
    }
 
@@ -126,7 +150,9 @@ namespace sockets
 
    void stream_socket::SetRetryClientConnect(bool x)
    {
+#ifndef METROWIN
       Handler().AddList(GetSocket(), LIST_RETRY, x);
+#endif
       m_b_retry_connect = x;
    }
 
@@ -151,6 +177,8 @@ namespace sockets
    }
 
 
-
 } // namespace sockets
+
+
+
 

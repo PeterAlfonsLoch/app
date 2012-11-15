@@ -17,7 +17,7 @@ namespace ca2
    int service::start(const char * pszServiceName)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
 
@@ -53,7 +53,7 @@ namespace ca2
    int service::stop(const char * psz)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
 
@@ -89,7 +89,7 @@ namespace ca2
    int service::remove(const char * psz)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
 
@@ -124,7 +124,7 @@ namespace ca2
    int service::create(const char * psz, const char * pszDisplayName, const char * pszVotagus)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 

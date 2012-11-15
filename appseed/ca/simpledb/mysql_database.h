@@ -1,6 +1,10 @@
 #pragma once
 
 
+#ifndef METROWIN
+
+
+
 typedef char **MYSQL_ROW;		/* return data as array of strings */
 
 
@@ -117,3 +121,8 @@ namespace mysql
 
 
 } //   namespace mysql
+
+
+
+
+#endif

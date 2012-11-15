@@ -245,7 +245,9 @@ namespace plane
       class ::ca2::service                         m_service;
       class ::ca2::install                         m_install;
       ::ca::os_sp                                  m_spos;
+#ifndef METROWIN
       class ::ca2::process                         m_process;
+#endif
       class ::ca2::datetime *                      m_pdatetime;
       class ::ca2::net                             m_net;
 
@@ -406,7 +408,9 @@ namespace plane
       class ::machine_event_central    & machine_event_central();
       class ::ca::os                   & os();
       using ::plane::application::process;
+#ifndef METROWIN
       ::ca2::process                   & process();
+#endif
       class ::ca2::net                 & net();
 
       ::ca::history                    & hist();

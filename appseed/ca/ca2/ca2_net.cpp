@@ -300,9 +300,9 @@ namespace ca2
       //strProfileInfo += "\n";
 
 
-      for(int i = 0; i < names->Size; i++)
+      for(unsigned int ui = 0; ui < names->Size; ui++)
       {
-         ::Windows::Networking::HostName ^ name = names->GetAt(i);
+         ::Windows::Networking::HostName ^ name = names->GetAt(ui);
          if(name == nullptr)
             continue;
          if(name->IPInformation == nullptr)

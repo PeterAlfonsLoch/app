@@ -189,6 +189,7 @@
       <PreprocessorDefinitions>__CA__DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -925,7 +926,9 @@
     <ClInclude Include="math\_double.h" />
     <ClInclude Include="math\_float.h" />
     <ClInclude Include="math\_integer.h" />
+    <ClInclude Include="metrowin\os.h" />
     <ClInclude Include="multithreading\multithreading.h" />
+    <ClInclude Include="multithreading\multithreading_condition.h" />
     <ClInclude Include="multithreading\multithreading_critical_section.h" />
     <ClInclude Include="multithreading\multithreading_event.h" />
     <ClInclude Include="multithreading\multithreading_event_base.h" />
@@ -1687,6 +1690,8 @@
     <ClCompile Include="math\_double.cpp" />
     <ClCompile Include="math\_float.cpp" />
     <ClCompile Include="math\_integer.cpp" />
+    <ClCompile Include="metrowin\os.cpp" />
+    <ClCompile Include="multithreading\multithreading_condition.cpp" />
     <ClCompile Include="multithreading\multithreading_core.cpp" />
     <ClCompile Include="multithreading\multithreading_critical_section.cpp" />
     <ClCompile Include="multithreading\multithreading_event.cpp" />
@@ -1842,7 +1847,6 @@
     <ClCompile Include="sockets\sockets_application_interface.cpp" />
     <ClCompile Include="sockets\sockets_http_batch_file.cpp" />
     <ClCompile Include="sockets\sockets_http_file.cpp" />
-    <ClCompile Include="sockets\sockets_http_memory_file.cpp" />
     <ClCompile Include="sockets\sockets_include.cpp" />
     <ClCompile Include="sockets\sockets_link_in_socket.cpp" />
     <ClCompile Include="sockets\sockets_link_out_socket.cpp" />

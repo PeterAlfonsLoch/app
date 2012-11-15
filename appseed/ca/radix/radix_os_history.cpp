@@ -11,9 +11,13 @@ os_history::os_history(::ca::application * papp) :
 bool os_history::hist(const char * psz)
 {
 
+#if !defined(METROWIN)
+
    simple_shell_launcher launcher(::ca::null(), "open", psz, "", "", SW_SHOWNORMAL);
 
    launcher.execute();
+
+#endif
 
    return true;
 

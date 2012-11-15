@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifndef WINDOWS
+#ifndef WINDOWSEX
 
 
 #include "os_cross_windows.h"

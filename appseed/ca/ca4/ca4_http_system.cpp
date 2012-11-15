@@ -1083,7 +1083,9 @@ retry:
                      const char * pszVersion,
                      e_status * pestatus)
       {
+#ifdef BSD_STYLE_SOCKETS
 retry:
+#endif
 
          DWORD dwTimeTelmo1 = get_tick_count();
 
@@ -1221,6 +1223,7 @@ retry:
          }
          if(strProtocol == "https")
          {
+#ifdef BSD_STYLE_SOCKETS
             ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca2 < ::sockets::ssl_client_context > ();
             if(pcontext != NULL)
             {
@@ -1233,6 +1236,7 @@ retry:
                   psocket->m_strInitSSLClientContext = System.url().get_server(strUrl) + "?sessid=" + strSessId;
                }
             }
+#endif
             psocket->EnableSSL();
          }
          DWORD dw1 = ::get_tick_count();
@@ -1288,6 +1292,7 @@ retry:
 
          headers = psocket->outheaders();
 
+#ifdef BSD_STYLE_SOCKETS
          if(psocket->IsSSL())
          {
             strSessId = psocket->m_response.m_cookies["sessid"];
@@ -1296,6 +1301,7 @@ retry:
                System.m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
             }
          }
+#endif
 
          string strCookie = psocket->response().cookies().get_cookie_header();
          set["Cookie"] = strCookie;
@@ -1303,6 +1309,7 @@ retry:
          if(pestatus != NULL)
          {
             int iStatusCode = psocket->outattr("http_status_code");
+#ifdef BSD_STYLE_SOCKETS
             if(iStatusCode == 0)
             {
                if(psocket->m_spsslclientcontext.is_set() && psocket->m_spsslclientcontext->m_iRetry == 1)
@@ -1310,6 +1317,7 @@ retry:
                   goto retry;
                }
             }
+#endif
             if(iStatusCode == 200 || psocket->outattr("http_status_code").is_empty())
             {
                *pestatus = status_ok;

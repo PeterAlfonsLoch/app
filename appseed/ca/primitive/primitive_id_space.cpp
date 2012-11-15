@@ -114,8 +114,8 @@ void id_space::sort()
    stackUpperBound.set_size(0, 1024);
 
    register char chCompare;
-   register id * pid1;
-   register id * pid2;
+   register id * pid1 = NULL;
+   register id * pid2 = NULL;
    register bool bSwap;
    register bool bText;
    register char ch;

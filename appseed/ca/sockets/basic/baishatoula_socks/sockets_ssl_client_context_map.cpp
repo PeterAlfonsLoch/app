@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+#ifdef BSD_STYLE_SOCKETS
+
+
 namespace sockets
 {
 
@@ -16,4 +19,8 @@ namespace sockets
 
 
 } // namespace sockets
+
+
+#endif
+
 

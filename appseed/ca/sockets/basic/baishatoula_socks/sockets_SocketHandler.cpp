@@ -47,7 +47,9 @@ namespace sockets
    m_stdlog(p),
    m_mutex(m_mutex),
    m_b_use_mutex(false)
+#ifdef BSD_STYLE_SOCKETS
    ,m_maxsock(0)
+#endif
    ,m_preverror(-1)
    ,m_errcnt(0)
    ,m_tlast(0)
@@ -60,9 +62,11 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
+#ifdef BSD_STYLE_SOCKETS
       FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
       FD_ZERO(&m_efds);
+#endif
    }
 
 
@@ -71,7 +75,9 @@ namespace sockets
    m_stdlog(p)
    ,m_mutex(mutex)
    ,m_b_use_mutex(true)
+#ifdef BSD_STYLE_SOCKETS
    ,m_maxsock(0)
+#endif
    ,m_preverror(-1)
    ,m_errcnt(0)
    ,m_tlast(0)
@@ -85,14 +91,24 @@ namespace sockets
    ,m_slave(false)
    {
       m_mutex.lock();
+
+
+#ifdef BSD_STYLE_SOCKETS
+
       FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
       FD_ZERO(&m_efds);
+
+#endif
+
    }
 
 
    socket_handler::~socket_handler()
    {
+
+#ifdef BSD_STYLE_SOCKETS
+
       if (m_resolver)
       {
          m_resolver -> Quit();
@@ -135,6 +151,9 @@ namespace sockets
       {
          m_mutex.unlock();
       }
+
+#endif
+
    }
 
 
@@ -173,6 +192,7 @@ namespace sockets
 
    void socket_handler::add(socket *p)
    {
+#ifdef BSD_STYLE_SOCKETS
       if (p -> GetSocket() == INVALID_SOCKET)
       {
          LogError(p, "add", -1, "Invalid socket", ::gen::log::level::warning);
@@ -191,9 +211,13 @@ namespace sockets
       }
       m_add[p -> GetSocket()] = p;
       p->m_estatus = socket::status_ok;
+#else
+      throw todo(get_app());
+#endif
    }
 
 
+#ifdef BSD_STYLE_SOCKETS
    void socket_handler::get(SOCKET s,bool& r,bool& w,bool& e)
    {
       if (s >= 0)
@@ -203,8 +227,10 @@ namespace sockets
          e = FD_ISSET(s, &m_efds) ? true : false;
       }
    }
+#endif
 
 
+#ifdef BSD_STYLE_SOCKETS
    void socket_handler::Set(SOCKET s,bool bRead,bool bWrite,bool bException)
    {
    //TRACE("Set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
@@ -245,11 +271,13 @@ namespace sockets
          }
       }
    }
-
+#endif
 
    int socket_handler::Select(long lSeconds, long lMicroseconds)
    {
       
+#ifdef BSD_STYLE_SOCKETS
+
       struct timeval timeval;
 
       timeval.tv_sec    = lSeconds;
@@ -257,11 +285,14 @@ namespace sockets
 
       return Select(&timeval);
 
+#endif
+
    }
 
 
    int socket_handler::Select()
    {
+#ifdef BSD_STYLE_SOCKETS
       if (m_fds_callonconnect.get_size() ||
          (!m_slave && m_fds_detach.get_size()) ||
          m_fds_timeout.get_size() ||
@@ -271,6 +302,9 @@ namespace sockets
       {
          return Select(0, 200000);
       }
+#else
+      throw todo(get_app());
+#endif
       return Select(NULL);
    }
 

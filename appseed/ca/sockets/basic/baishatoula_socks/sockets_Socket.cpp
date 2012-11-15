@@ -48,7 +48,7 @@ namespace sockets
 
 
    // statics
-   #ifdef _WIN32
+   #if defined(_WIN32) && !defined(WINDOWS)
    WSAInitializer socket::m_winsock_init;
    #endif
 
@@ -56,24 +56,27 @@ namespace sockets
    socket::socket(socket_handler_base& h)
    //:m_flags(0)
    :m_handler(h)
-   ,m_socket( INVALID_SOCKET )
-   ,m_bDel(false)
-   ,m_bClose(false)
-   ,m_tCreate(time(NULL))
-   ,m_parent(NULL)
-   ,m_b_disable_read(false)
-   ,m_connected(false)
-   ,m_b_erased_by_handler(false)
-   ,m_tClose(0)
-   ,m_client_remote_address()
-   ,m_remote_address()
-   ,m_traffic_monitor(NULL)
+   ,m_memfileInput(h.get_app())
+   ,m_timeCreate(time(NULL))
+   ,m_bDisableRead(false)
+   ,m_bConnected(false)
    ,m_bLost(false)
-   ,m_b_enable_ssl(false)
-   ,m_b_ssl(false)
-   ,m_b_ssl_server(false)
-   ,m_ipv6(false)
-   ,m_socket_type(0)
+   ,m_timeClose(0)
+   ,m_addressRemote()
+#ifdef BSD_STYLE_SOCKETS
+   ,m_socket( INVALID_SOCKET )
+#endif
+   ,m_bDelete(false)
+   ,m_bClose(false)
+   ,m_psocketParent(NULL)
+   ,m_bErasedByHandler(false)
+   ,m_addressRemoteClient()
+   ,m_pfileTrafficMonitor(NULL)
+   ,m_bEnableSsl(false)
+   ,m_bSsl(false)
+   ,m_bSslServer(false)
+   ,m_bIpv6(false)
+   ,m_iSocketType(0)
    ,m_bClient(false)
    ,m_bRetain(false)
    ,m_bSocks4(false)
@@ -86,26 +89,35 @@ namespace sockets
    ,m_slave_handler(NULL)
    // Line protocol
    ,m_bLineProtocol(false)
-   ,m_skip_c(false),
-   m_memfileInput(h.get_app())
+   ,m_skip_c(false)
+#ifndef BSD_STYLE_SOCKETS
+   ,m_bNonBlocking(false)
+#endif
    {
 
       m_iBindPort    = -1;
-      m_dwStart      = ::get_tick_count();
       m_pcallback    = NULL;
+      m_dwStart      = ::get_tick_count();
 
    }
 
 
    socket::~socket()
    {
+
       Handler().remove(this);
-      if (m_socket != INVALID_SOCKET
-          && !m_bRetain
-         )
+
+#ifdef BSD_STYLE_SOCKETS
+
+      if(m_socket != INVALID_SOCKET && !m_bRetain)
       {
+
          close();
+
       }
+
+#endif
+
    }
 
 
@@ -151,13 +163,15 @@ namespace sockets
 
    int socket::close()
    {
+
       if (m_socket == INVALID_SOCKET) // this could happen
       {
          Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::gen::log::level::warning);
          return 0;
       }
+
       int n;
-      if ((n = ::closesocket(m_socket)) == -1)
+      if ((n = close_scoket()) == -1)
       {
          // failed...
          Handler().LogError(this, "close", Errno, StrError(Errno), ::gen::log::level::error);
@@ -170,9 +184,22 @@ namespace sockets
       Handler().AddList(m_socket, LIST_CLOSE, false);
       m_socket = INVALID_SOCKET;
       return n;
+
    }
 
+#ifdef BSD_STYLE_SOCKETS
 
+   int socket::close_socket()
+   {
+
+      return ::closesocket(m_socket);
+
+   }
+
+#endif
+
+
+#ifndef METROWIN
    SOCKET socket::CreateSocket(int af,int type, const string & protocol)
    {
       struct protoent *p = NULL;
@@ -206,34 +233,52 @@ namespace sockets
       Attach(INVALID_SOCKET);
       return s;
    }
+#endif
 
-
+#ifdef BSD_STYLE_SOCKETS
    void socket::Attach(SOCKET s)
    {
+#ifdef METROWIN
+      throw todo(get_app());
+#else
       m_socket = s;
+#endif
    }
+#endif
 
 
+#ifdef BSD_STYLE_SOCKETS
    SOCKET socket::GetSocket()
    {
+#ifdef METROWIN
+      throw todo(get_app());
+#else
       return m_socket;
+#endif
    }
-
+#endif
 
    void socket::SetDeleteByHandler(bool x)
    {
+#ifdef BSD_STYLE_SOCKETS
       m_bDel = x;
+#endif
    }
 
 
    bool socket::DeleteByHandler()
    {
+#ifdef BSD_STYLE_SOCKETS
       return m_bDel;
+#else
+      return false;
+#endif
    }
 
 
    void socket::SetCloseAndDelete(bool x)
    {
+#ifdef BSD_STYLE_SOCKETS
       if (x != m_bClose)
       {
          Handler().AddList(m_socket, LIST_CLOSE, x);
@@ -243,26 +288,41 @@ namespace sockets
             m_tClose = time(NULL);
          }
       }
+#else
+      throw not_implemented(get_app());
+#endif
    }
 
 
    bool socket::CloseAndDelete()
    {
+#ifdef BSD_STYLE_SOCKETS
       return m_bClose;
+#else
+      return false;
+#endif
    }
 
 
    void socket::SetRemoteAddress(sockets::address & ad) //struct sockaddr* sa, socklen_t l)
    {
+#ifdef BSD_STYLE_SOCKETS
       m_remote_address(System.cast_clone < sockets::address > (&ad));
+#else
+      throw todo(get_app());
+#endif
    }
 
 
    sockets::address_sp socket::GetRemoteSocketAddress()
    {
+#ifdef BSD_STYLE_SOCKETS
       sockets::address_sp addr;
       addr(dynamic_cast < sockets::address * > (System.clone(m_remote_address.m_p)));
       return addr;
+#else
+      throw todo(get_app());
+#endif
    }
 
 
@@ -287,7 +347,7 @@ namespace sockets
       {
          Handler().LogError(this, "GetRemoteIP4", 0, "get ipv4 address for ipv6 socket", ::gen::log::level::warning);
       }
-      if(m_remote_address.m_p != NULL)
+      if(m_addressRemote.m_p != NULL)
       {
          struct sockaddr *p = *m_remote_address;
          struct sockaddr_in *sa = (struct sockaddr_in *)p;
@@ -349,6 +409,7 @@ namespace sockets
 
    bool socket::SetNonblocking(bool bNb)
    {
+#ifdef BSD_STYLE_SOCKETS
    #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
       int n = ioctlsocket(m_socket, FIONBIO, &l);
@@ -377,9 +438,10 @@ namespace sockets
       }
       return true;
    #endif
+#endif
    }
 
-
+#ifdef BSD_STYLE_SOCKETS
    bool socket::SetNonblocking(bool bNb, SOCKET s)
    {
    #ifdef _WIN32
@@ -411,19 +473,27 @@ namespace sockets
       return true;
    #endif
    }
-
+#endif
 
    void socket::Set(bool bRead, bool bWrite, bool bException)
    {
+#ifdef BSD_STYLE_SOCKETS
       Handler().Set(m_socket, bRead, bWrite, bException);
+#else
+      throw todo(get_app());
+#endif
    }
 
 
    bool socket::Ready()
    {
+#ifdef BSD_STYLE_SOCKETS
       if (m_socket != INVALID_SOCKET && !CloseAndDelete())
          return true;
       return false;
+#else
+      throw todo(get_app());
+#endif
    }
 
    bool socket::is_valid()
@@ -441,7 +511,7 @@ namespace sockets
    {
    }
 
-
+#ifdef BSD_STYLE_SOCKETS
    socket *socket::GetParent()
    {
       return m_parent;
@@ -452,7 +522,7 @@ namespace sockets
    {
       m_parent = x;
    }
-
+#endif
 
    port_t socket::GetPort()
    {

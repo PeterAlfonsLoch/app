@@ -762,7 +762,8 @@ namespace plane
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
 
-
+#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
+         
          small_ipc_tx_channel channel;
 
          if(channel.open("ca2::fontopus::message_wnd::session::"))
@@ -770,6 +771,13 @@ namespace plane
             channel.send(command().m_varTopicFile, false);
             channel.close();
          }
+
+#else
+
+          throw todo(get_app());
+
+#endif
+
 
       }
 

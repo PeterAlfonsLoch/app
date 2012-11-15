@@ -204,7 +204,7 @@ namespace primitive
 
    void memory_file::load_string(string &str)
    {
-      LPTSTR lpsz = str.GetBuffer((int)(this->get_size() + 1));
+      char * lpsz = str.GetBuffer((int)(this->get_size() + 1));
       memcpy(lpsz, get_data(), (size_t) this->get_size());
       lpsz[this->get_size()] = 0;
       str.ReleaseBuffer();

@@ -1,6 +1,9 @@
 #pragma once
 
 
+#if !defined(METROWIN)
+
+
 namespace primitive
 {
 
@@ -24,3 +27,6 @@ namespace primitive
    };
 
 } // namespace primitive
+
+
+#endif

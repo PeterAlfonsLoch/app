@@ -229,9 +229,9 @@ CLASS_DECL_c WINBOOL GetCursorPos(LPPOINT lppoint)
 
           Windows::UI::Input::PointerPoint ^ pointerPoint = Windows::UI::Input::PointerPoint::GetCurrentPoint(ui);
 
-          lppoint->x = pointerPoint->RawPosition.X;
+          lppoint->x = (LONG) pointerPoint->RawPosition.X;
 
-          lppoint->y = pointerPoint->RawPosition.Y;
+          lppoint->y = (LONG) pointerPoint->RawPosition.Y;
 
           return TRUE; 
 

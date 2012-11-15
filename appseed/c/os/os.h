@@ -12,6 +12,7 @@
 #include "c/macos/c_os.h"
 
 #define BSD_STYLE_SOCKETS
+#define HAVE_MYSQL
 
 #elif defined(LINUX)
 
@@ -20,6 +21,7 @@
 #include "c/linux/c_os.h"
 
 #define BSD_STYLE_SOCKETS
+#define HAVE_MYSQL
 
 #elif defined(METROWIN)
 
@@ -32,6 +34,7 @@
 #include "c/windows/c_os.h"
 
 #define BSD_STYLE_SOCKETS
+#define HAVE_MYSQL
 
 #endif
 

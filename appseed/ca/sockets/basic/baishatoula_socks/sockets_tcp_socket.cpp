@@ -28,8 +28,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
+#ifndef METROWIN
 #include <openssl/ssl.h>
-
+#endif
 
 #ifdef _WIN32
 //#include <stdlib.h>
@@ -39,9 +40,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include <fcntl.h>
 #include <assert.h>
 #include <stdarg.h>
+#ifdef BSD_STYLE_SOCKETS
 #include <openssl/rand.h>
 #include <openssl/err.h>
-
+#endif
 #ifndef ETIMEDOUT
 #define ETIMEDOUT       138
 #endif

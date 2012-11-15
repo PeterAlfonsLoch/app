@@ -286,3 +286,12 @@ CLASS_DECL_c bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETI
 }
 
 
+
+
+vsstring get_sys_temp_path()
+{
+
+   return vsstring(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin());
+
+}
+

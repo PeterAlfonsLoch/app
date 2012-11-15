@@ -1,5 +1,9 @@
 #include "framework.h"
 
+
+#ifndef METROWIN
+
+
 #ifdef LINUX
 #include <sys/wait.h>
 #endif
@@ -282,3 +286,9 @@ namespace gen
 
 
 } // namespace gen
+
+
+
+#endif
+
+

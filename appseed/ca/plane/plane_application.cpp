@@ -32,6 +32,7 @@ namespace plane
       //m_strId.Empty();
       if(pszId == NULL)
       {
+#ifdef WINDOWSEX
          wstring wstr = ::GetCommandLineW();
          string str = gen::international::unicode_to_utf8(wstr);
          strsize iFind = str.find(" : ");
@@ -53,6 +54,7 @@ namespace plane
                gen::str::ends_eat(m_strId, "\"");
             }
          }
+#endif
       }
       else
       {

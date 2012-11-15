@@ -1,8 +1,12 @@
 #include "framework.h"
+
+
+#ifdef BSD_STYLE_SOCKETS
+
+
 #include <openssl/ssl.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>
-
 
 
 namespace sockets
@@ -57,4 +61,9 @@ namespace sockets
 
 
 } // namespace sockets
+
+
+#endif
+
+
 

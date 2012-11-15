@@ -38,6 +38,8 @@ typedef struct _SYSTEM_HANDLE
 	DWORD GrantedAccess;
 }SYSTEM_HANDLE;
 
+#ifndef METROWIN
+
 typedef struct _SYSTEM_HANDLE_INFORMATION
 {
     DWORD         dwCount;
@@ -47,6 +49,8 @@ typedef struct _SYSTEM_HANDLE_INFORMATION
 typedef enum _SYSTEM_INFORMATION_CLASS {
     SystemHandleInformation = 0X10,
 } SYSTEM_INFORMATION_CLASS;
+
+#endif
 
 typedef NTSTATUS ( WINAPI *PNtQuerySystemInformation)
 				 ( IN	SYSTEM_INFORMATION_CLASS SystemInformationClass,

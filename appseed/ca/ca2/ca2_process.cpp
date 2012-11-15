@@ -1,5 +1,9 @@
 #include "framework.h"
 
+
+#ifndef METROWIN
+
+
 namespace ca2
 {
 
@@ -129,3 +133,9 @@ namespace ca2
 
 
 } // namespace ca2
+
+
+
+#endif
+
+

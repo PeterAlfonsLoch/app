@@ -205,10 +205,12 @@ namespace primitive
       return dynamic_cast < ::primitive::memory * > (m_spmemory.m_p);
    }
 
+#if !defined(METROWIN)
    shared_memory *   memory_container::get_shared_memory()
    {
       return dynamic_cast < ::primitive::shared_memory * > (m_spmemory.m_p);
    }
+#endif
 
    virtual_memory *  memory_container::get_virtual_memory()
    {
@@ -231,6 +233,7 @@ namespace primitive
       return pmemory;
    }
 
+#if !defined(METROWIN)
    shared_memory *   memory_container::detach_shared_memory()
    {
       ::primitive::memory_base * pmemorybase = m_spmemory.detach();
@@ -245,6 +248,7 @@ namespace primitive
       delete pmemorybase;
       return psharedmemory;
    }
+#endif
 
    virtual_memory *  memory_container::detach_virtual_memory()
    {
@@ -270,6 +274,7 @@ namespace primitive
       return p;
    }
 
+#if !defined(METROWIN)
    HGLOBAL           memory_container::detach_shared_storage()
    {
       ::primitive::shared_memory * psharedmemory = detach_shared_memory();
@@ -277,6 +282,7 @@ namespace primitive
       delete psharedmemory;
       return h;
    }
+#endif
 
    LPBYTE            memory_container::detach_virtual_storage()
    {

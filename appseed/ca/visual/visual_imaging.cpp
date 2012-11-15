@@ -2412,7 +2412,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 
    HBITMAP hbitmap = NULL;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    Gdiplus::Color colorBk(0, 0, 0, 0);
 

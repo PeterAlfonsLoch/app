@@ -28,7 +28,7 @@ service_base* service_base::s_pservice = 0;
 //*****************************************************************************
 service_base::service_base(::ca::application * papp, DWORD controlsAccepted) :
    ca(papp)
-#ifdef WINDOWS
+#ifdef WINDOWSEx
    , m_handle(0)
 #else
 //   , m_waitableptra(0)
@@ -36,7 +36,7 @@ service_base::service_base(::ca::application * papp, DWORD controlsAccepted) :
 {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
     m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
     m_status.dwCurrentState = SERVICE_START_PENDING;
     m_status.dwControlsAccepted = controlsAccepted;
@@ -72,7 +72,7 @@ void service_base::run(service_base& service)
 
    s_pservice = &service;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    SERVICE_TABLE_ENTRYW serviceTable[] =
    {
@@ -116,7 +116,7 @@ void service_base::UpdateState(DWORD state,
 {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
     m_status.dwCurrentState = state;
@@ -166,7 +166,7 @@ void service_base::SetServiceStatus()
 
         ASSERT(s_pservice != NULL);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
         if (!::SetServiceStatus(m_handle, &m_status))
         {
@@ -207,7 +207,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
     //
@@ -268,7 +268,7 @@ void WINAPI service_base::ServiceHandler(DWORD control)
 {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
     try

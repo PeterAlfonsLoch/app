@@ -361,15 +361,18 @@
     <Filter Include="Source Files\sockets\basic\baixatola_sockets">
       <UniqueIdentifier>{4ba0a9f0-6d29-4073-81c8-831da812cd56}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\metrowin">
+      <UniqueIdentifier>{df91fea2-11be-4cb7-93f6-2b469af69e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\metrowin">
+      <UniqueIdentifier>{1c27d95d-e66f-40e4-8c61-61f7a469d939}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sockets\http_file.cpp">
-      <Filter>Source Files\sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="sockets\sockets_http_memory_file.cpp">
       <Filter>Source Files\sockets</Filter>
     </ClCompile>
     <ClCompile Include="sockets\sockets_application_interface.cpp">
@@ -2522,6 +2525,12 @@
     </ClCompile>
     <ClCompile Include="crypto\crypto_md5.cpp">
       <Filter>Source Files\crypto</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_condition.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="metrowin\os.cpp">
+      <Filter>Source Files\metrowin</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -5416,6 +5425,12 @@
     </ClInclude>
     <ClInclude Include="crypto\crypto_md5.h">
       <Filter>Header Files\crypto</Filter>
+    </ClInclude>
+    <ClInclude Include="multithreading\multithreading_condition.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
+    <ClInclude Include="metrowin\os.h">
+      <Filter>Header Files\metrowin</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

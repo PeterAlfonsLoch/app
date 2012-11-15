@@ -48,7 +48,7 @@ public:
 
    template <typename T>
    static void QueueUserWorkItem(T * pobject, void (T::*pmethod)(), ULONG flags =
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    WT_EXECUTELONGFUNCTION
 #else
    0
@@ -57,7 +57,7 @@ public:
    {
       simple_signal < T > * psignal = new simple_signal < T >(pobject, pmethod);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       if(!::QueueUserWorkItem(thread_proc < T >, psignal, flags))
       {
          delete psignal;
@@ -75,7 +75,11 @@ public:
 private:
 
    template <typename T>
+#ifdef WINDOWSEX
    static DWORD WINAPI thread_proc(PVOID pcontext)
+#else
+   static UINT c_cdecl thread_proc(PVOID pcontext)
+#endif
    {
       simple_signal < T > * psignal =  static_cast < simple_signal < T > * >(pcontext);
 

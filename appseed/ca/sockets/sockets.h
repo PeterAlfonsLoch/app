@@ -22,7 +22,9 @@
 
 
 /* OpenSSL support. */
+#ifdef BSD_STYLE_SOCKETS
 #define HAVE_OPENSSL
+#endif
 
 
 /* Ipv6 support. */
@@ -220,7 +222,13 @@ namespace sockets {
 #define IPV6_ADD_MEMBERSHIP IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP IPV6_LEAVE_GROUP
 
-#elif defined WINDOWSEX
+#elif defined(METROWIN)
+
+CLASS_DECL_ca const char *StrError(int x);
+#define Errno GetLastError()
+
+#elif defined(WINDOWSEX)
+
 // ----------------------------------------
 // Win32
 #ifdef _MSC_VER
@@ -285,7 +293,6 @@ namespace sockets
    };
 
 } // namespace sockets
-
 
 #endif
 

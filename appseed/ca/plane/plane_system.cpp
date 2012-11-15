@@ -92,7 +92,9 @@ namespace plane
       m_userset.set_app(this);
       m_service.set_app(this);
       m_install.set_app(this);
+#ifndef METROWIN
       m_process.set_app(this);
+#endif
       m_pdatetime = new class ::ca2::datetime(this);
       m_email.set_app(this);
       m_http.set_app(this);
@@ -801,10 +803,14 @@ namespace plane
       return m_spos;
    }
 
+#ifndef METROWIN
+
    ::ca2::process & system::process()
    {
       return m_process;
    }
+
+#endif
 
    ::ca2::datetime & system::datetime()
    {
@@ -873,14 +879,24 @@ namespace plane
          ::mutex * pmutex = mutex::open_mutex(this, get_global_id_mutex_name(pszAppName, pszId));
          if(pmutex == NULL)
          {
+            
             string strApp = pszAppName;
             strApp += "app.exe";
+            
             string strParameters;
             strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
+
+#if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
 
             simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_module_folder(), strApp), strParameters, NULL, SW_SHOW);
 
             launcher.execute();
+
+#else
+
+            throw todo(get_app());
+
+#endif
 
             return false;
          }
@@ -899,9 +915,17 @@ namespace plane
             string strApp = pszAppName;
             strApp += "app.exe";
 
+#ifdef METROWIN
+
+            throw todo(get_app());
+
+#else
+
             simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_module_folder(), strApp), NULL, NULL, SW_SHOW);
 
             launcher.execute();
+
+#endif
 
             return false;
          }
@@ -929,9 +953,17 @@ namespace plane
             string strParameters;
             strParameters = ": app=" + strAppName + " local_mutex_id=\"" + strId + "\"";
 
+#ifdef METROWIN
+
+            throw todo(get_app());
+
+#else
+
             simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
 
             launcher.execute();
+
+#endif
 
             return false;
          }
@@ -953,9 +985,17 @@ namespace plane
             string strParameters;
             strParameters = ": app=" + strAppName;
 
+#ifdef METROWIN
+
+            throw todo(get_app());
+
+#else
+
             simple_shell_launcher launcher(::ca::null(), NULL, dir().path(get_ca2_module_folder(), strApp), strParameters, NULL, SW_SHOW);
 
             launcher.execute();
+
+#endif
 
             return false;
          }
@@ -1156,15 +1196,18 @@ namespace plane
 #ifndef ___NO_DEBUG_CRT
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       MSG msg;
       bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
       va_list list = NULL;
+#elif defined(METROWIN)
+      va_list list = NULL;
+      //throw todo(get_app());
 #else
       va_list list = {};
 #endif
       bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       if (bQuit)
          PostQuitMessage((int)msg.wParam);
 #endif

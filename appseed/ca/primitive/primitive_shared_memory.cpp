@@ -1,6 +1,9 @@
 #include "framework.h"
 
 
+#if !defined(METROWIN)
+
+
 namespace primitive
 {
 
@@ -429,6 +432,9 @@ namespace primitive
 
 
 } // namespace primitive
+
+
+#endif
 
 
 

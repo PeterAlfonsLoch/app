@@ -20,7 +20,7 @@ public:
    string      m_strName;
 
 
-   sync_object(LPCTSTR pstrName);
+   sync_object(const char * pstrName);
    virtual ~sync_object();
 
    virtual void * get_os_data() const;

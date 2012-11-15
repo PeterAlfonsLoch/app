@@ -190,6 +190,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       return true;
 
    }
+#ifndef METROWIN
    else if(m_pmysqldbUser != NULL)
    {
 
@@ -208,6 +209,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       return false;
 
    }
+#endif
    else
    {
 
@@ -273,6 +275,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       return true;
 
    }
+#ifndef METROWIN
    else if(m_pmysqldbUser != NULL)
    {
 
@@ -283,6 +286,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
       return m_pmysqldbUser->query(strSql) != NULL;
 
    }
+#endif
    else
    {
       single_lock slDatabase(db()->GetImplCriticalSection());

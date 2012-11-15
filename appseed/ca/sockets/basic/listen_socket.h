@@ -26,7 +26,12 @@ namespace sockets
    {
    public:
 
+
+#ifdef METROWIN
+      ::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
+#endif
       bool m_bDetach;
+
 
       /** Constructor.
          \param h socket_handler_base reference
@@ -56,11 +61,15 @@ namespace sockets
       }
 
       /** close file descriptor. */
-      int close() {
+      int close()
+      {
+#ifdef BSD_STYLE_SOCKETS
+
          if (GetSocket() != INVALID_SOCKET)
          {
             ::closesocket(GetSocket());
          }
+#endif
          return 0;
       }
 
@@ -216,6 +225,13 @@ namespace sockets
          \param protocol Network protocol
          \param depth Listen queue depth */
       int Bind(sockets::address& ad,const string & protocol,int depth) {
+#ifdef METROWIN
+
+         m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener();
+
+         m_listener->BindEndpointAsync(ad.get_os_host_name(), ad.get_os_service_name());
+
+#ifdef BSD_STYLE_SOCKETS
          SOCKET s;
          m_iBindPort = ad.GetPort();
          if ( (s = CreateSocket(ad.GetFamily(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
@@ -238,6 +254,9 @@ namespace sockets
          m_depth = depth;
          attach(s);
          return 0;
+#else
+         return 0;
+#endif
       }
 
       /** Return assigned port number. */
@@ -255,6 +274,9 @@ namespace sockets
       /** OnRead on a listen_socket receives an incoming connection. */
       void OnRead()
       {
+
+#ifdef BSD_STYLE_SOCKETS
+
          struct sockaddr sa;
          socklen_t sa_len = sizeof(struct sockaddr);
          SOCKET a_s = accept(GetSocket(), &sa, &sa_len);
@@ -332,6 +354,9 @@ namespace sockets
          {
             tmp -> OnAccept();
          }
+
+#endif
+
       }
 
 #ifdef BSD_STYLE_SOCKETS

@@ -1,5 +1,8 @@
 #include "framework.h"
 
+
+#ifndef METROWIN
+
 #if defined(LINUX)
 #include <fcntl.h>
 #endif
@@ -64,6 +67,7 @@ namespace gen
 
    bool pipe::create(bool bBlock)
    {
+
 
 #ifdef WINDOWS
 
@@ -287,3 +291,6 @@ namespace gen
    }
 
 } // namespace gen
+
+
+#endif

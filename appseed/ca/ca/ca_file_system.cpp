@@ -783,9 +783,9 @@ namespace ca
             throw "file::system::move Could not move file, could not open source file";
 
          string strDirOld     = System.dir().name(psz);
-         string strDirNew     = System.dir().name(pszNew)
-         string strNameOld    = System.file().name(psz);
-         string strNameNew    = System.file().name(pszNew);
+         string strDirNew     = System.dir().name(pszNew);
+         string strNameOld    = System.file().name_(psz);
+         string strNameNew    = System.file().name_(pszNew);
 
          if(strDirOld == strDirNew)
          {
@@ -795,19 +795,19 @@ namespace ca
             }
             else
             {
-               wait(file->RenameAsync(rtstr(strNameNew));
+               ::wait(file->RenameAsync(rtstr(strNameNew)));
             }
          }
          else
          {
-            ::Windows::Storage::StorageFile ^ folder = get_os_folder(rtstr(strDirNew));
+            ::Windows::Storage::StorageFolder ^ folder = get_os_folder(strDirNew);
             if(strNameOld == strNameNew)
             {
-               wait(file->MoveAsync(folder));
+               ::wait(file->MoveAsync(folder));
             }
             else
             {
-               wait(file->MoveAsync(folder, rtstr(strNameNew)));
+               ::wait(file->MoveAsync(folder, rtstr(strNameNew)));
             }
          }
 
@@ -915,7 +915,10 @@ namespace ca
 
 #ifdef WINDOWS
 
-         return ::GetFileAttributesW(gen::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
+
+         return file_exists_dup(pszPath);
+
+         //return ::GetFileAttributesW(gen::international::utf8_to_unicode(pszPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else
 
@@ -964,7 +967,9 @@ namespace ca
 
 #ifdef WINDOWS
 
-         return ::GetFileAttributesW(gen::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
+
+         return file_exists_dup(strPath);
+         //return ::GetFileAttributesW(gen::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else
 
@@ -1009,7 +1014,7 @@ namespace ca
          for(int i = 0; i < stra.get_size(); i++)
          {
 #ifdef WINDOWS
-            ::MoveFile(stra[i], System.dir().path(strDir, name_(stra[i])));
+            move(System.dir().path(strDir, name_(stra[i])), stra[i]);
 #else
             ::rename(stra[i], System.dir().path(strDir, name_(stra[i])));
 #endif
@@ -1025,7 +1030,8 @@ namespace ca
          System.dir().mk(strDir, papp);
 
 #ifdef WINDOWS
-         ::MoveFile(psz, System.dir().path(strDir, name_(psz)));
+//         ::MoveFile(psz, System.dir().path(strDir, name_(psz)));
+         move(System.dir().path(strDir, name_(psz)), psz);
 #else
          ::rename(psz, System.dir().path(strDir, name_(psz)));
 #endif
@@ -1046,9 +1052,10 @@ namespace ca
             if(strNew != strOld)
             {
 #ifdef WINDOWS
-               ::MoveFileW(
-                  gen::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
-                  gen::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
+//               ::MoveFileW(
+  //                gen::international::utf8_to_unicode(System.dir().path(pszContext, strOld)),
+    //              gen::international::utf8_to_unicode(System.dir().path(pszContext, strNew)));
+               move(System.dir().path(pszContext, strNew), System.dir().path(pszContext, strOld));
 #else
                ::rename(
                   System.dir().path(pszContext, strOld),
@@ -1061,12 +1068,16 @@ namespace ca
       bool system::is_read_only(const char * psz)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          DWORD dwAttrib = GetFileAttributesW(gen::international::utf8_to_unicode(psz));
          if(dwAttrib & FILE_ATTRIBUTE_READONLY)
             return true;
          return false;
+
+#elif defined(METROWIN)
+
+         throw todo(get_app());
 
 #else
 
@@ -1083,28 +1094,26 @@ namespace ca
 
       string system::sys_temp(const char * pszName, const char * pszExtension, ::ca::application * papp)
       {
-         char lpPathBuffer[MAX_PATH * 16];
-       // get the temp path.
-         DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
-                              lpPathBuffer); // buffer for path
-         if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
+         
+         string strTempDir = get_sys_temp_path();
+
+         if(!gen::str::ends(strTempDir, "\\") && !gen::str::ends(strTempDir, "/"))
          {
-            printf ("GetTempPath failed (%d)\n", GetLastError());
-            return "";
+
+            strTempDir += "\\";
+
          }
+
          string str;
+
          char buf[30];
-         int iLen= (int) strlen(lpPathBuffer);
-         if(!(lpPathBuffer[iLen - 1] == '/'
-            || lpPathBuffer[iLen - 1] == '\\'))
-         {
-            lpPathBuffer[iLen] = '\\';
-            lpPathBuffer[iLen+1] = '\0';
-         }
+
          for(int i = 0; i < 1000; i++)
          {
+
             sprintf(buf, "%d", i);
-            str = lpPathBuffer;
+
+            str = strTempDir;
             str += pszName;
             str += "-";
             str += buf;
@@ -1113,31 +1122,16 @@ namespace ca
             if(!exists(str, papp))
                return str;
          }
+
          return "";
+
       }
 
       string system::sys_temp_unique(const char * pszName)
       {
-         char lpPathBuffer[MAX_PATH * 16];
-       // get the temp path.
-         DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer),     // length of the buffer
-                              lpPathBuffer); // buffer for path
-         if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
-         {
-            printf ("GetTempPath failed (%d)\n", GetLastError());
-            return "";
-         }
-         string str;
-         int iLen= (int) strlen(lpPathBuffer);
-         if(!(lpPathBuffer[iLen - 1] == '/'
-            || lpPathBuffer[iLen - 1] == '\\'))
-         {
-            lpPathBuffer[iLen] = '\\';
-            lpPathBuffer[iLen+1] = '\0';
-         }
-         str = lpPathBuffer;
-         str += pszName;
-         return str;
+
+         return System.dir().path(get_sys_temp_path(), pszName);
+
       }
 
       ex1::filesp system::time_square_file(::ca::application * papp, const char * pszPrefix, const char * pszSuffix)
@@ -1188,7 +1182,7 @@ namespace ca
 
 #include "OpenedFiles.h"
 
-#if !defined(LINUX) && !defined(MACOS)
+#if !defined(LINUX) && !defined(MACOS) && !defined(METROWIN)
 
 #include <Tlhelp32.h>
 #include <Psapi.h>

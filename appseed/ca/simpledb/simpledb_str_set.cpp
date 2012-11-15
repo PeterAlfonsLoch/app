@@ -260,6 +260,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
 
 
    }
+#ifndef METROWIN
    else if(m_pmysqldbUser != NULL)
    {
 
@@ -278,6 +279,7 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       return false;
 
    }
+#endif
    else
    {
       single_lock slDatabase(db()->GetImplCriticalSection());
@@ -368,6 +370,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       }
       return true;
    }
+#ifdef HAVE_MYSQL
    else if(m_pmysqldbUser != NULL)
    {
 
@@ -378,6 +381,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
       return m_pmysqldbUser->query(strSql) != NULL;
 
    }
+#endif
    else
    {
 

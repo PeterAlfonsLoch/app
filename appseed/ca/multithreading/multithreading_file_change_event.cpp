@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 ///  \brief		constructor with passed path to file
 ///  \param		path the file to watch

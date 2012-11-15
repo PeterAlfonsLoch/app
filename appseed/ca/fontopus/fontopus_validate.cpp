@@ -1173,6 +1173,28 @@ namespace fontopus
       
       CFRelease(key);
       
+#elif defined(METROWIN)
+
+      primitive::memory memKey(get_app());
+
+      memKey.from_hex(strRsaModulus);
+
+      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ cipher =
+         ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
+
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->ImportPublicKey(memKey.get_os_stream_buffer());
+
+      primitive::memory memIn;
+
+      Application.hex_to_memory(memIn, strPass);
+
+      primitive::memory memory;
+
+      memory.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, memIn.get_os_stream_buffer(), nullptr));
+
+      string strHex;
+      Application.memory_to_hex(strHex, memory);
+
 #else
       
       RSA * rsa = RSA_new();

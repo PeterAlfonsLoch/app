@@ -1,5 +1,6 @@
 #pragma once
 
+#ifndef METROWIN
 
 namespace gen
 {
@@ -90,5 +91,8 @@ namespace gen
 
 
 } // namespace gen
+
+
+#endif
 
 

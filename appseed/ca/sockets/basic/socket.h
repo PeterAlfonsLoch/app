@@ -64,80 +64,70 @@ namespace sockets
       };
 
 
+      SOCKET                  m_socket; ///< File descriptor
       socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
       gen::memory_file        m_memfileInput;
-
-#ifdef USE_BYESHYTOULA_STYLE_SOCKETS
-
-
-#else
-
-      callback *              m_pcallback;
       bool                    m_bEnd; // should finish by not sending no more writes
-      int                     m_iBindPort;
-      SOCKET                  m_socket; ///< File descriptor
-      bool                    m_bDel; ///< Delete by handler flag
-      bool                    m_bClose; ///< close and delete flag
-      time_t                  m_tCreate; ///< time in seconds when this socket was created
-      socket *                m_parent; ///< Pointer to listen_socket class, valid for incoming sockets
-      bool                    m_b_disable_read; ///< Disable checking for read events
-      bool                    m_connected; ///< socket is connected (tcp/udp)
-      bool                    m_b_erased_by_handler; ///< Set by handler before delete
-      time_t                  m_tClose; ///< time in seconds when ordered to close
-      address_sp              m_client_remote_address; ///< Address of last connect()
-      address_sp              m_remote_address; ///< Remote end address
-      ex1::file *             m_traffic_monitor;
-      time_t                  m_timeout_start; ///< Set by SetTimeout
-      time_t                  m_timeout_limit; ///< Defined by SetTimeout
-      bool                    m_bLost; ///< connection lost
-   //   unsigned long m_flags; ///< boolean flags, replacing old 'bool' members
-
       string                  m_strCat;
-
+      callback *              m_pcallback;
+      address_sp              m_addressRemote; ///< Remote end address
+      time_t                  m_timeCreate; ///< time in seconds when this socket was created
+      bool                    m_bDisableRead; ///< Disable checking for read events
+      bool                    m_bConnected; ///< socket is connected (tcp/udp)
+      bool                    m_bLost; ///< connection lost
+      bool                    m_bErasedByHandler; ///< Set by handler before delete
+      time_t                  m_timeClose; ///< time in seconds when ordered to close
+      int                     m_iBindPort;
+      bool                    m_bDelete; ///< Delete by handler flag
+      bool                    m_bClose; ///< close and delete flag
+      socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
+      address_sp              m_addressRemoteClient; ///< Address of last connect()
+      ex1::file *             m_pfileTrafficMonitor;
+      time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
+      time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
+#ifndef BSD_STYLE_SOCKETS
+      bool                    m_bNonBlocking;
 #endif
-
+//    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
 #ifdef WINDOWSEX
 
-      static   WSAInitializer m_winsock_init; ///< Winsock initialization singleton class
+      static WSAInitializer   m_winsock_init; ///< Winsock initialization singleton class
 
 #endif
 
-      bool m_b_enable_ssl; ///< Enable SSL for this tcp_socket
-      bool m_b_ssl; ///< ssl negotiation mode (tcp_socket)
-      bool m_b_ssl_server; ///< True if this is an incoming ssl tcp_socket connection
+      bool                    m_bEnableSsl; ///< Enable SSL for this tcp_socket
+      bool                    m_bSsl; ///< ssl negotiation mode (tcp_socket)
+      bool                    m_bSslServer; ///< True if this is an incoming ssl tcp_socket connection
 
-      bool m_ipv6; ///< This is an ipv6 socket if this one is true
+      bool                    m_bIpv6; ///< This is an ipv6 socket if this one is true
 
-   #ifdef ENABLE_POOL
-      int         m_socket_type; ///< Type of socket, from socket() call
-      string      m_socket_protocol; ///< Protocol, from socket() call
-      bool        m_bClient; ///< only client connections are pooled
-      bool        m_bRetain; ///< keep connection on close
-   #endif
+#ifdef ENABLE_POOL
+      int                     m_iSocketType; ///< Type of socket, from socket() call
+      string                  m_strSocketProtocol; ///< Protocol, from socket() call
+      bool                    m_bClient; ///< only client connections are pooled
+      bool                    m_bRetain; ///< keep connection on close
+#endif
 
-      bool m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
-      ipaddr_t m_socks4_host; ///< socks4 server address
-      port_t m_socks4_port; ///< socks4 server port number
-      string m_socks4_userid; ///< socks4 server usedid
+      bool                    m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
+      ipaddr_t                m_socks4_host; ///< socks4 server address
+      port_t                  m_socks4_port; ///< socks4 server port number
+      string                  m_socks4_userid; ///< socks4 server usedid
 
-      bool m_detach; ///< socket ordered to detach flag
-      bool m_detached; ///< socket has been detached
-      socket_thread *m_pThread; ///< detach socket thread class pointer
-      socket_handler_base *m_slave_handler; ///< Actual sockethandler while detached
+      bool                    m_detach; ///< socket ordered to detach flag
+      bool                    m_detached; ///< socket has been detached
+      socket_thread *         m_pThread; ///< detach socket thread class pointer
+      socket_handler_base *   m_slave_handler; ///< Actual sockethandler while detached
 
 
       // LineProtocol
-        bool m_bLineProtocol; ///< Line protocol mode flag
-      bool m_skip_c; ///< Skip second char of CRLF or LFCR sequence in OnRead
-      char m_c; ///< First char in CRLF or LFCR sequence
-      string m_line; ///< Current line in line protocol mode
+      bool                    m_bLineProtocol; ///< Line protocol mode flag
+      bool                    m_skip_c; ///< Skip second char of CRLF or LFCR sequence in OnRead
+      char                    m_c; ///< First char in CRLF or LFCR sequence
+      string                  m_line; ///< Current line in line protocol mode
 
-
-
-
-      e_status    m_estatus;
-      DWORD       m_dwStart;
+      e_status                m_estatus;
+      DWORD                   m_dwStart;
 
 
 
@@ -212,9 +202,7 @@ namespace sockets
        */
       virtual void Init();
 
-
 #ifdef BSD_STYLE_SOCKETS
-
       /** create a socket file descriptor.
          \param af Address family AF_INET / AF_INET6 / ...
          \param type SOCK_STREAM / SOCK_DGRAM / ...
@@ -224,15 +212,24 @@ namespace sockets
       /** Assign this socket a file descriptor created
          by a call to socket() or otherwise. */
       void attach(SOCKET s);
+#else
+
+      virtual SOCKET CreateSocket(int af, int type,const string & protocol = "") = 0;
+
+#endif
 
       /** Return file descriptor assigned to this socket. */
       SOCKET GetSocket();
 
-#endif
-
       /** close connection immediately - internal use.
          \sa SetCloseAndDelete */
       virtual int close();
+
+#ifdef BSD_STYLE_SOCKETS
+      virtual int close_socket();
+#else
+      virtual int close_socket() = 0;
+#endif
 
       /** add file descriptor to sockethandler fd_set's. */
       void Set(bool bRead,bool bWrite,bool bException = true);
@@ -256,10 +253,12 @@ namespace sockets
 
       /** Set socket non-block operation. */
       bool SetNonblocking(bool);
+
 #ifdef BSD_STYLE_SOCKETS
       /** Set socket non-block operation. */
       bool SetNonblocking(bool, SOCKET);
 #endif
+
       /** Total lifetime of instance. */
       time_t Uptime();
 

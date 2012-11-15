@@ -243,7 +243,7 @@ namespace radix
    bool application::_LoadSysPolicies() throw()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       HKEY hkPolicy = NULL;
       DWORD dwValue = 0;
@@ -665,7 +665,7 @@ namespace radix
 
       // free atoms if used
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       if (m_atomApp != NULL)
          ::GlobalDeleteAtom(m_atomApp);
@@ -713,7 +713,7 @@ namespace radix
    }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -989,7 +989,7 @@ namespace radix
    HCURSOR application::LoadStandardCursor(const char * lpszCursorName) const
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       return ::LoadCursor(NULL, lpszCursorName);
 
@@ -1100,7 +1100,7 @@ namespace radix
 
       bool bResourceException = false;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       bSetOk = false;
 
@@ -1431,7 +1431,7 @@ namespace radix
       }
 
       pchSrc = lpszFormat;
-      LPTSTR pchDest = rString.GetBuffer(nTotalLen);
+      char * pchDest = rString.GetBuffer(nTotalLen);
       while (*pchSrc != '\0')
       {
          if (pchSrc[0] == '%' &&
@@ -1514,7 +1514,7 @@ namespace radix
    void application::OnHelpIndex()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       WinHelpInternal(0L, HELP_INDEX);
 
@@ -1526,7 +1526,7 @@ namespace radix
    void application::OnHelpFinder()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       WinHelpInternal(0L, HELP_FINDER);
 
@@ -1538,7 +1538,7 @@ namespace radix
    void application::OnHelpUsing()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       WinHelpInternal(0L, HELP_HELPONHELP);
 
@@ -1711,7 +1711,7 @@ namespace radix
          // turn everything off
          m_nWaitCursorCount = 0;     // prevent underflow
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          ::SetCursor(m_hcurWaitCursorRestore);
 
@@ -1797,15 +1797,15 @@ namespace radix
    int application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      #ifdef WINDOWS
+#ifdef WINDOWSEX
 
       return MessageBox((puiOwner == NULL ? NULL : (puiOwner->get_wnd() == NULL ? NULL : puiOwner->get_handle())), pszMessage, m_strAppName, fuStyle);
 
-      #else
+#else
 
       return MessageBox(::ca::null(), pszMessage, m_strAppName, fuStyle);
 
-      #endif
+#endif
 
    }
 
@@ -1980,7 +1980,7 @@ namespace radix
    ::user::interaction * application::get_active_guie()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       return window_from_os_data(::GetActiveWindow());
 
@@ -1996,7 +1996,7 @@ namespace radix
    ::user::interaction * application::get_focus_guie()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       ::ca::window * pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != NULL)
@@ -2328,7 +2328,7 @@ namespace radix
    }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    // returns key for HKEY_CURRENT_USER\"Software"\RegistryKey\ProfileName
    // creating it if it doesn't exist
@@ -2790,7 +2790,7 @@ namespace radix
    ::user::interaction * application::release_capture_uie()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
@@ -2808,7 +2808,7 @@ namespace radix
    ::user::interaction * application::get_capture_uie()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
@@ -3000,11 +3000,13 @@ namespace radix
 
    void application::get_screen_rect(LPRECT lprect)
    {
+#ifndef METROWIN
       if(m_bSessionSynchronizedScreen)
       {
          oswindow oswindowDesktop = ::GetDesktopWindow();
          ::GetWindowRect(oswindowDesktop, &m_rectScreen);
       }
+#endif
       if(lprect != NULL)
       {
          *lprect = m_rectScreen;
@@ -3369,7 +3371,7 @@ bool file_manager_interface::initialize(::ca::application * papp)
 void __post_quit_message(int nExitCode)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::PostQuitMessage(nExitCode);
 

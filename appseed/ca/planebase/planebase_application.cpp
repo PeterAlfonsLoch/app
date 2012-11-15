@@ -204,7 +204,7 @@ namespace planebase
       m_dir.m_psystem      = m_psystem;
       m_file.m_psystem     = m_psystem;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       MSG msg;
 
@@ -714,7 +714,7 @@ InitFailure:
             exit();
             m_iReturnCode = -1;
             m_bReady = true;
-            ::OutputDebugString("exiting on check directrix");
+            ::OutputDebugStringW(L"exiting on check directrix");
             return m_iReturnCode;
          }
 
@@ -725,7 +725,7 @@ InitFailure:
             exit();
             m_iReturnCode = -1;
             m_bReady = true;
-            ::OutputDebugString("application::main os_native_bergedge_start failure");
+            ::OutputDebugStringW(L"application::main os_native_bergedge_start failure");
             return m_iReturnCode;
          }
          m_iReturnCode = 0;
@@ -733,7 +733,7 @@ InitFailure:
          m_iReturnCode = on_run();
          if(m_iReturnCode != 0)
          {
-            ::OutputDebugString("application::main on_run termination failure");
+            ::OutputDebugStringW(L"application::main on_run termination failure");
          }
          if(is_system())
          {
@@ -890,7 +890,7 @@ InitFailure:
       else if(gen::str::begins_eat_ci(strPath, "matter://"))
       {
 
-         ::ca::application * papp;
+         ::ca::application * papp = NULL;
 
          if(System.url().get_server("matter://" + strPath) ==m_strAppName)
          {
@@ -907,7 +907,7 @@ InitFailure:
             }
 
          }
-         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(papp).m_strAppName.has_char())
+         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(this).m_strAppName.has_char())
          {
 
             spfile = App(papp).get_file("matter://" + strPath, nOpenFlags);

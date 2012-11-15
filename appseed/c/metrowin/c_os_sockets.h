@@ -169,3 +169,18 @@ typedef struct addrinfo {
   struct sockaddr  *ai_addr;
   struct addrinfo  *ai_next;
 } ADDRINFOA, *PADDRINFOA;
+
+
+
+#define AI_NUMERICHOST  0x00000004  // Nodename must be a numeric address string
+#define NI_NUMERICHOST  0x02  /* Return numeric form of the host's address */
+#define NI_NUMERICSERV  0x08  /* Return numeric form of the service (port #) */
+
+
+typedef ::Platform::Object ^ SOCKET;
+
+#define INVALID_SOCKET nullptr
+
+
+
+

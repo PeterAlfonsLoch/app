@@ -42,11 +42,13 @@ namespace sockets
    {
       string strLevel = ::ca2::log::level_name(elevel);
 
+#ifdef BSD_STYLE_SOCKETS
       if (sock)
       {
          Sys(phandler->m_papp).log().trace("fd %d :: %s: %d %s (%s)\n", sock->GetSocket(), strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
       }
       else
+#endif
       {
          Sys(phandler->m_papp).log().trace("%s: %d %s (%s)\n", strCall.c_str(), iError, strSystemError.c_str(), strLevel.c_str());
       }

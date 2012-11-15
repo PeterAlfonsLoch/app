@@ -425,10 +425,12 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
       {
 
          // is this a system named color value?
-
+#ifdef WINDOWSEX
          if (crTemp >= 0x80000000 && crTemp <= 0x80000018)
             crTemp = ::GetSysColor(crTemp & 0x7FFFFFFF);
-
+#else
+         throw todo(::ca::get_thread_app());
+#endif
       }
 
    }

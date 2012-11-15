@@ -49,9 +49,24 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
       return wait_result(wait_result::Failure);
 
    if (dwWakeMask == 0)
-      iResult = ::WaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration());
+   {
+
+      iResult = ::WaitForMultipleObjectsEx((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), FALSE);
+
+   }
    else
+   {
+
+#ifdef WINDOWSEX
+
       iResult = ::MsgWaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
+
+#else
+      throw not_supported_exception(get_app());
+
+#endif
+
+   }
 
    index iUpperBound = WAIT_OBJECT_0 + m_objecta.get_count();
    if (iResult >= WAIT_OBJECT_0 && iResult < iUpperBound)

@@ -1,6 +1,8 @@
 #pragma once
 
 
+#ifndef METROWIN
+
 namespace primitive
 {
 
@@ -43,5 +45,6 @@ namespace primitive
 } // namespace primitive
 
 
+#endif
 
 

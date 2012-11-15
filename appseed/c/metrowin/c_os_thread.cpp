@@ -506,7 +506,7 @@ static UINT g_uiMainThread = -1;
 CLASS_DECL_c void set_main_thread(HANDLE hThread)
 {
    
-   MSG msg;
+//   MSG msg;
 
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
@@ -519,7 +519,7 @@ CLASS_DECL_c void set_main_thread(HANDLE hThread)
 CLASS_DECL_c void set_main_thread_id(UINT uiThread)
 {
    
-   MSG msg;
+//   MSG msg;
 
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
@@ -544,7 +544,7 @@ CLASS_DECL_c UINT   get_main_thread_id()
 CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
 {
 
-   MSG msg;
+//   MSG msg;
 
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 

@@ -892,6 +892,8 @@ unsigned long _GeoIP_lookupaddress (const char *host)
 geoipv6_t
 _GeoIP_lookupaddress_v6(const char *host)
 {
+
+#ifdef BSD_STYLE_SOCKETS
    geoipv6_t       ipnum;
    int             gaierr;
    struct addrinfo hints, *aifirst;
@@ -910,6 +912,13 @@ _GeoIP_lookupaddress_v6(const char *host)
    /* inet_pton(AF_INET6, host, ipnum.s6_addr); */
 
    return ipnum;
+#else
+
+   throw todo(::ca::get_thread_app());
+
+#endif
+
+
 }
 
 int GeoIP_id_by_name (GeoIP* gi, const char *name) {

@@ -1,29 +1,22 @@
 #pragma once
 
 
-class CLASS_DECL_ca event :
-   virtual public event_base
+class CLASS_DECL_ca condition :
+   virtual public waitable
 {
 public:
 
 #if defined(LINUX) || defined(MACOS)
-   bool     m_bManualReset;
+   int_ptr     m_object;
+#else
+   CRITICAL_SECTION     m_sect;
+   CONDITION_VARIABLE   m_var;
 #endif
 
 
-   event(::ca::application * papp, bool bInitiallyOwn = FALSE, bool bManualReset = FALSE, const char * lpszNAme = NULL, LPSECURITY_ATTRIBUTES lpsaAttribute = NULL);
-   virtual ~event()
-   {
+   condition(::ca::application * papp);
+   virtual ~condition();
 
-   #if defined(LINUX)
-
-      semun ignored_argument;
-
-      semctl(m_object, 0, IPC_RMID, ignored_argument);
-
-   #endif
-
-   }
 
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
@@ -33,9 +26,7 @@ public:
 
    virtual void * get_os_data() const;
 
-   bool SetEvent();
-   //bool PulseEvent();
-   bool ResetEvent();
+   bool pulse();
 
 /**
 * \brief	Platform independent waitables (windows version)

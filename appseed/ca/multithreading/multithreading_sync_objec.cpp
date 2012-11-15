@@ -25,7 +25,7 @@ sync_object::~sync_object()
 inline bool sync_object::lock(const duration & durationTimeout)
 {
 #ifdef WINDOWS
-   DWORD dwRet = ::WaitForSingleObject(m_object, durationTimeout.os_lock_duration());
+   DWORD dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.os_lock_duration(), FALSE);
    if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
       return TRUE;
    else

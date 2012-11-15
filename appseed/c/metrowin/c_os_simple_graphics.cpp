@@ -458,7 +458,7 @@ bool os_simple_graphics::destroy()
 bool os_simple_graphics::set_offset(int x, int y)
 {
    
-   m_pdc->SetTransform(D2D1::Matrix3x2F::Translation(x, y));
+   m_pdc->SetTransform(D2D1::Matrix3x2F::Translation((FLOAT) x, (FLOAT) y));
 
    return true;
 
@@ -483,7 +483,7 @@ bool os_simple_graphics::offset(int x, int y)
 bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
 {
    
-   m_pdc->DrawImage(gSrc.m_bitmap.m_pbitmap, D2D1::Point2F(x, y), D2D1::RectF(x1, y1, x1 + cx, y1 + cy));
+   m_pdc->DrawImage(gSrc.m_bitmap.m_pbitmap, D2D1::Point2F((FLOAT) x, (FLOAT) y), D2D1::RectF((FLOAT) x1, (FLOAT) y1, (FLOAT) (x1 + cx), (FLOAT) (y1 + cy)));
    ///return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
 
    return true;
@@ -600,12 +600,12 @@ bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen & pen)
 
    D2D1_RECT_F r;
 
-   r.left      = lpcrect->left;
-   r.top       = lpcrect->top;
-   r.right     = lpcrect->right;
-   r.bottom    = lpcrect->bottom;
+   r.left      = (FLOAT) lpcrect->left;
+   r.top       = (FLOAT) lpcrect->top;
+   r.right     = (FLOAT) lpcrect->right;
+   r.bottom    = (FLOAT) lpcrect->bottom;
 
-   m_pdc->DrawRectangle(r, pen.get_os_brush(), m_pen.m_iWidth);
+   m_pdc->DrawRectangle(r, pen.get_os_brush(), (FLOAT) m_pen.m_iWidth);
 
    return true;
 
@@ -622,10 +622,10 @@ bool os_simple_graphics::fill_rect(LPCRECT lpcrect, simple_brush & brush)
 
    D2D1_RECT_F r;
 
-   r.left      = lpcrect->left;
-   r.top       = lpcrect->top;
-   r.right     = lpcrect->right;
-   r.bottom    = lpcrect->bottom;
+   r.left      = (FLOAT) lpcrect->left;
+   r.top       = (FLOAT) lpcrect->top;
+   r.right     = (FLOAT) lpcrect->right;
+   r.bottom    = (FLOAT) lpcrect->bottom;
 
    m_pdc->FillRectangle(r, brush.get_os_data());
 
@@ -687,7 +687,7 @@ void os_simple_graphics::fill_solid_rect(LPCRECT lpcrect, COLORREF clr)
 bool os_simple_graphics::draw_path(simple_path & path, simple_pen & pen)
 {
    
-   m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), pen.m_iWidth);
+   m_pdc->DrawGeometry(path.get_os_data(), pen.get_os_brush(), (FLOAT) pen.m_iWidth);
 
    return true;
 
@@ -728,8 +728,8 @@ bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 
    D2D1_RECT_F rect;
 
-   rect.left = x;
-   rect.top = y;
+   rect.left = (FLOAT) x;
+   rect.top = (FLOAT) y;
    rect.right = x + (1024.f * 1024.f);
    rect.bottom = y + (1024.f * 1024.f);
 
@@ -756,7 +756,7 @@ bool os_simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & 
    p2.x = (FLOAT) x2;
    p2.y = (FLOAT) y2;
 
-   m_pdc->DrawLine(p1, p2, pen.get_os_brush(), pen.m_iWidth);
+   m_pdc->DrawLine(p1, p2, pen.get_os_brush(), (FLOAT) pen.m_iWidth);
 
    return true;
 }

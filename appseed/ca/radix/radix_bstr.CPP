@@ -3,8 +3,6 @@
 
 #ifdef WINDOWS
 
-#include <comdef.h>
-
 void bstr::copy(BSTR &bstrDest, const BSTR bstrSrc)
 {
    if(bstrSrc == NULL)
@@ -29,21 +27,19 @@ void bstr::copy(BSTR &bstrDest, const BSTR bstrSrc)
 
 void bstr::copy(string &strDest, const BSTR bstrSrc)
 {
-   _bstr_t bstrt(bstrSrc);
-   strDest = (LPTSTR) bstrt;
+   strDest = gen::international::unicode_to_utf8((wchar_t *) bstrSrc);
 }
 
 void bstr::copy( BSTR &bstrDest, const string &strSrc )
 {
-   _bstr_t bstrt(strSrc);
-   bstrDest = bstrt;
+   if(bstrDest != NULL)
+      SysFreeString(bstrDest);
+   bstrDest = SysAllocString((wchar_t *) gen::international::utf8_to_unicode(strSrc));
 }
 
 bool bstr::IsEqual(const BSTR bstrA, const BSTR bstrB)
 {
-   _bstr_t bstr1(bstrA);
-   _bstr_t bstr2(bstrB);
-   return bstr1 == bstr2;
+   return wcscmp_dup((wchar_t *) bstrA, (wchar_t *) bstrB) == 0;
 
 }
 

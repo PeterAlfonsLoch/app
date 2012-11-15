@@ -6,7 +6,8 @@ bool critical_section::Init()
 {
    __try
    {
-      ::InitializeCriticalSection(&m_sect);
+//      ::InitializeCriticalSection(&m_sect);
+      ::InitializeCriticalSectionEx(&m_sect, 4000, 0);
    }
    __except(STATUS_NO_MEMORY == GetExceptionCode())
    {

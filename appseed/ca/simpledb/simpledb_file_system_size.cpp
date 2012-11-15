@@ -381,7 +381,7 @@ bool FileSystemSizeWnd::CreateServer()
 bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    db_server * pcentral = dynamic_cast < db_server * > (&System.db());
    oswindow oswindow = pcentral->m_pfilesystemsizeset->m_table.m_oswindowServer;
@@ -431,7 +431,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    SCAST_PTR(::gen::message::base, pbase, pobj);
 
@@ -475,7 +475,7 @@ void FileSystemSizeWnd::_001OnCopyData(gen::signal_object * pobj)
 void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
     SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 100)
@@ -528,7 +528,7 @@ bool FileSystemSizeServerThread::initialize_instance()
 void FileSystemSizeWnd::ClientStartServer()
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    db_server * pcentral = &System.db();
 
@@ -561,7 +561,7 @@ void file_size_table::get_fs_size::write(ex1::byte_output_stream & ostream)
    ostream << m_iSize;
    ostream << m_bRet;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ostream << (int) m_oswindow;
 

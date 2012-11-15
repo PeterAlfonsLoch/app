@@ -76,6 +76,7 @@ void socket_event::exit_wait ()
 //virtual
 socket_event::operator bool ()
 {
+#ifdef BSD_STYLE_SOCKETS
 	fd_set fileDescs;
 	FD_ZERO(&fileDescs);
 
@@ -86,5 +87,11 @@ socket_event::operator bool ()
 
 	timeval timeout = {0};
 	return select(0, m_bRead ? &fileDescs : 0, m_bRead ? 0 : &fileDescs, 0, &timeout) == 1;
+#else
+
+   return true;
+
+#endif
+
 }
 

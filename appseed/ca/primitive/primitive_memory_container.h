@@ -58,15 +58,21 @@ namespace primitive
       memory_base * detach();
 
       virtual memory *          get_primitive_memory();
+#if !defined(METROWIN)
       virtual shared_memory *   get_shared_memory();
+#endif
       virtual virtual_memory *  get_virtual_memory();
 
       virtual memory *          detach_primitive_memory();
+#if !defined(METROWIN)
       virtual shared_memory *   detach_shared_memory();
+#endif
       virtual virtual_memory *  detach_virtual_memory();
 
       virtual LPBYTE            detach_primitive_storage();
+#if !defined(METROWIN)
       virtual HGLOBAL           detach_shared_storage();
+#endif
       virtual LPBYTE            detach_virtual_storage();
 
       string str() const;

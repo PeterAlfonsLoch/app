@@ -9,6 +9,7 @@ CLASS_DECL_c DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth
 
 
 CLASS_DECL_c BOOL FileTimeToLocalFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime);
+CLASS_DECL_c BOOL LocalFileTimeToFileTime(const FILETIME * lpFileTime, LPFILETIME lpLocalFileTime);
 
 
 CLASS_DECL_c ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName);

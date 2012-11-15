@@ -1,5 +1,7 @@
 #include "framework.h"
+#ifdef BSD_STYLE_SOCKETS
 #include <openssl/ssl.h>
+#endif
 
 #if defined(LINUX)
 #include <ctype.h>

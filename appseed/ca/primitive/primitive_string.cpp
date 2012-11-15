@@ -280,7 +280,7 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
 {
    if(pszMatch == NULL || pszBlock == NULL || *pszBlock == '\0')
       return NULL;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszMatch ) ) );
 #else
    return reinterpret_cast< const char * >( strpbrk( reinterpret_cast< const char* >( pszBlock ), reinterpret_cast< const char* >( pszMatch ) ) );
@@ -487,7 +487,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 
 void crt_char_traits::ConvertToOem(char* pstrString) RELEASENOTHROW
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    bool fSuccess=::CharToOemA(pstrString, pstrString) != 0;
    // old version can't report error
    ASSERT(fSuccess);
@@ -496,7 +496,7 @@ void crt_char_traits::ConvertToOem(char* pstrString) RELEASENOTHROW
 
 void crt_char_traits::ConvertToAnsi(char* pstrString) RELEASENOTHROW
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    bool fSuccess=::OemToCharA(pstrString, pstrString) != 0;
    // old version can't report error
    ASSERT(fSuccess);
@@ -605,7 +605,11 @@ strsize __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
 DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize ) throw()
 {
 
-#ifdef WINDOWS
+#ifdef METROWIN
+
+   throw todo(::ca::get_thread_app());
+
+#elif defined(WINDOWSEX)
 
    return ::GetEnvironmentVariableA(pszVar, pszBuffer, dwSize);
 
@@ -621,7 +625,7 @@ DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char 
 void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(size>UINT_MAX)
    {
@@ -643,7 +647,7 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
 void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(size>UINT_MAX)
    {
@@ -2510,7 +2514,7 @@ void string::FormatV(PCXSTR pszFormat, va_list args )
 void string::FormatMessageV(PCXSTR pszFormat, va_list* pArgList )
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    // format message into temporary buffer pszTemp
 

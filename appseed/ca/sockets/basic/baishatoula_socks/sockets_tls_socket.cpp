@@ -1,6 +1,7 @@
 #include "framework.h"
+#ifndef METROWIN
 #include <openssl/ssl.h>
-
+#endif
 
 namespace sockets
 {
@@ -21,7 +22,9 @@ namespace sockets
 
    void tls_socket::InitSSLClient()
    {
+#ifdef BSD_STYLE_SOCKETS
       InitializeContext(m_strCat, TLSv1_client_method());
+#endif
    }
 
 

@@ -120,9 +120,15 @@ namespace dynamic_source
       {
       }
 
+#ifdef METROWIN
 
+      throw todo(get_app());
+
+#else
       var var = System.process().get_output("\"" + m_strEnv  + "\" "+ strPlat2);
       TRACE0(var.get_string());
+
+#endif
 
       string str;
       string strItem;
@@ -404,12 +410,14 @@ namespace dynamic_source
 
       //Application.file().put_contents(strLinkCmd, str);
 
+      bool bTimeout = false;
+
+#ifndef METROWIN
 
       gen::process process;
 
       process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat));
 
-      bool bTimeout = false;
       DWORD dwStart = ::get_tick_count();
       DWORD dwExitCode;
       while(true)
@@ -433,6 +441,11 @@ namespace dynamic_source
       var varLinkOutput;
       varLinkOutput = System.process().get_output(strLinkCmd);*/
 
+#else
+
+      throw todo(get_app());
+
+#endif
 
       pscript->m_memfileError.Truncate(0);
       pscript->m_memfileError << "<pre>";
@@ -486,7 +499,7 @@ namespace dynamic_source
       //Sleep(pscript->m_pmanager->m_dwBuildTimeWindow +
       // System.math().RandRange(0, pscript->m_pmanager->m_dwBuildTimeRandomWindow));
       pscript->m_bShouldBuild =false;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       HANDLE h = create_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
@@ -501,6 +514,20 @@ namespace dynamic_source
       }
 
       ::CloseHandle(h);
+
+#elif defined(METROWIN)
+
+      ::Windows::Storage::StorageFile ^ h = get_os_file(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      try
+      {
+         memset(&pscript->m_ftCreation, 0, sizeof(FILETIME));
+         memset(&pscript->m_ftModified, 0, sizeof(FILETIME));
+         ::get_file_time(h, &pscript->m_ftCreation, NULL, &pscript->m_ftModified);
+      }
+      catch(...)
+      {
+      }
+
 
 #else
 //      HANDLE h = ::CreateFile(pscript->m_strSourcePath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -858,6 +885,7 @@ namespace dynamic_source
 
          Application.file().put_contents(strCmd, str);
 
+#ifndef METROWIN
          gen::process process;
 
          process.create_child_process(strCmd, false, System.dir().ca2("stage\\front"));
@@ -870,6 +898,12 @@ namespace dynamic_source
                break;
             Sleep(84);
          }
+#else
+
+         throw todo(get_app());
+
+            
+#endif
          m_memfileLibError<< "<html><head></head><body><pre>";
          str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-compile-log.txt"), str1, false);
          str = Application.file().as_string(str);
@@ -911,6 +945,7 @@ namespace dynamic_source
       strCmd = System.dir().ca2("stage\\front\\libl1.bat");
       Application.file().put_contents(strCmd, str);
 
+#ifndef METROWIN
 
       gen::process process;
 
@@ -924,6 +959,9 @@ namespace dynamic_source
             break;
          Sleep(84);
       }
+
+#endif
+
 
       str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName, false);
       //str.Format("V:\\time\\ca2\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);

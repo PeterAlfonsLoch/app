@@ -7,42 +7,20 @@
 #endif
 
 
-event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
+condition::condition(::ca::application * papp) :
    ca(papp)
 {
    
    if(papp == NULL)
       throw invalid_argument_exception(::ca::get_thread_app());
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
-   m_object = ::CreateEvent(lpsaAttribute, bManualReset, bInitiallyOwn, pstrName);
+//    ::InitializeCriticalSection(&m_sect);
 
-   if(m_object == NULL)
-      throw resource_exception(papp);
+   ::InitializeCriticalSectionEx(&m_sect, 4000, 0);
 
-#elif defined(METROWIN)
-
-   DWORD dwFlags = 0;
-
-   if(bInitiallyOwn)
-   {
-      
-      dwFlags |= CREATE_EVENT_INITIAL_SET;
-
-   }
-
-   if(bManualReset)
-   {
-      
-      dwFlags |= CREATE_EVENT_MANUAL_RESET;
-
-   }
-
-   m_object = ::CreateEventEx(lpsaAttribute, gen::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
-
-   if(m_object == NULL)
-      throw resource_exception(papp);
+   ::InitializeConditionVariable(&m_var);
 
 #else
 
@@ -62,7 +40,7 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
    if(pstrName != NULL && *pstrName != '\0')
    {
 
-      string strPath = "/ca2/time/ftok/event/" + string(pstrName);
+      string strPath = "/ca2/time/ftok/condition/" + string(pstrName);
 
       m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 
@@ -98,41 +76,16 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 }
 
 
-bool event::SetEvent()
+
+bool condition::pulse()
 {
 
 #ifdef WINDOWS
 
-   ASSERT(m_object != NULL);
 
-   return ::SetEvent(m_object) != FALSE;
+   WakeAllConditionVariable(&m_var);
 
-#else
-
-   sembuf sb;
-
-   sb.sem_op   = 1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = m_bManualReset ? 0 : SEM_UNDO;
-
-   return semop((int) m_object, &sb, 1) == 0;
-
-#endif
-
-}
-
-/*
-bool event::PulseEvent()
-{
-
-#ifdef WINDOWSEX
-
-
-   ASSERT(m_object != NULL);
-
-   return ::PulseEvent(m_object) != FALSE;
-
-#else
+   return true;
 
 #else
 
@@ -148,39 +101,15 @@ bool event::PulseEvent()
 
 }
 
-*/
 
-bool event::ResetEvent()
+
+
+void condition::wait ()
 {
 
 #ifdef WINDOWS
 
-   ASSERT(m_object != NULL);
-
-   return ::ResetEvent(m_object) != FALSE;
-
-#else
-
-   sembuf sb;
-
-   sb.sem_op   = 0;
-   sb.sem_num  = 0;
-   sb.sem_flg  = m_bManualReset ? 0 : SEM_UNDO;
-
-   return semop((int) m_object, &sb, 1) == 0;
-
-#endif
-
-}
-
-
-void event::wait ()
-{
-
-#ifdef WINDOWS
-
-	if ( ::WaitForSingleObjectEx(item(), INFINITE, FALSE) != WAIT_OBJECT_0 )
-		throw runtime_error(get_app(), "gen::pal::Event::wait: failure");
+	SleepConditionVariableCS(&m_var, &m_sect, INFINITE);
 
 #else
 
@@ -196,18 +125,16 @@ void event::wait ()
    
 }
 
-///  \brief		waits for an event for a specified time
-///  \param		duration time period to wait for an event
+///  \brief		waits for an condition for a specified time
+///  \param		duration time period to wait for an condition
 ///  \return	waiting action result as WaitResult
-wait_result event::wait (const duration & duration)
+wait_result condition::wait (const duration & duration)
 {
 
 	DWORD timeout = duration.os_lock_duration();
 
 #ifdef WINDOWS
-
-	return wait_result(::WaitForSingleObjectEx(item(), timeout, FALSE));
-
+	return wait_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
 #else
 
 	DWORD start = ::get_tick_count();
@@ -257,70 +184,39 @@ wait_result event::wait (const duration & duration)
 //      Class:          manual_reset_event
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Notifies one or more waiting threads that an event has
+//      Description:    Notifies one or more waiting threads that an condition has
 //                      occurred.
 //
 //*****************************************************************************
 //*****************************************************************************
 //
 //      Name:           Signaled
-//      Description:    Determines whether the event is currently signaled.
+//      Description:    Determines whether the condition is currently signaled.
 //
 //*****************************************************************************
-bool event::is_signaled() const
+bool condition::is_signaled() const
 {
 
-#ifdef WINDOWS
-
-    return WAIT_OBJECT_0 == ::WaitForSingleObjectEx(m_object, 0, FALSE);
-
-#else
-
-   sembuf sb;
-
-   sb.sem_op   = -1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = IPC_NOWAIT;
-
-   int ret = semop((int) m_object, &sb, 1);
-
-   if(ret < 0)
-   {
-      if(ret == EPERM)
-      {
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
-   else
-   {
-      return false;
-   }
-
-#endif
+    throw not_supported_exception(get_app());
 
 }
+
+
 //end**************************************************************************
 //
 //      Class:          manual_reset_event
 //      Author:         Kenny Kerr
 //      Date created:   10 April 2004
-//      Description:    Notifies one or more waiting threads that an event has
+//      Description:    Notifies one or more waiting threads that an condition has
 //                      occurred.
 //
 //end**************************************************************************
 
-bool event::lock(const duration & durationTimeout)
+bool condition::lock(const duration & durationTimeout)
 {
-
 #ifdef WINDOWS
 
-   DWORD dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.os_lock_duration(), FALSE);
-
-   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
+   if(SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.os_lock_duration()) != FALSE)
       return true;
    else
       return false;
@@ -371,12 +267,14 @@ bool event::lock(const duration & durationTimeout)
 
 }
 
-bool event::unlock()
+bool condition::unlock()
 {
    return true;
 }
 
-void * event::get_os_data() const
+void * condition::get_os_data() const
 {
-   return (void *) m_object;
+   
+   throw not_supported_exception(get_app());
+
 }

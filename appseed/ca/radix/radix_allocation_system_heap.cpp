@@ -9,7 +9,7 @@
 
 // DWORD aligned allocation
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 CLASS_DECL_ca HANDLE g_system_heap()
 {
@@ -31,7 +31,7 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    byte * p = (byte *) ::HeapAlloc(g_system_heap(), 0, ((size + 4 + sizeof(size_t) + 3) & ~3));
 #else
    byte * p = (byte *) ::malloc((size + 4 +  sizeof(size_t)  + 3) & ~3);
@@ -56,7 +56,7 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
    if(iMod < 1 || iMod > 4)
       return NULL;
    size_t sizeOld = *((size_t *)&((DWORD *) (pOld - iMod - sizeof(size_t)))[1]);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    byte * p = (byte *) ::HeapReAlloc(g_system_heap(), 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
 #else
    byte * p = (byte *) ::realloc(pOld - iMod, ((size + 4 + 3) & ~3));
@@ -105,7 +105,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
    if(iMod < 1 || iMod > 4)
       return;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(!::HeapFree(g_system_heap(), 0, p - iMod - sizeof(size_t)))
    {
@@ -127,7 +127,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
    catch(...)
    {
 
-      ::OutputDebugString("system_heap_free : Failed to free memory");
+      ::OutputDebugStringW(L"system_heap_free : Failed to free memory");
 
    }
 

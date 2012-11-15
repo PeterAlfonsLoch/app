@@ -221,7 +221,7 @@ dword_ptr lite_html_reader::read(const string & str)
 
 }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 /**
 * lite_html_reader::read
 * This method is similar to the read(const char *) method,
@@ -253,8 +253,17 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
       goto LError;
    }
 
+#ifdef WINDOWSEX
+      hFileMap = CreateFileMappingFromApp(
+         hFile,
+         NULL,
+         PAGE_READWRITE,
+         dwBufLen,
+         NULL);
+#else
    // create a file-mapping object for the file
    hFileMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0L, 0L, NULL);
+#endif
    if (hFileMap == NULL)
    {
       TRACE1("(Error) lite_html_reader::read:"
@@ -263,8 +272,102 @@ dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
       goto LError;
    }
 
+#ifdef METROWIN
+      lpsz = (const char *) MapViewOfFileFromApp(
+         hFileMap,
+         FILE_MAP_READ | FILE_MAP_WRITE,
+         0,
+         0);
+#else
    // ::collection::map the entire file into the address-space of the application
    lpsz = (const char *)::MapViewOfFile(hFileMap, FILE_MAP_READ, 0L, 0L, 0L);
+#endif
+   if (lpsz == NULL)
+   {
+      TRACE1("(Error) lite_html_reader::read:"
+         " MapViewOfFile() failed;"
+         " GetLastError() returns 0x%08x.\n", ::GetLastError());
+      goto LError;
+   }
+
+   m_strBuffer = string(lpsz, dwBufLen);
+   nRetVal = parseDocument();
+   goto LCleanExit;
+
+LError:
+   nRetVal = 0U;
+
+LCleanExit:
+   if (lpsz != NULL)
+      VERIFY(::UnmapViewOfFile(lpsz));
+   if (hFileMap)
+      VERIFY(::CloseHandle(hFileMap));
+   return (nRetVal);
+}
+
+
+#elif defined(METROWIN)
+/**
+* lite_html_reader::read
+* This method is similar to the read(const char *) method,
+* except that, it accepts a file HANDLE instead of
+* an in-primitive::memory string buffer containing HTML text.
+*
+* @param hFile - file handle
+*
+* @return number of TCHARs successfully parsed
+* @since 1.0
+* @author Gurmeet S. Kochar
+*/
+dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
+{
+   ASSERT(hFile != INVALID_HANDLE_VALUE);
+   //ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
+
+   HANDLE         hFileMap    = NULL;
+   const char *   lpsz        = NULL;
+   dword_ptr      nRetVal     = 0;
+
+   // determine file size
+   strsize dwBufLen = ::GetFileSize(hFile, NULL);
+   if (dwBufLen == INVALID_FILE_SIZE)
+   {
+      TRACE1("(Error) lite_html_reader::read:"
+         " GetFileSize() failed;"
+         " GetLastError() returns 0x%08x.\n", ::GetLastError());
+      goto LError;
+   }
+
+   // create a file-mapping object for the file
+#ifdef METROWIN
+         hFileMap = CreateFileMappingFromApp(
+            hFile,
+            NULL,
+            PAGE_READWRITE,
+            dwBufLen,
+            NULL);
+
+#else
+   hFileMap = ::CreateFileMapping(hFile, NULL, PAGE_READONLY, 0L, 0L, NULL);
+#endif
+   if (hFileMap == NULL)
+   {
+      TRACE1("(Error) lite_html_reader::read:"
+         " CreateFileMapping() failed;"
+         " GetLastError() returns 0x%08x.\n", ::GetLastError());
+      goto LError;
+   }
+
+#ifdef METROWIN
+      lpsz = (const char *) MapViewOfFileFromApp(
+         hFileMap,
+         FILE_MAP_READ | FILE_MAP_WRITE,
+         0,
+         0);
+#else
+   // ::collection::map the entire file into the address-space of the application
+   lpsz = (const char *)::MapViewOfFile(hFileMap, FILE_MAP_READ, 0L, 0L, 0L);
+#endif
    if (lpsz == NULL)
    {
       TRACE1("(Error) lite_html_reader::read:"

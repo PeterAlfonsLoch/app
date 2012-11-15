@@ -411,7 +411,7 @@ namespace radix
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       // helpers for registration
       HKEY GetSectionKey(const char * lpszSection);
       HKEY GetAppRegistryKey();

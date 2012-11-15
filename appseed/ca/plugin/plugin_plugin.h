@@ -75,6 +75,8 @@ namespace plugin
 
 #ifdef WINDOWS
       virtual uint_ptr message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+#elif defined(METROWIN)
+
 #else
       virtual int message_handler(XEvent * pevent);
 #endif

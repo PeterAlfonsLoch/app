@@ -77,6 +77,14 @@ namespace plugin
    int plugin::start_ca2_system()
    {
 
+#ifdef METROWIN
+
+      throw todo(get_app());
+
+      return 0;
+
+#else
+
       string strMutex = m_phost->m_vssChannel;
 
       gen::str::begins_eat_ci(strMutex, "\\ca2\\");
@@ -213,6 +221,9 @@ namespace plugin
       m_bInitialized = true;
 
       return 0;
+
+#endif
+
    }
 
 
@@ -254,7 +265,7 @@ namespace plugin
          {
          }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->Flush(Gdiplus::FlushIntentionSync);
 
@@ -619,7 +630,7 @@ namespace plugin
                   vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
                   PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
 #else
                   throw not_implemented(get_app());
@@ -628,7 +639,7 @@ namespace plugin
 
                   m_phost->m_bReload = true;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          //          ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
             //        kill(0, SIGSTOP);
@@ -659,7 +670,7 @@ namespace plugin
 
                   vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
                   PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
 #else
                   throw not_implemented(get_app());
@@ -669,7 +680,7 @@ namespace plugin
 
                   m_phost->m_bReload = true;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
          //          ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
             //        kill(0, SIGSTOP);
@@ -758,7 +769,7 @@ namespace plugin
                         //strncpy((char *) m_phost->m_pszReloadCommandLine, strCommandLine, strCommandLine.get_length() + 1);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
                         PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
 #else
                         throw not_implemented(get_app());
@@ -768,7 +779,7 @@ namespace plugin
 
                         m_phost->m_bReload = true;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
               //          ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
                 //        kill(0, SIGSTOP);
@@ -911,7 +922,7 @@ namespace plugin
 
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    uint_ptr plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
@@ -945,7 +956,7 @@ namespace plugin
 
          void * oswindow = pwindow->get_handle();
 
-         bool bIsWindow = ::IsWindow!= FALSE;
+         bool bIsWindow = ::IsWindow(oswindow) != FALSE;
 
          if(bIsWindow)
          {
@@ -967,6 +978,8 @@ namespace plugin
       return 0;
 
    }
+
+#elif defined(METROWIN)
 
 #else
 

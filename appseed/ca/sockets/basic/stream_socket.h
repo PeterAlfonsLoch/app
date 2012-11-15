@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace sockets
 {
+
 
    /** SOCK_STREAM socket base class.
       \ingroup basic */
@@ -9,8 +11,29 @@ namespace sockets
       virtual public socket
    {
    public:
+
+
+#ifdef METROWIN
+      ::Windows::Networking::Sockets::StreamSocket ^ m_streamsocket;
+#endif
+      bool m_bConnecting; ///< Flag indicating connection in progress
+      int m_connect_timeout; ///< Connection timeout (seconds)
+      bool m_flush_before_close; ///< Send all data before closing (default true)
+      int m_connection_retry; ///< Maximum connection retries (tcp)
+      int m_retries; ///< Actual number of connection retries (tcp)
+      bool m_call_on_connect; ///< OnConnect will be called next socket_handler_base cycle if true
+      bool m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
+      int m_shutdown; ///< Shutdown status
+
+
       stream_socket(socket_handler_base& );
       ~stream_socket();
+
+
+      virtual SOCKET CreateSocket(int af, int type,const string & protocol = "");
+
+      virtual int close_socket();
+
 
       /** socket should Check Connect on next write event from select(). */
       void SetConnecting(bool = true);
@@ -86,16 +109,6 @@ namespace sockets
       /** Returns IPPROTO_TCP or IPPROTO_SCTP */
       virtual int Protocol() = 0;
 
-   public:
-
-      bool m_bConnecting; ///< Flag indicating connection in progress
-      int m_connect_timeout; ///< Connection timeout (seconds)
-      bool m_flush_before_close; ///< Send all data before closing (default true)
-      int m_connection_retry; ///< Maximum connection retries (tcp)
-      int m_retries; ///< Actual number of connection retries (tcp)
-      bool m_call_on_connect; ///< OnConnect will be called next socket_handler_base cycle if true
-      bool m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
-      int m_shutdown; ///< Shutdown status
    };
 
 

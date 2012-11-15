@@ -136,7 +136,7 @@ namespace simpledb
       else if(pbase->m_wparam == 1)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          ::PostThreadMessageA(m_pi.dwThreadId, WM_APP, 1, 0);
 

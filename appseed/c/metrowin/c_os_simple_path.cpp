@@ -88,14 +88,14 @@ bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
 
    D2D1_POINT_2F pt;
 
-   pt.x = x1;
-   pt.y = y1;
+   pt.x = (FLOAT) x1;
+   pt.y = (FLOAT) y1;
 
    if(!prepare(pt))
       return false;
 
-   pt.x = x2;
-   pt.y = y2;
+   pt.x = (FLOAT) x2;
+   pt.y = (FLOAT) y2;
 
    m_psink->AddLine(pt);
 
@@ -112,8 +112,8 @@ bool os_simple_path::add_lines(LPPOINT lpa, int iCount)
    
    D2D1_POINT_2F pt;
 
-   pt.x = lpa[0].x;
-   pt.y = lpa[0].y;
+   pt.x = (FLOAT) lpa[0].x;
+   pt.y = (FLOAT) lpa[0].y;
 
    if(!prepare(pt))
       return false;
@@ -128,9 +128,9 @@ bool os_simple_path::add_lines(LPPOINT lpa, int iCount)
    for(int i = 0; i < iCount; i++)
    {
       
-      points[i].x = lpa[i].x;
+      points[i].x = (FLOAT) lpa[i].x;
    
-      points[i].y = lpa[i].y;
+      points[i].y = (FLOAT) lpa[i].y;
 
    }
 
@@ -179,7 +179,7 @@ bool os_simple_path::get_arc(D2D1_POINT_2F & pt, D2D1_ARC_SEGMENT & arcseg, cons
       arcseg.arcSize = D2D1_ARC_SIZE_LARGE;
    }
    
-   arcseg.rotationAngle = abs(iAngle);
+   arcseg.rotationAngle = (FLOAT) abs(iAngle);
       
    arcseg.size.width    = rx;
 
@@ -247,29 +247,29 @@ bool os_simple_path::add_rect(const RECT & rect)
    
    D2D1_POINT_2F pt;
 
-   pt.x = rect.left;
-   pt.y = rect.top;
+   pt.x = (FLOAT) rect.left;
+   pt.y = (FLOAT) rect.top;
 
    if(!prepare(pt))
       return false;
 
-   pt.x = rect.right;
-   pt.y = rect.top;
+   pt.x = (FLOAT) rect.right;
+   pt.y = (FLOAT) rect.top;
 
    m_psink->AddLine(pt);
 
-   pt.x = rect.right;
-   pt.y = rect.bottom;
+   pt.x = (FLOAT) rect.right;
+   pt.y = (FLOAT) rect.bottom;
 
    m_psink->AddLine(pt);
 
-   pt.x = rect.left;
-   pt.y = rect.bottom;
+   pt.x = (FLOAT) rect.left;
+   pt.y = (FLOAT) rect.bottom;
 
    m_psink->AddLine(pt);
 
-   pt.x = rect.left;
-   pt.y = rect.top;
+   pt.x = (FLOAT) rect.left;
+   pt.y = (FLOAT) rect.top;
 
    m_psink->AddLine(pt);
 

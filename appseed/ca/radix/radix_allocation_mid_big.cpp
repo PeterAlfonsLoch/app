@@ -55,7 +55,7 @@ void MyFree(void * address)
   free(address);
 }
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 
 void * MidAlloc(size_t size)
 {

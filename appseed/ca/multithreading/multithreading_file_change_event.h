@@ -1,7 +1,7 @@
 #pragma once
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
 /// This class represents events for file changes

@@ -45,6 +45,7 @@ namespace sockets
 {
 
    udp_socket::udp_socket(socket_handler_base& h, int ibufsz, bool ipv6, int retries) : socket(h)
+#ifndef METROWIN
    , m_ibuf(new char[ibufsz])
    , m_ibufsz(ibufsz)
    , m_bind_ok(false)
@@ -52,6 +53,7 @@ namespace sockets
    , m_last_size_written(-1)
    , m_retries(retries)
    , m_b_read_ts(false)
+#endif
    {
       SetIpv6(ipv6);
    }
@@ -60,7 +62,9 @@ namespace sockets
    udp_socket::~udp_socket()
    {
       close();
+#ifndef METROWIN
       delete[] m_ibuf;
+#endif
    }
 
 
@@ -114,11 +118,12 @@ namespace sockets
 
    int udp_socket::Bind(sockets::address& ad, int range)
    {
-      if (GetSocket() == INVALID_SOCKET)
+#ifdef BSD_STYLE_SOCKETS
+      if(GetSocket() == INVALID_SOCKET)
       {
          Attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
       }
-      if (GetSocket() != INVALID_SOCKET)
+      if(GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
          int n = bind(GetSocket(), ad, ad);
@@ -140,6 +145,7 @@ namespace sockets
          return 0;
       }
       return -1;
+#endif
    }
 
 
@@ -180,6 +186,13 @@ namespace sockets
 
    bool udp_socket::open(sockets::address& ad)
    {
+
+#ifdef METROWIN
+
+      throw todo(get_app());
+
+#else
+
       if (GetSocket() == INVALID_SOCKET)
       {
          Attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
@@ -196,12 +209,23 @@ namespace sockets
          SetConnected();
          return true;
       }
+
       return false;
+
+#endif
+
    }
 
 
    void udp_socket::CreateConnection()
    {
+
+#ifdef METROWIN
+
+      throw todo(get_app());
+
+#else
+
       if (IsIpv6())
       {
          if (GetSocket() == INVALID_SOCKET)
@@ -226,12 +250,22 @@ namespace sockets
          SetNonblocking(true, s);
          Attach(s);
       }
+
+#endif
+
    }
 
 
    /** send to specified address */
    void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int len, int flags)
    {
+
+#ifdef METROWIN
+
+      throw todo(get_app());
+
+#else
+
       if (IsIpv6())
       {
          ipv6_address ad(get_app(), h, p);
@@ -246,6 +280,9 @@ namespace sockets
       {
          SendToBuf(ad, data, len, flags);
       }
+
+#endif
+
    }
 
 
@@ -266,6 +303,7 @@ namespace sockets
 
    void udp_socket::SendToBuf(sockets::address& ad, const char *data, int len, int flags)
    {
+#ifdef BSD_STYLE_SOCKETS
       if (GetSocket() == INVALID_SOCKET)
       {
          Attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
@@ -278,6 +316,7 @@ namespace sockets
             Handler().LogError(this, "sendto", Errno, StrError(Errno), ::gen::log::level::error);
          }
       }
+#endif
    }
 
 
@@ -313,10 +352,12 @@ namespace sockets
          Handler().LogError(this, "SendBuf", 0, "not connected", ::gen::log::level::error);
          return;
       }
+#ifdef BSD_STYLE_SOCKETS
       if ((m_last_size_written = send(GetSocket(), data, (int)len, flags)) == -1)
       {
          Handler().LogError(this, "send", Errno, StrError(Errno), ::gen::log::level::error);
       }
+#endif
    }
 
 

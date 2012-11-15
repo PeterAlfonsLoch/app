@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 //#include <windows.h>
 
@@ -35,18 +35,22 @@ typedef int INT;
 typedef int32_t INT32;
 typedef unsigned int UINT;
 typedef uint32_t UINT32;
+#ifndef METROWIN
 typedef INT32 LONG;   // LONG, ULONG and DWORD must be 32-bit
+#endif
 //typedef UINT32 ULONG;
 
+#ifndef METROWIN
 #undef DWORD
 typedef UINT32 DWORD;
-
+#endif
 //typedef int64_t LONGLONG;
 //typedef uint64_t ULONGLONG;
 
-
+#ifndef METROWIN
 typedef const CHAR *LPCSTR;
 typedef CHAR TCHAR;
+#endif
 typedef const TCHAR *LPCTSTR;
 typedef wchar_t WCHAR;
 typedef WCHAR OLECHAR;
@@ -77,15 +81,18 @@ typedef LONG SCODE;
 #define E_INVALIDARG ((HRESULT)0x80070057L)
 */
 
+#ifndef METROWIN
 #define STDMETHOD_(t, f) virtual t STDMETHODCALLTYPE f
 #define STDMETHOD(f) STDMETHOD_(HRESULT, f)
 #define STDMETHODIMP_(type) type STDMETHODCALLTYPE
-
+#endif
 #define PURE = 0
-
+#ifndef METROWIN
 #define MIDL_INTERFACE(x) struct
-
+#endif
 #ifdef __cplusplus
+
+#ifndef METROWIN
 
 DEFINE_GUID(IID_IUnknown,
 0x00000000, 0x0000, 0x0000, 0xC0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46);
@@ -103,8 +110,12 @@ typedef IUnknown *LPUNKNOWN;
 
 #endif
 
+#endif
+
 #define VARIANT_TRUE ((VARIANT_BOOL)-1)
 #define VARIANT_FALSE ((VARIANT_BOOL)0)
+
+#ifndef METROWIN
 
 enum VARENUM
 {
@@ -135,13 +146,15 @@ enum VARENUM
   VT_HRESULT = 25,
   VT_FILETIME = 64
 };
-
+#endif
 typedef unsigned short VARTYPE;
 typedef WORD PROPVAR_PAD1;
 typedef WORD PROPVAR_PAD2;
 typedef WORD PROPVAR_PAD3;
 
 #ifdef __cplusplus
+
+#ifndef METROWIN
 
 typedef struct tagPROPVARIANT
 {
@@ -168,26 +181,32 @@ typedef struct tagPROPVARIANT
   };
 } PROPVARIANT;
 
+
 typedef PROPVARIANT tagVARIANT;
 typedef tagVARIANT VARIANT;
 typedef VARIANT VARIANTARG;
 
 MY_EXTERN_C HRESULT VariantClear(VARIANTARG *prop);
 MY_EXTERN_C HRESULT VariantCopy(VARIANTARG *dest, VARIANTARG *src);
+#endif
 
 #endif
 
+#ifndef METROWIN
 MY_EXTERN_C BSTR SysAllocStringByteLen(LPCSTR psz, UINT len);
 MY_EXTERN_C BSTR SysAllocString(const OLECHAR *sz);
 MY_EXTERN_C void SysFreeString(BSTR bstr);
 MY_EXTERN_C UINT SysStringByteLen(BSTR bstr);
 MY_EXTERN_C UINT SysStringLen(BSTR bstr);
 
+
 MY_EXTERN_C DWORD GetLastError();
 MY_EXTERN_C LONG CompareFileTime(const FILETIME* ft1, const FILETIME* ft2);
 
+
 #define CP_ACP    0
 #define CP_OEMCP  1
+
 
 typedef enum tagSTREAM_SEEK
 {
@@ -195,6 +214,8 @@ typedef enum tagSTREAM_SEEK
   STREAM_SEEK_CUR = 1,
   STREAM_SEEK_END = 2
 } STREAM_SEEK;
+
+#endif
 
 #endif  // !defined(WINDOWS)
 
