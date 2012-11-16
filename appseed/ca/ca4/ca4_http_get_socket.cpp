@@ -12,7 +12,7 @@ namespace ca4
       ::sockets::tcp_socket(handler),
       ::sockets::http_socket(handler),
       ::sockets::http_tunnel(handler),
-      ::sockets::http_client_socket(handler),
+      ::sockets::http_client_socket(handler, url),
       ::sockets::http_get_socket(handler, url)
       
    {
@@ -27,7 +27,7 @@ namespace ca4
       ::sockets::tcp_socket(handler),
       ::sockets::http_socket(handler),
       ::sockets::http_tunnel(handler),
-      ::sockets::http_client_socket(handler),
+      ::sockets::http_client_socket(handler, url),
       ::sockets::http_get_socket(handler, host, port, url)
    {
       m_pcookies = NULL;
@@ -40,7 +40,7 @@ namespace ca4
 
    void http_get_socket::OnHeader(const string & key, const string & value, const string & lowvalue)
    {
-      ::sockets::http_socket::OnHeader(key, value, lowvalue);
+      ::sockets::http_get_socket::OnHeader(key, value, lowvalue);
       if(key == __str(location))
       {
          m_strHeaderLocation = value;

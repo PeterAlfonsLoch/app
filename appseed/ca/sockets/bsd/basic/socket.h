@@ -216,8 +216,6 @@
          \sa SetCloseAndDelete */
          virtual int close();
 
-         virtual int close_socket();
-
          /** add file descriptor to sockethandler fd_set's. */
          void Set(bool bRead,bool bWrite,bool bException = true);
 

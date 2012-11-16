@@ -609,37 +609,37 @@ namespace sockets
 
    bool socket::IsSSL()
    {
-      return m_b_enable_ssl;
+      return m_bEnableSsl;
    }
 
 
-   void socket::EnableSSL(bool x)
+   void socket::EnableSSL(bool bEnable)
    {
-      m_b_enable_ssl = x;
+      m_bEnableSsl = bEnable;
    }
 
 
    bool socket::IsSSLNegotiate()
    {
-      return m_b_ssl;
+      return m_bSsl;
    }
 
 
-   void socket::SetSSLNegotiate(bool x)
+   void socket::SetSSLNegotiate(bool bSslNegotiate)
    {
-      m_b_ssl = x;
+      m_bSsl = bSslNegotiate;
    }
 
 
    bool socket::IsSSLServer()
    {
-      return m_b_ssl_server;
+      return m_bSslServer;
    }
 
 
-   void socket::SetSSLServer(bool x)
+   void socket::SetSSLServer(bool bSSLServer)
    {
-      m_b_ssl_server = x;
+      m_bSslServer = bSSLServer;
    }
 
 

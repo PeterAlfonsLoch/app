@@ -3284,6 +3284,9 @@
     <ClInclude Include="sockets\sockets_http_file.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
+    <ClInclude Include="multithreading\multithreading_condition.h">
+      <Filter>Header Files\multithreading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -5487,6 +5490,9 @@
     </ClCompile>
     <ClCompile Include="sockets\sockets_http_file.cpp">
       <Filter>Source Files\sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_condition.cpp">
+      <Filter>Source Files\multithreading</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

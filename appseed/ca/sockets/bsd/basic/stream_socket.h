@@ -30,11 +30,6 @@
          ~stream_socket();
 
 
-         virtual SOCKET CreateSocket(int af, int type,const string & protocol = "");
-
-         virtual int close_socket();
-
-
          /** socket should Check Connect on next write event from select(). */
          void SetConnecting(bool = true);
 

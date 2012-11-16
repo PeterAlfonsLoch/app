@@ -763,7 +763,7 @@ namespace plane
       return m_appptra;
    }
 
-   ::ca2::net & system::net()
+   ::sockets::net & system::net()
    {
       return m_net;
    }

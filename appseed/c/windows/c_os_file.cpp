@@ -33,3 +33,19 @@ CLASS_DECL_c bool close_handle(handle h)
    return ::CloseHandle(h) != FALSE;
 
 }
+
+
+
+CLASS_DECL_c vsstring get_sys_temp_path()
+{
+   
+   wchar_t  wsz[MAX_PATH * 4];
+   
+   wsz[GetTempPathW(sizeof(wsz) / sizeof(wsz[0]), wsz)] = L'\0';
+
+   return vsstring(wsz);
+
+}
+
+
+

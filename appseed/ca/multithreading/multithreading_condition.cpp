@@ -75,6 +75,10 @@ condition::condition(::ca::application * papp) :
 
 }
 
+condition::~condition()
+{
+   ::DeleteCriticalSection(&m_sect);
+}
 
 
 bool condition::pulse()
