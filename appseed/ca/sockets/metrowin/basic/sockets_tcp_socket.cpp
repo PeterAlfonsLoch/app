@@ -28,19 +28,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include <openssl/ssl.h>
 
 
-#ifdef _WIN32
-//#include <stdlib.h>
-#else
-//#include <errno.h>
-#endif
 #include <fcntl.h>
 #include <assert.h>
 #include <stdarg.h>
-#include <openssl/rand.h>
-#include <openssl/err.h>
 
 #ifndef ETIMEDOUT
 #define ETIMEDOUT       138
@@ -156,7 +148,7 @@ namespace sockets
    }
 
 
-   bool tcp_socket::open(ipaddr_t ip,port_t port,bool skip_socks)
+/*   bool tcp_socket::open(ipaddr_t ip,port_t port,bool skip_socks)
    {
       ipv4_address ad(get_app(), ip, port);
       ipv4_address local(get_app());
@@ -169,12 +161,31 @@ namespace sockets
       ipv6_address ad(get_app(), ip, port);
       return open(ad, skip_socks);
    }
+   */
 
-
-   bool tcp_socket::open(sockets::address& ad,bool skip_socks)
+   bool tcp_socket::open(sockets::address & ad, bool skip_socks)
    {
-      ipv4_address bind_ad(get_app(), "0.0.0.0", 0);
-      return open(ad, bind_ad, skip_socks);
+
+      m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      
+      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(nullptr, nullptr, ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())));
+
+      attach(m_tcpsocket);
+
+      m_tcpsocket->ConnectAsync(pair)->Completed = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::AsyncStatus status)
+      {
+
+         if(status == ::Windows::Foundation::AsyncStatus::Completed)
+         {
+            
+            OnConnected();
+
+         }
+
+      });
+
+      return true;
+
    }
 
 
@@ -186,16 +197,21 @@ namespace sockets
          SetCloseAndDelete();
          return false;
       }
-      if (Handler().get_count() >= FD_SETSIZE)
+/*      if (Handler().get_count() >= FD_SETSIZE)
       {
          Handler().LogError(this, "open", 0, "no space left in fd_set", ::gen::log::level::fatal);
          SetCloseAndDelete();
          return false;
-      }
+      }*/
+
+      m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
+
+      attach(m_tcpsocket);
+
       SetConnecting(false);
       SetSocks4(false);
       // check for pooling
-      if (Handler().PoolEnabled())
+      /*if (Handler().PoolEnabled())
       {
          socket_handler_base::PoolSocket *pools = Handler().FindConnection(SOCK_STREAM, "tcp", ad);
          if (pools)
@@ -208,13 +224,13 @@ namespace sockets
             Handler().LogError(this, "SetCallOnConnect", 0, "Found pooled connection", ::gen::log::level::info);
             return true;
          }
-      }
+      }*/
       // if not, create new connection
-      SOCKET s = CreateSocket(ad.GetFamily(), SOCK_STREAM, "tcp");
-      if (s == INVALID_SOCKET)
-      {
-         return false;
-      }
+      //SOCKET s = CreateSocket(ad.GetFamily(), SOCK_STREAM, "tcp");
+      //if (s == INVALID_SOCKET)
+      //{
+        // return false;
+      //}
       // socket must be nonblocking for async connect
       if (!SetNonblocking(true, s))
       {
@@ -1587,6 +1603,16 @@ namespace sockets
    void tcp_socket::enable_cert_common_name_check(bool bEnable)
    {
       m_bCertCommonNameCheckEnabled = bEnable;
+   }
+
+   void tcp_socket::OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+   {
+
+      if(status == ::Windows::Foundation::Completed)
+      {
+         OnConnected();
+      }
+
    }
 
 

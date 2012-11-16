@@ -12,6 +12,26 @@ void * memset_dup(void * p, int uch, size_t iSize)
    return p;
 }
 
+void * memand_dup(void * p, const void * p1, const void * p2, size_t iSize)
+{
+
+   byte * pb = (byte *) p;
+   const byte * pb1 = (const byte *) p1;
+   const byte * pb2 = (const byte *) p2;
+
+   while(iSize > 0)
+   {
+      *pb = *pb1 & *pb2;
+      pb++;
+      pb1++;
+      pb2++;
+      iSize--;
+   }
+
+   return p;
+
+}
+
 
 //#if (defined(WINDOWS) && defined(X86)) && !defined(DEBUG)
 

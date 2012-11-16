@@ -45,13 +45,13 @@ namespace sockets
 {
 
    udp_socket::udp_socket(socket_handler_base& h, int ibufsz, bool ipv6, int retries) : socket(h)
-   , m_ibuf(new char[ibufsz])
+/*   , m_ibuf(new char[ibufsz])
    , m_ibufsz(ibufsz)
    , m_bind_ok(false)
    , m_port(0)
    , m_last_size_written(-1)
    , m_retries(retries)
-   , m_b_read_ts(false)
+   , m_b_read_ts(false)*/
    {
       SetIpv6(ipv6);
    }
@@ -60,86 +60,67 @@ namespace sockets
    udp_socket::~udp_socket()
    {
       close();
-      delete[] m_ibuf;
+      //delete[] m_ibuf;
    }
 
 
-   int udp_socket::Bind(port_t &port, int range)
+   int udp_socket::Bind(port_t port, int range)
    {
-      if (IsIpv6())
-      {
-         ipv6_address ad(get_app(), port);
-         return Bind(ad, range);
-      }
-      ipv4_address ad(get_app(), port);
-      return Bind(ad, range);
-   }
 
+      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket;
 
-   int udp_socket::Bind(const string & intf, port_t &port, int range)
-   {
-      if (IsIpv6())
+      attach(m_datagramsocket);
+
+      m_datagramsocket->BindServiceNameAsync(rtstr(gen::str::from(port)))->Completed = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
-         ipv6_address ad(get_app(), intf, port);
-         if (ad.IsValid())
+         
+         if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
-            return Bind(ad, range);
+            
+            OnAccept();
+
          }
-         SetCloseAndDelete();
-         return -1;
-      }
-      ipv4_address ad(get_app(), intf, port);
-      if (ad.IsValid())
-      {
-         return Bind(ad, range);
-      }
-      SetCloseAndDelete();
-      return -1;
+
+      });
+      
+      return 0;
+
    }
 
 
-   int udp_socket::Bind(ipaddr_t a, port_t &port, int range)
+   int udp_socket::Bind(const char * pszHost, port_t port, int range)
    {
-      ipv4_address ad(get_app(), a, port);
-      return Bind(ad, range);
+
+      return Bind(::sockets::address(get_app(), pszHost, port), range);
+
    }
+  
 
-
-   int udp_socket::Bind(in6_addr a, port_t &port, int range)
+   int udp_socket::Bind(const sockets::address & ad, int range)
    {
-      ipv6_address ad(get_app(), a, port);
-      return Bind(ad, range);
-   }
 
+//         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
+         
+      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
+         
+      attach(m_datagramsocket);
 
-   int udp_socket::Bind(sockets::address& ad, int range)
-   {
-      if (GetSocket() == INVALID_SOCKET)
+      SetNonblocking(true);
+
+      m_datagramsocket->BindEndpointAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::AsyncStatus status)
       {
-         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
-      }
-      if (GetSocket() != INVALID_SOCKET)
-      {
-         SetNonblocking(true);
-         int n = bind(GetSocket(), ad, ad);
-         int tries = range;
-         while (n == -1 && tries--)
+
+         if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
-            ad.SetPort(ad.GetPort() + 1);
-            n = bind(GetSocket(), ad, ad);
+            
+            OnAccept();
+
          }
-         if (n == -1)
-         {
-            Handler().LogError(this, "bind", Errno, StrError(Errno), ::gen::log::level::fatal);
-            SetCloseAndDelete();
-            throw simple_exception(get_app(), "bind() failed for udp_socket, port:range: " + ::gen::str::from(ad.GetPort()) + ":" + ::gen::str::from(range));
-            return -1;
-         }
-         m_bind_ok = true;
-         m_port = ad.GetPort();
-         return 0;
-      }
-      return -1;
+
+      });
+
+      return 0;
+
    }
 
 
@@ -782,6 +763,23 @@ namespace sockets
       m_b_read_ts = x;
    }
 
-}
+
+   /** Returns local port number for bound socket file descriptor. */
+   port_t socket::GetSockPort()
+   {
+
+      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalServiceName));
+
+   }
+
+
+   /** Returns local ipv4 address for bound socket file descriptor. */
+   ipaddr_t socket::GetSockIP4()
+   {
+      throw interface_only_exception(get_app());
+   }
+
+
+} // namespace sockets
 
 

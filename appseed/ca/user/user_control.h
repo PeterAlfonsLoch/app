@@ -172,8 +172,9 @@ namespace user
 
       };
 
-
+#ifdef WINDOWSEX
       static const unsigned int  g_uiMessage;
+#endif
       index                      m_iHover;
       e_element                  m_eelementHover;
       descriptor *               m_pdescriptor;

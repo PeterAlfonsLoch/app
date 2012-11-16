@@ -77,7 +77,7 @@ namespace plane
 
 #elif defined(METROWIN)
 
-#include "metrowin/os.h"
+#include "metrowin/metrowin.h"
 
 #elif defined(LINUX)
 

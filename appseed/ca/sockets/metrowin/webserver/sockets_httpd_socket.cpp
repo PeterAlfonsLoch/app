@@ -26,7 +26,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#include <openssl/ssl.h>
 
 
 namespace sockets
@@ -168,9 +167,11 @@ namespace sockets
 
    void httpd_socket::InitSSLServer()
    {
+/*      
       // here's the server.pem file we just created above
       // %! remember to change the password to the one you used for your server key
       InitializeContext(m_strCat, m_strCat, "", SSLv23_server_method());
+      */
    }
 
    httpd_socket & httpd_socket::operator=(const httpd_socket& s)

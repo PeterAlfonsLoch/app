@@ -108,7 +108,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Socks4
          /** Set socks4 server ip that all new tcp sockets should use. */
-         void SetSocks4Host(ipaddr_t);
+         void SetSocks4Host(in_addr addr);
          /** Set socks4 server hostname that all new tcp sockets should use. */
          void SetSocks4Host(const string & );
          /** Set socks4 server port number that all new tcp sockets should use. */

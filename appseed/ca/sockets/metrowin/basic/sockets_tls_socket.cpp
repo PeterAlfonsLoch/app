@@ -1,6 +1,7 @@
 #include "framework.h"
+#ifdef HAVE_OPENSSL
 #include <openssl/ssl.h>
-
+#endif
 
 namespace sockets
 {
@@ -21,7 +22,9 @@ namespace sockets
 
    void tls_socket::InitSSLClient()
    {
+#ifdef HAVE_OPENSSL
       InitializeContext(m_strCat, TLSv1_client_method());
+#endif
    }
 
 

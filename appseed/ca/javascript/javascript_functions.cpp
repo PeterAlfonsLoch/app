@@ -63,7 +63,7 @@ void scIsInNet(CScriptVar *c, void *data)
       host = host.Left(iFind);
 
 
-   ipaddr_t l_host;
+/*   ipaddr_t l_host;
    if (!Sys(tinyJS->m_psystem).net().u2ip(host, l_host))
    {
    	c->getReturnVar()->setInt(FALSE);
@@ -80,11 +80,11 @@ void scIsInNet(CScriptVar *c, void *data)
    {
    	c->getReturnVar()->setInt(FALSE);
       return;
-   }
+   }*/
 
-   sockets::ipv4_address ad_host(tinyJS->get_app(), l_host, 0);
-   sockets::ipv4_address ad_addr(tinyJS->get_app(), l_addr, 0);
-   sockets::ipv4_address ad_mask(tinyJS->get_app(), l_mask, 0);
+   sockets::address ad_host(tinyJS->get_app(), host, 0);
+   sockets::address ad_addr(tinyJS->get_app(), addr, 0);
+   sockets::address ad_mask(tinyJS->get_app(), mask, 0);
 
 
 	c->getReturnVar()->setInt(ad_host.is_in_net(ad_addr, ad_mask));

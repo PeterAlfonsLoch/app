@@ -38,7 +38,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket container class, event generator.
       \ingroup basic */
-      class CLASS_DECL_ca socket_handler : public socket_handler_base
+      class CLASS_DECL_ca socket_handler : 
+         public socket_handler_base
       {
       protected:
          /** Map type for holding file descriptors/socket object pointers. */
@@ -108,7 +109,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Socks4
          /** Set socks4 server ip that all new tcp sockets should use. */
-         void SetSocks4Host(ipaddr_t);
+         void SetSocks4Host(in_addr);
          /** Set socks4 server hostname that all new tcp sockets should use. */
          void SetSocks4Host(const string & );
          /** Set socks4 server port number that all new tcp sockets should use. */
@@ -119,7 +120,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void SetSocks4TryDirect(bool x = true);
          /** get socks4 server ip.
          \return socks4 server ip */
-         ipaddr_t GetSocks4Host();
+         in_addr GetSocks4Host();
          /** get socks4 port number.
          \return socks4 port number */
          port_t GetSocks4Port();
@@ -143,7 +144,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int Resolve(socket *,const string & host,port_t port);
          int Resolve6(socket *,const string & host,port_t port);
          /** Do a reverse dns lookup. */
-         int Resolve(socket *,ipaddr_t a);
+         int Resolve(socket *,in_addr a);
          int Resolve(socket *,in6_addr& a);
          /** get listen port of asynchronous dns server. */
          port_t GetResolverPort();
@@ -187,9 +188,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** remove socket from socket ::collection::map, used by socket class. */
          void remove(socket *);
          SOCKET m_maxsock; ///< Highest file descriptor + 1 in active sockets list
-         fd_set m_rfds; ///< file descriptor set monitored for read events
-         fd_set m_wfds; ///< file descriptor set monitored for write events
-         fd_set m_efds; ///< file descriptor set monitored for exceptions
+//         fd_set m_rfds; ///< file descriptor set monitored for read events
+  //       fd_set m_wfds; ///< file descriptor set monitored for write events
+    //     fd_set m_efds; ///< file descriptor set monitored for exceptions
          int m_preverror; ///< debug select() error
          int m_errcnt; ///< debug select() error
          time_t m_tlast; ///< timeout control
@@ -202,7 +203,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          socket_id_list m_fds_timeout; ///< checklist timeout
          socket_id_list m_fds_retry; ///< checklist retry client connect
          socket_id_list m_fds_close; ///< checklist close and delete
-         ipaddr_t m_socks4_host; ///< Socks4 server host ip
+         in_addr m_socks4_host; ///< Socks4 server host ip
          port_t m_socks4_port; ///< Socks4 server port number
          string m_socks4_userid; ///< Socks4 userid
          bool m_bTryDirect; ///< Try direct connection if socks4 server fails

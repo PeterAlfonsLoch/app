@@ -1,10 +1,13 @@
 #pragma once
 
+
 namespace sockets
 {
 
+
    namespace http
    {
+
 
       class CLASS_DECL_ca batch_file : 
          virtual public ::ex1::file
@@ -25,8 +28,15 @@ namespace sockets
          virtual void get_file_data() = 0;
          virtual void set_file_data() = 0;
 
+
       };
+
 
    } // namespace http
 
+
 } // namespace sockets
+
+
+
+

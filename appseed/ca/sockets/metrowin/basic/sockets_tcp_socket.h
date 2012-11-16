@@ -83,6 +83,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          typedef ::collection::list<OUTPUT *> output_list;
 
       public:
+
+         ::Windows::Networking::Sockets::StreamSocket ^ m_tcpsocket;
          //
          bool m_b_input_buffer_disabled;
          uint64_t m_bytes_sent;
@@ -97,8 +99,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          //static   SSLInitializer m_ssl_init;
          SSL_CTX *m_ssl_ctx; ///< ssl context
-         SSL *m_ssl; ///< ssl 'socket'
-         BIO *m_sbio; ///< ssl bio
+//         SSL *m_ssl; ///< ssl 'socket'
+//         BIO *m_sbio; ///< ssl bio
          string m_password; ///< ssl password
 
          int m_socks4_state; ///< socks4 support
@@ -137,12 +139,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param ip IP address
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
-         bool open(ipaddr_t ip,port_t port,bool skip_socks = false);
+         //bool open(ipaddr_t ip,port_t port,bool skip_socks = false);
          /** open connection.
          \param ip Ipv6 address
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
-         bool open(in6_addr ip,port_t port,bool skip_socks = false);
+         //bool open(in6_addr ip,port_t port,bool skip_socks = false);
          bool open(sockets::address&,bool skip_socks = false);
          bool open(sockets::address&,sockets::address& bind_address,bool skip_socks = false);
          /** open connection.
@@ -276,6 +278,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool SSLNegotiate();
          /** SSL; get ssl password. */
          const string & GetPassword();
+
+
+         void OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status);
 
          ex1::circular_buffer ibuf; ///< Circular input buffer
       public:

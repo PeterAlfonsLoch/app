@@ -240,7 +240,7 @@
          bool SetNonblocking(bool);
 
          /** Set socket non-block operation. */
-         bool SetNonblocking(bool, SOCKET);
+         //bool SetNonblocking(bool, SOCKET);
 
          /** Total lifetime of instance. */
          time_t Uptime();
@@ -608,7 +608,7 @@
          void SetSocks4Userid(const string & x);
          /** get the ip address of socks4 server to use.
          \return socks4 server host address */
-         ipaddr_t GetSocks4Host();
+         in_addr GetSocks4Host();
          /** get the socks4 server port to use.
          \return socks4 server port */
          port_t GetSocks4Port();

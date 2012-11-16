@@ -72,12 +72,12 @@ namespace http
                         break;
                      ::gen::parse pa(slask,";");
                      string h = pa.getword();
-                     if(!strcasecmp(h,"Content-type:"))
+                     if(!stricmp(h,"Content-type:"))
                      {
                         content_type = pa.getword();
                      }
                      else
-                     if(!strcasecmp(h,"Content-Disposition:"))
+                     if(!stricmp(h,"Content-Disposition:"))
                      {
                         h = pa.getword();
                         if (!strcmp(h,"form-data"))

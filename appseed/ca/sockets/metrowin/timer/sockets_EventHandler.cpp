@@ -76,8 +76,8 @@ namespace sockets
          {
             diff = 1;
          }
-         tv -> tv_sec = static_cast<long>(diff / 1000000);
-         tv -> tv_usec = static_cast<int>(diff % 1000000);
+//         tv -> tv_sec = static_cast<long>(diff / 1000000);
+  //       tv -> tv_usec = static_cast<int>(diff % 1000000);
          return true;
       }
       return false;
@@ -160,6 +160,8 @@ namespace sockets
 
    void EventHandler::EventLoop()
    {
+      throw todo(get_app());
+      /*
       while (!m_quit)
       {
          struct timeval tv;
@@ -172,7 +174,7 @@ namespace sockets
          {
             Select();
          }
-      }
+      }*/
    }
 
 

@@ -28,9 +28,7 @@
       public:
 
 
-#ifdef METROWIN
          ::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
-#endif
          bool m_bDetach;
 
 
@@ -65,171 +63,94 @@
          int close()
          {
 
-            if (GetSocket() != INVALID_SOCKET)
+            if(m_listener != nullptr)
+            {
+               delete m_listener;
+            }
+/*            if (GetSocket() != INVALID_SOCKET)
             {
                ::closesocket(GetSocket());
-            }
+            }*/
             return 0;
          }
 
          /** Bind and listen to any interface.
          \param port Port (0 is random)
          \param depth Listen queue depth */
-         int Bind(port_t port,int depth = 20) {
-            if (IsIpv6())
-            {
-               ipv6_address ad(get_app(), port);
-               return Bind(ad, depth);
-            }
-            else
-            {
-               ipv4_address ad(get_app(), port);
-               return Bind(ad, depth);
-            }
+         int Bind(port_t port, int depth = 20)
+         {
+
+            return Bind(port, "tcp", depth);
+
          }
 
-         int Bind(sockets::address& ad,int depth) {
+         int Bind(const char * psz, port_t port, int depth = 20)
+         {
+
+            return Bind(psz, port, "tcp", depth);
+
+         }
+
+         int Bind(sockets::address & ad,int depth)
+         {
+
 #ifdef USE_SCTP
+            
             if (dynamic_cast<SctpSocket *>(m_creator))
             {
+
                return Bind(ad, "sctp", depth);
+
             }
+
 #endif
+
             return Bind(ad, "tcp", depth);
+
          }
 
          /** Bind and listen to any interface, with optional protocol.
          \param port Port (0 is random)
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(port_t port,const string & protocol,int depth = 20) {
-            if (IsIpv6())
-            {
-               ipv6_address ad(get_app(), port);
-               return Bind(ad, protocol, depth);
-            }
-            else
-            {
-               ipv4_address ad(get_app(), port);
-               return Bind(ad, protocol, depth);
-            }
-         }
-
-         /** Bind and listen to specific interface.
-         \param intf Interface hostname
-         \param port Port (0 is random)
-         \param depth Listen queue depth */
-         int Bind(const string & intf,port_t port,int depth = 20)
+         int Bind(port_t port, const string & protocol, int depth = 20)
          {
-            if (IsIpv6())
-            {
-               ipv6_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
-                  return Bind(ad, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
-            }
-            else
-            {
-               ipv4_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
-                  return Bind(ad, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
-            }
+
+            m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
+
+            m_listener->BindServiceName(rtstr(gen::str::from(port)));
+
+            m_depth = depth;
+
+            attach(m_listener);
+
+            return 0;
+
          }
 
-         /** Bind and listen to specific interface.
-         \param intf Interface hostname
-         \param port Port (0 is random)
-         \param protocol Network protocol
-         \param depth Listen queue depth */
-         int Bind(const string & intf,port_t port,const string & protocol,int depth = 20) {
-            if (IsIpv6())
-            {
-               ipv6_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
-                  return Bind(ad, protocol, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
-            }
-            else
-            {
-               ipv4_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
-                  return Bind(ad, protocol, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
-            }
+         int Bind(const char * pszInterface, port_t port, const string & protocol, int depth = 20)
+         {
+
+            return Bind(::sockets::address(get_app(), pszInterface, port), protocol, depth);
+
          }
 
-         /** Bind and listen to ipv4 interface.
-         \param a Ipv4 interface address
-         \param port Port (0 is random)
-         \param depth Listen queue depth */
-         int Bind(ipaddr_t a,port_t port,int depth = 20) {
-            ipv4_address ad(get_app(), a, port);
-#ifdef USE_SCTP
-            if (dynamic_cast<SctpSocket *>(m_creator))
-            {
-               return Bind(ad, "sctp", depth);
-            }
-#endif
-            return Bind(ad, "tcp", depth);
-         }
-         /** Bind and listen to ipv4 interface.
-         \param a Ipv4 interface address
-         \param port Port (0 is random)
-         \param protocol Network protocol
-         \param depth Listen queue depth */
-         int Bind(ipaddr_t a,port_t port,const string & protocol,int depth) {
-            ipv4_address ad(get_app(), a, port);
-            return Bind(ad, protocol, depth);
-         }
 
-         /** Bind and listen to ipv6 interface.
-         \param a Ipv6 interface address
-         \param port Port (0 is random)
-         \param depth Listen queue depth */
-         int Bind(in6_addr a,port_t port,int depth = 20) {
-            ipv6_address ad(get_app(), a, port);
-#ifdef USE_SCTP
-            if (dynamic_cast<SctpSocket *>(m_creator))
-            {
-               return Bind(ad, "sctp", depth);
-            }
-#endif
-            return Bind(ad, "tcp", depth);
-         }
-         /** Bind and listen to ipv6 interface.
-         \param a Ipv6 interface address
-         \param port Port (0 is random)
-         \param protocol Network protocol
-         \param depth Listen queue depth */
-         int Bind(in6_addr a,port_t port,const string & protocol,int depth) {
-            ipv6_address ad(get_app(), a, port);
-            return Bind(ad, protocol, depth);
-         }
 
          /** Bind and listen to network interface.
          \param ad Interface address
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(sockets::address& ad,const string & protocol,int depth)
+         int Bind(sockets::address & ad, const string & protocol, int depth = 20)
          {
 
-            SOCKET s;
-            m_iBindPort = ad.GetPort();
-            if ( (s = CreateSocket(ad.GetFamily(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
-            {
+
+            m_listener = ref new ::Windows::Networking::Sockets::StreamSocketListener;
+
+            //SOCKET s;
+            //m_iBindPort = ad.GetPort();
+            m_listener->BindEndpointAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())));
+/*            {
                return -1;
             }
             if (bind(s, ad, ad) == -1)
@@ -244,9 +165,9 @@
                ::closesocket(s);
                throw simple_exception(get_app(), "listen() failed for port " + gen::str::from(ad.GetPort()) + ": " + StrError(Errno));
                return -1;
-            }
+            }*/
             m_depth = depth;
-            attach(s);
+            attach(m_listener);
             return 0;
          }
 
@@ -263,7 +184,7 @@
          }
 
          /** OnRead on a listen_socket receives an incoming connection. */
-         void OnRead()
+         void on_listener_accept(::Windows::Networking::Sockets::StreamSocketListener ^ listener, ::Windows::Networking::Sockets::StreamSocketListenerConnectionReceivedEventArgs ^ args)
          {
 
             struct sockaddr sa;
@@ -287,12 +208,13 @@
                ::closesocket(a_s);
                return;
             }
-            socket *tmp = m_bHasCreate ? m_creator -> create() : new X(Handler());
+            stream_socket *tmp = m_bHasCreate ? m_creator -> create() : new X(Handler());
             tmp->m_strCat = m_strCat;
             tmp -> EnableSSL(IsSSL()); // SSL Enabled socket
             tmp -> SetIpv6( IsIpv6() );
             tmp -> set_parent(this);
-            tmp -> attach(a_s);
+            tmp->m_tcpsocket = args->Socket;
+            tmp -> attach(args->Socket);
             tmp -> SetNonblocking(true);
             {
                if (sa_len == sizeof(struct sockaddr_in6))
@@ -349,10 +271,10 @@
 
          /** Please don't use this method.
          "accept()" is handled automatically in the OnRead() method. */
-         virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
-         {
-            return accept(socket, saptr, lenptr);
-         }
+         //virtual SOCKET Accept(SOCKET socket, struct sockaddr *saptr, socklen_t *lenptr)
+         //{
+           // return accept(socket, saptr, lenptr);
+         //}
 
          bool HasCreator() { return m_bHasCreate; }
 

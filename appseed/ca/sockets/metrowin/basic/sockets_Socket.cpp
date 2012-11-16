@@ -47,10 +47,8 @@ namespace sockets
    #endif
 
 
-   // statics
-   #ifdef _WIN32
-   WSAInitializer socket::m_winsock_init;
-   #endif
+   SOCKET socket::s_socket = 0;
+   simple_mutex socket::s_mutex;
 
 
    socket::socket(socket_handler_base& h)
@@ -65,8 +63,8 @@ namespace sockets
    ,m_bConnected(false)
    ,m_bErasedByHandler(false)
    ,m_timeClose(0)
-   ,m_addressRemoteClient()
-   ,m_addressRemote()
+   ,m_addressRemoteClient(h.get_app())
+   ,m_addressRemote(h.get_app())
    ,m_pfileTrafficMonitor(NULL)
    ,m_bLost(false)
    ,m_bEnableSsl(false)
@@ -157,7 +155,7 @@ namespace sockets
          return 0;
       }
       int n;
-      if ((n = ::closesocket(m_socket)) == -1)
+      if(!close_socket())
       {
          // failed...
          Handler().LogError(this, "close", Errno, StrError(Errno), ::gen::log::level::error);
@@ -168,12 +166,18 @@ namespace sockets
       Handler().AddList(m_socket, LIST_TIMEOUT, false);
       Handler().AddList(m_socket, LIST_RETRY, false);
       Handler().AddList(m_socket, LIST_CLOSE, false);
+      mutex_lock ml(s_mutex);
+      s_mapSocket.remove_key(m_socket);
       m_socket = INVALID_SOCKET;
       return n;
    }
 
+   bool socket::close_socket()
+   {
+      return true;
+   }
 
-   SOCKET socket::CreateSocket(int af,int iType, const string & strProtocol)
+/*   SOCKET socket::CreateSocket(int af,int iType, const string & strProtocol)
    {
       struct protoent *p = NULL;
       SOCKET s;
@@ -206,11 +210,17 @@ namespace sockets
       attach(INVALID_SOCKET);
       return s;
    }
+   */
 
-
-   void socket::attach(SOCKET s)
+   void socket::attach(Platform::Object ^ o)
    {
-      m_socket = s;
+
+      mutex_lock ml(s_mutex);
+      m_socket = s_socket;
+      s_mapSocket.set_at(m_socket, this);
+      s_socket++;
+
+
    }
 
 
@@ -254,15 +264,17 @@ namespace sockets
 
    void socket::SetRemoteAddress(sockets::address & ad) //struct sockaddr* sa, socklen_t l)
    {
-      m_addressRemote(System.cast_clone < sockets::address > (&ad));
+
+      m_addressRemote = ad;
+
    }
 
 
-   sockets::address_sp socket::GetRemoteSocketAddress()
+   sockets::address socket::GetRemoteSocketAddress()
    {
-      sockets::address_sp addr;
-      addr(dynamic_cast < sockets::address * > (System.clone(m_addressRemote.m_p)));
-      return addr;
+      
+      return m_addressRemote;
+
    }
 
 
@@ -280,7 +292,7 @@ namespace sockets
    }
 
 
-   ipaddr_t socket::GetRemoteIP4()
+/*   in_addr socket::GetRemoteIP4()
    {
       ipaddr_t l = 0;
       if(m_bIpv6)
@@ -294,10 +306,10 @@ namespace sockets
          memcpy(&l, &sa -> sin_addr, sizeof(struct in_addr));
       }
       return l;
-   }
+   }*/
 
 
-   struct in6_addr socket::GetRemoteIP6()
+/*   struct in6_addr socket::GetRemoteIP6()
    {
       if(!m_bIpv6)
       {
@@ -314,42 +326,37 @@ namespace sockets
          memset(&fail, 0, sizeof(struct sockaddr_in6));
       }
       return fail.sin6_addr;
-   }
+   }*/
 
 
    port_t socket::GetRemotePort()
    {
-      if(m_addressRemote.m_p == NULL)
-      {
-         return 0;
-      }
-      return m_addressRemote -> GetPort();
+
+      return m_addressRemote.get_service_number();
+
    }
 
 
    string socket::GetRemoteAddress()
    {
-      if(m_addressRemote.m_p == NULL)
-      {
-         return "";
-      }
-      return m_addressRemote -> Convert(false);
+
+      return m_addressRemote.get_display_number();
+
    }
 
 
    string socket::GetRemoteHostname()
    {
-      if(m_addressRemote.m_p == NULL)
-      {
-         return "";
-      }
-      return m_addressRemote -> Reverse();
+
+      return m_addressRemote.get_canonical_name();
+
    }
 
 
    bool socket::SetNonblocking(bool bNb)
    {
-   #ifdef _WIN32
+      bool m_bNonBlocking = bNb;
+/*   #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
       int n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
@@ -376,11 +383,11 @@ namespace sockets
          }
       }
       return true;
-   #endif
+   #endif*/
    }
 
 
-   bool socket::SetNonblocking(bool bNb, SOCKET s)
+/*   bool socket::SetNonblocking(bool bNb, SOCKET s)
    {
    #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
@@ -410,7 +417,7 @@ namespace sockets
       }
       return true;
    #endif
-   }
+   }*/
 
 
    void socket::Set(bool bRead, bool bWrite, bool bException)
@@ -558,23 +565,29 @@ namespace sockets
    }
 
 
-   void socket::SetClientRemoteAddress(sockets::address& ad)
+   void socket::SetClientRemoteAddress(sockets::address & address)
    {
-      if (!ad.IsValid())
+
+/*      if (!ad.IsValid())
       {
          Handler().LogError(this, "SetClientRemoteAddress", 0, "remote address not valid", ::gen::log::level::error);
-      }
-      m_addressRemoteClient = System.cast_clone < sockets::address > (&ad);
+      }*/
+
+      m_addressRemoteClient = address;
+
    }
 
 
-   ::ca::smart_pointer < sockets::address > socket::GetClientRemoteAddress()
+   address socket::GetClientRemoteAddress()
    {
-      if (m_addressRemoteClient.m_p == NULL)
+
+/*      if (m_addressRemoteClient.m_p == NULL)
       {
          Handler().LogError(this, "GetClientRemoteAddress", 0, "remote address not yet set", ::gen::log::level::error);
-      }
-      return System.cast_clone < sockets::address > (m_addressRemoteClient.m_p);
+      }*/
+
+      return m_addressRemoteClient;
+
    }
 
 
@@ -657,13 +670,14 @@ namespace sockets
    void socket::CopyConnection(socket *sock)
    {
 
-      attach( sock -> GetSocket() );
-      SetIpv6( sock -> IsIpv6() );
-      SetSocketType( sock -> GetSocketType() );
-      SetSocketProtocol( sock -> GetSocketProtocol() );
+      attach(sock -> GetSocket());
+      SetIpv6(sock -> IsIpv6());
+      SetSocketType(sock -> GetSocketType());
+      SetSocketProtocol(sock -> GetSocketProtocol());
 
-      SetClientRemoteAddress( *sock -> GetClientRemoteAddress() );
-      SetRemoteAddress( *sock -> GetRemoteSocketAddress() );
+      SetClientRemoteAddress(sock -> GetClientRemoteAddress());
+      SetRemoteAddress(sock -> GetRemoteSocketAddress());
+
    }
 
 
@@ -730,7 +744,9 @@ namespace sockets
 
    void socket::SetSocks4Host(const string & host)
    {
-      System.net().u2ip(host, m_socks4_host);
+
+      System.net().convert(m_socks4_host, host);
+
    }
 
 
@@ -746,7 +762,7 @@ namespace sockets
    }
 
 
-   void socket::SetSocks4Host(ipaddr_t a)
+   void socket::SetSocks4Host(in_addr a)
    {
       m_socks4_host = a;
    }
@@ -764,7 +780,7 @@ namespace sockets
    }
 
 
-   ipaddr_t socket::GetSocks4Host()
+   in_addr socket::GetSocks4Host()
    {
       return m_socks4_host;
    }
@@ -892,7 +908,7 @@ namespace sockets
    }
 
 
-   int socket::Resolve(ipaddr_t a)
+   int socket::Resolve(in_addr a)
    {
       return Handler().Resolve(this, a);
    }
@@ -904,7 +920,7 @@ namespace sockets
    }
 
 
-   void socket::OnResolved(int,ipaddr_t,port_t)
+   void socket::OnResolved(int, in_addr, port_t)
    {
    }
 
@@ -1744,36 +1760,16 @@ namespace sockets
    /** Returns local port number for bound socket file descriptor. */
    port_t socket::GetSockPort()
    {
-      if (IsIpv6())
-      {
-         struct sockaddr_in6 sa;
-         socklen_t sockaddr_length = sizeof(struct sockaddr_in6);
-         if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
-            memset(&sa, 0, sizeof(sa));
-         return ntohs(sa.sin6_port);
-      }
-      struct sockaddr_in sa;
-      socklen_t sockaddr_length = sizeof(struct sockaddr_in);
-      if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
-         memset(&sa, 0, sizeof(sa));
-      return ntohs(sa.sin_port);
+
+      throw interface_only_exception(get_app());
+
    }
 
 
    /** Returns local ipv4 address for bound socket file descriptor. */
    ipaddr_t socket::GetSockIP4()
    {
-      if (IsIpv6())
-      {
-         return 0;
-      }
-      struct sockaddr_in sa;
-      socklen_t sockaddr_length = sizeof(struct sockaddr_in);
-      if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
-         memset(&sa, 0, sizeof(sa));
-      ipaddr_t a;
-      memcpy(&a, &sa.sin_addr, 4);
-      return a;
+      throw interface_only_exception(get_app());
    }
 
 
@@ -1902,6 +1898,17 @@ namespace sockets
       {
          m_pcallback->OnRawData(this, buf, len);
       }
+   }
+
+
+   void socket::OnAccept(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+   {
+
+      if(status == ::Windows::Foundation::Completed)
+      {
+         OnAccept();
+      }
+
    }
 
 } // namespace sockets

@@ -261,13 +261,14 @@ namespace ca4
          strHost = System.url().get_server(pszUrl);
          int port = System.url().get_port(pszUrl);
 
-         ipaddr_t l;
+/*         ipaddr_t l;
          if (!System.net().u2ip(strHost,l))
          {
             return false;
-         }
-         sockets::ipv4_address ad(get_app(), l, (port_t) port);
-         strHost = ad.Convert(true);
+         }*/
+         sockets::address ad(get_app(), strHost, port);
+         
+         strHost = ad.get_display_number();
 
          string var;
          try
@@ -358,43 +359,27 @@ namespace ca4
             bOk = true;
             string strHost = System.url().get_server(pszUrl);
             int iHostPort = System.url().get_port(pszUrl);
-               ipaddr_t host;
-            if(!System.net().u2ip(strHost,host))
-            {
-               pproxy->m_bDirect = false;
-               pproxy->m_strProxy = doc.attr("server");
-               pproxy->m_iPort = doc.attr("port");
-               return;
-            }
-            ::sockets::ipv4_address ipHost(get_app(), host, (port_t) iHostPort);
+            ::sockets::address ipHost(get_app(), strHost, iHostPort);
             for(int iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
             {
                xml::node * pnode = doc.get_root()->child_at(iNode);
                if(pnode->get_name() == "proxy")
                {
-                  ipaddr_t addr;
-                  if(System.net().u2ip(pnode->attr("address"), addr))
+                  ::sockets::address ipAddress(get_app(), pnode->attr("address"), 0);
+                  ::sockets::address ipMask(get_app(), pnode->attr("mask"), 0);
+                  if(ipHost.is_in_net(ipAddress, ipMask))
                   {
-                     ipaddr_t mask;
-                     if(System.net().u2ip(pnode->attr("mask"), mask))
+                     if(pnode->attr("server") == "DIRECT")
                      {
-                        ::sockets::ipv4_address ipAddress(get_app(), addr, 0);
-                        ::sockets::ipv4_address ipMask(get_app(), mask, 0);
-                        if(ipHost.is_in_net(ipAddress, ipMask))
-                        {
-                           if(pnode->attr("server") == "DIRECT")
-                           {
-                              pproxy->m_bDirect = true;
-                              return;
-                           }
-                           else
-                           {
-                              pproxy->m_bDirect = false;
-                              pproxy->m_strProxy = pnode->attr("server");
-                              pproxy->m_iPort = pnode->attr("port");
-                              return;
-                           }
-                        }
+                        pproxy->m_bDirect = true;
+                        return;
+                     }
+                     else
+                     {
+                        pproxy->m_bDirect = false;
+                        pproxy->m_strProxy = pnode->attr("server");
+                        pproxy->m_iPort = pnode->attr("port");
+                        return;
                      }
                   }
                }

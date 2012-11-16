@@ -54,17 +54,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_resolv_id;
          string m_resolv_host;
          port_t m_resolv_port;
-         ipaddr_t m_resolv_address;
-#if !core_level_1
+         in_addr m_resolv_address;
          bool m_resolve_ipv6;
          in6_addr m_resolv_address6;
-#endif
          bool m_cached;
 
 
          resolv_socket(socket_handler_base&);
          resolv_socket(socket_handler_base&, socket *parent, const string & host, port_t port, bool ipv6 = false);
-         resolv_socket(socket_handler_base&, socket *parent, ipaddr_t);
+         resolv_socket(socket_handler_base&, socket *parent, in_addr);
          resolv_socket(socket_handler_base&, socket *parent, in6_addr&);
          ~resolv_socket();
 

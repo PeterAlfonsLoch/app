@@ -1,8 +1,6 @@
 #pragma once
 
 
-#define USE_BYESHYTOULA_STYLE_SOCKETS
-
 #define AF_INET         2                 // internetwork: UDP, TCP, etc.
 #define AF_INET6        23                // Internetwork Version 6
 
@@ -177,9 +175,9 @@ typedef struct addrinfo {
 #define NI_NUMERICSERV  0x08  /* Return numeric form of the service (port #) */
 
 
-typedef ::Platform::Object ^ SOCKET;
+typedef int SOCKET;
 
-#define INVALID_SOCKET nullptr
+#define INVALID_SOCKET ((SOCKET) -1)
 
 
 

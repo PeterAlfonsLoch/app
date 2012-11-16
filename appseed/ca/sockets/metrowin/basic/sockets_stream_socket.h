@@ -13,9 +13,7 @@
       public:
 
 
-#ifdef METROWIN
          ::Windows::Networking::Sockets::StreamSocket ^ m_streamsocket;
-#endif
          bool m_bConnecting; ///< Flag indicating connection in progress
          int m_connect_timeout; ///< Connection timeout (seconds)
          bool m_flush_before_close; ///< Send all data before closing (default true)
@@ -103,6 +101,21 @@
 
          /** Returns IPPROTO_TCP or IPPROTO_SCTP */
          virtual int Protocol() = 0;
+
+         virtual port_t GetRemotePort();
+         /** Returns remote ip as string? ipv4 and ipv6. */
+         virtual address GetRemoteAddress();
+         /** ipv4 and ipv6(not implemented) */
+         virtual address GetRemoteHostname();
+         //@}
+
+         /** Returns local port number for bound socket file descriptor. */
+         virtual port_t GetLocalPort();
+         /** Returns local ipv4 address for bound socket file descriptor. */
+         //ipaddr_t GetSockIP4();
+         /** Returns local ipv4 address as text for bound socket file descriptor. */
+         virtual address GetLocalAddress();
+
 
       };
 

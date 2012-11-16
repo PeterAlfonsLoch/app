@@ -157,7 +157,7 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.lowattr(__str(remote_addr)) = GetRemoteSocketAddress()->Convert(false);
+         m_request.lowattr(__str(remote_addr)) = GetRemoteSocketAddress().get_display_number();
          {
 #ifdef WINDOWS
 

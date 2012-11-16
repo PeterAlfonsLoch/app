@@ -51,7 +51,6 @@ namespace sockets
    ,m_preverror(-1)
    ,m_errcnt(0)
    ,m_tlast(0)
-   ,m_socks4_host(0)
    ,m_socks4_port(0)
    ,m_bTryDirect(false)
    ,m_resolv_id(0)
@@ -60,9 +59,12 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
-      FD_ZERO(&m_rfds);
+      
+      memset(&m_socks4_host, 0, sizeof(m_socks4_host));
+
+/*      FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
-      FD_ZERO(&m_efds);
+      FD_ZERO(&m_efds);*/
    }
 
 
@@ -75,7 +77,6 @@ namespace sockets
    ,m_preverror(-1)
    ,m_errcnt(0)
    ,m_tlast(0)
-   ,m_socks4_host(0)
    ,m_socks4_port(0)
    ,m_bTryDirect(false)
    ,m_resolv_id(0)
@@ -84,10 +85,14 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
+
+      memset(&m_socks4_host, 0, sizeof(m_socks4_host));
+
       m_mutex.lock();
-      FD_ZERO(&m_rfds);
+
+/*      FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
-      FD_ZERO(&m_efds);
+      FD_ZERO(&m_efds);*/
    }
 
 
@@ -198,9 +203,9 @@ namespace sockets
    {
       if (s >= 0)
       {
-         r = FD_ISSET(s, &m_rfds) ? true : false;
+/*         r = FD_ISSET(s, &m_rfds) ? true : false;
          w = FD_ISSET(s, &m_wfds) ? true : false;
-         e = FD_ISSET(s, &m_efds) ? true : false;
+         e = FD_ISSET(s, &m_efds) ? true : false;*/
       }
    }
 
@@ -210,7 +215,7 @@ namespace sockets
    //TRACE("Set(%d, %s, %s, %s)\n", s, bRead ? "true" : "false", bWrite ? "true" : "false", bException ? "true" : "false");
       if (s >= 0)
       {
-         if (bRead)
+/*         if (bRead)
          {
             if (!FD_ISSET(s, &m_rfds))
             {
@@ -242,7 +247,7 @@ namespace sockets
          else
          {
             FD_CLR(s, &m_efds);
-         }
+         }*/
       }
    }
 
@@ -250,12 +255,13 @@ namespace sockets
    int socket_handler::Select(long lSeconds, long lMicroseconds)
    {
       
-      struct timeval timeval;
+/*      struct timeval timeval;
 
       timeval.tv_sec    = lSeconds;
       timeval.tv_usec   = lMicroseconds;
 
-      return Select(&timeval);
+      return Select(&timeval);*/
+      return 0;
 
    }
 
@@ -277,7 +283,7 @@ namespace sockets
 
    int socket_handler::Select(struct timeval *tsel)
    {
-      DWORD dw1, dw2;
+/*      DWORD dw1, dw2;
       size_t ignore = 0;
       while(natural(m_add.get_size()) > ignore)
       {
@@ -388,7 +394,7 @@ namespace sockets
             EINVAL n is negative. Or struct timeval contains bad time values (<0).
             ENOMEM select was unable to allocate primitive::memory for internal tables.
          */
-         if (Errno != m_preverror || m_errcnt++ % 10000 == 0)
+  /*       if (Errno != m_preverror || m_errcnt++ % 10000 == 0)
          {
             LogError(NULL, "select", Errno, StrError(Errno));
             TRACE("m_maxsock: %d\n", m_maxsock);
@@ -859,7 +865,9 @@ namespace sockets
             delete p;
          }
       }
-      return n;
+      return n;*/
+
+         return 0;
    }
 
 
@@ -899,27 +907,35 @@ namespace sockets
    }
 
 
-   void socket_handler::SetSocks4Host(ipaddr_t a)
+   void socket_handler::SetSocks4Host(in_addr a)
    {
+
       m_socks4_host = a;
+
    }
 
 
    void socket_handler::SetSocks4Host(const string & host)
    {
-      System.net().u2ip(host, m_socks4_host);
+
+      System.net().convert(m_socks4_host, host);
+
    }
 
 
    void socket_handler::SetSocks4Port(port_t port)
    {
+
       m_socks4_port = port;
+
    }
 
 
    void socket_handler::SetSocks4Userid(const string & id)
    {
+
       m_socks4_userid = id;
+
    }
 
 
@@ -929,9 +945,9 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, host, port);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
-      if (!resolv -> open(local, m_resolver_port))
+      ::sockets::address local(get_app(), "127.0.0.1", m_resolver_port);
+      //System.net().convert(local, "127.0.0.1");
+      if (!resolv -> open(local))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
       }
@@ -948,9 +964,8 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, host, port, true);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
-      if (!resolv -> open(local, m_resolver_port))
+      ::sockets::address local(get_app(), "127.0.0.1", m_resolver_port);
+      if (!resolv -> open(local))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
       }
@@ -960,15 +975,15 @@ namespace sockets
    }
 
 
-   int socket_handler::Resolve(socket *p,ipaddr_t a)
+   int socket_handler::Resolve(socket *p, in_addr a)
    {
       // check cache
       resolv_socket *resolv = new resolv_socket(*this, p, a);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
-      if (!resolv -> open(local, m_resolver_port))
+//      ipaddr_t local;
+      ::sockets::address local(get_app(), "127.0.0.1", m_resolver_port);
+      if (!resolv -> open(local))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
       }
@@ -984,9 +999,9 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, a);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
-      if (!resolv -> open(local, m_resolver_port))
+      //ipaddr_t local;
+      ::sockets::address local(get_app(), "127.0.0.1", m_resolver_port);
+      if (!resolv -> open(local))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
       }
@@ -1017,7 +1032,7 @@ namespace sockets
    }
 
 
-   ipaddr_t socket_handler::GetSocks4Host()
+   in_addr socket_handler::GetSocks4Host()
    {
       return m_socks4_host;
    }
@@ -1062,7 +1077,7 @@ namespace sockets
             if (pools -> GetSocketType() == type &&
                 pools -> GetSocketProtocol() == protocol &&
    // %!             pools -> GetClientRemoteAddress() &&
-                *pools -> GetClientRemoteAddress() == ad)
+                pools -> GetClientRemoteAddress() == ad)
             {
                m_sockets.remove_key(ppair->m_key);
                pools -> SetRetain(); // avoid close in socket destructor

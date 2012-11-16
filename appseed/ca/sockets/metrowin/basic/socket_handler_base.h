@@ -50,7 +50,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket container class, event generator.
       \ingroup basic */
-      class socket_handler_base : virtual public ::radix::object
+      class socket_handler_base : 
+         virtual public ::radix::object
       {
          friend class socket;
 
@@ -138,7 +139,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          // Socks4
          // -------------------------------------------------------------------------
          /** Set socks4 server ip that all new tcp sockets should use. */
-         virtual void SetSocks4Host(ipaddr_t) = 0;
+         virtual void SetSocks4Host(in_addr) = 0;
          /** Set socks4 server hostname that all new tcp sockets should use. */
          virtual void SetSocks4Host(const string & ) = 0;
          /** Set socks4 server port number that all new tcp sockets should use. */
@@ -149,7 +150,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          virtual void SetSocks4TryDirect(bool = true) = 0;
          /** get socks4 server ip.
          \return socks4 server ip */
-         virtual ipaddr_t GetSocks4Host() = 0;
+         virtual in_addr GetSocks4Host() = 0;
          /** get socks4 port number.
          \return socks4 port number */
          virtual port_t GetSocks4Port() = 0;
@@ -174,7 +175,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          virtual int Resolve(socket *,const string & host,port_t port) = 0;
          virtual int Resolve6(socket *,const string & host,port_t port) = 0;
          /** Do a reverse dns lookup. */
-         virtual int Resolve(socket *,ipaddr_t a) = 0;
+         virtual int Resolve(socket *,in_addr a) = 0;
          virtual int Resolve(socket *,in6_addr& a) = 0;
          /** get listen port of asynchronous dns server. */
          virtual port_t GetResolverPort() = 0;

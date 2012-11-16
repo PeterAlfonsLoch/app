@@ -69,7 +69,7 @@
          bool                    m_bEnd; // should finish by not sending no more writes
          string                  m_strCat;
          callback *              m_pcallback;
-         address_sp              m_addressRemote; ///< Remote end address
+         address                 m_addressRemote; ///< Remote end address
          time_t                  m_timeCreate; ///< time in seconds when this socket was created
          bool                    m_bDisableRead; ///< Disable checking for read events
          bool                    m_bConnected; ///< socket is connected (tcp/udp)
@@ -80,18 +80,16 @@
          bool                    m_bDelete; ///< Delete by handler flag
          bool                    m_bClose; ///< close and delete flag
          socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-         address_sp              m_addressRemoteClient; ///< Address of last connect()
+         address                 m_addressRemoteClient; ///< Address of last connect()
          ex1::file *             m_pfileTrafficMonitor;
          time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
          time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
          bool                    m_bNonBlocking;
          //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
-#ifdef WINDOWSEX
-
-         static WSAInitializer   m_winsock_init; ///< Winsock initialization singleton class
-
-#endif
+         static SOCKET                             s_socket; ///< Winsock initialization singleton class
+         static simple_mutex                       s_mutex;
+         static simple_map < SOCKET, socket * >    s_mapSocket;
 
          bool                    m_bEnableSsl; ///< Enable SSL for this tcp_socket
          bool                    m_bSsl; ///< ssl negotiation mode (tcp_socket)
@@ -107,7 +105,7 @@
 #endif
 
          bool                    m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
-         ipaddr_t                m_socks4_host; ///< socks4 server address
+         in_addr                 m_socks4_host; ///< socks4 server address
          port_t                  m_socks4_port; ///< socks4 server port number
          string                  m_socks4_userid; ///< socks4 server usedid
 
@@ -203,11 +201,11 @@
          \param af Address family AF_INET / AF_INET6 / ...
          \param type SOCK_STREAM / SOCK_DGRAM / ...
          \param protocol "tcp" / "udp" / ... */
-         SOCKET CreateSocket(int af,int type,const string & protocol = "");
+         //SOCKET CreateSocket(int af,int type,const string & protocol = "");
 
          /** Assign this socket a file descriptor created
          by a call to socket() or otherwise. */
-         void attach(SOCKET s);
+         void attach(::Platform::Object ^ o);
 
          /** Return file descriptor assigned to this socket. */
          SOCKET GetSocket();
@@ -215,6 +213,8 @@
          /** close connection immediately - internal use.
          \sa SetCloseAndDelete */
          virtual int close();
+
+         virtual bool close_socket();
 
          /** add file descriptor to sockethandler fd_set's. */
          void Set(bool bRead,bool bWrite,bool bException = true);
@@ -249,7 +249,7 @@
          void SetClientRemoteAddress(sockets::address&);
 
          /** get address/port of last connect() call. */
-         address_sp GetClientRemoteAddress();
+         address GetClientRemoteAddress();
 
          /** Common interface for SendBuf used by Tcp and Udp sockets. */
          virtual void SendBuf(const char *,size_t,int = 0);
@@ -289,6 +289,7 @@
          virtual void OnConnect();
          /** Called when an incoming connection has been completed. */
          virtual void OnAccept();
+         void OnAccept(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status);
          /** Called when a complete line has been read and the socket is in
          * line protocol mode. */
          virtual void OnLine(const string & );
@@ -365,29 +366,29 @@
          /** \name Information about remote connection */
          //@{
          /** Returns address of remote end. */
-         address_sp GetRemoteSocketAddress();
+         //address GetRemoteSocketAddress();
          /** Returns address of remote end: ipv4. */
-         ipaddr_t GetRemoteIP4();
+         //string GetRemoteIP4();
          /** Returns address of remote end: ipv6. */
-         struct in6_addr GetRemoteIP6();
+         //struct in6_addr GetRemoteIP6();
          /** Returns remote port number: ipv4 and ipv6. */
-         port_t GetRemotePort();
+         virtual port_t GetRemotePort();
          /** Returns remote ip as string? ipv4 and ipv6. */
-         string GetRemoteAddress();
+         virtual address GetRemoteAddress();
          /** ipv4 and ipv6(not implemented) */
-         string GetRemoteHostname();
+         virtual address GetRemoteHostname();
          //@}
 
          /** Returns local port number for bound socket file descriptor. */
-         port_t GetSockPort();
+         virtual port_t GetLocalPort();
          /** Returns local ipv4 address for bound socket file descriptor. */
-         ipaddr_t GetSockIP4();
+         //ipaddr_t GetSockIP4();
          /** Returns local ipv4 address as text for bound socket file descriptor. */
-         string GetSockAddress();
+         virtual address GetLocalAddress();
          /** Returns local ipv6 address for bound socket file descriptor. */
-         struct in6_addr GetSockIP6();
+         //struct in6_addr GetSockIP6();
          /** Returns local ipv6 address as text for bound socket file descriptor. */
-         string GetSockAddress6();
+         //string GetSockAddress6();
          // --------------------------------------------------------------------------
          /** @name IP options
          When an ip or socket option is available on all of the operating systems
@@ -599,7 +600,7 @@
          void SetSocks4(bool x = true);
 
          /** Set socks4 server host address to use */
-         void SetSocks4Host(ipaddr_t a);
+         void SetSocks4Host(in_addr a);
          /** Set socks4 server hostname to use. */
          void SetSocks4Host(const string & );
          /** Socks4 server port to use. */
@@ -608,7 +609,7 @@
          void SetSocks4Userid(const string & x);
          /** get the ip address of socks4 server to use.
          \return socks4 server host address */
-         ipaddr_t GetSocks4Host();
+         in_addr GetSocks4Host();
          /** get the socks4 server port to use.
          \return socks4 server port */
          port_t GetSocks4Port();
@@ -628,11 +629,11 @@
          \param id Resolve ID from Resolve call
          \param a resolved ip address
          \param port port number passed to Resolve */
-         virtual void OnResolved(int id,ipaddr_t a,port_t port);
-         virtual void OnResolved(int id,in6_addr& a,port_t port);
+         virtual void OnResolved(int id, in_addr a, port_t port);
+         virtual void OnResolved(int id, in6_addr & a, port_t port);
          /** Request asynchronous reverse dns lookup.
          \param a in_addr to be translated */
-         int Resolve(ipaddr_t a);
+         int Resolve(in_addr a);
          int Resolve(in6_addr& a);
          /** Callback returning reverse resolve results.
          \param id Resolve ID
