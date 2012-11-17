@@ -171,19 +171,19 @@ ID2D1Brush * simple_brush::get_os_data()
    if(m_etype == type_solid)
    {
 
-      return m_psolidbrush;
+      return (ID2D1Brush *) m_psolidbrush;
 
    }
    else if(m_etype == type_linear_gradient)
    {
 
-      return m_plineargradientbrush;
+      return (ID2D1Brush *) m_plineargradientbrush;
 
    }
    else if(m_etype == type_brush)
    {
 
-      return m_pbrush;
+      return (ID2D1Brush *) m_pbrush;
 
    }
 

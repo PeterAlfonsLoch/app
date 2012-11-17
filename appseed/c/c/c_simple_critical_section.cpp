@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
 
 simple_critical_section::simple_critical_section()
 {
-   InitializeCriticalSection(&m_criticalsection);
+   InitializeCriticalSectionEx(&m_criticalsection, 4000, 0);
 }
 
 
