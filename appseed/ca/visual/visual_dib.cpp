@@ -1,6 +1,7 @@
 #include "framework.h"
+#ifndef METROWIN
 #include "include/freeimage.h"
-
+#endif
 
 namespace visual
 {
@@ -112,6 +113,12 @@ namespace visual
       if(psaveimage == NULL)
          psaveimage = &saveimageDefault;
 
+#ifdef METROWIN
+
+      throw todo(get_app());
+
+#else
+
       FREE_IMAGE_FORMAT eformat;
       bool b8 = false;
       bool b24 = false;
@@ -160,7 +167,7 @@ namespace visual
 
       bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT) != FALSE;
 
-      BYTE * pbData;
+      BYTE * pbData = NULL;
       DWORD dwSize;
       if(bOk)
          bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != FALSE;
@@ -184,6 +191,9 @@ namespace visual
       FreeImage_Unload(pfi7);
 
       return bOk != FALSE;
+
+#endif
+
    }
 
 

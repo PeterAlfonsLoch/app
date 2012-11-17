@@ -493,6 +493,7 @@ namespace user
    void control::BaseControlExWndProcBefore(gen::signal_object * pobj)
    {
       SCAST_PTR(gen::message::base, pbase, pobj);
+#ifdef WINDOWSEX
       if(pbase->m_uiMessage == g_uiMessage)
       {
          // Parameter for getting pointer to this control object
@@ -504,6 +505,7 @@ namespace user
             return;
          }
       }
+#endif
       switch(pbase->m_uiMessage)
       {
       case WM_MOUSEMOVE:
@@ -657,7 +659,11 @@ namespace user
          pcontrolex = NULL;
          if(pwnd != NULL)
          {
+#ifdef WINDOWSEX
             pwnd->send_message(control::g_uiMessage, control::MessageParamGetBaseControlExPtr, (LPARAM) &pcontrolex);
+#else
+            throw todo(pwnd->get_app());
+#endif
          }
          if(pcontrolex != NULL)
          {

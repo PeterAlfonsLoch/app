@@ -306,33 +306,33 @@ namespace sockets
 #include "ca/ca_log.h"
 
 #include "basic/sockets_address.h"
-#include "basic/sockets_ssl_client_context.h"
-#include "basic/sockets_ssl_client_context_map.h"
+//#include "basic/sockets_ssl_client_context.h"
+//#include "basic/sockets_ssl_client_context_map.h"
 #include "basic/sockets_socket.h"
 #include "basic/sockets_stream_socket.h"
 #include "basic/sockets_sctp_socket.h"
 #include "basic/sockets_tcp_socket.h"
 #include "basic/sockets_udp_socket.h"
 
-#include "basic/tls_socket.h"
+#include "basic/sockets_tls_socket.h"
 
 
-#include "log/StdLog.h"
+#include "log/sockets_std_log.h"
 
-#include "basic/socket_handler_base.h"
-#include "basic/socket_handler.h"
-#include "basic/listen_socket.h"
-
-
-
+#include "basic/sockets_socket_handler_base.h"
+#include "basic/sockets_socket_handler.h"
+#include "basic/sockets_listen_socket.h"
 
 
 
-#include "webserver/http_form.h"
-#include "webserver/http_cookie.h"
-#include "webserver/http_transaction.h"
-#include "webserver/http_request.h"
-#include "webserver/http_response.h"
+
+
+
+#include "webserver/webserver_http_form.h"
+#include "webserver/webserver_http_cookie.h"
+#include "webserver/webserver_http_transaction.h"
+#include "webserver/webserver_http_request.h"
+#include "webserver/webserver_http_response.h"
 
 #include "http/http_socket.h"
 
@@ -347,11 +347,11 @@ namespace sockets
 #include "http/http_session.h"
 
 
-#include "webserver/AjpBaseSocket.h"
-#include "webserver/Ajp13Socket.h"
-#include "webserver/ajp13.h"
-#include "webserver/http_base_socket.h"
-#include "webserver/httpd_socket.h"
+#include "webserver/webserver_ajp_base_socket.h"
+#include "webserver/webserver_ajp13_socket.h"
+#include "webserver/webserver_ajp13.h"
+#include "webserver/webserver_http_base_socket.h"
+#include "webserver/webserver_httpd_socket.h"
 
 #include "sip/sip_base.h"
 
@@ -368,27 +368,27 @@ namespace sockets
 #include "smtp/smtp_socket.h"
 #include "smtp/smtpd_socket.h"
 
-#include "timer/EventTime.h"
-#include "timer/Event.h"
+#include "timer/sockets_event_time.h"
+#include "timer/sockets_event.h"
 
-#include "timer/IEventHandler.h"
-#include "timer/IEventOwner.h"
-#include "timer/EventHandler.h"
+#include "timer/sockets_ievent_handler.h"
+#include "timer/sockets_ievent_owner.h"
+#include "timer/sockets_event_handler.h"
 
-#include "asynch_dns/resolv_socket.h"
-#include "asynch_dns/resolv_server.h"
+#include "asynch_dns/sockets_resolv_socket.h"
+#include "asynch_dns/sockets_resolv_server.h"
 
 
-#include "log/StdLog.h"
-#include "log/trace_log.h"
+#include "log/sockets_std_log.h"
+#include "log/sockets_trace_log.h"
 
-#include "basic/sync_socket_handler.h"
+#include "basic/sockets_sync_socket_handler.h"
 
 
 #include "sockets_link_out_socket.h"
 #include "sockets_link_in_socket.h"
 
-#include "basic/net.h"
+#include "basic/sockets_net.h"
 
 #include "sockets_application_interface.h"
 

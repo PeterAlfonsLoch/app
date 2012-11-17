@@ -16,17 +16,25 @@ bool WINAPI RawDllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
    {
       if (dwReason == DLL_PROCESS_ATTACH)
       {
-         SetErrorMode(SetErrorMode(0) |
-            SEM_FAILCRITICALERRORS|SEM_NOOPENFILEERRORBOX);
+
+#ifdef WINDOWSEX
+         
+         SetErrorMode(SetErrorMode(0) | SEM_FAILCRITICALERRORS | SEM_NOOPENFILEERRORBOX);
+
+#endif
 
          // add a reference to thread local storage data
 //         __tls_add_ref();
 
+#ifdef WINDOWSEX
+         
          // make sure we have enough primitive::memory to attempt to start (8kb)
          void * pMinHeap = LocalAlloc(NONZEROLPTR, 0x2000);
          if (pMinHeap == NULL)
             return FALSE;   // fail if primitive::memory alloc fails
          LocalFree(pMinHeap);
+
+#endif
 
          // cause early initialization of gen_CriticalSection
 //         if (!gen::CriticalInit())

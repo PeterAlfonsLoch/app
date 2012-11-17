@@ -195,6 +195,8 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalDependencies>m_freetype.lib;OleAut32.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -263,6 +265,7 @@
       <SubSystem>Console</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x64/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library/x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -308,7 +311,6 @@
     <ClInclude Include="ca2\ca2_url_domain.h" />
     <ClInclude Include="ca2\ca2_user.h" />
     <ClInclude Include="ca2\contact_list.h" />
-    <ClInclude Include="ca2\os_implementation.h" />
     <ClInclude Include="ca4\ca4.h" />
     <ClInclude Include="ca4\ca4_application.h" />
     <ClInclude Include="ca4\ca4_compress.h" />
@@ -950,6 +952,7 @@
     <ClInclude Include="multithreading\multithreading_wait_result.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\os_cross_windows.h" />
+    <ClInclude Include="os\os_cross_windows_time.h" />
     <ClInclude Include="os\os_windows_defs.h" />
     <ClInclude Include="planebase\planebase.h" />
     <ClInclude Include="planebase\planebase_application.h" />
@@ -1060,15 +1063,15 @@
     <ClInclude Include="simpledb\veiev_post.h" />
     <ClInclude Include="sockets\http_file.h" />
     <ClInclude Include="sockets\http_memory_file.h" />
-    <ClInclude Include="sockets\metrowin\asynch_dns\resolv_server.h" />
-    <ClInclude Include="sockets\metrowin\asynch_dns\resolv_socket.h" />
+    <ClInclude Include="sockets\metrowin\asynch_dns\sockets_resolv_server.h" />
+    <ClInclude Include="sockets\metrowin\asynch_dns\sockets_resolv_socket.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_address.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_listen_socket.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_net.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_sctp_socket.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_socket.h" />
-    <ClInclude Include="sockets\metrowin\basic\socket_handler.h" />
-    <ClInclude Include="sockets\metrowin\basic\socket_handler_base.h" />
+    <ClInclude Include="sockets\metrowin\basic\sockets_socket_handler.h" />
+    <ClInclude Include="sockets\metrowin\basic\sockets_socket_handler_base.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_stream_socket.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_sync_socket_handler.h" />
     <ClInclude Include="sockets\metrowin\basic\sockets_tcp_socket.h" />
@@ -1084,8 +1087,8 @@
     <ClInclude Include="sockets\metrowin\http\http_socket.h" />
     <ClInclude Include="sockets\metrowin\http\http_tunnel.h" />
     <ClInclude Include="sockets\metrowin\internal\aaa_SSLInitializer_want_to_remove.h" />
-    <ClInclude Include="sockets\metrowin\log\StdLog.h" />
-    <ClInclude Include="sockets\metrowin\log\trace_log.h" />
+    <ClInclude Include="sockets\metrowin\log\sockets_std_log.h" />
+    <ClInclude Include="sockets\metrowin\log\sockets_trace_log.h" />
     <ClInclude Include="sockets\metrowin\sip\sip_base.h" />
     <ClInclude Include="sockets\metrowin\sip\sip_base_client_socket.h" />
     <ClInclude Include="sockets\metrowin\sip\sip_callback.h" />
@@ -1104,21 +1107,21 @@
     <ClInclude Include="sockets\metrowin\sockets_application_interface.h" />
     <ClInclude Include="sockets\metrowin\sockets_link_in_socket.h" />
     <ClInclude Include="sockets\metrowin\sockets_link_out_socket.h" />
-    <ClInclude Include="sockets\metrowin\timer\Event.h" />
-    <ClInclude Include="sockets\metrowin\timer\EventHandler.h" />
-    <ClInclude Include="sockets\metrowin\timer\EventTime.h" />
-    <ClInclude Include="sockets\metrowin\timer\IEventHandler.h" />
-    <ClInclude Include="sockets\metrowin\timer\IEventOwner.h" />
-    <ClInclude Include="sockets\metrowin\webserver\ajp13.h" />
-    <ClInclude Include="sockets\metrowin\webserver\Ajp13Socket.h" />
-    <ClInclude Include="sockets\metrowin\webserver\AjpBaseSocket.h" />
-    <ClInclude Include="sockets\metrowin\webserver\httpd_socket.h" />
-    <ClInclude Include="sockets\metrowin\webserver\http_base_socket.h" />
-    <ClInclude Include="sockets\metrowin\webserver\http_cookie.h" />
-    <ClInclude Include="sockets\metrowin\webserver\http_form.h" />
-    <ClInclude Include="sockets\metrowin\webserver\http_request.h" />
-    <ClInclude Include="sockets\metrowin\webserver\http_response.h" />
-    <ClInclude Include="sockets\metrowin\webserver\http_transaction.h" />
+    <ClInclude Include="sockets\metrowin\timer\sockets_event.h" />
+    <ClInclude Include="sockets\metrowin\timer\sockets_event_handler.h" />
+    <ClInclude Include="sockets\metrowin\timer\sockets_event_time.h" />
+    <ClInclude Include="sockets\metrowin\timer\sockets_ievent_handler.h" />
+    <ClInclude Include="sockets\metrowin\timer\sockets_ievent_owner.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_ajp13.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_ajp13_socket.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_ajp_base_socket.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_httpd_socket.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_base_socket.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_cookie.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_form.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_request.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_response.h" />
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_transaction.h" />
     <ClInclude Include="sockets\sockets.h" />
     <ClInclude Include="sockets\sockets_http_batch_file.h" />
     <ClInclude Include="sockets\sockets_http_file.h" />
@@ -1201,10 +1204,6 @@
     <ClInclude Include="visual\visual_rgb_quad_array.h" />
     <ClInclude Include="visual\visual_visual.h" />
     <ClInclude Include="visual\visual_water_routine.h" />
-    <ClInclude Include="windows\os.h" />
-    <ClInclude Include="windows\os_defs.h" />
-    <ClInclude Include="windows\os_library.h" />
-    <ClInclude Include="windows\os_utils.h" />
     <ClInclude Include="xml\xml.h" />
     <ClInclude Include="xml\XMLite.h" />
     <ClInclude Include="xml\xml_application.h" />
@@ -1297,6 +1296,7 @@
     <ClCompile Include="ca\ca_font.cpp" />
     <ClCompile Include="ca\ca_graphics.cpp" />
     <ClCompile Include="ca\ca_graphics_object.cpp" />
+    <ClCompile Include="ca\ca_graphics_path.cpp" />
     <ClCompile Include="ca\ca_history.cpp" />
     <ClCompile Include="ca\ca_interlocked_long.cpp" />
     <ClCompile Include="ca\ca_interlocked_long_pulse.cpp" />
@@ -1474,6 +1474,7 @@
     <ClCompile Include="dynamic_source\dynamic_source_script_instance.cpp" />
     <ClCompile Include="dynamic_source\dynamic_source_script_interface.cpp" />
     <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp" />
+    <ClCompile Include="ex1\ex1.cpp" />
     <ClCompile Include="ex1\ex1_application.cpp" />
     <ClCompile Include="ex1\ex1_buffered_file.cpp" />
     <ClCompile Include="ex1\ex1_byte_serializable.cpp" />
@@ -1531,25 +1532,32 @@
     <ClCompile Include="exception\exception_dump_floating_point.cpp" />
     <ClCompile Include="exception\exception_dump_output.cpp" />
     <ClCompile Include="exception\exception_engine.cpp" />
+    <ClCompile Include="exception\exception_error.cpp" />
+    <ClCompile Include="exception\exception_exit.cpp" />
     <ClCompile Include="exception\exception_hresult.cpp" />
     <ClCompile Include="exception\exception_installing.cpp" />
     <ClCompile Include="exception\exception_interface_only.cpp" />
     <ClCompile Include="exception\exception_invalid_argument.cpp" />
+    <ClCompile Include="exception\exception_invalid_character.cpp" />
     <ClCompile Include="exception\exception_invalid_handle.cpp" />
     <ClCompile Include="exception\exception_invalid_index.cpp" />
     <ClCompile Include="exception\exception_last_error.cpp" />
     <ClCompile Include="exception\exception_memory.cpp" />
     <ClCompile Include="exception\exception_not_implemented.cpp" />
+    <ClCompile Include="exception\exception_not_installed.cpp" />
     <ClCompile Include="exception\exception_not_licensed.cpp" />
     <ClCompile Include="exception\exception_not_supported.cpp" />
     <ClCompile Include="exception\exception_operation_canceled.cpp" />
     <ClCompile Include="exception\exception_os.cpp" />
     <ClCompile Include="exception\exception_overflow_error.cpp" />
     <ClCompile Include="exception\exception_range_error.cpp" />
+    <ClCompile Include="exception\exception_resource.cpp" />
     <ClCompile Include="exception\exception_runtime_error.cpp" />
     <ClCompile Include="exception\exception_simple.cpp" />
     <ClCompile Include="exception\exception_standard_translator.cpp" />
     <ClCompile Include="exception\exception_temporary.cpp" />
+    <ClCompile Include="exception\exception_todo.cpp" />
+    <ClCompile Include="exception\exception_user.cpp" />
     <ClCompile Include="exception\exception_VMSException.cpp" />
     <ClCompile Include="exception\exception_void_implementation.cpp" />
     <ClCompile Include="filehandler\filehandler_handler.cpp" />
@@ -1599,6 +1607,7 @@
     <ClCompile Include="gen\gen_geometry.cpp" />
     <ClCompile Include="gen\gen_go_thread.cpp" />
     <ClCompile Include="gen\gen_hash.cpp" />
+    <ClCompile Include="gen\gen_hex.cpp" />
     <ClCompile Include="gen\gen_international.cpp" />
     <ClCompile Include="gen\gen_international_locale_schema.cpp" />
     <ClCompile Include="gen\gen_istring.cpp" />
@@ -1695,6 +1704,7 @@
     <ClCompile Include="multithreading\multithreading_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_mutex.cpp" />
     <ClCompile Include="multithreading\multithreading_plain_service.cpp" />
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp" />
     <ClCompile Include="multithreading\multithreading_semaphore.cpp" />
     <ClCompile Include="multithreading\multithreading_service_base.cpp" />
@@ -1705,6 +1715,9 @@
     <ClCompile Include="multithreading\multithreading_waitable.cpp" />
     <ClCompile Include="multithreading\multithreading_wait_result.cpp" />
     <ClCompile Include="os\os_cross_windows.cpp" />
+    <ClCompile Include="os\os_cross_windows_time.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="planebase\planebase_application.cpp" />
     <ClCompile Include="plane\plane_application.cpp" />
     <ClCompile Include="plane\plane_library.cpp" />
@@ -1721,6 +1734,7 @@
     <ClCompile Include="primitive\datetime\datetime_clock.cpp" />
     <ClCompile Include="primitive\datetime\datetime_clock_interface.cpp" />
     <ClCompile Include="primitive\datetime\datetime_duration.cpp" />
+    <ClCompile Include="primitive\datetime\datetime_float_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_time.cpp" />
     <ClCompile Include="primitive\datetime\datetime_value.cpp" />
     <ClCompile Include="primitive\datetime\datetime_windows_file_time.cpp" />
@@ -1835,6 +1849,10 @@
     <ClCompile Include="sockets\metrowin\sip\sockets_sip_udp_client_socket.cpp" />
     <ClCompile Include="sockets\metrowin\smtp\sockets_smtpd_socket.cpp" />
     <ClCompile Include="sockets\metrowin\smtp\sockets_smtp_socket.cpp" />
+    <ClCompile Include="sockets\metrowin\sockets_application_interface.cpp" />
+    <ClCompile Include="sockets\metrowin\sockets_include.cpp" />
+    <ClCompile Include="sockets\metrowin\sockets_link_in_socket.cpp" />
+    <ClCompile Include="sockets\metrowin\sockets_link_out_socket.cpp" />
     <ClCompile Include="sockets\metrowin\timer\sockets_Event.cpp" />
     <ClCompile Include="sockets\metrowin\timer\sockets_EventHandler.cpp" />
     <ClCompile Include="sockets\metrowin\timer\sockets_EventTime.cpp" />
@@ -1857,6 +1875,7 @@
     <ClCompile Include="userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence_central.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence_central_container.cpp" />
+    <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\user_application.cpp" />
     <ClCompile Include="user\user_buffer.cpp" />
     <ClCompile Include="user\user_check_interface.cpp" />
@@ -1921,9 +1940,6 @@
     <ClCompile Include="visual\visual_rgb_quad_array.cpp" />
     <ClCompile Include="visual\visual_visual.cpp" />
     <ClCompile Include="visual\visual_water_routine.cpp" />
-    <ClCompile Include="windows\os_library_initialize.cpp" />
-    <ClCompile Include="windows\os_resouce_string.cpp" />
-    <ClCompile Include="windows\os_utils.cpp" />
     <ClCompile Include="xml\xml_application.cpp" />
     <ClCompile Include="xml\xml_attr.cpp" />
     <ClCompile Include="xml\xml_base_array.cpp" />
@@ -1959,6 +1975,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\c\m_c.vcxproj">
+      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\optca\m_optca.vcxproj">
+      <Project>{73472f5d-e2e2-4ed4-a2e0-65fae45f0353}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

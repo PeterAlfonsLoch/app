@@ -737,16 +737,7 @@ valid : invalid;
    }
 
 
-   inline float_time &float_time::operator=(const FILETIME &filetimeSrc) RELEASENOTHROW
-   {
-      FILETIME ftl;
-      SYSTEMTIME st;
-
-      m_status =  ::FileTimeToLocalFileTime(&filetimeSrc, &ftl) && ::FileTimeToSystemTime(&ftl, &st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
-
-      return *this;
-   }
-
+   
 
    inline WINBOOL float_time::ConvertSystemTimeToFloatTime(const SYSTEMTIME& systimeSrc)
    {

@@ -149,6 +149,36 @@ namespace sockets
    }
 
 
+   port_t stream_socket::GetRemotePort()
+   {
+
+      return System.net().service_port(gen::international::unicode_to_utf8(m_streamsocket->Information->RemotePort->Begin()));
+
+   }
+   
+   
+   address stream_socket::GetRemoteAddress()
+   {
+
+      return address(get_app(), gen::international::unicode_to_utf8(m_streamsocket->Information->RemoteAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_streamsocket->Information->RemotePort->Begin()));
+
+   }
+
+
+   port_t stream_socket::GetLocalPort()
+   {
+
+      return System.net().service_port(gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->Begin()));
+
+   }
+     
+
+   address stream_socket::GetLocalAddress()
+   {
+
+      return address(get_app(), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->Begin()));
+
+   }
 
 } // namespace sockets
 

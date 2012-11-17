@@ -302,6 +302,7 @@ void frame_window::BeginModalState()
    m_uiptraDisable.remove_all();
 
    // disable all windows connected to this frame (and add them to the list)
+#ifdef WINDOWSEX
    ::user::interaction * oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
 
    while (oswindow != NULL)
@@ -319,7 +320,10 @@ void frame_window::BeginModalState()
       oswindow = oswindow->GetWindow( GW_HWNDNEXT);
 
    }
+#else
+   throw todo(get_app());
 
+#endif
 }
 
 void frame_window::EndModalState()
@@ -383,9 +387,12 @@ void frame_window::OnEnable(bool bEnable)
 
       EnableWindow(FALSE);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       ::SetFocus(NULL);
+#else
+
+      throw todo(get_app());
 
 #endif
 
@@ -428,7 +435,7 @@ bool frame_window::pre_create_window(CREATESTRUCT& cs)
 
       // COLOR_WINDOW background
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
 
@@ -568,7 +575,7 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
 //      MAKEINTRESOURCE(nIDResource), RT_GROUP_ICON);
    //HICON hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(nIDResource));
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    HICON hIcon = (HICON) ::LoadImage(
       NULL,
@@ -1124,7 +1131,7 @@ LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::radix::application* pApp = &System;
    if (pApp != NULL &&
@@ -1161,7 +1168,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    // unpack the DDE message
    uint_ptr unused;
@@ -1217,7 +1224,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::PostMessage((oswindow) wParam, WM_DDE_TERMINATE, (WPARAM)get_handle(), lParam);
 
@@ -1688,7 +1695,7 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
 
    // convert from MSH_MOUSEWHEEL to WM_MOUSEWHEEL
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    WORD keyState = 0;
    keyState |= (::GetKeyState(VK_CONTROL) < 0) ? MK_CONTROL : 0;
@@ -1748,7 +1755,7 @@ void frame_window::ActivateFrame(int nCmdShow)
 void frame_window::BringToTop(int nCmdShow)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(get_parent() == NULL)
    {

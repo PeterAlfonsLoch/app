@@ -14,7 +14,7 @@ namespace filemanager
 
       string _017FilePathGetParent(const char * lpcsz);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       int _017ItemIDListGetLen(LPITEMIDLIST lpiidl)
       {
@@ -216,7 +216,7 @@ namespace filemanager
          return str;
       }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       LPITEMIDLIST _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl)
       {
@@ -534,7 +534,7 @@ namespace filemanager
 
       string str(lpcsz);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       SHFILEINFO shfi16;
 
@@ -587,7 +587,7 @@ namespace filemanager
    }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    int ImageSet::GetImage(
       oswindow oswindow,
@@ -1022,7 +1022,7 @@ namespace filemanager
    int ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       if(pszPath == NULL)
          return 0x80000000;
@@ -1148,7 +1148,7 @@ namespace filemanager
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    bool ImageSet::GetIcon(
       oswindow oswindow,
@@ -1532,7 +1532,7 @@ namespace filemanager
       HICON * phicon48)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       LPITEMIDLIST lpiidlAbsolute;
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
@@ -1549,7 +1549,7 @@ namespace filemanager
    }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    bool ImageSet::GetIcon(
       oswindow oswindow,
@@ -1586,7 +1586,7 @@ namespace filemanager
 } // namespace _shell
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 index Shell::GetCSIDL(LPITEMIDLIST lpiidl)
 {

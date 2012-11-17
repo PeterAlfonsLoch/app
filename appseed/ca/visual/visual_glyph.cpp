@@ -20,7 +20,7 @@ namespace visual
 
       m_ui = glyph.m_ui;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       m_gm = glyph.m_gm;
 
@@ -39,7 +39,7 @@ namespace visual
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    /****************************************************************************
    *  FUNCTION   : IntFromFixed
@@ -476,7 +476,7 @@ namespace visual
       //   m_lpBodyData = NULL;
       //   m_lpOutlineData  = NULL;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       memset(&m_gm, 0, sizeof(m_gm));
 
@@ -493,7 +493,7 @@ namespace visual
    void glyph::GetGlyphRect(int x, int y, LPRECT lpRect)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       lpRect->left      = x - m_gm.gmptGlyphOrigin.x;
       lpRect->top       = y - m_gm.gmptGlyphOrigin.y;

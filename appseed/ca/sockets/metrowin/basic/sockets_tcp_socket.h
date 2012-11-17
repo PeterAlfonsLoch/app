@@ -98,7 +98,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          size_t m_output_length;
 
          //static   SSLInitializer m_ssl_init;
-         SSL_CTX *m_ssl_ctx; ///< ssl context
+//         SSL_CTX *m_ssl_ctx; ///< ssl context
 //         SSL *m_ssl; ///< ssl 'socket'
 //         BIO *m_sbio; ///< ssl bio
          string m_password; ///< ssl password
@@ -119,8 +119,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          bool m_bCertCommonNameCheckEnabled;
 
-         sp(ssl_client_context)     m_spsslclientcontext;
-         string                     m_strInitSSLClientContext;
+//         sp(ssl_client_context)     m_spsslclientcontext;
+  //       string                     m_strInitSSLClientContext;
 
          /** Constructor with standard values on input/output buffers. */
          tcp_socket(socket_handler_base& );
@@ -145,12 +145,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
          //bool open(in6_addr ip,port_t port,bool skip_socks = false);
-         bool open(sockets::address&,bool skip_socks = false);
-         bool open(sockets::address&,sockets::address& bind_address,bool skip_socks = false);
+         bool open(const sockets::address & addr, bool skip_socks = false);
+         bool open(const sockets::address & addr, const sockets::address & bind_address, bool skip_socks = false);
          /** open connection.
          \param host Hostname
          \param port Port number */
-         bool open(const string &host,port_t port);
+         bool open(const string & host, port_t port);
 
          /** Connect timeout callback. */
          void OnConnectTimeout();
@@ -206,8 +206,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool OnSocks4Read();
 
          /** Callback executed when resolver thread has finished a resolve request. */
-         void OnResolved(int id,ipaddr_t a,port_t port);
-         void OnResolved(int id,in6_addr& a,port_t port);
+         void OnResolved(int id, const address & addr);
+         //void OnResolved(int id,in6_addr& a,port_t port);
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
          void OnSSLConnect();
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
@@ -251,29 +251,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void OnWrite();
 
 
-         virtual long cert_common_name_check(const char * common_name);
-         virtual void enable_cert_common_name_check(bool bEnable = true);
+//         virtual long cert_common_name_check(const char * common_name);
+  //       virtual void enable_cert_common_name_check(bool bEnable = true);
 
          /** SSL; Initialize ssl context for a client socket.
          \param meth_in SSL method */
-         void InitializeContext(const string & context, const SSL_METHOD *meth_in = NULL);
+//         void InitializeContext(const string & context, const SSL_METHOD *meth_in = NULL);
          /** SSL; Initialize ssl context for a server socket.
          \param keyfile Combined private key/certificate file
          \param password Password for private key
          \param meth_in SSL method */
-         void InitializeContext(const string & context, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
+  //       void InitializeContext(const string & context, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
          /** SSL; Initialize ssl context for a server socket.
          \param certfile Separate certificate file
          \param keyfile Combined private key/certificate file
          \param password Password for private key
          \param meth_in SSL method */
-         void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
+    //     void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
          /** SSL; Password callback method. */
-         static   int SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
+      //   static   int SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
          /** SSL; get pointer to ssl context structure. */
-         virtual SSL_CTX *GetSslContext();
+//         virtual SSL_CTX *GetSslContext();
          /** SSL; get pointer to ssl structure. */
-         virtual SSL *GetSsl();
+  //       virtual SSL *GetSsl();
          /** ssl; still negotiating connection. */
          bool SSLNegotiate();
          /** SSL; get ssl password. */

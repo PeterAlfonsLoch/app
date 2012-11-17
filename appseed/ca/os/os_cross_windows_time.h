@@ -1,7 +1,7 @@
-#ifndef METROWIN
+#pragma once
+
 WINBOOL LocalFileTimeToFileTime(const FILETIME *localft, LPFILETIME utcft);
 WINBOOL FileTimeToLocalFileTime(const FILETIME *utcft, LPFILETIME localft);
-#endif
 #ifndef METROWIN
 WINBOOL FileTimeToSystemTime(const FILETIME *ft, LPSYSTEMTIME syst);
 #endif

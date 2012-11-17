@@ -1124,13 +1124,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifdef WINDOWSEX
-
    bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {
       UNREFERENCED_PARAMETER(lpDevMode);
       throw interface_only_exception(get_app());
    }
+
+
+#ifdef WINDOWSEX
 
    UINT graphics::GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const
    {

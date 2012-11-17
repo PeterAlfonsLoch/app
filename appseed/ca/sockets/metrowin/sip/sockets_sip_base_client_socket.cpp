@@ -163,7 +163,7 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.attr("remote_addr") = GetRemoteSocketAddress().get_display_number();
+         m_request.attr("remote_addr") = GetRemoteAddress().get_display_number();
          {
 
 #ifdef WINDOWS
@@ -374,7 +374,7 @@ namespace sockets
    {
       ::gen::parse pa(url_in,"/");
       protocol = pa.getword(); // http
-      if (!strcasecmp(protocol, "https:"))
+      if (!stricmp(protocol, "https:"))
       {
    #ifdef HAVE_OPENSSL
          EnableSSL();

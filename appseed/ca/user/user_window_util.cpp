@@ -33,7 +33,7 @@ namespace user
    void oswindow_array::top_windows_by_z_order()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       int iOrder = 0;
       oswindow oswindowOrder = ::GetDesktopWindow();
@@ -246,7 +246,7 @@ namespace user
    void oswindow_tree::EnumDescendants()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       ::oswindow oswindow = m_oswindow;
 
@@ -382,7 +382,7 @@ namespace user
    void window_util::EnumChildren(oswindow oswindow, oswindow_array & oswindowa)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       if(!::IsWindow(oswindow))
          return;
@@ -482,12 +482,13 @@ namespace user
 
    void window_util::ContraintPosToParent(oswindow oswindow)
    {
+#ifndef METROWIN
       rect rectMajor;
       ::oswindow oswindowParent = ::GetParent(oswindow);
       if(oswindowParent == NULL)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          rectMajor.left = 0;
          rectMajor.top = 0;
@@ -509,7 +510,7 @@ namespace user
       rect rect;
       ::GetClientRect(oswindow, rect);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       ::ClientToScreen(oswindow, &rect.top_left());
 
@@ -572,6 +573,7 @@ namespace user
       throw todo(::ca::get_thread_app());
 
 #endif
+#endif
 
    }
 
@@ -611,7 +613,7 @@ namespace user
    void window_util::SendMessageToDescendants(oswindow oswindow, UINT message, WPARAM wParam, LPARAM lParam, bool bDeep)
    {
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
 
       // walk through HWNDs to avoid creating temporary ::ca::window objects
       // unless we need to call this function recursively
@@ -692,6 +694,7 @@ namespace user
 
    int window_util::GetZOrder(oswindow oswindow)
    {
+#ifndef METROWIN
 //      int iOrder = 0;
       ::oswindow oswindowOrder = ::ca::null();
       try
@@ -724,15 +727,18 @@ namespace user
       throw todo(::ca::get_thread_app());
 
 #endif
+#endif
 
       return 0x7fffffff;
+
+
    }
 
 
    void window_util::GetZOrder(oswindow oswindow, int_array & ia)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       int iOrder;
       ia.remove_all();
@@ -771,7 +777,7 @@ namespace user
    {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       oswindow_array oswindowa;
 
@@ -816,7 +822,7 @@ namespace user
    HRGN window_util::GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChildren)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       rect rectWnd;
 
@@ -845,6 +851,7 @@ namespace user
 
    bool window_util::IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant)
    {
+#ifndef METROWIN
       while(true)
       {
          oswindowDescendant = ::GetParent(oswindowDescendant);
@@ -853,6 +860,9 @@ namespace user
          if(oswindowDescendant == oswindowAscendant)
             return true;
       }
+#else
+      return false;
+#endif
    }
 
    ::user::interaction * interaction_ptr_array::find_first(::ca::type_info info)

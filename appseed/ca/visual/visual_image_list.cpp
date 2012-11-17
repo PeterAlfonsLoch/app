@@ -1,6 +1,7 @@
 #include "framework.h"
+#ifndef METROWIN
 #include "include/freeimage.h"
-
+#endif
 
 image_list::image_list(::ca::application * papp) :
    ca(papp),
@@ -140,7 +141,12 @@ int image_list::add(::visual::icon * picon)
    m_spdib->get_graphics()->FillSolidRect(iItem * m_size.cx, 0, m_size.cx, m_size.cy, 0);
    //COLORREF crMask = m_spdib->get_graphics()->GetPixel(iItem * m_size.cx, 0);
 
+
+#ifdef METROWIN
+   m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, NULL, 0);
+#else
    m_spdib->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, NULL, DI_IMAGE);
+#endif
 
    //::ca::dib_sp dibAlpha(get_app());
    //dibAlpha->create(m_size.cx, m_size.cy);
@@ -194,7 +200,7 @@ int image_list::add_icon(const char * psz)
 
    int iSize = min(m_size.cx, m_size.cy);
 
-#ifdef WIN32
+#ifdef WINDOWSEX
 
    icon.m_picon = (void *) (HICON) ::LoadImage(NULL, psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
 
@@ -291,7 +297,7 @@ bool image_list::_grow()
    return true;
 }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 bool image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
 {

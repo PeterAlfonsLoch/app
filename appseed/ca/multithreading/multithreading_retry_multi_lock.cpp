@@ -62,9 +62,14 @@ wait_result retry_multi_lock::lock(bool bWaitForAll, DWORD dwWakeMask /* = 0 */)
    while(true)
    {
       if (dwWakeMask == 0)
-         iResult = ::WaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, m_durationLock.os_lock_duration());
+         iResult = ::WaitForMultipleObjectsEx((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, m_durationLock.os_lock_duration(), FALSE);
+#ifdef METROWIN
+      else
+         throw not_supported_exception(::ca::get_thread_app());
+#else
       else
          iResult = ::MsgWaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, m_durationLock.os_lock_duration(), dwWakeMask);
+#endif
 
       index iIndex = iResult - WAIT_OBJECT_0;
       if (iResult >= WAIT_OBJECT_0 && iIndex < m_objecta.get_count())

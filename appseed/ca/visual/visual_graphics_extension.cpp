@@ -45,7 +45,7 @@ namespace visual
          while(i < wcslen(wstr))
          {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
             ::GetTextExtentPoint32W((HDC)pdc->get_os_data(), lpwsz, (int) i, &sz);
 
@@ -206,7 +206,7 @@ namespace visual
    void graphics_extension::FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       ::SetBkColor(hdc, clr);
 
@@ -231,7 +231,7 @@ namespace visual
    void graphics_extension::FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       ::SetBkColor(hdc, clr);
 
@@ -249,7 +249,7 @@ namespace visual
    void graphics_extension::FillSolidRect(HDC hdc, int x, int y, int cx, int cy, COLORREF clr)
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       ::SetBkColor(hdc, clr);
 

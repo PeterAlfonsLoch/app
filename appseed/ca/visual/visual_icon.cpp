@@ -42,7 +42,7 @@ namespace visual
          if(m_picon != NULL)
          {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
             ::DestroyIcon((HICON) m_picon);
 

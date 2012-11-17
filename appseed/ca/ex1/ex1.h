@@ -65,8 +65,13 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 // Implementation string helpers
 //CLASS_DECL_ca void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int nString);
-CLASS_DECL_ca void __format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int nString);
-CLASS_DECL_ca bool __extract_sub_string(string & rString, const char * lpszFullString, int iSubString, char chSep = '\n');
+namespace ex1
+{
+
+   CLASS_DECL_ca void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int nString);
+   CLASS_DECL_ca bool extract_sub_string(string & rString, const char * lpszFullString, int iSubString, char chSep = '\n');
+
+}
 
 
 

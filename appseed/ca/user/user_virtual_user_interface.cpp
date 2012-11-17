@@ -239,16 +239,16 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    m_pguie->m_id      = id;
    CREATESTRUCT cs;
    cs.dwExStyle = dwExStyle;
-   cs.lpszClass = lpszClassName;
-   cs.lpszName = lpszWindowName;
    cs.style = dwStyle;
    cs.x = rect.left;
    cs.y = rect.top;
    cs.cx = rect.right - rect.left;
    cs.cy = rect.bottom - rect.top;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
+   cs.lpszClass = lpszClassName;
+   cs.lpszName = lpszWindowName;
    cs.hwndParent = pparent->get_handle();
 
 #else
@@ -358,17 +358,17 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
-   cs.lpszClass = lpszClassName;
-   cs.lpszName = lpszWindowName;
    cs.style = dwStyle;
    cs.x = rect.left;
    cs.y = rect.top;
    cs.cx = rect.right - rect.left;
    cs.cy = rect.bottom - rect.top;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
-   cs.hwndParent = pparent->get_handle();
+   cs.lpszClass   = lpszClassName;
+   cs.lpszName    = lpszWindowName;
+   cs.hwndParent  = pparent->get_handle();
 
 #else
 
@@ -485,7 +485,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    cs.cx = 0;
    cs.cy = 0;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    cs.hwndParent = pparent->get_handle();
 
@@ -789,7 +789,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          GetClientRect(&layout.rect);    // starting rect comes from client rect
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    if ((nFlags & ~reposNoPosLeftOver) != reposQuery)
       layout.hDWP = ::BeginDeferWindowPos(8); // reasonable guess
    else
@@ -797,6 +797,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 #endif
 
 
+#ifndef METROWIN
 
    if(m_pguie != this && m_pguie != NULL)
    {
@@ -972,10 +973,22 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
+#else
+
+   throw todo(get_app());
+
+#endif
+
 }
 
 void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCRECT lpRect)
 {
+#ifdef METROWIN
+
+   throw todo(::ca::get_thread_app());
+
+#else
+
    ASSERT(oswindow != NULL);
    ASSERT(lpRect != NULL);
    ::oswindow oswindow_Parent = ::GetParent(oswindow);
@@ -1025,6 +1038,9 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
          lpRect->right - lpRect->left, lpRect->bottom - lpRect->top,
          SWP_NOACTIVATE|SWP_NOZORDER);
    }
+
+#endif
+
 }
 
 

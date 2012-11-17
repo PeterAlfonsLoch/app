@@ -75,19 +75,27 @@ namespace gen
          return true;
       }
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
       base * dispatch::peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
+#ifdef METROWIN
+         throw todo(get_app());
+#else
          if(!::PeekMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
             return NULL;
+#endif
          return get_base(lpmsg, pwnd);
       }
 
       base * dispatch::get_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
+#ifdef METROWIN
+         throw todo(get_app());
+#else
          if(!::GetMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
             return NULL;
+#endif
          return get_base(lpmsg, pwnd);
       }
 
@@ -174,6 +182,7 @@ namespace gen
                pbase = new set_focus(get_app());
             }
             break;
+#ifndef METROWIN
          case PrototypeWindowPos:
             {
                pbase = new window_pos(get_app());
@@ -184,6 +193,7 @@ namespace gen
                pbase = new nc_calc_size(get_app());
             }
             break;
+#endif
          case PrototypeMouse:
             {
                pbase = new mouse(get_app());

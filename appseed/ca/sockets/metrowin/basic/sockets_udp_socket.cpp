@@ -45,13 +45,13 @@ namespace sockets
 {
 
    udp_socket::udp_socket(socket_handler_base& h, int ibufsz, bool ipv6, int retries) : socket(h)
-/*   , m_ibuf(new char[ibufsz])
+   , m_ibuf(new char[ibufsz])
    , m_ibufsz(ibufsz)
    , m_bind_ok(false)
    , m_port(0)
    , m_last_size_written(-1)
    , m_retries(retries)
-   , m_b_read_ts(false)*/
+   , m_b_read_ts(false)
    {
       SetIpv6(ipv6);
    }
@@ -71,12 +71,27 @@ namespace sockets
 
       attach(m_datagramsocket);
 
-      m_datagramsocket->BindServiceNameAsync(rtstr(gen::str::from(port)))->Completed = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      m_datagramsocket->MessageReceived += 
+         ref new ::Windows::Foundation::TypedEventHandler < ::Windows::Networking::Sockets::DatagramSocket ^, ::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ >
+            ([this](Windows::Networking::Sockets::DatagramSocket ^ socket, ::Windows::Networking::Sockets::DatagramSocketMessageReceivedEventArgs ^ args)
+      {
+
+         Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(args->GetDataReader()->UnconsumedBufferLength);
+         
+         args->GetDataReader()->ReadBytes(ucha);
+         
+         OnRawData((char *) ucha->Data, ucha->Length);
+
+      });
+
+      m_datagramsocket->BindServiceNameAsync(rtstr(gen::str::from(port)))->Completed = 
+         ref new ::Windows::Foundation::AsyncActionCompletedHandler
+         ([this] (::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
          
          if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
-            
+            m_bind_ok = true;
             OnAccept();
 
          }
@@ -107,12 +122,14 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->BindEndpointAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::AsyncStatus status)
+      m_datagramsocket->BindEndpointAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = 
+         ref new ::Windows::Foundation::AsyncActionCompletedHandler
+            ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
 
          if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
-            
+            m_bind_ok = true;
             OnAccept();
 
          }
@@ -125,62 +142,56 @@ namespace sockets
 
 
    /** if you wish to use Send, first open a connection */
-   bool udp_socket::open(ipaddr_t l, port_t port)
+/*   bool udp_socket::open(ipaddr_t l, port_t port)
    {
       ipv4_address ad(get_app(), l, port);
       return open(ad);
    }
+   */
 
-
-   bool udp_socket::open(const string & host, port_t port)
+   bool udp_socket::open(const char * host, port_t port)
    {
-      if (IsIpv6())
-      {
-         ipv6_address ad(get_app(), host, port);
-         if (ad.IsValid())
-         {
-            return open(ad);
-         }
-         return false;
-      }
-      ipv4_address ad(get_app(), host, port);
-      if (ad.IsValid())
-      {
-         return open(ad);
-      }
-      return false;
+
+      return open(address(get_app(), host, port));
+      
    }
 
 
-   bool udp_socket::open(struct in6_addr& a, port_t port)
+   /*bool udp_socket::open(struct in6_addr& a, port_t port)
    {
       ipv6_address ad(get_app(), a, port);
       return open(ad);
    }
+   */
 
-
-   bool udp_socket::open(sockets::address& ad)
+   bool udp_socket::open(sockets::address & ad)
    {
-      if (GetSocket() == INVALID_SOCKET)
+
+      m_datagramsocket = ref new ::Windows::Networking::Sockets::DatagramSocket();
+         
+      attach(m_datagramsocket);
+
+      SetNonblocking(true);
+
+      m_datagramsocket->ConnectAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = 
+         ref new ::Windows::Foundation::AsyncActionCompletedHandler
+            ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
-         attach(CreateSocket(ad.GetFamily(), SOCK_DGRAM, "udp"));
-      }
-      if (GetSocket() != INVALID_SOCKET)
-      {
-         SetNonblocking(true);
-         if (connect(GetSocket(), ad, ad) == -1)
+
+         if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
-            Handler().LogError(this, "connect", Errno, StrError(Errno), ::gen::log::level::fatal);
-            SetCloseAndDelete();
-            return false;
+            
+            OnConnect();
+
          }
-         SetConnected();
-         return true;
-      }
-      return false;
+
+      });
+
+      return true;
+
    }
 
-
+/*
    void udp_socket::CreateConnection()
    {
       if (IsIpv6())
@@ -208,30 +219,21 @@ namespace sockets
          attach(s);
       }
    }
-
+   */
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int len, int flags)
+/*   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int len, int flags)
    {
-      if (IsIpv6())
-      {
-         ipv6_address ad(get_app(), h, p);
-         if (ad.IsValid())
-         {
-            SendToBuf(ad, data, len, flags);
-         }
-         return;
-      }
-      ipv4_address ad(get_app(), h, p);
-      if (ad.IsValid())
-      {
-         SendToBuf(ad, data, len, flags);
-      }
-   }
 
+      ::sockets::address ad(get_app(), h, p);
+
+      SendToBuf(ad, data, len, flags);
+
+   }
+   */
 
    /** send to specified address */
-   void udp_socket::SendToBuf(ipaddr_t a, port_t p, const char *data, int len, int flags)
+/*   void udp_socket::SendToBuf(ipaddr_t a, port_t p, const char *data, int len, int flags)
    {
       ipv4_address ad(get_app(), a, p);
       SendToBuf(ad, data, len, flags);
@@ -243,8 +245,9 @@ namespace sockets
       ipv6_address ad(get_app(), a, p);
       SendToBuf(ad, data, len, flags);
    }
+   */
 
-
+   /*
    void udp_socket::SendToBuf(sockets::address& ad, const char *data, int len, int flags)
    {
       if (GetSocket() == INVALID_SOCKET)
@@ -260,9 +263,9 @@ namespace sockets
          }
       }
    }
+   */
 
-
-   void udp_socket::SendTo(const string & a, port_t p, const string & str, int flags)
+/*   void udp_socket::SendTo(const string & a, port_t p, const string & str, int flags)
    {
       SendToBuf(a, p, str, (int)str.get_length(), flags);
    }
@@ -284,7 +287,7 @@ namespace sockets
    {
       SendToBuf(ad, str, (int)str.get_length(), flags);
    }
-
+   */
 
    /** send to connected address */
    void udp_socket::SendBuf(const char *data, size_t len, int flags)
@@ -294,10 +297,23 @@ namespace sockets
          Handler().LogError(this, "SendBuf", 0, "not connected", ::gen::log::level::error);
          return;
       }
-      if ((m_last_size_written = send(GetSocket(), data, (int)len, flags)) == -1)
+
+      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_datagramsocket->OutputStream);
+
+      writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *) data, len));
+
+      /*writer->FlushAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < bool >([this](::Windows::Foundation::IAsyncOperation<bool> asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
+      {
+
+
+
+      });*/
+      
+/*      if ((m_last_size_written = send(GetSocket(), data, (int)len, flags)) == -1)
       {
          Handler().LogError(this, "send", Errno, StrError(Errno), ::gen::log::level::error);
-      }
+      }*/
+
    }
 
 
@@ -379,7 +395,7 @@ namespace sockets
 
    void udp_socket::OnRead()
    {
-      if (IsIpv6())
+      /*if (IsIpv6())
       {
          struct sockaddr_in6 sa;
          socklen_t sa_len = sizeof(sa);
@@ -483,11 +499,23 @@ namespace sockets
    #endif
             Handler().LogError(this, "recvfrom", Errno, StrError(Errno), ::gen::log::level::error);
       }
+      */
+      /*::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_datagramsocket->OutputStream);
+      //int n = reader->UnconsumedBufferLength;
+      Platform::Array < unsigned char, 1U > ^ ucha = nullptr;
+      reader->ReadBytes(ucha);
+      if(ucha != nullptr)
+      {
+         OnRawData(ucha->Data, ucha->Length);
+      }*/
+
    }
 
 
    void udp_socket::SetBroadcast(bool b)
    {
+      throw not_implemented(get_app());
+      /*
       int one = 1;
       int zero = 0;
 
@@ -508,13 +536,14 @@ namespace sockets
          {
             Handler().LogError(this, "SetBroadcast", Errno, StrError(Errno), ::gen::log::level::warning);
          }
-      }
+      }*/
    }
 
 
    bool udp_socket::IsBroadcast()
    {
-      int is_broadcast = 0;
+      throw not_implemented(get_app());
+      /*int is_broadcast = 0;
       socklen_t size;
 
       if (GetSocket() == INVALID_SOCKET)
@@ -525,26 +554,28 @@ namespace sockets
       {
          Handler().LogError(this, "IsBroadcast", Errno, StrError(Errno), ::gen::log::level::warning);
       }
-      return is_broadcast != 0;
+      return is_broadcast != 0;*/
    }
 
 
    void udp_socket::SetMulticastTTL(int ttl)
    {
-      if (GetSocket() == INVALID_SOCKET)
+      throw not_implemented(get_app());
+      /*if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
       }
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int)) == -1)
       {
          Handler().LogError(this, "SetMulticastTTL", Errno, StrError(Errno), ::gen::log::level::warning);
-      }
+      }*/
    }
 
 
    int udp_socket::GetMulticastTTL()
    {
-      int ttl = 0;
+      throw not_implemented(get_app());
+      /*int ttl = 0;
       socklen_t size = sizeof(int);
 
       if (GetSocket() == INVALID_SOCKET)
@@ -555,13 +586,14 @@ namespace sockets
       {
          Handler().LogError(this, "GetMulticastTTL", Errno, StrError(Errno), ::gen::log::level::warning);
       }
-      return ttl;
+      return ttl;*/
    }
 
 
    void udp_socket::SetMulticastLoop(bool x)
    {
-      if (GetSocket() == INVALID_SOCKET)
+      throw not_implemented(get_app());
+      /*if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
       }
@@ -578,13 +610,14 @@ namespace sockets
       if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
       {
          Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
-      }
+      }*/
    }
 
 
    bool udp_socket::IsMulticastLoop()
    {
-      if (GetSocket() == INVALID_SOCKET)
+      throw not_implemented(get_app());
+      /*if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
       }
@@ -604,12 +637,14 @@ namespace sockets
       {
          Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
       }
-      return is_loop ? true : false;
+      return is_loop ? true : false;*/
    }
 
 
    void udp_socket::AddMulticastMembership(const string & group, const string & local_if, int if_index)
    {
+      throw not_implemented(get_app());
+      /*
       if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
@@ -641,12 +676,14 @@ namespace sockets
          {
             Handler().LogError(this, "AddMulticastMembership", Errno, StrError(Errno), ::gen::log::level::warning);
          }
-      }
+      }*/
    }
 
 
    void udp_socket::DropMulticastMembership(const string & group, const string & local_if, int if_index)
    {
+      throw not_implemented(get_app());
+      /*
       if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
@@ -678,13 +715,14 @@ namespace sockets
          {
             Handler().LogError(this, "DropMulticastMembership", Errno, StrError(Errno), ::gen::log::level::warning);
          }
-      }
+      }*/
    }
 
 
    void udp_socket::SetMulticastHops(int hops)
    {
-      if (GetSocket() == INVALID_SOCKET)
+      throw not_implemented(get_app());
+      /*if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
       }
@@ -696,12 +734,14 @@ namespace sockets
       if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int)) == -1)
       {
          Handler().LogError(this, "SetMulticastHops", Errno, StrError(Errno), ::gen::log::level::warning);
-      }
+      }*/
    }
 
 
    int udp_socket::GetMulticastHops()
    {
+      throw not_implemented(get_app());
+      /*
       if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
@@ -717,7 +757,7 @@ namespace sockets
       {
          Handler().LogError(this, "GetMulticastHops", Errno, StrError(Errno), ::gen::log::level::warning);
       }
-      return hops;
+      return hops;*/
    }
 
 
@@ -764,22 +804,39 @@ namespace sockets
    }
 
 
-   /** Returns local port number for bound socket file descriptor. */
-   port_t socket::GetSockPort()
+   port_t udp_socket::GetRemotePort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalServiceName));
+      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->Begin()));
+
+   }
+   
+   
+   address udp_socket::GetRemoteAddress()
+   {
+
+      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemoteAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->Begin()));
 
    }
 
 
-   /** Returns local ipv4 address for bound socket file descriptor. */
-   ipaddr_t socket::GetSockIP4()
+   port_t udp_socket::GetLocalPort()
    {
-      throw interface_only_exception(get_app());
+
+      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->Begin()));
+
+   }
+     
+
+   address udp_socket::GetLocalAddress()
+   {
+
+      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->Begin()));
+
    }
 
 
 } // namespace sockets
+
 
 

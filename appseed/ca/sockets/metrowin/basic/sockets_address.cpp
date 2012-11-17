@@ -8,9 +8,9 @@ namespace sockets
    address::address(::ca::application * papp, const char * pszAddress, const char * pszServiceName)
    {
 
-      m_hostname = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
+      m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
 
-      m_strServiceName = pszServiceName;
+      m_strService   = rtstr(pszServiceName);
 
    }
 
@@ -18,9 +18,9 @@ namespace sockets
    address::address(::ca::application * papp, const char * pszAddress, int iPort)
    {
 
-      m_hostname = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
+      m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
 
-      m_strServiceName = gen::str::from(iPort);
+      m_strService   = itort(iPort);
 
    }
 
@@ -43,7 +43,7 @@ namespace sockets
    {
 
       m_hostname        = address.m_hostname;
-      m_strServiceName  = address.m_strServiceName;
+      m_strService      = address.m_strService;
 
       return *this;
 
@@ -77,10 +77,12 @@ namespace sockets
    string address::get_service_name() const
    {
 
-      if(gen::str::is_simple_natural(m_strServiceName))
-         return service_number_to_name(gen::str::to_int(m_strServiceName));
+      string strService = gen::international::unicode_to_utf8(m_strService->Begin());
+
+      if(gen::str::is_simple_natural(strService))
+         return service_number_to_name(gen::str::to_int(strService));
       else
-         return m_strServiceName;
+         return strService;
 
    }
 
@@ -88,10 +90,12 @@ namespace sockets
    int address::get_service_number() const
    {
 
-      if(gen::str::is_simple_natural(m_strServiceName))
-         return service_name_to_number(m_strServiceName);
+      string strService = gen::international::unicode_to_utf8(m_strService->Begin());
+
+      if(gen::str::is_simple_natural(strService))
+         return service_name_to_number(strService);
       else
-         return gen::str::to_int(m_strServiceName);
+         return gen::str::to_int(strService);
 
    }
    
@@ -99,20 +103,7 @@ namespace sockets
    int address::service_name_to_number(const char * psz) const
    {
 
-      string str(psz);
-
-      if(str.CompareNoCase("http"))
-      {
-         return 80;
-      }
-      else if(str.CompareNoCase("https"))
-      {
-         return 443;
-      }
-      else
-      {
-         return 0;
-      }
+      return System.net().service_port(psz);
 
    }
 
@@ -120,15 +111,7 @@ namespace sockets
    string  address::service_number_to_name(int iPort) const
    {
 
-      switch(iPort)
-      {
-      case 80:
-         return "http";
-      case 443:
-         return "https";
-      default:
-         return "";
-      }
+      return System.net().service_name(iPort);
 
    }
 

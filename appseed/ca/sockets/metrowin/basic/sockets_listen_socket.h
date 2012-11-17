@@ -174,7 +174,7 @@
          /** Return assigned port number. */
          port_t GetPort()
          {
-            return GetSockPort();
+            return GetLocalPort();
          }
 
          /** Return listen queue depth. */

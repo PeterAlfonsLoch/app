@@ -23,11 +23,11 @@ namespace sockets
          if(App(dynamic_cast < ::ca::application * >(this)).is_system())
          {
 
-            ::sockets::SSLInitializer ssl_init(m_psystem);
+/*            ::sockets::SSLInitializer ssl_init(m_psystem);*/
 
             System.factory().creatable_small < ::http::memory_file > ();
-            System.factory().cloneable_small < ::sockets::ipv4_address > ();
-            System.factory().cloneable_small < ::sockets::ipv6_address > ();
+/*            System.factory().cloneable_small < ::sockets::ipv4_address > ();
+            System.factory().cloneable_small < ::sockets::ipv6_address > ();*/
 
             m_pajpbasesocketinit = new AjpBaseSocket::Initializer;
          }

@@ -27,7 +27,7 @@ namespace sockets
 
 
       ::Windows::Networking::HostName ^      m_hostname;
-      string                                 m_strServiceName;
+      ::Platform::String ^                   m_strService;
       
 
       address(::ca::application * papp, const char * pszAddress = NULL, const char * pszServiceName = NULL);

@@ -16,7 +16,7 @@ CLASS_DECL_ca void * MyAlloc(size_t size);
 CLASS_DECL_ca void * MyRealloc(void * address, size_t sizeOld, size_t sizeNew);
 CLASS_DECL_ca void MyFree(void *address);
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(METROWIN)
 
 void SetLargePageSize();
 

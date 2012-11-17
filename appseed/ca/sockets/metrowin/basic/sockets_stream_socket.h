@@ -103,17 +103,8 @@
          virtual int Protocol() = 0;
 
          virtual port_t GetRemotePort();
-         /** Returns remote ip as string? ipv4 and ipv6. */
          virtual address GetRemoteAddress();
-         /** ipv4 and ipv6(not implemented) */
-         virtual address GetRemoteHostname();
-         //@}
-
-         /** Returns local port number for bound socket file descriptor. */
          virtual port_t GetLocalPort();
-         /** Returns local ipv4 address for bound socket file descriptor. */
-         //ipaddr_t GetSockIP4();
-         /** Returns local ipv4 address as text for bound socket file descriptor. */
          virtual address GetLocalAddress();
 
 

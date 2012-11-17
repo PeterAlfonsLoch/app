@@ -39,12 +39,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   window* window::GetAncestor(UINT gaFlags) const
-   {
-      UNREFERENCED_PARAMETER(gaFlags);
-      throw interface_only_exception(get_app());
-   }
-
    bool window::GetScrollBarInfo(LONG idObject, PSCROLLBARINFO psbi) const
    {
       UNREFERENCED_PARAMETER(idObject);
@@ -57,6 +51,16 @@ namespace ca
       UNREFERENCED_PARAMETER(pti);
       throw interface_only_exception(get_app());
    }
+
+#endif
+
+   window* window::GetAncestor(UINT gaFlags) const
+   {
+      UNREFERENCED_PARAMETER(gaFlags);
+      throw interface_only_exception(get_app());
+   }
+
+
 
    bool window::AnimateWindow(DWORD dwTime, DWORD dwFlags)
    {
@@ -110,7 +114,6 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#endif
 
 
    LRESULT window::Default()

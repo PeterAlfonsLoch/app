@@ -8,6 +8,7 @@
 #elif defined(METROWIN)
 
 #include "ca/metrowin/metrowin.h"
+#include "os_cross_windows.h"
 
 #else 
 

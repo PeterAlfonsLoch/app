@@ -475,7 +475,7 @@ namespace user
       {
          bool bVisible;
          bool bFatalError;
-         user::interaction * puiBefore;
+         user::interaction * puiBefore = NULL;
          ::user::interaction * pui = get_bottom_child();
          while(pui != NULL)
          {
@@ -1294,7 +1294,7 @@ namespace user
       interaction * pimplOld = m_pimpl;
       interaction * pimplNew = NULL;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       if(pParentWnd == NULL || pParentWnd->get_safe_handle() == HWND_MESSAGE)
 #else
       if(pParentWnd == NULL)
@@ -2124,7 +2124,7 @@ namespace user
          m_pimpl->pre_subclass_window();
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    WNDPROC* interaction::GetSuperWndProcAddr()
    {
       if(m_pimpl == NULL || m_pimpl == this)
@@ -2137,7 +2137,7 @@ namespace user
    id interaction::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
    {
       
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       
       // for tracking the idle time state
       bool bIdle = TRUE;
@@ -2318,7 +2318,7 @@ ExitModal:
          for(index i = 0; i < m_iaModalThread.get_count(); i++)
          {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
             ::PostThreadMessageA((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
 

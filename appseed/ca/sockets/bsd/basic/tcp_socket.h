@@ -204,8 +204,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool OnSocks4Read();
 
          /** Callback executed when resolver thread has finished a resolve request. */
-         void OnResolved(int id,ipaddr_t a,port_t port);
-         void OnResolved(int id,in6_addr& a,port_t port);
+         void OnResolved(int id, const address & addr);
+         //void OnResolved(int id,in6_addr& a,port_t port);
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
          void OnSSLConnect();
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */

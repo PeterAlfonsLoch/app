@@ -130,9 +130,6 @@
     <Filter Include="Header Files\install">
       <UniqueIdentifier>{18d28d97-2eea-41b7-8223-030eb84a88fc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\windows">
-      <UniqueIdentifier>{530ef83e-aead-415b-89b6-72828fc20cfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\os">
       <UniqueIdentifier>{519fbb59-06d3-4c50-a226-6f767ba1edf3}</UniqueIdentifier>
     </Filter>
@@ -279,9 +276,6 @@
     </Filter>
     <Filter Include="Source Files\javascript">
       <UniqueIdentifier>{af622e82-0230-463b-afa9-dd6c78450ad8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\windows">
-      <UniqueIdentifier>{fab3f178-faf4-4223-9157-f84c1cb020ad}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\os">
       <UniqueIdentifier>{e0b2438b-7250-49ad-ac8b-6b02c95f79c2}</UniqueIdentifier>
@@ -2277,15 +2271,6 @@
     <ClCompile Include="javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\javascript</Filter>
     </ClCompile>
-    <ClCompile Include="windows\os_library_initialize.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\os_resouce_string.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="windows\os_utils.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\os_cross_windows.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
@@ -2507,6 +2492,60 @@
     </ClCompile>
     <ClCompile Include="metrowin\metrowin.cpp">
       <Filter>Source Files\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_user.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_resource.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_graphics_path.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="multithreading\multithreading_retry_multi_lock.cpp">
+      <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_error.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_todo.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_exit.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_not_installed.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_hex.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1.cpp">
+      <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\datetime_float_time.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\metrowin\sockets_link_out_socket.cpp">
+      <Filter>Source Files\sockets\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\metrowin\sockets_link_in_socket.cpp">
+      <Filter>Source Files\sockets\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\metrowin\sockets_include.cpp">
+      <Filter>Source Files\sockets\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="sockets\metrowin\sockets_application_interface.cpp">
+      <Filter>Source Files\sockets\metrowin</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\exception_invalid_character.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="os\os_cross_windows_time.cpp">
+      <Filter>Source Files\os</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -5099,21 +5138,6 @@
     <ClInclude Include="install\install_install.h">
       <Filter>Header Files\install</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\os_implementation.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\os.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\os_defs.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\os_library.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="windows\os_utils.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\os.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
@@ -5213,18 +5237,6 @@
     <ClInclude Include="multithreading\multithreading_condition.h">
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\metrowin\asynch_dns\resolv_server.h">
-      <Filter>Header Files\sockets\metrowin\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\asynch_dns\resolv_socket.h">
-      <Filter>Header Files\sockets\metrowin\asynch_dns</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\basic\socket_handler.h">
-      <Filter>Header Files\sockets\metrowin\basic</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\basic\socket_handler_base.h">
-      <Filter>Header Files\sockets\metrowin\basic</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\metrowin\http\http_client_socket.h">
       <Filter>Header Files\sockets\metrowin\http</Filter>
     </ClInclude>
@@ -5251,12 +5263,6 @@
     </ClInclude>
     <ClInclude Include="sockets\metrowin\http\http_tunnel.h">
       <Filter>Header Files\sockets\metrowin\http</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\log\StdLog.h">
-      <Filter>Header Files\sockets\metrowin\log</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\log\trace_log.h">
-      <Filter>Header Files\sockets\metrowin\log</Filter>
     </ClInclude>
     <ClInclude Include="sockets\metrowin\sip\sip_base.h">
       <Filter>Header Files\sockets\metrowin\sip</Filter>
@@ -5294,56 +5300,11 @@
     <ClInclude Include="sockets\metrowin\sip\sip_udp_client_socket.h">
       <Filter>Header Files\sockets\metrowin\sip</Filter>
     </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\ajp13.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\Ajp13Socket.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\AjpBaseSocket.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\http_base_socket.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\http_cookie.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\http_form.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\http_request.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\http_response.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\http_transaction.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\webserver\httpd_socket.h">
-      <Filter>Header Files\sockets\metrowin\webserver</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\metrowin\smtp\smtp_socket.h">
       <Filter>Header Files\sockets\metrowin\smtp</Filter>
     </ClInclude>
     <ClInclude Include="sockets\metrowin\smtp\smtpd_socket.h">
       <Filter>Header Files\sockets\metrowin\smtp</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\timer\Event.h">
-      <Filter>Header Files\sockets\metrowin\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\timer\EventHandler.h">
-      <Filter>Header Files\sockets\metrowin\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\timer\EventTime.h">
-      <Filter>Header Files\sockets\metrowin\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\timer\IEventHandler.h">
-      <Filter>Header Files\sockets\metrowin\timer</Filter>
-    </ClInclude>
-    <ClInclude Include="sockets\metrowin\timer\IEventOwner.h">
-      <Filter>Header Files\sockets\metrowin\timer</Filter>
     </ClInclude>
     <ClInclude Include="sockets\metrowin\sockets.h">
       <Filter>Header Files\sockets\metrowin</Filter>
@@ -5392,6 +5353,72 @@
     </ClInclude>
     <ClInclude Include="sockets\metrowin\basic\sockets_address.h">
       <Filter>Header Files\sockets\metrowin\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\asynch_dns\sockets_resolv_server.h">
+      <Filter>Header Files\sockets\metrowin\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\asynch_dns\sockets_resolv_socket.h">
+      <Filter>Header Files\sockets\metrowin\asynch_dns</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\log\sockets_std_log.h">
+      <Filter>Header Files\sockets\metrowin\log</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\log\sockets_trace_log.h">
+      <Filter>Header Files\sockets\metrowin\log</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\timer\sockets_event.h">
+      <Filter>Header Files\sockets\metrowin\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\timer\sockets_event_handler.h">
+      <Filter>Header Files\sockets\metrowin\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\timer\sockets_event_time.h">
+      <Filter>Header Files\sockets\metrowin\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\timer\sockets_ievent_handler.h">
+      <Filter>Header Files\sockets\metrowin\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\timer\sockets_ievent_owner.h">
+      <Filter>Header Files\sockets\metrowin\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_ajp13.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_base_socket.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_cookie.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_form.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_request.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_response.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_http_transaction.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_httpd_socket.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_ajp_base_socket.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\webserver\webserver_ajp13_socket.h">
+      <Filter>Header Files\sockets\metrowin\webserver</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\basic\sockets_socket_handler_base.h">
+      <Filter>Header Files\sockets\metrowin\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="sockets\metrowin\basic\sockets_socket_handler.h">
+      <Filter>Header Files\sockets\metrowin\basic</Filter>
+    </ClInclude>
+    <ClInclude Include="os\os_cross_windows_time.h">
+      <Filter>Header Files\os</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

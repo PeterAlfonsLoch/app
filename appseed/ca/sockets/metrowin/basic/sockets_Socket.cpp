@@ -50,6 +50,8 @@ namespace sockets
    SOCKET socket::s_socket = 0;
    simple_mutex socket::s_mutex;
 
+   simple_map<int,class sockets::socket *> sockets::socket::s_mapSocket;
+
 
    socket::socket(socket_handler_base& h)
    //:m_flags(0)
@@ -154,11 +156,12 @@ namespace sockets
          Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::gen::log::level::warning);
          return 0;
       }
-      int n;
+      int n = 0;
       if(!close_socket())
       {
          // failed...
          Handler().LogError(this, "close", Errno, StrError(Errno), ::gen::log::level::error);
+         n = -1;
       }
       Handler().Set(m_socket, false, false, false); // remove from fd_set's
       Handler().AddList(m_socket, LIST_CALLONCONNECT, false);
@@ -262,7 +265,7 @@ namespace sockets
    }
 
 
-   void socket::SetRemoteAddress(sockets::address & ad) //struct sockaddr* sa, socklen_t l)
+   void socket::SetRemoteHostname(sockets::address & ad) //struct sockaddr* sa, socklen_t l)
    {
 
       m_addressRemote = ad;
@@ -270,7 +273,7 @@ namespace sockets
    }
 
 
-   sockets::address socket::GetRemoteSocketAddress()
+   sockets::address socket::GetRemoteHostname()
    {
       
       return m_addressRemote;
@@ -329,33 +332,18 @@ namespace sockets
    }*/
 
 
-   port_t socket::GetRemotePort()
+/*   port_t socket::GetRemotePort()
    {
 
       return m_addressRemote.get_service_number();
 
-   }
-
-
-   string socket::GetRemoteAddress()
-   {
-
-      return m_addressRemote.get_display_number();
-
-   }
-
-
-   string socket::GetRemoteHostname()
-   {
-
-      return m_addressRemote.get_canonical_name();
-
-   }
+   }*/
 
 
    bool socket::SetNonblocking(bool bNb)
    {
-      bool m_bNonBlocking = bNb;
+      m_bNonBlocking = bNb;
+      return true;
 /*   #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
       int n = ioctlsocket(m_socket, FIONBIO, &l);
@@ -602,24 +590,6 @@ namespace sockets
       return 0;
    }
 
-
-   #ifdef HAVE_OPENSSL
-   void socket::OnSSLConnect()
-   {
-   }
-
-
-   void socket::OnSSLAccept()
-   {
-   }
-
-
-   bool socket::SSLNegotiate()
-   {
-      return false;
-   }
-
-
    bool socket::IsSSL()
    {
       return m_bEnableSsl;
@@ -656,6 +626,24 @@ namespace sockets
    }
 
 
+   #ifdef HAVE_OPENSSL
+   void socket::OnSSLConnect()
+   {
+   }
+
+
+   void socket::OnSSLAccept()
+   {
+   }
+
+
+   bool socket::SSLNegotiate()
+   {
+      return false;
+   }
+
+
+
    void socket::OnSSLConnectFailed()
    {
    }
@@ -676,7 +664,7 @@ namespace sockets
       SetSocketProtocol(sock -> GetSocketProtocol());
 
       SetClientRemoteAddress(sock -> GetClientRemoteAddress());
-      SetRemoteAddress(sock -> GetRemoteSocketAddress());
+      SetRemoteHostname(sock -> GetRemoteHostname());
 
    }
 
@@ -920,14 +908,14 @@ namespace sockets
    }
 
 
-   void socket::OnResolved(int, in_addr, port_t)
+   void socket::OnResolved(int , const address &)
    {
    }
 
 
-   void socket::OnResolved(int,in6_addr&,port_t)
+   /*void socket::OnResolved(int,in6_addr&,port_t)
    {
-   }
+   }*/
 
 
    void socket::OnReverseResolved(int,const string &)
@@ -1758,23 +1746,23 @@ namespace sockets
 
 
    /** Returns local port number for bound socket file descriptor. */
-   port_t socket::GetSockPort()
+/*   port_t socket::GetSockPort()
    {
 
       throw interface_only_exception(get_app());
 
    }
-
+   */
 
    /** Returns local ipv4 address for bound socket file descriptor. */
-   ipaddr_t socket::GetSockIP4()
+/*   ipaddr_t socket::GetSockIP4()
    {
       throw interface_only_exception(get_app());
    }
-
+   */
 
    /** Returns local ipv4 address as text for bound socket file descriptor. */
-   string socket::GetSockAddress()
+/*   string socket::GetSockAddress()
    {
       if (IsIpv6())
       {
@@ -1787,10 +1775,10 @@ namespace sockets
       ipv4_address addr(get_app(), sa);
       return addr.Convert();
    }
-
+   */
 
    /** Returns local ipv6 address for bound socket file descriptor. */
-   struct in6_addr socket::GetSockIP6()
+/*   struct in6_addr socket::GetSockIP6()
    {
       if (IsIpv6())
       {
@@ -1804,10 +1792,10 @@ namespace sockets
       memset(&a, 0, sizeof(a));
       return a;
    }
-
+   */
 
    /** Returns local ipv6 address as text for bound socket file descriptor. */
-   string socket::GetSockAddress6()
+/*   string socket::GetSockAddress6()
    {
       if (IsIpv6())
       {
@@ -1820,6 +1808,7 @@ namespace sockets
       }
       return "";
    }
+   */
 
    void socket::OnRead( char *buf, size_t n )
    {
@@ -1900,7 +1889,7 @@ namespace sockets
       }
    }
 
-
+/*
    void socket::OnAccept(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
    {
 
@@ -1910,5 +1899,42 @@ namespace sockets
       }
 
    }
+   */
+
+
+   port_t socket::GetRemotePort()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+   
+
+   address socket::GetRemoteAddress()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+   
+
+   port_t socket::GetLocalPort()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+   
+   
+   address socket::GetLocalAddress()
+   {
+
+      throw interface_only_exception(get_app());
+
+   }
+
 
 } // namespace sockets
+
+
+

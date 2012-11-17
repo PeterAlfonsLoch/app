@@ -30,195 +30,175 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
+namespace sockets
+{
 
 
-   namespace sockets
+   /** socket implementation for UDP.
+   \ingroup basic */
+   class udp_socket : 
+      virtual public socket
    {
-
-      /** socket implementation for UDP.
-      \ingroup basic */
-      class udp_socket : 
-         virtual public socket
-      {
-      private:
+   private:
 
 
-#ifdef USE_BYESHYTOULA_STYLE_SOCKETS
+      ::Windows::Networking::Sockets::DatagramSocket ^      m_datagramsocket;
 
-         ::Windows::Networking::Sockets::DatagramSocket ^      m_datagramsocket;
-
-#else
-
-
-         char *m_ibuf; ///< Input buffer
-         int m_ibufsz; ///< size of input buffer
-         bool m_bind_ok; ///< Bind completed successfully
-         port_t m_port; ///< Bind port number
-         int m_last_size_written;
-         int m_retries;
-         bool m_b_read_ts;
+      char *m_ibuf; ///< Input buffer
+      int m_ibufsz; ///< size of input buffer
+      bool m_bind_ok; ///< Bind completed successfully
+      port_t m_port; ///< Bind port number
+      int m_last_size_written;
+      int m_retries;
+      bool m_b_read_ts;
 
 
-#endif
+   public:
+      /** Constructor.
+      \param h socket_handler_base reference
+      \param ibufsz Maximum size of receive message (extra bytes will be truncated)
+      \param ipv6 'true' if this is an ipv6 socket */
+      udp_socket(socket_handler_base& h,int ibufsz = 16384,bool ipv6 = false, int retries = 0);
+      ~udp_socket();
 
+      /** Called when incoming data has been received.
+      \param buf Pointer to data
+      \param len Length of data
+      \param sa Pointer to sockaddr struct of sender
+      \param sa_len Length of sockaddr struct */
+      using socket::OnRawData;
+      virtual void OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len);
 
-      public:
-         /** Constructor.
-         \param h socket_handler_base reference
-         \param ibufsz Maximum size of receive message (extra bytes will be truncated)
-         \param ipv6 'true' if this is an ipv6 socket */
-         udp_socket(socket_handler_base& h,int ibufsz = 16384,bool ipv6 = false, int retries = 0);
-         ~udp_socket();
+      /** Called when incoming data has been received and read timestamp is enabled.
+      \param buf Pointer to data
+      \param len Length of data
+      \param sa Pointer to sockaddr struct of sender
+      \param sa_len Length of sockaddr struct
+      \param ts Timestamp from message */
+      virtual void OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len,struct timeval *ts);
 
-         /** Called when incoming data has been received.
-         \param buf Pointer to data
-         \param len Length of data
-         \param sa Pointer to sockaddr struct of sender
-         \param sa_len Length of sockaddr struct */
-         using socket::OnRawData;
-         virtual void OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len);
+      /** To receive incoming data, call Bind to setup an incoming port.
+      \param port Incoming port number
+      \param range Port range to try if ports already in use
+      \return 0 if bind succeeded */
+      int Bind(port_t port,int range = 1);
+      /** To receive data on a specific interface:port, use this.
+      \param intf Interface ip/hostname
+      \param port Port number
+      \param range Port range
+      \return 0 if bind succeeded */
+      int Bind(const char * pszInterface, port_t port, int range = 1);
+      /** To receive data on a specific interface:port, use this.
+      \param a Ip address
+      \param port Port number
+      \param range Port range
+      \return 0 if bind succeeded */
+      //int Bind(ipaddr_t a,port_t& port,int range = 1);
+      /** To receive data on a specific interface:port, use this.
+      \param a Ipv6 address
+      \param port Port number
+      \param range Port range
+      \return 0 if bind succeeded */
+      //int Bind(in6_addr a,port_t& port,int range = 1);
+      /** To receive data on a specific interface:port, use this.
+      \param ad socket address
+      \param range Port range
+      \return 0 if bind succeeded */
+      int Bind(const sockets::address & ad, int range = 1);
 
-         /** Called when incoming data has been received and read timestamp is enabled.
-         \param buf Pointer to data
-         \param len Length of data
-         \param sa Pointer to sockaddr struct of sender
-         \param sa_len Length of sockaddr struct
-         \param ts Timestamp from message */
-         virtual void OnRawData(char *buf,size_t len,struct sockaddr *sa,socklen_t sa_len,struct timeval *ts);
+      /** Define remote host.
+      \param l Address of remote host
+      \param port Port of remote host
+      \return true if successful */
+      //bool open(ipaddr_t l,port_t port);
+      /** Define remote host.
+      \param host Hostname
+      \param port Port number
+      \return true if successful */
+      bool open(const char * host, port_t port);
+      /** Define remote host.
+      \param a Address of remote host, ipv6
+      \param port Port of remote host
+      \return true if successful */
+      //bool open(struct in6_addr& a,port_t port);
+      /** Define remote host.
+      \param ad socket address
+      \return true if successful */
+      bool open(sockets::address & ad);
 
-         /** To receive incoming data, call Bind to setup an incoming port.
-         \param port Incoming port number
-         \param range Port range to try if ports already in use
-         \return 0 if bind succeeded */
-         int Bind(port_t port,int range = 1);
-         /** To receive data on a specific interface:port, use this.
-         \param intf Interface ip/hostname
-         \param port Port number
-         \param range Port range
-         \return 0 if bind succeeded */
-         int Bind(const char * pszInterface, port_t port, int range = 1);
-         /** To receive data on a specific interface:port, use this.
-         \param a Ip address
-         \param port Port number
-         \param range Port range
-         \return 0 if bind succeeded */
-         //int Bind(ipaddr_t a,port_t& port,int range = 1);
-         /** To receive data on a specific interface:port, use this.
-         \param a Ipv6 address
-         \param port Port number
-         \param range Port range
-         \return 0 if bind succeeded */
-         //int Bind(in6_addr a,port_t& port,int range = 1);
-         /** To receive data on a specific interface:port, use this.
-         \param ad socket address
-         \param range Port range
-         \return 0 if bind succeeded */
-         int Bind(const sockets::address & ad, int range = 1);
+      /** Send to specified host */
+      //void SendToBuf(const string & ,port_t,const char *data,int len,int flags = 0);
+      /** Send to specified address */
+//      void SendToBuf(ipaddr_t,port_t,const char *data,int len,int flags = 0);
+      /** Send to specified ipv6 address */
+  //    void SendToBuf(in6_addr,port_t,const char *data,int len,int flags = 0);
+      /** Send to specified socket address */
+      //void SendToBuf(sockets::address& ad,const char *data,int len,int flags = 0);
 
-         /** Define remote host.
-         \param l Address of remote host
-         \param port Port of remote host
-         \return true if successful */
-         bool open(ipaddr_t l,port_t port);
-         /** Define remote host.
-         \param host Hostname
-         \param port Port number
-         \return true if successful */
-         bool open(const string & host,port_t port);
-         /** Define remote host.
-         \param a Address of remote host, ipv6
-         \param port Port of remote host
-         \return true if successful */
-         bool open(struct in6_addr& a,port_t port);
-         /** Define remote host.
-         \param ad socket address
-         \return true if successful */
-         bool open(sockets::address& ad);
+      /** Send string to specified host */
+      //void SendTo(const string &,port_t,const string &,int flags = 0);
+      /** Send string to specified address */
+//      void SendTo(ipaddr_t,port_t,const string &,int flags = 0);
+      /** Send string to specified ipv6 address */
+  //    void SendTo(in6_addr,port_t,const string &,int flags = 0);
+      /** Send string to specified socket address */
+      //void SendTo(sockets::address& ad,const string &,int flags = 0);
 
-         /** Send to specified host */
-         void SendToBuf(const string & ,port_t,const char *data,int len,int flags = 0);
-         /** Send to specified address */
-         void SendToBuf(ipaddr_t,port_t,const char *data,int len,int flags = 0);
-         /** Send to specified ipv6 address */
-         void SendToBuf(in6_addr,port_t,const char *data,int len,int flags = 0);
-         /** Send to specified socket address */
-         void SendToBuf(sockets::address& ad,const char *data,int len,int flags = 0);
+      /** Send to connected address */
+      void SendBuf(const char *data,size_t,int flags = 0);
+      /** Send string to connected address. */
+      void Send(const string & ,int flags = 0);
 
-         /** Send string to specified host */
-         void SendTo(const string &,port_t,const string &,int flags = 0);
-         /** Send string to specified address */
-         void SendTo(ipaddr_t,port_t,const string &,int flags = 0);
-         /** Send string to specified ipv6 address */
-         void SendTo(in6_addr,port_t,const string &,int flags = 0);
-         /** Send string to specified socket address */
-         void SendTo(sockets::address& ad,const string &,int flags = 0);
+      /** Set broadcast */
+      void SetBroadcast(bool b = true);
+      /** Check broadcast flag.
+      \return true broadcast is enabled. */
+      bool IsBroadcast();
 
-         /** Send to connected address */
-         void SendBuf(const char *data,size_t,int flags = 0);
-         /** Send string to connected address. */
-         void Send(const string & ,int flags = 0);
+      /** multicast */
+      void SetMulticastTTL(int ttl = 1);
+      int GetMulticastTTL();
+      void SetMulticastLoop(bool = true);
+      bool IsMulticastLoop();
+      void AddMulticastMembership(const string & group,const string & intf = "0.0.0.0",int if_index = 0);
+      void DropMulticastMembership(const string & group,const string & intf = "0.0.0.0",int if_index = 0);
+      /** multicast, ipv6 only */
+      void SetMulticastHops(int = -1);
+      /** multicast, ipv6 only */
+      int GetMulticastHops();
+      /** Returns true if Bind succeeded. */
+      bool IsBound();
+      /** Return Bind port number */
+      port_t GetPort();
+      void OnOptions(int,int,int,SOCKET) {}
+      int GetLastSizeWritten();
 
-         /** Set broadcast */
-         void SetBroadcast(bool b = true);
-         /** Check broadcast flag.
-         \return true broadcast is enabled. */
-         bool IsBroadcast();
+      /** Also read timestamp information from incoming message */
+      void SetTimestamp(bool = true);
 
-         /** multicast */
-         void SetMulticastTTL(int ttl = 1);
-         int GetMulticastTTL();
-         void SetMulticastLoop(bool = true);
-         bool IsMulticastLoop();
-         void AddMulticastMembership(const string & group,const string & intf = "0.0.0.0",int if_index = 0);
-         void DropMulticastMembership(const string & group,const string & intf = "0.0.0.0",int if_index = 0);
-         /** multicast, ipv6 only */
-         void SetMulticastHops(int = -1);
-         /** multicast, ipv6 only */
-         int GetMulticastHops();
-         /** Returns true if Bind succeeded. */
-         bool IsBound();
-         /** Return Bind port number */
-         port_t GetPort();
-         void OnOptions(int,int,int,SOCKET) {}
-         int GetLastSizeWritten();
+      virtual port_t GetRemotePort();
+      virtual address GetRemoteAddress();
+      virtual port_t GetLocalPort();
+      virtual address GetLocalAddress();
 
-         /** Also read timestamp information from incoming message */
-         void SetTimestamp(bool = true);
-
-         virtual port_t GetRemotePort();
-         /** Returns remote ip as string? ipv4 and ipv6. */
-         virtual address GetRemoteAddress();
-         /** ipv4 and ipv6(not implemented) */
-         virtual address GetRemoteHostname();
-         //@}
-
-         /** Returns local port number for bound socket file descriptor. */
-         virtual port_t GetLocalPort();
-         /** Returns local ipv4 address for bound socket file descriptor. */
-         //ipaddr_t GetSockIP4();
-         /** Returns local ipv4 address as text for bound socket file descriptor. */
-         virtual address GetLocalAddress();
-
-      protected:
-         udp_socket(const udp_socket& s) : socket(s) {}
-         void OnRead();
+   protected:
+      udp_socket(const udp_socket& s) : socket(s) {}
+      void OnRead();
 #if defined(LINUX) || defined(MACOSX)
-         /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */
-         int ReadTS(char *ioBuf, int inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts);
+      /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */
+      int ReadTS(char *ioBuf, int inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts);
 #endif
 
-      private:
-         udp_socket& operator=(const udp_socket& ) { return *this; }
-         /** create before using sendto methods */
-         void CreateConnection();
+   private:
+      udp_socket& operator=(const udp_socket& ) { return *this; }
+      /** create before using sendto methods */
+      //void CreateConnection();
 
 
-      };
+   };
 
 
-   } // namespace sockets
-
-
+} // namespace sockets
 
 
 

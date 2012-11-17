@@ -58,10 +58,13 @@ namespace ex1
       virtual LONG get_os_error();
       virtual string get_file_path();
 
+#ifdef WINDOWSEX
+
+
       static void CALLBACK CallBackFunc( OF_INFO_t OpenedFileInfo, uint_ptr pUserContext );
       void OnFileFound(OF_INFO_t OpenedFileInfo );
 
-
+#endif
 
       virtual void dump(dump_context&) const;
 

@@ -1,8 +1,9 @@
 #include "framework.h"
+#ifndef METROWIN
 #include "include/freeimage.h"
 #include "visual_FreeImageFileProc.h"
-
-#ifdef WINDOWS
+#endif
+#ifdef WINDOWSEX
 #undef new
 #include <gdiplus.h>
 #define new DEBUG_NEW
@@ -55,7 +56,7 @@ imaging::~imaging()
 {
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::ca::bitmap_sp bitmap(get_app());
 
@@ -83,6 +84,12 @@ imaging::~imaging()
 {
    ::ca::dib_sp dib(get_app());
 
+#ifdef METROWIN
+
+   throw todo(get_app());
+
+#else
+
    BITMAPINFO * pi = FreeImage_GetInfo(pFreeImage);
 
 
@@ -91,6 +98,8 @@ imaging::~imaging()
 
 
    return dib->detach_bitmap();
+
+#endif
 
    /*   ::ca::bitmap_sp bitmap(get_app());
    void * pBits = FreeImage_GetBits(pFreeImage);
@@ -181,6 +190,13 @@ return LoadImageFile(ar.GetFile());
 
 FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
 {
+
+#ifdef METROWIN
+
+   throw todo(get_app());
+
+#else
+
    FreeImageIO io;
    io.read_proc = __ReadProc2;
    io.seek_proc = __SeekProc2;
@@ -199,7 +215,11 @@ FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
    catch(...)
    {
    }
+
    return lpVoid;
+
+#endif
+
 }
 
 /*HBITMAP imaging::LoadBitmap(
@@ -301,8 +321,7 @@ VOID EmbossedTextOut(
    HDC                     hDC,
    int                     x,
    int                     y,
-   //    char *                   lpsz,
-   LPTSTR                   lpsz,
+   char *                   lpsz,
    UINT                    cb,
    COLORREF                crText,
    COLORREF                crShadow,
@@ -324,7 +343,7 @@ VOID EmbossedTextOut(
    ** system color for that one.
    */
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if (crShadow == (COLORREF)-1)
       crShadow = GetSysColor (COLOR_BTNSHADOW);
@@ -343,7 +362,7 @@ VOID EmbossedTextOut(
 #endif
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    /* setup the DC, saving off the old values
    */
@@ -444,9 +463,9 @@ HFONT CreateScaledFont(
 
 #endif
 
-   strcpy(lf.lfFaceName, "Arial");
+   wcscpy(lf.lfFaceName, L"Arial");
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    hFont = CreateFontIndirect(&lf);
    h = (HFONT) SelectObject(hDC, (HGDIOBJ) hFont);
@@ -504,7 +523,7 @@ HFONT CreateScaledFont(
 void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    TEXTMETRIC tm;
 
@@ -542,7 +561,7 @@ void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 void DrawMultiLineText(HDC hDC, stringa * pArray)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    TEXTMETRIC tm;
 
@@ -916,7 +935,7 @@ bool imaging::GrayVRCP(
    UNREFERENCED_PARAMETER(crAlpha);
    //COLORREF cr3dface = GetSysColor(COLOR_3DFACE);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    COLORREF cr3dshadow = GetSysColor(COLOR_3DSHADOW);
 
@@ -934,7 +953,7 @@ bool imaging::GrayVRCP(
    BYTE uch3dshadowB = rgba_get_b(cr3dshadow);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    COLORREF cr3dhighlight = GetSysColor(COLOR_3DHILIGHT);
 
@@ -977,7 +996,7 @@ bool imaging::GrayVRCP(
    LPBYTE lpbMask = (LPBYTE) malloc(cbMask);
    //LPBYTE lpbShadow = lpbData;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(!GetDIBits(
       (HDC)pdc->get_os_data(),
@@ -1013,7 +1032,7 @@ bool imaging::GrayVRCP(
    pbmiMask->bmiHeader.biClrUsed = 0;
    pbmiMask->bmiHeader.biClrImportant = 0;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(!GetDIBits(    (HDC)pdc->get_os_data(),
       (HBITMAP) pbitmapMask->get_os_data(),
@@ -1182,7 +1201,7 @@ bool imaging::GrayVRCP(
       }
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(!SetDIBits(
       (HDC)pdc->get_os_data(),
@@ -1295,7 +1314,7 @@ bool imaging::GetDeviceContext24BitsCC(
          uiStartScanLineParam = uiStartScanLine;
          uiScanLineCountParam = uiScanLines;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          if(!(iLimitYParam = GetDIBits
             (
@@ -2374,6 +2393,13 @@ return true;
 
 void imaging::SaveJpeg(const char * lpcszFile, ::ca::bitmap_sp pbitmap)
 {
+
+#ifdef METROWIN
+
+   throw todo(get_app());
+
+#else
+
    FIBITMAP * fi= HBITMAPtoFI(pbitmap);
    fi = FreeImage_ConvertTo24Bits(fi);
    if (FreeImage_Save(FIF_JPEG, fi, lpcszFile, JPEG_QUALITYBAD))
@@ -2381,20 +2407,40 @@ void imaging::SaveJpeg(const char * lpcszFile, ::ca::bitmap_sp pbitmap)
       //
    }
    FreeImage_Unload(fi);
+#endif
 }
 
 void imaging::SavePng(const char * lpcszFile, ::ca::bitmap_sp pbitmap)
 {
+
+#ifdef METROWIN
+
+   throw todo(get_app());
+
+#else
+
    FIBITMAP * fi= HBITMAPtoFI(pbitmap);
    if (FreeImage_Save(FIF_PNG, fi, lpcszFile, 0))
    {
       //
    }
    FreeImage_Unload(fi);
+
+#endif
+
 }
 
 void imaging::SavePng(const char * lpcszFile, FIBITMAP *dib, bool bUnload)
 {
+
+
+#ifdef METROWIN
+
+   throw todo(get_app());
+
+#else
+
+
    if (FreeImage_Save(FIF_PNG, dib, lpcszFile, 0)) {
       //
    }
@@ -2402,6 +2448,9 @@ void imaging::SavePng(const char * lpcszFile, FIBITMAP *dib, bool bUnload)
    {
       FreeImage_Unload(dib);
    }
+
+#endif
+
 }
 
 FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
@@ -4823,7 +4872,7 @@ bool imaging::alpha_spread_R2(::ca::graphics *pdcDst, point ptDst, size size, ::
       bMin);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
@@ -4984,7 +5033,7 @@ bool imaging::alpha_spread(::ca::graphics *pdcDst, point ptDst, size size, ::ca:
       bMin, iRadius);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
@@ -5991,7 +6040,7 @@ bool imaging::pixelate(::ca::graphics *pdcDst, int xDest, int yDest, int cx, int
       iSize);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
@@ -6454,7 +6503,7 @@ bool imaging::alpha_pixelate(
       iSize,
       iAlpha);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    ::ca::bitmap * pbmpOld = &pdcDst->GetCurrentBitmap();
    if(pbmpOld == NULL)
@@ -6798,7 +6847,16 @@ void imaging::alpha_pixelate_24CC(
 
 void imaging::free(FIBITMAP * pfibitmap)
 {
+
+#ifdef METROWIN
+
+   throw todo(get_app());
+
+#else
+
    FreeImage_Unload(pfibitmap);
+
+#endif
 }
 
 

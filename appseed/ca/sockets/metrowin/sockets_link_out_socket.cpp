@@ -66,7 +66,7 @@ namespace sockets
             h.m_sockets.set_at(key, this);
          }
       }
-      m_bSsl = psocket->GetSsl();
+//      m_bSsl = psocket->GetSsl();
       m_socket = psocket->m_socket;
 
       m_bConnecting        = psocket->m_bConnecting; ///< Flag indicating connection in progress

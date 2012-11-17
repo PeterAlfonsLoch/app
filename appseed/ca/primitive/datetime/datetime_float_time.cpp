@@ -367,6 +367,11 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
 
   memset(&dp, 0, sizeof(dp));
 
+#ifdef METROWIN
+
+  throw todo(::ca::get_thread_app());
+
+#else
   GetLocaleInfoW(lcid, LOCALE_IDATE|LOCALE_RETURN_NUMBER|(dwFlags & LOCALE_NOUSEROVERRIDE),
                  (LPWSTR)&iDate, sizeof(iDate)/sizeof(WCHAR));
 //  TRACE("iDate is %d\n", iDate);
@@ -385,6 +390,8 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
     tokens[i] = SysAllocString(buff);
 //    TRACE("token %d is %s\n", i, debugstr_w(tokens[i]));
   }
+
+#endif
 
   /* Parse the string into our structure */
   while (*strIn)
@@ -1017,3 +1024,19 @@ int __cdecl FloatTimeToSystemTime(double vtime, struct _SYSTEMTIME * pst)
 
 
 #endif
+
+namespace datetime
+{
+
+   float_time &float_time::operator=(const FILETIME &filetimeSrc) RELEASENOTHROW
+   {
+      FILETIME ftl;
+      SYSTEMTIME st;
+
+      m_status =  ::FileTimeToLocalFileTime(&filetimeSrc, &ftl) && ::FileTimeToSystemTime(&ftl, &st) && ConvertSystemTimeToFloatTime(st) ? valid : invalid;
+
+      return *this;
+   }
+
+
+} //    namespace datetime

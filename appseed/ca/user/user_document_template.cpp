@@ -31,7 +31,7 @@ document_template::~document_template()
 
 bool document_template::GetDocString(string & rString, enum DocStringIndex i) const
 {
-   return __extract_sub_string(rString, m_strDocStrings, (int)i);
+   return ::ex1::extract_sub_string(rString, m_strDocStrings, (int)i);
 }
 
 void document_template::add_document(::user::document_interface * pdocument)

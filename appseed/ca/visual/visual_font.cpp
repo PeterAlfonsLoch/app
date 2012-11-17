@@ -192,7 +192,7 @@ namespace visual
 
       return TRUE;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       if(m_glyphset.find_first(user) >= 0)
          return TRUE;
@@ -444,7 +444,7 @@ namespace visual
 bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(lpString == NULL)
    {
@@ -480,7 +480,7 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(lpString == NULL)
    {
@@ -507,7 +507,7 @@ CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, 
 CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT lprc, UINT format)
 {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    if(lpchText == NULL)
    {

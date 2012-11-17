@@ -62,14 +62,14 @@ bool view::pre_create_window(CREATESTRUCT & cs)
    if (cs.lpszClass == NULL)
    {
       // COLOR_WINDOW background
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
 #endif
    }
 
    if (cs.style & WS_BORDER)
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       cs.dwExStyle |= WS_EX_CLIENTEDGE;
 #endif
       cs.style &= ~WS_BORDER;

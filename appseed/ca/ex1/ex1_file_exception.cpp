@@ -50,6 +50,7 @@ namespace ex1
    };
 
 
+#ifdef WINDOWSEX
 
    void CALLBACK file_exception::CallBackFunc( OF_INFO_t OpenedFileInfo, uint_ptr pUserContext )
    {
@@ -62,7 +63,6 @@ namespace ex1
 	   if(System.file().name_(gen::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
       {
 
-#ifdef WINDOWSEX
 	      PROCESS_INFO_t stInfo;
 	      //if( !m_stProcessInfo.Lookup( OpenedFileInfo.dwPID, stInfo))
 	      {
@@ -108,11 +108,12 @@ namespace ex1
          m_strAdd += "PID: " + csPid + " Process Name : " + stInfo.csProcess;
 	      //m_list.SetItemText( m_nCount, 2, OpenedFileInfo.lpFile );
 	      //m_list.SetItemData( m_nCount, (dword_ptr)OpenedFileInfo.hFile );
-#endif
 
       }
 
    }
+
+   #endif
 
 /*
    string file_exception::get_friendly_message(PUINT pnHelpContext) const
@@ -148,7 +149,9 @@ namespace ex1
 
          wstr = gen::international::utf8_to_unicode(System.dir().name(m_strFileName));
 
+#ifdef WINDOWSEX
          GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (ulong_ptr)this);
+#endif
 
          if(m_strAdd.has_char())
          {

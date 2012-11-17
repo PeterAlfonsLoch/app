@@ -13230,6 +13230,31 @@ zulu_time:
    */
 #if OS_WINCE
 # define mutexIsNT()  (1)
+#elif defined(METROWIN)
+   # define mutexIsNT()  (1)
+
+CLASS_DECL_ca BOOL LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+
+CLASS_DECL_ca BOOL LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
+{
+   OVERLAPPED ov;
+   zero(&ov, sizeof(ov));
+   ov.Offset = dwLo;
+   ov.OffsetHigh = dwHi;
+   return LockFileEx(hfile, LOCKFILE_FAIL_IMMEDIATELY, 0, dwCountLo, dwCountHi, &ov);
+
+}
+
+CLASS_DECL_ca BOOL UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
+{
+   OVERLAPPED ov;
+   zero(&ov, sizeof(ov));
+   ov.Offset = dwLo;
+   ov.OffsetHigh = dwHi;
+   return UnlockFileEx(hfile, 0, dwCountLo, dwCountHi, &ov);
+
+}
+
 #else
    static int mutexIsNT(){
       static int osType = 0;
@@ -13292,7 +13317,7 @@ zulu_time:
          p = (sqlite3_mutex *) sqlite3MallocZero( sizeof(*p) );
          if( p ){
             p->id = iType;
-            InitializeCriticalSection(&p->mutex);
+            InitializeCriticalSectionEx(&p->mutex, 4000, 0);
          }
          break;
                                    }
@@ -13304,7 +13329,7 @@ zulu_time:
             if( InterlockedIncrement(&lock)==1 ){
                int i;
                for(i=0; i<sizeof(staticMutexes)/sizeof(staticMutexes[0]); i++){
-                  InitializeCriticalSection(&staticMutexes[i].mutex);
+                  InitializeCriticalSectionEx(&staticMutexes[i].mutex, 4000, 0);
                }
                isInit = 1;
             }else{
@@ -21149,6 +21174,9 @@ afp_end_lock:
 #if defined(_WIN32_WCE)
 # define OS_WINCE 1
 # define AreFileApisANSI() 1
+#elif defined(METROWIN)
+# define OS_WINCE 0
+# define AreFileApisANSI() 1
 #else
 # define OS_WINCE 0
 #endif
@@ -21216,6 +21244,8 @@ afp_end_lock:
    ** the LockFileEx() API.
    */
 #if OS_WINCE
+# define isNT()  (1)
+#elif defined(METROWIN)
 # define isNT()  (1)
 #else
    static int isNT(){
@@ -21852,18 +21882,19 @@ afp_end_lock:
    */
    static int getReadLock(winFile *pFile){
       int res;
+         OVERLAPPED ov;
+         zero(&ov, sizeof(ov));
       if( isNT() ){
          OVERLAPPED ovlp;
          ovlp.Offset = SHARED_FIRST;
-         ovlp.OffsetHigh = 0;
-         ovlp.hEvent = 0;
          res = LockFileEx(pFile->h, LOCKFILE_FAIL_IMMEDIATELY,
-            0, SHARED_SIZE, 0, &ovlp);
+            0, SHARED_SIZE, 0, &ov);
       }else{
          int lk;
          sqlite3Randomness(sizeof(lk), &lk);
          pFile->sharedLockByte = (lk & 0x7fffffff)%(SHARED_SIZE - 1);
-         res = LockFile(pFile->h, SHARED_FIRST+pFile->sharedLockByte, 0, 1, 0);
+         ov.Offset = SHARED_FIRST+pFile->sharedLockByte;
+         res = LockFileEx(pFile->h, LOCKFILE_FAIL_IMMEDIATELY, 0, 1, 0, &ov);
       }
       return res;
    }
@@ -21873,10 +21904,15 @@ afp_end_lock:
    */
    static int unlockReadLock(winFile *pFile){
       int res;
+      OVERLAPPED ov;
+      zero(&ov, sizeof(ov));
+      
       if( isNT() ){
-         res = UnlockFile(pFile->h, SHARED_FIRST, 0, SHARED_SIZE, 0);
+         ov.Offset = SHARED_FIRST;
+         res = UnlockFileEx(pFile->h, 0, SHARED_SIZE, 0, &ov);
       }else{
-         res = UnlockFile(pFile->h, SHARED_FIRST + pFile->sharedLockByte, 0, 1, 0);
+         ov.Offset = SHARED_FIRST+pFile->sharedLockByte;
+         res = UnlockFileEx(pFile->h, 0, 1, 0, &ov);
       }
       return res;
    }
@@ -21941,7 +21977,10 @@ afp_end_lock:
          || (locktype==EXCLUSIVE_LOCK && pFile->locktype==RESERVED_LOCK)
          ){
             int cnt = 3;
-            while( cnt-->0 && (res = LockFile(pFile->h, PENDING_BYTE, 0, 1, 0))==0 ){
+            OVERLAPPED ov;
+            zero(&ov, sizeof(ov));
+            ov.Offset = PENDING_BYTE;
+            while( cnt-->0 && (res = LockFileEx(pFile->h, LOCKFILE_FAIL_IMMEDIATELY, 0, 1, 0, &ov))==0 ){
                /* Try 3 times to get the pending lock.  The pending lock might be
                ** held by another reader process who will release it momentarily.
                */
@@ -22172,10 +22211,10 @@ afp_end_lock:
          DWORD dwFlagsAndAttributes = 0;
          int isTemp;
          winFile *pFile = (winFile*)id;
-         void *zConverted = convertUtf8Filename(zName);
-         if( zConverted==0 ){
-            return SQLITE_NOMEM;
-         }
+         //void *zConverted = convertUtf8Filename(zName);
+         //if( zConverted==0 ){
+           // return SQLITE_NOMEM;
+         //}
 
          if( flags & SQLITE_OPEN_READWRITE ){
             dwDesiredAccess = GENERIC_READ | GENERIC_WRITE;
@@ -22209,7 +22248,7 @@ afp_end_lock:
          ** better if FILE_FLAG_RANDOM_ACCESS is used.  Ticket #2699. */
          dwFlagsAndAttributes |= FILE_FLAG_RANDOM_ACCESS;
          if( isNT() ){
-            h = CreateFileW((WCHAR*)zConverted,
+            h = create_file(zName,
                dwDesiredAccess,
                dwShareMode,
                NULL,
@@ -22218,7 +22257,7 @@ afp_end_lock:
                NULL
                );
          }else{
-#if OS_WINCE
+#if OS_WINCE || defined(METROWIN)
             return SQLITE_NOMEM;
 #else
             h = CreateFileA((char*)zConverted,
@@ -22232,7 +22271,7 @@ afp_end_lock:
 #endif
          }
          if( h==INVALID_HANDLE_VALUE ){
-            ca2_free(zConverted);
+//            ca2_free(zConverted);
             if( flags & SQLITE_OPEN_READWRITE ){
                return winOpen(0, zName, id,
                   ((flags|SQLITE_OPEN_READONLY)&~SQLITE_OPEN_READWRITE), pOutFlags);
@@ -22264,7 +22303,7 @@ afp_end_lock:
          }else
 #endif
          {
-            ca2_free(zConverted);
+//            ca2_free(zConverted);
          }
          OpenCounter(+1);
          return SQLITE_OK;
@@ -22298,21 +22337,21 @@ afp_end_lock:
          if( isNT() ){
             do{
                DeleteFileW((LPCWSTR) zConverted);
-            }while( (rc = GetFileAttributesW((LPCWSTR) zConverted))!=0xffffffff
+            }while( file_exists_dup(zFilename)
                && cnt++ < MX_DELETION_ATTEMPTS && (Sleep(100), 1) );
          }else{
-#if OS_WINCE
+#if OS_WINCE || defined(METROWIN)
             return SQLITE_NOMEM;
 #else
             do{
                DeleteFileA((LPCSTR) zConverted);
-            }while( (rc = GetFileAttributesA((LPCSTR) zConverted))!=0xffffffff
+            }while(file_exists_dup(zFilename))
                && cnt++ < MX_DELETION_ATTEMPTS && (Sleep(100), 1) );
 #endif
          }
          ca2_free(zConverted);
          OSTRACE2("DELETE \"%s\"\n", zFilename);
-         return rc==0xffffffff ? SQLITE_OK : SQLITE_IOERR_DELETE;
+         return !file_exists_dup(zFilename)? SQLITE_OK : SQLITE_IOERR_DELETE;
    }
 
    /*
@@ -22325,11 +22364,11 @@ afp_end_lock:
       ){
          DWORD attr;
          int rc;
-         void *zConverted = convertUtf8Filename(zFilename);
-         if( zConverted==0 ){
-            return SQLITE_NOMEM;
-         }
-         if( isNT() ){
+//         void *zConverted = convertUtf8Filename(zFilename);
+  //       if( zConverted==0 ){
+    //        return SQLITE_NOMEM;
+      //   }
+/*         if( isNT() ){
             attr = GetFileAttributesW((WCHAR*)zConverted);
          }else{
 #if OS_WINCE
@@ -22337,15 +22376,16 @@ afp_end_lock:
 #else
             attr = GetFileAttributesA((char*)zConverted);
 #endif
-         }
-         ca2_free(zConverted);
+         }*/
+        // ca2_free(zConverted);
          switch( flags ){
          case SQLITE_ACCESS_READ:
          case SQLITE_ACCESS_EXISTS:
-            rc = attr!=0xffffffff;
+            rc = file_exists_dup(zFilename) ? 1 : 0;
             break;
          case SQLITE_ACCESS_READWRITE:
-            rc = (attr & FILE_ATTRIBUTE_READONLY)==0;
+            throw todo(::ca::get_thread_app());
+          //  rc = (attr & FILE_ATTRIBUTE_READONLY)==0;
             break;
          default:
             assert(!"Invalid flags argument");
@@ -22367,18 +22407,21 @@ afp_end_lock:
       char zTempPath[MAX_PATH+1];
       if( sqlite3_temp_directory ){
          sqlite3_snprintf(MAX_PATH-30, zTempPath, "%s", sqlite3_temp_directory);
-      }else if( isNT() ){
-         char *zMulti;
-         WCHAR zWidePath[MAX_PATH];
-         GetTempPathW(MAX_PATH-30, zWidePath);
-         zMulti = unicodeToUtf8(zWidePath);
-         if( zMulti ){
-            sqlite3_snprintf(MAX_PATH-30, zTempPath, "%s", zMulti);
-            ca2_free(zMulti);
-         }else{
-            return SQLITE_NOMEM;
-         }
-      }else{
+      }/*else if( isNT() ){*/
+      else
+      {
+//         char *zMulti;
+  //       WCHAR zWidePath[MAX_PATH];
+    //     GetTempPathW(MAX_PATH-30, zWidePath);
+      //   zMulti = unicodeToUtf8(zWidePath);
+         //if( zMulti ){
+            sqlite3_snprintf(MAX_PATH-30, zTempPath, "%s", get_sys_temp_path());
+            //ca2_free(zMulti);
+         //}else{
+           // return SQLITE_NOMEM;
+         //}
+      }
+      /*else{
          char *zUtf8;
          char zMbcsPath[MAX_PATH];
          GetTempPathA(MAX_PATH-30, zMbcsPath);
@@ -22389,7 +22432,7 @@ afp_end_lock:
          }else{
             return SQLITE_NOMEM;
          }
-      }
+      }*/
       for(i=(int) strlen(zTempPath); i>0 && zTempPath[i-1]=='\\'; i--){}
       zTempPath[i] = 0;
       sqlite3_snprintf(nBuf-30, zBuf,
@@ -22421,13 +22464,13 @@ afp_end_lock:
          return SQLITE_OK;
 #endif
 
-#if OS_WINCE
+#if OS_WINCE || defined(METROWIN)
          /* WinCE has no concept of a relative pathname, or so I am told. */
          sqlite3_snprintf(pVfs->mxPathname, zFull, "%s", zRelative);
          return SQLITE_OK;
 #endif
 
-#if !OS_WINCE && !defined(__CYGWIN__)
+#if !OS_WINCE && !defined(__CYGWIN__) && !defined(METROWIN)
          int nByte;
          void *zConverted;
          char *zOut;
@@ -22483,9 +22526,13 @@ afp_end_lock:
          return 0;
       }
       if( isNT() ){
+#ifdef METROWIN
+         h = LoadPackagedLibrary((WCHAR*)zConverted, 0);
+#else
          h = LoadLibraryW((WCHAR*)zConverted);
+#endif
       }else{
-#if OS_WINCE
+#if OS_WINCE || defined(METROWIN)
          return 0;
 #else
          h = LoadLibraryA((char*)zConverted);
@@ -26377,7 +26424,7 @@ end_stmt_playback:
          || MEMDB
          || (pPager->lru.pFirstSynced==0 && pPager->doNotSync)
          ){
-            void *pData;
+            void *pData = NULL;
             if( pPager->nPage>=pPager->nHash ){
                pager_resize_hash_table(pPager,
                   pPager->nHash<256 ? 256 : pPager->nHash*2);
@@ -41057,8 +41104,10 @@ failed:
          int rc = SQLITE_OK;        /* Value to return */
          sqlite3 *db = p->db;       /* The database */
          u8 encoding = ENC(db);     /* The database encoding */
-         Mem *pIn1, *pIn2, *pIn3;   /* Input operands */
-         Mem *pOut;                 /* Output operand */
+         Mem *pIn1 = NULL;   /* Input operands */
+         Mem *pIn2 = NULL;   /* Input operands */
+         Mem *pIn3 = NULL;   /* Input operands */
+         Mem *pOut = NULL;                 /* Output operand */
          u8 opProperty;
 #ifdef VDBE_PROFILE
          unsigned long long start;  /* CPU clock count at start of opcode */
@@ -47058,7 +47107,7 @@ no_mem:
             if( zDb==0 && zTab!=0 && cnt==0 && pParse->trigStack!=0 ){
                TriggerStack *pTriggerStack = pParse->trigStack;
                Table *pTab = 0;
-               u32 *piColMask;
+               u32 *piColMask = NULL;
                if( pTriggerStack->newIdx != -1 && sqlite3StrICmp("new", zTab) == 0 ){
                   pExpr->iTable = pTriggerStack->newIdx;
                   assert( pTriggerStack->pTab );
@@ -48259,7 +48308,7 @@ lookupname_end_2:
          Expr opCompare;                   /* The X==Ei expression */
          Expr cacheX;                      /* Cached expression X */
          Expr *pX;                         /* The X expression */
-         Expr *pTest;                      /* X==Ei (form A) or just Ei (form B) */
+         Expr *pTest = NULL;                      /* X==Ei (form A) or just Ei (form B) */
 
          assert(pExpr->pList);
          assert((pExpr->pList->nExpr % 2) == 0);
@@ -56020,8 +56069,8 @@ delete_from_cleanup:
          int nIn;                          /* Number of bytes in input */
          sqlite3_intptr_t flags;           /* 1: trimleft  2: trimright  3: trim */
          int i;                            /* Loop counter */
-         unsigned char *aLen;              /* Length of each character in zCharSet */
-         unsigned char **azChar;           /* Individual characters in zCharSet */
+         unsigned char *aLen = NULL;              /* Length of each character in zCharSet */
+         unsigned char **azChar = NULL;           /* Individual characters in zCharSet */
          int nChar;                        /* Number of characters in zCharSet */
 
          if( sqlite3_value_type(argv[0])==SQLITE_NULL ){
@@ -64413,8 +64462,8 @@ multi_select_end:
          WhereInfo *pWInfo;     /* Return from sqlite3WhereBegin() */
          Vdbe *v;               /* The virtual machine under construction */
          int isAgg;             /* True for select lists like "count(*)" */
-         ExprList *pEList;      /* List of columns to extract. */
-         SrcList *pTabList;     /* List of tables to select from */
+         ExprList *pEList = NULL;      /* List of columns to extract. */
+         SrcList *pTabList = NULL;     /* List of tables to select from */
          Expr *pWhere;          /* The WHERE clause.  May be NULL */
          ExprList *pOrderBy;    /* The ORDER BY clause.  May be NULL */
          ExprList *pGroupBy;    /* The GROUP BY clause.  May be NULL */
@@ -67832,8 +67881,8 @@ end_of_vacuum:
          Table *pTab;
          sqlite3_vtab *pVtab;
          sqlite3_module *pMod;
-         void (*xFunc)(sqlite3_context*,int,sqlite3_value**);
-         void *pArg;
+         void (*xFunc)(sqlite3_context*,int,sqlite3_value**) = NULL;
+         void *pArg = NULL;
          FuncDef *pNew;
          int rc = 0;
          char *zLowerName;

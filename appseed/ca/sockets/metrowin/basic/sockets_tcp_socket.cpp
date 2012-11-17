@@ -163,22 +163,22 @@ namespace sockets
    }
    */
 
-   bool tcp_socket::open(sockets::address & ad, bool skip_socks)
+   bool tcp_socket::open(const sockets::address & ad, bool skip_socks)
    {
 
       m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
       
-      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(nullptr, nullptr, ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())));
-
       attach(m_tcpsocket);
 
-      m_tcpsocket->ConnectAsync(pair)->Completed = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::AsyncStatus status)
+      m_tcpsocket->ConnectAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = 
+         ref new ::Windows::Foundation::AsyncActionCompletedHandler
+         ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
 
          if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
             
-            OnConnected();
+            OnConnect();
 
          }
 
@@ -189,14 +189,14 @@ namespace sockets
    }
 
 
-   bool tcp_socket::open(sockets::address& ad,sockets::address& bind_ad,bool skip_socks)
+   bool tcp_socket::open(const sockets::address & ad, const sockets::address & bind_ad, bool skip_socks)
    {
-      if (!ad.IsValid())
+/*      if (!ad.IsValid())
       {
          Handler().LogError(this, "open", 0, "Invalid sockets::address", ::gen::log::level::fatal);
          SetCloseAndDelete();
          return false;
-      }
+      }*/
 /*      if (Handler().get_count() >= FD_SETSIZE)
       {
          Handler().LogError(this, "open", 0, "no space left in fd_set", ::gen::log::level::fatal);
@@ -204,12 +204,36 @@ namespace sockets
          return false;
       }*/
 
+
+      m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      
+      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_hostname,  itort(bind_ad.get_service_number()), ad.m_hostname, itort(ad.get_service_number()));
+
+      attach(m_tcpsocket);
+
+      m_tcpsocket->ConnectAsync(pair)->Completed = 
+         ref new ::Windows::Foundation::AsyncActionCompletedHandler
+            ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      {
+
+         if(status == ::Windows::Foundation::AsyncStatus::Completed)
+         {
+            
+            OnConnect();
+
+         }
+
+      });
+
+
       m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
 
       attach(m_tcpsocket);
 
       SetConnecting(false);
       SetSocks4(false);
+
+      return true;
       // check for pooling
       /*if (Handler().PoolEnabled())
       {
@@ -232,7 +256,7 @@ namespace sockets
         // return false;
       //}
       // socket must be nonblocking for async connect
-      if (!SetNonblocking(true, s))
+/*      if (!SetNonblocking(true, s))
       {
          SetCloseAndDelete();
          ::closesocket(s);
@@ -307,13 +331,16 @@ namespace sockets
 
       // 'true' means connected or connecting(not yet connected)
       // 'false' means something failed
-      return true; //!Connecting();
+      return true; //!Connecting();*/
    }
 
 
    bool tcp_socket::open(const string &host,port_t port)
    {
-      if (IsIpv6())
+
+      return open(address(get_app(), host, port));
+
+      /*if (IsIpv6())
       {
          if (!Handler().ResolverEnabled() || System.net().isipv6(host) )
          {
@@ -353,25 +380,20 @@ namespace sockets
       // resolve using async resolver thread
       m_resolver_id = Resolve(host, port);
       m_strHost = host;
-      return true;
+      return true;*/
    }
 
 
-   void tcp_socket::OnResolved(int id,ipaddr_t a,port_t port)
+   void tcp_socket::OnResolved(int id, const address & addr)
    {
-   TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, a, port);
+      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, addr.get_display_number(), addr.get_service_number());
       if (id == m_resolver_id)
       {
-         if (a && port)
+         if(open(addr))
          {
-            ipv4_address ad(get_app(), a, port);
-            ipv4_address local(get_app());
-            if (open(ad, local))
+            if (!Handler().Valid(this))
             {
-               if (!Handler().Valid(this))
-               {
-                  Handler().add(this);
-               }
+               Handler().add(this);
             }
          }
          else
@@ -388,7 +410,7 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnResolved(int id,in6_addr& a,port_t port)
+/*   void tcp_socket::OnResolved(int id,in6_addr& a,port_t port)
    {
       if (id == m_resolver_id)
       {
@@ -410,12 +432,12 @@ namespace sockets
          Handler().LogError(this, "OnResolved", id, "Resolver returned wrong job id", ::gen::log::level::fatal);
          SetCloseAndDelete();
       }
-   }
+   }*/
 
 
    void tcp_socket::OnRead()
    {
-      DWORD dw1, dw2;
+      /*DWORD dw1, dw2;
       int n = 0;
    #ifdef SOCKETS_DYNAMIC_TEMP
       char *buf = m_buf;
@@ -524,9 +546,13 @@ namespace sockets
          {
             Handler().LogError(this, "OnRead", n, "abnormal value from recv", ::gen::log::level::error);
          }
-      }
+      }*/
       //
-      OnRead( buf, n );
+      ::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_tcpsocket->InputStream);
+      //int n = reader->UnconsumedBufferLength;
+      Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+      reader->ReadBytes(ucha);
+      OnRead((char *) ucha->Data, ucha->Length);
    }
 
 
@@ -653,7 +679,7 @@ namespace sockets
 
    int tcp_socket::TryWrite(const char *buf, size_t len)
    {
-      int n = 0;
+/*      int n = 0;
    #ifdef HAVE_OPENSSL
       if (IsSSL())
       {
@@ -716,7 +742,19 @@ namespace sockets
             GetTrafficMonitor() -> write(buf, n);
          }
       }
-      return n;
+      return n;*/
+
+
+
+      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_tcpsocket->OutputStream);
+      //int n = reader->UnconsumedBufferLength;
+      
+      writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *) buf, len));
+      /*if(ucha != nullptr)
+      {
+         OnRawData(ucha->Data, ucha->Length);
+      }*/
+      return len;
    }
 
 
@@ -836,20 +874,14 @@ namespace sockets
       request[0] = 4; // socks v4
       request[1] = 1; // command code: CONNECT
       {
-         ::ca::smart_pointer < sockets::address > ad = GetClientRemoteAddress();
-         if(ad.m_p != NULL)
+         sockets::address ad = GetClientRemoteAddress();
+         if(ad.is_ipv4())
          {
-            struct sockaddr *p0 = (struct sockaddr *)*ad;
-            struct sockaddr_in *p = (struct sockaddr_in *)p0;
-            if (p -> sin_family == AF_INET)
-            {
-               memcpy(request + 2, &p -> sin_port, 2); // nwbo is ok here
-               memcpy(request + 4, &p -> sin_addr, sizeof(struct in_addr));
-            }
-            else
-            {
-               /// \todo warn
-            }
+            port_t port = ad.get_service_number();
+            in_addr addr;
+            System.net().convert(addr, ad.get_display_number());
+            memcpy(request + 2, &port, sizeof(port_t)); // nwbo is ok here
+            memcpy(request + 2 + sizeof(port_t), &addr, sizeof(in_addr));
          }
          else
          {
@@ -955,7 +987,7 @@ namespace sockets
 
    void tcp_socket::OnSSLConnect()
    {
-      SetNonblocking(true);
+/*      SetNonblocking(true);
       {
          if (m_ssl_ctx)
          {
@@ -968,7 +1000,7 @@ namespace sockets
       if (m_ssl_ctx)
       {
          /* Connect the SSL socket */
-         m_ssl = SSL_new(m_ssl_ctx);
+  /*       m_ssl = SSL_new(m_ssl_ctx);
          if (!m_ssl)
          {
    TRACE(" m_ssl is NULL\n");
@@ -992,14 +1024,14 @@ namespace sockets
       else
       {
          SetCloseAndDelete();
-      }
+      }*/
    }
 
 
    void tcp_socket::OnSSLAccept()
    {
       SetNonblocking(true);
-      {
+/*      {
          if (m_ssl_ctx)
          {
    TRACE("SSL Context already initialized - closing socket\n");
@@ -1031,13 +1063,13 @@ namespace sockets
          {
             SetSSLNegotiate();
          }
-      }
+      }*/
    }
 
 
    bool tcp_socket::SSLNegotiate()
    {
-      if(!IsSSLServer()) // client
+/*      if(!IsSSLServer()) // client
       {
          if(m_spsslclientcontext->m_psession != NULL)
          {
@@ -1165,27 +1197,29 @@ namespace sockets
             }
          }
       }
-      return false;
+      return false;*/
+
+         return false;
    }
 
 
    void tcp_socket::InitSSLClient()
    {
-      InitializeContext(m_strInitSSLClientContext, SSLv23_method());
+//      InitializeContext(m_strInitSSLClientContext, SSLv23_method());
    }
 
 
    void tcp_socket::InitSSLServer()
    {
-      Handler().LogError(this, "InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::gen::log::level::fatal);
-      SetCloseAndDelete();
+//      Handler().LogError(this, "InitSSLServer", 0, "You MUST implement your own InitSSLServer method", ::gen::log::level::fatal);
+  //    SetCloseAndDelete();
    }
 
-
+/*
    void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
    {
       /* create our context*/
-      if(m_spsslclientcontext.is_null())
+  /*    if(m_spsslclientcontext.is_null())
       {
          ::collection::string_map < sp(ssl_client_context) > & clientcontextmap = System.m_clientcontextmap;
          if(clientcontextmap.PLookup(context) == NULL)
@@ -1211,7 +1245,7 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
-      static ::collection::string_map < SSL_CTX * > server_contexts;
+    /*  static ::collection::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
          const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
@@ -1231,7 +1265,7 @@ namespace sockets
       if(!SSL_CTX_use_certificate_chain_file(m_ssl_ctx, keyfile))
       {
          /* Load our keys and certificates*/
-         if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
+      /*   if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, keyfile, SSL_FILETYPE_PEM)))
          {
             Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::gen::log::level::fatal);
          }
@@ -1250,7 +1284,7 @@ namespace sockets
    void tcp_socket::InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in)
    {
       /* create our context*/
-      static ::collection::string_map < SSL_CTX * > server_contexts;
+/*      static ::collection::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
          const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
@@ -1268,7 +1302,7 @@ namespace sockets
       }
 
       /* Load our keys and certificates*/
-      if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, certfile, SSL_FILETYPE_PEM)))
+  /*    if (!(SSL_CTX_use_certificate_file(m_ssl_ctx, certfile, SSL_FILETYPE_PEM)))
       {
          Handler().LogError(this, "tcp_socket InitializeContext", 0, "Couldn't read certificate file " + keyfile, ::gen::log::level::fatal);
       }
@@ -1296,11 +1330,11 @@ namespace sockets
       strcpy(buf,pw);
       return (int)pw.get_length();
    }
-
+   */
 
    int tcp_socket::close()
    {
-      if (GetSocket() == INVALID_SOCKET) // this could happen
+/*      if (GetSocket() == INVALID_SOCKET) // this could happen
       {
          Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::gen::log::level::warning);
          return 0;
@@ -1332,8 +1366,8 @@ namespace sockets
          SSL_free(m_ssl);
          m_ssl = NULL;
       }
-   #endif
-      return socket::close();
+   #endif*/
+      return stream_socket::close();
    }
 
 
@@ -1542,7 +1576,8 @@ namespace sockets
 
    int tcp_socket::Protocol()
    {
-      return IPPROTO_TCP;
+      //return IPPROTO_TCP;
+      return 0;
    }
 
 
@@ -1561,6 +1596,7 @@ namespace sockets
       return m_strUrl;
    }
 
+   /*
    long tcp_socket::cert_common_name_check(const char * common_name)
    {
 
@@ -1603,8 +1639,9 @@ namespace sockets
    void tcp_socket::enable_cert_common_name_check(bool bEnable)
    {
       m_bCertCommonNameCheckEnabled = bEnable;
-   }
+   }*/
 
+   /*
    void tcp_socket::OnConnected(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
    {
 
@@ -1614,7 +1651,7 @@ namespace sockets
       }
 
    }
-
+   */
 
 } // namespace sockets
 

@@ -147,134 +147,7 @@ namespace sockets
       return true;
    }
 
-#ifdef BSD_STYLE_SOCKETS
 
-   bool net::u2ip(const string & str, ipaddr_t& l, int ai_flags)
-   {
-      DWORD dwTimeTelmo1 = get_tick_count();
-
-      single_lock sl(&m_mutexCache, true);
-      dns_cache_item * pitem = NULL;
-      if(m_mapCache.Lookup(str, pitem) && ((::get_tick_count() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
-      {
-         l = pitem->m_ipaddr;
-         //         DWORD dwTimeTelmo2 = get_tick_count();
-         /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-         (DWORD)((byte*)&pitem->m_ipaddr)[0],
-         (DWORD)((byte*)&pitem->m_ipaddr)[1],
-         (DWORD)((byte*)&pitem->m_ipaddr)[2],
-         (DWORD)((byte*)&pitem->m_ipaddr)[3],
-         (dwTimeTelmo2 - dwTimeTelmo1));*/
-         return pitem->r;
-      }
-      if(pitem == NULL)
-         pitem = new dns_cache_item;
-      struct sockaddr_in sa;
-      pitem->r = u2ip(str, sa, ai_flags);
-      memcpy(&l, &sa.sin_addr, sizeof(l));
-      pitem->m_ipaddr = l;
-      pitem->m_dwLastChecked = ::get_tick_count();
-      m_mapCache.set_at(str, pitem);
-      DWORD dwTimeTelmo2 = get_tick_count();
-      TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
-         (DWORD)((byte*)&pitem->m_ipaddr)[0],
-         (DWORD)((byte*)&pitem->m_ipaddr)[1],
-         (DWORD)((byte*)&pitem->m_ipaddr)[2],
-         (DWORD)((byte*)&pitem->m_ipaddr)[3],
-         (dwTimeTelmo2 - dwTimeTelmo1));
-      return pitem->r;
-   }
-
-
-   bool net::u2ip(const string & str, struct in6_addr& l, int ai_flags)
-   {
-      struct sockaddr_in6 sa;
-      bool r = net::u2ip(str, sa, ai_flags);
-      l = sa.sin6_addr;
-      return r;
-   }
-
-
-   void net::l2ip(const ipaddr_t ip, string & str)
-   {
-      struct sockaddr_in sa;
-      memset(&sa, 0, sizeof(sa));
-      sa.sin_family = AF_INET;
-      memcpy(&sa.sin_addr, &ip, sizeof(sa.sin_addr));
-      net::reverse( (struct sockaddr *)&sa, sizeof(sa), str, NI_NUMERICHOST);
-   }
-
-
-   void net::l2ip(const in_addr& ip, string & str)
-   {
-      struct sockaddr_in sa;
-      memset(&sa, 0, sizeof(sa));
-      sa.sin_family = AF_INET;
-      sa.sin_addr = ip;
-      net::reverse( (struct sockaddr *)&sa, sizeof(sa), str, NI_NUMERICHOST);
-   }
-
-
-   void net::l2ip(const struct in6_addr& ip, string & str,bool mixed)
-   {
-      char slask[100]; // l2ip temporary
-      *slask = 0;
-      unsigned int prev = 0;
-      bool skipped = false;
-      bool ok_to_skip = true;
-      if (mixed)
-      {
-         unsigned short x;
-         unsigned short addr16[8];
-         memcpy(addr16, &ip, sizeof(addr16));
-         for (index i = 0; i < 6; i++)
-         {
-            x = ntohs(addr16[i]);
-            if (*slask && (x || !ok_to_skip || prev))
-               strcat(slask,":");
-            if (x || !ok_to_skip)
-            {
-               sprintf(slask + strlen(slask),"%x", x);
-               if (x && skipped)
-                  ok_to_skip = false;
-            }
-            else
-            {
-               skipped = true;
-            }
-            prev = x;
-         }
-         x = ntohs(addr16[6]);
-         sprintf(slask + strlen(slask),":%u.%u",x / 256,x & 255);
-         x = ntohs(addr16[7]);
-         sprintf(slask + strlen(slask),".%u.%u",x / 256,x & 255);
-      }
-      else
-      {
-         struct sockaddr_in6 sa;
-         memset(&sa, 0, sizeof(sa));
-         sa.sin6_family = AF_INET6;
-         sa.sin6_addr = ip;
-         net::reverse( (struct sockaddr *)&sa, sizeof(sa), str, NI_NUMERICHOST);
-         return;
-      }
-      str = slask;
-   }
-
-
-   int net::in6_addr_compare(in6_addr a,in6_addr b)
-   {
-      for (index i = 0; i < 16; i++)
-      {
-         if (a.s6_addr[i] < b.s6_addr[i])
-            return -1;
-         if (a.s6_addr[i] > b.s6_addr[i])
-            return 1;
-      }
-      return 0;
-   }
-
-#endif
 
    void net::ResolveLocal()
    {
@@ -487,6 +360,36 @@ namespace sockets
          return false;
 
       from_string(&sa, str);
+
+      return true;
+
+   }
+
+
+   bool net::convert(string & str, const in_addr & addr, int ai_flags)
+   {
+
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(to_string(&addr))), "0"));
+
+      if(data->Size <= 0)
+         return false;
+
+      str = begin(data->GetAt(0)->RemoteHostName->CanonicalName); 
+
+      return true;
+
+   }
+
+
+   bool net::convert(string & str, const in6_addr & addr, int ai_flags)
+   {
+
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(to_string(&addr))), "0"));
+
+      if(data->Size <= 0)
+         return false;
+
+      str = begin(data->GetAt(0)->RemoteHostName->CanonicalName); 
 
       return true;
 

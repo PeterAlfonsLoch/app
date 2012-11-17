@@ -981,6 +981,13 @@ namespace plugin
 
 #elif defined(METROWIN)
 
+   uint_ptr plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   {
+
+      return 0;
+
+   }
+
 #else
 
    int plugin::message_handler(XEvent * pevent)

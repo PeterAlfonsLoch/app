@@ -275,6 +275,7 @@ namespace visual
          string str;
          str = gen::international::utf8_to_unicode(psz);
 
+#ifdef WINDOWSEX
          ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
          ::TextOutU((HDC)pdc->get_os_data(), iLeft - iWidth, iTop, str, iLen);
          ::TextOutU((HDC)pdc->get_os_data(), iLeft, iTop - iWidth, str, iLen);
@@ -283,6 +284,7 @@ namespace visual
 
          ::SetTextColor((HDC)pdc->get_os_data(), crText);
          ::TextOutU((HDC)pdc->get_os_data(), iLeft, iTop, str, iLen);
+#endif
 
          //pdc->TextOut(lpcrect->left, lpcrect->top, str);
    //      pdc->BeginPath();
@@ -501,7 +503,12 @@ namespace visual
       UNREFERENCED_PARAMETER(hRC);
 /*      wglMakeCurrent( NULL, NULL );
       wglDeleteContext( hRC );*/
+
+#ifndef METROWIN
       ReleaseDC( oswindow, hDC );
+#else
+      throw todo(::ca::get_thread_app());
+#endif
    }
 
 

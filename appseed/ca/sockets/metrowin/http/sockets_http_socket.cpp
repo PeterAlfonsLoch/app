@@ -157,7 +157,7 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.lowattr(__str(remote_addr)) = GetRemoteSocketAddress().get_display_number();
+         m_request.lowattr(__str(remote_addr)) = GetRemoteAddress().get_display_number();
          {
 #ifdef WINDOWS
 
@@ -445,7 +445,7 @@ namespace sockets
       ::gen::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       protocol.trim(":");
-      if (!strcasecmp(protocol, "https"))
+      if (!stricmp(protocol, "https"))
       {
    #ifdef HAVE_OPENSSL
          EnableSSL();
@@ -523,14 +523,14 @@ namespace sockets
    void http_socket::client_to_server(http_socket * psocket)
    {
 
-      m_ssl             = psocket->m_ssl;
+      //m_ssl             = psocket->m_ssl;
       m_socket          = psocket->m_socket;
       m_bSsl            = psocket->m_bSsl;
       m_bSslServer      = psocket->m_bSslServer;
       m_bEnableSsl      = psocket->m_bEnableSsl;
       m_bConnected      = psocket->m_bConnected;
 
-      SetRemoteAddress(psocket->GetRemoteSocketAddress());
+      SetRemoteHostname(psocket->GetRemoteHostname());
 
 
    }

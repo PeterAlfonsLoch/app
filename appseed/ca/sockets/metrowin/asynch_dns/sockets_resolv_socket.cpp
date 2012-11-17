@@ -211,9 +211,10 @@ namespace sockets
       {
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
-            in_addr l;
-            System.net().convert(l, value); // ip2ipaddr_t
-            m_parent -> OnResolved(m_resolv_id, l, m_resolv_port);
+            //in_addr l;
+            //System.net().convert(l, value); // ip2ipaddr_t
+
+            m_parent -> OnResolved(m_resolv_id, address(get_app(), value, m_resolv_port));
          }
          // update cache
          if (!m_cached)
@@ -229,9 +230,9 @@ namespace sockets
       {
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
-            in6_addr a;
-            System.net().convert(a, value);
-            m_parent -> OnResolved(m_resolv_id, a, m_resolv_port);
+            //in6_addr a;
+            //System.net().convert(a, value);
+            m_parent -> OnResolved(m_resolv_id, address(get_app(), value, m_resolv_port));
          }
          // update cache
          if (!m_cached)

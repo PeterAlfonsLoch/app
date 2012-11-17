@@ -99,7 +99,7 @@ namespace user
       }
       layoutida.QuickSort(true);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       char szLayoutName[KL_NAMELENGTH];
 
@@ -122,6 +122,10 @@ namespace user
             return layoutida[i].m_strPath;
          }
       }
+
+#else
+
+      TRACE("not implemented exception");
 
 #endif
 

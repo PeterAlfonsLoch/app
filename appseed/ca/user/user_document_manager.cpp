@@ -12,15 +12,15 @@ const char document_manager::gen_ShellNewFmt[] = "%s\\ShellNew";
 
 const char document_manager::gen_IconIndexFmt[] = ",%d";
 const char document_manager::gen_Command[] = "command";
-const char document_manager::gen_OpenArg[] = _T(" \"%1\"");
-const char document_manager::gen_PrintArg[] = _T(" /p \"%1\"");
-const char document_manager::gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
+const char document_manager::gen_OpenArg[] = " \"%1\"";
+const char document_manager::gen_PrintArg[] = " /p \"%1\"";
+const char document_manager::gen_PrintToArg[] = " /pt \"%1\" \"%2\" \"%3\" \"%4\"";
 const char document_manager::gen_DDEArg[] = " /dde";
 
 const char document_manager::gen_DDEExec[] = "ddeexec";
-const char document_manager::gen_DDEOpen[] = _T("[open(\"%1\")]");
-const char document_manager::gen_DDEPrint[] = _T("[print(\"%1\")]");
-const char document_manager::gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
+const char document_manager::gen_DDEOpen[] = "[open(\"%1\")]";
+const char document_manager::gen_DDEPrint[] = "[print(\"%1\")]";
+const char document_manager::gen_DDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
 
 const char document_manager::gen_ShellNewValueName[] = "NullFile";
 const char document_manager::gen_ShellNewValue[] = "";

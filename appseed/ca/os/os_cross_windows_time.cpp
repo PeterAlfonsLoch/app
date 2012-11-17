@@ -27,12 +27,11 @@
 
 #define NONAMELESSUNION
 #define NONAMELESSSTRUCT
-#define HAVE_SYS_TIME_H
-#define HAVE_UNISTD_H
 #define HAVE_SETTIMEOFDAY
 //#define WIN32_NO_STATUS
+#define  _CRT_SECURE_NO_WARNINGS
 #define __WINESRC__
-
+#define __CA__DLL
 
 
 
@@ -51,12 +50,33 @@
 #endif
 
 
+#ifdef _WIN32
+#ifdef __CA__LIB
+   #define CLASS_DECL_ca
+#elif defined(__CA__DLL)
+   #define CLASS_DECL_ca  _declspec(dllexport)
+#else
+   #define CLASS_DECL_ca  _declspec(dllimport)
+#endif
+#else
+   #define CLASS_DECL_ca
+#endif
 
 
 
 #include "nodeapp/operational_system/bare_operational_system.h"
+
+#ifdef METROWIN
+#define STATUS_SUCCESS 0
+#define STATUS_PRIVILEGE_NOT_HELD 1
+#include <time.h>
+#else
+#define HAVE_SYS_TIME_H
+#define HAVE_UNISTD_H
+#endif
+
 #include "os_cross_windows_internals.h"
-#define CLASS_DECL_c
+//#define CLASS_DECL_c
 #include "c/c/c_verisimple_string.h"
 #include "c/c/c_simple_mutex.h"
 #include "c/c/c_mutex_lock.h"
@@ -466,6 +486,60 @@ void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS 
     TimeFields->Hour = rem / 60;
 }
 
+#ifdef METROWIN
+
+
+const __int64 DELTA_EPOCH_IN_MICROSECS= 11644473600000000;
+
+/* IN UNIX the use of the timezone struct is obsolete;
+ I don't know why you use it. See http://linux.about.com/od/commands/l/blcmdl2_gettime.htm
+ But if you want to use this structure to know about GMT(UTC) diffrence from your local time
+ it will be next: tz_minuteswest is the real diffrence in minutes from GMT(UTC) and a tz_dsttime is a flag
+ indicates whether daylight is now in use
+*/
+struct timezone2 
+{
+  __int32  tz_minuteswest; /* minutes W of Greenwich */
+  bool  tz_dsttime;     /* type of dst correction */
+};
+
+struct timeval2 {
+__int32    tv_sec;         /* seconds */
+__int32    tv_usec;        /* microseconds */
+};
+
+int gettimeofday(timeval2 *tv/*in*/, struct timezone2 *tz/*in*/)
+{
+  FILETIME ft;
+  __int64 tmpres = 0;
+  TIME_ZONE_INFORMATION tz_winapi;
+  int rez=0;
+
+   ZeroMemory(&ft,sizeof(ft));
+   ZeroMemory(&tz_winapi,sizeof(tz_winapi));
+
+    GetSystemTimeAsFileTime(&ft);
+
+    tmpres = ft.dwHighDateTime;
+    tmpres <<= 32;
+    tmpres |= ft.dwLowDateTime;
+
+    /*converting file time to unix epoch*/
+    tmpres /= 10;  /*convert into microseconds*/
+    tmpres -= DELTA_EPOCH_IN_MICROSECS; 
+    tv->tv_sec = (__int32)(tmpres*0.000001);
+    tv->tv_usec =(tmpres%1000000);
+
+
+    //_tzset(),don't work properly, so we use GetTimeZoneInformation
+    rez=GetTimeZoneInformation(&tz_winapi);
+    tz->tz_dsttime=(rez==2)?true:false;
+    tz->tz_minuteswest = tz_winapi.Bias + ((rez==2)?tz_winapi.DaylightBias:0);
+
+  return 0;
+}
+#endif
+
 /***********************************************************************
  *       NtQuerySystemTime [NTDLL.@]
  *       ZwQuerySystemTime [NTDLL.@]
@@ -481,7 +555,11 @@ void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS 
  */
 NTSTATUS WINAPI NtQuerySystemTime( PLARGE_INTEGER Time )
 {
-    struct timeval now;
+#ifdef METROWIN
+    timeval2 now;
+#else
+   struct timeval now;
+#endif
 
     gettimeofday( &now, 0 );
     Time->QuadPart = now.tv_sec * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
@@ -932,6 +1010,7 @@ NTSTATUS WINAPI RtlSetTimeZoneInformation( const RTL_TIME_ZONE_INFORMATION *tzin
  *   Success: STATUS_SUCCESS.
  *   Failure: An NTSTATUS error code indicating the problem.
  */
+#ifndef METROWIN
 NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *OldTime)
 {
     struct timeval tv;
@@ -968,12 +1047,12 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
     return STATUS_NOT_IMPLEMENTED;
 #endif
 }
-
+#endif
 
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_ca WINBOOL LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -1023,6 +1102,7 @@ WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localf
 /*********************************************************************
  *      FileTimeToSystemTime                            (KERNEL32.@)
  */
+#ifndef METROWIN
 WINBOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 {
     TIME_FIELDS tf;
@@ -1042,10 +1122,12 @@ WINBOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
     syst->wDayOfWeek = tf.Weekday;
     return TRUE;
 }
+#endif
 
 /*********************************************************************
  *      SystemTimeToFileTime                            (KERNEL32.@)
  */
+#ifndef METROWIN
 WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 {
     TIME_FIELDS tf;
@@ -1067,7 +1149,7 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
     ft->dwHighDateTime = t.u.HighPart;
     return TRUE;
 }
-
+#endif
 
 
 
@@ -1079,6 +1161,7 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *  RETURNS
  *   Nothing.
  */
+#ifndef METROWIN
 VOID WINAPI GetSystemTimeAsFileTime(
     LPFILETIME time) /* [out] Destination for the current utc time */
 {
@@ -1087,3 +1170,4 @@ VOID WINAPI GetSystemTimeAsFileTime(
     time->dwLowDateTime = t.u.LowPart;
     time->dwHighDateTime = t.u.HighPart;
 }
+#endif

@@ -37,6 +37,8 @@ It is provided "as is" without express or implied warranty.
 
 #pragma comment (lib, "dbghelp")
 
+#endif
+
 #ifdef VERIFY
 #undef VERIFY
 #endif // VERIFY
@@ -100,10 +102,12 @@ WINBOOL __stdcall My_ReadProcessMemory (
 {
 
    SIZE_T size;
-
+#ifdef METROWIN
+   throw todo(::ca::get_thread_app());
+#else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
       return FALSE;
-
+#endif
    *lpNumberOfBytesRead = (DWORD) size;
 
    return TRUE;
@@ -138,10 +142,12 @@ namespace exception
    static LPVOID s_readMemoryFunction_UserData = NULL;
 
    engine::engine(::ca::application * papp) :
-      ca(papp),
-      m_bOk(false),
-      m_pstackframe(NULL),
-      m_iRef(0)
+      ca(papp)
+#ifdef WINDOWSEX
+      ,m_bOk(false),
+      ,m_pstackframe(NULL)
+      ,m_iRef(0)
+#endif
    {
 
       m_pmutex = new mutex(papp);
@@ -150,11 +156,18 @@ namespace exception
 
    engine::~engine()
    {
+#ifdef WINDOWSEX
       clear();
+#endif
       //   if (m_bOk) guard::instance().clear();
       delete m_pmutex;
+#ifdef WINDOWSEX
+
       delete m_pstackframe;
+#endif
    }
+
+#ifdef WINDOWSEX
 
    size_t engine::module(vsstring & str)
    {
@@ -166,6 +179,9 @@ namespace exception
       if (!hmodule) return 0;
       return get_module_basename(hmodule, str);
    }
+#endif
+
+#ifdef WINDOWSEX
 
    size_t engine::symbol(vsstring & str, DWORD64 * pdisplacement)
    {
@@ -191,6 +207,11 @@ namespace exception
       return str.get_length();
    }
 
+#endif
+
+#ifdef WINDOWSEX
+
+
    index engine::fileline (vsstring & str, DWORD * pline, DWORD * pdisplacement)
    {
 
@@ -212,6 +233,11 @@ namespace exception
       str = img_line.FileName;
       return str.get_length();
    }
+
+#endif
+
+
+#ifdef WINDOWSEX
 
    bool engine::stack_first (CONTEXT* pcontext)
    {
@@ -262,6 +288,11 @@ namespace exception
       m_pcontext = pcontext;
       return stack_next();
    }
+
+#endif
+
+
+#ifdef WINDOWSEX
 
    bool engine::stack_next()
    {
@@ -360,6 +391,16 @@ retry_get_base:
       return true;
    }
 
+#endif
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
+
    bool engine::get_line_from_address (HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
    {
 #ifdef WORK_AROUND_SRCLINE_BUG
@@ -385,6 +426,20 @@ retry_get_base:
       return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (DWORD *) puiDisplacement, pline);
 #endif
    }
+
+
+#endif
+
+
+
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
 
    size_t engine::get_module_basename (HMODULE hmodule, vsstring & str)
    {
@@ -412,12 +467,55 @@ retry_get_base:
 
    }
 
+
+#endif
+
+
+
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
+
+
    bool engine::check()
    {
       if (!m_bOk)
          m_bOk = init();
       return m_bOk;
    }
+
+
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
 
 
    bool engine::load_modules()
@@ -514,6 +612,27 @@ retry_get_base:
 
    }
 
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
+
+
    bool engine::init()
    {
 
@@ -546,12 +665,40 @@ retry_get_base:
       return true;
    }
 
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
+
+
    bool engine::fail() const
    {
 
       return m_iRef == -1;
 
    }
+
+#endif
+
+
+
+
+
+#ifdef WINDOWSEX
+
 
    void engine::clear()
    {
@@ -566,15 +713,25 @@ retry_get_base:
       }
    }
 
+#endif
+
+
+
+
    void engine::reset()
    {
 
       single_lock sl(m_pmutex, true);
 
+#ifdef WINDOWSEX
       clear();
       init();
+#endif
 
    }
+
+#ifdef WINDOWSEX
+
 
    bool engine::load_module(HANDLE hProcess, HMODULE hMod)
    {
@@ -610,6 +767,17 @@ retry_get_base:
       return true;
    }
 
+
+#endif
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
+
    bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, dword_ptr uiSkip, const char * pszFormat)
    {
 
@@ -621,6 +789,26 @@ retry_get_base:
       return stack_trace(str, pcontext, uiSkip, false, pszFormat);
 
    }
+
+
+#endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ifdef WINDOWSEX
+
 
    /////////////////////////////////////////////
    // prints a current thread's stack
@@ -679,6 +867,14 @@ retry_get_base:
       }
       return 0;
    }
+
+#endif
+
+
+
+
+
+
 
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
    {
@@ -837,6 +1033,13 @@ retry_get_base:
 
    }
 
+
+
+
+
+#ifdef WINDOWSEX
+
+
    bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, dword_ptr uiSkip, bool bSkip, const char * pszFormat)
    {
 
@@ -861,6 +1064,11 @@ retry_get_base:
       return true;
 
    }
+
+#endif
+
+#ifdef WINDOWSEX
+
 
    vsstring engine::get_frame(const char * pszFormat)
    {
@@ -964,12 +1172,9 @@ retry_get_base:
 
    }
 
+#endif
 
 
 } // namespace exception
-
-
-#endif
-
 
 
