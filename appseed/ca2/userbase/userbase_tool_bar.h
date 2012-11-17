@@ -36,7 +36,7 @@ namespace userbase
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
          UINT nID = __IDW_TOOLBAR);
       using ::userbase::control_bar::CreateEx;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
          DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
          rect rcBorders = rect(0, 0, 0, 0),
@@ -97,12 +97,12 @@ namespace userbase
 
 
       // implementation helpers
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       void _GetButton(::index nIndex, TBBUTTON* pButton) const;
       void _SetButton(::index nIndex, TBBUTTON* pButton);
 #endif
       size CalcLayout(DWORD nMode, int nLength = -1);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       size CalcSize(TBBUTTON* pData, int nCount);
       int WrapToolBar(TBBUTTON* pData, int nCount, int nWidth);
       void SizeToolBar(TBBUTTON* pData, int nCount, int nLength, bool bVert = FALSE);

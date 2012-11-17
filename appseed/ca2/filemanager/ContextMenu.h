@@ -11,7 +11,7 @@ namespace filemanager
    public:
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       IContextMenu *    m_pcontextmenu;
       IContextMenu2 *   m_pcontextmenu2;
 #endif

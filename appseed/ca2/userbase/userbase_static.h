@@ -27,7 +27,7 @@ namespace userbase
       HCURSOR SetCursor(HCURSOR hCursor);
       HCURSOR GetCursor();
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 #endif
 

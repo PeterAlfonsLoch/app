@@ -71,7 +71,7 @@ namespace userbase
       status_bar_control& GetStatusBarCtrl();
 
    // Overridables
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT);
 #endif
 

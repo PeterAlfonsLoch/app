@@ -89,7 +89,7 @@ public:
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       id nID = "__IDW_TOOLBAR");
    using ::user::interaction::CreateEx;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
       DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),

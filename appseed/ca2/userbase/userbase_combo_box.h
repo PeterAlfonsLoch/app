@@ -30,7 +30,7 @@ namespace userbase
       int SetDroppedWidth(UINT nWidth);
       int GetDroppedWidth();
 
-   #if(WINVER >= 0x0500)
+   #if defined(WINDOWSEX) && (WINVER >= 0x0500)
       bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
    #endif   // WINVER >= 0x0500
 
@@ -78,7 +78,7 @@ namespace userbase
       void Paste();
 
    // Overridables (must override draw, measure and compare for owner draw)
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
       virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
       virtual int CompareItem(LPCOMPAREITEMSTRUCT lpCompareItemStruct);

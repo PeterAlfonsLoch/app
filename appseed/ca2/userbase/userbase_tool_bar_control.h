@@ -33,7 +33,7 @@ namespace userbase
       bool IsButtonIndeterminate(int nID);
       bool SetState(int nID, UINT nState);
       int GetState(int nID);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       bool GetButton(int nIndex, LPTBBUTTON lpButton);
 #endif
       int GetButtonCount();
@@ -62,7 +62,7 @@ namespace userbase
       bool SetIndent(int iIndent);
       bool SetMaxTextRows(int iMaxRows);
       void SetStyle(DWORD dwStyle);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       bool GetButtonInfo(int nID, TBBUTTONINFO* ptbbi);
       bool SetButtonInfo(int nID, TBBUTTONINFO* ptbbi);
       bool GetButtonInfo(int nID, TBBUTTONINFOW* ptbbi);
@@ -73,12 +73,12 @@ namespace userbase
       bool SetAnchorHighlight(bool fAnchor = TRUE);
       int GetHotItem();
       int SetHotItem(int nHot);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       void GetInsertMark(TBINSERTMARK* ptbim);
       void SetInsertMark(TBINSERTMARK* ptbim);
 #endif
       bool GetMaxSize(LPSIZE pSize);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       bool InsertMarkHitTest(LPPOINT ppt, LPTBINSERTMARK ptbim);
 #endif
       DWORD GetExtendedStyle();
@@ -94,13 +94,13 @@ namespace userbase
       bool HideButton(int nID, bool bHide = TRUE);
       bool Indeterminate(int nID, bool bIndeterminate = TRUE);
       int AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       bool AddButtons(int nNumButtons, LPTBBUTTON lpButtons);
       bool InsertButton(int nIndex, LPTBBUTTON lpButton);
 #endif
       bool DeleteButton(int nIndex);
       UINT CommandToIndex(UINT nID);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       void SaveState(HKEY hKeyRoot, const char * lpszSubKey, const char * lpszValueName);
       void RestoreState(HKEY hKeyRoot, const char * lpszSubKey, const char * lpszValueName);
 #endif

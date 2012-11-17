@@ -40,7 +40,7 @@ namespace userbase
       virtual int BaseToolTipGetIndex();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDIS);
 #endif
       virtual void pre_translate_message(gen::signal_object * pobj);
@@ -52,7 +52,7 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnMouseMove)
    };
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    inline bool bitmap_button::LoadBitmaps(UINT nIDBitmapResource,
        UINT nIDBitmapResourceSel, UINT nIDBitmapResourceFocus,
        UINT nIDBitmapResourceDisabled, UINT nIDBitmapResourceHover)

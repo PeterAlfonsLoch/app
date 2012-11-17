@@ -34,7 +34,7 @@ public:
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 #endif
    virtual bool pre_create_window(CREATESTRUCT& cs);

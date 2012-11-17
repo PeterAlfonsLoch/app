@@ -22,7 +22,7 @@ namespace userbase
 
       UINT     m_uiId;
       bool     m_bCreated;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       NOTIFYICONDATA m_nid;
 #endif
       notify_icon_listener * m_plistener;

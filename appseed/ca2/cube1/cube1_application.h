@@ -15,7 +15,7 @@ namespace cube1
       virtual ~application();
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       base_array < MONITORINFO > m_monitorinfoa;
       base_array < MONITORINFO > m_monitorinfoaDesk;
 #endif

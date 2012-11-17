@@ -82,7 +82,7 @@ public:
 
    
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = TBSTYLE_FLAT, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #else
    void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = 0, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
@@ -123,7 +123,9 @@ public:
    DECL_GEN_SIGNAL(_001OnGetMinMaxInfo)
    DECL_GEN_SIGNAL(_001OnUser184)
 
+#ifdef WINDOWSEX
    void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
+#endif
 
    // persistent frame implemenation using updowntarget
 

@@ -54,7 +54,7 @@ namespace filemanager
       mutex                   m_mutexMissinUpdate;
       stringa                 m_straMissingUpdate;
       bool                    m_bDelayedListUpdate;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       ::collection::map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
 #endif
       ex1::tree_item *        m_pdataitemCreateImageListStep;
@@ -95,7 +95,7 @@ namespace filemanager
       int MapToCSIDL(EFolder efolder);
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
 
       IShellFolder * _001GetFolder(EFolder efolder);
