@@ -976,7 +976,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   strsize window::GetWindowText(LPTSTR lpszString, int nMaxCount)
+   strsize window::GetWindowText(char * lpszString, int nMaxCount)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nMaxCount);

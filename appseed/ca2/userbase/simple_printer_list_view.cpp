@@ -37,12 +37,16 @@ void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
 
    DWORD cbNeeded = 0;
    DWORD cbReturned = 0;
-
+#ifdef WINDOWSEX
    ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, NULL, 1, NULL, 0, &cbNeeded, &cbReturned);
+#else
+   throw todo(get_app());
+#endif
 
    if(cbNeeded <= 0)
       return;
 
+#ifdef WINDOWSEX
    PRINTER_INFO_1  * infoa = (PRINTER_INFO_1 * ) malloc(cbNeeded);
    ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, NULL, 1, (LPBYTE) infoa, cbNeeded, &cbNeeded, &cbReturned);
 
@@ -57,6 +61,9 @@ void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
    m_listdata.set_data(this, stra);
 
    free(infoa);
+#else
+   throw todo(get_app());
+#endif
 
 
    ::user::list_column column;

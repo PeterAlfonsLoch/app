@@ -30,11 +30,15 @@ BaseMenuCentral::BaseMenuCentral(::ca::application * papp) :
 
 
    VERIFY(m_fontMenu->create_point_font("Arial Unicode", 11));
-   
+
+#ifdef WINDOWSEX
    if(!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
    {
       throw simple_exception(papp, "resource exception BaseMenuCentral constructor");
    }
+#else
+   throw todo(get_app());
+#endif
 
 }
 
@@ -256,6 +260,8 @@ LRESULT CALLBACK BaseMenuCentral::CBTHook(int nCode, WPARAM wParam, LPARAM lPara
 
    ++cbt_counter;
 
+#ifdef WINDOWSEX
+
    if (cbt_counter == 1)
    {
       if (nCode == HCBT_CREATEWND)
@@ -275,6 +281,12 @@ LRESULT CALLBACK BaseMenuCentral::CBTHook(int nCode, WPARAM wParam, LPARAM lPara
 
    lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
 
+#else
+
+   throw todo(::ca::get_thread_app());
+
+#endif
+
 out:
    --cbt_counter;
    return lRes;
@@ -282,20 +294,28 @@ out:
 
 void BaseMenuCentral::HookCBTHook()
 {
+#ifdef WINDOWSEX
    if (!m_hCBTHook)
    {
       m_hCBTHook = SetWindowsHookEx(WH_CBT, CBTHook,
          NULL, GetCurrentThreadId());
    }
+#else
+   throw todo(::ca::get_thread_app());
+#endif
 }
 
 void BaseMenuCentral::UnhookCBTHook()
 {
+#ifdef WINDOWSEX
    if (m_hCBTHook)
    {
       UnhookWindowsHookEx(m_hCBTHook);
       m_hCBTHook = NULL;
    }
+#else
+   throw todo(::ca::get_thread_app());
+#endif
 }
 
 /* trans

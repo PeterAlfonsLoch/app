@@ -108,10 +108,18 @@ bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
       m_dwStyle |= CBRS_HIDE_INPLACE;
 
    dwStyle &= ~CBRS_ALL;
+#ifdef WINDOWSEX
    dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
+#else
+   throw todo(get_app());
+#endif
    dwStyle |= dwCtrlStyle & 0xffff;
 
+#ifdef WINDOWSEX
    m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
+#else
+   throw todo(get_app());
+#endif
 
 
    // create the oswindow
@@ -190,12 +198,14 @@ size simple_toolbar::CalcSimpleLayout()
 
       //delete[] m_itema;
    }
-
+#ifdef WINDOWSEX
    if(GetStyle() & TBSTYLE_FLAT)
    {
       sizeResult.cy += 2;
    }
-
+#else
+   throw todo(get_app());
+#endif
    return sizeResult;
 }
 
@@ -272,8 +282,11 @@ void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
    }
    else
    {
-      pdc->FillSolidRect(
-         rectWindow,   GetSysColor(COLOR_3DFACE));
+#ifdef WINDOWSEX
+      pdc->FillSolidRect(rectWindow, GetSysColor(COLOR_3DFACE));
+#else
+      pdc->FillSolidRect(rectWindow, ARGB(255, 184, 184, 177));
+#endif
    }
 
    // Desenha chanfro
@@ -393,6 +406,8 @@ size simple_toolbar::CalcSize(int nCount)
 
 
    //   DWORD dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
+#ifdef WINDOWSEX
+
 
    for (int i = 0; i < nCount; i++)
    {
@@ -428,6 +443,7 @@ size simple_toolbar::CalcSize(int nCount)
             - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
             + ITEMPADTOP + ITEMPADBOTTOM;
       }
+
 
       if (m_itema[i].m_fsState & TBSTATE_HIDDEN)
          continue;
@@ -471,6 +487,9 @@ size simple_toolbar::CalcSize(int nCount)
             cur.y += cySep;
       }
    }
+#else
+      throw todo(get_app());
+#endif
    return sizeResult;
 }
 /*bool simple_toolbar::CalcSize(size & size, bool bHorz)
@@ -564,6 +583,8 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
    UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
    pdc->SelectObject(System.font_central().GetMenuFont());
+
+#ifdef WINDOWSEX
 
    EElement eelement = ElementItem;
    EElement eelementImage = ElementImage;
@@ -774,6 +795,12 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int iItem)
       }
    }
 
+#else
+
+   throw todo(get_app());
+
+#endif
+
 }
 
 /*
@@ -842,6 +869,8 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
 
    //   gen::application * papp = dynamic_cast < gen::application * > (get_app());
 
+#ifdef WINDOWSEX
+
    TBBUTTON tb;
 
    simple_toolbar_item item;
@@ -876,8 +905,14 @@ bool simple_toolbar::LoadXmlToolBar(const char * lpszXml)
       }
    }
 
+#else
+
+   throw todo(get_app());
+
+#endif
 
    return TRUE;
+
 }
 
 bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect)
@@ -911,6 +946,9 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
    UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
    rect rect;
+
+#ifdef WINDOWSEX
+
    if((item.m_fsStyle & TBSTYLE_SEP) != 0)
    {
       rect.left   = item.m_rect.left + ITEMCX;
@@ -1005,6 +1043,9 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
          break;
       }
    }
+#else
+   throw todo(get_app());
+#endif
    *lprect = rect;
    return true;
 }
@@ -1089,8 +1130,12 @@ void simple_toolbar::SetSizes(SIZE sizeButton, SIZE sizeImage)
    if(false)
    {
       // set the sizes via TB_SETBITMAPSIZE and TB_SETBUTTONSIZE
+#ifdef WINDOWSEX
       VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
       VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
+#else
+      throw todo(get_app());
+#endif
 
       Invalidate();   // just to be nice if called when toolbar is visible
    }
@@ -1206,6 +1251,7 @@ void simple_toolbar::layout()
             item.m_str,
             sizeText);
       }
+#ifdef WINDOWSEX
       if((item.m_fsState & TBSTATE_WRAP) != 0)
       {
          if((item.m_fsStyle & TBSTYLE_SEP) != 0)
@@ -1263,6 +1309,9 @@ void simple_toolbar::layout()
       {
          ix += cx;
       }
+#else
+      throw todo(get_app());
+#endif
    }
    if(m_itema.get_size() > 0)
    {
@@ -1525,7 +1574,7 @@ void SimpleToolCmdUI::Enable(bool bOn)
    ASSERT(pToolBar != NULL);
    //   ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
-
+#ifdef WINDOWSEX
    UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) & ~TBBS_DISABLED;
    if (!bOn)
    {
@@ -1538,6 +1587,9 @@ void SimpleToolCmdUI::Enable(bool bOn)
    }
    ASSERT(!(nNewStyle & TBBS_SEPARATOR));
    pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle);
+#else
+   throw todo(get_app());
+#endif
 }
 
 void SimpleToolCmdUI::SetCheck(check::e_check echeck)
@@ -1550,6 +1602,7 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
    ASSERT_KINDOF(simple_toolbar, pToolBar);
    ASSERT(m_iIndex < m_iCount);
 
+#ifdef WINDOWSEX
    UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) &
       ~(TBBS_CHECKED | TBBS_INDETERMINATE);
    if(echeck == check::checked)
@@ -1558,6 +1611,9 @@ void SimpleToolCmdUI::SetCheck(check::e_check echeck)
       nNewStyle |= TBBS_INDETERMINATE;
    ASSERT(!(nNewStyle & TBBS_SEPARATOR));
    pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle | TBBS_CHECKBOX);
+#else
+   throw todo(get_app());
+#endif
 }
 
 void SimpleToolCmdUI::SetText(const char *)
@@ -1604,6 +1660,7 @@ void simple_toolbar::SetButtonStyle(int nIndex, UINT nStyle)
 
 void simple_toolbar::_001OnNcCalcSize(gen::signal_object * pobj)
 {
+#ifdef WINDOWSEX
    SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
    class rect rect;
@@ -1616,6 +1673,9 @@ void simple_toolbar::_001OnNcCalcSize(gen::signal_object * pobj)
    pnccalcsize->m_pparams->rgrc[0].top += rect.top;
    pnccalcsize->m_pparams->rgrc[0].right += rect.right;
    pnccalcsize->m_pparams->rgrc[0].bottom += rect.bottom;
+#else
+   throw todo(get_app());
+#endif
 }
 
 
@@ -1630,9 +1690,10 @@ void simple_toolbar::_001OnNcHitTest(gen::signal_object * pobj)
 
 int simple_toolbar::WrapToolBar(int nCount, int nWidth)
 {
+   int nResult = 0;
+#ifdef WINDOWSEX
    ASSERT(nCount > 0);
    ::ca::graphics * pdc = GetDC();
-   int nResult = 0;
    int x = 0;
    string str;
    for (int i = 0; i < nCount; i++)
@@ -1710,6 +1771,9 @@ int simple_toolbar::WrapToolBar(int nCount, int nWidth)
          x += dxNext;
    }
    ReleaseDC(pdc);
+#else
+   throw todo(get_app());
+#endif
    return nResult + 1;
 }
 
@@ -1839,6 +1903,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
 
       sizeResult = CalcSize(nCount);
 
+#ifdef WINDOWSEX
       if (dwMode & LM_COMMIT)
       {
          ___CONTROLPOS* pControl = NULL;
@@ -1940,6 +2005,9 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
          }
          m_bDelayedButtonLayout = bIsDelayed != 0;
       }
+#else
+      throw todo(get_app());
+#endif
       //delete[] m_itema;
    }
 

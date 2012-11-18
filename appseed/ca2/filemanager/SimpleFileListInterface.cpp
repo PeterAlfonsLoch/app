@@ -369,12 +369,15 @@ namespace filemanager
 
       icon_key iconkey;
       icon icon;
+
+#ifdef WINDOWSEX
       for(POSITION pos = m_iconmap.get_start_position();
          pos != NULL;
          m_iconmap.get_next_assoc(pos, iconkey, icon))
       {
          DestroyIcon(icon.m_hicon);
       }
+#endif
 
       m_iCreateImageListStep = 0;
       m_bCreateImageList = true;
@@ -1228,9 +1231,9 @@ namespace filemanager
       {
          string strPath = get_fs_list_data()->m_itema.get_item(strictDrag).m_strPath;
          string strName = System.file().name_(strPath);
-         ::MoveFile(
-            strPath,
-            System.dir().path(get_fs_list_data()->m_itema.get_item(strict).m_strPath, strName));
+         System.file().move(
+            System.dir().path(get_fs_list_data()->m_itema.get_item(strict).m_strPath, strName),
+            strPath);
          _017Synchronize();
       }
       else

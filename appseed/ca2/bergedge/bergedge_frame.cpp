@@ -68,7 +68,7 @@ namespace bergedge
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       ::DestroyMenu(cs.hMenu);
 #endif
       cs.hMenu = NULL;
@@ -239,6 +239,8 @@ namespace bergedge
 
    void frame::message_window_message_handler(gen::signal_object * pobj)
    {
+
+#ifdef WINDOWSEX
       SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))
       {
@@ -257,6 +259,12 @@ namespace bergedge
             System.open_by_file_extension(iEdge, strPath);
          }
       }
+
+#else
+
+      throw todo(get_app());
+
+#endif
 
    }
 
@@ -277,11 +285,11 @@ namespace bergedge
          }
          else if(pbase->m_lparam == 5)
          {
+#ifdef WINDOWSEX
 
             class rect rect;
             ::GetWindowRect(::GetDesktopWindow(), rect);
             point pt = rect.center();
-#ifdef WINDOWS
             if(!IsWindowVisible()
             || ::WindowFromPoint(pt) != get_safe_handle())
             {
@@ -424,7 +432,11 @@ namespace bergedge
 
       MSG * pmsg = (MSG *) pbase->m_lparam;
 
+#ifdef WINDOWSEX
+
       pmsg->hwnd = get_safe_handle();
+
+#endif
 
       try
       {

@@ -49,7 +49,9 @@ void simple_frame_window::install_message_handling(::gen::message::dispatch * pi
    userbase::frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_NCACTIVATE     , pinterface, this, &simple_frame_window::_001OnNcActivate);
+#ifdef WINDOWSEX
    IGUI_WIN_MSG_LINK(WM_DDE_INITIATE   , pinterface, this, &simple_frame_window::_001OnDdeInitiate);
+#endif
    IGUI_WIN_MSG_LINK(WM_DESTROY        , pinterface, this, &simple_frame_window::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_CLOSE          , pinterface, this, &simple_frame_window::_001OnClose);
    IGUI_WIN_MSG_LINK(WM_SIZE           , pinterface, this, &simple_frame_window::_001OnSize);
@@ -274,19 +276,23 @@ bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_conte
 bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
 {
 
+#ifdef WINDOWSEX
    if(cs.lpszClass == NULL)
    {
       cs.lpszClass = System.RegisterWndClass(CS_HREDRAW | CS_VREDRAW, 0, 0, 0);
    }
+#endif
 
    if(!userbase::frame_window::pre_create_window(cs))
       return FALSE;
 
+#ifdef WINDOWSEX
    if(cs.hMenu != NULL)
    {
       ::DestroyMenu(cs.hMenu);
       cs.hMenu = NULL;
    }
+#endif
 
    //cs.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
    cs.style = WS_POPUP;
@@ -318,6 +324,7 @@ void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT use
 void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
 {
    SCAST_PTR(gen::message::base, pbase, pobj);
+#ifdef WINDOWSEX
    MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam;
    if (IsFullScreen())
    {
@@ -326,6 +333,9 @@ void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
       lpMMI->ptMaxSize.x = m_FullScreenWindowRect.width();
       lpMMI->ptMaxTrackSize.x = lpMMI->ptMaxSize.x;
    }
+#else
+   throw todo(get_app());
+#endif
 }
 
    void simple_frame_window::ShowControlBars(bool bShow)
@@ -615,6 +625,8 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
 
 }
 
+#ifdef WINDOWSEX
+
 void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
 {
    UNREFERENCED_PARAMETER(bCalcValidRects);
@@ -626,9 +638,10 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
    {
 // trans      userbase::frame_window::OnNcCalcSize(bCalcValidRects, lpncsp);
    }
+
 }
 
-
+#endif
 
 void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
 {
@@ -677,7 +690,9 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
 //   if (strFullString.load_string(nIDResource))
 //      __extract_sub_string(m_strTitle, strFullString, 0);    // first sub-string
 
+#ifdef WINDOWSEX
    VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, NULL));
+#endif
 
    // attempt to create the ::ca::window
    const char * lpszClass = (const char *) GetIconWndClass(dwDefaultStyle, pszMatter);
@@ -755,6 +770,7 @@ void simple_frame_window::_001OnDdeInitiate(gen::signal_object * pobj)
 
 void simple_frame_window::pre_translate_message(gen::signal_object * pobj)
 {
+#ifdef WINDOWSEX
    SCAST_PTR(gen::message::base, pbase, pobj);
    if(pbase->m_uiMessage == WM_KEYUP)
    {
@@ -794,6 +810,9 @@ void simple_frame_window::pre_translate_message(gen::signal_object * pobj)
          }
       }
    }
+#else
+   throw todo(get_app());
+#endif
    return userbase::frame_window::pre_translate_message(pobj);
 }
 

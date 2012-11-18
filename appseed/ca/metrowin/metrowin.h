@@ -1,6 +1,9 @@
 #pragma once
 
 
+CLASS_DECL_ca DWORD GetTickCount();
+
+
 CLASS_DECL_ca bool CopyRect(LPRECT prectDest, LPCRECT prectSrc);
 CLASS_DECL_ca bool PtInRect(LPCRECT prect, POINT point);
 CLASS_DECL_ca bool SetRect(LPRECT prect, long x1, long y1, long x2, long y2);

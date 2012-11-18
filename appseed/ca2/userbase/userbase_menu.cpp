@@ -236,7 +236,17 @@ namespace userbase
       }
       else
       {
+
+#ifdef WINDOWSEX
+
          pdc->FillSolidRect(rectClient, GetSysColor(COLOR_WINDOW));
+
+#else
+
+         throw todo(get_app());
+
+#endif
+
       }
 
       /*int iMaxHeight = 0;
@@ -576,15 +586,24 @@ namespace userbase
 
    bool menu::pre_create_window(CREATESTRUCT& cs)
    {
+
+#ifdef WINDOWSEX
       if(cs.lpszClass == NULL)
       {
          cs.lpszClass = System.RegisterWndClass(
             CS_HREDRAW | CS_VREDRAW,
             0, 0, 0);
       }
+#else
+      throw todo(get_app());
+#endif
       cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
+#ifdef WINDOWSEX
       ::DestroyMenu(cs.hMenu);
+#else
+      throw todo(get_app());
+#endif
       cs.hMenu = NULL;
       return TRUE;
    }

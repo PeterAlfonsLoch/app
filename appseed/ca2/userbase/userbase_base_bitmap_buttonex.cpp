@@ -83,6 +83,9 @@ namespace userbase
       pobj->previous();
    }
 
+
+#ifdef WINDOWSEX
+
    void bitmap_button::DrawItem(LPDRAWITEMSTRUCT lpDIS)
    {
        ASSERT(lpDIS != NULL);
@@ -122,6 +125,7 @@ namespace userbase
        memDC.SelectObject(pOld);*/
    }
 
+#endif
 
    void bitmap_button::UpdateHover()
    {

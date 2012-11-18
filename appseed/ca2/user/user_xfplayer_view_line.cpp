@@ -1446,7 +1446,8 @@ void XfplayerViewLine::EmbossedTextOut(
       pdc->StrokePath();
       pdc->SelectObject(ppenOld);
 
-      ::SetTextColor((HDC)pdc->get_os_data(), cr);
+
+      pdc->SetTextColor(cr);
       pdc->TextOut(iLeft, iTop, string(lpcsz, iLen));
    }
    else

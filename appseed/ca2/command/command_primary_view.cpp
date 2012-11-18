@@ -134,7 +134,7 @@ namespace command
                if(!bOk)
                {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
                   if(::ShellExecuteW(
                      NULL,

@@ -48,7 +48,7 @@ namespace userstack
          return;
       }
 
-      SetWindowTextA("bergedge");
+      SetWindowText("bergedge");
 
    }
 
@@ -68,7 +68,11 @@ namespace userstack
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
+#ifdef WINDOWSEX
       ::DestroyMenu(cs.hMenu);
+#else
+      throw todo(get_app());
+#endif
       cs.hMenu = NULL;
       return TRUE;
    }
@@ -245,6 +249,7 @@ namespace userstack
       }
       else if(pbase->m_uiMessage == WM_COPYDATA)
       {
+#ifdef WINDOWSEX
          int iEdge = 0;
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam;
          if(pstruct->dwData == 1984)
@@ -254,6 +259,9 @@ namespace userstack
             file.to_string(strPath);
             System.open_by_file_extension(iEdge, strPath);
          }
+#else
+         throw todo(get_app());
+#endif
       }
 
    }
@@ -275,7 +283,7 @@ namespace userstack
          }
          else if(pbase->m_lparam == 5)
          {
-            
+#ifdef WINDOWSEX
             class rect rect;
             ::GetWindowRect(::GetDesktopWindow(), rect);
             point pt = rect.center();
@@ -291,6 +299,9 @@ namespace userstack
             {
                ShowWindow(SW_HIDE);
             }
+#else
+            throw todo(get_app());
+#endif
          }
       }
 /*         else if(pbase->m_lparam == 1)
@@ -360,7 +371,11 @@ namespace userstack
       }
       else if(pbase->m_wparam == 25)
       {
+#ifdef WINDOWSEX
          pbase->set_lresult((LRESULT) GetTopLevelFrame()->get_safe_handle());
+#else
+         throw todo(get_app());
+#endif
       }
       pbase->m_bRet = true;
    }
@@ -414,6 +429,8 @@ namespace userstack
       
       SCAST_PTR(gen::message::base, pbase, pobj);
 
+#ifdef WINDOWSEX
+
       MSG * pmsg = (MSG *) pbase->m_lparam;
 
       pmsg->hwnd = get_safe_handle();
@@ -441,6 +458,12 @@ namespace userstack
       }
 
       delete pmsg;
+
+#else
+
+      throw todo(get_app());
+
+#endif
 
    }
 

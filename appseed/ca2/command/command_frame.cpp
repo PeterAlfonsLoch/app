@@ -188,7 +188,7 @@ namespace command
          KillTimer(nIDEvent);
          m_bTimerOn = false;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          bool bLControlKeyDown = (GetAsyncKeyState (VK_LCONTROL) >> ((sizeof(SHORT) * 8) - 1)) != 0;
          bool bLAltKeyDown = (GetAsyncKeyState (VK_LMENU) >> ((sizeof(SHORT) * 8) - 1)) != 0;

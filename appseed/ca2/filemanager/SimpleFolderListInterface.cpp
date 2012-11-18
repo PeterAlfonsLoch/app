@@ -56,8 +56,9 @@ namespace filemanager
    {
       string strParent = lpcsz;
 
+      m_foldera.clear();
 
-      m_foldera.clear(NULL, NULL);
+//      m_foldera.clear(NULL, NULL);
 
       Folder folder;
 
@@ -94,7 +95,7 @@ namespace filemanager
       if(strParent.is_empty())
       {
 
-         m_foldera.clear(NULL, NULL);
+         m_foldera.clear();
 
          stringa stra;
 
@@ -132,18 +133,26 @@ namespace filemanager
          //if(pil->GetSafeHandle() != NULL)
             //pil->DeleteImageList();
          //if(pil->create(16, 16, ILC_COLOR32 | ILC_MASK, 0, 1))
+#ifdef WINDOWSEX
          if(pil->create(16, 16, ILC_COLOR32, 0, 1))
+#else
+         if(pil->create(16, 16, 0, 0, 1))
+#endif
          {
 
             string str;
             HICON hicon = NULL;
             int iIndex;
+#ifdef WINDOWSEX
             for(POSITION pos = m_iconmap.get_start_position();
                pos != NULL;
                m_iconmap.get_next_assoc(pos, hicon, iIndex))
             {
                DestroyIcon(hicon);
             }
+#else
+            throw todo(get_app());
+#endif
             m_iconmap.remove_all();
    //         int iIcon;
    //         int iImage;
@@ -225,9 +234,8 @@ namespace filemanager
    }
 
 
-   void SimpleFolderListInterface::FolderArray::clear(
-      LPITEMIDLIST lpiidlPreserve1,
-      LPITEMIDLIST lpiidlPreserve2)
+#ifdef WINDOWSEX
+   void SimpleFolderListInterface::FolderArray::clear(LPITEMIDLIST lpiidlPreserve1, LPITEMIDLIST lpiidlPreserve2)
    {
       UNREFERENCED_PARAMETER(lpiidlPreserve1);
       UNREFERENCED_PARAMETER(lpiidlPreserve2);
@@ -240,6 +248,15 @@ namespace filemanager
       //}
       remove_all();
 
+
+   }
+
+#endif
+
+   void SimpleFolderListInterface::FolderArray::clear()
+   {
+
+      remove_all();
 
    }
 

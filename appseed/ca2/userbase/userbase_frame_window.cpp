@@ -29,8 +29,9 @@ namespace userbase
       m_hMenuAlt = NULL;
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.null();
-
+#ifdef WINDOWSEX
       m_bHelpMode = HELP_INACTIVE;    // not in Shift+F1 help mode
+#endif
       m_dwPromptContext = 0;
 
       m_pNextFrameWnd = NULL;         // not in list yet
@@ -95,6 +96,7 @@ namespace userbase
       }
 
       // then update the state of all floating windows owned by the parent
+#ifdef WINDOWSEX
       ::user::interaction* oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
       while (oswindow != NULL)
       {
@@ -102,6 +104,9 @@ namespace userbase
             oswindow->send_message(WM_FLOATSTATUS, dwFlags, 0);
          oswindow = oswindow->GetWindow(GW_HWNDNEXT);
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
    extern const CHAR _vfxWndFrameOrView[];
@@ -112,10 +117,14 @@ namespace userbase
 
    bool frame_window::pre_create_window(CREATESTRUCT& cs)
    {
+#ifdef WINDOWSEX
       if (cs.lpszClass == NULL)
       {
          VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
       }
+#else
+      throw todo(get_app());
+#endif
 
    //   if ((cs.style & FWS_ADDTOTITLE) && afxData.bWin4)
       if ((cs.style & FWS_ADDTOTITLE))

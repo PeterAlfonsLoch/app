@@ -220,8 +220,12 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
 //      UINT nIDEvent = ptimer->m_nIDEvent;
+#ifdef WINDOWSEX
       if (GetKeyState(VK_LBUTTON) < 0)
          return;
+#else
+      throw todo(get_app());
+#endif
 
    //   __MODULE_THREAD_STATE* pModuleThreadState = __get_module_thread_state();
 
@@ -274,6 +278,7 @@ namespace userbase
       UINT message = pbase->m_uiMessage;
       ::user::interaction* pOwner = get_owner();
 
+#ifdef WINDOWSEX
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
          message == WM_LBUTTONDOWN || message == WM_LBUTTONUP) &&
@@ -289,6 +294,9 @@ namespace userbase
          TOOLINFO ti; memset(&ti, 0, sizeof(TOOLINFO));
          ti.cbSize = sizeof(__OLDTOOLINFO);
       }
+#else
+      throw todo(get_app());
+#endif
 
       // don't translate dialog messages when in Shift+F1 help mode
       userbase::frame_window* pFrameWnd = dynamic_cast < userbase::frame_window * > (GetTopLevelFrame());
@@ -343,6 +351,7 @@ namespace userbase
             lResult = get_owner()->send_message(pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
 
             // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
+#ifdef WINDOWSEX
             if(pbase->m_uiMessage == WM_NOTIFY)
             {
                NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam;
@@ -358,6 +367,9 @@ namespace userbase
                   }
                }
             }
+#else
+            throw todo(get_app());
+#endif
             return;
          }
       }
@@ -807,6 +819,8 @@ namespace userbase
       COLORREF clr;
       clr = RGB(128, 128, 123);
 
+
+#ifdef WINDOWSEX
       // draw dark line one pixel back/up
       if (dwStyle & CBRS_BORDER_3D)
       {
@@ -910,6 +924,13 @@ namespace userbase
       if (dwStyle & CBRS_BORDER_BOTTOM)
          //rect.bottom -= afxData.cyBorder2;
             rect.bottom -= 2;
+
+#else
+
+      throw todo(get_app());
+
+#endif
+
    }
 
    #define CX_GRIPPER  6

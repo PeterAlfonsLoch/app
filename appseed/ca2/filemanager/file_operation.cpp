@@ -211,7 +211,7 @@ bool file_operation::step()
       {
          if(m_iFile >= m_stra.get_size())
             return false;
-         ::DeleteFile(m_stra[m_iFile]);
+         ::DeleteFileW(gen::international::utf8_to_unicode(m_stra[m_iFile]));
          m_iFile++;
       }
       break;
@@ -227,7 +227,7 @@ bool file_operation::step()
          {
             m_fileSrc->close();
             m_fileDst->close();
-            ::DeleteFile(m_stra[m_iFile]);
+            ::DeleteFileW(gen::international::utf8_to_unicode(m_stra[m_iFile]));
             m_iFile++;
             if(m_iFile >= m_stra.get_size())
                return false;

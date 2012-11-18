@@ -24,14 +24,19 @@ namespace userbase
 
    notification_area::~notification_area()
    {
+#ifdef WINDOWSEX
       ::DeleteObject(m_hfontHidden);
       ::DeleteObject(m_hfontRegular);
+#else
+      throw todo(get_app());      
+#endif
    }
 
    void notification_area::Initialize(::ca::application * papp)
    {
+#ifdef WINDOWSEX
       LOGFONT lf = {0};
-      strcpy(lf.lfFaceName, "Arial");
+      wcscpy(lf.lfFaceName, L"Arial");
       lf.lfHeight = 16;
       m_hfontRegular = CreateFontIndirect(&lf);
       lf.lfItalic = TRUE;
@@ -41,11 +46,16 @@ namespace userbase
       m_pil16 = new image_list(papp);
       m_pil16->create(16,16,ILC_COLOR24,16,16);
 
+#else
+      throw todo(get_app());
+#endif
+
       ListTrayIcons();
    }
 
    void notification_area::ListTrayIcons(int defindex /*= 0*/)
    {
+#ifdef WINDOWSEX
       UNREFERENCED_PARAMETER(defindex);
       m_infoa.remove_all();
 
@@ -139,6 +149,9 @@ namespace userbase
       //   GetListCtrl().SetItemState(defindex,
       //      LVIS_FOCUSED|LVIS_SELECTED,
       //      LVIS_FOCUSED|LVIS_SELECTED);
+#else
+      throw todo(get_app());
+#endif
    }
 
    void notification_area::EditCopy(int iItem)
@@ -179,28 +192,40 @@ namespace userbase
 
    void notification_area::PostMessageToTrayIcon(int iItem, LPARAM lParam)
    {
+#ifdef WINDOWSEX
       ::PostMessage(m_infoa[iItem].oswindow,
          m_infoa[iItem].uCallbackMessage,
          m_infoa[iItem].uID,
          lParam);
+#else
+      throw todo(get_app());
+#endif
    }
 
    void notification_area::MoveLeft(int iItem)
    {
+#ifdef WINDOWSEX
       if(iItem > 0)
       {
          ::SendMessage(m_oswindowTray, TB_MOVEBUTTON, iItem, iItem-1);
          ListTrayIcons(iItem - 1);
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
    void notification_area::MoveRight(int iItem)
    {
+#ifdef WINDOWSEX
       if(iItem < (m_infoa.get_size() - 1))
       {
          ::SendMessage(m_oswindowTray, TB_MOVEBUTTON, iItem, iItem+1);
          ListTrayIcons(iItem + 1);
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
 
@@ -218,6 +243,7 @@ namespace userbase
 
    char GetDriveLetter(const char * lpDevicePath)
    {
+#ifdef WINDOWSEX
       char d = 'A';
       while(d <= 'Z')
       {
@@ -228,12 +254,17 @@ namespace userbase
                return d;
          d++;
       }
+#else
+      throw todo(::ca::get_thread_app());
+#endif
       return NULL;
    }
 
    oswindow FindTrayToolbarWindow()
    {
-      oswindow oswindow = ::FindWindow("Shell_TrayWnd", NULL);
+      oswindow oswindow = ::ca::null();
+#ifdef WINDOWSEX
+      oswindow = ::FindWindow("Shell_TrayWnd", NULL);
       if(oswindow != NULL)
       {
          oswindow = ::FindWindowEx(oswindow,NULL,"TrayNotifyWnd", NULL);
@@ -246,9 +277,11 @@ namespace userbase
             }
          }
       }
+#endif
       return oswindow;
    }
 
+#ifdef WINDOWSEX
    string GetFilenameFromPid(DWORD pid)
    {
       string strRet = "[Unknown Process]";
@@ -275,5 +308,6 @@ namespace userbase
       }
       return strRet;
    }
+#endif
 
 } // namespace userbase

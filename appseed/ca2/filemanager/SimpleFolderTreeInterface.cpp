@@ -422,12 +422,22 @@ namespace filemanager
 
          pitemChild->m_flags.signalize(::fs::FlagFolder);
 //         pitemChild->m_iImage = m_iDefaultImage;
+
+#ifdef WINDOWSEX
+
          pitemChild->m_iImage = System.shellimageset().GetImage(
             NULL,
             pitemChild->m_strPath,
             NULL,
             _shell::IconNormal,
             true);
+
+#else
+
+         pitemChild->m_iImage = -1;
+
+#endif
+
          pitemChild->m_iImageSelected = m_iDefaultImageSelected;
 
          pitem = find_item(pitemChild->m_strPath);
@@ -616,6 +626,8 @@ namespace filemanager
          }*/
 
          pitemChild->m_flags.signalize(::fs::FlagFolder);
+
+#ifdef WINDOWSEX
          try
          {
             pitemChild->m_iImage = System.shellimageset().GetImage(
@@ -636,6 +648,12 @@ namespace filemanager
             pitemChild->m_iImage = m_iDefaultImage;
             pitemChild->m_iImageSelected = m_iDefaultImageSelected;
          }
+#else
+
+         pitemChild->m_iImage = m_iDefaultImage;
+         pitemChild->m_iImageSelected = m_iDefaultImageSelected;
+
+#endif
 
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
@@ -810,6 +828,8 @@ namespace filemanager
       TakeAnimationSnapshot();
    }
 
+#ifdef WINDOWSEX
+
    IShellFolder * SimpleFolderTreeInterface::_001GetFolder(EFolder efolder)
    {
       IShellFolder * psf;
@@ -854,6 +874,7 @@ namespace filemanager
          psfDesktop->Release();
          return psf;
       }
+
    }
 
    int SimpleFolderTreeInterface::MapToCSIDL(EFolder efolder)
@@ -866,6 +887,10 @@ namespace filemanager
          return -1;
       }
    }
+
+
+#endif
+
 
    void SimpleFolderTreeInterface::_001OnItemExpand(::ex1::tree_item * pitem)
    {

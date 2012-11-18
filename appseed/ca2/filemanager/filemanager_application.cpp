@@ -188,6 +188,8 @@ namespace filemanager
       ASSERT(bOpenFileDialog == FALSE);
       ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_ptemplateStd->open(this));
       FileManagerTabView * pview = pdoc->get_typed_view < FileManagerTabView >();
+
+#ifdef WINDOWSEX
       oswindow oswindowDesktop = ::GetDesktopWindow();
       rect rectOpen;
       ::GetWindowRect(oswindowDesktop, rectOpen);
@@ -197,6 +199,8 @@ namespace filemanager
       pview->GetParentFrame()->SetWindowPos(ZORDER_TOP, rectOpen.left,
          rectOpen.top,
          rectOpen.width(), rectOpen.height(), SWP_SHOWWINDOW);
+
+#endif
       pview->set_cur_tab_by_id(1);
       pview->GetParentFrame()->RedrawWindow();
       pview->GetParentFrame()->RunModalLoop();

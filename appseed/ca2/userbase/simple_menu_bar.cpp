@@ -58,7 +58,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
    m_menu.LoadMenu(m_uiResourceID);*/
 
 
-
+#ifdef WINDOWSEX
    send_message(TB_SETUNICODEFORMAT, 1, 0);
    string str;
 
@@ -79,6 +79,7 @@ bool simple_menu_bar::LoadMenuBar(UINT nIDResource)
    {
       m_buttona[i].m_wstr = mda.element_at(i).m_wstr;
    }*/
+#endif
 
    m_bDelayedButtonLayout = true;
    //_001Layout();
@@ -148,13 +149,14 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(int iItem)
     _001GetItemRect(iItem, rect, ElementItem);
     ClientToScreen(rect);
 
+#ifdef WINDOWSEX
     TPMPARAMS tpm;
     tpm.cbSize = sizeof(TPMPARAMS);
     tpm.rcExclude.top    = rect.top;
     tpm.rcExclude.left   = rect.left;
     tpm.rcExclude.bottom = rect.bottom;
     tpm.rcExclude.right  = rect.right;
-
+#endif
 //    array_ptr_alloc <SimpleMenu , SimpleMenu &> * psma = NULL;
 
 
@@ -552,7 +554,9 @@ bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyl
       m_dwStyle |= CBRS_HIDE_INPLACE;
 
    dwStyle &= ~CBRS_ALL;
+#ifdef WINDOWSEX
    dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
+#endif
    dwStyle |= dwCtrlStyle;
 
 //   ASSERT(gen_ComCtlVersion != -1);

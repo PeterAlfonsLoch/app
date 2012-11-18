@@ -200,6 +200,10 @@ vsstring _c_get_file_name(const char * psz, bool bCreate = false, int * pfd = NU
 CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 
 
+CLASS_DECL_c COLORREF GetSysColor(DWORD dw);
+
+
 #include "c_simple_app.h"
+
 
 

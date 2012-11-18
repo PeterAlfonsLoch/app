@@ -410,7 +410,7 @@ namespace bergedge
      //    return;
       //if(!m_bEnsureApps)
         // return;
-
+#ifndef METROWIN
       if(::IsWindow(m_oswindowWinactionarea) &&
          ::IsWindow(m_oswindowCommand) &&
          ::IsWindow(m_oswindowWinutil) &&
@@ -423,6 +423,7 @@ namespace bergedge
       m_oswindowCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
       m_oswindowWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
       m_oswindowBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
+#endif
    }
 
 

@@ -23,14 +23,25 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
    void application::CubeOnFactoryExchange()
    {
-   #ifdef WIN32
+
+   #ifdef WINDOWSEX
 
       HMODULE hmodule = ::LoadLibraryA("os2.dll");
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
+
+   #elif defined(METROWIN)
+
+      HMODULE hmodule = ::LoadPackagedLibrary(L"m_os2.dll", 0);
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
+      pfn_ca2_factory_exchange(this);
+
    #else
+
       return NULL; // not implemented... yet!! you may start!!
+
    #endif
+
    }
 
 

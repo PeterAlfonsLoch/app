@@ -15,10 +15,12 @@ namespace userbase
 
    // Derived class is responsible for implementing all of these handlers
    //   for owner/self draw controls
+#ifndef METROWIN
    void base_static::DrawItem(LPDRAWITEMSTRUCT)
    {
       ASSERT(FALSE);
    }
+#endif
 
    bool base_static::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
       LRESULT* pResult)
@@ -30,7 +32,9 @@ namespace userbase
 
       ASSERT(pResult == NULL);       // no return value expected
       UNUSED(pResult); // unused in release builds
+#ifndef METROWIN
       DrawItem((LPDRAWITEMSTRUCT)lParam);
+#endif
       return TRUE;
    }
 

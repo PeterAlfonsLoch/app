@@ -1854,8 +1854,11 @@ namespace gcom
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
          srand((unsigned int) time(NULL));
-         event event(peffect->get_app());
-         MMRESULT mmr;
+         manual_reset_event event(peffect->get_app());
+
+         event.ResetEvent();
+
+//         MMRESULT mmr;
          int iResolution = 25;
          UINT uiRet = 0;
          try
@@ -1887,12 +1890,14 @@ namespace gcom
                if(!peffect->m_bRun)
                   break;
 
-                  mmr = timeSetEvent(
+                  /*mmr = timeSetEvent(
                      max(natural(iResolution), peffect->m_dwDelay),
                      iResolution,  // 5 ms resolution
                      (LPTIMECALLBACK) (HANDLE) event,
                      NULL,
-                     TIME_ONESHOT | TIME_CALLBACK_EVENT_SET);
+                     TIME_ONESHOT | TIME_CALLBACK_EVENT_SET);*/
+
+                  event.wait(millis(5));
 
                   peffect->RunStepProcLevel2();
 

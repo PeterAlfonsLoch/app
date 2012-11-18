@@ -69,7 +69,7 @@ namespace command
       if(itema.get_size() > 0)
       {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          ::ShellExecuteW(
             NULL,

@@ -1,5 +1,7 @@
 #include "framework.h"
 
+CLASS_DECL_ca2 COLORREF GetSysColor(DWORD dw);
+
 namespace user
 {
 
@@ -51,6 +53,7 @@ namespace user
 
    index list_header::MapItemToOrder(index iItem)
    {
+#ifdef WINDOWSEX
       HDITEM hditem;
 
 
@@ -67,6 +70,13 @@ namespace user
 
    //   return hditem.iOrder;
       return iItem;
+
+#else
+
+      throw todo(get_app());
+
+#endif
+
    }
 
 

@@ -40,7 +40,9 @@ namespace platform
       if( !simple_frame_window::pre_create_window(cs) )
          return FALSE;
       cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
+#ifdef WINDOWSEX
       ::DestroyMenu(cs.hMenu);
+#endif
       cs.hMenu = NULL;
       return TRUE;
    }

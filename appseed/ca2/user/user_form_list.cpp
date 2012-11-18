@@ -466,7 +466,7 @@ namespace user
       }*/
       control_keep controlkeep(this, pt);
       user::interaction * pui = get_top_child();
-      user::interaction * puiBefore;
+      user::interaction * puiBefore = NULL;
       bool bError;
       try
       {

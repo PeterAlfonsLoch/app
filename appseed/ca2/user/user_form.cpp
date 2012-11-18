@@ -626,8 +626,12 @@ namespace ca2
 
       void form::_001OnNotify(gen::signal_object * pobj)
       {
+#ifdef WINDOWSEX
          SCAST_PTR(::gen::message::notify, pnotify, pobj)
          pnotify->m_bRet = false;
+#else
+         throw todo(get_app());
+#endif
       }
 
       void form::_001OnMessageNotify(gen::signal_object * pobj)

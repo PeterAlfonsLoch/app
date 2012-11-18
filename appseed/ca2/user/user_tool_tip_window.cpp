@@ -85,6 +85,9 @@ namespace user
 
       m_ealign = m_ealignDefault;
 
+
+#ifdef WINDOWSEX
+
       while(true)
       {
          m_sizeArrow.cx = 12;
@@ -139,7 +142,11 @@ namespace user
          break;
       }
 
+#else
 
+      throw todo(get_app());
+
+#endif
 
       SetWindowPos(
          ZORDER_TOPMOST,
@@ -329,7 +336,7 @@ namespace user
          WS_EX_TOOLWINDOW,
          System.RegisterWndClass(0, 0, 0, 0),
          NULL,
-         WS_POPUP, 0, 0, 0, 0, NULL, id) != 0;
+         WS_POPUP, 0, 0, 0, 0, ::ca::null(), id) != 0;
    }
 
    ///////////////////////////////////////////////////////////

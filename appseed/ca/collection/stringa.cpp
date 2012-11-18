@@ -10,6 +10,21 @@ ca(papp)
 {
 }
 
+stringa::stringa(const char * psz)
+{
+   
+   if(psz == NULL)
+   {
+      add("");
+   }
+   else
+   {
+      add(psz);
+   }
+
+}
+
+
 stringa::stringa(const stringa &base_array)
 {
    operator =(base_array);

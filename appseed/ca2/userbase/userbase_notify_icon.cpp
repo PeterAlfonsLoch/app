@@ -7,8 +7,9 @@ namespace userbase
    notify_icon::notify_icon(::ca::application * papp) :
       ca(papp)
    {
-      
+#ifdef WINDOWSEX      
       m_nid.cbSize = sizeof(m_nid);
+#endif
       m_bCreated = false;
 
    }
@@ -37,18 +38,26 @@ namespace userbase
          return false;
 
       m_uiId                     = uiId;
+#ifdef WINDOWSEX
       m_nid.hWnd                 = get_safe_handle();
       m_nid.uID                  = uiId;
       m_nid.hIcon                = hicon;
       m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       m_nid.uCallbackMessage     = MessageNotifyIcon;
+#else
+      throw todo(get_app());
+#endif
       m_plistener                = plistener;
 
+#ifdef WINDOWSEX
       if(!Shell_NotifyIcon(NIM_ADD, &m_nid))
       {
          DestroyWindow();
          return false;
       }
+#else
+      throw todo(get_app());
+#endif
 
       m_bCreated = true;
 
@@ -62,13 +71,19 @@ namespace userbase
       if(!m_bCreated)
          return false;
 
+#ifdef WINDOWSEX
       m_nid.hIcon       = hicon;
       m_nid.uFlags      = NIF_ICON;
+
 
       if(!Shell_NotifyIcon(NIM_MODIFY, &m_nid))
       {
          return false;
       }
+
+#else
+      throw todo(get_app());
+#endif
 
       return true;
 
@@ -81,12 +96,16 @@ namespace userbase
       if(!m_bCreated)
          return false;
 
+#ifdef WINDOWSEX
       m_nid.uFlags = 0;
 
       if(!Shell_NotifyIcon(NIM_DELETE, &m_nid))
       {
          return false;
       }
+#else
+      throw todo(get_app());
+#endif
 
       m_bCreated = false;
 

@@ -38,7 +38,9 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_SETTEXT           , pinterface, this, &status_bar::_001OnSetText);
       IGUI_WIN_MSG_LINK(WM_GETTEXT           , pinterface, this, &status_bar::_001OnGetText);
       IGUI_WIN_MSG_LINK(WM_GETTEXTLENGTH     , pinterface, this, &status_bar::_001OnGetTextLength);
+#ifdef WINDOWSEX
       IGUI_WIN_MSG_LINK(SB_SETMINHEIGHT      , pinterface, this, &status_bar::_001OnSetMinHeight);
+#endif
    }
 
    bool status_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, id strId)
@@ -55,18 +57,26 @@ namespace userbase
 
       // translate ca2 API style bits to windows style bits
       dwStyle &= ~CBRS_ALL;
+#ifdef WINDOWSEX
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
       if (pParentWnd->GetStyle() & WS_THICKFRAME)
          dwStyle |= SBARS_SIZEGRIP;
+#endif
       dwStyle |= dwCtrlStyle;
 
       // initialize common controls
+#ifdef WINDOWSEX
       VERIFY(System.DeferRegisterClass(__WNDCOMMCTL_BAR_REG, NULL));
+#endif
 
       // create the oswindow
       class rect rect;
       rect.null();
+#ifdef WINDOWSEX
       return ::user::interaction::create(STATUSCLASSNAME, NULL, dwStyle, rect, pParentWnd, strId);
+#else
+      throw todo(get_app());
+#endif
    }
 
    bool status_bar::pre_create_window(CREATESTRUCT& cs)
@@ -128,9 +138,13 @@ namespace userbase
             {
                // no indicator (must access via index)
                // default to 1/4 the screen width (first pane is stretchy)
+#ifdef WINDOWSEX
                pSBP->cxText = ::GetSystemMetrics(SM_CXSCREEN)/4;
                if (i == 0)
                   pSBP->nStyle |= (SBPS_STRETCH | SBPS_NOBORDERS);
+#else
+               throw todo(get_app());
+#endif
             }
             ++pSBP;
          }
@@ -181,7 +195,7 @@ namespace userbase
 
       // subtract standard ::userbase::control_bar borders
       ::userbase::control_bar::CalcInsideRect(rect, bHorz);
-
+#ifdef WINDOWSEX
       // subtract size grip if present
       if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->IsZoomed())
       {
@@ -194,6 +208,9 @@ namespace userbase
          rect.right -= rgBorders[0] + ::GetSystemMetrics(SM_CXVSCROLL) +
             ::GetSystemMetrics(SM_CXBORDER) * 2;
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
    void status_bar::UpdateAllPanes(bool bUpdateRects, bool bUpdateText)
@@ -202,6 +219,8 @@ namespace userbase
       ASSERT(IsWindow());
 
       int i;
+
+#ifdef WINDOWSEX
 
       // update the status pane locations
       if (bUpdateRects)
@@ -267,6 +286,9 @@ namespace userbase
             ++pSBP;
          }
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
    #ifdef __CORE3_SEG
@@ -304,9 +326,13 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
+#ifdef WINDOWSEX
       status_bar* pBar = (status_bar*)this;
       if (!pBar->DefWindowProc(SB_GETRECT, nIndex, (LPARAM)lpRect))
          ::SetRectEmpty(lpRect);
+#else
+      throw todo(get_app());
+#endif
    }
 
    UINT status_bar::GetPaneStyle(int nIndex)
@@ -427,9 +453,11 @@ namespace userbase
       }
 
       pSBP->nFlags &= ~SBPF_UPDATE;
+#ifdef WINDOWSEX
       DefWindowProc(SB_SETTEXT, ((WORD)pSBP->nStyle)|nIndex,
          (pSBP->nStyle & SBPS_DISABLED) ? NULL :
          (LPARAM)(const char *)pSBP->strText);
+#endif
 
       return TRUE;
    }
@@ -462,16 +490,21 @@ namespace userbase
       rect.null();
       CalcInsideRect(rect, bHorz);
       int rgBorders[3];
+      size size;
+      size.cx =0;
+      size.cy =0;
+
+#ifdef WINDOWSEX
       DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
 
       // determine size, including borders
-      size size;
       size.cx = 32767;
       size.cy = tm.tmHeight - tm.tmInternalLeading - 1
          + rgBorders[1] * 2 + ::GetSystemMetrics(SM_CYBORDER) * 2
          - rect.height();
       if (size.cy < m_nMinHeight)
          size.cy = m_nMinHeight;
+#endif
 
       return size;
    }
@@ -493,6 +526,7 @@ namespace userbase
 
    void status_bar::_001OnNcCalcSize(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
@@ -505,6 +539,9 @@ namespace userbase
       pnccalcsize->m_pparams->rgrc[0].top += rect.top - 2;
       pnccalcsize->m_pparams->rgrc[0].right += rect.right;
       pnccalcsize->m_pparams->rgrc[0].bottom += rect.bottom;
+#else
+      throw todo(get_app());
+#endif
    }
 
    void status_bar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
@@ -524,10 +561,12 @@ namespace userbase
 
    // Derived class is responsible for implementing all of these handlers
    //  for owner/self draw controls.
+#ifdef WINDOWSEX
    void status_bar::DrawItem(LPDRAWITEMSTRUCT)
    {
       ASSERT(FALSE);
    }
+#endif
 
    bool status_bar::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
    {
@@ -538,7 +577,9 @@ namespace userbase
 
       ASSERT(pResult == NULL);
       UNUSED(pResult); // unused in release builds
+#ifdef WINDOWSEX
       DrawItem((LPDRAWITEMSTRUCT)lParam);
+#endif
       return TRUE;
    }
 
@@ -573,6 +614,7 @@ namespace userbase
 
    void status_bar::_001OnWindowPosChanging(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       SCAST_PTR(::gen::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       DWORD dwStyle = m_dwStyle;
@@ -580,6 +622,9 @@ namespace userbase
    // trans   ::userbase::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
       pwindowpos->previous();
       m_dwStyle = dwStyle;
+#else
+      throw todo(get_app());
+#endif
    }
 
    void status_bar::_001OnSetText(gen::signal_object * pobj)
@@ -698,10 +743,15 @@ namespace userbase
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
+#ifdef WINDOWSEX
       UINT nNewStyle = pStatusBar->GetPaneStyle((int) m_iIndex) & ~SBPS_POPOUT;
       if (echeck != check::unchecked)
          nNewStyle |= SBPS_POPOUT;
       pStatusBar->SetPaneStyle((int) m_iIndex, nNewStyle);
+#else
+      throw todo(get_app());
+#endif
+
    }
 
    void CStatusCmdUI::SetText(const char * lpszText)

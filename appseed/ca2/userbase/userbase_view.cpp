@@ -79,15 +79,17 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view second phase construction - bind to document
 
-   const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
+   //const CHAR _vfxWndFrameOrView[] = __WNDFRAMEORVIEW;
    bool view::pre_create_window(CREATESTRUCT & cs)
    {
       ASSERT(cs.style & WS_CHILD);
 
+#ifdef WINDOWSEX
       if (cs.lpszClass == NULL)
       {
          VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, & cs.lpszClass));
       }
+#endif
 
    //   if (afxData.bWin4 && (cs.style & WS_BORDER))
       if ((cs.style & WS_BORDER))
@@ -194,7 +196,7 @@ namespace userbase
       if (pmouseactivate->GetMessage() == MA_NOACTIVATE 
        || pmouseactivate->GetMessage() == MA_NOACTIVATEANDEAT)
       {
-         pmouseactivate->set_lresult(pmouseactivate->GetMessageA()); // frame does not want to activate
+         pmouseactivate->set_lresult(pmouseactivate->GetMessage()); // frame does not want to activate
          pmouseactivate->m_bRet = true;
       }
 
@@ -220,7 +222,7 @@ namespace userbase
             pParentFrame->SetActiveView(this);
          }
       }
-      pmouseactivate->set_lresult(pmouseactivate->GetMessageA());
+      pmouseactivate->set_lresult(pmouseactivate->GetMessage());
       pmouseactivate->m_bRet = true;
    }
 
@@ -268,7 +270,7 @@ namespace userbase
 
    DROPEFFECT view::OnDragScroll(DWORD /*dwKeyState*/, point /*point*/)
    {
-   #ifndef ___NO_OLE_SUPPORT
+   #if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN)
       return DROPEFFECT_SCROLL; // this means do the default
    #else
       return 0;

@@ -1458,6 +1458,8 @@ namespace filemanager
       return iImage;
    }
 
+#endif
+
    int ImageSet::GetImage(
       oswindow oswindow,
       const char * psz,
@@ -1475,6 +1477,7 @@ namespace filemanager
          if(gen::str::begins_eat_ci(str, "ca2prompt\r\n"))
          {
             str.trim();
+#ifdef WINDOWSEX
             HICON hicon16 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 16, 16, LR_LOADFROMFILE);
             HICON hicon48 = (HICON) ::LoadImage(NULL, Application.dir().matter(str + "/mainframe/icon.ico"), IMAGE_ICON, 48, 48, LR_LOADFROMFILE);
             iImage = m_pil16->add_icon_os_data(hicon16);
@@ -1484,6 +1487,7 @@ namespace filemanager
                m_pil48Hover,
                RGB(255, 255, 240),
                64);
+#endif
          }
          return iImage;
       }
@@ -1509,6 +1513,8 @@ namespace filemanager
          }
       }
 
+#ifdef WINDOWSEX
+
       LPITEMIDLIST lpiidlAbsolute;
 
       _017ItemIDListParsePath(&lpiidlAbsolute, psz);
@@ -1517,11 +1523,13 @@ namespace filemanager
 
       _017ItemIDListFree(lpiidlAbsolute);
 
+#endif
+
       return iImage;
 
    }
 
-#endif
+
 
    bool ImageSet::GetIcon(
       oswindow oswindow,

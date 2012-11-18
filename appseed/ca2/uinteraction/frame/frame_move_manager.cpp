@@ -182,7 +182,11 @@ namespace uinteraction
             ptCursor = -m_ptWindowOrigin + rectResetWindow.top_left() + m_ptCursorOrigin;
             if(System.m_bSessionSynchronizedCursor)
             {
+#ifdef WINDOWSEX
                ::SetCursorPos(ptCursor.x, ptCursor.y);
+#else
+               throw todo(get_app());
+#endif
             }
             System.m_ptCursor = ptCursor;
          }
@@ -308,7 +312,7 @@ namespace uinteraction
 
 
 
-
+#ifdef WINDOWSEX
 
       bool CALLBACK UpdateCurrentAreaEnumWindowsProc(      
          oswindow oswindow,
@@ -358,6 +362,8 @@ namespace uinteraction
          }*/
          return TRUE;
       }
+
+#endif
 
       void MoveManager::MoveWindow(void * oswindow, point pt)
       {

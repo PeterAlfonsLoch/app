@@ -92,6 +92,19 @@
 #ifdef HAVE_UNISTD_H
 # include <unistd.h>
 #endif
+
+
+#ifdef METROWIN
+
+struct timeval
+{
+   __int32    tv_sec;         /* seconds */
+   __int32    tv_usec;        /* microseconds */
+};
+
+#endif
+
+
 //#include "nodeapp/operational_system/cross/win/win.h"
 //#include "nodeapp/operational_system/cross/win/win_def.h"
 //#include "winternl.h"
@@ -503,12 +516,8 @@ struct timezone2
   bool  tz_dsttime;     /* type of dst correction */
 };
 
-struct timeval2 {
-__int32    tv_sec;         /* seconds */
-__int32    tv_usec;        /* microseconds */
-};
 
-int gettimeofday(timeval2 *tv/*in*/, struct timezone2 *tz/*in*/)
+int gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
 {
   FILETIME ft;
   __int64 tmpres = 0;
@@ -555,16 +564,15 @@ int gettimeofday(timeval2 *tv/*in*/, struct timezone2 *tz/*in*/)
  */
 NTSTATUS WINAPI NtQuerySystemTime( PLARGE_INTEGER Time )
 {
-#ifdef METROWIN
-    timeval2 now;
-#else
-   struct timeval now;
-#endif
 
-    gettimeofday( &now, 0 );
-    Time->QuadPart = now.tv_sec * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
-    Time->QuadPart += now.tv_usec * 10;
-    return STATUS_SUCCESS;
+   struct timeval now;
+
+   gettimeofday( &now, 0 );
+   Time->QuadPart = now.tv_sec * (ULONGLONG)TICKSPERSEC + TICKS_1601_TO_1970;
+   Time->QuadPart += now.tv_usec * 10;
+
+   return STATUS_SUCCESS;
+
 }
 
 /******************************************************************************

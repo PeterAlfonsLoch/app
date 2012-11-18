@@ -492,6 +492,7 @@ namespace bergedge
    {
       if(eexclusive == ::radix::ExclusiveInstanceLocalId)
       {
+#ifdef WINDOWSEX
          gen::memory_file file(get_app());
          file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
@@ -500,7 +501,6 @@ namespace bergedge
          data.lpData = file.get_data();
          ::oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::bergedge::");
 
-#ifdef WINDOWSEX
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
 

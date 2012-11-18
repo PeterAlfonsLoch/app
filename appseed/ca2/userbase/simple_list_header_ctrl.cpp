@@ -20,9 +20,11 @@ void simple_list_header_control::install_message_handling(::gen::message::dispat
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::list_header::install_message_handling(pinterface);
+#ifdef WINDOWSEX
    IGUI_WIN_MSG_LINK(HDN_ENDTRACK, pinterface, this, &simple_list_header_control::_001OnEndTrack);
    IGUI_WIN_MSG_LINK(HDN_TRACK, pinterface, this, &simple_list_header_control::_001OnTrack);
    IGUI_WIN_MSG_LINK(HDN_ENDDRAG, pinterface, this, &simple_list_header_control::_001OnEndDrag);
+#endif
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &simple_list_header_control::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &simple_list_header_control::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &simple_list_header_control::_001OnLButtonUp);
@@ -49,7 +51,11 @@ void simple_list_header_control::install_message_handling(::gen::message::dispat
 
 void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
 {
+#ifdef WINDOWSEX
    SCAST_PTR(::gen::message::notify, pnotify, pobj)
+#else
+   throw todo(get_app());
+#endif
    /*CTransparentWndInterface * ptwi = NULL;
    get_parent()->SendMessage(
       WM_APP_GET_TRANSPARENT_INTERFACE, (WPARAM) &ptwi, 0);
@@ -63,12 +69,20 @@ void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
    }*/
 
    get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
+#ifdef WINDOWSEX
    pnotify->m_bRet = false;
+#else
+   throw todo(get_app());
+#endif
 }
 
 void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
 {
+#ifdef WINDOWSEX
    SCAST_PTR(::gen::message::notify, pnotify, pobj)
+#else
+   throw todo(get_app());
+#endif
 
 /*   CTransparentWndInterface * ptwi = NULL;
    get_parent()->SendMessage(
@@ -83,7 +97,11 @@ void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
    }*/
 
    get_parent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
+#ifdef WINDOWSEX
    pnotify->m_bRet = false;
+#else
+   throw todo(get_app());
+#endif
 }
 
 
@@ -100,7 +118,11 @@ void simple_list_header_control::_001OnCreate(gen::signal_object * pobj)
 
 void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
 {
+#ifdef WINDOWSEX
    SCAST_PTR(::gen::message::notify, pnotify, pobj)
+#else
+   throw todo(get_app());
+#endif
 //   LPNMHEADER lpnmhd = (LPNMHEADER) pnotify->get_lpnmhdr();
    get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
 /*   CTransparentWndInterface * ptwi = NULL;
@@ -131,8 +153,12 @@ void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
       }*/
       
 //   }
+#ifdef WINDOWSEX
    pnotify->set_lresult(FALSE);
    pnotify->m_bRet = false;
+#else
+   throw todo(get_app());
+#endif
 }
 
 /*void simple_list_header_control::OnGetDispInfo(NMHDR* pNMHDR, LRESULT* pResult)

@@ -39,6 +39,7 @@ bool SimplePushButton::pre_create_window(CREATESTRUCT& cs)
    return ::userbase::button::pre_create_window(cs);
 }
 
+#ifdef WINDOWSEX
 void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct) 
 {
    UNREFERENCED_PARAMETER(lpDrawItemStruct);
@@ -49,6 +50,7 @@ void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
         return;
     }*/
 }
+#endif
 
 void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 {

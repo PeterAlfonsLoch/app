@@ -387,11 +387,16 @@ namespace filemanager
                }
             }*/
 
-
+#ifdef WINDOWSEX
 
             menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
                point.x, point.y,
                pframe);
+#else
+            menuPopup.TrackPopupMenu(0,
+               point.x, point.y,
+               pframe);
+#endif
          }
       }
       else
@@ -430,9 +435,15 @@ namespace filemanager
 
             pframe->SetActiveView(this);
 
+#ifdef WINDOWSEX
             menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
                point.x, point.y,
                pframe);
+#else
+            menuPopup.TrackPopupMenu(0,
+               point.x, point.y,
+               pframe);
+#endif
          }
       }
    }
@@ -660,7 +671,11 @@ namespace filemanager
          if(menu.create_menu(straCommand, straCommandTitle))
          {
             frame_window * pframe = GetParentFrame();
+#ifdef WINDOWSEX
             menu.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, ptCursor.x, ptCursor.y, pframe);
+#else
+            menu.TrackPopupMenu(0, ptCursor.x, ptCursor.y, pframe);
+#endif
          }
       }
    }
@@ -888,9 +903,17 @@ namespace filemanager
          GetSelected(itema);
          string strPath = itema[0].m_strPath;
 
+#ifdef WINDOWSEX
+
          simple_shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, System.dir().name(strPath), SW_SHOW);
          
          launcher.execute();
+
+#else
+
+         throw todo(get_app());
+
+#endif
 
          return true;
 

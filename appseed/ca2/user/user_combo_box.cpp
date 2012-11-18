@@ -191,6 +191,8 @@ namespace user
 
       int i = 0;
 
+#ifdef WINDOWSEX
+
       simple_graphics g;
 
       g.reference_os_data((Gdiplus::Graphics *) pdc->get_os_data());
@@ -284,7 +286,11 @@ namespace user
 
       pdc->fill_path(path);
 
+#else
 
+      throw todo(get_app());
+
+#endif
 
    }
 

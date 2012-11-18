@@ -662,9 +662,13 @@ namespace bergedge
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
 
+#ifndef METROWIN
+
          simple_shell_launcher launcher(::ca::null(), NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
 
          launcher.execute();
+
+#endif
 
       }
    }

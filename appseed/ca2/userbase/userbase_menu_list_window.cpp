@@ -318,7 +318,11 @@ namespace userbase
       }
       else
       {
+#ifdef WINDOWSEX
          pdc->FillSolidRect(rectClient, GetSysColor(COLOR_WINDOW));
+#else
+         throw todo(get_app());
+#endif
       }
 
       ::user::interaction::_001OnDraw(pdc);

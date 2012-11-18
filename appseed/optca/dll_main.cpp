@@ -1,7 +1,21 @@
 #include "framework.h"
 
 
+#ifdef METROWIN
 
+extern "C" int APIENTRY
+main(::Platform::Array < ::Platform::String ^ > ^ args)
+{
+   
+   
+   ::OutputDebugStringW(L"::ca2:: optca.dll :: initializing!\n");
+      
+   return 1;   // ok
+
+
+}
+
+#else 
 extern "C" int APIENTRY
 DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
@@ -15,7 +29,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    {
 
 
-      ::OutputDebugString("::ca2:: optca.dll :: initializing!\n");
+      ::OutputDebugStringW(L"::ca2:: optca.dll :: initializing!\n");
       
 
    }
@@ -23,7 +37,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
    {
    
 
-      ::OutputDebugString("::ca2:: optca.dll :: terminating!\n");
+      ::OutputDebugStringW(L"::ca2:: optca.dll :: terminating!\n");
 
 
    }
@@ -34,3 +48,4 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 }
 
+#endif

@@ -144,7 +144,11 @@ namespace userbase
 
    tool_bar::~tool_bar()
    {
+#ifdef WINDOWSEX
       ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
+#else
+      throw todo(get_app());
+#endif
       delete m_pStringMap;
 
       //m_nCount = 0;
@@ -159,8 +163,10 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &tool_bar::_001OnNcCalcSize);
       IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &tool_bar::_001OnWindowPosChanging);
       IGUI_WIN_MSG_LINK(WM_NCCREATE          , pinterface, this, &tool_bar::_001OnNcCreate);
+#ifdef WINDOWSEX
       IGUI_WIN_MSG_LINK(TB_SETBITMAPSIZE     , pinterface, this, &tool_bar::_001OnSetBitmapSize);
       IGUI_WIN_MSG_LINK(TB_SETBUTTONSIZE     , pinterface, this, &tool_bar::_001OnSetButtonSize);
+#endif
       IGUI_WIN_MSG_LINK(WM_SETTINGCHANGE     , pinterface, this, &tool_bar::_001OnPreserveZeroBorderHelper);
       IGUI_WIN_MSG_LINK(WM_SETFONT           , pinterface, this, &tool_bar::_001OnPreserveZeroBorderHelper);
       IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &tool_bar::_001OnSysColorChange);
@@ -185,15 +191,21 @@ namespace userbase
          m_dwStyle |= CBRS_HIDE_INPLACE;
 
       dwStyle &= ~CBRS_ALL;
+#ifdef WINDOWSEX
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
+#endif
       dwStyle |= dwCtrlStyle;
 
 
       // create the oswindow
       class rect rect; 
       rect.null();
+#ifdef WINDOWSEX
       if (!::user::interaction::create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID))
          return FALSE;
+#else
+      throw todo(get_app());
+#endif
 
       // sync up the sizes
       SetSizes(m_sizeButton, m_sizeImage);
@@ -212,17 +224,27 @@ namespace userbase
          return;
 
       // if the owner was set before the toolbar was created, set it now
+#ifdef WINDOWSEX
       if (m_pguieOwner != NULL)
          DefWindowProc(TB_SETPARENT, (WPARAM)m_pguieOwner, 0);
 
       DefWindowProc(TB_BUTTONSTRUCTSIZE, (WPARAM)sizeof(TBBUTTON), 0);
+#else
+      throw todo(get_app());
+
+#endif
    }
 
    void tool_bar::set_owner(::user::interaction* pOwnerWnd)
    {
+#ifdef WINDOWSEX
       ASSERT_VALID(this);
       ASSERT(IsWindow());
       DefWindowProc(TB_SETPARENT, (WPARAM)pOwnerWnd, 0);
+#else
+      throw todo(get_app());
+
+#endif
       ::userbase::control_bar::set_owner(pOwnerWnd);
    }
 
@@ -243,9 +265,12 @@ namespace userbase
       if (IsWindow())
       {
          // set the sizes via TB_SETBITMAPSIZE and TB_SETBUTTONSIZE
+#ifdef WINDOWSEX
          VERIFY(send_message(TB_SETBITMAPSIZE, 0, MAKELONG(sizeImage.cx, sizeImage.cy)));
          VERIFY(send_message(TB_SETBUTTONSIZE, 0, MAKELONG(sizeButton.cx, sizeButton.cy)));
-
+#else
+         throw todo(get_app());
+#endif
          Invalidate();   // just to be nice if called when toolbar is visible
       }
       else
@@ -374,12 +399,14 @@ namespace userbase
 
    bool tool_bar::AddReplaceBitmap(HBITMAP hbmImageWell)
    {
+            bool bResult = false;
+
       // need complete bitmap size to determine number of images
+#ifdef WINDOWSEX
       BITMAP bitmap;
       VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
 
       // add the bitmap to the common control toolbar
-      bool bResult;
       if (m_hbmImageWell == NULL)
       {
          TBADDBITMAP addBitmap;
@@ -404,16 +431,18 @@ namespace userbase
          ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
          m_hbmImageWell = hbmImageWell;
       }
-
+#else
+      throw todo(get_app());
+#endif
       return bResult;
    }
 
    bool tool_bar::SetButtons(const UINT* lpIDArray, int nIDCount)
    {
+#ifdef WINDOWSEX
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
-      ASSERT(lpIDArray == NULL ||
-         __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
+      ASSERT(lpIDArray == NULL || __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
       // delete all existing buttons
       int nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
@@ -462,14 +491,16 @@ namespace userbase
       }
    //   m_nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       m_bDelayedButtonLayout = TRUE;
-
+#else
+      throw todo(get_app());
+#endif
       return TRUE;
    }
 
 
    /////////////////////////////////////////////////////////////////////////////
    // tool_bar attribute access
-
+#ifndef METROWIN
    void tool_bar::_GetButton(::index nIndex, TBBUTTON* pButton) const
    {
       tool_bar* pBar = (tool_bar*)this;
@@ -519,13 +550,19 @@ namespace userbase
       }
    }
 
+#endif
+
    int tool_bar::CommandToIndex(UINT nIDFind)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
+#ifdef WINDOWSEX
       tool_bar* pBar = (tool_bar*)this;
       return (int)pBar->DefWindowProc(TB_COMMANDTOINDEX, nIDFind, 0);
+#else
+      throw todo(get_app());
+#endif
    }
 
    UINT tool_bar::GetItemID(int nIndex)
@@ -533,9 +570,13 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
+#ifdef WINDOWSEX
       TBBUTTON button;
       _GetButton(nIndex, &button);
       return button.idCommand;
+#else
+      throw todo(get_app());
+#endif
    }
 
    void tool_bar::GetItemRect(int nIndex, LPRECT lpRect)
@@ -548,9 +589,13 @@ namespace userbase
          ((tool_bar*)this)->layout();
 
       // now it is safe to get the item rectangle
+#ifdef WINDOWSEX
       tool_bar* pBar = (tool_bar*)this;
       if (!pBar->DefWindowProc(TB_GETITEMRECT, nIndex, (LPARAM)lpRect))
          ::SetRectEmpty(lpRect);
+#else
+      throw todo(get_app());
+#endif
    }
 
    void tool_bar::layout()
@@ -575,9 +620,13 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
+#ifdef WINDOWSEX
       TBBUTTON button;
       _GetButton(nIndex, &button);
       return MAKELONG(button.fsStyle, button.fsState);
+#else
+      throw todo(get_app());
+#endif
    }
 
    void tool_bar::SetButtonStyle(int nIndex, UINT nStyle)
@@ -585,6 +634,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
+#ifdef WINDOWSEX
       TBBUTTON button;
       _GetButton(nIndex, &button);
       if (button.fsStyle != (BYTE)LOWORD(nStyle) || button.fsState != (BYTE)HIWORD(nStyle))
@@ -594,10 +644,14 @@ namespace userbase
          _SetButton(nIndex, &button);
          m_bDelayedButtonLayout = TRUE;
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
    #define CX_OVERLAP  0
 
+#ifdef WINDOWSEX
    size tool_bar::CalcSize(TBBUTTON* pData, int nCount)
    {
       ASSERT(pData != NULL && nCount > 0);
@@ -818,7 +872,7 @@ namespace userbase
          }
       }
    }
-
+#endif
    struct ___CONTROLPOS
    {
       int nIndex, nID;
@@ -827,6 +881,7 @@ namespace userbase
 
    size tool_bar::CalcLayout(DWORD dwMode, int nLength)
    {
+#ifdef WINDOWSEX
       ASSERT_VALID(this);
       ASSERT(IsWindow());
       if (dwMode & LM_HORZDOCK)
@@ -995,6 +1050,9 @@ namespace userbase
          sizeResult.cy = max(sizeResult.cy, size.cy);
       }
       return sizeResult;
+#else
+throw todo(get_app());
+#endif
    }
 
    size tool_bar::CalcFixedLayout(bool bStretch, bool bHorz)
@@ -1017,6 +1075,7 @@ namespace userbase
 
    void tool_bar::GetButtonInfo(int nIndex, UINT& nID, UINT& nStyle, int& iImage)
    {
+#ifdef WINDOWSEX
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -1025,12 +1084,15 @@ namespace userbase
       nID = button.idCommand;
       nStyle = MAKELONG(button.fsStyle, button.fsState);
       iImage = button.iBitmap;
+#else
+      throw todo(get_app());
+#endif
    }
 
    void tool_bar::SetButtonInfo(int nIndex, UINT nID, UINT nStyle, int iImage)
    {
       ASSERT_VALID(this);
-
+#ifdef WINDOWSEX
       TBBUTTON button;
       _GetButton(nIndex, &button);
       TBBUTTON save;
@@ -1044,6 +1106,10 @@ namespace userbase
          _SetButton(nIndex, &button);
          m_bDelayedButtonLayout = TRUE;
       }
+#else
+      throw todo(get_app());
+#endif
+         
    }
 
 
@@ -1090,12 +1156,16 @@ namespace userbase
 
    //   string str;
    //   GetButtonText(nIndex, str);
+#ifdef WINDOWSEX
       TBBUTTON button;
       _GetButton(nIndex, &button);
       button.iString = nString;
       _SetButton(nIndex, &button);
       string str;
       GetButtonText(nIndex, str);
+#else
+      throw todo(get_app());
+#endif
 
       return TRUE;
    }
@@ -1109,6 +1179,7 @@ namespace userbase
 
    void tool_bar::GetButtonText(int nIndex, string & rWString) const
    {
+#ifdef WINDOWSEX
       if (m_pStringMap != NULL)
       {
          // get button information (need button.iString)
@@ -1129,6 +1200,9 @@ namespace userbase
          }
       }
       rWString.Empty();
+#else
+      throw todo(get_app());
+#endif
    }
 
 
@@ -1148,6 +1222,7 @@ namespace userbase
 
    void tool_bar::_001OnNcCalcSize(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect; 
@@ -1161,6 +1236,9 @@ namespace userbase
       // previous versions of COMCTL32.DLL had a built-in 2 pixel border
       pnccalcsize->m_pparams->rgrc[0].right += rect.right;
       pnccalcsize->m_pparams->rgrc[0].bottom += rect.bottom;
+#else
+      throw todo(get_app());
+#endif
    }
 
    void tool_bar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
@@ -1196,6 +1274,7 @@ namespace userbase
 
    void tool_bar::_001OnWindowPosChanging(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       SCAST_PTR(::gen::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       DWORD dwStyle = m_dwStyle;
@@ -1214,6 +1293,9 @@ namespace userbase
          // Then redraw the buttons
          Invalidate();
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
    /*
@@ -1259,33 +1341,43 @@ namespace userbase
       //  whenever these messages go through.  It would be nice that in a
       //  future version, the system toolbar would just allow you to set
       //  the top and left borders to anything you please.
+      LRESULT lResult = 0;
 
+#ifdef WINDOWSEX
       bool bModify = FALSE;
       DWORD dwStyle = GetStyle();
       bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 
-      LRESULT lResult = Default();
+      lResult = Default();
       if (lResult)
          size = (DWORD) lParam;
 
       if (bModify)
          SetWindowLong(GWL_STYLE, dwStyle);
-
+#else
+      throw todo(get_app());
+#endif
       return lResult;
    }
 
    void tool_bar::_001OnPreserveZeroBorderHelper(gen::signal_object * pobj)
    {
+      LRESULT lResult = 0;
       SCAST_PTR(::gen::message::base, pbase, pobj)
+#ifdef LRESULT
+      
       bool bModify = FALSE;
       DWORD dwStyle = 0;
       dwStyle = GetStyle();
       bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 
-      LRESULT lResult = Default();
+      lResult = Default();
 
       if (bModify)
          SetWindowLong(GWL_STYLE, dwStyle);
+#else
+      throw todo(get_app());
+#endif
 
       pbase->set_lresult(lResult);
    }
@@ -1315,6 +1407,7 @@ namespace userbase
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
+#ifdef WINDOWSEX
       UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) & ~TBBS_DISABLED;
       if (!bOn)
       {
@@ -1327,6 +1420,9 @@ namespace userbase
       }
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
       pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle);
+#else
+      throw todo(get_app());
+#endif
    }
 
    void tool_cmd_ui::SetCheck(int nCheck)
@@ -1337,14 +1433,17 @@ namespace userbase
       ASSERT_KINDOF(tool_bar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) &
-               ~(TBBS_CHECKED | TBBS_INDETERMINATE);
+#ifdef WINDOWSEX
+      UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
          nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)
          nNewStyle |= TBBS_INDETERMINATE;
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
       pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle | TBBS_CHECKBOX);
+#else
+      throw todo(get_app());
+#endif
    }
 
    void tool_cmd_ui::SetText(const char *)
@@ -1417,6 +1516,7 @@ namespace userbase
 
       if (dumpcontext.GetDepth() > 0)
       {
+#ifdef WINDOWSEX
          tool_bar* pBar = (tool_bar*)this;
          LRESULT nCount = pBar->DefWindowProc(TB_BUTTONCOUNT, 0, 0);
          for (index i = 0; i < nCount; i++)
@@ -1432,6 +1532,10 @@ namespace userbase
                dumpcontext <<"\n\tiImage (bitmap image index) = " << button.iBitmap;
             dumpcontext << "\n}";
          }
+#else
+         throw todo(get_app());
+
+#endif
       }
 
       dumpcontext << "\n";
@@ -1447,10 +1551,11 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
+      size sizeResult(0,0);
 
+#ifdef WINDOWSEX
       int nCount;
       TBBUTTON* pData = NULL;
-      size sizeResult(0,0);
 
       //BLOCK: Load Buttons
       {
@@ -1497,6 +1602,12 @@ namespace userbase
       {
          sizeResult.cy += 2;
       }
+
+#else
+
+      throw todo(get_app());
+
+#endif
 
       return sizeResult;
 

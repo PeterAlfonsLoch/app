@@ -313,7 +313,7 @@ namespace command
 
          int i = 0;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
          i = (int) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),

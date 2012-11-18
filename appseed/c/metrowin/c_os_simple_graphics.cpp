@@ -471,7 +471,7 @@ bool os_simple_graphics::offset(int x, int y)
 
    m_pdc->GetTransform(&m);
 
-   m = m * D2D1::Matrix3x2F::Translation(x, y);
+   m = m * D2D1::Matrix3x2F::Translation((FLOAT) x, (FLOAT) y);
 
    m_pdc->SetTransform(&m);
 
@@ -552,9 +552,9 @@ SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
       
       playout->GetMetrics(&m);
 
-      size.cx = m.width;
+      size.cx = (LONG) m.width;
 
-      size.cy = m.height;
+      size.cy = (LONG) m.height;
 
    }
 

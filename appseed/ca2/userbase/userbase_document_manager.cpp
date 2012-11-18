@@ -61,15 +61,15 @@ __STATIC_DATA const char gen_ShellNewFmt[] = "%s\\ShellNew";
 
 __STATIC_DATA const char gen_IconIndexFmt[] = ",%d";
 __STATIC_DATA const char gen_Command[] = "command";
-__STATIC_DATA const char gen_OpenArg[] = _T(" \"%1\"");
-__STATIC_DATA const char gen_PrintArg[] = _T(" /p \"%1\"");
-__STATIC_DATA const char gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
+//__STATIC_DATA const char gen_OpenArg[] = _T(" \"%1\"");
+//__STATIC_DATA const char gen_PrintArg[] = _T(" /p \"%1\"");
+//__STATIC_DATA const char gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
 __STATIC_DATA const char gen_DDEArg[] = " /dde";
 
 __STATIC_DATA const char gen_DDEExec[] = "ddeexec";
-__STATIC_DATA const char gen_DDEOpen[] = _T("[open(\"%1\")]");
-__STATIC_DATA const char gen_DDEPrint[] = _T("[print(\"%1\")]");
-__STATIC_DATA const char gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
+//__STATIC_DATA const char gen_DDEOpen[] = _T("[open(\"%1\")]");
+//__STATIC_DATA const char gen_DDEPrint[] = _T("[print(\"%1\")]");
+//__STATIC_DATA const char gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
 
 __STATIC_DATA const char gen_ShellNewValueName[] = "NullFile";
 __STATIC_DATA const char gen_ShellNewValue[] = "";

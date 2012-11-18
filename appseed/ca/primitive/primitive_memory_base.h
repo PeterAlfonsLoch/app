@@ -111,9 +111,11 @@ namespace primitive
 #ifdef METROWIN
 
       inline Platform::Array < unsigned char, 1U > ^ get_os_bytes(memory_position pos = 0, memory_size size = -1) const;
-      inline ::Windows::Storage::Streams::IBuffer ^ get_os_stream_buffer(memory_position pos = 0, memory_size size = -1) const;
+      inline ::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memory_position pos = 0, memory_size size = -1) const;
+      inline ::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memory_position pos = 0, memory_size size = -1) const;
       inline void set_os_bytes(Platform::Array < unsigned char, 1U > ^ a, memory_position pos = 0, memory_size size = -1);
-      inline void set_os_stream_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
+      inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
+      inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
 
 #elif defined(MACOS)
        
@@ -619,9 +621,16 @@ namespace primitive
       return ref new Platform::Array < unsigned char, 1U > ((unsigned char *) &get_data()[pos], size);
    }
 
-   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_stream_buffer(memory_position pos, memory_size size) const
+   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memory_position pos, memory_size size) const
    {
-      return ::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(get_os_bytes(size));
+      return ::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(get_os_bytes(pos, size));
+   }
+
+   inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_buffer(memory_position pos, memory_size size) const
+   {
+      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter();
+      writer->WriteBytes(get_os_bytes(pos, size));
+      return writer->DetachBuffer();
    }
 
    inline void memory_base::set_os_bytes(Platform::Array < unsigned char, 1U > ^ a, memory_position pos, memory_size size)
@@ -636,13 +645,19 @@ namespace primitive
       memcpy(get_data(), &a->Data[pos], size);
    }
 
-   inline void memory_base::set_os_stream_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
+   inline void memory_base::set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
    {
       Platform::Array < unsigned char, 1U > ^ a = nullptr;
       ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
       return set_os_bytes(a, pos, size);
    }
     
+   inline void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
+   {
+      Platform::Array < unsigned char, 1U > ^ a = nullptr;
+      (::Windows::Storage::Streams::DataReader::FromBuffer(ibuf))->ReadBytes(a);
+      return set_os_bytes(a, pos, size);
+   }
     
 #elif defined(MACOS)
     

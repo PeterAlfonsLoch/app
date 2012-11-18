@@ -188,6 +188,8 @@
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PreprocessorDefinitions>__CA2__DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>-Zm384 /bigobj %(AdditionalOptions)</AdditionalOptions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -421,39 +423,37 @@
     <ClInclude Include="gcom\gcom_Space.h" />
     <ClInclude Include="gcom\gcom_SpaceUtil.h" />
     <ClInclude Include="gcom\gcom_Util.h" />
-    <ClInclude Include="html\application.h" />
-    <ClInclude Include="html\cell.h" />
-    <ClInclude Include="html\data.h" />
-    <ClInclude Include="html\elemental.h" />
-    <ClInclude Include="html\file.h" />
-    <ClInclude Include="html\font.h" />
-    <ClInclude Include="html\form.h" />
     <ClInclude Include="html\html.h" />
+    <ClInclude Include="html\html_application.h" />
     <ClInclude Include="html\html_attribute.h" />
     <ClInclude Include="html\html_base.h" />
-    <ClInclude Include="html\html_child_frame.h" />
-    <ClInclude Include="html\html_document.h" />
+    <ClInclude Include="html\html_border.h" />
+    <ClInclude Include="html\html_box.h" />
+    <ClInclude Include="html\html_cell.h" />
+    <ClInclude Include="html\html_data.h" />
+    <ClInclude Include="html\html_elemental.h" />
     <ClInclude Include="html\html_ex.h" />
+    <ClInclude Include="html\html_font.h" />
     <ClInclude Include="html\html_form.h" />
-    <ClInclude Include="html\html_form_view.h" />
-    <ClInclude Include="html\html_frame.h" />
     <ClInclude Include="html\html_image.h" />
+    <ClInclude Include="html\html_input_button.h" />
+    <ClInclude Include="html\html_input_check_box.h" />
+    <ClInclude Include="html\html_input_text.h" />
+    <ClInclude Include="html\html_point.h" />
     <ClInclude Include="html\html_reader.h" />
+    <ClInclude Include="html\html_signal.h" />
+    <ClInclude Include="html\html_size.h" />
+    <ClInclude Include="html\html_style.h" />
+    <ClInclude Include="html\html_style_sheet.h" />
+    <ClInclude Include="html\html_style_sheet_array.h" />
+    <ClInclude Include="html\html_table.h" />
+    <ClInclude Include="html\html_table_elemental.h" />
+    <ClInclude Include="html\html_table_row.h" />
     <ClInclude Include="html\html_tag.h" />
     <ClInclude Include="html\html_text.h" />
     <ClInclude Include="html\html_value.h" />
-    <ClInclude Include="html\html_view.h" />
-    <ClInclude Include="html\html_view_update_hint.h" />
-    <ClInclude Include="html\input_button.h" />
-    <ClInclude Include="html\input_check_box.h" />
-    <ClInclude Include="html\input_text.h" />
-    <ClInclude Include="html\signal.h" />
-    <ClInclude Include="html\style.h" />
-    <ClInclude Include="html\style_sheet.h" />
-    <ClInclude Include="html\style_sheet_array.h" />
-    <ClInclude Include="html\table.h" />
-    <ClInclude Include="html\table_elemental.h" />
-    <ClInclude Include="html\table_row.h" />
+    <ClInclude Include="html\image.h" />
+    <ClInclude Include="html\text.h" />
     <ClInclude Include="mail\application.h" />
     <ClInclude Include="mail\application_interface.h" />
     <ClInclude Include="mail\configuration.h" />
@@ -668,6 +668,14 @@
     <ClInclude Include="userex\userex_hour_list_view.h" />
     <ClInclude Include="userex\userex_minute_list_view.h" />
     <ClInclude Include="userex\userex_second_list_view.h" />
+    <ClInclude Include="userhtml\userhtml.h" />
+    <ClInclude Include="userhtml\userhtml_child_frame.h" />
+    <ClInclude Include="userhtml\userhtml_document.h" />
+    <ClInclude Include="userhtml\userhtml_form.h" />
+    <ClInclude Include="userhtml\userhtml_form_view.h" />
+    <ClInclude Include="userhtml\userhtml_frame.h" />
+    <ClInclude Include="userhtml\userhtml_view.h" />
+    <ClInclude Include="userhtml\userhtml_view_update_hint.h" />
     <ClInclude Include="userpresence\userpresence.h" />
     <ClInclude Include="userpresence\userpresence_application.h" />
     <ClInclude Include="userpresence\userpresence_user_presence.h" />
@@ -856,6 +864,7 @@
     <ClCompile Include="gcom\gcom_Space.cpp" />
     <ClCompile Include="gcom\gcom_SpaceUtil.cpp" />
     <ClCompile Include="gcom\gcom_Util.cpp" />
+    <ClCompile Include="hi5\net\hi5_net_twitter_authorization.cpp" />
     <ClCompile Include="html\html_application.cpp" />
     <ClCompile Include="html\html_attribute.cpp" />
     <ClCompile Include="html\html_base.cpp" />
@@ -864,7 +873,6 @@
     <ClCompile Include="html\html_elemental.cpp" />
     <ClCompile Include="html\html_font.cpp" />
     <ClCompile Include="html\html_form.cpp" />
-    <ClCompile Include="html\html_frame.cpp" />
     <ClCompile Include="html\html_image.cpp" />
     <ClCompile Include="html\html_input_button.cpp" />
     <ClCompile Include="html\html_input_checkbox.cpp" />
@@ -880,12 +888,6 @@
     <ClCompile Include="html\html_tag.cpp" />
     <ClCompile Include="html\html_text.cpp" />
     <ClCompile Include="html\html_value.cpp" />
-    <ClCompile Include="html\html_view_update_hint.cpp" />
-    <ClCompile Include="html\_html_child_frame.cpp" />
-    <ClCompile Include="html\_html_document.cpp" />
-    <ClCompile Include="html\_html_form.cpp" />
-    <ClCompile Include="html\_html_form_view.cpp" />
-    <ClCompile Include="html\_html_view.cpp" />
     <ClCompile Include="mail\mail_account.cpp" />
     <ClCompile Include="mail\mail_application.cpp" />
     <ClCompile Include="mail\mail_db_pop3.cpp" />
@@ -924,6 +926,7 @@
     <ClCompile Include="userbase\simple_button.cpp" />
     <ClCompile Include="userbase\simple_child_frame.cpp" />
     <ClCompile Include="userbase\simple_combo_box.cpp" />
+    <ClCompile Include="userbase\simple_combo_list.cpp" />
     <ClCompile Include="userbase\simple_document.cpp" />
     <ClCompile Include="userbase\simple_edit.cpp" />
     <ClCompile Include="userbase\simple_edit_plain_text.cpp" />
@@ -949,6 +952,7 @@
     <ClCompile Include="userbase\userbase_button.cpp" />
     <ClCompile Include="userbase\userbase_button_control.cpp" />
     <ClCompile Include="userbase\userbase_combo_box.cpp" />
+    <ClCompile Include="userbase\userbase_combo_list.cpp" />
     <ClCompile Include="userbase\userbase_control_bar.cpp" />
     <ClCompile Include="userbase\userbase_document.cpp" />
     <ClCompile Include="userbase\userbase_document_manager.cpp" />
@@ -1008,8 +1012,17 @@
     <ClCompile Include="userex\userex_pane_split_view.cpp" />
     <ClCompile Include="userex\userex_pane_tab_view.cpp" />
     <ClCompile Include="userex\userex_pane_view.cpp" />
+    <ClCompile Include="userex\userex_property_page.cpp" />
+    <ClCompile Include="userex\userex_property_sheet.cpp" />
     <ClCompile Include="userex\userex_second_list_view.cpp" />
     <ClCompile Include="userex\userex_split_view.cpp" />
+    <ClCompile Include="userhtml\userhtml_child_frame.cpp" />
+    <ClCompile Include="userhtml\userhtml_document.cpp" />
+    <ClCompile Include="userhtml\userhtml_form.cpp" />
+    <ClCompile Include="userhtml\userhtml_form_view.cpp" />
+    <ClCompile Include="userhtml\userhtml_frame.cpp" />
+    <ClCompile Include="userhtml\userhtml_view.cpp" />
+    <ClCompile Include="userhtml\userhtml_view_update_hint.cpp" />
     <ClCompile Include="userstack\userstack_application.cpp" />
     <ClCompile Include="userstack\userstack_document.cpp" />
     <ClCompile Include="userstack\userstack_form_callback.cpp" />
@@ -1021,6 +1034,7 @@
     <ClCompile Include="user\user_button.cpp" />
     <ClCompile Include="user\user_check_box.cpp" />
     <ClCompile Include="user\user_combo_box.cpp" />
+    <ClCompile Include="user\user_combo_list.cpp" />
     <ClCompile Include="user\user_edit_plain_text.cpp" />
     <ClCompile Include="user\user_form.cpp" />
     <ClCompile Include="user\user_form_list.cpp" />

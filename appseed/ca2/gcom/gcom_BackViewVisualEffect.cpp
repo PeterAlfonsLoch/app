@@ -202,8 +202,9 @@ namespace gcom
 
 //         BYTE bA = 50;
 
-
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -334,9 +335,9 @@ namespace gcom
 
          BYTE bA = 50;
 
-
+#ifdef WINDOWSEX
          GdiFlush();
-
+#endif
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
 
@@ -476,7 +477,9 @@ namespace gcom
          BYTE bA = 50;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -656,7 +659,9 @@ namespace gcom
          BYTE bA = 50;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -1205,7 +1210,9 @@ namespace gcom
          BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -1456,7 +1463,9 @@ namespace gcom
 //         BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -1842,7 +1851,9 @@ namespace gcom
          BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -2254,7 +2265,9 @@ namespace gcom
          BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -2804,7 +2817,9 @@ namespace gcom
 
          imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, ARGB(255, 0, 0, 0), 10);
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
 
          if(m_iVisual == VisualEffectRotateEx6)
@@ -3074,7 +3089,9 @@ namespace gcom
 //         BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -3997,7 +4014,9 @@ namespace gcom
 
          pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          /*System.imaging().bitmap_blend(
             pdib4->get_graphics(),
@@ -4253,7 +4272,9 @@ namespace gcom
 //         BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -4712,7 +4733,9 @@ namespace gcom
          BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -5157,8 +5180,9 @@ namespace gcom
 
          imaging.color_blend(pdib1->get_graphics(), 0, 0, cx1 , cy1, ARGB(255, 0, 0, 0), 10);
 
+#ifdef WINDOWSEX
          GdiFlush();
-
+#endif
 
          if(m_iVisual == VisualEffectRotateEx6)
          {
@@ -5432,7 +5456,9 @@ namespace gcom
 //         BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs
@@ -5979,7 +6005,9 @@ namespace gcom
 //         BYTE bA = 200;
 
 
+#ifdef WINDOWSEX
          GdiFlush();
+#endif
 
          //double dmin = min(cx, cy);
          //double dmax = max(cx, cy);abs

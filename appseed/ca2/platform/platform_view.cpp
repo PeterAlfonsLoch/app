@@ -241,7 +241,15 @@ namespace platform
       m_dibBk->create(1280, 1024);
       //gen::savings & savings = System.savings();
       //if(
-      const char * pszSessionName = getenv("sessionname");
+
+      const char * pszSessionName = NULL;
+
+#ifndef METROWIN
+
+      pszSessionName = getenv("sessionname")
+
+#endif
+
       bool bConsole = false;
       if(pszSessionName != NULL)
       {
@@ -512,7 +520,7 @@ namespace platform
       //    return;
       //if(!m_bEnsureApps)
       // return;
-
+#ifndef METROWIN
       if(::IsWindow(m_oswindowWinactionarea) &&
          ::IsWindow(m_oswindowCommand) &&
          ::IsWindow(m_oswindowWinutil) &&
@@ -525,6 +533,7 @@ namespace platform
       m_oswindowCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
       m_oswindowWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
       m_oswindowBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
+#endif
    }
 
 
@@ -572,6 +581,7 @@ namespace platform
 
    void view::show_window::show()
    {
+#ifdef WINDOWSEX
       if(m_iShow == -1)
       {
          ::SetForegroundWindow(m_oswindow);
@@ -585,6 +595,9 @@ namespace platform
          }
          ::ShowWindow(m_oswindow, m_iShow);
       }
+#else
+      throw todo(::ca::get_thread_app());
+#endif
    }
 
 
@@ -736,28 +749,45 @@ namespace platform
       if(iHitArea == m_iV)
       {
          check_apps();
+#ifndef METROWIN
          if(::IsWindow(m_oswindowWinutil))
          {
             mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_oswindowWinutil, WM_APP + 2000, 0, 2);
          }
+#else
+         throw todo(get_app());
+#endif
       }
       else if(iHitArea == m_i_veriwell)
       {
+
+#ifdef WINDOWSEX
 
          simple_shell_launcher launcher(NULL, NULL, System.dir().votagus("cast\\ccvotagus\\spaadmin.exe"), NULL, NULL, SW_SHOW);
 
          launcher.execute();
 
+#else
+
+         throw todo(get_app());
+
+#endif
+
+
       }
       else if(iHitArea == m_i_winactionarea)
       {
          check_apps();
+#ifdef WINDOWSEX
          if(::IsWindow(m_oswindowWinactionarea))
          {
             mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_oswindowWinactionarea, WM_APP + 2000, 0, 2);
          }
+#else
+         throw todo(get_app());
+#endif
       }
       /*      else if(iHitArea == m_iShutDown)
       {

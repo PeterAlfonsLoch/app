@@ -734,8 +734,8 @@ namespace html
          for(int i = 0; i < m_straLines.get_size(); i++)
          {
             string str = m_straLines[i];
-            LPCTSTR lpszStart = str;
-            LPCTSTR lpszEnd = lpszStart;
+            const char * lpszStart = str;
+            const char * lpszEnd = lpszStart;
             int cur_x = i == 0 ? x : m_bound.left;
 //            int cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy))

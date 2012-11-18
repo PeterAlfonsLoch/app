@@ -289,7 +289,7 @@ namespace userstack
      //    return;
       //if(!m_bEnsureApps)
         // return;
-
+#ifdef WINDOWSEX
       if(::IsWindow(m_oswindowWinactionarea) &&
          ::IsWindow(m_oswindowCommand) &&
          ::IsWindow(m_oswindowWinutil) &&
@@ -302,6 +302,9 @@ namespace userstack
       m_oswindowCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
       m_oswindowWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
       m_oswindowBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
+#else
+      throw todo(get_app());
+#endif
    }
 
 

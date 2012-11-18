@@ -44,7 +44,7 @@ namespace ca2
 
       validate::~validate()
       {
-         ::WaitForSingleObject((HANDLE) m_loginthread.get_os_data(), INFINITE);
+         ::WaitForSingleObjectEx((HANDLE) m_loginthread.get_os_data(), INFINITE, FALSE);
       }
 
       void validate::close_all()
@@ -170,6 +170,9 @@ namespace ca2
 
       void validate::display_main_frame()
       {
+
+#ifdef WINDOWSEX
+
          rect rectOpen;
          if(m_ptabview->GetParentFrame()->get_parent() == NULL)
          {
@@ -244,6 +247,13 @@ namespace ca2
 
          //m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
          //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
+
+#else
+
+         throw todo(get_app());
+
+#endif
+
       }
 
       void validate::pageMessage(const stringa & straMatter, gen::property_set & set)

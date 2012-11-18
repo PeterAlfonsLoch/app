@@ -38,6 +38,7 @@ void simple_status_bar::_001OnDraw(::ca::graphics *pdc)
    GetClientRect(rectClient);
 
    class imaging & imaging = System.imaging();
+#ifdef WINDOWSEX
    imaging.color_blend(
       pdc,
       rectClient.left,
@@ -46,7 +47,16 @@ void simple_status_bar::_001OnDraw(::ca::graphics *pdc)
       rectClient.height(),
       GetSysColor(COLOR_3DFACE),
       208);
-
+#else
+   imaging.color_blend(
+      pdc,
+      rectClient.left,
+      rectClient.top,
+      rectClient.width(),
+      rectClient.height(),
+      ARGB(255, 184, 184, 177),
+      208);
+#endif
    
 //xxx   bool bWin4 = afxData.bWin4;
    /*::CallWindowProc(

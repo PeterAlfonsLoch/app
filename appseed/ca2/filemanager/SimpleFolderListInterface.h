@@ -38,6 +38,7 @@ namespace filemanager
 #ifdef WINDOWSEX
          void clear(LPITEMIDLIST lpiidlPreserve1, LPITEMIDLIST lpiidlPreserve2);
 #endif
+         void clear();
          Folder & GetFolder(index i);
       };
 

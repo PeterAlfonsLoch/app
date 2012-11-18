@@ -178,6 +178,7 @@ namespace userstack
    {
       if(eexclusive == ::radix::ExclusiveInstanceLocalId)
       {
+#ifdef WINDOWSEX
          gen::memory_file file(get_app());
          file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
@@ -187,6 +188,9 @@ namespace userstack
          ::oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::application::");
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
+#else
+         throw todo(get_app());
+#endif
       }
    }
 

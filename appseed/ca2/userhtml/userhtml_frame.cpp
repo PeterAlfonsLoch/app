@@ -186,7 +186,11 @@ bool html_frame::pre_create_window(CREATESTRUCT& cs)
    if( !simple_frame_window::pre_create_window(cs) )
       return FALSE;
    cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
+#ifndef METROWIN
    ::DestroyMenu(cs.hMenu);
+#else
+   throw todo(get_app());
+#endif
    cs.hMenu = NULL;
    return TRUE;
 }

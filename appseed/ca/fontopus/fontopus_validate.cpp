@@ -1182,7 +1182,7 @@ namespace fontopus
       ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ cipher =
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->ImportPublicKey(memKey.get_os_stream_buffer());
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->ImportPublicKey(memKey.get_os_crypt_buffer());
 
       primitive::memory memIn;
 
@@ -1190,7 +1190,7 @@ namespace fontopus
 
       primitive::memory memory;
 
-      memory.set_os_stream_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, memIn.get_os_stream_buffer(), nullptr));
+      memory.set_os_crypt_buffer(::Windows::Security::Cryptography::Core::CryptographicEngine::Encrypt(cipherkey, memIn.get_os_crypt_buffer(), nullptr));
 
       string strHex;
       Application.memory_to_hex(strHex, memory);

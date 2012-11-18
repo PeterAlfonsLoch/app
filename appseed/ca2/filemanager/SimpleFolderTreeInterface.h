@@ -92,14 +92,12 @@ namespace filemanager
 
       virtual COLORREF get_background_color();
 
-      int MapToCSIDL(EFolder efolder);
-
 
 #ifdef WINDOWSEX
 
+      int MapToCSIDL(EFolder efolder);
 
       IShellFolder * _001GetFolder(EFolder efolder);
-
 
 #endif
 

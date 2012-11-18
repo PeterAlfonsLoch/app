@@ -185,6 +185,8 @@ namespace userbase
 
    void split_layout::layout()
    {
+
+
       TRACE("split_layout::layout");
       rect rectClient;
       GetClientRect(rectClient);
@@ -269,8 +271,13 @@ namespace userbase
          bool bVSVisible;
          if(m_panea[i].m_bFixedSize)
          {
+#ifdef WINDOWSEX
             int iCYHSCROLL = GetSystemMetrics(SM_CYHSCROLL);
             int iCXVSCROLL = GetSystemMetrics(SM_CXVSCROLL);
+#else
+            int iCYHSCROLL = 16;
+            int iCXVSCROLL = 16;
+#endif
             if(rectA.width() < m_panea[i].m_sizeFixed.cx)
             {
                bHSVisible = true;

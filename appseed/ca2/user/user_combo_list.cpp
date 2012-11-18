@@ -283,7 +283,7 @@ namespace user
    const char * combo_list::GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter)
    {
 
-   #ifdef WINDOWS
+   #ifdef WINDOWSEX
 
       HICON hIcon = (HICON) ::LoadImage(
          NULL,
@@ -325,14 +325,14 @@ namespace user
       if (cs.lpszClass == NULL)
       {
          // COLOR_WINDOW background
-   #ifdef WINDOWS
+   #ifdef WINDOWSEX
          VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
    #endif
       }
 
       if (cs.style & WS_BORDER)
       {
-   #ifdef WINDOWS
+   #ifdef WINDOWSEX
          cs.dwExStyle |= WS_EX_CLIENTEDGE;
    #endif
          cs.style &= ~WS_BORDER;

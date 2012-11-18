@@ -135,6 +135,7 @@ namespace user
       {
          if(!m_pheaderctrl->IsWindow())
          {
+#ifdef WINDOWSEX
             return m_pheaderctrl->create(
                NULL,
                "",
@@ -146,6 +147,16 @@ namespace user
                rect(0 , 0 , 0 , 0),
                get_guie(),
                1023) != 0;
+#else
+            return m_pheaderctrl->create(
+               NULL,
+               "",
+               WS_CHILD
+               | WS_VISIBLE,
+               rect(0 , 0 , 0 , 0),
+               get_guie(),
+               1023) != 0;
+#endif
          }
          else
             return true;
@@ -1032,6 +1043,8 @@ namespace user
    void list::_001OnColumnChange()
    {
 
+#ifdef WINDOWSEX
+
       index iItemHeight = 0;
       index iItemWidth = 0;
 
@@ -1145,7 +1158,11 @@ namespace user
 
       m_columna.VisibleToGlobalOrder();
 
+#else
 
+      throw todo(get_app());
+
+#endif
 
 
    }
@@ -1909,6 +1926,8 @@ namespace user
          if(m_pilGroup != NULL)
          {
 
+#ifdef WINDOWSEX
+
             IMAGEINFO ii;
 
             _001GetGroupImage(pdrawitem);
@@ -1934,6 +1953,12 @@ namespace user
             {
                return_(pdrawitem->m_bOk, false);
             }
+#else
+
+            throw todo(get_app());
+
+#endif
+
          }
          else if(eelement == userbase::_list::ElementGroupImage)
          {
@@ -2031,6 +2056,8 @@ namespace user
             else if(pdrawitem->m_pcolumnSubItemRect->m_pil != NULL)
             {
 
+#ifdef WINDOWSEX
+
                IMAGEINFO ii;
 
                _001GetItemImage(pdrawitem);
@@ -2055,6 +2082,14 @@ namespace user
                {
                   return_(pdrawitem->m_bOk, false);
                }
+
+#else
+
+               throw todo(get_app());
+
+#endif
+
+
             }
             else if(eelement == userbase::_list::ElementImage)
             {
@@ -3575,6 +3610,7 @@ namespace user
       }
       else if(ptimer->m_nIDEvent == 12321)
       {
+#ifdef WINDOWSEX
          KillTimer(ptimer->m_nIDEvent);
          index iItemSel;
          index iSubItemSel;
@@ -3668,6 +3704,9 @@ namespace user
          }
          m_iSubItemEnter = -1;
          m_iItemEnter = -1;
+#else
+         throw todo(get_app());
+#endif
 
       }
 
@@ -3908,6 +3947,7 @@ namespace user
 
    int list::_001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem)
    {
+#ifdef WINDOWSEX
       IMAGEINFO ii;
       rect rect;
       size size;
@@ -3936,6 +3976,9 @@ namespace user
       }
 
       return (int) cx;
+#else
+      throw todo(get_app());
+#endif
    }
 
 
@@ -5331,6 +5374,7 @@ namespace user
    void list::_001GetViewClientRect(LPRECT lprect)
    {
 
+#ifdef WINDOWSEX
 
       GetClientRect(lprect);
 
@@ -5405,6 +5449,9 @@ namespace user
       else
          lprect->bottom = (LONG) (lprect->top + iClientHeight);
 
+#else
+      throw todo(get_app());
+#endif
    }
 
 

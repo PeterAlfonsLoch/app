@@ -190,6 +190,8 @@ namespace gcom
 
             dcBuffer.FillSolidRect(rectClient, ARGB(0, 0, 0, 0));
 
+#ifdef WINDOWSEX
+
             HENHMETAFILE hemf = main.GetInterface().BackViewGetFillingMetaFile();
             if(hemf != NULL)
             {
@@ -237,6 +239,11 @@ namespace gcom
                   rectMeta.left += iW;
                }
             }
+#else
+
+            throw todo(get_app());
+
+#endif
 
             //sl3Source.lock();
             ::ca::bitmap & bmpSource = GetSourceBitmap();
@@ -422,12 +429,12 @@ namespace gcom
 
       }
 
-      EImagePlacement
-         Graphics::GetDefaultPlacement()
+      EImagePlacement Graphics::GetDefaultPlacement()
       {
          ::ca::bitmap & bmpSource = GetSourceBitmap();
 
-         EImagePlacement eplacement;
+         EImagePlacement eplacement = ImagePlacementZoomAll;
+#ifdef WINDOWSEX
          class size size = bmpSource.get_size();
          if(size.cx < (GetSystemMetrics(SM_CXSCREEN) / 2) &&
             size.cy < (GetSystemMetrics(SM_CYSCREEN) / 2))
@@ -438,6 +445,7 @@ namespace gcom
          {
             eplacement = ImagePlacementZoomAll;
          }
+#endif
          return eplacement;
       }
 

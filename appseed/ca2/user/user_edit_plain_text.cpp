@@ -410,7 +410,7 @@ namespace user
                strExtent2 = strLine.Mid(x, len);
                class size size1;
                visual::graphics_extension(get_app()).GetTextExtent(pdc, strExtent1, size1);
-               pdc->TextOutA(left + size1.cx, y, strExtent2);
+               pdc->TextOut(left + size1.cx, y, strExtent2);
 
             }
          }
@@ -620,7 +620,7 @@ namespace user
    void edit_plain_text::_002OnKeyDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::key, pkey, pobj)
-
+#ifdef WINDOWSEX
       if(pkey->m_nChar == VK_RETURN)
       {
          if(::GetKeyState(VK_CONTROL) & 0x80000000
@@ -689,10 +689,14 @@ namespace user
       m_bKeyPressed     = true;
       key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
       pkey->m_bRet      = true;
+#else
+         throw todo(get_app());
+#endif
    }
 
    void edit_plain_text::_002OnKeyUp(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
@@ -708,6 +712,9 @@ namespace user
          pkey->m_bRet = false;
       }
       m_bKeyPressed = false;
+#else
+         throw todo(get_app());
+#endif
    }
 
    void edit_plain_text::_002OnChar(gen::signal_object * pobj)
@@ -1340,7 +1347,7 @@ namespace user
       int i = 1;
       char buf[1024 * 256 + 1];
       primitive::memory_size uiRead;
-      LPTSTR lpsz;
+      char * lpsz;
       m_iaLineIndex.remove_all();
       m_iaLineEndIndex.remove_all();
       m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
@@ -1410,6 +1417,7 @@ namespace user
 
    void edit_plain_text::_001OnChar(gen::signal_object * pobj)
    {
+#ifdef WINDOWSEX
       ::ca::data::writing writing(m_pdata);
       _009OnChar(pobj);
       if(pobj->m_bRet)
@@ -1676,7 +1684,21 @@ namespace user
       m_dwLastCaret = ::GetTickCount();
       m_bCaretOn = true;
       _001RedrawWindow();
+
+
+#else
+
+   throw todo(get_app());
+
+#endif
+
+
+
    }
+
+
+
+
 
    void edit_plain_text::_001OnSysChar(gen::signal_object * pobj)
    {
@@ -2105,7 +2127,7 @@ namespace user
       for(::index iLine = iLineStart; i <= iLineEnd && iLine < m_iaLineIndex.get_size(); i++, iLine++)
       {
          strsize iLen = m_iaLineIndex[iLine];
-         LPTSTR lpsz = str.GetBufferSetLength(iLen + 1);
+         char * lpsz = str.GetBufferSetLength(iLen + 1);
          m_pdata->m_editfile.read(lpsz, iLen);
          lpsz[iLen] = '\0';
          str.ReleaseBuffer();

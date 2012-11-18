@@ -1,12 +1,11 @@
 #include "framework.h"
 
-/*
+
 DWORD GetTickCount()
 {
-    tms tm;
-    return times(&tm);
+    return GetTickCount64() % 0xffffffffULL;
 }
-*/
+
 
 CLASS_DECL_ca bool CopyRect(LPRECT prectDest, LPCRECT prectSrc)
 {

@@ -6,6 +6,11 @@
 
 #else // !defined(WINDOWS)
 
+#ifdef METROWIN
+CLASS_DECL_ca BOOL LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+CLASS_DECL_ca BOOL UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+#endif
+
 #include <stddef.h> // for wchar_t
 #include <string.h>
 

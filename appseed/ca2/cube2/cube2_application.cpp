@@ -31,7 +31,7 @@ namespace cube2
    }
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    BOOL CALLBACK application::GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam)
    {
@@ -99,7 +99,7 @@ namespace cube2
    void application::update_app_interest()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       EnumWindows(GetAppsEnumWindowsProc, (LPARAM) (application *) (this));
 
@@ -113,14 +113,23 @@ namespace cube2
 
    void application::ensure_app_interest()
    {
+
+#ifndef METROWIN
+
       for(int i = 0; i < m_straAppInterest.get_count(); i++)
       {
-         if(m_straAppInterest[i] != m_strAppName
-            && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
+         if(m_straAppInterest[i] != m_strAppName && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
          {
             System.assert_running_local(m_straAppInterest[i]);
          }
       }
+
+#else
+
+      throw todo(get_app());
+
+#endif
+
    }
 
    oswindow application::get_ca2_app_wnd(const char * psz)
@@ -150,7 +159,9 @@ namespace cube2
       oswindow oswindow = get_ca2_app_wnd(m_strAppName);
       if(oswindow != NULL)
       {
+#ifndef METROWIN
          ::ShowWindow(oswindow, SW_RESTORE);
+#endif
       }
    }
 
@@ -173,7 +184,7 @@ namespace cube2
 
    int application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       ::oswindow oswindow = (::oswindow) osdata;
       if(!::IsWindow(oswindow))
          return -1;

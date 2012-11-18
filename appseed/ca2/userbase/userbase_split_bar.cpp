@@ -45,6 +45,7 @@ namespace userbase
       if(m_pparent != NULL)
       {
          split_layout::e_orientation eorientation = m_pparent->GetSplitOrientation();
+#ifdef WINDOWSEX
          const char * lpcsz = NULL;
          if(eorientation == split_layout::orientation_horizontal)
          {
@@ -55,6 +56,9 @@ namespace userbase
             lpcsz = MAKEINTRESOURCE(IDC_SIZEWE);
          }
          m_hcursor = ::LoadCursor(NULL, lpcsz);
+#else
+         throw todo(get_app());
+#endif
 
       }
    }
@@ -121,7 +125,11 @@ namespace userbase
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
          && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
       {
+#ifdef WINDOWSEX
          SetCursor(m_hcursor);
+#else
+         throw todo(get_app());
+#endif
       }
       if((m_pparent->m_iState == split_layout::stateDragging) && (m_iIndex == m_pparent->m_iIndex))
       {

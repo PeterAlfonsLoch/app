@@ -34,6 +34,9 @@ namespace user
 
       ::ca::graphics * pgraphics = m_phprinter->create_graphics();
 
+
+#ifdef WINDOWSEX
+
       DOCINFO docinfo;
       memset(&docinfo, 0, sizeof(docinfo));
       docinfo.cbSize = sizeof(docinfo);
@@ -75,8 +78,22 @@ namespace user
          }
          
       }
+
       pgraphics->EndDoc();
+
+#else
+
+      throw todo(get_app());
+
+#endif
+
       return 0;
+
    }
 
+
 } // namespace user
+
+
+
+

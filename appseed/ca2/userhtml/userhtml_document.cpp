@@ -140,13 +140,14 @@ void html_document::soft_reload()
 
 ::html::data * html_document::get_html_data()
 {
-   if(::document::get_data() == NULL)
+   ::userbase::document * pdoc = dynamic_cast < ::userbase::document * > (this);
+   if(pdoc->get_data() == NULL)
    {
       set_data(get_typed_view < html_form > ()->get_html_data());
       get_html_data()->m_pcallback = this;
       get_html_data()->m_propset["bReplaceEx1"] = true;
    }
-   return dynamic_cast < ::html::data * > (::document::get_data());
+   return dynamic_cast < ::html::data * > (pdoc->get_data());
 }
 
 bool html_document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
@@ -169,9 +170,13 @@ bool html_document::_001OnCommand(id id)
       
       System.message_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 
+#ifndef METROWIN
+
       simple_shell_launcher launcher(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
          
       launcher.execute();
+
+#endif
       
       return true;
 

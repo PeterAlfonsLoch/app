@@ -44,7 +44,7 @@ namespace userbase
       index SetItemData(index nIndex, dword_ptr dwItemData);
       void * GetItemDataPtr(index nIndex);
       index SetItemDataPtr(index nIndex, void * pData);
-      index GetLBText(index nIndex, LPTSTR lpszText);
+      index GetLBText(index nIndex, char * lpszText);
       void GetLBText(index nIndex, string & rString);
       strsize GetLBTextLen(index nIndex);
 

@@ -31,14 +31,14 @@ namespace userbase
 
    // Derived class is responsible for implementing these handlers
    //   for owner/self draw controls (except for the optional DeleteItem)
-   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
-      { ASSERT(FALSE); }
-   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
-      { ASSERT(FALSE); }
-   int combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
-      { ASSERT(FALSE); return 0; }
-   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
-      { /* default to nothing */ }
+//   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
+  //    { ASSERT(FALSE); }
+//   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
+  //    { ASSERT(FALSE); }
+//   int combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
+  //    { ASSERT(FALSE); return 0; }
+//   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
+  //    { /* default to nothing */ }
 
    bool combo_box::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
       LRESULT* pResult)
@@ -47,20 +47,36 @@ namespace userbase
       switch (message)
       {
       case WM_DRAWITEM:
+#ifdef WINODWSEX
          ASSERT(pResult == NULL);       // no return value expected
          DrawItem((LPDRAWITEMSTRUCT)lParam);
+#else
+         throw todo(get_app());
+#endif
          break;
       case WM_MEASUREITEM:
+#ifdef WINODWSEX
          ASSERT(pResult == NULL);       // no return value expected
          MeasureItem((LPMEASUREITEMSTRUCT)lParam);
+#else
+         throw todo(get_app());
+#endif
          break;
       case WM_COMPAREITEM:
+#ifdef WINODWSEX
          ASSERT(pResult != NULL);       // return value expected
          *pResult = CompareItem((LPCOMPAREITEMSTRUCT)lParam);
+#else
+         throw todo(get_app());
+#endif
          break;
       case WM_DELETEITEM:
+#ifdef WINODWSEX
          ASSERT(pResult == NULL);       // no return value expected
          DeleteItem((LPDELETEITEMSTRUCT)lParam);
+#else
+         throw todo(get_app());
+#endif
          break;
       default:
          // trans return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
@@ -132,7 +148,7 @@ namespace userbase
    
    }
 
-   index combo_box::GetLBText(index nIndex, LPTSTR lpszText)
+   index combo_box::GetLBText(index nIndex, LPSTR lpszText)
    { 
       
       ASSERT(IsWindow()); 

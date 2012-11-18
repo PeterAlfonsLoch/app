@@ -312,7 +312,7 @@ namespace userstack
       {
          string str = System.dir().path(psz, straRelative[i]);
          Application.dir().mk(System.dir().name(str));
-         ::CopyFile(straPath[i], str , TRUE);
+         Application.file().copy(str, straPath[i], true);
       }
       straRelative.remove_all();
       straPath.remove_all();
@@ -321,7 +321,7 @@ namespace userstack
       {
          string str = System.dir().path(psz, straRelative[i]);
          Application.dir().mk(System.dir().name(str));
-         ::CopyFile(straPath[i], str, TRUE);
+         Application.file().copy(str, straPath[i], true);
       }
    }
 
@@ -366,6 +366,7 @@ namespace userstack
 
    void pane_view::check_desktop_dir(const char * psz)
    {
+#ifdef WINDOWSEX
       stringa straPath;
       stringa straRelative;
       char buf[4096];
@@ -411,6 +412,9 @@ namespace userstack
             }
          }
       }
+#else
+      throw todo(get_app());
+#endif
    }
 
 
@@ -514,9 +518,15 @@ namespace userstack
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
          
+#ifndef METROWIN
          simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
          
          launcher.execute();
+#else
+
+         throw todo(get_app());
+
+#endif
 
       }
    }

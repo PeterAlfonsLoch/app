@@ -34,7 +34,7 @@ namespace cube1
          rect.unite(rect, &rectMonitor);
       }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       m_monitorinfoaDesk = m_monitorinfoa;
 
@@ -92,7 +92,7 @@ namespace cube1
    void application::enum_display_monitors()
    {
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       m_monitorinfoa.remove_all();
 
@@ -107,7 +107,7 @@ namespace cube1
 
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    BOOL CALLBACK application::monitor_enum_proc(
      HMONITOR hmonitor,
      HDC hdcMonitor,
@@ -120,7 +120,7 @@ namespace cube1
    }
 #endif
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    void application::monitor_enum(
      HMONITOR hmonitor,
      HDC hdcMonitor,
@@ -143,7 +143,7 @@ namespace cube1
 
    count application::get_monitor_count()
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       return m_monitorinfoa.get_size();
 #else
       throw todo(get_app());
@@ -155,8 +155,10 @@ namespace cube1
    {
       if(i < 0 || i >= get_monitor_count())
          return false;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       *lprect = m_monitorinfoa[i].rcMonitor;
+#elif defined(METROWIN)
+      throw todo(get_app());
 #else
       throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
@@ -167,7 +169,7 @@ namespace cube1
 
    count application::get_desk_monitor_count()
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       return m_monitorinfoaDesk.get_size();
 #else
       throw todo(get_app());
@@ -179,8 +181,10 @@ namespace cube1
    {
       if(i < 0 || i >= get_desk_monitor_count())
          return false;
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       *lprect = m_monitorinfoaDesk[i].rcMonitor;
+#elif defined(METROWIN)
+      throw todo(get_app());
 #else
       throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
@@ -188,4 +192,8 @@ namespace cube1
       return true;
    }
 
+
 } //namespace cube1
+
+
+

@@ -14,7 +14,7 @@ namespace cube2
       stringa m_straAppInterest;
       ::collection::string_map < oswindow, oswindow > m_mapAppInterest;
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
       static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam);
 
