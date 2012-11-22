@@ -5,6 +5,11 @@
 //#define INFINITE 0xffffffff
 //#endif
 
+#ifdef METROWIN
+
+#include <agile.h>
+
+#endif
 
 class id;
 
@@ -208,6 +213,14 @@ namespace plane
 
    };
 
+#ifdef METROWIN
+   interface class system_window
+   {
+      virtual Windows::Foundation::Rect get_window_rect() = 0;
+      virtual Windows::Foundation::Point get_cursor_pos() = 0;
+   };
+
+#endif
 
    class CLASS_DECL_ca system :
       virtual public ::plane::application,
@@ -216,13 +229,16 @@ namespace plane
    public:
 
 
+#ifdef METROWIN
+      system_window ^                                    m_pwindow;
+#endif
       sp(::filehandler::handler)                   m_spfilehandler;
       ::cube::cube *                               m_pcube;
       ::plane::application *                       m_pcubeInterface;
 
 
 #ifdef WINDOWS
-/*      Gdiplus::GdiplusStartupInput *   m_pgdiplusStartupInput;
+      /*      Gdiplus::GdiplusStartupInput *   m_pgdiplusStartupInput;
       Gdiplus::GdiplusStartupOutput *  m_pgdiplusStartupOutput;
       ulong_ptr                        m_gdiplusToken;
       ulong_ptr                        m_gdiplusHookToken;*/
@@ -275,8 +291,8 @@ namespace plane
       class factory *                              m_pfactory;
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
-//      ::sockets::net                               m_net;
-//      sp(::ca2::filehandler::handler)  m_spfilehandler;
+      //      ::sockets::net                               m_net;
+      //      sp(::ca2::filehandler::handler)  m_spfilehandler;
 
 
       fontopus::authentication_map                 m_authmap;
@@ -299,21 +315,24 @@ namespace plane
 
       ::user::str *                                m_puserstr;
 
-     ::collection::string_map < ::collection::int_map < string, string >, const ::collection::int_map < string, string > & >
-                                                   m_mapEnumToName;
+      ::collection::string_map < ::collection::int_map < string, string >, const ::collection::int_map < string, string > & >
+         m_mapEnumToName;
 
-     ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & >
-                                                   m_mapNameToEnum;
-
-
-     bool                                          m_bDoNotExitIfNoApplications;
-
-     ::collection::strid_map < ::ca2::library * >  m_idmapCreateViewLibrary;
-
-     comparable_array < ::ca2::library * >         m_libraryptra;
+      ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & >
+         m_mapNameToEnum;
 
 
-     system(::ca::application * papp = NULL);
+      bool                                          m_bDoNotExitIfNoApplications;
+
+      ::collection::strid_map < ::ca2::library * >  m_idmapCreateViewLibrary;
+
+      comparable_array < ::ca2::library * >         m_libraryptra;
+
+#ifdef METROWIN
+      Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
+#endif
+
+      system(::ca::application * papp = NULL);
       virtual ~system();
 
 
@@ -363,12 +382,12 @@ namespace plane
       virtual int _001OnDebugReport(int i1, const char * psz1, int i2, const char * psz2, const char * psz3, va_list args);
 
       virtual int ________ca2_votagus_logging_Report(
-                                                      int _ReportType,
-                                                      const char * _Filename,
-                                                      int _Linenumber,
-                                                      const char * _ModuleName,
-                                                      const char * _Format,
-                                                      va_list list);
+         int _ReportType,
+         const char * _Filename,
+         int _Linenumber,
+         const char * _ModuleName,
+         const char * _Format,
+         va_list list);
 
       virtual bool assert_failed_line(const char * lpszFileName, int iLine);
 
@@ -450,6 +469,11 @@ namespace plane
 
       unsigned long guess_code_page(const char * pszText);
 
+#ifdef METROWIN
+
+      virtual bool get_window_rect(LPRECT lprect);
+
+#endif
 
       virtual void post_fork_uri(const char * pszUri, ::ca::application_bias * pbiasCreate);
 
@@ -510,11 +534,11 @@ namespace plane
       }
       int enum_from_name(const std_type_info & info, const char * psz, int iDefault = 0)
       {
-          #ifdef WINDOWS
+#ifdef WINDOWS
          return m_mapNameToEnum[info.name()].get(psz, iDefault);
-         #else
+#else
          return m_mapNameToEnum[info.name()].get(psz, iDefault);
-         #endif
+#endif
       }
 
       template < class TYPE >
@@ -579,7 +603,7 @@ namespace plane
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
       virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
-	   virtual ::gen::command_thread & command_thread();
+      virtual ::gen::command_thread & command_thread();
 
 
       virtual bool on_install();
@@ -590,8 +614,7 @@ namespace plane
 
       virtual bool add_library(::ca2::library * plibrary);
 
-
-
+      virtual void get_cursor_pos(LPPOINT lppoint);
 
 
    };
@@ -660,7 +683,7 @@ namespace gen
    {
       for(index i = 0; i < m_captra.get_count(); i++)
       {
-        Sys(m_papp).unregister_delete(m_captra[i], this);
+         Sys(m_papp).unregister_delete(m_captra[i], this);
       }
       m_ptra.remove_all();
       return m_captra.remove_all();
@@ -820,46 +843,46 @@ template < class T >
 bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
 {
 
-    App(papp).dir().mk(System.dir().name(pszOutput));
+   App(papp).dir().mk(System.dir().name(pszOutput));
 
-    ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+   ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
 
-    if(fileOut.is_null())
-        return false;
+   if(fileOut.is_null())
+      return false;
 
-    return (p->*lpfnOuput)(fileOut, lpszSource);
+   return (p->*lpfnOuput)(fileOut, lpszSource);
 
 }
 
 
- template < class T >
- bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
- {
+template < class T >
+bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
+{
 
-    App(papp).dir().mk(System.dir().name(pszOutput));
+   App(papp).dir().mk(System.dir().name(pszOutput));
 
-    ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+   ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
 
-    if(fileOut.is_null())
-        return false;
+   if(fileOut.is_null())
+      return false;
 
-    ex1::filesp fileIn = App(papp).get_file(lpszInput, ex1::file::type_binary | ex1::file::mode_read);
+   ex1::filesp fileIn = App(papp).get_file(lpszInput, ex1::file::type_binary | ex1::file::mode_read);
 
-    if(fileIn.is_null())
-       return false;
+   if(fileIn.is_null())
+      return false;
 
-    return (p->*lpfnOuput)(fileOut, fileIn);
+   return (p->*lpfnOuput)(fileOut, fileIn);
 
- }
+}
 
- #endif // defined LINUX
+#endif // defined LINUX
 
 
 
 template < class TYPE, class ARG_TYPE >
 inline TYPE * array_app_alloc < TYPE, ARG_TYPE >::add_new()
 {
-    ::ca::type_info & ti = System.template type_info < TYPE > ();
+   ::ca::type_info & ti = System.template type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    this->ptra().add(pt);
    return pt;
@@ -870,7 +893,7 @@ template < class TYPE, class ARG_TYPE >
 inline index array_app_alloc < TYPE, ARG_TYPE >::add(
    const TYPE & t)
 {
-    ::ca::type_info & ti = System.template type_info < TYPE > ();
+   ::ca::type_info & ti = System.template type_info < TYPE > ();
    TYPE * pt = dynamic_cast < TYPE * > (System.alloc(this->get_app(), ti));
    *pt = t;
    return this->ptra().add(pt);
@@ -1012,7 +1035,7 @@ void array_app_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
 
 template <class TYPE, class ARG_TYPE>
 inline void array_app_alloc < TYPE, ARG_TYPE >::
-set_size(::count iSize)
+   set_size(::count iSize)
 {
    while(this->get_size() < iSize)
    {
@@ -1060,20 +1083,20 @@ inline VIEW * view::create_view(::user::view_creator_data * pcreatordata, ::user
 
 
 
-   template < class DOCUMENT >
-   ::ca::data * view::get_data()
-    {
-       ASSERT(this != NULL);
-       DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
-       if(pdocument == NULL)
-          return NULL;
-       return pdocument->get_data();
-   }
+template < class DOCUMENT >
+::ca::data * view::get_data()
+{
+   ASSERT(this != NULL);
+   DOCUMENT * pdocument = get_typed_document < DOCUMENT > ();
+   if(pdocument == NULL)
+      return NULL;
+   return pdocument->get_data();
+}
 
-   template < class DOCUMENT >
-   DOCUMENT * view::get_typed_document()
-   {
-      if(m_spdocument.is_null())
-         return NULL;
-      return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
-   }
+template < class DOCUMENT >
+DOCUMENT * view::get_typed_document()
+{
+   if(m_spdocument.is_null())
+      return NULL;
+   return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
+}

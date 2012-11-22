@@ -50,6 +50,10 @@ namespace ca
       virtual int cos10(int i, int iAngle);
       virtual int sin10(int i, int iAngle);
 
+      virtual void map(); // some implementations may requrire to map to m_pcolorref before manipulate it
+      virtual void unmap(); // some implementations may require to unmap from m_pcolorref to update *os* bitmap
+
+
       virtual bool is_rgb_black();
       virtual void do_xor(dib * pdib);
 

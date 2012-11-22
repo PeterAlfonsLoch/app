@@ -1,5 +1,4 @@
 #include "framework.h"
-#ifndef METROWIN
 #define _WINDOWS_
 #include "include/freeimage.h"
 
@@ -191,5 +190,3 @@ long _stdcall ___Ex1File__TellProc(fi_handle handle)
    return (long) pfile->get_position();
 }
 
-
-#endif

@@ -1522,19 +1522,19 @@ namespace gcom
 
          {
             ::ca::pen_sp pen1(get_app());
-            pen1->create_solid(0, colorStrong1.get_rgb() | (255 << 24));
+            pen1->create_solid(pdib2->get_graphics(), 1.0, colorStrong1.get_rgb() | (255 << 24));
             ::ca::brush_sp brush1(get_app(), colorStrong1.get_rgb() | (255 << 24));
             ::ca::pen_sp pen2(get_app());
-            pen2->create_solid(0, colorStrong2.get_rgb() | (255 << 24));
+            pen2->create_solid(pdib2->get_graphics(), 1.0, colorStrong2.get_rgb() | (255 << 24));
             ::ca::brush_sp brush2(get_app(), colorStrong2.get_rgb() | (255 << 24));
             ::ca::pen_sp pen3(get_app());
-            pen3->create_solid(0, colorStrong3.get_rgb() | (255 << 24));
+            pen3->create_solid(pdib2->get_graphics(), 1.0, colorStrong3.get_rgb() | (255 << 24));
             ::ca::brush_sp brush3(get_app(), colorStrong3.get_rgb() | (255 << 24));
             ::ca::pen_sp pen4(get_app());
-            pen4->create_solid(0, colorStrong4.get_rgb() | (255 << 24));
+            pen4->create_solid(pdib2->get_graphics(), 1.0, colorStrong4.get_rgb() | (255 << 24));
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app());
-            pen5->create_solid(0, colorStrong5.get_rgb() | (255 << 24));
+            pen5->create_solid(pdib2->get_graphics(), 1.0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
             for(int i = 0; i < m_colortrack1a.get_size(); i++)
             {
@@ -2333,7 +2333,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int margin = 10;
          int w = margin * 2;
@@ -2734,9 +2734,9 @@ namespace gcom
          }
 
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->create_solid(3, ARGB(255, 205, 205, 205));
+         penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int margin1 = cx1 / 8;
          int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -3195,9 +3195,9 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->create_solid(3, ARGB(255, 205, 205, 205));
+         penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int margin1 = 10;
 //         int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -4332,7 +4332,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int marginx = cx1 / 12;
          int marginy = cy1 * 5 / 11;
@@ -4801,7 +4801,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int margin = 10;
          int w = margin * 2;
@@ -5097,9 +5097,9 @@ namespace gcom
          }
 
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->create_solid(3, ARGB(255, 205, 205, 205));
+         penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int margin1 = cx1 / 8;
          int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -5562,9 +5562,9 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
-         penWhite->create_solid(3, ARGB(255, 205, 205, 205));
+         penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
          int margin1 = 10;
 //         int margin2 = cy1 / 2;
          int w = cy1 / 3;
@@ -6065,7 +6065,7 @@ namespace gcom
 
          // top1
          ::ca::pen_sp pen1(get_app());
-         pen1->create_solid(1, colorStrong1.get_rgb() | (255 << 24));
+         pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
          int marginx = cx1 / 12;
          int marginy = cy1 * 5 / 11;

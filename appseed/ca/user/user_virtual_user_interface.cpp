@@ -31,12 +31,14 @@ virtual_user_interface::~virtual_user_interface()
 
 ::ca::graphics * virtual_user_interface::GetDC()
 {
-   return get_wnd()->GetDC();
+   ::ca::graphics_sp g(get_app());
+   g->CreateCompatibleDC(NULL);
+   return g.detach();
 }
 
 bool virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
 {
-   return get_wnd()->ReleaseDC(pdc);
+   return pdc->DeleteDC();
 }
 
 ::user::interaction * virtual_user_interface::get_parent() const
@@ -207,8 +209,10 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    {
       pwndThis->set_handle(m_oswindow);
    }*/
+#ifndef METROWIN
    if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
+#endif
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
    //m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pparent, iId, lpParam);
@@ -253,7 +257,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #else
 
-   throw todo(get_app());
+   //throw todo(get_app());
 
 #endif
 
@@ -372,7 +376,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   throw todo(get_app());
+   //throw todo(get_app());
 
 #endif
 
@@ -491,7 +495,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #else
 
-   throw todo(get_app());
+   //throw todo(get_app());
 
 #endif
 
@@ -797,8 +801,6 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 #endif
 
 
-#ifndef METROWIN
-
    if(m_pguie != this && m_pguie != NULL)
    {
       for (::user::interaction * oswindow_Child = m_pguie->GetTopWindow(); oswindow_Child != NULL;
@@ -882,7 +884,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
       }
    }
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
@@ -973,11 +975,6 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
-#else
-
-   throw todo(get_app());
-
-#endif
 
 }
 

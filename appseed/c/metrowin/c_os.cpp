@@ -4,7 +4,8 @@
 
 CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
 {
-   
+   if(psz == NULL)
+      return ref new Platform::String(L"");
    return ref new Platform::String(wstring(psz));
 
 }
@@ -216,12 +217,18 @@ bool main_finalize()
 }
 
 
+CLASS_DECL_c int g_iMouse = -1;
+
+
 CLASS_DECL_c WINBOOL GetCursorPos(LPPOINT lppoint)
 {
    
    lppoint->x = 0;
 
    lppoint->y = 0;
+
+   if(g_iMouse < 0)
+      return FALSE;
 
    Windows::Foundation::Collections::IVectorView < Windows::Devices::Input::PointerDevice ^ > ^ deva = ::Windows::Devices::Input::PointerDevice::GetPointerDevices();
 
@@ -233,7 +240,7 @@ CLASS_DECL_c WINBOOL GetCursorPos(LPPOINT lppoint)
       if(dev->PointerDeviceType == ::Windows::Devices::Input::PointerDeviceType::Mouse)
       {
 
-          Windows::UI::Input::PointerPoint ^ pointerPoint = Windows::UI::Input::PointerPoint::GetCurrentPoint(ui);
+          Windows::UI::Input::PointerPoint ^ pointerPoint = Windows::UI::Input::PointerPoint::GetCurrentPoint(g_iMouse);
 
           lppoint->x = (LONG) pointerPoint->RawPosition.X;
 
@@ -346,4 +353,27 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
       NULL);
    vsstring str(wstr);
    return str;
+}
+
+
+CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow)
+{
+
+   if(((void *) oswindow) == NULL)
+      return FALSE;
+
+   return TRUE;
+
+}
+
+CLASS_DECL_c int WINAPI GetSystemMetrics(int i)
+{
+   switch(i)
+   {
+   case SM_CXHSCROLL:
+      return 16;
+   case SM_CYHSCROLL:
+      return 16;
+   }
+   return 0;
 }

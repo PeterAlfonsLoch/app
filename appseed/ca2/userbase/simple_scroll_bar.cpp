@@ -9,7 +9,7 @@ simple_scroll_bar::simple_scroll_bar(::ca::application * papp) :
    m_rgnB(papp) // região da segunda seta
 {
    //m_brushNull->CreateStockObject(NULL_BRUSH);
-   m_penDraw->create_solid(1, ARGB(255, 0, 0, 0));
+   
    m_bTracking          = false;
    m_scrollinfo.nMin    = 0;
    m_scrollinfo.nMax    = 100;
@@ -401,8 +401,6 @@ int simple_scroll_bar::_001GetScrollPos()
 void simple_scroll_bar::_001OnSize(gen::signal_object * pobj) 
 {
 
-#ifdef WINDOWSEX
-
    //SCAST_PTR(::gen::message::size, psize, pobj)
       pobj->previous();
    // trans   ::user::interaction::OnSize(psize->m_wparam, size.cx, size.cy);
@@ -463,11 +461,6 @@ void simple_scroll_bar::_001OnSize(gen::signal_object * pobj)
    ::ca::graphics * pgraphics = GetDC();
 
    ReleaseDC(pgraphics);
-#else
-
-   throw todo(get_app());
-
-#endif
 
 //   psize->m_bRet = false;
 }
@@ -783,6 +776,8 @@ void simple_scroll_bar::UpdateDrawingObjects()
 
 void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 {
+
+   m_penDraw->create_solid(pdc, 1, ARGB(255, 0, 0, 0));
 
    pdc->SelectClipRgn(NULL);
 

@@ -1090,6 +1090,29 @@ namespace user
    oswindow interaction::get_handle() const
    {
 
+#ifdef METROWIN
+
+      ::user::interaction * pwnd = NULL;
+
+      try
+      {
+
+         pwnd = get_wnd();
+
+         if(pwnd == NULL)
+            return ::ca::null();
+
+         return pwnd;
+
+      }
+      catch(...)
+      {
+
+      }
+
+      return ::ca::null();
+
+#else
       ::ca::window * pwnd = NULL;
 
       try
@@ -1109,6 +1132,9 @@ namespace user
       }
 
       return ::ca::null();
+
+#endif
+
 
    }
 
@@ -1385,6 +1411,7 @@ namespace user
          DestroyWindow();
       }
       m_signalptra.remove_all();
+#ifndef METROWIN
       if(pParentWnd == NULL)
       {
          m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
@@ -1400,6 +1427,7 @@ namespace user
          return true;
       }
       else
+#endif
       {
          m_pimpl = new virtual_user_interface(get_app());
          m_pimpl->m_pguie = this;
@@ -2427,7 +2455,9 @@ ExitModal:
       ASSERT(GetTopLevelParent()->get_wnd() != NULL);
       if(GetTopLevelParent()->get_wnd() == NULL)
          return;
+#ifndef METROWIN
       GetTopLevelParent()->get_wnd()->mouse_hover_remove(this);
+#endif
    }
 
    void interaction::track_mouse_hover()
@@ -2438,7 +2468,9 @@ ExitModal:
       ASSERT(GetTopLevelParent()->get_wnd() != NULL);
       if(GetTopLevelParent()->get_wnd() == NULL)
          return;
+#ifndef METROWIN
       GetTopLevelParent()->get_wnd()->mouse_hover_add(this);
+#endif
    }
 
 
@@ -3044,8 +3076,17 @@ restart:
    }
 
 
+#ifdef METROWIN
+   ::user::interaction * interaction::get_wnd() const
+#else
    ::ca::window * interaction::get_wnd() const
+#endif
    {
+#ifdef METROWIN
+      if(get_parent() == NULL)
+         return m_pimpl;
+      return get_parent()->get_wnd();
+#else
       if(m_pimpl != NULL)
       {
          ::ca::window * pwnd = dynamic_cast < ::ca::window * > (m_pimpl);
@@ -3055,6 +3096,7 @@ restart:
       if(get_parent() == NULL)
          return NULL;
       return get_parent()->get_wnd();
+#endif
    }
 
    // returns -1 if not descendant

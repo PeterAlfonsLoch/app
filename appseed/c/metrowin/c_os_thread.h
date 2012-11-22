@@ -58,12 +58,20 @@ private:
 public:
 
 
-   waiter_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+   waiter_for_Windows_Foundation_IAsyncOperation(::Windows::Foundation::IAsyncOperation < T > ^ operation, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
+      m_event(false, true)
    {
 
       m_operation             = operation;
 
-      m_operation->Completed  = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T > (this, &waiter_for_Windows_Foundation_IAsyncOperation < T > ::Completed, callbackcontext);
+      m_operation->Completed  = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < T > ([this](::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
+      {
+      
+         m_status = status;
+
+         m_event.set_event();
+
+      });
 
    }
 
@@ -74,29 +82,26 @@ public:
    }
    
    
-   void Completed(::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus status)
-   {
-
-      m_status = status;
-
-      m_event.set_event();
-
-   }
-
-   T wait()
+   T wait(::Windows::Foundation::AsyncStatus * pstatus = NULL)
    {
 
       m_event.wait();
 
+      if(pstatus != NULL)
+         *pstatus = m_status;
 
-      if(m_status != ::Windows::Foundation::AsyncStatus::Completed)
+      if(m_status == ::Windows::Foundation::AsyncStatus::Completed)
       {
 
-         throw "error waiting";
+         return m_operation->GetResults();
 
       }
+      else
+      {
 
-      return m_operation->GetResults();
+         return nullptr;
+
+      }
 
    }
 
@@ -115,12 +120,26 @@ private:
 public:
 
 
-   waiter_for_Windows_Foundation_IAsyncAction(::Windows::Foundation::IAsyncAction ^ action, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+   waiter_for_Windows_Foundation_IAsyncAction(::Windows::Foundation::IAsyncAction ^ action, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any) :
+      m_event(false, true)
    {
 
       m_action                = action;
 
-      m_action->Completed     = ref new ::Windows::Foundation::AsyncActionCompletedHandler(this, &waiter_for_Windows_Foundation_IAsyncAction::Completed, callbackcontext);
+      if(m_action->Status != ::Windows::Foundation::AsyncStatus::Started)
+      {
+         m_event.set_event();
+      }
+      else
+      {
+         m_action->Completed     = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+         {
+            m_status = status;
+
+            m_event.set_event();
+
+         });
+      }
 
    }
 
@@ -129,29 +148,14 @@ public:
 
    }
 
-   void Completed(::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
-   {
 
-      m_status = status;
-
-      m_event.set_event();
-
-   }
-
-
-   void wait()
+   void wait(::Windows::Foundation::AsyncStatus * pstatus = NULL)
    {
 
       m_event.wait();
 
-      if(m_status != ::Windows::Foundation::AsyncStatus::Completed)
-      {
-
-         throw "error waiting";
-
-      }
-
-      return m_action->GetResults();
+      if(pstatus != NULL)
+         *pstatus = m_status;
 
    }
 
@@ -160,17 +164,62 @@ public:
 
 
 template < typename T >
-inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus * pstatus = NULL, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
 {
    
-   return waiter_for_Windows_Foundation_IAsyncOperation < T > (operation, callbackcontext).wait();
+   waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation, callbackcontext);
+      
+   return waiter.wait(pstatus);
 
 }
 
 
-inline  void wait(::Windows::Foundation::IAsyncAction ^ action, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncAction ^ action, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
 {
+   
+   ::Windows::Foundation::AsyncStatus status;
+   
+   waiter_for_Windows_Foundation_IAsyncAction waiter(action, callbackcontext);
+   
+   waiter.wait(&status);
 
-   return waiter_for_Windows_Foundation_IAsyncAction(action, callbackcontext).wait();
+   return status;
 
 }
+
+
+
+CLASS_DECL_c
+BOOL
+WINAPI
+PeekMessageW(
+    _Out_ LPMSG lpMsg,
+    _In_opt_ HWND hWnd,
+    _In_ UINT wMsgFilterMin,
+    _In_ UINT wMsgFilterMax,
+    _In_ UINT wRemoveMsg);
+
+
+#define PeekMessage PeekMessageW
+
+
+
+CLASS_DECL_c
+DWORD
+WINAPI
+GetThreadId(
+    _In_ HANDLE Thread
+    );
+
+
+#define PostThreadMessage  PostThreadMessageW
+
+
+CLASS_DECL_c
+BOOL
+WINAPI
+PostThreadMessageW(
+    _In_ DWORD idThread,
+    _In_ UINT Msg,
+    _In_ WPARAM wParam,
+    _In_ LPARAM lParam);

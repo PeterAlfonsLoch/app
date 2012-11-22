@@ -131,6 +131,11 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
 
+      if(m_content_length > 0)
+      {
+         m_bExpectResponse = true;
+      }
+
    }
 
    void http_client_socket::OnDataComplete()
@@ -139,6 +144,8 @@ namespace sockets
       {
          SetCloseAndDelete();
       }
+      m_bExpectRequest = false;
+      m_bExpectResponse = false;
    }
 
    void http_client_socket::OnData(const char *buf,size_t len)

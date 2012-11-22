@@ -122,6 +122,12 @@ namespace ca2
 
          string strPrefix(get_root());
 
+#ifdef METROWIN
+
+         strPrefix = "m_" + strPrefix;
+
+#endif
+
          strPrefix.replace("-", "_");
 
          strPrefix += "_";
@@ -229,6 +235,12 @@ namespace ca2
 
       string strLibraryName(get_library_name());
 
+#ifdef METROWIN
+
+      gen::str::begins_eat_ci(strLibraryName, "m_");
+
+#endif
+
       strPrefix += "/";
 
       strPrefix += strLibraryName;
@@ -315,6 +327,12 @@ namespace ca2
          string strAppId = m_strCa2Name;
 
          string strPrefix = get_root();
+
+#ifdef METROWIN
+
+         strPrefix = "m_" + strPrefix;
+
+#endif
 
          strPrefix.replace("-", "_");
 

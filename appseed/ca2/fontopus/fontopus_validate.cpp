@@ -171,8 +171,6 @@ namespace ca2
       void validate::display_main_frame()
       {
 
-#ifdef WINDOWSEX
-
          rect rectOpen;
          if(m_ptabview->GetParentFrame()->get_parent() == NULL)
          {
@@ -184,7 +182,9 @@ namespace ca2
             m_ptabview->GetParentFrame()->get_parent()->GetClientRect(rectOpen);
          }
 
+#ifdef WINDOWSEX
          m_pvOldWindow = (void *) ::GetFocus();
+#endif
 
          int iWidth = rectOpen.width();
          int iHeight = rectOpen.height();
@@ -196,10 +196,12 @@ namespace ca2
          }
          int_ptr ui1 = GetCurrentThreadId();
          int_ptr ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
+#ifdef WINDOWSEX
          if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE))
          {
             TRACE("AttachedThreadInput");
          }
+#endif
    /*      if(System.m_puiInitialPlaceHolderContainer != NULL)
          {
             System.m_puiInitialPlaceHolderContainer->GetTopLevelParent()->ShowWindow(SW_SHOW);
@@ -247,12 +249,6 @@ namespace ca2
 
          //m_pviewAuth->GetTopLevelParent()->SetForegroundWindow();
          //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
-
-#else
-
-         throw todo(get_app());
-
-#endif
 
       }
 

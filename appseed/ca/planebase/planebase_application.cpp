@@ -432,7 +432,6 @@ InitFailure:
       {
       }
 
-
       install_message_handling(System.GetThread()->::ca::smart_pointer < ::ca::thread > ::m_p);
       try
       {
@@ -693,7 +692,7 @@ InitFailure:
       return true;
    }
 
-   int application::main()
+   bool application::main_start()
    {
 
       try
@@ -705,7 +704,7 @@ InitFailure:
          {
             m_bReady = true;
             TRACE("application::main pre_run failure");
-            return m_iReturnCode;
+            return false;
          }
 
 
@@ -715,7 +714,7 @@ InitFailure:
             m_iReturnCode = -1;
             m_bReady = true;
             ::OutputDebugStringW(L"exiting on check directrix");
-            return m_iReturnCode;
+            return false;
          }
 
 
@@ -726,8 +725,35 @@ InitFailure:
             m_iReturnCode = -1;
             m_bReady = true;
             ::OutputDebugStringW(L"application::main os_native_bergedge_start failure");
+            return false;
+         }
+
+         return true;
+      }
+      catch(::exit_exception &)
+      {
+
+         System.os().post_to_all_threads(WM_QUIT, 0, 0);
+
+      }
+
+      return false;
+
+   }
+
+   int application::main()
+   {
+
+      try
+      {
+
+         if(!main_start())
+         {
+            m_bReady = true;
+            TRACE("application::start failure");
             return m_iReturnCode;
          }
+
          m_iReturnCode = 0;
          m_bReady = true;
          m_iReturnCode = on_run();
@@ -838,6 +864,68 @@ InitFailure:
          }
 
          spfile(pinfile);
+
+      }
+      else if(gen::str::begins(strPath, "http://matter.ca2.cc/") || gen::str::begins(strPath, "https://matter.ca2.cc/"))
+      {
+
+         string strFile(strPath);
+         strFile.replace(":", "_");
+         strFile = System.dir().appdata("existcache/" + strFile);
+
+         spfile.create(this);
+         
+         try
+         {
+
+            if(spfile->open(strFile, nOpenFlags))
+            {
+               TRACE("from_exist_cache:\"" + strPath + "\"");
+               return spfile;
+
+            }
+         }
+         catch(...)
+         {
+
+         }
+
+         try
+         {
+
+            spfile.destroy();
+
+         }
+         catch(...)
+         {
+         }
+
+         spfile(new sockets::http::file(get_app()));
+         
+         if(!spfile->open(strPath, nOpenFlags))
+         {
+
+            spfile.destroy();
+
+         }
+         else
+         {
+
+            try
+            {
+
+               System.file().output(this, strFile, &System.compress(), &::ca4::compress::null, *spfile.m_p);
+
+            }
+            catch(...)
+            {
+            }
+
+
+            spfile->seek_to_begin();
+
+         }
+
 
       }
       else if(gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://"))

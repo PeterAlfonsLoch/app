@@ -438,10 +438,11 @@ namespace ca
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", lpcszPath) >= 0))
          {
             bool bHasSubFolder;
-            if(m_isdirmap.lookup(lpcszPath, bHasSubFolder))
+            DWORD dwLastError;
+            if(m_isdirmap.lookup(lpcszPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
             bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
-            m_isdirmap.set(lpcszPath, bHasSubFolder);
+            m_isdirmap.set(lpcszPath, bHasSubFolder, ::GetLastError());
             return bHasSubFolder;
          }
          return false;
@@ -451,16 +452,17 @@ namespace ca
       {
          if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
          {
-            m_isdirmap.set(strPath, true);
+            m_isdirmap.set(strPath, true, 0);
             return true;
          }
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
-            if(m_isdirmap.lookup(strPath, bHasSubFolder))
+            DWORD dwLastError;
+            if(m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
-            m_isdirmap.set(strPath, bHasSubFolder);
+            m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
          }
          return false;
@@ -481,16 +483,17 @@ namespace ca
          //OutputDebugString(strPath);
          if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
          {
-            m_isdirmap.set(strPath, true);
+            m_isdirmap.set(strPath, true, 0);
             return true;
          }
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
-            if(m_isdirmap.lookup(strPath, bHasSubFolder))
+            DWORD dwLastError;
+            if(m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
-            m_isdirmap.set(strPath, bHasSubFolder);
+            m_isdirmap.set(strPath, bHasSubFolder, GetLastError());
             return bHasSubFolder;
          }
          return false;
@@ -509,12 +512,12 @@ namespace ca
          InitHashTable(16384, TRUE);
       }
 
-      bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir)
+      bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir, DWORD & dwLastError)
       {
-         return lookup(string(pszPath), bIsDir);
+         return lookup(string(pszPath), bIsDir, dwLastError);
       }
 
-      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir)
+      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, DWORD & dwLastError)
       {
 
          if(strPath.get_length() <= 0)
@@ -546,11 +549,13 @@ namespace ca
 
          bIsDir = ppair->m_value.m_bIsDir;
 
+         dwLastError = ppair->m_value.m_dwError;
+
          return true;
 
       }
 
-      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, int iLast)
+      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, DWORD &dwLastError, int iLast)
       {
 
          if(iLast < 0)
@@ -575,15 +580,18 @@ namespace ca
 
          bIsDir = ppair->m_value.m_bIsDir;
 
+         dwLastError = ppair->m_value.m_dwError;
+
          return true;
 
       }
 
-      void system::is_dir_map::set(const char * pszPath, bool bIsDir)
+      void system::is_dir_map::set(const char * pszPath, bool bIsDir, DWORD dwLastError)
       {
          static string strSep = "\\";
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
+         isdir.m_dwError = dwLastError;
          isdir.m_dwLastCheck = ::get_tick_count();
          string strPath(pszPath);
          if(!gen::str::ends(strPath, strSep))
@@ -592,11 +600,12 @@ namespace ca
          set_at(strPath, isdir);
       }
 
-      void system::is_dir_map::set(const string & strPath, bool bIsDir)
+      void system::is_dir_map::set(const string & strPath, bool bIsDir, DWORD dwLastError)
       {
          static string strSep = "\\";
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
+         isdir.m_dwError = dwLastError;
          isdir.m_dwLastCheck = ::get_tick_count();
          if(gen::str::ends(strPath, strSep))
          {
@@ -1183,13 +1192,21 @@ namespace ca
 
       string system::appmatter_locator(::ca::application * papp)
       {
+#ifdef METROWIN
+         string strRoot;
+         string strDomain;
 
+         appmatter_locators(strRoot, strDomain, papp);
+
+         return path("http://matter.ca2.cc/", path(strRoot, "appmatter", strDomain));
+#else
          string strRoot;
          string strDomain;
 
          appmatter_locators(strRoot, strDomain, papp);
 
          return ca2(simple_path(strRoot, "appmatter", strDomain));
+#endif
 
       }
 

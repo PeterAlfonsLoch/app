@@ -57,6 +57,11 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+   void * graphics::detach()
+   {
+      throw interface_only_exception(get_app());
+   }
+
    bool graphics::IsPrinting() const
    {
       throw interface_only_exception(get_app());
@@ -136,11 +141,11 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
+/*   HGDIOBJ graphics::SelectObject(HGDIOBJ hObject) // Safe for NULL handles
    {
       UNREFERENCED_PARAMETER(hObject);
       throw interface_only_exception(get_app());
-   }
+   }*/
 
 
    bool graphics::SelectFont(::ca::font * pfont)
@@ -1453,6 +1458,17 @@ namespace ca
 
    }
 
+   bool graphics::path(::ca::graphics_path * ppath)
+   {
+
+      bool bOk1 = fill_path(ppath);
+      
+      bool bOk2 = draw_path(ppath);
+
+      return bOk1 && bOk2;
+
+   }
+
 
    bool graphics::AddMetaFileComment(UINT nDataSize, const BYTE* pCommentData)
    {
@@ -2426,7 +2442,7 @@ namespace ca
    void graphics::set_solid_pen(double dWidth)
    {
 
-      m_penxyz.create_solid(dWidth, m_crColor);
+      m_penxyz.create_solid(this, dWidth, m_crColor);
 
    }
 

@@ -8,12 +8,11 @@
 #include "framework.h"
 
 #include <assert.h>
-#include <vector>
-#include <set>
-#include <map>
-#include <mutex>
+//#include <vector>
+//#include <set>
+//#include <map>
 
-using namespace std;
+//using namespace std;
 using namespace Platform;
 using namespace Windows::Foundation;
 using namespace Windows::System::Threading;
@@ -25,21 +24,86 @@ struct PendingThreadInfo
    LPTHREAD_START_ROUTINE lpStartAddress;
    LPVOID lpParameter;
    HANDLE completionEvent;
+   HANDLE suspensionEvent;
    int nPriority;
+   PendingThreadInfo()
+   {
+      suspensionEvent = NULL;
+   }
 };
 
-static map<HANDLE, PendingThreadInfo> pendingThreads;
-static mutex pendingThreadsLock;
+static simple_map<HANDLE, PendingThreadInfo> & pendingThreads()
+{
 
+   static simple_map<HANDLE, PendingThreadInfo> * pts = new simple_map<HANDLE, PendingThreadInfo>();
+
+   return *pts;
+
+}
+static simple_mutex pendingThreadsLock;
+
+static simple_mutex threadHandleLock;
+static simple_map < HANDLE, HANDLE > & thread_handle_map()
+{
+
+   static simple_map < HANDLE, HANDLE > * s_pmap = new simple_map < HANDLE, HANDLE >();
+
+   return *s_pmap;
+
+}
+
+static simple_mutex threadIdHandleLock;
+static simple_map < DWORD, HANDLE > & thread_id_handle_map()
+{
+
+   static simple_map < DWORD, HANDLE > * s_pmap = new simple_map < DWORD, HANDLE >();
+
+   return *s_pmap;
+
+}
+
+
+static simple_mutex threadIdLock;
+static simple_map < HANDLE, DWORD > & thread_id_map()
+{
+
+   static simple_map < HANDLE, DWORD > * s_pmap = new simple_map < HANDLE, DWORD >();
+
+   return *s_pmap;
+
+}
+
+DWORD DwThreadId()
+{
+   static DWORD g_dw_thread_id = 0;
+   
+   if(g_dw_thread_id  <= 0)
+      g_dw_thread_id = 1;
+
+   return g_dw_thread_id++;
+}
     
 // Thread local storage.
-typedef vector<void*> ThreadLocalData;
+typedef simple_array<void*> ThreadLocalData;
+
+
 
 static __declspec(thread) ThreadLocalData* currentThreadData = nullptr;
-static set<ThreadLocalData*> allThreadData;
+static __declspec(thread) DWORD currentThreadId = -1;
+static __declspec(thread) HANDLE currentThread = NULL;
+
+simple_map < HANDLE, ThreadLocalData * > & all_thread_data()
+{
+
+   static simple_map < HANDLE, ThreadLocalData * > * s_pallthreaddata = new simple_map < HANDLE, ThreadLocalData * >();
+
+   return *s_pallthreaddata;
+
+}
+
 static DWORD nextTlsIndex = 0;
-static vector<DWORD> freeTlsIndices;
-static mutex tlsAllocationLock;
+static simple_array<DWORD> freeTlsIndices;
+static simple_mutex tlsAllocationLock;
 
 
 // Converts a Win32 thread priority to WinRT format.
@@ -57,8 +121,22 @@ static WorkItemPriority GetWorkItemPriority(int nPriority)
 // Helper shared between CreateThread and ResumeThread.
 static void StartThread(LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, HANDLE completionEvent, int nPriority)
 {
+   
    auto workItemHandler = ref new WorkItemHandler([=](IAsyncAction^)
    {
+
+      mutex_lock mlThreadHandle(threadHandleLock);
+
+      currentThread =  thread_handle_map()[(HANDLE)completionEvent];
+
+      mlThreadHandle.unlock();
+
+      mutex_lock mlThreadId(threadIdLock);
+
+      currentThreadId =  thread_id_map()[currentThread];
+
+      mlThreadHandle.unlock();
+
       // Run the user callback.
       try
       {
@@ -79,19 +157,39 @@ static void StartThread(LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParamete
 }
 
 
-_Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD unusedThreadId)
+_Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpdwThreadId)
 {
    // Validate parameters.
    assert(unusedThreadAttributes == nullptr);
    assert(unusedStackSize == 0);
    assert((dwCreationFlags & ~CREATE_SUSPENDED) == 0);
-   assert(unusedThreadId == nullptr);
+   //assert(unusedThreadId == nullptr);
 
    // Create a handle that will be signalled when the thread has completed.
    HANDLE threadHandle = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
 
    if (!threadHandle)
       return nullptr;
+
+
+   mutex_lock mlThreadId(threadIdLock);
+
+   thread_id_map().set_at(threadHandle, DwThreadId());
+
+   if(lpdwThreadId != NULL)
+   {
+      *lpdwThreadId = thread_id_map()[threadHandle];
+   }
+
+
+
+   mutex_lock mlThreadIdHandle(threadIdHandleLock);
+
+   thread_id_handle_map().set_at(thread_id_map()[threadHandle], threadHandle);
+
+   mlThreadIdHandle.unlock();
+
+   mlThreadId.unlock();
 
    // Make a copy of the handle for internal use. This is necessary because
    // the caller is responsible for closing the handle returned by CreateThread,
@@ -104,6 +202,12 @@ _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedTh
       return nullptr;
    }
 
+   mutex_lock mlThreadHandle(threadHandleLock);
+
+   thread_handle_map().set_at(completionEvent, threadHandle);
+
+   mlThreadHandle.unlock();
+
    try
    {
       if (dwCreationFlags & CREATE_SUSPENDED)
@@ -114,11 +218,14 @@ _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedTh
             info.lpStartAddress = lpStartAddress;
             info.lpParameter = lpParameter;
             info.completionEvent = completionEvent;
+            info.suspensionEvent = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
             info.nPriority = 0;
 
-            lock_guard<mutex> lock(pendingThreadsLock);
+            mutex_lock lock(pendingThreadsLock);
 
-            pendingThreads[threadHandle] = info;
+            pendingThreads()[threadHandle] = info;
+
+            //::WaitForSingleObjectEx(info.suspensionEvent, INFINITE, FALSE);
       }
       else
       {
@@ -141,22 +248,22 @@ _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedTh
 
 _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread)
 {
-   lock_guard<mutex> lock(pendingThreadsLock);
+   mutex_lock lock(pendingThreadsLock);
 
    // Look up the requested thread.
-   auto threadInfo = pendingThreads.find(hThread);
+   auto threadInfo = pendingThreads().PLookup(hThread);
 
-   if (threadInfo == pendingThreads.end())
+   if (threadInfo == NULL)
    {
       // Can only resume threads while they are in CREATE_SUSPENDED state.
-      assert(false);
+      //assert(false);
       return (DWORD)-1;
    }
 
    // Start the thread.
    try
    {
-      PendingThreadInfo& info = threadInfo->second;
+      PendingThreadInfo& info = threadInfo->m_value;
 
       StartThread(info.lpStartAddress, info.lpParameter, info.completionEvent, info.nPriority);
    }
@@ -166,7 +273,7 @@ _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread)
    }
 
    // Remove this thread from the pending list.
-   pendingThreads.erase(threadInfo);
+   pendingThreads().remove_key(hThread);
 
    return 0;
 }
@@ -174,20 +281,20 @@ _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread)
 
 _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriority)
 {
-   lock_guard<mutex> lock(pendingThreadsLock);
+   mutex_lock lock(pendingThreadsLock);
 
    // Look up the requested thread.
-   auto threadInfo = pendingThreads.find(hThread);
+   auto threadInfo = pendingThreads().PLookup(hThread);
 
-   if (threadInfo == pendingThreads.end())
+   if (threadInfo == NULL)
    {
       // Can only set priority on threads while they are in CREATE_SUSPENDED state.
-      assert(false);
+      //assert(false);
       return false;
    }
 
    // Store the new priority.
-   threadInfo->second.nPriority = nPriority;
+   threadInfo->m_value.nPriority = nPriority;
 
    return true;
 }
@@ -197,13 +304,13 @@ _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriori
 
 DWORD WINAPI TlsAlloc()
 {
-   lock_guard<mutex> lock(tlsAllocationLock);
+   mutex_lock lock(tlsAllocationLock);
         
    // Can we reuse a previously freed TLS slot?
-   if (!freeTlsIndices.empty())
+   if (freeTlsIndices.get_count() > 0)
    {
-      DWORD result = freeTlsIndices.back();
-      freeTlsIndices.pop_back();
+      DWORD result = freeTlsIndices.element_at(freeTlsIndices.get_count() - 1);
+      freeTlsIndices.remove_at(freeTlsIndices.get_count() - 1);
       return result;
    }
 
@@ -214,15 +321,18 @@ DWORD WINAPI TlsAlloc()
 
 _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
 {
-   lock_guard<mutex> lock(tlsAllocationLock);
+   mutex_lock lock(tlsAllocationLock);
 
    assert(dwTlsIndex < nextTlsIndex);
-   assert(find(freeTlsIndices.begin(), freeTlsIndices.end(), dwTlsIndex) == freeTlsIndices.end());
+   for(int i = 0; i < freeTlsIndices.get_count(); i++)
+   {
+      assert(freeTlsIndices.element_at(i) != dwTlsIndex);
+   }
 
    // Store this slot for reuse by TlsAlloc.
    try
    {
-      freeTlsIndices.push_back(dwTlsIndex);
+      freeTlsIndices.add(dwTlsIndex);
    }
    catch (...)
    {
@@ -230,11 +340,20 @@ _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
    }
 
    // Zero the value for all threads that might be using this now freed slot.
-   for each (auto threadData in allThreadData)
+   
+   POSITION pos = all_thread_data().get_start_position();
+   while( pos != NULL)
    {
-      if (threadData->size() > dwTlsIndex)
+
+      HANDLE hThread;
+
+      ThreadLocalData * pdata;
+
+      all_thread_data().get_next_assoc(pos, hThread, pdata);
+
+      if(pdata->get_count() > dwTlsIndex)
       {
-            threadData->at(dwTlsIndex) = nullptr;
+         pdata->element_at(dwTlsIndex) = nullptr;
       }
    }
 
@@ -246,10 +365,26 @@ _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = currentThreadData;
 
-   if (threadData && threadData->size() > dwTlsIndex)
+   if (threadData && threadData->get_count() > dwTlsIndex)
    {
       // Return the value of an allocated TLS slot.
-      return threadData->at(dwTlsIndex);
+      return threadData->element_at(dwTlsIndex);
+   }
+   else
+   {
+      // Default value for unallocated slots.
+      return nullptr;
+   }
+}
+
+_Use_decl_annotations_ LPVOID WINAPI TlsGetValue(HANDLE hthread, DWORD dwTlsIndex)
+{
+   ThreadLocalData* threadData = all_thread_data()[hthread];
+
+   if (threadData && threadData->get_count() > dwTlsIndex)
+   {
+      // Return the value of an allocated TLS slot.
+      return threadData->element_at(dwTlsIndex);
    }
    else
    {
@@ -268,11 +403,44 @@ _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsVal
       // First time allocation of TLS data for this thread.
       try
       {
-            threadData = new ThreadLocalData(dwTlsIndex + 1, nullptr);
+            threadData = new ThreadLocalData;
                 
-            lock_guard<mutex> lock(tlsAllocationLock);
+            mutex_lock lock(tlsAllocationLock);
 
-            allThreadData.insert(threadData);
+            all_thread_data().set_at(currentThread, threadData);
+
+            currentThreadData = threadData;
+
+      }
+      catch (...)
+      {
+            if (threadData)
+               delete threadData;
+
+            return false;
+      }
+   }
+
+   // Store the new value for this slot.
+   threadData->set_at_grow(dwTlsIndex, lpTlsValue);
+
+   return true;
+}
+
+_Use_decl_annotations_ BOOL WINAPI TlsSetValue(HANDLE hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
+{
+   ThreadLocalData* threadData = all_thread_data()[hthread];
+
+   if (!threadData)
+   {
+      // First time allocation of TLS data for this thread.
+      try
+      {
+            threadData = new ThreadLocalData;
+                
+            mutex_lock lock(tlsAllocationLock);
+
+            all_thread_data().set_at(hthread, threadData);
 
             currentThreadData = threadData;
       }
@@ -284,27 +452,12 @@ _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsVal
             return false;
       }
    }
-   else if (threadData->size() <= dwTlsIndex)
-   {
-      // This thread already has a TLS data block, but it must be expanded to fit the specified slot.
-      try
-      {
-            lock_guard<mutex> lock(tlsAllocationLock);
-
-            threadData->resize(dwTlsIndex + 1, nullptr);
-      }
-      catch (...)
-      {
-            return false;
-      }
-   }
 
    // Store the new value for this slot.
-   threadData->at(dwTlsIndex) = lpTlsValue;
+   threadData->set_at_grow(dwTlsIndex, lpTlsValue);
 
    return true;
 }
-
 
 // Called at thread exit to clean up TLS allocations.
 void WINAPI TlsShutdown()
@@ -340,7 +493,7 @@ void WINAPI TlsShutdown()
          if(pfactory != NULL)
          {
             
-            pfactory->Release();
+            //pfactory->Release();
 
          }
 
@@ -349,11 +502,11 @@ void WINAPI TlsShutdown()
       {
       }
 
-      {
-            lock_guard<mutex> lock(tlsAllocationLock);
 
-            allThreadData.erase(threadData);
-      }
+
+      mutex_lock ml(tlsAllocationLock);
+
+      all_thread_data().remove_key(currentThread);
 
       currentThreadData = nullptr;
 
@@ -367,19 +520,19 @@ void WINAPI TlsShutdown()
 int WINAPI GetThreadPriority(_In_ HANDLE hThread)
 {
    
-   lock_guard<mutex> lock(pendingThreadsLock);
+   mutex_lock lock(pendingThreadsLock);
 
    // Look up the requested thread.
-   auto threadInfo = pendingThreads.find(hThread);
+   auto threadInfo = pendingThreads().PLookup(hThread);
 
-   if (threadInfo == pendingThreads.end())
+   if (threadInfo == NULL)
    {
 
       return 0x80000000;
 
    }
 
-   return threadInfo->second.nPriority;
+   return threadInfo->m_value.nPriority;
 
 }
 
@@ -543,9 +696,10 @@ CLASS_DECL_c UINT   get_main_thread_id()
 
 CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
 {
-
+   return;
 //   MSG msg;
 
+   // metrowin todo
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
    //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
@@ -564,5 +718,170 @@ DWORD WINAPI thread_layer::proc(LPVOID lp)
    player->m_nId           = ::GetCurrentThreadId();
 
    return player->run();
+
+}
+
+class mq
+{
+public:
+   simple_mutex m_mutex;
+   simple_array < MSG > ma;
+
+};
+
+mq * get_mq()
+{
+
+   mq * pmq = (mq *) TlsGetValue(TLS_MESSAGE_QUEUE);
+
+   if(pmq != NULL)
+      return pmq;
+
+   pmq = new mq();
+
+   TlsSetValue(TLS_D2D1_FACTORY1, pmq);
+
+   return pmq;
+
+}
+
+bool is_thread(HANDLE h)
+{
+   return GetThreadId(h) != 0;
+}
+
+mq * get_mq(HANDLE h)
+{
+
+
+   mq * pmq = (mq *) TlsGetValue(h, TLS_MESSAGE_QUEUE);
+
+   if(pmq != NULL)
+      return pmq;
+
+   pmq = new mq();
+
+   TlsSetValue(h, TLS_D2D1_FACTORY1, pmq);
+
+   return pmq;
+
+}
+
+
+CLASS_DECL_c
+BOOL
+WINAPI
+PeekMessageW(
+    _Out_ LPMSG lpMsg,
+    _In_opt_ HWND hWnd,
+    _In_ UINT wMsgFilterMin,
+    _In_ UINT wMsgFilterMax,
+    _In_ UINT wRemoveMsg)
+{
+
+   mq * pmq = get_mq();
+
+   if(pmq == NULL)
+      return FALSE;
+
+   mutex_lock ml(pmq->m_mutex);
+
+   for(int i = 0; i < pmq->ma.get_count(); i++)
+   {
+      MSG & msg = pmq->ma[i];
+
+      if(msg.hwnd == hWnd && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+      {
+         *lpMsg = msg;
+         if(!(wRemoveMsg & PM_NOREMOVE))
+         {
+            pmq->ma.remove_at(i);
+         }
+         return TRUE;
+      }
+   }
+
+   return FALSE;
+}
+
+
+
+
+
+CLASS_DECL_c
+DWORD
+WINAPI
+GetThreadId(
+    _In_ HANDLE Thread
+    )
+{
+
+   mutex_lock mlThreadId(threadIdLock);
+
+   auto p = thread_id_map().PLookup(Thread);
+
+   if(p == NULL)
+      return NULL;
+
+
+   return p->m_value;
+
+}
+
+CLASS_DECL_c
+HANDLE
+WINAPI
+get_thread_handle(DWORD dw)
+{
+
+   mutex_lock mlThreadIdHandle(threadIdHandleLock);
+
+   auto p = thread_id_handle_map().PLookup(dw);
+
+   if(p == NULL)
+      return NULL;
+
+
+   return p->m_value;
+
+}
+
+
+CLASS_DECL_c
+BOOL
+WINAPI
+PostThreadMessageW(
+    _In_ DWORD idThread,
+    _In_ UINT Msg,
+    _In_ WPARAM wParam,
+    _In_ LPARAM lParam)
+{
+
+   HANDLE h = ::get_thread_handle(idThread);
+
+   if(h == NULL)
+      return FALSE;
+
+
+   mq * pmq = get_mq(h);
+
+   if(pmq == NULL)
+      return FALSE;
+
+   mutex_lock ml(pmq->m_mutex);
+
+   MSG msg;
+
+   zero(&msg, sizeof(msg));
+
+   msg.message = Msg;
+   msg.wParam = wParam;
+   msg.lParam = lParam;
+
+   pmq->ma.add(msg);
+   
+
+
+   return true;
 
 }

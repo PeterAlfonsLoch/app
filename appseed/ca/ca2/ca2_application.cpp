@@ -187,11 +187,11 @@ namespace ca2
 
 #ifdef METROWIN
 
-      string str = gen::international::unicode_to_utf8(begin(::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride));
-
       stringa stra;
 
-      stra.explode("-", str);
+      Platform::String ^ str = ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride;
+
+      stra.explode("-", ::str(str));
 
       strLocale = stra[0];
 

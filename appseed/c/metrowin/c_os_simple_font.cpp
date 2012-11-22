@@ -134,7 +134,7 @@ bool os_simple_font::create_pixel_bold(simple_graphics & g, int nPixelSize, cons
 }
 
 
-IDWriteFactory * TlsGetWriteFactory()
+CLASS_DECL_c IDWriteFactory * TlsGetWriteFactory()
 {
 
    IDWriteFactory * pfactory = (IDWriteFactory *) TlsGetValue(TLS_WRITE_FACTORY);

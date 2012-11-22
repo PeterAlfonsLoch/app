@@ -27,6 +27,7 @@ namespace uinteraction
 
       }
 
+#ifndef METROWIN
       if(!System.directrix().m_varTopicQuery.has_property("install")
       && !System.directrix().m_varTopicQuery.has_property("uninstall")
       && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema))
@@ -36,6 +37,8 @@ namespace uinteraction
 
       }
 
+#endif
+
       ca2::library library(NULL);
 
       string strLibrary(strId);
@@ -43,6 +46,12 @@ namespace uinteraction
       strLibrary.replace("-", "_");
 
       strLibrary.replace("/", "_");
+
+#ifdef METROWIN
+
+      strLibrary = "m_" + strLibrary;
+
+#endif
       
       if(!library.open(get_app(), strLibrary, false))
          return NULL;

@@ -224,7 +224,7 @@ namespace frame
       return m_bAutomaticModeSwitching;
    }
 
-   void appearance::CTool001::Update(LPCRECT lpcrect,
+   void appearance::CTool001::Update(::ca::graphics * pdc, LPCRECT lpcrect,
             COLORREF crHighlight,
             COLORREF crLight,
             COLORREF crBody,
@@ -234,10 +234,10 @@ namespace frame
 
       UNREFERENCED_PARAMETER(crLight);
 
-      m_penHighlight->create_solid(1, crHighlight);
-      m_penLight->create_solid(1, crHighlight);
-      m_penShadow->create_solid(1, crShadow);
-      m_penDkShadow->create_solid(1, crDkShadow);
+      m_penHighlight->create_solid(pdc,1, crHighlight);
+      m_penLight->create_solid(pdc, 1, crHighlight);
+      m_penShadow->create_solid(pdc, 1, crShadow);
+      m_penDkShadow->create_solid(pdc, 1, crDkShadow);
       m_brushNull->create_null();
       m_brushBody->create_solid(crBody);
 
@@ -340,7 +340,7 @@ namespace frame
    {
       pdc->SelectObject(m_brushBody);
       ::ca::pen_sp pen(get_app());
-      pen->create_solid(0, RGB(255, 255, 255));
+      pen->create_solid(pdc, 0, RGB(255, 255, 255));
       pdc->SelectObject(pen);
       point pt(0, 0);
       visual::api::DrawAndFillBeziers(

@@ -28,7 +28,7 @@ void waitable::wait()
 wait_result waitable::wait(const duration & duration )
 {
 
-   if(m_psystem == NULL)
+   if(m_papp == NULL || m_papp->m_psystem == NULL)
       return wait_result(wait_result::Failure);
 
    try
@@ -89,7 +89,7 @@ void * waitable::get_os_data() const
 
 bool waitable::lock(const duration & duration)
 {
-   if(m_psystem == NULL)
+   if(m_papp == NULL || m_papp->m_psystem == NULL)
       return false;
    bool bLocked = false;
    try
@@ -108,7 +108,7 @@ bool waitable::lock(const duration & duration)
 
 bool waitable::unlock()
 {
-   if(m_psystem == NULL)
+   if(m_papp == NULL || m_papp->m_psystem == NULL)
       return false;
    bool bUnlocked = false;
    try

@@ -175,7 +175,11 @@ namespace user
       virtual LRESULT _001BaseWndGetProperty(EProperty eproperty, LPARAM lparam);
 
       virtual interaction * get_guie() const;
+#ifdef METROWIN
+      virtual interaction * get_wnd() const;
+#else
       virtual ::ca::window * get_wnd() const;
+#endif
 
       enum EOptimize
       {

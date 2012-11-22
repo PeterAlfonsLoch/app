@@ -26,7 +26,7 @@ namespace userbase
       {
          ::ca::brush_sp br(get_app(), RGB(0, 0, 0));
          ::ca::pen_sp pen(get_app());
-         pen->create_solid(1, RGB(0, 0, 0));
+         pen->create_solid(pdc, 1, RGB(0, 0, 0));
          pdc->SelectObject(pen);
          pdc->SelectObject(br);
          rect rectPopupArrow;

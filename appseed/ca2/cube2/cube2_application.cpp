@@ -126,7 +126,7 @@ namespace cube2
 
 #else
 
-      throw todo(get_app());
+      //throw todo(get_app());
 
 #endif
 

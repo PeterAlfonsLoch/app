@@ -29,7 +29,7 @@ namespace ca4
       bool _uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed);
 
 
-      static bool null(ex1::writer & ostream, ex1::reader & istream);
+      bool null(ex1::writer & ostream, ex1::reader & istream);
 
 
       void extract_all(const char * pszFile, ::ca::application * papp);

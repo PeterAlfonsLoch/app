@@ -123,7 +123,7 @@ namespace userbase
          VERIFY(System.DeferRegisterClass(__WNDFRAMEORVIEW_REG, &cs.lpszClass));
       }
 #else
-      throw todo(get_app());
+      //throw todo(get_app());
 #endif
 
    //   if ((cs.style & FWS_ADDTOTITLE) && afxData.bWin4)

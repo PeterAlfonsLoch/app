@@ -18,6 +18,10 @@ namespace ca
 
    bool message_window_simple_callback::initialize_message_window(::ca::application * papp, const char * pszName)
    {
+      
+      // metrowin todo
+      return true;
+
       if(m_spwindowMessage.m_p == NULL)
          m_spwindowMessage.create(papp);
       return m_spwindowMessage->create_message_window(pszName, this);

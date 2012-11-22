@@ -235,7 +235,8 @@ namespace user
 
       // store the path fully qualified
       string strFullPath;
-      System.file_system().FullPath(strFullPath, strPathName);
+//      System.file_system().FullPath(strFullPath, strPathName);
+      strFullPath = strPathName;
       m_strPathName = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
       m_bEmbedded = FALSE;

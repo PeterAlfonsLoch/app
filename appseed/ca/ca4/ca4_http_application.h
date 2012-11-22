@@ -41,7 +41,7 @@ namespace ca4
          bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
          bool get(const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          
-
+         bool exists(const char * pszUrl, ::fontopus::user * puser = NULL);
 
          string get(const char * pszUrl, ::fontopus::user * puser = NULL);
 

@@ -28,6 +28,7 @@ public:
    operator HANDLE() const;
 
    virtual bool lock(const duration & durationTimeout = duration::infinite());
+   virtual wait_result wait(const duration & durationTimeout = duration::infinite());
    virtual bool unlock() = 0;
    virtual bool unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */);
 

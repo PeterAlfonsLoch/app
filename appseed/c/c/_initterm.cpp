@@ -10,7 +10,7 @@
 
 #ifdef WINDOWS
 
-#pragma section(".CRT$XCA", read)
+/*#pragma section(".CRT$XCA", read)
 #pragma data_seg(".CRT$XCA")		// start of ctor section
 _PVFV __xc_a[] = {0};
 
@@ -21,10 +21,12 @@ _PVFV __xc_z[] = {0};
 #pragma data_seg()
 #pragma comment(linker, "/merge:.CRT=.rdata")
 
-
+*/
 
 
 BEGIN_EXTERN_C
+
+   /*
 
 void _initterm(_PVFV *pfbegin, _PVFV *pfend)
 {
@@ -79,6 +81,8 @@ void exit(int code)
 	_doexit();
 	ExitProcess(code);
 }
+
+*/
 
 int _purecall()
 {

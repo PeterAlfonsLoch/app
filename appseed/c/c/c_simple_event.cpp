@@ -1,12 +1,20 @@
 #include "framework.h"
 
 
-simple_event::simple_event(bool bInitialWait)
+simple_event::simple_event(bool bInitialWait, bool bManualReset)
 {
 
 #ifdef METROWIN
 
-   m_hEvent = ::CreateEventEx(NULL, NULL, 0, 0);
+   DWORD dwFlags = 0;
+
+   if(bInitialWait)
+      dwFlags |= CREATE_EVENT_INITIAL_SET;
+
+   if(bManualReset)
+      dwFlags |= CREATE_EVENT_MANUAL_RESET;
+
+   m_hEvent = ::CreateEventEx(NULL, NULL, dwFlags, EVENT_ALL_ACCESS);
 
 #elif defined(WINDOWS)
 

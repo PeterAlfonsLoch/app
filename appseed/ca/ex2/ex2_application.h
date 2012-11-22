@@ -101,8 +101,13 @@ namespace ex2
 
       //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
 
+#ifdef METROWIN
+      virtual ::user::interaction * window_from_os_data(void * pdata);
+      virtual ::user::interaction * window_from_os_data_permanent(void * pdata);
+#else
       virtual ::ca::window * window_from_os_data(void * pdata);
       virtual ::ca::window * window_from_os_data_permanent(void * pdata);
+#endif
 
       virtual ::ca::window * get_desktop_window();
 

@@ -1,8 +1,6 @@
 #include "framework.h"
-#ifndef METROWIN
 #include "include/freeimage.h"
 #include "visual_FreeImageFileProc.h"
-#endif
 #ifdef WINDOWSEX
 #undef new
 #include <gdiplus.h>
@@ -191,12 +189,6 @@ return LoadImageFile(ar.GetFile());
 FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
 {
 
-#ifdef METROWIN
-
-   throw todo(get_app());
-
-#else
-
    FreeImageIO io;
    io.read_proc = __ReadProc2;
    io.seek_proc = __SeekProc2;
@@ -218,7 +210,6 @@ FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
 
    return lpVoid;
 
-#endif
 
 }
 
@@ -856,10 +847,8 @@ bool imaging::Createcolor_blend_ImageList(
       if(pil->m_spdib->get_graphics() == NULL)
          return false;
 
-      /*
       if(pil->m_spdib->get_graphics()->get_os_data() == NULL)
-      return false;
-      */
+         return false;
 
       ::ca::graphics_sp spgraphics(get_app());
 

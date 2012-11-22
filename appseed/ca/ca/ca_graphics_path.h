@@ -18,9 +18,9 @@ namespace ca
       virtual bool end_figure(bool bClose);
 
 
-      virtual bool is_empty();
-      virtual bool has_current_point();
-      virtual point current_point();
+      //virtual bool is_empty();
+      //virtual bool has_current_point();
+      //virtual point current_point();
 
       virtual bool add_arc(const RECT & rect, int iStart, int iAngle);
 

@@ -138,6 +138,8 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
    m_iShareCount = iShareCount;
 
+   m_i = 0;
+
 }
 
 plex_heap_alloc::~plex_heap_alloc()

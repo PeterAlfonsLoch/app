@@ -13233,27 +13233,6 @@ zulu_time:
 #elif defined(METROWIN)
    # define mutexIsNT()  (1)
 
-CLASS_DECL_ca BOOL LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
-
-CLASS_DECL_ca BOOL LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
-{
-   OVERLAPPED ov;
-   zero(&ov, sizeof(ov));
-   ov.Offset = dwLo;
-   ov.OffsetHigh = dwHi;
-   return LockFileEx(hfile, LOCKFILE_FAIL_IMMEDIATELY, 0, dwCountLo, dwCountHi, &ov);
-
-}
-
-CLASS_DECL_ca BOOL UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
-{
-   OVERLAPPED ov;
-   zero(&ov, sizeof(ov));
-   ov.Offset = dwLo;
-   ov.OffsetHigh = dwHi;
-   return UnlockFileEx(hfile, 0, dwCountLo, dwCountHi, &ov);
-
-}
 
 #else
    static int mutexIsNT(){

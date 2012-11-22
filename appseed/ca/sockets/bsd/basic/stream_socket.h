@@ -25,7 +25,6 @@
          bool m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
          int m_shutdown; ///< Shutdown status
 
-
          stream_socket(socket_handler_base& );
          ~stream_socket();
 

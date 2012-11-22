@@ -5,6 +5,9 @@ namespace ca
 {
 
 
+   class graphics;
+
+
    class CLASS_DECL_ca pen :
       virtual public ::ca::graphics_object
    {
@@ -44,7 +47,7 @@ namespace ca
 
 
       virtual bool create_null();
-      virtual bool create_solid(double dWidth, COLORREF crColor);
+      virtual bool create_solid(::ca::graphics * pgraphics, double dWidth, COLORREF crColor);
 
       virtual e_end_cap get_end_cap();
       virtual bool set_end_cap(e_end_cap eendcap);
@@ -80,12 +83,7 @@ namespace ca
       {
       }
 
-      pen_sp(::ca::application * papp, int nWidth, COLORREF crColor) :
-         smart_pointer < pen > (papp)
-      {
-         m_p->create_solid(nWidth, crColor);
-      }
-
+      pen_sp(::ca::graphics * pgraphics, double dWidth, COLORREF crColor);
 /*
       pen_sp(::ca::application * papp, int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
          int nStyleCount = 0, const DWORD* lpStyle = NULL) :

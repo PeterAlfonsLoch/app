@@ -504,10 +504,17 @@ namespace user
       return m_pguie;
    }
 
+#ifdef METROWIN
+   ::user::interaction * window_interface::get_wnd() const
+   {
+      return NULL;
+   }
+#else
    ::ca::window * window_interface::get_wnd() const
    {
       return NULL;
    }
+#endif
 
    bool window_interface::_001IsWindowEnabled()
    {

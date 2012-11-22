@@ -12,7 +12,7 @@ namespace ex1
    {
    }
 
-   bool file_system::ComparePath(const char * lpcsz1, const char * lpcsz2)
+/*   bool file_system::ComparePath(const char * lpcsz1, const char * lpcsz2)
    {
       UNREFERENCED_PARAMETER(lpcsz1);
       UNREFERENCED_PARAMETER(lpcsz2);
@@ -59,7 +59,7 @@ namespace ex1
    {
       UNREFERENCED_PARAMETER(hInst);
       UNREFERENCED_PARAMETER(strShortName);
-   }
+   }*/
 
    void file_system::normalize(string & str)
    {

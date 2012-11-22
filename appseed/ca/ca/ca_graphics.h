@@ -84,6 +84,7 @@ namespace ca
 
       virtual void * get_os_data() const;
       virtual void attach(void * pdata);
+      virtual void * detach();
 
 
 //      virtual bool attach(HDC hdc);
@@ -566,6 +567,7 @@ namespace ca
 
       virtual bool draw_path(::ca::graphics_path * ppath);
       virtual bool fill_path(::ca::graphics_path * ppath);
+      virtual bool path(::ca::graphics_path * ppath);
 
    // Misc Helper Functions
       virtual ::ca::brush * GetHalftoneBrush();
@@ -584,7 +586,7 @@ namespace ca
 
       // advanced use and implementation
       bool m_bPrinting;
-      virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
+      //virtual HGDIOBJ SelectObject(HGDIOBJ);      // do not use for regions
 
       virtual bool SelectFont(::ca::font * pfont);
       virtual bool selectFont(::ca::font * pfont);

@@ -36,7 +36,6 @@ namespace user
 
    void scroll_view::GetClientRect(LPRECT lprect)
    {
-#ifdef WINDOWSEX
       rect rectClient;
       control::GetClientRect(rectClient);
       /*rectClient.left               += m_scrollinfo.m_rectMargin.left;
@@ -74,9 +73,6 @@ namespace user
       _001UpdateScrollBars();
 
       *lprect = rectClient;
-#else
-      throw todo(get_app());
-#endif
    }
 
    void scroll_view::_001LayoutScrollBars()

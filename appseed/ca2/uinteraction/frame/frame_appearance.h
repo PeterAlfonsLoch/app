@@ -29,7 +29,7 @@ namespace uinteraction
 
             CTool001(::ca::application * papp);
 
-            void Update(LPCRECT lpcrect,
+            void Update(::ca::graphics * pdc, LPCRECT lpcrect,
                COLORREF crHighlight,
                COLORREF crLight,
                COLORREF crBody,

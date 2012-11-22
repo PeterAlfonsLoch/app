@@ -87,12 +87,16 @@ namespace sockets
    // Line protocol
    ,m_bLineProtocol(false)
    ,m_skip_c(false),
-   m_memfileInput(h.get_app())
+   m_memfileInput(h.get_app()),
+   m_event(h.get_app())
    {
 
       m_iBindPort    = -1;
       m_dwStart      = ::get_tick_count();
       m_pcallback    = NULL;
+      m_bExpectResponse = false;
+      m_bExpectRequest = false;
+      m_bOnConnect = false;
 
    }
 
@@ -1933,6 +1937,31 @@ namespace sockets
 
    }
 
+   void socket::step()
+   {
+   }
+
+   void socket::run()
+   {
+      if(m_bOnConnect)
+      {
+         m_bOnConnect = false;
+         OnConnect();
+         return;
+      }
+      if(m_bExpectRequest)
+      {
+         m_bExpectRequest = false;
+         step();
+         return;
+      }
+      if(m_bExpectResponse)
+      {
+         m_bExpectResponse = false;
+         OnRead();
+         return;
+      }
+   }
 
 } // namespace sockets
 

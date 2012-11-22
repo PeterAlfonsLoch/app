@@ -10,6 +10,10 @@ namespace colorertake5
 
 void ParserFactory::init()
 {
+#ifdef METROWIN
+   // metrowin todo
+   return;
+#endif
    hrcParser = NULL;
    fileErrorHandler = NULL;
    xml::document document(get_app());

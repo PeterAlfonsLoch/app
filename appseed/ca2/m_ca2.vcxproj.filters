@@ -2548,8 +2548,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ca2.def">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="m_ca2.def" />
   </ItemGroup>
 </Project>

@@ -63,8 +63,6 @@ namespace user
 
       m_iClick = 0;
 
-      m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
-      m_penHighlight->create_solid(2, ARGB(255, 0, 255, 255));
 
       m_crText = ARGB(255, 0, 0, 0);
       m_crTextSelected = ARGB(255, 255, 255, 255);
@@ -168,6 +166,9 @@ namespace user
 
    void list::_001OnDraw(::ca::graphics *pdc)
    {
+
+      m_penFocused->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
+      m_penHighlight->create_solid(pdc, 2, ARGB(255, 0, 255, 255));
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 

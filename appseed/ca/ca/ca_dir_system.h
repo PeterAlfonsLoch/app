@@ -42,6 +42,7 @@ namespace ca
             
             bool        m_bIsDir;
             DWORD       m_dwLastCheck;
+            DWORD       m_dwError;
 
 
          };
@@ -60,11 +61,11 @@ namespace ca
             is_dir_map(::ca::application * papp);
 
 
-            bool lookup(const string & strPath, bool &bIsDir);
-            bool lookup(const string & strPath, bool &bIsDir, int iLast);
-            bool lookup(const char * pszPath, bool &bIsDir);
-            void set(const char * pszPath, bool bIsDir);
-            void set(const string & strPath, bool bIsDir);
+            bool lookup(const string & strPath, bool &bIsDir, DWORD & dwLastError);
+            bool lookup(const string & strPath, bool &bIsDir, DWORD & dwLastError, int iLast);
+            bool lookup(const char * pszPath, bool &bIsDir, DWORD &dwLastError);
+            void set(const char * pszPath, bool bIsDir, DWORD dwLastError);
+            void set(const string & strPath, bool bIsDir, DWORD dwLastError);
 
 
          };

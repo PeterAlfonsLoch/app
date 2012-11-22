@@ -141,3 +141,9 @@ CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char 
 
 }
 */
+
+
+int main(Platform::Array < Platform::String ^ > ^ stra)
+{
+
+}

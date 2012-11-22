@@ -37,7 +37,7 @@ BaseMenuCentral::BaseMenuCentral(::ca::application * papp) :
       throw simple_exception(papp, "resource exception BaseMenuCentral constructor");
    }
 #else
-   throw todo(get_app());
+   //throw todo(get_app());
 #endif
 
 }
@@ -301,7 +301,7 @@ void BaseMenuCentral::HookCBTHook()
          NULL, GetCurrentThreadId());
    }
 #else
-   throw todo(::ca::get_thread_app());
+   //throw todo(::ca::get_thread_app());
 #endif
 }
 
@@ -314,7 +314,7 @@ void BaseMenuCentral::UnhookCBTHook()
       m_hCBTHook = NULL;
    }
 #else
-   throw todo(::ca::get_thread_app());
+   //throw todo(::ca::get_thread_app());
 #endif
 }
 

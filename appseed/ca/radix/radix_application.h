@@ -511,8 +511,13 @@ namespace radix
 
       //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
 
+#ifdef METROWIN
+      virtual ::user::interaction * window_from_os_data(void * pdata);
+      virtual ::user::interaction * window_from_os_data_permanent(void * pdata);
+#else
       virtual ::ca::window * window_from_os_data(void * pdata);
       virtual ::ca::window * window_from_os_data_permanent(void * pdata);
+#endif
 
       virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
       virtual ::ca::window * FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);

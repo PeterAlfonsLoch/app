@@ -41,6 +41,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h)
    {
+      m_bExpectRequest = true;
    }
 
 
@@ -53,6 +54,7 @@ namespace sockets
       http_tunnel(h),
       http_client_socket(h, url_in)
    {
+      m_bExpectRequest = true;
    }
 
 
@@ -98,6 +100,8 @@ namespace sockets
          inheader("Host") = GetUrlHost() + ":" + gen::str::from(GetUrlPort());
       else
          inheader("Host") = GetUrlHost();
+      m_bExpectResponse = true;
+      m_bExpectRequest = false;
       SendRequest();
    }
 

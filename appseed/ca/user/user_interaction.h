@@ -399,7 +399,11 @@ namespace user
       virtual bool is_descendant(::user::interaction * pui, bool bIncludeSelf = false);
       virtual ::user::interaction * get_focusable_descendant(::user::interaction * pui = NULL);
 
+#ifdef METROWIN
+      virtual ::user::interaction * get_wnd() const;
+#else
       virtual ::ca::window * get_wnd() const;
+#endif
 
       enum RepositionFlags
       {

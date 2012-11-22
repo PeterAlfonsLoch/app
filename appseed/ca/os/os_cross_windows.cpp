@@ -116,3 +116,32 @@ DWORD GetLastError()
 }
 
 #endif // !defined(WINDOWS)
+
+
+
+#ifdef METROWIN
+
+CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+
+CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
+{
+   OVERLAPPED ov;
+   zero(&ov, sizeof(ov));
+   ov.Offset = dwLo;
+   ov.OffsetHigh = dwHi;
+   return LockFileEx(hfile, LOCKFILE_FAIL_IMMEDIATELY, 0, dwCountLo, dwCountHi, &ov);
+
+}
+
+CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
+{
+   OVERLAPPED ov;
+   zero(&ov, sizeof(ov));
+   ov.Offset = dwLo;
+   ov.OffsetHigh = dwHi;
+   return UnlockFileEx(hfile, 0, dwCountLo, dwCountHi, &ov);
+
+}
+
+
+#endif

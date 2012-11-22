@@ -85,7 +85,7 @@ public:
    count remove_ci(const string_array & stra);
    count remove(const string_array & stra);
 
-   stringa & explode(const char * lpcszSeparator, const char * psz);
+   stringa & explode(const string & strSeparator, const string & str);
 
    // csstidy: Same as explode, but not within a string
    stringa & csstidy_explode_ws(char sep, const char * psz);

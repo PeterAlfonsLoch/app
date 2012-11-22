@@ -21,6 +21,11 @@ namespace sockets
 
    stream_socket::~stream_socket()
    {
+      if(m_streamsocket != nullptr)
+      {
+         //m_streamsocket->Close();
+
+      }
    }
 
 

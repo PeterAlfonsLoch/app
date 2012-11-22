@@ -230,7 +230,7 @@ namespace gen
       {
          if(pwnd == NULL && lpmsg->hwnd != NULL)
          {
-            ::ca::window * pwindow = System.window_from_os_data(lpmsg->hwnd);
+            ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
             if(pwindow != NULL)
             {
                try

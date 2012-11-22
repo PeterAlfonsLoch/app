@@ -77,6 +77,7 @@ namespace planebase
       virtual int pre_run();
       virtual int on_run();
 
+      virtual bool main_start();
       virtual int main();
       virtual bool bergedge_start();
       virtual bool os_native_bergedge_start();

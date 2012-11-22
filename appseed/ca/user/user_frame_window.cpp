@@ -604,7 +604,7 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
    }
 #else
 
-   throw not_implemented(get_app());
+   //throw not_implemented(get_app());
 
 #endif
    return NULL;        // just use the default

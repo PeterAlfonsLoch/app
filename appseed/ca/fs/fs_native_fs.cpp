@@ -130,7 +130,7 @@ namespace fs
    bool native::file_exists(const char * pszPath)
    {
 
-      return System.file().exists(pszPath, get_app());
+      return ::file_exists_dup(pszPath);
 
    }
 

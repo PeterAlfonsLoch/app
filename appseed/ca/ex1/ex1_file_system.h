@@ -14,12 +14,12 @@ namespace ex1
       file_system();
       virtual ~file_system();
 
-      virtual bool ComparePath(const char * lpcsz1, const char * lpcsz2);
-      virtual bool FullPath(string & str, const char * lpszFileIn);
-      virtual bool FullPath(wstring & strFullPath, const wstring & wstrPath);
-      virtual UINT GetFileTitle(const char * lpszPathName, string & str);
-      virtual UINT GetFileName(const char * lpszPathName, string & str);
-      virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
+      //virtual bool ComparePath(const char * lpcsz1, const char * lpcsz2);
+      //virtual bool FullPath(string & str, const char * lpszFileIn);
+      //virtual bool FullPath(wstring & strFullPath, const wstring & wstrPath);
+      //virtual UINT GetFileTitle(const char * lpszPathName, string & str);
+      //virtual UINT GetFileName(const char * lpszPathName, string & str);
+      //virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 
       void normalize(string & str);
       int cmp(const char * psz1, const char* psz2);

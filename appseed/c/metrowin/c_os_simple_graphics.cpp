@@ -161,13 +161,13 @@ ID3D11Device * TlsGetD3D11Device()
    // description.  All apps are assumed to support 9.1 unless otherwise stated.
    D3D_FEATURE_LEVEL featurelevel[] = 
    {
-      D3D_FEATURE_LEVEL_11_1 /*,
+      D3D_FEATURE_LEVEL_11_1 ,
       D3D_FEATURE_LEVEL_11_0,
       D3D_FEATURE_LEVEL_10_1,
       D3D_FEATURE_LEVEL_10_0,
       D3D_FEATURE_LEVEL_9_3,
       D3D_FEATURE_LEVEL_9_2,
-      D3D_FEATURE_LEVEL_9_1*/
+      D3D_FEATURE_LEVEL_9_1
    };
 
    D3D_FEATURE_LEVEL lv;
@@ -210,7 +210,7 @@ ID3D11DeviceContext * TlsGetD3D11DeviceContext()
    if(pcontext != NULL)
       return pcontext;
 
-   ID3D11Device * pdevice = (ID3D11Device *) TlsGetValue(TLS_d3_1);
+   ID3D11Device * pdevice = TlsGetD3D11Device();
 
    if(pdevice == NULL)
       return NULL;
@@ -232,7 +232,7 @@ ID3D11Device1 * TlsGetD3D11Device1()
    if(pdevice1 != NULL)
       return pdevice1;
 
-   ID3D11Device * pdevice = (ID3D11Device *) TlsGetValue(TLS_d3_1);
+   ID3D11Device * pdevice = TlsGetD3D11Device();
 
    if(pdevice == NULL)
       return NULL;
@@ -253,10 +253,10 @@ IDXGIDevice * TlsGetDXGIDevice()
 
    IDXGIDevice * pdxgidevice = (IDXGIDevice *) TlsGetValue(TLS_d3_4);
 
-   if(pdxgidevice == NULL)
-      return NULL;
+   if(pdxgidevice != NULL)
+      return pdxgidevice;
 
-   ID3D11Device1 * pdevice1 = (ID3D11Device1 *) TlsGetValue(TLS_d3_3);
+   ID3D11Device1 * pdevice1 = TlsGetD3D11Device1();
 
    if(pdevice1 == NULL)
       return NULL;

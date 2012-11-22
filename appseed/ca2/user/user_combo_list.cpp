@@ -107,7 +107,7 @@ namespace user
             if(rectItem.contains(ptCursor))
             {
                ::ca::pen_sp pen(get_app());
-               pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
             }
@@ -190,7 +190,7 @@ namespace user
             if(rectItem.contains(ptCursor))
             {
                ::ca::pen_sp pen(get_app());
-               pen->create_solid(m_iItemHeight / 8, ARGB(230, 77, 184, 63));
+               pen->create_solid(pdc, m_iItemHeight / 8, ARGB(230, 77, 184, 63));
                pdc->SelectObject(pen);
                pdc->DrawRectangle(rectItem);
             }
@@ -234,7 +234,7 @@ namespace user
 
       tameshi->create(100, 100);
 
-      pdc->SelectObject(tameshi);
+      pdc->SelectObject(tameshi->get_bitmap());
       
       int dSize = (int) (_001GetItemHeight() * 0.7);
 

@@ -811,7 +811,7 @@ void simple_frame_window::pre_translate_message(gen::signal_object * pobj)
       }
    }
 #else
-   throw todo(get_app());
+   //throw todo(get_app());
 #endif
    return userbase::frame_window::pre_translate_message(pobj);
 }

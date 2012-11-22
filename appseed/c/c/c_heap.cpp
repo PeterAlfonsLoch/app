@@ -60,7 +60,7 @@ END_EXTERN_C
 
 void * _ca_alloc(size_t size)
 {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 #if ZEROED_ALLOC
    byte * p = (byte *) HeapAlloc(::GetProcessHeap(), HEAP_ZERO_MEMORY, size + 4 + 32);
 #else
@@ -91,7 +91,7 @@ void * _ca_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFil
    p -= (4 + 16);
    if(p[0] == 22)
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 #if ZEROED_ALLOC
       p = (byte *) HeapReAlloc(::GetProcessHeap(), HEAP_ZERO_MEMORY, p, nSize + 4 + 32);
 #else
@@ -121,7 +121,7 @@ void _ca_free(void * pvoid, int iBlockType)
    p -= (4 + 16);
    if(p[0] == 22)
    {
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       HeapFree(::GetProcessHeap(), 0, p);
 #else
       free(p);

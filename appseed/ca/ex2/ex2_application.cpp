@@ -136,7 +136,7 @@ namespace ex2
 
    bool application::initialize()
    {
-      m_spfilesystem.create(this);
+      //m_spfilesystem.create(this);
       if(!gen::application::initialize())
          return false;
       return true;
@@ -268,6 +268,9 @@ namespace ex2
 
    const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
    {
+#ifdef METROWIN
+      return NULL;
+#endif
       return ::ca::smart_pointer < ::ex2::application >::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
    }
 
@@ -295,6 +298,18 @@ namespace ex2
       return ::ca::smart_pointer < ::ex2::application >::m_p->graphics_from_os_data(pdata);
    }*/
 
+
+#ifdef METROWIN
+   ::user::interaction * application::window_from_os_data(void * pdata)
+   {
+      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data(pdata);
+   }
+
+   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
+   {
+      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data_permanent(pdata);
+   }
+#else
    ::ca::window * application::window_from_os_data(void * pdata)
    {
       return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data(pdata);
@@ -304,6 +319,7 @@ namespace ex2
    {
       return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data_permanent(pdata);
    }
+#endif
 
    ::ca::window * application::get_desktop_window()
    {

@@ -2873,4 +2873,15 @@ fill_last:
 
    }
 
+
+   void dib::map()
+   {
+
+   }
+
+   void dib::unmap()
+   {
+   }
+
+
 } // namespace ca

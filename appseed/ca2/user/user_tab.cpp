@@ -53,8 +53,6 @@ namespace user
       get_data()->m_iTabWidth    = 48;
       get_data()->m_imagelist.create(16, 16, 0, 0, 0);
 
-      get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
-
       get_data()->m_iDragTab     = -1;
 
       m_bRestoringTabs           = true;
@@ -244,6 +242,9 @@ namespace user
 
    void tab::_001OnDraw(::ca::graphics * pdc)
    {
+
+      get_data()->m_pen->create_solid(pdc, 1, RGB(32, 32, 32));
+
 
       _001OnDrawSchema01(pdc);
 
@@ -1300,9 +1301,14 @@ namespace user
       ::ca::window * pwnd;
    //   if((pwnd = m_pguie->get_owner()) != NULL)
      //    return pwnd;
+#ifdef METROWIN
+      return NULL;
+
+#else
       if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
          return pwnd;
       return NULL;
+#endif
    }
 
    /*

@@ -108,9 +108,11 @@ namespace userbase
       //{
          HFONT hFont = (HFONT)send_message(WM_GETFONT);
          ::ca::graphics_sp spgraphicsScreen(get_app());
-         HGDIOBJ hOldFont = NULL;
+
+         throw todo(get_app());
+/*         HGDIOBJ hOldFont = NULL;
          if (hFont != NULL)
-            hOldFont = spgraphicsScreen->SelectObject(hFont);
+            hOldFont = spgraphicsScreen->SelectObject(hFont);*/
 
          __STATUSPANE* pSBP = _GetPanePtr(0);
          for (int i = 0; i < stra.get_count(); i++)
@@ -148,8 +150,8 @@ namespace userbase
             }
             ++pSBP;
          }
-         if (hOldFont != NULL)
-            spgraphicsScreen->SelectObject(hOldFont);
+//         if (hOldFont != NULL)
+  //          spgraphicsScreen->SelectObject(hOldFont);
       //}
       UpdateAllPanes(TRUE, TRUE);
 

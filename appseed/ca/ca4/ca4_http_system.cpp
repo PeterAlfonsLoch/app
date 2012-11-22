@@ -822,7 +822,7 @@ retry:
             while(handler.get_count() > 0 && !psession->m_bRequestComplete)
             {
                dw1 = ::get_tick_count();
-               handler.Select(23, 0);
+               handler.Select(240, 0);
                keeplive.keep_alive();
                if(psession->m_estatus == sockets::socket::status_connection_timed_out)
                {
@@ -1519,6 +1519,27 @@ retry:
             str.Empty();
          return str;
       }
+
+      bool system::exists(const char * pszUrl, ::fontopus::user * puser)
+      {
+         ::sockets::socket_handler handler(get_app());
+         gen::property_set post;
+         gen::property_set headers;
+         gen::property_set set;
+         ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
+         if(psocket == NULL)
+            return false;
+         int iStatusCode = psocket->outattr("http_status_code");
+         try
+         {
+            gen::del(psocket);
+         }
+         catch(...)
+         {
+         }
+         return iStatusCode == 200;
+      }
+
 
       bool system::request(
                      const char * pszRequest,

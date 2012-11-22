@@ -20,7 +20,7 @@ public:
 
 
 
-   simple_event(bool bInitialWait = false);
+   simple_event(bool bInitialWait = false, bool bManualReset = false);
    ~simple_event();
 
 

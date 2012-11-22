@@ -93,7 +93,8 @@ namespace gen
 
 #elif defined(METROWIN)
 
-         throw todo(this);
+         m_strModuleFolder = "";
+         m_strCa2ModuleFolder = "";
 
 #else
          {
@@ -460,7 +461,7 @@ finishedCa2ModuleFolder:;
 
 #elif defined(METROWIN)
 
-      throw todo(this);
+      return "m_app.exe";
 
 #else
 

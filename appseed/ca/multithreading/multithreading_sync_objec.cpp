@@ -22,7 +22,7 @@ sync_object::~sync_object()
 #endif
 }
 
-inline bool sync_object::lock(const duration & durationTimeout)
+bool sync_object::lock(const duration & durationTimeout)
 {
 #ifdef WINDOWS
    DWORD dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.os_lock_duration(), FALSE);
@@ -35,7 +35,12 @@ inline bool sync_object::lock(const duration & durationTimeout)
 #endif
 }
 
-inline void sync_object::dump(dump_context & dumpcontext) const
+wait_result sync_object::wait(const duration & durationTimeout)
+{
+   return wait_result(::WaitForSingleObjectEx(m_object,durationTimeout.os_lock_duration(), FALSE));
+}
+
+void sync_object::dump(dump_context & dumpcontext) const
 {
 
 #ifdef WINDOWS
@@ -56,14 +61,14 @@ void sync_object::assert_valid() const
 
 #ifdef WINDOWS
 
-inline sync_object::operator HANDLE() const
+sync_object::operator HANDLE() const
 {
    return m_object;
 }
 
 #endif
 
-inline void * sync_object::get_os_data() const
+void * sync_object::get_os_data() const
 {
 #ifdef WINDOWS
    return (void *) m_object;
@@ -72,7 +77,7 @@ inline void * sync_object::get_os_data() const
 #endif
 }
 
-inline bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */)
+bool sync_object::unlock(LONG /* lCount */, LPLONG /* lpPrevCount=NULL */)
 {
    return TRUE;
 }

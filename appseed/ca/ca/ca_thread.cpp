@@ -136,8 +136,9 @@ namespace ca
    }
 
 
-   bool thread::create_thread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca::e_thread_priority epriority, DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
+      UNREFERENCED_PARAMETER(epriority);
       UNREFERENCED_PARAMETER(dwCreateFlags);
       UNREFERENCED_PARAMETER(nStackSize);
       UNREFERENCED_PARAMETER(lpSecurityAttrs);

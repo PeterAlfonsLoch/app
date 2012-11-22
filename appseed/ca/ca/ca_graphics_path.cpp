@@ -26,7 +26,7 @@ namespace ca
 
    }
 
-   point graphics_path::current_point()
+/*   point graphics_path::current_point()
    {
 
       throw interface_only_exception(get_app());
@@ -47,6 +47,7 @@ namespace ca
       return !is_empty();
 
    }
+   */
 
    bool graphics_path::add_arc(const RECT & rect, int iStart, int iAngle)
    {
@@ -82,16 +83,14 @@ namespace ca
    bool graphics_path::add_line(int x, int y)
    {
 
-      point pt = current_point();
-
-      return add_line(pt.x, pt.y, x, y);
+      throw interface_only_exception(get_app());
 
    }
 
    bool graphics_path::add_line(point p)
    {
 
-      return add_line(current_point(), p);
+      throw interface_only_exception(get_app());
 
    }
 

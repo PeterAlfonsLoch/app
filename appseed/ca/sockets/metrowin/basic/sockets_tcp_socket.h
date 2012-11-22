@@ -84,7 +84,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       public:
 
-         ::Windows::Networking::Sockets::StreamSocket ^ m_tcpsocket;
+         //::Windows::Networking::Sockets::StreamSocket ^ m_tcpsocket;
          //
          bool m_b_input_buffer_disabled;
          uint64_t m_bytes_sent;
@@ -96,7 +96,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          OUTPUT *m_obuf_top; ///< output buffer on top
          size_t m_transfer_limit;
          size_t m_output_length;
-
+         
          //static   SSLInitializer m_ssl_init;
 //         SSL_CTX *m_ssl_ctx; ///< ssl context
 //         SSL *m_ssl; ///< ssl 'socket'

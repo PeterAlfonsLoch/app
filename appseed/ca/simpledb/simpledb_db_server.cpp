@@ -120,17 +120,22 @@ bool db_server::initialize()
       iBufferSize = commandthread.m_varTopicQuery["filesizebuffer"] * 1024 * 1024;
    }
 
+#ifndef METROWIN
    m_pfilesystemsizeset = new DBFileSystemSizeSet(&System);
-
+#else
+   m_pfilesystemsizeset = NULL;
+#endif
 
    //var varChange;
    //data_server_load("ca2_fontopus_votagus", "database_change", "change", varChange);
    //g_idbchange = varChange;
 
+#ifndef METROWIN
+
    if(!create_message_window())
       return false;
 
-
+#endif
 
    m_bWorking = true;
 

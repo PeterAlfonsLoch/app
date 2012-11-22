@@ -4,11 +4,19 @@
 #include <agile.h>
 
 
+namespace user
+{
+
+   class interaction;
+
+} // namespace user
+
+
 class oswindow_data
 {
 public:
 
-   Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
+   ::user::interaction * m_pui;
 
 };
 
@@ -21,17 +29,22 @@ public:
 
 };
 
+oswindow_dataptra * g_oswindow_dataptra()
+{
+   static oswindow_dataptra * s_pdataptra = new oswindow_dataptra;
+
+   return s_pdataptra;
+}
 
 
-oswindow_dataptra * oswindow::s_pdataptra = new oswindow_dataptra;
 
 
-int oswindow::find(Windows::UI::Core::CoreWindow ^ window)
+int oswindow::find(::user::interaction * pui)
 {
 
-   for(int i = 0; i < s_pdataptra->get_count(); i++)
+   for(int i = 0; i < g_oswindow_dataptra()->get_count(); i++)
    {
-      if(s_pdataptra->element_at(i)->m_window.Get() == window)
+      if(g_oswindow_dataptra()->element_at(i)->m_pui == pui)
       {
          return i;
       }
@@ -41,19 +54,19 @@ int oswindow::find(Windows::UI::Core::CoreWindow ^ window)
 
 }
 
-oswindow_data * oswindow::get(Windows::UI::Core::CoreWindow ^ window)
+oswindow_data * oswindow::get(::user::interaction * pui)
 {
 
-   int_ptr iFind = find(window);
+   int_ptr iFind = find(pui);
 
    if(iFind >= 0)
-      return s_pdataptra->element_at(iFind);
+      return g_oswindow_dataptra()->element_at(iFind);
 
    ::oswindow_data * pdata = new oswindow_data;
 
-   pdata->m_window = window;
+   pdata->m_pui = pui;
 
-   s_pdataptra->add(pdata);
+   g_oswindow_dataptra()->add(pdata);
 
    return pdata;
 
@@ -73,10 +86,10 @@ oswindow::oswindow()
 
 }
 
-oswindow::oswindow(Windows::UI::Core::CoreWindow ^ window)
+oswindow::oswindow(::user::interaction * pui)
 {
 
-   m_pdata = get(window);
+   m_pdata = get(pui);
 
 }
 
@@ -125,15 +138,15 @@ oswindow & oswindow::operator = (const oswindow & oswindow)
 
 
 
-bool oswindow::remove(Windows::UI::Core::CoreWindow ^ window)
+bool oswindow::remove(::user::interaction * pui)
 {
 
-   int_ptr iFind = find(window);
+   int_ptr iFind = find(pui);
 
    if(iFind < 0)
       return false;
 
-   s_pdataptra->remove_at(iFind);
+   g_oswindow_dataptra()->remove_at(iFind);
 
    return true;
 
@@ -142,12 +155,12 @@ bool oswindow::remove(Windows::UI::Core::CoreWindow ^ window)
 
 
 
-Windows::UI::Core::CoreWindow ^ oswindow::window()
+::user::interaction * oswindow::window()
 {
-   return m_pdata == NULL ? nullptr : m_pdata->m_window.Get();
+   return m_pdata == NULL ? nullptr : m_pdata->m_pui;
 }
 
-Windows::UI::Core::CoreWindow ^ oswindow::window() const
+::user::interaction * oswindow::window() const
 {
-   return m_pdata == NULL ? nullptr : m_pdata->m_window.Get();
+   return m_pdata == NULL ? nullptr : m_pdata->m_pui;
 }

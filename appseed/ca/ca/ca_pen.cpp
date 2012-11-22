@@ -5,6 +5,13 @@ namespace ca
 {
 
 
+   pen_sp::pen_sp(::ca::graphics * pgraphics, double dWidth, COLORREF crColor) :
+      smart_pointer < pen > (pgraphics->get_app())
+   {
+      m_p->create_solid(pgraphics, dWidth, crColor);
+   }
+
+
    pen::pen()
    {
 
@@ -36,8 +43,10 @@ namespace ca
 
    }
 
-   bool pen::create_solid(double dWidth, COLORREF crColor)
+   bool pen::create_solid(::ca::graphics * pdc, double dWidth, COLORREF crColor)
    {
+
+      UNREFERENCED_PARAMETER(pdc);
 
       m_etype                 = type_solid;
       m_dWidth                = dWidth;
@@ -65,7 +74,7 @@ namespace ca
 
    pen::e_end_cap pen::get_end_cap()
    {
-      
+
       return m_eendcap;
 
    }
@@ -96,5 +105,8 @@ namespace ca
 
    }
 
+
 } // namespace ca
+
+
 

@@ -58,6 +58,8 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
 #if defined(METROWIN)
 
+   return "";
+
    char lpszModuleFilePath[MAX_PATH * 8];
 
    HMODULE hmodule = ::LoadPackagedLibrary(L"ca.dll", 0);
@@ -70,7 +72,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
       vsstring buf;
 
-      throw winmerde();
+      throw metrowin_todo();
       //HRESULT hr = SHGetKnownFolderPath(FOLDERID_ProgramFiles, KF_FLAG_NO_ALIAS, NULL, wstringtovss(buf, 4096));
       //if(FAILED(hr))
       // throw "dir::get_ca2_module_folder_dup : SHGetKnownFolderPath failed";
@@ -95,18 +97,18 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
    }
 
-   throw winmerde();
+   throw metrowin_todo();
    //GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
 
    // xxx   LPTSTR lpszModuleFileName;
 
-   throw winmerde();
+   throw metrowin_todo();
    //GetFullPathName(lpszModuleFilePath, sizeof(lpszModuleFilePath), lpszModuleFolder, &lpszModuleFileName);
 
-   throw winmerde();
+   throw metrowin_todo();
    //lpszModuleFolder[lpszModuleFileName - lpszModuleFolder] = '\0';
 
-   throw winmerde();
+   throw metrowin_todo();
    /*
    if(strlen_dup(lpszModuleFolder) > 0)
    {
@@ -327,7 +329,7 @@ vsstring dir::module_folder(const char * path1)
 
 #elif defined(METROWIN)
 
-   throw winmerde();
+   throw metrowin_todo();
    return path1;
 
 #else
@@ -480,6 +482,9 @@ void dir::ls(stra_dup & stra, const char *psz)
 #elif defined(METROWIN)
 
    ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(psz)));
+
+   if(folder == nullptr)
+      return;
 
    ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ a = wait(folder->GetItemsAsync());
 

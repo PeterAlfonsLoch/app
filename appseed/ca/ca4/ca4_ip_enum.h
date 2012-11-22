@@ -21,33 +21,10 @@ namespace ca4
    public:
 
 
-      class CLASS_DECL_ca ip_item
-      {
-      public:
-
-
-         int         m_nAdapter;
-         in_addr     m_addr;
-
-         ip_item();
-         ip_item(int nAdapter, const in_addr & addr);
-
-      };
-
-
-      class CLASS_DECL_ca ip_array :
-         public raw_array < ip_item >
-      {
-      public:
-
-      };
-
-
       ip_enum(::ca::application * papp);
       virtual ~ip_enum();
 
 
-      virtual ::count enumerate(ip_array & ipa);
       virtual ::count enumerate(stringa & stra);
 
 

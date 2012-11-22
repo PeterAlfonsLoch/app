@@ -7,8 +7,8 @@
 #else // !defined(WINDOWS)
 
 #ifdef METROWIN
-CLASS_DECL_ca BOOL LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
-CLASS_DECL_ca BOOL UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
 #endif
 
 #include <stddef.h> // for wchar_t
@@ -220,7 +220,7 @@ typedef enum tagSTREAM_SEEK
   STREAM_SEEK_END = 2
 } STREAM_SEEK;
 
-#endif
+#endif // defined(METROWIN)
 
 #endif  // !defined(WINDOWS)
 

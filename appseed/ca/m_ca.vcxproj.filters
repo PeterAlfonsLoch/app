@@ -151,11 +151,74 @@
     <Filter Include="Header Files\html\html_filter">
       <UniqueIdentifier>{5bb41114-8fdd-473d-8e15-d712b2085f15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\metrowin">
+      <UniqueIdentifier>{df91fea2-11be-4cb7-93f6-2b469af69e85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin">
+      <UniqueIdentifier>{3d3207ae-11f1-4092-a6f3-65f8db604a51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\asynch_dns">
+      <UniqueIdentifier>{50092810-8d49-47b3-9903-41cb82d47bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\basic">
+      <UniqueIdentifier>{372ff8d5-6ed7-4d29-976d-1076856f5319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\http">
+      <UniqueIdentifier>{6cd96d23-63f2-4b00-bdd7-d3e5dd80f7cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\log">
+      <UniqueIdentifier>{88631606-556c-4b1e-8ed6-69cc3bd02c90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\sip">
+      <UniqueIdentifier>{ae01527c-5ab1-451c-9cf2-88b1547b4b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\webserver">
+      <UniqueIdentifier>{f429bf15-3c0d-4e15-97d0-310a1c374551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\smtp">
+      <UniqueIdentifier>{48e34706-303e-490c-bed7-baf34f613c70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\timer">
+      <UniqueIdentifier>{eb0a57c6-fa46-43a1-971c-a60c86f5ff89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sockets\metrowin\aaa_internal_want_to_remove">
+      <UniqueIdentifier>{1a35e00d-3e30-49c8-89c1-4ff47a8cf321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ca\NewFilter1">
+      <UniqueIdentifier>{4acf6cf6-6fcd-4d64-b7e7-c5456c041b35}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{30bc5955-b95e-40c1-93ae-eb51cd67b2d2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\sockets">
       <UniqueIdentifier>{0b1b9139-4f45-4f39-9df2-55238ee563b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin">
+      <UniqueIdentifier>{8eccd23b-c693-4dd7-94ed-27744cbe1e66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\sip">
+      <UniqueIdentifier>{28c6121d-cc51-473a-8684-64257e2dfac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\smtp">
+      <UniqueIdentifier>{45e5f956-cfca-47dd-8107-8acfa7c8878d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\timer">
+      <UniqueIdentifier>{b04e8ac5-0273-4f4d-9da1-52d46dd4f0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\webserver">
+      <UniqueIdentifier>{3fce2713-330f-4f23-94c9-c53430ef7b63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\log">
+      <UniqueIdentifier>{7c9e7d08-9550-4929-b13d-6bdff2273745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\asynch_dns">
+      <UniqueIdentifier>{da7f618e-e252-4709-acf5-7a5fa96c88d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\basic">
+      <UniqueIdentifier>{dc6790f4-4944-4e59-8b6e-d6978f1328fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\sockets\metrowin\http">
+      <UniqueIdentifier>{65f9b114-7cb0-46e4-9811-2a08ad65c31d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\sqlite">
       <UniqueIdentifier>{6c09023b-2193-4851-82c7-d3d61843bbd9}</UniqueIdentifier>
@@ -183,6 +246,9 @@
     </Filter>
     <Filter Include="Source Files\api">
       <UniqueIdentifier>{0aa7a779-d328-40ce-9302-0720690f74f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\api\crypto">
+      <UniqueIdentifier>{759c4d1a-e90e-4348-aa74-6b9aee45358d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\xml">
       <UniqueIdentifier>{a7968bb0-eb1b-4132-b993-7e7aec4520d3}</UniqueIdentifier>
@@ -259,9 +325,6 @@
     <Filter Include="Source Files\database">
       <UniqueIdentifier>{660794c5-f715-4cc1-8301-65e29c75a029}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\crypto">
-      <UniqueIdentifier>{759c4d1a-e90e-4348-aa74-6b9aee45358d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\geoip">
       <UniqueIdentifier>{9003acdc-853a-47d3-a07e-7bc94946e71d}</UniqueIdentifier>
     </Filter>
@@ -298,68 +361,8 @@
     <Filter Include="Source Files\html\html_lite">
       <UniqueIdentifier>{257e828c-7398-43da-8206-24cbb4438d7b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\metrowin">
-      <UniqueIdentifier>{df91fea2-11be-4cb7-93f6-2b469af69e85}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\metrowin">
       <UniqueIdentifier>{1c27d95d-e66f-40e4-8c61-61f7a469d939}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin">
-      <UniqueIdentifier>{3d3207ae-11f1-4092-a6f3-65f8db604a51}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\asynch_dns">
-      <UniqueIdentifier>{50092810-8d49-47b3-9903-41cb82d47bd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\basic">
-      <UniqueIdentifier>{372ff8d5-6ed7-4d29-976d-1076856f5319}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\http">
-      <UniqueIdentifier>{6cd96d23-63f2-4b00-bdd7-d3e5dd80f7cb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\log">
-      <UniqueIdentifier>{88631606-556c-4b1e-8ed6-69cc3bd02c90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\sip">
-      <UniqueIdentifier>{ae01527c-5ab1-451c-9cf2-88b1547b4b53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\webserver">
-      <UniqueIdentifier>{f429bf15-3c0d-4e15-97d0-310a1c374551}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\smtp">
-      <UniqueIdentifier>{48e34706-303e-490c-bed7-baf34f613c70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\timer">
-      <UniqueIdentifier>{eb0a57c6-fa46-43a1-971c-a60c86f5ff89}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin">
-      <UniqueIdentifier>{8eccd23b-c693-4dd7-94ed-27744cbe1e66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\sip">
-      <UniqueIdentifier>{28c6121d-cc51-473a-8684-64257e2dfac1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\smtp">
-      <UniqueIdentifier>{45e5f956-cfca-47dd-8107-8acfa7c8878d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\timer">
-      <UniqueIdentifier>{b04e8ac5-0273-4f4d-9da1-52d46dd4f0f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\webserver">
-      <UniqueIdentifier>{3fce2713-330f-4f23-94c9-c53430ef7b63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\log">
-      <UniqueIdentifier>{7c9e7d08-9550-4929-b13d-6bdff2273745}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\asynch_dns">
-      <UniqueIdentifier>{da7f618e-e252-4709-acf5-7a5fa96c88d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\basic">
-      <UniqueIdentifier>{dc6790f4-4944-4e59-8b6e-d6978f1328fc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\sockets\metrowin\http">
-      <UniqueIdentifier>{65f9b114-7cb0-46e4-9811-2a08ad65c31d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\sockets\metrowin\aaa_internal_want_to_remove">
-      <UniqueIdentifier>{1a35e00d-3e30-49c8-89c1-4ff47a8cf321}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -2113,82 +2116,82 @@
       <Filter>Source Files\database</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_ae_xfm.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_cipher_aes.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_cipher_aes_cbc.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_cipher_aes_icm.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_cipher_cipher.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_cipher_null_cipher.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_gf2_8.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_hash_auth.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_hash_hmac.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_hash_null_auth.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_hash_sha1.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_hmac_sha1.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_kernel_alloc.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_kernel_crypto_kernel.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_kernel_err.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_kernel_key.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_math.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_math_stat.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_my_aes.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_replay_rdb.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_replay_rdbx.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_replay_ut_sim.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_rng_ctr_prng.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_rng_prng.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_rng_rand_source.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_sha1.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="geoip\geoip.cpp">
       <Filter>Source Files\geoip</Filter>
@@ -2341,7 +2344,7 @@
       <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
     <ClCompile Include="crypto\crypto_md5.cpp">
-      <Filter>Source Files\crypto</Filter>
+      <Filter>Source Files\api\crypto</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
       <Filter>Source Files\multithreading</Filter>
@@ -5419,6 +5422,9 @@
     </ClInclude>
     <ClInclude Include="os\os_cross_windows_time.h">
       <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_graphics_path.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

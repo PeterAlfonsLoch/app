@@ -229,9 +229,10 @@ public:
    explicit string( string_manager * pstringmanager ) throw();
    static void __cdecl Construct( string* pstring );
 
-
-   string(const string & strSrc);
+   string(const id & id);
+   string(const var & var);
    string(const char * pszSrc);
+   string(const string & strSrc);
    string(const unsigned char * pszSrc);
    //   string(char * pszSrc);
    string(unsigned char * pszSrc);
@@ -243,9 +244,6 @@ public:
    string(const char * pszSrc,string_manager * pstringmanager );
    string(const wchar_t * pszSrc,string_manager * pstringmanager );
 
-
-   string(const id & id);
-   string(const var & var);
 
 
    string(const unsigned char* pszSrc, string_manager * pstringmanager);
@@ -272,6 +270,7 @@ public:
    string& operator=(PCYSTR pszSrc);
    string& operator=(const unsigned char* pszSrc );
    string& operator=(char ch );
+   string& operator=(const Platform::String ^ & str);
    string& operator=(wchar_t ch );
    string& operator+=(const simple_string& str );
    string& operator+=(PCXSTR pszSrc );
@@ -1517,4 +1516,9 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
    return Delete(iIndex, nCount);
 }
 
-
+inline string str(Platform::String ^ str)
+{
+   if(str == nullptr)
+      return "";
+   return str->Begin();
+}

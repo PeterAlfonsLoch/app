@@ -708,7 +708,7 @@ namespace ca
                throw strError;
             }
 
-            ::ca4::compress::null(ofile, ifile);
+            System.compress().null(ofile, ifile);
 
             
 
@@ -942,6 +942,13 @@ namespace ca
             return AppUser(papp).m_pifs->file_exists(strPath);
          }
 
+         if(gen::str::begins_ci_iws(strPath, "http://")
+         || gen::str::begins_ci_iws(strPath, "https://"))
+         {
+            return App(papp).http().exists(strPath);
+         }
+         
+
          if(papp->m_bZipIsDir)
          {
 
@@ -962,13 +969,16 @@ namespace ca
 
          }
 
-         if(!papp->m_psystem->dir().name_is(strPath, papp))
-            return false;
+         //if(!papp->m_psystem->dir().name_is(strPath, papp))
+           // return false;
 
 #ifdef WINDOWS
 
 
-         return file_exists_dup(strPath);
+         //if(file_exists_dup(strPath))
+           // return true;
+
+         return App(papp).m_spfsdata->file_exists(strPath);
          //return ::GetFileAttributesW(gen::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else

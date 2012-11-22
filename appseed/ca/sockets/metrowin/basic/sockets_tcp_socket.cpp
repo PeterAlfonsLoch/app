@@ -166,23 +166,41 @@ namespace sockets
    bool tcp_socket::open(const sockets::address & ad, bool skip_socks)
    {
 
-      m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
       
-      attach(m_tcpsocket);
+      attach(m_streamsocket);
 
-      m_tcpsocket->ConnectAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = 
+      m_event.ResetEvent();
+
+      ::Windows::Foundation::IAsyncAction ^ action = m_streamsocket->ConnectAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())));
+
+
+      action->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
-         ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+         ([=](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
+
+         
 
          if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
-            
-            OnConnect();
+
+            m_bConnected         = true;
+
+            m_bOnConnect         = true;
+
+         }
+         else
+         {
+
+            SetCloseAndDelete();
 
          }
 
+         m_event.SetEvent();
+
       });
+
 
       return true;
 
@@ -205,13 +223,13 @@ namespace sockets
       }*/
 
 
-      m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
+      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
       
       ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_hostname,  itort(bind_ad.get_service_number()), ad.m_hostname, itort(ad.get_service_number()));
 
-      attach(m_tcpsocket);
+      attach(m_streamsocket);
 
-      m_tcpsocket->ConnectAsync(pair)->Completed = 
+      m_streamsocket->ConnectAsync(pair)->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
             ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -226,9 +244,9 @@ namespace sockets
       });
 
 
-      m_tcpsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
+      m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket();
 
-      attach(m_tcpsocket);
+      attach(m_streamsocket);
 
       SetConnecting(false);
       SetSocks4(false);
@@ -548,11 +566,64 @@ namespace sockets
          }
       }*/
       //
-      ::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_tcpsocket->InputStream);
-      //int n = reader->UnconsumedBufferLength;
-      Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
-      reader->ReadBytes(ucha);
-      OnRead((char *) ucha->Data, ucha->Length);
+
+      m_bExpectRequest = false;
+      m_bExpectResponse = false;
+
+      ::Windows::Storage::Streams::DataReader ^ reader = ref new ::Windows::Storage::Streams::DataReader(m_streamsocket->InputStream);
+
+      if(reader->UnconsumedBufferLength > 0)
+      {
+         Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+         reader->ReadBytes(ucha);
+         OnRead((char *) ucha->Data, ucha->Length);
+         return ;
+      }
+
+      reader->InputStreamOptions = ::Windows::Storage::Streams::InputStreamOptions::Partial;
+
+
+      ::Windows::Storage::Streams::DataReaderLoadOperation ^ op  = nullptr;
+
+      try
+      {
+
+         op = reader->LoadAsync(16 * 1024);
+
+      }
+      catch(...)
+      {
+
+         SetCloseAndDelete();
+
+         m_event.SetEvent();
+
+         return;
+
+      }
+
+      m_event.ResetEvent();
+      
+      op->Completed = 
+         ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
+            (::Windows::Foundation::IAsyncOperation<unsigned int> ^ asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
+      {
+         if(asyncStatus == ::Windows::Foundation::AsyncStatus::Completed)
+         {
+            //int n = reader->UnconsumedBufferLength;
+            Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
+            reader->ReadBytes(ucha);
+            OnRead((char *) ucha->Data, ucha->Length);
+         }
+         else
+         {
+            CloseAndDelete();
+         }
+         //delete reader;
+         reader->DetachStream();
+         m_event.SetEvent();
+      });
+
    }
 
 
@@ -575,6 +646,15 @@ namespace sockets
          {
             need_more = OnSocks4Read();
          }
+      }
+      if(m_bExpectRequest || m_bExpectResponse)
+      {
+         m_event.SetEvent();
+      }
+      else
+      {
+         m_event.SetEvent();
+         SetCloseAndDelete();
       }
    }
 
@@ -746,10 +826,23 @@ namespace sockets
 
 
 
-      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_tcpsocket->OutputStream);
+      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_streamsocket->OutputStream);
       //int n = reader->UnconsumedBufferLength;
       
       writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *) buf, len));
+
+      m_event.ResetEvent();
+
+      writer->StoreAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=] 
+         (::Windows::Foundation::IAsyncOperation < unsigned int > ^ action, ::Windows::Foundation::AsyncStatus status)
+      {
+         m_event.SetEvent();
+      });
+
+
+
+
+
       /*if(ucha != nullptr)
       {
          OnRawData(ucha->Data, ucha->Length);

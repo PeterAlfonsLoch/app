@@ -15,10 +15,6 @@ simple_graphics::~simple_graphics()
 
 
 
-
-#include "framework.h"
-
-
 void fastblur(DWORD * pdata, int w, int h, int radius)
 {
    if(radius < 1)
@@ -386,3 +382,14 @@ bool simple_graphics::round_rect(const RECT & r, int radius)
 }
 
 
+
+
+
+bool simple_graphics::fill_solid_rect(const RECT & rect, COLORREF clr)
+{
+   
+   fill_solid_rect(&rect, clr);
+
+   return true;
+   
+}

@@ -57,3 +57,23 @@ CLASS_DECL_c vsstring normalize_path(const char * lpcszPath);
 
 
 vsstring key_to_char(WPARAM wparam, LPARAM lparam);
+
+
+
+extern CLASS_DECL_c int g_iMouse;
+
+#define GW_HWNDFIRST        0
+#define GW_HWNDLAST         1
+#define GW_HWNDNEXT         2
+#define GW_HWNDPREV         3
+#define GW_OWNER            4
+#define GW_CHILD            5
+#if(WINVER <= 0x0400)
+#define GW_MAX              5
+#else
+#define GW_ENABLEDPOPUP     6
+#define GW_MAX              6
+#endif
+
+
+CLASS_DECL_c int WINAPI GetSystemMetrics(int i);

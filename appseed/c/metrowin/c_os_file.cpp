@@ -53,7 +53,7 @@ CLASS_DECL_c DWORD SetFilePointer(HANDLE h, LONG lMove, PLONG plHi, DWORD dwMeth
 
    }
 
-   return liMove.LowPart;
+   return liRes.LowPart;
 
 
 }
@@ -82,9 +82,14 @@ CLASS_DECL_c DWORD GetFileAttributes(const char * psz)
    wstring wstr(psz);
    
    WIN32_FILE_ATTRIBUTE_DATA data;
+
+   zero(&data, sizeof(data));
    
-   if(!::GetFileAttributesEx(wstr, GetFileExInfoStandard, &data))
+   if(!::GetFileAttributesExW(wstr, GetFileExInfoStandard, &data))
+   {
+      DWORD dwLastError = ::GetLastError();
       return INVALID_FILE_ATTRIBUTES;
+   }
 
    return data.dwFileAttributes;
 

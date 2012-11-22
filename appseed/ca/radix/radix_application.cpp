@@ -470,11 +470,15 @@ namespace radix
       else
          strWindow = typeid(*this).name();
 
+#ifndef METROWIN
+
       if(!initialize_message_window(this, strWindow))
       {
          TRACE("Fatal error: could not initialize application message window (name=\"%s\").", strWindow);
          return false;
       }
+
+#endif
 
       m_dwAlive = ::get_tick_count();
 
@@ -1090,6 +1094,12 @@ namespace radix
 
    bool application::check_exclusive()
    {
+
+#ifdef METROWIN
+
+      return true;
+
+#endif
 
       bool bSetOk;
 
@@ -3020,6 +3030,19 @@ namespace radix
       return NULL;
    }*/
 
+#ifdef METROWIN
+   ::user::interaction * application::window_from_os_data(void * pdata)
+   {
+      UNREFERENCED_PARAMETER(pdata);
+      return NULL;
+   }
+
+   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
+   {
+      UNREFERENCED_PARAMETER(pdata);
+      return NULL;
+   }
+#else
    ::ca::window * application::window_from_os_data(void * pdata)
    {
       UNREFERENCED_PARAMETER(pdata);
@@ -3031,7 +3054,7 @@ namespace radix
       UNREFERENCED_PARAMETER(pdata);
       return NULL;
    }
-
+#endif
    ::ca::window * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
       UNREFERENCED_PARAMETER(lpszClassName);

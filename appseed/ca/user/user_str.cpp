@@ -169,6 +169,9 @@ namespace user
 
    bool str::initialize()
    {
+#ifdef METROWIN
+      return true;
+#endif
       string strMain = System.dir().path(System.dir().votagus(), "app\\appmatter\\main");
       if(!load(strMain))
          return false;

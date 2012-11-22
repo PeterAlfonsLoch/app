@@ -15,8 +15,10 @@ namespace ca2
       m_mutex(papp)
    {
 
-#if defined(WINDOWS)
+#if defined(WINDOWSEX)
       m_bTrace = System.file().exists("C:\\ca2\\trace.txt", papp) || ::IsDebuggerPresent();
+#elif defined(METROWIN)
+      m_bTrace = System.file().exists(System.dir().appdata("trace.txt"), papp) || ::IsDebuggerPresent();
 #elif defined(LINUX)
       m_bTrace = System.file().exists("/etc/ca2/trace.txt", papp) || ::gdb_check();
 #endif

@@ -36,7 +36,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
 #else
 
-         g_hmoduleOs = ::LoadPackagedLibrary(L"os.dll", 0);
+         g_hmoduleOs = ::LoadPackagedLibrary(L"m_os.dll", 0);
 
 #endif
 

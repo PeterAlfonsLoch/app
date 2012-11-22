@@ -411,6 +411,14 @@ retry_license:
    bool application::set_keyboard_layout(const char * pszPath, bool bUser)
    {
 
+#ifdef METROWIN
+
+      // metrowin todo
+      return true;
+
+#endif
+
+
       if(pszPath == NULL)
       {
 

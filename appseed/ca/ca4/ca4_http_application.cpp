@@ -76,6 +76,7 @@ namespace ca4
          return System.http().get(pszUrl, str, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }
 
+
       bool application::get(
          const char * pszUrl,
          primitive::memory_base & memory, 
@@ -121,6 +122,37 @@ namespace ca4
          }
          return System.http().get(pszUrl, puser);
       }
+
+
+      bool application::exists(const char * pszUrl, ::fontopus::user * puser)
+      {
+//         e_status estatus;
+         string strFile(pszUrl);
+         strFile.replace(":", "_");
+         strFile = System.dir().appdata("dnexistcache/" + strFile);
+         string strCache = Application.file().as_string(strFile);
+         if(strCache.has_char())
+            if(strCache == "yes")
+               return true;
+            else if(strCache == "no")
+               return false;
+
+         if(puser == NULL && !get_app()->is_system() 
+         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_puser != NULL) ) // && !(bool)set["disable_ca2_sessid"] && !(bool)set["optional_ca2_sessid"])
+         {
+            puser = &ApplicationUser;
+         }
+  //       set["app"] = get_app();
+         bool bExists = System.http().exists(pszUrl, puser);
+
+         if(bExists)
+            strCache = "yes";
+         else
+            strCache = "no";
+         Application.file().put_contents(strFile, strCache);
+         return bExists;
+      }
+
 
 
       bool application::request(

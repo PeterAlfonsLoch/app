@@ -57,9 +57,9 @@ namespace radix
       return m_p->Begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
    }
 
-   bool thread::create_thread(DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca::e_thread_priority epriority, DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
-      return m_p->create_thread(dwCreateFlags, nStackSize, lpSecurityAttrs);
+      return m_p->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs);
    }
 
    ::ca::e_thread_priority thread::get_thread_priority()
@@ -395,16 +395,11 @@ namespace radix
    ::radix::thread* pThread = new ::radix::thread(papp, pfnThreadProc, pParam);
    ASSERT_VALID(pThread);
 
-   if (!pThread->create_thread(dwCreateFlags|CREATE_SUSPENDED, nStackSize, lpSecurityAttrs))
+   if (!pThread->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs))
    {
       pThread->Delete();
       return NULL;
    }
-
-   VERIFY(pThread->set_thread_priority(epriority));
-
-   if (!(dwCreateFlags & CREATE_SUSPENDED))
-      VERIFY(pThread->ResumeThread() != (DWORD)-1);
 
    return pThread;
 

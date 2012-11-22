@@ -41,7 +41,6 @@ namespace visual
       if(m_pimaging == NULL)
          throw memory_exception(this);
 
-      set_cursor_set_from_matter("cursor/antialiased-classic");
       
       return true;
 
@@ -52,6 +51,8 @@ namespace visual
 
       if(!::userpresence::application::initialize())
          return false;
+
+      set_cursor_set_from_matter("cursor/antialiased-classic");
 
       return true;
 

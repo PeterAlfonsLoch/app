@@ -255,13 +255,14 @@ namespace sockets
    int socket_handler::Select(long lSeconds, long lMicroseconds)
    {
       
-/*      struct timeval timeval;
+      struct timeval timeval;
 
       timeval.tv_sec    = lSeconds;
       timeval.tv_usec   = lMicroseconds;
 
-      return Select(&timeval);*/
-      return 0;
+      //return 0;
+
+      return Select(&timeval);
 
    }
 
@@ -283,591 +284,47 @@ namespace sockets
 
    int socket_handler::Select(struct timeval *tsel)
    {
-/*      DWORD dw1, dw2;
-      size_t ignore = 0;
-      while(natural(m_add.get_size()) > ignore)
+
+      POSITION pos = m_add.get_start_position();
+      SOCKET s;
+      socket * psocket;
+      while(pos != NULL)
       {
-         if (m_sockets.get_size() >= FD_SETSIZE)
+         s = 0;
+         psocket = NULL;
+         m_add.get_next_assoc(pos, s, psocket);
+
+         if(psocket != NULL)
          {
-            LogError(NULL, "Select", (int)m_sockets.get_size(), "FD_SETSIZE reached", ::gen::log::level::warning);
+            m_sockets.set_at(s, psocket);
+            m_add.remove_key(s);
             break;
          }
-         POSITION pos = m_add.get_start_position();
-         SOCKET s;
-         socket *p;
-         m_add.get_next_assoc(pos, s, p);
-         //TRACE("Trying to add fd %d,  m_add.size() %d,  ignore %d\n", (int)s, (int)m_add.get_size(), (int)ignore);
-         //
-         socket *plookup;
-         if (m_sockets.Lookup(p -> GetSocket(), plookup))
-         {
-            LogError(p, "add", (int)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::gen::log::level::fatal);
-            // %! it's a dup, don't add to delete queue, just ignore it
-            m_delete.add_tail(p);
-            m_add.remove_key(s);
-            ignore++;
-            continue;
-         }
-         if (!p -> CloseAndDelete())
-         {
-            stream_socket *scp = dynamic_cast<stream_socket *>(p);
-            if (scp && scp -> Connecting()) // 'open' called before adding socket
-            {
-               Set(s,false,true);
-            }
-            else
-            {
-               tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
-               bool bWrite = tcp ? tcp -> GetOutputLength() != 0 : false;
-               if (p -> IsDisableRead())
-               {
-                  Set(s, false, bWrite);
-               }
-               else
-               {
-                  Set(s, true, bWrite);
-               }
-            }
-            m_maxsock = (s > m_maxsock) ? s : m_maxsock;
-         }
-         else
-         {
-            LogError(p, "add", (int)p -> GetSocket(), "Trying to add socket with SetCloseAndDelete() true", ::gen::log::level::warning);
-         }
-         // only add to m_fds (process fd_set events) if
-         //  slave handler and detached/detaching socket
-         //  master handler and non-detached socket
-         if (!(m_slave ^ p -> IsDetach()))
-         {
-            m_fds.add_tail(s);
-         }
-         m_sockets[s] = p;
-         //
-         m_add.remove_key(s);
-      }
-   #ifdef MACOSX
-      fd_set rfds;
-      fd_set wfds;
-      fd_set efds;
-      FD_COPY(&m_rfds, &rfds);
-      FD_COPY(&m_wfds, &wfds);
-      FD_COPY(&m_efds, &efds);
-   #else
-      fd_set rfds = m_rfds;
-      fd_set wfds = m_wfds;
-      fd_set efds = m_efds;
-   #endif
-      int n;
-      dw1 = ::get_tick_count();
-      if (m_b_use_mutex)
-      {
-         m_mutex.unlock();
-         n = select( (int)(m_maxsock + 1),&rfds,&wfds,&efds,tsel);
-         m_iSelectErrno = Errno;
-         m_mutex.lock();
-      }
-      else
-      {
-         n = select( (int)(m_maxsock + 1),&rfds,&wfds,&efds,tsel);
-         m_iSelectErrno = Errno;
-      }
-      dw2 = ::get_tick_count();
-      //TRACE("socket_handler::Select select time = %d, %d, %d\n", dw1, dw2, dw2 - dw1);
-      if(n == 0)
-      {
-         socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
-         while(ppair != NULL)
-         {
-            if(ppair->m_value != NULL)
-            {
-               TRACE("tmout sckt(%d):\"%s\"", ppair->m_key, ppair->m_value->oprop("meta_info").get_string());
-               TRACE("tmout sckt(%d):remote_address=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress());
-            }
-            ppair = m_sockets.PGetNextAssoc(ppair);
-         }
-      }
-      else if (n == -1)
-      {
-         /*
-            EBADF  An invalid file descriptor was given in one of the sets.
-            EINTR  A non blocked signal was caught.
-            EINVAL n is negative. Or struct timeval contains bad time values (<0).
-            ENOMEM select was unable to allocate primitive::memory for internal tables.
-         */
-  /*       if (Errno != m_preverror || m_errcnt++ % 10000 == 0)
-         {
-            LogError(NULL, "select", Errno, StrError(Errno));
-            TRACE("m_maxsock: %d\n", m_maxsock);
-            TRACE("%s\n", Errno == EINVAL ? "EINVAL" :
-               Errno == EINTR ? "EINTR" :
-               Errno == EBADF ? "EBADF" :
-               Errno == ENOMEM ? "ENOMEM" : "<another>");
-            // test bad fd
-            for (SOCKET i = 0; i <= m_maxsock; i++)
-            {
-               bool t = false;
-               FD_ZERO(&rfds);
-               FD_ZERO(&wfds);
-               FD_ZERO(&efds);
-               if (FD_ISSET(i, &m_rfds))
-               {
-                  FD_SET(i, &rfds);
-                  t = true;
-               }
-               if (FD_ISSET(i, &m_wfds))
-               {
-                  FD_SET(i, &wfds);
-                  t = true;
-               }
-               if (FD_ISSET(i, &m_efds))
-               {
-                  FD_SET(i, &efds);
-                  t = true;
-               }
-               socket * psocket;
-               if (t && m_sockets.Lookup(i, psocket))
-               {
-                  TRACE("Bad fd in fd_set: %d\n", i);
-                  TRACE("Deleting and removing socket: %d\n", i);
-                  try
-                  {
-                     delete psocket;
-                  }
-                  catch(...)
-                  {
-                  }
-                  m_sockets.remove_key(i);
-               }
-            }
-
-            m_preverror = Errno;
-         }
-         /// \todo rebuild fd_set's from active sockets list (m_sockets) here
-      }
-      else
-      if (!n)
-      {
-         m_preverror = -1;
-      }
-      else
-      if (n > 0)
-      {
-         POSITION pos = m_fds.get_head_position();
-         for(; pos != NULL && n;)
-         {
-            SOCKET socket = m_fds.get_next(pos);;
-            if (FD_ISSET(socket, &rfds))
-            {
-               class socket * psocket = NULL;
-               if(m_sockets.Lookup(socket, psocket)) // found
-               {
-                  // new SSL negotiate method
-                  if(psocket->IsSSLNegotiate())
-                  {
-                     psocket->SSLNegotiate();
-                  }
-                  else
-                  {
-                     psocket->OnRead();
-                  }
-               }
-               else
-               {
-                  LogError(NULL, "GetSocket/handler/1", (int) socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-               }
-               n--;
-            }
-            if (FD_ISSET(socket, &wfds))
-            {
-               class socket * psocket = NULL;
-               if(m_sockets.Lookup(socket, psocket)) // found
-               {
-                  // new SSL negotiate method
-                  if(psocket->IsSSLNegotiate())
-                  {
-                     psocket->SSLNegotiate();
-                  }
-                  else
-                  {
-                     psocket->OnWrite();
-                  }
-               }
-               else
-               {
-                  LogError(NULL, "GetSocket/handler/2", (int) socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-               }
-               n--;
-            }
-            if(FD_ISSET(socket, &efds))
-            {
-               class socket * psocket = NULL;
-               if(m_sockets.Lookup(socket, psocket)) // found
-               {
-                  time_t tnow = time(NULL);
-                    if(psocket->Timeout(tnow))
-                  {
-                     stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);
-                     if(pstreamsocket != NULL && pstreamsocket->Connecting())
-                        psocket->OnConnectTimeout();
-                     else
-                        psocket->OnTimeout();
-                     psocket->SetTimeout(0);
-                  }
-                  else
-                  {
-                     psocket->OnException();
-                  }
-               }
-               else
-               {
-                  LogError(NULL, "GetSocket/handler/3", (int) socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-               }
-               n--;
-            }
-         } // m_fds loop
-         m_preverror = -1;
-      } // if (n > 0)
-
-      // check CallOnConnect - EVENT
-      if (m_fds_callonconnect.get_size())
-      {
-         socket_id_list tmp = m_fds_callonconnect;
-         POSITION pos = tmp.get_head_position();
-         for(; pos != NULL; )
-         {
-            SOCKET socket = tmp.get_next(pos);
-            class socket * psocket = NULL;
-            if(!m_sockets.Lookup(socket, psocket)) // not found
-            {
-               LogError(NULL, "GetSocket/handler/4", (int)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-            }
-            if(psocket != NULL)
-            {
-               tcp_socket *tcp = dynamic_cast<tcp_socket *>(psocket);
-               if(tcp != NULL)
-               {
-                  if (tcp -> CallOnConnect() && psocket -> Ready() )
-                  {
-                     psocket -> SetConnected(); // moved here from inside if (tcp) check below
-                     if (psocket -> IsSSL()) // SSL Enabled socket
-                        psocket -> OnSSLConnect();
-                     else
-                     if (psocket -> Socks4())
-                        psocket -> OnSocks4Connect();
-                     else
-                     {
-                     
-                        if (tcp)
-                        {
-                           if (tcp -> GetOutputLength())
-                           {
-                              psocket -> OnWrite();
-                           }
-                        }
-                        if (tcp && tcp -> IsReconnect())
-                           psocket -> OnReconnect();
-                        else
-                        {
-                           LogError(tcp, "Calling OnConnect", 0, "Because CallOnConnect", ::gen::log::level::info);
-                           psocket -> OnConnect();
-                        }
-                     }
-                     tcp -> SetCallOnConnect( false );
-                     AddList(psocket -> GetSocket(), LIST_CALLONCONNECT, false);
-                  }
-               }
-            }
-         }
-      }
-      bool check_max_fd = false;
-      // check detach of socket if master handler - EVENT
-      if (!m_slave && m_fds_detach.get_size())
-      {
-         // %! why not using tmp list here??!?
-         POSITION pos = m_fds_detach.get_head_position();
-         for(; pos != NULL; )
-         {
-            socket *p = NULL;
-            SOCKET socket = m_fds_detach.get_next(pos);
-            if(!m_sockets.Lookup(socket, p)) // found
-            {
-               LogError(NULL, "GetSocket/handler/5", (int)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-            }
-            if (p)
-            {
-               if (p -> IsDetach())
-               {
-                  Set(p -> GetSocket(), false, false, false);
-                  // After DetachSocket(), all calls to Handler() will return a reference
-                  // to the new slave socket_handler running in the new thread.
-                  p -> DetachSocket();
-                  // Adding the file descriptor to m_fds_erase will now also remove the
-                  // socket from the detach queue - tnx knightmad
-                  m_fds_erase.add_tail(p -> GetSocket());
-
- //                 m_fds_detach.remove(socket);
-   //               m_fds.remove(socket);
-     //             m_sockets.remove_key(socket);
-       //           check_max_fd = true;
-               }
-            }
-         }
-      }
-      // check Connecting - connection timeout - conditional event
-      if (m_fds_timeout.get_size())
-      {
-         time_t tnow = time(NULL);
-         if (tnow != m_tlast)
-         {
-            socket_id_list tmp = m_fds_timeout;
-            //TRACE("Checking %d socket(s) for timeout\n", tmp.get_size());
-            POSITION pos = tmp.get_head_position();
-            for(; pos != NULL;)
-            {
-               socket *p = NULL;
-               SOCKET socket = tmp.get_next(pos);
-               if (!m_sockets.Lookup(socket, p)) // not found
-               {
-                  if(!m_add.Lookup(socket, p))
-                  {
-                     LogError(NULL, "GetSocket/handler/6", (int)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-                  }
-               }
-               if (p)
-               {
-                  if (p -> Timeout(tnow))
-                  {
-                     stream_socket *scp = dynamic_cast<stream_socket *>(p);
-                     if (scp && scp -> Connecting())
-                        p -> OnConnectTimeout();
-                     else
-                        p -> OnTimeout();
-                     p -> SetTimeout(0);
-                  }
-               }
-            }
-            m_tlast = tnow;
-         } // tnow != tlast
-      }
-      // check retry client connect - EVENT
-      if (m_fds_retry.get_size())
-      {
-         socket_id_list tmp = m_fds_retry;
-         POSITION pos = tmp.get_head_position();
-         for(; pos != NULL;)
-         {
-            SOCKET socket = tmp.get_next(pos);
-            class socket *p = NULL;
-            if(m_sockets.Lookup(socket, p))
-            {
-               LogError(NULL, "GetSocket/handler/7", (int)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-            }
-            if (p)
-            {
-               tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
-               if(tcp != NULL)
-               {
-                  if(tcp -> RetryClientConnect())
-                  {
-                  
-                     SOCKET nn = socket; //(*it3).first;
-                     tcp -> SetRetryClientConnect(false);
-                     //TRACE("close() before retry client connect\n");
-                     p -> close(); // removes from m_fds_retry
-                     ::ca::smart_pointer < sockets::address > ad = p -> GetClientRemoteAddress();
-                     if(ad.m_p != NULL)
-                     {
-                        tcp -> open(*ad);
-                     }
-                     else
-                     {
-                        LogError(p, "RetryClientConnect", 0, "no address", ::gen::log::level::error);
-                     }
-                     add(p);
-                     m_fds_erase.add_tail(nn);
-                  }
-               }
-            }
-         }
-      }
-      // check close and delete - conditional event
-      if(m_fds_close.get_size())
-      {
-         socket_id_list tmp = m_fds_close;
-         //TRACE("m_fds_close.size() == %d\n", (int)m_fds_close.get_size());
-         POSITION pos = tmp.get_head_position();
-         while(pos != NULL)
-         {
-            SOCKET socket = tmp.get_next(pos);
-            class socket * p = NULL;
-            if(!m_sockets.Lookup(socket, p)) // not found
-            {
-               if(!m_add.Lookup(socket, p))
-               {
-                     LogError(NULL, "GetSocket/handler/8", (int)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
-               }
-            }
-            if (p)
-            {
-               if (p -> CloseAndDelete() )
-               {
-                  tcp_socket *tcp = dynamic_cast<tcp_socket *>(p);
-                  // new graceful tcp - flush and close timeout 5s
-                  if (tcp && p -> IsConnected() && tcp -> GetFlushBeforeClose() &&
-                     !tcp -> IsSSL() &&
-                     p -> TimeSinceClose() < 5)
-                  {
-   //TRACE(" close(1)\n");
-                     if (tcp -> GetOutputLength())
-                     {
-                        LogError(p, "Closing", (int)tcp -> GetOutputLength(), "Sending all data before closing", ::gen::log::level::info);
-                     }
-                     else // shutdown write when output buffer is is_empty
-                     if (!(tcp -> GetShutdown() & SHUT_WR))
-                     {
-                        if (socket != INVALID_SOCKET && shutdown(socket, SHUT_WR) == -1)
-                        {
-                           LogError(p, "graceful shutdown", Errno, StrError(Errno), ::gen::log::level::error);
-                        }
-                        tcp -> SetShutdown(SHUT_WR);
-                     }
-                  }
-                  else
-                  if (tcp && p -> IsConnected() && tcp -> Reconnect())
-                  {
-                     //SOCKET nn = *it; //(*it3).first;
-   //TRACE(" close(2) fd %d\n", socket);
-                     p -> SetCloseAndDelete(false);
-                     tcp -> SetIsReconnect();
-                     p -> SetConnected(false);
-                     //TRACE("close() before reconnect\n");
-                     p -> close(); // dispose of old file descriptor (open creates a new)
-                     p -> OnDisconnect();
-                     ::ca::smart_pointer <sockets::address> ad = p -> GetClientRemoteAddress();
-                     if (ad.m_p != NULL)
-                     {
-                        tcp -> open(*ad);
-                     }
-                     else
-                     {
-                        LogError(p, "Reconnect", 0, "no address", ::gen::log::level::error);
-                     }
-                     tcp -> ResetConnectionRetries();
-                     add(p);
-                     m_fds_erase.add_tail(socket);
-                  }
-                  else
-                  {
-                     //TRACE(" close(3) fd %d GetSocket() %d\n", socket, p -> GetSocket());
-                     if (tcp && p -> IsConnected() && tcp -> GetOutputLength())
-                     {
-                        LogError(p, "Closing", (int)tcp -> GetOutputLength(), "Closing socket while data still left to send", ::gen::log::level::warning);
-                     }
-                     if (p -> Retain() && !p -> Lost())
-                     {
-                        PoolSocket *p2 = new PoolSocket(*this, p);
-                        p2 -> SetDeleteByHandler();
-                        add(p2);
-                        //
-                        p -> SetCloseAndDelete(false); // added - remove from m_fds_close
-                     }
-                     else
-                     {
-                        Set(p -> GetSocket(),false,false,false);
-                        //TRACE("close() before OnDelete\n");
-                        p -> close();
-                     }
-                     p -> OnDelete();
-                     if (p -> DeleteByHandler())
-                     {
-                        p -> SetErasedByHandler();
-                     }
-
-                  }
-               }
-            }
-            m_fds_erase.add_tail(socket);
-         }
       }
 
-      // check erased sockets
-      while(m_fds_erase.get_size())
+      pos = m_sockets.get_start_position();
+
+
+
+      while(pos != NULL)
       {
-         SOCKET socket = m_fds_erase.remove_head();
-         m_fds_detach.remove(socket);
-         m_fds.remove(socket);
-         sockets::socket * psocket = NULL;
-         if(m_sockets.Lookup(socket, psocket))
+         s = 0;
+         psocket = NULL;
+         m_sockets.get_next_assoc(pos, s, psocket);
+         if(psocket != NULL)
          {
-            if(m_slave)
+            psocket->m_event.wait(seconds(tsel->tv_sec));
+            psocket->run();
+            if(psocket->m_bClose)
             {
-               if(psocket != NULL)
-               {
-                  try
-                  {
-                     delete psocket;
-                  }
-                  catch(...)
-                  {
-                  }
-               }
+               remove(psocket);
+//               delete psocket;
+               break;
             }
-            m_sockets.remove_key(socket);
-         }
-         check_max_fd = true;
-      }
-
-      // calculate max file descriptor for select() call
-      if (check_max_fd)
-      {
-         m_maxsock = m_fds.maximum(0);
-      }
-      // remove add's that fizzed
-      while(m_delete.get_size() > 0)
-      {
-         socket * p = m_delete.remove_head();
-         p -> OnDelete();
-         if (p -> DeleteByHandler()
-            && !(m_slave ^ p -> IsDetached())
-            )
-         {
-            p -> SetErasedByHandler();
-            bool again = false;
-            do
-            {
-               again = false;
-               POSITION posSrc = m_trigger_src.get_start_position();
-               while(posSrc != NULL)
-               {
-                  int id = 0;
-                  class socket *src = NULL;
-                  m_trigger_src.get_next_assoc(posSrc, id, src);
-                  if (src == p)
-                  {
-                     POSITION posDst = m_trigger_dst[id].get_start_position();
-                     while(posDst != NULL)
-                     {
-                        socket * dst = NULL;
-                        bool b = false;
-                        m_trigger_dst[id].get_next_assoc(posDst, dst, b);
-                        if (Valid(dst))
-                        {
-                           dst->OnCancelled(id);
-                        }
-                     }
-                     m_trigger_src.remove_key(id);
-                     m_trigger_dst.remove_key(id);
-                     again = true;
-                     break;
-                  }
-               }
-            } while (again);
-            delete p;
+//            psocket->step();
          }
       }
-      return n;*/
-
-         return 0;
+      return 0;
    }
 
 
@@ -1283,7 +740,6 @@ namespace sockets
          LogError(NULL, "Trigger", id, "Trigger id not found", ::gen::log::level::info);
       }
    }
-
 
 }
 

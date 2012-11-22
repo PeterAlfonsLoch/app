@@ -5,20 +5,36 @@ namespace sockets
 {
 
 
-   address::address(::ca::application * papp, const char * pszAddress, const char * pszServiceName)
+   address::address(::ca::application * papp, const char * pszAddress, const char * pszServiceName) :
+      ca(papp)
    {
 
-      m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
+      if(pszAddress == NULL)
+         m_hostname = nullptr;
+      else
+         m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
 
       m_strService   = rtstr(pszServiceName);
 
    }
 
 
-   address::address(::ca::application * papp, const char * pszAddress, int iPort)
+   address::address(::ca::application * papp, const char * pszAddress, int iPort) :
+      ca(papp)
    {
 
-      m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
+      try
+      {
+
+         m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
+
+      }
+      catch(...)
+      {
+
+         m_hostname = nullptr;
+
+      }
 
       m_strService   = itort(iPort);
 

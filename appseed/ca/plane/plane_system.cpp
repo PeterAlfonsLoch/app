@@ -16,7 +16,7 @@ namespace plane
       m_net(this)
    {
 
-
+      m_window                                  = nullptr;
       m_psystem                                 = this;
       set_app(this);
 
@@ -216,14 +216,24 @@ namespace plane
          return false;
       }
 
-      m_pmachineeventcentral = new class machine_event_central(this);
-      if(!m_pmachineeventcentral->initialize())
-         return false;
-      if(m_pmachineeventcentral->is_close_application())
-         return false;
+      if(m_pmachineeventcentral == NULL)
+      {
+
+         m_pmachineeventcentral = new class machine_event_central(this);
+         if(!m_pmachineeventcentral->initialize())
+            return false;
+         if(m_pmachineeventcentral->is_close_application())
+            return false;
+
+      }
 
 
-      m_pparserfactory = new colorertake5::ParserFactory(this);
+      if(m_pparserfactory == NULL)
+      {
+      
+         m_pparserfactory = new colorertake5::ParserFactory(this);
+
+      }
 
 
 
@@ -1409,7 +1419,11 @@ namespace plane
 
    void system::http_config_proxy(const char * pszUrl, ::sockets::http_tunnel * ptunnel)
    {
+#ifdef METROWIN
+      ptunnel->m_bDirect = true;
+#else
       http().config_proxy(pszUrl, ptunnel);
+#endif
    }
 
    bool system::base_support()
@@ -1498,6 +1512,9 @@ namespace plane
 
       }
 
+
+#ifndef METROWIN
+
       if(!System.directrix().m_varTopicQuery.has_property("install")
          && !System.directrix().m_varTopicQuery.has_property("uninstall")
          && strId.has_char()
@@ -1507,6 +1524,8 @@ namespace plane
          throw not_installed(get_app(), NULL, strBuildNumber, pszType, strApplicationId, m_strLocale, m_strSchema);
 
       }
+
+#endif
 
       ca2::library library(NULL);
 
@@ -1795,6 +1814,18 @@ retry:
 
    }
 
+   void system::get_cursor_pos(LPPOINT lppoint)
+   {
+#ifdef METROWIN
+      Windows::Foundation::Point p;
+      p = m_pwindow->get_cursor_pos();
+      lppoint->x = p.X;
+      lppoint->y = p.Y;
+#else
+      ::GetCursorPos(lppoint);
+#endif
+   }
+
 
    string system::get_host_location_url()
    {
@@ -1848,6 +1879,33 @@ retry:
 
    }
 
+#ifdef METROWIN
+
+      bool system::get_window_rect(LPRECT lprect)
+      {
+
+         Windows::Foundation::Rect rect;
+         try
+         {
+            rect = m_pwindow->get_window_rect();
+         }
+         catch(...)
+         {
+            return false;
+         }
+         
+         lprect->left = rect.X;
+         lprect->top = rect.Y;
+         lprect->right = lprect->left + rect.Width;
+         lprect->bottom = lprect->top + rect.Height;
+
+
+         return true;
+
+      }
+
+
+#endif
 
 } // namespace plane
 
