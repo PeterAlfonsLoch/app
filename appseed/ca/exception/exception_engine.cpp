@@ -144,7 +144,7 @@ namespace exception
    engine::engine(::ca::application * papp) :
       ca(papp)
 #ifdef WINDOWSEX
-      ,m_bOk(false),
+      ,m_bOk(false)
       ,m_pstackframe(NULL)
       ,m_iRef(0)
 #endif

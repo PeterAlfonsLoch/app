@@ -4,7 +4,7 @@ namespace user
 {
 
 #ifdef WINDOWSEX
-   //const unsigned int control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
+   const unsigned int control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
 #endif
 
    control::descriptor::descriptor()

@@ -28,9 +28,6 @@
       public:
 
 
-#ifdef METROWIN
-         ::Windows::Networking::Sockets::StreamSocketListener  ^ m_listener;
-#endif
          bool m_bDetach;
 
 
@@ -251,10 +248,10 @@
          }
 
          /** Return assigned port number. */
-         port_t GetPort()
-         {
-            return GetSockPort();
-         }
+//         port_t GetPort()
+  //       {
+    //        return GetSockPort();
+      //   }
 
          /** Return listen queue depth. */
          int GetDepth()
@@ -294,30 +291,7 @@
             tmp -> set_parent(this);
             tmp -> attach(a_s);
             tmp -> SetNonblocking(true);
-            {
-               if (sa_len == sizeof(struct sockaddr_in6))
-               {
-                  struct sockaddr_in6 *p = (struct sockaddr_in6 *)&sa;
-                  if (p -> sin6_family == AF_INET6)
-                  {
-                     ipv6_address ad(get_app(), p -> sin6_addr,ntohs(p -> sin6_port));
-                     ad.SetFlowinfo(p -> sin6_flowinfo);
-#ifndef _WIN32
-                     ad.SetScopeId(p -> sin6_scope_id);
-#endif
-                     tmp -> SetRemoteAddress(ad);
-                  }
-               }
-               if (sa_len == sizeof(struct sockaddr_in))
-               {
-                  struct sockaddr_in *p = (struct sockaddr_in *)&sa;
-                  if (p -> sin_family == AF_INET)
-                  {
-                     ipv4_address ad(get_app(), p->sin_addr, ntohs(p->sin_port));
-                     tmp -> SetRemoteAddress(ad);
-                  }
-               }
-            }
+            tmp->SetRemoteHostname(address(get_app(), sa, sa_len));
             tmp->m_iBindPort = m_iBindPort;
             tmp -> SetConnected(true);
             tmp -> Init();

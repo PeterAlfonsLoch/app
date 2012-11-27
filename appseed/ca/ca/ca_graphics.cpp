@@ -52,7 +52,7 @@ namespace ca
 
    */
 
-   void graphics::attach(void * pdata)
+   bool graphics::attach(void * pdata)
    {
       throw interface_only_exception(get_app());
    }

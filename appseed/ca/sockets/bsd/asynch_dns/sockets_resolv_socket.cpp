@@ -75,17 +75,17 @@ namespace sockets
    }
 
 
-   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, ipaddr_t a) :
+   resolv_socket::resolv_socket(socket_handler_base& h, socket *parent, in_addr a) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
       tcp_socket(h)
-   ,m_bServer(false)
-   ,m_parent(parent)
-   ,m_resolv_port(0)
-   ,m_resolv_address(a)
-   ,m_resolve_ipv6(false)
-   ,m_cached(false)
+      ,m_bServer(false)
+      ,m_parent(parent)
+      ,m_resolv_port(0)
+      ,m_resolv_address(a)
+      ,m_resolve_ipv6(false)
+      ,m_cached(false)
    {
       SetLineProtocol();
    }
@@ -211,8 +211,8 @@ namespace sockets
       {
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
-            ipaddr_t l;
-            System.net().u2ip(value, l); // ip2ipaddr_t
+            in_addr l;
+            System.net().convert(l, value); // ip2ipaddr_t
             m_parent -> OnResolved(m_resolv_id, l, m_resolv_port);
          }
          // update cache
@@ -230,7 +230,7 @@ namespace sockets
          if (Handler().Resolving(m_parent) || Handler().Valid(m_parent))
          {
             in6_addr a;
-            System.net().u2ip(value, a);
+            System.net().convert(value, a);
             m_parent -> OnResolved(m_resolv_id, a, m_resolv_port);
          }
          // update cache
@@ -251,11 +251,11 @@ namespace sockets
    TRACE(" *** resolv_socket::OnDetached(); query=%s, data=%s\n", m_query, m_data);
       if (m_query == "gethostbyname")
       {
-         struct sockaddr_in sa;
-         if (System.net().u2ip(m_data, sa))
+         struct in_addr sa;
+         if (System.net().convert(sa, m_data))
          {
             string ip;
-            System.net().l2ip(sa.sin_addr, ip);
+            System.net().convert(ip, sa);
             Send("A: " + ip + "\n");
          }
          else
@@ -266,11 +266,11 @@ namespace sockets
       }
       else if (m_query == "gethostbyname2")
       {
-         struct sockaddr_in6 sa;
-         if (System.net().u2ip(m_data, sa))
+         struct in6_addr sa;
+         if (System.net().convert(sa, m_data))
          {
             string ip;
-            System.net().l2ip(sa.sin6_addr, ip);
+            System.net().convert(ip, sa);
             Send("AAAA: " + ip + "\n");
          }
          else
@@ -284,8 +284,8 @@ namespace sockets
       {
          if (System.net().isipv4( m_data ))
          {
-            struct sockaddr_in sa;
-            if (!System.net().u2ip(m_data, sa, AI_NUMERICHOST))
+            struct in_addr sa;
+            if (!System.net().convert(sa, m_data, AI_NUMERICHOST))
             {
                Send("Failed: convert to sockaddr_in failed\n");
             }
@@ -304,8 +304,8 @@ namespace sockets
          }
          else if (System.net().isipv6( m_data ))
          {
-            struct sockaddr_in6 sa;
-            if (!System.net().u2ip(m_data, sa, AI_NUMERICHOST))
+            struct in6_addr sa;
+            if (!System.net().convert(sa, m_data, AI_NUMERICHOST))
             {
                Send("Failed: convert to sockaddr_in6 failed\n");
             }
@@ -351,14 +351,14 @@ namespace sockets
       if (m_resolve_ipv6)
       {
          string tmp;
-         System.net().l2ip(m_resolv_address6, tmp);
+         System.net().convert(tmp, m_resolv_address6);
          m_query = "gethostbyaddr";
          m_data = tmp;
          string msg = "gethostbyaddr " + tmp + "\n";
          Send( msg );
       }
       string tmp;
-      System.net().l2ip(m_resolv_address, tmp);
+      System.net().convert(tmp, m_resolv_address);
       m_query = "gethostbyaddr";
       m_data = tmp;
       string msg = "gethostbyaddr " + tmp + "\n";

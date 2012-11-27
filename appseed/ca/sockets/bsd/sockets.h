@@ -305,9 +305,9 @@ namespace sockets
 
 #include "ca/ca_log.h"
 
-#include "basic/address.h"
 #include "basic/ipv4_address.h"
 #include "basic/ipv6_address.h"
+#include "basic/address.h"
 #include "basic/sockets_ssl_client_context.h"
 #include "basic/sockets_ssl_client_context_map.h"
 #include "basic/socket.h"

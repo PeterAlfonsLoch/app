@@ -36,7 +36,7 @@ namespace userbase
    {
 #ifdef WINDOWSEX
       LOGFONT lf = {0};
-      wcscpy(lf.lfFaceName, L"Arial");
+      strcpy(lf.lfFaceName, "Arial");
       lf.lfHeight = 16;
       m_hfontRegular = CreateFontIndirect(&lf);
       lf.lfItalic = TRUE;

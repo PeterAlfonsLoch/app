@@ -49,10 +49,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 
-
-
 namespace sockets
 {
+
+
    // http://www.alhem.net/
    /** from C++ Sockets Library \file Utility.h
    **   \date  2004-02-13
@@ -84,16 +84,21 @@ namespace sockets
    Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
    */
 
+
    class CLASS_DECL_ca net :
       public ::radix::object
    {
    private:
-      string m_host; ///< local hostname
-      ipaddr_t m_ip; ///< local ip address
-      string m_addr; ///< local ip address in string format
-      string m_local_addr6; ///< local ip address in string format
-      struct in6_addr m_local_ip6; ///< local ipv6 address
-      bool m_local_resolved; ///< ResolveLocal has been called if true
+
+
+      string         m_host; ///< local hostname
+      in_addr        m_ip; ///< local ip address
+      string         m_addr; ///< local ip address in string format
+      string         m_local_addr6; ///< local ip address in string format
+      in6_addr       m_local_ip6; ///< local ipv6 address
+      bool           m_local_resolved; ///< ResolveLocal has been called if true
+
+
    public:
 
 
@@ -101,7 +106,7 @@ namespace sockets
       {
       public:
 
-         ipaddr_t       m_ipaddr;
+         in_addr       m_ipaddr;
          DWORD          m_dwLastChecked;
          bool           r;
 
@@ -129,18 +134,10 @@ namespace sockets
 
       bool isipv6(const string & str);
 
-      bool u2ip(const string & str, ::ipaddr_t& l, int ai_flags = 0);
-      bool u2ip(const string &, struct ::sockaddr_in& sa, int ai_flags = 0);
-
-      /** Hostname to ip resolution ipv6, not asynchronous. */
-      bool u2ip(const string & str, struct ::in6_addr& l, int ai_flags = 0);
-      bool u2ip(const string &, struct ::sockaddr_in6& sa, int ai_flags = 0);
-
-      void l2ip(const ::ipaddr_t ip, string & str);
-
-      void l2ip(const struct ::in_addr& ip, string & str);
-
-      void l2ip(const struct ::in6_addr& ip, string & str, bool mixed = false);
+      bool convert(struct ::in_addr& l, const string & str, int ai_flags = 0);
+      bool convert(struct ::in6_addr& l, const string & str, int ai_flags = 0);
+      bool convert(string & str, const struct ::in_addr& ip);
+      bool convert(string & str, const struct ::in6_addr& ip, bool mixed = false);
 
       int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
@@ -148,7 +145,7 @@ namespace sockets
 
       const string & GetLocalHostname();
 
-      ipaddr_t GetLocalIP();
+      in_addr GetLocalIP();
 
       const string & GetLocalAddress();
 
@@ -158,16 +155,27 @@ namespace sockets
 
       string Sa2String(sockaddr * psa);
 
-      sockets::address_sp CreateAddress(sockaddr * psa, socklen_t sa_len);
+      //sockets::address CreateAddress(sockaddr * psa, socklen_t sa_len);
 
       bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, int flags = 0);
 
       bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, string & service, int flags = 0);
 
+      bool reverse(string & number, const char * hostname, int flags);
+
+
       bool u2service(const string & name, int& service, int ai_flags);
+
+      int service_port(const char * psz, int flags = 0);
+
+      string  service_name(int iPort, int flags = 0);
 
    };
 
+
 } // namespace sockets
+
+
+
 
 

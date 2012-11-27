@@ -51,7 +51,6 @@ namespace sockets
    ,m_preverror(-1)
    ,m_errcnt(0)
    ,m_tlast(0)
-   ,m_socks4_host(0)
    ,m_socks4_port(0)
    ,m_bTryDirect(false)
    ,m_resolv_id(0)
@@ -60,6 +59,7 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
+      ZERO(m_socks4_host);
       FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
       FD_ZERO(&m_efds);
@@ -75,7 +75,6 @@ namespace sockets
    ,m_preverror(-1)
    ,m_errcnt(0)
    ,m_tlast(0)
-   ,m_socks4_host(0)
    ,m_socks4_port(0)
    ,m_bTryDirect(false)
    ,m_resolv_id(0)
@@ -84,6 +83,7 @@ namespace sockets
    ,m_next_trigger_id(0)
    ,m_slave(false)
    {
+      ZERO(m_socks4_host);
       m_mutex.lock();
       FD_ZERO(&m_rfds);
       FD_ZERO(&m_wfds);
@@ -668,10 +668,10 @@ namespace sockets
                      tcp -> SetRetryClientConnect(false);
                      //TRACE("close() before retry client connect\n");
                      p -> close(); // removes from m_fds_retry
-                     ::ca::smart_pointer < sockets::address > ad = p -> GetClientRemoteAddress();
-                     if(ad.m_p != NULL)
+                     sockets::address ad = p -> GetClientRemoteAddress();
+                     if(ad.is_valid())
                      {
-                        tcp -> open(*ad);
+                        tcp -> open(ad);
                      }
                      else
                      {
@@ -737,10 +737,10 @@ namespace sockets
                      //TRACE("close() before reconnect\n");
                      p -> close(); // dispose of old file descriptor (open creates a new)
                      p -> OnDisconnect();
-                     ::ca::smart_pointer <sockets::address> ad = p -> GetClientRemoteAddress();
-                     if (ad.m_p != NULL)
+                     address ad = p -> GetClientRemoteAddress();
+                     if (ad.is_valid())
                      {
-                        tcp -> open(*ad);
+                        tcp -> open(ad);
                      }
                      else
                      {
@@ -899,7 +899,7 @@ namespace sockets
    }
 
 
-   void socket_handler::SetSocks4Host(ipaddr_t a)
+   void socket_handler::SetSocks4Host(in_addr a)
    {
       m_socks4_host = a;
    }
@@ -907,7 +907,7 @@ namespace sockets
 
    void socket_handler::SetSocks4Host(const string & host)
    {
-      System.net().u2ip(host, m_socks4_host);
+      System.net().convert(m_socks4_host, host);
    }
 
 
@@ -929,8 +929,8 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, host, port);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
+      in_addr local;
+      System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
@@ -948,8 +948,8 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, host, port, true);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
+      in_addr local;
+      System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
@@ -960,14 +960,14 @@ namespace sockets
    }
 
 
-   int socket_handler::Resolve(socket *p,ipaddr_t a)
+   int socket_handler::Resolve(socket *p,in_addr a)
    {
       // check cache
       resolv_socket *resolv = new resolv_socket(*this, p, a);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
+      in_addr local;
+      System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
@@ -984,8 +984,8 @@ namespace sockets
       resolv_socket *resolv = new resolv_socket(*this, p, a);
       resolv -> SetId(++m_resolv_id);
       resolv -> SetDeleteByHandler();
-      ipaddr_t local;
-      System.net().u2ip("127.0.0.1", local);
+      in_addr local;
+      System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
          LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
@@ -1017,7 +1017,7 @@ namespace sockets
    }
 
 
-   ipaddr_t socket_handler::GetSocks4Host()
+   in_addr socket_handler::GetSocks4Host()
    {
       return m_socks4_host;
    }
@@ -1062,7 +1062,7 @@ namespace sockets
             if (pools -> GetSocketType() == type &&
                 pools -> GetSocketProtocol() == protocol &&
    // %!             pools -> GetClientRemoteAddress() &&
-                *pools -> GetClientRemoteAddress() == ad)
+                pools -> GetClientRemoteAddress() == ad)
             {
                m_sockets.remove_key(ppair->m_key);
                pools -> SetRetain(); // avoid close in socket destructor

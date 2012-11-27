@@ -16,7 +16,9 @@ namespace plane
       m_net(this)
    {
 
+#ifdef METROWIN
       m_window                                  = nullptr;
+#endif
       m_psystem                                 = this;
       set_app(this);
 

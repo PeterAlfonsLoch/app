@@ -83,7 +83,7 @@ namespace ca
       virtual bool is_set();
 
       virtual void * get_os_data() const;
-      virtual void attach(void * pdata);
+      virtual bool attach(void * pdata);
       virtual void * detach();
 
 

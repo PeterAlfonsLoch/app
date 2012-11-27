@@ -15,5 +15,24 @@ inline void * zero_memory(void * p, size_t iSize) { memset(p, 0, iSize); return 
 inline void * zeroe(void * p, size_t iSize) { memset(p, 0, iSize); return p; }
 inline void * zero(void * p, size_t iSize) { memset(p, 0, iSize); return p; }
 
+inline bool is_zero(void * p, size_t iSize)
+{ 
+   byte * pb = (byte *) p; 
+   while(*pb == '\0' && iSize > 0)
+   {
+      pb++; 
+      iSize--;
+   }
+   return iSize == 0;
+}
+
+
+#define ZEROP(px) zero(px, sizeof(*px));
+#define ZERO(x) zero(&x, sizeof(x));
+#define IS_ZEROP(px) (is_zero(px, sizeof(*px)))
+#define IS_ZERO(x) (is_zero(&x, sizeof(x)))
+#define ISNT_ZEROP(px) (!IS_ZEROP(px))
+#define ISNT_ZERO(x) (!IS_ZERO(x))
+
 
 

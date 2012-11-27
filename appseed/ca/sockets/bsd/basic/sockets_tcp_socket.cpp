@@ -156,31 +156,31 @@ namespace sockets
    }
 
 
-   bool tcp_socket::open(ipaddr_t ip,port_t port,bool skip_socks)
+   bool tcp_socket::open(in_addr ip,port_t port,bool skip_socks)
    {
-      ipv4_address ad(get_app(), ip, port);
-      ipv4_address local(get_app());
+      address ad(get_app(), ip, port);
+      address local(get_app());
       return open(ad, local, skip_socks);
    }
 
 
    bool tcp_socket::open(in6_addr ip,port_t port,bool skip_socks)
    {
-      ipv6_address ad(get_app(), ip, port);
+      address ad(get_app(), ip, port);
       return open(ad, skip_socks);
    }
 
 
    bool tcp_socket::open(sockets::address& ad,bool skip_socks)
    {
-      ipv4_address bind_ad(get_app(), "0.0.0.0", 0);
+      address bind_ad(get_app(), "0.0.0.0", 0);
       return open(ad, bind_ad, skip_socks);
    }
 
 
    bool tcp_socket::open(sockets::address& ad,sockets::address& bind_ad,bool skip_socks)
    {
-      if (!ad.IsValid())
+      if (!ad.is_valid())
       {
          Handler().LogError(this, "open", 0, "Invalid sockets::address", ::gen::log::level::fatal);
          SetCloseAndDelete();
@@ -225,26 +225,26 @@ namespace sockets
       SetIsClient(); // client because we connect
       SetClientRemoteAddress(ad);
       int n = 0;
-      if (bind_ad.GetPort() != 0)
+      if (bind_ad.get_service_number() != 0)
       {
-         bind(s, bind_ad, bind_ad);
+         bind(s, bind_ad.sa(), bind_ad.sa_len());
       }
-      if (!skip_socks && GetSocks4Host() && GetSocks4Port())
+      if (!skip_socks && ISNT_ZERO(GetSocks4Host()) && GetSocks4Port())
       {
-         ipv4_address sa(get_app(), GetSocks4Host(), GetSocks4Port());
+         address sa(get_app(), GetSocks4Host(), GetSocks4Port());
          {
             string sockshost;
-            System.net().l2ip(GetSocks4Host(), sockshost);
+            System.net().convert(sockshost, GetSocks4Host());
             Handler().LogError(this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + gen::str::from(GetSocks4Port()), ::gen::log::level::info);
          }
          SetSocks4();
-         n = connect(s, sa, sa);
-         SetRemoteAddress(sa);
+         n = connect(s, sa.sa(), sa.sa_len());
+         SetRemoteHostname(sa);
       }
       else
       {
-         n = connect(s, ad, ad);
-         SetRemoteAddress(ad);
+         n = connect(s, ad.sa(), ad.sa_len());
+         SetRemoteHostname(ad);
       }
       if (n == -1)
       {
@@ -302,13 +302,13 @@ namespace sockets
          if (!Handler().ResolverEnabled() || System.net().isipv6(host) )
          {
             in6_addr a;
-            if (!System.net().u2ip(host, a))
+            if (!System.net().convert(a, host))
             {
                SetCloseAndDelete();
                return false;
             }
-            ipv6_address ad(get_app(), a, port);
-            ipv6_address local(get_app());
+            address ad(get_app(), a, port);
+            address local(get_app());
             if(!open(ad, local))
                return false;
             m_strHost = host;
@@ -320,14 +320,14 @@ namespace sockets
       }
       if (!Handler().ResolverEnabled() || System.net().isipv4(host) )
       {
-         ipaddr_t l;
-         if (!System.net().u2ip(host, l))
+         in_addr l;
+         if (!System.net().convert(l, host))
          {
             SetCloseAndDelete();
             return false;
          }
-         ipv4_address ad(get_app(), l, port);
-         ipv4_address local(get_app());
+         address ad(get_app(), l, port);
+         address local(get_app());
          m_strHost = host;
          if(!open(ad, local))
             return false;
@@ -341,15 +341,15 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnResolved(int id,ipaddr_t a,port_t port)
+   void tcp_socket::OnResolved(int id,in_addr & a,port_t port)
    {
    TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, a, port);
       if (id == m_resolver_id)
       {
-         if (a && port)
+         if (ISNT_ZERO(a) && port)
          {
-            ipv4_address ad(get_app(), a, port);
-            ipv4_address local(get_app());
+            address ad(get_app(), a, port);
+            address local(get_app());
             if (open(ad, local))
             {
                if (!Handler().Valid(this))
@@ -376,10 +376,10 @@ namespace sockets
    {
       if (id == m_resolver_id)
       {
-         ipv6_address ad(get_app(), a, port);
-         if (ad.IsValid())
+         address ad(get_app(), a, port);
+         if (ad.is_valid())
          {
-            ipv6_address local(get_app());
+            address local(get_app());
             if (open(ad, local))
             {
                if (!Handler().Valid(this))
@@ -820,10 +820,10 @@ namespace sockets
       request[0] = 4; // socks v4
       request[1] = 1; // command code: CONNECT
       {
-         ::ca::smart_pointer < sockets::address > ad = GetClientRemoteAddress();
-         if(ad.m_p != NULL)
+         address ad = GetClientRemoteAddress();
+         if(ad.is_valid())
          {
-            struct sockaddr *p0 = (struct sockaddr *)*ad;
+            struct sockaddr *p0 = (struct sockaddr *)ad.sa();
             struct sockaddr_in *p = (struct sockaddr_in *)p0;
             if (p -> sin_family == AF_INET)
             {

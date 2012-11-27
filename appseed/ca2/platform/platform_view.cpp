@@ -246,7 +246,7 @@ namespace platform
 
 #ifndef METROWIN
 
-      pszSessionName = getenv("sessionname")
+      pszSessionName = getenv("sessionname");
 
 #endif
 

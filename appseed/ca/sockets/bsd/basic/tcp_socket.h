@@ -137,7 +137,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param ip IP address
          \param port Port number
          \param skip_socks Do not use socks4 even if configured */
-         bool open(ipaddr_t ip,port_t port,bool skip_socks = false);
+         bool open(in_addr ip,port_t port,bool skip_socks = false);
          /** open connection.
          \param ip Ipv6 address
          \param port Port number
@@ -204,8 +204,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool OnSocks4Read();
 
          /** Callback executed when resolver thread has finished a resolve request. */
-         void OnResolved(int id, const address & addr);
-         //void OnResolved(int id,in6_addr& a,port_t port);
+         void OnResolved(int id, in_addr & addr, port_t port);
+         void OnResolved(int id,in6_addr& a,port_t port);
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
          void OnSSLConnect();
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */

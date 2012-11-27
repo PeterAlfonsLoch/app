@@ -22239,7 +22239,7 @@ afp_end_lock:
 #if OS_WINCE || defined(METROWIN)
             return SQLITE_NOMEM;
 #else
-            h = CreateFileA((char*)zConverted,
+            h = create_file(zName,
                dwDesiredAccess,
                dwShareMode,
                NULL,
@@ -22324,7 +22324,7 @@ afp_end_lock:
 #else
             do{
                DeleteFileA((LPCSTR) zConverted);
-            }while(file_exists_dup(zFilename))
+            }while(file_exists_dup(zFilename)
                && cnt++ < MX_DELETION_ATTEMPTS && (Sleep(100), 1) );
 #endif
          }

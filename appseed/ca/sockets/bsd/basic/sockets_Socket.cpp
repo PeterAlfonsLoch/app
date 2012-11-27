@@ -65,8 +65,8 @@ namespace sockets
    ,m_bConnected(false)
    ,m_bErasedByHandler(false)
    ,m_timeClose(0)
-   ,m_addressRemoteClient()
-   ,m_addressRemote()
+   ,m_addressRemoteClient(h.get_app())
+   ,m_addressRemote(h.get_app())
    ,m_pfileTrafficMonitor(NULL)
    ,m_bLost(false)
    ,m_bEnableSsl(false)
@@ -252,17 +252,15 @@ namespace sockets
    }
 
 
-   void socket::SetRemoteAddress(sockets::address & ad) //struct sockaddr* sa, socklen_t l)
+   void socket::SetRemoteHostname(const sockets::address & ad) //struct sockaddr* sa, socklen_t l)
    {
-      m_addressRemote(System.cast_clone < sockets::address > (&ad));
+      m_addressRemote = ad;
    }
 
 
-   sockets::address_sp socket::GetRemoteSocketAddress()
+   sockets::address socket::GetRemoteHostname()
    {
-      sockets::address_sp addr;
-      addr(dynamic_cast < sockets::address * > (System.clone(m_addressRemote.m_p)));
-      return addr;
+      return m_addressRemote;
    }
 
 
@@ -280,7 +278,7 @@ namespace sockets
    }
 
 
-   ipaddr_t socket::GetRemoteIP4()
+/*   ipaddr_t socket::GetRemoteIP4()
    {
       ipaddr_t l = 0;
       if(m_bIpv6)
@@ -294,10 +292,10 @@ namespace sockets
          memcpy(&l, &sa -> sin_addr, sizeof(struct in_addr));
       }
       return l;
-   }
+   }*/
 
 
-   struct in6_addr socket::GetRemoteIP6()
+   /*struct in6_addr socket::GetRemoteIP6()
    {
       if(!m_bIpv6)
       {
@@ -314,36 +312,22 @@ namespace sockets
          memset(&fail, 0, sizeof(struct sockaddr_in6));
       }
       return fail.sin6_addr;
-   }
+   }*/
 
 
    port_t socket::GetRemotePort()
    {
-      if(m_addressRemote.m_p == NULL)
+/*      if(m_addressRemote.m_p == NULL)
       {
          return 0;
-      }
-      return m_addressRemote -> GetPort();
+      }*/
+      return m_addressRemote.get_service_number();
    }
 
 
-   string socket::GetRemoteAddress()
+   address socket::GetRemoteAddress()
    {
-      if(m_addressRemote.m_p == NULL)
-      {
-         return "";
-      }
-      return m_addressRemote -> Convert(false);
-   }
-
-
-   string socket::GetRemoteHostname()
-   {
-      if(m_addressRemote.m_p == NULL)
-      {
-         return "";
-      }
-      return m_addressRemote -> Reverse();
+      return m_addressRemote;
    }
 
 
@@ -560,21 +544,21 @@ namespace sockets
 
    void socket::SetClientRemoteAddress(sockets::address& ad)
    {
-      if (!ad.IsValid())
+      if (!ad.is_valid())
       {
          Handler().LogError(this, "SetClientRemoteAddress", 0, "remote address not valid", ::gen::log::level::error);
       }
-      m_addressRemoteClient = System.cast_clone < sockets::address > (&ad);
+      m_addressRemoteClient = ad;
    }
 
 
-   ::ca::smart_pointer < sockets::address > socket::GetClientRemoteAddress()
+   address socket::GetClientRemoteAddress()
    {
-      if (m_addressRemoteClient.m_p == NULL)
+      if (!m_addressRemoteClient.is_valid())
       {
          Handler().LogError(this, "GetClientRemoteAddress", 0, "remote address not yet set", ::gen::log::level::error);
       }
-      return System.cast_clone < sockets::address > (m_addressRemoteClient.m_p);
+      return m_addressRemoteClient;
    }
 
 
@@ -662,8 +646,8 @@ namespace sockets
       SetSocketType( sock -> GetSocketType() );
       SetSocketProtocol( sock -> GetSocketProtocol() );
 
-      SetClientRemoteAddress( *sock -> GetClientRemoteAddress() );
-      SetRemoteAddress( *sock -> GetRemoteSocketAddress() );
+      SetClientRemoteAddress(sock -> GetClientRemoteAddress() );
+      SetRemoteHostname(sock -> GetRemoteHostname() );
    }
 
 
@@ -730,7 +714,7 @@ namespace sockets
 
    void socket::SetSocks4Host(const string & host)
    {
-      System.net().u2ip(host, m_socks4_host);
+      System.net().convert(m_socks4_host, host);
    }
 
 
@@ -746,7 +730,7 @@ namespace sockets
    }
 
 
-   void socket::SetSocks4Host(ipaddr_t a)
+   void socket::SetSocks4Host(in_addr a)
    {
       m_socks4_host = a;
    }
@@ -764,7 +748,7 @@ namespace sockets
    }
 
 
-   ipaddr_t socket::GetSocks4Host()
+   in_addr socket::GetSocks4Host()
    {
       return m_socks4_host;
    }
@@ -892,7 +876,7 @@ namespace sockets
    }
 
 
-   int socket::Resolve(ipaddr_t a)
+   int socket::Resolve(in_addr a)
    {
       return Handler().Resolve(this, a);
    }
@@ -904,7 +888,7 @@ namespace sockets
    }
 
 
-   void socket::OnResolved(int,ipaddr_t,port_t)
+   void socket::OnResolved(int,in_addr,port_t)
    {
    }
 
@@ -1742,7 +1726,7 @@ namespace sockets
 
 
    /** Returns local port number for bound socket file descriptor. */
-   port_t socket::GetSockPort()
+   port_t socket::GetLocalPort()
    {
       if (IsIpv6())
       {
@@ -1761,40 +1745,7 @@ namespace sockets
 
 
    /** Returns local ipv4 address for bound socket file descriptor. */
-   ipaddr_t socket::GetSockIP4()
-   {
-      if (IsIpv6())
-      {
-         return 0;
-      }
-      struct sockaddr_in sa;
-      socklen_t sockaddr_length = sizeof(struct sockaddr_in);
-      if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
-         memset(&sa, 0, sizeof(sa));
-      ipaddr_t a;
-      memcpy(&a, &sa.sin_addr, 4);
-      return a;
-   }
-
-
-   /** Returns local ipv4 address as text for bound socket file descriptor. */
-   string socket::GetSockAddress()
-   {
-      if (IsIpv6())
-      {
-         return "";
-      }
-      struct sockaddr_in sa;
-      socklen_t sockaddr_length = sizeof(struct sockaddr_in);
-      if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
-         memset(&sa, 0, sizeof(sa));
-      ipv4_address addr(get_app(), sa);
-      return addr.Convert();
-   }
-
-
-   /** Returns local ipv6 address for bound socket file descriptor. */
-   struct in6_addr socket::GetSockIP6()
+   address socket::GetLocalAddress()
    {
       if (IsIpv6())
       {
@@ -1802,28 +1753,15 @@ namespace sockets
          socklen_t sockaddr_length = sizeof(struct sockaddr_in6);
          if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
             memset(&sa, 0, sizeof(sa));
-         return sa.sin6_addr;
+         return address(get_app(), sa.sin6_addr, GetRemotePort());
       }
-      struct in6_addr a;
-      memset(&a, 0, sizeof(a));
-      return a;
+      struct sockaddr_in sa;
+      socklen_t sockaddr_length = sizeof(struct sockaddr_in);
+      if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
+         memset(&sa, 0, sizeof(sa));
+      return address(get_app(), sa.sin_addr, GetRemotePort());
    }
 
-
-   /** Returns local ipv6 address as text for bound socket file descriptor. */
-   string socket::GetSockAddress6()
-   {
-      if (IsIpv6())
-      {
-         struct sockaddr_in6 sa;
-         socklen_t sockaddr_length = sizeof(struct sockaddr_in6);
-         if (getsockname(GetSocket(), (struct sockaddr *)&sa, (socklen_t*)&sockaddr_length) == -1)
-            memset(&sa, 0, sizeof(sa));
-         ipv6_address addr(get_app(), sa);
-         return addr.Convert();
-      }
-      return "";
-   }
 
    void socket::OnRead( char *buf, size_t n )
    {

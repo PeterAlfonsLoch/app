@@ -31,7 +31,7 @@ namespace sockets
 
    ipv6_address::ipv6_address(::ca::application * papp, port_t port) :
       ca(papp),
-      m_valid(true)
+      m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin6_family = AF_INET6;
@@ -39,9 +39,9 @@ namespace sockets
    }
 
 
-   ipv6_address::ipv6_address(::ca::application * papp, in6_addr& a,port_t port) :
+   ipv6_address::ipv6_address(::ca::application * papp, const in6_addr& a,port_t port) :
       ca(papp),
-      m_valid(true)
+      m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin6_family = AF_INET6;
@@ -61,27 +61,27 @@ namespace sockets
 
    ipv6_address::ipv6_address(::ca::application * papp, const string & host, port_t port) :
       ca(papp),
-      m_valid(false)
+      m_bValid(false)
    {
       memset(&m_addr, 0, sizeof(m_addr));
       m_addr.sin6_family = AF_INET6;
       m_addr.sin6_port = htons( port );
       {
          struct in6_addr a;
-         if(System.net().u2ip(host, a))
+         if(System.net().convert(a, host))
          {
             m_addr.sin6_addr = a;
-            m_valid = true;
+            m_bValid = true;
          }
       }
    }
 
 
-   ipv6_address::ipv6_address(::ca::application * papp, sockaddr_in6 & sa) :
+   ipv6_address::ipv6_address(::ca::application * papp, const sockaddr_in6 & sa) :
       ca(papp)
    {
       m_addr = sa;
-      m_valid = sa.sin6_family == AF_INET6;
+      m_bValid = sa.sin6_family == AF_INET6;
    }
 
 
@@ -114,20 +114,16 @@ namespace sockets
    }
 
 
-   bool ipv6_address::Resolve(::ca::application * papp, const string & hostname,struct in6_addr& a)
+/*   bool ipv6_address::Resolve(::ca::application * papp, const string & hostname,struct in6_addr& a)
    {
-      struct sockaddr_in6 sa;
-      memset(&a, 0, sizeof(a));
       if(Sys(papp->m_psystem).net().isipv6(hostname))
       {
-         if(!Sys(papp->m_psystem).net().u2ip(hostname, sa, AI_NUMERICHOST))
+         if(!Sys(papp->m_psystem).net().convert(a, hostname, AI_NUMERICHOST))
             return false;
-         a = sa.sin6_addr;
          return true;
       }
-      if(!Sys(papp->m_psystem).net().u2ip(hostname, sa))
+      if(!Sys(papp->m_psystem).net().convert(a, hostname))
          return false;
-      a = sa.sin6_addr;
       return true;
    }
 
@@ -147,10 +143,10 @@ namespace sockets
       if (include_port)
          return Convert(get_app(), m_addr.sin6_addr) + ":" + gen::str::from(GetPort());
       return Convert(get_app(), m_addr.sin6_addr);
-   }
+   }*/
 
 
-   string ipv6_address::Convert(::ca::application * papp, struct in6_addr& a,bool mixed)
+/*   string ipv6_address::Convert(::ca::application * papp, struct in6_addr& a,bool mixed)
    {
       char slask[100]; // l2ip temporary
       *slask = 0;
@@ -195,7 +191,7 @@ namespace sockets
          return name;
       }
       return slask;
-   }
+   }*/
 
 
    void ipv6_address::SetAddress(struct sockaddr *sa)
@@ -238,11 +234,11 @@ namespace sockets
 
    bool ipv6_address::IsValid()
    {
-      return m_valid;
+      return m_bValid;
    }
 
 
-   bool ipv6_address::operator==(sockets::address& a)
+/*   bool ipv6_address::operator==(sockets::address& a)
    {
       if (a.GetFamily() != GetFamily())
          return false;
@@ -255,12 +251,12 @@ namespace sockets
       if (memcmp(&p -> sin6_addr, &m_addr.sin6_addr, sizeof(struct in6_addr)))
          return false;
       return true;
-   }
+   }*/
 
    string ipv6_address::Reverse()
    {
       string tmp;
-      Reverse(get_app(), m_addr.sin6_addr, tmp);
+      System.net().reverse((sockaddr *) &m_addr, sizeof(m_addr), tmp);
       return tmp;
    }
 
@@ -269,10 +265,33 @@ namespace sockets
       if(&addr != this)
       {
          m_addr = addr.m_addr;
-         m_valid = addr.m_valid;
+         m_bValid = addr.m_bValid;
 
       }
       return *this;
+   }
+
+   bool ipv6_address::IsEqual(const ipv6_address &a ) const
+   {
+      
+      if(!m_bValid || !a.m_bValid)
+         return false;
+
+      return !memcmp(&m_addr, &a.m_addr, sizeof(m_addr));
+
+   }
+
+   string ipv6_address::get_display_number() const
+   {
+      return ::to_string(&m_addr.sin6_addr);
+   }
+
+   string ipv6_address::get_canonical_name() const
+   {
+      string str;
+      if(!System.net().convert(str, m_addr.sin6_addr))
+         return "";
+      return str;
    }
 
 } // namespace sockets

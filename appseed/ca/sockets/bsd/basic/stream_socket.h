@@ -13,9 +13,6 @@
       public:
 
 
-#ifdef METROWIN
-         ::Windows::Networking::Sockets::StreamSocket ^ m_streamsocket;
-#endif
          bool m_bConnecting; ///< Flag indicating connection in progress
          int m_connect_timeout; ///< Connection timeout (seconds)
          bool m_flush_before_close; ///< Send all data before closing (default true)

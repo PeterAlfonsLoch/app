@@ -69,10 +69,10 @@ namespace sockets
       if (IsIpv6())
       {
          ipv6_address ad(get_app(), port);
-         return Bind(ad, range);
+         return Bind((in6_addr) ad.m_addr.sin6_addr, ad.m_addr.sin6_port, range);
       }
       ipv4_address ad(get_app(), port);
-      return Bind(ad, range);
+      return Bind((in_addr)  ad.m_addr.sin_addr, ad.m_addr.sin_port, range);
    }
 
 
@@ -83,7 +83,7 @@ namespace sockets
          ipv6_address ad(get_app(), intf, port);
          if (ad.IsValid())
          {
-            return Bind(ad, range);
+            return Bind((in6_addr) ad.m_addr.sin6_addr, ad.m_addr.sin6_port, range);
          }
          SetCloseAndDelete();
          return -1;
@@ -91,23 +91,23 @@ namespace sockets
       ipv4_address ad(get_app(), intf, port);
       if (ad.IsValid())
       {
-         return Bind(ad, range);
+         return Bind((in_addr)  ad.m_addr.sin_addr, ad.m_addr.sin_port, range);
       }
       SetCloseAndDelete();
       return -1;
    }
 
 
-   int udp_socket::Bind(ipaddr_t a, port_t &port, int range)
+   int udp_socket::Bind(in_addr a, port_t &port, int range)
    {
-      ipv4_address ad(get_app(), a, port);
+      address ad(get_app(), a, port);
       return Bind(ad, range);
    }
 
 
    int udp_socket::Bind(in6_addr a, port_t &port, int range)
    {
-      ipv6_address ad(get_app(), a, port);
+      address ad(get_app(), a, port);
       return Bind(ad, range);
    }
 
@@ -121,22 +121,22 @@ namespace sockets
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         int n = bind(GetSocket(), ad, ad);
+         int n = bind(GetSocket(), ad.sa(), ad.sa_len());
          int tries = range;
          while (n == -1 && tries--)
          {
-            ad.SetPort(ad.GetPort() + 1);
-            n = bind(GetSocket(), ad, ad);
+            ad.set_service_number(ad.get_service_number() + 1);
+            n = bind(GetSocket(), ad.sa(), ad.sa_len());
          }
          if (n == -1)
          {
             Handler().LogError(this, "bind", Errno, StrError(Errno), ::gen::log::level::fatal);
             SetCloseAndDelete();
-            throw simple_exception(get_app(), "bind() failed for udp_socket, port:range: " + ::gen::str::from(ad.GetPort()) + ":" + ::gen::str::from(range));
+            throw simple_exception(get_app(), "bind() failed for udp_socket, port:range: " + ::gen::str::from(ad.get_service_number()) + ":" + ::gen::str::from(range));
             return -1;
          }
          m_bind_ok = true;
-         m_port = ad.GetPort();
+         m_port = ad.get_service_number();
          return 0;
       }
       return -1;
@@ -144,36 +144,25 @@ namespace sockets
 
 
    /** if you wish to use Send, first open a connection */
-   bool udp_socket::open(ipaddr_t l, port_t port)
+   bool udp_socket::open(in_addr l, port_t port)
    {
-      ipv4_address ad(get_app(), l, port);
+      address ad(get_app(), l, port);
       return open(ad);
    }
 
 
    bool udp_socket::open(const string & host, port_t port)
    {
-      if (IsIpv6())
-      {
-         ipv6_address ad(get_app(), host, port);
-         if (ad.IsValid())
-         {
-            return open(ad);
-         }
+      address ad(get_app(), host, port);
+      if(!ad.is_valid())
          return false;
-      }
-      ipv4_address ad(get_app(), host, port);
-      if (ad.IsValid())
-      {
-         return open(ad);
-      }
-      return false;
+      return open(ad);
    }
 
 
    bool udp_socket::open(struct in6_addr& a, port_t port)
    {
-      ipv6_address ad(get_app(), a, port);
+      address ad(get_app(), a, port);
       return open(ad);
    }
 
@@ -187,7 +176,7 @@ namespace sockets
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         if (connect(GetSocket(), ad, ad) == -1)
+         if (connect(GetSocket(), ad.sa(), ad.sa_len()) == -1)
          {
             Handler().LogError(this, "connect", Errno, StrError(Errno), ::gen::log::level::fatal);
             SetCloseAndDelete();
@@ -232,39 +221,24 @@ namespace sockets
    /** send to specified address */
    void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int len, int flags)
    {
-      if (IsIpv6())
-      {
-         ipv6_address ad(get_app(), h, p);
-         if (ad.IsValid())
-         {
-            SendToBuf(ad, data, len, flags);
-         }
-         return;
-      }
-      ipv4_address ad(get_app(), h, p);
-      if (ad.IsValid())
-      {
-         SendToBuf(ad, data, len, flags);
-      }
+      SendToBuf(address(get_app(), h, p), data, len, flags);
    }
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(ipaddr_t a, port_t p, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(const in_addr & a, port_t p, const char *data, int len, int flags)
    {
-      ipv4_address ad(get_app(), a, p);
-      SendToBuf(ad, data, len, flags);
+      SendToBuf(address(get_app(), a, p), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(in6_addr a, port_t p, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(const in6_addr & a, port_t p, const char *data, int len, int flags)
    {
-      ipv6_address ad(get_app(), a, p);
-      SendToBuf(ad, data, len, flags);
+      SendToBuf(address(get_app(), a, p), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(sockets::address& ad, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(const sockets::address & ad, const char *data, int len, int flags)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -273,7 +247,7 @@ namespace sockets
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad, ad)) == -1)
+         if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), ad.sa_len())) == -1)
          {
             Handler().LogError(this, "sendto", Errno, StrError(Errno), ::gen::log::level::error);
          }
@@ -637,7 +611,7 @@ namespace sockets
       {
          struct ipv6_mreq x;
          struct in6_addr addr;
-         if (System.net().u2ip( group, addr ))
+         if (System.net().convert( addr, group ))
          {
             x.ipv6mr_multiaddr = addr;
             x.ipv6mr_interface = if_index;
@@ -649,11 +623,11 @@ namespace sockets
          return;
       }
       struct ip_mreq x; // ip_mreqn
-      ipaddr_t addr;
-      if (System.net().u2ip( group, addr ))
+      in_addr addr;
+      if (System.net().convert(addr,  group ))
       {
          memcpy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-         System.net().u2ip( local_if, addr);
+         System.net().convert(addr,  local_if);
          memcpy(&x.imr_interface.s_addr, &addr, sizeof(addr));
    //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_ADD_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)
@@ -674,7 +648,7 @@ namespace sockets
       {
          struct ipv6_mreq x;
          struct in6_addr addr;
-         if (System.net().u2ip( group, addr ))
+         if (System.net().convert(addr, group))
          {
             x.ipv6mr_multiaddr = addr;
             x.ipv6mr_interface = if_index;
@@ -686,11 +660,11 @@ namespace sockets
          return;
       }
       struct ip_mreq x; // ip_mreqn
-      ipaddr_t addr;
-      if (System.net().u2ip( group, addr ))
+      in_addr addr;
+      if (System.net().convert(addr, group))
       {
          memcpy(&x.imr_multiaddr.s_addr, &addr, sizeof(addr));
-         System.net().u2ip( local_if, addr);
+         System.net().convert(addr, local_if);
          memcpy(&x.imr_interface.s_addr, &addr, sizeof(addr));
    //      x.imr_ifindex = if_index;
          if (setsockopt(GetSocket(), SOL_IP, IP_DROP_MEMBERSHIP, (char *)&x, sizeof(struct ip_mreq)) == -1)

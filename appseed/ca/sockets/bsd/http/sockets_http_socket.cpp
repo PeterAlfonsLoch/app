@@ -157,7 +157,7 @@ namespace sockets
    {
       if (m_bFirst)
       {
-         m_request.lowattr(__str(remote_addr)) = GetRemoteSocketAddress()->Convert(false);
+         m_request.lowattr(__str(remote_addr)) = GetRemoteAddress().get_display_number();
          {
 #ifdef WINDOWS
 
@@ -530,7 +530,7 @@ namespace sockets
       m_bEnableSsl      = psocket->m_bEnableSsl;
       m_bConnected      = psocket->m_bConnected;
 
-      SetRemoteAddress(psocket->GetRemoteSocketAddress());
+      SetRemoteHostname(psocket->GetRemoteHostname());
 
 
    }

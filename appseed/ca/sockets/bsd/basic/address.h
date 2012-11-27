@@ -24,52 +24,61 @@ namespace sockets
       virtual public ::radix::object
    {
    public:
-      virtual ~address() {}
 
-      /** get a pointer to the address struct. */
-      virtual operator struct sockaddr *() = 0;
 
-      /** get length of address struct. */
-      virtual operator socklen_t() = 0;
+      ipv4_address *    m_pipv4;
+      ipv6_address *    m_pipv6;
+      string            m_strServiceName;
 
-      /** Compare two addresses. */
-      virtual bool operator==(address&) = 0;
 
-      /** Set port number.
-      \param port Port number in host byte order */
-      virtual void SetPort(port_t port) = 0;
+      address(::ca::application * papp, const in_addr & a, int iPort = 0);
+      address(::ca::application * papp, const in6_addr & a, int iPort = 0);
+      address(::ca::application * papp, const sockaddr & sa, int sa_len);
+      address(::ca::application * papp, const char * pszAddress = NULL, const char * pszServiceName = NULL);
+      address(::ca::application * papp, const char * pszAddress, int iPort);
+      address(const address & address);
+      virtual ~address();
 
-      /** get port number.
-      \return Port number in host byte order. */
-      virtual port_t GetPort() = 0;
 
-      /** Set socket address.
-      \param sa Pointer to either 'struct sockaddr_in' or 'struct sockaddr_in6'. */
-      virtual void SetAddress(struct sockaddr *sa) = 0;
+      bool create_address(const string & strAddress);
 
-      /** Convert address to text. */
-      virtual string Convert(bool include_port) = 0;
 
-      /** Reverse lookup of address. */
-      virtual string Reverse() = 0;
+      address & operator = (const address & address);
+      bool operator == (const address & address) const;
 
-      /** get address family. */
-      virtual int GetFamily() = 0;
+      virtual string get_display_number() const;
+      virtual string get_canonical_name() const;
+      virtual string get_service_name() const;
+      virtual int    get_service_number() const;
 
-      /** Address structure is valid. */
-      virtual bool IsValid() = 0;
+      virtual bool set_service_number(int iPort);
 
-      /** get a copy of this sockets::address object. */
-      virtual address * GetCopy();
+
+      int     service_name_to_number(const char * psz) const;
+      string  service_number_to_name(int i) const;
+
+
+      virtual bool is_in_net(const address & addr, const address & addrMask) const;
+
+      virtual bool is_ipv4() const;
+      virtual bool is_ipv6() const;
+
+
+      int GetFamily() const;
+
+      bool is_valid() const;
+
+
+      const sockaddr * sa() const;
+      int sa_len() const;
 
 
    };
 
 
-   typedef ::ca::smart_pointer < address > address_sp;
-
-
 } // namespace sockets
+
+
 
 
 

@@ -43,13 +43,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
       private:
 
 
-#ifdef USE_BYESHYTOULA_STYLE_SOCKETS
-
-         ::Windows::Networking::Sockets::DatagramSocket ^      m_datagramsocket;
-
-#else
-
-
          char *m_ibuf; ///< Input buffer
          int m_ibufsz; ///< size of input buffer
          bool m_bind_ok; ///< Bind completed successfully
@@ -57,9 +50,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_last_size_written;
          int m_retries;
          bool m_b_read_ts;
-
-
-#endif
 
 
       public:
@@ -90,36 +80,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param port Incoming port number
          \param range Port range to try if ports already in use
          \return 0 if bind succeeded */
-         int Bind(port_t port, int range = 1);
+         int Bind(port_t  & port, int range = 1);
          /** To receive data on a specific interface:port, use this.
          \param intf Interface ip/hostname
          \param port Port number
          \param range Port range
          \return 0 if bind succeeded */
-         int Bind(const char * pszHost, port_t port, int range = 1);
+         int Bind(const string & strHost, port_t & port, int range = 1);
          /** To receive data on a specific interface:port, use this.
          \param a Ip address
          \param port Port number
          \param range Port range
          \return 0 if bind succeeded */
-         //int Bind(ipaddr_t a,port_t& port,int range = 1);
+         int Bind(in_addr a,port_t& port,int range = 1);
          /** To receive data on a specific interface:port, use this.
          \param a Ipv6 address
          \param port Port number
          \param range Port range
          \return 0 if bind succeeded */
-         //int Bind(in6_addr a,port_t& port,int range = 1);
+         int Bind(in6_addr a,port_t& port,int range = 1);
          /** To receive data on a specific interface:port, use this.
          \param ad socket address
          \param range Port range
          \return 0 if bind succeeded */
-         int Bind(const sockets::address & addr, int range = 1);
+         int Bind(sockets::address & addr, int range = 1);
 
          /** Define remote host.
          \param l Address of remote host
          \param port Port of remote host
          \return true if successful */
-         bool open(ipaddr_t l,port_t port);
+         bool open(in_addr l,port_t port);
          /** Define remote host.
          \param host Hostname
          \param port Port number
@@ -138,11 +128,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Send to specified host */
          void SendToBuf(const string & ,port_t,const char *data,int len,int flags = 0);
          /** Send to specified address */
-         void SendToBuf(ipaddr_t,port_t,const char *data,int len,int flags = 0);
+         void SendToBuf(const in_addr & a, port_t,const char *data,int len,int flags = 0);
          /** Send to specified ipv6 address */
-         void SendToBuf(in6_addr,port_t,const char *data,int len,int flags = 0);
+         void SendToBuf(const in6_addr & a,port_t,const char *data,int len,int flags = 0);
          /** Send to specified socket address */
-         void SendToBuf(sockets::address& ad,const char *data,int len,int flags = 0);
+         void SendToBuf(const sockets::address & ad,const char *data,int len,int flags = 0);
 
          /** Send string to specified host */
          void SendTo(const string &,port_t,const string &,int flags = 0);

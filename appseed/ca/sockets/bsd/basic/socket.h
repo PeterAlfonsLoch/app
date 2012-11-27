@@ -70,7 +70,7 @@ namespace sockets
       bool                    m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
       callback *              m_pcallback;
-      address_sp              m_addressRemote; ///< Remote end address
+      address                 m_addressRemote; ///< Remote end address
       time_t                  m_timeCreate; ///< time in seconds when this socket was created
       bool                    m_bDisableRead; ///< Disable checking for read events
       bool                    m_bConnected; ///< socket is connected (tcp/udp)
@@ -81,7 +81,7 @@ namespace sockets
       bool                    m_bDelete; ///< Delete by handler flag
       bool                    m_bClose; ///< close and delete flag
       socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
-      address_sp              m_addressRemoteClient; ///< Address of last connect()
+      address                 m_addressRemoteClient; ///< Address of last connect()
       ex1::file *             m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
@@ -108,7 +108,7 @@ namespace sockets
 #endif
 
       bool                    m_bSocks4; ///< socks4 negotiation mode (tcp_socket)
-      ipaddr_t                m_socks4_host; ///< socks4 server address
+      in_addr                m_socks4_host; ///< socks4 server address
       port_t                  m_socks4_port; ///< socks4 server port number
       string                  m_socks4_userid; ///< socks4 server usedid
 
@@ -241,7 +241,7 @@ namespace sockets
       bool SetNonblocking(bool);
 
       /** Set socket non-block operation. */
-      //bool SetNonblocking(bool, SOCKET);
+      bool SetNonblocking(bool, SOCKET);
 
       /** Total lifetime of instance. */
       time_t Uptime();
@@ -250,7 +250,7 @@ namespace sockets
       void SetClientRemoteAddress(sockets::address&);
 
       /** get address/port of last connect() call. */
-      address_sp GetClientRemoteAddress();
+      address GetClientRemoteAddress();
 
       /** Common interface for SendBuf used by Tcp and Udp sockets. */
       virtual void SendBuf(const char *,size_t,int = 0);
@@ -273,7 +273,7 @@ namespace sockets
       bool Timeout(time_t tnow);
 
       /** Used by listen_socket. ipv4 and ipv6 */
-      void SetRemoteHostname(sockets::address&);
+      void SetRemoteHostname(const sockets::address & );
 
       /** \name Event callbacks */
       //@{
@@ -366,29 +366,36 @@ namespace sockets
       /** \name Information about remote connection */
       //@{
       /** Returns address of remote end. */
-      address_sp GetRemoteSocketAddress();
+      //address_sp GetRemoteSocketAddress();
       /** Returns address of remote end: ipv4. */
-      ipaddr_t GetRemoteIP4();
+      //ipaddr_t GetRemoteIP4();
       /** Returns address of remote end: ipv6. */
-      struct in6_addr GetRemoteIP6();
+      //struct in6_addr GetRemoteIP6();
       /** Returns remote port number: ipv4 and ipv6. */
-      port_t GetRemotePort();
+      //port_t GetRemotePort();
       /** Returns remote ip as string? ipv4 and ipv6. */
-      string GetRemoteAddress();
+      //string GetRemoteAddress();
       /** ipv4 and ipv6(not implemented) */
-      string GetRemoteHostname();
+      //string GetRemoteHostname();
       //@}
+      virtual port_t GetRemotePort();
+      virtual address GetRemoteAddress();
+      virtual address GetRemoteHostname();
+
 
       /** Returns local port number for bound socket file descriptor. */
-      port_t GetSockPort();
+      //port_t GetSockPort();
       /** Returns local ipv4 address for bound socket file descriptor. */
-      ipaddr_t GetSockIP4();
+      //ipaddr_t GetSockIP4();
       /** Returns local ipv4 address as text for bound socket file descriptor. */
-      string GetSockAddress();
+      //string GetSockAddress();
       /** Returns local ipv6 address for bound socket file descriptor. */
-      struct in6_addr GetSockIP6();
+      //struct in6_addr GetSockIP6();
       /** Returns local ipv6 address as text for bound socket file descriptor. */
-      string GetSockAddress6();
+      //string GetSockAddress6();
+      virtual port_t GetLocalPort();
+      virtual address GetLocalAddress();
+
       // --------------------------------------------------------------------------
       /** @name IP options
       When an ip or socket option is available on all of the operating systems
@@ -600,7 +607,7 @@ namespace sockets
       void SetSocks4(bool x = true);
 
       /** Set socks4 server host address to use */
-      void SetSocks4Host(ipaddr_t a);
+      void SetSocks4Host(in_addr a);
       /** Set socks4 server hostname to use. */
       void SetSocks4Host(const string & );
       /** Socks4 server port to use. */
@@ -629,11 +636,11 @@ namespace sockets
       \param id Resolve ID from Resolve call
       \param a resolved ip address
       \param port port number passed to Resolve */
-      virtual void OnResolved(int id,ipaddr_t a,port_t port);
+      virtual void OnResolved(int id,in_addr a,port_t port);
       virtual void OnResolved(int id,in6_addr& a,port_t port);
       /** Request asynchronous reverse dns lookup.
       \param a in_addr to be translated */
-      int Resolve(ipaddr_t a);
+      int Resolve(in_addr a);
       int Resolve(in6_addr& a);
       /** Callback returning reverse resolve results.
       \param id Resolve ID

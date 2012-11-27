@@ -28,17 +28,18 @@ namespace userbase
       return pWnd->create(pParentWnd, id);
    }
 
-
-   // Derived class is responsible for implementing these handlers
-   //   for owner/self draw controls (except for the optional DeleteItem)
-//   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
-  //    { ASSERT(FALSE); }
-//   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
-  //    { ASSERT(FALSE); }
-//   int combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
-  //    { ASSERT(FALSE); return 0; }
-//   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
-  //    { /* default to nothing */ }
+#ifdef WINDOWSEX
+    //Derived class is responsible for implementing these handlers
+      //for owner/self draw controls (except for the optional DeleteItem)
+   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
+      { ASSERT(FALSE); }
+   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
+      { ASSERT(FALSE); }
+   int combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
+      { ASSERT(FALSE); return 0; }
+   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
+      { /* default to nothing */ }
+#endif
 
    bool combo_box::OnChildNotify(UINT message, WPARAM wParam, LPARAM lParam,
       LRESULT* pResult)

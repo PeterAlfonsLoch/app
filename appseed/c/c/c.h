@@ -199,9 +199,10 @@ CLASS_DECL_c vsstring _c_get_file_name(const char * psz, bool bCreate = false, i
 
 CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 
-
+#ifndef WINDOWSEX
 CLASS_DECL_c COLORREF GetSysColor(DWORD dw);
 CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow);
+#endif
 
 #include "c_simple_app.h"
 

@@ -975,10 +975,10 @@ namespace ca
 #ifdef WINDOWS
 
 
-         //if(file_exists_dup(strPath))
+         return file_exists_dup(strPath);
            // return true;
 
-         return App(papp).m_spfsdata->file_exists(strPath);
+         //return App(papp).m_spfsdata->file_exists(strPath);
          //return ::GetFileAttributesW(gen::international::utf8_to_unicode(strPath)) != INVALID_FILE_ATTRIBUTES;
 
 #else

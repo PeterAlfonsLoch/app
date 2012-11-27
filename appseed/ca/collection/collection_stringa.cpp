@@ -777,12 +777,12 @@ string stringa::reverse_implode(const char * lpcszSeparator, index iStart, index
    return str;
 }
 
-stringa & stringa::explode(const char * lpcszSeparator, const char * psz)
+stringa & stringa::explode(const string & strSeparator, const string & str)
 {
    
    remove_all();
    
-   add_tokens(psz, lpcszSeparator, true);
+   add_tokens(str, strSeparator, true);
    
    return * this;
 

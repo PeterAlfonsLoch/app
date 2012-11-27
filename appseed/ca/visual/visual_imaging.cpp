@@ -454,7 +454,11 @@ HFONT CreateScaledFont(
 
 #endif
 
+#ifdef METROWIN
    wcscpy(lf.lfFaceName, L"Arial");
+#else
+   strcpy(lf.lfFaceName, "Arial");
+#endif
 
 #ifdef WINDOWSEX
 

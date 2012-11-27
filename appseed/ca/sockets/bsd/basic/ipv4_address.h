@@ -23,70 +23,87 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-   namespace sockets
+namespace sockets
+{
+
+   class address;
+
+   /* Ipv4 address implementation.
+   \ingroup basic */
+   class CLASS_DECL_ca ipv4_address :
+      virtual public ::radix::object
    {
+   public:
 
-      /* Ipv4 address implementation.
-      \ingroup basic */
-      class CLASS_DECL_ca ipv4_address :
-         public address
-      {
-      public:
-         /** create is_empty Ipv4 address structure.
-         \param port Port number */
-         ipv4_address(::ca::application * papp, port_t port = 0);
-         /** create Ipv4 address structure.
-         \param a socket address in network byte order (as returned by Utility::u2ip)
-         \param port Port number in host byte order */
-         ipv4_address(::ca::application * papp, ipaddr_t a,port_t port);
-         /** create Ipv4 address structure.
-         \param a socket address in network byte order
-         \param port Port number in host byte order */
-         ipv4_address(::ca::application * papp, struct in_addr& a,port_t port);
-         /** create Ipv4 address structure.
-         \param host Hostname to be resolved
-         \param port Port number in host byte order */
-         ipv4_address(::ca::application * papp, const string & host,port_t port);
-         ipv4_address(::ca::application * papp, struct sockaddr_in&);
-         ipv4_address(const ipv4_address & addr);
-         ~ipv4_address();
-
-         // sockets::address implementation
-
-         operator struct sockaddr *();
-         operator socklen_t();
-         bool operator==(address&);
-
-         void SetPort(port_t port);
-         port_t GetPort();
-
-         void SetAddress(struct sockaddr *sa);
-         int GetFamily();
-
-         bool IsValid();
-
-         /** Convert address struct to text. */
-         string Convert(bool include_port = false);
-         string Reverse();
+      
+      struct sockaddr_in   m_addr;
+      bool                 m_bValid;
 
 
-         bool is_in_net(ipv4_address & addr, ipv4_address & mask);
+      /** create is_empty Ipv4 address structure.
+      \param port Port number */
+      ipv4_address(::ca::application * papp, port_t port = 0);
+      /** create Ipv4 address structure.
+      \param a socket address in network byte order (as returned by Utility::u2ip)
+      \param port Port number in host byte order */
+      //ipv4_address(::ca::application * papp, ipaddr_t a,port_t port);
+      /** create Ipv4 address structure.
+      \param a socket address in network byte order
+      \param port Port number in host byte order */
+      ipv4_address(::ca::application * papp, const in_addr& a,port_t port);
+      ipv4_address(::ca::application * papp, const in_addr& a, const string & strServiceName);
+      /** create Ipv4 address structure.
+      \param host Hostname to be resolved
+      \param port Port number in host byte order */
+      ipv4_address(::ca::application * papp, const string & host,port_t port);
+      ipv4_address(::ca::application * papp, const string & host, const string & strServiceName);
+      ipv4_address(::ca::application * papp, const sockaddr_in&);
+      ipv4_address(const ipv4_address & addr);
+      ~ipv4_address();
 
-         /** Resolve hostname. */
-         static bool Resolve(::ca::application * papp, const string & hostname, in_addr& a);
-         /** Reverse resolve (IP to hostname). */
-         static bool Reverse(::ca::application * papp, in_addr& a,string & name);
-         /** Convert address struct to text. */
-         static string Convert(::ca::application * papp, in_addr& a);
+      // sockets::address implementation
 
-         ipv4_address & operator = (const ipv4_address &);
-         struct sockaddr_in m_addr;
-         bool m_valid;
-      };
+      operator struct sockaddr *();
+      operator socklen_t();
+      //bool operator==(address&);
+
+      void SetPort(port_t port);
+      port_t GetPort();
+
+      void SetAddress(struct sockaddr *sa);
+      int GetFamily();
+
+      bool IsValid();
+
+      /** Convert address struct to text. */
+      string Convert(bool include_port = false);
+      string Reverse();
+
+
+      bool is_in_net(ipv4_address & addr, ipv4_address & mask);
+
+      /** Resolve hostname. */
+      //static bool Resolve(::ca::application * papp, const string & hostname, in_addr& a);
+      /** Reverse resolve (IP to hostname). */
+      //static bool Reverse(::ca::application * papp, in_addr& a,string & name);
+      /** Convert address struct to text. */
+      //static string Convert(::ca::application * papp, in_addr& a);
+
+      ipv4_address & operator = (const ipv4_address &);
+
+
+      bool IsEqual(const ipv4_address &) const;
+
+      string get_display_number() const;
+      string get_canonical_name() const;
+
+
+
+   };
 
 
 
 
-   } // namespace sockets
+} // namespace sockets
 
 

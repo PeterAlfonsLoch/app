@@ -4651,9 +4651,6 @@
     <ClCompile Include="windows\os_library_initialize.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="windows\os_resouce_string.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_edit.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -5080,9 +5077,6 @@
     <ClCompile Include="ca2\ca2_url_domain.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\socket_address.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
     <ClCompile Include=".\sqlite\sqlite3.cpp">
       <Filter>Source Files\sqlite</Filter>
     </ClCompile>
@@ -5493,6 +5487,9 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_condition.cpp">
       <Filter>Source Files\multithreading</Filter>
+    </ClCompile>
+    <ClCompile Include="ex1\ex1.cpp">
+      <Filter>Source Files\ex1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

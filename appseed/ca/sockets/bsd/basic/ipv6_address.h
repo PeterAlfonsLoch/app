@@ -23,71 +23,80 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #pragma once
 
 
-   namespace sockets
+namespace sockets
+{
+
+
+   /** Ipv6 address implementation.
+   \ingroup basic */
+   class CLASS_DECL_ca ipv6_address : 
+      virtual public ::radix::object
    {
+   public:
 
 
-      /** Ipv6 address implementation.
-      \ingroup basic */
-      class CLASS_DECL_ca ipv6_address : 
-         public address
-      {
-      public:
-         /** create is_empty Ipv6 address structure.
-         \param port Port number */
-         ipv6_address(::ca::application * papp, port_t port = 0);
-         /** create Ipv6 address structure.
-         \param a socket address in network byte order
-         \param port Port number in host byte order */
-         ipv6_address(::ca::application * papp, struct in6_addr& a,port_t port);
-         /** create Ipv6 address structure.
-         \param host Hostname to be resolved
-         \param port Port number in host byte order */
-         ipv6_address(::ca::application * papp, const string & host,port_t port);
-         ipv6_address(::ca::application * papp, struct sockaddr_in6&);
-         ipv6_address(const ipv6_address & addr);
-         ~ipv6_address();
+      struct sockaddr_in6     m_addr;
+      bool                    m_bValid;
 
-         // sockets::address implementation
 
-         operator struct sockaddr *();
-         operator socklen_t();
-         bool operator==(address &);
+      /** create is_empty Ipv6 address structure.
+      \param port Port number */
+      ipv6_address(::ca::application * papp, port_t port = 0);
+      /** create Ipv6 address structure.
+      \param a socket address in network byte order
+      \param port Port number in host byte order */
+      ipv6_address(::ca::application * papp, const in6_addr& a,port_t port);
+      ipv6_address(::ca::application * papp, const in6_addr& a, const string & strServiceName);
+      /** create Ipv6 address structure.
+      \param host Hostname to be resolved
+      \param port Port number in host byte order */
+      ipv6_address(::ca::application * papp, const string & host,port_t port);
+      ipv6_address(::ca::application * papp, const string & host, const string & strServiceName);
+      ipv6_address(::ca::application * papp, const sockaddr_in6&);
+      ipv6_address(const ipv6_address & addr);
+      ~ipv6_address();
 
-         void SetPort(port_t port);
-         port_t GetPort();
+      // sockets::address implementation
 
-         void SetAddress(struct sockaddr *sa);
-         int GetFamily();
+      operator struct sockaddr *();
+      operator socklen_t();
+      //bool operator==(address &);
 
-         bool IsValid();
+      void SetPort(port_t port);
+      port_t GetPort();
 
-         /** Convert address struct to text. */
-         string Convert(bool include_port = false);
-         string Reverse();
+      void SetAddress(struct sockaddr *sa);
+      int GetFamily();
 
-         /** Resolve hostname. */
-         static bool Resolve(::ca::application * papp, const string & hostname, in6_addr& a);
-         /** Reverse resolve (IP to hostname). */
-         static bool Reverse(::ca::application * papp, in6_addr& a, string & name);
-         /** Convert address struct to text. */
-         static string Convert(::ca::application * papp, in6_addr& a, bool mixed = false);
+      bool IsValid();
 
-         void SetFlowinfo(uint32_t);
-         uint32_t GetFlowinfo();
+      /** Convert address struct to text. */
+      string Convert(bool include_port = false);
+      string Reverse();
+
+      /** Resolve hostname. */
+      //static bool Resolve(::ca::application * papp, const string & hostname, in6_addr& a);
+      /** Reverse resolve (IP to hostname). */
+      //static bool Reverse(::ca::application * papp, in6_addr& a, string & name);
+      /** Convert address struct to text. */
+      //static string Convert(::ca::application * papp, in6_addr& a, bool mixed = false);
+
+      void SetFlowinfo(uint32_t);
+      uint32_t GetFlowinfo();
 #ifndef _WIN32
-         void SetScopeId(uint32_t);
-         uint32_t GetScopeId();
+      void SetScopeId(uint32_t);
+      uint32_t GetScopeId();
 #endif
 
-         ipv6_address & operator = (const ipv6_address &);
+      ipv6_address & operator = (const ipv6_address &);
 
-      private:
-         struct sockaddr_in6 m_addr;
-         bool m_valid;
-      };
+      bool IsEqual(const ipv6_address &) const;
+      string get_display_number() const;
+      string get_canonical_name() const;
+
+   };
 
 
-   } // namespace sockets
+} // namespace sockets
 
 

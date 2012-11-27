@@ -270,7 +270,9 @@ public:
    string& operator=(PCYSTR pszSrc);
    string& operator=(const unsigned char* pszSrc );
    string& operator=(char ch );
+#ifdef METROWIN
    string& operator=(const Platform::String ^ & str);
+#endif
    string& operator=(wchar_t ch );
    string& operator+=(const simple_string& str );
    string& operator+=(PCXSTR pszSrc );
@@ -1516,9 +1518,14 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
    return Delete(iIndex, nCount);
 }
 
+
+#ifdef METROWIN
+
 inline string str(Platform::String ^ str)
 {
    if(str == nullptr)
       return "";
    return str->Begin();
 }
+
+#endif
