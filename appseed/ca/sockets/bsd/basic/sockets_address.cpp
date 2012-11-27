@@ -67,10 +67,7 @@ namespace sockets
 
       m_strServiceName = pszServiceName;
 
-      if(!create_address(pszAddress))
-         throw "failed to create socket address";
-
-      
+      create_address(pszAddress);
 
    }
 
@@ -90,6 +87,21 @@ namespace sockets
 
    }
 
+   address::address(const address & address)
+   {
+
+      m_pipv4 = NULL;
+      m_pipv6 = NULL;
+
+      operator = (address);
+
+   }
+
+
+   address::~address()
+   {
+
+   }
 
    bool address::create_address(const string & strAddress)
    {
@@ -129,18 +141,6 @@ namespace sockets
 
    }
    
-   address::address(const address & address)
-   {
-
-      operator = (address);
-
-   }
-
-
-   address::~address()
-   {
-
-   }
 
 
    address & address::operator = (const address & address)

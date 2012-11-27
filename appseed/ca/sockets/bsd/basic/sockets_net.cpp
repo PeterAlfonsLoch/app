@@ -110,6 +110,8 @@ namespace sockets
 
    bool net::isipv6(const string & str)
    {
+      if(str.is_empty())
+         return false;
       index qc = 0;
       index qd = 0;
       for (int i = 0; i < str.get_length(); i++)
@@ -117,6 +119,8 @@ namespace sockets
          qc += (str[i] == ':') ? 1 : 0;
          qd += (str[i] == '.') ? 1 : 0;
       }
+      if (qc < 2)
+         return false;
       if (qc > 7)
       {
          return false;
@@ -149,6 +153,10 @@ namespace sockets
 
    bool net::convert(in_addr & l, const string & str, int ai_flags)
    {
+
+      if(str.is_empty())
+         return false;
+
       DWORD dwTimeTelmo1 = get_tick_count();
 
       single_lock sl(&m_mutexCache, true);
@@ -231,31 +239,30 @@ namespace sockets
       if (net::isipv4(str))
          hints.ai_flags |= AI_NUMERICHOST;
       int n = getaddrinfo(str, NULL, &hints, &res);
-      if (!n)
+      if (n)
       {
-         comparable_array < addrinfo * > vec;
-         addrinfo *ai = res;
-         while (ai)
-         {
-            if (ai -> ai_addrlen == sizeof(sa))
-               vec.add( ai );
-            ai = ai -> ai_next;
-         }
-         if (!vec.get_count())
-            return false;
-         ai = vec[System.math().rnd() % vec.get_count()];
-         {
-            memcpy(&sa, ai -> ai_addr, ai -> ai_addrlen);
-         }
-         freeaddrinfo(res);
-         return true;
+         string error = "Error: ";
+   #ifndef __CYGWIN__
+         error += gai_strerror(n);
+   #endif
+         return false;
+   #endif // NO_GETADDRINFO
       }
-      string error = "Error: ";
-#ifndef __CYGWIN__
-      error += gai_strerror(n);
-#endif
-      return false;
-#endif // NO_GETADDRINFO
+      comparable_array < addrinfo * > vec;
+      addrinfo *ai = res;
+      while (ai)
+      {
+         if (ai -> ai_addrlen == sizeof(sa))
+            vec.add( ai );
+         ai = ai -> ai_next;
+      }
+      if (!vec.get_count())
+         return false;
+      ai = vec[System.math().rnd() % vec.get_count()];
+      {
+         memcpy(&sa, ai -> ai_addr, ai -> ai_addrlen);
+      }
+      freeaddrinfo(res);
       pitem->m_ipaddr = sa.sin_addr;
       pitem->m_dwLastChecked = ::get_tick_count();
       m_mapCache.set_at(str, pitem);
@@ -266,6 +273,7 @@ namespace sockets
          (DWORD)((byte*)&pitem->m_ipaddr)[2],
          (DWORD)((byte*)&pitem->m_ipaddr)[3],
          (dwTimeTelmo2 - dwTimeTelmo1));
+      l = pitem->m_ipaddr;
       return pitem->r;
    }
 
@@ -294,6 +302,8 @@ namespace sockets
 
    bool net::convert(string & str, const struct in6_addr& ip, bool mixed)
    {
+
+
       char slask[100]; // l2ip temporary
       *slask = 0;
       unsigned int prev = 0;
