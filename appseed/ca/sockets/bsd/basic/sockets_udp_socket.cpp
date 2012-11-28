@@ -261,7 +261,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(ipaddr_t a, port_t p, const string & str, int flags)
+   void udp_socket::SendTo(in_addr a, port_t p, const string & str, int flags)
    {
       SendToBuf(a, p, str, (int)str.get_length(), flags);
    }

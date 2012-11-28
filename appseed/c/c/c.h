@@ -199,9 +199,9 @@ CLASS_DECL_c vsstring _c_get_file_name(const char * psz, bool bCreate = false, i
 
 CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 
-#ifndef METROWIN
-#include <openssl/ssl.h>
-#endif
+//#ifndef METROWIN
+//#include <openssl/ssl.h>
+//#endif
 
 #ifndef WINDOWSEX
 CLASS_DECL_c COLORREF GetSysColor(DWORD dw);

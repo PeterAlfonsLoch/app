@@ -137,7 +137,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Send string to specified host */
          void SendTo(const string &,port_t,const string &,int flags = 0);
          /** Send string to specified address */
-         void SendTo(ipaddr_t,port_t,const string &,int flags = 0);
+         void SendTo(in_addr,port_t,const string &,int flags = 0);
          /** Send string to specified ipv6 address */
          void SendTo(in6_addr,port_t,const string &,int flags = 0);
          /** Send string to specified socket address */

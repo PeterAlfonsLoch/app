@@ -22305,7 +22305,7 @@ afp_end_lock:
       int syncDir                 /* Not used on win32 */
       ){
          int cnt = 0;
-         int rc;
+//         int rc;
          void *zConverted = convertUtf8Filename(zFilename);
          if( zConverted==0 ){
             return SQLITE_NOMEM;
@@ -22339,7 +22339,7 @@ afp_end_lock:
       const char *zFilename,     /* Name of file to check */
       int flags                  /* Type of test to make on this file */
       ){
-         DWORD attr;
+//         DWORD attr;
          int rc;
 //         void *zConverted = convertUtf8Filename(zFilename);
   //       if( zConverted==0 ){
