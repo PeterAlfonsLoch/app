@@ -21862,12 +21862,10 @@ afp_end_lock:
    static int getReadLock(winFile *pFile){
       int res;
          OVERLAPPED ov;
-         zero(&ov, sizeof(ov));
+         ZERO(ov);
       if( isNT() ){
-         OVERLAPPED ovlp;
-         ovlp.Offset = SHARED_FIRST;
-         res = LockFileEx(pFile->h, LOCKFILE_FAIL_IMMEDIATELY,
-            0, SHARED_SIZE, 0, &ov);
+         ov.Offset = SHARED_FIRST;
+         res = LockFileEx(pFile->h, LOCKFILE_FAIL_IMMEDIATELY, 0, SHARED_SIZE, 0, &ov);
       }else{
          int lk;
          sqlite3Randomness(sizeof(lk), &lk);
