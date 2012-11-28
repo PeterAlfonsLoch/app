@@ -76,12 +76,12 @@
             if (IsIpv6())
             {
                ipv6_address ad(get_app(), port);
-               return Bind(ad, depth);
+               return Bind(ad.m_addr.sin6_addr, depth);
             }
             else
             {
                ipv4_address ad(get_app(), port);
-               return Bind(ad, depth);
+               return Bind(ad.m_addr.sin_addr, depth);
             }
          }
 
@@ -103,12 +103,12 @@
             if (IsIpv6())
             {
                ipv6_address ad(get_app(), port);
-               return Bind(ad, protocol, depth);
+               return Bind(ad.m_addr.sin6_addr, port, protocol, depth);
             }
             else
             {
                ipv4_address ad(get_app(), port);
-               return Bind(ad, protocol, depth);
+               return Bind(ad.m_addr.sin_addr, port, protocol, depth);
             }
          }
 
@@ -118,26 +118,13 @@
          \param depth Listen queue depth */
          int Bind(const string & intf,port_t port,int depth = 20)
          {
-            if (IsIpv6())
+            address ad(get_app(), intf, port);
+            if (ad.is_valid())
             {
-               ipv6_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
-                  return Bind(ad, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
+               return Bind(ad, depth);
             }
-            else
-            {
-               ipv4_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
-                  return Bind(ad, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
-            }
+            Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
+            return -1;
          }
 
          /** Bind and listen to specific interface.
@@ -146,33 +133,20 @@
          \param protocol Network protocol
          \param depth Listen queue depth */
          int Bind(const string & intf,port_t port,const string & protocol,int depth = 20) {
-            if (IsIpv6())
+            address ad(get_app(), intf, port);
+            if (ad.is_valid())
             {
-               ipv6_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
                   return Bind(ad, protocol, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
             }
-            else
-            {
-               ipv4_address ad(get_app(), intf, port);
-               if (ad.IsValid())
-               {
-                  return Bind(ad, protocol, depth);
-               }
-               Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
-               return -1;
-            }
+            Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
+            return -1;
          }
 
          /** Bind and listen to ipv4 interface.
          \param a Ipv4 interface address
          \param port Port (0 is random)
          \param depth Listen queue depth */
-         int Bind(ipaddr_t a,port_t port,int depth = 20) {
+         int Bind(in_addr a,port_t port,int depth = 20) {
             ipv4_address ad(get_app(), a, port);
 #ifdef USE_SCTP
             if (dynamic_cast<SctpSocket *>(m_creator))
@@ -187,8 +161,8 @@
          \param port Port (0 is random)
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(ipaddr_t a,port_t port,const string & protocol,int depth) {
-            ipv4_address ad(get_app(), a, port);
+         int Bind(in_addr a,port_t port,const string & protocol,int depth) {
+            address ad(get_app(), a, port);
             return Bind(ad, protocol, depth);
          }
 
@@ -197,7 +171,7 @@
          \param port Port (0 is random)
          \param depth Listen queue depth */
          int Bind(in6_addr a,port_t port,int depth = 20) {
-            ipv6_address ad(get_app(), a, port);
+            address ad(get_app(), a, port);
 #ifdef USE_SCTP
             if (dynamic_cast<SctpSocket *>(m_creator))
             {
@@ -224,14 +198,14 @@
          {
 
             SOCKET s;
-            m_iBindPort = ad.GetPort();
+            m_iBindPort = ad.get_service_number();
             if ( (s = CreateSocket(ad.GetFamily(), SOCK_STREAM, protocol)) == INVALID_SOCKET)
             {
                return -1;
             }
-            if (bind(s, ad, ad) == -1)
+            if (bind(s, ad.sa(), ad.sa_len()) == -1)
             {
-               Handler().LogError(this, "bind() failed for port " + gen::str::from(ad.GetPort()), Errno, StrError(Errno), ::gen::log::level::fatal);
+               Handler().LogError(this, "bind() failed for port " + gen::str::from(ad.get_service_number()), Errno, StrError(Errno), ::gen::log::level::fatal);
                ::closesocket(s);
                return -1;
             }
@@ -239,7 +213,7 @@
             {
                Handler().LogError(this, "listen", Errno, StrError(Errno), ::gen::log::level::fatal);
                ::closesocket(s);
-               throw simple_exception(get_app(), "listen() failed for port " + gen::str::from(ad.GetPort()) + ": " + StrError(Errno));
+               throw simple_exception(get_app(), "listen() failed for port " + gen::str::from(ad.get_service_number()) + ": " + StrError(Errno));
                return -1;
             }
             m_depth = depth;

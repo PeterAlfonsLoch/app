@@ -17,7 +17,7 @@ namespace ca4
       {
       }
 
-      ::sockets::http_socket * application::get(
+      ::sockets::http_client_socket * application::get(
          ::sockets::socket_handler & handler, 
          const char * pszUrl, 
          gen::property_set & post, 

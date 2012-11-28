@@ -61,9 +61,14 @@ namespace html
          elemental::layout_phase3(pdata);
          point pointBound = get_bound_point();
          m_box.set_cxy(200, 23);
+         m_box.offset_y(pdata->m_layoutstate.m_cy);
+         pdata->m_layoutstate.m_y    = get_y();
          pdata->m_layoutstate.m_cy   = get_cy();
+         pdata->m_layoutstate.m_x    = pointBound.x;
          pdata->m_layoutstate.m_cx   = get_cx();
-         m_pedit->SetWindowPos(NULL, (int) pdata->m_layoutstate.m_x, (int) pdata->m_layoutstate.m_y, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
+         pdata->m_layoutstate.m_bLastBlockX = true;
+         pdata->m_layoutstate.m_bLastBlockY = true;
+         m_pedit->SetWindowPos(NULL, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_text::_001OnDraw(data * pdata)

@@ -89,8 +89,8 @@ namespace sockets
    #endif
    ,m_socks4_state(0)
    ,m_resolver_id(0)
-   ,m_bReconnect(false)
-   ,m_bTryingReconnect(false)
+   ,m_b_reconnect(false)
+   ,m_b_is_reconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
    }
@@ -123,8 +123,8 @@ namespace sockets
    #endif
    ,m_socks4_state(0)
    ,m_resolver_id(0)
-   ,m_bReconnect(false)
-   ,m_bTryingReconnect(false)
+   ,m_b_reconnect(false)
+   ,m_b_is_reconnect(false)
    {
       m_bCertCommonNameCheckEnabled = true;
       UNREFERENCED_PARAMETER(osize);
@@ -156,31 +156,31 @@ namespace sockets
    }
 
 
-   bool tcp_socket::open(in_addr ip,port_t port,bool skip_socks)
+   bool tcp_socket::open(ipaddr_t ip,port_t port,bool skip_socks)
    {
-      address ad(get_app(), ip, port);
-      address local(get_app());
+      ipv4_address ad(get_app(), ip, port);
+      ipv4_address local(get_app());
       return open(ad, local, skip_socks);
    }
 
 
    bool tcp_socket::open(in6_addr ip,port_t port,bool skip_socks)
    {
-      address ad(get_app(), ip, port);
+      ipv6_address ad(get_app(), ip, port);
       return open(ad, skip_socks);
    }
 
 
    bool tcp_socket::open(sockets::address& ad,bool skip_socks)
    {
-      address bind_ad(get_app(), "0.0.0.0", 0);
+      ipv4_address bind_ad(get_app(), "0.0.0.0", 0);
       return open(ad, bind_ad, skip_socks);
    }
 
 
    bool tcp_socket::open(sockets::address& ad,sockets::address& bind_ad,bool skip_socks)
    {
-      if (!ad.is_valid())
+      if (!ad.IsValid())
       {
          Handler().LogError(this, "open", 0, "Invalid sockets::address", ::gen::log::level::fatal);
          SetCloseAndDelete();
@@ -225,26 +225,26 @@ namespace sockets
       SetIsClient(); // client because we connect
       SetClientRemoteAddress(ad);
       int n = 0;
-      if (bind_ad.get_service_number() != 0)
+      if (bind_ad.GetPort() != 0)
       {
-         bind(s, bind_ad.sa(), bind_ad.sa_len());
+         bind(s, bind_ad, bind_ad);
       }
-      if (!skip_socks && ISNT_ZERO(GetSocks4Host()) && GetSocks4Port())
+      if (!skip_socks && GetSocks4Host() && GetSocks4Port())
       {
-         address sa(get_app(), GetSocks4Host(), GetSocks4Port());
+         ipv4_address sa(get_app(), GetSocks4Host(), GetSocks4Port());
          {
             string sockshost;
-            System.net().convert(sockshost, GetSocks4Host());
+            System.net().l2ip(GetSocks4Host(), sockshost);
             Handler().LogError(this, "open", 0, "Connecting to socks4 server @ " + sockshost + ":" + gen::str::from(GetSocks4Port()), ::gen::log::level::info);
          }
          SetSocks4();
-         n = connect(s, sa.sa(), sa.sa_len());
-         SetRemoteHostname(sa);
+         n = connect(s, sa, sa);
+         SetRemoteAddress(sa);
       }
       else
       {
-         n = connect(s, ad.sa(), ad.sa_len());
-         SetRemoteHostname(ad);
+         n = connect(s, ad, ad);
+         SetRemoteAddress(ad);
       }
       if (n == -1)
       {
@@ -257,7 +257,7 @@ namespace sockets
          if(iError == EINPROGRESS)
    #endif
          {
-            attach(s);
+            Attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
@@ -271,7 +271,7 @@ namespace sockets
          {
             string strError = StrError(iError);
             Handler().LogError(this, "connect: failed, reconnect pending", iError, StrError(iError), ::gen::log::level::info);
-            attach(s);
+            Attach(s);
             SetConnecting( true ); // this flag will control fd_set's
          }
          else
@@ -285,7 +285,7 @@ namespace sockets
       }
       else
       {
-         attach(s);
+         Attach(s);
          SetCallOnConnect(); // socket_handler_base must call OnConnect
       }
 
@@ -302,13 +302,13 @@ namespace sockets
          if (!Handler().ResolverEnabled() || System.net().isipv6(host) )
          {
             in6_addr a;
-            if (!System.net().convert(a, host))
+            if (!System.net().u2ip(host, a))
             {
                SetCloseAndDelete();
                return false;
             }
-            address ad(get_app(), a, port);
-            address local(get_app());
+            ipv6_address ad(get_app(), a, port);
+            ipv6_address local(get_app());
             if(!open(ad, local))
                return false;
             m_strHost = host;
@@ -320,14 +320,14 @@ namespace sockets
       }
       if (!Handler().ResolverEnabled() || System.net().isipv4(host) )
       {
-         in_addr l;
-         if (!System.net().convert(l, host))
+         ipaddr_t l;
+         if (!System.net().u2ip(host, l))
          {
             SetCloseAndDelete();
             return false;
          }
-         address ad(get_app(), l, port);
-         address local(get_app());
+         ipv4_address ad(get_app(), l, port);
+         ipv4_address local(get_app());
          m_strHost = host;
          if(!open(ad, local))
             return false;
@@ -341,15 +341,15 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnResolved(int id,in_addr & a,port_t port)
+   void tcp_socket::OnResolved(int id,ipaddr_t a,port_t port)
    {
    TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, a, port);
       if (id == m_resolver_id)
       {
-         if (ISNT_ZERO(a) && port)
+         if (a && port)
          {
-            address ad(get_app(), a, port);
-            address local(get_app());
+            ipv4_address ad(get_app(), a, port);
+            ipv4_address local(get_app());
             if (open(ad, local))
             {
                if (!Handler().Valid(this))
@@ -376,10 +376,10 @@ namespace sockets
    {
       if (id == m_resolver_id)
       {
-         address ad(get_app(), a, port);
-         if (ad.is_valid())
+         ipv6_address ad(get_app(), a, port);
+         if (ad.IsValid())
          {
-            address local(get_app());
+            ipv6_address local(get_app());
             if (open(ad, local))
             {
                if (!Handler().Valid(this))
@@ -820,10 +820,10 @@ namespace sockets
       request[0] = 4; // socks v4
       request[1] = 1; // command code: CONNECT
       {
-         address ad = GetClientRemoteAddress();
-         if(ad.is_valid())
+         ::ca::smart_pointer < sockets::address > ad = GetClientRemoteAddress();
+         if(ad.m_p != NULL)
          {
-            struct sockaddr *p0 = (struct sockaddr *)ad.sa();
+            struct sockaddr *p0 = (struct sockaddr *)*ad;
             struct sockaddr_in *p = (struct sockaddr_in *)p0;
             if (p -> sin_family == AF_INET)
             {
@@ -1166,7 +1166,7 @@ namespace sockets
    }
 
 
-   void tcp_socket::InitializeContext(const string & context, const SSL_METHOD * pmethod)
+   void tcp_socket::InitializeContext(const string & context, SSL_METHOD * pmethod)
    {
       /* create our context*/
       if(m_spsslclientcontext.is_null())
@@ -1192,13 +1192,13 @@ namespace sockets
    }
 
 
-   void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password, const SSL_METHOD *meth_in)
+   void tcp_socket::InitializeContext(const string & context,const string & keyfile,const string & password,SSL_METHOD *meth_in)
    {
       /* create our context*/
       static ::collection::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
-         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+         SSL_METHOD *meth = meth_in ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
@@ -1231,13 +1231,13 @@ namespace sockets
    }
 
 
-   void tcp_socket::InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in)
+   void tcp_socket::InitializeContext(const string & context,const string & certfile,const string & keyfile,const string & password,SSL_METHOD *meth_in)
    {
       /* create our context*/
       static ::collection::string_map < SSL_CTX * > server_contexts;
       if(server_contexts.PLookup(context) == NULL)
       {
-         const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
+         SSL_METHOD *meth = meth_in ? meth_in : SSLv3_method();
          m_ssl_ctx = server_contexts[context] = SSL_CTX_new(meth);
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
@@ -1338,9 +1338,9 @@ namespace sockets
    #endif
 
 
-   void tcp_socket::SetReconnect(bool bReconnect)
+   void tcp_socket::SetReconnect(bool x)
    {
-      m_bReconnect = bReconnect;
+      m_b_reconnect = x;
    }
 
    void tcp_socket::OnRawData(char * buf_in, size_t len)
@@ -1381,18 +1381,19 @@ namespace sockets
 
    bool tcp_socket::Reconnect()
    {
-      return m_bReconnect;
+      return m_b_reconnect;
    }
 
 
-   void tcp_socket::SetIsReconnect(bool bTryingReconnect)
+   void tcp_socket::SetIsReconnect(bool x)
    {
-      m_bTryingReconnect = bTryingReconnect;
+      m_b_is_reconnect = x;
    }
+
 
    bool tcp_socket::IsReconnect()
    {
-      return m_bTryingReconnect;
+      return m_b_is_reconnect;
    }
 
    const string & tcp_socket::GetPassword()
@@ -1553,8 +1554,8 @@ namespace sockets
          return X509_V_OK;
       }
 
-      ::X509 *cert = NULL;
-      ::X509_name_st *subject = NULL;
+      X509 *cert = NULL;
+      X509_NAME *subject = NULL;
 
       cert = SSL_get_peer_certificate(m_ssl);
       bool ok = false;

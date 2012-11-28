@@ -302,8 +302,15 @@ namespace ca
          ex1::filesp spfile(get_app());
          if(System.file().exists(lpcszCandidate, get_app()))
             return false;
-         if(!spfile->open(lpcszCandidate, ::ex1::file::mode_create | ::ex1::file::type_binary))
+         try
+         {
+            if(!spfile->open(lpcszCandidate, ::ex1::file::mode_create | ::ex1::file::type_binary))
+               return false;
+         }
+         catch(...)
+         {
             return false;
+         }
          return true;
       }
 

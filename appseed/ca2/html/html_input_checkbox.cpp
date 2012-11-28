@@ -60,6 +60,8 @@ namespace html
          pdata->m_layoutstate.m_cy   = 23;
          pdata->m_layoutstate.m_x    += pdata->m_layoutstate.m_cx;
          pdata->m_layoutstate.m_cx   = 23;
+         pdata->m_layoutstate.m_bLastBlockX = false;
+         pdata->m_layoutstate.m_bLastBlockY = false;
          m_pcheckbox->SetWindowPos(NULL, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
       }
 

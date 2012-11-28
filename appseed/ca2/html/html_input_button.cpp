@@ -43,6 +43,14 @@ namespace html
          elemental::layout_phase3(pdata);
          point pointBound = get_bound_point();
          m_box.set_cxy(200, 23);
+         m_box.offset_y(pdata->m_layoutstate.m_cy);
+         pdata->m_layoutstate.m_y    = get_y();
+         pdata->m_layoutstate.m_cy   = get_cy();
+         pdata->m_layoutstate.m_x    = pointBound.x;
+         pdata->m_layoutstate.m_cx   = get_cx();
+         pdata->m_layoutstate.m_bLastBlockX = true;
+         pdata->m_layoutstate.m_bLastBlockY = true;
+/*
          if(m_pelemental->m_propertyset["display"] == "block"
              || m_pelemental->m_propertyset["display"] == "table")
          {
@@ -61,7 +69,7 @@ namespace html
             pdata->m_layoutstate.m_cx   = get_cx();
             pdata->m_layoutstate.m_bLastBlockX = false;
             pdata->m_layoutstate.m_bLastBlockY = false;
-         }
+         }*/
          m_pbutton->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
