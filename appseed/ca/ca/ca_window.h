@@ -8,6 +8,7 @@ namespace ca
 {
 
 
+
    class window_callback;
 
 
@@ -22,6 +23,9 @@ namespace ca
       bool                          m_bTranslateMouseMessageCursor;
       //UINT m_nFlags;      // see WF_ flags above
 
+#ifdef METROWIN
+      system_window ^               m_pwindow;
+#endif
 
 
       ::ca::font * m_pfont;
@@ -33,6 +37,10 @@ namespace ca
 
 
       virtual bool create_message_window(const char * pszName, ::ca::window_callback * pcallback = NULL);
+#ifdef METROWIN
+      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::ca::system_window ^ pwindow) = 0;
+#endif
+
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 

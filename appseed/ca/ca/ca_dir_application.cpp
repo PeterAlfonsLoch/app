@@ -29,34 +29,69 @@ namespace ca
          return System.dir().locale_schema_matter(get_app(), pszLocale, pszStyle);
       }
 
-      string application::matter(const string & str)
+      void application::matter_ls(const string & str, stringa & stra)
       {
-         return System.dir().matter(get_app(), str);
+
+         string strDir = matter(str, true);
+
+         ls(strDir, &stra);
+
       }
 
-      string application::matter(const string & str, const string & str2)
+
+      string application::matter(const string & str, bool bDir)
       {
-         return System.dir().matter(get_app(), str, str2);
+         return System.dir().matter(get_app(), str, bDir);
       }
 
-      string application::matter(const string & str, const char * psz)
+      string application::matter(const string & str, const string & str2, bool bDir)
       {
-         return System.dir().matter(get_app(), str, psz);
+         return System.dir().matter(get_app(), str, str2, bDir);
       }
 
-      string application::matter(const char * psz, const string & str)
+      string application::matter(const string & str, const char * psz, bool bDir)
       {
-         return System.dir().matter(get_app(), psz, str);
+         return System.dir().matter(get_app(), str, psz, bDir);
       }
 
-      string application::matter(const char * lpcsz, const char * lpcsz2)
+      string application::matter(const char * psz, const string & str, bool bDir)
       {
-         return System.dir().matter(get_app(), lpcsz, lpcsz2);
+         return System.dir().matter(get_app(), psz, str, bDir);
       }
 
-      string application::matter(const stringa & stra)
+      string application::matter(const char * lpcsz, const char * lpcsz2, bool bDir)
       {
-         return System.dir().matter(get_app(), stra);
+         return System.dir().matter(get_app(), lpcsz, lpcsz2, bDir);
+      }
+
+      string application::matter_file(const char * lpcsz, const char * lpcsz2, bool bDir)
+      {
+         
+         string strPath = System.dir().matter(get_app(), lpcsz, lpcsz2, bDir);
+
+         if(strPath.begins_ci("http://") || strPath.begins_ci("https://"))
+         {
+            if(!Application.file().exists(strPath))
+               return strPath;
+            string strFile = strPath;
+            strFile.replace(":", "_");
+            strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
+            strFile.replace("\\\\", "\\", 2);
+            if(Application.file().exists(strFile))
+               return strFile;
+            System.file().output(get_app(), strFile, &System.compress(), &::ca4::compress::null, strPath);
+            return strFile;
+         }
+         else
+         {
+            return strPath;
+         }
+
+      }
+
+      string application::matter(const stringa & stra, bool bDir)
+      {
+         return System.dir().matter(get_app(), stra, bDir);
       }
 
       string application::usersystemappdata(const char * lpcszPrefix, const char * lpcsz, const char * lpcsz2)

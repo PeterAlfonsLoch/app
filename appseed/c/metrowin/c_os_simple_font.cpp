@@ -161,7 +161,7 @@ CLASS_DECL_c float point_dpi(float points)
 
    FLOAT dpiX, dpiY;
 
-   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
 
 	return points * dpiY / 72.f;
 
@@ -172,7 +172,7 @@ CLASS_DECL_c float dpiy(float y)
    
    FLOAT dpiX, dpiY;
 
-   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
 
    return y * dpiY / 96.f;
 
@@ -183,7 +183,7 @@ CLASS_DECL_c float dpix(float x)
    
    FLOAT dpiX, dpiY;
 
-   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
 
    return x * dpiX / 96.f;
 
@@ -195,7 +195,7 @@ CLASS_DECL_c float y_dpi(float y)
    
    FLOAT dpiX, dpiY;
 
-   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
 
    return y / dpiY;
 
@@ -206,7 +206,7 @@ CLASS_DECL_c float x_dpi(float x)
    
    FLOAT dpiX, dpiY;
 
-   TlsGetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
+   GetD2D1Factory1()->GetDesktopDpi(&dpiX, &dpiY);
 
    return x / dpiX;
 

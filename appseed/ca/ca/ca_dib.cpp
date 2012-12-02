@@ -35,6 +35,42 @@ namespace ca
       return NULL;
    }
 
+
+   bool dib::realize(::ca::graphics * pdc)
+   {
+      
+      UNREFERENCED_PARAMETER(pdc);
+      return true;
+
+   }
+
+
+   bool dib::unrealize()
+   {
+      
+      return true;
+
+   }
+
+
+   bool dib::is_realized()
+   {
+
+      return true;
+
+   }
+
+   bool dib::defer_realize(::ca::graphics * pdc)
+   {
+
+      if(is_realized())
+         return true;
+
+      return realize(pdc);
+
+   }
+
+
    bool dib::create(class size size)
    {
       return create(size.cx, size.cy);
@@ -42,9 +78,7 @@ namespace ca
 
    bool dib::create(int width, int height)
    {
-      UNREFERENCED_PARAMETER(width);
-      UNREFERENCED_PARAMETER(height);
-      throw interface_only_exception(get_app());
+      return create(::size(width, height));
    }
 
    bool dib::dc_select(bool bSelect)
@@ -113,8 +147,12 @@ namespace ca
 
    bool dib::from(::ca::dib * pdib)
    {
+
       if(!create(pdib->size()))
          return false;
+
+      map();
+      pdib->map();
       try
       {
          memcpy(get_data(), pdib->get_data(), (size_t) (sizeof(COLORREF) * area()));
@@ -139,7 +177,7 @@ namespace ca
 
    void dib::set( int R, int G, int B )
    {
-      int size=width()*height();
+      int size=cx*cy;
 
       COLORREF * pcr = get_data();
 
@@ -153,10 +191,10 @@ namespace ca
 
    }
 
-   void dib::Fill ( int R, int G, int B )
+/*   void dib::Fill ( int R, int G, int B )
    {
       COLORREF color=RGB ( B, G, R );
-      int size=width()*height();
+      int size=cx*cy;
 
       COLORREF * pcr;
 
@@ -204,11 +242,13 @@ namespace ca
          get_data()[i]=color;
       }
    }
+   */
+
 
    void dib::ToAlpha(int i)
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -292,7 +332,7 @@ namespace ca
    void dib::Map(int ToRgb, int FromRgb)
    {
       byte * dst= (byte *) get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -305,7 +345,7 @@ namespace ca
    void dib::ToAlphaAndFill(int i, COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       BYTE uchB = rgba_get_b(cr);
       BYTE uchG = rgba_get_g(cr);
@@ -324,7 +364,7 @@ namespace ca
    void dib::GrayToARGB(COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       DWORD dwB = rgba_get_b(cr);
       DWORD dwG = rgba_get_g(cr);
@@ -361,7 +401,7 @@ namespace ca
          //x64
 #else
          
-         int isize=width()*height();
+         int isize=cx*cy;
          LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
          LPDWORD lpbitsDest= (LPDWORD) get_data();
          
@@ -406,7 +446,7 @@ fill_last:
 
    void dib::Invert()
    {
-      int size=width()*height();
+      int size=cx*cy;
       LPBYTE lpb = (LPBYTE) get_data();
       for ( int i=0; i<size; i++ )
       {
@@ -494,6 +534,8 @@ fill_last:
 
    void dib::channel_from(visual::rgba::echannel echannel, ::ca::dib * pdib)
    {
+      map();
+      pdib->map();
       int64_t size = area();
       register int64_t size64 = size / 64;
       LPBYTE lpb1 = (LPBYTE) get_data();
@@ -585,7 +627,7 @@ fill_last:
    void dib::FillGlass ( int R, int G, int B, int A )
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -599,8 +641,8 @@ fill_last:
    void dib::FillStippledGlass ( int R, int G, int B )
    {
       COLORREF color=RGB ( B, G, R );
-      int w=width();
-      int h=height();
+      int w=cx;
+      int h=cy;
 
       for ( int j=0; j<w; j++ )
       {
@@ -614,20 +656,30 @@ fill_last:
    void dib::copy(dib * dib)
    {
       // If DibSize Wrong Re-create dib
-      if ( (dib->width()!=width()) || (dib->height()!=height()) )
-         dib->create ( width(), height() );
+      if(dib->size() != size())
+         dib->create(size());
       // do copy
-      memcpy ( dib->get_data(), get_data(), width()*height()*4 );
+      map();
+      dib->map();
+      memcpy ( dib->get_data(), get_data(), cx*cy*4 );
    }
 
 
-   void dib::Paste ( dib *dib )
+   void dib::Paste(dib * dib)
    {
+      
+      if(dib->size() != size())
+         dib->create(size());
+
+      dib->defer_realize(get_graphics());
+      defer_realize(dib->get_graphics());
+
+      map();
+      dib->map();
       // If DibSize Wrong Re-create dib
-      if ( (width()!=dib->width()) || (height()!=dib->height()) )
-         create ( dib->width(), dib->height() );
       // do Paste
-      memcpy ( get_data(), dib->get_data(), width()*height()*4 );
+      memcpy ( get_data(), dib->get_data(), cx*cy*4 );
+
    }
 
    bool dib::bitmap_blend(::ca::graphics * pgraphics, LPCRECT lprect)
@@ -647,7 +699,7 @@ fill_last:
    {
 
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       DWORD dwB = rgba_get_b(cr);
       DWORD dwG = rgba_get_g(cr);
@@ -675,7 +727,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -696,7 +748,7 @@ fill_last:
       BYTE *src=(BYTE*)pDib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)DibA->get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       A = 2 - A;
 
@@ -722,7 +774,7 @@ fill_last:
       BYTE *src=(BYTE*)pdib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)pdibRate->get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while(size >= 2)
       {
@@ -761,7 +813,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -780,7 +832,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -803,7 +855,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -822,7 +874,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -841,7 +893,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=width()*height();
+      int size=cx*cy;
 
       while ( size-- )
       {
@@ -862,8 +914,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -871,11 +923,14 @@ fill_last:
       if ( (dx<=0) || (dy<=0) )
          return;
       // If DibSize Wrong Re-create dib
-      if ( (dx!=dib->width()) || (dy!=dib->height()) )
-         dib->create ( dx, dy );
+      if ( (dx!=dib->cx) || (dy!=dib->cy) )
+         dib->create(dx, dy);
+
+      map();
+      dib->map();
 
       // Prepare buffer Addresses
-      COLORREF *src=get_data()+(py*width())+px;
+      COLORREF *src=get_data()+(py*cx)+px;
       COLORREF *dst=dib->get_data();
 
       // Do copy
@@ -883,9 +938,10 @@ fill_last:
       {
          for ( int i=0; i<dx; i++ )
             dst[i]=src[i];
-         src+=width();
-         dst+=dib->width();
+         src+=cx;
+         dst+=dib->cx;
       }
+
    }
 
    void dib::PasteRect ( dib *dib, int x, int y )
@@ -893,8 +949,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -903,16 +959,16 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      COLORREF *src=dib->get_data()+((py-y)*dib->width())+px-x;
-      COLORREF *dst=get_data()+(py*width())+px;
+      COLORREF *src=dib->get_data()+((py-y)*dib->cx)+px-x;
+      COLORREF *dst=get_data()+(py*cx)+px;
 
       // Do Paste
       while ( dy-- )
       {
          for ( int i=0; i<dx; i++ )
             dst[i]=src[i];
-         src+=dib->width();
-         dst+=width();
+         src+=dib->cx;
+         dst+=cx;
       }
    }
 
@@ -921,8 +977,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+w)<width()) ? w : width()-x;
-      int dy=((y+h)<height()) ? h : height()-y;
+      int dx=((x+w)<cx) ? w : cx-x;
+      int dy=((y+h)<cy) ? h : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -931,7 +987,7 @@ fill_last:
          return;
 
       // Prepare buffer Address
-      COLORREF *dst=get_data()+(py*width())+px;
+      COLORREF *dst=get_data()+(py*cx)+px;
       COLORREF color=RGB ( B, G, R );
 
       // Do Fill
@@ -941,7 +997,7 @@ fill_last:
          {
             dst[i]=color;
          }
-         dst+=width();
+         dst+=cx;
       }
    }
 
@@ -950,8 +1006,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+w)<width()) ? w : width()-x;
-      int dy=((y+h)<height()) ? h : height()-y;
+      int dx=((x+w)<cx) ? w : cx-x;
+      int dy=((y+h)<cy) ? h : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -960,7 +1016,7 @@ fill_last:
          return;
 
       // Prepare buffer Address
-      BYTE *dst=(BYTE *)get_data()+((py*width())+px)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
 
       // Do FillGlass
       while ( dy-- )
@@ -972,7 +1028,7 @@ fill_last:
             dst[2]=(BYTE)(((R-dst[2])*A+(dst[2]<<8))>>8);
             dst+=4;
          }
-         dst+=(width()-dx)<<2;
+         dst+=(cx-dx)<<2;
       }
    }
 
@@ -981,8 +1037,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+w)<width()) ? w : width()-x;
-      int dy=((y+h)<height()) ? h : height()-y;
+      int dx=((x+w)<cx) ? w : cx-x;
+      int dy=((y+h)<cy) ? h : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -991,7 +1047,7 @@ fill_last:
          return;
 
       // Prepare buffer Address
-      COLORREF *dst=get_data()+(py*width())+px;
+      COLORREF *dst=get_data()+(py*cx)+px;
       COLORREF color=RGB ( B, G, R );
 
       // Do FillStippledGlass
@@ -1001,7 +1057,7 @@ fill_last:
          {
             dst[i]=((i+j)&0x1) ? dst[i] : color;
          }
-         dst+=width();
+         dst+=cx;
       }
    }
 
@@ -1010,8 +1066,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1020,8 +1076,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->width())+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*width())+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
 
       // Do Blend
       while ( dy-- )
@@ -1034,8 +1090,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(width()-dx)<<2;
-         src+=(dib->width()-dx)<<2;
+         dst+=(cx-dx)<<2;
+         src+=(dib->cx-dx)<<2;
       }
    }
 
@@ -1044,8 +1100,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1054,8 +1110,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->width())+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*width())+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
 
       // Do Darken
       while ( dy-- )
@@ -1068,8 +1124,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(width()-dx)<<2;
-         src+=(dib->width()-dx)<<2;
+         dst+=(cx-dx)<<2;
+         src+=(dib->cx-dx)<<2;
       }
    }
 
@@ -1078,8 +1134,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1088,8 +1144,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->width())+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*width())+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
 
       // Do Difference
       while ( dy-- )
@@ -1106,8 +1162,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(width()-dx)<<2;
-         src+=(dib->width()-dx)<<2;
+         dst+=(cx-dx)<<2;
+         src+=(dib->cx-dx)<<2;
       }
    }
 
@@ -1116,8 +1172,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1126,8 +1182,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->width())+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*width())+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
 
       // Do Lighten
       while ( dy-- )
@@ -1140,8 +1196,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(width()-dx)<<2;
-         src+=(dib->width()-dx)<<2;
+         dst+=(cx-dx)<<2;
+         src+=(dib->cx-dx)<<2;
       }
    }
 
@@ -1150,8 +1206,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1160,8 +1216,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->width())+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*width())+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
 
       // Do Multiply
       while ( dy-- )
@@ -1174,8 +1230,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(width()-dx)<<2;
-         src+=(dib->width()-dx)<<2;
+         dst+=(cx-dx)<<2;
+         src+=(dib->cx-dx)<<2;
       }
    }
 
@@ -1184,8 +1240,8 @@ fill_last:
       // Clip Rect
       int px=(x>=0) ? x : 0;
       int py=(y>=0) ? y : 0;
-      int dx=((x+dib->width())<width()) ? dib->width() : width()-x;
-      int dy=((y+dib->height())<height()) ? dib->height() : height()-y;
+      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1194,8 +1250,8 @@ fill_last:
          return;
 
       // Prepare buffer Addresses
-      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->width())+px-x)*4;
-      BYTE *dst=(BYTE *)get_data()+((py*width())+px)*4;
+      BYTE *src=(BYTE *)dib->get_data()+(((py-y)*dib->cx)+px-x)*4;
+      BYTE *dst=(BYTE *)get_data()+((py*cx)+px)*4;
 
       // Do Screen
       while ( dy-- )
@@ -1208,8 +1264,8 @@ fill_last:
             dst+=4;
             src+=4;
          }
-         dst+=(width()-dx)<<2;
-         src+=(dib->width()-dx)<<2;
+         dst+=(cx-dx)<<2;
+         src+=(dib->cx-dx)<<2;
       }
    }
 
@@ -1230,7 +1286,7 @@ fill_last:
    x=x1;
    y=y1;
 
-   get_data()[y*width()+x]=color;
+   get_data()[y*cx+x]=color;
    while (x<dx)
    {
    if (d<=0)
@@ -1244,23 +1300,23 @@ fill_last:
    x++;
    y++;
    }
-   get_data()[y*width()+x]=color;
+   get_data()[y*cx+x]=color;
    }
    }*/
 
 
    void dib::horizontal_line(int y, int R, int G, int B, int A, int x1, int x2)
    {
-      if(width() == 0)
+      if(cx == 0)
          return;
-      x1 %= width();
-      x2 %= width();
+      x1 %= cx;
+      x2 %= cx;
       if(x2 < 0)
-         x2 += width();
+         x2 += cx;
       if(x1 < 0)
-         x1 += width();
+         x1 += cx;
       COLORREF color=RGB ( B, G, R ) | (A << 24);
-      COLORREF * pdata = get_data() + y * width();
+      COLORREF * pdata = get_data() + y * cx;
       for(int x = x1; x <= x2; x++)
       {
          *pdata = color;
@@ -1287,7 +1343,7 @@ fill_last:
          d=ay-(ca>>1);
          while ( x!=x2 )
          {
-            get_data()[y*width()+x]=color;
+            get_data()[y*cx+x]=color;
             if ( d>=0 )
             {
                y+=sy;
@@ -1302,7 +1358,7 @@ fill_last:
          d=ca-(ay>>1);
          while ( y!=y2 )
          {
-            get_data()[y*width()+x]=color;
+            get_data()[y*cx+x]=color;
             if ( d>=0 )
             {
                x+=sx;
@@ -1334,9 +1390,9 @@ fill_last:
          d=ay-(ca>>1);
          while ( x!=x2 )
          {
-            dst[(y*width()+x)<<2]=(BYTE)(((B-dst[(y*width()+x)<<2])*A+(dst[(y*width()+x)<<2]<<8))>>8);
-            dst[((y*width()+x)<<2)+1]=(BYTE)(((G-dst[((y*width()+x)<<2)+1])*A+(dst[((y*width()+x)<<2)+1]<<8))>>8);
-            dst[((y*width()+x)<<2)+2]=(BYTE)(((R-dst[((y*width()+x)<<2)+2])*A+(dst[((y*width()+x)<<2)+2]<<8))>>8);
+            dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+            dst[((y*cx+x)<<2)+1]=(BYTE)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+            dst[((y*cx+x)<<2)+2]=(BYTE)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
             if ( d>=0 )
             {
                y+=sy;
@@ -1351,9 +1407,9 @@ fill_last:
          d=ca-(ay>>1);
          while ( y!=y2 )
          {
-            dst[(y*width()+x)<<2]=(BYTE)(((B-dst[(y*width()+x)<<2])*A+(dst[(y*width()+x)<<2]<<8))>>8);
-            dst[((y*width()+x)<<2)+1]=(BYTE)(((G-dst[((y*width()+x)<<2)+1])*A+(dst[((y*width()+x)<<2)+1]<<8))>>8);
-            dst[((y*width()+x)<<2)+2]=(BYTE)(((R-dst[((y*width()+x)<<2)+2])*A+(dst[((y*width()+x)<<2)+2]<<8))>>8);
+            dst[(y*cx+x)<<2]=(BYTE)(((B-dst[(y*cx+x)<<2])*A+(dst[(y*cx+x)<<2]<<8))>>8);
+            dst[((y*cx+x)<<2)+1]=(BYTE)(((G-dst[((y*cx+x)<<2)+1])*A+(dst[((y*cx+x)<<2)+1]<<8))>>8);
+            dst[((y*cx+x)<<2)+2]=(BYTE)(((R-dst[((y*cx+x)<<2)+2])*A+(dst[((y*cx+x)<<2)+2]<<8))>>8);
             if ( d>=0 )
             {
                x+=sx;
@@ -1371,7 +1427,7 @@ fill_last:
       COLORREF crSet = RGB(rgba_get_b(crInMask), rgba_get_g(crInMask), rgba_get_r(crInMask));
       COLORREF crUnset  = RGB(rgba_get_b(crOutMask), rgba_get_g(crOutMask), rgba_get_r(crOutMask));
 
-      int size=width()*height();
+      int size=cx*cy;
 
       for ( int i=0; i<size; i++ )
          if(get_data()[i]== crFind)
@@ -1395,7 +1451,7 @@ fill_last:
 
    void dib::channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, visual::rgba::echannel echannel)
    {
-      int size = width() * height();
+      int size = cx * cy;
       unsigned char * puch = (unsigned char * ) get_data();
       puch += ((int) echannel) % 4;
 
@@ -1411,7 +1467,7 @@ fill_last:
 
    DWORD dib::GetPixel(int x, int y)
    {
-      DWORD dw = *(get_data() + x + (height() - y - 1) * width());
+      DWORD dw = *(get_data() + x + (cy - y - 1) * cx);
       return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
    }
 
@@ -1543,14 +1599,14 @@ fill_last:
 
 
          if(xL < 0) xL = 0;
-         if(xU >= width()) xU = width() - 1;
+         if(xU >= cx) xU = cx - 1;
          if(yL < 0) yL = 0;
-         if(yU >= height()) yU = height() - 1;
+         if(yU >= cy) yU = cy - 1;
 
 
-         BYTE *dst = ((BYTE*)(get_data() + xL + yL * width()));
-         DWORD dwAdd = ((width() - 1 - xU) + xL) * 4;
-//         int size=width()*height();
+         BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
+         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         int size=cx*cy;
 
          int dx, dy;
 
@@ -1703,14 +1759,14 @@ fill_last:
 
 
          if(xL < 0) xL = 0;
-         if(xU >= width()) xU = width() - 1;
+         if(xU >= cx) xU = cx - 1;
          if(yL < 0) yL = 0;
-         if(yU >= height()) yU = height() - 1;
+         if(yU >= cy) yU = cy - 1;
 
 
-         BYTE *dst = ((BYTE*)(get_data() + xL + yL * width()));
-         DWORD dwAdd = ((width() - 1 - xU) + xL) * 4;
-//         int size=width()*height();
+         BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
+         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+//         int size=cx*cy;
 
          int dx, dy;
 
@@ -1743,7 +1799,10 @@ fill_last:
 
    void dib::SetIconMask(::visual::icon * picon, int cx, int cy)
    {
-      create(cx, cy);
+
+      throw todo(get_app());
+
+      // xxx todo create(cx, cy);
 
       if(cx <= 0 || cy <= 0)
          return;
@@ -1753,8 +1812,12 @@ fill_last:
 
       // White blend dib
       dib dib1;
-      dib1.create(cx, cy);
-      dib1.Fill(255, 255, 255);
+
+      throw todo(get_app());
+
+      // xxx todo dib1.create(cx, cy);
+
+      dib1.Fill(0, 255, 255, 255);
 
 #ifdef METROWIN
 
@@ -1774,8 +1837,12 @@ fill_last:
 
       // Black blend dib
       ::ca::dib_sp spdib2(get_app());
-      spdib2->create(cx, cy);
-      spdib2->Fill(0, 0, 0);
+
+
+      throw todo(get_app());
+
+      // xxx todo spdib2->create(cx, cy);
+      spdib2->Fill(0, 0, 0, 0);
 
 #ifdef METROWIN
 
@@ -1795,7 +1862,9 @@ fill_last:
 
       // Mask dib
       dib dibM;
-      dibM.create(cx, cy);
+      throw todo(get_app());
+
+      // xxx todo dibM.create(cx, cy);
 
 #ifdef METROWIN
 
@@ -1817,7 +1886,7 @@ fill_last:
       BYTE * r2=(BYTE*)spdib2->get_data();
       BYTE * srcM=(BYTE*)dibM.get_data();
       BYTE * dest=(BYTE*)get_data();
-      int iSize = width()*height();
+      int iSize = cx*cy;
 
       BYTE b;
       BYTE bMax;
@@ -1856,9 +1925,6 @@ fill_last:
       // ::ca::dib_sp spdib(get_app());
       //   spdib->Paste(this);
 
-      int cx = width();
-      int cy = height();
-
       int l = max(cx, cy);
 
 
@@ -1886,7 +1952,7 @@ fill_last:
       x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
       y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
       get_data()[(j+joff)*cx+(i+ioff)]=
-      spdib->get_data()[abs(y%height())*width()+abs(x%width())];
+      spdib->get_data()[abs(y%cy)*cx+abs(x%cx)];
       //k++;
       }
       (j+joff)*cx+(i+ioff)
@@ -1895,8 +1961,8 @@ fill_last:
       int k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int cx1 = width() - 1;
-      int cy1 = height() - 1;
+      int cx1 = cx - 1;
+      int cy1 = cy - 1;
       for ( int j=jmin; j<jmax; j++ )
       {
          for ( int i=imin; i<imax; i++ )
@@ -1904,28 +1970,28 @@ fill_last:
             int x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int(dCos * i - dSin * j) + ioff) % width());
-            //y=abs((int(dSin * i + dCos * j) + joff) % height());
+            //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
+            //y=abs((int(dSin * i + dCos * j) + joff) % cy);
 
             x = (int) abs((dCos * i - dSin * j) + ioff);
             y = (int) abs((dSin * i + dCos * j) + joff);
 
-            if((x / width()) % 2 == 0)
+            if((x / cx) % 2 == 0)
             {
-               x %= width();
+               x %= cx;
             }
             else
             {
-               x = cx1 - (x % width());
+               x = cx1 - (x % cx);
             }
 
-            if((y / height()) % 2 == 0)
+            if((y / cy) % 2 == 0)
             {
-               y %= height();
+               y %= cy;
             }
             else
             {
-               y = cy1 - (y % height());
+               y = cy1 - (y % cy);
             }
 
 
@@ -1940,9 +2006,6 @@ fill_last:
 
    void dib::Rotate034(dib * pdib, double dAngle, double dScale)
    {
-
-      int cx = width();
-      int cy = height();
 
       int l = max(cx, cy);
 
@@ -1966,8 +2029,8 @@ fill_last:
       int k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int cx1 = width() - 1;
-      int cy1 = height() - 1;
+      int cx1 = cx - 1;
+      int cy1 = cy - 1;
       for ( int j=jmin; j<jmax; j++ )
       {
          for ( int i=imin; i<imax; i++ )
@@ -1975,28 +2038,28 @@ fill_last:
             int x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int(dCos * i - dSin * j) + ioff) % width());
-            //y=abs((int(dSin * i + dCos * j) + joff) % height());
+            //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
+            //y=abs((int(dSin * i + dCos * j) + joff) % cy);
 
             x = (int) abs((dCos * i - dSin * j) + ioff);
             y = (int) abs((dSin * i + dCos * j) + joff);
 
-            if((x / width()) % 2 == 0)
+            if((x / cx) % 2 == 0)
             {
-               x %= width();
+               x %= cx;
             }
             else
             {
-               x = cx1 - (x % width());
+               x = cx1 - (x % cx);
             }
 
-            if((y / height()) % 2 == 0)
+            if((y / cy) % 2 == 0)
             {
-               y %= height();
+               y %= cy;
             }
             else
             {
-               y = cy1 - (y % height());
+               y = cy1 - (y % cy);
             }
 
 
@@ -2008,11 +2071,7 @@ fill_last:
       }
    }
 
-   void dib::rotate(
-      dib * pdib,
-      LPCRECT lpcrect,
-      double dAngle,
-      double dScale)
+   void dib::rotate(dib * pdib, LPCRECT lpcrect, double dAngle, double dScale)
    {
       // ::ca::dib_sp spdib(get_app());
       //   spdib->Paste(this);
@@ -2050,7 +2109,7 @@ fill_last:
       x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
       y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
       get_data()[(j+joff)*cx+(i+ioff)]=
-      spdib->get_data()[abs(y%height())*width()+abs(x%width())];
+      spdib->get_data()[abs(y%cy)*cx+abs(x%cx)];
       //k++;
       }
       (j+joff)*cx+(i+ioff)
@@ -2068,8 +2127,8 @@ fill_last:
             int x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int(dCos * i - dSin * j) + ioff) % width());
-            //y=abs((int(dSin * i + dCos * j) + joff) % height());
+            //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
+            //y=abs((int(dSin * i + dCos * j) + joff) % cy);
 
             x = (int) abs((dCos * i - dSin * j) + ioff);
             y = (int) abs((dSin * i + dCos * j) + joff);
@@ -2094,8 +2153,8 @@ fill_last:
 
 
 
-            get_data()[(j+joff)*width()+(i+ioff)]=
-               pdib->get_data()[y * width() + x];
+            get_data()[(j+joff)*cx+(i+ioff)]=
+               pdib->get_data()[y * cx + x];
             k++;
          }
       }
@@ -2123,7 +2182,7 @@ fill_last:
    void dib::Fill (int A, int R, int G, int B )
    {
       COLORREF color = RGB ( B, G, R ) | (A << 24);
-      int size=width()*height();
+      int size=cx*cy;
 
       COLORREF * pcr;
 
@@ -2181,16 +2240,16 @@ fill_last:
       int iRLine;
       int iGLine;
       int iBLine;
-      double dDiv = width() * height();
+      double dDiv = cx * cy;
       if(dDiv > 0)
       {
          LPBYTE lpb = (LPBYTE) get_data();
-         for (int y = 0; y < height(); y++)
+         for (int y = 0; y < cy; y++)
          {
             iRLine = 0;
             iGLine = 0;
             iBLine = 0;
-            for (int x = 0; x < width(); x++)
+            for (int x = 0; x < cx; x++)
             {
                iRLine += lpb[2];
                iGLine += lpb[1];
@@ -2216,12 +2275,12 @@ fill_last:
 
    void dib::do_xor(dib * pdib)
    {
-      if(width() != pdib->width()
-         || height() != pdib->height())
+      if(cx != pdib->cx
+         || cy != pdib->cy)
       {
          return;
       }
-      int iCount = width() * height();
+      int iCount = cx * cy;
       LPDWORD lpd1 = (LPDWORD) get_data();
       LPDWORD lpd2 = (LPDWORD) pdib->get_data();
       for(int i = 0; i < iCount; i++)
@@ -2232,7 +2291,7 @@ fill_last:
       }
    }
 
-   void dib::create_frame(class size size, int iFrameCount)
+   void dib::create_frame(::size size, int iFrameCount)
    {
       int iSliceCount = (int) sqrt((double) iFrameCount);
       int iFrameWidth = size.cx / iSliceCount;
@@ -2245,16 +2304,16 @@ fill_last:
       int iSliceCount = (int) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int iFrameWidth = width() / iSliceCount;
-      int iFrameHeight = height() / iSliceCount;
+      int iFrameWidth = cx / iSliceCount;
+      int iFrameHeight = cy / iSliceCount;
       int iX = iFrame % iSliceCount;
       int iY = iFrame / iSliceCount;
-      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
+      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
       for(int y = 0; y < iFrameHeight; y++)
       {
-         lpDestLine = &lpDest[y * width()];
+         lpDestLine = &lpDest[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine = *lpSrc;
@@ -2269,16 +2328,16 @@ fill_last:
       int iSliceCount = (int) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int iFrameWidth = width() / iSliceCount;
-      int iFrameHeight = height() / iSliceCount;
+      int iFrameWidth = cx / iSliceCount;
+      int iFrameHeight = cy / iSliceCount;
       int iX = iFrame % iSliceCount;
       int iY = iFrame / iSliceCount;
-      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
+      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
       for(int y = iFrameHeight - 1; y >= 0; y--)
       {
-         lpDestLine = &lpDest[y * width()];
+         lpDestLine = &lpDest[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine = *lpSrc;
@@ -2293,16 +2352,16 @@ fill_last:
       int iSliceCount = (int) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int iFrameWidth = width() / iSliceCount;
-      int iFrameHeight = height() / iSliceCount;
+      int iFrameWidth = cx / iSliceCount;
+      int iFrameHeight = cy / iSliceCount;
       int iX = iFrame % iSliceCount;
       int iY = iFrame / iSliceCount;
-      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * width()];
+      COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
       for(int y = iFrameHeight - 1; y >= 0; y--)
       {
-         lpDestLine = &lpDest[y * width()];
+         lpDestLine = &lpDest[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine ^= *lpSrc;
@@ -2315,16 +2374,16 @@ fill_last:
    void dib::get_frame(void * lpdata, int iFrame, int iFrameCount)
    {
       int iSliceCount = (int) sqrt((double) iFrameCount);
-      int iFrameWidth = width() / iSliceCount;
-      int iFrameHeight = height() / iSliceCount;
+      int iFrameWidth = cx / iSliceCount;
+      int iFrameHeight = cy / iSliceCount;
       int iX = iFrame % iSliceCount;
       int iY = iFrame / iSliceCount;
-      COLORREF * lpSrc = &get_data()[iFrameWidth * iX + iY * iFrameHeight *  width()];
+      COLORREF * lpSrc = &get_data()[iFrameWidth * iX + iY * iFrameHeight *  cx];
       COLORREF * lpDest = (COLORREF *) lpdata;
       COLORREF * lpSrcLine;
       for(int y = 0; y < iFrameHeight; y++)
       {
-         lpSrcLine = &lpSrc[y * width()];
+         lpSrcLine = &lpSrc[y * cx];
          for(int x = 0; x < iFrameWidth; x++)
          {
             *lpDest = *lpSrcLine;
@@ -2336,7 +2395,7 @@ fill_last:
 
    bool dib::is_rgb_black()
    {
-      int iSize = width() * height();
+      int iSize = cx * cy;
       COLORREF * lp = get_data();
       for(int i = 0; i < iSize; i++)
       {
@@ -2353,7 +2412,7 @@ fill_last:
       {
          return;
       }
-      int iCount = width() * height();
+      int iCount = cx * cy;
       LPBYTE lp = ((LPBYTE) get_data());
       int i = 0;
       int iCount1 = iCount - iCount % 8;
@@ -2408,7 +2467,7 @@ fill_last:
       {
          return;
       }
-      int iCount = width() * height();
+      int iCount = cx * cy;
       LPBYTE lp = ((LPBYTE) get_data());
       for(int i = 0; i < iCount; i++)
       {
@@ -2426,7 +2485,7 @@ fill_last:
       {
          return;
       }
-      int iCount = width() * height();
+      int iCount = cx * cy;
       LPBYTE lp = ((LPBYTE) get_data());
       for(int i = 0; i < iCount; i++)
       {
@@ -2470,25 +2529,25 @@ fill_last:
       throw interface_only_exception(get_app());
    }
 
-   int dib::width()
+/*   int dib::cx
    {
       throw interface_only_exception(get_app());
    }
 
-   int dib::height()
+   int dib::cy
    {
       throw interface_only_exception(get_app());
    }
 
    int64_t dib::area()
    {
-      return ((int64_t) width()) * ((int64_t)height());
+      return ((int64_t) cx) * ((int64_t)cy);
    }
 
    size dib::size()
    {
-      return size64(width(), height());
-   }
+      return size64(cx, cy);
+   }*/
 
    double dib::pi()
    {
@@ -2506,26 +2565,41 @@ fill_last:
 
    void dib::channel_copy(visual::rgba::echannel echannelDst, visual::rgba::echannel echannelSrc)
    {
+      
+      map();
+
       echannelDst = (visual::rgba::echannel) (((int) echannelDst) % 4);
       echannelSrc = (visual::rgba::echannel) (((int) echannelSrc) % 4);
+
       if(echannelDst == echannelSrc)
          return;
-      byte * lpDst = &((byte *) get_data())[((int)echannelDst)];
-      byte * lpSrc = &((byte *) get_data())[((int)echannelSrc)];
-      int64_t iArea = area();
-      while(iArea > 0)
+
+      byte * pdata = (byte *) get_data();
+
+      for(int y = 0; y < cy; y++)
       {
-         *lpDst = *lpSrc;
-         lpDst += 4;
-         lpSrc += 4;
-         iArea--;
+
+         byte * pdst = &pdata[scan * y + ((int)echannelDst)];
+
+         byte * psrc = &pdata[scan * y + ((int)echannelDst)];
+
+         for(int x = 0; x < cx; x++)
+         {
+
+            *pdst = *psrc;
+
+            pdst += 4;
+
+            psrc += 4;
+
+         }
       }
    }
 
    void dib::write(::ex1::byte_output_stream & ostream)
    {
-      ostream << (int) width();
-      ostream << (int) height();
+      ostream << (int) cx;
+      ostream << (int) cy;
       if(area() <= 0)
          return;
       ostream.write(get_data(), (::primitive::memory_size)(sizeof(COLORREF) * area()));
@@ -2545,6 +2619,7 @@ fill_last:
          return;
       if(!create(width, height))
          throw 0;
+      map();
       istream.read(get_data(), (::primitive::memory_size)(sizeof(COLORREF) * area()));
    }
 
@@ -2596,8 +2671,8 @@ fill_last:
 
 
 
-      int w = width();
-      int h = height();
+      int w = cx;
+      int h = cy;
 
       int xCount = w / iSize;
       int yCount = h / iSize;

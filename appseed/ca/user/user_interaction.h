@@ -12,6 +12,15 @@ namespace ca
    class window_callback;
    class live_object;
 
+#ifdef METROWIN
+
+   interface class system_window
+   {
+      virtual Windows::Foundation::Rect get_window_rect() = 0;
+      virtual Windows::Foundation::Point get_cursor_pos() = 0;
+   };
+
+#endif
 
 } // namespace ca
 
@@ -77,7 +86,9 @@ namespace user
 
 
       virtual bool create_message_window(const char * pszName, ::ca::window_callback * pcallback = NULL);
-
+#ifdef METROWIN
+      virtual bool initialize(Windows::UI::Core::CoreWindow ^ window, ::ca::system_window ^ pwindow);
+#endif
 
 
       enum e_appearance
@@ -150,6 +161,9 @@ namespace user
       virtual interaction * above_sibling(interaction * pui);
       virtual interaction * under_sibling(interaction * pui);
 
+
+      virtual void mouse_hover_add(::user::interaction* pinterface);
+      virtual void mouse_hover_remove(::user::interaction* pinterface);
 
 
       virtual bool CheckAutoCenter();

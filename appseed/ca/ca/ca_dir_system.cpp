@@ -363,6 +363,15 @@ namespace ca
       void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
+         if(gen::str::begins_ci(lpcsz, "http://") || gen::str::begins_ci(lpcsz, "https://"))
+         {
+            string str = App(papp).http().get(lpcsz);
+            if(pstraPath != NULL)
+            {
+               pstraPath->add_tokens(str, "\n", false);
+            }
+            return;
+         }
          if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
@@ -433,6 +442,10 @@ namespace ca
 
       bool system::is(const char * lpcszPath, ::ca::application * papp)
       {
+         if(gen::str::begins_ci(lpcszPath, "http://") || gen::str::begins_ci(lpcszPath, "https://"))
+         {
+            return App(papp).http().exists(lpcszPath);
+         }
          if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcszPath, ".zip")))
             return true;
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", lpcszPath) >= 0))
@@ -450,6 +463,11 @@ namespace ca
 
       bool system::is(const string & strPath, ::ca::application * papp)
       {
+         if(gen::str::begins_ci(strPath, "http://") || gen::str::begins_ci(strPath, "https://"))
+         {
+            return App(papp).http().exists(strPath);
+         }
+
          if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
@@ -763,7 +781,16 @@ namespace ca
 
       }
 
-      string system::matter(::ca::application * papp, const stringa & stra)
+      void system::matter_ls(::ca::application * papp, const string & str, stringa & stra)
+      {
+         
+         string strDir = matter(papp, stra, true);
+
+         ls(papp, strDir, &stra);
+
+      }
+
+      string system::matter(::ca::application * papp, const stringa & stra, bool bDir)
       {
 
          ::index j;
@@ -786,8 +813,16 @@ namespace ca
          
             strPath = path(strLs, stra[j]);
             
-            if(System.file().exists(strPath, get_app()))
-               return strPath;
+            if(bDir)
+            {
+               if(System.dir().is(strPath, get_app()))
+                  return strPath;
+            }
+            else
+            {
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+            }
 
          }
 
@@ -804,8 +839,16 @@ namespace ca
          
                strPath = path(strLs, stra[j]);
             
-               if(System.file().exists(strPath, get_app()))
-                  return strPath;
+               if(bDir)
+               {
+                  if(System.dir().is(strPath, get_app()))
+                     return strPath;
+               }
+               else
+               {
+                  if(System.file().exists(strPath, get_app()))
+                     return strPath;
+               }
 
             }
 
@@ -819,8 +862,16 @@ namespace ca
          
             strPath = path(strLs, stra[j]);
             
-            if(System.file().exists(strPath, get_app()))
-               return strPath;
+            if(bDir)
+            {
+               if(System.dir().is(strPath, get_app()))
+                  return strPath;
+            }
+            else
+            {
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+            }
 
          }
 
@@ -828,39 +879,55 @@ namespace ca
          if(papp->m_psession != NULL && papp->m_psession != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp)
          {
-            strPath = matter(papp->m_psession, stra);
-            if(System.file().exists(strPath, papp))
-               return strPath;
+            strPath = matter(papp->m_psession, stra, bDir);
+            if(bDir)
+            {
+               if(System.dir().is(strPath, get_app()))
+                  return strPath;
+            }
+            else
+            {
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+            }
          }
 
          if(papp->m_psystem != NULL && papp->m_psystem != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
          {
-            strPath = matter(papp->m_psystem, stra);
-            if(System.file().exists(strPath, papp))
-               return strPath;
+            strPath = matter(papp->m_psystem, stra, bDir);
+            if(bDir)
+            {
+               if(System.dir().is(strPath, get_app()))
+                  return strPath;
+            }
+            else
+            {
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+            }
          }
 
          return path(strLs, stra[0]);
 
       }
 
-      string system::matter(::ca::application * papp, const char * psz, const char * psz2)
+      string system::matter(::ca::application * papp, const char * psz, const char * psz2, bool bDir)
       {
-         return matter(papp, string(psz), string(psz2));
+         return matter(papp, string(psz), string(psz2), bDir);
       }
 
-      string system::matter(::ca::application * papp, const string & str, const char * psz)
+      string system::matter(::ca::application * papp, const string & str, const char * psz, bool bDir)
       {
-         return matter(papp, str, string(psz));
+         return matter(papp, str, string(psz), bDir);
       }
 
-      string system::matter(::ca::application * papp, const char * psz, const string & str)
+      string system::matter(::ca::application * papp, const char * psz, const string & str, bool bDir)
       {
-         return matter(papp, string(psz), str);
+         return matter(papp, string(psz), str, bDir);
       }
 
-      string system::matter(::ca::application * papp, const string & str, const string & str2)
+      string system::matter(::ca::application * papp, const string & str, const string & str2, bool bDir)
       {
 
          ::user::str_context * pcontext = App(papp).str_context();
@@ -871,8 +938,16 @@ namespace ca
          string strSchema   = pcontext->m_plocaleschema->m_idSchema;
          string strLs      = locale_schema_matter(papp, strLocale, strSchema);
          strPath           = path(strLs, str, str2);
-         if(System.file().exists(strPath, get_app()))
-            return strPath;
+         if(bDir)
+         {
+            if(System.dir().is(strPath, get_app()))
+               return strPath;
+         }
+         else
+         {
+            if(System.file().exists(strPath, get_app()))
+               return strPath;
+         }
 
 
          for(int i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
@@ -882,32 +957,64 @@ namespace ca
             strSchema         = pcontext->localeschema().m_idaSchema[i];
             strLs             = locale_schema_matter(papp, strLocale, strSchema);
             strPath           = path(strLs, str, str2);
-            if(System.file().exists(strPath, get_app()))
-               return strPath;
+            if(bDir)
+            {
+               if(System.dir().is(strPath, get_app()))
+                  return strPath;
+            }
+            else
+            {
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+            }
 
          }
 
 
          strLs             = locale_schema_matter(papp, "en", "en");
          strPath           = path(strLs, str, str2);
-         if(System.file().exists(strPath, get_app()))
-            return strPath;
+         if(bDir)
+         {
+            if(System.dir().is(strPath, get_app()))
+               return strPath;
+         }
+         else
+         {
+            if(System.file().exists(strPath, get_app()))
+               return strPath;
+         }
 
 
          if(papp->m_psession != NULL && papp->m_psession != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp)
          {
             strPath = matter(papp->m_psession, str, str2);
-            if(System.file().exists(strPath, papp))
-               return strPath;
+            if(bDir)
+            {
+               if(System.dir().is(strPath, get_app()))
+                  return strPath;
+            }
+            else
+            {
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+            }
          }
 
          if(papp->m_psystem != NULL && papp->m_psystem != papp &&
             (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
          {
             strPath = matter(papp->m_psystem, str, str2);
-            if(System.file().exists(strPath, papp))
-               return strPath;
+            if(bDir)
+            {
+               if(System.dir().is(strPath, get_app()))
+                  return strPath;
+            }
+            else
+            {
+               if(System.file().exists(strPath, get_app()))
+                  return strPath;
+            }
          }
 
          return path(strLs, str, str2);
@@ -963,17 +1070,17 @@ namespace ca
          return path(locale_schema_matter(papp, strEmpty, strEmpty), str, str2);*/
       }
 
-      string system::matter(::ca::application * papp, const char * psz)
+      string system::matter(::ca::application * papp, const char * psz, bool bDir)
       {
          string str(psz);
          string str2;
-         return matter(papp, str, str2);
+         return matter(papp, str, str2, bDir);
       }
 
-      string system::matter(::ca::application * papp, const string & str)
+      string system::matter(::ca::application * papp, const string & str, bool bDir)
       {
          string str2;
-         return matter(papp, str, str2);
+         return matter(papp, str, str2, bDir);
       }
 
       string system::matter(::ca::application * papp)

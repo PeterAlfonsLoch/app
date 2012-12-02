@@ -59,7 +59,7 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
 #ifdef WINDOWSEX
    byte * p = (byte *) ::HeapReAlloc(g_system_heap(), 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
 #else
-   byte * p = (byte *) ::realloc(pOld - iMod, ((size + 4 + 3) & ~3));
+   byte * p = (byte *) ::realloc(pOld - iMod- sizeof(size_t), ((size + 4 +  sizeof(size_t) + 3) & ~3));
 #endif
    if(p == NULL)
    {
@@ -121,7 +121,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
    try
    {
 
-      ::free(p - iMod);
+      ::free(p - iMod - sizeof(size_t));
 
    }
    catch(...)

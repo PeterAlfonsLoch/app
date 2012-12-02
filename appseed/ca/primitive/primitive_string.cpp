@@ -2808,3 +2808,10 @@ string string::utf8_substr(strsize iFirst, strsize nCount) const
    return c;
    
 }
+
+
+
+bool string::begins_ci(const char * s) const
+{
+   return gen::str::begins_ci(*this, s);
+}

@@ -47,3 +47,13 @@ namespace ex1
 //CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char * mode);
 
 //#include "os_multithreading.h"
+
+
+
+
+CLASS_DECL_ca BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
+
+#define PostMessage PostMessageW
+
+
+

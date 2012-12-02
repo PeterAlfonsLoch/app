@@ -31,6 +31,8 @@ namespace sockets
       bool file::open(const char * lpszFileName, UINT nOpenFlags)
       {
 
+         if(!Application.file().exists(lpszFileName))
+            return false;
 
          ca4::http::signal * psignal = new ca4::http::signal;
 

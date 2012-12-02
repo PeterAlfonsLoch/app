@@ -58,8 +58,29 @@ size_t ca2_msize_dbg(void * pvoid, int iBlockType)
 
 END_EXTERN_C
 
+
+simple_mutex & get_mutex_c_heap()
+{
+   
+   static simple_mutex * s_pmutex = NULL;
+
+   if(s_pmutex == NULL)
+   {
+
+      s_pmutex = (simple_mutex *) malloc(sizeof(simple_mutex));
+
+      new (s_pmutex) simple_mutex;
+
+   }
+
+   return *s_pmutex;
+
+}
+
+
 void * _ca_alloc(size_t size)
 {
+   mutex_lock ml(get_mutex_c_heap());
 #ifdef WINDOWSEX
 #if ZEROED_ALLOC
    byte * p = (byte *) HeapAlloc(::GetProcessHeap(), HEAP_ZERO_MEMORY, size + 4 + 32);
@@ -79,12 +100,14 @@ void * _ca_alloc(size_t size)
 
 void * _ca_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
 {
+   mutex_lock ml(get_mutex_c_heap());
    return _ca_alloc(nSize);
 }
 
 
 void * _ca_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine)
 {
+   mutex_lock ml(get_mutex_c_heap());
    byte * p = (byte *) pvoid;
    if(p == NULL)
       return _ca_alloc(nSize);
@@ -115,6 +138,7 @@ void * _ca_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFil
 
 void _ca_free(void * pvoid, int iBlockType)
 {
+   mutex_lock ml(get_mutex_c_heap());
    byte * p = (byte *) pvoid;
    if(p == NULL)
       return;
@@ -131,6 +155,7 @@ void _ca_free(void * pvoid, int iBlockType)
 
 size_t _ca_msize(void * pvoid, int iBlockType)
 {
+   mutex_lock ml(get_mutex_c_heap());
    byte * p = (byte *) pvoid;
    if(p == NULL)
       return 0;

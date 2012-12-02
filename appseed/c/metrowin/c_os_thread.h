@@ -82,10 +82,10 @@ public:
    }
    
    
-   T wait(::Windows::Foundation::AsyncStatus * pstatus = NULL)
+   T wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL)
    {
 
-      m_event.wait();
+      m_event.wait(dwMillis);
 
       if(pstatus != NULL)
          *pstatus = m_status;
@@ -126,19 +126,22 @@ public:
 
       m_action                = action;
 
+      m_action->Completed     = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+      {
+
+         m_status = status;
+
+         m_event.set_event();
+
+      });
+
       if(m_action->Status != ::Windows::Foundation::AsyncStatus::Started)
       {
+
+         m_status = m_action->Status;
+
          m_event.set_event();
-      }
-      else
-      {
-         m_action->Completed     = ref new ::Windows::Foundation::AsyncActionCompletedHandler([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
-         {
-            m_status = status;
 
-            m_event.set_event();
-
-         });
       }
 
    }
@@ -149,10 +152,10 @@ public:
    }
 
 
-   void wait(::Windows::Foundation::AsyncStatus * pstatus = NULL)
+   void wait(unsigned int dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL)
    {
 
-      m_event.wait();
+      m_event.wait(dwMillis);
 
       if(pstatus != NULL)
          *pstatus = m_status;
@@ -164,62 +167,72 @@ public:
 
 
 template < typename T >
-inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, ::Windows::Foundation::AsyncStatus * pstatus = NULL, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+inline T wait(::Windows::Foundation::IAsyncOperation < T > ^ operation, DWORD dwMillis = INFINITE, ::Windows::Foundation::AsyncStatus * pstatus = NULL, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
 {
    
    waiter_for_Windows_Foundation_IAsyncOperation < T > waiter(operation, callbackcontext);
       
-   return waiter.wait(pstatus);
+   return waiter.wait(dwMillis, pstatus);
 
 }
 
 
-inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncAction ^ action, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
+inline ::Windows::Foundation::AsyncStatus wait(::Windows::Foundation::IAsyncAction ^ action,  DWORD dwMillis = INFINITE, Platform::CallbackContext callbackcontext = Platform::CallbackContext::Any)
 {
    
    ::Windows::Foundation::AsyncStatus status;
    
    waiter_for_Windows_Foundation_IAsyncAction waiter(action, callbackcontext);
    
-   waiter.wait(&status);
+   waiter.wait(dwMillis, &status);
 
    return status;
 
 }
 
 
+/*
+ * Message structure
+ */
+typedef struct tagMESSAGE {
+    oswindow    oswindow;
+    UINT        message;
+    WPARAM      wParam;
+    LPARAM      lParam;
+    DWORD       time;
+    POINT       pt;
+#ifdef _MAC
+    DWORD       lPrivate;
+#endif
+} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 
-CLASS_DECL_c
-BOOL
-WINAPI
-PeekMessageW(
-    _Out_ LPMSG lpMsg,
-    _In_opt_ HWND hWnd,
-    _In_ UINT wMsgFilterMin,
-    _In_ UINT wMsgFilterMax,
-    _In_ UINT wRemoveMsg);
 
+class CLASS_DECL_c mq
+{
+public:
+
+   simple_mutex               m_mutex;
+   simple_array < MESSAGE >   ma;
+   simple_event               m_eventNewMessage;
+
+   mq() : m_eventNewMessage(false, true) {}
+
+
+
+};
+
+CLASS_DECL_c mq * get_mq(HANDLE h);
+
+CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax);
+
+#define GetMessage GetMessageW
+
+CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax,UINT wRemoveMsg);
 
 #define PeekMessage PeekMessageW
 
-
-
-CLASS_DECL_c
-DWORD
-WINAPI
-GetThreadId(
-    _In_ HANDLE Thread
-    );
-
+CLASS_DECL_c DWORD WINAPI GetThreadId(HANDLE Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 
-
-CLASS_DECL_c
-BOOL
-WINAPI
-PostThreadMessageW(
-    _In_ DWORD idThread,
-    _In_ UINT Msg,
-    _In_ WPARAM wParam,
-    _In_ LPARAM lParam);
+CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);

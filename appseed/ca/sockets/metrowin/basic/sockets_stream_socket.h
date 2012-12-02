@@ -14,6 +14,7 @@
 
 
          ::Windows::Networking::Sockets::StreamSocket ^ m_streamsocket;
+         ::Windows::Storage::Streams::DataWriter ^ m_writer;
          bool m_bConnecting; ///< Flag indicating connection in progress
          int m_connect_timeout; ///< Connection timeout (seconds)
          bool m_flush_before_close; ///< Send all data before closing (default true)

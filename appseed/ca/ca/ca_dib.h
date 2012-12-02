@@ -22,6 +22,11 @@ namespace ca
    public:
 
 
+      int         cx;
+      int         cy;
+      int         scan;
+
+
       virtual ::ca::graphics * get_graphics();
       virtual ::ca::bitmap_sp get_bitmap();
       virtual ::ca::bitmap_sp detach_bitmap();
@@ -87,10 +92,15 @@ namespace ca
       virtual void transparent_color(color color);
 
 
-      virtual bool create(size size);
+      virtual bool create(size);
       virtual bool create(int iWidth, int iHeight);
       virtual bool create(::ca::graphics * pdc);
       virtual bool Destroy();
+
+      virtual bool realize(::ca::graphics * pdc);
+      virtual bool unrealize();
+      virtual bool is_realized();
+      virtual bool defer_realize(::ca::graphics * pdc);
 
 
       virtual void DivideRGB(int iDivide);
@@ -116,7 +126,7 @@ namespace ca
       virtual void fill_channel(int C, visual::rgba::echannel echannel);
       virtual void FillByte(unsigned char uch);
       virtual void Fill (int A, int R, int G, int B );
-      virtual void Fill ( int R, int G, int B );
+//      virtual void Fill ( int R, int G, int B );
       virtual void set ( int R, int G, int B );
       virtual void FillGlass ( int R, int G, int B, int A );
       virtual void FillStippledGlass ( int R, int G, int B );
@@ -166,11 +176,11 @@ namespace ca
       virtual void xor_dib_frame2(void * lpdata, int iFrame, int iFrameCount);
 
 
-      virtual int width();
-      virtual int height();
-      virtual int64_t area();
+      //virtual int width();
+      //virtual int height();
+      inline int64_t area() { return cx * cy; }
       virtual double pi();
-      virtual class size size();
+      inline class size size() { return ::size(cx, cy); }
 
       virtual void write(::ex1::byte_output_stream & ostream);
       virtual void read(::ex1::byte_input_stream & istream);

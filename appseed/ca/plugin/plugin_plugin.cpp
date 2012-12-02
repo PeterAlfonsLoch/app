@@ -250,8 +250,8 @@ namespace plugin
          if(m_dib.is_null())
             return;
 
-         if(!m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top))
-            return;
+         if(m_dib.get_os_data() == NULL)
+            m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top);
 
          m_dib->Fill(0, 0, 0, 0);
 

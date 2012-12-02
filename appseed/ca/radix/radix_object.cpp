@@ -31,14 +31,6 @@ namespace radix
       }*/
       common_construct(); 
    }
-   
-   void object::common_construct()
-   {
-   }
-   
-   object::~object()
-   { 
-   }
 
    object::object(const object& objectSrc)
    {
@@ -54,6 +46,40 @@ namespace radix
       }*/
       operator =(objectSrc);
    }
+
+   void object::common_construct()
+   {
+   }
+   
+   object::~object()
+   { 
+
+      try
+      {
+
+         if(m_papp != NULL)
+         {
+
+            if(m_papp->m_psystem != NULL)
+            {
+
+               gen::property_set * pset = System.existing_propset(this);
+         
+               if(pset != NULL)
+               {
+                  pset->m_propertya.remove_all();
+               }
+
+            }
+
+         }
+
+      }
+      catch(...)
+      {
+      }
+   }
+
 
 
    object & object::operator=(const object& objectSrc)

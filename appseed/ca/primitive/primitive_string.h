@@ -434,6 +434,9 @@ public:
    strsize reverse_find( PCXSTR ch, strsize iStart = -1 ) const RELEASENOTHROW;
 
 
+   bool begins_ci(const char * s) const;
+
+
    char last_char() const;
 
    // manipulation

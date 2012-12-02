@@ -213,14 +213,6 @@ namespace plane
 
    };
 
-#ifdef METROWIN
-   interface class system_window
-   {
-      virtual Windows::Foundation::Rect get_window_rect() = 0;
-      virtual Windows::Foundation::Point get_cursor_pos() = 0;
-   };
-
-#endif
 
    class CLASS_DECL_ca system :
       virtual public ::plane::application,
@@ -230,7 +222,10 @@ namespace plane
 
 
 #ifdef METROWIN
-      system_window ^                                    m_pwindow;
+      ::user::interaction *                        m_pui;
+      ::ca::system_window ^                        m_pwindow;
+      ID2D1DeviceContext *                         m_pdc;
+      mutex *                                      m_pmutexDc;
 #endif
       sp(::filehandler::handler)                   m_spfilehandler;
       ::cube::cube *                               m_pcube;

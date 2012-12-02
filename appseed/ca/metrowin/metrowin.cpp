@@ -147,3 +147,42 @@ int main(Platform::Array < Platform::String ^ > ^ stra)
 {
 
 }
+
+
+
+
+CLASS_DECL_ca BOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+
+   if(oswindow.window() == NULL || oswindow.window()->m_pthread == NULL)
+      return FALSE;
+
+   HANDLE h = oswindow.window()->m_pthread->get_os_data();
+
+   if(h == NULL)
+      return FALSE;
+
+
+   mq * pmq = get_mq(h);
+
+   if(pmq == NULL)
+      return FALSE;
+
+   mutex_lock ml(pmq->m_mutex);
+
+   MESSAGE msg;
+
+   //zero(&msg, sizeof(msg));
+
+   msg.oswindow   = oswindow;
+   msg.message    = Msg;
+   msg.wParam     = wParam;
+   msg.lParam     = lParam;
+
+   pmq->ma.add(msg);
+   
+   pmq->m_eventNewMessage.set_event();
+
+   return true;
+
+}

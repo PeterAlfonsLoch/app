@@ -18,6 +18,8 @@ namespace plane
 
 #ifdef METROWIN
       m_window                                  = nullptr;
+      m_pmutexDc                                = NULL;
+      m_pdc                                     = NULL;
 #endif
       m_psystem                                 = this;
       set_app(this);

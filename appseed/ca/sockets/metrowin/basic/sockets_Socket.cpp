@@ -630,11 +630,11 @@ namespace sockets
    }
 
 
-   #ifdef HAVE_OPENSSL
    void socket::OnSSLConnect()
    {
    }
 
+   #ifdef HAVE_OPENSSL
 
    void socket::OnSSLAccept()
    {
@@ -1838,6 +1838,8 @@ namespace sockets
                   m_line += (buf + x);
                }
                OnLine( m_line );
+               if(CloseAndDelete())
+                  break;
                i++;
                m_skip_c = true;
                m_c = c;
@@ -1853,7 +1855,11 @@ namespace sockets
             {
                break;
             }
+            if(CloseAndDelete())
+               break;
          }
+         if(CloseAndDelete())
+            return;
          if (!LineProtocol())
          {
             if (i < n)
@@ -1946,7 +1952,15 @@ namespace sockets
       if(m_bOnConnect)
       {
          m_bOnConnect = false;
-         OnConnect();
+         if(m_bEnableSsl)
+         {
+            OnSSLConnect();
+            OnConnect();
+         }
+         else
+         {
+            OnConnect();
+         }
          return;
       }
       if(m_bExpectRequest)
@@ -1961,6 +1975,7 @@ namespace sockets
          OnRead();
          return;
       }
+      SetCloseAndDelete();
    }
 
 } // namespace sockets

@@ -532,7 +532,7 @@ namespace sockets
       /** @name SSL Support */
       //@{
       /** SSL client/server support - internal use. \sa tcp_socket */
-      //virtual void OnSSLConnect();
+      virtual void OnSSLConnect();
       /** SSL client/server support - internal use. \sa tcp_socket */
       //virtual void OnSSLAccept();
       /** SSL negotiation failed for client connect. */

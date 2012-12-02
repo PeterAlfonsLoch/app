@@ -21,6 +21,8 @@ namespace sockets
       m_chunk_size(0),
       m_chunk_state(0)
    {
+      m_bOnlyHeaders = false;
+      m_bNoClose = false;
       m_request.attr("http_version") = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
@@ -229,7 +231,7 @@ namespace sockets
             m_bHeader = false;
          }
          OnHeaderComplete();
-         if (!m_body_size_left && !m_b_chunked)
+         if(!m_body_size_left && !m_b_chunked)
          {
             OnDataComplete();
          }
@@ -516,6 +518,13 @@ namespace sockets
       {
          m_body_size_left = atol(m_response.lowheader(__str(content_length)));
       }
+
+      if(m_bOnlyHeaders)
+      {
+         SetCloseAndDelete();
+      }
+
+
 
    }
 

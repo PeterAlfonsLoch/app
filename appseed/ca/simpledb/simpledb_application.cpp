@@ -129,6 +129,9 @@ namespace simpledb
 //      ::ca2::application_request * prequest = System.get_application_request();
 
 
+      App(this).fill_locale_schema(*str_context()->m_plocaleschema);
+
+
       if(!is_installing() && !is_uninstalling())
       {
 
@@ -136,7 +139,6 @@ namespace simpledb
 
       }
 
-      App(this).fill_locale_schema(*str_context()->m_plocaleschema);
 
       return true;
 

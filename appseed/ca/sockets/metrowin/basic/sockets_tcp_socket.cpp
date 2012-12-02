@@ -608,7 +608,11 @@ namespace sockets
          ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int >([=]
             (::Windows::Foundation::IAsyncOperation<unsigned int> ^ asyncInfo, ::Windows::Foundation::AsyncStatus asyncStatus)
       {
-         if(asyncStatus == ::Windows::Foundation::AsyncStatus::Completed)
+         if(CloseAndDelete())
+         {
+            TRACE("Close and delete set");
+         }
+         else if(asyncStatus == ::Windows::Foundation::AsyncStatus::Completed)
          {
             //int n = reader->UnconsumedBufferLength;
             Platform::Array < unsigned char, 1U > ^ ucha = ref new Platform::Array < unsigned char, 1U >(reader->UnconsumedBufferLength);
@@ -617,7 +621,7 @@ namespace sockets
          }
          else
          {
-            CloseAndDelete();
+            SetCloseAndDelete();
          }
          //delete reader;
          reader->DetachStream();
@@ -647,7 +651,13 @@ namespace sockets
             need_more = OnSocks4Read();
          }
       }
-      if(m_bExpectRequest || m_bExpectResponse)
+      if(CloseAndDelete())
+      {
+         m_bExpectRequest = false;
+         m_bExpectResponse = false;
+         m_event.SetEvent();
+      }
+      else if(m_bExpectRequest || m_bExpectResponse)
       {
          m_event.SetEvent();
       }
@@ -824,20 +834,20 @@ namespace sockets
       }
       return n;*/
 
+      //m_event.wait();
+
+      if(m_writer == nullptr)
+      {
+       
+         m_writer = ref new ::Windows::Storage::Streams::DataWriter(m_streamsocket->OutputStream);
+
+      }
+
+      m_writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *) buf, len));
 
 
-      ::Windows::Storage::Streams::DataWriter ^ writer = ref new ::Windows::Storage::Streams::DataWriter(m_streamsocket->OutputStream);
       //int n = reader->UnconsumedBufferLength;
       
-      writer->WriteBytes(ref new Platform::Array < unsigned char, 1U >((unsigned char *) buf, len));
-
-      m_event.ResetEvent();
-
-      writer->StoreAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=] 
-         (::Windows::Foundation::IAsyncOperation < unsigned int > ^ action, ::Windows::Foundation::AsyncStatus status)
-      {
-         m_event.SetEvent();
-      });
 
 
 
@@ -1080,6 +1090,7 @@ namespace sockets
 
    void tcp_socket::OnSSLConnect()
    {
+      ::wait(m_streamsocket->UpgradeToSslAsync(::Windows::Networking::Sockets::SocketProtectionLevel::Ssl, m_addressRemote.m_hostname));
 /*      SetNonblocking(true);
       {
          if (m_ssl_ctx)

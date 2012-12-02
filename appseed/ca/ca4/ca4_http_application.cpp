@@ -39,7 +39,16 @@ namespace ca4
       void application::get(gen::signal_object * pobj)
       {
          SCAST_PTR(signal, psignal, pobj);
-         if(psignal->m_puser == NULL)
+         if(psignal->m_strUrl.contains("/matter.ca2.cc/") || psignal->m_strUrl.contains("-matter.ca2.cc/"))
+         {
+            if(!exists(psignal->m_strUrl))
+            {
+               psignal->m_estatusRet = status_failed;
+               psignal->m_bRet = false;
+               return;
+            }
+         }
+         else if(psignal->m_puser == NULL)
          {
             psignal->m_puser = &ApplicationUser;
             psignal->m_set["app"] = get_app();
@@ -108,7 +117,7 @@ namespace ca4
 
       string application::get(const char * pszUrl, ::fontopus::user * puser)
       {
-         if(puser == NULL)
+         if(puser == NULL && gen::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && gen::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
          {
             if(::ca::get_thread() != NULL)
             {
@@ -129,7 +138,7 @@ namespace ca4
 //         e_status estatus;
          string strFile(pszUrl);
          strFile.replace(":", "_");
-         strFile = System.dir().appdata("dnexistcache/" + strFile);
+         strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
          string strCache = Application.file().as_string(strFile);
          if(strCache.has_char())
             if(strCache == "yes")

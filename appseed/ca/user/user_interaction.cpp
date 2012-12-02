@@ -299,10 +299,12 @@ namespace user
 
    void interaction::GetClientRect(LPRECT lprect)
    {
-      lprect->left      = (LONG) 0;
-      lprect->top       = (LONG) 0;
-      lprect->right     = (LONG) m_rectParentClient.width();
-      lprect->bottom    = (LONG) m_rectParentClient.height();
+      __rect64 rect;
+      GetClientRect(&rect);
+      lprect->left      = (LONG) rect.left;
+      lprect->top       = (LONG) rect.top;
+      lprect->right     = (LONG) rect.right;
+      lprect->bottom    = (LONG) rect.bottom;
    }
 
    void interaction::GetWindowRect(LPRECT lprect)
@@ -1221,6 +1223,30 @@ namespace user
       return ::ca::null();
    }
 
+#ifdef METROWIN
+
+   bool interaction::initialize(Windows::UI::Core::CoreWindow ^ window, ::ca::system_window ^ pwindow)
+   {
+      if(IsWindow())
+      {
+         DestroyWindow();
+      }
+      m_signalptra.remove_all();
+      m_pimpl = dynamic_cast < ::ca::window * > (Application.alloc(System.type_info < ::ca::window > ()));
+      m_pimpl->m_pguie = this;
+      m_pguie = this;
+      if(!m_pimpl->initialize(window, pwindow))
+      {
+         delete m_pimpl;
+         m_pimpl = NULL;
+         return false;
+      }
+      //install_message_handling(this);
+      return true;
+   }
+
+#endif
+
 
    bool interaction::create(interaction *pparent, id id)
    {
@@ -1429,6 +1455,8 @@ namespace user
       else
 #endif
       {
+         if(pParentWnd == NULL)
+            pParentWnd = System.m_pui;
          m_pimpl = new virtual_user_interface(get_app());
          m_pimpl->m_pguie = this;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))
@@ -2165,8 +2193,6 @@ namespace user
    id interaction::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
    {
       
-#ifdef WINDOWSEX
-      
       // for tracking the idle time state
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
@@ -2184,7 +2210,7 @@ namespace user
       ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (m_pthread->m_p);
       ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_pthread);
       // acquire and dispatch messages until the modal state is done
-      MSG msg;
+      MESSAGE msg;
       
 
       for (;;)
@@ -2192,7 +2218,7 @@ namespace user
          ASSERT(ContinueModal(iLevel));
 
          // phase1: check to see if we can do idle work
-         while (bIdle && !::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE))
+         while (bIdle && !::PeekMessage(&msg, ::ca::null(), NULL, NULL, PM_NOREMOVE))
          {
             ASSERT(ContinueModal(iLevel));
 
@@ -2289,7 +2315,7 @@ namespace user
             }*/
 
          }
-         while (::PeekMessage(&msg, NULL, NULL, NULL, PM_NOREMOVE) != FALSE);
+         while (::PeekMessage(&msg, ::ca::null(), NULL, NULL, PM_NOREMOVE) != FALSE);
 
 
          if(m_pguie->m_pthread != NULL)
@@ -2302,11 +2328,6 @@ namespace user
 
       }
 
-#else
-
-         throw not_implemented(get_app());
-
-#endif
 
 
 ExitModal:
@@ -2468,9 +2489,7 @@ ExitModal:
       ASSERT(GetTopLevelParent()->get_wnd() != NULL);
       if(GetTopLevelParent()->get_wnd() == NULL)
          return;
-#ifndef METROWIN
       GetTopLevelParent()->get_wnd()->mouse_hover_add(this);
-#endif
    }
 
 
@@ -3030,6 +3049,16 @@ ExitModal:
       else
          return pui->m_uiptraChild[i];
    }
+
+
+   void interaction::mouse_hover_add(::user::interaction* pinterface)
+   {
+   }
+
+   void interaction::mouse_hover_remove(::user::interaction* pinterface)
+   {
+   }
+
 
    interaction * interaction::above_sibling(interaction * pui)
    {

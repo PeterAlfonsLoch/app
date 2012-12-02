@@ -150,3 +150,29 @@ wchar_t * wmemcpy_dup(wchar_t * dst, const wchar_t * src, size_t iSize)
 }
 
 
+
+
+
+void * mem_reverse(void * p, size_t iLen)
+{
+
+   char * sz = (char *) p;
+
+   count iMid = iLen / 2;
+
+   count iL = 0;
+
+   count iR = iLen - 1;
+
+   char ch;
+
+   for(; iL < iMid; iL++, iR--)
+   {
+      ch = sz[iL];
+      sz[iL] = sz[iR];
+      sz[iR] = ch;
+   }
+
+   return p;
+
+}

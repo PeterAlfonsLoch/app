@@ -131,16 +131,39 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
 
+      if(gen::str::ends(m_strUrl, "arialuni.ttf"))
+      {
+         TRACE("Debug Here : arialuni.ttf");
+      }
+
+
       if(m_content_length > 0)
       {
+         m_event.ResetEvent();
          m_bExpectResponse = true;
       }
+      else
+      {
+         m_bExpectResponse = false;
+      }
+
+      if(gen::str::ends(m_strUrl, "en_us_international.xml"))
+      {
+         TRACE("Debug Here");
+      }
+
+
+      if(gen::str::ends(m_strUrl, "text_select.xml"))
+      {
+         TRACE("Debug Here");
+      }
+
 
    }
 
    void http_client_socket::OnDataComplete()
    {
-      if(oprop("noclose").is_empty() || !(bool)oprop("noclose"))
+      if(!m_bNoClose)
       {
          SetCloseAndDelete();
       }
@@ -155,6 +178,15 @@ namespace sockets
       if(m_pfile != NULL)
       {
          m_pfile->write(buf, len);
+         if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))
+         {
+            m_bExpectResponse = false;
+         }
+         else
+         {
+            m_event.ResetEvent();
+            m_bExpectResponse = true;
+         }
          return;
       }
       m_memoryfile.write(buf, len);
@@ -176,6 +208,10 @@ namespace sockets
          {
             SetCloseAndDelete();
          }
+      }
+      else
+      {
+         m_bExpectResponse = true;
       }
    }
 

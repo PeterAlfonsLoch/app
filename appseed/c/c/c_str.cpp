@@ -380,23 +380,8 @@ void i64toa_dup(char * sz, int64_t i)
 
 void str_reverse(char * sz)
 {
-
-   count iLen = strlen_dup(sz);
-
-   count iMid = iLen / 2;
-
-   count iL = 0;
-
-   count iR = iLen - 1;
-
-   char ch;
-
-   for(; iL < iMid; iL++, iR--)
-   {
-      ch = sz[iL];
-      sz[iL] = sz[iR];
-      sz[iR] = ch;
-   }
+   
+   mem_reverse(sz, strlen_dup(sz));
 
 }
 

@@ -24,6 +24,7 @@ public:
 
    using ::ex1::request_interface::create;
    bool create(int cx, int cy, UINT nFlags, int nInitial, int nGrow);
+   bool realize(::ca::graphics * pdc);
     //bool create(const char * lpszBitmapID, int cx, int nGrow, COLORREF crMask);
 
    int add(::visual::icon * picon);

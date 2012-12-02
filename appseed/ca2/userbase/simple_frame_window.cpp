@@ -897,7 +897,7 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
          if(rectClient.size() != m_dibBk->size())
          {
             m_dibBk->create(rectClient.size());
-            m_dibBk->Fill(184, 184, 170);
+            m_dibBk->Fill(0, 184, 184, 170);
             //HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             //::visual::fastblur *( *pfnNew )(::ca::application *) = (::visual::fastblur *(*)(::ca::application *)) ::GetProcAddress(hmodule, "new_fastblur");
             m_fastblur.create(get_app());

@@ -9,6 +9,23 @@
 
 #endif
 
+string chunk_split (const string & body, int chunklen = 76, const string & end = "\r\n")
+{
+
+   int pos = 0;
+   string strRet;
+   int iRead;
+   while(pos < body.get_length())
+   {
+      iRead = min(chunklen, body.get_length() - pos);
+      strRet += body.Mid(pos, iRead);
+      strRet += end;
+      pos += iRead;
+   }
+
+   return strRet;
+
+}
 
 typedef string ( *SALT)(::ca::application *, const char * , stringa &);
 
@@ -1175,14 +1192,80 @@ namespace fontopus
       
 #elif defined(METROWIN)
 
-      primitive::memory memKey(get_app());
 
-      memKey.from_hex(strRsaModulus);
+      typedef struct _BCRYPT_RSAKEY_BLOB {
+  ULONG Magic;
+  ULONG BitLength;
+  ULONG cbPublicExp;
+  ULONG cbModulus;
+  ULONG cbPrime1;
+  ULONG cbPrime2;
+} BCRYPT_RSAKEY_BLOB;
+
+      BCRYPT_RSAKEY_BLOB blob;
+
+      primitive::memory_file memfile(get_app());
+
+      blob.Magic = 0x31415352; // BCRYPT_RSAPUBLIC_MAGIC;
+      blob.BitLength = 1024;
+      blob.cbPublicExp = 3;
+      blob.cbModulus = 1024 / 8;
+      blob.cbPrime1 = 0;
+      blob.cbPrime2 = 0;
+
+      primitive::memory memVer(get_app());
+
+      memVer.from_hex("00");
+
+      memVer.prefix_der_uint();
+
+      memfile.write(&blob, sizeof(blob));
+
+      primitive::memory memMod(get_app());
+
+      memMod.from_hex(strRsaModulus);
+
+      //memMod.reverse();
+
+      
+
+      //memMod.prefix_der_uint();
+
+      primitive::memory memExp(get_app());
+
+      memExp.from_hex("10001");
+
+      //memExp.reverse();
+
+      memfile.write(memExp.get_data(), memExp.get_size());
+
+      memfile.write(memMod.get_data(), memMod.get_size());
+
+      //memExp.prefix_der_uint();
 
       ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ cipher =
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
-      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->ImportPublicKey(memKey.get_os_crypt_buffer());
+
+      primitive::memory memKey(get_app());
+
+      //memKey = memVer;
+      //memKey += memMod;
+      memKey = memMod;
+      memKey += memExp;
+
+
+      memKey.prefix_der_sequence();
+
+//      string strRsaPrivateKey = "-----BEGIN RSA PRIVATE KEY-----\r\n";
+  //    strRsaPrivateKey += chunk_split(System.base64().encode(memKey));
+    //  strRsaPrivateKey += "-----END RSA PRIVATE KEY-----";
+
+      //memKey.allocate(strRsaPrivateKey.get_length());
+
+      //memcpy(memKey.get_data(), strRsaPrivateKey, memKey.get_size());
+
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ cipherkey = cipher->ImportPublicKey(memfile.get_memory()->get_os_crypt_buffer(), ::Windows::Security::Cryptography::Core::CryptographicPublicKeyBlobType::BCryptPublicKey);
 
       primitive::memory memIn;
 

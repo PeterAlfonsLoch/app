@@ -545,9 +545,6 @@
     <ClInclude Include="c\c.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_async.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\c_base64.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -792,6 +789,9 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_integer_to_string.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_async.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>

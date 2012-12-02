@@ -20,17 +20,17 @@ namespace user
       return true;
    }
 
-   bool buffer::UpdateBuffer(class size size)
+   bool buffer::UpdateBuffer(::ca::graphics * pdc, size size)
    {
-      return UpdateBuffer(size.cx, size.cy);
+      return UpdateBuffer(pdc, size.cx, size.cy);
    }
 
-   bool buffer::UpdateBuffer(class point point)
+   bool buffer::UpdateBuffer(::ca::graphics * pdc,class point point)
    {
-      return UpdateBuffer(point.x, point.y);
+      return UpdateBuffer(pdc, point.x, point.y);
    }
 
-   bool buffer::UpdateBuffer(int cx, int cy)
+   bool buffer::UpdateBuffer(::ca::graphics * pdc,int cx, int cy)
    {
       m_size.cx = cy;
       m_size.cy = cy;
@@ -62,8 +62,8 @@ namespace user
    {
       pdc->BitBlt(
          0, 0, 
-         m_spdib->width(),
-         m_spdib->height(),
+         m_spdib->cx,
+         m_spdib->cy,
          GetBuffer(),
          0, 0, 
          SRCCOPY);

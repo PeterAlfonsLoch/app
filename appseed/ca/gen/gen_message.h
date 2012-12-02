@@ -2,6 +2,8 @@
 
 #ifdef METROWIN
 
+#include <agile.h>
+
 typedef struct tagCREATESTRUCTA {
     LPVOID      lpCreateParams;
     HINSTANCE   hInstance;
@@ -205,13 +207,13 @@ namespace gen
          virtual ::ca::application * calc_app();
 
 #ifdef WINDOWS
-         virtual base * peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
-         virtual base * get_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
+         virtual base * peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
+         virtual base * get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
          virtual base * peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
          virtual base * get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
 
          virtual base * get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam);
-         virtual base * get_base(LPMSG lpmsg, ::user::interaction * pwnd = NULL);
+         virtual base * get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd = NULL);
 
 #else
 
@@ -275,6 +277,8 @@ namespace gen
          int                  m_iHandling;
          SignalArray          m_signala;
          gen::signal          m_signalInstallMessageHandling;
+         manual_reset_event   m_evOk;
+         mutex                m_mutex;
 
          virtual void _start_user_message_handler(gen::signal_object * pobj);
 
@@ -508,6 +512,13 @@ namespace gen
             uint_ptr m_nChar;
             UINT m_nRepCnt;
             UINT m_nFlags;
+
+/*#ifdef METROWIN
+
+            Platform::Agile < ::Windows::UI::Core::CharacterReceivedEventArgs ^  > m_charrecv;
+            Platform::Agile < ::Windows::UI::Core::CharacterReceivedEventArgs ^  > m_key;
+
+#endif*/
 
 
             key(::ca::application * papp);

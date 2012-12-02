@@ -173,8 +173,8 @@ namespace gcom
          ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 //         ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -303,8 +303,8 @@ namespace gcom
 
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
          int cxm = cx1 / 2;
          int cym = cy1 / 2;
 
@@ -439,8 +439,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
          int cxm = cx1 / 2;
          int cym = cy1 / 2;
 
@@ -575,8 +575,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
          int cxm = cx1 / 2;
          int cym = cy1 / 2;
 
@@ -1117,8 +1117,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
          int cxm = cx1 / 2;
          int cym = cy1 / 2;
 
@@ -1308,8 +1308,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -1339,8 +1339,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -1659,8 +1659,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -1690,8 +1690,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -2073,8 +2073,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -2104,8 +2104,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -2576,8 +2576,8 @@ namespace gcom
             pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
             pdib3->stretch_dib(pdibBuffer);
          }
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 
 
 
@@ -2656,8 +2656,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
          rect rectClient = tool1.rectClient;
@@ -2681,8 +2681,8 @@ namespace gcom
          ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -2880,8 +2880,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -2911,8 +2911,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -3807,8 +3807,8 @@ namespace gcom
             pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
          }
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 
 
 
@@ -4007,8 +4007,8 @@ namespace gcom
             pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
             pdib3->stretch_dib(pdibFrame1);
          }
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 
          pdib3->Fill(0, 0, 0, 0);
 
@@ -4083,8 +4083,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -4109,8 +4109,8 @@ namespace gcom
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -4541,8 +4541,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -4572,8 +4572,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -5019,8 +5019,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
          rect rectClient = tool1.rectClient;
@@ -5044,8 +5044,8 @@ namespace gcom
          ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -5247,8 +5247,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -5278,8 +5278,8 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 
@@ -5819,8 +5819,8 @@ namespace gcom
          {
             ::ca::dib * pdib1 = graphics.GetDib(_graphics::DibTemp1);
             m_color.set_rgb(pdib1->GetPixel(
-               pdib1->width() / 2,
-               pdib1->height() / 2));
+               pdib1->cx / 2,
+               pdib1->cy / 2));
          }
 
 
@@ -5845,8 +5845,8 @@ namespace gcom
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->width();
-         int cy1 = pdib1->height();
+         int cx1 = pdib1->cx;
+         int cy1 = pdib1->cy;
 //         int cxm = cx1 / 2;
 //         int cym = cy1 / 2;
 

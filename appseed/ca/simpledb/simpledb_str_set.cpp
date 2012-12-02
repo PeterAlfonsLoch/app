@@ -94,6 +94,8 @@ int db_str_set::sync_queue::run()
 
    string strApiServer;
 
+   single_lock sl(&m_mutex, false);
+
    try
    {
 
@@ -104,16 +106,18 @@ repeat:;
 
        {
 
-          single_lock sl(&m_mutex, true);
+          sl.lock();
 
           if(m_itema.get_size() <= 0)
           {
+             sl.unlock();
              Sleep(1984);
              goto repeat;
           }
 
           if(&ApplicationUser == NULL)
           {
+             sl.unlock();
              Sleep(1984 + 1977);
              goto repeat;
           }
@@ -123,12 +127,15 @@ repeat:;
              if(m_itema[i].m_strKey == m_itema[0].m_strKey)
              {
                 m_itema.remove_at(0);
+                sl.unlock();
                 goto repeat;
              }
           }
 
           try
           {
+
+             sl.lock();
 
              gen::property_set post(get_app());
              gen::property_set headers(get_app());

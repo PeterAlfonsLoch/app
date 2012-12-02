@@ -24,7 +24,7 @@ bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storage
 
    UNREFERENCED_PARAMETER(memSalt);
 
-   ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider ^ provider = ref new ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider;
+   ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider ^ provider = ref new ::Windows::Security::Cryptography::DataProtection::DataProtectionProvider("LOCAL=user");
 
    ::Windows::Storage::Streams::IBuffer ^ bufferIn = storageDecrypt.get_os_stream_buffer();
 

@@ -77,38 +77,30 @@ namespace gen
 
 #ifdef WINDOWS
 
-      base * dispatch::peek_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+      base * dispatch::peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
-#ifdef METROWIN
-         throw todo(get_app());
-#else
-         if(!::PeekMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+         if(!::PeekMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
             return NULL;
-#endif
          return get_base(lpmsg, pwnd);
       }
 
-      base * dispatch::get_message(LPMSG lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
+      base * dispatch::get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
-#ifdef METROWIN
-         throw todo(get_app());
-#else
-         if(!::GetMessageA(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
+         if(!::GetMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax))
             return NULL;
-#endif
          return get_base(lpmsg, pwnd);
       }
 
       base * dispatch::peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
-         MSG msg;
+         MESSAGE msg;
          return peek_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax, wRemoveMsg);
       }
 
 
       base * dispatch::get_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax)
       {
-         MSG msg;
+         MESSAGE msg;
          return get_message(&msg, pwnd, wMsgFilterMin, wMsgFilterMax);
       }
 
@@ -226,11 +218,11 @@ namespace gen
          return pbase;
       }
 
-      base * dispatch::get_base(LPMSG lpmsg, ::user::interaction * pwnd)
+      base * dispatch::get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd)
       {
-         if(pwnd == NULL && lpmsg->hwnd != NULL)
+         if(pwnd == NULL && lpmsg->oswindow != NULL)
          {
-            ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
+            ::user::interaction * pwindow = System.window_from_os_data(lpmsg->oswindow);
             if(pwindow != NULL)
             {
                try
@@ -269,13 +261,18 @@ namespace gen
 
 #endif
 
-      dispatch::dispatch()
+      dispatch::dispatch() :
+         m_evOk(NULL),
+         m_mutex(NULL)
       {
          m_pfnDispatchWindowProc    = &dispatch::_start_user_message_handler;
       }
 
       void dispatch::_user_message_handler(gen::signal_object * pobj)
       {
+         
+         m_evOk.wait();
+
          SignalPtrArray signalptra;
          SCAST_PTR(gen::message::base, pbase, pobj);
          if(pbase->m_uiMessage == (WM_APP + 2014))
@@ -861,12 +858,15 @@ namespace gen
 
       void dispatch::_start_user_message_handler(gen::signal_object * pobj)
       {
+         single_lock sl(&m_mutex, true);
          _on_start_user_message_handler();
          install_message_handling(this);
          if(get_app() == NULL)
          {
             set_app(calc_app());
          }
+         m_evOk.SetEvent();
+         sl.unlock();
          return _user_message_handler(pobj);
       }
 

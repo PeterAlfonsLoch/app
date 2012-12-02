@@ -1573,10 +1573,10 @@ namespace gcom
                   int xOff = 0;
                   int yOff = 0;
                   if(r > xm)
-                     xOff = pdibT2->width() * (r - xm) / d;
+                     xOff = pdibT2->cx * (r - xm) / d;
 
                   if(r > ym)
-                     yOff = pdibT2->height() * (r - ym) / d;
+                     yOff = pdibT2->cy * (r - ym) / d;
 
                   int wWindow = min(cx, d);
                   int hWindow = min(cy, d);
@@ -1601,8 +1601,8 @@ namespace gcom
                      pdibT2->get_graphics(),
                      xOff, 
                      yOff,
-                     pdibT2->width() - xOff * 2,
-                     pdibT2->height() - yOff * 2,
+                     pdibT2->cx - xOff * 2,
+                     pdibT2->cy - yOff * 2,
                      SRCCOPY);
 
                   pdib2->get_graphics()->BitBlt(

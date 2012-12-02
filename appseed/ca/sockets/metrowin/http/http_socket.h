@@ -34,6 +34,9 @@
 
          int64_t              m_iFirstTime;
 
+         bool                 m_bOnlyHeaders;
+         bool                 m_bNoClose;
+
 
          http_socket(socket_handler_base& );
          ~http_socket();

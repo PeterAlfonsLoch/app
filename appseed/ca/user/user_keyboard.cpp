@@ -60,7 +60,10 @@ namespace user
    {
       if(m_playout == NULL)
       {
-         return (char) iCode;
+         if(iCode == 0 && iKey != 0)
+            return (char) iKey;
+         else
+            return (char) iCode;
       }
       return m_playout->process_key(iCode, iKey, iFlags);
    }
@@ -88,7 +91,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
-      Application.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
+      Application.dir().matter_ls("keyboard layout", straPath);
       for(int i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -129,12 +132,12 @@ namespace user
 
 #endif
 
-      string strPath;
+      string strPath = Application.dir().matter("keyboard layout/en_us_international.xml");
 
-      if(Application.file().exists(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout/en_us_international.xml")))
+      if(Application.file().exists(strPath))
       {
 
-         return System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout/en_us_international.xml");
+         return strPath;
 
       }
 

@@ -247,19 +247,16 @@ bool dir::mk(const char * lpcsz)
    vsstring dir;
    index oldpos = -1;
    index pos = url.find("\\");
+   vsstring unc("\\\\?\\");
    while (pos >= 0)
    {
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );
       dir += tmp + "\\";
-      DWORD dw = GetFileAttributes(dir);
+      wstring wstr(unc + dir);
+      DWORD dw = ::GetFileAttributesW(wstr);
       if(dw == INVALID_FILE_ATTRIBUTES)
       {
-         wstring wstr(dir);
-#ifdef WINDOWSEX
          ::CreateDirectoryW(wstr, NULL);
-#else
-         ::CreateDirectory(wstr, NULL);
-#endif
       }
       oldpos = pos;
       pos = url.find("\\", oldpos + 1);
@@ -267,14 +264,10 @@ bool dir::mk(const char * lpcsz)
    }
    tmp = url.substr(oldpos + 1);
    dir += tmp + "\\";
-   if(GetFileAttributes(dir) == INVALID_FILE_ATTRIBUTES)
+   wstring wstr(unc + dir);
+   if(::GetFileAttributesW(wstr) == INVALID_FILE_ATTRIBUTES)
    {
-      wstring wstr(dir);
-#ifdef WINDOWSEX
       ::CreateDirectoryW(wstr, NULL);
-#else
-      ::CreateDirectory(wstr, NULL);
-#endif
    }
    return true;
 
@@ -392,7 +385,7 @@ bool dir::is(const char * path1)
 
 #ifdef WINDOWS
 
-   DWORD dwFileAttributes = ::GetFileAttributes(path1);
+   DWORD dwFileAttributes = ::GetFileAttributesW(wstring("\\\\?\\") + wstring(path1));
    if(dwFileAttributes != INVALID_FILE_ATTRIBUTES &&
       dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
       return true;

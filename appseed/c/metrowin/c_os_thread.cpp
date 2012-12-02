@@ -488,7 +488,7 @@ void WINAPI TlsShutdown()
       try
       {
          
-         ID2D1Factory1 * pfactory = TlsGetD2D1Factory1();
+         ID2D1Factory1 * pfactory = GetD2D1Factory1();
 
          if(pfactory != NULL)
          {
@@ -646,10 +646,10 @@ bool thread_layer::on_idle()
 
 }
 
-void thread_layer::wait_thread()
+void thread_layer::wait_thread(DWORD dwMillis)
 {
 
-   ::WaitForSingleObjectEx(m_hthread, INFINITE, FALSE);
+   ::WaitForSingleObjectEx(m_hthread, dwMillis, FALSE);
 
 }
 
@@ -721,13 +721,6 @@ DWORD WINAPI thread_layer::proc(LPVOID lp)
 
 }
 
-class mq
-{
-public:
-   simple_mutex m_mutex;
-   simple_array < MSG > ma;
-
-};
 
 mq * get_mq()
 {
@@ -739,7 +732,7 @@ mq * get_mq()
 
    pmq = new mq();
 
-   TlsSetValue(TLS_D2D1_FACTORY1, pmq);
+   TlsSetValue(TLS_MESSAGE_QUEUE, pmq);
 
    return pmq;
 
@@ -761,22 +754,56 @@ mq * get_mq(HANDLE h)
 
    pmq = new mq();
 
-   TlsSetValue(h, TLS_D2D1_FACTORY1, pmq);
+   TlsSetValue(h, TLS_MESSAGE_QUEUE, pmq);
 
    return pmq;
 
 }
 
 
-CLASS_DECL_c
-BOOL
-WINAPI
-PeekMessageW(
-    _Out_ LPMSG lpMsg,
-    _In_opt_ HWND hWnd,
-    _In_ UINT wMsgFilterMin,
-    _In_ UINT wMsgFilterMax,
-    _In_ UINT wRemoveMsg)
+CLASS_DECL_c WINBOOL WINAPI GetMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax)
+{
+
+   mq * pmq = get_mq();
+
+   if(pmq == NULL)
+      return FALSE;
+
+   mutex_lock ml(pmq->m_mutex, false);
+
+   if(wMsgFilterMax == 0)
+      wMsgFilterMax = (UINT) -1;
+
+restart:
+
+   ml.lock();
+
+   for(int i = 0; i < pmq->ma.get_count(); i++)
+   {
+      MESSAGE & msg = pmq->ma[i];
+
+      if((oswindow == NULL || msg.oswindow == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+      {
+         *lpMsg = msg;
+         pmq->ma.remove_at(i);
+         return TRUE;
+      }
+   }
+
+   ml.unlock();
+
+   pmq->m_eventNewMessage.wait();
+
+   ::ResetEvent(pmq->m_eventNewMessage.m_hEvent);
+
+   if(pmq->ma.get_count() > 0)
+      goto restart;
+
+   return FALSE;
+}
+
+
+CLASS_DECL_c BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
 {
 
    mq * pmq = get_mq();
@@ -786,14 +813,17 @@ PeekMessageW(
 
    mutex_lock ml(pmq->m_mutex);
 
+   if(wMsgFilterMax == 0)
+      wMsgFilterMax = (UINT) -1;
+
    for(int i = 0; i < pmq->ma.get_count(); i++)
    {
-      MSG & msg = pmq->ma[i];
+      MESSAGE & msg = pmq->ma[i];
 
-      if(msg.hwnd == hWnd && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+      if((oswindow == NULL || msg.oswindow == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
       {
          *lpMsg = msg;
-         if(!(wRemoveMsg & PM_NOREMOVE))
+         if(wRemoveMsg & PM_REMOVE)
          {
             pmq->ma.remove_at(i);
          }
@@ -806,14 +836,7 @@ PeekMessageW(
 
 
 
-
-
-CLASS_DECL_c
-DWORD
-WINAPI
-GetThreadId(
-    _In_ HANDLE Thread
-    )
+CLASS_DECL_c DWORD WINAPI GetThreadId(HANDLE Thread)
 {
 
    mutex_lock mlThreadId(threadIdLock);
@@ -828,10 +851,7 @@ GetThreadId(
 
 }
 
-CLASS_DECL_c
-HANDLE
-WINAPI
-get_thread_handle(DWORD dw)
+CLASS_DECL_c HANDLE WINAPI get_thread_handle(DWORD dw)
 {
 
    mutex_lock mlThreadIdHandle(threadIdHandleLock);
@@ -847,14 +867,7 @@ get_thread_handle(DWORD dw)
 }
 
 
-CLASS_DECL_c
-BOOL
-WINAPI
-PostThreadMessageW(
-    _In_ DWORD idThread,
-    _In_ UINT Msg,
-    _In_ WPARAM wParam,
-    _In_ LPARAM lParam)
+CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
    HANDLE h = ::get_thread_handle(idThread);
@@ -870,18 +883,20 @@ PostThreadMessageW(
 
    mutex_lock ml(pmq->m_mutex);
 
-   MSG msg;
+   MESSAGE msg;
 
-   zero(&msg, sizeof(msg));
+   //zero(&msg, sizeof(msg));
 
    msg.message = Msg;
-   msg.wParam = wParam;
-   msg.lParam = lParam;
+   msg.wParam  = wParam;
+   msg.lParam  = lParam;
 
    pmq->ma.add(msg);
    
-
+   pmq->m_eventNewMessage.set_event();
 
    return true;
 
 }
+
+

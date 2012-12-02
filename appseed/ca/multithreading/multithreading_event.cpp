@@ -11,8 +11,8 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
    ca(papp)
 {
    
-   if(papp == NULL)
-      throw invalid_argument_exception(::ca::get_thread_app());
+   //if(papp == NULL)
+      //throw invalid_argument_exception(::ca::get_thread_app());
 
 #ifdef WINDOWSEX
 
@@ -105,7 +105,17 @@ bool event::SetEvent()
 
    ASSERT(m_object != NULL);
 
-   return ::SetEvent(m_object) != FALSE;
+   try
+   {
+
+      return ::SetEvent(m_object) != FALSE;
+
+   }
+   catch(...)
+   {
+   }
+
+   return false;
 
 #else
 

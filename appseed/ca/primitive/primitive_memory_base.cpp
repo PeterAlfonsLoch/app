@@ -1,6 +1,7 @@
 #include "framework.h"
 
 
+
 namespace primitive
 {
 
@@ -24,7 +25,65 @@ namespace primitive
    {
    }
 
+   memory_base & memory_base::prefix_der_length()
+   {
+      int msb = ::msb(get_size());
+      if(msb < 7)
+      {
+         move_and_grow(1);
+         get_data()[0] = get_size() - 1;
+      }
+      else
+      {
+         int iLen = (msb + 8) / 8;
+         move_and_grow(1 + iLen);
+         get_data()[0] = 0x80 | iLen;
+         auto s = get_size() - 1 - iLen;
+         byte * p = (byte *) &s;
+         for(int i = 1; i <= iLen; i++)
+         {
+            get_data()[i] = p[iLen - i];
+         }
+      }
+      return *this;
+   }
 
+
+   memory_base & memory_base::prefix_der_uint_content()
+   {
+      if(get_size() > 0)
+      {
+         if(get_data()[0] & 0x80)
+         {
+            move_and_grow(1);
+            get_data()[0] = 0;
+         }
+      }
+      return *this;
+   }
+
+   memory_base & memory_base::prefix_der_type(int iType)
+   {
+      
+      move_and_grow(1);
+      
+      get_data()[0] = iType;
+      
+      return *this;
+
+   }
+
+   memory_base & memory_base::prefix_der_uint()
+   {
+      return prefix_der_uint_content().prefix_der_length().prefix_der_type(2); // 2 - integer
+   }
+
+   memory_base & memory_base::prefix_der_sequence()
+   {
+      return prefix_der_length().prefix_der_type(0x30); // 0x30 - universal sequence
+   }
+
+   
 
    inline bool memory_base::allocate(memory_size dwNewLength)
    {

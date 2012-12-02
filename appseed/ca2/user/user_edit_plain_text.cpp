@@ -620,11 +620,10 @@ namespace user
    void edit_plain_text::_002OnKeyDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::key, pkey, pobj)
-#ifdef WINDOWSEX
       if(pkey->m_nChar == VK_RETURN)
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000
-            && ::GetKeyState(VK_MENU) & 0x80000000)
+         if(Application.is_key_pressed(VK_CONTROL)
+            && Application.is_key_pressed(VK_MENU))
          {
             pkey->m_bRet      = false;
             return;
@@ -642,8 +641,8 @@ namespace user
       }
       else if(pkey->m_nChar == VK_TAB)
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000
-            && ::GetKeyState(VK_MENU) & 0x80000000)
+         if(Application.is_key_pressed(VK_CONTROL)
+            && Application.is_key_pressed(VK_MENU))
          {
             pkey->m_bRet      = false;
             return;
@@ -667,7 +666,7 @@ namespace user
       }
       else if(pkey->m_nChar == 'C')
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000)
+         if(Application.is_key_pressed(VK_CONTROL))
          {
             pkey->m_bRet      = true;
             clipboard_copy();
@@ -676,7 +675,7 @@ namespace user
       }
       else if(pkey->m_nChar == 'V')
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000)
+         if(Application.is_key_pressed(VK_CONTROL))
          {
             pkey->m_bRet      = true;
             clipboard_paste();
@@ -684,24 +683,20 @@ namespace user
          }
       }
 
-      m_dwLastKeyWparam = pkey->m_wparam;
+      m_dwLastKeyWparam = pkey->m_nChar;
       m_dwLastKeyLparam = pkey->m_lparam;
       m_bKeyPressed     = true;
       key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
       pkey->m_bRet      = true;
-#else
-         throw todo(get_app());
-#endif
    }
 
    void edit_plain_text::_002OnKeyUp(gen::signal_object * pobj)
    {
-#ifdef WINDOWSEX
       SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000
-            && ::GetKeyState(VK_MENU) & 0x80000000)
+         if(Application.is_key_pressed(VK_CONTROL)
+         &&   Application.is_key_pressed(VK_MENU))
          {
             pkey->m_bRet = false;
             return;
@@ -712,9 +707,6 @@ namespace user
          pkey->m_bRet = false;
       }
       m_bKeyPressed = false;
-#else
-         throw todo(get_app());
-#endif
    }
 
    void edit_plain_text::_002OnChar(gen::signal_object * pobj)
@@ -1417,16 +1409,20 @@ namespace user
 
    void edit_plain_text::_001OnChar(gen::signal_object * pobj)
    {
-#ifdef WINDOWSEX
       ::ca::data::writing writing(m_pdata);
+#ifdef WINDOWS
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;
       SCAST_PTR(::gen::message::key, pkey, pobj)
 
+      string strChar;
+
+//      pkey->m_nChar = pkey->m_charrecv->KeyCode;
+
       if(pkey->m_nChar == 's')
       {
-         if(::GetKeyState(VK_CONTROL) & 0x80000000)
+         if(Application.is_key_pressed(VK_CONTROL))
          {
             return;
          }

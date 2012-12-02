@@ -48,11 +48,20 @@ bool image_list::create(int cx, int cy, UINT nFlags, int nInitial, int nGrow)
    m_size.cx = cx;
    m_size.cy = cy;
 
-   m_spdib->create(cx * m_iSize, cy);
-
+   m_spdib->create(m_size.cx * m_iSize, m_size.cy);
 
    return true;
+
 }
+
+
+bool image_list::realize(::ca::graphics * pdc)
+{
+
+   return m_spdib->realize(pdc);
+
+}
+
 
 bool image_list::create(image_list * pimagelist)
 {
@@ -265,7 +274,7 @@ int image_list::_get_alloc_count()
    if(m_size.cx == 0)
       return 0;
    else
-      return m_spdib->width() / m_size.cx;
+      return m_spdib->cx / m_size.cx;
 }
 
 bool image_list::_grow()
@@ -288,9 +297,11 @@ bool image_list::_grow()
 
       m_spdib->create(cx * iAllocSize, cy);
 
+      m_spdib->defer_realize(spdib->get_graphics());
+
       m_spdib->get_graphics()->set_alpha_mode(::ca::alpha_mode_set);
 
-      m_spdib->get_graphics()->BitBlt(0, 0, spdib->width(), spdib->height(), spdib->get_graphics(), 0, 0, SRCCOPY);
+      m_spdib->get_graphics()->BitBlt(0, 0, spdib->cx, spdib->cy, spdib->get_graphics(), 0, 0, SRCCOPY);
 
    }
 

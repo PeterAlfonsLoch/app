@@ -442,6 +442,7 @@ namespace radix
 
       using ::radix::thread::propset;
       gen::property_set & propset(::radix::object * pobject);
+      gen::property_set * existing_propset(::radix::object * pobject);
 
       virtual oswindow get_ca2_app_wnd(const char * psz);
 

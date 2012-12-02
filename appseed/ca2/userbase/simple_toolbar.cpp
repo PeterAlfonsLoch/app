@@ -423,11 +423,11 @@ size simple_toolbar::CalcSize(int nCount)
       cySep = cySep * 2 / 3;*/
       if (item.m_spdib.is_set())
       {
-         buttonx =  item.m_spdib->width()
+         buttonx =  item.m_spdib->cx
             + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
             - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
             + ITEMPADLEFT + ITEMPADRIGHT;
-         buttony = item.m_spdib->height()
+         buttony = item.m_spdib->cy
             + max(ITEMCY, max(ITEMHOVERCY, ITEMPRESSCY))
             - min(ITEMCY, min(ITEMHOVERCY, ITEMPRESSCY))
             + ITEMPADTOP + ITEMPADBOTTOM;
@@ -968,7 +968,7 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
          rect.right  = rect.left + item.m_rect.width();
          if(item.m_spdib.is_set())
          {
-            rect.bottom = rect.top + item.m_spdib->height() + ITEMPADTOP + ITEMPADBOTTOM;
+            rect.bottom = rect.top + item.m_spdib->cy + ITEMPADTOP + ITEMPADBOTTOM;
          }
          else if(uiImage != 0xffffffff)
          {
@@ -986,8 +986,8 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
          {
             rect.left   = item.m_rect.left + ITEMPADLEFT;
             rect.top    = item.m_rect.top + ITEMPADTOP;
-            rect.right  = rect.left + item.m_spdib->width();
-            rect.bottom = rect.top + item.m_spdib->height();
+            rect.right  = rect.left + item.m_spdib->cx;
+            rect.bottom = rect.top + item.m_spdib->cy;
             break;
          }
          if(uiImage == 0xffffffff)
@@ -1010,7 +1010,7 @@ bool simple_toolbar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement
             rect.left   = item.m_rect.left;
             if(item.m_spdib.is_set())
             {
-               rect.left   += ITEMPADLEFT + item.m_spdib->width();
+               rect.left   += ITEMPADLEFT + item.m_spdib->cx;
             }
             else if(uiImage != 0xffffffff)
             {
@@ -1261,8 +1261,8 @@ void simple_toolbar::layout()
          }
          else if(item.m_spdib.is_set())
          {
-            cx = buttonx2 + sizeText.cx + item.m_spdib->width();
-            cy = max(buttony, item.m_spdib->height());
+            cx = buttonx2 + sizeText.cx + item.m_spdib->cx;
+            cy = max(buttony, item.m_spdib->cy);
          }
          else if(item.m_iImage >= 0)
          {
@@ -1284,8 +1284,8 @@ void simple_toolbar::layout()
          }
          else if(item.m_spdib.is_set())
          {
-            cx = buttonx2 + sizeText.cx + item.m_spdib->width();
-            cy = max(buttony, item.m_spdib->height());
+            cx = buttonx2 + sizeText.cx + item.m_spdib->cx;
+            cy = max(buttony, item.m_spdib->cy);
          }
          else if(uiImage != 0xffffffff)
          {

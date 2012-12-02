@@ -1182,9 +1182,13 @@ retry:
          {
             psocket->m_request.attrs()["minimal_headers"] = true;
          }
+         if(set.has_property("only_headers") && (bool)set["only_headers"])
+         {
+            psocket->m_bOnlyHeaders = true;
+         }
          if((bool)set["noclose"])
          {
-            psocket->oprop("noclose") = true;
+            psocket->m_bNoClose = true;
          }
          if(set.has_property("file"))
          {
@@ -1526,6 +1530,7 @@ retry:
          gen::property_set post;
          gen::property_set headers;
          gen::property_set set;
+         set["only_headers"] = true;
          ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
          if(psocket == NULL)
             return false;

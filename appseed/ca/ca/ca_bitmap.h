@@ -14,7 +14,7 @@ namespace ca
    public:
 
 
-      virtual bool CreateBitmap(::ca::graphics * pdc, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits);
+      virtual bool CreateBitmap(::ca::graphics * pdc, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int stride);
       virtual bool CreateBitmapIndirect(::ca::graphics * pdc, LPBITMAP lpBitmap);
       virtual bool CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
       virtual bool CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);

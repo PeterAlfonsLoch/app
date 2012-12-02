@@ -121,7 +121,7 @@ public:
    virtual int run();
    virtual bool on_idle();
 
-   virtual void wait_thread();
+   virtual void wait_thread(DWORD dwMillis = INFINITE);
 
 };
 

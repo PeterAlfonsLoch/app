@@ -265,7 +265,7 @@ namespace platform
       }
       else
       {
-         m_dibBk->Fill(84, 84, 77);
+         m_dibBk->Fill(0, 84, 84, 77);
       }
 
       SetTimer(21977, 1984 * 11, NULL);  // max. 12 fps
@@ -427,7 +427,7 @@ namespace platform
             double dRate = 184.0 / rectThumb.width();
             dibThumb->create((int) (dRate * rectThumb.width()), (int) (dRate * rectThumb.height()));
             dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
-            dibThumb->get_graphics()->StretchBlt(0, 0, dibThumb->width(), dibThumb->height(), dib->get_graphics(), rectThumb.left, rectThumb.top, rectThumb.width(), rectThumb.height(), SRCCOPY);
+            dibThumb->get_graphics()->StretchBlt(0, 0, dibThumb->cx, dibThumb->cy, dib->get_graphics(), rectThumb.left, rectThumb.top, rectThumb.width(), rectThumb.height(), SRCCOPY);
 
             imaging.bitmap_blend(pdc, point(10, 10), dibThumb->size(), dibThumb->get_graphics(), null_point(), (byte) (255.0 * 0.67));
          }

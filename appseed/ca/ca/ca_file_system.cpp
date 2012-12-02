@@ -368,6 +368,16 @@ namespace ca
                {
                   App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, NULL);
                }
+               else if(strFilePath.contains("/matter.ca2.cc/") || strFilePath.contains(".matter.ca2.cc/"))
+               {
+                  try
+                  {
+                     storage.FullLoad(App(papp).get_file(strFilePath, ::ex1::file::type_binary | ::ex1::file::mode_read));
+                  }
+                  catch(...)
+                  {
+                  }
+               }
                else
                {
                   App(papp).http().get(strFilePath, storage, post, headers, varQuery.propset(), NULL, &AppUser(papp));
@@ -903,6 +913,10 @@ namespace ca
          if(gen::str::begins_ci_iws(pszPath, "uifs://"))
          {
             return AppUser(papp).m_pifs->file_exists(pszPath);
+         }
+         else if(gen::str::begins_ci_iws(pszPath, "http://") || gen::str::begins_ci_iws(pszPath, "https://"))
+         {
+            return App(papp).http().exists(pszPath);
          }
 
          if(papp->m_bZipIsDir)

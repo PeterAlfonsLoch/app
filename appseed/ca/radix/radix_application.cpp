@@ -1902,7 +1902,10 @@ namespace radix
 
 #else
 
-      throw not_implemented(get_app());
+      if(frames().get_size() <= 0)
+         return NULL;
+
+      return frames()[0];
 
 #endif
 
@@ -1912,7 +1915,11 @@ namespace radix
    ::user::interaction * application::get_focus_guie()
    {
 
-#ifdef WINDOWSEX
+#ifdef METROWIN
+
+      return GetFocus().window();
+
+#elif defined(WINDOWSEX)
 
       ::ca::window * pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != NULL)
@@ -1944,7 +1951,7 @@ namespace radix
 
 #else
 
-      throw not_implemented(get_app());
+      return System.get_active_guie();
 
 #endif
 
@@ -2556,6 +2563,15 @@ namespace radix
       return m_mapObjectSet[pobject];
    }
 
+   gen::property_set * application::existing_propset(::radix::object * pobject)
+   {
+      single_lock sl(&m_mapObjectSet, TRUE);
+      auto p = m_mapObjectSet.PLookup(pobject);
+      if(p == NULL)
+         return NULL;
+      return &p->m_value;
+   }
+
    bool application::bergedge_start()
    {
       return true;
@@ -2724,7 +2740,11 @@ namespace radix
    ::user::interaction * application::get_capture_uie()
    {
 
-#ifdef WINDOWSEX
+#ifdef METROWIN
+
+      return ::GetCapture().window();
+
+#elif defined(WINDOWS)
 
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
@@ -2734,6 +2754,8 @@ namespace radix
 #else
 
       throw not_implemented(get_app());
+
+      return NULL;
 
 #endif
 
@@ -2916,7 +2938,12 @@ namespace radix
 
    void application::get_screen_rect(LPRECT lprect)
    {
-#ifndef METROWIN
+#ifdef METROWIN
+      if(m_bSessionSynchronizedScreen)
+      {
+         System.get_window_rect(m_rectScreen);
+      }
+#else
       if(m_bSessionSynchronizedScreen)
       {
          oswindow oswindowDesktop = ::GetDesktopWindow();

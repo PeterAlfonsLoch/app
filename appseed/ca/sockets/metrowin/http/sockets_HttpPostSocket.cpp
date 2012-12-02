@@ -174,6 +174,10 @@ namespace sockets
             inheader("Connection") = "close";
          }
          inheader("Content-length") = (int64_t) body.get_length();
+
+      m_bExpectResponse = true;
+      m_bExpectRequest = false;
+
          SendRequest();
 
          if(body.get_length() > 0)
@@ -241,6 +245,9 @@ namespace sockets
       inheader("Connection") = "close";
       inheader("Content-type") = "multipart/form-data; boundary=" + m_boundary;
       inheader("Content-length") = (int64_t) length;
+
+      m_bExpectResponse = true;
+      m_bExpectRequest = false;
 
       SendRequest();
 

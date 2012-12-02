@@ -31,9 +31,10 @@ namespace visual
       int w       = cx;
       int h       = cy;
       int wh      = w * h;
+      int scan    = m_p->scan;
       int div     = radius + radius + 1;
       m_iRadius   = radius;
-      m_ucha.set_size(wh * 4);
+      m_ucha.set_size(scan * h);
       m_uchaDiv.set_size(256 * div);
       byte * dv   = m_uchaDiv.get_data();
 
@@ -59,7 +60,23 @@ namespace visual
    bool fastblur::blur()
    {
 
-      return optca_fastblur((DWORD *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (DWORD *) m_ucha.get_data(), m_uchaDiv.get_data());
+      m_p->map();
+
+      bool b = false;
+
+      try
+      {
+
+         b = optca_fastblur((DWORD *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (DWORD *) m_ucha.get_data(), m_uchaDiv.get_data(), m_p->scan);
+
+      }
+      catch(...)
+      {
+      }
+
+
+      return b;
+
       /*int radius  = m_iRadius;
       int w       = m_size.cx;
       int h       = m_size.cy;

@@ -870,8 +870,23 @@ InitFailure:
       {
 
          string strFile(strPath);
+         if(gen::str::ends(strPath, "en_us_international.xml"))
+         {
+            TRACE("Debug Here");
+         }
+
+         if(gen::str::ends(strPath, "text_select.xml"))
+         {
+            TRACE("Debug Here");
+         }
+
+         if(gen::str::ends(strPath, "arialuni.ttf"))
+         {
+            TRACE("Debug Here : arialuni.ttf");
+         }
+
          strFile.replace(":", "_");
-         strFile = System.dir().appdata("existcache/" + strFile);
+         strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
 
          spfile.create(this);
          
@@ -901,7 +916,7 @@ InitFailure:
          }
 
          spfile(new sockets::http::file(get_app()));
-         
+
          if(!spfile->open(strPath, nOpenFlags))
          {
 
@@ -925,6 +940,7 @@ InitFailure:
             spfile->seek_to_begin();
 
          }
+
 
 
       }

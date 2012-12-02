@@ -875,7 +875,9 @@ namespace ca
 
    ::user::interaction * window::get_parent() const
    {
-      throw interface_only_exception(get_app());
+      
+      return NULL;
+
    }
 
    LONG window::GetWindowLong(int nIndex)

@@ -64,7 +64,9 @@ bool file_exists_dup(const char * path1)
 
 #ifdef WINDOWS
 
-   DWORD dwFileAttributes = ::GetFileAttributes(path1);
+   wstring wstr(L"\\\\?\\");
+   wstr = wstr + wstring(path1);
+   DWORD dwFileAttributes = ::GetFileAttributesW(wstr);
    if(dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
       return true;
    else

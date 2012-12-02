@@ -24,7 +24,8 @@ namespace visual
          rect.height(),
          1,
          32,
-         NULL);
+         NULL,
+         rect.width() * sizeof(COLORREF));
    /*#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)|((DWORD)(BYTE)(a))<<24)))
       SelectObject(m_bitmapBlend);
       FillSolidRect(rect, ARGB(0, 0, 0, 0));*/

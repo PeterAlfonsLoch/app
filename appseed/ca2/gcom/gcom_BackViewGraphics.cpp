@@ -249,8 +249,7 @@ namespace gcom
             ::ca::bitmap & bmpSource = GetSourceBitmap();
 
             if(bmpSource.get_os_data() != NULL 
-               && GetDib(_graphics::DibSource)->width() > 0
-               && GetDib(_graphics::DibSource)->height() > 0)
+               && GetDib(_graphics::DibSource)->area() > 0)
             {
                if(main.IsFullScreen())
                {

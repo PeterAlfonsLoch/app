@@ -705,6 +705,8 @@ namespace user
                path->add_line(rectClient.right, rectBorder.top);
                path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
                path->add_line(rectBorder.right - 1, rectClient.bottom);
+
+               path->end_figure(false);
                
                //path->close_figure();
 
@@ -737,7 +739,7 @@ namespace user
                path->add_line(rectBorder.left, rectClient.bottom);
 
 
-               //path->close_figure();
+               path->end_figure(false);
 
                if(iVisiblePane == m_iHover && m_eelementHover != element_close_tab_button)
                {
@@ -853,8 +855,8 @@ namespace user
 
             if(pane.m_dib.is_set())
             {
-               size.cx += pane.m_dib->width()+ 2;
-               size.cy = max(size.cy, pane.m_dib->height());
+               size.cx += pane.m_dib->cx+ 2;
+               size.cy = max(size.cy, pane.m_dib->cy);
             }
             cx = size.cx + 2;
 
@@ -1143,8 +1145,8 @@ namespace user
             return false;
          if(!get_element_rect(iTabParam, lprect, element_client))
             return false;
-         lprect->right = lprect->left + get_data()->m_panea[iTabParam].m_dib->width();
-         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam].m_dib->height();
+         lprect->right = lprect->left + get_data()->m_panea[iTabParam].m_dib->cx;
+         lprect->bottom = lprect->top + get_data()->m_panea[iTabParam].m_dib->cy;
          return true;
       }
       else if(eelement == element_text)
@@ -1153,7 +1155,7 @@ namespace user
             return false;
          if(get_data()->m_panea[iTabParam].m_dib.is_set())
          {
-            lprect->left += get_data()->m_panea[iTabParam].m_dib->width() + 2;
+            lprect->left += get_data()->m_panea[iTabParam].m_dib->cx + 2;
          }
          if(!get_data()->m_panea[iTabParam].m_bPermanent)
          {
@@ -1241,7 +1243,7 @@ namespace user
             if(pane.m_dib.is_set())
             {
                //IMAGEINFO ii;
-               ixAdd += pane.m_dib->width() + 2;
+               ixAdd += pane.m_dib->cx + 2;
             }
 
             if(!pane.m_bPermanent)

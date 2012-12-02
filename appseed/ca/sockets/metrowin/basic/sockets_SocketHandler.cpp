@@ -315,6 +315,27 @@ namespace sockets
          {
             psocket->m_event.wait(seconds(tsel->tv_sec));
             psocket->run();
+            stream_socket * pstreamsocket = dynamic_cast < stream_socket * > (psocket);
+            if(pstreamsocket != NULL)
+            {
+               if(pstreamsocket->m_writer != nullptr)
+               {
+
+                  auto writer = pstreamsocket->m_writer;
+                  
+                  psocket->m_event.ResetEvent();
+
+                  writer->StoreAsync()->Completed = ref new ::Windows::Foundation::AsyncOperationCompletedHandler < unsigned int > ([=] 
+                     (::Windows::Foundation::IAsyncOperation < unsigned int > ^ action, ::Windows::Foundation::AsyncStatus status)
+                  {
+                     writer->DetachStream();
+                     psocket->m_event.SetEvent();
+                  });
+
+                  pstreamsocket->m_writer = nullptr;
+
+               }
+            }
             if(psocket->m_bClose)
             {
                remove(psocket);

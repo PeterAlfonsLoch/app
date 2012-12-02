@@ -3362,8 +3362,8 @@ void fastblur(::ca::dib * pimg, int radius)
    {
       return;
    }
-   int w=pimg->width();
-   int h=pimg->height();
+   int w=pimg->cx;
+   int h=pimg->cy;
    int wm=w-1;
    int hm=h-1;
    int wh=w*h;
@@ -3529,8 +3529,8 @@ void imaging::blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iRadius)
 
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
-   int cx = pdibSrc->width();
-   int cy = pdibSrc->height();
+   int cx = pdibSrc->cx;
+   int cy = pdibSrc->cy;
    int wSrc = cx * 4;
    int wDest = cx * 4;
    int maxx1 = cx;
@@ -3744,8 +3744,8 @@ void imaging::blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc)
 {
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
-   int cx = pdibSrc->width();
-   int cy = pdibSrc->height();
+   int cx = pdibSrc->cx;
+   int cy = pdibSrc->cy;
    int wSrc = cx * 4;
    int wDest = cx * 4;
 
@@ -3936,15 +3936,18 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    if(iRadius <= 0)
       return true;
 
-   int cx = pdibDst->width();
-   int cy = pdibDst->height();
-   if(cx != pdibSrc->width()
-      || cy != pdibSrc->height())
+   int cx = pdibDst->cx;
+   int cy = pdibDst->cy;
+
+   if(cx != pdibSrc->cx
+   || cy != pdibSrc->cy)
       return false;
+
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
+
    int wSrc = cx * 4;
-   int wDest = cx * 4;
+   int wDst = cx * 4;
 
    int iFilterW = iRadius * 2 + 1;
    int iFilterH = iRadius * 2 + 1;
@@ -4025,7 +4028,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
             iFilterYUBound = ymax;
 
          lpbSource = lpbSrc + (wSrc * max(iFilterYLBound, 0));
-         lpwDestination = lpbDst + (wDest  * y);
+         lpwDestination = lpbDst + (wDst  * y);
          x = xL;
          x2 = x - iFilterHalfW;
          x3 = x * 4;
@@ -4087,9 +4090,9 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
 
    iDivisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
 
-   int wDiff = wDest - (xU - xL) * 4;
+   int wDiff = wDst - (xU - xL) * 4;
    lpbSource = lpbSrc + iChannel;
-   lpwDestination = lpbDst + (wDest * yL) + xL * 4;
+   lpwDestination = lpbDst + (wDst * yL) + xL * 4;
    for(; y1 < yU;)
    {
       x1 = xL;
@@ -4114,7 +4117,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
          *lpwDestination++ = (unsigned char) dwI;
          *lpwDestination++ = (unsigned char) dwI;
          *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) lpbSrc[(wDest * yL) + xL * 4];
+         *lpwDestination++ = (unsigned char) lpbSrc[(wDst * yL) + xL * 4];
 
          x1++;
          lpbSource_1 += 4;
@@ -4135,15 +4138,18 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
    if(iRadius <= 0)
       return true;
 
-   int cx = pdibDst->width();
-   int cy = pdibDst->height();
-   if(cx != pdibSrc->width()
-      || cy != pdibSrc->height())
+   int cx = pdibDst->cx;
+   int cy = pdibDst->cy;
+
+   if(cx != pdibSrc->cx
+   || cy != pdibSrc->cy)
       return false;
+
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
+
    int wSrc = cx * 4;
-   int wDest = cx * 4;
+   int wDst = cx * 4;
 
    int iFilterW = iRadius * 2 + 1;
    int iFilterH = iRadius * 2 + 1;
@@ -4224,7 +4230,7 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
             iFilterYUBound = ymax;
 
          lpbSource = lpbSrc + (wSrc * max(iFilterYLBound, 0));
-         lpwDestination = lpbDst + (wDest  * y);
+         lpwDestination = lpbDst + (wDst  * y);
          x = xL;
          x2 = x - iFilterHalfW;
          x3 = x * 4;
@@ -4288,9 +4294,9 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
 
    iDivisor = (iFilterYUBound - iFilterYLBound + 1) * (iFilterXUBound - iFilterXLBound + 1);
 
-   int wDiff = wDest - (xU - xL) * 4;
+   int wDiff = wDst - (xU - xL) * 4;
    lpbSource = lpbSrc + iChannel;
-   lpwDestination = lpbDst + (wDest * yL) + xL * 4;
+   lpwDestination = lpbDst + (wDst * yL) + xL * 4;
    for(; y1 < yU;)
    {
       x1 = xL;
@@ -4385,15 +4391,18 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
                                      LPBYTE lpbFilter)
 {
 
-   int cx = pdibDst->width();
-   int cy = pdibDst->height();
-   if(cx != pdibSrc->width()
-      || cy != pdibSrc->height())
+   int cx = pdibDst->cx;
+   int cy = pdibDst->cy;
+
+   if(cx != pdibSrc->cx
+   || cy != pdibSrc->cy)
       return false;
+
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
+
    int wSrc = cx * 4;
-   int wDest = cx * 4;
+   int wDst = cx * 4;
 
    int iFilterArea = iFilterWidth * iFilterHeight;
    int divisor;
@@ -4576,9 +4585,9 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
 
    divisor = (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin );
 
-   int wDiff = wDest - (xU - xL) * 4;
+   int wDiff = wDst - (xU - xL) * 4;
    lpbSource = lpbSrc + iChannel;
-   lpwDestination = lpbDst + (wDest  * yL) + xL * 4;
+   lpwDestination = lpbDst + (wDst  * yL) + xL * 4;
    for(; y1 < yU;)
    {
 
@@ -5622,15 +5631,19 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
       }
    }
 
-   int cx = pdibDst->width();
-   int cy = pdibDst->height();
-   if(cx != pdibSrc->width()
-      || cy != pdibSrc->height())
+   int cx = pdibDst->cx;
+   int cy = pdibDst->cy;
+
+   if(cx != pdibSrc->cx
+   || cy != pdibSrc->cy)
       return false;
+
    LPBYTE lpbDst = (LPBYTE) pdibDst->get_data();
    LPBYTE lpbSrc = (LPBYTE) pdibSrc->get_data();
+
    int wSrc = cx * 4;
-   int wDest = cx * 4;
+   int wDst = cx * 4;
+
    int maxx1 = cx;
    int maxy1 = cy;
    //   int maxy2 = cy - iFilterW;
@@ -5725,7 +5738,7 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
 
          x1 = xL;
          x2 = (x1 - iFilterHalfW) * 4;
-         lpwDestination = lpbDst + (wDest  * y1) + x1 * 4;
+         lpwDestination = lpbDst + (wDst  * y1) + x1 * 4;
          if(*((DWORD *) lpwDestination) != 0xffffffff)
          {
             for(; x1 <= xU; x1++)
@@ -5805,7 +5818,7 @@ breakFilter:
 
       x1 = xL;
       x2 = xL - iFilterHalfWidthBytes;
-      lpwDestination = lpbDst + (wDest  * y1) + x1;
+      lpwDestination = lpbDst + (wDst  * y1) + x1;
       for(; x1 < xU;)
       {
          lpbSource_1 = lpbSource + x2;
@@ -6858,7 +6871,13 @@ bool imaging::HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress)
 {
 
 
+   pdib->map();
 
+   if(pdib->get_data() == NULL)
+   {
+      pdib->unmap();
+      return false;
+   }
 
    COLORREF cra[256];
 
@@ -6882,6 +6901,7 @@ bool imaging::HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress)
       lpb += 4;
    }
 
+   pdib->unmap();
 
    return true;
 

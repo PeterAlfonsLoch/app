@@ -257,7 +257,9 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #else
 
-   //throw todo(get_app());
+   cs.lpszClass         = NULL;
+   cs.lpszName          = NULL;
+   cs.oswindowParent    = ::ca::null();
 
 #endif
 
@@ -270,7 +272,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 #else
 
-   throw todo(get_app());
+   cs.hInstance = NULL;
 
 #endif
 
@@ -376,7 +378,9 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
 #else
 
-   //throw todo(get_app());
+   cs.lpszClass   = NULL;
+   cs.lpszName    = NULL;
+   cs.oswindowParent  = ::ca::null();
 
 #endif
 
@@ -384,17 +388,18 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    cs.hMenu = NULL;
 
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
 
    cs.hInstance = System.m_hInstance;
 
 #else
 
-   throw todo(get_app());
+   cs.hInstance = NULL;
 
 #endif
 
    cs.lpCreateParams = (LPVOID) pContext;
+
    m_pguie->pre_create_window(cs);
 
 
@@ -635,6 +640,8 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
 
+   
+
    ::ca::smart_pointer < ::gen::message::base > spbase;
 
    spbase(get_base(m_pguie, uiMessage, wparam, lparam));
@@ -642,7 +649,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
    try
    {
       ::user::interaction * pui = m_pguie;
-      while(pui != NULL && pui->get_parent() != NULL)
+      while(pui != NULL)
       {
          try
          {

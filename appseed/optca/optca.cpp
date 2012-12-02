@@ -2,7 +2,7 @@
 
 
 
-bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte * dv)
+bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte * dv, int stride)
 {
 
    if(radius < 1)
@@ -18,29 +18,33 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
    int yw;
    register byte * p1;
    register byte * p2;
-   int wm      = w - 1;
-   int hm      = h - 1;
-   int wr      = wm - radius;
-   int hr      = hm - radius;
-   int div     = radius + radius + 1;
-   int * pix   = (int *) pdata;
+   int wm         = w - 1;
+   int hm         = h - 1;
+   int wr         = wm - radius;
+   int hr         = hm - radius;
+   int div        = radius + radius + 1;
+   int * pix      = (int *) pdata;
+   byte * pb      = (byte *) pdata;
+   byte * pwork   = (byte *) prgba;
+   byte * pwk     = (byte *) prgba;
    byte * p;
-   byte * pwork = (byte *) prgba;
 
    yw = 0;
 
-   for (y=0;y<h;y++)
+   for(y = 0; y < h; y++)
    {
       
+      pwork = &pwk[stride * y];
+
       asum = 0;
       rsum = 0;
       gsum = 0;
       bsum = 0;
 
-      for(i=-radius;i<=radius;i++)
+      for(i = -radius; i <= radius; i++)
       {
 
-         p     =     (byte*)&pix[yw+min(wm,max(i,0))];
+         p     =     &pb[yw +( min(wm, max(i, 0)) * 4)];
          rsum  +=    p[0];
          gsum  +=    p[1];
          bsum  +=    p[2];
@@ -48,8 +52,8 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
 
       }
 
-      p1 = (byte *) &pix[yw + radius + 1];
-      p2 = (byte *) &pix[yw];
+      p1 = &pb[yw + (radius + 1) * 4];
+      p2 = &pb[yw];
 
       for(x = 0; x < radius; x++)
       {
@@ -58,7 +62,6 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
          pwork[1] = dv[gsum];
          pwork[2] = dv[bsum];
          pwork[3] = dv[asum];
-
 
          rsum += p1[0] - p2[0];
          gsum += p1[1] - p2[1];
@@ -111,14 +114,11 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
 
       }
 
-      yw += w;
+      yw += stride;
 
    }
 
-   int w4 = w * 4;
-
-
-   for (x=0;x<w;x++)
+   for(x = 0; x < w; x++)
    {
       
       asum = 0;
@@ -126,23 +126,24 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
       gsum = 0;
       bsum = 0;
       
-      yp = -radius*w;
+      yp = -radius * stride;
 
-      for(i=-radius;i<=radius;i++)
+      for(i = -radius; i <= radius; i++)
       {
-         p = (byte*) &((int *)prgba)[max(0, yp) + x];
+         p = &pwk[max(0, yp) + x * 4];
          rsum  += p[0];
          gsum  += p[1];
          bsum  += p[2];
          asum  += p[3];
-         yp += w;
+         yp += stride;
       }
-      byte * r1 = (byte *) &prgba[x + (radius + 1) * w];
-      byte * r2 = (byte *) &prgba[x + 0];
+
+      byte * r1 = &pwk[(x * 4) + (radius + 1) * stride];
+      byte * r2 = &pwk[(x * 4)];
 
       p1 = (byte *) &pix[x];
 
-      for (y=0;y<radius;y++)
+      for(y = 0; y < radius; y++)
       {
          
          p1[0] = dv[rsum];
@@ -155,11 +156,12 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
          bsum += r1[2] - r2[2];
          asum += r1[3] - r2[3];
 
-         p1 += w4;
-         r1 += w4;
+         p1 += stride;
+         r1 += stride;
+
       }
 
-      for (;y<hr;y++)
+      for (; y < hr; y++)
       {
 
          p1[0] = dv[rsum];
@@ -172,15 +174,16 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
          bsum += r1[2] - r2[2];
          asum += r1[3] - r2[3];
 
-         p1 += w4;
-         r1 += w4;
-         r2 += w4;
+         p1 += stride;
+         r1 += stride;
+         r2 += stride;
+
       }
       
-      p1 -= w4;
-      r1 -= w4;
+      p1 -= stride;
+      r1 -= stride;
 
-      for(;y<h;y++)
+      for(; y < h; y++)
       {
       
          p1[0] = dv[rsum];
@@ -193,8 +196,9 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
          bsum += r1[2] - r2[2];
          asum += r1[3] - r2[3];
 
-         p1 += w4;
-         r2 += w4;
+         p1 += stride;
+         r2 += stride;
+
       }
 
    }

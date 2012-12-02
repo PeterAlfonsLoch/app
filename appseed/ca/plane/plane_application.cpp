@@ -251,6 +251,8 @@ namespace plane
    {
 
 
+#ifndef METROWIN
+
       if(!System.directrix().m_varTopicQuery.has_property("install")
       && !System.directrix().m_varTopicQuery.has_property("uninstall"))
       {
@@ -265,6 +267,8 @@ namespace plane
          }
 
       }
+
+#endif
 
    }
 

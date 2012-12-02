@@ -76,16 +76,14 @@ CLASS_DECL_c DWORD GetFileSize(HANDLE h, LPDWORD lpdwHi)
 }
 
 
-CLASS_DECL_c DWORD GetFileAttributes(const char * psz)
+CLASS_DECL_c DWORD GetFileAttributes(const wchar_t * psz)
 {
 
-   wstring wstr(psz);
-   
    WIN32_FILE_ATTRIBUTE_DATA data;
 
    zero(&data, sizeof(data));
    
-   if(!::GetFileAttributesExW(wstr, GetFileExInfoStandard, &data))
+   if(!::GetFileAttributesExW(psz, GetFileExInfoStandard, &data))
    {
       DWORD dwLastError = ::GetLastError();
       return INVALID_FILE_ATTRIBUTES;

@@ -164,3 +164,56 @@ bool oswindow::remove(::user::interaction * pui)
 {
    return m_pdata == NULL ? nullptr : m_pdata->m_pui;
 }
+
+
+static oswindow g_oswindowFocus;
+
+
+CLASS_DECL_c oswindow WINAPI GetFocus()
+{
+
+   return g_oswindowFocus;
+
+}
+
+CLASS_DECL_c oswindow WINAPI SetFocus(oswindow oswindow)
+{
+   
+   ::oswindow oswindowOldFocus = g_oswindowFocus;
+
+   g_oswindowFocus = oswindow;
+
+   // todo
+   //SendMessage(oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) oswindow)
+
+   return oswindowOldFocus;
+
+}
+
+
+
+static oswindow g_oswindowCapture;
+
+
+CLASS_DECL_c oswindow WINAPI GetCapture()
+{
+
+   return g_oswindowCapture;
+
+}
+
+CLASS_DECL_c oswindow WINAPI SetCapture(oswindow oswindow)
+{
+   
+   ::oswindow oswindowOldCapture = g_oswindowCapture;
+
+   g_oswindowCapture = oswindow;
+
+   // todo
+   //SendMessage(oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) oswindow)
+
+   return oswindowOldCapture;
+
+}

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
-#define single_threaded D2D1_FACTORY_TYPE_SINGLE_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
+#define single_threaded D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
 os_simple_graphics::os_simple_graphics()
 {
@@ -50,7 +50,7 @@ bool os_simple_graphics::create_device()
    if(m_iType != 0)
       destroy();
 
-   TlsGetD2D1Factory1()->CreateDevice(TlsGetDXGIDevice(), &m_pd);
+   GetD2D1Factory1()->CreateDevice(TlsGetDXGIDevice(), &m_pd);
 
    m_pd->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE, &m_pdc);
 
@@ -119,25 +119,23 @@ bool os_simple_graphics::from_window( Windows::UI::Core::CoreWindow ^ w)
 }
 
 
-ID2D1Factory1 * TlsGetD2D1Factory1()
+ID2D1Factory1 * GetD2D1Factory1()
 {
 
-   ID2D1Factory1 * pfactory = (ID2D1Factory1 *) TlsGetValue(TLS_D2D1_FACTORY1);
+   static ID2D1Factory1 * s_pfactory = NULL;
 
-   if(pfactory != NULL)
-      return pfactory;
+   if(s_pfactory != NULL)
+      return s_pfactory;
 
    d2d1_fax_options options;
    memset(&options, 0, sizeof(options));
 
-   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, (void **) &pfactory);
-
-   TlsSetValue(TLS_D2D1_FACTORY1, pfactory);
+   HRESULT hr = ::D2D1CreateFactory(single_threaded, __uuidof(ID2D1Factory1), &options, (void **) &s_pfactory);
 
    if(FAILED(hr))
        return NULL;
 
-   return pfactory;
+   return s_pfactory;
 
 }
 
@@ -450,6 +448,7 @@ bool os_simple_graphics::destroy()
       m_pdc->Release();
       m_pdc = NULL;
    }
+
 
    return true;
 

@@ -1,5 +1,25 @@
 #pragma once
 
+template < typename N >
+inline int msb(N n)
+{
+   
+   register int i = sizeof(N) * 8;
+
+   do
+   {
+      i--;
+      if(n & (1 << i))
+         return i;
+      
+   }
+   while(i > 0);
+
+   return -1;
+
+}
+
+
 
 namespace primitive
 {
@@ -63,6 +83,7 @@ namespace primitive
 
 
       memory_base & operator = (const memory_base & s);
+      memory_base & operator += (const memory_base & s);
 
 
       inline void from_string(const wchar_t * pwsz);
@@ -77,11 +98,15 @@ namespace primitive
       inline void copy_from(const memory_base * pstorage);
       inline void set(byte b, memory_size uiSize = -1);
 
+      inline void append(const memory_base & memory, memory_position iStart = 0, memory_size iCount = -1);
       inline void append(const void * pdata, memory_size iCount);
       inline void assign(const void * pdata, memory_size iCount);
       inline void assign(const void * pdata, memory_position iStart, memory_size iCount);
       inline void append(memory_size iCount, unsigned char uch);
       inline void assign(memory_size iCount, unsigned char uch);
+
+      void move_and_grow(memory_offset offset);
+      void move(memory_offset offset, bool bGrow = false);
 
       inline void assign(const char * psz);
 
@@ -106,6 +131,16 @@ namespace primitive
       inline void from_asc(const char * psz);
 
       inline bool operator == (const memory_base & s);
+
+
+      inline memory_base & reverse();
+
+      memory_base & prefix_der_uint_content();
+      memory_base & prefix_der_length();
+      memory_base & prefix_der_type(int iType);
+
+      memory_base & prefix_der_uint();
+      memory_base & prefix_der_sequence();
 
 
 #ifdef METROWIN
@@ -312,6 +347,15 @@ namespace primitive
       return *this;
    }
 
+   inline memory_base & memory_base::operator += (const memory_base & s)
+   {
+      if(&s != NULL)
+      {
+         append(s);
+      }
+      return *this;
+   }
+
    inline void memory_base::to_hex(string & str, memory_position pos, memory_size size)
    {
       if(pos > this->get_size())
@@ -351,7 +395,16 @@ namespace primitive
 
       char ch;
 
+      bool bOdd = false;
+
       strsize iLen = strlen(psz);
+
+      bOdd = (iLen % 2) != 0;
+
+      if(bOdd)
+      {
+         iLen++;
+      }
 
       allocate(iLen / 2);
 
@@ -362,15 +415,26 @@ namespace primitive
 
          ch = 0;
 
-         if(*psz > '9')
-            ch |= ((*psz - 'A' + 10) & 0x0f) << 4;
+         if(bOdd)
+         {
+
+            bOdd = false;
+
+         }
          else
-            ch |= ((*psz - '0') & 0x0f) << 4;
+         {
 
-         if(*psz == '\0')
-            break;
+            if(*psz > '9')
+               ch |= ((*psz - 'A' + 10) & 0x0f) << 4;
+            else
+               ch |= ((*psz - '0') & 0x0f) << 4;
 
-         psz++;
+            if(*psz == '\0')
+               break;
+
+            psz++;
+
+         }
 
          if(*psz > '9')
             ch |= ((*psz - 'A' + 10) & 0x0f);
@@ -496,6 +560,62 @@ namespace primitive
       str.ReleaseBuffer();
 
    }
+
+   inline void memory_base::move_and_grow(memory_offset offset)
+   {
+      
+      move(offset, true);
+
+   }
+
+   inline void memory_base::move(memory_offset offset, bool bGrow)
+   {
+
+      if(offset > 0)
+      {
+         if(bGrow)
+         {
+            this->allocate_add_up(offset);
+         }
+         if((memory_size) offset > this->get_size())
+            return;
+         memmove(&this->get_data()[offset], this->get_data(), this->get_size() - offset);
+      }
+      else if(offset < 0)
+      {
+         offset = -offset;
+         if(bGrow)
+         {
+            this->allocate_add_up(offset);
+         }
+         if((memory_size) offset > this->get_size())
+            return;
+         memmove(this->get_data(), &this->get_data()[offset], this->get_size() - offset);
+      }
+
+   }
+
+   inline void memory_base::append(const memory_base & mem, memory_position iStart, memory_size iCount)
+   {
+
+      if(iStart < 0)
+         iStart += this->get_size();
+
+      if(iStart > this->get_size())
+         return;
+
+      if(iStart + iCount > this->get_size())
+         iCount = this->get_size() - iStart - iCount;
+
+      if(iCount <= 0)
+         return;
+
+      allocate_add_up(iCount);
+
+      memcpy(&get_data()[this->get_size() - iCount], &mem.get_data()[iStart], (size_t) iCount);
+
+   }
+
 
    inline void memory_base::append(const void * pdata, memory_size iCount)
    {
@@ -685,7 +805,14 @@ namespace primitive
     
 #endif
 
-
+   inline memory_base & memory_base::reverse()
+   {
+      if(this->get_data() != NULL)
+      {
+         ::mem_reverse(this->get_data(), this->get_size());
+      }
+      return *this;
+   }
 } // namespace primitive
 
 

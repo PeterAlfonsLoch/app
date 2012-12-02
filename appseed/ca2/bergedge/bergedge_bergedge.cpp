@@ -15,7 +15,7 @@ namespace bergedge
       m_pbergedgedocument        = NULL;
       m_bShowPlatform            = false;
       m_pappCurrent              = NULL;
-	  m_bLicense				= false;
+      m_bLicense				= false;
 
       m_strAppName               = "bergedge";
 
@@ -100,14 +100,14 @@ namespace bergedge
          Session.savings().save(gen::resource_translucent_background);*/
       }
 
-/*      if(System.directrix().m_varTopicQuery.has_property("install")
-         || System.directrix().m_varTopicQuery.has_property("uninstall"))
+      /*      if(System.directrix().m_varTopicQuery.has_property("install")
+      || System.directrix().m_varTopicQuery.has_property("uninstall"))
       {
-         find_uinteractions_to_cache(m_mapUInteractionToLibrary);
+      find_uinteractions_to_cache(m_mapUInteractionToLibrary);
       }
       else
       {
-         find_uinteractions_from_cache(m_mapUInteractionToLibrary);
+      find_uinteractions_from_cache(m_mapUInteractionToLibrary);
       }*/
 
 
@@ -153,8 +153,8 @@ namespace bergedge
    }
 
    void bergedge::OnFileManagerOpenFile(
-         ::filemanager::data * pdata,
-         ::fs::item_array & itema)
+      ::filemanager::data * pdata,
+      ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       m_ptemplate_html->open_document_file(itema[0].m_strPath);
@@ -167,8 +167,8 @@ namespace bergedge
    }
 
    bool bergedge::file_manager_open_file(
-            ::filemanager::data * pdata,
-            ::fs::item_array & itema)
+      ::filemanager::data * pdata,
+      ::fs::item_array & itema)
    {
       UNREFERENCED_PARAMETER(pdata);
       if(itema.get_size() > 0)
@@ -249,7 +249,7 @@ namespace bergedge
             m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
             //m_pnaturedocument    =
             // dynamic_cast < nature::document * > (
-             //  papp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
+            //  papp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
 
             m_pbergedgedocument->set_platform(m_pplatformdocument);
             //m_pbergedgedocument->set_nature(m_pnaturedocument);
@@ -368,7 +368,7 @@ namespace bergedge
             //MessageBox(NULL, "appok", strApp, MB_ICONEXCLAMATION);
 
             if(pcreatecontext->m_spCommandLine->m_varQuery.has_property("install")
-            || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
+               || pcreatecontext->m_spCommandLine->m_varQuery.has_property("uninstall"))
             {
                continue;
             }
@@ -534,14 +534,14 @@ namespace bergedge
       }
       else
       {
-         alt1:
+alt1:
          if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
          {
             if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
             {
                string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
                if(gen::str::begins_eat(strCommand, "ca2prompt\r")
-               || gen::str::begins_eat(strCommand, "ca2prompt\n"))
+                  || gen::str::begins_eat(strCommand, "ca2prompt\n"))
                {
                   strCommand.trim();
                   command().add_fork_uri(strCommand);
@@ -582,15 +582,15 @@ namespace bergedge
    /*void bergedge::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
    {
 
-      ::ca2::application_request request;
+   ::ca2::application_request request;
 
-      request.m_iEdge         = m_iEdge;
-      request.m_strApp        = pszId;
-      request.m_varFile       = varFile;
-      request.m_varQuery      = varQuery;
-      request.m_pbiasCreate   = pbiasCreate;
+   request.m_iEdge         = m_iEdge;
+   request.m_strApp        = pszId;
+   request.m_varFile       = varFile;
+   request.m_varQuery      = varQuery;
+   request.m_pbiasCreate   = pbiasCreate;
 
-      request_application(&request);
+   request_application(&request);
 
    }*/
 
@@ -686,19 +686,19 @@ namespace bergedge
       }
 
 
-/*      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
+      /*      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
       {
-         pui = m_puiInitialPlaceHolderContainer;
+      pui = m_puiInitialPlaceHolderContainer;
       }*/
 
-/*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
+      /*      if(pui == NULL && m_bShowPlatform && m_pbergedge->get_document() != NULL)
       {
-         pui = Bergedge.get_document()->get_bergedge_view();
+      pui = Bergedge.get_document()->get_bergedge_view();
       }
 
       return pui;
 
-   }*/
+      }*/
 
       if(pinteraction->get_app()->is_bergedge() || pcreatecontext->m_bClientOnly ||
          Application.directrix().m_varTopicQuery["client_only"] != 0 ||
@@ -948,7 +948,9 @@ namespace bergedge
 
    }
 
+
 } // namespace bergedge
+
 
 
 

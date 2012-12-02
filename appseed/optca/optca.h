@@ -15,6 +15,6 @@
 #endif
 
 
-CLASS_DECL_OPTCA bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * p, byte * dv);
+CLASS_DECL_OPTCA bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * p, byte * dv, int stride);
 
 

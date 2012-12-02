@@ -4,13 +4,14 @@
 namespace ca
 {
 
-   bool bitmap::CreateBitmap(::ca::graphics * pdc, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits)
+   bool bitmap::CreateBitmap(::ca::graphics * pdc, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int stride)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       UNREFERENCED_PARAMETER(nPlanes);
       UNREFERENCED_PARAMETER(nBitcount);
       UNREFERENCED_PARAMETER(lpBits);
+      UNREFERENCED_PARAMETER(stride);
       throw not_implemented(get_app());
    }
 

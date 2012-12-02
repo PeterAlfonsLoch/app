@@ -225,6 +225,8 @@ verisimple_string operator + (const verisimple_string & str1, const verisimple_s
 
    char * pszRet = (char *) _ca_alloc(iLen1 + iLen2 + 1);
 
+   pszRet[0] = '\0';
+
    strcpy_dup(pszRet, str1);
 
    strcat_dup(pszRet, str2);
