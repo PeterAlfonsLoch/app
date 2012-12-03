@@ -21,9 +21,9 @@ namespace user
       void InstallMessageHandling(gen::message::dispatch * pinterface);
 
 
-      bool UpdateBuffer(::ca::graphics * pdc, int cx, int cy);
-      bool UpdateBuffer(::ca::graphics * pdc, class size size);
-      bool UpdateBuffer(::ca::graphics * pdc, class point point);
+      bool UpdateBuffer(int cx, int cy);
+      bool UpdateBuffer(class size size);
+      bool UpdateBuffer(class point point);
       ::ca::graphics * GetBuffer();
       ::critical_section * GetSemaphore();
       bool clear();

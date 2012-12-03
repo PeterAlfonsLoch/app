@@ -56,4 +56,5 @@ WinRegGetValueW(
 
 CLASS_DECL_c vsstring key_to_char(WPARAM wparam, LPARAM lparam);
 
-
+#define MESSAGE MSG
+#define LPMESSAGE LPMSG

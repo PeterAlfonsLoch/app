@@ -139,10 +139,10 @@ bool thread_layer::on_idle()
 
 }
 
-void thread_layer::wait_thread()
+void thread_layer::wait_thread(DWORD dwMillis)
 {
 
-   ::WaitForSingleObject(m_hthread, INFINITE);
+   ::WaitForSingleObject(m_hthread, dwMillis);
 
 }
 

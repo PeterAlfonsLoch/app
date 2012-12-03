@@ -1455,8 +1455,10 @@ namespace user
       else
 #endif
       {
+#ifdef METROWIN
          if(pParentWnd == NULL)
             pParentWnd = System.m_pui;
+#endif
          m_pimpl = new virtual_user_interface(get_app());
          m_pimpl->m_pguie = this;
          if(!m_pimpl->CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id, lpParam))

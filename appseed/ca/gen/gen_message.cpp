@@ -220,9 +220,15 @@ namespace gen
 
       base * dispatch::get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd)
       {
+#if defined(METROWIN)
          if(pwnd == NULL && lpmsg->oswindow != NULL)
          {
-            ::user::interaction * pwindow = System.window_from_os_data(lpmsg->oswindow);
+            ::user::interaction * pwindow = lpmsg->oswindow.window();
+#else
+         if(pwnd == NULL && lpmsg->hwnd != NULL)
+         {
+            ::user::interaction * pwindow = System.window_from_os_data(lpmsg->hwnd);
+#endif
             if(pwindow != NULL)
             {
                try
@@ -237,15 +243,6 @@ namespace gen
          }
 
          return get_base(pwnd, lpmsg->message, lpmsg->wParam, lpmsg->lParam);
-      }
-
-#elif defined(METROWIN)
-
-      base * dispatch::get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam)
-      {
-
-         return NULL;
-
       }
 
 

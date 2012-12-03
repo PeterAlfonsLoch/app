@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace sockets
 {
+
 
    http_socket::http_socket(socket_handler_base& h) :
       ::ca::ca(h.get_app()),
@@ -21,9 +23,13 @@ namespace sockets
       m_chunk_size(0),
       m_chunk_state(0)
    {
+      
       m_request.attr("http_version") = "HTTP/1.1";
       SetLineProtocol();
       DisableInputBuffer();
+
+      m_bOnlyHeaders    = false;
+
    }
 
 

@@ -1186,7 +1186,7 @@ retry:
          {
             psocket->m_bOnlyHeaders = true;
          }
-         if((bool)set["noclose"])
+         if(set.has_property("noclose") && (bool)set["noclose"])
          {
             psocket->m_bNoClose = true;
          }
@@ -1206,7 +1206,7 @@ retry:
          {
             psocket->request().header("Cookie") = set["Cookie"];
          }
-         if(!(bool)set["noclose"])
+         if(!psocket->m_bNoClose)
          {
             psocket->SetCloseOnComplete();
          }

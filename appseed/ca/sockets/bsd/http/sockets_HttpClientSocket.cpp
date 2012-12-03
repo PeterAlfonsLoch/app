@@ -42,7 +42,7 @@ namespace sockets
       m_mutexData(h.get_app())
    {
 
-
+      m_bNoClose        = false;
       m_pfile           = NULL;
 
 
@@ -68,6 +68,7 @@ namespace sockets
 
       url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
+      m_bNoClose                          = false;
       m_request.attr("http_protocol")     = m_protocol;
       outheader("host")                   = m_host;
       m_request.attr("request_uri")       = strRequestUri;
@@ -135,7 +136,7 @@ namespace sockets
 
    void http_client_socket::OnDataComplete()
    {
-      if(oprop("noclose").is_empty() || !(bool)oprop("noclose"))
+      if(m_bNoClose)
       {
          SetCloseAndDelete();
       }

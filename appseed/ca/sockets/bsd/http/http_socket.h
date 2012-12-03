@@ -33,6 +33,8 @@
          string               m_chunk_line;
 
          int64_t              m_iFirstTime;
+         bool                 m_bNoClose;
+         bool                 m_bOnlyHeaders;
 
 
          http_socket(socket_handler_base& );
