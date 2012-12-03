@@ -88,7 +88,8 @@ bool db_server::initialize()
 {
 
    if(System.directrix().m_varTopicQuery["app"] == "app-core/netnodelite"
-	||  System.directrix().m_varTopicQuery["app"] == "app-core/tesseract/netnodecfg")
+	||  System.directrix().m_varTopicQuery["app"] == "app-core/tesseract/netnodecfg"
+   ||  System.directrix().m_varTopicQuery["app"] == "app-core/mydns")
    {
       m_bRemote = false;
    }

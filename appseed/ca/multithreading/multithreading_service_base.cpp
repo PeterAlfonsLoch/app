@@ -228,7 +228,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 
     s_pservice->m_handle = ::RegisterServiceCtrlHandler("", ServiceHandler);
 
-    if(s_pservice->m_handle = NULL)
+    if(s_pservice->m_handle == NULL)
     {
        throw last_error_exception(s_pservice->get_app());
     }
