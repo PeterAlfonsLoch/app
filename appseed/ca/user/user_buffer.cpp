@@ -20,17 +20,17 @@ namespace user
       return true;
    }
 
-   bool buffer::UpdateBuffer(::ca::graphics * pdc, size size)
+   bool buffer::UpdateBuffer(size size)
    {
-      return UpdateBuffer(pdc, size.cx, size.cy);
+      return UpdateBuffer(size.cx, size.cy);
    }
 
-   bool buffer::UpdateBuffer(::ca::graphics * pdc,class point point)
+   bool buffer::UpdateBuffer(class point point)
    {
-      return UpdateBuffer(pdc, point.x, point.y);
+      return UpdateBuffer(point.x, point.y);
    }
 
-   bool buffer::UpdateBuffer(::ca::graphics * pdc,int cx, int cy)
+   bool buffer::UpdateBuffer(int cx, int cy)
    {
       m_size.cx = cy;
       m_size.cy = cy;
