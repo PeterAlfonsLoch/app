@@ -308,15 +308,13 @@ bool image_list::_grow()
    return true;
 }
 
-#ifdef WINDOWSEX
-
-bool image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
+bool image_list::get_image_info(int nImage, info * pinfo) const
 {
 
    try
    {
 
-      ASSERT(pImageInfo != NULL);
+      ASSERT(pinfo != NULL);
 
       if(nImage < 0 || nImage >= get_image_count())
          return FALSE;
@@ -331,12 +329,12 @@ bool image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
       if((HBITMAP) const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap()->get_os_data() == NULL)
          return FALSE;
 
-      pImageInfo->rcImage.left      = nImage * m_size.cx;
-      pImageInfo->rcImage.right     = pImageInfo->rcImage.left + m_size.cx;
-      pImageInfo->rcImage.top       = 0;
-      pImageInfo->rcImage.bottom    = m_size.cy;
-      pImageInfo->hbmImage          = (HBITMAP) const_cast < ::ca::dib_sp & > (m_spdib)->get_bitmap()->get_os_data();
-      pImageInfo->hbmMask           = NULL;
+      pinfo->m_rect.left      = nImage * m_size.cx;
+      pinfo->m_rect.right     = pinfo->m_rect.left + m_size.cx;
+      pinfo->m_rect.top       = 0;
+      pinfo->m_rect.bottom    = m_size.cy;
+      pinfo->m_pdib           = m_spdib;
+//      pImageInfo->hbmMask           = NULL;
 
       return TRUE;
 
@@ -347,8 +345,6 @@ bool image_list::get_image_info(int nImage, IMAGEINFO* pImageInfo) const
    }
 
 }
-
-#endif
 
 void image_list::remove_all()
 {

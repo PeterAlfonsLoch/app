@@ -135,6 +135,8 @@ static void StartThread(LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParamete
 
       currentThreadId =  thread_id_map()[currentThread];
 
+      mlThreadId.unlock();
+
       mlThreadHandle.unlock();
 
       // Run the user callback.

@@ -282,7 +282,7 @@ namespace plane
       plane::session::map *                        m_pbergedgemap;
 
 
-      class ::ca2::log *                           m_plog;
+      class ::ca::log *                            m_plog;
       class factory *                              m_pfactory;
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
@@ -403,7 +403,7 @@ namespace plane
       virtual ::ca::window_draw        * _001GetTwf();
 
       class factory                    & factory();
-      class ::ca2::log                 & log();
+      class ::ca::log                  & log();
 
       ::ca::window_draw                * get_twf();
 

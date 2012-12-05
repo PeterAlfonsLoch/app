@@ -418,8 +418,13 @@ namespace userbase
 
    void split_layout::CalcSplitBarRect(int iIndex, LPRECT lpRect)
    {
+      
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_split_count());
+      
+      if(iIndex >= m_splitbara.get_count())
+         return;
+
       int nPos = m_splitbara[iIndex].m_dwPosition;
       GetClientRect(lpRect);
       if(m_eorientationSplit == orientation_horizontal)

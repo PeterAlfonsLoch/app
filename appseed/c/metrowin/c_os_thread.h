@@ -206,13 +206,17 @@ typedef struct tagMESSAGE {
 #endif
 } MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
 
+class CLASS_DECL_c message_array :
+   public simple_array < MESSAGE >
+{
+};
 
 class CLASS_DECL_c mq
 {
 public:
 
    simple_mutex               m_mutex;
-   simple_array < MESSAGE >   ma;
+   message_array              ma;
    simple_event               m_eventNewMessage;
 
    mq() : m_eventNewMessage(false, true) {}

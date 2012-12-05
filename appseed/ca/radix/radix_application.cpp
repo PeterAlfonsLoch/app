@@ -1633,7 +1633,8 @@ namespace radix
 
 #else
 
-         throw not_implemented(get_app());
+         // throw not_implemented(get_app());
+         // throw todo(get_app());
 
 #endif
 

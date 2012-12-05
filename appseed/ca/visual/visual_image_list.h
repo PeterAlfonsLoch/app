@@ -3,6 +3,19 @@
 class CLASS_DECL_ca image_list :
    virtual public ::radix::object
 {
+public:
+
+   class CLASS_DECL_ca info
+   {
+   public:
+
+
+      rect           m_rect;
+      ::ca::dib *    m_pdib;
+
+   };
+
+
 protected:
    size           m_size;
    int            m_iSize;
@@ -42,9 +55,7 @@ public:
    image_list(::ca::application * papp);
    virtual ~image_list();
 
-#ifdef WINDOWSEX
-   bool get_image_info(int nImage, IMAGEINFO* pImageInfo) const;
-#endif
+   bool get_image_info(int nImage, info * pinfo) const;
 
    void remove_all();
 

@@ -10,7 +10,8 @@
 
 #ifdef WINDOWS
 
-bool WINAPI DllMain(HANDLE, DWORD, LPVOID);
+bool WINAPI DllMain(HANDLE hInst, DWORD reason, LPVOID imp);
+
 
 EXTERN_C bool WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
 {
@@ -21,6 +22,9 @@ EXTERN_C bool WINAPI _DllMainCRTStartup(HANDLE hInst, DWORD reason, LPVOID imp)
       initialize_primitive_heap();
 	   //_init_atexit();
 	   _init_file();
+
+      
+
 #ifndef METROWIN
 	   _initterm(__xc_a, __xc_z);
 #endif

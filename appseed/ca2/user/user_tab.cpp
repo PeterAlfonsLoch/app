@@ -1116,7 +1116,7 @@ namespace user
    {
       SCAST_PTR(::gen::message::base, pbase, pobj);
       m_iHover = -1;
-      get_parent()->_001RedrawWindow();
+      //get_parent()->_001RedrawWindow();
       pbase->set_lresult(0);
       pobj->m_bRet = true;
    }

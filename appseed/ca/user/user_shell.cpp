@@ -530,15 +530,15 @@ namespace filemanager
    int ImageSet::GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon)
    {
 
+      int iImage = 0x80000000;
+
+#ifdef WINDOWSEX
+
       ImageKey imagekey;
 
       string str(lpcsz);
 
-#ifdef WINDOWSEX
-
       SHFILEINFO shfi16;
-
-      int iImage = 0x80000000;
 
       imagekey.m_strPath.Format(":%s:%d:%d", lpcsz, eattribute, eicon);
       imagekey.m_strExtension = str.Mid(str.reverse_find('.'));
@@ -575,13 +575,10 @@ namespace filemanager
          m_imagemap.set_at(imagekey, iImage);
 
       }
-      return iImage;
-
-#else
-
-      throw todo(get_app());
 
 #endif
+
+      return iImage;
 
 
    }
@@ -1021,6 +1018,7 @@ namespace filemanager
 
    int ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
    {
+      int iImage = 0x80000000;
 
 #ifdef WINDOWSEX
 
@@ -1047,7 +1045,6 @@ namespace filemanager
       }
 
 
-      int iImage = 0x80000000;
 
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
@@ -1137,14 +1134,10 @@ namespace filemanager
 
       }
 
-      return iImage;
-
-#else
-
-      throw todo(get_app());
 
 #endif
 
+      return iImage;
 
    }
 

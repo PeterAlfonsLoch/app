@@ -392,8 +392,6 @@ namespace user
    {
 
 
-#ifdef WINDOWSEX
-
       rect rectClient;
 
       GetClientRect(rectClient);
@@ -447,12 +445,6 @@ namespace user
          lprect->bottom = (LONG) (lprect->top + iScrollHeight);
       else
          lprect->bottom = (LONG) (lprect->top + iClientHeight);
-
-#else
-
-      throw todo(get_app());
-
-#endif
 
    }
 

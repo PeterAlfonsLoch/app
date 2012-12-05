@@ -57,7 +57,7 @@ namespace userbase
          }
          m_hcursor = ::LoadCursor(NULL, lpcsz);
 #else
-         throw todo(get_app());
+         // throw todo(get_app());
 #endif
 
       }

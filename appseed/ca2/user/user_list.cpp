@@ -1044,12 +1044,9 @@ namespace user
    void list::_001OnColumnChange()
    {
 
-#ifdef WINDOWSEX
-
       index iItemHeight = 0;
       index iItemWidth = 0;
 
-      IMAGEINFO ii;
       index iColumnWidth;
       rect rect;
 
@@ -1084,6 +1081,7 @@ namespace user
       }
 
 
+      image_list::info ii;
 
 
 
@@ -1100,7 +1098,7 @@ namespace user
             && pcolumn->m_pil->get_image_count() > 0)
          {
             pcolumn->m_pil->get_image_info(0, &ii);
-            rect = ii.rcImage;
+            rect = ii.m_rect;
             if(rect.height() + 2 > iItemHeight)
             {
                iItemHeight = (index)rect.height() + 2;
@@ -1135,7 +1133,7 @@ namespace user
       {
          //      while(m_pheaderctrl->DeleteItem(0));
 
-         HDITEM hditem;
+         ::user::list_header::item hditem;
 
          for(index iOrder = 0; iOrder < m_columna.VisibleGetCount(); iOrder++)
          {
@@ -1143,10 +1141,10 @@ namespace user
             if(iColumn < 0)
                continue;
             list_column * pcolumn = m_columna._001GetVisible(iColumn);
-            hditem.mask = HDI_WIDTH | HDI_TEXT | HDI_LPARAM | HDI_ORDER;
+            //hditem.mask = HDI_WIDTH | HDI_TEXT | HDI_LPARAM | HDI_ORDER;
             //str.load_string(_001GetColumnTextId(iColumn));
             //hditem.pszText = (LPTSTR) (const char *) str;
-            hditem.pszText = LPSTR_TEXTCALLBACK;
+            //hditem.pszText = LPSTR_TEXTCALLBACK;
             //hditem.cchTextMax = str.get_length();
             hditem.cchTextMax = 0;
             hditem.cxy = pcolumn->m_iWidth;;
@@ -1159,11 +1157,6 @@ namespace user
 
       m_columna.VisibleToGlobalOrder();
 
-#else
-
-      throw todo(get_app());
-
-#endif
 
 
    }
@@ -5375,8 +5368,6 @@ namespace user
    void list::_001GetViewClientRect(LPRECT lprect)
    {
 
-#ifdef WINDOWSEX
-
       GetClientRect(lprect);
 
       rect rectClient;
@@ -5450,10 +5441,10 @@ namespace user
       else
          lprect->bottom = (LONG) (lprect->top + iClientHeight);
 
-#else
-      throw todo(get_app());
-#endif
    }
 
 
 } // namespace user
+
+
+

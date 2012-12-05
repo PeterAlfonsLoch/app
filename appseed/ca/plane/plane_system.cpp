@@ -48,6 +48,25 @@ namespace plane
       ::plane::application::m_dir.m_psystem     = this;
 
       m_bDoNotExitIfNoApplications              = false;
+      m_plog                     = NULL;
+
+
+      string strId;
+      //strId = m_strAppName;
+      //strId += gen::str::has_char(m_strAppId, ".");
+      //strId += gen::str::has_char(m_strBaseSupportId, ".");
+
+
+      strId = "ca2log";
+
+      xxdebug_box("Going to start Log", "Just before initialize log", 0);
+
+      // log starts here
+      if(!initialize_log(strId))
+      {
+         xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
+         throw "failed to initialize log";
+      }
 
 
 /*
@@ -110,7 +129,7 @@ namespace plane
       m_prunstartinstaller       = NULL;
       m_pmachineeventcentral     = NULL;
       //m_pfactory                 = NULL;
-      m_plog                     = NULL;
+      
       m_ptwf                     = NULL;
       m_pbergedgemap             = NULL;
 
@@ -196,7 +215,7 @@ namespace plane
       ::ca::profiler::initialize();
 
 
-      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
+//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
       if(!::planebase::application::process_initialize())
       {
@@ -260,19 +279,6 @@ namespace plane
       m_spos.create(this);
       m_spdir.create(this);
 
-      string strId;
-      strId = m_strAppName;
-      strId += gen::str::has_char(m_strAppId, ".");
-      strId += gen::str::has_char(m_strBaseSupportId, ".");
-
-      xxdebug_box("Going to start Log", "Just before initialize log", 0);
-
-      // log starts here
-      if(!initialize_log(strId))
-      {
-         xxdebug_box("Could not initialize log", "Failed to initialize log", 0);
-         return FALSE;
-      }
 
       if(!m_spdir->initialize())
          return false;
@@ -293,7 +299,7 @@ namespace plane
       System.factory().cloneable_large < ::ca::palette_sp >();
       System.factory().cloneable_large < ::ca::region_sp >();
       //      System.factory().cloneable_large < var >();
-      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
+//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)
@@ -762,7 +768,7 @@ namespace plane
       return true;
    }
 
-   ::ca2::log & system::log()
+   ::ca::log & system::log()
    {
       return *m_plog;
    }
@@ -1026,7 +1032,7 @@ namespace plane
    {
       if(m_plog != NULL)
          return true;
-      m_plog = dynamic_cast < class ::ca2::log * > (alloc(this, System.type_info < class ::ca::log > ()));
+      m_plog = new ::ca::log(this);
       m_plog->set_extended_log();
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))

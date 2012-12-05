@@ -695,10 +695,12 @@ InitFailure:
    bool application::main_start()
    {
 
+      TRACE(string(typeid(*this).name()) + " main_start");;
       try
       {
 
          m_dwAlive = ::get_tick_count();
+         TRACE(string(typeid(*this).name()) + "pre_run");;
          int m_iReturnCode = pre_run();
          if(m_iReturnCode != 0)
          {
@@ -707,7 +709,7 @@ InitFailure:
             return false;
          }
 
-
+         TRACE(string(typeid(*this).name()) + " initial_check_directrix");;
          if(!initial_check_directrix())
          {
             exit();
@@ -718,6 +720,7 @@ InitFailure:
          }
 
 
+         TRACE(string(typeid(*this).name()) + " os_native_bergedge_start");;
          m_dwAlive = ::get_tick_count();
          if(!os_native_bergedge_start())
          {
@@ -744,6 +747,8 @@ InitFailure:
    int application::main()
    {
 
+      TRACE(string(typeid(*this).name()) + " main");;
+
       try
       {
 
@@ -754,6 +759,7 @@ InitFailure:
             return m_iReturnCode;
          }
 
+         TRACE(string(typeid(*this).name()) + " on_run");;
          m_iReturnCode = 0;
          m_bReady = true;
          m_iReturnCode = on_run();

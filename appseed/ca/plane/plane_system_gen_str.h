@@ -90,6 +90,22 @@ namespace gen
    } // namespace str
 
 
+   inline static string log_level_name(gen::log::level::e_level elevel)
+   {
+      switch(elevel)
+      {
+      case ::gen::log::level::warning:
+         return "warning";
+      case ::gen::log::level::error:
+         return "error";
+      case ::gen::log::level::fatal:
+         return "fatal";
+      case ::gen::log::level::info:
+         return "info";
+      default:
+         return "undefined log error";
+      }
+   }
 } // namespace gen
 
 

@@ -48,9 +48,6 @@ namespace ca2
 #include "ca/gen/gen_process.h"
 
 
-#include "ca2_log.h"
-
-
 #include "ca/gen/gen_cregexp.h"
 #include "ca/gen/gen_cregexp_util.h"
 

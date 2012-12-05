@@ -1,6 +1,6 @@
 #include "framework.h"
 
-CLASS_DECL_ca2 COLORREF GetSysColor(DWORD dw);
+//CLASS_DECL_ca2 COLORREF GetSysColor(DWORD dw);
 
 namespace user
 {
@@ -53,13 +53,13 @@ namespace user
 
    index list_header::MapItemToOrder(index iItem)
    {
-#ifdef WINDOWSEX
-      HDITEM hditem;
+//#ifdef WINDOWSEX
+  //    HDITEM hditem;
 
 
       //hditem.mask = HDI_ORDER| HDI_TEXT;
 
-      hditem.mask = HDI_ORDER;
+    //  hditem.mask = HDI_ORDER;
 
    //   char pszText[1024];
 
@@ -71,11 +71,11 @@ namespace user
    //   return hditem.iOrder;
       return iItem;
 
-#else
+//#else
 
-      throw todo(get_app());
+      //throw todo(get_app());
 
-#endif
+//#endif
 
    }
 

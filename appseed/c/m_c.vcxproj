@@ -199,7 +199,8 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>MSVCRTD.lib;DWrite.lib;Msxml6.lib;D3D11.lib;D2D1.lib;kernel32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>LIBCMTD.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
@@ -479,7 +480,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="hotplugin\hotplugin_host.cpp" />
     <ClCompile Include="hotplugin\hotplugin_plugin.cpp" />
     <ClCompile Include="metrowin\crypt\c_os_crypt.cpp" />
-    <ClCompile Include="metrowin\c_os_crt0dll.cpp" />
     <ClCompile Include="metrowin\c_os_c_dll.cpp" />
     <ClCompile Include="metrowin\c_os_file.cpp" />
     <ClCompile Include="metrowin\c_os_file_watcher.cpp" />

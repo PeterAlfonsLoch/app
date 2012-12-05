@@ -59,6 +59,9 @@ namespace user
       if(!visual::application::initialize())
          return false;
 
+
+      TRACE("::user::application::initialize");
+
       xml::document docUser(this);
       string strUser = App(this).file().as_string(App(this).dir().userappdata("langstyle_settings.xml"));
       string strLangUser;

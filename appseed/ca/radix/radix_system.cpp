@@ -25,10 +25,10 @@ namespace radix
 
    ::ca::ca * system::on_alloc(::ca::application * papp, ::ca::type_info & info)
    {
-      if(info == System.type_info < class ::ca::log > ())
+/*      if(info == System.type_info < class ::ca::log > ())
       {
          return new class ::ca2::log(this); // NULL log implementation
-      }
+      }*/
       /*string str;
       str.Format("Could not alloc %s", info.name());
       simple_message_box(str);*/

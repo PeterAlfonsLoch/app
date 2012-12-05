@@ -1,5 +1,11 @@
 #pragma once
 
+class critical_section;
+class mutex;
+class stringa;
+class string;
+class id;
+
 namespace gen
 {
    namespace log
@@ -15,11 +21,21 @@ namespace gen
          };
       }
    }
+   namespace trace
+   {
+      class trace;
+   }
+}
+
+namespace ex1
+{
+   class file;
 }
 
 
 namespace ca
 {
+
 
    CLASS_DECL_ca int SimpleDebugReport(int,const char *,int,const char *,const char * pszFormat, va_list list);
 
@@ -49,30 +65,64 @@ namespace ca
       bool              m_bExtendedLog;
 
 
-         /** error level enum. */
-      log();
-      virtual ~log();
 
-      virtual void success(const char * psz);
+      bool                    m_bTrace;
+      gen::trace::trace *     m_ptrace;
+      critical_section *      m_pcsTrace;
+      stringa *               m_pstraSeparator;
+      FILE *                  m_pfile;
+      mutex *                 m_pmutex;
+      bool                    m_bInitialized;
+      string *                m_pstrLogPath;
+      id *                    m_pid;
+      int                     m_iYear;
+      int                     m_iMonth;
+      int                     m_iDay;
+
+
+      log(::ca::application * papp);
+      virtual ~log();
 
       virtual void print(const char * psz, ...);
 
       virtual bool initialize(const char * pszId);
+      virtual bool initialize(id id);
       virtual bool finalize();
+
+      void trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
+
+      void set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel);
+
+
+         /** error level enum. */
+//      log();
+  //    virtual ~log();
+
+      virtual void success(const char * psz);
+
+//      virtual void print(const char * psz, ...);
+
+//      virtual bool initialize(const char * pszId);
+//      virtual bool finalize();
 
       virtual void set_extended_log(bool bSet = true);
       virtual bool get_extended_log();
 
 
-      virtual void trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
-      virtual void trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const wchar_t * pszFmt, va_list args) const;
+      //virtual void trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
+//      virtual void trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const wchar_t * pszFmt, va_list args) const;
 
-      virtual void set_trace_category(unsigned int dwCategory, const char * pszName, unsigned int uiLevel);
+      void __cdecl trace(const char * pszFormat, ...);
+      void __cdecl trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...);
 
 
+      //virtual void set_trace_category(unsigned int dwCategory, const char * pszName, unsigned int uiLevel);
 
+
+   
    };
 
+   
 
 
 } // namespace ca

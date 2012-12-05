@@ -40,7 +40,7 @@ namespace sockets
       const string & strSystemError,
       ::gen::log::level::e_level elevel)
    {
-      string strLevel = ::ca2::log::level_name(elevel);
+      string strLevel = ::gen::log_level_name(elevel);
 
       if (sock)
       {
