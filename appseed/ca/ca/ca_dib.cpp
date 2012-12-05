@@ -2602,7 +2602,11 @@ fill_last:
       ostream << (int) cy;
       if(area() <= 0)
          return;
-      ostream.write(get_data(), (::primitive::memory_size)(sizeof(COLORREF) * area()));
+      map();
+      for(int i = 0; i < cy; i++)
+      {
+         ostream.write(&((byte *) get_data())[scan * i], scan);
+      }
    }
 
    void dib::read(::ex1::byte_input_stream & istream)
@@ -2620,7 +2624,10 @@ fill_last:
       if(!create(width, height))
          throw 0;
       map();
-      istream.read(get_data(), (::primitive::memory_size)(sizeof(COLORREF) * area()));
+      for(int i = 0; i < cy; i++)
+      {
+         istream.read(&((byte *) get_data())[scan * i], scan);
+      }
    }
 
    void dib::set_rgb ( int R, int G, int B )

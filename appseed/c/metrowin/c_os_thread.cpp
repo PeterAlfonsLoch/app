@@ -784,6 +784,13 @@ restart:
    {
       MESSAGE & msg = pmq->ma[i];
 
+
+      if(msg.message == WM_QUIT)
+      {
+         return FALSE;
+      }
+
+
       if((oswindow == NULL || msg.oswindow == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
       {
          *lpMsg = msg;
@@ -798,10 +805,8 @@ restart:
 
    ::ResetEvent(pmq->m_eventNewMessage.m_hEvent);
 
-   if(pmq->ma.get_count() > 0)
-      goto restart;
+   goto restart;
 
-   return FALSE;
 }
 
 

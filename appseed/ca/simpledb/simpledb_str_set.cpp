@@ -135,7 +135,6 @@ repeat:;
           try
           {
 
-             sl.lock();
 
              gen::property_set post(get_app());
              gen::property_set headers(get_app());
@@ -182,6 +181,7 @@ repeat:;
           {
           }
 
+          sl.unlock();
 
        }
 
