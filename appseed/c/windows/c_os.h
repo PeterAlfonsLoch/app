@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "openssl/ssl.h"
+
+
 #include "c/os/os.h"
 #include "c_os_gdi.h"
 #include "c_os_http.h"
