@@ -662,6 +662,14 @@ namespace ca2
 #ifdef WINDOWSEX
          ::ShellExecuteA(NULL, "open", pszLink, NULL, NULL, SW_SHOW);
          return true;
+#elif defined METROWIN
+#pragma push_macro("System")
+#undef System
+         ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(rtstr(pszLink));
+         ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions(); 
+         options->TreatAsUntrusted = false;
+         bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri, options));
+#pragma pop_macro("System")
 #else
          throw not_implemented(get_app());
 #endif

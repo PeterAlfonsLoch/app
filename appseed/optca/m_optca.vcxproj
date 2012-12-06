@@ -42,7 +42,7 @@
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
     <ProjectGuid>{73472F5D-E2E2-4ED4-A2E0-65FAE45F0353}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>m_optca</ProjectName>
+    <ProjectName>optca</ProjectName>
     <RootNamespace>m_optca</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
@@ -199,6 +199,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -281,11 +282,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\c\m_c.vcxproj">
-      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="optca.h" />
   </ItemGroup>
@@ -295,6 +291,14 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="optca.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="optca.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\c\m_c.vcxproj">
+      <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

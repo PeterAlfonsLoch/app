@@ -2924,7 +2924,7 @@ namespace radix
       {
          if(m_bSessionSynchronizedCursor)
          {
-            ::GetCursorPos(&m_ptCursor);
+            System.get_cursor_pos(&m_ptCursor);
          }
          if(lppoint != NULL)
          {

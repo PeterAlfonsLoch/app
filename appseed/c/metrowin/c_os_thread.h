@@ -44,6 +44,20 @@ class m_waiter
 };
 */
 
+
+template < typename T >
+inline void waiter_null_result(T & t)
+{
+   t = nullptr;
+}
+
+template < >
+inline void waiter_null_result(bool & b)
+{
+   b = false;
+}
+
+
 template < typename T >
 ref class waiter_for_Windows_Foundation_IAsyncOperation sealed
 {
@@ -99,7 +113,11 @@ public:
       else
       {
 
-         return nullptr;
+         T t;
+
+         waiter_null_result(t);
+
+         return t;
 
       }
 

@@ -3,13 +3,34 @@
 
 #ifdef METROWIN
 
+[Platform::MTAThread]
 extern "C" int APIENTRY
-main(::Platform::Array < ::Platform::String ^ > ^ args)
+DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 {
    
    
-   ::OutputDebugStringW(L"::ca2:: optca.dll :: initializing!\n");
+   UNREFERENCED_PARAMETER(hInstance);
+   UNREFERENCED_PARAMETER(lpReserved);
+
+
+   if (dwReason == DLL_PROCESS_ATTACH)
+   {
+
+
+      ::OutputDebugStringW(L"::ca2:: optca.dll :: initializing!\n");
       
+
+   }
+   else if (dwReason == DLL_PROCESS_DETACH)
+   {
+   
+
+      ::OutputDebugStringW(L"::ca2:: optca.dll :: terminating!\n");
+
+
+   }
+
+
    return 1;   // ok
 
 

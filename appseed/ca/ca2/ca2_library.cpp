@@ -124,7 +124,7 @@ namespace ca2
 
 #ifdef METROWIN
 
-         strPrefix = "m_" + strPrefix;
+//         strPrefix = "m_" + strPrefix;
 
 #endif
 
@@ -237,7 +237,7 @@ namespace ca2
 
 #ifdef METROWIN
 
-      gen::str::begins_eat_ci(strLibraryName, "m_");
+//      gen::str::begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -330,7 +330,7 @@ namespace ca2
 
 #ifdef METROWIN
 
-         strPrefix = "m_" + strPrefix;
+//         strPrefix = "m_" + strPrefix;
 
 #endif
 

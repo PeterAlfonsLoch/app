@@ -1,6 +1,27 @@
 #include "framework.h"
 
 
+#ifdef METROWIN
+[Platform::MTAThread]
+#endif
+extern "C" int APIENTRY
+DllMain( HINSTANCE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+                )
+{
+    switch (ul_reason_for_call)
+   {
+      case DLL_PROCESS_ATTACH:
+      case DLL_THREAD_ATTACH:
+      case DLL_THREAD_DETACH:
+      case DLL_PROCESS_DETACH:
+         break;
+    }
+    return TRUE;
+}
+
+
 DWORD GetTickCount()
 {
     return GetTickCount64() % 0xffffffffULL;
@@ -142,11 +163,6 @@ CLASS_DECL_ca errno_t fopen_s(FILE ** pFile, const char * pFileName, const char 
 }
 */
 
-
-int main(Platform::Array < Platform::String ^ > ^ stra)
-{
-
-}
 
 
 

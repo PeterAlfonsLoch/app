@@ -2548,6 +2548,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="m_ca2.def" />
+    <None Include="ca2.def" />
   </ItemGroup>
 </Project>

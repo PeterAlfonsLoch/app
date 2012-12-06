@@ -49,7 +49,7 @@ namespace uinteraction
 
 #ifdef METROWIN
 
-      strLibrary = "m_" + strLibrary;
+//      strLibrary = "m_" + strLibrary;
 
 #endif
       

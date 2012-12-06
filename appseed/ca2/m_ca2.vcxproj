@@ -42,7 +42,7 @@
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
     <ProjectGuid>{99892E42-0F2F-4B0F-AC18-5ABBC3968407}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <ProjectName>m_ca2</ProjectName>
+    <ProjectName>ca2</ProjectName>
     <RootNamespace>m_ca2</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
@@ -200,7 +200,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <ModuleDefinitionFile>m_ca2.def</ModuleDefinitionFile>
+      <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -1074,15 +1074,15 @@
     <ClCompile Include="user\user_xfplayer_view_line_selection.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ca2.def" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\ca\m_ca.vcxproj">
       <Project>{420d7aeb-cfca-45de-bb6e-95055df28b9b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\c\m_c.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="m_ca2.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

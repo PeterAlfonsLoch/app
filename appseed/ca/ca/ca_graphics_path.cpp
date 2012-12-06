@@ -56,6 +56,26 @@ namespace ca
 
    }
 
+   bool graphics_path::add_rect(int x1, int y1, int x2, int y2)
+   {
+      
+      rect rect;
+
+      rect.left      = x1;
+      rect.top       = y1;
+      rect.right     = x2;
+      rect.bottom    = y2;
+
+      return add_rect(rect);
+
+   }
+
+   bool graphics_path::add_rect(LPCRECT lpcrect)
+   {
+
+      return add_rect(lpcrect->left, lpcrect->top, lpcrect->right, lpcrect->bottom);
+
+   }
 
    bool graphics_path::add_line(int x1, int y1, int x2, int y2)
    {
@@ -83,14 +103,30 @@ namespace ca
    bool graphics_path::add_line(int x, int y)
    {
 
-      throw interface_only_exception(get_app());
+      return add_line(point(x, y));
 
    }
 
    bool graphics_path::add_line(point p)
    {
 
-      throw interface_only_exception(get_app());
+      return add_line(p.x, p.y);
+
+   }
+
+   bool graphics_path::add_lines(const POINT * lppoint, int nCount)
+   {
+
+      bool bOk = true;
+
+      for(int i = 0; i < nCount; i++)
+      {
+
+         if(!add_line(lppoint[i]))
+            bOk = false;
+      }
+
+      return bOk;
 
    }
 
@@ -105,6 +141,13 @@ namespace ca
    {
 
       return add_move(p.x, p.y);
+
+   }
+
+   void * graphics_path::detach()
+   {
+
+      throw interface_only_exception(get_app());
 
    }
 

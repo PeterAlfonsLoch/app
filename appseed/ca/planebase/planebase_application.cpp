@@ -1026,14 +1026,7 @@ InitFailure:
          else
          {
 
-            spfile.create(this);
-
-            if(!spfile->open(dir().matter(strPath), nOpenFlags))
-            {
-
-               spfile.destroy();
-
-            }
+            spfile = get_file(dir().matter(strPath), nOpenFlags);
 
          }
 

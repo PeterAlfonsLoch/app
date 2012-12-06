@@ -38,6 +38,9 @@ int c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 
 */
 
+#ifdef METROWIN
+[Platform::MTAThread]
+#endif
 extern "C"
 BOOL WINAPI DllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 {

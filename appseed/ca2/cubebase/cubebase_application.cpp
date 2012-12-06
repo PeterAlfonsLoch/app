@@ -32,7 +32,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
    #elif defined(METROWIN)
 
-      HMODULE hmodule = ::LoadPackagedLibrary(L"m_os2.dll", 0);
+      HMODULE hmodule = ::LoadPackagedLibrary(L"os2.dll", 0);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
 
