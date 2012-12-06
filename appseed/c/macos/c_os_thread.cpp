@@ -161,7 +161,7 @@ bool thread_layer::on_idle()
 }
 
 
-void thread_layer::wait_thread()
+void thread_layer::wait_thread(DWORD dwMillis)
 {
    
    throw "not implemented";
