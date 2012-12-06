@@ -37,7 +37,11 @@ bool sync_object::lock(const duration & durationTimeout)
 
 wait_result sync_object::wait(const duration & durationTimeout)
 {
+#ifdef WINDOWS
    return wait_result(::WaitForSingleObjectEx(m_object,durationTimeout.os_lock_duration(), FALSE));
+#else
+   throw not_implemented(get_app());
+#endif
 }
 
 void sync_object::dump(dump_context & dumpcontext) const

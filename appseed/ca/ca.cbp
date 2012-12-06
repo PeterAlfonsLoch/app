@@ -38,16 +38,12 @@
 		</Compiler>
 		<Unit filename="api/api.h" />
 		<Unit filename="api/api_debug.h" />
-		<Unit filename="api/api_integer_to_string.cpp" />
-		<Unit filename="api/api_integer_to_string.h" />
 		<Unit filename="api/api_linux.h" />
 		<Unit filename="api/api_muldiv64.cpp" />
 		<Unit filename="api/api_muldiv64.h" />
 		<Unit filename="api/api_rotate.h" />
 		<Unit filename="api/api_string.cpp" />
 		<Unit filename="api/api_string.h" />
-		<Unit filename="api/api_string_to_integer.cpp" />
-		<Unit filename="api/api_string_to_integer.h" />
 		<Unit filename="api/mktime.cpp" />
 		<Unit filename="api/mktime.h" />
 		<Unit filename="bergedge/bergedge.h" />
@@ -162,11 +158,7 @@
 		<Unit filename="ca2/ca2_inline.h" />
 		<Unit filename="ca2/ca2_library.cpp" />
 		<Unit filename="ca2/ca2_library.h" />
-		<Unit filename="ca2/ca2_log.cpp" />
-		<Unit filename="ca2/ca2_log.h" />
 		<Unit filename="ca2/ca2_main.h" />
-		<Unit filename="ca2/ca2_net.cpp" />
-		<Unit filename="ca2/ca2_net.h" />
 		<Unit filename="ca2/ca2_process.cpp" />
 		<Unit filename="ca2/ca2_process.h" />
 		<Unit filename="ca2/ca2_sockets_address.h" />
@@ -178,7 +170,6 @@
 		<Unit filename="ca2/ca2_user.h" />
 		<Unit filename="ca2/contact_list.h" />
 		<Unit filename="ca2/os_implementation.h" />
-		<Unit filename="ca2/socket_address.cpp" />
 		<Unit filename="ca4/ca4.h" />
 		<Unit filename="ca4/ca4_application.cpp" />
 		<Unit filename="ca4/ca4_application.h" />
@@ -1181,6 +1172,7 @@
 		<Unit filename="math/value.cpp" />
 		<Unit filename="math/value.h" />
 		<Unit filename="multithreading/multithreading.h" />
+		<Unit filename="multithreading/multithreading_condition.h" />
 		<Unit filename="multithreading/multithreading_core.cpp" />
 		<Unit filename="multithreading/multithreading_critical_section.cpp" />
 		<Unit filename="multithreading/multithreading_critical_section.h" />

@@ -62,11 +62,18 @@ DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bW
 }
 
 
-DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
+DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwTimeout, WINBOOL bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, FALSE);
+   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
 
 }
 
+
+DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
+{
+
+   return WaitForSingleObjectEx(pwaitable, dwTimeout, FALSE);
+
+}
 

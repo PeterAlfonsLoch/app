@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="bergedge/bergedge_bergedge.cpp" open="1" top="0" tabpos="2">
+	<File name="bergedge/bergedge_bergedge.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="13420" topLine="413" />
 	</File>
 	<File name="bergedge/bergedge_frame.cpp" open="0" top="0" tabpos="0">
@@ -19,7 +19,7 @@
 	<File name="ca8/ca8.h" open="0" top="0" tabpos="14">
 		<Cursor position="35" topLine="0" />
 	</File>
-	<File name="ca8/ca8_application.cpp" open="1" top="0" tabpos="1">
+	<File name="ca8/ca8_application.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="3306" topLine="119" />
 	</File>
 	<File name="ca8/ca8_keyboard_layout.cpp" open="0" top="0" tabpos="0">
@@ -28,7 +28,7 @@
 	<File name="ca8/ca8_network_configuration.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2468" topLine="59" />
 	</File>
-	<File name="calculator/calculator.h" open="1" top="0" tabpos="11">
+	<File name="calculator/calculator.h" open="0" top="0" tabpos="11">
 		<Cursor position="48" topLine="0" />
 	</File>
 	<File name="calculator/calculator_frame.cpp" open="0" top="0" tabpos="0">
@@ -37,22 +37,22 @@
 	<File name="calculator/calculator_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2330" topLine="49" />
 	</File>
-	<File name="calculator/view.h" open="1" top="0" tabpos="12">
+	<File name="calculator/view.h" open="0" top="0" tabpos="12">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="command/command.h" open="0" top="0" tabpos="7">
 		<Cursor position="40" topLine="0" />
 	</File>
-	<File name="command/command_application.cpp" open="1" top="0" tabpos="3">
+	<File name="command/command_application.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2198" topLine="45" />
 	</File>
-	<File name="command/command_frame.cpp" open="1" top="0" tabpos="4">
+	<File name="command/command_frame.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="5076" topLine="169" />
 	</File>
-	<File name="command/command_pane_view.cpp" open="1" top="0" tabpos="5">
+	<File name="command/command_pane_view.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="10957" topLine="295" />
 	</File>
-	<File name="command/command_primary_view.cpp" open="1" top="0" tabpos="6">
+	<File name="command/command_primary_view.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="6190" topLine="115" />
 	</File>
 	<File name="command/command_view.cpp" open="0" top="0" tabpos="0">
@@ -61,19 +61,19 @@
 	<File name="cube/cube.h" open="0" top="0" tabpos="3">
 		<Cursor position="39" topLine="0" />
 	</File>
-	<File name="cube/cube_cube.cpp" open="1" top="0" tabpos="7">
+	<File name="cube/cube_cube.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="97" topLine="0" />
 	</File>
 	<File name="cube1/cube1.h" open="0" top="0" tabpos="13">
 		<Cursor position="39" topLine="0" />
 	</File>
-	<File name="cube1/cube1_application.cpp" open="1" top="0" tabpos="8">
+	<File name="cube1/cube1_application.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="4389" topLine="149" />
 	</File>
 	<File name="cube2/cube2.h" open="0" top="0" tabpos="12">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="cube2/cube2_application.cpp" open="1" top="0" tabpos="10">
+	<File name="cube2/cube2_application.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="4767" topLine="153" />
 	</File>
 	<File name="cube5/cube5.h" open="0" top="0" tabpos="5">
@@ -103,19 +103,19 @@
 	<File name="filemanager/FileManagerView.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4101" topLine="66" />
 	</File>
-	<File name="filemanager/SimpleFileListInterface.cpp" open="1" top="0" tabpos="15">
+	<File name="filemanager/SimpleFileListInterface.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="10126" topLine="355" />
 	</File>
-	<File name="filemanager/SimpleFileListInterface.h" open="1" top="0" tabpos="9">
+	<File name="filemanager/SimpleFileListInterface.h" open="0" top="0" tabpos="9">
 		<Cursor position="2541" topLine="84" />
 	</File>
-	<File name="filemanager/SimpleFileListView.h" open="1" top="0" tabpos="14">
+	<File name="filemanager/SimpleFileListView.h" open="0" top="0" tabpos="14">
 		<Cursor position="90" topLine="0" />
 	</File>
 	<File name="filemanager/SimpleFilePropertiesForm.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="403" topLine="0" />
 	</File>
-	<File name="filemanager/SimpleFolderListInterface.h" open="1" top="1" tabpos="13">
+	<File name="filemanager/SimpleFolderListInterface.h" open="0" top="0" tabpos="13">
 		<Cursor position="791" topLine="17" />
 	</File>
 	<File name="filemanager/SimpleFolderTreeInterface.cpp" open="0" top="0" tabpos="0">

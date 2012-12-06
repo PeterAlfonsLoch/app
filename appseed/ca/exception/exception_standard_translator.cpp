@@ -342,12 +342,12 @@ namespace exception
 
    void translator::filter_sigsegv(int signal, siginfo_t * psiginfo, void * pc)
    {
-      throw standard_access_violation(NULL, psiginfo, pc);
+      throw standard_access_violation(NULL, signal, psiginfo, pc);
    }
 
    void translator::filter_sigfpe(int signal, siginfo_t * psiginfo, void * pc)
    {
-      throw standard_sigfpe(NULL, psiginfo, pc);
+      throw standard_sigfpe(NULL, signal, psiginfo, pc);
    }
 
 #endif

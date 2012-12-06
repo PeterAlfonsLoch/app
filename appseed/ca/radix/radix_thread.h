@@ -24,9 +24,9 @@ namespace radix
       virtual void * get_os_data() const;
       virtual int_ptr get_os_int() const;
 
-      virtual bool Begin(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL) override;
+      virtual bool Begin(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), DWORD dwCreateFlags = 0, UINT nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL) override;
+      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), DWORD dwCreateFlags = 0, UINT nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
       virtual ::ca::e_thread_priority get_thread_priority();
       virtual bool set_thread_priority(::ca::e_thread_priority epriority);

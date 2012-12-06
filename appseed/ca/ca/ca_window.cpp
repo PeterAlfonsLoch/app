@@ -54,6 +54,8 @@ namespace ca
 
 #endif
 
+#ifndef LINUX
+
    window* window::GetAncestor(UINT gaFlags) const
    {
       UNREFERENCED_PARAMETER(gaFlags);
@@ -114,7 +116,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-
+#endif
 
    LRESULT window::Default()
    {
@@ -875,7 +877,7 @@ namespace ca
 
    ::user::interaction * window::get_parent() const
    {
-      
+
       return NULL;
 
    }

@@ -104,9 +104,11 @@ public:
    int m_iResult;
 
 #ifdef WINDOWS
-   HANDLE   m_hthread;
-   UINT     m_nId;
+   HANDLE         m_hthread;
+#else
+   waitable *     m_pwaitable;
 #endif
+   UINT           m_nId;
 
 
    thread_layer();

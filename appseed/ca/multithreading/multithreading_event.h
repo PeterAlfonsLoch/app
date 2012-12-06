@@ -1,5 +1,8 @@
 #pragma once
 
+#ifdef LINUX
+#include <sys/sem.h>
+#endif
 
 class CLASS_DECL_ca event :
    virtual public event_base

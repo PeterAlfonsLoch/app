@@ -17,6 +17,11 @@ It is provided "as is" without express or implied warranty.
 
 #include "framework.h"
 
+#ifdef LINUX
+#include <execinfo.h>
+#include <cxxabi.h>
+#endif
+
 
 // The following is defined for x86 (XP and higher), x64 and IA64:
 #define GET_CURRENT_CONTEXT(pc, contextFlags) \
@@ -71,11 +76,15 @@ bool IsNT()
 
 HANDLE SymGetProcessHandle()
 {
+#ifdef WINDOWS
    if (IsNT())
       //   if (0)
          return GetCurrentProcess();
    else
       return (HANDLE)GetCurrentProcessId();
+#else
+   return (HANDLE) (int_ptr) getpid();
+#endif
 }
 
 
@@ -102,7 +111,7 @@ WINBOOL __stdcall My_ReadProcessMemory (
 {
 
    SIZE_T size;
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
    throw todo(::ca::get_thread_app());
 #else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
@@ -875,8 +884,11 @@ retry_get_base:
 
 
 
-
+#ifdef LINUX
+   bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, void * caller_address, const char * pszFormat)
+#else
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
+#endif
    {
 
 #ifdef WINDOWSEX
@@ -953,13 +965,6 @@ retry_get_base:
 
 #else
 
-      sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
-
-       void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
-
-       str += "signal " + itoa_dup(sig_num) +
-                 +" (" + itoa_dup(sig_num) + "), address is "  +
-                 itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";
 
        void * array[1024];
        int size = backtrace(array, 1024);
@@ -1005,16 +1010,16 @@ retry_get_base:
                // if demangling is successful, output the demangled function name
                if (status == 0)
                {
-                   std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
-                             << real_name << "+" << offset_begin << offset_end
-                             << std::endl;
+                   str += "[bt]: (" + gen::str::from(i) + ") " + messages[i] + " : "
+                             + real_name +  "+" +  offset_begin + offset_end
+                             + "\n";
 
                }
                // otherwise, output the mangled function name
                else
                {
-                   std::cerr << "[bt]: (" << i << ") " << messages[i] << " : "
-                             << mangled_name << "+" << offset_begin << offset_end
+                   str += "[bt]: (" + gen::str::from(i) + ") " + messages[i] + " : "
+                             + mangled_name + "+" + offset_begin + offset_end
                              + "\n";
                }
                free(real_name);
@@ -1022,7 +1027,7 @@ retry_get_base:
            // otherwise, print the whole line
            else
            {
-               str+= "[bt]: (" + itoa_dup(i) << ") " +  messages[i]+  "\n";
+               str += "[bt]: (" + gen::str::from(i) + ") " +  messages[i]+  "\n";
            }
        }
        str += "\n";

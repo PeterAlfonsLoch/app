@@ -1,6 +1,11 @@
 #include "framework.h"
 
 
+#ifdef LINUX
+#include <netdb.h>
+#endif
+
+
 unsigned long c_inet_to_ui(const char * src)
 {
 
@@ -45,10 +50,13 @@ static const unsigned char index_hex[256] = {
    XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX,
 };
 
-
+#if defined(LINUX)
+#define pr_s6_addr16 __in6_u.__u6_addr16
+#define pr_s6_addr __in6_u.__u6_addr8
+#else
 #define pr_s6_addr16 u.Word
 #define pr_s6_addr u.Byte
-
+#endif
 
 /*
 * StringToV6Addr() returns 1 if the conversion succeeds,
@@ -268,18 +276,35 @@ CLASS_DECL_c vsstring to_string(const in6_addr * addr)
 }
 
 
-
-
-CLASS_DECL_c bool from_string(in_addr * addr, const char * string)
+struct c_in_addr
 {
-   
+   union
+   {
+      struct
+      {
+         uint8_t	s_b1;
+         uint8_t	s_b2;
+         uint8_t	s_b3;
+         uint8_t	s_b4;
+      } S_un_b;
+
+      uint32_t S_addr;
+   } S_un;
+};
+
+CLASS_DECL_c bool from_string(in_addr * addrParam, const char * string)
+{
+
+   c_in_addr * addr = (c_in_addr *) addrParam;
+
+
    stra_dup stra;
-   
+
    stra.add_tokens(string, ".");
-   
+
    if(stra.get_count() != 4)
       return false;
-   
+
    int i1 = atoi_dup(stra[0]);
 
    if(i1 < 0 || i1 > 255)
@@ -296,7 +321,7 @@ CLASS_DECL_c bool from_string(in_addr * addr, const char * string)
       return false;
 
    int i4 = atoi_dup(stra[3]);
-   
+
    if(i4 < 0 || i4 > 255)
       return false;
 
@@ -317,10 +342,12 @@ CLASS_DECL_c bool from_string(in_addr * addr, const char * string)
 
 CLASS_DECL_c vsstring to_string(const in_addr * addrParam)
 {
-   
-   in_addr addr;
 
-   addr.S_un.S_addr = NTOHL(addrParam->S_un.S_addr);
+   c_in_addr * paddr = (c_in_addr *) addrParam;
+
+   c_in_addr addr;
+
+   addr.S_un.S_addr = NTOHL(paddr->S_un.S_addr);
 
    vsstring str;
 
@@ -339,13 +366,13 @@ CLASS_DECL_c vsstring to_string(const in_addr * addrParam)
    str += itoa_dup(addr.S_un.S_un_b.s_b4);
 
    return str;
-   
+
 }
 
 
 CLASS_DECL_c int c_inet_pton(int af, const char *src, void *dst)
 {
-   
+
    if(af == AF_INET)
    {
 
@@ -382,7 +409,7 @@ CLASS_DECL_c vsstring c_inet_ntop(int af, const void *src)
 {
 
    vsstring str;
-   
+
    if(af == AF_INET)
    {
 
@@ -430,9 +457,9 @@ CLASS_DECL_c unsigned long c_inet_addr(const char * src)
 {
 
    stra_dup stra;
-   
+
    stra.add_tokens(src, ".");
-   
+
    if(stra.get_count() > 4)
       return C_INADDR_NONE;
 
@@ -445,7 +472,7 @@ CLASS_DECL_c unsigned long c_inet_addr(const char * src)
    else
    {
 
-      in_addr addr;
+      c_in_addr addr;
 
       unsigned long ul;
 
@@ -501,7 +528,7 @@ CLASS_DECL_c unsigned long c_inet_addr(const char * src)
       else if(stra.get_count() == 4)
       {
 
-         if(from_string(&addr, src))
+         if(from_string((in_addr *) &addr, src))
             return C_INADDR_NONE;
 
          return addr.S_un.S_addr;
@@ -517,7 +544,7 @@ CLASS_DECL_c unsigned long c_inet_addr(const char * src)
       return HTONL(addr.S_un.S_addr);
 
    }
-   
+
 
 }
 

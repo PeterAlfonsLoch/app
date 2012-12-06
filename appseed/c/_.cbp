@@ -58,8 +58,6 @@
 		<Unit filename="c/c.h" />
 		<Unit filename="c/c_argcargv.cpp" />
 		<Unit filename="c/c_async.h" />
-		<Unit filename="c/c_atol.cpp" />
-		<Unit filename="c/c_atol.h" />
 		<Unit filename="c/c_base64.cpp" />
 		<Unit filename="c/c_base64.h" />
 		<Unit filename="c/c_conv.cpp" />
@@ -106,6 +104,8 @@
 		<Unit filename="c/c_mutex_lock.cpp" />
 		<Unit filename="c/c_mutex_lock.h" />
 		<Unit filename="c/c_natural.h" />
+		<Unit filename="c/c_net.cpp" />
+		<Unit filename="c/c_net.h" />
 		<Unit filename="c/c_printf.cpp" />
 		<Unit filename="c/c_printf.h" />
 		<Unit filename="c/c_simple_app.h" />
@@ -213,6 +213,9 @@
 		<Unit filename="linux/c_os_win_base.cpp" />
 		<Unit filename="linux/c_os_window.cpp" />
 		<Unit filename="linux/linux_internal.h" />
+		<Unit filename="multithreading/multithreading.h" />
+		<Unit filename="multithreading/multithreading_waitable.cpp" />
+		<Unit filename="multithreading/multithreading_waitable.h" />
 		<Unit filename="os/os.h" />
 		<Unit filename="os/os_binreloc.cpp" />
 		<Unit filename="os/os_binreloc.h" />

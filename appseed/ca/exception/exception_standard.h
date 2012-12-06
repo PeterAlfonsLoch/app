@@ -42,6 +42,7 @@
 #if !defined(MACOS)
 #include <ucontext.h>
 #include <sys/ucontext.h>
+#include <signal.h>
 #endif
 
 #endif
@@ -58,6 +59,7 @@ public:
 #ifdef WINDOWS
    EXCEPTION_POINTERS * m_ppointers;
 #else
+   int            m_iSignal;
    siginfo_t      m_siginfo;
    ucontext_t     m_ucontext;
 #endif
@@ -101,16 +103,18 @@ public:
    }
 
 #else
-   standard_exception(::ca::application * papp, siginfo_t * psiginfo, void * pc) :
+   standard_exception(::ca::application * papp, int iSignal, siginfo_t * psiginfo, void * pc) :
       ca(papp),
       ::call_stack(papp),
       ::base_exception(papp),
+      m_iSignal(iSignal),
       m_siginfo(*psiginfo),
       m_ucontext(*(ucontext_t *)pc) { _ASSERTE(psiginfo != 0); }
    standard_exception(const standard_exception& se) :
       ca(se),
       ::call_stack(se),
       ::base_exception(se),
+      m_iSignal(se.m_iSignal),
       m_siginfo(se.m_siginfo),
       m_ucontext(se.m_ucontext) {}
 #endif
@@ -122,6 +126,16 @@ public:
 
 };
 
+#ifdef LINUX
+typedef struct _sig_ucontext {
+   unsigned long     uc_flags;
+   struct ucontext   *uc_link;
+   stack_t           uc_stack;
+   sigcontext uc_mcontext;
+   sigset_t          uc_sigmask;
+} sig_ucontext_t;
+#endif
+
 namespace exception
 {
 
@@ -130,12 +144,25 @@ namespace exception
       friend class translator;
    protected:
    #if defined(LINUX) || defined(MACOS)
-      standard_access_violation (::ca::application * papp, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (::ca::application * papp, int signal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
-         ::call_stack(papp),
+#ifdef _LP64
+         ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
+#else
+         ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+#endif
          ::base_exception(papp),
-         ::standard_exception(papp, psiginfo, pc)
+         ::standard_exception(papp, signal, psiginfo, pc)
          {}
+
+/*       sig_ucontext_t * uc = (sig_ucontext_t *)ucontext;
+
+       void * caller_address = (void *) uc->uc_mcontext.eip; // x86 specific
+
+       str += "signal " + itoa_dup(sig_num) +
+                 +" (" + itoa_dup(sig_num) + "), address is "  +
+                 itohex_dup(info->si_addr) + " from " + itohex_dup(caller_address) + "\n\n";*/
+
    #else
       standard_access_violation (::ca::application * papp, EXCEPTION_POINTERS * ppointers) :
          ca(papp),
@@ -155,11 +182,15 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (::ca::application * papp, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (::ca::application * papp, int iSignal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
-         ::call_stack(papp),
+#ifdef _LP64
+         ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
+#else
+         ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+#endif
          ::base_exception(papp),
-          standard_exception(papp, psiginfo, pc) {}
+          standard_exception(papp, iSignal, psiginfo, pc) {}
    public:
    //   bool is_read_op() const { return !info()->ExceptionRecord->ExceptionInformation [0]; }
      // ulong_ptr inaccessible_address() const { return info()->ExceptionRecord->ExceptionInformation [1]; }

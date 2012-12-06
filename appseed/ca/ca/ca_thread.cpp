@@ -285,9 +285,9 @@ namespace ca
 
    bool thread::on_run_exception(::ca::exception & e)
    {
-      
+
       UNREFERENCED_PARAMETER(e);
-      
+
       return false;
 
    }

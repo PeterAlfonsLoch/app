@@ -36,7 +36,17 @@ public:
 
    static bool s_bDoStackTrace;
 
-   call_stack(::ca::application * papp, unsigned int uiSkip = 3);
+#ifdef LINUX
+
+   void * m_caller_address;
+
+   call_stack(::ca::application * papp, unsigned int uiSkip = 3, void * caller_address = NULL);
+
+#else
+
+   call_stack(::ca::application * papp, unsigned int uiSkip = 3)
+
+#endif
 
    call_stack(const ::call_stack & cs);
 

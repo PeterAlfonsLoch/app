@@ -101,7 +101,7 @@ namespace exception
 
 #else
 
-      bool stack_trace(vsstring & str, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
+      bool stack_trace(vsstring & str, dword_ptr uiSkip = 0, void * caller_address = NULL, const char * pszFormat = default_format());
 
 #endif
 

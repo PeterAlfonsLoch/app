@@ -118,6 +118,9 @@ namespace ca
 #endif
 
 
+#include "multithreading/multithreading.h"
+
+
 #include "c_simple_mutex.h"
 #include "c_simple_event.h"
 
@@ -205,7 +208,9 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 
 #ifndef WINDOWSEX
 CLASS_DECL_c COLORREF GetSysColor(DWORD dw);
+#ifndef LINUX
 CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow);
+#endif
 #endif
 
 #include "c_simple_app.h"

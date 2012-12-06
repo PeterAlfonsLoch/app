@@ -1,6 +1,6 @@
-#pragma once 
+#pragma once
 
-#ifdef MACOS
+#if defined(MACOS) || defined(LINUX)
 #include <netinet/in.h>
 #endif
 

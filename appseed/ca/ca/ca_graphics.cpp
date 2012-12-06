@@ -1129,11 +1129,15 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+#ifndef LINUX
+
    bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {
       UNREFERENCED_PARAMETER(lpDevMode);
       throw interface_only_exception(get_app());
    }
+
+#endif
 
 
 #ifdef WINDOWSEX
@@ -1462,7 +1466,7 @@ namespace ca
    {
 
       bool bOk1 = fill_path(ppath);
-      
+
       bool bOk2 = draw_path(ppath);
 
       return bOk1 && bOk2;
