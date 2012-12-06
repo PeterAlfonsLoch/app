@@ -79,7 +79,7 @@ namespace userbase
          rect rectImageBorder = rectImage;
          rectImageBorder.inflate(2, 2);
 #ifdef WINDOWSEX
-         IMAGEINFO ii;
+         ::image_list::info ii;
          image_list * pimagelist;
          if(!_001IsWindowEnabled())
          {
@@ -90,7 +90,7 @@ namespace userbase
             pimagelist = BaseMenuCentral::GetMenuCentral(get_app())->MenuV033GetImageList();
          }
          pimagelist->get_image_info(uiImage, &ii);
-         rect rectImageInfo(ii.rcImage);
+         rect & rectImageInfo(ii.m_rect);
          rectImage.offset(1, 1);
          rectImage.top     = rectImage.bottom - rectImageInfo.height();
          rectImage.right   = rectImage.left + rectImageInfo.width();

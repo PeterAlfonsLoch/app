@@ -934,7 +934,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca2\ca2_html_file.h" />
     <ClInclude Include="ca2\ca2_inline.h" />
     <ClInclude Include="ca2\ca2_library.h" />
-    <ClInclude Include="ca2\ca2_log.h" />
     <ClInclude Include="ca2\ca2_main.h" />
     <ClInclude Include="ca2\ca2_process.h" />
     <ClInclude Include="ca2\ca2_stra.h" />
@@ -1897,7 +1896,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca2\ca2_application.cpp" />
     <ClCompile Include="ca2\ca2_datetime.cpp" />
     <ClCompile Include="ca2\ca2_library.cpp" />
-    <ClCompile Include="ca2\ca2_log.cpp" />
     <ClCompile Include="ca2\ca2_process.cpp" />
     <ClCompile Include="ca2\ca2_url.cpp" />
     <ClCompile Include="ca2\ca2_url_domain.cpp" />

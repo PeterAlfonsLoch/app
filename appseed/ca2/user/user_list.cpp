@@ -1922,7 +1922,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-            IMAGEINFO ii;
+            ::image_list::info ii;
 
             _001GetGroupImage(pdrawitem);
             if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
@@ -1931,16 +1931,16 @@ namespace user
                if(eelement == userbase::_list::ElementGroupImage)
                {
                   pdrawitem->m_rectImage.left      = x;
-                  pdrawitem->m_rectImage.right     = x + width(&ii.rcImage);
+                  pdrawitem->m_rectImage.right     = x + width(&ii.m_rect);
                   pdrawitem->m_rectImage.top       = pdrawitem->m_rectGroup.top;
-                  pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectImage.top + height(&ii.rcImage);
+                  pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectImage.top + height(&ii.m_rect);
                   return_(pdrawitem->m_bOk, true);
                }
                else
                {
-                  x += width(&ii.rcImage);
+                  x += width(&ii.m_rect);
                   x += 2;
-                  iImageBottom += height(&ii.rcImage) + 2;
+                  iImageBottom += height(&ii.m_rect) + 2;
                }
             }
             else if(eelement == userbase::_list::ElementGroupImage)
@@ -2052,7 +2052,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-               IMAGEINFO ii;
+               ::image_list::info ii;
 
                _001GetItemImage(pdrawitem);
                if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
@@ -2061,14 +2061,14 @@ namespace user
                   if(eelement == userbase::_list::ElementImage)
                   {
                      pdrawitem->m_rectImage.left      = x;
-                     pdrawitem->m_rectImage.right     = x + width(&ii.rcImage);
+                     pdrawitem->m_rectImage.right     = x + width(&ii.m_rect);
                      pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectSubItem.bottom;
-                     pdrawitem->m_rectImage.top       = pdrawitem->m_rectImage.bottom - height(&ii.rcImage);
+                     pdrawitem->m_rectImage.top       = pdrawitem->m_rectImage.bottom - height(&ii.m_rect);
                      return_(pdrawitem->m_bOk, true);
                   }
                   else
                   {
-                     x += width(&ii.rcImage);
+                     x += width(&ii.m_rect);
                      x += 2;
                   }
                }
@@ -3942,7 +3942,7 @@ namespace user
    int list::_001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem)
    {
 #ifdef WINDOWSEX
-      IMAGEINFO ii;
+      ::image_list::info ii;
       rect rect;
       size size;
       index cx = 0;
@@ -3957,7 +3957,7 @@ namespace user
          if(item.m_bOk && item.m_iImage >= 0)
          {
             pcolumn->m_pil->get_image_info((int) item.m_iImage, &ii);
-            rect = ii.rcImage;
+            rect = ii.m_rect;
             cx += rect.width();
             cx += 2;
          }

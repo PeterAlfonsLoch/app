@@ -1136,9 +1136,6 @@
     <ClInclude Include="ca2\ca2_library.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_log.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\ca2_main.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
@@ -5063,9 +5060,6 @@
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_library.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_log.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="ca2\ca2_process.cpp">

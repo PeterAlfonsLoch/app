@@ -763,12 +763,12 @@ pil->create(pilParam);
 
 spgraphics->CreateCompatibleDC(pdc);
 
-IMAGEINFO ii;
+::image_list::info ii;
 
 for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
-rect rect = ii.rcImage;
+rect rect = ii.m_rect;
 GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rect.left, rect.top, rect.width(), rect.height(), RGB(192, 192, 192));
 }
 return pil;
@@ -792,12 +792,12 @@ return false;
 
 spgraphics->CreateCompatibleDC(pdc);
 
-IMAGEINFO ii;
+::image_list::info ii;
 
 for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
-rect rect = ii.rcImage;
+rect rect = ii.m_rect;
 HueVRCP(
 spgraphics->get_os_data(),
 ii.hbmImage,
@@ -900,12 +900,12 @@ pil->create(pilParam);
 
 spgraphics->CreateCompatibleDC(pdc);
 
-IMAGEINFO ii;
+::image_list::info ii;
 
 for(int i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
-rect rect = ii.rcImage;
+rect rect = ii.m_rect;
 GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rect.left, rect.top, rect.width(), rect.height(), RGB(192, 192, 192));
 }
 return pil;

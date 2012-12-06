@@ -1242,7 +1242,7 @@ namespace user
 
             if(pane.m_dib.is_set())
             {
-               //IMAGEINFO ii;
+               //::image_list::info ii;
                ixAdd += pane.m_dib->cx + 2;
             }
 
