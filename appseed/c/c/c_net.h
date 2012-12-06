@@ -1,5 +1,9 @@
 #pragma once 
 
+#ifdef MACOS
+#include <netinet/in.h>
+#endif
+
 
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string);
 CLASS_DECL_c vsstring to_string(const in6_addr *addr);
@@ -14,7 +18,7 @@ CLASS_DECL_c vsstring c_inet_ntop(int af, const void *src);
 
 CLASS_DECL_c vsstring c_gethostbyname(const char * hostname);
 
-
+#ifndef MACOS
 
 #if BYTE_ORDER == BIG_ENDIAN
 
@@ -37,6 +41,8 @@ CLASS_DECL_c vsstring c_gethostbyname(const char * hostname);
                   ((((unsigned long)(n) & 0xFF00)) << 8) | \
                   ((((unsigned long)(n) & 0xFF0000)) >> 8) | \
                   ((((unsigned long)(n) & 0xFF000000)) >> 24))
+#endif
+
 #endif
 
 #if 0

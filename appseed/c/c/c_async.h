@@ -358,7 +358,7 @@ template < typename T >
 inline  T * wait(::async::task < T > * ptask, DWORD dwMillis = INFINITE)
 {
 
-   return waiter_for_async_task < T > (ptask).wait(dwMillist);
+   return waiter_for_async_task < T > (ptask).wait(dwMillis);
 
 }
 

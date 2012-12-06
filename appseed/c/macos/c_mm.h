@@ -81,7 +81,7 @@ extern "C"
 #include "c_sprintf.h"
 #include "c_str.h"
 #include "c_std_file.h"
-#include "c_atol.h"
+//#include "c_atol.h"
 #include "c_conv.h"
 
 
