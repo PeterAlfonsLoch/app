@@ -884,7 +884,7 @@ retry_get_base:
 
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(METROWIN)
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
