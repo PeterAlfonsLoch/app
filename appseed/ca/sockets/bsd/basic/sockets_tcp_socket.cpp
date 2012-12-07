@@ -229,7 +229,8 @@ namespace sockets
       {
          bind(s, bind_ad.sa(), bind_ad.sa_len());
       }
-      if (!skip_socks && ISNT_ZERO(GetSocks4Host()) && GetSocks4Port())
+      in_addr addrSocks4 = GetSocks4Host();
+      if (!skip_socks && ISNT_ZERO(addrSocks4) && GetSocks4Port())
       {
          address sa(get_app(), GetSocks4Host(), GetSocks4Port());
          {

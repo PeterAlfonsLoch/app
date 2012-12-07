@@ -379,9 +379,9 @@ namespace sockets
 #ifdef IPPROTO_IPV6
       memset(&m_local_ip6, 0, sizeof(m_local_ip6));
       {
-         if (net::u2ip(h, m_local_ip6))
+         if (convert(m_local_ip6, h))
          {
-            net::l2ip(m_local_ip6, m_local_addr6);
+            convert(m_local_addr6, m_local_ip6);
          }
       }
 #endif
@@ -702,13 +702,13 @@ namespace sockets
 
    bool net::reverse(string & number, const char * hostname, int flags)
    {
-      
+
       ::sockets::address address(get_app(), hostname);
 
       number = address.get_display_number();
 
       return true;
-      
+
    }
 
 
@@ -889,9 +889,9 @@ namespace sockets
       }
       else
       {
-         
+
          int service = 0;
-         
+
          if(!u2service(psz, service, 0))
             return 0;
 

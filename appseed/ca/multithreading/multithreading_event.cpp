@@ -10,7 +10,7 @@
 event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, const char * pstrName,LPSECURITY_ATTRIBUTES lpsaAttribute) :
    ca(papp)
 {
-   
+
    //if(papp == NULL)
       //throw invalid_argument_exception(::ca::get_thread_app());
 
@@ -27,14 +27,14 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 
    if(bInitiallyOwn)
    {
-      
+
       dwFlags |= CREATE_EVENT_INITIAL_SET;
 
    }
 
    if(bManualReset)
    {
-      
+
       dwFlags |= CREATE_EVENT_MANUAL_RESET;
 
    }
@@ -46,11 +46,11 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 
 #else
 
-   m_bManualReset    = bManualReset;
+   m_bManualEvent    = bManualReset;
 
    bool bSet;
 
-   if(m_bManualReset)
+   if(m_bManualEvent)
    {
       bSet         = bInitiallyOwn != FALSE;
    }
@@ -123,7 +123,7 @@ bool event::SetEvent()
 
    sb.sem_op   = 1;
    sb.sem_num  = 0;
-   sb.sem_flg  = m_bManualReset ? 0 : SEM_UNDO;
+   sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
 
    return semop((int) m_object, &sb, 1) == 0;
 
@@ -175,7 +175,7 @@ bool event::ResetEvent()
 
    sb.sem_op   = 0;
    sb.sem_num  = 0;
-   sb.sem_flg  = m_bManualReset ? 0 : SEM_UNDO;
+   sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
 
    return semop((int) m_object, &sb, 1) == 0;
 
@@ -203,7 +203,7 @@ void event::wait ()
    semop((int) m_object, &sb, 1);
 
 #endif
-   
+
 }
 
 ///  \brief		waits for an event for a specified time

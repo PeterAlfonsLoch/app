@@ -10,7 +10,7 @@ public:
    int                        __argc;
    TCHAR **                   __targv;
 
-   MSG                        m_msg;
+   MESSAGE                    m_msg;
    int                        m_iError;
 
 

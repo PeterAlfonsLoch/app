@@ -16,6 +16,9 @@ public:
 #else
    pthread_cond_t    m_cond;
    simple_mutex      m_mutex;
+   bool              m_bManualEvent;
+   bool              m_bSignaled;  // meaningful only when m_bManualEvent
+   int               m_iSignalId;  // meaningful only when m_bManualEvent
 #endif
 
 
@@ -25,6 +28,8 @@ public:
 
 
    void set_event();
+
+   void reset_event();
 
    void wait();
    void wait(DWORD dwTimeout);

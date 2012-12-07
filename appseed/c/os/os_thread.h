@@ -80,6 +80,10 @@ public:
    DWORD (WINAPI * m_pfn)(LPVOID);
    LPVOID           m_pv;
 
+#ifdef LINUX
+   simple_event *    m_peventThread;
+#endif
+
 
    os_thread(DWORD (WINAPI * lpStartAddr)(LPVOID), LPVOID);
 
@@ -88,10 +92,19 @@ public:
 };
 
 
-CLASS_DECL_c HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority = 0);
+#ifdef WINDOWS
 
+CLASS_DECL_c HANDLE start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int iPriority = 0);
 
-CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, DWORD f, LPDWORD lpdwId);
+CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, DWORD f, LPDWORD lpdwId);
+
+#else
+
+CLASS_DECL_c simple_event * start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int iPriority = 0);
+
+CLASS_DECL_c simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, DWORD f, LPDWORD lpdwId);
+
+#endif
 
 
 
@@ -100,21 +113,16 @@ class CLASS_DECL_c thread_layer
 public:
 
 
-   int m_iSleepiness;
-   int m_iResult;
+   int               m_iSleepiness;
+   int               m_iResult;
 
 #ifdef WINDOWS
-<<<<<<< .mine
-   HANDLE   m_hthread;
-#endif
-   
-   UINT     m_nId;
-=======
-   HANDLE         m_hthread;
+   HANDLE            m_hthread;
 #else
-   waitable *     m_pwaitable;
->>>>>>> .r5790
-   UINT           m_nId;
+   simple_event *    m_peventThread;
+#endif
+   UINT              m_nId;
+
 
    thread_layer();
    virtual ~thread_layer();

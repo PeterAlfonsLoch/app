@@ -7,7 +7,11 @@ class CLASS_DECL_ca condition :
 public:
 
 #if defined(LINUX) || defined(MACOS)
-   int_ptr     m_object;
+   int_ptr           m_object;
+   bool              m_bManualEvent;
+   bool              m_bSignaled;  // meaningful only when m_bManualEvent
+   int               m_iSignalId;  // meaningful only when m_bManualEvent
+
 #else
    CRITICAL_SECTION     m_sect;
    CONDITION_VARIABLE   m_var;

@@ -2194,7 +2194,7 @@ namespace user
 
    id interaction::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
    {
-      
+
       // for tracking the idle time state
       bool bIdle = TRUE;
       LONG lIdleCount = 0;
@@ -2205,22 +2205,22 @@ namespace user
       ::user::interaction * puieParent = get_parent();
       oprop(string("RunModalLoop.thread(") + gen::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
-      
+
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
-      
+
       m_iaModalThread.add(::ca::get_thread()->get_os_int());
       ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (m_pthread->m_p);
       ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
-      
+
 
       for (;;)
       {
          ASSERT(ContinueModal(iLevel));
 
          // phase1: check to see if we can do idle work
-         while (bIdle && !::PeekMessage(&msg, ::ca::null(), NULL, NULL, PM_NOREMOVE))
+         while (bIdle && !::PeekMessage(&msg, ::ca::null(), 0, 0, PM_NOREMOVE))
          {
             ASSERT(ContinueModal(iLevel));
 
@@ -2236,7 +2236,8 @@ namespace user
             if (!(dwFlags & MLF_NOIDLEMSG) && puieParent != NULL && lIdleCount == 0)
             {
                // send WM_ENTERIDLE to the parent
-               puieParent->send_message(WM_ENTERIDLE, MSGF_DIALOGBOX, NULL);
+//               puieParent->send_message(WM_ENTERIDLE, MSGF_DIALOGBOX, NULL);
+               puieParent->send_message(WM_ENTERIDLE, 0, NULL);
             }
             /*if ((dwFlags & MLF_NOKICKIDLE) ||
                !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
@@ -2317,7 +2318,7 @@ namespace user
             }*/
 
          }
-         while (::PeekMessage(&msg, ::ca::null(), NULL, NULL, PM_NOREMOVE) != FALSE);
+         while (::PeekMessage(&msg, ::ca::null(), 0, 0, PM_NOREMOVE) != FALSE);
 
 
          if(m_pguie->m_pthread != NULL)

@@ -205,8 +205,8 @@ public:
       // bring ::ca::window to top for SW_ commands which affect z-order
 
    // implementation helpers for Shift+F1 help mode
-   bool ProcessHelpMsg(MSG& msg, DWORD* pContext);
-   oswindow SetHelpCapture(POINT point, bool* pbDescendant);
+   bool ProcessHelpMsg(MESSAGE & msg, DWORD * pContext);
+   oswindow SetHelpCapture(POINT point, bool * pbDescendant);
 
    // frame_window list management
    void AddFrameWnd();

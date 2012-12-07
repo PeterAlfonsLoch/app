@@ -247,7 +247,7 @@ namespace sockets
       time_t Uptime();
 
       /** Set address/port of last connect() call. */
-      void SetClientRemoteAddress(sockets::address&);
+      void SetClientRemoteAddress(const sockets::address&);
 
       /** get address/port of last connect() call. */
       address GetClientRemoteAddress();

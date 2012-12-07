@@ -279,7 +279,7 @@ namespace ca
       virtual void set_os_int(int_ptr iData);
 
 
-      friend bool __internal_pre_translate_message(MSG* pMsg);
+      friend bool __internal_pre_translate_message(MESSAGE * pMsg);
 
       virtual void construct();
       virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);

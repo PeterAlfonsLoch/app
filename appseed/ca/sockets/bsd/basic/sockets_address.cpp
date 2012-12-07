@@ -19,7 +19,7 @@ namespace sockets
 
       m_pipv6 = new ipv6_address(papp, a, iPort);
       m_pipv4 = NULL;
-      
+
    }
 
 
@@ -140,7 +140,7 @@ namespace sockets
       return true;
 
    }
-   
+
 
 
    address & address::operator = (const address & address)
@@ -265,7 +265,7 @@ namespace sockets
 
    bool address::set_service_number(int iPort)
    {
-      
+
       if(iPort < 0 || iPort >= 65536)
          return false;
 
@@ -274,7 +274,7 @@ namespace sockets
       return true;
 
    }
-   
+
 
    int address::service_name_to_number(const char * psz) const
    {
@@ -291,7 +291,7 @@ namespace sockets
 
    }
 
-   
+
    bool address::is_ipv4() const
    {
 
@@ -333,7 +333,7 @@ namespace sockets
 
       if(is_ipv4() && addr.is_ipv4() && addrMask.is_ipv4())
       {
-         
+
          in_addr a1;
          in_addr a2;
          in_addr aM;
@@ -342,12 +342,15 @@ namespace sockets
          System.net().convert(a2, addr.get_display_number());
          System.net().convert(aM, addrMask.get_display_number());
 
-         return (a1.S_un.S_addr & aM.S_un.S_addr) ==  (a2.S_un.S_addr & aM.S_un.S_addr);
+         memand_dup(&a1, &a1, &aM, sizeof(a1));
+         memand_dup(&a2, &a2, &aM, sizeof(a2));
+
+         return memcmp(&a1, &a2, sizeof(aM)) == 0;
 
       }
       else if(is_ipv6() && addr.is_ipv6() && addrMask.is_ipv6())
       {
-         
+
          in6_addr a1;
          in6_addr a2;
          in6_addr aM;
@@ -371,7 +374,7 @@ namespace sockets
 
    int address::GetFamily() const
    {
-      
+
       if(m_pipv4 != NULL && m_pipv4->m_bValid)
       {
          return AF_INET;
@@ -389,7 +392,7 @@ namespace sockets
 
    const sockaddr * address::sa() const
    {
-      
+
       if(m_pipv4 != NULL && m_pipv4->m_bValid)
       {
          return (sockaddr *) &m_pipv4->m_addr;
@@ -407,7 +410,7 @@ namespace sockets
 
    int address::sa_len() const
    {
-      
+
       if(m_pipv4 != NULL && m_pipv4->m_bValid)
       {
          return sizeof(m_pipv4->m_addr);
@@ -418,7 +421,7 @@ namespace sockets
       }
       else
       {
-         return NULL;
+         return 0;
       }
 
    }

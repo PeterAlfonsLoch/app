@@ -542,7 +542,7 @@ namespace sockets
    }
 
 
-   void socket::SetClientRemoteAddress(sockets::address& ad)
+   void socket::SetClientRemoteAddress(const sockets::address& ad)
    {
       if (!ad.is_valid())
       {

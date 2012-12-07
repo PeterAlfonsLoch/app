@@ -10,7 +10,9 @@ class CLASS_DECL_ca event :
 public:
 
 #if defined(LINUX) || defined(MACOS)
-   bool     m_bManualReset;
+   bool              m_bManualEvent;
+   bool              m_bSignaled;  // meaningful only when m_bManualEvent
+   int               m_iSignalId;  // meaningful only when m_bManualEvent
 #endif
 
 

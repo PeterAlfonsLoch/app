@@ -118,9 +118,6 @@ namespace ca
 #endif
 
 
-#include "multithreading/multithreading.h"
-
-
 #include "c_simple_mutex.h"
 #include "c_simple_event.h"
 
@@ -147,6 +144,8 @@ namespace ca
 
 
 #include "c/os/os.h"
+
+#include "c/cross/cross.h"
 
 
 #include "c_conv.h"

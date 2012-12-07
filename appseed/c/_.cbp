@@ -39,6 +39,8 @@
 		<Unit filename="ansios/ansios.h" />
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
+		<Unit filename="ansios/ansios_thread.cpp" />
+		<Unit filename="ansios/ansios_thread.h" />
 		<Unit filename="ansios/crypto/ansios_crypt.cpp" />
 		<Unit filename="bsdiff/blocksort.cpp" />
 		<Unit filename="bsdiff/bsdiff.cpp" />
@@ -157,6 +159,9 @@
 		<Unit filename="c/c_wstringtovss.h" />
 		<Unit filename="c/c_xmlite.cpp" />
 		<Unit filename="c/c_xmlite.h" />
+		<Unit filename="cross/cross.h" />
+		<Unit filename="cross/windows/windows.h" />
+		<Unit filename="cross/windows/windows_thread.h" />
 		<Unit filename="crypt/crypt.cpp" />
 		<Unit filename="crypt/crypt.h" />
 		<Unit filename="crypt/nessie.cpp" />
@@ -209,7 +214,6 @@
 		<Unit filename="linux/c_os_simple_pen.h" />
 		<Unit filename="linux/c_os_simple_shell_launcher.cpp" />
 		<Unit filename="linux/c_os_small_ipc_channel.cpp" />
-		<Unit filename="linux/c_os_thread.cpp" />
 		<Unit filename="linux/c_os_win_base.cpp" />
 		<Unit filename="linux/c_os_window.cpp" />
 		<Unit filename="linux/linux_internal.h" />

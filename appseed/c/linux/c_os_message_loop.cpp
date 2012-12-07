@@ -1,6 +1,6 @@
 #include "framework.h"
 
-
+/*
 class sys_message_queue
 {
 public:
@@ -15,59 +15,9 @@ public:
 
 
 };
+*/
 
-class sys_thread
-{
-public:
-
-
-   pthread_t                        m_pthread;
-   sys_message_queue                m_messagequeue;
-
-
-   sys_thread(pthread_t pthread);
-
-
-   WINBOOL GetMessage(MSG * pmsg);
-
-
-};
-
-class sys_thread_pool
-{
-public:
-
-
-   simple_mutex                     m_mutex;
-   simple_array < sys_thread * >    m_threadptra;
-
-
-   sys_thread * get_current();
-   sys_thread * get(pthread_t pthread);
-
-
-};
-
-static sys_thread_pool * g_psysthreadpool;
-
-WINBOOL GetMessage(MSG * pmsg)
-{
-
-   return TRUE;
-}
-
-WINBOOL TranslateMessage(MSG * pmsg)
-{
-
-   return TRUE;
-}
-
-WINBOOL DispatchMessage(MSG * pmsg)
-{
-
-   return TRUE;
-}
-
+/*
 
 void _c_simple_message_loop()
 {
@@ -152,3 +102,6 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 
    return m_threadptra[m_threadptra.get_count() - 1];
 }
+
+
+*/
