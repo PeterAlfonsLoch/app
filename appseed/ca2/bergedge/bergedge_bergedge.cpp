@@ -231,7 +231,7 @@ namespace bergedge
          createcontextBergedge->m_bMakeVisible = false;
 
          m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
-         m_pbergedgedocument->m_psession = m_psession;
+         m_pbergedgedocument->m_papp->m_psession = m_psession;
 
       }
       if(m_bShowPlatform)

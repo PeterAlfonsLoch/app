@@ -874,7 +874,6 @@
     <ClCompile Include="simple_graphics\simple_graphics.cpp" />
     <ClCompile Include="simple_graphics\simple_path.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
-    <ClCompile Include="windows\c_os_gdi.cpp" />
     <ClCompile Include="windows\c_os_simple_bitmap.cpp" />
     <ClCompile Include="windows\c_os_simple_brush.cpp" />
     <ClCompile Include="windows\c_os_simple_font.cpp" />

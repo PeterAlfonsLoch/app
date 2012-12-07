@@ -20,8 +20,6 @@ namespace ca
       m_ulFlags            = (unsigned long) flag_auto_clean;
       m_papp               = 0; // NULL
       m_countReference     = 1; // avoid creating a "perambulator" phantom
-      m_psession           = NULL;
-      m_psystem            = NULL;
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
       m_pfactoryitembase   = NULL;
@@ -32,8 +30,6 @@ namespace ca
       m_ulFlags            = o.m_ulFlags;
       m_papp               = o.m_papp;
       m_countReference     = 1; // avoid creating a "perambulator" phantom  
-      m_psession           = o.m_psession;
-      m_psystem            = o.m_psystem;
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
       m_pfactoryitembase   = NULL;
@@ -44,23 +40,6 @@ namespace ca
       m_ulFlags            = (unsigned long) flag_auto_clean;
       m_papp               = papp;
       m_countReference     = 1; // avoid creating a "perambulator" phantom
-      if(papp != NULL)
-      {
-         try
-         {
-            m_psession           = papp->m_psession;
-         }
-         catch(...)
-         {
-         }
-         try
-         {
-            m_psystem            = papp->m_psystem;
-         }
-         catch(...)
-         {
-         }
-      }
       m_pptraListener      = NULL;
       m_pptraListened      = NULL;
       m_pfactoryitembase   = NULL;
@@ -205,12 +184,12 @@ namespace ca
 
    ::bergedge::bergedge * ca::get_bergedge()
    {
-      return m_psession->m_pbergedge;
+      return m_papp->m_psession->m_pbergedge;
    }
 
    ::cube::cube * ca::get_cube()
    {
-      return m_psystem->m_pcube;
+      return m_papp->m_psystem->m_pcube;
    }
 
    void ca::delete_this()

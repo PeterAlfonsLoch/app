@@ -53,7 +53,8 @@ public:
    virtual void * get_os_data() const;
 
 
-   virtual bool lock(const duration & durationTimeout = duration::infinite());
+   virtual void lock();
+   virtual bool lock(const duration & durationTimeout);
    virtual bool unlock();
    virtual bool unlock(LONG lCount, LPLONG lpPrevCount = NULL);
 

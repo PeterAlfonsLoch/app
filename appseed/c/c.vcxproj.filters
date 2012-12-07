@@ -613,9 +613,6 @@
     <ClCompile Include="os\os_http.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
-    <ClCompile Include="windows\c_os_gdi.cpp">
-      <Filter>Source Files\windows</Filter>
-    </ClCompile>
     <ClCompile Include="windows\c_os_simple_bitmap.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>

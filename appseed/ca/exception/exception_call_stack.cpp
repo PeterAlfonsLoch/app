@@ -9,7 +9,7 @@ call_stack::call_stack(::ca::application * papp, unsigned int uiSkip, void * add
    ca(papp)
    ,m_caller_address(address)
 #else
-call_stack::call_stack(::ca::application * papp, unsigned int uiSkip)
+call_stack::call_stack(::ca::application * papp, unsigned int uiSkip) :
    ca(papp)
 #endif
 {
@@ -41,7 +41,7 @@ vsstring call_stack::get(unsigned int uiSkip)
 #ifdef LINUX
    ::plane::system::eengine().stack_trace(str, uiSkip, m_caller_address);
 #else
-   ::plane::system::eengine().stack_trace(str, uiSkip)
+   ::plane::system::eengine().stack_trace(str, uiSkip);
 #endif
 
    return str;

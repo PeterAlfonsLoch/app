@@ -201,8 +201,8 @@ namespace planebase
    int application::pre_run()
    {
 
-      m_dir.m_psystem      = m_psystem;
-      m_file.m_psystem     = m_psystem;
+//      m_dir.m_psystem      = m_psystem;
+  //    m_file.m_psystem     = m_psystem;
 
 #ifdef WINDOWSEX
 

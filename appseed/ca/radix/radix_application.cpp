@@ -2847,12 +2847,12 @@ namespace radix
 
    }
 
-   bool application::lock(waitable * pobject)
+   void application::lock(waitable * pobject)
    {
       mutex * pmutex = get_mutex(pobject);
       if(pmutex == NULL)
-         return false;
-      return pmutex->lock() != FALSE;
+         throw "could not get generic mutex for object";
+      pmutex->lock();
    }
 
 

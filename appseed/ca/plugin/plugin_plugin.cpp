@@ -40,10 +40,10 @@ namespace plugin
    plugin::plugin()
    {
 
+      m_papp                  = NULL;
       m_puiHost               = NULL;
       m_iHealingSurface       = 0;
       m_iEdge                 = -1;
-      m_psession              = NULL;
       m_bAppStarted           = false;
       m_pbReady               = NULL;
       m_psystem               = NULL;

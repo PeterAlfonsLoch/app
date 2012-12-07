@@ -24,7 +24,7 @@ public:
 #endif
 
    bool unlock();
-   bool lock();
+   void lock();
    bool lock(const duration & durationTimeout);
 
 

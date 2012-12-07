@@ -105,7 +105,7 @@ namespace userbase
          _GetWnd()->ScreenToClient(&ptClient);
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iIndex == m_iIndex))
          {
-            if(m_mutex.lock())
+            single_lock sl(&m_mutex, true);
             {
    //      TRACE("split_layout::RelayChildEvent LOWORD(lpMsg->lParam) %d\n", LOWORD(lpMsg->lParam));
    //      TRACE("split_layout::RelayChildEvent HIWORD(lpMsg->lParam) %d\n", HIWORD(lpMsg->lParam));

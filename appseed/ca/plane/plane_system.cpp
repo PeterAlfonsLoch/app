@@ -41,11 +41,8 @@ namespace plane
 
 //      ::plane::system * psystemParent             = oprop("parent_system").ca2 < ::plane::system > ();
 
-
-      m_file.m_psystem                          = this;
-      ::plane::application::m_file.m_psystem    = this;
-      m_dir.m_psystem                           = this;
-      ::plane::application::m_dir.m_psystem     = this;
+      ::plane::application::m_file.set_app(this);
+      ::plane::application::m_dir.set_app(this);
 
       m_bDoNotExitIfNoApplications              = false;
       m_plog                     = NULL;

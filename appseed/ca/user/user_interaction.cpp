@@ -400,7 +400,7 @@ namespace user
 
       try
       {
-         if(m_psession != NULL && &Session != NULL)
+         if(m_papp != NULL && m_papp->m_psession != NULL && &Session != NULL)
          {
             Session.remove_frame(this);
          }
@@ -411,7 +411,7 @@ namespace user
 
       try
       {
-         if(m_psystem != NULL && &System != NULL)
+         if(m_papp != NULL && m_papp->m_psystem != NULL && &System != NULL)
          {
             System.remove_frame(this);
          }

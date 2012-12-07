@@ -153,8 +153,6 @@ namespace ca
 
       unsigned long           m_ulFlags;
       ::ca::application *     m_papp;
-      ::plane::system *       m_psystem;
-      ::plane::session *      m_psession;
       int64_t                 m_countReference;
       ::ca::ptra *            m_pptraListener;
       ::ca::ptra *            m_pptraListened;

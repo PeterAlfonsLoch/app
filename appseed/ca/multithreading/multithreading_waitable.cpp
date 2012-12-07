@@ -87,6 +87,14 @@ void * waitable::get_os_data() const
    return System.get_mutex( const_cast < waitable * > (this))->get_os_data();
 }
 
+void waitable::lock()
+{
+   
+   if(!lock(duration::infinite()))
+      throw "failure to lock waitable";
+
+}
+
 bool waitable::lock(const duration & duration)
 {
    if(m_papp == NULL || m_papp->m_psystem == NULL)

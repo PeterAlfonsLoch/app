@@ -464,7 +464,7 @@ namespace radix
       using ::radix::thread::lock;
       void wait(::waitable * pobject);
       wait_result wait(::waitable * pobject, duration dwTimeout);
-      bool lock(::waitable * pobject);
+      void lock(::waitable * pobject);
       bool lock(::waitable * pobject, duration dwTimeout);
       using ::radix::thread::unlock;
       bool unlock(::waitable * pobject);

@@ -46,6 +46,8 @@ public:
 
 #ifndef WINDOWS
 
+   using sync_object::lock;
+
    virtual bool lock(const duration & durationTimeout = ::duration::infinite());
 
    using sync_object::wait;

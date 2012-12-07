@@ -86,6 +86,8 @@ namespace ca
       bool                          m_bService;
       ::plane::application *        m_pappThis;
       bool                          m_bZipIsDir;
+      ::plane::system *             m_psystem;
+      ::plane::session *            m_psession;
 
 
       application();

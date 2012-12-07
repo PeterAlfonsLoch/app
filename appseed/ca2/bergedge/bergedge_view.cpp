@@ -513,7 +513,7 @@ namespace bergedge
             {
                papp = NULL;
             }
-            if(papp != NULL && m_psession != NULL && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_psession))
+            if(papp != NULL && m_papp != NULL && m_papp->m_psession != NULL && dynamic_cast < ::ca::application * > (papp) != dynamic_cast < ::ca::application * > (m_papp->m_psession))
             {
                try
                {

@@ -19,10 +19,14 @@ namespace ca
 //      DWORD dw = ::_getmbcp();
       srand(::get_tick_count());
 
-      m_pinitmaindata   = NULL;
-      m_bService        = false;
+      m_pinitmaindata      = NULL;
+      m_bService           = false;
 
-      m_bZipIsDir       = true;
+      m_bZipIsDir          = true;
+
+      m_psession           = NULL;
+      m_psystem            = NULL;
+
 
    }
 

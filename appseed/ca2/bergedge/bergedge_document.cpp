@@ -70,7 +70,7 @@ namespace bergedge
 
    ::bergedge::bergedge * document::get_bergedge()
    {
-      return dynamic_cast < ::bergedge::bergedge * > (m_psession->m_pbergedge);
+      return dynamic_cast < ::bergedge::bergedge * > (m_papp->m_psession->m_pbergedge);
    }
 
 

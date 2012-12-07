@@ -36,7 +36,7 @@ critical_section::~critical_section()
    ::DeleteCriticalSection(&m_sect);
 }
 
-bool critical_section::lock()
+void critical_section::lock()
 {
    __try
    {
@@ -46,7 +46,6 @@ bool critical_section::lock()
    {
       throw memory_exception(get_app());
    }
-   return TRUE;
 }
 
 
@@ -54,7 +53,8 @@ bool critical_section::lock(const duration & durationTimeout)
 {
    ASSERT(durationTimeout.is_pos_infinity());
    (void)durationTimeout;
-   return lock();
+   lock();
+   return true;
 }
 
 bool critical_section::unlock()

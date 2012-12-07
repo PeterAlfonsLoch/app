@@ -23,7 +23,7 @@ namespace sockets
          if(App(dynamic_cast < ::ca::application * >(this)).is_system())
          {
 
-            ::sockets::SSLInitializer ssl_init(m_psystem);
+            ::sockets::SSLInitializer ssl_init(m_papp->m_psystem);
 
             System.factory().creatable_small < ::http::memory_file > ();
             System.factory().cloneable_small < ::sockets::ipv4_address > ();

@@ -105,7 +105,7 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 
    try
    {
-      if(m_psystem != NULL && &System != NULL)
+      if(m_papp != NULL && m_papp->m_psystem != NULL && &System != NULL)
       {
          System.remove_frame(this);
       }

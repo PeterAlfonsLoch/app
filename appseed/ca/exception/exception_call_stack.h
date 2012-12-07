@@ -44,7 +44,7 @@ public:
 
 #else
 
-   call_stack(::ca::application * papp, unsigned int uiSkip = 3)
+   call_stack(::ca::application * papp, unsigned int uiSkip = 3);
 
 #endif
 
