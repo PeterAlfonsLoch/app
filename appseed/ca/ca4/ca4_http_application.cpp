@@ -138,6 +138,8 @@ namespace ca4
 //         e_status estatus;
          string strFile(pszUrl);
          strFile.replace(":", "_");
+         strFile.replace("//", "/");
+         strFile.replace("?", "%19");
          strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
          string strCache = Application.file().as_string(strFile);
          if(strCache.has_char())
