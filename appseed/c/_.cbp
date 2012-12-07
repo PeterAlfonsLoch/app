@@ -213,9 +213,6 @@
 		<Unit filename="linux/c_os_win_base.cpp" />
 		<Unit filename="linux/c_os_window.cpp" />
 		<Unit filename="linux/linux_internal.h" />
-		<Unit filename="multithreading/multithreading.h" />
-		<Unit filename="multithreading/multithreading_waitable.cpp" />
-		<Unit filename="multithreading/multithreading_waitable.h" />
 		<Unit filename="os/os.h" />
 		<Unit filename="os/os_binreloc.cpp" />
 		<Unit filename="os/os_binreloc.h" />

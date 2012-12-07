@@ -79,7 +79,7 @@
 	<File name="ca/ca_font.h" open="0" top="0" tabpos="7">
 		<Cursor position="369" topLine="0" />
 	</File>
-	<File name="ca/ca_graphics.cpp" open="1" top="0" tabpos="5">
+	<File name="ca/ca_graphics.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="33372" topLine="1111" />
 	</File>
 	<File name="ca/ca_graphics.h" open="0" top="0" tabpos="1">
@@ -133,10 +133,10 @@
 	<File name="ca/ca_smart_pointer.h" open="0" top="0" tabpos="5">
 		<Cursor position="36" topLine="0" />
 	</File>
-	<File name="ca/ca_thread.cpp" open="1" top="0" tabpos="21">
+	<File name="ca/ca_thread.cpp" open="0" top="0" tabpos="21">
 		<Cursor position="10764" topLine="442" />
 	</File>
-	<File name="ca/ca_thread.h" open="1" top="0" tabpos="20">
+	<File name="ca/ca_thread.h" open="0" top="0" tabpos="20">
 		<Cursor position="13058" topLine="387" />
 	</File>
 	<File name="ca/ca_type_info.cpp" open="0" top="0" tabpos="0">
@@ -145,7 +145,7 @@
 	<File name="ca/ca_type_info.h" open="0" top="0" tabpos="0">
 		<Cursor position="1639" topLine="27" />
 	</File>
-	<File name="ca/ca_window.cpp" open="1" top="0" tabpos="6">
+	<File name="ca/ca_window.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="ca/ca_window.h" open="0" top="0" tabpos="8">
@@ -412,7 +412,7 @@
 	<File name="ex1/ex1_plain_text_stream.h" open="0" top="0" tabpos="0">
 		<Cursor position="4661" topLine="104" />
 	</File>
-	<File name="ex1/ex1_request_interface.h" open="1" top="1" tabpos="34">
+	<File name="ex1/ex1_request_interface.h" open="0" top="0" tabpos="34">
 		<Cursor position="14" topLine="0" />
 	</File>
 	<File name="ex1/ex1_stream.cpp" open="0" top="0" tabpos="0">
@@ -433,10 +433,10 @@
 	<File name="exception/exception_base.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="370" topLine="0" />
 	</File>
-	<File name="exception/exception_call_stack.cpp" open="1" top="0" tabpos="11">
+	<File name="exception/exception_call_stack.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="305" topLine="0" />
 	</File>
-	<File name="exception/exception_call_stack.h" open="1" top="0" tabpos="10">
+	<File name="exception/exception_call_stack.h" open="0" top="0" tabpos="10">
 		<Cursor position="1084" topLine="19" />
 	</File>
 	<File name="exception/exception_debug.cpp" open="0" top="0" tabpos="0">
@@ -454,10 +454,10 @@
 	<File name="exception/exception_dump_output.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="723" topLine="12" />
 	</File>
-	<File name="exception/exception_engine.cpp" open="1" top="0" tabpos="7">
+	<File name="exception/exception_engine.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="24258" topLine="1009" />
 	</File>
-	<File name="exception/exception_engine.h" open="1" top="0" tabpos="12">
+	<File name="exception/exception_engine.h" open="0" top="0" tabpos="12">
 		<Cursor position="2521" topLine="77" />
 	</File>
 	<File name="exception/exception_invalid_argument.cpp" open="0" top="0" tabpos="11">
@@ -481,10 +481,10 @@
 	<File name="exception/exception_simple.h" open="0" top="0" tabpos="0">
 		<Cursor position="22" topLine="0" />
 	</File>
-	<File name="exception/exception_standard.h" open="1" top="0" tabpos="9">
+	<File name="exception/exception_standard.h" open="0" top="0" tabpos="9">
 		<Cursor position="5796" topLine="161" />
 	</File>
-	<File name="exception/exception_standard_translator.cpp" open="1" top="0" tabpos="8">
+	<File name="exception/exception_standard_translator.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="17242" topLine="329" />
 	</File>
 	<File name="fontopus/fontopus.h" open="0" top="0" tabpos="10">
@@ -631,10 +631,10 @@
 	<File name="linux/os_debug.h" open="0" top="0" tabpos="0">
 		<Cursor position="97" topLine="0" />
 	</File>
-	<File name="linux/os_multithreading.cpp" open="1" top="0" tabpos="26">
+	<File name="linux/os_multithreading.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="1495" topLine="39" />
 	</File>
-	<File name="linux/os_multithreading.h" open="1" top="0" tabpos="24">
+	<File name="linux/os_multithreading.h" open="0" top="0" tabpos="24">
 		<Cursor position="568" topLine="0" />
 	</File>
 	<File name="macos/macos.h" open="0" top="0" tabpos="0">
@@ -643,7 +643,7 @@
 	<File name="multithreading/multithreading.h" open="0" top="0" tabpos="17">
 		<Cursor position="666" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_core.cpp" open="1" top="0" tabpos="25">
+	<File name="multithreading/multithreading_core.cpp" open="0" top="0" tabpos="25">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="multithreading/multithreading_critical_section.cpp" open="0" top="0" tabpos="0">
@@ -652,28 +652,28 @@
 	<File name="multithreading/multithreading_critical_section.h" open="0" top="0" tabpos="18">
 		<Cursor position="513" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_event.cpp" open="1" top="0" tabpos="22">
+	<File name="multithreading/multithreading_event.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="2488" topLine="178" />
 	</File>
-	<File name="multithreading/multithreading_event.h" open="1" top="0" tabpos="3">
+	<File name="multithreading/multithreading_event.h" open="0" top="0" tabpos="3">
 		<Cursor position="41" topLine="0" />
 	</File>
 	<File name="multithreading/multithreading_event_base.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1358" topLine="43" />
 	</File>
-	<File name="multithreading/multithreading_event_base.h" open="1" top="0" tabpos="17">
+	<File name="multithreading/multithreading_event_base.h" open="0" top="0" tabpos="17">
 		<Cursor position="900" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_event_collection.cpp" open="1" top="0" tabpos="15">
+	<File name="multithreading/multithreading_event_collection.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="6862" topLine="175" />
 	</File>
-	<File name="multithreading/multithreading_event_collection.h" open="1" top="0" tabpos="16">
+	<File name="multithreading/multithreading_event_collection.h" open="0" top="0" tabpos="16">
 		<Cursor position="2861" topLine="55" />
 	</File>
 	<File name="multithreading/multithreading_file_change_event.h" open="0" top="0" tabpos="20">
 		<Cursor position="1206" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_multi_lock.cpp" open="1" top="0" tabpos="23">
+	<File name="multithreading/multithreading_multi_lock.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="2446" topLine="91" />
 	</File>
 	<File name="multithreading/multithreading_multi_lock.h" open="0" top="0" tabpos="10">
@@ -682,7 +682,7 @@
 	<File name="multithreading/multithreading_mutex.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="1126" topLine="32" />
 	</File>
-	<File name="multithreading/multithreading_mutex.h" open="1" top="0" tabpos="30">
+	<File name="multithreading/multithreading_mutex.h" open="0" top="0" tabpos="30">
 		<Cursor position="63" topLine="0" />
 	</File>
 	<File name="multithreading/multithreading_retry_single_lock.cpp" open="0" top="0" tabpos="21">
@@ -718,10 +718,10 @@
 	<File name="multithreading/multithreading_socket_event.h" open="0" top="0" tabpos="6">
 		<Cursor position="706" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_sync_objec.cpp" open="1" top="0" tabpos="27">
+	<File name="multithreading/multithreading_sync_objec.cpp" open="0" top="0" tabpos="27">
 		<Cursor position="909" topLine="19" />
 	</File>
-	<File name="multithreading/multithreading_sync_object.h" open="1" top="0" tabpos="28">
+	<File name="multithreading/multithreading_sync_object.h" open="0" top="0" tabpos="28">
 		<Cursor position="799" topLine="0" />
 	</File>
 	<File name="multithreading/multithreading_synch_lock.cpp" open="0" top="0" tabpos="25">
@@ -733,10 +733,10 @@
 	<File name="multithreading/multithreading_wait_result.h" open="0" top="0" tabpos="12">
 		<Cursor position="541" topLine="52" />
 	</File>
-	<File name="multithreading/multithreading_waitable.cpp" open="1" top="0" tabpos="32">
+	<File name="multithreading/multithreading_waitable.cpp" open="0" top="0" tabpos="32">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="multithreading/multithreading_waitable.h" open="1" top="0" tabpos="18">
+	<File name="multithreading/multithreading_waitable.h" open="0" top="0" tabpos="18">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="os/os.h" open="0" top="0" tabpos="12">
@@ -919,7 +919,7 @@
 	<File name="radix/radix_allocation_system_heap.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="2904" topLine="89" />
 	</File>
-	<File name="radix/radix_application.cpp" open="1" top="0" tabpos="29">
+	<File name="radix/radix_application.cpp" open="0" top="0" tabpos="29">
 		<Cursor position="80385" topLine="2813" />
 	</File>
 	<File name="radix/radix_application.h" open="0" top="0" tabpos="45">
@@ -943,7 +943,7 @@
 	<File name="radix/radix_fixed_alloc.cpp" open="0" top="0" tabpos="17">
 		<Cursor position="3695" topLine="170" />
 	</File>
-	<File name="radix/radix_object.h" open="1" top="0" tabpos="31">
+	<File name="radix/radix_object.h" open="0" top="0" tabpos="31">
 		<Cursor position="430" topLine="21" />
 	</File>
 	<File name="radix/radix_os_history.cpp" open="0" top="0" tabpos="0">
@@ -970,7 +970,7 @@
 	<File name="radix/radix_thread.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="771" topLine="20" />
 	</File>
-	<File name="radix/radix_thread.h" open="1" top="0" tabpos="4">
+	<File name="radix/radix_thread.h" open="0" top="0" tabpos="4">
 		<Cursor position="882" topLine="6" />
 	</File>
 	<File name="simpledb/DBFileSystemSize.h" open="0" top="0" tabpos="0">
@@ -1114,7 +1114,7 @@
 	<File name="user/user_application.h" open="0" top="0" tabpos="0">
 		<Cursor position="1986" topLine="7" />
 	</File>
-	<File name="user/user_buffer.cpp" open="1" top="0" tabpos="33">
+	<File name="user/user_buffer.cpp" open="0" top="0" tabpos="33">
 		<Cursor position="1228" topLine="44" />
 	</File>
 	<File name="user/user_control.cpp" open="0" top="0" tabpos="0">
