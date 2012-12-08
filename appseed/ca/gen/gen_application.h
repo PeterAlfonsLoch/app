@@ -75,7 +75,7 @@ namespace gen
       static UINT   APPM_LANGUAGE;
       static WPARAM WPARAM_LANGUAGE_UPDATE;
 #ifdef WINDOWS
-      virtual bool OnMessageWindowMessage(LPMSG lpmsg);
+      virtual bool OnMessageWindowMessage(LPMESSAGE lpmsg);
 #else
       virtual bool OnMessageWindowMessage(XEvent * pev);
 #endif

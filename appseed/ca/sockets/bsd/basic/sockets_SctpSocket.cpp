@@ -329,7 +329,7 @@ namespace sockets
       address stored.
 
       sinfo is a pointer to a sctp_sndrcvinfo structure to be filled upon receipt of the message.  msg_flags is a pointer  to  a
-      integer that is filled with any message flags like MSG_NOTIFICATION or MSG_EOR.
+      integer that is filled with any message flags like MESSAGE_NOTIFICATION or MESSAGE_EOR.
 
    */
       struct sockaddr sa;

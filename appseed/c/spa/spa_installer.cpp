@@ -2511,7 +2511,7 @@ RetryHost:
 
       m_strFile = pszFile;
 
-      //	MSG msg;
+      //	MESSAGE msg;
       //	HACCEL hAccelTable;
 
 

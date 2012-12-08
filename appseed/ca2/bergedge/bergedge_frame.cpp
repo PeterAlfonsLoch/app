@@ -430,7 +430,7 @@ namespace bergedge
 
       SCAST_PTR(gen::message::base, pbase, pobj);
 
-      MSG * pmsg = (MSG *) pbase->m_lparam;
+      MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam;
 
 #ifdef WINDOWSEX
 

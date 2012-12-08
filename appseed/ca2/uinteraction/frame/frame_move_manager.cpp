@@ -79,7 +79,7 @@ namespace uinteraction
       // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
       bool MoveManager::Relay(::gen::message::mouse * pmouse)
       {
-         ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE 
+         ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE
             || pmouse->m_uiMessage == WM_LBUTTONUP
             || pmouse->m_uiMessage == WM_NCMOUSEMOVE
             || pmouse->m_uiMessage == WM_NCLBUTTONUP);
@@ -154,9 +154,9 @@ namespace uinteraction
             }
          }
 
-         if(iMatchMonitor >= 0) 
+         if(iMatchMonitor >= 0)
          {
-            // nothing to do, window will be moved to a location that matchs iMinIntersectSize 
+            // nothing to do, window will be moved to a location that matchs iMinIntersectSize
             // with iMatchMonitor
          }
          else
@@ -222,7 +222,7 @@ namespace uinteraction
          return true;
       }
 
-      bool MoveManager::relay_event(MSG *lpMsg)
+      bool MoveManager::relay_event(MESSAGE *lpMsg)
       {
          UNREFERENCED_PARAMETER(lpMsg);
          ASSERT(FALSE);
@@ -258,7 +258,7 @@ namespace uinteraction
          if(lpMsg->message == WM_MOUSEMOVE &&
          m_dwLastMovingTime + 10 > GetTickCount())
          return true;
-         DWORD fwKeys = lpMsg->wParam;        // key flags 
+         DWORD fwKeys = lpMsg->wParam;        // key flags
          point ptCursor = lpMsg->pt;
          point pt;
          pt = m_ptWindowOrigin + ptCursor - m_ptCursorOrigin;
@@ -314,7 +314,7 @@ namespace uinteraction
 
 #ifdef WINDOWSEX
 
-      bool CALLBACK UpdateCurrentAreaEnumWindowsProc(      
+      bool CALLBACK UpdateCurrentAreaEnumWindowsProc(
          oswindow oswindow,
          LPARAM lParam)
       {
@@ -445,7 +445,7 @@ namespace uinteraction
       void MoveManager::message_handler(::user::interaction * pwnd, gen::signal_object * pobj)
       {
          SCAST_PTR(gen::message::base, pbase, pobj);
-         if(m_bPendingMove 
+         if(m_bPendingMove
             && GetTickCount() > m_dwLastMoveTime + s_dwMoveTime)
          {
             m_bPendingMove = false;
@@ -494,7 +494,7 @@ namespace uinteraction
                pbase->m_bRet = true;
                return;
             }
-            //           DWORD fwKeys = pbase->m_wparam;        // key flags 
+            //           DWORD fwKeys = pbase->m_wparam;        // key flags
             point ptCursor((short) LOWORD(pbase->m_lparam), (short) HIWORD(pbase->m_lparam));
             pwnd->ClientToScreen(&ptCursor);
             point pt;

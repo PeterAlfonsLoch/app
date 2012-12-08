@@ -98,8 +98,8 @@ namespace planebase
 
          if(pradixapp != NULL)
          {
-          
-            if(strId == "bergedge" 
+
+            if(strId == "bergedge"
             || strId == "cube")
             {
 
@@ -206,7 +206,7 @@ namespace planebase
 
 #ifdef WINDOWSEX
 
-      MSG msg;
+      MESSAGE msg;
 
       // Create Windows Message Queue
       ::PeekMessageA(&msg, NULL, 0, 0xffff, 0);
@@ -249,7 +249,7 @@ namespace planebase
          }
          catch(::exit_exception & e)
          {
-            
+
             throw e;
 
          }
@@ -286,7 +286,7 @@ namespace planebase
          }
          catch(::exit_exception & e)
          {
-            
+
             throw e;
 
          }
@@ -303,7 +303,7 @@ namespace planebase
                }
                catch(::exit_exception & e)
                {
-            
+
                   throw e;
 
                }
@@ -323,7 +323,7 @@ namespace planebase
                }
                catch(::exit_exception & e)
                {
-            
+
                   throw e;
 
                }
@@ -347,7 +347,7 @@ namespace planebase
       }
       catch(::exit_exception & e)
       {
-            
+
          throw e;
 
       }
@@ -451,7 +451,7 @@ InitFailure:
          }
          catch(::exit_exception & e)
          {
-            
+
             throw e;
 
          }
@@ -482,7 +482,7 @@ InitFailure:
                }
                catch(::exit_exception & e)
                {
-            
+
                   throw e;
 
                }
@@ -497,7 +497,7 @@ InitFailure:
             }
             catch(::exit_exception & e)
             {
-            
+
                throw e;
 
             }
@@ -510,7 +510,7 @@ InitFailure:
       }
       catch(::exit_exception & e)
       {
-            
+
          throw e;
 
       }
@@ -639,7 +639,7 @@ InitFailure:
          {
             if(on_install())
             {
-               
+
                string strId = m_strAppId;
 
                xxdebug_box("on_install1", strId, 0);
@@ -649,9 +649,9 @@ InitFailure:
 
                if(strId.has_char() && command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
                {
-                  
+
                   system_add_app_install(strId);
-                  
+
                }
                else if(strId.has_char() && command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
                {
@@ -895,7 +895,7 @@ InitFailure:
          strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
 
          spfile.create(this);
-         
+
          try
          {
 
@@ -952,9 +952,9 @@ InitFailure:
       }
       else if(gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://"))
       {
-         
+
          spfile(new sockets::http::file(get_app()));
-         
+
          if(!spfile->open(strPath, nOpenFlags))
          {
 
@@ -982,7 +982,7 @@ InitFailure:
       }
       else if(gen::str::begins(strPath, "fs://"))
       {
-         
+
          if(&Session == NULL)
          {
 
@@ -1004,7 +1004,7 @@ InitFailure:
 
          if(System.url().get_server("matter://" + strPath) ==m_strAppName)
          {
-            
+
             strPath = System.url().get_object("matter://" + strPath).Mid(1);
 
             spfile.create(this);
@@ -1163,7 +1163,7 @@ InitFailure:
 
       if(!is_system() && !is_session() && !is_bergedge() && !is_cube() && !is_installing() && !is_uninstalling())
       {
-      
+
          string str;
          // if system locale has changed (compared to last recorded one by ca2)
          // use the system locale
@@ -1248,7 +1248,7 @@ InitFailure:
                set_schema(str, false);
             }
          }
-      
+
          // keyboard layout
          if(data_get("keyboard_layout", str) && str.has_char())
          {
@@ -1445,7 +1445,7 @@ InitFailure:
 
       if((command().m_varTopicQuery.has_property("install")
       || command().m_varTopicQuery.has_property("uninstall"))
-      && 
+      &&
       ((is_session() && command().m_varTopicQuery["session_start"] == "session")
     || (is_bergedge() && command().m_varTopicQuery["session_start"] == "bergedge")))
       {
@@ -1671,7 +1671,7 @@ InitFailure:
                if(localeschema.m_idaLocale[i] == __id(std) &&
                   localeschema.m_idaSchema[i] == __id(std))
                {
-                  iStdStdCount++; 
+                  iStdStdCount++;
                }
 
             }
@@ -1901,8 +1901,8 @@ InitFailure:
 
    }
 
-   
-   
+
+
 
 
 } //namespace planebase

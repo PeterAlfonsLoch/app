@@ -288,7 +288,7 @@ namespace gen
          //bool _iguimessageDispatchCommandMessage(BaseCommand * pcommand, bool & b);
          // return TRUE to stop routing
 #ifdef WINDOWS
-         virtual bool igui_RelayEvent(LPMSG lpmsg);
+         virtual bool igui_RelayEvent(LPMESSAGE lpmsg);
 #endif
          virtual bool OnWndMsgPosCreate();
       };

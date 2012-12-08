@@ -6,7 +6,7 @@ namespace gcom
 
 
    class thread;
-   
+
 
    namespace backview
    {
@@ -103,20 +103,20 @@ namespace gcom
 
          virtual HENHMETAFILE BackViewGetFillingMetaFile();
 
-         virtual void ImageChangePostEvent(e_event eevent);         
+         virtual void ImageChangePostEvent(e_event eevent);
          virtual bool UpdateBuffer(LPCRECT lpcrect);
-         
+
          virtual void OnAfterImageLoaded();
 
          virtual user::interaction * BackViewGetInteraction();
 
-         
+
          virtual bool RenderBuffer();
          virtual bool LoadNextImage(bool bSynch);
          virtual bool IsFullScreen();
 
          //virtual bool _000WndProc(UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-         //virtual bool RelayWndProc(LPMSG lpmsg);
+         //virtual bool RelayWndProc(LPMESSAGE lpmsg);
          virtual bool RelayWndProc(UINT message, WPARAM wparam, LPARAM lparam);
 
          // Windows message handler

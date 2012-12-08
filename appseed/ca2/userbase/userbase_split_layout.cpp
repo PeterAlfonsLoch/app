@@ -67,7 +67,7 @@ namespace userbase
       m_eorientationSplit = eorientationSplit;
    }
 
-   void split_layout::RelayChildEvent(int iIndex, const MSG * lpMsg)
+   void split_layout::RelayChildEvent(int iIndex, const MESSAGE * lpMsg)
    {
       if(!m_bInitialized)
          return;
@@ -418,10 +418,10 @@ namespace userbase
 
    void split_layout::CalcSplitBarRect(int iIndex, LPRECT lpRect)
    {
-      
+
       ASSERT(iIndex >= 0);
       ASSERT(iIndex < get_split_count());
-      
+
       if(iIndex >= m_splitbara.get_count())
          return;
 
@@ -779,7 +779,7 @@ namespace userbase
          if(m_panea[iPane].m_id == id)
             return iPane;
       }
-      
+
       return -1;
 
    }

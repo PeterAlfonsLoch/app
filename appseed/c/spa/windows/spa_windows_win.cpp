@@ -13,7 +13,7 @@ bool __internal_pump_message()
    throw "todo";
 
 #else
-MSG g_msgSpaAdminWindow;
+MESSAGE g_msgSpaAdminWindow;
 	if (!::GetMessage(&g_msgSpaAdminWindow, NULL, NULL, NULL))
 	{
 #ifdef DEBUG

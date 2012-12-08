@@ -348,7 +348,7 @@ namespace userbase
       UNUSED(pNMHDR);
 
       // check to see if the message is going directly to this ::ca::window or not
-      const MSG* pMsg = ::ca::window::GetCurrentMessage();
+      const MESSAGE* pMsg = ::ca::window::GetCurrentMessage();
       if (pMsg->hwnd != _get_handle())
       {
          // let top level frame handle this for us

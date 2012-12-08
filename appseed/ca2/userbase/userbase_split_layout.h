@@ -53,7 +53,7 @@ namespace userbase
       static const int                             m_iMarging;
       int                                          m_cxBorder;
       int                                          m_cyBorder;
-      
+
 
       split_layout(::ca::application * papp);
       virtual ~split_layout();
@@ -91,7 +91,7 @@ namespace userbase
       int GetMaxPos();
       int GetMinPos();
       int GetPos(int xPos, int yPos);
-      void RelayChildEvent(int iIndex, const MSG *  lpMsg);
+      void RelayChildEvent(int iIndex, const MESSAGE *  lpMsg);
 
       void SetSplitOrientation(e_orientation eorientation);
 

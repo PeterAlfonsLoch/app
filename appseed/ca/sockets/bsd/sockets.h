@@ -165,15 +165,15 @@ namespace sockets {
 #endif
 
 #define s6_addr16 _S6_un._S6_u8
-#define MSG_NOSIGNAL 0
+#define MESSAGE_NOSIGNAL 0
 
 #elif defined __FreeBSD__
 // ----------------------------------------
 // FreeBSD
 # if __FreeBSD_version >= 400014
 #  define s6_addr16 __u6_addr.__u6_addr16
-#  if !defined(MSG_NOSIGNAL)
-#   define MSG_NOSIGNAL 0
+#  if !defined(MESSAGE_NOSIGNAL)
+#   define MESSAGE_NOSIGNAL 0
 #  endif
 #  include <netinet/in.h>
 typedef   in_addr_t ipaddr_t;
@@ -213,7 +213,7 @@ namespace sockets {
 #endif
 
 #define s6_addr16 __u6_addr.__u6_addr16
-#define MSG_NOSIGNAL 0 // oops - thanks Derek
+#define MESSAGE_NOSIGNAL 0 // oops - thanks Derek
 #define IPV6_ADD_MEMBERSHIP IPV6_JOIN_GROUP
 #define IPV6_DROP_MEMBERSHIP IPV6_LEAVE_GROUP
 
@@ -233,14 +233,14 @@ CLASS_DECL_ca const char *StrError(int x);
 
 
 
-#define MSG_NOSIGNAL 0
+#define MESSAGE_NOSIGNAL 0
 //#define SHUT_RDWR 2
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
 CLASS_DECL_ca const char *StrError(int x);
 
-namespace sockets 
+namespace sockets
 {
 
    // class WSAInitializer is a part of the socket class (on win32)

@@ -55,7 +55,7 @@ namespace gen
 
 #ifdef WINDOWS
 
-      bool dispatch::igui_RelayEvent(LPMSG lpmsg)
+      bool dispatch::igui_RelayEvent(LPMESSAGE lpmsg)
       {
          switch(lpmsg->message)
          {
@@ -267,7 +267,7 @@ namespace gen
 
       void dispatch::_user_message_handler(gen::signal_object * pobj)
       {
-         
+
          m_evOk.wait();
 
          SignalPtrArray signalptra;

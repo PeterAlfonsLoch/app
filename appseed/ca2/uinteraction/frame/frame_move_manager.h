@@ -38,7 +38,7 @@ namespace frame
       UINT                 m_uiSWPFlags;
       DWORD                m_dwPaintDelay;
    public:
-      
+
       MoveManager(WorkSet * pworkset);
       virtual ~MoveManager();
 
@@ -59,11 +59,11 @@ namespace frame
       bool IsMoving();
       void MoveWindow(void * oswindow, point pt);
       void SetSWPFlags(UINT uiFlags);
-      bool relay_event(MSG * lpMsg);
+      bool relay_event(MESSAGE * lpMsg);
       bool update(WorkSet * pwf);
 
       static const DWORD s_dwMoveTime;
-      
+
       void message_handler(::user::interaction * pwnd, gen::signal_object * pobj);
    };
 

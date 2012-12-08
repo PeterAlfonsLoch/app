@@ -119,7 +119,7 @@ namespace gen
 
        //m_pTimerCallbackFinal = m_pTimerCallback;
 
-       //MSG msg;
+       //MESSAGE msg;
 
    //    while(PeekMessage(&msg, m_oswindow_, WM_TIMER, WM_TIMER, PM_REMOVE))
      //  {

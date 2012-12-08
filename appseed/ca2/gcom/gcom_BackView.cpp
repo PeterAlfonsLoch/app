@@ -419,7 +419,7 @@ namespace gcom
       }
       void Main::OnDequeueMessage(WPARAM wparam, LPARAM lparam)
       {
-         //         MSG msg;
+         //         MESSAGE msg;
 
          bool bRunStep =
             wparam == 18

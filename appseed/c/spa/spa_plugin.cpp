@@ -530,7 +530,7 @@ install:
       if(!is_installing() && is_ca2_installed())
       {
 
-         MSG msg;
+         MESSAGE msg;
 
          memset(&msg, 0, sizeof(msg));
 

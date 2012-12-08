@@ -207,7 +207,7 @@ namespace plugin
 
 #ifdef WINDOWS
       // Create Message Queue
-      MSG msg;
+      MESSAGE msg;
 	   PeekMessage(&msg, NULL, 0, 0xffffffffu, FALSE);
 #endif
 

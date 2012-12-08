@@ -666,7 +666,7 @@ namespace ca2
 #pragma push_macro("System")
 #undef System
          ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(rtstr(pszLink));
-         ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions(); 
+         ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
          options->TreatAsUntrusted = false;
          bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri, options));
 #pragma pop_macro("System")
@@ -884,7 +884,7 @@ namespace ca2
          }
          try
          {
-//            MSG msg;
+//            MESSAGE msg;
             while(m_bRun)
             {
                // phase1: check to see if we can do idle work

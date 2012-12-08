@@ -17,7 +17,7 @@ MetaButton::~MetaButton()
 }
 
 
-bool MetaButton::pre_create_window(CREATESTRUCT& cs) 
+bool MetaButton::pre_create_window(CREATESTRUCT& cs)
 {
    cs.style |= BS_OWNERDRAW;
    return ::userbase::button::pre_create_window(cs);
@@ -42,7 +42,7 @@ void MetaButton::SetEllipseBrushs(
 
 }
 
-void MetaButton::SetEllipsePens(        
+void MetaButton::SetEllipsePens(
    ::ca::pen * ppen,
    ::ca::pen * ppenSel,
    ::ca::pen * ppenFocus,
@@ -142,32 +142,32 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
 
 }
 
-void MetaButton::_001OnShowWindow(gen::signal_object * pobj) 
+void MetaButton::_001OnShowWindow(gen::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void MetaButton::_001OnLButtonDown(gen::signal_object * pobj) 
+void MetaButton::_001OnLButtonDown(gen::signal_object * pobj)
 {
-   
+
    UNREFERENCED_PARAMETER(pobj);
-   
+
 }
 
-void MetaButton::_001OnLButtonUp(gen::signal_object * pobj) 
+void MetaButton::_001OnLButtonUp(gen::signal_object * pobj)
 {
-   
+
    UNREFERENCED_PARAMETER(pobj);
-   
+
    _001RedrawWindow();
-   
+
 }
 
 LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
 {
-   LPMSG lpmsg = (LPMSG) lParam;
+   LPMESSAGE lpmsg = (LPMESSAGE) lParam;
    if(wParam == WM_MOUSEMOVE)
    {
       point ptCursor = lpmsg->pt;
@@ -187,7 +187,7 @@ LRESULT MetaButton::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
    return 0;
 }
 
-void MetaButton::layout() 
+void MetaButton::layout()
 {
 
    UpdateWndRgn();
@@ -195,7 +195,7 @@ void MetaButton::layout()
 }
 
 
-void MetaButton::_001OnTimer(gen::signal_object * pobj) 
+void MetaButton::_001OnTimer(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::timer, ptimer, pobj)
       // TODO: add your message handler code here and/or call default
@@ -252,7 +252,7 @@ void MetaButton::install_message_handling(::gen::message::dispatch *pinterface)
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &MetaButton::_001OnLButtonDown);
    IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &MetaButton::_001OnLButtonUp);
-   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &MetaButton::_001OnSize); 
+   IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &MetaButton::_001OnSize);
    IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &MetaButton::_001OnTimer);
 }
 
@@ -284,7 +284,7 @@ index MetaButton::hit_test(point point, e_element & eelement)
 
       eelement = element_none;
       return -1;
-      
+
    }
 
    eelement = element_client;

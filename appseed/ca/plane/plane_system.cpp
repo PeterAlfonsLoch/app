@@ -126,7 +126,7 @@ namespace plane
       m_prunstartinstaller       = NULL;
       m_pmachineeventcentral     = NULL;
       //m_pfactory                 = NULL;
-      
+
       m_ptwf                     = NULL;
       m_pbergedgemap             = NULL;
 
@@ -250,7 +250,7 @@ namespace plane
 
       if(m_pparserfactory == NULL)
       {
-      
+
          m_pparserfactory = new colorertake5::ParserFactory(this);
 
       }
@@ -896,10 +896,10 @@ namespace plane
          ::mutex * pmutex = mutex::open_mutex(this, get_global_id_mutex_name(pszAppName, pszId));
          if(pmutex == NULL)
          {
-            
+
             string strApp = pszAppName;
             strApp += "app.exe";
-            
+
             string strParameters;
             strParameters = ": global_mutex_id=\"" + string(pszId) + "\"";
 
@@ -1214,7 +1214,7 @@ namespace plane
       // we remove WM_QUIT because if it is in the queue then the message box
       // won't display
 #ifdef WINDOWSEX
-      MSG msg;
+      MESSAGE msg;
       bool bQuit = PeekMessage(&msg, NULL, WM_QUIT, WM_QUIT, PM_REMOVE) != FALSE;
       va_list list = NULL;
 #elif defined(METROWIN)
@@ -1900,7 +1900,7 @@ retry:
          {
             return false;
          }
-         
+
          lprect->left = rect.X;
          lprect->top = rect.Y;
          lprect->right = lprect->left + rect.Width;

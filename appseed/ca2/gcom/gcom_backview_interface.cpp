@@ -62,7 +62,7 @@ namespace gcom
          //}
       }
 
-/*      bool Interface::relay_event(LPMSG lpmsg)
+/*      bool Interface::relay_event(LPMESSAGE lpmsg)
       {
          return relay_event(lpmsg->message, lpmsg->wParam, lpmsg->lParam);
       }*/
@@ -85,7 +85,7 @@ namespace gcom
             if(((::GetTickCount() - d_dwLastBackViewUpdate) > 23))
             {
                d_dwLastBackViewUpdate = ::GetTickCount();
-               
+
                BackViewUpdateScreen(*((rect_array *) pbase->m_lparam), RDW_INVALIDATE);
             }
             delete (rect_array * ) pbase->m_lparam;
@@ -203,7 +203,7 @@ namespace gcom
          GetMain().SetBackgroundImageChangeInterval(dwMillis);
       }
 
-      void Interface::ImageChangePostEvent(e_event eevent)     
+      void Interface::ImageChangePostEvent(e_event eevent)
       {
          GetMain().ImageChangePostEvent(eevent);
       }
@@ -251,7 +251,7 @@ namespace gcom
 
       void Interface::BackViewRender(
          ::ca::graphics * pdc,
-         int x, int y, 
+         int x, int y,
          int w, int h)
       {
 
@@ -263,9 +263,9 @@ namespace gcom
          if(!main.IsInitialized())
             return;
 
-         
+
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
-         
+
          ::ca::graphics & dcTransfer = graphics.GetTransferDC();
 
          if(&dcTransfer == NULL)

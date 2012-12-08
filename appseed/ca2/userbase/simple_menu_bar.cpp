@@ -218,9 +218,9 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
 )
 {
    UNREFERENCED_PARAMETER(wParam);
-    LPMSG pmsg = (LPMSG) lParam;
+    LPMESSAGE pmsg = (LPMESSAGE) lParam;
 
-    if(code == MSGF_MENU)
+    if(code == MESSAGEF_MENU)
     {
 /*        ASSERT(pmsg->oswindow == m_oswindowFilter);*/
 

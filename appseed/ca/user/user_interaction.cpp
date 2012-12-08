@@ -2239,7 +2239,7 @@ namespace user
                puieParent->send_message(WM_ENTERIDLE, MSGF_DIALOGBOX, (LPARAM) (DWORD_PTR) NULL);
             }
             /*if ((dwFlags & MLF_NOKICKIDLE) ||
-               !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MSGF_DIALOGBOX, lIdleCount++))
+               !__call_window_procedure(this, get_handle(), WM_KICKIDLE, MESSAGEF_DIALOGBOX, lIdleCount++))
             {
                // stop idle processing next time
                bIdle = FALSE;

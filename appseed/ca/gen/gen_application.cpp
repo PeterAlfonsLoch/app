@@ -12,7 +12,7 @@
 
 namespace gen
 {
-   
+
    int nibble_to_low_hex(byte nibble);
 
 
@@ -341,7 +341,7 @@ finishedCa2ModuleFolder:;
 
 #ifdef WINDOWS
 
-   bool application::OnMessageWindowMessage(LPMSG lpmsg)
+   bool application::OnMessageWindowMessage(LPMESSAGE lpmsg)
    {
       UNREFERENCED_PARAMETER(lpmsg);
       return false;

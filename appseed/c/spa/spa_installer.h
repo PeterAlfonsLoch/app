@@ -23,7 +23,7 @@ namespace spa
       public:
 
          vsstring m_strPath;
-         
+
          virtual bool ensure_executable();
 
          virtual vsstring get_executable_path();
@@ -40,7 +40,7 @@ namespace spa
       vsstring       m_strCurrentHost;
       bool           m_bStarterStart;
 #ifdef WINDOWS
-      MSG            m_msg;
+      MESSAGE            m_msg;
 #endif
       vsstring       m_strPlatform;
 
@@ -59,7 +59,7 @@ namespace spa
 
       HINSTANCE      m_hinstance;
 #ifdef WINDOWS
-      MSG            m_msgSpaAdminWindow;
+      MESSAGE            m_msgSpaAdminWindow;
 #endif
       bool           m_bShowPercentage;
 

@@ -200,7 +200,7 @@ void frame_window::ExitHelpMode()
 
    // only post new WM_EXITHELPMODE message if one doesn't already exist
    //  in the queue.
-   MSG msg;
+   MESSAGE msg;
    if (!::PeekMessage(&msg, get_handle(), WM_EXITHELPMODE, WM_EXITHELPMODE,
       PM_REMOVE|PM_NOYIELD))
    {
@@ -926,7 +926,7 @@ void frame_window::OnHScroll(UINT, UINT, CScrollBar*)
    ::user::interaction * pActiveView = GetActiveView();
    if (pActiveView != NULL)
    {
-      // trans const MSG* pMsg = GetCurrentMessage();
+      // trans const MESSAGE* pMsg = GetCurrentMessage();
       // trans pActiveView->SendMessage(WM_HSCROLL, pMsg->wParam, pMsg->lParam);
    }
 }
@@ -936,7 +936,7 @@ void frame_window::OnVScroll(UINT, UINT, CScrollBar*)
    ::user::interaction * pActiveView = GetActiveView();
    if (pActiveView != NULL)
    {
-// trans      const MSG* pMsg = GetCurrentMessage();
+// trans      const MESSAGE* pMsg = GetCurrentMessage();
 // trans      pActiveView->SendMessage(WM_VSCROLL, pMsg->wParam, pMsg->lParam);
    }
 }
@@ -1405,7 +1405,7 @@ void frame_window::OnEnterIdle(UINT nWhy, ::user::interaction* pWho)
    UNREFERENCED_PARAMETER(pWho);
    // trans user::frame_window_interface::OnEnterIdle(nWhy, pWho);
 #ifdef WINDOWS
-   if(nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
+   if(nWhy != MESSAGEF_MENU || m_nIDTracking == m_nIDLastMessage)
       return;
 #else
    if(m_nIDTracking == m_nIDLastMessage)

@@ -8,10 +8,10 @@ public:
 
    simple_event                     m_event;
    simple_mutex                     m_mutex;
-   simple_array < MSG * >           m_msgptra;
+   simple_array < MESSAGE * >           m_msgptra;
 
 
-   WINBOOL GetMessage(MSG * pmsg);
+   WINBOOL GetMessage(MESSAGE * pmsg);
 
 
 };
@@ -23,7 +23,7 @@ void _c_simple_message_loop()
 {
 
 
-   MSG msg;
+   MESSAGE msg;
 	while(GetMessage(&msg))
 	{
 		TranslateMessage(&msg);
@@ -34,7 +34,7 @@ void _c_simple_message_loop()
 
 }
 
-WINBOOL sys_message_queue::GetMessage(MSG * pmsg)
+WINBOOL sys_message_queue::GetMessage(MESSAGE * pmsg)
 {
    mutex_lock lockMutex(m_mutex, false);
    while(true)
@@ -68,7 +68,7 @@ sys_thread::sys_thread(pthread_t pthread) :
 {
 }
 
-WINBOOL sys_thread::GetMessage(MSG * pmsg)
+WINBOOL sys_thread::GetMessage(MESSAGE * pmsg)
 {
       return m_messagequeue.GetMessage(pmsg);
 }

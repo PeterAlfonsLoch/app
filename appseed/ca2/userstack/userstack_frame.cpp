@@ -1,6 +1,6 @@
 #include "framework.h"
 
- 
+
 namespace userstack
 {
 
@@ -90,7 +90,7 @@ namespace userstack
 #endif //DEBUG
 
 
-   void frame::_001OnTimer(gen::signal_object * pobj) 
+   void frame::_001OnTimer(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
@@ -120,14 +120,14 @@ namespace userstack
          {
             m_dwLastHover = ::GetTickCount();
             m_bHoverMouse = true;
-               
+
          }
          else if(m_bHoverMouse && (pt.x > 10 || pt.y > 0))
          {
             m_bHoverMouse = false;
          }
             theta += 2.0f;
-         
+
       }
    }
 
@@ -169,7 +169,7 @@ namespace userstack
       }
    }
 
-   
+
 
    void frame::_000OnMouse(::gen::message::mouse * pmouse)
    {
@@ -194,7 +194,7 @@ namespace userstack
                m_pdocument->m_pplatformdocument->get_platform_frame()->super_dock_on_bergedge();
             }
          }
-         else 
+         else
          {
             get_wnd()->release_capture();
             m_bMouseOver = false;
@@ -206,7 +206,7 @@ namespace userstack
 
    void frame::_001OnMouseLeave(gen::signal_object * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
 //      SCAST_PTR(gen::message::mouse, pmouse, pobj);
@@ -287,7 +287,7 @@ namespace userstack
             class rect rect;
             ::GetWindowRect(::GetDesktopWindow(), rect);
             point pt = rect.center();
-            if(!IsWindowVisible() 
+            if(!IsWindowVisible()
             || ::WindowFromPoint(pt) != get_safe_handle())
             {
                ShowWindow(SW_SHOW);
@@ -318,7 +318,7 @@ namespace userstack
          {
            ShowWindow(SW_HIDE);
          }
-  */       
+  */
     /*  }
 */
       else if(pbase->m_wparam == 1)
@@ -365,7 +365,7 @@ namespace userstack
          int iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;
-         else 
+         else
             iEdge += 1984;
          pbase->set_lresult(iEdge);
       }
@@ -426,12 +426,12 @@ namespace userstack
 
    void frame::_001OnApp1(gen::signal_object * pobj)
    {
-      
+
       SCAST_PTR(gen::message::base, pbase, pobj);
 
 #ifdef WINDOWSEX
 
-      MSG * pmsg = (MSG *) pbase->m_lparam;
+      MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam;
 
       pmsg->hwnd = get_safe_handle();
 

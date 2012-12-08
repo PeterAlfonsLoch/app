@@ -140,7 +140,7 @@ class CDockContext;                     // for dragging control bars
 
 // WM_FORWARDMSG - used by gen to forward a message to another ::ca::window for processing
 //   WPARAM - DWORD dwUserData - defined by ::fontopus::user
-//   LPARAM - LPMSG pMsg - a pointer to the MSG structure
+//   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
 #define WM_FORWARDMSG      0x037F
 

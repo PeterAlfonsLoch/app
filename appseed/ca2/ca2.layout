@@ -5,7 +5,7 @@
 		<Cursor position="13420" topLine="413" />
 	</File>
 	<File name="bergedge/bergedge_frame.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="11046" topLine="414" />
+		<Cursor position="10684" topLine="414" />
 	</File>
 	<File name="bergedge/bergedge_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="23677" topLine="644" />
@@ -151,6 +151,15 @@
 	<File name="fs/fs_tree_interface.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="19573" topLine="711" />
 	</File>
+	<File name="gcom/gcom_BackView.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="12140" topLine="381" />
+	</File>
+	<File name="gcom/gcom_backview_interface.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1801" topLine="24" />
+	</File>
+	<File name="gcom/gcom_backview_interface.h" open="0" top="0" tabpos="0">
+		<Cursor position="3509" topLine="78" />
+	</File>
 	<File name="html/html.h" open="0" top="0" tabpos="18">
 		<Cursor position="40" topLine="0" />
 	</File>
@@ -186,6 +195,12 @@
 	</File>
 	<File name="platform/platform_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4213" topLine="116" />
+	</File>
+	<File name="uinteraction/frame/frame_move_manager.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="7797" topLine="184" />
+	</File>
+	<File name="uinteraction/frame/frame_move_manager.h" open="0" top="0" tabpos="0">
+		<Cursor position="1699" topLine="21" />
 	</File>
 	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="20">
 		<Cursor position="41" topLine="0" />
@@ -233,7 +248,7 @@
 		<Cursor position="2250" topLine="10" />
 	</File>
 	<File name="userbase/simple_menu_bar.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3054" topLine="67" />
+		<Cursor position="6314" topLine="182" />
 	</File>
 	<File name="userbase/userbase.h" open="0" top="0" tabpos="19">
 		<Cursor position="42" topLine="0" />
@@ -241,14 +256,26 @@
 	<File name="userbase/userbase_form_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4599" topLine="107" />
 	</File>
+	<File name="userbase/userbase_mdi_child_window.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="12727" topLine="310" />
+	</File>
 	<File name="userbase/userbase_mdi_frame_window.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2345" topLine="12" />
 	</File>
 	<File name="userbase/userbase_menu.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2530" topLine="68" />
 	</File>
+	<File name="userbase/userbase_meta_button.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3510" topLine="129" />
+	</File>
 	<File name="userbase/userbase_split_bar.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3540" topLine="103" />
+	</File>
+	<File name="userbase/userbase_split_layout.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1629" topLine="29" />
+	</File>
+	<File name="userbase/userbase_split_layout.h" open="0" top="0" tabpos="0">
+		<Cursor position="2913" topLine="53" />
 	</File>
 	<File name="userbase/userbase_static.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1931" topLine="18" />
@@ -273,6 +300,9 @@
 	</File>
 	<File name="userstack/userstack_application.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3288" topLine="112" />
+	</File>
+	<File name="userstack/userstack_frame.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="10790" topLine="393" />
 	</File>
 	<File name="userstack/userstack_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="5655" topLine="185" />

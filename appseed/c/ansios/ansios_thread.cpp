@@ -13,7 +13,7 @@ public:
    sys_thread(pthread_t pthread);
 
 
-   WINBOOL GetMessage(MSG * pmsg);
+   WINBOOL GetMessage(MESSAGE * pmsg);
 
 
 };
@@ -676,7 +676,7 @@ static UINT g_uiMainThread = -1;
 CLASS_DECL_c void set_main_thread(HANDLE hThread)
 {
 
-//   MSG msg;
+//   MESSAGE msg;
 
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
@@ -689,7 +689,7 @@ CLASS_DECL_c void set_main_thread(HANDLE hThread)
 CLASS_DECL_c void set_main_thread_id(UINT uiThread)
 {
 
-//   MSG msg;
+//   MESSAGE msg;
 
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
@@ -714,7 +714,7 @@ CLASS_DECL_c UINT   get_main_thread_id()
 CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
 {
    return;
-//   MSG msg;
+//   MESSAGE msg;
 
    // metrowin todo
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
