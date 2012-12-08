@@ -359,7 +359,7 @@ void EmbossedTextOut(
    ** or 'drop shadowed' look depending on what shadow color
    ** and offset are used.
    */
-   GetTextExtentPoint32(hDC, lpsz, cb, &sizeText);
+   GetTextExtentPoint32(hDC, lpcsz, cb, &sizeText);
    rcText.left   = x;    rcText.right  = x+cx+sizeText.cx;
    rcText.top    = y;    rcText.bottom = y+cy+sizeText.cy;
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rcText, lpsz, cb, NULL);
@@ -368,10 +368,10 @@ void EmbossedTextOut(
    //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
-   ExtTextOut(hDC, x+cx, y+cy, NULL, NULL, lpsz, cb, NULL);
+   ExtTextOut(hDC, x+cx, y+cy, NULL, NULL, lpcsz, cb, NULL);
    SetBkMode(hDC, TRANSPARENT);
    SetTextColor(hDC, crText);
-   if(!ExtTextOut(hDC, x, y, 0, NULL, lpsz, cb, NULL))
+   if(!ExtTextOut(hDC, x, y, 0, NULL, lpcsz, cb, NULL))
    {
       //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
    }
@@ -956,7 +956,6 @@ bool imaging::GrayVRCP(
 
    class size size = pbitmap->get_size();
 
-//   UINT uiScanLines = size.cy;
    UINT cbLine = ((size.cx  * 3 + 3) & ~3);
    UINT cbImage = size.cy * cbLine;
 
@@ -983,6 +982,9 @@ bool imaging::GrayVRCP(
    //LPBYTE lpbShadow = lpbData;
 
 #ifdef WINDOWSEX
+
+   UINT uiScanLines = size.cy;
+
 
    if(!GetDIBits(
       (HDC)pdc->get_os_data(),
@@ -1260,7 +1262,9 @@ bool imaging::GetDeviceContext24BitsCC(
    {
       try
       {
-//         ::ca::bitmap * pbmp = pbmpOld;
+   #ifdef WINDOWSEX
+      ::ca::bitmap * pbmp = pbmpOld;
+#endif
 
          throw not_implemented(get_app());
          /*         if(!pbmp->GetObject(sizeof(bm), &bm))
@@ -1291,7 +1295,10 @@ bool imaging::GetDeviceContext24BitsCC(
             delete pe;
             throw 4000;
          }
-//         LPVOID lpv = memorystorage.get_data();
+#ifdef WINDOWSEX
+
+         LPVOID lpv = memorystorage.get_data();
+#endif
   //       point pointViewport = pdc->GetViewportOrg();
 
          UINT uiStartScanLine = max(0, bm.bmHeight - y - cy);
