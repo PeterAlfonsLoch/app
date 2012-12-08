@@ -225,9 +225,9 @@ namespace gen
 
             int v2 = (int) time(NULL);
 
-            int v3 = (int) ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d1, sizeof(double));
+            int v3 = (int) ::crc32(((uint32_t) timer.getTimeInMicroSec()) % 0xffffffff, (const Bytef *) &d1, sizeof(double));
 
-            int v4 = (int) ca4::crypt::crc32(((DWORD) timer.getTimeInMicroSec()) % 0xffffffff, &d2, sizeof(double));
+            int v4 = (int) ::crc32(((uint32_t) timer.getTimeInMicroSec()) % 0xffffffff, (const Bytef *) &d2, sizeof(double));
 
             iValue = abs(v1 + v2 + v3 + v4) % (iMax - iMin);
 

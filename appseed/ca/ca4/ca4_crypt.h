@@ -35,8 +35,7 @@ namespace ca4
       int encrypt(string & str, const char * psz, const char * pszKey);
       int decrypt(string & str, const char * psz, const char * pszKey);
 
-      static DWORD crc32(DWORD dwPrevious, const void * pvoid, ::primitive::memory_size size);
-      static DWORD crc32(DWORD dwPrevious, const char * psz);
+      static uint32_t crc32(uint32_t dwPrevious, const char * psz);
       string md5(const char * psz);
       string nessie(const char * psz);
 

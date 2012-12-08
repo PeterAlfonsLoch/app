@@ -284,6 +284,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          virtual string get_url();
 
+         virtual string get_short_description();
+
          string m_strUrl;
 
       private:

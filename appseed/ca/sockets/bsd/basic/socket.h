@@ -361,6 +361,8 @@ namespace sockets
       /** get value of flag indicating socket is deleted by sockethandler. */
       bool ErasedByHandler();
 
+      virtual string get_short_description();
+
       //@}
 
       /** \name Information about remote connection */

@@ -49,7 +49,7 @@ namespace sockets
    }
 
 
-   http_client_socket::http_client_socket(socket_handler_base & h, const string & strUrlParam) :
+   http_client_socket::http_client_socket(socket_handler_base & h, const string & strUrl) :
       ::ca::ca(h.get_app()),
       socket(h),
       stream_socket(h),
@@ -64,17 +64,19 @@ namespace sockets
       m_mutexData(h.get_app())
    {
 
+      m_strUrl = strUrl;
+
       string strRequestUri;
 
-      url_this(strUrlParam, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
+      
+
+      url_this(strUrl, m_protocol, m_host, m_port, strRequestUri, m_url_filename);
 
       m_bNoClose                          = false;
       m_request.attr("http_protocol")     = m_protocol;
       outheader("host")                   = m_host;
       m_request.attr("request_uri")       = strRequestUri;
       m_response.attr("request_uri")      = strRequestUri;
-
-      m_strUrl = strUrlParam;
 
       m_pfile = NULL;
 

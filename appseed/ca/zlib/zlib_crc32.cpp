@@ -32,8 +32,6 @@
 
 #define zlib_local static
 
-uint32_t ZEXPORT crc32(uint32_t crc, const unsigned char FAR *buf, size_t len);
-
 /* find a four-byte integer type for crc32_little() and crc32_big(). */
 #ifndef NOBYFOUR
 #  ifdef STDC           /* need ANSI C limits.h to determine sizes */

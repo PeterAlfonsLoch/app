@@ -85,6 +85,9 @@
          virtual void OnDataComplete();
 
 
+         
+
+
          virtual void request_url(string strUrlParam);
 
       };

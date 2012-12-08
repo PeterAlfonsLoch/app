@@ -1842,4 +1842,11 @@ namespace sockets
       }
    }
 
+   string socket::get_short_description()
+   {
+      
+      return GetRemoteAddress().get_canonical_name();
+
+   }
+
 } // namespace sockets

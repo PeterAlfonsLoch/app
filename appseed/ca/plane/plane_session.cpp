@@ -253,95 +253,8 @@ namespace plane
 
       pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
-
-
-
-
-      //m_pappCurrent = papp;
-
-
-
-
-/*      if(m_bShowPlatform)
-      {
-         ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->get_view_uie());
-         if(pframeApp != NULL)
-         {
-            pframeApp->WfiFullScreen(true, false);
-         }
-         ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->GetParentFrame());
-         if(pframe != NULL)
-         {
-            pframe->ShowWindow(SW_SHOW);
-         }
-      }
-      else
-      {
-         if(get_document() != NULL && get_document()->get_typed_view < ::session::view >() != NULL)
-         {
-            ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::view >()->GetParentFrame());
-            if(pframe != NULL)
-            {
-               pframe->ShowWindow(SW_SHOW);
-               if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
-               {
-                  pframe->GetTypedParent < ::plugin::host_interaction > ()->layout();
-               }
-               else
-               {
-                  pframe->InitialFramePosition();
-               }
-            }
-         }
-      }
-
-      try
-      {
-         get_view()->GetParentFrame()->SetWindowTextA(dynamic_cast < ::cube8::application * > (m_pappCurrent)->m_puser->m_strLogin);
-      }
-      catch(...)
-      {
-      }
-
-      */
-
-
-
-/*      if(m_pbergedgedocument == NULL)
-      {
-
-         ::ca::create_context_sp createcontextBergedge(get_app());
-         createcontextBergedge.oattrib(pcreatecontext);
-         createcontextBergedge->m_spCommandLine->m_varFile.set_type(var::type_empty);
-         createcontextBergedge->m_bMakeVisible = false;
-
-         m_pbergedgedocument = dynamic_cast < document * > (m_ptemplate_bergedge->open_document_file(createcontextBergedge));
-         m_pbergedgedocument->m_pbergedge = this;
-
-      }
-      if(m_bShowPlatform)
-      {
-         if(m_pplatformdocument == NULL)
-         {
-
-            ::ca::create_context_sp createcontextPlatform;
-            createcontextPlatform.oattrib(pcreatecontext);
-            createcontextPlatform->m_spCommandLine->m_varFile.set_type(var::type_empty);
-            createcontextPlatform->m_bMakeVisible = true;
-            createcontextPlatform->m_puiParent = m_pbergedgedocument->get_bergedge_view();
-
-            m_pplatformdocument  = dynamic_cast < plane::document * > (m_ptemplate_platform->open_document_file(createcontextPlatform));
-            m_pplatformdocument->m_pbergedgedocument =  m_pbergedgedocument;
-            //m_pnaturedocument    =
-            // dynamic_cast < nature::document * > (
-             //  papp->m_ptemplate_nature->open_document_file(NULL, false, m_pbergedgedocument->get_bergedge_view()));
-
-            m_pbergedgedocument->set_platform(m_pplatformdocument);
-            //m_pbergedgedocument->set_nature(m_pnaturedocument);
-         }
-      }
-      return m_pbergedgedocument != NULL;*/
       return false;
+
    }
 
    void session::launch_app(const char * psz)
@@ -492,53 +405,6 @@ namespace plane
 
       }
 
-
-
-
-/*      if(m_bShowPlatform)
-      {
-         ::simple_frame_window * pframeApp = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->get_view_uie());
-         if(pframeApp != NULL)
-         {
-            pframeApp->WfiFullScreen(true, false);
-         }
-         ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::pane_view >()->GetParentFrame());
-         if(pframe != NULL)
-         {
-            pframe->ShowWindow(SW_SHOW);
-         }
-      }
-      else
-      {
-         if(get_document() != NULL && get_document()->get_typed_view < ::session::view >() != NULL)
-         {
-            ::simple_frame_window * pframe = dynamic_cast < ::simple_frame_window * > (get_document()->get_typed_view < ::session::view >()->GetParentFrame());
-            if(pframe != NULL)
-            {
-               pframe->ShowWindow(SW_SHOW);
-               if(pframe->GetTypedParent < ::plugin::host_interaction > () != NULL)
-               {
-                  pframe->GetTypedParent < ::plugin::host_interaction > ()->layout();
-               }
-               else
-               {
-                  pframe->InitialFramePosition();
-               }
-            }
-         }
-      }
-
-      try
-      {
-         get_view()->GetParentFrame()->SetWindowTextA(dynamic_cast < ::cube8::application * > (m_pappCurrent)->m_puser->m_strLogin);
-      }
-      catch(...)
-      {
-      }
-
-      */
-
-
    }
 
 
@@ -598,8 +464,6 @@ namespace plane
 
 
       }
-
-      m_pappCurrent = papp;
 
       return papp;
 

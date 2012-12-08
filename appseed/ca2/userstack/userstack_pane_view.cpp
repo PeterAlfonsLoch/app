@@ -239,9 +239,14 @@ namespace userstack
 
             ::ca::application * pappCurrent = Session.m_pappCurrent;
 
-     		   string strIcon = App(papp).dir().matter("mainframe/icon48.png");
+            string strTypeId = typeid(*pappCurrent).name();
+
+     		   string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");
             pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-	   	   if(App(Session.m_pappCurrent).file().exists(strIcon))
+            
+            pappCurrent = Session.m_pappCurrent;
+
+	   	   if(planeApp(pappCurrent).file().exists(strIcon))
             {
                ppane->m_dib.create(papp);
                ppane->m_dib.load_from_file(strIcon);

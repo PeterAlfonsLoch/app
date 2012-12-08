@@ -1546,6 +1546,12 @@ namespace sockets
       return m_strUrl;
    }
 
+
+   string tcp_socket::get_short_description()
+   {
+      return get_url();
+   }
+
    long tcp_socket::cert_common_name_check(const char * common_name)
    {
 

@@ -1282,7 +1282,7 @@ ZEXTERN uint32_t ZEXPORT adler32_combine OF((uint32_t adler1, uint32_t adler2,
    seq1 and seq2 concatenated, requiring only adler1, adler2, and len2.
 */
 
-ZEXTERN uint32_t ZEXPORT crc32   OF((uint32_t crc, const Bytef *buf, uint64_t len));
+ZEXTERN uint32_t ZEXPORT crc32   OF((uint32_t crc, const Bytef *buf, size_t len));
 /*
      Update a running CRC-32 with the bytes buf[0..len-1] and return the
    updated CRC-32. If buf is NULL, this function returns the required initial

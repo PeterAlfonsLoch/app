@@ -100,6 +100,8 @@
          http::response & response();
 
 
+         
+
          /** Reset state of socket to sucessfully implement keep-alive. */
          virtual void Reset();
 

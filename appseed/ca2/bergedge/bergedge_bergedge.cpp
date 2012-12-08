@@ -388,7 +388,12 @@ namespace bergedge
 
             }
 
-            m_pappCurrent = papp;
+            if(&App(papp) != NULL)
+            {
+             
+               m_pappCurrent = papp;
+
+            }
 
          }
 
@@ -628,6 +633,17 @@ alt1:
          }
          if(papp == NULL)
             return NULL;
+         if(&App(papp) == NULL)
+         {
+            try
+            {
+               delete papp;
+            }
+            catch(...)
+            {
+            }
+            return NULL;
+         }
          m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          Session.m_mapApplication.set_at(string(pszType) + ":" + string(pszId), papp);
          return papp;

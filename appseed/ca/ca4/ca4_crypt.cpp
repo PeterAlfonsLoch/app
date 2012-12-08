@@ -741,16 +741,9 @@ namespace ca4
       return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    }
 
-   DWORD crypt::crc32(DWORD dwPrevious, const void * psz, ::primitive::memory_size iCount)
+   uint32_t crypt::crc32(uint32_t dwPrevious, const char * psz)
    {
-      if(iCount == (::primitive::memory_size) -1)
-         iCount = strlen((const char*) psz);
-      return ::crc32(dwPrevious, (const Bytef *) psz, iCount);
-   }
-
-   DWORD crypt::crc32(DWORD dwPrevious, const char * psz)
-   {
-      return crc32(dwPrevious, psz, (::primitive::memory_size) -1);
+      return ::crc32(dwPrevious, (const Bytef *) psz, strlen(psz));
    }
 
    void crypt::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)
