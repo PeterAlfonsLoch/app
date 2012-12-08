@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="ansios/ansios.h" open="1" top="0" tabpos="14">
+	<File name="ansios/ansios.h" open="0" top="0" tabpos="10">
 		<Cursor position="63" topLine="0" />
 	</File>
 	<File name="ansios/ansios_file.cpp" open="0" top="0" tabpos="28">
@@ -10,10 +10,10 @@
 	<File name="ansios/ansios_file.h" open="0" top="0" tabpos="21">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="ansios/ansios_thread.cpp" open="1" top="0" tabpos="4">
+	<File name="ansios/ansios_thread.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="17540" topLine="848" />
 	</File>
-	<File name="ansios/ansios_thread.h" open="1" top="0" tabpos="13">
+	<File name="ansios/ansios_thread.h" open="0" top="0" tabpos="9">
 		<Cursor position="208" topLine="0" />
 	</File>
 	<File name="ansios/crypto/ansios_crypt.cpp" open="0" top="0" tabpos="29">
@@ -25,7 +25,7 @@
 	<File name="c/c.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="483" topLine="8" />
 	</File>
-	<File name="c/c.h" open="1" top="0" tabpos="1">
+	<File name="c/c.h" open="0" top="0" tabpos="1">
 		<Cursor position="2093" topLine="121" />
 	</File>
 	<File name="c/c_async.h" open="0" top="0" tabpos="1">
@@ -43,19 +43,19 @@
 	<File name="c/c_md5.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="13370" topLine="455" />
 	</File>
-	<File name="c/c_mem.h" open="1" top="0" tabpos="33">
+	<File name="c/c_mem.h" open="0" top="0" tabpos="17">
 		<Cursor position="1435" topLine="0" />
 	</File>
 	<File name="c/c_net.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="56" topLine="0" />
 	</File>
-	<File name="c/c_simple_app.h" open="1" top="0" tabpos="7">
+	<File name="c/c_simple_app.h" open="0" top="0" tabpos="6">
 		<Cursor position="200" topLine="0" />
 	</File>
-	<File name="c/c_simple_event.cpp" open="1" top="0" tabpos="21">
+	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="16">
 		<Cursor position="2417" topLine="149" />
 	</File>
-	<File name="c/c_simple_event.h" open="1" top="0" tabpos="5">
+	<File name="c/c_simple_event.h" open="0" top="0" tabpos="5">
 		<Cursor position="443" topLine="0" />
 	</File>
 	<File name="c/c_simple_shell_launcher.cpp" open="0" top="0" tabpos="0">
@@ -76,13 +76,13 @@
 	<File name="c/c_verisimple_string.h" open="0" top="0" tabpos="3">
 		<Cursor position="3346" topLine="95" />
 	</File>
-	<File name="cross/cross.h" open="1" top="0" tabpos="18">
+	<File name="cross/cross.h" open="0" top="0" tabpos="13">
 		<Cursor position="13" topLine="0" />
 	</File>
-	<File name="cross/windows/windows.h" open="1" top="0" tabpos="19">
+	<File name="cross/windows/windows.h" open="0" top="0" tabpos="14">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="cross/windows/windows_thread.h" open="1" top="0" tabpos="20">
+	<File name="cross/windows/windows_thread.h" open="0" top="0" tabpos="15">
 		<Cursor position="3093" topLine="55" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="1">
@@ -97,7 +97,7 @@
 	<File name="linux/c_os.cpp" open="0" top="0" tabpos="33">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/c_os.h" open="1" top="0" tabpos="15">
+	<File name="linux/c_os.h" open="0" top="0" tabpos="11">
 		<Cursor position="55" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_file.cpp" open="0" top="0" tabpos="25">
@@ -121,7 +121,7 @@
 	<File name="linux/c_os_file.cpp" open="0" top="0" tabpos="26">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/c_os_file.h" open="1" top="0" tabpos="11">
+	<File name="linux/c_os_file.h" open="0" top="0" tabpos="8">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="linux/c_os_graphics.h" open="0" top="0" tabpos="3">
@@ -133,7 +133,7 @@
 	<File name="linux/c_os_library.cpp" open="0" top="0" tabpos="32">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/c_os_message_loop.cpp" open="1" top="0" tabpos="9">
+	<File name="linux/c_os_message_loop.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="1486" topLine="42" />
 	</File>
 	<File name="linux/c_os_simple_bitmap.cpp" open="0" top="0" tabpos="0">
@@ -160,13 +160,13 @@
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="0">
 		<Cursor position="198" topLine="0" />
 	</File>
-	<File name="os/os.h" open="1" top="0" tabpos="17">
+	<File name="os/os.h" open="0" top="0" tabpos="12">
 		<Cursor position="69" topLine="0" />
 	</File>
-	<File name="os/os_thread.cpp" open="1" top="0" tabpos="3">
+	<File name="os/os_thread.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="35" topLine="0" />
 	</File>
-	<File name="os/os_thread.h" open="1" top="0" tabpos="2">
+	<File name="os/os_thread.h" open="0" top="0" tabpos="2">
 		<Cursor position="1986" topLine="78" />
 	</File>
 	<File name="simple_graphics/simple_graphics.cpp" open="0" top="0" tabpos="0">

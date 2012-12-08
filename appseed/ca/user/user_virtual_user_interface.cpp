@@ -181,16 +181,14 @@ bool virtual_user_interface::create_message_window()
    return true;
 }
 
-bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
-      const RECT& rect,
-      ::user::interaction* pparent, id id,
-      LPVOID lpParam)
+bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT & rect, ::user::interaction * pparent, id id, LPVOID lpParam)
 {
+
    if(m_bCreate)
    {
       DestroyWindow();
    }
+
    m_bCreate = true;
    if(!create_message_window())
       return FALSE;
@@ -259,7 +257,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
    cs.lpszClass         = NULL;
    cs.lpszName          = NULL;
-   cs.oswindowParent    = ::ca::null();
+   cs.hwndParent        = ::ca::null();
 
 #endif
 
@@ -380,7 +378,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
 
    cs.lpszClass   = NULL;
    cs.lpszName    = NULL;
-   cs.oswindowParent  = ::ca::null();
+   cs.hwndParent  = ::ca::null();
 
 #endif
 
@@ -640,7 +638,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
 
-   
+
 
    ::ca::smart_pointer < ::gen::message::base > spbase;
 

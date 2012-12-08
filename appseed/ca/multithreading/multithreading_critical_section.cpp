@@ -121,18 +121,23 @@ critical_section::~critical_section()
    pthread_mutex_destroy (&m_mutex);
 }
 
-bool critical_section::lock()
+void critical_section::lock()
 {
+
    try
    {
+
       // Acquire the mutex to access the shared resource
       pthread_mutex_lock (&m_mutex);
+
    }
    catch(...)
    {
+
       throw memory_exception(get_app());
+
    }
-   return TRUE;
+
 }
 
 
@@ -140,7 +145,9 @@ bool critical_section::lock(const duration & durationTimeout)
 {
    ASSERT(durationTimeout.is_pos_infinity());
    (void)durationTimeout;
-   return lock();
+   lock();
+   return true;
+
 }
 
 bool critical_section::unlock()

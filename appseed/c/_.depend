@@ -2499,8 +2499,11 @@
 1354899562 /ca2/app/appseed/c/cross/cross.h
 	"c/cross/windows/windows.h"
 
-1354899654 /ca2/app/appseed/c/cross/windows/windows.h
+1354909044 /ca2/app/appseed/c/cross/windows/windows.h
+	"windows_user.h"
 	"windows_thread.h"
 
 1354901877 /ca2/app/appseed/c/cross/windows/windows_thread.h
+
+1354909044 /ca2/app/appseed/c/cross/windows/windows_user.h
 

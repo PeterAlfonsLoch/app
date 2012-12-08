@@ -48,7 +48,7 @@ public:
 
    using sync_object::lock;
 
-   virtual bool lock(const duration & durationTimeout = ::duration::infinite());
+   virtual bool lock(const duration & durationTimeout);
 
    using sync_object::wait;
 
