@@ -759,6 +759,26 @@ InitFailure:
             return m_iReturnCode;
          }
 
+      }
+      catch(::exit_exception &)
+      {
+         
+         System.os().post_to_all_threads(WM_QUIT, 0, 0);
+
+         goto exit_application;
+
+      }
+      catch(...)
+      {
+
+         goto exit_application;
+
+      }
+
+
+      try
+      {
+
          TRACE(string(typeid(*this).name()) + " on_run");;
          m_iReturnCode = 0;
          m_bReady = true;
@@ -767,29 +787,63 @@ InitFailure:
          {
             ::OutputDebugStringW(L"application::main on_run termination failure");
          }
-         if(is_system())
-         {
-            System.os().post_to_all_threads(WM_QUIT, 0, 0);
-         }
-         try
-         {
-            m_iReturnCode = exit();
-         }
-         catch(...)
-         {
-            m_iReturnCode = -1;
-         }
 
-         return 0;
       }
       catch(::exit_exception &)
       {
-
+         
          System.os().post_to_all_threads(WM_QUIT, 0, 0);
+
+         goto exit_application;
+
+      }
+      catch(...)
+      {
+
+         goto exit_application;
 
       }
 
-      return 0;
+      try
+      {
+          
+         if(is_system())
+         {
+
+            System.os().post_to_all_threads(WM_QUIT, 0, 0);
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+exit_application:
+
+      try
+      {
+
+         m_iReturnCode = exit();
+
+      }
+      catch(::exit_exception &)
+      {
+         
+         System.os().post_to_all_threads(WM_QUIT, 0, 0);
+
+         m_iReturnCode = -1;
+
+      }
+      catch(...)
+      {
+
+         m_iReturnCode = -1;
+
+      }
+
+      return m_iReturnCode;
 
    }
 

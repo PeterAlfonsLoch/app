@@ -1057,8 +1057,24 @@ namespace plane
 
       ::planebase::application::finalize();
 
+      try
+      {
+
+         if(m_spportforward.is_set())
+         {
+
+            m_spportforward.destroy();
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
 
       return true;
+
    }
 
 
