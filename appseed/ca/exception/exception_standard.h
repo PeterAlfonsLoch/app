@@ -109,7 +109,7 @@ public:
       ::base_exception(papp),
       m_iSignal(iSignal),
       m_siginfo(*psiginfo),
-      m_ucontext(*(ucontext_t *)pc) { _ASSERTE(psiginfo != 0); }
+      m_ucontext(*(ucontext_t *)pc) { /*_ASSERTE(psiginfo != 0);*/ }
    standard_exception(const standard_exception& se) :
       ca(se),
       ::call_stack(se),
