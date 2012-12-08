@@ -237,7 +237,9 @@ namespace userstack
 
             }
 
-     		   string strIcon = App(Session.m_pappCurrent).dir().matter("mainframe/icon48.png");
+            ::ca::application * pappCurrent = Session.m_pappCurrent;
+
+     		   string strIcon = App(papp).dir().matter("mainframe/icon48.png");
             pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
 	   	   if(App(Session.m_pappCurrent).file().exists(strIcon))
             {

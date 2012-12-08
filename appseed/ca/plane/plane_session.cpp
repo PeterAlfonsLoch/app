@@ -257,7 +257,7 @@ namespace plane
 
 
 
-      m_pappCurrent = papp;
+      //m_pappCurrent = papp;
 
 
 

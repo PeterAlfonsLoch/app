@@ -375,7 +375,8 @@ namespace sockets
             if(ppair->m_value != NULL)
             {
                TRACE("tmout sckt(%d):\"%s\"", ppair->m_key, ppair->m_value->oprop("meta_info").get_string());
-               TRACE("tmout sckt(%d):remote_address=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress());
+               TRACE("tmout sckt(%d):remote_address=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress().get_display_number());
+               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress().get_canonical_name());
             }
             ppair = m_sockets.PGetNextAssoc(ppair);
          }
