@@ -348,7 +348,7 @@ namespace gen
       */
 
 
-      bool AcpToUtf8(string & str, const char * lpcsz)
+/*      bool AcpToUtf8(string & str, const char * lpcsz)
       {
          return MultiByteToMultiByte(CodePageUtf8, str, CodePageAnsi, lpcsz);
       }
@@ -357,7 +357,7 @@ namespace gen
       {
          return MultiByteToMultiByte(CodePageAnsi, str, CodePageUtf8, lpcsz);
       }
-
+*
 
       bool multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz)
       {
@@ -369,7 +369,7 @@ namespace gen
          return MultiByteToMultiByte(CP_UTF8, str, uiCodePageSrc, lpcsz, nCount);
       }
 
-
+/*
       bool OemToUtf8(string & str, const char * lpcsz)
       {
          return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, lpcsz);
@@ -379,7 +379,7 @@ namespace gen
       {
          return MultiByteToMultiByte(CP_UTF8, str, CP_OEMCP, lpcsz, nCount);
       }
-
+*/
       wstring utf8_to_unicode(const char * lpcsz, strsize iCount)
       {
          return MultiByteToUnicode(CP_UTF8, lpcsz, (strsize) iCount).detach();

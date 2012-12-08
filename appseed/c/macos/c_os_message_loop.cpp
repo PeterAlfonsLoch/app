@@ -1,6 +1,7 @@
 #include "framework.h"
 
 
+/*
 class sys_message_queue
 {
 public:
@@ -68,21 +69,24 @@ WINBOOL DispatchMessage(MSG * pmsg)
    return TRUE;
 }
 
+ */
 
 void _c_simple_message_loop()
 {
 
 
-   MSG msg;
-	while(GetMessage(&msg))
+   MESSAGE msg;
+	while(GetMessageW(&msg, ::ca::null(), 0, 0))
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+	//	TranslateMessage(&msg);
+		// DispatchMessage(&msg);
 	}
 
 
 
 }
+
+/*
 
 WINBOOL sys_message_queue::GetMessage(MSG * pmsg)
 {
@@ -152,3 +156,5 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 
    return m_threadptra[m_threadptra.get_count() - 1];
 }
+
+*/

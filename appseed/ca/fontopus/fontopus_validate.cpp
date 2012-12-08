@@ -9,12 +9,15 @@
 
 #endif
 
-string chunk_split (const string & body, int chunklen = 76, const string & end = "\r\n")
+string chunk_split (const string & body, int chunklen = 76, const string & end = "\r\n");
+
+
+string chunk_split (const string & body, int chunklen, const string & end)
 {
 
    int pos = 0;
    string strRet;
-   int iRead;
+   long iRead;
    while(pos < body.get_length())
    {
       iRead = min(chunklen, body.get_length() - pos);

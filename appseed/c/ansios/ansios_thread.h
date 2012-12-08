@@ -30,7 +30,7 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
 
 #define PeekMessage PeekMessageW
 
-CLASS_DECL_c DWORD WINAPI GetThreadId(HANDLE Thread);
+CLASS_DECL_c DWORD WINAPI GetThreadId(simple_event * Thread);
 
 #define PostThreadMessage  PostThreadMessageW
 

@@ -126,8 +126,10 @@ CloseHandle(
    {
       case win_handle::type_file:
          bOk = __win_CloseFile(hObject);
-      case win_handle::type_thread:
-         bOk = __win_CloseThread(hObject);
+/*      case win_handle::type_thread:
+         bOk = __win_CloseThread(hObject);*/
+      default:
+         break;
    };
    delete hObject;
    return bOk;

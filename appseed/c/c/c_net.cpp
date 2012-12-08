@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 #include <netdb.h>
 #endif
 
@@ -50,7 +50,11 @@ static const unsigned char index_hex[256] = {
    XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX,
 };
 
-#if defined(LINUX)
+
+#if defined(MACOS)
+#define pr_s6_addr16 __u6_addr.__u6_addr16
+#define pr_s6_addr __u6_addr.__u6_addr8
+#elif defined(LINUX)
 #define pr_s6_addr16 __in6_u.__u6_addr16
 #define pr_s6_addr __in6_u.__u6_addr8
 #else
@@ -104,7 +108,7 @@ CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
       } else if (*s) {
          return 0; /* bad character */
       }
-      addr->pr_s6_addr16[section++] = HTONS((unsigned short)val);
+      addr->pr_s6_addr16[section++] = htons((unsigned short)val);
    }
 
    if (*s == '.') {
@@ -256,7 +260,7 @@ CLASS_DECL_c vsstring to_string(const in6_addr * addr)
          section += double_colon_length;
          continue;
       }
-      val = NTOHS(addr->pr_s6_addr16[section]);
+      val = ntohs(addr->pr_s6_addr16[section]);
       if (val > 0xfff) {
          STUFF(basis_hex[val >> 12]);
       }
@@ -466,7 +470,7 @@ CLASS_DECL_c unsigned long c_inet_addr(const char * src)
    if(stra.get_count() == 1)
    {
 
-      return HTONL(c_inet_to_ui(src));
+      return htonl(c_inet_to_ui(src));
 
    }
    else

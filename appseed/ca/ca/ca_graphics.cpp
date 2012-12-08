@@ -1129,7 +1129,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(MACOS)
 
    bool graphics::ResetDC(const DEVMODE* lpDevMode)
    {

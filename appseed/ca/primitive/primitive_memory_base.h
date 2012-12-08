@@ -598,8 +598,8 @@ namespace primitive
    inline void memory_base::append(const memory_base & mem, memory_position iStart, memory_size iCount)
    {
 
-      if(iStart < 0)
-         iStart += this->get_size();
+      if((memory_offset)iStart < 0)
+         *((memory_offset*)iStart) += this->get_size();
 
       if(iStart > this->get_size())
          return;

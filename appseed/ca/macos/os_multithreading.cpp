@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout, BOOL UNUSED(bAlertable))
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL UNUSED(bAlertable))
 {
 
    DWORD start;
@@ -54,7 +54,7 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, BOOL bWa
 
 
 
-DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, BOOL bWaitForAll, DWORD dwTimeout)
+DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout)
 {
 
    return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
@@ -62,10 +62,18 @@ DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, BOOL bWait
 }
 
 
+DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwTimeout, bool bAlertable)
+{
+   
+   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
+   
+}
+
+
 DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwTimeout)
 {
 
-   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, FALSE);
+   return WaitForSingleObjectEx(pwaitable, dwTimeout, FALSE);
 
 }
 

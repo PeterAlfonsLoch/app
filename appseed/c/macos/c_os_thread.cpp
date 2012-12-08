@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
+/*os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
 {
    m_pfn = pfn;
    m_pv = pv;
@@ -46,7 +46,7 @@ void * thread_proc_create_thread(LPVOID lpparameter)
 
    }*/
 
-   DWORD dwRet = 0xffffffff;
+/*   DWORD dwRet = 0xffffffff;
 
    try
    {
@@ -69,7 +69,7 @@ void * thread_proc_create_thread(LPVOID lpparameter)
 }
 
 
-HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
+HTHREAD start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
 {
 
    UNREFERENCED_PARAMETER(iPriority);
@@ -78,7 +78,7 @@ HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
 
 }
 
-HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, DWORD f, LPDWORD lpdwId)
+HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, DWORD f, LPDWORD lpdwId)
 {
 
    os_thread * pthread = new os_thread(pfn, pv);
@@ -183,4 +183,4 @@ DWORD WINAPI thread_layer::proc(LPVOID lp)
    
    return player->run();
    
-}
+}*/

@@ -10,7 +10,7 @@
       {
       public:
 
-#ifdef HAVE_OPENSSL
+#if defined(HAVE_OPENSSL) || defined(MACOS)
          ssl_client_context_map                       m_clientcontextmap;
 #endif
          AjpBaseSocket::Initializer *                 m_pajpbasesocketinit;

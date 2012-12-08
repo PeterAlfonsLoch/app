@@ -80,7 +80,7 @@ public:
    DWORD (WINAPI * m_pfn)(LPVOID);
    LPVOID           m_pv;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
    simple_event *    m_peventThread;
 #endif
 

@@ -178,7 +178,7 @@ static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, simple_eve
 
    pthread_attr_t threadAttr;
 
-   struct sched_param param;  // scheduling priority
+//   struct sched_param param;  // scheduling priority
 
    // initialize the thread attribute
    pthread_attr_init(&threadAttr);
@@ -332,7 +332,7 @@ DWORD WINAPI ResumeThread(simple_event * hThread)
 }
 
 
-BOOL WINAPI SetThreadPriority(simple_event * hThread, int nPriority)
+WINBOOL WINAPI SetThreadPriority(simple_event * hThread, int nPriority)
 {
    mutex_lock lock(pendingThreadsLock);
 
@@ -349,7 +349,7 @@ BOOL WINAPI SetThreadPriority(simple_event * hThread, int nPriority)
    // Store the new priority.
    threadInfo->m_value.nPriority = nPriority;
 
-   return true;
+   return TRUE;
 }
 
 
@@ -372,7 +372,7 @@ DWORD WINAPI TlsAlloc()
 }
 
 
-BOOL WINAPI TlsFree(DWORD dwTlsIndex)
+WINBOOL WINAPI TlsFree(DWORD dwTlsIndex)
 {
    mutex_lock lock(tlsAllocationLock);
 
@@ -447,7 +447,7 @@ LPVOID WINAPI TlsGetValue(simple_event * hthread, DWORD dwTlsIndex)
 }
 
 
-BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
+WINBOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
    ThreadLocalData* threadData = currentThreadData;
 
@@ -480,7 +480,7 @@ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
    return true;
 }
 
-BOOL WINAPI TlsSetValue(simple_event * hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
+WINBOOL WINAPI TlsSetValue(simple_event * hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
@@ -755,7 +755,7 @@ mq * get_mq()
 
 }
 
-bool is_thread(HANDLE h)
+bool is_thread(simple_event * h)
 {
    return GetThreadId(h) != 0;
 }
@@ -825,7 +825,7 @@ restart:
 }
 
 
-CLASS_DECL_c BOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
+CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
 {
 
    mq * pmq = get_mq();
@@ -873,7 +873,7 @@ CLASS_DECL_c DWORD WINAPI GetThreadId(simple_event * Thread)
 
 }
 
-CLASS_DECL_c HANDLE WINAPI get_thread_handle(DWORD dw)
+CLASS_DECL_c simple_event *  WINAPI get_thread_handle(DWORD dw)
 {
 
    mutex_lock mlThreadIdHandle(threadIdHandleLock);
@@ -889,10 +889,10 @@ CLASS_DECL_c HANDLE WINAPI get_thread_handle(DWORD dw)
 }
 
 
-CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam)
+CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam)
 {
 
-   HANDLE h = ::get_thread_handle(idThread);
+   simple_event *  h = ::get_thread_handle(idThread);
 
    if(h == NULL)
       return FALSE;

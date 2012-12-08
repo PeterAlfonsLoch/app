@@ -36,7 +36,7 @@ public:
 
    static bool s_bDoStackTrace;
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
    void * m_caller_address;
 

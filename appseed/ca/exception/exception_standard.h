@@ -41,9 +41,9 @@
 
 #if !defined(MACOS)
 #include <ucontext.h>
+#endif
 #include <sys/ucontext.h>
 #include <signal.h>
-#endif
 
 #endif
 
@@ -126,14 +126,18 @@ public:
 
 };
 
-#ifdef LINUX
-typedef struct _sig_ucontext {
+#if defined(LINUX)
+
+typedef struct _sig_ucontext
+{
    unsigned long     uc_flags;
    struct ucontext   *uc_link;
    stack_t           uc_stack;
    sigcontext uc_mcontext;
    sigset_t          uc_sigmask;
+
 } sig_ucontext_t;
+
 #endif
 
 namespace exception
@@ -146,10 +150,18 @@ namespace exception
    #if defined(LINUX) || defined(MACOS)
       standard_access_violation (::ca::application * papp, int signal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
+#ifdef LINUX
 #ifdef _LP64
          ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
 #else
          ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+#endif
+#else
+#ifdef _LP64
+      ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip),
+#else
+      ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip),
+#endif
 #endif
          ::base_exception(papp),
          ::standard_exception(papp, signal, psiginfo, pc)

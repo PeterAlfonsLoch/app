@@ -54,7 +54,7 @@ namespace ca
 
 #endif
 
-#ifndef LINUX
+#if !defined(LINUX) && !defined(MACOS)
 
    window* window::GetAncestor(UINT gaFlags) const
    {

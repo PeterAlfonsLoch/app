@@ -143,10 +143,16 @@ namespace ca4
          strFile = System.dir().appdata("cache/" + strFile + ".exists_question");
          string strCache = Application.file().as_string(strFile);
          if(strCache.has_char())
+         {
             if(strCache == "yes")
+            {
                return true;
+            }
             else if(strCache == "no")
+            {
                return false;
+            }
+         }
 
          if(puser == NULL && !get_app()->is_system() 
          && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_puser != NULL) ) // && !(bool)set["disable_ca2_sessid"] && !(bool)set["optional_ca2_sessid"])

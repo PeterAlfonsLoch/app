@@ -48,15 +48,15 @@
 
 CLASS_DECL_c HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD unusedThreadId);
 CLASS_DECL_c DWORD WINAPI ResumeThread(HTHREAD hThread);
-CLASS_DECL_c BOOL WINAPI SetThreadPriority(HTHREAD hThread, int nPriority);
+CLASS_DECL_c WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int nPriority);
 CLASS_DECL_c int WINAPI GetThreadPriority(HTHREAD hThread);
 
 CLASS_DECL_c VOID WINAPI Sleep(DWORD dwMilliseconds);
 
 CLASS_DECL_c DWORD WINAPI TlsAlloc();
-CLASS_DECL_c BOOL WINAPI TlsFree(DWORD dwTlsIndex);
+CLASS_DECL_c WINBOOL WINAPI TlsFree(DWORD dwTlsIndex);
 CLASS_DECL_c LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex);
-CLASS_DECL_c BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
+CLASS_DECL_c WINBOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue);
 
 void WINAPI TlsShutdown();
 

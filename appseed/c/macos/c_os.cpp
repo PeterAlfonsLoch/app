@@ -46,7 +46,7 @@ LPWSTR GetCommandLineW()
 }
 
 
-
+/*
 struct thread_struct
 {
    LPTHREAD_START_ROUTINE lpStartAddress;
@@ -114,3 +114,4 @@ __win_CloseThread(
 
 
 
+*/
