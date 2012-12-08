@@ -127,13 +127,9 @@
 		071593931673672E00D7190F /* sockets_http_transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715931C1673672E00D7190F /* sockets_http_transaction.cpp */; };
 		071593941673672E00D7190F /* sockets_httpd_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715931D1673672E00D7190F /* sockets_httpd_socket.cpp */; };
 		07BD559816215FA2008E31F0 /* api_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558916215FA2008E31F0 /* api_debug.h */; };
-		07BD559916215FA2008E31F0 /* api_integer_to_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558A16215FA2008E31F0 /* api_integer_to_string.cpp */; };
-		07BD559A16215FA2008E31F0 /* api_integer_to_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558B16215FA2008E31F0 /* api_integer_to_string.h */; };
 		07BD559B16215FA2008E31F0 /* api_linux.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558C16215FA2008E31F0 /* api_linux.h */; };
 		07BD559C16215FA2008E31F0 /* api_muldiv64.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558D16215FA2008E31F0 /* api_muldiv64.h */; };
 		07BD559D16215FA2008E31F0 /* api_rotate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558E16215FA2008E31F0 /* api_rotate.h */; };
-		07BD559E16215FA2008E31F0 /* api_string_to_integer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD558F16215FA2008E31F0 /* api_string_to_integer.cpp */; };
-		07BD559F16215FA2008E31F0 /* api_string_to_integer.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD559016215FA2008E31F0 /* api_string_to_integer.h */; };
 		07BD55A016215FA2008E31F0 /* api_string.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD559116215FA2008E31F0 /* api_string.cpp */; };
 		07BD55A116215FA2008E31F0 /* api_string.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD559216215FA2008E31F0 /* api_string.h */; };
 		07BD55A216215FA2008E31F0 /* api.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD559316215FA2008E31F0 /* api.h */; };
@@ -1934,13 +1930,9 @@
 		0715931C1673672E00D7190F /* sockets_http_transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_http_transaction.cpp; sourceTree = "<group>"; };
 		0715931D1673672E00D7190F /* sockets_httpd_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_httpd_socket.cpp; sourceTree = "<group>"; };
 		07BD558916215FA2008E31F0 /* api_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_debug.h; sourceTree = "<group>"; };
-		07BD558A16215FA2008E31F0 /* api_integer_to_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_integer_to_string.cpp; sourceTree = "<group>"; };
-		07BD558B16215FA2008E31F0 /* api_integer_to_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_integer_to_string.h; sourceTree = "<group>"; };
 		07BD558C16215FA2008E31F0 /* api_linux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_linux.h; sourceTree = "<group>"; };
 		07BD558D16215FA2008E31F0 /* api_muldiv64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_muldiv64.h; sourceTree = "<group>"; };
 		07BD558E16215FA2008E31F0 /* api_rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_rotate.h; sourceTree = "<group>"; };
-		07BD558F16215FA2008E31F0 /* api_string_to_integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_string_to_integer.cpp; sourceTree = "<group>"; };
-		07BD559016215FA2008E31F0 /* api_string_to_integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_string_to_integer.h; sourceTree = "<group>"; };
 		07BD559116215FA2008E31F0 /* api_string.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_string.cpp; sourceTree = "<group>"; };
 		07BD559216215FA2008E31F0 /* api_string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_string.h; sourceTree = "<group>"; };
 		07BD559316215FA2008E31F0 /* api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api.h; sourceTree = "<group>"; };
@@ -3647,9 +3639,9 @@
 				071592C11673672E00D7190F /* http */,
 				071592D41673672E00D7190F /* internal */,
 				071592D71673672E00D7190F /* log */,
-				071592DB1673672E00D7190F /* ref_Anders_Hedstrom_sockets_library.txt */,
 				071592DC1673672E00D7190F /* sip */,
 				071592F31673672E00D7190F /* smtp */,
+				071592DB1673672E00D7190F /* ref_Anders_Hedstrom_sockets_library.txt */,
 				071592F81673672E00D7190F /* sockets.h */,
 				071592F91673672E00D7190F /* sockets_application_interface.cpp */,
 				071592FA1673672E00D7190F /* sockets_application_interface.h */,
@@ -4070,13 +4062,9 @@
 			isa = PBXGroup;
 			children = (
 				07BD558916215FA2008E31F0 /* api_debug.h */,
-				07BD558A16215FA2008E31F0 /* api_integer_to_string.cpp */,
-				07BD558B16215FA2008E31F0 /* api_integer_to_string.h */,
 				07BD558C16215FA2008E31F0 /* api_linux.h */,
 				07BD558D16215FA2008E31F0 /* api_muldiv64.h */,
 				07BD558E16215FA2008E31F0 /* api_rotate.h */,
-				07BD558F16215FA2008E31F0 /* api_string_to_integer.cpp */,
-				07BD559016215FA2008E31F0 /* api_string_to_integer.h */,
 				07BD559116215FA2008E31F0 /* api_string.cpp */,
 				07BD559216215FA2008E31F0 /* api_string.h */,
 				07BD559316215FA2008E31F0 /* api.h */,
@@ -6682,11 +6670,9 @@
 				CE92A6B015707CA50016C580 /* fs_remote_native_fs.h in Headers */,
 				CE8ED9A01578B4880082203F /* os_multithreading.h in Headers */,
 				07BD559816215FA2008E31F0 /* api_debug.h in Headers */,
-				07BD559A16215FA2008E31F0 /* api_integer_to_string.h in Headers */,
 				07BD559B16215FA2008E31F0 /* api_linux.h in Headers */,
 				07BD559C16215FA2008E31F0 /* api_muldiv64.h in Headers */,
 				07BD559D16215FA2008E31F0 /* api_rotate.h in Headers */,
-				07BD559F16215FA2008E31F0 /* api_string_to_integer.h in Headers */,
 				07BD55A116215FA2008E31F0 /* api_string.h in Headers */,
 				07BD55A216215FA2008E31F0 /* api.h in Headers */,
 				07BD55A416215FA2008E31F0 /* mktime.h in Headers */,
@@ -7638,8 +7624,6 @@
 				CE92A6B6157110520016C580 /* zip_zip.cpp in Sources */,
 				CE4D2C5C1571667300D43A55 /* macos_debug.cpp in Sources */,
 				CE8ED99F1578B4880082203F /* os_multithreading.cpp in Sources */,
-				07BD559916215FA2008E31F0 /* api_integer_to_string.cpp in Sources */,
-				07BD559E16215FA2008E31F0 /* api_string_to_integer.cpp in Sources */,
 				07BD55A016215FA2008E31F0 /* api_string.cpp in Sources */,
 				07BD55A316215FA2008E31F0 /* mktime.cpp in Sources */,
 				07BD55AE16215FE7008E31F0 /* ca_edit.cpp in Sources */,

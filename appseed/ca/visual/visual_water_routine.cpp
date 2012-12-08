@@ -551,9 +551,9 @@ namespace visual
       long R;
       long G;
       long B;
-      int ir;
-      int ig;
-      int ib;
+      long ir;
+      long ig;
+      long ib;
 
       R = rgba_get_r(color)-shift;
       G = rgba_get_g(color)-shift;

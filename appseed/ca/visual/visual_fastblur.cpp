@@ -28,9 +28,9 @@ namespace visual
          return false;
       if(!m_p->create(cx, cy))
          return false;
-      int w       = cx;
+//      int w       = cx;
       int h       = cy;
-      int wh      = w * h;
+//      int wh      = w * h;
       int scan    = m_p->scan;
       int div     = radius + radius + 1;
       m_iRadius   = radius;

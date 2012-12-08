@@ -1,6 +1,11 @@
 #include "framework.h"
 
 
+void StringToProp(const string &s, var * value);
+
+string FlagsToString(const CUInt32PCharPair *pairs, unsigned num, uint32 flags);
+
+
 void StringToProp(const string &s, var * value)
 {
   *value = s;

@@ -52,9 +52,15 @@ debug_module_t mod_aes_cbc = {
 };
 
 
+err_status_t aes_cbc_alloc(cipher_t ** c, int key_len);
+err_status_t aes_cbc_dealloc(cipher_t * c);
+err_status_t aes_cbc_decrypt(aes_cbc_ctx_t * c, unsigned char *data, unsigned int *bytes_in_data);
+
+
 
 err_status_t
-aes_cbc_alloc(cipher_t **c, int key_len) {
+aes_cbc_alloc(cipher_t **c, int key_len)
+{
   extern cipher_type_t aes_cbc;
   uint8_t *pointer;
   int tmp;
@@ -86,8 +92,10 @@ aes_cbc_alloc(cipher_t **c, int key_len) {
 }
 
 err_status_t
-aes_cbc_dealloc(cipher_t *c) {
-  extern cipher_type_t aes_cbc;
+aes_cbc_dealloc(cipher_t *c)
+{
+
+   extern cipher_type_t aes_cbc;
 
   /* zeroize entire state*/
   octet_string_set_to_zero((uint8_t *)c, 
@@ -99,7 +107,8 @@ aes_cbc_dealloc(cipher_t *c) {
   /* decrement ref_count */
   aes_cbc.ref_count--;
   
-  return err_status_ok;  
+  return err_status_ok;
+   
 }
 
 err_status_t
@@ -198,13 +207,15 @@ aes_cbc_encrypt(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_decrypt(aes_cbc_ctx_t *c,
       unsigned char *data, 
-      unsigned int *bytes_in_data) {
-  int i;
-  v128_t state, previous;
-  unsigned char *input  = data;   /* pointer to data being read    */
-  unsigned char *output = data;   /* pointer to data being written */
-  int bytes_to_encr = *bytes_in_data;
-  uint8_t tmp;
+      unsigned int *bytes_in_data)
+{
+
+   int i;
+   v128_t state, previous;
+   unsigned char *input  = data;   /* pointer to data being read    */
+   unsigned char *output = data;   /* pointer to data being written */
+   int bytes_to_encr = *bytes_in_data;
+   uint8_t tmp;
 
   /*
    * verify that we're 16-octet aligned
@@ -254,7 +265,8 @@ aes_cbc_decrypt(aes_cbc_ctx_t *c,
     bytes_to_encr -= 16;
   }
 
-  return err_status_ok;
+   return err_status_ok;
+   
 }
 
 

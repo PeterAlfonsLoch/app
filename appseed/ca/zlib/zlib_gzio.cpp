@@ -12,6 +12,9 @@
 
 #include "zutil.h"
 
+#ifdef MACOS
+#define _fdopen fdopen
+#endif
 
 #ifdef NO_DEFLATE       /* for compatibility with old definition */
 #  define NO_GZCOMPRESS

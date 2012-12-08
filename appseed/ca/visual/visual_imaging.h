@@ -342,25 +342,16 @@ public:
    virtual void free(FIBITMAP * pfibitmap);
 };
 
-VOID EmbossedTextOut(
-     HDC                    hDC,
-     int                    x,
-     int                    y,
-//     char *                  lpsz,
-     LPTSTR                  lpsz,
-     UINT                   cb,
-     COLORREF               crText,
-     COLORREF               crShadow,
-     int                    cx,
-     int                    cy);   
-
-HFONT CreateScaledFont(
-     HDC                    hDC,
-     LPRECT                 lpRect,
-    LPRECT               lpWndRect,
-     LPTSTR                  lpszFormat,
-     int                    anPosX[],
-     int* nPosY);
+void EmbossedTextOut(
+     HDC                   hDC,
+     int                   x,
+     int                   y,
+     const char *          lpcsz,
+     size_t                cb,
+     COLORREF              crText,
+     COLORREF              crShadow,
+     int                   cx,
+     int                   cy);
 
 void GetMultiLineTextExtent(HDC hDC, stringa *pArray, LPSIZE lpSize);
 void DrawMultiLineText(HDC hDC, stringa *pArray);

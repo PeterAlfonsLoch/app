@@ -6,6 +6,10 @@
 #include <gdiplus.h>
 #define new DEBUG_NEW
 
+
+void fastblur(::ca::dib * pimg, int radius);
+
+
 #endif
 
 #define AC_SRC_ALPHA                0x01
@@ -88,7 +92,7 @@ imaging::~imaging()
 
 #else
 
-   BITMAPINFO * pi = FreeImage_GetInfo(pFreeImage);
+   //BITMAPINFO * pi = FreeImage_GetInfo(pFreeImage);
 
 
 
@@ -308,52 +312,41 @@ return hBitmapSource;
 * If crShadow == -1, COLOR_BTNSHADOW will be used.
 *
 *****************************************************************************/
-VOID EmbossedTextOut(
+void EmbossedTextOut(
    HDC                     hDC,
    int                     x,
    int                     y,
-   char *                   lpsz,
-   UINT                    cb,
+   const char *            lpcsz,
+   size_t                  cb,
    COLORREF                crText,
    COLORREF                crShadow,
    int                     cx,
    int                     cy)
 {
+
+
+#ifdef WINDOWSEX
+
+   /* If text length is -1, use lstrlen to get the length
+    ** of the text.
+    */
+   if (cb == -1)
+      cb = strlen(lpcsz);
+   
+   /* If the shadow or text color is -1, use the
+    ** system color for that one.
+    */
+   
    COLORREF                crOld;
    UINT                    uMode;
    SIZE                    sizeText;
    RECT                    rcText;
-
-   /* If text length is -1, use lstrlen to get the length
-   ** of the text.
-   */
-   if (cb == -1)
-      cb = strlen(lpsz);
-
-   /* If the shadow or text color is -1, use the
-   ** system color for that one.
-   */
-
-#ifdef WINDOWSEX
-
+   
    if (crShadow == (COLORREF)-1)
       crShadow = GetSysColor (COLOR_BTNSHADOW);
-
+   
    if (crText == (COLORREF)-1)
       crText = GetSysColor (COLOR_BTNTEXT);
-
-#else
-
-   if (crShadow == (COLORREF)-1)
-      crShadow = ARGB(255, 192, 192, 187);
-
-   if (crText == (COLORREF)-1)
-      crShadow = ARGB(255, 0, 0, 0);
-
-#endif
-
-
-#ifdef WINDOWSEX
 
    /* setup the DC, saving off the old values
    */
@@ -412,7 +405,7 @@ VOID EmbossedTextOut(
 * Returns HFONT or NULL if one could not be created
 *
 *****************************************************************************/
-HFONT CreateScaledFont(
+/*HFONT CreateScaledFont(
    HDC                     hDC,
    LPRECT                  lpRect,
    LPRECT               lpWndRect,
@@ -513,7 +506,7 @@ HFONT CreateScaledFont(
    return hFont;
 
 }
-
+*/
 
 void GetMultiLineTextExtent(HDC hDC, stringa * pArray, LPSIZE lpSize)
 {
@@ -963,7 +956,7 @@ bool imaging::GrayVRCP(
 
    class size size = pbitmap->get_size();
 
-   UINT uiScanLines = size.cy;
+//   UINT uiScanLines = size.cy;
    UINT cbLine = ((size.cx  * 3 + 3) & ~3);
    UINT cbImage = size.cy * cbLine;
 
@@ -1267,7 +1260,7 @@ bool imaging::GetDeviceContext24BitsCC(
    {
       try
       {
-         ::ca::bitmap * pbmp = pbmpOld;
+//         ::ca::bitmap * pbmp = pbmpOld;
 
          throw not_implemented(get_app());
          /*         if(!pbmp->GetObject(sizeof(bm), &bm))
@@ -1298,8 +1291,8 @@ bool imaging::GetDeviceContext24BitsCC(
             delete pe;
             throw 4000;
          }
-         LPVOID lpv = memorystorage.get_data();
-         point pointViewport = pdc->GetViewportOrg();
+//         LPVOID lpv = memorystorage.get_data();
+  //       point pointViewport = pdc->GetViewportOrg();
 
          UINT uiStartScanLine = max(0, bm.bmHeight - y - cy);
          UINT uiScanLines = cy + min(0, bm.bmHeight - y - cy);
@@ -2452,10 +2445,11 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
    if(pbitmap == NULL)
       return NULL;
 
-   HBITMAP hbitmap = NULL;
 
 #ifdef WINDOWSEX
 
+   HBITMAP hbitmap = NULL;
+   
    Gdiplus::Color colorBk(0, 0, 0, 0);
 
    ((Gdiplus::Bitmap *) (pbitmap.m_p->get_os_data()))->GetHBITMAP(colorBk, &hbitmap);
@@ -3353,6 +3347,8 @@ return true;
 //
 //BImage a;
 
+
+void fastblur(::ca::dib * pimg, int radius);
 
 
 

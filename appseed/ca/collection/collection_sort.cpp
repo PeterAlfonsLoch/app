@@ -4,6 +4,15 @@
 namespace  sort
 {
 
+   void QuickSort(
+                  base_array<DWORD, DWORD> & base_array,
+                  int fCompare(const index, const index),
+                  void swap(void * lpVoidSwapArg, index iA, index iB),
+                  void * lpVoidSwapArg);
+   
+   void BubbleSort(LPINT lpInt, int size);
+   
+
 
    void QuickSort(
       base_array<DWORD, DWORD> & base_array,

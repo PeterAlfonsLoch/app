@@ -287,6 +287,7 @@
 		07159292167353E700D7190F /* c_net.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_net.h; sourceTree = "<group>"; };
 		07159293167353E700D7190F /* c_string_to_integer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_string_to_integer.cpp; sourceTree = "<group>"; };
 		07159294167353E700D7190F /* c_string_to_integer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_string_to_integer.h; sourceTree = "<group>"; };
+		07159397167396C800D7190F /* windows_user.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = windows_user.cpp; sourceTree = "<group>"; };
 		07237F3215F99D570018B75F /* crypt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = crypt.cpp; sourceTree = "<group>"; };
 		07237F3315F99D570018B75F /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		07237F3415F99D570018B75F /* nessie.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = nessie.cpp; sourceTree = "<group>"; };
@@ -568,6 +569,7 @@
 			children = (
 				071592881673483A00D7190F /* windows.h */,
 				071592891673483A00D7190F /* windows_thread.h */,
+				07159397167396C800D7190F /* windows_user.cpp */,
 				0715928A1673483A00D7190F /* windows_user.h */,
 			);
 			path = windows;
@@ -781,10 +783,10 @@
 				9A8897A514C24736006B4023 /* Foundation.framework */,
 				073EDDE1164E968100818801 /* Security.framework */,
 				07AB206116061BD600CD4EE2 /* ansios */,
-				071592851673483A00D7190F /* cross */,
 				CEAAA41F1461A72700DDE33F /* bsdiff */,
-				07237F3115F99D570018B75F /* crypt */,
 				07237E6315F99D310018B75F /* c */,
+				071592851673483A00D7190F /* cross */,
+				07237F3115F99D570018B75F /* crypt */,
 				CEA7AA3D14412789007E04DE /* hotplugin */,
 				CEC9A23D144B818900FEA8E6 /* macos */,
 				A10D34E215131BCC004FD312 /* os */,

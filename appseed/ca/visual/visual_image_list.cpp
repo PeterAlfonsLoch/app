@@ -207,10 +207,10 @@ int image_list::add_icon(const char * psz)
 
    ::visual::icon icon;
 
-   int iSize = min(m_size.cx, m_size.cy);
-
 #ifdef WINDOWSEX
 
+   int iSize = min(m_size.cx, m_size.cy);
+   
    icon.m_picon = (void *) (HICON) ::LoadImage(NULL, psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
 
 #endif

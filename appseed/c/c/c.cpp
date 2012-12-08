@@ -30,19 +30,3 @@ CLASS_DECL_c dword get_tick_count()
 
 
 
-#ifndef WINDOWSEX
-
-CLASS_DECL_c COLORREF GetSysColor(DWORD dw)
-{
-
-   switch(dw)
-   {
-   case COLOR_HIGHLIGHT:
-      return ARGB(255, 200, 200, 196);
-   default:
-      return ARGB(255, 0, 0, 0);
-   };
-   
-}
-
-#endif

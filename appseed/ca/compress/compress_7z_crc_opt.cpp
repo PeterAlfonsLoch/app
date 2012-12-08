@@ -7,6 +7,10 @@
 
 #define CRC_UPDATE_BYTE_2(crc, b) (table[((crc) ^ (b)) & 0xFF] ^ ((crc) >> 8))
 
+uint32 CrcUpdateT4(uint32 v, const void *data, ::primitive::memory_size size, const uint32 *table);
+
+uint32 CrcUpdateT8(uint32 v, const void *data, ::primitive::memory_size size, const uint32 *table);
+
 uint32 CrcUpdateT4(uint32 v, const void *data, ::primitive::memory_size size, const uint32 *table)
 {
   const Byte *p = (const Byte *)data;

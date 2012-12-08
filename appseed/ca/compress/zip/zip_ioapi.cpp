@@ -81,7 +81,15 @@ voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int mode
 
 
     if ((filename!=NULL) && (mode_fopen != NULL))
-        err = fopen_s(&file, filename, mode_fopen);
+#ifdef MACOS
+    {
+       file = fopen(filename, mode_fopen);
+       if(file == NULL)
+          err = errno;
+    }
+#else
+     err = fopen_s(&file, filename, mode_fopen);
+#endif
     if(err != 0)
        return NULL;
     else

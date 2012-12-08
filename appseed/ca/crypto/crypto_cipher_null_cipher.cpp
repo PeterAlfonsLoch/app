@@ -51,6 +51,15 @@
 extern debug_module_t mod_cipher;
 
 err_status_t
+null_cipher_alloc(cipher_t **c, int key_len);
+
+err_status_t
+null_cipher_dealloc(cipher_t *c);
+
+err_status_t
+null_cipher_set_iv(null_cipher_ctx_t *c, void *iv);
+
+err_status_t
 null_cipher_alloc(cipher_t **c, int key_len) {
   extern cipher_type_t null_cipher;
   uint8_t *pointer;

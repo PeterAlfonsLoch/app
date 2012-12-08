@@ -188,7 +188,7 @@ namespace exception
    #endif
    };
 
-   #ifdef LINUX
+   #if defined(LINUX) || defined(MACOS)
 
    class standard_sigfpe : public standard_exception
    {
@@ -196,10 +196,18 @@ namespace exception
    protected:
       standard_sigfpe (::ca::application * papp, int iSignal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
+#ifdef LINUX
 #ifdef _LP64
-         ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
+      ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.rip),
 #else
-         ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+      ::call_stack(papp, 3, (void *) ((sig_ucontext_t *) pc)->uc_mcontext.eip),
+#endif
+#else
+#ifdef _LP64
+      ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext->__ss.__rip),
+#else
+      ::call_stack(papp, 3, (void *) ((ucontext_t *) pc)->uc_mcontext.eip),
+#endif
 #endif
          ::base_exception(papp),
           standard_exception(papp, iSignal, psiginfo, pc) {}

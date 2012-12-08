@@ -49,6 +49,9 @@
 x917_prng_t x917_prng;
 
 err_status_t
+x917_prng_deinit();
+
+err_status_t
 x917_prng_init(rand_source_func_t random_source) {
   v128_t tmp_key;
   err_status_t status;

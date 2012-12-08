@@ -32,8 +32,9 @@ It is provided "as is" without express or implied warranty.
    } while(0);
 
 
-
+#ifndef MACOS
 #include <malloc.h>
+#endif
 
 #define USED_CONTEXT_FLAGS CONTEXT_FULL
 #ifdef WINDOWSEX

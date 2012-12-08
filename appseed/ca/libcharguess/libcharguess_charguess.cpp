@@ -23,8 +23,11 @@
 
 #include "universal.h"
 #include "string.h"
+#include "charguess.h"
 
 nsUniversalDetector* det;
+
+
 
 int CharGuessInit()
 {

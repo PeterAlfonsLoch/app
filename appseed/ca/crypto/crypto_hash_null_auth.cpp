@@ -52,6 +52,13 @@
 extern debug_module_t mod_auth;
 
 err_status_t
+null_auth_update(null_auth_ctx_t *state, uint8_t *message,
+                 int msg_octets);
+err_status_t
+null_auth_start(null_auth_ctx_t *state);
+
+
+err_status_t
 null_auth_alloc(auth_t **a, int key_len, int out_len) {
   extern auth_type_t null_auth;
   uint8_t *pointer;

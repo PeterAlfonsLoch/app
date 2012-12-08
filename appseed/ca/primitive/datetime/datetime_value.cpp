@@ -496,7 +496,7 @@ datetime::value operator + (const datetime::value & val1, const datetime::value 
       val.m_iMonth  = val1.m_iMonth + val2.m_iMonth;
       val.m_iYear   = val1.m_iYear + val2.m_iYear;
    }
-   else if(val1.m_bSpan && !val2.m_bSpan || val2.m_bSpan && !val1.m_bSpan)
+   else if((val1.m_bSpan && !val2.m_bSpan) || (val2.m_bSpan && !val1.m_bSpan))
    {
       const datetime::value * pdate = NULL;
       const datetime::value * pspan = NULL;

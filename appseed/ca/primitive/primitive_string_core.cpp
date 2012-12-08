@@ -16,11 +16,7 @@ CLASS_DECL_ca int64_t strtoi(const wchar_t * psz)
 
 // string support for template collections
 
-#if _MSC_VER >= 1100
 template<> UINT HashKey<const wchar_t *> (const wchar_t * key)
-#else
-UINT HashKey(const wchar_t * key)
-#endif
 {
    ENSURE_ARG(__is_valid_string(key));
    UINT nHash = 0;

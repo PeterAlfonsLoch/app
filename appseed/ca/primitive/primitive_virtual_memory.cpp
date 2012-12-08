@@ -12,7 +12,7 @@ namespace primitive
       m_pbComputed = NULL;
    }
 
-   virtual_memory::virtual_memory(const void * pdata, int iCount)
+   virtual_memory::virtual_memory(const void * pdata, memory_size iCount)
    {
       m_pbStorage = NULL;
       m_pbComputed = NULL;

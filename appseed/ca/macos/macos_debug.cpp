@@ -5,14 +5,15 @@
 //  Created by Lion User on 26/05/2012.
 //  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
 //
-#include "framework.h"
 #include <assert.h>
 #include <stdbool.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/sysctl.h>
 
-CLASS_DECL_ca bool AmIBeingDebugged()
+bool AmIBeingDebugged();
+
+bool AmIBeingDebugged()
 // Returns true if the current process is being debugged (either 
 // running under the debugger or has a debugger attached post facto).
 {

@@ -37,7 +37,7 @@ namespace exception
    {
    public:
 
-   #ifdef LINUX
+   #if defined(LINUX) || defined(MACOS)
       struct sigaction m_saSeg;
       struct sigaction m_saFpe;
       struct sigaction m_saSegOld;

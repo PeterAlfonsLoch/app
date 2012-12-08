@@ -132,7 +132,7 @@ bool string_format::parse(const char * & s)
       }
       if(s > start)
       {
-         m_iWidth = natoi_dup(start, s - start);
+         m_iWidth = (int) natoi_dup(start, s - start);
       }
       m_estate = state_parse_precision;
    }

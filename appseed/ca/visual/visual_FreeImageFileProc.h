@@ -1,14 +1,17 @@
 #pragma once
 
+/*
 unsigned ___ReadProc    (void *buffer, unsigned size, unsigned count, fi_handle handle);
 unsigned ___WriteProc   (void *buffer, unsigned size, unsigned count, fi_handle handle);
 int      ___SeekProc    (fi_handle handle, long offset, int origin);
 long     ___TellProc    (fi_handle handle);
 
+
 unsigned __ReadProc (void *buffer, unsigned size, unsigned count, fi_handle handle);
 unsigned __WriteProc (void *buffer, unsigned size, unsigned count, fi_handle handle);
 unsigned __ReadProc (void *buffer, unsigned size, unsigned count, fi_handle handle);
 unsigned __WriteProc (void *buffer, unsigned size, unsigned count, fi_handle handle);
+*/
 
 
 unsigned _stdcall __ReadProc2 (void *buffer, unsigned size, unsigned count, fi_handle handle);

@@ -24,7 +24,7 @@ uint64 ConvertStringToUInt64(const char *s, const char **end);
 namespace compress
 {
 
-   static const char *kCopyMethod = "Copy";
+//   static const char *kCopyMethod = "Copy";
    static const char *kLZMAMethodName = "LZMA";
    static const char *kLZMA2MethodName = "LZMA2";
    static const char *kBZip2MethodName = "BZip2";
@@ -78,7 +78,7 @@ namespace compress
 
    static const char *kDefaultMethodName = kLZMAMethodName;
 
-   static const char *kLzmaMatchFinderForHeaders = "BT2";
+//   static const char *kLzmaMatchFinderForHeaders = "BT2";
    static const uint32 kDictionaryForHeaders = 1 << 20;
    static const uint32 kNumFastBytesForHeaders = 273;
    static const uint32 kAlgorithmForHeaders = kLzmaAlgoX5;

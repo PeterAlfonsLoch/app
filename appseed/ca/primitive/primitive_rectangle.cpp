@@ -20,45 +20,51 @@ void rect::SetBottomRightSize(int iWidth, int iHeight)
 
 void rect::ExtendOnCenter(LPCRECT lpcrect)
 {
-    int cx = width();
-    int cy = height();
 
-    double dx = lpcrect->right - lpcrect->left;
-    double dy = lpcrect->bottom - lpcrect->top;
-    double dr = max(dx / cx, dy / cy);
+   int cx = width();
+   int cy = height();
 
-    int cw = (int) (cx * dr);
+   double dx = lpcrect->right - lpcrect->left;
+   double dy = lpcrect->bottom - lpcrect->top;
+   double dr = max(dx / cx, dy / cy);
+
+   int cw = (int) (cx * dr);
    int ch = (int) (cy * dr);
-   left = (long) ((dx - cw) / 2.0);
-   top = (long) ((dy - ch) / 2.0);
-    right = left + cw;
-    bottom = top + ch;
+   
+   left = (LONG) ((dx - cw) / 2.0);
+   top = (LONG) ((dy - ch) / 2.0);
+   right = left + cw;
+   bottom = top + ch;
+   
 }
 
 
 void rect::FitOnCenterOf(LPCRECT lpcrect)
 {
-    int cx = width();
-    int cy = height();
+   
+   int cx = width();
+   int cy = height();
 
-    double dx = lpcrect->right - lpcrect->left;
-    double dy = lpcrect->bottom - lpcrect->top;
-    double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
+   double dx = lpcrect->right - lpcrect->left;
+   double dy = lpcrect->bottom - lpcrect->top;
+   double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 
-    int cw = cx == 0 ? (int) dx : ((int) (cx * dr));
+   int cw = cx == 0 ? (int) dx : ((int) (cx * dr));
    int ch = cy == 0 ? (int) dy : ((int) (cy * dr));
-   left = (long) ((lpcrect->left) + (dx - cw) / 2.0);
-   top = (long) ((lpcrect->top) + (dy - ch) / 2.0);
-    right = left + cw;
-    bottom = top + ch;
+
+   left = (LONG) ((lpcrect->left) + (dx - cw) / 2.0);
+   top = (LONG) ((lpcrect->top) + (dy - ch) / 2.0);
+   right = left + cw;
+   bottom = top + ch;
+   
 }
 
 void rect::ScaleRect(double dx, double dy, int ix, int iy)
 {
-   left    = (long) (((left    - ix) * dx) + ix);
-   top     = (long) (((top     - iy) * dy) + iy);
-   right   = (long) (((right   - ix) * dx) + ix);
-   bottom  = (long) (((bottom  - iy) * dy) + iy);
+   left    = (LONG) (((left    - ix) * dx) + ix);
+   top     = (LONG) (((top     - iy) * dy) + iy);
+   right   = (LONG) (((right   - ix) * dx) + ix);
+   bottom  = (LONG) (((bottom  - iy) * dy) + iy);
 
 }
 

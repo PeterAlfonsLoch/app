@@ -40,8 +40,7 @@ SRegInfo::~SRegInfo()
       if(namedata) delete namedata;
 //#endif
     default:
-      if (op > ReBlockOps && op < ReSymbolOps
-          || op == ReBrackets || op == ReNamedBrackets)
+      if((op > ReBlockOps && op < ReSymbolOps) || op == ReBrackets || op == ReNamedBrackets)
         delete un.param;
       break;
   };
@@ -928,6 +927,8 @@ const string pattern = global_pattern;
         re = re->un.param;
         leftenter = true;
         continue;
+       default:
+          break;
     };
     if (!re->next){
       re = re->parent;
@@ -962,6 +963,8 @@ inline bool cregexp::quickCheck(strsize toParse)
 #endif
 //    case ReWBound:
 //      return relocale->cl_isword(*toParse) && (toParse == start || !relocale->cl_isword(*(toParse-1)));
+     default:
+        break;
   };
   return true;
 };

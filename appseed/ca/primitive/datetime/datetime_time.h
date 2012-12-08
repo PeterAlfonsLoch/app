@@ -371,3 +371,6 @@ namespace datetime
 
 
 
+dump_context& operator <<(dump_context & dumpcontext, ::datetime::time time);
+dump_context& operator <<(dump_context & dumpcontext, ::datetime::time_span time);
+

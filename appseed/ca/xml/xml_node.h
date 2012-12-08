@@ -188,16 +188,9 @@ namespace xml
 
       // modify attr
       ::xml::attr *           attr_at( index i );
-      //attr * CreateAttr( const char * anem = NULL, const char * value = NULL );
-      ::xml::attr *           add_attr(const char * pszName = NULL, const char * value = NULL);
-      ::xml::attr *           add_attr(const char * pszName, int iValue);
-      ::xml::attr *           add_attr(const char * pszName, unsigned long ulValue);
-      ::xml::attr *           add_attr(const char * pszName, int64_t iValue);
+      ::xml::attr *           add_attr(const char * pszName = NULL, const var & var = ::var(::var::type_new));
       ::xml::attr *           add_attr(const ::xml::attr & attr);
-      ::xml::attr *           set_attr(const char * pszName, const char * value);
-      ::xml::attr *           set_attr(const char * pszName, int iValue);
-      ::xml::attr *           set_attr(const char * pszName, int64_t iValue);
-      ::xml::attr *           set_attr(const char * pszName, bool bValue);
+      ::xml::attr *           set_attr(const char * pszName, const var & var = ::var(::var::type_new));
       bool                    remove_attr(::xml::attr * attr);
       //::xml::attr           detach_attr(::xml::attr * attr);
 

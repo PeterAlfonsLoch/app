@@ -116,10 +116,10 @@ namespace xml
       return m_attra.str_contains(attra);
    }
 
-   attr * node::add_attr(const char * pszName, int iValue)
+   attr * node::add_attr(const char * pszName, const var & var)
    {
 
-      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, iValue);
+      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, var);
 
       if(m_pdoc != NULL)
       {
@@ -137,53 +137,10 @@ namespace xml
 
    }
 
-   attr * node::add_attr(const char * pszName, int64_t iValue)
+   attr * node::set_attr(const char * lpcszName, const var & var)
    {
 
-      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, iValue);
-
-      if(m_pdoc != NULL)
-      {
-
-         if(m_pdoc->m_pedit != NULL)
-         {
-
-            m_pdoc->m_pedit->add_attr(this, pattr);
-
-         }
-
-      }
-
-      return pattr;
-
-   }
-
-   attr * node::add_attr(const char * pszName, unsigned long ulValue)
-   {
-
-      ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, ulValue);
-
-      if(m_pdoc != NULL)
-      {
-
-         if(m_pdoc->m_pedit != NULL)
-         {
-
-            m_pdoc->m_pedit->add_attr(this, pattr);
-
-         }
-
-      }
-
-      return pattr;
-
-   }
-
-
-   attr * node::set_attr(const char * lpcszName, const char * pszValue)
-   {
-
-      ::xml::attr * pattr = &(m_attra[lpcszName] = pszValue);
+      ::xml::attr * pattr = &(m_attra[lpcszName] = var);
 
       if(m_pdoc != NULL)
       {
@@ -199,69 +156,6 @@ namespace xml
 
       return pattr;
 
-
-   }
-
-   attr * node::set_attr(const char * lpcszName, int iValue)
-   {
-
-      ::xml::attr * pattr = &(m_attra[lpcszName] = iValue);
-
-      if(m_pdoc != NULL)
-      {
-
-         if(m_pdoc->m_pedit != NULL)
-         {
-
-            m_pdoc->m_pedit->set_attr(this, pattr);
-
-         }
-
-      }
-
-      return pattr;
-
-   }
-
-   attr * node::set_attr(const char * lpcszName, int64_t iValue)
-   {
-
-      ::xml::attr * pattr = &(m_attra[lpcszName] = iValue);
-
-      if(m_pdoc != NULL)
-      {
-
-         if(m_pdoc->m_pedit != NULL)
-         {
-
-            m_pdoc->m_pedit->set_attr(this, pattr);
-
-         }
-
-      }
-
-      return pattr;
-
-   }
-
-   attr * node::set_attr(const char * lpcszName, bool bValue)
-   {
-
-      ::xml::attr * pattr = &(m_attra[lpcszName] = bValue);
-
-      if(m_pdoc != NULL)
-      {
-
-         if(m_pdoc->m_pedit != NULL)
-         {
-
-            m_pdoc->m_pedit->set_attr(this, pattr);
-
-         }
-
-      }
-
-      return pattr;
 
    }
 
@@ -439,7 +333,7 @@ namespace xml
 
       while( xml && *xml )
       {
-         if( xml = _tcsskip( xml ) )
+         if( (xml = _tcsskip( xml )) )
          {
             // close tag
             if( *xml == chXMLTagClose || *xml == chXMLTagPre )
@@ -472,12 +366,12 @@ namespace xml
             xml = pEnd;
 
             // XML Attr Value
-            if( xml = _tcsskip( xml ) )
+            if( (xml = _tcsskip( xml )) )
             {
                //if( xml = strchr( xml, '=' ) )
                if( *xml == '=' )
                {
-                  if( xml = _tcsskip( ++xml ) )
+                  if( ((xml = _tcsskip( ++xml )) ))
                   {
                      // if " or '
                      // or none quote
@@ -602,7 +496,7 @@ namespace xml
 
       while( xml && *xml )
       {
-         if( xml = _tcsskip( xml ) )
+         if( (xml = _tcsskip( xml )) )
          {
             // close tag
             if( xml >= pszEnd )
@@ -633,12 +527,12 @@ namespace xml
             xml = pEnd;
 
             // XML Attr Value
-            if( xml = _tcsskip( xml ) )
+            if( (xml = _tcsskip( xml )) )
             {
                //if( xml = strchr( xml, '=' ) )
                if( *xml == '=' )
                {
-                  if( xml = _tcsskip( ++xml ) )
+                  if( (xml = _tcsskip( ++xml )) )
                   {
                      // if " or '
                      // or none quote
@@ -922,7 +816,7 @@ namespace xml
       _SetString( xml, pTagEnd, &m_strName );
       xml = pTagEnd;
       // Generate XML Attributte List
-      if( xml = LoadAttributes( xml, pparseinfo ) )
+      if( (xml = LoadAttributes( xml, pparseinfo )) )
       {
          // alone tag <TAG ... />
          if(  *xml == chXMLTagPre )
@@ -1019,7 +913,7 @@ namespace xml
                   // </close>
                   xml+=2; // C
 
-                  if( xml = _tcsskip( xml ) )
+                  if( (xml = _tcsskip( xml )) )
                   {
                      string closename;
                      CHAR* pEnd = strpbrk( xml, " >" );
@@ -1804,8 +1698,8 @@ namespace xml
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   attr * node::add_attr( const char * pszName /*= NULL*/, const char * pszValue /*= NULL*/ )
-   {
+ // /*   attr * node::add_attr( const char * pszName /*= NULL*/, /*const char * pszValue /*= NULL*/ /*)
+  /* {
 
       ::xml::attr * pattr = (::xml::attr *) m_attra.add(pszName, pszValue);
 
@@ -1823,7 +1717,7 @@ namespace xml
 
       return pattr;
 
-   }
+   }*/
 
    //========================================================
    // Name   : detach_child

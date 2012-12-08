@@ -302,7 +302,6 @@ void frame_window::BeginModalState()
    m_uiptraDisable.remove_all();
 
    // disable all windows connected to this frame (and add them to the list)
-#ifdef WINDOWSEX
    ::user::interaction * oswindow = System.get_desktop_window()->GetWindow(GW_CHILD);
 
    while (oswindow != NULL)
@@ -320,10 +319,7 @@ void frame_window::BeginModalState()
       oswindow = oswindow->GetWindow( GW_HWNDNEXT);
 
    }
-#else
-   throw todo(get_app());
-
-#endif
+   
 }
 
 void frame_window::EndModalState()

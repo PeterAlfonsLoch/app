@@ -96,15 +96,27 @@ mktime_dup(struct tm *tm)
 
   if (save_isdst >= 0) {
     if (ltm->tm_isdst  && !save_isdst)
+    {
       if (then + 3600 < then)
+      {
         then = (time_t)-1;
+      }
       else
+      {
         then += 3600;
+      }
+    }
     else if (!ltm->tm_isdst && save_isdst)
+    {
       if (then - 3600 > then)
+      {
         then = (time_t)-1;
+      }
       else
+      {
         then -= 3600;
+      }
+    }
     ltm->tm_isdst = save_isdst;
   }
 

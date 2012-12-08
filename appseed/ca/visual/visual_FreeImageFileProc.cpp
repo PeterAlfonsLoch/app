@@ -1,8 +1,9 @@
 #include "framework.h"
 #define _WINDOWS_
 #include "include/freeimage.h"
+#include "visual_FreeImageFileProc.h"
 
-unsigned ___ReadProc    (void *buffer, unsigned size, unsigned count, fi_handle handle)
+/*unsigned ___ReadProc    (void *buffer, unsigned size, unsigned count, fi_handle handle)
 {
    DWORD dwRead;
    if(ReadFile(handle, buffer, count * size, &dwRead, NULL))
@@ -86,13 +87,13 @@ int __SeekProc (fi_handle handle, long offset, int origin)
 long __TellProc (fi_handle handle)
 {
    return SetFilePointer(handle, 0, NULL, SEEK_CUR);
-}
+}*/
 
 unsigned _stdcall  __ReadProc2 (void *buffer, unsigned size, unsigned count, fi_handle handle)
 {
    primitive::memory_size dwRead;
    ex1::file * pfile = (ex1::file *) handle;
-   if(dwRead = pfile->read(buffer, count * size))
+   if((dwRead = pfile->read(buffer, count * size)) > 0)
    {
       return count;
    }
@@ -144,7 +145,7 @@ unsigned _stdcall  ___Ex1File__ReadProc (void *buffer, unsigned size, unsigned c
 {
    primitive::memory_size dwRead;
    ex1::file * pfile = (ex1::file *) handle;
-   if(dwRead = pfile->read(buffer, count * size))
+   if((dwRead = pfile->read(buffer, count * size)))
    {
       return count;
    }

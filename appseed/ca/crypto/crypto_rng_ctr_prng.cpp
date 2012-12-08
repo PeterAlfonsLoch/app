@@ -49,6 +49,9 @@
 ctr_prng_t ctr_prng;
 
 err_status_t
+ctr_prng_deinit();
+
+err_status_t
 ctr_prng_init(rand_source_func_t random_source) {
   uint8_t tmp_key[32];
   err_status_t status;
