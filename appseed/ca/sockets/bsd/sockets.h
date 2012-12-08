@@ -233,7 +233,7 @@ CLASS_DECL_ca const char *StrError(int x);
 
 
 
-#define MESSAGE_NOSIGNAL 0
+#define MSG_NOSIGNAL 0
 //#define SHUT_RDWR 2
 #define SHUT_WR 1
 
