@@ -1401,7 +1401,7 @@ void frame_window::OnEnterIdle(UINT nWhy, ::user::interaction* pWho)
    UNREFERENCED_PARAMETER(pWho);
    // trans user::frame_window_interface::OnEnterIdle(nWhy, pWho);
 #ifdef WINDOWS
-   if(nWhy != MESSAGEF_MENU || m_nIDTracking == m_nIDLastMessage)
+   if(nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
       return;
 #else
    if(m_nIDTracking == m_nIDLastMessage)

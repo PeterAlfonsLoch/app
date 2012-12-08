@@ -220,7 +220,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
    UNREFERENCED_PARAMETER(wParam);
     LPMESSAGE pmsg = (LPMESSAGE) lParam;
 
-    if(code == MESSAGEF_MENU)
+    if(code == MSGF_MENU)
     {
 /*        ASSERT(pmsg->oswindow == m_oswindowFilter);*/
 
