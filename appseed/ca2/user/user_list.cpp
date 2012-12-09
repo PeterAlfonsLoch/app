@@ -1111,7 +1111,7 @@ namespace user
       }
 
       ::ca::font * pfont = _001GetFont();
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       pdc->SelectObject(pfont);
       size size;
       size = pdc->GetTextExtent("Ap");
@@ -3772,7 +3772,7 @@ namespace user
    void list::_001LayoutTopText()
    {
       ::ca::font * pfont = _001GetFont();
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       pdc->SelectObject(pfont);
       base_array < size > sizea;
       m_dcextension.GetTextExtent(pdc, m_strTopText, sizea);
@@ -3803,7 +3803,7 @@ namespace user
       m_rectTopText.top = 0;
       m_rectTopText.right = rectClient.right;
       m_rectTopText.bottom = (LONG) y;
-      ReleaseDC(pdc);
+      
 
    }
 
@@ -3925,10 +3925,10 @@ namespace user
 
    int list::_001CalcItemWidth(index iItem, index iSubItem)
    {
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       ::ca::font * pfont = _001GetFont();
       index cx = _001CalcItemWidth(pdc, pfont, iItem, iSubItem);
-      ReleaseDC(pdc);
+      
       return (int) cx;
 
    }
@@ -4628,7 +4628,7 @@ namespace user
    int list::_001CalcColumnWidth(index iColumn)
    {
       UNREFERENCED_PARAMETER(iColumn);
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       ::ca::font * pfont = _001GetFont();
       pdc->SelectObject(pfont);
       int iMaxWidth = 0;
@@ -4642,7 +4642,7 @@ namespace user
             iMaxWidth = iWidth;
          }
       }
-      ReleaseDC(pdc);
+      
       return iMaxWidth;
 
    }

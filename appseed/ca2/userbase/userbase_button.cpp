@@ -146,7 +146,8 @@ namespace userbase
 
    void button::ResizeToFit()
    {
-      ::ca::graphics * pdc = m_pguie->GetDC();
+
+      ::ca::client_graphics pdc(this);
 
       if(pdc == NULL)
          return;
@@ -162,7 +163,7 @@ namespace userbase
 
       SetWindowPos(NULL, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
 
-      m_pguie->ReleaseDC(pdc);
+      
 
 
    }

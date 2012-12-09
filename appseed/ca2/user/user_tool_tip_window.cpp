@@ -74,7 +74,7 @@ namespace user
       ::user::interaction * pwnd = m_pwnd;
 
       rect rect;
-      ::ca::graphics * pdc = pwnd->GetDC();
+      ::ca::client_graphics pdc(this);
 
       GetToolRect(iTool, rect);
 
@@ -157,7 +157,7 @@ namespace user
          SWP_NOACTIVATE  );
 
       UpdateDrawingObjects();
-      pwnd->ReleaseDC(pdc);
+      
       ShowWindow(SW_SHOWNOACTIVATE);
    }
 

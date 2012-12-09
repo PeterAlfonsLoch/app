@@ -370,9 +370,9 @@ namespace userbase
       // load the bitmap
       HBITMAP hbmImageWell;
    //   hbmImageWell = gen::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
-      ReleaseDC(pdc);
+      
 
       // tell common control toolbar about the new bitmap
       if (!AddReplaceBitmap(hbmImageWell))
@@ -716,7 +716,7 @@ namespace userbase
    int tool_bar::WrapToolBar(TBBUTTON* pData, int nCount, int nWidth)
    {
       ASSERT(pData != NULL && nCount > 0);
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       int nResult = 0;
       int x = 0;
       string str;
@@ -795,7 +795,7 @@ namespace userbase
          else
             x += dxNext;
       }
-      ReleaseDC(pdc);
+      
       return nResult + 1;
    }
 
@@ -967,7 +967,7 @@ namespace userbase
                }
             }
 
-               //::ca::graphics * pdc = GetDC();
+               //::ca::client_graphics pdc(this);
             string str;
             if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
                m_nMRUWidth = sizeResult.cx;
@@ -1014,7 +1014,7 @@ namespace userbase
                TRACE("BUTTON.fsStyle = %d\n", buttona.fsStyle  );
                TRACE("BUTTON.cx = %d\n", buttona.cx );
             }
-            //ReleaseDC(pdc);
+            
             if (nControlCount > 0)
             {
                for (int i = 0; i < nControlCount; i++)

@@ -94,10 +94,10 @@ void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
       if(get_html_data()->m_rect.width() > 0 &&
          get_html_data()->m_rect.height() > 0)
       {
-         ::ca::graphics * pdc = GetDC();
+         ::ca::client_graphics pdc(this);
          get_html_data()->m_pguie = this;
          get_html_data()->layout(pdc);
-         ReleaseDC(pdc);
+         
          _001RedrawWindow();
       }
    }
@@ -118,7 +118,7 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
          {
             ASSERT(get_html_data() != NULL);
             bool bLayoutOk = false;
-            ::ca::graphics * pdc = NULL;
+             ::ca::client_graphics pdc(this);
             if(get_html_data() != NULL)
             {
                GetClientRect(&get_html_data()->m_rect);
@@ -128,7 +128,6 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
                {
                   bLayoutOk = true;
                }
-               pdc = GetDC();
                get_html_data()->m_pguie = this;
                get_html_data()->implement(pdc);
                _001InitializeFormPreData();
@@ -155,11 +154,6 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
             if(bLayoutOk)
             {
                get_html_data()->layout(pdc);
-            }
-            if(pdc != NULL)
-            {
-               ReleaseDC(pdc);
-               pdc = NULL;
             }
             if(bLayoutOk)
             {

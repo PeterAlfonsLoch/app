@@ -67,7 +67,7 @@ namespace userbase
       {
          bLayoutOk = true;
       }
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       get_html_data()->m_pguie = this;
       get_html_data()->m_pguie = this;
       get_html_data()->implement(pdc);
@@ -75,7 +75,7 @@ namespace userbase
       {
          get_html_data()->layout(pdc);
       }
-      ReleaseDC(pdc);
+      
       if(bLayoutOk)
       {
          _001RedrawWindow();

@@ -507,7 +507,7 @@ int simple_menu_bar::_001HitTest(const POINT *lppoint)
 
 /*void simple_menu_bar::_001Layout()
 {
-   ::ca::graphics * pdc = GetDC();
+   ::ca::client_graphics pdc(this);;
    pdc->SelectObject(System.font_central().GetMenuFont());
 
    size size;
@@ -530,7 +530,7 @@ int simple_menu_bar::_001HitTest(const POINT *lppoint)
    {
       m_buttona[iItem].m_rect.bottom = iy + ITEMCHECKEDCX + ITEMCHECKEDPADTOP + ITEMCHECKEDPADBOTTOM;
    }
-   ReleaseDC(pdc);
+   
 
 }*/
 

@@ -166,11 +166,11 @@ namespace filehandler
 
    void view::layout()
    {
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       rect rectClient;
       GetClientRect(rectClient);
       m_drawlist.layout(rectClient, &m_list);
-      ReleaseDC(pdc);
+      
    }
 
    void view::_001OnDraw(::ca::graphics * pdc)

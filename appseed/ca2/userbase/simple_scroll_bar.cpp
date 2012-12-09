@@ -458,9 +458,6 @@ void simple_scroll_bar::_001OnSize(gen::signal_object * pobj)
    m_rgnA->create_polygon(m_ptaA, 4, ::ca::fill_mode_winding);
    m_rgnB->create_polygon(m_ptaB, 4, ::ca::fill_mode_winding);
 
-   ::ca::graphics * pgraphics = GetDC();
-
-   ReleaseDC(pgraphics);
 
 //   psize->m_bRet = false;
 }

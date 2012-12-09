@@ -68,7 +68,7 @@ void simple_button::_001OnCtlColor(gen::signal_object * pobj)
 
 void simple_button::ResizeToFit()
 {
-   ::ca::graphics * pdc = GetDC();
+   ::ca::client_graphics pdc(this);
 
    pdc->SelectObject(GetFont());
 
@@ -82,7 +82,7 @@ void simple_button::ResizeToFit()
 
    SetWindowPos(NULL, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
 
-   ReleaseDC(pdc);
+   
 }
 
 void simple_button::_001OnSetFocus(gen::signal_object * pobj)

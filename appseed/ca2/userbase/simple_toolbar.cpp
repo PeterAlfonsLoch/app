@@ -1162,9 +1162,9 @@ return FALSE;
 // load the bitmap
 HBITMAP hbmImageWell;
 //   hbmImageWell = gen::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
-::ca::graphics * pdc = GetDC();
+::ca::client_graphics pdc(this);;
 hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
-ReleaseDC(pdc);
+
 
 // tell common control toolbar about the new bitmap
 //   if (!AddReplaceBitmap(hbmImageWell))
@@ -1693,7 +1693,7 @@ int simple_toolbar::WrapToolBar(int nCount, int nWidth)
    int nResult = 0;
 #ifdef WINDOWSEX
    ASSERT(nCount > 0);
-   ::ca::graphics * pdc = GetDC();
+   ::ca::client_graphics pdc(this);
    int x = 0;
    string str;
    for (int i = 0; i < nCount; i++)
@@ -1770,7 +1770,6 @@ int simple_toolbar::WrapToolBar(int nCount, int nWidth)
       else
          x += dxNext;
    }
-   ReleaseDC(pdc);
 #else
    throw todo(get_app());
 #endif
@@ -1938,7 +1937,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
             }
          }
 
-         //::ca::graphics * pdc = GetDC();
+         //::ca::client_graphics pdc(this);
          string str;
          if ((m_dwStyle & CBRS_FLOATING) && (m_dwStyle & CBRS_SIZE_DYNAMIC))
             m_nMRUWidth = sizeResult.cx;
@@ -1985,7 +1984,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
             //         TRACE("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
             //         TRACE("BUTTON.cx = %d\n", buttona.cx );
          }
-         //ReleaseDC(pdc);
+         
          if (nControlCount > 0)
          {
             for (int i = 0; i < nControlCount; i++)

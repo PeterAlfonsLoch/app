@@ -234,7 +234,7 @@ namespace userbase
          return;
       rect rectClient;
       get_parent()->GetClientRect(rectClient);
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int iMaxHeight = size.cy;
@@ -262,7 +262,7 @@ namespace userbase
 
 
 
-      ReleaseDC(pdc);
+      
    }
 
 

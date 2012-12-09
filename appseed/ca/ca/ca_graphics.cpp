@@ -2452,16 +2452,16 @@ namespace ca
 
 
 
-   client_graphics::client_graphics(::ca::window * pwindow)
+   client_graphics::client_graphics(::user::interaction * pui)
    {
-      m_pwindow = pwindow;
-      create(pwindow->get_app());
-      m_p->attach(pwindow->GetDC());
+      m_pui = pui;
+      create(pui->get_app());
+      m_p->attach(pui->GetDC());
    }
 
    client_graphics::~client_graphics()
    {
-      m_pwindow->ReleaseDC(m_p);
+      m_pui->ReleaseDC(m_p);
    }
 
    window_graphics::window_graphics(::ca::window * pwindow)

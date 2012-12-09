@@ -837,7 +837,7 @@ namespace user
          int iTabHeight = 8;
          int cx;
          int cy;
-         ::ca::graphics * pdc = m_pguie->GetDC();
+         ::ca::client_graphics pdc(this);
          pdc->SelectObject(get_data()->m_fontBold);
          for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
@@ -915,7 +915,7 @@ namespace user
          get_data()->m_rectTabClient.top        = get_data()->m_rectTab.top;
          get_data()->m_rectTabClient.right      = rectClient.right;
          get_data()->m_rectTabClient.bottom     = get_data()->m_rectTab.bottom;
-         m_pguie->ReleaseDC(pdc);
+         
       }
       else
       {
@@ -1185,7 +1185,7 @@ namespace user
       {
          ASSERT(iTabParam >= 0);
          ASSERT(iTabParam < GetTabCount());
-         ::ca::graphics * pdc = m_pguie->GetDC();
+         ::ca::client_graphics pdc(this);
          rect rect = get_data()->m_rectTab;
          rect.bottom = rect.top;
 
@@ -1206,7 +1206,7 @@ namespace user
          lprect->top    = rect.top + iPreviousVisibleTabCount * get_data()->m_iTabHeight;
          lprect->right  = rect.right;
          lprect->bottom = lprect->top + get_data()->m_iTabHeight;
-         m_pguie->ReleaseDC(pdc);
+         
       }
       else
       {

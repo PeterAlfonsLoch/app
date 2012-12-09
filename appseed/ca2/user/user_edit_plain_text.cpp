@@ -116,9 +116,9 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
 
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       _001OnCalcLayout(pdc);
-      ReleaseDC(pdc);
+      
 
 
       ThreadProcScrollSize((LPVOID) this);
@@ -137,9 +137,9 @@ namespace user
    {
       _001OnUpdate();
 
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       _001OnCalcLayout(pdc);
-      ReleaseDC(pdc);
+      
 
 
    /*   pobj->previous();
@@ -803,7 +803,7 @@ namespace user
       graphics->CreateCompatibleDC(NULL);
       ::ca::graphics * pdc = graphics;
       pview->_001OnCalcLayoutProc(pview, pdc);
-      //pview->ReleaseDC(pdc);
+      
       pview->_001OnUpdate();
       return 0;
    }
@@ -892,12 +892,12 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       if(pdc == NULL)
          return;
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
-      ReleaseDC(pdc);
+      
       _001RedrawWindow();
       Application.set_keyboard_focus(this);
       Application.set_mouse_focus_LButtonDown(this);
@@ -910,10 +910,10 @@ namespace user
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
-      ReleaseDC(pdc);
+      
       _001RedrawWindow();
       m_bMouseDown = false;
       pmouse->m_bRet = true;
@@ -927,10 +927,10 @@ namespace user
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
-      ReleaseDC(pdc);
+      
       _001RedrawWindow();
       Application.set_keyboard_focus(this);
       Application.set_mouse_focus_RButtonDown(this);
@@ -943,10 +943,10 @@ namespace user
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
-      ReleaseDC(pdc);
+      
       _001RedrawWindow();
       m_bMouseDown = false;
 
@@ -1057,14 +1057,14 @@ namespace user
          if(iSel >= i1
             && iSel < i2)
          {
-            ::ca::graphics * pgraphics = GetDC();
+            ::ca::client_graphics pgraphics(this);
 
             pgraphics->SelectObject(GetFont());
             pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
             size size1 = pgraphics->GetTextExtent(straLines[i], straLines[i].length(), iSel - i1);
             size size2 = pgraphics->GetTextExtent(straLines[i], iSel - i1);
 
-            ReleaseDC(pgraphics);
+            
 
             x = (size1.cx + size2.cx) / 2;
 
@@ -1121,7 +1121,7 @@ namespace user
    strsize edit_plain_text::LineXToSel(index iLine, int x)
    {
       
-      ::ca::graphics * pgraphics = GetDC();
+      ::ca::client_graphics pgraphics(this);
 
       pgraphics->SelectObject(GetFont());
       pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
@@ -1133,7 +1133,7 @@ namespace user
 
       strsize iChar = char_hit_test(pgraphics, x, y); 
 
-      ReleaseDC(pgraphics);
+      
 
       return iChar;
 /*      while(iLine < 0)
@@ -1296,9 +1296,9 @@ namespace user
 
       if(m_bMouseDown)
       {
-         ::ca::graphics * pdc = GetDC();
+         ::ca::client_graphics pdc(this);
          m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
-         ReleaseDC(pdc);
+         
        //  _001RedrawWindow();
       }
 

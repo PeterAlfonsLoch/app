@@ -100,9 +100,10 @@ void html_view::_001OnInitialUpdate(gen::signal_object * pobj)
    if(get_html_data()->m_rect.width() > 0 &&
       get_html_data()->m_rect.height() > 0)
    {
-      ::ca::graphics * pdc = GetDC();
+
+      ::ca::client_graphics pdc(this);
+
       get_html_data()->layout(pdc);
-      ReleaseDC(pdc);
       _001RedrawWindow();
    }
 
@@ -128,14 +129,16 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint
             {
                bLayoutOk = true;
             }
-            ::ca::graphics * pdc = GetDC();
+
+            ::ca::client_graphics pdc(this);
+
             get_html_data()->m_pguie = this;
             get_html_data()->implement(pdc);
             if(bLayoutOk)
             {
                get_html_data()->layout(pdc);
             }
-            ReleaseDC(pdc);
+            
             if(bLayoutOk)
             {
                _001RedrawWindow();

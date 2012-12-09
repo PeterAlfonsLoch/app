@@ -234,7 +234,7 @@ namespace platform
 
       //FIBITMAP * pfi;
 
-      //::ca::graphics * pdc = GetDC();
+      //::ca::client_graphics pdc(this);;
 
       m_dibBkImage.load_from_matter("casweden1.png");
 

@@ -604,9 +604,9 @@ namespace ca
    {
    public:
 
-      ::ca::window * m_pwindow;
+      ::user::interaction * m_pui;
 
-      client_graphics(::ca::window * pwindow);
+      client_graphics(::user::interaction * pui);
       virtual ~client_graphics();
 
    };

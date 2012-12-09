@@ -143,7 +143,7 @@ namespace userbase
 
    void menu::layout()
    {
-      ::ca::graphics * pdc = GetDC();
+      ::ca::client_graphics pdc(this);
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
       int iMaxHeight = size.cy;
@@ -214,7 +214,7 @@ namespace userbase
 
 
 
-      ReleaseDC(pdc);
+      
 
       SetWindowPos(NULL, 0, 0, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_NOZORDER | SWP_NOMOVE);
    }

@@ -105,10 +105,10 @@ void html_form::_001OnImageLoaded(gen::signal_object * pobj)
       if(get_html_data()->m_rect.width() > 0 &&
          get_html_data()->m_rect.height() > 0)
       {
-         ::ca::graphics * pdc = GetDC();
+         ::ca::client_graphics pdc(this);
          get_html_data()->delete_implementation();
          get_html_data()->layout(pdc);
-         ReleaseDC(pdc);
+         
          _001RedrawWindow();
       }
    }
@@ -161,7 +161,7 @@ void html_form::layout(::html::data * phtmldata)
 
    GetClientRect(phtmldata->m_rect);
    
-   ::ca::graphics * pdc = GetDC();
+   ::ca::client_graphics pdc(this);
 
    try
    {
@@ -177,7 +177,7 @@ void html_form::layout(::html::data * phtmldata)
    {
    }
 
-   ReleaseDC(pdc);
+   
 
 }
 
@@ -192,7 +192,7 @@ void html_form::layout()
    //{
      // bLayoutOk = true;
    //}
-   ::ca::graphics * pdc = GetDC();
+   ::ca::client_graphics pdc(this);
    get_html_data()->m_pguie = this;
    get_html_data()->m_pguie = this;
    get_html_data()->implement(pdc);
@@ -201,7 +201,7 @@ void html_form::layout()
       get_html_data()->m_pform = this;
       get_html_data()->layout(pdc);
    //}
-   ReleaseDC(pdc);
+   
    //if(bLayoutOk)
    //{
       _001RedrawWindow();

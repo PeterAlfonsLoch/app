@@ -590,13 +590,13 @@ namespace bergedge
          }
          FIBITMAP * pfi;
 
-         ::ca::graphics * pdc = GetDC();
+         ::ca::client_graphics pdc(this);
 
          pfi = System.imaging().LoadImageFile(strWallpaper);
 
          m_dibBk.From((HDC)pdc->get_os_data(), pfi, true);
 
-         ReleaseDC(pdc);*/
+         */
          //_001RedrawWindow();
       }
 
