@@ -12,14 +12,14 @@ namespace userbase
    public:
 
 
-      int                     m_iIndex;
-      split_layout *       m_pparent;
-      HCURSOR                  m_hcursor;
-      DWORD                   m_dwPosition;
-      double                  m_dRate;
-      double                  m_dMinimumRate;
-      double                  m_dMaximumRate;
-      DWORD                   m_dwMaxPosition;
+      int                           m_iIndex;
+      split_layout *                m_pparent;
+      DWORD                         m_dwPosition;
+      double                        m_dRate;
+      double                        m_dMinimumRate;
+      double                        m_dMaximumRate;
+      DWORD                         m_dwMaxPosition;
+
 
 
       split_bar(::ca::application * papp);

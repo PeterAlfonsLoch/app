@@ -1,21 +1,27 @@
 #include "framework.h"
 
+
 namespace userbase
 {
+
 
    split_bar::split_bar(::ca::application * papp) :
       ca(papp)
    {
-      m_pparent         = NULL;
-      m_dMinimumRate    = 0.1;
-      m_dMaximumRate    = 0.9;
-      m_dRate           = -1.0;
-      m_dwPosition      = 1;
-      m_dwMaxPosition   = (DWORD) -1;
+      
+      m_pparent                                 = NULL;
+      m_dMinimumRate                            = 0.1;
+      m_dMaximumRate                            = 0.9;
+      m_dRate                                   = -1.0;
+      m_dwPosition                              = 1;
+      m_dwMaxPosition                           = (DWORD) -1;
+
    }
 
    split_bar::~split_bar()
    {
+
+
    }
 
 
@@ -42,25 +48,7 @@ namespace userbase
 
    void split_bar::layout()
    {
-      if(m_pparent != NULL)
-      {
-         split_layout::e_orientation eorientation = m_pparent->GetSplitOrientation();
-#ifdef WINDOWSEX
-         const char * lpcsz = NULL;
-         if(eorientation == split_layout::orientation_horizontal)
-         {
-            lpcsz = MAKEINTRESOURCE(IDC_SIZENS);
-         }
-         else
-         {
-            lpcsz = MAKEINTRESOURCE(IDC_SIZEWE);
-         }
-         m_hcursor = ::LoadCursor(NULL, lpcsz);
-#else
-         // throw todo(get_app());
-#endif
 
-      }
    }
 
 
@@ -118,19 +106,33 @@ namespace userbase
 
    void split_bar::_001OnMouseMove(gen::signal_object * pobj)
    {
+      
       SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      
       single_lock sl(&m_pparent->m_mutex, TRUE);
+      
       point ptClient = pmouse->m_pt;
+
       m_pparent->ScreenToClient(&ptClient);
-      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
-         && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
+
+      if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count() && !m_pparent->m_panea[m_iIndex].m_bFixedSize)
       {
-#ifdef WINDOWSEX
-         SetCursor(m_hcursor);
-#else
-         throw todo(get_app());
-#endif
+
+         if(m_pparent->GetSplitOrientation() == split_layout::orientation_horizontal)
+         {
+
+            pmouse->m_ecursor = ::visual::cursor_size_vertical;
+
+         }
+         else
+         {
+
+            pmouse->m_ecursor = ::visual::cursor_size_horizontal;
+
+         }
+
       }
+
       if((m_pparent->m_iState == split_layout::stateDragging) && (m_iIndex == m_pparent->m_iIndex))
       {
          int nPos;

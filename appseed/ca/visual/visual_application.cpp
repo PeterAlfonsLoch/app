@@ -246,6 +246,22 @@ namespace visual
       {
          set_cursor_file(::visual::cursor_size_left, System.dir().path(pszDir, "arrow.png"));
       }
+      if(set_cursor_file(::visual::cursor_size_vertical, System.dir().path(pszDir, "size_vertical.png")))
+      {
+         count++;
+      }
+      else
+      {
+         set_cursor_file(::visual::cursor_size_vertical, System.dir().path(pszDir, "arrow.png"));
+      }
+      if(set_cursor_file(::visual::cursor_size_horizontal, System.dir().path(pszDir, "size_horizontal.png")))
+      {
+         count++;
+      }
+      else
+      {
+         set_cursor_file(::visual::cursor_size_horizontal, System.dir().path(pszDir, "arrow.png"));
+      }
 
       return count;
    }

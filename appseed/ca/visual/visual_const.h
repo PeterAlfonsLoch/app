@@ -4,8 +4,10 @@
 namespace visual
 {
 
+
    enum e_cursor
    {
+
       cursor_unmodified,
       cursor_default,
       cursor_none,
@@ -21,6 +23,13 @@ namespace visual
       cursor_size_bottom,
       cursor_size_bottom_left,
       cursor_size_left,
+      cursor_size_vertical,
+      cursor_size_horizontal,
+
    }; 
 
+
 } // namespace visual
+
+
+

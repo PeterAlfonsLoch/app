@@ -608,11 +608,11 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      SetTimer(19510422, 1951, NULL); // Léia Maheli de Souza Tsumanuma - Mummi - keep alive - each 1951 millis a ca2cuore pulse
-
       if(get_parent() == NULL)
       {
+
          System.add_frame(this);
+
       }
 
    }
@@ -826,23 +826,9 @@ namespace user
 
    void interaction::_001OnTimer(gen::signal_object * pobj)
    {
-      try
-      {
-         SCAST_PTR(gen::message::timer, ptimer, pobj)
-         if(ptimer->m_nIDEvent == 19510422)
-         {
-            try
-            {
-               m_papp->keep_alive();
-            }
-            catch(...)
-            {
-            }
-         }
-      }
-      catch(...)
-      {
-      }
+
+      SCAST_PTR(gen::message::timer, ptimer, pobj)
+
    }
 
 

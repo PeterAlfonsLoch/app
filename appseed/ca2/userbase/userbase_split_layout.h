@@ -19,8 +19,11 @@ namespace userbase
 
       enum e_orientation
       {
-         orientation_horizontal = 1,
-         orientation_vertical = 2
+
+         orientation_none        = 0,
+         orientation_horizontal  = 1,
+         orientation_vertical    = 2,
+
       };
 
 
