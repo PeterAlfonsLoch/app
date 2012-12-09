@@ -24,6 +24,7 @@ namespace fontopus
       virtual string calc_mod_hash();
       virtual string calc_key_hash();
       virtual string calc_ca2_hash();
+      virtual bool get_defer_registration() = 0;
    };
 
 
@@ -123,6 +124,7 @@ namespace fontopus
       ::user::network_configuration             m_netcfg;
       ::user::keyboard_layout *                 m_pkeyboardlayout;
       bool                                      m_bInteractive;
+      bool                                      m_bDeferRegistration;
 
 
       validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);
@@ -156,6 +158,8 @@ namespace fontopus
 //      void on_create_view(::user::view_creator_data * pcreatordata);
 
       virtual void on_show_view();
+
+      virtual bool get_defer_registration();
 
       
   //    virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);

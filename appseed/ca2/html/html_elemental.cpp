@@ -1168,7 +1168,7 @@ namespace html
          }
       }*/
       ::html::impl::cell * pcell = dynamic_cast < ::html::impl::cell * > (m_pimpl);
-      int iTableBorder = 0;
+      float iTableBorder = 0;
       if(pcell != NULL)
       {
          if(pcell->get_table()->m_iBorder > 0)

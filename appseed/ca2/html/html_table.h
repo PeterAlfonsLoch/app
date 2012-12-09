@@ -27,9 +27,9 @@ namespace html
 
          };
 
-         int                                          m_iBorder;
-         int                                          m_iCellSpacing;
-         int                                          m_iCellPadding;
+         float                                         m_iBorder;
+         float                                         m_iCellSpacing;
+         float                                         m_iCellPadding;
 
          base_array < base_array < cell::holder > >   m_cellholdera;
          comparable_array < table_row * >             m_rowptra;

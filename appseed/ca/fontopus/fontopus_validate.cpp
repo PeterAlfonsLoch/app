@@ -1596,5 +1596,12 @@ namespace fontopus
    {
    }
 
+   bool validate::get_defer_registration()
+   {
+
+      return m_bDeferRegistration;
+
+   }
+
 } // namespace fontopus
 

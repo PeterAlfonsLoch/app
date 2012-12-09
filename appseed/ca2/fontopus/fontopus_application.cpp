@@ -71,7 +71,7 @@ namespace ca2
          }*/
          //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
          class validate authuser(this, "system\\user\\authenticate.xhtml", true);
-         authuser.oprop("defer_registration") = "defer_registration";
+         authuser.m_bDeferRegistration = true;
          authuser.propset().merge(set);
          if(set.has_property("ruri"))
             return authuser.get_user(set["ruri"]);

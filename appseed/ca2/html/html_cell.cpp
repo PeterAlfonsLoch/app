@@ -71,24 +71,26 @@ namespace html
         
 
          size size = pcellParent->get_bound_size();
-         int iColumnWidth = calc_width();
+         float iColumnWidth = calc_width();
          int iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
             iTableBorder += 2;
-            size.cx = iColumnWidth - (pcellParent->m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
-            size.cy -= (pcellParent->m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
+            size.cx = (float) (iColumnWidth - (pcellParent->m_iColEnd == get_table()->m_columna.get_upper_bound() ? iTableBorder * 2 : iTableBorder));
+            size.cy -= (float) (pcellParent->m_iRowEnd == get_table()->m_rowptra.get_upper_bound() ? iTableBorder * 2 : iTableBorder);
          }
          else
          {
+
             size.cx = iColumnWidth;
+
          }
 
-         set_cxy(pdata, iColumnWidth, size.cy);
+         set_cxy(pdata, (float) iColumnWidth, (float) size.cy);
          set_bound_size(pdata, size);
 
          point pointBound = pcellParent->get_bound_point();
-         int l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_iColBeg + 1);
+         float l = pointBound.x  + get_table()->m_iBorder * (pcellParent->m_iColBeg + 1);
          if(get_row() != NULL)
          {
             l = get_row()->get_bound_point().x;
@@ -313,8 +315,8 @@ namespace html
                m_cxMin += ptable->m_iCellSpacing * (m_iColEnd - m_iColBeg); // mid
                m_cxMax += ptable->m_iCellSpacing / 2; //half right;
                m_cxMin += ptable->m_iCellSpacing / 2; //half right;
-               m_cxMax += (ptable->m_iCellSpacing % 2); //odd right;
-               m_cxMin += (ptable->m_iCellSpacing % 2); //odd right;
+               m_cxMax += fmod(ptable->m_iCellSpacing, 2.f); //odd right;
+               m_cxMin += fmod(ptable->m_iCellSpacing, 2.f); //odd right;
             }
             else if(m_iColEnd == ptable->m_columna.get_upper_bound())
             {

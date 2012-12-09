@@ -36,19 +36,25 @@ namespace html
       class CLASS_DECL_ca2 layout_state
       {
       public:
-         int   m_iBody;
-         int   m_y;
-         int   m_cy;
-         int   m_x;
-         int   m_cx;
-         bool  m_bLastBlockX;
-         bool  m_bLastCellX;
-         bool  m_bLastBlockY;
-         bool  m_bLastCellY;
-         bool  m_bHasChar;
+         int      m_iBody;
+         float    m_y;
+         float    m_cy;
+         float    m_x;
+         float    m_cx;
+         bool     m_bLastBlockX;
+         bool     m_bLastCellX;
+         bool     m_bLastBlockY;
+         bool     m_bLastCellY;
+         bool     m_bHasChar;
+
+         
          //base_array < impl::table *, impl::table *> m_tableptraStack;
          //base_array < impl::table_row *, impl::table_row *> m_tablerowptraStack;
+
+
          void reset();
+
+
       };
 
       ::user::form_callback *    m_pcallback;

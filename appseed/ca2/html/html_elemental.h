@@ -1,14 +1,20 @@
 #pragma once
 
+
 class html_view;
+
 
 namespace html
 {
 
+
    enum e_position
    {
+
       PositionRelative,
+
    };
+
 
    enum e_flag
    {
@@ -32,11 +38,15 @@ namespace html
 
    class elemental;
 
+
    namespace impl
    {
+
+
       class CLASS_DECL_ca2 elemental
       {
       public:
+
 
          box               m_box;
          box               m_bound;
@@ -56,16 +66,12 @@ namespace html
 
 
 
-         DECL_GEN_VSIGNAL(OnLButtonDown)
-         DECL_GEN_VSIGNAL(OnMouseMove)
-         DECL_GEN_VSIGNAL(OnLButtonUp)
+         elemental();
+         virtual ~elemental();
+
 
          virtual void delete_implementation();
 
-
-         elemental();
-
-         virtual ~elemental();
 
          virtual bool get_color(COLORREF & cr);
 
@@ -118,16 +124,21 @@ namespace html
 
          virtual void on_change_layout(data * pdoc);
 
-         virtual int calc_width();
+         virtual float calc_width();
          virtual bool use_in_final_layout(::html::impl::elemental * pimplChild);
 
          virtual bool is_tag();
          virtual bool is_value();
 
 
-         
+         DECL_GEN_VSIGNAL(OnLButtonDown)
+         DECL_GEN_VSIGNAL(OnMouseMove)
+         DECL_GEN_VSIGNAL(OnLButtonUp)
+
 
       };
+
+
    } // namespace impl
 
 

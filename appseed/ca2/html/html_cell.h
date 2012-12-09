@@ -13,7 +13,8 @@ namespace html
       class table_row;
 
 
-      class CLASS_DECL_ca2 cell : public text
+      class CLASS_DECL_ca2 cell : 
+         public text
       {
       public:
 
@@ -64,8 +65,8 @@ namespace html
          int m_iRowEnd;
          
          
-         double m_dWidth;
-         int m_iWidth;
+         float m_fWidth;
+
          int m_iRowSpan;
          int m_iColSpan;
 
@@ -92,7 +93,7 @@ namespace html
          void _001OnDraw(data * pdata);
 
 
-         virtual int calc_width();
+         virtual float calc_width();
 
 
          virtual bool contains_column(int iCol);

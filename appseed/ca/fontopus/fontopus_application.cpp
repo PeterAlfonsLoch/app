@@ -138,7 +138,7 @@ namespace fontopus
       {
 
          class validate authuser(this, "system\\user\\authenticate.xhtml", true);
-         authuser.oprop("defer_registration") = "defer_registration";
+         authuser.m_bDeferRegistration = true;
          authuser.propset().merge(set);
          puser = authuser.get_user();
 

@@ -14,9 +14,10 @@ namespace ca2
          ::fontopus::validate(papp, pszForm, bVotagusAuth, bInteractive),
          m_netcfg(papp)
       {
-         m_bInteractive    = bInteractive;
-         m_bVotagusAuth    = bVotagusAuth;
-         m_strForm         = pszForm;
+         m_bInteractive          = bInteractive;
+         m_bVotagusAuth          = bVotagusAuth;
+         m_strForm               = pszForm;
+         m_bDeferRegistration    = false;
          ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
          if(pradixapp != NULL)
          {
