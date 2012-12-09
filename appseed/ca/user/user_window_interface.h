@@ -141,9 +141,6 @@ namespace user
       ::ca::window * SetFocus();*/
 
 
-      /*::ca::graphics * GetDC();
-      void  ReleaseDC(::ca::graphics * pdc);*/
-
       bool RedrawOptimize(LPRECT lprectOut, LPCRECT lpcrect1, LPCRECT lpcrect2);
       void RedrawOptimize(rect_array & base_array);
       bool _001IsBackgroundBypass();
