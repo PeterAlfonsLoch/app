@@ -48,6 +48,10 @@ namespace html
       inline float get_cx() const;
       inline float get_cy() const;
       inline size get_cxy() const;
+      inline float area() const;
+
+      inline box & operator = (LPCRECT lpcrect);
+
    };
 
 
@@ -223,6 +227,26 @@ namespace html
       top      = y;
       right    = x + cx;
       bottom   = y + cy;
+
+
+   }
+
+   inline box & box::operator = (LPCRECT lpcrect)
+   {
+
+      left     = (float) lpcrect->left;
+      top      = (float) lpcrect->top;
+      right    = (float) lpcrect->right;
+      bottom   = (float) lpcrect->bottom;
+
+      return *this;
+
+   }
+
+   inline float box::area() const
+   {
+      
+      return get_cx() * get_cy();
 
    }
 

@@ -37,6 +37,7 @@ namespace user
       m_bMultiLine         = true;
       m_bColorerTake5      = false;
       m_bReadOnly          = false;
+      m_bSendEnterKey      = false;
 
 
       m_straSep.add("\n");
@@ -628,7 +629,7 @@ namespace user
             pkey->m_bRet      = false;
             return;
          }
-         if((!m_bMultiLine || (bool)oprop("send_enter_key")) && get_parent() != NULL)
+         if((!m_bMultiLine || m_bSendEnterKey) && get_parent() != NULL)
          {
             ::user::control_event ev;
             ev.m_puie         = this;

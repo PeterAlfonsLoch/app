@@ -53,6 +53,7 @@ namespace user
       int                        m_iLineHeight;
       index                      m_iColumn;
       bool                       m_bMultiLine;
+      bool                       m_bSendEnterKey;
       bool                       m_bReadOnly;
 
       // Used for whatever it can make faster for large files (scroll for example)

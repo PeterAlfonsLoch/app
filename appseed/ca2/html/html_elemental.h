@@ -57,8 +57,8 @@ namespace html
 
          e_position        m_eposition;
          flags < e_flag >  m_flags;
-         int               m_cxMax;
-         int               m_cxMin;
+         float             m_cxMax;
+         float             m_cxMin;
          ::collection::string_map < int, int > m_mapFont;
          bool              m_bHoverEvaluated;
          bool              m_bHasHover;

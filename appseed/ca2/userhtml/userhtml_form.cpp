@@ -101,9 +101,14 @@ void html_form::_001OnImageLoaded(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data() != NULL)
    {
-      GetClientRect(&get_html_data()->m_rect);
-      if(get_html_data()->m_rect.width() > 0 &&
-         get_html_data()->m_rect.height() > 0)
+      
+      rect rectClient;
+      
+      GetClientRect(rectClient);
+
+      get_html_data()->m_box = rectClient;
+
+      if(get_html_data()->m_box.get_cx() > 0 && get_html_data()->m_box.get_cy() > 0)
       {
          ::ca::client_graphics pdc(this);
          get_html_data()->delete_implementation();
@@ -153,60 +158,26 @@ bool html_form::open_document(const char * lpszPathName)
 }
 */
 
-void html_form::layout(::html::data * phtmldata)
+void html_form::GetClientBox(::html::box & box)
 {
 
-   if(phtmldata == NULL)
-      return;
+   rect rectClient;
 
-   GetClientRect(phtmldata->m_rect);
-   
-   ::ca::client_graphics pdc(this);
+   GetClientRect(rectClient);
 
-   try
-   {
-
-      phtmldata->m_pguie = this;
-      phtmldata->m_pguie = this;
-      phtmldata->implement(pdc);
-      phtmldata->m_pform = this;
-      phtmldata->layout(pdc);
-
-   }
-   catch(...)
-   {
-   }
-
-   
+   box = rectClient;
 
 }
 
+
 void html_form::layout()
 {
+
    if(get_html_data() == NULL)
       return;
-   GetClientRect(&get_html_data()->m_rect);
-   //bool bLayoutOk = false;
-   //if(get_html_data()->m_rect.width() > 0 &&
-     // get_html_data()->m_rect.height() > 0)
-   //{
-     // bLayoutOk = true;
-   //}
-   ::ca::client_graphics pdc(this);
-   get_html_data()->m_pguie = this;
-   get_html_data()->m_pguie = this;
-   get_html_data()->implement(pdc);
-   //if(bLayoutOk)
-   //{
-      get_html_data()->m_pform = this;
-      get_html_data()->layout(pdc);
-   //}
-   
-   //if(bLayoutOk)
-   //{
-      _001RedrawWindow();
-   //}
 
+   get_html_data()->implement_and_layout(this);
+   
 }
 
 
@@ -234,7 +205,7 @@ void html_form::_001OnCreate(gen::signal_object * pobj)
 
 
 
-  void html_form::_001OnLButtonDown(gen::signal_object * pobj)
+void html_form::_001OnLButtonDown(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::mouse, pmouse, pobj);
    point pt;
@@ -367,7 +338,7 @@ void html_form::_001SetText(const char * psz)
 
    sphtmldata->load(psz);
 
-   layout(sphtmldata);
+   sphtmldata->implement_and_layout(this);
 
    m_sphtmldata = sphtmldata;
 
@@ -400,6 +371,49 @@ void html_form::_001OnKeyDown(gen::signal_object * pobj)
       pkey->m_bRet = true;
       return;
    }
+}
+
+
+void html_form::defer_implement()
+{
+
+   if(get_html_data() == NULL)
+      return;
+
+   GetClientBox(get_html_data()->m_box);
+
+   if(get_html_data()->m_box.area() <= 0.f)
+      return;
+
+   ::ca::client_graphics pdc(this);
+
+   get_html_data()->m_pguie = this;
+   get_html_data()->m_pform = this;
+   get_html_data()->implement(pdc);
+         
+
+}
+
+
+void html_form::defer_layout()
+{
+ 
+   if(get_html_data() == NULL)
+      return;
+
+   GetClientBox(get_html_data()->m_box);
+
+   if(get_html_data()->m_box.area() <= 0.f)
+      return;
+
+   ::ca::client_graphics pdc(this);
+
+   get_html_data()->m_pguie = this;
+   get_html_data()->m_pform = this;
+   get_html_data()->layout(pdc);
+         
+   _001RedrawWindow();
+
 }
 
 

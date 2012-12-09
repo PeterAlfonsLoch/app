@@ -177,14 +177,15 @@ namespace ca
    {
       if(m_p != p)
       {
-         if(m_p != NULL)
+         T * pOld = m_p;
+         if(p != NULL)
          {
-            gen::release(m_p);
+            gen::add_ref(p);
          }
          m_p = p;
-         if(m_p != NULL)
+         if(pOld != NULL)
          {
-            gen::add_ref(m_p);
+            gen::release(pOld);
          }
       }
       return *this;

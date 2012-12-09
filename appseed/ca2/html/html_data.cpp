@@ -373,22 +373,27 @@ namespace html
 
    bool data::open_document(var varFile)
    {
+      
       int iRetry = 0;
-      restart:
+
+restart:
+
       ::ca::data::writing writing(this);
-   string strPathName;
-   if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
-   {
-      strPathName = varFile.propset()["url"];
-   }
-   else if(varFile.ca2 < ::ex1::file > () != NULL)
-   {
-      strPathName = System.datetime().international().get_gmt_date_time() + ".html";
-   }
-   else
-   {
-      strPathName = varFile;
-   }
+   
+      string strPathName;
+      
+      if(varFile.get_type() == var::type_propset && varFile.propset()["url"].get_string().has_char())
+      {
+         strPathName = varFile.propset()["url"];
+      }
+      else if(varFile.ca2 < ::ex1::file > () != NULL)
+      {
+         strPathName = System.datetime().international().get_gmt_date_time() + ".html";
+      }
+      else
+      {
+         strPathName = varFile;
+      }
       if(strPathName.Mid(3) == "wb:")
          return FALSE;
 
@@ -528,5 +533,29 @@ namespace html
    }
 
 
+   void data::implement_and_layout(html_form * pform)
+   {
+
+      ::ca::client_graphics pdc(pform);
+
+      m_pguie  = pform;
+
+      m_pform  = pform;
+
+      implement(pdc);
+         
+      pform->GetClientBox(m_box);
+
+      if(m_box.area() <= 0.f)
+         return;
+
+      layout(pdc);
+         
+   }
+
 
 } // namespace html
+
+
+
+

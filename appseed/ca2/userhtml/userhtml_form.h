@@ -23,7 +23,7 @@ public:
    virtual void _001OnDraw(::ca::graphics * pdc);
    virtual void _001DrawChildren(::ca::graphics *pdc);
 
-   virtual void layout(::html::data * phtmldata);
+   //virtual void layout(::html::data * phtmldata);
    virtual void layout();
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
@@ -49,6 +49,13 @@ public:
    virtual void _001GetText(string & str);
    virtual void _001SetText(const char * psz);
 
+
+   virtual void GetClientBox(::html::box & box);
+
+
+   virtual void defer_implement();
+
+   virtual void defer_layout();
 
 
 };

@@ -94,18 +94,8 @@ bool html_view::pre_create_window(CREATESTRUCT& cs)
 }
 void html_view::_001OnInitialUpdate(gen::signal_object * pobj) 
 {
+
    ::userbase::view::_001OnInitialUpdate(pobj);
-
-   GetClientRect(&get_html_data()->m_rect);
-   if(get_html_data()->m_rect.width() > 0 &&
-      get_html_data()->m_rect.height() > 0)
-   {
-
-      ::ca::client_graphics pdc(this);
-
-      get_html_data()->layout(pdc);
-      _001RedrawWindow();
-   }
 
 }
 
@@ -121,29 +111,13 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint
       {
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {
-            GetClientRect(&get_html_data()->m_rect);
-            GetClientRect(&get_html_data()->m_rect);
-            bool bLayoutOk = false;
-            if(get_html_data()->m_rect.width() > 0 &&
-               get_html_data()->m_rect.height() > 0)
-            {
-               bLayoutOk = true;
-            }
-
-            ::ca::client_graphics pdc(this);
-
-            get_html_data()->m_pguie = this;
-            get_html_data()->implement(pdc);
-            if(bLayoutOk)
-            {
-               get_html_data()->layout(pdc);
-            }
             
-            if(bLayoutOk)
-            {
-               _001RedrawWindow();
-            }
+            layout();
+
+            _001RedrawWindow();
+
             on_document_complete(puh->m_strUrl);
+
          }
       }
    }

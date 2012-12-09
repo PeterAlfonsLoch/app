@@ -1,6 +1,9 @@
 #pragma once
 
 
+class html_form;
+
+
 namespace html
 {
 
@@ -60,7 +63,7 @@ namespace html
       ::user::form_callback *    m_pcallback;
       ::user::interaction *      m_pguie;
       ::ca::graphics *           m_pdc;
-      rect                       m_rect;
+      box                        m_box;
       string                     m_strTitle;
       layout_state               m_layoutstate;
       
@@ -98,7 +101,7 @@ namespace html
       gen::property_set          m_propset;
       string                     m_strSource;
 
-      ::user::form *             m_pform;
+      ::html_form *              m_pform;
       bool                       m_bEdit;
       elemental *                m_pElementalSelStart;
       elemental *                m_pElementalSelEnd;
@@ -123,6 +126,8 @@ namespace html
       void implement(::ca::graphics * pdc);
       void layout(::ca::graphics * pdc);
       void _001OnDraw(::ca::graphics * pdc);
+
+      void implement_and_layout(html_form * pform);
 
       DECL_GEN_SIGNAL(_001OnKeyDown)
 

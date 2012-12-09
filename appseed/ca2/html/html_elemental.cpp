@@ -613,7 +613,7 @@ namespace html
       }
 
 
-      int elemental::calc_width()
+      float elemental::calc_width()
       {
          
          if(m_pelemental != NULL && m_pelemental->m_pparent != NULL)
@@ -969,7 +969,7 @@ namespace html
                pdata->m_layoutstate.m_iBody++;
 
                m_pimpl->set_bound_point(pdata, point(0, 0));
-               m_pimpl->set_bound_size(pdata, size(pdata->m_rect.width(), pdata->m_rect.height()));
+               m_pimpl->set_bound_size(pdata, size(pdata->m_box.get_cx(), pdata->m_box.get_cy()));
             }
             else if(strTag == "head" || strTag == "html")
             {
@@ -990,7 +990,7 @@ namespace html
                pdata->m_layoutstate.m_iBody++;
 
                m_pimpl->set_bound_point(pdata, point(0, 0));
-               m_pimpl->set_bound_size(pdata, size(pdata->m_rect.width(), pdata->m_rect.height()));
+               m_pimpl->set_bound_size(pdata, pdata->m_box.get_cxy());
             }
          }
          else if(strTag == "input")

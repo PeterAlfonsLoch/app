@@ -21,6 +21,7 @@ namespace html
          stringa                       m_straWordSpace;
          bool                          m_bLink;
          string                        m_strLink;
+         bool                          m_bOnAfterChangeText;
 
 
          text(::ca::application * papp);

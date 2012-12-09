@@ -14,8 +14,13 @@ namespace html
          user::scroll_view(papp),
          user::edit_plain_text(papp)
       {
-         m_bLink = false;
-         ::user::scroll_view::oprop("send_enter_key") = true;
+         
+         m_bLink                                         = false;
+
+         m_bSendEnterKey                                 = true;
+
+         m_bOnAfterChangeText                            = false;
+
       }
 
       void text::delete_implementation()
@@ -453,6 +458,9 @@ namespace html
          int x = get_x();
          int y = get_y();
 
+         if(m_pelemental->m_pparent == NULL)
+            return;
+
          x += m_pelemental->m_pparent->m_pimpl->m_border.left + m_pelemental->m_pparent->m_pimpl->m_padding.left + m_pelemental->m_pparent->m_pimpl->m_margin.left;
          y += m_pelemental->m_pparent->m_pimpl->m_border.top + m_pelemental->m_pparent->m_pimpl->m_padding.top + m_pelemental->m_pparent->m_pimpl->m_margin.top;
          int cy = 0;
@@ -774,10 +782,20 @@ namespace html
 
       void text::_001OnAfterChangeText()
       {
+
+         if(m_bOnAfterChangeText)
+            return;
+
+         keeper < bool > keep(&m_bOnAfterChangeText, true, false, true);
+         
          string strText;
+         
          _001GetText(strText);
-         m_pelemental->m_propertyset["PropertyBody"] = strText;
+         
+         m_pelemental->_001SetText(strText);
+
          m_pelemental->m_pdata->m_pform->layout();
+
       }
 
 

@@ -86,21 +86,9 @@ bool html_form_view::pre_create_window(CREATESTRUCT& cs)
 }
 void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
 {
+   
    html_form::_001OnInitialUpdate(pobj);
 
-   if(get_html_data() != NULL)
-   {
-      GetClientRect(&get_html_data()->m_rect);
-      if(get_html_data()->m_rect.width() > 0 &&
-         get_html_data()->m_rect.height() > 0)
-      {
-         ::ca::client_graphics pdc(this);
-         get_html_data()->m_pguie = this;
-         get_html_data()->layout(pdc);
-         
-         _001RedrawWindow();
-      }
-   }
 }
 
 
@@ -117,51 +105,30 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
          if(puh->m_etype == html_view_update_hint::type_document_complete)
          {
             ASSERT(get_html_data() != NULL);
-            bool bLayoutOk = false;
-             ::ca::client_graphics pdc(this);
-            if(get_html_data() != NULL)
+            
+            defer_implement();
+            
+            _001InitializeFormPreData();
+
+            _001UpdateFunctionStatic();
+
+            for(int i = 0; i < m_controldescriptorset.get_size(); i++)
             {
-               GetClientRect(&get_html_data()->m_rect);
-               GetClientRect(&get_html_data()->m_rect);
-               if(get_html_data()->m_rect.width() > 0 &&
-                  get_html_data()->m_rect.height() > 0)
+               user::control * pcontrol = m_controldescriptorset[i].m_pcontrol;
+               if(pcontrol != NULL)
                {
-                  bLayoutOk = true;
-               }
-               get_html_data()->m_pguie = this;
-               get_html_data()->implement(pdc);
-               _001InitializeFormPreData();
-               /*   ::view * pview = dynamic_cast <::view *>(get_guie());
-                  if(pview != NULL)
-                  {
-                     if(pview->get_document() != NULL)
-                     {
-                        pview->get_document()->update_all_views(NULL);
-                     }
-                  }*/
-               _001UpdateFunctionStatic();
-               //   CVmsGuiApp * papp = (CVmsGuiApp *) &System;
-               //   papp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
-               for(int i = 0; i < m_controldescriptorset.get_size(); i++)
-               {
-                  user::control * pcontrol = m_controldescriptorset[i].m_pcontrol;
-                  if(pcontrol != NULL)
-                  {
-                     _001Update(pcontrol);
-                  }
+                  _001Update(pcontrol);
                }
             }
-            if(bLayoutOk)
-            {
-               get_html_data()->layout(pdc);
-            }
-            if(bLayoutOk)
-            {
-               _001RedrawWindow();
-            }
+
+            defer_layout();
+            
             on_document_complete(puh->m_strUrl);
+
             GetParentFrame()->SetActiveView(this);
+
             SetFocus();
+
          }
       }
    }
@@ -208,6 +175,8 @@ void html_form_view::_001OnSetFocus(gen::signal_object * pobj)
 
 void html_form_view::_001OnKillFocus(gen::signal_object * pobj)
 {
+
    UNREFERENCED_PARAMETER(pobj);
+
 }
 

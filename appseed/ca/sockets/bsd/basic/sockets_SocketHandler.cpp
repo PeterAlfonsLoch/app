@@ -374,12 +374,18 @@ namespace sockets
          {
             if(ppair->m_value != NULL)
             {
-               TRACE("tmout sckt(%d):\"%s\"", ppair->m_key, ppair->m_value->oprop("meta_info").get_string());
-               TRACE("tmout sckt(%d):remote_address=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress().get_display_number());
-               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress().get_canonical_name());
-               TRACE("tmout sckt(%d):short_desc=\"%s\"", ppair->m_key, ppair->m_value->get_short_description());
+               //TRACE("tmout sckt(%d):\"%s\"", ppair->m_key, ppair->m_value->oprop("meta_info").get_string());
+               
+               SOCKET s = ppair->m_key;
+
                class socket * psocket = ppair->m_value;
+
+               TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number());
+               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\""   , s, psocket->GetRemoteAddress().get_canonical_name());
+               TRACE("tmout sckt(%d):short_desc=\"%s\""              , s, psocket->get_short_description());
+               
                time_t tnow = time(NULL);
+
                if(psocket->Timeout(tnow))
                {
                   stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);

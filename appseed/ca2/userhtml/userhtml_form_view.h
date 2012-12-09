@@ -29,10 +29,13 @@ public:
    virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
    virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
 
-   
+
    DECL_GEN_SIGNAL(_001OnInitialUpdate)
    DECL_GEN_SIGNAL(_001OnSetFocus)
    DECL_GEN_SIGNAL(_001OnKillFocus)
 
+
 };
+
+
 

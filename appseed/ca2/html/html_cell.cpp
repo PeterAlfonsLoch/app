@@ -371,24 +371,22 @@ namespace html
 
          if(m_iColBeg == 0)
          {
-            size.cx -= get_table()->m_iCellSpacing / 2;
-            size.cx -= get_table()->m_iCellSpacing % 2;
+            size.cx -= get_table()->m_iCellSpacing / 2.f;
          }
          else if(m_iColEnd == get_table()->m_columna.get_upper_bound())
          {
-            size.cx -= get_table()->m_iCellSpacing / 2;
+            size.cx -= get_table()->m_iCellSpacing / 2.f;
          }
 
          size.cy -= get_table()->m_iCellSpacing;
 
          if(m_iRowBeg == 0)
          {
-            size.cy -= get_table()->m_iCellSpacing / 2;
-            size.cy -= get_table()->m_iCellSpacing % 2;
+            size.cy -= get_table()->m_iCellSpacing / 2.f;
          }
          else if(m_iRowEnd == get_table()->m_rowptra.get_upper_bound())
          {
-            size.cy -= get_table()->m_iCellSpacing / 2;
+            size.cy -= get_table()->m_iCellSpacing / 2.f;
          }
 
          return size;
@@ -407,8 +405,7 @@ namespace html
          }
          else
          {
-            point.x += get_table()->m_iCellSpacing / 2;
-            point.x += get_table()->m_iCellSpacing % 2;
+            point.x += get_table()->m_iCellSpacing / 2.f;
          }
 
          if(m_iRowBeg == 0)
@@ -417,8 +414,7 @@ namespace html
          }
          else
          {
-            point.y += get_table()->m_iCellSpacing / 2;
-            point.y += get_table()->m_iCellSpacing % 2;
+            point.y += get_table()->m_iCellSpacing / 2.f;
          }
 
          return point;
@@ -551,7 +547,7 @@ namespace html
          return contains_column(iCol) && contains_row(iRow);
       }
 
-      int cell::calc_width()
+      float cell::calc_width()
       {
 
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_value)
@@ -563,18 +559,18 @@ namespace html
 
          size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
 
-         int iColumnWidth = 0;
+         float iColumnWidth = 0;
 
-         int cxMax;
+         float cxMax;
 
          if(get_table() != NULL)
          {
 
             ::count n = get_table()->m_columna.get_size();
 
-            int cellMax = 0;
+            float cellMax = 0;
 
-            int sMax = 0;
+            float sMax = 0;
 
             for(index iColumn = 0; iColumn < n; iColumn++)
             {
@@ -585,7 +581,7 @@ namespace html
                   cellMax += cxMax;
                }
             }
-            int W = get_table()->calc_width();
+            float W = get_table()->calc_width();
             if(sMax > 0)
             {
                iColumnWidth = W * cellMax  / sMax;

@@ -120,7 +120,7 @@ namespace userex
 
       pdoc = dynamic_cast < form_document * > (m_ptemplateForm->open_document_file(createcontext));
       ::view * pview = pdoc->get_view(0);
-      pdoc->get_html_data()->m_pform = dynamic_cast < ::user::form * > (pview);
+      pdoc->get_html_data()->m_pform = dynamic_cast < ::html_form * > (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
    }
@@ -162,7 +162,7 @@ namespace userex
       createcontext->m_puiParent                      = pwndParent;
       pdoc = dynamic_cast < form_document * > (m_ptemplateChildForm->open_document_file(createcontext));
       ::view * pview = pdoc->get_view(0);
-      pdoc->get_html_data()->m_pform = dynamic_cast < ::user::form * > (pview);
+      pdoc->get_html_data()->m_pform = dynamic_cast < ::html_form * > (pview);
       pdoc->get_html_data()->m_pform->m_pcallback = pcallback;
       return pdoc;
    }
