@@ -357,7 +357,7 @@ namespace gen
       {
          return MultiByteToMultiByte(CodePageAnsi, str, CodePageUtf8, lpcsz);
       }
-*
+*/
 
       bool multibyte_to_utf8(UINT uiCodePageSrc, string & str, const char * lpcsz)
       {
