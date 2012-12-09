@@ -378,23 +378,23 @@ namespace sockets
                TRACE("tmout sckt(%d):remote_address=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress().get_display_number());
                TRACE("tmout sckt(%d):remote_canonical_name=\"%s\"", ppair->m_key, ppair->m_value->GetRemoteAddress().get_canonical_name());
                TRACE("tmout sckt(%d):short_desc=\"%s\"", ppair->m_key, ppair->m_value->get_short_description());
+               class socket * psocket = ppair->m_value;
+               time_t tnow = time(NULL);
+               if(psocket->Timeout(tnow))
+               {
+                  stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);
+                  if(pstreamsocket != NULL && pstreamsocket->Connecting())
+                     psocket->OnConnectTimeout();
+                  else
+                     psocket->OnTimeout();
+                  psocket->SetTimeout(0);
+               }
+               else
+               {
+                  psocket->OnException();
+               }
             }
             ppair = m_sockets.PGetNextAssoc(ppair);
-            class socket * psocket = ppair->m_value;
-            time_t tnow = time(NULL);
-            if(psocket->Timeout(tnow))
-            {
-               stream_socket * pstreamsocket = dynamic_cast<stream_socket *>(psocket);
-               if(pstreamsocket != NULL && pstreamsocket->Connecting())
-                  psocket->OnConnectTimeout();
-               else
-                  psocket->OnTimeout();
-               psocket->SetTimeout(0);
-            }
-            else
-            {
-               psocket->OnException();
-            }
             n--;
          }
       }

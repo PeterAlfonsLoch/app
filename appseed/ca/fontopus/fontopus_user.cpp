@@ -31,13 +31,10 @@ namespace fontopus
    bool user::initialize()
    {
 
-      if(get_app()->is_system() ||
-         get_app()->is_cube() ||
-         get_app()->is_session() ||
-         get_app()->is_bergedge())
+      if(&Session == NULL)
          return true;
 
-      Application.defer_initialize_user_presence();
+      Session.defer_initialize_user_presence();
 
       return true;
 
