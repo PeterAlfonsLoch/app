@@ -134,6 +134,14 @@ namespace sockets
 
       m_memoryfile.seek_to_begin();
 
+      if(m_content_length == 0)
+      {
+         if (m_b_close_when_complete)
+         {
+            SetCloseAndDelete();
+         }
+      }
+
    }
 
    void http_client_socket::OnDataComplete()

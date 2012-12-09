@@ -1186,9 +1186,9 @@ retry:
          {
             psocket->m_bOnlyHeaders = true;
          }
-         if(set.has_property("noclose") && (bool)set["noclose"])
+         if(!(bool)set["noclose"])
          {
-            psocket->m_bNoClose = true;
+            psocket->m_bNoClose = false;
          }
          if(set.has_property("file"))
          {
@@ -1230,6 +1230,15 @@ retry:
          }
          DWORD dw1 = ::get_tick_count();
          bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
+         int iTimeout = set["timeout"];
+         if(iTimeout == 0)
+            iTimeout = 23;
+         else if(iTimeout < 1000)
+            iTimeout = 1;
+         else
+            iTimeout = iTimeout / 1000;
+
+
          if(!psocket->open(bConfigProxy))
          {
             if(pestatus != NULL)
@@ -1260,7 +1269,7 @@ retry:
          while(handler.get_count() > 0)
          {
             dw1 = ::get_tick_count();
-            handler.Select(23, 0);
+            handler.Select(iTimeout, 0);
             keeplive.keep_alive();
             if(psocket->m_estatus == sockets::socket::status_connection_timed_out)
             {

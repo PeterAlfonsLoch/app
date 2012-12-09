@@ -80,11 +80,7 @@ namespace ca
    bool graphics_path::add_line(int x1, int y1, int x2, int y2)
    {
 
-      bool bOk1 = add_line(x1, y1);
-
-      bool bOk2 = add_line(x2, y2);
-
-      return bOk1 && bOk2;
+      return add_line(point(x1, y1), point(x2, y2));
 
    }
 
@@ -92,11 +88,7 @@ namespace ca
    bool graphics_path::add_line(point p1, point p2)
    {
 
-      bool bOk1 = add_line(p1);
-
-      bool bOk2 = add_line(p2);
-
-      return bOk1 && bOk2;
+      return add_line(p1.x, p1.y, p2.x, p2.y);
 
    }
 
