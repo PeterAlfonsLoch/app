@@ -30,7 +30,8 @@ namespace visual
    void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str)
    {
 
-      ::visual::api::EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str);
+
+      System.visual()->EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str);
 
       return;
 
@@ -78,7 +79,9 @@ namespace visual
 
    void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int iCharsPositions, int iOffset)
    {
-      ::visual::api::EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
+
+      System.visual()->EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
+
       return;
 
       SetDC(pdc);

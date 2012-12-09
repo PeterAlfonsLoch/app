@@ -123,6 +123,8 @@ namespace plane
       m_file4.set_app(this);
       m_file4.path36().set_app(this);
 
+      m_pvisualapi               = new ::visual::api(this);
+
       m_prunstartinstaller       = NULL;
       m_pmachineeventcentral     = NULL;
       //m_pfactory                 = NULL;
@@ -203,6 +205,9 @@ namespace plane
 
       m_bProcessInitializeResult    = false;
       m_bProcessInitialize          = true;
+
+
+      m_pvisualapi->open();
 
 
       if(!gen::system::initialize())
@@ -745,8 +750,19 @@ namespace plane
 
    ::ca::window_draw * system::get_twf()
    {
+
       return m_ptwf;
+
    }
+
+
+   ::visual::api * system::visual()
+   {
+
+      return m_pvisualapi;
+
+   }
+
 
    ::ca::window_draw * system::_001GetTwf()
    {
@@ -1072,6 +1088,18 @@ namespace plane
       {
 
       }
+
+      try
+      {
+
+         m_pvisualapi->close();
+
+      }
+      catch(...)
+      {
+
+      }
+
 
       return true;
 

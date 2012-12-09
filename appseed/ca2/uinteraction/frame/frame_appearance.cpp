@@ -338,12 +338,18 @@ namespace frame
 
    void appearance::CTool001::draw(::ca::graphics * pdc)
    {
+      
       pdc->SelectObject(m_brushBody);
+      
       ::ca::pen_sp pen(get_app());
+      
       pen->create_solid(pdc, 0, RGB(255, 255, 255));
+      
       pdc->SelectObject(pen);
+      
       point pt(0, 0);
-      visual::api::DrawAndFillBeziers(
+
+      System.visual()->DrawAndFillBeziers(
          pdc,
          m_pointsetBody.get_data(),
          (int) m_pointsetBody.get_size(),
@@ -355,6 +361,7 @@ namespace frame
          CColorBezier & bezier = m_colorbezieraOutsideBorder[i];
          bezier.draw(m_brushNull, pdc);
       }
+
    }
 
    void appearance::CTool001::CColorBezier::draw(::ca::brush & brush, ::ca::graphics * pdc)
@@ -362,12 +369,14 @@ namespace frame
       pdc->SelectObject(&brush);
       pdc->SelectObject(m_ppen);
       point pt(0, 0);
-      visual::api::DrawAndFillBeziers(
+
+      Sys(pdc->get_app()).visual()->DrawAndFillBeziers(
          pdc,
          m_pointset.get_data(),
          (int) m_pointset.get_size(),
          1.0,
          &pt);
+
    }
 
    void  appearance::CTool001::CColorBezier::clear()

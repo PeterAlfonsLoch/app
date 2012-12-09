@@ -1,57 +1,23 @@
 #include "framework.h"
 
+
 namespace visual
 {
 
-   HINSTANCE api::g_hinstanceGdipp = NULL;
-   bool api::g_bGdipp = false;
-   bool api::g_bGdiEnabled = false;
 
-   void (* api::lpDrawAndFillBeziers1)(
-      ::ca::graphics                     *pdc,
-      LPPOINT             lppoints,
-      int                  iCount,
-      float               fRateX,
-      LPPOINT               lppointOffset) = NULL;
-
-   void (* api::lpDrawAndFillBeziers2)(
-      ::ca::graphics                     *pdc,
-      base_array<point_array, point_array &> *
-                         lpglyph,
-      float               fRateX,
-      LPPOINT               lppointOffset) = NULL;
-
-
-   void (* api::lpEmbossedTextOut1)(
-      ::ca::graphics *          pdc,
-      LPCRECT         lpcrect,
-      float            fRateX,
-      float            fHeight,
-      const char *   psz) = NULL;
-
-   void (* api::lpEmbossedTextOut2)(
-      ::ca::graphics *          pdc,
-      LPCRECT        lpcrect,
-      float            lRateX,
-      float            lHeight,
-      const char *   psz,
-      LPINT          lpiCharsPositions,
-      int            iCharsPositions,
-      int            iOffset) = NULL;
-
-   bool (* api::lpStartup)() = NULL;
-
-   bool (* api::lpShutdown)() = NULL;
-
-   api::api()
+   api::api(::ca::application * papp) :
+      ca(papp)
    {
 
    }
+
 
    api::~api()
    {
 
    }
+
+
    void api::DrawBeziers(
       ::ca::graphics                     *pdc,
       LPPOINT             lppoints,
@@ -59,36 +25,26 @@ namespace visual
       double               dRateX,
       LPPOINT               lppointOffset)
    {
-      if(IsGdippEnabled())
-      {
-         (*lpDrawAndFillBeziers1)(
-            pdc,
-            lppoints,
-            iCount,
-            (float) dRateX,
-            lppointOffset);
-      }
-      else
-      {
-         rect clipRect;
 
-         size viewportExt = pdc->GetViewportExt();
-         point viewportOrg = pdc->GetViewportOrg();
+      rect clipRect;
 
-         pdc->OffsetViewportOrg(
-            lppointOffset->x,
-            lppointOffset->y);
+      size viewportExt = pdc->GetViewportExt();
+      point viewportOrg = pdc->GetViewportOrg();
 
-         pdc->ScaleViewportExt((int) dRateX, 1, 1, 1);
+      pdc->OffsetViewportOrg(
+         lppointOffset->x,
+         lppointOffset->y);
 
-         pdc->BeginPath();
-         pdc->PolyBezier(lppoints, iCount);
-         pdc->EndPath();
-         pdc->StrokePath();
+      pdc->ScaleViewportExt((int) dRateX, 1, 1, 1);
 
-         pdc->SetWindowExt(viewportExt);
-         pdc->SetViewportOrg(viewportOrg);
-      }
+      pdc->BeginPath();
+      pdc->PolyBezier(lppoints, iCount);
+      pdc->EndPath();
+      pdc->StrokePath();
+
+      pdc->SetWindowExt(viewportExt);
+      pdc->SetViewportOrg(viewportOrg);
+
    }
 
    void api::DrawAndFillBeziers(
@@ -98,36 +54,26 @@ namespace visual
       double               dRateX,
       LPPOINT               lppointOffset)
    {
-      if(IsGdippEnabled())
-      {
-         (*lpDrawAndFillBeziers1)(
-            pdc,
-            lppoints,
-            iCount,
-            (float) dRateX,
-            lppointOffset);
-      }
-      else
-      {
-         rect clipRect;
 
-         size viewportExt = pdc->GetViewportExt();
-         point viewportOrg = pdc->GetViewportOrg();
+      rect clipRect;
 
-         pdc->OffsetViewportOrg(
-            lppointOffset->x,
-            lppointOffset->y);
+      size viewportExt = pdc->GetViewportExt();
+      point viewportOrg = pdc->GetViewportOrg();
 
-         pdc->ScaleViewportExt((int) dRateX, 1, 1, 1);
+      pdc->OffsetViewportOrg(
+         lppointOffset->x,
+         lppointOffset->y);
 
-         pdc->BeginPath();
-         pdc->PolyBezier(lppoints, iCount);
-         pdc->EndPath();
-         pdc->StrokeAndFillPath();
+      pdc->ScaleViewportExt((int) dRateX, 1, 1, 1);
 
-         pdc->SetWindowExt(viewportExt);
-         pdc->SetViewportOrg(viewportOrg);
-      }
+      pdc->BeginPath();
+      pdc->PolyBezier(lppoints, iCount);
+      pdc->EndPath();
+      pdc->StrokeAndFillPath();
+
+      pdc->SetWindowExt(viewportExt);
+      pdc->SetViewportOrg(viewportOrg);
+
    }
 
    void api::DrawAndFillBeziers(
@@ -137,35 +83,26 @@ namespace visual
       double               dRateX,
       LPPOINT               lppointOffset)
    {
-      if(g_bGdipp)
+
+      rect clipRect;
+
+      size viewportExt = pdc->GetViewportExt();
+      point viewportOrg = pdc->GetViewportOrg();
+
+      pdc->OffsetViewportOrg(
+         lppointOffset->x,
+         lppointOffset->y);
+
+      pdc->ScaleViewportExt((int)(dRateX * 1000.0), 1, 1, 1);
+
+      for(int i = 0; i < lpglyph->get_size(); i++)
       {
-         (*lpDrawAndFillBeziers2)(
-            pdc,
-            lpglyph,
-            (float) dRateX,
-            lppointOffset);
+         pdc->PolyBezier(lpglyph->element_at(i).get_data(), (int) lpglyph->element_at(i).get_size());
       }
-      else
-      {
-         rect clipRect;
 
-         size viewportExt = pdc->GetViewportExt();
-         point viewportOrg = pdc->GetViewportOrg();
+      pdc->SetWindowExt(viewportExt);
+      pdc->SetViewportOrg(viewportOrg);
 
-         pdc->OffsetViewportOrg(
-            lppointOffset->x,
-            lppointOffset->y);
-
-         pdc->ScaleViewportExt((int)(dRateX * 1000.0), 1, 1, 1);
-
-         for(int i = 0; i < lpglyph->get_size(); i++)
-         {
-            pdc->PolyBezier(lpglyph->element_at(i).get_data(), (int) lpglyph->element_at(i).get_size());
-         }
-
-         pdc->SetWindowExt(viewportExt);
-         pdc->SetViewportOrg(viewportOrg);
-      }
    }
 
    void api::EmbossedTextOut(
@@ -178,19 +115,6 @@ namespace visual
       int               iCharsPositions,
       int               iOffset)
    {
-      if(IsGdippEnabled())
-      {
-         (*lpEmbossedTextOut2)(pdc,
-            lpcrect,
-            (float) dRateX,
-            (float) dHeight,
-            psz,
-            lpiCharsPositions,
-            iCharsPositions,
-            iOffset);
-      }
-      else
-      {
          rect clipRect;
 
    //      int iOldMapMode = ::GetMapMode(pdc->m_hDC);
@@ -224,7 +148,6 @@ namespace visual
    //         viewportOrg.x,
    //         viewportOrg.y,
    //         NULL));
-      }
    }
 
 
@@ -238,20 +161,6 @@ namespace visual
       COLORREF       crOutline,
       int            iLen)
    {
-      if(IsGdippEnabled())
-      {
-         ASSERT(FALSE);
-   /*      (*lpEmbossedTextOut2)(pdc,
-            lpcrect,
-            floatRateX,
-            floatHeight,
-            str,
-            lpiCharsPositions,
-            iCharsPositions,
-            iOffset);*/
-      }
-      else
-      {
          rect clipRect;
 
    //      int iOldMapMode = ::GetMapMode(pdc->m_hDC);
@@ -300,7 +209,6 @@ namespace visual
    //         viewportOrg.x,
    //         viewportOrg.y,
    //         NULL));
-      }
    }
 
    void api::SimpleTextOut(
@@ -322,16 +230,9 @@ namespace visual
       pdc->TextOut(lpcrect->left, lpcrect->top, psz);
       return;
 
-      if(IsGdippEnabled())
-      {
-         ASSERT(FALSE);
-      }
-      else
-      {
-         string str;
-         str = gen::international::utf8_to_unicode(psz);
-         ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int) str.get_length());
-      }
+      string str;
+      str = gen::international::utf8_to_unicode(psz);
+      ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int) str.get_length());
    }
 
 
@@ -342,177 +243,26 @@ namespace visual
       double         dRateX,
       const char *   psz)
    {
-      if(IsGdippEnabled())
-      {
-         (*lpEmbossedTextOut1)(
-            pdc,
-            lpcrect,
-            (float) dRateX,
-            (float) dHeight,
-            psz);
-      }
-      else
-      {
          pdc->TextOut(lpcrect->left, lpcrect->top, psz);
          pdc->BeginPath();
          pdc->TextOut(lpcrect->left, lpcrect->top, psz);
          pdc->EndPath();
          pdc->StrokePath();
-      }
-
-   }
-
-   bool api::GetProcsAddress()
-   {
-
-#ifdef WINDOWS
-
-      if((lpDrawAndFillBeziers1 =
-         (void (*)(
-            ::ca::graphics                     *pdc,
-            LPPOINT             lppoints,
-            int                  iCount,
-            float               fRateX,
-            LPPOINT               lppointOffset))
-         ::GetProcAddress(
-         g_hinstanceGdipp,
-         "DrawAndFillBeziers1")) == NULL)
-         return false;
-      if((lpDrawAndFillBeziers2 =
-         (void(*)(
-         ::ca::graphics                     *pdc,
-         base_array<point_array, point_array &> *
-                            lpglyph,
-         float               fRateX,
-         LPPOINT               lppointOffset))
-         ::GetProcAddress(
-         g_hinstanceGdipp,
-         "DrawAndFillBeziers2")) == NULL)
-         return false;
-
-      if((lpEmbossedTextOut1 =
-         (void (*)(
-            ::ca::graphics         * pgraphics,
-            LPCRECT               lpcrect,
-            float               floatRateX,
-            float               floatHeight,
-            const char * psz))
-         ::GetProcAddress(
-         g_hinstanceGdipp,
-         "EmbossedTextOut1")) == NULL)
-         return false;
-
-      if((lpEmbossedTextOut2 =
-         (void (*)(
-         ::ca::graphics                     * pgraphics,
-         LPCRECT               lpcrect,
-         float               floatRateX,
-         float               floatHeight,
-         const char *         psz,
-         LPINT                lpiCharsPositions,
-         int                     iCharsPositions,
-         int                  iOffset))
-         ::GetProcAddress(
-         g_hinstanceGdipp,
-         "EmbossedTextOut2")) == NULL)
-         return false;
-
-      if((lpStartup =
-         (bool (*)())
-         ::GetProcAddress(
-         g_hinstanceGdipp,
-         "Startup")) == NULL)
-         return false;
-
-      if((lpShutdown =
-         (bool (*)())
-         ::GetProcAddress(
-         g_hinstanceGdipp,
-         "Shutdown")) == NULL)
-         return false;
-
-#endif
-
-      return true;
 
    }
 
    bool api::open()
    {
-      if(g_hinstanceGdipp != NULL)
-      {
-         if((*lpStartup)())
-         {
-            g_bGdipp = true;
-
-         }
-      }
       return true;
    }
+
    bool api::close()
    {
-      if(g_hinstanceGdipp != NULL)
-      {
-         if((*lpShutdown)())
-         {
-            g_bGdipp = false;
-         }
-      }
       return true;
    }
 
-
-#ifdef WINDOWS
-
-   // Enable OpenGL
-
-   void api::EnableOpenGL(oswindow oswindow, HDC & hDC, HGLRC & hRC)
-   {
-      UNREFERENCED_PARAMETER(oswindow);
-      UNREFERENCED_PARAMETER(hDC);
-      UNREFERENCED_PARAMETER(hRC);
-/*      PIXELFORMATDESCRIPTOR pfd;
-      int format;
-
-      // get the device context (DC)
-      hDC = GetDC( oswindow );
-
-      // set the pixel format for the DC
-      ZeroMemory( &pfd, sizeof( pfd ) );
-      pfd.nSize = sizeof( pfd );
-      pfd.nVersion = 1;
-      pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
-   //   pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL;
-      pfd.iPixelType = PFD_TYPE_RGBA;
-      pfd.cColorBits = 24;
-      pfd.cDepthBits = 32;
-      pfd.iLayerType = PFD_MAIN_PLANE;
-      format = ChoosePixelFormat( hDC, &pfd );
-      SetPixelFormat( hDC, format, &pfd );
-
-      // create and enable the to context (RC)
-      hRC = wglCreateContext( hDC );
-      wglMakeCurrent( hDC, hRC );
-      */
-   }
-
-   // Disable OpenGL
-
-   void api::DisableOpenGL(oswindow oswindow, HDC hDC, HGLRC hRC)
-   {
-      UNREFERENCED_PARAMETER(hRC);
-/*      wglMakeCurrent( NULL, NULL );
-      wglDeleteContext( hRC );*/
-
-#ifndef METROWIN
-      ReleaseDC( oswindow, hDC );
-#else
-      throw todo(::ca::get_thread_app());
-#endif
-   }
-
-
-#endif
-
-
 } // namespace visual
+
+
+
+
