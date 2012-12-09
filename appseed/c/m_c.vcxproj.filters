@@ -70,6 +70,18 @@
     <Filter Include="Source Files\metrowin\crypt">
       <UniqueIdentifier>{20860910-2aa6-43a2-a318-b36ccce8b952}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\cross">
+      <UniqueIdentifier>{cad6af04-0c25-49fa-8dd1-5091737d1135}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cross\windows">
+      <UniqueIdentifier>{f8de6d3e-c020-442c-b4e3-2f1ba65fffd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cross">
+      <UniqueIdentifier>{d582e295-dda4-47ba-8700-b4cc066037a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\cross\windows">
+      <UniqueIdentifier>{9932dbda-a60e-43ff-8b5d-d6bab33503cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -435,6 +447,9 @@
     <ClCompile Include="metrowin\c_os_c_dll.cpp">
       <Filter>Source Files\metrowin</Filter>
     </ClCompile>
+    <ClCompile Include="cross\windows\windows_user.cpp">
+      <Filter>Source Files\cross\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -790,6 +805,18 @@
     </ClInclude>
     <ClInclude Include="c\c_async.h">
       <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\cross.h">
+      <Filter>Header Files\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows.h">
+      <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows_thread.h">
+      <Filter>Header Files\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="cross\windows\windows_user.h">
+      <Filter>Header Files\cross\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

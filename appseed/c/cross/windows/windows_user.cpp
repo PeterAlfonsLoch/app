@@ -5,7 +5,7 @@
 //  Created by Carlos Gustavo Cecyn Lundgren on 12/8/12.
 //
 //
-
+#include "framework.h"
 
 CLASS_DECL_c COLORREF GetSysColor(DWORD dw)
 {

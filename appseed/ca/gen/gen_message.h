@@ -22,7 +22,7 @@ typedef struct tagCREATESTRUCTW {
     LPVOID      lpCreateParams;
     HINSTANCE   hInstance;
     HMENU       hMenu;
-    oswindow        oswindowParent;
+    oswindow    hwndParent;
     int         cy;
     int         cx;
     int         y;

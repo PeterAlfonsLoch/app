@@ -239,13 +239,15 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    }
    m_id      = id;
    m_pguie->m_id      = id;
+
    CREATESTRUCT cs;
-   cs.dwExStyle = dwExStyle;
-   cs.style = dwStyle;
-   cs.x = rect.left;
-   cs.y = rect.top;
-   cs.cx = rect.right - rect.left;
-   cs.cy = rect.bottom - rect.top;
+
+   cs.dwExStyle   = dwExStyle;
+   cs.style       = dwStyle;
+   cs.x           = rect.left;
+   cs.y           = rect.top;
+   cs.cx          = rect.right - rect.left;
+   cs.cy          = rect.bottom - rect.top;
 
 #ifdef WINDOWSEX
 
