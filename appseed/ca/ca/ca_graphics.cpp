@@ -2455,8 +2455,7 @@ namespace ca
    client_graphics::client_graphics(::user::interaction * pui)
    {
       m_pui = pui;
-      create(pui->get_app());
-      m_p->attach(pui->GetDC());
+      ::ca::graphics_sp::operator = (pui->GetDC());
    }
 
    client_graphics::~client_graphics()
