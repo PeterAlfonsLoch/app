@@ -512,17 +512,17 @@ namespace html
 
          if(pcell != NULL)
          {
-            if(pcell->m_iColBeg >= 0 
+            if(pcell->m_iColBeg >= 0
             || pcell->m_iColEnd >= 0
             || pcell->m_iRowBeg >= 0
             || pcell->m_iRowEnd >= 0)
             {
-               
+
                return false;
 
             }
          }
-         
+
          //UNREFERENCED_PARAMETER(pimplChild);
 
          return true;
@@ -577,13 +577,13 @@ namespace html
 
          for(int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
-            
+
             elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
-            
+
             if(!use_in_final_layout(pelemental))
                continue;
 
-            
+
 
             if(pelemental->get_x() < x)
                x = pelemental->get_x();
@@ -615,10 +615,10 @@ namespace html
 
       float elemental::calc_width()
       {
-         
+
          if(m_pelemental != NULL && m_pelemental->m_pparent != NULL)
          {
-            
+
             return m_pelemental->m_pparent->m_pimpl->calc_width();
 
          }
@@ -804,7 +804,7 @@ namespace html
          {
             if(m_pbase->get_type() == base::type_value)
             {
-               pdata->m_strTitle = m_pbase->value()->get_value();
+               pdata->m_strTitle = m_pbase->get_value()->get_value();
                m_pimpl = new ::html::impl::elemental();
             }
             else
@@ -860,7 +860,7 @@ namespace html
             m_pimpl = new ::html::impl::text(pdata->get_app());
          }
       }
-      
+
       m_style.get_surround_box("padding", NULL, pdata, this, m_pimpl->m_padding);
       m_style.get_border_box("border", NULL, pdata, this, m_pimpl->m_border);
       m_style.get_border_color("border", NULL, pdata, this, m_pimpl->m_border);
@@ -1259,9 +1259,9 @@ namespace html
       {
          m_elementalptra[i]->layout_phase3(pdata);
       }
-      
-      
-      
+
+
+
       m_pimpl->final_layout(pdata);
 
 
@@ -1308,8 +1308,8 @@ namespace html
          {
             pcell->get_table()->set_x(pdata, pcell->get_x());
          }
-               
-               
+
+
       }
       else if((m_pbase->get_type() == ::html::base::type_value
       && strTag != "tbody"
@@ -1377,9 +1377,9 @@ namespace html
 
       string strTag = get_tag_name();
 
-      if(m_style.m_propertyset["display"] == "table" 
+      if(m_style.m_propertyset["display"] == "table"
       ||    (m_style.m_propertyset["display"].get_string().is_empty()
-               && strTag == "table")) 
+               && strTag == "table"))
       {
          for(int i = 0; i < m_elementalptra.get_size(); i++)
          {
@@ -1643,7 +1643,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_value)
          return NULL;
-      ::html::tag * ptag = m_pbase->tag();
+      ::html::tag * ptag = m_pbase->get_tag();
       if(id == ptag->get_attr_value("name"))
          return this;
       elemental * pelemental = NULL;
@@ -1660,7 +1660,7 @@ namespace html
    {
       if(m_pbase->get_type() == base::type_value)
          return NULL;
-      ::html::tag * ptag = m_pbase->tag();
+      ::html::tag * ptag = m_pbase->get_tag();
       if(id == ptag->get_attr_value("id"))
          return this;
       elemental * pelemental = NULL;

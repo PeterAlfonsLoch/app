@@ -56,9 +56,9 @@ namespace html
             pattr->set_value(pTag->getAttributes()->getAttribute(i).getValue());
          }
       }
-      if(m_ptag->parent() != NULL && pTag->getTagName() == "visual")
+      if(m_ptag->get_parent() != NULL && pTag->getTagName() == "visual")
       {
-         m_ptag = m_ptag->parent();
+         m_ptag = m_ptag->get_parent();
       }
       bAbort = false;
    }
@@ -67,14 +67,14 @@ namespace html
    {
       UNREFERENCED_PARAMETER(pTag);
       UNREFERENCED_PARAMETER(dwAppData);
-      if(m_ptag->parent() != NULL && pTag->getTagName() != "visual")
+      if(m_ptag->get_parent() != NULL && pTag->getTagName() != "visual")
       {
-         m_ptag = m_ptag->parent();
+         m_ptag = m_ptag->get_parent();
       }
 
       bAbort = false;
    }
-   
+
    void reader::Characters(const string &rText, dword_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(dwAppData);
@@ -86,7 +86,7 @@ namespace html
       }
       bAbort = false;
    }
-   
+
    void reader::Comment(const string &rComment, dword_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(rComment);
@@ -102,7 +102,7 @@ namespace html
 
    tag * reader::detach_main_tag()
    {
-      
+
       tag * ptagMain    = m_ptagMain;
 
 

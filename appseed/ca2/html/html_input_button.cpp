@@ -27,11 +27,11 @@ namespace html
             pdata->on_create_interaction(m_pbutton);
          }
          elemental::implement_phase1(pdata, pelemental);
-         m_pbutton->_001SetButtonText(pelemental->m_pbase->tag()->get_attr_value("value"));
-         m_pbutton->m_id = pelemental->m_pbase->tag()->get_attr_value("id");
+         m_pbutton->_001SetButtonText(pelemental->m_pbase->get_tag()->get_attr_value("value"));
+         m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
          if(m_pbutton->m_id.is_empty())
          {
-            m_pbutton->m_id = pelemental->m_pbase->tag()->get_attr_value("name");
+            m_pbutton->m_id = pelemental->m_pbase->get_tag()->get_attr_value("name");
          }
          m_pbutton->m_pimpl->m_id = m_pbutton->m_id;
          m_cxMax = 200;
@@ -70,7 +70,7 @@ namespace html
             pdata->m_layoutstate.m_bLastBlockX = false;
             pdata->m_layoutstate.m_bLastBlockY = false;
          }*/
-         m_pbutton->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
+         m_pbutton->SetWindowPos(0, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_button::_001OnDraw(data * pdata)
@@ -87,7 +87,7 @@ namespace html
       void input_button::on_change_layout(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         m_pbutton->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
+         m_pbutton->SetWindowPos(0, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
    }

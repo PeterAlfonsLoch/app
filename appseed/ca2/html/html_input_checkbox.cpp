@@ -25,7 +25,7 @@ namespace html
             pdata->on_create_interaction(m_pcheckbox);
          }
          elemental::implement_phase1(pdata, pelemental);
-         string strValue = pelemental->m_pbase->tag()->get_attr_value("value");
+         string strValue = pelemental->m_pbase->get_tag()->get_attr_value("value");
          if(strValue.CompareNoCase("checked") == 0)
          {
             m_pcheckbox->_001SetCheck(check::checked, false);
@@ -34,10 +34,10 @@ namespace html
          {
             m_pcheckbox->_001SetCheck(check::unchecked, false);
          }
-         
-         m_pcheckbox->m_id = pelemental->m_pbase->tag()->get_attr_value("id");
-         m_pcheckbox->m_strName = pelemental->m_pbase->tag()->get_attr_value("name");
-         m_pcheckbox->m_id = pelemental->m_pbase->tag()->get_attr_value("id");
+
+         m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
+         m_pcheckbox->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
+         m_pcheckbox->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
          if(pdata->m_pform != NULL
             && pdata->m_pform->m_pcallback != NULL)
          {
@@ -62,7 +62,7 @@ namespace html
          pdata->m_layoutstate.m_cx   = 23;
          pdata->m_layoutstate.m_bLastBlockX = false;
          pdata->m_layoutstate.m_bLastBlockY = false;
-         m_pcheckbox->SetWindowPos(NULL, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
+         m_pcheckbox->SetWindowPos(0, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_check_box::_001OnDraw(data * pdata)
@@ -78,7 +78,7 @@ namespace html
       void input_check_box::on_change_layout(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         m_pcheckbox->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
+         m_pcheckbox->SetWindowPos(0, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
    }

@@ -161,7 +161,9 @@
 		<Unit filename="c/c_xmlite.h" />
 		<Unit filename="cross/cross.h" />
 		<Unit filename="cross/windows/windows.h" />
+		<Unit filename="cross/windows/windows_gdi.h" />
 		<Unit filename="cross/windows/windows_thread.h" />
+		<Unit filename="cross/windows/windows_user.h" />
 		<Unit filename="crypt/crypt.cpp" />
 		<Unit filename="crypt/crypt.h" />
 		<Unit filename="crypt/nessie.cpp" />

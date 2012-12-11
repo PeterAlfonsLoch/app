@@ -45,10 +45,10 @@ namespace html
             m_pedit->create(pdata->m_pguie, 100);
             pdata->on_create_interaction(m_pedit);
             m_pedit->m_bPassword = pelemental->m_propertyset["type"].compare_value_ci("password") == 0;
-            m_pedit->m_strName = pelemental->m_pbase->tag()->get_attr_value("name");
-            m_pedit->m_id = pelemental->m_pbase->tag()->get_attr_value("id");
+            m_pedit->m_strName = pelemental->m_pbase->get_tag()->get_attr_value("name");
+            m_pedit->m_id = pelemental->m_pbase->get_tag()->get_attr_value("id");
             m_pedit->m_pimpl->m_id = m_pedit->m_id;
-            m_pedit->_001SetText(pelemental->m_pbase->tag()->get_attr_value("value"));
+            m_pedit->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"));
             m_pedit->SetFont(pdata->get_font(pelemental)->m_font);
          }
          pdata->m_focusptra.add_unique(m_pedit);
@@ -68,7 +68,7 @@ namespace html
          pdata->m_layoutstate.m_cx   = get_cx();
          pdata->m_layoutstate.m_bLastBlockX = true;
          pdata->m_layoutstate.m_bLastBlockY = true;
-         m_pedit->SetWindowPos(NULL, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
+         m_pedit->SetWindowPos(0, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_text::_001OnDraw(data * pdata)
@@ -85,7 +85,7 @@ namespace html
       void input_text::on_change_layout(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         m_pedit->SetWindowPos(NULL, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
+         m_pedit->SetWindowPos(0, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
       }
 
    }
