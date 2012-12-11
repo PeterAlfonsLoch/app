@@ -72,11 +72,16 @@ namespace ca
    bool brush::create_solid(COLORREF crColor)
    {
 
-      m_cr        = crColor;
+      if(m_cr != crColor || m_etype != type_solid)
+      {
+       
+         m_cr        = crColor;
 
-      m_etype     = type_solid;
+         m_etype     = type_solid;
 
-      m_bUpdated  = false;
+         m_bUpdated  = false;
+
+      }
 
       return true;
 
