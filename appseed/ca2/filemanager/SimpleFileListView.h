@@ -7,11 +7,11 @@
 #include "SimpleFileListInterface.h"
 
 
-class ::filemanager::document;
-
-
 namespace filemanager
 {
+
+
+   class document;
 
 
    class CLASS_DECL_ca2 SimpleFileListView :
@@ -19,7 +19,7 @@ namespace filemanager
       virtual public filemanager::SimpleFileListInterface
    {
    public:
-   
+
       class file_size
       {
       public:
@@ -41,7 +41,7 @@ namespace filemanager
 
 
       void schedule_file_size(const char * psz);
-   
+
       virtual void _017OpenContextMenuFolder(const ::fs::item &item);
       virtual void _017OpenContextMenuFile(const ::fs::item_array &itema);
       virtual void _017OpenContextMenu();
@@ -53,7 +53,7 @@ namespace filemanager
 
       void FileSize();
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
+      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 

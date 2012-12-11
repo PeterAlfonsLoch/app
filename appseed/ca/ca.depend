@@ -6175,7 +6175,7 @@
 	"poppack.h"
 	"poppack.h"
 
-1354886572 source:/ca2/app/appseed/ca/api/mktime.cpp
+1354997260 source:/ca2/app/appseed/ca/api/mktime.cpp
 	<time.h>
 
 1342864856 source:/ca2/app/appseed/ca/api/api_integer_to_string.cpp
@@ -7393,11 +7393,11 @@
 
 1354886571 /ca2/app/appseed/ca/exception/exception_invalid_argument.h
 
-1354886571 /ca2/app/appseed/ca/exception/exception_standard_translator.h
+1354997259 /ca2/app/appseed/ca/exception/exception_standard_translator.h
 	<eh.h>
 	<signal.h>
 
-1354974459 /ca2/app/appseed/ca/exception/exception_standard.h
+1355256145 /ca2/app/appseed/ca/exception/exception_standard.h
 	<eh.h>
 	<ucontext.h>
 	<sys/ucontext.h>
@@ -7590,7 +7590,7 @@
 1354886568 /ca2/app/appseed/ca/gen/gen_str2.h
 	<string.h>
 
-1354886572 /ca2/app/appseed/ca/primitive/datetime/datetime_time.h
+1354997260 /ca2/app/appseed/ca/primitive/datetime/datetime_time.h
 
 1354886568 /ca2/app/appseed/ca/gen/gen_hash.h
 
@@ -7604,7 +7604,7 @@
 
 1354886570 /ca2/app/appseed/ca/collection/collection_base_array.h
 
-1354886568 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
+1355256145 /ca2/app/appseed/ca/ca/ca_smart_pointer.h
 
 1354886567 /ca2/app/appseed/ca/radix/radix.inl
 
@@ -7765,7 +7765,7 @@
 
 1354886568 /ca2/app/appseed/ca/gen/gen_variable_strict_compare.h
 
-1354886572 /ca2/app/appseed/ca/primitive/primitive_var.h
+1355260562 /ca2/app/appseed/ca/primitive/primitive_var.h
 
 1354886568 /ca2/app/appseed/ca/gen/gen_var.h
 
@@ -7939,7 +7939,7 @@
 1354886568 /ca2/app/appseed/ca/ca/ca_draw_dib.h
 	<vfw.h>
 
-1354886568 /ca2/app/appseed/ca/ca/ca_graphics.h
+1355256145 /ca2/app/appseed/ca/ca/ca_graphics.h
 	"user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
@@ -7955,7 +7955,7 @@
 
 1354886568 /ca2/app/appseed/ca/gen/gen_request_signal.h
 
-1354886571 /ca2/app/appseed/ca/visual/visual_const.h
+1355256145 /ca2/app/appseed/ca/visual/visual_const.h
 
 1354886567 /ca2/app/appseed/ca/radix/radix_command.h
 
@@ -7964,7 +7964,7 @@
 	"ca/user/user_create_context.h"
 	"ca/user/user_check_interface.h"
 
-1354986014 /ca2/app/appseed/ca/gen/gen_message.h
+1355256145 /ca2/app/appseed/ca/gen/gen_message.h
 	<agile.h>
 
 1354886573 /ca2/app/appseed/ca/user/user_create_context.h
@@ -7987,7 +7987,7 @@
 
 1354886573 /ca2/app/appseed/ca/user/user_text_interface.h
 
-1354886573 /ca2/app/appseed/ca/user/user_window_interface.h
+1355256146 /ca2/app/appseed/ca/user/user_window_interface.h
 	"user/user_buffer.h"
 	"user/user_window_map.h"
 	"gen/gen_keeper.h"
@@ -8178,7 +8178,7 @@
 
 1354886572 /ca2/app/appseed/ca/primitive/primitive_memory.h
 
-1354886572 /ca2/app/appseed/ca/primitive/primitive_virtual_memory.h
+1354997260 /ca2/app/appseed/ca/primitive/primitive_virtual_memory.h
 
 1354886572 /ca2/app/appseed/ca/primitive/primitive_shared_memory.h
 
@@ -8209,7 +8209,7 @@
 
 1354886566 /ca2/app/appseed/c/c/c_natural.h
 
-1354886567 /ca2/app/appseed/ca/zlib/zlib.h
+1355256145 /ca2/app/appseed/ca/zlib/zlib.h
 	"zconf.h"
 
 1354886567 /ca2/app/appseed/ca/zlib/zutil.h
@@ -8399,7 +8399,7 @@
 
 1354986014 /ca2/app/appseed/ca/gen/gen_application.h
 
-1354886568 /ca2/app/appseed/ca/gen/gen_istring.h
+1355260153 /ca2/app/appseed/ca/gen/gen_istring.h
 
 1354886571 /ca2/app/appseed/ca/ex2/ex2_file_set.h
 
@@ -8446,7 +8446,7 @@
 
 1354886571 /ca2/app/appseed/ca/xml/xml_attr.h
 
-1354886571 /ca2/app/appseed/ca/xml/xml_node.h
+1354997260 /ca2/app/appseed/ca/xml/xml_node.h
 
 1354886571 /ca2/app/appseed/ca/xml/xml_document.h
 
@@ -9295,7 +9295,7 @@
 
 1354886571 /ca2/app/appseed/ca/ca4/ca4_copydesk.h
 
-1354886571 /ca2/app/appseed/ca/ca4/ca4_crypt.h
+1355256145 /ca2/app/appseed/ca/ca4/ca4_crypt.h
 
 1354886571 /ca2/app/appseed/ca/ca4/ca4_email.h
 
@@ -9412,7 +9412,7 @@
 
 1354886571 /ca2/app/appseed/ca/visual/visual_rgb_quad_array.h
 
-1354886571 /ca2/app/appseed/ca/visual/visual_imaging.h
+1354997259 /ca2/app/appseed/ca/visual/visual_imaging.h
 
 1354886571 /ca2/app/appseed/ca/visual/visual_image_list.h
 
@@ -9420,7 +9420,7 @@
 
 1354886571 /ca2/app/appseed/ca/visual/visual_cursor.h
 
-1354886571 /ca2/app/appseed/ca/visual/visual_api.h
+1355256145 /ca2/app/appseed/ca/visual/visual_api.h
 
 1354886571 /ca2/app/appseed/ca/visual/visual_graphics_extension.h
 
@@ -9542,7 +9542,7 @@
 
 1354886573 /ca2/app/appseed/ca/fontopus/fontopus_license.h
 
-1354886573 /ca2/app/appseed/ca/fontopus/fontopus_validate.h
+1355256146 /ca2/app/appseed/ca/fontopus/fontopus_validate.h
 
 1354886573 /ca2/app/appseed/ca/fontopus/fontopus_application.h
 
@@ -9578,7 +9578,7 @@
 
 1354886567 /ca2/app/appseed/ca/plane/plane_session.h
 
-1354886567 /ca2/app/appseed/ca/plane/plane_system.h
+1355256145 /ca2/app/appseed/ca/plane/plane_system.h
 	<agile.h>
 	"ca/collection/collection_gen_lemon_array.h"
 
@@ -9655,7 +9655,7 @@
 1354886568 source:/ca2/app/appseed/ca/ca/ca_bitmap.cpp
 	"framework.h"
 
-1354886568 source:/ca2/app/appseed/ca/ca/ca_brush.cpp
+1355256145 source:/ca2/app/appseed/ca/ca/ca_brush.cpp
 	"framework.h"
 
 1342864737 source:/ca2/app/appseed/ca/ca/ca_c.cpp
@@ -9712,14 +9712,14 @@
 1354886568 source:/ca2/app/appseed/ca/ca/ca_font.cpp
 	"framework.h"
 
-1354974459 source:/ca2/app/appseed/ca/ca/ca_graphics.cpp
+1355256145 source:/ca2/app/appseed/ca/ca/ca_graphics.cpp
 	"framework.h"
 	<math.h>
 
 1354886568 source:/ca2/app/appseed/ca/ca/ca_graphics_object.cpp
 	"framework.h"
 
-1354886568 source:/ca2/app/appseed/ca/ca/ca_graphics_path.cpp
+1355256145 source:/ca2/app/appseed/ca/ca/ca_graphics_path.cpp
 	"framework.h"
 
 1354886568 source:/ca2/app/appseed/ca/ca/ca_history.cpp
@@ -9831,7 +9831,7 @@
 1354886571 source:/ca2/app/appseed/ca/ca4/ca4_copydesk.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/ca4/ca4_crypt.cpp
+1355256145 source:/ca2/app/appseed/ca/ca4/ca4_crypt.cpp
 	"framework.h"
 	<openssl/ssl.h>
 	<openssl/md5.h>
@@ -10102,7 +10102,7 @@
 1354886571 source:/ca2/app/appseed/ca/ca4/ca4_http_get_socket.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/ca4/ca4_http_system.cpp
+1355256145 source:/ca2/app/appseed/ca/ca4/ca4_http_system.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/ca4/ca4_ip_enum.cpp
@@ -10389,7 +10389,7 @@
 	"7zOut.h"
 	"7zUpdate.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/compress_7z_crc_opt.cpp
+1354997259 source:/ca2/app/appseed/ca/compress/compress_7z_crc_opt.cpp
 	"framework.h"
 
 1354886570 source:/ca2/app/appseed/ca/compress/compress_archive.cpp
@@ -10448,7 +10448,7 @@
 1354886570 source:/ca2/app/appseed/ca/compress/compress_method_properties.cpp
 	"framework.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/compress_out_handler.cpp
+1354997259 source:/ca2/app/appseed/ca/compress/compress_out_handler.cpp
 	"framework.h"
 	"../../../Windows/PropVariant.h"
 	"../../../Windows/System.h"
@@ -10471,7 +10471,7 @@
 1354886570 source:/ca2/app/appseed/ca/compress/compress_ppmd8.cpp
 	"framework.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/compress_prop_id.cpp
+1354997259 source:/ca2/app/appseed/ca/compress/compress_prop_id.cpp
 	"framework.h"
 
 1354886570 source:/ca2/app/appseed/ca/compress/compress_reader_with_crc.cpp
@@ -10561,7 +10561,7 @@
 	"framework.h"
 	"InFile.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/zip/zip_ioapi.cpp
+1354997259 source:/ca2/app/appseed/ca/compress/zip/zip_ioapi.cpp
 	"framework.h"
 	"c/c/c.h"
 	"ca/zlib/zlib.h"
@@ -10593,13 +10593,13 @@
 	<errno.h>
 	"crypt.h"
 
-1354886571 source:/ca2/app/appseed/ca/crypto/crypto_ae_xfm.cpp
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_ae_xfm.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_cipher_aes.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/crypto/crypto_cipher_aes_cbc.cpp
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_cipher_aes_cbc.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_cipher_aes_icm.cpp
@@ -10608,7 +10608,7 @@
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_cipher_cipher.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/crypto/crypto_cipher_null_cipher.cpp
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_cipher_null_cipher.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_gf2_8.cpp
@@ -10620,7 +10620,7 @@
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_hash_hmac.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/crypto/crypto_hash_null_auth.cpp
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_hash_null_auth.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_hash_sha1.cpp
@@ -10629,7 +10629,7 @@
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_hmac_sha1.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/crypto/crypto_kernel_alloc.cpp
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_kernel_alloc.cpp
 	"framework.h"
 	<linux/interrupt.h>
 
@@ -10661,10 +10661,10 @@
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_replay_ut_sim.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/crypto/crypto_rng_ctr_prng.cpp
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_rng_ctr_prng.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/crypto/crypto_rng_prng.cpp
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_rng_prng.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/crypto/crypto_rng_rand_source.cpp
@@ -10934,7 +10934,7 @@
 	"framework.h"
 	<stdarg.h>
 
-1354958618 source:/ca2/app/appseed/ca/exception/exception_engine.cpp
+1354997259 source:/ca2/app/appseed/ca/exception/exception_engine.cpp
 	"framework.h"
 	<execinfo.h>
 	<cxxabi.h>
@@ -11049,7 +11049,7 @@
 1354886569 source:/ca2/app/appseed/ca/filehandler/filehandler_tree_item.cpp
 	"framework.h"
 
-1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_application.cpp
+1355256146 source:/ca2/app/appseed/ca/fontopus/fontopus_application.cpp
 	"framework.h"
 
 1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_contact_list.cpp
@@ -11061,7 +11061,7 @@
 1354958620 source:/ca2/app/appseed/ca/fontopus/fontopus_license.cpp
 	"framework.h"
 
-1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_user.cpp
+1355256146 source:/ca2/app/appseed/ca/fontopus/fontopus_user.cpp
 	"framework.h"
 
 1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_user_set.cpp
@@ -11070,7 +11070,7 @@
 1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_usera.cpp
 	"framework.h"
 
-1354974459 source:/ca2/app/appseed/ca/fontopus/fontopus_validate.cpp
+1355256146 source:/ca2/app/appseed/ca/fontopus/fontopus_validate.cpp
 	"framework.h"
 	<openssl/rsa.h>
 	<openssl/engine.h>
@@ -11160,14 +11160,14 @@
 1354977272 source:/ca2/app/appseed/ca/gen/gen_TimerWnd.cpp
 	"framework.h"
 
-1354886568 source:/ca2/app/appseed/ca/gen/gen_application.cpp
+1354986014 source:/ca2/app/appseed/ca/gen/gen_application.cpp
 	"framework.h"
 	<dlfcn.h>
 	<link.h>
 	<ctype.h>
 	<dlfcn.h>
 
-1354886568 source:/ca2/app/appseed/ca/gen/gen_base.cpp
+1354997259 source:/ca2/app/appseed/ca/gen/gen_base.cpp
 	"framework.h"
 
 1354886568 source:/ca2/app/appseed/ca/gen/gen_base64.cpp
@@ -11202,7 +11202,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_command_line.cpp
 	"framework.h"
 
-1354886568 source:/ca2/app/appseed/ca/gen/gen_cregexp.cpp
+1354997259 source:/ca2/app/appseed/ca/gen/gen_cregexp.cpp
 	"framework.h"
 
 1354886568 source:/ca2/app/appseed/ca/gen/gen_cregexp_util.cpp
@@ -11220,7 +11220,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_hash.cpp
 	"framework.h"
 
-1354974458 source:/ca2/app/appseed/ca/gen/gen_international.cpp
+1355256145 source:/ca2/app/appseed/ca/gen/gen_international.cpp
 	"framework.h"
 	<winnls.h>
 
@@ -11236,7 +11236,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_logic.cpp
 	"framework.h"
 
-1354886568 source:/ca2/app/appseed/ca/gen/gen_math.cpp
+1355256145 source:/ca2/app/appseed/ca/gen/gen_math.cpp
 	"framework.h"
 	<time.h>
 
@@ -11246,7 +11246,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_memory.cpp
 	"framework.h"
 
-1354958616 source:/ca2/app/appseed/ca/gen/gen_message.cpp
+1354986014 source:/ca2/app/appseed/ca/gen/gen_message.cpp
 	"framework.h"
 	<X11/Xlib.h>
 	<X11/Xutil.h>
@@ -11543,15 +11543,16 @@
 
 1354886572 /ca2/app/appseed/ca/libcharguess/GB2312Freq.tab
 
-1354886572 source:/ca2/app/appseed/ca/libcharguess/libcharguess_charguess.cpp
+1354997260 source:/ca2/app/appseed/ca/libcharguess/libcharguess_charguess.cpp
 	"framework.h"
 	"universal.h"
 	"string.h"
+	"charguess.h"
 
 1354886572 /ca2/app/appseed/ca/libcharguess/universal.h
 	"types.h"
 
-1354886572 source:/ca2/app/appseed/ca/libcharguess/libcharguess_jpCntx.cpp
+1354997260 source:/ca2/app/appseed/ca/libcharguess/libcharguess_jpCntx.cpp
 	"framework.h"
 	"types.h"
 	"jpCntx.h"
@@ -11698,10 +11699,10 @@
 1354886567 source:/ca2/app/appseed/ca/plane/plane_library.cpp
 	"framework.h"
 
-1354886567 source:/ca2/app/appseed/ca/plane/plane_session.cpp
+1355256145 source:/ca2/app/appseed/ca/plane/plane_session.cpp
 	"framework.h"
 
-1354977273 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
+1355256145 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/plugin/plugin_history.cpp
@@ -11738,7 +11739,7 @@
 1354886572 source:/ca2/app/appseed/ca/primitive/datetime/datetime_time.cpp
 	"framework.h"
 
-1354886572 source:/ca2/app/appseed/ca/primitive/datetime/datetime_value.cpp
+1354997260 source:/ca2/app/appseed/ca/primitive/datetime/datetime_value.cpp
 	"framework.h"
 
 1354886572 source:/ca2/app/appseed/ca/primitive/datetime/datetime_windows_file_time.cpp
@@ -11801,14 +11802,14 @@
 	<fcntl.h>
 	<sys/mman.h>
 
-1354977273 source:/ca2/app/appseed/ca/plane/plane_system.cpp
+1355256145 source:/ca2/app/appseed/ca/plane/plane_system.cpp
 	"framework.h"
 	<GdiPlus.h>
 
 1354886572 source:/ca2/app/appseed/ca/primitive/primitive_point.cpp
 	"framework.h"
 
-1354886572 source:/ca2/app/appseed/ca/primitive/primitive_rectangle.cpp
+1354997260 source:/ca2/app/appseed/ca/primitive/primitive_rectangle.cpp
 	"framework.h"
 
 1354886572 source:/ca2/app/appseed/ca/primitive/primitive_scalar.cpp
@@ -11826,7 +11827,7 @@
 1354886572 source:/ca2/app/appseed/ca/primitive/primitive_size.cpp
 	"framework.h"
 
-1354886572 source:/ca2/app/appseed/ca/primitive/primitive_string_core.cpp
+1354997260 source:/ca2/app/appseed/ca/primitive/primitive_string_core.cpp
 	"framework.h"
 
 1354886572 source:/ca2/app/appseed/ca/primitive/primitive_string_manager.cpp
@@ -11873,7 +11874,7 @@
 	<gdiplus.h>
 	<sys/mman.h>
 
-1354886572 source:/ca2/app/appseed/ca/primitive/primitive_string_format.cpp
+1354997260 source:/ca2/app/appseed/ca/primitive/primitive_string_format.cpp
 	"framework.h"
 
 1354886567 source:/ca2/app/appseed/ca/radix/radix_command_target.cpp
@@ -11896,7 +11897,7 @@
 1354886567 source:/ca2/app/appseed/ca/radix/radix_flags.cpp
 	"framework.h"
 
-1354886572 source:/ca2/app/appseed/ca/primitive/primitive_virtual_memory.cpp
+1354997260 source:/ca2/app/appseed/ca/primitive/primitive_virtual_memory.cpp
 	"framework.h"
 
 1354886567 source:/ca2/app/appseed/ca/radix/radix_machine_event_central.cpp
@@ -12434,11 +12435,11 @@
 1354886569 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence_central_container.cpp
 	"framework.h"
 
-1354977274 source:/ca2/app/appseed/ca/user/user_frame_window.cpp
+1354997260 source:/ca2/app/appseed/ca/user/user_frame_window.cpp
 	"framework.h"
 	<dde.h>
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_application.cpp
+1355256145 source:/ca2/app/appseed/ca/visual/visual_application.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/visual/visual_buffered_graphics.cpp
@@ -12455,10 +12456,10 @@
 1354886571 source:/ca2/app/appseed/ca/visual/visual_cursor.cpp
 	"framework.h"
 
-1354978409 source:/ca2/app/appseed/ca/user/user_interaction.cpp
+1355256146 source:/ca2/app/appseed/ca/user/user_interaction.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_fastblur.cpp
+1354997259 source:/ca2/app/appseed/ca/visual/visual_fastblur.cpp
 	"framework.h"
 
 1354886573 source:/ca2/app/appseed/ca/user/user_shell.cpp
@@ -12469,15 +12470,16 @@
 1349647426 source:/ca2/app/appseed/ca/visual/visual_clip.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_api.cpp
+1355256145 source:/ca2/app/appseed/ca/visual/visual_api.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/visual/visual_glyph_set.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_FreeImageFileProc.cpp
+1354997259 source:/ca2/app/appseed/ca/visual/visual_FreeImageFileProc.cpp
 	"framework.h"
 	"include/freeimage.h"
+	"visual_FreeImageFileProc.h"
 
 1354886573 /ca2/app/appseed/include/freeimage.h
 	"thirdparty/include/FreeImage/FreeImage.h"
@@ -12502,7 +12504,7 @@
 1354886571 source:/ca2/app/appseed/ca/visual/visual_visual.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_water_routine.cpp
+1354997259 source:/ca2/app/appseed/ca/visual/visual_water_routine.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/xml/xml_application.cpp
@@ -12511,7 +12513,7 @@
 1354886571 source:/ca2/app/appseed/ca/xml/xml_attr.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/xml/xml_base_array.cpp
+1354997260 source:/ca2/app/appseed/ca/xml/xml_base_array.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/xml/xml_data.cpp
@@ -12523,7 +12525,7 @@
 1354886571 source:/ca2/app/appseed/ca/xml/xml_document.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_glyph.cpp
+1355256145 source:/ca2/app/appseed/ca/visual/visual_glyph.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/xml/xml_edit.cpp
@@ -12535,7 +12537,7 @@
 1354886571 source:/ca2/app/appseed/ca/xml/xml_exportable.cpp
 	"framework.h"
 
-1354971274 source:/ca2/app/appseed/ca/user/user_virtual_user_interface.cpp
+1355256146 source:/ca2/app/appseed/ca/user/user_virtual_user_interface.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/xml/xml_importable.cpp
@@ -12567,11 +12569,11 @@
 1354886571 source:/ca2/app/appseed/ca/visual/visual_icon.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_image_list.cpp
+1354997259 source:/ca2/app/appseed/ca/visual/visual_image_list.cpp
 	"framework.h"
 	"include/freeimage.h"
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_font.cpp
+1355256145 source:/ca2/app/appseed/ca/visual/visual_font.cpp
 	"framework.h"
 
 1354886567 source:/ca2/app/appseed/ca/zlib/zlib_adler32.cpp
@@ -12582,13 +12584,13 @@
 	"framework.h"
 	"zlib.h"
 
-1354886567 source:/ca2/app/appseed/ca/zlib/zlib_crc32.cpp
+1355256145 source:/ca2/app/appseed/ca/zlib/zlib_crc32.cpp
 	"framework.h"
 	"zutil.h"
 	<limits.h>
 	"crc32.h"
 
-1354886567 /ca2/app/appseed/ca/zlib/crc32.h
+1354997259 /ca2/app/appseed/ca/zlib/crc32.h
 
 1354886567 source:/ca2/app/appseed/ca/zlib/zlib_deflate.cpp
 	"framework.h"
@@ -12608,7 +12610,7 @@
 
 1354886567 /ca2/app/appseed/ca/zlib/inftrees.h
 
-1354886567 /ca2/app/appseed/ca/zlib/inflate.h
+1354997259 /ca2/app/appseed/ca/zlib/inflate.h
 
 1354886567 /ca2/app/appseed/ca/zlib/inffast.h
 
@@ -12621,7 +12623,7 @@
 	"inflate.h"
 	"inffast.h"
 
-1354886567 source:/ca2/app/appseed/ca/zlib/zlib_inflate.cpp
+1354997259 source:/ca2/app/appseed/ca/zlib/zlib_inflate.cpp
 	"framework.h"
 	"zutil.h"
 	"inftrees.h"
@@ -12652,23 +12654,23 @@
 
 1354886571 source:/ca2/app/appseed/ca/xml/xml_xmlite.cpp
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_graphics_extension.cpp
+1354997259 source:/ca2/app/appseed/ca/visual/visual_graphics_extension.cpp
 	"framework.h"
 
-1354886571 source:/ca2/app/appseed/ca/xml/xml_node.cpp
+1354997260 source:/ca2/app/appseed/ca/xml/xml_node.cpp
 
-1354886567 source:/ca2/app/appseed/ca/zlib/zlib_gzio.cpp
+1354997259 source:/ca2/app/appseed/ca/zlib/zlib_gzio.cpp
 	"framework.h"
 	"zutil.h"
 	<stdarg.h>
 
-1354886571 source:/ca2/app/appseed/ca/visual/visual_imaging.cpp
+1354997259 source:/ca2/app/appseed/ca/visual/visual_imaging.cpp
 	"framework.h"
 	"include/freeimage.h"
 	"visual_FreeImageFileProc.h"
 	<gdiplus.h>
 
-1354886571 /ca2/app/appseed/ca/visual/visual_FreeImageFileProc.h
+1354997259 /ca2/app/appseed/ca/visual/visual_FreeImageFileProc.h
 
 1354886571 source:/ca2/app/appseed/ca/exception/exception_error.cpp
 	"framework.h"
@@ -13124,7 +13126,7 @@
 
 1354901616 /ca2/app/appseed/ca/multithreading/multithreading_condition.h
 
-1354977273 /ca2/app/appseed/ca/sockets/bsd/sockets.h
+1354995363 /ca2/app/appseed/ca/sockets/bsd/sockets.h
 	"internal/SSLInitializer.h"
 	<sys/param.h>
 	<stdlib.h>
@@ -13210,14 +13212,14 @@
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/basic/sockets_ssl_client_context_map.h
 
-1354904729 /ca2/app/appseed/ca/sockets/bsd/basic/socket.h
+1355256146 /ca2/app/appseed/ca/sockets/bsd/basic/socket.h
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/basic/stream_socket.h
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/basic/sctp_socket.h
 	<netinet/sctp.h>
 
-1354974459 /ca2/app/appseed/ca/sockets/bsd/basic/tcp_socket.h
+1355256146 /ca2/app/appseed/ca/sockets/bsd/basic/tcp_socket.h
 	<openssl/bio.h>
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/basic/udp_socket.h
@@ -13244,11 +13246,11 @@
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/webserver/http_response.h
 
-1354886572 /ca2/app/appseed/ca/sockets/bsd/http/http_socket.h
+1355256146 /ca2/app/appseed/ca/sockets/bsd/http/http_socket.h
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/http/http_tunnel.h
 
-1354886572 /ca2/app/appseed/ca/sockets/bsd/http/http_client_socket.h
+1355256146 /ca2/app/appseed/ca/sockets/bsd/http/http_client_socket.h
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/http/http_request_socket.h
 
@@ -13537,7 +13539,7 @@
 1354977273 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_SctpSocket.cpp
 	"framework.h"
 
-1354886572 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_SocketHandler.cpp
+1355256146 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_SocketHandler.cpp
 	"framework.h"
 
 1354886572 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_StreamSocket.cpp
@@ -13552,7 +13554,7 @@
 1354886572 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_ssl_client_context_map.cpp
 	"framework.h"
 
-1354904857 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_Socket.cpp
+1355256146 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_Socket.cpp
 	"framework.h"
 	<errno.h>
 	<netdb.h>
@@ -13570,7 +13572,7 @@
 	<stdlib.h>
 	<errno.h>
 
-1354886572 source:/ca2/app/appseed/ca/sockets/bsd/http/sockets_HttpClientSocket.cpp
+1355256146 source:/ca2/app/appseed/ca/sockets/bsd/http/sockets_HttpClientSocket.cpp
 	"framework.h"
 
 1354886572 source:/ca2/app/appseed/ca/sockets/bsd/http/sockets_HttpDebugSocket.cpp
@@ -13697,7 +13699,7 @@
 1354886572 source:/ca2/app/appseed/ca/sockets/bsd/webserver/sockets_http_request.cpp
 	"framework.h"
 
-1354977660 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_tcp_socket.cpp
+1355256146 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_tcp_socket.cpp
 	"framework.h"
 	<openssl/ssl.h>
 	<fcntl.h>

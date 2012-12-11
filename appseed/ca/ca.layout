@@ -544,6 +544,9 @@
 	<File name="gen/gen_definition.h" open="0" top="0" tabpos="3">
 		<Cursor position="3801" topLine="100" />
 	</File>
+	<File name="gen/gen_istring.h" open="1" top="0" tabpos="31">
+		<Cursor position="247" topLine="0" />
+	</File>
 	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="4139" topLine="153" />
 	</File>
@@ -856,8 +859,8 @@
 	<File name="primitive/datetime/datetime_windows_file_time.h" open="0" top="0" tabpos="13">
 		<Cursor position="187" topLine="0" />
 	</File>
-	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="0">
-		<Cursor position="7107" topLine="272" />
+	<File name="primitive/primitive_id.h" open="1" top="0" tabpos="16">
+		<Cursor position="283" topLine="0" />
 	</File>
 	<File name="primitive/primitive_memory.h" open="0" top="0" tabpos="22">
 		<Cursor position="105" topLine="0" />
@@ -889,8 +892,8 @@
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="14677" topLine="805" />
 	</File>
-	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="6">
-		<Cursor position="5753" topLine="210" />
+	<File name="primitive/primitive_var.h" open="1" top="0" tabpos="35">
+		<Cursor position="5437" topLine="198" />
 	</File>
 	<File name="primitive/primitive_virtual_memory.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="3789" topLine="130" />

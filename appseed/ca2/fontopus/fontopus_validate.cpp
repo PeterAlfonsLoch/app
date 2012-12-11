@@ -45,7 +45,11 @@ namespace ca2
 
       validate::~validate()
       {
+#ifdef LINUX
+         ((HTHREAD) m_loginthread.get_os_data())->wait();
+#else
          ::WaitForSingleObjectEx((HANDLE) m_loginthread.get_os_data(), INFINITE, FALSE);
+#endif
       }
 
       void validate::close_all()

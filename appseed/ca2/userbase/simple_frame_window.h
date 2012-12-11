@@ -1,11 +1,26 @@
 #pragma once
 
+
 namespace frame
 {
+
+
    class FrameSchema;
+
+
 }
 
-class ::userbase::control_bar;
+
+namespace userbase
+{
+
+
+   class control_bar;
+
+
+} // namespace userbase
+
+
 class BaseDockBar;
 class BaseReBar;
 class BaseMiniDockFrameWnd;
@@ -80,7 +95,7 @@ public:
    void _001OnDeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 
 
-   
+
 
 #ifdef WINDOWSEX
    void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = TBSTYLE_FLAT, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);

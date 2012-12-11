@@ -13,12 +13,12 @@ protected:
 
 public:
 
-      
+
    istring(::ca::application * papp);
    ~istring();
 
 
-   inline istring & operator = (const char * psz);
+   istring & operator = (const char * psz);
 
 
    inline operator const char * () { return m_str; }

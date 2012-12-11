@@ -2,7 +2,16 @@
 
 
 class FileManagerInterface;
-class ::fs::item;
+
+
+namespace fs
+{
+
+
+   class item;
+
+
+} // namespace fs
 
 
 namespace filemanager

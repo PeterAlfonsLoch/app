@@ -5,7 +5,19 @@
 
 
 class FileManagerInterface;
-class ::fs::item;
+
+
+namespace fs
+{
+
+
+   class item;
+   class item_array;
+
+
+} // namespace fs
+
+
 
 
 namespace filemanager

@@ -3,12 +3,17 @@
 
 namespace userbase
 {
+
+
    class frame_window_interface;
-}
+   class document;
+   class frame_window;
 
 
-class ::userbase::document;
-class userbase::frame_window;
+} // namespace userbase
+
+
+
 struct PrintPreviewState;
 
 class CPrintDialog;     // forward reference (see afxdlgs.h)

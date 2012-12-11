@@ -1,11 +1,16 @@
 #pragma once
 
+
 namespace userbase
 {
+
    class frame_window;
-   class ::userbase::control_bar;
+   class control_bar;
+
 
 } // namespace userbase
+
+
 class BaseDockBar;
 class BaseDockContext;
 class BaseDockState;

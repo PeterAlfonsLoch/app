@@ -3,8 +3,19 @@
 
 class FileManagerCallbackInterface;
 class FileManagerInterface;
-class ::fs::item;
-class ::fs::item_array;
+
+
+namespace fs
+{
+
+
+   class item;
+   class item_array;
+
+
+} // namespace fs
+
+
 class FileManagerTemplate;
 class CWStrArray;
 class CWStr;
@@ -37,8 +48,8 @@ namespace filemanager
       string                           m_strToolBarSave;
 
       id                               m_id;
-   
-   
+
+
 
    //   UINT  m_uiToolBar;
    //   UINT  m_uiMenuBar;

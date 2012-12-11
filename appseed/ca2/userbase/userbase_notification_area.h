@@ -8,47 +8,48 @@ namespace userbase
 
    struct CLASS_DECL_ca2 TRAYDATA
    {
-      oswindow oswindow;            
-      UINT uID;            
-      UINT uCallbackMessage;   
-      DWORD Reserved[2];      
-      HICON hIcon;            
+      oswindow    m_oswindow;
+      UINT        uID;
+      UINT        uCallbackMessage;
+      DWORD       Reserved[2];
+      HICON       hIcon;
    };
+
 
    struct CLASS_DECL_ca2 TrayItemInfo
    {
-      oswindow oswindow;            
-      UINT uID;            
-      UINT uCallbackMessage;
-      string sTip;
-      string sProcessPath;
-      bool bVisible;
+      oswindow    m_oswindow;
+      UINT        uID;
+      UINT        uCallbackMessage;
+      string      sTip;
+      string      sProcessPath;
+      bool        bVisible;
    };
+
 
    CLASS_DECL_ca2 char GetDriveLetter(const char * lpDevicePath);
    CLASS_DECL_ca2 oswindow FindTrayToolbarWindow();
    CLASS_DECL_ca2 string GetFilenameFromPid(DWORD pid);
 
+
    class CLASS_DECL_ca2 notification_area :
       virtual public ::radix::object
    {
    public:
-      notification_area();
 
-   // Attributes
-   public:
-      oswindow m_oswindowTray;   
+
+      oswindow m_oswindowTray;
       image_list * m_pil16;
       array_ptr_alloc < TrayItemInfo, TrayItemInfo & > m_infoa;
       HFONT m_hfontHidden;
       HFONT m_hfontRegular;
 
-      public:
+
+      notification_area();
+      virtual ~notification_area();
+
       virtual void Initialize(::ca::application * papp);
 
-   public:
-      virtual ~notification_area();
-   public:
       void ListTrayIcons(int defindex = 0);
       void EditCopy(int iItem);
       void DoubleClick(int iItem);
@@ -58,7 +59,13 @@ namespace userbase
       void MoveRight(int iItem);
       void Refresh();
       void PostMessageToTrayIcon(int iItem, LPARAM lParam);
+
+
    };
 
 
 } // namespace userbase
+
+
+
+

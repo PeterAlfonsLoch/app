@@ -2,7 +2,13 @@
 
 class cregexp;
 
-class ::database::selection;
+namespace database
+{
+
+   class selection;
+
+} // namespace database
+
 class window_redraw_interface;
 class image_list;
 
@@ -264,7 +270,7 @@ namespace user
 
 
       class Range;
-      class ::user::list_column_array;
+      class list_column_array;
 
       class CListItemRange
       {
@@ -407,7 +413,7 @@ namespace user
       bool     m_bDrag;
 
 
-      
+
 
       // Sort
       bool                 m_bSort;

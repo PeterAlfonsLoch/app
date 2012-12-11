@@ -1,13 +1,22 @@
 #pragma once
 
-class ::filemanager::data;
+
+namespace filemanager
+{
+
+
+   class data;
+
+
+} // namespace filemanager
+
 
 class CLASS_DECL_ca2 FileManagerInterface :
    virtual public ::database::client
 {
 public:
-   
-   
+
+
    ::critical_section      m_csItemIdListAbsolute;
    ::fs::item              m_item;
    string                  m_strTopic;

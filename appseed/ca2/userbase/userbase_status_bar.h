@@ -10,17 +10,22 @@ namespace userbase
 
    struct __STATUSPANE
    {
-      id    id;        // IDC of indicator: 0 => normal text area
-      int     cxText;     // width of string area in pixels
+
+
+      ::id              m_id;        // IDC of indicator: 0 => normal text area
+      int               cxText;     // width of string area in pixels
                      //   on both sides there is a 3 pixel gap and
                      //   a one pixel border, making a pane 6 pixels wider
-      UINT    nStyle;     // style flags (SBPS_*)
-      UINT    nFlags;     // state flags (SBPF_*)
-      string strText;    // text in the pane
+      UINT              nStyle;     // style flags (SBPS_*)
+      UINT              nFlags;     // state flags (SBPF_*)
+      string            strText;    // text in the pane
+
 
       __STATUSPANE & operator = (const __STATUSPANE & pane);
       __STATUSPANE();
       __STATUSPANE(const __STATUSPANE & pane);
+
+
    };
 
 

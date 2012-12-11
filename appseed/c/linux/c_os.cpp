@@ -9,7 +9,7 @@ DWORD GetTickCount()
 
 }
 
-static DWORD g_dwLastError = 0;
+__thread DWORD g_dwLastError = 0;
 
 CLASS_DECL_c DWORD GetLastError()
 {

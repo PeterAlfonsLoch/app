@@ -38,7 +38,9 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
    #else
 
-      return NULL; // not implemented... yet!! you may start!!
+      throw todo(this);
+
+      //return NULL; // not implemented... yet!! you may start!!
 
    #endif
 
@@ -48,12 +50,12 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    bool application::initialize1()
    {
 
-      
-      
-      
+
+
+
       if(is_cube())
       {
-         
+
          CubeOnFactoryExchange();
 
          ::ca::smart_pointer < ::cubebase::application >::create(this);
@@ -63,7 +65,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
       }
 
-      
+
 
 
       if(!::plane::application::initialize1())
@@ -129,14 +131,14 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
       return true;
 
    }
-    
+
    bool application::initialize()
    {
 
       if(!::plane::application::initialize())
          return false;
 
-      
+
       return true;
 
    }

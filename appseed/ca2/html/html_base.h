@@ -33,11 +33,11 @@ namespace html
 
       virtual type get_type() = 0;
 
-      class tag * parent();
+      class tag * get_parent();
 
-      class tag * tag();
+      class tag * get_tag();
 
-      class value * value();
+      class value * get_value();
 
 
 

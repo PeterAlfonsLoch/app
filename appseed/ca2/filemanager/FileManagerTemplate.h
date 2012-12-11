@@ -2,9 +2,31 @@
 
 
 class FileManagerCallbackInterface;
-class ::filemanager::document;
+
+
+namespace filemanager
+{
+
+
+   class document;
+
+
+} // namespace filemanager
+
+
 class FileManagerFileListCallback;
-class ::userbase::multiple_document_template;
+
+
+namespace userbase
+{
+
+
+   class multiple_document_template;
+
+
+} // namespace userbase
+
+
 class SimpleDialogBar;
 
 

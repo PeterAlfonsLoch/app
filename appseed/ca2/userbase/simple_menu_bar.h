@@ -1,6 +1,16 @@
 #pragma once
 
-class ::userbase::tool_bar_control;
+
+namespace userbase
+{
+
+
+   class tool_bar_control;
+
+
+} // namespace userbase
+
+
 class SimpleMenu;
 class CMenuTrackingThreadV033;
 class CMenuBarHookV033;

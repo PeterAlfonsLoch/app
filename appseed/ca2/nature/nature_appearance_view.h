@@ -1,12 +1,23 @@
 #pragma once
 
-class ::userbase::single_document_template;
+
+
+namespace userbase
+{
+
+
+   class single_document_template;
+
+
+} // namespace userbase
+
+
 class view;
 
 namespace nature
 {
 
-   class CLASS_DECL_ca2 appearance_view : 
+   class CLASS_DECL_ca2 appearance_view :
       public ::userex::pane_tab_view
    {
    public:

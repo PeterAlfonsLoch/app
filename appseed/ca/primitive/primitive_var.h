@@ -216,7 +216,9 @@ public:
    var & operator ++(int);
 
    operator unsigned int();
+#ifdef WINDOWS
    operator long();
+#endif
    operator int();
    operator int64_t();
 
