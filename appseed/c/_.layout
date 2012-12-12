@@ -94,7 +94,7 @@
 	<File name="cross/windows/windows_thread.h" open="0" top="0" tabpos="15">
 		<Cursor position="3093" topLine="55" />
 	</File>
-	<File name="cross/windows/windows_user.cpp" open="1" top="0" tabpos="27">
+	<File name="cross/windows/windows_user.cpp" open="1" top="0" tabpos="7">
 		<Cursor position="454" topLine="0" />
 	</File>
 	<File name="cross/windows/windows_user.h" open="1" top="0" tabpos="5">

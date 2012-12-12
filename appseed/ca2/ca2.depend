@@ -5848,3 +5848,12 @@
 1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_main_frame.cpp
 	"framework.h"
 
+1355256147 source:/ca2/app/appseed/ca2/userbase/userbase_menu.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_menu_base.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_menu_button.cpp
+	"framework.h"
+
