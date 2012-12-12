@@ -35,10 +35,10 @@ public:
    ::uinteraction::frame::frame *       m_pframeschema;
 
 
-   HDC                           m_hdcOpenGL;
-#ifdef WINDOWS
-   HGLRC                         m_hglrc;
-#endif
+//   HDC                           m_hdcOpenGL;
+//#ifdef WINDOWS
+//   HGLRC                         m_hglrc;
+//#endif
    bool                          m_bblur_Background;
    visual::dib_sp                m_dibBk;
    bool                          m_bCustomFrameBefore;

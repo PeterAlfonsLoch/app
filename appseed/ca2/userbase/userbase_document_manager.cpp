@@ -1,27 +1,27 @@
 #include "framework.h"
 
-__STATIC_DATA const CHAR _vfxShellOpenFmt[] = "%s\\shell\\open\\%s";
-__STATIC_DATA const CHAR _vfxShellPrintFmt[] = "%s\\shell\\print\\%s";
-__STATIC_DATA const CHAR _vfxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-__STATIC_DATA const CHAR _vfxDefaultIconFmt[] = "%s\\DefaultIcon";
-__STATIC_DATA const CHAR _vfxShellNewFmt[] = "%s\\ShellNew";
+static const char _vfxShellOpenFmt[] = "%s\\shell\\open\\%s";
+static const char _vfxShellPrintFmt[] = "%s\\shell\\print\\%s";
+static const char _vfxShellPrintToFmt[] = "%s\\shell\\printto\\%s";
+static const char _vfxDefaultIconFmt[] = "%s\\DefaultIcon";
+static const char _vfxShellNewFmt[] = "%s\\ShellNew";
 
 #define DEFAULT_ICON_INDEX 0
 
-__STATIC_DATA const CHAR _vfxIconIndexFmt[] = ",%d";
-__STATIC_DATA const CHAR _vfxCommand[] = "command";
-__STATIC_DATA const CHAR _vfxOpenArg[] = " \"%1\"";
-__STATIC_DATA const CHAR _vfxPrintArg[] = " /p \"%1\"";
-__STATIC_DATA const CHAR _vfxPrintToArg[] = " /pt \"%1\" \"%2\" \"%3\" \"%4\"";
-__STATIC_DATA const CHAR _vfxDDEArg[] = " /dde";
+static const char _vfxIconIndexFmt[] = ",%d";
+static const char _vfxCommand[] = "command";
+static const char _vfxOpenArg[] = " \"%1\"";
+static const char _vfxPrintArg[] = " /p \"%1\"";
+static const char _vfxPrintToArg[] = " /pt \"%1\" \"%2\" \"%3\" \"%4\"";
+static const char _vfxDDEArg[] = " /dde";
 
-__STATIC_DATA const CHAR _vfxDDEExec[] = "ddeexec";
-__STATIC_DATA const CHAR _vfxDDEOpen[] = "[open(\"%1\")]";
-__STATIC_DATA const CHAR _vfxDDEPrint[] = "[print(\"%1\")]";
-__STATIC_DATA const CHAR _vfxDDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
+static const char _vfxDDEExec[] = "ddeexec";
+static const char _vfxDDEOpen[] = "[open(\"%1\")]";
+static const char _vfxDDEPrint[] = "[print(\"%1\")]";
+static const char _vfxDDEPrintTo[] = "[printto(\"%1\",\"%2\",\"%3\",\"%4\")]";
 
-__STATIC_DATA const CHAR _vfxShellNewValueName[] = "NullFile";
-__STATIC_DATA const CHAR _vfxShellNewValue[] = "";
+static const char _vfxShellNewValueName[] = "NullFile";
+static const char _vfxShellNewValue[] = "";
 
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? NULL : (_cpc2)-1)
@@ -32,8 +32,7 @@ __STATIC_DATA const CHAR _vfxShellNewValue[] = "";
    int iSubString, WCHAR chSep);*/
 UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
-__STATIC bool AFXAPI
-__set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
+static bool AFXAPI _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
 
 void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 

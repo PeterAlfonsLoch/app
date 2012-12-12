@@ -1038,7 +1038,7 @@
 
 1352004467 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
 
-1354971305 /ca2/nodeapp/operational_system/cross/win/win_user.h
+1355328613 /ca2/nodeapp/operational_system/cross/win/win_user.h
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/win_errno.h
 
@@ -3908,7 +3908,7 @@
 
 1354886575 /ca2/app/appseed/ca2/user/user_xfplayer_view_line_selection.h
 
-1354886575 /ca2/app/appseed/ca2/user/user_xfplayer_view_lines.h
+1355325203 /ca2/app/appseed/ca2/user/user_xfplayer_view_lines.h
 
 1354886575 /ca2/app/appseed/ca2/user/user_tool_tip_tool.h
 
@@ -4112,7 +4112,7 @@
 
 1354886575 /ca2/app/appseed/ca2/userbase/simple_document.h
 
-1355259802 /ca2/app/appseed/ca2/userbase/simple_frame_window.h
+1355324442 /ca2/app/appseed/ca2/userbase/simple_frame_window.h
 
 1354886575 /ca2/app/appseed/ca2/userbase/simple_list_header_control.h
 
@@ -4829,7 +4829,7 @@
 	"windows_user.h"
 	"windows_thread.h"
 
-1355318467 /ca2/app/appseed/c/cross/windows/windows_user.h
+1355329712 /ca2/app/appseed/c/cross/windows/windows_user.h
 
 1354974458 /ca2/app/appseed/c/cross/windows/windows_thread.h
 
@@ -5698,5 +5698,153 @@
 	"framework.h"
 
 1355256149 source:/ca2/app/appseed/ca2/user/user_tool_tip_window.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_xfplayer_view_line_selection.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_xfplayer_view_lines.cpp
+	"framework.h"
+
+1355325203 source:/ca2/app/appseed/ca2/userbase/simple_button.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_child_frame.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_combo_box.cpp
+	"framework.h"
+
+1355320907 source:/ca2/app/appseed/ca2/user/user_printer.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_combo_list.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_document.cpp
+	"framework.h"
+
+1355324745 source:/ca2/app/appseed/ca2/user/user_list.cpp
+	"framework.h"
+
+1355328372 source:/ca2/app/appseed/ca2/user/user_scroll_view.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_edit.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_edit_plain_text.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_form_list_edit.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_form_list_view.cpp
+	"framework.h"
+
+1355324380 source:/ca2/app/appseed/ca2/user/user_tree.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_list_ctrl.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_list_header_ctrl.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_list_view.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_main_frame.cpp
+	"framework.h"
+
+1355256147 source:/ca2/app/appseed/ca2/userbase/simple_menu_bar.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_status_bar.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_tab_ctrl.cpp
+	"framework.h"
+	"simple_tab_control.h"
+
+1355324757 source:/ca2/app/appseed/ca2/user/user_xfplayer_view_line.cpp
+	"framework.h"
+
+1355325039 source:/ca2/app/appseed/ca2/user/user_tab.cpp
+	"framework.h"
+
+1355325203 source:/ca2/app/appseed/ca2/userbase/simple_frame_window.cpp
+	"framework.h"
+
+1355325397 source:/ca2/app/appseed/ca2/userbase/simple_printer_list_view.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_tab_view.cpp
+	"framework.h"
+
+1355325435 source:/ca2/app/appseed/ca2/userbase/simple_push_button.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_tree_view.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_application.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_base_bitmap_buttonex.cpp
+	"framework.h"
+
+1355256147 source:/ca2/app/appseed/ca2/userbase/userbase_button.cpp
+	"framework.h"
+
+1355256147 source:/ca2/app/appseed/ca2/userbase/simple_scroll_bar.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/simple_static.cpp
+	"framework.h"
+
+1355330071 source:/ca2/app/appseed/ca2/userbase/simple_toolbar.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_combo_list.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_control_bar.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_document.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_document_template.cpp
+	"framework.h"
+
+1355330103 source:/ca2/app/appseed/ca2/userbase/userbase_button_control.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_edit_plain_text.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_edit_plain_text_view.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_elastic_slider.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_form_list.cpp
+	"framework.h"
+
+1355256147 source:/ca2/app/appseed/ca2/userbase/userbase_form_view.cpp
+	"framework.h"
+
+1355330663 source:/ca2/app/appseed/ca2/userbase/userbase_combo_box.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_frame_window_interface.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_image_manager.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/userbase/userbase_main_frame.cpp
 	"framework.h"
 

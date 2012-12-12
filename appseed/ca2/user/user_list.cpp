@@ -104,7 +104,7 @@ namespace user
 
    void list::install_message_handling(::gen::message::dispatch * pinterface)
    {
-      
+
       ::user::scroll_view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_SIZE,            pinterface, this, &list::_001OnSize);
@@ -821,11 +821,11 @@ namespace user
       {
          if(m_nItemCount == 0)
          {
-            rect = class rect(0, 0, 0, 0);
+            rect = ::rect(0, 0, 0, 0);
          }
          else
          {
-            class rect rectClient;
+            ::rect rectClient;
 
             _001GetViewClientRect(&rectClient);
 
@@ -857,7 +857,7 @@ namespace user
       {
          if(m_nItemCount == 0)
          {
-            rect = class rect(0, 0, 0, 0);
+            rect = ::rect(0, 0, 0, 0);
          }
          else
          {
@@ -873,7 +873,7 @@ namespace user
             if(m_bFilter1)
             {
                itemLast.m_iDisplayItem       = m_piaFilterList->get_count() - 1;
-               itemLast.m_iItem              = m_piaFilterList->get_count() - 1; 
+               itemLast.m_iItem              = m_piaFilterList->get_count() - 1;
             }
             else
             {
@@ -2323,7 +2323,7 @@ namespace user
       ScreenToClient(&pt);
       if(!m_bHoverSelect)
       {
-         if(m_bMultiSelect && (pmouse->m_nFlags & MK_SHIFT))
+         if(m_bMultiSelect && Application.is_key_pressed(VK_SHIFT))
          {
             if(_001DisplayHitTest(pt, iItem))
             {
@@ -2335,7 +2335,7 @@ namespace user
                m_iShiftFirstSelection = iItem;
             }
          }
-         else if(m_bMultiSelect && (pmouse->m_nFlags & MK_CONTROL))
+         else if(m_bMultiSelect && Application.is_key_pressed(VK_CONTROL))
          {
             if(_001DisplayHitTest(pt, iItem))
             {
@@ -2389,7 +2389,7 @@ namespace user
          {
             if(m_eview == ViewIcon)
             {
-               if(m_iItemDrop != NULL)
+               if(m_iItemDrop != 0)
                {
                   defer_drop(m_iItemDrop, m_iItemDrag);
                }
@@ -2431,10 +2431,10 @@ namespace user
       {
          SetFocus();
       }
-      if(pmouse->m_nFlags & MK_SHIFT)
+      if(Application.is_key_pressed(VK_SHIFT))
       {
       }
-      else if(pmouse->m_nFlags & MK_CONTROL)
+      else if(Application.is_key_pressed(VK_CONTROL))
       {
       }
       else
@@ -3445,7 +3445,7 @@ namespace user
 
          pobj->previous();
 
-      
+
       m_font->operator=(*System.font_central().GetListCtrlFont());
       m_fontHover->operator=(*System.font_central().GetListCtrlFont());
 
@@ -3803,7 +3803,7 @@ namespace user
       m_rectTopText.top = 0;
       m_rectTopText.right = rectClient.right;
       m_rectTopText.bottom = (LONG) y;
-      
+
 
    }
 
@@ -3928,7 +3928,7 @@ namespace user
       ::ca::client_graphics pdc(this);
       ::ca::font * pfont = _001GetFont();
       index cx = _001CalcItemWidth(pdc, pfont, iItem, iSubItem);
-      
+
       return (int) cx;
 
    }
@@ -4642,7 +4642,7 @@ namespace user
             iMaxWidth = iWidth;
          }
       }
-      
+
       return iMaxWidth;
 
    }
@@ -5377,8 +5377,8 @@ namespace user
       {
          lprect->top += m_iItemHeight;
       }
-      
-      
+
+
       return;
 
 

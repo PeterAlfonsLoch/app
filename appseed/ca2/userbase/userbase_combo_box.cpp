@@ -10,8 +10,8 @@ namespace userbase
       ::user::scroll_view(papp),
       ::user::edit_plain_text(papp),
       ::user::combo_box(papp)
-   { 
-   
+   {
+
    }
 
    combo_box::~combo_box()
@@ -101,325 +101,384 @@ namespace userbase
      // { ASSERT(IsWindow()); return (index)send_message( CB_SETCURSEL, nSelect, 0); }
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
    bool combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
-   { 
-      ASSERT(IsWindow()); DWORD dw = DWORD(send_message( CB_GETEDITSEL, 0, 0)); 
+   {
+/*      ASSERT(IsWindow()); DWORD dw = DWORD(send_message( CB_GETEDITSEL, 0, 0));
       nStartChar = LOWORD(dw);
-      nEndChar = LOWORD(dw);
+      nEndChar = LOWORD(dw);*/
       return TRUE;
    }
    bool combo_box::LimitText(strsize nMaxChars)
    {
-      ASSERT(IsWindow()); 
-      return send_message( CB_LIMITTEXT, nMaxChars, 0) != FALSE;
+      //ASSERT(IsWindow());
+      //return send_message( CB_LIMITTEXT, nMaxChars, 0) != FALSE;
+      return true;
    }
 
    bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
    {
-      ASSERT(IsWindow());
-      return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != FALSE;
+      //ASSERT(IsWindow());
+      //return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != FALSE;
+      return true;
    }
 
    dword_ptr combo_box::GetItemData(index nIndex)
-   { 
-      
-      ASSERT(IsWindow());
-      
-      return send_message( CB_GETITEMDATA, nIndex, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return send_message( CB_GETITEMDATA, nIndex, 0);
+      return 0;
+
    }
-   
+
    index combo_box::SetItemData(index nIndex, dword_ptr dwItemData)
    {
-      
-      ASSERT(IsWindow()); 
 
-      return (index)send_message( CB_SETITEMDATA, nIndex, (LPARAM)dwItemData); 
+      //ASSERT(IsWindow());
+
+      //return (index)send_message( CB_SETITEMDATA, nIndex, (LPARAM)dwItemData);
+
+      return -1;
 
    }
 
    void * combo_box::GetItemDataPtr(index nIndex)
-      { ASSERT(IsWindow()); return (LPVOID)GetItemData(nIndex); }
-   
+   {
+
+      //ASSERT(IsWindow()); return (LPVOID)GetItemData(nIndex);
+
+      return NULL;
+
+   }
+
    index combo_box::SetItemDataPtr(index nIndex, void * pData)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return SetItemData(nIndex, (dword_ptr)(LPVOID)pData);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return SetItemData(nIndex, (dword_ptr)(LPVOID)pData);
+
+      return -1;
+
    }
 
    index combo_box::GetLBText(index nIndex, LPSTR lpszText)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (index)send_message( CB_GETLBTEXT, nIndex, (LPARAM)lpszText);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (index)send_message( CB_GETLBTEXT, nIndex, (LPARAM)lpszText);
+
+      return -1;
+
    }
-   
+
    strsize combo_box::GetLBTextLen(index nIndex)
    {
-      
-      ASSERT(IsWindow()); 
-      
-      return (strsize)send_message( CB_GETLBTEXTLEN, nIndex, 0);
+
+      //ASSERT(IsWindow());
+
+      //return (strsize)send_message( CB_GETLBTEXTLEN, nIndex, 0);
+
+      return -1;
 
    }
 
    void combo_box::ShowDropDown(bool bShowIt)
-   { 
-      
-      ASSERT(IsWindow());
-      
-      send_message( CB_SHOWDROPDOWN, bShowIt, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //send_message( CB_SHOWDROPDOWN, bShowIt, 0);
+
    }
 
    index combo_box::AddString(const char * lpszString)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (index) send_message( CB_ADDSTRING, 0, (LPARAM)lpszString);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (index) send_message( CB_ADDSTRING, 0, (LPARAM)lpszString);
+
+      return -1;
+
    }
 
    index combo_box::DeleteString(index nIndex)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (index) send_message( CB_DELETESTRING, nIndex, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (index) send_message( CB_DELETESTRING, nIndex, 0);
+
+      return -1;
+
    }
-   
+
    index combo_box::InsertString(index nIndex, const char * lpszString)
    {
-      
-      ASSERT(IsWindow()); 
-      
-      return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)lpszString);
+
+      //ASSERT(IsWindow());
+
+      //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)lpszString);
+
+      return -1;
 
    }
 
    void combo_box::ResetContent()
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      send_message( CB_RESETCONTENT, 0, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //send_message( CB_RESETCONTENT, 0, 0);
+
    }
 
    index combo_box::Dir(index attr, const char * lpszWildCard)
    {
-      
-      ASSERT(IsWindow()); 
-      
-      return (index)send_message( CB_DIR, attr, (LPARAM)lpszWildCard);
-   
+
+//      ASSERT(IsWindow());
+
+//      return (index)send_message( CB_DIR, attr, (LPARAM)lpszWildCard);
+
+      return -1;
+
    }
-   
+
    index combo_box::FindString(index nStartAfter, const char * lpszString)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (index)send_message( CB_FINDSTRING, nStartAfter, (LPARAM)lpszString);
-   
+   {
+
+//      ASSERT(IsWindow());
+
+//      return (index)send_message( CB_FINDSTRING, nStartAfter, (LPARAM)lpszString);
+
+      return -1;
+
    }
 
    index combo_box::SelectString(index nStartAfter, const char * lpszString)
-   { 
-      
-      ASSERT(IsWindow());
-      
-      return (index)send_message( CB_SELECTSTRING, nStartAfter, (LPARAM)lpszString);
-   
+   {
+
+//      ASSERT(IsWindow());
+
+//      return (index)send_message( CB_SELECTSTRING, nStartAfter, (LPARAM)lpszString);
+
+      return -1;
+
    }
-   
+
    void combo_box::clear()
-   { 
-      
-      ASSERT(IsWindow());
-      
-      send_message(WM_CLEAR, 0, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //send_message(WM_CLEAR, 0, 0);
+
    }
 
    void combo_box::copy()
-   { 
-      
-      ASSERT(IsWindow());
-      
-      send_message(WM_COPY, 0, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //send_message(WM_COPY, 0, 0);
+
    }
 
    void combo_box::Cut()
    {
-      
-      ASSERT(IsWindow());
-      
-      send_message( WM_CUT, 0, 0);
-   
+
+      //ASSERT(IsWindow());
+
+      //send_message( WM_CUT, 0, 0);
+
    }
 
    void combo_box::Paste()
    {
-      
-      ASSERT(IsWindow());
-      
-      send_message( WM_PASTE, 0, 0);
-   
+
+      //ASSERT(IsWindow());
+
+      //send_message( WM_PASTE, 0, 0);
+
    }
 
    int combo_box::SetItemHeight(index nIndex, UINT cyItemHeight)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (int)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (int)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
+
+      return -1;
+
    }
-   
+
    int combo_box::GetItemHeight(index nIndex)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (int)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (int)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
+
+      return -1;
+
    }
-   
+
    index combo_box::FindStringExact(index nIndexStart, const char * lpszFind)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (index)send_message( CB_FINDSTRINGEXACT, nIndexStart, (LPARAM)lpszFind);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (index)send_message( CB_FINDSTRINGEXACT, nIndexStart, (LPARAM)lpszFind);
+
+      return -1;
+
    }
-   
+
    int combo_box::SetExtendedUI(bool bExtended)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (int)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (int)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
+
+      return -1;
+
    }
 
    bool combo_box::GetExtendedUI()
    {
-      
-      ASSERT(IsWindow()); 
-      
-      return send_message( CB_GETEXTENDEDUI, 0, 0L) != 0;
-   
+
+      //ASSERT(IsWindow());
+
+      //return send_message( CB_GETEXTENDEDUI, 0, 0L) != 0;
+
+      return false;
+
    }
 
    void combo_box::GetDroppedControlRect(LPRECT lprect)
-   { 
-      
-      ASSERT(IsWindow());
-      
-      send_message( CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)lprect);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //send_message( CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)lprect);
+
    }
 
    bool combo_box::GetDroppedState()
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return send_message( CB_GETDROPPEDSTATE, 0, 0L) != 0;
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return send_message( CB_GETDROPPEDSTATE, 0, 0L) != 0;
+
+      return false;
+
    }
 
    LCID combo_box::GetLocale()
-   { 
-      
-      ASSERT(IsWindow());
-      
-      return (LCID)send_message( CB_GETLOCALE, 0, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (LCID)send_message( CB_GETLOCALE, 0, 0);
+
+      return -1; // everywhere
+
    }
-   
+
    LCID combo_box::SetLocale(LCID nNewLocale)
    {
-      
-      ASSERT(IsWindow());
-      
-      return (LCID)send_message( CB_SETLOCALE, (WPARAM)nNewLocale, 0);
-   
+
+      //ASSERT(IsWindow());
+
+      //return (LCID)send_message( CB_SETLOCALE, (WPARAM)nNewLocale, 0);
+
+      return nNewLocale; // set where it is
+
    }
-   
+
    index combo_box::GetTopIndex()
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (index)send_message( CB_GETTOPINDEX, 0, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (index)send_message( CB_GETTOPINDEX, 0, 0);
+
+      return -1;
+
    }
-   
+
    index combo_box::SetTopIndex(index nIndex)
    {
-      
-      ASSERT(IsWindow()); 
-      
-      return (index)send_message( CB_SETTOPINDEX, nIndex, 0); 
-   
+
+      //ASSERT(IsWindow());
+
+      //return (index)send_message( CB_SETTOPINDEX, nIndex, 0);
+
+      return -1;
+
    }
-   
+
    count combo_box::InitStorage(count nItems, UINT nBytes)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (count)send_message( CB_INITSTORAGE, (WPARAM)nItems, nBytes);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (count)send_message( CB_INITSTORAGE, (WPARAM)nItems, nBytes);
+
+      return -1;
+
    }
-   
+
    void combo_box::SetHorizontalExtent(UINT nExtent)
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      send_message( CB_SETHORIZONTALEXTENT, nExtent, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //send_message( CB_SETHORIZONTALEXTENT, nExtent, 0);
+
    }
-   
+
    UINT combo_box::GetHorizontalExtent()
-   { 
-      
-      ASSERT(IsWindow());
-      
-      return (UINT)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
-   
+   {
+
+      //ASSERT(IsWindow());
+
+      //return (UINT)send_message( CB_GETHORIZONTALEXTENT, 0, 0);
+
+      return 0;
+
    }
 
    int combo_box::SetDroppedWidth(UINT nWidth)
-   { 
-      
-      ASSERT(IsWindow());
-      
-      return (int)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
-   
+   {
+
+//      ASSERT(IsWindow());
+
+//      return (int)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
+
+         return -1;
+
    }
-   
+
    int combo_box::GetDroppedWidth()
-   { 
-      
-      ASSERT(IsWindow()); 
-      
-      return (int)send_message( CB_GETDROPPEDWIDTH, 0, 0);
-   
+   {
+
+//      ASSERT(IsWindow());
+
+//      return (int)send_message( CB_GETDROPPEDWIDTH, 0, 0);
+
+         return -1;
+
    }
 
 
 } // namespace userbase
+
+
 
 

@@ -597,13 +597,13 @@ namespace user
    void tree::_001OnClick(UINT uiFlags, point point)
    {
       UNREFERENCED_PARAMETER(point);
-      if(uiFlags & MK_SHIFT)
-      {
-         if(uiFlags & MK_CONTROL)
-         {
-         }
-      }
-      else
+//      if(uiFlags & MK_SHIFT)
+  //    {
+    //     if(uiFlags & MK_CONTROL)
+      //   {
+        // }
+      //}
+      //else
       {
 
    //      Ex1TreeItemMetaData * pdata = _001HitTest(point);
@@ -736,7 +736,7 @@ namespace user
       {
          if(!(pitem->m_dwState & ::ex1::tree_item_state_expanded))
          {
-            
+
             _001OnItemExpand(pitem);
 
             pitem->m_dwState |= ::ex1::tree_item_state_expanded;
@@ -816,7 +816,7 @@ namespace user
       scroll_view::_001OnUpdateScrollPosition();
 
 //      HeaderCtrlLayout();
-      
+
 //      CacheHint();
 
       m_pitemFirstVisible = CalcFirstVisibleItem(
@@ -856,7 +856,7 @@ namespace user
 
    void tree::layout()
    {
-      
+
 
       SetScrollSizes();
 
@@ -1018,7 +1018,7 @@ namespace user
 
 
       tree * ptree = dynamic_cast < tree * > (pui);
-      
+
       if(!insert_item(ptree->get_base_item(), ex1::RelativeLastChild, get_base_item()))
          return false;
 

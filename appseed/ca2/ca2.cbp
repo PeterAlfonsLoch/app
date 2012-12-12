@@ -457,7 +457,6 @@
 		<Unit filename="user/user_list_data_interface.h" />
 		<Unit filename="user/user_list_header.cpp" />
 		<Unit filename="user/user_list_header.h" />
-		<Unit filename="user/user_mini_frame_window.cpp" />
 		<Unit filename="user/user_plain_text_data.cpp" />
 		<Unit filename="user/user_plain_text_data.h" />
 		<Unit filename="user/user_print_job.cpp" />
@@ -515,9 +514,7 @@
 		<Unit filename="userbase/simple_list_view.h" />
 		<Unit filename="userbase/simple_main_frame.cpp" />
 		<Unit filename="userbase/simple_main_frame.h" />
-		<Unit filename="userbase/simple_mdi_child_window.cpp" />
 		<Unit filename="userbase/simple_mdi_child_window.h" />
-		<Unit filename="userbase/simple_mdi_frame_window.cpp" />
 		<Unit filename="userbase/simple_mdi_frame_window.h" />
 		<Unit filename="userbase/simple_menu_bar.cpp" />
 		<Unit filename="userbase/simple_menu_bar.h" />

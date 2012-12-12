@@ -9,7 +9,7 @@
 
 CLASS_DECL_c COLORREF GetSysColor(DWORD dw)
 {
-   
+
    switch(dw)
    {
       case COLOR_HIGHLIGHT:
@@ -21,5 +21,20 @@ CLASS_DECL_c COLORREF GetSysColor(DWORD dw)
       default:
          return ARGB(255, 0, 0, 0);
    };
-   
+
+}
+
+
+
+int GetSystemMetrics(int nIndex)
+{
+
+   switch(nIndex)
+   {
+   default:
+         break;
+   }
+
+   return 0;
+
 }

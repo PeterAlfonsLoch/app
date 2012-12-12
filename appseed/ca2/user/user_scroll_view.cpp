@@ -42,7 +42,7 @@ namespace user
       rectClient.top                += m_scrollinfo.m_rectMargin.top;
       rectClient.right              += m_scrollinfo.m_rectMargin.right;
       rectClient.bottom             += m_scrollinfo.m_rectMargin.bottom;*/
-      m_scrollinfo.m_iScrollHeight  = GetSystemMetrics(SM_CYHSCROLL);
+      m_scrollinfo.m_iScrollHeight  = GetSystemMetrics(SM_CXHSCROLL);
       m_scrollinfo.m_iScrollWidth   = GetSystemMetrics(SM_CXVSCROLL);
 
       m_scrollinfo.m_sizeClient.cx = rectClient.width();
@@ -55,7 +55,7 @@ namespace user
       {
          m_scrollinfo.m_sizeClient.cy -= m_scrollinfo.m_iScrollHeight;
       }
-      
+
       m_scrollinfo.m_sizePage.cx    = m_scrollinfo.m_sizeClient.cx;
       m_scrollinfo.m_sizePage.cy    = m_scrollinfo.m_sizeClient.cy;
 
@@ -80,7 +80,7 @@ namespace user
       rect rectClient;
 
       GetClientRect(rectClient);
-       
+
       int ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
       _001DeferCreateScrollBars();
@@ -108,7 +108,7 @@ namespace user
             m_pscrollbarVert->ShowWindow(SW_HIDE);
          }
       }
-       
+
    }
 
 
@@ -127,7 +127,7 @@ namespace user
          if(m_pscrollbarVert == NULL)
             create_scroll_bar(scroll_bar::orientation_vertical);
       }
-       
+
    }
 
    void scroll_view::_001OnCreate(gen::signal_object * pobj)
@@ -146,7 +146,7 @@ namespace user
       _001LayoutScrollBars();
    }
 
-   void scroll_view::_001OnUser9654(gen::signal_object * pobj) 
+   void scroll_view::_001OnUser9654(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
@@ -158,10 +158,10 @@ namespace user
       }
    }
 
-   void scroll_view::_001OnVScroll(gen::signal_object * pobj) 
+   void scroll_view::_001OnVScroll(gen::signal_object * pobj)
    {
-      
-      
+
+
       SCAST_PTR(::gen::message::scroll, pscroll, pobj);
 
 
@@ -176,23 +176,23 @@ namespace user
 
       PostMessage(WM_USER + 9654, 0, 0);
 
-      
+
    }
 
 
-   void scroll_view::_001OnHScroll(gen::signal_object * pobj) 
+   void scroll_view::_001OnHScroll(gen::signal_object * pobj)
    {
-      
-      
+
+
       SCAST_PTR(::gen::message::scroll, pscroll, pobj);
-      
-      
+
+
       keeper < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
-      
-      
+
+
       m_scrollinfo.m_ptScroll.x = pscroll->m_nPos;
-      
-      
+
+
       _001OnUpdateScrollPosition();
 
 
@@ -210,8 +210,8 @@ namespace user
 
    void scroll_view::_001OnUpdateScrollPosition()
    {
-      
-      
+
+
       _001UpdateScrollBars();
 
 
@@ -220,7 +220,7 @@ namespace user
 
    void scroll_view::_001OnMouseWheel(gen::signal_object * pobj)
    {
-      
+
       SCAST_PTR(::gen::message::mouse_wheel, pmousewheel, pobj);
 
       if(pmousewheel->GetDelta() > 0)
@@ -253,12 +253,12 @@ namespace user
       m_scrollinfo.m_ptScroll.y -= (LONG) (iDelta * get_wheel_scroll_delta());
 
       if(m_scrollinfo.m_ptScroll.y > m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom)
-         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom; 
+         m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom;
 
 
       _001OnUpdateScrollPosition();
 
-      
+
 
 
 
@@ -281,7 +281,7 @@ namespace user
       else
       {
          if(m_scrollinfo.m_ptScroll.y > m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom)
-            m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom; 
+            m_scrollinfo.m_ptScroll.y = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom;
       }
 
       if(m_scrollinfo.m_ptScroll.x < m_scrollinfo.m_rectMargin.left)
@@ -291,7 +291,7 @@ namespace user
       else
       {
          if(m_scrollinfo.m_ptScroll.x > m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right)
-            m_scrollinfo.m_ptScroll.x = m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right; 
+            m_scrollinfo.m_ptScroll.x = m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right;
       }
 
       ::user::scroll_info si;
@@ -325,8 +325,8 @@ namespace user
 
    void scroll_view::install_message_handling(::gen::message::dispatch * pinterface)
    {
-      
-      
+
+
       control::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_CREATE,          pinterface, this, &scroll_view::_001OnCreate);
@@ -354,7 +354,7 @@ namespace user
          if(m_pscrollbarVert != NULL)
             return;
       }
-      
+
       scroll_bar * pbar = new simple_scroll_bar(get_app());
 
       class rect rectNull;
@@ -375,7 +375,7 @@ namespace user
       {
          m_pscrollbarVert = pbar;
       }
-      
+
    }
 
 

@@ -163,6 +163,7 @@
 		<Unit filename="cross/windows/windows.h" />
 		<Unit filename="cross/windows/windows_gdi.h" />
 		<Unit filename="cross/windows/windows_thread.h" />
+		<Unit filename="cross/windows/windows_user.cpp" />
 		<Unit filename="cross/windows/windows_user.h" />
 		<Unit filename="crypt/crypt.cpp" />
 		<Unit filename="crypt/crypt.h" />

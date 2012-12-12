@@ -23,10 +23,13 @@ void BaseButtonControl::install_message_handling(::gen::message::dispatch * pdis
 }
 
 
-bool BaseButtonControl::pre_create_window(CREATESTRUCT& cs) 
+bool BaseButtonControl::pre_create_window(CREATESTRUCT& cs)
 {
-   cs.style |= BS_OWNERDRAW;
+
+   //cs.style |= BS_OWNERDRAW;
+
    return ::user::interaction::pre_create_window(cs);
+
 }
 
 
@@ -67,7 +70,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       if(m_pimagelistSubItemHover != NULL)
       {
          m_pimagelistSubItemHover->draw(
-            pdc, 
+            pdc,
             m_iImageSubItemHover,
             pt,
             0);
@@ -75,7 +78,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       else if(m_pimagelistItemHover != NULL)
       {
          m_pimagelistItemHover->draw(
-            pdc, 
+            pdc,
             m_iImageItemHover,
             pt,
             0);
@@ -83,7 +86,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       else if(m_pimagelistNormal != NULL)
       {
          m_pimagelistNormal->draw(
-            pdc, 
+            pdc,
             m_iImageNormal,
             pt,
             0);
@@ -94,7 +97,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       if(m_pimagelistItemHover != NULL)
       {
          m_pimagelistItemHover->draw(
-            pdc, 
+            pdc,
             m_iImageItemHover,
             pt,
             0);
@@ -102,7 +105,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       else if(m_pimagelistSubItemHover != NULL)
       {
          m_pimagelistSubItemHover->draw(
-            pdc, 
+            pdc,
             m_iImageSubItemHover,
             pt,
             0);
@@ -110,7 +113,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       else if(m_pimagelistNormal != NULL)
       {
          m_pimagelistNormal->draw(
-            pdc, 
+            pdc,
             m_iImageNormal,
             pt,
             0);
@@ -121,7 +124,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       if(m_pimagelistNormal != NULL)
       {
          m_pimagelistNormal->draw(
-            pdc, 
+            pdc,
             m_iImageNormal,
             pt,
             0);
@@ -129,7 +132,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       else if(m_pimagelistItemHover != NULL)
       {
          m_pimagelistItemHover->draw(
-            pdc, 
+            pdc,
             m_iImageItemHover,
             pt,
             0);
@@ -137,13 +140,13 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
       else if(m_pimagelistSubItemHover != NULL)
       {
          m_pimagelistSubItemHover->draw(
-            pdc, 
+            pdc,
             m_iImageSubItemHover,
             pt,
             0);
       }
    }
-   
+
 }
 
 

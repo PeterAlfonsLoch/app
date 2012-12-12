@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <dde.h>
+//#include <dde.h>
 
 
 
@@ -15,8 +15,8 @@ simple_frame_window::simple_frame_window(::ca::application * papp) :
    m_bCustomFrameBefore    = true;
    m_bWindowFrame          = true;
    m_bLayered              = true;
-   m_hdcOpenGL             = NULL;
-   m_hglrc                 = NULL;
+//   m_hdcOpenGL             = NULL;
+//   m_hglrc                 = NULL;
    m_pframeschema          = NULL;
 
 }
@@ -701,7 +701,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
    if(pParentWnd == NULL)
       pParentWnd = Application.get_request_parent_ui(this, pContext);
 
-   if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ NULL, pContext))
+   if (!CreateEx(0L, lpszClass, lpszTitle, dwDefaultStyle, rect(0, 0, 0, 0), pParentWnd, /*nIDResource*/ 0, pContext))
    {
       return FALSE;   // will self destruct on failure normally
    }
@@ -757,7 +757,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
 }*/
 
 
-__STATIC_DATA const char gen_OldWndProc[] = "gen::OldWndProc423";
+static const char gen_OldWndProc[] = "gen::OldWndProc423";
 
 
 

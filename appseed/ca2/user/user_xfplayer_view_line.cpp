@@ -1428,9 +1428,9 @@ void XfplayerViewLine::EmbossedTextOut(
       pdc->TextOut(iLeft, iTop, string(lpcsz, iLen));
       pdc->EndPath();
 
-      LOGBRUSH lb;
-      lb.lbStyle = BS_SOLID;
-      lb.lbColor = crOutline;
+//      LOGBRUSH lb;
+  //    lb.lbStyle = BS_SOLID;
+    //  lb.lbColor = crOutline;
       ::ca::pen_sp pen;
 /*      pen->construct(
          PS_SOLID
@@ -1467,7 +1467,7 @@ void XfplayerViewLine::EmbossedTextOut(
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
-      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), class size(m_dibMain->cx, m_dibMain->cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
+      System.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), ::size(m_dibMain->cx, m_dibMain->cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
 
       System.imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int) iLen, cr, dBlend);
 
@@ -1560,7 +1560,7 @@ void XfplayerViewLine::SetFont(visual::font * pfont)
 
 void XfplayerViewLine::PrepareURLLinks()
 {
-   
+
    strsize iStart = 0;
 
    strsize iEnd = 0;

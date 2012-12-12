@@ -1,8 +1,9 @@
 #include "framework.h"
-#undef new
 
-#include <gdiplus.h>
-
+//#ifdef WINDOWS
+//#undef new
+//#include <gdiplus.h>
+//#endif
 
 namespace user
 {
@@ -18,7 +19,7 @@ namespace user
       m_dcextension(papp),
       m_panea(papp)
    {
-      
+
       m_bEnableCloseAll = false;
 
 
@@ -68,7 +69,7 @@ namespace user
       ::ca::graphics_sp spgraphics(get_app());
       spgraphics->CreateCompatibleDC(NULL);
 
-      
+
       get_data()->m_font->create_point_font("Lucida Sans Unicode", 10);
 
       get_data()->m_fontBold->create_point_font("Lucida Sans Unicode", 10, FW_BOLD);
@@ -135,7 +136,7 @@ namespace user
       ppane->m_pholder          = NULL;
 
       get_data()->m_panea.add(ppane);
-      
+
       on_change_pane_count();
 
       return true;
@@ -256,10 +257,10 @@ namespace user
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 
-      
+
       if(m_bNoTabs)
       {
-         
+
          if(m_bShowTabs)
          {
 
@@ -472,10 +473,10 @@ namespace user
 
       pdc->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
 
-      
+
       if(m_bNoTabs)
       {
-         
+
          if(m_bShowTabs)
          {
 
@@ -573,13 +574,13 @@ namespace user
             {
 
                //path->start_figure();
-               
+
                path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
                //path->add_line(rectClient.right, rectBorder.top);
                path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
                path->add_line(rectClient.left, rectBorder.top);
                path->add_line(rectBorder.right, rectBorder.top);
-               
+
                //path->close_figure();
 
                ::ca::brush_sp br(get_app());
@@ -624,7 +625,7 @@ namespace user
 
 
                //path->start_figure();
-               
+
 
                path->add_line(rectBorder.right, rectBorder.bottom, rectBorder.left + 1, rectBorder.bottom);
                path->add_line(rectBorder.left, rectBorder.top - (rectBorder.left - rectClient.left));
@@ -700,14 +701,14 @@ namespace user
 
 
                //path->start_figure();
-               
+
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                path->add_line(rectClient.right, rectBorder.top);
                path->add_line(rectBorder.right, rectBorder.top + (rectBorder.right - rectClient.right));
                path->add_line(rectBorder.right - 1, rectClient.bottom);
 
                path->end_figure(false);
-               
+
                //path->close_figure();
 
                ::ca::brush_sp br(get_app());
@@ -730,7 +731,7 @@ namespace user
             {
 
                //path->start_figure();
-               
+
 
                path->add_line(rectBorder.left, rectClient.bottom, rectBorder.left, rectBorder.top);
                path->add_line(rectClient.right, rectBorder.top);
@@ -841,7 +842,7 @@ namespace user
          pdc->SelectObject(get_data()->m_fontBold);
          for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
-            
+
             pane & pane = get_data()->m_panea[iPane];
 
             if(!pane.m_bVisible)
@@ -915,7 +916,7 @@ namespace user
          get_data()->m_rectTabClient.top        = get_data()->m_rectTab.top;
          get_data()->m_rectTabClient.right      = rectClient.right;
          get_data()->m_rectTabClient.bottom     = get_data()->m_rectTab.bottom;
-         
+
       }
       else
       {
@@ -927,9 +928,9 @@ namespace user
          pdc->SelectObject(get_data()->m_fontBold);
          for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
-            
+
             pane & pane = get_data()->m_panea[iPane];
-            
+
             if(!pane.m_bVisible)
                return;
 
@@ -987,10 +988,10 @@ namespace user
 
       for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
-         
+
          if(iPane != _001GetSel())
          {
-         
+
             layout_pane(iPane);
 
          }
@@ -1177,7 +1178,7 @@ namespace user
          lprect->top    = lprect->bottom - 20;
          return true;
       }
-      
+
       if(eelement != element_tab)
          return false;
 
@@ -1206,7 +1207,7 @@ namespace user
          lprect->top    = rect.top + iPreviousVisibleTabCount * get_data()->m_iTabHeight;
          lprect->right  = rect.right;
          lprect->bottom = lprect->top + get_data()->m_iTabHeight;
-         
+
       }
       else
       {
@@ -1214,7 +1215,7 @@ namespace user
          ASSERT(iTabParam < GetTabCount());
          ::ca::graphics_sp graphics(get_app());
          graphics->CreateCompatibleDC(NULL);
-         
+
          //HDC hdc = ::CreateCompatibleDC(NULL);
          //Gdiplus::Graphics * pg = new Gdiplus::Graphics(hdc);
          //delete pg;
@@ -1458,7 +1459,7 @@ namespace user
 
    count tab::pane_array::get_visible_count()
    {
-      
+
       count count = 0;
 
       for(int i = 0; i < this->get_count(); i++)
@@ -1735,13 +1736,13 @@ namespace user
       }
       catch(::exit_exception & e)
       {
-            
+
          throw e;
 
       }
       catch(::ca::exception & e)
       {
-            
+
          if(!Application.on_run_exception(e))
             throw exit_exception(get_app());
 
@@ -1749,7 +1750,9 @@ namespace user
       catch(...)
       {
       }
-      m_spcreatecontext = NULL;
+
+      m_spcreatecontext = (::ca::create_context *) NULL;
+
    }
 
 

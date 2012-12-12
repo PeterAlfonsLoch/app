@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <WinSpool.h>
 
 
 simple_printer_list_view::simple_printer_list_view(::ca::application * papp) :
@@ -14,18 +13,24 @@ simple_printer_list_view::simple_printer_list_view(::ca::application * papp) :
    simple_list_view(papp),
    m_listdata(papp)
 {
+
    m_pdata = &m_listdata;
+
 }
-      
+
+
 simple_printer_list_view::~simple_printer_list_view()
 {
+
 }
 
 
 void simple_printer_list_view::install_message_handling(::gen::message::dispatch * pdispatch)
 {
+
    simple_list_view::install_message_handling(pdispatch);
    IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &simple_printer_list_view::_001OnCreate);
+
 }
 
 
@@ -54,7 +59,7 @@ void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
 
    for(DWORD i = 0; i < cbReturned; i++)
    {
-         
+
       stra.add(infoa[i].pName);
    }
 
@@ -75,7 +80,7 @@ void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
 }
 
 
-void simple_printer_list_view::_001OnClick(UINT nFlags, point point) 
+void simple_printer_list_view::_001OnClick(UINT nFlags, point point)
 {
    UNREFERENCED_PARAMETER(nFlags);
    index iItem;

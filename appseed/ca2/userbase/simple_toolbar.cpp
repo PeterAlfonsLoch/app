@@ -354,20 +354,20 @@ void simple_toolbar::_001OnCreate(gen::signal_object * pobj)
 
 void simple_toolbar::OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler)
 {
-   
+
    SimpleToolCmdUI state(get_app());
-   
-   state.m_pOther = dynamic_cast <::user::interaction * > (this);
+
+   state.m_pOther = dynamic_cast < ::user::interaction * > (this);
 
    state.m_iCount = _001GetItemCount();
 
    for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
    {
-      
+
       // ignore separators
       if(m_itema[state.m_iIndex].m_id != "separator")
       {
-         
+
          state.m_id = m_itema[state.m_iIndex].m_id;
 
          state.m_bEnableIfHasCommandHandler = m_itema[state.m_iIndex].m_bEnableIfHasCommandHandler;
@@ -1984,7 +1984,7 @@ size simple_toolbar::CalcLayout(DWORD dwMode, int nLength)
             //         TRACE("BUTTON.m_fsStyle = %d\n", buttona.m_fsStyle  );
             //         TRACE("BUTTON.cx = %d\n", buttona.cx );
          }
-         
+
          if (nControlCount > 0)
          {
             for (int i = 0; i < nControlCount; i++)

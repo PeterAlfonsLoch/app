@@ -24,24 +24,24 @@ public:
    void set_user_interaction(::user::interaction * pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);
    void Prepare();
-    
+
    index GetFirstVisibleLineIndex();
    index GetLastVisibleLineIndex();
    void OnChildSetVisible(XfplayerViewLine * lpViewLine, bool bVisible);
-   
+
    user::e_line_hit hit_test(POINT &ptCursor, strsize &iLine, strsize &iChar);
 
    void InstallMessageHandling(::gen::message::dispatch *pinterface);
 
    virtual ~XfplayerViewLines();
-    
+
    DECL_GEN_SIGNAL(OnMouseMove)
    DECL_GEN_SIGNAL(OnLButtonDown)
    DECL_GEN_SIGNAL(OnLButtonUp)
    DECL_GEN_SIGNAL(OnTimer)
    DECL_GEN_SIGNAL(OnSetCursor)
 
-   inline XfplayerViewLineSelection & GetSelection();
+   XfplayerViewLineSelection & GetSelection();
 
    void get_sel_text(string & strSelText, const char * pszLineSeparator = "\r\n");
    string get_sel_text(const char * pszLineSeparator = "\r\n");

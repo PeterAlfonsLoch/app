@@ -42,10 +42,10 @@ void simple_button::install_message_handling(::gen::message::dispatch * pinterfa
    //IGUI_WIN_MSG_LINK(WM_CTLCOLOR + WM_REFLECT_BASE  , this, this, &simple_button::_001OnCtlColor);
 }
 
-void simple_button::pre_subclass_window() 
+void simple_button::pre_subclass_window()
 {
    PreSubClassWindow();
-   
+
 
    // trans ::userbase::button::pre_subclass_window();
 }
@@ -80,9 +80,9 @@ void simple_button::ResizeToFit()
    rect.right = size.cx + 4;
    rect.bottom = size.cy + 4;
 
-   SetWindowPos(NULL, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
+   SetWindowPos(0, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
 
-   
+
 }
 
 void simple_button::_001OnSetFocus(gen::signal_object * pobj)

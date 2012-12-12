@@ -30,17 +30,20 @@ void SimplePushButton::install_message_handling(::gen::message::dispatch * pinte
 /////////////////////////////////////////////////////////////////////////////
 // SimplePushButton message handlers
 
-bool SimplePushButton::pre_create_window(CREATESTRUCT& cs) 
+bool SimplePushButton::pre_create_window(CREATESTRUCT& cs)
 {
-   
-   cs.style |= BS_OWNERDRAW;   
+
+#ifdef WINDOWS
+   cs.style |= BS_OWNERDRAW;
    cs.style |= BS_PUSHBUTTON;
+#endif
 
    return ::userbase::button::pre_create_window(cs);
+
 }
 
 #ifdef WINDOWSEX
-void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct) 
+void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 {
    UNREFERENCED_PARAMETER(lpDrawItemStruct);
    //if(m_bTwiEnable)
@@ -179,23 +182,23 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 }
 
 
-void SimplePushButton::_001OnCreate(gen::signal_object * pobj) 
+void SimplePushButton::_001OnCreate(gen::signal_object * pobj)
 {
    pobj->previous();
-   
+
    SetTimer(16384, 100, NULL);
 }
 
-void SimplePushButton::_001OnDestroy(gen::signal_object * pobj) 
+void SimplePushButton::_001OnDestroy(gen::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 //   ::userbase::button::OnDestroy();
-   
+
    KillTimer(16384);
-   
+
 }
 
-void SimplePushButton::_001OnTimer(gen::signal_object * pobj) 
+void SimplePushButton::_001OnTimer(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 16384)
@@ -206,7 +209,7 @@ void SimplePushButton::_001OnTimer(gen::signal_object * pobj)
    {
       TransitionEffectRunStep();
    }
-   
+
 // trans   ::userbase::button::OnTimer(ptimer->m_nIDEvent);
 }
 
