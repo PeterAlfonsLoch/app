@@ -317,28 +317,28 @@
 #define COLOR_INACTIVECAPTIONTEXT 19
 #define COLOR_BTNHIGHLIGHT      20
 
-#if(WINVER >= 0x0400)
+//#if(WINVER >= 0x0400)
 #define COLOR_3DDKSHADOW        21
 #define COLOR_3DLIGHT           22
 #define COLOR_INFOTEXT          23
 #define COLOR_INFOBK            24
-#endif /* WINVER >= 0x0400 */
+//#endif /* WINVER >= 0x0400 */
 
-#if(WINVER >= 0x0500)
+//#if(WINVER >= 0x0500)
 #define COLOR_HOTLIGHT          26
 #define COLOR_GRADIENTACTIVECAPTION 27
 #define COLOR_GRADIENTINACTIVECAPTION 28
-#if(WINVER >= 0x0501)
+//#if(WINVER >= 0x0501)
 #define COLOR_MENUHILIGHT       29
 #define COLOR_MENUBAR           30
-#endif /* WINVER >= 0x0501 */
-#endif /* WINVER >= 0x0500 */
+//#endif /* WINVER >= 0x0501 */
+//#endif /* WINVER >= 0x0500 */
 
-#if(WINVER >= 0x0400)
+//#if(WINVER >= 0x0400)
 #define COLOR_DESKTOP           COLOR_BACKGROUND
 #define COLOR_3DFACE            COLOR_BTNFACE
 #define COLOR_3DSHADOW          COLOR_BTNSHADOW
 #define COLOR_3DHIGHLIGHT       COLOR_BTNHIGHLIGHT
 #define COLOR_3DHILIGHT         COLOR_BTNHIGHLIGHT
 #define COLOR_BTNHILIGHT        COLOR_BTNHIGHLIGHT
-#endif /* WINVER >= 0x0400 */
+//#endif /* WINVER >= 0x0400 */

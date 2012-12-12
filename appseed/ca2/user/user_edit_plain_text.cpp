@@ -623,7 +623,7 @@ namespace user
       SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
-         if(Application.is_key_pressed(VK_CONTROL)m && Application.is_key_pressed(VK_MENU))
+         if(Application.is_key_pressed(VK_CONTROL) && Application.is_key_pressed(VK_MENU))
          {
             pkey->m_bRet      = false;
             return;
@@ -1354,7 +1354,7 @@ namespace user
       {
          buf[uiRead] = '\0';
          lpsz = buf;
-         while(*lpsz != NULL)
+         while(*lpsz != '\0')
          {
             if(*lpsz == '\r' && (*(lpsz + 1)) == '\n')
             {

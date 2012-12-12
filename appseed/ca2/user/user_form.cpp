@@ -538,7 +538,7 @@ namespace ca2
 
          ASSERT(pcontrol->descriptor().get_type() == control::type_simple_list);
 
-         ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pcontrol->m_id));
+         ::user::list * plist = dynamic_cast < ::user::list * >(get_child_by_id(pcontrol->m_id));
 
          if(typeid(plist->GetDataInterface()) == System.type_info < ::user::simple_list_data > ())
          {
@@ -850,7 +850,7 @@ namespace ca2
                   {
                      if(descriptor.m_etype == control::type_simple_list)
                      {
-                        ::user::list * plist = dynamic_cast <::user::list *>(descriptor.m_pcontrol);
+                        ::user::list * plist = dynamic_cast < ::user::list * >(descriptor.m_pcontrol);
                         plist->m_dataid = descriptor.m_idPrivateDataSection;
                         plist->_001SetSingleColumnMode(false);
                      }

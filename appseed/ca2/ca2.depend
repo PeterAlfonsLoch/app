@@ -4829,7 +4829,7 @@
 	"windows_user.h"
 	"windows_thread.h"
 
-1355315797 /ca2/app/appseed/c/cross/windows/windows_user.h
+1355318467 /ca2/app/appseed/c/cross/windows/windows_user.h
 
 1354974458 /ca2/app/appseed/c/cross/windows/windows_thread.h
 
@@ -5678,5 +5678,13 @@
 	"framework.h"
 
 1354886575 source:/ca2/app/appseed/ca2/user/user_print_job.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_scroll_bar.cpp
+	"framework.h"
+
+1355318760 source:/ca2/app/appseed/ca2/user/user_edit_plain_text.cpp
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_front_end_schema.cpp
 	"framework.h"
 
