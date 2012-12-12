@@ -413,9 +413,10 @@ namespace filemanager
       }
    endloop:
       m_plist->PostMessage(MessageMainPost, MessageMainPostCreateImageListItemRedraw);
-      synch_lock lock(m_plist->m_pthread);
+      synch_lock lock(m_plist->m_pthread->m_pthread);
       m_plist->m_pcreateimagelistthread = NULL;
       return 0;
+
    }
 
    bool SimpleFileListInterface::_001CreateImageListStep()

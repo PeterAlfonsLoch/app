@@ -1446,22 +1446,22 @@ namespace frame
 
    ::user::interaction * WorkSet::GetDrawWindow()
    {
-      return dynamic_cast<::user::interaction*>(m_pwndDraw);
+      return dynamic_cast < ::user::interaction * >(m_pwndDraw);
    }
 
    ::user::interaction * WorkSet::GetEventWindow()
    {
-      return dynamic_cast<::user::interaction*>(m_pwndEvent);
+      return dynamic_cast < ::user::interaction * >(m_pwndEvent);
    }
 
    ::user::interaction * WorkSet::GetRegionWindow()
    {
-      return dynamic_cast<::user::interaction*>(m_pwndRegion);
+      return dynamic_cast < ::user::interaction * >(m_pwndRegion);
    }
 
    ::user::interaction * WorkSet::GetCommandWindow()
    {
-      return dynamic_cast<::user::interaction*>(m_pwndCommand);
+      return dynamic_cast < ::user::interaction * >(m_pwndCommand);
    }
 
 

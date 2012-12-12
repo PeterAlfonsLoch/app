@@ -101,7 +101,7 @@ namespace ca2
             {
                if(pdescriptor->m_etype == control::type_simple_list)
                {
-                  ::user::list * plist = dynamic_cast <::user::list *>(pdescriptor->m_pcontrol);
+                  ::user::list * plist = dynamic_cast < ::user::list * >(pdescriptor->m_pcontrol);
                   plist->m_dataid = pdescriptor->m_idPrivateDataSection;
                   plist->_001SetSingleColumnMode(false);
                }
@@ -153,6 +153,12 @@ namespace ca2
             return false;
          ASSERT(pcontrol->descriptor().get_type() == control::type_button);
 
+#ifndef WINDOWS
+
+         throw todo(get_app());
+
+#else
+
          switch(uiNotificationCode)
          {
          case BN_CLICKED:
@@ -168,7 +174,10 @@ namespace ca2
             break;
          }
 
+#endif
+
          return false;
+
       }
 
       bool form::OnCommandCheckBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam)
@@ -178,6 +187,12 @@ namespace ca2
          if(pcontrol == NULL)
             return false;
          ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
+
+#ifndef WINDOWS
+
+         throw todo(get_app());
+
+#else
 
          switch(uiNotificationCode)
          {
@@ -192,7 +207,10 @@ namespace ca2
             break;
          }
 
+#endif
+
          return false;
+
       }
 
       bool form::OnCommandComboBox(control * pcontrol, UINT uiNotificationCode, LPARAM lparam)
@@ -202,6 +220,12 @@ namespace ca2
          if(pcontrol == NULL)
             return false;
          ASSERT(pcontrol->descriptor().get_type() == control::type_combo_box);
+
+#ifndef WINDOWS
+
+         throw todo(get_app());
+
+#else
 
          switch(uiNotificationCode)
          {
@@ -224,6 +248,8 @@ namespace ca2
             break;
          }
 
+#endif
+
          return false;
       }
 
@@ -234,6 +260,12 @@ namespace ca2
          if(pcontrol == NULL)
             return false;
          ASSERT(pcontrol->descriptor().get_type() == control::type_edit);
+
+#ifndef WINDOWS
+
+         throw todo(get_app());
+
+#else
 
          switch(uiNotificationCode)
          {
@@ -252,6 +284,8 @@ namespace ca2
          default:
             break;
          }
+
+#endif
 
          return false;
       }

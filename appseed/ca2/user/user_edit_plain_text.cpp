@@ -119,7 +119,7 @@ namespace user
 
       ::ca::client_graphics pdc(this);
       _001OnCalcLayout(pdc);
-      
+
 
 
       ThreadProcScrollSize((LPVOID) this);
@@ -140,7 +140,7 @@ namespace user
 
       ::ca::client_graphics pdc(this);
       _001OnCalcLayout(pdc);
-      
+
 
 
    /*   pobj->previous();
@@ -461,7 +461,7 @@ namespace user
                pdc->TextOut(left + size1.cx, y, strExtent2);
             }
             pdc->set_color(cr);
-            
+
             pdc->SetBkMode(TRANSPARENT);
             pdc->TextOut(left + size1.cx + size2.cx, y, strExtent3);
             //maxcy = max(size1.cy, size2.cy);
@@ -623,8 +623,7 @@ namespace user
       SCAST_PTR(::gen::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
-         if(Application.is_key_pressed(VK_CONTROL)
-            && Application.is_key_pressed(VK_MENU))
+         if(Application.is_key_pressed(VK_CONTROL)m && Application.is_key_pressed(VK_MENU))
          {
             pkey->m_bRet      = false;
             return;
@@ -804,7 +803,7 @@ namespace user
       graphics->CreateCompatibleDC(NULL);
       ::ca::graphics * pdc = graphics;
       pview->_001OnCalcLayoutProc(pview, pdc);
-      
+
       pview->_001OnUpdate();
       return 0;
    }
@@ -898,7 +897,7 @@ namespace user
          return;
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
-      
+
       _001RedrawWindow();
       Application.set_keyboard_focus(this);
       Application.set_mouse_focus_LButtonDown(this);
@@ -914,7 +913,7 @@ namespace user
       ::ca::client_graphics pdc(this);
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
-      
+
       _001RedrawWindow();
       m_bMouseDown = false;
       pmouse->m_bRet = true;
@@ -931,7 +930,7 @@ namespace user
       ::ca::client_graphics pdc(this);
       m_iSelStart = char_hit_test(pdc, pt.x, pt.y);
       m_iSelEnd = m_iSelStart;
-      
+
       _001RedrawWindow();
       Application.set_keyboard_focus(this);
       Application.set_mouse_focus_RButtonDown(this);
@@ -947,7 +946,7 @@ namespace user
       ::ca::client_graphics pdc(this);
       m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
       m_iColumn = SelToColumn(m_iSelEnd);
-      
+
       _001RedrawWindow();
       m_bMouseDown = false;
 
@@ -1065,7 +1064,7 @@ namespace user
             size size1 = pgraphics->GetTextExtent(straLines[i], straLines[i].length(), iSel - i1);
             size size2 = pgraphics->GetTextExtent(straLines[i], iSel - i1);
 
-            
+
 
             x = (size1.cx + size2.cx) / 2;
 
@@ -1121,7 +1120,7 @@ namespace user
 
    strsize edit_plain_text::LineXToSel(index iLine, int x)
    {
-      
+
       ::ca::client_graphics pgraphics(this);
 
       pgraphics->SelectObject(GetFont());
@@ -1132,9 +1131,9 @@ namespace user
 
       int y = iLineHeight * iLine + iLineHeight / 2 - m_scrollinfo.m_ptScroll.y;
 
-      strsize iChar = char_hit_test(pgraphics, x, y); 
+      strsize iChar = char_hit_test(pgraphics, x, y);
 
-      
+
 
       return iChar;
 /*      while(iLine < 0)
@@ -1281,7 +1280,7 @@ namespace user
          }
          if(pszEnd[0] == '\0')
             break;
-         
+
       }
       return (strsize) min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_pdata->m_editfile.get_length());
    }
@@ -1299,7 +1298,7 @@ namespace user
       {
          ::ca::client_graphics pdc(this);
          m_iSelEnd = char_hit_test(pdc, pt.x, pt.y);
-         
+
        //  _001RedrawWindow();
       }
 
@@ -1879,7 +1878,7 @@ namespace user
 
       try
       {
-      
+
          _001OnAfterChangeText();
 
       }
@@ -2134,8 +2133,8 @@ namespace user
       m_y = m_scrollinfo.m_ptScroll.y;
 
       visibleTextEvent(m_iLineOffset, m_iLineCount);
-      
-      
+
+
 
    }
 
@@ -2262,13 +2261,13 @@ namespace user
 
    void edit_plain_text::_001OnEditFocusCopy(gen::signal_object * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
 
       clipboard_copy();
 
       pobj->m_bRet = true;
-      
+
    }
 
    void edit_plain_text::_001OnUpdateEditFocusPaste(gen::signal_object * pobj)
@@ -2279,9 +2278,9 @@ namespace user
 
    void edit_plain_text::_001OnEditFocusPaste(gen::signal_object * pobj)
    {
-      
+
       UNREFERENCED_PARAMETER(pobj);
-      
+
       clipboard_paste();
 
       pobj->m_bRet = true;

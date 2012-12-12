@@ -134,13 +134,13 @@ namespace ca
 
 
 
-#ifndef WINDOWS
+/*#ifndef WINDOWS
 #define VK_TAB 1
 #define VK_RETURN 2
 #define VK_BACK 3
 #define VK_DELETE 6
 #define VK_SPACE 9
-#endif
+#endif*/
 
 
 #include "c/os/os.h"

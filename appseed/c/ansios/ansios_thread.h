@@ -36,6 +36,10 @@ CLASS_DECL_c DWORD WINAPI GetThreadId(simple_event * Thread);
 
 CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wParam, LPARAM lParam);
 
+#define PostMessage  PostMessageW
+
+CLASS_DECL_c WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam);
+
 
 CLASS_DECL_c simple_event * GetCurrentThread();
 

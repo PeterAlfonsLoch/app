@@ -35,7 +35,7 @@ namespace user
 #ifdef WINDOWS
 
       SCAST_PTR(::gen::message::key, pkey, pobj)
-      
+
       if(pkey->m_nChar == VK_TAB)
       {
          control_event ev;
@@ -73,7 +73,7 @@ namespace user
       interaction * puiThis = dynamic_cast < interaction * > (this);
       if(puiThis == NULL)
          return NULL;
-      single_lock (&puiThis->m_pthread->m_mutex, TRUE);
+      single_lock (&puiThis->m_pthread->m_pthread->m_mutex, TRUE);
       interaction * pui = puiThis->above_sibling();
       while(pui != NULL)
       {

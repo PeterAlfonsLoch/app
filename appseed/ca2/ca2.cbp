@@ -420,12 +420,8 @@
 		<Unit filename="uinteraction/uinteraction.h" />
 		<Unit filename="uinteraction/uinteraction_application.cpp" />
 		<Unit filename="uinteraction/uinteraction_application.h" />
-		<Unit filename="upnp/CPortForwardEngine/PortForwardEngine.cpp" />
-		<Unit filename="upnp/CPortForwardEngine/PortForwardEngine.h" />
 		<Unit filename="user/_user_str.h" />
 		<Unit filename="user/_user_timer_array.h" />
-		<Unit filename="user/_user_window_draw_client_tool.h" />
-		<Unit filename="user/_user_window_util.h" />
 		<Unit filename="user/user.h" />
 		<Unit filename="user/user_00.h" />
 		<Unit filename="user/user_application.cpp" />
@@ -461,7 +457,6 @@
 		<Unit filename="user/user_list_data_interface.h" />
 		<Unit filename="user/user_list_header.cpp" />
 		<Unit filename="user/user_list_header.h" />
-		<Unit filename="user/user_mdi_child_window.cpp" />
 		<Unit filename="user/user_mdi_frame_window.cpp" />
 		<Unit filename="user/user_mini_frame_window.cpp" />
 		<Unit filename="user/user_plain_text_data.cpp" />

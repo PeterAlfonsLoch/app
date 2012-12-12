@@ -130,7 +130,7 @@ bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, U
       {
          if(z == ZORDER_TOP || z == ZORDER_TOPMOST)
          {
-            single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex);
+            single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex);
             if(sl.lock(millis(84)))
             {
                index iFind = get_parent()->m_uiptraChild.find(m_pguie);
@@ -195,9 +195,9 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
    m_pthread = dynamic_cast < ::radix::application * > (get_app());
-   m_pthread->add(this);
+   m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
-   m_pguie->m_pthread->add(m_pguie);
+   m_pguie->m_pthread->m_pthread->add(m_pguie);
 
 
    //m_pguie = this;
@@ -322,9 +322,9 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    if(!create_message_window())
       return FALSE;
    m_pthread = dynamic_cast < ::radix::application * > (get_app());
-   m_pthread->add(this);
+   m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
-   m_pguie->m_pthread->add(m_pguie);
+   m_pguie->m_pthread->m_pthread->add(m_pguie);
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
@@ -443,9 +443,9 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    if(!create_message_window())
       return false;
    m_pthread = dynamic_cast < ::radix::application * > (get_app());
-   m_pthread->add(this);
+   m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
-   m_pguie->m_pthread->add(m_pguie);
+   m_pguie->m_pthread->m_pthread->add(m_pguie);
    m_bVisible = true;
    //m_pguie = this;
 //   m_oswindow = pparent->get_handle();
@@ -1119,12 +1119,12 @@ bool virtual_user_interface::DestroyWindow()
 
    try
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       try
       {
          if(m_pthread != NULL)
          {
-            m_pthread->remove(m_pguie);
+            m_pthread->m_pthread->remove(m_pguie);
          }
       }
       catch(...)
@@ -1134,7 +1134,7 @@ bool virtual_user_interface::DestroyWindow()
       {
          if(m_pthread != NULL)
          {
-            m_pthread->remove(this);
+            m_pthread->m_pthread->remove(this);
          }
       }
       catch(...)
@@ -1339,20 +1339,20 @@ uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse,
       void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
 {
    UNREFERENCED_PARAMETER(lpfnTimer);
-   m_pguie->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);
+   m_pguie->m_pthread->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);
    return nIDEvent;
 }
 
 bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 {
-   m_pguie->m_pthread->unset_timer(m_pguie, nIDEvent);
+   m_pguie->m_pthread->m_pthread->unset_timer(m_pguie, nIDEvent);
    return TRUE;
 }
 
 
 ::user::interaction * virtual_user_interface::GetDescendantWindow(id id)
 {
-   single_lock sl(&m_pthread->m_mutex, TRUE);
+   single_lock sl(&m_pthread->m_pthread->m_mutex, TRUE);
    for(int i = 0; i < m_pguie->m_uiptraChild.get_count(); i++)
    {
       if(m_pguie->m_uiptraChild[i]->GetDlgCtrlId() == id)
@@ -1523,7 +1523,7 @@ bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM l
 {
    if(m_pthread != NULL)
    {
-      return m_pthread->post_message(m_pguie, uiMessage, wparam, lparam);
+      return m_pthread->m_pthread->post_message(m_pguie, uiMessage, wparam, lparam);
    }
    else
    {

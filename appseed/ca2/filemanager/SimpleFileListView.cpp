@@ -498,7 +498,7 @@ namespace filemanager
          {
             int64_t i64Size;
             bool bPendingSize;
-            single_lock lock(m_pthread);
+            single_lock lock(m_pthread->m_pthread);
             if(!lock.lock(millis(1984)))
                return;
             if(i >= get_fs_list_data()->m_itema.get_count())
@@ -906,7 +906,7 @@ namespace filemanager
 #ifdef WINDOWSEX
 
          simple_shell_launcher launcher(NULL, "open", m_straOpenWith[iPos], strPath, System.dir().name(strPath), SW_SHOW);
-         
+
          launcher.execute();
 
 #else

@@ -200,7 +200,7 @@ namespace ca2
             pframe->m_bblur_Background = true;
          }
          int_ptr ui1 = GetCurrentThreadId();
-         int_ptr ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->get_os_int();
+         int_ptr ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->m_pthread->get_os_int();
 #ifdef WINDOWSEX
          if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE))
          {

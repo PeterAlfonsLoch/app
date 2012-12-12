@@ -1373,7 +1373,7 @@ namespace user
             {
                pwindowOld->install_message_handling(pimplOld);
             }
-            single_lock sl(&m_pthread->m_mutex, TRUE);
+            single_lock sl(&m_pthread->m_pthread->m_mutex, TRUE);
             pimplNew->m_uiptraChild = pimplOld->m_uiptraChild;
             pimplOld->m_uiptraChild.remove_all();
             sl.unlock();
@@ -2199,8 +2199,8 @@ namespace user
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::ca::get_thread()->get_os_int());
-      ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (m_pthread->m_p);
-      ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_pthread);
+      ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (m_pthread->m_pthread->m_p);
+      ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 
@@ -2235,14 +2235,14 @@ namespace user
                bIdle = FALSE;
             }*/
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
+            m_pthread->m_pthread->m_p->m_dwAlive = m_pthread->m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis1->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis2->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -2258,7 +2258,7 @@ namespace user
                goto ExitModal;
 
             // pump message, but quit on WM_QUIT
-            if (!m_pthread->pump_message())
+            if (!m_pthread->m_pthread->pump_message())
             {
                __post_quit_message(0);
                return -1;
@@ -2287,14 +2287,14 @@ namespace user
                lIdleCount = 0;
             }*/
 
-            m_pthread->m_p->m_dwAlive = m_pthread->m_dwAlive = ::get_tick_count();
+            m_pthread->m_pthread->m_p->m_dwAlive = m_pthread->m_pthread->m_dwAlive = ::get_tick_count();
             if(pappThis1 != NULL)
             {
-               pappThis1->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis1->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pappThis2 != NULL)
             {
-               pappThis2->m_dwAlive = m_pthread->m_dwAlive;
+               pappThis2->m_dwAlive = m_pthread->m_pthread->m_dwAlive;
             }
             if(pliveobject != NULL)
             {
@@ -2312,7 +2312,7 @@ namespace user
 
          if(m_pguie->m_pthread != NULL)
          {
-            m_pguie->m_pthread->step_timer();
+            m_pguie->m_pthread->m_pthread->step_timer();
          }
          if (!ContinueModal(iLevel))
             goto ExitModal;
@@ -2549,9 +2549,9 @@ ExitModal:
       if(pguieParent != NULL)
       {
 
-         single_lock sl(pguieParent->m_pthread == NULL ? NULL : &pguieParent->m_pthread->m_mutex, TRUE);
+         single_lock sl(pguieParent->m_pthread == NULL ? NULL : &pguieParent->m_pthread->m_pthread->m_mutex, TRUE);
 
-         single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_mutex, TRUE);
+         single_lock sl2(m_pguie->m_pthread == NULL ? NULL : &m_pguie->m_pthread->m_pthread->m_mutex, TRUE);
 
          pguieParent->m_uiptraChild.add(m_pguie);
 
@@ -2954,7 +2954,7 @@ ExitModal:
 
    interaction * interaction::get_bottom_child()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -2963,7 +2963,7 @@ ExitModal:
 
    interaction * interaction::get_top_child()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       if(m_uiptraChild.get_count() <= 0)
          return NULL;
       else
@@ -2972,7 +2972,7 @@ ExitModal:
 
    interaction * interaction::under_sibling()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       interaction * pui = NULL;
       try
       {
@@ -2996,7 +2996,7 @@ ExitModal:
 
    interaction * interaction::under_sibling(interaction * pui)
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       index i = m_uiptraChild.find(pui);
       if(i < 0)
          return NULL;
@@ -3020,7 +3020,7 @@ ExitModal:
 
    interaction * interaction::above_sibling()
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       interaction * pui = NULL;
       try
       {
@@ -3054,7 +3054,7 @@ ExitModal:
 
    interaction * interaction::above_sibling(interaction * pui)
    {
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       index i = m_uiptraChild.find(pui);
       if(i < 0)
          return NULL;
@@ -3227,14 +3227,8 @@ restart:
 
    }
 
-   ::user::interaction * interaction::get_user_interaction() const
-   {
-
-      return this;
-
-   }
-
 
 } // namespace user
+
 
 

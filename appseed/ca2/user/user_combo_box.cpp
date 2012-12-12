@@ -30,7 +30,7 @@ namespace user
 
       if(m_bEdit)
       {
-      
+
          ::user::edit_plain_text::install_message_handling(pdispatch);
 
       }
@@ -46,8 +46,8 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_SETFOCUS, pdispatch, this, &combo_box::_001OnSetFocus);
 
    }
-   
-   
+
+
    void combo_box::_001OnDrawStaticText(::ca::graphics * pdc)
    {
 
@@ -199,7 +199,7 @@ namespace user
 
       for(int radius = iMargin * 2 / 3; radius >= 1; radius--)
       {
-      
+
          iColorRate = ((iMargin * 2 / 3) - radius) * 26 / (iMargin * 2 / 3);
          {
             if(i == 0)
@@ -297,7 +297,7 @@ namespace user
 
    void combo_box::_001OnDraw(::ca::graphics * pdc)
    {
-      
+
       //if(m_estyle == style_simply)
       if(m_plist == NULL)
       {
@@ -316,7 +316,7 @@ namespace user
 
    void combo_box::_001GetText(string & str)
    {
-      
+
       if(m_bEdit)
       {
 
@@ -365,14 +365,14 @@ namespace user
       }
       else
       {
-         
+
          m_strText = psz;
 
          _001OnAfterChangeText();
 
       }
 
-      
+
 
    }
 
@@ -392,7 +392,7 @@ namespace user
 
       for(index i = 0; i < c; i++)
       {
-         
+
          _001GetListText(i, strItem);
 
          if(m_bCaseSensitiveMatch)
@@ -427,7 +427,7 @@ namespace user
 
    bool combo_box::get_element_rect(LPRECT lprect, e_element eelement) const
    {
-      
+
       if(eelement == element_drop_down)
       {
 
@@ -505,7 +505,7 @@ namespace user
    {
 
       rect rectElement;
-      
+
       if(get_element_rect(rectElement, element_drop_down))
       {
          if(rectElement.contains(pt))
@@ -521,7 +521,7 @@ namespace user
       return element_none;
 
    }
-   
+
    void combo_box::_001OnLButtonDown(gen::signal_object * pobj)
    {
 
@@ -558,7 +558,7 @@ namespace user
    void combo_box::_001ToggleDropDown()
    {
 
-      
+
       defer_create_combo_list();
 
       _001ShowDropDown(!m_plist->IsWindowVisible());
@@ -606,16 +606,16 @@ namespace user
          sizeList.cx = min(sizeFull.cx, rectMonitor.width());
 
          {
-            
+
             sizeList.cx = max(sizeList.cx, rectWindow.width());
 
          }
 
          if(sizeList.cx < rectWindow.width())
          {
-            
+
             rectList.left = rectWindow.left;
-            
+
          }
          else if(sizeList.cx < rectMonitor.width())
          {
@@ -630,15 +630,15 @@ namespace user
          {
 
             rectList.top = rectWindow.bottom + 1;
-            
+
             sizeList.cy = min(sizeFull.cy, (rectMonitor.bottom - rectWindow.bottom));
             sizeList.cy -= sizeList.cy % m_plist->_001GetItemHeight();
-            
+
 
             rectList.bottom = rectList.top + sizeList.cy;
 
 
-            
+
 
          }
          else
@@ -663,7 +663,7 @@ namespace user
       else
       {
 
-         
+
 
          if(m_plist != NULL)
          {
@@ -687,7 +687,7 @@ namespace user
 
       if(m_plist == NULL)
       {
-      
+
          ::ca::ca * pca = Application.alloc(m_typeComboList);
 
          m_plist = dynamic_cast < combo_list * > (pca);
@@ -705,7 +705,7 @@ namespace user
       if(!m_plist->IsWindow())
       {
 
-         if(!m_plist->CreateEx(0, m_plist->GetIconWndClass(0, 0), "combo_list", 0, rect(0, 0, 0, 0), NULL, NULL, NULL))
+         if(!m_plist->CreateEx(0, m_plist->GetIconWndClass(0, 0), "combo_list", 0, rect(0, 0, 0, 0), NULL, 0, NULL))
          {
             gen::del(m_plist);
             throw resource_exception(get_app());
@@ -738,7 +738,7 @@ namespace user
 
    index combo_box::_001GetCurSel()
    {
-      
+
       return m_iSel;
 
    }
@@ -753,7 +753,7 @@ namespace user
 
       }
 
-    
+
       ::ca::font_sp fontxyz(get_app());
 
       rect rectClient;
@@ -795,16 +795,16 @@ namespace user
 
    void combo_box::_001OnInitialUpdate(gen::signal_object * pobj)
    {
-      
+
       if(m_bEdit)
       {
-         
+
          ::user::edit_plain_text::_001OnInitialUpdate(pobj);
 
       }
       else
       {
-         
+
          ::user::control::_001OnInitialUpdate(pobj);
 
       }

@@ -232,6 +232,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca thread :
+      virtual public ::ca::thread_base,
       virtual public command_target,
       virtual public ::exception::translator,
       virtual public pha(::user::interaction),
