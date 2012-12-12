@@ -22,7 +22,7 @@
 	<File name="bsdiff/bsdiff.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2478" topLine="91" />
 	</File>
-	<File name="bsdiff/bsdiff_private.h" open="1" top="0" tabpos="1">
+	<File name="bsdiff/bsdiff_private.h" open="0" top="0" tabpos="1">
 		<Cursor position="484" topLine="0" />
 	</File>
 	<File name="c/c.cpp" open="0" top="0" tabpos="4">
@@ -82,16 +82,16 @@
 	<File name="cross/cross.h" open="0" top="0" tabpos="13">
 		<Cursor position="13" topLine="0" />
 	</File>
-	<File name="cross/windows/windows.h" open="1" top="0" tabpos="42">
+	<File name="cross/windows/windows.h" open="0" top="0" tabpos="42">
 		<Cursor position="106" topLine="0" />
 	</File>
-	<File name="cross/windows/windows_gdi.h" open="1" top="0" tabpos="41">
+	<File name="cross/windows/windows_gdi.h" open="0" top="0" tabpos="41">
 		<Cursor position="8" topLine="0" />
 	</File>
 	<File name="cross/windows/windows_thread.h" open="0" top="0" tabpos="15">
 		<Cursor position="3093" topLine="55" />
 	</File>
-	<File name="cross/windows/windows_user.h" open="1" top="0" tabpos="40">
+	<File name="cross/windows/windows_user.h" open="0" top="0" tabpos="40">
 		<Cursor position="345" topLine="36" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="1">
@@ -103,7 +103,7 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="2176" topLine="105" />
 	</File>
-	<File name="linux/c_os.cpp" open="1" top="0" tabpos="2">
+	<File name="linux/c_os.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="165" topLine="0" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="11">
