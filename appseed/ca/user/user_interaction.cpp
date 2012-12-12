@@ -23,6 +23,8 @@ namespace user
 
       m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
 
+      m_pui                   = this;
+
    }
 
    interaction::interaction(::ca::application * papp) :
@@ -45,18 +47,20 @@ namespace user
 
       m_crDefaultBackgroundColor    = ARGB(127, 200, 255, 220);
 
+      m_pui                         = this;
+
    }
 
    interaction::~interaction()
    {
       try
       {
-         single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+         single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
          try
          {
             if(m_pthread != NULL)
             {
-               m_pthread->remove(this);
+               m_pthread->m_pthread->remove(this);
             }
          }
          catch(...)
@@ -203,10 +207,10 @@ namespace user
             }
             array_ptr_alloc < timer_item > timera;
             if(pimplOld->m_pthread != NULL
-            && pimplOld->m_pthread->m_p != NULL
-            && pimplOld->m_pthread->m_p->m_ptimera != NULL)
+            && pimplOld->m_pthread->m_pthread->m_p != NULL
+            && pimplOld->m_pthread->m_pthread->m_p->m_ptimera != NULL)
             {
-               pimplOld->m_pthread->m_p->m_ptimera->detach(timera, this);
+               pimplOld->m_pthread->m_pthread->m_p->m_ptimera->detach(timera, this);
             }
             if(!pimplNew->CreateEx(0, strClass, strName, iStyle, rect(0, 0, 0, 0), NULL, GetDlgCtrlId()))
             {
@@ -224,7 +228,7 @@ namespace user
                   {
                      pimplOld->filter_target(pimplOld);
                      //pimplOld->filter_target(this);
-                     m_pthread->remove(pimplOld);
+                     m_pthread->m_pthread->remove(pimplOld);
                      pimplOld->m_pguie = NULL;
                      pimplOld->DestroyWindow();
                      delete pimplOld;
@@ -422,7 +426,7 @@ namespace user
 
 
       raw_array < user::interaction  * > uiptra;
-      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_mutex, TRUE);
+      single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       m_uiptraChild.get_array(uiptra);
       sl.unlock();
       for(int i = 0; i < uiptra.get_count(); i++)
@@ -3223,7 +3227,12 @@ restart:
 
    }
 
+   ::user::interaction * interaction::get_user_interaction() const
+   {
 
+      return this;
+
+   }
 
 
 } // namespace user

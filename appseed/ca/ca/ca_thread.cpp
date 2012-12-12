@@ -17,6 +17,7 @@ namespace ca
       m_bRun                        = true;
       m_pappDelete                  = NULL;
       m_pbReady                     = NULL;
+      m_pthread                     = NULL;
 
    }
 

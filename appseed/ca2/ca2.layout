@@ -247,7 +247,7 @@
 	<File name="platform/platform_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3786" topLine="82" />
 	</File>
-	<File name="platform/platform_view.cpp" open="1" top="0" tabpos="1">
+	<File name="platform/platform_view.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="22699" topLine="735" />
 	</File>
 	<File name="uinteraction/frame/frame_dock_manager.cpp" open="0" top="0" tabpos="3">

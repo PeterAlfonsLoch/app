@@ -10,8 +10,8 @@
 	<File name="ansios/ansios_file.h" open="0" top="0" tabpos="21">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="ansios/ansios_thread.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="18560" topLine="906" />
+	<File name="ansios/ansios_thread.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="18680" topLine="906" />
 	</File>
 	<File name="ansios/ansios_thread.h" open="0" top="0" tabpos="9">
 		<Cursor position="208" topLine="0" />
@@ -163,11 +163,11 @@
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/c_os_window.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="2608" topLine="162" />
+	<File name="linux/c_os_window.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="3211" topLine="191" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="0">
-		<Cursor position="198" topLine="0" />
+		<Cursor position="193" topLine="0" />
 	</File>
 	<File name="os/os.h" open="0" top="0" tabpos="12">
 		<Cursor position="69" topLine="0" />

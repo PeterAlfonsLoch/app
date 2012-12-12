@@ -180,7 +180,7 @@ void oswindow::set_user_interaction(::user::interaction_base * pui)
    m_pdata->m_pui = pui;
 
 }
-::user::interaction_base * oswindow::get_user_interaction()
+::user::interaction_base * oswindow::get_user_interaction_base()
 {
 
    if(m_pdata == NULL)
@@ -190,7 +190,7 @@ void oswindow::set_user_interaction(::user::interaction_base * pui)
 
 }
 
-::user::interaction_base * oswindow::get_user_interaction() const
+::user::interaction_base * oswindow::get_user_interaction_base() const
 {
 
    if(m_pdata == NULL)
@@ -200,6 +200,31 @@ void oswindow::set_user_interaction(::user::interaction_base * pui)
 
 }
 
+::user::interaction * oswindow::get_user_interaction()
+{
+
+   if(m_pdata == NULL)
+      return NULL;
+
+   if(m_pdata->m_pui == NULL)
+      return NULL;
+
+   return m_pdata->m_pui->m_pui;
+
+}
+
+::user::interaction * oswindow::get_user_interaction() const
+{
+
+   if(m_pdata == NULL)
+      return NULL;
+
+   if(m_pdata->m_pui == NULL)
+      return NULL;
+
+   return m_pdata->m_pui->m_pui;
+
+}
 
 
 bool oswindow::is_child(::oswindow oswindow)

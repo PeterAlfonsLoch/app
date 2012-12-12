@@ -13,12 +13,14 @@ namespace radix
    thread::thread() :
       m_mutex(NULL)
    {
+      m_pthread = this;
    }
 
    thread::thread(::ca::application * papp) :
       ca(papp),
       m_mutex(papp)
    {
+      m_pthread = this;
       if(papp == NULL)
          return;
       set_app(papp);
@@ -33,6 +35,7 @@ namespace radix
       ca(papp),
       m_mutex(papp)
    {
+      m_pthread = this;
       ::ca::thread_sp::create(papp);
       m_p->set_p(this);
       m_p->construct(pfnThreadProc, pParam);
@@ -192,7 +195,7 @@ namespace radix
 
       try
       {
-         
+
          if(m_p->m_ptimera != NULL)
          {
 
