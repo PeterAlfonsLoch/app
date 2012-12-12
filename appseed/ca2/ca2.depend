@@ -5691,3 +5691,12 @@
 1355318773 source:/ca2/app/appseed/ca2/user/user_form.cpp
 	"framework.h"
 
+1354886575 source:/ca2/app/appseed/ca2/user/user_tab_callback.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_tool_tip_tool.cpp
+	"framework.h"
+
+1355256149 source:/ca2/app/appseed/ca2/user/user_tool_tip_window.cpp
+	"framework.h"
+

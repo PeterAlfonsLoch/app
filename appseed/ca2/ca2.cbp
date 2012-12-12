@@ -457,7 +457,6 @@
 		<Unit filename="user/user_list_data_interface.h" />
 		<Unit filename="user/user_list_header.cpp" />
 		<Unit filename="user/user_list_header.h" />
-		<Unit filename="user/user_mdi_frame_window.cpp" />
 		<Unit filename="user/user_mini_frame_window.cpp" />
 		<Unit filename="user/user_plain_text_data.cpp" />
 		<Unit filename="user/user_plain_text_data.h" />
