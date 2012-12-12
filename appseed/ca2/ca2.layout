@@ -220,8 +220,8 @@
 	<File name="mail/mail.h" open="0" top="0" tabpos="8">
 		<Cursor position="44" topLine="0" />
 	</File>
-	<File name="mail/mail_db_pop3.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="8930" topLine="319" />
+	<File name="mail/mail_db_pop3.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="8961" topLine="325" />
 	</File>
 	<File name="nature/nature_appearance_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3161" topLine="70" />
@@ -247,8 +247,11 @@
 	<File name="platform/platform_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3786" topLine="82" />
 	</File>
-	<File name="platform/platform_view.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="4213" topLine="116" />
+	<File name="platform/platform_view.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="22933" topLine="735" />
+	</File>
+	<File name="uinteraction/frame/frame_dock_manager.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2832" topLine="111" />
 	</File>
 	<File name="uinteraction/frame/frame_move_manager.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7797" topLine="184" />
@@ -256,11 +259,14 @@
 	<File name="uinteraction/frame/frame_move_manager.h" open="0" top="0" tabpos="0">
 		<Cursor position="1699" topLine="21" />
 	</File>
+	<File name="uinteraction/frame/frame_work_set.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="8143" topLine="331" />
+	</File>
 	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="20">
 		<Cursor position="41" topLine="0" />
 	</File>
-	<File name="upnp/CPortForwardEngine/PortForwardEngine.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="36306" topLine="1239" />
+	<File name="upnp/CPortForwardEngine/PortForwardEngine.cpp" open="1" top="1" tabpos="5">
+		<Cursor position="153" topLine="0" />
 	</File>
 	<File name="upnp/CPortForwardEngine/PortForwardEngine.h" open="0" top="0" tabpos="0">
 		<Cursor position="8908" topLine="190" />

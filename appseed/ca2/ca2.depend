@@ -5537,3 +5537,99 @@
 1354886573 source:/ca2/app/appseed/ca2/html/html_value.cpp
 	"framework.h"
 
+1354886574 source:/ca2/app/appseed/ca2/mail/mail_account.cpp
+	"framework.h"
+
+1354886574 source:/ca2/app/appseed/ca2/mail/mail_application.cpp
+	"framework.h"
+
+1354886574 source:/ca2/app/appseed/ca2/mail/mail_list_interface.cpp
+	"framework.h"
+
+1354886574 source:/ca2/app/appseed/ca2/mail/mail_tree_data.cpp
+	"framework.h"
+
+1354886574 source:/ca2/app/appseed/ca2/mail/mail_tree_interface.cpp
+	"framework.h"
+
+1354886574 source:/ca2/app/appseed/ca2/mail/mail_tree_item.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_appearance_view.cpp
+	"framework.h"
+	"filemanager/filemanager_folder_selection_list_view.h"
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_application.cpp
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_database.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_document.cpp
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_frame.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_pane_view.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_pane_view_update_hint.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/nature/nature_view.cpp
+
+1355293513 source:/ca2/app/appseed/ca2/mail/mail_db_pop3.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/platform/platform_application.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/platform/platform_document.cpp
+
+1354886573 source:/ca2/app/appseed/ca2/platform/platform_frame.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/platform/platform_pane_view.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/platform/platform_pane_view_update_hint.cpp
+	"framework.h"
+
+1355256146 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_appearance.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_constants.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_control_box_button.cpp
+	"framework.h"
+
+1354986020 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_move_manager.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_size_manager.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_sys_menu_manager.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_up_down_target.cpp
+	"framework.h"
+
+1355293541 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_dock_manager.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_work_set_client_interface.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_work_set_down_up_interface.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_work_set_listener.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/frame/frame_work_set_listener_array.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca2/uinteraction/uinteraction_application.cpp
+	"framework.h"
+

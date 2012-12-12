@@ -37,7 +37,7 @@ namespace frame
 
       m_bHoverModeOn             = false;
       m_bHoverActive             = false;
-       
+
       m_bMovingEnabled           = true;
       m_bSizingEnabled           = true;
       m_bSysMenuEnabled          = true;
@@ -121,14 +121,14 @@ namespace frame
        {
          if(IsAppearanceEnabled())
          {
-            UINT fwSizeType = lpmsg->wParam;      // resizing flag 
-            int nWidth = LOWORD(lpmsg->lParam);  // width of client area 
-            int nHeight = HIWORD(lpmsg->lParam); 
+            UINT fwSizeType = lpmsg->wParam;      // resizing flag
+            int nWidth = LOWORD(lpmsg->lParam);  // width of client area
+            int nHeight = HIWORD(lpmsg->lParam);
             OnSizeRegion(fwSizeType, nWidth, nHeight);
          }
        }*/
 
-      
+
 
    }
 
@@ -297,7 +297,7 @@ namespace frame
          m_pmovemanager               = new MoveManager(this);
          m_pmovemanager->SetSWPFlags(SWP_SHOWWINDOW);
       }
-      
+
       if(m_psizemanager == NULL)
       {
          m_psizemanager               = new SizeManager(this);
@@ -339,7 +339,7 @@ namespace frame
 
       if(!m_psizemanager->update(this))
          return false;
-      
+
       if(!m_psystemmenumanager->update(this))
          return false;
 
@@ -349,7 +349,7 @@ namespace frame
 
       pwndRegion->SetTimer(16319, 100, NULL);
 
-      _001InstallEventHandling(dynamic_cast<::gen::message::dispatch*>(pwndEvent->m_pimpl));
+      _001InstallEventHandling(dynamic_cast < ::gen::message::dispatch * >(pwndEvent->m_pimpl));
 
       return true;
    }
@@ -412,7 +412,7 @@ namespace frame
       return false;
    }
 
-   bool WorkSet::_001OnCmdMsg(BaseCmdMsg * pcmdmsg) 
+   bool WorkSet::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       if(pcmdmsg->m_etype == BaseCmdMsg::type_command
       && m_pwndCommand != NULL)
@@ -466,7 +466,7 @@ namespace frame
 
        m_pmovemanager->SetSWPFlags(m_uiSWPFlags);
        m_psizemanager->SetSWPFlags(m_uiSWPFlags);
-       
+
    }
 
 
@@ -519,7 +519,7 @@ namespace frame
    //void WorkSet::OnUp()
    //{
    //   FrameWnd(m_pwndRegion);
-   //   
+   //
    //   m_pwndRegion->SendMessage(WM_USER + 101, 1, ID_VMSGUI_UP);
    //}
 
@@ -560,8 +560,8 @@ namespace frame
    /*      if(m_bHoverActive &&
             (lpmsg->message == WM_MOUSEMOVE
             || lpmsg->message == WM_LBUTTONDOWN
-            || lpmsg->message == WM_LBUTTONUP 
-            || lpmsg->message == WM_RBUTTONDOWN 
+            || lpmsg->message == WM_LBUTTONUP
+            || lpmsg->message == WM_RBUTTONDOWN
             || lpmsg->message == WM_RBUTTONUP
             || lpmsg->message == WM_CONTEXTMENU) )
          {
@@ -602,8 +602,8 @@ namespace frame
                }
 
             }*/
-         
-         if(pbase->m_uiMessage == WM_TIMER 
+
+         if(pbase->m_uiMessage == WM_TIMER
             && pbase->m_wparam == 16319
             && IsHoverModeOn())
          {
@@ -689,7 +689,7 @@ namespace frame
 
    void WorkSet::layout()
    {
-      
+
       if(m_pframeschema != NULL)
       {
          m_pframeschema->layout();
@@ -721,7 +721,7 @@ namespace frame
       }
       if(edock & DockTop)
       {
-         egripRemove = 
+         egripRemove =
             (EGrip)
             (
                egripRemove
@@ -736,7 +736,7 @@ namespace frame
       }
       if(edock & DockBottom)
       {
-         egripRemove = 
+         egripRemove =
             (EGrip)
             (
                egripRemove
@@ -751,7 +751,7 @@ namespace frame
       }
       if(edock & DockLeft)
       {
-         egripRemove = 
+         egripRemove =
             (EGrip)
             (
                egripRemove
@@ -766,7 +766,7 @@ namespace frame
       }
       if(edock & DockRight)
       {
-         egripRemove = 
+         egripRemove =
             (EGrip)
             (
                egripRemove
@@ -882,7 +882,7 @@ namespace frame
       SCAST_PTR(gen::message::base, pbase, pobj);
       if(m_bHoverModeOn)
       {
-         if(pbase->m_uiMessage == WM_TIMER 
+         if(pbase->m_uiMessage == WM_TIMER
             && pbase->m_wparam == 16319
             && IsHoverModeOn())
          {
@@ -914,7 +914,7 @@ namespace frame
       if(pobj->m_bRet)
          return;
 
-      if(m_pappearance != NULL && 
+      if(m_pappearance != NULL &&
          (!m_pappearance->IsFullScreen()
        || !m_pappearance->IsZoomed()
         ))
@@ -984,9 +984,9 @@ namespace frame
 
    void WorkSet::_001OnActivate(gen::signal_object * pobj)
    {
-      
+
       SCAST_PTR(::gen::message::activate, pactivate, pobj);
-      
+
       ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : GetDrawWindow());
 
       if(pActive == NULL)
@@ -1117,7 +1117,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnLButtonDown(gen::signal_object * pobj) 
+   void WorkSet::_001OnLButtonDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1133,7 +1133,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnMouseMove(gen::signal_object * pobj) 
+   void WorkSet::_001OnMouseMove(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1150,7 +1150,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnLButtonUp(gen::signal_object * pobj) 
+   void WorkSet::_001OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1166,7 +1166,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnNcLButtonDown(gen::signal_object * pobj) 
+   void WorkSet::_001OnNcLButtonDown(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1182,7 +1182,7 @@ namespace frame
       }
    }
 
-   void WorkSet::_001OnNcMouseMove(gen::signal_object * pobj) 
+   void WorkSet::_001OnNcMouseMove(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1201,7 +1201,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnNcLButtonUp(gen::signal_object * pobj) 
+   void WorkSet::_001OnNcLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj)
       if(!m_bEnable)
@@ -1218,7 +1218,7 @@ namespace frame
 
    }
 
-   void WorkSet::_001OnNcHitTest(gen::signal_object * pobj) 
+   void WorkSet::_001OnNcHitTest(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::nchittest, pnchittest, pobj)
       if(!m_bEnable)
@@ -1306,7 +1306,7 @@ namespace frame
          try
          {
             EGrip egrip = GetGripMask();
-            
+
             if(egrip & GripNW)
             {
                rect = rectEvent;
@@ -1421,7 +1421,7 @@ namespace frame
                   throw ModeE;
                }
             }
-            
+
    SizingSuccess;
          return etest;
        }

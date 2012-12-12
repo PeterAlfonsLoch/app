@@ -106,6 +106,8 @@ namespace mail
       string strWeekday;
       string strAlpha;
 
+      index iFind = -1;
+
       base_array < bool, bool > baAlpha;
       stringa straDate;
       stringa straDateSeparator;
@@ -337,7 +339,7 @@ namespace mail
 
 
 
-      index iFind = straDateSeparator.find_first("-");
+      iFind = straDateSeparator.find_first("-");
       if(iFind >= 0)
       {
          iFind = straDateSeparator.find_first("-", iFind + 1);

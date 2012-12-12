@@ -129,7 +129,7 @@ namespace frame
       {
          pwndParent->ScreenToClient(rectPos);
       }
-      ::user::interaction * ptwi = dynamic_cast<::user::interaction *>(pwnd);
+      ::user::interaction * ptwi = dynamic_cast < ::user::interaction * >(pwnd);
    //   CTransparentWndContainer * ptwc = dynamic_cast<CTransparentWndContainer *>(pwnd);
        if(ptwi != NULL )
        //if(ptwi != NULL &&
@@ -138,7 +138,7 @@ namespace frame
          rect rectBefore;
            pwnd->GetWindowRect(rectBefore);
            pwnd->SetWindowPos(
-            ZORDER_TOP, 
+            ZORDER_TOP,
             rectPos.left + cx,
             rectPos.top + cy,
             0, 0,
@@ -158,7 +158,7 @@ namespace frame
                pwndTopLevel->get_handle() == pwnd->get_handle())
            {
             pwnd->SetWindowPos(
-               ZORDER_TOP, 
+               ZORDER_TOP,
                rectPos.left + cx,
                rectPos.top + cy,
                0, 0,
@@ -171,7 +171,7 @@ namespace frame
                pwnd->GetWindowRect(rectBefore);
                pwndParent->ScreenToClient(rectBefore);
             pwnd->SetWindowPos(
-               ZORDER_TOP, 
+               ZORDER_TOP,
                rectPos.left + cx,
                rectPos.top + cy,
                0, 0,
@@ -184,15 +184,15 @@ namespace frame
                rectUnion.union(rectBefore, rectAfter);
                pwndParent->RedrawWindow(
                rectUnion,
-               NULL, 
-               RDW_NOERASE 
-               | RDW_UPDATENOW 
+               NULL,
+               RDW_NOERASE
+               | RDW_UPDATENOW
                | RDW_INVALIDATE);
          }
            else
          {
             pwnd->SetWindowPos(
-               ZORDER_TOP, 
+               ZORDER_TOP,
                rectPos.left + cx,
                rectPos.top + cy,
                0, 0,
@@ -222,9 +222,9 @@ namespace frame
       pwndChild->GetWindowRect(rectChild);
       pwndParent->ScreenToClient(rectChild);
       ASSERT(m_pworkset != NULL);
-      
+
       EDock edock = GetDockState();
-      
+
       EDock edockNew = CalcDock(x, y);
 
       if(edockNew != edock)
@@ -309,7 +309,7 @@ namespace frame
       {
          bChangeDock = true;
       }
-      
+
       EDock edockNew = DockNone;
       if(edockMask & DockTop)
       {
@@ -339,7 +339,7 @@ namespace frame
             edockNew |= DockRight;
          }
       }
-      
+
       if(bChangeDock)
       {
          return edockNew;
@@ -382,7 +382,7 @@ namespace frame
    bool DockManager::IsDocked()
    {
       return GetDockState() != DockNone;
-   }   
+   }
 
    EDock operator |=(EDock & edocki, const EDock edockj)
    {
