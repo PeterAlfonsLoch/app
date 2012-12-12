@@ -550,11 +550,11 @@
 	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="4139" topLine="153" />
 	</File>
-	<File name="gen/gen_message.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1074" topLine="57" />
+	<File name="gen/gen_message.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="24686" topLine="886" />
 	</File>
-	<File name="gen/gen_message.h" open="0" top="0" tabpos="0">
-		<Cursor position="8731" topLine="250" />
+	<File name="gen/gen_message.h" open="1" top="0" tabpos="6">
+		<Cursor position="1542" topLine="63" />
 	</File>
 	<File name="gen/gen_microtimer.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4162" topLine="118" />

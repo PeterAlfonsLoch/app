@@ -5633,3 +5633,21 @@
 1354886573 source:/ca2/app/appseed/ca2/uinteraction/uinteraction_application.cpp
 	"framework.h"
 
+1354886575 source:/ca2/app/appseed/ca2/user/user_application.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_check_box.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_combo_box.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_combo_list.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_form_list.cpp
+	"framework.h"
+
+1354886575 source:/ca2/app/appseed/ca2/user/user_front_end.cpp
+	"framework.h"
+

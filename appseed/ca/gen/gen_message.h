@@ -827,7 +827,7 @@ namespace gen
    ::gen::message::_connect(param1, param2, param3, param4)
 
 #define USER_MESSAGE_LINK(param1, param2, param3, param4) \
-   IGUI_MSG_LINK(::gen::##param1, param2, param3, param4)
+   IGUI_MSG_LINK(::gen::param1, param2, param3, param4)
 
 
 
