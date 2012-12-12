@@ -220,7 +220,7 @@
 	<File name="mail/mail.h" open="0" top="0" tabpos="8">
 		<Cursor position="44" topLine="0" />
 	</File>
-	<File name="mail/mail_db_pop3.cpp" open="1" top="0" tabpos="1">
+	<File name="mail/mail_db_pop3.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="8961" topLine="325" />
 	</File>
 	<File name="nature/nature_appearance_view.cpp" open="0" top="0" tabpos="0">
@@ -247,10 +247,10 @@
 	<File name="platform/platform_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3786" topLine="82" />
 	</File>
-	<File name="platform/platform_view.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="22933" topLine="735" />
+	<File name="platform/platform_view.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="22699" topLine="735" />
 	</File>
-	<File name="uinteraction/frame/frame_dock_manager.cpp" open="1" top="0" tabpos="3">
+	<File name="uinteraction/frame/frame_dock_manager.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2832" topLine="111" />
 	</File>
 	<File name="uinteraction/frame/frame_move_manager.cpp" open="0" top="0" tabpos="0">
@@ -259,7 +259,7 @@
 	<File name="uinteraction/frame/frame_move_manager.h" open="0" top="0" tabpos="0">
 		<Cursor position="1699" topLine="21" />
 	</File>
-	<File name="uinteraction/frame/frame_work_set.cpp" open="1" top="0" tabpos="4">
+	<File name="uinteraction/frame/frame_work_set.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="8068" topLine="331" />
 	</File>
 	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="20">
@@ -277,7 +277,7 @@
 	<File name="user/user.h" open="0" top="0" tabpos="22">
 		<Cursor position="39" topLine="0" />
 	</File>
-	<File name="user/user_button.cpp" open="1" top="0" tabpos="5">
+	<File name="user/user_button.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="632" topLine="9" />
 	</File>
 	<File name="user/user_check_box.cpp" open="0" top="0" tabpos="0">

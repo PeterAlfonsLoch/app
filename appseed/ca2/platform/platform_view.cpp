@@ -749,15 +749,11 @@ namespace platform
       if(iHitArea == m_iV)
       {
          check_apps();
-#ifndef METROWIN
          if(::IsWindow(m_oswindowWinutil))
          {
             mt_show_window(GetTopLevelFrame()->get_safe_handle(), SW_HIDE);
             ::PostMessage(m_oswindowWinutil, WM_APP + 2000, 0, 2);
          }
-#else
-         throw todo(get_app());
-#endif
       }
       else if(iHitArea == m_i_veriwell)
       {

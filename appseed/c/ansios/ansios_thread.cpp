@@ -921,6 +921,37 @@ CLASS_DECL_c WINBOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM 
 
 }
 
+CLASS_DECL_c WINBOOL WINAPI PostMessageW(oswindow oswindow, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
+
+   simple_event *  h = oswindow.get_user_interaction()->m_pthread->get_os_handle();
+
+   if(h == NULL)
+      return FALSE;
+
+
+   mq * pmq = get_mq(h);
+
+   if(pmq == NULL)
+      return FALSE;
+
+   mutex_lock ml(pmq->m_mutex);
+
+   MESSAGE msg;
+
+   //zero(&msg, sizeof(msg));
+
+   msg.message = Msg;
+   msg.wParam  = wParam;
+   msg.lParam  = lParam;
+
+   pmq->ma.add(msg);
+
+   pmq->m_eventNewMessage.set_event();
+
+   return true;
+
+}
 
 
 

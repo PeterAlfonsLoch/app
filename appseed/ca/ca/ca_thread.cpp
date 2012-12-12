@@ -109,13 +109,27 @@ namespace ca
 
    void * thread::get_os_data() const
    {
+
       throw interface_only_exception(get_app());
+
    }
+
 
    int_ptr thread::get_os_int() const
    {
+
       throw interface_only_exception(get_app());
+
    }
+
+
+   HTHREAD thread::get_os_handle() const
+   {
+
+      return (HTHREAD) get_os_data();
+
+   }
+
 
    void thread::start()
    {

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+	<File name="ansios/ansios.h" open="1" top="0" tabpos="2">
+		<Cursor position="45" topLine="0" />
+	</File>
+	<File name="ansios_thread.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="ansios_thread.h" open="1" top="0" tabpos="1">
+		<Cursor position="0" topLine="0" />
+	</File>
 	<File name="api/api.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
@@ -133,11 +142,11 @@
 	<File name="ca/ca_smart_pointer.h" open="0" top="0" tabpos="5">
 		<Cursor position="36" topLine="0" />
 	</File>
-	<File name="ca/ca_thread.cpp" open="0" top="0" tabpos="21">
-		<Cursor position="10764" topLine="442" />
+	<File name="ca/ca_thread.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="2467" topLine="105" />
 	</File>
-	<File name="ca/ca_thread.h" open="0" top="0" tabpos="4">
-		<Cursor position="7919" topLine="261" />
+	<File name="ca/ca_thread.h" open="1" top="0" tabpos="6">
+		<Cursor position="7641" topLine="258" />
 	</File>
 	<File name="ca/ca_type_info.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1169" topLine="54" />
@@ -550,10 +559,10 @@
 	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="20">
 		<Cursor position="4139" topLine="153" />
 	</File>
-	<File name="gen/gen_message.cpp" open="1" top="0" tabpos="2">
+	<File name="gen/gen_message.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="24686" topLine="886" />
 	</File>
-	<File name="gen/gen_message.h" open="1" top="0" tabpos="1">
+	<File name="gen/gen_message.h" open="0" top="0" tabpos="1">
 		<Cursor position="24980" topLine="808" />
 	</File>
 	<File name="gen/gen_microtimer.cpp" open="0" top="0" tabpos="0">
@@ -1135,8 +1144,8 @@
 	<File name="user/user_interaction.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="54746" topLine="2218" />
 	</File>
-	<File name="user/user_interaction.h" open="0" top="0" tabpos="0">
-		<Cursor position="16789" topLine="458" />
+	<File name="user/user_interaction.h" open="1" top="0" tabpos="5">
+		<Cursor position="571" topLine="11" />
 	</File>
 	<File name="user/user_keyboard.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="4423" topLine="154" />

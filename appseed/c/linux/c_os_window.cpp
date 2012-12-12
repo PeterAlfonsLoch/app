@@ -171,7 +171,7 @@ void oswindow::post_nc_destroy()
 }
 
 
-void oswindow::set_user_interaction(::user::interaction * pui)
+void oswindow::set_user_interaction(::user::interaction_base * pui)
 {
 
    if(m_pdata == NULL)
@@ -180,7 +180,7 @@ void oswindow::set_user_interaction(::user::interaction * pui)
    m_pdata->m_pui = pui;
 
 }
-::user::interaction * oswindow::get_user_interaction()
+::user::interaction_base * oswindow::get_user_interaction()
 {
 
    if(m_pdata == NULL)
@@ -190,7 +190,7 @@ void oswindow::set_user_interaction(::user::interaction * pui)
 
 }
 
-::user::interaction * oswindow::get_user_interaction() const
+::user::interaction_base * oswindow::get_user_interaction() const
 {
 
    if(m_pdata == NULL)

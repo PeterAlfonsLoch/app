@@ -36,6 +36,9 @@
 			<Add option="-std=c++0x" />
 			<Add option="-D_DEBUG" />
 		</Compiler>
+		<Unit filename="ansios/ansios.h" />
+		<Unit filename="ansios_thread.cpp" />
+		<Unit filename="ansios_thread.h" />
 		<Unit filename="api/api.h" />
 		<Unit filename="api/api_debug.h" />
 		<Unit filename="api/api_linux.h" />

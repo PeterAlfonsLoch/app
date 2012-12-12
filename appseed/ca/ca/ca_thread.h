@@ -272,6 +272,10 @@ namespace ca
       virtual void * get_os_data() const;
       virtual int_ptr get_os_int() const;
 
+
+      virtual HTHREAD get_os_handle() const;
+
+
       virtual void set_p(::radix::thread * p);
 
 

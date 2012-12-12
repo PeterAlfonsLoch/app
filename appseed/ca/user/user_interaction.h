@@ -33,7 +33,8 @@ namespace user
 
 
    class CLASS_DECL_ca interaction :
-      virtual public window_interface
+      virtual public window_interface,
+      virtual public ::user::interaction_base
    {
    public:
 
@@ -101,7 +102,6 @@ namespace user
 
       e_appearance                        m_eappearance;
       interaction *                       m_pimpl;
-      ::radix::thread *                   m_pthread;
       static interaction *                g_pguieMouseMoveCapture;
       pha(interaction)                    m_uiptraChild;
       string                              m_strName;
@@ -113,17 +113,17 @@ namespace user
       int                                 m_iModal;
       int                                 m_iModalCount;
       bool                                m_bRectOk;
-      
+
 #ifdef WINDOWS
-      
+
       comparable_array < int_ptr >        m_iaModalThread;
-      
+
 #else
-      
+
       comparable_array < pthread_t >      m_iaModalThread;
-      
+
 #endif
-      
+
       id                                  m_idModalResult; // for return values from ::ca::window::RunModalLoop
       COLORREF                            m_crDefaultBackgroundColor;
 
