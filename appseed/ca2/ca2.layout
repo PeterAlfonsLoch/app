@@ -217,14 +217,11 @@
 	<File name="html/html_reader.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="1327" topLine="38" />
 	</File>
-	<File name="ihtml/LiteHTMLAttributes.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="1107" topLine="5" />
-	</File>
-	<File name="ihtml/view.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3752" topLine="103" />
-	</File>
 	<File name="mail/mail.h" open="0" top="0" tabpos="8">
 		<Cursor position="44" topLine="0" />
+	</File>
+	<File name="mail/mail_db_pop3.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="8930" topLine="319" />
 	</File>
 	<File name="nature/nature_appearance_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3161" topLine="70" />
