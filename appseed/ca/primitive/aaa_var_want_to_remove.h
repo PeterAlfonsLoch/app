@@ -94,6 +94,7 @@ public:
 
    inline var();
    inline var(e_type etype);
+
    var(bool b);
    var(int i);
    var(int64_t i64);

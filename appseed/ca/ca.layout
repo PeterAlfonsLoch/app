@@ -829,8 +829,8 @@
 	<File name="plane/plane_system_primitive_string_format_spec.h" open="0" top="0" tabpos="4">
 		<Cursor position="105" topLine="0" />
 	</File>
-	<File name="plane/plane_system_primitive_var.h" open="0" top="0" tabpos="5">
-		<Cursor position="27" topLine="0" />
+	<File name="plane/plane_system_primitive_var.h" open="0" top="0" tabpos="2">
+		<Cursor position="88" topLine="0" />
 	</File>
 	<File name="planebase/planebase.h" open="0" top="0" tabpos="13">
 		<Cursor position="55" topLine="0" />
@@ -914,22 +914,13 @@
 		<Cursor position="14677" topLine="805" />
 	</File>
 	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="3">
-		<Cursor position="5437" topLine="198" />
+		<Cursor position="1820" topLine="85" />
 	</File>
 	<File name="primitive/primitive_virtual_memory.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="3789" topLine="130" />
 	</File>
 	<File name="primitive/primitive_virtual_memory.h" open="0" top="0" tabpos="11">
 		<Cursor position="900" topLine="0" />
-	</File>
-	<File name="primitive/rectangle.h" open="0" top="0" tabpos="0">
-		<Cursor position="12203" topLine="264" />
-	</File>
-	<File name="primitive/size.h" open="0" top="0" tabpos="0">
-		<Cursor position="3115" topLine="56" />
-	</File>
-	<File name="primitive/var.h" open="0" top="0" tabpos="0">
-		<Cursor position="16233" topLine="456" />
 	</File>
 	<File name="radix/radix.h" open="0" top="0" tabpos="114">
 		<Cursor position="21176" topLine="744" />
@@ -1149,6 +1140,9 @@
 	</File>
 	<File name="user/user_document_request_interface.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="254" topLine="0" />
+	</File>
+	<File name="user/user_document_request_interface.h" open="0" top="0" tabpos="1">
+		<Cursor position="324" topLine="0" />
 	</File>
 	<File name="user/user_form.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="25396" topLine="916" />

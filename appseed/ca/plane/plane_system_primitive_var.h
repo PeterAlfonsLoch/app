@@ -8,6 +8,13 @@ inline var::var()
 }
 
 
+inline var::var(const ::ca::null & null)
+{
+   m_etype = type_null;
+   m_pca2 = NULL;
+}
+
+
 inline var::var(e_type etype)
 {
    m_etype = etype;

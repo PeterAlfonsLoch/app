@@ -39,7 +39,7 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,." />
-			<Add option="-lc" />
+			<Add option="-l_" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="ansios/ansios.h" />
@@ -1347,14 +1347,6 @@
 		<Unit filename="primitive/primitive_var_allocation.cpp" />
 		<Unit filename="primitive/primitive_virtual_memory.cpp" />
 		<Unit filename="primitive/primitive_virtual_memory.h" />
-		<Unit filename="primitive/rectangle.h" />
-		<Unit filename="primitive/scalar.h" />
-		<Unit filename="primitive/shared_file.h" />
-		<Unit filename="primitive/shared_memory.h" />
-		<Unit filename="primitive/simple_string.h" />
-		<Unit filename="primitive/size.h" />
-		<Unit filename="primitive/var.h" />
-		<Unit filename="primitive/virtual_memory.h" />
 		<Unit filename="primitive/wstringtou.h" />
 		<Unit filename="radix/radix.h" />
 		<Unit filename="radix/radix.inl" />

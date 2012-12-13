@@ -119,7 +119,7 @@ public:
    var(const gen::pair_set_interface & set);
    var(const gen::str_str_interface & set);
    var(const string_composite & composite);
-   var(const id & id);
+   var(const ::ca::null & null);   var(const id & id);
    ~var();
 
    e_type             m_etype;
