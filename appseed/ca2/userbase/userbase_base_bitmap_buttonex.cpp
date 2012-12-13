@@ -18,7 +18,7 @@ namespace userbase
 
    void bitmap_button::install_message_handling(::gen::message::dispatch * pinterface)
    {
-      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &bitmap_button::_001OnMouseMove); 
+      IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &bitmap_button::_001OnMouseMove);
    }
 
    bool bitmap_button::LoadBitmaps(
@@ -73,7 +73,7 @@ namespace userbase
 
       class size size = m_bitmap.get_size();
 
-      SetWindowPos(NULL, 0, 0, size.cx, size.cy, SWP_NOMOVE | SWP_NOZORDER);
+      SetWindowPos(0, 0, 0, size.cx, size.cy, SWP_NOMOVE | SWP_NOZORDER);
 
    }
 

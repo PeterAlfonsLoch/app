@@ -7,8 +7,8 @@ namespace userbase
 
    control_bar::control_bar()
    {
-      
-      
+
+
       m_bDockTrack = false;
 
       // no elements contained in the control bar yet
@@ -630,8 +630,7 @@ namespace userbase
       m_nStateFlags &= ~(delayShow|delayHide);
       if (swpFlags != 0)
       {
-         SetWindowPos(NULL, 0, 0, 0, 0, swpFlags|
-            SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
+         SetWindowPos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE);
       }
 
       // the style must be visible and if it is docked
@@ -688,9 +687,7 @@ namespace userbase
             // clear delay flags
             m_nStateFlags &= ~(delayShow|delayHide);
             // hide/show the ::ca::window if actually doing layout
-            SetWindowPos(NULL,
-               0, 0, 0, 0, swpFlags|
-               SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
+            SetWindowPos(0, 0, 0, 0, 0, swpFlags | SWP_NOMOVE|SWP_NOSIZE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
          }
          else
          {
@@ -851,18 +848,18 @@ namespace userbase
          if(dwStyle & CBRS_GRIPPER)
          {
             pdc->FillSolidRect(
-               rect.left + 7, 
+               rect.left + 7,
                rect.top,
-               rect.right - 7,    
+               rect.right - 7,
                1,
                RGB(128, 128, 123));
          }
          else
          {
             pdc->FillSolidRect(
-               rect.left, 
+               rect.left,
                rect.top,
-               rect.right,    
+               rect.right,
                1,
                RGB(128, 128, 123));
          }
@@ -870,7 +867,7 @@ namespace userbase
       }
       if (dwStyle & (CBRS_BORDER_LEFT | CBRS_BORDER_TOP))
       {
-         
+
          if(dwStyle & CBRS_GRIPPER)
          {
             ::ca::pen_sp pen(pdc, 1, clr);

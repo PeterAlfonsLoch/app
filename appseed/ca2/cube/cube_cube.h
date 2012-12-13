@@ -53,9 +53,9 @@ namespace cube
       bool set_history(::ca::history * phistory);
 
 
-      virtual bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      virtual platform::document *             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
-      virtual nature::document *               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual ::bergedge::bergedge *             get_bergedge(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual ::platform::document *             get_platform(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
+      virtual ::nature::document *               get_nature(index iEdge, ::ca::application_bias * pbiasCreation = NULL);
 
       virtual bergedge::bergedge *             query_bergedge(index iEdge);
       virtual void on_request(::ca::create_context * pcreatecontext);

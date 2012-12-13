@@ -117,9 +117,9 @@ namespace userbase
          __STATUSPANE* pSBP = _GetPanePtr(0);
          for (int i = 0; i < stra.get_count(); i++)
          {
-            pSBP->id = stra[i];
+            pSBP->m_id = stra[i];
             pSBP->nFlags |= SBPF_UPDATE;
-            if (pSBP->id.has_char())
+            if (pSBP->m_id.has_char())
             {
    /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                {
@@ -310,7 +310,7 @@ namespace userbase
       for (int i = 0; i < m_panea.get_count(); i++)
       {
          __STATUSPANE* pSBP = _GetPanePtr(i);
-         if (pSBP->id == id)
+         if (pSBP->m_id == id)
             return i;
       }
 
@@ -320,7 +320,7 @@ namespace userbase
    id status_bar::GetItemId(int nIndex)
    {
       ASSERT_VALID(this);
-      return _GetPanePtr(nIndex)->id;
+      return _GetPanePtr(nIndex)->m_id;
    }
 
    void status_bar::GetItemRect(int nIndex, LPRECT lpRect)
@@ -368,7 +368,7 @@ namespace userbase
       ASSERT_VALID(this);
 
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      id = pSBP->id;
+      id = pSBP->m_id;
       nStyle = pSBP->nStyle;
       cxWidth = pSBP->cxText;
    }
@@ -379,7 +379,7 @@ namespace userbase
 
       bool bChanged = FALSE;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
-      pSBP->id = id;
+      pSBP->m_id = id;
       if (pSBP->nStyle != nStyle)
       {
          if ((pSBP->nStyle ^ nStyle) & SBPS_STRETCH)
@@ -548,12 +548,15 @@ namespace userbase
 
    void status_bar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
    {
+
       if (((dwOldStyle & CBRS_BORDER_ANY) != (dwNewStyle & CBRS_BORDER_ANY)))
       {
+
          // recalc non-client area when border styles change
-         SetWindowPos(NULL, 0, 0, 0, 0,
-            SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+         SetWindowPos(0, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+
       }
+
    }
 
    /*void status_bar::OnNcPaint()
@@ -772,10 +775,9 @@ namespace userbase
       CStatusCmdUI state(get_app());
       state.m_pOther = this;
       state.m_iCount = (UINT)m_panea.get_count();
-      for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount;
-         state.m_iIndex++)
+      for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
-         state.m_id = _GetPanePtr((int) state.m_iIndex)->id;
+         state.m_id = _GetPanePtr((int) state.m_iIndex)->m_id;
 
          // allow the statusbar itself to have update handlers
          if (::user::interaction::_001OnUpdateCmdUi(&state))
@@ -809,7 +811,7 @@ namespace userbase
          {
             __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
             dumpcontext << "\nstatus pane[" << i << "] = {";
-            dumpcontext << "\n\tnID = " << (const char *) ppane->id;
+            dumpcontext << "\n\tnID = " << (const char *) ppane->m_id;
             dumpcontext << "\n\tnStyle = " << ppane->nStyle;
             dumpcontext << "\n\tcxText = " << ppane->cxText;
             dumpcontext << "\n\tstrText = " << ppane->strText;
@@ -833,7 +835,7 @@ namespace userbase
    {
       if(&pane == this)
          return *this;
-      id = pane.id;        // IDC of indicator: 0 => normal text area
+      m_id = pane.m_id;        // IDC of indicator: 0 => normal text area
       cxText = pane.cxText;     // width of string area in pixels
                      //   on both sides there is a 3 pixel gap and
                      //   a one pixel border, making a pane 6 pixels wider

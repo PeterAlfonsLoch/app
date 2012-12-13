@@ -32,15 +32,15 @@ static const char _vfxShellNewValue[] = "";
    int iSubString, WCHAR chSep);*/
 UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
-static bool AFXAPI _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
+bool _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);
 
 void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
 
 
 
-__STATIC inline bool IsDirSep(WCHAR wch)
+inline bool IsDirSep(wchar_t wch)
 {
-   return (wch == '\\' || wch == '/');
+   return (wch == L'\\' || wch == L'/');
 }
 
 
@@ -50,28 +50,28 @@ __STATIC inline bool IsDirSep(WCHAR wch)
 // Construction/Destruction
 //////////////////////////////////////////////////////////////////////
 
-__STATIC_DATA const char gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
-__STATIC_DATA const char gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
-__STATIC_DATA const char gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
-__STATIC_DATA const char gen_DefaultIconFmt[] = "%s\\DefaultIcon";
-__STATIC_DATA const char gen_ShellNewFmt[] = "%s\\ShellNew";
+static const char gen_ShellOpenFmt[] = "%s\\shell\\open\\%s";
+static const char gen_ShellPrintFmt[] = "%s\\shell\\print\\%s";
+static const char gen_ShellPrintToFmt[] = "%s\\shell\\printto\\%s";
+static const char gen_DefaultIconFmt[] = "%s\\DefaultIcon";
+static const char gen_ShellNewFmt[] = "%s\\ShellNew";
 
 #define DEFAULT_ICON_INDEX 0
 
-__STATIC_DATA const char gen_IconIndexFmt[] = ",%d";
-__STATIC_DATA const char gen_Command[] = "command";
-//__STATIC_DATA const char gen_OpenArg[] = _T(" \"%1\"");
-//__STATIC_DATA const char gen_PrintArg[] = _T(" /p \"%1\"");
-//__STATIC_DATA const char gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
-__STATIC_DATA const char gen_DDEArg[] = " /dde";
+static const char gen_IconIndexFmt[] = ",%d";
+static const char gen_Command[] = "command";
+//static const char gen_OpenArg[] = _T(" \"%1\"");
+//static const char gen_PrintArg[] = _T(" /p \"%1\"");
+//static const char gen_PrintToArg[] = _T(" /pt \"%1\" \"%2\" \"%3\" \"%4\"");
+static const char gen_DDEArg[] = " /dde";
 
-__STATIC_DATA const char gen_DDEExec[] = "ddeexec";
-//__STATIC_DATA const char gen_DDEOpen[] = _T("[open(\"%1\")]");
-//__STATIC_DATA const char gen_DDEPrint[] = _T("[print(\"%1\")]");
-//__STATIC_DATA const char gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
+static const char gen_DDEExec[] = "ddeexec";
+//static const char gen_DDEOpen[] = _T("[open(\"%1\")]");
+//static const char gen_DDEPrint[] = _T("[print(\"%1\")]");
+//static const char gen_DDEPrintTo[] = _T("[printto(\"%1\",\"%2\",\"%3\",\"%4\")]");
 
-__STATIC_DATA const char gen_ShellNewValueName[] = "NullFile";
-__STATIC_DATA const char gen_ShellNewValue[] = "";
+static const char gen_ShellNewValueName[] = "NullFile";
+static const char gen_ShellNewValue[] = "";
 
 
 namespace userbase

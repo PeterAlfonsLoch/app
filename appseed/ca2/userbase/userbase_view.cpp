@@ -65,7 +65,7 @@ namespace userbase
       //connect_command(ID_NEXT_PANE   , &view::_001OnNextPaneCmd);
 //      connect_update_cmd_ui(ID_PREV_PANE    , &view::_001OnUpdateNextPaneMenu);
   //    connect_command(ID_PREV_PANE    , &view::_001OnNextPaneCmd);
-      
+
       //}}__MSG_MAP
       // special command for Initial Update
       IGUI_WIN_MSG_LINK(WM_INITIALUPDATE  , pinterface, this, &view::_001OnInitialUpdate);
@@ -193,7 +193,7 @@ namespace userbase
       pobj->previous();
       //int nResult = pmouseactivate->get_lresult();
 
-      if (pmouseactivate->GetMessage() == MA_NOACTIVATE 
+      if (pmouseactivate->GetMessage() == MA_NOACTIVATE
        || pmouseactivate->GetMessage() == MA_NOACTIVATEANDEAT)
       {
          pmouseactivate->set_lresult(pmouseactivate->GetMessage()); // frame does not want to activate
@@ -270,7 +270,7 @@ namespace userbase
 
    DROPEFFECT view::OnDragScroll(DWORD /*dwKeyState*/, point /*point*/)
    {
-   #if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN)
+   #if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX)
       return DROPEFFECT_SCROLL; // this means do the default
    #else
       return 0;

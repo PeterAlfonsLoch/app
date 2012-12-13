@@ -107,7 +107,7 @@ namespace userbase
       pwndParent->GetClientRect(rectClient);
 
 
-      SetWindowPos(NULL, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
+      SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
       SetTimer(BaseWndMenuCmdUi, 300, NULL);
 
@@ -161,7 +161,7 @@ namespace userbase
       pwndFill->GetClientRect(rectClient);
 
 
-      SetWindowPos(NULL, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
+      SetWindowPos(0, 0, 0, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW | SWP_NOZORDER);
 
       SetTimer(BaseWndMenuCmdUi, 300, NULL);
 
@@ -170,19 +170,19 @@ namespace userbase
 
    void menu_list_window::_UpdateCmdUi(menu_item * pitemParent)
    {
-      
+
       if(pitemParent->m_spitema == NULL)
          return;
-      
+
       menu_button_cmd_ui cmdui(get_app());
-      
+
       cmdui.m_pitema = pitemParent->m_spitema;
 
       for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
-         
+
          menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
-         
+
          cmdui.m_iIndex       = i;
          cmdui.m_id           = pitem->m_id;
          cmdui.m_pOther       = (::user::interaction *) &pitem->m_button;
@@ -255,14 +255,13 @@ namespace userbase
       {
          m_buttonClose.ResizeToFit();
          m_buttonClose.GetWindowRect(rect);
-         m_buttonClose.SetWindowPos(NULL, m_size.cx - rect.width() - 2,
-            2, 0, 0, SWP_NOSIZE);
+         m_buttonClose.SetWindowPos(0, m_size.cx - rect.width() - 2, 2, 0, 0, SWP_NOSIZE);
          //m_buttonClose.ShowWindow(SW_NORMAL);
       }
 
 
 
-      
+
    }
 
 
@@ -290,7 +289,7 @@ namespace userbase
             lprect->bottom = lprect->top + m_iItemHeight - 2;
          }
          pitem->m_button.SetWindowPos(
-            NULL,
+            0,
             lprect->left + pitem->m_iLevel * g_base_menu_indent,
             lprect->top,
             iMaxWidth - pitem->m_iLevel * g_base_menu_indent,

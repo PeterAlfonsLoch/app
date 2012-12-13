@@ -79,7 +79,7 @@ namespace userbase
       {
 
          int   fwKeys = (int) lpMsg->wParam;        // key flags
-         if((fwKeys & MK_LBUTTON) > 0)
+         if(Session.is_mouse_button_pressed(::user::mouse_left_button))
          {
             ::userbase::split_bar & splitbar = m_splitbara.element_at(iIndex);
             splitbar.set_capture();
@@ -538,7 +538,9 @@ namespace userbase
          if(pcomponent->m_pholder == NULL)
             return false;
       }
-      pcomponent->m_id = id.is_empty() ? iIndex : id;
+
+      pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
+
       //pwnd->set_parent(this);
 
       //pwnd->ModifyStyle(WS_BORDER, 0, 0);
@@ -588,7 +590,8 @@ namespace userbase
          if(pcomponent->m_pholder == NULL)
             return false;
       }
-      pcomponent->m_id = id.is_empty() ? iIndex : id;
+
+      pcomponent->m_id = id.is_empty() ? (::id) iIndex : id;
       //pwnd->set_parent(this);
 
       //pwnd->ModifyStyle(WS_BORDER, 0, 0);

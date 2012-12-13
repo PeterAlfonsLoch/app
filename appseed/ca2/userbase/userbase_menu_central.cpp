@@ -228,7 +228,7 @@ id BaseMenuCentral::ImageToCommand(UINT uiImage)
    }
    else
    {
-      return class id();
+      return ::id();
    }
 }
 

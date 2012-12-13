@@ -28,7 +28,7 @@ namespace userbase
       ::DeleteObject(m_hfontHidden);
       ::DeleteObject(m_hfontRegular);
 #else
-      throw todo(get_app());      
+      throw todo(get_app());
 #endif
    }
 
@@ -257,7 +257,9 @@ namespace userbase
 #else
       throw todo(::ca::get_thread_app());
 #endif
-      return NULL;
+
+      return '\0';
+
    }
 
    oswindow FindTrayToolbarWindow()

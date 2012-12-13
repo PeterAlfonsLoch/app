@@ -45,7 +45,7 @@ namespace plane
       ::bergedge::bergedge *                                m_pbergedge;
       ::bergedge_interface *                                m_pbergedgeInterface;
 
-      
+
       index                                                 m_iEdge;
 
       bool                                                  m_bShowPlatform;
@@ -56,7 +56,7 @@ namespace plane
 
       var                                                   m_varTopicFile;
       var                                                   m_varCurrentViewFile;
-      
+
       bool                                                  m_bDrawCursor;
 
       ifs *                                                 m_pifs;
@@ -105,7 +105,7 @@ namespace plane
       virtual void check_topic_file_change();
 
       void on_exclusive_instance_conflict(::radix::EExclusiveInstance eexclusive);
-      
+
       void launch_app(const char * psz);
       void install_app(const char * psz);
 
@@ -116,7 +116,7 @@ namespace plane
       virtual bool open_by_file_extension(const char * pszPathName, ::ca::application_bias * pbiasCreate = NULL);
 
       virtual bool open_by_file_extension(::ca::create_context * pcreatecontext);
-      
+
       virtual bool is_session();
 
       ::ca::application * get_current_application();
@@ -134,6 +134,9 @@ namespace plane
       virtual ::bergedge::view * get_view();
       virtual ::bergedge::document * get_document();
       virtual FileManagerTemplate * GetStdFileManagerTemplate();
+
+
+      virtual bool is_mouse_button_pressed(::user::e_mouse emouse);
 
 
       virtual bool is_remote_session();

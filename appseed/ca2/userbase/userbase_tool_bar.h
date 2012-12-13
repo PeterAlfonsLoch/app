@@ -14,11 +14,6 @@ namespace userbase
    public:
 
 
-#ifdef WINDOWS
-      HRSRC m_hRsrcImageWell; // handle to loaded resource for image well
-#endif
-      HINSTANCE m_hInstImageWell; // instance handle to load image well from
-      HBITMAP m_hbmImageWell; // contains color mapped button images
       bool m_bDelayedButtonLayout; // used to manage when button layout should be done
 
       size m_sizeImage;  // current image size

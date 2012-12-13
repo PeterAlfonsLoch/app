@@ -632,6 +632,471 @@ typedef struct tagMDINEXTMENU
 #define WHEEL_PAGESCROLL                (UINT_MAX)
 //#endif /* _WIN32_WINNT >= 0x0400 */
 
+//#if(_WIN32_WINNT >= 0x0500)
+#define GET_KEYSTATE_WPARAM(wParam)     (LOWORD(wParam))
+#define GET_NCHITTEST_WPARAM(wParam)    ((short)LOWORD(wParam))
+#define GET_XBUTTON_WPARAM(wParam)      (HIWORD(wParam))
+
+/* XButton values are WORD flags */
+#define XBUTTON1      0x0001
+#define XBUTTON2      0x0002
+/* Were there to be an XBUTTON3, its value would be 0x0004 */
+//#endif /* _WIN32_WINNT >= 0x0500 */
+
+#define WM_PARENTNOTIFY                 0x0210
+#define WM_ENTERMENULOOP                0x0211
+#define WM_EXITMENULOOP                 0x0212
+
+//#if(WINVER >= 0x0400)
+#define WM_NEXTMENU                     0x0213
+#define WM_SIZING                       0x0214
+#define WM_CAPTURECHANGED               0x0215
+#define WM_MOVING                       0x0216
+//#endif /* WINVER >= 0x0400 */
+
+//#if(WINVER >= 0x0400)
+
+
+#define WM_POWERBROADCAST               0x0218
+
+#ifndef _WIN32_WCE
+#define PBT_APMQUERYSUSPEND             0x0000
+#define PBT_APMQUERYSTANDBY             0x0001
+
+#define PBT_APMQUERYSUSPENDFAILED       0x0002
+#define PBT_APMQUERYSTANDBYFAILED       0x0003
+
+#define PBT_APMSUSPEND                  0x0004
+#define PBT_APMSTANDBY                  0x0005
+
+#define PBT_APMRESUMECRITICAL           0x0006
+#define PBT_APMRESUMESUSPEND            0x0007
+#define PBT_APMRESUMESTANDBY            0x0008
+
+#define PBTF_APMRESUMEFROMFAILURE       0x00000001
+
+#define PBT_APMBATTERYLOW               0x0009
+#define PBT_APMPOWERSTATUSCHANGE        0x000A
+
+#define PBT_APMOEMEVENT                 0x000B
+
+
+#define PBT_APMRESUMEAUTOMATIC          0x0012
+//#if (_WIN32_WINNT >= 0x0502)
+//#ifndef PBT_POWERSETTINGCHANGE
+#define PBT_POWERSETTINGCHANGE          0x8013
+
+//#pragma region Desktop Family
+//#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+typedef struct {
+    GUID PowerSetting;
+    DWORD DataLength;
+    UCHAR Data[1];
+} POWERBROADCAST_SETTING, *PPOWERBROADCAST_SETTING;
+
+
+//#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+//#pragma endregion
+
+//#endif // PBT_POWERSETTINGCHANGE
+
+//#endif // (_WIN32_WINNT >= 0x0502)
+//#endif
+
+//#endif /* WINVER >= 0x0400 */
+
+//#if(WINVER >= 0x0400)
+#define WM_DEVICECHANGE                 0x0219
+//#endif /* WINVER >= 0x0400 */
+
+#define WM_MDICREATE                    0x0220
+#define WM_MDIDESTROY                   0x0221
+#define WM_MDIACTIVATE                  0x0222
+#define WM_MDIRESTORE                   0x0223
+#define WM_MDINEXT                      0x0224
+#define WM_MDIMAXIMIZE                  0x0225
+#define WM_MDITILE                      0x0226
+#define WM_MDICASCADE                   0x0227
+#define WM_MDIICONARRANGE               0x0228
+#define WM_MDIGETACTIVE                 0x0229
+
+
+#define WM_MDISETMENU                   0x0230
+#define WM_ENTERSIZEMOVE                0x0231
+#define WM_EXITSIZEMOVE                 0x0232
+#define WM_DROPFILES                    0x0233
+#define WM_MDIREFRESHMENU               0x0234
+
+//#if(WINVER >= 0x0602)
+#define WM_POINTERDEVICECHANGE          0x238
+#define WM_POINTERDEVICEINRANGE         0x239
+#define WM_POINTERDEVICEOUTOFRANGE      0x23A
+//#endif /* WINVER >= 0x0602 */
+
+//#if(WINVER >= 0x0601)
+#define WM_TOUCH                        0x0240
+//#endif /* WINVER >= 0x0601 */
+
+//#if(WINVER >= 0x0602)
+#define WM_NCPOINTERUPDATE              0x0241
+#define WM_NCPOINTERDOWN                0x0242
+#define WM_NCPOINTERUP                  0x0243
+#define WM_POINTERUPDATE                0x0245
+#define WM_POINTERDOWN                  0x0246
+#define WM_POINTERUP                    0x0247
+#define WM_POINTERENTER                 0x0249
+#define WM_POINTERLEAVE                 0x024A
+#define WM_POINTERACTIVATE              0x024B
+#define WM_POINTERCAPTURECHANGED        0x024C
+#define WM_TOUCHHITTESTING              0x024D
+#define WM_POINTERWHEEL                 0x024E
+#define WM_POINTERHWHEEL                0x024F
+//#endif /* WINVER >= 0x0602 */
+
+
+//#if(WINVER >= 0x0400)
+#define WM_IME_SETCONTEXT               0x0281
+#define WM_IME_NOTIFY                   0x0282
+#define WM_IME_CONTROL                  0x0283
+#define WM_IME_COMPOSITIONFULL          0x0284
+#define WM_IME_SELECT                   0x0285
+#define WM_IME_CHAR                     0x0286
+//#endif /* WINVER >= 0x0400 */
+//#if(WINVER >= 0x0500)
+#define WM_IME_REQUEST                  0x0288
+//#endif /* WINVER >= 0x0500 */
+//#if(WINVER >= 0x0400)
+#define WM_IME_KEYDOWN                  0x0290
+#define WM_IME_KEYUP                    0x0291
+//#endif /* WINVER >= 0x0400 */
+
+//#if((_WIN32_WINNT >= 0x0400) || (WINVER >= 0x0500))
+#define WM_MOUSEHOVER                   0x02A1
+#define WM_MOUSELEAVE                   0x02A3
+//#endif
+//#if(WINVER >= 0x0500)
+#define WM_NCMOUSEHOVER                 0x02A0
+#define WM_NCMOUSELEAVE                 0x02A2
+//#endif /* WINVER >= 0x0500 */
+
+//#if(_WIN32_WINNT >= 0x0501)
+#define WM_WTSSESSION_CHANGE            0x02B1
+
+#define WM_TABLET_FIRST                 0x02c0
+#define WM_TABLET_LAST                  0x02df
+//#endif /* _WIN32_WINNT >= 0x0501 */
+
+#define WM_CUT                          0x0300
+#define WM_COPY                         0x0301
+#define WM_PASTE                        0x0302
+#define WM_CLEAR                        0x0303
+#define WM_UNDO                         0x0304
+#define WM_RENDERFORMAT                 0x0305
+#define WM_RENDERALLFORMATS             0x0306
+#define WM_DESTROYCLIPBOARD             0x0307
+#define WM_DRAWCLIPBOARD                0x0308
+#define WM_PAINTCLIPBOARD               0x0309
+#define WM_VSCROLLCLIPBOARD             0x030A
+#define WM_SIZECLIPBOARD                0x030B
+#define WM_ASKCBFORMATNAME              0x030C
+#define WM_CHANGECBCHAIN                0x030D
+#define WM_HSCROLLCLIPBOARD             0x030E
+#define WM_QUERYNEWPALETTE              0x030F
+#define WM_PALETTEISCHANGING            0x0310
+#define WM_PALETTECHANGED               0x0311
+#define WM_HOTKEY                       0x0312
+
+//#if(WINVER >= 0x0400)
+#define WM_PRINT                        0x0317
+#define WM_PRINTCLIENT                  0x0318
+//#endif /* WINVER >= 0x0400 */
+
+//#if(_WIN32_WINNT >= 0x0500)
+#define WM_APPCOMMAND                   0x0319
+//#endif /* _WIN32_WINNT >= 0x0500 */
+
+//#if(_WIN32_WINNT >= 0x0501)
+#define WM_THEMECHANGED                 0x031A
+//#endif /* _WIN32_WINNT >= 0x0501 */
+
+
+//#if(_WIN32_WINNT >= 0x0501)
+#define WM_CLIPBOARDUPDATE              0x031D
+//#endif /* _WIN32_WINNT >= 0x0501 */
+
+//#if(_WIN32_WINNT >= 0x0600)
+#define WM_DWMCOMPOSITIONCHANGED        0x031E
+#define WM_DWMNCRENDERINGCHANGED        0x031F
+#define WM_DWMCOLORIZATIONCOLORCHANGED  0x0320
+#define WM_DWMWINDOWMAXIMIZEDCHANGE     0x0321
+//#endif /* _WIN32_WINNT >= 0x0600 */
+
+//#if(_WIN32_WINNT >= 0x0601)
+#define WM_DWMSENDICONICTHUMBNAIL           0x0323
+#define WM_DWMSENDICONICLIVEPREVIEWBITMAP   0x0326
+//#endif /* _WIN32_WINNT >= 0x0601 */
+
+
+//#if(WINVER >= 0x0600)
+#define WM_GETTITLEBARINFOEX            0x033F
+#endif /* WINVER >= 0x0600 */
+
+//#if(WINVER >= 0x0400)
+
+#define WM_HANDHELDFIRST                0x0358
+#define WM_HANDHELDLAST                 0x035F
+
+#define WM_AFXFIRST                     0x0360
+#define WM_AFXLAST                      0x037F
+//#endif /* WINVER >= 0x0400 */
+
+#define WM_PENWINFIRST                  0x0380
+#define WM_PENWINLAST                   0x038F
+
+
+//#if(WINVER >= 0x0400)
+#define WM_APP                          0x8000
+//#endif /* WINVER >= 0x0400 */
+
+
+/*
+ * NOTE: All Message Numbers below 0x0400 are RESERVED.
+ *
+ * Private Window Messages Start Here:
+ */
+#define WM_USER                         0x0400
+
+//#if(WINVER >= 0x0400)
+
+/*  wParam for WM_SIZING message  */
+#define WMSZ_LEFT           1
+#define WMSZ_RIGHT          2
+#define WMSZ_TOP            3
+#define WMSZ_TOPLEFT        4
+#define WMSZ_TOPRIGHT       5
+#define WMSZ_BOTTOM         6
+#define WMSZ_BOTTOMLEFT     7
+#define WMSZ_BOTTOMRIGHT    8
+//#endif /* WINVER >= 0x0400 */
+
+//#ifndef NONCMESSAGES
+
+/*
+ * WM_NCHITTEST and MOUSEHOOKSTRUCT Mouse Position Codes
+ */
+#define HTERROR             (-2)
+#define HTTRANSPARENT       (-1)
+#define HTNOWHERE           0
+#define HTCLIENT            1
+#define HTCAPTION           2
+#define HTSYSMENU           3
+#define HTGROWBOX           4
+#define HTSIZE              HTGROWBOX
+#define HTMENU              5
+#define HTHSCROLL           6
+#define HTVSCROLL           7
+#define HTMINBUTTON         8
+#define HTMAXBUTTON         9
+#define HTLEFT              10
+#define HTRIGHT             11
+#define HTTOP               12
+#define HTTOPLEFT           13
+#define HTTOPRIGHT          14
+#define HTBOTTOM            15
+#define HTBOTTOMLEFT        16
+#define HTBOTTOMRIGHT       17
+#define HTBORDER            18
+#define HTREDUCE            HTMINBUTTON
+#define HTZOOM              HTMAXBUTTON
+#define HTSIZEFIRST         HTLEFT
+#define HTSIZELAST          HTBOTTOMRIGHT
+//#if(WINVER >= 0x0400)
+#define HTOBJECT            19
+#define HTCLOSE             20
+#define HTHELP              21
+//#endif /* WINVER >= 0x0400 */
+
+
+/*
+ * SendMessageTimeout values
+ */
+#define SMTO_NORMAL         0x0000
+#define SMTO_BLOCK          0x0001
+#define SMTO_ABORTIFHUNG    0x0002
+//#if(WINVER >= 0x0500)
+#define SMTO_NOTIMEOUTIFNOTHUNG 0x0008
+//#endif /* WINVER >= 0x0500 */
+//#if(WINVER >= 0x0600)
+//#define SMTO_ERRORONEXIT    0x0020
+//#endif /* WINVER >= 0x0600 */
+//#if(WINVER >= 0x0602)
+//#endif /* WINVER >= 0x0602 */
+
+//#endif /* !NONCMESSAGES */
+
+/*
+ * WM_MOUSEACTIVATE Return Codes
+ */
+#define MA_ACTIVATE         1
+#define MA_ACTIVATEANDEAT   2
+#define MA_NOACTIVATE       3
+#define MA_NOACTIVATEANDEAT 4
+
+/*
+ * WM_SETICON / WM_GETICON Type Codes
+ */
+#define ICON_SMALL          0
+#define ICON_BIG            1
+//#if(_WIN32_WINNT >= 0x0501)
+#define ICON_SMALL2         2
+//#endif /* _WIN32_WINNT >= 0x0501 */
+
+
+//#pragma region Desktop Family
+//#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+
+UINT
+WINAPI
+RegisterWindowMessageA(
+     LPCSTR lpString);
+
+UINT
+WINAPI
+RegisterWindowMessageW(
+     LPCWSTR lpString);
+//#ifdef UNICODE
+#define RegisterWindowMessage  RegisterWindowMessageW
+//#else
+//#define RegisterWindowMessage  RegisterWindowMessageA
+//#endif // !UNICODE
+
+//#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+//#pragma endregion
+
+
+/*
+ * WM_SIZE message wParam values
+ */
+#define SIZE_RESTORED       0
+#define SIZE_MINIMIZED      1
+#define SIZE_MAXIMIZED      2
+#define SIZE_MAXSHOW        3
+#define SIZE_MAXHIDE        4
+
+/*
+ * Obsolete constant names
+ */
+#define SIZENORMAL          SIZE_RESTORED
+#define SIZEICONIC          SIZE_MINIMIZED
+#define SIZEFULLSCREEN      SIZE_MAXIMIZED
+#define SIZEZOOMSHOW        SIZE_MAXSHOW
+#define SIZEZOOMHIDE        SIZE_MAXHIDE
+
+
+//#pragma region Desktop Family
+//#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+/*
+ * WM_WINDOWPOSCHANGING/CHANGED struct pointed to by lParam
+ */
+typedef struct tagWINDOWPOS {
+    oswindow    hwnd;
+    oswindow    hwndInsertAfter;
+    int     x;
+    int     y;
+    int     cx;
+    int     cy;
+    UINT    flags;
+} WINDOWPOS, *LPWINDOWPOS, *PWINDOWPOS;
+
+/*
+ * WM_NCCALCSIZE parameter structure
+ */
+typedef struct tagNCCALCSIZE_PARAMS {
+    RECT       rgrc[3];
+    PWINDOWPOS lppos;
+} NCCALCSIZE_PARAMS, *LPNCCALCSIZE_PARAMS;
+
+//#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+//#pragma endregion
+
+/*
+ * WM_NCCALCSIZE "window valid rect" return values
+ */
+#define WVR_ALIGNTOP        0x0010
+#define WVR_ALIGNLEFT       0x0020
+#define WVR_ALIGNBOTTOM     0x0040
+#define WVR_ALIGNRIGHT      0x0080
+#define WVR_HREDRAW         0x0100
+#define WVR_VREDRAW         0x0200
+#define WVR_REDRAW         (WVR_HREDRAW | \
+                            WVR_VREDRAW)
+#define WVR_VALIDRECTS      0x0400
+
+
+//#ifndef NOKEYSTATES
+
+/*
+ * Key State Masks for Mouse Messages
+ */
+#define MK_LBUTTON          0x0001
+#define MK_RBUTTON          0x0002
+#define MK_SHIFT            0x0004
+#define MK_CONTROL          0x0008
+#define MK_MBUTTON          0x0010
+//#if(_WIN32_WINNT >= 0x0500)
+#define MK_XBUTTON1         0x0020
+#define MK_XBUTTON2         0x0040
+//#endif /* _WIN32_WINNT >= 0x0500 */
+
+//#endif /* !NOKEYSTATES */
+
+
+//#if(_WIN32_WINNT >= 0x0400)
+//#ifndef NOTRACKMOUSEEVENT
+
+#define TME_HOVER       0x00000001
+#define TME_LEAVE       0x00000002
+//#if(WINVER >= 0x0500)
+#define TME_NONCLIENT   0x00000010
+//#endif /* WINVER >= 0x0500 */
+#define TME_QUERY       0x40000000
+#define TME_CANCEL      0x80000000
+
+
+#define HOVER_DEFAULT   0xFFFFFFFF
+//#endif /* _WIN32_WINNT >= 0x0400 */
+
+//#if(_WIN32_WINNT >= 0x0400)
+
+//#pragma region Desktop Family
+//#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
+
+typedef struct tagTRACKMOUSEEVENT {
+    DWORD cbSize;
+    DWORD dwFlags;
+    oswindow  hwndTrack;
+    DWORD dwHoverTime;
+} TRACKMOUSEEVENT, *LPTRACKMOUSEEVENT;
+
+
+BOOL
+WINAPI
+TrackMouseEvent(
+     LPTRACKMOUSEEVENT lpEventTrack);
+
+//#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
+//#pragma endregion
+
+//#endif /* _WIN32_WINNT >= 0x0400 */
+
+//#if(_WIN32_WINNT >= 0x0400)
+
+//#endif /* !NOTRACKMOUSEEVENT */
+//#endif /* _WIN32_WINNT >= 0x0400 */
+
 
 
 

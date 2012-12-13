@@ -56,7 +56,7 @@ namespace userstack
       pframe->m_ppaneview = this;
 
 
-      
+
 
       add_tab("menu", ::userstack::PaneViewContextMenu);
 
@@ -190,7 +190,7 @@ namespace userstack
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      
+
       class application * papp = dynamic_cast < class application * > (get_app());
 
       if(pcreatordata->m_id.is_text())
@@ -202,14 +202,14 @@ namespace userstack
             ::ca::application * pappTab;
             if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
             {
-               
+
                ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
                pbiasCreate->m_puiParent = pcreatordata->m_pholder;
 
                ::ca::create_context_sp createcontext(get_app());
                createcontext->m_spApplicationBias = pbiasCreate;
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
-              
+
 
                string str;
 
@@ -220,13 +220,13 @@ namespace userstack
 
                   if(papp->directrix().m_varTopicQuery[(const char *) strId].has_property("file"))
                   {
-                     
+
                      createcontext->m_spCommandLine->m_varFile = papp->directrix().m_varTopicQuery[(const char *) strId]["file"];
 
                   }
 
                }
-   
+
                str = gen::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
 
                createcontext->m_spCommandLine->m_eventReady.ResetEvent();
@@ -243,7 +243,7 @@ namespace userstack
 
      		   string strIcon = planeApp(pappCurrent).dir().matter("mainframe/icon48.png");
             pane * ppane = (pane *) get_pane_by_id(pcreatordata->m_id);
-            
+
             pappCurrent = Session.m_pappCurrent;
 
 	   	   if(planeApp(pappCurrent).file().exists(strIcon))
@@ -490,7 +490,7 @@ namespace userstack
 
    void pane_view::OnFileManagerOpenContextMenu(::filemanager::data * pdata)
    {
-      
+
       UNREFERENCED_PARAMETER(pdata);
 
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
@@ -524,10 +524,10 @@ namespace userstack
       UNREFERENCED_PARAMETER(pobj);
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
-         
+
 #ifndef METROWIN
-         simple_shell_launcher launcher(NULL, NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
-         
+         simple_shell_launcher launcher(::ca::null(), NULL, "control.exe", "desk.cpl", NULL, SW_SHOWNORMAL);
+
          launcher.execute();
 #else
 

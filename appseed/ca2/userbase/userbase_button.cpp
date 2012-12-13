@@ -6,7 +6,7 @@ namespace userbase
 
 
    button::button(::ca::application * papp) :
-      ::user::interaction(papp), 
+      ::user::interaction(papp),
       ::user::button(papp),
       ca(papp),
       m_dib(papp)
@@ -27,11 +27,11 @@ namespace userbase
 
    void button::_001OnDraw(::ca::graphics * pdc)
    {
-      
+
       if(m_pschema == NULL)
          return;
 
-      
+
       rect rectClient;
       m_pguie->GetClientRect(rectClient);
 
@@ -91,7 +91,7 @@ namespace userbase
       {
          pdc->Draw3dRect(rectClient, crBorder, crBorder);
       }
-      
+
       pdc->SetBkMode(TRANSPARENT);
 
       rectClient.left   += 3;
@@ -161,9 +161,9 @@ namespace userbase
       rect.right = size.cx / 0.77 + 4;
       rect.bottom = size.cy / 0.77 + 4;
 
-      SetWindowPos(NULL, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
+      SetWindowPos(0, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
 
-      
+
 
 
    }

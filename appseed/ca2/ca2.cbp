@@ -578,10 +578,6 @@
 		<Unit filename="userbase/userbase_impl.h" />
 		<Unit filename="userbase/userbase_main_frame.cpp" />
 		<Unit filename="userbase/userbase_main_frame.h" />
-		<Unit filename="userbase/userbase_mdi_child_window.cpp" />
-		<Unit filename="userbase/userbase_mdi_child_window.h" />
-		<Unit filename="userbase/userbase_mdi_frame_window.cpp" />
-		<Unit filename="userbase/userbase_mdi_frame_window.h" />
 		<Unit filename="userbase/userbase_menu.cpp" />
 		<Unit filename="userbase/userbase_menu.h" />
 		<Unit filename="userbase/userbase_menu_base.cpp" />

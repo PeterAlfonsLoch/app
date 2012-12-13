@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <dde.h>
 
 
 namespace userbase
@@ -8,8 +7,11 @@ namespace userbase
 
    frame_window::frame_window()
    {
+
       CommonConstruct();
+
    }
+
 
    void frame_window::CommonConstruct()
    {
@@ -298,7 +300,7 @@ namespace userbase
    {
       ::user::interaction::dump(dumpcontext);
 
-      dumpcontext << "m_hAccelTable = " << (UINT)m_hAccelTable;
+      dumpcontext << "m_hAccelTable = " << (UINT_PTR)m_hAccelTable;
       dumpcontext << "\nm_nWindow = " << m_nWindow;
       dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
@@ -372,7 +374,7 @@ namespace userbase
 
    void frame_window::AddControlBar(::userbase::control_bar *pBar)
    {
-      m_listControlBars.add_tail(pBar); 
+      m_listControlBars.add_tail(pBar);
    }
 
 } // namespace userbase

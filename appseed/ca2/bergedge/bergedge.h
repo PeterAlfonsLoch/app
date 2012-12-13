@@ -1,8 +1,9 @@
 #pragma once
 
 
-#include "platform/platform.h"
-#include "gcom/gcom.h"
+
+#include "app/appseed/ca2/platform/platform.h"
+#include "app/appseed/ca2/gcom/gcom.h"
 
 
 #include "bergedge_view.h"

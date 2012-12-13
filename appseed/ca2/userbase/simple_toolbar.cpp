@@ -2111,8 +2111,7 @@ void simple_toolbar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
    if (((dwOldStyle & CBRS_BORDER_ANY) != (dwNewStyle & CBRS_BORDER_ANY)))
    {
       // recalc non-client area when border styles change
-      SetWindowPos(NULL, 0, 0, 0, 0,
-         SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+      SetWindowPos(0, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
    }
    m_bDelayedButtonLayout = TRUE;
 }

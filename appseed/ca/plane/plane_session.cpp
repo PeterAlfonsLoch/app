@@ -627,7 +627,7 @@ namespace plane
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
 
 #if defined(WINDOWSEX) || defined(LINUX) || defined(MACOS)
-         
+
          small_ipc_tx_channel channel;
 
          if(channel.open("ca2::fontopus::message_wnd::session::"))
@@ -729,7 +729,7 @@ namespace plane
          return papp;
       else
       {
-         
+
          if(!bCreate)
             return NULL;
 
@@ -743,13 +743,13 @@ namespace plane
          }
          catch(::exit_exception & e)
          {
-            
+
             throw e;
 
          }
          catch(::ca::exception & e)
          {
-            
+
             if(!Application.on_run_exception(e))
                throw exit_exception(get_app());
 
@@ -1038,6 +1038,37 @@ namespace plane
 
       return System.os().is_remote_session() || (m_pbergedgeInterface != NULL && m_pbergedgeInterface->is_remote_session());
 
+
+   }
+
+
+   bool session::is_mouse_button_pressed(::user::e_mouse emouse)
+   {
+
+#ifdef WINDOWS
+
+      if(emouse == ::user::mouse_left_button)
+      {
+         return (::GetAsyncKeyState(VK_LBUTTON) & 0x8000s) != 0;
+      }
+      else if(emouse == ::user::mouse_right_button)
+      {
+         return (::GetAsyncKeyState(VK_RBUTTON) & 0x8000s) != 0;
+      }
+      else if(emouse == ::user::mouse_middle_button)
+      {
+         return (::GetAsyncKeyState(VK_MBUTTON) & 0x8000s) != 0;
+      }
+      else
+      {
+         throw "not expected e_mouse value";
+      }
+
+#else
+
+      throw todo(get_app());
+
+#endif
 
    }
 

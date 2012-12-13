@@ -11,7 +11,23 @@ namespace html
    class data;
 
 
-}
+} // namespace html
+
+
+namespace user
+{
+
+   enum e_mouse
+   {
+
+      mouse_left_button,
+      mouse_right_button,
+      mouse_middle_button
+
+   };
+
+
+} // namespace user
 
 
 #include "user_document_interface.h"

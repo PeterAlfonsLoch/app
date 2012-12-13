@@ -128,9 +128,9 @@ int html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
       TRACE0("Failed to create toolbar\n");
       return -1;      // fail to create
    }
-   
-   
-   if (!m_dialogbar.create(this, IDR_MAINFRAME, 
+
+
+   if (!m_dialogbar.create(this, IDR_MAINFRAME,
       WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP | CBRS_GRIPPER | CBRS_SIZE_DYNAMIC
       | CBRS_DRAGMOVE, __IDW_DIALOGBAR))
    {
@@ -186,7 +186,7 @@ bool html_frame::pre_create_window(CREATESTRUCT& cs)
    if( !simple_frame_window::pre_create_window(cs) )
       return FALSE;
    cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(LINUX)
    ::DestroyMenu(cs.hMenu);
 #else
    throw todo(get_app());
@@ -264,10 +264,10 @@ void html_frame::ShowControlBars(bool bShow)
 
 }
 
-bool html_frame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+bool html_frame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 {
    // TODO: add your specialized code here and/or call the base class
-   
+
    return simple_frame_window::_001OnCmdMsg(pcmdmsg);
 }
 
@@ -277,7 +277,7 @@ bool html_frame::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
 bool html_frame::MouseHook()
 {
-   
+
    return true;
 }
 

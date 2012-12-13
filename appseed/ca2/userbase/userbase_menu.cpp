@@ -183,7 +183,7 @@ namespace userbase
             rect.bottom = rect.top + m_iItemHeight;
          }
          pitem->m_button.create(this, pitem->m_id);
-         pitem->m_button.SetWindowPos(NULL, rect.left, rect.top, rect.width(), rect.height(), 0);
+         pitem->m_button.SetWindowPos(0, rect.left, rect.top, rect.width(), rect.height(), 0);
          pitem->m_button.m_etranslucency = TranslucencyPresent;
          pitem->m_button.m_pschema = m_pschema->m_pschemaItemButton;
          pitem->m_button.m_pitem = pitem;
@@ -209,14 +209,14 @@ namespace userbase
 
    //   rect rect;
       m_buttonClose.GetWindowRect(rect);
-      m_buttonClose.SetWindowPos(NULL, 0, 0, 0, 0, SWP_NOSIZE);
+      m_buttonClose.SetWindowPos(0, 0, 0, 0, 0, SWP_NOSIZE);
       //m_buttonClose.ShowWindow(SW_NORMAL);
 
 
 
-      
 
-      SetWindowPos(NULL, 0, 0, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_NOZORDER | SWP_NOMOVE);
+
+      SetWindowPos(0, 0, 0, m_size.cx, m_size.cy, SWP_FRAMECHANGED | SWP_NOZORDER | SWP_NOMOVE);
    }
 
 

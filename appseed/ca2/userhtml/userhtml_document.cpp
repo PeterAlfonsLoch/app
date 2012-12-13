@@ -82,19 +82,19 @@ void html_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD n
 
 bool html_document::on_open_document(var varFile)
 {
-   
+
    ::ca::data::writing writing(get_html_data());
-   
 
 
-   
-   
+
+
+
    get_html_data()->m_pform = get_typed_view < html_form > ();
 
 
-   
 
-   
+
+
    if(get_html_data()->m_pform == NULL)
       return false;
 
@@ -104,10 +104,10 @@ bool html_document::on_open_document(var varFile)
 
    if(!get_html_data()->open_document(varFile))
       return FALSE;
-   
+
    set_path_name(get_html_data()->m_strPathName);
    /*   m_document.m_papp = get_app();*/
-   
+
    html_view_update_hint uh;
    uh.m_etype = html_view_update_hint::type_document_complete;
    uh.m_strUrl = varFile;
@@ -159,25 +159,25 @@ bool html_document::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    }
    return false;
 }
- 
+
 bool html_document::_001OnCommand(id id)
 {
-   
+
    if(id == "viewindefaultbrowser")
    {
-      
+
       gen::property_set propertyset;
-      
+
       System.message_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 
 #ifndef METROWIN
 
-      simple_shell_launcher launcher(NULL, "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
-         
+      simple_shell_launcher launcher(::ca::null(), "open", get_path_name(), NULL, System.dir().name(get_path_name()), SW_SHOWNORMAL);
+
       launcher.execute();
 
 #endif
-      
+
       return true;
 
    }

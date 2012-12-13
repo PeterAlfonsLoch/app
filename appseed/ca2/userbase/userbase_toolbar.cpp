@@ -31,7 +31,7 @@ struct __COLORMAP
    int iSysColorTo;
 };
 
-__STATIC_DATA const __COLORMAP gen_SysColorMap[] =
+static const __COLORMAP gen_SysColorMap[] =
 {
    // mapping from color in DIB to system color
    { RGB_TO_RGBQUAD(0x00, 0x00, 0x00),  COLOR_BTNTEXT },       // black
@@ -51,9 +51,7 @@ namespace userbase
 
       // initialize state
       m_pStringMap = NULL;
-      m_hRsrcImageWell = NULL;
-      m_hInstImageWell = NULL;
-      m_hbmImageWell = NULL;
+
       m_bDelayedButtonLayout = TRUE;
 
       // default image sizes
@@ -125,7 +123,7 @@ namespace userbase
 
 
       // create the oswindow
-      class rect rect; 
+      class rect rect;
       rect.null();
 #ifdef WINDOWSEX
       if (!::user::interaction::create(TOOLBARCLASSNAME, NULL, dwStyle, rect, pParentWnd, nID))
@@ -232,8 +230,7 @@ namespace userbase
       }
 
       // recalculate the non-client region
-      SetWindowPos(NULL, 0, 0, 0, 0,
-         SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
+      SetWindowPos(0, 0, 0, 0, 0, SWP_DRAWFRAME|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
       Invalidate();   // just to be nice if called when toolbar is visible
    }
 
@@ -267,7 +264,7 @@ namespace userbase
 
       if (bResult)
       {
-         
+
          // set new sizes of the buttons
          size sizeImage(pData->wWidth, pData->wHeight);
          size sizeButton(pData->wWidth + 7, pData->wHeight + 7);
@@ -299,7 +296,7 @@ namespace userbase
    //   hbmImageWell = gen::LoadSysColorBitmap(hInstImageWell, hRsrcImageWell);
       ::ca::client_graphics pdc(this);
       hbmImageWell = imaging::LoadSysColorBitmap(pdc, hInstImageWell, hRsrcImageWell);
-      
+
 
       // tell common control toolbar about the new bitmap
       if (!AddReplaceBitmap(hbmImageWell))
@@ -317,8 +314,8 @@ namespace userbase
       ASSERT(hbmImageWell != NULL);
 
       // the caller must manage changing system colors
-      m_hInstImageWell = NULL;
-      m_hRsrcImageWell = NULL;
+//      m_hInstImageWell = NULL;
+  //    m_hRsrcImageWell = NULL;
 
       // tell common control toolbar about the new bitmap
       return AddReplaceBitmap(hbmImageWell);
@@ -427,7 +424,7 @@ namespace userbase
 
    /////////////////////////////////////////////////////////////////////////////
    // tool_bar attribute access
-#ifndef METROWIN
+#ifdef WINDOWSEX
    void tool_bar::_GetButton(::index nIndex, TBBUTTON* pButton) const
    {
       tool_bar* pBar = (tool_bar*)this;
@@ -675,7 +672,7 @@ namespace userbase
             dx += size.cx;
             dxNext = dx - CX_OVERLAP;
          }
-         else 
+         else
          {
             dx = m_sizeButton.cx;
             dxNext = dx - CX_OVERLAP;
@@ -722,7 +719,7 @@ namespace userbase
          else
             x += dxNext;
       }
-      
+
       return nResult + 1;
    }
 
@@ -844,7 +841,7 @@ namespace userbase
                SizeToolBar(pData, nCount, 0);
             else if (bDynamic && (nLength != -1))
             {
-               class rect rect; 
+               class rect rect;
                rect.null();
                CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
                bool bVert = (dwMode & LM_LENGTHY) != 0;
@@ -933,7 +930,7 @@ namespace userbase
                buttona.cbSize = sizeof(buttona);
                buttona.dwMask =
                   TBIF_COMMAND
-                  | TBIF_STYLE 
+                  | TBIF_STYLE
                   | TBIF_SIZE;
                UINT uiID = GetItemID(i);
                GetToolBarCtrl().GetButtonInfo(uiID, &buttona);
@@ -941,7 +938,7 @@ namespace userbase
                TRACE("BUTTON.fsStyle = %d\n", buttona.fsStyle  );
                TRACE("BUTTON.cx = %d\n", buttona.cx );
             }
-            
+
             if (nControlCount > 0)
             {
                for (int i = 0; i < nControlCount; i++)
@@ -966,7 +963,7 @@ namespace userbase
 
       //BLOCK: Adjust Margins
       {
-         class rect rect; 
+         class rect rect;
          rect.null();
          CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
          sizeResult.cy -= rect.height();
@@ -1036,18 +1033,18 @@ throw todo(get_app());
 #else
       throw todo(get_app());
 #endif
-         
+
    }
 
 
    bool tool_bar::SetButtonText(int nIndex, const char * lpszText)
    {
       // attempt to lookup string index in map
-      int nString = -1;
+      int_ptr nString = -1;
       void * p;
       string wstrText(lpszText);
       if (m_pStringMap != NULL && m_pStringMap->Lookup(wstrText, p))
-         nString = (int)p;
+         nString = (int_ptr)p;
 
       // add new string if not already in map
       if (nString == -1)
@@ -1152,7 +1149,7 @@ throw todo(get_app());
 #ifdef WINDOWSEX
       SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
-      class rect rect; 
+      class rect rect;
       rect.null();
       bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
       ::userbase::control_bar::CalcInsideRect(rect, bHorz);
@@ -1185,8 +1182,7 @@ throw todo(get_app());
       if (((dwOldStyle & CBRS_BORDER_ANY) != (dwNewStyle & CBRS_BORDER_ANY)))
       {
          // recalc non-client area when border styles change
-         SetWindowPos(NULL, 0, 0, 0, 0,
-            SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
+         SetWindowPos(0, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
       }
       m_bDelayedButtonLayout = TRUE;
    }
@@ -1292,7 +1288,7 @@ throw todo(get_app());
       LRESULT lResult = 0;
       SCAST_PTR(::gen::message::base, pbase, pobj)
 #ifdef LRESULT
-      
+
       bool bModify = FALSE;
       DWORD dwStyle = 0;
       dwStyle = GetStyle();
@@ -1313,7 +1309,7 @@ throw todo(get_app());
    {
       UNREFERENCED_PARAMETER(pobj);
       // re-color bitmap for toolbar
-      if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
+//      if (m_hInstImageWell != NULL && m_hbmImageWell != NULL)
       {
    // trans      HBITMAP hbmNew;
    /*      hbmNew = gen::LoadSysColorBitmap(m_hInstImageWell, m_hRsrcImageWell);
@@ -1435,9 +1431,9 @@ throw todo(get_app());
    {
       ::userbase::control_bar::dump(dumpcontext);
 
-      dumpcontext << "m_hbmImageWell = " << (UINT)m_hbmImageWell;
-      dumpcontext << "\nm_hInstImageWell = " << (UINT)m_hInstImageWell;
-      dumpcontext << "\nm_hRsrcImageWell = " << (UINT)m_hRsrcImageWell;
+//      dumpcontext << "m_hbmImageWell = " << (UINT)m_hbmImageWell;
+//      dumpcontext << "\nm_hInstImageWell = " << (UINT)m_hInstImageWell;
+//      dumpcontext << "\nm_hRsrcImageWell = " << (UINT)m_hRsrcImageWell;
       dumpcontext << "\nm_sizeButton = " << m_sizeButton;
       dumpcontext << "\nm_sizeImage = " << m_sizeImage;
 
@@ -1518,10 +1514,10 @@ throw todo(get_app());
          for (i = 0; i < nCount; i++)
          {
             GetItemRect(i, rectItem);
-            rectSize.unite(rectSize, rectItem);   
+            rectSize.unite(rectSize, rectItem);
          }
-         sizeResult = rectSize.size();    
-           
+         sizeResult = rectSize.size();
+
          delete[] pData;
       }
 
