@@ -8,18 +8,32 @@
 
 waitable::waitable()
 {
+
+   m_pmutex = NULL;
+
 }
 
 ///  \brief		destructor
 waitable::~waitable()
 {
 
+   if(m_pmutex != NULL)
+   {
+
+      delete m_pmutex;
+
+      m_pmutex = NULL;
+
+   }
+
 }
 
 ///  \brief		abstract function to initialize a waiting action without a timeout
 void waitable::wait()
 {
+
    wait(duration::infinite());
+
 }
 
 	///  \brief		abstract function to initialize a waiting action with a timeout
@@ -28,12 +42,17 @@ void waitable::wait()
 wait_result waitable::wait(const duration & duration )
 {
 
-   if(m_papp == NULL || m_papp->m_psystem == NULL)
-      return wait_result(wait_result::Failure);
+   
+   if(m_pmutex == NULL)
+   {
+
+      ((waitable *)this)->m_pmutex = new mutex(get_app());
+
+   }
 
    try
    {
-      return System.wait(this, duration);
+      return m_pmutex->wait(duration);
    }
    catch(...)
    {
@@ -84,7 +103,16 @@ waitable::waitable(const waitable & objectSrc)
 
 void * waitable::get_os_data() const
 {
-   return System.get_mutex( const_cast < waitable * > (this))->get_os_data();
+   
+   if(m_pmutex == NULL)
+   {
+
+      ((waitable *)this)->m_pmutex = new mutex(get_app());
+
+   }
+
+   return m_pmutex;
+
 }
 
 void waitable::lock()
@@ -97,39 +125,63 @@ void waitable::lock()
 
 bool waitable::lock(const duration & duration)
 {
-   if(m_papp == NULL || m_papp->m_psystem == NULL)
-      return false;
+   
+   if(m_pmutex == NULL)
+   {
+
+      ((waitable *)this)->m_pmutex = new mutex(get_app());
+
+   }
+
    bool bLocked = false;
+
    try
    {
-      bLocked = System.lock(this, duration);
+
+      bLocked = m_pmutex->lock(duration);
+
    }
    catch(...)
    {
+
       bLocked = false;
+
    }
+
    if(!bLocked)
       return false;
+
    return true;
+
 }
 
 
 bool waitable::unlock()
 {
-   if(m_papp == NULL || m_papp->m_psystem == NULL)
+   
+   if(m_pmutex == NULL)
       return false;
+
    bool bUnlocked = false;
+
    try
    {
-      bUnlocked = System.unlock(this);
+
+      bUnlocked = m_pmutex->unlock();
+
    }
    catch(...)
    {
+
       bUnlocked = false;
+
    }
+
    if(!bUnlocked)
       return false;
+
    return true;
+
 }
 
 bool waitable::unlock(LONG lCount, LPLONG lpPrevCount)
@@ -143,8 +195,8 @@ bool waitable::unlock(LONG lCount, LPLONG lpPrevCount)
 bool waitable::is_locked() const
 {
 
-    // CRITICAL SECTIONS does *NOT* support is locked and timed locks
-    ASSERT(dynamic_cast < critical_section * > ( const_cast < waitable * > (this)) == NULL);
+   // CRITICAL SECTIONS does *NOT* support is locked and timed locks
+   ASSERT(dynamic_cast < critical_section * > ( const_cast < waitable * > (this)) == NULL);
 
    single_lock sl(const_cast < waitable * > (this));
 

@@ -42,6 +42,9 @@ namespace radix
    public:
 
 
+      gen::property_set *     m_pset;
+
+
       object();
       object(const object & objectSrc);              // no implementation
       virtual ~object();  // virtual destructors are necessary

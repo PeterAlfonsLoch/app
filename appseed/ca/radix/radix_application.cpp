@@ -195,9 +195,7 @@ namespace radix
 
    application::application() :
       ::radix::thread(NULL),
-      m_mutexMatterLocator(this),
-      m_mutexObjectLock(this),
-      m_mutexObjectEvent(this)
+      m_mutexMatterLocator(this)
    {
 
       ::ca::profiler::initialize();
@@ -2558,7 +2556,7 @@ namespace radix
 
 
 
-   gen::property_set & application::propset(::radix::object * pobject)
+/*   gen::property_set & application::propset(::radix::object * pobject)
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       return m_mapObjectSet[pobject];
@@ -2571,7 +2569,7 @@ namespace radix
       if(p == NULL)
          return NULL;
       return &p->m_value;
-   }
+   }*/
 
    bool application::bergedge_start()
    {
@@ -2792,7 +2790,7 @@ namespace radix
 
    void application::on_delete(::ca::ca * pobject)
    {
-      try
+/*      try
       {
          waitable * pobj = dynamic_cast < waitable * >(pobject);
          if(pobj != NULL)
@@ -2808,10 +2806,10 @@ namespace radix
       }
       catch(...)
       {
-      }
+      }*/
    }
 
-   mutex * application::get_mutex(waitable * pobject)
+/*   mutex * application::get_mutex(waitable * pobject)
    {
       single_lock sl(&m_mutexObjectLock, TRUE);
       mutex * pmutex;
@@ -2821,9 +2819,9 @@ namespace radix
          m_mapObjectMutex.set_at(pobject, pmutex);
       }
       return pmutex;
-   }
+   }*/
 
-   void application::wait(waitable * pobject)
+   /*void application::wait(waitable * pobject)
    {
 
       mutex * pmutex = get_mutex(pobject);
@@ -2833,9 +2831,9 @@ namespace radix
 
       pmutex->wait();
 
-   }
+   }*/
 
-   wait_result application::wait(waitable * pobject, duration duration)
+/*   wait_result application::wait(waitable * pobject, duration duration)
    {
 
       mutex * pmutex = get_mutex(pobject);
@@ -2871,9 +2869,9 @@ namespace radix
       if(pmutex == NULL)
          return false;
       return pmutex->unlock() != FALSE;
-   }
+   }*/
 
-   event * application::get_event(::radix::object * pobject, int iEvent)
+   /*event * application::get_event(::radix::object * pobject, int iEvent)
    {
       single_lock sl(&m_mutexObjectEvent, TRUE);
       ::collection::map < int, int, event *, event * > * peventmap;
@@ -2905,8 +2903,7 @@ namespace radix
       if(pevent == NULL)
          return false;
       return true;
-   }
-
+   }*/
    void application::get_cursor_pos(LPPOINT lppoint)
    {
       if(is_system() || is_cube())

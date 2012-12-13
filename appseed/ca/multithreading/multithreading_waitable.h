@@ -6,7 +6,8 @@
 #pragma once
 
 
-
+class mutex;
+class event;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -43,6 +44,9 @@ class CLASS_DECL_ca waitable :
    virtual public ::ex1::request_interface
 {
 public:
+
+
+   mutex          *  m_pmutex;
 
 
    waitable();

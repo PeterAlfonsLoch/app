@@ -159,14 +159,14 @@ namespace radix
 
       string                           m_strId;
 
-      mutex                            m_mutexObjectLock;
-      ::collection::map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
+      //mutex                            m_mutexObjectLock;
+      //::collection::map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
 
-      mutex                            m_mutexObjectEvent;
-      ::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int, int, event *, event * > *, ::collection::map < int, int, event *, event * >  * > m_mapObjectEvent;
+      //mutex                            m_mutexObjectEvent;
+      //::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int, int, event *, event * > *, ::collection::map < int, int, event *, event * >  * > m_mapObjectEvent;
 
-      typedef ::collection::map < ::radix::object *, ::radix::object *, gen::property_set, gen::property_set > oset;
-      oset                             m_mapObjectSet;
+      //typedef ::collection::map < ::radix::object *, ::radix::object *, gen::property_set, gen::property_set > oset;
+      //oset                             m_mapObjectSet;
 
       class ::user::str_context *      m_puserstrcontext;
       bool                             m_bShouldInitializeGTwf;
@@ -440,9 +440,9 @@ namespace radix
 
       virtual void delete_temp();
 
-      using ::radix::thread::propset;
-      gen::property_set & propset(::radix::object * pobject);
-      gen::property_set * existing_propset(::radix::object * pobject);
+      //using ::radix::thread::propset;
+      //gen::property_set & propset(::radix::object * pobject);
+      //gen::property_set * existing_propset(::radix::object * pobject);
 
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
@@ -460,18 +460,18 @@ namespace radix
       // transparent ::ca::window framework
 
 
-      mutex * get_mutex(::waitable * pobject);
-      using ::radix::thread::lock;
-      void wait(::waitable * pobject);
-      wait_result wait(::waitable * pobject, duration dwTimeout);
-      void lock(::waitable * pobject);
-      bool lock(::waitable * pobject, duration dwTimeout);
-      using ::radix::thread::unlock;
-      bool unlock(::waitable * pobject);
+      //mutex * get_mutex(::waitable * pobject);
+      //using ::radix::thread::lock;
+      //void wait(::waitable * pobject);
+      //wait_result wait(::waitable * pobject, duration dwTimeout);
+      //void lock(::waitable * pobject);
+      //bool lock(::waitable * pobject, duration dwTimeout);
+      //using ::radix::thread::unlock;
+      //bool unlock(::waitable * pobject);
 
-      event * get_event(::radix::object * pobject, int iEvent = 0);
-      bool event_lock(::radix::object * pobject, int iEvent = 0, duration dwTimeout = duration::infinite());
-      bool event_unlock(::radix::object * pobject, int iEvent = 0);
+//      event * get_event(::waitable * pobject, int iEvent = 0);
+//      bool event_lock(::waitable * pobject, int iEvent = 0, duration dwTimeout = duration::infinite());
+//      bool event_unlock(::waitable * pobject, int iEvent = 0);
 
    /*   int GetResourceId(const id_space * pspace, int iKey);
       int GetResourceId(const id_space & pspace, int iKey);

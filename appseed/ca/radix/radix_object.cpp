@@ -49,6 +49,9 @@ namespace radix
 
    void object::common_construct()
    {
+
+      m_pset = NULL;
+
    }
    
    object::~object()
@@ -57,34 +60,42 @@ namespace radix
       try
       {
 
-         if(m_papp != NULL)
+         if(m_pset != NULL)
          {
 
-            if(m_papp->m_psystem != NULL)
-            {
-
-               gen::property_set * pset = System.existing_propset(this);
-         
-               if(pset != NULL)
-               {
-                  pset->m_propertya.remove_all();
-               }
-
-            }
+            delete m_pset;
 
          }
 
       }
       catch(...)
       {
+
       }
+
    }
 
 
 
-   object & object::operator=(const object& objectSrc)
+   object & object::operator=(const object & objectSrc)
    {
+
+      if(objectSrc.m_pset != NULL)
+      {
+
+         if(m_pset == NULL)
+         {
+            
+            m_pset = new gen::property_set(get_app());
+
+         }
+
+         *m_pset = *objectSrc.m_pset;
+
+      }
+
       return *this;
+
    }
 
    void object::assert_valid() const
@@ -105,45 +116,74 @@ namespace radix
 
    ::visual::icon * object::set_icon(::visual::icon * picon, bool bBigIcon)
    {
+
       ::visual::icon * piconOld = get_icon(bBigIcon);
+
       if(bBigIcon)
       {
+
          oprop("big_icon").operator =((::ca::ca *) picon);
+
       }
       else
       {
+
          oprop("small_icon").operator =((::ca::ca *) picon);
+
       }
+
       return piconOld;
+
    }
 
 
    ::visual::icon * object::get_icon(bool bBigIcon) const
    {
+
       if(bBigIcon)
       {
+
          return const_cast < object * > (this)->oprop("big_icon").ca2 < ::visual::icon >();
+
       }
       else
       {
+
          return const_cast < object * > (this)->oprop("small_icon").ca2 < ::visual::icon >();
+
       }
+
    }
 
 
    gen::property & object::oprop(const char * psz)
    {
+
       return propset()[psz];
+
    }
+
 
    gen::property & object::oprop(const char * psz) const 
    {
+
       return const_cast < object * > (this)->propset()[psz];
+
    }
+
 
    gen::property_set & object::propset()
    {
-      return System.propset(this);
+
+      if(m_pset == NULL)
+      {
+
+         m_pset = new gen::property_set(get_app());
+
+      }
+
+      return *m_pset;
+
    }
 
 
