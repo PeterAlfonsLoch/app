@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/lib_.so" prefix_auto="0" extension_auto="0" />
+				<Option output="../../../stage/x86/libca2c.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/c" />
 				<Option type="3" />
@@ -41,7 +41,7 @@
 			<Add option="-fPIC" />
 		</Compiler>
 		<Linker>
-			<Add option="-Wl,-rpath,." />
+			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-lcairo" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
