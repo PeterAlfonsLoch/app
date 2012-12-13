@@ -73,15 +73,15 @@ namespace plane
 
 #if defined(MACOS)
 
-#include "macos/macos.h"
+#include "ca/macos/macos.h"
 
 #elif defined(METROWIN)
 
-#include "metrowin/metrowin.h"
+#include "ca/metrowin/metrowin.h"
 
 #elif defined(LINUX)
 
-#include "linux/os.h"
+#include "ca/linux/os.h"
 
 #endif
 

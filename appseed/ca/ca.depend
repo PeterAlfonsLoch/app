@@ -6612,7 +6612,7 @@
 	"ex1_simple_tree_item_data.h"
 	"ex1_simple_tree_data.h"
 
-1354886567 /ca2/app/appseed/ca/radix/radix.h
+1355390944 /ca2/app/appseed/ca/radix/radix.h
 	"app/appseed/ca/ca/ca.h"
 	<new.h>
 	<malloc/malloc.h>
@@ -6622,7 +6622,7 @@
 	"ca/gen/gen_c_number.h"
 	"ca/multithreading/multithreading_wait_result.h"
 	"ca/primitive/datetime/datetime_duration.h"
-	"ex1/ex1_request_interface.h"
+	"ca/ex1/ex1_request_interface.h"
 	"ca/multithreading/multithreading_waitable.h"
 	"ca/primitive/primitive.h"
 	"ca/radix/radix_object.h"
@@ -6649,7 +6649,7 @@
 	"ca/gen/gen.h"
 	"ca/gen/gen_template.h"
 	"ca/collection/collection_base_array.h"
-	"ca/ca_smart_pointer.h"
+	"ca/ca/ca_smart_pointer.h"
 	"ca/radix/radix.inl"
 	"ca/radix/radix_allocate.h"
 	"ca/radix/radix_plex.h"
@@ -6657,28 +6657,28 @@
 	"ca/radix/radix_plex_heap.h"
 	"ca/gen/gen_holder.h"
 	"ca/radix/radix_base.h"
-	"ca/ca_interlocked_long.h"
-	"ca/ca_interlocked_long_pulse.h"
-	"multithreading/multithreading.h"
-	"ca/ca_data.h"
-	"ca/ca_data_container.h"
-	"ca/ca_data_listener.h"
-	"ca/ca_edit.h"
-	"ca/ca_type_info.h"
-	"ca/radix/radix_factory.h"
+	"ca/ca/ca_interlocked_long.h"
+	"ca/ca/ca_interlocked_long_pulse.h"
+	"ca/multithreading/multithreading.h"
+	"ca/ca/ca_data.h"
+	"ca/ca/ca_data_container.h"
+	"ca/ca/ca_data_listener.h"
+	"ca/ca/ca_edit.h"
+	"ca/ca/ca_type_info.h"
+	"radix_factory.h"
 	"ca/user/user_str.h"
 	"ca/gen/gen_base.h"
-	"ca/radix/radix_constraint.h"
+	"radix_constraint.h"
 	<shellapi.h>
 	<uxtheme.h>
 	<vssym32.h>
 	"ca/ca/ca_graphic_classes.h"
-	"radix/radix_fixed_alloc.h"
+	"radix_fixed_alloc.h"
 	"ca/gen/gen_request_signal.h"
 	"ca/visual/visual_const.h"
 	"ca/gen/gen_var_array.h"
-	"ca/radix/radix_command.h"
-	"ca/radix/radix_command_target.h"
+	"radix_command.h"
+	"radix_command_target.h"
 	"ca/ca/ca_graphics.h"
 	"ca/user/user_draw_interface.h"
 	"ca/user/user_mouse_focus.h"
@@ -6719,7 +6719,7 @@
 	"radix_application.h"
 	"ca/ca/ca_application_interface.h"
 
-1355387361 /ca2/app/appseed/ca/ca/ca.h
+1355387940 /ca2/app/appseed/ca/ca/ca.h
 	"app/appseed/c/c/c.h"
 	"nodeapp/operational_system/operational_system.h"
 	<vadefs.h>
@@ -6728,13 +6728,13 @@
 	"ca/api/api_rotate.h"
 	<crtdbg.h>
 	"ca/api/api_debug.h"
-	"macos/macos.h"
-	"metrowin/metrowin.h"
-	"linux/os.h"
+	"ca/macos/macos.h"
+	"ca/metrowin/metrowin.h"
+	"ca/linux/os.h"
 	"ca/primitive/count.h"
 	"ca/api/api.h"
 
-1355315820 /ca2/app/appseed/c/c/c.h
+1355398756 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -6802,6 +6802,7 @@
 	"c_url.h"
 	"c_net.h"
 	"c_international.h"
+	"c_user.h"
 	"c_simple_app.h"
 
 1354886566 /ca2/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
@@ -7338,8 +7339,8 @@
 
 1354886572 /ca2/app/appseed/ca/api/api_linux.h
 
-1354886571 /ca2/app/appseed/ca/exception/exception.h
-	"ca/ca_exception.h"
+1355388506 /ca2/app/appseed/ca/exception/exception.h
+	"ca/ca/ca_exception.h"
 	"exception_engine.h"
 	"exception_call_stack.h"
 	"exception_base.h"
@@ -7564,26 +7565,26 @@
 
 1354886572 /ca2/app/appseed/ca/primitive/primitive_fixed_string.h
 
-1354886572 /ca2/app/appseed/ca/primitive/primitive_string.h
+1355389395 /ca2/app/appseed/ca/primitive/primitive_string.h
 	<strings.h>
-	"x/x_charcategory.h"
-	"gen/gen_bit.h"
-	"collection/collection_bit_array.h"
-	"gen/gen_ch.h"
-	"gen/gen_ch_class.h"
-	"gen/gen_international.h"
-	"gen/gen_str.h"
-	"gen/gen_str2.h"
+	"ca/x/x_charcategory.h"
+	"ca/gen/gen_bit.h"
+	"ca/collection/collection_bit_array.h"
+	"ca/gen/gen_ch.h"
+	"ca/gen/gen_ch_class.h"
+	"ca/gen/gen_international.h"
+	"ca/gen/gen_str.h"
+	"ca/gen/gen_str2.h"
 
 1354886568 /ca2/app/appseed/ca/gen/gen_bit.h
 
-1354886570 /ca2/app/appseed/ca/collection/collection_bit_array.h
-	"primitive/primitive_memory_operator.h"
+1355389857 /ca2/app/appseed/ca/collection/collection_bit_array.h
+	"ca/primitive/primitive_memory_operator.h"
 
 1354886572 /ca2/app/appseed/ca/primitive/primitive_memory_operator.h
 
-1354886568 /ca2/app/appseed/ca/gen/gen_ch_class.h
-	"primitive/primitive_memory_operator.h"
+1355390252 /ca2/app/appseed/ca/gen/gen_ch_class.h
+	"ca/primitive/primitive_memory_operator.h"
 
 1354886568 /ca2/app/appseed/ca/gen/gen_international.h
 
@@ -7613,7 +7614,7 @@
 
 1354886567 /ca2/app/appseed/ca/radix/radix_plex.h
 
-1354886570 /ca2/app/appseed/ca/collection/collection.h
+1355391268 /ca2/app/appseed/ca/collection/collection.h
 	"collection_raw_array.h"
 	"collection_comparable_eq_array.h"
 	"collection_comparable_array.h"
@@ -7649,15 +7650,15 @@
 	"collection_string_to_string_map.h"
 	"collection_bit_array.h"
 	"collection_string_array.h"
-	"gen/gen_variable_strict_compare.h"
+	"ca/gen/gen_variable_strict_compare.h"
 	"ca/primitive/primitive_var.h"
-	"gen/gen_var.h"
+	"ca/gen/gen_var.h"
 	"collection_stringa.h"
-	"gen/gen_var_array.h"
-	"gen/gen_property.h"
-	"gen/gen_signal.h"
-	"gen/gen_property_set.h"
-	"gen/gen_international2.h"
+	"ca/gen/gen_var_array.h"
+	"ca/gen/gen_property.h"
+	"ca/gen/gen_signal.h"
+	"ca/gen/gen_property_set.h"
+	"ca/gen/gen_international2.h"
 	"collection_point_array.h"
 	"collection_rect_array.h"
 	"collection_string_to_string_map.h"
@@ -7939,8 +7940,8 @@
 1354886568 /ca2/app/appseed/ca/ca/ca_draw_dib.h
 	<vfw.h>
 
-1355256145 /ca2/app/appseed/ca/ca/ca_graphics.h
-	"user/user_draw_context.h"
+1355394686 /ca2/app/appseed/ca/ca/ca_graphics.h
+	"ca/user/user_draw_context.h"
 	"ca_bitmap.h"
 	"ca_pen.h"
 	"ca_brush.h"
@@ -7967,11 +7968,11 @@
 1355294803 /ca2/app/appseed/ca/gen/gen_message.h
 	<agile.h>
 
-1354886573 /ca2/app/appseed/ca/user/user_create_context.h
-	"ca/ca_type_info.h"
+1355396973 /ca2/app/appseed/ca/user/user_create_context.h
+	"ca/ca/ca_type_info.h"
 
-1354886573 /ca2/app/appseed/ca/user/user_check_interface.h
-	"gen/gen_flags.h"
+1355398324 /ca2/app/appseed/ca/user/user_check_interface.h
+	"ca/gen/gen_flags.h"
 
 1354886568 /ca2/app/appseed/ca/gen/gen_flags.h
 
@@ -13107,7 +13108,7 @@
 
 1351983846 /ca2/app/appseed/c/linux/c_os_window.h
 
-1355299155 /ca2/nodeapp/operational_system/oswindow.h
+1355398875 /ca2/nodeapp/operational_system/oswindow.h
 	<inttypes.h>
 
 1352049950 /ca2/nodeapp/operational_system/osdisplay.h
@@ -13724,4 +13725,6 @@
 1355266172 /ca2/app/appseed/c/cross/windows/windows_gdi.h
 
 1355296255 source:/ca2/app/appseed/ca/ansios_thread.cpp
+
+1355398756 /ca2/app/appseed/c/c/c_user.h
 

@@ -41,7 +41,7 @@ namespace gen
 
       #undef CNAME
       #define CNAME "ch_class"
-      #include "primitive/primitive_memory_operator.h"
+      #include "ca/primitive/primitive_memory_operator.h"
 
    };
 
@@ -65,7 +65,7 @@ namespace gen
  * The Initial Developer of the Original Code is
  * Cail Lomecb <cail@nm.ru>.
  * Portions created by the Initial Developer are Copyright (C) 1999-2005
- * the Initial Developer. 
+ * the Initial Developer.
  *
  * Contributor(s):
  *

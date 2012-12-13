@@ -42,7 +42,7 @@ public:
 
 
 #define CNAME "bit_array"
-#include "primitive/primitive_memory_operator.h"
+#include "ca/primitive/primitive_memory_operator.h"
 
   void ensure_size(int iSize, bool bSet = false);
   void set_size(int iBitCount, bool set = false);

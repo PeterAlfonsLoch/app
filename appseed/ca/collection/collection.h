@@ -6,39 +6,39 @@
 #include "collection_comparable_array.h"
 #include "collection_comparable_raw_array.h"
 #include "collection_comparable_primitive_array.h"
-          
+
 #include "ca/ex1/ex1_byte_serializable.h"
-          
+
 #include "collection_primitive_array.h"
 #include "collection_numeric_array.h"
-          
+
 #include "collection_logic_array.h"
-          
+
 #include "collection_list.h"
 #include "collection_comparable_eq_list.h"
 #include "collection_comparable_list.h"
-          
-          
+
+
 #include "collection_typed_ptr_array.h"
 #include "collection_typed_pointer_array.h"
-          
-          
+
+
 #include "collection_array_ptr.h"
 #include "collection_array_del_ptr.h"
 #include "collection_array_ptr_copy.h"
 #include "collection_array_ptr_alloc.h"
-          
+
 #include "collection_array_release_ptr.h"
 #include "collection_array_smart_ptr.h"
-          
+
 #include "collection_array_parent_alloc.h"
-          
+
 #include "collection_array_app_alloc.h"
-          
+
 #include "collection_sort_array.h"
 #include "collection_class_sort_array.h"
-          
-          
+
+
 #include "collection_map.h"
 #include "collection_fifo_map.h"
 #include "collection_sort_map.h"
@@ -137,25 +137,25 @@ public:
 #include "collection_bit_array.h"
 #include "collection_string_array.h"
 
-#include "gen/gen_variable_strict_compare.h"
+#include "ca/gen/gen_variable_strict_compare.h"
 
 #include "ca/primitive/primitive_var.h"
 
-#include "gen/gen_var.h"
+#include "ca/gen/gen_var.h"
 
 
 #include "collection_stringa.h"
 
 
-#include "gen/gen_var_array.h"
-#include "gen/gen_property.h"
+#include "ca/gen/gen_var_array.h"
+#include "ca/gen/gen_property.h"
 
 
 
 
-#include "gen/gen_signal.h"
-#include "gen/gen_property_set.h"
-#include "gen/gen_international2.h"
+#include "ca/gen/gen_signal.h"
+#include "ca/gen/gen_property_set.h"
+#include "ca/gen/gen_international2.h"
 
 
 #include "collection_point_array.h"

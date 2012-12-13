@@ -154,7 +154,7 @@ class dump_context;
 
 #include "ca/multithreading/multithreading_wait_result.h"
 #include "ca/primitive/datetime/datetime_duration.h"
-#include "ex1/ex1_request_interface.h"
+#include "ca/ex1/ex1_request_interface.h"
 #include "ca/multithreading/multithreading_waitable.h"
 #include "ca/primitive/primitive.h"
 
@@ -199,7 +199,7 @@ class dump_context;
 
 #include "ca/collection/collection_base_array.h"
 
-#include "ca/ca_smart_pointer.h"
+#include "ca/ca/ca_smart_pointer.h"
 
 
 
@@ -247,19 +247,19 @@ class dump_context;
 #include "ca/radix/radix_base.h"
 
 
-#include "ca/ca_interlocked_long.h"
-#include "ca/ca_interlocked_long_pulse.h"
+#include "ca/ca/ca_interlocked_long.h"
+#include "ca/ca/ca_interlocked_long_pulse.h"
 
-#include "multithreading/multithreading.h"
+#include "ca/multithreading/multithreading.h"
 
-#include "ca/ca_data.h"
-#include "ca/ca_data_container.h"
-#include "ca/ca_data_listener.h"
+#include "ca/ca/ca_data.h"
+#include "ca/ca/ca_data_container.h"
+#include "ca/ca/ca_data_listener.h"
 
-#include "ca/ca_edit.h"
+#include "ca/ca/ca_edit.h"
 
-#include "ca/ca_type_info.h"
-#include "ca/radix/radix_factory.h"
+#include "ca/ca/ca_type_info.h"
+#include "radix_factory.h"
 
 
 #include "ca/user/user_str.h"
@@ -373,7 +373,7 @@ typedef struct tag_TimerCallbackCreateTimer
 
 
 #include "ca/gen/gen_base.h"
-#include "ca/radix/radix_constraint.h"
+#include "radix_constraint.h"
 
 #ifdef WINDOWS
 #ifndef _INC_SHELLAPI
@@ -565,7 +565,7 @@ CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphi
 
 
 
-#include "radix/radix_fixed_alloc.h"
+#include "radix_fixed_alloc.h"
 #include "ca/gen/gen_request_signal.h"
 
 #include "ca/visual/visual_const.h"
@@ -574,8 +574,8 @@ CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphi
 
 
 
-#include "ca/radix/radix_command.h"
-#include "ca/radix/radix_command_target.h"
+#include "radix_command.h"
+#include "radix_command_target.h"
 
 
 typedef UINT (c_cdecl *__THREADPROC)(LPVOID);

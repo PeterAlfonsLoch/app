@@ -824,7 +824,7 @@
 	"linux/c_os_internal.h"
 	"windows/c_os_internal.h"
 
-1355315820 /ca2/app/appseed/c/c/c.h
+1355398756 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -892,6 +892,7 @@
 	"c_url.h"
 	"c_net.h"
 	"c_international.h"
+	"c_user.h"
 	"c_simple_app.h"
 
 1354886566 /ca2/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
@@ -2464,7 +2465,7 @@
 1355299174 source:/ca2/app/appseed/c/linux/c_os_window.cpp
 	"framework.h"
 
-1355299155 /ca2/nodeapp/operational_system/oswindow.h
+1355398875 /ca2/nodeapp/operational_system/oswindow.h
 	<inttypes.h>
 
 1352049950 /ca2/nodeapp/operational_system/osdisplay.h
@@ -2512,4 +2513,6 @@
 
 1355321762 source:/ca2/app/appseed/c/cross/windows/windows_user.cpp
 	"framework.h"
+
+1355398756 /ca2/app/appseed/c/c/c_user.h
 

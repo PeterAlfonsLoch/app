@@ -916,14 +916,14 @@ namespace gen
 /// macro - number of elements in array
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
-#include "x/x_charcategory.h"
-#include "gen/gen_bit.h"
-#include "collection/collection_bit_array.h"
+#include "ca/x/x_charcategory.h"
+#include "ca/gen/gen_bit.h"
+#include "ca/collection/collection_bit_array.h"
 
-#include "gen/gen_ch.h"
-#include "gen/gen_ch_class.h"
-#include "gen/gen_international.h"
-#include "gen/gen_str.h"
+#include "ca/gen/gen_ch.h"
+#include "ca/gen/gen_ch_class.h"
+#include "ca/gen/gen_international.h"
+#include "ca/gen/gen_str.h"
 
 inline bool id::operator == (const string & str) const
 {
@@ -1132,7 +1132,7 @@ simple_string( string_trait::GetDefaultManager() )
 }
 
 
-#include "gen/gen_str2.h"
+#include "ca/gen/gen_str2.h"
 
 
 
