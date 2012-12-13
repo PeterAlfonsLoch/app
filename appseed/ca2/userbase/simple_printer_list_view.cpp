@@ -1,4 +1,7 @@
 #include "framework.h"
+#ifdef WINDOWSEX
+#include <winspool.h>
+#endif
 
 
 simple_printer_list_view::simple_printer_list_view(::ca::application * papp) :

@@ -91,7 +91,7 @@ namespace userbase
          data.ReadData<TRAYDATA>(&tray,(LPCVOID)tb.dwData);
 
          DWORD dwProcessId = 0;
-         GetWindowThreadProcessId(tray.oswindow,&dwProcessId);
+         GetWindowThreadProcessId(tray.m_oswindow,&dwProcessId);
 
          info.sProcessPath = GetFilenameFromPid(dwProcessId);
 
@@ -117,7 +117,7 @@ namespace userbase
 
          info.sTip = gen::international::unicode_to_utf8(sTip);
 
-         info.oswindow = tray.oswindow;
+         info.m_oswindow = tray.m_oswindow;
          info.uCallbackMessage = tray.uCallbackMessage;
          info.uID = tray.uID;
 
@@ -192,14 +192,10 @@ namespace userbase
 
    void notification_area::PostMessageToTrayIcon(int iItem, LPARAM lParam)
    {
-#ifdef WINDOWSEX
-      ::PostMessage(m_infoa[iItem].oswindow,
+      ::PostMessage(m_infoa[iItem].m_oswindow,
          m_infoa[iItem].uCallbackMessage,
          m_infoa[iItem].uID,
          lParam);
-#else
-      throw todo(get_app());
-#endif
    }
 
    void notification_area::MoveLeft(int iItem)

@@ -69,11 +69,11 @@ namespace userbase
 
    tool_bar::~tool_bar()
    {
-#ifdef WINDOWSEX
-      ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
-#else
-      throw todo(get_app());
-#endif
+//#ifdef WINDOWSEX
+//      ::DeleteObject((HGDIOBJ*)&m_hbmImageWell);
+//#else
+  //    throw todo(get_app());
+//#endif
       delete m_pStringMap;
 
       //m_nCount = 0;
@@ -326,7 +326,7 @@ namespace userbase
             bool bResult = false;
 
       // need complete bitmap size to determine number of images
-#ifdef WINDOWSEX
+/*#ifdef WINDOWSEX
       BITMAP bitmap;
       VERIFY(::GetObject(hbmImageWell, sizeof(BITMAP), &bitmap));
 
@@ -357,7 +357,7 @@ namespace userbase
       }
 #else
       throw todo(get_app());
-#endif
+#endif*/
       return bResult;
    }
 

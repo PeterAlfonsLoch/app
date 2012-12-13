@@ -26,8 +26,6 @@ namespace html
       attribute * get_attr(const char * pszAttrName);
       string get_attr_value(const char * pszAttrName);
 
-      tag * get_parent();
-
       base_ptr_array & baseptra();
 
 

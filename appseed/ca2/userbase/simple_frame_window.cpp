@@ -1,5 +1,7 @@
 #include "framework.h"
-//#include <dde.h>
+#ifdef WINDOWSEX
+#include <dde.h>
+#endif
 
 
 
