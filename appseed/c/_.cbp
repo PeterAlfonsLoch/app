@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/c" prefix_auto="1" extension_auto="1" />
+				<Option output="../../../stage/x86/lib_.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/c" />
 				<Option type="3" />
@@ -40,6 +40,11 @@
 		<Compiler>
 			<Add option="-fPIC" />
 		</Compiler>
+		<Linker>
+			<Add option="-Wl,-rpath,." />
+			<Add option="-lcairo" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
 		<Unit filename="_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h" />
 		<Unit filename="ansios/ansios.h" />
 		<Unit filename="ansios/ansios_file.cpp" />

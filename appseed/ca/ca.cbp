@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="../../../stage/x86/ca" prefix_auto="1" extension_auto="1" />
+				<Option output="../../../stage/x86/libca.so" prefix_auto="0" extension_auto="0" />
 				<Option working_dir="../../../stage/x86/" />
 				<Option object_output="../../../time/intermediate/app/ca" />
 				<Option type="3" />
@@ -38,7 +38,9 @@
 			<Add option="-D_DEBUG" />
 		</Compiler>
 		<Linker>
+			<Add option="-Wl,-rpath,." />
 			<Add option="-lc" />
+			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="ansios/ansios.h" />
 		<Unit filename="ansios_thread.cpp" />
