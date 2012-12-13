@@ -4,7 +4,7 @@
 #include "ca/ex2/ex2.h"
 
 
-#include "xml/xml.h"
+#include "ca/xml/xml.h"
 #include "app/appseed/ca/html/html.h"
 
 
@@ -26,11 +26,11 @@ namespace ca2
 } // namespace ca2
 
 
-#include "ca/ca_file_application.h"
-#include "ca/ca_file_system.h"
-#include "ca/ca_dir_application.h"
-#include "ca/ca_dir_system.h"
-#include "ex1/ex1_edit_file.h"
+#include "ca/ca/ca_file_application.h"
+#include "ca/ca/ca_file_system.h"
+#include "ca/ca/ca_dir_application.h"
+#include "ca/ca/ca_dir_system.h"
+#include "ca/ex1/ex1_edit_file.h"
 #include "ca2_stra.h"
 #include "ca2_url_domain.h"
 #include "ca2_url.h"
@@ -63,7 +63,7 @@ namespace ca2
 #include "ca2_library.h"
 
 
-#include "xml/xml_data.h"
+#include "ca/xml/xml_data.h"
 
 
 #include "ca/filehandler/filehandler.h"

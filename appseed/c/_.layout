@@ -10,10 +10,10 @@
 	<File name="ansios/ansios_file.h" open="0" top="0" tabpos="21">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="ansios/ansios_thread.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="18482" topLine="906" />
+	<File name="ansios/ansios_thread.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="15932" topLine="760" />
 	</File>
-	<File name="ansios/ansios_thread.h" open="1" top="0" tabpos="4">
+	<File name="ansios/ansios_thread.h" open="0" top="0" tabpos="4">
 		<Cursor position="1004" topLine="3" />
 	</File>
 	<File name="ansios/crypto/ansios_crypt.cpp" open="0" top="0" tabpos="29">
@@ -28,8 +28,8 @@
 	<File name="c/c.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="483" topLine="8" />
 	</File>
-	<File name="c/c.h" open="1" top="0" tabpos="6">
-		<Cursor position="2048" topLine="119" />
+	<File name="c/c.h" open="0" top="0" tabpos="6">
+		<Cursor position="3305" topLine="178" />
 	</File>
 	<File name="c/c_async.h" open="0" top="0" tabpos="1">
 		<Cursor position="672" topLine="40" />
@@ -43,7 +43,7 @@
 	<File name="c/c_file.h" open="0" top="0" tabpos="11">
 		<Cursor position="2173" topLine="16" />
 	</File>
-	<File name="c/c_file_watcher_thread.h" open="1" top="0" tabpos="1">
+	<File name="c/c_file_watcher_thread.h" open="0" top="0" tabpos="1">
 		<Cursor position="49" topLine="0" />
 	</File>
 	<File name="c/c_md5.cpp" open="0" top="0" tabpos="20">
@@ -79,6 +79,9 @@
 	<File name="c/c_str.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="19617" topLine="872" />
 	</File>
+	<File name="c/c_user.h" open="0" top="0" tabpos="131">
+		<Cursor position="0" topLine="0" />
+	</File>
 	<File name="c/c_verisimple_string.h" open="0" top="0" tabpos="3">
 		<Cursor position="3346" topLine="95" />
 	</File>
@@ -94,10 +97,10 @@
 	<File name="cross/windows/windows_thread.h" open="0" top="0" tabpos="15">
 		<Cursor position="3093" topLine="55" />
 	</File>
-	<File name="cross/windows/windows_user.cpp" open="1" top="0" tabpos="7">
+	<File name="cross/windows/windows_user.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="454" topLine="0" />
 	</File>
-	<File name="cross/windows/windows_user.h" open="1" top="0" tabpos="5">
+	<File name="cross/windows/windows_user.h" open="0" top="0" tabpos="5">
 		<Cursor position="31211" topLine="1063" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="1">
@@ -175,13 +178,13 @@
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="0">
 		<Cursor position="193" topLine="0" />
 	</File>
-	<File name="os/os.h" open="0" top="0" tabpos="12">
+	<File name="os/os.h" open="0" top="0" tabpos="130">
 		<Cursor position="69" topLine="0" />
 	</File>
 	<File name="os/os_thread.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="35" topLine="0" />
 	</File>
-	<File name="os/os_thread.h" open="1" top="0" tabpos="3">
+	<File name="os/os_thread.h" open="0" top="0" tabpos="3">
 		<Cursor position="1986" topLine="0" />
 	</File>
 	<File name="simple_graphics/simple_graphics.cpp" open="0" top="0" tabpos="0">

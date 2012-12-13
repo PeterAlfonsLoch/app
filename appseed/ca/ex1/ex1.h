@@ -91,7 +91,7 @@ namespace ex1
 #include "ca/radix/radix_process_data.h"
 
 
-#include "ca/ca_system.h"
+#include "ca/ca/ca_system.h"
 
 
 
@@ -162,24 +162,24 @@ namespace ex1
 
 
 // memory primitives
-#include "primitive/primitive_memory_base.h"
-#include "primitive/primitive_memory.h"
-#include "primitive/primitive_virtual_memory.h"
-#include "primitive/primitive_shared_memory.h"
-#include "primitive/primitive_memory_container.h"
-#include "primitive/primitive_memory_file.h"
-#include "primitive/primitive_shared_file.h"
+#include "ca/primitive/primitive_memory_base.h"
+#include "ca/primitive/primitive_memory.h"
+#include "ca/primitive/primitive_virtual_memory.h"
+#include "ca/primitive/primitive_shared_memory.h"
+#include "ca/primitive/primitive_memory_container.h"
+#include "ca/primitive/primitive_memory_file.h"
+#include "ca/primitive/primitive_shared_file.h"
 
 
 
-#include "zlib/zconf.h"
-#include "zlib/zlib.h"
-#include "zlib/zutil.h"
-#include "sqlite/sqlite.h"
+#include "ca/zlib/zconf.h"
+#include "ca/zlib/zlib.h"
+#include "ca/zlib/zutil.h"
+#include "ca/sqlite/sqlite.h"
 
 
 
-#include "libcharguess/libcharguess.h"
+#include "ca/libcharguess/libcharguess.h"
 
 
 

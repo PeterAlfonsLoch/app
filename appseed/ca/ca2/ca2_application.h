@@ -43,7 +43,7 @@ namespace ca2
       ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemapStd;
       manual_reset_event *                                                                      m_peventReady;
 
-      
+
       //string                                                                                    m_strLicense;
       bool                                                                                      m_bLicense;
       string                                                                                    m_strBaseSupportId;
@@ -56,7 +56,7 @@ namespace ca2
       string                                                                                    m_strSchema;
 
 
-      
+
 
 
       application();
@@ -85,7 +85,7 @@ namespace ca2
       virtual void on_set_locale(const char * lpcsz, bool bUser);
       virtual void on_set_schema(const char * lpcsz, bool bUser);
 
-      
+
       virtual ::fontopus::user * create_current_user();
 
 
@@ -160,7 +160,7 @@ namespace ca2
 } // namespace ca
 
 
-#include "ca/ca_font.h"
+#include "ca/ca/ca_font.h"
 
 
 

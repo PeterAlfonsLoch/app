@@ -224,13 +224,13 @@ namespace user
 } // namespace user
 
 
-#include "user/user_buffer.h"
-#include "user/user_window_map.h"
-#include "gen/gen_keeper.h"
-#include "ex1/ex1_seekable.h"
-#include "ex1/ex1_reader.h"
-#include "ex1/ex1_writer.h"
-#include "ex1/ex1_stream.h"
-#include "ex1/ex1_byte_stream.h"
-#include "ex1/ex1_stream2.h"
-#include "ex1/ex1_str_stream.h"
+#include "ca/user/user_buffer.h"
+#include "ca/user/user_window_map.h"
+#include "ca/gen/gen_keeper.h"
+#include "ca/ex1/ex1_seekable.h"
+#include "ca/ex1/ex1_reader.h"
+#include "ca/ex1/ex1_writer.h"
+#include "ca/ex1/ex1_stream.h"
+#include "ca/ex1/ex1_byte_stream.h"
+#include "ca/ex1/ex1_stream2.h"
+#include "ca/ex1/ex1_str_stream.h"

@@ -6,7 +6,7 @@
 
 #include "gen_debug.h"
 
-#include "math/math_math.h"
+#include "ca/math/math_math.h"
 
 #include "gen_math_rng.h"
 #include "gen_math.h"
@@ -56,13 +56,13 @@
 
 
 #include "gen_base_enum.h"
-#include "gen/gen_base_enum.h"
+#include "gen_base_enum.h"
 #include "gen_holder.h"
 #include "gen_raw_pointer.h"
 #include "gen_full_pointer.h"
 #include "gen_time.h"
 #include "ca/ex1/ex1_byte_serializable.h"
-#include "collection/collection_stringa.h"
+#include "ca/collection/collection_stringa.h"
 #include "gen_var.h"
 #include "gen_var_array.h"
 
@@ -88,7 +88,7 @@
 #include "gen_str.h"
 
 
-#include "primitive/primitive_int_biunique.h"
+#include "ca/primitive/primitive_int_biunique.h"
 
 
 #include "gen_memory_file.h"

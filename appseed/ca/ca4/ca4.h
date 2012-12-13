@@ -4,11 +4,11 @@
 #include "ca/colorertake5/colorertake5.h"
 
 
-#include "crypto/crypto.h"
-#include "compress/compress.h"
-#include "colorertake5/colorertake5.h"
-#include "sockets/sockets.h"
-#include "javascript/javascript.h"
+#include "ca/crypto/crypto.h"
+#include "ca/compress/compress.h"
+#include "ca/colorertake5/colorertake5.h"
+#include "ca/sockets/sockets.h"
+#include "ca/javascript/javascript.h"
 
 
 ////////////////////////////////////////////////////////////////

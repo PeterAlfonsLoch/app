@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "user/user_window_util.h"
+#include "ca/user/user_window_util.h"
 
 
 #define ca2m_PRODEVIAN_SYNCH (WM_APP + 1985)
@@ -15,7 +15,7 @@ namespace user
 namespace ca
 {
 
-   class CLASS_DECL_ca window_draw : 
+   class CLASS_DECL_ca window_draw :
       virtual public ::radix::object
    {
    public:
@@ -41,7 +41,7 @@ namespace ca
       static bool s_bRunning;
    };
 
-   
+
 
    typedef smart_pointer < window_draw > window_draw_sp;
 

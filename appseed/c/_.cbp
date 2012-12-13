@@ -148,6 +148,7 @@
 		<Unit filename="c/c_types.h" />
 		<Unit filename="c/c_url.cpp" />
 		<Unit filename="c/c_url.h" />
+		<Unit filename="c/c_user.h" />
 		<Unit filename="c/c_verisimple_string.cpp" />
 		<Unit filename="c/c_verisimple_string.h" />
 		<Unit filename="c/c_verisimple_wstring.cpp" />
