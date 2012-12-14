@@ -169,11 +169,14 @@
 	<File name="linux/c_os_simple_path.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="14" />
 	</File>
+	<File name="linux/c_os_small_ipc_channel.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2280" topLine="109" />
+	</File>
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/c_os_window.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="3211" topLine="191" />
+	<File name="linux/c_os_window.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="7807" topLine="435" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="0">
 		<Cursor position="193" topLine="0" />

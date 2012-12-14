@@ -141,6 +141,14 @@ bool small_ipc_tx_channel::is_tx_ok()
 }
 
 
+small_ipc_rx_channel::small_ipc_rx_channel()
+{
+
+   m_preceiver    = NULL;
+
+}
+
+
 small_ipc_rx_channel::~small_ipc_rx_channel()
 {
 

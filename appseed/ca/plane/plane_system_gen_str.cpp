@@ -44,6 +44,36 @@ namespace gen
 
       }
 
+      void format(string_format * pformat, unsigned char const & uch)
+      {
+
+         pformat->append(string((char) uch));
+
+      }
+
+      void format(string_format * pformat, char const & ch)
+      {
+
+         pformat->append(string((char) ch));
+
+      }
+
+      void format(string_format * pformat, short const & sh)
+      {
+
+         pformat->append(gen::str::from((int) sh));
+
+      }
+
+
+      void format(string_format * pformat, unsigned short const & ush)
+      {
+
+         pformat->append(gen::str::from((unsigned int) ush));
+
+      }
+
+
       void format(string_format * pformat, unsigned int const & ui)
       {
          // TODO: use specs
@@ -64,6 +94,14 @@ namespace gen
          pformat->append(gen::str::from(f));
 
       }
+
+      void format(string_format * pformat, double const & d)
+      {
+         // TODO: use specs
+         pformat->append(gen::str::from(d));
+
+      }
+
 
    } // namespace str
 

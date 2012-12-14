@@ -98,6 +98,8 @@
 		<Unit filename="c/c_heap.cpp" />
 		<Unit filename="c/c_heap.h" />
 		<Unit filename="c/c_index.h" />
+		<Unit filename="c/c_integer_to_string.cpp" />
+		<Unit filename="c/c_integer_to_string.h" />
 		<Unit filename="c/c_international.cpp" />
 		<Unit filename="c/c_international.h" />
 		<Unit filename="c/c_keep_true.h" />
@@ -150,6 +152,8 @@
 		<Unit filename="c/c_stra.cpp" />
 		<Unit filename="c/c_stra.h" />
 		<Unit filename="c/c_strdup.cpp" />
+		<Unit filename="c/c_string_to_integer.cpp" />
+		<Unit filename="c/c_string_to_integer.h" />
 		<Unit filename="c/c_strw.cpp" />
 		<Unit filename="c/c_strx.cpp" />
 		<Unit filename="c/c_template.cpp" />

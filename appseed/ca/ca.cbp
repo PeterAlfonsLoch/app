@@ -40,6 +40,7 @@
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-lca2c" />
+			<Add option="-lfreeimage" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
 		<Unit filename="ansios/ansios.h" />
@@ -615,6 +616,8 @@
 		<Unit filename="crypto/crypto_math.cpp" />
 		<Unit filename="crypto/crypto_math.h" />
 		<Unit filename="crypto/crypto_math_stat.cpp" />
+		<Unit filename="crypto/crypto_md5.cpp" />
+		<Unit filename="crypto/crypto_md5.h" />
 		<Unit filename="crypto/crypto_my_aes.cpp" />
 		<Unit filename="crypto/crypto_null_auth.h" />
 		<Unit filename="crypto/crypto_null_cipher.h" />
@@ -823,6 +826,8 @@
 		<Unit filename="exception/exception_engine.h" />
 		<Unit filename="exception/exception_error.cpp" />
 		<Unit filename="exception/exception_error.h" />
+		<Unit filename="exception/exception_exit.cpp" />
+		<Unit filename="exception/exception_exit.h" />
 		<Unit filename="exception/exception_hresult.cpp" />
 		<Unit filename="exception/exception_hresult.h" />
 		<Unit filename="exception/exception_installing.cpp" />
@@ -845,6 +850,8 @@
 		<Unit filename="exception/exception_misc.h" />
 		<Unit filename="exception/exception_not_implemented.cpp" />
 		<Unit filename="exception/exception_not_implemented.h" />
+		<Unit filename="exception/exception_not_installed.cpp" />
+		<Unit filename="exception/exception_not_installed.h" />
 		<Unit filename="exception/exception_not_licensed.cpp" />
 		<Unit filename="exception/exception_not_licensed.h" />
 		<Unit filename="exception/exception_not_supported.cpp" />
@@ -868,6 +875,8 @@
 		<Unit filename="exception/exception_standard_translator.h" />
 		<Unit filename="exception/exception_temporary.cpp" />
 		<Unit filename="exception/exception_temporary.h" />
+		<Unit filename="exception/exception_todo.cpp" />
+		<Unit filename="exception/exception_todo.h" />
 		<Unit filename="exception/exception_trap.h" />
 		<Unit filename="exception/exception_unhandled_report.h" />
 		<Unit filename="exception/exception_user.cpp" />
@@ -985,6 +994,8 @@
 		<Unit filename="gen/gen_go_thread.h" />
 		<Unit filename="gen/gen_hash.cpp" />
 		<Unit filename="gen/gen_hash.h" />
+		<Unit filename="gen/gen_hex.cpp" />
+		<Unit filename="gen/gen_hex.h" />
 		<Unit filename="gen/gen_holder.h" />
 		<Unit filename="gen/gen_insert_iterator.h" />
 		<Unit filename="gen/gen_international.cpp" />
@@ -1585,6 +1596,7 @@
 		<Unit filename="uinteraction/uinteraction_interaction.cpp" />
 		<Unit filename="uinteraction/uinteraction_interaction.h" />
 		<Unit filename="uinteraction_frame.cpp" />
+		<Unit filename="user/user.cpp" />
 		<Unit filename="user/user.h" />
 		<Unit filename="user/user1.h" />
 		<Unit filename="user/user_application.cpp" />
