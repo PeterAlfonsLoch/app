@@ -1,5 +1,6 @@
 #include "framework.h"
 
+/*
 void * DECL_C _malloc_dbg(size_t _Size, int _BlockType, const char * _Filename, int _LineNumber)
 {
    return malloc(_Size);
@@ -30,7 +31,7 @@ void DECL_C _free_dbg(void * _Memory, int _BlockType)
    free(_Memory);
 }
 
-
+*/
 
 CLASS_DECL_ca int DECL_C _CrtDbgReportW(
         int _ReportType,

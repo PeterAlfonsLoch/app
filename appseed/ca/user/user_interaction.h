@@ -460,6 +460,7 @@ namespace user
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, LPARAM lparam);
       virtual void message_handler(gen::signal_object * pobj);
+      virtual LRESULT message_handler(LPMESSAGE lpmessage);
       virtual void GuieProc(gen::signal_object * pobj);
 
       virtual void _001DeferPaintLayeredWindowBackground(::ca::graphics * pdc);

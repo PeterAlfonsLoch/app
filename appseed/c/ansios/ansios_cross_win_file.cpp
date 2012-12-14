@@ -13,21 +13,21 @@ create_file(
             HANDLE hTemplateFile
             )
 {
-    
+
     FILE * pfile = fopen(lpFileName, "rw");
-    
+
     if(pfile == NULL)
         return INVALID_HANDLE_VALUE;
-    
+
     HANDLE handle = new win_handle;
-    
+
     handle->m_etype = win_handle::type_file;
     handle->m_file.m_pfile = pfile;
 
-    
+
     return handle;
-    
-    
+
+
 }
 
 DWORD
@@ -56,7 +56,7 @@ WriteFile(
           LPDWORD lpNumberOfBytesWritten,
           LPOVERLAPPED lpOverlapped
           )
-{    
+{
     if(hFile == INVALID_HANDLE_VALUE)
         return FALSE;
     if(hFile->m_etype != win_handle::type_file)
@@ -137,3 +137,25 @@ CloseHandle(
 
 
 
+DWORD
+WINAPI
+GetTempPathW(
+    DWORD nBufferLength,
+    LPWSTR lpBuffer
+    )
+{
+
+   wstring wstr = "/var/ca2/time/";
+
+   int iLen = min(nBufferLength, wstr.get_length());
+
+   wcsncpy(lpBuffer, wstr, iLen);
+
+   if(nBufferLength > 0)
+   {
+      lpBuffer[iLen] = '\0';
+   }
+
+   return iLen;
+
+}

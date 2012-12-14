@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL UNUSED(bAlertable))
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD UNUSED(dwWakeMask), DWORD dwFlags)
 {
 
    DWORD start;
@@ -11,13 +11,18 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL 
       start = ::GetTickCount();
    }
 
+
+   BOOL bWaitForAll        = dwFlags & MWMO_WAITALL;
+   BOOL bAlertable         = dwFlags & MWMO_ALERTABLE;
+   BOOL bInputAvailable    =  dwFlags & MWMO_INPUTAVAILABLE;
+
+   timespec delay;
+
+   delay.tv_sec = 0;
+   delay.tv_nsec = 1000000;
+
    if(bWaitForAll)
    {
-
-      timespec delay;
-
-      delay.tv_sec = 0;
-      delay.tv_nsec = 1000000;
 
       int i;
       int j;
@@ -43,15 +48,56 @@ DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL 
             i++;
          }
       }
-      for(j = 0; j < dwSize; j++)
+//      for(j = 0; j < dwSize; j++)
+  //    {
+    //     pwaitableptra[j]->unlock();
+      //}
+
+      return WAIT_OBJECT_0;
+
+   }
+   else
+   {
+
+      int i;
+      int j;
+      while(true)
       {
-         pwaitableptra[j]->unlock();
+
+         for(i = 0; i < dwSize;)
+         {
+            if(dwTimeout != (DWORD) INFINITE && ::GetTickCount() - start >= dwTimeout)
+            {
+               return WAIT_TIMEOUT;
+            }
+            if(pwaitableptra[i]->lock(millis(0)))
+            {
+               return WAIT_OBJECT_0 + i;
+            }
+         }
+
+         nanosleep(&delay, NULL);
+
       }
 
    }
 
 }
 
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
+{
+
+   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, dwWakeMask, (bWaitForAll ?  MWMO_WAITALL : 0));
+
+}
+
+
+DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL bAlertable)
+{
+
+   return MsgWaitForMultipleObjectsEx(dwSize, pwaitableptra, dwTimeout, 0, (bWaitForAll ?  MWMO_WAITALL : 0) | (bAlertable ?  MWMO_ALERTABLE : 0));
+
+}
 
 
 DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout)

@@ -10,6 +10,13 @@ DWORD WaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bW
 
 DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask);
 
+DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD dwTimeout, DWORD dwWakeMask, DWORD dwFlags);
+
 DWORD WaitForSingleObject(waitable * pwaitable, DWORD dwMilliseconds);
 
 DWORD WaitForSingleObjectEx(waitable * pwaitable, DWORD dwMilliseconds, WINBOOL bAlertable);
+
+
+#define MWMO_WAITALL        0x0001
+#define MWMO_ALERTABLE      0x0002
+#define MWMO_INPUTAVAILABLE 0x0004

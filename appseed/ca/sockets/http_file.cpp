@@ -35,7 +35,7 @@ namespace http
       return str.has_char();
    }
 
-   inline file & file::operator << (ex1::file & file)
+   file & file::operator << (ex1::file & file)
       {
          dword_ptr nRead;
          primitive::memory mem;

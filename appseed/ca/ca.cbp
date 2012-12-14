@@ -47,6 +47,7 @@
 		<Unit filename="ansios_thread.cpp" />
 		<Unit filename="ansios_thread.h" />
 		<Unit filename="api/api.h" />
+		<Unit filename="api/api_debug.cpp" />
 		<Unit filename="api/api_debug.h" />
 		<Unit filename="api/api_linux.h" />
 		<Unit filename="api/api_muldiv64.cpp" />

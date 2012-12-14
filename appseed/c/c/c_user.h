@@ -56,6 +56,9 @@ namespace user
       ::user::interaction *   m_pui;
 
 
+      virtual LRESULT message_handler(LPMESSAGE lpmessage) = 0;
+
+
    };
 
 

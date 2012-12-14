@@ -15,24 +15,30 @@ public:
 
 
 };
-*/
 
-/*
+
+
 
 void _c_simple_message_loop()
 {
 
 
    MESSAGE msg;
+
 	while(GetMessage(&msg))
 	{
+
 		TranslateMessage(&msg);
+
 		DispatchMessage(&msg);
+
 	}
 
 
-
 }
+
+
+
 
 WINBOOL sys_message_queue::GetMessage(MESSAGE * pmsg)
 {
@@ -105,3 +111,45 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 
 
 */
+
+
+bool TranslateMessage(LPMESSAGE lpmessage)
+{
+
+   UNREFERENCED_PARAMETER(lpmessage);
+
+   return true;
+
+}
+
+
+LRESULT DispatchMessage(LPMESSAGE lpmessage)
+{
+
+   if(lpmessage->hwnd == NULL)
+      return false;
+
+   return lpmessage->hwnd.get_user_interaction_base()->message_handler(lpmessage);
+
+}
+
+
+
+void _c_simple_message_loop()
+{
+
+   MESSAGE msg;
+
+	while(GetMessage(&msg, ::ca::null(), 0, 0))
+	{
+
+		TranslateMessage(&msg);
+
+		DispatchMessage(&msg);
+
+	}
+
+
+}
+
+

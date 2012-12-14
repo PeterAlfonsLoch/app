@@ -2011,6 +2011,14 @@ namespace user
          return m_pimpl->message_handler(pobj);
    }
 
+
+   LRESULT interaction::message_handler(LPMESSAGE lpmessage)
+   {
+
+      return send_message(lpmessage->message, lpmessage->wParam, lpmessage->lParam);
+
+   }
+
 #ifdef WINDOWSEX
 
    bool interaction::GetWindowPlacement(WINDOWPLACEMENT* lpwndpl)
