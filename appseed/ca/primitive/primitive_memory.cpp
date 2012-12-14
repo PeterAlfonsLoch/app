@@ -7,7 +7,7 @@ namespace primitive
    memory::memory(::ca::application * papp) :
       ca(papp)
    {
-      
+
       m_pbStorage          = NULL;
       m_pbComputed         = NULL;
       m_pcontainer         = NULL;
@@ -123,11 +123,11 @@ namespace primitive
 
       if(m_iOffset > 0)
       {
-         
+
          primitive::memory mem(m_pbComputed, m_cbStorage);
 
          free_data();
-         
+
          return mem.detach();
 
       }
@@ -188,6 +188,16 @@ namespace primitive
    }
 
    memory::memory(const memory & s)
+   {
+      m_pbStorage    = NULL;
+      m_pbComputed   = NULL;
+      m_iOffset      = 0;
+      m_dwAllocation = 0;
+      m_cbStorage    = 0;
+      memory_base::operator = (s);
+   }
+
+   memory::memory(const simple_memory & s)
    {
       m_pbStorage    = NULL;
       m_pbComputed   = NULL;

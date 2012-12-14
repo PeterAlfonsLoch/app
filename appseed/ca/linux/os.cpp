@@ -8,7 +8,7 @@ DWORD GetTickCount()
 }
 
 
-CLASS_DECL__ bool CopyRect(LPRECT prectDest, LPCRECT prectSrc)
+/*CLASS_DECL__ bool CopyRect(LPRECT prectDest, LPCRECT prectSrc)
 {
       prectDest->left = prectSrc->left;
       prectDest->top = prectSrc->top;
@@ -119,7 +119,7 @@ CLASS_DECL__ bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
       prect->bottom   = rect.bottom;
    }
    return bXIntersects || bYIntersects;
-}
+}*/
 
 
 

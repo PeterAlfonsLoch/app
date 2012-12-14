@@ -1,33 +1,34 @@
 #pragma once
 
 
-#ifndef METROWIN
-
+#if !defined(METROWIN)
 
 CLASS_DECL_c int call_async(
-   const char * pszPath, 
-   const char * pszParam, 
+   const char * pszPath,
+   const char * pszParam,
    const char * pszDir,
    int iShow);
 
 CLASS_DECL_c DWORD call_sync(
-   const char * pszPath, 
-   const char * pszParam, 
+   const char * pszPath,
+   const char * pszParam,
    const char * pszDir,
    int iShow,
-   int iRetry, 
-   int iSleep, 
+   int iRetry,
+   int iSleep,
    int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
    dword_ptr dwParam);
 
+#endif
+
+
+#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
 
 CLASS_DECL_c int get_current_processor_index();
 
 CLASS_DECL_c int get_current_process_maximum_affinity();
 
 CLASS_DECL_c int get_current_process_affinity_order();
-
-
 
 #endif
 

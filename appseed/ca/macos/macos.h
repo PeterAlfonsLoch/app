@@ -10,7 +10,7 @@
 
 DWORD GetTickCount();
 
-CLASS_DECL__ bool CopyRect(LPCRECT prectDest, LPCRECT prectSrc);
+/*CLASS_DECL__ bool CopyRect(LPCRECT prectDest, LPCRECT prectSrc);
 CLASS_DECL__ bool PtInRect(LPCRECT prect, POINT point);
 CLASS_DECL__ bool SetRect(LPRECT prect, long x1, long y1, long x2, long y2);
 CLASS_DECL__ bool SetRectEmpty(LPRECT prect);
@@ -22,7 +22,7 @@ CLASS_DECL__ bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 CLASS_DECL__ bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL__ bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL__ bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-
+*/
 
 //typedef unsigned long * ulong_ptr;
 

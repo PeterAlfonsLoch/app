@@ -219,10 +219,10 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
   //    int iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
-         
+
          HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
-         
-         
+
+
          if(hfile != INVALID_HANDLE_VALUE)
          {
             int iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
@@ -428,6 +428,8 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
    int cx = m_rect.right - m_rect.left;
    int cy = m_rect.bottom - m_rect.top;
 
+   #ifdef WINDOWSEX
+
    BITMAPINFO m_Info;
 
 	m_Info.bmiHeader.biSize=sizeof (BITMAPINFOHEADER);
@@ -444,6 +446,8 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
    m_hdc = ::CreateCompatibleDC(NULL);
    ::SelectObject(m_hdc, m_hbm);
    FillSolidRect_dup(m_hdc, lpcrect, RGB(0, 0, 0));
+
+   #endif
 
    /*int iMid = (m_rect.bottom + m_rect.top) / 2;
 
@@ -488,6 +492,8 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
       int iSize = m_ia[0];
       int w = iSize * 2 + 1;
       int h = iSize * 2 + 1;
+
+      #ifdef WINDOWSEX
       BITMAPINFO m_Info;
 
       ZeroMemory(&m_Info, sizeof (BITMAPINFO));
@@ -506,6 +512,7 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
       m_hdcZero = ::CreateCompatibleDC(NULL);
       m_hbmZeroOld = (HBITMAP) ::SelectObject(m_hdcZero, m_hbmZero);
       FillSolidRect_dup(m_hdcZero, lpcrect, RGB(0, 0, 0));
+      #endif
    }
 
 

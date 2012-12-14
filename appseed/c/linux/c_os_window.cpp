@@ -261,6 +261,19 @@ oswindow oswindow::get_parent()
 
 }
 
+oswindow oswindow::set_parent(oswindow oswindow)
+{
+
+   if(m_pdata == NULL)
+      return ::ca::null();
+
+   ::oswindow oswindowOldParent = get_parent();
+
+   XReparentWindow(display(), window(), oswindow.window(), 0, 0);
+
+   return oswindowOldParent;
+
+}
 
 bool oswindow::show_window(int nCmdShow)
 {
@@ -315,4 +328,166 @@ LONG oswindow::set_window_long(int nIndex, LONG l)
 }
 
 
+bool oswindow::client_to_screen(POINT * pp)
+{
+
+   return true;
+
+}
+
+
+bool oswindow::screen_to_client(POINT * pp)
+{
+
+   return true;
+
+}
+
 Atom get_window_long_atom(int nIndex);
+
+
+
+
+long oswindow::get_state()
+{
+
+  static const long WM_STATE_ELEMENTS = 2L;
+
+  unsigned long nitems;
+  unsigned long leftover;
+  Atom xa_WM_STATE, actual_type;
+  int actual_format;
+  int status;
+  unsigned char* p = NULL;
+
+  xa_WM_STATE = XInternAtom(display(), "WM_STATE", false);
+
+  status = XGetWindowProperty(display(), window(),
+                xa_WM_STATE, 0L, WM_STATE_ELEMENTS,
+                false, xa_WM_STATE, &actual_type, &actual_format,
+                &nitems, &leftover, &p);
+
+  if(status == 0)
+  {
+      XFree(p);
+      return (p != NULL) ? (long)*p : -1;
+  }
+
+  return -1;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Copyright (c) 2012 the authors listed at the following URL, and/or
+the authors of referenced articles or incorporated external code:
+http://en.literateprograms.org/Hello_World_(C,_Cairo)?action=history&offset=20070528220552
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=10388
+*/
+
+
+#include <cairo/cairo.h>
+#include <cairo/cairo-xlib.h>
+#include <X11/Xlib.h>
+
+
+#define SIZEX 100
+#define SIZEY  50
+
+
+void message_box_paint(cairo_surface_t * cs, const char * lpText)
+{
+	cairo_t *c;
+
+	c=cairo_create(cs);
+	cairo_rectangle(c, 0.0, 0.0, SIZEX, SIZEY);
+	cairo_set_source_rgb(c, 0.0, 0.0, 0.5);
+	cairo_fill(c);
+
+	cairo_move_to(c, 10.0, 10.0);
+	cairo_set_source_rgb(c, 1.0, 1.0, 0.0);
+	cairo_show_text(c, lpText);
+
+	cairo_show_page(c);
+
+	cairo_destroy(c);
+}
+
+void message_box_show_xlib(const char * lpText, const char * lpCaption)
+{
+	Display *dpy;
+	Window rootwin;
+	Window win;
+	XEvent e;
+	int scr;
+	cairo_surface_t *cs;
+
+	if(!(dpy=XOpenDisplay(NULL))) {
+		fprintf(stderr, "ERROR: Could not open display\n");
+		exit(1);
+	}
+
+	scr=DefaultScreen(dpy);
+	rootwin=RootWindow(dpy, scr);
+
+	win=XCreateSimpleWindow(dpy, rootwin, 1, 1, SIZEX, SIZEY, 0,
+			BlackPixel(dpy, scr), BlackPixel(dpy, scr));
+
+	XStoreName(dpy, win, lpCaption);
+	XSelectInput(dpy, win, ExposureMask|ButtonPressMask);
+	XMapWindow(dpy, win);
+
+	cs=cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), SIZEX, SIZEY);
+
+	while(1) {
+		XNextEvent(dpy, &e);
+		if(e.type==Expose && e.xexpose.count<1) {
+			message_box_paint(cs, lpText);
+		} else if(e.type==ButtonPress) break;
+	}
+
+	cairo_surface_destroy(cs);
+	XCloseDisplay(dpy);
+}
+
+
+
+int WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+{
+
+   message_box_show_xlib(lpText, lpCaption);
+
+   return 0;
+
+}
+
+

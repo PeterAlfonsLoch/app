@@ -1,4 +1,5 @@
 #include "framework.h"
+#include <unistd.h>
 
 
 DWORD GetTickCount()
@@ -36,3 +37,13 @@ CLASS_DECL_c bool _istlead(int ch)
    return false;
 
 }
+
+
+void Sleep(DWORD dwMillis)
+{
+   timespec t;
+   t.tv_sec = dwMillis / 1000;
+   t.tv_nsec = (dwMillis % 1000) * 1000 * 1000;
+   nanosleep(&t, NULL);
+}
+

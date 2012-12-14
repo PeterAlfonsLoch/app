@@ -737,3 +737,46 @@ bool os_simple_graphics::set(simple_path::line & l)
    return true;
 
 }
+
+
+bool os_simple_graphics::exclude_clip(simple_path & path)
+{
+
+   return true;
+
+}
+
+
+bool os_simple_graphics::replace_clip(simple_path & path)
+{
+
+   return true;
+
+}
+
+
+bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
+{
+
+      return true;
+
+}
+
+
+bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen &pen)
+{
+
+   return true;
+
+}
+
+
+bool os_simple_graphics::draw_line(int, int, int, int, simple_pen &)
+{
+
+   return true;
+
+}
+
+
+

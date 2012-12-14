@@ -63,6 +63,19 @@ namespace ca
       return library::open(pszPath);
    }
 
+   bool library::is_opened()
+   {
+
+      return m_plibrary != NULL;
+
+   }
+
+   bool library::is_closed()
+   {
+
+      return !is_opened();
+
+   }
 
 } // namespace ca
 

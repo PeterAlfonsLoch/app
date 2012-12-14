@@ -1,6 +1,6 @@
 #pragma once
 
-HDC GetDC(oswindow hwnd);
+/*HDC GetDC(oswindow hwnd);
 HFONT CreateFontIndirect(const LOGFONT * lf);
 HPEN CreatePen(int iPenStyle, int iWidth, COLORREF crColor);
 HGDIOBJ GetStockObject(int iStockObject);
@@ -8,7 +8,7 @@ HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 WINBOOL Rectangle(HDC hdc, int x1, int y1, int x2, int y2);
 WINBOOL DeleteObject(HGDIOBJ hgdiobj);
 HDC CreateCompatibleDC(HDC hdc);
-HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
+//HBITMAP WINAPI CreateDIBSection(HDC hdc, const BITMAPINFO *lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
 WINBOOL SetTextColor(HDC hdc, COLORREF cr);
 WINBOOL SetBkMode(HDC hdc, int iMode);
 WINBOOL DeleteDC(HDC hdc);

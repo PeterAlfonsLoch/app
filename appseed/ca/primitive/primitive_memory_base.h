@@ -3,7 +3,7 @@
 template < typename N >
 inline int msb(N n)
 {
-   
+
    register int i = sizeof(N) * 8;
 
    do
@@ -11,7 +11,7 @@ inline int msb(N n)
       i--;
       if(n & (1 << i))
          return i;
-      
+
    }
    while(i > 0);
 
@@ -83,6 +83,7 @@ namespace primitive
 
 
       memory_base & operator = (const memory_base & s);
+      memory_base & operator = (const simple_memory & s);
       memory_base & operator += (const memory_base & s);
 
 
@@ -96,6 +97,7 @@ namespace primitive
       inline void eat_begin(void * pdata, memory_size iSize);
       inline void set_data(void * pdata, memory_size uiSize);
       inline void copy_from(const memory_base * pstorage);
+      inline void copy_from(const simple_memory * pmemory);
       inline void set(byte b, memory_size uiSize = -1);
 
       inline void append(const memory_base & memory, memory_position iStart = 0, memory_size iCount = -1);
@@ -153,10 +155,10 @@ namespace primitive
       inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
 
 #elif defined(MACOS)
-       
+
        inline CFDataRef get_os_cf_data(memory_position pos = 0, memory_size size = -1) const;
        inline void set_os_cf_data(CFDataRef data, memory_position pos = 0, memory_size size = -1);
-       
+
 #endif
 
 
@@ -298,6 +300,13 @@ namespace primitive
       memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
    }
 
+   inline void memory_base::copy_from(const simple_memory *pstorage)
+   {
+      ASSERT(pstorage != NULL);
+      allocate(pstorage->get_size());
+      memcpy(get_data(), pstorage->get_data(), (size_t) this->get_size());
+   }
+
    inline void memory_base::set_data(void *pdata, memory_size uiSize)
    {
       allocate(uiSize);
@@ -347,6 +356,20 @@ namespace primitive
       return *this;
    }
 
+   inline memory_base & memory_base::operator = (const simple_memory & s)
+   {
+      if(&s == NULL || s.get_data() == NULL)
+      {
+         allocate(0);
+      }
+      else
+      {
+         copy_from(&s);
+      }
+      return *this;
+   }
+
+
    inline memory_base & memory_base::operator += (const memory_base & s)
    {
       if(&s != NULL)
@@ -383,7 +406,7 @@ namespace primitive
 
    inline string memory_base::to_hex(memory_position pos, memory_size size)
    {
-      
+
       string str;
       to_hex(str, pos, size);
       return str;
@@ -563,7 +586,7 @@ namespace primitive
 
    inline void memory_base::move_and_grow(memory_offset offset)
    {
-      
+
       move(offset, true);
 
    }
@@ -771,16 +794,16 @@ namespace primitive
       ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
       return set_os_bytes(a, pos, size);
    }
-    
+
    inline void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
    {
       Platform::Array < unsigned char, 1U > ^ a = nullptr;
       (::Windows::Storage::Streams::DataReader::FromBuffer(ibuf))->ReadBytes(a);
       return set_os_bytes(a, pos, size);
    }
-    
+
 #elif defined(MACOS)
-    
+
     inline CFDataRef memory_base::get_os_cf_data(memory_position pos, memory_size size) const
     {
         if(pos > get_size())
@@ -789,7 +812,7 @@ namespace primitive
             size = get_size() - pos;
         return CFDataCreate(kCFAllocatorNull, (const UInt8 *) &get_data()[pos], (CFIndex) size);
     }
-    
+
     inline void memory_base::set_os_cf_data(CFDataRef data, memory_position pos, memory_size size)
     {
         if(pos > CFDataGetLength(data))
@@ -801,8 +824,8 @@ namespace primitive
         allocate(size);
         memcpy(get_data(), &CFDataGetBytePtr(data)[pos] , size);
     }
-    
-    
+
+
 #endif
 
    inline memory_base & memory_base::reverse()

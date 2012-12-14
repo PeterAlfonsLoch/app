@@ -155,7 +155,7 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
 
    m_i = 0;
 
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX) || defined(MACOS)
    int iShareCount = 0;
 #else
    int iShareCount = ::get_current_process_maximum_affinity() + 1;

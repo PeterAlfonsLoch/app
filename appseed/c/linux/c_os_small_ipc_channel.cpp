@@ -76,7 +76,75 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 }
 
 
+bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTimeout)
+{
 
+   if(message == 0x80000000)
+      return false;
+
+
+   if(!is_tx_ok())
+      return false;
+
+   const char * pszMessage = (const char *) pdata;
+
+   ::count c = len;
+
+   ::count cSend;
+
+   data_struct data;
+   data.mtype        = 15111984;
+   data.request      = 0x80000000;
+   data.size         = (int)strlen_dup(pszMessage);
+
+   ::count cPos = 0;
+
+   while(c > 0)
+   {
+
+      cSend = min(c, 511);
+
+      memcpy(data.data, &pszMessage[cPos], min(c, 511));
+
+      c -= cSend;
+
+      cPos += cSend;
+
+      if(c > 0)
+         data.size = 512;
+      else
+         data.size = (int) cSend;
+
+      /* The length is essentially the size of the structure minus sizeof(mtype) */
+      int length = sizeof(data_struct) - sizeof(long);
+
+      int result;
+
+      if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
+      {
+         return false;
+      }
+
+   }
+
+   return true;
+
+}
+
+
+
+bool small_ipc_tx_channel::is_tx_ok()
+{
+
+   return m_iQueue != -1;
+
+}
+
+
+small_ipc_rx_channel::~small_ipc_rx_channel()
+{
+
+}
 
 
 bool small_ipc_rx_channel::create(const char * pszKey)
@@ -150,6 +218,68 @@ void * small_ipc_rx_channel::receive_proc(void * param)
    return pchannel->receive();
 
 }
+
+
+
+void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage)
+{
+}
+
+void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+{
+}
+
+void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+{
+}
+
+
+
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage)
+{
+
+   if(m_preceiver != NULL)
+   {
+      m_preceiver->on_receive(prxchannel, pszMessage);
+   }
+
+   // ODOW - on date of writing : return ignored by this windows implementation
+
+   return NULL;
+
+}
+
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+{
+
+   if(m_preceiver != NULL)
+   {
+      m_preceiver->on_receive(prxchannel, message, pdata, len);
+   }
+
+   // ODOW - on date of writing : return ignored by this windows implementation
+
+   return NULL;
+
+}
+
+
+
+
+void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+{
+
+   if(m_preceiver != NULL)
+   {
+      m_preceiver->on_post(prxchannel, a, b);
+   }
+
+   // ODOW - on date of writing : return ignored by this windows implementation
+
+   return NULL;
+
+}
+
 
 
 bool small_ipc_rx_channel::on_idle()

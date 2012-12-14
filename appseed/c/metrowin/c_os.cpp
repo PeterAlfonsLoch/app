@@ -366,14 +366,4 @@ CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow)
 
 }
 
-CLASS_DECL_c int WINAPI GetSystemMetrics(int i)
-{
-   switch(i)
-   {
-   case SM_CXHSCROLL:
-      return 16;
-   case SM_CYHSCROLL:
-      return 16;
-   }
-   return 0;
-}
+

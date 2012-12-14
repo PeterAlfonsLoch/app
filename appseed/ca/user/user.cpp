@@ -86,28 +86,6 @@ namespace user
 
 
 
-
-
-// This is ca2 API library.
-// 
-// 
-//
-// 
-// 
-// 
-// 
-// 
-
-#include "framework.h"
-#include "sal.h"
-
-
-
-
-
-
-
-
 } // namespace user
 
 

@@ -5,9 +5,6 @@ namespace ca
 {
 
 
-#ifdef WINDOWS
-
-
    bool palette::CreatePalette(LPLOGPALETTE lpLogPalette)
    {
       UNREFERENCED_PARAMETER(lpLogPalette);
@@ -62,10 +59,12 @@ namespace ca
    }
 
 
-#endif
-
-
 } // namespace ca
+
+
+
+
+
 
 
 

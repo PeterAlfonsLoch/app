@@ -725,7 +725,7 @@ void string_array::add(const id & id)
 ////////////////////////////////////////////////////////////////////////////
 
 
-inline index string_array::get_upper_bound(index i, count count) const
+index string_array::get_upper_bound(index i, count count) const
 {
    if(count >= 0)
    {
@@ -738,13 +738,13 @@ inline index string_array::get_upper_bound(index i, count count) const
 }
 
 // same as clear
-inline void string_array::remove_all()
+void string_array::remove_all()
 {
    set_size(0);
 }
 
 // same as remove all
-inline void string_array::clear()
+void string_array::clear()
 {
    set_size(0);
 }

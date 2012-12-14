@@ -35,3 +35,22 @@ int64_t fd_get_file_size(int fd)
 }
 
 */
+
+
+
+
+CLASS_DECL_c void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char * pszDll)
+{
+
+
+
+}
+
+
+
+vsstring get_sys_temp_path()
+{
+
+   return "/var/ca2/time/";
+
+}

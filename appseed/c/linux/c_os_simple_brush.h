@@ -15,9 +15,14 @@ public:
    };
 
 
-   int                  m_iStyle;
+   e_type               m_etype;
    COLORREF             m_cr;
    int                  m_iStock;
+   POINT                m_p1;
+   POINT                m_p2;
+   COLORREF             m_cr1;
+   COLORREF             m_cr2;
+
 
 
 
