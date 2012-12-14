@@ -130,7 +130,7 @@
 	<File name="ca/ca_pen.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="894" topLine="12" />
 	</File>
-	<File name="ca/ca_pen.h" open="1" top="0" tabpos="3">
+	<File name="ca/ca_pen.h" open="1" top="0" tabpos="1">
 		<Cursor position="63" topLine="0" />
 	</File>
 	<File name="ca/ca_profiler.cpp" open="0" top="0" tabpos="0">
@@ -160,7 +160,7 @@
 	<File name="ca/ca_type_info.h" open="0" top="0" tabpos="0">
 		<Cursor position="1639" topLine="27" />
 	</File>
-	<File name="ca/ca_window.cpp" open="1" top="0" tabpos="4">
+	<File name="ca/ca_window.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="25225" topLine="861" />
 	</File>
 	<File name="ca/ca_window.h" open="0" top="0" tabpos="8">
@@ -178,7 +178,7 @@
 	<File name="ca2/ca2_url.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="13589" topLine="631" />
 	</File>
-	<File name="ca2/os_implementation.h" open="1" top="0" tabpos="5">
+	<File name="ca2/os_implementation.h" open="1" top="0" tabpos="3">
 		<Cursor position="595" topLine="0" />
 	</File>
 	<File name="ca4/ca4.h" open="0" top="0" tabpos="21">
