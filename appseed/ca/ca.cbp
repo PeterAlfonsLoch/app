@@ -1212,6 +1212,8 @@
 		<Unit filename="multithreading/multithreading_mutex.h" />
 		<Unit filename="multithreading/multithreading_plain_service.cpp" />
 		<Unit filename="multithreading/multithreading_plain_service.h" />
+		<Unit filename="multithreading/multithreading_retry_multi_lock.cpp" />
+		<Unit filename="multithreading/multithreading_retry_multi_lock.h" />
 		<Unit filename="multithreading/multithreading_retry_single_lock.cpp" />
 		<Unit filename="multithreading/multithreading_retry_single_lock.h" />
 		<Unit filename="multithreading/multithreading_semaphore.cpp" />

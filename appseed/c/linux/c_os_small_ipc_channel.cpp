@@ -298,6 +298,17 @@ bool small_ipc_rx_channel::on_idle()
 }
 
 
+bool small_ipc_rx_channel::is_rx_ok()
+{
+
+   return m_iQueue != -1;
+}
+
+
+
+
+
+
 void * small_ipc_rx_channel::receive()
 {
 
@@ -421,3 +432,10 @@ bool small_ipc_channel::open_ba(const char * pszKey, launcher * plauncher)
 }
 
 
+
+bool small_ipc_channel::is_rx_tx_ok()
+{
+
+   return m_rxchannel.is_rx_ok() && is_tx_ok();
+
+}

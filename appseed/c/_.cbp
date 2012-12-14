@@ -47,6 +47,8 @@
 		</Linker>
 		<Unit filename="_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h" />
 		<Unit filename="ansios/ansios.h" />
+		<Unit filename="ansios/ansios_cross_win.cpp" />
+		<Unit filename="ansios/ansios_cross_win_file.cpp" />
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
 		<Unit filename="ansios/ansios_thread.cpp" />
@@ -212,6 +214,7 @@
 		<Unit filename="linux/c_os_http_lib.cpp" />
 		<Unit filename="linux/c_os_http_lib.h" />
 		<Unit filename="linux/c_os_internal.h" />
+		<Unit filename="linux/c_os_launcher.cpp" />
 		<Unit filename="linux/c_os_library.cpp" />
 		<Unit filename="linux/c_os_lock.cpp" />
 		<Unit filename="linux/c_os_message_loop.cpp" />
