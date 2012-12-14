@@ -754,6 +754,12 @@ bool os_simple_graphics::replace_clip(simple_path & path)
 
 }
 
+bool os_simple_graphics::replace_clip(const RECT & rect)
+{
+
+   return true;
+
+}
 
 bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
 {

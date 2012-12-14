@@ -689,6 +689,7 @@
 		<Unit filename="dynamic_source/dynamic_source_script_interface.h" />
 		<Unit filename="dynamic_source/dynamic_source_script_manager.cpp" />
 		<Unit filename="dynamic_source/dynamic_source_script_manager.h" />
+		<Unit filename="ex1/ex1.cpp" />
 		<Unit filename="ex1/ex1.h" />
 		<Unit filename="ex1/ex1_0.h" />
 		<Unit filename="ex1/ex1_1.h" />

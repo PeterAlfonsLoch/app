@@ -820,7 +820,7 @@
 	<File name="plane/plane_system.h" open="0" top="0" tabpos="2">
 		<Cursor position="28805" topLine="993" />
 	</File>
-	<File name="plane/plane_system_gen_str.cpp" open="1" top="1" tabpos="1">
+	<File name="plane/plane_system_gen_str.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="1255" topLine="34" />
 	</File>
 	<File name="plane/plane_system_gen_str.h" open="0" top="0" tabpos="20">
