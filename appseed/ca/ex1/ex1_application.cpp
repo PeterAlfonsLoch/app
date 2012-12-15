@@ -51,12 +51,12 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 #elif defined(LINUX)
       System.factory().creatable_large < ::ex1::file_exception > ();
 
-      void * pdl = ::dlopen("os.so", RTLD_NOW);
+      void * pdl = ::dlopen("libca2os.so", RTLD_NOW | RTLD_GLOBAL);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
 #else
       System.factory().creatable_large < ::ex1::file_exception > ();
-      
+
       void * pdl = ::dlopen("os.dylib", RTLD_LOCAL);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);

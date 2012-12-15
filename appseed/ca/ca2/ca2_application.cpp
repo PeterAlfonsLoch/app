@@ -266,7 +266,7 @@ namespace ca2
       str_context()->localeschema().m_idaSchema.add(strSchema);
 
 
-      return ex2::application::initialize1();
+      return true;
 
 
    }

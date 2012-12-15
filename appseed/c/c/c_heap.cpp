@@ -6,12 +6,19 @@
 #include <malloc.h>
 #endif
 
-
+#ifdef WINDOWS
 CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = NULL;
 CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int nBlockUse, const char * szFileName, int nLine) = NULL;
 CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine) = NULL;
 CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int iBlockType) = NULL;
 CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int iBlockType) = NULL;
+#else
+CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = &::_ca_alloc;
+CLASS_DECL_c void * (*g_pfnca2_alloc_dbg)(size_t nSize, int nBlockUse, const char * szFileName, int nLine) = &::_ca_alloc_dbg;
+CLASS_DECL_c void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine) = &::_ca_realloc;
+CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int iBlockType) = &::_ca_free;
+CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int iBlockType) = &::_ca_msize;
+#endif
 
 BEGIN_EXTERN_C
 
@@ -61,7 +68,7 @@ END_EXTERN_C
 
 simple_mutex & get_mutex_c_heap()
 {
-   
+
    static simple_mutex * s_pmutex = NULL;
 
    if(s_pmutex == NULL)

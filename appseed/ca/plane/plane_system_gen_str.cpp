@@ -81,6 +81,13 @@ namespace gen
 
       }
 
+      void format(string_format * pformat, unsigned long const & ul)
+      {
+         // TODO: use specs
+         pformat->append(gen::str::from(ul));
+
+      }
+
       void format(string_format * pformat, long long const & ll)
       {
          // TODO: use specs

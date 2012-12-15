@@ -8,6 +8,8 @@ namespace ca
    application::application()
    {
 
+      m_psignal = new gen::signal();
+
       set_app(this);
 
       m_bInitializeProDevianMode = true;
@@ -33,6 +35,15 @@ namespace ca
 
    application::~application()
    {
+
+      if(m_psignal != NULL)
+      {
+
+         delete m_psignal;
+         m_psignal = NULL;
+
+      }
+
    }
 
    void application::construct(const char * pszId)
@@ -65,7 +76,7 @@ namespace ca
    {
       return false;
    }
-   
+
    bool application::is_cube()
    {
       return false;
@@ -75,7 +86,7 @@ namespace ca
    {
       return false;
    }
-   
+
    bool application::is_installing()
    {
       return false;

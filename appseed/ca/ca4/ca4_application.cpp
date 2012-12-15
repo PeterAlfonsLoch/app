@@ -28,7 +28,7 @@ namespace ca4
       TWIT_EOS ( '\0'),
 
       /* Miscellaneous data used to build twitter URLs*/
-      TWIT_SEARCHQUERYSTRING ( "?q("),      
+      TWIT_SEARCHQUERYSTRING ( "?q("),
       TWIT_SCREENNAME ( "?screen_name("),
       TWIT_USERID ( "?user_id("),
       TWIT_EXTENSIONFORMAT ( ".xml"),
@@ -81,7 +81,7 @@ namespace ca4
       /* Block URLs */
       TWIT_BLOCKSCREATE_URL ( "http://twitter.com/blocks/create/"),
       TWIT_BLOCKSDESTROY_URL ( "http://twitter.com/blocks/destroy/"),
-    
+
       /* Saved Search URLs */
       TWIT_SAVEDSEARCHGET_URL ( "http://twitter.com/saved_searches.xml"),
       TWIT_SAVEDSEARCHSHOW_URL ( "http://twitter.com/saved_searches/show/"),
@@ -96,7 +96,7 @@ namespace ca4
       TWIT_TRENDSAVAILABLE_URL ( "http://api.twitter.com/1/trends/available.json")
 
    {
-      m_signal.connect(this, &::ca4::application::on_application_signal);
+      m_psignal->connect(this, &::ca4::application::on_application_signal);
 
 
    }
@@ -135,7 +135,7 @@ namespace ca4
 
       if(is_system())
       {
-         
+
 
 
 
@@ -181,7 +181,7 @@ namespace ca4
             if(System.m_spcopydesk.is_set())
             {
                System.m_spcopydesk->finalize();
-               System.m_spcopydesk.destroy();               
+               System.m_spcopydesk.destroy();
             }
             System.m_splicense.detach()->release();
          }

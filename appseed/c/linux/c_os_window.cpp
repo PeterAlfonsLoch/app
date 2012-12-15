@@ -380,8 +380,19 @@ long oswindow::get_state()
 
 
 
+bool oswindow::is_iconic()
+{
 
+   return get_state() == IconicState;
 
+}
+
+bool oswindow::is_window_visible()
+{
+
+   return get_state() == IconicState || get_state() == NormalState;
+
+}
 
 
 

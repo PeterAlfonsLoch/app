@@ -99,6 +99,9 @@ namespace gen
 #else
          {
 
+            if(!br_init_lib(NULL))
+               return false;
+
             char * lpszModuleFolder = br_find_exe_dir(NULL);
 
             if(lpszModuleFolder == NULL)
@@ -111,11 +114,11 @@ namespace gen
          }
 
 
-#ifdef RTLD_DI_LINKMAP
+#ifdef LINUX
 
          {
 
-            void * handle = dlopen("ca.so", 0);
+            void * handle = dlopen("libca2ca.so", RTLD_NOW);
 
             if(handle == NULL)
                return false;
@@ -124,7 +127,7 @@ namespace gen
 
             dlinfo(handle, RTLD_DI_LINKMAP, &plm);
 
-            m_strCa2ModuleFolder = System.dir().name(plm->l_name);
+            m_strCa2ModuleFolder = ::dir::name(plm->l_name);
 
             dlclose(handle);
 
@@ -344,6 +347,14 @@ finishedCa2ModuleFolder:;
    bool application::OnMessageWindowMessage(LPMESSAGE lpmsg)
    {
       UNREFERENCED_PARAMETER(lpmsg);
+      return false;
+   }
+
+#elif defined(LINUX)
+
+   bool application::OnMessageWindowMessage(XEvent * pevent)
+   {
+      UNREFERENCED_PARAMETER(pevent);
       return false;
    }
 

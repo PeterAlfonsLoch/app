@@ -1,13 +1,15 @@
 #include "framework.h"
 
 
+
 namespace ca
 {
+
 
    void application_bias::callback::connect_to(::ca::application * papp)
    {
       set_app(papp);
-      (dynamic_cast < ::radix::application * > (m_papp))->m_signal.connect(this, &callback::on_call_signal);
+      (dynamic_cast < ::ca::application * > (m_papp))->m_psignal->connect(this, &callback::on_call_signal);
    }
 
    void application_bias::callback::on_call_signal(gen::signal_object * pobj)
@@ -41,7 +43,7 @@ namespace ca
    {
       operator = (bias);
    }
-      
+
    application_bias & application_bias::operator = (const application_bias & bias)
    {
 

@@ -1116,7 +1116,6 @@
 		<Unit filename="javascript/javascript_tinyjs.h" />
 		<Unit filename="javascript/javascript_tinyjs_functions.cpp" />
 		<Unit filename="javascript/javascript_tinyjs_functions.h" />
-		<Unit filename="javascript_functions.h" />
 		<Unit filename="libcharguess/EUCJPProber.h" />
 		<Unit filename="libcharguess/EUCKRProber.h" />
 		<Unit filename="libcharguess/EUCTWProber.h" />
@@ -1588,6 +1587,8 @@
 		<Unit filename="sockets/http_memory_file.cpp" />
 		<Unit filename="sockets/http_memory_file.h" />
 		<Unit filename="sockets/sockets.h" />
+		<Unit filename="sockets/sockets_application.cpp" />
+		<Unit filename="sockets/sockets_application.h" />
 		<Unit filename="sockets/sockets_http_batch_file.cpp" />
 		<Unit filename="sockets/sockets_http_batch_file.h" />
 		<Unit filename="sockets/sockets_http_file.cpp" />

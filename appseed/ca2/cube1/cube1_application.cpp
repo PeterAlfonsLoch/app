@@ -103,7 +103,7 @@ namespace cube1
 
       // todo
 //      m_monitorinfoa.remove_all();
-      
+
 
 #endif
 
@@ -163,6 +163,10 @@ namespace cube1
 
       return System.get_window_rect(lprect);
 
+#elif defined(LINUX)
+
+      throw todo(get_app());
+
 #else
       throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
@@ -188,6 +192,8 @@ namespace cube1
 #ifdef WINDOWSEX
       *lprect = m_monitorinfoaDesk[i].rcMonitor;
 #elif defined(METROWIN)
+      throw todo(get_app());
+#elif defined(LINUX)
       throw todo(get_app());
 #else
       throw todo(get_app());

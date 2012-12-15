@@ -280,21 +280,21 @@ bool dir::mk(const char * lpcsz)
    vsstring tmp;
    vsstring dir;
    ::index oldpos = -1;
-   ::index pos = url.find("\\");
+   ::index pos = url.find("/");
    while (pos >= 0)
    {
       tmp = url.substr(oldpos + 1, pos - oldpos -1 );
-      dir += tmp + "\\";
+      dir += tmp + "/";
       if(stat(dir, &st))
       {
          mkdir(dir, S_IRWXU | S_IRWXG | S_IRWXO);
       }
       oldpos = pos;
-      pos = url.find("\\", oldpos + 1);
+      pos = url.find("/", oldpos + 1);
 
    }
    tmp = url.substr(oldpos + 1);
-   dir += tmp + "\\";
+   dir += tmp + "/";
    if(stat(dir, &st))
    {
       mkdir(dir, S_IRWXU | S_IRWXG | S_IRWXO);

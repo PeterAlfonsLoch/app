@@ -98,6 +98,13 @@ namespace ca
          get_ascendants_name(lpcsz, stra);
          string str;
          bool bUrl = System.url().is_url(lpcsz);
+#ifdef LINUX
+         bool bLinux = true;
+         str += "/";
+#else
+         bool bLinux = false;
+#endif
+
          for(int i = 0; i < stra.get_size(); i++)
          {
             str += stra[i];
@@ -105,7 +112,7 @@ namespace ca
             {
                str += "\\";
             }
-            if(bUrl)
+            if(bUrl || bLinux)
             {
                str.replace("\\", "/");
             }
@@ -413,7 +420,7 @@ namespace ca
 
       void system::as_memory(var varFile, primitive::memory_base & mem, ::ca::application * papp)
       {
-         
+
          mem.allocate(0);
 
          if(varFile.get_type() == var::type_string)
@@ -435,10 +442,10 @@ namespace ca
          }
 
          ex1::filesp spfile;
-         
+
          try
          {
-            
+
             spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
 
             mem.FullLoad(spfile);
@@ -448,7 +455,7 @@ namespace ca
          {
          }
 
-         
+
 
       }
 
@@ -478,9 +485,9 @@ namespace ca
 
       bool system::put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp)
       {
-         
+
          ex1::filesp spfile;
-         
+
          spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
 
          if(spfile.is_null())
@@ -693,9 +700,9 @@ namespace ca
                }
             }
          }
-         else 
+         else
          {
-            
+
             string strNew;
 
             if(System.dir().is(pszNew, papp))
@@ -727,7 +734,7 @@ namespace ca
 
             System.compress().null(ofile, ifile);
 
-            
+
 
             bool bOutputFail = false;
             bool bInputFail = false;
@@ -968,7 +975,7 @@ namespace ca
          {
             return App(papp).http().exists(strPath);
          }
-         
+
 
          if(papp->m_bZipIsDir)
          {
@@ -1125,7 +1132,7 @@ namespace ca
 
       string system::sys_temp(const char * pszName, const char * pszExtension, ::ca::application * papp)
       {
-         
+
          string strTempDir = get_sys_temp_path();
 
          if(!gen::str::ends(strTempDir, "\\") && !gen::str::ends(strTempDir, "/"))

@@ -15,6 +15,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
+					<Add option="-std=c++0x" />
 					<Add option="-g" />
 					<Add option="-fPIC" />
 					<Add option="-fpermissive" />
@@ -31,7 +32,14 @@
 				</Compiler>
 			</Target>
 		</Build>
-		<Unit filename="framework.cpp" />
+		<Compiler>
+			<Add directory="../../../app" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,-rpath,\\$$ORIGIN" />
+			<Add option="-lca2c" />
+			<Add directory="../../../stage/x86" />
+		</Linker>
 		<Unit filename="framework.h">
 			<Option compile="1" />
 			<Option weight="0" />

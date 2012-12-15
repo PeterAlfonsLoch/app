@@ -24,7 +24,7 @@ namespace ca
 
       interface_application()
       {
-         (dynamic_cast < ::radix::application * > (this->m_papp))->m_signal.connect(this, &::ca::interface_application < IFACE >::on_signal);
+         this->m_papp->m_psignal->connect(this, &::ca::interface_application < IFACE >::on_signal);
       }
 
       void on_signal(gen::signal_object * pobj)
@@ -38,8 +38,8 @@ namespace ca
 
    };
 
-   
-   
+
+
 } // namespace mixeruserbase
 
 

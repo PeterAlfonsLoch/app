@@ -187,7 +187,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 namespace radix
 {
-   
+
    const char application::gen_FileSection[] = "Recent File List";
    const char application::gen_FileEntry[] = "File%d";
    const char application::gen_PreviewSection[] = "Settings";
@@ -1003,45 +1003,45 @@ namespace radix
 
    bool application::ca_process_initialize()
    {
-      application_signal_object signal(this, &m_signal, ::ca::application_signal_process_initialize);
-      m_signal.emit(&signal);
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_process_initialize);
+      m_psignal->emit(&signal);
       return true;
    }
 
    bool application::ca_initialize1()
    {
-      application_signal_object signal(this, &m_signal, ::ca::application_signal_initialize1);
-      m_signal.emit(&signal);
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize1);
+      m_psignal->emit(&signal);
       return signal.m_bOk;
    }
 
    bool application::initialize2()
    {
-      application_signal_object signal(this, &m_signal, ::ca::application_signal_initialize2);
-      m_signal.emit(&signal);
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize2);
+      m_psignal->emit(&signal);
       return signal.m_bOk;
    }
 
    bool application::initialize3()
    {
-      application_signal_object signal(this, &m_signal, ::ca::application_signal_initialize3);
-      m_signal.emit(&signal);
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize3);
+      m_psignal->emit(&signal);
       return signal.m_bOk;
    }
 
    bool application::initialize()
    {
-      application_signal_object signal(this, &m_signal, ::ca::application_signal_initialize);
-      m_signal.emit(&signal);
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize);
+      m_psignal->emit(&signal);
       return signal.m_bOk;
    }
 
    bool application::ca_finalize()
    {
-      application_signal_object signal(this, &m_signal, ::ca::application_signal_finalize);
+      application_signal_object signal(this, m_psignal, ::ca::application_signal_finalize);
       try
       {
-         m_signal.emit(&signal);
+         m_psignal->emit(&signal);
       }
       catch(...)
       {
@@ -2941,6 +2941,8 @@ namespace radix
       {
          System.get_window_rect(m_rectScreen);
       }
+#elif defined(LINUX)
+
 #else
       if(m_bSessionSynchronizedScreen)
       {
@@ -2994,10 +2996,10 @@ namespace radix
          TRACE("Could not finalize message window");
       }
 
-      ::radix::application_signal_object signal(this, &m_signal, ::ca::application_signal_exit_instance);
+      ::radix::application_signal_object signal(this, m_psignal, ::ca::application_signal_exit_instance);
       try
       {
-         m_signal.emit(&signal);
+         m_psignal->emit(&signal);
       }
       catch(...)
       {

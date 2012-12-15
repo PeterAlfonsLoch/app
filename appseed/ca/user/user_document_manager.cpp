@@ -475,9 +475,7 @@ count document_manager::get_document_count()
    return nCount;
 }
 
-#ifdef WINDOWS
-
-bool document_manager::OnDDECommand(__in LPTSTR lpszCommand)
+bool document_manager::OnDDECommand(LPTSTR lpszCommand)
 {
    UNREFERENCED_PARAMETER(lpszCommand);
    /*string strCommand = lpszCommand;
@@ -627,9 +625,13 @@ bool document_manager::OnDDECommand(__in LPTSTR lpszCommand)
 
 RestoreAndReturn:
    //System.m_pCmdInfo = pOldInfo;
-   return bRetVal;
+   return bRetVal;*/
+   return TRUE;
 }
 
+#ifdef WINDOWS
+
+/*
 void document_manager::_001OnFileNew()
 {
    if (m_templateptra.is_empty())

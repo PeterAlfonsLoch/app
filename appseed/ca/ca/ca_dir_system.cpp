@@ -549,9 +549,13 @@ namespace ca
 
          string strLookup(strPath);
 
-
+#ifdef LINUX
+         if(strLookup.last_char() != '\\' && strLookup.last_char() != '/' )
+            strLookup += "/";
+#else
          if(strLookup.last_char() != '\\' && strLookup.last_char() != '/' )
             strLookup += "\\";
+#endif
 
          single_lock sl(&m_mutex, TRUE);
 
@@ -606,7 +610,11 @@ namespace ca
 
       void system::is_dir_map::set(const char * pszPath, bool bIsDir, DWORD dwLastError)
       {
+#ifdef LINUX
+         static string strSep = "/";
+#else
          static string strSep = "\\";
+#endif
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
          isdir.m_dwError = dwLastError;
@@ -620,7 +628,11 @@ namespace ca
 
       void system::is_dir_map::set(const string & strPath, bool bIsDir, DWORD dwLastError)
       {
+#ifdef LINUX
+         static string strSep = "/";
+#else
          static string strSep = "\\";
+#endif
          is_dir isdir;
          isdir.m_bIsDir = bIsDir;
          isdir.m_dwError = dwLastError;
@@ -783,7 +795,7 @@ namespace ca
 
       void system::matter_ls(::ca::application * papp, const string & str, stringa & stra)
       {
-         
+
          string strDir = matter(papp, stra, true);
 
          ls(papp, strDir, &stra);
@@ -794,7 +806,7 @@ namespace ca
       {
 
          ::index j;
-         
+
          ::count c = stra.get_count();
 
          if(c <= 0)
@@ -810,9 +822,9 @@ namespace ca
 
          for(j = 0; j < c; j++)
          {
-         
+
             strPath = path(strLs, stra[j]);
-            
+
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -836,9 +848,9 @@ namespace ca
 
             for(j = 0; j < c; j++)
             {
-         
+
                strPath = path(strLs, stra[j]);
-            
+
                if(bDir)
                {
                   if(System.dir().is(strPath, get_app()))
@@ -859,9 +871,9 @@ namespace ca
 
          for(j = 0; j < c; j++)
          {
-         
+
             strPath = path(strLs, stra[j]);
-            
+
             if(bDir)
             {
                if(System.dir().is(strPath, get_app()))
@@ -1250,7 +1262,7 @@ namespace ca
 
          if(iFind > 0)
          {
-            
+
             strRoot = strAppNameParam.Left(iFind);
 
          }
@@ -1497,32 +1509,32 @@ namespace ca
          UNREFERENCED_PARAMETER(lpcsz2);
          return path(ca2("ccvotagus"), lpcsz, lpcsz2);
       }
-      
+
       string system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::ca::application * papp)
       {
-         
+
          stringa stra;
-         
+
          stra.add_tokens(pszEnv, ":", false);
-         
+
          string strCandidate;
-         
+
          for(int i = 0; i < stra.get_count(); i++)
          {
-            
+
             strCandidate = path(stra[i], pszTopic);
-            
+
             if(App(papp).file().exists(strCandidate))
             {
                return strCandidate;
             }
-               
+
          }
-         
+
          return "";
-               
+
       }
-      
+
 
    }  // namespace dir
 

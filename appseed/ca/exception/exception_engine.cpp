@@ -970,7 +970,13 @@ retry_get_base:
        void * array[1024];
        int size = backtrace(array, 1024);
 
-       array[1] = caller_address;
+       if(caller_address != NULL)
+       {
+
+         array[1] = caller_address;
+
+       }
+
 
        char ** messages = backtrace_symbols(array, size);
 

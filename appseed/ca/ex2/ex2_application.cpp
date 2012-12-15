@@ -323,7 +323,7 @@ namespace ex2
 
    ::ca::window * application::get_desktop_window()
    {
-#ifdef METROWIN
+#if defined(METROWIN) || defined(LINUX)
       throw todo(this);
 #else
       return window_from_os_data(::GetDesktopWindow());

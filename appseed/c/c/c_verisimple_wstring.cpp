@@ -24,7 +24,7 @@ verisimple_wstring::verisimple_wstring(const char * psz)
    m_pwsz         = wstring_data::get_nil();
 
    operator = (psz);
-   
+
 }
 
 
@@ -38,7 +38,8 @@ verisimple_wstring::verisimple_wstring(const wchar_t * pwsz, ::count iCount)
    }
    else
    {
-
+      while(iCount < 0)
+         iCount = wcslen(pwsz) + iCount + 1;
       m_pwsz = (wchar_t *) wstring_data::alloc(iCount + 1);
       get_data()->m_iLength = iCount;
       memcpy_dup(m_pwsz, pwsz, get_data()->m_iLength * sizeof(wchar_t));
@@ -108,7 +109,7 @@ wchar_t * verisimple_wstring::alloc(count iCount)
 
 verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & wstr)
 {
-   
+
    if(this != &wstr)
    {
 
@@ -127,17 +128,17 @@ verisimple_wstring & verisimple_wstring::operator = (const verisimple_wstring & 
       }
 
       set_length(wstr.get_length());
-      
+
 
    }
 
    return *this;
 
 }
-   
+
 verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 {
-   
+
    if(m_pwsz != pwsz)
    {
 
@@ -167,7 +168,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 
 verisimple_wstring & verisimple_wstring::operator = (const char * psz)
 {
-   
+
    count iLen = utf16_len(psz);
 
    alloc(iLen + 1);
@@ -175,9 +176,9 @@ verisimple_wstring & verisimple_wstring::operator = (const char * psz)
    utf8_to_16(*this, psz);
 
    set_length(iLen);
-   
+
    return *this;
-   
+
 }
 
 
@@ -217,7 +218,7 @@ verisimple_wstring operator + (const wchar_t * wpsz, const verisimple_wstring & 
 
 CLASS_DECL_c wstring gen_utf8_to_16(const char * psz)
 {
-   
+
    wstring wstr;
 
    count iLen = utf16_len(psz);
@@ -252,7 +253,7 @@ verisimple_wstring verisimple_wstring::substr(::index iStart, ::count count)
       {
          count = get_data()->m_iLength - iStart + count + 1;
       }
-      
+
       if(iStart + count > get_data()->m_iLength)
       {
          count = get_data()->m_iLength - iStart;

@@ -40,4 +40,11 @@ CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const 
 CLASS_DECL_c vsstring get_command_line_param(const char * pszCommandLine, const char * pszParam);
 
 
+CLASS_DECL_c bool os_initialize();
+CLASS_DECL_c bool os_finalize();
+
+
+CLASS_DECL_c bool main_initialize();
+CLASS_DECL_c bool main_finalize();
+
 

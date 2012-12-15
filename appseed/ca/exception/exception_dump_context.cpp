@@ -171,6 +171,20 @@ dump_context& dump_context::dumpAsHex(WORD w)
 
 }
 
+dump_context& dump_context::operator<<(unsigned int ui)
+{
+
+   string str;
+
+   str.Format("%u", ui);
+
+   OutputString(str);
+
+   return *this;
+
+}
+
+
 #if defined(_WIN64) && !defined(_LP64)
 dump_context& dump_context::operator<<(UINT u)
 #else

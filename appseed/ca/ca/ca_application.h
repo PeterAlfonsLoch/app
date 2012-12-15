@@ -6,9 +6,10 @@ namespace gen
 
 
    class signal_object;
+   class signal;
 
 
-}
+} // namespace gen
 
 
 namespace user
@@ -80,6 +81,8 @@ namespace ca
    {
    public:
 
+
+      gen::signal                 * m_psignal;
 
       bool                          m_bInitializeProDevianMode;
       main_init_data *              m_pinitmaindata;

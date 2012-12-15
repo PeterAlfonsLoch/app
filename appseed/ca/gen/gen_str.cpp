@@ -1260,7 +1260,7 @@ namespace gen
    string & str::from(string & str, int i)
    {
 
-      str.Format("%d", i);
+      str = i64toa_dup(i);
 
       return str;
 
@@ -1287,7 +1287,7 @@ namespace gen
    string & str::from(string & str, unsigned int ui)
    {
 
-      str.Format("%u", ui);
+      str = ui64toa_dup(ui);
 
       return str;
 
@@ -1298,7 +1298,7 @@ namespace gen
    string & str::from(string & str, unsigned long ul)
    {
 
-      str.Format("%u", ul);
+      str = ui64toa_dup(ul);
 
       return str;
 
@@ -1367,25 +1367,25 @@ namespace gen
       if(len == 6)   { *pslide += 6; return psz; }
       throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
    }
-   
+
    // macos mountain lion near Finados - inha |-) at veriverse on 2012-11-04 with Mom with Carol speaking about Mom Dream with gone Grandma - extrem care feeling
    const char * str::utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc)
    {
 
       strsize count = 0;
- 
+
       gen::str::utf8_inc_slide(&count, pchSrc);
-   
+
       memcpy(pchDst, pchSrc, count);
-      
+
       pchSrc         += count;
-   
+
       pchDst         += count;
-   
+
       *pslideback    -= count;
-      
+
       return pchSrc;
-      
+
    }
 
 
@@ -1816,9 +1816,9 @@ namespace gen
       {
          throw "natural greater than max";
       }
-      
+
       pszXml = psz;
-      
+
       return ui;
 
    }
@@ -2274,6 +2274,22 @@ namespace gen
 
    }
 
+   string & str::from(string & str, long long ll)
+   {
+
+#ifdef LINUX
+
+      str.Format("%ll", ll);
+
+#else
+
+      str.Format("%ll", ll);
+
+#endif
+
+      return str;
+
+   }
 
    void str::increment_digit_letter(string & str)
    {

@@ -425,8 +425,8 @@ InitFailure:
 
       try
       {
-         ::radix::application_signal_object signal(this, &m_signal, ::ca::application_signal_start);
-         m_signal.emit(&signal);
+         ::radix::application_signal_object signal(this, m_psignal, ::ca::application_signal_start);
+         m_psignal->emit(&signal);
       }
       catch(...)
       {
@@ -762,7 +762,7 @@ InitFailure:
       }
       catch(::exit_exception &)
       {
-         
+
          System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
          goto exit_application;
@@ -791,7 +791,7 @@ InitFailure:
       }
       catch(::exit_exception &)
       {
-         
+
          System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
          goto exit_application;
@@ -806,7 +806,7 @@ InitFailure:
 
       try
       {
-          
+
          if(is_system())
          {
 
@@ -830,7 +830,7 @@ exit_application:
       }
       catch(::exit_exception &)
       {
-         
+
          System.os().post_to_all_threads(WM_QUIT, 0, 0);
 
          m_iReturnCode = -1;

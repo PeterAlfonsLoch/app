@@ -159,3 +159,96 @@ CLASS_DECL_c bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
    return bXIntersects || bYIntersects;
 }
 
+
+
+
+int
+WINAPI
+MultiByteToWideChar(
+    UINT     CodePage,
+    DWORD    dwFlags,
+    LPCSTR   lpMultiByteStr,
+    int      cbMultiByte,
+    LPWSTR  lpWideCharStr,
+    int      cchWideChar)
+{
+
+   vsstring str(lpMultiByteStr, cbMultiByte);
+
+   wstring wstr(str);
+
+   if(cchWideChar == 0)
+      return wstr.get_length();
+
+   int iLen = min(cchWideChar, wstr.get_length());
+
+   if(lpWideCharStr != NULL)
+   {
+
+      wcsncpy(lpWideCharStr, wstr, iLen);
+
+      if(cchWideChar > 0)
+      {
+
+         lpWideCharStr[iLen] = L'\0';
+
+      }
+
+   }
+
+   return iLen;
+
+}
+
+int
+WINAPI
+WideCharToMultiByte(
+    UINT     CodePage,
+    DWORD    dwFlags,
+    LPCWSTR  lpWideCharStr,
+    int      cchWideChar,
+    LPSTR   lpMultiByteStr,
+    int      cbMultiByte,
+    LPCSTR   lpDefaultChar,
+    LPBOOL  lpUsedDefaultChar)
+{
+
+   wstring wstr(lpWideCharStr, cchWideChar);
+
+   vsstring str(wstr);
+
+   if(cbMultiByte == 0)
+   {
+      return str.get_length();
+   }
+
+   int iLen = min(cbMultiByte, str.get_length());
+
+   if(lpMultiByteStr != NULL)
+   {
+
+      strncpy(lpMultiByteStr, str, iLen);
+
+      if(cbMultiByte > 0)
+      {
+
+         lpMultiByteStr[iLen] = '\0';
+
+      }
+
+   }
+
+   return iLen;
+
+}
+
+
+
+CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
+{
+
+   vsstring str;
+
+   return str;
+
+}
