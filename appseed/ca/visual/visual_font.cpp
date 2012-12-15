@@ -423,17 +423,9 @@ namespace visual
 
       ::ca::font * pFontOld = spgraphics->SelectObject(m_spfont);
 
-#ifdef WINDOWS
-
       spgraphics->get_text_metrics(&m_tm);
 
       m_iFontHiHeight = m_tm.tmAscent + m_tm.tmDescent;
-
-#else
-
-      throw todo(get_app());
-
-#endif
 
       spgraphics->SelectObject(pFontOld);
       spgraphics->DeleteDC();

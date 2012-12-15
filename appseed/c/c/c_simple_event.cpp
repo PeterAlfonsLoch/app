@@ -38,6 +38,8 @@ simple_event::simple_event(bool bInitialWait, bool bManualReset)
 }
 
 
+
+
 simple_event::~simple_event()
 {
 

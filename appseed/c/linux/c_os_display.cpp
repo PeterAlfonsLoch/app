@@ -9,9 +9,9 @@ public:
 
 };
 
-#define CA2_CCVOTAGUS_WINDOW_LONG "ca2_ccvotagus_fontopu_window_long"
-#define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_fontopu_window_long_style"
-#define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_fontopu_window_long_style_ex"
+#define CA2_CCVOTAGUS_WINDOW_LONG "ca2_ccvotagus_window_long"
+#define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_window_long_style"
+#define CA2_CCVOTAGUS_WINDOW_LONG_STYLE_EX "ca2_ccvotagus_window_long_style_ex"
 
 osdisplay_dataptra * osdisplay::s_pdataptra = new osdisplay_dataptra;
 

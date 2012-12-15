@@ -411,6 +411,7 @@ finishedCa2ModuleFolder:;
 
          dlclose(handle);
 
+//         m_strCa2ModuleFolder = dir::name(strModuleFileName);
 
       }
 

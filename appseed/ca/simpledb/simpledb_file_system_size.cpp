@@ -343,18 +343,19 @@ void FileSystemSizeWnd::install_message_handling(::gen::message::dispatch * pint
 bool FileSystemSizeWnd::CreateClient()
 {
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
    m_bServer = false;
-  ::user::interaction * puiMessage = NULL;
+   return m_p->create_message_window("ca2::fontopus::FileSystemSizeWnd::Client");
+/*  ::user::interaction * puiMessage = NULL;
    puiMessage = System.window_from_os_data(HWND_MESSAGE);
-   return m_p->create(NULL, "ca2::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;
+   return m_p->create(NULL, "ca2::fontopus::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
-#else
+//#else
 
-   throw not_implemented(get_app());
+  // throw not_implemented(get_app());
 
-#endif
+//#endif
 
 }
 

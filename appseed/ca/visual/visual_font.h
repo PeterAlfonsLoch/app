@@ -15,9 +15,9 @@ namespace visual
          EffectEmbossed = 1
       };
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
       TEXTMETRIC      m_tm;
-#endif
+//#endif
 
       int            m_iFontHiHeight;
       //static const DWORD m_dwAllocationAddUp;

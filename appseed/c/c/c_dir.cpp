@@ -416,8 +416,11 @@ vsstring dir::name(const char * path1)
    vsstring str;
 
    str = path1;
-
+#ifdef LINUX
+   index iPos = str.rfind('/');
+#else
    index iPos = str.rfind('\\');
+#endif
 
    return str.substr(0, iPos + 1);
 

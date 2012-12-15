@@ -195,14 +195,10 @@ bool db_server::finalize()
 bool db_server::create_message_window()
 {
 
-#ifdef WINDOWS
-
    if(!m_p->IsWindow())
    {
       string strName = "ca2::fontopus::message_wnd::simpledb::db_server";
-      ::user::interaction * puiMessage = NULL;
-      puiMessage = System.window_from_os_data(HWND_MESSAGE);
-      if(!m_p->create(NULL, strName, 0, rect(0, 0, 0, 0), puiMessage, NULL))
+      if(!m_p->create_message_window(strName))
       {
          return false;
       }
@@ -215,11 +211,6 @@ bool db_server::create_message_window()
 
    return true;
 
-#else
-
-   throw not_implemented(get_app());
-
-#endif
 
 }
 

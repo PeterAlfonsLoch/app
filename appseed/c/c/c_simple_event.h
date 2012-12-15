@@ -27,6 +27,7 @@ public:
    ~simple_event();
 
 
+
    void set_event();
 
    void reset_event();
