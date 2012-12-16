@@ -2274,22 +2274,18 @@ namespace gen
 
    }
 
+#if defined(LINUX)
+
    string & str::from(string & str, long long ll)
    {
 
-#ifdef LINUX
-
       str.Format("%ll", ll);
-
-#else
-
-      str.Format("%ll", ll);
-
-#endif
 
       return str;
 
    }
+
+#endif
 
    void str::increment_digit_letter(string & str)
    {

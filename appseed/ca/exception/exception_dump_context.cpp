@@ -171,6 +171,9 @@ dump_context& dump_context::dumpAsHex(WORD w)
 
 }
 
+
+#if defined(_WIN64)
+
 dump_context& dump_context::operator<<(unsigned int ui)
 {
 
@@ -183,6 +186,8 @@ dump_context& dump_context::operator<<(unsigned int ui)
    return *this;
 
 }
+
+#endif
 
 
 #if defined(_WIN64) && !defined(_LP64)

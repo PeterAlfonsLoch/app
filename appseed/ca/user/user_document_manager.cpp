@@ -629,7 +629,7 @@ RestoreAndReturn:
    return TRUE;
 }
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
 /*
 void document_manager::_001OnFileNew()
@@ -655,10 +655,10 @@ void document_manager::_001OnFileNew()
 
    ptemplate->open_document_file(NULL, TRUE, System.m_puiInitialPlaceHolderContainer);
       // if returns NULL, the ::fontopus::user has already been alerted*/
-   return TRUE;
-}
+//   return TRUE;
+//}
 
-#endif
+//#endif
 
 void document_manager::on_file_open()
 {
