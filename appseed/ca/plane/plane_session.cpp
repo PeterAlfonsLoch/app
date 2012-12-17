@@ -1068,7 +1068,7 @@ namespace plane
 
       if(emouse == ::user::mouse_left_button)
       {
-         return (::GetAsyncKeyState(VK_LBUTTON) & (short) 0x8000) != 0;*
+         return (::GetAsyncKeyState(VK_LBUTTON) & (short) 0x8000) != 0;
       }
       else if(emouse == ::user::mouse_right_button)
       {
