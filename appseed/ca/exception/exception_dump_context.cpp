@@ -172,7 +172,7 @@ dump_context& dump_context::dumpAsHex(WORD w)
 }
 
 
-#if defined(_WIN64)
+#if defined(LINUX)
 
 dump_context& dump_context::operator<<(unsigned int ui)
 {
