@@ -211,7 +211,7 @@
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/c_os_window.cpp" open="1" top="0" tabpos="50">
+	<File name="linux/c_os_window.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="1099" topLine="56" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="0">

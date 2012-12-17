@@ -376,7 +376,11 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
       }
       str += strAdd;
    }
+#ifdef LINUX
+   str.replace("\\", "/");
+#else
    str.replace("/", "\\");
+#endif
    return str;
 }
 
@@ -469,7 +473,7 @@ void dir::ls(stra_dup & stra, const char *psz)
    while ((dp = readdir(dirp)) != NULL)
    {
 
-      stra.add(dp->d_name);
+      stra.add(path(psz, dp->d_name));
 
    }
 

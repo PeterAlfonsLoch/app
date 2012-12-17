@@ -527,6 +527,7 @@ namespace zip
    }*/
 
    /* Error Codes */
+   #ifndef LINUX
 
    #define EPERM           1
    #define ENOENT          2
@@ -583,7 +584,7 @@ namespace zip
     */
    #define EDEADLOCK       EDEADLK
 
-
+#endif
 
 
    bool InFile::IsOpened()

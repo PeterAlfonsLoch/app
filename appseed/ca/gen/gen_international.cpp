@@ -30,7 +30,7 @@ namespace gen
          LPSTR lpsz = str.GetBuffer(iCount);
          if(UnicodeToMultiByte(uiCodePage, lpsz, iCount, lpcsz))
          {
-            str.ReleaseBufferSetLength(iCount - 1);
+            str.ReleaseBufferSetLength(iCount);
             return true;
          }
          else
@@ -48,7 +48,7 @@ namespace gen
          LPSTR lpsz = str.GetBuffer(iCount);
          if(UnicodeToMultiByte(uiCodePage, lpsz, iMultiByteCount, lpcsz, iCount))
          {
-            str.ReleaseBufferSetLength(iCount - 1);
+            str.ReleaseBufferSetLength(iCount);
             return true;
          }
          else

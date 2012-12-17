@@ -2071,7 +2071,7 @@
 
 1354886566 /ca2/app/appseed/c/c/c_wstringtovss.h
 
-1354886566 /ca2/app/appseed/c/c/c_dir.h
+1355775089 /ca2/app/appseed/c/c/c_dir.h
 
 1354886566 /ca2/app/appseed/c/c/c_md5.h
 
@@ -2119,7 +2119,7 @@
 
 1354886566 /ca2/app/appseed/c/c/c_file_watcher_impl.h
 
-1354886566 /ca2/app/appseed/c/metrowin/c_os.h
+1355771451 /ca2/app/appseed/c/metrowin/c_os.h
 	"c/os/os.h"
 	"c_os_gdi.h"
 	"c_os_thread.h"
@@ -2263,7 +2263,7 @@
 1354886566 source:/ca2/app/appseed/c/c/c_debug.cpp
 	"framework.h"
 
-1355599493 source:/ca2/app/appseed/c/c/c_dir.cpp
+1355780644 source:/ca2/app/appseed/c/c/c_dir.cpp
 	"framework.h"
 	<Shlobj.h>
 	<Security.h>
@@ -2511,11 +2511,11 @@
 
 1354974458 /ca2/app/appseed/c/cross/windows/windows_thread.h
 
-1355437148 /ca2/app/appseed/c/cross/windows/windows_user.h
+1355771451 /ca2/app/appseed/c/cross/windows/windows_user.h
 
 1355266172 /ca2/app/appseed/c/cross/windows/windows_gdi.h
 
-1355563500 source:/ca2/app/appseed/c/cross/windows/windows_user.cpp
+1355771451 source:/ca2/app/appseed/c/cross/windows/windows_user.cpp
 	"framework.h"
 
 1355503564 /ca2/app/appseed/c/c/c_user.h
@@ -2523,7 +2523,7 @@
 1355514324 source:/ca2/app/appseed/c/ansios/ansios_cross_win_file.cpp
 	"framework.h"
 
-1355557187 source:/ca2/app/appseed/c/c/c_integer_to_string.cpp
+1355771451 source:/ca2/app/appseed/c/c/c_integer_to_string.cpp
 	"framework.h"
 
 1354886566 source:/ca2/app/appseed/c/c/c_string_to_integer.cpp

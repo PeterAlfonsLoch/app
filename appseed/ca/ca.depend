@@ -8331,7 +8331,7 @@
 
 1354886568 /ca2/app/appseed/ca/gen/gen_math_rng.h
 
-1354886568 /ca2/app/appseed/ca/gen/gen_math.h
+1355771452 /ca2/app/appseed/ca/gen/gen_math.h
 
 1354886568 /ca2/app/appseed/ca/gen/gen_geometry.h
 
@@ -10557,7 +10557,7 @@
 1354886570 source:/ca2/app/appseed/ca/compress/zip/zip_file.cpp
 	"framework.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/zip/zip_in_file.cpp
+1355785457 source:/ca2/app/appseed/ca/compress/zip/zip_in_file.cpp
 	"framework.h"
 	"InFile.h"
 
@@ -10917,7 +10917,7 @@
 1342864819 source:/ca2/app/appseed/ca/exception/exception_base_exception.cpp
 	"framework.h"
 
-1354958618 source:/ca2/app/appseed/ca/exception/exception_call_stack.cpp
+1355771451 source:/ca2/app/appseed/ca/exception/exception_call_stack.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/exception/exception_debug.cpp
@@ -10980,7 +10980,7 @@
 1354886571 source:/ca2/app/appseed/ca/exception/exception_not_implemented.cpp
 	"framework.h"
 
-1355526849 source:/ca2/app/appseed/ca/exception/exception_dump_context.cpp
+1355771451 source:/ca2/app/appseed/ca/exception/exception_dump_context.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/exception/exception_not_licensed.cpp
@@ -11220,7 +11220,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_hash.cpp
 	"framework.h"
 
-1355256145 source:/ca2/app/appseed/ca/gen/gen_international.cpp
+1355774490 source:/ca2/app/appseed/ca/gen/gen_international.cpp
 	"framework.h"
 	<winnls.h>
 
@@ -11236,7 +11236,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_logic.cpp
 	"framework.h"
 
-1355256145 source:/ca2/app/appseed/ca/gen/gen_math.cpp
+1355771452 source:/ca2/app/appseed/ca/gen/gen_math.cpp
 	"framework.h"
 	<time.h>
 
@@ -11296,7 +11296,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_simple_thread.cpp
 	"framework.h"
 
-1355557291 source:/ca2/app/appseed/ca/gen/gen_str.cpp
+1355771452 source:/ca2/app/appseed/ca/gen/gen_str.cpp
 	"framework.h"
 	<ctype.h>
 
@@ -11653,7 +11653,7 @@
 	"framework.h"
 	<sys/mman.h>
 
-1354886570 source:/ca2/app/appseed/ca/multithreading/multithreading_mutex.cpp
+1355771454 source:/ca2/app/appseed/ca/multithreading/multithreading_mutex.cpp
 	"framework.h"
 	<sys/ipc.h>
 	<sys/sem.h>
@@ -11684,7 +11684,7 @@
 1354886570 source:/ca2/app/appseed/ca/multithreading/multithreading_wait_result.cpp
 	"framework.h"
 
-1355403157 source:/ca2/app/appseed/ca/multithreading/multithreading_waitable.cpp
+1355771454 source:/ca2/app/appseed/ca/multithreading/multithreading_waitable.cpp
 	"framework.h"
 
 1354886570 source:/ca2/app/appseed/ca/os/os_cross_windows.cpp
@@ -11699,7 +11699,7 @@
 1354886567 source:/ca2/app/appseed/ca/plane/plane_library.cpp
 	"framework.h"
 
-1355403157 source:/ca2/app/appseed/ca/plane/plane_session.cpp
+1355771452 source:/ca2/app/appseed/ca/plane/plane_session.cpp
 	"framework.h"
 
 1355554094 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
@@ -12322,7 +12322,7 @@
 1354886573 source:/ca2/app/appseed/ca/user/user_control.cpp
 	"framework.h"
 
-1355522311 source:/ca2/app/appseed/ca/user/user_document_manager.cpp
+1355771451 source:/ca2/app/appseed/ca/user/user_document_manager.cpp
 	"framework.h"
 
 1354886573 source:/ca2/app/appseed/ca/user/user_application.cpp
@@ -12836,7 +12836,7 @@
 
 1354886566 /ca2/app/appseed/c/c/c_wstringtovss.h
 
-1354886566 /ca2/app/appseed/c/c/c_dir.h
+1355775089 /ca2/app/appseed/c/c/c_dir.h
 
 1354886566 /ca2/app/appseed/c/c/c_md5.h
 
@@ -12900,7 +12900,7 @@
 
 1354886566 /ca2/app/appseed/c/linux/c_os_simple_path.h
 
-1354886566 /ca2/app/appseed/c/metrowin/c_os.h
+1355771451 /ca2/app/appseed/c/metrowin/c_os.h
 	"c/os/os.h"
 	"c_os_gdi.h"
 	"c_os_thread.h"
@@ -13122,7 +13122,7 @@
 1354886566 /ca2/app/appseed/c/c/c_net.h
 	<netinet/in.h>
 
-1354886567 /ca2/app/appseed/ca/metrowin/metrowin.h
+1355771451 /ca2/app/appseed/ca/metrowin/metrowin.h
 
 1354901616 /ca2/app/appseed/ca/multithreading/multithreading_condition.h
 
@@ -13540,7 +13540,7 @@
 1354977273 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_SctpSocket.cpp
 	"framework.h"
 
-1355256146 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_SocketHandler.cpp
+1355771452 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_SocketHandler.cpp
 	"framework.h"
 
 1354886572 source:/ca2/app/appseed/ca/sockets/bsd/basic/sockets_StreamSocket.cpp
@@ -13597,7 +13597,7 @@
 1354886572 source:/ca2/app/appseed/ca/sockets/bsd/http/sockets_http_session.cpp
 	"framework.h"
 
-1354886572 source:/ca2/app/appseed/ca/sockets/bsd/http/sockets_http_socket.cpp
+1355771452 source:/ca2/app/appseed/ca/sockets/bsd/http/sockets_http_socket.cpp
 	"framework.h"
 
 1354886572 source:/ca2/app/appseed/ca/sockets/bsd/http/sockets_http_tunnel.cpp
@@ -13719,7 +13719,7 @@
 	"framework.h"
 	<openssl/ssl.h>
 
-1355437148 /ca2/app/appseed/c/cross/windows/windows_user.h
+1355771451 /ca2/app/appseed/c/cross/windows/windows_user.h
 
 1355266172 /ca2/app/appseed/c/cross/windows/windows_gdi.h
 
