@@ -13,17 +13,28 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
 #ifdef _WIN32
 
-   m_object = ::CreateMutexExW(lpsaAttribute, gen::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
+   m_object = ::CreateMutexExW(lpsaAttribute, pstrName == NULL ? NULL : (const wchar_t *) gen::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
 
-   if (m_object == NULL)
+   if(m_object == NULL)
    {
 
-      m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, gen::international::utf8_to_unicode(pstrName));
-
-      if(m_object == NULL)
+      if(pstrName == NULL)
       {
 
          throw resource_exception(papp);
+
+      }
+      else
+      {
+
+         m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, gen::international::utf8_to_unicode(pstrName));
+
+         if(m_object == NULL)
+         {
+
+            throw resource_exception(papp);
+
+         }
 
       }
 

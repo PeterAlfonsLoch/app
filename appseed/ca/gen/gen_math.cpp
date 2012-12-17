@@ -34,7 +34,7 @@ namespace gen
       {
          // initial rng seed
          dPi = atan(1.0) * 4.0;
-/*         hCryptProv = NULL;
+         hCryptProv = NULL;
          hOriginalKey = NULL;
          hDuplicateKey = NULL;
 
@@ -142,28 +142,29 @@ namespace gen
          }
 
          {
-            m_chRngReSeedCountDown = -1;
+          //  m_chRngReSeedCountDown = -1;
             //unsigned long ulRnd = rnd();
-         }*/
+         }
 
       }
 
-      int math::gen_rand()
+      uint64_t math::gen_rand()
       {
-         int i = 0;
-         gen_rand(&i, 3);
-         return i;
+         uint64_t ui = 0;
+         gen_rand(&ui, 3);
+         return ui;
       }
 
       void math::gen_rand(void * buf, DWORD dwLen)
       {
-         byte * puch = (byte *) buf;
+         CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);
+         /*byte * puch = (byte *) buf;
          while(dwLen > 0)
         {
            *puch = (byte) rnd() % 256;
            puch++;
            dwLen--;
-         }
+         }*/
          //CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);
       }
 
@@ -344,21 +345,8 @@ namespace gen
             return i1;
          int64_t iMin = min(i1, i2);
          int64_t iMax = max(i1, i2);
-         double dRand = 0.0;
-         double dRange = (double) (iMax - iMin);
-         double dRandRange = 1.0;
-         int i = 1;
-         while((dRandRange - 1.0) < dRange)
-         {
-            dRand += dRandRange * gen_rand();
-            dRandRange = pow((double) rand_max() + 1, (double) i);
-            i++;
-         }
-         dRandRange -= 1.0;
-         dRand *= (dRange) / (double) dRandRange;
-         dRand += (double) iMin;
-         dRand += 0.5;
-         return (int) dRand;
+         uint64_t uiRange = iMax - iMin;
+         return (gen_rand() % (uiRange + 1)) + iMin;
       }
       
       /*

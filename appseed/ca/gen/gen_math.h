@@ -18,11 +18,11 @@ namespace gen
       {
       private:
          double         dPi;
-#if WINVER >= 0x500
-/*         HCRYPTPROV     hCryptProv;
+//#if WINVER >= 0x500
+         HCRYPTPROV     hCryptProv;
          HCRYPTKEY      hOriginalKey;
-         HCRYPTKEY      hDuplicateKey;*/
-#endif
+         HCRYPTKEY      hDuplicateKey;
+//#endif
          DWORD          dwMode;
          BYTE           pbData[16];
          rng            m_rng;
@@ -37,7 +37,7 @@ namespace gen
 
 
          int LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax);
-         int gen_rand();
+         uint64_t gen_rand();
          void gen_rand(void * buf, DWORD dwLen);
          unsigned long rnd();
          int random_context_entropy(int iMin, int iMax, int iLevel = 3);
