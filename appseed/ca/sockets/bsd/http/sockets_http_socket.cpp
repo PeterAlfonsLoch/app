@@ -357,7 +357,7 @@ namespace sockets
             continue;
 //         strLine = ;
          msg += strKey + ": " + strValue + "\r\n";
-         TRACE0(strKey + ": " + strValue +  + "\n");
+//         TRACE0(strKey + ": " + strValue +  + "\n");
          //TRACE(strTrace + "\n");
       }
 
