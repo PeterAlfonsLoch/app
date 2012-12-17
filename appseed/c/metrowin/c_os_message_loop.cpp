@@ -5,11 +5,12 @@
 void _c_simple_message_loop()
 {
 
-   MSG msg;
-	while(GetMessage(&msg, NULL, 0, 0xffffffffu))
+   MESSAGE msg;
+	while(GetMessage(&msg, ::ca::null(), 0, 0xffffffffu))
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
+      throw "todo";
+//		TranslateMessage(&msg);
+//		DispatchMessage(&msg);
 	}
 
 

@@ -34,6 +34,8 @@ namespace gen
       {
          // initial rng seed
          dPi = atan(1.0) * 4.0;
+
+#ifdef WINDOWSEX
          hCryptProv = NULL;
          hOriginalKey = NULL;
          hDuplicateKey = NULL;
@@ -141,6 +143,8 @@ namespace gen
               printf("Error during CryptSetKeyParam.");
          }
 
+#endif
+
          {
           //  m_chRngReSeedCountDown = -1;
             //unsigned long ulRnd = rnd();
@@ -150,22 +154,37 @@ namespace gen
 
       uint64_t math::gen_rand()
       {
+#if defined(METROWIN)
+         uint64_t uiLo = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+         uint64_t uiHi = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandomNumber();
+         return uiLo | (uiHi << 32);
+#else
          uint64_t ui = 0;
-         gen_rand(&ui, 3);
+         gen_rand(&ui, sizeof(ui));
          return ui;
+#endif
+         
       }
 
       void math::gen_rand(void * buf, DWORD dwLen)
       {
+#ifdef WINDOWSEX
          CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);
-         /*byte * puch = (byte *) buf;
+#elif defined(METROWIN)
+         Windows::Storage::Streams::IBuffer ^ buffer = Windows::Security::Cryptography::CryptographicBuffer::GenerateRandom(dwLen);
+         simple_memory mem;
+         mem.set_os_stream_buffer(buffer);
+         memcpy(buf, mem.get_data(), mem.get_size());
+#else
+
+         byte * puch = (byte *) buf;
          while(dwLen > 0)
         {
            *puch = (byte) rnd() % 256;
            puch++;
            dwLen--;
-         }*/
-         //CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);
+         }
+#endif
       }
 
       int math::rand_max()

@@ -76,7 +76,7 @@ extern CLASS_DECL_c int g_iMouse;
 #endif
 
 
-CLASS_DECL_c int WINAPI GetSystemMetrics(int i);
+//CLASS_DECL_c int WINAPI GetSystemMetrics(int i);
 
 CLASS_DECL_c oswindow WINAPI GetFocus();
 CLASS_DECL_c oswindow WINAPI SetFocus(oswindow oswindow);

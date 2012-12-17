@@ -4,7 +4,7 @@
 CLASS_DECL_ca DWORD GetTickCount();
 
 
-CLASS_DECL_ca bool CopyRect(LPRECT prectDest, LPCRECT prectSrc);
+/*CLASS_DECL_ca bool CopyRect(LPRECT prectDest, LPCRECT prectSrc);
 CLASS_DECL_ca bool PtInRect(LPCRECT prect, POINT point);
 CLASS_DECL_ca bool SetRect(LPRECT prect, long x1, long y1, long x2, long y2);
 CLASS_DECL_ca bool SetRectEmpty(LPRECT prect);
@@ -16,7 +16,7 @@ CLASS_DECL_ca bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2
 CLASS_DECL_ca bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_ca bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_ca bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
-
+*/
 
 
 //#define WINAPI

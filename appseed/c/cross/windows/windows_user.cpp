@@ -160,7 +160,7 @@ CLASS_DECL_c bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 }
 
 
-
+#ifndef METROWIN
 
 int
 WINAPI
@@ -242,8 +242,6 @@ WideCharToMultiByte(
 
 }
 
-
-
 CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
 {
 
@@ -252,3 +250,7 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
    return str;
 
 }
+
+
+#endif 
+

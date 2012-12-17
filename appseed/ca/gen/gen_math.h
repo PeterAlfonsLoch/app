@@ -19,9 +19,11 @@ namespace gen
       private:
          double         dPi;
 //#if WINVER >= 0x500
+#ifdef WINDOWSEX
          HCRYPTPROV     hCryptProv;
          HCRYPTKEY      hOriginalKey;
          HCRYPTKEY      hDuplicateKey;
+#endif
 //#endif
          DWORD          dwMode;
          BYTE           pbData[16];

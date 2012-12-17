@@ -1264,7 +1264,7 @@ TrackMouseEvent(
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-int WINAPI GetSystemMetrics(int nIndex);
+CLASS_DECL_c int WINAPI GetSystemMetrics(int nIndex);
 
 
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
