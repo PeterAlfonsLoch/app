@@ -10,7 +10,7 @@ CLASS_DECL_c vsstring i64toa_dup(int64_t i, int iBase)
    {
       sz[0] = '0';
       sz[1] = '\0';
-      return "";
+      return sz;
    }
    bool bNegative = false;
    if(i < 0)
@@ -66,7 +66,7 @@ CLASS_DECL_c vsstring ui64toa_dup(int64_t i, int iBase)
    {
       sz[0] = '0';
       sz[1] = '\0';
-      return "";
+      return sz;
    }
    int iIndex = 0;
    while(i > 0)

@@ -13,6 +13,16 @@ waitable::waitable()
 
 }
 
+waitable::waitable(const waitable & objectSrc)
+{
+
+   UNREFERENCED_PARAMETER(objectSrc);
+
+   m_pmutex = NULL;
+   
+}
+
+
 ///  \brief		destructor
 waitable::~waitable()
 {
@@ -96,10 +106,6 @@ CLASS_DECL_ca void sleep(const duration & duration)
 
 
 
-waitable::waitable(const waitable & objectSrc)
-{
-   UNREFERENCED_PARAMETER(objectSrc);
-}
 
 void * waitable::get_os_data() const
 {
