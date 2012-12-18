@@ -39,7 +39,7 @@ namespace ca
          {
          public:
 
-            
+
             bool        m_bIsDir;
             DWORD       m_dwLastCheck;
             DWORD       m_dwError;
@@ -156,6 +156,7 @@ namespace ca
          virtual string matter(::ca::application * papp, const char * psz, bool bDir = false);
 
          virtual void   matter_ls(::ca::application * papp, const string & str, stringa & stra);
+         virtual void   matter_ls_file(::ca::application * papp, const string & str, stringa & stra);
 
          virtual string matter(::ca::application * papp);
 
@@ -189,7 +190,7 @@ namespace ca
          virtual string userprograms(::ca::application * papp, const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
 
          virtual string commonprograms(const char * pszRelativePath = NULL, const char * lpcsz2 = NULL);
-         
+
          virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::ca::application * papp);
 
          virtual bool initialize();

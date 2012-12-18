@@ -17,7 +17,6 @@
 				<Compiler>
 					<Add option="-std=c++0x" />
 					<Add option="-g" />
-					<Add option="-fPIC" />
 					<Add option="-Wno-attributes" />
 					<Add option="-Winvalid-pch" />
 					<Add option="-D_DEBUG" />
@@ -37,6 +36,9 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fPIC" />
 			<Add option="-fpermissive" />
 			<Add directory="../ca2" />
 			<Add directory="." />

@@ -285,7 +285,7 @@ public:
          if (*s == '%' && *(++s) != '%')
          {
 
-            defer_get_additional_argument(s, value);
+            defer_get_additional_argument(s, value, args...);
 
             return;
 

@@ -13,8 +13,8 @@
 	<File name="bergedge/bergedge_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="23677" topLine="644" />
 	</File>
-	<File name="bergedge/bergedge_view.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="6843" topLine="219" />
+	<File name="bergedge/bergedge_view.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="10977" topLine="397" />
 	</File>
 	<File name="ca2.h" open="0" top="0" tabpos="53">
 		<Cursor position="48" topLine="0" />
@@ -262,8 +262,8 @@
 	<File name="platform/platform_pane_view.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="3786" topLine="82" />
 	</File>
-	<File name="platform/platform_view.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="22915" topLine="734" />
+	<File name="platform/platform_view.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="15453" topLine="507" />
 	</File>
 	<File name="uinteraction/frame/frame_dock_manager.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="2832" topLine="111" />

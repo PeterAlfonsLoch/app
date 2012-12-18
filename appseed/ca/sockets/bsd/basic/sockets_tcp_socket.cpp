@@ -344,7 +344,7 @@ namespace sockets
 
    void tcp_socket::OnResolved(int id,in_addr & a,port_t port)
    {
-   TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, a, port);
+      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, *(unsigned int*) &a, port);
       if (id == m_resolver_id)
       {
          if (ISNT_ZERO(a) && port)

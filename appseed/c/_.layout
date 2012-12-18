@@ -4,6 +4,9 @@
 	<File name="ansios/ansios.h" open="0" top="0" tabpos="10">
 		<Cursor position="63" topLine="0" />
 	</File>
+	<File name="ansios/ansios_cross_win.cpp" open="1" top="0" tabpos="66">
+		<Cursor position="424" topLine="8" />
+	</File>
 	<File name="ansios/ansios_cross_win_file.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2996" topLine="115" />
 	</File>
@@ -40,8 +43,8 @@
 	<File name="c/c_debug.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="150" topLine="0" />
 	</File>
-	<File name="c/c_dir.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="6676" topLine="263" />
+	<File name="c/c_dir.cpp" open="1" top="0" tabpos="62">
+		<Cursor position="8932" topLine="319" />
 	</File>
 	<File name="c/c_file.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="841" topLine="20" />
@@ -103,19 +106,22 @@
 	<File name="c/c_str.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="15543" topLine="723" />
 	</File>
+	<File name="c/c_strx.cpp" open="1" top="0" tabpos="70">
+		<Cursor position="4911" topLine="148" />
+	</File>
 	<File name="c/c_user.h" open="0" top="0" tabpos="131">
 		<Cursor position="526" topLine="23" />
 	</File>
-	<File name="c/c_verisimple_string.cpp" open="0" top="0" tabpos="0">
+	<File name="c/c_verisimple_string.cpp" open="1" top="0" tabpos="67">
 		<Cursor position="69" topLine="0" />
 	</File>
-	<File name="c/c_verisimple_string.h" open="0" top="0" tabpos="3">
-		<Cursor position="3346" topLine="95" />
+	<File name="c/c_verisimple_string.h" open="1" top="0" tabpos="68">
+		<Cursor position="1328" topLine="53" />
 	</File>
 	<File name="c/c_verisimple_wstring.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="464" topLine="18" />
 	</File>
-	<File name="c/c_verisimple_wstring.h" open="0" top="0" tabpos="0">
+	<File name="c/c_verisimple_wstring.h" open="1" top="0" tabpos="65">
 		<Cursor position="3280" topLine="90" />
 	</File>
 	<File name="cross/cross.h" open="0" top="0" tabpos="13">
@@ -169,8 +175,8 @@
 	<File name="linux/c_os_display.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2268" topLine="95" />
 	</File>
-	<File name="linux/c_os_file.cpp" open="0" top="0" tabpos="26">
-		<Cursor position="0" topLine="0" />
+	<File name="linux/c_os_file.cpp" open="1" top="0" tabpos="63">
+		<Cursor position="583" topLine="10" />
 	</File>
 	<File name="linux/c_os_file.h" open="0" top="0" tabpos="8">
 		<Cursor position="0" topLine="0" />

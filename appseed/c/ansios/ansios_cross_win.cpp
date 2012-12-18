@@ -29,7 +29,7 @@ OutputDebugStringA(
 {
 
 
-    fprintf(stdout, "%s", lpOutputString);
+    fprintf(stderr, "%s", lpOutputString);
 
 
 }

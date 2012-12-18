@@ -473,6 +473,10 @@ void dir::ls(stra_dup & stra, const char *psz)
    while ((dp = readdir(dirp)) != NULL)
    {
 
+      if(strcmp(dp->d_name, "..") == 0)
+         continue;
+      else if(strcmp(dp->d_name, ".") == 0)
+         continue;
       stra.add(path(psz, dp->d_name));
 
    }

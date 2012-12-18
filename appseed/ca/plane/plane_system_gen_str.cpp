@@ -30,6 +30,13 @@ namespace gen
 
       }
 
+      void format(string_format * pformat, void * const & p)
+      {
+         // TODO: use specs
+         pformat->append(gen::str::from((uint_ptr)p));
+
+      }
+
       void format(string_format * pformat, const char * const & psz)
       {
 

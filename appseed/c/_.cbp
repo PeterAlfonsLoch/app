@@ -17,7 +17,6 @@
 				<Compiler>
 					<Add option="-std=c++0x" />
 					<Add option="-g" />
-					<Add option="-fPIC" />
 					<Add option="-fno-pie" />
 					<Add option="-fno-stack-protector" />
 					<Add option="-Wno-pointer-arith" />
@@ -39,6 +38,8 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
 			<Add option="-fPIC" />
 		</Compiler>
 		<Linker>

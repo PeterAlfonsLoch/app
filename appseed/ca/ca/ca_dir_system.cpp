@@ -822,6 +822,15 @@ namespace ca
 
       }
 
+      void system::matter_ls_file(::ca::application * papp, const string & str, stringa & stra)
+      {
+
+         string strDir = matter(papp, stra, true);
+
+         ls_file(papp, strDir, &stra);
+
+      }
+
       string system::matter(::ca::application * papp, const stringa & stra, bool bDir)
       {
 

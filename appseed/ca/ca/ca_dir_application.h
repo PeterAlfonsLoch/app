@@ -32,6 +32,7 @@ namespace ca
 
          virtual void   matter_ls(const string & str, stringa & stra);
          virtual string matter_file(const char * lpcsz = NULL, const char * lpcsz2 = NULL, bool bDir = false);
+         virtual void   matter_ls_file(const string & str, stringa & stra);
 
          virtual string usersystemappdata(const char * lpcszPrefix, const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string userappdata(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
@@ -61,7 +62,7 @@ namespace ca
          virtual void  root_ones(stringa & stra);
          virtual bool  mk(const char * lpcsz);
          virtual bool  rm(const char * psz, bool bRecursive = true);
-         
+
          virtual string pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
 
       };

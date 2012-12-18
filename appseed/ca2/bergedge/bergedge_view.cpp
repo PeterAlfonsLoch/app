@@ -410,7 +410,7 @@ namespace bergedge
      //    return;
       //if(!m_bEnsureApps)
         // return;
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(LINUX)
       if(::IsWindow(m_oswindowWinactionarea) &&
          ::IsWindow(m_oswindowCommand) &&
          ::IsWindow(m_oswindowWinutil) &&

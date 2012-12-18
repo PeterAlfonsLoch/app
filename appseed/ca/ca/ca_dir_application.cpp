@@ -31,13 +31,13 @@ namespace ca
 
       void application::matter_ls(const string & str, stringa & stra)
       {
-
-         string strDir = matter(str, true);
-
-         ls(strDir, &stra);
-
+         System.dir().matter_ls(get_app(), str, stra);
       }
 
+      void application::matter_ls_file(const string & str, stringa & stra)
+      {
+         System.dir().matter_ls_file(get_app(), str, stra);
+      }
 
       string application::matter(const string & str, bool bDir)
       {
@@ -66,7 +66,7 @@ namespace ca
 
       string application::matter_file(const char * lpcsz, const char * lpcsz2, bool bDir)
       {
-         
+
          string strPath = System.dir().matter(get_app(), lpcsz, lpcsz2, bDir);
 
          if(strPath.begins_ci("http://") || strPath.begins_ci("https://"))

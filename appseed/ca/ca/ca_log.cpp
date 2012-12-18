@@ -205,6 +205,10 @@ namespace ca
             }
             if(!(plog->m_pfile = fopen(*m_pstrLogPath, "at")))
             {
+               int iError = errno;
+               if(iError == EAGAIN)
+               {
+               }
                iRetry++;
                if(iRetry >= 100000)
                   return;

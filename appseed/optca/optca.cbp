@@ -17,7 +17,6 @@
 				<Compiler>
 					<Add option="-std=c++0x" />
 					<Add option="-g" />
-					<Add option="-fPIC" />
 					<Add option="-fpermissive" />
 					<Add option="-Wno-conversion-null" />
 					<Add directory="." />
@@ -33,6 +32,9 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fPIC" />
 			<Add directory="../../../app" />
 		</Compiler>
 		<Linker>

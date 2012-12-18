@@ -342,12 +342,26 @@ namespace exception
 
    void translator::filter_sigsegv(int signal, siginfo_t * psiginfo, void * pc)
    {
+
+      sigset_t set;
+      sigemptyset(&set);
+      sigaddset(&set, SIGSEGV);
+      sigprocmask(SIG_UNBLOCK, &set, NULL);
+
       throw standard_access_violation(NULL, signal, psiginfo, pc);
+
    }
 
    void translator::filter_sigfpe(int signal, siginfo_t * psiginfo, void * pc)
    {
+
+      sigset_t set;
+      sigemptyset(&set);
+      sigaddset(&set, SIGSEGV);
+      sigprocmask(SIG_UNBLOCK, &set, NULL);
+
       throw standard_sigfpe(NULL, signal, psiginfo, pc);
+
    }
 
 #endif

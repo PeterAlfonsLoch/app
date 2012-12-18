@@ -17,7 +17,6 @@
 				<Compiler>
 					<Add option="-std=c++0x" />
 					<Add option="-g" />
-					<Add option="-fPIC" />
 					<Add option="-Wno-attributes" />
 					<Add option="-Winvalid-pch" />
 					<Add directory="." />
@@ -35,6 +34,9 @@
 		</Build>
 		<Compiler>
 			<Add option="-std=c++0x" />
+			<Add option="-fexceptions" />
+			<Add option="-fnon-call-exceptions" />
+			<Add option="-fPIC" />
 			<Add option="-D_DEBUG" />
 		</Compiler>
 		<Linker>
