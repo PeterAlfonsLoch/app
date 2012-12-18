@@ -178,7 +178,16 @@ MultiByteToWideChar(
    wstring wstr(str);
 
    if(cchWideChar == 0)
-      return wstr.get_length();
+   {
+      if(cbMultiByte < 0)
+      {
+         return wstr.get_length() + 1;
+      }
+      else
+      {
+         return wstr.get_length();
+      }
+   }
 
    int iLen = min(cchWideChar, wstr.get_length());
 
@@ -187,7 +196,7 @@ MultiByteToWideChar(
 
       wcsncpy(lpWideCharStr, wstr, iLen);
 
-      if(cchWideChar > 0)
+      if(cchWideChar > 0 && cbMultiByte < 0)
       {
 
          lpWideCharStr[iLen] = L'\0';
@@ -196,8 +205,15 @@ MultiByteToWideChar(
 
    }
 
-   return iLen;
-
+   if(cbMultiByte < 0)
+   {
+      return iLen + 1;
+   }
+   else
+   {
+      return iLen; 
+   }
+   
 }
 
 int
@@ -219,7 +235,14 @@ WideCharToMultiByte(
 
    if(cbMultiByte == 0)
    {
-      return str.get_length();
+      if(cchWideChar < 0)
+      {
+         return str.get_length() + 1;
+      }
+      else
+      {
+         return str.get_length();
+      }
    }
 
    int iLen = min(cbMultiByte, str.get_length());
@@ -229,7 +252,7 @@ WideCharToMultiByte(
 
       strncpy(lpMultiByteStr, str, iLen);
 
-      if(cbMultiByte > 0)
+      if(cbMultiByte > 0 && cchWideChar < 0)
       {
 
          lpMultiByteStr[iLen] = '\0';
@@ -238,7 +261,14 @@ WideCharToMultiByte(
 
    }
 
-   return iLen;
+   if(cchWideChar < 0)
+   {
+      return iLen + 1;
+   }
+   else
+   {
+      return iLen; 
+   }
 
 }
 

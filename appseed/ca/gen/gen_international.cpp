@@ -28,7 +28,7 @@ namespace gen
       {
          strsize iCount = UnicodeToMultiByteCount(uiCodePage, lpcsz);
          LPSTR lpsz = str.GetBuffer(iCount);
-         if(UnicodeToMultiByte(uiCodePage, lpsz, iCount, lpcsz))
+         if(UnicodeToMultiByte(uiCodePage, lpsz, iCount + 1, lpcsz))
          {
             str.ReleaseBufferSetLength(iCount);
             return true;
@@ -46,7 +46,7 @@ namespace gen
       {
          strsize iMultiByteCount = UnicodeToMultiByteCount(uiCodePage, lpcsz, iCount);
          LPSTR lpsz = str.GetBuffer(iCount);
-         if(UnicodeToMultiByte(uiCodePage, lpsz, iMultiByteCount, lpcsz, iCount))
+         if(UnicodeToMultiByte(uiCodePage, lpsz, iMultiByteCount + 1, lpcsz, iCount))
          {
             str.ReleaseBufferSetLength(iCount);
             return true;
@@ -66,17 +66,24 @@ namespace gen
 
       strsize UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz)
       {
-         return WideCharToMultiByte(uiCodePage, 0, lpcsz, -1, NULL, 0, NULL, NULL);
+         return UnicodeToMultiByteCount(uiCodePage, lpcsz, -1);
       }
 
       strsize UnicodeToMultiByteCount(UINT uiCodePage, const wchar_t * lpcsz, strsize iCount)
       {
-         return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0, NULL, NULL);
+         if(iCount == -1)
+         {
+            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0, NULL, NULL) - 1;
+         }
+         else
+         {
+            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0, NULL, NULL);
+         }
       }
 
       strsize Utf8ToMultiByteCount(UINT uiCodePage, const char * lpcsz)
       {
-         return WideCharToMultiByte(uiCodePage, 0, MultiByteToUnicode(uiCodePage, lpcsz), -1, NULL, 0, NULL, NULL);
+         return WideCharToMultiByte(uiCodePage, 0, MultiByteToUnicode(uiCodePage, lpcsz), -1, NULL, 0, NULL, NULL) - 1;
       }
 
       bool MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, strsize iBuffer, const char * lpcsz, strsize iCount)
@@ -102,7 +109,14 @@ namespace gen
 
       strsize MultiByteToUnicodeCount(UINT uiCodePage, const char * lpcsz, strsize iCount)
       {
-         return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0);
+         if(iCount == -1)
+         {
+            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0) - 1;
+         }
+         else
+         {
+            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0);
+         }
       }
 
       strsize MultiByteToUnicodeCount(UINT uiCodePage, const char * lpcsz)
@@ -127,8 +141,8 @@ namespace gen
             return L"";
          }
          wstring wstr;
-         wstr.alloc(iBuffer + 1);
-         if(MultiByteToUnicode(uiCodePage, wstr, iBuffer, lpcsz, nCount))
+         wstr.alloc(iBuffer);
+         if(MultiByteToUnicode(uiCodePage, wstr, iBuffer + 1, lpcsz, nCount))
          {
             wstr.set_length(iBuffer);
             return wstr.detach();
@@ -150,8 +164,8 @@ namespace gen
             return L"";
          }
          wstring wstr;
-         wstr.alloc(iBuffer + 1);
-         if(MultiByteToUnicode(uiCodePage, wstr, iBuffer, str, (strsize) str.get_length()))
+         wstr.alloc(iBuffer);
+         if(MultiByteToUnicode(uiCodePage, wstr, iBuffer + 1, str, (strsize) str.get_length()))
          {
             wstr.set_length(iBuffer);
             return wstr.detach();

@@ -221,7 +221,7 @@ public:
    inline void set_length(count iLength)
    {
 
-      if(iLength < get_data()->m_iAllocation)
+      if(iLength <= get_data()->m_iAllocation)
       {
          get_data()->m_iLength = iLength;
       }
