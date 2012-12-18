@@ -460,6 +460,10 @@ namespace dynamic_source
 
    bool script_manager::include_has_script(const string & strPath)
    {
+      
+      if(strPath.is_empty())
+         return false;
+
       single_lock sl(&m_mutexIncludeHasScript, TRUE);
       ::collection::string_map < bool >::pair * ppair = m_mapIncludeHasScript.PLookup(strPath);
       if(ppair != NULL)

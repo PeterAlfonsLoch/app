@@ -325,7 +325,7 @@ namespace dynamic_source
       Application.dir().mk(System.dir().name(pscript->m_strBuildBat));
       try
       {
-         Application.file().copy(strDVI, strSVI, false);
+//         Application.file().copy(strDVI, strSVI, false);
       }
       catch(...)
       {

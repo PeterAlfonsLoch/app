@@ -1088,6 +1088,12 @@ exit_application:
       else
       {
 
+         if(strPath.is_empty())
+         {
+            TRACE("planebase::application::get_file file with empty name!!");
+            return spfile;
+         }
+
          spfile.create(this);
 
          if(!spfile->open(strPath, nOpenFlags))

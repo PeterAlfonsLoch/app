@@ -428,6 +428,15 @@ namespace ca
 
             string strPath = varFile.get_string();
 
+            if(strPath.is_empty())
+            {
+
+               TRACE("::ca::file::system::as_memory varFile is a empty file name!!");
+
+               return;
+
+            }
+
             strPath.trim("\"'");
 
             if((gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://")))
