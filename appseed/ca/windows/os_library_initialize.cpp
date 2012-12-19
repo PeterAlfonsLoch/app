@@ -4,7 +4,6 @@
 
 
 
-
 extern "C" bool WINAPI RawDllMain(HINSTANCE, DWORD dwReason, LPVOID);
 extern "C" bool (WINAPI * const _pRawDllMain)(HINSTANCE , DWORD , LPVOID) = &RawDllMain;
 
@@ -81,4 +80,6 @@ bool WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 
    return TRUE;    // ok
 }
+
+
 
