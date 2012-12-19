@@ -415,11 +415,10 @@ namespace sockets
          if (Errno != m_preverror || m_errcnt++ % 10000 == 0)
          {
             LogError(NULL, "select", Errno, StrError(Errno));
+#ifdef LINUX
             TRACE("m_maxsock: %d\n", m_maxsock);
-            TRACE("%s\n", Errno == EINVAL ? "EINVAL" :
-               Errno == EINTR ? "EINTR" :
-               Errno == EBADF ? "EBADF" :
-               Errno == ENOMEM ? "ENOMEM" : "<another>");
+#endif
+            TRACE("sockets::socket_handler select error : %s (%d)", strerror(Errno), Errno);
             // test bad fd
             for (SOCKET i = 0; i <= m_maxsock; i++)
             {
