@@ -523,33 +523,6 @@
     <ClCompile Include="windows\c_os_small_ipc_channel.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="bsdiff\blocksort.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\bsdiff.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\bspatch.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\bzlib.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\compress.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\crctable.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\decompress.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\huffman.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
-    <ClCompile Include="bsdiff\randtable.cpp">
-      <Filter>Source Files\bsdiff</Filter>
-    </ClCompile>
     <ClCompile Include="windows\c_os_c_dll.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
@@ -789,6 +762,33 @@
     </ClCompile>
     <ClCompile Include="c\c_net.cpp">
       <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\blocksort.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bsdiff.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bspatch.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\bzlib.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\compress.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\crctable.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\decompress.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\huffman.cpp">
+      <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="bsdiff\randtable.cpp">
+      <Filter>Source Files\bsdiff</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

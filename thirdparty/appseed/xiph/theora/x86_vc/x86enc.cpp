@@ -14,7 +14,7 @@
     last mod: $Id: x86state.c 15675 2009-02-06 09:43:27Z tterribe $
 
  ********************************************************************/
-#include "x86enc.h"
+#include "framework.h"
 
 #if defined(OC_X86_ASM)
 
