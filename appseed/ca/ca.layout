@@ -85,7 +85,7 @@
 	<File name="ca/ca_dir_system.h" open="1" top="0" tabpos="24">
 		<Cursor position="1425" topLine="60" />
 	</File>
-	<File name="ca/ca_exception.h" open="1" top="0" tabpos="68">
+	<File name="ca/ca_exception.h" open="1" top="0" tabpos="59">
 		<Cursor position="36" topLine="0" />
 	</File>
 	<File name="ca/ca_file_application.cpp" open="1" top="0" tabpos="8">
@@ -127,7 +127,7 @@
 	<File name="ca/ca_live_signal.h" open="0" top="0" tabpos="0">
 		<Cursor position="18" topLine="0" />
 	</File>
-	<File name="ca/ca_log.cpp" open="1" top="0" tabpos="60">
+	<File name="ca/ca_log.cpp" open="1" top="0" tabpos="53">
 		<Cursor position="9363" topLine="202" />
 	</File>
 	<File name="ca/ca_os.cpp" open="0" top="0" tabpos="0">
@@ -490,10 +490,10 @@
 	<File name="exception/exception.h" open="0" top="0" tabpos="113">
 		<Cursor position="31" topLine="0" />
 	</File>
-	<File name="exception/exception_base.cpp" open="1" top="0" tabpos="70">
+	<File name="exception/exception_base.cpp" open="1" top="0" tabpos="61">
 		<Cursor position="546" topLine="0" />
 	</File>
-	<File name="exception/exception_call_stack.cpp" open="1" top="0" tabpos="69">
+	<File name="exception/exception_call_stack.cpp" open="1" top="0" tabpos="60">
 		<Cursor position="437" topLine="3" />
 	</File>
 	<File name="exception/exception_call_stack.h" open="0" top="0" tabpos="10">
@@ -541,10 +541,10 @@
 	<File name="exception/exception_simple.h" open="0" top="0" tabpos="0">
 		<Cursor position="22" topLine="0" />
 	</File>
-	<File name="exception/exception_standard.h" open="1" top="0" tabpos="67">
+	<File name="exception/exception_standard.h" open="1" top="0" tabpos="58">
 		<Cursor position="4777" topLine="145" />
 	</File>
-	<File name="exception/exception_standard_translator.cpp" open="1" top="0" tabpos="64">
+	<File name="exception/exception_standard_translator.cpp" open="1" top="0" tabpos="57">
 		<Cursor position="17161" topLine="327" />
 	</File>
 	<File name="fontopus/fontopus.h" open="0" top="0" tabpos="14">
@@ -616,7 +616,7 @@
 	<File name="gen/gen_definition.h" open="0" top="0" tabpos="3">
 		<Cursor position="3801" topLine="100" />
 	</File>
-	<File name="gen/gen_international.cpp" open="1" top="0" tabpos="61">
+	<File name="gen/gen_international.cpp" open="1" top="0" tabpos="54">
 		<Cursor position="10647" topLine="273" />
 	</File>
 	<File name="gen/gen_istring.h" open="0" top="0" tabpos="2">
@@ -901,13 +901,13 @@
 	<File name="plane/plane_system_primitive_var.h" open="0" top="0" tabpos="2">
 		<Cursor position="18" topLine="0" />
 	</File>
-	<File name="plane/plane_system_template_trace.h" open="1" top="0" tabpos="58">
+	<File name="plane/plane_system_template_trace.h" open="1" top="0" tabpos="51">
 		<Cursor position="2973" topLine="75" />
 	</File>
 	<File name="planebase/planebase.h" open="0" top="0" tabpos="13">
 		<Cursor position="55" topLine="0" />
 	</File>
-	<File name="planebase/planebase_application.cpp" open="1" top="1" tabpos="4">
+	<File name="planebase/planebase_application.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="21711" topLine="680" />
 	</File>
 	<File name="planebase/planebase_application.h" open="1" top="0" tabpos="32">
@@ -985,7 +985,7 @@
 	<File name="primitive/primitive_string_format.cpp" open="0" top="0" tabpos="19">
 		<Cursor position="1557" topLine="80" />
 	</File>
-	<File name="primitive/primitive_string_format.h" open="1" top="0" tabpos="59">
+	<File name="primitive/primitive_string_format.h" open="1" top="0" tabpos="52">
 		<Cursor position="8394" topLine="235" />
 	</File>
 	<File name="primitive/primitive_var.cpp" open="1" top="0" tabpos="3">
@@ -1015,7 +1015,7 @@
 	<File name="radix/radix_allocation_base_ca2.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="9300" topLine="275" />
 	</File>
-	<File name="radix/radix_allocation_ca2_heap.cpp" open="1" top="0" tabpos="63">
+	<File name="radix/radix_allocation_ca2_heap.cpp" open="1" top="0" tabpos="56">
 		<Cursor position="137" topLine="0" />
 	</File>
 	<File name="radix/radix_allocation_mid_big.cpp" open="0" top="0" tabpos="14">
@@ -1066,7 +1066,7 @@
 	<File name="radix/radix_plex_heap.cpp" open="0" top="0" tabpos="27">
 		<Cursor position="2939" topLine="133" />
 	</File>
-	<File name="radix/radix_plex_heap.h" open="1" top="0" tabpos="62">
+	<File name="radix/radix_plex_heap.h" open="1" top="0" tabpos="55">
 		<Cursor position="1839" topLine="66" />
 	</File>
 	<File name="radix/radix_service.cpp" open="0" top="0" tabpos="28">
