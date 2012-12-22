@@ -505,12 +505,28 @@ namespace sockets
 				         }
 				         else
 				         {
-					         if (FD_ISSET(s, &m_rfds))
+                        bool bAnySet = false;
+					         if(FD_ISSET(s, &m_rfds))
+                        {
 						         FD_SET(s, &rfds);
-					         if (FD_ISSET(s, &m_wfds))
+                           bAnySet = true;
+                        }
+					         if(FD_ISSET(s, &m_wfds))
+                        {
 						         FD_SET(s, &wfds);
-					         if (FD_ISSET(s, &m_efds))
+                           bAnySet = true;
+                        }
+					         if(FD_ISSET(s, &m_efds))
+                        {
 						         FD_SET(s, &efds);
+                           bAnySet = true;
+                        }
+                        if(!bAnySet)
+                        {
+					            // %! none set
+					            LogError(psocket, "Select", (int) s, "No fd in fd_set"); // , LOG_LEVEL_ERROR);
+					            m_fds_erase.push_back(s);
+                        }
 				         }
 			         }
 			         else
