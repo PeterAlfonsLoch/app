@@ -63,14 +63,23 @@ namespace sockets
       }
       if(m_request.headers().has_property("user-agent"))
       {
+#ifndef DEBUG
+         ::OutputDebugString("user-agent: " + m_request.header("user-agent") + "\n");
+#endif
          TRACE0("user-agent: " + m_request.header("user-agent") + "\n");
       }
       if(m_request.headers().has_property("from"))
       {
+#ifndef DEBUG
+         ::OutputDebugString("from: " + m_request.header("from") + "\n");
+#endif
          TRACE0("from: " + m_request.header("from") + "\n");
       }
       if(m_request.headers().has_property("accept-language"))
       {
+#ifndef DEBUG
+         ::OutputDebugString("accept-language: " + m_request.header("accept-language") + "\n");
+#endif
          TRACE0("accept-language: " + m_request.header("accept-language") + "\n");
       }
       if (m_body_size_left > 0)

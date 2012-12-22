@@ -14,12 +14,7 @@ namespace ca4
       NESSIEinit(&ns);
       NESSIEadd((const byte *) psz, (unsigned long) (8*strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
-      for(int i = 0; i < DIGESTBYTES; i++)
-      {
-         strFormat.Format("%02x", digest[i]);
-         str += strFormat;
-      }
-      return str;
+      return gen::hex::from(digest, DIGESTBYTES);
    }
 
    string file::nessie(const char * psz)

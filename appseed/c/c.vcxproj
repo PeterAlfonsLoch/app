@@ -983,7 +983,8 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" 
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <StringPooling>false</StringPooling>
       <ExceptionHandling>Async</ExceptionHandling>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BasicRuntimeChecks>
+      </BasicRuntimeChecks>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>
       </FloatingPointModel>
@@ -1001,6 +1002,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" 
       <SDLCheck>
       </SDLCheck>
       <CompileAsWinRT>false</CompileAsWinRT>
+      <EnableParallelCodeGeneration>true</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -1011,7 +1013,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" 
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>LIBCMT.lib</IgnoreSpecificDefaultLibraries>
       <Profile>true</Profile>
-      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <SubSystem>Windows</SubSystem>
     </Link>
     <PreBuildEvent>
