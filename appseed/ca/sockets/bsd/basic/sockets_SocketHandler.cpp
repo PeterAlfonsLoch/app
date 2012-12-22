@@ -415,10 +415,19 @@ namespace sockets
          if (Errno != m_preverror || m_errcnt++ % 10000 == 0)
          {
             LogError(NULL, "select", Errno, StrError(Errno));
+            int iError = Errno;
 #ifdef LINUX
             TRACE("m_maxsock: %d\n", m_maxsock);
-#endif
             TRACE("sockets::socket_handler select error : %s (%d)", strerror(Errno), Errno);
+#else
+            TRACE("sockets::socket_handler select error : %s (%d)", get_system_error_message(iError), iError);
+#endif
+
+            if(iError == 10022)
+            {
+               TRACE("WSEINVAL");
+            }
+            
             // test bad fd
             for (SOCKET i = 0; i <= m_maxsock; i++)
             {
@@ -459,7 +468,70 @@ namespace sockets
 
             m_preverror = Errno;
          }
-         /// \todo rebuild fd_set's from active sockets list (m_sockets) here
+
+         /// \no more todo rebuild fd_set's from active sockets list (m_sockets) here
+         /// done : http://jbmon.googlecode.com/svn/trunk/sockets/SocketHandler.cpp : rebuild fd_set's from active sockets list (m_sockets) here
+         {
+	         
+            FD_ZERO(&rfds);
+		      FD_ZERO(&wfds);
+		      FD_ZERO(&efds);
+
+            SOCKET s;
+            socket * psocket;
+            POSITION pos = m_sockets.get_start_position();
+            while(pos != NULL)
+            {
+
+               m_sockets.get_next_assoc(pos, s, psocket);
+
+               try
+               {
+
+			         if(s == psocket->GetSocket())
+			         {
+				         fd_set fds;
+				         FD_ZERO(&fds);
+				         FD_SET(s, &fds);
+				         struct timeval tv;
+				         tv.tv_sec = 0;
+				         tv.tv_usec = 0;
+				         int n = select((int) (s + 1), &fds, NULL, NULL, &tv);
+				         if (n == -1)
+				         {
+					         // %! bad fd, remove
+					         LogError(psocket, "Select", (int) s, "Bad fd in fd_set (2)"); // , LOG_LEVEL_ERROR);
+					         m_fds_erase.push_back(s);
+				         }
+				         else
+				         {
+					         if (FD_ISSET(s, &m_rfds))
+						         FD_SET(s, &rfds);
+					         if (FD_ISSET(s, &m_wfds))
+						         FD_SET(s, &wfds);
+					         if (FD_ISSET(s, &m_efds))
+						         FD_SET(s, &efds);
+				         }
+			         }
+			         else
+			         {
+				         // %! mismatch
+				         LogError(psocket, "Select", (int)s, "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR);
+				         m_fds_erase.push_back(s);
+			         }
+
+               }
+               catch(...)
+               {
+				      // general error
+				      LogError(psocket, "Select", (int)s, "Bad fd in fd_set (3)"); // , LOG_LEVEL_ERROR);
+				      m_fds_erase.push_back(s);
+               }
+            }
+		      m_rfds = rfds;
+		      m_wfds = wfds;
+		      m_efds = efds;
+         }
       }
       else
       if (!n)
