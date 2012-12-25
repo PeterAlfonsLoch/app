@@ -60,6 +60,7 @@ namespace gen
       while(c > 0)
       {
          byte_to_hex(lpsz, *pb);
+		 c--;
          lpsz+=2;
          pb++;
       }
