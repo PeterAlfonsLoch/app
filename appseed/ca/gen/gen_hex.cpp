@@ -64,7 +64,7 @@ namespace gen
          pb++;
       }
       *lpsz = '\0';
-      str.ReleaseBuffer(s * 2);
+      str.ReleaseBuffer();
       return str;
    }
 

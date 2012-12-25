@@ -34,6 +34,9 @@ namespace radix
 
    object::object(const object& objectSrc)
    {
+	   
+	   m_pset = NULL;
+
       /*try
       {
          if(::ca::get_thread_state() != NULL)
