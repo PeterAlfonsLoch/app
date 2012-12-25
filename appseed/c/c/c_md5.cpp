@@ -43,9 +43,6 @@
 #include <unistd.h>
 #endif
 
-int to_hex_char(int i);
-
-
 unsigned char PADDING[64] =
 {
   0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -374,22 +371,22 @@ namespace md5
 
    unsigned char * md5::digest()
    {
+
       return m_uchaDigest;
+
    }
 
 
-   const char * md5::to_string()
+   vsstring md5::to_string()
    {
-      char chbuf[64];
-      int i = 0;
-      char * pch = chbuf;
-      for(; i < 16; i++)
-      {
-         *pch++ = to_hex_char((digest()[i] >> 4) & 0xf);
-         *pch++ = to_hex_char(digest()[i] & 0xf);
-      }
-      *pch = '\0';
-      return strdup_dup(chbuf);
+
+	  vsstring str;
+	  str.alloc(32);
+      char * psz = (char *) (const char *) str;
+	  lo_hex_from(psz, m_uchaDigest, 16);
+      psz[32] = '\0';
+      return str;
+
    }
 
 } // namespace md5

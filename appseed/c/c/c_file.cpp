@@ -240,8 +240,6 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 }
 
 
-int to_hex_char(int i);
-
 void sprint_hex(char * sz, int iValue)
 {
    int i = 8;
@@ -249,7 +247,7 @@ void sprint_hex(char * sz, int iValue)
    i--;
    for(; i >= 0; i--)
    {
-      sz[i] = to_hex_char((iValue >> (4 * (7 - i))) &  0xf);
+      sz[i] = to_hi_hex_char((iValue >> (4 * (7 - i))) &  0xf);
    }
 }
 

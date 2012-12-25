@@ -14,7 +14,7 @@ namespace ca4
       NESSIEinit(&ns);
       NESSIEadd((const byte *) psz, (unsigned long) (8*strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
-      return gen::hex::from(digest, DIGESTBYTES);
+      return gen::hex::lo_from(digest, DIGESTBYTES);
    }
 
    string file::nessie(const char * psz)

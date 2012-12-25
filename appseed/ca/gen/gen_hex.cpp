@@ -51,23 +51,28 @@ namespace gen
       }
    }
 
-   CLASS_DECL_ca string hex::from(void * p, primitive::memory_size s)
+
+   CLASS_DECL_ca string hex::lo_from(void * p, primitive::memory_size s)
    {
-      byte * pb = (byte *) p;
       string str;
       LPTSTR lpsz = str.GetBufferSetLength(s * 2);
-      primitive::memory_size c = s;
-      while(c > 0)
-      {
-         byte_to_hex(lpsz, *pb);
-		 c--;
-         lpsz+=2;
-         pb++;
-      }
-      *lpsz = '\0';
+	  lo_hex_from(lpsz, p, s);
+      lpsz[s * 2] = '\0';
       str.ReleaseBuffer(s * 2);
       return str;
    }
+
+
+   CLASS_DECL_ca string hex::hi_from(void * p, primitive::memory_size s)
+   {
+      string str;
+      LPTSTR lpsz = str.GetBufferSetLength(s * 2);
+	  hi_hex_from(lpsz, p, s);
+      lpsz[s * 2] = '\0';
+      str.ReleaseBuffer(s * 2);
+      return str;
+   }
+
 
 } // namespace gen
 

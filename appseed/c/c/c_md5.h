@@ -34,67 +34,76 @@
 /////////////////////////////////////////////////////////////////////////
 
 /*
- * This is an OpenSSL-compatible implementation of the RSA Data Security, Inc.
- * MD5 Message-Digest Algorithm (RFC 1321).
- *
- * Homepage:
- * http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5
- *
- * Author:
- * Alexander Peslyak, better known as Solar Designer <solar at openwall.com>
- *
- * This software was written by Alexander Peslyak in 2001.  No copyright is
- * claimed, and the software is hereby placed in the public domain.
- * In case this attempt to disclaim copyright and place the software in the
- * public domain is deemed null and void, then the software is
- * Copyright (c) 2001 Alexander Peslyak and it is hereby released to the
- * general public under the following terms:
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted.
- *
- * There's ABSOLUTELY NO WARRANTY, express or implied.
- *
- * See md5.c for more information.
- */
+* This is an OpenSSL-compatible implementation of the RSA Data Security, Inc.
+* MD5 Message-Digest Algorithm (RFC 1321).
+*
+* Homepage:
+* http://openwall.info/wiki/people/solar/software/public-domain-source-code/md5
+*
+* Author:
+* Alexander Peslyak, better known as Solar Designer <solar at openwall.com>
+*
+* This software was written by Alexander Peslyak in 2001.  No copyright is
+* claimed, and the software is hereby placed in the public domain.
+* In case this attempt to disclaim copyright and place the software in the
+* public domain is deemed null and void, then the software is
+* Copyright (c) 2001 Alexander Peslyak and it is hereby released to the
+* general public under the following terms:
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted.
+*
+* There's ABSOLUTELY NO WARRANTY, express or implied.
+*
+* See md5.c for more information.
+*/
 #pragma once
 
 
 namespace md5
 {
 
-   class CLASS_DECL_c md5
-   {
-   public:
 
-      typedef unsigned       int uint4;
-      typedef unsigned short int uint2;
-      typedef unsigned      char uchar;
+	class CLASS_DECL_c md5
+	{
+	public:
 
-      typedef struct
-      {
-	      size_t            lo;
-         size_t            hi;
-	      uint4             a;
-         uint4             b;
-         uint4             c;
-         uint4             d;
-	      uchar             buffer[64];
-	      uint4             block[16];
-      } context;
 
-	   context     m_ctx;
-      uchar       m_uchaDigest[16];
+		typedef unsigned       int uint4;
+		typedef unsigned short int uint2;
+		typedef unsigned      char uchar;
 
-	   md5();
+		typedef struct
+		{
+			size_t            lo;
+			size_t            hi;
+			uint4             a;
+			uint4             b;
+			uint4             c;
+			uint4             d;
+			uchar             buffer[64];
+			uint4             block[16];
+		} context;
 
-	   void	            initialize();
-	   void	            update(void * pdata, size_t nInputLen);
-	   void	            finalize();
-	   unsigned char *   digest();
-      const char *      to_string();
-      void *            body(void *data, uint4 size);
 
-   };
+		context     m_ctx;
+		uchar       m_uchaDigest[16];
+
+
+		md5();
+
+
+		void	            initialize();
+		void	            update(void * pdata, size_t nInputLen);
+		void	            finalize();
+		unsigned char *		digest();
+		vsstring			to_string();
+		void *				body(void *data, uint4 size);
+
+	};
+
 
 } // namespace md5
+
+
+
