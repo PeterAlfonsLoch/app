@@ -56,15 +56,15 @@ namespace gen
       byte * pb = (byte *) p;
       string str;
       LPTSTR lpsz = str.GetBufferSetLength(s * 2);
-      while(s > 0)
+      primitive::memory_size c = s;
+      while(c > 0)
       {
          byte_to_hex(lpsz, *pb);
-         s--;
          lpsz+=2;
          pb++;
       }
       *lpsz = '\0';
-      str.ReleaseBuffer();
+      str.ReleaseBuffer(s * 2);
       return str;
    }
 

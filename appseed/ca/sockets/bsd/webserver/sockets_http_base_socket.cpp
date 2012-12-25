@@ -55,6 +55,9 @@ namespace sockets
    void http_base_socket::OnHeaderComplete()
    {
       http_socket::OnHeaderComplete();
+#ifndef DEBUG
+      ::OutputDebugString(m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string() + "\n");
+#endif
       TRACE0("\n");
       TRACE0(m_request.attr("http_protocol").get_string() + "://" + m_request.header("host").get_string() + m_request.attr("request_uri").get_string() + "\n");
       if(m_request.attr("request_uri").get_string().find("/passthrough/") >= 0)
