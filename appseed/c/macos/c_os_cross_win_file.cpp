@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-HANDLE
+/*HANDLE
 WINAPI
 create_file(
             LPCSTR lpFileName,
@@ -128,12 +128,12 @@ CloseHandle(
          bOk = __win_CloseFile(hObject);
 /*      case win_handle::type_thread:
          bOk = __win_CloseThread(hObject);*/
-      default:
+ /*     default:
          break;
    };
    delete hObject;
    return bOk;
-}
+}*/
 
 
 

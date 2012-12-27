@@ -180,6 +180,8 @@
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
+		9AC29ED0168CC84800DA3F3F /* ansios_cross_win_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */; };
+		9AC29ED1168CC84800DA3F3F /* ansios_cross_win.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */; };
 		A10D34E715131C06004FD312 /* os_process.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A10D34E415131C06004FD312 /* os_process.cpp */; };
 		A10D34E815131C06004FD312 /* os_process.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34E515131C06004FD312 /* os_process.h */; };
 		A10D34E915131C06004FD312 /* os.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D34E615131C06004FD312 /* os.h */; };
@@ -452,6 +454,8 @@
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
 		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c_os_cross_gdi.mm; sourceTree = "<group>"; };
+		9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_cross_win_file.cpp; path = ansios/ansios_cross_win_file.cpp; sourceTree = "<group>"; };
+		9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_cross_win.cpp; path = ansios/ansios_cross_win.cpp; sourceTree = "<group>"; };
 		A10D34E415131C06004FD312 /* os_process.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = os_process.cpp; path = os/os_process.cpp; sourceTree = "<group>"; };
 		A10D34E515131C06004FD312 /* os_process.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_process.h; path = os/os_process.h; sourceTree = "<group>"; };
 		A10D34E615131C06004FD312 /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os.h; path = os/os.h; sourceTree = "<group>"; };
@@ -741,6 +745,8 @@
 			isa = PBXGroup;
 			children = (
 				07AB205D16061BB200CD4EE2 /* ansios.h */,
+				9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */,
+				9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */,
 				07AB205C16061BB200CD4EE2 /* ansios_file.h */,
 				07AB205B16061BB200CD4EE2 /* ansios_file.cpp */,
 				071592811673470E00D7190F /* ansios_thread.h */,
@@ -1248,6 +1254,8 @@
 				07159295167353E700D7190F /* c_integer_to_string.cpp in Sources */,
 				07159297167353E700D7190F /* c_net.cpp in Sources */,
 				07159299167353E700D7190F /* c_string_to_integer.cpp in Sources */,
+				9AC29ED0168CC84800DA3F3F /* ansios_cross_win_file.cpp in Sources */,
+				9AC29ED1168CC84800DA3F3F /* ansios_cross_win.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

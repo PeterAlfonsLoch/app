@@ -130,35 +130,59 @@ bool oswindow::remove(nswindow window)
 
 
 
-
-
-void oswindow::set_user_interaction(::user::interaction * pui)
+void oswindow::set_user_interaction(::user::interaction_base * pui)
 {
-   
-   if(m_pdata == NULL)
-      throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
-   
-   m_pdata->m_pui = pui;
-   
+    
+    if(m_pdata == NULL)
+        throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
+    
+    m_pdata->m_pui = pui;
+    
 }
+::user::interaction_base * oswindow::get_user_interaction_base()
+{
+    
+    if(m_pdata == NULL)
+        return NULL;
+    
+    return m_pdata->m_pui;
+    
+}
+
+::user::interaction_base * oswindow::get_user_interaction_base() const
+{
+    
+    if(m_pdata == NULL)
+        return NULL;
+    
+    return m_pdata->m_pui;
+    
+}
+
 ::user::interaction * oswindow::get_user_interaction()
 {
-   
-   if(m_pdata == NULL)
-      return NULL;
-   
-   return m_pdata->m_pui;
-   
+    
+    if(m_pdata == NULL)
+        return NULL;
+    
+    if(m_pdata->m_pui == NULL)
+        return NULL;
+    
+    return m_pdata->m_pui->m_pui;
+    
 }
 
 ::user::interaction * oswindow::get_user_interaction() const
 {
-   
-   if(m_pdata == NULL)
-      return NULL;
-   
-   return m_pdata->m_pui;
-   
+    
+    if(m_pdata == NULL)
+        return NULL;
+    
+    if(m_pdata->m_pui == NULL)
+        return NULL;
+    
+    return m_pdata->m_pui->m_pui;
+    
 }
 
 

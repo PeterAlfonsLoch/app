@@ -147,7 +147,7 @@ GetTempPathW(
 
    wstring wstr = "/var/ca2/time/";
 
-   int iLen = min(nBufferLength, wstr.get_length());
+   ::count iLen = min(nBufferLength, wstr.get_length());
 
    wcsncpy(lpBuffer, wstr, iLen);
 
@@ -156,6 +156,6 @@ GetTempPathW(
       lpBuffer[iLen] = '\0';
    }
 
-   return iLen;
+   return (DWORD) iLen;
 
 }
