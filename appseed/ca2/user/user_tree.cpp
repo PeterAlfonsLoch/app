@@ -628,7 +628,7 @@ namespace user
       }
 
       if(iItem < 0)
-         return false;
+         return NULL;
 
 
    //   if(iItem >= _001StaticGetItemCount())
