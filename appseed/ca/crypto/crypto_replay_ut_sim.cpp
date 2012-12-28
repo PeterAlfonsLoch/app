@@ -46,7 +46,8 @@
 #include "framework.h"
 
 
-
+int
+ut_compar(const void *a, const void *b);
 
 int
 ut_compar(const void *a, const void *b) {

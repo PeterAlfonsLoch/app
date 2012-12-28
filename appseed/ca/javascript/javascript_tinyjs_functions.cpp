@@ -30,6 +30,29 @@
 
 #include "framework.h"
 
+
+void scTrace(CScriptVar *c, void *userdata);
+void scObjectDump(CScriptVar *c, void *);
+void scObjectClone(CScriptVar *c, void *);
+void scMathRand(CScriptVar *c, void *);
+void scMathRandInt(CScriptVar *c, void *);
+void scCharToInt(CScriptVar *c, void *);
+void scStringIndexOf(CScriptVar *c, void *);
+void scStringSubstring(CScriptVar *c, void *);
+void scStringCharAt(CScriptVar *c, void *);
+void scStringCharCodeAt(CScriptVar *c, void *);
+void scStringSplit(CScriptVar *c, void *);
+void scStringFromCharCode(CScriptVar *c, void *);
+void scIntegerParseInt(CScriptVar *c, void *);
+void scIntegerValueOf(CScriptVar *c, void *);
+void scJSONStringify(CScriptVar *c, void *);
+void scExec(CScriptVar *c, void *data);
+void scEval(CScriptVar *c, void *data);
+void scArrayContains(CScriptVar *c, void *data);
+void scArrayRemove(CScriptVar *c, void *data);
+void scArrayJoin(CScriptVar *c, void *data);
+
+
 // ----------------------------------------------- Actual Functions
 void scTrace(CScriptVar *c, void *userdata) {
     tinyjs *js = (tinyjs*)userdata;
@@ -68,7 +91,7 @@ void scCharToInt(CScriptVar *c, void *) {
 void scStringIndexOf(CScriptVar *c, void *) {
     string str = c->getParameter("this")->getString();
     string search = c->getParameter("search")->getString();
-    size_t p = str.find(search);
+    strsize p = str.find(search);
     int val = (int) ((p < 0) ? -1 : p);
     c->getReturnVar()->setInt(val);
 }
@@ -110,7 +133,7 @@ void scStringSplit(CScriptVar *c, void *) {
     result->setArray();
     int length = 0;
 
-    size_t pos = str.find(sep);
+    strsize pos = str.find(sep);
     while (pos>= 0) {
       result->setArrayIndex(length++, new CScriptVar(str.substr(0,pos)));
       str = str.substr(pos+1);
@@ -130,7 +153,7 @@ void scStringFromCharCode(CScriptVar *c, void *) {
 
 void scIntegerParseInt(CScriptVar *c, void *) {
     string str = c->getParameter("str")->getString();
-    int val = strtol(str.c_str(),0,0);
+    int val = (int) strtol(str.c_str(),0,0);
     c->getReturnVar()->setInt(val);
 }
 

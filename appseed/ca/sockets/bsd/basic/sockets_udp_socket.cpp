@@ -247,7 +247,7 @@ namespace sockets
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), ad.sa_len())) == -1)
+         if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), (int) ad.sa_len())) == -1)
          {
             Handler().LogError(this, "sendto", Errno, StrError(Errno), ::gen::log::level::error);
          }
@@ -381,7 +381,7 @@ namespace sockets
             struct timeval ts;
             System.get_time(&ts);
    #if !defined(LINUX) && !defined(MACOSX)
-            int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+            size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
    #else
             int n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &ts);
    #endif
@@ -401,7 +401,7 @@ namespace sockets
             }
             return;
          }
-         int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+         size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
          int q = m_retries; // receive max 10 at one cycle
          while (n > 0)
          {
@@ -433,7 +433,7 @@ namespace sockets
          struct timeval ts;
          System.get_time(&ts);
    #if !defined(LINUX) && !defined(MACOSX)
-         int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+         size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
    #else
          int n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &ts);
    #endif
@@ -453,7 +453,7 @@ namespace sockets
          }
          return;
       }
-      int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+      size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
       int q = m_retries;
       while (n > 0)
       {
@@ -745,7 +745,7 @@ namespace sockets
    }
 
 
-   int udp_socket::GetLastSizeWritten()
+   size_t udp_socket::GetLastSizeWritten()
    {
       return m_last_size_written;
    }

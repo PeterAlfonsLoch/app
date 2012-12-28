@@ -283,6 +283,8 @@ namespace gen
 
       void format(string_format * pformat, const char * const & psz);
 
+      void format(string_format * pformat, const vsstring & str);
+
       void format(string_format * pformat, const calculator::value & val);
 
 

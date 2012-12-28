@@ -20,6 +20,8 @@ It is provided "as is" without express or implied warranty.
 #ifdef LINUX
 #include <execinfo.h>
 #include <cxxabi.h>
+#elif defined(MACOS)
+#include <execinfo.h>
 #endif
 
 
@@ -63,6 +65,16 @@ It is provided "as is" without express or implied warranty.
 #endif //DEBUG
 
 ///////////////////////////////////////////////////////////////////////
+
+bool IsNT();
+HANDLE SymGetProcessHandle();
+WINBOOL __stdcall My_ReadProcessMemory(HANDLE      hProcess,
+DWORD64     qwBaseAddress,
+PVOID       lpBuffer,
+DWORD       nSize,
+LPDWORD     lpNumberOfBytesRead
+                                       );
+
 
 bool IsNT()
 {
@@ -112,7 +124,7 @@ WINBOOL __stdcall My_ReadProcessMemory (
 {
 
    SIZE_T size;
-#if defined(METROWIN) || defined(LINUX)
+#if defined(METROWIN) || defined(LINUX) || defined(MACOS)
    throw todo(::ca::get_thread_app());
 #else
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
@@ -135,7 +147,7 @@ namespace exception
 {
 
 
-   typedef BOOL (__stdcall *PReadProcessMemoryRoutine)(
+   typedef WINBOOL (__stdcall *PReadProcessMemoryRoutine)(
       HANDLE      hProcess,
       DWORD64     qwBaseAddress,
       PVOID       lpBuffer,
@@ -148,9 +160,14 @@ namespace exception
    // This has to be done due to a problem with the "hProcess"-parameter in x64...
    // Because this class is in no case multi-threading-enabled (because of the limitations
    // of dbghelp.dll) it is "safe" to use a static-variable
+
+#ifdef WINDOWS
+   
    static PReadProcessMemoryRoutine s_readMemoryFunction = NULL;
    static LPVOID s_readMemoryFunction_UserData = NULL;
-
+   
+#endif
+   
    engine::engine(::ca::application * papp) :
       ca(papp)
 #ifdef WINDOWSEX
@@ -885,7 +902,7 @@ retry_get_base:
 
 
 
-#if defined(LINUX) || defined(METROWIN)
+#if defined(LINUX) || defined(METROWIN) || defined(MACOS)
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
    bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
@@ -1010,6 +1027,8 @@ retry_get_base:
                *mangled_name++ = '\0';
                *offset_begin++ = '\0';
                *offset_end++ = '\0';
+              
+#ifdef LINUX
 
                int status;
                char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
@@ -1024,12 +1043,21 @@ retry_get_base:
                }
                // otherwise, output the mangled function name
                else
+                  
+#endif
+                  
                {
                    str += "[bt]: (" + gen::str::from(i) + ") " + messages[i] + " : "
                              + mangled_name + "+" + offset_begin + offset_end
                              + "\n";
                }
+
+#ifdef LINUX
+              
                free(real_name);
+              
+#endif
+              
            }
            // otherwise, print the whole line
            else
@@ -1038,7 +1066,8 @@ retry_get_base:
            }
        }
        str += "\n";
-
+      
+      return true;
 
    #endif
 

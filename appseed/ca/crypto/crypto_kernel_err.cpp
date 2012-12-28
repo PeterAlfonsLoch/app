@@ -50,6 +50,9 @@
 # endif
 #endif
 
+void
+err_reporting_set_level(err_reporting_level_t lvl);
+
 
 /*  err_level reflects the level of errors that are reported  */
 

@@ -103,7 +103,7 @@ namespace sqlite
    ** practically it's == sizeof(void *)).  We fall back to an int if this type
    ** isn't defined.
    */
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 #define HAVE_INTPTR_T
 #endif
 
@@ -9182,8 +9182,11 @@ namespace sqlite
 # define IOTRACE(A)
 # define sqlite3VdbeIOTraceSql(X)
 #endif
+   
+#ifndef MACOS
    SQLITE_PRIVATE void (*sqlite3IoTrace)(const char*,...);
-
+#endif
+   
 #endif
 
    /************** End of sqliteInt.h *******************************************/
@@ -12988,7 +12991,11 @@ zulu_time:
             /* Use a recursive mutex if it is available */
             pthread_mutexattr_t recursiveAttr;
             pthread_mutexattr_init(&recursiveAttr);
+#ifdef MACOS
+            pthread_mutexattr_settype(&recursiveAttr, PTHREAD_MUTEX_RECURSIVE);
+#else
             pthread_mutexattr_settype(&recursiveAttr, PTHREAD_MUTEX_RECURSIVE_NP);
+#endif
             pthread_mutex_init(&p->mutex, &recursiveAttr);
             pthread_mutexattr_destroy(&recursiveAttr);
 #endif
@@ -18963,7 +18970,7 @@ exit_findlockinfo:
    ** See tickets #2741 and #2681.
    */
    static int seekAndRead(unixFile *id, sqlite3_int64 offset, void *pBuf, int cnt){
-      int got;
+      long got;
       i64 newOffset;
       TIMER_START;
 #if defined(USE_PREAD)
@@ -18972,6 +18979,13 @@ exit_findlockinfo:
 #elif defined(USE_PREAD64)
       got = pread64(id->h, pBuf, cnt, offset);
       SimulateIOError( got = -1 );
+#elif defined(MACOS)
+      newOffset = lseek(id->h, offset, SEEK_SET);
+      SimulateIOError( newOffset-- );
+      if( newOffset!=offset ){
+         return -1;
+      }
+      got = read(id->h, pBuf, cnt);
 #else
       newOffset = lseek(id->h, offset, SEEK_SET);
       SimulateIOError( newOffset-- );
@@ -18982,7 +18996,7 @@ exit_findlockinfo:
 #endif
       TIMER_END;
       OSTRACE5("READ    %-3d %5d %7lld %d\n", id->h, got, offset, TIMER_ELAPSED);
-      return got;
+      return (int) got;
    }
 
    /*
@@ -18996,7 +19010,7 @@ exit_findlockinfo:
       int amt,
       sqlite3_int64 offset
       ){
-         int got;
+         long got;
          assert( id );
          got = seekAndRead((unixFile*)id, offset, pBuf, amt);
          if( got==amt ){
@@ -19014,7 +19028,7 @@ exit_findlockinfo:
    ** Return the number of bytes actually read.  Update the offset.
    */
    static int seekAndWrite(unixFile *id, i64 offset, const void *pBuf, int cnt){
-      int got;
+      long got;
       i64 newOffset;
       TIMER_START;
 #if defined(USE_PREAD)
@@ -19030,7 +19044,7 @@ exit_findlockinfo:
 #endif
       TIMER_END;
       OSTRACE5("WRITE   %-3d %5d %7lld %d\n", id->h, got, offset, TIMER_ELAPSED);
-      return got;
+      return (int) got;
    }
 
 

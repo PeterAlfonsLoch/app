@@ -174,7 +174,7 @@ int atoi_dup(const char * psz, const char ** pszEnd, int iBase)
 
 
 
-int natoi_dup(const char * psz, int iLen)
+int natoi_dup(const char * psz, size_t iLen)
 {
    int iResult = 0;
    while(iLen > 0)
@@ -189,7 +189,7 @@ int natoi_dup(const char * psz, int iLen)
    return iResult;
 }
 
-int natoi_dup(const char *psz, const char ** pszEnd, int iLen)
+int natoi_dup(const char *psz, const char ** pszEnd, size_t iLen)
 {
    int iResult = 0;
    while(iLen > 0)
@@ -239,7 +239,7 @@ return total;*/
 
 
 
-long nwtol_dup(const wchar_t *str, int iLen)
+long nwtol_dup(const wchar_t *str, size_t iLen)
 {
    while (iLen > 0 && iswspace_dup(*str))			// skip whitespace
    {
@@ -281,12 +281,12 @@ long nwtol_dup(const wchar_t *str, int iLen)
       return total;
 }
 
-int nwtoi_dup(const wchar_t *str, int iLen)
+int nwtoi_dup(const wchar_t *str, size_t iLen)
 {
    return (int)nwtol_dup(str, iLen);
 }
 
-int _digit_natoi_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
+int _digit_natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t iLen)
 {
    int iResult = 0;
    char chMax = '0' + iBase;
@@ -306,7 +306,7 @@ int _digit_natoi_dup(const char * psz, const char ** pszEnd, int iBase, int iLen
    return iResult;
 }
 
-int _natoi_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
+int _natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t iLen)
 {
    int iResult = 0;
    char chMax = 'a' + iBase - 10;
@@ -342,7 +342,7 @@ int _natoi_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
    return iResult;
 }
 
-int natoi_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
+int natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t iLen)
 {
    if(iBase <= 0)
       return 0;
@@ -355,11 +355,6 @@ int natoi_dup(const char * psz, const char ** pszEnd, int iBase, int iLen)
    else
       return 0;
 }
-
-
-
-
-#include "framework.h"
 
 
 int64_t atoi64_dup(const char * psz)
@@ -507,7 +502,7 @@ int64_t atoi64_dup(const char * psz, char ** pszEnd, int iBase)
 */
 
 
-int64_t natoi64_dup(const char * psz, int iLen)
+int64_t natoi64_dup(const char * psz, size_t iLen)
 {
    int64_t iResult = 0;
    while(iLen > 0)
@@ -526,7 +521,7 @@ int64_t natoi64_dup(const char * psz, int iLen)
    return iResult;
 }
 
-int64_t natoi64_dup(const char *psz, char ** pszEnd, int iLen)
+int64_t natoi64_dup(const char *psz, char ** pszEnd, size_t iLen)
 {
    int64_t iResult = 0;
    while(iLen > 0)
@@ -549,7 +544,7 @@ int64_t natoi64_dup(const char *psz, char ** pszEnd, int iLen)
    return iResult;
 }
 
-int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int iBase, int iLen)
+int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
 {
    int64_t iResult = 0;
    char chMax = '0' + iBase;
@@ -569,7 +564,7 @@ int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int iBase, int iLen
    return iResult;
 }
 
-int64_t _natoi64_dup(const char * psz, char ** pszEnd, int iBase, int iLen)
+int64_t _natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
 {
    int64_t iResult = 0;
    char chMax = 'a' + iBase - 10;
@@ -607,12 +602,12 @@ int64_t _natoi64_dup(const char * psz, char ** pszEnd, int iBase, int iLen)
 }
 
 
-int64_t natoi64_dup(const char * psz, char ** pszEnd, int iBase, int iLen)
+int64_t natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
 {
    if(iBase <= 0)
       return 0;
    else if(iBase == 10)
-      return atoi64_dup(psz, pszEnd, iLen);
+      return atoi64_dup(psz, pszEnd, iBase);
    else if(iBase < 10)
       return _digit_natoi64_dup(psz, pszEnd, iBase, iLen);
    else if(iBase < 36)
@@ -621,7 +616,7 @@ int64_t natoi64_dup(const char * psz, char ** pszEnd, int iBase, int iLen)
       return 0;
 }
 
-int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, int iLen)
+int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, size_t iLen)
 {
    while (iLen > 0 && iswspace_dup(*str))			// skip whitespace
    {

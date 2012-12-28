@@ -76,7 +76,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
 
          /** Wait for events, generate callbacks. */
-         int Select(long sec,long usec);
+         int Select(int sec, int usec);
 
          /** This method will not return until an event has been detected. */
          int Select();

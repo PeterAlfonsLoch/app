@@ -812,7 +812,7 @@ stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
             ++num;
             add("");
          }
-         else if(istring[i] == '"' || istring[i] == '\'' || istring[i] == '(' && !gen::str::simple_escaped(istring,i))
+         else if((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !gen::str::simple_escaped(istring,i))
          {
             status = 2;
             to = (istring[i] == '(') ? ')' : istring[i];

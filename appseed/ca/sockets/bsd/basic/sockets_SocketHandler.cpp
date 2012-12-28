@@ -247,7 +247,7 @@ namespace sockets
    }
 
 
-   int socket_handler::Select(long lSeconds, long lMicroseconds)
+   int socket_handler::Select(int lSeconds, int lMicroseconds)
    {
       
       struct timeval timeval;

@@ -2067,7 +2067,7 @@ namespace xml
       // "this is not a row column v2 xml node";
       if(m_strName != "row_column_v2")
          return false;
-      ::count iColCount = attr("column_count").operator long int();
+      ::count iColCount = attr("column_count");
       if(m_nodea.get_count() == 0 ||  iColCount <= 0)
       {
          str2a.remove_all();
@@ -2079,7 +2079,7 @@ namespace xml
       for(::index iCol = 0; iCol < iColCount; iCol++)
       {
          ::xml::node * pcol = pheader->m_nodea.ptr_at(iCol);
-         str2a[iCol].set_size(pcol->attr("row_count").operator long int());
+         str2a[iCol].set_size(pcol->attr("row_count"));
       }
       for(::index iRow = 0; iRow < iRowCount; iRow++)
       {

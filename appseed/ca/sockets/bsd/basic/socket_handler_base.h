@@ -106,7 +106,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Set read/write/exception file descriptor sets (fd_set). */
          virtual void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true) = 0;
          /** Wait for events, generate callbacks. */
-         virtual int Select(long sec,long usec) = 0;
+         virtual int Select(int sec, int usec) = 0;
          /** This method will not return until an event has been detected. */
          virtual int Select() = 0;
          /** Wait for events, generate callbacks. */

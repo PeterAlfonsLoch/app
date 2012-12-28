@@ -19,7 +19,7 @@ namespace datetime
 #define IsLeapYear(y) (((y % 4) == 0) && (((y % 100) != 0) || ((y % 400) == 0)))
 
 /* Determine if a day is valid in a given month of a given year */
-static BOOL FLOATTIME_IsValidMonthDay(DWORD day, DWORD month, DWORD year)
+static WINBOOL FLOATTIME_IsValidMonthDay(DWORD day, DWORD month, DWORD year)
 {
   static const BYTE days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -408,7 +408,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
     }
     else if (isalpha(*strIn))
     {
-      BOOL bFound = FALSE;
+      WINBOOL bFound = FALSE;
 
       for (i = 0; i < sizeof(tokens)/sizeof(tokens[0]); i++)
       {

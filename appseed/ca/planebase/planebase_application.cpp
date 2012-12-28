@@ -1,8 +1,12 @@
 #include "framework.h"
 
 
+
 namespace planebase
 {
+
+   void trace_progress(index iStep);
+   void progress();
 
 
    CLASS_DECL_ca LPFN_instantiate_application g_lpfn_instantiate_application = NULL;
@@ -1705,8 +1709,8 @@ exit_application:
             }
 
 
-            ::sockets::socket_handler h(get_app());
-            ::sockets::http_session * psession = NULL;
+//            ::sockets::socket_handler h(get_app());
+//            ::sockets::http_session * psession = NULL;
 
             ::ensure_trace_file();
 

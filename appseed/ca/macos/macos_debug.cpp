@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <sys/types.h>
 #include <unistd.h>
+#define user user_struct
 #include <sys/sysctl.h>
 
 bool AmIBeingDebugged();

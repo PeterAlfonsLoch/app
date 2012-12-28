@@ -694,7 +694,7 @@ namespace user
 
    int window_util::GetZOrder(oswindow oswindow)
    {
-#if !defined(METROWIN) && !defined(LINUX)
+#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
 //      int iOrder = 0;
       ::oswindow oswindowOrder = ::ca::null();
       try

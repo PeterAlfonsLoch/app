@@ -831,7 +831,8 @@ namespace user
    void interaction::_001OnTimer(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::timer, ptimer, pobj)
+      UNREFERENCED_PARAMETER(pobj);
+//      SCAST_PTR(gen::message::timer, ptimer, pobj)
 
    }
 

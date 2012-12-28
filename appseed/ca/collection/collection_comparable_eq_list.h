@@ -146,7 +146,7 @@ bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_tail_unique(ARG_TYPE t)
 {
    if(contains(t))
       return false;
-   add_tail(t);
+   this->add_tail(t);
    return true;
 }
 
@@ -155,7 +155,7 @@ bool comparable_eq_list<TYPE, ARG_TYPE, LIST_TYPE>::add_head_unique(ARG_TYPE t)
 {
    if(contains(t))
       return false;
-   add_head(t);
+   this->add_head(t);
    return true;
 }
 

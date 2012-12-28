@@ -43,7 +43,8 @@
  */
 #include "framework.h"
 
-
+int
+v32_low_bit(v32_t *w);
 
 int 
 octet_weight[256] = {

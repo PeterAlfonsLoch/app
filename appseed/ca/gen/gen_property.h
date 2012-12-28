@@ -309,6 +309,16 @@ namespace gen
          get_value() = i;
          return *this;
       }
+      
+#ifdef MACOS
+
+      property & operator =(long l)
+      {
+         get_value() = l;
+         return *this;
+      }
+      
+#endif
 
       property & operator =(bool b)
       {

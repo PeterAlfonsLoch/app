@@ -1,5 +1,6 @@
 #include <sys/types.h>
 #include <sys/param.h>
+#define user user_struct
 #include <sys/user.h>
 #include <sys/sysctl.h>
 #include <stdio.h>

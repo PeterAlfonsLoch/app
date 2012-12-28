@@ -45,6 +45,12 @@
 #include "framework.h"
 
 
+cipher_type_t *
+crypto_kernel_get_cipher_type(cipher_type_id_t id);
+
+auth_type_t *
+crypto_kernel_get_auth_type(auth_type_id_t id);
+
 /* the debug module for the crypto_kernel */
 
 debug_module_t mod_crypto_kernel = {

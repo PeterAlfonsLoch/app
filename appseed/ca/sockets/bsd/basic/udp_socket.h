@@ -47,7 +47,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          int m_ibufsz; ///< size of input buffer
          bool m_bind_ok; ///< Bind completed successfully
          port_t m_port; ///< Bind port number
-         int m_last_size_written;
+         size_t m_last_size_written;
          int m_retries;
          bool m_b_read_ts;
 
@@ -170,7 +170,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Return Bind port number */
          port_t GetPort();
          void OnOptions(int,int,int,SOCKET) {}
-         int GetLastSizeWritten();
+         size_t GetLastSizeWritten();
 
          /** Also read timestamp information from incoming message */
          void SetTimestamp(bool = true);

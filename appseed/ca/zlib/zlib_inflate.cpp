@@ -1174,7 +1174,7 @@ const Bytef *dictionary,
 uInt dictLength)
 {
     struct inflate_state FAR *state;
-    unsigned long id;
+    uint32_t id;
 
     /* check state */
     if (strm == Z_NULL || strm->state == Z_NULL) return Z_STREAM_ERROR;
@@ -1265,7 +1265,7 @@ int ZEXPORT inflateSync(
 z_streamp strm)
 {
     unsigned len;               /* number of bytes to look at or looked at */
-    unsigned long in, out;      /* temporary to save total_in and total_out */
+    uint32_t in, out;      /* temporary to save total_in and total_out */
     unsigned char buf[4];       /* to restore bit buffer to byte string */
     struct inflate_state FAR *state;
 

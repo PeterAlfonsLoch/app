@@ -84,7 +84,7 @@ unsigned start)         /* inflate()'s starting value for strm->avail_out */
     unsigned whave;             /* valid bytes in the window */
     unsigned write;             /* window write index */
     unsigned char FAR *window;  /* allocated sliding window, if wsize != 0 */
-    unsigned long hold;         /* zlib_local strm->hold */
+    uint32_t hold;         /* zlib_local strm->hold */
     unsigned bits;              /* zlib_local strm->bits */
     code const FAR *lcode;      /* zlib_local strm->lencode */
     code const FAR *dcode;      /* zlib_local strm->distcode */

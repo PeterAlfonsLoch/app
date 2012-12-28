@@ -147,10 +147,24 @@
 
 #define DEBUG_MEMORY 0
 
+
+bool isWhitespace(char ch);
+bool isNumeric(char ch);
+bool isNumber(const string &str);
+bool isHexadecimal(char ch);
+bool isAlpha(char ch);
+bool isIDString(const char *s);
+void replace(string &str, char textFrom, const char *textTo);
+bool isAlphaNum(const string &str);
+
+
+
 #if DEBUG_MEMORY
 
 vector<CScriptVar*> allocatedVars;
 vector<CScriptVarLink*> allocatedLinks;
+
+
 
 void mark_allocated(CScriptVar *v) {
     allocatedVars.push_back(v);
@@ -227,7 +241,7 @@ bool isIDString(const char *s) {
 
 void replace(string &str, char textFrom, const char *textTo) {
     strsize sLen = strlen(textTo);
-    size_t p = str.find(textFrom);
+    strsize p = str.find(textFrom);
     while (p >= 0) {
         str = str.substr(0, p) + textTo + str.substr(p+1);
         p = str.find(textFrom, p+sLen);
@@ -795,7 +809,7 @@ CScriptVarLink *CScriptVar::findChildOrCreate(const string &childName, int varFl
 }
 
 CScriptVarLink *CScriptVar::findChildOrCreateByPath(const string &path) {
-  size_t p = path.find('.');
+  strsize p = path.find('.');
   if (p < 0)
     return findChildOrCreate(path);
 
@@ -925,7 +939,7 @@ int CScriptVar::getChildren() {
 
 int CScriptVar::getInt() {
     /* strtol understands about hex and octal */
-    if (isInt()) return intData;
+    if (isInt()) return (int) intData;
     if (isNull()) return 0;
     if (isUndefined()) return 0;
     if (isDouble()) return (int)doubleData;

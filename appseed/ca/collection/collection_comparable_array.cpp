@@ -2,6 +2,8 @@
 
 #ifdef DEBUG
 
+void _base_comparable_array_debug();
+
 void _base_comparable_array_debug()
 {
    comparable_array<int,int> ia;
@@ -9,4 +11,5 @@ void _base_comparable_array_debug()
    ia.find_first(i);
    ia.remove_first(i);
 }
+
 #endif

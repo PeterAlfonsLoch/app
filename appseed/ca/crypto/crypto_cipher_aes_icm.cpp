@@ -47,7 +47,11 @@
 
 #define ALIGN_32 0
 
+err_status_t aes_icm_alloc(cipher_t **c, int key_len, int forIsmacryp);
 
+err_status_t
+aes_icm_set_octet(aes_icm_ctx_t *c,
+                  uint64_t octet_num);
 
 debug_module_t mod_aes_icm = {
   0,                 /* debugging is off by default */

@@ -193,7 +193,7 @@ namespace sockets {
 #  error FreeBSD versions prior to 400014 does not support ipv6
 # endif
 
-#elif defined MACOSX
+#elif defined MACOS
 // ----------------------------------------
 // Mac App X
 //#include <string.h>

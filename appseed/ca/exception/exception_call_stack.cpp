@@ -4,7 +4,7 @@
 bool call_stack::s_bDoStackTrace = false;
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 call_stack::call_stack(::ca::application * papp, unsigned int uiSkip, void * address) :
    ca(papp)
    ,m_caller_address(address)
