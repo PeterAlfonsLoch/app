@@ -27,7 +27,7 @@ void clock::_001OnDraw(::ca::graphics * pdc)
    double dRIntM = rect.width() * 59  / 128;
    double dRExt = rect.width() * 60  / 128;
 
-   for(int i = 0; i < 60; i++)
+   for(int32_t i = 0; i < 60; i++)
    {
       double angle = System.math().GetPi() / 2.0 - i * System.math().GetPi() * 2.0 / (60.0);
       point ptInt;

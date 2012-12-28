@@ -21,7 +21,7 @@ namespace ca
    {
    }
 
-/*   int graphics_object::___FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const
+/*   int32_t graphics_object::___FUNCNAME(GetObject)(int32_t nCount, LPVOID lpObject) const
    {
       UNREFERENCED_PARAMETER(nCount);
       UNREFERENCED_PARAMETER(lpObject);
@@ -31,14 +31,14 @@ namespace ca
 /*#pragma push_macro("GetObject")
 #undef GetObject
 
-   int graphics_object::GetObject(int nCount, LPVOID lpObject) const
+   int32_t graphics_object::GetObject(int32_t nCount, LPVOID lpObject) const
    {
       return ___FUNCNAME(GetObject)(nCount, lpObject);
    }
 
 #pragma pop_macro("GetObject")*/
 
-   bool graphics_object::CreateStockObject(int nIndex)
+   bool graphics_object::CreateStockObject(int32_t nIndex)
    {
       throw interface_only_exception(get_app());
    }

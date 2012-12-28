@@ -3,8 +3,8 @@
 namespace userbase
 {
 
-   const int BaseWndMenuCmdUi = 117;
-   const int g_base_menu_indent = 11;
+   const int32_t BaseWndMenuCmdUi = 117;
+   const int32_t g_base_menu_indent = 11;
 
 
    menu_list_window::menu_list_window(::ca::application * papp) :
@@ -178,7 +178,7 @@ namespace userbase
 
       cmdui.m_pitema = pitemParent->m_spitema;
 
-      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
+      for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
 
          menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
@@ -207,11 +207,11 @@ namespace userbase
       pobj->m_bRet = false;
    }
 
-   void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca::graphics * pdc, int & iMaxWidth, int & iMaxHeight)
+   void menu_list_window::_CalcSize(menu_item * pitemParent, ::ca::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight)
    {
       if(pitemParent->m_spitema == NULL)
          return;
-      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
+      for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
          menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
          size size = pdc->GetTextExtent(pitem->m_button._001GetButtonText());
@@ -237,16 +237,16 @@ namespace userbase
       ::ca::client_graphics pdc(this);
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
-      int iMaxHeight = size.cy;
-      int iMaxWidth = size.cx;
+      int32_t iMaxHeight = size.cy;
+      int32_t iMaxWidth = size.cx;
       m_iHeaderHeight = size.cy;
       _CalcSize(m_pitem, pdc, iMaxWidth, iMaxHeight);
       m_iItemHeight = iMaxHeight + 6 + 2;
       m_size.cx = iMaxWidth + 4;
       m_size.cy = m_iHeaderHeight +
          m_pitem->m_iSeparatorCount * 3 + m_pitem->m_iFullHeightItemCount * m_iItemHeight + 4;
-   //   int iMaxHeight = 0;
-     // int iMaxWidth = 0;
+   //   int32_t iMaxHeight = 0;
+     // int32_t iMaxWidth = 0;
       rect rect(4, m_iHeaderHeight + 4, m_size.cx - 8, 4);
       string str;
       _LayoutButtons(m_pitem, iMaxWidth + 4, rect, rectClient);
@@ -265,11 +265,11 @@ namespace userbase
    }
 
 
-   void menu_list_window::_LayoutButtons(menu_item * pitemParent, int iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound)
+   void menu_list_window::_LayoutButtons(menu_item * pitemParent, int32_t iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound)
    {
       if(pitemParent->m_spitema == NULL)
          return;
-      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
+      for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
          menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
          if(pitem->m_id  == "separator")
@@ -332,7 +332,7 @@ namespace userbase
    {
       if(pitemParent->m_spitema == NULL)
          return;
-      for(int i = 0; i < pitemParent->m_spitema->get_size(); i++)
+      for(int32_t i = 0; i < pitemParent->m_spitema->get_size(); i++)
       {
          menu_item * pitem = pitemParent->m_spitema->ptr_at(i);
          if(!pitem->m_button.IsWindow())

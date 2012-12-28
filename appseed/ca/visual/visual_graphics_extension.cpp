@@ -19,7 +19,7 @@ namespace visual
 
    }
 
-   bool graphics_extension::TextOut(::ca::graphics * pdc, int x, int y, const char * lpcsz, strsize iCount)
+   bool graphics_extension::TextOut(::ca::graphics * pdc, int32_t x, int32_t y, const char * lpcsz, strsize iCount)
    {
       return pdc->TextOut(x, y, string(lpcsz, iCount));
       //return ::TextOutU((HDC)pdc->get_os_data(), x, y, lpcsz, iCount);
@@ -50,13 +50,13 @@ namespace visual
 
 #ifdef WINDOWSEX
 
-            ::GetTextExtentPoint32W((HDC)pdc->get_os_data(), lpwsz, (int) i, &sz);
+            ::GetTextExtentPoint32W((HDC)pdc->get_os_data(), lpwsz, (int32_t) i, &sz);
 
 #else
 
             throw todo(::ca::get_thread_app());
 
-            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), gen::international::unicode_to_utf8(lpwsz), (int) gen::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
+            // ::GetTextExtentPoint32((HDC)pdc->get_os_data(), gen::international::unicode_to_utf8(lpwsz), (int32_t) gen::international::unicode_to_utf8(lpwsz).get_lengt(), &sz);
 
 #endif
 
@@ -102,7 +102,7 @@ namespace visual
       {
          sizea[0] = (DWORD) 0;
       }
-      for(int i = 1; i < iLen; i++)
+      for(int32_t i = 1; i < iLen; i++)
       {
          ::GetTextExtentPoint32U(
             (HDC)pdc->get_os_data(),
@@ -173,18 +173,18 @@ namespace visual
 
 
 
-   /*int graphics_extension::_FindPrefixV1(const wchar_t * lpcsz)
+   /*int32_t graphics_extension::_FindPrefixV1(const wchar_t * lpcsz)
    {
-      int iStart = 0;
-      int iIndex;
-      int iLen = wcslen(lpcsz);
+      int32_t iStart = 0;
+      int32_t iIndex;
+      int32_t iLen = wcslen(lpcsz);
       wchar_t * lpszFind;
       while(true)
       {
          lpszFind = wcschr(lpcsz + iStart, L'&');
          if(lpszFind == NULL)
             break;
-         iIndex = (int)(lpsz - m_pchData);
+         iIndex = (int32_t)(lpsz - m_pchData);
          if(iIndex + 1 >= iLen)
             break;
          if(lpcsz[iIndex + 1] == L'&')
@@ -249,7 +249,7 @@ namespace visual
    }
 
 
-   void graphics_extension::FillSolidRect(HDC hdc, int x, int y, int cx, int cy, COLORREF clr)
+   void graphics_extension::FillSolidRect(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr)
    {
 
 #ifdef WINDOWSEX
@@ -275,7 +275,7 @@ namespace visual
 namespace visual
 {
 
-   int graphics_extension::_DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline)
+   int32_t graphics_extension::_DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline)
    {
 
 
@@ -299,7 +299,7 @@ namespace visual
 
       if((uiFormat & DT_END_ELLIPSIS) != 0 || (uiFormat & DT_WORDBREAK) != 0)
       {
-         sz = pdc->GetTextExtent(str, (int) iLen);
+         sz = pdc->GetTextExtent(str, (int32_t) iLen);
          if(sz.cx > rectClip.width())
          {
             if((uiFormat & DT_WORDBREAK) != 0 && sz.cy * 2 <= rectClip.height())
@@ -308,7 +308,7 @@ namespace visual
                string str2;
                word_break(pdc, lpcsz, rectClip, str1, str2);
                iLen = str.get_length();
-               sz = pdc->GetTextExtent(str, (int) iLen);
+               sz = pdc->GetTextExtent(str, (int32_t) iLen);
                if(sz.cx <= rectClip.width())
                {
                   goto skip1;
@@ -328,7 +328,7 @@ namespace visual
                lpsz[i - 3] = '.';
                lpsz[i - 2] = '.';
                lpsz[i - 1] = '\0';
-               sz = pdc->GetTextExtent(lpsz, (int) i);
+               sz = pdc->GetTextExtent(lpsz, (int32_t) i);
                if(sz.cx < rectClip.width())
                {
                   if(i >= iLen)
@@ -349,7 +349,7 @@ namespace visual
                lpsz[i - 3] = L'.';
                lpsz[i - 2] = L'.';
                lpsz[i - 1] = L'\0';
-               sz = pdc->GetTextExtent(lpsz, (int) i);
+               sz = pdc->GetTextExtent(lpsz, (int32_t) i);
                if(sz.cx > rectClip.width())
                {
                   i--;
@@ -366,7 +366,7 @@ namespace visual
       }
       else
       {
-         sz = pdc->GetTextExtent(str, (int) iLen);
+         sz = pdc->GetTextExtent(str, (int32_t) iLen);
          /*::GetTextExtentPoint32U(
             (HDC) pdc->get_os_data(),
             str,
@@ -381,7 +381,7 @@ namespace visual
             char * lpsz = str.GetBuffer(max(0, i) + 1);
             while(true)
             {
-               sz = pdc->GetTextExtent(str, (int) i);
+               sz = pdc->GetTextExtent(str, (int32_t) i);
                if(sz.cx > rectClip.width())
                {
                   if(i <= 0)
@@ -420,7 +420,7 @@ namespace visual
       rect.right = sz.cx;
       rect.bottom = sz.cy;
 
-      int align = 0;
+      int32_t align = 0;
       if(uiFormat & DT_BOTTOM)
       {
          align |= gen::AlignBottom;
@@ -453,7 +453,7 @@ namespace visual
 
          ::ca::font * pfontOld;
 
-         pdc->TextOut(rect.left, rect.top, str, (int) min(iUnderline, str.get_length()));
+         pdc->TextOut(rect.left, rect.top, str, (int32_t) min(iUnderline, str.get_length()));
          /*::TextOutU(
             (HDC)pdc->get_os_data(),
             rect.left,
@@ -469,7 +469,7 @@ namespace visual
                str,
                iUnderline,
                &sz);*/
-            sz = pdc->GetTextExtent(str, (int) iUnderline);
+            sz = pdc->GetTextExtent(str, (int32_t) iUnderline);
             char wch = str[iUnderline];
             /*::TextOutU(
                (HDC)pdc->get_os_data(),
@@ -481,14 +481,14 @@ namespace visual
             pdc->SelectObject(&fPrevious);
             if(iUnderline + 1 <= str.get_length())
             {
-               sz = pdc->GetTextExtent(str, (int) (iUnderline + 1));
+               sz = pdc->GetTextExtent(str, (int32_t) (iUnderline + 1));
                /*::GetTextExtentPoint32U(
                   (HDC)pdc->get_os_data(),
                   str,
                   iUnderline + 1,
                   &sz);*/
                strsize iCount = str.get_length() - iUnderline - 1;
-               pdc->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), (int) iCount);
+               pdc->TextOut(rect.left + sz.cx, rect.top, str.Right(iCount), (int32_t) iCount);
                /*::TextOutU(
                   (HDC)pdc->get_os_data(),
                   rect.left + sz.cx,

@@ -3,10 +3,10 @@
 
 
 
-CLASS_DECL_c int spalib_main(HINSTANCE hInstance,
+CLASS_DECL_c int32_t spalib_main(HINSTANCE hInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR    lpCmdLine,
-                     int       nCmdShow)
+                     int32_t       nCmdShow)
 {
 	UNREFERENCED_PARAMETER(hPrevInstance);
    spa::installer installer;

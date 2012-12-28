@@ -3,7 +3,7 @@
 #include "x/x_charcategory_names.h"
 
 
-int gen_ch_class_reference_tables();
+int32_t gen_ch_class_reference_tables();
 
 
 inline bool is_legal_uni_index(int64_t c)
@@ -11,7 +11,7 @@ inline bool is_legal_uni_index(int64_t c)
    return c >= ((uint64_t) 0xffff) ? false : true;
 }
 
-int gen_ch_class_reference_tables()
+int32_t gen_ch_class_reference_tables()
 {
    return sizeof(char_bidi_names);
 }
@@ -97,7 +97,7 @@ namespace gen
          }
          if(ccs[pos] == '\\' && natural(pos+1) < strlen(ccs))
          {
-//            int retEnd;
+//            int32_t retEnd;
             prev_char = BAD_WCHAR;
             switch(ccs[pos+1])
             {
@@ -283,9 +283,9 @@ namespace gen
    {
       if(!cat || cat >= CHAR_CATEGORY_LAST)
          return;
-      for (int i = 0; i < 256; i++)
+      for (int32_t i = 0; i < 256; i++)
       {
-         unsigned short pos = arr_idxCharCategoryIdx[(int(cat)-1) * 256 + i];
+         unsigned short pos = arr_idxCharCategoryIdx[(int32_t(cat)-1) * 256 + i];
          if(!pos)
             continue;
          bit_array *tablePos = infoIndex[i];
@@ -300,7 +300,7 @@ namespace gen
 
    void ch_class::add_category(string cat)
    {
-      for(int pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
+      for(int32_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
          if(gen::str::begins(cat, char_category_names[pos]))
          {
@@ -313,9 +313,9 @@ namespace gen
    {
       if(!cat || cat >= CHAR_CATEGORY_LAST)
          return;
-      for(int i = 0; i < 256; i++)
+      for(int32_t i = 0; i < 256; i++)
       {
-         unsigned short pos = arr_idxCharCategoryIdx[(int(cat)-1) * 256 + i];
+         unsigned short pos = arr_idxCharCategoryIdx[(int32_t(cat)-1) * 256 + i];
          if(!pos)
             continue;
          bit_array *tablePos = infoIndex[i];
@@ -330,9 +330,9 @@ namespace gen
 
    void ch_class::clear_category(string cat)
    {
-      for(int pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
+      for(int32_t pos = 0; pos < ARRAY_SIZE(char_category_names); pos++)
       {
-         int ci;
+         int32_t ci;
          for(ci = 0; ci < cat.get_length() && cat[ci] == char_category_names[pos][ci]; ci++);
          if(ci == cat.get_length()) clear_category(ECharCategory(pos));
       }
@@ -340,7 +340,7 @@ namespace gen
 
    void ch_class::add_class(const ch_class &cclass)
    {
-      for(int p = 0; p < 256; p++)
+      for(int32_t p = 0; p < 256; p++)
       {
          if (infoIndex[p] == NULL)
             infoIndex[p] = new bit_array();
@@ -350,7 +350,7 @@ namespace gen
 
    void ch_class::intersect_class(const ch_class &cclass)
    {
-      for(int p = 0; p < 256; p++)
+      for(int32_t p = 0; p < 256; p++)
       {
          if (infoIndex[p] != NULL)
          {
@@ -361,7 +361,7 @@ namespace gen
 
    void ch_class::clear_class(const ch_class &cclass)
    {
-      for(int p = 0; p < 256; p++)
+      for(int32_t p = 0; p < 256; p++)
       {
          if(infoIndex[p] != NULL)
          {
@@ -372,7 +372,7 @@ namespace gen
 
    void ch_class::clear()
    {
-      for(int i = 0; i < 256; i++)
+      for(int32_t i = 0; i < 256; i++)
       {
          if(infoIndex[i] != NULL)
          {
@@ -384,7 +384,7 @@ namespace gen
 
    void ch_class::fill()
    {
-      for(int i = 0; i < 256; i++)
+      for(int32_t i = 0; i < 256; i++)
       {
          if(infoIndex[i] == NULL)
             infoIndex[i] = new bit_array();

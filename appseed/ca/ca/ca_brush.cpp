@@ -26,7 +26,7 @@ namespace ca
 
    }
 
-   void brush::construct(int nIndex, COLORREF crColor)
+   void brush::construct(int32_t nIndex, COLORREF crColor)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(crColor);
@@ -87,7 +87,7 @@ namespace ca
 
    }
 
-   bool brush::CreateHatchBrush(int nIndex, COLORREF crColor)
+   bool brush::CreateHatchBrush(int32_t nIndex, COLORREF crColor)
    {
 
       UNREFERENCED_PARAMETER(nIndex);
@@ -112,12 +112,12 @@ namespace ca
       UNREFERENCED_PARAMETER(nUsage);
       throw interface_only_exception(get_app());
    }
-   bool brush::CreateSysColorBrush(int nIndex)
+   bool brush::CreateSysColorBrush(int32_t nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception(get_app());
    }
-   int brush::GetLogBrush(LOGBRUSH* pLogBrush)
+   int32_t brush::GetLogBrush(LOGBRUSH* pLogBrush)
    {
       UNREFERENCED_PARAMETER(pLogBrush);
       throw interface_only_exception(get_app());

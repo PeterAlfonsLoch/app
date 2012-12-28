@@ -88,7 +88,7 @@ namespace collection
 
          }
 
-         iterator & operator +(int i)
+         iterator & operator +(int32_t i)
          {
 
             while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
@@ -115,7 +115,7 @@ namespace collection
 
          }
 
-         iterator & operator -(int i)
+         iterator & operator -(int32_t i)
          {
 
             while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
@@ -202,7 +202,7 @@ namespace collection
 
          }
 
-         const_iterator & operator +(int i)
+         const_iterator & operator +(int32_t i)
          {
 
             while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
@@ -229,7 +229,7 @@ namespace collection
 
          }
 
-         const_iterator & operator -(int i)
+         const_iterator & operator -(int32_t i)
          {
 
             while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
@@ -964,7 +964,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
             // in some cases the & operator might be overloaded, and we cannot use it to obtain
             //the address of a given object.  We then use the following trick to get the address
             //
-            pData = reinterpret_cast< TYPE* >( &reinterpret_cast< int& >( static_cast< TYPE& >( pNode->data ) ) );
+            pData = reinterpret_cast< TYPE* >( &reinterpret_cast< int32_t& >( static_cast< TYPE& >( pNode->data ) ) );
             SerializeElements<TYPE>(ar, pData, 1);
          }
       }

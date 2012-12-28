@@ -17,8 +17,8 @@ namespace frame
 
       bool IsDocked();
       
-      bool MoveWindow(int x, int y);
-      bool OffsetWindowPos(int cx, int cy);
+      bool MoveWindow(int32_t x, int32_t y);
+      bool OffsetWindowPos(int32_t cx, int32_t cy);
       void layout();
       void UpdateDocking();
       void OnMoving();
@@ -32,7 +32,7 @@ namespace frame
       EDock GetDockMask();
       void SetDockMask(EDock emask);
 
-      EDock CalcDock(int x, int y);
+      EDock CalcDock(int32_t x, int32_t y);
       bool update(WorkSet * pwf);
       virtual bool relay_event(gen::signal_object * pobj);
       DockManager();

@@ -162,7 +162,7 @@ namespace calculator
    }
 
 
-   void view::_001OnTabClick(int iTab)
+   void view::_001OnTabClick(int32_t iTab)
    {
       if(iTab == 1)
       {
@@ -188,7 +188,7 @@ namespace calculator
    }
 
 
-   /*xxxvoid view::data_on_after_change(int iConfigurationId, ::database::id & idIndex CVmsDataUpdateHint * puh)
+   /*xxxvoid view::data_on_after_change(int32_t iConfigurationId, ::database::id & idIndex CVmsDataUpdateHint * puh)
    {
    if(iConfigurationId == _vmsp::CConfiguration::CfgKaraokeEncoding)
    {

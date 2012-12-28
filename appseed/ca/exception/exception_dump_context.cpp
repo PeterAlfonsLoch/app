@@ -3,7 +3,7 @@
 
 #ifdef LINUX
 
-inline int _stprintf_s(char * pszBuffer, int iBufferLen, const char * pszFormat, ...)
+inline int32_t _stprintf_s(char * pszBuffer, int32_t iBufferLen, const char * pszFormat, ...)
 {
 
    UNREFERENCED_PARAMETER(iBufferLen);
@@ -36,12 +36,12 @@ void dump_context::operator = (const dump_context &)
 
 }
 
-int dump_context::GetDepth() const
+int32_t dump_context::GetDepth() const
 {
    return m_nDepth;
 }
 
-void dump_context::SetDepth(int nNewDepth)
+void dump_context::SetDepth(int32_t nNewDepth)
 {
    m_nDepth = nNewDepth;
 }
@@ -174,7 +174,7 @@ dump_context& dump_context::dumpAsHex(WORD w)
 
 #if defined(LINUX)
 
-dump_context& dump_context::operator<<(unsigned int ui)
+dump_context& dump_context::operator<<(unsigned int32_t ui)
 {
 
    string str;
@@ -246,7 +246,7 @@ dump_context& dump_context::operator<<(dword_ptr dw)
 #endif
 
 #if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
-dump_context& dump_context::operator<<(int n)
+dump_context& dump_context::operator<<(int32_t n)
 #else
 dump_context& dump_context::operator<<(int_ptr n)
 #endif
@@ -317,7 +317,7 @@ dump_context& dump_context::dumpAsHex(dword_ptr dw)
 }
 
 #if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
-dump_context& dump_context::dumpAsHex(int n)
+dump_context& dump_context::dumpAsHex(int32_t n)
 #else
 dump_context& dump_context::dumpAsHex(int_ptr n)
 #endif
@@ -458,7 +458,7 @@ dump_context& dump_context::operator<<(HFONT h)
 /////////////////////////////////////////////////////////////////////////////
 // Formatted output
 
-void dump_context::Hexdump(const char * lpszLine, BYTE* pby, int nBytes, int nWidth)
+void dump_context::Hexdump(const char * lpszLine, BYTE* pby, int32_t nBytes, int32_t nWidth)
 // do a simple hex-dump (8 per line) to a dump_context
 //  the "lpszLine" is a string to print at the start of each line
 //    (%lx should be used to expand the current address)
@@ -476,7 +476,7 @@ void dump_context::Hexdump(const char * lpszLine, BYTE* pby, int nBytes, int nWi
    if( pby == NULL )
       throw invalid_argument_exception(get_app());
 
-   int nRow = 0;
+   int32_t nRow = 0;
    string str;
 
 

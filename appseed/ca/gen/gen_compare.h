@@ -25,12 +25,12 @@ namespace gen
    };
 
    template < >
-   class CLASS_DECL_ca compare < int >
+   class CLASS_DECL_ca compare < int32_t >
    {
    public:
 
 
-      inline static int_ptr CompareElements(const int * pElement1, const int * pElement2)
+      inline static int_ptr CompareElements(const int32_t * pElement1, const int32_t * pElement2)
       {
          return *pElement1 - *pElement2;
       }

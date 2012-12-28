@@ -28,11 +28,11 @@
 
 #define SHAREDMEMVER 2
 typedef struct {
-  int iSize;
-  int iVer;
+  int32_t iSize;
+  int32_t iVer;
   CDHANDLEREC cdHandles[MAXCDHAND];
   HANDLE cdMutex[MAXCDHAND];
-  int nextHandle;
+  int32_t nextHandle;
 } AKSHAREDMEM, FAR *LPAKSHAREDMEM;
 
 DWORD deinitREAD10( HCDROM hCD );
@@ -41,12 +41,12 @@ DWORD readCDParameters( HCDROM hCD, bool bChangeMask );
 DWORD setCDSpeed( HCDROM hCD, DWORD speed );
 DWORD pauseResumeCD( HCDROM hCD, bool bPause );
 DWORD startStopUnit( HCDROM hCD, bool bLoEj, bool bStart );
-int loadAspi( void );
+int32_t loadAspi( void );
 void unloadAspi( void );
 bool initMutexes( void );
 bool deinitMutexes( void );
 DWORD CDDBSum( DWORD n );
-int compBuf( BYTE *b1, BYTE *b2, int n );
+int32_t compBuf( BYTE *b1, BYTE *b2, int32_t n );
 DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t );
 DWORD dummyGetASPI32SupportInfo( void );
 DWORD dummySendASPI32Command( LPSRB lpsrb );
@@ -54,8 +54,8 @@ bool dummyGetASPI32Buffer( PASPI32BUFF pbuf );
 bool dummyFreeASPI32Buffer( PASPI32BUFF pbuf );
 bool dummyTranslateASPI32Address( PDWORD p1, PDWORD p2 );
 DWORD dummyGetASPI32DLLVersion( void );
-int InitSCSIPT( void );
-int DeinitSCSIPT( void );
+int32_t InitSCSIPT( void );
+int32_t DeinitSCSIPT( void );
 DWORD SPTIGetASPI32SupportInfo( void );
 DWORD SPTISendASPI32Command( LPSRB lpsrb );
 
@@ -85,12 +85,12 @@ static CDREADFN aReadFn[] = {
   readCDAudioLBA_D4, readCDAudioLBA_READ10
 };
 static HINSTANCE hinstWNASPI32 = NULL;
-int alErrCode = 0;
+int32_t alErrCode = 0;
 BYTE alAspiErr = 0;
 static LPAKSHAREDMEM pcdShared;
 CDHANDLEREC *cdHandles;
 HANDLE *cdMutexes;
-int *nextHandle = NULL;
+int32_t *nextHandle = NULL;
 CRITICAL_SECTION getHandle;
 HANDLE hCacheMutex = NULL;
 CRITICAL_SECTION csCache;
@@ -110,7 +110,7 @@ bool  aspiLoaded = FALSE;
 /*
  * local prototypes
  */
-static char *devType( int i );
+static char *devType( int32_t i );
 
 
 
@@ -206,7 +206,7 @@ bool WINAPI DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved )
 
 bool initMutexes( void )
 {
-  int i;
+  int32_t i;
   char tmp[32];
 
   for( i = 0; i < MAXCDHAND; i++ )
@@ -224,7 +224,7 @@ bool initMutexes( void )
 
 bool deinitMutexes( void )
 {
-  int i;
+  int32_t i;
 
   for( i = 0; i < MAXCDHAND; i++ )
     {
@@ -238,7 +238,7 @@ bool deinitMutexes( void )
 }
 
 
-static char *devType( int i )
+static char *devType( int32_t i )
 { 
   if ( i >= 0x20 )
     return "";
@@ -256,8 +256,8 @@ static char *devType( int i )
 /*
  * Assumes that loadAspi has already been called
  */
-int  getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
-		     LPBYTE pDevType, char * lpDevTypeStr, int iDevTypeLen )
+int32_t  getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
+		     LPBYTE pDevType, char * lpDevTypeStr, int32_t iDevTypeLen )
 {
   SRB_GDEVBlock s;
   DWORD dwStatus;
@@ -346,9 +346,9 @@ DWORD dummyGetASPI32DLLVersion( void )
 
 
 /***************************************************************************
- * int loadAspi( void )
+ * int32_t loadAspi( void )
  ***************************************************************************/
-int loadAspi( void )
+int32_t loadAspi( void )
 {
   DWORD dwErr;
   hinstWNASPI32 = LoadLibrary( "WNASPI32.DLL" );
@@ -438,7 +438,7 @@ void unloadAspi( void )
 /***************************************************************************
  * GetNumAdapters
  ***************************************************************************/
-int GetNumAdapters( void )
+int32_t GetNumAdapters( void )
 {
   DWORD d;
   BYTE bHACount;
@@ -458,7 +458,7 @@ int GetNumAdapters( void )
 #endif
       return -1;
     }
-  return (int)bHACount;
+  return (int32_t)bHACount;
 }
 
 /***************************************************************************
@@ -553,7 +553,7 @@ DWORD ReadTOC( HCDROM hCD, LPTOC toc )
   DWORD retVal = SS_COMP;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) )
     {
@@ -664,12 +664,12 @@ void resetSCSIBus( void )
  * Scans all host adapters for CD-ROM units, and stores information
  * for all units located
  ******************************************************************/
-int GetCDList( LPCDLIST cd )
+int32_t GetCDList( LPCDLIST cd )
 {
   SRB_HAInquiry sh;
   SRB_GDEVBlock sd;
-  int numAdapters, i, j, k;
-  int maxTgt;
+  int32_t numAdapters, i, j, k;
+  int32_t maxTgt;
 
   /* initialize cd list */
   maxTgt = cd->max;
@@ -697,7 +697,7 @@ int GetCDList( LPCDLIST cd )
       if ( sh.SRB_Status != SS_COMP )
 	continue;
 
-      maxTgt = (int)sh.HA_Unique[3];
+      maxTgt = (int32_t)sh.HA_Unique[3];
 
       if ( maxTgt == 0 )
 	maxTgt = 8;
@@ -744,7 +744,7 @@ int GetCDList( LPCDLIST cd )
 
 DWORD ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF t )
 {
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
   DWORD retVal;
 
   if ( (idx<0) || (idx>=MAXCDHAND) )
@@ -785,8 +785,8 @@ DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
   DWORD i;
   DWORD dwStatus;
   BYTE *p;
-  int idx = (int)hCD - 1;
-  int count;
+  int32_t idx = (int32_t)hCD - 1;
+  int32_t count;
 
   // fill buffer with dummy data
   memset( t->buf, 0xAA, t->len );
@@ -826,9 +826,9 @@ DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
 DWORD readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t )
 {
   DWORD dwStatus;
-  int idx = (int)hCD - 1;
-  int i, j;
-  int ord[7] = { 2, 1, 8, 4, 5, 6, 7 };
+  int32_t idx = (int32_t)hCD - 1;
+  int32_t i, j;
+  int32_t ord[7] = { 2, 1, 8, 4, 5, 6, 7 };
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -891,11 +891,11 @@ DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
   SRB_ExecSCSICmd s;
   DWORD d;
   BYTE b[256];
-  int lenData;
+  int32_t lenData;
   BYTE *p;
   BYTE *pMax = b + 256;
   LPSENSEMASK psm;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
 #if _GEN_CDPARMS
   FILE *fp;
@@ -958,7 +958,7 @@ DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
     }
 #endif
 
-  lenData = ((unsigned int)b[0] << 8) + b[1];
+  lenData = ((unsigned int32_t)b[0] << 8) + b[1];
 
   /* set to first sense mask, and then walk through the masks */
   p = b + 8;
@@ -1006,11 +1006,11 @@ DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
  * The data requested will either be returned as a bool, or copied
  * to pNum, depending on the parameter requested.
  ****************************************************************/
-bool QueryCDParms( HCDROM hCD, int which, DWORD *pNum )
+bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
 {
   bool retVal = FALSE;
   DWORD dwTmp;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1244,12 +1244,12 @@ bool QueryCDParms( HCDROM hCD, int which, DWORD *pNum )
  * Complement to queryCDParms -- used to set values in the various control
  * pages on the CD drive.
  */
-bool ModifyCDParms( HCDROM hCD, int which, DWORD val )
+bool ModifyCDParms( HCDROM hCD, int32_t which, DWORD val )
 {
   //SENSEMASK smask;
   //bool smRead = FALSE;
   bool retVal = FALSE;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1284,17 +1284,17 @@ bool ModifyCDParms( HCDROM hCD, int which, DWORD val )
       break;
 
     case CDP_JITTER:
-      cdHandles[idx].numCheck = (int)val;
+      cdHandles[idx].numCheck = (int32_t)val;
       retVal = TRUE;
       break;
 
     case CDP_OVERLAP:
-      cdHandles[idx].numOverlap = (int)val;
+      cdHandles[idx].numOverlap = (int32_t)val;
       retVal = TRUE;
       break;
 
     case CDP_READMODE:
-      cdHandles[idx].readMode = (int)val;
+      cdHandles[idx].readMode = (int32_t)val;
       retVal = TRUE;
       break;
     }
@@ -1316,7 +1316,7 @@ DWORD setCDSpeed( HCDROM hCD, DWORD speed )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1365,7 +1365,7 @@ DWORD pauseResumeCD( HCDROM hCD, bool bPause )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1420,7 +1420,7 @@ DWORD startStopUnit( HCDROM hCD, bool bLoEj, bool bStart )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -1480,9 +1480,9 @@ DWORD startStopUnit( HCDROM hCD, bool bLoEj, bool bStart )
  * manager.  After reading, the error code is cleared.
  *
  ****************************************************************/
-int GetAspiLibError( void )
+int32_t GetAspiLibError( void )
 {
-  int retVal;
+  int32_t retVal;
 
   retVal = alErrCode;
   alErrCode = ALERR_NOERROR;
@@ -1516,9 +1516,9 @@ BYTE GetAspiLibAspiError( void )
  * hCD
  *
  ****************************************************************/
-DWORD  GetCDId( HCDROM hCD, char *buf, int maxBuf )
+DWORD  GetCDId( HCDROM hCD, char *buf, int32_t maxBuf )
 {
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
   CDREC cd;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
@@ -1577,13 +1577,13 @@ bool allZeros( LPTRACKBUF t )
  * aligned data begins.  numFrames and len are also adjusted to reflect the
  * number of complete frames are contained in the buffer.
  */
-int jitterAdjust( LPTRACKBUF tbuf, LPTRACKBUF tover, int checkFrames )
+int32_t jitterAdjust( LPTRACKBUF tbuf, LPTRACKBUF tover, int32_t checkFrames )
 {
-  int i;
-  int max;
-  int bFound = 0;
+  int32_t i;
+  int32_t max;
+  int32_t bFound = 0;
   BYTE *p;
-  int checkLen = checkFrames * 2352;
+  int32_t checkLen = checkFrames * 2352;
 
   max = tbuf->len - checkLen;
 
@@ -1624,8 +1624,8 @@ int jitterAdjust( LPTRACKBUF tbuf, LPTRACKBUF tover, int checkFrames )
 DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
 {
   DWORD retVal;
-  int idx = (int)hCD - 1;
-  int j, o;
+  int32_t idx = (int32_t)hCD - 1;
+  int32_t j, o;
   unsigned char *pOverAddr;
   bool bJitterCorr, bSaveJitter;
 
@@ -1739,10 +1739,10 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
  * same data, or zero if they are different.
  *
  ********************************************************************/
-int compBuf( BYTE *b1, BYTE *b2, int n )
+int32_t compBuf( BYTE *b1, BYTE *b2, int32_t n )
 {
 #if 0
-  int i;
+  int32_t i;
 
   for( i = 0; i < n; i++ )
     if ( b1[i] != b2[i] )

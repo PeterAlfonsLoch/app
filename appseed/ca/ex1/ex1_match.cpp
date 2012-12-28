@@ -79,7 +79,7 @@ namespace ex1
             return true;
          else
          {
-            for(int i = 0; i < this->get_count(); i++)
+            for(int32_t i = 0; i < this->get_count(); i++)
             {
                if(ptr_at(i)->matches(var))
                   return true;

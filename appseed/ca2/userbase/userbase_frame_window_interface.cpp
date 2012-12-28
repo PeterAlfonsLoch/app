@@ -59,7 +59,7 @@ namespace userbase
 
             // finally, activate the frame
             // (send the default show command unless the main desktop ::ca::window)
-            int nCmdShow = -1;      // default
+            int32_t nCmdShow = -1;      // default
             ::radix::application* pApp = &System;
             if (pApp != NULL && pApp->GetMainWnd() == pframe)
             {
@@ -217,7 +217,7 @@ namespace userbase
 
          class rect rectSession;
 
-         for(int i = 0; i < Session.get_monitor_count(); i++)
+         for(int32_t i = 0; i < Session.get_monitor_count(); i++)
          {
             
             Session.get_monitor_rect(i, rectSession);

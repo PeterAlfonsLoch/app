@@ -16,12 +16,12 @@ namespace gen
 
       bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize nCount, const wchar_t * lpcsz)
       {
-         return WideCharToMultiByte(uiCodePage, 0, lpcsz, -1, lpstrMultiByte, (int) nCount, NULL, NULL) != FALSE;
+         return WideCharToMultiByte(uiCodePage, 0, lpcsz, -1, lpstrMultiByte, (int32_t) nCount, NULL, NULL) != FALSE;
       }
 
       bool UnicodeToMultiByte(UINT uiCodePage, char * lpstrMultiByte, strsize iMultiByteCount, const wchar_t * lpcsz, strsize iCount)
       {
-         return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int) iCount, lpstrMultiByte, (int) iMultiByteCount, NULL, NULL) != FALSE;
+         return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, lpstrMultiByte, (int32_t) iMultiByteCount, NULL, NULL) != FALSE;
       }
 
       bool UnicodeToMultiByte(UINT uiCodePage, string &str, const wchar_t * lpcsz)
@@ -73,11 +73,11 @@ namespace gen
       {
          if(iCount == -1)
          {
-            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0, NULL, NULL) - 1;
+            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0, NULL, NULL) - 1;
          }
          else
          {
-            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0, NULL, NULL);
+            return WideCharToMultiByte(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0, NULL, NULL);
          }
       }
 
@@ -99,7 +99,7 @@ namespace gen
             else
                return true;
          }
-         return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int) iCount, lpwsz, (int) iBuffer) != 0;
+         return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, lpwsz, (int32_t) iBuffer) != 0;
       }
 
       bool MultiByteToUnicode(UINT uiCodePage, wchar_t * lpwsz, strsize iBuffer, const char * lpcsz)
@@ -111,11 +111,11 @@ namespace gen
       {
          if(iCount == -1)
          {
-            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0) - 1;
+            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0) - 1;
          }
          else
          {
-            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int) iCount, NULL, 0);
+            return MultiByteToWideChar(uiCodePage, 0, lpcsz, (int32_t) iCount, NULL, 0);
          }
       }
 

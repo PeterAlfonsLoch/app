@@ -34,21 +34,21 @@ static const unsigned OC_AC_QUANT_MIN[2]={2<<2,4<<2};
    matrices being used for the current frame, and to recalculate these as the
    qi values change between frames (this is what VP3 did).*/
 void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
- int _pp_dc_scale[64],const th_quant_info *_qinfo){
+ int32_t _pp_dc_scale[64],const th_quant_info *_qinfo){
   /*Coding mode: intra or inter.*/
-  int          qti;
+  int32_t          qti;
   /*Y', C_b, C_r*/
-  int          pli;
+  int32_t          pli;
   for(qti=0;qti<2;qti++)for(pli=0;pli<3;pli++){
     /*Quality index.*/
-    int qi;
+    int32_t qi;
     /*Range iterator.*/
-    int qri;
+    int32_t qri;
     for(qi=0,qri=0;qri<=_qinfo->qi_ranges[qti][pli].nranges;qri++){
       th_quant_base base;
       ogg_uint32_t  q;
-      int           qi_start;
-      int           qi_end;
+      int32_t           qi_start;
+      int32_t           qi_end;
       memcpy(base,_qinfo->qi_ranges[qti][pli].base_matrices[qri],
        sizeof(base));
       qi_start=qi;
@@ -57,8 +57,8 @@ void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
       /*Iterate over quality indicies in this range.*/
       for(;;){
         ogg_uint32_t qfac;
-        int          zzi;
-        int          ci;
+        int32_t          zzi;
+        int32_t          ci;
         /*In the original VP3.2 code, the rounding offset and the size of the
            dead zone around 0 were controlled by a "sharpness" parameter.
           The size of our dead zone is now controlled by the per-coefficient
@@ -70,7 +70,7 @@ void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
            with exact precision.*/
         qfac=(ogg_uint32_t)_qinfo->dc_scale[qi]*base[0];
         /*For postprocessing, not dequantization.*/
-        if(_pp_dc_scale!=NULL)_pp_dc_scale[qi]=(int)(qfac/160);
+        if(_pp_dc_scale!=NULL)_pp_dc_scale[qi]=(int32_t)(qfac/160);
         /*Scale DC the coefficient from the proper table.*/
         q=(qfac/100)<<2;
         q=OC_CLAMPI(OC_DC_QUANT_MIN[qti],q,OC_QUANT_MAX);
@@ -84,9 +84,9 @@ void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
         /*If this is a duplicate of a previous matrix, use that instead.
           This simple check helps us improve cache coherency later.*/
         {
-          int dupe;
-          int qtj;
-          int plj;
+          int32_t dupe;
+          int32_t qtj;
+          int32_t plj;
           dupe=0;
           for(qtj=0;qtj<=qti;qtj++){
             for(plj=0;plj<(qtj<qti?3:pli);plj++){

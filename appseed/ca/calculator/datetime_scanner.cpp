@@ -492,7 +492,7 @@ namespace datetime
       if(check_end_expression(input, scanner))
          return "";
       const char * start = input;
-      int iCount = 0;
+      int32_t iCount = 0;
       while(true)
       {
          input = scanner;

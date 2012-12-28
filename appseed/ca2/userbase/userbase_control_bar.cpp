@@ -52,7 +52,7 @@ namespace userbase
    }
 
 
-   void control_bar::SetBorders(int cxLeft, int cyTop, int cxRight, int cyBottom)
+   void control_bar::SetBorders(int32_t cxLeft, int32_t cyTop, int32_t cxRight, int32_t cyBottom)
    {
       ASSERT(cxLeft >= 0);
       ASSERT(cyTop >= 0);
@@ -124,7 +124,7 @@ namespace userbase
    }
 
    /*
-   bool control_bar::AllocElements(int nElements, int cbElement)
+   bool control_bar::AllocElements(int32_t nElements, int32_t cbElement)
    {
       ASSERT_VALID(this);
       ASSERT(nElements >= 0 && cbElement >= 0);
@@ -193,7 +193,7 @@ namespace userbase
       return size;
    }
 
-   size control_bar::CalcDynamicLayout(int, DWORD nMode)
+   size control_bar::CalcDynamicLayout(int32_t, DWORD nMode)
    {
       return CalcFixedLayout((nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
@@ -231,7 +231,7 @@ namespace userbase
 
    }
 
-   bool control_bar::SetStatusText(int nHit)
+   bool control_bar::SetStatusText(int32_t nHit)
    {
       ::user::interaction* pOwner = get_owner();
 
@@ -405,8 +405,8 @@ namespace userbase
       rect rect;
       GetWindowRect(&rect);
       size sizePrev = rect.size();
-      int cx = lpWndPos->cx;
-      int cy = lpWndPos->cy;
+      int32_t cx = lpWndPos->cx;
+      int32_t cy = lpWndPos->cy;
       if (cx != sizePrev.cx && (m_dwStyle & CBRS_BORDER_RIGHT))
       {
          rect.set(cx-afxData.cxBorder2, 0, cx, cy);
@@ -935,7 +935,7 @@ namespace userbase
    #define CX_BORDER_GRIPPER 2
    #define CY_BORDER_GRIPPER 2
 
-   void DrawGripperElement001(::ca::graphics * pdc, int ix, int iy)
+   void DrawGripperElement001(::ca::graphics * pdc, int32_t ix, int32_t iy)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(ix);
@@ -961,11 +961,11 @@ namespace userbase
             //   rect.top+m_cyTopBorder,
             //   CX_GRIPPER, rect.height()-m_cyTopBorder-m_cyBottomBorder,
             //   afxData.clrBtnHilite, afxData.clrBtnShadow);
-            int dx = CX_GRIPPER / 2;
-            int dy = CY_GRIPPER / 2;
-            int ix = rect.left + CX_BORDER_GRIPPER;
-            int iy = rect.top + m_cyTopBorder + dy / 2;
-            int cy = rect.bottom - m_cyTopBorder - m_cyBottomBorder - dy * 3;
+            int32_t dx = CX_GRIPPER / 2;
+            int32_t dy = CY_GRIPPER / 2;
+            int32_t ix = rect.left + CX_BORDER_GRIPPER;
+            int32_t iy = rect.top + m_cyTopBorder + dy / 2;
+            int32_t cy = rect.bottom - m_cyTopBorder - m_cyBottomBorder - dy * 3;
 
             for(; iy < cy; iy += dy)
             {
@@ -981,11 +981,11 @@ namespace userbase
    //            rect.top+CY_BORDER_GRIPPER,
    //            rect.width()-m_cyTopBorder-m_cyBottomBorder, CY_GRIPPER,
    //            afxData.clrBtnHilite, afxData.clrBtnShadow);
-            int dx = CX_GRIPPER / 2;
-            int dy = CY_GRIPPER / 2;
-            int ix = rect.left + m_cyTopBorder + dx / 2;
-            int iy = rect.top + CY_BORDER_GRIPPER;
-            int cx = rect.right - m_cyTopBorder - m_cyBottomBorder - dx * 3;
+            int32_t dx = CX_GRIPPER / 2;
+            int32_t dy = CY_GRIPPER / 2;
+            int32_t ix = rect.left + m_cyTopBorder + dx / 2;
+            int32_t iy = rect.top + CY_BORDER_GRIPPER;
+            int32_t cx = rect.right - m_cyTopBorder - m_cyBottomBorder - dx * 3;
 
             for(; ix < cx; ix += dx)
             {

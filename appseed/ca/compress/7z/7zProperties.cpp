@@ -52,11 +52,11 @@ namespace n7z
    #endif
    };
 
-   static const int kPropMapSize = sizeof(kPropMap) / sizeof(kPropMap[0]);
+   static const int32_t kPropMapSize = sizeof(kPropMap) / sizeof(kPropMap[0]);
 
-   static int FindPropInMap(uint64 filePropID)
+   static int32_t FindPropInMap(uint64 filePropID)
    {
-      for (int i = 0; i < kPropMapSize; i++)
+      for (int32_t i = 0; i < kPropMapSize; i++)
       if (kPropMap[i].FilePropID == filePropID)
       return i;
       return -1;
@@ -65,7 +65,7 @@ namespace n7z
    static void CopyOneItem(base_array<uint64> &src,
       base_array<uint64> &dest, uint32 item)
    {
-      for (int i = 0; i < src.get_count(); i++)
+      for (int32_t i = 0; i < src.get_count(); i++)
          if (src[i] == item)
          {
             dest.add(item);
@@ -76,7 +76,7 @@ namespace n7z
 
    static void RemoveOneItem(base_array<uint64> &src, uint32 item)
    {
-      for (int i = 0; i < src.get_count(); i++)
+      for (int32_t i = 0; i < src.get_count(); i++)
          if (src[i] == item)
          {
             src.remove_at(i);
@@ -86,7 +86,7 @@ namespace n7z
 
    static void InsertToHead(base_array<uint64> &dest, uint32 item)
    {
-      for (int i = 0; i < dest.get_count(); i++)
+      for (int32_t i = 0; i < dest.get_count(); i++)
          if (dest[i] == item)
          {
             dest.remove_at(i);
@@ -153,11 +153,11 @@ namespace n7z
 
    }
 
-   ex1::HRes handler::GetPropertyInfo(uint32 index, string & name, int * propID, var::e_type *varType)
+   ex1::HRes handler::GetPropertyInfo(uint32 index, string & name, int32_t * propID, var::e_type *varType)
    {
-      if ((int)index >= _fileInfoPopIDs.get_count())
+      if ((int32_t)index >= _fileInfoPopIDs.get_count())
          return E_INVALIDARG;
-      int indexInMap = FindPropInMap(_fileInfoPopIDs[index]);
+      int32_t indexInMap = FindPropInMap(_fileInfoPopIDs[index]);
       if (indexInMap == -1)
          return E_INVALIDARG;
       throw not_implemented(get_app());

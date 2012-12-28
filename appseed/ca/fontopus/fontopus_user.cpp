@@ -67,7 +67,7 @@ namespace fontopus
    void user::veiev_synch(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      int iRestart = 0;
+      int32_t iRestart = 0;
 restart:
       if(iRestart >= 10)
          return;
@@ -91,7 +91,7 @@ restart:
          string strThread;
          if(node.get_name() == "messages" && node.get_children_count() > 0)
          {
-            for(int i = 0; i < node.get_children_count(); i++)
+            for(int32_t i = 0; i < node.get_children_count(); i++)
             {
                xml::node * pnodeMessage = node.child_at(i);
                string strSender;
@@ -99,7 +99,7 @@ restart:
                xml::node * pnodeSender = pnodeMessage->get_child("sender");
                if(pnodeSender != NULL)
                   strSender = pnodeSender->get_value();
-//               int iLength = strSender.get_length();
+//               int32_t iLength = strSender.get_length();
                xml::node * pnodeBody = pnodeMessage->get_child("body");
                if(pnodeBody != NULL)
                {
@@ -187,10 +187,10 @@ restart:
       straServer.add("eu-" + strPrefix + strDomain);
       straServer.add("asia-" + strPrefix + strDomain);
 
-      for(int i = 0; i < 3; i++)
+      for(int32_t i = 0; i < 3; i++)
       {
 
-         for(int j = 0; j < straServer.get_size(); j++)
+         for(int32_t j = 0; j < straServer.get_size(); j++)
          {
                      
             string strSessId = ApplicationUser.get_sessid(straServer[j]); 

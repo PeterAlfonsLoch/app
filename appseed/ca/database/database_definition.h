@@ -76,9 +76,9 @@ namespace database
       EDataType         type;
       string            field_table; //?
       bool              read_only;
-      unsigned int      field_len;
-      unsigned int      field_flags;
-      int               idx;
+      unsigned int32_t      field_len;
+      unsigned int32_t      field_flags;
+      int32_t               idx;
 
 
       field_properties();

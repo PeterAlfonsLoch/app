@@ -19,10 +19,10 @@ spa_login::spa_login()
    m_rect.bottom = m_rect.top + 284;
 
 
-   int x1 = m_rect.left + 49;
-   int x2 = m_rect.right - 49;
-   int h1 = 23;
-   int pad = 5;
+   int32_t x1 = m_rect.left + 49;
+   int32_t x2 = m_rect.right - 49;
+   int32_t h1 = 23;
+   int32_t pad = 5;
 
    m_labelUser.m_rect.left = x1;
    m_labelUser.m_rect.right = x2;
@@ -35,7 +35,7 @@ spa_login::spa_login()
    m_tap.m_rect.left = x1;
    m_tap.m_rect.right = x2;
 
-   int y = m_rect.top + 49;
+   int32_t y = m_rect.top + 49;
    m_labelUser.m_rect.top = y;
    y += h1;
    m_labelUser.m_rect.bottom = y;
@@ -200,7 +200,7 @@ spa_login::e_result spa_login::login()
 
    vsstring strLogin;
 
-   for(int iRetry = 0; iRetry <= 8; iRetry++)
+   for(int32_t iRetry = 0; iRetry <= 8; iRetry++)
    {
 
       if(iRetry > 0)

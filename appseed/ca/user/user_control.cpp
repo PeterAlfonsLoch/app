@@ -4,7 +4,7 @@ namespace user
 {
 
 #ifdef WINDOWSEX
-   const unsigned int control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
+   const unsigned int32_t control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
 #endif
 
    control::descriptor::descriptor()
@@ -137,7 +137,7 @@ namespace user
 
    control * control::descriptor_set::get_control_by_id(id id)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          class descriptor & descriptor = this->element_at(i);
          if(descriptor.m_id == id)
@@ -153,7 +153,7 @@ namespace user
       control * pcontrol = dynamic_cast < control * > (puie);
       if(pcontrol == NULL)
          return NULL;
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          class descriptor & descriptor = this->element_at(i);
          if(descriptor.m_pcontrol == pcontrol)
@@ -164,9 +164,9 @@ namespace user
       return NULL;
    }
 
-   class control::descriptor * control::descriptor_set::get_by_sub_item(int iSubItem)
+   class control::descriptor * control::descriptor_set::get_by_sub_item(int32_t iSubItem)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          class descriptor & descriptor = this->element_at(i);
          if(descriptor.m_iSubItem == iSubItem)
@@ -344,7 +344,7 @@ namespace user
             string str = strParam;
             str.trim_left();
             str.trim_right();
-            for(int i = 0; i < str.get_length(); i++)
+            for(int32_t i = 0; i < str.get_length(); i++)
             {
                if(str[i] >= L'0'
                   && str[i] <= L'9')
@@ -588,7 +588,7 @@ namespace user
       }
    }
 
-   void control_cmd_ui::SetCheck(int nCheck)
+   void control_cmd_ui::SetCheck(int32_t nCheck)
    {
        ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
        /*::user::interaction* pwnd = (::user::interaction*)m_pOther;

@@ -65,7 +65,7 @@ static const unsigned char OC_MODE_RANKS[7][OC_NMODES]={
 /*Initialize the mode scheme chooser.
   This need only be called once per encoder.*/
 void oc_mode_scheme_chooser_init(oc_mode_scheme_chooser *_chooser){
-  int si;
+  int32_t si;
   _chooser->mode_ranks[0]=_chooser->scheme0_ranks;
   for(si=1;si<8;si++)_chooser->mode_ranks[si]=OC_MODE_RANKS[si-1];
 }
@@ -73,7 +73,7 @@ void oc_mode_scheme_chooser_init(oc_mode_scheme_chooser *_chooser){
 /*Reset the mode scheme chooser.
   This needs to be called once for each frame, including the first.*/
 static void oc_mode_scheme_chooser_reset(oc_mode_scheme_chooser *_chooser){
-  int si;
+  int32_t si;
   memset(_chooser->mode_counts,0,OC_NMODES*sizeof(*_chooser->mode_counts));
   /*Scheme 0 starts with 24 bits to store the mode list in.*/
   _chooser->scheme_bits[0]=24;
@@ -100,14 +100,14 @@ static void oc_mode_scheme_chooser_reset(oc_mode_scheme_chooser *_chooser){
    global mode-selection problem (which is NP-hard).
   _mb_mode: The mode to determine the cost of.
   Return: The number of bits required to code this mode.*/
-static int oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
- int _mb_mode){
-  int scheme0;
-  int scheme1;
-  int best_bits;
-  int mode_bits;
-  int si;
-  int scheme_bits;
+static int32_t oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
+ int32_t _mb_mode){
+  int32_t scheme0;
+  int32_t scheme1;
+  int32_t best_bits;
+  int32_t mode_bits;
+  int32_t si;
+  int32_t scheme_bits;
   scheme0=_chooser->scheme_list[0];
   scheme1=_chooser->scheme_list[1];
   best_bits=_chooser->scheme_bits[scheme0];
@@ -128,7 +128,7 @@ static int oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
        OC_MODE_BITS[scheme1+1>>3][_chooser->mode_ranks[scheme1][_mb_mode]];
     }
     else{
-      int ri;
+      int32_t ri;
       /*For scheme 0, incrementing the mode count could potentially change the
          mode's rank.
         Find the index where the mode would be moved to in the optimal list,
@@ -153,13 +153,13 @@ static int oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
    the scheme lists once a mode has been selected.
   _mb_mode: The mode that was chosen.*/
 static void oc_mode_scheme_chooser_update(oc_mode_scheme_chooser *_chooser,
- int _mb_mode){
-  int ri;
-  int si;
+ int32_t _mb_mode){
+  int32_t ri;
+  int32_t si;
   _chooser->mode_counts[_mb_mode]++;
   /*Re-order the scheme0 mode list if necessary.*/
   for(ri=_chooser->scheme0_ranks[_mb_mode];ri>0;ri--){
-    int pmode;
+    int32_t pmode;
     pmode=_chooser->scheme0_list[ri-1];
     if(_chooser->mode_counts[pmode]>=_chooser->mode_counts[_mb_mode])break;
     /*Reorder the mode ranking.*/
@@ -175,14 +175,14 @@ static void oc_mode_scheme_chooser_update(oc_mode_scheme_chooser *_chooser,
   }
   /*Finally, re-order the list of schemes.*/
   for(si=1;si<8;si++){
-    int sj;
-    int scheme0;
-    int bits0;
+    int32_t sj;
+    int32_t scheme0;
+    int32_t bits0;
     sj=si;
     scheme0=_chooser->scheme_list[si];
     bits0=_chooser->scheme_bits[scheme0];
     do{
-      int scheme1;
+      int32_t scheme1;
       scheme1=_chooser->scheme_list[sj-1];
       if(bits0>=_chooser->scheme_bits[scheme1])break;
       _chooser->scheme_list[sj]=scheme1;
@@ -196,15 +196,15 @@ static void oc_mode_scheme_chooser_update(oc_mode_scheme_chooser *_chooser,
 
 /*The number of bits required to encode a super block run.
   _run_count: The desired run count; must be positive and less than 4130.*/
-static int oc_sb_run_bits(int _run_count){
-  int i;
+static int32_t oc_sb_run_bits(int32_t _run_count){
+  int32_t i;
   for(i=0;_run_count>=OC_SB_RUN_VAL_MIN[i+1];i++);
   return OC_SB_RUN_CODE_NBITS[i];
 }
 
 /*The number of bits required to encode a block run.
   _run_count: The desired run count; must be positive and less than 30.*/
-static int oc_block_run_bits(int _run_count){
+static int32_t oc_block_run_bits(int32_t _run_count){
   return OC_BLOCK_RUN_CODE_NBITS[_run_count-1];
 }
 
@@ -218,10 +218,10 @@ struct oc_fr_state{
   unsigned   b_coded_count_prev:8;
   unsigned   b_coded_count:8;
   unsigned   b_count:8;
-  signed int sb_partial:2;
-  signed int sb_full:2;
-  signed int b_coded_prev:2;
-  signed int b_coded:2;
+  signed int32_t sb_partial:2;
+  signed int32_t sb_full:2;
+  signed int32_t b_coded_prev:2;
+  signed int32_t b_coded:2;
 };
 
 
@@ -241,10 +241,10 @@ static void oc_fr_state_init(oc_fr_state *_fr){
 
 
 static void oc_fr_state_advance_sb(oc_fr_state *_fr,
- int _sb_partial,int _sb_full){
+ int32_t _sb_partial,int32_t _sb_full){
   ptrdiff_t bits;
-  int       sb_partial_count;
-  int       sb_full_count;
+  int32_t       sb_partial_count;
+  int32_t       sb_full_count;
   bits=_fr->bits;
   /*Extend the sb_partial run, or start a new one.*/
   sb_partial_count=_fr->sb_partial;
@@ -283,11 +283,11 @@ static void oc_fr_state_advance_sb(oc_fr_state *_fr,
    blocks).*/
 static void oc_fr_state_flush_sb(oc_fr_state *_fr){
   ptrdiff_t bits;
-  int       sb_partial;
-  int       sb_full=sb_full;
-  int       b_coded_count;
-  int       b_coded;
-  int       b_count;
+  int32_t       sb_partial;
+  int32_t       sb_full=sb_full;
+  int32_t       b_coded_count;
+  int32_t       b_coded;
+  int32_t       b_count;
   b_count=_fr->b_count;
   if(b_count>0){
     bits=_fr->bits;
@@ -317,12 +317,12 @@ static void oc_fr_state_flush_sb(oc_fr_state *_fr){
   }
 }
 
-static void oc_fr_state_advance_block(oc_fr_state *_fr,int _b_coded){
+static void oc_fr_state_advance_block(oc_fr_state *_fr,int32_t _b_coded){
   ptrdiff_t bits;
-  int       b_coded_count;
-  int       b_count;
-  int       sb_partial;
-  int       sb_full=sb_full;
+  int32_t       b_coded_count;
+  int32_t       b_count;
+  int32_t       sb_partial;
+  int32_t       sb_full=sb_full;
   bits=_fr->bits;
   /*Extend the b_coded run, or start a new one.*/
   b_coded_count=_fr->b_coded_count;
@@ -371,7 +371,7 @@ static void oc_fr_code_block(oc_fr_state *_fr){
   oc_fr_state_advance_block(_fr,1);
 }
 
-static int oc_fr_cost1(const oc_fr_state *_fr){
+static int32_t oc_fr_cost1(const oc_fr_state *_fr){
   oc_fr_state tmp;
   ptrdiff_t   bits;
   *&tmp=*_fr;
@@ -379,17 +379,17 @@ static int oc_fr_cost1(const oc_fr_state *_fr){
   bits=tmp.bits;
   *&tmp=*_fr;
   oc_fr_code_block(&tmp);
-  return (int)(tmp.bits-bits);
+  return (int32_t)(tmp.bits-bits);
 }
 
-static int oc_fr_cost4(const oc_fr_state *_pre,const oc_fr_state *_post){
+static int32_t oc_fr_cost4(const oc_fr_state *_pre,const oc_fr_state *_post){
   oc_fr_state tmp;
   *&tmp=*_pre;
   oc_fr_skip_block(&tmp);
   oc_fr_skip_block(&tmp);
   oc_fr_skip_block(&tmp);
   oc_fr_skip_block(&tmp);
-  return (int)(_post->bits-tmp.bits);
+  return (int32_t)(_post->bits-tmp.bits);
 }
 
 
@@ -397,9 +397,9 @@ static int oc_fr_cost4(const oc_fr_state *_pre,const oc_fr_state *_post){
 struct oc_qii_state{
   ptrdiff_t  bits;
   unsigned   qi01_count:14;
-  signed int qi01:2;
+  signed int32_t qi01:2;
   unsigned   qi12_count:14;
-  signed int qi12:2;
+  signed int32_t qi12:2;
 };
 
 
@@ -414,12 +414,12 @@ static void oc_qii_state_init(oc_qii_state *_qs){
 
 
 static void oc_qii_state_advance(oc_qii_state *_qd,
- const oc_qii_state *_qs,int _qii){
+ const oc_qii_state *_qs,int32_t _qii){
   ptrdiff_t bits;
-  int       qi01;
-  int       qi01_count;
-  int       qi12;
-  int       qi12_count;
+  int32_t       qi01;
+  int32_t       qi01_count;
+  int32_t       qi12;
+  int32_t       qi12_count;
   bits=_qs->bits;
   qi01=_qii+1>>1;
   qi01_count=_qs->qi01_count;
@@ -459,7 +459,7 @@ static void oc_qii_state_advance(oc_qii_state *_qd,
 
 /*Temporary encoder state for the analysis pipeline.*/
 struct oc_enc_pipeline_state{
-  int                 bounding_values[256];
+  int32_t                 bounding_values[256];
   oc_fr_state         fr[3];
   oc_qii_state        qs[3];
   /*Condensed dequantization tables.*/
@@ -476,19 +476,19 @@ struct oc_enc_pipeline_state{
   /*The starting fragment for the current MCU in each plane.*/
   ptrdiff_t           froffset[3];
   /*The starting row for the current MCU in each plane.*/
-  int                 fragy0[3];
+  int32_t                 fragy0[3];
   /*The ending row for the current MCU in each plane.*/
-  int                 fragy_end[3];
+  int32_t                 fragy_end[3];
   /*The starting superblock for the current MCU in each plane.*/
   unsigned            sbi0[3];
   /*The ending superblock for the current MCU in each plane.*/
   unsigned            sbi_end[3];
   /*The number of tokens for zzi=1 for each color plane.*/
-  int                 ndct_tokens1[3];
+  int32_t                 ndct_tokens1[3];
   /*The outstanding eob_run count for zzi=1 for each color plane.*/
-  int                 eob_run1[3];
+  int32_t                 eob_run1[3];
   /*Whether or not the loop filter is enabled.*/
-  int                 loop_filter;
+  int32_t                 loop_filter;
 };
 
 
@@ -496,11 +496,11 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
   ptrdiff_t *coded_fragis;
   unsigned   mcu_nvsbs;
   ptrdiff_t  mcu_nfrags;
-  int        hdec;
-  int        vdec;
-  int        pli;
-  int        qii;
-  int        qti;
+  int32_t        hdec;
+  int32_t        vdec;
+  int32_t        pli;
+  int32_t        qii;
+  int32_t        qti;
   /*Initialize the per-plane coded block flag trackers.
     These are used for bit-estimation purposes only; the real flag bits span
      all three planes, so we can't compute them in parallel.*/
@@ -530,7 +530,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
   /*Set up condensed quantizer tables.*/
   for(pli=0;pli<3;pli++){
     for(qii=0;qii<_enc->state.nqis;qii++){
-      int qi;
+      int32_t qi;
       qi=_enc->state.qis[qii];
       for(qti=0;qti<2;qti++){
         _pipe->dequant[pli][qii][qti]=_enc->state.dequant_tables[qi][pli][qti];
@@ -550,14 +550,14 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
 
 /*Sets the current MCU stripe to super block row _sby.
   Return: A non-zero value if this was the last MCU.*/
-static int oc_enc_pipeline_set_stripe(oc_enc_ctx *_enc,
- oc_enc_pipeline_state *_pipe,int _sby){
+static int32_t oc_enc_pipeline_set_stripe(oc_enc_ctx *_enc,
+ oc_enc_pipeline_state *_pipe,int32_t _sby){
   const oc_fragment_plane *fplane;
   unsigned                 mcu_nvsbs;
-  int                      sby_end;
-  int                      notdone;
-  int                      vdec;
-  int                      pli;
+  int32_t                      sby_end;
+  int32_t                      notdone;
+  int32_t                      vdec;
+  int32_t                      pli;
   mcu_nvsbs=_enc->mcu_nvsbs;
   sby_end=_enc->state.fplanes[0].nvsbs;
   notdone=_sby+mcu_nvsbs<sby_end;
@@ -583,8 +583,8 @@ static int oc_enc_pipeline_set_stripe(oc_enc_ctx *_enc,
 }
 
 static void oc_enc_pipeline_finish_mcu_plane(oc_enc_ctx *_enc,
- oc_enc_pipeline_state *_pipe,int _pli,int _sdelay,int _edelay){
-  int refi;
+ oc_enc_pipeline_state *_pipe,int32_t _pli,int32_t _sdelay,int32_t _edelay){
+  int32_t refi;
   /*Copy over all the uncoded fragments from this plane and advance the uncoded
      fragment list.*/
   _pipe->uncoded_fragis[_pli]-=_pipe->nuncoded_fragis[_pli];
@@ -624,16 +624,16 @@ static void oc_enc_pipeline_finish_mcu_plane(oc_enc_ctx *_enc,
 
 /*Cost information about the coded blocks in a MB.*/
 struct oc_rd_metric{
-  int uncoded_ac_ssd;
-  int coded_ac_ssd;
-  int ac_bits;
-  int dc_flag;
+  int32_t uncoded_ac_ssd;
+  int32_t coded_ac_ssd;
+  int32_t ac_bits;
+  int32_t dc_flag;
 };
 
 
 
-static int oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
- oc_enc_pipeline_state *_pipe,int _pli,ptrdiff_t _fragi,int _overhead_bits,
+static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
+ oc_enc_pipeline_state *_pipe,int32_t _pli,ptrdiff_t _fragi,int32_t _overhead_bits,
  oc_rd_metric *_mo,oc_token_checkpoint **_stack){
   OC_ALIGN16(ogg_int16_t  dct[64]);
   OC_ALIGN16(ogg_int16_t  data[64]);
@@ -641,31 +641,31 @@ static int oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
   const ogg_uint16_t     *dequant;
   const oc_iquant        *enquant;
   ptrdiff_t               frag_offs;
-  int                     ystride;
+  int32_t                     ystride;
   const unsigned char    *src;
   const unsigned char    *ref;
   unsigned char          *dst;
-  int                     frame_type;
-  int                     nonzero;
+  int32_t                     frame_type;
+  int32_t                     nonzero;
   unsigned                uncoded_ssd;
   unsigned                coded_ssd;
-  int                     coded_dc;
+  int32_t                     coded_dc;
   oc_token_checkpoint    *checkpoint;
   oc_fragment            *frags;
-  int                     mb_mode;
-  int                     mv_offs[2];
-  int                     nmv_offs;
-  int                     ac_bits;
-  int                     borderi;
-  int                     qti;
-  int                     qii;
-  int                     pi;
-  int                     zzi;
-  int                     v;
-  int                     val;
-  int                     d;
-  int                     s;
-  int                     dc;
+  int32_t                     mb_mode;
+  int32_t                     mv_offs[2];
+  int32_t                     nmv_offs;
+  int32_t                     ac_bits;
+  int32_t                     borderi;
+  int32_t                     qti;
+  int32_t                     qii;
+  int32_t                     pi;
+  int32_t                     zzi;
+  int32_t                     v;
+  int32_t                     val;
+  int32_t                     d;
+  int32_t                     s;
+  int32_t                     dc;
   frags=_enc->state.frags;
   frag_offs=_enc->state.frag_buf_offs[_fragi];
   ystride=_enc->state.ref_ystride[_pli];
@@ -772,7 +772,7 @@ static int oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
     TODO: nonzero may need to be adjusted after tokenization.*/
   if(nonzero==0){
     ogg_int16_t p;
-    int         ci;
+    int32_t         ci;
     /*We round this dequant product (and not any of the others) because there's
        no iDCT rounding.*/
     p=(ogg_int16_t)(dc*(ogg_int32_t)dc_dequant+15>>5);
@@ -850,8 +850,8 @@ static int oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
   return 1;
 }
 
-static int oc_enc_mb_transform_quantize_luma(oc_enc_ctx *_enc,
- oc_enc_pipeline_state *_pipe,unsigned _mbi,int _mode_overhead){
+static int32_t oc_enc_mb_transform_quantize_luma(oc_enc_ctx *_enc,
+ oc_enc_pipeline_state *_pipe,unsigned _mbi,int32_t _mode_overhead){
   /*Worst case token stack usage for 4 fragments.*/
   oc_token_checkpoint  stack[64*4];
   oc_token_checkpoint *stackptr;
@@ -865,10 +865,10 @@ static int oc_enc_mb_transform_quantize_luma(oc_enc_ctx *_enc,
   oc_rd_metric         mo;
   oc_fr_state          fr_checkpoint;
   oc_qii_state         qs_checkpoint;
-  int                  mb_mode;
-  int                  ncoded;
+  int32_t                  mb_mode;
+  int32_t                  ncoded;
   ptrdiff_t            fragi;
-  int                  bi;
+  int32_t                  bi;
   *&fr_checkpoint=*(_pipe->fr+0);
   *&qs_checkpoint=*(_pipe->qs+0);
   sb_maps=(const oc_sb_map *)_enc->state.sb_maps;
@@ -898,7 +898,7 @@ static int oc_enc_mb_transform_quantize_luma(oc_enc_ctx *_enc,
   }
   if(_enc->state.frame_type!=OC_INTRA_FRAME){
     if(ncoded>0&&!mo.dc_flag){
-      int cost;
+      int32_t cost;
       /*Some individual blocks were worth coding.
         See if that's still true when accounting for mode and MV overhead.*/
       cost=mo.coded_ac_ssd+_enc->lambda*(mo.ac_bits
@@ -937,14 +937,14 @@ static int oc_enc_mb_transform_quantize_luma(oc_enc_ctx *_enc,
 }
 
 static void oc_enc_sb_transform_quantize_chroma(oc_enc_ctx *_enc,
- oc_enc_pipeline_state *_pipe,int _pli,int _sbi_start,int _sbi_end){
+ oc_enc_pipeline_state *_pipe,int32_t _pli,int32_t _sbi_start,int32_t _sbi_end){
   const oc_sb_map *sb_maps;
   oc_sb_flags     *sb_flags;
   ptrdiff_t       *coded_fragis;
   ptrdiff_t        ncoded_fragis;
   ptrdiff_t       *uncoded_fragis;
   ptrdiff_t        nuncoded_fragis;
-  int              sbi;
+  int32_t              sbi;
   sb_maps=(const oc_sb_map *)_enc->state.sb_maps;
   sb_flags=_enc->state.sb_flags;
   coded_fragis=_pipe->coded_fragis[_pli];
@@ -955,8 +955,8 @@ static void oc_enc_sb_transform_quantize_chroma(oc_enc_ctx *_enc,
     /*Worst case token stack usage for 1 fragment.*/
     oc_token_checkpoint stack[64];
     oc_rd_metric        mo;
-    int                 quadi;
-    int                 bi;
+    int32_t                 quadi;
+    int32_t                 bi;
     memset(&mo,0,sizeof(mo));
     for(quadi=0;quadi<4;quadi++)for(bi=0;bi<4;bi++){
       ptrdiff_t fragi;
@@ -1030,14 +1030,14 @@ static void oc_enc_sb_transform_quantize_chroma(oc_enc_ctx *_enc,
 /*Estimate the R-D cost of the DCT coefficients given the SATD of a block after
    prediction.*/
 static unsigned oc_dct_cost2(unsigned *_ssd,
- int _qi,int _pli,int _qti,int _satd){
+ int32_t _qi,int32_t _pli,int32_t _qti,int32_t _satd){
   unsigned rmse;
-  int      bin;
-  int      dx;
-  int      y0;
-  int      z0;
-  int      dy;
-  int      dz;
+  int32_t      bin;
+  int32_t      dx;
+  int32_t      y0;
+  int32_t      z0;
+  int32_t      dy;
+  int32_t      dz;
   /*SATD metrics for chroma planes vary much less than luma, so we scale them
      by 4 to distribute them into the mode decision bins more evenly.*/
   _satd<<=_pli+1&2;
@@ -1065,17 +1065,17 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
   unsigned             cost[4][3];
   unsigned             ssd[4][3];
   unsigned             rate[4][3];
-  int                  prev[3][3];
+  int32_t                  prev[3][3];
   unsigned             satd;
   unsigned             best_cost;
   unsigned             best_ssd;
   unsigned             best_rate;
-  int                  best_qii;
-  int                  qii;
-  int                  lambda;
-  int                  ystride;
-  int                  nqis;
-  int                  bi;
+  int32_t                  best_qii;
+  int32_t                  qii;
+  int32_t                  lambda;
+  int32_t                  ystride;
+  int32_t                  nqis;
+  int32_t                  bi;
   frag_buf_offs=_enc->state.frag_buf_offs;
   sb_maps=(const oc_sb_map *)_enc->state.sb_maps;
   src=_enc->state.ref_frame_data[OC_FRAME_IO];
@@ -1099,8 +1099,8 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
       oc_qii_state qt[3];
       unsigned     cur_ssd;
       unsigned     cur_rate;
-      int          best_qij;
-      int          qij;
+      int32_t          best_qij;
+      int32_t          qij;
       oc_qii_state_advance(qt+0,qs[bi-1]+0,qii);
       cur_rate=oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],0,0,satd);
       best_ssd=ssd[bi-1][0]+cur_ssd;
@@ -1151,7 +1151,7 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
 
 /*Select a block-level quantizer for a single chroma block in an INTRA frame.*/
 static unsigned oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
- const oc_qii_state *_qs,int _pli,ptrdiff_t _fragi){
+ const oc_qii_state *_qs,int32_t _pli,ptrdiff_t _fragi){
   const unsigned char *src;
   oc_fragment         *frags;
   ptrdiff_t            frag_offs;
@@ -1159,11 +1159,11 @@ static unsigned oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
   unsigned             cost[3];
   unsigned             satd;
   unsigned             best_cost;
-  int                  best_qii;
-  int                  qii;
-  int                  lambda;
-  int                  ystride;
-  int                  nqis;
+  int32_t                  best_qii;
+  int32_t                  qii;
+  int32_t                  lambda;
+  int32_t                  ystride;
+  int32_t                  nqis;
   src=_enc->state.ref_frame_data[OC_FRAME_IO];
   ystride=_enc->state.ref_ystride[_pli];
   frag_offs=_enc->state.frag_buf_offs[_fragi];
@@ -1192,12 +1192,12 @@ static unsigned oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
 }
 
 static void oc_enc_sb_transform_quantize_intra_chroma(oc_enc_ctx *_enc,
- oc_enc_pipeline_state *_pipe,int _pli,int _sbi_start,int _sbi_end){
+ oc_enc_pipeline_state *_pipe,int32_t _pli,int32_t _sbi_start,int32_t _sbi_end){
   const oc_sb_map *sb_maps;
   oc_sb_flags     *sb_flags;
   ptrdiff_t       *coded_fragis;
   ptrdiff_t        ncoded_fragis;
-  int              sbi;
+  int32_t              sbi;
   sb_maps=(const oc_sb_map *)_enc->state.sb_maps;
   sb_flags=_enc->state.sb_flags;
   coded_fragis=_pipe->coded_fragis[_pli];
@@ -1205,8 +1205,8 @@ static void oc_enc_sb_transform_quantize_intra_chroma(oc_enc_ctx *_enc,
   for(sbi=_sbi_start;sbi<_sbi_end;sbi++){
     /*Worst case token stack usage for 1 fragment.*/
     oc_token_checkpoint stack[64];
-    int                 quadi;
-    int                 bi;
+    int32_t                 quadi;
+    int32_t                 bi;
     for(quadi=0;quadi<4;quadi++)for(bi=0;bi<4;bi++){
       ptrdiff_t fragi;
       fragi=sb_maps[sbi][quadi][bi];
@@ -1224,10 +1224,10 @@ static void oc_enc_sb_transform_quantize_intra_chroma(oc_enc_ctx *_enc,
 }
 
 /*Analysis stage for an INTRA frame.*/
-void oc_enc_analyze_intra(oc_enc_ctx *_enc,int _recode){
+void oc_enc_analyze_intra(oc_enc_ctx *_enc,int32_t _recode){
   oc_enc_pipeline_state   pipe;
   const unsigned char    *map_idxs;
-  int                     nmap_idxs;
+  int32_t                     nmap_idxs;
   oc_sb_flags            *sb_flags;
   signed char            *mb_modes;
   const oc_mb_map        *mb_maps;
@@ -1235,10 +1235,10 @@ void oc_enc_analyze_intra(oc_enc_ctx *_enc,int _recode){
   oc_fragment            *frags;
   unsigned                stripe_sby;
   unsigned                mcu_nvsbs;
-  int                     notstart;
-  int                     notdone;
-  int                     refi;
-  int                     pli;
+  int32_t                     notstart;
+  int32_t                     notdone;
+  int32_t                     refi;
+  int32_t                     pli;
   _enc->state.frame_type=OC_INTRA_FRAME;
   oc_enc_tokenize_start(_enc);
   oc_enc_pipeline_init(_enc,&pipe);
@@ -1263,13 +1263,13 @@ void oc_enc_analyze_intra(oc_enc_ctx *_enc,int _recode){
     notdone=oc_enc_pipeline_set_stripe(_enc,&pipe,stripe_sby);
     sbi_end=pipe.sbi_end[0];
     for(sbi=pipe.sbi0[0];sbi<sbi_end;sbi++){
-      int quadi;
+      int32_t quadi;
       /*Mode addressing is through Y plane, always 4 MB per SB.*/
       for(quadi=0;quadi<4;quadi++)if(sb_flags[sbi].quad_valid&1<<quadi){
         unsigned  mbi;
-        int       mapii;
-        int       mapi;
-        int       bi;
+        int32_t       mapii;
+        int32_t       mapi;
+        int32_t       bi;
         ptrdiff_t fragi;
         mbi=sbi<<2|quadi;
         /*Motion estimation:
@@ -1317,7 +1317,7 @@ struct oc_mode_choice{
 
 
 
-static void oc_mode_set_cost(oc_mode_choice *_modec,int _lambda){
+static void oc_mode_set_cost(oc_mode_choice *_modec,int32_t _lambda){
   _modec->cost=OC_MODE_RD_COST(_modec->ssd,
    _modec->rate+_modec->overhead,_lambda);
 }
@@ -1338,27 +1338,27 @@ static const unsigned OC_NOSKIP[12]={
 
 static void oc_analyze_mb_mode_luma(oc_enc_ctx *_enc,
  oc_mode_choice *_modec,const oc_fr_state *_fr,const oc_qii_state *_qs,
- const unsigned _frag_satd[12],const unsigned _skip_ssd[12],int _qti){
+ const unsigned _frag_satd[12],const unsigned _skip_ssd[12],int32_t _qti){
   oc_fr_state  fr;
   oc_qii_state qs;
   unsigned     ssd;
   unsigned     rate;
-  int          overhead;
+  int32_t          overhead;
   unsigned     satd;
   unsigned     best_ssd;
   unsigned     best_rate;
-  int          best_overhead;
-  int          best_fri;
-  int          best_qii;
+  int32_t          best_overhead;
+  int32_t          best_fri;
+  int32_t          best_qii;
   unsigned     cur_cost;
   unsigned     cur_ssd;
   unsigned     cur_rate;
-  int          cur_overhead;
-  int          lambda;
-  int          nqis;
-  int          nskipped;
-  int          bi;
-  int          qii;
+  int32_t          cur_overhead;
+  int32_t          lambda;
+  int32_t          nqis;
+  int32_t          nskipped;
+  int32_t          bi;
+  int32_t          qii;
   lambda=_enc->lambda;
   nqis=_enc->state.nqis;
   /*We could do a trellis optimization here, but we don't make final skip
@@ -1425,22 +1425,22 @@ static void oc_analyze_mb_mode_luma(oc_enc_ctx *_enc,
 
 static void oc_analyze_mb_mode_chroma(oc_enc_ctx *_enc,
  oc_mode_choice *_modec,const oc_fr_state *_fr,const oc_qii_state *_qs,
- const unsigned _frag_satd[12],const unsigned _skip_ssd[12],int _qti){
+ const unsigned _frag_satd[12],const unsigned _skip_ssd[12],int32_t _qti){
   unsigned ssd;
   unsigned rate;
   unsigned satd;
   unsigned best_ssd;
   unsigned best_rate;
-  int      best_qii;
+  int32_t      best_qii;
   unsigned cur_cost;
   unsigned cur_ssd;
   unsigned cur_rate;
-  int      lambda;
-  int      nblocks;
-  int      nqis;
-  int      pli;
-  int      bi;
-  int      qii;
+  int32_t      lambda;
+  int32_t      nblocks;
+  int32_t      nqis;
+  int32_t      pli;
+  int32_t      bi;
+  int32_t      qii;
   lambda=_enc->lambda;
   nqis=_enc->state.nqis;
   ssd=_modec->ssd;
@@ -1493,26 +1493,26 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
   OC_ALIGN16(ogg_int16_t  buffer[64]);
   const unsigned char    *src;
   const unsigned char    *ref;
-  int                     ystride;
+  int32_t                     ystride;
   const oc_fragment      *frags;
   const ptrdiff_t        *frag_buf_offs;
   const ptrdiff_t        *sb_map;
   const oc_mb_map_plane  *mb_map;
   const unsigned char    *map_idxs;
-  int                     map_nidxs;
+  int32_t                     map_nidxs;
   ogg_int64_t             mask;
   unsigned                uncoded_ssd;
-  int                     uncoded_dc;
+  int32_t                     uncoded_dc;
   unsigned                dc_dequant;
-  int                     dc_flag;
-  int                     mapii;
-  int                     mapi;
-  int                     pli;
-  int                     bi;
+  int32_t                     dc_flag;
+  int32_t                     mapii;
+  int32_t                     mapi;
+  int32_t                     pli;
+  int32_t                     bi;
   ptrdiff_t               fragi;
   ptrdiff_t               frag_offs;
-  int                     borderi;
-  int                     pi;
+  int32_t                     borderi;
+  int32_t                     pi;
   src=_enc->state.ref_frame_data[OC_FRAME_IO];
   ref=_enc->state.ref_frame_data[_enc->state.ref_frame_idx[OC_FRAME_PREV]];
   ystride=_enc->state.ref_ystride[0];
@@ -1600,12 +1600,12 @@ static void oc_mb_intra_satd(oc_enc_ctx *_enc,unsigned _mbi,
   const ptrdiff_t       *sb_map;
   const oc_mb_map_plane *mb_map;
   const unsigned char   *map_idxs;
-  int                    map_nidxs;
-  int                    mapii;
-  int                    mapi;
-  int                    ystride;
-  int                    pli;
-  int                    bi;
+  int32_t                    map_nidxs;
+  int32_t                    mapii;
+  int32_t                    mapi;
+  int32_t                    ystride;
+  int32_t                    pli;
+  int32_t                    bi;
   ptrdiff_t              fragi;
   ptrdiff_t              frag_offs;
   frag_buf_offs=_enc->state.frag_buf_offs;
@@ -1643,24 +1643,24 @@ static void oc_cost_intra(oc_enc_ctx *_enc,oc_mode_choice *_modec,
 }
 
 static void oc_cost_inter(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,int _mb_mode,const signed char *_mv,
+ unsigned _mbi,int32_t _mb_mode,const signed char *_mv,
  const oc_fr_state *_fr,const oc_qii_state *_qs,const unsigned _skip_ssd[12]){
   unsigned               frag_satd[12];
   const unsigned char   *src;
   const unsigned char   *ref;
-  int                    ystride;
+  int32_t                    ystride;
   const ptrdiff_t       *frag_buf_offs;
   const ptrdiff_t       *sb_map;
   const oc_mb_map_plane *mb_map;
   const unsigned char   *map_idxs;
-  int                    map_nidxs;
-  int                    mapii;
-  int                    mapi;
-  int                    mv_offs[2];
-  int                    dx;
-  int                    dy;
-  int                    pli;
-  int                    bi;
+  int32_t                    map_nidxs;
+  int32_t                    mapii;
+  int32_t                    mapi;
+  int32_t                    mv_offs[2];
+  int32_t                    dx;
+  int32_t                    dy;
+  int32_t                    pli;
+  int32_t                    bi;
   ptrdiff_t              fragi;
   ptrdiff_t              frag_offs;
   src=_enc->state.ref_frame_data[OC_FRAME_IO];
@@ -1723,16 +1723,16 @@ static void oc_cost_inter(oc_enc_ctx *_enc,oc_mode_choice *_modec,
 }
 
 static void oc_cost_inter_nomv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,int _mb_mode,const oc_fr_state *_fr,const oc_qii_state *_qs,
+ unsigned _mbi,int32_t _mb_mode,const oc_fr_state *_fr,const oc_qii_state *_qs,
  const unsigned _skip_ssd[12]){
   static const oc_mv OC_MV_ZERO;
   oc_cost_inter(_enc,_modec,_mbi,_mb_mode,OC_MV_ZERO,_fr,_qs,_skip_ssd);
 }
 
-static int oc_cost_inter1mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,int _mb_mode,const signed char *_mv,
+static int32_t oc_cost_inter1mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
+ unsigned _mbi,int32_t _mb_mode,const signed char *_mv,
  const oc_fr_state *_fr,const oc_qii_state *_qs,const unsigned _skip_ssd[12]){
-  int bits0;
+  int32_t bits0;
   oc_cost_inter(_enc,_modec,_mbi,_mb_mode,_mv,_fr,_qs,_skip_ssd);
   bits0=OC_MV_BITS[0][_mv[0]+31]+OC_MV_BITS[0][_mv[1]+31];
   _modec->overhead+=OC_MINI(_enc->mv_bits[0]+bits0,_enc->mv_bits[1]+12)
@@ -1754,24 +1754,24 @@ static void oc_cost_inter4mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
   oc_mv                  cbmvs[4];
   const unsigned char   *src;
   const unsigned char   *ref;
-  int                    ystride;
+  int32_t                    ystride;
   const ptrdiff_t       *frag_buf_offs;
   oc_mv                 *frag_mvs;
   const oc_mb_map_plane *mb_map;
   const unsigned char   *map_idxs;
-  int                    map_nidxs;
-  int                    nqis;
-  int                    mapii;
-  int                    mapi;
-  int                    mv_offs[2];
-  int                    dx;
-  int                    dy;
-  int                    pli;
-  int                    bi;
+  int32_t                    map_nidxs;
+  int32_t                    nqis;
+  int32_t                    mapii;
+  int32_t                    mapi;
+  int32_t                    mv_offs[2];
+  int32_t                    dx;
+  int32_t                    dy;
+  int32_t                    pli;
+  int32_t                    bi;
   ptrdiff_t              fragi;
   ptrdiff_t              frag_offs;
-  int                    bits0;
-  int                    bits1;
+  int32_t                    bits0;
+  int32_t                    bits1;
   unsigned               satd;
   src=_enc->state.ref_frame_data[OC_FRAME_IO];
   ref=_enc->state.ref_frame_data[_enc->state.ref_frame_idx[OC_FRAME_PREV]];
@@ -1849,7 +1849,7 @@ static void oc_cost_inter4mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
   oc_mode_set_cost(_modec,_enc->lambda);
 }
 
-int oc_enc_analyze_inter(oc_enc_ctx *_enc,int _allow_keyframe,int _recode){
+int32_t oc_enc_analyze_inter(oc_enc_ctx *_enc,int32_t _allow_keyframe,int32_t _recode){
   oc_set_chroma_mvs_func  set_chroma_mvs;
   oc_enc_pipeline_state   pipe;
   oc_qii_state            intra_luma_qs;
@@ -1858,7 +1858,7 @@ int oc_enc_analyze_inter(oc_enc_ctx *_enc,int _allow_keyframe,int _recode){
   ogg_int64_t             interbits;
   ogg_int64_t             intrabits;
   const unsigned char    *map_idxs;
-  int                     nmap_idxs;
+  int32_t                     nmap_idxs;
   unsigned               *coded_mbis;
   unsigned               *uncoded_mbis;
   size_t                  ncoded_mbis;
@@ -1870,16 +1870,16 @@ int oc_enc_analyze_inter(oc_enc_ctx *_enc,int _allow_keyframe,int _recode){
   oc_mb_enc_info         *embs;
   oc_fragment            *frags;
   oc_mv                  *frag_mvs;
-  int                     qi;
+  int32_t                     qi;
   unsigned                stripe_sby;
   unsigned                mcu_nvsbs;
-  int                     notstart;
-  int                     notdone;
-  int                     vdec;
+  int32_t                     notstart;
+  int32_t                     notdone;
+  int32_t                     vdec;
   unsigned                sbi;
   unsigned                sbi_end;
-  int                     refi;
-  int                     pli;
+  int32_t                     refi;
+  int32_t                     pli;
   set_chroma_mvs=OC_SET_CHROMA_MVS_TABLE[_enc->state.info.pixel_fmt];
   _enc->state.frame_type=OC_INTER_FRAME;
   oc_mode_scheme_chooser_reset(&_enc->chooser);
@@ -1916,22 +1916,22 @@ int oc_enc_analyze_inter(oc_enc_ctx *_enc,int _allow_keyframe,int _recode){
     notdone=oc_enc_pipeline_set_stripe(_enc,&pipe,stripe_sby);
     sbi_end=pipe.sbi_end[0];
     for(sbi=pipe.sbi0[0];sbi<sbi_end;sbi++){
-      int quadi;
+      int32_t quadi;
       /*Mode addressing is through Y plane, always 4 MB per SB.*/
       for(quadi=0;quadi<4;quadi++)if(sb_flags[sbi].quad_valid&1<<quadi){
         oc_mode_choice modes[8];
         unsigned       skip_ssd[12];
         unsigned       intra_satd[12];
-        int            mb_mv_bits_0;
-        int            mb_gmv_bits_0;
-        int            inter_mv_pref;
-        int            mb_mode;
-        int            dx;
-        int            dy;
+        int32_t            mb_mv_bits_0;
+        int32_t            mb_gmv_bits_0;
+        int32_t            inter_mv_pref;
+        int32_t            mb_mode;
+        int32_t            dx;
+        int32_t            dy;
         unsigned       mbi;
-        int            mapii;
-        int            mapi;
-        int            bi;
+        int32_t            mapii;
+        int32_t            mapi;
+        int32_t            bi;
         ptrdiff_t      fragi;
         mbi=sbi<<2|quadi;
         /*Motion estimation:
@@ -2089,7 +2089,7 @@ int oc_enc_analyze_inter(oc_enc_ctx *_enc,int _allow_keyframe,int _recode){
         }
         if(oc_enc_mb_transform_quantize_luma(_enc,&pipe,mbi,
          modes[mb_mode].overhead>>OC_BIT_SCALE)>0){
-          int orig_mb_mode;
+          int32_t orig_mb_mode;
           orig_mb_mode=mb_mode;
           mb_mode=mb_modes[mbi];
           switch(mb_mode){
@@ -2237,7 +2237,7 @@ int oc_enc_analyze_inter(oc_enc_ctx *_enc,int _allow_keyframe,int _recode){
 # define OC_ZWEIGHT   (0.25)
 
 static void oc_mode_metrics_add(oc_mode_metrics *_metrics,
- double _w,int _satd,int _rate,double _rmse){
+ double _w,int32_t _satd,int32_t _rate,double _rmse){
   double rate;
   /*Accumulate statistics without the scaling; this lets us change the scale
      factor yet still use old data.*/
@@ -2264,8 +2264,8 @@ static void oc_mode_metrics_add(oc_mode_metrics *_metrics,
 }
 
 static void oc_mode_metrics_merge(oc_mode_metrics *_dst,
- const oc_mode_metrics *_src,int _n){
-  int i;
+ const oc_mode_metrics *_src,int32_t _n){
+  int32_t i;
   /*Find a non-empty set of metrics.*/
   for(i=0;i<_n&&_src[i].fragw<=0;i++);
   if(i>=_n){
@@ -2301,17 +2301,17 @@ static void oc_mode_metrics_merge(oc_mode_metrics *_dst,
 
 /*Compile collected SATD/rate/RMSE metrics into a form that's immediately
    useful for mode decision.*/
-static void oc_enc_mode_metrics_update(oc_enc_ctx *_enc,int _qi){
-  int pli;
-  int qti;
+static void oc_enc_mode_metrics_update(oc_enc_ctx *_enc,int32_t _qi){
+  int32_t pli;
+  int32_t qti;
   oc_restore_fpu(&_enc->state);
   /*Convert raw collected data into cleaned up sample points.*/
   for(pli=0;pli<3;pli++){
     for(qti=0;qti<2;qti++){
       double fragw;
-      int    bin0;
-      int    bin1;
-      int    bin;
+      int32_t    bin0;
+      int32_t    bin1;
+      int32_t    bin;
       fragw=0;
       bin0=bin1=0;
       for(bin=0;bin<OC_SAD_BINS;bin++){
@@ -2346,12 +2346,12 @@ static void oc_enc_mode_metrics_update(oc_enc_ctx *_enc,int _qi){
           a=mrate-b*msatd;
           rate=ldexp(a+b*(bin<<OC_SAD_SHIFT),OC_BIT_SCALE);
           OC_MODE_RD[_qi][pli][qti][bin].rate=
-           (ogg_int16_t)OC_CLAMPI(-32768,(int)(rate+0.5),32767);
+           (ogg_int16_t)OC_CLAMPI(-32768,(int32_t)(rate+0.5),32767);
           b=metrics.satdrmse/metrics.satd2;
           a=mrmse-b*msatd;
           rmse=ldexp(a+b*(bin<<OC_SAD_SHIFT),OC_RMSE_SCALE);
           OC_MODE_RD[_qi][pli][qti][bin].rmse=
-           (ogg_int16_t)OC_CLAMPI(-32768,(int)(rmse+0.5),32767);
+           (ogg_int16_t)OC_CLAMPI(-32768,(int32_t)(rmse+0.5),32767);
         }
       }
     }
@@ -2373,18 +2373,18 @@ static void oc_enc_mode_metrics_update(oc_enc_ctx *_enc,int _qi){
            skipped in the current block.
           Otherwise, the negative of the return value indicates that number of
            blocks are to be ended.*/
-typedef ptrdiff_t (*oc_token_skip_func)(int _token,int _extra_bits);
+typedef ptrdiff_t (*oc_token_skip_func)(int32_t _token,int32_t _extra_bits);
 
 /*Handles the simple end of block tokens.*/
-static ptrdiff_t oc_token_skip_eob(int _token,int _extra_bits){
-  int nblocks_adjust;
+static ptrdiff_t oc_token_skip_eob(int32_t _token,int32_t _extra_bits){
+  int32_t nblocks_adjust;
   nblocks_adjust=OC_UNIBBLE_TABLE32(0,1,2,3,7,15,0,0,_token)+1;
   return -_extra_bits-nblocks_adjust;
 }
 
 /*The last EOB token has a special case, where an EOB run of size zero ends all
    the remaining blocks in the frame.*/
-static ptrdiff_t oc_token_skip_eob6(int _token,int _extra_bits){
+static ptrdiff_t oc_token_skip_eob6(int32_t _token,int32_t _extra_bits){
   /*Note: We want to return -PTRDIFF_MAX, but that requires C99, which is not
      yet available everywhere; this should be equivalent.*/
   if(!_extra_bits)return -(~(size_t)0>>1);
@@ -2392,7 +2392,7 @@ static ptrdiff_t oc_token_skip_eob6(int _token,int _extra_bits){
 }
 
 /*Handles the pure zero run tokens.*/
-static ptrdiff_t oc_token_skip_zrl(int _token,int _extra_bits){
+static ptrdiff_t oc_token_skip_zrl(int32_t _token,int32_t _extra_bits){
   return _extra_bits+1;
 }
 
@@ -2402,15 +2402,15 @@ static ptrdiff_t oc_token_skip_val(){
 }
 
 /*Handles a category 1A zero run/coefficient value combo token.*/
-static ptrdiff_t oc_token_skip_run_cat1a(int _token){
+static ptrdiff_t oc_token_skip_run_cat1a(int32_t _token){
   return _token-OC_DCT_RUN_CAT1A+2;
 }
 
 /*Handles category 1b, 1c, 2a, and 2b zero run/coefficient value combo tokens.*/
-static ptrdiff_t oc_token_skip_run(int _token,int _extra_bits){
-  int run_cati;
-  int ncoeffs_mask;
-  int ncoeffs_adjust;
+static ptrdiff_t oc_token_skip_run(int32_t _token,int32_t _extra_bits){
+  int32_t run_cati;
+  int32_t ncoeffs_mask;
+  int32_t ncoeffs_adjust;
   run_cati=_token-OC_DCT_RUN_CAT1B;
   ncoeffs_mask=OC_BYTE_TABLE32(3,7,0,1,run_cati);
   ncoeffs_adjust=OC_BYTE_TABLE32(7,11,2,3,run_cati);
@@ -2466,7 +2466,7 @@ static const oc_token_skip_func OC_TOKEN_SKIP_TABLE[TH_NDCT_TOKENS]={
            blocks are to be ended.
           0 will never be returned, so that at least one coefficient in one
            block will always be decoded for every token.*/
-static ptrdiff_t oc_dct_token_skip(int _token,int _extra_bits){
+static ptrdiff_t oc_dct_token_skip(int32_t _token,int32_t _extra_bits){
   return (*OC_TOKEN_SKIP_TABLE[_token])(_token,_extra_bits);
 }
 
@@ -2489,13 +2489,13 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
   ptrdiff_t          ncoded_fragis;
   ptrdiff_t          fragii;
   double             fragw;
-  int                qti;
-  int                qii;
-  int                qi;
-  int                pli;
-  int                zzi;
-  int                token;
-  int                eb;
+  int32_t                qti;
+  int32_t                qii;
+  int32_t                qi;
+  int32_t                pli;
+  int32_t                zzi;
+  int32_t                token;
+  int32_t                eb;
   oc_restore_fpu(&_enc->state);
   /*Load any existing mode metrics if we haven't already.*/
   if(!oc_has_mode_metrics){
@@ -2520,8 +2520,8 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
   fragw=1.0/_enc->state.nfrags;
   for(pli=0;pli<3;pli++){
     ptrdiff_t ti[64];
-    int       eob_token[64];
-    int       eob_run[64];
+    int32_t       eob_token[64];
+    int32_t       eob_run[64];
     /*Set up token indices and eob run counts.
       We don't bother trying to figure out the real cost of the runs that span
        coefficients; instead we use the costs that were available when R-D
@@ -2544,11 +2544,11 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
     for(;fragii<ncoded_fragis;fragii++){
       ptrdiff_t    fragi;
       ogg_uint32_t frag_bits;
-      int          huffi;
-      int          skip;
-      int          mb_mode;
+      int32_t          huffi;
+      int32_t          skip;
+      int32_t          mb_mode;
       unsigned     satd;
-      int          bin;
+      int32_t          bin;
       fragi=coded_fragis[fragii];
       frag_bits=0;
       for(zzi=0;zzi<64;){
@@ -2597,7 +2597,7 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
 
 void oc_enc_mode_metrics_dump(oc_enc_ctx *_enc){
   FILE *fmetrics;
-  int   qi;
+  int32_t   qi;
   /*Generate sample points for complete list of QI values.*/
   for(qi=0;qi<64;qi++)oc_enc_mode_metrics_update(_enc,qi);
   fmetrics=fopen("modedec.stats","wb");
@@ -2649,7 +2649,7 @@ void oc_enc_mode_metrics_dump(oc_enc_ctx *_enc){
    "};\n"
    "\n"
    "\n"
-   "int             oc_has_mode_metrics;\n"
+   "int32_t             oc_has_mode_metrics;\n"
    "oc_mode_metrics OC_MODE_METRICS[64][3][2][OC_SAD_BINS];\n"
    "# endif\n"
    "\n"
@@ -2667,13 +2667,13 @@ void oc_enc_mode_metrics_dump(oc_enc_ctx *_enc){
    "oc_mode_rd OC_MODE_RD[64][3][2][OC_SAD_BINS]={\n",
    OC_BIT_SCALE,OC_RMSE_SCALE,OC_SAD_BINS,OC_SAD_SHIFT);
   for(qi=0;qi<64;qi++){
-    int pli;
+    int32_t pli;
     fprintf(stdout,"  {\n");
     for(pli=0;pli<3;pli++){
-      int qti;
+      int32_t qti;
       fprintf(stdout,"    {\n");
       for(qti=0;qti<2;qti++){
-        int bin;
+        int32_t bin;
         static const char *pl_names[3]={"Y'","Cb","Cr"};
         static const char *qti_names[2]={"INTRA","INTER"};
         fprintf(stdout,"      /*%s  qi=%i  %s*/\n",

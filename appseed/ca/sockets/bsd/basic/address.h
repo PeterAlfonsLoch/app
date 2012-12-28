@@ -31,11 +31,11 @@ namespace sockets
       string            m_strServiceName;
 
 
-      address(::ca::application * papp, const in_addr & a, int iPort = 0);
-      address(::ca::application * papp, const in6_addr & a, int iPort = 0);
-      address(::ca::application * papp, const sockaddr & sa, int sa_len);
+      address(::ca::application * papp, const in_addr & a, int32_t iPort = 0);
+      address(::ca::application * papp, const in6_addr & a, int32_t iPort = 0);
+      address(::ca::application * papp, const sockaddr & sa, int32_t sa_len);
       address(::ca::application * papp, const char * pszAddress = NULL, const char * pszServiceName = NULL);
-      address(::ca::application * papp, const char * pszAddress, int iPort);
+      address(::ca::application * papp, const char * pszAddress, int32_t iPort);
       address(const address & address);
       virtual ~address();
 
@@ -49,13 +49,13 @@ namespace sockets
       virtual string get_display_number() const;
       virtual string get_canonical_name() const;
       virtual string get_service_name() const;
-      virtual int    get_service_number() const;
+      virtual int32_t    get_service_number() const;
 
-      virtual bool set_service_number(int iPort);
+      virtual bool set_service_number(int32_t iPort);
 
 
-      int     service_name_to_number(const char * psz) const;
-      string  service_number_to_name(int i) const;
+      int32_t     service_name_to_number(const char * psz) const;
+      string  service_number_to_name(int32_t i) const;
 
 
       virtual bool is_in_net(const address & addr, const address & addrMask) const;
@@ -64,13 +64,13 @@ namespace sockets
       virtual bool is_ipv6() const;
 
 
-      int GetFamily() const;
+      int32_t GetFamily() const;
 
       bool is_valid() const;
 
 
       const sockaddr * sa() const;
-      int sa_len() const;
+      int32_t sa_len() const;
 
 
    };

@@ -70,7 +70,7 @@ gf2_8_multiply(gf2_8 x, gf2_8 y) {
 
 gf2_8
 gf2_8_compute_inverse(gf2_8 x) {
-  unsigned int i;
+  unsigned int32_t i;
 
   if (x == 0) return 0;    /* zero is a special case */
   for (i=0; i < 256; i++)

@@ -165,7 +165,7 @@ namespace sockets
    }
 
 
-   int ipv4_address::GetFamily()
+   int32_t ipv4_address::GetFamily()
    {
       return m_addr.sin_family;
    }

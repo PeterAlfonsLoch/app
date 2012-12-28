@@ -18,7 +18,7 @@
 #include "HandlerOut.h"*/
 
 bool StringToBool(const string &s, bool &res);
-int ParseStringToUInt32(const string &srcString, uint32 &number);
+int32_t ParseStringToUInt32(const string &srcString, uint32 &number);
 uint64 ConvertStringToUInt64(const char *s, const char **end);
 
 namespace compress
@@ -106,7 +106,7 @@ namespace compress
          AreEqual(methodName, kDeflate64MethodName);
    }
 
-   #define PROPID int
+   #define PROPID int32_t
 
    struct CNameToPropID
    {
@@ -166,17 +166,17 @@ namespace compress
       return false;
    }
 
-   static int FindPropIdExact(const string &name)
+   static int32_t FindPropIdExact(const string &name)
    {
-      for (int i = 0; i < sizeof(g_NameToPropID) / sizeof(g_NameToPropID[0]); i++)
+      for (int32_t i = 0; i < sizeof(g_NameToPropID) / sizeof(g_NameToPropID[0]); i++)
          if (name.CompareNoCase(g_NameToPropID[i].Name) == 0)
             return i;
       return -1;
    }
 
-   static int FindPropIdStart(const string &name)
+   static int32_t FindPropIdStart(const string &name)
    {
-      for (int i = 0; i < sizeof(g_NameToPropID) / sizeof(g_NameToPropID[0]); i++)
+      for (int32_t i = 0; i < sizeof(g_NameToPropID) / sizeof(g_NameToPropID[0]); i++)
       {
          string t = g_NameToPropID[i].Name;
          if (t.CompareNoCase(name.Left(t.get_length())) == 0)
@@ -185,9 +185,9 @@ namespace compress
       return -1;
    }
 
-   static void SetMethodProp(COneMethodInfo &m, int propID, var value)
+   static void SetMethodProp(COneMethodInfo &m, int32_t propID, var value)
    {
-      for (int j = 0; j < m.Props.m_propertya.get_count(); j++)
+      for (int32_t j = 0; j < m.Props.m_propertya.get_count(); j++)
          if (atoi(m.Props[j].name()) == propID)
             return;
       m.Props[propID] = value;
@@ -301,7 +301,7 @@ namespace compress
       strsize len = srcString.get_length();
       if (len == 0)
          return;
-      for (int i = 0; i < len; i++)
+      for (int32_t i = 0; i < len; i++)
       {
          char c = srcString[i];
          if (c == L':')
@@ -340,7 +340,7 @@ namespace compress
    ex1::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
    {
       gen::property prop;
-      int index = FindPropIdExact(name);
+      int32_t index = FindPropIdExact(name);
       if (index < 0)
          return E_INVALIDARG;
       const CNameToPropID &nameToPropID = g_NameToPropID[index];
@@ -393,7 +393,7 @@ namespace compress
       SplitParams(srcString, params);
       if (params.get_size() > 0)
          oneMethodInfo.MethodName = params[0];
-      for (int i = 1; i < params.get_size(); i++)
+      for (int32_t i = 1; i < params.get_size(); i++)
       {
          const string &param = params[i];
          string name, value;
@@ -407,7 +407,7 @@ namespace compress
    {
       string s2 = s;
       s2.make_upper();
-      for (int i = 0; i < s2.get_length();)
+      for (int32_t i = 0; i < s2.get_length();)
       {
          const char *start = ((const char *)s2) + i;
          const char *end;
@@ -419,7 +419,7 @@ namespace compress
             _solidExtension = true;
             continue;
          }
-         i += (int)(end - start);
+         i += (int32_t)(end - start);
          if (i == s2.get_length())
             return E_INVALIDARG;
          char c = s2[i++];
@@ -549,7 +549,7 @@ namespace compress
       }
 
       uint32 number;
-      int index = ParseStringToUInt32(name, number);
+      int32_t index = ParseStringToUInt32(name, number);
       string realName = name.Mid(index);
       if (index == 0)
       {
@@ -590,7 +590,7 @@ namespace compress
       if (number < minNumber)
          return E_INVALIDARG;
       number -= minNumber;
-      for(count j = _methods.get_size(); j <= (int)number; j++)
+      for(count j = _methods.get_size(); j <= (int32_t)number; j++)
       {
          COneMethodInfo oneMethodInfo;
          _methods.add(oneMethodInfo);
@@ -607,7 +607,7 @@ namespace compress
       }
       else
       {
-         int index = FindPropIdStart(realName);
+         int32_t index = FindPropIdStart(realName);
          if (index < 0)
             return E_INVALIDARG;
          const CNameToPropID &nameToPropID = g_NameToPropID[index];
@@ -627,7 +627,7 @@ namespace compress
          }
          else
          {
-            int index = FindPropIdExact(realName);
+            int32_t index = FindPropIdExact(realName);
             if (index < 0)
                return E_INVALIDARG;
             const CNameToPropID &nameToPropID = g_NameToPropID[index];

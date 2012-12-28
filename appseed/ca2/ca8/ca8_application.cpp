@@ -61,7 +61,7 @@ namespace ca8
       return box.m_strResponse;
    }
 
-   int application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
+   int32_t application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
    {
       class message_box box(this);
 
@@ -118,7 +118,7 @@ namespace ca8
       }
    }
 
-   int application::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(puiOwner);
 
@@ -164,7 +164,7 @@ namespace ca8
       }
    }
 
-   int application::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
+   int32_t application::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);

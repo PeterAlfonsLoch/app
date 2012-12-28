@@ -13,7 +13,7 @@
 namespace gen
 {
 
-   int nibble_to_low_hex(byte nibble);
+   int32_t nibble_to_low_hex(byte nibble);
 
 
    UINT application::APPM_LANGUAGE = WM_APP + 117;
@@ -197,7 +197,7 @@ finishedCa2ModuleFolder:;
    }
 
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
 
       try
@@ -272,7 +272,7 @@ finishedCa2ModuleFolder:;
       return ex1::application::exit_instance();
    }
 
-   LRESULT application::GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam)
+   LRESULT application::GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(nCode);
       UNREFERENCED_PARAMETER(wParam);
@@ -503,7 +503,7 @@ finishedCa2ModuleFolder:;
          //string str;
          //str.load_string(IDS_RECENT_FILE);
          //pcmdui->SetText(str);
-         for (int iMRU = 1; iMRU < 10; iMRU++)
+         for (int32_t iMRU = 1; iMRU < 10; iMRU++)
             pcmdui->m_pMenu->DeleteMenu(pcmdui->m_nID + iMRU, MF_BYCOMMAND);
          return;
       }
@@ -538,17 +538,17 @@ finishedCa2ModuleFolder:;
       if(!bCmdUIMenu)
          return;
 
-      int nID = pcmdui->m_nID;
-      int nIndex = CMenuUtil::GetMenuPosition(pmenu, nID);
+      int32_t nID = pcmdui->m_nID;
+      int32_t nIndex = CMenuUtil::GetMenuPosition(pmenu, nID);
 
-      for (int iMRU = 0; iMRU < m_pRecentFileList->m_nSize; iMRU++)
+      for (int32_t iMRU = 0; iMRU < m_pRecentFileList->m_nSize; iMRU++)
          pcmdui->m_pMenu->DeleteMenu(pcmdui->m_nID + iMRU, MF_BYCOMMAND);
 
 
 
       char szCurDir[_MAX_PATH];
       GetCurrentDirectory(_MAX_PATH, szCurDir);
-      int nCurDir = lstrlen(szCurDir);
+      int32_t nCurDir = lstrlen(szCurDir);
       ASSERT(nCurDir >= 0);
       szCurDir[nCurDir] = '\\';
       szCurDir[++nCurDir] = '\0';
@@ -699,10 +699,10 @@ finishedCa2ModuleFolder:;
    }*/
 
    /*
-   string application::load_string(const id_space * pspace, int iKey)
+   string application::load_string(const id_space * pspace, int32_t iKey)
    {
       string str;
-      int iId = GetResourceId(pspace, iKey);
+      int32_t iId = GetResourceId(pspace, iKey);
       if(iId == -1)
          return str;
       str.load_string(iId);
@@ -723,7 +723,7 @@ finishedCa2ModuleFolder:;
    }
 
 
-   int application::run()
+   int32_t application::run()
    {
       return ex1::application::run();
    }
@@ -820,7 +820,7 @@ finishedCa2ModuleFolder:;
       return true;
    }
 
-   int nibble_to_low_hex(byte nibble)
+   int32_t nibble_to_low_hex(byte nibble)
    {
       if(nibble >= 0 && nibble <= 9)
       {

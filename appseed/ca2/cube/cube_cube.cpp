@@ -108,10 +108,10 @@ namespace cube
    }
 
 
-   int cube::exit_instance()
+   int32_t cube::exit_instance()
    {
 
-      int iRet = -1;
+      int32_t iRet = -1;
 
       try
       {

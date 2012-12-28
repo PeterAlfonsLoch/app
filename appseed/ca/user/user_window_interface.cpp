@@ -95,7 +95,7 @@ namespace user
 
       rect rectNewUpdate;
 
-      for(int i = oswindowtreea.get_size() - 1; i >= 0; i--)
+      for(int32_t i = oswindowtreea.get_size() - 1; i >= 0; i--)
       {
          user::oswindow_tree & oswindowtreeChild = oswindowtreea[i];
          oswindow oswindowChild = oswindowtreeChild.m_oswindow;
@@ -337,7 +337,7 @@ namespace user
       user::oswindow_tree::Array & oswindowtreea,
       HRGN hrgn)
    {
-      for(int i = 0; i < oswindowtreea.get_size();)
+      for(int32_t i = 0; i < oswindowtreea.get_size();)
       {
          user::oswindow_tree & oswindowtree = oswindowtreea[i];
          switch(Optimize001(
@@ -393,7 +393,7 @@ namespace user
 
          ::ca::region rgn;
          rgn.create_rect(rectClient);
-         int iCombine = ::CombineRgn(hrgn, hrgn, rgn, ::ca::region::combine_exclude);
+         int32_t iCombine = ::CombineRgn(hrgn, hrgn, rgn, ::ca::region::combine_exclude);
          if(iCombine == NULLREGION)
          {
             ASSERT(TRUE);
@@ -438,9 +438,9 @@ namespace user
       rect rect;
 
    Restart:
-      for(int i = 0; i < base_array.get_size(); i++)
+      for(int32_t i = 0; i < base_array.get_size(); i++)
       {
-         for(int j = i + 1; j < base_array.get_size(); j++)
+         for(int32_t j = i + 1; j < base_array.get_size(); j++)
          {
             if(RedrawOptimize(
                rect,
@@ -461,10 +461,10 @@ namespace user
       rect rect2(lpcrect2);
       rect rect3;
 
-      int iArea1 = rect1.width() * rect1.height();
-      int iArea2 = rect2.width() * rect2.height();
+      int32_t iArea1 = rect1.width() * rect1.height();
+      int32_t iArea2 = rect2.width() * rect2.height();
       rect3.unite(rect1, rect2);
-      int iArea3 = rect3.width() * rect3.height();
+      int32_t iArea3 = rect3.width() * rect3.height();
 
 
       if(iArea3 < (110 * (iArea1 + iArea2) / 100))
@@ -554,7 +554,7 @@ namespace user
 
    bool window_interface::Redraw(rect_array & recta)
    {
-      for(int i = 0; i < recta.get_size(); i++)
+      for(int32_t i = 0; i < recta.get_size(); i++)
       {
          get_wnd()->RedrawWindow(recta[i]);
       }

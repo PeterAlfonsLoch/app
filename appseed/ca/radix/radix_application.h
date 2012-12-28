@@ -49,7 +49,7 @@ namespace radix
 
 
       ::ca::e_application_signal       m_esignal;
-      int                              m_iRet;
+      int32_t                              m_iRet;
       bool                             m_bOk;
 
 
@@ -88,7 +88,7 @@ namespace radix
    // LKG
    //   DWORD m_dwPolicies;            // block for storing boolean system policies
 
-      int                           m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
+      int32_t                           m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
       HCURSOR                       m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
       DWORD                         m_dwPolicies;            // block for storing boolean system policies
@@ -107,7 +107,7 @@ namespace radix
       string                        m_strCmdLine;
       // Initial state of the application's ::ca::window; normally,
       // this is an argument to ShowWindow().
-      int                           m_nCmdShow;
+      int32_t                           m_nCmdShow;
 
       file_manager_interface *      m_pfilemanager;
       // Running args (can be changed in initialize_instance)
@@ -162,7 +162,7 @@ namespace radix
       //::collection::map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
 
       //mutex                            m_mutexObjectEvent;
-      //::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int, int, event *, event * > *, ::collection::map < int, int, event *, event * >  * > m_mapObjectEvent;
+      //::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int32_t, int32_t, event *, event * > *, ::collection::map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
 
       //typedef ::collection::map < ::radix::object *, ::radix::object *, gen::property_set, gen::property_set > oset;
       //oset                             m_mapObjectSet;
@@ -176,7 +176,7 @@ namespace radix
       ::user::interaction *            m_pwndMain;
 
 
-      int                              m_iResourceId;
+      int32_t                              m_iResourceId;
 
       ::collection::string_to_ptr         m_appmap;
 
@@ -223,9 +223,9 @@ namespace radix
       virtual void remove_frame(::user::interaction * pwnd);
 
 
-      virtual int simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle = MB_OK);
-      virtual int simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
-      virtual int simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, ...);
+      virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box(::user::interaction * puiOwner, UINT fuStyle, const char * pszFormat, ...);
 
       virtual void EnableShellOpen();
 
@@ -271,10 +271,10 @@ namespace radix
 
       /*
       // Retrieve an integer value from INI file or registry.
-      UINT GetProfileInt(const char * lpszSection, const char * lpszEntry, int nDefault);
+      UINT GetProfileInt(const char * lpszSection, const char * lpszEntry, int32_t nDefault);
 
       // Sets an integer value to INI file or registry.
-      bool WriteProfileInt(const char * lpszSection, const char * lpszEntry, int nValue);
+      bool WriteProfileInt(const char * lpszSection, const char * lpszEntry, int32_t nValue);
 
       // Retrieve a string value from INI file or registry.
       string GetProfileString(const char * lpszSection, const char * lpszEntry,
@@ -338,7 +338,7 @@ namespace radix
       // Hooks for your initialization code
       virtual bool InitApplication();
 
-      virtual int    exit();
+      virtual int32_t    exit();
       virtual bool   finalize();
 
       // exiting
@@ -347,8 +347,8 @@ namespace radix
       void close_all_documents(bool bEndSession); // close documents before exiting
 
       // Advanced: to override message boxes and other hooks
-      virtual int DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt);
-      virtual void DoWaitCursor(int nCode); // 0 => restore, 1=> begin, -1=> end
+      virtual int32_t DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt);
+      virtual void DoWaitCursor(int32_t nCode); // 0 => restore, 1=> begin, -1=> end
 
       // Advanced: process async DDE request
       virtual bool OnDDECommand(LPTSTR lpszCommand);
@@ -389,7 +389,7 @@ namespace radix
 
       // Finds number of opened document items owned by templates
       // registered with the doc manager.
-      int get_open_document_count();
+      int32_t get_open_document_count();
 
       // helpers for standard commdlg dialogs
       bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
@@ -398,13 +398,13 @@ namespace radix
 
       // overrides for implementation
       virtual bool initialize_instance();
-      virtual int exit_instance(); // return cast exit code
-      virtual int run();
+      virtual int32_t exit_instance(); // return cast exit code
+      virtual int32_t run();
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
 
        // Helper for message boxes; can work when no application can be found
-      static int ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
+      static int32_t ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
       virtual void assert_valid() const;
@@ -454,7 +454,7 @@ namespace radix
       virtual ::user::interaction * get_capture_uie();
 
 
-      virtual int get_document_count();
+      virtual int32_t get_document_count();
 
       // transparent ::ca::window framework
 
@@ -468,14 +468,14 @@ namespace radix
       //using ::radix::thread::unlock;
       //bool unlock(::waitable * pobject);
 
-//      event * get_event(::waitable * pobject, int iEvent = 0);
-//      bool event_lock(::waitable * pobject, int iEvent = 0, duration dwTimeout = duration::infinite());
-//      bool event_unlock(::waitable * pobject, int iEvent = 0);
+//      event * get_event(::waitable * pobject, int32_t iEvent = 0);
+//      bool event_lock(::waitable * pobject, int32_t iEvent = 0, duration dwTimeout = duration::infinite());
+//      bool event_unlock(::waitable * pobject, int32_t iEvent = 0);
 
-   /*   int GetResourceId(const id_space * pspace, int iKey);
-      int GetResourceId(const id_space & pspace, int iKey);
-      int GetResourceId(const id_space * pspace, const char * lpcszKey);
-      int GetResourceId(const id_space & pspace, const char * lpcszKey);*/
+   /*   int32_t GetResourceId(const id_space * pspace, int32_t iKey);
+      int32_t GetResourceId(const id_space & pspace, int32_t iKey);
+      int32_t GetResourceId(const id_space * pspace, const char * lpcszKey);
+      int32_t GetResourceId(const id_space & pspace, const char * lpcszKey);*/
 
 
       virtual string matter_as_string(const char * pszMatter, const char * pszMatter2 = NULL);

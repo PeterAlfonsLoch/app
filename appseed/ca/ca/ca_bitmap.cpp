@@ -4,7 +4,7 @@
 namespace ca
 {
 
-   bool bitmap::CreateBitmap(::ca::graphics * pdc, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int stride)
+   bool bitmap::CreateBitmap(::ca::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
@@ -55,14 +55,14 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
+   bool bitmap::CreateCompatibleBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       throw not_implemented(get_app());
    }
-   bool bitmap::CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight)
+   bool bitmap::CreateDiscardableBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(nWidth);
@@ -77,7 +77,7 @@ namespace ca
    }
 
 
-   class size bitmap::SetBitmapDimension(int nWidth, int nHeight)
+   class size bitmap::SetBitmapDimension(int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);

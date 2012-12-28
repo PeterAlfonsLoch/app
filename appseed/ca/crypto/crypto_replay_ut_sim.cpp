@@ -46,17 +46,17 @@
 #include "framework.h"
 
 
-int
+int32_t
 ut_compar(const void *a, const void *b);
 
-int
+int32_t
 ut_compar(const void *a, const void *b) {
   return rand() > (RAND_MAX/2) ? -1 : 1;
 }
 
 void
 ut_init(ut_connection *utc) {
-  int i;
+  int32_t i;
   utc->index = 0;
 
   for (i=0; i < UT_BUF; i++)
@@ -84,7 +84,7 @@ ut_next_index(ut_connection *utc) {
 
 #ifdef UT_TEST
 
-int
+int32_t
 main() {
   uint32_t i, irecvd, idiff;
   ut_connection utc;

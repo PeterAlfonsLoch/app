@@ -22,7 +22,7 @@ void simple_ui::set_parent(simple_ui * puiParent)
    if(m_puiParent != NULL && m_puiParent != puiParent)
    {
 
-      for(int i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+      for(int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
       {
 
          if(m_puiParent->m_uiptra[i] == this)
@@ -67,7 +67,7 @@ void simple_ui::draw(simple_graphics & g)
 void simple_ui::draw_children(simple_graphics & g)
 {
 
-   for(int i = 0; i < m_uiptra.get_count(); i++)
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
    {
 
       try
@@ -85,7 +85,7 @@ void simple_ui::draw_children(simple_graphics & g)
 
 }
 
-void simple_ui::on_char(int iKey, const vsstring & strChar)
+void simple_ui::on_char(int32_t iKey, const vsstring & strChar)
 {
 
    get_focus()->on_char(iKey, strChar);
@@ -93,10 +93,10 @@ void simple_ui::on_char(int iKey, const vsstring & strChar)
 }
 
 
-void simple_ui::on_lbutton_down(int x, int y)
+void simple_ui::on_lbutton_down(int32_t x, int32_t y)
 {
 
-   for(int i = 0; i < m_uiptra.get_count(); i++)
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
    {
 
       if(x >= m_uiptra[i]->m_rect.left
@@ -113,10 +113,10 @@ void simple_ui::on_lbutton_down(int x, int y)
 
 }
 
-void simple_ui::on_lbutton_up(int x, int y)
+void simple_ui::on_lbutton_up(int32_t x, int32_t y)
 {
 
-   for(int i = 0; i < m_uiptra.get_count(); i++)
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
    {
 
       if(x >= m_uiptra[i]->m_rect.left
@@ -134,10 +134,10 @@ void simple_ui::on_lbutton_up(int x, int y)
 }
 
 
-void simple_ui::on_mouse_move(int x, int y)
+void simple_ui::on_mouse_move(int32_t x, int32_t y)
 {
 
-   for(int i = 0; i < m_uiptra.get_count(); i++)
+   for(int32_t i = 0; i < m_uiptra.get_count(); i++)
    {
 
       if(x >= m_uiptra[i]->m_rect.left
@@ -182,7 +182,7 @@ void simple_ui::focus_next()
 
    ::count iFind = m_puiParent->m_uiptra.get_count() - 1;
 
-   for(int i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
+   for(int32_t i = 0; i < m_puiParent->m_uiptra.get_count(); i++)
    {
 
       if(m_puiParent->m_uiptra[i] == this)
@@ -210,7 +210,7 @@ void simple_ui::focus_next()
 
    }
 
-   for(int i = 0; i <= iFind; i++)
+   for(int32_t i = 0; i <= iFind; i++)
    {
 
       if(m_puiParent->m_uiptra[i]->is_focusable())
@@ -320,19 +320,19 @@ void simple_ui::draw_this(simple_graphics & g)
 
    }
 
-   int iBorderH = min(height(&m_rect) / 2, 49);
+   int32_t iBorderH = min(height(&m_rect) / 2, 49);
 
    simple_linear_gradient_brush br1(g, m_rect.left, m_rect.top, m_rect.left, m_rect.top + iBorderH, crOut, crIn);
 
-   g.fill_rect(rect_dim(m_rect.left, m_rect.top, (int) width(&m_rect), iBorderH), br1);
+   g.fill_rect(rect_dim(m_rect.left, m_rect.top, (int32_t) width(&m_rect), iBorderH), br1);
 
    simple_solid_brush br(g, crIn);
 
-   g.fill_rect(rect_dim(m_rect.left, m_rect.top + iBorderH, (int) width(&m_rect), (int) height(&m_rect) - (iBorderH * 2)), br);
+   g.fill_rect(rect_dim(m_rect.left, m_rect.top + iBorderH, (int32_t) width(&m_rect), (int32_t) height(&m_rect) - (iBorderH * 2)), br);
 
    simple_linear_gradient_brush br2(g, m_rect.left, m_rect.bottom - iBorderH, m_rect.left, m_rect.bottom, crIn, crOut);
 
-   g.fill_rect(rect_dim(m_rect.left, m_rect.bottom - iBorderH, (int) width(&m_rect), iBorderH), br2);
+   g.fill_rect(rect_dim(m_rect.left, m_rect.bottom - iBorderH, (int32_t) width(&m_rect), iBorderH), br2);
 
 
 }
@@ -343,7 +343,7 @@ void simple_ui::draw_focus_rect(simple_graphics & g)
 
    g.set_alpha_mode(::ca::alpha_mode_blend);
 
-   int iStyle = 1;
+   int32_t iStyle = 1;
 
    if(get_focus() == this)
    {

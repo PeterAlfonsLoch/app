@@ -112,14 +112,14 @@ namespace userbase
    }
 
 
-   void tab_view::_001OnTabClick(int iTab)
+   void tab_view::_001OnTabClick(int32_t iTab)
    {
       _001SetSel(iTab);
       layout();
    }
 
 
-   void tab_view::_001OnDropTab(int iPane, e_position eposition)
+   void tab_view::_001OnDropTab(int32_t iPane, e_position eposition)
    {
       ::user::interaction * pwnd1 = ensure(::user::tab::get_id_by_tab(::user::tab::_001GetSel()))->m_pwnd;
       ::user::interaction * pwnd2 = ensure(::user::tab::get_id_by_tab(iPane))->m_pwnd;
@@ -178,7 +178,7 @@ namespace userbase
       get_data()->m_bDrag = false;
    }
 
-   ::user::interaction * tab_view::_001GetTabWnd(int iTab)
+   ::user::interaction * tab_view::_001GetTabWnd(int32_t iTab)
    {
       if(m_pviewcreator == NULL)
          return NULL;
@@ -198,7 +198,7 @@ namespace userbase
    void tab_view::_001DropTargetWindowInitialize(::user::tab * pinterface)
    {
       ensure_tab_by_id(::user::tab::get_id_by_tab(pinterface->get_data()->m_iDragTab));
-      m_pdroptargetwindow = new tab_drop_target_window(this, (int) pinterface->get_data()->m_iDragTab);
+      m_pdroptargetwindow = new tab_drop_target_window(this, (int32_t) pinterface->get_data()->m_iDragTab);
       rect rect;
       rect = pinterface->get_data()->m_rectTabClient;
       pinterface->ClientToScreen(&rect);
@@ -459,7 +459,7 @@ namespace userbase
       return m_pviewcreator;
    }
 
-   tab_drop_target_window::tab_drop_target_window(user::tab * ptab, int iPane) :
+   tab_drop_target_window::tab_drop_target_window(user::tab * ptab, int32_t iPane) :
       ca(ptab->get_app())
    {
       m_ptab            = ptab;

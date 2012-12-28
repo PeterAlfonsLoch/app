@@ -43,7 +43,7 @@ public:
 
    ::ca::graphics * m_pDC;                 // where to draw during drag
    bool m_bDragging;
-   int m_nHitTest;
+   int32_t m_nHitTest;
    bool m_bTracking;
 
    UINT m_uMRUDockID;
@@ -56,10 +56,10 @@ public:
    virtual void StartDrag(point pt);
    void Move(point pt);       // called when mouse has moved
    void EndDrag();             // drop
-   void OnKey(int nChar, bool bDown);
+   void OnKey(int32_t nChar, bool bDown);
 
 // Resize Operations
-   virtual void StartResize(int nHitTest, point pt);
+   virtual void StartResize(int32_t nHitTest, point pt);
    void Stretch(point pt);
    void EndResize();
 

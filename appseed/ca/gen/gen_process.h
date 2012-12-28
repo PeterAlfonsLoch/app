@@ -21,7 +21,7 @@ namespace gen
 
 #else
 
-      int                     m_iPid;
+      int32_t                     m_iPid;
 
 #endif
 
@@ -32,7 +32,7 @@ namespace gen
 
       bool create_child_process(const char * pszCmdLine, bool bPiped, const char * pszDir = NULL);
 
-      DWORD wait_until_exit(int iWaitMax = 0);
+      DWORD wait_until_exit(int32_t iWaitMax = 0);
       bool has_exited(DWORD * pdwExitCode = NULL);
 
       bool write(const char * psz);

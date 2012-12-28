@@ -116,7 +116,7 @@ namespace cube2
 
 #ifndef METROWIN
 
-      for(int i = 0; i < m_straAppInterest.get_count(); i++)
+      for(int32_t i = 0; i < m_straAppInterest.get_count(); i++)
       {
          if(m_straAppInterest[i] != m_strAppName && !::IsWindow(m_mapAppInterest[m_straAppInterest[i]]))
          {
@@ -165,7 +165,7 @@ namespace cube2
       }
    }
 
-   int application::send_simple_command(const char * psz, void * osdataSender)
+   int32_t application::send_simple_command(const char * psz, void * osdataSender)
    {
       string strApp;
       stringa stra;
@@ -182,7 +182,7 @@ namespace cube2
       return -1;
    }
 
-   int application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
+   int32_t application::send_simple_command(void * osdata, const char * psz, void * osdataSender)
    {
 #ifdef WINDOWSEX
       ::oswindow oswindow = (::oswindow) osdata;
@@ -193,7 +193,7 @@ namespace cube2
       cds.dwData = 198477;
       cds.cbData = (DWORD) strlen(psz);
       cds.lpData = (PVOID) psz;
-      return (int) SendMessage(oswindow, WM_COPYDATA, (WPARAM) osdataSender, (LPARAM) &cds);
+      return (int32_t) SendMessage(oswindow, WM_COPYDATA, (WPARAM) osdataSender, (LPARAM) &cds);
 #else
       throw todo(get_app());
 #endif

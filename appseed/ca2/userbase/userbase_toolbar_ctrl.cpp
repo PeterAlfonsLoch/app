@@ -26,14 +26,14 @@ namespace userbase
 #endif
    }
 
-   int tool_bar_control::AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap)
+   int32_t tool_bar_control::AddBitmap(int32_t nNumButtons, ::ca::bitmap* pBitmap)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow());
       TBADDBITMAP tbab;
       tbab.hInst = NULL;
       tbab.nID = (UINT)pBitmap->get_os_data();
-      return (int) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
+      return (int32_t) send_message( TB_ADDBITMAP, (WPARAM)nNumButtons,
          (LPARAM)&tbab);
 #else
       throw todo(get_app());
@@ -65,7 +65,7 @@ namespace userbase
 #endif
 
 
-   int tool_bar_control::OnCreate(LPCREATESTRUCT lpcs)
+   int32_t tool_bar_control::OnCreate(LPCREATESTRUCT lpcs)
    {
       UNREFERENCED_PARAMETER(lpcs);
       // trans   if (::user::interaction::OnCreate(lpcs) == -1)
@@ -122,7 +122,7 @@ namespace userbase
    ASSERT(pData->wVersion == 1);
 
    UINT* pItems = new UINT[pData->wItemCount];
-   for (int i = 0; i < pData->wItemCount; i++)
+   for (int32_t i = 0; i < pData->wItemCount; i++)
    pItems[i] = pData->items()[i];
    bool bResult = SetButtons(pItems, pData->wItemCount);
    delete[] pItems;
@@ -135,7 +135,7 @@ namespace userbase
    //      SetSizes(sizeButton, sizeImage);
 
    // load bitmap now that sizes are known by the toolbar control
-   LoadImages((int)(WORD) (long *)lpszResourceName, __get_resource_handle());
+   LoadImages((int32_t)(WORD) (long *)lpszResourceName, __get_resource_handle());
    }
 
    UnlockResource(hGlobal);
@@ -144,7 +144,7 @@ namespace userbase
    return bResult;
    }*/
 
-   bool tool_bar_control::SetButtons(const UINT* lpIDArray, int nIDCount)
+   bool tool_bar_control::SetButtons(const UINT* lpIDArray, int32_t nIDCount)
    {
       ASSERT_VALID(this);
       ASSERT(nIDCount >= 1);  // must be at least one of them
@@ -152,7 +152,7 @@ namespace userbase
          __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
       // delete all existing buttons
-      /* linux int nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      /* linux int32_t nCount = (int32_t)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       while (nCount--)
       VERIFY(DefWindowProc(TB_DELETEBUTTON, 0, 0));
 
@@ -161,8 +161,8 @@ namespace userbase
       if (lpIDArray != NULL)
       {
       // add new buttons to the common control
-      int iImage = 0;
-      for (int i = 0; i < nIDCount; i++)
+      int32_t iImage = 0;
+      for (int32_t i = 0; i < nIDCount; i++)
       {
       button.fsState = TBSTATE_ENABLED;
       if ((button.idCommand = *lpIDArray++) == 0)
@@ -190,20 +190,20 @@ namespace userbase
       {
       // add 'blank' buttons
       button.fsState = TBSTATE_ENABLED;
-      for (int i = 0; i < nIDCount; i++)
+      for (int32_t i = 0; i < nIDCount; i++)
       {
       ASSERT(button.fsStyle == TBSTYLE_BUTTON);
       if (!DefWindowProc(TB_ADDBUTTONSW, 1, (LPARAM)&button))
       return FALSE;
       }
       }
-      //   m_nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      //   m_nCount = (int32_t)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       //   m_bDelayedButtonLayout = TRUE; */
 
       return TRUE;
    }
 
-   int tool_bar_control::GetButtonText(UINT uiID, string &str)
+   int32_t tool_bar_control::GetButtonText(UINT uiID, string &str)
    {
 #ifdef WINDOWSEX
       UNREFERENCED_PARAMETER(uiID);
@@ -212,7 +212,7 @@ namespace userbase
       tbbi.cbSize = sizeof(tbbi);
       tbbi.dwMask = TBIF_TEXT;
 
-      //      int nSize = 256;
+      //      int32_t nSize = 256;
       while(true)
       {
          /*         tbbi.pszText = str.GetBuffer(nSize);
@@ -235,7 +235,7 @@ namespace userbase
 
    tool_bar_control::tool_bar_control()
    { }
-   bool tool_bar_control::EnableButton(int nID, bool bEnable)
+   bool tool_bar_control::EnableButton(int32_t nID, bool bEnable)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != FALSE;
@@ -244,7 +244,7 @@ namespace userbase
 #endif
 
    }
-   bool tool_bar_control::CheckButton(int nID, bool bCheck)
+   bool tool_bar_control::CheckButton(int32_t nID, bool bCheck)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != FALSE;
@@ -253,7 +253,7 @@ namespace userbase
 #endif
 
    }
-   bool tool_bar_control::PressButton(int nID, bool bPress)
+   bool tool_bar_control::PressButton(int32_t nID, bool bPress)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != FALSE;
@@ -263,7 +263,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::HideButton(int nID, bool bHide)
+   bool tool_bar_control::HideButton(int32_t nID, bool bHide)
    {
 
 #ifdef WINDOWSEX
@@ -274,7 +274,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::Indeterminate(int nID, bool bIndeterminate)
+   bool tool_bar_control::Indeterminate(int32_t nID, bool bIndeterminate)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != FALSE;
@@ -284,7 +284,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::IsButtonEnabled(int nID)
+   bool tool_bar_control::IsButtonEnabled(int32_t nID)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_ISBUTTONENABLED, nID, 0) != FALSE;
@@ -295,7 +295,7 @@ namespace userbase
 
 
 
-   bool tool_bar_control::IsButtonChecked(int nID)
+   bool tool_bar_control::IsButtonChecked(int32_t nID)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_ISBUTTONCHECKED, nID, 0) != FALSE;
@@ -305,7 +305,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::IsButtonPressed(int nID)
+   bool tool_bar_control::IsButtonPressed(int32_t nID)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_ISBUTTONPRESSED, nID, 0) != FALSE;
@@ -315,7 +315,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::IsButtonHidden(int nID)
+   bool tool_bar_control::IsButtonHidden(int32_t nID)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_ISBUTTONHIDDEN, nID, 0) != FALSE;
@@ -325,7 +325,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::IsButtonIndeterminate(int nID)
+   bool tool_bar_control::IsButtonIndeterminate(int32_t nID)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_ISBUTTONINDETERMINATE, nID, 0) != FALSE;
@@ -335,7 +335,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::SetState(int nID, UINT nState)
+   bool tool_bar_control::SetState(int32_t nID, UINT nState)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_SETSTATE, nID, MAKELPARAM(nState, 0)) != FALSE;
@@ -345,10 +345,10 @@ namespace userbase
    }
 
 
-   int tool_bar_control::GetState(int nID)
+   int32_t tool_bar_control::GetState(int32_t nID)
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return (int) send_message( TB_GETSTATE, nID, 0L);
+      ASSERT(IsWindow()); return (int32_t) send_message( TB_GETSTATE, nID, 0L);
 #else
       throw todo(get_app());
 #endif
@@ -356,7 +356,7 @@ namespace userbase
 
 
 #ifdef WINDOWSEX
-   bool tool_bar_control::AddButtons(int nNumButtons, LPTBBUTTON lpButtons)
+   bool tool_bar_control::AddButtons(int32_t nNumButtons, LPTBBUTTON lpButtons)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)lpButtons) != FALSE;
@@ -364,7 +364,7 @@ namespace userbase
       throw todo(get_app());
 #endif
    }
-   bool tool_bar_control::InsertButton(int nIndex, LPTBBUTTON lpButton)
+   bool tool_bar_control::InsertButton(int32_t nIndex, LPTBBUTTON lpButton)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_INSERTBUTTON, nIndex, (LPARAM)lpButton) != FALSE;
@@ -375,7 +375,7 @@ namespace userbase
 #endif
 
 
-   bool tool_bar_control::DeleteButton(int nIndex)
+   bool tool_bar_control::DeleteButton(int32_t nIndex)
    {
 #ifdef WINDOWSEX
       ASSERT(IsWindow()); return send_message( TB_DELETEBUTTON, nIndex, 0) != FALSE;
@@ -388,7 +388,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   bool tool_bar_control::GetButton(int nIndex, LPTBBUTTON lpButton)
+   bool tool_bar_control::GetButton(int32_t nIndex, LPTBBUTTON lpButton)
    {
 
       ASSERT(IsWindow()); return send_message( TB_GETBUTTON, nIndex, (LPARAM)lpButton) != FALSE;
@@ -400,10 +400,10 @@ namespace userbase
 
 
 
-   int tool_bar_control::GetButtonCount()
+   int32_t tool_bar_control::GetButtonCount()
    {
 #ifdef WINDOWSEX
-      ASSERT(IsWindow()); return (int) send_message( TB_BUTTONCOUNT, 0, 0L);
+      ASSERT(IsWindow()); return (int32_t) send_message( TB_BUTTONCOUNT, 0, 0L);
 
 #else
 
@@ -442,12 +442,12 @@ namespace userbase
    }
 
    // lpszStrings are separated by zeroes, last one is marked by two zeroes
-   int tool_bar_control::AddStrings(const char * lpszStrings)
+   int32_t tool_bar_control::AddStrings(const char * lpszStrings)
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int) send_message( TB_ADDSTRING, 0, (LPARAM)lpszStrings);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_ADDSTRING, 0, (LPARAM)lpszStrings);
 
 #else
 
@@ -457,7 +457,7 @@ namespace userbase
 
    }
 
-   bool tool_bar_control::GetItemRect(int nIndex, LPRECT lpRect)
+   bool tool_bar_control::GetItemRect(int32_t nIndex, LPRECT lpRect)
    {
 
 #ifdef WINDOWSEX
@@ -472,7 +472,7 @@ namespace userbase
 
    }
 
-   void tool_bar_control::SetButtonStructSize(int nSize)
+   void tool_bar_control::SetButtonStructSize(int32_t nSize)
    {
 
 #ifdef WINDOWSEX
@@ -550,7 +550,7 @@ namespace userbase
    }
 
 
-   void tool_bar_control::SetRows(int nRows, bool bLarger, LPRECT lpRect)
+   void tool_bar_control::SetRows(int32_t nRows, bool bLarger, LPRECT lpRect)
    {
 
 #ifdef WINDOWSEX
@@ -566,12 +566,12 @@ namespace userbase
    }
 
 
-   int tool_bar_control::GetRows()
+   int32_t tool_bar_control::GetRows()
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int) send_message( TB_GETROWS, 0, 0L);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_GETROWS, 0, 0L);
 
 #else
 
@@ -582,7 +582,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::SetCmdID(int nIndex, UINT nID)
+   bool tool_bar_control::SetCmdID(int32_t nIndex, UINT nID)
    {
 
 #ifdef WINDOWSEX
@@ -614,12 +614,12 @@ namespace userbase
    }
 
 
-   int tool_bar_control::hit_test(LPPOINT ppt)
+   int32_t tool_bar_control::hit_test(LPPOINT ppt)
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int) send_message( TB_HITTEST, 0, (LPARAM)ppt);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_HITTEST, 0, (LPARAM)ppt);
 
 #else
 
@@ -791,7 +791,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::GetRect(int nID, LPRECT lpRect)
+   bool tool_bar_control::GetRect(int32_t nID, LPRECT lpRect)
    {
 
 #ifdef WINDOWSEX
@@ -807,7 +807,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::IsButtonHighlighted(int nID)
+   bool tool_bar_control::IsButtonHighlighted(int32_t nID)
    {
 
 #ifdef WINDOWSEX
@@ -823,7 +823,7 @@ namespace userbase
    }
 
 
-   void tool_bar_control::LoadImages(int iBitmapID, HINSTANCE hinst)
+   void tool_bar_control::LoadImages(int32_t iBitmapID, HINSTANCE hinst)
    {
 
 #ifdef WINDOWSEX
@@ -839,7 +839,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::SetButtonWidth(int cxMin, int cxMax)
+   bool tool_bar_control::SetButtonWidth(int32_t cxMin, int32_t cxMax)
    {
 
 #ifdef WINDOWSEX
@@ -908,7 +908,7 @@ namespace userbase
    }
 
 
-   bool tool_bar_control::SetIndent(int iIndent)
+   bool tool_bar_control::SetIndent(int32_t iIndent)
    {
 #ifdef WINDOWSEX
 
@@ -921,7 +921,7 @@ namespace userbase
 #endif
 
    }
-   bool tool_bar_control::SetMaxTextRows(int iMaxRows)
+   bool tool_bar_control::SetMaxTextRows(int32_t iMaxRows)
    {
 #ifdef WINDOWSEX
 
@@ -950,7 +950,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   bool tool_bar_control::GetButtonInfo(int nID, TBBUTTONINFO* ptbbi)
+   bool tool_bar_control::GetButtonInfo(int32_t nID, TBBUTTONINFO* ptbbi)
    {
 
       ASSERT(IsWindow()); return send_message( TB_GETBUTTONINFO, nID, (LPARAM)ptbbi) != FALSE;
@@ -962,7 +962,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   bool tool_bar_control::GetButtonInfo(int nID, TBBUTTONINFOW* ptbbi)
+   bool tool_bar_control::GetButtonInfo(int32_t nID, TBBUTTONINFOW* ptbbi)
    {
 
       ASSERT(IsWindow()); return send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi) != FALSE;
@@ -974,7 +974,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   bool tool_bar_control::SetButtonInfo(int nID, TBBUTTONINFO* ptbbi)
+   bool tool_bar_control::SetButtonInfo(int32_t nID, TBBUTTONINFO* ptbbi)
    {
 
       ASSERT(IsWindow()); return send_message( TB_SETBUTTONINFO, nID, (LPARAM)ptbbi) != FALSE;
@@ -986,7 +986,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-   bool tool_bar_control::SetButtonInfo(int nID, TBBUTTONINFOW* ptbbi)
+   bool tool_bar_control::SetButtonInfo(int32_t nID, TBBUTTONINFOW* ptbbi)
    {
 
       ASSERT(IsWindow()); return send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi) != FALSE;
@@ -1036,11 +1036,11 @@ namespace userbase
 #endif
 
    }
-   int tool_bar_control::GetHotItem()
+   int32_t tool_bar_control::GetHotItem()
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int) send_message( TB_GETHOTITEM, 0, 0);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_GETHOTITEM, 0, 0);
 
 #else
 
@@ -1049,11 +1049,11 @@ namespace userbase
 #endif
 
    }
-   int tool_bar_control::SetHotItem(int nHot)
+   int32_t tool_bar_control::SetHotItem(int32_t nHot)
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (int) send_message( TB_SETHOTITEM, nHot, 0);
+   ASSERT(IsWindow()); return (int32_t) send_message( TB_SETHOTITEM, nHot, 0);
 
 #else
 
@@ -1129,7 +1129,7 @@ namespace userbase
 #endif
 
    }
-   bool tool_bar_control::MarkButton(int nID, bool bHighlight)
+   bool tool_bar_control::MarkButton(int32_t nID, bool bHighlight)
    {
 #ifdef WINDOWSEX
 

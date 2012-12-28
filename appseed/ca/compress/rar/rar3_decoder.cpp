@@ -140,7 +140,7 @@ namespace compress
          return WriteData(_window, endPtr);
       }
 
-      void decoder::ExecuteFilter(int tempFilterIndex, vm::CBlockRef &outBlockRef)
+      void decoder::ExecuteFilter(int32_t tempFilterIndex, vm::CBlockRef &outBlockRef)
       {
          temp_filter *tempFilter = _tempFilters[tempFilterIndex];
          tempFilter->InitR[6] = (uint32)_writtenFileSize;
@@ -156,7 +156,7 @@ namespace compress
       {
          uint32 writtenBorder = _wrPtr;
          uint32 writeSize = (_winPos - writtenBorder) & kWindowMask;
-         for (int i = 0; i < _tempFilters.get_size(); i++)
+         for (int32_t i = 0; i < _tempFilters.get_size(); i++)
          {
             temp_filter *filter = _tempFilters[i];
             if (filter == NULL)
@@ -205,7 +205,7 @@ namespace compress
                }
                else
                {
-                  for (int j = i; j < _tempFilters.get_size(); j++)
+                  for (int32_t j = i; j < _tempFilters.get_size(); j++)
                   {
                      temp_filter *filter = _tempFilters[j];
                      if (filter != NULL && filter->NextWindow)
@@ -224,7 +224,7 @@ namespace compress
       void decoder::InitFilters()
       {
          _lastFilter = 0;
-         int i;
+         int32_t i;
          for (i = 0; i < _tempFilters.get_size(); i++)
             delete _tempFilters[i];
          _tempFilters.remove_all();
@@ -269,8 +269,8 @@ namespace compress
             filter->ExecCount++;
          }
 
-         int numEmptyItems = 0;
-         int i;
+         int32_t numEmptyItems = 0;
+         int32_t i;
          for (i = 0; i < _tempFilters.get_size(); i++)
          {
             _tempFilters[i - numEmptyItems] = _tempFilters[i];
@@ -305,7 +305,7 @@ namespace compress
          if (firstByte & 0x10)
          {
             uint32 initMask = inp.ReadBits(vm::kNumGpRegs);
-            for (int i = 0; i < vm::kNumGpRegs; i++)
+            for (int32_t i = 0; i < vm::kNumGpRegs; i++)
                if (initMask & (1 << i))
                   tempFilter->InitR[i] = vm::ReadEncodedUInt32(inp);
          }
@@ -334,7 +334,7 @@ namespace compress
             if (dataSize > vm::kGlobalSize - vm::kFixedGlobalSize)
                return false;
             byte_array &globalData = tempFilter->GlobalData;
-            int requredSize = (int)(dataSize + vm::kFixedGlobalSize);
+            int32_t requredSize = (int32_t)(dataSize + vm::kFixedGlobalSize);
             if (globalData.get_size() < requredSize)
             {
                globalData.set_size(globalData.get_size(), requredSize);
@@ -364,23 +364,23 @@ namespace compress
 
       bool decoder::ReadVmCodePPM()
       {
-         int firstByte = DecodePpmSymbol();
+         int32_t firstByte = DecodePpmSymbol();
          if (firstByte < 0)
             return false;
          uint32 length = (firstByte & 7) + 1;
          if (length == 7)
          {
-            int b1 = DecodePpmSymbol();
+            int32_t b1 = DecodePpmSymbol();
             if (b1 < 0)
                return false;
             length = b1 + 7;
          }
          else if (length == 8)
          {
-            int b1 = DecodePpmSymbol();
+            int32_t b1 = DecodePpmSymbol();
             if (b1 < 0)
                return false;
-            int b2 = DecodePpmSymbol();
+            int32_t b2 = DecodePpmSymbol();
             if (b2 < 0)
                return false;
             length = b1 * 256 + b2;
@@ -389,7 +389,7 @@ namespace compress
             return false;
          for (uint32 i = 0; i < length; i++)
          {
-            int b = DecodePpmSymbol();
+            int32_t b = DecodePpmSymbol();
             if (b < 0)
                return false;
             _vmData[i] = (byte)b;
@@ -399,7 +399,7 @@ namespace compress
 
 #define RIF(x) { if (!(x)) return S_FALSE; }
 
-      uint32 decoder::ReadBits(int numBits) { return m_InBitStream.bitDecoder.ReadBits(numBits); }
+      uint32 decoder::ReadBits(int32_t numBits) { return m_InBitStream.bitDecoder.ReadBits(numBits); }
 
       /////////////////////////////////////////////////
       // PPM
@@ -409,7 +409,7 @@ namespace compress
          byte maxOrder = (byte)ReadBits(7);
 
          bool reset = ((maxOrder & 0x20) != 0);
-         int maxMB = 0;
+         int32_t maxMB = 0;
          if (reset)
             maxMB = (byte)ReadBits(8);
          else
@@ -443,7 +443,7 @@ namespace compress
          return S_OK;
       }
 
-      int decoder::DecodePpmSymbol() { return Ppmd7_DecodeSymbol(&_ppmd, &m_InBitStream.s); }
+      int32_t decoder::DecodePpmSymbol() { return Ppmd7_DecodeSymbol(&_ppmd, &m_InBitStream.s); }
 
       HRESULT decoder::DecodePPM(int32 num, bool &keepDecompressing)
       {
@@ -461,7 +461,7 @@ namespace compress
                   return S_OK;
                }
             }
-            int c = DecodePpmSymbol();
+            int32_t c = DecodePpmSymbol();
             if (c < 0)
             {
                PpmError = true;
@@ -469,7 +469,7 @@ namespace compress
             }
             if (c == PpmEscChar)
             {
-               int nextCh = DecodePpmSymbol();
+               int32_t nextCh = DecodePpmSymbol();
                if (nextCh < 0)
                {
                   PpmError = true;
@@ -494,9 +494,9 @@ namespace compress
                   uint32 length = 4;
                   if (nextCh == 4)
                   {
-                     for (int i = 0; i < 3; i++)
+                     for (int32_t i = 0; i < 3; i++)
                      {
-                        int c = DecodePpmSymbol();
+                        int32_t c = DecodePpmSymbol();
                         if (c < 0)
                         {
                            PpmError = true;
@@ -507,7 +507,7 @@ namespace compress
                      distance++;
                      length += 28;
                   }
-                  int c = DecodePpmSymbol();
+                  int32_t c = DecodePpmSymbol();
                   if (c < 0)
                   {
                      PpmError = true;
@@ -552,7 +552,7 @@ namespace compress
          if (ReadBits(1) == 0)
             memset(m_LastLevels, 0, kTablesSizesSum);
 
-         int i;
+         int32_t i;
          for (i = 0; i < kLevelTableSize; i++)
          {
             uint32 length = ReadBits(4);
@@ -584,7 +584,7 @@ namespace compress
                return S_FALSE;
             else
             {
-               int num;
+               int32_t num;
                if (((number - 16) & 1) == 0)
                   num = ReadBits(3) + 3;
                else
@@ -751,7 +751,7 @@ namespace compress
                   if (number >= kDistTableSize)
                      return S_FALSE;
                   rep0 = kDistStart[number];
-                  int numBits = kDistDirectBits[number];
+                  int32_t numBits = kDistDirectBits[number];
                   if (number >= (kNumAlignBits * 2) + 2)
                   {
                      if (numBits > kNumAlignBits)
@@ -806,7 +806,7 @@ namespace compress
             _lzSize = 0;
             _winPos = 0;
             _wrPtr = 0;
-            for (int i = 0; i < kNumReps; i++)
+            for (int32_t i = 0; i < kNumReps; i++)
                _reps[i] = 0;
             _lastLength = 0;
             memset(m_LastLevels, 0, kTablesSizesSum);

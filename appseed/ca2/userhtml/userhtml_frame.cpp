@@ -51,7 +51,7 @@ html_frame::~html_frame()
 {
 }
 
-int html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+int32_t html_frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
    UNREFERENCED_PARAMETER(lpCreateStruct);
 /* trans    if (simple_frame_window::OnCreate(lpCreateStruct) == -1)
@@ -281,7 +281,7 @@ bool html_frame::MouseHook()
    return true;
 }
 
-void html_frame::MouseMessage(          int nCode,
+void html_frame::MouseMessage(          int32_t nCode,
     WPARAM wparam,
     LPARAM lparam
 )
@@ -300,7 +300,7 @@ void html_frame::MouseMessage(          int nCode,
    }
 }
 
-LRESULT CALLBACK html_frame::MouseProc(int nCode, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK html_frame::MouseProc(int32_t nCode, WPARAM wparam, LPARAM lparam)
 {
 
    return 0;

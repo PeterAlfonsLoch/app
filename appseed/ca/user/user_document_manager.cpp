@@ -116,7 +116,7 @@ void document_manager::UnregisterShellFileTypes()
    __get_module_short_file_name(System.m_hInstance, strPathName);
 
    POSITION pos = m_templateptra.get_head_position();
-   for (int nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
+   for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
    {
       document_template * ptemplate = (document_template *)m_templateptra.get_next(pos);
 
@@ -206,7 +206,7 @@ void document_manager::RegisterShellFileTypes(bool bCompat)
    __get_module_short_file_name(System.m_hInstance, strPathName);
 
    POSITION pos = m_templateptra.get_head_position();
-   for (int nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
+   for (int32_t nTemplateIndex = 1; pos != NULL; nTemplateIndex++)
    {
       document_template * ptemplate = (document_template *)m_templateptra.get_next(pos);
 
@@ -373,7 +373,7 @@ __STATIC void _gen::AppendFilterSuffix(string & filter, OPENFILENAME& ofn,
       ASSERT(!filter.is_empty());  // must have a file type name
       filter += (char)'\0';  // next string please
 
-      int iStart = 0;
+      int32_t iStart = 0;
       do
       {
          string strExtension = strFilterExt.Tokenize( _T( ";" ), iStart );
@@ -505,7 +505,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    else
       return FALSE; // not a command we handle
 
-   int i = strCommand.find('"');
+   int32_t i = strCommand.find('"');
    if (i == -1)
       return FALSE; // illegally terminated
 
@@ -522,7 +522,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    {
       // show the application ::ca::window
       ::user::interaction* pMainWnd = System.GetMainWnd();
-      int nCmdShow = System.m_nCmdShow;
+      int32_t nCmdShow = System.m_nCmdShow;
       if (nCmdShow == -1 || nCmdShow == SW_SHOWNORMAL)
       {
 /* trans         if (pMainWnd->IsIconic())
@@ -610,7 +610,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    }
 
    // get document count before opening it
-   int nOldCount; nOldCount = get_document_count();
+   int32_t nOldCount; nOldCount = get_document_count();
 
    // open the document, then print it.
    pDoc = System.open_document_file(cmdInfo.m_varFile);

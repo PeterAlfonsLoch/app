@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-int cube_run(const char * id)
+int32_t cube_run(const char * id)
 {
 
    vsstring strDir;

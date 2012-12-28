@@ -20,8 +20,8 @@ BEGIN_EXTERN_C
 
 
 /* decides between modes, dispatches to the appropriate mapping. */
-int vorbis_analysis(vorbis_block *vb, ogg_packet *op){
-  int ret,i;
+int32_t vorbis_analysis(vorbis_block *vb, ogg_packet *op){
+  int32_t ret,i;
   vorbis_block_internal *vbi=(vorbis_block_internal *) vb->internal;
 
   vb->glue_bits=0;
@@ -57,11 +57,11 @@ int vorbis_analysis(vorbis_block *vb, ogg_packet *op){
 }
 
 #ifdef ANALYSIS
-int analysis_noisy=1;
+int32_t analysis_noisy=1;
 
 /* there was no great place to put this.... */
-void _analysis_output_always(char *base,int i,float *v,int n,int bark,int dB,ogg_int64_t off){
-  int j;
+void _analysis_output_always(char *base,int32_t i,float *v,int32_t n,int32_t bark,int32_t dB,ogg_int64_t off){
+  int32_t j;
   FILE *of;
   char buffer[80];
 
@@ -94,7 +94,7 @@ void _analysis_output_always(char *base,int i,float *v,int n,int bark,int dB,ogg
   fclose(of);
 }
 
-void _analysis_output(char *base,int i,float *v,int n,int bark,int dB,
+void _analysis_output(char *base,int32_t i,float *v,int32_t n,int32_t bark,int32_t dB,
                       ogg_int64_t off){
   if(analysis_noisy)_analysis_output_always(base,i,v,n,bark,dB,off);
 }

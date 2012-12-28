@@ -67,7 +67,7 @@ condition::condition(::ca::application * papp) :
 
    }
 
-   semctl((int) m_object, 0, SETVAL, semctl_arg);
+   semctl((int32_t) m_object, 0, SETVAL, semctl_arg);
 
 
 #endif
@@ -99,7 +99,7 @@ bool condition::pulse()
    sb.sem_num  = 0;
    sb.sem_flg  = SEM_UNDO;
 
-   return semop((int) m_object, &sb, 1) == 0;
+   return semop((int32_t) m_object, &sb, 1) == 0;
 
 #endif
 
@@ -123,7 +123,7 @@ void condition::wait ()
    sb.sem_num  = 0;
    sb.sem_flg  = 0;
 
-   semop((int) m_object, &sb, 1);
+   semop((int32_t) m_object, &sb, 1);
 
 #endif
    
@@ -157,7 +157,7 @@ wait_result condition::wait (const duration & duration)
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = semop((int) m_object, &sb, 1);
+      int32_t ret = semop((int32_t) m_object, &sb, 1);
 
       if(ret < 0)
       {
@@ -245,7 +245,7 @@ bool condition::lock(const duration & durationTimeout)
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = semop((int) m_object, &sb, 1);
+      int32_t ret = semop((int32_t) m_object, &sb, 1);
 
       if(ret < 0)
       {

@@ -37,7 +37,7 @@ namespace user
       UNREFERENCED_PARAMETER(lprect);
    }
 
-   int tool_tip_tool::BaseToolTipGetIndex()
+   int32_t tool_tip_tool::BaseToolTipGetIndex()
    {
       return -1;
    }

@@ -314,7 +314,7 @@ namespace plane
       ::collection::string_map < ::collection::int_map < string, string >, const ::collection::int_map < string, string > & >
          m_mapEnumToName;
 
-      ::collection::string_map < ::collection::string_map < int, int >, const ::collection::string_map < int, int > & >
+      ::collection::string_map < ::collection::string_map < int32_t, int32_t >, const ::collection::string_map < int32_t, int32_t > & >
          m_mapNameToEnum;
 
 
@@ -332,7 +332,7 @@ namespace plane
       virtual ~system();
 
 
-      //virtual int main();
+      //virtual int32_t main();
       virtual bool InitApplication();
 
       virtual bool process_initialize();
@@ -346,7 +346,7 @@ namespace plane
       virtual bool bergedge_start();
 
       virtual bool finalize();
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
       virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = NULL);
 
@@ -375,17 +375,17 @@ namespace plane
 
       virtual bool initialize_log(const char * pszId);
 
-      virtual int _001OnDebugReport(int i1, const char * psz1, int i2, const char * psz2, const char * psz3, va_list args);
+      virtual int32_t _001OnDebugReport(int32_t i1, const char * psz1, int32_t i2, const char * psz2, const char * psz3, va_list args);
 
-      virtual int ________ca2_votagus_logging_Report(
-         int _ReportType,
+      virtual int32_t ________ca2_votagus_logging_Report(
+         int32_t _ReportType,
          const char * _Filename,
-         int _Linenumber,
+         int32_t _Linenumber,
          const char * _ModuleName,
          const char * _Format,
          va_list list);
 
-      virtual bool assert_failed_line(const char * lpszFileName, int iLine);
+      virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
 
       virtual void on_allocation_error(::ca::application * papp, ::ca::type_info & info);
 
@@ -502,12 +502,12 @@ namespace plane
          return m_typemap[idType];
       }
 
-      void set_enum_name(::ca::type_info etype, int i, const char * psz)
+      void set_enum_name(::ca::type_info etype, int32_t i, const char * psz)
       {
          m_mapEnumToName[etype.name()][i] = psz;
          m_mapNameToEnum[etype.name()][psz] = i;
       }
-      string get_enum_name(::ca::type_info info, int i)
+      string get_enum_name(::ca::type_info info, int32_t i)
       {
          return m_mapEnumToName[info.name()].get(i, "");
       }
@@ -521,15 +521,15 @@ namespace plane
       template < class E , E edefault>
       string get_name(const base_enum < E, edefault > & b)
       {
-         return get_enum_name(System.type_info < E > (), (int) (E) b);
+         return get_enum_name(System.type_info < E > (), (int32_t) (E) b);
       }
 
 
-      int enum_from_name(::ca::type_info info, const char * psz, int iDefault = 0)
+      int32_t enum_from_name(::ca::type_info info, const char * psz, int32_t iDefault = 0)
       {
          return m_mapNameToEnum[info.name()].get(psz, iDefault);
       }
-      int enum_from_name(const std_type_info & info, const char * psz, int iDefault = 0)
+      int32_t enum_from_name(const std_type_info & info, const char * psz, int32_t iDefault = 0)
       {
 #ifdef WINDOWS
          return m_mapNameToEnum[info.name()].get(psz, iDefault);
@@ -541,34 +541,34 @@ namespace plane
       template < class TYPE >
       void set_enum_name(::ca::type_info etype, TYPE e, const char * psz)
       {
-         set_enum_name(etype, (int) e, psz);
+         set_enum_name(etype, (int32_t) e, psz);
       }
       template < class TYPE >
       string get_enum_name(::ca::type_info etype, TYPE e)
       {
-         return get_enum_name(etype, (int) e);
+         return get_enum_name(etype, (int32_t) e);
       }
 
       template < class TYPE >
       void set_enum_name(const std_type_info & info, TYPE e, const char * psz)
       {
-         set_enum_name(::ca::type_info(info), (int) e, psz);
+         set_enum_name(::ca::type_info(info), (int32_t) e, psz);
       }
       template < class TYPE >
       string get_enum_name(const std_type_info & info, TYPE e)
       {
-         return get_enum_name(::ca::type_info(info), (int) e);
+         return get_enum_name(::ca::type_info(info), (int32_t) e);
       }
 
       template < class TYPE >
       void set_enum_name(TYPE e, const char * psz)
       {
-         set_enum_name(System.type_info < TYPE > (), (int) e, psz);
+         set_enum_name(System.type_info < TYPE > (), (int32_t) e, psz);
       }
       template < class TYPE >
       string get_enum_name(TYPE e)
       {
-         return get_enum_name(System.type_info < TYPE > (), (int) e);
+         return get_enum_name(System.type_info < TYPE > (), (int32_t) e);
       }
 
       virtual bool create_twf();
@@ -605,7 +605,7 @@ namespace plane
 
       virtual bool on_install();
 
-      virtual string get_fontopus_server(const char * pszUrl, ::ca::application * papp, int iRetry = -1);
+      virtual string get_fontopus_server(const char * pszUrl, ::ca::application * papp, int32_t iRetry = -1);
 
       virtual string get_host_location_url();
 

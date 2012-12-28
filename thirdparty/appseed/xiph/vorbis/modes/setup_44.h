@@ -39,10 +39,10 @@ static const double quality_mapping_44[12]={
   -.1,.0,.1,.2,.3,.4,.5,.6,.7,.8,.9,1.0
 };
 
-static const int blocksize_short_44[11]={
+static const int32_t blocksize_short_44[11]={
   512,256,256,256,256,256,256,256,256,256,256
 };
-static const int blocksize_long_44[11]={
+static const int32_t blocksize_long_44[11]={
   4096,2048,2048,2048,2048,2048,2048,2048,2048,2048,2048
 };
 
@@ -58,19 +58,19 @@ static const double _global_mapping_44[12]={
  0., 1., 1., 1.5, 2., 2., 2.5, 2.7, 3.0, 3.7, 4., 4.
 };
 
-static const int _floor_mapping_44a[11]={
+static const int32_t _floor_mapping_44a[11]={
   1,0,0,2,2,4,5,5,5,5,5
 };
 
-static const int _floor_mapping_44b[11]={
+static const int32_t _floor_mapping_44b[11]={
   8,7,7,7,7,7,7,7,7,7,7
 };
 
-static const int _floor_mapping_44c[11]={
+static const int32_t _floor_mapping_44c[11]={
   10,10,10,10,10,10,10,10,10,10,10
 };
 
-static const int *_floor_mapping_44[]={
+static const int32_t *_floor_mapping_44[]={
   _floor_mapping_44a,
   _floor_mapping_44b,
   _floor_mapping_44c,

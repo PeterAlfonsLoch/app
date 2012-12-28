@@ -191,22 +191,22 @@ public:
       return get_data()->m_iAllocation;
    }
 
-   inline int Compare(const wchar_t * psz) const
+   inline int32_t Compare(const wchar_t * psz) const
    {
       return wcscmp_dup(m_pwsz, psz);
    }
 
-   inline int Compare(const verisimple_wstring &str) const
+   inline int32_t Compare(const verisimple_wstring &str) const
    {
       return wcscmp_dup(m_pwsz, str);
    }
 
-   inline int CompareNoCase(const wchar_t * psz) const
+   inline int32_t CompareNoCase(const wchar_t * psz) const
    {
       return wcsicmp_dup(m_pwsz, psz);
    }
 
-   inline int CompareNoCase(const verisimple_wstring &str) const
+   inline int32_t CompareNoCase(const verisimple_wstring &str) const
    {
       return wcsicmp_dup(m_pwsz, str);
    }

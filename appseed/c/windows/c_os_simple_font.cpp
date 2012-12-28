@@ -25,7 +25,7 @@ os_simple_font::~os_simple_font()
 }
 
 
-bool os_simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
+bool os_simple_font::create_point(simple_graphics & g, int32_t nPointSize, const char * lpszFaceName, bool bBold)
 {
 
    if(m_pfont != NULL)
@@ -47,7 +47,7 @@ bool os_simple_font::create_point(simple_graphics & g, int nPointSize, const cha
 }
 
 
-bool os_simple_font::create_pixel(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
+bool os_simple_font::create_pixel(simple_graphics & g, int32_t nPointSize, const char * lpszFaceName, bool bBold)
 {
 
    if(m_pfont != NULL)

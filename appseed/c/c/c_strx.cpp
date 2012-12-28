@@ -29,7 +29,7 @@
        * This table contains as many values as there might be trailing bytes
        * in a UTF-8 sequence.
        */
-      static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
+      static const unsigned int32_t offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
                  0x03C82080UL, 0xFA082080UL, 0x82082080UL };
 
 
@@ -53,11 +53,11 @@
    }
 
 
-int uni_index(const char * pszUtf8)
+int32_t uni_index(const char * pszUtf8)
 {
 unsigned char * source = (unsigned char *) pszUtf8;
-int ch = 0;
-int extraBytesToRead = trailingBytesForUTF8[*source];
+int32_t ch = 0;
+int32_t extraBytesToRead = trailingBytesForUTF8[*source];
 /*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
 }*/
 //         if(natural(extraBytesToRead) >= strlen(pszUtf8))
@@ -83,7 +83,7 @@ ch -= offsetsFromUTF8[extraBytesToRead];
 return ch;
 }
 
-int uni_to_utf8(char * psz, int w)
+int32_t uni_to_utf8(char * psz, int32_t w)
 {
    if(w < 0x0080 )
    {
@@ -110,7 +110,7 @@ count utf16_len(const char * psz)
 {
    if(psz == NULL)
       return -1;
-   int count = 0;
+   int32_t count = 0;
    while((psz = utf8_inc(psz)) != NULL)
    {
       count++;
@@ -148,12 +148,12 @@ WCHAR * utf8_to_16(const char * psz)
 
 }
 
-int utf8_len(const wchar_t * pwsz)
+int32_t utf8_len(const wchar_t * pwsz)
 {
    if(pwsz == NULL)
       return -1;
-   int count = 0;
-   int n;
+   int32_t count = 0;
+   int32_t n;
    char sz[16];
    while(*pwsz != L'\0')
    {
@@ -168,7 +168,7 @@ int utf8_len(const wchar_t * pwsz)
 
 void utf16_to_8(char * psz, const wchar_t * pwsz)
 {
-   int n;
+   int32_t n;
    while(*pwsz != L'\0')
    {
       n = uni_to_utf8(psz, *pwsz);
@@ -183,7 +183,7 @@ void utf16_to_8(char * psz, const wchar_t * pwsz)
 
 char * utf16_to_8(const wchar_t * pwsz)
 {
-   int iCount = utf8_len(pwsz);
+   int32_t iCount = utf8_len(pwsz);
    if(iCount < 0)
       return NULL;
    char * psz = new char[iCount + 1];
@@ -193,7 +193,7 @@ char * utf16_to_8(const wchar_t * pwsz)
 
 
 
-CLASS_DECL_c wchar_t w_to_lower(int c)
+CLASS_DECL_c wchar_t w_to_lower(int32_t c)
 {
    unsigned long c1 = CHAR_PROP(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
@@ -209,7 +209,7 @@ CLASS_DECL_c wchar_t w_to_lower(int c)
 
 
 
-CLASS_DECL_c wchar_t w_to_upper(int c)
+CLASS_DECL_c wchar_t w_to_upper(int32_t c)
 {
    
    unsigned long c1 = CHAR_PROP(c);
@@ -222,7 +222,7 @@ CLASS_DECL_c wchar_t w_to_upper(int c)
 
 
 
-int x_size_of_tables(){
+int32_t x_size_of_tables(){
    return sizeof(arr_idxCharInfo)+sizeof(arr_CharInfo)+sizeof(arr_idxCharInfo2)+sizeof(arr_CharInfo2);
 }
 

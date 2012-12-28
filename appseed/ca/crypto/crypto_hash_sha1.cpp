@@ -100,9 +100,9 @@ void __sha1_init(sha1_ctx_t *context)
  *  Comments:
  *
  */
-int __sha1_final(sha1_ctx_t *context, void * p)
+int32_t __sha1_final(sha1_ctx_t *context, void * p)
 {
-   int i;
+   int32_t i;
 
     if (context->Corrupted)
     {
@@ -229,7 +229,7 @@ void __sha1_core(const unsigned char Message_Block[64], uint32_t Message_Digest[
         0x8F1BBCDC,
         0xCA62C1D6
     };
-    int         t;                  /* Loop counter                 */
+    int32_t         t;                  /* Loop counter                 */
     unsigned    temp;               /* Temporary word value         */
     unsigned    W[80];              /* Word sequence                */
     unsigned    A, B, C, D, E;      /* Word buffers                 */

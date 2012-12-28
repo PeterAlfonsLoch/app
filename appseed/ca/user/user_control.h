@@ -167,13 +167,13 @@ namespace user
 
          control * get_control_by_id(id id);
          descriptor * get(::user::interaction * puie);
-         descriptor * get_by_sub_item(int iSubItem);
+         descriptor * get_by_sub_item(int32_t iSubItem);
 
 
       };
 
 #ifdef WINDOWSEX
-      static const unsigned int  g_uiMessage;
+      static const unsigned int32_t  g_uiMessage;
 #endif
       index                      m_iHover;
       e_element                  m_eelementHover;
@@ -260,7 +260,7 @@ namespace user
 
       ::collection::map < id, id, id, id > m_mapControlCommand;
       virtual void Enable(bool bOn);
-      virtual void SetCheck(int nCheck);
+      virtual void SetCheck(int32_t nCheck);
       virtual void SetText(const char * lpszText);
       id GetControlCommand(id id);
    };

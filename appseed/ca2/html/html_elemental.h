@@ -59,7 +59,7 @@ namespace html
          flags < e_flag >  m_flags;
          float             m_cxMax;
          float             m_cxMin;
-         ::collection::string_map < int, int > m_mapFont;
+         ::collection::string_map < int32_t, int32_t > m_mapFont;
          bool              m_bHoverEvaluated;
          bool              m_bHasHover;
          bool              m_bHover;

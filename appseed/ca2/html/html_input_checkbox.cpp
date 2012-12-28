@@ -62,7 +62,7 @@ namespace html
          pdata->m_layoutstate.m_cx   = 23;
          pdata->m_layoutstate.m_bLastBlockX = false;
          pdata->m_layoutstate.m_bLastBlockY = false;
-         m_pcheckbox->SetWindowPos(0, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
+         m_pcheckbox->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_check_box::_001OnDraw(data * pdata)

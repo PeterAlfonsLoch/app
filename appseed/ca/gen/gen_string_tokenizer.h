@@ -13,7 +13,7 @@ public:
 
 
    string_tokenizer(const string & strSrc);
-   string_tokenizer(const char * lpch, int nLength );
+   string_tokenizer(const char * lpch, int32_t nLength );
    string_tokenizer();
    virtual ~string_tokenizer();
 
@@ -21,9 +21,9 @@ public:
    bool ReadLine(string & str,
       bool bWithSeparator = false);
    // _01Read read a token if find one of \n\r\t or space
-   bool _01Read(int & i);
+   bool _01Read(int32_t & i);
    bool _01Read(UINT & user);
-   bool _01ReadHex(int & i);
+   bool _01ReadHex(int32_t & i);
    bool _01ReadHex(UINT & user);
    //bool _01Read(LPTSTR lpsz);
    bool _01Read(string & str);

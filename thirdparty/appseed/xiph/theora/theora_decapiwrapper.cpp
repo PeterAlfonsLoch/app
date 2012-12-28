@@ -29,7 +29,7 @@ static void theora_decode_clear(theora_state *_td){
   memset(_td,0,sizeof(*_td));
 }
 
-static int theora_decode_control(theora_state *_td,int _req,
+static int32_t theora_decode_control(theora_state *_td,int32_t _req,
  void *_buf,size_t _buf_sz){
   return th_decode_ctl(((th_api_wrapper *)_td->i->codec_setup)->decode,
    _req,_buf,_buf_sz);
@@ -81,7 +81,7 @@ static void th_info2theora_info(theora_info *_ci,const th_info *_info){
   _ci->keyframe_frequency_force=1<<_info->keyframe_granule_shift;
 }
 
-int theora_decode_init(theora_state *_td,theora_info *_ci){
+int32_t theora_decode_init(theora_state *_td,theora_info *_ci){
   th_api_info    *apiinfo;
   th_api_wrapper *api;
   th_info         info;
@@ -119,10 +119,10 @@ int theora_decode_init(theora_state *_td,theora_info *_ci){
   return 0;
 }
 
-int theora_decode_header(theora_info *_ci,theora_comment *_cc,ogg_packet *_op){
+int32_t theora_decode_header(theora_info *_ci,theora_comment *_cc,ogg_packet *_op){
   th_api_wrapper *api;
   th_info         info;
-  int             ret;
+  int32_t             ret;
   api=(th_api_wrapper *)_ci->codec_setup;
   /*Allocate an API wrapper struct on demand, since it will not also include a
      theora_info struct like the ones that are used in a theora_state struct.*/
@@ -152,10 +152,10 @@ int theora_decode_header(theora_info *_ci,theora_comment *_cc,ogg_packet *_op){
   return 0;
 }
 
-int theora_decode_packetin(theora_state *_td,ogg_packet *_op){
+int32_t theora_decode_packetin(theora_state *_td,ogg_packet *_op){
   th_api_wrapper *api;
   ogg_int64_t     gp;
-  int             ret;
+  int32_t             ret;
   if(!_td||!_td->i||!_td->i->codec_setup)return OC_FAULT;
   api=(th_api_wrapper *)_td->i->codec_setup;
   ret=th_decode_packetin(api->decode,_op,&gp);
@@ -164,11 +164,11 @@ int theora_decode_packetin(theora_state *_td,ogg_packet *_op){
   return 0;
 }
 
-int theora_decode_YUVout(theora_state *_td,yuv_buffer *_yuv){
+int32_t theora_decode_YUVout(theora_state *_td,yuv_buffer *_yuv){
   th_api_wrapper  *api;
   th_dec_ctx      *decode;
   th_ycbcr_buffer  buf;
-  int              ret;
+  int32_t              ret;
   if(!_td||!_td->i||!_td->i->codec_setup)return OC_FAULT;
   api=(th_api_wrapper *)_td->i->codec_setup;
   decode=(th_dec_ctx *)api->decode;

@@ -15,7 +15,7 @@ namespace ex1
       byte_input_stream * Stream;
       uint64 StartOffset;
       uint64 Size;
-      int BlockSizeLog;
+      int32_t BlockSizeLog;
       uint64_array Vector;
 
       uint64_t SeekToPhys()

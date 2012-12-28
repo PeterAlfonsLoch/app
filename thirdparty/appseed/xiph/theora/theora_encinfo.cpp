@@ -5,19 +5,19 @@
   _opb: The pack buffer to store the octets in.
   _buf: The byte array containing the bytes to pack.
   _len: The number of octets to pack.*/
-static void oc_pack_octets(oggpack_buffer *_opb,const char *_buf,int _len){
-  int i;
+static void oc_pack_octets(oggpack_buffer *_opb,const char *_buf,int32_t _len){
+  int32_t i;
   for(i=0;i<_len;i++)oggpackB_write(_opb,_buf[i],8);
 }
 
 
 
-int oc_state_flushheader(oc_theora_state *_state,int *_packet_state,
+int32_t oc_state_flushheader(oc_theora_state *_state,int32_t *_packet_state,
  oggpack_buffer *_opb,const th_quant_info *_qinfo,
  const th_huff_code _codes[TH_NHUFFMAN_TABLES][TH_NDCT_TOKENS],
  const char *_vendor,th_comment *_tc,ogg_packet *_op){
   unsigned char *packet;
-  int            b_o_s;
+  int32_t            b_o_s;
   if(_op==NULL)return TH_EFAULT;
   switch(*_packet_state){
     /*Codec info header.*/
@@ -54,8 +54,8 @@ int oc_state_flushheader(oc_theora_state *_state,int *_packet_state,
     }break;
     /*Comment header.*/
     case OC_PACKET_COMMENT_HDR:{
-      int vendor_len;
-      int i;
+      int32_t vendor_len;
+      int32_t i;
       if(_tc==NULL)return TH_EFAULT;
       vendor_len=strlen(_vendor);
       oggpackB_reset(_opb);
@@ -78,7 +78,7 @@ int oc_state_flushheader(oc_theora_state *_state,int *_packet_state,
     }break;
     /*Codec setup header.*/
     case OC_PACKET_SETUP_HDR:{
-      int ret;
+      int32_t ret;
       oggpackB_reset(_opb);
       /*Mark this packet as the setup header.*/
       oggpackB_write(_opb,0x82,8);

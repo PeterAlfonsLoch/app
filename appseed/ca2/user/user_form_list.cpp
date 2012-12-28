@@ -290,7 +290,7 @@ namespace user
       {
          _001SetEditControl(NULL);
       }
-      for(int i = 0; i < m_controldescriptorset.get_count(); i++)
+      for(int32_t i = 0; i < m_controldescriptorset.get_count(); i++)
       {
          class ::user::control::descriptor & control = m_controldescriptorset[i];
          if(control.m_etype == type_edit
@@ -372,8 +372,8 @@ namespace user
 
       return m_iControlItem >= 0 && m_iControlSubItem == pcontrol->descriptor().m_iSubItem;
 
-      //int iEditItem;
-      //int iEditSubItem;
+      //int32_t iEditItem;
+      //int32_t iEditSubItem;
 
       //_001DisplayHitTest(point, iEditItem, iEditSubItem);
 
@@ -400,7 +400,7 @@ namespace user
    void form_list::_001OnColumnChange()
    {
       ::user::list::_001OnColumnChange();
-      for(int i = 0; i < m_columna.get_size(); i++)
+      for(int32_t i = 0; i < m_columna.get_size(); i++)
       {
          if(m_columna[i].m_iControl >= 0 && m_columna[i].m_iControl < m_controldescriptorset.get_size())
          {
@@ -427,8 +427,8 @@ namespace user
       ScreenToClient(&pt);
 /*      if(uiMessage == WM_LBUTTONDOWN)
       {
-         int iItem;
-         int iSubItem;
+         int32_t iItem;
+         int32_t iSubItem;
          Range range;
          _001GetSelection(range);
          if(_001DisplayHitTest(pt, iItem, iSubItem))
@@ -447,8 +447,8 @@ namespace user
       }
       else if(uiMessage == WM_LBUTTONUP)
       {
-         int iItem;
-         int iSubItem;
+         int32_t iItem;
+         int32_t iSubItem;
          Range range;
          _001GetSelection(range);
          if(_001DisplayHitTest(pt, iItem, iSubItem))

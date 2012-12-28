@@ -110,8 +110,8 @@ namespace user
       UINT                                m_nFlags;      // see WF_ flags above
       bool                                m_bCursorInside;
       ::visual::e_cursor                  m_ecursor;
-      int                                 m_iModal;
-      int                                 m_iModalCount;
+      int32_t                                 m_iModal;
+      int32_t                                 m_iModalCount;
       bool                                m_bRectOk;
 
 #ifdef WINDOWS
@@ -146,8 +146,8 @@ namespace user
 
       virtual bool IsWindow();
 
-      virtual LONG GetWindowLong(int nIndex);
-      virtual LONG SetWindowLong(int nIndex, LONG lValue);
+      virtual LONG GetWindowLong(int32_t nIndex);
+      virtual LONG SetWindowLong(int32_t nIndex, LONG lValue);
 
 
       virtual void on_set_parent(interaction * pinterface);
@@ -175,7 +175,7 @@ namespace user
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       virtual void CenterWindow(interaction * pAlternateOwner = NULL);
       virtual id   RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
-      virtual bool ContinueModal(int iLevel);
+      virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
 
@@ -194,7 +194,7 @@ namespace user
       virtual bool IsFullScreen();
       virtual bool ShowWindowFullScreen(bool bFullScreen = true);
       virtual bool IsIconic();
-      virtual void MoveWindow(int x, int y, int nWidth, int nHeight,
+      virtual void MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
                bool bRepaint = TRUE);
       virtual void MoveWindow(LPCRECT lpRect, bool bRepaint = TRUE);
       virtual void GetClientRect(LPRECT lprect);
@@ -211,10 +211,10 @@ namespace user
       virtual void ScreenToClient(__rect64 * lprect);
       virtual void ScreenToClient(LPPOINT lppoint);
       virtual void ScreenToClient(__point64 * lprect);
-      virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
+      virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual bool set_placement(LPRECT lprect);
-      virtual int SetWindowRgn(HRGN hRgn, bool bRedraw);
-      virtual int GetWindowRgn(HRGN hRgn);
+      virtual int32_t SetWindowRgn(HRGN hRgn, bool bRedraw);
+      virtual int32_t GetWindowRgn(HRGN hRgn);
 
       virtual void layout();
 
@@ -281,7 +281,7 @@ namespace user
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
       virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);
-      virtual int GetUpdateRgn(::ca::region* pRgn, bool bErase = FALSE);
+      virtual int32_t GetUpdateRgn(::ca::region* pRgn, bool bErase = FALSE);
       virtual void Invalidate(bool bErase = TRUE);
       virtual void InvalidateRect(LPCRECT lpRect, bool bErase = TRUE);
       virtual void InvalidateRgn(::ca::region* pRgn, bool bErase = TRUE);
@@ -301,7 +301,7 @@ namespace user
 
       virtual bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
       virtual bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
-      virtual bool ShowWindow(int nCmdShow);
+      virtual bool ShowWindow(int32_t nCmdShow);
       virtual bool IsFrameWnd();
 
    // Timer Functions
@@ -345,7 +345,7 @@ namespace user
       virtual interaction * GetDescendantWindow(id id);
 
       virtual void SetWindowText(const char * lpszString);
-      virtual strsize GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
+      virtual strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);
       virtual void GetWindowText(string & rString);
       virtual strsize GetWindowTextLength();
       virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
@@ -384,9 +384,9 @@ namespace user
 
       virtual void on_delete(::ca::ca * poc);
 
-      //virtual void _001SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y, int cx, int cy, UINT nFlags);
+      //virtual void _001SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       //virtual void _001SetFocus();
-      //virtual void _001ShowWindow(int iShow);
+      //virtual void _001ShowWindow(int32_t iShow);
       //virtual void _001ScreenToClient(LPPOINT lppoint);
 
 
@@ -398,8 +398,8 @@ namespace user
 
       virtual void OnLinkClick(const char * psz, const char * pszTarget = NULL);
 
-      interaction * get_child_by_name(const char * pszName, int iLevel = -1);
-      interaction * get_child_by_id(id id, int iLevel = -1);
+      interaction * get_child_by_name(const char * pszName, int32_t iLevel = -1);
+      interaction * get_child_by_id(id id, int32_t iLevel = -1);
 
       virtual ::frame_window * EnsureParentFrame();
       virtual interaction* GetTopLevelParent();
@@ -409,7 +409,7 @@ namespace user
       virtual void pre_translate_message(gen::signal_object * pobj);
 
 
-      virtual int get_descendant_level(::user::interaction * pui);
+      virtual int32_t get_descendant_level(::user::interaction * pui);
       virtual bool is_descendant(::user::interaction * pui, bool bIncludeSelf = false);
       virtual ::user::interaction * get_focusable_descendant(::user::interaction * pui = NULL);
 
@@ -444,7 +444,7 @@ namespace user
 
       virtual interaction * GetTopWindow();
 
-      virtual interaction * get_next(bool bIgnoreChildren = false, int * piLevel = NULL);
+      virtual interaction * get_next(bool bIgnoreChildren = false, int32_t * piLevel = NULL);
 
       virtual interaction * GetWindow(UINT nCmd);
       virtual interaction * GetLastActivePopup();
@@ -522,10 +522,10 @@ CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(
     const char * lpClassName,
     const char * lpWindowName,
     DWORD dwStyle,
-    int X,
-    int Y,
-    int nWidth,
-    int nHeight,
+    int32_t X,
+    int32_t Y,
+    int32_t nWidth,
+    int32_t nHeight,
     ::user::interaction * pguieParent,
     id id,
     HINSTANCE hInstance,

@@ -21,7 +21,7 @@ namespace xml
       if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
-      for(int i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
+      for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
       {
          gen::property & property = m_ppropertyset->m_propertya[i];
          varexchange.m_pvar = &property.get_value();
@@ -35,7 +35,7 @@ namespace xml
       if(m_ppropertyset == NULL)
          return;
       var_exchange varexchange(get_app());
-      for(int i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
+      for(int32_t i = 0; i < m_ppropertyset->m_propertya.get_size(); i++)
       {
          gen::property & property = m_ppropertyset->m_propertya[i];
          varexchange.m_pvar = &property.get_value();

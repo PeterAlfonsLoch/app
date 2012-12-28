@@ -17,8 +17,8 @@ class simple_toolbar_item
 public:
 
 
-   int                  m_iIndex;
-   int                  m_iImage;
+   int32_t                  m_iIndex;
+   int32_t                  m_iImage;
    ::visual::dib_sp     m_spdib;
    id                   m_id;
    BYTE                 m_fsState;
@@ -58,7 +58,7 @@ public:
    bool             m_bSimpleLayout;
    array_ptr_alloc < simple_toolbar_item, simple_toolbar_item & >
                     m_itema;
-   int              m_iHover;
+   int32_t              m_iHover;
 
    size             m_sizeButton;
    size             m_sizeImage;
@@ -72,7 +72,7 @@ public:
 //   image_list *    m_pimagelistBlend;
 //   image_list *    m_pimagelistHueLight;
    //bool           m_bInternalImageList;
-   int              m_iButtonPressItem;
+   int32_t              m_iButtonPressItem;
    bool             m_bDelayedButtonLayout;
    ::ca::dib_sp     m_dibDraft;
 
@@ -102,30 +102,30 @@ public:
 #endif
 
 
-   int WrapToolBar(int nCount, int nWidth);
-   void SizeToolBar( int nCount, int nLength, bool bVert = FALSE);
+   int32_t WrapToolBar(int32_t nCount, int32_t nWidth);
+   void SizeToolBar( int32_t nCount, int32_t nLength, bool bVert = FALSE);
 
-   size CalcDynamicLayout(int nLength, DWORD dwMode);
-   size CalcLayout(DWORD dwMode, int nLength = -1);
+   size CalcDynamicLayout(int32_t nLength, DWORD dwMode);
+   size CalcLayout(DWORD dwMode, int32_t nLength = -1);
    //bool CalcSize(size & size, bool bHorz);
-   size CalcSize(int nCount);
+   size CalcSize(int32_t nCount);
    virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
    virtual size CalcFixedLayout(bool bStretch, bool bHorz);
 
 
    void RemoveAllTools();
-   virtual int _001GetHoverItem();
+   virtual int32_t _001GetHoverItem();
    virtual void OnUpdateHover();
-   void SetItemImage(int iItem, int iImage);
-   void GetButtonText(int i, string & str);
-   void SetButtonStyle(int nIndex, UINT nStyle);
-   UINT GetButtonStyle(int iButton);
-   bool SetItemStyle(int iItem, BYTE bStyle);
-   int GetItemStyle(int iItem);
+   void SetItemImage(int32_t iItem, int32_t iImage);
+   void GetButtonText(int32_t i, string & str);
+   void SetButtonStyle(int32_t nIndex, UINT nStyle);
+   UINT GetButtonStyle(int32_t iButton);
+   bool SetItemStyle(int32_t iItem, BYTE bStyle);
+   int32_t GetItemStyle(int32_t iItem);
    void _001SetImageList(image_list * pimagelist);
    void _001DiscardImageList();
-   void _001OnClick(int iItem);
-   int _001HitTest(point pt);
+   void _001OnClick(int32_t iItem);
+   int32_t _001HitTest(point pt);
    void _001Hover(point pt, bool bRedraw = true);
    void _001Hover(bool bRedraw = true);
 
@@ -133,14 +133,14 @@ public:
    void layout();
 
 
-   void _001DrawItem(::ca::graphics * pdc, int iItem);
-   bool _001GetItemRect(int iItem, LPRECT lprect);
-   bool _001GetItemRect(int iItem, LPRECT lprect, EElement eelement);
-   bool _001SetItem(int iItem, simple_toolbar_item * pitem);
-   bool _001GetItem(int iItem, simple_toolbar_item * pitem);
-   //bool _SetButton(int nIndex, TBBUTTON * pbutton);
-   //bool _GetButton(int nIndex, TBBUTTON * pbutton);
-   int _001GetItemCount();
+   void _001DrawItem(::ca::graphics * pdc, int32_t iItem);
+   bool _001GetItemRect(int32_t iItem, LPRECT lprect);
+   bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
+   bool _001SetItem(int32_t iItem, simple_toolbar_item * pitem);
+   bool _001GetItem(int32_t iItem, simple_toolbar_item * pitem);
+   //bool _SetButton(int32_t nIndex, TBBUTTON * pbutton);
+   //bool _GetButton(int32_t nIndex, TBBUTTON * pbutton);
+   int32_t _001GetItemCount();
 
 /*
    bool LoadToolBar(const char * lpszResourceName);
@@ -153,7 +153,7 @@ public:
 
 
 
-//   bool SetButtons(const UINT* lpIDArray, int nIDCount);
+//   bool SetButtons(const UINT* lpIDArray, int32_t nIDCount);
    void SetSizes(SIZE sizeButton, SIZE sizeImage);
 
    void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);

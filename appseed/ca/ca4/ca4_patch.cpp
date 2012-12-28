@@ -3,7 +3,7 @@
 
 namespace ca4
 {
-   int patch::bsdiff(const char * old, const char * newfile, const char * patch)
+   int32_t patch::bsdiff(const char * old, const char * newfile, const char * patch)
    {
       try
       {
@@ -15,7 +15,7 @@ namespace ca4
       }
    }
 
-   int patch::bspatch(const char * old, const char * newfile, const char * patch)
+   int32_t patch::bspatch(const char * old, const char * newfile, const char * patch)
    {
       try
       {

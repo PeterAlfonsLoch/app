@@ -23,7 +23,7 @@
   _quadi:  The quadrant number.
   Return: The index of the fragment of the upper left block in the macro
    block, or -1 if the block lies outside the coded frame.*/
-static ptrdiff_t oc_sb_quad_top_left_frag(oc_sb_map_quad _sb_map[4],int _quadi){
+static ptrdiff_t oc_sb_quad_top_left_frag(oc_sb_map_quad _sb_map[4],int32_t _quadi){
   /*It so happens that under the Hilbert curve ordering described below, the
      upper-left block in each macro block is at index 0, except in macro block
      3, where it is at index 2.*/
@@ -40,7 +40,7 @@ static ptrdiff_t oc_sb_quad_top_left_frag(oc_sb_map_quad _sb_map[4],int _quadi){
   _hfrags:   The number of horizontal fragments in a coded frame.
   _vfrags:   The number of vertical fragments in a coded frame.*/
 static void oc_sb_create_plane_mapping(oc_sb_map _sb_maps[],
- oc_sb_flags _sb_flags[],ptrdiff_t _frag0,int _hfrags,int _vfrags){
+ oc_sb_flags _sb_flags[],ptrdiff_t _frag0,int32_t _hfrags,int32_t _vfrags){
   /*Contains the (macro_block,block) indices for a 4x4 grid of
      fragments.
     The pattern is a 4x4 Hilbert space-filling curve.
@@ -49,7 +49,7 @@ static void oc_sb_create_plane_mapping(oc_sb_map _sb_maps[],
     The intuition is that nearby blocks in the curve are also close spatially,
      with the previous element always an immediate neighbor, so that runs of
      blocks should be well correlated.*/
-  static const int SB_MAP[4][4][2]={
+  static const int32_t SB_MAP[4][4][2]={
     {{0,0},{0,1},{3,2},{3,3}},
     {{0,3},{0,2},{3,1},{3,0}},
     {{1,0},{1,3},{2,0},{2,3}},
@@ -57,12 +57,12 @@ static void oc_sb_create_plane_mapping(oc_sb_map _sb_maps[],
   };
   ptrdiff_t  yfrag;
   unsigned   sbi;
-  int        y;
+  int32_t        y;
   sbi=0;
   yfrag=_frag0;
   for(y=0;;y+=4){
-    int imax;
-    int x;
+    int32_t imax;
+    int32_t x;
     /*Figure out how many columns of blocks in this super block lie within the
        image.*/
     imax=_vfrags-y;
@@ -70,9 +70,9 @@ static void oc_sb_create_plane_mapping(oc_sb_map _sb_maps[],
     else if(imax<=0)break;
     for(x=0;;x+=4,sbi++){
       ptrdiff_t xfrag;
-      int       jmax;
-      int       quadi;
-      int       i;
+      int32_t       jmax;
+      int32_t       quadi;
+      int32_t       i;
       /*Figure out how many rows of blocks in this super block lie within the
          image.*/
       jmax=_hfrags-x;
@@ -83,7 +83,7 @@ static void oc_sb_create_plane_mapping(oc_sb_map _sb_maps[],
       /*Fill in the fragment map for this super block.*/
       xfrag=yfrag+x;
       for(i=0;i<imax;i++){
-        int j;
+        int32_t j;
         for(j=0;j<jmax;j++){
           _sb_maps[sbi][SB_MAP[i][j][0]][SB_MAP[i][j][1]]=xfrag+j;
         }
@@ -106,9 +106,9 @@ static void oc_sb_create_plane_mapping(oc_sb_map _sb_maps[],
   _xfrag0: The X location of the upper-left hand fragment in the luma plane.
   _yfrag0: The Y location of the upper-left hand fragment in the luma plane.*/
 static void oc_mb_fill_ymapping(oc_mb_map_plane _mb_map[3],
- const oc_fragment_plane *_fplane,int _xfrag0,int _yfrag0){
-  int i;
-  int j;
+ const oc_fragment_plane *_fplane,int32_t _xfrag0,int32_t _yfrag0){
+  int32_t i;
+  int32_t j;
   for(i=0;i<2;i++)for(j=0;j<2;j++){
     _mb_map[0][i<<1|j]=(_yfrag0+i)*(ptrdiff_t)_fplane->nhfrags+_xfrag0+j;
   }
@@ -122,7 +122,7 @@ static void oc_mb_fill_ymapping(oc_mb_map_plane _mb_map[3],
   _xfrag0:  The X location of the upper-left hand fragment in the luma plane.
   _yfrag0:  The Y location of the upper-left hand fragment in the luma plane.*/
 static void oc_mb_fill_cmapping00(oc_mb_map_plane _mb_map[3],
- const oc_fragment_plane _fplanes[3],int _xfrag0,int _yfrag0){
+ const oc_fragment_plane _fplanes[3],int32_t _xfrag0,int32_t _yfrag0){
   ptrdiff_t fragi;
   _xfrag0>>=1;
   _yfrag0>>=1;
@@ -138,9 +138,9 @@ static void oc_mb_fill_cmapping00(oc_mb_map_plane _mb_map[3],
   _xfrag0:  The X location of the upper-left hand fragment in the luma plane.
   _yfrag0:  The Y location of the upper-left hand fragment in the luma plane.*/
 static void oc_mb_fill_cmapping01(oc_mb_map_plane _mb_map[3],
- const oc_fragment_plane _fplanes[3],int _xfrag0,int _yfrag0){
+ const oc_fragment_plane _fplanes[3],int32_t _xfrag0,int32_t _yfrag0){
   ptrdiff_t fragi;
-  int       j;
+  int32_t       j;
   _yfrag0>>=1;
   fragi=_yfrag0*(ptrdiff_t)_fplanes[1].nhfrags+_xfrag0;
   for(j=0;j<2;j++){
@@ -157,9 +157,9 @@ static void oc_mb_fill_cmapping01(oc_mb_map_plane _mb_map[3],
   _xfrag0:  The X location of the upper-left hand fragment in the luma plane.
   _yfrag0:  The Y location of the upper-left hand fragment in the luma plane.*/
 static void oc_mb_fill_cmapping10(oc_mb_map_plane _mb_map[3],
- const oc_fragment_plane _fplanes[3],int _xfrag0,int _yfrag0){
+ const oc_fragment_plane _fplanes[3],int32_t _xfrag0,int32_t _yfrag0){
   ptrdiff_t fragi;
-  int       i;
+  int32_t       i;
   _xfrag0>>=1;
   fragi=_yfrag0*(ptrdiff_t)_fplanes[1].nhfrags+_xfrag0;
   for(i=0;i<2;i++){
@@ -176,7 +176,7 @@ static void oc_mb_fill_cmapping10(oc_mb_map_plane _mb_map[3],
   _fplanes: The descriptions of the fragment planes.*/
 static void oc_mb_fill_cmapping11(oc_mb_map_plane _mb_map[3],
  const oc_fragment_plane _fplanes[3]){
-  int k;
+  int32_t k;
   for(k=0;k<4;k++){
     _mb_map[1][k]=_mb_map[0][k]+_fplanes[1].froffset;
     _mb_map[2][k]=_mb_map[0][k]+_fplanes[2].froffset;
@@ -190,7 +190,7 @@ static void oc_mb_fill_cmapping11(oc_mb_map_plane _mb_map[3],
   _xfrag0:  The X location of the upper-left hand fragment in the luma plane.
   _yfrag0:  The Y location of the upper-left hand fragment in the luma plane.*/
 typedef void (*oc_mb_fill_cmapping_func)(oc_mb_map_plane _mb_map[3],
- const oc_fragment_plane _fplanes[3],int _xfrag0,int _yfrag0);
+ const oc_fragment_plane _fplanes[3],int32_t _xfrag0,int32_t _yfrag0);
 
 /*A table of functions used to fill in the chroma plane fragment maps for a
    macro block for each type of chrominance decimation.*/
@@ -209,23 +209,23 @@ static const oc_mb_fill_cmapping_func OC_MB_FILL_CMAPPING_TABLE[4]={
   _fplanes:   The descriptions of the fragment planes.
   _pixel_fmt: The chroma decimation type.*/
 static void oc_mb_create_mapping(oc_mb_map _mb_maps[],
- signed char _mb_modes[],const oc_fragment_plane _fplanes[3],int _pixel_fmt){
+ signed char _mb_modes[],const oc_fragment_plane _fplanes[3],int32_t _pixel_fmt){
   oc_mb_fill_cmapping_func  mb_fill_cmapping;
   unsigned                  sbi;
-  int                       y;
+  int32_t                       y;
   mb_fill_cmapping=OC_MB_FILL_CMAPPING_TABLE[_pixel_fmt];
   /*Loop through the luma plane super blocks.*/
   for(sbi=y=0;y<_fplanes[0].nvfrags;y+=4){
-    int x;
+    int32_t x;
     for(x=0;x<_fplanes[0].nhfrags;x+=4,sbi++){
-      int ymb;
+      int32_t ymb;
       /*Loop through the macro blocks in each super block in display order.*/
       for(ymb=0;ymb<2;ymb++){
-        int xmb;
+        int32_t xmb;
         for(xmb=0;xmb<2;xmb++){
           unsigned mbi;
-          int      mbx;
-          int      mby;
+          int32_t      mbx;
+          int32_t      mby;
           mbi=sbi<<2|OC_MB_MAP[ymb][xmb];
           mbx=x|xmb<<1;
           mby=y|ymb<<1;
@@ -254,13 +254,13 @@ static void oc_state_border_init(oc_theora_state *_state){
   oc_fragment       *yfrag_end;
   oc_fragment       *xfrag_end;
   oc_fragment_plane *fplane;
-  int                crop_x0;
-  int                crop_y0;
-  int                crop_xf;
-  int                crop_yf;
-  int                pli;
-  int                y;
-  int                x;
+  int32_t                crop_x0;
+  int32_t                crop_y0;
+  int32_t                crop_xf;
+  int32_t                crop_yf;
+  int32_t                pli;
+  int32_t                y;
+  int32_t                x;
   /*The method we use here is slow, but the code is dead simple and handles
      all the special cases easily.
     We only ever need to do it once.*/
@@ -304,11 +304,11 @@ static void oc_state_border_init(oc_theora_state *_state){
         else if(x<crop_x0&&crop_x0<x+8||x<crop_xf&&crop_xf<x+8||
          y<crop_y0&&crop_y0<y+8||y<crop_yf&&crop_yf<y+8){
           ogg_int64_t mask;
-          int         npixels;
-          int         i;
+          int32_t         npixels;
+          int32_t         i;
           mask=npixels=0;
           for(i=0;i<8;i++){
-            int j;
+            int32_t j;
             for(j=0;j<8;j++){
               if(x+j>=crop_x0&&x+j<crop_xf&&y+i>=crop_y0&&y+i<crop_yf){
                 mask|=(ogg_int64_t)1<<(i<<3|j);
@@ -336,11 +336,11 @@ static void oc_state_border_init(oc_theora_state *_state){
   }
 }
 
-static int oc_state_frarray_init(oc_theora_state *_state){
-  int       yhfrags;
-  int       yvfrags;
-  int       chfrags;
-  int       cvfrags;
+static int32_t oc_state_frarray_init(oc_theora_state *_state){
+  int32_t       yhfrags;
+  int32_t       yvfrags;
+  int32_t       chfrags;
+  int32_t       cvfrags;
   ptrdiff_t yfrags;
   ptrdiff_t cfrags;
   ptrdiff_t nfrags;
@@ -352,9 +352,9 @@ static int oc_state_frarray_init(oc_theora_state *_state){
   unsigned  csbs;
   unsigned  nsbs;
   size_t    nmbs;
-  int       hdec;
-  int       vdec;
-  int       pli;
+  int32_t       hdec;
+  int32_t       vdec;
+  int32_t       pli;
   /*Figure out the number of fragments in each plane.*/
   /*These parameters have already been validated to be multiples of 16.*/
   yhfrags=_state->info.frame_width>>3;
@@ -457,25 +457,25 @@ static void oc_state_frarray_clear(oc_theora_state *_state){
   If chroma is decimated in either direction, the padding is reduced by a
    factor of 2 on the appropriate sides.
   _nrefs: The number of reference buffers to init; must be 3 or 4.*/
-static int oc_state_ref_bufs_init(oc_theora_state *_state,int _nrefs){
+static int32_t oc_state_ref_bufs_init(oc_theora_state *_state,int32_t _nrefs){
   th_info       *info;
   unsigned char *ref_frame_data;
   size_t         ref_frame_data_sz;
   size_t         ref_frame_sz;
   size_t         yplane_sz;
   size_t         cplane_sz;
-  int            yhstride;
-  int            yheight;
-  int            chstride;
-  int            cheight;
+  int32_t            yhstride;
+  int32_t            yheight;
+  int32_t            chstride;
+  int32_t            cheight;
   ptrdiff_t      yoffset;
   ptrdiff_t      coffset;
   ptrdiff_t     *frag_buf_offs;
   ptrdiff_t      fragi;
-  int            hdec;
-  int            vdec;
-  int            rfi;
-  int            pli;
+  int32_t            hdec;
+  int32_t            vdec;
+  int32_t            rfi;
+  int32_t            pli;
   if(_nrefs<3||_nrefs>4)return TH_EINVAL;
   info=&_state->info;
   /*Compute the image buffer parameters for each plane.*/
@@ -545,7 +545,7 @@ static int oc_state_ref_bufs_init(oc_theora_state *_state,int _nrefs){
     unsigned char     *vpix;
     ptrdiff_t          stride;
     ptrdiff_t          vfragi_end;
-    int                nhfrags;
+    int32_t                nhfrags;
     iplane=_state->ref_frame_bufs[0]+pli;
     fplane=_state->fplanes+pli;
     vpix=iplane->data;
@@ -601,8 +601,8 @@ void oc_state_vtable_init(oc_theora_state *_state){
 }
 
 
-int oc_state_init(oc_theora_state *_state,const th_info *_info,int _nrefs){
-  int ret;
+int32_t oc_state_init(oc_theora_state *_state,const th_info *_info,int32_t _nrefs){
+  int32_t ret;
   /*First validate the parameters.*/
   if(_info==NULL)return TH_EFAULT;
   /*The width and height of the encoded frame must be multiples of 16.
@@ -671,14 +671,14 @@ void oc_state_clear(oc_theora_state *_state){
   _pli:  The color plane.
   _y0:   The Y coordinate of the first row to pad.
   _yend: The Y coordinate of the row to stop padding at.*/
-void oc_state_borders_fill_rows(oc_theora_state *_state,int _refi,int _pli,
- int _y0,int _yend){
+void oc_state_borders_fill_rows(oc_theora_state *_state,int32_t _refi,int32_t _pli,
+ int32_t _y0,int32_t _yend){
   th_img_plane  *iplane;
   unsigned char *apix;
   unsigned char *bpix;
   unsigned char *epix;
-  int            stride;
-  int            hpadding;
+  int32_t            stride;
+  int32_t            hpadding;
   hpadding=OC_UMV_PADDING>>(_pli!=0&&!(_state->info.pixel_fmt&1));
   iplane=_state->ref_frame_bufs[_refi]+_pli;
   stride=iplane->stride;
@@ -700,15 +700,15 @@ void oc_state_borders_fill_rows(oc_theora_state *_state,int _refi,int _pli,
    the left and right borders are added.
   _refi:      The index of the reference buffer to pad.
   _pli:       The color plane.*/
-void oc_state_borders_fill_caps(oc_theora_state *_state,int _refi,int _pli){
+void oc_state_borders_fill_caps(oc_theora_state *_state,int32_t _refi,int32_t _pli){
   th_img_plane  *iplane;
   unsigned char *apix;
   unsigned char *bpix;
   unsigned char *epix;
-  int            stride;
-  int            hpadding;
-  int            vpadding;
-  int            fullw;
+  int32_t            stride;
+  int32_t            hpadding;
+  int32_t            vpadding;
+  int32_t            fullw;
   hpadding=OC_UMV_PADDING>>(_pli!=0&&!(_state->info.pixel_fmt&1));
   vpadding=OC_UMV_PADDING>>(_pli!=0&&!(_state->info.pixel_fmt&2));
   iplane=_state->ref_frame_bufs[_refi]+_pli;
@@ -729,8 +729,8 @@ void oc_state_borders_fill_caps(oc_theora_state *_state,int _refi,int _pli){
    the surrounding padding for use by unrestricted motion vectors.
   _state: The context containing the reference buffers.
   _refi:  The index of the reference buffer to pad.*/
-void oc_state_borders_fill(oc_theora_state *_state,int _refi){
-  int pli;
+void oc_state_borders_fill(oc_theora_state *_state,int32_t _refi){
+  int32_t pli;
   for(pli=0;pli<3;pli++){
     oc_state_borders_fill_rows(_state,_refi,pli,0,
      _state->ref_frame_bufs[_refi][pli].height);
@@ -748,8 +748,8 @@ void oc_state_borders_fill(oc_theora_state *_state,int _refi){
   _dx:      The X component of the motion vector.
   _dy:      The Y component of the motion vector.
   Return: The number of offsets returned: 1 or 2.*/
-int oc_state_get_mv_offsets(const oc_theora_state *_state,int _offsets[2],
- int _pli,int _dx,int _dy){
+int32_t oc_state_get_mv_offsets(const oc_theora_state *_state,int32_t _offsets[2],
+ int32_t _pli,int32_t _dx,int32_t _dy){
   /*Here is a brief description of how Theora handles motion vectors:
     Motion vector components are specified to half-pixel accuracy in
      undecimated directions of each plane, and quarter-pixel accuracy in
@@ -766,12 +766,12 @@ int oc_state_get_mv_offsets(const oc_theora_state *_state,int _offsets[2],
      appropriate amount, always truncating _away_ from zero.*/
 #if 0
   /*This version of the code doesn't use any tables, but is slower.*/
-  int ystride;
-  int xprec;
-  int yprec;
-  int xfrac;
-  int yfrac;
-  int offs;
+  int32_t ystride;
+  int32_t xprec;
+  int32_t yprec;
+  int32_t xfrac;
+  int32_t yfrac;
+  int32_t offs;
   ystride=_state->ref_ystride[_pli];
   /*These two variables decide whether we are in half- or quarter-pixel
      precision in each component.*/
@@ -783,8 +783,8 @@ int oc_state_get_mv_offsets(const oc_theora_state *_state,int _offsets[2],
   yfrac=OC_SIGNMASK(-(_dy&(yprec|1)));
   offs=(_dx>>xprec)+(_dy>>yprec)*ystride;
   if(xfrac||yfrac){
-    int xmask;
-    int ymask;
+    int32_t xmask;
+    int32_t ymask;
     xmask=OC_SIGNMASK(_dx);
     ymask=OC_SIGNMASK(_dy);
     yfrac&=ystride;
@@ -827,14 +827,14 @@ int oc_state_get_mv_offsets(const oc_theora_state *_state,int _offsets[2],
       0, 1, 1, 1,  0, 1, 1, 1,  0, 1, 1, 1,  0, 1, 1, 1
     }
   };
-  int ystride;
-  int qpx;
-  int qpy;
-  int mx;
-  int my;
-  int mx2;
-  int my2;
-  int offs;
+  int32_t ystride;
+  int32_t qpx;
+  int32_t qpy;
+  int32_t mx;
+  int32_t my;
+  int32_t mx2;
+  int32_t my2;
+  int32_t offs;
   ystride=_state->ref_ystride[_pli];
   qpy=_pli!=0&&!(_state->info.pixel_fmt&2);
   my=OC_MVMAP[qpy][_dy+31];
@@ -854,22 +854,22 @@ int oc_state_get_mv_offsets(const oc_theora_state *_state,int _offsets[2],
 }
 
 void oc_state_frag_recon(const oc_theora_state *_state,ptrdiff_t _fragi,
- int _pli,ogg_int16_t _dct_coeffs[64],int _last_zzi,ogg_uint16_t _dc_quant){
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
   _state->opt_vtable.state_frag_recon(_state,_fragi,_pli,_dct_coeffs,
    _last_zzi,_dc_quant);
 }
 
 void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
- int _pli,ogg_int16_t _dct_coeffs[64],int _last_zzi,ogg_uint16_t _dc_quant){
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
   unsigned char *dst;
   ptrdiff_t      frag_buf_off;
-  int            ystride;
-  int            mb_mode;
+  int32_t            ystride;
+  int32_t            mb_mode;
   /*Apply the inverse transform.*/
   /*Special case only having a DC component.*/
   if(_last_zzi<2){
     ogg_int16_t p;
-    int         ci;
+    int32_t         ci;
     /*We round this dequant product (and not any of the others) because there's
        no iDCT rounding.*/
     p=(ogg_int16_t)(_dct_coeffs[0]*(ogg_int32_t)_dc_quant+15>>5);
@@ -878,7 +878,7 @@ void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
   }
   else{
     /*First, dequantize the DC coefficient.*/
-    _dct_coeffs[0]=(ogg_int16_t)(_dct_coeffs[0]*(int)_dc_quant);
+    _dct_coeffs[0]=(ogg_int16_t)(_dct_coeffs[0]*(int32_t)_dc_quant);
     oc_idct8x8(_state,_dct_coeffs,_last_zzi);
   }
   /*Fill in the target buffer.*/
@@ -889,7 +889,7 @@ void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
   if(mb_mode==OC_MODE_INTRA)oc_frag_recon_intra(_state,dst,ystride,_dct_coeffs);
   else{
     const unsigned char *ref;
-    int                  mvoffsets[2];
+    int32_t                  mvoffsets[2];
     ref=
      _state->ref_frame_data[_state->ref_frame_idx[OC_FRAME_FOR_MODE(mb_mode)]]
      +frag_buf_off;
@@ -911,19 +911,19 @@ void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
   _pli:       The color plane the fragments lie in.*/
 void oc_state_frag_copy_list(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
- int _dst_frame,int _src_frame,int _pli){
+ int32_t _dst_frame,int32_t _src_frame,int32_t _pli){
   _state->opt_vtable.state_frag_copy_list(_state,_fragis,_nfragis,_dst_frame,
    _src_frame,_pli);
 }
 
 void oc_state_frag_copy_list_c(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
- int _dst_frame,int _src_frame,int _pli){
+ int32_t _dst_frame,int32_t _src_frame,int32_t _pli){
   const ptrdiff_t     *frag_buf_offs;
   const unsigned char *src_frame_data;
   unsigned char       *dst_frame_data;
   ptrdiff_t            fragii;
-  int                  ystride;
+  int32_t                  ystride;
   dst_frame_data=_state->ref_frame_data[_state->ref_frame_idx[_dst_frame]];
   src_frame_data=_state->ref_frame_data[_state->ref_frame_idx[_src_frame]];
   ystride=_state->ref_ystride[_pli];
@@ -936,11 +936,11 @@ void oc_state_frag_copy_list_c(const oc_theora_state *_state,
   }
 }
 
-static void loop_filter_h(unsigned char *_pix,int _ystride,int *_bv){
-  int y;
+static void loop_filter_h(unsigned char *_pix,int32_t _ystride,int32_t *_bv){
+  int32_t y;
   _pix-=2;
   for(y=0;y<8;y++){
-    int f;
+    int32_t f;
     f=_pix[0]-_pix[3]+3*(_pix[2]-_pix[1]);
     /*The _bv array is used to compute the function
       f=OC_CLAMPI(OC_MINI(-_2flimit-f,0),f,OC_MAXI(_2flimit-f,0));
@@ -952,11 +952,11 @@ static void loop_filter_h(unsigned char *_pix,int _ystride,int *_bv){
   }
 }
 
-static void loop_filter_v(unsigned char *_pix,int _ystride,int *_bv){
-  int x;
+static void loop_filter_v(unsigned char *_pix,int32_t _ystride,int32_t *_bv){
+  int32_t x;
   _pix-=_ystride*2;
   for(x=0;x<8;x++){
-    int f;
+    int32_t f;
     f=_pix[x]-_pix[_ystride*3+x]+3*(_pix[_ystride*2+x]-_pix[_ystride+x]);
     /*The _bv array is used to compute the function
       f=OC_CLAMPI(OC_MINI(-_2flimit-f,0),f,OC_MAXI(_2flimit-f,0));
@@ -970,9 +970,9 @@ static void loop_filter_v(unsigned char *_pix,int _ystride,int *_bv){
 /*Initialize the bounding values array used by the loop filter.
   _bv: Storage for the array.
   Return: 0 on success, or a non-zero value if no filtering need be applied.*/
-int oc_state_loop_filter_init(oc_theora_state *_state,int _bv[256]){
-  int flimit;
-  int i;
+int32_t oc_state_loop_filter_init(oc_theora_state *_state,int32_t _bv[256]){
+  int32_t flimit;
+  int32_t i;
   flimit=_state->loop_filter_limits[_state->qis[0]];
   if(flimit==0)return 1;
   memset(_bv,0,sizeof(_bv[0])*256);
@@ -993,14 +993,14 @@ int oc_state_loop_filter_init(oc_theora_state *_state,int _bv[256]){
   _pli:       The color plane to filter.
   _fragy0:    The Y coordinate of the first fragment row to filter.
   _fragy_end: The Y coordinate of the fragment row to stop filtering at.*/
-void oc_state_loop_filter_frag_rows(const oc_theora_state *_state,int _bv[256],
- int _refi,int _pli,int _fragy0,int _fragy_end){
+void oc_state_loop_filter_frag_rows(const oc_theora_state *_state,int32_t _bv[256],
+ int32_t _refi,int32_t _pli,int32_t _fragy0,int32_t _fragy_end){
   _state->opt_vtable.state_loop_filter_frag_rows(_state,_bv,_refi,_pli,
    _fragy0,_fragy_end);
 }
 
-void oc_state_loop_filter_frag_rows_c(const oc_theora_state *_state,int *_bv,
- int _refi,int _pli,int _fragy0,int _fragy_end){
+void oc_state_loop_filter_frag_rows_c(const oc_theora_state *_state,int32_t *_bv,
+ int32_t _refi,int32_t _pli,int32_t _fragy0,int32_t _fragy_end){
   const oc_fragment_plane *fplane;
   const oc_fragment       *frags;
   const ptrdiff_t         *frag_buf_offs;
@@ -1009,8 +1009,8 @@ void oc_state_loop_filter_frag_rows_c(const oc_theora_state *_state,int *_bv,
   ptrdiff_t                fragi_bot;
   ptrdiff_t                fragi0;
   ptrdiff_t                fragi0_end;
-  int                      ystride;
-  int                      nhfrags;
+  int32_t                      ystride;
+  int32_t                      nhfrags;
   _bv+=127;
   fplane=_state->fplanes+_pli;
   nhfrags=fplane->nhfrags;
@@ -1052,7 +1052,7 @@ void oc_state_loop_filter_frag_rows_c(const oc_theora_state *_state,int *_bv,
 }
 
 #if defined(OC_DUMP_IMAGES)
-int oc_state_dump_frame(const oc_theora_state *_state,int _frame,
+int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
  const char *_suf){
   /*Dump a PNG of the reconstructed image.*/
   png_structp    png;
@@ -1068,19 +1068,19 @@ int oc_state_dump_frame(const oc_theora_state *_state,int _frame,
   unsigned char *v;
   ogg_int64_t    iframe;
   ogg_int64_t    pframe;
-  int            y_stride;
-  int            u_stride;
-  int            v_stride;
-  int            framei;
-  int            width;
-  int            height;
-  int            imgi;
-  int            imgj;
+  int32_t            y_stride;
+  int32_t            u_stride;
+  int32_t            v_stride;
+  int32_t            framei;
+  int32_t            width;
+  int32_t            height;
+  int32_t            imgi;
+  int32_t            imgj;
   width=_state->info.frame_width;
   height=_state->info.frame_height;
   iframe=_state->granpos>>_state->info.keyframe_granule_shift;
   pframe=_state->granpos-(iframe<<_state->info.keyframe_granule_shift);
-  sprintf(fname,"%08i%s.png",(int)(iframe+pframe),_suf);
+  sprintf(fname,"%08i%s.png",(int32_t)(iframe+pframe),_suf);
   fp=fopen(fname,"wb");
   if(fp==NULL)return TH_EFAULT;
   image=(png_bytep *)oc_malloc_2d(height,6*width,sizeof(**image));
@@ -1120,7 +1120,7 @@ int oc_state_dump_frame(const oc_theora_state *_state,int _frame,
      artifacts.
     As an added bonus, it's dead simple.*/
   for(imgi=height;imgi-->0;){
-    int dc;
+    int32_t dc;
     y=y_row;
     u=u_row;
     v=v_row;
@@ -1135,10 +1135,10 @@ int oc_state_dump_frame(const oc_theora_state *_state,int _frame,
       yval=(*y-16)*(1.0F/219);
       uval=(*u-128)*(2*(1-0.114F)/224);
       vval=(*v-128)*(2*(1-0.299F)/224);
-      rval=OC_CLAMPI(0,(int)(65535*(yval+vval)+0.5F),65535);
-      gval=OC_CLAMPI(0,(int)(65535*(
+      rval=OC_CLAMPI(0,(int32_t)(65535*(yval+vval)+0.5F),65535);
+      gval=OC_CLAMPI(0,(int32_t)(65535*(
        yval-uval*(0.114F/0.587F)-vval*(0.299F/0.587F))+0.5F),65535);
-      bval=OC_CLAMPI(0,(int)(65535*(yval+uval)+0.5F),65535);
+      bval=OC_CLAMPI(0,(int32_t)(65535*(yval+uval)+0.5F),65535);
       image[imgi][imgj++]=(unsigned char)(rval>>8);
       image[imgi][imgj++]=(unsigned char)(rval&0xFF);
       image[imgi][imgj++]=(unsigned char)(gval>>8);

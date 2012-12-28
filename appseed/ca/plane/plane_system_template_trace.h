@@ -15,7 +15,7 @@ namespace gen
 
       ::ca::application *     m_papp;
       const char * const      m_pszFileName;
-      const int               m_nLineNo;
+      const int32_t               m_nLineNo;
       string                  m_str;
 
 #if defined(LINUX) || defined(MACOS)
@@ -33,7 +33,7 @@ namespace gen
 
 #endif
 
-      trace_add_file_and_line(::ca::application * papp, const char *pszFileName, int nLineNo)
+      trace_add_file_and_line(::ca::application * papp, const char *pszFileName, int32_t nLineNo)
          : m_papp(papp), m_pszFileName(pszFileName), m_nLineNo(nLineNo)
       {
       }

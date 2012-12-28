@@ -53,7 +53,7 @@ debug_module_t mod_hmac = {
 
 
 err_status_t
-hmac_alloc(auth_t **a, int key_len, int out_len) {
+hmac_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
   extern auth_type_t hmac;
   uint8_t *pointer;
 
@@ -108,11 +108,11 @@ hmac_dealloc(auth_t *a) {
 }
 
 err_status_t
-hmac_init(hmac_ctx_t *state, const void *key, int key_len)
+hmac_init(hmac_ctx_t *state, const void *key, int32_t key_len)
 {
 
-   int         i;
-   int         j;
+   int32_t         i;
+   int32_t         j;
    uint8_t     ipad[64]; 
    char        sha1key[64];
   
@@ -171,7 +171,7 @@ hmac_start(hmac_ctx_t *state)
 }
 
 err_status_t
-hmac_update(hmac_ctx_t *state, const void *message, int msg_octets) 
+hmac_update(hmac_ctx_t *state, const void *message, int32_t msg_octets) 
 {
 
   debug_print(mod_hmac, "input: %s", octet_string_hex_string(message, msg_octets));
@@ -183,11 +183,11 @@ hmac_update(hmac_ctx_t *state, const void *message, int msg_octets)
 }
 
 err_status_t
-hmac_compute(hmac_ctx_t *state, const void *message, int msg_octets, int tag_len, uint8_t *result)
+hmac_compute(hmac_ctx_t *state, const void *message, int32_t msg_octets, int32_t tag_len, uint8_t *result)
 {
   uint32_t hash_value[5];
   uint32_t H[5];
-  int i;
+  int32_t i;
 
   /* check tag length, return error if we can't provide the value expected */
   //if (tag_len > 20)
@@ -274,7 +274,7 @@ hmac  = {
   (auth_update_func)     hmac_update,
   (auth_start_func)      hmac_start,
   (char *)               hmac_description,
-  (int)                  0,  /* instance count */
+  (int32_t)                  0,  /* instance count */
   (auth_test_case_t *)  &hmac_test_case_0,
   (debug_module_t *)    &mod_hmac
 };

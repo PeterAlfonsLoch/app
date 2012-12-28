@@ -10,7 +10,7 @@ namespace calculator
    public: 
 
       string                     m_strAnimatedStatusBarText;
-      int                        m_iAnimateStep;
+      int32_t                        m_iAnimateStep;
       image_list *               m_pimagelist;
       bool                       m_bTimerOn;
 
@@ -28,7 +28,7 @@ namespace calculator
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      int OnCreate(LPCREATESTRUCT lpCreateStruct);
+      int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
       void OnTimer(UINT nIDEvent);
    };
 

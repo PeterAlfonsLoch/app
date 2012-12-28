@@ -25,13 +25,13 @@ public:
    virtual void message_handler(gen::signal_object * pobj);
    virtual ::ca::graphics * GetDC();
    ::user::interaction * set_parent(::user::interaction * pguieParent);
-   bool ShowWindow(int nCmdShow);
+   bool ShowWindow(int32_t nCmdShow);
    virtual bool ReleaseDC(::ca::graphics *);
    virtual ::user::interaction * get_parent() const;
 
    virtual void _001WindowMaximize();
    virtual void _001WindowRestore();
-   virtual bool SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags);
+   virtual bool SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
    void SetWindowText(const char * psz);
 
 
@@ -51,7 +51,7 @@ public:
    void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch);
 
 
-   //virtual int RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+   //virtual int32_t RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
 
 
    virtual bool DestroyWindow();
@@ -111,7 +111,7 @@ public:
    virtual ::frame_window * GetTopLevelFrame();
 
    using ::user::interaction::GetWindowText;
-   strsize GetWindowText(LPTSTR lpszStringBuf, int nMaxCount);
+   strsize GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount);
    void GetWindowText(string & str);
 
 

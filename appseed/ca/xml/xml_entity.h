@@ -9,7 +9,7 @@ namespace xml
 
       char     m_chEntity;      // entity ( & " ' < > )
       string   m_strRef;      // entity reference ( &amp; &quot; etc )
-      int      m_iRefLen;      // entity reference length
+      int32_t      m_iRefLen;      // entity reference length
 
       entity();
       entity(char chEntity, const char * pszReference);
@@ -22,13 +22,13 @@ namespace xml
    {
    public:
       
-      entity * get_entity( int entity );
+      entity * get_entity( int32_t entity );
       entity * get_entity(const char * pszEntity);
 
-      int get_entity_count( const char * str );
+      int32_t get_entity_count( const char * str );
 
-      int ref_to_entity( const char * estr, char * str, int strlen );
-      int entity_to_ref( const char * str, char * estr, int estrlen );
+      int32_t ref_to_entity( const char * estr, char * str, int32_t strlen );
+      int32_t entity_to_ref( const char * str, char * estr, int32_t estrlen );
 
       string ref_to_entity( const char * estr );
       string entity_to_ref( const char * str );   

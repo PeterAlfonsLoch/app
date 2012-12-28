@@ -134,8 +134,8 @@ class CLASS_DECL_ca plex_heap_alloc :
 public:
 
 
-   int                        m_i;
-   int                        m_iShareCount;
+   int32_t                        m_i;
+   int32_t                        m_iShareCount;
 
 
    plex_heap_alloc(UINT nAllocSize, UINT nBlockSize = 64);
@@ -161,7 +161,7 @@ inline void * plex_heap_alloc::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   register int i = m_i;
+   register int32_t i = m_i;
    if(i >= m_iShareCount)
    {
       i = 0;
@@ -175,9 +175,9 @@ inline void * plex_heap_alloc::Alloc()
 
    register void * p  = get_data()[i]->Alloc();
 
-   ((int *) p)[0] = i;
+   ((int32_t *) p)[0] = i;
 
-   return &((int *)p)[1];
+   return &((int32_t *)p)[1];
 
 }
 
@@ -187,9 +187,9 @@ inline void plex_heap_alloc::Free(void * p)
    if (p == NULL)
       return;
 
-   register int i = ((int *)p)[-1];
+   register int32_t i = ((int32_t *)p)[-1];
 
-   get_data()[i]->Free(&((int *)p)[-1]);
+   get_data()[i]->Free(&((int32_t *)p)[-1]);
 
 }
 
@@ -209,9 +209,9 @@ public:
    {
 
 
-      int               m_iBlockUse;
+      int32_t               m_iBlockUse;
       const char *      m_pszFileName;
-      int               m_iLine;
+      int32_t               m_iLine;
       memdleak_block *  m_pnext;
       memdleak_block *  m_pprevious;
 
@@ -224,7 +224,7 @@ public:
    virtual ~plex_heap_alloc_array();
 
 
-   static count get_mem_info(int ** ppiUse, const char *** ppszFile, int ** ppiLine);
+   static count get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine);
 
 
    inline void * alloc(size_t nAllocSize);
@@ -233,8 +233,8 @@ public:
 
    inline plex_heap_alloc * find(size_t nAllocSize);
 
-   void * alloc_dbg(size_t nAllocSize, int nBlockUse, const char * szFileName, int iLine);
-   void * realloc_dbg(void * p, size_t nOldAllocSize, size_t nNewAllocSize, int nBlockUse, const char * szFileName, int iLine);
+   void * alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
+   void * realloc_dbg(void * p, size_t nOldAllocSize, size_t nNewAllocSize, int32_t nBlockUse, const char * szFileName, int32_t iLine);
    void free_dbg(void * p, size_t nAllocSize);
 
 };
@@ -317,8 +317,8 @@ inline void * plex_heap_alloc_array::realloc(void * pOld, size_t nOldAllocSize, 
 inline plex_heap_alloc * plex_heap_alloc_array::find(size_t nAllocSize)
 {
    size_t nFoundSize = MAX_DWORD_PTR;
-   int iFound = -1;
-   for(int i = 0; i < this->get_count(); i++)
+   int32_t iFound = -1;
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       if(this->element_at(i)->GetAllocSize() >= nAllocSize && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->GetAllocSize() < nFoundSize))
       {

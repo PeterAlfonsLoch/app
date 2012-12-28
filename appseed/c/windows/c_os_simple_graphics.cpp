@@ -314,7 +314,7 @@ POINT os_simple_graphics::get_offset()
 
 
 
-bool os_simple_graphics::set_offset(int x, int y)
+bool os_simple_graphics::set_offset(int32_t x, int32_t y)
 {
    
    Gdiplus::Matrix m;
@@ -325,7 +325,7 @@ bool os_simple_graphics::set_offset(int x, int y)
 
 }
 
-bool os_simple_graphics::offset(int x, int y)
+bool os_simple_graphics::offset(int32_t x, int32_t y)
 {
 
    POINT pt = get_offset();
@@ -337,14 +337,14 @@ bool os_simple_graphics::offset(int x, int y)
 }
 
 
-bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int32_t x, int32_t y, int32_t cx, int32_t cy, simple_graphics & gSrc, int32_t x1, int32_t y1, DWORD rop)
 {
    
    return m_pgraphics->DrawImage(gSrc.m_bitmap.m_pbitmap, x, y, x1, y1, cx, cy, Gdiplus::UnitPixel) != FALSE;
 
 }
 
-bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
+bool os_simple_graphics::blend_bitmap_data(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF * pdata)
 {
    
    try
@@ -372,7 +372,7 @@ bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORRE
 
 }
 
-SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
+SIZE os_simple_graphics::get_text_extent(const char * psz, int32_t iLen)
 {
 
    if(iLen < 0)
@@ -392,7 +392,7 @@ SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
                            | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
                            | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
 
-   m_pgraphics->MeasureString(wstr, (int) wstr.get_length(), m_font.m_pfont, origin, &strFormat,  &box);
+   m_pgraphics->MeasureString(wstr, (int32_t) wstr.get_length(), m_font.m_pfont, origin, &strFormat,  &box);
 
    SIZE size;
 
@@ -404,7 +404,7 @@ SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
 }
 
 
-bool os_simple_graphics::draw_line(int x1, int y1, int x2, int y2, simple_pen & pen)
+bool os_simple_graphics::draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2, simple_pen & pen)
 {
 
    return m_pgraphics->DrawLine(pen.m_ppen, Gdiplus::Point(x1, y1), Gdiplus::Point(x2, y2)) == Gdiplus::Ok;
@@ -507,7 +507,7 @@ bool os_simple_graphics::replace_clip(const RECT & r)
 
 /* fatty fat
 
-bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
+bool os_simple_graphics::alpha_blend(int32_t x, int32_t y, int32_t cx, int32_t cy, simple_graphics & gSrc, int32_t x1, int32_t y1, int32_t cx1, int32_t cy1, BLENDFUNCTION bf)
 {
 
    return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
@@ -521,7 +521,7 @@ void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
    m_pgraphics->FillRectangle(&Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(clr), GetRValue(clr), GetGValue(clr), GetBValue(clr))), lpRect->left, lpRect->top, width(lpRect), height(lpRect));
 }
 
-bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
+bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, int32_t iSize)
 {
    
    wstring wstr(pszUtf8);
@@ -537,7 +537,7 @@ bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
 }
 
 
-bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
+bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca::e_fill_mode)
 {
 
    if(m_brush.m_pbrush == NULL)
@@ -545,7 +545,7 @@ bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
 
    Gdiplus::Point * ppa = new Gdiplus::Point[iCount];
 
-   for(int i = 0; i < iCount; i++)
+   for(int32_t i = 0; i < iCount; i++)
    {
       ppa[i].X = p[i].x;
       ppa[i].Y = p[i].y;

@@ -7,26 +7,26 @@ public:
 
 
    HINSTANCE                  m_hinstance;
-   int                        __argc;
+   int32_t                        __argc;
    TCHAR **                   __targv;
 
    MESSAGE                    m_msg;
-   int                        m_iError;
+   int32_t                        m_iError;
 
 
    simple_app();
    virtual ~simple_app();
 
-   virtual int main();
+   virtual int32_t main();
 
    virtual void body();
 
    virtual bool initialize();
-   virtual int run();
+   virtual int32_t run();
    virtual bool finalize();
 
    template < class APP >
-   static int s_main()
+   static int32_t s_main()
    {
       APP app;
       return app.main();

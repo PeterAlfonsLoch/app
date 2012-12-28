@@ -48,13 +48,13 @@
 
 
 
-CLASS_DECL_c int bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed);
+CLASS_DECL_c int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed);
 
 
-CLASS_DECL_c int synch_spaadmin(const char * pszCommandLine);
+CLASS_DECL_c int32_t synch_spaadmin(const char * pszCommandLine);
 
 
-CLASS_DECL_c int start_spaadmin(const char * pszCommandLine);
+CLASS_DECL_c int32_t start_spaadmin(const char * pszCommandLine);
 
 
 CLASS_DECL_c void installation_file_lock(bool bLock);

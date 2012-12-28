@@ -238,7 +238,7 @@ namespace platform
       m_pimagelist->add_matter_icon("system/language_icon.ico");
 
 
-      if(!data_get("DockPosition", (int &) m_eposition))
+      if(!data_get("DockPosition", (int32_t &) m_eposition))
       {
          m_eposition = position_left;
       }

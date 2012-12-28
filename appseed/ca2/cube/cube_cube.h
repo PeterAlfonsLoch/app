@@ -21,7 +21,7 @@ namespace cube
       virtual ~cube();
 
 
-      //virtual int main();
+      //virtual int32_t main();
       virtual bool InitApplication();
 
       virtual bool process_initialize();
@@ -35,7 +35,7 @@ namespace cube
       virtual bool bergedge_start();
 
       virtual bool finalize();
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
       virtual index get_new_bergedge(::ca::application_bias * pbiasCreation = NULL);
 

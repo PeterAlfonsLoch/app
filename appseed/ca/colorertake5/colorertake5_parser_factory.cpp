@@ -152,10 +152,10 @@ const char *ParserFactory::getVersion()
 
 
 
-//string ParserFactory::enumerateHRDClasses(int idx){
+//string ParserFactory::enumerateHRDClasses(int32_t idx){
   //return hrdLocations.key(idx);
 //};
-//string ParserFactory::enumerateHRDInstances(const string &classID, int idx){
+//string ParserFactory::enumerateHRDInstances(const string &classID, int32_t idx){
   //::collection::string_map<pointer_object<stringa>> *hash = hrdLocations.pget(classID);
   //if (hash == NULL) return "";
   //return hash->key(idx);
@@ -170,7 +170,7 @@ HRCParser* ParserFactory::getHRCParser()
       return hrcParser;
    hrcParser = new HRCParserImpl(get_app());
    hrcParser->setErrorHandler(fileErrorHandler);
-   for(int idx = 0; idx < hrcLocations.get_size(); idx++)
+   for(int32_t idx = 0; idx < hrcLocations.get_size(); idx++)
    {
          string relPath = hrcLocations.element_at(idx);
          string path;
@@ -195,7 +195,7 @@ HRCParser* ParserFactory::getHRCParser()
             stringa straPath;
             System.dir().rls(get_app(), path, &straPath);
             ex1::filesp spfile(get_app());
-            for(int i = 0; i < straPath.get_count(); i++)
+            for(int32_t i = 0; i < straPath.get_count(); i++)
             {
                if(!Application.dir().is(straPath[i]))
                {
@@ -271,7 +271,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
 
   string strDir = System.dir().name(this->catalogPath);
 
-  for(int idx = 0; idx < hrdLocV->get_size(); idx++)
+  for(int32_t idx = 0; idx < hrdLocV->get_size(); idx++)
   {
     if (hrdLocV->element_at(idx).has_char())
     {
@@ -319,7 +319,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
     throw ParserFactoryException(get_app(), string("can't find hrdName '")+nameID+"'");
 
   TextHRDMapper *mapper = new TextHRDMapper(get_app());
-  for(int idx = 0; idx < hrdLocV->get_size(); idx++)
+  for(int32_t idx = 0; idx < hrdLocV->get_size(); idx++)
   {
     if (hrdLocV->element_at(idx).has_char())
     {

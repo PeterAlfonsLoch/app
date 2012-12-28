@@ -28,7 +28,7 @@ namespace compress
             _bitSize = (byteSize << 3);
             _bitPos = 0;
          }
-         uint32 ReadBits(int numBits);
+         uint32 ReadBits(int32_t numBits);
          uint32 ReadBit();
          bool Avail() const { return (_bitPos < _bitSize); }
       };
@@ -41,7 +41,7 @@ namespace compress
 
          uint32 ReadEncodedUInt32(mem_bit_decoder &inp);
 
-         const int kNumRegBits = 3;
+         const int32_t kNumRegBits = 3;
          const uint32 kNumRegs = 1 << kNumRegBits;
          const uint32 kNumGpRegs = kNumRegs - 1;
 
@@ -101,7 +101,7 @@ namespace compress
          {
             base_array<CCommand> Commands;
 #ifdef RARVM_STANDARD_FILTERS
-            int StandardFilterIndex;
+            int32_t StandardFilterIndex;
 #endif
             byte_array StaticData;
          };
@@ -156,7 +156,7 @@ namespace compress
             bool ExecuteCode(const CProgram *prg);
 
 #ifdef RARVM_STANDARD_FILTERS
-            void ExecuteStandardFilter(int filterIndex);
+            void ExecuteStandardFilter(int32_t filterIndex);
 #endif
 
             byte *Mem;

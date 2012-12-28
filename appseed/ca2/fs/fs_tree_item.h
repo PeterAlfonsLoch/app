@@ -11,13 +11,13 @@ namespace fs
       
       
       string                           m_strName;
-      int                              m_iIdentation;
+      int32_t                              m_iIdentation;
       string                           m_strFolder;
       string                           m_strPath;
       flags < e_flag >                 m_flags;
-      int                              m_iImage;
-      int                              m_iIndex;
-      int                              m_iImageSelected;
+      int32_t                              m_iImage;
+      int32_t                              m_iIndex;
+      int32_t                              m_iImageSelected;
 
 
       tree_item();
@@ -25,8 +25,8 @@ namespace fs
       string get_text(ex1::tree * ptree);
       index get_image(ex1::tree * ptree);
 
-      static int CompareArrangeByName(ex1::tree_item * pitema, ::ex1::tree_item * pitemb, ex1::tree_data * pdata);
-      int get_index() const;
+      static int32_t CompareArrangeByName(ex1::tree_item * pitema, ::ex1::tree_item * pitemb, ex1::tree_data * pdata);
+      int32_t get_index() const;
       bool is_folder() const;
 
 

@@ -77,7 +77,7 @@ get_b_pack_count()
 
 
 class CLASS_DECL_ca int_int_spreadset :
-   virtual public spreadset < int, int, int, int, unique_int_sort_array, unique_int_sort_array >
+   virtual public spreadset < int32_t, int32_t, int32_t, int32_t, unique_int_sort_array, unique_int_sort_array >
 {
 public:
 };

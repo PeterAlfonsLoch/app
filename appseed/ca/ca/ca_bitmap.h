@@ -14,17 +14,17 @@ namespace ca
    public:
 
 
-      virtual bool CreateBitmap(::ca::graphics * pdc, int nWidth, int nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int stride);
+      virtual bool CreateBitmap(::ca::graphics * pdc, int32_t nWidth, int32_t nHeight, UINT nPlanes, UINT nBitcount, const void * lpBits, int32_t stride);
       virtual bool CreateBitmapIndirect(::ca::graphics * pdc, LPBITMAP lpBitmap);
-      virtual bool CreateCompatibleBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
-      virtual bool CreateDiscardableBitmap(::ca::graphics * pgraphics, int nWidth, int nHeight);
+      virtual bool CreateCompatibleBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
+      virtual bool CreateDiscardableBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
       virtual bool CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
       virtual bool CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
 
       virtual bool attach(void * posdata);
       virtual void * detach();
 
-      virtual class size SetBitmapDimension(int nWidth, int nHeight);
+      virtual class size SetBitmapDimension(int32_t nWidth, int32_t nHeight);
       virtual class size set_size(class size size);
 
       virtual class size GetBitmapDimension() const;

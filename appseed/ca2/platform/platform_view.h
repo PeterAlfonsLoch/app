@@ -31,7 +31,7 @@ namespace platform
       {
       public:
          link(::ca::application * papp);
-         int                     m_iId;
+         int32_t                     m_iId;
          run *                   m_prun;
          string                  m_strName;
          string                  m_strBrief;
@@ -44,30 +44,30 @@ namespace platform
       class show_window
       {
       public:
-         show_window(oswindow oswindow, int iShow);
+         show_window(oswindow oswindow, int32_t iShow);
          oswindow        m_oswindow;
-         int         m_iShow;
+         int32_t         m_iShow;
          void show();
       };
 
-      int                  m_iV; // veriwell votagus vida
-      int                  m_iVH;
-      int                  m_iVW;
+      int32_t                  m_iV; // veriwell votagus vida
+      int32_t                  m_iVH;
+      int32_t                  m_iVW;
       visual::dib_sp       m_dibV;
-      int                  m_i_veriwell; // veriwell votagus vida
-      int                  m_i_veriwell_h;
-      int                  m_i_veriwell_w;
+      int32_t                  m_i_veriwell; // veriwell votagus vida
+      int32_t                  m_i_veriwell_h;
+      int32_t                  m_i_veriwell_w;
       visual::dib_sp       m_dib_veriwell;
-      int                  m_i_winactionarea; // que ponta!!cc
-      int                  m_i_winactionarea_h;
-      int                  m_i_winactionarea_w;
+      int32_t                  m_i_winactionarea; // que ponta!!cc
+      int32_t                  m_i_winactionarea_h;
+      int32_t                  m_i_winactionarea_w;
       visual::dib_sp       m_dib_winactionarea;
       oswindow                  m_oswindowWinactionarea;
       oswindow                  m_oswindowCommand;
       oswindow                  m_oswindowWinutil;
       oswindow                 m_oswindowWinservice1;
       oswindow                  m_oswindowBergedge;
-      int                  m_iHitArea;
+      int32_t                  m_iHitArea;
 
       ::user::front_end_schema::button  
                            m_buttonschema;
@@ -75,7 +75,7 @@ namespace platform
       array_del_ptr < link, link & > 
                            m_linka;
 
-      int m_iScreen;
+      int32_t m_iScreen;
       ::ca::font_sp m_font1;
       ::ca::font_sp m_font2;
       ::ca::font_sp m_font3;
@@ -101,7 +101,7 @@ namespace platform
       virtual void dump(dump_context & dumpcontext) const;
    #endif
 
-      void SetScreen(int iScreen);
+      void SetScreen(int32_t iScreen);
 
       virtual void open_document_file(::ca::create_context * pcreatecontext);
 
@@ -134,11 +134,11 @@ namespace platform
       void layout();
       void check_apps();
 
-      void GetAreaThumbRect(LPRECT lprect, int iArea);
+      void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
       index hit_test(point pt, e_element & eelement);
 
 
-      void mt_show_window(oswindow oswindow, int iShow);
+      void mt_show_window(oswindow oswindow, int32_t iShow);
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
 

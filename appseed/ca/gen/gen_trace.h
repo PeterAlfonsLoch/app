@@ -12,10 +12,10 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 namespace gen
 {
 
-   //typedef void ( * PFN_trace_v)(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
+   //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
 
-   CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
+   //CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
 
    //extern CLASS_DECL_ca PFN_trace_v trace_v;
 
@@ -76,7 +76,7 @@ namespace gen
 
          operator DWORD() const throw();
 
-         unsigned int      m_dwCategory;
+         unsigned int32_t      m_dwCategory;
          string            m_strCategory;
          UINT              m_uiLevel;
          e_status          m_estatus;
@@ -103,7 +103,7 @@ namespace gen
             return m_map[dwCategory];
          }
 
-         void TraceV(const char *pszFileName, int nLine, dword_ptr dwCategory, UINT nLevel, const char * pszFmt, va_list args) const;
+         void TraceV(const char *pszFileName, int32_t nLine, dword_ptr dwCategory, UINT nLevel, const char * pszFmt, va_list args) const;
 
 
          /*bool LoadSettings(const char * pszFileName = NULL) const
@@ -137,7 +137,7 @@ namespace gen
          }
 
       private:
-         static int __cdecl CrtHookProc(int eReportType, char* pszMessage, int* pnRetVal)
+         static int32_t __cdecl CrtHookProc(int32_t eReportType, char* pszMessage, int32_t* pnRetVal)
          {
 
             if (eReportType == _CRT_ASSERT)

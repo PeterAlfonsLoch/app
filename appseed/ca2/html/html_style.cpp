@@ -50,13 +50,13 @@ namespace html
       {
          if(str.get_length() >= 9 && ishexdigit(str[7]) && ishexdigit(str[8]) && !ishexdigit(str[9]))
          {
-            int a, r, g, b;
+            int32_t a, r, g, b;
             sscanf(str, "#%02x%02x%02x%02x", &a, &r, &g, &b);
             return ARGB(a, r, g, b);
          }
          else if(!ishexdigit(str[7]))
          {
-            int r, g, b;
+            int32_t r, g, b;
             sscanf(str, "#%02x%02x%02x", &r, &g, &b);
             return ARGB(255, r, g, b);
          }
@@ -65,13 +65,13 @@ namespace html
       {
          if(str.get_length() >= 5 && ishexdigit(str[4]) && !ishexdigit(str[5]))
          {
-            int a, r, g, b;
+            int32_t a, r, g, b;
             sscanf(str, "#%1x%1x%1x%1x", &a, &r, &g, &b);
             return ARGB(n_to_b(a),n_to_b(r),n_to_b(g),n_to_b(b));
          }
          else if(!ishexdigit(str[4]))
          {
-            int r, g, b;
+            int32_t r, g, b;
             sscanf(str, "#%1x%1x%1x", &r, &g, &b);
             return ARGB(255,n_to_b(r),n_to_b(g),n_to_b(b));
          }
@@ -823,16 +823,16 @@ namespace html
                string strParent;
                if(pelemental->m_pparent->m_style.get_text(pszName, pszSubClass, pdata, pelemental->m_pparent, strParent))
                {
-                  str = gen::str::from((int)((double) atof(str) * atoi(strParent)));
+                  str = gen::str::from((int32_t)((double) atof(str) * atoi(strParent)));
                }
                else
                {
-                  str = gen::str::from((int)((double) atof(str) * 12));
+                  str = gen::str::from((int32_t)((double) atof(str) * 12));
                }
             }
             else
             {
-               str = gen::str::from((int)((double) atof(str) * 12));
+               str = gen::str::from((int32_t)((double) atof(str) * 12));
             }
          }
       }
@@ -1194,15 +1194,15 @@ namespace html
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, "(");
             gen::str::consume_spaces(psz, 0);
-            int R = gen::str::consume_natural(psz, 255);
+            int32_t R = gen::str::consume_natural(psz, 255);
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, ",");
             gen::str::consume_spaces(psz, 0);
-            int G = gen::str::consume_natural(psz, 255);
+            int32_t G = gen::str::consume_natural(psz, 255);
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, ",");
             gen::str::consume_spaces(psz, 0);
-            int B = gen::str::consume_natural(psz, 255);
+            int32_t B = gen::str::consume_natural(psz, 255);
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, ")");
             cr = ARGB(255, R, G, B);

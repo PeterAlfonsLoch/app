@@ -10,7 +10,7 @@ class CLASS_DECL_ca db_stra_set :
 public:
 
 
-   int         m_iMaximumCount;
+   int32_t         m_iMaximumCount;
    ::database::id     m_id;
 
 

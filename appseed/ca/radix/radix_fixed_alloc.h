@@ -68,13 +68,13 @@ class CLASS_DECL_ca fixed_alloc_sync
 public:
 
 
-   int                                       m_i;
-   int                                       m_iShareCount;
+   int32_t                                       m_i;
+   int32_t                                       m_iShareCount;
    simple_array < simple_critical_section * >   m_protectptra;
    simple_array < fixed_alloc_no_sync * >       m_allocptra;
 
 
-   fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize = 64, int iShareCount = 2);
+   fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize = 64, int32_t iShareCount = 2);
    ~fixed_alloc_sync();
 
 
@@ -93,7 +93,7 @@ inline void * fixed_alloc_sync::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   register int i = m_i;
+   register int32_t i = m_i;
    if(i >= m_iShareCount)
    {
       i = 0;
@@ -117,19 +117,19 @@ inline void * fixed_alloc_sync::Alloc()
    m_protectptra.get_data()[i]->unlock();
    if(p == NULL)
       return NULL;
-   ((int *) p)[0] = i;
-   return &((int *)p)[1];
+   ((int32_t *) p)[0] = i;
+   return &((int32_t *)p)[1];
 }
 
 inline void fixed_alloc_sync::Free(void * p)
 {
    if (p == NULL)
       return;
-   register int i = ((int *)p)[-1];
+   register int32_t i = ((int32_t *)p)[-1];
    m_protectptra.get_data()[i]->lock();
    try
    {
-      m_allocptra.get_data()[i]->Free(&((int *)p)[-1]);
+      m_allocptra.get_data()[i]->Free(&((int32_t *)p)[-1]);
    }
    catch(...)
    {
@@ -143,8 +143,8 @@ class CLASS_DECL_ca fixed_alloc
 public:
 
 
-   int                                       m_i;
-   int                                       m_iShareCount;
+   int32_t                                       m_i;
+   int32_t                                       m_iShareCount;
    simple_array < fixed_alloc_sync * >          m_allocptra;
 
 
@@ -167,7 +167,7 @@ inline void * fixed_alloc::Alloc()
    // perfectly sequential or perfectly distributed,
    // just fair well distributed
    // but very important is extremely fast
-   register int i = m_i;
+   register int32_t i = m_i;
    if(i >= m_iShareCount)
    {
       i = 0;
@@ -181,9 +181,9 @@ inline void * fixed_alloc::Alloc()
 
    register void * p  = m_allocptra.get_data()[i]->Alloc();
 
-   ((int *) p)[0] = i;
+   ((int32_t *) p)[0] = i;
 
-   return &((int *)p)[1];
+   return &((int32_t *)p)[1];
 
 }
 
@@ -193,9 +193,9 @@ inline void fixed_alloc::Free(void * p)
    if (p == NULL)
       return;
 
-   register int i = ((int *)p)[-1];
+   register int32_t i = ((int32_t *)p)[-1];
 
-   m_allocptra.get_data()[i]->Free(&((int *)p)[-1]);
+   m_allocptra.get_data()[i]->Free(&((int32_t *)p)[-1]);
 
 }
 
@@ -236,13 +236,13 @@ public: \
    void * operator new(size_t, void * p) \
       { return p; } \
    void operator delete(void * p) { s_alloc.Free(p); } \
-   void * operator new(size_t size, const char *, int) \
+   void * operator new(size_t size, const char *, int32_t) \
    { \
       ASSERT(size == s_alloc.GetAllocSize()); \
       UNUSED(size); \
       return s_alloc.Alloc(); \
    } \
-   void operator delete(void * p, const char *, int) { s_alloc.Free(p); } \
+   void operator delete(void * p, const char *, int32_t) { s_alloc.Free(p); } \
 protected: \
    static fixed_alloc s_alloc; \
 public: \
@@ -264,7 +264,7 @@ public: \
    void * operator new(size_t, void * p) \
       { return p; } \
    void operator delete(void * p) { s_alloc.Free(p); } \
-   void * operator new(size_t size, const char *, int) \
+   void * operator new(size_t size, const char *, int32_t) \
    { \
       ASSERT(size == s_alloc.GetAllocSize()); \
       UNUSED(size); \

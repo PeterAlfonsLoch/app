@@ -15,10 +15,10 @@ namespace gcom
       {
       }
 
-      #define HIDOUBLETOINT(d) (((d) > (int) (d)) ? ((int) (d)) + 1 : (int) (d))
+      #define HIDOUBLETOINT(d) (((d) > (int32_t) (d)) ? ((int32_t) (d)) + 1 : (int32_t) (d))
 
       void TransitionEffect::Tool001::Start(
-         int cx, int cy, double dRate, double dRateEx)
+         int32_t cx, int32_t cy, double dRate, double dRateEx)
       {
          m_cx = cx;
          m_cy = cy;
@@ -26,7 +26,7 @@ namespace gcom
          m_dRateEx = dRateEx;
       }
 
-      void TransitionEffect::Tool001::Initialize(ETransitionEffect eeffect, int cx, int cy, TransitionEffect & effect)
+      void TransitionEffect::Tool001::Initialize(ETransitionEffect eeffect, int32_t cx, int32_t cy, TransitionEffect & effect)
       {
 //         Main & viewinterface = HelperGetMain();
 
@@ -52,7 +52,7 @@ namespace gcom
          case TransitionEffectFlyInRightBottom:
          case TransitionEffectFlyInRightTop:
             {
-               const int iFrameCount = 24;
+               const int32_t iFrameCount = 24;
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iFrameCount + 1;
                HelperGetMain().GetTransitionEffect().m_dwDelay = 50;
@@ -64,7 +64,7 @@ namespace gcom
          case TransitionEffectWipeLeft:
             {
                HelperGetMain().GetTransitionEffect().m_dwDelay = 50;
-               int iFrameCount = max(4, cy / 16);
+               int32_t iFrameCount = max(4, cy / 16);
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iFrameCount + 1;
             }
@@ -75,7 +75,7 @@ namespace gcom
          case TransitionEffectWipeTopLeft:
             {
 
-               const int iFrameCount = max(4, cy / 32);
+               const int32_t iFrameCount = max(4, cy / 32);
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iFrameCount + 1;
             }
@@ -85,7 +85,7 @@ namespace gcom
          case TransitionEffectWipeMidHorizontal:
          case TransitionEffectWipeMidVertical:
             {
-               const int iFrameCount = max(4, cy / 32);
+               const int32_t iFrameCount = max(4, cy / 32);
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iFrameCount + 1;
             }
@@ -101,7 +101,7 @@ namespace gcom
          case TransitionEffectScaleCenter:
             {
                effect.m_dwDelay = 60;
-               const int iFrameCount = max(4, cy / 16);
+               const int32_t iFrameCount = max(4, cy / 16);
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iFrameCount;
             }
@@ -110,16 +110,16 @@ namespace gcom
          case TransitionEffectEllipsoidalpixelate_:
             {
 
-               const int tilesx = max(4, cx / 48);
-               const int tilesy = max(4, cy / 48);
-               const int tiles = tilesx * tilesy;
+               const int32_t tilesx = max(4, cx / 48);
+               const int32_t tilesy = max(4, cy / 48);
+               const int32_t tiles = tilesx * tilesy;
 
                m_data.m_tiles.m_iTilesX = tilesx;
                m_data.m_tiles.m_iTilesY = tilesy;
                m_data.m_tiles.m_iTiles = tiles;
 
                m_ia.set_size(tiles);
-               for(int i = 0; i < tiles; i++)
+               for(int32_t i = 0; i < tiles; i++)
                {
                   m_ia.element_at(i) = i;
                }
@@ -138,15 +138,15 @@ namespace gcom
                System.geometry().rotate((m_cx / 2), (m_cy / 2), pointaBigRect, 4, m_phi);
                rect rectBigRect;
                GetSimplePolyBox(rectBigRect, pointaBigRect, 4);
-               int iDimension = max(rectBigRect.width(), rectBigRect.height());
-               int imax = m_size.cx == 0 ? iDimension : (iDimension / (m_size.cx * 2)) + 1;
-               int jmax = m_size.cy == 0 ? iDimension : (iDimension / (m_size.cy * 2)) + 1;
+               int32_t iDimension = max(rectBigRect.width(), rectBigRect.height());
+               int32_t imax = m_size.cx == 0 ? iDimension : (iDimension / (m_size.cx * 2)) + 1;
+               int32_t jmax = m_size.cy == 0 ? iDimension : (iDimension / (m_size.cy * 2)) + 1;
                POINT pointaRect[4];
                rect rect;
                class rect rectClient(0, 0, m_cx, m_cy);
-               for(int i =  -imax; i <= imax; i++)
+               for(int32_t i =  -imax; i <= imax; i++)
                {
-                  for(int j = -jmax; j <= jmax; j++)
+                  for(int32_t j = -jmax; j <= jmax; j++)
                   {
                      GetRotateRect(i, j, pointaRect);
                      GetSimplePolyBox(rect, pointaRect, 4);
@@ -170,20 +170,20 @@ namespace gcom
                rect rectBigRect;
                GetSimplePolyBox(rectBigRect, pointaBigRect, 4);
                m_iRadius = 48;
-               int & iRadius = m_iRadius;
-               int iDimension = max(rectBigRect.width(), rectBigRect.height());
-               int mCount = ((int) ((iDimension / (2.0 + 3.0 * iRadius)) + 2)) + 2;
-               int nCount = ((int) HIDOUBLETOINT(iDimension / (iRadius * sqrt(3.0)))) + 2;
-               int mExCount = mCount + 1;
-               int nExCount = nCount + 1;
-               int imax = (mCount + mExCount) / 2;
-               int jmax = (nCount + nExCount) / 2;
+               int32_t & iRadius = m_iRadius;
+               int32_t iDimension = max(rectBigRect.width(), rectBigRect.height());
+               int32_t mCount = ((int32_t) ((iDimension / (2.0 + 3.0 * iRadius)) + 2)) + 2;
+               int32_t nCount = ((int32_t) HIDOUBLETOINT(iDimension / (iRadius * sqrt(3.0)))) + 2;
+               int32_t mExCount = mCount + 1;
+               int32_t nExCount = nCount + 1;
+               int32_t imax = (mCount + mExCount) / 2;
+               int32_t jmax = (nCount + nExCount) / 2;
                POINT pointaHexagon[6];
                rect rect;
                class rect rectClient(0, 0, m_cx, m_cy);
-               for(int i =  -imax; i <= imax; i++)
+               for(int32_t i =  -imax; i <= imax; i++)
                {
-                  for(int j = -jmax; j <= jmax; j++)
+                  for(int32_t j = -jmax; j <= jmax; j++)
                   {
                      GetRotateHexagon(i, j,  pointaHexagon);
                      GetSimplePolyBox(rect, pointaHexagon, 6);
@@ -206,23 +206,23 @@ namespace gcom
                effect.m_dwDelay = 5;
 
                //double dPow = 1.0 / 2.5;
-               //const int iMaxGroupCount = 256;
-               const int iMaxGroupCount = 127;
-               const int iTileCount = max(4, cy / 8);
-               int iGroupCount = min(256, iMaxGroupCount);
-               const int iFrameCount = iTileCount;
+               //const int32_t iMaxGroupCount = 256;
+               const int32_t iMaxGroupCount = 127;
+               const int32_t iTileCount = max(4, cy / 8);
+               int32_t iGroupCount = min(256, iMaxGroupCount);
+               const int32_t iFrameCount = iTileCount;
 
                //m_dAlpha = ceil(255.0 / pow(iGroupCount, dPow));
 
                m_data.m_sliceframe.m_iTileCount = iTileCount;
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_data.m_sliceframe.m_iGroupCount = iGroupCount;
-//               int iTileExCount = max(iTileCount - iFrameCount + 1, 0);
-               for(int iFrame = - iGroupCount; iFrame < iFrameCount; iFrame++)
+//               int32_t iTileExCount = max(iTileCount - iFrameCount + 1, 0);
+               for(int32_t iFrame = - iGroupCount; iFrame < iFrameCount; iFrame++)
                {
-                  for(int iGroup =  0; iGroup < iGroupCount; iGroup++)
+                  for(int32_t iGroup =  0; iGroup < iGroupCount; iGroup++)
                   {
-                     int iTile = iGroup + iFrame;
+                     int32_t iTile = iGroup + iFrame;
                      if(iTile >= 0
                         && iTile < iTileCount)
                      {
@@ -231,7 +231,7 @@ namespace gcom
                   }
                }
                m_ia.set_size(iTileCount);
-               for(int i = 0; i < iTileCount; i++)
+               for(int32_t i = 0; i < iTileCount; i++)
                {
                   m_ia.element_at(i) = 0;
                }
@@ -246,8 +246,8 @@ namespace gcom
             {
                effect.m_dwDelay = 84;
                m_iStepRepeatCount = 1;
-               const int iTileCount = 1;
-               const int iFrameCount = 49;
+               const int32_t iTileCount = 1;
+               const int32_t iFrameCount = 49;
                m_data.m_sliceframe.m_iTileCount = iTileCount;
                m_data.m_sliceframe.m_iFrameCount = iFrameCount;
                m_iStepCount = iTileCount * iFrameCount + 1;
@@ -262,8 +262,8 @@ namespace gcom
 
                effect.m_dwDelay = 200;
 
-               int c1 = 0;
-               int c2 = 0;
+               int32_t c1 = 0;
+               int32_t c2 = 0;
 
                switch(eeffect)
                {
@@ -286,7 +286,7 @@ namespace gcom
                m_data.m_alphapixelate.m_c2 = c2;
 
 
-               int iSize;
+               int32_t iSize;
 
                {
                   double dSize;
@@ -296,19 +296,19 @@ namespace gcom
 
                   for(dSize = dMinSize; dSize <= dMaxSize; dSize *= dRate)
                   {
-                      m_ia.add((int) dSize);
+                      m_ia.add((int32_t) dSize);
                   }
 
                   for(dSize /= dRate; dSize >= dMinSize; dSize /= dRate)
                   {
-                      m_ia.add((int) dSize);
+                      m_ia.add((int32_t) dSize);
                   }
 
                }
 
 
                
-               for(int i = 0; i < m_ia.get_size(); i++)
+               for(int32_t i = 0; i < m_ia.get_size(); i++)
                {
                
                   iSize = m_ia[i];
@@ -343,9 +343,9 @@ namespace gcom
                m_data.m_radialunveil.m_iRadius = 0;
                m_pointa.remove_all();
 
-               int c1 = max(cx, cy) * 3 / 2;
-               int dim = 1;
-               int c = 0;
+               int32_t c1 = max(cx, cy) * 3 / 2;
+               int32_t dim = 1;
+               int32_t c = 0;
                while(dim < c1)
                {
                   m_pointa.add(point(dim, 50));
@@ -433,8 +433,8 @@ namespace gcom
       {
          ETransitionEffect etransitioneffect = m_etransitioneffect;
 
-         const int & cx = m_cx;
-         const int & cy = m_cy;
+         const int32_t & cx = m_cx;
+         const int32_t & cy = m_cy;
 //         const double dRate = m_dRate;
 //         const double dRateEx = m_dRateEx;
          rect & rectUpdate = m_rect;
@@ -669,8 +669,8 @@ namespace gcom
 
       void TransitionEffect::Tool001::GetRect(LPRECT lprect, double dRate, double dRateEx)
       {
-         const int & cx = m_cx;
-         const int & cy = m_cy;
+         const int32_t & cx = m_cx;
+         const int32_t & cy = m_cy;
 //         rect & rectUpdate = m_rect;
 //         point & point = m_point;
 //         rect & rectA = m_rectA;
@@ -749,8 +749,8 @@ namespace gcom
 
       void TransitionEffect::Tool001::GetRectAB(LPRECT lprectA, LPRECT lprectB)
       {
-//         const int & cx = m_cx;
-//         const int & cy = m_cy;
+//         const int32_t & cx = m_cx;
+//         const int32_t & cy = m_cy;
          const double dRate = m_dRate;
          const double dRateEx = m_dRateEx;
          rect & rectUpdate = m_rect;
@@ -848,8 +848,8 @@ namespace gcom
       void TransitionEffect::Tool001::GetRect(
          LPRECT   lprect,
          EAlign   ealign,
-         int      cx,
-         int      cy,
+         int32_t      cx,
+         int32_t      cy,
          double   dRate)
       {
 
@@ -964,8 +964,8 @@ namespace gcom
       }
 
       void TransitionEffect::Tool001::GetSliceRect(
-         int cx,
-         int cy,
+         int32_t cx,
+         int32_t cy,
          LPRECT   lprect,
          EAlign   ealign,
          double   dRate,
@@ -1058,14 +1058,14 @@ namespace gcom
       void TransitionEffect::Tool001::
          GetHorizontalHexagon(LPRECT lprect, LPPOINT lppointa)
       {
-         int y1 = lprect->top;
-         int y3 = lprect->bottom;
-         int y2 = (y1 + y3) / 2;
-         int x1 = lprect->left;
-         int x4 = lprect->right;
+         int32_t y1 = lprect->top;
+         int32_t y3 = lprect->bottom;
+         int32_t y2 = (y1 + y3) / 2;
+         int32_t x1 = lprect->left;
+         int32_t x4 = lprect->right;
          double  dr = (x4 - x1) / 2.0;
-         int x2 = (int) (x1 + dr / 2);
-         int x3 = x1 + HIDOUBLETOINT(dr * 1.5);
+         int32_t x2 = (int32_t) (x1 + dr / 2);
+         int32_t x3 = x1 + HIDOUBLETOINT(dr * 1.5);
 
          lppointa[0] = point(x1, y2);
          lppointa[1] = point(x2, y1);
@@ -1076,12 +1076,12 @@ namespace gcom
 
       }
 
-      int TransitionEffect::Tool001::FindRandomEnglobingEllipse(LPCRECT lpcrect, LPRECT lprectEllipse, int iMaxRand)
+      int32_t TransitionEffect::Tool001::FindRandomEnglobingEllipse(LPCRECT lpcrect, LPRECT lprectEllipse, int32_t iMaxRand)
       {
 //         Main & viewinterface = HelperGetMain();
 
-         int iRandX = (int) System.math().RandRange(-iMaxRand, iMaxRand);
-         int iRandY = (int) System.math().RandRange(-iMaxRand, iMaxRand);
+         int32_t iRandX = (int32_t) System.math().RandRange(-iMaxRand, iMaxRand);
+         int32_t iRandY = (int32_t) System.math().RandRange(-iMaxRand, iMaxRand);
 
          rect rect(lpcrect);
 
@@ -1095,10 +1095,10 @@ namespace gcom
 
          double dDiff = dSide - dRadius;
 
-         int iLContrib = iRandX < 0 ? iRandX : 0;
-         int iRContrib = iRandX > 0 ? iRandX : 0;
-         int iTContrib = iRandY < 0 ? iRandY : 0;
-         int iBContrib = iRandY > 0 ? iRandY : 0;
+         int32_t iLContrib = iRandX < 0 ? iRandX : 0;
+         int32_t iRContrib = iRandX > 0 ? iRandX : 0;
+         int32_t iTContrib = iRandY < 0 ? iRandY : 0;
+         int32_t iBContrib = iRandY > 0 ? iRandY : 0;
 
          lprectEllipse->left = (long) (rect.left + iLContrib   - dDiff);
          lprectEllipse->top = (long) (rect.top + iTContrib - dDiff);
@@ -1109,11 +1109,11 @@ namespace gcom
       }
 
 
-      int TransitionEffect::Tool001::FindRandomEnglobingCircle(LPCRECT lpcrect, LPRECT lprectCircle, int iMaxRand)
+      int32_t TransitionEffect::Tool001::FindRandomEnglobingCircle(LPCRECT lpcrect, LPRECT lprectCircle, int32_t iMaxRand)
       {
 //         Main & viewinterface = HelperGetMain();
 
-         int iRand = (int) System.math().RandRange(-iMaxRand, iMaxRand);
+         int32_t iRand = (int32_t) System.math().RandRange(-iMaxRand, iMaxRand);
 
          rect rect(lpcrect);
 
@@ -1127,10 +1127,10 @@ namespace gcom
 
          double dDiff = dSide - dRadius;
 
-         int iLContrib = iRand < 0 ? iRand : 0;
-         int iRContrib = iRand > 0 ? iRand : 0;
-         int iTContrib = iRand < 0 ? iRand : 0;
-         int iBContrib = iRand > 0 ? iRand : 0;
+         int32_t iLContrib = iRand < 0 ? iRand : 0;
+         int32_t iRContrib = iRand > 0 ? iRand : 0;
+         int32_t iTContrib = iRand < 0 ? iRand : 0;
+         int32_t iBContrib = iRand > 0 ? iRand : 0;
 
          lprectCircle->left = (long) (rect.left + iLContrib   - dDiff);
          lprectCircle->top = (long) (rect.top + iTContrib - dDiff);
@@ -1175,15 +1175,15 @@ namespace gcom
          m_etypea.remove(eeffect);
       }
 
-      void TransitionEffect::Tool001::GetSimplePolyBox(LPRECT lprect, LPPOINT lppoint, int iCount)
+      void TransitionEffect::Tool001::GetSimplePolyBox(LPRECT lprect, LPPOINT lppoint, int32_t iCount)
       {
          if(iCount <= 0)
             return;
-         int left = lppoint[0].x;
-         int right = left;
-         int top = lppoint[0].y;
-         int bottom = top;
-         for(int i = 1; i < iCount; i++)
+         int32_t left = lppoint[0].x;
+         int32_t right = left;
+         int32_t top = lppoint[0].y;
+         int32_t bottom = top;
+         for(int32_t i = 1; i < iCount; i++)
          {
             if(lppoint[i].x < left)
                left = lppoint[i].x;
@@ -1203,10 +1203,10 @@ namespace gcom
 
       void TransitionEffect::Tool001::
       GetRotateRect(
-         int w,
-         int h,
-         int i,
-         int j,
+         int32_t w,
+         int32_t h,
+         int32_t i,
+         int32_t j,
          double phi,
          LPPOINT lppoint)
       {
@@ -1218,8 +1218,8 @@ namespace gcom
 
       void TransitionEffect::Tool001::
       GetRotateRect(
-         int i,
-         int j,
+         int32_t i,
+         int32_t j,
          LPPOINT lppoint)
       {
          GetRotateRect(
@@ -1232,10 +1232,10 @@ namespace gcom
 
       }
 
-      void TransitionEffect::Tool001::TranslateRect(LPRECT lprect, int w, int h, int i, int j)
+      void TransitionEffect::Tool001::TranslateRect(LPRECT lprect, int32_t w, int32_t h, int32_t i, int32_t j)
       {
-         int dx = (m_cx - w) / 2;
-         int dy = (m_cy - h) / 2;
+         int32_t dx = (m_cx - w) / 2;
+         int32_t dy = (m_cy - h) / 2;
          lprect->left = dx + w * i;
          lprect->right = lprect->left + w;
          lprect->top = dy + h * j;
@@ -1244,9 +1244,9 @@ namespace gcom
 
       void TransitionEffect::Tool001::
       GetRotateHexagon(
-         int iRadius,
-         int i,
-         int j,
+         int32_t iRadius,
+         int32_t i,
+         int32_t j,
          double phi,
          LPPOINT lppoint)
       {
@@ -1283,8 +1283,8 @@ namespace gcom
 
       void TransitionEffect::Tool001::
       GetRotateHexagon(
-         int i,
-         int j,
+         int32_t i,
+         int32_t j,
          LPPOINT lppoint)
       {
          GetRotateHexagon(

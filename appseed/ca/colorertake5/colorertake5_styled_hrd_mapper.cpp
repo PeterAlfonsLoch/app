@@ -3,10 +3,10 @@
 namespace colorertake5
 {
 
-const int StyledRegion::RD_BOLD = 1;
-const int StyledRegion::RD_ITALIC = 2;
-const int StyledRegion::RD_UNDERLINE = 4;
-const int StyledRegion::RD_STRIKEOUT = 8;
+const int32_t StyledRegion::RD_BOLD = 1;
+const int32_t StyledRegion::RD_ITALIC = 2;
+const int32_t StyledRegion::RD_UNDERLINE = 4;
+const int32_t StyledRegion::RD_STRIKEOUT = 8;
 
 StyledHRDMapper::StyledHRDMapper(::ca::application * papp) :
    ca(papp),
@@ -56,10 +56,10 @@ void StyledHRDMapper::loadRegionMappings(ex1::byte_input_stream & istream)
 
 
          bool bfore = isdigit_dup(curel->attr("fore").first()) != FALSE;
-         int fore = atoi((curel)->attr("fore"));
+         int32_t fore = atoi((curel)->attr("fore"));
          bool bback = isdigit_dup((curel)->attr("back").first()) != FALSE;
-         int back = atoi((curel)->attr("back"));
-         int style = atoi((curel)->attr("style"));
+         int32_t back = atoi((curel)->attr("back"));
+         int32_t style = atoi((curel)->attr("style"));
          RegionDefine *rdef = new StyledRegion(bfore, bback, fore, back, style);
          regionDefines.set_at(name, rdef);
        }
@@ -110,7 +110,7 @@ void StyledHRDMapper::setRegionDefine(const char * name, RegionDefine *rd)
   regionDefines.set_at(name, rd_new);
 
   // Searches and replaces old region references
-  for(int idx = 0; idx < regionDefinesVector.get_size(); idx++){
+  for(int32_t idx = 0; idx < regionDefinesVector.get_size(); idx++){
     if (regionDefinesVector.element_at(idx) == rd_old){
       regionDefinesVector.set_at(idx, rd_new);
       break;

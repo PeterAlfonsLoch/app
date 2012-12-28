@@ -10,7 +10,7 @@
 #include <windows.h>
 
 /*
-extern "C" int APIENTRY
+extern "C" int32_t APIENTRY
 DllMain( HINSTANCE hModule,
                        DWORD  ul_reason_for_call,
                        LPVOID lpReserved
@@ -30,10 +30,10 @@ DllMain( HINSTANCE hModule,
 #endif
 
 // This is an example of an exported var
-LIBCHARGUESS_API int nLibcharguess=0;
+LIBCHARGUESS_API int32_t nLibcharguess=0;
 
 // This is an example of an exported function.
-LIBCHARGUESS_API int fnLibcharguess()
+LIBCHARGUESS_API int32_t fnLibcharguess()
 {
    return 42;
 }
@@ -48,7 +48,7 @@ LibCharGuess::LibCharGuess()
 
 
 
-int LibCharGuess::Init()
+int32_t LibCharGuess::Init()
 {
    return CharGuessInit();
 }
@@ -87,7 +87,7 @@ unsigned long LibCharGuess::GuessCodePage(const char * lpsz)
 }
 
 
-int LibCharGuess::Done()
+int32_t LibCharGuess::Done()
 {
    return CharGuessDone();
 }

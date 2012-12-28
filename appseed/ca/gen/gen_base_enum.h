@@ -27,14 +27,14 @@ public:
    base_enum();
    base_enum(const base_enum < TYPE, edefault> & evalue);
    base_enum(TYPE evalue);
-   base_enum(int i);
+   base_enum(int32_t i);
    virtual ~base_enum();
 
    TYPE m_evalue;
 
    void DefaultConstruct();
 
-   const base_enum <TYPE, edefault> & operator = (int i);
+   const base_enum <TYPE, edefault> & operator = (int32_t i);
 
    const base_enum <TYPE, edefault> & operator = (TYPE evalue);
    const base_enum <TYPE, edefault> & operator &= (TYPE evalue);
@@ -73,7 +73,7 @@ base_enum<TYPE, edefault>::base_enum(TYPE evalue)
 }
 
 template <class TYPE, TYPE edefault>
-base_enum<TYPE, edefault>::base_enum(int i)
+base_enum<TYPE, edefault>::base_enum(int32_t i)
 {
    m_evalue = (TYPE) i;
 }
@@ -90,7 +90,7 @@ void base_enum<TYPE, edefault>::DefaultConstruct()
 }
 
 template <class TYPE, TYPE edefault>
-const base_enum<TYPE, edefault> & base_enum<TYPE, edefault>::operator = (int i)
+const base_enum<TYPE, edefault> & base_enum<TYPE, edefault>::operator = (int32_t i)
 {
    m_evalue = (TYPE) i;
    return *this;

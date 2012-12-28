@@ -20,7 +20,7 @@ namespace ca4
 
       virtual void set_filea(stringa & stra);
 
-      virtual int get_file_count();
+      virtual int32_t get_file_count();
       virtual void get_filea(stringa & stra);
 
       virtual void set_plain_text(const char * psz);

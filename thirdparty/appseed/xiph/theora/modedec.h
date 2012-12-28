@@ -38,7 +38,7 @@ struct oc_mode_metrics{
 };
 
 
-int             oc_has_mode_metrics;
+int32_t             oc_has_mode_metrics;
 oc_mode_metrics OC_MODE_METRICS[64][3][2][OC_SAD_BINS];
 # endif
 

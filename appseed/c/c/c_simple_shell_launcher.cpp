@@ -11,7 +11,7 @@ simple_shell_launcher::simple_shell_launcher()
 }
 
 
-simple_shell_launcher::simple_shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, int iShow)
+simple_shell_launcher::simple_shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, int32_t iShow)
 {
 
    m_iMode              = 0;

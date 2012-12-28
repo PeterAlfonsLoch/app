@@ -34,7 +34,7 @@ namespace userbase
       bool                    m_bWindowFrame;
       bool                    m_bLayered;
       ::database::id          m_datakeyFrame;
-      int                     m_iFrameData;
+      int32_t                     m_iFrameData;
 
 
       enum EColumn

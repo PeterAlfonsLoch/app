@@ -22,7 +22,7 @@ namespace ex1
       //virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
 
       void normalize(string & str);
-      int cmp(const char * psz1, const char* psz2);
+      int32_t cmp(const char * psz1, const char* psz2);
 
 
    };

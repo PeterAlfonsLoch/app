@@ -13,7 +13,7 @@ namespace command
 
       string                  m_strAnimatedStatusBarText;
       bool                    m_bAutoHideOnOutClick;
-      int                     m_iAnimateStep;
+      int32_t                     m_iAnimateStep;
       image_list *            m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;
@@ -48,7 +48,7 @@ namespace command
 
 
 
-	   int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	   int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
 	   DECL_GEN_SIGNAL(_001OnTimer);
 
       DECL_GEN_SIGNAL(_001OnCreate)

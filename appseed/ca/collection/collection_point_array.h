@@ -11,7 +11,7 @@ public:
    __inline point_array(const point_array & pointset) { operator=(pointset); }
    virtual ~point_array();
 
-   void offset(int x, int y);
+   void offset(int32_t x, int32_t y);
    void offset(class point point);
 
    void rotate(double dAngle);
@@ -22,7 +22,7 @@ public:
 
    bool bounding_rect_contains_pt(point pt);
 
-   __inline index add(int x, int y) {return raw_array < point >::add(point(x, y)); }
+   __inline index add(int32_t x, int32_t y) {return raw_array < point >::add(point(x, y)); }
    __inline index add(POINT point) {return add(point.x, point.y); }
    __inline point_array & operator =(const point_array & pointset) { copy(pointset); return *this; }
 

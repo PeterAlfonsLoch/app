@@ -78,7 +78,7 @@ url_domain_base::url_domain_base()
          return;
       }
       const char * pszPreTopLevel = m_pszTopLevel - 2;
-      int iLenPreTopLevel = 0;
+      int32_t iLenPreTopLevel = 0;
       while(pszPreTopLevel > psz && *pszPreTopLevel != '.')
       {
          pszPreTopLevel--;
@@ -93,9 +93,9 @@ url_domain_base::url_domain_base()
          throw "not_expected";
       }
       const char * pszPreTopLevel2 = NULL;
-      int iLenPreTopLevel2 = 0;
+      int32_t iLenPreTopLevel2 = 0;
       const char * pszPreTopLevel3 = NULL;
-//      int iLenPreTopLevel3 = 0;
+//      int32_t iLenPreTopLevel3 = 0;
       if(m_iCount >= 4)
       {
          pszPreTopLevel2 = pszPreTopLevel - 2;
@@ -999,10 +999,10 @@ url_domain_base::url_domain_base()
 
 /*      bool url_domain_in(string str, string url)
    {
-      int iPos = url.reverse_find('.');
+      int32_t iPos = url.reverse_find('.');
       if(iPos < 0)
          return false;
-      int iLen = str.get_length();
+      int32_t iLen = str.get_length();
       if(url.get_length() < iLen + 1)
          return false;
       if(url[iLen] != '.')
@@ -1017,11 +1017,11 @@ url_domain_base::url_domain_base()
 
    void url_domain_prefix(string suffix, string url, string & prefix)
    {
-      int iLen = url.get_length();
-      int iSufLen = suffix.get_length();
+      int32_t iLen = url.get_length();
+      int32_t iSufLen = suffix.get_length();
       if(iLen < iSufLen)
          return false;
-      int iPos = iLen - iSufLen;
+      int32_t iPos = iLen - iSufLen;
       if(strsubstr($str, $pos) != $suffix)
          return false;
       if($pos == 0)

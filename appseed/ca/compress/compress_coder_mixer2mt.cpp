@@ -19,7 +19,7 @@ namespace compress
          OutStreamPointers.set_size(0, NumOutStreams);
       }
 
-      int CCoder2::run() { Code(NULL); return 0;}
+      int32_t CCoder2::run() { Code(NULL); return 0;}
 
       void CCoder2::Code(::compress::progress_info_interface *progress)
       {
@@ -44,11 +44,11 @@ namespace compress
             Result = Coder2->Code(&InStreamPointers.first_element(), &InSizePointers.first_element(), NumInStreams,
             &OutStreamPointers.first_element(), &OutSizePointers.first_element(), NumOutStreams, progress);
          {
-            for(int i = 0; i < InStreams.get_count(); i++)
+            for(int32_t i = 0; i < InStreams.get_count(); i++)
             {
                gen::release(InStreams[i].m_p);
             }
-            for(int i = 0; i < OutStreams.get_count(); i++)
+            for(int32_t i = 0; i < OutStreams.get_count(); i++)
             {
                gen::release(OutStreams[i].m_p);
             }
@@ -89,7 +89,7 @@ namespace compress
       {
          _bindInfo = bindInfo;
          _streamBinders.remove_all();
-         for (int i = 0; i < _bindInfo.BindPairs.get_count(); i++)
+         for (int32_t i = 0; i < _bindInfo.BindPairs.get_count(); i++)
          {
             _streamBinders.add_new();
             RINOK(_streamBinders.last_element().CreateEvents());
@@ -119,7 +119,7 @@ namespace compress
 
       void CCoderMixer2MT::ReInit()
       {
-         for (int i = 0; i < _streamBinders.get_count(); i++)
+         for (int32_t i = 0; i < _streamBinders.get_count(); i++)
             _streamBinders[i].ReInit();
       }
 
@@ -135,7 +135,7 @@ namespace compress
          if (_coders.get_count() != _bindInfo.Coders.get_count())
          throw 0;
          */
-         int i;
+         int32_t i;
          for (i = 0; i < _coders.get_count(); i++)
          {
             CCoder2 &coderInfo = _coders[i];
@@ -191,7 +191,7 @@ namespace compress
 
       HRESULT CCoderMixer2MT::ReturnIfError(HRESULT code)
       {
-         for (int i = 0; i < _coders.get_count(); i++)
+         for (int32_t i = 0; i < _coders.get_count(); i++)
             if (_coders[i].Result == code)
                return code;
          return S_OK;
@@ -211,7 +211,7 @@ namespace compress
 
          Init(inStreams, outStreams);
 
-         int i;
+         int32_t i;
          for (i = 0; i < _coders.get_count(); i++)
             if (i != _progressCoderIndex)
             {

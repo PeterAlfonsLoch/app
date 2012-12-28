@@ -35,26 +35,26 @@ BEGIN_EXTERN_C
 
 typedef struct {
   float ampbuf[VE_AMP];
-  int   ampptr;
+  int32_t   ampptr;
 
   float nearDC[VE_NEARDC];
   float nearDC_acc;
   float nearDC_partialacc;
-  int   nearptr;
+  int32_t   nearptr;
 
 } envelope_filter_state;
 
 typedef struct {
-  int begin;
-  int end;
+  int32_t begin;
+  int32_t end;
   float *window;
   float total;
 } envelope_band;
 
 typedef struct {
-  int ch;
-  int winlength;
-  int searchstep;
+  int32_t ch;
+  int32_t winlength;
+  int32_t searchstep;
   float minenergy;
 
   mdct_lookup  mdct;
@@ -62,9 +62,9 @@ typedef struct {
 
   envelope_band          band[VE_BANDS];
   envelope_filter_state *filter;
-  int   stretch;
+  int32_t   stretch;
 
-  int                   *mark;
+  int32_t                   *mark;
 
   long storage;
   long current;
@@ -76,7 +76,7 @@ extern void _ve_envelope_init(envelope_lookup *e,vorbis_info *vi);
 extern void _ve_envelope_clear(envelope_lookup *e);
 extern long _ve_envelope_search(vorbis_dsp_state *v);
 extern void _ve_envelope_shift(envelope_lookup *e,long shift);
-extern int  _ve_envelope_mark(vorbis_dsp_state *v);
+extern int32_t  _ve_envelope_mark(vorbis_dsp_state *v);
 
 END_EXTERN_C
 

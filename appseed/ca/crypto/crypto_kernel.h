@@ -192,7 +192,7 @@ crypto_kernel_load_debug_module(debug_module_t *new_dm);
 err_status_t
 crypto_kernel_alloc_cipher(cipher_type_id_t id, 
             cipher_pointer_t *cp, 
-            int key_len);
+            int32_t key_len);
 
 /*
  * crypto_kernel_alloc_auth(id, ap, key_len, tag_len); 
@@ -209,8 +209,8 @@ crypto_kernel_alloc_cipher(cipher_type_id_t id,
 err_status_t
 crypto_kernel_alloc_auth(auth_type_id_t id, 
           auth_pointer_t *ap, 
-          int key_len,
-          int tag_len);
+          int32_t key_len,
+          int32_t tag_len);
 
 
 /*
@@ -223,7 +223,7 @@ crypto_kernel_alloc_auth(auth_type_id_t id,
  */
 
 err_status_t
-crypto_kernel_set_debug_module(char *mod_name, int v);
+crypto_kernel_set_debug_module(char *mod_name, int32_t v);
 
 /**
  * @brief writes a random octet string.
@@ -246,6 +246,6 @@ crypto_kernel_set_debug_module(char *mod_name, int v);
  * @ingroup SRTP
  */
 err_status_t
-crypto_get_random(unsigned char *buffer, unsigned int length);
+crypto_get_random(unsigned char *buffer, unsigned int32_t length);
      
 #endif /* CRYPTO_KERNEL */

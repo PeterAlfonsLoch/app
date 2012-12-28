@@ -66,7 +66,7 @@ namespace gen
 
    signalizable::~signalizable()
    {
-      for(int i = 0; i < m_signalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_signalptra.get_size(); i++)
       {
          m_signalptra[i]->disconnect(this);
       }
@@ -80,7 +80,7 @@ namespace gen
 
    void signalizable::unregister_signal(signal * psignal)
    {
-      for(int i = 0; i < m_signalptra.get_size();)
+      for(int32_t i = 0; i < m_signalptra.get_size();)
       {
          if(m_signalptra[i] == psignal)
          {
@@ -95,7 +95,7 @@ namespace gen
 
    void signalizable::unregister_target(gen::signalizable * psignalizable)
    {
-      for(int i = 0; i < m_signalptra.get_size();)
+      for(int32_t i = 0; i < m_signalptra.get_size();)
       {
          m_signalptra[i]->disconnect(psignalizable);
          if(m_signalptra[i]->m_delegatea.get_count() <= 0)
@@ -111,7 +111,7 @@ namespace gen
 
    void signalizable::filter_target(gen::signalizable * psignalizable)
    {
-      for(int i = 0; i < m_signalptra.get_size();)
+      for(int32_t i = 0; i < m_signalptra.get_size();)
       {
          m_signalptra[i]->leave_only(psignalizable);
          if(m_signalptra[i]->m_delegatea.get_count() <= 0)
@@ -136,7 +136,7 @@ namespace gen
 
    signal::~signal()
    {
-      for(int i = 0; i < m_delegatea.get_size(); i++)
+      for(int32_t i = 0; i < m_delegatea.get_size(); i++)
       {
          try
          {
@@ -196,7 +196,7 @@ namespace gen
 
    void signal::disconnect(signalizable * psignalizable)
    {
-      for(int i = 0; i < m_delegatea.get_size();)
+      for(int32_t i = 0; i < m_delegatea.get_size();)
       {
          if(m_delegatea[i].get_signalizable() == psignalizable)
          {
@@ -211,7 +211,7 @@ namespace gen
 
    void signal::leave_only(signalizable * psignalizable)
    {
-      for(int i = 0; i < m_delegatea.get_size();)
+      for(int32_t i = 0; i < m_delegatea.get_size();)
       {
          if(m_delegatea[i].get_signalizable() != psignalizable)
          {
@@ -232,7 +232,7 @@ namespace gen
 
    signalid * signalid_array::get(signalid * pid)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          if(this->element_at(i)->is_equal(pid))
          {
@@ -245,7 +245,7 @@ namespace gen
 
    signalid_array::~signalid_array()
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          delete this->element_at(i);
       }

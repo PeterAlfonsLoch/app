@@ -45,7 +45,7 @@ namespace html
 
    font * data::get_font(elemental * pelemental)
    {
-      int iFont = -1;
+      int32_t iFont = -1;
       if(pelemental->m_pimpl->m_bHover)
       {
          if(!pelemental->m_pimpl->m_mapFont.Lookup("hover", iFont))
@@ -75,7 +75,7 @@ namespace html
       }
 
    }
-   int data::create_font(elemental * pelemental)
+   int32_t data::create_font(elemental * pelemental)
    {
       string strTag;
       string strSubClass;
@@ -120,7 +120,7 @@ namespace html
       font.m_strSize.trim();
       font.m_strWeight.trim();
       font.m_strTextDecoration.trim();
-      for(int i = 0; i < m_fonta.get_count(); i++)
+      for(int32_t i = 0; i < m_fonta.get_count(); i++)
       {
          if(m_fonta[i] == font)
             return i;
@@ -128,8 +128,8 @@ namespace html
       class font * pfont = new class font(font);
       pfont->create(get_app());
       m_fonta.add(pfont);
-      pfont->m_iIndex = (int) m_fonta.get_upper_bound();
-      return (int) pfont->m_iIndex;
+      pfont->m_iIndex = (int32_t) m_fonta.get_upper_bound();
+      return (int32_t) pfont->m_iIndex;
    }
 
    void data::delete_contents()
@@ -138,7 +138,7 @@ namespace html
       m_elemental.m_propertyset.clear();
       m_elemental.m_pbase = NULL;
       delete m_elemental.m_pimpl;
-      for(int i = 0; i < m_elemental.m_elementalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_elemental.m_elementalptra.get_size(); i++)
       {
          delete m_elemental.m_elementalptra[i];
       }
@@ -178,7 +178,7 @@ namespace html
 
    void data::implement(::ca::graphics * pdc)
    {
-      int iCount = 24;
+      int32_t iCount = 24;
       while(m_bImplement && iCount >= 0)
       {
          Sleep(84);
@@ -212,7 +212,7 @@ namespace html
 
    void data::layout(::ca::graphics * pdc)
    {
-      int iCount = 24;
+      int32_t iCount = 24;
       while(m_bLayout && iCount >= 0)
       {
          Sleep(84);
@@ -263,7 +263,7 @@ namespace html
       m_bLastBlockY = false;
    }
 
-   int data::get_image_index(const char * pszUrl)
+   int32_t data::get_image_index(const char * pszUrl)
    {
       string strUrl(pszUrl);
       if(strUrl.find(":") >= 0)
@@ -283,16 +283,16 @@ namespace html
             System.dir().name(m_strPathName), strUrl);
          strUrl.replace("/", "\\");
       }
-      for(int i = 0; i < m_imagea.get_size(); i++)
+      for(int32_t i = 0; i < m_imagea.get_size(); i++)
       {
          if(m_imagea[i].m_strPath == strUrl)
             return i;
       }
       image * pimage = m_imagea.add_new();
-      pimage->m_iIndex = (int) m_imagea.get_upper_bound();
+      pimage->m_iIndex = (int32_t) m_imagea.get_upper_bound();
       pimage->m_strPath = strUrl;
       load_image_asynch(pimage);
-      return (int) pimage->m_iIndex;
+      return (int32_t) pimage->m_iIndex;
    }
 
    void data::load_image_asynch(image * pimage)
@@ -374,7 +374,7 @@ namespace html
    bool data::open_document(var varFile)
    {
       
-      int iRetry = 0;
+      int32_t iRetry = 0;
 
 restart:
 

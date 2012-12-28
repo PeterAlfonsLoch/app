@@ -540,7 +540,7 @@ vsstring get_file_md5_by_map(const char * path)
    }
 #else
 
-   int fd = ::open(path, O_RDONLY);
+   int32_t fd = ::open(path, O_RDONLY);
 
    if(fd == -1)
    {
@@ -645,7 +645,7 @@ vsstring get_file_md5_by_read(const char * path)
 
    int64_t dwRead;
 
-   int fd = ::open(path, O_RDONLY);
+   int32_t fd = ::open(path, O_RDONLY);
 
    if(fd == -1)
    {
@@ -658,7 +658,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #endif
 
-   int iAlloc = min((int) iSize, 1024 * 1024 * 8);
+   int32_t iAlloc = min((int32_t) iSize, 1024 * 1024 * 8);
 
    char * psz = (char *) _ca_alloc(iAlloc);
 
@@ -671,7 +671,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #ifdef WINDOWS
 
-      if(!::ReadFile(hfile, psz, min((int) iSize, iAlloc), &dwRead, NULL))
+      if(!::ReadFile(hfile, psz, min((int32_t) iSize, iAlloc), &dwRead, NULL))
       {
          break;
       }
@@ -684,7 +684,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #else
 
-      dwRead = ::read(fd, psz, min((int) iSize, iAlloc));
+      dwRead = ::read(fd, psz, min((int32_t) iSize, iAlloc));
 
       if(dwRead <= 0)
       {

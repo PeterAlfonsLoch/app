@@ -26,13 +26,13 @@ namespace ca
 
       virtual int_ptr get_os_data();
 
-      virtual bool Begin (::ca::graphics * pdc, int dxDest, int dyDest, LPBITMAPINFOHEADER lpbi, int dxSrc, int dySrc, UINT wFlags);
+      virtual bool Begin (::ca::graphics * pdc, int32_t dxDest, int32_t dyDest, LPBITMAPINFOHEADER lpbi, int32_t dxSrc, int32_t dySrc, UINT wFlags);
 
       virtual bool End ();
 
-      virtual bool draw(::ca::graphics * pdc, int xDst, int yDst, int dxDst, int dyDst, LPBITMAPINFOHEADER lpbi, LPVOID lpBits, int xSrc, int ySrc, int dxSrc, int dySrc, UINT wFlags );
-      virtual bool draw(::ca::dib * pdib, ::ca::graphics * pdc, int xDst, int yDst, int dxDst, int dyDst, UINT wFlags );
-      virtual bool draw(::ca::graphics * pdc, int xDst, int yDst, int dxDst, int dyDst, ::ca::dib * dib, int xSrc, int ySrc, int dxSrc, int dySrc, UINT wFlags );
+      virtual bool draw(::ca::graphics * pdc, int32_t xDst, int32_t yDst, int32_t dxDst, int32_t dyDst, LPBITMAPINFOHEADER lpbi, LPVOID lpBits, int32_t xSrc, int32_t ySrc, int32_t dxSrc, int32_t dySrc, UINT wFlags );
+      virtual bool draw(::ca::dib * pdib, ::ca::graphics * pdc, int32_t xDst, int32_t yDst, int32_t dxDst, int32_t dyDst, UINT wFlags );
+      virtual bool draw(::ca::graphics * pdc, int32_t xDst, int32_t yDst, int32_t dxDst, int32_t dyDst, ::ca::dib * dib, int32_t xSrc, int32_t ySrc, int32_t dxSrc, int32_t dySrc, UINT wFlags );
 
       virtual LPVOID GetBuffer(LPBITMAPINFOHEADER lpbi, DWORD dwSize, DWORD dwFlags);
 
@@ -42,7 +42,7 @@ namespace ca
       // palette
       virtual ::ca::palette * get_palette();
       virtual bool set_palette(::ca::palette *);
-      virtual bool ChangePalette(::ca::draw_dib * pdd, int iStart, int iLen, LPPALETTEENTRY lppe );
+      virtual bool ChangePalette(::ca::draw_dib * pdd, int32_t iStart, int32_t iLen, LPPALETTEENTRY lppe );
       virtual UINT Realize (::ca::graphics * pdc, bool fBackground );
 
       virtual bool Start(LONG rate);

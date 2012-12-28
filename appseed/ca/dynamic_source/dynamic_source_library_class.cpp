@@ -19,7 +19,7 @@ namespace dynamic_source
 
    bool library_class::DoesMatchVersion()
    {
-      for(int i = 0; i < m_straSourcePath.get_size(); i++)
+      for(int32_t i = 0; i < m_straSourcePath.get_size(); i++)
       {
          struct stat st;
          memset(&st, 0, sizeof(st));
@@ -43,7 +43,7 @@ namespace dynamic_source
       m_ftaCreation.set_size(m_straSourcePath.get_size());
       m_ftaAccess.set_size(m_straSourcePath.get_size());
       m_ftaModified.set_size(m_straSourcePath.get_size());
-      for(int i = 0; i < m_straSourcePath.get_size(); i++)
+      for(int32_t i = 0; i < m_straSourcePath.get_size(); i++)
       {
          //HANDLE h = ::CreateFile(m_straSourcePath[i], GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
          struct stat st;

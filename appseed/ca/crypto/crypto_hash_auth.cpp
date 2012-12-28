@@ -53,22 +53,22 @@ debug_module_t mod_auth = {
 };
 
 
-int
+int32_t
 auth_get_key_length(const auth_t *a) {
   return a->key_len;
 }
 
-int
+int32_t
 auth_get_tag_length(const auth_t *a) {
   return a->out_len;
 }
 
-int
+int32_t
 auth_get_prefix_length(const auth_t *a) {
   return a->prefix_len;
 }
 
-int
+int32_t
 auth_type_get_ref_count(const auth_type_t *at) {
   return at->ref_count;
 }
@@ -88,7 +88,7 @@ auth_type_self_test(const auth_type_t *at) {
   auth_t *a;
   err_status_t status;
   uint8_t tag[SELF_TEST_TAG_BUF_OCTETS];
-  int i, case_num = 0;
+  int32_t i, case_num = 0;
 
   debug_print(mod_auth, "running self-test for auth function %s", 
          at->description);

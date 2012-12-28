@@ -12,9 +12,9 @@ namespace gen
    {
 
       
-      int ref_tables();
+      int32_t ref_tables();
       
-      int ref_tables()
+      int32_t ref_tables()
       {
          return sizeof(char_bidi_names);
       }
@@ -180,7 +180,7 @@ namespace gen
         return string(char_category_names[CHAR_CATEGORY(CHAR_PROP(c))]);
       }
 
-      int get_combining_class(const char * pszUtf8Char){
+      int32_t get_combining_class(const char * pszUtf8Char){
          int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
@@ -193,7 +193,7 @@ namespace gen
         return MIRRORED(CHAR_PROP(c)) != 0;
       }
 
-      int size_of_tables(){
+      int32_t size_of_tables(){
         return sizeof(arr_idxCharInfo)+sizeof(arr_CharInfo)+sizeof(arr_idxCharInfo2)+sizeof(arr_CharInfo2);
       }
 
@@ -222,7 +222,7 @@ namespace gen
        * This table contains as many values as there might be trailing bytes
        * in a UTF-8 sequence.
        */
-      static const unsigned int offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
+      static const unsigned int32_t offsetsFromUTF8[6] = { 0x00000000UL, 0x00003080UL, 0x000E2080UL,
                  0x03C82080UL, 0xFA082080UL, 0x82082080UL };
 
 
@@ -231,7 +231,7 @@ namespace gen
       {
          unsigned char * source = (unsigned char *) pszUtf8;
          int64_t ch = 0;
-         int extraBytesToRead = trailingBytesForUTF8[*source];
+         int32_t extraBytesToRead = trailingBytesForUTF8[*source];
 /*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
          }*/
 //         if(natural(extraBytesToRead) >= strlen(pszUtf8))
@@ -261,7 +261,7 @@ namespace gen
       {
          unsigned char * source = (unsigned char *) pszUtf8;
          int64_t ch = 0;
-         int extraBytesToRead = trailingBytesForUTF8[*source];
+         int32_t extraBytesToRead = trailingBytesForUTF8[*source];
 /*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
          }*/
 //         if(natural(extraBytesToRead) >= strlen(pszUtf8))
@@ -295,7 +295,7 @@ error:
       {
          unsigned char * source = (unsigned char *) pszUtf8;
          int64_t ch = 0;
-         int extraBytesToRead = trailingBytesForUTF8[*source];
+         int32_t extraBytesToRead = trailingBytesForUTF8[*source];
          if(*source == '\0') return -1;
          if((source + extraBytesToRead + 1) > (unsigned char *) pszEnd)
             return -1;

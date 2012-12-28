@@ -13,7 +13,7 @@ namespace userbase
 
 
       ::id              m_id;        // IDC of indicator: 0 => normal text area
-      int               cxText;     // width of string area in pixels
+      int32_t               cxText;     // width of string area in pixels
                      //   on both sides there is a 3 pixel gap and
                      //   a one pixel border, making a pane 6 pixels wider
       UINT              nStyle;     // style flags (SBPS_*)
@@ -37,7 +37,7 @@ namespace userbase
 
 
       array_ptr_alloc < __STATUSPANE >     m_panea;
-      int                                    m_nMinHeight;
+      int32_t                                    m_nMinHeight;
 
 
       status_bar();
@@ -54,23 +54,23 @@ namespace userbase
       bool SetIndicators(stringa & stra);
 
       void SetBorders(LPCRECT lpRect);
-      void SetBorders(int cxLeft = 0, int cyTop = 0, int cxRight = 0, int cyBottom = 0);
+      void SetBorders(int32_t cxLeft = 0, int32_t cyTop = 0, int32_t cxRight = 0, int32_t cyBottom = 0);
 
       // standard control bar things
-      int CommandToIndex(id id);
-      id GetItemId(int nIndex);
-      void GetItemRect(int nIndex, LPRECT lpRect);
+      int32_t CommandToIndex(id id);
+      id GetItemId(int32_t nIndex);
+      void GetItemRect(int32_t nIndex, LPRECT lpRect);
 
       // specific to status_bar
-      void GetPaneText(int nIndex, string & rString);
-      string GetPaneText(int nIndex);
-      bool SetPaneText(int nIndex, const char * lpszNewText, bool bUpdate = TRUE);
-      void GetPaneInfo(int nIndex, id & id, UINT& nStyle, int& cxWidth);
-      void SetPaneInfo(int nIndex, id id, UINT nStyle, int cxWidth);
-      void SetPaneInfo(int nIndex, int iId, UINT nStyle, int cxWidth);
-      void SetPaneInfo(int nIndex, const char * pszId, UINT nStyle, int cxWidth);
-      UINT GetPaneStyle(int nIndex);
-      void SetPaneStyle(int nIndex, UINT nStyle);
+      void GetPaneText(int32_t nIndex, string & rString);
+      string GetPaneText(int32_t nIndex);
+      bool SetPaneText(int32_t nIndex, const char * lpszNewText, bool bUpdate = TRUE);
+      void GetPaneInfo(int32_t nIndex, id & id, UINT& nStyle, int32_t& cxWidth);
+      void SetPaneInfo(int32_t nIndex, id id, UINT nStyle, int32_t cxWidth);
+      void SetPaneInfo(int32_t nIndex, int32_t iId, UINT nStyle, int32_t cxWidth);
+      void SetPaneInfo(int32_t nIndex, const char * pszId, UINT nStyle, int32_t cxWidth);
+      UINT GetPaneStyle(int32_t nIndex);
+      void SetPaneStyle(int32_t nIndex, UINT nStyle);
 
       // for direct access to the underlying common control
       status_bar_control& GetStatusBarCtrl();
@@ -82,7 +82,7 @@ namespace userbase
 
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
       bool pre_create_window(CREATESTRUCT& cs);
-      //bool AllocElements(int nElements, int cbElement);
+      //bool AllocElements(int32_t nElements, int32_t cbElement);
       void CalcInsideRect(rect& rect, bool bHorz);
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
 
@@ -94,7 +94,7 @@ namespace userbase
       virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
 
 
-      __STATUSPANE* _GetPanePtr(int nIndex);
+      __STATUSPANE* _GetPanePtr(int32_t nIndex);
       void UpdateAllPanes(bool bUpdateRects, bool bUpdateText);
       virtual bool OnChildNotify(UINT message, WPARAM, LPARAM, LRESULT*);
 

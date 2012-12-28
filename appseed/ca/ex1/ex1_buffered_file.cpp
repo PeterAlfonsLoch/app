@@ -32,7 +32,7 @@ namespace ex1
       return m_pfile.is_set();
    }
 
-   /*int buffered_file::remove_begin(void * lpBuf, UINT uiCount)
+   /*int32_t buffered_file::remove_begin(void * lpBuf, UINT uiCount)
    {
       ASSERT(IsValid());
       if(uiCount > get_length())
@@ -111,7 +111,7 @@ namespace ex1
       return m_pfile->get_length();
    }
 
-   /*void buffered_file::Truncate(int iPosition)
+   /*void buffered_file::Truncate(int32_t iPosition)
    {
       m_pfile->Truncate();
    }

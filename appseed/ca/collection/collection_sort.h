@@ -325,7 +325,7 @@ namespace sort
    }
 
    typedef void (*ARG_SWAP_FUNCTION)(void * lpVoidSwapArg, index,  index);
-   typedef int (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg,  index,  index);
+   typedef int32_t (*ARG_COMPARE_FUNCTION)(void * lpVoidCompareArg,  index,  index);
 
 
    void CLASS_DECL_ca QuickSort(
@@ -340,7 +340,7 @@ namespace sort
    template <class TYPE, class ARG_TYPE>
    void QuickSort(
       base_array<TYPE, ARG_TYPE> & a,
-      int (* fCompare)(const ARG_TYPE, const ARG_TYPE))
+      int32_t (* fCompare)(const ARG_TYPE, const ARG_TYPE))
    {
       index_array stackLowerBound;
       index_array stackUpperBound;

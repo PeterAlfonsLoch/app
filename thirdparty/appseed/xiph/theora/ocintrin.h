@@ -94,7 +94,7 @@
 /*Swaps two integers _a and _b if _a>_b.*/
 #define OC_SORT2I(_a,_b) \
   do{ \
-    int t__; \
+    int32_t t__; \
     t__=((_a)^(_b))&-((_b)<(_a)); \
     (_a)^=t__; \
     (_b)^=t__; \
@@ -122,7 +122,7 @@
 #define OC_SQRTF(_f)        ((float)sqrt(_f))
 #define OC_POWF(_b,_e)      ((float)pow(_b,_e))
 #define OC_LOGF(_f)         ((float)log(_f))
-#define OC_IFLOORF(_f)      ((int)floor(_f))
-#define OC_ICEILF(_f)       ((int)ceil(_f))
+#define OC_IFLOORF(_f)      ((int32_t)floor(_f))
+#define OC_ICEILF(_f)       ((int32_t)ceil(_f))
 
 #endif

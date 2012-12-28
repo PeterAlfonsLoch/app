@@ -5,10 +5,10 @@
 
 
 #ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))
+#define GET_X_LPARAM(lp)                        ((int32_t)(short)LOWORD(lp))
 #endif
 #ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lp)                        ((int)(short)HIWORD(lp))
+#define GET_Y_LPARAM(lp)                        ((int32_t)(short)HIWORD(lp))
 #endif
 
 
@@ -23,7 +23,7 @@
 
 #ifdef WINDOWS
 
-void simple_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+void simple_se_translator(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
 {
    //throw 0;
 }
@@ -184,13 +184,13 @@ namespace spa
 
       #if defined(_AMD64_) || defined(_LP64)
 
-               str = itohex_dup(((int*) m_phost)[1]);
+               str = itohex_dup(((int32_t*) m_phost)[1]);
 
-               str += itohex_dup(((int*) m_phost)[0]);
+               str += itohex_dup(((int32_t*) m_phost)[0]);
 
       #else
 
-               str = itohex_dup((int) m_phost);
+               str = itohex_dup((int32_t) m_phost);
 
       #endif
 
@@ -237,9 +237,9 @@ namespace spa
 
                //set_ready();
 
-               ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, (int) m_phost->m_strPluginUrl.length());
+               ensure_tx(::hotplugin::message_set_plugin_url, m_phost->m_strPluginUrl, (int32_t) m_phost->m_strPluginUrl.length());
 
-               ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, (int) m_phost->m_countMemory);
+               ensure_tx(::hotplugin::message_set_ready, m_phost->m_puchMemory, (int32_t) m_phost->m_countMemory);
 
             }
             catch(...)
@@ -428,8 +428,8 @@ install:
       RECT rectWindow;
       get_window_rect(&rectWindow);
 
-      int cx = rectWindow.right - rectWindow.left;
-      int cy = rectWindow.bottom - rectWindow.top;
+      int32_t cx = rectWindow.right - rectWindow.left;
+      int32_t cy = rectWindow.bottom - rectWindow.top;
 
       rect.left         = 0;
       rect.top          = 0;
@@ -566,9 +566,9 @@ install:
             else if(uiMessage == WM_MOUSEMOVE)
             {
 
-               int x = (short) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
+               int32_t x = (short) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
 
-               int y = (short) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
+               int32_t y = (short) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
 
                POINT ptCursor;
 
@@ -600,7 +600,7 @@ install:
       return 0;
    }
 #else
-   int plugin::message_handler(XEvent * pevent)
+   int32_t plugin::message_handler(XEvent * pevent)
    {
       /*      switch(uiMessage)
       {
@@ -642,10 +642,10 @@ install:
       bool bStatus = false;
       if(hfile != INVALID_HANDLE_VALUE)
       {
-         int iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
+         int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
          iTell--;
          vsstring strLine;
-         int iSkip = 0;
+         int32_t iSkip = 0;
          bool bNormal = false;
          bool bBold = false;
 //         bool bPreNormal = false;
@@ -737,7 +737,7 @@ install:
 #ifndef METROWIN
 
 
-   void plugin::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+   void plugin::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
    {
 
       if(prxchannel == &m_rxchannel)
@@ -757,7 +757,7 @@ install:
    }
 
 
-   void plugin::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+   void plugin::on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b)
    {
 
       if(prxchannel == &m_rxchannel)
@@ -844,7 +844,7 @@ install:
          else
          {
 
-            int iTry = 0;
+            int32_t iTry = 0;
 
             retry_get_prompt:
 
@@ -934,9 +934,9 @@ install:
 
       vsstring str;
 
-      int iAttemptStream = 0;
-      int iAttemptUrl = 0;
-      int iAttempt = 0;
+      int32_t iAttemptStream = 0;
+      int32_t iAttemptUrl = 0;
+      int32_t iAttempt = 0;
 
 restart:
 
@@ -983,7 +983,7 @@ restart:
 
       vsstring str;
 
-      int iAttempt = 0;
+      int32_t iAttempt = 0;
 
 restart:
 

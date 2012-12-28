@@ -89,7 +89,7 @@ db_str_set::sync_queue::~sync_queue()
 
 
 
-int db_str_set::sync_queue::run()
+int32_t db_str_set::sync_queue::run()
 {
 
    string strApiServer;
@@ -122,7 +122,7 @@ repeat:;
              goto repeat;
           }
 
-          for(int i = 1; i < m_itema.get_size(); i++)
+          for(int32_t i = 1; i < m_itema.get_size(); i++)
           {
              if(m_itema[i].m_strKey == m_itema[0].m_strKey)
              {

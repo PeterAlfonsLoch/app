@@ -13,10 +13,10 @@ namespace colorertake5
    private:
      text_lines *textLinesStore;
      base_editor *baseEditor;
-     int encoding;
-     int background;
+     int32_t encoding;
+     int32_t background;
    public:
-     text_console_viewer(base_editor *be, text_lines *ts, int background, int encoding);
+     text_console_viewer(base_editor *be, text_lines *ts, int32_t background, int32_t encoding);
      ~text_console_viewer();
 
      void view();

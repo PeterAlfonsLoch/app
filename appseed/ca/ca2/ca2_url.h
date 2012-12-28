@@ -16,7 +16,7 @@ namespace ca2
       string get_protocol(const char *); // http
       string get_root(const char *); // veriwell.com.br:443
       string get_server(const char *); // veriwell.com.br
-      int get_port(const char *, int iDefault = -1); // 443
+      int32_t get_port(const char *, int32_t iDefault = -1); // 443
       string get_object(const char *); // page?id=1
       string get_script(const char *); // page
       string get_query(const char *); // id=1

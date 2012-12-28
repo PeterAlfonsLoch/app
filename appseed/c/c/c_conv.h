@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline int to_lo_hex_char(int i)
+inline int32_t to_lo_hex_char(int32_t i)
 {
 
    if(i >= 10 && i <= 15)
@@ -19,7 +19,7 @@ inline int to_lo_hex_char(int i)
 
 }
 
-inline int to_hi_hex_char(int i)
+inline int32_t to_hi_hex_char(int32_t i)
 {
 
    if(i >= 10 && i <= 15)
@@ -67,7 +67,7 @@ inline char __to_hi_hex_char(byte b)
 
 }
 
-inline int from_hex_char(char ch)
+inline int32_t from_hex_char(char ch)
 {
    if(ch >= '0' && ch <= '9')
       return ch - '0';
@@ -92,10 +92,10 @@ inline void byte_to_hi_hex(char * sz, byte b)
 }
 
 
-CLASS_DECL_c int nibble_to_low_hex(byte nibble);
+CLASS_DECL_c int32_t nibble_to_low_hex(byte nibble);
 
 
-CLASS_DECL_c char to_upper(int ch);
+CLASS_DECL_c char to_upper(int32_t ch);
 CLASS_DECL_c char * to_upper(char * pchParam);
 
 // sz buffer should have twice size of s (p)

@@ -36,7 +36,7 @@ namespace sockets
    {
       static   char hex[] = "0123456789ABCDEF";
       string dst;
-      for (int i = 0; i < src.get_length(); i++)
+      for (int32_t i = 0; i < src.get_length(); i++)
       {
          if (isalnum((unsigned char) src[i]))
          {
@@ -66,7 +66,7 @@ namespace sockets
    string net::rfc1738_decode(const string & src)
    {
       string dst;
-      for (int i = 0; i < src.get_length(); i++)
+      for (int32_t i = 0; i < src.get_length(); i++)
       {
          if (src[i] == '%' && isxdigit((unsigned char) (src[i + 1])) && isxdigit((unsigned char) (src[i + 2])))
          {
@@ -92,9 +92,9 @@ namespace sockets
 
    bool net::isipv4(const string & str)
    {
-      int dots = 0;
+      int32_t dots = 0;
       // %! ignore :port?
-      for (int i = 0; i < str.get_length(); i++)
+      for (int32_t i = 0; i < str.get_length(); i++)
       {
          if (str[i] == '.')
             dots++;
@@ -114,7 +114,7 @@ namespace sockets
          return false;
       index qc = 0;
       index qd = 0;
-      for (int i = 0; i < str.get_length(); i++)
+      for (int32_t i = 0; i < str.get_length(); i++)
       {
          qc += (str[i] == ':') ? 1 : 0;
          qd += (str[i] == '.') ? 1 : 0;
@@ -137,7 +137,7 @@ namespace sockets
          {
             return false;
          }
-         for (int i = 0; i < tmp.get_length(); i++)
+         for (int32_t i = 0; i < tmp.get_length(); i++)
          {
             if (tmp[i] < '0' || (tmp[i] > '9' && tmp[i] < 'A') ||
                (tmp[i] > 'F' && tmp[i] < 'a') || tmp[i] > 'f')
@@ -151,7 +151,7 @@ namespace sockets
       return true;
    }
 
-   bool net::convert(in_addr & l, const string & str, int ai_flags)
+   bool net::convert(in_addr & l, const string & str, int32_t ai_flags)
    {
 
       if(str.is_empty())
@@ -208,9 +208,9 @@ namespace sockets
 #else
       struct hostent he;
       struct hostent *result = NULL;
-      int myerrno = 0;
+      int32_t myerrno = 0;
       char buf[2000];
-      int n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
+      int32_t n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
       if (n || !result)
       {
          return false;
@@ -238,7 +238,7 @@ namespace sockets
       struct addrinfo *res;
       if (net::isipv4(str))
          hints.ai_flags |= AI_NUMERICHOST;
-      int n = getaddrinfo(str, NULL, &hints, &res);
+      int32_t n = getaddrinfo(str, NULL, &hints, &res);
       if (n)
       {
          string error = "Error: ";
@@ -278,7 +278,7 @@ namespace sockets
    }
 
 
-   bool net::convert(struct in6_addr& l, const string & str, int ai_flags)
+   bool net::convert(struct in6_addr& l, const string & str, int32_t ai_flags)
    {
       return from_string(&l, str);
    }
@@ -306,7 +306,7 @@ namespace sockets
 
       char slask[100]; // l2ip temporary
       *slask = 0;
-      unsigned int prev = 0;
+      unsigned int32_t prev = 0;
       bool skipped = false;
       bool ok_to_skip = true;
       if (mixed)
@@ -349,7 +349,7 @@ namespace sockets
    }
 
 
-   int net::in6_addr_compare(in6_addr a,in6_addr b)
+   int32_t net::in6_addr_compare(in6_addr a,in6_addr b)
    {
       for (index i = 0; i < 16; i++)
       {
@@ -490,7 +490,7 @@ namespace sockets
    }
    */
 
-/*   bool net::convert(in_addr & sa, const string & host, int ai_flags)
+/*   bool net::convert(in_addr & sa, const string & host, int32_t ai_flags)
    {
 
       memset(&sa, 0, sizeof(sa));
@@ -525,9 +525,9 @@ namespace sockets
 #else
       struct hostent he;
       struct hostent *result = NULL;
-      int myerrno = 0;
+      int32_t myerrno = 0;
       char buf[2000];
-      int n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
+      int32_t n = gethostbyname_r(host, &he, buf, sizeof(buf), &result, &myerrno);
       if (n || !result)
       {
          return false;
@@ -555,7 +555,7 @@ namespace sockets
       struct addrinfo *res;
       if (net::isipv4(host))
          hints.ai_flags |= AI_NUMERICHOST;
-      int n = getaddrinfo(host, NULL, &hints, &res);
+      int32_t n = getaddrinfo(host, NULL, &hints, &res);
       if (!n)
       {
          comparable_array < addrinfo * > vec;
@@ -585,7 +585,7 @@ namespace sockets
 
 
    /*
-   bool net::convert(struct in6_addr & sa, const string & host, int ai_flags)
+   bool net::convert(struct in6_addr & sa, const string & host, int32_t ai_flags)
    {
 
       memset(&sa, 0, sizeof(sa));
@@ -645,7 +645,7 @@ namespace sockets
          return true;
       }
 #ifdef SOLARIS
-      int errnum = 0;
+      int32_t errnum = 0;
       struct hostent *he = getipnodebyname( host, AF_INET6, 0, &errnum );
 #else
       struct hostent *he = gethostbyname2( host, AF_INET6 );
@@ -669,7 +669,7 @@ namespace sockets
       struct addrinfo *res;
       if (net::isipv6(host))
          hints.ai_flags |= AI_NUMERICHOST;
-      int n = getaddrinfo(host, NULL, &hints, &res);
+      int32_t n = getaddrinfo(host, NULL, &hints, &res);
       if (!n)
       {
          comparable_array < addrinfo * > vec;
@@ -700,7 +700,7 @@ namespace sockets
    */
 
 
-   bool net::reverse(string & number, const char * hostname, int flags)
+   bool net::reverse(string & number, const char * hostname, int32_t flags)
    {
 
       ::sockets::address address(get_app(), hostname);
@@ -712,14 +712,14 @@ namespace sockets
    }
 
 
-   bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, int flags)
+   bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, int32_t flags)
    {
       string service;
       return reverse(sa, sa_len, hostname, service, flags);
    }
 
 
-   bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, string & service, int flags)
+   bool net::reverse(struct sockaddr *sa, socklen_t sa_len, string & hostname, string & service, int32_t flags)
    {
 
       hostname = "";
@@ -763,7 +763,7 @@ namespace sockets
          {
             char slask[100]; // l2ip temporary
             *slask = 0;
-            unsigned int prev = 0;
+            unsigned int32_t prev = 0;
             bool skipped = false;
             bool ok_to_skip = true;
             {
@@ -816,7 +816,7 @@ namespace sockets
       // NI_NAMEREQD
       // NI_NUMERICSERV
       // NI_DGRAM
-      int n = getnameinfo(sa, sa_len, host, sizeof(host), serv, sizeof(serv), flags);
+      int32_t n = getnameinfo(sa, sa_len, host, sizeof(host), serv, sizeof(serv), flags);
       if (n)
       {
          // EAI_AGAIN
@@ -836,7 +836,7 @@ namespace sockets
    }
 
 
-   bool net::u2service(const string & name, int& service, int ai_flags)
+   bool net::u2service(const string & name, int32_t& service, int32_t ai_flags)
    {
 
 #ifdef NO_GETADDRINFO
@@ -858,7 +858,7 @@ namespace sockets
       hints.ai_socktype = 0;
       hints.ai_protocol = 0;
       struct addrinfo *res;
-      int n = getaddrinfo(NULL, name, &hints, &res);
+      int32_t n = getaddrinfo(NULL, name, &hints, &res);
       if (!n)
       {
          service = res -> ai_protocol;
@@ -871,7 +871,7 @@ namespace sockets
    }
 
 
-   int net::service_port(const char * psz, int flags)
+   int32_t net::service_port(const char * psz, int32_t flags)
    {
 
       if(gen::str::is_simple_natural(psz))
@@ -890,7 +890,7 @@ namespace sockets
       else
       {
 
-         int service = 0;
+         int32_t service = 0;
 
          if(!u2service(psz, service, 0))
             return 0;
@@ -902,7 +902,7 @@ namespace sockets
    }
 
 
-   string  net::service_name(int iPort, int flags)
+   string  net::service_name(int32_t iPort, int32_t flags)
    {
 
       switch(iPort)

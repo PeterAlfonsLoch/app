@@ -68,7 +68,7 @@ namespace plane
       virtual void construct();
 
       bool initialize_instance();
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
       bool InitializeLocalDataCentral();
 

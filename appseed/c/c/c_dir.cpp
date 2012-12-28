@@ -14,7 +14,7 @@
 #ifdef WINDOWSEX
 
 
-bool CLASS_DECL_c SHGetSpecialFolderPath(oswindow oswindow, vsstring &str, int csidl, bool fCreate)
+bool CLASS_DECL_c SHGetSpecialFolderPath(oswindow oswindow, vsstring &str, int32_t csidl, bool fCreate)
 {
 
    return ::SHGetSpecialFolderPathW(oswindow, wstringtovss(str, MAX_PATH * 8), csidl, fCreate) != FALSE;
@@ -222,7 +222,7 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
       if(stra.get_count() <= 0)
          return "";
       str = "";
-      for(int i = 0; i < stra.get_count(); i++)
+      for(int32_t i = 0; i < stra.get_count(); i++)
       {
          str += stra[i];
          str += "\\";
@@ -492,7 +492,7 @@ void dir::ls(stra_dup & stra, const char *psz)
 
    ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ a = wait(folder->GetItemsAsync());
 
-   for(unsigned int ui = 0; ui < a->Size; ui++)
+   for(unsigned int32_t ui = 0; ui < a->Size; ui++)
    {
       stra.add(begin(a->GetAt(ui)->Path));
    }
@@ -556,7 +556,7 @@ void dir::ls_dir(stra_dup & stra, const char *psz)
 
    ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-   for(unsigned int ui = 0; ui < a->Size; ui++)
+   for(unsigned int32_t ui = 0; ui < a->Size; ui++)
    {
       stra.add(begin(a->GetAt(ui)->Path));
    }

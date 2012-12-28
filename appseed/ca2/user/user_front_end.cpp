@@ -5,7 +5,7 @@ namespace user
 
    ::userbase::menu * front_end::s_pmenu = NULL;
    HHOOK front_end::s_hhookMouse = NULL;
-   int front_end::s_iMouseHookCount    = 0;
+   int32_t front_end::s_iMouseHookCount    = 0;
 
    front_end::front_end()
    {
@@ -65,7 +65,7 @@ namespace user
    ///}
 
    LRESULT CALLBACK front_end::MouseProc(
-      int      nCode,
+      int32_t      nCode,
       WPARAM   wparam,
       LPARAM   lparam)
    {

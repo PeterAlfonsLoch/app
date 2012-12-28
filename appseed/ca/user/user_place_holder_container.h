@@ -42,7 +42,7 @@ namespace user
    public:
 
       virtual place_holder_ptra hold(::user::interaction * pui);   
-      virtual int unhold(::user::interaction * pui);
+      virtual int32_t unhold(::user::interaction * pui);
 
    };
 

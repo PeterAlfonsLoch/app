@@ -11,9 +11,9 @@ Public domain */
 
 /* use _SZ_ALLOC_DEBUG to debug alloc/free operations */
 #ifdef _SZ_ALLOC_DEBUG
-int g_allocCount = 0;
-int g_allocCountMid = 0;
-int g_allocCountBig = 0;
+int32_t g_allocCount = 0;
+int32_t g_allocCountMid = 0;
+int32_t g_allocCountBig = 0;
 #endif
 
 void * MyAlloc(size_t size)

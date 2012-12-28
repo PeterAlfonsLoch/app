@@ -23,7 +23,7 @@ namespace fs
       virtual void root_ones(stringa & stra);
       virtual void get_ascendants_path(const char * pszPath, stringa & stra);
       virtual void get_ascendants_name(const char * lpcsz, stringa & straParam);
-      virtual string eat_end_level(const char * pszPath, int iCount);
+      virtual string eat_end_level(const char * pszPath, int32_t iCount);
 
 
       virtual string file_name(const char * pszPath);

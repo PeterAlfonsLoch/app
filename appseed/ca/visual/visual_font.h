@@ -19,12 +19,12 @@ namespace visual
       TEXTMETRIC      m_tm;
 //#endif
 
-      int            m_iFontHiHeight;
+      int32_t            m_iFontHiHeight;
       //static const DWORD m_dwAllocationAddUp;
       //LPVOID         m_lpData;
       //DWORD         m_dwSize;
       //DWORD         m_dwAllocation;
-      //int            m_iUsedGlyphs;
+      //int32_t            m_iUsedGlyphs;
       ::ca::graphics *         m_pDC;
       //static mutex m_mutex;
 
@@ -46,7 +46,7 @@ namespace visual
 
       void OnUpdateFont();
       void OnSetFont();
-      int GetMegaHeight();
+      int32_t GetMegaHeight();
       void AddGlyphs(const char * lpStr);
       bool AddGlyph(WCHAR wchar);
       bool AddGlyph(CHAR ch);
@@ -75,16 +75,16 @@ namespace visual
          double               dHeight,
          string                 &str,
          LPINT                 lpiCharsPositions,
-         int                     iCharsPositions,
-         int                  iOffset);
+         int32_t                     iCharsPositions,
+         int32_t                  iOffset);
 
       void SimpleTextOut(
          ::ca::graphics                     *pdc,
-         int                     x,
-         int                     y,
+         int32_t                     x,
+         int32_t                     y,
          string                 &str,
          LPINT                lpiCharsPositions,
-         int                     iCharsPositions);
+         int32_t                     iCharsPositions);
 
       void TextOutEx(
          ::ca::graphics                  *pdc,
@@ -93,9 +93,9 @@ namespace visual
          double               dHeight,
          string              &str,
          LPINT                  lpiCharsPositions,
-         int                  iCharsPositions,
-         int                  iOffset,
-         int                  iEffect);
+         int32_t                  iCharsPositions,
+         int32_t                  iOffset,
+         int32_t                  iEffect);
 
       ::ca::font * GetFont();
       void clear();

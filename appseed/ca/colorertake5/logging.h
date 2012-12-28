@@ -24,7 +24,7 @@ void colorer_logger_warn(const char *cname, const char *msg, ...);
 void colorer_logger_trace(const char *cname, const char *msg, ...);
 void colorer_logger_info(const char *cname, const char *msg, ...);
 
-void colorer_logger(int level, const char *cname, const char *msg, va_list v);
+void colorer_logger(int32_t level, const char *cname, const char *msg, va_list v);
 
 void colorer_logger_set_target(const char *logfile);
 

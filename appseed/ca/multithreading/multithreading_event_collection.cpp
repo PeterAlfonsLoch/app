@@ -155,7 +155,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
       return wait_result( wait_result::Failure );
    os_lock_duration timeout = duration;
 
-   for (int i = 0; i < m_waitableelementa.get_size(); i++)
+   for (int32_t i = 0; i < m_waitableelementa.get_size(); i++)
       m_waitableelementa[i].item->init_wait();
 
    DWORD start(get_tick_count());

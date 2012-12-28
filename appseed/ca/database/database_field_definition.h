@@ -16,7 +16,7 @@ namespace database
 
 
       string      m_strName;
-      int         m_iSize;
+      int32_t         m_iSize;
       e_type      m_etype;
 
       

@@ -29,7 +29,7 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
 }
 
 
-int crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char * pszKey)
+int32_t crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char * pszKey)
 {
    simple_memory storageDecrypt;
    simple_memory storageEncrypt;
@@ -42,7 +42,7 @@ int crypt_encrypt(vsstring & strEncrypt, const char * pszDecrypt, const char * p
    storageDecrypt.from_string(pszDecrypt);
    base64 base64;
    base64.decode(storageKey, pszKey);
-   int cipherlen = crypt_encrypt(storageEncrypt, storageDecrypt, storageKey);
+   int32_t cipherlen = crypt_encrypt(storageEncrypt, storageDecrypt, storageKey);
    strEncrypt = base64.encode(storageEncrypt);
    return cipherlen;
 }
@@ -247,7 +247,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
    memory.allocate(2048);
 
-   int i = RSA_public_encrypt((int) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), (unsigned char *)  memory.get_data(), rsa, RSA_PKCS1_PADDING);
+   int32_t i = RSA_public_encrypt((int32_t) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), (unsigned char *)  memory.get_data(), rsa, RSA_PKCS1_PADDING);
 
    ERR_error_string(ERR_get_error(), NULL);
 //   const char * pszError = ERR_error_string(ERR_get_error(), NULL);

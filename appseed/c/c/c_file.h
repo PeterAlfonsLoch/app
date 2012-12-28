@@ -27,10 +27,10 @@ CLASS_DECL_c bool file_is_equal_path(const char * pszPath1, const char * pszPath
 
 CLASS_DECL_c bool file_ftd_dup(const char * pszDir, const char * pszFile);
 #ifdef WINDOWS
-CLASS_DECL_c void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int & iNumber);
+CLASS_DECL_c void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber);
 CLASS_DECL_c void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str);
 #else
-CLASS_DECL_c void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int & iNumber);
+CLASS_DECL_c void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber);
 CLASS_DECL_c void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str);
 #endif
 

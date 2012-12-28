@@ -34,7 +34,7 @@ void simple_password::draw_this(simple_graphics & g)
 
    g.select(b);
 
-   simple_pixel_font f(g, (int) height(m_rect) * 10, "Geneva");
+   simple_pixel_font f(g, (int32_t) height(m_rect) * 10, "Geneva");
 
    g.select(f);
 

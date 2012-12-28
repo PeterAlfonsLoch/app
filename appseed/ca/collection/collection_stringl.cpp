@@ -134,7 +134,7 @@ void stringl::write(ex1::byte_output_stream & ostream)
 {
    ostream << m_nCount;
    POSITION pos = get_head_position();
-   for(int i = 0; i < m_nCount; i++)
+   for(int32_t i = 0; i < m_nCount; i++)
    {
       ostream << get_next(pos);
    }
@@ -142,10 +142,10 @@ void stringl::write(ex1::byte_output_stream & ostream)
 
 void stringl::read(ex1::byte_input_stream & istream)
 {
-   int iSize;
+   int32_t iSize;
    istream >> iSize;
    string str;
-   for(int i = 0; i < iSize; i++)
+   for(int32_t i = 0; i < iSize; i++)
    {
       istream >> str;
       add_tail(str);

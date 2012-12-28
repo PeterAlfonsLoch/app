@@ -10,9 +10,9 @@ void *chunk_alloc(size_t get_size);
 void chunk_free(void *ptr);
 
 extern "C" {
-  int get_total_req();
-  int get_new_calls();
-  int get_free_calls();
+  int32_t get_total_req();
+  int32_t get_new_calls();
+  int32_t get_free_calls();
 }
 
 #endif

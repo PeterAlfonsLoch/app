@@ -56,7 +56,7 @@ namespace command
 	   DECL_GEN_SIGNAL(_001OnSetCursor)
 	   DECL_GEN_SIGNAL(_001OnOp)
       DECL_GEN_SIGNAL(_001OnShowWindow)
-      virtual void _001OnTabClick(int iTab);
+      virtual void _001OnTabClick(int32_t iTab);
    };
 
 

@@ -51,7 +51,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          string m_data;
          bool m_bServer;
          socket *m_parent;
-         int m_resolv_id;
+         int32_t m_resolv_id;
          string m_resolv_host;
          port_t m_resolv_port;
          in_addr m_resolv_address;
@@ -71,8 +71,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void OnDetached();
          void OnDelete();
 
-         void SetId(int x) { m_resolv_id = x; }
-         int GetId() { return m_resolv_id; }
+         void SetId(int32_t x) { m_resolv_id = x; }
+         int32_t GetId() { return m_resolv_id; }
 
          void OnConnect();
 

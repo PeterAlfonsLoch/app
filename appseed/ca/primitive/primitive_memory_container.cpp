@@ -156,7 +156,7 @@ namespace primitive
 
    void memory_container ::offset_kept_pointers(memory_offset iOffset)
    {
-      for(int i = 0; i < m_vppa.get_size(); i++)
+      for(int32_t i = 0; i < m_vppa.get_size(); i++)
       {
          *m_vppa.element_at(i) = ((LPBYTE) *m_vppa.element_at(i)) + iOffset;
       }

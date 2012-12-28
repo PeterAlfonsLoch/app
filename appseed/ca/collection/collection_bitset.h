@@ -8,7 +8,7 @@
 }*/
 
 		// TEMPLATE CLASS _Bitset_base
-template<int>
+template<int32_t>
 	struct _Bitset_base
 	{	// default element size
 	typedef uint32_t _Ty;
@@ -93,8 +93,8 @@ private:
 
    enum
    {	// parameters for packing bits into words
-		_Bitsperword = (int)(CHAR_BIT * sizeof (_Ty)),	// bits in each word
-		_Words = (int)(_Bits == 0
+		_Bitsperword = (int32_t)(CHAR_BIT * sizeof (_Ty)),	// bits in each word
+		_Words = (int32_t)(_Bits == 0
                      ? 0 : (_Bits - 1) / _Bitsperword)};	// NB: number of words - 1
 
 
@@ -138,9 +138,9 @@ public:
 		}
 
  #if _HAS_CPP0X
-	bitset(int _Ival)
-		{	// construct from bits in int
-		unsigned int _Val = (unsigned int)_Ival;
+	bitset(int32_t _Ival)
+		{	// construct from bits in int32_t
+		unsigned int32_t _Val = (unsigned int32_t)_Ival;
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -199,36 +199,36 @@ public:
 
 	bitset<_Bits>& operator&=(const bitset<_Bits>& _Right)
 		{	// AND in _Right
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] &= _Right._Getword(_Wpos);
 		return (*this);
 		}
 
 	bitset<_Bits>& operator|=(const bitset<_Bits>& _Right)
 		{	// OR in _Right
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] |= _Right._Getword(_Wpos);
 		return (*this);
 		}
 
 	bitset<_Bits>& operator^=(const bitset<_Bits>& _Right)
 		{	// XOR in _Right
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] ^= _Right._Getword(_Wpos);
 		return (*this);
 		}
 
 	bitset<_Bits>& operator<<=(size_t _Pos)
 		{	// shift left by _Pos
-		const int _Wordshift = (int)(_Pos / _Bitsperword);
+		const int32_t _Wordshift = (int32_t)(_Pos / _Bitsperword);
 		if (_Wordshift != 0)
-			for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)	// shift by words
+			for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)	// shift by words
 				_Array[_Wpos] = _Wordshift <= _Wpos
 					? _Array[_Wpos - _Wordshift] : (_Ty)0;
 
 		if ((_Pos %= _Bitsperword) != 0)
 			{	// 0 < _Pos < _Bitsperword, shift by bits
-			for (int _Wpos = _Words; 0 < _Wpos; --_Wpos)
+			for (int32_t _Wpos = _Words; 0 < _Wpos; --_Wpos)
 				_Array[_Wpos] = (_Ty)((_Array[_Wpos] << _Pos)
 					| (_Array[_Wpos - 1] >> (_Bitsperword - _Pos)));
 			_Array[0] <<= _Pos;
@@ -239,15 +239,15 @@ public:
 
 	bitset<_Bits>& operator>>=(size_t _Pos)
 		{	// shift right by _Pos
-		const int _Wordshift = (int)(_Pos / _Bitsperword);
+		const int32_t _Wordshift = (int32_t)(_Pos / _Bitsperword);
 		if (_Wordshift != 0)
-			for (int _Wpos = 0; _Wpos <= _Words; ++_Wpos)	// shift by words
+			for (int32_t _Wpos = 0; _Wpos <= _Words; ++_Wpos)	// shift by words
 				_Array[_Wpos] = _Wordshift <= _Words - _Wpos
 						? _Array[_Wpos + _Wordshift] : (_Ty)0;
 
 		if ((_Pos %= _Bitsperword) != 0)
 			{	// 0 < _Pos < _Bitsperword, shift by bits
-			for (int _Wpos = 0; _Wpos < _Words; ++_Wpos)
+			for (int32_t _Wpos = 0; _Wpos < _Words; ++_Wpos)
 				_Array[_Wpos] = (_Ty)((_Array[_Wpos] >> _Pos)
 					| (_Array[_Wpos + 1] << (_Bitsperword - _Pos)));
 			_Array[_Words] >>= _Pos;
@@ -291,7 +291,7 @@ public:
 
 	bitset<_Bits>& flip()
 		{	// flip all bits
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] = (_Ty)~_Array[_Wpos];
 
 		_Trim();
@@ -320,10 +320,10 @@ public:
 		enum
 			{	// cause zero divide if unsigned long long not multiple of _Ty
 			_Assertion = 1
-				/ (int)(sizeof (uint64_t) % sizeof (_Ty) == 0)};
+				/ (int32_t)(sizeof (uint64_t) % sizeof (_Ty) == 0)};
 
-		int _Wpos = _Words;
-		for (; (int)(sizeof (uint64_t) / sizeof (_Ty)) <= _Wpos; --_Wpos)
+		int32_t _Wpos = _Words;
+		for (; (int32_t)(sizeof (uint64_t) / sizeof (_Ty)) <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				_Xoflo();	// fail if any high-order words are nonzero
 
@@ -353,7 +353,7 @@ public:
 		{	// count number of set bits
 		static char _Bitsperhex[] = "\0\1\1\2\1\2\2\3\1\2\2\3\2\3\3\4";
 		size_t _Val = 0;
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			for (_Ty _Wordval = _Array[_Wpos]; _Wordval != 0; _Wordval >>= 4)
 				_Val += _Bitsperhex[_Wordval & 0xF];
 		return (_Val);
@@ -368,7 +368,7 @@ public:
 	size_t hash() const
 		{	// hash bits to size_t value by pseudorandomizing transform
 		size_t _Val = 2166136261U;
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Val = 16777619U * _Val ^ _Array[_Wpos];
 		return (_Val);
 		}
@@ -376,7 +376,7 @@ public:
 
 	bool operator==(const bitset<_Bits>& _Right) const
 		{	// test for bitset equality
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != _Right._Getword(_Wpos))
 				return (false);
 		return (true);
@@ -397,7 +397,7 @@ public:
 
 	bool any() const
 		{	// test if any bits are set
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			if (_Array[_Wpos] != 0)
 				return (true);
 		return (false);
@@ -432,7 +432,7 @@ private:
 
 	void _Tidy(_Ty _Wordval = 0)
 		{	// set all words to _Wordval
-		for (int _Wpos = _Words; 0 <= _Wpos; --_Wpos)
+		for (int32_t _Wpos = _Words; 0 <= _Wpos; --_Wpos)
 			_Array[_Wpos] = _Wordval;
 		if (_Wordval != 0)
 			_Trim();

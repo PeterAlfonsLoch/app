@@ -556,9 +556,9 @@ CLASS_DECL_ca CArchive& operator>>(CArchive& ar, RECT& rect);
 
 
 CLASS_DECL_ca void __get_gray_bitmap(::ca::application * papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF crBackground);
-CLASS_DECL_ca void __draw_gray_bitmap(::ca::application * papp, ::ca::graphics * pgraphics, int x, int y, const ::ca::bitmap &rSrc, COLORREF crBackground);
+CLASS_DECL_ca void __draw_gray_bitmap(::ca::application * papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF crBackground);
 CLASS_DECL_ca void __get_dithered_bitmap(::ca::application * papp, const ::ca::bitmap &rSrc, ::ca::bitmap *pDest, COLORREF cr1, COLORREF cr2);
-CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphics * pgraphics, int x, int y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
+CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphics * pgraphics, int32_t x, int32_t y, const ::ca::bitmap &rSrc, COLORREF cr1, COLORREF cr2);
 
 
 #include "ca/ca/ca_graphic_classes.h"
@@ -585,7 +585,7 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 CLASS_DECL_ca ::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca thread* __begin_thread(::ca::type_info pThreadClass,
-   int nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
+   int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
@@ -599,7 +599,7 @@ THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority 
 
 
 // Use instead of PostQuitMessage in OLE server applications
-CLASS_DECL_ca void __post_quit_message(int nExitCode);
+CLASS_DECL_ca void __post_quit_message(int32_t nExitCode);
 
 
 class CRecentFileList;          // forward reference (see afxadv.h)

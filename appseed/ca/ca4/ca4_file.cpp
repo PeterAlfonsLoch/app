@@ -57,7 +57,7 @@ namespace ca4
       }
 
 
-      int iBufSize = 1024 * 256;
+      int32_t iBufSize = 1024 * 256;
 
       primitive::memory buf;
 
@@ -65,9 +65,9 @@ namespace ca4
 
       ::crypto::md5::context ctx(get_app());
 
-      int iRead;
+      int32_t iRead;
 
-      while((iRead = (int) spfile->read(buf, iBufSize)) > 0)
+      while((iRead = (int32_t) spfile->read(buf, iBufSize)) > 0)
       {
 
          ctx.update(buf.get_data(), iRead);
@@ -117,7 +117,7 @@ namespace ca4
 
       uint64_t iPos;
 
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(gen::str::ends_ci(stra[i], ".zip"))
          {
@@ -131,7 +131,7 @@ namespace ca4
          write_ex1_string(spfile, &ctx, straRelative[i]);
          if(!file2->open(stra[i], ::ex1::file::mode_read | ::ex1::file::type_binary))
             throw "failed";
-         write_n_number(spfile, &ctx, (int) file2->get_length());
+         write_n_number(spfile, &ctx, (int32_t) file2->get_length());
          while((uiRead = file2->read(buf, iBufSize)) > 0)
          {
             spfile->write(buf, uiRead);
@@ -157,7 +157,7 @@ namespace ca4
       string strRelative;
       string strMd5;
       string strMd5New;
-      int iBufSize = 1024 * 1024;
+      int32_t iBufSize = 1024 * 1024;
       primitive::memory buf;
       buf.allocate(iBufSize);
       int64_t iLen;
@@ -208,7 +208,7 @@ namespace ca4
       if(pctx != NULL)
       {
 
-         pctx->update((const char *) str, (int) str.get_length());
+         pctx->update((const char *) str, (int32_t) str.get_length());
 
       }
 
@@ -257,7 +257,7 @@ namespace ca4
       pfile->write((const char *) str, str.get_length());
       if(pctx != NULL)
       {
-         pctx->update((const char *) str, (int) str.get_length());
+         pctx->update((const char *) str, (int32_t) str.get_length());
       }
    }
 
@@ -272,7 +272,7 @@ namespace ca4
          int64_t iProcessed = 0;
          while(iLen - iProcessed > 0)
          {
-            int iProcess = (int) min(1024 * 1024, iLen - iProcessed);
+            int32_t iProcess = (int32_t) min(1024 * 1024, iLen - iProcessed);
             pctx->update(&lpsz[iProcessed], iProcess);
             iProcessed += iProcess;
          }

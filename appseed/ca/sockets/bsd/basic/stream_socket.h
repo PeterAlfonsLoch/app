@@ -14,13 +14,13 @@
 
 
          bool m_bConnecting; ///< Flag indicating connection in progress
-         int m_connect_timeout; ///< Connection timeout (seconds)
+         int32_t m_connect_timeout; ///< Connection timeout (seconds)
          bool m_flush_before_close; ///< Send all data before closing (default true)
-         int m_connection_retry; ///< Maximum connection retries (tcp)
-         int m_retries; ///< Actual number of connection retries (tcp)
+         int32_t m_connection_retry; ///< Maximum connection retries (tcp)
+         int32_t m_retries; ///< Actual number of connection retries (tcp)
          bool m_call_on_connect; ///< OnConnect will be called next socket_handler_base cycle if true
          bool m_b_retry_connect; ///< Try another connection attempt next socket_handler_base cycle
-         int m_shutdown; ///< Shutdown status
+         int32_t m_shutdown; ///< Shutdown status
 
          stream_socket(socket_handler_base& );
          ~stream_socket();
@@ -40,11 +40,11 @@
 
          /** Set timeout to use for connection attempt.
          \param x Timeout in seconds */
-         void SetConnectTimeout(int x);
+         void SetConnectTimeout(int32_t x);
 
          /** Return number of seconds to wait for a connection.
          \return Connection timeout (seconds) */
-         int GetConnectTimeout();
+         int32_t GetConnectTimeout();
 
          /** Set flush before close to make a tcp socket completely is_empty its
          output buffer before closing the connection. */
@@ -58,16 +58,16 @@
          n = 0 - no retry
          n > 0 - number of retries
          n = -1 - unlimited retries */
-         void SetConnectionRetry(int n);
+         void SetConnectionRetry(int32_t n);
 
          /** get number of maximum connection retries (tcp only). */
-         int GetConnectionRetry();
+         int32_t GetConnectionRetry();
 
          /** Increase number of actual connection retries (tcp only). */
          void IncreaseConnectionRetries();
 
          /** get number of actual connection retries (tcp only). */
-         int GetConnectionRetries();
+         int32_t GetConnectionRetries();
 
          /** Reset actual connection retries (tcp only). */
          void ResetConnectionRetries();
@@ -92,13 +92,13 @@
 
 
          /** Set shutdown status. */
-         void SetShutdown(int);
+         void SetShutdown(int32_t);
 
          /** get shutdown status. */
-         int GetShutdown();
+         int32_t GetShutdown();
 
          /** Returns IPPROTO_TCP or IPPROTO_SCTP */
-         virtual int Protocol() = 0;
+         virtual int32_t Protocol() = 0;
 
       };
 

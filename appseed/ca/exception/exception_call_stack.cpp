@@ -5,11 +5,11 @@ bool call_stack::s_bDoStackTrace = false;
 
 
 #if defined(LINUX) || defined(MACOS)
-call_stack::call_stack(::ca::application * papp, unsigned int uiSkip, void * address) :
+call_stack::call_stack(::ca::application * papp, unsigned int32_t uiSkip, void * address) :
    ca(papp)
    ,m_caller_address(address)
 #else
-call_stack::call_stack(::ca::application * papp, unsigned int uiSkip) :
+call_stack::call_stack(::ca::application * papp, unsigned int32_t uiSkip) :
    ca(papp)
 #endif
 {
@@ -31,7 +31,7 @@ call_stack::call_stack(const ::call_stack & cs) :
 
 }
 
-vsstring call_stack::get(unsigned int uiSkip)
+vsstring call_stack::get(unsigned int32_t uiSkip)
 {
 
    vsstring str;

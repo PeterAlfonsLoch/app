@@ -173,14 +173,14 @@ bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
    GetClientRect(rectClient);
    size sizeTrack;
    GetTrackSize(sizeTrack);
-   int iPos;
+   int32_t iPos;
    if(m_bTracking)
       iPos = m_scrollinfo.nTrackPos;
    else
       iPos = m_scrollinfo.nPos;
    if(m_eorientation == orientation_horizontal)
    {
-      int iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx - 1;
+      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx - 1;
       lpRect->top = rectClient.top + 2;
       lpRect->bottom = rectClient.top + sizeTrack.cy;
       if(m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage == 0)
@@ -191,7 +191,7 @@ bool simple_scroll_bar::GetTrackRect(LPRECT lpRect)
    }
    else if(m_eorientation == orientation_vertical)
    {
-      int iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2 - sizeTrack.cy - 1;
+      int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2 - sizeTrack.cy - 1;
       if(m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage == 0)
          lpRect->top = 0;
       else
@@ -271,7 +271,7 @@ bool simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
    GetClientRect(rectClient);
    if(m_eorientation == orientation_horizontal)
    {
-//      int iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
+//      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
       lpRect->bottom = rectClient.bottom;
       lpRect->top = rectClient.top;
       lpRect->left = rectClient.left + GetSystemMetrics(SM_CXHSCROLL);
@@ -279,7 +279,7 @@ bool simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
    }
    else if(m_eorientation == orientation_vertical)
    {
-//      int iWidth = rectClient.width() - GetSystemMetrics(SM_CYVSCROLL) * 2;
+//      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CYVSCROLL) * 2;
       lpRect->top = rectClient.top + GetSystemMetrics(SM_CYVSCROLL);
       lpRect->bottom = rectClient.bottom - GetSystemMetrics(SM_CYVSCROLL);
       lpRect->left = rectClient.left + 1;
@@ -291,18 +291,18 @@ bool simple_scroll_bar::GetTrackClientRect(LPRECT lpRect)
    return TRUE;
 }
 
-int simple_scroll_bar::GetTrackSize(size &size)
+int32_t simple_scroll_bar::GetTrackSize(size &size)
 {
 #ifdef WINDOWSEX
    rect rectClient;
    GetClientRect(rectClient);
    if(m_eorientation == orientation_horizontal)
    {
-      int iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
-      int cx = 5;
+      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
+      int32_t cx = 5;
       if(iWidth > 0)
       {
-         int idiff = (m_scrollinfo.nMax - m_scrollinfo.nMin);
+         int32_t idiff = (m_scrollinfo.nMax - m_scrollinfo.nMin);
          if(idiff == 0)
             cx = 0;
          else
@@ -315,10 +315,10 @@ int simple_scroll_bar::GetTrackSize(size &size)
    }
    else if(m_eorientation == orientation_vertical)
    {
-      int iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2;
+      int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2;
       size.cx = rectClient.width() - 1;
-      int cy = 5;
-      int iRange = (m_scrollinfo.nMax - m_scrollinfo.nMin);
+      int32_t cy = 5;
+      int32_t iRange = (m_scrollinfo.nMax - m_scrollinfo.nMin);
       if( iHeight > 0)
          cy = iRange ? m_scrollinfo.nPage * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin) : iHeight;
       if(cy < 5)
@@ -331,17 +331,17 @@ int simple_scroll_bar::GetTrackSize(size &size)
    return TRUE;
 }
 
-int simple_scroll_bar::SetTrackingPos(point point)
+int32_t simple_scroll_bar::SetTrackingPos(point point)
 {
 #ifdef WINDOWSEX
-   int nPos;
+   int32_t nPos;
    size sizeTrack;
    GetTrackSize(sizeTrack);
    rect rectClient;
    GetClientRect(rectClient);
    if(m_eorientation == orientation_horizontal)
    {
-      int iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx;
+      int32_t iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2 - sizeTrack.cx;
       nPos = point.x - m_ptTrackOffset.x;
       nPos -= GetSystemMetrics(SM_CXHSCROLL);
       nPos *= (m_scrollinfo.nMax - m_scrollinfo.nMin  - m_scrollinfo.nPage);
@@ -352,7 +352,7 @@ int simple_scroll_bar::SetTrackingPos(point point)
    }
    else if(m_eorientation == orientation_vertical)
    {
-      int iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2 - sizeTrack.cy;
+      int32_t iHeight = rectClient.height() - GetSystemMetrics(SM_CYVSCROLL) * 2 - sizeTrack.cy;
       nPos = point.y - m_ptTrackOffset.y;
       nPos -= GetSystemMetrics(SM_CXHSCROLL);
       nPos *= (m_scrollinfo.nMax - m_scrollinfo.nMin  - m_scrollinfo.nPage);
@@ -390,7 +390,7 @@ void simple_scroll_bar::_001OnHScroll(gen::signal_object * pobj)
       pscroll->m_bRet = false;
 }
 
-int simple_scroll_bar::_001GetScrollPos()
+int32_t simple_scroll_bar::_001GetScrollPos()
 {
    if(m_bTracking)
       return m_scrollinfo.nTrackPos;
@@ -542,9 +542,9 @@ void simple_scroll_bar::_001OnTimer(gen::signal_object * pobj)
    ptimer->m_bRet = false;
 }
 
-int simple_scroll_bar::ScrollLineA()
+int32_t simple_scroll_bar::ScrollLineA()
 {
-   int nPos = m_scrollinfo.nPos;
+   int32_t nPos = m_scrollinfo.nPos;
    nPos-=3;
    if(nPos < m_scrollinfo.nMin)
       nPos = m_scrollinfo.nMin;
@@ -561,9 +561,9 @@ int simple_scroll_bar::ScrollLineA()
    return true;
 }
 
-int simple_scroll_bar::ScrollLineB()
+int32_t simple_scroll_bar::ScrollLineB()
 {
-   int nPos = m_scrollinfo.nPos;
+   int32_t nPos = m_scrollinfo.nPos;
    nPos+=3;
    if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
       nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
@@ -580,10 +580,10 @@ int simple_scroll_bar::ScrollLineB()
    return true;
 }
 
-int simple_scroll_bar::ScrollPageA()
+int32_t simple_scroll_bar::ScrollPageA()
 {
 //   ::user::interaction * pParentWnd = get_parent();
-   int nPos = m_scrollinfo.nPos;
+   int32_t nPos = m_scrollinfo.nPos;
    nPos-=m_scrollinfo.nPage ;
    if(nPos < m_scrollinfo.nMin)
       nPos = m_scrollinfo.nMin;
@@ -600,10 +600,10 @@ int simple_scroll_bar::ScrollPageA()
 
 }
 
-int simple_scroll_bar::ScrollPageB()
+int32_t simple_scroll_bar::ScrollPageB()
 {
 //   ::user::interaction * pParentWnd = get_parent();
-   int nPos = m_scrollinfo.nPos;
+   int32_t nPos = m_scrollinfo.nPos;
    nPos+=m_scrollinfo.nPage ;
    if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
       nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
@@ -628,7 +628,7 @@ return;
 }
 
 ::user::interaction * pParentWnd = get_parent();
-int nPos = m_scrollinfo.nPos;
+int32_t nPos = m_scrollinfo.nPos;
 nPos+=m_scrollinfo.nPage;
 if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
 nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
@@ -659,7 +659,7 @@ void simple_scroll_bar::_001OnCreate(gen::signal_object * pobj)
    pcreate->set_lresult(0);
 }
 
-void simple_scroll_bar::OnDisplayChange(int iBitsPerPixel, size sizeScreen)
+void simple_scroll_bar::OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen)
 {
    UNREFERENCED_PARAMETER(iBitsPerPixel);
    UNREFERENCED_PARAMETER(sizeScreen);
@@ -675,7 +675,7 @@ void simple_scroll_bar::pre_translate_message(gen::signal_object * pobj)
       switch(pbase->m_uiMessage)
       {
       case WM_DISPLAYCHANGE:
-         OnDisplayChange((int) pbase->m_wparam, size(LOWORD(pbase->m_lparam), HIWORD(pbase->m_lparam)));
+         OnDisplayChange((int32_t) pbase->m_wparam, size(LOWORD(pbase->m_lparam), HIWORD(pbase->m_lparam)));
          pbase->m_bRet = true;
          return;
       default:
@@ -739,7 +739,7 @@ bool simple_scroll_bar::GetPageBRect(LPRECT lpRectClient,LPRECT lpRectTrack, LPR
 }
 
 
-int simple_scroll_bar::_001SetScrollPos(int iPos)
+int32_t simple_scroll_bar::_001SetScrollPos(int32_t iPos)
 {
    m_scrollinfo.nPos = iPos ;
    if(m_scrollinfo.nPos < m_scrollinfo.nMin)

@@ -116,7 +116,7 @@ namespace frame
 
    }
 
-   bool DockManager::OffsetWindowPos(int cx, int cy)
+   bool DockManager::OffsetWindowPos(int32_t cx, int32_t cy)
    {
       if(cx == 0
          && cy == 0)
@@ -209,7 +209,7 @@ namespace frame
       return true;
    }
 
-   bool DockManager::MoveWindow(int x, int y)
+   bool DockManager::MoveWindow(int32_t x, int32_t y)
    {
       ASSERT(m_pworkset->GetEventWindow() != NULL);
       ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
@@ -257,7 +257,7 @@ namespace frame
 
    }
 
-   EDock DockManager::CalcDock(int x, int y)
+   EDock DockManager::CalcDock(int32_t x, int32_t y)
    {
       ASSERT(m_pworkset->GetEventWindow() != NULL);
       ::user::interaction * pwndParent = m_pworkset->GetEventWindow()->get_parent();
@@ -273,7 +273,7 @@ namespace frame
       EDock edockMask = GetDockMask();
       EDock edock = GetDockState();
 
-      const int iDockReason = 100;
+      const int32_t iDockReason = 100;
 
       bool bChangeDock = false;
 

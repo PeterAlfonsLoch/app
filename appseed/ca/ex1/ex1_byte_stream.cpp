@@ -74,19 +74,19 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (int & i)
+   byte_input_stream & byte_input_stream::operator >> (int32_t & i)
    {
       uint64_t uiRead = read(&i, sizeof(i));
       if(uiRead != sizeof(i))
-         throw "failed to read int";
+         throw "failed to read int32_t";
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (unsigned int & ui)
+   byte_input_stream & byte_input_stream::operator >> (unsigned int32_t & ui)
    {
       uint64_t uiRead = read(&ui, sizeof(ui));
       if(uiRead != sizeof(ui))
-         throw "failed to read unsigned int";
+         throw "failed to read unsigned int32_t";
       return *this;
    }
 
@@ -125,14 +125,14 @@ namespace ex1
    byte_input_stream & byte_input_stream::operator >> (int64_t & i)
    {
       if(sizeof(i) != read(&i, sizeof(i)))
-         throw "could not read int";
+         throw "could not read int32_t";
       return *this;
    }
 
    byte_input_stream & byte_input_stream::operator >> (uint64_t & ui)
    {
       if(sizeof(ui) != read(&ui, sizeof(ui)))
-         throw "could not read int";
+         throw "could not read int32_t";
       return *this;
    }
 
@@ -154,7 +154,7 @@ namespace ex1
    {
       memset(p, 0, nMax);
       byte b;
-      int iRotate = 0;
+      int32_t iRotate = 0;
       byte * pTarget =(byte *) p;
       while(nMax > 0)
       {
@@ -241,7 +241,7 @@ namespace ex1
 
    byte_input_stream & byte_input_stream::operator >> (::ca::type_info & info)
    {
-      int iLen;
+      int32_t iLen;
       read(&iLen, sizeof(iLen));
       char * psz = (char *) malloc(iLen + 1);
       read(psz, iLen);
@@ -386,13 +386,13 @@ namespace ex1
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (int i)
+   byte_output_stream & byte_output_stream::operator << (int32_t i)
    {
       write(&i, sizeof(i));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (unsigned int ui)
+   byte_output_stream & byte_output_stream::operator << (unsigned int32_t ui)
    {
       write(&ui, sizeof(ui));
       return *this;

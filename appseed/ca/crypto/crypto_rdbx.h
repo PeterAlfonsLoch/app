@@ -71,7 +71,7 @@ rdbx_init(rdbx_t *rdbx);
  * *guess and the locally stored synch info
  */
 
-int
+int32_t
 rdbx_estimate_index(const rdbx_t *rdbx,
           xtd_seq_num_t *guess,
           sequence_number_t s);
@@ -85,7 +85,7 @@ rdbx_estimate_index(const rdbx_t *rdbx,
  */
 
 err_status_t
-rdbx_check(const rdbx_t *rdbx, int difference);
+rdbx_check(const rdbx_t *rdbx, int32_t difference);
 
 /*
  * replay_add_index(rdbx, delta)
@@ -99,7 +99,7 @@ rdbx_check(const rdbx_t *rdbx, int difference);
  */
 
 err_status_t
-rdbx_add_index(rdbx_t *rdbx, int delta);
+rdbx_add_index(rdbx_t *rdbx, int32_t delta);
 
 /*
  * xtd_seq_num_t functions - these are *internal* functions of rdbx, and
@@ -129,7 +129,7 @@ index_advance(xtd_seq_num_t *pi, sequence_number_t s);
  * difference between *guess and *local
  */
 
-int
+int32_t
 index_guess(const xtd_seq_num_t *local,
          xtd_seq_num_t *guess,
          sequence_number_t s);

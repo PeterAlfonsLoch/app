@@ -129,7 +129,7 @@ void simple_event::wait()
    if(m_bManualEvent)
    {
 
-      int iSignal = m_iSignalId;
+      int32_t iSignal = m_iSignalId;
 
       while(!m_bSignaled && iSignal == m_iSignalId)
       {
@@ -168,7 +168,7 @@ void simple_event::wait(DWORD dwTimeout)
    if(m_bManualEvent)
    {
 
-      int iSignal = m_iSignalId;
+      int32_t iSignal = m_iSignalId;
 
       while(!m_bSignaled && iSignal == m_iSignalId)
       {

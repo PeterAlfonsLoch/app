@@ -34,9 +34,9 @@ namespace gcom
          //   VARIANT varBits;
          //   VARIANT varUserData;
             ::ca::bitmap     m_pbitmap;
-            int         m_iUserData;
-            int      cx;
-            int      cy;
+            int32_t         m_iUserData;
+            int32_t      cx;
+            int32_t      cy;
             mutex * m_lpcs;
          } STRETCHIMAGESTRUCTURE, *LPSTRETCHIMAGESTRUCTURE;
 
@@ -61,9 +61,9 @@ namespace gcom
          //   VARIANT varUserData;
             //HBITMAP      m_hBitmap;
             ::ca::bitmap *  m_pbitmap;
-            int          m_cx;
-            int          m_cy;
-            int          m_iUserData;
+            int32_t          m_cx;
+            int32_t          m_cy;
+            int32_t          m_iUserData;
          //   LPSTREAM * m_lpStreamEvents;
          //   DWORD   m_dwEventsCount;
          //   LPSTREAM m_lpStreamImageLoader;
@@ -93,7 +93,7 @@ namespace gcom
 
       //   ::ca::bitmap & GetBitmap();
 
-         //void OnLyricViewSize(int iType);
+         //void OnLyricViewSize(int32_t iType);
          void LoadImageAsync(const load_image & loadimage);
          void StretchImageAsync(LPSTRETCHIMAGESTRUCTURE lpSi, bool bBitmapLocked);
 
@@ -105,7 +105,7 @@ namespace gcom
 
 
          virtual bool initialize_instance();
-         virtual int exit_instance();
+         virtual int32_t exit_instance();
          virtual ~thread();
 
          DECL_GEN_SIGNAL(OnUserMessage)

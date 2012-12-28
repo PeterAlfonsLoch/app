@@ -29,7 +29,7 @@ namespace ca
       {
          if(pdata == NULL)
          {
-            for(int i = 0; i < m_dataptra.get_count(); i++)
+            for(int32_t i = 0; i < m_dataptra.get_count(); i++)
             {
                m_dataptra[i]->m_listenerptra.remove(this);
             }
@@ -42,7 +42,7 @@ namespace ca
       }
    }
 
-   void data_listener::on_update_data(data *, int)
+   void data_listener::on_update_data(data *, int32_t)
    {
    }
 

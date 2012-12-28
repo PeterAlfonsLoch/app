@@ -2,7 +2,7 @@
 #include "db_str_set.h"
 
 
-int g_idbchange;
+int32_t g_idbchange;
 
 
 db_server::db_server(::ca::application * papp) :
@@ -113,7 +113,7 @@ bool db_server::initialize()
    m_pLongsSet = new db_long_set(&Application.db());
    m_pStringSet = new db_str_set(&Application.db());
 
-   int iBufferSize = 128 * 1024;
+   int32_t iBufferSize = 128 * 1024;
    gen::command_thread & commandthread = System.command();
 
    if(commandthread.m_varTopicQuery.has_property("filesizebuffer"))
@@ -231,7 +231,7 @@ void db_server::_001OnTimer(gen::signal_object * pobj)
       /*var varChange;
       var var;
       data_server_load("ca2_fontopus_votagus", "database_change", "change", varChange);
-      while(g_idbchange <= (int) varChange)
+      while(g_idbchange <= (int32_t) varChange)
       {
          if(data_server_load("ca2_fontopus_votagus", "database_change", g_idbchange, var))
          {
@@ -360,8 +360,8 @@ bool db_server::save(const char * lpKey, ex1::readable & readable)
    single_lock sl(&m_csImplDatabase, TRUE);
    string str;
    readable.to_hex(str);
-//   int iLength = str.get_length();
-//   int iKeyLen = strlen(lpKey);
+//   int32_t iLength = str.get_length();
+//   int32_t iKeyLen = strlen(lpKey);
    if(!save(lpKey, str))
       return false;
    return true;

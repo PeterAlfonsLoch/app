@@ -60,7 +60,7 @@ namespace exception
       STACKFRAME64 *       m_pstackframe;
       CONTEXT *            m_pcontext;
 
-      int                        m_iRef;
+      int32_t                        m_iRef;
       simple_array < HMODULE >   m_ha;
 
 

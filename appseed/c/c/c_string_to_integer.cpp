@@ -8,9 +8,9 @@
 
 #include "framework.h"
 
-int atoi_dup(const char * psz)
+int32_t atoi_dup(const char * psz)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    while(true)
    {
       char ch = *psz;
@@ -22,9 +22,9 @@ int atoi_dup(const char * psz)
    return iResult;
 }
 
-int atoi_dup(const char *psz, const char ** pszEnd)
+int32_t atoi_dup(const char *psz, const char ** pszEnd)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    while(true)
    {
       char ch = *psz;
@@ -47,8 +47,8 @@ return atol64_dup(str, NULL, 10);
 /*    while (isspace_dup(*str))			// skip whitespace
 ++str;
 
-int cur = *str++;
-int neg = cur;					// Save the negative sign, if it exists
+int32_t cur = *str++;
+int32_t neg = cur;					// Save the negative sign, if it exists
 
 if (cur == '-' || cur == '+')
 cur = *str++;
@@ -76,8 +76,8 @@ long wtol_dup(const wchar_t *str)
    while (iswspace_dup(*str))			// skip whitespace
       ++str;
 
-   int cur = *str++;
-   int neg = cur;					// Save the negative sign, if it exists
+   int32_t cur = *str++;
+   int32_t neg = cur;					// Save the negative sign, if it exists
 
    if (cur == L'-' || cur == L'+')
       cur = *str++;
@@ -98,14 +98,14 @@ long wtol_dup(const wchar_t *str)
       return total;
 }
 
-int wtoi_dup(const wchar_t *str)
+int32_t wtoi_dup(const wchar_t *str)
 {
-   return (int)wtol_dup(str);
+   return (int32_t)wtol_dup(str);
 }
 
-int _digit_atoi_dup(const char * psz, const char ** pszEnd, int iBase)
+int32_t _digit_atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    char chMax = '0' + iBase;
    while(true)
    {
@@ -122,9 +122,9 @@ int _digit_atoi_dup(const char * psz, const char ** pszEnd, int iBase)
    return iResult;
 }
 
-int _atoi_dup(const char * psz, const char ** pszEnd, int iBase)
+int32_t _atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    char chMax = 'a' + iBase - 10;
    while(true)
    {
@@ -158,7 +158,7 @@ int _atoi_dup(const char * psz, const char ** pszEnd, int iBase)
    return iResult;
 }
 
-int atoi_dup(const char * psz, const char ** pszEnd, int iBase)
+int32_t atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
 {
    if(iBase <= 0)
       return 0;
@@ -174,9 +174,9 @@ int atoi_dup(const char * psz, const char ** pszEnd, int iBase)
 
 
 
-int natoi_dup(const char * psz, size_t iLen)
+int32_t natoi_dup(const char * psz, size_t iLen)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    while(iLen > 0)
    {
       char ch = *psz;
@@ -189,9 +189,9 @@ int natoi_dup(const char * psz, size_t iLen)
    return iResult;
 }
 
-int natoi_dup(const char *psz, const char ** pszEnd, size_t iLen)
+int32_t natoi_dup(const char *psz, const char ** pszEnd, size_t iLen)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    while(iLen > 0)
    {
       char ch = *psz;
@@ -215,8 +215,8 @@ return atol64_dup(str, NULL, 10);
 /*    while (isspace_dup(*str))			// skip whitespace
 ++str;
 
-int cur = *str++;
-int neg = cur;					// Save the negative sign, if it exists
+int32_t cur = *str++;
+int32_t neg = cur;					// Save the negative sign, if it exists
 
 if (cur == '-' || cur == '+')
 cur = *str++;
@@ -250,8 +250,8 @@ long nwtol_dup(const wchar_t *str, size_t iLen)
    if(iLen <= 0)
       return 0;
 
-   int cur = *str++;
-   int neg = cur;					// Save the negative sign, if it exists
+   int32_t cur = *str++;
+   int32_t neg = cur;					// Save the negative sign, if it exists
 
    if (cur == L'-' || cur == L'+')
    {
@@ -281,14 +281,14 @@ long nwtol_dup(const wchar_t *str, size_t iLen)
       return total;
 }
 
-int nwtoi_dup(const wchar_t *str, size_t iLen)
+int32_t nwtoi_dup(const wchar_t *str, size_t iLen)
 {
-   return (int)nwtol_dup(str, iLen);
+   return (int32_t)nwtol_dup(str, iLen);
 }
 
-int _digit_natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t iLen)
+int32_t _digit_natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t iLen)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    char chMax = '0' + iBase;
    while(iLen > 0)
    {
@@ -306,9 +306,9 @@ int _digit_natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t i
    return iResult;
 }
 
-int _natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t iLen)
+int32_t _natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t iLen)
 {
-   int iResult = 0;
+   int32_t iResult = 0;
    char chMax = 'a' + iBase - 10;
    while(iLen > 0)
    {
@@ -342,7 +342,7 @@ int _natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t iLen)
    return iResult;
 }
 
-int natoi_dup(const char * psz, const char ** pszEnd, int iBase, size_t iLen)
+int32_t natoi_dup(const char * psz, const char ** pszEnd, int32_t iBase, size_t iLen)
 {
    if(iBase <= 0)
       return 0;
@@ -397,7 +397,7 @@ int64_t atoi64_dup(const char *psz, char ** pszEnd)
    return iResult;
 }
 
-int64_t _digit_atoi64_dup(const char * psz, char ** pszEnd, int iBase)
+int64_t _digit_atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
 {
    int64_t iResult = 0;
    char chMax = '0' + iBase;
@@ -416,7 +416,7 @@ int64_t _digit_atoi64_dup(const char * psz, char ** pszEnd, int iBase)
    return iResult;
 }
 
-int64_t _atoi64_dup(const char * psz, char ** pszEnd, int iBase)
+int64_t _atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
 {
    int64_t iResult = 0;
    char chMax = 'a' + iBase - 10;
@@ -452,7 +452,7 @@ int64_t _atoi64_dup(const char * psz, char ** pszEnd, int iBase)
    return iResult;
 }
 
-int64_t atoi64_dup(const char * psz, char ** pszEnd, int iBase)
+int64_t atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
 {
    if(iBase <= 0)
       return 0;
@@ -466,7 +466,7 @@ int64_t atoi64_dup(const char * psz, char ** pszEnd, int iBase)
       return 0;
 }
 
-/*int64_t atol64_dup(const char * sz, const char ** pszEnd, int iBase)
+/*int64_t atol64_dup(const char * sz, const char ** pszEnd, int32_t iBase)
 {
    const char * szIter = sz;
    while(*szIter != '\0' && ((*szIter >= '0' && *szIter <= ('0' + min(9, iBase))) || (to_lower(*szIter) >= 'a' && to_lower(*szIter) <= ('a' + iBase - 10))))
@@ -483,7 +483,7 @@ int64_t atoi64_dup(const char * psz, char ** pszEnd, int iBase)
    while(szIter >= sz)
    {
       char ch = *szIter;
-      int iDigit;
+      int32_t iDigit;
       if(ch >= '0' && ch <= '9')
       {
          iDigit = ch - '0';
@@ -544,7 +544,7 @@ int64_t natoi64_dup(const char *psz, char ** pszEnd, size_t iLen)
    return iResult;
 }
 
-int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
+int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLen)
 {
    int64_t iResult = 0;
    char chMax = '0' + iBase;
@@ -564,7 +564,7 @@ int64_t _digit_natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t i
    return iResult;
 }
 
-int64_t _natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
+int64_t _natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLen)
 {
    int64_t iResult = 0;
    char chMax = 'a' + iBase - 10;
@@ -602,7 +602,7 @@ int64_t _natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
 }
 
 
-int64_t natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
+int64_t natoi64_dup(const char * psz, char ** pszEnd, int32_t iBase, size_t iLen)
 {
    if(iBase <= 0)
       return 0;
@@ -616,7 +616,7 @@ int64_t natoi64_dup(const char * psz, char ** pszEnd, int iBase, size_t iLen)
       return 0;
 }
 
-int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, size_t iLen)
+int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase, size_t iLen)
 {
    while (iLen > 0 && iswspace_dup(*str))			// skip whitespace
    {
@@ -627,8 +627,8 @@ int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, siz
    if(iLen <= 0)
       return 0;
 
-   int cur = *str++;
-   int neg = cur;					// Save the negative sign, if it exists
+   int32_t cur = *str++;
+   int32_t neg = cur;					// Save the negative sign, if it exists
 
    if (cur == L'-' || cur == L'+')
    {
@@ -642,7 +642,7 @@ int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, siz
    // While we have digits, add 'em up.
 
    int64_t total = 0;
-   int iDigit;
+   int32_t iDigit;
    while (iswalnum_dup(cur))
    {
       iLen--;
@@ -683,7 +683,7 @@ int64_t nwtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase, siz
 }
 
 
-int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase)
+int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int32_t iBase)
 {
 
    while(*str != L'\0' && iswspace_dup(*str))			// skip whitespace
@@ -692,8 +692,8 @@ int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase)
    }
 
 
-   int cur = *str++;
-   int neg = cur;					// Save the negative sign, if it exists
+   int32_t cur = *str++;
+   int32_t neg = cur;					// Save the negative sign, if it exists
 
    if(cur == L'\0')
       return 0;
@@ -707,7 +707,7 @@ int64_t wtoi64_dup(const wchar_t * str, const wchar_t ** pszEnd, int iBase)
    // While we have digits, add 'em up.
 
    int64_t total = 0;
-   int iDigit;
+   int32_t iDigit;
    while(cur != L'\0' && iswalnum_dup(cur))
    {
       if(cur >= L'0' && cur <= L'9')

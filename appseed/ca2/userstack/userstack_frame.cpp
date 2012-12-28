@@ -250,7 +250,7 @@ namespace userstack
       else if(pbase->m_uiMessage == WM_COPYDATA)
       {
 #ifdef WINDOWSEX
-         int iEdge = 0;
+         int32_t iEdge = 0;
          COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam;
          if(pstruct->dwData == 1984)
          {
@@ -362,7 +362,7 @@ namespace userstack
       {
          string str = System.get_local_mutex_id();
          gen::str::begins_eat_ci(str, "bergedge");
-         int iEdge = atoi(str);
+         int32_t iEdge = atoi(str);
          if(iEdge == 0)
             iEdge = 77;
          else

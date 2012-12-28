@@ -102,7 +102,7 @@ namespace fs
    void tree::_001OnLButtonDblClk(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   //   int iItem;
+   //   int32_t iItem;
 
    /*   if(_001HitTest_(point, iItem))
       {
@@ -130,7 +130,7 @@ namespace fs
    }
 
    /*
-   bool tree::OnSetData(const ::database::id &key, int iLine, int iColumn, var & var, ::database::update_hint * puh)
+   bool tree::OnSetData(const ::database::id &key, int32_t iLine, int32_t iColumn, var & var, ::database::update_hint * puh)
    {
       if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
       {
@@ -145,7 +145,7 @@ namespace fs
    */
 
    /*
-   bool tree::get_data(const ::database::id & key, int iLine, int iColumn, var & var)
+   bool tree::get_data(const ::database::id & key, int32_t iLine, int32_t iColumn, var & var)
    {
       string str;
       if(key.get_value() == FILE_MANAGER_ID_FILE_NAME)
@@ -157,11 +157,11 @@ namespace fs
       return true;
    }
 
-   void tree::RenameFile(int iLine, string &wstrNameNew)
+   void tree::RenameFile(int32_t iLine, string &wstrNameNew)
    {
       string str = m_itema.get_item(iLine).m_strPath;
 
-      int iFind = str.reverse_find(L'\\');
+      int32_t iFind = str.reverse_find(L'\\');
 
 
       string wstrNew = str.Left(iFind + 1) + wstrNameNew;
@@ -176,7 +176,7 @@ namespace fs
    void tree::_001OnContextMenu(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-   //   int iItem;
+   //   int32_t iItem;
    //   HRESULT hr;
       point ptClient = pcontextmenu->GetPoint();
       ::user::tree::ScreenToClient(&ptClient);

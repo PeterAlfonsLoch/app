@@ -151,8 +151,8 @@ namespace gcom
 
 
          rect rectClient = tool1.rectClient;
-//         int cx = rectClient.width();
-//         int cy = rectClient.height();
+//         int32_t cx = rectClient.width();
+//         int32_t cy = rectClient.height();
 //         class imaging & imaging = System.imaging();
 
          Graphics & graphics = main.GetGraphics();
@@ -173,10 +173,10 @@ namespace gcom
          ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 //         ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -185,10 +185,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
 
 
@@ -303,10 +303,10 @@ namespace gcom
 
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-         int cxm = cx1 / 2;
-         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+         int32_t cxm = cx1 / 2;
+         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -315,10 +315,10 @@ namespace gcom
          }
 
 
-         int s1 = rand() * 1 / RAND_MAX + 1;
-         int s2 = rand() * 1 / RAND_MAX + 1;
-         int s3 = rand() * 2 / RAND_MAX + 1;
-         int s4 = rand() * 2 / RAND_MAX + 1;
+         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          StepGrow001(
             m_color,
@@ -439,10 +439,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-         int cxm = cx1 / 2;
-         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+         int32_t cxm = cx1 / 2;
+         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -451,15 +451,15 @@ namespace gcom
          }
 
 
-         int s1 = rand() * 1 / RAND_MAX + 1;
-         int s2 = rand() * 1 / RAND_MAX + 1;
-         int s3 = rand() * 2 / RAND_MAX + 1;
-         int s4 = rand() * 2 / RAND_MAX + 1;
+         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
-         int c1 = rand() * (cx1 - 10) / RAND_MAX + 1;
-         int c2 = rand() * (cy1 - 10) / RAND_MAX + 1;
-         int c3 = rand() * 10 / RAND_MAX + 1;
-         int c4 = rand() * 10 / RAND_MAX + 1;
+         int32_t c1 = rand() * (cx1 - 10) / RAND_MAX + 1;
+         int32_t c2 = rand() * (cy1 - 10) / RAND_MAX + 1;
+         int32_t c3 = rand() * 10 / RAND_MAX + 1;
+         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
          StepGrow001(
             m_color,
@@ -575,10 +575,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-         int cxm = cx1 / 2;
-         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+         int32_t cxm = cx1 / 2;
+         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -586,15 +586,15 @@ namespace gcom
             pdib3->create(cx1, cy1);
          }
 
-         int s1 = rand() * 1 / RAND_MAX + 1;
-         int s2 = rand() * 1 / RAND_MAX + 1;
-         int s3 = rand() * 2 / RAND_MAX + 1;
-         int s4 = rand() * 2 / RAND_MAX + 1;
+         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          m_rndgrowVelocity.Step();
          if(m_rndgrowDirectionLatency.Step())
          {
-            m_dDirection = ((int) m_dDirection % 360);
+            m_dDirection = ((int32_t) m_dDirection % 360);
             m_dDirectionAddUp = 4.0 * rand() / RAND_MAX - 2.0;
 
          }
@@ -613,22 +613,22 @@ namespace gcom
 
          if(m_ptColorTrack.x > cx1 - 10)
          {
-      //      m_dDirection += 180 + ((int) m_dDirection % 360);
+      //      m_dDirection += 180 + ((int32_t) m_dDirection % 360);
             m_dDirection = -m_dDirection;
          }
          else if(m_ptColorTrack.y > cy1 - 10)
          {
-        //    m_dDirection += 180 + ((int) m_dDirection % 360);
+        //    m_dDirection += 180 + ((int32_t) m_dDirection % 360);
             m_dDirection = -m_dDirection;
          }
          else if(m_ptColorTrack.x < 0)
          {
-          //  m_dDirection += 180 + ((int) m_dDirection % 360);
+          //  m_dDirection += 180 + ((int32_t) m_dDirection % 360);
             m_dDirection = -m_dDirection;
          }
          else if(m_ptColorTrack.y < 0)
          {
-            //m_dDirection += 180 + ((int) m_dDirection % 360);
+            //m_dDirection += 180 + ((int32_t) m_dDirection % 360);
             m_dDirection = -m_dDirection;
          }
 
@@ -674,10 +674,10 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-         int c3 = rand() * 10 / RAND_MAX + 1;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+         int32_t c3 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          double dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
@@ -708,10 +708,10 @@ namespace gcom
 
 
          {
-            int x1 = m_ptColorTrack.x;
-            int y1 = m_ptColorTrack.y;
-            int x2 = cx1 - x1;
-            int y2 = cy1 - y1;
+            int32_t x1 = m_ptColorTrack.x;
+            int32_t y1 = m_ptColorTrack.y;
+            int32_t x2 = cx1 - x1;
+            int32_t y2 = cy1 - y1;
             ::ca::brush_sp brush(get_app(), m_color.get_rgb() | (255 << 24));
             pdib1->get_graphics()->SelectObject(brush);
             //imaging.color_blend(pdib1->get_graphics(), x, y, c3, c4, m_color.get_rgb(), bA);
@@ -753,8 +753,8 @@ namespace gcom
          iface.BackViewGetClientRect(rectClient);
          tool1.rectClient = rectClient;
 
-         int cx = rectClient.width();
-         int cy = rectClient.height();
+         int32_t cx = rectClient.width();
+         int32_t cy = rectClient.height();
 //         class imaging & imaging = System.imaging();
 
          Graphics & graphics = main.GetGraphics();
@@ -783,8 +783,8 @@ namespace gcom
 //         ::ca::dib * pdibTransfer = graphics.GetDib(_graphics::DibTransfer);
 
 
-         int cx1 = cx / 4 + 1;
-         int cy1 = cy / 4 + 1;
+         int32_t cx1 = cx / 4 + 1;
+         int32_t cy1 = cy / 4 + 1;
 
          m_explosion.create(cx1, cy1);
          m_explosion.Reset();
@@ -812,7 +812,7 @@ namespace gcom
          m_rndgrowDirectionLatency.maxubound = 100;
 
          m_colortrack1a.set_size(12);
-         for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.i = 0;
@@ -842,15 +842,15 @@ namespace gcom
          m_dAngle = 0.0;
       }
 
-      int VisualEffect::GetEffectCount()
+      int32_t VisualEffect::GetEffectCount()
       {
-         return (int) VisualEffectEnd;
+         return (int32_t) VisualEffectEnd;
       }
 
       void VisualEffect::StepGrow001(
             color & color,
-            int & iGrowColor,
-            int & iGrowMax)
+            int32_t & iGrowColor,
+            int32_t & iGrowMax)
       {
          double dH;
          double dL;
@@ -909,8 +909,8 @@ namespace gcom
 
       void VisualEffect::StepGrow034(
             color & color,
-            int & iGrowColor,
-            int & iGrowMax)
+            int32_t & iGrowColor,
+            int32_t & iGrowMax)
       {
          double dH;
          double dL;
@@ -969,8 +969,8 @@ namespace gcom
 
       void VisualEffect::StepGrow001(
             color & color,
-            int & iGrowColor,
-            int & iGrowMax,
+            int32_t & iGrowColor,
+            int32_t & iGrowMax,
             bool & bGrowColor)
       {
          double dH;
@@ -1117,10 +1117,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-         int cxm = cx1 / 2;
-         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+         int32_t cxm = cx1 / 2;
+         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -1128,15 +1128,15 @@ namespace gcom
             pdib3->create(cx1, cy1);
          }
 
-         int s1 = rand() * 1 / RAND_MAX + 1;
-         int s2 = rand() * 1 / RAND_MAX + 1;
-         int s3 = rand() * 2 / RAND_MAX + 1;
-         int s4 = rand() * 2 / RAND_MAX + 1;
+         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          m_rndgrowVelocity.Step();
          if(m_rndgrowDirectionLatency.Step())
          {
-            m_dDirection = ((int) m_dDirection % 360);
+            m_dDirection = ((int32_t) m_dDirection % 360);
             m_dDirectionAddUp = 4.0 * rand() / RAND_MAX - 2.0;
 
          }
@@ -1168,19 +1168,19 @@ namespace gcom
 
          if(m_ptColorTrack.x > cx1 - 10)
          {
-            m_dDirection += 180 + ((int) m_dDirection % 360);
+            m_dDirection += 180 + ((int32_t) m_dDirection % 360);
          }
          else if(m_ptColorTrack.y > cy1 - 10)
          {
-            m_dDirection += 180 + ((int) m_dDirection % 360);
+            m_dDirection += 180 + ((int32_t) m_dDirection % 360);
          }
          else if(m_ptColorTrack.x < 0)
          {
-            m_dDirection += 180 + ((int) m_dDirection % 360);
+            m_dDirection += 180 + ((int32_t) m_dDirection % 360);
          }
          else if(m_ptColorTrack.y < 0)
          {
-            m_dDirection += 180 + ((int) m_dDirection % 360);
+            m_dDirection += 180 + ((int32_t) m_dDirection % 360);
          }
 
          if(m_ptColorTrack.x > cx1 - 10)
@@ -1225,10 +1225,10 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-         int c3 = rand() * 10 / RAND_MAX + 1;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+         int32_t c3 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          double dAngleOffset = (20.0 * rand() / RAND_MAX) - 5.0;
@@ -1261,12 +1261,12 @@ namespace gcom
 
 
          {
-            int d = c3;
-            int r = d / 2;
-            int x1 = m_ptColorTrack.x - r;
-            int y1 = m_ptColorTrack.y - r;
-            int x2 = cx1 - x1 - r;
-            int y2 = cy1 - y1 - r;
+            int32_t d = c3;
+            int32_t r = d / 2;
+            int32_t x1 = m_ptColorTrack.x - r;
+            int32_t y1 = m_ptColorTrack.y - r;
+            int32_t x2 = cx1 - x1 - r;
+            int32_t y2 = cy1 - y1 - r;
             ::ca::brush_sp brush(get_app());
             brush->create_solid(colorStrong.get_rgb() | (255 << 24));
             pdib2->get_graphics()->SelectObject(brush);
@@ -1339,10 +1339,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -1351,10 +1351,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -1363,7 +1363,7 @@ namespace gcom
          rcTrackBox.right  = cx1 - rcTrackBox.left;
          rcTrackBox.bottom = cy1 - rcTrackBox.top;
 
-         for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -1478,9 +1478,9 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          m_rndgrowAngleOffsetLatency.Step();
@@ -1536,12 +1536,12 @@ namespace gcom
             ::ca::pen_sp pen5(get_app());
             pen5->create_solid(pdib2->get_graphics(), 1.0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = (int) ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = (int32_t) ct1.m_dSize;
                switch(i % 5)
                {
                case 0:
@@ -1601,19 +1601,19 @@ namespace gcom
       {
          if(pt.x > lpcrect->right)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
          else if(pt.y > lpcrect->bottom)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
          else if(pt.x < lpcrect->left)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
          else if(pt.y < lpcrect->top)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
 
          if(pt.x > lpcrect->right)
@@ -1639,7 +1639,7 @@ namespace gcom
       {
          if(randomgrow.Step())
          {
-            direction = ((int) direction % 360);
+            direction = ((int32_t) direction % 360);
             directionAddUp = 4.0 * rand() / RAND_MAX - 2.0;
 
          }
@@ -1690,10 +1690,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -1702,10 +1702,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -1721,7 +1721,7 @@ namespace gcom
          rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
          rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
-         /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         /*for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -1866,9 +1866,9 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          m_rndgrowAngleOffsetLatency.Step();
@@ -1921,12 +1921,12 @@ namespace gcom
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = ct1.m_dSize;
                switch(i % 5)
                {
                case 0:
@@ -1998,7 +1998,7 @@ namespace gcom
                (rectIn.left + rectIn.right) / 2,
                (rectIn.top + rectIn.bottom) / 2);
 
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
 
             if(pt.x > ptCenter.x)
             {
@@ -2021,19 +2021,19 @@ namespace gcom
 
          if(pt.x > lpcrectOut->right)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
          else if(pt.y > lpcrectOut->bottom)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
          else if(pt.x < lpcrectOut->left)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
          else if(pt.y < lpcrectOut->top)
          {
-            direction  += 180 + ((int) direction  % 360);
+            direction  += 180 + ((int32_t) direction  % 360);
          }
 
          if(pt.x > lpcrectOut->right)
@@ -2104,10 +2104,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -2116,10 +2116,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -2135,7 +2135,7 @@ namespace gcom
          rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
          rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
-         /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         /*for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -2285,9 +2285,9 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          m_rndgrowAngleOffsetLatency.Step();
@@ -2335,18 +2335,18 @@ namespace gcom
          ::ca::pen_sp pen1(get_app());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
-         int margin = 10;
-         int w = margin * 2;
+         int32_t margin = 10;
+         int32_t w = margin * 2;
          pdib1->get_graphics()->MoveTo(margin, margin);
 
-         int imax = cx1 - margin;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
-         int rhalf = RAND_MAX / 2;
-         int j = 0;
-         int r1 = 0;
-         int r2 = 0;
-         int i;
+         int32_t imax = cx1 - margin;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
+         int32_t rhalf = RAND_MAX / 2;
+         int32_t j = 0;
+         int32_t r1 = 0;
+         int32_t r2 = 0;
+         int32_t i;
          for(i = margin; i < jmax; i++)
          {
             if((i % 5) == 0)
@@ -2441,10 +2441,10 @@ namespace gcom
          //imaging.color_blend(pdib1->get_graphics(), cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2.get_rgb(), bA);
 
          {
-            int x2 = cx1 / 2;
-            int y2 = cy1 / 2;
-            int w2 = cx1 / 2 - 1;
-            int h2 = cy1 / 2 - 1;
+            int32_t x2 = cx1 / 2;
+            int32_t y2 = cy1 / 2;
+            int32_t w2 = cx1 / 2 - 1;
+            int32_t h2 = cy1 / 2 - 1;
 
             // top
             imaging.color_blend(pdib1->get_graphics(),  0, 0, w2, 1, colorStrong2.get_rgb(), bA);
@@ -2471,12 +2471,12 @@ namespace gcom
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = ct1.m_dSize;
                switch(i % 5)
                {
                case 0:
@@ -2563,8 +2563,8 @@ namespace gcom
             ::ca::dib * pdibFrame1 = graphics.GetDib(_graphics::DibFrame1);
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
-            int cx1 = tool1.cx / 4;
-            int cy1 = tool1.cy / 4;
+            int32_t cx1 = tool1.cx / 4;
+            int32_t cy1 = tool1.cy / 4;
             pdib1->create(cx1, cy1);
             pdib2->create(cx1, cy1);
             pdib3->create(cx1, cy1);
@@ -2576,8 +2576,8 @@ namespace gcom
             pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
             pdib3->stretch_dib(pdibBuffer);
          }
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
 
 
 
@@ -2605,13 +2605,13 @@ namespace gcom
          pdib4->fill_channel(255, visual::rgba::channel_alpha);
          pdib2->fill_channel(255, visual::rgba::channel_alpha);
 
-         int mod = max(1, (int) tool1.dmod);
+         int32_t mod = max(1, (int32_t) tool1.dmod);
          if((tool1.frame % mod) == 0)
          {
-            int x = rand() * cx1 / RAND_MAX;
-            int y = rand() * cy1 / RAND_MAX;
-            int r = (int) (rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0));
-            int h = rand() * 100 / RAND_MAX;
+            int32_t x = rand() * cx1 / RAND_MAX;
+            int32_t y = rand() * cy1 / RAND_MAX;
+            int32_t r = (int32_t) (rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0));
+            int32_t h = rand() * 100 / RAND_MAX;
             if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
             {
                tool1.dminsize += 0.5;
@@ -2681,10 +2681,10 @@ namespace gcom
          ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -2694,7 +2694,7 @@ namespace gcom
                m_pointa1.set_size(cx1);
                m_pointa2.set_size(cx1);
 
-               for(int i = 0; i < cx1; i++)
+               for(int32_t i = 0; i < cx1; i++)
                {
                   m_pointa[i].y = cy1 / 2;
                   m_pointa1[i].y = 0;
@@ -2737,28 +2737,28 @@ namespace gcom
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
-         int margin1 = cx1 / 8;
-         int margin2 = cy1 / 2;
-         int w = cy1 / 3;
+         int32_t margin1 = cx1 / 8;
+         int32_t margin2 = cy1 / 2;
+         int32_t w = cy1 / 3;
 
          double jmul = (double) cy1 / (cx1 * 2.0);
 
          double delta = w;
 
 
-         int imax = cx1 - margin1;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
+         int32_t imax = cx1 - margin1;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
          double rhalf = RAND_MAX / 2.0;
-         int j = 0;
-//         int r1 = 0;
-//         int r2 = 0;
+         int32_t j = 0;
+//         int32_t r1 = 0;
+//         int32_t r2 = 0;
 
 
          double offset;
 
          double jres;
-         int i;
+         int32_t i;
          for(i = margin1; i < jmax; i++)
          {
             /*if((i % 5) == 0)
@@ -2773,7 +2773,7 @@ namespace gcom
             //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
             jres = j * jmul;
             offset = (rand() - rhalf) * j * delta / rmax;
-            m_pointa[i].y = (int) max(margin2 - jres, min(margin2 + jres, m_pointa[i - 1].y + offset));
+            m_pointa[i].y = (int32_t) max(margin2 - jres, min(margin2 + jres, m_pointa[i - 1].y + offset));
             m_pointa[i].y = (m_pointa[i].y + margin2) / 2;
             j++;
          }
@@ -2792,7 +2792,7 @@ namespace gcom
             //offset = r1 + r2 + ((rand() - rhalf) * j * delta / rmax);
             jres = j * jmul;
             offset = ((rand() - rhalf) * j * delta / rmax);
-            m_pointa[i].y = (int) max(margin2 - jres, min(margin2 + jres, m_pointa[i + 1].y + offset));
+            m_pointa[i].y = (int32_t) max(margin2 - jres, min(margin2 + jres, m_pointa[i + 1].y + offset));
             m_pointa[i].y = (m_pointa[i].y + margin2) / 2;
             j++;
          }
@@ -2911,10 +2911,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -2924,7 +2924,7 @@ namespace gcom
                m_pointa1.set_size(cx1);
                m_pointa2.set_size(cx1);
 
-               for(int i = 0; i < cx1; i++)
+               for(int32_t i = 0; i < cx1; i++)
                {
                   m_pointa[i].y = cy1 / 2;
                   m_pointa1[i].y = 0;
@@ -2940,10 +2940,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -2959,7 +2959,7 @@ namespace gcom
          rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
          rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
-         /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         /*for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -3109,9 +3109,9 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
 
@@ -3198,24 +3198,24 @@ namespace gcom
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
-         int margin1 = 10;
-//         int margin2 = cy1 / 2;
-         int w = cy1 / 3;
+         int32_t margin1 = 10;
+//         int32_t margin2 = cy1 / 2;
+         int32_t w = cy1 / 3;
 
-         int delta = 5;
-
-
-         int imax = cx1 - margin1;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
-         int rhalf = RAND_MAX / 2;
-         int j = 0;
-         int r1 = 0;
-         int r2 = 0;
+         int32_t delta = 5;
 
 
-         int offset;
-         int i;
+         int32_t imax = cx1 - margin1;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
+         int32_t rhalf = RAND_MAX / 2;
+         int32_t j = 0;
+         int32_t r1 = 0;
+         int32_t r2 = 0;
+
+
+         int32_t offset;
+         int32_t i;
          for(i = margin1; i < jmax; i++)
          {
             if((i % 5) == 0)
@@ -3353,12 +3353,12 @@ namespace gcom
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = ct1.m_dSize;
                switch(i % 5)
                {
                case 0:
@@ -3456,7 +3456,7 @@ namespace gcom
       {
          // Cleanup
       }
-      void PixelExplosion::create(int iWidth,int iHeight)
+      void PixelExplosion::create(int32_t iWidth,int32_t iHeight)
       {
          m_pointa.set_size(iWidth * iHeight);
          m_pointaM.set_size(iWidth * iHeight);
@@ -3475,17 +3475,17 @@ namespace gcom
       }
       void PixelExplosion::to(DWORD* pSrcImage,DWORD* pTargetImage)
       {
-         int i = 0;
+         int32_t i = 0;
 
          // Yes they have to be the same size...(for now)
          DrawWaterNoLight(m_iHpage,pSrcImage,pTargetImage);
          if(i == 2)
          {
-            Calc2(m_iHpage, (int)m_density);
+            Calc2(m_iHpage, (int32_t)m_density);
          }
          else
          {
-            CalcWater(m_iHpage, (int) m_density);
+            CalcWater(m_iHpage, (int32_t) m_density);
          }
 
 
@@ -3493,16 +3493,16 @@ namespace gcom
 
       }
 
-      void PixelExplosion::CalcWater(int npage, int density)
+      void PixelExplosion::CalcWater(int32_t npage, int32_t density)
       {
          UNREFERENCED_PARAMETER(npage);
          UNREFERENCED_PARAMETER(density);
-         int imin = - m_iWidth / 2;
-         int imax = m_iWidth / 2;
-         int jmin = - m_iHeight / 2;
-         int jmax = m_iHeight / 2;
-         int i, j;
-         int x, y;
+         int32_t imin = - m_iWidth / 2;
+         int32_t imax = m_iWidth / 2;
+         int32_t jmin = - m_iHeight / 2;
+         int32_t jmax = m_iHeight / 2;
+         int32_t i, j;
+         int32_t x, y;
 
          double dr;
          double dcos;
@@ -3523,7 +3523,7 @@ namespace gcom
          double m, n;
 
 
-         int k = 0;
+         int32_t k = 0;
          for(y = 0, j = jmin; j < jmax; j++, y++)
          {
             for(x = 0, i = imin; i < imax; i++, x++)
@@ -3568,18 +3568,18 @@ namespace gcom
 
       }
 
-      void PixelExplosion::Calc2(int npage, int density)
+      void PixelExplosion::Calc2(int32_t npage, int32_t density)
       {
          UNREFERENCED_PARAMETER(npage);
          UNREFERENCED_PARAMETER(density);
          m_z *= 1.1;
 
-         int imin = - m_iWidth / 2;
-         int imax = m_iWidth / 2;
-         int jmin = - m_iHeight / 2;
-         int jmax = m_iHeight / 2;
-         int i, j;
-         int x, y;
+         int32_t imin = - m_iWidth / 2;
+         int32_t imax = m_iWidth / 2;
+         int32_t jmin = - m_iHeight / 2;
+         int32_t jmax = m_iHeight / 2;
+         int32_t i, j;
+         int32_t x, y;
 
          double dr;
          double dcos;
@@ -3594,7 +3594,7 @@ namespace gcom
          double m, n, o;
 
 
-         int k = 0;
+         int32_t k = 0;
          for(y = 0, j = jmin; j < jmax; j++, y++)
          {
             for(x = 0, i = imin; i < imax; i++, x++)
@@ -3627,7 +3627,7 @@ namespace gcom
 
                //d = sqrt(d);
 
-               //int rnd =
+               //int32_t rnd =
                // i = x + y * width
                //m_pointa[k].x = dr * dcos * (rand() * 0.5 * d / RAND_MAX + 1.0);
                //m_pointa[k].y = dr * dsin * (rand() * 0.5 * d / RAND_MAX + 1.0);
@@ -3641,12 +3641,12 @@ namespace gcom
 
 
       }
-      void PixelExplosion::SmoothWater(int npage)
+      void PixelExplosion::SmoothWater(int32_t npage)
       {
          UNREFERENCED_PARAMETER(npage);
       }
 
-      void PixelExplosion::CalcWaterBigFilter(int npage, int density)
+      void PixelExplosion::CalcWaterBigFilter(int32_t npage, int32_t density)
       {
          UNREFERENCED_PARAMETER(npage);
          UNREFERENCED_PARAMETER(density);
@@ -3655,17 +3655,17 @@ namespace gcom
       void PixelExplosion::Reset()
       {
          m_z = 0.1;
-         int imin = - m_iWidth / 2;
-         int imax = m_iWidth / 2;
-         int jmin = - m_iHeight / 2;
-         int jmax = m_iHeight / 2;
+         int32_t imin = - m_iWidth / 2;
+         int32_t imax = m_iWidth / 2;
+         int32_t jmin = - m_iHeight / 2;
+         int32_t jmax = m_iHeight / 2;
 
          double max = imax * imax + jmax * jmax;
          //double max = max(imax, jmax) * 2;
       //   max = 2 * max;
 
-         int k = 0;
-         int i, j;
+         int32_t k = 0;
+         int32_t i, j;
          for(j = jmin; j < jmax; j++)
          {
             for(i = imin; i < imax; i++)
@@ -3683,7 +3683,7 @@ namespace gcom
 
       }
 
-      void PixelExplosion::HeightBox (int x, int y, int radius, int height, int page)
+      void PixelExplosion::HeightBox (int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page)
       {
          UNREFERENCED_PARAMETER(x);
          UNREFERENCED_PARAMETER(y);
@@ -3693,7 +3693,7 @@ namespace gcom
       }
 
 
-      void PixelExplosion::WarpBlob(int x, int y, int radius, int height, int page)
+      void PixelExplosion::WarpBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page)
       {
          UNREFERENCED_PARAMETER(x);
          UNREFERENCED_PARAMETER(y);
@@ -3702,7 +3702,7 @@ namespace gcom
          UNREFERENCED_PARAMETER(page);
       }
 
-      void PixelExplosion::SineBlob(int x, int y, int radius, int height, int page)
+      void PixelExplosion::SineBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page)
       {
          UNREFERENCED_PARAMETER(x);
          UNREFERENCED_PARAMETER(y);
@@ -3711,28 +3711,28 @@ namespace gcom
          UNREFERENCED_PARAMETER(page);
       }
 
-      void PixelExplosion::DrawWaterNoLight(int page,DWORD* pSrcImage,DWORD* pTargetImage)
+      void PixelExplosion::DrawWaterNoLight(int32_t page,DWORD* pSrcImage,DWORD* pTargetImage)
       {
          UNREFERENCED_PARAMETER(page);
-      //  int ox, oy;
-        int x, y;
+      //  int32_t ox, oy;
+        int32_t x, y;
 
-         int mx = m_iWidth / 2;
-         int my = m_iHeight / 2;
+         int32_t mx = m_iWidth / 2;
+         int32_t my = m_iHeight / 2;
 
 
-//        int offset=m_iWidth + 1;
+//        int32_t offset=m_iWidth + 1;
 
 
         for (y = 0; y < m_iHeight; y++)
         {
           for (x = 0; x < m_iWidth; x++)
           {
-             int i = x + y * m_iWidth;
-             int newx = (int) m_pointa[i].x + mx;
+             int32_t i = x + y * m_iWidth;
+             int32_t newx = (int32_t) m_pointa[i].x + mx;
              if(newx < 0 || newx >= m_iWidth)
                 continue;
-             int newy = (int) m_pointa[i].y + my;
+             int32_t newy = (int32_t) m_pointa[i].y + my;
              if(newy < 0 || newy >= m_iHeight)
                 continue;
 
@@ -3743,14 +3743,14 @@ namespace gcom
         }
       }
 
-      inline COLORREF PixelExplosion::GetShiftedColor(COLORREF color,int shift)
+      inline COLORREF PixelExplosion::GetShiftedColor(COLORREF color,int32_t shift)
       {
          long R;
          long G;
          long B;
-         int ir;
-         int ig;
-         int ib;
+         int32_t ir;
+         int32_t ig;
+         int32_t ib;
 
          R = rgba_get_r(color)-shift;
          G = rgba_get_g(color)-shift;
@@ -3786,8 +3786,8 @@ namespace gcom
 
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
-            int cx1 = tool1.cx / 4;
-            int cy1 = tool1.cy / 4;
+            int32_t cx1 = tool1.cx / 4;
+            int32_t cy1 = tool1.cy / 4;
             pdib1->create(cx1, cy1);
             pdib2->create(cx1, cy1);
             pdib3->create(cx1, cy1);
@@ -3807,8 +3807,8 @@ namespace gcom
             pdib4->get_graphics()->BitBlt(0, 0, cx1, cy1, &dcBuffer, 0, 0, SRCCOPY);
          }
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
 
 
 
@@ -3816,13 +3816,13 @@ namespace gcom
 
          m_explosion.to(pdib4->get_data(), pdib3->get_data());
 
-         /*int mod = max(1, (int) tool1.dmod);
+         /*int32_t mod = max(1, (int32_t) tool1.dmod);
          if((tool1.frame % mod) == 0)
          {
-            int x = rand() * cx1 / RAND_MAX;
-            int y = rand() * cy1 / RAND_MAX;
-            int r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
-            int h = rand() * 100 / RAND_MAX;
+            int32_t x = rand() * cx1 / RAND_MAX;
+            int32_t y = rand() * cy1 / RAND_MAX;
+            int32_t r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
+            int32_t h = rand() * 100 / RAND_MAX;
             if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
             {
                tool1.dminsize += 0.5;
@@ -3889,8 +3889,8 @@ namespace gcom
 
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
-            int cx1 = tool1.cx / 4;
-            int cy1 = tool1.cy / 4;
+            int32_t cx1 = tool1.cx / 4;
+            int32_t cy1 = tool1.cy / 4;
             pdib1->create(cx1, cy1);
             pdib2->create(cx1, cy1);
             pdib3->create(cx1, cy1);
@@ -3920,13 +3920,13 @@ namespace gcom
 
          m_explosion.to(pdib4->get_data(), pdib2->get_data());
 
-         /*int mod = max(1, (int) tool1.dmod);
+         /*int32_t mod = max(1, (int32_t) tool1.dmod);
          if((tool1.frame % mod) == 0)
          {
-            int x = rand() * cx1 / RAND_MAX;
-            int y = rand() * cy1 / RAND_MAX;
-            int r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
-            int h = rand() * 100 / RAND_MAX;
+            int32_t x = rand() * cx1 / RAND_MAX;
+            int32_t y = rand() * cy1 / RAND_MAX;
+            int32_t r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
+            int32_t h = rand() * 100 / RAND_MAX;
             if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
             {
                tool1.dminsize += 0.5;
@@ -3989,8 +3989,8 @@ namespace gcom
 
             tool1.dmod = 4.2;
             tool1.dminsize = 0;
-            int cx1 = tool1.cx / 4;
-            int cy1 = tool1.cy / 4;
+            int32_t cx1 = tool1.cx / 4;
+            int32_t cy1 = tool1.cy / 4;
             pdib1->create(cx1, cy1);
             pdib2->create(cx1, cy1);
             pdib3->create(cx1, cy1);
@@ -4007,8 +4007,8 @@ namespace gcom
             pdib3->get_graphics()->SetStretchBltMode(HALFTONE);
             pdib3->stretch_dib(pdibFrame1);
          }
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
 
          pdib3->Fill(0, 0, 0, 0);
 
@@ -4029,13 +4029,13 @@ namespace gcom
 
          m_explosion.to(pdib4->get_data(), pdib3->get_data());
 
-         /*int mod = max(1, (int) tool1.dmod);
+         /*int32_t mod = max(1, (int32_t) tool1.dmod);
          if((tool1.frame % mod) == 0)
          {
-            int x = rand() * cx1 / RAND_MAX;
-            int y = rand() * cy1 / RAND_MAX;
-            int r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
-            int h = rand() * 100 / RAND_MAX;
+            int32_t x = rand() * cx1 / RAND_MAX;
+            int32_t y = rand() * cy1 / RAND_MAX;
+            int32_t r = rand() * min(tool1.dminsize, 60.0) / RAND_MAX + min(tool1.dminsize / 2, 60.0);
+            int32_t h = rand() * 100 / RAND_MAX;
             if(transitioneffect.m_tool001.m_iStep < iReturnPoint)
             {
                tool1.dminsize += 0.5;
@@ -4109,10 +4109,10 @@ namespace gcom
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -4123,10 +4123,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -4142,7 +4142,7 @@ namespace gcom
          rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
          rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
-         /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         /*for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -4284,9 +4284,9 @@ namespace gcom
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          m_rndgrowAngleOffsetLatency.Step();
@@ -4334,19 +4334,19 @@ namespace gcom
          ::ca::pen_sp pen1(get_app());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
-         int marginx = cx1 / 12;
-         int marginy = cy1 * 5 / 11;
-         int w = marginx * 2;
+         int32_t marginx = cx1 / 12;
+         int32_t marginy = cy1 * 5 / 11;
+         int32_t w = marginx * 2;
          pdib1->get_graphics()->MoveTo(marginx, marginy);
 
-         int imax = cx1 - marginx;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
-         int rhalf = RAND_MAX / 2;
-         int j = 0;
-         int r1 = 0;
-         int r2 = 0;
-         int i;
+         int32_t imax = cx1 - marginx;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
+         int32_t rhalf = RAND_MAX / 2;
+         int32_t j = 0;
+         int32_t r1 = 0;
+         int32_t r2 = 0;
+         int32_t i;
          for(i = marginx; i < jmax; i++)
          {
             if((i % 5) == 0)
@@ -4466,12 +4466,12 @@ namespace gcom
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = ct1.m_dSize;
                switch(i % 5)
                {
                case 0:
@@ -4572,10 +4572,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -4584,10 +4584,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -4603,7 +4603,7 @@ namespace gcom
          rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
          rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
-         /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         /*for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -4753,9 +4753,9 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          m_rndgrowAngleOffsetLatency.Step();
@@ -4803,18 +4803,18 @@ namespace gcom
          ::ca::pen_sp pen1(get_app());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
-         int margin = 10;
-         int w = margin * 2;
+         int32_t margin = 10;
+         int32_t w = margin * 2;
          pdib1->get_graphics()->MoveTo(margin, margin);
 
-         int imax = cx1 - margin;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
-         int rhalf = RAND_MAX / 2;
-         int j = 0;
-         int r1 = 0;
-         int r2 = 0;
-         int i;
+         int32_t imax = cx1 - margin;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
+         int32_t rhalf = RAND_MAX / 2;
+         int32_t j = 0;
+         int32_t r1 = 0;
+         int32_t r2 = 0;
+         int32_t i;
          for(i = margin; i < jmax; i++)
          {
             if((i % 5) == 0)
@@ -4909,10 +4909,10 @@ namespace gcom
          //imaging.color_blend(pdib1->get_graphics(), cx1 / 2, cy1 * 2 / 3, cx1 / 2 - 1, 1, colorStrong2.get_rgb(), bA);
 
          {
-            int x2 = cx1 / 2;
-            int y2 = cy1 / 2;
-            int w2 = cx1 / 2 - 1;
-            int h2 = cy1 / 2 - 1;
+            int32_t x2 = cx1 / 2;
+            int32_t y2 = cy1 / 2;
+            int32_t w2 = cx1 / 2 - 1;
+            int32_t h2 = cy1 / 2 - 1;
 
             // top
             imaging.color_blend(pdib1->get_graphics(),  0, 0, w2, 1, colorStrong2.get_rgb(), bA);
@@ -4939,12 +4939,12 @@ namespace gcom
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = ct1.m_dSize;
                switch(i % 5)
                {
                case 0:
@@ -5044,10 +5044,10 @@ namespace gcom
          ::ca::dib * pdib4 = graphics.GetDib(_graphics::DibTemp4);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -5057,7 +5057,7 @@ namespace gcom
                m_pointa1.set_size(cx1);
                m_pointa2.set_size(cx1);
 
-               for(int i = 0; i < cx1; i++)
+               for(int32_t i = 0; i < cx1; i++)
                {
                   m_pointa[i].y = cy1 / 2;
                   m_pointa1[i].y = 0;
@@ -5100,28 +5100,28 @@ namespace gcom
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
-         int margin1 = cx1 / 8;
-         int margin2 = cy1 / 2;
-         int w = cy1 / 3;
+         int32_t margin1 = cx1 / 8;
+         int32_t margin2 = cy1 / 2;
+         int32_t w = cy1 / 3;
 
          double jmul = (double) cy1 / (cx1 * 2.0);
 
          double delta = w;
 
 
-         int imax = cx1 - margin1;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
+         int32_t imax = cx1 - margin1;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
          double rhalf = RAND_MAX / 2.0;
-         int j = 0;
-//         int r1 = 0;
-//         int r2 = 0;
+         int32_t j = 0;
+//         int32_t r1 = 0;
+//         int32_t r2 = 0;
 
 
          double offset;
 
          double jres;
-         int i;
+         int32_t i;
          for(i = margin1; i < jmax; i++)
          {
             /*if((i % 5) == 0)
@@ -5278,10 +5278,10 @@ namespace gcom
          //dcBack.BitBlt(0, 0, cx, cy, &dcBuffer, 0, 0, SRCCOPY);
          //pdib1->Vortex(transitioneffect.m_tool001.m_iStep);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -5291,7 +5291,7 @@ namespace gcom
                m_pointa1.set_size(cx1);
                m_pointa2.set_size(cx1);
 
-               for(int i = 0; i < cx1; i++)
+               for(int32_t i = 0; i < cx1; i++)
                {
                   m_pointa[i].y = cy1 / 2;
                   m_pointa1[i].y = 0;
@@ -5307,10 +5307,10 @@ namespace gcom
          }
 
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -5326,7 +5326,7 @@ namespace gcom
          rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
          rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
-         /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         /*for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -5476,9 +5476,9 @@ namespace gcom
 
       //   pdib3->Paste(pdib1);
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
 
@@ -5565,24 +5565,24 @@ namespace gcom
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          ::ca::pen_sp penWhite(get_app());
          penWhite->create_solid(pdib1->get_graphics(), 3, ARGB(255, 205, 205, 205));
-         int margin1 = 10;
-//         int margin2 = cy1 / 2;
-         int w = cy1 / 3;
+         int32_t margin1 = 10;
+//         int32_t margin2 = cy1 / 2;
+         int32_t w = cy1 / 3;
 
-         int delta = 5;
-
-
-         int imax = cx1 - margin1;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
-         int rhalf = RAND_MAX / 2;
-         int j = 0;
-         int r1 = 0;
-         int r2 = 0;
+         int32_t delta = 5;
 
 
-         int offset;
-         int i;
+         int32_t imax = cx1 - margin1;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
+         int32_t rhalf = RAND_MAX / 2;
+         int32_t j = 0;
+         int32_t r1 = 0;
+         int32_t r2 = 0;
+
+
+         int32_t offset;
+         int32_t i;
          for(i = margin1; i < jmax; i++)
          {
             if((i % 5) == 0)
@@ -5720,12 +5720,12 @@ namespace gcom
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = ct1.m_dSize;
                switch(i % 5)
                {
                case 0:
@@ -5845,10 +5845,10 @@ namespace gcom
          ::ca::dib * pdib3 = graphics.GetDib(_graphics::DibTemp3);
 //         ::ca::dib * pdibBuffer = graphics.GetDib(_graphics::DibBuffer);
 
-         int cx1 = pdib1->cx;
-         int cy1 = pdib1->cy;
-//         int cxm = cx1 / 2;
-//         int cym = cy1 / 2;
+         int32_t cx1 = pdib1->cx;
+         int32_t cy1 = pdib1->cy;
+//         int32_t cxm = cx1 / 2;
+//         int32_t cym = cy1 / 2;
 
          if(transitioneffect.m_tool001.m_iStep == 1)
          {
@@ -5856,10 +5856,10 @@ namespace gcom
             pdib3->create(cx1, cy1);
          }
 
-//         int s1 = rand() * 1 / RAND_MAX + 1;
-//         int s2 = rand() * 1 / RAND_MAX + 1;
-//         int s3 = rand() * 2 / RAND_MAX + 1;
-//         int s4 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s1 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s2 = rand() * 1 / RAND_MAX + 1;
+//         int32_t s3 = rand() * 2 / RAND_MAX + 1;
+//         int32_t s4 = rand() * 2 / RAND_MAX + 1;
 
          rect rcTrackBox;
 
@@ -5875,7 +5875,7 @@ namespace gcom
          rcTrackBox2.right  = cx1 - 1 - rcTrackBox2.left;
          rcTrackBox2.bottom = cy1 - 1 - rcTrackBox2.top;
 
-         /*for(int i = 0; i < m_colortrack1a.get_size(); i++)
+         /*for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
          {
             ColorTrack1 & ct1 = m_colortrack1a[i];
             ct1.m_rndgrowVelocity.Step();
@@ -6017,9 +6017,9 @@ namespace gcom
             //pdib1->get_graphics()->FillSolidRect(0, 0, cx1, cy1, colorStrong1.get_rgb() | (255 << 24));
          }
 
-//         int c1 = rand() * 3 / RAND_MAX;
-//         int c2 = rand() * 3 / RAND_MAX;
-//         int c4 = rand() * 10 / RAND_MAX + 1;
+//         int32_t c1 = rand() * 3 / RAND_MAX;
+//         int32_t c2 = rand() * 3 / RAND_MAX;
+//         int32_t c4 = rand() * 10 / RAND_MAX + 1;
 
 
          m_rndgrowAngleOffsetLatency.Step();
@@ -6067,19 +6067,19 @@ namespace gcom
          ::ca::pen_sp pen1(get_app());
          pen1->create_solid(pdib1->get_graphics(), 1, colorStrong1.get_rgb() | (255 << 24));
          pdib1->get_graphics()->SelectObject(pen1);
-         int marginx = cx1 / 12;
-         int marginy = cy1 * 5 / 11;
-         int w = marginx * 2;
+         int32_t marginx = cx1 / 12;
+         int32_t marginy = cy1 * 5 / 11;
+         int32_t w = marginx * 2;
          pdib1->get_graphics()->MoveTo(marginx, marginy);
 
-         int imax = cx1 - marginx;
-         int jmax = cx1 / 2;
-         int rmax = jmax * RAND_MAX;
-         int rhalf = RAND_MAX / 2;
-         int j = 0;
-         int r1 = 0;
-         int r2 = 0;
-         int i;
+         int32_t imax = cx1 - marginx;
+         int32_t jmax = cx1 / 2;
+         int32_t rmax = jmax * RAND_MAX;
+         int32_t rhalf = RAND_MAX / 2;
+         int32_t j = 0;
+         int32_t r1 = 0;
+         int32_t r2 = 0;
+         int32_t i;
          for(i = marginx; i < jmax; i++)
          {
             if((i % 5) == 0)
@@ -6199,12 +6199,12 @@ namespace gcom
             ::ca::brush_sp brush4(get_app(), colorStrong4.get_rgb() | (255 << 24));
             ::ca::pen_sp pen5(get_app(), PS_SOLID, 0, colorStrong5.get_rgb() | (255 << 24));
             ::ca::brush_sp brush5(get_app(), colorStrong5.get_rgb() | (255 << 24));
-            for(int i = 0; i < m_colortrack1a.get_size(); i++)
+            for(int32_t i = 0; i < m_colortrack1a.get_size(); i++)
             {
                ColorTrack1 & ct1 = m_colortrack1a[i];
-               int x1 = ct1.m_ptColorTrack.x;
-               int y1 = ct1.m_ptColorTrack.y;
-               int d = ct1.m_dSize;
+               int32_t x1 = ct1.m_ptColorTrack.x;
+               int32_t y1 = ct1.m_ptColorTrack.y;
+               int32_t d = ct1.m_dSize;
                switch(i % 5)
                {
                case 0:

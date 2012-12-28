@@ -32,7 +32,7 @@ namespace ca
          virtual bool exists(const var & var);
 
 
-         string time(const char * pszBasePath, int iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         string time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
          string time_square(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
          string time_log(const char * pszId);
 

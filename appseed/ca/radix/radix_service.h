@@ -8,14 +8,14 @@ namespace ca2
    public:
       service();
       virtual ~service();
-      int stop(const char * pszName);
-      int remove(const char * pszName);
+      int32_t stop(const char * pszName);
+      int32_t remove(const char * pszName);
       using ::ex1::request_interface::create;
-      int create(
+      int32_t create(
             const char * pszName,
             const char * pszDisplayName,
             const char * pszVotagus);
-      int start(const char * pszName);
+      int32_t start(const char * pszName);
    };
 
 } // namespace ca2

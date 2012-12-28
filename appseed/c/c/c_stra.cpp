@@ -12,7 +12,7 @@ stra_dup::~stra_dup()
 
 void stra_dup::trim()
 {
-   for(int ui = 0; ui < this->get_count(); ui++)
+   for(int32_t ui = 0; ui < this->get_count(); ui++)
    {
       this->element_at(ui).trim();
    }
@@ -20,7 +20,7 @@ void stra_dup::trim()
 
 void stra_dup::remove_empty()
 {
-   for(int ui = 0; ui < this->get_count();)
+   for(int32_t ui = 0; ui < this->get_count();)
    {
       if(this->element_at(ui).length() == 0)
       {
@@ -118,10 +118,10 @@ void stra_dup::add_tokens(const char * psz, const char * pszSeparator)
 vsstring stra_dup::encode_v16()
 {
    vsstring strEncode;
-   for(int ui = 0; ui < this->get_count(); ui++)
+   for(int32_t ui = 0; ui < this->get_count(); ui++)
    {
       vsstring & str = this->element_at(ui);
-      for(int uj = 0; uj < str.length(); uj++)
+      for(int32_t uj = 0; uj < str.length(); uj++)
       {
          char sz[32];
          itoa_dup(sz, str.m_psz[uj], 16);
@@ -148,7 +148,7 @@ vsstring stra_dup::encode_v16()
 
 void stra_dup::decode_v16(const char * psz)
 {
-   int iSize = 1024;
+   int32_t iSize = 1024;
    char * str = NULL;
    if(psz == NULL)
       return;
@@ -162,7 +162,7 @@ void stra_dup::decode_v16(const char * psz)
       sz[1] = psz[0];
       sz[2] = '\0';
       const char * pszEnd;
-      int iConversion = ::atoi_dup(sz, &pszEnd, 16);
+      int32_t iConversion = ::atoi_dup(sz, &pszEnd, 16);
       char ch = static_cast < char > (iConversion);
       if(ch == '\0')
       {
@@ -210,7 +210,7 @@ bool stra_dup::spa_insert(const char * psz)
 
    index iM;
 
-   int iCmp;
+   int32_t iCmp;
 
    while(true)
    {

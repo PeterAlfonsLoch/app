@@ -28,7 +28,7 @@ struct __COLORMAP
 {
    // use DWORD instead of RGBQUAD so we can compare two RGBQUADs easily
    DWORD rgbqFrom;
-   int iSysColorTo;
+   int32_t iSysColorTo;
 };
 
 static const __COLORMAP gen_SysColorMap[] =
@@ -206,11 +206,11 @@ namespace userbase
       }
    }
 
-   void tool_bar::SetHeight(int cyHeight)
+   void tool_bar::SetHeight(int32_t cyHeight)
    {
       ASSERT_VALID(this);
 
-      int nHeight = cyHeight;
+      int32_t nHeight = cyHeight;
       if (m_dwStyle & CBRS_BORDER_TOP)
 //         cyHeight -= afxData.cyBorder2;
             cyHeight -= 2;
@@ -256,7 +256,7 @@ namespace userbase
       ASSERT(pData->wVersion == 1);
 
       UINT* pItems = new UINT[pData->wItemCount];
-      for (int i = 0; i < pData->wItemCount; i++)
+      for (int32_t i = 0; i < pData->wItemCount; i++)
          pItems[i] = pData->items()[i];
       bool bResult = SetButtons(pItems, pData->wItemCount);
       delete[] pItems;
@@ -361,7 +361,7 @@ namespace userbase
       return bResult;
    }
 
-   bool tool_bar::SetButtons(const UINT* lpIDArray, int nIDCount)
+   bool tool_bar::SetButtons(const UINT* lpIDArray, int32_t nIDCount)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -369,7 +369,7 @@ namespace userbase
       ASSERT(lpIDArray == NULL || __is_valid_address(lpIDArray, sizeof(UINT) * nIDCount, FALSE));
 
       // delete all existing buttons
-      int nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+      int32_t nCount = (int32_t)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       while (nCount--)
          VERIFY(DefWindowProc(TB_DELETEBUTTON, 0, 0));
 
@@ -378,8 +378,8 @@ namespace userbase
       if (lpIDArray != NULL)
       {
          // add new buttons to the common control
-         int iImage = 0;
-         for (int i = 0; i < nIDCount; i++)
+         int32_t iImage = 0;
+         for (int32_t i = 0; i < nIDCount; i++)
          {
             button.fsState = TBSTATE_ENABLED;
             if ((button.idCommand = *lpIDArray++) == 0)
@@ -406,14 +406,14 @@ namespace userbase
       {
          // add 'blank' buttons
          button.fsState = TBSTATE_ENABLED;
-         for (int i = 0; i < nIDCount; i++)
+         for (int32_t i = 0; i < nIDCount; i++)
          {
             ASSERT(button.fsStyle == TBSTYLE_BUTTON);
             if (!DefWindowProc(TB_ADDBUTTONS, 1, (LPARAM)&button))
                return FALSE;
          }
       }
-   //   m_nCount = (int)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+   //   m_nCount = (int32_t)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
       m_bDelayedButtonLayout = TRUE;
 #else
       throw todo(get_app());
@@ -476,20 +476,20 @@ namespace userbase
 
 #endif
 
-   int tool_bar::CommandToIndex(UINT nIDFind)
+   int32_t tool_bar::CommandToIndex(UINT nIDFind)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
 #ifdef WINDOWSEX
       tool_bar* pBar = (tool_bar*)this;
-      return (int)pBar->DefWindowProc(TB_COMMANDTOINDEX, nIDFind, 0);
+      return (int32_t)pBar->DefWindowProc(TB_COMMANDTOINDEX, nIDFind, 0);
 #else
       throw todo(get_app());
 #endif
    }
 
-   UINT tool_bar::GetItemID(int nIndex)
+   UINT tool_bar::GetItemID(int32_t nIndex)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -503,7 +503,7 @@ namespace userbase
 #endif
    }
 
-   void tool_bar::GetItemRect(int nIndex, LPRECT lpRect)
+   void tool_bar::GetItemRect(int32_t nIndex, LPRECT lpRect)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -539,7 +539,7 @@ namespace userbase
          ((tool_bar*)this)->CalcDynamicLayout(0, LM_VERTDOCK | LM_COMMIT);
    }
 
-   UINT tool_bar::GetButtonStyle(int nIndex)
+   UINT tool_bar::GetButtonStyle(int32_t nIndex)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -553,7 +553,7 @@ namespace userbase
 #endif
    }
 
-   void tool_bar::SetButtonStyle(int nIndex, UINT nStyle)
+   void tool_bar::SetButtonStyle(int32_t nIndex, UINT nStyle)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -576,7 +576,7 @@ namespace userbase
    #define CX_OVERLAP  0
 
 #ifdef WINDOWSEX
-   size tool_bar::CalcSize(TBBUTTON* pData, int nCount)
+   size tool_bar::CalcSize(TBBUTTON* pData, int32_t nCount)
    {
       ASSERT(pData != NULL && nCount > 0);
 
@@ -585,21 +585,21 @@ namespace userbase
 
       DWORD dwExtendedStyle = (DWORD) DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
 
-      for (int i = 0; i < nCount; i++)
+      for (int32_t i = 0; i < nCount; i++)
       {
          //WINBUG: The IE4 version of COMCTL32.DLL calculates the separation
          //  on a TBSTYLE_WRAP button as 100% of the value in iBitmap compared
          //  to the other versions which calculate it at 2/3 of that value.
          //  This is actually a bug which should be fixed in IE 4.01, so we
          //  only do the 100% calculation specifically for IE4.
-         int cySep = pData[i].iBitmap;
+         int32_t cySep = pData[i].iBitmap;
          if (!(GetStyle() & TBSTYLE_FLAT))
             cySep = cySep * 2 / 3;
 
          if (pData[i].fsState & TBSTATE_HIDDEN)
             continue;
 
-         int cx = m_sizeButton.cx;
+         int32_t cx = m_sizeButton.cx;
          if (pData[i].fsStyle & TBSTYLE_SEP)
          {
             // a separator represents either a height or width
@@ -637,21 +637,21 @@ namespace userbase
       return sizeResult;
    }
 
-   int tool_bar::WrapToolBar(TBBUTTON* pData, int nCount, int nWidth)
+   int32_t tool_bar::WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth)
    {
       ASSERT(pData != NULL && nCount > 0);
       ::ca::client_graphics pdc(this);
-      int nResult = 0;
-      int x = 0;
+      int32_t nResult = 0;
+      int32_t x = 0;
       string str;
-      for (int i = 0; i < nCount; i++)
+      for (int32_t i = 0; i < nCount; i++)
       {
          pData[i].fsState &= ~TBSTATE_WRAP;
 
          if (pData[i].fsState & TBSTATE_HIDDEN)
             continue;
          GetButtonText(i, str);
-         int dx, dxNext;
+         int32_t dx, dxNext;
          if (pData[i].fsStyle & TBSTYLE_SEP)
          {
             dx = pData[i].iBitmap;
@@ -667,7 +667,7 @@ namespace userbase
             ::GetTextExtentPoint32U(
                (HDC)pdc->get_os_data(),
                str,
-               (int) str.get_length(),
+               (int32_t) str.get_length(),
                &size);
             dx += size.cx;
             dxNext = dx - CX_OVERLAP;
@@ -681,7 +681,7 @@ namespace userbase
          if (x + dx > nWidth)
          {
             bool bFound = FALSE;
-            for (int j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
+            for (int32_t j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
             {
                // find last separator that isn't hidden
                // a separator that has a command ID is not
@@ -698,7 +698,7 @@ namespace userbase
             }
             if (!bFound)
             {
-               for (int j = i - 1; j >= 0 && !(pData[j].fsState & TBSTATE_WRAP); j--)
+               for (int32_t j = i - 1; j >= 0 && !(pData[j].fsState & TBSTATE_WRAP); j--)
                {
                   // Never wrap anything that is hidden,
                   // or any custom controls
@@ -723,13 +723,13 @@ namespace userbase
       return nResult + 1;
    }
 
-   void  tool_bar::SizeToolBar(TBBUTTON* pData, int nCount, int nLength, bool bVert)
+   void  tool_bar::SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert)
    {
       ASSERT(pData != NULL && nCount > 0);
 
       if (!bVert)
       {
-         int nMin, nMax, nTarget, nCurrent, nMid;
+         int32_t nMin, nMax, nTarget, nCurrent, nMid;
 
          // Wrap ToolBar as specified
          nMax = nLength;
@@ -799,11 +799,11 @@ namespace userbase
 #endif
    struct ___CONTROLPOS
    {
-      int nIndex, nID;
+      int32_t nIndex, nID;
       rect rectOldPos;
    };
 
-   size tool_bar::CalcLayout(DWORD dwMode, int nLength)
+   size tool_bar::CalcLayout(DWORD dwMode, int32_t nLength)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -811,16 +811,16 @@ namespace userbase
       if (dwMode & LM_HORZDOCK)
          ASSERT(dwMode & LM_HORZ);
 
-      int nCount;
+      int32_t nCount;
       TBBUTTON* pData = NULL;
       size sizeResult(0,0);
 
       //BLOCK: Load Buttons
       {
-         nCount = (int) DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+         nCount = (int32_t) DefWindowProc(TB_BUTTONCOUNT, 0, 0);
          if (nCount != 0)
          {
-            int i;
+            int32_t i;
             pData = new TBBUTTON[nCount];
             for (i = 0; i < nCount; i++)
                _GetButton(i, &pData[i]);
@@ -845,7 +845,7 @@ namespace userbase
                rect.null();
                CalcInsideRect(rect, (dwMode & LM_HORZ) != 0);
                bool bVert = (dwMode & LM_LENGTHY) != 0;
-               int nLen = nLength + (bVert ? rect.height() : rect.width());
+               int32_t nLen = nLength + (bVert ? rect.height() : rect.width());
 
                SizeToolBar(pData, nCount, nLen, bVert);
             }
@@ -860,11 +860,11 @@ namespace userbase
          if (dwMode & LM_COMMIT)
          {
             ___CONTROLPOS* pControl = NULL;
-            int nControlCount = 0;
+            int32_t nControlCount = 0;
             bool bIsDelayed = m_bDelayedButtonLayout;
             m_bDelayedButtonLayout = FALSE;
 
-            int i;
+            int32_t i;
             for (i = 0; i < nCount; i++)
                if ((pData[i].fsStyle & TBSTYLE_SEP) && (pData[i].idCommand != 0))
                   nControlCount++;
@@ -874,7 +874,7 @@ namespace userbase
                pControl = new ___CONTROLPOS[nControlCount];
                nControlCount = 0;
 
-               for(int i = 0; i < nCount; i++)
+               for(int32_t i = 0; i < nCount; i++)
                {
                   if ((pData[i].fsStyle & TBSTYLE_SEP) && (pData[i].idCommand != 0))
                   {
@@ -941,7 +941,7 @@ namespace userbase
 
             if (nControlCount > 0)
             {
-               for (int i = 0; i < nControlCount; i++)
+               for (int32_t i = 0; i < nControlCount; i++)
                {
                   ::user::interaction* pWnd = get_child_by_id(pControl[i].nID);
                   if (pWnd != NULL)
@@ -987,7 +987,7 @@ throw todo(get_app());
       return CalcLayout(dwMode);
    }
 
-   size tool_bar::CalcDynamicLayout(int nLength, DWORD dwMode)
+   size tool_bar::CalcDynamicLayout(int32_t nLength, DWORD dwMode)
    {
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
          ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -997,7 +997,7 @@ throw todo(get_app());
       return CalcLayout(dwMode, nLength);
    }
 
-   void tool_bar::GetButtonInfo(int nIndex, UINT& nID, UINT& nStyle, int& iImage)
+   void tool_bar::GetButtonInfo(int32_t nIndex, UINT& nID, UINT& nStyle, int32_t& iImage)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -1013,7 +1013,7 @@ throw todo(get_app());
 #endif
    }
 
-   void tool_bar::SetButtonInfo(int nIndex, UINT nID, UINT nStyle, int iImage)
+   void tool_bar::SetButtonInfo(int32_t nIndex, UINT nID, UINT nStyle, int32_t iImage)
    {
       ASSERT_VALID(this);
 #ifdef WINDOWSEX
@@ -1037,7 +1037,7 @@ throw todo(get_app());
    }
 
 
-   bool tool_bar::SetButtonText(int nIndex, const char * lpszText)
+   bool tool_bar::SetButtonText(int32_t nIndex, const char * lpszText)
    {
       // attempt to lookup string index in map
       int_ptr nString = -1;
@@ -1058,7 +1058,7 @@ throw todo(get_app());
          // add new string to toolbar list
          string strTemp(str, str.get_length());
          throw not_implemented(get_app());
-         // xxx nString = (int)DefWindowProc(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const wchar_t *)strTemp);
+         // xxx nString = (int32_t)DefWindowProc(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const wchar_t *)strTemp);
          if (nString == -1)
             return FALSE;
 
@@ -1094,14 +1094,14 @@ throw todo(get_app());
       return TRUE;
    }
 
-   string tool_bar::GetButtonText(int nIndex) const
+   string tool_bar::GetButtonText(int32_t nIndex) const
    {
       string strResult;
       GetButtonText(nIndex, strResult);
       return strResult;
    }
 
-   void tool_bar::GetButtonText(int nIndex, string & rWString) const
+   void tool_bar::GetButtonText(int32_t nIndex, string & rWString) const
    {
 #ifdef WINDOWSEX
       if (m_pStringMap != NULL)
@@ -1116,7 +1116,7 @@ throw todo(get_app());
          while (pos)
          {
             m_pStringMap->get_next_assoc(pos, str, p);
-            if ((int)p == button.iString)
+            if ((int32_t)p == button.iString)
             {
                rWString = str;
                return;
@@ -1331,7 +1331,7 @@ throw todo(get_app());
       ASSERT(m_iIndex < m_iCount);
 
 #ifdef WINDOWSEX
-      UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) & ~TBBS_DISABLED;
+      UINT nNewStyle = pToolBar->GetButtonStyle((int32_t) m_iIndex) & ~TBBS_DISABLED;
       if (!bOn)
       {
          nNewStyle |= TBBS_DISABLED;
@@ -1342,13 +1342,13 @@ throw todo(get_app());
          nNewStyle &= ~TBBS_PRESSED;
       }
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-      pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle);
+      pToolBar->SetButtonStyle((int32_t) m_iIndex, nNewStyle);
 #else
       throw todo(get_app());
 #endif
    }
 
-   void tool_cmd_ui::SetCheck(int nCheck)
+   void tool_cmd_ui::SetCheck(int32_t nCheck)
    {
       ASSERT(nCheck >= 0 && nCheck <= 2); // 0=>off, 1=>on, 2=>indeterminate
       tool_bar* pToolBar = dynamic_cast < tool_bar * > (m_pOther);
@@ -1357,13 +1357,13 @@ throw todo(get_app());
       ASSERT(m_iIndex < m_iCount);
 
 #ifdef WINDOWSEX
-      UINT nNewStyle = pToolBar->GetButtonStyle((int) m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
+      UINT nNewStyle = pToolBar->GetButtonStyle((int32_t) m_iIndex) & ~(TBBS_CHECKED | TBBS_INDETERMINATE);
       if (nCheck == 1)
          nNewStyle |= TBBS_CHECKED;
       else if (nCheck == 2)
          nNewStyle |= TBBS_INDETERMINATE;
       ASSERT(!(nNewStyle & TBBS_SEPARATOR));
-      pToolBar->SetButtonStyle((int) m_iIndex, nNewStyle | TBBS_CHECKBOX);
+      pToolBar->SetButtonStyle((int32_t) m_iIndex, nNewStyle | TBBS_CHECKBOX);
 #else
       throw todo(get_app());
 #endif
@@ -1393,7 +1393,7 @@ throw todo(get_app());
          {
             // allow reflections
             if (::user::interaction::_001OnCommand(0,
-               MAKELONG((int)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
+               MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
                &state, NULL))
                continue;
 
@@ -1477,15 +1477,15 @@ throw todo(get_app());
       size sizeResult(0,0);
 
 #ifdef WINDOWSEX
-      int nCount;
+      int32_t nCount;
       TBBUTTON* pData = NULL;
 
       //BLOCK: Load Buttons
       {
-         nCount =(int)  DefWindowProc(TB_BUTTONCOUNT, 0, 0);
+         nCount =(int32_t)  DefWindowProc(TB_BUTTONCOUNT, 0, 0);
          if (nCount != 0)
          {
-            int i;
+            int32_t i;
             pData = new TBBUTTON[nCount];
             for (i = 0; i < nCount; i++)
                _GetButton(i, &pData[i]);
@@ -1493,7 +1493,7 @@ throw todo(get_app());
       }
       if (nCount > 0)
       {
-         int i;
+         int32_t i;
          for (i = 0; i < nCount; i++)
          {
             pData[i].fsState &= ~TBSTATE_WRAP;

@@ -15,7 +15,7 @@ public:
    void write(machine_event_data * pdata);
 
    bool initialize();
-   int run();
+   int32_t run();
 
    bool is_close_application();
 

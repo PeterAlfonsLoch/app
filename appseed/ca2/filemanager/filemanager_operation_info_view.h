@@ -16,7 +16,7 @@ public:
 
    file_manager_operation_document * get_document();
 
-   void OnFileOperationStep(int iOperation, bool bFinal);
+   void OnFileOperationStep(int32_t iOperation, bool bFinal);
 
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnTimer)

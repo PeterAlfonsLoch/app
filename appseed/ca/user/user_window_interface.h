@@ -111,9 +111,9 @@ namespace user
       /*bool IsIconic() const;
       bool IsZoomed() const;
 
-      int GetWindowText(string & str) const;
-      int GetWindowText(wchar_t * lpsz, int iLen) const;
-      int GetWindowTextLen() const;*/
+      int32_t GetWindowText(string & str) const;
+      int32_t GetWindowText(wchar_t * lpsz, int32_t iLen) const;
+      int32_t GetWindowTextLen() const;*/
 
 
 
@@ -130,14 +130,14 @@ namespace user
       void InvalidateRgn(::ca::region* prgn, bool bErase = TRUE);
       void ValidateRect(LPCRECT lprect);
       void ValidateRgn(::ca::region* prgn);
-      bool ShowWindow(int iCmdShow);
+      bool ShowWindow(int32_t iCmdShow);
       bool IsWindowVisible() const;
       bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::ca::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
       bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, DWORD));
-      bool KillTimer(int nIDEvent);
-      bool SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y, int cx, int cy, UINT nFlags);
+      bool KillTimer(int32_t nIDEvent);
+      bool SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       ::ca::window * SetFocus();*/
 
 
@@ -149,9 +149,9 @@ namespace user
       bool _001HasTranslucency();
 
       /*
-      virtual void _001SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y, int cx, int cy, UINT nFlags);
+      virtual void _001SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       virtual void _001SetFocus();
-      virtual void _001ShowWindow(int iShow);
+      virtual void _001ShowWindow(int32_t iShow);
       virtual void _001ScreenToClient(LPPOINT lppoint);
       */
 

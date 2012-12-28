@@ -6,7 +6,7 @@ namespace user
 
 
    CLASS_DECL_ca ::user::interaction * create_virtual_window(::ca::application * papp, DWORD dwExStyle, const char * lpClassName, const char * lpWindowName, DWORD dwStyle,
-      int X, int Y, int nWidth, int nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
+      int32_t X, int32_t Y, int32_t nWidth, int32_t nHeight, ::user::interaction * pguieParent, id id, HINSTANCE hInstance, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpClassName);

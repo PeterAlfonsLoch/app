@@ -124,18 +124,18 @@ namespace command
       rect rectClient;
       GetClientRect(rectClient);
       rectClient.deflate(2, 2);
-      int iW = rectClient.width() / 2;
-      int iH = rectClient.height() / 2;
+      int32_t iW = rectClient.width() / 2;
+      int32_t iH = rectClient.height() / 2;
       iH = min(iH, 120);
       double r = (double) iW / (double) iH;
       double rScreen = (double) rectDesktop.width() / (double) rectDesktop.height();
       if(r < rScreen)
       {
-         iH = (int) (iW / rScreen);
+         iH = (int32_t) (iW / rScreen);
       }
       else if(r > rScreen)
       {
-         iW = (int) (iH * rScreen);
+         iW = (int32_t) (iH * rScreen);
       }
    }
 
@@ -169,7 +169,7 @@ namespace command
    }
 
 
-   void view::_001OnTabClick(int iTab)
+   void view::_001OnTabClick(int32_t iTab)
    {
       if(iTab == 1)
       {

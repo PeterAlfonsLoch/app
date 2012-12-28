@@ -43,7 +43,7 @@ namespace ca
       }
 
 
-      bool system::path::eat_end_level(string & str, int iLevelCount, const char * lpSeparator)
+      bool system::path::eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator)
       {
 
          strsize iLast = str.length() - 1;
@@ -54,7 +54,7 @@ namespace ca
          while(str[iLast] == '/' || str[iLast] == '\\')
             iLast--;
 
-         for(int i = 0; i < iLevelCount; i++)
+         for(int32_t i = 0; i < iLevelCount; i++)
          {
 
             strsize iFind1 = str.reverse_find('/', iLast);
@@ -105,7 +105,7 @@ namespace ca
          bool bLinux = false;
 #endif
 
-         for(int i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
             str += stra[i];
             if(stra[i].find('/') < 0 && stra[i].find('\\') < 0)
@@ -194,13 +194,13 @@ namespace ca
          return time(papp, System.dir().time_log(pszId), 9);
       }
 
-      string system::time(::ca::application * papp, const char * psz, int iMaxLevel, const char * pszPrefix, const char * pszSuffix)
+      string system::time(::ca::application * papp, const char * psz, int32_t iMaxLevel, const char * pszPrefix, const char * pszSuffix)
       {
          mutex_lock lockMachineEvent(
             (&System.machine_event_central() != NULL) ?
                System.machine_event_central().m_machineevent.m_mutex
                : *((simple_mutex *) NULL), true);
-         int iIncLevel = -1;
+         int32_t iIncLevel = -1;
          string str;
          string strPrefix(pszPrefix);
          string strSuffix(pszSuffix);
@@ -210,7 +210,7 @@ namespace ca
          System.dir().mk(str, papp);
          stringa straTitle;
          string strFormat;
-         for(int i = 1; i <= iMaxLevel;)
+         for(int32_t i = 1; i <= iMaxLevel;)
          {
             System.dir().mk(str, papp);
            if(!System.dir().is(str, papp))
@@ -219,7 +219,7 @@ namespace ca
             System.dir().ls(papp, str, NULL, &straTitle);
             if(i < iMaxLevel)
             {
-               int iMax = filterex_time_square("", straTitle);
+               int32_t iMax = filterex_time_square("", straTitle);
                if(iMax == -1)
                {
                   str = System.dir().path(str, "00");
@@ -248,7 +248,7 @@ namespace ca
             else // if i == iMaxLevel
             {
                System.dir().ls(papp, str, NULL, &straTitle);
-               int iMax = filterex_time_square(pszPrefix, straTitle);
+               int32_t iMax = filterex_time_square(pszPrefix, straTitle);
                if(iMax == -1)
                {
                   str = System.dir().path(str, strPrefix+"00"+strSuffix);
@@ -274,11 +274,11 @@ namespace ca
          return str;
       }
 
-      int system::filterex_time_square(const char * pszPrefix, stringa & stra)
+      int32_t system::filterex_time_square(const char * pszPrefix, stringa & stra)
       {
-         int iMax = -1;
-         int iIndex;
-         for(int i = 0; i < stra.get_size(); i++)
+         int32_t iMax = -1;
+         int32_t iIndex;
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
             string str = stra[i];
             if(gen::str::begins_eat_ci(str, pszPrefix))
@@ -401,18 +401,18 @@ namespace ca
          && storage.get_data()[0] == 255
          && storage.get_data()[1] == 60)
          {
-            gen::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int)(storage.get_size() - 2));
+            gen::international::unicode_to_utf8(strResult, (const wchar_t *) &storage.get_data()[2], (int32_t)(storage.get_size() - 2));
          }
          else if(storage.get_size() >= 3
          && storage.get_data()[0] == 0xef
          && storage.get_data()[1] == 0xbb
          && storage.get_data()[2] == 0xbf)
          {
-            strResult = string((const char *) (const wchar_t *) &storage.get_data()[3], (int) (storage.get_size() - 3));
+            strResult = string((const char *) (const wchar_t *) &storage.get_data()[3], (int32_t) (storage.get_size() - 3));
          }
          else
          {
-            strResult = string((const char *) storage.get_data(), (int) storage.get_size());
+            strResult = string((const char *) storage.get_data(), (int32_t) storage.get_size());
          }
 
          return strResult;
@@ -683,7 +683,7 @@ namespace ca
             {
                strDirSrc += ":";
             }
-            for(int i = 0; i < straPath.get_size(); i++)
+            for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                strSrc = straPath[i];
                strDst = strSrc;
@@ -848,7 +848,7 @@ namespace ca
 #else
          if(rename(psz, pszNew) != 0)
          {
-            int err = errno;
+            int32_t err = errno;
             string strError;
             strError.Format("Failed to delete file error=%d", err);
             throw strError;
@@ -872,7 +872,7 @@ namespace ca
 #else
          if(remove(psz) != 0)
          {
-            int err = errno;
+            int32_t err = errno;
             string strError;
             strError.Format("Failed to delete file error=%d", err);
             throw strError;
@@ -888,7 +888,7 @@ namespace ca
          string strNew;
          if(System.dir().is(psz, papp))
          {
-            int i = 1;
+            int32_t i = 1;
             while( i <= 100)
             {
                strNew.Format("%s-%s-%d", psz, strCopy.c_str(), i);
@@ -907,7 +907,7 @@ namespace ca
             {
                strExt = "-" + strExt;
             }
-            int i = 1;
+            int32_t i = 1;
             while( i <= 100)
             {
                strNew.Format("%s-%s-%d%s", psz, strCopy.c_str(), i, strExt.c_str());
@@ -1058,7 +1058,7 @@ namespace ca
 
          System.dir().mk(strDir, papp);
 
-         for(int i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
 #ifdef WINDOWS
             move(System.dir().path(strDir, name_(stra[i])), stra[i]);
@@ -1091,7 +1091,7 @@ namespace ca
          System.dir().ls(papp, pszContext, NULL, &straTitle);
          string strOld;
          string strNew;
-         for(int i = 0; i < straTitle.get_size(); i++)
+         for(int32_t i = 0; i < straTitle.get_size(); i++)
          {
             strOld = straTitle[i];
             strNew = strOld;
@@ -1155,7 +1155,7 @@ namespace ca
 
          char buf[30];
 
-         for(int i = 0; i < 1000; i++)
+         for(int32_t i = 0; i < 1000; i++)
          {
 
             sprintf(buf, "%d", i);
@@ -1326,7 +1326,7 @@ struct THREAD_PARAMS
 	PSYSTEM_HANDLE_INFORMATION pSysHandleInformation;
 	GetFinalPathNameByHandleDef pGetFinalPathNameByHandle;
 	LPWSTR lpPath;
-	int nFileType;
+	int32_t nFileType;
 	HANDLE hStartEvent;
 	HANDLE hFinishedEvent;
 	bool bStatus;
@@ -1380,7 +1380,7 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pUserContext, HANDLE hDriver,
 						   GetFinalPathNameByHandleDef pGetFinalPathNameByHandle )
 {
-	int nFileType = XP_FILETYPE;
+	int32_t nFileType = XP_FILETYPE;
 	OSVERSIONINFO info = { 0 };
 	info.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 	GetVersionEx(&info);
@@ -1459,7 +1459,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 			if( WAIT_TIMEOUT == WaitForSingleObject( ThreadParams.hFinishedEvent, 100 ))
 			{
 				string csError;
-				csError.Format("Query hang for handle %d", (int)pSysHandleInformation->Handles[g_CurrentIndex - 1].wValue);
+				csError.Format("Query hang for handle %d", (int32_t)pSysHandleInformation->Handles[g_CurrentIndex - 1].wValue);
 				OutputDebugString(csError );
 				TerminateThread( ThreadHandle, 0 );
 				CloseHandle( ThreadHandle );
@@ -1470,7 +1470,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 			{
 				continue;
 			}
-			int nCmpStart = 4;
+			int32_t nCmpStart = 4;
 			string csFileName( gen::international::unicode_to_utf8(&ThreadParams.lpPath[nCmpStart]));
 			csFileName.make_lower();
          if(csFileName.find("vs11_dp_ctp") >= 0)
@@ -1627,10 +1627,10 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 		dwsize += 50;
 		pDwId = (PDWORD)new BYTE[dwsize];
 	}
-	int nCount = dwRetruned / sizeof(DWORD);
-	int nItemCount = -1;
+	int32_t nCount = dwRetruned / sizeof(DWORD);
+	int32_t nItemCount = -1;
 	// Enumerate modules of the above process
-	for( int nIdx = 0; nIdx < nCount;nIdx++ )
+	for( int32_t nIdx = 0; nIdx < nCount;nIdx++ )
 	{
 		if( 0 != pDwId[nIdx] )
 		{

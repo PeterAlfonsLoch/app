@@ -75,9 +75,9 @@ namespace radix
 
 #if defined(DEBUG) && !defined(___NO_DEBUG_CRT) || defined(LINUX) || defined(MACOS)
       // for file name/line number tracking using DEBUG_NEW
-      void * PASCAL operator new(size_t nSize, const char * lpszFileName, int nLine);
+      void * PASCAL operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
 #if _MSC_VER >= 1200  || defined(LINUX) || defined(MACOS)
-      void PASCAL operator delete(void *p, const char * lpszFileName, int nLine);
+      void PASCAL operator delete(void *p, const char * lpszFileName, int32_t nLine);
 #endif
 #endif
 #define new DEBUG_NEW

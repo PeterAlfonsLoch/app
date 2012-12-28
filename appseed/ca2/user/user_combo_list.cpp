@@ -90,7 +90,7 @@ namespace user
 
       br->create_solid(ARGB(255, 84, 84, 77));
 
-      int dSize = (int) ( _001GetItemHeight() * 0.7);
+      int32_t dSize = (int32_t) ( _001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
       pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
@@ -173,7 +173,7 @@ namespace user
 
       br->create_solid(ARGB(255, 84, 84, 77));
 
-      int dSize = (int) (_001GetItemHeight() * 0.7);
+      int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
       pdc->m_fontxyz.m_eunitFontSize = ::ca::unit_pixel;
@@ -236,7 +236,7 @@ namespace user
 
       pdc->SelectObject(tameshi->get_bitmap());
       
-      int dSize = (int) (_001GetItemHeight() * 0.7);
+      int32_t dSize = (int32_t) (_001GetItemHeight() * 0.7);
 
       pdc->m_fontxyz.m_dFontSize = dSize;
 
@@ -272,7 +272,7 @@ namespace user
 
    }
 
-   int combo_list::_001GetItemHeight() const
+   int32_t combo_list::_001GetItemHeight() const
    {
       
       return m_iItemHeight;
@@ -525,7 +525,7 @@ namespace user
 
       rectItem = rectClient;
 
-      for(int i = 0; i < c; i++)
+      for(int32_t i = 0; i < c; i++)
       {
 
          rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + i));

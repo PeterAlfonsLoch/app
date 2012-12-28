@@ -24,7 +24,7 @@ namespace radix
 
 #ifdef DEBUG
 
-   inline void * PASCAL object::operator new(size_t nSize, const char * lpszFileName, int nLine)
+   inline void * PASCAL object::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
    {
       void * p = ::operator new(nSize, ___CLIENT_BLOCK, lpszFileName, nLine);
       /*try

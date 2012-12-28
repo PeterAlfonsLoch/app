@@ -39,21 +39,21 @@ typedef struct _tagXmlEntity
 {
 	char entity;					// entity ( & " ' < > )
 	char ref[10];					// entity reference ( &amp; &quot; etc )
-	int ref_len;					// entity reference length
+	int32_t ref_len;					// entity reference length
 }XENTITY,*LPXENTITY;
 
 typedef struct _tagXMLEntitys : public simple_array<XENTITY>
 {
-	LPXENTITY GetEntity( int entity );
+	LPXENTITY GetEntity( int32_t entity );
 	LPXENTITY GetEntity( LPSTR entity );
 	size_t GetEntityCount( LPCSTR str );
-	size_t Ref2Entity( LPCSTR estr, LPSTR str, int strlen );
-	int Entity2Ref( LPCSTR str, LPSTR estr, int estrlen );
+	size_t Ref2Entity( LPCSTR estr, LPSTR str, int32_t strlen );
+	int32_t Entity2Ref( LPCSTR str, LPSTR estr, int32_t estrlen );
 	vsstring Ref2Entity( LPCSTR estr );
 	vsstring Entity2Ref( LPCSTR str );
 
 	_tagXMLEntitys(){};
-	_tagXMLEntitys( LPXENTITY entities, int count );
+	_tagXMLEntitys( LPXENTITY entities, int32_t count );
 }XENTITYS,*LPXENTITYS;
 XENTITYS * xmllite_default_entities();
 vsstring XRef2Entity( LPCSTR estr );
@@ -96,7 +96,7 @@ typedef struct  _tagDispOption
 	char value_quotation_mark;	// val="" (default value quotation mark "
 	LPXENTITYS	entitys;	// entity table for entity encode
 
-	int tab_base;			// internal usage
+	int32_t tab_base;			// internal usage
 	_tagDispOption() { newline = true; reference_value = true; entitys = xmllite_default_entities(); tab_base = 0; value_quotation_mark = '"'; }
 }DISP_OPT, *LPDISP_OPT;
 CLASS_DECL_c extern  DISP_OPT  * poptDefault;
@@ -199,7 +199,7 @@ typedef  struct CLASS_DECL_c _tagXMLNode
 	LPXAttr DetachAttr( LPXAttr attr );
 
 	// operator overloads
-	LPXNode operator [] ( int i ) { return GetChild(i); }
+	LPXNode operator [] ( int32_t i ) { return GetChild(i); }
 	XNode& operator = ( XNode& node ) { CopyBranch(&node); return *this; }
 
 	_tagXMLNode();

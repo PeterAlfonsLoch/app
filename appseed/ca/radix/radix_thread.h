@@ -49,20 +49,20 @@ namespace radix
       virtual ::gen::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
-      virtual int run();
+      virtual int32_t run();
       virtual void pre_translate_message(gen::signal_object * pobj);
       virtual bool pump_message();     // low level message pump
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual bool is_idle_message(gen::signal_object * pobj);  // checks for special messages
 
       // thread termination
-      virtual int exit_instance(); // default will 'delete this'
+      virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
       virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
 
       // Advanced: handling messages sent to message filter hook
-      virtual void ProcessMessageFilter(int code, gen::signal_object * pobj);
+      virtual void ProcessMessageFilter(int32_t code, gen::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
       virtual ::user::interaction* GetMainWnd();
@@ -92,7 +92,7 @@ namespace radix
 
       virtual void DispatchThreadMessageEx(gen::signal_object * pobj);  // helper
 
-      virtual int main();
+      virtual int32_t main();
 
 
       virtual void wait();

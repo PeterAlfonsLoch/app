@@ -344,7 +344,7 @@ namespace primitive
    void shared_memory::From(const char * psz)
    {
       char ch;
-      int iLen = strlen(psz);
+      int32_t iLen = strlen(psz);
       allocate(iLen / 2);
       char * pch = (char *) get_data();
       while(*psz != '\0')
@@ -372,8 +372,8 @@ namespace primitive
       string strTo;
       To(strTo);
       char ch;
-      int iLen = strTo.get_length() - 1;
-      for(int i = 0; i < iLen; i+=2)
+      int32_t iLen = strTo.get_length() - 1;
+      for(int32_t i = 0; i < iLen; i+=2)
       {
          if(strTo[i] <= '9')
             ch = (strTo[i] - '0') << 4;

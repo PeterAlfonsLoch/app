@@ -8,7 +8,7 @@ public:
    void add(LPCRECT lpcrect);
    void intersect(LPCRECT lpcrect);
    void get_box(LPRECT lprect);
-   void offset(int cx, int cy);
+   void offset(int32_t cx, int32_t cy);
    void offset(POINT pt);
    virtual ~rect_array();
 };

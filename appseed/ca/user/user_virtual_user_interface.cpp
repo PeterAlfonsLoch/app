@@ -47,7 +47,7 @@ bool virtual_user_interface::ReleaseDC(::ca::graphics * pdc)
 }
 
 
-bool virtual_user_interface::SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags)
+bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
 {
    synch_lock lock(m_pguie);
 //   rect64 rectOld = m_rectParentClient;
@@ -564,7 +564,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    // advanced creation (allows access to extended styles)
    bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
       const char * lpszWindowName, DWORD dwStyle,
-      int x, int y, int nWidth, int nHeight,
+      int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
       oswindow oswindow_Parent, HMENU nIDorHMenu, LPVOID lpParam)
    {
       return FALSE;
@@ -932,7 +932,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
          oswindow_Child->SendMessage( WM_SIZEPARENT, 0, (LPARAM)&layout);
    }
 
-   for (int i = 0; i < m_uiptra.get_count(); i++)
+   for (int32_t i = 0; i < m_uiptra.get_count(); i++)
    {
       ::user::interaction * oswindow_Child = m_uiptra[i];
       uint_ptr nIDC = __get_dialog_control_id_(oswindow_Child);
@@ -1048,7 +1048,7 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout, oswindow oswindow, LPCREC
 }
 
 
-strsize virtual_user_interface::GetWindowText(LPTSTR lpszStringBuf,  int nMaxCount)
+strsize virtual_user_interface::GetWindowText(LPTSTR lpszStringBuf,  int32_t nMaxCount)
 {
 
    string str;
@@ -1265,7 +1265,7 @@ bool virtual_user_interface::IsWindow()
 }
 
 
-bool virtual_user_interface::ShowWindow(int nCmdShow)
+bool virtual_user_interface::ShowWindow(int32_t nCmdShow)
 {
 
    if(nCmdShow != SW_HIDE)
@@ -1353,7 +1353,7 @@ bool virtual_user_interface::KillTimer(uint_ptr nIDEvent)
 ::user::interaction * virtual_user_interface::GetDescendantWindow(id id)
 {
    single_lock sl(&m_pthread->m_pthread->m_mutex, TRUE);
-   for(int i = 0; i < m_pguie->m_uiptraChild.get_count(); i++)
+   for(int32_t i = 0; i < m_pguie->m_uiptraChild.get_count(); i++)
    {
       if(m_pguie->m_uiptraChild[i]->GetDlgCtrlId() == id)
       {
@@ -1438,7 +1438,7 @@ void virtual_user_interface::on_delete(::ca::ca * pui)
    ::user::interaction::on_delete(pui);
 }
 
-/*int virtual_user_interface::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
+/*int32_t virtual_user_interface::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
 {
    if(dynamic_cast < virtual_user_interface * > (GetTopLevelFrame()) == this)
       return ::user::interaction::RunModalLoop(dwFlags, pliveobject);

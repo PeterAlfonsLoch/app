@@ -14,12 +14,12 @@
 char *_argv[_MAX_CMD_LINE_ARGS+1];
 static char *_rawCmd = 0;
 
-int _init_args()
+int32_t _init_args()
 {
 	_argv[0] = 0;
 
 	char *sysCmd = GetCommandLine();
-	int szSysCmd = lstrlen(sysCmd);
+	int32_t szSysCmd = lstrlen(sysCmd);
 
 	// copy the system command line
 	char *cmd = (char*)HeapAlloc(GetProcessHeap(), 0, sizeof(char)*(szSysCmd+1));
@@ -53,7 +53,7 @@ int _init_args()
 			*cmd++ = 0;
 	}
 
-	int argc = 1;
+	int32_t argc = 1;
 	for (;;)
 	{
 		while (*cmd && isspace_dup(*cmd))		// Skip over any whitespace

@@ -49,7 +49,7 @@ inline count array_del_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_all(bool bDelet
 {
    if(bDelete)
    {
-      for(int iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
+      for(int32_t iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
          gen::_sdel<TYPE>((TYPE *) this->ptra().element_at(iIndex));
       }

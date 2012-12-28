@@ -10,8 +10,8 @@
  *   DWORD SPTIGetASPI32SupportInfo();
  *   DWORD SPTISendASPI32Command(LPSRB);
  * which are equivalents to their ASPI counterparts.  Additionally implements
- *   int InitSCSIPT( void );
- *   int DeinitSCSIPT( void );
+ *   int32_t InitSCSIPT( void );
+ *   int32_t DeinitSCSIPT( void );
  *
  **********************************************************************
  *
@@ -72,12 +72,12 @@ static bool bUsingSCSIPT = FALSE;
  * send CDB with the INQUIRY command to it -- NT will automagically fill in
  * the PathId, TargetId, and Lun for us.
  */
-int InitSCSIPT( void )
+int32_t InitSCSIPT( void )
 {
   BYTE i;
   char buf[4];
   UINT uDriveType;
-  int retVal = 0;
+  int32_t retVal = 0;
 
   if ( bSCSIPTInit )
     return 0;
@@ -106,7 +106,7 @@ int InitSCSIPT( void )
 }
 
 
-int DeinitSCSIPT( void )
+int32_t DeinitSCSIPT( void )
 {
   BYTE i;
 

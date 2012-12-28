@@ -97,7 +97,7 @@ namespace gcom
             data_set("gcom::backview::CurrentBackgroundImagePath", ::radix::system::idEmpty, psz);
          }
 
-         int interaction::BackViewGetBackgroundUpdateMillis()
+         int32_t interaction::BackViewGetBackgroundUpdateMillis()
          {
             return m_iBackgroundUpdateMillis;
          }

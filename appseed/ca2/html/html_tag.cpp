@@ -12,7 +12,7 @@ namespace html
 
    tag::~tag()
    {
-      for(int i = 0; i < m_baseptra.get_size(); i++)
+      for(int32_t i = 0; i < m_baseptra.get_size(); i++)
       {
          delete m_baseptra[i];
       }

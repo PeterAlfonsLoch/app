@@ -81,7 +81,7 @@ namespace uinteraction
          virtual void set_style(const char * pszStyle);
          virtual void OnInitializeAppearance();
          virtual void OnAppearanceModeChange();
-         virtual int UpdateControlBox();
+         virtual int32_t UpdateControlBox();
 
          virtual void SetControlBoxButtonId(e_button ebutton, id id);
          virtual id GetControlId(e_button ebutton);
@@ -117,8 +117,8 @@ namespace uinteraction
          virtual bool _000OnNcMouseMove(::gen::message::mouse * pmouse);
          virtual bool _000OnNcHitTest(point pt, LRESULT & nHitTest);
          virtual bool _000OnTimer(UINT nIDEvent);
-         virtual bool _000OnSize(UINT nType, int cx, int cy);
-         virtual bool _000OnMove(int x, int y);
+         virtual bool _000OnSize(UINT nType, int32_t cx, int32_t cy);
+         virtual bool _000OnMove(int32_t x, int32_t y);
          virtual bool _000OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
       virtual void OnAttach();

@@ -7,7 +7,7 @@ namespace gcom
    namespace backview
    {
 
-   #define HIDOUBLETOINT(d) (((d) > (int) (d)) ? ((int) (d)) + 1 : (int) (d))
+   #define HIDOUBLETOINT(d) (((d) > (int32_t) (d)) ? ((int32_t) (d)) + 1 : (int32_t) (d))
 
 
       TransitionEffect::TransitionEffect(Main & view) :
@@ -30,70 +30,70 @@ namespace gcom
 
          m_dwLastTransitionTime = GetTickCount();
 
-         int iStart  = (int) TransitionEffectFirst;
-         int iEnd    = (int) TransitionEffectLast;
+         int32_t iStart  = (int32_t) TransitionEffectFirst;
+         int32_t iEnd    = (int32_t) TransitionEffectLast;
 
-         //iStart  = (int) TransitionEffectLinearFadingTopBottom;
-         //iEnd    = (int) TransitionEffectLinearFadingRightLeft;
+         //iStart  = (int32_t) TransitionEffectLinearFadingTopBottom;
+         //iEnd    = (int32_t) TransitionEffectLinearFadingRightLeft;
 
-         //iStart  = (int) TransitionEffectAccumulLinearFadingTopBottom;
-         //iEnd    = (int) TransitionEffectAccumulLinearFadingRightLeft;
+         //iStart  = (int32_t) TransitionEffectAccumulLinearFadingTopBottom;
+         //iEnd    = (int32_t) TransitionEffectAccumulLinearFadingRightLeft;
 
-         //iStart   = (int) TransitionEffectFlyInTopBottom;
-         //iEnd     = (int) TransitionEffectFlyInRightTop;
+         //iStart   = (int32_t) TransitionEffectFlyInTopBottom;
+         //iEnd     = (int32_t) TransitionEffectFlyInRightTop;
 
-         //iStart   = (int) TransitionEffectWipeBottom;
-         //iEnd     = (int) TransitionEffectWipeIn;
+         //iStart   = (int32_t) TransitionEffectWipeBottom;
+         //iEnd     = (int32_t) TransitionEffectWipeIn;
 
-         //iStart   = (int) TransitionEffectScaleBottom;
-         //iEnd     = (int) TransitionEffectScaleCenter;
+         //iStart   = (int32_t) TransitionEffectScaleBottom;
+         //iEnd     = (int32_t) TransitionEffectScaleCenter;
 
-         //iStart   = (int) TransitionEffectpixelate_TopBottom;
-         //iEnd     = (int) TransitionEffectpixelate_RightLeft;
+         //iStart   = (int32_t) TransitionEffectpixelate_TopBottom;
+         //iEnd     = (int32_t) TransitionEffectpixelate_RightLeft;
 
-         //iStart   = (int) TransitionEffectSquarypixelate_
+         //iStart   = (int32_t) TransitionEffectSquarypixelate_
 
-         //iStart   = (int) TransitionEffectVisual;
-         //iEnd     = (int) TransitionEffectVisual;
+         //iStart   = (int32_t) TransitionEffectVisual;
+         //iEnd     = (int32_t) TransitionEffectVisual;
 
-         //iStart      = (int) TransitionEffectRadialUnveil;
-         //iEnd      = (int) TransitionEffectRadialUnveil;
+         //iStart      = (int32_t) TransitionEffectRadialUnveil;
+         //iEnd      = (int32_t) TransitionEffectRadialUnveil;
 
 
-         for(int i = iStart; i <= iEnd; i++)
+         for(int32_t i = iStart; i <= iEnd; i++)
          {
             m_etypea.add((ETransitionEffect) i);
          }
 
-         //iStart = iEnd = (int) VisualEffectPixelExplosion;
-         //iStart = iEnd = (int) VisualEffectAlphaPixelExplosion;
-         //iStart = iEnd = (int) VisualEffectPixelExplosion2;
+         //iStart = iEnd = (int32_t) VisualEffectPixelExplosion;
+         //iStart = iEnd = (int32_t) VisualEffectAlphaPixelExplosion;
+         //iStart = iEnd = (int32_t) VisualEffectPixelExplosion2;
          
-         //iStart = iEnd = (int) VisualEffectRotateEx8;
-         //iStart = iEnd = (int) VisualEffectRotateEx4;
-         //iStart = iEnd = (int) VisualEffectRain1;
-         //iStart = iEnd = (int) VisualEffectRotateEx5;
-         //iStart = iEnd = (int) VisualEffectRotateEx6;
-         //iStart = iEnd = (int) VisualEffectRotateEx7;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx8;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx4;
+         //iStart = iEnd = (int32_t) VisualEffectRain1;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx5;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx6;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx7;
 
-         //iStart = iEnd = (int) VisualEffectExpand8;
-         //iStart = iEnd = (int) VisualEffectExpand4;
-         //iStart = iEnd = (int) VisualEffectExpand5;
-         //iStart = iEnd = (int) VisualEffectExpand6;
-         //iStart = iEnd = (int) VisualEffectExpand7;
+         //iStart = iEnd = (int32_t) VisualEffectExpand8;
+         //iStart = iEnd = (int32_t) VisualEffectExpand4;
+         //iStart = iEnd = (int32_t) VisualEffectExpand5;
+         //iStart = iEnd = (int32_t) VisualEffectExpand6;
+         //iStart = iEnd = (int32_t) VisualEffectExpand7;
 
-         //iStart = iEnd = (int) VisualEffectRotateBlend;
-         //iStart = iEnd = (int) VisualEffectNoPrecisionRotateBlend;
-         //iStart = iEnd = (int) VisualEffectNoPrecisionRotatecolor_blend_;
-         //iStart = iEnd = (int) VisualEffectNoPrecisionRotateTrackcolor_blend_;
-         //iStart = iEnd = (int) VisualEffectRotateEx1;
-         //iStart = iEnd = (int) VisualEffectRotateEx2;
-         //iStart = iEnd = (int) VisualEffectRotateEx3;
+         //iStart = iEnd = (int32_t) VisualEffectRotateBlend;
+         //iStart = iEnd = (int32_t) VisualEffectNoPrecisionRotateBlend;
+         //iStart = iEnd = (int32_t) VisualEffectNoPrecisionRotatecolor_blend_;
+         //iStart = iEnd = (int32_t) VisualEffectNoPrecisionRotateTrackcolor_blend_;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx1;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx2;
+         //iStart = iEnd = (int32_t) VisualEffectRotateEx3;
 
-         iStart   = (int) VisualEffectPixelExplosion;
-         iEnd     = (int) VisualEffectRotateEx3;
+         iStart   = (int32_t) VisualEffectPixelExplosion;
+         iEnd     = (int32_t) VisualEffectRotateEx3;
 
-         for(int i = iStart; i <= iEnd; i++)
+         for(int32_t i = iStart; i <= iEnd; i++)
          {
             m_iaVisual.add(i);
          }
@@ -243,8 +243,8 @@ namespace gcom
          Interface & iface = main.GetInterface();
          iface.BackViewGetClientRect(rectClient);
 
-         int cx = rectClient.width();
-         int cy = rectClient.height();
+         int32_t cx = rectClient.width();
+         int32_t cy = rectClient.height();
 
          m_tool001.m_iStep = 1;
          m_tool001.m_iStepCount = -1;
@@ -298,7 +298,7 @@ namespace gcom
    true);
 
 
-         int iRepeat = CalcRepeatCount();
+         int32_t iRepeat = CalcRepeatCount();
 
 
          rect_array recta;
@@ -348,7 +348,7 @@ namespace gcom
             else
             {
                rect rect;
-               for(int i = 0; i < 1 && m_tool001.m_ia.get_size(); i++)
+               for(int32_t i = 0; i < 1 && m_tool001.m_ia.get_size(); i++)
                {
                   RenderBuffer(recta);
                }
@@ -389,8 +389,8 @@ namespace gcom
          rect rectClient;
          iface.BackViewGetClientRect(rectClient);
 
-         int cx = rectClient.width();
-         int cy = rectClient.height();
+         int32_t cx = rectClient.width();
+         int32_t cy = rectClient.height();
 
          class imaging & imaging = System.imaging();
 
@@ -560,14 +560,14 @@ namespace gcom
          case TransitionEffectCirclypixelate_:
          case TransitionEffectEllipsoidalpixelate_:
             {
-               int finalX = 0;
-               int finalY = 0;
-               int finalW = cx;
-               int finalH = cy;
+               int32_t finalX = 0;
+               int32_t finalY = 0;
+               int32_t finalW = cx;
+               int32_t finalH = cy;
 
-               const int tilesx = max(4, m_tool001.m_data.m_tiles.m_iTilesX);
-               const int tilesy = max(4, m_tool001.m_data.m_tiles.m_iTilesY);
-//               const int tiles = max(16, m_tool001.m_data.m_tiles.m_iTiles);
+               const int32_t tilesx = max(4, m_tool001.m_data.m_tiles.m_iTilesX);
+               const int32_t tilesy = max(4, m_tool001.m_data.m_tiles.m_iTilesY);
+//               const int32_t tiles = max(16, m_tool001.m_data.m_tiles.m_iTiles);
 
 
                if(m_tool001.m_iStep > 0)
@@ -578,13 +578,13 @@ namespace gcom
 
                      //                  SendMessage(WM_USER, USERMESSAGE_WPARAM_RAND_LPINT, (LPARAM) &iRand);
 
-                     /*                  int iIndex =
+                     /*                  int32_t iIndex =
                      m_math.LinearMap(
                      0, m_tool001.m_ia.get_size() - 1,
                      iRand, 0, RAND_MAX);*/
                      if(m_tool001.m_iStep <= 0)
                         break;
-                     int iStep = 0;
+                     int32_t iStep = 0;
                      try
                      {
                         iStep = m_tool001.m_ia.element_at(iIndex);
@@ -597,17 +597,17 @@ namespace gcom
                         break;
                      }
 
-                     int i = iStep % tilesx;
-                     int j = iStep / tilesx;
+                     int32_t i = iStep % tilesx;
+                     int32_t j = iStep / tilesx;
                      double dUpdateH = (double) finalH / tilesy;
                      double dUpdateW = (double) finalW / tilesx;
                      double dX = dUpdateW * i;
                      double dY = dUpdateH * j;
                      rectUpdate.set(
-                        (int) dX,
-                        (int) dY,
-                        (int) (dX + dUpdateW + 1.0),
-                        (int) (dY + dUpdateH + 1.0));
+                        (int32_t) dX,
+                        (int32_t) dY,
+                        (int32_t) (dX + dUpdateW + 1.0),
+                        (int32_t) (dY + dUpdateH + 1.0));
                   }
                   else
                   {
@@ -663,10 +663,10 @@ namespace gcom
          case TransitionEffectLinearFadingRightLeft:
             {
 
-               int finalX = 0;
-               int finalY = 0;
-               int finalW = cx;
-               int finalH = cy;
+               int32_t finalX = 0;
+               int32_t finalY = 0;
+               int32_t finalW = cx;
+               int32_t finalH = cy;
 
                ::rect & rectUpdate = m_tool001.m_rect;
 
@@ -696,43 +696,43 @@ namespace gcom
          case TransitionEffectAccumulLinearFadingLeftRight:
          case TransitionEffectAccumulLinearFadingRightLeft:
             {
-               int finalX = 0;
-               int finalY = 0;
-               int finalW = cx;
-               int finalH = cy;
+               int32_t finalX = 0;
+               int32_t finalY = 0;
+               int32_t finalW = cx;
+               int32_t finalH = cy;
 
                ::rect & rectUpdate = m_tool001.m_rect;
 
-               const int iTileCount = m_tool001.m_data.m_sliceframe.m_iTileCount;
-               //            const int iFrameCount = m_tool001.m_data.m_sliceframe.m_iFrameCount;
-               const int iTileMax = iTileCount - 1;
-               int iGroupCount = m_tool001.m_data.m_sliceframe.m_iGroupCount;
+               const int32_t iTileCount = m_tool001.m_data.m_sliceframe.m_iTileCount;
+               //            const int32_t iFrameCount = m_tool001.m_data.m_sliceframe.m_iFrameCount;
+               const int32_t iTileMax = iTileCount - 1;
+               int32_t iGroupCount = m_tool001.m_data.m_sliceframe.m_iGroupCount;
 
                index iIndex = m_tool001.m_iStep - 1;
                iIndex = min(iIndex, m_tool001.m_pointa.get_size() -1);
                if(iIndex >= 0)
                {
                   point point = m_tool001.m_pointa.element_at(iIndex);
-                  int iTile = point.x;
-                  //int iFrame = point.y;
-                  int iGroup = point.y;
-                  //int iGroup = iTile - iFrame;
+                  int32_t iTile = point.x;
+                  //int32_t iFrame = point.y;
+                  int32_t iGroup = point.y;
+                  //int32_t iGroup = iTile - iFrame;
                   double dRate = (double) iTile / iTileMax;
                   double dRateMinus = (double) (iTile - 1) / iTileMax;
 
 
 
-                  //int iFrameComplement = iFrameCount - iFrame;
-                  //int iFrameExp = iFrameComplement * iFrameComplement * iFrameComplement;
-                  //int iFrameStd = iFrame * 2;
-                  //               int iFrameStd = iFrame;
-                  //>int iFrameEx = iFrameStd * iFrameStd * iFrameStd;
-                  //int iFrameEx = iFrameStd * iFrameStd;
-                  //               int iFrameEx = iFrameStd;
-                  //               int iFrameStdCount = iFrameCount - 1;
-                  //int iFrameCountEx = iFrameStdCount * iFrameStdCount * iFrameStdCount;
-                  //int iFrameCountEx = iFrameStdCount * iFrameStdCount;
-                  //               int iFrameCountEx = iFrameStdCount;
+                  //int32_t iFrameComplement = iFrameCount - iFrame;
+                  //int32_t iFrameExp = iFrameComplement * iFrameComplement * iFrameComplement;
+                  //int32_t iFrameStd = iFrame * 2;
+                  //               int32_t iFrameStd = iFrame;
+                  //>int32_t iFrameEx = iFrameStd * iFrameStd * iFrameStd;
+                  //int32_t iFrameEx = iFrameStd * iFrameStd;
+                  //               int32_t iFrameEx = iFrameStd;
+                  //               int32_t iFrameStdCount = iFrameCount - 1;
+                  //int32_t iFrameCountEx = iFrameStdCount * iFrameStdCount * iFrameStdCount;
+                  //int32_t iFrameCountEx = iFrameStdCount * iFrameStdCount;
+                  //               int32_t iFrameCountEx = iFrameStdCount;
                   double dAlpha = m_tool001.m_dAlpha;
                   /*            double dAlpha = viewinterface.m_math.LinearMap(
                   (double) 35, (double) 255,
@@ -743,7 +743,7 @@ namespace gcom
                   //m_dwDelay = (DWORD) min(10, dAlpha * 10 / 255);
                 //  m_dwDelay = 0;
 
-                  int iAlphaAccumul = 0;;
+                  int32_t iAlphaAccumul = 0;;
 
 
                   if(m_tool001.m_iStep > 0
@@ -785,7 +785,7 @@ namespace gcom
                      }
                      if(iAlphaAccumul <= 255)
                      {
-                        iAlphaAccumul = (int) ((dAlpha * 255.0 +
+                        iAlphaAccumul = (int32_t) ((dAlpha * 255.0 +
                            iAlphaAccumul * (255.0 - dAlpha)) / 255);
                      }
                      if(iAlphaAccumul >= 255)
@@ -873,13 +873,13 @@ namespace gcom
          case TransitionEffectFlyInRightBottom:
          case TransitionEffectFlyInRightTop:
             {
-//               int finalX = 0;
-//               int finalY = 0;
-//               int finalW = cx;
-//               int finalH = cy;
+//               int32_t finalX = 0;
+//               int32_t finalY = 0;
+//               int32_t finalW = cx;
+//               int32_t finalH = cy;
 
-               const int iFrameCount = max(1, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount -1;
+               const int32_t iFrameCount = max(1, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount -1;
 
 
 
@@ -918,13 +918,13 @@ namespace gcom
          case TransitionEffectWipeRight:
          case TransitionEffectWipeLeft:
             {
-//               int finalX = 0;
-//               int finalY = 0;
-//               int finalW = cx;
-//               int finalH = cy;
+//               int32_t finalX = 0;
+//               int32_t finalY = 0;
+//               int32_t finalW = cx;
+//               int32_t finalH = cy;
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount;
 
                ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -958,13 +958,13 @@ namespace gcom
          case TransitionEffectWipeBottomLeft:
          case TransitionEffectWipeBottomRight:
             {
-//               int finalX = 0;
-//               int finalY = 0;
-//               int finalW = cx;
-//               int finalH = cy;
+//               int32_t finalX = 0;
+//               int32_t finalY = 0;
+//               int32_t finalW = cx;
+//               int32_t finalH = cy;
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount - 1;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount - 1;
 
                ::index iFrame = m_tool001.m_iStep - 1;
 //               double dFrameStdMinus = 1.0 - ((double) (iFrame - 1)/ iFrameMax);
@@ -1025,8 +1025,8 @@ namespace gcom
          case TransitionEffectWipeCenter:
             {
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount - 1;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount - 1;
 
                ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1054,8 +1054,8 @@ namespace gcom
          case TransitionEffectWipeIn:
             {
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount - 1;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount - 1;
 
                ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1126,8 +1126,8 @@ namespace gcom
          case TransitionEffectWipeMidHorizontal:
             {
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount - 1;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount - 1;
 
                ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1156,8 +1156,8 @@ namespace gcom
          case TransitionEffectWipeMidVertical:
             {
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount - 1;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount - 1;
 
                ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1192,13 +1192,13 @@ namespace gcom
          case TransitionEffectScaleBottomLeft:
          case TransitionEffectScaleBottomRight:
             {
-//               int finalX = 0;
-//               int finalY = 0;
-//               int finalW = cx;
-//               int finalH = cy;
+//               int32_t finalX = 0;
+//               int32_t finalY = 0;
+//               int32_t finalW = cx;
+//               int32_t finalH = cy;
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount - 1;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount - 1;
 
                ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1237,13 +1237,13 @@ namespace gcom
             break;
          case TransitionEffectScaleCenter:
             {
-//               int finalX = 0;
-//               int finalY = 0;
-//               int finalW = cx;
-//               int finalH = cy;
+//               int32_t finalX = 0;
+//               int32_t finalY = 0;
+//               int32_t finalW = cx;
+//               int32_t finalH = cy;
 
-               const int iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
-               const int iFrameMax = iFrameCount - 1;
+               const int32_t iFrameCount = max(4, m_tool001.m_data.m_sliceframe.m_iFrameCount);
+               const int32_t iFrameMax = iFrameCount - 1;
 
                ::index iFrame = m_tool001.m_iStep - 1;
                double dFrameStd = 1.0 - ((double) iFrame / iFrameMax);
@@ -1285,10 +1285,10 @@ namespace gcom
 
                
 
-               int finalX = rectBound.left;
-               int finalY = rectBound.top;
-               int finalW = rectBound.width();
-               int finalH = rectBound.height();
+               int32_t finalX = rectBound.left;
+               int32_t finalY = rectBound.top;
+               int32_t finalW = rectBound.width();
+               int32_t finalH = rectBound.height();
 
 
                rect rectDest;
@@ -1301,12 +1301,12 @@ namespace gcom
 
                ::rect rectUpdate;
 
-               int c1 = m_tool001.m_data.m_alphapixelate.m_c1;
+               int32_t c1 = m_tool001.m_data.m_alphapixelate.m_c1;
                ::index iIndex = m_tool001.m_iStep - 1;
                ::index iSizeIndex = m_tool001.m_pointa[iIndex].x;
-               int iSize = m_tool001.m_ia[iSizeIndex];
-               int nextc = m_tool001.m_pointa[iIndex].y;
-               int c;
+               int32_t iSize = m_tool001.m_ia[iSizeIndex];
+               int32_t nextc = m_tool001.m_pointa[iIndex].y;
+               int32_t c;
                
                if(iIndex <= 0 || nextc == 0)
                {
@@ -1380,7 +1380,7 @@ namespace gcom
                   if(nextc == 0)
                   {
 
-                     m_tool001.m_data.m_alphapixelate.m_iSizeIndex = (int) iSizeIndex;
+                     m_tool001.m_data.m_alphapixelate.m_iSizeIndex = (int32_t) iSizeIndex;
 
 /*                     ::ca::dib * pdib2 = graphics.GetDib(2);
 
@@ -1472,7 +1472,7 @@ namespace gcom
 
                      pdib->get_graphics()->BitBlt(0, 0, finalW, finalH, &dcFrame1, 0, 0, SRCCOPY);
 
-                     const int dSpan = 16;
+                     const int32_t dSpan = 16;
 
                      if(iSizeIndex == m_tool001.m_ia.get_size() - 1)
                      {
@@ -1557,29 +1557,29 @@ namespace gcom
 
                   m_dwDelay = m_tool001.m_pointa[iIndex].y;
 
-                  int r = m_tool001.m_pointa[iIndex].x;
-                  int d = r * 2;
+                  int32_t r = m_tool001.m_pointa[iIndex].x;
+                  int32_t d = r * 2;
 
 
 
-                  int xm = cx / 2;
-                  int ym = cy / 2;
-                  int x1 = max(0, xm - r);
-                  int x2 = min(cx, xm + r);
-                  int y1 = max(0, ym - r);
-                  int y2 = min(cy, ym + r);
+                  int32_t xm = cx / 2;
+                  int32_t ym = cy / 2;
+                  int32_t x1 = max(0, xm - r);
+                  int32_t x2 = min(cx, xm + r);
+                  int32_t y1 = max(0, ym - r);
+                  int32_t y2 = min(cy, ym + r);
 
 
-                  int xOff = 0;
-                  int yOff = 0;
+                  int32_t xOff = 0;
+                  int32_t yOff = 0;
                   if(r > xm)
                      xOff = pdibT2->cx * (r - xm) / d;
 
                   if(r > ym)
                      yOff = pdibT2->cy * (r - ym) / d;
 
-                  int wWindow = min(cx, d);
-                  int hWindow = min(cy, d);
+                  int32_t wWindow = min(cx, d);
+                  int32_t hWindow = min(cy, d);
 
 //                  double xrate = (double) wWindow / d;
 //                  double yrate = (double) hWindow / d;
@@ -1696,7 +1696,7 @@ namespace gcom
          rgnTransferClip->create_rect(graphics.m_rectFinalPlacement);
          //dcTransfer.SelectClipRgn(rgnTransferClip);
 
-         for(int i = 0; i < recta.get_size(); i++)
+         for(int32_t i = 0; i < recta.get_size(); i++)
          {
             ::rect rectTransfer = recta[i];
 
@@ -1711,9 +1711,9 @@ namespace gcom
          dcTransfer.SelectClipRgn(NULL);
       }
 
-      int TransitionEffect::CalcRepeatCount()
+      int32_t TransitionEffect::CalcRepeatCount()
       {
-         int iStepRepeatCount = m_tool001.m_iStepRepeatCount;
+         int32_t iStepRepeatCount = m_tool001.m_iStepRepeatCount;
          switch(get_type())
          {
          case TransitionEffectpixelate_BottomTop:
@@ -1721,24 +1721,24 @@ namespace gcom
          case TransitionEffectpixelate_LeftRight:
          case TransitionEffectpixelate_RightLeft:
             {
-               const int c1 = m_tool001.m_data.m_alphapixelate.m_c1;
-//               const int c2 = m_tool001.m_data.m_alphapixelate.m_c2;
+               const int32_t c1 = m_tool001.m_data.m_alphapixelate.m_c1;
+//               const int32_t c2 = m_tool001.m_data.m_alphapixelate.m_c2;
 
                ::index iIndex = m_tool001.m_iStep - 1;
-               int iSizeIndex = m_tool001.m_pointa[iIndex].x;
-               int iSize = m_tool001.m_ia[iSizeIndex];
+               int32_t iSizeIndex = m_tool001.m_pointa[iIndex].x;
+               int32_t iSize = m_tool001.m_ia[iSizeIndex];
                
                if(iSize < 64)
                   iSize = 64;
 
                ////iStepRepeatCount = 1c1 / (iSize * 8);
                //iStepRepeatCount = 1;
-//               int dwTotalTime = 1000;
-               int iStepCount = c1 / iSize;
+//               int32_t dwTotalTime = 1000;
+               int32_t iStepCount = c1 / iSize;
                if(c1 % iSize == 0)
                   iStepCount++;
-               int iStartStep = m_tool001.m_pointa2[iIndex].y;
-               int iStep = (int) (iIndex - iStartStep);
+               int32_t iStartStep = m_tool001.m_pointa2[iIndex].y;
+               int32_t iStep = (int32_t) (iIndex - iStartStep);
                iStepRepeatCount = iStepCount / 8;
                if(iStep > iStepCount - iStepCount / 4)
                   iStepRepeatCount = iStepCount - iStep - 1;
@@ -1831,8 +1831,8 @@ namespace gcom
          rect rectClient;
          iface.BackViewGetClientRect(rectClient);
 
-         int cx = rectClient.width();
-         int cy = rectClient.height();
+         int32_t cx = rectClient.width();
+         int32_t cy = rectClient.height();
 
          single_lock sl(&graphics.m_mutex4Transfer, TRUE);
 
@@ -1853,13 +1853,13 @@ namespace gcom
       UINT c_cdecl TransitionEffect::ThreadProcRunStep(LPVOID lpParameter)
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
-         srand((unsigned int) time(NULL));
+         srand((unsigned int32_t) time(NULL));
          manual_reset_event event(peffect->get_app());
 
          event.ResetEvent();
 
 //         MMRESULT mmr;
-         int iResolution = 25;
+         int32_t iResolution = 25;
          UINT uiRet = 0;
          try
          {

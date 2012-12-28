@@ -17,13 +17,13 @@ namespace _vmskissfftsh
 class CLASS_DECL_VMSKISSFFTSH Ffftrd
 {
 public:
-	Ffftrd(int iSize);
+	Ffftrd(int32_t iSize);
 	virtual ~Ffftrd();
 
    void Fft(short * pshIn, short * pshOut);
 
 protected:
-   int               m_iSize;
+   int32_t               m_iSize;
    kiss_fftr_cfg     m_cfg;
    kiss_fft_cpx *    m_freqdata;
 

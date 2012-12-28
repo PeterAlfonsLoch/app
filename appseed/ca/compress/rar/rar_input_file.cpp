@@ -141,11 +141,11 @@ namespace rar
       archiveInfo = _header;
    }
 
-   static void DecodeUnicodeFileName(const char *name, const byte *encName, int encSize, wchar_t *unicodeName, int maxDecSize)
+   static void DecodeUnicodeFileName(const char *name, const byte *encName, int32_t encSize, wchar_t *unicodeName, int32_t maxDecSize)
    {
-      int encPos = 0;
-      int decPos = 0;
-      int flagBits = 0;
+      int32_t encPos = 0;
+      int32_t decPos = 0;
+      int32_t flagBits = 0;
       byte flags = 0;
       byte highByte = encName[encPos++];
       while (encPos < encSize && decPos < maxDecSize)
@@ -169,7 +169,7 @@ namespace rar
             break;
          case 3:
             {
-               int length = encName[encPos++];
+               int32_t length = encName[encPos++];
                if (length & 0x80)
                {
                   byte correction = encName[encPos++];
@@ -189,7 +189,7 @@ namespace rar
       unicodeName[decPos < maxDecSize ? decPos : maxDecSize - 1] = 0;
    }
 
-   void input_file::ReadName(CItemEx &item, int nameSize)
+   void input_file::ReadName(CItemEx &item, int32_t nameSize)
    {
       item.Name.Empty();
       if (nameSize > 0)
@@ -197,10 +197,10 @@ namespace rar
          m_NameBuffer.EnsureCapacity(nameSize + 1);
          char *buffer = (char *)m_NameBuffer;
 
-         for (int i = 0; i < nameSize; i++)
+         for (int32_t i = 0; i < nameSize; i++)
             buffer[i] = ReadByte();
 
-         int mainLen;
+         int32_t mainLen;
          for (mainLen = 0; mainLen < nameSize; mainLen++)
             if (buffer[mainLen] == '\0')
                break;
@@ -211,7 +211,7 @@ namespace rar
          {
             if(mainLen < nameSize)
             {
-               int unicodeNameSizeMax = min(nameSize, (0x400));
+               int32_t unicodeNameSizeMax = min(nameSize, (0x400));
                _unicodeNameBuffer.EnsureCapacity(unicodeNameSizeMax + 1);
                DecodeUnicodeFileName(buffer, (const byte *)buffer + mainLen + 1,
                   nameSize - (mainLen + 1), _unicodeNameBuffer, unicodeNameSizeMax);
@@ -233,7 +233,7 @@ namespace rar
    uint16 input_file::ReadUInt16()
    {
       uint16 value = 0;
-      for (int i = 0; i < 2; i++)
+      for (int32_t i = 0; i < 2; i++)
       {
          byte b = ReadByte();
          value |= (uint16(b) << (8 * i));
@@ -244,7 +244,7 @@ namespace rar
    uint32 input_file::ReadUInt32()
    {
       uint32 value = 0;
-      for (int i = 0; i < 4; i++)
+      for (int32_t i = 0; i < 4; i++)
       {
          byte b = ReadByte();
          value |= (uint32(b) << (8 * i));
@@ -255,9 +255,9 @@ namespace rar
    void input_file::ReadTime(byte mask, CRarTime &rarTime)
    {
       rarTime.LowSecond = (byte)(((mask & 4) != 0) ? 1 : 0);
-      int numDigits = (mask & 3);
+      int32_t numDigits = (mask & 3);
       rarTime.SubTime[0] = rarTime.SubTime[1] = rarTime.SubTime[2] = 0;
-      for (int i = 0; i < numDigits; i++)
+      for (int32_t i = 0; i < numDigits; i++)
          rarTime.SubTime[3 - numDigits + i] = ReadByte();
    }
 
@@ -271,7 +271,7 @@ namespace rar
       item.MTime.DosTime = ReadUInt32();
       item.UnPackVersion = ReadByte();
       item.Method = ReadByte();
-      int nameSize = ReadUInt16();
+      int32_t nameSize = ReadUInt16();
       item.Attrib = ReadUInt32();
 
       item.MTime.LowSecond = 0;
@@ -288,7 +288,7 @@ namespace rar
       ReadName(item, nameSize);
 
       if (item.HasSalt())
-         for (int i = 0; i < sizeof(item.Salt); i++)
+         for (int32_t i = 0; i < sizeof(item.Salt); i++)
             item.Salt[i] = ReadByte();
 
       // some rar archives have HasExtTime flag without field.
@@ -366,7 +366,7 @@ namespace rar
             ex1::byte_buffer buffer;
             const uint32 sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
-            for (int i = 0; i < unicodePassword.get_length(); i++)
+            for (int32_t i = 0; i < unicodePassword.get_length(); i++)
             {
                wchar_t c = unicodePassword[i];
                ((byte *)buffer)[i * 2] = (byte)c;

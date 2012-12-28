@@ -89,7 +89,7 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 
    }
 
-   semctl((int) m_object, 0, SETVAL, semctl_arg);
+   semctl((int32_t) m_object, 0, SETVAL, semctl_arg);
 
 
 #endif
@@ -125,7 +125,7 @@ bool event::SetEvent()
    sb.sem_num  = 0;
    sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
 
-   return semop((int) m_object, &sb, 1) == 0;
+   return semop((int32_t) m_object, &sb, 1) == 0;
 
 #endif
 
@@ -152,7 +152,7 @@ bool event::PulseEvent()
    sb.sem_num  = 0;
    sb.sem_flg  = SEM_UNDO;
 
-   return semop((int) m_object, &sb, 1) == 0;
+   return semop((int32_t) m_object, &sb, 1) == 0;
 
 #endif
 
@@ -177,7 +177,7 @@ bool event::ResetEvent()
    sb.sem_num  = 0;
    sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
 
-   return semop((int) m_object, &sb, 1) == 0;
+   return semop((int32_t) m_object, &sb, 1) == 0;
 
 #endif
 
@@ -200,7 +200,7 @@ void event::wait ()
    sb.sem_num  = 0;
    sb.sem_flg  = 0;
 
-   semop((int) m_object, &sb, 1);
+   semop((int32_t) m_object, &sb, 1);
 
 #endif
 
@@ -236,7 +236,7 @@ wait_result event::wait (const duration & duration)
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = semop((int) m_object, &sb, 1);
+      int32_t ret = semop((int32_t) m_object, &sb, 1);
 
       if(ret < 0)
       {
@@ -292,7 +292,7 @@ bool event::is_signaled() const
    sb.sem_num  = 0;
    sb.sem_flg  = IPC_NOWAIT;
 
-   int ret = semop((int) m_object, &sb, 1);
+   int32_t ret = semop((int32_t) m_object, &sb, 1);
 
    if(ret < 0)
    {
@@ -355,7 +355,7 @@ bool event::lock(const duration & durationTimeout)
       sb.sem_num  = 0;
       sb.sem_flg  = IPC_NOWAIT;
 
-      int ret = semop((int) m_object, &sb, 1);
+      int32_t ret = semop((int32_t) m_object, &sb, 1);
 
       if(ret < 0)
       {

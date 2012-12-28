@@ -99,14 +99,14 @@ namespace userex
 
    }
 
-   int hour_list_view::set_hour(int iHour)
+   int32_t hour_list_view::set_hour(int32_t iHour)
    {
-      return (int) set_cur_sel(iHour);
+      return (int32_t) set_cur_sel(iHour);
    }
 
-   int hour_list_view::get_hour()
+   int32_t hour_list_view::get_hour()
    {
-      return (int) get_cur_sel();
+      return (int32_t) get_cur_sel();
    }
 
 } // namespace userex

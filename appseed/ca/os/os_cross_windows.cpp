@@ -29,7 +29,7 @@ static UINT MyStringLen(const wchar_t *s)
 
 BSTR SysAllocStringByteLen(LPCSTR psz, UINT len)
 {
-  int realLen = len + sizeof(UINT) + sizeof(OLECHAR) + sizeof(OLECHAR);
+  int32_t realLen = len + sizeof(UINT) + sizeof(OLECHAR) + sizeof(OLECHAR);
   void *p = AllocateForBSTR(realLen);
   if (p == 0)
     return 0;
@@ -37,7 +37,7 @@ BSTR SysAllocStringByteLen(LPCSTR psz, UINT len)
   BSTR bstr = (BSTR)((UINT *)p + 1);
   memmove(bstr, psz, len);
   Byte *pb = ((Byte *)bstr) + len;
-  for (int i = 0; i < sizeof(OLECHAR) * 2; i++)
+  for (int32_t i = 0; i < sizeof(OLECHAR) * 2; i++)
     pb[i] = 0;
   return bstr;
 }

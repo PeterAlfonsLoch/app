@@ -29,7 +29,7 @@ namespace spa
       simple_bitmap        m_sbitmapAlpha;
       simple_graphics      m_sgraphicsAlpha;
       static window_map    s_windowmap;
-      int                  m_iStyle;
+      int32_t                  m_iStyle;
       installer *          m_pinstaller;
 
       bool m_bDrag;
@@ -49,7 +49,7 @@ namespace spa
 
       void drag();
 
-      //virtual bool init_instance(HINSTANCE hinstance, int nCmdShow);
+      //virtual bool init_instance(HINSTANCE hinstance, int32_t nCmdShow);
 
       void redraw();
 

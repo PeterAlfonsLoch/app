@@ -92,7 +92,7 @@ namespace collection
             return *this;
          }
 
-         iterator operator ++ (int)
+         iterator operator ++ (int32_t)
          {
             if(m_ppair != NULL && m_pmap != NULL)
                m_ppair = m_pmap->PGetNextAssoc(m_ppair);
@@ -174,7 +174,7 @@ namespace collection
             return *this;
          }
 
-         const_iterator operator ++ (int)
+         const_iterator operator ++ (int32_t)
          {
             if(m_ppair != NULL && m_pmap != NULL)
                m_ppair = m_pmap->PGetNextAssoc(m_ppair);
@@ -224,7 +224,7 @@ namespace collection
 
       void construct(::count nBlockSize = 10);
       map(::count nBlockSize = 10);
-      map(pair pairs[], int iCount);
+      map(pair pairs[], int32_t iCount);
 
       ::count get_count() const;
       ::count get_size() const;
@@ -434,10 +434,10 @@ namespace collection
    }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
-   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(pair pairs[], int iCount)
+   map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::map(pair pairs[], int32_t iCount)
    {
       construct();
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
          set_at(pairs[i].m_key, pairs[i].m_value);
       }
@@ -876,8 +876,8 @@ namespace collection
                // obtain the address of a given object.  We then use the following trick to
                // get the address
                //
-               pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
-               pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int& >( static_cast< VALUE& >( pAssoc->value ) ) );
+               pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int32_t& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
+               pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int32_t& >( static_cast< VALUE& >( pAssoc->value ) ) );
                SerializeElements<KEY>(ar, pKey, 1);
                SerializeElements<VALUE>(ar, pValue, 1);
             }
@@ -1066,9 +1066,9 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::hash < int > , class EQUALS = gen::equals_type_arg_type < int, int > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::hash < int32_t > , class EQUALS = gen::equals_type_arg_type < int32_t, int32_t > >
    class int_map :
-      virtual public attrib_map < map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > >
+      virtual public attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
    public:
 
@@ -1082,13 +1082,13 @@ namespace collection
 
    template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(::count nBlockSize) :
-      map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
+      map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > (nBlockSize)
    {
    }
 
    template < class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    int_map < VALUE, ARG_VALUE, HASH, EQUALS >::int_map(const int_map & map) :
-      attrib_map < ::collection::map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
+      attrib_map < ::collection::map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > > (map)
    {
    }
 
@@ -1098,15 +1098,15 @@ namespace collection
       
       if(this != &map)
       {
-         attrib_map < ::collection::map < int, int, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
+         attrib_map < ::collection::map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >::operator = (map);
       }
 
       return *this;
 
    }
 
-   typedef CLASS_DECL_ca attrib_map < map < int, int, int, int > > int_to_int;
-   typedef CLASS_DECL_ca attrib_map < map < int, int, string, const string & > > int_to_string;
+   typedef CLASS_DECL_ca attrib_map < map < int32_t, int32_t, int32_t, int32_t > > int_to_int;
+   typedef CLASS_DECL_ca attrib_map < map < int32_t, int32_t, string, const string & > > int_to_string;
    typedef CLASS_DECL_ca ::collection::string_map < void *, void * > string_to_ptr;
 
    template < class T >

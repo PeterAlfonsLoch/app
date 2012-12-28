@@ -2,7 +2,7 @@
 
 #ifdef MACOS
 #include <pthread.h>
-typedef int key_t;
+typedef int32_t key_t;
 #elif defined(LINUX)
 typedef __key_t key_t;
 #include <pthread.h>
@@ -19,13 +19,13 @@ public:
    oswindow        m_oswindow;
 #else
    key_t   m_key;
-   int      m_iQueue;
+   int32_t      m_iQueue;
 
    struct data_struct
    {
       long     mtype;          /* Message type */
-      int      request;        /* Work request number */
-      int      size;
+      int32_t      request;        /* Work request number */
+      int32_t      size;
       char     data[512];
    } msg;
 #endif
@@ -52,7 +52,7 @@ public:
 
 
    bool send(const char * pszMessage, DWORD dwTimeout);
-   bool send(int message, void * pdata, int len, DWORD dwTimeout);
+   bool send(int32_t message, void * pdata, int32_t len, DWORD dwTimeout);
 
 
    bool is_tx_ok();
@@ -72,8 +72,8 @@ public:
    public:
 
       virtual void on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
-      virtual void on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
-      virtual void on_post(small_ipc_rx_channel * prxchannel, int a, int b);
+      virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
+      virtual void on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b);
 
    };
 
@@ -101,8 +101,8 @@ public:
 
 
    virtual void * on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
-   virtual void * on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
-   virtual void * on_post(small_ipc_rx_channel * prxchannel, int a, int b);
+   virtual void * on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
+   virtual void * on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b);
 
 
    virtual bool on_idle();
@@ -150,7 +150,7 @@ public:
    virtual void restart_small_ipc_channel();
 
    bool ensure_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
-   bool ensure_tx(int message, void * pdata, int len, DWORD dwTimeout = INFINITE);
+   bool ensure_tx(int32_t message, void * pdata, int32_t len, DWORD dwTimeout = INFINITE);
 
 
    bool is_rx_tx_ok();

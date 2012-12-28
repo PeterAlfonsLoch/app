@@ -25,12 +25,12 @@ namespace gen
 namespace gen
 {
 
-   int  str::compare(const char * psz1, const char * psz2)
+   int32_t  str::compare(const char * psz1, const char * psz2)
    {
       return strcmp(psz1, psz2);
    }
 
-   int  str::compare_ci(const char * psz1, const char * psz2)
+   int32_t  str::compare_ci(const char * psz1, const char * psz2)
    {
       return stricmp(psz1, psz2);
    }
@@ -287,7 +287,7 @@ namespace gen
       return false;
       /*      string str(lpcsz);
       string strSuffix(lpcszSuffix);
-      int iLen = strSuffix.get_length();
+      int32_t iLen = strSuffix.get_length();
       if(str.Right(iLen) == lpcszSuffix)
       {
       return true;
@@ -404,7 +404,7 @@ namespace gen
 
    }
 
-   void str::copy(string & str, const char * lpcsz, int iCount)
+   void str::copy(string & str, const char * lpcsz, int32_t iCount)
    {
       string strCopy(lpcsz, iCount);
       str = strCopy;
@@ -466,7 +466,7 @@ namespace gen
          if(iFind < iStart)
             throw "errror";
 
-         index i = (index) Sys(papp).math().RandRange(0, (int) straReplacement.get_upper_bound());
+         index i = (index) Sys(papp).math().RandRange(0, (int32_t) straReplacement.get_upper_bound());
 
          str = str.Left(iFind) + straReplacement[i] + str.Mid(iFind + straSearch[iFound].get_length());
 
@@ -1084,7 +1084,7 @@ namespace gen
 
 #ifdef WINDOWSEX
 
-         int nLen = ::GetWindowTextLength(oswindow);
+         int32_t nLen = ::GetWindowTextLength(oswindow);
 
          ::GetWindowText(oswindow, str.GetBufferSetLength(nLen), nLen+1);
 
@@ -1163,7 +1163,7 @@ namespace gen
 
    }
 
-   bool str::to(const char * psz, int & i)
+   bool str::to(const char * psz, int32_t & i)
    {
 
       const char * pszEnd;
@@ -1173,17 +1173,17 @@ namespace gen
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info::get_maximum_value < int > ())
+      if(iConversion > numeric_info::get_maximum_value < int32_t > ())
          return false;
 
-      i = (int) iConversion;
+      i = (int32_t) iConversion;
 
       return true;
 
    }
 
 
-   bool str::to(const char * psz, int64_t & i, int iBase)
+   bool str::to(const char * psz, int64_t & i, int32_t iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1210,7 +1210,7 @@ namespace gen
 
    }
 
-   bool str::to(const char * psz, int & i, int iBase)
+   bool str::to(const char * psz, int32_t & i, int32_t iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -1231,10 +1231,10 @@ namespace gen
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info::get_maximum_value < int > ())
+      if(iConversion > numeric_info::get_maximum_value < int32_t > ())
          return false;
 
-      i = (int) iConversion;
+      i = (int32_t) iConversion;
 
       return true;
 
@@ -1257,7 +1257,7 @@ namespace gen
 
 
 
-   string & str::from(string & str, int i)
+   string & str::from(string & str, int32_t i)
    {
 
       str = i64toa_dup(i);
@@ -1284,7 +1284,7 @@ namespace gen
 
    }
 
-   string & str::from(string & str, unsigned int ui)
+   string & str::from(string & str, unsigned int32_t ui)
    {
 
       str = ui64toa_dup(ui);
@@ -1557,7 +1557,7 @@ namespace gen
    }
 
 
-   int str::utf8_char(::gen::utf8_char * pchar, const char * psz)
+   int32_t str::utf8_char(::gen::utf8_char * pchar, const char * psz)
    {
       char chLen =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
       char ch = 0;
@@ -1578,7 +1578,7 @@ namespace gen
    string str::utf8_char(const char * psz)
    {
       ::gen::utf8_char ch;
-      int len = utf8_char(&ch, psz);
+      int32_t len = utf8_char(&ch, psz);
       if(len < 0)
          return "";
       return string(ch.m_sz);
@@ -1650,7 +1650,7 @@ namespace gen
    }
 
 
-   int str::get_escaped_char(const char * lpcsz, strsize pos, strsize &retPos)
+   int32_t str::get_escaped_char(const char * lpcsz, strsize pos, strsize &retPos)
    {
       retPos = pos;
       if(lpcsz[pos] == '\\')
@@ -1672,7 +1672,7 @@ namespace gen
                   return BAD_WCHAR;
                }
                retPos += val_len + 2;
-               return (int) hex;
+               return (int32_t) hex;
             }
             else
             {
@@ -1682,7 +1682,7 @@ namespace gen
                   return BAD_WCHAR;
                }
                retPos += 2;
-               return (int) hex;
+               return (int32_t) hex;
             }
          }
          return lpcsz[pos+1];
@@ -1762,7 +1762,7 @@ namespace gen
    void str::consume(const char * & pszXml, const char * psz, strsize len, const char * pszEnd)
    {
       UNREFERENCED_PARAMETER(pszEnd);
-      int idx;
+      int32_t idx;
       for(idx = 0; idx < len; idx++)
       {
          if(pszXml[idx] != psz[idx])
@@ -1776,7 +1776,7 @@ namespace gen
    void str::consume_spaces(const char * & pszXml, count iMinimumCount)
    {
       const char * psz = pszXml;
-      int i = 0;
+      int32_t i = 0;
       while(gen::ch::is_whitespace(psz))
       {
          psz = utf8_inc(psz);
@@ -1796,7 +1796,7 @@ namespace gen
          throw invalid_argument_exception(::ca::get_thread_app(), "max should be greater than min");
       }
       const char * psz = pszXml;
-      int i = 0;
+      int32_t i = 0;
       uint64_t ui;
       while(gen::ch::is_digit(psz))
       {
@@ -1826,7 +1826,7 @@ namespace gen
    void str::consume_spaces(const char * & pszXml, count iMinimumCount, const char * pszEnd)
    {
       const char * psz = pszXml;
-      int i = 0;
+      int32_t i = 0;
       while(gen::ch::is_whitespace(psz, pszEnd))
       {
          psz = __utf8_inc(psz);
@@ -1844,11 +1844,11 @@ namespace gen
    string str::consume_hex(const char * & pszXml)
    {
       const char * psz = pszXml;
-//      int i = 0;
+//      int32_t i = 0;
       while(*psz != '\0')
       {
          int64_t i = gen::ch::uni_index(pszXml);
-         if(isdigit((int) i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
+         if(isdigit((int32_t) i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
          {
             psz = __utf8_inc(psz);
          }
@@ -2047,7 +2047,7 @@ namespace gen
       str = psz;
       if(pszPattern == NULL || strlen(pszPattern) == 0)
          return str;
-      int i = 0;
+      int32_t i = 0;
       if(epad == pad_left)
       {
          while(str.get_length() < iLen)
@@ -2158,20 +2158,20 @@ namespace gen
       return str;
    }*/
 
-   int str::to_int(const char * psz)
+   int32_t str::to_int(const char * psz)
    {
       return atoi_dup(psz);
    }
 
-   unsigned int str::to_uint(const char * psz)
+   unsigned int32_t str::to_uint(const char * psz)
    {
-      return (unsigned int) atoi64_dup(psz);
+      return (unsigned int32_t) atoi64_dup(psz);
    }
 
    int64_t str::to_int64(const string & str)
    {
 
-      int i = 0;
+      int32_t i = 0;
 
       for (; i < str.get_length() && isspace(str[i]); i++);
 
@@ -2196,7 +2196,7 @@ namespace gen
    int64_t str::to_int64(const char * psz)
    {
 
-      int i = 0;
+      int32_t i = 0;
 
       for (; *psz != '\0' && i < 30 && isspace((unsigned char ) *psz); i++, psz++);
 
@@ -2222,7 +2222,7 @@ namespace gen
    uint64_t str::to_uint64(const string & str)
    {
 
-      int i = 0;
+      int32_t i = 0;
 
       for (; i < str.get_length() && isspace(str[i]); i++);
 
@@ -2240,7 +2240,7 @@ namespace gen
    uint64_t str::to_uint64(const char * psz)
    {
 
-      int i = 0;
+      int32_t i = 0;
 
       for (; *psz != '\0' && i < 30 && isspace(*psz); i++, psz++);
 
@@ -2318,7 +2318,7 @@ namespace gen
 
    bool CLASS_DECL_ca str::while_begins_with_chars_eat(string & str, const char * lpcszChars)
    {
-      int i = 0;
+      int32_t i = 0;
       for(i = 0; i < str.get_length(); i++)
       {
          if(strchr(lpcszChars, str[i]) == NULL)
@@ -2330,7 +2330,7 @@ namespace gen
 
    bool CLASS_DECL_ca str::while_begins_with_chars_eat_ci(string & str, const char * lpcszChars) // case insensitive
    {
-      int i = 0;
+      int32_t i = 0;
       for(i = 0; i < str.get_length(); i++)
       {
          if(strchr(lpcszChars, tolower(str[i])) == NULL)

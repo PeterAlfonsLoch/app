@@ -34,9 +34,9 @@ namespace rar
 
 
 
-      uint64 GetPackSize(int refIndex) const;
+      uint64 GetPackSize(int32_t refIndex) const;
 
-      bool IsSolid(int refIndex);
+      bool IsSolid(int32_t refIndex);
       void AddErrorMessage(const string &s);
 
       //HRESULT Open2(ex1::byte_input_stream *stream, // seekable input stream

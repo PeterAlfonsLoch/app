@@ -73,7 +73,7 @@ namespace ex1
       }
    }
 
-   int file_system::cmp(const char * psz1, const char * psz2)
+   int32_t file_system::cmp(const char * psz1, const char * psz2)
    {
       string str1(psz1);
       normalize(str1);

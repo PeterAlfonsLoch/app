@@ -132,14 +132,14 @@ static const noiseguard _psy_noiseguards_16[4]={
 
 static const double _noise_thresh_16[4]={ .3,.5,.5,.5 };
 
-static const int _noise_start_16[3]={ 256,256,9999 };
-static const int _noise_part_16[4]={ 8,8,8,8 };
+static const int32_t _noise_start_16[3]={ 256,256,9999 };
+static const int32_t _noise_part_16[4]={ 8,8,8,8 };
 
-static const int _psy_ath_floater_16[4]={
+static const int32_t _psy_ath_floater_16[4]={
   -100,-100,-100,-105,
 };
 
-static const int _psy_ath_abs_16[4]={
+static const int32_t _psy_ath_abs_16[4]={
   -130,-130,-130,-140,
 };
 

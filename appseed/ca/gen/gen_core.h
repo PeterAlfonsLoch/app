@@ -8,14 +8,14 @@
 // return TRUE no matter how long the string is. The primitive::memory
 // used by the string can be read-only.
 
-//bool __is_valid_string(const wchar_t * psz, int nLength /* = -1 */)
+//bool __is_valid_string(const wchar_t * psz, int32_t nLength /* = -1 */)
 //{
 //   return __is_valid_string(psz, nLength);
 //}
 //
 //// As above, but for ANSI strings.
 //
-///*bool __is_valid_string(const char * psz, int nLength /* = -1 */)
+///*bool __is_valid_string(const char * psz, int32_t nLength /* = -1 */)
 //{
 //   return __is_valid_string(psz, nLength);
 //}*/
@@ -255,9 +255,9 @@ return (*p == ch) ? p : NULL;
 #pragma warning(push)
 #pragma warning(disable : 4793)
 template<typename CharType>
-inline int gen_printfT(const CharType* pszFormat,... ) throw()
+inline int32_t gen_printfT(const CharType* pszFormat,... ) throw()
 {
-int retval=0;
+int32_t retval=0;
 va_list argList;
 va_start( argList, pszFormat );
 retval=vprintf(pszFormat,argList);
@@ -269,9 +269,9 @@ return retval;
 #pragma warning(push)
 #pragma warning(disable : 4793)
 template<>
-inline int gen_printfT(const wchar_t* pszFormat,... ) throw()
+inline int32_t gen_printfT(const wchar_t* pszFormat,... ) throw()
 {
-int retval=0;
+int32_t retval=0;
 va_list argList;
 va_start( argList, pszFormat );
 retval=vwprintf(pszFormat,   argList);

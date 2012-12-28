@@ -211,7 +211,7 @@ namespace html
       string strChar;
       while(*psz != '\0')
       {
-         int iChar = (int) gen::ch::uni_index(psz);
+         int32_t iChar = (int32_t) gen::ch::uni_index(psz);
          if(iChar == '&')
          {
             str += "&amp;";
@@ -247,7 +247,7 @@ namespace html
    }
 
 
-   int html::resolve_entity(const char * lpszEntity, string & strChar)
+   int32_t html::resolve_entity(const char * lpszEntity, string & strChar)
    {
       return m_entityresolver.resolveEntity(lpszEntity, strChar);
    }

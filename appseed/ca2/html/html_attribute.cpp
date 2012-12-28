@@ -31,7 +31,7 @@ namespace html
 
    attribute * attribute_array::get(const char * pszName)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          if(this->element_at(i).get_name().CompareNoCase(pszName) == 0)
             return &this->element_at(i);

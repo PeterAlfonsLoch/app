@@ -21,9 +21,9 @@ struct kiss_fftr_state{
     kiss_fft_cpx * super_twiddles;
 };
 
-kiss_fftr_cfg kiss_fftr_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem)
+kiss_fftr_cfg kiss_fftr_alloc(int32_t nfft,int32_t inverse_fft,void * mem,size_t * lenmem)
 {
-    int i;
+    int32_t i;
     kiss_fftr_cfg st = NULL;
     size_t subsize, memneeded;
 
@@ -64,7 +64,7 @@ kiss_fftr_cfg kiss_fftr_alloc(int nfft,int inverse_fft,void * mem,size_t * lenme
 void kiss_fftr(kiss_fftr_cfg st,const kiss_fft_scalar *timedata,kiss_fft_cpx *freqdata)
 {
     /* input buffer timedata is stored row-wise */
-    int k,N;
+    int32_t k,N;
 
     if ( st->substate->inverse) {
         fprintf(stderr,"kiss fft usage error: improper alloc\n");
@@ -108,7 +108,7 @@ void kiss_fftr(kiss_fftr_cfg st,const kiss_fft_scalar *timedata,kiss_fft_cpx *fr
 void kiss_fftri(kiss_fftr_cfg st,const kiss_fft_cpx *freqdata,kiss_fft_scalar *timedata)
 {
     /* input buffer timedata is stored row-wise */
-    int k, N;
+    int32_t k, N;
 
     if (st->substate->inverse == 0) {
         fprintf (stderr, "kiss fft usage error: improper alloc\n");

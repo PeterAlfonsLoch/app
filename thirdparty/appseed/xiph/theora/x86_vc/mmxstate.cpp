@@ -25,11 +25,11 @@
 #if defined(OC_X86_ASM)
 
 void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
- int _pli,ogg_int16_t _dct_coeffs[64],int _last_zzi,ogg_uint16_t _dc_quant){
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
   unsigned char *dst;
   ptrdiff_t      frag_buf_off;
-  int            ystride;
-  int            mb_mode;
+  int32_t            ystride;
+  int32_t            mb_mode;
   /*Apply the inverse transform.*/
   /*Special case only having a DC component.*/
   if(_last_zzi<2){
@@ -73,7 +73,7 @@ void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
   }
   else{
     /*Dequantize the DC coefficient.*/
-    _dct_coeffs[0]=(ogg_int16_t)(_dct_coeffs[0]*(int)_dc_quant);
+    _dct_coeffs[0]=(ogg_int16_t)(_dct_coeffs[0]*(int32_t)_dc_quant);
     oc_idct8x8_mmx(_dct_coeffs,_last_zzi);
   }
   /*Fill in the target buffer.*/
@@ -84,7 +84,7 @@ void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
   if(mb_mode==OC_MODE_INTRA)oc_frag_recon_intra_mmx(dst,ystride,_dct_coeffs);
   else{
     const unsigned char *ref;
-    int                  mvoffsets[2];
+    int32_t                  mvoffsets[2];
     ref=
      _state->ref_frame_data[_state->ref_frame_idx[OC_FRAME_FOR_MODE(mb_mode)]]
      +frag_buf_off;
@@ -109,12 +109,12 @@ void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
   _pli:       The color plane the fragments lie in.*/
 void oc_state_frag_copy_list_mmx(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
- int _dst_frame,int _src_frame,int _pli){
+ int32_t _dst_frame,int32_t _src_frame,int32_t _pli){
   const ptrdiff_t     *frag_buf_offs;
   const unsigned char *src_frame_data;
   unsigned char       *dst_frame_data;
   ptrdiff_t            fragii;
-  int                  ystride;
+  int32_t                  ystride;
   dst_frame_data=_state->ref_frame_data[_state->ref_frame_idx[_dst_frame]];
   src_frame_data=_state->ref_frame_data[_state->ref_frame_idx[_src_frame]];
   ystride=_state->ref_ystride[_pli];
@@ -144,7 +144,7 @@ void oc_state_frag_copy_list_mmx(const oc_theora_state *_state,
   _fragy0:    The Y coordinate of the first fragment row to filter.
   _fragy_end: The Y coordinate of the fragment row to stop filtering at.*/
 void oc_state_loop_filter_frag_rows_mmx(const oc_theora_state *_state,
- int _bv[256],int _refi,int _pli,int _fragy0,int _fragy_end){
+ int32_t _bv[256],int32_t _refi,int32_t _pli,int32_t _fragy0,int32_t _fragy_end){
   OC_ALIGN8(unsigned char  ll[8]);
   const oc_fragment_plane *fplane;
   const oc_fragment       *frags;
@@ -154,8 +154,8 @@ void oc_state_loop_filter_frag_rows_mmx(const oc_theora_state *_state,
   ptrdiff_t                fragi_bot;
   ptrdiff_t                fragi0;
   ptrdiff_t                fragi0_end;
-  int                      ystride;
-  int                      nhfrags;
+  int32_t                      ystride;
+  int32_t                      nhfrags;
   memset(ll,_state->loop_filter_limits[_state->qis[0]],sizeof(ll));
   fplane=_state->fplanes+_pli;
   nhfrags=fplane->nhfrags;

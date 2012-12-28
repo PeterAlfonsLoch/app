@@ -34,7 +34,7 @@ namespace gen
       }
 
 
-      int run()
+      int32_t run()
       {
          try
          {

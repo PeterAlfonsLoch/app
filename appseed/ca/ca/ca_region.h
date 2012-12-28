@@ -38,15 +38,15 @@ namespace ca
 
 
       e_type               m_etype;
-      int                  m_x1;
-      int                  m_y1;
-      int                  m_x2;
-      int                  m_y2;
-      int                  m_x3;
-      int                  m_y3;
+      int32_t                  m_x1;
+      int32_t                  m_y1;
+      int32_t                  m_x2;
+      int32_t                  m_y2;
+      int32_t                  m_x3;
+      int32_t                  m_y3;
       LPPOINT              m_lppoints;
       LPINT                m_lppolycounts;
-      int                  m_nCount;
+      int32_t                  m_nCount;
       ::ca::e_fill_mode    m_efillmode;
       ::ca::region *       m_pregion1;
       ::ca::region *       m_pregion2;
@@ -58,29 +58,29 @@ namespace ca
       virtual ~region();
 
 
-      virtual bool create_rect(int x1, int y1, int x2, int y2);
+      virtual bool create_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool create_rect(LPCRECT lpRect);
-      virtual bool create_oval(int x1, int y1, int x2, int y2);
+      virtual bool create_oval(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool create_oval(LPCRECT lpRect);
-      virtual bool create_polygon(LPPOINT lpPoints, int nCount, ::ca::e_fill_mode efillmode);
-      virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int nCount, ::ca::e_fill_mode efillmode);
-      //virtual bool add_round_rect(int x1, int y1, int x2, int y2, int x3, int y3);
+      virtual bool create_polygon(LPPOINT lpPoints, int32_t nCount, ::ca::e_fill_mode efillmode);
+      virtual bool create_poly_polygon(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, ::ca::e_fill_mode efillmode);
+      //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
 //      virtual bool add_path(::ca::graphics_path * ppath);
 
-//      virtual void SetRectRgn(int x1, int y1, int x2, int y2);
+//      virtual void SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 //      virtual void SetRectRgn(LPCRECT lpRect);
       virtual bool combine(const ::ca::region * prgn1, const ::ca::region * prgn2, e_combine ecombine);
-      //virtual int CopyRgn(const ::ca::region* pRgnSrc);
+      //virtual int32_t CopyRgn(const ::ca::region* pRgnSrc);
       //virtual bool EqualRgn(const ::ca::region* pRgn) const;
-      virtual bool translate(int x, int y);
+      virtual bool translate(int32_t x, int32_t y);
       virtual bool translate(POINT point);
       virtual bool get_bounding_box(LPRECT lpRect) const;
-      //virtual int GetRgnBox(rect64 * lpRect) const;
-      //virtual bool contains(int x, int y) const;
+      //virtual int32_t GetRgnBox(rect64 * lpRect) const;
+      //virtual bool contains(int32_t x, int32_t y) const;
       virtual bool contains(POINT point) const;
       //virtual bool RectInRegion(LPCRECT lpRect) const;
 //#ifdef WINDOWS
-      //virtual int GetRegionData(LPRGNDATA lpRgnData, int nCount) const;
+      //virtual int32_t GetRegionData(LPRGNDATA lpRgnData, int32_t nCount) const;
 //#endif
 
 

@@ -36,7 +36,7 @@ namespace filemanager
 
          create_image_list_thread(::ca::application * papp);
 
-         virtual int run();
+         virtual int32_t run();
 
 
       };

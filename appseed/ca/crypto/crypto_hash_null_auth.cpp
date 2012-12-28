@@ -53,13 +53,13 @@ extern debug_module_t mod_auth;
 
 err_status_t
 null_auth_update(null_auth_ctx_t *state, uint8_t *message,
-                 int msg_octets);
+                 int32_t msg_octets);
 err_status_t
 null_auth_start(null_auth_ctx_t *state);
 
 
 err_status_t
-null_auth_alloc(auth_t **a, int key_len, int out_len) {
+null_auth_alloc(auth_t **a, int32_t key_len, int32_t out_len) {
   extern auth_type_t null_auth;
   uint8_t *pointer;
 
@@ -103,7 +103,7 @@ null_auth_dealloc(auth_t *a) {
 }
 
 err_status_t
-null_auth_init(null_auth_ctx_t *state, const uint8_t *key, int key_len) {
+null_auth_init(null_auth_ctx_t *state, const uint8_t *key, int32_t key_len) {
 
   /* accept any length of key, and do nothing */
   
@@ -112,14 +112,14 @@ null_auth_init(null_auth_ctx_t *state, const uint8_t *key, int key_len) {
 
 err_status_t
 null_auth_compute(null_auth_ctx_t *state, uint8_t *message,
-         int msg_octets, int tag_len, uint8_t *result) {
+         int32_t msg_octets, int32_t tag_len, uint8_t *result) {
 
   return err_status_ok;
 }
 
 err_status_t
 null_auth_update(null_auth_ctx_t *state, uint8_t *message,
-         int msg_octets) {
+         int32_t msg_octets) {
 
   return err_status_ok;
 }
@@ -160,7 +160,7 @@ null_auth  = {
   (auth_update_func)     null_auth_update,
   (auth_start_func)      null_auth_start,
   (char *)               null_auth_description,
-  (int)                  0,  /* instance count */
+  (int32_t)                  0,  /* instance count */
   (auth_test_case_t *)   &null_auth_test_case_0
 };
 

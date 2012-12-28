@@ -139,7 +139,7 @@ void simple_menu_bar::_001OnMouseMove(gen::signal_object * pobj)
 }
 
 
-VMSRESULT simple_menu_bar::_TrackPopupMenu(int iItem)
+VMSRESULT simple_menu_bar::_TrackPopupMenu(int32_t iItem)
 {
     TRACE("simple_menu_bar::_TrackPopupMenu % d\n", iItem);
     m_iTracking = iItem;
@@ -180,7 +180,7 @@ void simple_menu_bar::pre_translate_message(gen::signal_object * pobj)
    {
       if(pbase->m_wparam == 33)
       {
-         _TrackPopupMenu((int) pbase->m_lparam);
+         _TrackPopupMenu((int32_t) pbase->m_lparam);
       }
    }
    TRACE("simple_menu_bar::pre_translate_message messageID=%d wParam=%d lParam=%d\n", pbase->m_uiMessage, pbase->m_wparam, pbase->m_lparam);
@@ -212,7 +212,7 @@ void simple_menu_bar::_001OnCreate(gen::signal_object * pobj)
 }
 
 LRESULT CALLBACK simple_menu_bar::MessageProc(
-  int code,       // hook code
+  int32_t code,       // hook code
   WPARAM wParam,  // undefined
   LPARAM lParam   // address of structure with message data
 )
@@ -227,8 +227,8 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
         if(pmsg->message == WM_MOUSEMOVE)
         {
             DWORD fwKeys = (DWORD) pmsg->wParam;        // key flags
-            int xPos = LOWORD(pmsg->lParam);  // horizontal position of cursor
-            int yPos = HIWORD(pmsg->lParam);
+            int32_t xPos = LOWORD(pmsg->lParam);  // horizontal position of cursor
+            int32_t yPos = HIWORD(pmsg->lParam);
             TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, xPos, yPos);
             point pt(xPos, yPos);
             ScreenToClient(&pt);
@@ -245,7 +245,7 @@ VMSRESULT simple_menu_bar::_TrackPopupMenu(point point)
 {
    if(m_bTracking)
    {
-      int iItem = _001HitTest(point);
+      int32_t iItem = _001HitTest(point);
       if(iItem >= 0 &&
          iItem < m_iTopMenuCount &&
          iItem != m_iTracking)
@@ -279,7 +279,7 @@ void simple_menu_bar::_001OnKeyDown(gen::signal_object * pobj)
     rect rectItem;
     rect rectSize(0, 0, 0, 0);
 
-    for(int i = 0; i < tbc.GetButtonCount(); i++)
+    for(int32_t i = 0; i < tbc.GetButtonCount(); i++)
     {
         tbc.GetItemRect(i, rectItem);
         rectSize.union(rectSize, rectItem);
@@ -293,7 +293,7 @@ VMSRESULT simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
     rect rectItem;
     rect rectSize(0, 0, 0, 0);
 
-    for(int i = 0; i < tbc.GetButtonCount(); i++)
+    for(int32_t i = 0; i < tbc.GetButtonCount(); i++)
     {
         tbc.GetItemRect(i, rectItem);
         rectSize.union(rectSize, rectItem);
@@ -369,7 +369,7 @@ void simple_menu_bar::OnUpdateCmdUI(userbase::frame_window *pTarget, bool bDisab
       {
          // allow reflections
          if (::user::interaction::_001OnCommand(0,
-            MAKELONG((int)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
+            MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
             &state, NULL))
             continue;
 
@@ -387,7 +387,7 @@ void simple_menu_bar::OnUpdateCmdUI(userbase::frame_window *pTarget, bool bDisab
 }
 
 
-int simple_menu_bar::OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
+int32_t simple_menu_bar::OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
 {
    UNREFERENCED_PARAMETER(nparam);
    UNREFERENCED_PARAMETER(oparam);
@@ -436,14 +436,14 @@ bool simple_menu_bar::ReloadMenuBar()
 
    pdc->SelectObject(System.font_central().GetMenuFont());
    pdc->SetBkMode(TRANSPARENT);
-   for(int iItem = 0; iItem < m_buttona.get_size(); iItem++)
+   for(int32_t iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       _001DrawItem(pdc, iItem);
    }
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(int iItem, LPRECT lprect, EElement eelement)
+/*bool simple_menu_bar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement)
 {
    if(iItem < 0 ||
       iItem >= m_buttona.get_size())
@@ -481,7 +481,7 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }*/
 
-/*bool simple_menu_bar::_001CheckItem(int iItem, bool bCheck)
+/*bool simple_menu_bar::_001CheckItem(int32_t iItem, bool bCheck)
 {
    if(iItem < 0 ||
       iItem >= m_buttona.get_size())
@@ -490,9 +490,9 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-int simple_menu_bar::_001HitTest(const POINT *lppoint)
+int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 {
-   for(int iItem = 0; iItem < m_buttona.get_size(); iItem++)
+   for(int32_t iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       if(m_buttona[iItem].m_rect.contains(*lppoint))
          return iItem;
@@ -511,9 +511,9 @@ int simple_menu_bar::_001HitTest(const POINT *lppoint)
    pdc->SelectObject(System.font_central().GetMenuFont());
 
    size size;
-   int ix = ITEMCHECKEDPADLEFT;
-   int iy = 0;
-   for(int iItem = 0; iItem < m_buttona.get_size(); iItem++)
+   int32_t ix = ITEMCHECKEDPADLEFT;
+   int32_t iy = 0;
+   for(int32_t iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
       ::GetTextExtentPoint32W(
          (HDC)pdc->get_os_data(),
@@ -580,7 +580,7 @@ bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyl
 void simple_menu_bar::_001OnLButtonDown(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::mouse, pmouse, pobj)
-   int iItem = _001HitTest(pmouse->m_pt);
+   int32_t iItem = _001HitTest(pmouse->m_pt);
    if(iItem >= 0)
    {
       _001OnDropDown(iItem);
@@ -591,7 +591,7 @@ void simple_menu_bar::_001OnLButtonDown(gen::signal_object * pobj)
    }
 }
 
-/*size simple_menu_bar::CalcDynamicLayout(int nLength, DWORD dwMode)
+/*size simple_menu_bar::CalcDynamicLayout(int32_t nLength, DWORD dwMode)
 {
     if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -601,7 +601,7 @@ void simple_menu_bar::_001OnLButtonDown(gen::signal_object * pobj)
    return CalcLayout(dwMode, nLength);
 
 }
-size simple_menu_bar::CalcLayout(DWORD dwMode, int nLength)
+size simple_menu_bar::CalcLayout(DWORD dwMode, int32_t nLength)
 {
    _001Layout();
    size sizeResult;
@@ -626,7 +626,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 }
 */
 
-/*void simple_menu_bar::_001DrawItem(::ca::graphics *pdc, int iItem)
+/*void simple_menu_bar::_001DrawItem(::ca::graphics *pdc, int32_t iItem)
 {
    rect rectItem;
    rect rectText;
@@ -702,7 +702,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 /*void simple_menu_bar::_001Hover(point pt)
 {
    _TrackPopupMenu(pt);
-   int iHover = -1;
+   int32_t iHover = -1;
    if(m_iTracking >= 0)
    {
       iHover   = m_iTracking;
@@ -753,17 +753,17 @@ bool simple_menu_bar::OnEraseBkgnd(::ca::graphics * pgraphics)
 }
 */
 
-/*int simple_menu_bar::_001GetHoverItem()
+/*int32_t simple_menu_bar::_001GetHoverItem()
 {
    return m_iHover;
 }*/
 
-void simple_menu_bar::_001OnDropDown(int iItem)
+void simple_menu_bar::_001OnDropDown(int32_t iItem)
 {
    _TrackPopupMenu(iItem);
 }
 
-void simple_menu_bar::_001OnClick(int iItem)
+void simple_menu_bar::_001OnClick(int32_t iItem)
 {
    UNREFERENCED_PARAMETER(iItem);
 }
@@ -777,7 +777,7 @@ void simple_menu_bar::OnUpdateHover()
    }
 }
 
-int simple_menu_bar::_001GetHoverItem()
+int32_t simple_menu_bar::_001GetHoverItem()
 {
    if(m_iTracking >= 0)
    {

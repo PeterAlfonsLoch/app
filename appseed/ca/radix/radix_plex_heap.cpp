@@ -103,7 +103,7 @@ void plex_heap_alloc_sync::NewBlock()
       node* pNode = (node*)pNewBlock->data();
       // free in reverse order to make it easier to debug
       (BYTE*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
-      for (int i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
+      for (int32_t i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
       {
          pNode->pNext = m_pnodeFree;
          m_pnodeFree = pNode;
@@ -118,11 +118,11 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
 #if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
 
-   int iShareCount = ::get_current_process_maximum_affinity() + 1;
+   int32_t iShareCount = ::get_current_process_maximum_affinity() + 1;
 
 #else
 
-   int iShareCount = 0;
+   int32_t iShareCount = 0;
 
 #endif
 
@@ -131,9 +131,9 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 
    set_size(iShareCount);
 
-   for(int i = 0; i < get_count(); i++)
+   for(int32_t i = 0; i < get_count(); i++)
    {
-      set_at(i, new plex_heap_alloc_sync(nAllocSize + sizeof(int), nBlockSize));
+      set_at(i, new plex_heap_alloc_sync(nAllocSize + sizeof(int32_t), nBlockSize));
    }
 
    m_iShareCount = iShareCount;
@@ -145,7 +145,7 @@ plex_heap_alloc::plex_heap_alloc(UINT nAllocSize, UINT nBlockSize)
 plex_heap_alloc::~plex_heap_alloc()
 {
 
-   for(int i = 0; i < get_count(); i++)
+   for(int32_t i = 0; i < get_count(); i++)
    {
       delete element_at(i);
    }
@@ -155,7 +155,7 @@ plex_heap_alloc::~plex_heap_alloc()
 void plex_heap_alloc::FreeAll()
 {
 
-   for(int i = 0; i < get_count(); i++)
+   for(int32_t i = 0; i < get_count(); i++)
    {
 
       try
@@ -211,7 +211,7 @@ plex_heap_alloc_array::plex_heap_alloc_array()
 
 plex_heap_alloc_array::~plex_heap_alloc_array()
 {
-   for(int i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       delete this->element_at(i);
    }
@@ -219,7 +219,7 @@ plex_heap_alloc_array::~plex_heap_alloc_array()
 
 static simple_mutex g_mutex2;
 
-void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int nBlockUse, const char * pszFileName, int iLine)
+void * plex_heap_alloc_array::alloc_dbg(size_t nAllocSize, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
    plex_heap_alloc * palloc = find(nAllocSize + sizeof(memdleak_block));
    memdleak_block * pblock;
@@ -292,7 +292,7 @@ void plex_heap_alloc_array::free_dbg(void * p, size_t nAllocSize)
 }
 
 
-void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize, int nBlockUse, const char * pszFileName, int iLine)
+void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, size_t nNewAllocSize, int32_t nBlockUse, const char * pszFileName, int32_t iLine)
 {
    plex_heap_alloc * pallocOld = find(nOldAllocSize + sizeof(memdleak_block));
    plex_heap_alloc * pallocNew = find(nNewAllocSize + sizeof(memdleak_block));
@@ -375,7 +375,7 @@ void * plex_heap_alloc_array::realloc_dbg(void * pOld, size_t nOldAllocSize, siz
 }
 
 
-count plex_heap_alloc_array::get_mem_info(int ** ppiUse, const char *** ppszFile, int ** ppiLine)
+count plex_heap_alloc_array::get_mem_info(int32_t ** ppiUse, const char *** ppszFile, int32_t ** ppiLine)
 {
 
 #ifndef MEMDLEAK
@@ -400,9 +400,9 @@ count plex_heap_alloc_array::get_mem_info(int ** ppiUse, const char *** ppszFile
    }
 
 
-   int * piUse =(int *)  malloc(sizeof(int) * c);
+   int32_t * piUse =(int32_t *)  malloc(sizeof(int32_t) * c);
    const char ** pszFile = (const char **) malloc(sizeof(const char *) * c);
-   int * piLine =(int *)  malloc(sizeof(int) * c);
+   int32_t * piLine =(int32_t *)  malloc(sizeof(int32_t) * c);
 
    index i = 0;
 

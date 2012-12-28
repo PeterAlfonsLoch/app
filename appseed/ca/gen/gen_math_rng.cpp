@@ -19,12 +19,12 @@ namespace gen
          seed(624, 0);
       }
 
-      void rng::seed(int iTwistLen, unsigned long seed)
+      void rng::seed(int32_t iTwistLen, unsigned long seed)
       {
          iTwistLen = max(TWIST_IA + 10, iTwistLen);
          m_dwa.set_size(iTwistLen);
          m_dwa[0]= seed & 0xffffffffUL;
-         for (int i = 1; i < m_dwa.get_count(); i++)
+         for (int32_t i = 1; i < m_dwa.get_count(); i++)
          {
             m_dwa[i] = (1812433253UL * (m_dwa[i - 1] ^ (m_dwa[i - 1] >> 30)) + i);
          }
@@ -39,7 +39,7 @@ namespace gen
          ++m_value;
          if (m_value == TWIST_LEN)
          {
-            int i = 0;
+            int32_t i = 0;
             for (i = 0; i < TWIST_IB; ++i)
             {
                unsigned long s = TWIST(m_dwa, i, i + 1);

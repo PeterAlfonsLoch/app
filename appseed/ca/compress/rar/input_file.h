@@ -98,7 +98,7 @@ namespace rar
       uint32 m_CryptoPos;
       uint64 m_Position;
 
-      void ReadName(CItemEx &item, int nameSize);
+      void ReadName(CItemEx &item, int32_t nameSize);
       void ReadHeaderReal(CItemEx &item);
 
       HRESULT ReadBytesSpec(void * data, ::primitive::memory_size * size);

@@ -23,7 +23,7 @@ namespace user
    public:
       virtual ~keyboard_focus();
 
-      virtual void keyboard_focus_OnTimer(int iTimer);
+      virtual void keyboard_focus_OnTimer(int32_t iTimer);
       virtual void keyboard_focus_OnChar(gen::signal_object * pobj);
       virtual void keyboard_focus_OnSysChar(gen::signal_object * pobj);
       virtual void keyboard_focus_OnKeyDown(gen::signal_object * pobj);

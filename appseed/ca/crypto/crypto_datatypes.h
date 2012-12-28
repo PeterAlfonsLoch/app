@@ -94,7 +94,7 @@ typedef union {
 
 /* some useful and simple math functions */
 
-#define pow_2(X) ( (unsigned int)1 << (X) )   /* 2^X     */
+#define pow_2(X) ( (unsigned int32_t)1 << (X) )   /* 2^X     */
 
 #define pow_minus_one(X) ( (X) ? -1 : 1 )      /* (-1)^X  */
 
@@ -104,7 +104,7 @@ typedef union {
  * one) in the octet x
  */
 
-int
+int32_t
 octet_get_weight(uint8_t octet);
 
 char *
@@ -113,7 +113,7 @@ octet_bit_string(uint8_t x);
 #define MAX_PRINT_STRING_LEN 1024
 
 char *
-octet_string_hex_string(const void *str, int length);
+octet_string_hex_string(const void *str, int32_t length);
 
 char *
 v128_bit_string(v128_t *x);
@@ -125,7 +125,7 @@ uint8_t
 nibble_to_hex_char(uint8_t nibble);
 
 char *
-char_to_hex_string(char *x, int num_char);
+char_to_hex_string(char *x, int32_t num_char);
 
 uint8_t
 hex_string_to_octet(char *s);
@@ -143,8 +143,8 @@ hex_string_to_octet(char *s);
  * octets in *raw) is returned
  */
 
-int
-hex_string_to_octet_string(char *raw, char *hex, int len);
+int32_t
+hex_string_to_octet_string(char *raw, char *hex, int32_t len);
 
 v128_t
 hex_string_to_v128(char *s);
@@ -153,10 +153,10 @@ void
 v128_copy_octet_string(v128_t *x, const uint8_t s[16]);
 
 void
-v128_left_shift(v128_t *x, int index);
+v128_left_shift(v128_t *x, int32_t index);
 
 void
-v128_right_shift(v128_t *x, int index);
+v128_right_shift(v128_t *x, int32_t index);
 
 /*
  * the following macros define the data manipulation functions
@@ -331,7 +331,7 @@ v128_right_shift(v128_t *x, int index);
 void
 v128_set_to_zero(v128_t *x);
 
-int
+int32_t
 v128_is_eq(const v128_t *x, const v128_t *y);
 
 void
@@ -349,17 +349,17 @@ v128_or(v128_t *z, v128_t *x, v128_t *y);
 void
 v128_complement(v128_t *x);
 
-int
-v128_get_bit(const v128_t *x, int i);
+int32_t
+v128_get_bit(const v128_t *x, int32_t i);
 
 void
-v128_set_bit(v128_t *x, int i) ;
+v128_set_bit(v128_t *x, int32_t i) ;
 
 void
-v128_clear_bit(v128_t *x, int i);
+v128_clear_bit(v128_t *x, int32_t i);
 
 void
-v128_set_bit_to(v128_t *x, int i, int y);
+v128_set_bit_to(v128_t *x, int32_t i, int32_t y);
 
 #endif /* DATATYPES_USE_MACROS */
 
@@ -368,11 +368,11 @@ v128_set_bit_to(v128_t *x, int i, int y);
  * and b are not equal, returns 0 otherwise
  */
 
-int
-octet_string_is_eq(uint8_t *a, uint8_t *b, int len);
+int32_t
+octet_string_is_eq(uint8_t *a, uint8_t *b, int32_t len);
 
 void
-octet_string_set_to_zero(uint8_t *s, int len);
+octet_string_set_to_zero(uint8_t *s, int32_t len);
 
 
 #ifndef SRTP_KERNEL_LINUX

@@ -1360,7 +1360,7 @@ extern debug_module_t mod_aes_icm;
 void
 aes_expand_encryption_key(const v128_t *key, 
            aes_expanded_key_t expanded_key) {
-  int i;
+  int32_t i;
   gf2_8 rc;
 
   /* initialize round constant */
@@ -1413,7 +1413,7 @@ aes_expand_encryption_key(const v128_t *key,
 void
 aes_expand_decryption_key(const v128_t *key, 
            aes_expanded_key_t expanded_key) {
-  int i;
+  int32_t i;
 
   aes_expand_encryption_key(key, expanded_key);
 

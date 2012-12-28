@@ -29,9 +29,9 @@ namespace ca2
          application();
          virtual ~application();
 
-         int GetVisibleFrameCount();
-         int GetVisibleFrameCountExcept(::user::interaction * pwndExcept);
-         int GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
+         int32_t GetVisibleFrameCount();
+         int32_t GetVisibleFrameCountExcept(::user::interaction * pwndExcept);
+         int32_t GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
 
          virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
 
@@ -44,7 +44,7 @@ namespace ca2
          virtual bool initialize1();
          virtual bool initialize();
 
-         virtual int exit_instance();
+         virtual int32_t exit_instance();
 
          // Load MRU file list and last preview state.
          void LoadStdProfileSettings(UINT nMaxMRU = ___MRU_COUNT);
@@ -98,7 +98,7 @@ namespace ca2
 
       // Finds number of opened document items owned by templates
       // registered with the doc manager.
-      int get_open_document_count();
+      int32_t get_open_document_count();
 
       // helpers for standard commdlg dialogs
       bool do_prompt_file_name(var & varFile, UINT nIDSTitle,

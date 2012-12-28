@@ -17,10 +17,10 @@ namespace mail
       virtual string get_host();
       virtual string get_transaction();
 
-      virtual void set_stat_count(int iCount);
-      virtual void set_stat_size(int iSize);
+      virtual void set_stat_count(int32_t iCount);
+      virtual void set_stat_size(int32_t iSize);
 
-      virtual void set_list_size(int iSize);
+      virtual void set_list_size(int32_t iSize);
 
       ::sockets::socket_handler     m_handler;
       pop3_socket *                 m_psocket;
@@ -36,7 +36,7 @@ namespace mail
       string                        m_strBody;
       gen::property_set             m_setHeaders;
 
-      int                           m_iHeaderLine;
+      int32_t                           m_iHeaderLine;
 
       critical_section              m_csDataset;
 

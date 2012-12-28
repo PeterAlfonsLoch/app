@@ -30,7 +30,7 @@ static const unsigned long mask[]=
  0x01ffffff,0x03ffffff,0x07ffffff,0x0fffffff,0x1fffffff,
  0x3fffffff,0x7fffffff,0xffffffff };
 
-static const unsigned int mask8B[]=
+static const unsigned int32_t mask8B[]=
 {0x00,0x80,0xc0,0xe0,0xf0,0xf8,0xfc,0xfe,0xff};
 
 void oggpack_writeinit(oggpack_buffer *b){
@@ -44,12 +44,12 @@ void oggpackB_writeinit(oggpack_buffer *b){
   oggpack_writeinit(b);
 }
 
-int oggpack_writecheck(oggpack_buffer *b){
+int32_t oggpack_writecheck(oggpack_buffer *b){
   if(!b->ptr || !b->storage)return -1;
   return 0;
 }
 
-int oggpackB_writecheck(oggpack_buffer *b){
+int32_t oggpackB_writecheck(oggpack_buffer *b){
   return oggpack_writecheck(b);
 }
 
@@ -76,7 +76,7 @@ void oggpackB_writetrunc(oggpack_buffer *b,long bits){
 }
 
 /* Takes only up to 32 bits. */
-void oggpack_write(oggpack_buffer *b,unsigned long value,int bits){
+void oggpack_write(oggpack_buffer *b,unsigned long value,int32_t bits){
   if(bits<0 || bits>32) goto err;
   if(b->endbyte>=b->storage-4){
     void *ret;
@@ -119,7 +119,7 @@ void oggpack_write(oggpack_buffer *b,unsigned long value,int bits){
 }
 
 /* Takes only up to 32 bits. */
-void oggpackB_write(oggpack_buffer *b,unsigned long value,int bits){
+void oggpackB_write(oggpack_buffer *b,unsigned long value,int32_t bits){
   if(bits<0 || bits>32) goto err;
   if(b->endbyte>=b->storage-4){
     void *ret;
@@ -162,13 +162,13 @@ void oggpackB_write(oggpack_buffer *b,unsigned long value,int bits){
 }
 
 void oggpack_writealign(oggpack_buffer *b){
-  int bits=8-b->endbit;
+  int32_t bits=8-b->endbit;
   if(bits<8)
     oggpack_write(b,0,bits);
 }
 
 void oggpackB_writealign(oggpack_buffer *b){
-  int bits=8-b->endbit;
+  int32_t bits=8-b->endbit;
   if(bits<8)
     oggpackB_write(b,0,bits);
 }
@@ -178,15 +178,15 @@ static void oggpack_writecopy_helper(oggpack_buffer *b,
                                      long bits,
                                      void (*w)(oggpack_buffer *,
                                                unsigned long,
-                                               int),
-                                     int msb){
+                                               int32_t),
+                                     int32_t msb){
   unsigned char *ptr=(unsigned char *)source;
 
   long bytes=bits/8;
   bits-=bytes*8;
 
   if(b->endbit){
-    int i;
+    int32_t i;
     /* unaligned copy.  Do it the hard way. */
     for(i=0;i<bytes;i++)
       w(b,(unsigned long)(ptr[i]),8);
@@ -248,18 +248,18 @@ void oggpackB_writeclear(oggpack_buffer *b){
   oggpack_writeclear(b);
 }
 
-void oggpack_readinit(oggpack_buffer *b,unsigned char *buf,int bytes){
+void oggpack_readinit(oggpack_buffer *b,unsigned char *buf,int32_t bytes){
   memset(b,0,sizeof(*b));
   b->buffer=b->ptr=buf;
   b->storage=bytes;
 }
 
-void oggpackB_readinit(oggpack_buffer *b,unsigned char *buf,int bytes){
+void oggpackB_readinit(oggpack_buffer *b,unsigned char *buf,int32_t bytes){
   oggpack_readinit(b,buf,bytes);
 }
 
 /* Read in bits without advancing the bitptr; bits <= 32 */
-long oggpack_look(oggpack_buffer *b,int bits){
+long oggpack_look(oggpack_buffer *b,int32_t bits){
   unsigned long ret;
   unsigned long m;
 
@@ -291,9 +291,9 @@ long oggpack_look(oggpack_buffer *b,int bits){
 }
 
 /* Read in bits without advancing the bitptr; bits <= 32 */
-long oggpackB_look(oggpack_buffer *b,int bits){
+long oggpackB_look(oggpack_buffer *b,int32_t bits){
   unsigned long ret;
-  int m=32-bits;
+  int32_t m=32-bits;
 
   if(m<0 || m>32) return -1;
   bits+=b->endbit;
@@ -331,7 +331,7 @@ long oggpackB_look1(oggpack_buffer *b){
   return((b->ptr[0]>>(7-b->endbit))&1);
 }
 
-void oggpack_adv(oggpack_buffer *b,int bits){
+void oggpack_adv(oggpack_buffer *b,int32_t bits){
   bits+=b->endbit;
 
   if(b->endbyte > b->storage-((bits+7)>>3)) goto overflow;
@@ -347,7 +347,7 @@ void oggpack_adv(oggpack_buffer *b,int bits){
   b->endbit=1;
 }
 
-void oggpackB_adv(oggpack_buffer *b,int bits){
+void oggpackB_adv(oggpack_buffer *b,int32_t bits){
   oggpack_adv(b,bits);
 }
 
@@ -364,7 +364,7 @@ void oggpackB_adv1(oggpack_buffer *b){
 }
 
 /* bits <= 32 */
-long oggpack_read(oggpack_buffer *b,int bits){
+long oggpack_read(oggpack_buffer *b,int32_t bits){
   long ret;
   unsigned long m;
 
@@ -408,7 +408,7 @@ long oggpack_read(oggpack_buffer *b,int bits){
 }
 
 /* bits <= 32 */
-long oggpackB_read(oggpack_buffer *b,int bits){
+long oggpackB_read(oggpack_buffer *b,int32_t bits){
   long ret;
   long m=32-bits;
 
@@ -521,8 +521,8 @@ unsigned char *oggpackB_get_buffer(oggpack_buffer *b){
 
 #ifdef _V_SELFTEST
 
-static int ilog(unsigned int v){
-  int ret=0;
+static int32_t ilog(unsigned int32_t v){
+  int32_t ret=0;
   while(v){
     ret++;
     v>>=1;
@@ -538,7 +538,7 @@ void report(char *in){
   exit(1);
 }
 
-void cliptest(unsigned long *b,int vals,int bits,int *comp,int compsize){
+void cliptest(unsigned long *b,int32_t vals,int32_t bits,int32_t *comp,int32_t compsize){
   long bytes,i;
   unsigned char *buffer;
 
@@ -549,12 +549,12 @@ void cliptest(unsigned long *b,int vals,int bits,int *comp,int compsize){
   bytes=oggpack_bytes(&o);
   if(bytes!=compsize)report("wrong number of bytes!\n");
   for(i=0;i<bytes;i++)if(buffer[i]!=comp[i]){
-    for(i=0;i<bytes;i++)fprintf(stderr,"%x %x\n",(int)buffer[i],(int)comp[i]);
+    for(i=0;i<bytes;i++)fprintf(stderr,"%x %x\n",(int32_t)buffer[i],(int32_t)comp[i]);
     report("wrote incorrect value!\n");
   }
   oggpack_readinit(&r,buffer,bytes);
   for(i=0;i<vals;i++){
-    int tbit=bits?bits:ilog(b[i]);
+    int32_t tbit=bits?bits:ilog(b[i]);
     if(oggpack_look(&r,tbit)==-1)
       report("out of data!\n");
     if(oggpack_look(&r,tbit)!=(b[i]&mask[tbit]))
@@ -573,7 +573,7 @@ void cliptest(unsigned long *b,int vals,int bits,int *comp,int compsize){
   if(oggpack_bytes(&r)!=bytes)report("leftover bytes after read!\n");
 }
 
-void cliptestB(unsigned long *b,int vals,int bits,int *comp,int compsize){
+void cliptestB(unsigned long *b,int32_t vals,int32_t bits,int32_t *comp,int32_t compsize){
   long bytes,i;
   unsigned char *buffer;
 
@@ -584,12 +584,12 @@ void cliptestB(unsigned long *b,int vals,int bits,int *comp,int compsize){
   bytes=oggpackB_bytes(&o);
   if(bytes!=compsize)report("wrong number of bytes!\n");
   for(i=0;i<bytes;i++)if(buffer[i]!=comp[i]){
-    for(i=0;i<bytes;i++)fprintf(stderr,"%x %x\n",(int)buffer[i],(int)comp[i]);
+    for(i=0;i<bytes;i++)fprintf(stderr,"%x %x\n",(int32_t)buffer[i],(int32_t)comp[i]);
     report("wrote incorrect value!\n");
   }
   oggpackB_readinit(&r,buffer,bytes);
   for(i=0;i<vals;i++){
-    int tbit=bits?bits:ilog(b[i]);
+    int32_t tbit=bits?bits:ilog(b[i]);
     if(oggpackB_look(&r,tbit)==-1)
       report("out of data!\n");
     if(oggpackB_look(&r,tbit)!=(b[i]&mask[tbit]))
@@ -608,71 +608,71 @@ void cliptestB(unsigned long *b,int vals,int bits,int *comp,int compsize){
   if(oggpackB_bytes(&r)!=bytes)report("leftover bytes after read!\n");
 }
 
-int main(){
+int32_t main(){
   unsigned char *buffer;
   long bytes,i;
   static unsigned long testbuffer1[]=
     {18,12,103948,4325,543,76,432,52,3,65,4,56,32,42,34,21,1,23,32,546,456,7,
        567,56,8,8,55,3,52,342,341,4,265,7,67,86,2199,21,7,1,5,1,4};
-  int test1size=43;
+  int32_t test1size=43;
 
   static unsigned long testbuffer2[]=
     {216531625L,1237861823,56732452,131,3212421,12325343,34547562,12313212,
        1233432,534,5,346435231,14436467,7869299,76326614,167548585,
        85525151,0,12321,1,349528352};
-  int test2size=21;
+  int32_t test2size=21;
 
   static unsigned long testbuffer3[]=
     {1,0,14,0,1,0,12,0,1,0,0,0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1,1,1,1,1,0,0,1,
        0,1,30,1,1,1,0,0,1,0,0,0,12,0,11,0,1,0,0,1};
-  int test3size=56;
+  int32_t test3size=56;
 
   static unsigned long large[]=
     {2136531625L,2137861823,56732452,131,3212421,12325343,34547562,12313212,
        1233432,534,5,2146435231,14436467,7869299,76326614,167548585,
        85525151,0,12321,1,2146528352};
 
-  int onesize=33;
-  static int one[33]={146,25,44,151,195,15,153,176,233,131,196,65,85,172,47,40,
+  int32_t onesize=33;
+  static int32_t one[33]={146,25,44,151,195,15,153,176,233,131,196,65,85,172,47,40,
                     34,242,223,136,35,222,211,86,171,50,225,135,214,75,172,
                     223,4};
-  static int oneB[33]={150,101,131,33,203,15,204,216,105,193,156,65,84,85,222,
+  static int32_t oneB[33]={150,101,131,33,203,15,204,216,105,193,156,65,84,85,222,
                        8,139,145,227,126,34,55,244,171,85,100,39,195,173,18,
                        245,251,128};
 
-  int twosize=6;
-  static int two[6]={61,255,255,251,231,29};
-  static int twoB[6]={247,63,255,253,249,120};
+  int32_t twosize=6;
+  static int32_t two[6]={61,255,255,251,231,29};
+  static int32_t twoB[6]={247,63,255,253,249,120};
 
-  int threesize=54;
-  static int three[54]={169,2,232,252,91,132,156,36,89,13,123,176,144,32,254,
+  int32_t threesize=54;
+  static int32_t three[54]={169,2,232,252,91,132,156,36,89,13,123,176,144,32,254,
                       142,224,85,59,121,144,79,124,23,67,90,90,216,79,23,83,
                       58,135,196,61,55,129,183,54,101,100,170,37,127,126,10,
                       100,52,4,14,18,86,77,1};
-  static int threeB[54]={206,128,42,153,57,8,183,251,13,89,36,30,32,144,183,
+  static int32_t threeB[54]={206,128,42,153,57,8,183,251,13,89,36,30,32,144,183,
                          130,59,240,121,59,85,223,19,228,180,134,33,107,74,98,
                          233,253,196,135,63,2,110,114,50,155,90,127,37,170,104,
                          200,20,254,4,58,106,176,144,0};
 
-  int foursize=38;
-  static int four[38]={18,6,163,252,97,194,104,131,32,1,7,82,137,42,129,11,72,
+  int32_t foursize=38;
+  static int32_t four[38]={18,6,163,252,97,194,104,131,32,1,7,82,137,42,129,11,72,
                      132,60,220,112,8,196,109,64,179,86,9,137,195,208,122,169,
                      28,2,133,0,1};
-  static int fourB[38]={36,48,102,83,243,24,52,7,4,35,132,10,145,21,2,93,2,41,
+  static int32_t fourB[38]={36,48,102,83,243,24,52,7,4,35,132,10,145,21,2,93,2,41,
                         1,219,184,16,33,184,54,149,170,132,18,30,29,98,229,67,
                         129,10,4,32};
 
-  int fivesize=45;
-  static int five[45]={169,2,126,139,144,172,30,4,80,72,240,59,130,218,73,62,
+  int32_t fivesize=45;
+  static int32_t five[45]={169,2,126,139,144,172,30,4,80,72,240,59,130,218,73,62,
                      241,24,210,44,4,20,0,248,116,49,135,100,110,130,181,169,
                      84,75,159,2,1,0,132,192,8,0,0,18,22};
-  static int fiveB[45]={1,84,145,111,245,100,128,8,56,36,40,71,126,78,213,226,
+  static int32_t fiveB[45]={1,84,145,111,245,100,128,8,56,36,40,71,126,78,213,226,
                         124,105,12,0,133,128,0,162,233,242,67,152,77,205,77,
                         172,150,169,129,79,128,0,6,4,32,0,27,9,0};
 
-  int sixsize=7;
-  static int six[7]={17,177,170,242,169,19,148};
-  static int sixB[7]={136,141,85,79,149,200,41};
+  int32_t sixsize=7;
+  static int32_t six[7]={17,177,170,242,169,19,148};
+  static int32_t sixB[7]={136,141,85,79,149,200,41};
 
   /* Test read/write together */
   /* Later we test against pregenerated bitstreams */

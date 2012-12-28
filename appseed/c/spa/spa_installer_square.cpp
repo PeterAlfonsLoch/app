@@ -6,7 +6,7 @@ CLASS_DECL_c void installer_call_sync(const char * path, const char * param);
 CLASS_DECL_c char * szSpabootInstall = NULL;
 
 
-int installer(const char * param)
+int32_t installer(const char * param)
 {
 
    installer_call_sync(szSpabootInstall, param);

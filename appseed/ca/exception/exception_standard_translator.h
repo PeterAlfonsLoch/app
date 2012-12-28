@@ -48,16 +48,16 @@ namespace exception
       virtual ~translator();
 
    #ifdef WINDOWS
-      void filter(unsigned int uiCode, _EXCEPTION_POINTERS * p);
-      static void __cdecl filter2(unsigned int uiCode, _EXCEPTION_POINTERS * p);
+      void filter(unsigned int32_t uiCode, _EXCEPTION_POINTERS * p);
+      static void __cdecl filter2(unsigned int32_t uiCode, _EXCEPTION_POINTERS * p);
       //void filter( _EXCEPTION_POINTERS * p);
    #else
-      static void filter_sigsegv(int signal, siginfo_t * psiginfo, void * pc);
-      static void filter_sigfpe(int signal, siginfo_t * psiginfo, void * pc);
+      static void filter_sigsegv(int32_t signal, siginfo_t * psiginfo, void * pc);
+      static void filter_sigfpe(int32_t signal, siginfo_t * psiginfo, void * pc);
    #endif
 
-      static vsstring name(unsigned int uiCode);
-      static vsstring description(unsigned int uiCode);
+      static vsstring name(unsigned int32_t uiCode);
+      static vsstring description(unsigned int32_t uiCode);
 
 
       bool attach();

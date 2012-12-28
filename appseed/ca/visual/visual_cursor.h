@@ -22,7 +22,7 @@ namespace visual
 
       bool load_from_file(const char * psz);
       bool load_from_matter(const char * pszMatter);
-      bool to(::ca::graphics * pgraphics, int x, int y);
+      bool to(::ca::graphics * pgraphics, int32_t x, int32_t y);
       bool to(::ca::graphics * pgraphics, point pt);
 
 

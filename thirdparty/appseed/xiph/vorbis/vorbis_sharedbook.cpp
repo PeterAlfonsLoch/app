@@ -20,8 +20,8 @@ BEGIN_EXTERN_C
 
 
 /**** pack/unpack helpers ******************************************/
-int _ilog(unsigned int v){
-  int ret=0;
+int32_t _ilog(unsigned int32_t v){
+  int32_t ret=0;
   while(v){
     ret++;
     v>>=1;
@@ -39,7 +39,7 @@ int _ilog(unsigned int v){
 
 /* doesn't currently guard under/overflow */
 long _float32_pack(float val){
-  int sign=0;
+  int32_t sign=0;
   long exp;
   long mant;
   if(val<0){
@@ -55,7 +55,7 @@ long _float32_pack(float val){
 
 float _float32_unpack(long val){
   double mant=val&0x1fffff;
-  int    sign=val&0x80000000;
+  int32_t    sign=val&0x80000000;
   long   exp =(val&0x7fe00000L)>>VQ_FMAN;
   if(sign)mant= -mant;
   return(ldexp(mant,exp-(VQ_FMAN-1)-VQ_FEXP_BIAS));
@@ -165,7 +165,7 @@ long _book_maptype1_quantvals(const static_codebook *b){
   while(1){
     long acc=1;
     long acc1=1;
-    int i;
+    int32_t i;
     for(i=0;i<b->dim;i++){
       acc*=vals;
       acc1*=vals+1;
@@ -187,10 +187,10 @@ long _book_maptype1_quantvals(const static_codebook *b){
    generated algorithmically (each column of the vector counts through
    the values in the quant vector). in map type 2, all the values came
    in in an explicit list.  Both value lists must be unpacked */
-float *_book_unquantize(const static_codebook *b,int n,int *sparsemap){
+float *_book_unquantize(const static_codebook *b,int32_t n,int32_t *sparsemap){
   long j,k,count=0;
   if(b->maptype==1 || b->maptype==2){
-    int quantvals;
+    int32_t quantvals;
     float mindel=_float32_unpack(b->q_min);
     float delta=_float32_unpack(b->q_delta);
     float *r= (float *) _ogg_calloc(n*b->dim,sizeof(*r));
@@ -210,9 +210,9 @@ float *_book_unquantize(const static_codebook *b,int n,int *sparsemap){
       for(j=0;j<b->entries;j++){
         if((sparsemap && b->lengthlist[j]) || !sparsemap){
           float last=0.f;
-          int indexdiv=1;
+          int32_t indexdiv=1;
           for(k=0;k<b->dim;k++){
-            int index= (j/indexdiv)%quantvals;
+            int32_t index= (j/indexdiv)%quantvals;
             float val=b->quantlist[index];
             val=fabs(val)*delta+mindel+last;
             if(b->q_sequencep)last=val;
@@ -274,7 +274,7 @@ void vorbis_book_clear(codebook *b){
   memset(b,0,sizeof(*b));
 }
 
-int vorbis_book_init_encode(codebook *c,const static_codebook *s){
+int32_t vorbis_book_init_encode(codebook *c,const static_codebook *s){
 
   memset(c,0,sizeof(*c));
   c->c=s;
@@ -284,8 +284,8 @@ int vorbis_book_init_encode(codebook *c,const static_codebook *s){
   c->codelist=_make_words(s->lengthlist,s->entries,0);
   //c->valuelist=_book_unquantize(s,s->entries,NULL);
   c->quantvals=_book_maptype1_quantvals(s);
-  c->minval=(int)rint(_float32_unpack(s->q_min));
-  c->delta=(int)rint(_float32_unpack(s->q_delta));
+  c->minval=(int32_t)rint(_float32_unpack(s->q_min));
+  c->delta=(int32_t)rint(_float32_unpack(s->q_delta));
 
   return(0);
 }
@@ -298,15 +298,15 @@ static ogg_uint32_t bitreverse(ogg_uint32_t x){
   return((x>> 1)&0x55555555UL) | ((x<< 1)&0xaaaaaaaaUL);
 }
 
-static int sort32a(const void *a,const void *b){
+static int32_t sort32a(const void *a,const void *b){
   return ( **(ogg_uint32_t **)a>**(ogg_uint32_t **)b)-
     ( **(ogg_uint32_t **)a<**(ogg_uint32_t **)b);
 }
 
 /* decode codebook arrangement is more heavily optimized than encode */
-int vorbis_book_init_decode(codebook *c,const static_codebook *s){
-  int i,j,n=0,tabn;
-  int *sortindex;
+int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
+  int32_t i,j,n=0,tabn;
+  int32_t *sortindex;
   memset(c,0,sizeof(*c));
 
   /* count actually used entries */
@@ -343,11 +343,11 @@ int vorbis_book_init_decode(codebook *c,const static_codebook *s){
 
     qsort(codep,n,sizeof(*codep),sort32a);
 
-    sortindex= (int *) alloca(n*sizeof(*sortindex));
+    sortindex= (int32_t *) alloca(n*sizeof(*sortindex));
     c->codelist= (ogg_uint32_t *) _ogg_malloc(n*sizeof(*c->codelist));
     /* the index is a reverse index */
     for(i=0;i<n;i++){
-      int position=codep[i]-codes;
+      int32_t position=codep[i]-codes;
       sortindex[position]=i;
     }
 
@@ -357,7 +357,7 @@ int vorbis_book_init_decode(codebook *c,const static_codebook *s){
 
 
     c->valuelist=_book_unquantize(s,n,sortindex);
-    c->dec_index = (int *) _ogg_malloc(n*sizeof(*c->dec_index));
+    c->dec_index = (int32_t *) _ogg_malloc(n*sizeof(*c->dec_index));
 
     for(n=0,i=0;i<s->entries;i++)
       if(s->lengthlist[i]>0)
@@ -421,14 +421,14 @@ int vorbis_book_init_decode(codebook *c,const static_codebook *s){
   return(-1);
 }
 
-long vorbis_book_codeword(codebook *book,int entry){
+long vorbis_book_codeword(codebook *book,int32_t entry){
   if(book->c) /* only use with encode; decode optimizations are
                  allowed to break this */
     return book->codelist[entry];
   return -1;
 }
 
-long vorbis_book_codelen(codebook *book,int entry){
+long vorbis_book_codelen(codebook *book,int32_t entry){
   if(book->c) /* only use with encode; decode optimizations are
                  allowed to break this */
     return book->c->lengthlist[entry];
@@ -528,7 +528,7 @@ static float test5_result[]={-3,-6,-9, 4, 1,-2, -1,-4,-7,
 
 void run_test(static_codebook *b,float *comp){
   float *out=_book_unquantize(b,b->entries,NULL);
-  int i;
+  int32_t i;
 
   if(comp){
     if(!out){
@@ -552,7 +552,7 @@ void run_test(static_codebook *b,float *comp){
   }
 }
 
-int main(){
+int32_t main(){
   /* run the nine dequant tests, and compare to the hand-rolled results */
   fprintf(stderr,"Dequant test 1... ");
   run_test(&test1,test1_result);

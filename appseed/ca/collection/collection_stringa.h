@@ -137,7 +137,7 @@ public:
 
 template <class ARRAYCOMPARE, class ARRAYRELATION>
 void SortEx(ARRAYCOMPARE * pacompare,
-            int fCompare(const char *, const char *),
+            int32_t fCompare(const char *, const char *),
             ARRAYRELATION * parelation)
 {
    dword_array stackLowerBound;
@@ -207,7 +207,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
             break;
         }
    }
-   //for(int i = 0; i < pacompare->get_size(); i++)
+   //for(int32_t i = 0; i < pacompare->get_size(); i++)
    //{
 //      TRACE("%d this->element_at(iPos) %s\n", i, this->element_at(i));
    //}
@@ -215,7 +215,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
 
 template <class ARRAYCOMPARE, class ARRAYRELATION>
 void SortEx(ARRAYCOMPARE * pacompare,
-            int fCompare(const wchar_t *, const wchar_t *),
+            int32_t fCompare(const wchar_t *, const wchar_t *),
             ARRAYRELATION * parelation)
 {
    dword_array stackLowerBound;
@@ -285,7 +285,7 @@ void SortEx(ARRAYCOMPARE * pacompare,
             break;
         }
    }
-   //for(int i = 0; i < pacompare->get_size(); i++)
+   //for(int32_t i = 0; i < pacompare->get_size(); i++)
    //{
 //      TRACE("%d this->element_at(iPos) %s\n", i, this->element_at(i));
    //}

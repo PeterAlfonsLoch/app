@@ -15,17 +15,17 @@ namespace bergedge
 
       pane_view *    m_ppaneview;
 
-      int m_iV; // veriwell votagus vida
-      int m_iVH;
-      int m_iVW;
+      int32_t m_iV; // veriwell votagus vida
+      int32_t m_iVH;
+      int32_t m_iVW;
       visual::dib_sp m_dibV;
-      int m_i_veriwell; // veriwell votagus vida
-      int m_i_veriwell_h;
-      int m_i_veriwell_w;
+      int32_t m_i_veriwell; // veriwell votagus vida
+      int32_t m_i_veriwell_h;
+      int32_t m_i_veriwell_w;
       visual::dib_sp m_dib_veriwell;
-      int m_i_winactionarea; // que ponta!!cc
-      int m_i_winactionarea_h;
-      int m_i_winactionarea_w;
+      int32_t m_i_winactionarea; // que ponta!!cc
+      int32_t m_i_winactionarea_h;
+      int32_t m_i_winactionarea_w;
       visual::dib_sp m_dib_winactionarea;
 
 
@@ -73,7 +73,7 @@ namespace bergedge
 
       document * get_document();
 
-      void GetAreaThumbRect(LPRECT lprect, int iArea);
+      void GetAreaThumbRect(LPRECT lprect, int32_t iArea);
 
       index hit_test(point pt, e_element & eelement);
 
@@ -100,11 +100,11 @@ namespace bergedge
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnLButtonUp)
 
-      virtual void _001OnTabClick(int iTab);
+      virtual void _001OnTabClick(int32_t iTab);
 
       void check_apps();
 
-      void mt_show_window(oswindow oswindow, int iShow);
+      void mt_show_window(oswindow oswindow, int32_t iShow);
 
       static UINT c_cdecl ThreadProcShowWindow(LPVOID lpparam);
       

@@ -30,7 +30,7 @@ bool variable_strict_compare::operator == (double d) const
    return m_var.strict_equal(d);
 }
 
-bool variable_strict_compare::operator == (int i) const
+bool variable_strict_compare::operator == (int32_t i) const
 {
    return m_var.strict_equal(i);
 }
@@ -60,7 +60,7 @@ bool variable_strict_compare::operator != (double d) const
    return m_var.strict_different(d);
 }
 
-bool variable_strict_compare::operator != (int i) const
+bool variable_strict_compare::operator != (int32_t i) const
 {
    return m_var.strict_different(i);
 }
@@ -85,7 +85,7 @@ bool operator == (double d, const variable_strict_compare & var)
    return strict_equal(d, var.m_var);
 }
 
-bool operator == (int i, const variable_strict_compare & var)
+bool operator == (int32_t i, const variable_strict_compare & var)
 {
    return strict_equal(i, var.m_var);
 }
@@ -110,7 +110,7 @@ bool operator != (double d, const variable_strict_compare & var)
    return strict_different(d, var.m_var);
 }
 
-bool operator != (int i, const variable_strict_compare & var)
+bool operator != (int32_t i, const variable_strict_compare & var)
 {
    return strict_different(i, var.m_var);
 }

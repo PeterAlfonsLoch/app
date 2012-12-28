@@ -583,7 +583,7 @@ namespace dynamic_source
       strDest = "";
       strDest += "#include \"framework.h\"\r\n";
       strDest += "#include \"11ca2_fontopus.h\"\r\n";
-      for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
+      for(int32_t i = 0; i < m_straLibIncludePath.get_count(); i++)
       {
          string str;
          str = m_straLibIncludeRelPath[i];
@@ -641,7 +641,7 @@ namespace dynamic_source
          if(iLastEnd < 0)
             break;
          iLastEnd += 2;
-         int iShift = 0;
+         int32_t iShift = 0;
          if(strSource.Mid(iPos, 5).CompareNoCase("<?php") == 0)
             iShift = 3;
          strDest += cppize2(strSource.Mid(iPos + 2 + iShift, iLastEnd - iPos - 4 - iShift), true, straId);
@@ -652,7 +652,7 @@ namespace dynamic_source
       strDest += "}\r\n";
 
       string strId;
-      for(int i = 0; i < straId.get_size(); i++)
+      for(int32_t i = 0; i < straId.get_size(); i++)
       {
          strId += "static class id lscript_id" + gen::str::from(i) + "(\"" + straId[i] + "\");\r\n";
       }
@@ -718,12 +718,12 @@ namespace dynamic_source
 
       if(m_straSync.get_count() > 1)
       {
-         for(int i = 1; i < m_straSync.get_count(); i++)
+         for(int32_t i = 1; i < m_straSync.get_count(); i++)
          {
             Application.http().get("http://" + m_straSync[i] + "/sync?src=" +m_straSync[0] + "&url=" + System.url().url_encode(strTransfer) + "&pwd=sym123&authnone=1");
          }
       }
-      int i = 0;
+      int32_t i = 0;
       while(i < str.get_length() && str[i] != '\\' && str[i] != '/')
       {
          i++;
@@ -768,7 +768,7 @@ namespace dynamic_source
       m_straLibSourcePath.remove_all();
       m_straLibSourceRelPath.remove_all();
       Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false),  &m_straLibSourcePath, NULL, &m_straLibSourceRelPath);
-      for(int i = 0; i < m_straLibSourcePath.get_size(); )
+      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); )
       {
          if(System.file().extension(m_straLibSourcePath[i]) != "ds")
          {
@@ -781,7 +781,7 @@ namespace dynamic_source
          }
       }
       m_straLibCppPath.remove_all();
-      for(int i = 0; i < m_straLibSourcePath.get_size(); i++ )
+      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++ )
       {
          string str = m_straLibSourceRelPath[i];
          gen::str::ends_eat_ci(str, ".ds");
@@ -791,7 +791,7 @@ namespace dynamic_source
       m_straLibIncludePath.remove_all();
       m_straLibIncludeRelPath.remove_all();
       Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false),  &m_straLibIncludePath, NULL, &m_straLibIncludeRelPath);
-      for(int i = 0; i < m_straLibIncludePath.get_size(); )
+      for(int32_t i = 0; i < m_straLibIncludePath.get_size(); )
       {
          if(System.file().extension(m_straLibIncludePath[i]) != "ds"
             || gen::str::find_ci(m_straLibIncludePath[i], "\\.svn\\") >= 0
@@ -806,7 +806,7 @@ namespace dynamic_source
          }
       }
       m_straLibHppPath.remove_all();
-      for(int i = 0; i < m_straLibIncludePath.get_size(); i++ )
+      for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++ )
       {
          string str = m_straLibIncludeRelPath[i];
          gen::str::ends_eat_ci(str, ".ds");
@@ -826,7 +826,7 @@ namespace dynamic_source
       Application.dir().mk(System.dir().name(m_strLibraryPath));
       Application.dir().mk(System.dir().path(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library", false), System.dir().name(strName), false));
 
-      for(int i = 0; i < m_straLibIncludePath.get_size(); i++)
+      for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++)
       {
          cppize(m_straLibIncludePath[i], m_straLibHppPath[i], cpptype_include);
       }
@@ -834,7 +834,7 @@ namespace dynamic_source
 
       string strN = m_pmanager->m_strNetnodePath;
 
-      for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
+      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
          cppize(m_straLibSourcePath[i], m_straLibCppPath[i], cpptype_source);
          string strRel = m_straLibSourceRelPath[i];
@@ -913,7 +913,7 @@ namespace dynamic_source
       }
 
       string strObjs;
-      for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
+      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
          strObjs += " ";
          string strRel = m_straLibSourceRelPath[i];
@@ -994,7 +994,7 @@ namespace dynamic_source
       {
          strDest += "#include \"framework.h\"\r\n";
          strDest += "#include \"11ca2_fontopus.h\"\r\n";
-         for(int i = 0; i < m_straLibIncludePath.get_count(); i++)
+         for(int32_t i = 0; i < m_straLibIncludePath.get_count(); i++)
          {
             string str;
             str = m_straLibIncludeRelPath[i];
@@ -1016,7 +1016,7 @@ namespace dynamic_source
          if(iLastEnd < 0)
             break;
          iLastEnd += 2;
-         int iShift = 0;
+         int32_t iShift = 0;
          if(strSource.Mid(iPos, 5).CompareNoCase("<?php") == 0)
             iShift = 3;
          bCode = true;
@@ -1635,7 +1635,7 @@ namespace dynamic_source
       strBody += "// folder and subfolders!\r\n";
       strBody += "\r\n";
       strBody += "?>\r\n\r\n\r\n";
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
          if(gen::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false))
@@ -1734,7 +1734,7 @@ namespace dynamic_source
 
       single_lock slLibrary(&m_mutexLibrary, TRUE);
 
-      for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
+      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
 
          //FILETIME ftCreation;
@@ -1780,7 +1780,7 @@ namespace dynamic_source
       m_ftaLibAccess.set_size(m_straLibSourcePath.get_size());
       m_ftaLibModified.set_size(m_straLibSourcePath.get_size());
 
-      for(int i = 0; i < m_straLibSourcePath.get_size(); i++)
+      for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++)
       {
 
          struct stat st;

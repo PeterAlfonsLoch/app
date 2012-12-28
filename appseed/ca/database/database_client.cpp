@@ -80,7 +80,7 @@ namespace database
    bool client::data_set(class id id, class id idIndex, bool b, update_hint * phint)
    {
       UNREFERENCED_PARAMETER(phint);
-      int i;
+      int32_t i;
       if(b)
       {
          i = 1;
@@ -106,7 +106,7 @@ namespace database
       return false;
    }
 
-   bool client::data_set(class id id, class id idIndex, int i, update_hint * puh)
+   bool client::data_set(class id id, class id idIndex, int32_t i, update_hint * puh)
    {
       if(m_pdataserver != NULL)
       {
@@ -131,7 +131,7 @@ namespace database
    }
 
 
-   bool client::data_set(class id id, int i, update_hint * puh)
+   bool client::data_set(class id id, int32_t i, update_hint * puh)
    {
       return data_set(id, ::radix::system::idEmpty, i, puh);
    }
@@ -141,7 +141,7 @@ namespace database
       return data_set(id, ::radix::system::idEmpty, i, puh);
    }
 
-   bool client::data_get(class id id, int & i)
+   bool client::data_get(class id id, int32_t & i)
    {
       return data_get(id, ::radix::system::idEmpty, i);
    }
@@ -270,7 +270,7 @@ namespace database
 
    bool client::data_get(class id id, class id idIndex, bool & b)
    {
-      int i;
+      int32_t i;
       if(!data_get(id, idIndex, i))
          return false;
       b = i != 0;
@@ -287,7 +287,7 @@ namespace database
       return false;
    }
 
-   bool client::data_get(class id id, class id idIndex, int & i)
+   bool client::data_get(class id id, class id idIndex, int32_t & i)
    {
       if(m_pdataserver != NULL)
       {
@@ -411,7 +411,7 @@ namespace database
 
    client_array::~client_array()
    {
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          this->element_at(i)->m_pdataserver = NULL;
       }

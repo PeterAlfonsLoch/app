@@ -2,10 +2,10 @@
 
 
 CLASS_DECL_ca void * base_ca2_alloc(size_t size);
-CLASS_DECL_ca void * base_ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca void * base_ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca void   base_ca2_free(void * pvoid, int iBlockType);
-CLASS_DECL_ca size_t base_ca2_msize(void * pvoid, int iBlockType);
+CLASS_DECL_ca void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca void   base_ca2_free(void * pvoid, int32_t iBlockType);
+CLASS_DECL_ca size_t base_ca2_msize(void * pvoid, int32_t iBlockType);
 
 
 void use_base_ca2_allocator()
@@ -32,7 +32,7 @@ void * base_ca2_alloc(size_t size)
    return p + 4 + 16;
 }
 
-void * base_ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine)
+void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
@@ -50,7 +50,7 @@ void * base_ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, 
    return p + 4 + 16;
 }
 
-void * base_ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine)
+void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine)
 {
    byte * p = (byte *) pvoid;
    if(p == NULL)
@@ -93,7 +93,7 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * 
    return p + 4 + 16;
 }
 
-void base_ca2_free(void * pvoid, int iBlockType)
+void base_ca2_free(void * pvoid, int32_t iBlockType)
 {
    byte * p = (byte *) pvoid;
    if(p == NULL)
@@ -124,7 +124,7 @@ void base_ca2_free(void * pvoid, int iBlockType)
    }
 }
 
-size_t base_ca2_msize(void * pvoid, int iBlockType)
+size_t base_ca2_msize(void * pvoid, int32_t iBlockType)
 {
 
    byte * p = (byte *) pvoid;
@@ -170,8 +170,8 @@ size_t base_ca2_msize(void * pvoid, int iBlockType)
 
 #undef new
 
-void * __cdecl operator new(size_t nSize, int nType, const char * lpszFileName, int nLine);
-void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName, int nLine);
+void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
+void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
 
 /////////////////////////////////////////////////////////////////////////////
 // test allocation routines
@@ -179,7 +179,7 @@ void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName
 
 #define new DEBUG_NEW
 
-void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int nLine)
+void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int32_t nLine)
 {
    return ca2_alloc_dbg(nSize, bIsObject ? ___CLIENT_BLOCK : _NORMAL_BLOCK, lpszFileName, nLine);
 }
@@ -199,11 +199,11 @@ __STATIC_DATA __ALLOC_HOOK pfnAllocHook = __default_alloc_hook;
 
 __STATIC_DATA _CRT_ALLOC_HOOK pfnCrtAllocHook = NULL;
 #if _MSC_VER >= 1200
-int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize,
-   int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine)
+int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize,
+   int32_t nBlockUse, long lRequest, const unsigned char * szFilename, int32_t nLine)
 #else
-int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize,
-   int nBlockUse, long lRequest, const char * szFilename, int nLine)
+int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize,
+   int32_t nBlockUse, long lRequest, const char * szFilename, int32_t nLine)
 #endif
 {
 #if _MSC_VER >= 1200
@@ -251,7 +251,7 @@ bool __enable_memory_tracking(bool bTrack)
    if (gen_MemoryLeakOverride)
       return TRUE;
 
-   int nOldState = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
+   int32_t nOldState = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
    if (bTrack)
       _CrtSetDbgFlag(nOldState | _CRTDBG_ALLOC_MEM_DF);
    else
@@ -271,7 +271,7 @@ memory_state::memory_state()
 
 void memory_state::update_data()
 {
-   for(int i = 0; i < nBlockUseMax; i++)
+   for(int32_t i = 0; i < nBlockUseMax; i++)
    {
       m_lCounts[i] = m_memState.lCounts[i];
       m_lSizes[i] = m_memState.lSizes[i];
@@ -284,7 +284,7 @@ void memory_state::update_data()
 bool memory_state::Difference(const memory_state& oldState,
       const memory_state& newState)
 {
-   int nResult = _CrtMemDifference(&m_memState, &oldState.m_memState, &newState.m_memState);
+   int32_t nResult = _CrtMemDifference(&m_memState, &oldState.m_memState, &newState.m_memState);
    update_data();
    return nResult != 0;
 }

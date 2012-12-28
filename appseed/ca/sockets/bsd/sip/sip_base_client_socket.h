@@ -47,7 +47,7 @@ namespace sockets
       size_t m_body_size_left;
       bool m_b_chunked;
       size_t m_chunk_size;
-      int m_chunk_state;
+      int32_t m_chunk_state;
       string m_chunk_line;
 
       sip_base_client_socket(socket_handler_base& );

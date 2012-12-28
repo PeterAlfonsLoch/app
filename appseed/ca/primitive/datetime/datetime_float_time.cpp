@@ -181,9 +181,9 @@ static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
 }
 
 /* Convert a Julian Date to a VT_DATE value */
-static inline int FLOATTIME_DateFromJulian(int dateIn)
+static inline int32_t FLOATTIME_DateFromJulian(int32_t dateIn)
 {
-  int julianDays = dateIn;
+  int32_t julianDays = dateIn;
 
   julianDays -= 1757585;  /* Convert to + days from 1 Jan 100 AD */
   julianDays += DATE_MIN; /* Convert to +/- days from 1 Jan 1899 AD */
@@ -192,9 +192,9 @@ static inline int FLOATTIME_DateFromJulian(int dateIn)
 
 
 /* Convert a Julian date to Day/Month/Year - from PostgreSQL */
-static inline void FLOATTIME_DMYFromJulian(int jd, USHORT *year, USHORT *month, USHORT *day)
+static inline void FLOATTIME_DMYFromJulian(int32_t jd, USHORT *year, USHORT *month, USHORT *day)
 {
-  int j, i, l, n;
+  int32_t j, i, l, n;
 
   l = jd + 68569;
   n = l * 4 / 146097;
@@ -211,7 +211,7 @@ static inline void FLOATTIME_DMYFromJulian(int jd, USHORT *year, USHORT *month, 
 /* Convert Day/Month/Year to a Julian date - from PostgreSQL */
 static inline double FLOATTIME_JulianFromDMY(USHORT year, USHORT month, USHORT day)
 {
-  int m12 = (month - 14) / 12;
+  int32_t m12 = (month - 14) / 12;
 
   return ((1461 * (year + 4800 + m12)) / 4 + (367 * (month - 2 - 12 * m12)) / 12 -
            (3 * ((year + 4900 + m12) / 100)) / 4 + day - 32075);
@@ -281,7 +281,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwF
     return E_INVALIDARG;
 
   /* Date */
-  dateVal = FLOATTIME_DateFromJulian((int) FLOATTIME_JulianFromDMY(ud.st.wYear, ud.st.wMonth, ud.st.wDay));
+  dateVal = FLOATTIME_DateFromJulian((int32_t) FLOATTIME_JulianFromDMY(ud.st.wYear, ud.st.wMonth, ud.st.wDay));
 
   /* Sign */
   dateSign = (dateVal < 0.0) ? -1.0 : 1.0;
@@ -348,7 +348,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
     1,2,3,4,5,6,7,8,9,10,11,12,13,
     1,2,3,4,5,6,7,8,9,10,11,12,13
   };
-  unsigned int i;
+  unsigned int32_t i;
   BSTR tokens[sizeof(ParseDateTokens)/sizeof(ParseDateTokens[0])];
   DATEPARSE dp;
   DWORD dwDateSeps = 0, iDate = 0;
@@ -885,7 +885,7 @@ HRESULT WINAPI VarUdateFromDate(DATE dateIn, ULONG dwFlags, UDATE *lpUdate)
     0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334
   };
   double datePart, timePart;
-  int julianDays;
+  int32_t julianDays;
 
 //xxx  TRACE("(%g,0x%08x,%p)\n", dateIn, dwFlags, lpUdate);
 
@@ -893,7 +893,7 @@ HRESULT WINAPI VarUdateFromDate(DATE dateIn, ULONG dwFlags, UDATE *lpUdate)
     return E_INVALIDARG;
 
   datePart = dateIn < 0.0 ? ceil(dateIn) : floor(dateIn);
-  /* Compensate for int truncation (always downwards) */
+  /* Compensate for int32_t truncation (always downwards) */
   timePart = fabs(dateIn - datePart) + 0.00000000001;
   if (timePart >= 1.0)
     timePart -= 0.00000000001;
@@ -1013,7 +1013,7 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
 #else
 
 
-int __cdecl FloatTimeToSystemTime(double vtime, struct _SYSTEMTIME * pst)
+int32_t __cdecl FloatTimeToSystemTime(double vtime, struct _SYSTEMTIME * pst)
 {
 
 

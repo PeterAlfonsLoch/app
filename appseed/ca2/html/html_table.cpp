@@ -125,7 +125,7 @@ namespace html
 
          bool bOk = false;
 
-         for(int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
+         for(int32_t i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
             
             elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
@@ -170,18 +170,18 @@ namespace html
             return;
          }
 
-         int cxMax;
-         int cxMin;
+         int32_t cxMax;
+         int32_t cxMin;
          while(true)
          {
             cxMax = -1;
             cxMin = -1;
-            for(int i = 0; i < m_columna.get_size(); i++)
+            for(int32_t i = 0; i < m_columna.get_size(); i++)
             {
                if(m_columna[i].m_cxMax <= -2
                   || m_columna[i].m_cxMin <= -2)
                {
-                  for(int j = 0; j < m_rowptra.get_size(); j++)
+                  for(int32_t j = 0; j < m_rowptra.get_size(); j++)
                   {
                      m_rowptra[j]->m_pelemental->implement_phase2(pdata);
                   }
@@ -217,7 +217,7 @@ namespace html
          }
          cxMax = 0;
          cxMin = 0;
-         for(int i = 0; i < m_cellholdera.get_size(); i++)
+         for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
          {
             cxMax += max(0, m_columna[i].m_cxMax);
             cxMin += max(0, m_columna[i].m_cxMin);
@@ -229,13 +229,13 @@ namespace html
       void table::layout_phase3(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         int cx = 0;
-         int cy = 0;
-         for(int i = 0; i < m_columna.get_size(); i++)
+         int32_t cx = 0;
+         int32_t cy = 0;
+         for(int32_t i = 0; i < m_columna.get_size(); i++)
          {
             cx += m_columna[i].m_cxMax;
          }
-         for(int i = 0; i < m_rowptra.get_size(); i++)
+         for(int32_t i = 0; i < m_rowptra.get_size(); i++)
          {
             cy += m_rowptra[i]->m_cyMax;
          }
@@ -250,14 +250,14 @@ namespace html
          m_cxMin  = -2;
       }
 
-      table::column::column(int iCol)
+      table::column::column(int32_t iCol)
       {
          m_iCol   = iCol;
          m_cxMax  = -2;
          m_cxMin  = -2;
       }
 
-      void table::set_cell(int iCol, int iRow, cell * pcell)
+      void table::set_cell(int32_t iCol, int32_t iRow, cell * pcell)
       {
 
          m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_pcell = pcell;

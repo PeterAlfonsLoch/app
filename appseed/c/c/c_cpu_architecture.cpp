@@ -105,7 +105,7 @@ static void MyCPUID(uint32 function, uint32 *a, uint32 *b, uint32 *c, uint32 *d)
 
   #else
 
-  int CPUInfo[4];
+  int32_t CPUInfo[4];
   __cpuid(CPUInfo, function);
   *a = CPUInfo[0];
   *b = CPUInfo[1];
@@ -115,7 +115,7 @@ static void MyCPUID(uint32 function, uint32 *a, uint32 *b, uint32 *c, uint32 *d)
   #endif
 }
 
-int x86cpuid_CheckAndRead(struct Cx86cpuid *p)
+int32_t x86cpuid_CheckAndRead(struct Cx86cpuid *p)
 {
   CHECK_CPUID_IS_SUPPORTED
   MyCPUID(0, &p->maxFunc, &p->vendor[0], &p->vendor[2], &p->vendor[1]);
@@ -130,7 +130,7 @@ static uint32 kVendors[][3] =
   { 0x746E6543, 0x48727561, 0x736C7561}
 };
 
-int x86cpuid_GetFirm(const struct Cx86cpuid *p)
+int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p)
 {
   unsigned i;
   for (i = 0; i < sizeof(kVendors) / sizeof(kVendors[i]); i++)
@@ -139,15 +139,15 @@ int x86cpuid_GetFirm(const struct Cx86cpuid *p)
     if (v[0] == p->vendor[0] &&
         v[1] == p->vendor[1] &&
         v[2] == p->vendor[2])
-      return (int)i;
+      return (int32_t)i;
   }
   return -1;
 }
 
-int CPU_Is_InOrder()
+int32_t CPU_Is_InOrder()
 {
   struct Cx86cpuid p;
-  int firm;
+  int32_t firm;
   uint32 family, model;
   if (!x86cpuid_CheckAndRead(&p))
     return 1;
@@ -164,7 +164,7 @@ int CPU_Is_InOrder()
 }
 
 #if !defined(MY_CPU_AMD64) && defined(_WIN32) && !defined(METROWIN)
-static int CPU_Sys_Is_SSE_Supported()
+static int32_t CPU_Sys_Is_SSE_Supported()
 {
   OSVERSIONINFO vi;
   vi.dwOSVersionInfoSize = sizeof(vi);
@@ -177,7 +177,7 @@ static int CPU_Sys_Is_SSE_Supported()
 #define CHECK_SYS_SSE_SUPPORT
 #endif
 
-int CPU_Is_Aes_Supported()
+int32_t CPU_Is_Aes_Supported()
 {
   struct Cx86cpuid p;
   CHECK_SYS_SSE_SUPPORT

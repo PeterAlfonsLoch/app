@@ -321,7 +321,7 @@ namespace dynamic_source
             sl.unlock();
             sl.lock(minutes(0.5));
          }
-         for(int i = 0; i < m_scriptinstanceptra.get_size();)
+         for(int32_t i = 0; i < m_scriptinstanceptra.get_size();)
          {
             if(get_tick_count() > (m_scriptinstanceptra[i]->m_dwCreate + 30 * 1000))
             {
@@ -398,7 +398,7 @@ namespace dynamic_source
       if(ShouldBuild())
       {
          string str;
-         int iRetry = 0;
+         int32_t iRetry = 0;
          do
          {
             // unload should be much more safe Unload(false);

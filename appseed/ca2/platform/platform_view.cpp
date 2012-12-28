@@ -305,7 +305,7 @@ namespace platform
 
 
 
-   void view::SetScreen(int iScreen)
+   void view::SetScreen(int32_t iScreen)
    {
       m_iScreen = iScreen;
 
@@ -324,7 +324,7 @@ namespace platform
    {
       if(pevent->m_eevent == ::user::event_button_clicked)
       {
-         for(int i = 0; i < m_linka.get_size(); i++)
+         for(int32_t i = 0; i < m_linka.get_size(); i++)
          {
             if(pevent->m_puie->m_id == m_linka[i].m_strBrief)
             {
@@ -425,7 +425,7 @@ namespace platform
 
             ::ca::dib_sp dibThumb(get_app());
             double dRate = 184.0 / rectThumb.width();
-            dibThumb->create((int) (dRate * rectThumb.width()), (int) (dRate * rectThumb.height()));
+            dibThumb->create((int32_t) (dRate * rectThumb.width()), (int32_t) (dRate * rectThumb.height()));
             dibThumb->get_graphics()->SetStretchBltMode(HALFTONE);
             dibThumb->get_graphics()->StretchBlt(0, 0, dibThumb->cx, dibThumb->cy, dib->get_graphics(), rectThumb.left, rectThumb.top, rectThumb.width(), rectThumb.height(), SRCCOPY);
 
@@ -461,7 +461,7 @@ namespace platform
          rectProgress.top++;
          rectProgress.bottom--;
          pdc->FillRect(&rectProgress, m_brushProgress2);
-         rectProgress.right = ((int) ((rectProgress.right - rectProgress.left) * m_dProgress)) + rectProgress.left;
+         rectProgress.right = ((int32_t) ((rectProgress.right - rectProgress.left) * m_dProgress)) + rectProgress.left;
          pdc->FillRect(&rectProgress, m_brushProgress1);
       }
 
@@ -601,7 +601,7 @@ namespace platform
    }
 
 
-   void view::mt_show_window(oswindow oswindow, int iShow)
+   void view::mt_show_window(oswindow oswindow, int32_t iShow)
    {
 
       __begin_thread(get_app(), &view::ThreadProcShowWindow, new show_window(oswindow, iShow), ::ca::thread_priority_highest);
@@ -609,7 +609,7 @@ namespace platform
    }
 
 
-   view::show_window::show_window(oswindow oswindow, int iShow)
+   view::show_window::show_window(oswindow oswindow, int32_t iShow)
    {
       m_oswindow   = oswindow;
       m_iShow  = iShow;
@@ -627,7 +627,7 @@ namespace platform
 
    }
 
-   void view::GetAreaThumbRect(LPRECT lprect, int iArea)
+   void view::GetAreaThumbRect(LPRECT lprect, int32_t iArea)
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -933,7 +933,7 @@ namespace platform
 
    void view::load_links()
    {
-      for(int i = 0; i < m_linka.get_size(); i++)
+      for(int32_t i = 0; i < m_linka.get_size(); i++)
       {
          m_linka[i].m_button.DestroyWindow();
       }
@@ -947,7 +947,7 @@ namespace platform
       doc.load(str);
       //str = "<html><head></head><body>";
 
-      for(int i = 0; i < doc.get_root()->children().get_size(); i++)
+      for(int32_t i = 0; i < doc.get_root()->children().get_size(); i++)
       {
          if(doc.get_root()->child_at(i)->get_name() == "link")
          {
@@ -983,9 +983,9 @@ namespace platform
 
    void view::layout()
    {
-      int h = 20;
-      int y = 400;
-      for(int i = 0; i < m_linka.get_count(); i++)
+      int32_t h = 20;
+      int32_t y = 400;
+      for(int32_t i = 0; i < m_linka.get_count(); i++)
       {
          m_linka[i].m_button.SetWindowPos(ZORDER_TOP, 11, y, 300, h, SWP_SHOWWINDOW);
          y+=h;

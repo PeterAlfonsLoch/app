@@ -17,7 +17,7 @@ namespace gcom
       protected:
 
 
-         int                        m_iRefCount;
+         int32_t                        m_iRefCount;
 
          bool                       m_bEnabled;
          e_state                     m_estate;
@@ -60,7 +60,7 @@ namespace gcom
          void UpdateDrawingObjects();
          void OnDestroy();
          void OnResize();
-         int SetState(e_state estate);
+         int32_t SetState(e_state estate);
          //void RunTransitionEffectStep();
          DECL_GEN_SIGNAL(_001OnImageLoaded);
 
@@ -76,7 +76,7 @@ namespace gcom
 
          virtual void ImageChangePostEvent(e_event eevent);
          
-         int PulseEvent(e_event eevent);
+         int32_t PulseEvent(e_event eevent);
 
 
          void DeferCheckLayout();

@@ -3,7 +3,7 @@
 namespace simpledb
 {
    
-   int callback(void * res_ptr,int ncol, char** reslt,char** cols);
+   int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
    
    set::set() :
       ::database::set()
@@ -59,13 +59,13 @@ namespace simpledb
 /*      m_resultsetExec.record_header.remove_all();
       m_resultsetExec.records.remove_all();
    database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
-   int sz = r->records.get_size();
+   int32_t sz = r->records.get_size();
 
    //if (reslt == NULL ) cout << "EMPTY!!!\n";
    if (r->record_header.get_size() <= 0)
    {
       r->record_header.set_size(ncol, 32);
-      for (int i=0; i < ncol; i++)
+      for (int32_t i=0; i < ncol; i++)
       {
          r->record_header[i].name = cols[i];
          if(cols[i + ncol] != NULL)
@@ -94,7 +94,7 @@ namespace simpledb
 
    if (reslt != NULL)
    {
-      for (int i=0; i<ncol; i++)
+      for (int32_t i=0; i<ncol; i++)
       {
          if (reslt[i] == NULL)
          {
@@ -142,13 +142,13 @@ namespace simpledb
    }
 
    database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
-   int sz = r->records.get_size();
+   int32_t sz = r->records.get_size();
 
    //if (reslt == NULL ) cout << "EMPTY!!!\n";
    if (r->record_header.get_size() <= 0)
    {
       r->record_header.set_size(ncol, 32);
-      for (int i=0; i < ncol; i++)
+      for (int32_t i=0; i < ncol; i++)
       {
          r->record_header[i].name = cols[i];
          if(cols[i + ncol] != NULL)
@@ -177,7 +177,7 @@ namespace simpledb
 
    if (reslt != NULL)
    {
-      for (int i=0; i<ncol; i++)
+      for (int32_t i=0; i<ncol; i++)
       {
          if (reslt[i] == NULL)
          {
@@ -504,7 +504,7 @@ namespace simpledb
 
          //close();
 
-         for (int i = 0; i <_sql.get_size(); i++)
+         for (int32_t i = 0; i <_sql.get_size(); i++)
          {
             query = _sql.element_at(i);
 //            char* err=NULL;
@@ -564,7 +564,7 @@ namespace simpledb
       {
          fields_object.set_size(m_resultset.record_header.get_size());
          edit_object.set_size(m_resultset.record_header.get_size());
-         for (int i = 0; i < m_resultset.record_header.get_size(); i++)
+         for (int32_t i = 0; i < m_resultset.record_header.get_size(); i++)
          {
             fields_object[i].m_properties    = m_resultset.record_header[i];
             edit_object[i].m_properties      = m_resultset.record_header[i];
@@ -574,14 +574,14 @@ namespace simpledb
       //Filling m_resultset
       if (m_resultset.records.get_size() != 0)
       {
-         for (int i = 0; i < m_resultset.records[frecno].get_size(); i++)
+         for (int32_t i = 0; i < m_resultset.records[frecno].get_size(); i++)
          {
             fields_object[i].m_value   = m_resultset.records[frecno][i];
             edit_object[i].m_value     = m_resultset.records[frecno][i];
          }
       }
       else
-         for (int i = 0; i < m_resultset.record_header.get_size(); i++)
+         for (int32_t i = 0; i < m_resultset.record_header.get_size(); i++)
          {
             fields_object[i].m_value = "";
             edit_object[i].m_value = "";
@@ -787,7 +787,7 @@ namespace simpledb
       bool found = false;
       if(ds_state == database::dsSelect)
       {
-         for (int i=0; i < fields_object.get_size(); i++)
+         for (int32_t i=0; i < fields_object.get_size(); i++)
          {
             if(m_resultset.record_header[i].name == f_name)
             {
@@ -855,9 +855,9 @@ namespace simpledb
       //  return false;
    }
 
-   int set::GetFieldIndex(const char *f_name)
+   int32_t set::GetFieldIndex(const char *f_name)
    {
-      for (int i=0; i < fields_object.get_size(); i++)
+      for (int32_t i=0; i < fields_object.get_size(); i++)
       {
          if(m_resultset.record_header[i].name == f_name)
          {
@@ -937,7 +937,7 @@ namespace simpledb
    **********************************************************************/
    //************* Callback function ***************************
 
-   int callback(void * res_ptr,int ncol, char** reslt,char** cols)
+   int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols)
    {
 
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
@@ -976,7 +976,7 @@ namespace simpledb
 
       if (reslt != NULL)
       {
-         for (int i=0; i<ncol; i++)
+         for (int32_t i=0; i<ncol; i++)
          {
             if (reslt[i] == NULL)
             {

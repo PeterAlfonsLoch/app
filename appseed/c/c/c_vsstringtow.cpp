@@ -1,6 +1,6 @@
 #include "framework.h"
 
-vsstringtow::vsstringtow(wstring & str, int iAllocCount)
+vsstringtow::vsstringtow(wstring & str, int32_t iAllocCount)
 {
    m_pwstring = &str;
    m_psz = NULL;

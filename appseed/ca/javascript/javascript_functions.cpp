@@ -123,7 +123,7 @@ void scIsPlainHostName(CScriptVar *c, void *data)
 
    if(stra.get_count() == 4)
    {
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(!is_only_digits(stra[i]) || atoi_dup(stra[i]) > 255)
          {

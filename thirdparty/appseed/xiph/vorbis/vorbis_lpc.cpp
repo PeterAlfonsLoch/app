@@ -53,12 +53,12 @@ BEGIN_EXTERN_C
 /* Input : n elements of time doamin data
    Output: m lpc coefficients, excitation energy */
 
-float vorbis_lpc_from_data(float *data,float *lpci,int n,int m){
+float vorbis_lpc_from_data(float *data,float *lpci,int32_t n,int32_t m){
   double *aut=(double *)alloca(sizeof(*aut)*(m+1));
   double *lpc=(double *) alloca(sizeof(*lpc)*(m));
   double error;
   double epsilon;
-  int i,j;
+  int32_t i,j;
 
   /* autocorrelation, p+1 lag coefficients */
   j=m+1;
@@ -125,7 +125,7 @@ float vorbis_lpc_from_data(float *data,float *lpci,int n,int m){
   return error;
 }
 
-void vorbis_lpc_predict(float *coeff,float *prime,int m,
+void vorbis_lpc_predict(float *coeff,float *prime,int32_t m,
                      float *data,long n){
 
   /* in: coeff[0...m-1] LPC coefficients

@@ -54,7 +54,7 @@ namespace ca4
             string      m_strUrl;
             bool        m_bDirect;
             string      m_strProxy;
-            int         m_iPort;
+            int32_t         m_iPort;
             DWORD       m_dwLastChecked;
 
 
@@ -130,8 +130,8 @@ namespace ca4
 
 
          void defer_auto_initialize_proxy_configuration();
-         void auto_config_proxy(int i);
-         int auto_config_proxy_count();
+         void auto_config_proxy(int32_t i);
+         int32_t auto_config_proxy_count();
          void config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket);
          void config_proxy(const char * pszUrl, proxy * pproxy);
          bool try_pac_script(const char * pszScriptUrl, const char * pszUrl, proxy * pproxy);

@@ -160,10 +160,10 @@ namespace user
 
             e_element eelement;
 
-            int iHover = hit_test(pmouse->m_pt, eelement);
+            int32_t iHover = hit_test(pmouse->m_pt, eelement);
             if(iHover != m_iHover)
             {
-               int iOldHover = m_iHover;
+               int32_t iOldHover = m_iHover;
                m_iHover = iHover;
                _001RedrawWindow();
                if(iOldHover == -1)
@@ -193,7 +193,7 @@ namespace user
       SCAST_PTR(::gen::message::base, pbase, pobj)
          if(get_form() == NULL)
          {
-            int iOldHover = m_iHover;
+            int32_t iOldHover = m_iHover;
             m_iHover = -1;
             if(iOldHover >= 0)
             {

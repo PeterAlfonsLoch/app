@@ -23,7 +23,7 @@ namespace ca
 
       virtual bool is_data_in_use() const;
 
-      virtual void on_update_data(int iHint);
+      virtual void on_update_data(int32_t iHint);
 
    };
 

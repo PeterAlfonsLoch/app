@@ -87,26 +87,26 @@ namespace gcom
                } m_hexagonpixelate;
                struct SLICE_FRAME
                {
-                  int m_iTileCount;
-                  int m_iFrameCount;
-                  int m_iGroupCount;
+                  int32_t m_iTileCount;
+                  int32_t m_iFrameCount;
+                  int32_t m_iGroupCount;
                } m_sliceframe;
                struct TILES
                {
-                  int m_iTilesX;
-                  int m_iTilesY;
-                  int m_iTiles;
+                  int32_t m_iTilesX;
+                  int32_t m_iTilesY;
+                  int32_t m_iTiles;
                } m_tiles;
                struct ALPHA_PIXELATE
                {
-                  int m_c1;
-                  int m_c2;
-                  int m_iSizeIndex;
+                  int32_t m_c1;
+                  int32_t m_c2;
+                  int32_t m_iSizeIndex;
                } m_alphapixelate;
                struct RADIAL_UNVEIL
                {
-                  int m_iRadius;
-                  int m_iRadiusIncrement;
+                  int32_t m_iRadius;
+                  int32_t m_iRadiusIncrement;
                } m_radialunveil;
             } m_data;
             double      m_dAlpha;
@@ -130,15 +130,15 @@ namespace gcom
          protected:
             ETransitionEffect   m_etransitioneffect;
             size            m_size;
-            int               m_cx;
-            int               m_cy;
+            int32_t               m_cx;
+            int32_t               m_cy;
             double            m_dRate;
             double            m_dRateEx;
             double            m_phi;
-            int               m_iRadius;
+            int32_t               m_iRadius;
          
          public:
-            int            m_iStepRepeatCount;
+            int32_t            m_iStepRepeatCount;
             rect         m_rect;
             point         m_point;
             rect         m_rectIn;
@@ -154,7 +154,7 @@ namespace gcom
             ::count            m_iStepCount; // -1 - Infinite, 0 and 1 - invalid, > 1 count out
             index m_iFrame;
          public:
-            void Start(int cx, int cy, double dRate, double dRateEx);
+            void Start(int32_t cx, int32_t cy, double dRate, double dRateEx);
    //         void Go(ETransitionEffect eType);
             void Go();
 
@@ -171,8 +171,8 @@ namespace gcom
                double   dRateMinus);
 
             void GetSliceRect(
-               int      cx,
-               int      cy,
+               int32_t      cx,
+               int32_t      cy,
                LPRECT   lprect,
                EAlign   aelign,
                double   dRate,
@@ -182,8 +182,8 @@ namespace gcom
             void GetRectAB(LPRECT lprectA, LPRECT lprectB);
             void GetRectABCD(LPRECT lprectA, LPRECT lprectB, LPRECT lprectC, LPRECT lprectD);
             void GetHorizontalHexagon(LPRECT lprect, LPPOINT lppointa);
-            int FindRandomEnglobingEllipse(LPCRECT lprect, LPRECT lprectCircle, int iMaxRand);
-            int FindRandomEnglobingCircle(LPCRECT lprect, LPRECT lprectCircle, int iMaxRand);
+            int32_t FindRandomEnglobingEllipse(LPCRECT lprect, LPRECT lprectCircle, int32_t iMaxRand);
+            int32_t FindRandomEnglobingCircle(LPCRECT lprect, LPRECT lprectCircle, int32_t iMaxRand);
             void GetRect(LPPOINT lppoint, LPCRECT lpcrect);
             void GetRect(
                LPRECT   lprect);
@@ -201,18 +201,18 @@ namespace gcom
             void GetRect(
                LPRECT   lprect,
                EAlign   ealign,
-               int      cx,
-               int      cy,
+               int32_t      cx,
+               int32_t      cy,
                double   dRate);
-            void GetRotateRect(int w, int h, int i, int j, double phi, LPPOINT lppoint);
-            void GetRotateRect(int i, int j, LPPOINT lppoint);
-            void TranslateRect(LPRECT lprect, int w, int h, int i, int j);
-            void GetRotateHexagon(int iRadius, int i, int j, double phi, LPPOINT lppoint);
-            void GetRotateHexagon(int i, int j, LPPOINT lppoint);
-            void Initialize(ETransitionEffect eeffect, int cx, int cy, TransitionEffect & effect);
+            void GetRotateRect(int32_t w, int32_t h, int32_t i, int32_t j, double phi, LPPOINT lppoint);
+            void GetRotateRect(int32_t i, int32_t j, LPPOINT lppoint);
+            void TranslateRect(LPRECT lprect, int32_t w, int32_t h, int32_t i, int32_t j);
+            void GetRotateHexagon(int32_t iRadius, int32_t i, int32_t j, double phi, LPPOINT lppoint);
+            void GetRotateHexagon(int32_t i, int32_t j, LPPOINT lppoint);
+            void Initialize(ETransitionEffect eeffect, int32_t cx, int32_t cy, TransitionEffect & effect);
             void Finalize();
          
-            static void GetSimplePolyBox(LPRECT lprect, LPPOINT lppoint, int iCount);
+            static void GetSimplePolyBox(LPRECT lprect, LPPOINT lppoint, int32_t iCount);
 
          };
 
@@ -254,7 +254,7 @@ namespace gcom
          ETransitionEffect get_type();
          void StepBack();
          void StepNext();
-         int CalcRepeatCount();
+         int32_t CalcRepeatCount();
          EDirection GetDirection(ETransitionEffect eeffect);
          EAlign GetAlign(ETransitionEffect effect);
          void DisableEffect(ETransitionEffect eeffect);

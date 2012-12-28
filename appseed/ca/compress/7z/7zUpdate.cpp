@@ -29,12 +29,12 @@ namespace n7z
    
    wchar_t MyCharUpper(wchar_t c);
    wchar_t MyCharLower(wchar_t c);
-   int MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2);
-   int MyStringCompareNoCase(const char *s1, const char *s2);
-   int GetExtIndex(const char *ext);
+   int32_t MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2);
+   int32_t MyStringCompareNoCase(const char *s1, const char *s2);
+   int32_t GetExtIndex(const char *ext);
    
    
-   template <class T> inline int MyCompare(T a, T b)
+   template <class T> inline int32_t MyCompare(T a, T b)
    {  return a < b ? -1 : (a == b ? 0 : 1); }
    
    wchar_t MyCharUpper(wchar_t c)
@@ -48,7 +48,7 @@ namespace n7z
    }
    
    
-   int MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2)
+   int32_t MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2)
    {
       for (;;)
       {
@@ -65,7 +65,7 @@ namespace n7z
       }
    }
    
-   int MyStringCompareNoCase(const char *s1, const char *s2)
+   int32_t MyStringCompareNoCase(const char *s1, const char *s2)
    {
       string str1(s1);
       string str2(s2);
@@ -125,11 +125,11 @@ namespace n7z
       return Name.Mid(GetExtensionPos());
    }
 
-#define RINOZ(x) { int __tt = (x); if (__tt != 0) return __tt; }
+#define RINOZ(x) { int32_t __tt = (x); if (__tt != 0) return __tt; }
 
 #define RINOZ_COMP(a, b) RINOZ(MyCompare(a, b))
 
-   static int CompareBuffers(const ::ex1::byte_buffer &a1, const ::ex1::byte_buffer &a2)
+   static int32_t CompareBuffers(const ::ex1::byte_buffer &a1, const ::ex1::byte_buffer &a2)
    {
       size_t c1 = a1.GetCapacity();
       size_t c2 = a2.GetCapacity();
@@ -139,7 +139,7 @@ namespace n7z
       return 0;
    }
 
-   static int CompareCoders(const CCoderInfo &c1, const CCoderInfo &c2)
+   static int32_t CompareCoders(const CCoderInfo &c1, const CCoderInfo &c2)
    {
       RINOZ_COMP(c1.NumInStreams, c2.NumInStreams);
       RINOZ_COMP(c1.NumOutStreams, c2.NumOutStreams);
@@ -147,13 +147,13 @@ namespace n7z
       return CompareBuffers(c1.Props, c2.Props);
    }
 
-   static int CompareBindPairs(const CBindPair &b1, const CBindPair &b2)
+   static int32_t CompareBindPairs(const CBindPair &b1, const CBindPair &b2)
    {
       RINOZ_COMP(b1.InIndex, b2.InIndex);
       return MyCompare(b1.OutIndex, b2.OutIndex);
    }
 
-   static int CompareFolders(const CFolder &f1, const CFolder &f2)
+   static int32_t CompareFolders(const CFolder &f1, const CFolder &f2)
    {
 
       count s1 = f1.Coders.get_count();
@@ -181,7 +181,7 @@ namespace n7z
    }
 
    /*
-   static int CompareFiles(const CFileItem &f1, const CFileItem &f2)
+   static int32_t CompareFiles(const CFileItem &f1, const CFileItem &f2)
    {
    return MyStringCompareNoCase(f1.Name, f2.Name);
    }
@@ -189,16 +189,16 @@ namespace n7z
 
    struct CFolderRepack
    {
-      int FolderIndex;
-      int Group;
+      int32_t FolderIndex;
+      int32_t Group;
       CNum NumCopyFiles;
    };
 
-   static int CompareFolderRepacks(const CFolderRepack *p1, const CFolderRepack *p2, void *param)
+   static int32_t CompareFolderRepacks(const CFolderRepack *p1, const CFolderRepack *p2, void *param)
    {
       RINOZ_COMP(p1->Group, p2->Group);
-      int i1 = p1->FolderIndex;
-      int i2 = p2->FolderIndex;
+      int32_t i1 = p1->FolderIndex;
+      int32_t i2 = p2->FolderIndex;
       const CArchiveDatabaseEx &db = *(const CArchiveDatabaseEx *)param;
       RINOZ(CompareFolders(
          db.Folders[i1],
@@ -218,7 +218,7 @@ namespace n7z
 
    ////////////////////////////////////////////////////////////
 
-   static int CompareEmptyItems(const int *p1, const int *p2, void *param)
+   static int32_t CompareEmptyItems(const int32_t *p1, const int32_t *p2, void *param)
    {
       const array_ptr_alloc<CUpdateItem> &updateItems = *(const array_ptr_alloc<CUpdateItem> *)param;
       const CUpdateItem &u1 = updateItems[*p1];
@@ -229,7 +229,7 @@ namespace n7z
       {
          if (u1.IsAnti != u2.IsAnti)
             return (u1.IsAnti ? 1 : -1);
-         int n = MyStringCompareNoCase(u1.Name, u2.Name);
+         int32_t n = MyStringCompareNoCase(u1.Name, u2.Name);
          return -n;
       }
       if (u1.IsAnti != u2.IsAnti)
@@ -267,9 +267,9 @@ namespace n7z
       " exe dll ocx vbx sfx sys tlb awx com obj lib out o so "
       " pdb pch idb ncb opt";
 
-   int GetExtIndex(const char *ext)
+   int32_t GetExtIndex(const char *ext)
    {
-      int extIndex = 1;
+      int32_t extIndex = 1;
       const char *p = g_Exts;
       for (;;)
       {
@@ -278,7 +278,7 @@ namespace n7z
             return extIndex;
          if (c == ' ')
             continue;
-         int pos = 0;
+         int32_t pos = 0;
          for (;;)
          {
             char c2 = ext[pos++];
@@ -332,7 +332,7 @@ namespace n7z
                if (!us.is_empty())
                {
                   us.make_lower();
-                  int i;
+                  int32_t i;
                   string s;
                   for (i = 0; i < us.get_length(); i++)
                   {
@@ -352,13 +352,13 @@ namespace n7z
    };
 
    // implement below
-/*   static int CompareUpdateItems(const CRefItem *p1, const CRefItem *p2, void *param)
+/*   static int32_t CompareUpdateItems(const CRefItem *p1, const CRefItem *p2, void *param)
    {
       const CRefItem &a1 = *p1;
       const CRefItem &a2 = *p2;
       const CUpdateItem &u1 = *a1.UpdateItem;
       const CUpdateItem &u2 = *a2.UpdateItem;
-      int n;
+      int32_t n;
       if (u1.IsDir != u2.IsDir)
          return (u1.IsDir) ? 1 : -1;
       if (u1.IsDir)
@@ -399,7 +399,7 @@ namespace n7z
 
    static bool IsExeExt(const string &ext)
    {
-      for (int i = 0; i < sizeof(g_ExeExts) / sizeof(g_ExeExts[0]); i++)
+      for (int32_t i = 0; i < sizeof(g_ExeExts) / sizeof(g_ExeExts[0]); i++)
          if (ext.CompareNoCase(g_ExeExts[i]) == 0)
             return true;
       return false;
@@ -493,7 +493,7 @@ namespace n7z
       const bool_array *_extractStatuses;
       ::ca::smart_pointer < ::ex1::writer > _outStream;
       uint32 _startIndex;
-      int _currentIndex;
+      int32_t _currentIndex;
       bool _fileIsOpen;
       uint64 _rem;
 
@@ -685,7 +685,7 @@ namespace n7z
 
    bool static Is86FilteredFolder(const CFolder &f)
    {
-      for (int i = 0; i < f.Coders.get_count(); i++)
+      for (int32_t i = 0; i < f.Coders.get_count(); i++)
       {
          ::compress::method_id m = f.Coders[i].MethodID;
          if (m == k_BCJ || m == k_BCJ2)
@@ -714,13 +714,13 @@ namespace n7z
 
 #endif
 
-   static const int kNumGroupsMax = 4;
+   static const int32_t kNumGroupsMax = 4;
 
 #ifdef USE_86_FILTER
-   static bool Is86Group(int group) { return (group & 1) != 0; }
+   static bool Is86Group(int32_t group) { return (group & 1) != 0; }
 #endif
-   static bool IsEncryptedGroup(int group) { return (group & 2) != 0; }
-   static int GetGroupIndex(bool encrypted, int bcjFiltered)
+   static bool IsEncryptedGroup(int32_t group) { return (group & 2) != 0; }
+   static int32_t GetGroupIndex(bool encrypted, int32_t bcjFiltered)
    { return (encrypted ? 2 : 0) + (bcjFiltered ? 1 : 0); }
 
    HRESULT Update(
@@ -755,7 +755,7 @@ namespace n7z
          RINOK(WriteRange(inStream, seqOutStream, 0, startBlockSize, NULL));
       }
 
-      base_array<int> fileIndexToUpdateIndexMap;
+      base_array<int32_t> fileIndexToUpdateIndexMap;
       base_array<CFolderRepack> folderRefs;
       uint64 complexity = 0;
       uint64 inSizeForReduce2 = 0;
@@ -763,13 +763,13 @@ namespace n7z
       if (db != 0)
       {
          fileIndexToUpdateIndexMap.set_size(0, db->Files.get_count());
-         int i;
+         int32_t i;
          for (i = 0; i < db->Files.get_count(); i++)
             fileIndexToUpdateIndexMap.add(-1);
 
          for (i = 0; i < updateItems.get_count(); i++)
          {
-            int index = updateItems[i].IndexInArchive;
+            int32_t index = updateItems[i].IndexInArchive;
             if (index != -1)
                fileIndexToUpdateIndexMap[index] = i;
          }
@@ -786,7 +786,7 @@ namespace n7z
                if (file.HasStream)
                {
                   indexInFolder++;
-                  int updateIndex = fileIndexToUpdateIndexMap[fi];
+                  int32_t updateIndex = fileIndexToUpdateIndexMap[fi];
                   if (updateIndex >= 0 && !updateItems[updateIndex].NewData)
                   {
                      numCopyItems++;
@@ -821,7 +821,7 @@ namespace n7z
       }
 
       file_size inSizeForReduce = 0;
-      int i;
+      int32_t i;
       for (i = 0; i < updateItems.get_count(); i++)
       {
          const CUpdateItem &ui = updateItems[i];
@@ -926,10 +926,10 @@ namespace n7z
       RINOK(archive.Create(seqOutStream, false));
       RINOK(archive.SkipPrefixArchiveHeader());
 
-      int folderRefIndex = 0;
+      int32_t folderRefIndex = 0;
       lps->ProgressOffset = 0;
 
-      for (int groupIndex = 0; groupIndex < kNumGroupsMax; groupIndex++)
+      for (int32_t groupIndex = 0; groupIndex < kNumGroupsMax; groupIndex++)
       {
          const CSolidGroup &group = groups[groupIndex];
 
@@ -965,7 +965,7 @@ namespace n7z
             const CFolderRepack &rep = folderRefs[folderRefIndex];
             if (rep.Group != groupIndex)
                break;
-            int folderIndex = rep.FolderIndex;
+            int32_t folderIndex = rep.FolderIndex;
 
             if (rep.NumCopyFiles == db->NumUnpackStreamsVector[folderIndex])
             {
@@ -976,7 +976,7 @@ namespace n7z
 
                const CFolder &folder = db->Folders[folderIndex];
                CNum startIndex = db->FolderStartPackStreamIndex[folderIndex];
-               for (int j = 0; j < folder.PackStreams.get_count(); j++)
+               for (int32_t j = 0; j < folder.PackStreams.get_count(); j++)
                {
                   newDatabase.PackSizes.add(db->PackSizes[startIndex + j]);
                   // newDatabase.PackCRCsDefined.add(db.PackCRCsDefined[startIndex + j]);
@@ -1002,7 +1002,7 @@ namespace n7z
                   if (db->Files[fi].HasStream)
                   {
                      indexInFolder++;
-                     int updateIndex = fileIndexToUpdateIndexMap[fi];
+                     int32_t updateIndex = fileIndexToUpdateIndexMap[fi];
                      if (updateIndex >= 0 && !updateItems[updateIndex].NewData)
                         needExtract = true;
                   }
@@ -1053,7 +1053,7 @@ namespace n7z
                if (file.HasStream)
                {
                   indexInFolder++;
-                  int updateIndex = fileIndexToUpdateIndexMap[fi];
+                  int32_t updateIndex = fileIndexToUpdateIndexMap[fi];
                   if (updateIndex >= 0)
                   {
                      const CUpdateItem &ui = updateItems[updateIndex];
@@ -1109,7 +1109,7 @@ namespace n7z
          for (i = 0; i < numFiles;)
          {
             uint64 totalSize = 0;
-            int numSubFiles;
+            int32_t numSubFiles;
             string prevExtension;
             for (numSubFiles = 0; i + numSubFiles < numFiles &&
                numSubFiles < numSolidFiles; numSubFiles++)
@@ -1154,7 +1154,7 @@ namespace n7z
             newDatabase.Folders.add(folderItem);
 
             CNum numUnpackStreams = 0;
-            for (int subIndex = 0; subIndex < numSubFiles; subIndex++)
+            for (int32_t subIndex = 0; subIndex < numSubFiles; subIndex++)
             {
                const CUpdateItem &ui = updateItems[indices[i + subIndex]];
                CFileItem file;
@@ -1210,7 +1210,7 @@ namespace n7z
       {
          // ---------- Write Folders & Empty Files ----------
 
-         base_array<int> emptyRefs;
+         base_array<int32_t> emptyRefs;
          for (i = 0; i < updateItems.get_count(); i++)
          {
             const CUpdateItem &ui = updateItems[i];

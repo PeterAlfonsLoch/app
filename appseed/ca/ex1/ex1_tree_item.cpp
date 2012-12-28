@@ -8,7 +8,7 @@ namespace ex1
    __STATIC fixed_alloc_no_sync _alloc001TreeDataItem(ROUND4(sizeof(tree_item)));
 
 #undef new
-   void * tree_item::operator new(size_t, const char *, int)
+   void * tree_item::operator new(size_t, const char *, int32_t)
    {
       return _alloc001TreeDataItem.Alloc();
    }
@@ -24,7 +24,7 @@ namespace ex1
       return _alloc001TreeDataItem.Free(p);
    }
 
-   void tree_item::operator delete(void * p, const char *, int)
+   void tree_item::operator delete(void * p, const char *, int32_t)
    {
       return _alloc001TreeDataItem.Free(p);
    }*/
@@ -65,7 +65,7 @@ namespace ex1
       return m_ptree;
    }
 
-   void tree_item::sort_children(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *), ex1::tree_data * ptreedata)
+   void tree_item::sort_children(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *), ex1::tree_data * ptreedata)
    {
 
       tree_item * pitemParent = this;
@@ -276,7 +276,7 @@ namespace ex1
 
          }
       }
-      for(int i = 0; i < ptra.get_size(); i++)
+      for(int32_t i = 0; i < ptra.get_size(); i++)
       {
          m_ptree->delete_item(ptra[i]);
       }
@@ -452,7 +452,7 @@ namespace ex1
 
    index tree_item::get_proper_item_index(tree_item * pitemParam, index * piLevel)
    {
-      int iIndex = 0;
+      int32_t iIndex = 0;
       if(piLevel != NULL) *piLevel = 0;
       tree_item * pitem = this;
       while(pitem != NULL)

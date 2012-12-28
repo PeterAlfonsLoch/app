@@ -20,7 +20,7 @@ namespace user
       // Overridables
       virtual void BaseToolTipGetRect(LPRECT lprect);
       virtual bool BaseToolTipGetText(string & str);
-      virtual int BaseToolTipGetIndex();
+      virtual int32_t BaseToolTipGetIndex();
       virtual ::user::interaction * BaseToolTipGetWnd();
 
       tool_tip_window *  m_pbasetooltiphdl;      // Base tooltip handler

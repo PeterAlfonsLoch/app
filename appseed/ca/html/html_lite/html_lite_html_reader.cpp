@@ -397,7 +397,7 @@ LCleanExit:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-dword_ptr lite_html_reader::ReadFile(int fd)
+dword_ptr lite_html_reader::ReadFile(int32_t fd)
 {
 //   ASSERT(hFile != INVALID_HANDLE_VALUE);
 //   ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
@@ -630,7 +630,7 @@ bool lite_html_reader::parseComment(string &rComment)
       return (true);
    }
 
-   string   strComment(lpszBegin, int(lpszEnd - lpszBegin));
+   string   strComment(lpszBegin, int32_t(lpszEnd - lpszBegin));
 
    // end of buffer?
    if (lpszEnd + (sizeof(char) * 2) >= &m_strBuffer[0] + m_strBuffer.size())

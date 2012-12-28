@@ -28,7 +28,7 @@ aes_cbc_set_key(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_encrypt(aes_cbc_ctx_t *c, 
       unsigned char *buf, 
-      unsigned int  *bytes_in_data);
+      unsigned int32_t  *bytes_in_data);
 
 err_status_t
 aes_cbc_context_init(aes_cbc_ctx_t *c, const uint8_t *key, 
@@ -40,12 +40,12 @@ aes_cbc_set_iv(aes_cbc_ctx_t *c, void *iv);
 err_status_t
 aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
            unsigned char *data, 
-           unsigned int *bytes_in_data);
+           unsigned int32_t *bytes_in_data);
 
 err_status_t
 aes_cbc_nist_decrypt(aes_cbc_ctx_t *c,
            unsigned char *data, 
-           unsigned int *bytes_in_data);
+           unsigned int32_t *bytes_in_data);
 
 #endif /* AES_CBC_H */
 

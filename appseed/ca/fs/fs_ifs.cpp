@@ -91,7 +91,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    if(pnode != NULL)
    {
-      for(int i = 0; i < pnode->get_children_count(); i++)
+      for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
          string strName = pnode->child_at(i)->attr("name");
          if(pnode->child_at(i)->get_name() != "folder")
@@ -114,7 +114,7 @@ bool ifs::ls(const char * pszDir, stringa * pstraPath, stringa * pstraTitle)
 
    if(pnode != NULL)
    {
-      for(int i = 0; i < pnode->get_children_count(); i++)
+      for(int32_t i = 0; i < pnode->get_children_count(); i++)
       {
          string strName = pnode->child_at(i)->attr("name");
          string strExtension = pnode->child_at(i)->attr("extension");

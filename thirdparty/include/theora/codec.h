@@ -141,11 +141,11 @@ typedef enum{
  * The decoder currently always generates images with positive strides.*/
 typedef struct{
   /**The width of this plane.*/
-  int            width;
+  int32_t            width;
   /**The height of this plane.*/
-  int            height;
+  int32_t            height;
   /**The offset in bytes between successive rows.*/
-  int            stride;
+  int32_t            stride;
   /**A pointer to the beginning of the first row.*/
   unsigned char *data;
 }th_img_plane;
@@ -259,7 +259,7 @@ typedef struct{
   /**The target bit-rate in bits per second.
      If initializing an encoder with this struct, set this field to a non-zero
       value to activate CBR encoding by default.*/
-  int           target_bitrate;
+  int32_t           target_bitrate;
   /**The target quality level.
      Valid values range from 0 to 63, inclusive, with higher values giving
       higher quality.
@@ -279,7 +279,7 @@ typedef struct{
      too large for the current bitstream to be able to store.
     We'd have to redesign the token syntax to store these large coefficients,
      which would make transcoding complex.*/
-  int           quality;
+  int32_t           quality;
   /**The amount to shift to extract the last keyframe number from the granule
    *  position.
    * This can be at most 31.
@@ -293,7 +293,7 @@ typedef struct{
    *  during encoding (for example, to force the next frame to be a keyframe),
    *  but it cannot be set larger than the amount permitted by this field after
    *  the headers have been output.*/
-  int           keyframe_granule_shift;
+  int32_t           keyframe_granule_shift;
 }th_info;
 
 /**The comment information.
@@ -324,9 +324,9 @@ typedef struct th_comment{
   /**The array of comment string vectors.*/
   char **user_comments;
   /**An array of the corresponding length of each vector, in bytes.*/
-  int   *comment_lengths;
+  int32_t   *comment_lengths;
   /**The total number of comment strings.*/
-  int    comments;
+  int32_t    comments;
   /**The null-terminated vendor string.
      This identifies the software used to encode the stream.*/
   char  *vendor;
@@ -340,10 +340,10 @@ typedef unsigned char th_quant_base[64];
 /**A set of \a qi ranges.*/
 typedef struct{
   /**The number of ranges in the set.*/
-  int                  nranges;
+  int32_t                  nranges;
   /**The size of each of the #nranges ranges.
      These must sum to 63.*/
-  const int           *sizes;
+  const int32_t           *sizes;
   /**#nranges <tt>+1</tt> base matrices.
      Matrices \a i and <tt>i+1</tt> form the endpoints of range \a i.*/
   const th_quant_base *base_matrices;
@@ -441,7 +441,7 @@ typedef struct{
   ogg_uint32_t pattern;
   /**The number of bits in the code.
    * This must be between 0 and 32, inclusive.*/
-  int          nbits;
+  int32_t          nbits;
 }th_huff_code;
 
 
@@ -495,7 +495,7 @@ extern double th_granule_time(void *_encdec,ogg_int64_t _granpos);
  * \param _op An <tt>ogg_packet</tt> containing encoded Theora data.
  * \retval 1 The packet is a header packet
  * \retval 0 The packet is a video data packet.*/
-extern int th_packet_isheader(ogg_packet *_op);
+extern int32_t th_packet_isheader(ogg_packet *_op);
 /**Determines whether a theora packet is a key frame or not.
  * This function does no verification beyond checking the packet type and
  *  key frame bits, so it should not be used for bitstream identification; use
@@ -506,7 +506,7 @@ extern int th_packet_isheader(ogg_packet *_op);
  * \retval 1  The packet contains a key frame.
  * \retval 0  The packet contains a delta frame.
  * \retval -1 The packet is not a video data packet.*/
-extern int th_packet_iskeyframe(ogg_packet *_op);
+extern int32_t th_packet_iskeyframe(ogg_packet *_op);
 /*@}*/
 
 
@@ -564,7 +564,7 @@ extern void th_comment_add_tag(th_comment *_tc,char *_tag,char *_val);
  *         It should not be modified or freed by the application, and
  *          modifications to the structure may invalidate the pointer.
  * \retval NULL If no matching tag is found.*/
-extern char *th_comment_query(th_comment *_tc,char *_tag,int _count);
+extern char *th_comment_query(th_comment *_tc,char *_tag,int32_t _count);
 /**Look up the number of instances of a tag.
  * Call this first when querying for a specific tag and then iterate over the
  *  number of instances with separate calls to th_comment_query() to
@@ -572,7 +572,7 @@ extern char *th_comment_query(th_comment *_tc,char *_tag,int _count);
  * \param _tc    An initialized #th_comment structure.
  * \param _tag   The tag to look up.
  * \return The number on instances of this particular tag.*/
-extern int th_comment_query_count(th_comment *_tc,char *_tag);
+extern int32_t th_comment_query_count(th_comment *_tc,char *_tag);
 /**Clears a #th_comment structure.
  * This should be called on a #th_comment structure after it is no longer
  *  needed.

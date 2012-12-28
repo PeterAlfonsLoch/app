@@ -489,13 +489,13 @@ static const noiseguard _psy_noiseguards_44[4]={
   {10,10,100},
 };
 
-static const int _psy_tone_suppress[12]={
+static const int32_t _psy_tone_suppress[12]={
   -20,-20,-20,-20,-20,-24,-30,-40,-40,-45,-45,-45,
 };
-static const int _psy_tone_0dB[12]={
+static const int32_t _psy_tone_0dB[12]={
   90,90,95,95,95,95,105,105,105,105,105,105,
 };
-static const int _psy_noise_suppress[12]={
+static const int32_t _psy_noise_suppress[12]={
   -20,-20,-24,-24,-24,-24,-30,-40,-40,-45,-45,-45,
 };
 
@@ -517,10 +517,10 @@ static const vorbis_info_psy _psy_info_template={
 
 /* ath ****************/
 
-static const int _psy_ath_floater[12]={
+static const int32_t _psy_ath_floater[12]={
   -100,-100,-100,-100,-100,-100,-105,-105,-105,-105,-110,-120,
 };
-static const int _psy_ath_abs[12]={
+static const int32_t _psy_ath_abs[12]={
   -130,-130,-130,-130,-140,-140,-140,-140,-140,-140,-140,-150,
 };
 
@@ -627,19 +627,19 @@ static const double _psy_lowpass_44[12]={
 
 /* noise normalization **********/
 
-static const int _noise_start_short_44[11]={
+static const int32_t _noise_start_short_44[11]={
   /*  16,16,16,16,32,32,9999,9999,9999,9999 */
   32,16,16,16,32,9999,9999,9999,9999,9999,9999
 };
-static const int _noise_start_long_44[11]={
+static const int32_t _noise_start_long_44[11]={
   /*  128,128,128,256,512,512,9999,9999,9999,9999 */
   256,128,128,256,512,9999,9999,9999,9999,9999,9999
 };
 
-static const int _noise_part_short_44[11]={
+static const int32_t _noise_part_short_44[11]={
     8,8,8,8,8,8,8,8,8,8,8
 };
-static const int _noise_part_long_44[11]={
+static const int32_t _noise_part_long_44[11]={
     32,32,32,32,32,32,32,32,32,32,32
 };
 

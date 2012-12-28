@@ -12,7 +12,7 @@ namespace userbase
    public:
 
 
-      int                           m_iIndex;
+      int32_t                           m_iIndex;
       split_layout *                m_pparent;
       DWORD                         m_dwPosition;
       double                        m_dRate;

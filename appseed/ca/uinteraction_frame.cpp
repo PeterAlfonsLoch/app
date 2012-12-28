@@ -42,7 +42,7 @@ namespace uinteraction
       {
       }
 
-      int frame::UpdateControlBox()
+      int32_t frame::UpdateControlBox()
       {
 
          return 0;
@@ -235,7 +235,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnSize(UINT nType, int cx, int cy)
+      bool frame::_000OnSize(UINT nType, int32_t cx, int32_t cy)
       {
 
          UNREFERENCED_PARAMETER(nType);
@@ -246,7 +246,7 @@ namespace uinteraction
 
       }
 
-      bool frame::_000OnMove(int x, int y)
+      bool frame::_000OnMove(int32_t x, int32_t y)
       {
 
          UNREFERENCED_PARAMETER(x);

@@ -3,9 +3,9 @@
 namespace userbase
 {
 
-   const int BaseWndMenuTimer = 500;
-   const int BaseWndMenuCmdUi = 117;
-   const int BaseWndMenuTiming = 200;
+   const int32_t BaseWndMenuTimer = 500;
+   const int32_t BaseWndMenuCmdUi = 117;
+   const int32_t BaseWndMenuTiming = 200;
 
    menu::menu(::ca::application * papp) :
       ca(papp),
@@ -60,12 +60,12 @@ namespace userbase
 
 
 
-   menu_item * menu::GetSubMenu(int i)
+   menu_item * menu::GetSubMenu(int32_t i)
    {
       return m_pitem->m_spitema->ptr_at(i);
    }
 
-   bool menu::TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent)
+   bool menu::TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent)
    {
       ASSERT(oswindowParent != NULL);
       _m_pmenu = new menu(get_app(), m_pitem);
@@ -73,7 +73,7 @@ namespace userbase
       return _m_pmenu->_TrackPopupMenu(iFlags, x, y, oswindowParent, NULL);
    }
 
-   bool menu::_TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent, menu * pmenuParent)
+   bool menu::_TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, menu * pmenuParent)
    {
 
       UNREFERENCED_PARAMETER(iFlags);
@@ -146,10 +146,10 @@ namespace userbase
       ::ca::client_graphics pdc(this);
       pdc->SelectObject(m_pschema->m_font);
       size size = pdc->GetTextExtent("XXXMMM");
-      int iMaxHeight = size.cy;
-      int iMaxWidth = size.cx;
+      int32_t iMaxHeight = size.cy;
+      int32_t iMaxWidth = size.cx;
       m_iHeaderHeight = size.cy;
-      for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
+      for(int32_t i = 0; i < m_pitem->m_spitema->get_size(); i++)
       {
          class size size = pdc->GetTextExtent(m_pitem->m_spitema->ptr_at(i)->m_button._001GetButtonText());
          if(m_pitem->m_spitema->ptr_at(i)->IsPopup())
@@ -163,14 +163,14 @@ namespace userbase
       m_size.cx = iMaxWidth + 4 + 20 + 8;
 
       ::count iItemCount = m_pitem->m_spitema->get_size();
-      int iSeparatorCount = m_pitem->m_iSeparatorCount;
-//      int iFullHeightItemCount = m_pitem->m_iFullHeightItemCount;
+      int32_t iSeparatorCount = m_pitem->m_iSeparatorCount;
+//      int32_t iFullHeightItemCount = m_pitem->m_iFullHeightItemCount;
 
-   //   int iMaxHeight = 0;
-     // int iMaxWidth = 0;
+   //   int32_t iMaxHeight = 0;
+     // int32_t iMaxWidth = 0;
       rect rect(4, m_iHeaderHeight, m_size.cx - 8, 4);
       string str;
-      for(int i = 0; i < iItemCount; i++)
+      for(int32_t i = 0; i < iItemCount; i++)
       {
          menu_item * pitem = m_pitem->m_spitema->ptr_at(i);
          if(pitem->m_id == "separator")
@@ -249,14 +249,14 @@ namespace userbase
 
       }
 
-      /*int iMaxHeight = 0;
-      int iMaxWidth = 0;
+      /*int32_t iMaxHeight = 0;
+      int32_t iMaxWidth = 0;
       rect rect(4, m_iHeaderHeight + 4, m_size.cx - 8, 4);
       pdc->SetTextColor(RGB(0, 0, 0));
       pdc->SetBkMode(TRANSPARENT);
       pdc->SelectObject(m_pschema->m_font);
       string str;
-      for(int i = 0; i < m_pitem->m_pitema->get_size(); i++)
+      for(int32_t i = 0; i < m_pitem->m_pitema->get_size(); i++)
       {
          menu_item * pitem = m_pitem->m_pitema->element_at(i);
          if(pitem->m_iId  == -1)
@@ -466,7 +466,7 @@ namespace userbase
          {
             menu_button_cmd_ui cmdui(get_app());
             cmdui.m_pitema          = m_pitem->m_spitema;
-            for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
+            for(int32_t i = 0; i < m_pitem->m_spitema->get_size(); i++)
             {
 
                cmdui.m_iIndex    = i;
@@ -477,7 +477,7 @@ namespace userbase
                if(pwndParent != NULL)
                {
                  /* xxx if(pwndParent->_001OnCommand(0,
-                     MAKELONG((int)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
+                     MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
                      &cmdui, NULL))
                      continue;*/
 
@@ -522,7 +522,7 @@ namespace userbase
       {
          menu_button_cmd_ui cmdui(get_app());
          cmdui.m_pitema          = m_pitem->m_spitema;
-         for(int i = 0; i < m_pitem->m_spitema->get_size(); i++)
+         for(int32_t i = 0; i < m_pitem->m_spitema->get_size(); i++)
          {
 
             cmdui.m_iIndex    = i;
@@ -534,7 +534,7 @@ namespace userbase
             {
                /*
                if(pwndParent->_001OnCommand(0,
-                  MAKELONG((int)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
+                  MAKELONG((int32_t)CN_UPDATE_COMMAND_UI, WM_COMMAND+WM_REFLECT_BASE),
                   &cmdui, NULL))
                   continue;
                   */

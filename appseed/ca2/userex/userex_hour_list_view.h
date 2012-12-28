@@ -30,8 +30,8 @@ namespace userex
       virtual void _001OnSelectionChange();
 
 
-      int get_hour();
-      int set_hour(int iHour);
+      int32_t get_hour();
+      int32_t set_hour(int32_t iHour);
 
 
       DECL_GEN_SIGNAL(_001OnCreate)

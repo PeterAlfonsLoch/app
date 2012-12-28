@@ -21,7 +21,7 @@ namespace user
       void InstallMessageHandling(gen::message::dispatch * pinterface);
 
 
-      bool UpdateBuffer(int cx, int cy);
+      bool UpdateBuffer(int32_t cx, int32_t cy);
       bool UpdateBuffer(class size size);
       bool UpdateBuffer(class point point);
       ::ca::graphics * GetBuffer();

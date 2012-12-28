@@ -91,7 +91,7 @@ namespace n7z
          const base_array<uint32> &hashDigests);
 
       void SkipAlign(unsigned pos, unsigned alignSize);
-      void WriteAlignedBoolHeader(const bool_array &v, int numDefined, byte type, unsigned itemSize);
+      void WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, unsigned itemSize);
       void WriteUInt64DefVector(const CUInt64DefVector &v, byte type);
 
       HRESULT EncodeStream(
@@ -129,8 +129,8 @@ namespace n7z
          const CCompressionMethodMode *options,
          const CHeaderOptions &headerOptions);
 
-      static uint32 GetVolHeadersSize(uint64 dataSize, int nameLength = 0, bool props = false);
-      static uint64 GetVolPureSize(uint64 volSize, int nameLength = 0, bool props = false);
+      static uint32 GetVolHeadersSize(uint64 dataSize, int32_t nameLength = 0, bool props = false);
+      static uint64 GetVolPureSize(uint64 volSize, int32_t nameLength = 0, bool props = false);
 
    };
 

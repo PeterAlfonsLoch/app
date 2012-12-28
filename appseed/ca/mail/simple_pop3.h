@@ -14,10 +14,10 @@ namespace mail
       string                  m_strHost;
       string                  m_strTransaction;
 
-      int                     m_iStatCount;
-      int                     m_iStatSize;
+      int32_t                     m_iStatCount;
+      int32_t                     m_iStatSize;
 
-      int                     m_iListSize;
+      int32_t                     m_iListSize;
 
 
       virtual string get_user();
@@ -25,10 +25,10 @@ namespace mail
       virtual string get_host();
       virtual string get_transaction();
 
-      virtual void set_stat_count(int iCount);
-      virtual void set_stat_size(int iSize);
+      virtual void set_stat_count(int32_t iCount);
+      virtual void set_stat_size(int32_t iSize);
 
-      virtual void set_list_size(int iSize);
+      virtual void set_list_size(int32_t iSize);
 
       simple_pop3(::ca::application * papp);
 

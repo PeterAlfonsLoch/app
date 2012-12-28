@@ -9,7 +9,7 @@ namespace gen
 {
 
 
-   bool strn::to(const char * psz, int iLen, int64_t & i)
+   bool strn::to(const char * psz, int32_t iLen, int64_t & i)
    {
 
       char * pszEnd;
@@ -25,7 +25,7 @@ namespace gen
 
    }
 
-   bool strn::to(const char * psz, int iLen, int & i)
+   bool strn::to(const char * psz, int32_t iLen, int32_t & i)
    {
 
       char * pszEnd;
@@ -35,17 +35,17 @@ namespace gen
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info::get_maximum_value < int > ())
+      if(iConversion > numeric_info::get_maximum_value < int32_t > ())
          return false;
 
-      i = (int) iConversion;
+      i = (int32_t) iConversion;
 
       return true;
 
    }
 
 
-   bool strn::to(const char * psz, int iLen, int64_t & i, int iBase)
+   bool strn::to(const char * psz, int32_t iLen, int64_t & i, int32_t iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -64,7 +64,7 @@ namespace gen
 
    }
 
-   bool strn::to(const char * psz, int iLen, int & i, int iBase)
+   bool strn::to(const char * psz, int32_t iLen, int32_t & i, int32_t iBase)
    {
 
       if(iBase < 0 || iBase == 1 || iBase > 36)
@@ -77,10 +77,10 @@ namespace gen
       if(pszEnd == psz)
          return false;
 
-      if(iConversion > numeric_info::get_maximum_value < int > ())
+      if(iConversion > numeric_info::get_maximum_value < int32_t > ())
          return false;
 
-      i = (int) iConversion;
+      i = (int32_t) iConversion;
 
       return true;
 

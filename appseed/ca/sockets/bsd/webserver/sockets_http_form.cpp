@@ -112,7 +112,7 @@ namespace http
                                     current_filename = h;
                                  }
                                  size_t x = 0;
-                                 for (int i = 0; i < current_filename.get_length(); i++)
+                                 for (int32_t i = 0; i < current_filename.get_length(); i++)
                                  {
                                     if (current_filename[i] == '/' || current_filename[i] == '\\')
                                        x = i + 1;
@@ -148,7 +148,7 @@ namespace http
                   {
                      // read until m_strBoundary...
 //                     FILE *fil;
-                     int out = 0;
+                     int32_t out = 0;
                      char c;
                      string strTempFile = System.file().time_square(get_app());
                      ex1::filesp spfile(Application.get_file(strTempFile, ::ex1::file::type_binary | ::ex1::file::mode_create | ::ex1::file::mode_write));
@@ -222,7 +222,7 @@ namespace http
          infil->read_string(str);
          m_setPost.parse_url_query(str);
    /*      bool got_name = false; // tnx to FatherNitwit
-         int cl = (int)content_length;
+         int32_t cl = (int32_t)content_length;
          char c,chigh,clow;
          string slask;
    //      m_current = m_cgi.end();

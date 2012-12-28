@@ -31,7 +31,7 @@ BEGIN_EXTERN_C
 #ifdef FLOAT_LOOKUP
 extern float vorbis_coslook(float a);
 extern float vorbis_invsqlook(float a);
-extern float vorbis_invsq2explook(int a);
+extern float vorbis_invsq2explook(int32_t a);
 extern float vorbis_fromdBlook(float a);
 #endif
 #ifdef INT_LOOKUP

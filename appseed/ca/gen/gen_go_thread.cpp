@@ -21,7 +21,7 @@ void go_thread::start()
    m_bRelease = m_bStartRelease;
 }
 
-int go_thread::run()
+int32_t go_thread::run()
 {
    while(get_run() && !m_bRelease)
    {

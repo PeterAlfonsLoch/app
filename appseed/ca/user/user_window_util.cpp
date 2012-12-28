@@ -16,9 +16,9 @@ namespace user
    void oswindow_array::SortSiblingsByZOrder()
    {
       oswindow oswindowSwap;
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
-         for(int j = i + 1; j < this->get_size(); j++)
+         for(int32_t j = i + 1; j < this->get_size(); j++)
          {
             if(window_util::GetZOrder(this->element_at(i)) > window_util::GetZOrder(this->element_at(j)))
             {
@@ -35,7 +35,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      int iOrder = 0;
+      int32_t iOrder = 0;
       oswindow oswindowOrder = ::GetDesktopWindow();
       oswindowOrder = ::GetWindow(oswindowOrder, GW_CHILD);
       while(oswindowOrder != NULL
@@ -115,7 +115,7 @@ namespace user
    Carray < ::ca::window *, ::ca::window * > wndpa3;
    Carray < ::ca::window *, ::ca::window * > wndpa4;
 
-   for(int i = 0; i < wndpa2.get_size(); i++)
+   for(int32_t i = 0; i < wndpa2.get_size(); i++)
    {
    if(wndpa.find_first(wndpa2[i]) >= 0)
    {
@@ -164,7 +164,7 @@ namespace user
    Carray < oswindow, oswindow > oswindowa3;
    Carray < oswindow, oswindow > oswindowa4;
 
-   for(int i = 0; i < oswindowa2.get_size(); i++)
+   for(int32_t i = 0; i < oswindowa2.get_size(); i++)
    {
    if(oswindowa.find_first(oswindowa2[i]) >= 0)
    {
@@ -205,7 +205,7 @@ namespace user
 
    EnumChildren(oswindow, oswindowa);
 
-   for(int i = 0; i < oswindowa.get_size(); i++)
+   for(int32_t i = 0; i < oswindowa.get_size(); i++)
    {
    oswindow oswindowChild = oswindowa[i];
    rect rectChild;
@@ -276,7 +276,7 @@ namespace user
 
    void oswindow_tree::Array::EnumDescendants()
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          this->element_at(i).EnumDescendants();
       }
@@ -299,9 +299,9 @@ namespace user
       return * this;
    }
 
-   int oswindow_tree::compare_oswindow(oswindow_tree &tree1, oswindow_tree &tree2)
+   int32_t oswindow_tree::compare_oswindow(oswindow_tree &tree1, oswindow_tree &tree2)
    {
-      return (int) ((byte *) (void *) tree1.m_oswindow - (byte *) (void *) tree2.m_oswindow);
+      return (int32_t) ((byte *) (void *) tree1.m_oswindow - (byte *) (void *) tree2.m_oswindow);
    }
 
    int_ptr oswindow_tree::Array::find(oswindow oswindow)
@@ -316,7 +316,7 @@ namespace user
    {
       if(oswindow == NULL)
          return true;
-      int i;
+      int32_t i;
       for(i = 0; i < this->get_size();)
       {
          oswindow_tree & tree = this->element_at(i);
@@ -347,7 +347,7 @@ namespace user
    {
       remove_all();
       oswindow_tree oswindowtree;
-      for(int i = 0; i < oswindowa.get_size(); i++)
+      for(int32_t i = 0; i < oswindowa.get_size(); i++)
       {
          oswindowtree.m_oswindow = oswindowa[i];
          add(oswindowtree);
@@ -439,7 +439,7 @@ namespace user
    interaction_ptr_array wndpa3;
    interaction_ptr_array wndpa4;
 
-   int i;
+   int32_t i;
    for( i = 0; i < wndpa2.get_size(); i++)
    {
    if(wndpa.find_first(wndpa2[i]) >= 0)
@@ -463,7 +463,7 @@ namespace user
    /*void window_util::ExcludeChild(interaction_ptr_array & wndpa)
    {
 
-   for(int i = 0; i < wndpa.get_size();)
+   for(int32_t i = 0; i < wndpa.get_size();)
    {
    if(wndpa[i]->get_parent() != NULL)
    {
@@ -669,9 +669,9 @@ namespace user
       int_array ia2;
       oswindow oswindowSwap;
 
-      for(int i = 0; i < oswindowa.get_size(); i++)
+      for(int32_t i = 0; i < oswindowa.get_size(); i++)
       {
-         for(int j = i + 1; j < oswindowa.get_size(); j++)
+         for(int32_t j = i + 1; j < oswindowa.get_size(); j++)
          {
             try
             {
@@ -692,10 +692,10 @@ namespace user
 
    }
 
-   int window_util::GetZOrder(oswindow oswindow)
+   int32_t window_util::GetZOrder(oswindow oswindow)
    {
 #if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
-//      int iOrder = 0;
+//      int32_t iOrder = 0;
       ::oswindow oswindowOrder = ::ca::null();
       try
       {
@@ -708,7 +708,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      int iOrder = 0;
+      int32_t iOrder = 0;
 
       while(oswindowOrder != NULL && ::IsWindow(oswindowOrder))
       {
@@ -740,7 +740,7 @@ namespace user
 
 #ifdef WINDOWSEX
 
-      int iOrder;
+      int32_t iOrder;
       ia.remove_all();
       while(true)
       {
@@ -783,7 +783,7 @@ namespace user
 
       EnumChildren(oswindow, oswindowa);
 
-      for(int i = 0; i < oswindowa.get_size(); i++)
+      for(int32_t i = 0; i < oswindowa.get_size(); i++)
       {
 
          ::oswindow oswindowChild = oswindowa[i];
@@ -867,7 +867,7 @@ namespace user
 
    ::user::interaction * interaction_ptr_array::find_first(::ca::type_info info)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          if(typeid(*this->element_at(i)).name() == info.name())
          {
@@ -880,7 +880,7 @@ namespace user
    ::user::interaction * interaction_ptr_array::find_first(oswindow oswindow)
    {
 
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
 
          if(this->element_at(i)->get_safe_handle() == oswindow)
@@ -897,7 +897,7 @@ namespace user
    void interaction_ptr_array::get_wnda(oswindow_array & oswindowa)
    {
       oswindowa.remove_all();
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          oswindowa.add(this->element_at(i)->get_handle());
       }
@@ -905,7 +905,7 @@ namespace user
 
    void interaction_ptr_array::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          try
          {
@@ -919,7 +919,7 @@ namespace user
 
    void interaction_ptr_array::send_message_to_descendants(UINT uiMessage, WPARAM wparam, LPARAM lparam, bool bRecursive)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          try
          {

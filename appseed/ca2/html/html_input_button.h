@@ -11,7 +11,7 @@ namespace html
       {
       public:
 
-         int m_iFont;
+         int32_t m_iFont;
          ::user::button * m_pbutton;
          input_button(data * pdoc);
          virtual ~input_button();

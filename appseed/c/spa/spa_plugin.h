@@ -3,7 +3,7 @@
 #include "c/os/os.h"
 
 
-int spaboot_start(const char * pszVersion, const char * pszId);
+int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 
 namespace spa
@@ -68,7 +68,7 @@ namespace spa
 
       virtual bool calc_logged();
 
-      //int starter_start(const char * pszId);
+      //int32_t starter_start(const char * pszId);
 
       virtual bool initialize();
 
@@ -85,7 +85,7 @@ namespace spa
 
 #else
 
-      virtual int message_handler(XEvent * pevent);
+      virtual int32_t message_handler(XEvent * pevent);
 
 #endif
 
@@ -97,9 +97,9 @@ namespace spa
 
 #ifndef METROWIN
 
-      virtual void on_post(small_ipc_rx_channel * prxchannel, int a, int b);
+      virtual void on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b);
 
-      virtual void on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len);
+      virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
 
 #endif
 

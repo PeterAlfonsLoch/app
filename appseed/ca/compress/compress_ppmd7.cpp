@@ -336,7 +336,7 @@ void Ppmd7_Init(CPpmd7 *p, unsigned maxOrder)
   p->DummySee.Count = 64; /* unused */
 }
 
-static CTX_PTR CreateSuccessors(CPpmd7 *p, int skip)
+static CTX_PTR CreateSuccessors(CPpmd7 *p, int32_t skip)
 {
   CPpmd_State upState;
   CTX_PTR c = p->MinContext;

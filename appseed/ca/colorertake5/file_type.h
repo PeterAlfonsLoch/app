@@ -40,7 +40,7 @@ public:
       @return Parameter name with index <code>idx</code> or <code>NULL</code>
       if index is too large.
   */
-  virtual string enumerateParameters(int idx) = 0;
+  virtual string enumerateParameters(int32_t idx) = 0;
 
   virtual string getParameterDescription(const char * name) = 0;
 

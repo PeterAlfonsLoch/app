@@ -69,7 +69,7 @@ namespace ex2
 
       virtual bool finalize();
 
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
       virtual ::ex1::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);

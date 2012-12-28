@@ -62,7 +62,7 @@ namespace user
       Array m_oswindowtreea;
       public:
          void EnumDescendants();
-      static int compare_oswindow(oswindow_tree & tree1,  oswindow_tree & tree2);
+      static int32_t compare_oswindow(oswindow_tree & tree1,  oswindow_tree & tree2);
       public:
       oswindow_tree & operator = (const oswindow_tree & tree);
    };
@@ -87,7 +87,7 @@ namespace user
          WPARAM wParam, LPARAM lParam, bool bDeep);
       static bool IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant);
 
-      static int GetZOrder(oswindow oswindow);
+      static int32_t GetZOrder(oswindow oswindow);
       static void GetZOrder(oswindow oswindow, int_array & ia);
 
 //      static HRGN GetAClipRgn(oswindow oswindow, POINT ptOffset, bool bExludeChilren);

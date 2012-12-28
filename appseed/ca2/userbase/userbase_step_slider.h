@@ -10,7 +10,7 @@ namespace userbase
    public:
 
 
-      int            m_iScalar;
+      int32_t            m_iScalar;
       IntScalar *    m_pscalar;
 
 
@@ -18,8 +18,8 @@ namespace userbase
       
       
       bool        m_bHover;
-      int         m_iHover;
-      int         m_iLButtonDown;
+      int32_t         m_iHover;
+      int32_t         m_iLButtonDown;
 
 
    public:
@@ -31,10 +31,10 @@ namespace userbase
       virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
       virtual void _001OnDraw(::ca::graphics * pdc);
-      void GetStepHoverRect(int iStep, LPRECT lprect);
-      void GetStepRect(int iStep, LPRECT lprect);
+      void GetStepHoverRect(int32_t iStep, LPRECT lprect);
+      void GetStepRect(int32_t iStep, LPRECT lprect);
 
-      int hit_test(point point);
+      int32_t hit_test(point point);
 
       void UpdateHover();
 

@@ -147,7 +147,7 @@ public:
       if (m_strValue.is_empty())
          return (0);
 
-      int i;
+      int32_t i;
       for (i = 0; i < sizeof(_szUnits)/sizeof(_szUnits[0]); i++)
       {
          if (m_strValue.Right(::strlen(_szUnits[i])). \
@@ -198,7 +198,7 @@ public:
       { return (::strtod(m_strValue, NULL)); }
 
    /**
-    * Converts attribute value to signed short int
+    * Converts attribute value to signed short int32_t
     * @return 0 on failure, otherwise, an integer value
     * @since 1.0
     * @author Gurmeet S. Kochar
@@ -280,7 +280,7 @@ public:
             m_parrAttrib->set_size(nElemCount);
 
             /** DEEP COPY BEGIN */
-            for (int iElem = 0; iElem < nElemCount; iElem++)
+            for (int32_t iElem = 0; iElem < nElemCount; iElem++)
             {
                if ((pItem = new LiteHTMLElemAttr(rSource[iElem])) == NULL)
                {
@@ -331,11 +331,11 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   int getIndexFromName(const char * lpszAttributeName) const
+   int32_t getIndexFromName(const char * lpszAttributeName) const
    {
       ASSERT(__is_valid_string(lpszAttributeName));
       LiteHTMLElemAttr   *pItem = NULL;
-      for (int iElem = 0; iElem < getCount(); iElem++)
+      for (int32_t iElem = 0; iElem < getCount(); iElem++)
       {
          if ((pItem = (*m_parrAttrib)[iElem]) == NULL)   // just in case
             continue;
@@ -354,7 +354,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr operator[](int nIndex) const
+   LiteHTMLElemAttr operator[](int32_t nIndex) const
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
       {
@@ -384,7 +384,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   LiteHTMLElemAttr getAttribute(int nIndex) const
+   LiteHTMLElemAttr getAttribute(int32_t nIndex) const
       { return ((*this)[nIndex]); }
 
    /**
@@ -407,7 +407,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getName(int nIndex) const
+   string getName(int32_t nIndex) const
       { return ((*this)[nIndex].m_strName); }
 
    /**
@@ -417,7 +417,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   string getValue(int nIndex) const
+   string getValue(int32_t nIndex) const
       { return ((*this)[nIndex].m_strValue); }
 
    /**
@@ -457,7 +457,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool removeAttribute(int nIndex)
+   bool removeAttribute(int32_t nIndex)
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
          return (false);
@@ -476,7 +476,7 @@ public:
    bool removeAll()
    {
       LiteHTMLElemAttr   *pItem = NULL;
-      for (int iElem = 0; iElem < getCount(); iElem++)
+      for (int32_t iElem = 0; iElem < getCount(); iElem++)
       {
          VERIFY((pItem = (*m_parrAttrib)[iElem]) != NULL);
          SAFE_DELETE_POINTER(pItem);

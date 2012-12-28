@@ -193,8 +193,8 @@ namespace filemanager
       oswindow oswindowDesktop = ::GetDesktopWindow();
       rect rectOpen;
       ::GetWindowRect(oswindowDesktop, rectOpen);
-      int iWidth = rectOpen.width();
-      int iHeight = rectOpen.width();
+      int32_t iWidth = rectOpen.width();
+      int32_t iHeight = rectOpen.width();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
       pview->GetParentFrame()->SetWindowPos(ZORDER_TOP, rectOpen.left,
          rectOpen.top,

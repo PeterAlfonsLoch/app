@@ -230,7 +230,7 @@ namespace radix
 // Diagnostic Support
 
 //#ifdef DEBUG
-void assert_valid_object(const ::radix::object * pOb, const char * lpszFileName, int nLine)
+void assert_valid_object(const ::radix::object * pOb, const char * lpszFileName, int32_t nLine)
 {
    if (pOb == NULL)
    {

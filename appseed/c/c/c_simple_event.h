@@ -18,7 +18,7 @@ public:
    simple_mutex      m_mutex;
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
-   int               m_iSignalId;  // meaningful only when m_bManualEvent
+   int32_t               m_iSignalId;  // meaningful only when m_bManualEvent
 #endif
 
 

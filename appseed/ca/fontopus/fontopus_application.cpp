@@ -34,10 +34,10 @@ namespace fontopus
    }
 
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
 
-      int iExitCode = 0;
+      int32_t iExitCode = 0;
 
       try
       {
@@ -68,7 +68,7 @@ namespace fontopus
       gen::property_set set(get_app());
       if(m_puser == NULL)
       {
-         int iRetry = 3;
+         int32_t iRetry = 3;
          ::fontopus::user * puser = NULL;
          while(iRetry > 0)
          {

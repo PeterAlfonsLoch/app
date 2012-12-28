@@ -27,7 +27,7 @@ namespace ca
 
 	///  \brief		global function to set thread priority for current thread
 	///  \param		new priority
-	inline bool set_thread_priority(int priority)
+	inline bool set_thread_priority(int32_t priority)
 	{
 
 #ifdef WINDOWS
@@ -44,7 +44,7 @@ namespace ca
 
 	///  \brief		global function to get thread priority for current thread
 	///  \return	priority of current thread
-	inline int thread_priority()
+	inline int32_t thread_priority()
 	{
 
 #ifdef WINDOWS
@@ -94,13 +94,13 @@ public:
 
 #ifdef WINDOWS
 
-CLASS_DECL_c HANDLE start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int iPriority = 0);
+CLASS_DECL_c HANDLE start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int32_t iPriority = 0);
 
 CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, DWORD f, LPDWORD lpdwId);
 
 #else
 
-CLASS_DECL_c simple_event * start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int iPriority = 0);
+CLASS_DECL_c simple_event * start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int32_t iPriority = 0);
 
 CLASS_DECL_c simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, DWORD f, LPDWORD lpdwId);
 
@@ -113,8 +113,8 @@ class CLASS_DECL_c thread_layer
 public:
 
 
-   int               m_iSleepiness;
-   int               m_iResult;
+   int32_t               m_iSleepiness;
+   int32_t               m_iResult;
 
 #ifdef WINDOWS
    HANDLE            m_hthread;
@@ -133,7 +133,7 @@ public:
 
    static DWORD WINAPI proc(LPVOID lp);
 
-   virtual int run();
+   virtual int32_t run();
    virtual bool on_idle();
 
    virtual void wait_thread(DWORD dwMillis = INFINITE);

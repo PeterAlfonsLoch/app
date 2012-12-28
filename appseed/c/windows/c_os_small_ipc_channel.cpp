@@ -21,8 +21,8 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
       close();
 
 
-   int jCount = 23;
-   int iCount;
+   int32_t jCount = 23;
+   int32_t iCount;
 
    if(plauncher != NULL)
       iCount = 11;
@@ -31,9 +31,9 @@ bool small_ipc_tx_channel::open(const char * pszKey, launcher * plauncher)
 
    m_oswindow = NULL;
 
-   for(int i = 0; i < iCount; i++)
+   for(int32_t i = 0; i < iCount; i++)
    {
-      for(int j = 0; j < jCount; j++)
+      for(int32_t j = 0; j < jCount; j++)
       {
          m_oswindow = ::FindWindow(NULL, pszKey);
          if(m_oswindow != NULL)
@@ -107,7 +107,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    return true;
 }
 
-bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTimeout)
+bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, DWORD dwTimeout)
 {
 
    if(message == 0x80000000)
@@ -223,11 +223,11 @@ void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchanne
 {
 }
 
-void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
 {
 }
 
-void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b)
 {
 }
 
@@ -245,7 +245,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const
 
 }
 
-void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
 {
 
    if(m_preceiver != NULL)
@@ -260,7 +260,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int m
 }
 
 
-void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b)
 {
 
    if(m_preceiver != NULL)
@@ -278,7 +278,7 @@ void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, i
 LRESULT CALLBACK small_ipc_rx_channel::s_message_window_proc(oswindow oswindow, UINT message, WPARAM wparam, LPARAM lparam)
 {
 
-   int iRet = 0;
+   int32_t iRet = 0;
 
    small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *) GetWindowLongPtr(oswindow, GWLP_USERDATA);
 
@@ -346,7 +346,7 @@ LRESULT small_ipc_rx_channel::message_window_proc(UINT message, WPARAM wparam, L
       else 
       {
 
-         on_receive(this, (int) pcds->dwData, pcds->lpData, pcds->cbData);
+         on_receive(this, (int32_t) pcds->dwData, pcds->lpData, pcds->cbData);
 
       }
 

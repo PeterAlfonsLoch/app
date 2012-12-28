@@ -18,7 +18,7 @@ namespace n7z
       CBindInfoEx &bindInfo)
    {
       bindInfo.remove_all();
-      int i;
+      int32_t i;
       for (i = 0; i < folder.BindPairs.get_count(); i++)
       {
          ::compress::coder_mixer::CBindPair bindPair;
@@ -60,7 +60,7 @@ namespace n7z
    {
       if (a1.Coders.get_count() != a2.Coders.get_count())
          return false;
-      int i;
+      int32_t i;
       for (i = 0; i < a1.Coders.get_count(); i++)
          if (!AreCodersEqual(a1.Coders[i], a2.Coders[i]))
             return false;
@@ -113,7 +113,7 @@ namespace n7z
       ::ex1::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
 
-      for (int j = 0; j < folderInfo.PackStreams.get_count(); j++)
+      for (int32_t j = 0; j < folderInfo.PackStreams.get_count(); j++)
       {
          ::ex1::locked_reader *lockedStreamImpSpec = new ::ex1::locked_reader;
          ::ca::smart_pointer < ::ex1::reader > lockedStreamImp = lockedStreamImpSpec;
@@ -139,7 +139,7 @@ namespace n7z
          createNewCoders = !AreBindInfoExEqual(bindInfo, _bindInfoExPrev);
       if (createNewCoders)
       {
-         int i;
+         int32_t i;
          _decoders.remove_all();
          // _decoders2.clear();
 
@@ -213,7 +213,7 @@ namespace n7z
          _bindInfoExPrev = bindInfo;
          _bindInfoExPrevIsDefined = true;
       }
-      int i;
+      int32_t i;
       _mixerCoderCommon->ReInit();
 
       uint32 packStreamIndex = 0, unpackStreamIndex = 0;
@@ -268,7 +268,7 @@ namespace n7z
                wstring password(gen::international::utf8_to_unicode(passwordBSTR));
                const uint32 sizeInBytes = (const uint32_t ) (password.get_length() * 2);
                buffer.SetCapacity(sizeInBytes);
-               for (int i = 0; i < password.get_length(); i++)
+               for (int32_t i = 0; i < password.get_length(); i++)
                {
                   wchar_t c = password[i];
                   ((byte *)buffer)[i * 2] = (byte)c;
@@ -292,13 +292,13 @@ namespace n7z
 
          for (j = 0; j < numInStreams; j++, packStreamIndex++)
          {
-            int bindPairIndex = folderInfo.FindBindPairForInStream(packStreamIndex);
+            int32_t bindPairIndex = folderInfo.FindBindPairForInStream(packStreamIndex);
             if (bindPairIndex >= 0)
                packSizesPointers.add(
                &folderInfo.UnpackSizes[(uint32)folderInfo.BindPairs[bindPairIndex].OutIndex]);
             else
             {
-               int index = folderInfo.FindPackStreamArrayIndex(packStreamIndex);
+               int32_t index = folderInfo.FindPackStreamArrayIndex(packStreamIndex);
                if (index < 0)
                   return E_FAIL;
                packSizesPointers.add(&packSizes[index]);

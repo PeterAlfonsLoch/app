@@ -54,23 +54,23 @@ namespace n7z
          FillFolderStartFileIndex();
       }
 
-      file_position GetFolderStreamPos(int folderIndex, int indexInFolder) const
+      file_position GetFolderStreamPos(int32_t folderIndex, int32_t indexInFolder) const
       {
          return ArchiveInfo.DataStartPosition +
             PackStreamStartPositions[FolderStartPackStreamIndex[folderIndex] + indexInFolder];
       }
 
-      file_size GetFolderFullPackSize(int folderIndex) const
+      file_size GetFolderFullPackSize(int32_t folderIndex) const
       {
          CNum packStreamIndex = FolderStartPackStreamIndex[folderIndex];
          const CFolder &folder = Folders[folderIndex];
          file_size size = 0;
-         for (int i = 0; i < folder.PackStreams.get_count(); i++)
+         for (int32_t i = 0; i < folder.PackStreams.get_count(); i++)
             size += PackSizes[packStreamIndex + i];
          return size;
       }
 
-      file_size GetFolderPackStreamSize(int folderIndex, int streamIndex) const
+      file_size GetFolderPackStreamSize(int32_t folderIndex, int32_t streamIndex) const
       {
          return PackSizes[FolderStartPackStreamIndex[folderIndex] + streamIndex];
       }
@@ -158,7 +158,7 @@ namespace n7z
 
       void ReadArchiveProperties(CInArchiveInfo &archiveInfo);
       void GetNextFolderItem(CFolder &itemInfo);
-      void ReadHashDigests(int numItems,
+      void ReadHashDigests(int32_t numItems,
          bool_array &digestsDefined, base_array<uint32> &digests);
 
       void ReadPackInfo(
@@ -191,9 +191,9 @@ namespace n7z
          base_array<uint32> &digests);
 
 
-      void ReadBoolVector(int numItems, bool_array &v);
-      void ReadBoolVector2(int numItems, bool_array &v);
-      void ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer > &dataVector, CUInt64DefVector &v, int numFiles);
+      void ReadBoolVector(int32_t numItems, bool_array &v);
+      void ReadBoolVector2(int32_t numItems, bool_array &v);
+      void ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
          ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
          file_position baseOffset, file_position &dataOffset,

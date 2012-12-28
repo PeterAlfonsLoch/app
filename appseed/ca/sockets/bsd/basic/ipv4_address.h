@@ -71,7 +71,7 @@ namespace sockets
       port_t GetPort();
 
       void SetAddress(struct sockaddr *sa);
-      int GetFamily();
+      int32_t GetFamily();
 
       bool IsValid();
 

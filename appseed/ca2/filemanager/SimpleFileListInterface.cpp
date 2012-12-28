@@ -91,7 +91,7 @@ namespace filemanager
 
          get_fs_list_data()->m_itema.SetItemCount(stra.get_size());
 
-         for(int i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
 
             item.m_flags.unsignalize_all();
@@ -133,10 +133,10 @@ namespace filemanager
 
       dwTimeIn = GetTickCount();
 
-      int iMaxSize;
+      int32_t iMaxSize;
       iMaxSize = 1000;
 
-      int iSize;
+      int32_t iSize;
       iSize = 0;
 
       m_itema.SetItemCount(iMaxSize);
@@ -155,7 +155,7 @@ namespace filemanager
          System.dir().ls(lpcsz, &straPath, & straTitle);
       }
 
-      for(int i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
          if(Application.dir().is(straPath[i]))
@@ -243,7 +243,7 @@ namespace filemanager
       _001RedrawWindow();
 
       file_size_add_request(true);
-   /*   for(int i = 0; i < m_itema.get_item_count(); i++)
+   /*   for(int32_t i = 0; i < m_itema.get_item_count(); i++)
       {
          pset->m_table.add_request(m_itema.get_item(i).m_strPath);
       }*/
@@ -275,7 +275,7 @@ namespace filemanager
       string wstrExtraPath;
       string wstrItemExtra;
 
-      int iFind;
+      int32_t iFind;
       ex1::filesp spfile(get_app());
 
       //spfile->open(szPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
@@ -288,8 +288,8 @@ namespace filemanager
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
       base_array < gen::memory_file, gen::memory_file & > filea;
-      int iStart = 0;
-      int iFind;
+      int32_t iStart = 0;
+      int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
       {
          filea.add(gen::memory_file());
@@ -311,7 +311,7 @@ namespace filemanager
       string wstrFolder;
       stringa wstraFolder;
       string wstrItem;
-      for(int i = 0; i < wstraItem.get_size(); i++)
+      for(int32_t i = 0; i < wstraItem.get_size(); i++)
       {
          wstrItem = wstraItem[i];
 
@@ -395,13 +395,13 @@ namespace filemanager
    {
    }
 
-   int SimpleFileListInterface::create_image_list_thread::run()
+   int32_t SimpleFileListInterface::create_image_list_thread::run()
    {
-      int iStepSetCount = 84;
-      int iStepSetSleep = 23;
+      int32_t iStepSetCount = 84;
+      int32_t iStepSetSleep = 23;
       while(get_run())
       {
-         int i = iStepSetCount;
+         int32_t i = iStepSetCount;
          while(i > 0 && get_run())
          {
             if(!m_plist->_001CreateImageListStep())
@@ -444,7 +444,7 @@ namespace filemanager
 
       if(pcolumn != NULL && pcolumn->m_iSubItem == m_iNameSubItem)
       {
-         ::fs::list_item & item = get_fs_list_data()->m_itema.get_item((int) m_iCreateImageListStep);
+         ::fs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t) m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = System.shellimageset().GetImage(
@@ -477,7 +477,7 @@ namespace filemanager
 
        ::user::list_column column;
 
-      int iCount = 0;
+      int32_t iCount = 0;
 
       FileManagerFileListCallback * pcallback =
          GetFileManager()->get_filemanager_data()->m_ptemplate->m_pfilelistcallback;
@@ -1010,7 +1010,7 @@ namespace filemanager
       BaseButtonControl * pbutton = dynamic_cast < BaseButtonControl * > (pcontrol);
       if(pcallback != NULL && pbutton != NULL)
       {
-         pcallback->InitializeActionButton(((int) pcontrol->descriptor().m_id) - 1000, pbutton);
+         pcallback->InitializeActionButton(((int32_t) pcontrol->descriptor().m_id) - 1000, pbutton);
       }
    }
 
@@ -1033,7 +1033,7 @@ namespace filemanager
          {
             iStrict = m_listlayout.m_iaDisplayToStrict[iItem];
          }
-         pcallback->OnButtonAction((int) pcontrol->descriptor().m_id - 1000, cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iStrict)));
+         pcallback->OnButtonAction((int32_t) pcontrol->descriptor().m_id - 1000, cast < ::fs::item > (get_fs_list_data()->m_itema.get_item(iStrict)));
       }
    }
 
@@ -1148,14 +1148,14 @@ namespace filemanager
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       /*if(pshow->m_bShow)
       {
-         for(int i = 0; i < m_itema.get_item_count(); i++)
+         for(int32_t i = 0; i < m_itema.get_item_count(); i++)
          {
             pset->m_table.add_request(m_itema.get_item(i).m_strPath);
          }
       }
       else
       {
-         for(int i = 0; i < m_itema.get_item_count(); i++)
+         for(int32_t i = 0; i < m_itema.get_item_count(); i++)
          {
             pset->m_table.remove_request(m_itema.get_item(i).m_strPath);
          }
@@ -1173,7 +1173,7 @@ namespace filemanager
 
 //      int64_t iSize;
 //      bool bPending;
-      for(int i = 0; i < get_fs_list_data()->m_itema.get_count(); i++)
+      for(int32_t i = 0; i < get_fs_list_data()->m_itema.get_count(); i++)
       {
          //pset->get_cache_fs_size(iSize, m_itema.get_item(i).m_strPath, bPending);
       }

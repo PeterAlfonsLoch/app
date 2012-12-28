@@ -34,7 +34,7 @@ namespace ex1
 
 
 
-      int      m_cause;
+      int32_t      m_cause;
       LONG     m_lOsError;
       string   m_strFileName;
       string   m_strAdd;
@@ -48,13 +48,13 @@ namespace ex1
       {
       }
 
-      file_exception(::ca::application * papp, int cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      file_exception(::ca::application * papp, int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
-      virtual void Construct(int cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
+      virtual void Construct(int32_t cause = file_exception::none, LONG lOsError = -1, const char * lpszArchiveName = NULL);
 
       virtual ~file_exception();
 
-      virtual int get_cause();
+      virtual int32_t get_cause();
       virtual LONG get_os_error();
       virtual string get_file_path();
 

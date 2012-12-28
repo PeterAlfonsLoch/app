@@ -22,11 +22,11 @@ factory::factory(::ca::application * papp) :
 factory::~factory()
 {
    single_lock sl(m_pmutex, TRUE);
-   for(int i = 0; i < m_itemptra.get_count(); i++)
+   for(int32_t i = 0; i < m_itemptra.get_count(); i++)
    {
       delete m_itemptra[i];
    }
-   for(int i = 0; i < m_itemptraAllocator.get_count(); i++)
+   for(int32_t i = 0; i < m_itemptraAllocator.get_count(); i++)
    {
       delete m_itemptraAllocator[i];
    }
@@ -95,7 +95,7 @@ void factory::enable_simple_factory_request(bool bEnable)
    m_bSimpleFactoryRequest = bEnable;
    if(!bEnable)
    {
-      for(int i = 0; i < m_typeinfoptraSimpleFactoryRequest.get_count(); i++)
+      for(int32_t i = 0; i < m_typeinfoptraSimpleFactoryRequest.get_count(); i++)
       {
          try
          {

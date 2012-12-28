@@ -24,7 +24,7 @@ namespace colorertake5
    {
       VirtualEntryVector *vlist;
       VTList *prev, *next, *last, *shadowlast;
-      int nodesnum;
+      int32_t nodesnum;
    public:
       VTList();
       ~VTList();

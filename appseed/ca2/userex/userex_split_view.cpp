@@ -41,7 +41,7 @@ namespace userex
 
    }
 
-   bool split_view::create_pane(int iPane, bool bFixedSize, ::id id)
+   bool split_view::create_pane(int32_t iPane, bool bFixedSize, ::id id)
    {
 
       ASSERT(iPane >= 0);

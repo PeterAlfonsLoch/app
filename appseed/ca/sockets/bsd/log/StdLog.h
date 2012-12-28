@@ -48,7 +48,7 @@ namespace sockets
 
       virtual void error(socket_handler_base *,socket *,
          const string & user_text,
-         int err,
+         int32_t err,
          const string & sys_err,
          ::gen::log::level::e_level elevel = ::gen::log::level::warning) = 0;
    };

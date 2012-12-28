@@ -1,10 +1,10 @@
 #pragma once
 
 template < typename N >
-inline int msb(N n)
+inline int32_t msb(N n)
 {
 
-   register int i = sizeof(N) * 8;
+   register int32_t i = sizeof(N) * 8;
 
    do
    {
@@ -139,7 +139,7 @@ namespace primitive
 
       memory_base & prefix_der_uint_content();
       memory_base & prefix_der_length();
-      memory_base & prefix_der_type(int iType);
+      memory_base & prefix_der_type(int32_t iType);
 
       memory_base & prefix_der_uint();
       memory_base & prefix_der_sequence();
@@ -485,7 +485,7 @@ namespace primitive
 
       strsize iLen = strTo.get_length() - 1;
 
-      for(int i = 0; i < iLen; i+=2)
+      for(int32_t i = 0; i < iLen; i+=2)
       {
 
          if(strTo[i] <= '9')

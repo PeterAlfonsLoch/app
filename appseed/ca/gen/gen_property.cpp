@@ -29,12 +29,12 @@ namespace gen
       return true;
    }
 
-   int pair_set_interface::pair_set_interface_find(const char * pszKey, int iStart) const
+   int32_t pair_set_interface::pair_set_interface_find(const char * pszKey, int32_t iStart) const
    {
-      int iCount = pair_set_interface_get_count();
+      int32_t iCount = pair_set_interface_get_count();
       if(get_key_case_insensitive())
       {
-         for(int i = iStart; i < iCount; i++)
+         for(int32_t i = iStart; i < iCount; i++)
          {
             if(string(pair_set_interface_get_key(i)).CompareNoCase(pszKey) == 0)
             {
@@ -44,7 +44,7 @@ namespace gen
       }
       else
       {
-         for(int i = iStart; i < iCount; i++)
+         for(int32_t i = iStart; i < iCount; i++)
          {
             if(string(pair_set_interface_get_key(i)) == pszKey)
             {
@@ -57,7 +57,7 @@ namespace gen
 
    var & pair_set_interface::operator[](const char * pszName)
    {
-      int iFind = pair_set_interface_find(pszName);
+      int32_t iFind = pair_set_interface_find(pszName);
       if(iFind >= 0)
          return pair_set_interface_get_value(iFind);
       if(get_auto_add())
@@ -74,7 +74,7 @@ namespace gen
 
    var pair_set_interface::operator[](const char * pszName) const
    {
-      int iFind = pair_set_interface_find(pszName);
+      int32_t iFind = pair_set_interface_find(pszName);
       if(iFind >= 0)
          return pair_set_interface_get_value(iFind);
       return ::var(::var::type_new);
@@ -94,12 +94,12 @@ namespace gen
       return true;
    }
 
-   int str_str_interface::str_str_interface_find(const char * pszKey, int iStart) const
+   int32_t str_str_interface::str_str_interface_find(const char * pszKey, int32_t iStart) const
    {
-      int iCount = str_str_interface_get_count();
+      int32_t iCount = str_str_interface_get_count();
       if(get_key_case_insensitive())
       {
-         for(int i = iStart; i < iCount; i++)
+         for(int32_t i = iStart; i < iCount; i++)
          {
             if(string(str_str_interface_get_key(i)).CompareNoCase(pszKey) == 0)
             {
@@ -109,7 +109,7 @@ namespace gen
       }
       else
       {
-         for(int i = iStart; i < iCount; i++)
+         for(int32_t i = iStart; i < iCount; i++)
          {
             if(string(str_str_interface_get_key(i)) == pszKey)
             {
@@ -133,7 +133,7 @@ namespace gen
 
    string_composite str_str_interface::operator[](const char * pszName)
    {
-      int iFind = str_str_interface_find(pszName);
+      int32_t iFind = str_str_interface_find(pszName);
       if(iFind >= 0)
          return str_str_interface_get_value(iFind);
       if(get_auto_add())
@@ -148,7 +148,7 @@ namespace gen
 
    const string_composite str_str_interface::operator[](const char * pszName) const
    {
-      int iFind = str_str_interface_find(pszName);
+      int32_t iFind = str_str_interface_find(pszName);
       if(iFind >= 0)
          return str_str_interface_get_value(iFind);
       return empty_string();
@@ -430,7 +430,7 @@ namespace gen
    }
 
 
-   int property::compare_value_ci(const char * psz) const
+   int32_t property::compare_value_ci(const char * psz) const
    {
       return get_value().compare_ci(psz);
    }
@@ -440,9 +440,9 @@ namespace gen
       return const_cast < property * >(this)->get_value();
    }
 
-   int property::str_compare(const property & prop) const
+   int32_t property::str_compare(const property & prop) const
    {
-      int iCompare = m_strName.Compare(prop.m_strName);
+      int32_t iCompare = m_strName.Compare(prop.m_strName);
       if(iCompare != 0)
          return iCompare;
       return get_string().Compare(prop.get_string());
@@ -473,7 +473,7 @@ namespace gen
       return get_value().strict_equal(d);
    }
 
-   bool property::strict_equal(int i) const
+   bool property::strict_equal(int32_t i) const
    {
       return get_value().strict_equal(i);
    }
@@ -509,7 +509,7 @@ namespace gen
       return get_value().strict_different(d);
    }
 
-   bool property::strict_different(int i) const
+   bool property::strict_different(int32_t i) const
    {
       return get_value().strict_different(i);
    }
@@ -540,7 +540,7 @@ namespace gen
       return get_value() == str;
    }
 
-   bool property::operator == (int i) const
+   bool property::operator == (int32_t i) const
    {
       return get_value() == i;
    }
@@ -571,7 +571,7 @@ namespace gen
       return get_value() != str;
    }
 
-   bool property::operator != (int i) const
+   bool property::operator != (int32_t i) const
    {
       return get_value() != i;
    }
@@ -624,7 +624,7 @@ namespace gen
       return get_value() < str;
    }
 
-   bool property::operator < (int i) const
+   bool property::operator < (int32_t i) const
    {
       return get_value() < i;
    }
@@ -678,7 +678,7 @@ namespace gen
       return get_value() <= str;
    }
 
-   bool property::operator <= (int i) const
+   bool property::operator <= (int32_t i) const
    {
       return get_value() <= i;
    }
@@ -731,7 +731,7 @@ namespace gen
       return get_value() >= str;
    }
 
-   bool property::operator >= (int i) const
+   bool property::operator >= (int32_t i) const
    {
       return get_value() >= i;
    }
@@ -784,7 +784,7 @@ namespace gen
       return get_value() > str;
    }
 
-   bool property::operator > (int i) const
+   bool property::operator > (int32_t i) const
    {
       return get_value() > i;
    }
@@ -797,12 +797,12 @@ namespace gen
 
 
 
-   var property::operator - (int i) const
+   var property::operator - (int32_t i) const
    {
       return get_value() - i;
    }
 
-   var property::operator - (unsigned int user) const
+   var property::operator - (unsigned int32_t user) const
    {
       return get_value() - user;
    }
@@ -830,12 +830,12 @@ namespace gen
 
 
 
-   var property::operator + (int i) const
+   var property::operator + (int32_t i) const
    {
       return get_value() + i;
    }
 
-   var property::operator + (unsigned int user) const
+   var property::operator + (unsigned int32_t user) const
    {
       return get_value() + user;
    }
@@ -906,12 +906,12 @@ namespace gen
 
 
 
-   var property::operator / (int i) const
+   var property::operator / (int32_t i) const
    {
       return get_value() / i;
    }
 
-   var property::operator / (unsigned int user) const
+   var property::operator / (unsigned int32_t user) const
    {
       return get_value() / user;
    }
@@ -939,12 +939,12 @@ namespace gen
 
 
 
-   var property::operator * (int i) const
+   var property::operator * (int32_t i) const
    {
       return get_value() * i;
    }
 
-   var property::operator * (unsigned int user) const
+   var property::operator * (unsigned int32_t user) const
    {
       return get_value() * user;
    }
@@ -1017,13 +1017,13 @@ namespace gen
 
 
 
-   property & property::operator -= (int i)
+   property & property::operator -= (int32_t i)
    {
       operator=(*this - i);
       return *this;
    }
 
-   property & property::operator -= (unsigned int user)
+   property & property::operator -= (unsigned int32_t user)
    {
       operator=(*this - user);
       return *this;
@@ -1113,13 +1113,13 @@ namespace gen
 
 
 
-   property & property::operator += (int i)
+   property & property::operator += (int32_t i)
    {
       operator=(*this + i);
       return *this;
    }
 
-   property & property::operator += (unsigned int user)
+   property & property::operator += (unsigned int32_t user)
    {
       operator=(*this + user);
       return *this;
@@ -1191,13 +1191,13 @@ namespace gen
 
 
 
-   property & property::operator /= (int i)
+   property & property::operator /= (int32_t i)
    {
       operator=(*this / i);
       return *this;
    }
 
-   property & property::operator /= (unsigned int user)
+   property & property::operator /= (unsigned int32_t user)
    {
       operator=(*this / user);
       return *this;
@@ -1257,13 +1257,13 @@ namespace gen
 
 
 
-   property & property::operator *= (int i)
+   property & property::operator *= (int32_t i)
    {
       operator=(*this * i);
       return *this;
    }
 
-   property & property::operator *= (unsigned int user)
+   property & property::operator *= (unsigned int32_t user)
    {
       operator=(*this * user);
       return *this;
@@ -1896,7 +1896,7 @@ namespace gen
 
       gen::property_set * pset = this;
 
-      int i = 0;
+      int32_t i = 0;
 
       while(i  < straKey.get_upper_bound())
       {
@@ -2174,7 +2174,7 @@ namespace gen
       stringa stra;
       stra.add_tokens(pszHeaders, "\r\n", TRUE);
       string strName;
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          strsize iPos = stra[i].find(":");
          if(iPos < 0)
@@ -2199,7 +2199,7 @@ namespace gen
    count property_set::remove_by_name(stringa & stra)
    {
       count count = 0;
-      for(int i = 0; i < stra.get_count(); i++)
+      for(int32_t i = 0; i < stra.get_count(); i++)
       {
          count += remove(stra[i]);
       }
@@ -2215,7 +2215,7 @@ namespace gen
    string property_set::get_http_post()
    {
       string strPost;
-      for(int i = 0; i < m_propertya.get_size(); i++)
+      for(int32_t i = 0; i < m_propertya.get_size(); i++)
       {
          strPost += m_propertya.element_at(i).name();
          strPost += "=";
@@ -2366,7 +2366,7 @@ namespace gen
       istream >> m_bMultiValue;
       istream >> m_bKeyCaseInsensitive;
       istream >> m_propertya;
-      for(int i = 0; i < m_propertya.get_count(); i++)
+      for(int32_t i = 0; i < m_propertya.get_count(); i++)
       {
          if(m_bKeyCaseInsensitive)
          {
@@ -2386,7 +2386,7 @@ namespace gen
       {
          str = m_propertya[0].get_value().get_string();
       }
-      for(int i = 1; i < m_propertya.get_count(); i++)
+      for(int32_t i = 1; i < m_propertya.get_count(); i++)
       {
          str += pszGlue;
          str += m_propertya[i].get_value().get_string();
@@ -2452,14 +2452,14 @@ namespace gen
       if(&set != this)
       {
          m_propertya.set_size(set.m_propertya.get_size());
-         for(int i = 0; i < set.m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
          {
             m_propertya[i] = set.m_propertya[i];
          }
          m_bAutoAdd              = set.m_bAutoAdd;
          m_bMultiValue           = set.m_bMultiValue;
          m_bKeyCaseInsensitive   = set.m_bKeyCaseInsensitive;
-         for(int i = 0; i < m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < m_propertya.get_count(); i++)
          {
             m_propertya[i].m_pset = this;
          }
@@ -2472,7 +2472,7 @@ namespace gen
    {
       if(&set != this)
       {
-         for(int i = 0; i < set.m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
          {
             ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].get_value();
          }
@@ -2484,7 +2484,7 @@ namespace gen
    {
       if(&set != this)
       {
-         for(int i = 0; i < set.m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
          {
             ((property &)operator[](set.m_propertya[i].name())).m_var = set.m_propertya[i].m_var;
          }
@@ -2507,8 +2507,8 @@ namespace gen
       //   if(&set != this)
       {
          m_propertya.remove_all();
-         int iCount = set.pair_set_interface_get_count();
-         for(int i = 0; i < iCount; i++)
+         int32_t iCount = set.pair_set_interface_get_count();
+         for(int32_t i = 0; i < iCount; i++)
          {
             string strKey = set.pair_set_interface_get_key(i);
             class var var = set.pair_set_interface_get_value(i);
@@ -2519,7 +2519,7 @@ namespace gen
          m_bAutoAdd              = set.get_auto_add();
          //m_bMultiValue           = set.m_bMultiValue;
          m_bKeyCaseInsensitive   = set.get_key_case_insensitive();
-         for(int i = 0; i < m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < m_propertya.get_count(); i++)
          {
             m_propertya[i].m_pset = this;
          }
@@ -2539,8 +2539,8 @@ namespace gen
       //   if(&set != this)
       {
          m_propertya.remove_all();
-         int iCount = set.str_str_interface_get_count();
-         for(int i = 0; i < iCount; i++)
+         int32_t iCount = set.str_str_interface_get_count();
+         for(int32_t i = 0; i < iCount; i++)
          {
             string strKey = set.str_str_interface_get_key(i);
             class var var = set.str_str_interface_get_value(i);
@@ -2551,7 +2551,7 @@ namespace gen
          m_bAutoAdd              = set.get_auto_add();
          //m_bMultiValue           = set.m_bMultiValue;
          m_bKeyCaseInsensitive   = set.get_key_case_insensitive();
-         for(int i = 0; i < m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < m_propertya.get_count(); i++)
          {
             m_propertya[i].m_pset = this;
          }
@@ -2746,13 +2746,13 @@ string CLASS_DECL_ca operator + (const string & str, const gen::property & prop)
 
 
 
-var CLASS_DECL_ca operator - (int i, const gen::property & prop)
+var CLASS_DECL_ca operator - (int32_t i, const gen::property & prop)
 {
    return i - prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator - (unsigned int user, const gen::property & prop)
+var CLASS_DECL_ca operator - (unsigned int32_t user, const gen::property & prop)
 {
    return user - prop.get_value();
 }
@@ -2802,13 +2802,13 @@ var CLASS_DECL_ca operator - (const gen::property & prop1, const gen::property &
 
 
 
-var CLASS_DECL_ca operator + (int i, const gen::property & prop)
+var CLASS_DECL_ca operator + (int32_t i, const gen::property & prop)
 {
    return i + prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (unsigned int user, const gen::property & prop)
+var CLASS_DECL_ca operator + (unsigned int32_t user, const gen::property & prop)
 {
    return user + prop.get_value();
 }
@@ -2858,13 +2858,13 @@ var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property &
 
 
 
-var CLASS_DECL_ca operator / (int i, const gen::property & prop)
+var CLASS_DECL_ca operator / (int32_t i, const gen::property & prop)
 {
    return i / prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator / (unsigned int user, const gen::property & prop)
+var CLASS_DECL_ca operator / (unsigned int32_t user, const gen::property & prop)
 {
    return user / prop.get_value();
 }
@@ -2914,13 +2914,13 @@ var CLASS_DECL_ca operator / (const gen::property & prop1, const gen::property &
 
 
 
-var CLASS_DECL_ca operator * (int i, const gen::property & prop)
+var CLASS_DECL_ca operator * (int32_t i, const gen::property & prop)
 {
    return i * prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator * (unsigned int user, const gen::property & prop)
+var CLASS_DECL_ca operator * (unsigned int32_t user, const gen::property & prop)
 {
    return user * prop.get_value();
 }

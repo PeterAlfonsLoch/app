@@ -28,7 +28,7 @@ void vorbis_bitrate_init(vorbis_info *vi,bitrate_manager_state *bm){
 
   if(bi && (bi->reservoir_bits>0)){
     long ratesamples=vi->rate;
-    int  halfsamples=ci->blocksizes[0]>>1;
+    int32_t  halfsamples=ci->blocksizes[0]>>1;
 
     bm->short_per_long=ci->blocksizes[1]/ci->blocksizes[0];
     bm->managed=1;
@@ -55,7 +55,7 @@ void vorbis_bitrate_clear(bitrate_manager_state *bm){
   return;
 }
 
-int vorbis_bitrate_managed(vorbis_block *vb){
+int32_t vorbis_bitrate_managed(vorbis_block *vb){
   vorbis_dsp_state      *vd=vb->vd;
   private_state         *b= (private_state *) vd->backend_state;
   bitrate_manager_state *bm=&b->bms;
@@ -65,7 +65,7 @@ int vorbis_bitrate_managed(vorbis_block *vb){
 }
 
 /* finish taking in the block we just processed */
-int vorbis_bitrate_addblock(vorbis_block *vb){
+int32_t vorbis_bitrate_addblock(vorbis_block *vb){
   vorbis_block_internal *vbi=(vorbis_block_internal *)vb->internal;
   vorbis_dsp_state      *vd=vb->vd;
   private_state         *b= (private_state *)vd->backend_state;
@@ -74,11 +74,11 @@ int vorbis_bitrate_addblock(vorbis_block *vb){
   codec_setup_info      *ci=(codec_setup_info*) vi->codec_setup;
   bitrate_manager_info  *bi=&ci->bi;
 
-  int  choice=rint(bm->avgfloat);
+  int32_t  choice=rint(bm->avgfloat);
   long this_bits=oggpack_bytes(vbi->packetblob[choice])*8;
   long min_target_bits=(vb->W?bm->min_bitsper*bm->short_per_long:bm->min_bitsper);
   long max_target_bits=(vb->W?bm->max_bitsper*bm->short_per_long:bm->max_bitsper);
-  int  samples=ci->blocksizes[vb->W]>>1;
+  int32_t  samples=ci->blocksizes[vb->W]>>1;
   long desired_fill=bi->reservoir_bits*bi->reservoir_bias;
   if(!bm->managed){
     /* not a bitrate managed stream, but for API simplicity, we'll
@@ -221,11 +221,11 @@ int vorbis_bitrate_addblock(vorbis_block *vb){
   return(0);
 }
 
-int vorbis_bitrate_flushpacket(vorbis_dsp_state *vd,ogg_packet *op){
+int32_t vorbis_bitrate_flushpacket(vorbis_dsp_state *vd,ogg_packet *op){
   private_state         *b=(private_state *) vd->backend_state;
   bitrate_manager_state *bm=&b->bms;
   vorbis_block          *vb=bm->vb;
-  int                    choice=PACKETBLOBS/2;
+  int32_t                    choice=PACKETBLOBS/2;
   if(!vb)return 0;
 
   if(op){

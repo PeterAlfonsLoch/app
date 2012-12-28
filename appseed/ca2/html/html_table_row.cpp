@@ -41,9 +41,9 @@ namespace html
          {
             ptable->m_rowptra.add_unique(this);
          }
-         for(int i = 0; i < get_table()->m_cellholdera.get_size(); i++)
+         for(int32_t i = 0; i < get_table()->m_cellholdera.get_size(); i++)
          {
-            for(int j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
+            for(int32_t j = 0; j < get_table()->m_cellholdera[i].get_size(); j++)
             {
                if(ptable->m_cellholdera[i][j].m_iRow == m_iRow)
                {
@@ -62,19 +62,19 @@ namespace html
          }
 
 
-         int iTableBorder = get_table()->m_iBorder;
+         int32_t iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
             iTableBorder += 1;
          }
 
-         int cxMax;
-         int cxMin;
+         int32_t cxMax;
+         int32_t cxMin;
          while(true)
          {
             cxMax = -1;
             cxMin = -1;
-            int i;
+            int32_t i;
             for(i = 0; i < m_cellholdera.get_size() && i < get_table()->m_columna.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
@@ -148,7 +148,7 @@ namespace html
          cxMin = 0;
          if(get_table() != NULL)
          {
-            for(int i = 0; i < get_table()->m_columna.get_size(); i++)
+            for(int32_t i = 0; i < get_table()->m_columna.get_size(); i++)
             {
                cxMax += max(0, get_table()->m_columna[i].m_cxMax);
                cxMin += max(0, get_table()->m_columna[i].m_cxMin);
@@ -173,7 +173,7 @@ namespace html
             prow = dynamic_cast < table_row * > (m_pelemental->m_elementalptra[0]->m_pimpl);
          }*/
 
-         int iTableBorder = get_table()->m_iBorder;
+         int32_t iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
             iTableBorder += 2;
@@ -181,7 +181,7 @@ namespace html
 
 /*         if(prow != NULL)
          {
-            for(int i = 0; i < m_cellholdera.get_size(); i++)
+            for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
                if(pcell != NULL)
@@ -206,7 +206,7 @@ namespace html
          /*
          if(prow != NULL)
          {
-            for(int i = 0; i < m_cellholdera.get_size(); i++)
+            for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
                if(pcell != NULL)
@@ -222,7 +222,7 @@ namespace html
 
          if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {
-            for(int i = 0; i < m_cellholdera.get_size(); i++)
+            for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
                if(pcell != NULL)
@@ -240,7 +240,7 @@ namespace html
 
       }
 
-      void table_row::set_cell(int iCol, int iRow, cell * pcell)
+      void table_row::set_cell(int32_t iCol, int32_t iRow, cell * pcell)
       {
          
          if(iRow != m_iRow)

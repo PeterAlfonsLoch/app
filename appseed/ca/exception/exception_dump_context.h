@@ -8,8 +8,8 @@ public:
    dump_context(ex1::file * pFile = NULL);
 
 // Attributes
-   int GetDepth() const;      // 0 => this object, 1 => children objects
-   void SetDepth(int nNewDepth);
+   int32_t GetDepth() const;      // 0 => this object, 1 => children objects
+   void SetDepth(int32_t nNewDepth);
 
 // Operations
    dump_context& operator<<(const char * lpsz);
@@ -27,21 +27,21 @@ public:
    dump_context& operator<<(uint_ptr ui);
    dump_context& operator<<(long_ptr l);
 //   dump_context& operator<<(dword_ptr dw);
-   dump_context& operator<<(int n);
+   dump_context& operator<<(int32_t n);
    dump_context& operator<<(uint32_t u);
    dump_context& dumpAsHex(int_ptr i);
    dump_context& dumpAsHex(long_ptr l);
    dump_context& dumpAsHex(dword_ptr dw);
-   dump_context& dumpAsHex(int n);
+   dump_context& dumpAsHex(int32_t n);
    dump_context& dumpAsHex(uint32_t u);
 #elif defined(_WIN64)
    dump_context& operator<<(LONG l);
    dump_context& operator<<(DWORD dw);
-   dump_context& operator<<(int n);
+   dump_context& operator<<(int32_t n);
    dump_context& operator<<(UINT u);
    dump_context& dumpAsHex(LONG l);
    dump_context& dumpAsHex(DWORD dw);
-   dump_context& dumpAsHex(int n);
+   dump_context& dumpAsHex(int32_t n);
    dump_context& dumpAsHex(UINT u);
 #else
 #ifdef WINDOWS
@@ -72,7 +72,7 @@ public:
    dump_context& operator<<(HACCEL h);
 #endif
    dump_context& operator<<(HFONT h);
-   void Hexdump(const char * lpszLine, BYTE* pby, int nBytes, int nWidth);
+   void Hexdump(const char * lpszLine, BYTE* pby, int32_t nBytes, int32_t nWidth);
    void Flush();
 
 // Implementation
@@ -82,7 +82,7 @@ protected:
    void operator=(const dump_context& graphicsSrc);
    void OutputString(const char * lpsz);
 
-   int m_nDepth;
+   int32_t m_nDepth;
 
 public:
    ex1::file * m_pFile;

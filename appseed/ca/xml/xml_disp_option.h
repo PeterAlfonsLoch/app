@@ -12,7 +12,7 @@ namespace xml
       char value_quotation_mark;   // val="" (default value quotation mark "
       entities *   m_pentities;   // entity table for entity encode
 
-      int tab_base;         // internal usage
+      int32_t tab_base;         // internal usage
       disp_option(::ca::application * papp);
    };
 

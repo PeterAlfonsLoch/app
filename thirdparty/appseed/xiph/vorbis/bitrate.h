@@ -26,7 +26,7 @@ BEGIN_EXTERN_C
 
 /* encode side bitrate tracking */
 typedef struct bitrate_manager_state {
-  int            managed;
+  int32_t            managed;
 
   long           avg_reservoir;
   long           minmax_reservoir;
@@ -38,7 +38,7 @@ typedef struct bitrate_manager_state {
   double         avgfloat;
 
   vorbis_block  *vb;
-  int            choice;
+  int32_t            choice;
 } bitrate_manager_state;
 
 typedef struct bitrate_manager_info{
@@ -54,9 +54,9 @@ typedef struct bitrate_manager_info{
 
 extern void vorbis_bitrate_init(vorbis_info *vi,bitrate_manager_state *bs);
 extern void vorbis_bitrate_clear(bitrate_manager_state *bs);
-extern int vorbis_bitrate_managed(vorbis_block *vb);
-extern int vorbis_bitrate_addblock(vorbis_block *vb);
-extern int vorbis_bitrate_flushpacket(vorbis_dsp_state *vd, ogg_packet *op);
+extern int32_t vorbis_bitrate_managed(vorbis_block *vb);
+extern int32_t vorbis_bitrate_addblock(vorbis_block *vb);
+extern int32_t vorbis_bitrate_flushpacket(vorbis_dsp_state *vd, ogg_packet *op);
 
 
 END_EXTERN_C

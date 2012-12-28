@@ -27,13 +27,13 @@ namespace ca4
       virtual bool decrypt(string & strDecrypt, const primitive::memory & storageEncrypt, const char * pszSalt);
 
 
-      int key(primitive::memory & storage);
+      int32_t key(primitive::memory & storage);
       virtual bool encrypt(primitive::memory & storageEncrypt, const primitive::memory & storageDecrypt, const primitive::memory & storageKey);
       virtual bool decrypt(primitive::memory & storageDecrypt, const primitive::memory & storageEncrypt, const primitive::memory & storageKey);
 
       string strkey();
-      int encrypt(string & str, const char * psz, const char * pszKey);
-      int decrypt(string & str, const char * psz, const char * pszKey);
+      int32_t encrypt(string & str, const char * psz, const char * pszKey);
+      int32_t decrypt(string & str, const char * psz, const char * pszKey);
 
       static uint32_t crc32(uint32_t dwPrevious, const char * psz);
       string md5(const char * psz);
@@ -58,14 +58,14 @@ namespace ca4
       // but we future proof it anyway with substr()
       string v5_get_password_salt();
       // calculate the hash from a salt and a password
-      string v5_get_password_hash(const char * pszSalt, const char * pszPassword, int iOrder = 0);
-      string v5_get_passhash(const char * pszSalt, const char * pszPassword, int iMaxOrder = 0);
-      bool v5_compare_password(const char * pszPassword, const char * pszHash, int iOrder = 0);
+      string v5_get_password_hash(const char * pszSalt, const char * pszPassword, int32_t iOrder = 0);
+      string v5_get_passhash(const char * pszSalt, const char * pszPassword, int32_t iMaxOrder = 0);
+      bool v5_compare_password(const char * pszPassword, const char * pszHash, int32_t iOrder = 0);
       // if iOrder == 0 password is plain
       // if iOrder == 1 password is the first hash
       // if iOrder == (n > 0) password is the nth hash
       bool v5_validate_plain_password(const char * pszPassword);
-      string v5_get_password_hash(const char * pszPassword, int iOrder = 0);
+      string v5_get_password_hash(const char * pszPassword, int32_t iOrder = 0);
 
       virtual string get_crypt_key_file_path();
       virtual string defer_get_cryptkey();

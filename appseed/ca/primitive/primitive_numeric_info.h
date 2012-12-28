@@ -38,22 +38,22 @@ namespace numeric_info
    }
 
    template <>
-   inline int get_maximum_value < int > ()
+   inline int32_t get_maximum_value < int32_t > ()
    {
-      return (int) 0x7fffffff;
+      return (int32_t) 0x7fffffff;
    }
    template <>
-   inline int get_minimum_value < int > ()
+   inline int32_t get_minimum_value < int32_t > ()
    {
-      return (int) 0x80000000;
+      return (int32_t) 0x80000000;
    }
    template <>
-   inline int get_null_value < int > ()
+   inline int32_t get_null_value < int32_t > ()
    {
       return 0;
    }
    template <>
-   inline int get_unitary_value < int >()
+   inline int32_t get_unitary_value < int32_t >()
    {
       return 1;
    }
@@ -231,7 +231,7 @@ namespace numeric_info
 
    template < > class CLASS_DECL_ca offset < unsigned char > { public: typedef char TYPE; };
    template < > class CLASS_DECL_ca offset < unsigned short > { public: typedef short TYPE; };
-   template < > class CLASS_DECL_ca offset < unsigned int > { public: typedef int TYPE; };
+   template < > class CLASS_DECL_ca offset < unsigned int32_t > { public: typedef int32_t TYPE; };
    template < > class CLASS_DECL_ca offset < unsigned long > { public: typedef long TYPE; };
 #if defined(WINDOWS)
    template < > class CLASS_DECL_ca offset < uint64_t > { public: typedef int64_t TYPE; };

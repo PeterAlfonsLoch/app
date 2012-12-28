@@ -35,9 +35,9 @@ namespace userbase
 
       void _000OnDraw(::ca::graphics * pdc);
 
-      void _001OnDropTab(int iPane, e_position eposition);
+      void _001OnDropTab(int32_t iPane, e_position eposition);
       
-      ::user::interaction* _001GetTabWnd(int iTab);
+      ::user::interaction* _001GetTabWnd(int32_t iTab);
 
       bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
@@ -59,7 +59,7 @@ namespace userbase
       virtual void on_show_view();
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      void _001OnTabClick(int iTab);
+      void _001OnTabClick(int32_t iTab);
 
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
@@ -84,10 +84,10 @@ namespace userbase
 
 
       ::user::tab *     m_ptab;
-      int               m_iPane;
+      int32_t               m_iPane;
 
 
-      tab_drop_target_window(::user::tab * ptab, int iPane);
+      tab_drop_target_window(::user::tab * ptab, int32_t iPane);
       virtual ~tab_drop_target_window();
 
 

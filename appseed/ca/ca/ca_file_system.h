@@ -25,7 +25,7 @@ namespace ca
          {
          public:
             bool is_equal(const char * lpszFilPathA, const char * lpszFilPathB);
-            bool eat_end_level(string & str, int iLevelCount, const char * lpSeparator);
+            bool eat_end_level(string & str, int32_t iLevelCount, const char * lpSeparator);
             void split(stringa & stra, const char * lpcszPath);
             bool is_relative(const char * psz);
          };
@@ -101,7 +101,7 @@ namespace ca
             return (p->*lpfnOuput)(get(pszOutput, papp), istream);
          }
 
-         string time(::ca::application * papp, const char * pszBasePath, int iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         string time(::ca::application * papp, const char * pszBasePath, int32_t iDepth, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
          string time_square(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
          string time_log(::ca::application * papp, const char * pszId);
 
@@ -118,7 +118,7 @@ namespace ca
             return strTime;
          }
 
-         int filterex_time_square(const char * pszPrefix, stringa & stra);
+         int32_t filterex_time_square(const char * pszPrefix, stringa & stra);
          bool mk_time(const char * lpcszCandidate);
 
          string as_string(var varFile, ::ca::application * papp);

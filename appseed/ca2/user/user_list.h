@@ -62,14 +62,14 @@ namespace user
       id                               m_uiText;
       UINT                             m_uiSmallBitmap;
       COLORREF                         m_crSmallMask;
-      int                              m_iSmallImageWidth;
+      int32_t                              m_iSmallImageWidth;
       index                            m_iSubItem;
       image_list *                     m_pil;
       image_list *                     m_pilHover;
       ::visual::icon_int_map           m_mapIcon;
       size                             m_sizeIcon;
       bool                             m_bIcon;
-      int                              m_iWidth;
+      int32_t                              m_iWidth;
       bool                             m_bCustomDraw;
 
       // form list attributes
@@ -177,7 +177,7 @@ namespace user
       index          m_iListItem;
       string         m_strText;
       COLORREF       m_cr;
-      int            m_iState;
+      int32_t            m_iState;
       index          m_iImage;
       bool           m_bOk;
 
@@ -211,7 +211,7 @@ namespace user
       index                m_iItemRectItem;
 
       index                m_iWidthColumn;
-      int                  m_iColumnWidth;
+      int32_t                  m_iColumnWidth;
       list_column *        m_pcolumnWidth;
 
       index                m_iSubItemRectItem;
@@ -226,7 +226,7 @@ namespace user
       index                m_iListItemRectListItem;
 
       ::ca::font *         m_pfont;
-      int                  m_iDrawTextFlags;
+      int32_t                  m_iDrawTextFlags;
 
       draw_list_item(list * plist);
 
@@ -326,8 +326,8 @@ namespace user
          index GetUBound() const;
          ItemRange & operator =(const ItemRange & itemrange);
          bool HasItem(index iItem) const;
-   //      int get_count();
-   //      int get_item(int iItemIndex);
+   //      int32_t get_count();
+   //      int32_t get_item(int32_t iItemIndex);
 
       };
 
@@ -361,7 +361,7 @@ namespace user
          virtual ~list_layout();
 
          index_array   m_iaDisplayToStrict;
-         int            m_iWidth;
+         int32_t            m_iWidth;
 
          virtual void write(::ex1::byte_output_stream & ostream);
          virtual void read(::ex1::byte_input_stream & istream);
@@ -375,7 +375,7 @@ namespace user
          virtual ~icon_layout();
 
          index_biunique   m_iaDisplayToStrict;
-         int            m_iWidth;
+         int32_t            m_iWidth;
 
          virtual void write(::ex1::byte_output_stream & ostream);
          virtual void read(::ex1::byte_input_stream & istream);
@@ -462,8 +462,8 @@ namespace user
       index                         m_iItemFocus;
 
       bool                          m_bLockViewUpdate;
-      int                           m_iItemHeight;
-      int                           m_iItemWidth;
+      int32_t                           m_iItemHeight;
+      int32_t                           m_iItemWidth;
 
       index                         m_iItemHover;
       index                         m_iSubItemHover;
@@ -488,7 +488,7 @@ namespace user
       UINT                          m_uiRButtonUpFlags;
       point                         m_ptRButtonUp;
       cregexp                       m_reFilter1;
-      int                           m_iFilter1Step;
+      int32_t                           m_iFilter1Step;
       bool                          m_bFilter1;
 
       bool                          m_bTopText;
@@ -516,8 +516,8 @@ namespace user
       image_list *                  m_pilGroupHover;
       bool                          m_bGroup;
       bool                          m_bLateralGroup;
-      int                           m_iLateralGroupWidth;
-      int                           m_iGroupMinHeight;
+      int32_t                           m_iLateralGroupWidth;
+      int32_t                           m_iGroupMinHeight;
       index                         m_iGroupHover;
 
       draw_list_item *              m_pdrawlistitem;
@@ -529,8 +529,8 @@ namespace user
 
 
 
-      int _001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem);
-      int _001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem);
+      int32_t _001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem);
+      int32_t _001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem);
 
 
 
@@ -547,9 +547,9 @@ namespace user
       virtual void PreSubClassWindow();
       virtual void _OnDraw(::ca::graphics * pdc);
       void _001MaximizeColumnWidth(index iColumn);
-      int _001CalcItemWidth(index iItem, index iSubItem);
-      int _001CalcColumnWidth(index iColumn);
-      int _001CalcListWidth();
+      int32_t _001CalcItemWidth(index iItem, index iSubItem);
+      int32_t _001CalcColumnWidth(index iColumn);
+      int32_t _001CalcListWidth();
       virtual void _001OnSort();
 
       // Sort
@@ -573,7 +573,7 @@ namespace user
 
       index _001CalcDisplayTopIndex();
       count _001CalcDisplayItemCount();
-      int _001GetGroupHeight(index iGroup);
+      int32_t _001GetGroupHeight(index iGroup);
 
 
       void FilterInclude(int_array & base_array);
@@ -680,7 +680,7 @@ namespace user
 
       virtual void _001OnColumnChange();
 
-      void _001SetColumnWidth(index iColumn, int iWidth);
+      void _001SetColumnWidth(index iColumn, int32_t iWidth);
 
       void _001GetColumnWidth(draw_list_item * pdrawitem);
 
@@ -797,7 +797,7 @@ namespace user
       EView _001GetView();
 
 
-      virtual int get_wheel_scroll_delta();
+      virtual int32_t get_wheel_scroll_delta();
 
       virtual void _001OnUpdateScrollPosition();
 

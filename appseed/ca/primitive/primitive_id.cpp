@@ -18,12 +18,12 @@ id::id(uint_ptr ui)
 }
 
 #if defined(_LP64) || defined(_AMD64_)
-id::id(int i)
+id::id(int32_t i)
 {
    operator = (::radix::system::id(i));
 }
 
-id::id(unsigned int ui)
+id::id(unsigned int32_t ui)
 {
    operator = (::radix::system::id(ui));
 }

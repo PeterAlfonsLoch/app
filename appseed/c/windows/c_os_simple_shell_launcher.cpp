@@ -19,7 +19,7 @@ void simple_shell_launcher::execute()
 bool simple_shell_launcher::succeeded()
 {
  
-   return ((int) m_h) >= 32;
+   return ((int32_t) m_h) >= 32;
 
 }
 

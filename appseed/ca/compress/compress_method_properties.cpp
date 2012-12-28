@@ -52,7 +52,7 @@ namespace compress
             HRESULT res = S_OK;
             try
             {
-               for (int i = 0; i < numProps; i++)
+               for (int32_t i = 0; i < numProps; i++)
                {
                   const gen::property &prop = method.Props[i];
                   propIDs.add(atoi(prop.name()));

@@ -27,10 +27,10 @@ namespace command
    {
    }
 
-   int frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+   int32_t frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
    {
       UNREFERENCED_PARAMETER(lpCreateStruct);
-      if(!data_get("DockPosition", (int &) m_eposition))
+      if(!data_get("DockPosition", (int32_t &) m_eposition))
       {
          m_eposition = position_left;
       }
@@ -426,7 +426,7 @@ namespace command
                m_eposition = position_right;
             }
          }
-         data_set("DockPosition", (int) m_eposition);
+         data_set("DockPosition", (int32_t) m_eposition);
       }*/
    }
 

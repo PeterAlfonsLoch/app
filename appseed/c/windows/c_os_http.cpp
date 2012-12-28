@@ -49,7 +49,7 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, dword_ptr), void * callback_param )
+bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, dword_ptr), void * callback_param )
 {
 
    if(piStatus != NULL)
@@ -80,7 +80,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       callback(callback_param, -1, 0);
    }
 
-   int iCol = 3;
+   int32_t iCol = 3;
 
 
    strUrl = pszUrl;
@@ -306,7 +306,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
 
 
-vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, dword_ptr), void * callback_param, bool bProgress)
+vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, dword_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
@@ -314,7 +314,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    vsstring strUrl(pszUrl);
    vsstring strHost;
    vsstring strReq;
-   int iPort = 80;
+   int32_t iPort = 80;
    if(strUrl.substr(0, 7) == "http://")
    {
       size_t iPos = strUrl.find("/", 8);
@@ -328,7 +328,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strReq = strUrl.substr(iPos);
       iPort = 443;
    }
-   int iFind = strReq.find("?");
+   int32_t iFind = strReq.find("?");
    if(iFind >= 0)
    {
       vsstring strQ = strReq.substr(iFind);
@@ -577,17 +577,17 @@ vsstring ms_post(const char * pszUrl, const char * pszPost)
 vsstring strUrl(pszUrl);
 vsstring strHost;
 vsstring strReq;
-int iPort;
+int32_t iPort;
 if(strUrl.substr(0, 7) == "http://")
 {
-int iPos = strUrl.find("/", 8);
+int32_t iPos = strUrl.find("/", 8);
 strHost = strUrl.substr(7, iPos - 7);
 strReq = strUrl.substr(iPos);
 iPort = 80;
 }
 else if(strUrl.substr(0, 8) == "https://")
 {
-int iPos = strUrl.find("/", 9);
+int32_t iPos = strUrl.find("/", 9);
 strHost = strUrl.substr(8, iPos - 8);
 strReq = strUrl.substr(iPos);
 iPort = 443;

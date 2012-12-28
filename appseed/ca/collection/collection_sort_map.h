@@ -77,7 +77,7 @@ namespace collection
             return *this;
          }
 
-         iterator operator ++ (int)
+         iterator operator ++ (int32_t)
          {
             if(m_ppair != NULL && m_pmap != NULL)
                m_ppair = m_pmap->PGetNextAssoc(m_ppair);
@@ -120,7 +120,7 @@ namespace collection
 
 
       sort_map(::count nBlockSize = 10);
-      sort_map(pair pairs[], int iCount, ::count nBlockSize = 10);
+      sort_map(pair pairs[], int32_t iCount, ::count nBlockSize = 10);
       virtual ~sort_map();
 
 
@@ -309,12 +309,12 @@ namespace collection
    }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-   sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort_map(pair pairs[], int iCount, ::count nBlockSize)
+   sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::sort_map(pair pairs[], int32_t iCount, ::count nBlockSize)
    {
 
       construct(nBlockSize);
 
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
 
          set_at(pairs[i].m_key, pairs[i].m_value);
@@ -910,9 +910,9 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = gen::compare < int > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = gen::compare < int32_t > >
    class sort_int_map :
-      virtual public sort_attrib_map < sort_map < int, int, VALUE, ARG_VALUE, COMPARE > >
+      virtual public sort_attrib_map < sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >
    {
    public:
 
@@ -926,13 +926,13 @@ namespace collection
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    sort_int_map < VALUE, ARG_VALUE, COMPARE >::sort_int_map(::count nBlockSize) :
-      sort_map < int, int, VALUE, ARG_VALUE, COMPARE > (nBlockSize)
+      sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > (nBlockSize)
    {
    }
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    sort_int_map < VALUE, ARG_VALUE, COMPARE >::sort_int_map(const sort_int_map & sort_map) :
-      sort_attrib_map < ::collection::sort_map < int, int, VALUE, ARG_VALUE, COMPARE > > (sort_map)
+      sort_attrib_map < ::collection::sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > > (sort_map)
    {
    }
 
@@ -942,15 +942,15 @@ namespace collection
 
       if(this != &sort_map)
       {
-         sort_attrib_map < ::collection::sort_map < int, int, VALUE, ARG_VALUE, COMPARE > >::operator = (sort_map);
+         sort_attrib_map < ::collection::sort_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >::operator = (sort_map);
       }
 
       return *this;
 
    }
 
-   typedef CLASS_DECL_ca sort_attrib_map < sort_map < int, int, int, int > > sort_int_to_int;
-   typedef CLASS_DECL_ca sort_attrib_map < sort_map < int, int, string, const string & > > sort_int_to_string;
+   typedef CLASS_DECL_ca sort_attrib_map < sort_map < int32_t, int32_t, int32_t, int32_t > > sort_int_to_int;
+   typedef CLASS_DECL_ca sort_attrib_map < sort_map < int32_t, int32_t, string, const string & > > sort_int_to_string;
    typedef CLASS_DECL_ca ::collection::sort_string_map < void *, void * > sort_string_to_ptr;
 
    template < class T >

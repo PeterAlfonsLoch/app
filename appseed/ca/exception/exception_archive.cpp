@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-/*CArchiveException::CArchiveException(int cause,
+/*CArchiveException::CArchiveException(int32_t cause,
    const char * lpszFileName /* = NULL *//*)
 {
    m_cause = cause; 

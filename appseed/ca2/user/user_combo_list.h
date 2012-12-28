@@ -15,7 +15,7 @@ namespace user
 
 
       combo_box *    m_pcombo;
-      int            m_iItemHeight;
+      int32_t            m_iItemHeight;
 
 
       combo_list();
@@ -32,7 +32,7 @@ namespace user
 
       virtual void query_full_size(LPSIZE lpsize) const;
 
-      virtual int _001GetItemHeight() const;
+      virtual int32_t _001GetItemHeight() const;
 
       const char * GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter);
 

@@ -34,12 +34,12 @@ static void oc_unpack_octets(oc_pack_buf *_opb,char *_buf,size_t _len){
 /*Unpacks a 32-bit integer encoded by octets in little-endian form.*/
 static long oc_unpack_length(oc_pack_buf *_opb){
   long ret[4];
-  int  i;
+  int32_t  i;
   for(i=0;i<4;i++)ret[i]=oc_pack_read(_opb,8);
   return ret[0]|ret[1]<<8|ret[2]<<16|ret[3]<<24;
 }
 
-static int oc_info_unpack(oc_pack_buf *_opb,th_info *_info){
+static int32_t oc_info_unpack(oc_pack_buf *_opb,th_info *_info){
   long val;
   /*Check the codec bitstream version.*/
   val=oc_pack_read(_opb,8);
@@ -90,11 +90,11 @@ static int oc_info_unpack(oc_pack_buf *_opb,th_info *_info){
   val=oc_pack_read(_opb,8);
   _info->colorspace=(th_colorspace)val;
   val=oc_pack_read(_opb,24);
-  _info->target_bitrate=(int)val;
+  _info->target_bitrate=(int32_t)val;
   val=oc_pack_read(_opb,6);
-  _info->quality=(int)val;
+  _info->quality=(int32_t)val;
   val=oc_pack_read(_opb,5);
-  _info->keyframe_granule_shift=(int)val;
+  _info->keyframe_granule_shift=(int32_t)val;
   val=oc_pack_read(_opb,2);
   _info->pixel_fmt=(th_pixel_fmt)val;
   if(_info->pixel_fmt==TH_PF_RSVD)return TH_EBADHEADER;
@@ -103,9 +103,9 @@ static int oc_info_unpack(oc_pack_buf *_opb,th_info *_info){
   return 0;
 }
 
-static int oc_comment_unpack(oc_pack_buf *_opb,th_comment *_tc){
+static int32_t oc_comment_unpack(oc_pack_buf *_opb,th_comment *_tc){
   long len;
-  int  i;
+  int32_t  i;
   /*Read the vendor string.*/
   len=oc_unpack_length(_opb);
   if(len<0||len>oc_pack_bytes_left(_opb))return TH_EBADHEADER;
@@ -114,13 +114,13 @@ static int oc_comment_unpack(oc_pack_buf *_opb,th_comment *_tc){
   oc_unpack_octets(_opb,_tc->vendor,len);
   _tc->vendor[len]='\0';
   /*Read the user comments.*/
-  _tc->comments=(int)oc_unpack_length(_opb);
+  _tc->comments=(int32_t)oc_unpack_length(_opb);
   len=_tc->comments;
   if(len<0||len>(LONG_MAX>>2)||len<<2>oc_pack_bytes_left(_opb)){
     _tc->comments=0;
     return TH_EBADHEADER;
   }
-  _tc->comment_lengths=(int *)_ogg_malloc(
+  _tc->comment_lengths=(int32_t *)_ogg_malloc(
    _tc->comments*sizeof(_tc->comment_lengths[0]));
   _tc->user_comments=(char **)_ogg_malloc(
    _tc->comments*sizeof(_tc->user_comments[0]));
@@ -142,8 +142,8 @@ static int oc_comment_unpack(oc_pack_buf *_opb,th_comment *_tc){
   return oc_pack_bytes_left(_opb)<0?TH_EBADHEADER:0;
 }
 
-static int oc_setup_unpack(oc_pack_buf *_opb,th_setup_info *_setup){
-  int ret;
+static int32_t oc_setup_unpack(oc_pack_buf *_opb,th_setup_info *_setup){
+  int32_t ret;
   /*Read the quantizer tables.*/
   ret=oc_quant_params_unpack(_opb,&_setup->qinfo);
   if(ret<0)return ret;
@@ -156,14 +156,14 @@ static void oc_setup_clear(th_setup_info *_setup){
   oc_huff_trees_clear(_setup->huff_tables);
 }
 
-static int oc_dec_headerin(oc_pack_buf *_opb,th_info *_info,
+static int32_t oc_dec_headerin(oc_pack_buf *_opb,th_info *_info,
  th_comment *_tc,th_setup_info **_setup,ogg_packet *_op){
   char buffer[6];
   long val;
-  int  packtype;
-  int  ret;
+  int32_t  packtype;
+  int32_t  ret;
   val=oc_pack_read(_opb,8);
-  packtype=(int)val;
+  packtype=(int32_t)val;
   /*If we're at a data packet and we have received all three headers, we're
      done.*/
   if(!(packtype&0x80)&&_info->frame_width>0&&_tc->vendor!=NULL&&*_setup!=NULL){
@@ -225,7 +225,7 @@ static int oc_dec_headerin(oc_pack_buf *_opb,th_info *_info,
 /*Decodes one header packet.
   This should be called repeatedly with the packets at the beginning of the
    stream until it returns 0.*/
-int th_decode_headerin(th_info *_info,th_comment *_tc,
+int32_t th_decode_headerin(th_info *_info,th_comment *_tc,
  th_setup_info **_setup,ogg_packet *_op){
   oc_pack_buf opb;
   if(_op==NULL)return TH_EBADHEADER;

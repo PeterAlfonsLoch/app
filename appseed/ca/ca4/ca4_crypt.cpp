@@ -64,14 +64,14 @@ namespace ca4
 
 
 
-   int crypt::key(primitive::memory & storage)
+   int32_t crypt::key(primitive::memory & storage)
    {
       storage.allocate(16);
       for(primitive::memory_position i = 0; i < storage.get_size(); i++)
       {
          storage.get_data()[i] = rand() & 0xff;
       }
-      return (int) storage.get_size();
+      return (int32_t) storage.get_size();
    }
 
    /**
@@ -265,9 +265,9 @@ namespace ca4
 
 #else
 
-      int plainlen = (int) storageDecrypt.get_size();
+      int32_t plainlen = (int32_t) storageDecrypt.get_size();
 
-      int cipherlen, tmplen;
+      int32_t cipherlen, tmplen;
 
       EVP_CIPHER_CTX ctx;
 
@@ -275,7 +275,7 @@ namespace ca4
 
       EVP_EncryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      cipherlen = (int) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
+      cipherlen = (int32_t) (storageDecrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx) - 1);
 
       storageEncrypt.allocate(cipherlen);
 
@@ -494,9 +494,9 @@ namespace ca4
 
 #else
 
-      int cipherlen = (int) storageEncrypt.get_size();
+      int32_t cipherlen = (int32_t) storageEncrypt.get_size();
 
-      int plainlen, tmplen;
+      int32_t plainlen, tmplen;
 
       EVP_CIPHER_CTX ctx;
 
@@ -504,7 +504,7 @@ namespace ca4
 
       EVP_DecryptInit(&ctx, EVP_aes_256_ecb(), memSha1.get_data(), iv.get_data());
 
-      plainlen = (int) storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx);
+      plainlen = (int32_t) storageEncrypt.get_size() + EVP_CIPHER_CTX_block_size(&ctx);
 
       storageDecrypt.allocate(plainlen);
 
@@ -549,7 +549,7 @@ namespace ca4
       return System.base64().encode(storage);
    }
 
-   int crypt::encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
+   int32_t crypt::encrypt(string & strEncrypt, const char * pszDecrypt, const char * pszKey)
    {
       primitive::memory storageDecrypt;
       primitive::memory storageEncrypt;
@@ -561,19 +561,19 @@ namespace ca4
       }
       storageDecrypt.from_string(pszDecrypt);
       System.base64().decode(storageKey, pszKey);
-      int cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
+      int32_t cipherlen = encrypt(storageEncrypt, storageDecrypt, storageKey);
       strEncrypt = System.base64().encode(storageEncrypt);
       return cipherlen;
    }
 
-   int crypt::decrypt(string & strDecrypt, const char * pszEncrypt, const char * pszKey)
+   int32_t crypt::decrypt(string & strDecrypt, const char * pszEncrypt, const char * pszKey)
    {
       primitive::memory storageEncrypt;
       primitive::memory storageDecrypt;
       primitive::memory storageKey;
       System.base64().decode(storageEncrypt, pszEncrypt);
       System.base64().decode(storageKey, pszKey);
-      int plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
+      int32_t plainlen = decrypt(storageDecrypt, storageEncrypt, storageKey);
       storageDecrypt.to_string(strDecrypt);
       return plainlen;
    }
@@ -636,7 +636,7 @@ namespace ca4
 
       ctx.Init();
 
-      ctx.update(mem, (int) mem.get_size());
+      ctx.update(mem, (int32_t) mem.get_size());
 
       ctx.Final(memSha1.get_data());
 
@@ -684,7 +684,7 @@ namespace ca4
    {
       string strSalt;
       string strFormat;
-      for(int i = 0; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i+=2)
+      for(int32_t i = 0; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i+=2)
       {
          int64_t iDigit = System.math().RandRange(0, 255);
          strFormat.Format("%02x", iDigit);
@@ -695,12 +695,12 @@ namespace ca4
 
    // calculate the hash from a salt and a password
    // slow hash is more secure for personal attack possibility (strong fast hashs are only good for single transactional operations and not for a possibly lifetime password)
-   string crypt::v5_get_password_hash(const char * pszSalt, const char * pszPassword, int iOrder)
+   string crypt::v5_get_password_hash(const char * pszSalt, const char * pszPassword, int32_t iOrder)
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.Left(V5_SALT_BYTES);
-      for(int i = iOrder; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i++)
+      for(int32_t i = iOrder; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
          strHash = nessie(strStepSalt + strHash);
@@ -708,12 +708,12 @@ namespace ca4
       return strSalt + strHash;
    }
 
-   string crypt::v5_get_passhash(const char * pszSalt, const char * pszPassword, int iMaxOrder)
+   string crypt::v5_get_passhash(const char * pszSalt, const char * pszPassword, int32_t iMaxOrder)
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
       strSalt = strSalt.Left(V5_SALT_BYTES);
-      for(int i = 0; i < iMaxOrder; i++)
+      for(int32_t i = 0; i < iMaxOrder; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
          strHash = nessie(strStepSalt + strHash);
@@ -721,7 +721,7 @@ namespace ca4
       return strSalt + strHash;
    }
 
-   bool crypt::v5_compare_password(const char * pszPassword, const char * pszHash, int iOrder)
+   bool crypt::v5_compare_password(const char * pszPassword, const char * pszHash, int32_t iOrder)
    {
       string strHash(pszHash);
       string strSalt = strHash.Left(V5_SALT_BYTES);
@@ -736,7 +736,7 @@ namespace ca4
       return gen::str::has_all_v1(pszPassword);
    }
 
-   string crypt::v5_get_password_hash(const char * pszPassword, int iOrder)
+   string crypt::v5_get_password_hash(const char * pszPassword, int32_t iOrder)
    {
       return v5_get_password_hash(v5_get_password_salt(), pszPassword, iOrder);
    }
@@ -751,7 +751,7 @@ namespace ca4
 
       crypto::hmac_sha1::context context;
 
-      context.digest(result, memMessage.get_data(), (int) memMessage.get_size(), memKey.get_data(), (int) memKey.get_size());
+      context.digest(result, memMessage.get_data(), (int32_t) memMessage.get_size(), memKey.get_data(), (int32_t) memKey.get_size());
 
    }
 
@@ -760,7 +760,7 @@ namespace ca4
 
       crypto::hmac_sha1::context context;
 
-      context.digest(result, strMessage, (int) strMessage.get_length(), strKey, (int) strKey.get_length());
+      context.digest(result, strMessage, (int32_t) strMessage.get_length(), strKey, (int32_t) strKey.get_length());
 
    }
 
@@ -782,7 +782,7 @@ namespace ca4
       if(str.has_char())
          return str;
 
-      for(int i = 0; i < 256; i++)
+      for(int32_t i = 0; i < 256; i++)
       {
 
          char ch = Application.math().rnd() % (10 + 26 + 26);

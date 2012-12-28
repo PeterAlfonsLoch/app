@@ -225,7 +225,7 @@ namespace user
       case BN_CLICKED:
          {
    /*      linux   simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
-            int i = pbutton->get_check() != 0;
+            int32_t i = pbutton->get_check() != 0;
             VmsDataSet(pcontrol->descriptor().m_dataid, 0, 0, i);*/
          }
          break;
@@ -259,11 +259,11 @@ namespace user
       case CBN_SELCHANGE:
          {
    /* linux         simple_combo_box * pcombo = (simple_combo_box *) get_child_by_id(pcontrol->m_id);
-            int iSel = pcombo->get_cur_sel();
+            int32_t iSel = pcombo->get_cur_sel();
             if(iSel != CB_ERR)
             {
                DWORD dwData = pcontrol->GetComboBox()->m_dwaData[iSel];
-               VmsDataSet(pcontrol->descriptor().m_dataid, 0, 0, (int) dwData);
+               VmsDataSet(pcontrol->descriptor().m_dataid, 0, 0, (int32_t) dwData);
             }*/
          }
          break;
@@ -387,7 +387,7 @@ namespace user
       UNREFERENCED_PARAMETER(pviewSender);
       UNREFERENCED_PARAMETER(lhint);
       UNREFERENCED_PARAMETER(phint);
-      for(int i = 0; i < m_controldescriptorset.get_size(); i++)
+      for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
          control * pcontrol = m_controldescriptorset[i].m_pcontrol;
          if(pcontrol == NULL)
@@ -484,7 +484,7 @@ namespace user
       if(pcontrol == NULL)
          return;
       ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
-      int i;
+      int32_t i;
       if(data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i))
       {
    /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
@@ -498,7 +498,7 @@ namespace user
       if(pcontrol == NULL)
          return;
    /* linux   ASSERT(pcontrol->descriptor().get_type() == control::type_combo_box);
-      int i;
+      int32_t i;
       if(VmsDataGet(pcontrol->descriptor().m_dataid, 0, 0, i))
       {
          int_ptr iSel = pcontrol->GetComboBox()->m_dwaData.find_first((DWORD) i);
@@ -621,7 +621,7 @@ namespace user
       if(pcontrol == NULL)
          return false;
 
-      int i;
+      int32_t i;
       if(!data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i))
          return false;
 
@@ -637,7 +637,7 @@ namespace user
       if(pcontrol == NULL)
          return false;
 
-      int i = bData ? 1 : 0;
+      int32_t i = bData ? 1 : 0;
       data_set(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i);
       return true;
 
@@ -651,7 +651,7 @@ namespace user
       }
       else
       {
-         for(int i = 0; i < m_controldescriptorset.get_size(); i++)
+         for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
          {
             control * pcontrol = m_controldescriptorset[i].m_pcontrol;
             if(pcontrol == NULL)
@@ -772,7 +772,7 @@ namespace user
 
       }
 
-      for(int iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
+      for(int32_t iControl = 0; iControl < m_controldescriptorset.get_size(); iControl++)
       {
 
          control * pcontrol = m_controldescriptorset[iControl].m_pcontrol;
@@ -801,7 +801,7 @@ namespace user
    void form::_001UpdateFunctionStatic()
    {
 
-      for(int i = 0; i < m_controldescriptorset.get_size(); i++)
+      for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
 
          class control::descriptor & descriptor = m_controldescriptorset[i];
@@ -911,7 +911,7 @@ namespace user
             simple_combo_box * pcombo = (simple_combo_box *) pcontrol->m_pwnd;
             pcombo->ResetContent();
             string str;
-            for(int i = 0; i < pcontrol->GetComboBox()->m_wstra.get_size(); i++)
+            for(int32_t i = 0; i < pcontrol->GetComboBox()->m_wstra.get_size(); i++)
             {
                str = pcontrol->GetComboBox()->m_wstra[i];
                pcombo->AddString(str);
@@ -925,7 +925,7 @@ namespace user
    void form::_017OnAppLanguage()
    {
 
-      for(int i = 0; i < m_controldescriptorset.get_size() ; i++)
+      for(int32_t i = 0; i < m_controldescriptorset.get_size() ; i++)
       {
          class control::descriptor & descriptor = m_controldescriptorset[i];
          if(descriptor.m_typeinfo)
@@ -1114,7 +1114,7 @@ namespace user
       _001UpdateFunctionStatic();
    //   CVmsGuiApp * papp = (CVmsGuiApp *) &System;
    //   papp->TwfInitializeDescendants(pview->GetSafeoswindow_(), true);
-      for(int i = 0; i < m_controldescriptorset.get_size(); i++)
+      for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
       {
          control * pcontrol = m_controldescriptorset[i].m_pcontrol;
          if(pcontrol == NULL)

@@ -181,7 +181,7 @@ string html_view::GetLocationURL()
    return m_strLocationURL;
 }
 
-bool html_view::Refresh2(int i)
+bool html_view::Refresh2(int32_t i)
 {
    UNREFERENCED_PARAMETER(i);
    get_document()->on_open_document(GetLocationURL());

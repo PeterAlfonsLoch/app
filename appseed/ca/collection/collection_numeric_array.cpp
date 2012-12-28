@@ -70,7 +70,7 @@ int_array::int_array(::ca::application * papp) :
 }
 
 int_array::int_array(const int_array & base_array) :
-   numeric_array < int >(base_array)
+   numeric_array < int32_t >(base_array)
 {
    operator = (base_array);
 }
@@ -251,7 +251,7 @@ unique_int_sort_array unique_int_sort_array::operator - (const unique_int_sort_a
 unique_int_sort_array unique_int_sort_array::operator + (const unique_int_sort_array & inta) const
 {
    unique_int_sort_array iaRet(*this);
-   for(int i = 0; i < inta.get_count(); i++)
+   for(int32_t i = 0; i < inta.get_count(); i++)
    {
       iaRet.add(inta[i]);
    }

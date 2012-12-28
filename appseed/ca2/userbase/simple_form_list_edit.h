@@ -30,10 +30,10 @@ public:
 
 
    bool OnEraseBkgnd(::ca::graphics * pgraphics);
-   int OnCreate(LPCREATESTRUCT lpCreateStruct);
+   int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
    void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
    void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-   int OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
+   int32_t OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message);
 
 
 };

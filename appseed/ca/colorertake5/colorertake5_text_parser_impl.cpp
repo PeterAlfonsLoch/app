@@ -292,7 +292,7 @@ namespace colorertake5
          if (lowlen < gx+kwlen)
             kwlen = lowlen-gx;
 
-         int cr;
+         int32_t cr;
          if (node->kwList->matchCase)
             cr = node->kwList->kwList[pos].keyword.Compare(string(&((const char*)str)[gx], kwlen));
          else
@@ -434,7 +434,7 @@ namespace colorertake5
             bool zeroLength;
 
             scheme_impl *o_scheme = baseScheme;
-            //int o_schemeStart = schemeStart;
+            //int32_t o_schemeStart = schemeStart;
             SMatches o_matchend = matchend;
             //        SMatches *o_match;
             //      string *o_str;
@@ -528,7 +528,7 @@ namespace colorertake5
          endLine = gy;
 
          // searches for the end of parent block
-         int res = 0;
+         int32_t res = 0;
          if (root_end_re) res = root_end_re->parse(str, gx, len, &matchend, &schemeStart);
          if (!res) matchend.s[0] = matchend.e[0] = len;
 
@@ -541,14 +541,14 @@ namespace colorertake5
             len = matchend.s[0];
          }
 
-         int ret = LINE_NEXT;
+         int32_t ret = LINE_NEXT;
          for (; gx <= matchend.s[0];){  //    '<' or '<=' ???
             if (breakParsing){
                gy = gy2;
                break;
             };
             if (picked != NULL && gx+11 <= matchend.s[0] && ((const char *)str)[gx] == 'C'){
-               int ci;
+               int32_t ci;
                static char id[] = "fnq%Qtrjhg";
                for(ci = 0; ci < 10; ci++) if (((const char *)str)[gx+1+ci] != id[ci]-5) break;
                if (ci == 10){
@@ -557,7 +557,7 @@ namespace colorertake5
                   continue;
                };
             };
-//            int ox = gx;
+//            int32_t ox = gx;
             index oy = gy;
             index re_result = searchRE(baseScheme, gy, matchend.s[0], len);
             if ((re_result == MATCH_SCHEME && (oy != gy || matchend.s[0] < gx)) ||

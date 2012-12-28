@@ -22,7 +22,7 @@ bool BaseSplitWnd::pre_create_window(CREATESTRUCT& cs)
 void BaseSplitWnd::_001OnDraw(::ca::graphics *pdc)
 {
    
-   int i;
+   int32_t i;
    rect rect;
    COLORREF cr = RGB(92, 92, 80);
    for(i = 0; i < get_pane_count(); i++)

@@ -29,7 +29,7 @@ static const char _vfxShellNewValue[] = "";
 #define _wcsinc(_pc)    ((_pc)+1)
 
 /*bool vfxExtractSubString(string& rString, const wchar_t * lpszFullString,
-   int iSubString, WCHAR chSep);*/
+   int32_t iSubString, WCHAR chSep);*/
 UINT __get_file_title(const wchar_t * lpszPathName, wchar_t * lpszTitle, UINT nMax);
 
 bool _set_reg_key(const wchar_t * lpszKey, const wchar_t * lpszValue, const wchar_t * lpszValueName = NULL);

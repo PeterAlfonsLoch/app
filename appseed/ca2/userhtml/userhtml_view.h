@@ -24,7 +24,7 @@ public:
 
 
    string GetLocationURL();
-   bool Refresh2(int i);
+   bool Refresh2(int32_t i);
    bool Navigate(const char * pszUrl);
 
    virtual void on_document_complete(const char * pszUrl);

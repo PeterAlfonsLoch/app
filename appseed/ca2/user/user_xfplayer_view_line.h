@@ -36,16 +36,16 @@ public:
 
    string                           m_str;
    int_array                        m_iaPosition;
-   int                              m_iTop;
-   int                              m_iLeft;
-   int                              m_iIndent;
-   int                              m_iRight;
-   int                              m_iBottom;
+   int32_t                              m_iTop;
+   int32_t                              m_iLeft;
+   int32_t                              m_iIndent;
+   int32_t                              m_iRight;
+   int32_t                              m_iBottom;
    bool                             m_bPendingLayoutUpdate;
    bool                             m_bVisible;
    bool                             m_bAutoSizeX;
    bool                             m_bAutoSizeY;
-   int                              m_iAlign;
+   int32_t                              m_iAlign;
    ::user::interaction *            m_oswindow;
 
 
@@ -57,7 +57,7 @@ private:
 
 
 protected:
-   //int
+   //int32_t
 
    // 08, May 2004 attributes
    ::ca::graphics_sp                m_dc1;
@@ -85,12 +85,12 @@ protected:
 
 
    double                           m_dBlend;
-   int                              m_nFont;
+   int32_t                              m_nFont;
    rect                             m_rectInvalidate;
-   int                              m_iAnimateType;
+   int32_t                              m_iAnimateType;
    double                           m_dAnimateProgress;
    double                           m_dAnimateProgressIncrement;
-   int                              m_iTextEffect;
+   int32_t                              m_iTextEffect;
    ::ca::pen *                      m_lpPenEmboss;
    COLORREF                         m_crForeground;
    ::ca::pen *                      m_ppenLyricLeft;
@@ -141,9 +141,9 @@ public:
       ::ca::application * papp,
       ::ca::graphics * pdc,
       const char * lpcsz,
-      int left,
-      int top,
-      int ignore1,
+      int32_t left,
+      int32_t top,
+      int32_t ignore1,
       COLORREF cr,
       COLORREF crOutline,
       strsize iLen,
@@ -154,9 +154,9 @@ public:
       ::ca::graphics * pdc,
       ::ca::dib * pdibCache,
       const char * lpcsz,
-      int iLeft,
-      int iTop,
-      int iWidth,
+      int32_t iLeft,
+      int32_t iTop,
+      int32_t iWidth,
       COLORREF cr,
       COLORREF crOutline,
       strsize iLen,
@@ -175,20 +175,20 @@ public:
    void Validate(LPCRECT lpcrect = NULL);
    void Invalidate(LPCRECT lpcrect = NULL);
    //void AddVmsFont(visual::font * pfont);
-   //int GetVmsFontCount();
+   //int32_t GetVmsFontCount();
    void SetPlacement(LPCRECT lpcrect);
-   int SetLyricColors(COLORREF crLeft, COLORREF crRight);
-   int SetLyricPens(::ca::pen * ppenLeft, ::ca::pen * ppenRight);
+   int32_t SetLyricColors(COLORREF crLeft, COLORREF crRight);
+   int32_t SetLyricPens(::ca::pen * ppenLeft, ::ca::pen * ppenRight);
    void SetRenderCriticalSection(::critical_section *pcs);
    void SetAnimateIncrement(double dIncrement);
-   int MapToFontEffect(int iLineEffect);
+   int32_t MapToFontEffect(int32_t iLineEffect);
     
    
    void SetForegroundColor(COLORREF cr);
    void SetEmbossPen(::ca::pen * lpPen);
-   void SetTextEffect(int iTextEffect);
+   void SetTextEffect(int32_t iTextEffect);
 
-   void SetAnimateType(int iAnimateType);
+   void SetAnimateType(int32_t iAnimateType);
 
    void OnTimerAnimate(::ca::graphics * pdc, rect_array &   rectaModified);
 
@@ -196,9 +196,9 @@ public:
    virtual XfplayerViewLine & operator = (const XfplayerViewLine & src);
    void GetRect(LPRECT lpRect);
    void set(LPRECT lpRect);
-   void SetAlign(int iAlign);
-   static const int AlignLeft;
-   static const int AlignRight;
+   void SetAlign(int32_t iAlign);
+   static const int32_t AlignLeft;
+   static const int32_t AlignRight;
 
    void SetAutoSize(bool bAutoSize);
 
@@ -209,13 +209,13 @@ public:
    bool PrepareLine(
       ::ca::graphics * pdc,
       const char * lpcsz,
-      int flags,
+      int32_t flags,
       LPRECT pRect);
 
    /*bool PrepareLine(
       ::ca::graphics * pdcForeground,
       const wchar_t * lpcsz,
-      int flags,
+      int32_t flags,
       visual::font *pFont,
       LPRECT pRect);*/
 

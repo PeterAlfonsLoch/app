@@ -73,7 +73,7 @@ namespace ex1
    count tree::add_selection(tree_item_ptr_array & itemptra)
    {
       count count = 0;
-      for(int i = 0; i < itemptra.get_count(); i++)
+      for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
          if(add_selection(itemptra[i]))
             count++;
@@ -99,7 +99,7 @@ namespace ex1
    count tree::set_selection(tree_item_ptr_array & itemptra)
    {
       count count = 0;
-      for(int i = 0; i < itemptra.get_count(); i++)
+      for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
          if(contains(itemptra[i]) && m_itemptraSelected.add_unique(itemptra[i]))
             count++;
@@ -128,7 +128,7 @@ namespace ex1
    count tree::remove_selection(tree_item_ptr_array & itemptra)
    {
       count count = 0;
-      for(int i = 0; i < itemptra.get_count(); i++)
+      for(int32_t i = 0; i < itemptra.get_count(); i++)
       {
          if(m_itemptraSelected.remove(itemptra[i]))
             count++;
@@ -175,7 +175,7 @@ namespace ex1
          return NULL;
       if(pitemdata->get_tree_data() != get_data())
          return false;
-      for(int i = 0; i < m_itemptraSelected.get_count(); i++)
+      for(int32_t i = 0; i < m_itemptraSelected.get_count(); i++)
       {
          if(m_itemptraSelected[i]->m_pitemdata == pitemdata)
             return true;
@@ -216,7 +216,7 @@ namespace ex1
 
    index tree::get_proper_item_index(::ex1::tree_item * pitemParam, index * piLevel)
    {
-      int iIndex = 0;
+      int32_t iIndex = 0;
       if(piLevel != NULL) *piLevel = 0;
       ::ex1::tree_item * pitem = get_base_item();
       while(pitem != NULL)
@@ -454,7 +454,7 @@ namespace ex1
       delete_item(get_base_item()->m_pchild);
    }
 
-   void tree::sort(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *))
+   void tree::sort(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *))
    {
       tree_item * pitem = get_base_item();
       while(pitem != NULL)

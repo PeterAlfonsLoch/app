@@ -26,7 +26,7 @@ namespace filemanager
       public:
          string      m_strPath;
          string      m_wstrName;
-         int          m_iImage;
+         int32_t          m_iImage;
       };
       class FolderArray :
          protected base_array < Folder, Folder & >
@@ -45,7 +45,7 @@ namespace filemanager
       virtual void _017Synchronize();
 
       FolderArray         m_foldera;
-      ::collection::map < HICON, HICON, int, int > m_iconmap;
+      ::collection::map < HICON, HICON, int32_t, int32_t > m_iconmap;
 
       ::fs::item & GetFileManagerItem();
 

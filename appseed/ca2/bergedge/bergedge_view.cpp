@@ -177,7 +177,7 @@ namespace bergedge
       string strImageDir = Application.dir().userdata("image");
       Application.dir().rls(strImageDir, &m_straImagePath);
 
-      for(int i = 0; i < m_straImagePath.get_size();)
+      for(int32_t i = 0; i < m_straImagePath.get_size();)
       {
          if(Application.dir().is(m_straImagePath[i]))
          {
@@ -224,7 +224,7 @@ namespace bergedge
 
    }
 
-   void view::_001OnTabClick(int iTab)
+   void view::_001OnTabClick(int32_t iTab)
    {
       if(iTab == 1)
       {
@@ -367,7 +367,7 @@ namespace bergedge
       m_strCurrentImagePath = str;
    }
 
-   void view::GetAreaThumbRect(LPRECT lprect, int iArea)
+   void view::GetAreaThumbRect(LPRECT lprect, int32_t iArea)
    {
       rect rectClient;
       GetClientRect(rectClient);
@@ -460,7 +460,7 @@ namespace bergedge
    }
 
 
-   void view::mt_show_window(oswindow oswindow, int iShow)
+   void view::mt_show_window(oswindow oswindow, int32_t iShow)
    {
       UNREFERENCED_PARAMETER(oswindow);
       UNREFERENCED_PARAMETER(iShow);

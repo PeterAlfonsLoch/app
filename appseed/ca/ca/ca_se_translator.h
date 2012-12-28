@@ -35,9 +35,9 @@ class translator :
    translator();
    virtual ~translator();
 
-   void translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers);
-   static string name(unsigned int uiCode);
-   static string description(unsigned int uiCode);
+   void translator(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers);
+   static string name(unsigned int32_t uiCode);
+   static string description(unsigned int32_t uiCode);
 
 
    bool attach();

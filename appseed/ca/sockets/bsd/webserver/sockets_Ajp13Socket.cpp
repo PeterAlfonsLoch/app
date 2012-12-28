@@ -75,7 +75,7 @@ namespace sockets
       // request more body data
       if (m_body_size_left)
       {
-         int ptr = 4;
+         int32_t ptr = 4;
          char msg[100];
          msg[0] = 'A';
          msg[1] = 'B';
@@ -111,7 +111,7 @@ namespace sockets
    {
       UNREFERENCED_PARAMETER(sz);
       //
-      int ptr = 0;
+      int32_t ptr = 0;
 
       get_byte(buf, ptr); // skip first byte: prefix_code
       unsigned char method = get_byte(buf, ptr);
@@ -136,7 +136,7 @@ namespace sockets
 
       // get Headers
       short             num_headers = get_integer(buf, ptr);
-      for (int i = 0; i < num_headers; i++)
+      for (int32_t i = 0; i < num_headers; i++)
       {
          string key;
          switch ( (unsigned char)buf[ptr]) // 0xa0
@@ -259,16 +259,16 @@ namespace sockets
 
       // Send Headers
       {
-         int ptr = 4;
+         int32_t ptr = 4;
          put_byte(msg, ptr, 0x04); // send headers
-         put_integer(msg, ptr, (short)(int)m_response.attr("http_status_code"));
+         put_integer(msg, ptr, (short)(int32_t)m_response.attr("http_status_code"));
          put_string(msg, ptr, m_response.attr("http_status"));
          put_integer(msg, ptr, (short)m_response.headers().m_propertya.get_size() );
-         for (int i = 0; i < m_response.headers().m_propertya.get_size(); i++)
+         for (int32_t i = 0; i < m_response.headers().m_propertya.get_size(); i++)
          {
             string strNameLower(m_response.headers().m_propertya[i].name());
             strNameLower;
-            int iValue;
+            int32_t iValue;
             if(dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
             {
                put_integer(msg, ptr, (short) iValue);
@@ -284,7 +284,7 @@ namespace sockets
          {
             for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
             {
-               Utility::ncmap<int>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpbasesocketinit->ResponseHeader.find( "set-cookie" );
+               Utility::ncmap<int32_t>::const_iterator it2 = dynamic_cast < application_interface * >(::get_app())->m_pajpbasesocketinit->ResponseHeader.find( "set-cookie" );
                if (it2 != dynamic_cast < application_interface * >(::get_app())->m_pajpbasesocketinit->ResponseHeader.end())
                {
                   put_integer(msg, ptr, it2 -> second);
@@ -318,10 +318,10 @@ namespace sockets
       size_t n = m_response.file().read(msg + 7,  8100);
       while (n > 0)
       {
-         int ptr = 4;
+         int32_t ptr = 4;
          put_byte(msg, ptr, 0x03); // send body chunk
          put_integer(msg, ptr, (short)n);
-         ptr += (int)n;
+         ptr += (int32_t)n;
 
          short len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
@@ -339,7 +339,7 @@ namespace sockets
       if (!GetOutputLength()) // all body data sent and no data in output buffer - send end response
       {
          // End Response
-         int ptr = 4;
+         int32_t ptr = 4;
          put_byte(msg, ptr, 0x05); // end response
          put_boolean(msg, ptr, false); // reuse
          /*

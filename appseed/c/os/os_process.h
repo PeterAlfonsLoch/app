@@ -3,20 +3,20 @@
 
 #if !defined(METROWIN)
 
-CLASS_DECL_c int call_async(
+CLASS_DECL_c int32_t call_async(
    const char * pszPath,
    const char * pszParam,
    const char * pszDir,
-   int iShow);
+   int32_t iShow);
 
 CLASS_DECL_c DWORD call_sync(
    const char * pszPath,
    const char * pszParam,
    const char * pszDir,
-   int iShow,
-   int iRetry,
-   int iSleep,
-   int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
+   int32_t iShow,
+   int32_t iRetry,
+   int32_t iSleep,
+   int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
    dword_ptr dwParam);
 
 #endif
@@ -24,11 +24,11 @@ CLASS_DECL_c DWORD call_sync(
 
 #if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
 
-CLASS_DECL_c int get_current_processor_index();
+CLASS_DECL_c int32_t get_current_processor_index();
 
-CLASS_DECL_c int get_current_process_maximum_affinity();
+CLASS_DECL_c int32_t get_current_process_maximum_affinity();
 
-CLASS_DECL_c int get_current_process_affinity_order();
+CLASS_DECL_c int32_t get_current_process_affinity_order();
 
 #endif
 

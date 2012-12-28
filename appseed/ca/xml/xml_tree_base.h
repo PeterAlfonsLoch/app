@@ -23,7 +23,7 @@ namespace xml
       tree_base(::ca::application * papp);
       virtual ~tree_base();
 
-      string get_node_name(int iNameIndex);
+      string get_node_name(int32_t iNameIndex);
 
       void set_schema(tree_schema * pschema);
       tree_schema & get_schema();

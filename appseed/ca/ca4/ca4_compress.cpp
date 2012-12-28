@@ -14,7 +14,7 @@
 #endif
 
 #ifdef WINDOWS
-int my_open(const char * psz, int i)
+int32_t my_open(const char * psz, int32_t i)
 {
    return _wopen(::gen::international::utf8_to_unicode(psz), i);
 }
@@ -24,12 +24,12 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 }
 #else
 
-void _get_errno(int * perrno)
+void _get_errno(int32_t * perrno)
 {
    *perrno = errno;
 }
 
-int my_open(const char * psz, int i)
+int32_t my_open(const char * psz, int32_t i)
 {
    return open(psz, i);
 }
@@ -45,7 +45,7 @@ namespace ca4
 {
    bool compress::ungz(ex1::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
-      int fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
+      int32_t fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
       if (fileUn == -1)
       {
          TRACE("ungz wopen error %s", lpcszGzFileCompressed);
@@ -59,8 +59,8 @@ namespace ca4
       }
       class primitive::memory memory;
       memory.allocate(1024 * 256);
-      int uncomprLen;
-      while((uncomprLen = gzread(file, memory, (unsigned int) memory.get_size())) > 0)
+      int32_t uncomprLen;
+      while((uncomprLen = gzread(file, memory, (unsigned int32_t) memory.get_size())) > 0)
       {
          ostreamUncompressed.write(memory, uncomprLen);
       }
@@ -75,7 +75,7 @@ namespace ca4
       int64_t dataLength = memoryfile.get_length();
 
       bool done = false;
-      int status;
+      int32_t status;
 
       z_stream strm;
       strm.next_in = (Bytef *)memoryfile.get_data();
@@ -134,7 +134,7 @@ namespace ca4
       FILE * fileUn = my_fopen(lpcszUncompressed, "rb");
       if (fileUn == NULL)
       {
-         int err;
+         int32_t err;
          _get_errno(&err);
          fprintf(stderr, "gz fopen error %d %s", err, lpcszUncompressed);
          return false;
@@ -184,8 +184,8 @@ namespace ca4
       }
       primitive::memory memory;
       memory.allocate(1024 * 16 * 1024);
-      int uncomprLen;
-      while((uncomprLen = BZ2_bzread(file, memory, (int) memory.get_size())) > 0)
+      int32_t uncomprLen;
+      while((uncomprLen = BZ2_bzread(file, memory, (int32_t) memory.get_size())) > 0)
       {
          ostreamUncompressed.write(memory, uncomprLen);
       }
@@ -231,7 +231,7 @@ namespace ca4
    {
       memory.allocate(compressBound(ulSize) * 2);
       uLong ulDestSize = (unsigned long) memory.get_size();
-      int i = ::zlib_compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, ulSize);
+      int32_t i = ::zlib_compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, ulSize);
       memory.allocate(ulDestSize);
       return i == Z_OK;
    }
@@ -239,7 +239,7 @@ namespace ca4
    bool compress::_uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed)
    {
       memoryUncompressed.allocate(ulSizeUncompressed);
-      int i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong) memoryCompressed.get_size());
+      int32_t i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uLong) memoryCompressed.get_size());
       return i == Z_OK;
    }
 
@@ -268,7 +268,7 @@ namespace ca4
          string strPath;
          ::ex1::filesp file;
          System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
-         for(int i = 0; i < straPath.get_size(); i++)
+         for(int32_t i = 0; i < straPath.get_size(); i++)
          {
             strPath = straPath[i];
             if(!System.dir().is(strPath, papp))

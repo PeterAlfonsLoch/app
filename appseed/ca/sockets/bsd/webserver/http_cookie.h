@@ -81,7 +81,7 @@ namespace http
       string set_cookie(
          const char * pszKey,
          var var,
-         int iExpire = 0,
+         int32_t iExpire = 0,
          const char * pszDomain = NULL, 
          const char * pszPath = NULL,
          bool bSecure = false);

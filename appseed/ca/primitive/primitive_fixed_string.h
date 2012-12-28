@@ -29,21 +29,21 @@ public:
 
    static fixed_string_log_interface * s_pLog;
 
-   fixed_string_manager(string_data * pData,int nChars, string_manager * pMgr = NULL ) throw();
+   fixed_string_manager(string_data * pData,int32_t nChars, string_manager * pMgr = NULL ) throw();
    virtual ~fixed_string_manager() throw();
 
    string_manager* GetBackupManager() const throw();
 
-   virtual string_data * allocate(strsize nChars, int nCharSize) throw();
+   virtual string_data * allocate(strsize nChars, int32_t nCharSize) throw();
    virtual void Free( string_data * pData ) throw();
-   virtual string_data * Reallocate(string_data * pData, strsize nChars, int nCharSize ) throw();
+   virtual string_data * Reallocate(string_data * pData, strsize nChars, int32_t nCharSize ) throw();
    virtual string_data * GetNilString() throw();
    virtual string_manager* Clone() throw();
 
 };
 
 
-template< int t_nChars >
+template< int32_t t_nChars >
 class fixed_string :
    private fixed_string_manager,
    public string
@@ -61,7 +61,7 @@ public:
    fixed_string(const fixed_string< t_nChars >& str );
    fixed_string(string str );
    fixed_string(const string::XCHAR* psz);
-   fixed_string(const string::XCHAR* psz,int nLength);
+   fixed_string(const string::XCHAR* psz,int32_t nLength);
    explicit fixed_string(const string::YCHAR* psz);
    explicit fixed_string(const unsigned char* psz);
    ~fixed_string() throw();
@@ -74,97 +74,97 @@ public:
 
 };
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::fixed_string() throw() :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( static_cast< string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::fixed_string(string_manager* pstringmanager ) throw() :
    fixed_string_manager( &m_data, t_nChars, pstringmanager ),
    string( static_cast< string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::fixed_string(const fixed_string< t_nChars >& str ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( str.GetString(), str.get_length(), static_cast< fixed_string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::fixed_string(string str ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( str.GetString(), str.get_length(), static_cast< fixed_string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::fixed_string(const string::XCHAR* psz ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
-fixed_string< t_nChars >::fixed_string(const string::XCHAR* psz,int nLength ) :
+template < int32_t t_nChars >
+fixed_string< t_nChars >::fixed_string(const string::XCHAR* psz,int32_t nLength ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, nLength, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::fixed_string(const string::YCHAR* psz ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::fixed_string(const unsigned char* psz ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >::~fixed_string() throw()
 {
    Empty();
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const fixed_string< t_nChars >& str )
 {
    string::operator=( str );
    return *this;
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const char* psz )
 {
    string::operator=( psz );
    return *this;
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const wchar_t* psz )
 {
    string::operator=( psz );
    return *this;
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const unsigned char* psz )
 {
    string::operator=( psz );
    return *this;
 }
 
-template < int t_nChars >
+template < int32_t t_nChars >
 fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const string & str )
 {
    string::operator=( str );
@@ -193,7 +193,7 @@ public:
 
 // This struct have the same primitive::memory layout as string and is used to enable
 // const statically initialized string without making a copy on the heap
-template < int t_nChars> struct const_fixed_string
+template < int32_t t_nChars> struct const_fixed_string
 {
 
 

@@ -5,7 +5,7 @@ namespace sockets
 {
 
 
-   address::address(::ca::application * papp, const in_addr & a, int iPort)
+   address::address(::ca::application * papp, const in_addr & a, int32_t iPort)
    {
 
       m_pipv4 = new ipv4_address(papp, a, iPort);
@@ -14,7 +14,7 @@ namespace sockets
    }
 
 
-   address::address(::ca::application * papp, const in6_addr & a, int iPort)
+   address::address(::ca::application * papp, const in6_addr & a, int32_t iPort)
    {
 
       m_pipv6 = new ipv6_address(papp, a, iPort);
@@ -23,7 +23,7 @@ namespace sockets
    }
 
 
-   address::address(::ca::application * papp, const sockaddr & sa, int sa_len)
+   address::address(::ca::application * papp, const sockaddr & sa, int32_t sa_len)
    {
 
       m_pipv4 = NULL;
@@ -72,7 +72,7 @@ namespace sockets
    }
 
 
-   address::address(::ca::application * papp, const char * pszAddress, int iPort) :
+   address::address(::ca::application * papp, const char * pszAddress, int32_t iPort) :
       ca(papp)
    {
 
@@ -251,7 +251,7 @@ namespace sockets
    }
 
 
-   int address::get_service_number() const
+   int32_t address::get_service_number() const
    {
 
       string strService = m_strServiceName;
@@ -263,7 +263,7 @@ namespace sockets
 
    }
 
-   bool address::set_service_number(int iPort)
+   bool address::set_service_number(int32_t iPort)
    {
 
       if(iPort < 0 || iPort >= 65536)
@@ -276,7 +276,7 @@ namespace sockets
    }
 
 
-   int address::service_name_to_number(const char * psz) const
+   int32_t address::service_name_to_number(const char * psz) const
    {
 
       return System.net().service_port(psz);
@@ -284,7 +284,7 @@ namespace sockets
    }
 
 
-   string  address::service_number_to_name(int iPort) const
+   string  address::service_number_to_name(int32_t iPort) const
    {
 
       return System.net().service_name(iPort);
@@ -372,7 +372,7 @@ namespace sockets
 
    }
 
-   int address::GetFamily() const
+   int32_t address::GetFamily() const
    {
 
       if(m_pipv4 != NULL && m_pipv4->m_bValid)
@@ -408,7 +408,7 @@ namespace sockets
 
    }
 
-   int address::sa_len() const
+   int32_t address::sa_len() const
    {
 
       if(m_pipv4 != NULL && m_pipv4->m_bValid)

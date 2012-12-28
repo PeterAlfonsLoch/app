@@ -22,22 +22,22 @@ BEGIN_EXTERN_C
 #define floor1_rangedB 140 /* floor 1 fixed at -140dB to 0dB range */
 
 typedef struct lsfit_acc{
-  int x0;
-  int x1;
+  int32_t x0;
+  int32_t x1;
 
-  int xa;
-  int ya;
-  int x2a;
-  int y2a;
-  int xya;
-  int an;
+  int32_t xa;
+  int32_t ya;
+  int32_t x2a;
+  int32_t y2a;
+  int32_t xya;
+  int32_t an;
 
-  int xb;
-  int yb;
-  int x2b;
-  int y2b;
-  int xyb;
-  int bn;
+  int32_t xb;
+  int32_t yb;
+  int32_t x2b;
+  int32_t y2b;
+  int32_t xyb;
+  int32_t bn;
 } lsfit_acc;
 
 /***********************************************/
@@ -63,8 +63,8 @@ static void floor1_free_look(vorbis_look_floor *i){
   }
 }
 
-static int ilog(unsigned int v){
-  int ret=0;
+static int32_t ilog(unsigned int32_t v){
+  int32_t ret=0;
   while(v){
     ret++;
     v>>=1;
@@ -72,8 +72,8 @@ static int ilog(unsigned int v){
   return(ret);
 }
 
-static int ilog2(unsigned int v){
-  int ret=0;
+static int32_t ilog2(unsigned int32_t v){
+  int32_t ret=0;
   if(v)--v;
   while(v){
     ret++;
@@ -84,11 +84,11 @@ static int ilog2(unsigned int v){
 
 static void floor1_pack (vorbis_info_floor *i,oggpack_buffer *opb){
   vorbis_info_floor1 *info=(vorbis_info_floor1 *)i;
-  int j,k;
-  int count=0;
-  int rangebits;
-  int maxposit=info->postlist[1];
-  int maxclass=-1;
+  int32_t j,k;
+  int32_t count=0;
+  int32_t rangebits;
+  int32_t maxposit=info->postlist[1];
+  int32_t maxclass=-1;
 
   /* save out partitions */
   oggpack_write(opb,info->partitions,5); /* only 0 to 31 legal */
@@ -118,13 +118,13 @@ static void floor1_pack (vorbis_info_floor *i,oggpack_buffer *opb){
   }
 }
 
-static int icomp(const void *a,const void *b){
-  return(**(int **)a-**(int **)b);
+static int32_t icomp(const void *a,const void *b){
+  return(**(int32_t **)a-**(int32_t **)b);
 }
 
 static vorbis_info_floor *floor1_unpack (vorbis_info *vi,oggpack_buffer *opb){
   codec_setup_info     *ci=(codec_setup_info *)vi->codec_setup;
-  int j,k,count=0,maxclass=-1,rangebits;
+  int32_t j,k,count=0,maxclass=-1,rangebits;
 
   vorbis_info_floor1 *info= (vorbis_info_floor1 *)_ogg_calloc(1,sizeof(*info));
   /* read partitions */
@@ -159,7 +159,7 @@ static vorbis_info_floor *floor1_unpack (vorbis_info *vi,oggpack_buffer *opb){
   for(j=0,k=0;j<info->partitions;j++){
     count+=info->class_dim[info->partitionclass[j]];
     for(;k<count;k++){
-      int t=info->postlist[k+2]=oggpack_read(opb,rangebits);
+      int32_t t=info->postlist[k+2]=oggpack_read(opb,rangebits);
       if(t<0 || t>=(1<<rangebits))
         goto err_out;
     }
@@ -170,7 +170,7 @@ static vorbis_info_floor *floor1_unpack (vorbis_info *vi,oggpack_buffer *opb){
   /* don't allow repeated values in post list as they'd result in
      zero-length segments */
   {
-    int *sortpointer[VIF_POSIT+2];
+    int32_t *sortpointer[VIF_POSIT+2];
     for(j=0;j<count+2;j++)sortpointer[j]=info->postlist+j;
     qsort(sortpointer,count+2,sizeof(*sortpointer),icomp);
 
@@ -188,10 +188,10 @@ static vorbis_info_floor *floor1_unpack (vorbis_info *vi,oggpack_buffer *opb){
 static vorbis_look_floor *floor1_look(vorbis_dsp_state *vd,
                                       vorbis_info_floor *in){
 
-  int *sortpointer[VIF_POSIT+2];
+  int32_t *sortpointer[VIF_POSIT+2];
   vorbis_info_floor1 *info=(vorbis_info_floor1 *)in;
   vorbis_look_floor1 *look=(vorbis_look_floor1 *)_ogg_calloc(1,sizeof(*look));
-  int i,j,n=0;
+  int32_t i,j,n=0;
 
   look->vi=info;
   look->n=info->postlist[1];
@@ -237,13 +237,13 @@ static vorbis_look_floor *floor1_look(vorbis_dsp_state *vd,
   /* discover our neighbors for decode where we don't use fit flags
      (that would push the neighbors outward) */
   for(i=0;i<n-2;i++){
-    int lo=0;
-    int hi=1;
-    int lx=0;
-    int hx=look->n;
-    int currentx=info->postlist[i+2];
+    int32_t lo=0;
+    int32_t hi=1;
+    int32_t lx=0;
+    int32_t hx=look->n;
+    int32_t currentx=info->postlist[i+2];
     for(j=0;j<i+2;j++){
-      int x=info->postlist[j];
+      int32_t x=info->postlist[j];
       if(x>lx && x<currentx){
         lo=j;
         lx=x;
@@ -260,24 +260,24 @@ static vorbis_look_floor *floor1_look(vorbis_dsp_state *vd,
   return(look);
 }
 
-static int render_point(int x0,int x1,int y0,int y1,int x){
+static int32_t render_point(int32_t x0,int32_t x1,int32_t y0,int32_t y1,int32_t x){
   y0&=0x7fff; /* mask off flag */
   y1&=0x7fff;
 
   {
-    int dy=y1-y0;
-    int adx=x1-x0;
-    int ady=abs(dy);
-    int err=ady*(x-x0);
+    int32_t dy=y1-y0;
+    int32_t adx=x1-x0;
+    int32_t ady=abs(dy);
+    int32_t err=ady*(x-x0);
 
-    int off=err/adx;
+    int32_t off=err/adx;
     if(dy<0)return(y0-off);
     return(y0+off);
   }
 }
 
-static int vorbis_dBquant(const float *x){
-  int i= *x*7.3142857f+1023.5f;
+static int32_t vorbis_dBquant(const float *x){
+  int32_t i= *x*7.3142857f+1023.5f;
   if(i>1023)return(1023);
   if(i<0)return(0);
   return i;
@@ -350,15 +350,15 @@ static const float FLOOR1_fromdB_LOOKUP[256]={
   0.82788260F, 0.88168307F, 0.9389798F, 1.F,
 };
 
-static void render_line(int n, int x0,int x1,int y0,int y1,float *d){
-  int dy=y1-y0;
-  int adx=x1-x0;
-  int ady=abs(dy);
-  int base=dy/adx;
-  int sy=(dy<0?base-1:base+1);
-  int x=x0;
-  int y=y0;
-  int err=0;
+static void render_line(int32_t n, int32_t x0,int32_t x1,int32_t y0,int32_t y1,float *d){
+  int32_t dy=y1-y0;
+  int32_t adx=x1-x0;
+  int32_t ady=abs(dy);
+  int32_t base=dy/adx;
+  int32_t sy=(dy<0?base-1:base+1);
+  int32_t x=x0;
+  int32_t y=y0;
+  int32_t err=0;
 
   ady-=abs(base*adx);
 
@@ -379,15 +379,15 @@ static void render_line(int n, int x0,int x1,int y0,int y1,float *d){
   }
 }
 
-static void render_line0(int n, int x0,int x1,int y0,int y1,int *d){
-  int dy=y1-y0;
-  int adx=x1-x0;
-  int ady=abs(dy);
-  int base=dy/adx;
-  int sy=(dy<0?base-1:base+1);
-  int x=x0;
-  int y=y0;
-  int err=0;
+static void render_line0(int32_t n, int32_t x0,int32_t x1,int32_t y0,int32_t y1,int32_t *d){
+  int32_t dy=y1-y0;
+  int32_t adx=x1-x0;
+  int32_t ady=abs(dy);
+  int32_t base=dy/adx;
+  int32_t sy=(dy<0?base-1:base+1);
+  int32_t x=x0;
+  int32_t y=y0;
+  int32_t err=0;
 
   ady-=abs(base*adx);
 
@@ -409,12 +409,12 @@ static void render_line0(int n, int x0,int x1,int y0,int y1,int *d){
 }
 
 /* the floor has already been filtered to only include relevant sections */
-static int accumulate_fit(const float *flr,const float *mdct,
-                          int x0, int x1,lsfit_acc *a,
-                          int n,vorbis_info_floor1 *info){
+static int32_t accumulate_fit(const float *flr,const float *mdct,
+                          int32_t x0, int32_t x1,lsfit_acc *a,
+                          int32_t n,vorbis_info_floor1 *info){
   long i;
 
-  int xa=0,ya=0,x2a=0,y2a=0,xya=0,na=0, xb=0,yb=0,x2b=0,y2b=0,xyb=0,nb=0;
+  int32_t xa=0,ya=0,x2a=0,y2a=0,xya=0,na=0, xb=0,yb=0,x2b=0,y2b=0,xyb=0,nb=0;
 
   memset(a,0,sizeof(*a));
   a->x0=x0;
@@ -422,7 +422,7 @@ static int accumulate_fit(const float *flr,const float *mdct,
   if(x1>=n)x1=n-1;
 
   for(i=x0;i<=x1;i++){
-    int quantized=vorbis_dBquant(flr+i);
+    int32_t quantized=vorbis_dBquant(flr+i);
     if(quantized){
       if(mdct[i]+info->twofitatten>=flr[i]){
         xa  += i;
@@ -459,12 +459,12 @@ static int accumulate_fit(const float *flr,const float *mdct,
   return(na);
 }
 
-static int fit_line(lsfit_acc *a,int fits,int *y0,int *y1,
+static int32_t fit_line(lsfit_acc *a,int32_t fits,int32_t *y0,int32_t *y1,
                     vorbis_info_floor1 *info){
   double xb=0,yb=0,x2b=0,y2b=0,xyb=0,bn=0;
-  int i;
-  int x0=a[0].x0;
-  int x1=a[fits-1].x1;
+  int32_t i;
+  int32_t x0=a[0].x0;
+  int32_t x1=a[fits-1].x1;
 
   for(i=0;i<fits;i++){
     double weight = (a[i].bn+a[i].an)*info->twofitweight/(a[i].an+1)+1.;
@@ -519,20 +519,20 @@ static int fit_line(lsfit_acc *a,int fits,int *y0,int *y1,
   }
 }
 
-static int inspect_error(int x0,int x1,int y0,int y1,const float *mask,
+static int32_t inspect_error(int32_t x0,int32_t x1,int32_t y0,int32_t y1,const float *mask,
                          const float *mdct,
                          vorbis_info_floor1 *info){
-  int dy=y1-y0;
-  int adx=x1-x0;
-  int ady=abs(dy);
-  int base=dy/adx;
-  int sy=(dy<0?base-1:base+1);
-  int x=x0;
-  int y=y0;
-  int err=0;
-  int val=vorbis_dBquant(mask+x);
-  int mse=0;
-  int n=0;
+  int32_t dy=y1-y0;
+  int32_t adx=x1-x0;
+  int32_t ady=abs(dy);
+  int32_t base=dy/adx;
+  int32_t sy=(dy<0?base-1:base+1);
+  int32_t x=x0;
+  int32_t y=y0;
+  int32_t err=0;
+  int32_t val=vorbis_dBquant(mask+x);
+  int32_t mse=0;
+  int32_t n=0;
 
   ady-=abs(base*adx);
 
@@ -570,7 +570,7 @@ static int inspect_error(int x0,int x1,int y0,int y1,const float *mask,
   return(0);
 }
 
-static int post_Y(int *A,int *B,int pos){
+static int32_t post_Y(int32_t *A,int32_t *B,int32_t pos){
   if(A[pos]<0)
     return B[pos];
   if(B[pos]<0)
@@ -579,7 +579,7 @@ static int post_Y(int *A,int *B,int pos){
   return (A[pos]+B[pos])>>1;
 }
 
-int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
+int32_t *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
                           const float *logmdct,   /* in */
                           const float *logmask){
   long i,j;
@@ -588,13 +588,13 @@ int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
   long posts=look->posts;
   long nonzero=0;
   lsfit_acc fits[VIF_POSIT+1];
-  int fit_valueA[VIF_POSIT+2]; /* index by range list position */
-  int fit_valueB[VIF_POSIT+2]; /* index by range list position */
+  int32_t fit_valueA[VIF_POSIT+2]; /* index by range list position */
+  int32_t fit_valueB[VIF_POSIT+2]; /* index by range list position */
 
-  int loneighbor[VIF_POSIT+2]; /* sorted index of range list position (+2) */
-  int hineighbor[VIF_POSIT+2];
-  int *output=NULL;
-  int memo[VIF_POSIT+2];
+  int32_t loneighbor[VIF_POSIT+2]; /* sorted index of range list position (+2) */
+  int32_t hineighbor[VIF_POSIT+2];
+  int32_t *output=NULL;
+  int32_t memo[VIF_POSIT+2];
 
   for(i=0;i<posts;i++)fit_valueA[i]=-200; /* mark all unused */
   for(i=0;i<posts;i++)fit_valueB[i]=-200; /* mark all unused */
@@ -615,8 +615,8 @@ int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
 
   if(nonzero){
     /* start by fitting the implicit base case.... */
-    int y0=-200;
-    int y1=-200;
+    int32_t y0=-200;
+    int32_t y1=-200;
     fit_line(fits,posts-1,&y0,&y1,info);
 
     fit_valueA[0]=y0;
@@ -629,23 +629,23 @@ int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
        algorithm, but simple and close enough to the best
        answer. */
     for(i=2;i<posts;i++){
-      int sortpos=look->reverse_index[i];
-      int ln=loneighbor[sortpos];
-      int hn=hineighbor[sortpos];
+      int32_t sortpos=look->reverse_index[i];
+      int32_t ln=loneighbor[sortpos];
+      int32_t hn=hineighbor[sortpos];
 
       /* eliminate repeat searches of a particular range with a memo */
       if(memo[ln]!=hn){
         /* haven't performed this error search yet */
-        int lsortpos=look->reverse_index[ln];
-        int hsortpos=look->reverse_index[hn];
+        int32_t lsortpos=look->reverse_index[ln];
+        int32_t hsortpos=look->reverse_index[hn];
         memo[ln]=hn;
 
         {
           /* A note: we want to bound/minimize *local*, not global, error */
-          int lx=info->postlist[ln];
-          int hx=info->postlist[hn];
-          int ly=post_Y(fit_valueA,fit_valueB,ln);
-          int hy=post_Y(fit_valueA,fit_valueB,hn);
+          int32_t lx=info->postlist[ln];
+          int32_t hx=info->postlist[hn];
+          int32_t ly=post_Y(fit_valueA,fit_valueB,ln);
+          int32_t hy=post_Y(fit_valueA,fit_valueB,hn);
 
           if(ly==-1 || hy==-1){
             exit(1);
@@ -653,12 +653,12 @@ int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
 
           if(inspect_error(lx,hx,ly,hy,logmask,logmdct,info)){
             /* outside error bounds/begin search area.  Split it. */
-            int ly0=-200;
-            int ly1=-200;
-            int hy0=-200;
-            int hy1=-200;
-            int ret0=fit_line(fits+lsortpos,sortpos-lsortpos,&ly0,&ly1,info);
-            int ret1=fit_line(fits+sortpos,hsortpos-sortpos,&hy0,&hy1,info);
+            int32_t ly0=-200;
+            int32_t ly1=-200;
+            int32_t hy0=-200;
+            int32_t hy1=-200;
+            int32_t ret0=fit_line(fits+lsortpos,sortpos-lsortpos,&ly0,&ly1,info);
+            int32_t ret1=fit_line(fits+sortpos,hsortpos-sortpos,&hy0,&hy1,info);
 
             if(ret0){
               ly0=ly;
@@ -703,7 +703,7 @@ int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
       }
     }
 
-    output=(int *) _vorbis_block_alloc(vb,sizeof(*output)*posts);
+    output=(int32_t *) _vorbis_block_alloc(vb,sizeof(*output)*posts);
 
     output[0]=post_Y(fit_valueA,fit_valueB,0);
     output[1]=post_Y(fit_valueA,fit_valueB,1);
@@ -712,15 +712,15 @@ int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
        back out to 'unused' when encoding them so long as curve
        interpolation doesn't force them into use */
     for(i=2;i<posts;i++){
-      int ln=look->loneighbor[i-2];
-      int hn=look->hineighbor[i-2];
-      int x0=info->postlist[ln];
-      int x1=info->postlist[hn];
-      int y0=output[ln];
-      int y1=output[hn];
+      int32_t ln=look->loneighbor[i-2];
+      int32_t hn=look->hineighbor[i-2];
+      int32_t x0=info->postlist[ln];
+      int32_t x1=info->postlist[hn];
+      int32_t y0=output[ln];
+      int32_t y1=output[hn];
 
-      int predicted=render_point(x0,x1,y0,y1,info->postlist[i]);
-      int vx=post_Y(fit_valueA,fit_valueB,i);
+      int32_t predicted=render_point(x0,x1,y0,y1,info->postlist[i]);
+      int32_t vx=post_Y(fit_valueA,fit_valueB,i);
 
       if(vx>=0 && predicted!=vx){
         output[i]=vx;
@@ -734,16 +734,16 @@ int *floor1_fit(vorbis_block *vb,vorbis_look_floor1 *look,
 
 }
 
-int *floor1_interpolate_fit(vorbis_block *vb,vorbis_look_floor1 *look,
-                          int *A,int *B,
-                          int del){
+int32_t *floor1_interpolate_fit(vorbis_block *vb,vorbis_look_floor1 *look,
+                          int32_t *A,int32_t *B,
+                          int32_t del){
 
   long i;
   long posts=look->posts;
-  int *output=NULL;
+  int32_t *output=NULL;
 
   if(A && B){
-    output=(int *) _vorbis_block_alloc(vb,sizeof(*output)*posts);
+    output=(int32_t *) _vorbis_block_alloc(vb,sizeof(*output)*posts);
 
     /* overly simpleminded--- look again post 1.2 */
     for(i=0;i<posts;i++){
@@ -756,22 +756,22 @@ int *floor1_interpolate_fit(vorbis_block *vb,vorbis_look_floor1 *look,
 }
 
 
-int floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
+int32_t floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
                   vorbis_look_floor1 *look,
-                  int *post,int *ilogmask){
+                  int32_t *post,int32_t *ilogmask){
 
   long i,j;
   vorbis_info_floor1 *info=look->vi;
   long posts=look->posts;
   codec_setup_info *ci=vb->vd->vi->codec_setup;
-  int out[VIF_POSIT+2];
+  int32_t out[VIF_POSIT+2];
   static_codebook **sbooks=ci->book_param;
   codebook *books=ci->fullbooks;
 
   /* quantize values to multiplier spec */
   if(post){
     for(i=0;i<posts;i++){
-      int val=post[i]&0x7fff;
+      int32_t val=post[i]&0x7fff;
       switch(info->mult){
       case 1: /* 1024 -> 256 */
         val>>=2;
@@ -794,24 +794,24 @@ int floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
 
     /* find prediction values for each post and subtract them */
     for(i=2;i<posts;i++){
-      int ln=look->loneighbor[i-2];
-      int hn=look->hineighbor[i-2];
-      int x0=info->postlist[ln];
-      int x1=info->postlist[hn];
-      int y0=post[ln];
-      int y1=post[hn];
+      int32_t ln=look->loneighbor[i-2];
+      int32_t hn=look->hineighbor[i-2];
+      int32_t x0=info->postlist[ln];
+      int32_t x1=info->postlist[hn];
+      int32_t y0=post[ln];
+      int32_t y1=post[hn];
 
-      int predicted=render_point(x0,x1,y0,y1,info->postlist[i]);
+      int32_t predicted=render_point(x0,x1,y0,y1,info->postlist[i]);
 
       if((post[i]&0x8000) || (predicted==post[i])){
         post[i]=predicted|0x8000; /* in case there was roundoff jitter
                                      in interpolation */
         out[i]=0;
       }else{
-        int headroom=(look->quant_q-predicted<predicted?
+        int32_t headroom=(look->quant_q-predicted<predicted?
                       look->quant_q-predicted:predicted);
 
-        int val=post[i]-predicted;
+        int32_t val=post[i]-predicted;
 
         /* at this point the 'deviation' value is in the range +/- max
            range, but the real, unique range can always be mapped to
@@ -849,20 +849,20 @@ int floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
 
     /* partition by partition */
     for(i=0,j=2;i<info->partitions;i++){
-      int classclass=info->partitionclass[i];
-      int cdim=info->class_dim[classclass];
-      int csubbits=info->class_subs[classclass];
-      int csub=1<<csubbits;
-      int bookas[8]={0,0,0,0,0,0,0,0};
-      int cval=0;
-      int cshift=0;
-      int k,l;
+      int32_t classclass=info->partitionclass[i];
+      int32_t cdim=info->class_dim[classclass];
+      int32_t csubbits=info->class_subs[classclass];
+      int32_t csub=1<<csubbits;
+      int32_t bookas[8]={0,0,0,0,0,0,0,0};
+      int32_t cval=0;
+      int32_t cshift=0;
+      int32_t k,l;
 
       /* generate the partition's first stage cascade value */
       if(csubbits){
-        int maxval[8];
+        int32_t maxval[8];
         for(k=0;k<csub;k++){
-          int booknum=info->class_subbook[classclass][k];
+          int32_t booknum=info->class_subbook[classclass][k];
           if(booknum<0){
             maxval[k]=1;
           }else{
@@ -871,7 +871,7 @@ int floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
         }
         for(k=0;k<cdim;k++){
           for(l=0;l<csub;l++){
-            int val=out[j+k];
+            int32_t val=out[j+k];
             if(val<maxval[l]){
               bookas[k]=l;
               break;
@@ -899,7 +899,7 @@ int floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
 
       /* write post values */
       for(k=0;k<cdim;k++){
-        int book=info->class_subbook[classclass][bookas[k]];
+        int32_t book=info->class_subbook[classclass][bookas[k]];
         if(book>=0){
           /* hack to allow training with 'bad' books */
           if(out[j+k]<(books+book)->entries)
@@ -927,14 +927,14 @@ int floor1_encode(oggpack_buffer *opb,vorbis_block *vb,
     {
       /* generate quantized floor equivalent to what we'd unpack in decode */
       /* render the lines */
-      int hx=0;
-      int lx=0;
-      int ly=post[0]*info->mult;
-      int n=ci->blocksizes[vb->W]/2;
+      int32_t hx=0;
+      int32_t lx=0;
+      int32_t ly=post[0]*info->mult;
+      int32_t n=ci->blocksizes[vb->W]/2;
 
       for(j=1;j<look->posts;j++){
-        int current=look->forward_index[j];
-        int hy=post[current]&0x7fff;
+        int32_t current=look->forward_index[j];
+        int32_t hy=post[current]&0x7fff;
         if(hy==post[current]){
 
           hy*=info->mult;
@@ -961,23 +961,23 @@ static void *floor1_inverse1(vorbis_block *vb,vorbis_look_floor *in){
   vorbis_info_floor1 *info=look->vi;
   codec_setup_info   *ci=vb->vd->vi->codec_setup;
 
-  int i,j,k;
+  int32_t i,j,k;
   codebook *books=ci->fullbooks;
 
   /* unpack wrapped/predicted values from stream */
   if(oggpack_read(&vb->opb,1)==1){
-    int *fit_value= (int *) _vorbis_block_alloc(vb,(look->posts)*sizeof(*fit_value));
+    int32_t *fit_value= (int32_t *) _vorbis_block_alloc(vb,(look->posts)*sizeof(*fit_value));
 
     fit_value[0]=oggpack_read(&vb->opb,ilog(look->quant_q-1));
     fit_value[1]=oggpack_read(&vb->opb,ilog(look->quant_q-1));
 
     /* partition by partition */
     for(i=0,j=2;i<info->partitions;i++){
-      int classclass=info->partitionclass[i];
-      int cdim=info->class_dim[classclass];
-      int csubbits=info->class_subs[classclass];
-      int csub=1<<csubbits;
-      int cval=0;
+      int32_t classclass=info->partitionclass[i];
+      int32_t cdim=info->class_dim[classclass];
+      int32_t csubbits=info->class_subs[classclass];
+      int32_t csub=1<<csubbits;
+      int32_t cval=0;
 
       /* decode the partition's first stage cascade value */
       if(csubbits){
@@ -987,7 +987,7 @@ static void *floor1_inverse1(vorbis_block *vb,vorbis_look_floor *in){
       }
 
       for(k=0;k<cdim;k++){
-        int book=info->class_subbook[classclass][cval&(csub-1)];
+        int32_t book=info->class_subbook[classclass][cval&(csub-1)];
         cval>>=csubbits;
         if(book>=0){
           if((fit_value[j+k]=vorbis_book_decode(books+book,&vb->opb))==-1)
@@ -1001,15 +1001,15 @@ static void *floor1_inverse1(vorbis_block *vb,vorbis_look_floor *in){
 
     /* unwrap positive values and reconsitute via linear interpolation */
     for(i=2;i<look->posts;i++){
-      int predicted=render_point(info->postlist[look->loneighbor[i-2]],
+      int32_t predicted=render_point(info->postlist[look->loneighbor[i-2]],
                                  info->postlist[look->hineighbor[i-2]],
                                  fit_value[look->loneighbor[i-2]],
                                  fit_value[look->hineighbor[i-2]],
                                  info->postlist[i]);
-      int hiroom=look->quant_q-predicted;
-      int loroom=predicted;
-      int room=(hiroom<loroom?hiroom:loroom)<<1;
-      int val=fit_value[i];
+      int32_t hiroom=look->quant_q-predicted;
+      int32_t loroom=predicted;
+      int32_t room=(hiroom<loroom?hiroom:loroom)<<1;
+      int32_t val=fit_value[i];
 
       if(val){
         if(val>=room){
@@ -1042,27 +1042,27 @@ static void *floor1_inverse1(vorbis_block *vb,vorbis_look_floor *in){
   return(NULL);
 }
 
-static int floor1_inverse2(vorbis_block *vb,vorbis_look_floor *in,void *memo,
+static int32_t floor1_inverse2(vorbis_block *vb,vorbis_look_floor *in,void *memo,
                           float *out){
   vorbis_look_floor1 *look=(vorbis_look_floor1 *)in;
   vorbis_info_floor1 *info=look->vi;
 
   codec_setup_info   *ci=vb->vd->vi->codec_setup;
-  int                  n=ci->blocksizes[vb->W]/2;
-  int j;
+  int32_t                  n=ci->blocksizes[vb->W]/2;
+  int32_t j;
 
   if(memo){
     /* render the lines */
-    int *fit_value=(int *)memo;
-    int hx=0;
-    int lx=0;
-    int ly=fit_value[0]*info->mult;
+    int32_t *fit_value=(int32_t *)memo;
+    int32_t hx=0;
+    int32_t lx=0;
+    int32_t ly=fit_value[0]*info->mult;
     /* guard lookup against out-of-range values */
     ly=(ly<0?0:ly>255?255:ly);
 
     for(j=1;j<look->posts;j++){
-      int current=look->forward_index[j];
-      int hy=fit_value[current]&0x7fff;
+      int32_t current=look->forward_index[j];
+      int32_t hy=fit_value[current]&0x7fff;
       if(hy==fit_value[current]){
 
         hx=info->postlist[current];

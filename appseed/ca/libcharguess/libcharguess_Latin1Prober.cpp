@@ -93,7 +93,7 @@ void  nsLatin1Prober::Reset()
 {
   mState = eDetecting;
   mLastCharClass = OTH;
-  for (int i = 0; i < FREQ_CAT_NUM; i++)
+  for (int32_t i = 0; i < FREQ_CAT_NUM; i++)
     mFreqCounter[i] = 0;
 }
 

@@ -22,7 +22,7 @@ namespace userex
    bool pane_view::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    {
 
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
 
          if(pcmdui->m_id == m_menua[i].m_id)
@@ -43,7 +43,7 @@ namespace userex
 
    bool pane_view::_001OnCommand(id id)
    {
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
          if(id == m_menua[i].m_id)
          {
@@ -57,7 +57,7 @@ namespace userex
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
          if(pcreatordata->m_id == m_menua[i].m_id)
          {
@@ -88,7 +88,7 @@ namespace userex
    void pane_view::set_menu_info(id id, const char * pszMatter, class id idCommand)
    {
       menu * pmenu = NULL;
-      for(int i = 0; i < m_menua.get_size(); i++)
+      for(int32_t i = 0; i < m_menua.get_size(); i++)
       {
          if(m_menua[i].m_id == id)
          {

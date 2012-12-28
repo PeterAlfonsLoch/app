@@ -50,7 +50,7 @@ namespace user
       if(node.load(System.file_as_string(&System, System.dir().appdata("proxy.xml"))))
       {
          string strProxy = node.attr("server");
-         int iProxyPort = node.attr("port");
+         int32_t iProxyPort = node.attr("port");
          ::user::interaction * pguie = m_pview->get_child_by_name("server");
          text_interface * ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(strProxy);

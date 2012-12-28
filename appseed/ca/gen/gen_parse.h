@@ -49,13 +49,13 @@ namespace gen
       void getsplit(string &);
       string getword();
       void getword(string &);
-      void getword(string &,string &,int);
+      void getword(string &,string &,int32_t);
       string getrest();
       void getrest(string &);
       long getvalue();
       void setbreak(const char);
-      int getwordlen();
-      int getrestlen();
+      int32_t getwordlen();
+      int32_t getrestlen();
    
       void enablebreak(const char c)
       {

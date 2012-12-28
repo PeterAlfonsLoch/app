@@ -57,9 +57,9 @@ BEGIN_EXTERN_C
                        modules */
 
 /* side effect: changes *lsp to cosines of lsp */
-void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,float *lsp,int m,
+void vorbis_lsp_to_curve(float *curve,int32_t *map,int32_t n,int32_t ln,float *lsp,int32_t m,
                             float amp,float ampoffset){
-  int i;
+  int32_t i;
   float wdel=M_PI/ln;
   vorbis_fpu_control fpu;
 
@@ -68,13 +68,13 @@ void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,float *lsp,int m,
 
   i=0;
   while(i<n){
-    int k=map[i];
-    int qexp;
+    int32_t k=map[i];
+    int32_t qexp;
     float p=.7071067812f;
     float q=.7071067812f;
     float w=vorbis_coslook(wdel*k);
     float *ftmp=lsp;
-    int c=m>>1;
+    int32_t c=m>>1;
 
     while(c--){
       q*=ftmp[0]-w;
@@ -114,42 +114,42 @@ void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,float *lsp,int m,
                        compilers (like gcc) that can't inline across
                        modules */
 
-static const int MLOOP_1[64]={
+static const int32_t MLOOP_1[64]={
    0,10,11,11, 12,12,12,12, 13,13,13,13, 13,13,13,13,
   14,14,14,14, 14,14,14,14, 14,14,14,14, 14,14,14,14,
   15,15,15,15, 15,15,15,15, 15,15,15,15, 15,15,15,15,
   15,15,15,15, 15,15,15,15, 15,15,15,15, 15,15,15,15,
 };
 
-static const int MLOOP_2[64]={
+static const int32_t MLOOP_2[64]={
   0,4,5,5, 6,6,6,6, 7,7,7,7, 7,7,7,7,
   8,8,8,8, 8,8,8,8, 8,8,8,8, 8,8,8,8,
   9,9,9,9, 9,9,9,9, 9,9,9,9, 9,9,9,9,
   9,9,9,9, 9,9,9,9, 9,9,9,9, 9,9,9,9,
 };
 
-static const int MLOOP_3[8]={0,1,2,2,3,3,3,3};
+static const int32_t MLOOP_3[8]={0,1,2,2,3,3,3,3};
 
 
 /* side effect: changes *lsp to cosines of lsp */
-void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,float *lsp,int m,
+void vorbis_lsp_to_curve(float *curve,int32_t *map,int32_t n,int32_t ln,float *lsp,int32_t m,
                             float amp,float ampoffset){
 
   /* 0 <= m < 256 */
 
-  /* set up for using all int later */
-  int i;
-  int ampoffseti=rint(ampoffset*4096.f);
-  int ampi=rint(amp*16.f);
+  /* set up for using all int32_t later */
+  int32_t i;
+  int32_t ampoffseti=rint(ampoffset*4096.f);
+  int32_t ampi=rint(amp*16.f);
   long *ilsp=alloca(m*sizeof(*ilsp));
   for(i=0;i<m;i++)ilsp[i]=vorbis_coslook_i(lsp[i]/M_PI*65536.f+.5f);
 
   i=0;
   while(i<n){
-    int j,k=map[i];
+    int32_t j,k=map[i];
     unsigned long pi=46341; /* 2**-.5 in 0.16 */
     unsigned long qi=46341;
-    int qexp=0,shift;
+    int32_t qexp=0,shift;
     long wi=vorbis_coslook_i(k*65536/ln);
 
     qi*=labs(ilsp[0]-wi);
@@ -240,15 +240,15 @@ void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,float *lsp,int m,
    fraction of a dB precision */
 
 /* side effect: changes *lsp to cosines of lsp */
-void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,float *lsp,int m,
+void vorbis_lsp_to_curve(float *curve,int32_t *map,int32_t n,int32_t ln,float *lsp,int32_t m,
                             float amp,float ampoffset){
-  int i;
+  int32_t i;
   float wdel=M_PI/ln;
   for(i=0;i<m;i++)lsp[i]=2.f*cos(lsp[i]);
 
   i=0;
   while(i<n){
-    int j,k=map[i];
+    int32_t j,k=map[i];
     float p=.5f;
     float q=.5f;
     float w=2.f*cos(wdel*k);
@@ -278,8 +278,8 @@ void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,float *lsp,int m,
 #endif
 #endif
 
-static void cheby(float *g, int ord) {
-  int i, j;
+static void cheby(float *g, int32_t ord) {
+  int32_t i, j;
 
   g[0] *= .5f;
   for(i=2; i<= ord; i++) {
@@ -290,7 +290,7 @@ static void cheby(float *g, int ord) {
   }
 }
 
-static int comp(const void *a,const void *b){
+static int32_t comp(const void *a,const void *b){
   return (*(float *)a<*(float *)b)-(*(float *)a>*(float *)b);
 }
 
@@ -302,8 +302,8 @@ static int comp(const void *a,const void *b){
    afford to fail) */
 
 #define EPSILON 10e-7
-static int Laguerre_With_Deflation(float *a,int ord,float *r){
-  int i,m;
+static int32_t Laguerre_With_Deflation(float *a,int32_t ord,float *r){
+  int32_t i,m;
   double lastdelta=0.f;
   double *defl=(double *) alloca(sizeof(*defl)*(ord+1));
   for(i=0;i<=ord;i++)defl[i]=a[i];
@@ -358,8 +358,8 @@ static int Laguerre_With_Deflation(float *a,int ord,float *r){
 
 
 /* for spit-and-polish only */
-static int Newton_Raphson(float *a,int ord,float *r){
-  int i, k, count=0;
+static int32_t Newton_Raphson(float *a,int32_t ord,float *r){
+  int32_t i, k, count=0;
   double error=1.f;
   double *root=(double *) alloca(ord*sizeof(*root));
 
@@ -397,14 +397,14 @@ static int Newton_Raphson(float *a,int ord,float *r){
 
 
 /* Convert lpc coefficients to lsp coefficients */
-int vorbis_lpc_to_lsp(float *lpc,float *lsp,int m){
-  int order2=(m+1)>>1;
-  int g1_order,g2_order;
+int32_t vorbis_lpc_to_lsp(float *lpc,float *lsp,int32_t m){
+  int32_t order2=(m+1)>>1;
+  int32_t g1_order,g2_order;
   float *g1= (float *) alloca(sizeof(*g1)*(order2+1));
   float *g2= (float *) alloca(sizeof(*g2)*(order2+1));
   float *g1r= (float *) alloca(sizeof(*g1r)*(order2+1));
   float *g2r= (float *) alloca(sizeof(*g2r)*(order2+1));
-  int i;
+  int32_t i;
 
   /* even and odd are slightly different base cases */
   g1_order=(m+1)>>1;

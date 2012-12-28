@@ -44,7 +44,7 @@ semaphore::semaphore(::ca::application * papp, LONG lInitialCount, LONG lMaxCoun
 
    semctl_arg.val = lInitialCount;
 
-   semctl(static_cast < int > (m_object), 0, SETVAL, semctl_arg);
+   semctl(static_cast < int32_t > (m_object), 0, SETVAL, semctl_arg);
 
 
 #endif
@@ -66,7 +66,7 @@ bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 
    semun semctl_arg;
 
-   semctl(static_cast < int > (m_object), 0, GETVAL, semctl_arg);
+   semctl(static_cast < int32_t > (m_object), 0, GETVAL, semctl_arg);
 
    if(lpPrevCount !=  NULL)
    {
@@ -84,7 +84,7 @@ bool semaphore::unlock(LONG lCount, LPLONG lpPrevCount /* =NULL */)
 
    semctl_arg.val += lCount;
 
-   semctl(static_cast < int > (m_object), 0, SETVAL, semctl_arg);
+   semctl(static_cast < int32_t > (m_object), 0, SETVAL, semctl_arg);
 
    return true;
 

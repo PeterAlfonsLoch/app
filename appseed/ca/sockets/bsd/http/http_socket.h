@@ -29,7 +29,7 @@
          size_t               m_body_size_left;
          bool                 m_b_chunked;
          size_t               m_chunk_size;
-         int                  m_chunk_state;
+         int32_t                  m_chunk_state;
          string               m_chunk_line;
 
          int64_t              m_iFirstTime;

@@ -38,8 +38,8 @@ namespace cube2
 
       virtual void on_exclusive_instance_local_conflict();
 
-      virtual int send_simple_command(const char * psz, void * osdataSender);
-      virtual int send_simple_command(void * osdata, const char * psz, void * osdataSender);
+      virtual int32_t send_simple_command(const char * psz, void * osdataSender);
+      virtual int32_t send_simple_command(void * osdata, const char * psz, void * osdataSender);
 
 
 

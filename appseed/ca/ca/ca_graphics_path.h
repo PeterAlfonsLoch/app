@@ -22,20 +22,20 @@ namespace ca
       //virtual bool has_current_point();
       //virtual point current_point();
 
-      virtual bool add_arc(const RECT & rect, int iStart, int iAngle);
+      virtual bool add_arc(const RECT & rect, int32_t iStart, int32_t iAngle);
 
-      virtual bool add_line(int x1, int y1, int x2, int y2);
+      virtual bool add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool add_line(point p1, point p2);
 
-      virtual bool add_lines(const POINT * lppoint, int nCount);
+      virtual bool add_lines(const POINT * lppoint, int32_t nCount);
 
-      virtual bool add_line(int x, int y);
+      virtual bool add_line(int32_t x, int32_t y);
       virtual bool add_line(point p);
 
-      virtual bool add_move(int x, int y);
+      virtual bool add_move(int32_t x, int32_t y);
       virtual bool add_move(point p);
 
-      virtual bool add_rect(int x1, int y1, int x2, int y2);
+      virtual bool add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool add_rect(LPCRECT lpcrect);
 
       virtual void * detach();

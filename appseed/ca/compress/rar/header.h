@@ -6,10 +6,10 @@ namespace rar
    namespace header
    {
 
-      const int kMarkerSize = 7;
+      const int32_t kMarkerSize = 7;
       extern byte kMarker[kMarkerSize];
 
-      const int kArchiveSolid = 0x1;
+      const int32_t kArchiveSolid = 0x1;
 
       namespace block_type
       {
@@ -41,36 +41,36 @@ namespace rar
          const uint16_t kFirstVolume = 0x100; // (set only by RAR 3.0 and later)
          const uint16_t kEncryptVer = 0x200; // RAR 3.6 there is EncryptVer byte in End of MainHeader
 
-         const int kHeaderSizeMin = 7;
+         const int32_t kHeaderSizeMin = 7;
 
-         const int kArchiveHeaderSize = 13;
+         const int32_t kArchiveHeaderSize = 13;
 
-         const int kBlockHeadersAreEncrypted = 0x80;
+         const int32_t kBlockHeadersAreEncrypted = 0x80;
 
       }
 
       namespace file
       {
-         const int kSplitBefore = 1 << 0;
-         const int kSplitAfter  = 1 << 1;
-         const int kEncrypted   = 1 << 2;
-         const int kComment     = 1 << 3;
-         const int kSolid       = 1 << 4;
+         const int32_t kSplitBefore = 1 << 0;
+         const int32_t kSplitAfter  = 1 << 1;
+         const int32_t kEncrypted   = 1 << 2;
+         const int32_t kComment     = 1 << 3;
+         const int32_t kSolid       = 1 << 4;
 
-         const int kDictBitStart     = 5;
-         const int kNumDictBits  = 3;
-         const int kDictMask         = (1 << kNumDictBits) - 1;
-         const int kDictDirectoryValue  = 0x7;
+         const int32_t kDictBitStart     = 5;
+         const int32_t kNumDictBits  = 3;
+         const int32_t kDictMask         = (1 << kNumDictBits) - 1;
+         const int32_t kDictDirectoryValue  = 0x7;
 
-         const int kSize64Bits    = 1 << 8;
-         const int kUnicodeName   = 1 << 9;
-         const int kSalt          = 1 << 10;
-         const int kOldVersion    = 1 << 11;
-         const int kExtTime       = 1 << 12;
-         // const int kExtFlags      = 1 << 13;
-         // const int kSkipIfUnknown = 1 << 14;
+         const int32_t kSize64Bits    = 1 << 8;
+         const int32_t kUnicodeName   = 1 << 9;
+         const int32_t kSalt          = 1 << 10;
+         const int32_t kOldVersion    = 1 << 11;
+         const int32_t kExtTime       = 1 << 12;
+         // const int32_t kExtFlags      = 1 << 13;
+         // const int32_t kSkipIfUnknown = 1 << 14;
 
-         const int kLongBlock    = 1 << 15;
+         const int32_t kLongBlock    = 1 << 15;
 
          /*
          struct CBlock
@@ -131,8 +131,8 @@ namespace rar
          };
          */
 
-         const int kLabelFileAttribute            = 0x08;
-         const int kWinFileDirectoryAttributeMask = 0x10;
+         const int32_t kLabelFileAttribute            = 0x08;
+         const int32_t kWinFileDirectoryAttributeMask = 0x10;
 
          enum CHostOS
          {

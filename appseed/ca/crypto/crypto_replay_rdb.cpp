@@ -98,7 +98,7 @@ rdb_check(const rdb_t *rdb, uint32_t index) {
 
 err_status_t
 rdb_add_index(rdb_t *rdb, uint32_t index) {
-  int delta;  
+  int32_t delta;  
 
   /* here we *assume* that index > rdb->window_start */
 

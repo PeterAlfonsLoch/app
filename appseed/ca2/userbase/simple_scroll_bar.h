@@ -33,24 +33,24 @@ public:
 
 
 
-   int ScrollLineA();
-   int ScrollLineB();
-   int ScrollPageB();
-   int ScrollPageA();
+   int32_t ScrollLineA();
+   int32_t ScrollLineB();
+   int32_t ScrollPageB();
+   int32_t ScrollPageA();
    bool GetPageARect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    bool GetPageBRect(LPRECT lpRectClient, LPRECT lpRectTrack,  LPRECT lpRect);
    void UpdateBitmaps();
-   void OnDisplayChange(int iBitsPerPixel, size sizeScreen);
+   void OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen);
    //virtual void OnDraw(::ca::graphics * pgraphics);
-   virtual int _001GetScrollPos();
-   virtual int _001SetScrollPos(int iPos);
+   virtual int32_t _001GetScrollPos();
+   virtual int32_t _001SetScrollPos(int32_t iPos);
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true);
 
    bool create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
 
-   int SetTrackingPos(point point);
-   int GetTrackSize(size & size);
+   int32_t SetTrackingPos(point point);
+   int32_t GetTrackSize(size & size);
    bool GetTrackClientRect(LPRECT lpRect);
    bool GetTrackRect(LPRECT lpRect);
    DECL_GEN_SIGNAL(_001OnMouseMove)

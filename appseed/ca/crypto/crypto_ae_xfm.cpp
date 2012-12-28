@@ -162,7 +162,7 @@ aes_128_cbc_hmac_sha1_96_inv(void *key,
    unsigned char tmp_tag[TAG_LEN];
    unsigned char *tag = (byte *) auth_tag;
    err_status_t status;
-   int i;
+   int32_t i;
   
   /* check if we're doing authentication only */
   if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
@@ -365,7 +365,7 @@ aes_128_cbc_hmac_sha1_96_dec(void *key,
    unsigned char *auth_tag;
    unsigned ciphertext_len;
    err_status_t status;
-   int i;
+   int32_t i;
   
   /* check if we're doing authentication only */
   if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
@@ -507,7 +507,7 @@ null_enc(void *key,
     unsigned *opaque_len)
 {
 
-   int i;
+   int32_t i;
    unsigned char *auth_tag;
    unsigned char *init_vec = (byte *) iv;
 
@@ -619,7 +619,7 @@ cryptoalg_ctx_t null_cryptoalg_ctx = {
 
 cryptoalg_t null_cryptoalg = &null_cryptoalg_ctx;
 
-int
+int32_t
 cryptoalg_get_id(cryptoalg_t c) {
   if (c == cryptoalg)
     return 1;
@@ -627,7 +627,7 @@ cryptoalg_get_id(cryptoalg_t c) {
 }
 
 cryptoalg_t 
-cryptoalg_find_by_id(int id) {
+cryptoalg_find_by_id(int32_t id) {
   switch(id) {
   case 1:
     return cryptoalg;

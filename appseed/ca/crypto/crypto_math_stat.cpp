@@ -43,7 +43,7 @@ stat_test_monobit(uint8_t *data) {
 
 err_status_t
 stat_test_poker(uint8_t *data) {
-  int i;
+  int32_t i;
   uint8_t *data_end = data + STAT_TEST_DATA_LEN;
   double poker;
   uint16_t f[16] = {
@@ -84,9 +84,9 @@ stat_test_runs(uint8_t *data) {
   uint16_t gaps[6] = { 0, 0, 0, 0, 0, 0 };
   uint16_t lo_value[6] = { 2315, 1114, 527, 240, 103, 103 };
   uint16_t hi_value[6] = { 2685, 1386, 723, 384, 209, 209 };
-  int state = 0;
+  int32_t state = 0;
   uint16_t mask;
-  int i;
+  int32_t i;
   
   /*
    * the state var holds the number of bits in the
@@ -195,7 +195,7 @@ stat_test_runs(uint8_t *data) {
 
 err_status_t
 stat_test_rand_source(rand_source_func_t get_rand_bytes) {
-  int i;
+  int32_t i;
   double poker;
   uint8_t *data, *data_end;
   uint16_t f[16] = {
@@ -204,12 +204,12 @@ stat_test_rand_source(rand_source_func_t get_rand_bytes) {
   };
   uint8_t buffer[RAND_SRC_BUF_OCTETS];
   err_status_t status;
-  int ones_count = 0;
+  int32_t ones_count = 0;
   uint16_t runs[6] = { 0, 0, 0, 0, 0, 0 }; 
   uint16_t gaps[6] = { 0, 0, 0, 0, 0, 0 };
   uint16_t lo_value[6] = { 2315, 1114, 527, 240, 103, 103 };
   uint16_t hi_value[6] = { 2685, 1386, 723, 384, 209, 209 };
-  int state = 0;
+  int32_t state = 0;
   uint16_t mask;
   
   /* counters for monobit, poker, and runs tests are initialized above */
@@ -353,7 +353,7 @@ stat_test_rand_source(rand_source_func_t get_rand_bytes) {
 
 err_status_t
 stat_test_rand_source_with_repetition(rand_source_func_t source, unsigned num_trials) {
-  unsigned int i;
+  unsigned int32_t i;
   err_status_t err = err_status_algo_fail;
 
   for (i=0; i < num_trials; i++) {

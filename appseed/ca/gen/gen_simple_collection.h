@@ -97,7 +97,7 @@ namespace gen
             if (m_aT != NULL)
             {
                m_nAllocSize = src.get_size();
-               for (int i=0; i<src.get_size(); i++)
+               for (int32_t i=0; i<src.get_size(); i++)
                   add(src[i]);
             }
          }
@@ -113,16 +113,16 @@ namespace gen
          }
          else
          {
-            for (int i = this->get_size(); i > 0; i--)
+            for (int32_t i = this->get_size(); i > 0; i--)
                remove_at(i - 1);
          }
-         for (int i=0; i<src.get_size(); i++)
+         for (int32_t i=0; i<src.get_size(); i++)
             add(src[i]);
          return *this;
       }
 
    // Operations
-      int get_size() const
+      int32_t get_size() const
       {
          return m_nSize;
          }
@@ -131,7 +131,7 @@ namespace gen
             if(m_nSize == m_nAllocSize)
             {
                T* aT;
-               int nNewAllocSize = (m_nAllocSize == 0) ? 1 : (m_nSize * 2);
+               int32_t nNewAllocSize = (m_nAllocSize == 0) ? 1 : (m_nSize * 2);
 
 
                   if (nNewAllocSize<0||nNewAllocSize>INT_MAX/sizeof(T))
@@ -157,12 +157,12 @@ namespace gen
          }
       bool remove(const T& t)
       {
-         int nIndex = find(t);
+         int32_t nIndex = find(t);
          if(nIndex == -1)
             return FALSE;
          return remove_at(nIndex);
       }
-      bool remove_at(int nIndex)
+      bool remove_at(int32_t nIndex)
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if (nIndex < 0 || nIndex >= m_nSize)
@@ -177,7 +177,7 @@ namespace gen
       {
          if(m_aT != NULL)
          {
-            for(int i = 0; i < m_nSize; i++)
+            for(int32_t i = 0; i < m_nSize; i++)
                m_aT[i].~T();
             free(m_aT);
             m_aT = NULL;
@@ -185,7 +185,7 @@ namespace gen
          m_nSize = 0;
          m_nAllocSize = 0;
        }
-      const T& operator[] (int nIndex) const
+      const T& operator[] (int32_t nIndex) const
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
@@ -194,7 +194,7 @@ namespace gen
          }
          return m_aT[nIndex];
       }
-      T& operator[] (int nIndex)
+      T& operator[] (int32_t nIndex)
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
@@ -208,9 +208,9 @@ namespace gen
          return m_aT;
       }
 
-      int find(const T& t) const
+      int32_t find(const T& t) const
       {
-         for(int i = 0; i < m_nSize; i++)
+         for(int32_t i = 0; i < m_nSize; i++)
          {
             if(TEqual::IsEqual(m_aT[i], t))
                return i;
@@ -218,7 +218,7 @@ namespace gen
          return -1;  // not found
       }
 
-      bool SetAtIndex(int nIndex, const T& t)
+      bool SetAtIndex(int32_t nIndex, const T& t)
       {
          if (nIndex < 0 || nIndex >= m_nSize)
             return FALSE;
@@ -246,15 +246,15 @@ namespace gen
       };
 
    // Implementation
-      void InternalSetAtIndex(int nIndex, const T& t)
+      void InternalSetAtIndex(int32_t nIndex, const T& t)
       {
          new(m_aT + nIndex) Wrapper(t);
       }
 
       typedef T _ArrayElementType;
       T* m_aT;
-      int m_nSize;
-      int m_nAllocSize;
+      int32_t m_nSize;
+      int32_t m_nAllocSize;
 
    };
 
@@ -272,7 +272,7 @@ namespace gen
    public:
       TKey* m_aKey;
       TVal* m_aVal;
-      int m_nSize;
+      int32_t m_nSize;
 
       typedef TKey _ArrayKeyType;
       typedef TVal _ArrayElementType;
@@ -287,7 +287,7 @@ namespace gen
       }
 
    // Operations
-      int get_size() const
+      int32_t get_size() const
       {
          return m_nSize;
       }
@@ -309,12 +309,12 @@ namespace gen
       }
       bool remove(const TKey& key)
       {
-         int nIndex = FindKey(key);
+         int32_t nIndex = FindKey(key);
          if(nIndex == -1)
             return FALSE;
          return remove_at(nIndex);
       }
-      bool remove_at(int nIndex)
+      bool remove_at(int32_t nIndex)
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if (nIndex < 0 || nIndex >= m_nSize)
@@ -341,7 +341,7 @@ namespace gen
       {
          if(m_aKey != NULL)
          {
-            for(int i = 0; i < m_nSize; i++)
+            for(int32_t i = 0; i < m_nSize; i++)
             {
                m_aKey[i].~TKey();
                m_aVal[i].~TVal();
@@ -359,7 +359,7 @@ namespace gen
       }
       bool set_at(const TKey& key, const TVal& val)
       {
-         int nIndex = FindKey(key);
+         int32_t nIndex = FindKey(key);
          if(nIndex == -1)
             return FALSE;
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
@@ -370,19 +370,19 @@ namespace gen
       }
       TVal Lookup(const TKey& key) const
       {
-         int nIndex = FindKey(key);
+         int32_t nIndex = FindKey(key);
          if(nIndex == -1)
             return NULL;    // must be able to convert
          return GetValueAt(nIndex);
       }
       TKey ReverseLookup(const TVal& val) const
       {
-         int nIndex = FindVal(val);
+         int32_t nIndex = FindVal(val);
          if(nIndex == -1)
             return NULL;    // must be able to convert
          return GetKeyAt(nIndex);
       }
-      TKey& GetKeyAt(int nIndex) const
+      TKey& GetKeyAt(int32_t nIndex) const
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
@@ -390,7 +390,7 @@ namespace gen
 
          return m_aKey[nIndex];
       }
-      TVal& GetValueAt(int nIndex) const
+      TVal& GetValueAt(int32_t nIndex) const
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
@@ -399,18 +399,18 @@ namespace gen
          return m_aVal[nIndex];
       }
 
-      int FindKey(const TKey& key) const
+      int32_t FindKey(const TKey& key) const
       {
-         for(int i = 0; i < m_nSize; i++)
+         for(int32_t i = 0; i < m_nSize; i++)
          {
             if(TEqual::IsEqualKey(m_aKey[i], key))
                return i;
          }
          return -1;  // not found
       }
-      int FindVal(const TVal& val) const
+      int32_t FindVal(const TVal& val) const
       {
-         for(int i = 0; i < m_nSize; i++)
+         for(int32_t i = 0; i < m_nSize; i++)
          {
             if(TEqual::IsEqualValue(m_aVal[i], val))
                return i;
@@ -418,7 +418,7 @@ namespace gen
          return -1;  // not found
       }
 
-      bool SetAtIndex(int nIndex, const TKey& key, const TVal& val)
+      bool SetAtIndex(int32_t nIndex, const TKey& key, const TVal& val)
       {
          if (nIndex < 0 || nIndex >= m_nSize)
             return FALSE;
@@ -447,7 +447,7 @@ namespace gen
          }
          T t;
       };
-      void InternalSetAtIndex(int nIndex, const TKey& key, const TVal& val)
+      void InternalSetAtIndex(int32_t nIndex, const TKey& key, const TVal& val)
       {
          new(m_aKey + nIndex) Wrapper<TKey>(key);
          new(m_aVal + nIndex) Wrapper<TVal>(val);

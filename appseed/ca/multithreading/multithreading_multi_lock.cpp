@@ -43,7 +43,7 @@ multi_lock::~multi_lock()
 
 wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD dwWakeMask /* = 0 */)
 {
-   int iResult;
+   int32_t iResult;
 
    if(m_objecta.get_count() < 0)
       return wait_result(wait_result::Failure);

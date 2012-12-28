@@ -26,7 +26,7 @@ namespace ca
    }
 
 
-   bool font::create_pixel_font(const char * lpszFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+   bool font::create_pixel_font(const char * lpszFacename, double dSize, int32_t iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
       
       m_strFontFamilyName     = lpszFacename;
@@ -43,7 +43,7 @@ namespace ca
 
    }
 
-   bool font::create_point_font(const char * lpszFacename, double dSize, int iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
+   bool font::create_point_font(const char * lpszFacename, double dSize, int32_t iWeight, bool bItalic, bool bUnderline, bool bStrikeOut, double dWidth)
    {
       
       m_strFontFamilyName     = lpszFacename;

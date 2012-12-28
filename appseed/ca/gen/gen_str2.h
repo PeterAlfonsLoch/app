@@ -95,7 +95,7 @@ namespace gen
       // see less_string_ci and equal_string_ci functors for a more sophisticated
       // version which will also handle locales/facets
 
-      inline int compare_ignore_case( const string & left, const string & right, size_t len=0 )
+      inline int32_t compare_ignore_case( const string & left, const string & right, size_t len=0 )
       {
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
@@ -121,7 +121,7 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline int compare_ignore_case( const char * left, const string & right, size_t len=0 )
+      inline int32_t compare_ignore_case( const char * left, const string & right, size_t len=0 )
       {
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
@@ -147,7 +147,7 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline int compare_ignore_case( const string & left, const char * right, size_t len=0 )
+      inline int32_t compare_ignore_case( const string & left, const char * right, size_t len=0 )
       {
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
@@ -173,7 +173,7 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline int compare_ignore_case( const char * left, const char * right, size_t len=0 )
+      inline int32_t compare_ignore_case( const char * left, const char * right, size_t len=0 )
       {
 	      if ( len ) {
       #if defined(WIN32) || defined(WIN64)
@@ -199,7 +199,7 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline CLASS_DECL_ca  string  from(int i)
+      inline CLASS_DECL_ca  string  from(int32_t i)
       {
          string str;
          from(str, i);
@@ -220,7 +220,7 @@ namespace gen
          return str;
       }
 
-      inline CLASS_DECL_ca  string  from(unsigned int ui)
+      inline CLASS_DECL_ca  string  from(unsigned int32_t ui)
       {
          string str;
          from(str, ui);

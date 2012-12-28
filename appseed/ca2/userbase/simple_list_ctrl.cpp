@@ -55,7 +55,7 @@ void simple_list_control::pre_subclass_window()
 }
 
 
-bool simple_list_control::RemoveItem(int iItem)
+bool simple_list_control::RemoveItem(int32_t iItem)
 {
    if(!m_listctrldata.RemoveItem(iItem))
       return false;

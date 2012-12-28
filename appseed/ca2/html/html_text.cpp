@@ -89,9 +89,9 @@ namespace html
 
          strsize iLastSpace = 0;
          unsigned char uch;
-         int iSpace = 0;
+         int32_t iSpace = 0;
          string strLine;
-         for(int i = 0; i < str.get_length();)
+         for(int32_t i = 0; i < str.get_length();)
          {
             iSpace = 0;
             uch = (unsigned char) str[i];
@@ -131,7 +131,7 @@ namespace html
             }
          }
          m_cxMin = 0;
-         for(int i = 0; i < m_straWordSpace.get_size(); i++)
+         for(int32_t i = 0; i < m_straWordSpace.get_size(); i++)
          {
             uch = (unsigned char) m_straWordSpace[i][0];
             if(!isspace(uch))
@@ -161,7 +161,7 @@ namespace html
          elemental::layout_phase3(pdata);
          if(strTag.CompareNoCase("br") == 0)
          {
-//            int iIndex = -1;
+//            int32_t iIndex = -1;
 
             ::ca::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
@@ -197,7 +197,7 @@ namespace html
          }
          else
          {
-//            int iIndex = -1;
+//            int32_t iIndex = -1;
 
             ::ca::graphics * pdc = pdata->m_pdc;
             if(pdc == NULL)
@@ -207,17 +207,17 @@ namespace html
             m_straLines.remove_all();
             m_sizea.remove_all();
             ::size sizeText;
-            int iSpace;
+            int32_t iSpace;
             string strLine;
             unsigned char uch;
             strsize iLastSpace = 0;
             point pointBound(get_x(), get_y());
             pointBound.x += m_margin.left + m_border.left + m_padding.left;
-            int x = pointBound.x;
+            int32_t x = pointBound.x;
             size sizeContent = size(get_bound_size());
             sizeContent.cx = max(0, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
             sizeContent.cy = max(0, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
-            for(int i = 0; i < str.get_length();)
+            for(int32_t i = 0; i < str.get_length();)
             {
                iSpace = 0;
                uch = (unsigned char) str[i];
@@ -297,7 +297,7 @@ namespace html
             }
             
             float cy = 0.f;
-            int i;
+            int32_t i;
             for(i = 0; i < m_sizea.get_size(); i++)
             {
                cy += m_sizea[i].cy;
@@ -461,7 +461,7 @@ namespace html
          strsize iSelEnd;
          ::size size3;
          visual::graphics_extension(pdata->m_papp).GetTextExtent(pdc, unitext("gGYIﾍ"), size3);
-         int maxcy = size3.cy;
+         int32_t maxcy = size3.cy;
 
          _001GetViewSel(iSelStart, iSelEnd);
          strsize iCursor = iSelEnd;
@@ -469,8 +469,8 @@ namespace html
 
 
          pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
-         int x = get_x();
-         int y = get_y();
+         int32_t x = get_x();
+         int32_t y = get_y();
 
          if(m_pelemental->m_pparent != NULL)
          {
@@ -480,7 +480,7 @@ namespace html
 
          }
 
-         int cy = 0;
+         int32_t cy = 0;
          string str1;
          string str2;
          string str3;
@@ -488,14 +488,14 @@ namespace html
          string strExtent2;
          string strExtent3;
          strsize lim = 0;
-        for(int i = 0; i < m_straLines.get_size(); i++)
+        for(int32_t i = 0; i < m_straLines.get_size(); i++)
         {
          string strLine = m_straLines[i];
-         int left = i == 0 ? x : m_bound.left;
-         int top = y + cy;
+         int32_t left = i == 0 ? x : m_bound.left;
+         int32_t top = y + cy;
          if(pdata->m_bEdit)
          {
-            int y = top;
+            int32_t y = top;
             stringa stra;
             strsize i1 = iSelStart - lim;
             strsize i2 = iSelEnd - lim;
@@ -622,17 +622,17 @@ namespace html
          }
       }
 
-      int text::hit_test(data * pdoc, ::point pt)
+      int32_t text::hit_test(data * pdoc, ::point pt)
       {
          UNREFERENCED_PARAMETER(pdoc);
-         int x = get_x();
-//         int y = get_y();
-        int cy = 0;
-        int x1;
-        int x2;
+         int32_t x = get_x();
+//         int32_t y = get_y();
+        int32_t cy = 0;
+        int32_t x1;
+        int32_t x2;
         bool bTag = is_tag();
         bool bValue = is_value();
-        for(int i = 0; i < m_straLines.get_size(); i++)
+        for(int32_t i = 0; i < m_straLines.get_size(); i++)
         {
            x1 = i == 0 ? x : m_bound.left;
            x2 = x1 + m_sizea[i].cx;
@@ -734,7 +734,7 @@ namespace html
          }
       }
 
-      strsize text::char_hit_test(::ca::graphics * pdc, int px, int py)
+      strsize text::char_hit_test(::ca::graphics * pdc, int32_t px, int32_t py)
       {
          string strTag;
          if(m_pelemental->m_propertyset.is_new_or_null("PropertyTag"))
@@ -749,24 +749,24 @@ namespace html
          m_box.get(rect);
 
          pdc->SelectObject(m_pelemental->m_pdata->get_font(m_pelemental)->m_font);
-         int x = get_x();
-         int y = get_y();
-         int cy = 0;
+         int32_t x = get_x();
+         int32_t y = get_y();
+         int32_t cy = 0;
          if(py < y)
             return 0;
-         int iFind = 0;
+         int32_t iFind = 0;
          strsize iLen = 0;
-         for(int i = 0; i < m_straLines.get_size(); i++)
+         for(int32_t i = 0; i < m_straLines.get_size(); i++)
          {
             string str = m_straLines[i];
             const char * lpszStart = str;
             const char * lpszEnd = lpszStart;
-            int cur_x = i == 0 ? x : m_bound.left;
-//            int cur_y = y + cy;
+            int32_t cur_x = i == 0 ? x : m_bound.left;
+//            int32_t cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy))
             {
                class ::size size(0, 0);
-               int iChar = 0;
+               int32_t iChar = 0;
                while(true)
                {
                   if(px < cur_x + size.cx)

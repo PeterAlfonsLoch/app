@@ -148,7 +148,7 @@ namespace userbase
       return m_daScalar.GetMean(); // Low Pass Filter
    }
 
-   void elastic_slider::SetStreamingVelocityMode(DoubleScalar * pscalarVelocity, int iVelocity, DoubleScalar * pscalarPosition, int iPosition)
+   void elastic_slider::SetStreamingVelocityMode(DoubleScalar * pscalarVelocity, int32_t iVelocity, DoubleScalar * pscalarPosition, int32_t iPosition)
    {
       m_escalar = ScalarStreamingVelocity;
 
@@ -225,7 +225,7 @@ namespace userbase
       class rect rectClient;
       GetClientRect(rectClient);
 
-      int iWidth = 16;
+      int32_t iWidth = 16;
       rect.top = rectClient.top;
       rect.bottom = rectClient.bottom;
       rect.left = (LONG) min(rectClient.right, m_dPos * (rectClient.width() - iWidth));

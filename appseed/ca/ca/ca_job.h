@@ -18,7 +18,7 @@ namespace ca
       virtual ~job();
 
 
-      virtual int run() = 0;
+      virtual int32_t run() = 0;
 
 
    };

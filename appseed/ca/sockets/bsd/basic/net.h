@@ -134,12 +134,12 @@ namespace sockets
 
       bool isipv6(const string & str);
 
-      bool convert(struct ::in_addr& l, const string & str, int ai_flags = 0);
-      bool convert(struct ::in6_addr& l, const string & str, int ai_flags = 0);
+      bool convert(struct ::in_addr& l, const string & str, int32_t ai_flags = 0);
+      bool convert(struct ::in6_addr& l, const string & str, int32_t ai_flags = 0);
       bool convert(string & str, const struct ::in_addr& ip);
       bool convert(string & str, const struct ::in6_addr& ip, bool mixed = false);
 
-      int in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
+      int32_t in6_addr_compare(struct ::in6_addr a, struct ::in6_addr b);
 
       void ResolveLocal();
 
@@ -157,18 +157,18 @@ namespace sockets
 
       //sockets::address CreateAddress(sockaddr * psa, socklen_t sa_len);
 
-      bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, int flags = 0);
+      bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, int32_t flags = 0);
 
-      bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, string & service, int flags = 0);
+      bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, string & service, int32_t flags = 0);
 
-      bool reverse(string & number, const char * hostname, int flags);
+      bool reverse(string & number, const char * hostname, int32_t flags);
 
 
-      bool u2service(const string & name, int& service, int ai_flags);
+      bool u2service(const string & name, int32_t& service, int32_t ai_flags);
 
-      int service_port(const char * psz, int flags = 0);
+      int32_t service_port(const char * psz, int32_t flags = 0);
 
-      string  service_name(int iPort, int flags = 0);
+      string  service_name(int32_t iPort, int32_t flags = 0);
 
    };
 

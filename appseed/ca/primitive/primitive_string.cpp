@@ -165,24 +165,24 @@ char* __cdecl crt_char_traits::CharNext(const char* p ) throw()
 
 
 
-int __cdecl crt_char_traits::IsDigit(const char * pch ) throw()
+int32_t __cdecl crt_char_traits::IsDigit(const char * pch ) throw()
 {
    return gen::ch::is_digit(pch) ? 1 : 0;
 }
 
-int __cdecl crt_char_traits::IsSpace(const char * pch ) throw()
+int32_t __cdecl crt_char_traits::IsSpace(const char * pch ) throw()
 {
    return gen::ch::is_whitespace( pch ) ? 1 : 0;
 }
 
 
 
-int __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
+int32_t __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
 {
    return strcmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
 
-int __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
+int32_t __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
 {
    return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
@@ -468,7 +468,7 @@ strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource ) throw
 strsize __cdecl crt_char_traits::GetcharLength(const wchar_t * pszSource, strsize nLength ) throw()
 {
    // Returns required buffer length in XCHARs
-   return ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSource, (int) nLength, NULL, 0, NULL, NULL );
+   return ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSource, (int32_t) nLength, NULL, 0, NULL, NULL );
 }
 
 void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const char * pszSrc, strsize nSrcLength) throw()
@@ -482,7 +482,7 @@ void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, 
 void __cdecl crt_char_traits::ConvertTochar(char * pszDest,strsize nDestLength, const wchar_t * pszSrc,strsize nSrcLength) throw()
 {
    // nLen is in XCHARs
-   ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSrc, (int) nSrcLength, pszDest, (int) nDestLength, NULL, NULL );
+   ::WideCharToMultiByte( _gen_GetConversionACP(), 0, pszSrc, (int32_t) nSrcLength, pszDest, (int32_t) nDestLength, NULL, NULL );
 }
 
 void crt_char_traits::ConvertToOem(char* pstrString) RELEASENOTHROW
@@ -514,13 +514,13 @@ void __cdecl crt_char_traits::FloodCharacters(char ch,strsize nLength, char* pch
 BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nDataLength ) throw()
 {
 
-   strsize nLen = ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
+   strsize nLen = ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int32_t) nDataLength, NULL, NULL );
 
    BSTR bstr = ::SysAllocStringLen( NULL, (UINT) nLen );
 
    if( bstr != NULL )
    {
-      ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, bstr, (int) nLen);
+      ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int32_t) nDataLength, bstr, (int32_t) nLen);
    }
 
    return bstr;
@@ -530,13 +530,13 @@ BSTR __cdecl crt_char_traits::AllocSysString( const char* pchData, strsize nData
 bool __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,strsize nDataLength ) throw()
 {
 
-   strsize nLen = ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, NULL, NULL );
+   strsize nLen = ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int32_t) nDataLength, NULL, NULL );
 
    bool bSuccess = ::SysReAllocStringLen( pbstr, NULL, (UINT) nLen ) != 0;
 
    if( bSuccess )
    {
-      ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int) nDataLength, *pbstr, (int) nLen );
+      ::MultiByteToWideChar( _gen_GetConversionACP(), 0, pchData, (int32_t) nDataLength, *pbstr, (int32_t) nLen );
    }
 
    return bSuccess;
@@ -1034,7 +1034,7 @@ string & string::assign(strsize n, char c)
    return operator = (string(c, n));
 }
 
-string & string::assign(int n, int c)
+string & string::assign(int32_t n, int32_t c)
 {
    return assign((uint64) n, (uint64) c);
 }
@@ -1044,7 +1044,7 @@ string & string::assign(int64_t n, int64_t c)
    return assign((uint64) n, (uint64) c);
 }
 
-string & string::assign(unsigned int n, unsigned int c)
+string & string::assign(unsigned int32_t n, unsigned int32_t c)
 {
    return assign((uint64) n, (uint64) c);
 }
@@ -1064,74 +1064,74 @@ string & string::assign(uint64 n, uint64 c)
 // Comparison
 
 
-int string::Collate(PCXSTR psz ) const RELEASENOTHROW
+int32_t string::Collate(PCXSTR psz ) const RELEASENOTHROW
 {
    ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCollate( GetString(), psz ) );
 }
 
-int string::CollateNoCase(PCXSTR psz ) const RELEASENOTHROW
+int32_t string::CollateNoCase(PCXSTR psz ) const RELEASENOTHROW
 {
    ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCollateIgnore( GetString(), psz ) );
 }
 
-int string::compare(PCXSTR psz ) const
+int32_t string::compare(PCXSTR psz ) const
 {
    return Compare(psz);
 }
 
-int string::compare_no_case(PCXSTR psz ) const throw()
+int32_t string::compare_no_case(PCXSTR psz ) const throw()
 {
    return CompareNoCase(psz);
 }
 
-int string::collate(PCXSTR psz ) const throw()
+int32_t string::collate(PCXSTR psz ) const throw()
 {
    return Collate(psz);
 }
 
-int string::collate_no_case(PCXSTR psz ) const throw()
+int32_t string::collate_no_case(PCXSTR psz ) const throw()
 {
    return CollateNoCase(psz);
 }
 
-int string::compare(strsize iStart, strsize nCount, PCXSTR psz ) const
+int32_t string::compare(strsize iStart, strsize nCount, PCXSTR psz ) const
 {
    return substr(iStart, nCount).compare(psz);
 }
 
-int string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
+int32_t string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
 {
    return substr(iStart, nCount).compare_no_case(psz);
 }
 
-int string::collate(strsize iStart, strsize nCount, PCXSTR psz ) const
+int32_t string::collate(strsize iStart, strsize nCount, PCXSTR psz ) const
 {
    return substr(iStart, nCount).collate(psz);
 }
 
-int string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
+int32_t string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz ) const
 {
    return substr(iStart, nCount).compare_no_case(psz);
 }
 
-int string::compare(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+int32_t string::compare(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
 {
    return substr(iStart, nCount).compare(string(psz).substr(start2, count2));
 }
 
-int string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+int32_t string::compare_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
 {
    return substr(iStart, nCount).compare_no_case(string(psz).substr(start2, count2));
 }
 
-int string::collate(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+int32_t string::collate(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
 {
    return substr(iStart, nCount).collate(string(psz).substr(start2, count2));
 }
 
-int string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
+int32_t string::collate_no_case(strsize iStart, strsize nCount, PCXSTR psz, strsize start2, strsize count2) const
 {
    return substr(iStart, nCount).collate_no_case(string(psz).substr(start2, count2));
 }
@@ -1147,7 +1147,7 @@ bool string::contains(wchar_t wch, strsize iStart, strsize nCount)
    return find_w(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
 }
 
-bool string::contains(int i, strsize iStart, strsize nCount) // utf8 char index
+bool string::contains(int32_t i, strsize iStart, strsize nCount) // utf8 char index
 {
    return find_w(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
 }
@@ -1172,7 +1172,7 @@ bool string::contains_ci(wchar_t wch, strsize iStart, strsize nCount)
    return find_wci(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
 }
 
-bool string::contains_ci(int i, strsize iStart, strsize nCount) // utf8 char index
+bool string::contains_ci(int32_t i, strsize iStart, strsize nCount) // utf8 char index
 {
    return find_wci(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
 }
@@ -1192,7 +1192,7 @@ bool string::contains_wci(wchar_t wch, strsize iStart, strsize nCount)
    return find_wci(gen::str::uni_to_utf8(wch), iStart, nCount) >= 0;
 }
 
-bool string::contains_wci(int i, strsize iStart, strsize nCount) // utf8 char index
+bool string::contains_wci(int32_t i, strsize iStart, strsize nCount) // utf8 char index
 {
    return find_wci(gen::str::uni_to_utf8(i), iStart, nCount) >= 0;
 }
@@ -1519,7 +1519,7 @@ strsize string::find(XCHAR ch,strsize iStart, strsize nCount) const RELEASENOTHR
       return -1;
 
    PCXSTR psz = GetString() + iStart;
-   for(int i = 0; i < nCount; i++)
+   for(int32_t i = 0; i < nCount; i++)
    {
       if(psz[i] == ch)
       {
@@ -1552,7 +1552,7 @@ strsize string::find_ci(XCHAR ch,strsize iStart, strsize nCount) const RELEASENO
       return -1;
 
    PCXSTR psz = GetString() + iStart;
-   for(int i = 0; i < nCount; i++)
+   for(int32_t i = 0; i < nCount; i++)
    {
       if(tolower(psz[i]) == tolower(ch))
       {
@@ -1598,10 +1598,10 @@ strsize string::find(PCXSTR pszSub,strsize iStart, strsize nCount) const RELEASE
       return -1;
 
    PCXSTR psz = GetString() + iStart;
-   for(int i = 0; i <= nCount; i++)
+   for(int32_t i = 0; i <= nCount; i++)
    {
       bool bFound = true;
-      int j;
+      int32_t j;
       for(j = 0; j < nLength2; j++)
       {
          if(psz[j] != pszSub[j])
@@ -1647,10 +1647,10 @@ strsize string::find_ci(PCXSTR pszSub,strsize iStart, strsize nCount) const RELE
       return -1;
 
    PCXSTR psz = GetString() + iStart;
-   for(int i = 0; i <= nCount; i++)
+   for(int32_t i = 0; i <= nCount; i++)
    {
       bool bFound = true;
-      for(int j = 0; j < nLength2; j++)
+      for(int32_t j = 0; j < nLength2; j++)
       {
          if(tolower(psz[j]) != tolower(pszSub[j]))
          {

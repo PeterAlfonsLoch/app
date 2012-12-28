@@ -412,7 +412,7 @@ void FileManagerView::OpenSelectionProperties()
 
 bool FileManagerView::_001OnCommand(id id)
 {
- //  int iPos = -1;
+ //  int32_t iPos = -1;
    if(id == "change_view")
    {
       if(m_ppreview->IsWindowVisible())

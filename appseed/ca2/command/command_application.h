@@ -23,7 +23,7 @@ namespace command
 
 
       bool initialize_instance();
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
 
 	   virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-retry_multi_lock::retry_multi_lock(sync_object_ptra syncobjectptra, duration durationLock, duration durationSleep, int iRetry, bool bInitialLock)
+retry_multi_lock::retry_multi_lock(sync_object_ptra syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
 {
    
    if(syncobjectptra.get_count() <= 0)
@@ -55,9 +55,9 @@ wait_result retry_multi_lock::lock(bool bWaitForAll, DWORD dwWakeMask /* = 0 */)
    if(m_objecta.get_count() < 0)
       return wait_result(wait_result::Failure);
 
-   int iResult;
+   int32_t iResult;
 
-   int iRetry = 0;
+   int32_t iRetry = 0;
 
    while(true)
    {

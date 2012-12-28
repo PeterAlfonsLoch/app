@@ -15,7 +15,7 @@ namespace cube8
       virtual ~application();
 
 
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
 
       virtual bool initialize();

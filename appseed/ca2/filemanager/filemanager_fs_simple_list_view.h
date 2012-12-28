@@ -27,9 +27,9 @@ namespace filemanager
             string      m_strTitle;
             string      m_strFileName;
             string      m_strExtension;
-            int         m_iId;
+            int32_t         m_iId;
             EItemType   m_etype;
-            int         m_iImage;
+            int32_t         m_iImage;
 
             bool IsFolder();
          };
@@ -38,7 +38,7 @@ namespace filemanager
             public array_ptr_alloc < Item, Item & >
          {
          public:
-            //int FindAbsolute(const char * lpszId);
+            //int32_t FindAbsolute(const char * lpszId);
          };
 
 
@@ -82,9 +82,9 @@ namespace filemanager
             int64_t m_iParentFolder;
 
 
-            int m_iIconFolder;
-            int m_iIconArtist;
-            int m_iIconSong;
+            int32_t m_iIconFolder;
+            int32_t m_iIconArtist;
+            int32_t m_iIconSong;
 
             class BuildHelper
             {
@@ -112,7 +112,7 @@ namespace filemanager
 
 
             void parse(const char * lpszSource);
-            void KickBuild(int iItem = -1);
+            void KickBuild(int32_t iItem = -1);
          
             void PostFillTask(string & strFile, uint_ptr uiTimer);
 

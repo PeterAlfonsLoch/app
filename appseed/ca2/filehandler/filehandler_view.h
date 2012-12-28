@@ -17,7 +17,7 @@ namespace filehandler
          
 
          string      m_strApp;
-         int         m_iIndex;
+         int32_t         m_iIndex;
 
 
          void parse(const char * pszApp);
@@ -54,7 +54,7 @@ namespace filehandler
       public:
 
 
-         int m_iItemHeight;
+         int32_t m_iItemHeight;
 
          draw_list();
 

@@ -15,15 +15,15 @@ public:
 	// Potentially growing the array
 	void set_at_grow(index nIndex, TYPE newElement)
 	   { BASE_CLASS::SetAtGrow(nIndex, newElement); }
-	int add(TYPE newElement)
+	int32_t add(TYPE newElement)
 	   { return BASE_CLASS::add(newElement); }
-	int add(const simple_typed_pointer_array<BASE_CLASS, TYPE>& src)
+	int32_t add(const simple_typed_pointer_array<BASE_CLASS, TYPE>& src)
 	   { return BASE_CLASS::Append(src); }
 	void copy(const simple_typed_pointer_array<BASE_CLASS, TYPE>& src)
 		{ BASE_CLASS::Copy(src); }
 
 	// Operations that move elements around
-	void insert_at(index nIndex, TYPE newElement, int nCount = 1)
+	void insert_at(index nIndex, TYPE newElement, int32_t nCount = 1)
 		{ BASE_CLASS::InsertAt(nIndex, newElement, nCount); }
 	void insert_at(index nStartIndex, simple_typed_pointer_array<BASE_CLASS, TYPE>* pNewArray)
 	   { BASE_CLASS::InsertAt(nStartIndex, pNewArray); }

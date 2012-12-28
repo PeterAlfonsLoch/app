@@ -28,7 +28,7 @@ os_simple_path::~os_simple_path()
 }
 
 
-bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
+bool os_simple_path::add_arc(const RECT & rect, int32_t iStart, int32_t iAngle)
 {
 
    Gdiplus::Rect rectBound;
@@ -42,7 +42,7 @@ bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 
 }
 
-bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
+bool os_simple_path::add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 
    return m_ppath->AddLine(x1, y1, x2, y2) == Gdiplus::Ok;

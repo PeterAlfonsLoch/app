@@ -56,7 +56,7 @@ namespace userbase
 
    void split_view::_001OnDraw(::ca::graphics *pdc)
    {
-      int i;
+      int32_t i;
       rect rect;
       COLORREF cr = ARGB(184, 92, 92, 80);
       //COLORREF crBack = ARGB(77, 230, 230, 210);

@@ -4,13 +4,13 @@
 point::point() throw()
    { /* random filled */ }
 point::point(int64_t initX, int64_t initY) throw()
-   { x = (int) initX; y = (int) initY; }
+   { x = (int32_t) initX; y = (int32_t) initY; }
 point::point(POINT initPt) throw()
    { *(POINT*)this = initPt; }
 point::point(SIZE initSize) throw()
    { *(SIZE*)this = initSize; }
 point::point(__point64 pt) throw()
-   { x = (int) pt.x; y = (int) pt.y; }
+   { x = (int32_t) pt.x; y = (int32_t) pt.y; }
 point::point(LPARAM dwPoint) throw()
    {
       x = (short)GET_X_LPARAM(dwPoint);
@@ -22,13 +22,13 @@ point::operator POINT *() throw()
 point::operator const POINT *() const throw()
    { return this; }
 
-void point::Offset(int xOffset, int yOffset) throw()
+void point::Offset(int32_t xOffset, int32_t yOffset) throw()
    { x += xOffset; y += yOffset; }
 void point::Offset(POINT point) throw()
    { x += point.x; y += point.y; }
 void point::Offset(SIZE size) throw()
    { x += size.cx; y += size.cy; }
-void point::SetPoint(int X, int Y) throw()
+void point::SetPoint(int32_t X, int32_t Y) throw()
    { x = X; y = Y; }
 bool point::operator==(POINT point) const throw()
    { return (x == point.x && y == point.y); }
@@ -85,8 +85,8 @@ point64::point64(__size64 initSize) throw()
    { *(__size64*)this = initSize; }
 point64::point64(uint64_t dwPoint) throw()
    {
-      x = (int)GET_X_LPARAM64(dwPoint);
-      y = (int)GET_Y_LPARAM64(dwPoint);
+      x = (int32_t)GET_X_LPARAM64(dwPoint);
+      y = (int32_t)GET_Y_LPARAM64(dwPoint);
    }
 
 
@@ -177,7 +177,7 @@ pointd::pointd(POINTD initPt) throw()
 pointd::pointd(SIZED initSize) throw()
    { *(SIZED*)this = initSize; }
 pointd::pointd(__point64 pt) throw()
-   { x = (int) pt.x; y = (int) pt.y; }
+   { x = (int32_t) pt.x; y = (int32_t) pt.y; }
 pointd::pointd(LPARAM dwPoint) throw()
    {
       x = (short)GET_X_LPARAM(dwPoint);
@@ -189,13 +189,13 @@ pointd::operator POINTD *() throw()
 pointd::operator const POINTD *() const throw()
    { return this; }
 
-void pointd::Offset(int xOffset, int yOffset) throw()
+void pointd::Offset(int32_t xOffset, int32_t yOffset) throw()
    { x += xOffset; y += yOffset; }
 void pointd::Offset(POINTD pointd) throw()
    { x += pointd.x; y += pointd.y; }
 void pointd::Offset(SIZED size) throw()
    { x += size.cx; y += size.cy; }
-void pointd::SetPoint(int X, int Y) throw()
+void pointd::SetPoint(int32_t X, int32_t Y) throw()
    { x = X; y = Y; }
 bool pointd::operator==(POINTD pointd) const throw()
    { return (x == pointd.x && y == pointd.y); }
@@ -226,5 +226,5 @@ rectd pointd::operator-(LPCRECTD lpRect) const throw()
 
 LPARAM pointd::_001GetLparam()
 {
-   return MAKELPARAM((int) x, (int) y);
+   return MAKELPARAM((int32_t) x, (int32_t) y);
 }

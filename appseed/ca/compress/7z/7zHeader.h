@@ -6,7 +6,7 @@
 namespace n7z
 {
 
-   const int kSignatureSize = 6;
+   const int32_t kSignatureSize = 6;
    extern byte kSignature[kSignatureSize];
 
    // #define _7Z_VOL

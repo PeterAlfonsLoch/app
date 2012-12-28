@@ -38,7 +38,7 @@
 #    include <limits.h>
 #    define BYFOUR
 #    if (UINT_MAX == 0xffffffffUL)
-       typedef unsigned int u4;
+       typedef unsigned int32_t u4;
 #    else
 #      if (ULONG_MAX == 0xffffffffUL)
          typedef unsigned long u4;
@@ -73,7 +73,7 @@ zlib_local void gf2_matrix_square OF((unsigned long *square, unsigned long *mat)
 
 #ifdef DYNAMIC_CRC_TABLE
 
-zlib_local volatile int crc_table_empty = 1;
+zlib_local volatile int32_t crc_table_empty = 1;
 zlib_local unsigned long FAR crc_table[TBLS][256];
 zlib_local void make_crc_table OF(());
 #ifdef MAKECRCH
@@ -108,10 +108,10 @@ zlib_local void make_crc_table OF(());
 zlib_local void make_crc_table()
 {
     unsigned long c;
-    int n, k;
+    int32_t n, k;
     unsigned long poly;                 /* polynomial exclusive-or pattern */
     /* terms of polynomial defining this crc (except x^32): */
-    static volatile int first = 1;      /* flag to limit concurrent making */
+    static volatile int32_t first = 1;      /* flag to limit concurrent making */
     static const unsigned char p[] = {0,1,2,4,5,7,8,10,11,12,16,22,23,26};
 
     /* See if another task is already doing this (not thread-safe, but better
@@ -186,7 +186,7 @@ zlib_local void write_table(out, table)
     FILE *out;
     const unsigned long FAR *table;
 {
-    int n;
+    int32_t n;
 
     for (n = 0; n < 256; n++)
         fprintf(out, "%s0x%08lxUL%s", n % 5 ? "" : "    ", table[n],
@@ -214,7 +214,7 @@ const uint32_t FAR * ZEXPORT get_crc_table()
 }
 
 /* ========================================================================= */
-#define DO1 crc = crc_table[0][((int)crc ^ (*buf++)) & 0xff] ^ (crc >> 8)
+#define DO1 crc = crc_table[0][((int32_t)crc ^ (*buf++)) & 0xff] ^ (crc >> 8)
 #define DO8 DO1; DO1; DO1; DO1; DO1; DO1; DO1; DO1
 
 /* ========================================================================= */
@@ -359,7 +359,7 @@ zlib_local void gf2_matrix_square(
     uint32_t *square,
     uint32_t *mat)
 {
-    int n;
+    int32_t n;
 
     for (n = 0; n < GF2_DIM; n++)
         square[n] = gf2_matrix_times(mat, mat[n]);
@@ -371,7 +371,7 @@ uint32_t ZEXPORT crc32_combine(
     uint32_t crc2,
     z_off_t len2)
 {
-    int n;
+    int32_t n;
     uint32_t row;
     uint32_t even[GF2_DIM];    /* even-power-of-two zeros operator */
     uint32_t odd[GF2_DIM];     /* odd-power-of-two zeros operator */

@@ -24,8 +24,8 @@ namespace userbase
       ::user::front_end_schema::menu *    m_pschema;
       bool                                m_bOwnItem;
       button                              m_buttonClose;
-      int                                 m_iHeaderHeight;
-      int                                 m_iItemHeight;
+      int32_t                                 m_iHeaderHeight;
+      int32_t                                 m_iItemHeight;
       size                                m_size;
 
       menu_list_window(::ca::application * papp);
@@ -55,8 +55,8 @@ namespace userbase
       bool _TrackPopupMenu(::user::interaction * pwndParent, ::user::interaction * pwndNotify);
       void _CreateButtons(menu_item * pitem);
       void _UpdateCmdUi(menu_item * pitem);
-      void _CalcSize(menu_item * pitem, ::ca::graphics * pdc, int & iMaxWidth, int & iMaxHeight);
-      void _LayoutButtons(menu_item * pitem, int iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound);
+      void _CalcSize(menu_item * pitem, ::ca::graphics * pdc, int32_t & iMaxWidth, int32_t & iMaxHeight);
+      void _LayoutButtons(menu_item * pitem, int32_t iMaxWidth, LPRECT lprect, LPCRECT lpcrectBound);
 
    };
 

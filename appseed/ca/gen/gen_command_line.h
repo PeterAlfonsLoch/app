@@ -40,7 +40,7 @@ namespace gen
       bool                          m_bShowSplash;
       bool                          m_bRunEmbedded;
       bool                          m_bRunAutomated;
-      int                           m_nCmdShow;
+      int32_t                           m_nCmdShow;
 
       // not valid for file_new
       var                           m_varFile;

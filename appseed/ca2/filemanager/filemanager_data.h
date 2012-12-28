@@ -54,9 +54,9 @@ namespace filemanager
    //   UINT  m_uiToolBar;
    //   UINT  m_uiMenuBar;
 
-      int   m_iTemplate;
-      int   m_iDocument;
-      int   m_iIconSize;
+      int32_t   m_iTemplate;
+      int32_t   m_iDocument;
+      int32_t   m_iIconSize;
       bool  m_bListText;
       bool  m_bListSelection;
       bool  m_bFileSize;

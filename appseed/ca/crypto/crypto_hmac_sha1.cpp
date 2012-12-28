@@ -9,7 +9,7 @@ namespace crypto
    {
 
 
-      void context::digest(void * digest, const void * text, int text_len, const void * key, int key_len)
+      void context::digest(void * digest, const void * text, int32_t text_len, const void * key, int32_t key_len)
       {
 
          hmac_ctx_t state;

@@ -118,12 +118,12 @@ class crt_char_traits :
 public:
 
    static char*         __cdecl  CharNext(const char* p ) throw();
-   static int           __cdecl  IsDigit(const char * pch ) throw();
-   static int           __cdecl  IsSpace(const char * pch ) throw();
-   static int           __cdecl  StringCompare(const char * pszA,const char * pszB ) throw();
-   static int           __cdecl  StringCompareIgnore(const char * pszA,const char * pszB ) throw();
-   static int           __cdecl  StringCollate(const char * pszA,const char * pszB ) throw();
-   static int           __cdecl  StringCollateIgnore(const char * pszA,const char * pszB ) throw();
+   static int32_t           __cdecl  IsDigit(const char * pch ) throw();
+   static int32_t           __cdecl  IsSpace(const char * pch ) throw();
+   static int32_t           __cdecl  StringCompare(const char * pszA,const char * pszB ) throw();
+   static int32_t           __cdecl  StringCompareIgnore(const char * pszA,const char * pszB ) throw();
+   static int32_t           __cdecl  StringCollate(const char * pszA,const char * pszB ) throw();
+   static int32_t           __cdecl  StringCollateIgnore(const char * pszA,const char * pszB ) throw();
    static const char *  __cdecl  StringFindString(const char * pszBlock,const char * pszMatch ) throw();
    static char *        __cdecl  StringFindString(char * pszBlock,const char * pszMatch ) throw();
    static const char *  __cdecl  StringFindChar(const char * pszBlock,char chMatch ) throw();
@@ -293,51 +293,51 @@ public:
    string & assign(const char * s);
    string & assign(strsize n, char c);
    string & assign(int64_t n, int64_t c);
-   string & assign(int n, int c);
-   string & assign(unsigned int n, unsigned int c);
+   string & assign(int32_t n, int32_t c);
+   string & assign(unsigned int32_t n, unsigned int32_t c);
    string & assign(uint64 n, uint64 c);
    template <class InputIterator>
    string & assign (InputIterator first, InputIterator last);
 
    // Comparison
-   int Compare(PCXSTR psz ) const;
-   int CompareNoCase(PCXSTR psz) const RELEASENOTHROW;
+   int32_t Compare(PCXSTR psz ) const;
+   int32_t CompareNoCase(PCXSTR psz) const RELEASENOTHROW;
 
 
 
-   int Collate(PCXSTR psz ) const RELEASENOTHROW;
-   int CollateNoCase(PCXSTR psz ) const RELEASENOTHROW;
+   int32_t Collate(PCXSTR psz ) const RELEASENOTHROW;
+   int32_t CollateNoCase(PCXSTR psz ) const RELEASENOTHROW;
 
-   int compare(PCXSTR psz ) const;
-   int compare_no_case(PCXSTR psz ) const throw();
-   int collate(PCXSTR psz ) const throw();
-   int collate_no_case(PCXSTR psz ) const throw();
+   int32_t compare(PCXSTR psz ) const;
+   int32_t compare_no_case(PCXSTR psz ) const throw();
+   int32_t collate(PCXSTR psz ) const throw();
+   int32_t collate_no_case(PCXSTR psz ) const throw();
 
-   int compare(strsize iStart, strsize iCount, PCXSTR psz ) const;
-   int compare_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
-   int collate(strsize iStart, strsize iCount, PCXSTR psz ) const;
-   int collate_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   int32_t compare(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   int32_t compare_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   int32_t collate(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   int32_t collate_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
 
-   int compare(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
-   int compare_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
-   int collate(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
-   int collate_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   int32_t compare(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   int32_t compare_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   int32_t collate(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   int32_t collate_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
 
    bool contains(char ch, strsize start = 0, strsize count = -1);
    bool contains(wchar_t wch, strsize start = 0, strsize count = -1);
-   bool contains(int i, strsize start = 0, strsize count = -1); // utf8 char index
+   bool contains(int32_t i, strsize start = 0, strsize count = -1); // utf8 char index
    bool contains(const char * psz, strsize start = 0, strsize count = -1);
    bool contains(const string & str, strsize start = 0, strsize count = -1);
 
    bool contains_ci(char ch, strsize start = 0, strsize count = -1);
    bool contains_ci(wchar_t wch, strsize start = 0, strsize count = -1);
-   bool contains_ci(int i, strsize start = 0, strsize count = -1); // utf8 char index
+   bool contains_ci(int32_t i, strsize start = 0, strsize count = -1); // utf8 char index
    bool contains_ci(const char * psz, strsize start = 0, strsize count = -1);
    bool contains_ci(const string & str, strsize start = 0, strsize count = -1);
 
    bool contains_wci(char ch, strsize start = 0, strsize count = -1);
    bool contains_wci(wchar_t wch, strsize start = 0, strsize count = -1);
-   bool contains_wci(int i, strsize start = 0, strsize count = -1); // utf8 char index
+   bool contains_wci(int32_t i, strsize start = 0, strsize count = -1); // utf8 char index
    bool contains_wci(const char * psz, strsize start = 0, strsize count = -1);
    bool contains_wci(const string & str, strsize start = 0, strsize count = -1);
    // Advanced manipulation
@@ -678,8 +678,8 @@ public:
    friend string CLASS_DECL_ca operator+(wchar_t ch1,const string & str2 );
    friend string CLASS_DECL_ca operator+(const string & str1,char ch2 );
    friend string CLASS_DECL_ca operator+(char ch1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const string & str1,int ch2 );
-   friend string CLASS_DECL_ca operator+(int ch1,const string & str2 );
+   friend string CLASS_DECL_ca operator+(const string & str1,int32_t ch2 );
+   friend string CLASS_DECL_ca operator+(int32_t ch1,const string & str2 );
    friend string CLASS_DECL_ca operator+(const string & str1,int64_t ch2 );
    friend string CLASS_DECL_ca operator+(int64_t ch1,const string & str2 );
    friend string CLASS_DECL_ca operator+(const var & var, const char * psz);
@@ -696,37 +696,37 @@ public:
    friend bool CLASS_DECL_ca operator==(PCXSTR psz1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator==(const string & str1,PCYSTR psz2 ) THROWS;
    friend bool CLASS_DECL_ca operator==(PCYSTR psz1,const string & str2 ) THROWS;
-   friend bool CLASS_DECL_ca operator==(const string & str1, int i);
-   friend bool CLASS_DECL_ca operator==(int i, const string & str1);
-   //   friend bool CLASS_DECL_ca operator==(const string & str1, int i);
-   //   friend bool CLASS_DECL_ca operator==(int i, const string & str1);
+   friend bool CLASS_DECL_ca operator==(const string & str1, int32_t i);
+   friend bool CLASS_DECL_ca operator==(int32_t i, const string & str1);
+   //   friend bool CLASS_DECL_ca operator==(const string & str1, int32_t i);
+   //   friend bool CLASS_DECL_ca operator==(int32_t i, const string & str1);
    friend bool CLASS_DECL_ca operator!=(const string & str1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator!=(const string & str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator!=(PCXSTR psz1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator!=(const string & str1,PCYSTR psz2 ) THROWS;
    friend bool CLASS_DECL_ca operator!=(PCYSTR psz1,const string & str2 ) THROWS;
-   friend bool CLASS_DECL_ca operator!=(const string & str1, int i);
-   friend bool CLASS_DECL_ca operator!=(int i, const string & str1);
+   friend bool CLASS_DECL_ca operator!=(const string & str1, int32_t i);
+   friend bool CLASS_DECL_ca operator!=(int32_t i, const string & str1);
    friend bool CLASS_DECL_ca operator<(const string & str1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator<(const string & str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator<(PCXSTR psz1,const string & str2 ) throw();
-   friend bool CLASS_DECL_ca operator<(const string & str1, int i);
-   friend bool CLASS_DECL_ca operator<(int i, const string & str1);
+   friend bool CLASS_DECL_ca operator<(const string & str1, int32_t i);
+   friend bool CLASS_DECL_ca operator<(int32_t i, const string & str1);
    friend bool CLASS_DECL_ca operator>(const string & str1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator>(const string & str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator>(PCXSTR psz1,const string & str2 ) throw();
-   friend bool CLASS_DECL_ca operator>(const string & str1, int i);
-   friend bool CLASS_DECL_ca operator>(int i, const string & str1);
+   friend bool CLASS_DECL_ca operator>(const string & str1, int32_t i);
+   friend bool CLASS_DECL_ca operator>(int32_t i, const string & str1);
    friend bool CLASS_DECL_ca operator<=(const string & str1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator<=(const string & str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator<=(PCXSTR psz1,const string & str2 ) throw();
-   friend bool CLASS_DECL_ca operator<=(const string & str1, int i);
-   friend bool CLASS_DECL_ca operator<=(int i, const string & str1);
+   friend bool CLASS_DECL_ca operator<=(const string & str1, int32_t i);
+   friend bool CLASS_DECL_ca operator<=(int32_t i, const string & str1);
    friend bool CLASS_DECL_ca operator>=(const string & str1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator>=(const string & str1,PCXSTR psz2 ) throw();
    friend bool CLASS_DECL_ca operator>=(PCXSTR psz1,const string & str2 ) throw();
-   friend bool CLASS_DECL_ca operator>=(const string & str1, int i);
-   friend bool CLASS_DECL_ca operator>=(int i, const string & str1);
+   friend bool CLASS_DECL_ca operator>=(const string & str1, int32_t i);
+   friend bool CLASS_DECL_ca operator>=(int32_t i, const string & str1);
    friend bool CLASS_DECL_ca operator==(XCHAR ch1,const string & str2 ) throw();
    friend bool CLASS_DECL_ca operator==(const string & str1,XCHAR ch2 ) throw();
    friend bool CLASS_DECL_ca operator!=(XCHAR ch1,const string & str2 ) throw();
@@ -1136,12 +1136,12 @@ simple_string( string_trait::GetDefaultManager() )
 
 
 
-inline int __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
+inline int32_t __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
 {
    return strcmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
 }
 
-inline int __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
+inline int32_t __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
 {
 #ifdef WINDOWS
    return _stricmp( reinterpret_cast< const  char* >( pszA ), reinterpret_cast< const  char* >( pszB ) );
@@ -1153,13 +1153,13 @@ inline int __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const 
 
 
 
-inline int string::Compare(PCXSTR psz ) const
+inline int32_t string::Compare(PCXSTR psz ) const
 {
    //ENSURE( __is_valid_string( psz ) );
    return( string_trait::StringCompare( GetString(), psz ) );
 }
 
-inline int string::CompareNoCase(PCXSTR psz ) const RELEASENOTHROW
+inline int32_t string::CompareNoCase(PCXSTR psz ) const RELEASENOTHROW
 {
    //ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCompareIgnore( GetString(), psz ) );
@@ -1241,7 +1241,7 @@ inline   string CLASS_DECL_ca operator+(char ch1,const string & str2 )
 }
 
 
-inline   string CLASS_DECL_ca operator+ (const string & str1, int i2)
+inline   string CLASS_DECL_ca operator+ (const string & str1, int32_t i2)
 {
 
    string strResult( str1.GetManager() );
@@ -1251,7 +1251,7 @@ inline   string CLASS_DECL_ca operator+ (const string & str1, int i2)
    return strResult;
 }
 
-inline   string CLASS_DECL_ca operator+ (int i1, const string & str2)
+inline   string CLASS_DECL_ca operator+ (int32_t i1, const string & str2)
 {
 
    string strResult( str2.GetManager() );
@@ -1318,12 +1318,12 @@ inline   bool CLASS_DECL_ca operator==(string::PCYSTR psz1,const string & str2 )
    return( str1 == str2 );
 }
 
-inline   bool CLASS_DECL_ca operator==(const string & str1, int i)
+inline   bool CLASS_DECL_ca operator==(const string & str1, int32_t i)
 {
    return strtoi(str1.operator string::PCXSTR()) == i;
 }
 
-inline   bool CLASS_DECL_ca operator==(int i, const string & str1)
+inline   bool CLASS_DECL_ca operator==(int32_t i, const string & str1)
 {
    return strtoi(str1.operator string::PCXSTR()) == i;
 }
@@ -1357,12 +1357,12 @@ inline   bool CLASS_DECL_ca operator!=(string::PCYSTR psz1,const string & str2 )
    return( str1 != str2 );
 }
 
-inline   bool CLASS_DECL_ca operator!=(const string & str1, int i)
+inline   bool CLASS_DECL_ca operator!=(const string & str1, int32_t i)
 {
    return strtoi(str1.operator string::PCXSTR()) != i;
 }
 
-inline   bool CLASS_DECL_ca operator!=(int i, const string & str1)
+inline   bool CLASS_DECL_ca operator!=(int32_t i, const string & str1)
 {
    return strtoi(str1.operator string::PCXSTR()) != i;
 }
@@ -1382,12 +1382,12 @@ inline   bool CLASS_DECL_ca operator<(string::PCXSTR psz1,const string & str2 ) 
    return( str2.Compare( psz1 ) > 0 );
 }
 
-inline   bool CLASS_DECL_ca operator<(const string & str1, int i)
+inline   bool CLASS_DECL_ca operator<(const string & str1, int32_t i)
 {
    return strtoi(str1.operator string::PCXSTR()) < i;
 }
 
-inline   bool CLASS_DECL_ca operator<(int i, const string & str1)
+inline   bool CLASS_DECL_ca operator<(int32_t i, const string & str1)
 {
    return i < strtoi(str1.operator string::PCXSTR());
 }
@@ -1409,13 +1409,13 @@ inline   bool CLASS_DECL_ca operator>(string::PCXSTR psz1,const string & str2 ) 
 }
 
 
-inline   bool CLASS_DECL_ca operator>(const string & str1, int i)
+inline   bool CLASS_DECL_ca operator>(const string & str1, int32_t i)
 {
    return strtoi(str1.operator string::PCXSTR()) > i;
 }
 
 
-inline   bool CLASS_DECL_ca operator>(int i, const string & str1)
+inline   bool CLASS_DECL_ca operator>(int32_t i, const string & str1)
 {
    return i > strtoi(str1.operator string::PCXSTR());
 }
@@ -1439,13 +1439,13 @@ inline   bool CLASS_DECL_ca operator<=(string::PCXSTR psz1,const string & str2 )
 }
 
 
-inline   bool CLASS_DECL_ca operator<=(const string & str1, int i)
+inline   bool CLASS_DECL_ca operator<=(const string & str1, int32_t i)
 {
    return strtoi(str1.operator string::PCXSTR()) <= i;
 }
 
 
-inline bool CLASS_DECL_ca operator<=(int i, const string & str1)
+inline bool CLASS_DECL_ca operator<=(int32_t i, const string & str1)
 {
    return i <= strtoi(str1.operator string::PCXSTR());
 }
@@ -1469,13 +1469,13 @@ inline   bool CLASS_DECL_ca operator>=(string::PCXSTR psz1,const string & str2 )
 }
 
 
-inline bool CLASS_DECL_ca operator>=(const string & str1, int i)
+inline bool CLASS_DECL_ca operator>=(const string & str1, int32_t i)
 {
    return strtoi(str1.operator string::PCXSTR()) >= i;
 }
 
 
-inline   bool CLASS_DECL_ca operator>=(int i, const string & str1)
+inline   bool CLASS_DECL_ca operator>=(int32_t i, const string & str1)
 {
    return i >= strtoi(str1.operator string::PCXSTR());
 }

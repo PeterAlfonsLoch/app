@@ -14,10 +14,10 @@
 typedef  unsigned char GZIP;
 typedef  GZIP* LPGZIP;
 
-static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
+static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 #define BZ_SETERR(err) m_z_err = err
-typedef void *(*bzalloc)(void *,int,int);
+typedef void *(*bzalloc)(void *,int32_t,int32_t);
 typedef void (*bzfree)(void *,void *);
 
 bzip::bzip(ex1::file * pfileDest) :
@@ -52,7 +52,7 @@ bool bzip::write(void * buf, ::primitive::memory_size len)
    if (len == 0)
    { m_z_err = BZ_OK; return true; };
 
-   m_zstream.avail_in = (unsigned int) len;
+   m_zstream.avail_in = (unsigned int32_t) len;
    m_zstream.next_in  = (char *) buf;
 
    while (true) {
@@ -86,9 +86,9 @@ bool bzip::write(void * buf, ::primitive::memory_size len)
 void bzip::construct()
 {
    m_CurrentBufferSize = 1024 * 1024 * 8;
-   int blockSize100k = 9; // 900k
-   int workFactor = 12;
-   int verbosity = 0;
+   int32_t blockSize100k = 9; // 900k
+   int32_t workFactor = 12;
+   int32_t verbosity = 0;
    m_memory.allocate(m_CurrentBufferSize);
 
    m_zstream.bzalloc = (bzalloc)0;
@@ -100,7 +100,7 @@ void bzip::construct()
    m_zstream.avail_out = 0;
    m_z_err = BZ_OK;
    m_crc = crc32(0L, Z_NULL, 0);
-   int err = BZ2_bzCompressInit(&m_zstream, blockSize100k, verbosity, workFactor);
+   int32_t err = BZ2_bzCompressInit(&m_zstream, blockSize100k, verbosity, workFactor);
    if (err != Z_OK || m_memory.get_data() == Z_NULL)
    {
       return;
@@ -108,7 +108,7 @@ void bzip::construct()
    //GZIP header[10]={0x1f,0x8b,Z_DEFLATED, 0 /*flags*/, 0,0,0,0 /*time*/, 0 /*xflags*/, OS_CODE};
    //m_postream->write(header,10);
    m_zstream.next_out      = (char *) m_memory.get_data();
-   m_zstream.avail_out     = (unsigned int) m_memory.get_size();
+   m_zstream.avail_out     = (unsigned int32_t) m_memory.get_size();
 }
 
 

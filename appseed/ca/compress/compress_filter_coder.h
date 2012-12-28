@@ -93,7 +93,7 @@ namespace compress
       void Flush();
 
       ex1::HRes CryptoSetPassword(const byte *data, uint32 size);
-      ex1::HRes SetCoderProperties(const int *propIDs, const var *properties, uint32 numProperties);
+      ex1::HRes SetCoderProperties(const int32_t *propIDs, const var *properties, uint32 numProperties);
       ex1::HRes WriteCoderProperties(::ex1::writer *outStream);
       // ex1::HRes ResetSalt();
       ex1::HRes ResetInitVector();

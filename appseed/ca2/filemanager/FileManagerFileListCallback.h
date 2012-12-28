@@ -37,7 +37,7 @@ public:
 
    virtual bool initialize();
 
-   virtual int GetActionButtonCount();
+   virtual int32_t GetActionButtonCount();
    virtual image_list * GetActionButtonImageList(id i);
    virtual void InitializeActionButton(id i, BaseButtonControl * pbutton);
    virtual void OnButtonAction(id i, const ::fs::item & item);

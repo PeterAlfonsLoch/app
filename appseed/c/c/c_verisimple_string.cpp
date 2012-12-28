@@ -370,22 +370,22 @@ bool verisimple_string::operator != (const verisimple_string &str) const
    return CompareCase(str) != 0;
 }
 
-int verisimple_string::CompareCase(const char * psz) const
+int32_t verisimple_string::CompareCase(const char * psz) const
 {
    return strcmp_dup(m_psz, psz);
 }
 
-int verisimple_string::CompareCase(const verisimple_string &str) const
+int32_t verisimple_string::CompareCase(const verisimple_string &str) const
 {
    return strcmp_dup(m_psz, str);
 }
 
-int verisimple_string::CompareNoCase(const char * psz) const
+int32_t verisimple_string::CompareNoCase(const char * psz) const
 {
    return stricmp_dup(m_psz, psz);
 }
 
-int verisimple_string::CompareNoCase(const verisimple_string &str) const
+int32_t verisimple_string::CompareNoCase(const verisimple_string &str) const
 {
    return stricmp_dup(m_psz, str);
 }

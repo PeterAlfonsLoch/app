@@ -20,7 +20,7 @@ public:
    index raw_remove_first(TYPE * pt, index find = 0, index last = -1);
    index raw_remove(TYPE * pt, index find = 0, index last = -1, count countMin = 0, count countMax = -1);
    index raw_find_first(TYPE * pt, index find = 0, index last = -1) const;
-   index find_first(TYPE & t, int (* lpfnCompare)(TYPE &t1, TYPE &t2), index find = 0, index last = -1) const;
+   index find_first(TYPE & t, int32_t (* lpfnCompare)(TYPE &t1, TYPE &t2), index find = 0, index last = -1) const;
    bool contains(TYPE * pt, index find = 0, index last = -1, count countMin = 0, count countMax = -1) const;
 
    template < class CAST >
@@ -228,7 +228,7 @@ inline    TYPE& array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::operator[](index iIndex
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 index array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::
-find_first(TYPE & t, int (*lpfnCompare)(TYPE &t1, TYPE &t2), index find, index last) const
+find_first(TYPE & t, int32_t (*lpfnCompare)(TYPE &t1, TYPE &t2), index find, index last) const
 {
    if(find < 0)
       find += this->get_count();

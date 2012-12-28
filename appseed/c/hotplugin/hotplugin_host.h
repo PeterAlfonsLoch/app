@@ -78,15 +78,15 @@ namespace hotplugin
 
       virtual void start_plugin();
 
-      virtual int  start_ca2_system();
+      virtual int32_t  start_ca2_system();
 
       virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
 
-      virtual int starter_start(const char * pszCommandLine);
+      virtual int32_t starter_start(const char * pszCommandLine);
 
-      static int starter_start(const char * pszCommandLine, plugin * pplugin);
+      static int32_t starter_start(const char * pszCommandLine, plugin * pplugin);
 
-      static int starter_start_sync(const char * pszCommandLine, plugin * pplugin);
+      static int32_t starter_start_sync(const char * pszCommandLine, plugin * pplugin);
 
       virtual void deferred_prodevian_redraw();
 
@@ -94,7 +94,7 @@ namespace hotplugin
 #ifdef WINDOWS
       virtual uint_ptr message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam);
 #else
-      virtual int message_handler(XEvent * pevent);
+      virtual int32_t message_handler(XEvent * pevent);
 #endif
       virtual void start_ca2();
 

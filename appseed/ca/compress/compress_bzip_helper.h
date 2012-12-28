@@ -33,12 +33,12 @@
         char plainText[]="Plain text here";
       CA2GZIP gzip(plainText,strlen(plainText));  // do compressing here;
       LPGZIP pgzip=gzip.pgzip;  // pgzip is zipped data pointer, you can use it directly
-      int len=gzip.Length;      // Length is length of zipped data;
+      int32_t len=gzip.Length;      // Length is length of zipped data;
 
       CGZIP2A plain(pgzip,len);  // do decompressing here
 
       char *pplain=plain.psz;    // psz is plain data pointer
-      int  aLen=plain.Length;    // Length is length of unzipped data.
+      int32_t  aLen=plain.Length;    // Length is length of unzipped data.
     }
 //////////////////////////////////////////////////////////////////////////////
 */
@@ -52,9 +52,9 @@ class bzip
 public:
    ex1::byte_output_stream m_ostream;
    primitive::memory m_memory;
-   int m_CurrentBufferSize;
+   int32_t m_CurrentBufferSize;
    bz_stream m_zstream;
-   int      m_z_err;   /* error code for last stream operation */
+   int32_t      m_z_err;   /* error code for last stream operation */
    //byte     *m_outbuf; /* output buffer */
    uLong    m_crc;     /* crc32 of uncompressed data */
 

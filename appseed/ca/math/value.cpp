@@ -33,7 +33,7 @@ namespace math
 
    void value::parse_numeric_formula(const char * psz)
    {
-//      int iOpen               = 0;
+//      int32_t iOpen               = 0;
   //    bool bLeft              = false;
     //  bool bNumber            = false;
       m_pimpl                 = new number();

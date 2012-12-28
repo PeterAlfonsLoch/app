@@ -31,7 +31,7 @@ namespace ex1
             SeekToPhys();
          }
          _curRem = blockSize - offsetInBlock;
-         for (int i = 1; i < 64 && (virtBlock + i) < (uint32)Vector.get_size() && phyBlock + i == Vector[(index)(virtBlock + i)]; i++)
+         for (int32_t i = 1; i < 64 && (virtBlock + i) < (uint32)Vector.get_size() && phyBlock + i == Vector[(index)(virtBlock + i)]; i++)
             _curRem += (uint64)((uint32) 1 << (uint32) BlockSizeLog);
          uint64 rem = Size - _virtPos;
          if (_curRem > rem)

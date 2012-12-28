@@ -72,7 +72,7 @@ namespace ex1
       tree_item * get_next(bool bChild = true, bool bParent = true, index * pindexLevel = NULL);
 
 
-      void sort_children(int ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *), ex1::tree_data * ptreedata);
+      void sort_children(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *), ex1::tree_data * ptreedata);
 
       static void swap_sibling(tree_item * pitem1, tree_item * pitem2);
 
@@ -97,10 +97,10 @@ namespace ex1
       virtual image_list * get_image_list();
 
 /*#undef new
-      void * operator new(size_t i, const char * lpszFileName, int iLine);
+      void * operator new(size_t i, const char * lpszFileName, int32_t iLine);
       void * operator new(size_t i);
 #define new DEBUG_NEW
-      void operator delete(void *, const char * lpszFileName, int iLine);
+      void operator delete(void *, const char * lpszFileName, int32_t iLine);
       void operator delete(void *);*/
    };
 

@@ -35,7 +35,7 @@ namespace compress
       const uint32 kMainTableSize = 256 + 1 + 1 + 1 + kNumReps + kNumLen2Symbols + kLenTableSize;
       const uint32 kDistTableSize = 60;
 
-      const int kNumAlignBits = 4;
+      const int32_t kNumAlignBits = 4;
       const uint32 kAlignTableSize = (1 << kNumAlignBits) + 1;
 
       const uint32 kLevelTableSize = 20;
@@ -112,7 +112,7 @@ namespace compress
             Code = 0;
             Low = 0;
             Range = 0xFFFFFFFF;
-            for (int i = 0; i < 4; i++)
+            for (int32_t i = 0; i < 4; i++)
                Code = (Code << 8) | bitDecoder.ReadBits(8);
          }
 
@@ -150,7 +150,7 @@ namespace compress
          uint32 FilterIndex;
       };
 
-      const int kNumHuffmanBits = 15;
+      const int32_t kNumHuffmanBits = 15;
 
       class decoder:
          public ::compress::coder_interface,
@@ -192,13 +192,13 @@ namespace compress
          bool TablesRead;
 
          CPpmd7 _ppmd;
-         int PpmEscChar;
+         int32_t PpmEscChar;
          bool PpmError;
 
          HRESULT WriteDataToStream(const byte *data, uint32 size);
          HRESULT WriteData(const byte *data, uint32 size);
          HRESULT WriteArea(uint32 startPtr, uint32 endPtr);
-         void ExecuteFilter(int tempFilterIndex, vm::CBlockRef &outBlockRef);
+         void ExecuteFilter(int32_t tempFilterIndex, vm::CBlockRef &outBlockRef);
          HRESULT WriteBuf();
 
          void InitFilters();
@@ -206,10 +206,10 @@ namespace compress
          bool ReadVmCodeLZ();
          bool ReadVmCodePPM();
 
-         uint32 ReadBits(int numBits);
+         uint32 ReadBits(int32_t numBits);
 
          HRESULT InitPPM();
-         int DecodePpmSymbol();
+         int32_t DecodePpmSymbol();
          HRESULT DecodePPM(int32 num, bool &keepDecompressing);
 
          HRESULT ReadTables(bool &keepDecompressing);

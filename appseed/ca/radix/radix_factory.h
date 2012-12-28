@@ -22,13 +22,13 @@ public:
 
 
    DWORD                   m_uiAllocSize;
-   int                     m_iCount;
+   int32_t                     m_iCount;
    int64_t                 m_iAllocCount;
    id                      m_idType;
    ::ca::application *     m_papp;
 
 
-   factory_allocator(::ca::application * papp, int iCount, UINT uiAllocSize, id idType) :
+   factory_allocator(::ca::application * papp, int32_t iCount, UINT uiAllocSize, id idType) :
       m_iCount(iCount),
       m_uiAllocSize(uiAllocSize),
       m_idType(idType),
@@ -61,12 +61,12 @@ class factory_allocator_impl :
 public:
 
 #ifdef WINDOWS
-   factory_allocator_impl(::ca::application * papp, int iCount) :
+   factory_allocator_impl(::ca::application * papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
 #else
-   factory_allocator_impl(::ca::application * papp, int iCount) :
+   factory_allocator_impl(::ca::application * papp, int32_t iCount) :
       factory_allocator(papp, iCount, sizeof(TYPE), typeid(TYPE).name())
    {
    }
@@ -226,20 +226,20 @@ public:
    }
 
    template < class T >
-   void creatable(int iCount, bool bOverwrite = false);
+   void creatable(int32_t iCount, bool bOverwrite = false);
 
    template < class T >
-   void cloneable(int iCount, bool bOverwrite = false);
+   void cloneable(int32_t iCount, bool bOverwrite = false);
 
    template < class T >
-   void creatable(::ca::type_info info, int iCount, bool bOverwrite = false)
+   void creatable(::ca::type_info info, int32_t iCount, bool bOverwrite = false)
    {
       if(bOverwrite || !is_set(info.name()))
          set_at(info.name(), new creatable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
    }
 
    template < class T >
-   void cloneable(::ca::type_info  info, int iCount, bool bOverwrite = false)
+   void cloneable(::ca::type_info  info, int32_t iCount, bool bOverwrite = false)
    {
       if(bOverwrite || !is_set(info.name()))
          set_at(info.name(), new cloneable_factory_item<T>(get_app(), get_allocator<T>(iCount)));
@@ -254,7 +254,7 @@ public:
    }
 
    template < class T >
-   factory_allocator * get_allocator(int iCount);
+   factory_allocator * get_allocator(int32_t iCount);
 
 
    bool is_set(const char * pszType);

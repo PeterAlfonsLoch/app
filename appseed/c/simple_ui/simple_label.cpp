@@ -46,7 +46,7 @@ void simple_label::draw_this(simple_graphics & g)
 
    simple_font f;
 
-   f.create_pixel(g, (int)height(m_rect) * 10, "Geneva");
+   f.create_pixel(g, (int32_t)height(m_rect) * 10, "Geneva");
 
    float fMargin = (height(m_rect) * ((1.0f - 0.7f) / 2.0f));
 
@@ -54,7 +54,7 @@ void simple_label::draw_this(simple_graphics & g)
 
    g.select(b);
 
-   g.text_out(m_rect.left, (int) (m_rect.top + fMargin), m_strText);
+   g.text_out(m_rect.left, (int32_t) (m_rect.top + fMargin), m_strText);
 
 }
 

@@ -63,7 +63,7 @@ namespace gcom
          void install_message_handling(::gen::message::dispatch * pinterface);
 
          virtual COLORREF GetBackgroundColor();
-         void BackViewRender(::ca::graphics * pdc, int x, int y, int w, int h);
+         void BackViewRender(::ca::graphics * pdc, int32_t x, int32_t y, int32_t w, int32_t h);
          void BackViewRender(::ca::graphics * pdc, LPCRECT lpcrect);
          void Enable(bool bEnable);
          bool IsEnabled();

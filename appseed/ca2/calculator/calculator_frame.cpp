@@ -23,7 +23,7 @@ namespace calculator
    {
    }
 
-   int frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
+   int32_t frame::OnCreate(LPCREATESTRUCT lpCreateStruct)
    {
       UNREFERENCED_PARAMETER(lpCreateStruct);
    //   if (simple_frame_window::OnCreate(lpCreateStruct) == -1)

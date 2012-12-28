@@ -35,17 +35,17 @@ namespace database
 
       virtual bool data_set(class id, bool b, update_hint * phint = NULL);
       virtual bool data_set(class id, const char * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(class id, int i, update_hint * puh = NULL);
+      virtual bool data_set(class id, int32_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, int64_t i, update_hint * puh = NULL);
 
       virtual bool data_get(class id, bool & b);
       virtual bool data_get(class id, string & str);
-      virtual bool data_get(class id, int & i);
+      virtual bool data_get(class id, int32_t & i);
       virtual bool data_get(class id, int64_t & i);
 
       virtual bool data_set(class id, class id idIndex, bool b, update_hint * phint = NULL);
       virtual bool data_set(class id, class id idIndex, var & var, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, int i, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, int32_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, int64_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, const wchar_t * lpsz, update_hint * puh = NULL);
@@ -61,7 +61,7 @@ namespace database
 
       virtual bool data_get(class id, class id idIndex, bool & b);
       virtual bool data_get(class id, class id idIndex, var & var);
-      virtual bool data_get(class id, class id idIndex, int & i);
+      virtual bool data_get(class id, class id idIndex, int32_t & i);
       virtual bool data_get(class id, class id idIndex, int64_t & i);
       virtual bool data_get(class id, class id idIndex, string & str);
       virtual bool data_get(class id, class id idIndex, ex1::writable & obj);

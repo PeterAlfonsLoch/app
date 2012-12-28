@@ -140,7 +140,7 @@ namespace frame
          ::user::interaction * pwndCommand);
 
       void SetAppearanceTransparency(EAppearanceTransparency nTransparency);
-      void SetFrameSchemaStyle(int nStyle);
+      void SetFrameSchemaStyle(int32_t nStyle);
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(UINT uiFlags);
 
@@ -174,7 +174,7 @@ namespace frame
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
-      virtual void OnSize(UINT nType, int cx, int cy);
+      virtual void OnSize(UINT nType, int32_t cx, int32_t cy);
 
 
    };

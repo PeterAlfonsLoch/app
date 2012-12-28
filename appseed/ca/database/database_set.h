@@ -27,7 +27,7 @@ namespace database
      bool            haveError;
      index             frecno;          // number of current row bei bewegung
      string          sql;
-     int             m_iLastResult;
+     int32_t             m_iLastResult;
      string          m_strQueryErrorMessage;
      string          m_strDatabaseErrorMessage;
 
@@ -184,7 +184,7 @@ namespace database
    /* func. retrieves a field name with 'n' index */
      virtual const char *fieldName(index n);
    /* func. retrieves a field index with 'fn' field name,return -1 when field name not found */
-     virtual int  fieldIndex(const char *fn);
+     virtual int32_t  fieldIndex(const char *fn);
    /* func. retrieves a field size */
      virtual count  fieldSize(index n);
 
@@ -197,7 +197,7 @@ namespace database
 
 
    /* Return field name by it index */
-   //  virtual char *field_name(int f_index) { return field_by_index(f_index)->get_field_name(); };
+   //  virtual char *field_name(int32_t f_index) { return field_by_index(f_index)->get_field_name(); };
 
    /* Getting value of field for current record */
       virtual var GetFieldValue(const char *f_name);

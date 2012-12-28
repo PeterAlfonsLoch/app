@@ -47,7 +47,7 @@ namespace ca2
       //string                                                                                    m_strLicense;
       bool                                                                                      m_bLicense;
       string                                                                                    m_strBaseSupportId;
-      collection::map < int, int, bool, bool > *                                                m_pmapKeyPressed;
+      collection::map < int32_t, int32_t, bool, bool > *                                                m_pmapKeyPressed;
 
 
       string                                                                                    m_strRoot;
@@ -65,7 +65,7 @@ namespace ca2
 
       virtual void install_message_handling(::gen::message::dispatch * pdispatch);
 
-      virtual int run();
+      virtual int32_t run();
 
       virtual string get_locale();
       virtual string get_schema();
@@ -147,8 +147,8 @@ namespace ca2
 
       DECL_GEN_SIGNAL(_001OnApplicationRequest)
 
-      virtual bool is_key_pressed(int iKey);
-      virtual void set_key_pressed(int iKey, bool bPressed);
+      virtual bool is_key_pressed(int32_t iKey);
+      virtual void set_key_pressed(int32_t iKey, bool bPressed);
 
 
       virtual bool is_running();

@@ -17,13 +17,13 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
 {
    pdc->SelectObject(m_font);
    ::datetime::time timeNow = ::datetime::time::get_current_time();
-   int iMonth = m_iMonth;
-   int iYear = m_iYear;
+   int32_t iMonth = m_iMonth;
+   int32_t iYear = m_iYear;
    ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
    ::datetime::time_span timespan(1, 0, 0, 0);
    COLORREF crBorder;
    rect rectDay;
-   int iDay;
+   int32_t iDay;
    for(iDay = 1; iDay <= 7; iDay++)
    {
       GetRectDay(iDay, 0, rectDay);
@@ -76,7 +76,7 @@ void calendar::_001OnDraw(::ca::graphics * pdc)
       pdc->draw_text(strDay, rectDay, DT_BOTTOM | DT_RIGHT);
    }
    ::datetime::time timeEmp = m_time;
-   for(int iDay = timeEmp.GetDay(); time.GetYear() == iYear
+   for(int32_t iDay = timeEmp.GetDay(); time.GetYear() == iYear
       && time.GetMonth() == iMonth &&
       (m_time.GetDay() == iDay || (
       m_bRange && time <= m_timeEnd)); time += timespan)
@@ -126,27 +126,27 @@ void calendar::_001GetHtml(::html::file * pfile)
 
       // pszSchema can be ignored if the object has only one implemented schema
       ::datetime::time timeNow = ::datetime::time::get_current_time();
-      int iMonth = m_iMonth;
-      int iYear = m_iYear;
+      int32_t iMonth = m_iMonth;
+      int32_t iYear = m_iYear;
 
-      int iWeekDay;
+      int32_t iWeekDay;
 
       ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
       ::datetime::time_span timespan(1, 0, 0, 0);
       ::datetime::time timeLastDayOfMonth((iMonth == 12) ? (iYear + 1) : iYear, (iMonth == 12) ? 1 : (iMonth + 1), 1, 0, 0, 0);
       timeLastDayOfMonth -= ::datetime::time_span(1, 0, 0, 0);
-      int iFirstDayOfWeek = time.GetDayOfWeek();
+      int32_t iFirstDayOfWeek = time.GetDayOfWeek();
 
       if(pfile->m_strOptions.find("<monday-first>")>=0 && iFirstDayOfWeek == 1)
       {
          iFirstDayOfWeek = 8;
       }
 
-//      int iFirstWeek;
-      int iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
-      int iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).GetDay();
+//      int32_t iFirstWeek;
+      int32_t iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
+      int32_t iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).GetDay();
       rect rectDay;
-      int iDay;
+      int32_t iDay;
       pfile->print("<table cellpadding=\"0\" cellspacing=\"0\">");
       if(pfile->m_strOptions.find("<no-week-bar-title>") < 0)
       {
@@ -159,7 +159,7 @@ void calendar::_001GetHtml(::html::file * pfile)
          }
          for(iWeekDay = 1; iWeekDay <= 7; iWeekDay++)
          {
-            int iDayOfWeek = iWeekDay;
+            int32_t iDayOfWeek = iWeekDay;
             if(pfile->m_strOptions.find("<monday-first>")>=0)
             {
                iDayOfWeek++;
@@ -174,18 +174,18 @@ void calendar::_001GetHtml(::html::file * pfile)
       }
 
 
-      int iDayCount = timeLastDayOfMonth.GetDay();
-      int iLineCount = (iDayCount + iFirstDayOfWeek - 1) / 7;
+      int32_t iDayCount = timeLastDayOfMonth.GetDay();
+      int32_t iLineCount = (iDayCount + iFirstDayOfWeek - 1) / 7;
       if(((iDayCount + iFirstDayOfWeek - 1) % 7) > 0)
          iLineCount++;
 
       iDay = 1;
-      for(int iWeek = 1; iWeek <= iLineCount; iWeek++)
+      for(int32_t iWeek = 1; iWeek <= iLineCount; iWeek++)
       {
          pfile->print("<tr>");
          if(pfile->m_strOptions.find("<left-week-of-the-year>") >= 0)
          {
-            int w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
+            int32_t w ;       if(pfile->m_strOptions.find("<monday-first>")>=0)
       {
          w = atoi(System.datetime().strftime("%V", ::datetime::time(iYear, iMonth, iDay, 0, 0, 0).get_time()));
       }
@@ -198,9 +198,9 @@ void calendar::_001GetHtml(::html::file * pfile)
             pfile->print(gen::str::from(w));
             pfile->print("</td>");
          }
-         for(int iWeekDay = 1; iWeekDay <=7; iWeekDay++)
+         for(int32_t iWeekDay = 1; iWeekDay <=7; iWeekDay++)
          {
-            int iDayOfWeek = iWeekDay;
+            int32_t iDayOfWeek = iWeekDay;
             if(pfile->m_strOptions.find("<monday-first>")>=0)
             {
                iDayOfWeek++;
@@ -276,13 +276,13 @@ void calendar::_001GetHtml(::html::file * pfile)
 
 void calendar::GetRectDay(::datetime::time & time, LPRECT lprect)
 {
-   int iWeekDay = time.GetDayOfWeek();
+   int32_t iWeekDay = time.GetDayOfWeek();
    ::datetime::time timeMonth(m_iYear, m_iMonth, 1, 0, 0, 0);
-   int iWeek = get_week_of_month(time);
+   int32_t iWeek = get_week_of_month(time);
    GetRectDay(iWeekDay, iWeek + 1, lprect);
 }
 
-void calendar::GetRectDay(int iWeekDay, int iLine, LPRECT lprect)
+void calendar::GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT lprect)
 {
    lprect->left = m_point.x + m_iColWidth * (iWeekDay - 1);
    lprect->right = lprect->left + m_iColWidth + 1;
@@ -352,12 +352,12 @@ calendar::EElement calendar::hit_test(point pt)
 
 bool calendar::time_hit_test(::datetime::time & timeRet, point pt)
 {
-   int iMonth = m_iMonth;
-   int iYear = m_iYear;
+   int32_t iMonth = m_iMonth;
+   int32_t iYear = m_iYear;
    ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
    ::datetime::time_span timespan(1, 0, 0, 0);
    rect rectDay;
-   int iDay;
+   int32_t iDay;
    for(iDay = 1; iDay <= 33; iDay++)
    {
       GetRectDay(time, rectDay);

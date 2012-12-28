@@ -30,17 +30,17 @@ static unsigned short OC_ROUGH_TAN_LOOKUP[18]={
 
 /*_alpha is Q24 in the range [0,0.5).
   The return values is 5.12.*/
-static int oc_warp_alpha(int _alpha){
-  int i;
-  int d;
-  int t0;
-  int t1;
+static int32_t oc_warp_alpha(int32_t _alpha){
+  int32_t i;
+  int32_t d;
+  int32_t t0;
+  int32_t t1;
   i=_alpha*36>>24;
   if(i>=17)i=16;
   t0=OC_ROUGH_TAN_LOOKUP[i];
   t1=OC_ROUGH_TAN_LOOKUP[i+1];
   d=_alpha*36-(i<<24);
-  return (int)(((ogg_int64_t)t0<<32)+(t1-t0<<8)*(ogg_int64_t)d>>32);
+  return (int32_t)(((ogg_int64_t)t0<<32)+(t1-t0<<8)*(ogg_int64_t)d>>32);
 }
 
 /*Re-initialize the Bessel filter coefficients with the specified delay.
@@ -50,8 +50,8 @@ static int oc_warp_alpha(int _alpha){
    state is something that has to be done carefuly, but our design operates at
    high enough delays and with small enough time constant changes to make it
    safe.*/
-static void oc_iir_filter_reinit(oc_iir_filter *_f,int _delay){
-  int         alpha;
+static void oc_iir_filter_reinit(oc_iir_filter *_f,int32_t _delay){
+  int32_t         alpha;
   ogg_int64_t one48;
   ogg_int64_t warp;
   ogg_int64_t k1;
@@ -92,7 +92,7 @@ static void oc_iir_filter_reinit(oc_iir_filter *_f,int _delay){
 /*Initialize a 2nd order low-pass Bessel filter with the corresponding delay
    and initial value.
   _value is Q24.*/
-static void oc_iir_filter_init(oc_iir_filter *_f,int _delay,ogg_int32_t _value){
+static void oc_iir_filter_init(oc_iir_filter *_f,int32_t _delay,ogg_int32_t _value){
   oc_iir_filter_reinit(_f,_delay);
   _f->y[1]=_f->y[0]=_f->x[1]=_f->x[0]=_value;
 }
@@ -126,11 +126,11 @@ static ogg_int64_t oc_iir_filter_update(oc_iir_filter *_f,ogg_int32_t _x){
 /*Search for the quantizer that matches the target most closely.
   We don't assume a linear ordering, but when there are ties we pick the
    quantizer closest to the old one.*/
-static int oc_enc_find_qi_for_target(oc_enc_ctx *_enc,int _qti,int _qi_old,
- int _qi_min,ogg_int64_t _log_qtarget){
+static int32_t oc_enc_find_qi_for_target(oc_enc_ctx *_enc,int32_t _qti,int32_t _qi_old,
+ int32_t _qi_min,ogg_int64_t _log_qtarget){
   ogg_int64_t best_qdiff;
-  int         best_qi;
-  int         qi;
+  int32_t         best_qi;
+  int32_t         qi;
   best_qi=_qi_min;
   best_qdiff=_enc->log_qavg[_qti][best_qi]-_log_qtarget;
   best_qdiff=best_qdiff+OC_SIGNMASK(best_qdiff)^OC_SIGNMASK(best_qdiff);
@@ -147,11 +147,11 @@ static int oc_enc_find_qi_for_target(oc_enc_ctx *_enc,int _qti,int _qi_old,
   return best_qi;
 }
 
-void oc_enc_calc_lambda(oc_enc_ctx *_enc,int _qti){
+void oc_enc_calc_lambda(oc_enc_ctx *_enc,int32_t _qti){
   ogg_int64_t lq;
-  int         qi;
-  int         qi1;
-  int         nqis;
+  int32_t         qi;
+  int32_t         qi1;
+  int32_t         nqis;
   /*For now, lambda is fixed depending on the qi value and frame type:
       lambda=qscale*(qavg[qti][qi]**2),
      where qscale=0.2125.
@@ -170,7 +170,7 @@ void oc_enc_calc_lambda(oc_enc_ctx *_enc,int _qti){
   if(_enc->state.info.target_bitrate>0)lq=_enc->rc.log_qtarget;
   else lq=_enc->log_qavg[_qti][qi];
   /*The resulting lambda value is less than 0x500000.*/
-  _enc->lambda=(int)oc_bexp64(2*lq-0x4780BD468D6B62BLL);
+  _enc->lambda=(int32_t)oc_bexp64(2*lq-0x4780BD468D6B62BLL);
   /*Select additional quantizers.
     The R-D optimal block AC quantizer statistics suggest that the distribution
      is roughly Gaussian-like with a slight positive skew.
@@ -243,7 +243,7 @@ static ogg_int32_t oc_bexp64_q24(ogg_int64_t _log_scale){
 static void oc_enc_rc_reset(oc_enc_ctx *_enc){
   ogg_int64_t npixels;
   ogg_int64_t ibpp;
-  int         inter_delay;
+  int32_t         inter_delay;
   /*TODO: These parameters should be exposed in a th_encode_ctl() API.*/
   _enc->rc.bits_per_frame=(_enc->state.info.target_bitrate*
    (ogg_int64_t)_enc->state.info.fps_denominator)/
@@ -344,7 +344,7 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
   /*If encoding has not yet begun, reset the buffer state.*/
   if(_enc->state.curframe_num<0)oc_enc_rc_reset(_enc);
   else{
-    int idt;
+    int32_t idt;
     /*Otherwise, update the bounds on the buffer, but not the current
        fullness.*/
     _enc->rc.bits_per_frame=(_enc->state.info.target_bitrate*
@@ -373,9 +373,9 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
   /*If we're in pass-2 mode, make sure the frame metrics array is big enough
      to hold frame statistics for the full buffer.*/
   if(_enc->rc.twopass==2){
-    int cfm;
-    int buf_delay;
-    int reset_window;
+    int32_t cfm;
+    int32_t buf_delay;
+    int32_t reset_window;
     buf_delay=_enc->rc.buf_delay;
     reset_window=_enc->rc.frame_metrics==NULL&&(_enc->rc.frames_total[0]==0||
      buf_delay<_enc->rc.frames_total[0]+_enc->rc.frames_total[1]
@@ -385,8 +385,8 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
        b) we were using a finite buffer, or are about to start.*/
     if(cfm<buf_delay&&(_enc->rc.frame_metrics!=NULL||reset_window)){
       oc_frame_metrics *fm;
-      int               nfm;
-      int               fmh;
+      int32_t               nfm;
+      int32_t               fmh;
       fm=(oc_frame_metrics *)_ogg_realloc(_enc->rc.frame_metrics,
        buf_delay*sizeof(*_enc->rc.frame_metrics));
       if(fm==NULL){
@@ -408,7 +408,7 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
       fmh=_enc->rc.frame_metrics_head;
       nfm=_enc->rc.nframe_metrics;
       if(fmh+nfm>cfm){
-        int shift;
+        int32_t shift;
         shift=OC_MINI(fmh+nfm-cfm,buf_delay-cfm);
         memcpy(fm+cfm,fm,OC_MINI(fmh+nfm-cfm,buf_delay-cfm)*sizeof(*fm));
         if(fmh+nfm>buf_delay)memmove(fm,fm+shift,fmh+nfm-buf_delay);
@@ -421,7 +421,7 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
       _enc->rc.scale_window_end=_enc->rc.scale_window0=
        _enc->state.curframe_num+_enc->prev_dup_count+1;
       if(_enc->rc.twopass_buffer_bytes){
-        int qti;
+        int32_t qti;
         /*We already read the metrics for the first frame in the window.*/
         *(_enc->rc.frame_metrics)=*&_enc->rc.cur_metrics;
         _enc->rc.nframe_metrics++;
@@ -443,14 +443,14 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
 }
 
 /*Scale the number of frames by the number of expected drops/duplicates.*/
-static int oc_rc_scale_drop(oc_rc_state *_rc,int _nframes){
+static int32_t oc_rc_scale_drop(oc_rc_state *_rc,int32_t _nframes){
   if(_rc->prev_drop_count>0||_rc->log_drop_scale>OC_Q57(0)){
     ogg_int64_t dup_scale;
     dup_scale=oc_bexp64((_rc->log_drop_scale
      +oc_blog64(_rc->prev_drop_count+1)>>1)+OC_Q57(8));
     if(dup_scale<_nframes<<8){
-      int dup_scalei;
-      dup_scalei=(int)dup_scale;
+      int32_t dup_scalei;
+      dup_scalei=(int32_t)dup_scale;
       if(dup_scalei>0)_nframes=((_nframes<<8)+dup_scalei-1)/dup_scalei;
     }
     else _nframes=!!_nframes;
@@ -458,19 +458,19 @@ static int oc_rc_scale_drop(oc_rc_state *_rc,int _nframes){
   return _nframes;
 }
 
-int oc_enc_select_qi(oc_enc_ctx *_enc,int _qti,int _clamp){
+int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
   ogg_int64_t  rate_total;
   ogg_int64_t  rate_bias;
-  int          nframes[2];
-  int          buf_delay;
-  int          buf_pad;
+  int32_t          nframes[2];
+  int32_t          buf_delay;
+  int32_t          buf_pad;
   ogg_int64_t  log_qtarget;
   ogg_int64_t  log_scale0;
   ogg_int64_t  log_cur_scale;
   ogg_int64_t  log_qexp;
-  int          exp0;
-  int          old_qi;
-  int          qi;
+  int32_t          exp0;
+  int32_t          old_qi;
+  int32_t          qi;
   /*Figure out how to re-distribute bits so that we hit our fullness target
      before the last keyframe in our current buffer window (after the current
      frame), or the end of the buffer window, whichever comes first.*/
@@ -503,7 +503,7 @@ int oc_enc_select_qi(oc_enc_ctx *_enc,int _qti,int _clamp){
     }break;
     case 2:{
       ogg_int64_t scale_sum[2];
-      int         qti;
+      int32_t         qti;
       /*Pass 2 mode: we know exactly how much of each frame type there is in
          the current buffer window, and have estimates for the scales.*/
       nframes[0]=_enc->rc.nframes[0];
@@ -532,8 +532,8 @@ int oc_enc_select_qi(oc_enc_ctx *_enc,int _qti,int _clamp){
            with a whole-file buffer as well, but it isn't likely to make a
            difference.*/
         if(_enc->rc.frame_metrics!=NULL){
-          int fmi;
-          int fm_tail;
+          int32_t fmi;
+          int32_t fm_tail;
           fm_tail=_enc->rc.frame_metrics_head+_enc->rc.nframe_metrics;
           if(fm_tail>=_enc->rc.cframe_metrics)fm_tail-=_enc->rc.cframe_metrics;
           for(fmi=fm_tail;;){
@@ -600,7 +600,7 @@ int oc_enc_select_qi(oc_enc_ctx *_enc,int _qti,int _clamp){
          interval.*/
       if(buf_pad>0){
         ogg_int64_t scale;
-        int         nextra_frames;
+        int32_t         nextra_frames;
         /*Extend the buffer.*/
         buf_delay+=buf_pad;
         /*Add virtual delta frames according to the estimated drop count.*/
@@ -726,11 +726,11 @@ int oc_enc_select_qi(oc_enc_ctx *_enc,int _qti,int _clamp){
   return qi;
 }
 
-int oc_enc_update_rc_state(oc_enc_ctx *_enc,
- long _bits,int _qti,int _qi,int _trial,int _droppable){
+int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
+ long _bits,int32_t _qti,int32_t _qi,int32_t _trial,int32_t _droppable){
   ogg_int64_t buf_delta;
   ogg_int64_t log_scale;
-  int         dropped;
+  int32_t         dropped;
   dropped=0;
   /* Drop frames also disabled for now in the case of infinite-buffer
      two-pass mode */
@@ -765,7 +765,7 @@ int oc_enc_update_rc_state(oc_enc_ctx *_enc,
       /*Pass 2 mode:*/
       if(!_trial){
         ogg_int64_t next_frame_num;
-        int         qti;
+        int32_t         qti;
         /*Move the current metrics back one frame.*/
         *&_enc->rc.prev_metrics=*&_enc->rc.cur_metrics;
         next_frame_num=_enc->state.curframe_num+_enc->dup_count+1;
@@ -776,7 +776,7 @@ int oc_enc_update_rc_state(oc_enc_ctx *_enc,
         _enc->rc.nframes[qti]--;
         _enc->rc.nframes[2]-=_enc->rc.prev_metrics.dup_count;
         _enc->rc.scale_sum[qti]-=oc_bexp_q24(_enc->rc.prev_metrics.log_scale);
-        _enc->rc.scale_window0=(int)next_frame_num;
+        _enc->rc.scale_window0=(int32_t)next_frame_num;
         /*Free the corresponding entry in the circular buffer.*/
         if(_enc->rc.frame_metrics!=NULL){
           _enc->rc.nframe_metrics--;
@@ -865,17 +865,17 @@ int oc_enc_update_rc_state(oc_enc_ctx *_enc,
 #define OC_RC_2PASS_HDR_SZ    (38)
 #define OC_RC_2PASS_PACKET_SZ (8)
 
-static void oc_rc_buffer_val(oc_rc_state *_rc,ogg_int64_t _val,int _bytes){
+static void oc_rc_buffer_val(oc_rc_state *_rc,ogg_int64_t _val,int32_t _bytes){
   while(_bytes-->0){
     _rc->twopass_buffer[_rc->twopass_buffer_bytes++]=(unsigned char)(_val&0xFF);
     _val>>=8;
   }
 }
 
-int oc_enc_rc_2pass_out(oc_enc_ctx *_enc,unsigned char **_buf){
+int32_t oc_enc_rc_2pass_out(oc_enc_ctx *_enc,unsigned char **_buf){
   if(_enc->rc.twopass_buffer_bytes==0){
     if(_enc->rc.twopass==0){
-      int qi;
+      int32_t qi;
       /*Pick first-pass qi for scale calculations.*/
       qi=oc_enc_select_qi(_enc,0,0);
       _enc->state.nqis=1;
@@ -890,7 +890,7 @@ int oc_enc_rc_2pass_out(oc_enc_ctx *_enc,unsigned char **_buf){
       oc_rc_buffer_val(&_enc->rc,0,OC_RC_2PASS_HDR_SZ-8);
     }
     else{
-      int qti;
+      int32_t qti;
       qti=_enc->rc.cur_metrics.frame_type;
       _enc->rc.scale_sum[qti]+=oc_bexp_q24(_enc->rc.cur_metrics.log_scale);
       _enc->rc.frames_total[qti]++;
@@ -930,9 +930,9 @@ static size_t oc_rc_buffer_fill(oc_rc_state *_rc,
   return _consumed;
 }
 
-static ogg_int64_t oc_rc_unbuffer_val(oc_rc_state *_rc,int _bytes){
+static ogg_int64_t oc_rc_unbuffer_val(oc_rc_state *_rc,int32_t _bytes){
   ogg_int64_t ret;
-  int         shift;
+  int32_t         shift;
   ret=0;
   shift=0;
   while(_bytes-->0){
@@ -942,7 +942,7 @@ static ogg_int64_t oc_rc_unbuffer_val(oc_rc_state *_rc,int _bytes){
   return ret;
 }
 
-int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
+int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
   size_t consumed;
   consumed=0;
   /*Enable pass 2 mode if this is the first call.*/
@@ -959,7 +959,7 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
   /*If we haven't got a valid summary header yet, try to parse one.*/
   if(_enc->rc.frames_total[0]==0){
     if(!_buf){
-      int frames_needed;
+      int32_t frames_needed;
       /*If we're using a whole-file buffer, we just need the first frame.
         Otherwise, we may need as many as one per buffer slot.*/
       frames_needed=_enc->rc.frame_metrics==NULL?1:_enc->rc.buf_delay;
@@ -970,8 +970,8 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
      _buf,_bytes,consumed,OC_RC_2PASS_HDR_SZ);
     if(_enc->rc.twopass_buffer_fill>=OC_RC_2PASS_HDR_SZ){
       ogg_int64_t scale_sum[2];
-      int         exp[2];
-      int         buf_delay;
+      int32_t         exp[2];
+      int32_t         buf_delay;
       /*Read the summary header data.*/
       /*Check the magic value and version number.*/
       if(oc_rc_unbuffer_val(&_enc->rc,4)!=0x5032544F||
@@ -982,8 +982,8 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
       _enc->rc.frames_total[0]=(ogg_uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
       _enc->rc.frames_total[1]=(ogg_uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
       _enc->rc.frames_total[2]=(ogg_uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
-      exp[0]=(int)oc_rc_unbuffer_val(&_enc->rc,1);
-      exp[1]=(int)oc_rc_unbuffer_val(&_enc->rc,1);
+      exp[0]=(int32_t)oc_rc_unbuffer_val(&_enc->rc,1);
+      exp[1]=(int32_t)oc_rc_unbuffer_val(&_enc->rc,1);
       scale_sum[0]=oc_rc_unbuffer_val(&_enc->rc,8);
       scale_sum[1]=oc_rc_unbuffer_val(&_enc->rc,8);
       /*Make sure the file claims to have at least one frame.
@@ -1022,7 +1022,7 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
   }
   if(_enc->rc.frames_total[0]!=0){
     ogg_int64_t curframe_num;
-    int         nframes_total;
+    int32_t         nframes_total;
     curframe_num=_enc->state.curframe_num;
     if(curframe_num>=0){
       /*We just encoded a frame; make sure things matched.*/
@@ -1048,8 +1048,8 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
         if(_enc->rc.twopass_buffer_fill>=OC_RC_2PASS_PACKET_SZ){
           ogg_uint32_t dup_count;
           ogg_int32_t  log_scale;
-          int          qti;
-          int          arg;
+          int32_t          qti;
+          int32_t          arg;
           /*Read the metrics for the next frame.*/
           dup_count=oc_rc_unbuffer_val(&_enc->rc,4);
           log_scale=oc_rc_unbuffer_val(&_enc->rc,4);
@@ -1066,7 +1066,7 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
         }
       }
       else{
-        int frames_needed;
+        int32_t frames_needed;
         /*We're using a finite buffer:*/
         frames_needed=OC_CLAMPI(0,_enc->rc.buf_delay
          -(_enc->rc.scale_window_end-_enc->rc.scale_window0),
@@ -1081,10 +1081,10 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
            _buf,_bytes,consumed,OC_RC_2PASS_PACKET_SZ);
           if(_enc->rc.twopass_buffer_fill>=OC_RC_2PASS_PACKET_SZ){
             oc_frame_metrics *m;
-            int               fmi;
+            int32_t               fmi;
             ogg_uint32_t      dup_count;
             ogg_int32_t       log_scale;
-            int               qti;
+            int32_t               qti;
             /*Read the metrics for the next frame.*/
             dup_count=oc_rc_unbuffer_val(&_enc->rc,4);
             log_scale=oc_rc_unbuffer_val(&_enc->rc,4);
@@ -1117,7 +1117,7 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
         /*If we've got all the frames we need, fill in the current metrics.
           We're ready to go.*/
         if(frames_needed<=0){
-          int arg;
+          int32_t arg;
           *&_enc->rc.cur_metrics=
            *(_enc->rc.frame_metrics+_enc->rc.frame_metrics_head);
           _enc->rc.twopass_force_kf=
@@ -1131,5 +1131,5 @@ int oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
       }
     }
   }
-  return (int)consumed;
+  return (int32_t)consumed;
 }

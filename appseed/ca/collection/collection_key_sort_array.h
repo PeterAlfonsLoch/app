@@ -9,23 +9,23 @@ public:
    virtual ~key_sort_array();
 
    void SetKeyProperty(KEY (TYPE::* lpfnKeyProperty)());
-   bool FindFirst(KEY k, int & iIndex);
-   bool FindFirst(KEY k, int & iIndex, int iStart, int iEnd);
+   bool FindFirst(KEY k, int32_t & iIndex);
+   bool FindFirst(KEY k, int32_t & iIndex, int32_t iStart, int32_t iEnd);
 
-   int add(ARG_TYPE type);
+   int32_t add(ARG_TYPE type);
 
-   int GetSize();
+   int32_t GetSize();
 
-   TYPE & ElementAt(int iIndex);
+   TYPE & ElementAt(int32_t iIndex);
 
 protected:
 
 
    KEY (TYPE::* m_lpfnKeyProperty)();
    // ARRAY must implement:
-   // InsertAt(int iIndex, ARG_TYPE)
-   // TYPE & ElementAt(int iIndex)
-   // int GetSize()
+   // InsertAt(int32_t iIndex, ARG_TYPE)
+   // TYPE & ElementAt(int32_t iIndex)
+   // int32_t GetSize()
    ARRAY m_array;
 
 };
@@ -43,7 +43,7 @@ key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 TYPE & key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
-ElementAt(int iIndex)
+ElementAt(int32_t iIndex)
 {
    return m_array.ElementAt(iIndex);
 }
@@ -51,7 +51,7 @@ ElementAt(int iIndex)
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 bool key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
-FindFirst(KEY k, int & iIndex)
+FindFirst(KEY k, int32_t & iIndex)
 {
    return FindFirst(k, iIndex, 0, GetSize() - 1);
 }
@@ -59,15 +59,15 @@ FindFirst(KEY k, int & iIndex)
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
 bool key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
-FindFirst(KEY k, int & iIndex, int iStart, int iEnd)
+FindFirst(KEY k, int32_t & iIndex, int32_t iStart, int32_t iEnd)
 {
    if(GetSize() == 0)
    {
       return false;
    }
-   int iLBound = iStart;
-   int iMaxBound = iEnd;
-   int iUBound = iMaxBound;
+   int32_t iLBound = iStart;
+   int32_t iMaxBound = iEnd;
+   int32_t iUBound = iMaxBound;
 
    while(true)
    {
@@ -122,17 +122,17 @@ FindFirst(KEY k, int & iIndex, int iStart, int iEnd)
 }
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
-int key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
+int32_t key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
 add(ARG_TYPE t)
 {
-   int iIndex = 0;
+   int32_t iIndex = 0;
    FindFirst((t.*m_lpfnKeyProperty)(), iIndex);
    m_array.InsertAt(iIndex, t);
    return iIndex;
 }
 
 template < class KEY, class TYPE, class ARG_TYPE , class ARRAY >
-int key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
+int32_t key_sort_array < KEY, TYPE, ARG_TYPE, ARRAY >::
 GetSize()
 {
    return m_array.GetSize();

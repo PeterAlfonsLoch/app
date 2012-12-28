@@ -13,8 +13,8 @@ public:
    os_simple_font();
    ~os_simple_font();
 
-   bool create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold = false);
-   bool create_pixel(simple_graphics & g, int nPixelHeight, const char * lpszFaceName, bool bBold = false);
+   bool create_point(simple_graphics & g, int32_t nPointSize, const char * lpszFaceName, bool bBold = false);
+   bool create_pixel(simple_graphics & g, int32_t nPixelHeight, const char * lpszFaceName, bool bBold = false);
    
    // aim to be all-platoform
    bool destroy();

@@ -26,8 +26,8 @@ namespace gen
 
    namespace trace
    {
-      typedef void ( * PFN_trace_v)(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args);
+      typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
+      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
       CLASS_DECL_ca PFN_trace_v trace_v = &raw_trace_v;
 
       /*   category::category( const char * pszCategoryName, UINT nStartingLevel ) throw() :
@@ -37,17 +37,17 @@ namespace gen
       gen::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
       }*/
 
-      void trace::TraceV(const char *pszFileName, int nLine, dword_ptr dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
+      void trace::TraceV(const char *pszFileName, int32_t nLine, dword_ptr dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
          /*      const category *pCategory;
          trace_module * pmodule = NULL;
-         static const int nCount = 1024;
+         static const int32_t nCount = 1024;
          CHAR szBuf[nCount] = {'\0'};
-         int nLen = 0;*/
+         int32_t nLen = 0;*/
 
-         category & category = ((trace *) this)->m_map[(unsigned int ) dwCategory];
+         category & category = ((trace *) this)->m_map[(unsigned int32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
          if(category.m_estatus == gen::trace::status_disabled || nLevel > category.m_uiLevel)
@@ -56,7 +56,7 @@ namespace gen
          {
          if(g_Allocator.GetProcess()->m_bFileNameAndLineNo)
          {
-         int nTemp;
+         int32_t nTemp;
          C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
          if( nTemp < 0 )
          nLen = nCount;
@@ -68,7 +68,7 @@ namespace gen
          {
          if(pCategory && g_Allocator.GetProcess()->m_bFuncAndCategoryNames)
          {
-         int nTemp;
+         int32_t nTemp;
          C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
          if( nTemp < 0 )
          nLen = nCount;
@@ -132,7 +132,7 @@ namespace gen
          return m_uiLevel;
       }
 
-      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args)
+      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args)
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
@@ -144,7 +144,7 @@ namespace gen
          ::OutputDebugStringW(gen::international::utf8_to_unicode(str));
       }
 
-      /*CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args)
+      /*CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args)
       {
       System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/

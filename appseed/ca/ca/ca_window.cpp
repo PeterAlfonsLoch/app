@@ -155,7 +155,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam)
+   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -280,7 +280,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::GetChildByIdText(int nID, string & rString) const
+   int32_t window::GetChildByIdText(int32_t nID, string & rString) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(rString);
@@ -307,27 +307,27 @@ namespace ca
    // window will delegate owner draw messages to self drawing controls
 #ifdef WINDOWSEX
    // Drawing: for all 4 control types
-   void window::OnDrawItem(int /*nIDCtl*/, LPDRAWITEMSTRUCT lpDrawItemStruct)
+   void window::OnDrawItem(int32_t /*nIDCtl*/, LPDRAWITEMSTRUCT lpDrawItemStruct)
    {
       UNREFERENCED_PARAMETER(lpDrawItemStruct);
       throw interface_only_exception(get_app());
    }
 
    // Drawing: for all 4 control types
-   int window::OnCompareItem(int /*nIDCtl*/, LPCOMPAREITEMSTRUCT lpCompareItemStruct)
+   int32_t window::OnCompareItem(int32_t /*nIDCtl*/, LPCOMPAREITEMSTRUCT lpCompareItemStruct)
    {
       UNREFERENCED_PARAMETER(lpCompareItemStruct);
       throw interface_only_exception(get_app());
    }
 
-   void window::OnDeleteItem(int /*nIDCtl*/, LPDELETEITEMSTRUCT lpDeleteItemStruct)
+   void window::OnDeleteItem(int32_t /*nIDCtl*/, LPDELETEITEMSTRUCT lpDeleteItemStruct)
    {
       UNREFERENCED_PARAMETER(lpDeleteItemStruct);
       throw interface_only_exception(get_app());
    }
 
    // Measure item implementation relies on unique control/menu IDs
-   void window::OnMeasureItem(int /*nIDCtl*/, LPMEASUREITEMSTRUCT lpMeasureItemStruct)
+   void window::OnMeasureItem(int32_t /*nIDCtl*/, LPMEASUREITEMSTRUCT lpMeasureItemStruct)
    {
       UNREFERENCED_PARAMETER(lpMeasureItemStruct);
       throw interface_only_exception(get_app());
@@ -443,7 +443,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::message_box(const char * lpszText, const char * lpszCaption, UINT nType)
+   int32_t window::message_box(const char * lpszText, const char * lpszCaption, UINT nType)
    {
       UNREFERENCED_PARAMETER(lpszText);
       UNREFERENCED_PARAMETER(lpszCaption);
@@ -458,12 +458,12 @@ namespace ca
    // if the window doesn't have a _visible_ windows scrollbar - then
    //   look for a sibling with the appropriate ID
 
-/*   CScrollBar* window::GetScrollBarCtrl(int) const
+/*   CScrollBar* window::GetScrollBarCtrl(int32_t) const
    {
       throw interface_only_exception(get_app());
    }*/
 
-   int window::SetScrollPos(int nBar, int nPos, bool bRedraw)
+   int32_t window::SetScrollPos(int32_t nBar, int32_t nPos, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(nPos);
@@ -471,13 +471,13 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::GetScrollPos(int nBar) const
+   int32_t window::GetScrollPos(int32_t nBar) const
    {
       UNREFERENCED_PARAMETER(nBar);
       throw interface_only_exception(get_app());
    }
 
-   void window::SetScrollRange(int nBar, int nMinPos, int nMaxPos, bool bRedraw)
+   void window::SetScrollRange(int32_t nBar, int32_t nMinPos, int32_t nMaxPos, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(nMinPos);
@@ -486,7 +486,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::GetScrollRange(int nBar, LPINT lpMinPos, LPINT lpMaxPos) const
+   void window::GetScrollRange(int32_t nBar, LPINT lpMinPos, LPINT lpMaxPos) const
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpMinPos);
@@ -497,7 +497,7 @@ namespace ca
    // Turn on/off non-control scrollbars
    //   for WS_?SCROLL scrollbars - show/hide them
    //   for control scrollbar - enable/disable them
-   void window::EnableScrollBarCtrl(int nBar, bool bEnable)
+   void window::EnableScrollBarCtrl(int32_t nBar, bool bEnable)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(bEnable);
@@ -505,7 +505,7 @@ namespace ca
    }
 
 #ifdef WINDOWSEX
-   bool window::SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, bool bRedraw)
+   bool window::SetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpScrollInfo);
@@ -513,7 +513,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::GetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
+   bool window::GetScrollInfo(int32_t nBar, LPSCROLLINFO lpScrollInfo, UINT nMask)
    {
       UNREFERENCED_PARAMETER(nBar);
       UNREFERENCED_PARAMETER(lpScrollInfo);
@@ -522,13 +522,13 @@ namespace ca
    }
 #endif
 
-   int window::GetScrollLimit(int nBar)
+   int32_t window::GetScrollLimit(int32_t nBar)
    {
       UNREFERENCED_PARAMETER(nBar);
       throw interface_only_exception(get_app());
    }
 
-   void window::ScrollWindow(int xAmount, int yAmount, LPCRECT lpRect, LPCRECT lpClipRect)
+   void window::ScrollWindow(int32_t xAmount, int32_t yAmount, LPCRECT lpRect, LPCRECT lpClipRect)
    {
       UNREFERENCED_PARAMETER(xAmount);
       UNREFERENCED_PARAMETER(yAmount);
@@ -757,7 +757,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::ContinueModal(int iLevel)
+   bool window::ContinueModal(int32_t iLevel)
    {
       UNREFERENCED_PARAMETER(iLevel);
       throw interface_only_exception(get_app());
@@ -817,7 +817,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }*/
 
-   bool window::SetWindowPos(int z, int x, int y, int cx, int cy, UINT nFlags)
+   bool window::SetWindowPos(int32_t z, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(z);
       UNREFERENCED_PARAMETER(x);
@@ -828,7 +828,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint)
+   void window::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, bool bRepaint)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -859,7 +859,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::ShowWindow(int nCmdShow)
+   bool window::ShowWindow(int32_t nCmdShow)
    {
       UNREFERENCED_PARAMETER(nCmdShow);
       throw interface_only_exception(get_app());
@@ -882,13 +882,13 @@ namespace ca
 
    }
 
-   LONG window::GetWindowLong(int nIndex)
+   LONG window::GetWindowLong(int32_t nIndex)
    {
       UNREFERENCED_PARAMETER(nIndex);
       throw interface_only_exception(get_app());
    }
 
-   LONG window::SetWindowLong(int nIndex, LONG lValue)
+   LONG window::SetWindowLong(int32_t nIndex, LONG lValue)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(lValue);
@@ -980,7 +980,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   strsize window::GetWindowText(char * lpszString, int nMaxCount)
+   strsize window::GetWindowText(char * lpszString, int32_t nMaxCount)
    {
       UNREFERENCED_PARAMETER(lpszString);
       UNREFERENCED_PARAMETER(nMaxCount);
@@ -1032,14 +1032,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::SetWindowRgn(HRGN hRgn, bool bRedraw)
+   int32_t window::SetWindowRgn(HRGN hRgn, bool bRedraw)
    {
       UNREFERENCED_PARAMETER(hRgn);
       UNREFERENCED_PARAMETER(bRedraw);
       throw interface_only_exception(get_app());
    }
 
-   int window::GetWindowRgn(HRGN hRgn)
+   int32_t window::GetWindowRgn(HRGN hRgn)
    {
       UNREFERENCED_PARAMETER(hRgn);
       throw interface_only_exception(get_app());
@@ -1099,7 +1099,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::GetUpdateRgn(::ca::region* pRgn, bool bErase)
+   int32_t window::GetUpdateRgn(::ca::region* pRgn, bool bErase)
    {
       UNREFERENCED_PARAMETER(pRgn);
       UNREFERENCED_PARAMETER(bErase);
@@ -1190,14 +1190,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::EnableScrollBar(int nSBFlags, UINT nArrowFlags)
+   bool window::EnableScrollBar(int32_t nSBFlags, UINT nArrowFlags)
    {
       UNREFERENCED_PARAMETER(nSBFlags);
       UNREFERENCED_PARAMETER(nArrowFlags);
       throw interface_only_exception(get_app());
    }
 
-   bool window::DrawAnimatedRects(int idAni, CONST RECT *lprcFrom, CONST RECT * lprcTo)
+   bool window::DrawAnimatedRects(int32_t idAni, CONST RECT *lprcFrom, CONST RECT * lprcTo)
    {
       UNREFERENCED_PARAMETER(idAni);
       UNREFERENCED_PARAMETER(lprcFrom);
@@ -1259,14 +1259,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::CheckDlgButton(int nIDButton, UINT nCheck)
+   void window::CheckDlgButton(int32_t nIDButton, UINT nCheck)
    {
       UNREFERENCED_PARAMETER(nIDButton);
       UNREFERENCED_PARAMETER(nCheck);
       throw interface_only_exception(get_app());
    }
 
-   void window::CheckRadioButton(int nIDFirstButton, int nIDLastButton,  int nIDCheckButton)
+   void window::CheckRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton,  int32_t nIDCheckButton)
    {
       UNREFERENCED_PARAMETER(nIDFirstButton);
       UNREFERENCED_PARAMETER(nIDLastButton);
@@ -1274,7 +1274,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::DlgDirList(LPTSTR lpPathSpec,  int nIDListBox, int nIDStaticPath,  UINT nFileType)
+   int32_t window::DlgDirList(LPTSTR lpPathSpec,  int32_t nIDListBox, int32_t nIDStaticPath,  UINT nFileType)
    {
       UNREFERENCED_PARAMETER(lpPathSpec);
       UNREFERENCED_PARAMETER(nIDListBox);
@@ -1283,7 +1283,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::DlgDirListComboBox(LPTSTR lpPathSpec,  int nIDComboBox, int nIDStaticPath, UINT nFileType)
+   int32_t window::DlgDirListComboBox(LPTSTR lpPathSpec,  int32_t nIDComboBox, int32_t nIDStaticPath, UINT nFileType)
    {
       UNREFERENCED_PARAMETER(lpPathSpec);
       UNREFERENCED_PARAMETER(nIDComboBox);
@@ -1292,7 +1292,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::DlgDirSelect(LPTSTR lpString, int nSize, int nIDListBox)
+   bool window::DlgDirSelect(LPTSTR lpString, int32_t nSize, int32_t nIDListBox)
    {
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nSize);
@@ -1300,7 +1300,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::DlgDirSelectComboBox(LPTSTR lpString, int nSize, int nIDComboBox)
+   bool window::DlgDirSelectComboBox(LPTSTR lpString, int32_t nSize, int32_t nIDComboBox)
    {
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nSize);
@@ -1308,7 +1308,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   UINT window::GetChildByIdInt(int nID, bool* lpTrans, bool bSigned) const
+   UINT window::GetChildByIdInt(int32_t nID, bool* lpTrans, bool bSigned) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpTrans);
@@ -1316,7 +1316,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::GetChildByIdText(int nID, LPTSTR lpStr, int nMaxCount) const
+   int32_t window::GetChildByIdText(int32_t nID, LPTSTR lpStr, int32_t nMaxCount) const
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpStr);
@@ -1338,13 +1338,13 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   UINT window::IsDlgButtonChecked(int nIDButton) const
+   UINT window::IsDlgButtonChecked(int32_t nIDButton) const
    {
       UNREFERENCED_PARAMETER(nIDButton);
       throw interface_only_exception(get_app());
    }
 
-   LPARAM window::SendDlgItemMessage(int nID, UINT message, WPARAM wParam, LPARAM lParam)
+   LPARAM window::SendDlgItemMessage(int32_t nID, UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(message);
@@ -1353,7 +1353,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::SetDlgItemInt(int nID, UINT nValue, bool bSigned)
+   void window::SetDlgItemInt(int32_t nID, UINT nValue, bool bSigned)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(nValue);
@@ -1361,14 +1361,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::SetDlgItemText(int nID, const char * lpszString)
+   void window::SetDlgItemText(int32_t nID, const char * lpszString)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lpszString);
       throw interface_only_exception(get_app());
    }
 
-   int window::ScrollWindowEx(int dx, int dy,
+   int32_t window::ScrollWindowEx(int32_t dx, int32_t dy,
       LPCRECT lpRectScroll, LPCRECT lpRectClip,
       ::ca::region* prgnUpdate, LPRECT lpRectUpdate, UINT flags)
    {
@@ -1460,14 +1460,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::CreateSolidCaret(int nWidth, int nHeight)
+   void window::CreateSolidCaret(int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
       throw interface_only_exception(get_app());
    }
 
-   void window::CreateGrayCaret(int nWidth, int nHeight)
+   void window::CreateGrayCaret(int32_t nWidth, int32_t nHeight)
    {
       UNREFERENCED_PARAMETER(nWidth);
       UNREFERENCED_PARAMETER(nHeight);
@@ -1568,7 +1568,7 @@ namespace ca
 #endif
 
 
-   int window::OnCreate(LPCREATESTRUCT)
+   int32_t window::OnCreate(LPCREATESTRUCT)
    {
       throw interface_only_exception(get_app());
    }
@@ -1622,7 +1622,7 @@ namespace ca
    {
       throw interface_only_exception(get_app());
    }
-   void window::OnMove(int, int)
+   void window::OnMove(int32_t, int32_t)
    {
       throw interface_only_exception(get_app());
    }
@@ -1657,7 +1657,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnSize(UINT, int, int)
+   void window::OnSize(UINT, int32_t, int32_t)
    {
       throw interface_only_exception(get_app());
    }
@@ -1888,7 +1888,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int window::OnMouseActivate(window*, UINT, UINT)
+   int32_t window::OnMouseActivate(window*, UINT, UINT)
    {
       throw interface_only_exception(get_app());
    }
@@ -2021,7 +2021,7 @@ namespace ca
 
 
    // Win4 support
-   void window::OnStyleChanged(int, LPSTYLESTRUCT)
+   void window::OnStyleChanged(int32_t, LPSTYLESTRUCT)
    {
 
       throw interface_only_exception(get_app());
@@ -2029,7 +2029,7 @@ namespace ca
    }
 
 
-   void window::OnStyleChanging(int, LPSTYLESTRUCT)
+   void window::OnStyleChanging(int32_t, LPSTYLESTRUCT)
    {
 
       throw interface_only_exception(get_app());
@@ -2120,7 +2120,7 @@ namespace ca
       UNREFERENCED_PARAMETER(lParam);
       /*   UINT nID = LOWORD(wParam);
       oswindow oswindow_Ctrl = lParam;
-      int nCode = HIWORD(wParam);
+      int32_t nCode = HIWORD(wParam);
 
       // default routing for command messages (through closure table)
 
@@ -2161,7 +2161,7 @@ namespace ca
       }
 
       #ifdef DEBUG
-      if (nCode < 0 && nCode != (int)0x8000)
+      if (nCode < 0 && nCode != (int32_t)0x8000)
       TRACE(::radix::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
       nCode);
       #endif
@@ -2171,7 +2171,7 @@ namespace ca
    }
 
    // Helper for radio buttons
-   int window::GetCheckedRadioButton(int nIDFirstButton, int nIDLastButton)
+   int32_t window::GetCheckedRadioButton(int32_t nIDFirstButton, int32_t nIDLastButton)
    {
       UNREFERENCED_PARAMETER(nIDFirstButton);
       UNREFERENCED_PARAMETER(nIDLastButton);
@@ -2268,7 +2268,7 @@ void CTestCmdUI::Enable(bool bOn)
    m_bEnableChanged = TRUE;
 }
 
-void CTestCmdUI::SetCheck(int)
+void CTestCmdUI::SetCheck(int32_t)
 {
    // do nothing -- just want to know about calls to Enable
 }

@@ -678,7 +678,7 @@ base_array<TYPE, ARG_TYPE>::~base_array()
 
    if (m_pData != NULL)
    {
-      for( int i = 0; i < m_nSize; i++ )
+      for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
       delete[] (BYTE*)m_pData;
    }
@@ -702,7 +702,7 @@ template<class TYPE, class ARG_TYPE>
       // shrink to nothing
       if (m_pData != NULL)
       {
-         for( int i = 0; i < m_nSize; i++ )
+         for( int32_t i = 0; i < m_nSize; i++ )
             (m_pData + i)->~TYPE();
          delete[] (BYTE*)m_pData;
          m_pData = NULL;
@@ -722,7 +722,7 @@ template<class TYPE, class ARG_TYPE>
 #undef new
       m_pData = (TYPE*) new BYTE[(size_t)nAllocSize * sizeof(TYPE)];
       //memset((void *)m_pData, 0, (size_t)nAllocSize * sizeof(TYPE));
-      for( int i = 0; i < nNewSize; i++ )
+      for( int32_t i = 0; i < nNewSize; i++ )
          ::new( (void *)( m_pData + i ) ) TYPE;
 #define new DEBUG_NEW
       m_nSize = nNewSize;
@@ -735,7 +735,7 @@ template<class TYPE, class ARG_TYPE>
       {
          // initialize the new elements
          memset((void *)(m_pData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-         for( int i = 0; i < nNewSize-m_nSize; i++ )
+         for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
 #undef new
             ::new( (void *)( m_pData + m_nSize + i ) ) TYPE;
 #define new DEBUG_NEW
@@ -743,7 +743,7 @@ template<class TYPE, class ARG_TYPE>
       else if (m_nSize > nNewSize)
       {
          // destroy the old elements
-         for( int i = 0; i < m_nSize-nNewSize; i++ )
+         for( int32_t i = 0; i < m_nSize-nNewSize; i++ )
             (m_pData + nNewSize + i)->~TYPE();
       }
       m_nSize = nNewSize;
@@ -784,7 +784,7 @@ template<class TYPE, class ARG_TYPE>
       // construct remaining elements
       ASSERT(nNewSize > m_nSize);
       memset((void *)(pNewData + m_nSize), 0, (size_t)(nNewSize-m_nSize) * sizeof(TYPE));
-      for( int i = 0; i < nNewSize-m_nSize; i++ )
+      for( int32_t i = 0; i < nNewSize-m_nSize; i++ )
 #undef new
          ::new( (void *)( pNewData + m_nSize + i ) ) TYPE;
 #define new DEBUG_NEW
@@ -890,7 +890,7 @@ void base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::
       ::count nOldSize = m_nSize;
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
-      int i;
+      int32_t i;
       for(i = 0; i < nCount; i++ )
          (m_pData + nOldSize + i)->~TYPE();
       // shift old data up to fill gap
@@ -927,7 +927,7 @@ void base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
 
    // just remove a range
    ::count nMoveCount = m_nSize - (nUpperBound);
-   for( int i = 0; i < nCount; i++ )
+   for( int32_t i = 0; i < nCount; i++ )
       (m_pData + nIndex + i)->~TYPE();
    if (nMoveCount)
    {

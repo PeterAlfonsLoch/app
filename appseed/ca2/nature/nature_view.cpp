@@ -183,7 +183,7 @@ namespace nature
    }
 
 
-   void view::_001OnTabClick(int iTab)
+   void view::_001OnTabClick(int32_t iTab)
    {
       if(iTab == 1)
       {
@@ -209,7 +209,7 @@ namespace nature
    }
 
 
-   /*xxxvoid view::data_on_after_change(int iConfigurationId, int iLine, int iColumn, CVmsDataUpdateHint * puh)
+   /*xxxvoid view::data_on_after_change(int32_t iConfigurationId, int32_t iLine, int32_t iColumn, CVmsDataUpdateHint * puh)
    {
    if(iConfigurationId == _vmsp::CConfiguration::CfgKaraokeEncoding)
    {

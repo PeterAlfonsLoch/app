@@ -8,8 +8,8 @@ namespace spa
    {
    public:
 
-      int      m_iMode;
-      int      m_iModeCount;
+      int32_t      m_iMode;
+      int32_t      m_iModeCount;
 
       canvas();
       ~canvas();
@@ -17,7 +17,7 @@ namespace spa
       void on_paint(simple_graphics & g, LPCRECT lpcrect);
 
 
-      int increment_mode();
+      int32_t increment_mode();
 
 
    };

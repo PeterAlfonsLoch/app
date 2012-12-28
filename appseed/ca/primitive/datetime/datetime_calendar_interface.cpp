@@ -17,12 +17,12 @@ void calendar_interface::_001OnDraw(::ca::graphics * pdc)
 
 void calendar_interface::GetRectDay(::datetime::time & time, LPRECT lprect)
 {
-   int iWeekDay = time.GetDayOfWeek();
-   int iWeek = get_week_of_month(time);
+   int32_t iWeekDay = time.GetDayOfWeek();
+   int32_t iWeek = get_week_of_month(time);
    GetRectDay(iWeekDay, iWeek + 1, lprect);
 }
 
-void calendar_interface::GetRectDay(int iWeekDay, int iLine, LPRECT lprect)
+void calendar_interface::GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT lprect)
 {
    UNREFERENCED_PARAMETER(iWeekDay);
    UNREFERENCED_PARAMETER(iLine);
@@ -86,24 +86,24 @@ void calendar_interface::GetDateTime(::user::str_context * pcontext, string & st
 }
 
 
-string calendar_interface::GetWeekDay(::user::str_context * pcontext, int iWeekDay) // 1 - domingo
+string calendar_interface::GetWeekDay(::user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
 {
    return System.datetime().get_week_day_str(pcontext, iWeekDay);
 }
 
 
-string calendar_interface::GetTinyWeekDay(::user::str_context * pcontext, int iWeekDay) // 1 - domingo
+string calendar_interface::GetTinyWeekDay(::user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
 {
    return System.datetime().get_tiny_week_day_str(pcontext, iWeekDay);
 }
 
-string calendar_interface::GetMonth(::user::str_context * pcontext, int iMonth)
+string calendar_interface::GetMonth(::user::str_context * pcontext, int32_t iMonth)
 {
    return System.datetime().get_month_str(pcontext, iMonth);
 }
 
 
-void calendar_interface::set_month(int iYear, int iMonth)
+void calendar_interface::set_month(int32_t iYear, int32_t iMonth)
 {
    m_iYear = iYear;
    m_iMonth = iMonth;
@@ -159,12 +159,12 @@ calendar_interface::EElement calendar_interface::hit_test(point pt)
 
 bool calendar_interface::time_hit_test(::datetime::time & timeRet, point pt)
 {
-   int iMonth = m_iMonth;
-   int iYear = m_iYear;
+   int32_t iMonth = m_iMonth;
+   int32_t iYear = m_iYear;
    ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
    ::datetime::time_span timespan(1, 0, 0, 0);
    rect rectDay;
-   int iDay;
+   int32_t iDay;
    for(iDay = 1; iDay <= 33; iDay++)
    {
       GetRectDay(time, rectDay);
@@ -188,18 +188,18 @@ bool calendar_interface::hit_test(EElement eelement, point pt)
 }
 
 
-int calendar_interface::get_week_of_month(::datetime::time & time)
+int32_t calendar_interface::get_week_of_month(::datetime::time & time)
 {
    ::datetime::time timeMonth(time.GetYear(), time.GetMonth(), 1, 0, 0, 0);
    return (time.GetDay() + timeMonth.GetDayOfWeek() - 2) / 7;
 }
 
-int calendar_interface::get_month()
+int32_t calendar_interface::get_month()
 {
    return m_iMonth;
 }
 
-int calendar_interface::get_year()
+int32_t calendar_interface::get_year()
 {
    return m_iYear;
 }

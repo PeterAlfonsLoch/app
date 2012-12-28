@@ -212,7 +212,7 @@ namespace compress
       return _setPassword->CryptoSetPassword(data, size);
    }
 
-   ::ex1::HRes filter_coder::SetCoderProperties(const int  * propIDs, const var *properties, uint32 numProperties)
+   ::ex1::HRes filter_coder::SetCoderProperties(const int32_t  * propIDs, const var *properties, uint32 numProperties)
    {
       return _SetCoderProperties->SetCoderProperties(propIDs, properties, numProperties);
    }

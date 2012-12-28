@@ -51,7 +51,7 @@ namespace user
 
    bool place_holder_container::unhold(::user::interaction * pui)
    {
-      for(int i = 0; i < m_holdera.get_count(); i++)
+      for(int32_t i = 0; i < m_holdera.get_count(); i++)
       {
          if(m_holdera[i].is_holding(pui))
          {
@@ -93,7 +93,7 @@ namespace user
    {
       place_holder_ptra holderptra;
       place_holder * pholder;
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          pholder = this->element_at(i)->hold(pui);
          if(pholder != NULL)
@@ -104,10 +104,10 @@ namespace user
       return holderptra;
    }
 
-   int place_holder_container_ptra::unhold(::user::interaction * pui)
+   int32_t place_holder_container_ptra::unhold(::user::interaction * pui)
    {
-      int count = 0;
-      for(int i = 0; i < this->get_count(); i++)
+      int32_t count = 0;
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          if(this->element_at(i)->unhold(pui))
          {

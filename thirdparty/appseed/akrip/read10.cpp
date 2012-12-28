@@ -28,9 +28,9 @@
 extern CDHANDLEREC *cdHandles;
 extern HANDLE *cdMutexes;
 extern CRITICAL_SECTION getHandle;
-extern int alErrCode;
+extern int32_t alErrCode;
 extern BYTE alAspiErr;
-extern int *nextHandle;
+extern int32_t *nextHandle;
 
 extern DWORD (*pfnSendASPI32Command)(LPSRB);
 
@@ -45,8 +45,8 @@ DWORD initREAD10_2( HCDROM hCD )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
-  int i;
+  int32_t idx = (int32_t)hCD - 1;
+  int32_t i;
   BYTE init1[] = { 0, 0, 0, 0x08, 0, 0, 0, 0, 0, 0, 0x09, 0x30, 0x23, 6, 0, 0, 0, 0, 0, 0x80 };
   BYTE init2[] =
     { 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 9, 48, 1, 6, 32, 7, 0, 0, 0, 0 };
@@ -126,8 +126,8 @@ DWORD initREAD10( HCDROM hCD )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
-  //  int i;
+  int32_t idx = (int32_t)hCD - 1;
+  //  int32_t i;
   BYTE init1[] = { 0, 0, 0, 0x08, 0, 0, 0, 0, 0, 0, 0x09, 0x30 };
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
@@ -199,7 +199,7 @@ DWORD deinitREAD10( HCDROM hCD )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
   BYTE init1[] = { 0, 0, 0, 8, 83, 0, 0, 0, 0, 0, 8, 0 };
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
@@ -252,7 +252,7 @@ DWORD readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {

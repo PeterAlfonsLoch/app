@@ -186,7 +186,7 @@ namespace filemanager
                   stra.add_tokens(str, ";", true);
                   if(stra.get_size() == m_iaDisplayToStrict.get_size())
                   {
-                     for(int i = 0; i < m_iaDisplayToStrict.get_size(); i++)
+                     for(int32_t i = 0; i < m_iaDisplayToStrict.get_size(); i++)
                      {
                         m_iaDisplayToStrict.set(i, atoi(stra[i]));
                      }
@@ -277,8 +277,8 @@ namespace filemanager
 
    /*bool SimpleFileListView::OnSetData(
       const ::database::id & key,
-      int iLine,
-      int iColumn,
+      int32_t iLine,
+      int32_t iColumn,
       var & var, ::database::update_hint * puh)
    {
       if(key.get_value() == _vms::FILE_MANAGER_ID_FILE_NAME)
@@ -294,8 +294,8 @@ namespace filemanager
 
    bool SimpleFileListView::get_data(
       const ::database::id & key,
-      int iLine,
-      int iColumn,
+      int32_t iLine,
+      int32_t iColumn,
       var & var)
    {
       if(key.get_value() == _vms::FILE_MANAGER_ID_FILE_NAME)
@@ -309,7 +309,7 @@ namespace filemanager
       return data_server_interface::OnSetData(key, iLine, iColumn, var);
    }*/
 
-   void SimpleFileListView::RenameFile(int iLine, string &wstrNameNew)
+   void SimpleFileListView::RenameFile(int32_t iLine, string &wstrNameNew)
    {
 
       string str = get_fs_list_data()->m_itema.get_item(iLine).m_strPath;
@@ -362,7 +362,7 @@ namespace filemanager
             pframe->SetActiveView(this);
 
             //IContextMenu * pcontextmenu;
-            //int iInsertIndex = menu.FindMenuItemPos(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiFilePopupSubstId);
+            //int32_t iInsertIndex = menu.FindMenuItemPos(GetFileManager()->get_filemanager_data()->m_ptemplate->m_uiFilePopupSubstId);
    /*         if(iInsertIndex >= 0)
             {
                pPopup->DeleteMenu(iInsertIndex, MF_BYPOSITION);
@@ -490,7 +490,7 @@ namespace filemanager
          return;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
-      int i;
+      int32_t i;
       while(true)
       {
          i = 0;
@@ -729,7 +729,7 @@ namespace filemanager
       GetSelected(itema);
       stringa stra;
 
-      for(int i = 0; i < itema.get_size(); i++)
+      for(int32_t i = 0; i < itema.get_size(); i++)
       {
          stra.add(itema[i].m_strPath);
       }
@@ -739,7 +739,7 @@ namespace filemanager
       {
          str = itema[0].m_strPath;
       }
-      for(int i = 1; i < itema.get_size(); i++)
+      for(int32_t i = 1; i < itema.get_size(); i++)
       {
          str += "|" + itema[i].m_strPath;
       }
@@ -772,7 +772,7 @@ namespace filemanager
       GetFileManagerDoc()->get_operation_doc(true)->m_thread.kick();
 
 
-     /* for(int i = 0; i < stra.get_size(); i++)
+     /* for(int32_t i = 0; i < stra.get_size(); i++)
       {
          ::CopyFileW(
             L"\\\\?\\" + gen::international::utf8_to_unicode(stra[i]),
@@ -796,7 +796,7 @@ namespace filemanager
       ::fs::item_array itema;
       GetSelected(itema);
       stringa stra;
-      for(int i = 0; i < itema.get_size(); i++)
+      for(int32_t i = 0; i < itema.get_size(); i++)
       {
          stra.add(itema[i].m_strPath);
       }
@@ -836,7 +836,7 @@ namespace filemanager
 
             ::userbase::menu_item menuitem(get_app());
             string str;
-            for(int i = 0; i < iCount; i++)
+            for(int32_t i = 0; i < iCount; i++)
             {
                menuitem.m_id = "open with" + stra[i];
                menuitem.m_button._001SetButtonText(stra[i]);
@@ -859,8 +859,8 @@ namespace filemanager
 
    bool SimpleFileListView::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    {
-      int iPos = -1;
-      for(int i = 0; i < m_straOpenWith.get_size(); i++)
+      int32_t iPos = -1;
+      for(int32_t i = 0; i < m_straOpenWith.get_size(); i++)
       {
          string strId = "open with" + m_straOpenWith[i];
          if(pcmdui->m_id == strId)
@@ -887,8 +887,8 @@ namespace filemanager
    //      _017OpenSelected(true);
          return true;
       }
-      int iPos = -1;
-      for(int i = 0; i < m_straOpenWith.get_size(); i++)
+      int32_t iPos = -1;
+      for(int32_t i = 0; i < m_straOpenWith.get_size(); i++)
       {
          string strId = "open with" + m_straOpenWith[i];
          if(id == strId)
@@ -944,13 +944,13 @@ namespace filemanager
 
       string strFileList;
       string strFileCheck;
-      for(int i = 0; i < itema.get_size(); i++)
+      for(int32_t i = 0; i < itema.get_size(); i++)
       {
          if(Application.dir().is(itema[i].m_strPath)
             && System.file().name_(itema[i].m_strPath) != ".svn")
          {
             Application.dir().rls(itema[i].m_strPath, &straSub);
-            for(int j = 0; j < straSub.get_size(); j++)
+            for(int32_t j = 0; j < straSub.get_size(); j++)
             {
                if(!Application.dir().is(straSub[j])
                 && straSub[j].find(".svn") < 0)
@@ -1006,13 +1006,13 @@ namespace filemanager
 
       string strFileList;
       string strFileCheck;
-      for(int i = 0; i < pdata->m_itema.get_count(); i++)
+      for(int32_t i = 0; i < pdata->m_itema.get_count(); i++)
       {
          if(::fs::list_interface::get_document()->set().is_dir(pdata->m_itema.get_item(i).m_strPath)
             && ::fs::list_interface::get_document()->set().file_name(pdata->m_itema.get_item(i).m_strPath) != ".svn")
          {
             Application.dir().rls(pdata->m_itema.get_item(i).m_strPath, &straSub);
-            for(int j = 0; j < straSub.get_size(); j++)
+            for(int32_t j = 0; j < straSub.get_size(); j++)
             {
              string strExtension = System.file().extension(straSub[j]);
 

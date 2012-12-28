@@ -26,9 +26,9 @@ namespace ca8
       
       string message_box(const char * pszMatter, gen::property_set & propertyset);
       using ::radix::application::simple_message_box;
-      virtual int simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle = MB_OK);
-      virtual int simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
-      virtual int track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);
+      virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
+      virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
+      virtual int32_t track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);
 
       virtual bool get_fs_size(string & strSize, const char * pszPath, bool & bPending);
       virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);

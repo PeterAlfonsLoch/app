@@ -11,7 +11,7 @@ namespace dynamic_source
    public:
 
 
-      int                                    m_iCa2FetchMode;
+      int32_t                                    m_iCa2FetchMode;
 
       string                                 m_strLocale;
       dynamic_source::script_instance *      m_pinstanceCurrent;

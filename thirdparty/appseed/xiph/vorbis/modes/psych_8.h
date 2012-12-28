@@ -96,18 +96,18 @@ static const compandblock _psy_compand_8[2]={
 };
 
 static const double _psy_lowpass_8[3]={3.,4.,4.};
-static const int _noise_start_8[2]={
+static const int32_t _noise_start_8[2]={
   64,64,
 };
-static const int _noise_part_8[2]={
+static const int32_t _noise_part_8[2]={
   8,8,
 };
 
-static const int _psy_ath_floater_8[3]={
+static const int32_t _psy_ath_floater_8[3]={
   -100,-100,-105,
 };
 
-static const int _psy_ath_abs_8[3]={
+static const int32_t _psy_ath_abs_8[3]={
   -130,-130,-140,
 };
 

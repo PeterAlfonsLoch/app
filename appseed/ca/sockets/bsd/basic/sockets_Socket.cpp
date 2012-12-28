@@ -128,7 +128,7 @@ namespace sockets
    {
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
-      int err = SoError();
+      int32_t err = SoError();
       Handler().LogError(this, "exception on select", err, StrError(err), ::gen::log::level::fatal);
       SetCloseAndDelete();
    }
@@ -149,14 +149,14 @@ namespace sockets
    }
 
 
-   int socket::close()
+   int32_t socket::close()
    {
       if (m_socket == INVALID_SOCKET) // this could happen
       {
          Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::gen::log::level::warning);
          return 0;
       }
-      int n;
+      int32_t n;
       if ((n = ::closesocket(m_socket)) == -1)
       {
          // failed...
@@ -173,7 +173,7 @@ namespace sockets
    }
 
 
-   SOCKET socket::CreateSocket(int af,int iType, const string & strProtocol)
+   SOCKET socket::CreateSocket(int32_t af,int32_t iType, const string & strProtocol)
    {
       struct protoent *p = NULL;
       SOCKET s;
@@ -191,7 +191,7 @@ namespace sockets
             return INVALID_SOCKET;
          }
       }
-      int protno = p ? p -> p_proto : 0;
+      int32_t protno = p ? p -> p_proto : 0;
 
       s = ::socket(af, iType, protno);
       if (s == INVALID_SOCKET)
@@ -335,7 +335,7 @@ namespace sockets
    {
    #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
-      int n = ioctlsocket(m_socket, FIONBIO, &l);
+      int32_t n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
       {
          Handler().LogError(this, "ioctlsocket(FIONBIO)", Errno, "");
@@ -368,7 +368,7 @@ namespace sockets
    {
    #ifdef _WIN32
       unsigned long l = bNb ? 1 : 0;
-      int n = ioctlsocket(s, FIONBIO, &l);
+      int32_t n = ioctlsocket(s, FIONBIO, &l);
       if (n != 0)
       {
          Handler().LogError(this, "ioctlsocket(FIONBIO)", Errno, "");
@@ -485,12 +485,12 @@ namespace sockets
    }
 
 
-   void socket::SendBuf(const char *,size_t,int)
+   void socket::SendBuf(const char *,size_t,int32_t)
    {
    }
 
 
-   void socket::Send(const string &,int)
+   void socket::Send(const string &,int32_t)
    {
    }
 
@@ -657,13 +657,13 @@ namespace sockets
    }
 
 
-   void socket::SetSocketType(int iSocketType)
+   void socket::SetSocketType(int32_t iSocketType)
    {
       m_iSocketType = iSocketType;
    }
 
 
-   int socket::GetSocketType()
+   int32_t socket::GetSocketType()
    {
       return m_iSocketType;
    }
@@ -842,7 +842,7 @@ namespace sockets
    }
 
 
-   int socket::socket_thread::run()
+   int32_t socket::socket_thread::run()
    {
       socket_handler h(get_app());
       h.SetSlave();
@@ -864,46 +864,46 @@ namespace sockets
    }
 
 
-   int socket::Resolve(const string & host,port_t port)
+   int32_t socket::Resolve(const string & host,port_t port)
    {
       return Handler().Resolve(this, host, port);
    }
 
 
-   int socket::Resolve6(const string & host,port_t port)
+   int32_t socket::Resolve6(const string & host,port_t port)
    {
       return Handler().Resolve6(this, host, port);
    }
 
 
-   int socket::Resolve(in_addr a)
+   int32_t socket::Resolve(in_addr a)
    {
       return Handler().Resolve(this, a);
    }
 
 
-   int socket::Resolve(in6_addr& a)
+   int32_t socket::Resolve(in6_addr& a)
    {
       return Handler().Resolve(this, a);
    }
 
 
-   void socket::OnResolved(int,in_addr,port_t)
+   void socket::OnResolved(int32_t,in_addr,port_t)
    {
    }
 
 
-   void socket::OnResolved(int,in6_addr&,port_t)
+   void socket::OnResolved(int32_t,in6_addr&,port_t)
    {
    }
 
 
-   void socket::OnReverseResolved(int,const string &)
+   void socket::OnReverseResolved(int32_t,const string &)
    {
    }
 
 
-   void socket::OnResolveFailed(int)
+   void socket::OnResolveFailed(int32_t)
    {
    }
 
@@ -930,7 +930,7 @@ namespace sockets
    #ifdef IP_PKTINFO
    bool socket::SetIpPktinfo(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_PKTINFO, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_PKTINFO)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -944,7 +944,7 @@ namespace sockets
    #ifdef IP_RECVTOS
    bool socket::SetIpRecvTOS(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTOS, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_RECVTOS)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -958,7 +958,7 @@ namespace sockets
    #ifdef IP_RECVTTL
    bool socket::SetIpRecvTTL(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVTTL, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_RECVTTL)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -972,7 +972,7 @@ namespace sockets
    #ifdef IP_RECVOPTS
    bool socket::SetIpRecvopts(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_RECVOPTS)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -986,7 +986,7 @@ namespace sockets
    #ifdef IP_RETOPTS
    bool socket::SetIpRetopts(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RETOPTS, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_RETOPTS)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1029,7 +1029,7 @@ namespace sockets
    }
 
 
-   bool socket::SetIpTTL(int ttl)
+   bool socket::SetIpTTL(int32_t ttl)
    {
    #ifdef IP_TTL
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, sizeof(ttl)) == -1)
@@ -1045,9 +1045,9 @@ namespace sockets
    }
 
 
-   int socket::IpTTL()
+   int32_t socket::IpTTL()
    {
-      int ttl = 0;
+      int32_t ttl = 0;
    #ifdef IP_TTL
       socklen_t len = sizeof(ttl);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TTL, (char *)&ttl, &len) == -1)
@@ -1064,7 +1064,7 @@ namespace sockets
    bool socket::SetIpHdrincl(bool x)
    {
    #ifdef IP_HDRINCL
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_HDRINCL, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_HDRINCL)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1081,7 +1081,7 @@ namespace sockets
    #ifdef IP_RECVERR
    bool socket::SetIpRecverr(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_RECVERR, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_RECVERR)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1095,7 +1095,7 @@ namespace sockets
    #ifdef IP_MTU_DISCOVER
    bool socket::SetIpMtudiscover(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MTU_DISCOVER, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_MTU_DISCOVER)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1107,9 +1107,9 @@ namespace sockets
 
 
    #ifdef IP_MTU
-   int socket::IpMtu()
+   int32_t socket::IpMtu()
    {
-      int mtu = 0;
+      int32_t mtu = 0;
       socklen_t len = sizeof(mtu);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_MTU, (char *)&mtu, &len) == -1)
       {
@@ -1123,7 +1123,7 @@ namespace sockets
    #ifdef IP_ROUTER_ALERT
    bool socket::SetIpRouterAlert(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_ROUTER_ALERT, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_ROUTER_ALERT)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1134,7 +1134,7 @@ namespace sockets
    #endif
 
 
-   bool socket::SetIpMulticastTTL(int ttl)
+   bool socket::SetIpMulticastTTL(int32_t ttl)
    {
    #ifdef IP_MULTICAST_TTL
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(ttl)) == -1)
@@ -1150,9 +1150,9 @@ namespace sockets
    }
 
 
-   int socket::IpMulticastTTL()
+   int32_t socket::IpMulticastTTL()
    {
-      int ttl = 0;
+      int32_t ttl = 0;
    #ifdef IP_MULTICAST_TTL
       socklen_t len = sizeof(ttl);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_TTL, (char *)&ttl, &len) == -1)
@@ -1169,7 +1169,7 @@ namespace sockets
    bool socket::SetMulticastLoop(bool x)
    {
    #ifdef IP_MULTICAST_LOOP
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_MULTICAST_LOOP, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_IP, IP_MULTICAST_LOOP)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1257,7 +1257,7 @@ namespace sockets
    bool socket::SetSoReuseaddr(bool x)
    {
    #ifdef SO_REUSEADDR
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_REUSEADDR, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_REUSEADDR)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1274,7 +1274,7 @@ namespace sockets
    bool socket::SetSoKeepalive(bool x)
    {
    #ifdef SO_KEEPALIVE
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_KEEPALIVE, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_KEEPALIVE)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1291,7 +1291,7 @@ namespace sockets
    #ifdef SO_NOSIGPIPE
    bool socket::SetSoNosigpipe(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_NOSIGPIPE, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_NOSIGPIPE)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1304,7 +1304,7 @@ namespace sockets
 
    bool socket::SoAcceptconn()
    {
-      int value = 0;
+      int32_t value = 0;
    #ifdef SO_ACCEPTCONN
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ACCEPTCONN, (char *)&value, &len) == -1)
@@ -1321,7 +1321,7 @@ namespace sockets
    #ifdef SO_BSDCOMPAT
    bool socket::SetSoBsdcompat(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BSDCOMPAT, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_BSDCOMPAT)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1348,7 +1348,7 @@ namespace sockets
    bool socket::SetSoBroadcast(bool x)
    {
    #ifdef SO_BROADCAST
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_BROADCAST, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_BROADCAST)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1365,7 +1365,7 @@ namespace sockets
    bool socket::SetSoDebug(bool x)
    {
    #ifdef SO_DEBUG
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DEBUG, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_DEBUG)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1379,9 +1379,9 @@ namespace sockets
    }
 
 
-   int socket::SoError()
+   int32_t socket::SoError()
    {
-      int value = 0;
+      int32_t value = 0;
    #ifdef SO_ERROR
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_ERROR, (char *)&value, &len) == -1)
@@ -1398,7 +1398,7 @@ namespace sockets
    bool socket::SetSoDontroute(bool x)
    {
    #ifdef SO_DONTROUTE
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_DONTROUTE, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_DONTROUTE)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1412,7 +1412,7 @@ namespace sockets
    }
 
 
-   bool socket::SetSoLinger(int onoff, int linger)
+   bool socket::SetSoLinger(int32_t onoff, int32_t linger)
    {
    #ifdef SO_LINGER
       struct linger stl;
@@ -1434,7 +1434,7 @@ namespace sockets
    bool socket::SetSoOobinline(bool x)
    {
    #ifdef SO_OOBINLINE
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_OOBINLINE, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_OOBINLINE)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1451,7 +1451,7 @@ namespace sockets
    #ifdef SO_PASSCRED
    bool socket::SetSoPasscred(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PASSCRED, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_PASSCRED)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1476,7 +1476,7 @@ namespace sockets
 
 
    #ifdef SO_PRIORITY
-   bool socket::SetSoPriority(int x)
+   bool socket::SetSoPriority(int32_t x)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_PRIORITY, (char *)&x, sizeof(x)) == -1)
       {
@@ -1488,7 +1488,7 @@ namespace sockets
    #endif
 
 
-   bool socket::SetSoRcvlowat(int x)
+   bool socket::SetSoRcvlowat(int32_t x)
    {
    #ifdef SO_RCVLOWAT
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVLOWAT, (char *)&x, sizeof(x)) == -1)
@@ -1504,7 +1504,7 @@ namespace sockets
    }
 
 
-   bool socket::SetSoSndlowat(int x)
+   bool socket::SetSoSndlowat(int32_t x)
    {
    #ifdef SO_SNDLOWAT
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDLOWAT, (char *)&x, sizeof(x)) == -1)
@@ -1552,7 +1552,7 @@ namespace sockets
    }
 
 
-   bool socket::SetSoRcvbuf(int x)
+   bool socket::SetSoRcvbuf(int32_t x)
    {
    #ifdef SO_RCVBUF
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&x, sizeof(x)) == -1)
@@ -1568,9 +1568,9 @@ namespace sockets
    }
 
 
-   int socket::SoRcvbuf()
+   int32_t socket::SoRcvbuf()
    {
-      int value = 0;
+      int32_t value = 0;
    #ifdef SO_RCVBUF
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUF, (char *)&value, &len) == -1)
@@ -1585,7 +1585,7 @@ namespace sockets
 
 
    #ifdef SO_RCVBUFFORCE
-   bool socket::SetSoRcvbufforce(int x)
+   bool socket::SetSoRcvbufforce(int32_t x)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_RCVBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
@@ -1597,7 +1597,7 @@ namespace sockets
    #endif
 
 
-   bool socket::SetSoSndbuf(int x)
+   bool socket::SetSoSndbuf(int32_t x)
    {
    #ifdef SO_SNDBUF
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&x, sizeof(x)) == -1)
@@ -1613,9 +1613,9 @@ namespace sockets
    }
 
 
-   int socket::SoSndbuf()
+   int32_t socket::SoSndbuf()
    {
-      int value = 0;
+      int32_t value = 0;
    #ifdef SO_SNDBUF
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUF, (char *)&value, &len) == -1)
@@ -1630,7 +1630,7 @@ namespace sockets
 
 
    #ifdef SO_SNDBUFFORCE
-   bool socket::SetSoSndbufforce(int x)
+   bool socket::SetSoSndbufforce(int32_t x)
    {
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_SNDBUFFORCE, (char *)&x, sizeof(x)) == -1)
       {
@@ -1645,7 +1645,7 @@ namespace sockets
    #ifdef SO_TIMESTAMP
    bool socket::SetSoTimestamp(bool x)
    {
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), SOL_SOCKET, SO_TIMESTAMP, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(SOL_SOCKET, SO_TIMESTAMP)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1656,9 +1656,9 @@ namespace sockets
    #endif
 
 
-   int socket::SoType()
+   int32_t socket::SoType()
    {
-      int value = 0;
+      int32_t value = 0;
    #ifdef SO_TYPE
       socklen_t len = sizeof(value);
       if (getsockopt(GetSocket(), SOL_SOCKET, SO_TYPE, (char *)&value, &len) == -1)
@@ -1672,24 +1672,24 @@ namespace sockets
    }
 
 
-   void socket::Subscribe(int id)
+   void socket::Subscribe(int32_t id)
    {
       Handler().Subscribe(id, this);
    }
 
 
-   void socket::Unsubscribe(int id)
+   void socket::Unsubscribe(int32_t id)
    {
       Handler().Unsubscribe(id, this);
    }
 
 
-   void socket::OnTrigger(int, const TriggerData&)
+   void socket::OnTrigger(int32_t, const TriggerData&)
    {
    }
 
 
-   void socket::OnCancelled(int)
+   void socket::OnCancelled(int32_t)
    {
    }
 

@@ -130,19 +130,19 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (int & i)
+   plain_text_input_stream & plain_text_input_stream::operator >> (int32_t & i)
    {
       uint64_t uiRead = read(&i, sizeof(i));
       if(uiRead != sizeof(i))
-         throw "failed to read int";
+         throw "failed to read int32_t";
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (unsigned int & ui)
+   plain_text_input_stream & plain_text_input_stream::operator >> (unsigned int32_t & ui)
    {
       uint64_t uiRead = read(&ui, sizeof(ui));
       if(uiRead != sizeof(ui))
-         throw "failed to read unsigned int";
+         throw "failed to read unsigned int32_t";
       return *this;
    }
 
@@ -206,7 +206,7 @@ namespace ex1
 
    plain_text_input_stream & plain_text_input_stream::operator >> (::ca::type_info & info)
    {
-      int iLen;
+      int32_t iLen;
       read(&iLen, sizeof(iLen));
       char * psz = (char *) malloc(iLen + 1);
       read(psz, iLen);
@@ -268,17 +268,17 @@ namespace ex1
 
    plain_text_output_stream & plain_text_output_stream::operator << (unsigned char uch)
    {
-      return operator << ((unsigned int) uch);
+      return operator << ((unsigned int32_t) uch);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (short sh)
    {
-      return operator << ((int) sh);
+      return operator << ((int32_t) sh);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (unsigned short ush)
    {
-      return operator << ((unsigned int) ush);
+      return operator << ((unsigned int32_t) ush);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (wchar_t wch)
@@ -294,12 +294,12 @@ namespace ex1
          return raw_print("false");
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (int i)
+   plain_text_output_stream & plain_text_output_stream::operator << (int32_t i)
    {
       return raw_print(gen::str::from(i));
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (unsigned int ui)
+   plain_text_output_stream & plain_text_output_stream::operator << (unsigned int32_t ui)
    {
       return raw_print(gen::str::from(ui));
    }

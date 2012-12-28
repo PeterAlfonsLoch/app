@@ -519,7 +519,7 @@ namespace radix
 
    /*void application::ParseCommandLine(CCommandLineInfo& rCmdInfo)
    {
-      for (int i = 1; i < __argc; i++)
+      for (int32_t i = 1; i < __argc; i++)
       {
          const char * pszParam = __targv[i];
          bool bFlag = FALSE;
@@ -700,7 +700,7 @@ namespace radix
 
 
    // Main running routine until application exits
-   int application::run()
+   int32_t application::run()
    {
    /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca::window
       {
@@ -1607,7 +1607,7 @@ namespace radix
 
    }
 
-   void application::DoWaitCursor(int nCode)
+   void application::DoWaitCursor(int32_t nCode)
    {
       // 0 => restore, 1=> begin, -1=> end
       ENSURE_ARG(nCode == 0 || nCode == 1 || nCode == -1);
@@ -1698,18 +1698,18 @@ namespace radix
    #endif
    }
 
-   int application::DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt)
+   int32_t application::DoMessageBox(const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
        return ShowAppMessageBox(this, lpszPrompt, nType, nIDPrompt);
    }
 
-   int application::simple_message_box_timeout(::user::interaction * pwndOwner, const char * pszMessage, int iTimeOut,  UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::user::interaction * pwndOwner, const char * pszMessage, int32_t iTimeOut,  UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(iTimeOut);
       return simple_message_box(pwndOwner, pszMessage, fuStyle);
    }
 
-   int application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
+   int32_t application::simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle)
    {
 
 #ifdef WINDOWSEX
@@ -1724,7 +1724,7 @@ namespace radix
 
    }
 
-   int application::simple_message_box(::user::interaction * pwndOwner,  UINT fuStyle, const char * pszFormat, ...)
+   int32_t application::simple_message_box(::user::interaction * pwndOwner,  UINT fuStyle, const char * pszFormat, ...)
    {
       va_list va;
       va_start(va, pszFormat);
@@ -1736,7 +1736,7 @@ namespace radix
 
 
    // Helper for message boxes; can work when no application can be found
-   int application::ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
+   int32_t application::ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt)
    {
 
       throw not_implemented(pApp);
@@ -1834,7 +1834,7 @@ namespace radix
 #endif
       }
 
-      int nResult;
+      int32_t nResult;
       if(pApp == NULL)
       {
          nResult = ::MessageBox(oswindow, lpszPrompt, pszAppName, nType);
@@ -1859,7 +1859,7 @@ namespace radix
    }
 
 
-   /* int gen::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
+   /* int32_t gen::MessageBox(const char * lpszText, UINT nType, UINT nIDHelp)
    {
       application* papp = &System;
       if (papp != NULL)
@@ -1873,7 +1873,7 @@ namespace radix
    }
    */
 
-   /*int System.simple_message_box(UINT nIDPrompt, UINT nType, UINT nIDHelp)
+   /*int32_t System.simple_message_box(UINT nIDPrompt, UINT nType, UINT nIDHelp)
    {
       string string;
       if (!string.load_string(nIDPrompt))
@@ -2203,7 +2203,7 @@ namespace radix
    }
 
 
-   int application::get_open_document_count()
+   int32_t application::get_open_document_count()
    {
       ENSURE(m_pdocmanager != NULL);
     //  return m_pdocmanager->get_open_document_count();
@@ -2308,7 +2308,7 @@ namespace radix
 #endif
 
 /*   UINT application::GetProfileInt(const char * lpszSection, const char * lpszEntry,
-      int nDefault)
+      int32_t nDefault)
    {
       ASSERT(lpszSection != NULL);
       ASSERT(lpszEntry != NULL);
@@ -2438,7 +2438,7 @@ namespace radix
          int_ptr nLen = str.get_length();
          *pBytes = UINT(nLen)/2;
          *ppData = new BYTE[*pBytes];
-         for (int i=0;i<nLen;i+=2)
+         for (int32_t i=0;i<nLen;i+=2)
          {
             (*ppData)[i/2] = (BYTE)
                (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
@@ -2449,7 +2449,7 @@ namespace radix
 
 
    bool application::WriteProfileInt(const char * lpszSection, const char * lpszEntry,
-      int nValue)
+      int32_t nValue)
    {
       ASSERT(lpszSection != NULL);
       ASSERT(lpszEntry != NULL);
@@ -2596,9 +2596,9 @@ namespace radix
 
 
 
-   /*   int application::GetResourceId(const id_space * pspace, int iKey)
+   /*   int32_t application::GetResourceId(const id_space * pspace, int32_t iKey)
    {
-      int iId;
+      int32_t iId;
       if(!m_imapResource.get(pspace, iKey, iId))
       {
          m_imapResource.Set(pspace, iKey, m_iResourceId);
@@ -2611,9 +2611,9 @@ namespace radix
       return iId;
    }
 
-   int application::GetResourceId(const id_space * pspace, const char * lpcszKey)
+   int32_t application::GetResourceId(const id_space * pspace, const char * lpcszKey)
    {
-      int iId;
+      int32_t iId;
       if(!m_strmapResource.get(pspace, lpcszKey, iId))
       {
          m_strmapResource.Set(pspace, lpcszKey, m_iResourceId);
@@ -2627,12 +2627,12 @@ namespace radix
    }
 
 
-   int application::GetResourceId(const id_space & space, int iKey)
+   int32_t application::GetResourceId(const id_space & space, int32_t iKey)
    {
       return GetResourceId(&space, iKey);
    }
 
-   int application::GetResourceId(const id_space & space, const char * lpcszKey)
+   int32_t application::GetResourceId(const id_space & space, const char * lpcszKey)
    {
       return GetResourceId(&space, lpcszKey);
    }
@@ -2871,13 +2871,13 @@ namespace radix
       return pmutex->unlock() != FALSE;
    }*/
 
-   /*event * application::get_event(::radix::object * pobject, int iEvent)
+   /*event * application::get_event(::radix::object * pobject, int32_t iEvent)
    {
       single_lock sl(&m_mutexObjectEvent, TRUE);
-      ::collection::map < int, int, event *, event * > * peventmap;
+      ::collection::map < int32_t, int32_t, event *, event * > * peventmap;
       if(!m_mapObjectEvent.Lookup(pobject, peventmap))
       {
-         peventmap = new ::collection::map < int, int, event *, event * >();
+         peventmap = new ::collection::map < int32_t, int32_t, event *, event * >();
          m_mapObjectEvent.set_at(pobject, peventmap);
       }
       event * pevent;
@@ -2889,7 +2889,7 @@ namespace radix
       return pevent;
    }
 
-   bool application::event_lock(::radix::object * pobject, int iEvent, duration duration)
+   bool application::event_lock(::radix::object * pobject, int32_t iEvent, duration duration)
    {
       event * pevent = get_event(pobject, iEvent);
       if(pevent == NULL)
@@ -2897,7 +2897,7 @@ namespace radix
       return pevent->wait(duration).signaled();
    }
 
-   bool application::event_unlock(::radix::object * pobject, int iEvent)
+   bool application::event_unlock(::radix::object * pobject, int32_t iEvent)
    {
       event * pevent = get_event(pobject, iEvent);
       if(pevent == NULL)
@@ -2958,15 +2958,15 @@ namespace radix
       }
    }
 
-   int application::get_document_count()
+   int32_t application::get_document_count()
    {
 //      return m_pdocmanager->get_document_count();
       return 0;
    }
 
-   int application::exit()
+   int32_t application::exit()
    {
-      int iExit = 0;
+      int32_t iExit = 0;
 
       try
       {
@@ -2988,7 +2988,7 @@ namespace radix
       return iExit;
    }
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
 
       release_exclusive();
@@ -3028,10 +3028,10 @@ namespace radix
 
 
       return 0;
-/*      int nReturnValue=0;
+/*      int32_t nReturnValue=0;
       if(__get_current_message())
       {
-         nReturnValue=static_cast<int>(__get_current_message()->wParam);
+         nReturnValue=static_cast<int32_t>(__get_current_message()->wParam);
       }*/
 //      return nReturnValue; // returns the value from PostQuitMessage
    }
@@ -3326,7 +3326,7 @@ bool file_manager_interface::initialize(::ca::application * papp)
 }
 
 
-void __post_quit_message(int nExitCode)
+void __post_quit_message(int32_t nExitCode)
 {
 
 #ifdef WINDOWSEX

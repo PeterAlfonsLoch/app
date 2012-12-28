@@ -34,7 +34,7 @@ namespace sockets
          socket_thread(socket * psocket);
          ~socket_thread();
 
-         virtual int run();
+         virtual int32_t run();
          socket * GetSocket() const { return m_psocket; }
          socket * m_psocket;
 
@@ -77,7 +77,7 @@ namespace sockets
       bool                    m_bLost; ///< connection lost
       bool                    m_bErasedByHandler; ///< Set by handler before delete
       time_t                  m_timeClose; ///< time in seconds when ordered to close
-      int                     m_iBindPort;
+      int32_t                     m_iBindPort;
       bool                    m_bDelete; ///< Delete by handler flag
       bool                    m_bClose; ///< close and delete flag
       socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
@@ -101,7 +101,7 @@ namespace sockets
       bool                    m_bIpv6; ///< This is an ipv6 socket if this one is true
 
 #ifdef ENABLE_POOL
-      int                     m_iSocketType; ///< Type of socket, from socket() call
+      int32_t                     m_iSocketType; ///< Type of socket, from socket() call
       string                  m_strSocketProtocol; ///< Protocol, from socket() call
       bool                    m_bClient; ///< only client connections are pooled
       bool                    m_bRetain; ///< keep connection on close
@@ -204,7 +204,7 @@ namespace sockets
       \param af Address family AF_INET / AF_INET6 / ...
       \param type SOCK_STREAM / SOCK_DGRAM / ...
       \param protocol "tcp" / "udp" / ... */
-      SOCKET CreateSocket(int af,int type,const string & protocol = "");
+      SOCKET CreateSocket(int32_t af,int32_t type,const string & protocol = "");
 
       /** Assign this socket a file descriptor created
       by a call to socket() or otherwise. */
@@ -215,7 +215,7 @@ namespace sockets
 
       /** close connection immediately - internal use.
       \sa SetCloseAndDelete */
-      virtual int close();
+      virtual int32_t close();
 
       /** add file descriptor to sockethandler fd_set's. */
       void Set(bool bRead,bool bWrite,bool bException = true);
@@ -253,10 +253,10 @@ namespace sockets
       address GetClientRemoteAddress();
 
       /** Common interface for SendBuf used by Tcp and Udp sockets. */
-      virtual void SendBuf(const char *,size_t,int = 0);
+      virtual void SendBuf(const char *,size_t,int32_t = 0);
 
       /** Common interface for Send used by Tcp and Udp sockets. */
-      virtual void Send(const string &,int = 0);
+      virtual void Send(const string &,int32_t = 0);
 
       /** Outgoing traffic counter. */
       virtual uint64_t GetBytesSent(bool clear = false);
@@ -305,7 +305,7 @@ namespace sockets
       \param protocol Protocol number (tcp, udp, sctp, etc)
       \param s socket file descriptor
       */
-      virtual void OnOptions(int family,int type,int protocol,SOCKET s) = 0;
+      virtual void OnOptions(int32_t family,int32_t type,int32_t protocol,SOCKET s) = 0;
       /** Connection retry callback - return false to abort connection attempts */
       virtual bool OnConnectRetry();
       /** a reconnect has been made */
@@ -412,11 +412,11 @@ namespace sockets
       bool SetIpOptions(const void *p, socklen_t len);
       bool SetIpTOS(unsigned char tos);
       unsigned char IpTOS();
-      bool SetIpTTL(int ttl);
-      int IpTTL();
+      bool SetIpTTL(int32_t ttl);
+      int32_t IpTTL();
       bool SetIpHdrincl(bool x = true);
-      bool SetIpMulticastTTL(int);
-      int IpMulticastTTL();
+      bool SetIpMulticastTTL(int32_t);
+      int32_t IpMulticastTTL();
       bool SetMulticastLoop(bool x = true);
       bool IpAddMembership(struct ip_mreq&);
       bool IpDropMembership(struct ip_mreq&);
@@ -443,7 +443,7 @@ namespace sockets
       bool SetIpMtudiscover(bool x = true);
 #endif
 #ifdef IP_MTU
-      int IpMtu();
+      int32_t IpMtu();
 #endif
 #ifdef IP_ROUTER_ALERT
       bool SetIpRouterAlert(bool x = true);
@@ -463,19 +463,19 @@ namespace sockets
       bool SoAcceptconn();
       bool SetSoBroadcast(bool x = true);
       bool SetSoDebug(bool x = true);
-      int SoError();
+      int32_t SoError();
       bool SetSoDontroute(bool x = true);
-      bool SetSoLinger(int onoff, int linger);
+      bool SetSoLinger(int32_t onoff, int32_t linger);
       bool SetSoOobinline(bool x = true);
-      bool SetSoRcvlowat(int);
-      bool SetSoSndlowat(int);
+      bool SetSoRcvlowat(int32_t);
+      bool SetSoSndlowat(int32_t);
       bool SetSoRcvtimeo(struct timeval&);
       bool SetSoSndtimeo(struct timeval&);
-      bool SetSoRcvbuf(int);
-      int SoRcvbuf();
-      bool SetSoSndbuf(int);
-      int SoSndbuf();
-      int SoType();
+      bool SetSoRcvbuf(int32_t);
+      int32_t SoRcvbuf();
+      bool SetSoSndbuf(int32_t);
+      int32_t SoSndbuf();
+      int32_t SoType();
       bool SetSoReuseaddr(bool x = true);
       bool SetSoKeepalive(bool x = true);
 
@@ -492,13 +492,13 @@ namespace sockets
       bool SoPeercred(struct ucred& );
 #endif
 #ifdef SO_PRIORITY
-      bool SetSoPriority(int);
+      bool SetSoPriority(int32_t);
 #endif
 #ifdef SO_RCVBUFFORCE
-      bool SetSoRcvbufforce(int);
+      bool SetSoRcvbufforce(int32_t);
 #endif
 #ifdef SO_SNDBUFFORCE
-      bool SetSoSndbufforce(int);
+      bool SetSoSndbufforce(int32_t);
 #endif
 #ifdef SO_TIMESTAMP
       bool SetSoTimestamp(bool x = true);
@@ -573,9 +573,9 @@ namespace sockets
       /** Client = connecting tcp_socket. */
       void SetIsClient();
       /** socket type from socket() call. */
-      void SetSocketType(int x);
+      void SetSocketType(int32_t x);
       /** socket type from socket() call. */
-      int GetSocketType();
+      int32_t GetSocketType();
       /** Protocol type from socket() call. */
       void SetSocketProtocol(const string & x);
       /** Protocol type from socket() call. */
@@ -632,25 +632,25 @@ namespace sockets
       \param host hostname to be resolved
       \param port port number passed along for the ride
       \return Resolve ID */
-      int Resolve(const string & host,port_t port = 0);
-      int Resolve6(const string & host, port_t port = 0);
+      int32_t Resolve(const string & host,port_t port = 0);
+      int32_t Resolve6(const string & host, port_t port = 0);
       /** Callback returning a resolved address.
       \param id Resolve ID from Resolve call
       \param a resolved ip address
       \param port port number passed to Resolve */
-      virtual void OnResolved(int id,in_addr a,port_t port);
-      virtual void OnResolved(int id,in6_addr& a,port_t port);
+      virtual void OnResolved(int32_t id,in_addr a,port_t port);
+      virtual void OnResolved(int32_t id,in6_addr& a,port_t port);
       /** Request asynchronous reverse dns lookup.
       \param a in_addr to be translated */
-      int Resolve(in_addr a);
-      int Resolve(in6_addr& a);
+      int32_t Resolve(in_addr a);
+      int32_t Resolve(in6_addr& a);
       /** Callback returning reverse resolve results.
       \param id Resolve ID
       \param name Resolved hostname */
-      virtual void OnReverseResolved(int id,const string & name);
+      virtual void OnReverseResolved(int32_t id,const string & name);
       /** Callback indicating failed dns lookup.
       \param id Resolve ID */
-      virtual void OnResolveFailed(int id);
+      virtual void OnResolveFailed(int32_t id);
       //@}
       /** \name Thread Support */
       //@{
@@ -689,13 +689,13 @@ namespace sockets
       /** \name Triggers */
       //@{
       /** Subscribe to trigger id. */
-      void Subscribe(int id);
+      void Subscribe(int32_t id);
       /** Unsubscribe from trigger id. */
-      void Unsubscribe(int id);
+      void Unsubscribe(int32_t id);
       /** Trigger callback, with data passed from source to destination. */
-      virtual void OnTrigger(int id, const TriggerData& data);
+      virtual void OnTrigger(int32_t id, const TriggerData& data);
       /** Trigger cancelled because source has been deleted (as in delete). */
-      virtual void OnCancelled(int id);
+      virtual void OnCancelled(int32_t id);
       //@}
 
 

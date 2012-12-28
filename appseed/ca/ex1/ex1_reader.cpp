@@ -149,7 +149,7 @@ namespace ex1
       ::primitive::memory_size uiRead;
       memory.allocate(1024);
       strsize nCount = dwEnd - dwStart;
-      int iTry = 0;
+      int32_t iTry = 0;
       while((uiRead = read(&memory.get_data()[uiPos], min(memory.get_size() - uiPos, (::primitive::memory_size) nCount))) > 0)
       {
          uiPos += uiRead;

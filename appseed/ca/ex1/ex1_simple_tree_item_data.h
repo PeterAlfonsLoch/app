@@ -23,11 +23,11 @@ namespace ex1
       virtual index get_image(::ex1::tree * ptree);
 
       /*#undef new
-      void * operator new(size_t i, const char * lpszFileName, int iLine);
+      void * operator new(size_t i, const char * lpszFileName, int32_t iLine);
       void * operator new(size_t i);
       #define new DEBUG_NEW
       void operator delete(void *);
-      void operator delete(void *, const char * lpszFileName, int iLine);*/
+      void operator delete(void *, const char * lpszFileName, int32_t iLine);*/
 
 
    };

@@ -22,8 +22,8 @@
 BEGIN_EXTERN_C
 
 
-static int ilog2(unsigned int v){
-  int ret=0;
+static int32_t ilog2(unsigned int32_t v){
+  int32_t ret=0;
   if(v)--v;
   while(v){
     ret++;
@@ -76,8 +76,8 @@ static int ilog2(unsigned int v){
 #define WORD_ALIGN 8
 #endif
 
-int vorbis_block_init(vorbis_dsp_state *v, vorbis_block *vb){
-  int i;
+int32_t vorbis_block_init(vorbis_dsp_state *v, vorbis_block *vb){
+  int32_t i;
   memset(vb,0,sizeof(*vb));
   vb->vd=v;
   vb->localalloc=0;
@@ -147,8 +147,8 @@ void _vorbis_block_ripcord(vorbis_block *vb){
   vb->reap=NULL;
 }
 
-int vorbis_block_clear(vorbis_block *vb){
-  int i;
+int32_t vorbis_block_clear(vorbis_block *vb){
+  int32_t i;
   vorbis_block_internal *vbi=(vorbis_block_internal *) vb->internal;
 
   _vorbis_block_ripcord(vb);
@@ -169,11 +169,11 @@ int vorbis_block_clear(vorbis_block *vb){
    here and not in analysis.c (which is for analysis transforms only).
    The init is here because some of it is shared */
 
-static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
-  int i;
+static int32_t _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int32_t encp){
+  int32_t i;
   codec_setup_info *ci=(codec_setup_info *) vi->codec_setup;
   private_state *b=NULL;
-  int hs;
+  int32_t hs;
 
   if(ci==NULL) return 1;
   hs=ci->halfrate_flag;
@@ -244,7 +244,7 @@ static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
   v->pcm=(float **) _ogg_malloc(vi->channels*sizeof(*v->pcm));
   v->pcmret=(float **) _ogg_malloc(vi->channels*sizeof(*v->pcmret));
   {
-    int i;
+    int32_t i;
     for(i=0;i<vi->channels;i++)
       v->pcm[i]=(float *) _ogg_calloc(v->pcm_storage,sizeof(*v->pcm[i]));
   }
@@ -284,7 +284,7 @@ static int _vds_shared_init(vorbis_dsp_state *v,vorbis_info *vi,int encp){
 }
 
 /* arbitrary settings and spec-mandated numbers get filled in here */
-int vorbis_analysis_init(vorbis_dsp_state *v,vorbis_info *vi){
+int32_t vorbis_analysis_init(vorbis_dsp_state *v,vorbis_info *vi){
   private_state *b=NULL;
 
   if(_vds_shared_init(v,vi,1))return 1;
@@ -305,7 +305,7 @@ int vorbis_analysis_init(vorbis_dsp_state *v,vorbis_info *vi){
 }
 
 void vorbis_dsp_clear(vorbis_dsp_state *v){
-  int i;
+  int32_t i;
   if(v){
     vorbis_info *vi=v->vi;
     codec_setup_info *ci=(codec_setup_info *) (vi?vi->codec_setup:NULL);
@@ -378,8 +378,8 @@ void vorbis_dsp_clear(vorbis_dsp_state *v){
   }
 }
 
-float **vorbis_analysis_buffer(vorbis_dsp_state *v, int vals){
-  int i;
+float **vorbis_analysis_buffer(vorbis_dsp_state *v, int32_t vals){
+  int32_t i;
   vorbis_info *vi=v->vi;
   private_state *b=(private_state *) v->backend_state;
 
@@ -406,8 +406,8 @@ float **vorbis_analysis_buffer(vorbis_dsp_state *v, int vals){
 }
 
 static void _preextrapolate_helper(vorbis_dsp_state *v){
-  int i;
-  int order=16;
+  int32_t i;
+  int32_t order=16;
   float *lpc=(float *) alloca(order*sizeof(*lpc));
   float *work=(float *) alloca(v->pcm_current*sizeof(*work));
   long j;
@@ -449,13 +449,13 @@ static void _preextrapolate_helper(vorbis_dsp_state *v){
 
 /* call with val<=0 to set eof */
 
-int vorbis_analysis_wrote(vorbis_dsp_state *v, int vals){
+int32_t vorbis_analysis_wrote(vorbis_dsp_state *v, int32_t vals){
   vorbis_info *vi=v->vi;
   codec_setup_info *ci=(codec_setup_info* )vi->codec_setup;
 
   if(vals<=0){
-    int order=32;
-    int i;
+    int32_t order=32;
+    int32_t i;
     float *lpc=(float *) alloca(order*sizeof(*lpc));
 
     /* if it wasn't done earlier (very short sample) */
@@ -513,8 +513,8 @@ int vorbis_analysis_wrote(vorbis_dsp_state *v, int vals){
 
 /* do the deltas, envelope shaping, pre-echo and determine the size of
    the next block on which to continue analysis */
-int vorbis_analysis_blockout(vorbis_dsp_state *v,vorbis_block *vb){
-  int i;
+int32_t vorbis_analysis_blockout(vorbis_dsp_state *v,vorbis_block *vb){
+  int32_t i;
   vorbis_info *vi=v->vi;
   codec_setup_info *ci=(codec_setup_info *) vi->codec_setup;
   private_state *b=(private_state *)v->backend_state;
@@ -638,8 +638,8 @@ int vorbis_analysis_blockout(vorbis_dsp_state *v,vorbis_block *vb){
 
   /* advance storage vectors and clean up */
   {
-    int new_centerNext=ci->blocksizes[1]/2;
-    int movementW=centerNext-new_centerNext;
+    int32_t new_centerNext=ci->blocksizes[1]/2;
+    int32_t movementW=centerNext-new_centerNext;
 
     if(movementW>0){
 
@@ -674,10 +674,10 @@ int vorbis_analysis_blockout(vorbis_dsp_state *v,vorbis_block *vb){
   return(1);
 }
 
-int vorbis_synthesis_restart(vorbis_dsp_state *v){
+int32_t vorbis_synthesis_restart(vorbis_dsp_state *v){
   vorbis_info *vi=v->vi;
   codec_setup_info *ci;
-  int hs;
+  int32_t hs;
 
   if(!v->backend_state)return -1;
   if(!vi)return -1;
@@ -697,7 +697,7 @@ int vorbis_synthesis_restart(vorbis_dsp_state *v){
   return(0);
 }
 
-int vorbis_synthesis_init(vorbis_dsp_state *v,vorbis_info *vi){
+int32_t vorbis_synthesis_init(vorbis_dsp_state *v,vorbis_info *vi){
   if(_vds_shared_init(v,vi,0)){
     vorbis_dsp_clear(v);
     return 1;
@@ -710,12 +710,12 @@ int vorbis_synthesis_init(vorbis_dsp_state *v,vorbis_info *vi){
    block.  The time domain envelope is not yet handled at the point of
    calling (as it relies on the previous block). */
 
-int vorbis_synthesis_blockin(vorbis_dsp_state *v,vorbis_block *vb){
+int32_t vorbis_synthesis_blockin(vorbis_dsp_state *v,vorbis_block *vb){
   vorbis_info *vi=v->vi;
   codec_setup_info *ci=vi->codec_setup;
   private_state *b=v->backend_state;
-  int hs=ci->halfrate_flag;
-  int i,j;
+  int32_t hs=ci->halfrate_flag;
+  int32_t i,j;
 
   if(!vb)return(OV_EINVAL);
   if(v->pcm_current>v->pcm_returned  && v->pcm_returned!=-1)return(OV_EINVAL);
@@ -734,12 +734,12 @@ int vorbis_synthesis_blockin(vorbis_dsp_state *v,vorbis_block *vb){
 
   if(vb->pcm){  /* no pcm to process if vorbis_synthesis_trackonly
                    was called on block */
-    int n=ci->blocksizes[v->W]>>(hs+1);
-    int n0=ci->blocksizes[0]>>(hs+1);
-    int n1=ci->blocksizes[1]>>(hs+1);
+    int32_t n=ci->blocksizes[v->W]>>(hs+1);
+    int32_t n0=ci->blocksizes[0]>>(hs+1);
+    int32_t n1=ci->blocksizes[1]>>(hs+1);
 
-    int thisCenter;
-    int prevCenter;
+    int32_t thisCenter;
+    int32_t prevCenter;
 
     v->glue_bits+=vb->glue_bits;
     v->time_bits+=vb->time_bits;
@@ -926,12 +926,12 @@ int vorbis_synthesis_blockin(vorbis_dsp_state *v,vorbis_block *vb){
 }
 
 /* pcm==NULL indicates we just want the pending samples, no more */
-int vorbis_synthesis_pcmout(vorbis_dsp_state *v,float ***pcm){
+int32_t vorbis_synthesis_pcmout(vorbis_dsp_state *v,float ***pcm){
   vorbis_info *vi=v->vi;
 
   if(v->pcm_returned>-1 && v->pcm_returned<v->pcm_current){
     if(pcm){
-      int i;
+      int32_t i;
       for(i=0;i<vi->channels;i++)
         v->pcmret[i]=v->pcm[i]+v->pcm_returned;
       *pcm=v->pcmret;
@@ -941,7 +941,7 @@ int vorbis_synthesis_pcmout(vorbis_dsp_state *v,float ***pcm){
   return(0);
 }
 
-int vorbis_synthesis_read(vorbis_dsp_state *v,int n){
+int32_t vorbis_synthesis_read(vorbis_dsp_state *v,int32_t n){
   if(n && v->pcm_returned+n>v->pcm_current)return(OV_EINVAL);
   v->pcm_returned+=n;
   return(0);
@@ -952,15 +952,15 @@ int vorbis_synthesis_read(vorbis_dsp_state *v,int n){
    the end of a decode cycle, specifically, a half-short-block worth.
    This funtion works like pcmout above, except it will also expose
    this implicit buffer data not normally decoded. */
-int vorbis_synthesis_lapout(vorbis_dsp_state *v,float ***pcm){
+int32_t vorbis_synthesis_lapout(vorbis_dsp_state *v,float ***pcm){
   vorbis_info *vi=v->vi;
   codec_setup_info *ci=vi->codec_setup;
-  int hs=ci->halfrate_flag;
+  int32_t hs=ci->halfrate_flag;
 
-  int n=ci->blocksizes[v->W]>>(hs+1);
-  int n0=ci->blocksizes[0]>>(hs+1);
-  int n1=ci->blocksizes[1]>>(hs+1);
-  int i,j;
+  int32_t n=ci->blocksizes[v->W]>>(hs+1);
+  int32_t n0=ci->blocksizes[0]>>(hs+1);
+  int32_t n1=ci->blocksizes[1]>>(hs+1);
+  int32_t i,j;
 
   if(v->pcm_returned<0)return 0;
 
@@ -1017,7 +1017,7 @@ int vorbis_synthesis_lapout(vorbis_dsp_state *v,float ***pcm){
   }
 
   if(pcm){
-    int i;
+    int32_t i;
     for(i=0;i<vi->channels;i++)
       v->pcmret[i]=v->pcm[i]+v->pcm_returned;
     *pcm=v->pcmret;
@@ -1027,12 +1027,12 @@ int vorbis_synthesis_lapout(vorbis_dsp_state *v,float ***pcm){
 
 }
 
-extern float * vorbis_window(vorbis_dsp_state *v,int W)
+extern float * vorbis_window(vorbis_dsp_state *v,int32_t W)
 {
 
   vorbis_info *vi=v->vi;
   codec_setup_info *ci=vi->codec_setup;
-  int hs=ci->halfrate_flag;
+  int32_t hs=ci->halfrate_flag;
   private_state *b=v->backend_state;
 
   if(b->window[W]-1<0)return NULL;

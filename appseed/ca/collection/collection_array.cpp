@@ -30,10 +30,10 @@ namespace gen
 
 void ___arrayStdSortTest()
 {
-   base_array<int, int> ia;
+   base_array<int32_t, int32_t> ia;
    /*gen::_sort::QuickSort(
       ia,
-      sort::CompareAscending < int >);*/
+      sort::CompareAscending < int32_t >);*/
 
 }
 
@@ -64,7 +64,7 @@ namespace gen
       CLASS_DECL_ca string x1_encode_ida(const stringa & stra)
 	   {
 		   string str;
-         for(int i = 0 ; i < stra.get_count(); i++)
+         for(int32_t i = 0 ; i < stra.get_count(); i++)
 		   {
 			   str += "<" + stra[i] + ">";
 		   }

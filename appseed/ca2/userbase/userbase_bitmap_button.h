@@ -37,7 +37,7 @@ namespace userbase
       void UpdateHover();
 
       virtual void BaseToolTipGetRect(LPRECT lprect);
-      virtual int BaseToolTipGetIndex();
+      virtual int32_t BaseToolTipGetIndex();
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 #ifdef WINDOWSEX

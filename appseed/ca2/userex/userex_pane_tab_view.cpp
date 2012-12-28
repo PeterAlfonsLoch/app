@@ -41,7 +41,7 @@ namespace userex
       }
       else if(m_pviewdata->m_iExtendOnParent > 0)
       {
-         int i = m_pviewdata->m_iExtendOnParent;
+         int32_t i = m_pviewdata->m_iExtendOnParent;
          ::user::interaction* pguie = m_pviewdata->m_pwnd;
          ::user::interaction* pguieNext = m_pviewdata->m_pwnd;
          for(; i > 0; i--)
@@ -67,7 +67,7 @@ namespace userex
                break;
             pguie = pguieNext;
          }
-//         int i = max(0, wnda.get_size() + m_pviewdata->m_iExtendOnParent);
+//         int32_t i = max(0, wnda.get_size() + m_pviewdata->m_iExtendOnParent);
          pguie = wnda[wnda.get_size() + m_pviewdata->m_iExtendOnParent];
          pguie->GetWindowRect(lprect);
          ScreenToClient(lprect);
@@ -123,7 +123,7 @@ namespace userex
       if(!::user::place_holder_container::on_hold(pui, pholder))
          return false;
       ::user::tab::pane_array & panea = get_data()->m_panea;
-      for(int iTab = 0; iTab < panea.get_count(); iTab++)
+      for(int32_t iTab = 0; iTab < panea.get_count(); iTab++)
       {
          if(panea[iTab].m_pholder == pholder)
          {
@@ -229,7 +229,7 @@ namespace userex
       return dynamic_cast < filemanager::document * > (get_view_creator()->get("tabbed_file_manager")->m_pdoc);
    }
 
-   void pane_tab_view::_001OnTabClose(int iTab)
+   void pane_tab_view::_001OnTabClose(int32_t iTab)
    {
       
       ::user::tab::_001OnTabClose(iTab);

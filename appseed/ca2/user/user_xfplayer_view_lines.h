@@ -20,7 +20,7 @@ public:
    void SetBlend(double dBlend);
    index FindLine(XfplayerViewLine * pline);
    void SetRenderWindow(::ca::window * pWnd);
-   void SetEffect(int iEffect);
+   void SetEffect(int32_t iEffect);
    void set_user_interaction(::user::interaction * pinteraction);
    void Prepare(XfplayerViewLine * lpViewLine);
    void Prepare();

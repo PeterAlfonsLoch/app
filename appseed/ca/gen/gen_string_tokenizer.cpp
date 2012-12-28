@@ -13,7 +13,7 @@ string_tokenizer
 }
 
 string_tokenizer
-::string_tokenizer(const char * lpch, int nLength)
+::string_tokenizer(const char * lpch, int32_t nLength)
 :string(lpch, nLength)
 {
    Restart();
@@ -65,7 +65,7 @@ bool string_tokenizer::GetNextSmallestToken(string & strToken, string_array & st
    strsize iMinPos = get_length();
    strsize iMaxSepLen = 0;
    strsize iPos;
-   for(int j = 0; j < straSeparator.get_size(); j++)
+   for(int32_t j = 0; j < straSeparator.get_size(); j++)
    {
       iPos = find(straSeparator[j], m_nCurrentIndex);
       if(iPos >= 0 && iPos <= iMinPos)
@@ -177,14 +177,14 @@ bool string_tokenizer::_01Read(string &str)
 
 bool string_tokenizer::_01Read(UINT & user)
 {
-   int i;
+   int32_t i;
    if(!_01Read(i))
       return false;
    user = (UINT) i;
    return true;
 }
 
-bool string_tokenizer::_01Read(int &i)
+bool string_tokenizer::_01Read(int32_t &i)
 {
    string str;
    if(!_01Read(str))
@@ -195,14 +195,14 @@ bool string_tokenizer::_01Read(int &i)
 
 bool string_tokenizer::_01ReadHex(UINT & user)
 {
-   int i;
+   int32_t i;
    if(!_01ReadHex(i))
       return false;
    user = (UINT) i;
    return true;
 }
 
-bool string_tokenizer::_01ReadHex(int &i)
+bool string_tokenizer::_01ReadHex(int32_t &i)
 {
    string str;
    if(!_01Read(str))

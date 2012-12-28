@@ -20,7 +20,7 @@ namespace html
       m_font.create(papp);
 
 
-      int iWeight;
+      int32_t iWeight;
       if(m_strWeight.CompareNoCase("bold") == 0)
       {
          iWeight = 800;
@@ -47,7 +47,7 @@ namespace html
 
       stringa stra;
       stra.add_tokens(m_strFamily,",", false);
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          stra[i].trim();
          if(stra[i].CompareNoCase("fixed-width") == 0)

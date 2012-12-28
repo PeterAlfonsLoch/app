@@ -128,7 +128,7 @@ namespace dynamic_source
 
       Application.dir().ls_dir(m_strNetnodePath, &straPath, &straTitle);
 
-      for(int i = 0; i < straPath.get_count(); i++)
+      for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          if(gen::str::begins_ci(straTitle[i], "net-"))
          {

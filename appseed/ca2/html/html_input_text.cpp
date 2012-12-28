@@ -68,7 +68,7 @@ namespace html
          pdata->m_layoutstate.m_cx   = get_cx();
          pdata->m_layoutstate.m_bLastBlockX = true;
          pdata->m_layoutstate.m_bLastBlockY = true;
-         m_pedit->SetWindowPos(0, (int) m_box.left, (int) m_box.top, (int) m_box.get_cx(), (int) m_box.get_cy(), SWP_NOREDRAW);
+         m_pedit->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_text::_001OnDraw(data * pdata)

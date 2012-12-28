@@ -21,7 +21,7 @@ namespace userex
 
       bool _001OnCommand(id id);
 
-      bool create_pane(int iPane, bool bFixedSize, ::id id);
+      bool create_pane(int32_t iPane, bool bFixedSize, ::id id);
 
 
    };

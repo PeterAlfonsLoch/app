@@ -53,8 +53,8 @@ namespace sockets
       
       IEventOwner *     m_from;
       EventTime         m_time;
-      static int        m_unique_id;
-      int               m_id;
+      static int32_t        m_unique_id;
+      int32_t               m_id;
       
       
       Event(const Event& ) {} // copy constructor
@@ -69,7 +69,7 @@ namespace sockets
 
       
       bool operator<(Event&);
-      int GetID();
+      int32_t GetID();
       const EventTime& get_time() const;
       IEventOwner *GetFrom();
 

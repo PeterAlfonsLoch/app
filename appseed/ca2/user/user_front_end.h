@@ -25,14 +25,14 @@ namespace user
       ~front_end();
 
       static LRESULT CALLBACK MouseProc(
-         int      nCode,
+         int32_t      nCode,
          WPARAM   wparam,
          LPARAM   lparam);
 
    protected:
       static ::userbase::menu *    s_pmenu;
       static HHOOK            s_hhookMouse;
-      static int              s_iMouseHookCount;
+      static int32_t              s_iMouseHookCount;
    };
 
 } // namespace user

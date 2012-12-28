@@ -31,7 +31,7 @@ void c_cdecl __trace(const char * lpszFormat, ...)
    va_list args;
    va_start(args, lpszFormat);
 
-   int nBuf;
+   int32_t nBuf;
    char szBuffer[512];
 
 #ifdef WINDOWSEX

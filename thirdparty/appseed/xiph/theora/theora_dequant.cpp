@@ -18,40 +18,40 @@
 
 
 
-int oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
+int32_t oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
   th_quant_base *base_mats;
   long           val;
-  int            nbase_mats;
-  int            sizes[64];
-  int            indices[64];
-  int            nbits;
-  int            bmi;
-  int            ci;
-  int            qti;
-  int            pli;
-  int            qri;
-  int            qi;
-  int            i;
+  int32_t            nbase_mats;
+  int32_t            sizes[64];
+  int32_t            indices[64];
+  int32_t            nbits;
+  int32_t            bmi;
+  int32_t            ci;
+  int32_t            qti;
+  int32_t            pli;
+  int32_t            qri;
+  int32_t            qi;
+  int32_t            i;
   val=oc_pack_read(_opb,3);
-  nbits=(int)val;
+  nbits=(int32_t)val;
   for(qi=0;qi<64;qi++){
     val=oc_pack_read(_opb,nbits);
     _qinfo->loop_filter_limits[qi]=(unsigned char)val;
   }
   val=oc_pack_read(_opb,4);
-  nbits=(int)val+1;
+  nbits=(int32_t)val+1;
   for(qi=0;qi<64;qi++){
     val=oc_pack_read(_opb,nbits);
     _qinfo->ac_scale[qi]=(ogg_uint16_t)val;
   }
   val=oc_pack_read(_opb,4);
-  nbits=(int)val+1;
+  nbits=(int32_t)val+1;
   for(qi=0;qi<64;qi++){
     val=oc_pack_read(_opb,nbits);
     _qinfo->dc_scale[qi]=(ogg_uint16_t)val;
   }
   val=oc_pack_read(_opb,9);
-  nbase_mats=(int)val+1;
+  nbase_mats=(int32_t)val+1;
   base_mats= (th_quant_base *) _ogg_malloc(nbase_mats*sizeof(base_mats[0]));
   if(base_mats==NULL)return TH_EFAULT;
   for(bmi=0;bmi<nbase_mats;bmi++){
@@ -64,15 +64,15 @@ int oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
   for(i=0;i<6;i++){
     th_quant_ranges *qranges;
     th_quant_base   *qrbms;
-    int             *qrsizes;
+    int32_t             *qrsizes;
     qti=i/3;
     pli=i%3;
     qranges=_qinfo->qi_ranges[qti]+pli;
     if(i>0){
       val=oc_pack_read1(_opb);
       if(!val){
-        int qtj;
-        int plj;
+        int32_t qtj;
+        int32_t plj;
         if(qti>0){
           val=oc_pack_read1(_opb);
           if(val){
@@ -93,13 +93,13 @@ int oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
       }
     }
     val=oc_pack_read(_opb,nbits);
-    indices[0]=(int)val;
+    indices[0]=(int32_t)val;
     for(qi=qri=0;qi<63;){
       val=oc_pack_read(_opb,oc_ilog(62-qi));
-      sizes[qri]=(int)val+1;
-      qi+=(int)val+1;
+      sizes[qri]=(int32_t)val+1;
+      qi+=(int32_t)val+1;
       val=oc_pack_read(_opb,nbits);
-      indices[++qri]=(int)val;
+      indices[++qri]=(int32_t)val;
     }
     /*Note: The caller is responsible for cleaning up any partially
        constructed qinfo.*/
@@ -108,7 +108,7 @@ int oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
       return TH_EBADHEADER;
     }
     qranges->nranges=qri;
-    qranges->sizes=qrsizes=(int *)_ogg_malloc(qri*sizeof(qrsizes[0]));
+    qranges->sizes=qrsizes=(int32_t *)_ogg_malloc(qri*sizeof(qrsizes[0]));
     if(qranges->sizes==NULL){
       /*Note: The caller is responsible for cleaning up any partially
          constructed qinfo.*/
@@ -141,16 +141,16 @@ int oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
 }
 
 void oc_quant_params_clear(th_quant_info *_qinfo){
-  int i;
+  int32_t i;
   for(i=6;i-->0;){
-    int qti;
-    int pli;
+    int32_t qti;
+    int32_t pli;
     qti=i/3;
     pli=i%3;
     /*Clear any duplicate pointer references.*/
     if(i>0){
-      int qtj;
-      int plj;
+      int32_t qtj;
+      int32_t plj;
       qtj=(i-1)/3;
       plj=(i-1)%3;
       if(_qinfo->qi_ranges[qti][pli].sizes==

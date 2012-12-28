@@ -119,11 +119,11 @@ typedef cryptoalg_ctx_t *cryptoalg_t;
 
 #define cryptoalg_get_auth_tag_len(cryptoalg) ((cryptoalg)->auth_tag_len)
 
-int
+int32_t
 cryptoalg_get_id(cryptoalg_t c);
 
 cryptoalg_t 
-cryptoalg_find_by_id(int id);
+cryptoalg_find_by_id(int32_t id);
 
 
 /**

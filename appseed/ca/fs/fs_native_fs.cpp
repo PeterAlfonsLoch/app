@@ -64,7 +64,7 @@ namespace fs
    }
 
 
-   string native::eat_end_level(const char * pszPath, int iCount)
+   string native::eat_end_level(const char * pszPath, int32_t iCount)
    {
 
       string strPath(pszPath);

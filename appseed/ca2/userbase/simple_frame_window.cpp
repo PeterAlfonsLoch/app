@@ -516,7 +516,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(gen::signal_object * pob
 
 
 
-void simple_frame_window::ActivateFrame(int nCmdShow)
+void simple_frame_window::ActivateFrame(int32_t nCmdShow)
 {
 
    userbase::frame_window::ActivateFrame(nCmdShow);
@@ -602,7 +602,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
       // TODO: instead of closing all applications in process System.m_apptra, should close application that make part of
       // cube, bergedge, session or system.
 
-      for(int i = 0; Sys(papp).m_appptra.get_count(); i++)
+      for(int32_t i = 0; Sys(papp).m_appptra.get_count(); i++)
       {
 
          ::cube8::application * pappChild = &App(Sys(papp).m_appptra[i]);

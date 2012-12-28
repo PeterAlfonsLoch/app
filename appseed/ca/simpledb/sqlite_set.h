@@ -39,7 +39,7 @@ namespace sqlite
       /* Delete SQL */
       virtual void make_deletion();
 
-      //static int sqlite_callback(void * res_ptr,int ncol, char** reslt, char** cols);
+      //static int32_t sqlite_callback(void * res_ptr,int32_t ncol, char** reslt, char** cols);
 
       /* This function works only with MySQL database
       Filling the fields information from select statement */
@@ -81,7 +81,7 @@ namespace sqlite
       virtual bool SetFieldValue(index iFieldIndex, const var &value);
       
       virtual var & FieldValueAt(index iFieldIndex);
-      virtual int GetFieldIndex(const char *f_name);
+      virtual int32_t GetFieldIndex(const char *f_name);
 
    };
 

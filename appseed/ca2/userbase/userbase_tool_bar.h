@@ -45,37 +45,37 @@ namespace userbase
 
       void SetSizes(SIZE sizeButton, SIZE sizeImage);
          // button size should be bigger than image
-      void SetHeight(int cyHeight);
+      void SetHeight(int32_t cyHeight);
          // call after SetSizes, height overrides bitmap size
       //bool LoadToolBar(const char * lpszResourceName);
       //bool LoadToolBar(UINT nIDResource);
       //bool LoadBitmap(const char * lpszResourceName);
       //bool LoadBitmap(UINT nIDResource);
       bool from(HBITMAP hbmImageWell);
-      bool SetButtons(const UINT* lpIDArray, int nIDCount);
+      bool SetButtons(const UINT* lpIDArray, int32_t nIDCount);
          // lpIDArray can be NULL to allocate is_empty buttons
 
 
       // standard control bar things
-      int CommandToIndex(UINT nIDFind);
-      UINT GetItemID(int nIndex);
-      virtual void GetItemRect(int nIndex, LPRECT lpRect);
-      UINT GetButtonStyle(int nIndex);
-      void SetButtonStyle(int nIndex, UINT nStyle);
+      int32_t CommandToIndex(UINT nIDFind);
+      UINT GetItemID(int32_t nIndex);
+      virtual void GetItemRect(int32_t nIndex, LPRECT lpRect);
+      UINT GetButtonStyle(int32_t nIndex);
+      void SetButtonStyle(int32_t nIndex, UINT nStyle);
 
       // for changing button info
-      void GetButtonInfo(int nIndex, UINT& nID, UINT& nStyle, int& iImage);
-      void SetButtonInfo(int nIndex, UINT nID, UINT nStyle, int iImage);
-      bool SetButtonText(int nIndex, const char * lpszText);
-      string GetButtonText(int nIndex) const;
-      void GetButtonText(int nIndex, string & rString) const;
+      void GetButtonInfo(int32_t nIndex, UINT& nID, UINT& nStyle, int32_t& iImage);
+      void SetButtonInfo(int32_t nIndex, UINT nID, UINT nStyle, int32_t iImage);
+      bool SetButtonText(int32_t nIndex, const char * lpszText);
+      string GetButtonText(int32_t nIndex) const;
+      void GetButtonText(int32_t nIndex, string & rString) const;
 
       // for direct access to the underlying common control
       inline tool_bar_control& GetToolBarCtrl() const;
 
       size CalcSimpleLayout();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
-      virtual size CalcDynamicLayout(int nLength, DWORD nMode);
+      virtual size CalcDynamicLayout(int32_t nLength, DWORD nMode);
       //virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction* pOwnerWnd);
       bool AddReplaceBitmap(HBITMAP hbmImageWell);
@@ -96,11 +96,11 @@ namespace userbase
       void _GetButton(::index nIndex, TBBUTTON* pButton) const;
       void _SetButton(::index nIndex, TBBUTTON* pButton);
 #endif
-      size CalcLayout(DWORD nMode, int nLength = -1);
+      size CalcLayout(DWORD nMode, int32_t nLength = -1);
 #ifdef WINDOWSEX
-      size CalcSize(TBBUTTON* pData, int nCount);
-      int WrapToolBar(TBBUTTON* pData, int nCount, int nWidth);
-      void SizeToolBar(TBBUTTON* pData, int nCount, int nLength, bool bVert = FALSE);
+      size CalcSize(TBBUTTON* pData, int32_t nCount);
+      int32_t WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth);
+      void SizeToolBar(TBBUTTON* pData, int32_t nCount, int32_t nLength, bool bVert = FALSE);
 #endif
       void layout(); // called for for delayed button layout
 

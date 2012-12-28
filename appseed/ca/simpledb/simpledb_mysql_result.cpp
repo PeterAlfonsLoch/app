@@ -38,7 +38,7 @@ namespace mysql
       return lengths;
    }
 
-   int result::num_fields()
+   int32_t result::num_fields()
    {
       return mysql_num_fields((MYSQL_RES *) m_pres);
    }

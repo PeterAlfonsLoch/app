@@ -17,7 +17,7 @@ namespace userstack
       
       
       string                     m_strAnimatedStatusBarText;
-      int                        m_iAnimateStep;
+      int32_t                        m_iAnimateStep;
       image_list  *              m_pimagelist;
       document *                 m_pdocument;
       bool                       m_bHoverMouse;

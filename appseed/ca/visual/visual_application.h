@@ -35,7 +35,7 @@ namespace visual
       cursor * get_cursor(e_cursor ecursor);
 
 
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
 
    };

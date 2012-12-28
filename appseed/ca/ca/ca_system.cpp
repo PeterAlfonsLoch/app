@@ -18,7 +18,7 @@ namespace ca
       return true;
    }
 
-   bool system::assert_failed_line(const char * lpszFileName, int iLine)
+   bool system::assert_failed_line(const char * lpszFileName, int32_t iLine)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(iLine);
@@ -26,7 +26,7 @@ namespace ca
    }
 
 
-   bool system::on_assert_failed_line(const char * lpszFileName, int iLine)
+   bool system::on_assert_failed_line(const char * lpszFileName, int32_t iLine)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(iLine);

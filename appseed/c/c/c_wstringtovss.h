@@ -7,7 +7,7 @@ public:
 
    vsstring * m_pstringUtf8;
 
-   wstringtovss(vsstring & str, int iAllocCount);
+   wstringtovss(vsstring & str, int32_t iAllocCount);
    ~wstringtovss();
 
    inline operator const wchar_t * () { return m_pwsz; }

@@ -157,7 +157,7 @@ namespace gen
       // child
       char		*pArg, *pPtr;
       char		*argv[1024 + 1];
-      int		 argc;
+      int32_t		 argc;
       if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
          pArg++;
       else
@@ -207,11 +207,11 @@ namespace gen
       return m_pipe.m_pipeOut.read();
    }
 
-   DWORD process::wait_until_exit(int iWaitMax)
+   DWORD process::wait_until_exit(int32_t iWaitMax)
    {
       DWORD dwExitCode = 0;
       DWORD dwStartTime = ::get_tick_count();
-      int i = 1;
+      int32_t i = 1;
       while(true)
       {
          if(has_exited(&dwExitCode))
@@ -244,7 +244,7 @@ namespace gen
 
 #else
 
-      int wpid = waitpid(m_iPid, (int *) pdwExitCode, WNOHANG
+      int32_t wpid = waitpid(m_iPid, (int32_t *) pdwExitCode, WNOHANG
               #ifdef WCONTINUED
               | WCONTINUED
               #endif

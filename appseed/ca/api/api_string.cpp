@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-void ultoa_dup(char * sz, uint64_t ui, int iBase)
+void ultoa_dup(char * sz, uint64_t ui, int32_t iBase)
 {
    if(ui == 0)
    {
@@ -9,10 +9,10 @@ void ultoa_dup(char * sz, uint64_t ui, int iBase)
       sz[1] = '\0';
       return;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(ui > 0)
    {
-      int iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -32,7 +32,7 @@ void ultoa_dup(char * sz, uint64_t ui, int iBase)
 
 
 
-void ltoa_dup(char * sz, int64_t i, int iBase)
+void ltoa_dup(char * sz, int64_t i, int32_t iBase)
 {
    if(i == 0)
    {
@@ -46,10 +46,10 @@ void ltoa_dup(char * sz, int64_t i, int iBase)
       i = -i;
       bNegative = true;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
+      int32_t iDigit = (i % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -98,7 +98,7 @@ void ltoa_dup(char * sz, int64_t i, int iBase)
 
 
 
-void ultow_dup(wchar_t * sz, uint64_t ui, int iBase)
+void ultow_dup(wchar_t * sz, uint64_t ui, int32_t iBase)
 {
    if(ui == 0)
    {
@@ -106,10 +106,10 @@ void ultow_dup(wchar_t * sz, uint64_t ui, int iBase)
       sz[1] = L'\0';
       return;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(ui > 0)
    {
-      int iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iBase);
       wchar_t wch;
       if(iDigit <= 9)
       {
@@ -129,7 +129,7 @@ void ultow_dup(wchar_t * sz, uint64_t ui, int iBase)
 
 
 
-void ltow_dup(wchar_t * sz, int64_t i, int iBase)
+void ltow_dup(wchar_t * sz, int64_t i, int32_t iBase)
 {
    if(i == 0)
    {
@@ -143,10 +143,10 @@ void ltow_dup(wchar_t * sz, int64_t i, int iBase)
       i = -i;
       bNegative = true;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
+      int32_t iDigit = (i % iBase);
       wchar_t wch;
       if(iDigit <= 9)
       {

@@ -27,7 +27,7 @@ namespace simpledb
       service *               m_pservice;
 
       string                  m_strIp;
-      int                     m_iPort;
+      int32_t                     m_iPort;
 
       ::event                 m_evCanInit;
       ::event                 m_evInitialized;

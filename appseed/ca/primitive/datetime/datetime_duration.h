@@ -121,7 +121,7 @@ public:
 
 
    inline millis(int64_t iMillis = 0);
-   inline millis(int iMillis);
+   inline millis(int32_t iMillis);
    inline millis(DWORD dwMillis);
    millis(double dMillis);
 
@@ -135,7 +135,7 @@ public:
 
 
    inline seconds(int64_t iSeconds = 0);
-   inline seconds(int iSeconds);
+   inline seconds(int32_t iSeconds);
    inline seconds(DWORD dwSeconds);
    inline seconds(double dSeconds);
 
@@ -150,7 +150,7 @@ public:
 
 
    inline minutes(int64_t iMinutes = 0);
-   inline minutes(int iMinutes);
+   inline minutes(int32_t iMinutes);
    inline minutes(DWORD dwMinutes);
    inline minutes(double dMinutes);
 
@@ -165,7 +165,7 @@ public:
 
 
    inline hours(int64_t iHours = 0);
-   inline hours(int iHours);
+   inline hours(int32_t iHours);
    inline hours(DWORD dwHours);
    inline hours(double dHours);
 
@@ -180,7 +180,7 @@ public:
 
 
    inline days(int64_t iDays = 0);
-   inline days(int iDays);
+   inline days(int32_t iDays);
    inline days(DWORD dwDays);
    inline days(double dDays);
 
@@ -195,7 +195,7 @@ millis::millis(int64_t i) :
 {
 }
 
-millis::millis(int i) :
+millis::millis(int32_t i) :
    duration(i / 1000, (i % 1000) * 1000000)
 {
 }
@@ -211,7 +211,7 @@ seconds::seconds(int64_t i) :
 {
 }
 
-seconds::seconds(int i) :
+seconds::seconds(int32_t i) :
    millis(i * 1000)
 {
 }
@@ -231,7 +231,7 @@ minutes::minutes(int64_t i) :
 {
 }
 
-minutes::minutes(int i) :
+minutes::minutes(int32_t i) :
    seconds(i * 60)
 {
 }
@@ -251,7 +251,7 @@ hours::hours(int64_t i) :
 {
 }
 
-hours::hours(int i) :
+hours::hours(int32_t i) :
    minutes(i * 60)
 {
 }
@@ -271,7 +271,7 @@ days::days(int64_t i) :
 {
 }
 
-days::days(int i) :
+days::days(int32_t i) :
    hours(i * 24)
 {
 }

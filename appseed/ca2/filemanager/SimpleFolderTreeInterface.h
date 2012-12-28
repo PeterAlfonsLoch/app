@@ -60,7 +60,7 @@ namespace filemanager
       critical_section        m_csBrowse;
       bool                    m_bCreateImageList;
       bool                    m_bCreateImageListRedraw;
-      int                     m_iAnimate;
+      int32_t                     m_iAnimate;
       bool                    m_bTimer123;
       stringa                 m_straUpdatePtrFilter;
       mutex                   m_mutexMissinUpdate;
@@ -84,8 +84,8 @@ namespace filemanager
       DECL_GEN_VSIGNAL(_001OnTimer)
 
 
-      int   m_iDefaultImage;
-      int   m_iDefaultImageSelected;
+      int32_t   m_iDefaultImage;
+      int32_t   m_iDefaultImageSelected;
       virtual void _017Synchronize();
       void install_message_handling(::gen::message::dispatch * pinterface);
 
@@ -107,7 +107,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-      int MapToCSIDL(EFolder efolder);
+      int32_t MapToCSIDL(EFolder efolder);
 
       IShellFolder * _001GetFolder(EFolder efolder);
 
@@ -123,8 +123,8 @@ namespace filemanager
 
       void _017Browse(const char * lpcsz, bool bForceUpdate = false);
       void _017UpdateList();
-      void _017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel);
-      void _017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel);
+      void _017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel);
+      void _017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel);
       void _017EnsureVisible(const char * lpcsz);
 
       ex1::tree_item * find_item(const char * lpcsz);

@@ -64,13 +64,13 @@ namespace n7z
 
    static void SetUInt32(byte *p, uint32 d)
    {
-      for (int i = 0; i < 4; i++, d >>= 8)
+      for (int32_t i = 0; i < 4; i++, d >>= 8)
          p[i] = (byte)d;
    }
 
    static void SetUInt64(byte *p, uint64 d)
    {
-      for (int i = 0; i < 8; i++, d >>= 8)
+      for (int32_t i = 0; i < 8; i++, d >>= 8)
          p[i] = (byte)d;
    }
 
@@ -194,7 +194,7 @@ namespace n7z
 
    void COutArchive::WriteUInt32(uint32 value)
    {
-      for (int i = 0; i < 4; i++)
+      for (int32_t i = 0; i < 4; i++)
       {
          WriteByte((byte)value);
          value >>= 8;
@@ -203,7 +203,7 @@ namespace n7z
 
    void COutArchive::WriteUInt64(uint64 value)
    {
-      for (int i = 0; i < 8; i++)
+      for (int32_t i = 0; i < 8; i++)
       {
          WriteByte((byte)value);
          value >>= 8;
@@ -214,7 +214,7 @@ namespace n7z
    {
       byte firstByte = 0;
       byte mask = 0x80;
-      int i;
+      int32_t i;
       for (i = 0; i < 8; i++)
       {
          if (value < ((uint64(1) << ( 7  * (i + 1)))))
@@ -235,7 +235,7 @@ namespace n7z
 
    static uint32 GetBigNumberSize(uint64 value)
    {
-      int i;
+      int32_t i;
       for (i = 1; i < 9; i++)
          if (value < (((uint64)1 << (i * 7))))
             break;
@@ -243,7 +243,7 @@ namespace n7z
    }
 
 #ifdef _7Z_VOL
-   uint32 COutArchive::GetVolHeadersSize(uint64 dataSize, int nameLength, bool props)
+   uint32 COutArchive::GetVolHeadersSize(uint64 dataSize, int32_t nameLength, bool props)
    {
       uint32 result = GetBigNumberSize(dataSize) * 2 + 41;
       if (nameLength != 0)
@@ -261,10 +261,10 @@ namespace n7z
       return result;
    }
 
-   uint64 COutArchive::GetVolPureSize(uint64 volSize, int nameLength, bool props)
+   uint64 COutArchive::GetVolPureSize(uint64 volSize, int32_t nameLength, bool props)
    {
       uint32 headersSizeBase = COutArchive::GetVolHeadersSize(1, nameLength, props);
-      int testSize;
+      int32_t testSize;
       if (volSize > headersSizeBase)
          testSize = volSize - headersSizeBase;
       else
@@ -280,7 +280,7 @@ namespace n7z
    void COutArchive::WriteFolder(const CFolder &folder)
    {
       WriteNumber(folder.Coders.get_count());
-      int i;
+      int32_t i;
       for (i = 0; i < folder.Coders.get_count(); i++)
       {
          const CCoderInfo &coder = folder.Coders[i];
@@ -288,12 +288,12 @@ namespace n7z
             size_t propsSize = coder.Props.GetCapacity();
 
             uint64 id = coder.MethodID;
-            int idSize;
+            int32_t idSize;
             for (idSize = 1; idSize < sizeof(id); idSize++)
                if ((id >> (8 * idSize)) == 0)
                   break;
             BYTE longID[15];
-            for (int t = idSize - 1; t >= 0 ; t--, id >>= 8)
+            for (int32_t t = idSize - 1; t >= 0 ; t--, id >>= 8)
                longID[t] = (byte)(id & 0xFF);
             byte b;
             b = (byte)(idSize & 0xF);
@@ -330,7 +330,7 @@ namespace n7z
    {
       byte b = 0;
       byte mask = 0x80;
-      for (int i = 0; i < boolVector.get_count(); i++)
+      for (int32_t i = 0; i < boolVector.get_count(); i++)
       {
          if (boolVector[i])
             b |= mask;
@@ -351,8 +351,8 @@ namespace n7z
       const bool_array &digestsDefined,
       const base_array<uint32> &digests)
    {
-      int numDefined = 0;
-      int i;
+      int32_t numDefined = 0;
+      int32_t i;
       for (i = 0; i < digestsDefined.get_count(); i++)
          if (digestsDefined[i])
             numDefined++;
@@ -384,7 +384,7 @@ namespace n7z
       WriteNumber(dataOffset);
       WriteNumber(packSizes.get_count());
       WriteByte(NID::kSize);
-      for (int i = 0; i < packSizes.get_count(); i++)
+      for (int32_t i = 0; i < packSizes.get_count(); i++)
          WriteNumber(packSizes[i]);
 
       WriteHashDigests(packCRCsDefined, packCRCs);
@@ -403,16 +403,16 @@ namespace n7z
       WriteNumber(folders.get_count());
       {
          WriteByte(0);
-         for (int i = 0; i < folders.get_count(); i++)
+         for (int32_t i = 0; i < folders.get_count(); i++)
             WriteFolder(folders[i]);
       }
 
       WriteByte(NID::kCodersUnpackSize);
-      int i;
+      int32_t i;
       for (i = 0; i < folders.get_count(); i++)
       {
          const CFolder &folder = folders[i];
-         for (int j = 0; j < folder.UnpackSizes.get_count(); j++)
+         for (int32_t j = 0; j < folder.UnpackSizes.get_count(); j++)
             WriteNumber(folder.UnpackSizes[j]);
       }
 
@@ -438,7 +438,7 @@ namespace n7z
    {
       WriteByte(NID::kSubStreamsInfo);
 
-      int i;
+      int32_t i;
       for (i = 0; i < numUnpackStreamsInFolders.get_count(); i++)
       {
          if (numUnpackStreamsInFolders[i] != 1)
@@ -469,14 +469,14 @@ namespace n7z
          bool_array digestsDefined2;
          base_array<uint32> digests2;
 
-         int digestIndex = 0;
+         int32_t digestIndex = 0;
          for (i = 0; i < folders.get_count(); i++)
          {
-            int numSubStreams = (int)numUnpackStreamsInFolders[i];
+            int32_t numSubStreams = (int32_t)numUnpackStreamsInFolders[i];
             if (numSubStreams == 1 && folders[i].UnpackCRCDefined)
                digestIndex++;
             else
-               for (int j = 0; j < numSubStreams; j++, digestIndex++)
+               for (int32_t j = 0; j < numSubStreams; j++, digestIndex++)
                {
                   digestsDefined2.add(digestsDefined[digestIndex]);
                   digests2.add(digests[digestIndex]);
@@ -513,7 +513,7 @@ namespace n7z
 
    static inline unsigned Bv_GetSizeInBytes(const bool_array &v) { return ((unsigned)v.get_count() + 7) / 8; }
 
-   void COutArchive::WriteAlignedBoolHeader(const bool_array &v, int numDefined, byte type, unsigned itemSize)
+   void COutArchive::WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, unsigned itemSize)
    {
       const unsigned bvSize = (numDefined == v.get_count()) ? 0 : Bv_GetSizeInBytes(v);
       const uint64 dataSize = (uint64)numDefined * itemSize + bvSize + 2;
@@ -533,9 +533,9 @@ namespace n7z
 
    void COutArchive::WriteUInt64DefVector(const CUInt64DefVector &v, byte type)
    {
-      int numDefined = 0;
+      int32_t numDefined = 0;
 
-      int i;
+      int32_t i;
       for (i = 0; i < v.Defined.get_count(); i++)
          if (v.Defined[i])
             numDefined++;
@@ -583,7 +583,7 @@ namespace n7z
       const CHeaderOptions &headerOptions,
       uint64 &headerOffset)
    {
-      int i;
+      int32_t i;
 
       uint64 packedSize = 0;
       for (i = 0; i < db.PackSizes.get_count(); i++)
@@ -639,7 +639,7 @@ namespace n7z
          /* ---------- Empty Streams ---------- */
          bool_array emptyStreamVector;
          emptyStreamVector.set_size(0, db.Files.get_count());
-         int numEmptyStreams = 0;
+         int32_t numEmptyStreams = 0;
          for (i = 0; i < db.Files.get_count(); i++)
             if (db.Files[i].HasStream)
                emptyStreamVector.add(false);
@@ -693,9 +693,9 @@ namespace n7z
       {
          /* ---------- Names ---------- */
 
-         int numDefined = 0;
+         int32_t numDefined = 0;
          size_t namesDataSize = 0;
-         for (int i = 0; i < db.Files.get_count(); i++)
+         for (int32_t i = 0; i < db.Files.get_count(); i++)
          {
             const string &name = db.Files[i].Name;
             if (!name.is_empty())
@@ -711,10 +711,10 @@ namespace n7z
             WriteByte(NID::kName);
             WriteNumber(namesDataSize);
             WriteByte(0);
-            for (int i = 0; i < db.Files.get_count(); i++)
+            for (int32_t i = 0; i < db.Files.get_count(); i++)
             {
                const string &name = db.Files[i].Name;
-               for (int t = 0; t <= name.get_length(); t++)
+               for (int32_t t = 0; t <= name.get_length(); t++)
                {
                   wchar_t c = name[t];
                   WriteByte((byte)c);
@@ -733,7 +733,7 @@ namespace n7z
          /* ---------- Write Attrib ---------- */
          bool_array boolVector;
          boolVector.set_size(0, db.Files.get_count());
-         int numDefined = 0;
+         int32_t numDefined = 0;
          for (i = 0; i < db.Files.get_count(); i++)
          {
             bool defined = db.Files[i].AttribDefined;
@@ -828,7 +828,7 @@ namespace n7z
                bool_array(), base_array<uint32>());
             WriteUnpackInfo(folders);
             WriteByte(NID::kEnd);
-            for (int i = 0; i < packSizes.get_count(); i++)
+            for (int32_t i = 0; i < packSizes.get_count(); i++)
                headerOffset += packSizes[i];
          }
          RINOK(_outByte.Flush());

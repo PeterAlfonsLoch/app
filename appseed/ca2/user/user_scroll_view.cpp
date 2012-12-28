@@ -81,7 +81,7 @@ namespace user
 
       GetClientRect(rectClient);
 
-      int ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
+      int32_t ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
       _001DeferCreateScrollBars();
 
@@ -201,7 +201,7 @@ namespace user
 
    }
 
-   int scroll_view::get_wheel_scroll_delta()
+   int32_t scroll_view::get_wheel_scroll_delta()
    {
 
       return 1;

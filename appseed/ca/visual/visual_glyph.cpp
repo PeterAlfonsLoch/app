@@ -43,9 +43,9 @@ namespace visual
 
    /****************************************************************************
    *  FUNCTION   : IntFromFixed
-   *  RETURNS    : int value approximating the FIXED value.
+   *  RETURNS    : int32_t value approximating the FIXED value.
    ****************************************************************************/
-   int PASCAL NEAR IntFromFixed(FIXED f)
+   int32_t PASCAL NEAR IntFromFixed(FIXED f)
    {
       if (f.fract >= 0x8000)
          return(f.value + 1);
@@ -167,7 +167,7 @@ namespace visual
       LPTTPOLYCURVE   lpCurve,
       UINT         cTotal )
    {
-      int     i;
+      int32_t     i;
       //    UINT    cTotal = 0;
       POINT   endpt;
       POINT   startpt;
@@ -333,7 +333,7 @@ namespace visual
    *
    *  RETURNS    : none.
    ****************************************************************************/
-   void glyph::Initialize(LPTTPOLYGONHEADER lpHeader, DWORD size, int iFontHiHeight)
+   void glyph::Initialize(LPTTPOLYGONHEADER lpHeader, DWORD size, int32_t iFontHiHeight)
    {
 
       WORD                i;
@@ -490,7 +490,7 @@ namespace visual
    }
 
 
-   void glyph::GetGlyphRect(int x, int y, LPRECT lpRect)
+   void glyph::GetGlyphRect(int32_t x, int32_t y, LPRECT lpRect)
    {
 
 #ifdef WINDOWSEX

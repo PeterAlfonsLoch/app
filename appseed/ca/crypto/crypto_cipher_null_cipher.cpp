@@ -51,7 +51,7 @@
 extern debug_module_t mod_cipher;
 
 err_status_t
-null_cipher_alloc(cipher_t **c, int key_len);
+null_cipher_alloc(cipher_t **c, int32_t key_len);
 
 err_status_t
 null_cipher_dealloc(cipher_t *c);
@@ -60,7 +60,7 @@ err_status_t
 null_cipher_set_iv(null_cipher_ctx_t *c, void *iv);
 
 err_status_t
-null_cipher_alloc(cipher_t **c, int key_len) {
+null_cipher_alloc(cipher_t **c, int32_t key_len) {
   extern cipher_type_t null_cipher;
   uint8_t *pointer;
   
@@ -120,7 +120,7 @@ null_cipher_set_iv(null_cipher_ctx_t *c, void *iv) {
 
 err_status_t
 null_cipher_encrypt(null_cipher_ctx_t *c,
-          unsigned char *buf, unsigned int *bytes_to_encr) {
+          unsigned char *buf, unsigned int32_t *bytes_to_encr) {
   return err_status_ok;
 }
 
@@ -152,7 +152,7 @@ cipher_type_t null_cipher = {
   (cipher_decrypt_func_t)       null_cipher_encrypt,
   (cipher_set_iv_func_t)        null_cipher_set_iv,
   (char *)                      null_cipher_description,
-  (int)                         0,
+  (int32_t)                         0,
   (cipher_test_case_t *)       &null_cipher_test_0,
   (debug_module_t *)            NULL
 };

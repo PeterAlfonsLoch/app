@@ -14,13 +14,13 @@ namespace simpledb
       ::ex1::filesp                 m_spfileMeta;
       ::xml::document               m_xmldocumentMeta;
       ::collection::string_map < table *, table * > m_mapTable;
-      int                           m_iErrorCode;
+      int32_t                           m_iErrorCode;
 
 
       base(::ca::application * papp);
 
 
-      virtual int connect();
+      virtual int32_t connect();
 
 
       virtual class ::simpledb::set * create_dataset() const;
@@ -31,7 +31,7 @@ namespace simpledb
 
       // class ::database::base
       virtual class ::database::set * CreateDataset() const;
-      virtual int setErr(int err_code);
+      virtual int32_t setErr(int32_t err_code);
       virtual long nextid(const char* sname);
 
 

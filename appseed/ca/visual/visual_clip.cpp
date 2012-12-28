@@ -122,7 +122,7 @@ namespace visual
       point ptViewportOrg = pdc->GetViewportOrg();
 
       ::ca::region & rgn = m_rgn;
-      int & iOldType = m_iOldType;
+      int32_t & iOldType = m_iOldType;
       ::ca::region & rgnOld = m_rgnOld;
 
       rgn.CopyRgn(prgn);
@@ -171,7 +171,7 @@ namespace visual
       point ptViewportOrg = pdc->GetViewportOrg();
 
       ::ca::region & rgn = m_rgn;
-      int & iOldType = m_iOldType;
+      int32_t & iOldType = m_iOldType;
       ::ca::region & rgnOld = m_rgnOld;
 
       rect rectUpdate(lpcrect);
@@ -241,7 +241,7 @@ namespace visual
       rectUpdate.offset(ptViewportOrg);
 
       ::ca::region & rgn = m_rgn;
-      int & iOldType = m_iOldType;
+      int32_t & iOldType = m_iOldType;
       ::ca::region & rgnOld = m_rgnOld;
 
       rgn.SetRectRgn(rectUpdate);
@@ -286,7 +286,7 @@ namespace visual
       if(m_bAcquired)
       {
 
-         int  & iOldType = m_iOldType;
+         int32_t  & iOldType = m_iOldType;
          ::ca::region & rgnOld   = m_rgnOld;
          ::ca::graphics * pdc = m_pdc;
          if(iOldType == 1)

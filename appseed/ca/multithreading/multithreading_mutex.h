@@ -17,7 +17,7 @@ public:
    // named process mutex
    string               m_strName;
    key_t                m_key;
-   int                  m_semid;
+   int32_t                  m_semid;
 
 #endif
 
@@ -33,7 +33,7 @@ protected:
 
 #else
 
-   mutex(const char * pstrName, key_t key, int semid);
+   mutex(const char * pstrName, key_t key, int32_t semid);
 
 #endif
 

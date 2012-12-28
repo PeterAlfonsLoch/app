@@ -76,12 +76,12 @@ bool file_manager_operation_thread::step()
 
 
 
-double file_manager_operation_thread::get_item_progress(int iItem)
+double file_manager_operation_thread::get_item_progress(int32_t iItem)
 {
    single_lock sl(&m_mutexFileOperationA, TRUE);
-   int iLBound = 0;
-   int iUBound;
-   for(int i = 0; i < m_fileoperationa.get_size(); i++)
+   int32_t iLBound = 0;
+   int32_t iUBound;
+   for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
    {
       iUBound = iLBound + m_fileoperationa[i].get_item_count() - 1;
       if(iItem >= iLBound && iItem <= iUBound)
@@ -92,12 +92,12 @@ double file_manager_operation_thread::get_item_progress(int iItem)
 }
 
 
-string file_manager_operation_thread::get_item_message(int iItem)
+string file_manager_operation_thread::get_item_message(int32_t iItem)
 {
    single_lock sl(&m_mutexFileOperationA, TRUE);
-   int iLBound = 0;
-   int iUBound;
-   for(int i = 0; i < m_fileoperationa.get_size(); i++)
+   int32_t iLBound = 0;
+   int32_t iUBound;
+   for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
    {
       iUBound = iLBound + m_fileoperationa[i].get_item_count() - 1;
       if(iItem >= iLBound && iItem <= iUBound)
@@ -110,11 +110,11 @@ string file_manager_operation_thread::get_item_message(int iItem)
 
 
 
-int file_manager_operation_thread::get_item_count()
+int32_t file_manager_operation_thread::get_item_count()
 {
    single_lock sl(&m_mutexFileOperationA, TRUE);
-   int iCount = 0;
-   for(int i = 0; i < m_fileoperationa.get_size(); i++)
+   int32_t iCount = 0;
+   for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
    {
       iCount += m_fileoperationa[i].get_item_count();
    }
@@ -144,13 +144,13 @@ void file_manager_operation_thread::queue_copy(stringa & stra, const char * pszD
    m_fileoperationa.add(poperation);
 }
 
-int file_manager_operation_thread::run()
+int32_t file_manager_operation_thread::run()
 {
-   int iStepSetCount = 84;
-   int iStepSetSleep = 23;
+   int32_t iStepSetCount = 84;
+   int32_t iStepSetSleep = 23;
    while(get_run())
    {
-      int i = iStepSetCount;
+      int32_t i = iStepSetCount;
       while(i > 0)
       {
          if(!step())
@@ -175,12 +175,12 @@ double file_manager_operation_thread::get_progress_rate()
 {
    single_lock sl(&m_mutexFileOperationA, TRUE);
    double dTotal = 0.0;
-   for(int i = 0; i < m_fileoperationa.get_size(); i++)
+   for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
    {
       dTotal += m_fileoperationa[i].m_dSize;
    }
    double dRead = 0.0;
-   for(int i = 0; i < m_fileoperationa.get_size(); i++)
+   for(int32_t i = 0; i < m_fileoperationa.get_size(); i++)
    {
       dRead += m_fileoperationa[i].m_dRead;
    }

@@ -74,7 +74,7 @@ public:
    strsize               m_iCharStartSource;
    strsize               m_iCharEndSource;
 
-   int               m_etype; 
+   int32_t               m_etype; 
    e_state            m_estate;
 
       // Conxtruction / Destruction

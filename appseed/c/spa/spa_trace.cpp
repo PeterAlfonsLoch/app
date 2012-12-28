@@ -8,8 +8,8 @@ stra_dup * g_pstraTrace = NULL;
 HANDLE g_ftrace = INVALID_HANDLE_VALUE;
 vsstring g_strLastStatus;
 vsstring g_strLastGlsStatus;
-int g_iLastStatus = 0;
-int g_iLastGlsStatus = 0;
+int32_t g_iLastStatus = 0;
+int32_t g_iLastGlsStatus = 0;
 
 
 void on_trace(vsstring & str, vsstring & str2);
@@ -144,8 +144,8 @@ CLASS_DECL_c void trace_progress(double dRate)
    if(dRate > 1.0)
       dRate = 1.0;
    dRate = dRate * 1000.0 * 1000.0 * 1000.0;
-   //int i = ftol(dRate);
-   int i = (int) dRate;
+   //int32_t i = ftol(dRate);
+   int32_t i = (int32_t) dRate;
    vsstring str;
    str = "|||";
    str += itoa_dup(i);

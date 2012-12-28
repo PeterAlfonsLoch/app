@@ -53,7 +53,7 @@ namespace ca2
 
    }
 
-   int url::get_port(const char * psz, int iDefault)
+   int32_t url::get_port(const char * psz, int32_t iDefault)
    {
 
       string strRoot = get_root(psz);
@@ -519,7 +519,7 @@ namespace ca2
       else
       {
          strsize iFinalLen = pszQuery - pszUrl;
-//         int iPos = 0;
+//         int32_t iPos = 0;
          strncpy(psz, pszUrl, iFinalLen);
          psz[iFinalLen] = '?';
          iFinalLen++;
@@ -1287,7 +1287,7 @@ namespace ca2
       return strProtocol + "://" + strRoot + strScript + gen::str::has_char(strQuery, "?");
    }
 
-   inline bool isalnum_dup(int i)
+   inline bool isalnum_dup(int32_t i)
    {
       return (i >= '0' && i <= '9') || (i >= 'a' && i <= 'z') || (i >= 'A' && i <= 'Z');
    }

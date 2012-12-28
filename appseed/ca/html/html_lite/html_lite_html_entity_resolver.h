@@ -69,6 +69,6 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   int resolveEntity(const char * lpszEntity, string & strChar);
+   int32_t resolveEntity(const char * lpszEntity, string & strChar);
 
 };

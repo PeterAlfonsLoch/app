@@ -85,7 +85,7 @@ EError cregexp::setRELow(const char * expr)
 
   cMatch = 0;
   endChange = startChange = false;
-  int start = 0;
+  int32_t start = 0;
   while(gen::ch::is_whitespace(&expr[start])) start++;
   if (expr[start] == '/') start++;
   else return ESYNTAX;
@@ -266,7 +266,7 @@ SRegInfo *next, *temp;
           break;
         default:
           next->op = ReBkBrack;
-          next->param0 = (int) gen::hex::from_char(&expr[i+1]);
+          next->param0 = (int32_t) gen::hex::from_char(&expr[i+1]);
           if (next->param0 < 0 || next->param0 > 9){
             index retEnd;
             next->op = ReSymb;
@@ -313,14 +313,14 @@ SRegInfo *next, *temp;
       if (expr[i] == '?' && expr[i+1] == '#' &&
           expr[i+2] >= '0' && expr[i+2] <= '9'){
         next->op = ReBehind;
-        next->param0 = (int) gen::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) gen::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };
       if (expr[i] == '?' && expr[i+1] == '~' &&
           expr[i+2]>='0' && expr[i+2]<='9'){
         next->op = ReNBehind;
-        next->param0 = (int) gen::hex::from_char(&expr[i+2]);
+        next->param0 = (int32_t) gen::hex::from_char(&expr[i+2]);
         i += 2;
         continue;
       };
@@ -487,7 +487,7 @@ SRegInfo *next, *temp;
     SRegInfo *reword = next;
     SRegInfo *reafterword = next;
     SRegInfo *resymb;
-    int wsize = 0;
+    int32_t wsize = 0;
     for (resymb = next;resymb && resymb->op == ReSymb; resymb = resymb->next, wsize++);
     if (resymb && resymb->op > ReBlockOps && resymb->op < ReSymbolOps){
       //wsize--;
@@ -498,7 +498,7 @@ SRegInfo *next, *temp;
       reafterword = resymb;
       resymb = reword;
       stringa wcword;
-      for(int idx = 0; idx < wsize; idx++)
+      for(int32_t idx = 0; idx < wsize; idx++)
       {
         wcword.set_at_grow(idx, *resymb->un.symbol);
         SRegInfo *retmp = resymb;
@@ -990,7 +990,7 @@ inline bool cregexp::parseRE(strsize pos)
   return false;
 };
 
-bool cregexp::parse(string str, strsize pos, strsize eol, SMatches *mtch, PMatchHash nmtch, int soScheme, int posMoves)
+bool cregexp::parse(string str, strsize pos, strsize eol, SMatches *mtch, PMatchHash nmtch, int32_t soScheme, int32_t posMoves)
 {
    UNREFERENCED_PARAMETER(nmtch);
   bool nms = positionMoves;

@@ -413,7 +413,7 @@ crypto_kernel_get_cipher_type(cipher_type_id_t id) {
 err_status_t
 crypto_kernel_alloc_cipher(cipher_type_id_t id, 
                cipher_pointer_t *cp, 
-               int key_len) {
+               int32_t key_len) {
   cipher_type_t *ct;
 
   /* 
@@ -451,8 +451,8 @@ crypto_kernel_get_auth_type(auth_type_id_t id) {
 err_status_t
 crypto_kernel_alloc_auth(auth_type_id_t id, 
           auth_pointer_t *ap, 
-          int key_len,
-          int tag_len) {
+          int32_t key_len,
+          int32_t tag_len) {
   auth_type_t *at;
 
   /* 
@@ -502,7 +502,7 @@ crypto_kernel_load_debug_module(debug_module_t *new_dm) {
 }
 
 err_status_t
-crypto_kernel_set_debug_module(char *name, int on) {
+crypto_kernel_set_debug_module(char *name, int32_t on) {
   kernel_debug_module_t *kdm;
   
   /* walk down list, checking if this type is in the list already  */
@@ -519,7 +519,7 @@ crypto_kernel_set_debug_module(char *name, int on) {
 }
 
 err_status_t
-crypto_get_random(unsigned char *buffer, unsigned int length) {
+crypto_get_random(unsigned char *buffer, unsigned int32_t length) {
   if (crypto_kernel.state == crypto_kernel_state_secure)
     return ctr_prng_get_octet_string(buffer, length);
   else

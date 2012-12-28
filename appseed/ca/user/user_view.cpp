@@ -137,14 +137,14 @@ void view::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
       DWORD dwStyle = GetStyle();
       if (dwStyle & WS_VSCROLL)
       {
-         int nAdjust = afxData.cxVScroll;
+         int32_t nAdjust = afxData.cxVScroll;
          if (dwStyle & WS_BORDER)
             nAdjust -= CX_BORDER;
          lpClientRect->right += nAdjust;
       }
       if (dwStyle & WS_HSCROLL)
       {
-         int nAdjust = afxData.cyHScroll;
+         int32_t nAdjust = afxData.cyHScroll;
          if (dwStyle & WS_BORDER)
             nAdjust -= CY_BORDER;
          lpClientRect->bottom += nAdjust;
@@ -268,9 +268,9 @@ void view::OnActivateFrame(UINT /*nState*/, frame_window* /*pFrameWnd*/)
 }
 
 /* trans
-int view::OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message)
+int32_t view::OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message)
 {
-   int nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
+   int32_t nResult = ::user::interaction::OnMouseActivate(pDesktopWnd, nHitTest, message);
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
       return nResult;   // frame does not want to activate
 
@@ -356,7 +356,7 @@ bool view::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
 // ::view splitting commands
 
 
-CScrollBar* view::GetScrollBarCtrl(int nBar) const
+CScrollBar* view::GetScrollBarCtrl(int32_t nBar) const
 {
 
    ///ASSERT(nBar == SB_HORZ || nBar == SB_VERT);
@@ -645,7 +645,7 @@ void view::collaborate(::ca::job * pjob)
 
 
 
-int view::get_total_page_count(::ca::job * pjob)
+int32_t view::get_total_page_count(::ca::job * pjob)
 {
    UNREFERENCED_PARAMETER(pjob);
    return 1;
@@ -711,7 +711,7 @@ void view::_001OnDraw(::ca::graphics * pdc)
 
    on_draw_view_nc(pdc);
 
-   int iTry = 0;
+   int32_t iTry = 0;
 
    bool bOk;
 

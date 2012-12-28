@@ -203,9 +203,9 @@ namespace filemanager
                mediamanager::get(get_app())->
                GetAlbumBuild().m_fileinfo.m_iaRemove.get_size() > 0))
             {
-               int iId;
+               int32_t iId;
                iId = pds->result.records[iItem][FieldIndexId].get_integer();
-               int iFound;
+               int32_t iFound;
                if((iFound = mediamanager::get(get_app())->GetAlbumBuild().m_fileinfo.m_iaUpdate.find_first(iId)) >= 0)
                {
                   str.Empty();
@@ -249,12 +249,12 @@ namespace filemanager
             else if(eindex == FieldIndexId)
             {
                str.Format("%05d",
-                  pds->result.records[iItem][(int) eindex].get_integer());
+                  pds->result.records[iItem][(int32_t) eindex].get_integer());
                return true;
             }
             else
             {
-               str = pds->result.records[iItem][(int) eindex].get_string();
+               str = pds->result.records[iItem][(int32_t) eindex].get_string();
                return true;
             }
             str.Empty();
@@ -360,7 +360,7 @@ namespace filemanager
             {
                strSql += " order by ";
 
-               for(int i = 0; i < m_sortinfo.m_itema.get_size(); i++)
+               for(int32_t i = 0; i < m_sortinfo.m_itema.get_size(); i++)
                {
                   CSortInfoItem & item = m_sortinfo.m_itema[i];
                   switch(item.m_iSubItem)
@@ -426,7 +426,7 @@ namespace filemanager
             MediaLibraryDoc * pdoc = ptask->m_pview->get_document();
             ::sqlite::set * pds = pdoc->m_pdsAlbum;
 
-            int iFind;
+            int32_t iFind;
             if((iFind = pdoc->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
             {
             mediamanager::GetMediaManager()->GetAlbumBuild().add(wstrPath, pdoc->m_fileinfo.m_timeaAdd[iFind]);
@@ -477,18 +477,18 @@ namespace filemanager
                else
                {
                KillTimer(1124);
-               int iTopIndex = _001GetTopIndex();
+               int32_t iTopIndex = _001GetTopIndex();
                if(m_buildhelper.m_iTopIndex != iTopIndex)
                {
                m_buildhelper.m_iTopIndex = iTopIndex;
                m_buildhelper.m_iStep = 0;
                }
-               int iItem;
+               int32_t iItem;
 
 
                ::sqlite::set * pds = pdoc->m_pdsAlbum;
 
-               int iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+               int32_t iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
 
                int_array iaRemove;
                while(true)
@@ -510,7 +510,7 @@ namespace filemanager
                string wstrPath;
                wstrPath = pds->fv("filepath").get_asString();
 
-               int iFind;
+               int32_t iFind;
                if((iFind = pdoc->m_fileinfo.m_wstraAdd.FindFirst(wstrPath)) >= 0)
                {
                PostFillTask(wstrPath, nIDEvent);
@@ -543,10 +543,10 @@ namespace filemanager
                MediaLibraryDoc * pdoc = get_document();
                ::sqlite::set * pds = pdoc->m_pdsAlbum;
 
-               int iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
+               int32_t iRemove = max(30, m_buildhelper.m_iDisplayItemCount);
 
                int_array iaRemove;
-               int iFind = 0;
+               int32_t iFind = 0;
                sqlite::CFieldValue fv;
                while(true)
                {
@@ -664,7 +664,7 @@ namespace filemanager
             }
          }
 
-         void list_view::KickBuild(int iItem)
+         void list_view::KickBuild(int32_t iItem)
          {
             UNREFERENCED_PARAMETER(iItem);
             index iTopIndex = m_iTopIndex;
@@ -685,12 +685,12 @@ namespace filemanager
             int_array & ia = mediamanager::get(get_app())->GetAlbumBuild().GetPriorityArray();
             ia.remove_all();
 
-            int iId;
+            int32_t iId;
             single_lock sl(pdoc->m_pcsAlbum1, TRUE);
             ::sqlite::set * pds = pdoc->m_pdsAlbum1;
-            for(int i = 0; i < iDisplayItemCount; i++)
+            for(int32_t i = 0; i < iDisplayItemCount; i++)
             {
-               int iItem = DisplayToStrict(iTopIndex + i);
+               int32_t iItem = DisplayToStrict(iTopIndex + i);
                if(iItem >= 0)
                {
                   pds->seek(iItem);
@@ -709,7 +709,7 @@ namespace filemanager
          {
 
             SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-               //int iItem;
+               //int32_t iItem;
                point point = pcontextmenu->GetPoint();
             class point ptClient = point;
             ScreenToClient(&ptClient);
@@ -747,10 +747,10 @@ namespace filemanager
             Range range;
             _001GetSelection(range);
             string str;
-            for(int i = 0; i < range.get_item_count(); i++)
+            for(int32_t i = 0; i < range.get_item_count(); i++)
             {
                ItemRange & item = range.ItemAt(i);
-               for(int j = item.GetLBound(); j <= item.GetUBound(); j++)
+               for(int32_t j = item.GetLBound(); j <= item.GetUBound(); j++)
                {
                   GetSongPath(str, j);
                   mediaplaylist::document * pdoc = System.GetPlaylistCentral().GetCurrentPlaylist(true, false);
@@ -827,7 +827,7 @@ namespace filemanager
             // method 3: Selected Childs with GetChilds()
             // Result: Person, Person, Person
             index iNode = 0;
-            for(int i = 0 ; i < pnodeFolder->get_children_count(); i++)
+            for(int32_t i = 0 ; i < pnodeFolder->get_children_count(); i++)
             {
                xml::node * pnodeItem = pnodeFolder->child_at(i);
                if(pnodeItem->get_name() == "folder")
@@ -871,7 +871,7 @@ namespace filemanager
 
             xml::node * pnodeFile = doc.get_root()->get_child("file");
 
-            for(int i = 0; i < pnodeFile->get_children_count(); i++)
+            for(int32_t i = 0; i < pnodeFile->get_children_count(); i++)
             {
                xml::node * pnodeItem = pnodeFile->child_at(i);
                if(pnodeItem->get_name() == "file")
@@ -899,9 +899,9 @@ namespace filemanager
          }
 
 
-         /*int ItemArray::FindAbsolute(const char * lpszId)
+         /*int32_t ItemArray::FindAbsolute(const char * lpszId)
          {
-            for(int i = 0; i < this->get_size(); i++)
+            for(int32_t i = 0; i < this->get_size(); i++)
             {
                if(this->element_at(i).m_id == lpszId)
                   return i;

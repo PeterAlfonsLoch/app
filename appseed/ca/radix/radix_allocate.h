@@ -42,35 +42,35 @@ CLASS_DECL_ca void   use_base_ca2_allocator();
 
 // Memory tracking allocation
 #undef new
-CLASS_DECL_ca void * __cdecl operator new(size_t nSize, const char * lpszFileName, int nLine);
+CLASS_DECL_ca void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
 #define new DEBUG_NEW
-CLASS_DECL_ca void __cdecl operator delete(void * p, const char * lpszFileName, int nLine);
+CLASS_DECL_ca void __cdecl operator delete(void * p, const char * lpszFileName, int32_t nLine);
 
 #undef new
 void * __cdecl operator new[](size_t);
-CLASS_DECL_ca void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int nLine);
+CLASS_DECL_ca void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine);
 #define new DEBUG_NEW
-CLASS_DECL_ca void __cdecl operator delete[](void * p, const char * lpszFileName, int nLine);
+CLASS_DECL_ca void __cdecl operator delete[](void * p, const char * lpszFileName, int32_t nLine);
 void __cdecl operator delete[](void *);
 
 
 
 /*CLASS_DECL_ca extern void * (*g_pfnca2_alloc)(size_t size);
-CLASS_DECL_ca extern void * (*g_pfnca2_alloc_dbg)(size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca extern void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca extern void   (*g_pfnca2_free)(void * pvoid, int iBlockType);*/
+CLASS_DECL_ca extern void * (*g_pfnca2_alloc_dbg)(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca extern void * (*g_pfnca2_realloc)(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca extern void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType);*/
 
 /*CLASS_DECL_ca void * ca2_alloc(size_t size);
-CLASS_DECL_ca void * ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca void * ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca void   ca2_free(void * pvoid, int iBlockType);*/
+CLASS_DECL_ca void * ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca void * ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca void   ca2_free(void * pvoid, int32_t iBlockType);*/
 
 
 /*CLASS_DECL_ca void * _ca2_alloc(size_t size);
-CLASS_DECL_ca void * _ca2_alloc_dbg(size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca void * _ca2_realloc(void * pvoid, size_t nSize, int nBlockUse, const char * szFileName, int nLine);
-CLASS_DECL_ca void   _ca2_free(void * pvoid, int iBlockType);
-CLASS_DECL_ca size_t _ca2_msize(void * pvoid, int iBlockType);
+CLASS_DECL_ca void * _ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca void * _ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
+CLASS_DECL_ca void   _ca2_free(void * pvoid, int32_t iBlockType);
+CLASS_DECL_ca size_t _ca2_msize(void * pvoid, int32_t iBlockType);
 
 CLASS_DECL_ca void use_ca2_allocator();
 */
@@ -89,7 +89,7 @@ void __cdecl operator delete[](void * p);
 
 #define DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION \
    public: \
-      void * operator new(size_t i, const char * lpszFileName, int iLine) \
+      void * operator new(size_t i, const char * lpszFileName, int32_t iLine) \
       { \
          return ::operator new(i, lpszFileName, iLine); \
       } \
@@ -97,7 +97,7 @@ void __cdecl operator delete[](void * p);
       { \
          return ::operator new(i); \
       } \
-      void operator delete(void * p, const char * lpszFileName, int iLine) \
+      void operator delete(void * p, const char * lpszFileName, int32_t iLine) \
       { \
          ::operator delete(p, lpszFileName, iLine); \
       } \
@@ -110,8 +110,8 @@ void __cdecl operator delete[](void * p);
 
 
 
-void * __cdecl operator new(size_t nSize, int nType, const char * lpszFileName, int nLine);
-void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName, int nLine);
+void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
+void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
 
 /////////////////////////////////////////////////////////////////////////////
 // Debug primitive::memory globals and implementation helpers
@@ -119,51 +119,51 @@ void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName
 #undef new
 #undef delete
 
-void * __cdecl operator new(size_t nSize, int nType, const char * lpszFileName, int nLine);
-void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName, int nLine);
-void __cdecl operator delete(void * p, int nType, const char * /* lpszFileName */, int nLine);
-void __cdecl operator delete[](void * p, int nType, const char * lpszFileName, int nLine);
+void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
+void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
+void __cdecl operator delete(void * p, int32_t nType, const char * /* lpszFileName */, int32_t nLine);
+void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileName, int32_t nLine);
 
 
 
-inline void * __cdecl operator new(size_t nSize, const char * lpszFileName, int nLine)
+inline void * __cdecl operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
 {
    return ::operator new(nSize, _NORMAL_BLOCK, lpszFileName, nLine);
 }
 
-inline void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int nLine)
+inline void * __cdecl operator new[](size_t nSize, const char * lpszFileName, int32_t nLine)
 {
    return ::operator new[](nSize, _NORMAL_BLOCK, lpszFileName, nLine);
 }
 
-inline void __cdecl operator delete(void * pData, const char * /* lpszFileName */,  int /* nLine */)
+inline void __cdecl operator delete(void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
 {
    ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
 }
 
-inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName */,  int /* nLine */)
+inline void __cdecl operator delete[](void * pData, const char * /* lpszFileName */,  int32_t /* nLine */)
 {
    ::operator delete(pData, _NORMAL_BLOCK, NULL, -1);
 }
 
 
 
-inline void * __cdecl operator new(size_t nSize, int nType, const char * lpszFileName, int nLine)
+inline void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
 {
    return ca2_alloc_dbg(nSize, nType, lpszFileName, nLine);
 }
 
-inline void __cdecl operator delete(void * p, int nType, const char * /* lpszFileName */, int /* nLine */)
+inline void __cdecl operator delete(void * p, int32_t nType, const char * /* lpszFileName */, int32_t /* nLine */)
 {
     ca2_free_dbg(p, nType);
 }
 
-inline void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName, int nLine)
+inline void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine)
 {
    return ::operator new(nSize, nType, lpszFileName, nLine);
 }
 
-inline void __cdecl operator delete[](void * p, int nType, const char * lpszFileName, int nLine)
+inline void __cdecl operator delete[](void * p, int32_t nType, const char * lpszFileName, int32_t nLine)
 {
    ::operator delete(p, nType, lpszFileName, nLine);
 }
@@ -190,7 +190,7 @@ inline void __cdecl operator delete[](void * p, int nType, const char * lpszFile
 
 #ifndef ___NO_DEBUG_CRT
 
-CLASS_DECL_ca void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int nLine);
+CLASS_DECL_ca void * __alloc_memory_debug(size_t nSize, bool bIsObject,  const char * lpszFileName, int32_t nLine);
 CLASS_DECL_ca void __free_memory_debug(void * pbData, bool bIsObject);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -198,7 +198,7 @@ CLASS_DECL_ca void __free_memory_debug(void * pbData, bool bIsObject);
 
 CLASS_DECL_ca bool __default_alloc_hook(size_t, bool, LONG);
 
-CLASS_DECL_ca int __cdecl __alloc_alloc_hook(int nAllocType, void * pvData, size_t nSize, int nBlockUse, long lRequest, const unsigned char * szFilename, int nLine);
+CLASS_DECL_ca int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize, int32_t nBlockUse, long lRequest, const unsigned char * szFilename, int32_t nLine);
 CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
 
 CLASS_DECL_ca bool __enable_memory_leak_override(bool bEnable);
@@ -227,7 +227,7 @@ CLASS_DECL_ca bool __dump_memory_leaks();
 /////////////////////////////////////////////////////////////////////////////
 // Non-diagnostic primitive::memory routines
 
-CLASS_DECL_ca int c_cdecl __new_handler(size_t /* nSize */);
+CLASS_DECL_ca int32_t c_cdecl __new_handler(size_t /* nSize */);
 
 #undef new
 #undef delete
@@ -241,7 +241,7 @@ void __cdecl operator delete[](void * p);
 
 #define DECLARE_AND_IMPLEMENT_DEFAULT_ALLOCATION \
    public: \
-      void * operator new(size_t i, const char * lpszFileName, int iLine) \
+      void * operator new(size_t i, const char * lpszFileName, int32_t iLine) \
       { \
          return ::operator new(i, lpszFileName, iLine); \
       } \
@@ -249,7 +249,7 @@ void __cdecl operator delete[](void * p);
       { \
          return ::operator new(i); \
       } \
-      void operator delete(void * p, const char * lpszFileName, int iLine) \
+      void operator delete(void * p, const char * lpszFileName, int32_t iLine) \
       { \
          ::operator delete(p, lpszFileName, iLine); \
       } \
@@ -263,8 +263,8 @@ void __cdecl operator delete[](void * p);
 
 
 
-//void * __cdecl operator new(size_t nSize, int nType, const char * lpszFileName, int nLine);
-//void * __cdecl operator new[](size_t nSize, int nType, const char * lpszFileName, int nLine);
+//void * __cdecl operator new(size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
+//void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
 
 
 inline void PASCAL ::radix::object::operator delete(void * p)
@@ -279,7 +279,7 @@ inline void PASCAL ::radix::object::operator delete(void * p, void *)
 
 #ifdef DEBUG
 
-inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int)
+inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int32_t)
 {
    ca2_free_dbg(pObject, ___CLIENT_BLOCK);
 }

@@ -41,7 +41,7 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
       return NULL;
    ((DWORD *)p)[0] = 0;
    *((size_t *)&((DWORD *)p)[1]) = size;
-   int iMod = ((dword_ptr)p) % 4;
+   int32_t iMod = ((dword_ptr)p) % 4;
    p[3 - iMod] = (uint8_t) (4 - iMod);
    return &p[4 + sizeof(size_t) - iMod];
 }
@@ -51,8 +51,8 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
 {
    mutex_lock lock(g_mutexSystemHeap, true);
    byte * pOld = (byte *) pvoidOld;
-   int iSize = sizeof(size_t);
-   int iMod = pOld[- 1 - iSize];
+   int32_t iSize = sizeof(size_t);
+   int32_t iMod = pOld[- 1 - iSize];
    if(iMod < 1 || iMod > 4)
       return NULL;
    size_t sizeOld = *((size_t *)&((DWORD *) (pOld - iMod - sizeof(size_t)))[1]);
@@ -98,7 +98,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
 
    byte * p = (byte *) pvoid;
 
-   int iSize = sizeof(size_t);
+   int32_t iSize = sizeof(size_t);
 
    int_ptr iMod = p[- 1 - iSize];
 

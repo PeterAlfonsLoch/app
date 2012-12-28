@@ -14,7 +14,7 @@
 
 BEGIN_EXTERN_C
 
-int flock(int, int);
+int32_t flock(int32_t, int32_t);
 
 END_EXTERN_C
 
@@ -62,7 +62,7 @@ simple_mutex::simple_mutex(const char * pszName, bool bInitialLock)
       pthread_mutexattr_t  attr;
       pthread_mutexattr_init(&attr);
       pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
-      int rc;
+      int32_t rc;
       if((rc = pthread_mutex_init(&m_mutex, &attr)))
       {
          throw "RC_OBJECT_NOT_CREATED";
@@ -113,7 +113,7 @@ simple_mutex::~simple_mutex()
    else
    {
       semun ignored_argument;
-//      int iRc = semctl(m_semid, 1, IPC_RMID , ignored_argument);
+//      int32_t iRc = semctl(m_semid, 1, IPC_RMID , ignored_argument);
       semctl(m_semid, 1, IPC_RMID , ignored_argument);
    }
 
@@ -141,7 +141,7 @@ void simple_mutex::lock()
       operation[0].sem_num    = 0;
       operation[0].sem_flg    = 0;
 
-      int ret = semop(m_semid, operation,1);
+      int32_t ret = semop(m_semid, operation,1);
       if(ret < 0)
       {
       }
@@ -171,7 +171,7 @@ void simple_mutex::unlock()
       operation[0].sem_num    = 0;
       operation[0].sem_flg    = 0;
 
-      int ret = semop(m_semid, operation, 1);
+      int32_t ret = semop(m_semid, operation, 1);
       if(ret < 0)
       {
       }

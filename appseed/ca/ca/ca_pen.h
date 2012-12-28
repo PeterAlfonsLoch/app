@@ -85,8 +85,8 @@ namespace ca
 
       pen_sp(::ca::graphics * pgraphics, double dWidth, COLORREF crColor);
 /*
-      pen_sp(::ca::application * papp, int nPenStyle, int nWidth, const LOGBRUSH* pLogBrush,
-         int nStyleCount = 0, const DWORD* lpStyle = NULL) :
+      pen_sp(::ca::application * papp, int32_t nPenStyle, int32_t nWidth, const LOGBRUSH* pLogBrush,
+         int32_t nStyleCount = 0, const DWORD* lpStyle = NULL) :
          smart_pointer < pen > (papp)
       {
          m_p->construct(nPenStyle, nWidth, pLogBrush, nStyleCount, lpStyle);

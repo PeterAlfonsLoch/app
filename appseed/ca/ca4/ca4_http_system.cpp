@@ -20,12 +20,12 @@ namespace ca4
       {
       }
 
-      int system::auto_config_proxy_count()
+      int32_t system::auto_config_proxy_count()
       {
          return 4;
       }
 
-      void system::auto_config_proxy(int i)
+      void system::auto_config_proxy(int32_t i)
       {
 
          return;
@@ -113,10 +113,10 @@ namespace ca4
          straRequestingServer.insert_at(0, strHost);
 
          bool bOk = false;
-         /*for(int i = 0; i < straRequestingServer.get_count() && !bOk; i++)
+         /*for(int32_t i = 0; i < straRequestingServer.get_count() && !bOk; i++)
          {
             string strUrl = "https://" + straRequestingServer[i] + "/hello";
-            for(int j = 0; j < auto_config_proxy_count(); j++)
+            for(int32_t j = 0; j < auto_config_proxy_count(); j++)
             {
                auto_config_proxy(j);
                string str = get(strUrl);
@@ -259,7 +259,7 @@ namespace ca4
          string strHost;
 
          strHost = System.url().get_server(pszUrl);
-         int port = System.url().get_port(pszUrl);
+         int32_t port = System.url().get_port(pszUrl);
 
 /*         ipaddr_t l;
          if (!System.net().u2ip(strHost,l))
@@ -358,9 +358,9 @@ namespace ca4
          {
             bOk = true;
             string strHost = System.url().get_server(pszUrl);
-            int iHostPort = System.url().get_port(pszUrl);
+            int32_t iHostPort = System.url().get_port(pszUrl);
             ::sockets::address ipHost(get_app(), strHost, iHostPort);
-            for(int iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
+            for(int32_t iNode = 0; iNode < doc.get_root()->get_children_count(); iNode++)
             {
                xml::node * pnode = doc.get_root()->child_at(iNode);
                if(pnode->get_name() == "proxy")
@@ -453,7 +453,7 @@ namespace ca4
          string strServer = pszHost;
          string strProtocol = pszProtocol;
          ::ca::application * papp = set["app"].ca2 < ::ca::application >();
-         int iPort;
+         int32_t iPort;
          if(strProtocol == "https")
          {
             iPort = 443;
@@ -630,7 +630,7 @@ namespace ca4
          unsigned long dw2;
          bool bSeemsOk;
 
-         int iTry = 0;
+         int32_t iTry = 0;
 
 retry:
 
@@ -804,7 +804,7 @@ retry:
 
             handler.add(psession);
 
-            int iIteration = 0;
+            int32_t iIteration = 0;
             ::ca::live_signal keeplive;
 
             if(papp != NULL)
@@ -865,7 +865,7 @@ retry:
             string strCookie = psession->response().cookies().get_cookie_header();
             set["Cookie"] = strCookie;
 
-            int iStatusCode = psession->outattr("http_status_code");
+            int32_t iStatusCode = psession->outattr("http_status_code");
 
             if(iStatusCode != 200)
             {
@@ -1079,7 +1079,7 @@ retry:
          string strProtocol = System.url().get_protocol(pszUrl);
          string strObject = System.url().get_object(pszUrl);
          ::ca::application * papp = set["app"].ca2 < ::ca::application >();
-         int iPort;
+         int32_t iPort;
          if(strProtocol == "https")
          {
             iPort = 443;
@@ -1230,7 +1230,7 @@ retry:
          }
          DWORD dw1 = ::get_tick_count();
          bool bConfigProxy = !set.has_property("no_proxy_config") || !(bool)set["no_proxy_config"];
-         int iTimeout = set["timeout"];
+         int32_t iTimeout = set["timeout"];
          if(iTimeout == 0)
             iTimeout = 23;
          else if(iTimeout < 1000)
@@ -1254,7 +1254,7 @@ retry:
          TRACE("system::get open time %d\n", dw2 - dw1);
          handler.add(psocket);
 
-         int iIteration = 0;
+         int32_t iIteration = 0;
          ::ca::live_signal keeplive;
 
          if((bool)set["noloop"])
@@ -1306,7 +1306,7 @@ retry:
 
          if(pestatus != NULL)
          {
-            int iStatusCode = psocket->outattr("http_status_code");
+            int32_t iStatusCode = psocket->outattr("http_status_code");
 #ifdef BSD_STYLE_SOCKETS
             if(iStatusCode == 0)
             {
@@ -1543,7 +1543,7 @@ retry:
          ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
          if(psocket == NULL)
             return false;
-         int iStatusCode = psocket->outattr("http_status_code");
+         int32_t iStatusCode = psocket->outattr("http_status_code");
          try
          {
             gen::del(psocket);

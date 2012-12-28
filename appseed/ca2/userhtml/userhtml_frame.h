@@ -13,7 +13,7 @@ public: // create from serialization only
 public:
    //BaseMenuMessageHandler        m_menuhook;
    string                     m_strAnimatedStatusBarText;
-   int                        m_iAnimateStep;
+   int32_t                        m_iAnimateStep;
    image_list *                m_pimagelist;
    bool m_bTimerOn;
 
@@ -28,12 +28,12 @@ public:
    virtual void dump(dump_context & dumpcontext) const;
 #endif
 
-static LRESULT CALLBACK MouseProc(          int nCode,
+static LRESULT CALLBACK MouseProc(          int32_t nCode,
     WPARAM wParam,
     LPARAM lParam
 );
 
-void MouseMessage(          int nCode,
+void MouseMessage(          int32_t nCode,
     WPARAM wParam,
     LPARAM lParam
 );
@@ -61,6 +61,6 @@ void MouseMessage(          int nCode,
 protected:
 
 
-   int OnCreate(LPCREATESTRUCT lpCreateStruct);
+   int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
 };
 

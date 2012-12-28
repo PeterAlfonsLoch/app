@@ -9,32 +9,32 @@ public:
    virtual ~water_routine();
 
 
-   void create(int iWidth,int iHeight);
+   void create(int32_t iWidth,int32_t iHeight);
    void to(DWORD* pSrcImage,DWORD* pTargetImage);
 
-   void CalcWater(int npage, int density);
-   void SmoothWater(int npage);
+   void CalcWater(int32_t npage, int32_t density);
+   void SmoothWater(int32_t npage);
    void FlattenWater();
 
-   void SineBlob(int x, int y, int radius, int height, int page);
-   void WarpBlob(int x, int y, int radius, int height, int page);
-   void HeightBox (int x, int y, int radius, int height, int page);
-   void HeightBlob(int x, int y, int radius, int height, int page);
-   void CalcWaterBigFilter(int npage, int density);
+   void SineBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page);
+   void WarpBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page);
+   void HeightBox (int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page);
+   void HeightBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page);
+   void CalcWaterBigFilter(int32_t npage, int32_t density);
 
-   void DrawWaterNoLight(int page,DWORD* pSrcImage,DWORD* pTargetImage);
-   void DrawWaterWithLight(int page, int LightModifier,DWORD* pSrcImage,DWORD* pTargetImage);
-   COLORREF GetShiftedColor(COLORREF color,int shift);
+   void DrawWaterNoLight(int32_t page,DWORD* pSrcImage,DWORD* pTargetImage);
+   void DrawWaterWithLight(int32_t page, int32_t LightModifier,DWORD* pSrcImage,DWORD* pTargetImage);
+   COLORREF GetShiftedColor(COLORREF color,int32_t shift);
 
-   int            m_iWidth;
-   int            m_iHeight;
+   int32_t            m_iWidth;
+   int32_t            m_iHeight;
    bool            m_bDrawWithLight;
-   int            m_iLightModifier;
-   int            m_iHpage;// The current heightfield
-   int            m_density;// The water density - can change the density...
+   int32_t            m_iLightModifier;
+   int32_t            m_iHpage;// The current heightfield
+   int32_t            m_density;// The water density - can change the density...
    //  the height fields
-   int*            m_iHeightField1;
-   int*            m_iHeightField2;
+   int32_t*            m_iHeightField1;
+   int32_t*            m_iHeightField2;
 
 };
 

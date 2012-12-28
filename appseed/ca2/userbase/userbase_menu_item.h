@@ -14,11 +14,11 @@ namespace userbase
 
       id                   m_id;
       sp(menu_item_ptra)   m_spitema;
-      int                  m_iFullHeightItemCount;
-      int                  m_iSeparatorCount;
+      int32_t                  m_iFullHeightItemCount;
+      int32_t                  m_iSeparatorCount;
       menu_button          m_button;
       bool                 m_bPopup;
-      int                  m_iLevel;
+      int32_t                  m_iLevel;
       menu_base *          m_pbase;
 
 
@@ -29,7 +29,7 @@ namespace userbase
       void add_item(menu_item * pitem);
       bool create_menu(const stringa & straCommand, const stringa & straCommandTitle);
       bool load_menu(xml::node * lpnode);
-      bool load_menu(xml::node * lpnode, int iLevel);
+      bool load_menu(xml::node * lpnode, int32_t iLevel);
 
       virtual void OnAddRef();
       virtual void OnRelease();

@@ -127,11 +127,11 @@ namespace gen
       CLASS_DECL_ca string get_category_name(const char * pszUtf8Char);
       ECharCategory get_category(const char * pszUtf8Char);
 
-      CLASS_DECL_ca int get_combining_class(const char * pszUtf8Char);
+      CLASS_DECL_ca int32_t get_combining_class(const char * pszUtf8Char);
       CLASS_DECL_ca bool is_mirrored(const char * pszUtf8Char);
 
       /** @deprecated For debug purposes only. */
-      CLASS_DECL_ca int size_of_tables();
+      CLASS_DECL_ca int32_t size_of_tables();
 
 
    }

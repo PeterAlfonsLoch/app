@@ -172,7 +172,7 @@ namespace ca4
    }
 
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
       try
       {

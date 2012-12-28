@@ -77,7 +77,7 @@ namespace database
    {
       string fpattern,by_what;
       pars.set_str(sql);
-      int i;
+      int32_t i;
       for (i=0;i< fields_object.get_size();i++)
       {
          fpattern = ":OLD_" + fields_object[i].m_properties.name;
@@ -94,7 +94,7 @@ namespace database
       }
 
    //   string_list before_array, after_array;
-   //   int tag = 0;
+   //   int32_t tag = 0;
    //   bool eol_reached = false,
    //        was_changed = false,
    //        flag = false;
@@ -251,7 +251,7 @@ namespace database
 
    void set::insert() {
      //cout << "insert\n\n";
-      for (int i=0; i<field_count(); i++) {
+      for (int32_t i=0; i<field_count(); i++) {
         fields_object[i].m_value = "";
         edit_object[i].m_value = "";
         //cout <<"Insert:"<<i<<"\n\n";
@@ -265,7 +265,7 @@ namespace database
    //    cerr<<"Editing is possible only when query exists!";
        return;
      }
-     for (int i=0; i<fields_object.get_size(); i++) {
+     for (int32_t i=0; i<fields_object.get_size(); i++) {
           edit_object[i].m_value = fields_object[i].m_value;
      }
      ds_state = dsEdit;
@@ -288,7 +288,7 @@ namespace database
       bool found = false;
       if ((ds_state == dsInsert) || (ds_state == dsEdit))
       {
-         for (int i=0; i < fields_object.get_size(); i++)
+         for (int32_t i=0; i < fields_object.get_size(); i++)
          {
             if (edit_object[i].m_properties.name == f_name)
             {
@@ -313,7 +313,7 @@ namespace database
       {
          if (ds_state == dsEdit || ds_state == dsInsert)
          {
-            for (int i=0; i < edit_object.get_size(); i++)
+            for (int32_t i=0; i < edit_object.get_size(); i++)
             {
                if (edit_object[i].m_properties.name == f_name)
                {
@@ -324,7 +324,7 @@ namespace database
          }
          else
          {
-            for (int i=0; i < fields_object.get_size(); i++)
+            for (int32_t i=0; i < fields_object.get_size(); i++)
             {
                if (fields_object[i].m_properties.name == f_name)
                {
@@ -359,7 +359,7 @@ namespace database
    {
       if (ds_state != dsInactive)
       {
-         for (int i=0; i < fields_object.get_size(); i++)
+         for (int32_t i=0; i < fields_object.get_size(); i++)
          {
             if (fields_object[i].m_properties.name == f_name)
             {
@@ -386,7 +386,7 @@ namespace database
      first();
      while (!eof()) {
        result = true;
-       for (int i=0;i < m_parameterlist.get_size();i++)
+       for (int32_t i=0;i < m_parameterlist.get_size();i++)
          if (fv(m_parameterlist.GetKey(i)).get_string() == m_parameterlist.GetFieldValue(i).get_string()) {
       continue;
          }
@@ -408,7 +408,7 @@ namespace database
 
      while (!eof()) {
        result = true;
-       for (int i=0;i< m_parameterlist.get_size();i++)
+       for (int32_t i=0;i< m_parameterlist.get_size();i++)
          if (fv(m_parameterlist.GetKey(i)).get_string() == m_parameterlist.GetFieldValue(i).get_string()) {
       continue;
          }
@@ -474,9 +474,9 @@ namespace database
        return 0;
    }
 
-   int set::fieldIndex(const char *fn)
+   int32_t set::fieldIndex(const char *fn)
    {
-      for (int i=0; i < fields_object.get_size(); i++)
+      for (int32_t i=0; i < fields_object.get_size(); i++)
       {
          if(fields_object[i].m_properties.name == fn)
             return i;

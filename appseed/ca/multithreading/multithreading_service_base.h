@@ -28,7 +28,7 @@ public:
 
 #else
 
-   int                     m_iPid;
+   int32_t                     m_iPid;
 
 #endif
 

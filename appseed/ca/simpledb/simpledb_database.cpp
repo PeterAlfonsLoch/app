@@ -12,7 +12,7 @@ namespace simpledb
    {
    }
 
-   int base::connect()
+   int32_t base::connect()
    {
       string strMetaPath;
 
@@ -72,7 +72,7 @@ namespace simpledb
       return create_dataset();
    }
 
-   int base::setErr(int err_code)
+   int32_t base::setErr(int32_t err_code)
    {
       m_iErrorCode = err_code;
       return m_iErrorCode;
@@ -84,7 +84,7 @@ namespace simpledb
       UNREFERENCED_PARAMETER(sname);
       if (!active)
          return DB_UNEXPECTED_RESULT;
-      /*int id;
+      /*int32_t id;
       database::result_set res;
       char sqlcmd[512];
       sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table, sname);

@@ -163,7 +163,7 @@ namespace user
 
    void interaction::set_timer(array_ptr_alloc < timer_item > timera)
    {
-      for(int i = 0; i < timera.get_count(); i++)
+      for(int32_t i = 0; i < timera.get_count(); i++)
       {
          SetTimer(timera[i].m_uiId, timera[i].m_uiElapse, NULL);
       }
@@ -195,7 +195,7 @@ namespace user
             string strName;
             GetWindowText(strName);
             string strClass = System.RegisterWndClass(0, NULL, NULL, NULL);
-            int iStyle = GetWindowLong(GWL_STYLE);
+            int32_t iStyle = GetWindowLong(GWL_STYLE);
             iStyle &= ~WS_CHILD;
             if(m_bVisible)
             {
@@ -255,7 +255,7 @@ namespace user
             pimplNew->m_pguie = this;
             m_pimpl = pimplNew;
             string strName;
-            int iStyle = GetWindowLong(GWL_STYLE);
+            int32_t iStyle = GetWindowLong(GWL_STYLE);
             iStyle |= WS_CHILD;
             if(m_bVisible)
             {
@@ -352,8 +352,8 @@ namespace user
       }
    }
 
-   bool interaction::SetWindowPos(int z, int x, int y,
-               int cx, int cy, UINT nFlags)
+   bool interaction::SetWindowPos(int32_t z, int32_t x, int32_t y,
+               int32_t cx, int32_t cy, UINT nFlags)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -429,7 +429,7 @@ namespace user
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       m_uiptraChild.get_array(uiptra);
       sl.unlock();
-      for(int i = 0; i < uiptra.get_count(); i++)
+      for(int32_t i = 0; i < uiptra.get_count(); i++)
       {
          user::interaction  * pui = uiptra[i];
          pui->DestroyWindow();
@@ -642,7 +642,7 @@ namespace user
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
       user::interaction * pui = get_top_child();
-//      int iSize;
+//      int32_t iSize;
       try
       {
          while(pui != NULL)
@@ -693,7 +693,7 @@ namespace user
          // these try catchs are needed for multi threading : multi threaded windows: the hell
          // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
          ::user::interaction * pui = get_top_child();
-//         int iSize;
+//         int32_t iSize;
          try
          {
             while(pui != NULL)
@@ -737,7 +737,7 @@ namespace user
    void interaction::_001OnMouseEnter(gen::signal_object * pobj)
    {
       /*
-      for(int i = 0; i < m_uiptra.get_size(); i++)
+      for(int32_t i = 0; i < m_uiptra.get_size(); i++)
       {
          if(m_uiptra[i]->_001IsVisible()
             && m_uiptra[i]->_001IsPointInside(point)
@@ -842,7 +842,7 @@ namespace user
       UNREFERENCED_PARAMETER(pca);
    }
 
-   interaction * interaction::get_child_by_name(const char * pszName, int iLevel)
+   interaction * interaction::get_child_by_name(const char * pszName, int32_t iLevel)
    {
       interaction * pui = get_top_child();
       while(pui != NULL)
@@ -873,7 +873,7 @@ namespace user
    }
 
 
-   interaction * interaction::get_child_by_id(id id, int iLevel)
+   interaction * interaction::get_child_by_id(id id, int32_t iLevel)
    {
       interaction * pui = get_top_child();
       while(pui != NULL)
@@ -904,8 +904,8 @@ namespace user
    }
 
    /*
-   void interaction::_001SetWindowPos(const ::ca::window* pWndInsertAfter, int x, int y,
-               int cx, int cy, UINT nFlags)
+   void interaction::_001SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y,
+               int32_t cx, int32_t cy, UINT nFlags)
    {
       SetWindowPos(pWndInsertAfter, x, y, cx, cy, nFlags);
    }
@@ -915,7 +915,7 @@ namespace user
    //   SetFocus();
    }
 
-   void interaction::_001ShowWindow(int iShow)
+   void interaction::_001ShowWindow(int32_t iShow)
    {
       _001SetVisible(iShow != SW_HIDE);
    }
@@ -1026,7 +1026,7 @@ namespace user
          return m_pimpl->ModifyStyleEx(dwRemove, dwAdd, nFlags);
    }
 
-   bool interaction::ShowWindow(int nCmdShow)
+   bool interaction::ShowWindow(int32_t nCmdShow)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1494,7 +1494,7 @@ namespace user
          return m_pimpl->IsWindow();
    }
 
-   LONG interaction::GetWindowLong(int nIndex)
+   LONG interaction::GetWindowLong(int32_t nIndex)
    {
       if(m_pimpl == NULL)
          return 0;
@@ -1502,7 +1502,7 @@ namespace user
          return m_pimpl->GetWindowLong(nIndex);
    }
 
-   LONG interaction::SetWindowLong(int nIndex, LONG lValue)
+   LONG interaction::SetWindowLong(int32_t nIndex, LONG lValue)
    {
       if(m_pimpl == NULL)
          return 0;
@@ -1546,7 +1546,7 @@ namespace user
          return m_pimpl->GetNextWindow(nFlag);
    }
 
-   interaction * interaction::get_next(bool bIgnoreChildren, int * piLevel)
+   interaction * interaction::get_next(bool bIgnoreChildren, int32_t * piLevel)
    {
       if(!bIgnoreChildren)
       {
@@ -1656,7 +1656,7 @@ namespace user
          m_pimpl->SetWindowText(lpszString);
    }
 
-   strsize interaction::GetWindowText(LPTSTR lpszStringBuf, int nMaxCount)
+   strsize interaction::GetWindowText(LPTSTR lpszStringBuf, int32_t nMaxCount)
    {
       if(m_pimpl == NULL)
       {
@@ -1912,7 +1912,7 @@ namespace user
          return m_pimpl->ClientToScreen(lppoint);
    }
 
-   int interaction::SetWindowRgn(HRGN hRgn, bool bRedraw)
+   int32_t interaction::SetWindowRgn(HRGN hRgn, bool bRedraw)
    {
      if(m_pimpl == NULL)
          return 0;
@@ -1920,7 +1920,7 @@ namespace user
          return m_pimpl->SetWindowRgn(hRgn, bRedraw);
    }
 
-   int interaction::GetWindowRgn(HRGN hRgn)
+   int32_t interaction::GetWindowRgn(HRGN hRgn)
    {
      if(m_pimpl == NULL)
          return 0;
@@ -1961,7 +1961,7 @@ namespace user
          return m_pimpl->IsIconic();
    }
 
-   void interaction::MoveWindow(int x, int y, int nWidth, int nHeight,
+   void interaction::MoveWindow(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
                bool bRepaint)
    {
       if(m_pimpl == NULL)
@@ -2096,7 +2096,7 @@ namespace user
          return m_pimpl->GetUpdateRect(lpRect, bErase);
    }
 
-   int interaction::GetUpdateRgn(::ca::region* pRgn, bool bErase)
+   int32_t interaction::GetUpdateRgn(::ca::region* pRgn, bool bErase)
    {
       if(m_pimpl == NULL)
          return 0;
@@ -2200,7 +2200,7 @@ namespace user
       bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
       //      oswindow oswindow_Parent = ::get_parent(get_handle());
       m_iModal = m_iModalCount;
-      int iLevel = m_iModal;
+      int32_t iLevel = m_iModal;
       ::user::interaction * puieParent = get_parent();
       oprop(string("RunModalLoop.thread(") + gen::str::from(iLevel) + ")") = System.GetThread();
       m_iModalCount++;
@@ -2349,7 +2349,7 @@ ExitModal:
 
    }
 
-   bool interaction::ContinueModal(int iLevel)
+   bool interaction::ContinueModal(int32_t iLevel)
    {
       return iLevel < m_iModalCount;
    }
@@ -2394,11 +2394,11 @@ ExitModal:
       // make sure a message goes through to exit the modal loop
       if(m_iModalCount > 0)
       {
-         int iLevel = m_iModalCount - 1;
+         int32_t iLevel = m_iModalCount - 1;
          m_iModalCount = 0;
          PostMessage(WM_NULL, 0, 0);
          System.GetThread()->post_thread_message(WM_NULL, 0, 0);
-         for(int i = iLevel; i >= 0; i--)
+         for(int32_t i = iLevel; i >= 0; i--)
          {
             ::ca::thread * pthread = oprop(string("RunModalLoop.thread(") + gen::str::from(i) + ")").ca2 < ::ca::thread > ();
             try
@@ -2855,7 +2855,7 @@ ExitModal:
       timera = m_timera;
       m_timera.remove_all();
 
-      for(int i = 0; i < timera.get_count();)
+      for(int32_t i = 0; i < timera.get_count();)
       {
          if(timera[i].m_pguie == pguie)
          {
@@ -3130,9 +3130,9 @@ restart:
    }
 
    // returns -1 if not descendant
-   int interaction::get_descendant_level(::user::interaction * pui)
+   int32_t interaction::get_descendant_level(::user::interaction * pui)
    {
-      int iLevel = 0;
+      int32_t iLevel = 0;
       while(pui != NULL)
       {
          if(pui == this)
@@ -3157,7 +3157,7 @@ restart:
 
    ::user::interaction * interaction::get_focusable_descendant(::user::interaction * pui)
    {
-      int iLevel = 0;
+      int32_t iLevel = 0;
       if(pui == NULL)
       {
          pui = this;
@@ -3171,7 +3171,7 @@ restart:
          }
       }
       ::user::interaction * puiFocusable = NULL;
-      int iPreviousLevel = iLevel;
+      int32_t iPreviousLevel = iLevel;
       while(true)
       {
          iPreviousLevel = iLevel;

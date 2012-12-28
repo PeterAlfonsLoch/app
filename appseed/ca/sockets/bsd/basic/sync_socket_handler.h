@@ -16,7 +16,7 @@
          socket *             m_psocket;
          gen::memory_file     m_file;
          socket_handler       m_handler;
-         int                  m_iDefaultTimeout;
+         int32_t                  m_iDefaultTimeout;
 
          sync_socket_handler(::ca::application * papp, StdLog *log = NULL);
          virtual ~sync_socket_handler();
@@ -34,8 +34,8 @@
          virtual string read_string();
 
 
-         virtual void read_payload_v1(string & strPayload, int timeout = -1);
-         virtual void write_payload_v1(const char * szPayload, int timeout = -1);
+         virtual void read_payload_v1(string & strPayload, int32_t timeout = -1);
+         virtual void write_payload_v1(const char * szPayload, int32_t timeout = -1);
 
       };
 

@@ -20,7 +20,7 @@
 #if defined(OC_X86_ASM)
 
 unsigned oc_enc_frag_sad_mmxext(const unsigned char *_src,
- const unsigned char *_ref,int _ystride){
+ const unsigned char *_ref,int32_t _ystride){
   ptrdiff_t ret;
   __asm{
 #define SRC esi
@@ -80,7 +80,7 @@ unsigned oc_enc_frag_sad_mmxext(const unsigned char *_src,
 }
 
 unsigned oc_enc_frag_sad_thresh_mmxext(const unsigned char *_src,
- const unsigned char *_ref,int _ystride,unsigned _thresh){
+ const unsigned char *_ref,int32_t _ystride,unsigned _thresh){
   /*Early termination is for suckers.*/
   return oc_enc_frag_sad_mmxext(_src,_ref,_ystride);
 }
@@ -140,7 +140,7 @@ unsigned oc_enc_frag_sad_thresh_mmxext(const unsigned char *_src,
 }
 
 unsigned oc_enc_frag_sad2_thresh_mmxext(const unsigned char *_src,
- const unsigned char *_ref1,const unsigned char *_ref2,int _ystride,
+ const unsigned char *_ref1,const unsigned char *_ref2,int32_t _ystride,
  unsigned _thresh){
   ptrdiff_t ret;
   __asm{
@@ -469,7 +469,7 @@ unsigned oc_enc_frag_sad2_thresh_mmxext(const unsigned char *_src,
 }
 
 static unsigned oc_int_frag_satd_thresh_mmxext(const unsigned char *_src,
- int _src_ystride,const unsigned char *_ref,int _ref_ystride,unsigned _thresh){
+ int32_t _src_ystride,const unsigned char *_ref,int32_t _ref_ystride,unsigned _thresh){
   OC_ALIGN8(ogg_int16_t  buf[64]);
   ogg_int16_t           *bufp;
   unsigned               ret1;
@@ -560,15 +560,15 @@ at_end:
 }
 
 unsigned oc_enc_frag_satd_thresh_mmxext(const unsigned char *_src,
- const unsigned char *_ref,int _ystride,unsigned _thresh){
+ const unsigned char *_ref,int32_t _ystride,unsigned _thresh){
   return oc_int_frag_satd_thresh_mmxext(_src,_ystride,_ref,_ystride,_thresh);
 }
 
 
 /*Our internal implementation of frag_copy2 takes an extra stride parameter so
    we can share code with oc_enc_frag_satd2_thresh_mmxext().*/
-static void oc_int_frag_copy2_mmxext(unsigned char *_dst,int _dst_ystride,
- const unsigned char *_src1,const unsigned char *_src2,int _src_ystride){
+static void oc_int_frag_copy2_mmxext(unsigned char *_dst,int32_t _dst_ystride,
+ const unsigned char *_src1,const unsigned char *_src2,int32_t _src_ystride){
   __asm{
     /*Load the first 3 rows.*/
 #define DST_YSTRIDE edi
@@ -695,7 +695,7 @@ static void oc_int_frag_copy2_mmxext(unsigned char *_dst,int _dst_ystride,
 }
 
 unsigned oc_enc_frag_satd2_thresh_mmxext(const unsigned char *_src,
- const unsigned char *_ref1,const unsigned char *_ref2,int _ystride,
+ const unsigned char *_ref1,const unsigned char *_ref2,int32_t _ystride,
  unsigned _thresh){
   OC_ALIGN8(unsigned char ref[64]);
   oc_int_frag_copy2_mmxext(ref,8,_ref1,_ref2,_ystride);
@@ -703,7 +703,7 @@ unsigned oc_enc_frag_satd2_thresh_mmxext(const unsigned char *_src,
 }
 
 unsigned oc_enc_frag_intra_satd_mmxext(const unsigned char *_src,
- int _ystride){
+ int32_t _ystride){
   OC_ALIGN8(ogg_int16_t  buf[64]);
   ogg_int16_t           *bufp;
   unsigned               ret1;
@@ -796,8 +796,8 @@ unsigned oc_enc_frag_intra_satd_mmxext(const unsigned char *_src,
 }
 
 void oc_enc_frag_sub_mmx(ogg_int16_t _residue[64],
- const unsigned char *_src, const unsigned char *_ref,int _ystride){
-  int i;
+ const unsigned char *_src, const unsigned char *_ref,int32_t _ystride){
+  int32_t i;
   __asm  pxor mm7,mm7
   for(i=4;i-->0;){
     __asm{
@@ -855,7 +855,7 @@ void oc_enc_frag_sub_mmx(ogg_int16_t _residue[64],
 }
 
 void oc_enc_frag_sub_128_mmx(ogg_int16_t _residue[64],
- const unsigned char *_src,int _ystride){
+ const unsigned char *_src,int32_t _ystride){
    __asm{
 #define YSTRIDE edx
 #define YSTRIDE3 edi
@@ -962,7 +962,7 @@ void oc_enc_frag_sub_128_mmx(ogg_int16_t _residue[64],
 }
 
 void oc_enc_frag_copy2_mmxext(unsigned char *_dst,
- const unsigned char *_src1,const unsigned char *_src2,int _ystride){
+ const unsigned char *_src1,const unsigned char *_src2,int32_t _ystride){
   oc_int_frag_copy2_mmxext(_dst,_ystride,_src1,_src2,_ystride);
 }
 

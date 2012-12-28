@@ -43,7 +43,7 @@ index var_array::add(var var)
 
 ::count var_array::add(const var_array & vara)
 {
-   for(int i = 0; i < vara.get_size(); i++)
+   for(int32_t i = 0; i < vara.get_size(); i++)
    {
       add(vara[i]);
    }
@@ -53,7 +53,7 @@ index var_array::add(var var)
 string var_array::implode(const char * pszGlue) const
 {
    string str;
-   for(int i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       if(i > 0)
          str += pszGlue;
@@ -258,7 +258,7 @@ var_array var_array::operator +(var_array varaParam) const
 var_array & var_array::operator = (const stringa & stra)
 {
    remove_all();
-   for(int i = 0; i < stra.get_count(); i++)
+   for(int32_t i = 0; i < stra.get_count(); i++)
    {
       add(stra[i]);
    }
@@ -268,7 +268,7 @@ var_array & var_array::operator = (const stringa & stra)
 var_array & var_array::operator = (const int_array & inta)
 {
    remove_all();
-   for(int i = 0; i < inta.get_count(); i++)
+   for(int32_t i = 0; i < inta.get_count(); i++)
    {
       add(inta[i]);
    }
@@ -278,7 +278,7 @@ var_array & var_array::operator = (const int_array & inta)
 var_array & var_array::operator = (const gen::property_set & propset)
 {
    remove_all();
-   for(int i = 0; i < propset.m_propertya.get_count(); i++)
+   for(int32_t i = 0; i < propset.m_propertya.get_count(); i++)
    {
       add(propset.m_propertya[i]);
    }
@@ -290,7 +290,7 @@ var_array & var_array::operator = (const var_array & vara)
    if(this != &vara)
    {
       remove_all();
-      for(int i = 0; i < vara.get_count(); i++)
+      for(int32_t i = 0; i < vara.get_count(); i++)
       {
          add(vara[i]);
       }

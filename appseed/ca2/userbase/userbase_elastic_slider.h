@@ -34,12 +34,12 @@ namespace userbase
       };
 
 
-      void SetStreamingVelocityMode(DoubleScalar * pscalarVelocity, int iVelocity, DoubleScalar * pscalarPosition, int iPosition);
+      void SetStreamingVelocityMode(DoubleScalar * pscalarVelocity, int32_t iVelocity, DoubleScalar * pscalarPosition, int32_t iPosition);
 
       DoubleScalar * m_pscalarVelocity;
-      int m_iVelocity;
+      int32_t m_iVelocity;
       DoubleScalar * m_pscalarPosition;
-      int m_iPosition;
+      int32_t m_iPosition;
 
       void UpdatePosition();
       void CalcTension(point & pt);
@@ -59,7 +59,7 @@ namespace userbase
       double m_dPos;// 0.0 = min 1.0 = max
       double m_dTensionPos;// 0.0 = min 1.0 = max
       bool m_bSlide;
-      int m_iScalar;
+      int32_t m_iScalar;
       double_array m_daScalar;
       double GetForce();
 

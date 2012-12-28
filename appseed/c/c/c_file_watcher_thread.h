@@ -12,7 +12,7 @@ namespace file_watcher
    public:
 
          
-      virtual int run();
+      virtual int32_t run();
 
          
    };

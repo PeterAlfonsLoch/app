@@ -1,10 +1,10 @@
 #pragma once
 
 
-CLASS_DECL_c void srand_dup(unsigned int seed);
-CLASS_DECL_c int  rand_dup();
+CLASS_DECL_c void srand_dup(unsigned int32_t seed);
+CLASS_DECL_c int32_t  rand_dup();
 
-CLASS_DECL_c int abs_dup(int i);
+CLASS_DECL_c int32_t abs_dup(int32_t i);
 CLASS_DECL_c double fabs_dup(double d);
 
 #ifdef SUPORTA_MATEMATICA_AVANCADA
@@ -24,4 +24,4 @@ CLASS_DECL_c double fmod_dup(double x, double y);
 
 
 CLASS_DECL_c int64_t ftoi64(double d);
-CLASS_DECL_c int ftol(double d);
+CLASS_DECL_c int32_t ftol(double d);

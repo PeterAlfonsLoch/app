@@ -42,11 +42,11 @@ public:
    bool operator != (const char * psz) const;
    bool operator != (const verisimple_string &str) const;
 
-   int CompareCase(const char * psz) const;
-   int CompareCase(const verisimple_string &str) const;
+   int32_t CompareCase(const char * psz) const;
+   int32_t CompareCase(const verisimple_string &str) const;
 
-   int CompareNoCase(const char * psz) const;
-   int CompareNoCase(const verisimple_string &str) const;
+   int32_t CompareNoCase(const char * psz) const;
+   int32_t CompareNoCase(const verisimple_string &str) const;
 
    void attach(const char * psz);
 
@@ -155,7 +155,7 @@ CLASS_DECL_c vsstring itoa_dup(int64_t i);
 
 CLASS_DECL_c vsstring itohex_dup(int64_t i);
 
-CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int iPad);
+CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int32_t iPad);
 
 CLASS_DECL_c vsstring gen_utf16_to_8(const wchar_t * psz);
 

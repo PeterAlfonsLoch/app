@@ -31,7 +31,7 @@ public:
    bool operator!=(SIZE size) const throw();
    void operator+=(SIZE size) throw();
    void operator-=(SIZE size) throw();
-   void set_size(int CX, int CY) throw();
+   void set_size(int32_t CX, int32_t CY) throw();
 
 // Operators returning size values
    size operator+(SIZE size) const throw();
@@ -143,7 +143,7 @@ public:
    bool operator!=(SIZED size) const throw();
    void operator+=(SIZED size) throw();
    void operator-=(SIZED size) throw();
-   void set_size(int CX, int CY) throw();
+   void set_size(int32_t CX, int32_t CY) throw();
 
 // Operators returning sized values
    sized operator+(SIZED size) const throw();

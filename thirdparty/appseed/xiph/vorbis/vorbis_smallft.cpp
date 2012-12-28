@@ -32,16 +32,16 @@
 BEGIN_EXTERN_C
 
 
-static void drfti1(int n, float *wa, int *ifac){
-  static int ntryh[4] = { 4,2,3,5 };
+static void drfti1(int32_t n, float *wa, int32_t *ifac){
+  static int32_t ntryh[4] = { 4,2,3,5 };
   static float tpi = 6.28318530717958648f;
   float arg,argh,argld,fi;
-  int ntry=0,i,j=-1;
-  int k1, l1, l2, ib;
-  int ld, ii, ip, is, nq, nr;
-  int ido, ipm, nfm1;
-  int nl=n;
-  int nf=0;
+  int32_t ntry=0,i,j=-1;
+  int32_t k1, l1, l2, ib;
+  int32_t ld, ii, ip, is, nq, nr;
+  int32_t ido, ipm, nfm1;
+  int32_t nl=n;
+  int32_t nf=0;
 
  L101:
   j++;
@@ -102,16 +102,16 @@ static void drfti1(int n, float *wa, int *ifac){
   }
 }
 
-static void fdrffti(int n, float *wsave, int *ifac){
+static void fdrffti(int32_t n, float *wsave, int32_t *ifac){
 
   if (n == 1) return;
   drfti1(n, wsave+n, ifac);
 }
 
-static void dradf2(int ido,int l1,float *cc,float *ch,float *wa1){
-  int i,k;
+static void dradf2(int32_t ido,int32_t l1,float *cc,float *ch,float *wa1){
+  int32_t i,k;
   float ti2,tr2;
-  int t0,t1,t2,t3,t4,t5,t6;
+  int32_t t0,t1,t2,t3,t4,t5,t6;
 
   t1=0;
   t0=(t2=l1*ido);
@@ -163,10 +163,10 @@ static void dradf2(int ido,int l1,float *cc,float *ch,float *wa1){
   }
 }
 
-static void dradf4(int ido,int l1,float *cc,float *ch,float *wa1,
+static void dradf4(int32_t ido,int32_t l1,float *cc,float *ch,float *wa1,
             float *wa2,float *wa3){
   static float hsqt2 = .70710678118654752f;
-  int i,k,t0,t1,t2,t3,t4,t5,t6;
+  int32_t i,k,t0,t1,t2,t3,t4,t5,t6;
   float ci2,ci3,ci4,cr2,cr3,cr4,ti1,ti2,ti3,ti4,tr1,tr2,tr3,tr4;
   t0=l1*ido;
 
@@ -265,16 +265,16 @@ static void dradf4(int ido,int l1,float *cc,float *ch,float *wa1,
   }
 }
 
-static void dradfg(int ido,int ip,int l1,int idl1,float *cc,float *c1,
+static void dradfg(int32_t ido,int32_t ip,int32_t l1,int32_t idl1,float *cc,float *c1,
                           float *c2,float *ch,float *ch2,float *wa){
 
   static float tpi=6.283185307179586f;
-  int idij,ipph,i,j,k,l,ic,ik,is;
-  int t0,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
+  int32_t idij,ipph,i,j,k,l,ic,ik,is;
+  int32_t t0,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
   float dc2,ai1,ai2,ar1,ar2,ds2;
-  int nbd;
+  int32_t nbd;
   float dcp,arg,dsp,ar1h,ar2h;
-  int idp2,ipp2;
+  int32_t idp2,ipp2;
 
   arg=tpi/(float)ip;
   dcp=cos(arg);
@@ -567,10 +567,10 @@ L119:
   }
 }
 
-static void drftf1(int n,float *c,float *ch,float *wa,int *ifac){
-  int i,k1,l1,l2;
-  int na,kh,nf;
-  int ip,iw,ido,idl1,ix2,ix3;
+static void drftf1(int32_t n,float *c,float *ch,float *wa,int32_t *ifac){
+  int32_t i,k1,l1,l2;
+  int32_t na,kh,nf;
+  int32_t ip,iw,ido,idl1,ix2,ix3;
 
   nf=ifac[1];
   na=1;
@@ -628,8 +628,8 @@ static void drftf1(int n,float *c,float *ch,float *wa,int *ifac){
   for(i=0;i<n;i++)c[i]=ch[i];
 }
 
-static void dradb2(int ido,int l1,float *cc,float *ch,float *wa1){
-  int i,k,t0,t1,t2,t3,t4,t5,t6;
+static void dradb2(int32_t ido,int32_t l1,float *cc,float *ch,float *wa1){
+  int32_t i,k,t0,t1,t2,t3,t4,t5,t6;
   float ti2,tr2;
 
   t0=l1*ido;
@@ -680,11 +680,11 @@ L105:
   }
 }
 
-static void dradb3(int ido,int l1,float *cc,float *ch,float *wa1,
+static void dradb3(int32_t ido,int32_t l1,float *cc,float *ch,float *wa1,
                           float *wa2){
   static float taur = -.5f;
   static float taui = .8660254037844386f;
-  int i,k,t0,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
+  int32_t i,k,t0,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
   float ci2,ci3,di2,di3,cr2,cr3,dr2,dr3,ti2,tr2;
   t0=l1*ido;
 
@@ -743,10 +743,10 @@ static void dradb3(int ido,int l1,float *cc,float *ch,float *wa1,
   }
 }
 
-static void dradb4(int ido,int l1,float *cc,float *ch,float *wa1,
+static void dradb4(int32_t ido,int32_t l1,float *cc,float *ch,float *wa1,
                           float *wa2,float *wa3){
   static float sqrt2=1.414213562373095f;
-  int i,k,t0,t1,t2,t3,t4,t5,t6,t7,t8;
+  int32_t i,k,t0,t1,t2,t3,t4,t5,t6,t7,t8;
   float ci2,ci3,ci4,cr2,cr3,cr4,ti1,ti2,ti3,ti4,tr1,tr2,tr3,tr4;
   t0=l1*ido;
 
@@ -834,15 +834,15 @@ static void dradb4(int ido,int l1,float *cc,float *ch,float *wa1,
   }
 }
 
-static void dradbg(int ido,int ip,int l1,int idl1,float *cc,float *c1,
+static void dradbg(int32_t ido,int32_t ip,int32_t l1,int32_t idl1,float *cc,float *c1,
             float *c2,float *ch,float *ch2,float *wa){
   static float tpi=6.283185307179586f;
-  int idij,ipph,i,j,k,l,ik,is,t0,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,
+  int32_t idij,ipph,i,j,k,l,ik,is,t0,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,
       t11,t12;
   float dc2,ai1,ai2,ar1,ar2,ds2;
-  int nbd;
+  int32_t nbd;
   float dcp,arg,dsp,ar1h,ar2h;
-  int ipp2;
+  int32_t ipp2;
 
   t10=ip*ido;
   t0=l1*ido;
@@ -1148,10 +1148,10 @@ L132:
   }
 }
 
-static void drftb1(int n, float *c, float *ch, float *wa, int *ifac){
-  int i,k1,l1,l2;
-  int na;
-  int nf,ip,iw,ix2,ix3,ido,idl1;
+static void drftb1(int32_t n, float *c, float *ch, float *wa, int32_t *ifac){
+  int32_t i,k1,l1,l2;
+  int32_t na;
+  int32_t nf,ip,iw,ix2,ix3,ido,idl1;
 
   nf=ifac[1];
   na=0;
@@ -1236,10 +1236,10 @@ void drft_backward(drft_lookup *l,float *data){
   drftb1(l->n,data,l->trigcache,l->trigcache+l->n,l->splitcache);
 }
 
-void drft_init(drft_lookup *l,int n){
+void drft_init(drft_lookup *l,int32_t n){
   l->n=n;
   l->trigcache= (float *)_ogg_calloc(3*n,sizeof(*l->trigcache));
-  l->splitcache=(int *) _ogg_calloc(32,sizeof(*l->splitcache));
+  l->splitcache=(int32_t *) _ogg_calloc(32,sizeof(*l->splitcache));
   fdrffti(n, l->trigcache, l->splitcache);
 }
 

@@ -69,7 +69,7 @@
 
 base64::base64()
 {
-   int i;
+   int32_t i;
 
    // etable
    for(i= 0;i<9;i++)
@@ -137,9 +137,9 @@ base64::~base64()
 
 void base64::encode(simple_memory & ostream, const simple_memory & istream)
 {
-   int i,hiteof= FALSE;
+   int32_t i,hiteof= FALSE;
    byte igroup[3],ogroup[4];
-   int n;
+   int32_t n;
    char ch;
 
    while(!hiteof)
@@ -220,7 +220,7 @@ vsstring base64::encode(const simple_memory & storageBinary)
 
 void base64::decode(simple_memory & ostream, const simple_memory & istream)
 {
-   int i;
+   int32_t i;
    byte a[4],b[4],o[3];
    unsigned char uch;
 

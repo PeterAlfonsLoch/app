@@ -73,7 +73,7 @@ namespace ca
 
       }
 
-      string application::time(const char * pszBasePath, int iDepth, const char * pszPrefix, const char * pszSuffix)
+      string application::time(const char * pszBasePath, int32_t iDepth, const char * pszPrefix, const char * pszSuffix)
       {
          return m_papp->m_psystem->m_file.time(m_papp, pszBasePath, iDepth, pszPrefix, pszSuffix);
       }

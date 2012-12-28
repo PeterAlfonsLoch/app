@@ -18,7 +18,7 @@ namespace n7z
    struct CExtractFolderInfo
    {
      #ifdef _7Z_VOL
-     int VolumeIndex;
+     int32_t VolumeIndex;
      #endif
      CNum FileIndex;
      CNum FolderIndex;
@@ -26,7 +26,7 @@ namespace n7z
      uint64 UnpackSize;
      CExtractFolderInfo(
        #ifdef _7Z_VOL
-       int volumeIndex,
+       int32_t volumeIndex,
        #endif
        CNum fileIndex, CNum folderIndex):
        #ifdef _7Z_VOL
@@ -84,7 +84,7 @@ namespace n7z
          // const CRef &ref = ref2.Refs[ri];
          const CRef &ref = _refs[ref2Index];
 
-         int volumeIndex = ref.VolumeIndex;
+         int32_t volumeIndex = ref.VolumeIndex;
          const CVolume &volume = _volumes[volumeIndex];
          const CArchiveDatabaseEx &db = volume.Database;
          uint32 fileIndex = ref.ItemIndex;
@@ -156,7 +156,7 @@ namespace n7z
      ::ca::smart_pointer < ::compress::progress_info_interface > progress = lps;
      lps->Init(extractCallback, false);
 
-     for (int i = 0;; i++, totalUnpacked += curUnpacked, totalPacked += curPacked)
+     for (int32_t i = 0;; i++, totalUnpacked += curUnpacked, totalPacked += curPacked)
      {
        lps->OutSize = totalUnpacked;
        lps->InSize = totalPacked;

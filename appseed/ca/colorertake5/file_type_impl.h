@@ -27,7 +27,7 @@ public:
     return baseScheme;
   }
 
-  string enumerateParameters(int idx)
+  string enumerateParameters(int32_t idx)
   {
     if (idx >= paramVector.get_size() || idx < 0){
       throw 0;
@@ -72,7 +72,7 @@ public:
   double getPriority(const char * fileName, const char * fileContent) const{
     SMatches match;
     double cur_prior = 0;
-    for(int idx = 0; idx < chooserVector.get_size(); idx++){
+    for(int32_t idx = 0; idx < chooserVector.get_size(); idx++){
       FileTypeChooser *ftc = chooserVector.element_at(idx);
       if (fileName != NULL && ftc->isFileName() && ftc->getRE()->parse(fileName, &match))
         cur_prior += ftc->getPrior();

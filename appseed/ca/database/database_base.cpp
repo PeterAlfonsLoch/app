@@ -20,7 +20,7 @@ namespace database
       disconnect();      // Disconnect if connected to base
    }
 
-   int base::connectFull(const char *newHost, const char *newPort, const char *newDb, const char *newLogin, const char *newPasswd) 
+   int32_t base::connectFull(const char *newHost, const char *newPort, const char *newDb, const char *newLogin, const char *newPasswd) 
    {
       host = newHost;
       port = newPort;

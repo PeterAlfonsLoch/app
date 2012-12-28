@@ -73,7 +73,7 @@ namespace userstack
 
    }
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
       try
       {
@@ -138,7 +138,7 @@ namespace userstack
    void application::initialize_bergedge_application_interface()
    {
 
-      int iCount = 32; // todo: get from bergedge profile
+      int32_t iCount = 32; // todo: get from bergedge profile
 
       System.factory().creatable < ::userstack::document > (iCount);
       System.factory().creatable < ::userstack::view > (iCount);
@@ -541,7 +541,7 @@ namespace userstack
 
    }
 
-   int application::main()
+   int32_t application::main()
    {
 
 

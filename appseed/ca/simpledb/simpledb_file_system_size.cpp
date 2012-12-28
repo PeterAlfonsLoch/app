@@ -98,7 +98,7 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
       if(path().is_empty())
       {
          App(papp).dir().root_ones(straName);
-         for(int i = 0; i < straName.get_size(); i++)
+         for(int32_t i = 0; i < straName.get_size(); i++)
          {
             item item;
             item.m_bPending = true;
@@ -114,7 +114,7 @@ void file_size_table::item::ls(::ca::application * papp, index & iIteration)
       else
       {
          App(papp).dir().ls(path(), NULL, &straName, &baIsDir, &iaSize);
-         for(int i = 0; i < straName.get_size(); i++)
+         for(int32_t i = 0; i < straName.get_size(); i++)
          {
             item item;
             item.m_bPending = baIsDir[i];
@@ -200,7 +200,7 @@ void file_size_table::item::update_size(::ca::application * papp, index & iItera
    {
       m_iSize = 0;
       m_bPending = false;
-      for(int i = 0; i < m_itema.get_size(); i++)
+      for(int32_t i = 0; i < m_itema.get_size(); i++)
       {
          m_iSize += m_itema[i].m_iSize;
          if(m_itema[i].m_bPending || m_itema[i].m_bPendingLs)
@@ -218,7 +218,7 @@ void file_size_table::item::update_size_recursive(::ca::application * papp, inde
    {
       ls(papp, iIteration);
    }
-   for(int i = 0; i < m_itema.get_size(); i++)
+   for(int32_t i = 0; i < m_itema.get_size(); i++)
    {
       m_itema[i].update_size_recursive(papp, iIteration);
       if(iIteration > 230)
@@ -564,7 +564,7 @@ void file_size_table::get_fs_size::write(ex1::byte_output_stream & ostream)
 
 #ifdef WINDOWSEX
 
-   ostream << (int) m_oswindow;
+   ostream << (int32_t) m_oswindow;
 
 #else
 
@@ -584,7 +584,7 @@ void file_size_table::get_fs_size::read(ex1::byte_input_stream & istream)
 
 #ifdef WINDOWS
 
-   istream >> (int &) m_oswindow;
+   istream >> (int32_t &) m_oswindow;
 
 #else
 

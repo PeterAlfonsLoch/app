@@ -314,13 +314,13 @@ namespace ca2
 
 
 
-   int install::start(const char * pszCommandLine)
+   int32_t install::start(const char * pszCommandLine)
    {
       return ::start_ca2_cube_install(pszCommandLine);
    }
 
 
-   int install::synch(const char * pszCommandLine)
+   int32_t install::synch(const char * pszCommandLine)
    {
       return ::ca2_cube_install(pszCommandLine);
    }
@@ -379,7 +379,7 @@ namespace ca2
 
       string strFetchUrl = strSpaIgnitionBaseUrl + "/query?node=build&authnone";
 
-      int iAttempt = 0;
+      int32_t iAttempt = 0;
 
 RetryBuildNumber:
 

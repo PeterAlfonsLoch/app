@@ -367,7 +367,7 @@ void serialize_read(ex1::byte_input_stream & istream, ::collection::map < t1, t2
       t1 key;
       t3 value;
       m.remove_all();
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
          istream >> key;
          istream >> value;
@@ -480,7 +480,7 @@ public:
 };
 
 class CLASS_DECL_ca int_biunique :
-   public biunique < int, ::collection::int_to_int >
+   public biunique < int32_t, ::collection::int_to_int >
 {
 public:
    int_biunique(::ca::application * papp = NULL);

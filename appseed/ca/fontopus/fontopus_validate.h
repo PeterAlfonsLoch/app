@@ -81,7 +81,7 @@ namespace fontopus
       login_thread(::ca::application * papp);
       virtual ~login_thread();
 
-      virtual int run();
+      virtual int32_t run();
       virtual string Login(ca4::http::e_status * pestatus);
       virtual string NetLogin(ca4::http::e_status * pestatus);
       void execute();
@@ -115,7 +115,7 @@ namespace fontopus
 
       ::fontopus::user *                        m_puser;
       login_thread                              m_loginthread;
-      int                                       m_iView;
+      int32_t                                       m_iView;
       bool                                      m_bVotagusAuth;
       auth *                                    m_pauth;
       string                                    m_strForm;

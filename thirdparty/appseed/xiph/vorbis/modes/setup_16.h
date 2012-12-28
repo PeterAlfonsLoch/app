@@ -29,20 +29,20 @@ BEGIN_EXTERN_C
 
 
 
-static const int blocksize_16_short[3]={
+static const int32_t blocksize_16_short[3]={
   1024,512,512
 };
-static const int blocksize_16_long[3]={
+static const int32_t blocksize_16_long[3]={
   1024,1024,1024
 };
 
-static const int _floor_mapping_16a[]={
+static const int32_t _floor_mapping_16a[]={
   9,3,3
 };
-static const int _floor_mapping_16b[]={
+static const int32_t _floor_mapping_16b[]={
   9,9,9
 };
-static const int *_floor_mapping_16[]={
+static const int32_t *_floor_mapping_16[]={
   _floor_mapping_16a,
   _floor_mapping_16b
 };

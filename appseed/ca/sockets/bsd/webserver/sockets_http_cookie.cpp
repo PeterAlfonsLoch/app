@@ -74,7 +74,7 @@ cookies::~cookies()
 
 index cookies::find_cookie(const char * name)
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       if(this->element_at(i).m_strName == name)
       {
@@ -86,7 +86,7 @@ index cookies::find_cookie(const char * name)
 
 index cookies::lowfind_cookie(const char * name)
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       if(this->element_at(i).m_strNameLow == name)
       {
@@ -141,7 +141,7 @@ void cookies::add(const char * psz)
    //stringa stra;
    //stra.add_tokens(psz, ";", TRUE);
    bool bRun = true;
-   int i = 0;
+   int32_t i = 0;
    while(bRun)
    {
       const char * pszEnd = strchr(psz, ';');
@@ -224,7 +224,7 @@ strsize cookies::get_length( const char * name)
 string cookies::set_cookie(
    const char * name,
    var var,
-   int iExpire,
+   int32_t iExpire,
    const char * path,
    const char * domain,
    bool bSecure)

@@ -44,11 +44,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
          char *m_ibuf; ///< Input buffer
-         int m_ibufsz; ///< size of input buffer
+         int32_t m_ibufsz; ///< size of input buffer
          bool m_bind_ok; ///< Bind completed successfully
          port_t m_port; ///< Bind port number
          size_t m_last_size_written;
-         int m_retries;
+         int32_t m_retries;
          bool m_b_read_ts;
 
 
@@ -57,7 +57,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param h socket_handler_base reference
          \param ibufsz Maximum size of receive message (extra bytes will be truncated)
          \param ipv6 'true' if this is an ipv6 socket */
-         udp_socket(socket_handler_base& h,int ibufsz = 16384,bool ipv6 = false, int retries = 0);
+         udp_socket(socket_handler_base& h,int32_t ibufsz = 16384,bool ipv6 = false, int32_t retries = 0);
          ~udp_socket();
 
          /** Called when incoming data has been received.
@@ -80,30 +80,30 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param port Incoming port number
          \param range Port range to try if ports already in use
          \return 0 if bind succeeded */
-         int Bind(port_t  & port, int range = 1);
+         int32_t Bind(port_t  & port, int32_t range = 1);
          /** To receive data on a specific interface:port, use this.
          \param intf Interface ip/hostname
          \param port Port number
          \param range Port range
          \return 0 if bind succeeded */
-         int Bind(const string & strHost, port_t & port, int range = 1);
+         int32_t Bind(const string & strHost, port_t & port, int32_t range = 1);
          /** To receive data on a specific interface:port, use this.
          \param a Ip address
          \param port Port number
          \param range Port range
          \return 0 if bind succeeded */
-         int Bind(in_addr a,port_t& port,int range = 1);
+         int32_t Bind(in_addr a,port_t& port,int32_t range = 1);
          /** To receive data on a specific interface:port, use this.
          \param a Ipv6 address
          \param port Port number
          \param range Port range
          \return 0 if bind succeeded */
-         int Bind(in6_addr a,port_t& port,int range = 1);
+         int32_t Bind(in6_addr a,port_t& port,int32_t range = 1);
          /** To receive data on a specific interface:port, use this.
          \param ad socket address
          \param range Port range
          \return 0 if bind succeeded */
-         int Bind(sockets::address & addr, int range = 1);
+         int32_t Bind(sockets::address & addr, int32_t range = 1);
 
          /** Define remote host.
          \param l Address of remote host
@@ -126,27 +126,27 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool open(sockets::address& ad);
 
          /** Send to specified host */
-         void SendToBuf(const string & ,port_t,const char *data,int len,int flags = 0);
+         void SendToBuf(const string & ,port_t,const char *data,int32_t len,int32_t flags = 0);
          /** Send to specified address */
-         void SendToBuf(const in_addr & a, port_t,const char *data,int len,int flags = 0);
+         void SendToBuf(const in_addr & a, port_t,const char *data,int32_t len,int32_t flags = 0);
          /** Send to specified ipv6 address */
-         void SendToBuf(const in6_addr & a,port_t,const char *data,int len,int flags = 0);
+         void SendToBuf(const in6_addr & a,port_t,const char *data,int32_t len,int32_t flags = 0);
          /** Send to specified socket address */
-         void SendToBuf(const sockets::address & ad,const char *data,int len,int flags = 0);
+         void SendToBuf(const sockets::address & ad,const char *data,int32_t len,int32_t flags = 0);
 
          /** Send string to specified host */
-         void SendTo(const string &,port_t,const string &,int flags = 0);
+         void SendTo(const string &,port_t,const string &,int32_t flags = 0);
          /** Send string to specified address */
-         void SendTo(in_addr,port_t,const string &,int flags = 0);
+         void SendTo(in_addr,port_t,const string &,int32_t flags = 0);
          /** Send string to specified ipv6 address */
-         void SendTo(in6_addr,port_t,const string &,int flags = 0);
+         void SendTo(in6_addr,port_t,const string &,int32_t flags = 0);
          /** Send string to specified socket address */
-         void SendTo(sockets::address& ad,const string &,int flags = 0);
+         void SendTo(sockets::address& ad,const string &,int32_t flags = 0);
 
          /** Send to connected address */
-         void SendBuf(const char *data,size_t,int flags = 0);
+         void SendBuf(const char *data,size_t,int32_t flags = 0);
          /** Send string to connected address. */
-         void Send(const string & ,int flags = 0);
+         void Send(const string & ,int32_t flags = 0);
 
          /** Set broadcast */
          void SetBroadcast(bool b = true);
@@ -155,21 +155,21 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool IsBroadcast();
 
          /** multicast */
-         void SetMulticastTTL(int ttl = 1);
-         int GetMulticastTTL();
+         void SetMulticastTTL(int32_t ttl = 1);
+         int32_t GetMulticastTTL();
          void SetMulticastLoop(bool = true);
          bool IsMulticastLoop();
-         void AddMulticastMembership(const string & group,const string & intf = "0.0.0.0",int if_index = 0);
-         void DropMulticastMembership(const string & group,const string & intf = "0.0.0.0",int if_index = 0);
+         void AddMulticastMembership(const string & group,const string & intf = "0.0.0.0",int32_t if_index = 0);
+         void DropMulticastMembership(const string & group,const string & intf = "0.0.0.0",int32_t if_index = 0);
          /** multicast, ipv6 only */
-         void SetMulticastHops(int = -1);
+         void SetMulticastHops(int32_t = -1);
          /** multicast, ipv6 only */
-         int GetMulticastHops();
+         int32_t GetMulticastHops();
          /** Returns true if Bind succeeded. */
          bool IsBound();
          /** Return Bind port number */
          port_t GetPort();
-         void OnOptions(int,int,int,SOCKET) {}
+         void OnOptions(int32_t,int32_t,int32_t,SOCKET) {}
          size_t GetLastSizeWritten();
 
          /** Also read timestamp information from incoming message */
@@ -180,7 +180,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void OnRead();
 #if defined(LINUX) || defined(MACOSX)
          /** This method emulates socket recvfrom, but uses messages so we can get the timestamp */
-         int ReadTS(char *ioBuf, int inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts);
+         int32_t ReadTS(char *ioBuf, int32_t inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts);
 #endif
 
       private:

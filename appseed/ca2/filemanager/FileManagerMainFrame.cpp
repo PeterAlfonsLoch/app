@@ -16,7 +16,7 @@ FileManagerMainFrame::~FileManagerMainFrame()
 
 
 
-int FileManagerMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int32_t FileManagerMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
    UNREFERENCED_PARAMETER(lpCreateStruct);
 // trans   if (simple_frame_window::OnCreate(lpCreateStruct) == -1)

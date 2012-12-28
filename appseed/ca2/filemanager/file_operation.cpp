@@ -42,10 +42,10 @@ bool file_operation::set_copy(stringa & stra, const char * pszDestBase, const ch
    {
       strBase = System.dir().name(stra[0]);
       string strCompare;
-      for(int i = 1; i < stra.get_size(); i++)
+      for(int32_t i = 1; i < stra.get_size(); i++)
       {
          strCompare = System.dir().name(stra[i]);
-         for(int j = 0; j < min(strCompare.get_length(), strBase.get_length()); j++)
+         for(int32_t j = 0; j < min(strCompare.get_length(), strBase.get_length()); j++)
          {
             if(strCompare[j] != strBase[j])
             {
@@ -273,7 +273,7 @@ bool file_operation::initialize()
 {
    m_dSize = 0.0;
    var varLen;
-   for(int i = 0; i < m_stra.get_size(); i++)
+   for(int32_t i = 0; i < m_stra.get_size(); i++)
    {
       if(Application.dir().is(m_stra[i]) && !gen::str::ends_ci(m_stra[i], ".zip"))
       {
@@ -285,20 +285,20 @@ bool file_operation::initialize()
          varLen = System.file().length(m_stra[i]);
          if(varLen.is_null())
             return false;
-         m_dSize += (unsigned int) varLen;
-         m_daSize.add((double) (unsigned int) varLen);
+         m_dSize += (unsigned int32_t) varLen;
+         m_daSize.add((double) (unsigned int32_t) varLen);
          m_daRead.add(0.0);
       }
    }
    return true;
 }
 
-int file_operation::get_item_count()
+int32_t file_operation::get_item_count()
 {
-   return (int) m_stra.get_size();
+   return (int32_t) m_stra.get_size();
 }
 
-string file_operation::get_item_message(int iItem)
+string file_operation::get_item_message(int32_t iItem)
 {
    string str;
    str.Format("Copying %s (%s) to %s", System.file().name_(m_stra[iItem]),
@@ -306,7 +306,7 @@ string file_operation::get_item_message(int iItem)
    return str;
 }
 
-double file_operation::get_item_progress(int iItem)
+double file_operation::get_item_progress(int32_t iItem)
 {
    if(m_daSize[iItem] == 0.0)
    {
@@ -322,12 +322,12 @@ double file_operation::get_item_progress(int iItem)
    return m_daRead[iItem] / m_daSize[iItem];
 }
 
-double file_operation::get_item_read(int iItem)
+double file_operation::get_item_read(int32_t iItem)
 {
    return m_daRead[iItem];
 }
 
-double file_operation::get_item_size(int iItem)
+double file_operation::get_item_size(int32_t iItem)
 {
    return m_daSize[iItem];
 }
@@ -351,7 +351,7 @@ void file_operation::make_duplicate_name(string & str, const char * psz)
       strExtension = "." + System.file().extension(str);
    }
    string strFormat;
-   for(int i = 1; i < 1000; i++)
+   for(int32_t i = 1; i < 1000; i++)
    {
       strFormat.Format("-Cópia-%03d", i);
       str = System.dir().path(strDir, strName + strFormat + strExtension);
@@ -362,7 +362,7 @@ void file_operation::make_duplicate_name(string & str, const char * psz)
 
 void file_operation::expand(stringa & straExpanded, stringa & straExpand)
 {
-   for(int i = 0; i < straExpand.get_size(); i++)
+   for(int32_t i = 0; i < straExpand.get_size(); i++)
    {
       if(Application.dir().is(straExpand[i]) && !gen::str::ends_ci(m_stra[i], ".zip"))
       {

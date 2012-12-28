@@ -5,24 +5,24 @@
 #include <intsafe.h>
 #else
 #ifndef LODWORD
-#define LODWORD(l)           ((unsigned int)(((uint64_t)(l)) & 0xffffffff))
+#define LODWORD(l)           ((unsigned int32_t)(((uint64_t)(l)) & 0xffffffff))
 #endif
 #ifndef HIDWORD
-#define HIDWORD(l)           ((unsigned int)((((uint64_t)(l)) >> 32) & 0xffffffff))
+#define HIDWORD(l)           ((unsigned int32_t)((((uint64_t)(l)) >> 32) & 0xffffffff))
 #endif
 #endif
 
-#define MAKELONG64(a, b)      (((uint64_t)(((unsigned int)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((unsigned int)(((uint64_t)(b)) & 0xffffffff))) << 32)))
+#define MAKELONG64(a, b)      (((uint64_t)(((unsigned int32_t)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((unsigned int32_t)(((uint64_t)(b)) & 0xffffffff))) << 32)))
 
 #ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))
+#define GET_X_LPARAM(lp)                        ((int32_t)(short)LOWORD(lp))
 #endif
 #ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lp)                        ((int)(short)HIWORD(lp))
+#define GET_Y_LPARAM(lp)                        ((int32_t)(short)HIWORD(lp))
 #endif
 
-#define GET_X_LPARAM64(lp)                        ((int)(short)LODWORD(lp))
-#define GET_Y_LPARAM64(lp)                        ((int)(short)HIDWORD(lp))
+#define GET_X_LPARAM64(lp)                        ((int32_t)(short)LODWORD(lp))
+#define GET_Y_LPARAM64(lp)                        ((int32_t)(short)HIDWORD(lp))
 
 
 
@@ -50,7 +50,7 @@ typedef unsigned char      byte;
 typedef unsigned short     word;
 //typedef unsigned long      dword;
 typedef __uint64_t         qword;
-typedef unsigned int       uint;
+typedef unsigned int32_t       uint;
 typedef dword_ptr          dwordptr;
 
 class __size64;

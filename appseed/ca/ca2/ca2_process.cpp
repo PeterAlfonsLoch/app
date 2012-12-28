@@ -29,7 +29,7 @@ namespace ca2
       return thread.m_strRead;
    }
 
-   DWORD process::retry(const char * pszCmdLine, DWORD dwTimeout, int iShow)
+   DWORD process::retry(const char * pszCmdLine, DWORD dwTimeout, int32_t iShow)
    {
 
       class on_retry onretry;
@@ -59,7 +59,7 @@ namespace ca2
 
    }
 
-   int process::s_on_retry(int iTry, dword_ptr dwParam)
+   int32_t process::s_on_retry(int32_t iTry, dword_ptr dwParam)
    {
       
       UNREFERENCED_PARAMETER(iTry);
@@ -70,12 +70,12 @@ namespace ca2
 
    }
 
-   DWORD process::synch(const char * pszCmdLine, int iShow)
+   DWORD process::synch(const char * pszCmdLine, int32_t iShow)
    {
       return retry(pszCmdLine, 0, iShow);
    }
 
-   bool process::launch(const char * pszCmdLine, int iShow)
+   bool process::launch(const char * pszCmdLine, int32_t iShow)
    {
 
       const char * pszEnd = NULL;
@@ -84,7 +84,7 @@ namespace ca2
 
 #ifndef METROWIN
 
-      int iOk = call_async(strBin, pszEnd, NULL, iShow);
+      int32_t iOk = call_async(strBin, pszEnd, NULL, iShow);
 
       return iOk != 0;
 
@@ -104,14 +104,14 @@ namespace ca2
    {
    }
 
-   int process::process_thread::run()
+   int32_t process::process_thread::run()
    {
       while(!m_process.has_exited())
       {
          m_strRead += m_process.m_pipe.m_pipeOut.read();
          Sleep(100);
       }
-      int iRetry = 50;
+      int32_t iRetry = 50;
       string strRead;
       while(iRetry > 0 && m_bRun)
       {

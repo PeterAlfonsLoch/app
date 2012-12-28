@@ -11,7 +11,7 @@ namespace fs
    }
 
 
-   int tree_item::CompareArrangeByName( ex1::tree_item * pitem1, ex1::tree_item * pitem2, ::ex1::tree_data * ptreedata)
+   int32_t tree_item::CompareArrangeByName( ex1::tree_item * pitem1, ex1::tree_item * pitem2, ::ex1::tree_data * ptreedata)
    {
       
       if(typeid(*pitem1) == typeid(*pitem2) && typeid(*pitem1) == Sys(ptreedata->get_app()->m_psystem).type_info < tree_item > ())
@@ -25,7 +25,7 @@ namespace fs
 
    }
 
-   int tree_item::get_index() const
+   int32_t tree_item::get_index() const
    {
       return m_iIndex;
    }

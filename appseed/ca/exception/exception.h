@@ -223,12 +223,12 @@ namespace radix
 
 
 
-CLASS_DECL_ca bool __assert_failed_line(const char * lpszFileName, int nLine);
+CLASS_DECL_ca bool __assert_failed_line(const char * lpszFileName, int32_t nLine);
 
 CLASS_DECL_ca void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
 CLASS_DECL_ca void assert_valid_object(const ::radix::object* pOb,
-            const char * lpszFileName, int nLine);
+            const char * lpszFileName, int32_t nLine);
 CLASS_DECL_ca void __dump(const ::radix::object* pOb); // dump an object from CodeView
 
 
@@ -296,7 +296,7 @@ inline void c_cdecl __trace(...) { }
 
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
-   do { int _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
+   do { int32_t _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
 #define ENSURE(cond)      ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
 #define ENSURE_ARG(cond)   ENSURE_THROW(cond, throw invalid_argument_exception(::ca::get_thread_app()) )
 

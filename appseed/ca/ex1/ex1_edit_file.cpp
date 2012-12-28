@@ -292,7 +292,7 @@ namespace ex1
    ::primitive::memory_offset edit_file::GroupItem::get_delta_length()
    {
       ::primitive::memory_offset iLen = 0;
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          iLen += this->element_at(i)->get_delta_length();
       }
@@ -367,7 +367,7 @@ namespace ex1
 //      DWORD dwFilePosition = m_dwPosition;
 //      DWORD dwMaxCount = m_dwFileLength;
 //      DWORD dwUpperLimit = m_dwFileLength;
-//      int iOffset =0;
+//      int32_t iOffset =0;
       ::ex1::tree_item * ptreeitem;
 //      GroupItem * pitemgroup = NULL;
       int_array ia;

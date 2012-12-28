@@ -27,8 +27,8 @@ namespace userbase
       index InitStorage(count nItems, UINT nBytes);
       void SetHorizontalExtent(UINT nExtent);
       UINT GetHorizontalExtent();
-      int SetDroppedWidth(UINT nWidth);
-      int GetDroppedWidth();
+      int32_t SetDroppedWidth(UINT nWidth);
+      int32_t GetDroppedWidth();
 
    #if defined(WINDOWSEX) && (WINVER >= 0x0500)
       bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
@@ -48,10 +48,10 @@ namespace userbase
       void GetLBText(index nIndex, string & rString);
       strsize GetLBTextLen(index nIndex);
 
-      int SetItemHeight(index nIndex, UINT cyItemHeight);
-      int GetItemHeight(index nIndex);
+      int32_t SetItemHeight(index nIndex, UINT cyItemHeight);
+      int32_t GetItemHeight(index nIndex);
       index FindStringExact(index nIndexStart, const char * lpszFind);
-      int SetExtendedUI(bool bExtended = TRUE);
+      int32_t SetExtendedUI(bool bExtended = TRUE);
       bool GetExtendedUI();
       void GetDroppedControlRect(LPRECT lprect);
       bool GetDroppedState();
@@ -81,7 +81,7 @@ namespace userbase
 #ifdef WINDOWSEX
       virtual void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
       virtual void MeasureItem(LPMEASUREITEMSTRUCT lpMeasureItemStruct);
-      virtual int CompareItem(LPCOMPAREITEMSTRUCT lpCompareItemStruct);
+      virtual int32_t CompareItem(LPCOMPAREITEMSTRUCT lpCompareItemStruct);
       virtual void DeleteItem(LPDELETEITEMSTRUCT lpDeleteItemStruct);
 #endif
 

@@ -5,7 +5,7 @@
 #include <WinSvc.h>
 
 
-int stop_service()
+int32_t stop_service()
 {
    SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
 
@@ -32,7 +32,7 @@ int stop_service()
 }
 
 
-int remove_service()
+int32_t remove_service()
 {
 	SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_ALL_ACCESS);
 

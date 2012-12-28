@@ -38,7 +38,7 @@ namespace sockets
 {
 
    // statics
-   int Event::m_unique_id = 0;
+   int32_t Event::m_unique_id = 0;
 
 
    Event::Event(IEventOwner *from,long sec,long usec) : m_from(from), m_time(sec, usec), m_id(++m_unique_id)
@@ -57,7 +57,7 @@ namespace sockets
    }
 
 
-   int Event::GetID()
+   int32_t Event::GetID()
    {
       return m_id;
    }

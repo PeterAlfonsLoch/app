@@ -22,7 +22,7 @@ simple_bitmap::~simple_bitmap()
 
 }
 
-bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppdata)
+bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g, COLORREF ** ppdata)
 {
 
    if(m_pbitmap != NULL)
@@ -64,7 +64,7 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g, COLORREF ** ppda
 }
 
 
-bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g)
+bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, simple_graphics & g)
 {
 
    if(m_pbitmap != NULL)

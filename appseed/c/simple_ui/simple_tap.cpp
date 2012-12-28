@@ -28,7 +28,7 @@ void simple_tap::draw_this(simple_graphics & g)
 
 
 
-void simple_tap::on_lbutton_down(int x, int y)
+void simple_tap::on_lbutton_down(int32_t x, int32_t y)
 {
 
    set_focus(this);
@@ -37,7 +37,7 @@ void simple_tap::on_lbutton_down(int x, int y)
 
 }
 
-void simple_tap::on_lbutton_up(int x, int y)
+void simple_tap::on_lbutton_up(int32_t x, int32_t y)
 {
 
    if(m_bDown)
@@ -51,7 +51,7 @@ void simple_tap::on_lbutton_up(int x, int y)
 
 }
 
-void simple_tap::on_mouse_move(int x, int y)
+void simple_tap::on_mouse_move(int32_t x, int32_t y)
 {
 
    m_bMouseMove = true;
@@ -72,9 +72,9 @@ bool simple_tap::is_hover()
 
    ::hotplugin::plugin * pplugin = get_plugin();
 
-   int dx = pplugin->m_phost->m_rect.left;
+   int32_t dx = pplugin->m_phost->m_rect.left;
 
-   int dy = pplugin->m_phost->m_rect.top;
+   int32_t dy = pplugin->m_phost->m_rect.top;
 
    rectWindow.left      += dx;
    rectWindow.right     += dx;
@@ -204,15 +204,15 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       }
 
-      int iBorderH = height(&m_rect) / 2;
+      int32_t iBorderH = height(&m_rect) / 2;
 
       simple_linear_gradient_brush br1(g, m_rect.left, m_rect.top - 1, m_rect.left, m_rect.top + iBorderH + 2, crOut, crIn);
 
-      g.fill_rect(rect_dim(m_rect.left, m_rect.top, (int) width(&m_rect), iBorderH), br1);
+      g.fill_rect(rect_dim(m_rect.left, m_rect.top, (int32_t) width(&m_rect), iBorderH), br1);
 
       simple_linear_gradient_brush br2(g, m_rect.left, m_rect.top + iBorderH - 1, m_rect.left, m_rect.top + iBorderH * 2 + 2, crIn, crOut);
 
-      g.fill_rect(rect_dim( m_rect.left, m_rect.top + iBorderH, (int) width(&m_rect), iBorderH), br2);
+      g.fill_rect(rect_dim( m_rect.left, m_rect.top + iBorderH, (int32_t) width(&m_rect), iBorderH), br2);
 
       /*Gdiplus::Pen pen1(crBorderOut);
 
@@ -222,7 +222,7 @@ void simple_tap::draw_volume(simple_graphics & g)
 
       simple_solid_pen pen(g, crBorderIn);
 
-      g.draw_rect(rect_dim(m_rect.left + 1, m_rect.top + 1, (int) width(&m_rect) - 2, iBorderH * 2 - 2), pen);
+      g.draw_rect(rect_dim(m_rect.left + 1, m_rect.top + 1, (int32_t) width(&m_rect) - 2, iBorderH * 2 - 2), pen);
 
    }
 
@@ -248,18 +248,18 @@ void simple_tap::draw_text(simple_graphics & g)
 
    g.select(b);
 
-   simple_pixel_font f(g, (int) height(m_rect) * 10, "Geneva");
+   simple_pixel_font f(g, (int32_t) height(m_rect) * 10, "Geneva");
 
    g.select(f);
 
    float fMargin = (height(&m_rect) * ((1.0f - 0.7f) / 2.0f));
 
-   g.text_out((int) (m_rect.left + fMargin), (int) (m_rect.top + fMargin), m_strText);
+   g.text_out((int32_t) (m_rect.left + fMargin), (int32_t) (m_rect.top + fMargin), m_strText);
 
 }
 
 
-void simple_tap::on_char(int iKey, const vsstring & strChar)
+void simple_tap::on_char(int32_t iKey, const vsstring & strChar)
 {
 
    if(iKey == VK_RETURN || iKey == VK_SPACE)

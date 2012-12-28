@@ -48,7 +48,7 @@ void form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint
          {
             if(puh->m_etype == html_view_update_hint::type_document_complete)
             {
-               for(int i = 0; i < get_html_data()->m_propertyset.m_propertya.get_count(); i++)
+               for(int32_t i = 0; i < get_html_data()->m_propertyset.m_propertya.get_count(); i++)
                {
                   html::elemental * pelemental = get_html_data()->get_element_by_id(get_html_data()->m_propertyset.m_propertya[i].name());
                   if(pelemental != NULL)

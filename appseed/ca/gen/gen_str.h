@@ -36,8 +36,8 @@ namespace gen
       };
 
       void CLASS_DECL_ca increment_digit_letter(string & str);
-      int  CLASS_DECL_ca compare(const char * psz1, const char * psz2);
-      int  CLASS_DECL_ca compare_ci(const char * psz1, const char * psz2);
+      int32_t  CLASS_DECL_ca compare(const char * psz1, const char * psz2);
+      int32_t  CLASS_DECL_ca compare_ci(const char * psz1, const char * psz2);
       bool CLASS_DECL_ca equals(const char * psz1, const char * psz2);
       bool CLASS_DECL_ca equals_ci(const char * psz1, const char * psz2);
       string CLASS_DECL_ca equals_get(const char * psz1, const char * psz2, const char * pszGetOnEqual, const char * pszGetOnDifferent = NULL);
@@ -92,7 +92,7 @@ namespace gen
       bool CLASS_DECL_ca ends_ci(const var & var, const char * lpcszSuffix);
       bool CLASS_DECL_ca ends_eat(string & str, const char * lpcszSuffix);
       bool CLASS_DECL_ca ends_eat_ci(string & str, const char * lpcszSuffix);
-      void CLASS_DECL_ca copy(string & str, const char * lpcsz, int iCount);
+      void CLASS_DECL_ca copy(string & str, const char * lpcsz, int32_t iCount);
       string CLASS_DECL_ca replace(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
       string CLASS_DECL_ca replace_ci(const char * pszFind, const char * pszReplace, const char * psz, strsize iStart = 0);
 
@@ -138,18 +138,18 @@ namespace gen
       CLASS_DECL_ca  string         uni_to_utf8(int64_t ch);
 
       CLASS_DECL_ca  const char *   utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz);
-      CLASS_DECL_ca  int            utf8_char(::gen::utf8_char * pchar, const char *psz);
+      CLASS_DECL_ca  int32_t            utf8_char(::gen::utf8_char * pchar, const char *psz);
 
 
-      CLASS_DECL_ca  bool           to(const char * psz, int & i);
+      CLASS_DECL_ca  bool           to(const char * psz, int32_t & i);
       CLASS_DECL_ca  bool           to(const char * psz, int64_t & i);
-      CLASS_DECL_ca  bool           to(const char * psz, int & i, int iBase);
-      CLASS_DECL_ca  bool           to(const char * psz, int64_t & i, int iBase);
+      CLASS_DECL_ca  bool           to(const char * psz, int32_t & i, int32_t iBase);
+      CLASS_DECL_ca  bool           to(const char * psz, int64_t & i, int32_t iBase);
 
 
       CLASS_DECL_ca  int_ptr        to_int_ptr(const char * psz);
-      CLASS_DECL_ca  int            to_int(const char * psz);
-      CLASS_DECL_ca  unsigned int   to_uint(const char * psz);
+      CLASS_DECL_ca  int32_t            to_int(const char * psz);
+      CLASS_DECL_ca  unsigned int32_t   to_uint(const char * psz);
 
 
 /** C++ Sockets Library \file Utility.cpp
@@ -171,19 +171,19 @@ namespace gen
 
 
 
-      inline CLASS_DECL_ca int      to_with_fallback(const char * psz, int iDefault){ to(psz, iDefault); return iDefault; }
+      inline CLASS_DECL_ca int32_t      to_with_fallback(const char * psz, int32_t iDefault){ to(psz, iDefault); return iDefault; }
       inline CLASS_DECL_ca int64_t  to_with_fallback(const char * psz, int64_t & iDefault) { to(psz, iDefault); return iDefault; }
-      inline CLASS_DECL_ca int      to_with_fallback(const char * psz, int iDefault, int iBase){ to(psz, iDefault, iBase); return iDefault; }
-      inline CLASS_DECL_ca int64_t  to_with_fallback(const char * psz, int64_t & iDefault, int iBase) { to(psz, iDefault, iBase); return iDefault; }
+      inline CLASS_DECL_ca int32_t      to_with_fallback(const char * psz, int32_t iDefault, int32_t iBase){ to(psz, iDefault, iBase); return iDefault; }
+      inline CLASS_DECL_ca int64_t  to_with_fallback(const char * psz, int64_t & iDefault, int32_t iBase) { to(psz, iDefault, iBase); return iDefault; }
 
 
 
-      inline CLASS_DECL_ca string  from(int i);
+      inline CLASS_DECL_ca string  from(int32_t i);
 #ifdef MACOS
       inline CLASS_DECL_ca string  from(long l);
 #endif
       inline CLASS_DECL_ca string  from(int64_t i);
-      inline CLASS_DECL_ca string  from(unsigned int ui);
+      inline CLASS_DECL_ca string  from(unsigned int32_t ui);
       inline CLASS_DECL_ca string  from(unsigned long ui);
       inline CLASS_DECL_ca string  from(uint64_t ui);
       inline CLASS_DECL_ca string  from(const var & var);
@@ -192,10 +192,10 @@ namespace gen
       inline CLASS_DECL_ca string  from(float f);
 
 
-      CLASS_DECL_ca  string &       from(string & str, int i);
+      CLASS_DECL_ca  string &       from(string & str, int32_t i);
       CLASS_DECL_ca  string &       from(string & str, long l);
       CLASS_DECL_ca  string &       from(string & str, long long ll);
-      CLASS_DECL_ca  string &       from(string & str, unsigned int ui);
+      CLASS_DECL_ca  string &       from(string & str, unsigned int32_t ui);
       CLASS_DECL_ca  string &       from(string & str, unsigned long ui);
       CLASS_DECL_ca  string &       from(string & str, unsigned long long ui);
       inline CLASS_DECL_ca string & from(string & str, const var & var);
@@ -207,7 +207,7 @@ namespace gen
       //inline CLASS_DECL_ca string   i64toa(int64_t i);
 
 
-      CLASS_DECL_ca  int            get_escaped_char(const char * str, strsize pos, strsize &retPos);
+      CLASS_DECL_ca  int32_t            get_escaped_char(const char * str, strsize pos, strsize &retPos);
       CLASS_DECL_ca  bool           get_curly_content(const char * psz, string & str);
       CLASS_DECL_ca  bool           is_simple_natural(const char * psz);
 
@@ -259,9 +259,9 @@ namespace gen
 
       void format(string_format * pformat, unsigned short const &  i);
 
-      void format(string_format * pformat, int const &  i);
+      void format(string_format * pformat, int32_t const &  i);
 
-      void format(string_format * pformat, unsigned int const &  i);
+      void format(string_format * pformat, unsigned int32_t const &  i);
 
       void format(string_format * pformat, long const & i);
 

@@ -18,7 +18,7 @@
 //template <class TYPE, class ARG_TYPE>
 //C2DArray <TYPE, ARG_TYPE>::~C2DArray<TYPE, ARG_TYPE>()
 //{
- //   for(int i = 0; i < m_nSize; i++)
+ //   for(int32_t i = 0; i < m_nSize; i++)
   //      delete this->element_at(i);
 //}
 

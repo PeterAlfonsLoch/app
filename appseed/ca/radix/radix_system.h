@@ -21,8 +21,8 @@ namespace radix
       system();
       virtual ~system();
 
-      virtual bool assert_failed_line(const char * lpszFileName, int iLine);
-      virtual bool on_assert_failed_line(const char * pszFileName, int iLine);
+      virtual bool assert_failed_line(const char * lpszFileName, int32_t iLine);
+      virtual bool on_assert_failed_line(const char * pszFileName, int32_t iLine);
 
       virtual void on_allocation_error(::ca::application * papp, ::ca::type_info & info);
       ::ca::ca * alloc(::ca::application * papp, ::ca::type_info & info);

@@ -543,7 +543,7 @@ void frame_window::_001OnCreate(gen::signal_object * pobj)
    pcreate->m_bRet = pcreate->get_lresult() == -1;
 }
 
-int frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
+int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
 {
 // trans   if (user::frame_window_interface::OnCreate(lpcs) == -1)
       //return -1;
@@ -694,7 +694,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
 
       // finally, activate the frame
       // (send the default show command unless the main desktop ::ca::window)
-      int nCmdShow = -1;      // default
+      int32_t nCmdShow = -1;      // default
       ::radix::application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
       {
@@ -1665,7 +1665,7 @@ bool frame_window::NegotiateBorderSpace(UINT nBorderCmd, LPRECT lpRectBorder)
    return TRUE;
 }
 
-void frame_window::OnSize(UINT nType, int cx, int cy)
+void frame_window::OnSize(UINT nType, int32_t cx, int32_t cy)
 {
    UNREFERENCED_PARAMETER(cx);
    UNREFERENCED_PARAMETER(cy);
@@ -1723,7 +1723,7 @@ LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
 }
 
 
-void frame_window::ActivateFrame(int nCmdShow)
+void frame_window::ActivateFrame(int32_t nCmdShow)
    // nCmdShow is the normal show mode this frame should be in
 {
    // translate default nCmdShow (-1)
@@ -1748,7 +1748,7 @@ void frame_window::ActivateFrame(int nCmdShow)
    }
 }
 
-void frame_window::BringToTop(int nCmdShow)
+void frame_window::BringToTop(int32_t nCmdShow)
 {
 
 #ifdef WINDOWSEX
@@ -1829,7 +1829,7 @@ bool frame_window::IsTracking() const
 }
 
 
-bool frame_window::ShowWindow(int nCmdShow)
+bool frame_window::ShowWindow(int32_t nCmdShow)
 {
    bool bResult = interaction::ShowWindow(nCmdShow);
    if(get_parent() != NULL

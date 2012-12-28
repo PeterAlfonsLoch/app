@@ -1,7 +1,7 @@
 #include "framework.h"
 
 #define BYTE_ALIGN (8)
-#define INT_ALIGN (BYTE_ALIGN * sizeof(int))
+#define INT_ALIGN (BYTE_ALIGN * sizeof(int32_t))
 
 
 namespace gen
@@ -9,21 +9,21 @@ namespace gen
    namespace bit
    {
 
-      void int_aligned_copy(int * pDest, int iDest, int * pSrc, int iSrc, int iCount)
+      void int_aligned_copy(int32_t * pDest, int32_t iDest, int32_t * pSrc, int32_t iSrc, int32_t iCount)
       {
          if((iDest % INT_ALIGN) != (iSrc %INT_ALIGN))
          {
-            throw "int aligned only";
+            throw "int32_t aligned only";
          }
-         int * pFullDest = &pDest[iDest / INT_ALIGN];
-         int * pFullSrc = &pSrc[iSrc / INT_ALIGN];
+         int32_t * pFullDest = &pDest[iDest / INT_ALIGN];
+         int32_t * pFullSrc = &pSrc[iSrc / INT_ALIGN];
          if((iDest % INT_ALIGN) > 0)
          {
             pFullDest++;            
             pFullSrc++;
          }
-         int iFullCount1 = iCount - (iDest % INT_ALIGN);
-         int iFullCount2 = iFullCount1 / INT_ALIGN;
+         int32_t iFullCount1 = iCount - (iDest % INT_ALIGN);
+         int32_t iFullCount2 = iFullCount1 / INT_ALIGN;
          memcpy(pFullDest, pFullSrc, iFullCount2);
          if(pFullDest > pDest)
          {
@@ -35,22 +35,22 @@ namespace gen
          }
       }
 
-      void int_aligned_copy(int * pDest, int * pSrc, int start, int end)
+      void int_aligned_copy(int32_t * pDest, int32_t * pSrc, int32_t start, int32_t end)
       {
-         for(int i = start; i <= end; i++)
+         for(int32_t i = start; i <= end; i++)
          {
             if((*pSrc >> i) & 1)
             {
-               *pDest |= (int) (1 << i);
+               *pDest |= (int32_t) (1 << i);
             }
             else
             {
-               *pDest &= (int) ~(1 << i);
+               *pDest &= (int32_t) ~(1 << i);
             }
          }
       }
 
-      void set(void * p, bool b, int start, int end)
+      void set(void * p, bool b, int32_t start, int32_t end)
       {
          unsigned char * pDest = (unsigned char *) p;
          unsigned char * pFullDestStart = &pDest[start / BYTE_ALIGN];
@@ -74,20 +74,20 @@ namespace gen
          }
       }
 
-      void byte_set(unsigned char * pDest, bool b, int start, int end)
+      void byte_set(unsigned char * pDest, bool b, int32_t start, int32_t end)
       {
          if(b)
          {
-            for(int i = start; i <= end; i++)
+            for(int32_t i = start; i <= end; i++)
             {
-               *pDest |= (int) (1 << i);
+               *pDest |= (int32_t) (1 << i);
             }
          }
          else
          {
-            for(int i = start; i <= end; i++)
+            for(int32_t i = start; i <= end; i++)
             {
-               *pDest &= (int) ~(1 << i);
+               *pDest &= (int32_t) ~(1 << i);
             }
          }
       }

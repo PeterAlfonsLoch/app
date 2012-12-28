@@ -183,13 +183,13 @@ typedef struct  {
  * determine the msb of a value in O(log log n)
  * @author Sean Eron Anderson
  */
-inline unsigned int msb(uint64_t value)
+inline unsigned int32_t msb(uint64_t value)
 {
-    const int MAX_LOGLOG = 6;
+    const int32_t MAX_LOGLOG = 6;
     const uint64_t BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
-    const unsigned int EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
-    unsigned int r = 0;
-    for (int i = MAX_LOGLOG-1; i >= 0; i--)  {
+    const unsigned int32_t EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
+    unsigned int32_t r = 0;
+    for (int32_t i = MAX_LOGLOG-1; i >= 0; i--)  {
         if (value & BIT_LL[i])  {
             value >>= EXP_LL[i];
             r |= EXP_LL[i];
@@ -233,10 +233,10 @@ inline unsigned int msb(uint64_t value)
     }
     // if we reach this point we have full 64 bit values i.e. a 96bit dividend
     // calculate an approximate result by shifting according to msb set
-    int msb_nominator = msb(mod_h)+32;
-    int msb_denominator = msb(denominator);
-    int msb = std::max(msb_nominator,msb_denominator);
-    int shift = msb-63;
+    int32_t msb_nominator = msb(mod_h)+32;
+    int32_t msb_denominator = msb(denominator);
+    int32_t msb = std::max(msb_nominator,msb_denominator);
+    int32_t shift = msb-63;
     res += (mod_h << (32-shift)) / (denominator>>shift);
     return res;
 }*/
@@ -273,10 +273,10 @@ int64_t _stdcall muldiv64(int64_t number, int64_t numerator, int64_t denominator
     }
     // if we reach this point we have full 64 bit values i.e. a 96bit dividend
     // calculate an approximate result by shifting according to msb set
-    int msb_nominator = msb(mod_h)+32;
-    int msb_denominator = msb(denominator);
-    int msb = std::max(msb_nominator,msb_denominator);
-    int shift = msb-63;
+    int32_t msb_nominator = msb(mod_h)+32;
+    int32_t msb_denominator = msb(denominator);
+    int32_t msb = std::max(msb_nominator,msb_denominator);
+    int32_t shift = msb-63;
     res += (mod_h << (32-shift)) / (denominator>>shift);
     return res;
    /*

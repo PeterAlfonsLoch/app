@@ -12,9 +12,9 @@ public:
    image_list *      m_pimagelistNormal;
    image_list *      m_pimagelistItemHover;
    image_list *      m_pimagelistSubItemHover;
-   int               m_iImageNormal;
-   int               m_iImageItemHover;
-   int               m_iImageSubItemHover;
+   int32_t               m_iImageNormal;
+   int32_t               m_iImageItemHover;
+   int32_t               m_iImageSubItemHover;
 
 
    BaseButtonControl(::ca::application * papp);

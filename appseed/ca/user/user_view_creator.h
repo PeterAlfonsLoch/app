@@ -25,7 +25,7 @@ namespace user
       ::user::document_interface *     m_pdoc;
       id                               m_idSplit;
       bool                             m_bTabSplitSwap;
-      int                              m_iExtendOnParent;
+      int32_t                              m_iExtendOnParent;
       flags < eflag >                  m_eflag;
       string                           m_strTitle;
       void *                           m_pviewdata;

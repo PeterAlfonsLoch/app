@@ -3,7 +3,7 @@
 
 class __rect64;
 
-int spaboot_start(const char * pszVersion, const char * pszId);
+int32_t spaboot_start(const char * pszVersion, const char * pszId);
 
 
 namespace primitive
@@ -65,7 +65,7 @@ namespace plugin
 
       virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
 
-      virtual int  start_ca2_system();
+      virtual int32_t  start_ca2_system();
 
       virtual void on_ready();
 
@@ -78,7 +78,7 @@ namespace plugin
 #elif defined(METROWIN)
 
 #else
-      virtual int message_handler(XEvent * pevent);
+      virtual int32_t message_handler(XEvent * pevent);
 #endif
 
       void start_ca2_login();

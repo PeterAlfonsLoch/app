@@ -163,7 +163,7 @@ static void offtout(off_t x,u_char *buf)
    if(x<0) buf[7]|=0x80;
 }
 
-int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
+int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
 {
    _FILE * fd = 0;
    u_char *old = NULL;
@@ -184,7 +184,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
    u_char header[32];
    _FILE * pf = NULL;
    BZFILE * pfbz2 = NULL;
-   int bz2err;
+   int32_t bz2err;
 
    /* allocate oldsize+1 bytes instead of oldsize bytes to ensure
       that we never try to _ca_alloc(0) and get a NULL pointer */
@@ -491,7 +491,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
-   BZ2_bzWrite(&bz2err, pfbz2, db, (int)dblen);
+   BZ2_bzWrite(&bz2err, pfbz2, db, (int32_t)dblen);
    if (bz2err != BZ_OK)
    {
       _ca_free(old, 0);
@@ -538,7 +538,7 @@ int bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
       fclose_dup(pf);
       return errx(1, "BZ2_bzWriteOpen, bz2err = %d", bz2err);
    }
-   BZ2_bzWrite(&bz2err, pfbz2, eb, (int) eblen);
+   BZ2_bzWrite(&bz2err, pfbz2, eb, (int32_t) eblen);
    if (bz2err != BZ_OK)
    {
       _ca_free(old, 0);

@@ -17,17 +17,17 @@ namespace visual
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, size & size);
       void GetTextExtent(::ca::graphics * pdc, const char * lpcwsz, strsize iCount, size & size);
 
-      bool TextOut(::ca::graphics * pdc, int x, int y, const char * lpcwsz, strsize iCount);
-      int _DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline = NULL);
+      bool TextOut(::ca::graphics * pdc, int32_t x, int32_t y, const char * lpcwsz, strsize iCount);
+      int32_t _DrawText(::ca::graphics * pdc, const char * lpcsz, LPCRECT lpcrect, UINT uiFormat, ::ca::font * pfontUnderline = NULL);
       
       strsize _EncodeV033(string & str);
 
 
       void FillSolidRect(HDC hdc, const __rect64 * lpRect, COLORREF clr);
       void FillSolidRect(HDC hdc, LPCRECT lpRect, COLORREF clr);
-      void FillSolidRect(HDC hdc, int x, int y, int cx, int cy, COLORREF clr);
+      void FillSolidRect(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
 
-      //static int _FindPrefixV1(const wchar_t * lpcsz);
+      //static int32_t _FindPrefixV1(const wchar_t * lpcsz);
 
    };
 

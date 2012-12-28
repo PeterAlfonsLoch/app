@@ -33,7 +33,7 @@ namespace visual
       return load_from_file(Application.dir().matter(pszMatter));
    }
 
-   bool cursor::to(::ca::graphics * pgraphics, int x, int y)
+   bool cursor::to(::ca::graphics * pgraphics, int32_t x, int32_t y)
    {
       if(&System.imaging() == NULL)
          return false;

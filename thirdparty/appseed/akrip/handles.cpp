@@ -28,9 +28,9 @@
 extern CDHANDLEREC *cdHandles;
 extern HANDLE *cdMutexes;
 extern CRITICAL_SECTION getHandle;
-extern int alErrCode;
+extern int32_t alErrCode;
 extern BYTE alAspiErr;
-extern int *nextHandle;
+extern int32_t *nextHandle;
 
 /*
  * external prototypes
@@ -60,7 +60,7 @@ void SPTIOpenCDHandle( BYTE ha, BYTE tgt, BYTE lun );
  ****************************************************************/
 HCDROM  GetCDHandle( LPGETCDHAND lpcd )
 {
-  int i;
+  int32_t i;
   BYTE devType;
   //LPBYTE pDevType = &devType;
   HANDLE hMutex;
@@ -133,7 +133,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
 
   for( i = 0; i < MAXCDHAND; i++ )
     {
-      int j;
+      int32_t j;
       j = (i + *nextHandle ) % MAXCDHAND;
 
       if ( !cdHandles[j].used )
@@ -203,7 +203,7 @@ HCDROM  GetCDHandle( LPGETCDHAND lpcd )
  ****************************************************************/
 bool CloseCDHandle( HCDROM hCD )
 {
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     return FALSE;

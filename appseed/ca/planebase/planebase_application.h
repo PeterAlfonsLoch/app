@@ -38,7 +38,7 @@ namespace planebase
       virtual bool is_uninstalling();
 
 
-      virtual int run();
+      virtual int32_t run();
 
       
       service_base * get_service();
@@ -58,7 +58,7 @@ namespace planebase
 
 
 
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
 
       inline class ::ca::dir::application       & dir()        { return m_dir       ; }
@@ -74,11 +74,11 @@ namespace planebase
 
       virtual void defer_initialize_twf();
 
-      virtual int pre_run();
-      virtual int on_run();
+      virtual int32_t pre_run();
+      virtual int32_t on_run();
 
       virtual bool main_start();
-      virtual int main();
+      virtual int32_t main();
       virtual bool bergedge_start();
       virtual bool os_native_bergedge_start();
 

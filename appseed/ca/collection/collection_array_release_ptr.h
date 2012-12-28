@@ -39,7 +39,7 @@ inline count array_release_ptr < TYPE, ARG_TYPE, BASE_PTRA >::remove_all(bool bR
 {
    if(bRelease)
    {
-      for(int iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
+      for(int32_t iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
          gen::release(this->ptra().element_at(iIndex));
       }

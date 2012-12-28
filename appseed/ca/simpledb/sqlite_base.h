@@ -16,7 +16,7 @@ namespace sqlite
    /* connect descriptor */
      void * conn; // sqlite3 *
      bool _in_transaction;
-     int last_err;
+     int32_t last_err;
 
    public:
    /* default constructor */
@@ -29,19 +29,19 @@ namespace sqlite
    /* func. returns connection handle with SQLite-server */
      void * getHandle() {  return conn; } // sqlite3 *
    /* func. returns current status about SQLite-server connection */
-     virtual int status();
-     virtual int setErr(int err_code);
+     virtual int32_t status();
+     virtual int32_t setErr(int32_t err_code);
    /* func. returns error message if error occurs */
      virtual const char *getErrorMsg();
      
    /* func. connects to database-server */
-     virtual int connect();
+     virtual int32_t connect();
    /* func. disconnects from database-server */
      virtual void disconnect();
    /* func. creates new database */
-     virtual int create();
+     virtual int32_t create();
    /* func. deletes database */
-     virtual int drop();
+     virtual int32_t drop();
 
      virtual long nextid(const char* seq_name);
 

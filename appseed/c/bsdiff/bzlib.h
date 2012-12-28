@@ -55,18 +55,18 @@ extern "C" {
 typedef
    struct {
       char *next_in;
-      unsigned int avail_in;
-      unsigned int total_in_lo32;
-      unsigned int total_in_hi32;
+      unsigned int32_t avail_in;
+      unsigned int32_t total_in_lo32;
+      unsigned int32_t total_in_hi32;
 
       char *next_out;
-      unsigned int avail_out;
-      unsigned int total_out_lo32;
-      unsigned int total_out_hi32;
+      unsigned int32_t avail_out;
+      unsigned int32_t total_out_lo32;
+      unsigned int32_t total_out_hi32;
 
       void *state;
 
-      void *(*bzalloc)(void *,int,int);
+      void *(*bzalloc)(void *,int32_t,int32_t);
       void (*bzfree)(void *,void *);
       void *opaque;
    }
@@ -109,33 +109,33 @@ typedef
 
 /*-- Core (low-level) library functions --*/
 
-BZ_EXTERN int BZ_API(BZ2_bzCompressInit) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzCompressInit) (
       bz_stream* strm,
-      int        blockSize100k,
-      int        verbosity,
-      int        workFactor
+      int32_t        blockSize100k,
+      int32_t        verbosity,
+      int32_t        workFactor
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzCompress) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzCompress) (
       bz_stream* strm,
-      int action
+      int32_t action
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzCompressEnd) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzCompressEnd) (
       bz_stream* strm
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzDecompressInit) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzDecompressInit) (
       bz_stream *strm,
-      int       verbosity,
-      int       small
+      int32_t       verbosity,
+      int32_t       small
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzDecompress) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzDecompress) (
       bz_stream* strm
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzDecompressEnd) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzDecompressEnd) (
       bz_stream *strm
    );
 
@@ -149,87 +149,87 @@ BZ_EXTERN int BZ_API(BZ2_bzDecompressEnd) (
 #define BZFILE void
 
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzReadOpen) (
-      int*  bzerror,
+      int32_t*  bzerror,
       _FILE * f,
-      int   verbosity,
-      int   small,
+      int32_t   verbosity,
+      int32_t   small,
       void * unused,
-      int   nUnused
+      int32_t   nUnused
    );
 
 BZ_EXTERN void BZ_API(BZ2_bzReadClose) (
-      int*    bzerror,
+      int32_t*    bzerror,
       BZFILE* b
    );
 
 BZ_EXTERN void BZ_API(BZ2_bzReadGetUnused) (
-      int*    bzerror,
+      int32_t*    bzerror,
       BZFILE* b,
       void **  unused,
-      int*    nUnused
+      int32_t*    nUnused
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzRead) (
-      int*    bzerror,
+BZ_EXTERN int32_t BZ_API(BZ2_bzRead) (
+      int32_t*    bzerror,
       BZFILE* b,
       void *   buf,
-      int     len
+      int32_t     len
    );
 
 BZ_EXTERN BZFILE* BZ_API(BZ2_bzWriteOpen) (
-      int*  bzerror,
+      int32_t*  bzerror,
       _FILE * f,
-      int   blockSize100k,
-      int   verbosity,
-      int   workFactor
+      int32_t   blockSize100k,
+      int32_t   verbosity,
+      int32_t   workFactor
    );
 
 BZ_EXTERN void BZ_API(BZ2_bzWrite) (
-      int*    bzerror,
+      int32_t*    bzerror,
       BZFILE* b,
       void *   buf,
-      int     len
+      int32_t     len
    );
 
 BZ_EXTERN void BZ_API(BZ2_bzWriteClose) (
-      int*          bzerror,
+      int32_t*          bzerror,
       BZFILE*       b,
-      int           abandon,
-      unsigned int* nbytes_in,
-      unsigned int* nbytes_out
+      int32_t           abandon,
+      unsigned int32_t* nbytes_in,
+      unsigned int32_t* nbytes_out
    );
 
 BZ_EXTERN void BZ_API(BZ2_bzWriteClose64) (
-      int*          bzerror,
+      int32_t*          bzerror,
       BZFILE*       b,
-      int           abandon,
-      unsigned int* nbytes_in_lo32,
-      unsigned int* nbytes_in_hi32,
-      unsigned int* nbytes_out_lo32,
-      unsigned int* nbytes_out_hi32
+      int32_t           abandon,
+      unsigned int32_t* nbytes_in_lo32,
+      unsigned int32_t* nbytes_in_hi32,
+      unsigned int32_t* nbytes_out_lo32,
+      unsigned int32_t* nbytes_out_hi32
    );
 #endif
 
 
 /*-- Utility functions --*/
 
-BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffCompress) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzBuffToBuffCompress) (
       char*         dest,
-      unsigned int* destLen,
+      unsigned int32_t* destLen,
       char*         source,
-      unsigned int  sourceLen,
-      int           blockSize100k,
-      int           verbosity,
-      int           workFactor
+      unsigned int32_t  sourceLen,
+      int32_t           blockSize100k,
+      int32_t           verbosity,
+      int32_t           workFactor
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzBuffToBuffDecompress) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzBuffToBuffDecompress) (
       char*         dest,
-      unsigned int* destLen,
+      unsigned int32_t* destLen,
       char*         source,
-      unsigned int  sourceLen,
-      int           small,
-      int           verbosity
+      unsigned int32_t  sourceLen,
+      int32_t           small,
+      int32_t           verbosity
    );
 
 
@@ -253,23 +253,23 @@ BZ_EXTERN BZFILE * BZ_API(BZ2_bzopen) (
    );
 
 BZ_EXTERN BZFILE * BZ_API(BZ2_bzdopen) (
-      int        fd,
+      int32_t        fd,
       const char *mode
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzread) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzread) (
       BZFILE* b,
       void * buf,
-      int len
+      int32_t len
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzwrite) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzwrite) (
       BZFILE* b,
       void *   buf,
-      int     len
+      int32_t     len
    );
 
-BZ_EXTERN int BZ_API(BZ2_bzflush) (
+BZ_EXTERN int32_t BZ_API(BZ2_bzflush) (
       BZFILE* b
    );
 
@@ -279,7 +279,7 @@ BZ_EXTERN void BZ_API(BZ2_bzclose) (
 
 BZ_EXTERN const char * BZ_API(BZ2_bzerror) (
       BZFILE *b,
-      int    *errnum
+      int32_t    *errnum
    );
 #endif
 

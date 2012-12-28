@@ -311,11 +311,11 @@ namespace command
       if(itema.get_size() > 0)
       {
 
-         int i = 0;
+         int32_t i = 0;
 
 #ifdef WINDOWSEX
 
-         i = (int) ::ShellExecuteW(
+         i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
             gen::international::utf8_to_unicode("\"" + itema[0].m_strPath + "\""),

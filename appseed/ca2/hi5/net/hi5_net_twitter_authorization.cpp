@@ -113,8 +113,8 @@ namespace hi5
             {
                m_ptabview->GetParentFrame()->get_parent()->GetClientRect(rectOpen);
             }
-            int iWidth = rectOpen.width();
-            int iHeight = rectOpen.height();
+            int32_t iWidth = rectOpen.width();
+            int32_t iHeight = rectOpen.height();
             rectOpen.deflate(iWidth / 5, iHeight / 50);
             rectOpen.top = iHeight * 2 / 3;
             simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (m_pviewAuth->GetTopLevelParent());

@@ -29,7 +29,7 @@ namespace ca8
          m_dwDelay = propertyset.has_property("simple_message_box_timeout_ms");
          if(m_dwDelay > 0)
          {
-            m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout"] = (int) (m_dwDelay / 1000);
+            m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout"] = (int32_t) (m_dwDelay / 1000);
          }
       }
       wait_message_dialog::on_show(pszMatter, propertyset);
@@ -43,7 +43,7 @@ namespace ca8
 
    void message_box::on_timer_soft_reload(DWORD dwTimeout)
    {
-      m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout"] = (int) ((m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout_ms"]) / 1000);
+      m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout"] = (int32_t) ((m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout_ms"]) / 1000);
       wait_message_dialog::on_timer_soft_reload(dwTimeout);
    }
 

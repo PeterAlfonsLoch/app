@@ -7,7 +7,7 @@
 fixed_string_log_interface * fixed_string_manager::s_pLog = NULL;
 
 
-fixed_string_manager::fixed_string_manager(string_data * pData,int nChars, string_manager * pMgr) throw() :
+fixed_string_manager::fixed_string_manager(string_data * pData,int32_t nChars, string_manager * pMgr) throw() :
    m_pData( pData ),
    m_pMgr( pMgr )
 {
@@ -22,7 +22,7 @@ fixed_string_manager::~fixed_string_manager() throw()
 }
 
 // string_manager
-string_data  * fixed_string_manager::allocate(strsize nChars, int nCharSize ) throw()
+string_data  * fixed_string_manager::allocate(strsize nChars, int32_t nCharSize ) throw()
 {
    ASSUME( m_pData->nRefs == -1 );
    ASSUME( m_pData->nDataLength == 0 );
@@ -64,7 +64,7 @@ void fixed_string_manager::Free( string_data  * pData ) throw()
    *static_cast< char* >( m_pData->data() ) = 0;
 }
 
-string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nChars, int nCharSize ) throw()
+string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nChars, int32_t nCharSize ) throw()
 {
    string_data * pNewData;
 

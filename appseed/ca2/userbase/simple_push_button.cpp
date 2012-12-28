@@ -58,15 +58,15 @@ void SimplePushButton::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
 {
 
-   int iOriginalBkMode = pdc->GetBkMode();
+   int32_t iOriginalBkMode = pdc->GetBkMode();
    pdc->SetBkMode(TRANSPARENT);
    rect rectClient;
    GetClientRect(rectClient);
 
 //   state::state state = _001GetState();
-//   const int ihilite = 0x0004; // hilighted
-//   const int ifocus = 0x0008; // focus
-//   const int iPushState = state & 3;
+//   const int32_t ihilite = 0x0004; // hilighted
+//   const int32_t ifocus = 0x0008; // focus
+//   const int32_t iPushState = state & 3;
 
    color color;
 
@@ -165,8 +165,8 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
    rect.deflate(1, 1, 1, 1);
    imaging.color_blend(pdc, rect.left, rect.top, rect.width(), rect.height() , cr, 200);
    rect.deflate(1, 1, 1, 1);
-   int x1 = rect.left;
-   int x2 = x1 + rect.width() / 3;
+   int32_t x1 = rect.left;
+   int32_t x2 = x1 + rect.width() / 3;
    rect.left = x1;
    rect.right = x2;
    rect.bottom = rect.top + 5;

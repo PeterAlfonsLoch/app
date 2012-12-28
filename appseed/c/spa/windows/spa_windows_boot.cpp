@@ -3,7 +3,7 @@
 
 #ifdef WINDOWSEX
 
-int spaboot_registry_register(const char * lpszFile)
+int32_t spaboot_registry_register(const char * lpszFile)
 {
    reg_delete_tree_dup(HKEY_CLASSES_ROOT, ".spaboot");
    HKEY hkey;
@@ -81,7 +81,7 @@ int spaboot_registry_register(const char * lpszFile)
 
 
 
-/*int app-install.exe(const char * param)
+/*int32_t app-install.exe(const char * param)
 {
    char szModulePath[MAX_PATH * 3];
    ::GetModuleFileNameA((HINSTANCE) ::GetModuleHandleA("npca2.dll"), szModulePath, sizeof(szModulePath));

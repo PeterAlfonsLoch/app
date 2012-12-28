@@ -97,14 +97,14 @@ namespace userex
 
    }
 
-   int second_list_view::set_second(int isecond)
+   int32_t second_list_view::set_second(int32_t isecond)
    {
-      return (int) set_cur_sel(isecond);
+      return (int32_t) set_cur_sel(isecond);
    }
 
-   int second_list_view::get_second()
+   int32_t second_list_view::get_second()
    {
-      return (int) get_cur_sel();
+      return (int32_t) get_cur_sel();
    }
 
 } // namespace userex

@@ -1,24 +1,24 @@
 #include "framework.h"
 
 
-void DoBar(::ca::graphics * pdc, int ileft, int iTop, int cx, int cy, double dAnime)
+void DoBar(::ca::graphics * pdc, int32_t ileft, int32_t iTop, int32_t cx, int32_t cy, double dAnime)
 {
-   int iDeltaDark = 23;
-      int iDeltaVermelho = 77;
-      int iDeltaAzul = 84;
-      int iDeltaV1 = 23;
-      int iDeltaV2 = 23;
-      int iW = 49;
-      int x = ileft;
+   int32_t iDeltaDark = 23;
+      int32_t iDeltaVermelho = 77;
+      int32_t iDeltaAzul = 84;
+      int32_t iDeltaV1 = 23;
+      int32_t iDeltaV2 = 23;
+      int32_t iW = 49;
+      int32_t x = ileft;
       double dSoft = 184.6;
-      int iRight = ileft + cx;
-      int iMaxW = iRight - iW;
+      int32_t iRight = ileft + cx;
+      int32_t iMaxW = iRight - iW;
       COLORREF cr;
       for(x = ileft; x < iMaxW; x+=iW)
       {
        cr = RGB(
          255 - iDeltaVermelho - iDeltaDark,
-         ( 255 - (iDeltaV2 / 2.0) +(int) (sin((double)x / dSoft + dAnime)  *( iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+         ( 255 - (iDeltaV2 / 2.0) +(int32_t) (sin((double)x / dSoft + dAnime)  *( iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
          255 - iDeltaAzul - 23 - iDeltaDark);
          pdc->FillSolidRect(x, iTop, iW, cy, cr);
       }
@@ -26,7 +26,7 @@ void DoBar(::ca::graphics * pdc, int ileft, int iTop, int cx, int cy, double dAn
       {
        cr = RGB(
          255 - iDeltaVermelho - iDeltaDark,
-         ( 255 - (iDeltaV2 / 2.0) +(int) (sin((double)x / dSoft + dAnime)  *( iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+         ( 255 - (iDeltaV2 / 2.0) +(int32_t) (sin((double)x / dSoft + dAnime)  *( iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
          255 - iDeltaAzul - 23 - iDeltaDark);
          pdc->FillSolidRect(x, iTop, iRight - x, cy, cr);
       }
@@ -55,7 +55,7 @@ void file_manager_operation_info_view::_001OnDraw(::ca::graphics * pdc)
       rectProgress.bottom--;*/
    rect rectClient;
    GetClientRect(rectClient);
-      int iLineCount = 23;
+      int32_t iLineCount = 23;
       double dBarHeight = (double) rectClient.height() / (double) iLineCount;
       double dTop = 0.0;
       RECT rectProgress;
@@ -70,7 +70,7 @@ void file_manager_operation_info_view::_001OnDraw(::ca::graphics * pdc)
       RECT rectBar;
       double dProgress;
       dProgress = get_document()->m_thread.get_progress_rate();
-      for(int iLine = 0; iLine < iLineCount; iLine++)
+      for(int32_t iLine = 0; iLine < iLineCount; iLine++)
       {
 
          rectBar = rectProgress;
@@ -83,7 +83,7 @@ void file_manager_operation_info_view::_001OnDraw(::ca::graphics * pdc)
          {
             if(dProgress < dProgressU)
             {
-               rectBar.right = ((int) ((rectProgress.right - rectProgress.left) * (dProgress - dProgressL) * ((double) iLineCount) )) + rectProgress.left;
+               rectBar.right = ((int32_t) ((rectProgress.right - rectProgress.left) * (dProgress - dProgressL) * ((double) iLineCount) )) + rectProgress.left;
             }
             DoBar(pdc, rectBar.left, rectBar.top,
                rectBar.right - rectBar.left, rectBar.bottom - rectBar.top, m_dAnime);
@@ -97,7 +97,7 @@ void file_manager_operation_info_view::_001OnDraw(::ca::graphics * pdc)
 
 }
 
-void file_manager_operation_info_view::OnFileOperationStep(int iOperation, bool bFinal)
+void file_manager_operation_info_view::OnFileOperationStep(int32_t iOperation, bool bFinal)
 {
    UNREFERENCED_PARAMETER(iOperation);
    UNREFERENCED_PARAMETER(bFinal);

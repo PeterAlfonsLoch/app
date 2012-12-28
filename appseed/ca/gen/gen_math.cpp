@@ -10,9 +10,9 @@ namespace gen
    {
 
 
-      int ceil_div(int num, int den)
+      int32_t ceil_div(int32_t num, int32_t den)
       {
-         int quo = num / den;
+         int32_t quo = num / den;
          if((num % den) > 0)
             quo++;
          return quo;
@@ -187,7 +187,7 @@ namespace gen
 #endif
       }
 
-      int math::rand_max()
+      int32_t math::rand_max()
       {
          return 0xffffff;
       }
@@ -195,7 +195,7 @@ namespace gen
       unsigned long math::rnd()
       {
          synch_lock lock(this);
-         static int s_iRngReSeedCountDown = -1;
+         static int32_t s_iRngReSeedCountDown = -1;
          if(s_iRngReSeedCountDown < 0)
          {
             s_iRngReSeedCountDown = random_context_entropy(19840, 8777);
@@ -209,9 +209,9 @@ namespace gen
       }
 
 
-      int math::random_context_entropy(int iMin, int iMax, int iLevel)
+      int32_t math::random_context_entropy(int32_t iMin, int32_t iMax, int32_t iLevel)
       {
-         int iValue;
+         int32_t iValue;
          if(iLevel > 0)
          {
             iLevel = min(iLevel, 3);
@@ -241,13 +241,13 @@ namespace gen
           //  int64_t v3 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
             //int64_t v4 = ca4::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
 
-            int v1 = (int) timer.getTimeInMicroSec();
+            int32_t v1 = (int32_t) timer.getTimeInMicroSec();
 
-            int v2 = (int) time(NULL);
+            int32_t v2 = (int32_t) time(NULL);
 
-            int v3 = (int) ::crc32(((uint32_t) timer.getTimeInMicroSec()) % 0xffffffff, (const Bytef *) &d1, sizeof(double));
+            int32_t v3 = (int32_t) ::crc32(((uint32_t) timer.getTimeInMicroSec()) % 0xffffffff, (const Bytef *) &d1, sizeof(double));
 
-            int v4 = (int) ::crc32(((uint32_t) timer.getTimeInMicroSec()) % 0xffffffff, (const Bytef *) &d2, sizeof(double));
+            int32_t v4 = (int32_t) ::crc32(((uint32_t) timer.getTimeInMicroSec()) % 0xffffffff, (const Bytef *) &d2, sizeof(double));
 
             iValue = abs(v1 + v2 + v3 + v4) % (iMax - iMin);
 
@@ -285,7 +285,7 @@ namespace gen
       }
 
       bool math::IsPowerOfTwo(
-         unsigned int uiValue)
+         unsigned int32_t uiValue)
       {
           if (uiValue < 2)
               return FALSE;
@@ -296,7 +296,7 @@ namespace gen
           return TRUE;
       }
 
-      unsigned int math::ReverseBits (unsigned index, unsigned NumBits )
+      unsigned int32_t math::ReverseBits (unsigned index, unsigned NumBits )
       {
           unsigned i, rev;
 
@@ -309,17 +309,17 @@ namespace gen
           return rev;
       }
 
-/*      int math::RandRange(int i1, int i2)
+/*      int32_t math::RandRange(int32_t i1, int32_t i2)
       {
          // dRandRange == 0.0 is impossible event due this next statement;
          if(i1 == i2)
             return i1;
-         int iMin = min(i1, i2);
-         int iMax = max(i1, i2);
+         int32_t iMin = min(i1, i2);
+         int32_t iMax = max(i1, i2);
          double dRand = 0.0;
          double dRange = (double) (iMax - iMin);
          double dRandRange = 1.0;
-         int i = 1;
+         int32_t i = 1;
          while((dRandRange - 1.0) < dRange)
          {
             dRand += dRandRange * gen_rand();
@@ -330,20 +330,20 @@ namespace gen
          dRand *= (dRange) / (double) dRandRange;
          dRand += (double) iMin;
          dRand += 0.5;
-         return (int) dRand;
+         return (int32_t) dRand;
       }
 
-      unsigned int math::RandRange(unsigned int ui1, unsigned int ui2)
+      unsigned int32_t math::RandRange(unsigned int32_t ui1, unsigned int32_t ui2)
       {
          // dRandRange == 0.0 is impossible event due this next statement;
          if(ui1 == ui2)
             return ui1;
-         int iMin = min(ui1, ui2);
-         int iMax = max(ui1, ui2);
+         int32_t iMin = min(ui1, ui2);
+         int32_t iMax = max(ui1, ui2);
          double dRand = 0.0;
          double dRange = (double) (iMax - iMin);
          double dRandRange = 1.0;
-         int i = 1;
+         int32_t i = 1;
          while((dRandRange - 1.0) < dRange)
          {
             dRand += dRandRange * gen_rand();
@@ -354,7 +354,7 @@ namespace gen
          dRand *= (dRange) / (double) dRandRange;
          dRand += (double) iMin;
          dRand += 0.5;
-         return (int) dRand;
+         return (int32_t) dRand;
       }*/
 
       int64_t math::RandRange(int64_t i1, int64_t i2)
@@ -380,7 +380,7 @@ namespace gen
          double dRand = 0.0;
          double dRange = (double) (uiMax - uiMin);
          double dRandRange = 1.0;
-         int i = 1;
+         int32_t i = 1;
          while((dRandRange - 1.0) < dRange)
          {
             dRand += dRandRange * gen_rand();
@@ -391,19 +391,19 @@ namespace gen
          dRand *= (dRange) / (double) dRandRange;
          dRand += (double) uiMin;
          dRand += 0.5;
-         return (int) dRand;
+         return (int32_t) dRand;
       }
        
        
        */
 
-      int math::LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax)
+      int32_t math::LinearMap(int32_t iMin, int32_t iMax, int32_t iValue, int32_t iValueMin, int32_t iValueMax)
       {
          double d = iValue - iValueMin;
          d *= (iMax - iMin) / (double) (iValueMax - iValueMin);
          d += iMin;
          d += 0.5;
-         return (int) d;
+         return (int32_t) d;
       }
 
       double math::LinearMap(
@@ -419,9 +419,9 @@ namespace gen
       }
 
 
-      int math::RangeRate(int iMin, int iMax, double dRate)
+      int32_t math::RangeRate(int32_t iMin, int32_t iMax, double dRate)
       {
-         return (int)((iMax - iMin) * dRate) + iMin;
+         return (int32_t)((iMax - iMin) * dRate) + iMin;
       }
 
 
@@ -440,11 +440,11 @@ namespace gen
    namespace lemon
    {
 
-      int CLASS_DECL_ca time_seed();
+      int32_t CLASS_DECL_ca time_seed();
 
       void CLASS_DECL_ca srand();
       
-      int CLASS_DECL_ca time_seed()
+      int32_t CLASS_DECL_ca time_seed()
       {
          return (time(NULL) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;
       }
@@ -452,14 +452,14 @@ namespace gen
 
       void CLASS_DECL_ca srand()
       {
-         int iSeed = time_seed();
+         int32_t iSeed = time_seed();
          ::srand(iSeed);
          iSeed %= 64;
-         for(int i = 0; i < iSeed; i++)
+         for(int32_t i = 0; i < iSeed; i++)
          {
             ::srand(rand());
          }
-         for(int i = 0; i < iSeed; i++)
+         for(int32_t i = 0; i < iSeed; i++)
          {
             rand();
          }

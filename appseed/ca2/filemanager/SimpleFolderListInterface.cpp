@@ -68,7 +68,7 @@ namespace filemanager
 
       Application.dir().ls(strParent, &straPath, &straTitle);
 
-      for(int i = 0; i < straPath.get_count(); i++)
+      for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          folder.m_strPath     = straPath[i];
          folder.m_wstrName    = straTitle[i];
@@ -103,7 +103,7 @@ namespace filemanager
 
          Folder folder;
 
-         for(int i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
             folder.m_strPath = stra[i];
             folder.m_wstrName = stra[i];
@@ -142,7 +142,7 @@ namespace filemanager
 
             string str;
             HICON hicon = NULL;
-            int iIndex;
+            int32_t iIndex;
 #ifdef WINDOWSEX
             for(POSITION pos = m_iconmap.get_start_position();
                pos != NULL;
@@ -154,10 +154,10 @@ namespace filemanager
             throw todo(get_app());
 #endif
             m_iconmap.remove_all();
-   //         int iIcon;
-   //         int iImage;
+   //         int32_t iIcon;
+   //         int32_t iImage;
    //         IExtractIcon * lpiextracticon;
-            for(int i = 0; i < m_foldera.GetFolderCount(); i++)
+            for(int32_t i = 0; i < m_foldera.GetFolderCount(); i++)
             {
    /*            Folder & folder = m_foldera.GetFolder(i);
                if(FAILED(m_spshellfolder->GetUIObjectOf(
@@ -242,7 +242,7 @@ namespace filemanager
       //Folder folder;
 
 
-      //for(int i = 0; i < this->get_size(); i++)
+      //for(int32_t i = 0; i < this->get_size(); i++)
       //{
          //Folder & folder = this->element_at(i);
       //}

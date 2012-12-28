@@ -53,7 +53,7 @@ namespace sockets
       string set_cookie(
          const char * name,
          var var,
-         int iExpire,
+         int32_t iExpire,
          const char * path,
          const char * domain,
          bool bSecure);
@@ -69,7 +69,7 @@ namespace sockets
    private:
       http_base_socket& operator=(const http_base_socket& ) { return *this; } // assignment operator
       void Execute();
-      int m_iContentLength;
+      int32_t m_iContentLength;
    };
 
 

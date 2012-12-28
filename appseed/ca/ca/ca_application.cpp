@@ -57,12 +57,12 @@ namespace ca
    }
 
 
-   int application::exit()
+   int32_t application::exit()
    {
       return 0;
    }
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
       return 0;
    }
@@ -113,7 +113,7 @@ namespace ca
       return true;
    }
 
-   int application::main()
+   int32_t application::main()
    {
       return 0;
    }

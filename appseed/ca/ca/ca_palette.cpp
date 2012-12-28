@@ -53,7 +53,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int palette::GetEntryCount()
+   int32_t palette::GetEntryCount()
    {
       throw interface_only_exception(get_app());
    }

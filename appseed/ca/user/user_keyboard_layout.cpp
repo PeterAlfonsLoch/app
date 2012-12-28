@@ -25,7 +25,7 @@ namespace user
 
    bool keyboard_layout_id::operator <= (const keyboard_layout_id & layout) const
    {
-      int iCompare = m_strName.CompareNoCase(layout.m_strName);
+      int32_t iCompare = m_strName.CompareNoCase(layout.m_strName);
       if(iCompare <= 0)
          return true;
       else if(iCompare == 0)
@@ -40,7 +40,7 @@ namespace user
 
    bool keyboard_layout_id::operator < (const keyboard_layout_id & layout) const
    {
-      int iCompare = m_strName.CompareNoCase(layout.m_strName);
+      int32_t iCompare = m_strName.CompareNoCase(layout.m_strName);
       if(iCompare < 0)
          return true;
       else if(iCompare == 0)
@@ -54,7 +54,7 @@ namespace user
 
    bool keyboard_layout_id::operator == (const keyboard_layout_id & layout) const
    {
-      int iCompare = m_strName.CompareNoCase(layout.m_strName);
+      int32_t iCompare = m_strName.CompareNoCase(layout.m_strName);
       if(iCompare != 0)
          return false;
       iCompare = m_strPath.CompareNoCase(layout.m_strPath);
@@ -72,7 +72,7 @@ namespace user
       void keyboard_layout::process_escape(::xml::node * pnode, gen::property_set & set)
       {
          set.m_bKeyCaseInsensitive = false;
-         for(int i = 0; i < pnode->get_children_count(); i++)
+         for(int32_t i = 0; i < pnode->get_children_count(); i++)
          {
             ::xml::node * pchild = pnode->child_at(i);
             if(pchild->get_name().CompareNoCase("item") == 0)
@@ -92,17 +92,17 @@ namespace user
 
    bool keyboard_layout::load(const char * pszPath)
    {
-      int iMap;
-      int iChar;
-      int iKey;
-      int iCode;
+      int32_t iMap;
+      int32_t iChar;
+      int32_t iKey;
+      int32_t iCode;
       string str = Application.file().as_string(pszPath);
       if(str.is_empty())
          return false;
       ::xml::document doc(get_app());
       if(!doc.load(str))
          return false;
-      for(int i = 0; i < doc.get_root()->get_children_count(); i++)
+      for(int32_t i = 0; i < doc.get_root()->get_children_count(); i++)
       {
          ::xml::node * pnode = doc.get_root()->child_at(i);
          if(pnode->get_name().CompareNoCase("item") == 0)
@@ -119,7 +119,7 @@ namespace user
             }
             if(strChar.has_char())
             {
-               iChar = iMap | (int)(unsigned char)(char)(strChar[0]);
+               iChar = iMap | (int32_t)(unsigned char)(char)(strChar[0]);
                if(strValue.has_char())
                {
                   m_mapChar[iChar] = strValue;
@@ -131,7 +131,7 @@ namespace user
             }
             if(strKey.has_char())
             {
-               iKey = iMap | (int)(atoi(strKey));
+               iKey = iMap | (int32_t)(atoi(strKey));
                if(strValue.has_char())
                {
                   m_mapKey[iKey] = strValue;
@@ -143,7 +143,7 @@ namespace user
             }
             if(strCode.has_char())
             {
-               iCode = iMap | (int)(atoi(strCode));
+               iCode = iMap | (int32_t)(atoi(strCode));
                if(strValue.has_char())
                {
                   m_mapCode[iCode] = strValue;
@@ -163,7 +163,7 @@ namespace user
       return true;
    }
 
-   string keyboard_layout::process_key(int iCode, int iKey, int iFlags)
+   string keyboard_layout::process_key(int32_t iCode, int32_t iKey, int32_t iFlags)
    {
       UNREFERENCED_PARAMETER(iFlags);
       string str;
@@ -195,7 +195,7 @@ namespace user
          stringa stra;
          stra.explode(";", m_strEscape);
          gen::property_set * pset = &m_setEscape;
-         for(int i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
             if(pset->has_property(stra[i]))
             {

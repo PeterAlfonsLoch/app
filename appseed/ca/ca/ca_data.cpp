@@ -47,7 +47,7 @@ namespace ca
    data::~data()
    {
       comparable_array < data_listener * > listenerptra = m_listenerptra;
-      for(int i = 0; i < listenerptra.get_count(); i++)
+      for(int32_t i = 0; i < listenerptra.get_count(); i++)
       {
          listenerptra[i]->listen(this, false);
       }
@@ -58,9 +58,9 @@ namespace ca
       return m_lockedlongWriting > 0 || m_lockedlongSaving > 0 || (m_spdataParentLock.is_set() && m_spdataParentLock->is_in_use());
    }
 
-   void data::on_update_data(int iHint)
+   void data::on_update_data(int32_t iHint)
    {
-      for(int i = 0; i < m_listenerptra.get_count(); i++)
+      for(int32_t i = 0; i < m_listenerptra.get_count(); i++)
       {
          m_listenerptra[i]->on_update_data(this, iHint);
       }

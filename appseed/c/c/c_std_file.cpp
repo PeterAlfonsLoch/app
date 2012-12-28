@@ -65,12 +65,12 @@ _FILE *__iob_func_dup() {return (_FILE*)__iob;}
 
 
 
-/*int _fileno(_FILE *fp)
+/*int32_t _fileno(_FILE *fp)
 {
-	return (int)fp;			// FIXME:  This doesn't work under Win64
+	return (int32_t)fp;			// FIXME:  This doesn't work under Win64
 }
 
-HANDLE _get_osfhandle(int i)
+HANDLE _get_osfhandle(int32_t i)
 {
 	return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 }*/
@@ -220,16 +220,16 @@ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 #endif
 
 
-int fprintf_dup(_FILE *fp, const char *s, ...)
+int32_t fprintf_dup(_FILE *fp, const char *s, ...)
 {
 	va_list args;
 	va_start(args, s);
 
 	char bfr[1024];
 	#ifdef WINDOWSEX
-	int len = wvsprintfA(bfr, s, args);
+	int32_t len = wvsprintfA(bfr, s, args);
 	#else
-	int len = vsprintf(bfr, s, args);
+	int32_t len = vsprintf(bfr, s, args);
 	#endif
 
 	va_end(args);
@@ -240,13 +240,13 @@ int fprintf_dup(_FILE *fp, const char *s, ...)
 
 #ifdef WINDOWSEX
 
-int fwprintf_dup(_FILE *fp, const wchar_t *s, ...)
+int32_t fwprintf_dup(_FILE *fp, const wchar_t *s, ...)
 {
 	va_list args;
 	va_start(args, s);
 
 	wchar_t bfr[1024];
-	int len = wvsprintfW(bfr, s, args);
+	int32_t len = wvsprintfW(bfr, s, args);
 
 	va_end(args);
 
@@ -259,7 +259,7 @@ int fwprintf_dup(_FILE *fp, const wchar_t *s, ...)
 
 #endif
 
-int fclose_dup(_FILE *fp)
+int32_t fclose_dup(_FILE *fp)
 {
 
 #ifdef WINDOWS
@@ -276,7 +276,7 @@ int fclose_dup(_FILE *fp)
 
 }
 
-int feof_dup(_FILE *fp)
+int32_t feof_dup(_FILE *fp)
 {
 
 #ifdef WINDOWS
@@ -291,7 +291,7 @@ int feof_dup(_FILE *fp)
 
 }
 
-int fflush_dup(_FILE * fp)
+int32_t fflush_dup(_FILE * fp)
 {
 
 #ifdef WINDOWS
@@ -307,7 +307,7 @@ int fflush_dup(_FILE * fp)
 
 }
 
-int fseek_dup(_FILE *fp, long offset, int origin)
+int32_t fseek_dup(_FILE *fp, long offset, int32_t origin)
 {
 
 #ifdef WINDOWS
@@ -355,7 +355,7 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 		return 0;
 
 	HANDLE hFile = (HANDLE) ((_FILE*)str)->_base;
-	int textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
+	int32_t textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
 
 	char *src;
 	if (textMode)
@@ -439,7 +439,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 		return 0;
 
 	HANDLE hFile = (HANDLE) ((_FILE*)str)->_base;
-	int textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
+	int32_t textMode = ((_FILE*)str)->_flag & _FILE_TEXT;
 
    if(hFile == NULL)
       return 0;
@@ -505,7 +505,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 
 }
 
-char *fgets_dup(char *str, int n, _FILE *s)
+char *fgets_dup(char *str, int32_t n, _FILE *s)
 {
 
 #ifdef WINDOWS
@@ -513,7 +513,7 @@ char *fgets_dup(char *str, int n, _FILE *s)
 	if (feof_dup(s))
 		return 0;
 
-	int i;
+	int32_t i;
 	for (i = 0; i < n-1; i++)
 	{
 		if (!fread_dup(&str[i], 1, sizeof(char), s))
@@ -543,7 +543,7 @@ char *fgets_dup(char *str, int n, _FILE *s)
 
 #ifdef WINDOWS
 
-wchar_t *fgetws_dup(wchar_t *str, int n, _FILE *s)
+wchar_t *fgetws_dup(wchar_t *str, int32_t n, _FILE *s)
 {
 	// Text-mode fgetws converts MBCS->Unicode
 	if (((_FILE*)str)->_flag & _FILE_TEXT)
@@ -560,7 +560,7 @@ wchar_t *fgetws_dup(wchar_t *str, int n, _FILE *s)
 	if (feof_dup(s))
 		return 0;
 
-	int i;
+	int32_t i;
 	for (i = 0; i < n-1; i++)
 	{
 		if (!fread_dup(&str[i], 1, sizeof(wchar_t), s))
@@ -584,7 +584,7 @@ wchar_t *fgetws_dup(wchar_t *str, int n, _FILE *s)
 #endif
 
 
-int fgetc_dup(_FILE *s)
+int32_t fgetc_dup(_FILE *s)
 {
 	if (s == 0 || feof_dup(s))
 		return EOF;
@@ -592,17 +592,17 @@ int fgetc_dup(_FILE *s)
 	unsigned char c;
 	fread_dup(&c, 1, sizeof(unsigned char), s);
 
-	return (int)c;
+	return (int32_t)c;
 }
 
-int ungetc_dup(int c, _FILE *s)
+int32_t ungetc_dup(int32_t c, _FILE *s)
 {
 	if (s == 0)
 		return EOF;
 
 	fseek_dup(s, -1, SEEK_CUR);
 
-	return (int)c;
+	return (int32_t)c;
 }
 
 #ifdef WINDOWS
@@ -637,13 +637,13 @@ wint_t ungetwc_dup(wint_t w, _FILE *s)
 
 	fseek_dup(s, -2, SEEK_CUR);
 
-	return (int)w;
+	return (int32_t)w;
 }
 
 #endif
 
 
-int ferror_dup(_FILE *fp)
+int32_t ferror_dup(_FILE *fp)
 {
 
 #ifdef WINDOWS

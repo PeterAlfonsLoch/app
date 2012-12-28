@@ -10,7 +10,7 @@ public:
 #if defined(LINUX) || defined(MACOS)
 
    LONG             m_lMaxCount;
-   int              m_object;
+   int32_t              m_object;
 
 #endif
 

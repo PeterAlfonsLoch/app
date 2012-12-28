@@ -30,10 +30,10 @@ public:
 // Operations
 
 // translate the point
-   void Offset(int xOffset, int yOffset) throw();
+   void Offset(int32_t xOffset, int32_t yOffset) throw();
    void Offset(POINT point) throw();
    void Offset(SIZE size) throw();
-   void SetPoint(int X, int Y) throw();
+   void SetPoint(int32_t X, int32_t Y) throw();
 
    bool operator==(POINT point) const throw();
    bool operator!=(POINT point) const throw();
@@ -151,10 +151,10 @@ public:
 // Operations
 
 // translate the pointd
-   void Offset(int xOffset, int yOffset) throw();
+   void Offset(int32_t xOffset, int32_t yOffset) throw();
    void Offset(POINTD pointd) throw();
    void Offset(SIZED sized) throw();
-   void SetPoint(int X, int Y) throw();
+   void SetPoint(int32_t X, int32_t Y) throw();
 
    bool operator==(POINTD pointd) const throw();
    bool operator!=(POINTD pointd) const throw();

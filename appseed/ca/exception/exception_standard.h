@@ -59,20 +59,20 @@ public:
 #ifdef WINDOWS
    EXCEPTION_POINTERS * m_ppointers;
 #else
-   int            m_iSignal;
+   int32_t            m_iSignal;
    siginfo_t      m_siginfo;
    ucontext_t     m_ucontext;
 #endif
 
 
 #ifdef WINDOWS
-   unsigned int         code() const         { return m_ppointers->ExceptionRecord->ExceptionCode; }
+   unsigned int32_t         code() const         { return m_ppointers->ExceptionRecord->ExceptionCode; }
    void *               address() const      { return m_ppointers->ExceptionRecord->ExceptionAddress; }
    EXCEPTION_POINTERS * info() const         { return m_ppointers; }
    const char *         name() const         { return ::exception::translator::name(code()); }
    const char *         description() const  { return ::exception::translator::description(code()); }
 #else
-   unsigned int         code() const         { return m_siginfo.si_code; }
+   unsigned int32_t         code() const         { return m_siginfo.si_code; }
    void *               address() const      { return m_siginfo.si_addr; }
    const siginfo_t *    info() const         { return &m_siginfo; }
    const ucontext_t *   context() const      { return &m_ucontext; }
@@ -103,7 +103,7 @@ public:
    }
 
 #else
-   standard_exception(::ca::application * papp, int iSignal, siginfo_t * psiginfo, void * pc) :
+   standard_exception(::ca::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
       ca(papp),
       ::call_stack(papp),
       ::base_exception(papp),
@@ -148,7 +148,7 @@ namespace exception
       friend class translator;
    protected:
    #if defined(LINUX) || defined(MACOS)
-      standard_access_violation (::ca::application * papp, int signal, siginfo_t * psiginfo, void * pc) :
+      standard_access_violation (::ca::application * papp, int32_t signal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
 #ifdef LINUX
 #ifdef _LP64
@@ -194,7 +194,7 @@ namespace exception
    {
       friend class translator;
    protected:
-      standard_sigfpe (::ca::application * papp, int iSignal, siginfo_t * psiginfo, void * pc) :
+      standard_sigfpe (::ca::application * papp, int32_t iSignal, siginfo_t * psiginfo, void * pc) :
          ca(papp),
 #ifdef LINUX
 #ifdef _LP64

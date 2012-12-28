@@ -22,7 +22,7 @@
 
 
 
-void fastblur(DWORD * pdata, int w, int h, int radius);
+void fastblur(DWORD * pdata, int32_t w, int32_t h, int32_t radius);
 
 
 namespace hotplugin
@@ -192,13 +192,13 @@ namespace hotplugin
       return 0;
    }
 #else
-   int plugin::message_handler(XEvent * pevent)
+   int32_t plugin::message_handler(XEvent * pevent)
    {
       return 0;
    }
 #endif
 
-   int plugin::start_ca2_system()
+   int32_t plugin::start_ca2_system()
    {
       return -1;
    }
@@ -253,7 +253,7 @@ namespace hotplugin
    /*double cos_prec_dup(double x,double prec)
    {
    double t , s ;
-   int p;
+   int32_t p;
    p = 0;
    s = 1.0;
    t = 1.0;
@@ -312,7 +312,7 @@ namespace hotplugin
 
    }
 
-   void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int iProfile)
+   void get_progress_color(BYTE & uchR, BYTE & uchG, BYTE & uchB, double dRate, int32_t iProfile)
    {
       double dH = dRate; // blue ==> red => green
       double dL;
@@ -478,11 +478,11 @@ namespace hotplugin
 
 
       static DWORD s_dwSync = 0;
-      static int s_iDelta = 1984 + 1977;
+      static int32_t s_iDelta = 1984 + 1977;
       RECT rectWindow;
       get_window_rect(&rectWindow);
-      int cx = rectWindow.right - rectWindow.left;
-      int cy = rectWindow.bottom - rectWindow.top;
+      int32_t cx = rectWindow.right - rectWindow.left;
+      int32_t cy = rectWindow.bottom - rectWindow.top;
       RECT rect;
       rect.left      = 0;
       rect.top       = 0;
@@ -517,9 +517,9 @@ namespace hotplugin
 
 
 
-      int iDelta = s_iDelta;
-      int iRadius = 8;
-      int iPhase = ((((get_tick_count()- s_dwSync)  % iDelta)  ) * iRadius * 2) / iDelta;
+      int32_t iDelta = s_iDelta;
+      int32_t iRadius = 8;
+      int32_t iPhase = ((((get_tick_count()- s_dwSync)  % iDelta)  ) * iRadius * 2) / iDelta;
 
       if(iPhase == 0 && (get_tick_count() - s_dwSync) > 1977)
       {
@@ -528,7 +528,7 @@ namespace hotplugin
          s_dwSync = get_tick_count();
       }
 
-      int iStep = iPhase;
+      int32_t iStep = iPhase;
 
       if(iStep > iRadius)
          iStep = iRadius * 2 - iStep;
@@ -537,17 +537,17 @@ namespace hotplugin
 
       wstr = m_strStatus;
 
-      int iRate1 = 25;
+      int32_t iRate1 = 25;
 
       BYTE bA;
 
       {
 
-         //int iARange = (184 - 23) * 2;
-         //int iAClip = iARange / 2;
+         //int32_t iARange = (184 - 23) * 2;
+         //int32_t iAClip = iARange / 2;
          double period = 8.4; // seconds
          double frequency = 1.0 / period;
-         //int iA = (iARange * ::get_tick_count() / 8000) % iARange;
+         //int32_t iA = (iARange * ::get_tick_count() / 8000) % iARange;
          double w = 2.0 * 3.1415 * frequency;
          double t = get_tick_count() / 1000.0;
 
@@ -569,14 +569,14 @@ namespace hotplugin
 
       //graphics2.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
 
-      int iRate = 10;
+      int32_t iRate = 10;
 
-      const int iRowCount = cx - cx / (iRate / 2);
-      int iProgressCount = max(min((int) (iRowCount * dRate), iRowCount), 0);
+      const int32_t iRowCount = cx - cx / (iRate / 2);
+      int32_t iProgressCount = max(min((int32_t) (iRowCount * dRate), iRowCount), 0);
 
 
 
-      int iBorder1 = max(cx / iRate1, cy / iRate1);
+      int32_t iBorder1 = max(cx / iRate1, cy / iRate1);
 
       simple_path pathClip1;
 
@@ -597,8 +597,8 @@ namespace hotplugin
 
 
 
-      int iRatePercentMillis = ((int) (dRate * 100.0 * 1000.0)) % 1000;
-      int iRatePercent = ((int) (dRate * 100.0));
+      int32_t iRatePercentMillis = ((int32_t) (dRate * 100.0 * 1000.0)) % 1000;
+      int32_t iRatePercent = ((int32_t) (dRate * 100.0));
 
       wstring wstrProgress;
 
@@ -614,11 +614,11 @@ namespace hotplugin
 
       }
 
-      int iBarHeight = 23;
+      int32_t iBarHeight = 23;
 
 
 
-      int iBorder = 16;
+      int32_t iBorder = 16;
 
       simple_path pathClip;
 
@@ -649,14 +649,14 @@ namespace hotplugin
 
       br.create_solid(g, ARGB(49, 184 + 23, 184 + 23, 184 + 19));
 
-      int mcy = cy / 2;
+      int32_t mcy = cy / 2;
 
       if(m_iHealingSurface == 1)
       {
 
          g.select(br);
 
-         for(int x = 0; x < (cx + cy); x += 46)
+         for(int32_t x = 0; x < (cx + cy); x += 46)
          {
 
             pa[0].x = lprect->left + x;
@@ -745,7 +745,7 @@ namespace hotplugin
          g.fill_rect(rect_dim(lprect->left + cx / iRate , lprect->top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13), br);
       }
 
-      int iOffset = 3;
+      int32_t iOffset = 3;
 
       pen.create_solid(g, ARGB(220, 180, 180, 180));
       g.draw_line(lprect->left + cx / iRate - iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, lprect->left + cx - cx / iRate + iOffset, lprect->top + (cy - iBarHeight) / 2 - iOffset, pen);
@@ -816,19 +816,19 @@ namespace hotplugin
          return;
 
       RECT rectWindow = *lprect;
-      int cx = rectWindow.right - rectWindow.left;
-      int cy = rectWindow.bottom - rectWindow.top;
+      int32_t cx = rectWindow.right - rectWindow.left;
+      int32_t cy = rectWindow.bottom - rectWindow.top;
 
       double dRate = get_progress_rate();
-      int iLineCount = 25;
-      int x;
-      int y = rectWindow.top;
-      int pcx = cx;
-      int pcy = cy / iLineCount;
+      int32_t iLineCount = 25;
+      int32_t x;
+      int32_t y = rectWindow.top;
+      int32_t pcx = cx;
+      int32_t pcy = cy / iLineCount;
 
       RECT rectP;
 
-      for(int iLine = 0; iLine < iLineCount; iLine++)
+      for(int32_t iLine = 0; iLine < iLineCount; iLine++)
       {
          double dStart = (double) iLine / (double) iLineCount;
          double dEnd = (double) (iLine + 1) / (double) iLineCount;
@@ -924,7 +924,7 @@ namespace hotplugin
    }
 
 
-   void plugin::ensure_bitmap_data(int cx, int cy, bool bCreateFile)
+   void plugin::ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile)
    {
 
       if(m_pcolorref == NULL
@@ -999,7 +999,7 @@ namespace hotplugin
 
          dir::mk(dir::path(dir::userappdata("time"), "ca2"));
 
-         int iOpen;
+         int32_t iOpen;
 
          if(bCreateFile)
          {

@@ -250,8 +250,8 @@ namespace frame
       rect rectC(rectClient);
       rectC.deflate(7, 7, 7, 7);
 
-      const int ciStart = 4;
-      const int ciCurve = 2;
+      const int32_t ciStart = 4;
+      const int32_t ciCurve = 2;
 
 
       CColorBezier bezier;
@@ -352,11 +352,11 @@ namespace frame
       System.visual()->DrawAndFillBeziers(
          pdc,
          m_pointsetBody.get_data(),
-         (int) m_pointsetBody.get_size(),
+         (int32_t) m_pointsetBody.get_size(),
          1.0,
          &pt);
 
-      for(int i = 0; i < m_colorbezieraOutsideBorder.get_size(); i++)
+      for(int32_t i = 0; i < m_colorbezieraOutsideBorder.get_size(); i++)
       {
          CColorBezier & bezier = m_colorbezieraOutsideBorder[i];
          bezier.draw(m_brushNull, pdc);
@@ -373,7 +373,7 @@ namespace frame
       Sys(pdc->get_app()).visual()->DrawAndFillBeziers(
          pdc,
          m_pointset.get_data(),
-         (int) m_pointset.get_size(),
+         (int32_t) m_pointset.get_size(),
          1.0,
          &pt);
 

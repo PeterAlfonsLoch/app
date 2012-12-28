@@ -9,7 +9,7 @@ namespace sockets
    {
    }
 
-   int sip_server::run()
+   int32_t sip_server::run()
    {
 /*      socket_handler handler(get_app());
       handler.EnablePool();

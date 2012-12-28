@@ -24,11 +24,11 @@
 
 namespace n7z {
 
-static void BoolVector_Fill_False(bool_array &v, int size)
+static void BoolVector_Fill_False(bool_array &v, int32_t size)
 {
   v.remove_all();
   v.set_size(0, size);
-  for (int i = 0; i < size; i++)
+  for (int32_t i = 0; i < size; i++)
     v.add(false);
 }
 
@@ -43,18 +43,18 @@ static bool BoolVector_GetAndSet(bool_array &v, uint32 index)
 
 bool CFolder::CheckStructure() const
 {
-  const int kNumCodersMax = sizeof(uint32) * 8; // don't change it
-  const int kMaskSize = sizeof(uint32) * 8; // it must be >= kNumCodersMax
-  const int kNumBindsMax = 32;
+  const int32_t kNumCodersMax = sizeof(uint32) * 8; // don't change it
+  const int32_t kMaskSize = sizeof(uint32) * 8; // it must be >= kNumCodersMax
+  const int32_t kNumBindsMax = 32;
 
   if (Coders.get_count() > kNumCodersMax || BindPairs.get_count() > kNumBindsMax)
     return false;
 
   {
     bool_array v;
-    BoolVector_Fill_False(v, (int) (BindPairs.get_count() + PackStreams.get_count()));
+    BoolVector_Fill_False(v, (int32_t) (BindPairs.get_count() + PackStreams.get_count()));
 
-    int i;
+    int32_t i;
     for (i = 0; i < BindPairs.get_count(); i++)
       if (BoolVector_GetAndSet(v, BindPairs[i].InIndex))
         return false;
@@ -62,14 +62,14 @@ bool CFolder::CheckStructure() const
       if (BoolVector_GetAndSet(v, PackStreams[i]))
         return false;
 
-    BoolVector_Fill_False(v, (int) UnpackSizes.get_count());
+    BoolVector_Fill_False(v, (int32_t) UnpackSizes.get_count());
     for (i = 0; i < BindPairs.get_count(); i++)
       if (BoolVector_GetAndSet(v, BindPairs[i].OutIndex))
         return false;
   }
 
   uint32 mask[kMaskSize];
-  int i;
+  int32_t i;
   for (i = 0; i < kMaskSize; i++)
     mask[i] = 0;
 
@@ -93,7 +93,7 @@ bool CFolder::CheckStructure() const
   }
 
   for (i = 0; i < kMaskSize; i++)
-    for (int j = 0; j < kMaskSize; j++)
+    for (int32_t j = 0; j < kMaskSize; j++)
       if (((1 << j) & mask[i]) != 0)
         mask[i] |= mask[j];
 
@@ -174,7 +174,7 @@ void CStreamSwitch::Set(CInArchive *archive, const array_ptr_alloc < ::ex1::byte
   byte external = archive->ReadByte();
   if (external != 0)
   {
-    int dataIndex = (int)archive->ReadNum();
+    int32_t dataIndex = (int32_t)archive->ReadNum();
     if (dataIndex < 0 || dataIndex >= dataVector->get_count())
       ThrowIncorrect();
     Set(archive, (*dataVector)[dataIndex]);
@@ -215,7 +215,7 @@ uint64 CInByte2::ReadNumber()
   byte firstByte = _buffer[_pos++];
   byte mask = 0x80;
   uint64 value = 0;
-  for (int i = 0; i < 8; i++)
+  for (int32_t i = 0; i < 8; i++)
   {
     if ((firstByte & mask) == 0)
     {
@@ -270,7 +270,7 @@ void CInByte2::ReadString(string &s)
       ThrowEndOfData();
     rem = i;
   }
-  int len = (int)(rem / 2);
+  int32_t len = (int32_t)(rem / 2);
   if (len < 0 || (size_t)len * 2 != rem)
     ThrowUnsupported();
   s = gen::international::unicode_to_utf8(wstring((wchar_t *) buf, len));
@@ -279,7 +279,7 @@ void CInByte2::ReadString(string &s)
 
 static inline bool TestSignature(const byte *p)
 {
-  for (int i = 0; i < kSignatureSize; i++)
+  for (int32_t i = 0; i < kSignatureSize; i++)
     if (p[i] != kSignature[i])
       return false;
   return crc_calc(p + 12, 20) == GetUi32(p + 8);
@@ -288,7 +288,7 @@ static inline bool TestSignature(const byte *p)
 #ifdef FORMAT_7Z_RECOVERY
 static inline bool TestSignature2(const byte *p)
 {
-  int i;
+  int32_t i;
   for (i = 0; i < kSignatureSize; i++)
     if (p[i] != kSignature[i])
       return false;
@@ -403,13 +403,13 @@ void CInArchive::GetNextFolderItem(CFolder &folder)
 
     {
       byte mainByte = ReadByte();
-      int idSize = (mainByte & 0xF);
+      int32_t idSize = (mainByte & 0xF);
       byte longID[15];
       ReadBytes(longID, idSize);
       if (idSize > 8)
         ThrowUnsupported();
       uint64 id = 0;
-      for (int j = 0; j < idSize; j++)
+      for (int32_t j = 0; j < idSize; j++)
         id |= (uint64)longID[idSize - 1 - j] << (8 * j);
       coder.MethodID = id;
 
@@ -480,14 +480,14 @@ void CInArchive::WaitAttribute(uint64 attribute)
   }
 }
 
-void CInArchive::ReadHashDigests(int numItems,
+void CInArchive::ReadHashDigests(int32_t numItems,
     bool_array &digestsDefined,
     base_array<uint32> &digests)
 {
   ReadBoolVector2(numItems, digestsDefined);
   digests.remove_all();
   digests.set_size(0, numItems);
-  for (int i = 0; i < numItems; i++)
+  for (int32_t i = 0; i < numItems; i++)
   {
     uint32 crc = 0;
     if (digestsDefined[i])
@@ -601,7 +601,7 @@ void CInArchive::ReadSubStreamsInfo(
     type = ReadID();
     if (type == NID::kNumUnpackStream)
     {
-      for (int i = 0; i < folders.get_count(); i++)
+      for (int32_t i = 0; i < folders.get_count(); i++)
         numUnpackStreamsInFolders.add(ReadNum());
       continue;
     }
@@ -613,10 +613,10 @@ void CInArchive::ReadSubStreamsInfo(
   }
 
   if (numUnpackStreamsInFolders.is_empty())
-    for (int i = 0; i < folders.get_count(); i++)
+    for (int32_t i = 0; i < folders.get_count(); i++)
       numUnpackStreamsInFolders.add(1);
 
-  int i;
+  int32_t i;
   for (i = 0; i < numUnpackStreamsInFolders.get_count(); i++)
   {
     // v3.13 incorrectly worked with empty folders
@@ -637,8 +637,8 @@ void CInArchive::ReadSubStreamsInfo(
   if (type == NID::kSize)
     type = ReadID();
 
-  int numDigests = 0;
-  int numDigestsTotal = 0;
+  int32_t numDigests = 0;
+  int32_t numDigestsTotal = 0;
   for (i = 0; i < folders.get_count(); i++)
   {
     CNum numSubstreams = numUnpackStreamsInFolders[i];
@@ -654,7 +654,7 @@ void CInArchive::ReadSubStreamsInfo(
       bool_array digestsDefined2;
       base_array<uint32> digests2;
       ReadHashDigests(numDigests, digestsDefined2, digests2);
-      int digestIndex = 0;
+      int32_t digestIndex = 0;
       for (i = 0; i < folders.get_count(); i++)
       {
         CNum numSubstreams = numUnpackStreamsInFolders[i];
@@ -678,7 +678,7 @@ void CInArchive::ReadSubStreamsInfo(
       {
         BoolVector_Fill_False(digestsDefined, numDigestsTotal);
         digests.remove_all();
-        for (int i = 0; i < numDigestsTotal; i++)
+        for (int32_t i = 0; i < numDigestsTotal; i++)
           digests.add(0);
       }
       return;
@@ -732,13 +732,13 @@ void CInArchive::ReadStreamsInfo(
   }
 }
 
-void CInArchive::ReadBoolVector(int numItems, bool_array &v)
+void CInArchive::ReadBoolVector(int32_t numItems, bool_array &v)
 {
   v.remove_all();
   v.set_size(0, numItems);
   byte b = 0;
   byte mask = 0;
-  for (int i = 0; i < numItems; i++)
+  for (int32_t i = 0; i < numItems; i++)
   {
     if (mask == 0)
     {
@@ -750,7 +750,7 @@ void CInArchive::ReadBoolVector(int numItems, bool_array &v)
   }
 }
 
-void CInArchive::ReadBoolVector2(int numItems, bool_array &v)
+void CInArchive::ReadBoolVector2(int32_t numItems, bool_array &v)
 {
   byte allAreDefined = ReadByte();
   if (allAreDefined == 0)
@@ -760,11 +760,11 @@ void CInArchive::ReadBoolVector2(int numItems, bool_array &v)
   }
   v.remove_all();
   v.set_size(0, numItems);
-  for (int i = 0; i < numItems; i++)
+  for (int32_t i = 0; i < numItems; i++)
     v.add(true);
 }
 
-void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer > & dataVector, CUInt64DefVector & v, int numFiles)
+void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer > & dataVector, CUInt64DefVector & v, int32_t numFiles)
 {
   ReadBoolVector2(numFiles, v.Defined);
 
@@ -772,7 +772,7 @@ void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer 
   streamSwitch.Set(this, &dataVector);
   v.Values.set_size(0, numFiles);
 
-  for (int i = 0; i < numFiles; i++)
+  for (int32_t i = 0; i < numFiles; i++)
   {
     uint64 t = 0;
     if (v.Defined[i])
@@ -830,7 +830,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
     #endif
     );
   uint64 dataStartPos = baseOffset + dataOffset;
-  for (int i = 0; i < folders.get_count(); i++)
+  for (int32_t i = 0; i < folders.get_count(); i++)
   {
     const CFolder &folder = folders[i];
     dataVector.add(::ex1::byte_buffer());
@@ -862,7 +862,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
     if (folder.UnpackCRCDefined)
       if (crc_calc(data, unpackSize) != folder.UnpackCRC)
         ThrowIncorrect();
-    for (int j = 0; j < folder.PackStreams.get_count(); j++)
+    for (int32_t j = 0; j < folder.PackStreams.get_count(); j++)
     {
       uint64 packSize = packSizes[packIndex++];
       dataStartPos += packSize;
@@ -928,7 +928,7 @@ HRESULT CInArchive::ReadHeader(
   }
   else
   {
-    for (int i = 0; i < db.Folders.get_count(); i++)
+    for (int32_t i = 0; i < db.Folders.get_count(); i++)
     {
       db.NumUnpackStreamsVector.add(1);
       CFolder &folder = db.Folders[i];
@@ -958,7 +958,7 @@ HRESULT CInArchive::ReadHeader(
     db.ArchiveInfo.FileInfoPopIDs.add(NID::kCRC);
 
   bool_array emptyStreamVector;
-  BoolVector_Fill_False(emptyStreamVector, (int)numFiles);
+  BoolVector_Fill_False(emptyStreamVector, (int32_t)numFiles);
   bool_array emptyFileVector;
   bool_array antiFileVector;
   CNum numEmptyStreams = 0;
@@ -980,14 +980,14 @@ HRESULT CInArchive::ReadHeader(
       {
         CStreamSwitch streamSwitch;
         streamSwitch.Set(this, &dataVector);
-        for (int i = 0; i < db.Files.get_count(); i++)
+        for (int32_t i = 0; i < db.Files.get_count(); i++)
           _inByteBack->ReadString(db.Files[i].Name);
         break;
       }
       case NID::kWinAttributes:
       {
         bool_array boolVector;
-        ReadBoolVector2((int) db.Files.get_count(), boolVector);
+        ReadBoolVector2((int32_t) db.Files.get_count(), boolVector);
         CStreamSwitch streamSwitch;
         streamSwitch.Set(this, &dataVector);
         for (i = 0; i < numFiles; i++)
@@ -1013,10 +1013,10 @@ HRESULT CInArchive::ReadHeader(
       }
       case NID::kEmptyFile:  ReadBoolVector(numEmptyStreams, emptyFileVector); break;
       case NID::kAnti:  ReadBoolVector(numEmptyStreams, antiFileVector); break;
-      case NID::kStartPos:  ReadUInt64DefVector(dataVector, db.StartPos, (int)numFiles); break;
-      case NID::kCTime:  ReadUInt64DefVector(dataVector, db.CTime, (int)numFiles); break;
-      case NID::kATime:  ReadUInt64DefVector(dataVector, db.ATime, (int)numFiles); break;
-      case NID::kMTime:  ReadUInt64DefVector(dataVector, db.MTime, (int)numFiles); break;
+      case NID::kStartPos:  ReadUInt64DefVector(dataVector, db.StartPos, (int32_t)numFiles); break;
+      case NID::kCTime:  ReadUInt64DefVector(dataVector, db.CTime, (int32_t)numFiles); break;
+      case NID::kATime:  ReadUInt64DefVector(dataVector, db.ATime, (int32_t)numFiles); break;
+      case NID::kMTime:  ReadUInt64DefVector(dataVector, db.MTime, (int32_t)numFiles); break;
       case NID::kDummy:
       {
         for (uint64 j = 0; j < size; j++)
@@ -1083,7 +1083,7 @@ void CArchiveDatabaseEx::FillFolderStartPackStream()
   FolderStartPackStreamIndex.remove_all();
   FolderStartPackStreamIndex.set_size(0, Folders.get_count());
   CNum startPos = 0;
-  for (int i = 0; i < Folders.get_count(); i++)
+  for (int32_t i = 0; i < Folders.get_count(); i++)
   {
     FolderStartPackStreamIndex.add(startPos);
     startPos += (CNum)Folders[i].PackStreams.get_count();
@@ -1095,7 +1095,7 @@ void CArchiveDatabaseEx::FillStartPos()
   PackStreamStartPositions.remove_all();
   PackStreamStartPositions.set_size(0, PackSizes.get_count());
   file_position startPos = 0;
-  for (int i = 0; i < PackSizes.get_count(); i++)
+  for (int32_t i = 0; i < PackSizes.get_count(); i++)
   {
     PackStreamStartPositions.add(startPos);
     startPos += PackSizes[i];
@@ -1109,9 +1109,9 @@ void CArchiveDatabaseEx::FillFolderStartFileIndex()
   FileIndexToFolderIndexMap.remove_all();
   FileIndexToFolderIndexMap.set_size(0, Files.get_count());
 
-  int folderIndex = 0;
+  int32_t folderIndex = 0;
   CNum indexInFolder = 0;
-  for (int i = 0; i < Files.get_count(); i++)
+  for (int32_t i = 0; i < Files.get_count(); i++)
   {
     const CFileItem &file = Files[i];
     bool emptyStream = !file.HasStream;
@@ -1175,18 +1175,18 @@ HRESULT CInArchive::ReadDatabase2(
   {
     uint64 cur, cur2;
     cur = _stream->seek(0, ex1::seek_current);
-    const int kCheckSize = 500;
+    const int32_t kCheckSize = 500;
     byte buf[kCheckSize];
     cur2 = _stream->seek(0, ex1::seek_end);
-    int checkSize = kCheckSize;
+    int32_t checkSize = kCheckSize;
     if (cur2 - cur < kCheckSize)
-      checkSize = (int)(cur2 - cur);
+      checkSize = (int32_t)(cur2 - cur);
     cur2 = _stream->seek(-checkSize, ex1::seek_end);
 
     RINOK(ReadStream_FALSE(_stream, buf, (size_t)checkSize));
 
-    int i;
-    for (i = (int)checkSize - 2; i >= 0; i--)
+    int32_t i;
+    for (i = (int32_t)checkSize - 2; i >= 0; i--)
       if ((buf[i] == 0x17 && buf[i + 1] == 0x6) || (buf[i] == 0x01 && buf[i + 1] == 0x04))
         break;
     if (i < 0)

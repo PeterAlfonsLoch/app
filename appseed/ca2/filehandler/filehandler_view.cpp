@@ -76,7 +76,7 @@ namespace filehandler
 
       item item;
 
-      for(int i = 0; i < straApp.get_count(); i++)
+      for(int32_t i = 0; i < straApp.get_count(); i++)
       {
          item.parse(straApp[i]);
          item.m_iIndex = i;
@@ -137,8 +137,8 @@ namespace filehandler
    {
       remove_all();
       draw_item item;
-      int top = lpcrect->top;
-      for(int i = 0; i < plist->get_count(); i++)
+      int32_t top = lpcrect->top;
+      for(int32_t i = 0; i < plist->get_count(); i++)
       {
          item.m_rectItem.left = lpcrect->left;
          item.m_rectItem.right = lpcrect->right;
@@ -157,7 +157,7 @@ namespace filehandler
 
    void view::draw_list::draw(view * pview, ::ca::graphics * pdc, list * plist)
    {
-      for(int i = 0; i < get_count(); i++)
+      for(int32_t i = 0; i < get_count(); i++)
       {
          element_at(i).draw(pview, pdc, plist, &plist->element_at(i));
       }
@@ -188,7 +188,7 @@ namespace filehandler
 
       e_element eelement;
 
-      int iItem = hit_test(pmouse->m_pt, eelement);
+      int32_t iItem = hit_test(pmouse->m_pt, eelement);
 
       if(iItem >= 0)
       {
@@ -206,7 +206,7 @@ namespace filehandler
    index view::hit_test(point pt, e_element & eelement)
    {
       ScreenToClient(&pt);
-      for(int i = 0; i < m_drawlist.get_count(); i++)
+      for(int32_t i = 0; i < m_drawlist.get_count(); i++)
       {
          if(m_drawlist[i].m_rectName.contains(pt))
          {

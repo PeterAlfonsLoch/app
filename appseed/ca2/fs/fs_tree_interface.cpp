@@ -43,7 +43,7 @@ namespace fs
 
 
 
-   void tree_interface::_017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel)
+   void tree_interface::_017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel)
    {
       if(lpcsz == NULL)
          lpcsz = "";
@@ -91,13 +91,13 @@ namespace fs
       stringa straChildItem;
       string str;
 
-      int iMaxSize;
+      int32_t iMaxSize;
       iMaxSize = 1000;
 
-      int iSize;
+      int32_t iSize;
       iSize = 0;
 
-      int iChildCount;
+      int32_t iChildCount;
 
       iChildCount = 0;
 
@@ -113,7 +113,7 @@ namespace fs
          get_document()->set().ls(lpcsz, &straPath, & straTitle);
       }
 
-      int i;
+      int32_t i;
 
       for(i = 0; i < straPath.get_size(); i++)
       {
@@ -200,7 +200,7 @@ namespace fs
          }
 
       }
-      for(int j = 0; j < ptraRemove.get_size(); j++)
+      for(int32_t j = 0; j < ptraRemove.get_size(); j++)
       {
          delete_item(ptraRemove[j]);
       }
@@ -227,7 +227,7 @@ namespace fs
 
 
 
-      //for(int i = stra.get_size() - 1; i >= 0; i--)
+      //for(int32_t i = stra.get_size() - 1; i >= 0; i--)
       for(index i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
@@ -272,7 +272,7 @@ namespace fs
 
          if(iObscured > 0)
          {
-            int iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
+            int32_t iNewScroll = (int32_t) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
             m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
          }
       }
@@ -318,7 +318,7 @@ namespace fs
 
    }
 
-   void tree_interface::_017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int iLevel)
+   void tree_interface::_017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel)
    {
       index i;
 
@@ -342,8 +342,8 @@ namespace fs
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
       base_array < gen::memory_file, gen::memory_file & > filea;
-      int iStart = 0;
-      int iFind;
+      int32_t iStart = 0;
+      int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
       {
       filea.add(gen::memory_file());
@@ -368,7 +368,7 @@ namespace fs
       ex1::tree_item_ptr_array ptraRemove;
       pitemParent->get_children(ptraRemove);
 
-      for(int i = 0; i < wstraItem.get_size(); i++)
+      for(int32_t i = 0; i < wstraItem.get_size(); i++)
       {
          wstrItem = wstraItem[i];
 
@@ -487,7 +487,7 @@ namespace fs
       pcontrol->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::userbase::form_control::DataTypeString);
 
-      int iControl =  _001AddControl(control);
+      int32_t iControl =  _001AddControl(control);
 
       CColumn column;
 
@@ -505,7 +505,7 @@ namespace fs
 
    void tree_interface::GetSelectedFilePath(stringa & stra)
    {
-      for(int i = 0; i < m_itemptraSelected.get_size(); i++)
+      for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
       {
          stra.add(((::fs::tree_item *)m_itemptraSelected[0]->m_pitemdata)->m_strPath);
       }
@@ -558,7 +558,7 @@ namespace fs
       }
       else
       {
-         int iCSIDL = MapToCSIDL(efolder);
+         int32_t iCSIDL = MapToCSIDL(efolder);
 
          ASSERT(iCSIDL >= 0);
 
@@ -594,7 +594,7 @@ namespace fs
       }
    }*/
 
-/*   int tree_interface::MapToCSIDL(EFolder efolder)
+/*   int32_t tree_interface::MapToCSIDL(EFolder efolder)
    {
       switch(efolder)
       {

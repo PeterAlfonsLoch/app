@@ -21,7 +21,7 @@ struct KeywordInfo{
   string keyword;
   bool isSymbol;
   class region* region;
-  int  ssShorter;
+  int32_t  ssShorter;
 
 //#define CNAME "KeywordInfo"
 //#include "memory_operator.h"
@@ -34,8 +34,8 @@ struct KeywordInfo{
 class KeywordList
 {
 public:
-  int num;
-  int matchCase;
+  int32_t num;
+  int32_t matchCase;
   strsize minKeywordLength;
   gen::ch_class *firstChar;
   KeywordInfo *kwList;
@@ -134,7 +134,7 @@ public:
     fileType = NULL;
   };
   ~scheme_impl(){
-    for (int idx = 0; idx < nodes.get_size(); idx++)
+    for (int32_t idx = 0; idx < nodes.get_size(); idx++)
       delete nodes.element_at(idx);
   };
 };
@@ -151,7 +151,7 @@ public:
       @param prior Priority of this rule
       @param re Associated regular expression
   */
-  FileTypeChooser(int type, double prior, cregexp *re){
+  FileTypeChooser(int32_t type, double prior, cregexp *re){
     this->type = type;
     this->prior = prior;
     this->re = re;
@@ -169,7 +169,7 @@ public:
   /** Returns associated regular expression */
   cregexp *getRE() const { return re; };
 private:
-  int type;
+  int32_t type;
   double prior;
   cregexp *re;
 };

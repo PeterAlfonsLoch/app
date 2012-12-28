@@ -44,7 +44,7 @@ namespace ca
    void live_signal::on_keep_alive()
    {
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
 
          try
@@ -65,7 +65,7 @@ namespace ca
    bool live_signal::is_alive()
    {
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
 
          try

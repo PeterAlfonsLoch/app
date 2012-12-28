@@ -134,25 +134,25 @@
 
 #elif defined(LINUX) || defined(MACOS)
 
-inline int MulDiv32(int a, int b, int c)
+inline int32_t MulDiv32(int32_t a, int32_t b, int32_t c)
 {
-    return (int) (((int64_t) a * (int64_t) b) / (int64_t) c);
+    return (int32_t) (((int64_t) a * (int64_t) b) / (int64_t) c);
 }
 
-inline unsigned int MulDivRD(unsigned int a, unsigned int b, unsigned int c)
+inline unsigned int32_t MulDivRD(unsigned int32_t a, unsigned int32_t b, unsigned int32_t c)
 {
-    return (unsigned int) (((uint64_t) a * (uint64_t) b) / (uint64_t) c);
+    return (unsigned int32_t) (((uint64_t) a * (uint64_t) b) / (uint64_t) c);
 }
 
-inline unsigned int MulDivRN( unsigned int a, unsigned int b, unsigned int c )
+inline unsigned int32_t MulDivRN( unsigned int32_t a, unsigned int32_t b, unsigned int32_t c )
 {
-    return (unsigned int) ((((uint64_t) a * (uint64_t) b)+(uint64_t)c/2) / (uint64_t)c );
+    return (unsigned int32_t) ((((uint64_t) a * (uint64_t) b)+(uint64_t)c/2) / (uint64_t)c );
 }
 
 
-inline unsigned int MulDivRU( unsigned int a, unsigned int b, unsigned int c )
+inline unsigned int32_t MulDivRU( unsigned int32_t a, unsigned int32_t b, unsigned int32_t c )
 {
-    return (unsigned int) ((((uint64_t) a * (uint64_t) b)+(uint64_t)c-1) / (uint64_t)c );
+    return (unsigned int32_t) ((((uint64_t) a * (uint64_t) b)+(uint64_t)c-1) / (uint64_t)c );
 }
 
 
@@ -249,9 +249,9 @@ inline unsigned int MulDivRU( unsigned int a, unsigned int b, unsigned int c )
 //  some code references these by other names.
 //
 
-CLASS_DECL_ca inline int muldiv32(int a, int b, int c)
+CLASS_DECL_ca inline int32_t muldiv32(int32_t a, int32_t b, int32_t c)
 {
-   return (int) ::MulDiv((int) a, (int) b, (int) c);
+   return (int32_t) ::MulDiv((int32_t) a, (int32_t) b, (int32_t) c);
 }
 
 

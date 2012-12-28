@@ -52,18 +52,18 @@ debug_module_t mod_aes_cbc = {
 };
 
 
-err_status_t aes_cbc_alloc(cipher_t ** c, int key_len);
+err_status_t aes_cbc_alloc(cipher_t ** c, int32_t key_len);
 err_status_t aes_cbc_dealloc(cipher_t * c);
-err_status_t aes_cbc_decrypt(aes_cbc_ctx_t * c, unsigned char *data, unsigned int *bytes_in_data);
+err_status_t aes_cbc_decrypt(aes_cbc_ctx_t * c, unsigned char *data, unsigned int32_t *bytes_in_data);
 
 
 
 err_status_t
-aes_cbc_alloc(cipher_t **c, int key_len)
+aes_cbc_alloc(cipher_t **c, int32_t key_len)
 {
   extern cipher_type_t aes_cbc;
   uint8_t *pointer;
-  int tmp;
+  int32_t tmp;
 
   debug_print(mod_aes_cbc, 
          "allocating cipher with key length %d", key_len);
@@ -141,7 +141,7 @@ aes_cbc_context_init(aes_cbc_ctx_t *c, const uint8_t *key,
 
 err_status_t
 aes_cbc_set_iv(aes_cbc_ctx_t *c, void *iv) {
-  int i;
+  int32_t i;
 /*   v128_t *input = iv; */
   uint8_t *input = (uint8_t*) iv;
  
@@ -157,11 +157,11 @@ aes_cbc_set_iv(aes_cbc_ctx_t *c, void *iv) {
 err_status_t
 aes_cbc_encrypt(aes_cbc_ctx_t *c,
       unsigned char *data, 
-      unsigned int *bytes_in_data) {
-  int i;
+      unsigned int32_t *bytes_in_data) {
+  int32_t i;
   unsigned char *input  = data;   /* pointer to data being read    */
   unsigned char *output = data;   /* pointer to data being written */
-  int bytes_to_encr = *bytes_in_data;
+  int32_t bytes_to_encr = *bytes_in_data;
 
   /*
    * verify that we're 16-octet aligned
@@ -207,14 +207,14 @@ aes_cbc_encrypt(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_decrypt(aes_cbc_ctx_t *c,
       unsigned char *data, 
-      unsigned int *bytes_in_data)
+      unsigned int32_t *bytes_in_data)
 {
 
-   int i;
+   int32_t i;
    v128_t state, previous;
    unsigned char *input  = data;   /* pointer to data being read    */
    unsigned char *output = data;   /* pointer to data being written */
-   int bytes_to_encr = *bytes_in_data;
+   int32_t bytes_to_encr = *bytes_in_data;
    uint8_t tmp;
 
   /*
@@ -273,10 +273,10 @@ aes_cbc_decrypt(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
            unsigned char *data, 
-           unsigned int *bytes_in_data) {
-  int i;
+           unsigned int32_t *bytes_in_data) {
+  int32_t i;
   unsigned char *pad_start; 
-  int num_pad_bytes;
+  int32_t num_pad_bytes;
   err_status_t status;
 
   /* 
@@ -309,9 +309,9 @@ aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_nist_decrypt(aes_cbc_ctx_t *c,
            unsigned char *data, 
-           unsigned int *bytes_in_data) {
+           unsigned int32_t *bytes_in_data) {
   unsigned char *pad_end;
-  int num_pad_bytes;
+  int32_t num_pad_bytes;
   err_status_t status;
 
   /*
@@ -447,7 +447,7 @@ cipher_type_t aes_cbc = {
   (cipher_decrypt_func_t)        aes_cbc_nist_decrypt,
   (cipher_set_iv_func_t)         aes_cbc_set_iv,
   (char *)                       aes_cbc_description,
-  (int)                          0,   /* instance count */
+  (int32_t)                          0,   /* instance count */
   (cipher_test_case_t *)        &aes_cbc_test_case_0,
   (debug_module_t *)            &mod_aes_cbc
 };

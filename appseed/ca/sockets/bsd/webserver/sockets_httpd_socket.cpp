@@ -101,7 +101,7 @@ namespace sockets
       const char *days[] = { "Sun","Mon","Tue","Wed","Thu","Fri","Sat" };
       const char *months[] = { "Jan","Feb","Mar","Apr","May","Jun",
                          "Jul","Aug","Sep","Oct","Nov","Dec" };
-      int i;
+      int32_t i;
       char s[40];
 
    /* 1997-12-16 09:50:40 */

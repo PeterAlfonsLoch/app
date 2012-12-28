@@ -15,7 +15,7 @@ public:
       @param encoding Output encoding.
       @param useBOM If true, BOM (byte Order Mark) is written first.
   */
-  FileWriter(string fileName, int encoding, bool useBOM);
+  FileWriter(string fileName, int32_t encoding, bool useBOM);
   ~FileWriter();
 protected:
 };

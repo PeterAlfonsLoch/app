@@ -12,32 +12,32 @@ namespace gen
 string CLASS_DECL_ca operator + (const char * psz, const gen::property & prop);
 string CLASS_DECL_ca operator + (const string & str, const gen::property & prop);
 
-var CLASS_DECL_ca operator - (int i, const gen::property & prop);
-var CLASS_DECL_ca operator - (unsigned int user, const gen::property & prop);
+var CLASS_DECL_ca operator - (int32_t i, const gen::property & prop);
+var CLASS_DECL_ca operator - (unsigned int32_t user, const gen::property & prop);
 var CLASS_DECL_ca operator - (long l, const gen::property & prop);
 var CLASS_DECL_ca operator - (unsigned long ul, const gen::property & prop);
 var CLASS_DECL_ca operator - (double d, const gen::property & prop);
 var CLASS_DECL_ca operator - (const var & var, const gen::property & prop);
 var CLASS_DECL_ca operator - (const gen::property & prop1, const gen::property & prop2);
 
-var CLASS_DECL_ca operator + (int i, const gen::property & prop);
-var CLASS_DECL_ca operator + (unsigned int user, const gen::property & prop);
+var CLASS_DECL_ca operator + (int32_t i, const gen::property & prop);
+var CLASS_DECL_ca operator + (unsigned int32_t user, const gen::property & prop);
 var CLASS_DECL_ca operator + (long l, const gen::property & prop);
 var CLASS_DECL_ca operator + (unsigned long ul, const gen::property & prop);
 var CLASS_DECL_ca operator + (double d, const gen::property & prop);
 var CLASS_DECL_ca operator + (const var & var, const gen::property & prop);
 var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property & prop2);
 
-var CLASS_DECL_ca operator / (int i, const gen::property & prop);
-var CLASS_DECL_ca operator / (unsigned int user, const gen::property & prop);
+var CLASS_DECL_ca operator / (int32_t i, const gen::property & prop);
+var CLASS_DECL_ca operator / (unsigned int32_t user, const gen::property & prop);
 var CLASS_DECL_ca operator / (long l, const gen::property & prop);
 var CLASS_DECL_ca operator / (unsigned long ul, const gen::property & prop);
 var CLASS_DECL_ca operator / (double d, const gen::property & prop);
 var CLASS_DECL_ca operator / (const var & var, const gen::property & prop);
 var CLASS_DECL_ca operator / (const gen::property & prop1, const gen::property & prop2);
 
-var CLASS_DECL_ca operator * (int i, const gen::property & prop);
-var CLASS_DECL_ca operator * (unsigned int user, const gen:: property & prop);
+var CLASS_DECL_ca operator * (int32_t i, const gen::property & prop);
+var CLASS_DECL_ca operator * (unsigned int32_t user, const gen:: property & prop);
 var CLASS_DECL_ca operator * (long l, const gen::property & prop);
 var CLASS_DECL_ca operator * (unsigned long ul, const gen::property & prop);
 var CLASS_DECL_ca operator * (double d, const gen::property & prop);
@@ -72,11 +72,11 @@ namespace gen
 
 
       virtual void pair_set_interface_set(const char * pszKey, var value) = 0;
-      virtual var pair_set_interface_get_value(int i) const = 0;
-      virtual var & pair_set_interface_get_value(int i) = 0;
-      virtual const string_composite pair_set_interface_get_key(int i) const = 0;
-      virtual int pair_set_interface_get_count() const = 0;
-      virtual int pair_set_interface_find(const char * pszKey, int iStart = 0) const;
+      virtual var pair_set_interface_get_value(int32_t i) const = 0;
+      virtual var & pair_set_interface_get_value(int32_t i) = 0;
+      virtual const string_composite pair_set_interface_get_key(int32_t i) const = 0;
+      virtual int32_t pair_set_interface_get_count() const = 0;
+      virtual int32_t pair_set_interface_find(const char * pszKey, int32_t iStart = 0) const;
       var operator[](const char * pszName) const;
       var & operator[](const char * pszName);
    };
@@ -92,11 +92,11 @@ namespace gen
       virtual bool get_key_case_insensitive() const;
 
       virtual void str_str_interface_set(const char * pszKey, const char * pszValue) = 0;
-      virtual const string_composite str_str_interface_get_value(int i) const = 0;
-      virtual string_composite str_str_interface_get_value(int i) = 0;
-      virtual const string_composite str_str_interface_get_key(int i) const = 0;
-      virtual int str_str_interface_get_count() const = 0;
-      virtual int str_str_interface_find(const char * pszKey, int iStart = 0) const;
+      virtual const string_composite str_str_interface_get_value(int32_t i) const = 0;
+      virtual string_composite str_str_interface_get_value(int32_t i) = 0;
+      virtual const string_composite str_str_interface_get_key(int32_t i) const = 0;
+      virtual int32_t str_str_interface_get_count() const = 0;
+      virtual int32_t str_str_interface_find(const char * pszKey, int32_t iStart = 0) const;
       const string_composite operator[](const char * pszName) const;
       string_composite operator[](const char * pszName);
       virtual bool contains_key(stringa & stra);
@@ -215,12 +215,12 @@ namespace gen
 
 
 
-      int get_integer(int iDefault = 0)
+      int32_t get_integer(int32_t iDefault = 0)
       {
          return get_value().get_integer(iDefault);
       }
 
-      int get_integer(int iDefault = 0) const
+      int32_t get_integer(int32_t iDefault = 0) const
       {
          return get_value().get_integer(iDefault);
       }
@@ -260,7 +260,7 @@ namespace gen
          get_value() = psz;
       }
 
-      property & operator++(int)
+      property & operator++(int32_t)
       {
          get_value()++;
          return *this;
@@ -298,7 +298,7 @@ namespace gen
          return *this;
       }
 
-      property & operator =(int i)
+      property & operator =(int32_t i)
       {
          get_value() = i;
          return *this;
@@ -413,11 +413,11 @@ namespace gen
       var element_at(index iIndex) const;
       var at(index iIndex) const;
 
-      int compare_value_ci(const char * psz) const;
+      int32_t compare_value_ci(const char * psz) const;
 
       variable_strict_compare strict_compare() const;
 
-      int str_compare(const property & prop) const;
+      int32_t str_compare(const property & prop) const;
 
 
       bool strict_equal(const property & prop) const;
@@ -425,7 +425,7 @@ namespace gen
       bool strict_equal(const char * psz) const;
       bool strict_equal(const string & str) const;
       bool strict_equal(double d) const;
-      bool strict_equal(int i) const;
+      bool strict_equal(int32_t i) const;
       bool strict_equal(bool b) const;
 
       bool strict_different(const property & prop) const;
@@ -433,49 +433,49 @@ namespace gen
       bool strict_different(const char * psz) const;
       bool strict_different(const string & str) const;
       bool strict_different(double d) const;
-      bool strict_different(int i) const;
+      bool strict_different(int32_t i) const;
       bool strict_different(bool b) const;
 
       bool operator == (const property & prop) const;
       bool operator == (const var & var) const;
       bool operator == (const char * psz) const;
       bool operator == (const string & str) const;
-      bool operator == (int i) const;
+      bool operator == (int32_t i) const;
       bool operator == (bool b) const;
 
       bool operator != (const property & prop) const;
       bool operator != (const var & var) const;
       bool operator != (const char * psz) const;
       bool operator != (const string & str) const;
-      bool operator != (int i) const;
+      bool operator != (int32_t i) const;
       bool operator != (bool b) const;
 
       bool operator < (const property & prop) const;
       bool operator < (const var & var) const;
       bool operator < (const char * psz) const;
       bool operator < (const string & str) const;
-      bool operator < (int i) const;
+      bool operator < (int32_t i) const;
       bool operator < (bool b) const;
 
       bool operator <= (const property & prop) const;
       bool operator <= (const var & var) const;
       bool operator <= (const char * psz) const;
       bool operator <= (const string & str) const;
-      bool operator <= (int i) const;
+      bool operator <= (int32_t i) const;
       bool operator <= (bool b) const;
 
       bool operator >= (const property & prop) const;
       bool operator >= (const var & var) const;
       bool operator >= (const char * psz) const;
       bool operator >= (const string & str) const;
-      bool operator >= (int i) const;
+      bool operator >= (int32_t i) const;
       bool operator >= (bool b) const;
 
       bool operator > (const property & prop) const;
       bool operator > (const var & var) const;
       bool operator > (const char * psz) const;
       bool operator > (const string & str) const;
-      bool operator > (int i) const;
+      bool operator > (int32_t i) const;
       bool operator > (bool b) const;
 
       void write(ex1::byte_output_stream & ostream);
@@ -488,76 +488,76 @@ namespace gen
 //      friend string CLASS_DECL_ca operator + (const char * psz, const property & var);
 //      friend string CLASS_DECL_ca operator + (const string & str, const property & var);
 
-      var operator - (int i) const;
-      var operator - (unsigned int user) const;
+      var operator - (int32_t i) const;
+      var operator - (unsigned int32_t user) const;
       var operator - (long i) const;
       var operator - (unsigned long user) const;
       var operator - (double d) const;
       var operator - (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator - (int i, const property & prop);
-//      friend var CLASS_DECL_ca operator - (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator - (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator - (unsigned int32_t user, const property & prop);
 //      friend var CLASS_DECL_ca operator - (long l, const property & prop);
 //      friend var CLASS_DECL_ca operator - (unsigned long ul, const property & prop);
 //      friend var CLASS_DECL_ca operator - (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator - (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator - (const property & prop1, const property & prop2);
 
-      var operator + (int i) const;
-      var operator + (unsigned int user) const;
+      var operator + (int32_t i) const;
+      var operator + (unsigned int32_t user) const;
       var operator + (long i) const;
       var operator + (unsigned long user) const;
       var operator + (double d) const;
       var operator + (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator + (int i, const property & prop);
-//      friend var CLASS_DECL_ca operator + (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator + (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator + (unsigned int32_t user, const property & prop);
 //      friend var CLASS_DECL_ca operator + (long l, const property & prop);
 //      friend var CLASS_DECL_ca operator + (unsigned long ul, const property & prop);
 //      friend var CLASS_DECL_ca operator + (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator + (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator + (const property & prop1, const property & prop2);
 
-      var operator / (int i) const;
-      var operator / (unsigned int user) const;
+      var operator / (int32_t i) const;
+      var operator / (unsigned int32_t user) const;
       var operator / (long i) const;
       var operator / (unsigned long user) const;
       var operator / (double d) const;
       var operator / (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator / (int i, const property & prop);
-//      friend var CLASS_DECL_ca operator / (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator / (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator / (unsigned int32_t user, const property & prop);
 //      friend var CLASS_DECL_ca operator / (long l, const property & prop);
 //      friend var CLASS_DECL_ca operator / (unsigned long ul, const property & prop);
 //      friend var CLASS_DECL_ca operator / (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator / (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator / (const property & prop1, const property & prop2);
 
-      var operator * (int i) const;
-      var operator * (unsigned int user) const;
+      var operator * (int32_t i) const;
+      var operator * (unsigned int32_t user) const;
       var operator * (long i) const;
       var operator * (unsigned long user) const;
       var operator * (double d) const;
       var operator * (const var & var) const;
 
-//      friend var CLASS_DECL_ca operator * (int i, const property & prop);
-//      friend var CLASS_DECL_ca operator * (unsigned int user, const property & prop);
+//      friend var CLASS_DECL_ca operator * (int32_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator * (unsigned int32_t user, const property & prop);
 //      friend var CLASS_DECL_ca operator * (long l, const property & prop);
 //      friend var CLASS_DECL_ca operator * (unsigned long ul, const property & prop);
 //      friend var CLASS_DECL_ca operator * (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator * (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator * (const property & prop1, const property & prop2);
 
-      property & operator -= (int i);
-      property & operator -= (unsigned int user);
+      property & operator -= (int32_t i);
+      property & operator -= (unsigned int32_t user);
       property & operator -= (long i);
       property & operator -= (unsigned long user);
       property & operator -= (double d);
       property & operator -= (const var & var);
       property & operator -= (const property & prop);
 
-      property & operator += (int i);
-      property & operator += (unsigned int user);
+      property & operator += (int32_t i);
+      property & operator += (unsigned int32_t user);
       property & operator += (long i);
       property & operator += (unsigned long user);
       property & operator += (double d);
@@ -566,16 +566,16 @@ namespace gen
       property & operator += (const char * psz);
       property & operator += (const string & str);
 
-      property & operator /= (int i);
-      property & operator /= (unsigned int user);
+      property & operator /= (int32_t i);
+      property & operator /= (unsigned int32_t user);
       property & operator /= (long i);
       property & operator /= (unsigned long user);
       property & operator /= (double d);
       property & operator /= (const var & var);
       property & operator /= (const property & prop);
 
-      property & operator *= (int i);
-      property & operator *= (unsigned int user);
+      property & operator *= (int32_t i);
+      property & operator *= (unsigned int32_t user);
       property & operator *= (long i);
       property & operator *= (unsigned long user);
       property & operator *= (double d);
@@ -602,8 +602,8 @@ namespace gen
       #if defined(DEBUG)
 
          // for file name/line number tracking using DEBUG_NEW
-         void * PASCAL operator new(size_t nSize, const char * lpszFileName, int nLine);
-         void PASCAL operator delete(void *p, const char * lpszFileName, int nLine);
+         void * PASCAL operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
+         void PASCAL operator delete(void *p, const char * lpszFileName, int32_t nLine);
 
       #endif
 

@@ -25,11 +25,11 @@ namespace ca
 
 /*   #pragma push_macro("GetObject")
    #undef GetObject
-      virtual int ___FUNCNAME(GetObject)(int nCount, LPVOID lpObject) const;
-      virtual int GetObject(int nCount, LPVOID lpObject) const;
+      virtual int32_t ___FUNCNAME(GetObject)(int32_t nCount, LPVOID lpObject) const;
+      virtual int32_t GetObject(int32_t nCount, LPVOID lpObject) const;
    #pragma pop_macro("GetObject")*/
       virtual UINT GetObjectType() const;
-      virtual bool CreateStockObject(int nIndex);
+      virtual bool CreateStockObject(int32_t nIndex);
       virtual bool UnrealizeObject();
       virtual bool operator==(const ::ca::graphics_object& obj) const;
       virtual bool operator!=(const ::ca::graphics_object& obj) const;

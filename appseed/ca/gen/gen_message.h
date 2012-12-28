@@ -9,10 +9,10 @@ typedef struct tagCREATESTRUCTA {
     HINSTANCE   hInstance;
     HMENU       hMenu;
     oswindow        oswindowParent;
-    int         cy;
-    int         cx;
-    int         y;
-    int         x;
+    int32_t         cy;
+    int32_t         cx;
+    int32_t         y;
+    int32_t         x;
     LONG        style;
     LPCSTR      lpszName;
     LPCSTR      lpszClass;
@@ -23,10 +23,10 @@ typedef struct tagCREATESTRUCTW {
     HINSTANCE   hInstance;
     HMENU       hMenu;
     oswindow    hwndParent;
-    int         cy;
-    int         cx;
-    int         y;
-    int         x;
+    int32_t         cy;
+    int32_t         cx;
+    int32_t         y;
+    int32_t         x;
     LONG        style;
     LPCWSTR     lpszName;
     LPCWSTR     lpszClass;
@@ -59,9 +59,9 @@ namespace ca
 
 #define CN_UPDATE_COMMAND_UI 23
 #define WM_REFLECT_BASE 2048
-#define MPARAM unsigned int
-#define NPARAM unsigned int
-#define OPARAM unsigned int
+#define MPARAM unsigned int32_t
+#define NPARAM unsigned int32_t
+#define OPARAM unsigned int32_t
 
 // message
 #define MX_APPLANGUAGE 1000
@@ -136,7 +136,7 @@ namespace gen
       public:
          Handler();
          virtual ~Handler();
-         virtual int OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
+         virtual int32_t OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
       };
 
       class CLASS_DECL_ca dispatch :
@@ -274,7 +274,7 @@ namespace gen
 
          virtual void _001ClearMessageHandling();
 
-         int                  m_iHandling;
+         int32_t                  m_iHandling;
          SignalArray          m_signala;
          gen::signal          m_signalInstallMessageHandling;
          manual_reset_event   m_evOk;
@@ -386,7 +386,7 @@ namespace gen
 
             scroll(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
             UINT              m_nSBCode;
-            int           m_nPos;
+            int32_t           m_nPos;
             ::user::interaction *  m_pScrollBar;
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -548,7 +548,7 @@ namespace gen
 
             notify(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
             LPNMHDR get_lpnmhdr();
-            int get_ctrl_id();
+            int32_t get_ctrl_id();
          };
 
 #endif
@@ -620,7 +620,7 @@ namespace gen
 
 
             measure_item(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
-            int m_i;
+            int32_t m_i;
             LPMEASUREITEMSTRUCT m_lpmis;
          };
 
@@ -707,7 +707,7 @@ namespace gen
             WM_TIMER, \
             ::iguimessage::PrototypeConditionalOnMeasureItem, \
             static_cast<const ::sigc::slot_base&>( \
-            (const ::sigc::slot<bool, int, LPMEASUREITEMSTRUCT> &) \
+            (const ::sigc::slot<bool, int32_t, LPMEASUREITEMSTRUCT> &) \
             ::sigc::mem_fun(phandler, pfunction)))
 
 
@@ -770,7 +770,7 @@ namespace gen
       inline void dispatch::SignalArray::
       GetSignalsByMessage(dispatch::SignalPtrArray & signalptra, UINT uiMessage, UINT uiCode, UINT uiId)
       {
-         for(int i = 0; i < this->get_size(); i++)
+         for(int32_t i = 0; i < this->get_size(); i++)
          {
             Signal & signal = this->element_at(i);
             if(uiMessage      == signal.m_uiMessage
@@ -786,7 +786,7 @@ namespace gen
       inline dispatch::Signal * dispatch::SignalArray::
       GetSignalByMessage(UINT uiMessage, UINT uiCode, UINT uiIdStart, UINT uiIdEnd)
       {
-         for(int i = 0; i < this->get_size(); i++)
+         for(int32_t i = 0; i < this->get_size(); i++)
          {
             Signal & signal = this->element_at(i);
             if(uiMessage      == signal.m_uiMessage

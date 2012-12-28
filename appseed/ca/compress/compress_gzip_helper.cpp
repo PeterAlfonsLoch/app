@@ -13,7 +13,7 @@
 typedef  unsigned char GZIP;
 typedef  GZIP* LPGZIP;
 
-static const int gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
+static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 
 gzip::gzip(ex1::file * pfileDest) :
@@ -59,8 +59,8 @@ gzip::~gzip()
 
    void gzip::construct()
    {
-      int iLevel = Z_BEST_COMPRESSION;
-      int iStrategy = Z_DEFAULT_STRATEGY;
+      int32_t iLevel = Z_BEST_COMPRESSION;
+      int32_t iStrategy = Z_DEFAULT_STRATEGY;
       m_memory.allocate(1024 * 1024 * 8);
 
       m_zstream.zalloc = (alloc_func)0;
@@ -72,7 +72,7 @@ gzip::~gzip()
       m_zstream.avail_out = 0;
       m_z_err = Z_OK;
       m_crc = crc32(0L, Z_NULL, 0);
-      int err = deflateInit2(&(m_zstream), iLevel,Z_DEFLATED, -MAX_WBITS, DEF_MEM_LEVEL, iStrategy);
+      int32_t err = deflateInit2(&(m_zstream), iLevel,Z_DEFLATED, -MAX_WBITS, DEF_MEM_LEVEL, iStrategy);
       if (err != Z_OK || m_memory.get_data() == Z_NULL)
       {
          destroy();
@@ -100,14 +100,14 @@ gzip::~gzip()
       destroy();
    }
 
-   int gzip::_finish()
+   int32_t gzip::_finish()
    {
-      int done = 0;
-      int len = 0;
+      int32_t done = 0;
+      int32_t len = 0;
       m_zstream.avail_in = 0; /* should be zero already anyway */
       for (;;)
       {
-         len = (int) (m_memory.get_size() - m_zstream.avail_out);
+         len = (int32_t) (m_memory.get_size() - m_zstream.avail_out);
 
          if (len != 0)
          {
@@ -133,9 +133,9 @@ gzip::~gzip()
       }
       return  m_z_err == Z_STREAM_END ? Z_OK : m_z_err;
    }
-   int gzip::destroy()
+   int32_t gzip::destroy()
    {
-      int err = Z_OK;
+      int32_t err = Z_OK;
       if (m_zstream.state != NULL) {
          err = deflateEnd(&(m_zstream));
       }
@@ -145,7 +145,7 @@ gzip::~gzip()
 
    void gzip::putLong (uLong x)
    {
-      for(int n = 0; n < 4; n++) {
+      for(int32_t n = 0; n < 4; n++) {
          unsigned char c=(unsigned char)(x & 0xff);
          m_ostream.write(&c,1);
          x >>= 8;

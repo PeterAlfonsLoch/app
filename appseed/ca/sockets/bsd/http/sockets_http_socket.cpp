@@ -347,7 +347,7 @@ namespace sockets
       if(!bContentLength)
          m_response.m_propertysetHeader.remove_by_name("Content-Length");
 
-      for(int i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
+      for(int32_t i = 0; i < m_response.m_propertysetHeader.m_propertya.get_size(); i++)
       {
          string strKey = m_response.m_propertysetHeader.m_propertya[i].name();
          string strValue = m_response.m_propertysetHeader.m_propertya[i].get_string();
@@ -403,7 +403,7 @@ namespace sockets
          strLine = "Host: " + m_request.m_propertysetHeader["host"];
          msg += strLine + "\r\n";
       }
-      for(int i = 0; i < m_request.m_propertysetHeader.m_propertya.get_count(); i++)
+      for(int32_t i = 0; i < m_request.m_propertysetHeader.m_propertya.get_count(); i++)
       {
          string strKey = m_request.m_propertysetHeader.m_propertya[i].name();
          string strValue = m_request.m_propertysetHeader.m_propertya[i].get_string();

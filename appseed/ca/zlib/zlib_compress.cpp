@@ -22,15 +22,15 @@
    primitive::memory, Z_BUF_ERROR if there was not enough room in the output buffer,
    Z_STREAM_ERROR if the level parameter is invalid.
 */
-int ZEXPORT compress2 (
+int32_t ZEXPORT compress2 (
     Bytef *dest,
     uLongf *destLen,
     const Bytef *source,
     uLong sourceLen,
-    int level)
+    int32_t level)
 {
     z_stream stream;
-    int err;
+    int32_t err;
 
     stream.next_in = (Bytef*)source;
     stream.avail_in = (uInt)sourceLen;
@@ -62,7 +62,7 @@ int ZEXPORT compress2 (
 
 /* ===========================================================================
  */
-int ZEXPORT zlib_compress (
+int32_t ZEXPORT zlib_compress (
     Bytef *dest,
     uLongf *destLen,
     const Bytef *source,

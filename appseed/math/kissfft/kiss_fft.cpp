@@ -36,7 +36,7 @@ static void kf_bfly2(
         kiss_fft_cpx * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
-        int m
+        int32_t m
         )
 {
     kiss_fft_cpx * Fout2;
@@ -150,11 +150,11 @@ static void kf_bfly5(
         kiss_fft_cpx * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
-        int m
+        int32_t m
         )
 {
     kiss_fft_cpx *Fout0,*Fout1,*Fout2,*Fout3,*Fout4;
-    int u;
+    int32_t u;
     kiss_fft_cpx scratch[13];
     kiss_fft_cpx * twiddles = st->twiddles;
     kiss_fft_cpx *tw;
@@ -212,14 +212,14 @@ static void kf_bfly_generic(
         kiss_fft_cpx * Fout,
         const size_t fstride,
         const kiss_fft_cfg st,
-        int m,
-        int p
+        int32_t m,
+        int32_t p
         )
 {
-    int u,k,q1,q;
+    int32_t u,k,q1,q;
     kiss_fft_cpx * twiddles = st->twiddles;
     kiss_fft_cpx t;
-    int Norig = st->nfft;
+    int32_t Norig = st->nfft;
 
     CHECKBUF(scratchbuf,nscratchbuf,p);
 
@@ -233,10 +233,10 @@ static void kf_bfly_generic(
 
         k=u;
         for ( q1=0 ; q1<p ; ++q1 ) {
-            int twidx=0;
+            int32_t twidx=0;
             Fout[ k ] = scratchbuf[0];
             for (q=1;q<p;++q ) {
-                twidx += (int) (fstride * k);
+                twidx += (int32_t) (fstride * k);
                 if (twidx>=Norig) twidx-=Norig;
                 C_MUL(t,scratchbuf[q] , twiddles[twidx] );
                 C_ADDTO( Fout[ k ] ,t);
@@ -251,14 +251,14 @@ void kf_work(
         kiss_fft_cpx * Fout,
         const kiss_fft_cpx * f,
         const size_t fstride,
-        int in_stride,
-        int * factors,
+        int32_t in_stride,
+        int32_t * factors,
         const kiss_fft_cfg st
         )
 {
     kiss_fft_cpx * Fout_beg=Fout;
-    const int p=*factors++; /* the radix  */
-    const int m=*factors++; /* stage's fft length/p */
+    const int32_t p=*factors++; /* the radix  */
+    const int32_t m=*factors++; /* stage's fft length/p */
     const kiss_fft_cpx * Fout_end = Fout + p*m;
 
     if (m==1) {
@@ -289,9 +289,9 @@ void kf_work(
     p[i] * m[i] = m[i-1]
     m0 = n                  */
 static 
-void kf_factor(int n,int * facbuf)
+void kf_factor(int32_t n,int32_t * facbuf)
 {
-    int p=4;
+    int32_t p=4;
     double floor_sqrt;
     floor_sqrt = floor( sqrt((double)n) );
 
@@ -319,7 +319,7 @@ void kf_factor(int n,int * facbuf)
  * The return value is a contiguous block of primitive::memory, allocated with malloc.  As such,
  * It can be freed with free(), rather than a kiss_fft-specific function.
  * */
-kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem )
+kiss_fft_cfg kiss_fft_alloc(int32_t nfft,int32_t inverse_fft,void * mem,size_t * lenmem )
 {
     kiss_fft_cfg st=NULL;
     size_t memneeded = sizeof(struct kiss_fft_state)
@@ -333,7 +333,7 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem 
         *lenmem = memneeded;
     }
     if (st) {
-        int i;
+        int32_t i;
         st->nfft=nfft;
         st->inverse = inverse_fft;
 
@@ -353,7 +353,7 @@ kiss_fft_cfg kiss_fft_alloc(int nfft,int inverse_fft,void * mem,size_t * lenmem 
 
 
     
-void kiss_fft_stride(kiss_fft_cfg st,const kiss_fft_cpx *fin,kiss_fft_cpx *fout,int in_stride)
+void kiss_fft_stride(kiss_fft_cfg st,const kiss_fft_cpx *fin,kiss_fft_cpx *fout,int32_t in_stride)
 {
     if (fin == fout) {
         CHECKBUF(tmpbuf,ntmpbuf,st->nfft);

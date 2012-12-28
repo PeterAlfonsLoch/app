@@ -11,9 +11,9 @@ namespace compress
    namespace huffman 
    {
 
-      const int kNumTableBits = 9;
+      const int32_t kNumTableBits = 9;
 
-      template <int kNumBitsMax, uint32 m_NumSymbols>
+      template <int32_t kNumBitsMax, uint32 m_NumSymbols>
       class decoder
       {
          uint32 m_Limits[kNumBitsMax + 1];     // m_Limits[i] = value limit for symbols with length = i
@@ -25,15 +25,15 @@ namespace compress
 
          bool SetCodeLengths(const byte *codeLengths)
          {
-            int lenCounts[kNumBitsMax + 1];
+            int32_t lenCounts[kNumBitsMax + 1];
             uint32 tmpPositions[kNumBitsMax + 1];
-            int i;
+            int32_t i;
             for(i = 1; i <= kNumBitsMax; i++)
                lenCounts[i] = 0;
             uint32 symbol;
             for (symbol = 0; symbol < m_NumSymbols; symbol++)
             {
-               int len = codeLengths[symbol];
+               int32_t len = codeLengths[symbol];
                if (len > kNumBitsMax)
                   return false;
                lenCounts[len]++;
@@ -61,7 +61,7 @@ namespace compress
             }
             for (symbol = 0; symbol < m_NumSymbols; symbol++)
             {
-               int len = codeLengths[symbol];
+               int32_t len = codeLengths[symbol];
                if (len != 0)
                   m_Symbols[tmpPositions[len]++] = symbol;
             }
@@ -71,7 +71,7 @@ namespace compress
          template <class TBitDecoder>
          uint32 DecodeSymbol(TBitDecoder *bitStream)
          {
-            int numBits;
+            int32_t numBits;
             uint32 value = bitStream->GetValue(kNumBitsMax);
             if (value < m_Limits[kNumTableBits])
                numBits = m_Lengths[value >> (kNumBitsMax - kNumTableBits)];

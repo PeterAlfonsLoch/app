@@ -133,7 +133,7 @@ inline index simple_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
 template<class TYPE, class ARG_TYPE>
 inline count simple_array<TYPE, ARG_TYPE>::add(const simple_array & a)
 {
-   for(int i = 0; i < a.get_count(); i++)
+   for(int32_t i = 0; i < a.get_count(); i++)
    {
       add(a[i]);
    }
@@ -189,7 +189,7 @@ simple_array<TYPE, ARG_TYPE>::~simple_array()
 {
    if (m_pData != NULL)
    {
-      for( int i = 0; i < m_nSize; i++ )
+      for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
       delete[] (BYTE*)m_pData;
    }
@@ -298,7 +298,7 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, 
       // re-init slots we copied from
       memset_dup((void *)(m_pData + nIndex), 0, (size_t)nCount * sizeof(TYPE));
 #undef new
-      for( int i = 0; i < nCount; i++ )
+      for( int32_t i = 0; i < nCount; i++ )
          ::new( (void *)( m_pData + nIndex + i ) ) TYPE;
 #define new C_NEW
    }
@@ -337,14 +337,14 @@ void simple_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, simple_array* pN
 
 
 class CLASS_DECL_c simple_int_array :
-   virtual public simple_array < int >
+   virtual public simple_array < int32_t >
 {
 public:
 };
 
 
 class CLASS_DECL_c simple_uint_array :
-   virtual public simple_array < unsigned int >
+   virtual public simple_array < unsigned int32_t >
 {
 public:
 };

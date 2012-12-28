@@ -11,18 +11,18 @@ public:
   /** Creates is_empty string buffer */
   str_buffer();
   /** Creates is_empty string buffer */
-  str_buffer(int alloc);
+  str_buffer(int32_t alloc);
   /** Creates string buffer with @c string */
-  str_buffer(const char *string, int s = 0, int l = -1);
+  str_buffer(const char *string, int32_t s = 0, int32_t l = -1);
   /** Creates string buffer with @c string */
-  str_buffer(string cstring, int s = 0, int l = -1);
+  str_buffer(string cstring, int32_t s = 0, int32_t l = -1);
   /** Creates string buffer with @c string */
-  str_buffer(const string &cstring, int s = 0, int l = -1);
+  str_buffer(const string &cstring, int32_t s = 0, int32_t l = -1);
   /** Destructor */
   ~str_buffer();
 
   /** Changes the get_length of this str_buffer */
-  void setLength(int newLength);
+  void setLength(int32_t newLength);
 
   /** Appends to this string buffer @c string */
   str_buffer &append(const string &string);
@@ -46,7 +46,7 @@ public:
   /** Appends to this string buffer @c string. C++ operator+= form. */
   str_buffer &operator+=(const char *string);
 private:
-  int alloc;
+  int32_t alloc;
 };
 
 } // namespace colorertake5

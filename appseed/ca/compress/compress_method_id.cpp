@@ -17,7 +17,7 @@ static inline wchar_t GetHex(byte value)
 string ConvertMethodIdToString(uint64 id)
 {
   wchar_t s[32];
-  int len = 32;
+  int32_t len = 32;
   s[--len] = 0;
   do
   {

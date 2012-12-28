@@ -47,7 +47,7 @@
 
 #define ALIGN_32 0
 
-err_status_t aes_icm_alloc(cipher_t **c, int key_len, int forIsmacryp);
+err_status_t aes_icm_alloc(cipher_t **c, int32_t key_len, int32_t forIsmacryp);
 
 err_status_t
 aes_icm_set_octet(aes_icm_ctx_t *c,
@@ -93,10 +93,10 @@ debug_module_t mod_aes_icm = {
  */
 
 err_status_t
-aes_icm_alloc_ismacryp(cipher_t **c, int key_len, int forIsmacryp) {
+aes_icm_alloc_ismacryp(cipher_t **c, int32_t key_len, int32_t forIsmacryp) {
   extern cipher_type_t aes_icm;
   uint8_t *pointer;
-  int tmp;
+  int32_t tmp;
 
   debug_print(mod_aes_icm, 
             "allocating cipher with key length %d", key_len);
@@ -132,7 +132,7 @@ aes_icm_alloc_ismacryp(cipher_t **c, int key_len, int forIsmacryp) {
   return err_status_ok;  
 }
 
-err_status_t aes_icm_alloc(cipher_t **c, int key_len, int forIsmacryp) {
+err_status_t aes_icm_alloc(cipher_t **c, int32_t key_len, int32_t forIsmacryp) {
   return aes_icm_alloc_ismacryp(c, key_len, 0);
 }
 
@@ -207,13 +207,13 @@ aes_icm_set_octet(aes_icm_ctx_t *c,
         uint64_t octet_num) {
 
 #ifdef NO_64BIT_MATH
-  int tail_num       = low32(octet_num) & 0x0f;
+  int32_t tail_num       = low32(octet_num) & 0x0f;
   /* 64-bit right-shift 4 */
   uint64_t block_num = make64(high32(octet_num) >> 4,
                        ((high32(octet_num) & 0x0f)<<(32-4)) |
                         (low32(octet_num) >> 4));
 #else
-  int tail_num       = octet_num % 16;
+  int32_t tail_num       = octet_num % 16;
   uint64_t block_num = octet_num / 16;
 #endif
   
@@ -331,10 +331,10 @@ inline void aes_icm_advance(aes_icm_ctx_t *c) {
 
 err_status_t
 aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
-              unsigned char *buf, unsigned int *enc_len, 
-              int forIsmacryp) {
-  unsigned int bytes_to_encr = *enc_len;
-  unsigned int i;
+              unsigned char *buf, unsigned int32_t *enc_len, 
+              int32_t forIsmacryp) {
+  unsigned int32_t bytes_to_encr = *enc_len;
+  unsigned int32_t i;
   uint32_t *b;
 
   /* check that there's enough segment left but not for ismacryp*/
@@ -343,7 +343,7 @@ aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
 
  debug_print(mod_aes_icm, "block index: %d", 
            htons(c->counter.v16[7]));
-  if (bytes_to_encr <= (unsigned int)c->bytes_in_buffer) {
+  if (bytes_to_encr <= (unsigned int32_t)c->bytes_in_buffer) {
     
     /* deal with odd case of small bytes_to_encr */
     for (i = (sizeof(v128_t) - c->bytes_in_buffer);
@@ -438,13 +438,13 @@ aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
 }
 
 err_status_t
-aes_icm_encrypt(aes_icm_ctx_t *c, unsigned char *buf, unsigned int *enc_len) {
+aes_icm_encrypt(aes_icm_ctx_t *c, unsigned char *buf, unsigned int32_t *enc_len) {
   return aes_icm_encrypt_ismacryp(c, buf, enc_len, 0);
 }
 
 err_status_t
-aes_icm_output(aes_icm_ctx_t *c, uint8_t *buffer, int num_octets_to_output) {
-  unsigned int len = num_octets_to_output;
+aes_icm_output(aes_icm_ctx_t *c, uint8_t *buffer, int32_t num_octets_to_output) {
+  unsigned int32_t len = num_octets_to_output;
   
   /* zeroize the buffer */
   octet_string_set_to_zero(buffer, num_octets_to_output);
@@ -507,7 +507,7 @@ cipher_type_t aes_icm = {
   (cipher_decrypt_func_t)        aes_icm_encrypt,
   (cipher_set_iv_func_t)         aes_icm_set_iv,
   (char *)                       aes_icm_description,
-  (int)                          0,   /* instance count */
+  (int32_t)                          0,   /* instance count */
   (cipher_test_case_t *)        &aes_icm_test_case_0,
   (debug_module_t *)            &mod_aes_icm
 };

@@ -21,11 +21,11 @@ namespace colorertake5
 
      void loadSource(const char * pszSourceLocation, const char * pszSource);
      file_type *getFileType(const char *name);
-     file_type *enumerateFileTypes(int index);
-     file_type *chooseFileType(const char *fileName, const char *firstLine, int typeNo = 0);
+     file_type *enumerateFileTypes(int32_t index);
+     file_type *chooseFileType(const char *fileName, const char *firstLine, int32_t typeNo = 0);
 
      count getRegionCount();
-     class region *getRegion(int id);
+     class region *getRegion(int32_t id);
      class region* getRegion(const char *name);
 
      string getVersion();
@@ -41,7 +41,7 @@ namespace colorertake5
      base_array<file_type_impl *>       fileTypeVector;
 
      ::collection::string_map<scheme_impl *>          schemeHash;
-     ::collection::string_map<int>                   disabledSchemes;
+     ::collection::string_map<int32_t>                   disabledSchemes;
 
      base_array<region *>   regionNamesVector;
      ::collection::string_map<region *>   regionNamesHash;

@@ -71,7 +71,7 @@ public:
          return *this;
       }
 
-      iterator operator ++ (int)
+      iterator operator ++ (int32_t)
       {
          if(m_ppair != NULL && m_pmap != NULL)
             m_ppair = m_pmap->PGetNextAssoc(m_ppair);

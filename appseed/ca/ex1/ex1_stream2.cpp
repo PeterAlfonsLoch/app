@@ -32,7 +32,7 @@ output_stream2 & output_stream2::operator << (unsigned short ush)
    return *this;
 }
 
-output_stream2 & output_stream2::operator << (int i)
+output_stream2 & output_stream2::operator << (int32_t i)
 {
    byte_output_stream::operator << (i);
    return *this;

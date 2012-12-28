@@ -16,7 +16,7 @@ namespace gcom
          {
          public:
 
-            int            m_iBackgroundUpdateMillis;
+            int32_t            m_iBackgroundUpdateMillis;
             color          m_colorBackground;
 
             interaction(::ca::application * papp);
@@ -34,7 +34,7 @@ namespace gcom
             virtual void BackViewUpdateScreen(LPCRECT lpcrect, UINT uiRedraw);
             virtual void BackViewUpdateScreen(rect_array & recta, UINT uiRedraw);
             
-            virtual int  BackViewGetBackgroundUpdateMillis();
+            virtual int32_t  BackViewGetBackgroundUpdateMillis();
 
             virtual string BackViewGetNextBackgroundImagePath();
             virtual void BackViewSetCurrentBackgroundImagePath(const char * psz);

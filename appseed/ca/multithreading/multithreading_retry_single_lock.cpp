@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // retry_single_lock
 
-retry_single_lock::retry_single_lock(waitable * psyncobject, duration durationLock, duration durationSleep, int iRetry, bool bInitialLock)
+retry_single_lock::retry_single_lock(waitable * psyncobject, duration durationLock, duration durationSleep, int32_t iRetry, bool bInitialLock)
 {
 
    m_psyncobject     = psyncobject;
@@ -27,7 +27,7 @@ bool retry_single_lock::lock()
    if(m_psyncobject == NULL)
       return FALSE;
 
-   int iRetry = 0;
+   int32_t iRetry = 0;
 
    try
    {

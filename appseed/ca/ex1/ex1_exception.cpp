@@ -27,7 +27,7 @@ namespace ex1
       base_exception::operator delete(pbData);
    }
 
-   void PASCAL exception::operator delete(void * pbData, const char * lpszFileName, int nLine)
+   void PASCAL exception::operator delete(void * pbData, const char * lpszFileName, int32_t nLine)
    {
       base_exception::operator delete(pbData, lpszFileName, nLine);
    }

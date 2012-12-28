@@ -32,8 +32,8 @@ namespace user
    public:
 
       state::state                        m_state;
-      int                                 m_iHover;
-      int                                 m_iClick;
+      int32_t                                 m_iHover;
+      int32_t                                 m_iClick;
       ::user::front_end_schema::button *  m_pschema;
 
 

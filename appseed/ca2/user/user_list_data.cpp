@@ -82,7 +82,7 @@ namespace user
    void simple_list_data::SetColumnData(list * plist, stringa & stra, int_ptr iColumn)
    {
       m_array.set_at_grow(iColumn, stra);
-      for(int iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
+      for(int32_t iSubItem = 0; iSubItem < m_array.get_count(); iSubItem++)
       {
          if(iColumn != iSubItem)
          {
@@ -104,7 +104,7 @@ namespace user
          return false;
       if(iItem >= m_array.get_size())
          return false;
-      for(int iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
+      for(int32_t iSubItem = 0; iSubItem < m_array.get_size(); iSubItem++)
       {
          m_array[iSubItem].remove_at(iItem);
       }

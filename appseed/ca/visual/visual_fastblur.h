@@ -17,7 +17,7 @@ namespace visual
 
 
       size           m_size;
-      int            m_iRadius;
+      int32_t            m_iRadius;
       byte_array     m_ucha;
       byte_array     m_uchaDiv;
 
@@ -25,8 +25,8 @@ namespace visual
       fastblur(::ca::application * papp);
 
 
-      bool initialize(int cx, int cy, int iRadius);
-      bool initialize(size sz, int iRadius);
+      bool initialize(int32_t cx, int32_t cy, int32_t iRadius);
+      bool initialize(size sz, int32_t iRadius);
 
 
       virtual bool blur();

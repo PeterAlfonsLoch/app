@@ -29,8 +29,8 @@ namespace userex
 
       virtual void _001OnSelectionChange();
 
-      int get_second();
-      int set_second(int iSecond);
+      int32_t get_second();
+      int32_t set_second(int32_t iSecond);
 
       DECL_GEN_SIGNAL(_001OnCreate)
 

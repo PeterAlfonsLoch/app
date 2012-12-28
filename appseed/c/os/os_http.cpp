@@ -5,7 +5,7 @@ CLASS_DECL_c vsstring defer_ls_get(const char * pszUrl, const char * pszLocale, 
    
    vsstring str;
 
-   int iAttempt = 0;
+   int32_t iAttempt = 0;
 
    vsstring strUrl(pszUrl);
 

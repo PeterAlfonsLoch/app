@@ -4,7 +4,7 @@
 typedef unsigned long ipaddr_t;
 typedef unsigned short port_t;
 #ifdef WINDOWS
-typedef int socklen_t;
+typedef int32_t socklen_t;
 #endif
 
 

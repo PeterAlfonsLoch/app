@@ -9,11 +9,11 @@ namespace user
    public:
       UINT     cbSize;
       UINT     fMask;
-      int      nMin;
-      int      nMax;
-      int      nPage;
-      int      nPos;
-      int      nTrackPos;
+      int32_t      nMin;
+      int32_t      nMax;
+      int32_t      nPage;
+      int32_t      nPos;
+      int32_t      nTrackPos;
    };
 
    class CLASS_DECL_ca2 scroll_bar :
@@ -34,8 +34,8 @@ namespace user
       scroll_bar();
       virtual ~scroll_bar();
 
-      virtual int _001GetScrollPos() = 0;
-      virtual int _001SetScrollPos(int iPos) = 0;
+      virtual int32_t _001GetScrollPos() = 0;
+      virtual int32_t _001SetScrollPos(int32_t iPos) = 0;
       virtual bool _001GetScrollInfo(scroll_info * psi) = 0;
       virtual bool _001SetScrollInfo(scroll_info * psi, bool bRedraw = true) = 0;
 

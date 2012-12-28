@@ -86,7 +86,7 @@ namespace filemanager
       data_get(::radix::system::idEmpty, ::radix::system::idEmpty, straData);
       bool_array baData;
       data_get("recursive", ::radix::system::idEmpty, baData);
-      for(int i = 0; i < stra.get_count(); i++)
+      for(int32_t i = 0; i < stra.get_count(); i++)
       {
          if(!straData.contains(stra[i]))
          {
@@ -120,7 +120,7 @@ namespace filemanager
       bool_array baData;
       data_get("recursive", ::radix::system::idEmpty, baData);
       index iFind;
-      for(int i = 0; i < stra.get_count(); i++)
+      for(int32_t i = 0; i < stra.get_count(); i++)
       {
          while((iFind = straData.find_first(stra[i])) >= 0)
          {

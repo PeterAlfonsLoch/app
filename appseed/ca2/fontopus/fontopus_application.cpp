@@ -35,7 +35,7 @@ namespace ca2
          return TRUE;
       }
 
-      int application::exit_instance()
+      int32_t application::exit_instance()
       {
          try
          {

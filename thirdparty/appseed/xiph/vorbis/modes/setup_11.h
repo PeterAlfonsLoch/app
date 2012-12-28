@@ -28,14 +28,14 @@ BEGIN_EXTERN_C
 
 
 
-static const int blocksize_11[2]={
+static const int32_t blocksize_11[2]={
   512,512
 };
 
-static const int _floor_mapping_11a[]={
+static const int32_t _floor_mapping_11a[]={
   6,6
 };
-static const int *_floor_mapping_11[]={
+static const int32_t *_floor_mapping_11[]={
   _floor_mapping_11a
 };
 

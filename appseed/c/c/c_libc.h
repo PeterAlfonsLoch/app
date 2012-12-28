@@ -18,7 +18,7 @@ BEGIN_EXTERN_C
 
 
 extern TCHAR *_argv[];
-int _init_args();
+int32_t _init_args();
 void _term_args();
 
 #endif

@@ -597,7 +597,7 @@ namespace ca
 
       }
 
-      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, DWORD &dwLastError, int iLast)
+      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, DWORD &dwLastError, int32_t iLast)
       {
 
          if(iLast < 0)
@@ -868,7 +868,7 @@ namespace ca
          }
 
 
-         for(int i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
          {
 
             strLocale         = pcontext->localeschema().m_idaLocale[i];
@@ -991,7 +991,7 @@ namespace ca
          }
 
 
-         for(int i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
          {
 
             strLocale         = pcontext->localeschema().m_idaLocale[i];
@@ -1198,7 +1198,7 @@ namespace ca
             return strPath;
 
 
-         for(int i = 0; i < pcontext->m_plocaleschema->m_idaLocale.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->m_plocaleschema->m_idaLocale.get_count(); i++)
          {
 
             strLocale         = pcontext->m_plocaleschema->m_idaLocale[i];
@@ -1287,7 +1287,7 @@ namespace ca
             strLibraryName = strLibraryNameParam;
          }
 
-         int iFind = strAppNameParam.find("/");
+         int32_t iFind = strAppNameParam.find("/");
 
          if(iFind > 0)
          {
@@ -1311,7 +1311,7 @@ namespace ca
          if(iFind > 0)
          {
 
-            int iFind2 = strAppNameParam.find('/', iFind + 1);
+            int32_t iFind2 = strAppNameParam.find('/', iFind + 1);
 
             if(iFind2 < 0)
             {
@@ -1548,7 +1548,7 @@ namespace ca
 
          string strCandidate;
 
-         for(int i = 0; i < stra.get_count(); i++)
+         for(int32_t i = 0; i < stra.get_count(); i++)
          {
 
             strCandidate = path(stra[i], pszTopic);

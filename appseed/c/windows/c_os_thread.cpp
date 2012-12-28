@@ -72,7 +72,7 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
 }
 
 
-HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
+HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int32_t iPriority)
 {
 
    UNREFERENCED_PARAMETER(iPriority);
@@ -97,7 +97,7 @@ thread_layer::~thread_layer()
 }
 
 
-int thread_layer::run()
+int32_t thread_layer::run()
 {
 
    MSG msg;

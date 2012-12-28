@@ -21,7 +21,7 @@ namespace visual
    void api::DrawBeziers(
       ::ca::graphics                     *pdc,
       LPPOINT             lppoints,
-      int                  iCount,
+      int32_t                  iCount,
       double               dRateX,
       LPPOINT               lppointOffset)
    {
@@ -35,7 +35,7 @@ namespace visual
          lppointOffset->x,
          lppointOffset->y);
 
-      pdc->ScaleViewportExt((int) dRateX, 1, 1, 1);
+      pdc->ScaleViewportExt((int32_t) dRateX, 1, 1, 1);
 
       pdc->BeginPath();
       pdc->PolyBezier(lppoints, iCount);
@@ -50,7 +50,7 @@ namespace visual
    void api::DrawAndFillBeziers(
       ::ca::graphics                     *pdc,
       LPPOINT             lppoints,
-      int                  iCount,
+      int32_t                  iCount,
       double               dRateX,
       LPPOINT               lppointOffset)
    {
@@ -64,7 +64,7 @@ namespace visual
          lppointOffset->x,
          lppointOffset->y);
 
-      pdc->ScaleViewportExt((int) dRateX, 1, 1, 1);
+      pdc->ScaleViewportExt((int32_t) dRateX, 1, 1, 1);
 
       pdc->BeginPath();
       pdc->PolyBezier(lppoints, iCount);
@@ -93,11 +93,11 @@ namespace visual
          lppointOffset->x,
          lppointOffset->y);
 
-      pdc->ScaleViewportExt((int)(dRateX * 1000.0), 1, 1, 1);
+      pdc->ScaleViewportExt((int32_t)(dRateX * 1000.0), 1, 1, 1);
 
-      for(int i = 0; i < lpglyph->get_size(); i++)
+      for(int32_t i = 0; i < lpglyph->get_size(); i++)
       {
-         pdc->PolyBezier(lpglyph->element_at(i).get_data(), (int) lpglyph->element_at(i).get_size());
+         pdc->PolyBezier(lpglyph->element_at(i).get_data(), (int32_t) lpglyph->element_at(i).get_size());
       }
 
       pdc->SetWindowExt(viewportExt);
@@ -112,12 +112,12 @@ namespace visual
       double            dHeight,
       const char *      psz,
       LPINT             lpiCharsPositions,
-      int               iCharsPositions,
-      int               iOffset)
+      int32_t               iCharsPositions,
+      int32_t               iOffset)
    {
          rect clipRect;
 
-   //      int iOldMapMode = ::GetMapMode(pdc->m_hDC);
+   //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
    //      ::ca::font * pfont = pdc->GetCurrentFont();
    //      ASSERT(pfont != NULL);
@@ -154,16 +154,16 @@ namespace visual
    void api::EmbossedTextOut(
       ::ca::graphics *          pdc,
       const char *   psz,
-      int            iLeft,
-      int            iTop,
-      int            iWidth,
+      int32_t            iLeft,
+      int32_t            iTop,
+      int32_t            iWidth,
       COLORREF       crText,
       COLORREF       crOutline,
-      int            iLen)
+      int32_t            iLen)
    {
          rect clipRect;
 
-   //      int iOldMapMode = ::GetMapMode(pdc->m_hDC);
+   //      int32_t iOldMapMode = ::GetMapMode(pdc->m_hDC);
    //      point viewportOrg;
    //      ::ca::font * pfont = pdc->GetCurrentFont();
    //      ASSERT(pfont != NULL);
@@ -218,8 +218,8 @@ namespace visual
       double         dHeight,
       const char *   psz,
       LPINT          lpiCharsPositions,
-      int            iCharsPositions,
-      int            iOffset)
+      int32_t            iCharsPositions,
+      int32_t            iOffset)
    {
       UNREFERENCED_PARAMETER(dRateX);
       UNREFERENCED_PARAMETER(dHeight);
@@ -232,7 +232,7 @@ namespace visual
 
       string str;
       str = gen::international::utf8_to_unicode(psz);
-      ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int) str.get_length());
+      ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int32_t) str.get_length());
    }
 
 

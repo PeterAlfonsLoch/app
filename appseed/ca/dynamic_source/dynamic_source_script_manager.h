@@ -102,7 +102,7 @@ namespace dynamic_source
       string_to_string_map                      m_mapIncludeExpandMd5;
 
 
-      int                                       m_iTunnelPluginCount;
+      int32_t                                       m_iTunnelPluginCount;
       mutex                                     m_mutexOutLink;
       ::collection::string_map < ::sockets::link_out_socket * > 
                                                 m_mapOutLink;

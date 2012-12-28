@@ -123,7 +123,7 @@ namespace zip
 
       string strPath;
 
-      for(int i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          if(baIsDir[i])
          {
@@ -177,8 +177,8 @@ namespace zip
       //string wstrFileName(lpszFileName);
 //      array_del_ptr < File, File & > filea;
 
-      /*int iStart = 0;
-      int iFind;
+      /*int32_t iStart = 0;
+      int32_t iFind;
       iFind  = wstrFileName.find(L".zip", iStart);*/
 
 
@@ -196,7 +196,7 @@ namespace zip
 
       stringa wstraPrefix;
       string str;
-      int i;
+      int32_t i;
       array_del_ptr < InFile, InFile & > izfilea;
    //   array_ptr_alloc < buffered_file, buffered_file & > bzfilea;
       for(i = 1; i < wstraPath.get_size(); i++)
@@ -229,7 +229,7 @@ namespace zip
          {
    //         if(unzOpenCurrentFile(pf) == UNZ_OK)
             {
-               const int BUFSIZE = 4096;
+               const int32_t BUFSIZE = 4096;
                WCHAR lpPathBuffer[BUFSIZE];
                GetTempPathW(BUFSIZE,   // length of the buffer
                   lpPathBuffer);      // buffer for path

@@ -28,7 +28,7 @@ namespace gcom
          return true;
       }
 
-      int thread::exit_instance()
+      int32_t thread::exit_instance()
       {
          m_evInitialized.SetEvent();
          m_pbackviewinterface->Release();
@@ -217,7 +217,7 @@ namespace gcom
          {
             ASSERT(FALSE);
       //      _bstr_t * pBstr = (_bstr_t *) lparam;
-      //      m_pImageLoader->load_image(*pBstr, (int) NULL);
+      //      m_pImageLoader->load_image(*pBstr, (int32_t) NULL);
       //      delete pBstr;
          }
          else if(pbase->m_wparam == 2)
@@ -336,15 +336,15 @@ namespace gcom
       }
 
 
-      /*void thread::OnLyricViewSize(int iType)
+      /*void thread::OnLyricViewSize(int32_t iType)
       {
          backview::Main * pmain = m_pbackviewinterface;
 
          Interface & iface = pmain->GetInterface();
          rect rect;
          iface.BackViewGetClientRect(&rect);
-         int cx = rect.right;
-         int cy = rect.bottom;
+         int32_t cx = rect.right;
+         int32_t cy = rect.bottom;
 
          if(cx <= 0)
             cx = 1;
@@ -368,9 +368,9 @@ namespace gcom
             rate = horizRate;
          else
             rate = vertRate;
-         int finalWidth, finalHeight; //, finalX, finalY;
-         finalWidth = (int) ((double) bm.bmWidth * rate);
-         finalHeight = (int) ((double)bm.bmHeight * rate);
+         int32_t finalWidth, finalHeight; //, finalX, finalY;
+         finalWidth = (int32_t) ((double) bm.bmWidth * rate);
+         finalHeight = (int32_t) ((double)bm.bmHeight * rate);
 
          LPSTRETCHIMAGESTRUCTURE lpSi = new STRETCHIMAGESTRUCTURE;
       //   lpSi->m_hbitmap = (HBITMAP) m_bitmap.m_hObject ;

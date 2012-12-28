@@ -12,7 +12,7 @@
 struct stat_prop_stg
 {
    void *         m_p;
-   int            propid;
+   int32_t            propid;
    var::e_type    vt;
 };
 
@@ -104,7 +104,7 @@ namespace compress
 
 //virtual ex1::HRes GetStream(const char * name, ex1::byte_input_stream **inStream) specifier; \ // input stream should be seekable, so by the time using ex1::file interface
    #define CA2_COMPRESS_INTERFACE_archive_OpenVolumeCallback(specifier) \
-     virtual ex1::HRes GetProperty(int propID, var *value) specifier; \
+     virtual ex1::HRes GetProperty(int32_t propID, var *value) specifier; \
      virtual ex1::HRes GetStream(const char * name, ex1::byte_input_stream **inStream) specifier; \
 
    class CLASS_DECL_ca archive_open_volume_callback_interface
@@ -140,13 +140,13 @@ namespace compress
      virtual ex1::HRes Open(::ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::compress::archive_open_callback_interface *openArchiveCallback) specifier; \
      virtual ex1::HRes Close() specifier; \
      virtual ex1::HRes GetNumberOfItems(uint32 *numItems) specifier; \
-     virtual ex1::HRes GetProperty(uint32 index, int propID, var *value) specifier; \
+     virtual ex1::HRes GetProperty(uint32 index, int32_t propID, var *value) specifier; \
      virtual ex1::HRes Extract(const uint32* indices, uint32 numItems, int32 testMode, ::compress::archive_extract_callback_interface *extractCallback) specifier; \
-     virtual ex1::HRes GetArchiveProperty(int propID, var *value) specifier; \
+     virtual ex1::HRes GetArchiveProperty(int32_t propID, var *value) specifier; \
      virtual ex1::HRes GetNumberOfProperties(uint32 *numProperties) specifier; \
-     virtual ex1::HRes GetPropertyInfo(uint32 index, string & name, int *propID, var::e_type *varType) specifier; \
+     virtual ex1::HRes GetPropertyInfo(uint32 index, string & name, int32_t *propID, var::e_type *varType) specifier; \
      virtual ex1::HRes GetNumberOfArchiveProperties(uint32 *numProperties) specifier; \
-     virtual ex1::HRes GetArchivePropertyInfo(uint32 index, string & name, int *propID, var::e_type *varType) specifier;
+     virtual ex1::HRes GetArchivePropertyInfo(uint32 index, string & name, int32_t *propID, var::e_type *varType) specifier;
 
    class CLASS_DECL_ca input_archive_interface :
       virtual public ::radix::object
@@ -169,7 +169,7 @@ namespace compress
          int32 *newProperties, /* 1 - new properties, 0 - old properties */ \
          uint32 *indexInArchive /* -1 if there is no in archive, or if doesn't matter */ \
          )  specifier; \
-     virtual ex1::HRes GetProperty(uint32 index, int propID, var *value) specifier; \
+     virtual ex1::HRes GetProperty(uint32 index, int32_t propID, var *value) specifier; \
      virtual ex1::HRes GetStream(uint32 index, ex1::byte_input_stream **inStream) specifier; \
      virtual ex1::HRes SetOperationResult(int32 operationResult) specifier; \
 
@@ -212,7 +212,7 @@ namespace compress
 
 
    #define IMP_IInArchive_GetProp(k) \
-     (uint32 index, string & name, int *propID, var::e_type *varType) \
+     (uint32 index, string & name, int32_t *propID, var::e_type *varType) \
        { if(index >= sizeof(k) / sizeof(k[0])) return E_INVALIDARG; \
        const stat_prop_stg &srcItem = k[index]; \
        *propID = srcItem.propid; *varType = srcItem.vt; name.Empty(); return S_OK; } \
@@ -248,7 +248,7 @@ namespace compress
    #define IMP_IInArchive_ArcProps_NO_Table \
      ex1::HRes CHandler::GetNumberOfArchiveProperties(uint32 *numProperties) \
        { *numProperties = 0; return S_OK; } \
-     ex1::HRes CHandler::GetArchivePropertyInfo(uint32, string &, int *, var::e_type *) \
+     ex1::HRes CHandler::GetArchivePropertyInfo(uint32, string &, int32_t *, var::e_type *) \
        { return E_NOTIMPL; } \
 
    #define IMP_IInArchive_ArcProps_NO \

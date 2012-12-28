@@ -51,7 +51,7 @@ struct th_dec_ctx{
     This takes on negative values while there are remaining header packets to
      be emitted, reaches 0 when the codec is ready for input, and goes to 1
      when a frame has been processed and a data packet is ready.*/
-  int                  packet_state;
+  int32_t                  packet_state;
   /*Buffer in which to assemble packets.*/
   oc_pack_buf          opb;
   /*Huffman decode trees.*/
@@ -66,21 +66,21 @@ struct th_dec_ctx{
   /*The extra bits associated with DCT tokens.*/
   unsigned char       *extra_bits;
   /*The number of dct tokens unpacked so far.*/
-  int                  dct_tokens_count;
+  int32_t                  dct_tokens_count;
   /*The out-of-loop post-processing level.*/
-  int                  pp_level;
+  int32_t                  pp_level;
   /*The DC scale used for out-of-loop deblocking.*/
-  int                  pp_dc_scale[64];
+  int32_t                  pp_dc_scale[64];
   /*The sharpen modifier used for out-of-loop deringing.*/
-  int                  pp_sharp_mod[64];
+  int32_t                  pp_sharp_mod[64];
   /*The DC quantization index of each block.*/
   unsigned char       *dc_qis;
   /*The variance of each block.*/
-  int                 *variances;
+  int32_t                 *variances;
   /*The storage for the post-processed frame buffer.*/
   unsigned char       *pp_frame_data;
   /*Whether or not the post-processsed frame buffer has space for chroma.*/
-  int                  pp_frame_state;
+  int32_t                  pp_frame_state;
   /*The buffer used for the post-processed frame.
     Note that this is _not_ guaranteed to have the same strides and offsets as
      the reference frame buffers.*/
@@ -89,17 +89,17 @@ struct th_dec_ctx{
   th_stripe_callback   stripe_cb;
 # if defined(HAVE_CAIRO)
   /*Output metrics for debugging.*/
-  int                  telemetry;
-  int                  telemetry_mbmode;
-  int                  telemetry_mv;
-  int                  telemetry_qi;
-  int                  telemetry_bits;
-  int                  telemetry_frame_bytes;
-  int                  telemetry_coding_bytes;
-  int                  telemetry_mode_bytes;
-  int                  telemetry_mv_bytes;
-  int                  telemetry_qi_bytes;
-  int                  telemetry_dc_bytes;
+  int32_t                  telemetry;
+  int32_t                  telemetry_mbmode;
+  int32_t                  telemetry_mv;
+  int32_t                  telemetry_qi;
+  int32_t                  telemetry_bits;
+  int32_t                  telemetry_frame_bytes;
+  int32_t                  telemetry_coding_bytes;
+  int32_t                  telemetry_mode_bytes;
+  int32_t                  telemetry_mv_bytes;
+  int32_t                  telemetry_qi_bytes;
+  int32_t                  telemetry_dc_bytes;
   unsigned char       *telemetry_frame_data;
 # endif
 };

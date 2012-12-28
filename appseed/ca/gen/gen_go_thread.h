@@ -16,7 +16,7 @@ public:
 
    virtual void start();
    
-   virtual int run();
+   virtual int32_t run();
 	virtual void go() = 0;
 
 };

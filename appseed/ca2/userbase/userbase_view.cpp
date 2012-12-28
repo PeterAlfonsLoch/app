@@ -191,7 +191,7 @@ namespace userbase
    {
       SCAST_PTR(::gen::message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
-      //int nResult = pmouseactivate->get_lresult();
+      //int32_t nResult = pmouseactivate->get_lresult();
 
       if (pmouseactivate->GetMessage() == MA_NOACTIVATE
        || pmouseactivate->GetMessage() == MA_NOACTIVATEANDEAT)

@@ -105,7 +105,7 @@ namespace ca4
        string get_response();
 
        /* Internal cURL related methods */
-       int saveLastWebResponse( char*& data, size_t size );
+       int32_t saveLastWebResponse( char*& data, size_t size );
 
 
 

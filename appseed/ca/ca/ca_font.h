@@ -20,7 +20,7 @@ namespace ca
       double      m_dFontSize;
       double      m_dFontWidth;
       e_unit      m_eunitFontSize;
-      int         m_iFontWeight;
+      int32_t         m_iFontWeight;
       bool        m_bItalic;
       bool        m_bUnderline;
       bool        m_bStrikeout;
@@ -32,7 +32,7 @@ namespace ca
       virtual bool create_pixel_font(
          const char * lpszFacename, 
          double dSize,
-         int iWeight = 400, 
+         int32_t iWeight = 400, 
          bool bItalic = false, 
          bool bUnderline = false,
          bool bStrikeOut = false,
@@ -41,15 +41,15 @@ namespace ca
       virtual bool create_point_font(
          const char * lpszFacename, 
          double dSize,
-         int iWeight = 400, 
+         int32_t iWeight = 400, 
          bool bItalic = false, 
          bool bUnderline = false,
          bool bStrikeOut = false,
          double dWidth = 1.0);
 
 
-      //    int nEscapement
-      //    int nOrientation
+      //    int32_t nEscapement
+      //    int32_t nOrientation
       //    BYTE nCharSet
       //    BYTE nOutPrecision
       //    BYTE nClipPrecision

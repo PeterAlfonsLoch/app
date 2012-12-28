@@ -50,7 +50,7 @@ bool small_ipc_channel::ensure_tx(const char * pszMessage, DWORD dwTimeout)
 }
 
 
-bool small_ipc_channel::ensure_tx(int message, void * pdata, int len, DWORD dwTimeout)
+bool small_ipc_channel::ensure_tx(int32_t message, void * pdata, int32_t len, DWORD dwTimeout)
 {
 
    //if(dwTimeout == INFINITE)

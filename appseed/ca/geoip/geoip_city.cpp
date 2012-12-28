@@ -1,18 +1,18 @@
 #include "framework.h"
 
 static
-const int FULL_RECORD_LENGTH = 50;
+const int32_t FULL_RECORD_LENGTH = 50;
 
 static
-GeoIPRecord * _extract_record(GeoIP* gi, unsigned int seek_record, int *next_record_ptr) {
-   int record_pointer;
+GeoIPRecord * _extract_record(GeoIP* gi, unsigned int32_t seek_record, int32_t *next_record_ptr) {
+   int32_t record_pointer;
    unsigned char *record_buf = NULL;
    unsigned char *begin_record_buf = NULL;
    GeoIPRecord * record;
-   int str_length = 0;
-   int j;
+   int32_t str_length = 0;
+   int32_t j;
    double latitude = 0, longitude = 0;
-   int metroarea_combo = 0;
+   int32_t metroarea_combo = 0;
    size_t bytes_read = 0;
    if (seek_record == gi->databaseSegments[0])
       return NULL;
@@ -105,18 +105,18 @@ for (j = 0; j < 3; ++j)
 
    /* Used for GeoIP_next_record */
    if (next_record_ptr != NULL)
-      *next_record_ptr = (int) (seek_record + record_buf - begin_record_buf + 3);
+      *next_record_ptr = (int32_t) (seek_record + record_buf - begin_record_buf + 3);
 
    return record;
 }
 
 static
 GeoIPRecord * _get_record(GeoIP* gi, unsigned long ipnum) {
-   unsigned int seek_record;
+   unsigned int32_t seek_record;
 
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
          gi->databaseType != (char) GEOIP_CITY_EDITION_REV1) {
-      printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
+      printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int32_t)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
       return 0;
    }
 
@@ -126,11 +126,11 @@ GeoIPRecord * _get_record(GeoIP* gi, unsigned long ipnum) {
 
 static
 GeoIPRecord * _get_record_v6(GeoIP* gi, geoipv6_t ipnum) {
-       unsigned int seek_record;
+       unsigned int32_t seek_record;
 
        if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
                        gi->databaseType != (char) GEOIP_CITY_EDITION_REV1) {
-               printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
+               printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int32_t)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
                return 0;
        }
 
@@ -184,11 +184,11 @@ GeoIPRecord * GeoIP_record_by_name_v6 (GeoIP* gi, const char *name) {
        return _get_record_v6(gi, ipnum);
 }
 
-int GeoIP_record_id_by_addr (GeoIP* gi, const char *addr) {
+int32_t GeoIP_record_id_by_addr (GeoIP* gi, const char *addr) {
    unsigned long ipnum;
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
          gi->databaseType != (char) GEOIP_CITY_EDITION_REV1) {
-      printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
+      printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int32_t)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
       return 0;
    }
    if (addr == NULL) {
@@ -198,11 +198,11 @@ int GeoIP_record_id_by_addr (GeoIP* gi, const char *addr) {
    return _GeoIP_seek_record(gi, ipnum);
 }
 
-int GeoIP_record_id_by_addr_v6 (GeoIP* gi, const char *addr) {
+int32_t GeoIP_record_id_by_addr_v6 (GeoIP* gi, const char *addr) {
        geoipv6_t ipnum;
        if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
                        gi->databaseType != (char) GEOIP_CITY_EDITION_REV1) {
-               printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
+               printf("Invalid database type %s, expected %s\n", GeoIPDBDescription[(int32_t)gi->databaseType], GeoIPDBDescription[GEOIP_CITY_EDITION_REV1]);
                return 0;
        }
        if (addr == NULL) {
@@ -212,11 +212,11 @@ int GeoIP_record_id_by_addr_v6 (GeoIP* gi, const char *addr) {
        return _GeoIP_seek_record_v6(gi, ipnum);
 }
 
-int GeoIP_init_record_iter (GeoIP* gi) {
+int32_t GeoIP_init_record_iter (GeoIP* gi) {
    return gi->databaseSegments[0] + 1;
 }
 
-int GeoIP_next_record (GeoIP* gi, GeoIPRecord **gir, int *record_iter) {
+int32_t GeoIP_next_record (GeoIP* gi, GeoIPRecord **gir, int32_t *record_iter) {
    if (gi->cache != NULL) {
       printf("GeoIP_next_record not supported in primitive::memory cache mode\n");
       return 1;

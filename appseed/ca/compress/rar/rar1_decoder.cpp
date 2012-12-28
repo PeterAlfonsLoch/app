@@ -31,14 +31,14 @@ namespace compress {
 
       void decoder::InitStructures()
       {
-         for(int i = 0; i < kNumRepDists; i++)
+         for(int32_t i = 0; i < kNumRepDists; i++)
             m_RepDists[i] = 0;
          m_RepDistPtr = 0;
          LastLength = 0;
          LastDist = 0;
       }
 
-      uint32 decoder::ReadBits(int numBits) { return m_InBitStream.ReadBits(numBits); }
+      uint32 decoder::ReadBits(int32_t numBits) { return m_InBitStream.ReadBits(numBits); }
 
       HRESULT decoder::CopyBlock(uint32 distance, uint32 len)
       {
@@ -75,7 +75,7 @@ namespace compress {
       HRESULT decoder::ShortLZ()
       {
          uint32 len, saveLen, dist;
-         int distancePlace;
+         int32_t distancePlace;
          byte *kShortLen;
          const uint32 *kShortXor;
          NumHuf = 0;
@@ -263,7 +263,7 @@ namespace compress {
          uint32 curByte, newBytePlace;
          uint32 len;
          uint32 dist;
-         int bytePlace;
+         int32_t bytePlace;
 
          if      (AvrPlc > 0x75ff)  bytePlace = DecodeNum(PosHf4);
          else if (AvrPlc > 0x5dff)  bytePlace = DecodeNum(PosHf3);
@@ -355,9 +355,9 @@ namespace compress {
 
       void decoder::CorrHuff(uint32 *CharSet,uint32 *NumToPlace)
       {
-         int i;
+         int32_t i;
          for (i = 7; i >= 0; i--)
-            for (int j = 0; j < 32; j++, CharSet++)
+            for (int32_t j = 0; j < 32; j++, CharSet++)
                *CharSet = (*CharSet & ~0xff) | i;
          memset(NumToPlace, 0, sizeof(NToPl));
          for (i = 6; i >= 0; i--)

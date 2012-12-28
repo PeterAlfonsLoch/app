@@ -429,7 +429,7 @@ namespace bergedge
    {
       if(itema.get_size() > 0)
       {
-         int i = (int) ::ShellExecuteW(
+         int32_t i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
             L"\"" + gen::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
@@ -452,7 +452,7 @@ namespace bergedge
       stringa straRelative;
       straPath.remove_all();
       Application.dir().rls(System.dir().commonprograms(), &straPath, NULL, &straRelative);
-      for(int i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
          Application.dir().mk(System.dir().name(str));
@@ -461,7 +461,7 @@ namespace bergedge
       straRelative.remove_all();
       straPath.remove_all();
       Application.dir().rls(System.dir().userprograms(NULL), &straPath, NULL, &straRelative);
-      for(int i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
          Application.dir().mk(System.dir().name(str));
@@ -500,7 +500,7 @@ namespace bergedge
       stringa straRelative;
       straPath.remove_all();
       System.dir().rls(Application.dir().userquicklaunch(), &straPath, NULL, &straRelative);
-      for(int i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          string str = System.dir().path(psz, straRelative[i]);
          Application.dir().mk(System.dir().name(str));
@@ -527,7 +527,7 @@ namespace bergedge
             straPath.remove_all();
             straRelative.remove_all();
             Application.dir().rls(buf, &straPath, NULL, &straRelative);
-            for(int i = 0; i < straPath.get_size(); i++)
+            for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
                Application.dir().mk(System.dir().name(str));
@@ -548,7 +548,7 @@ namespace bergedge
             straPath.remove_all();
             straRelative.remove_all();
             Application.dir().rls(buf, &straPath, NULL, &straRelative);
-            for(int i = 0; i < straPath.get_size(); i++)
+            for(int32_t i = 0; i < straPath.get_size(); i++)
             {
                string str = System.dir().path(psz, straRelative[i]);
                Application.dir().mk(System.dir().name(str));
@@ -606,7 +606,7 @@ namespace bergedge
 
 
 
-   void pane_view::set_display(int iDisplay)
+   void pane_view::set_display(int32_t iDisplay)
    {
       m_iDisplay = iDisplay;
    }

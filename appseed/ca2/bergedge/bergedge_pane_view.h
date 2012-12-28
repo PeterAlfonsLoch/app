@@ -14,9 +14,9 @@ namespace bergedge
 
       form_view *                               m_pformOptions;
       visual::dib_sp                            m_dibBk;
-      int                                       m_iNewArea;
-      int                                       m_iArea;
-      int                                       m_iDisplay;
+      int32_t                                       m_iNewArea;
+      int32_t                                       m_iArea;
+      int32_t                                       m_iDisplay;
       filemanager::SimpleFilePropertiesForm *   m_ppropform;
       ::fs::item_array                      m_itema;
 
@@ -50,7 +50,7 @@ namespace bergedge
 
       void _001OnDraw(::ca::graphics * pdc);
 
-      virtual void set_display(int iDisplay);
+      virtual void set_display(int32_t iDisplay);
 
       virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);

@@ -37,7 +37,7 @@ void fixed_alloc_no_sync::FreeAll()
 void fixed_alloc_no_sync::NewBlock()
 {
 
-   int nAllocSize = m_nAllocSize + 32;
+   int32_t nAllocSize = m_nAllocSize + 32;
    // add another block
    plex* pNewBlock = plex::create(m_pBlocks, m_nBlockSize, nAllocSize);
 
@@ -45,7 +45,7 @@ void fixed_alloc_no_sync::NewBlock()
    node* pNode = (node*)pNewBlock->data();
    // free in reverse order to make it easier to debug
    (BYTE*&)pNode += (nAllocSize * m_nBlockSize) - nAllocSize;
-   for (int i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
+   for (int32_t i = m_nBlockSize-1; i >= 0; i--, (BYTE*&)pNode -= nAllocSize)
    {
       pNode->pNext = m_pnodeFree;
       m_pnodeFree = pNode;
@@ -59,29 +59,29 @@ void fixed_alloc_no_sync::NewBlock()
 // fixed_alloc_sync
 //
 
-fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int iShareCount)
+fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int32_t iShareCount)
 {
 
    m_i = 0;
    m_iShareCount = iShareCount;
    m_allocptra.set_size(iShareCount);
    m_protectptra.set_size(iShareCount);
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(int32_t i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = new fixed_alloc_no_sync(nAllocSize + sizeof(int), nBlockSize);
+      m_allocptra[i] = new fixed_alloc_no_sync(nAllocSize + sizeof(int32_t), nBlockSize);
    }
-   for(int i = 0; i < m_protectptra.get_count(); i++)
+   for(int32_t i = 0; i < m_protectptra.get_count(); i++)
    {
       m_protectptra[i] = new simple_critical_section();
    }
 
    m_allocptra.set_size(iShareCount);
    m_protectptra.set_size(iShareCount);
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(int32_t i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = new fixed_alloc_no_sync(nAllocSize + sizeof(int), nBlockSize);
+      m_allocptra[i] = new fixed_alloc_no_sync(nAllocSize + sizeof(int32_t), nBlockSize);
    }
-   for(int i = 0; i < m_protectptra.get_count(); i++)
+   for(int32_t i = 0; i < m_protectptra.get_count(); i++)
    {
       m_protectptra[i] = new simple_critical_section();
    }
@@ -89,11 +89,11 @@ fixed_alloc_sync::fixed_alloc_sync(UINT nAllocSize, UINT nBlockSize, int iShareC
 
 fixed_alloc_sync::~fixed_alloc_sync()
 {
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(int32_t i = 0; i < m_allocptra.get_count(); i++)
    {
       delete m_allocptra[i];
    }
-   for(int i = 0; i < m_protectptra.get_count(); i++)
+   for(int32_t i = 0; i < m_protectptra.get_count(); i++)
    {
       delete m_protectptra[i];
    }
@@ -102,7 +102,7 @@ fixed_alloc_sync::~fixed_alloc_sync()
 void fixed_alloc_sync::FreeAll()
 {
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(int32_t i = 0; i < m_allocptra.get_count(); i++)
    {
 
       m_protectptra[i]->lock();
@@ -156,9 +156,9 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
    m_i = 0;
 
 #if defined(METROWIN) || defined(LINUX) || defined(MACOS)
-   int iShareCount = 0;
+   int32_t iShareCount = 0;
 #else
-   int iShareCount = ::get_current_process_maximum_affinity() + 1;
+   int32_t iShareCount = ::get_current_process_maximum_affinity() + 1;
 #endif
 
    if(iShareCount <= 0)
@@ -166,9 +166,9 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
 
    m_allocptra.set_size(iShareCount);
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(int32_t i = 0; i < m_allocptra.get_count(); i++)
    {
-      m_allocptra[i] = new fixed_alloc_sync(nAllocSize + sizeof(int), nBlockSize, 12);
+      m_allocptra[i] = new fixed_alloc_sync(nAllocSize + sizeof(int32_t), nBlockSize, 12);
    }
 
    m_iShareCount = iShareCount;
@@ -178,7 +178,7 @@ fixed_alloc::fixed_alloc(UINT nAllocSize, UINT nBlockSize)
 fixed_alloc::~fixed_alloc()
 {
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(int32_t i = 0; i < m_allocptra.get_count(); i++)
    {
       delete m_allocptra[i];
    }
@@ -188,7 +188,7 @@ fixed_alloc::~fixed_alloc()
 void fixed_alloc::FreeAll()
 {
 
-   for(int i = 0; i < m_allocptra.get_count(); i++)
+   for(int32_t i = 0; i < m_allocptra.get_count(); i++)
    {
 #ifdef WINDOWS
       __try
@@ -239,7 +239,7 @@ fixed_alloc_array::fixed_alloc_array()
 
 fixed_alloc_array::~fixed_alloc_array()
 {
-   for(int i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       delete this->element_at(i);
    }
@@ -310,8 +310,8 @@ fixed_alloc * fixed_alloc_array::find(size_t nAllocSize)
 {
    //mutex_lock lock(&m_mutex, true);
    size_t nFoundSize = MAX_DWORD_PTR;
-   int iFound = -1;
-   for(int i = 0; i < this->get_count(); i++)
+   int32_t iFound = -1;
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       if(this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize >= nAllocSize
       && (nFoundSize == MAX_DWORD_PTR || this->element_at(i)->m_allocptra[0]->m_allocptra[0]->m_nAllocSize < nFoundSize))

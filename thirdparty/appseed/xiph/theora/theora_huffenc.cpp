@@ -813,9 +813,9 @@ typedef struct{
      aligned.*/
   ogg_uint32_t pattern;
   /*The amount the bit pattern was shifted.*/
-  int          shift;
+  int32_t          shift;
   /*The token this bit pattern represents.*/
-  int          token;
+  int32_t          token;
 }oc_huff_entry;
 
 
@@ -824,7 +824,7 @@ typedef struct{
   _c1: The first entry to compare.
   _c2: The second entry to compare.
   Return: <0 if _c1<_c2, >0 if _c1>_c2.*/
-static int huff_entry_cmp(const void *_c1,const void *_c2){
+static int32_t huff_entry_cmp(const void *_c1,const void *_c2){
   ogg_uint32_t b1;
   ogg_uint32_t b2;
   b1=((const oc_huff_entry *)_c1)->pattern;
@@ -843,15 +843,15 @@ static int huff_entry_cmp(const void *_c1,const void *_c2){
   _codes: The Huffman tables to pack.
   Return: 0 on success, or a negative value if one of the given Huffman tables
    does not form a full, prefix-free code.*/
-int oc_huff_codes_pack(oggpack_buffer *_opb,
+int32_t oc_huff_codes_pack(oggpack_buffer *_opb,
  const th_huff_code _codes[TH_NHUFFMAN_TABLES][TH_NDCT_TOKENS]){
-  int i;
+  int32_t i;
   for(i=0;i<TH_NHUFFMAN_TABLES;i++){
     oc_huff_entry entries[TH_NDCT_TOKENS];
-    int           bpos;
-    int           maxlen;
-    int           mask;
-    int           j;
+    int32_t           bpos;
+    int32_t           maxlen;
+    int32_t           mask;
+    int32_t           j;
     /*First, find the maximum code length so we can align all the bit
        patterns.*/
     maxlen=_codes[i][0].nbits;
@@ -873,7 +873,7 @@ int oc_huff_codes_pack(oggpack_buffer *_opb,
     /*For each leaf of the tree:*/
     bpos=maxlen;
     for(j=0;j<TH_NDCT_TOKENS;j++){
-      int bit;
+      int32_t bit;
       /*If this code has any bits at all.*/
       if(entries[j].shift<maxlen){
         /*Descend into the tree, writing a bit for each branch.*/

@@ -98,7 +98,7 @@ namespace cube
       return cubebase::application::initialize_instance();
    }
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -354,7 +354,7 @@ namespace cube
    }
 
 
-   int application::run()
+   int32_t application::run()
    {
 
       return ::cube2::application::run();

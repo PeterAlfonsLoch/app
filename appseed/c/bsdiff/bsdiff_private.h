@@ -17,7 +17,7 @@
 
 #ifdef WINDOWS
 template<class T1, class T2>
-int err(int i, const char* str, T1 arg1, T2 arg2)
+int32_t err(int32_t i, const char* str, T1 arg1, T2 arg2)
 {
    wchar_t lastErrorTxt[1024];
    FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0,lastErrorTxt,1024,NULL);
@@ -27,7 +27,7 @@ int err(int i, const char* str, T1 arg1, T2 arg2)
 }
 
 template<class T>
-int err(int i, const char* str, T arg)
+int32_t err(int32_t i, const char* str, T arg)
 {
    wchar_t lastErrorTxt[1024];
    FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM|FORMAT_MESSAGE_IGNORE_INSERTS,NULL,GetLastError(),0,lastErrorTxt,1024,NULL);
@@ -37,27 +37,27 @@ int err(int i, const char* str, T arg)
 }
 #else
 template<class T1, class T2>
-int err(int i, const char* str, T1 arg1, T2 arg2)
+int32_t err(int32_t i, const char* str, T1 arg1, T2 arg2)
 {
    printf_dup(str, arg1, arg2);
    return (i);
 }
 
 template<class T>
-int err(int i, const char* str, T arg)
+int32_t err(int32_t i, const char* str, T arg)
 {
    printf_dup(str, arg);
    return (i);
 }
 #endif
 
-int err(int i, const char* str);
+int32_t err(int32_t i, const char* str);
 
 template<class T>
-int errx(int i, const char* str, T arg)
+int32_t errx(int32_t i, const char* str, T arg)
 {
    printf_dup(str, arg);
    return (i);
 }
 
-int errx(int i, const char* str);
+int32_t errx(int32_t i, const char* str);

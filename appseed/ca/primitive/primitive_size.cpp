@@ -28,15 +28,15 @@
 size::size() throw()
    { /* random filled */ }
 size::size(int64_t initCX, int64_t initCY) throw()
-   { cx = (int) initCX; cy = (int) initCY; }
+   { cx = (int32_t) initCX; cy = (int32_t) initCY; }
 size::size(SIZE initSize) throw()
    { *(SIZE*)this = initSize; }
 size::size(const SIZE * pinitSize) throw()
    { *(SIZE*)this = *pinitSize; }
 size::size(__size64  initSize) throw()
-   { cx = (int) initSize.cx; cy = (int) initSize.cy; }
+   { cx = (int32_t) initSize.cx; cy = (int32_t) initSize.cy; }
 size::size(const __size64 *  pinitSize) throw()
-   { cx = (int) pinitSize->cx; cy = (int) pinitSize->cy; }
+   { cx = (int32_t) pinitSize->cx; cy = (int32_t) pinitSize->cy; }
 size::size(POINT initPt) throw()
    { *(POINT*)this = initPt; }
 size::size(DWORD dwSize) throw()
@@ -58,7 +58,7 @@ void size::operator+=(SIZE size) throw()
    { cx += size.cx; cy += size.cy; }
 void size::operator-=(SIZE size) throw()
    { cx -= size.cx; cy -= size.cy; }
-void size::set_size(int CX, int CY) throw()
+void size::set_size(int32_t CX, int32_t CY) throw()
    { cx = CX; cy = CY; }
 class size size::operator+(SIZE size) const throw()
    {
@@ -151,8 +151,8 @@ size64::size64(__point64 initPt) throw()
    { *(__point64*)this = initPt; }
 size64::size64(uint64_t dwSize) throw()
    {
-      cx = (int)LODWORD(dwSize);
-      cy = (int)HIDWORD(dwSize);
+      cx = (int32_t)LODWORD(dwSize);
+      cy = (int32_t)HIDWORD(dwSize);
    }
 
 size64::operator __size64 *() throw()
@@ -255,15 +255,15 @@ int64_t size64::area()
 sized::sized() throw()
    { /* random filled */ }
 sized::sized(double initCX, double initCY) throw()
-   { cx = (int) initCX; cy = (int) initCY; }
+   { cx = (int32_t) initCX; cy = (int32_t) initCY; }
 sized::sized(SIZED initSize) throw()
    { *(SIZED*)this = initSize; }
 sized::sized(const SIZED * pinitSize) throw()
    { *(SIZED*)this = *pinitSize; }
 sized::sized(__size64  initSize) throw()
-   { cx = (int) initSize.cx; cy = (int) initSize.cy; }
+   { cx = (int32_t) initSize.cx; cy = (int32_t) initSize.cy; }
 sized::sized(const __size64 *  pinitSize) throw()
-   { cx = (int) pinitSize->cx; cy = (int) pinitSize->cy; }
+   { cx = (int32_t) pinitSize->cx; cy = (int32_t) pinitSize->cy; }
 sized::sized(POINT initPt) throw()
    { *(POINT*)this = initPt; }
 sized::sized(DWORD dwSize) throw()
@@ -285,7 +285,7 @@ void sized::operator+=(SIZED sized) throw()
    { cx += sized.cx; cy += sized.cy; }
 void sized::operator-=(SIZED sized) throw()
    { cx -= sized.cx; cy -= sized.cy; }
-void sized::set_size(int CX, int CY) throw()
+void sized::set_size(int32_t CX, int32_t CY) throw()
    { cx = CX; cy = CY; }
 class sized sized::operator+(SIZED sized) const throw()
    {

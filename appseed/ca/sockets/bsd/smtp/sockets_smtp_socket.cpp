@@ -107,7 +107,7 @@ namespace sockets
             strBody.replace("\r\n", "\n");
             stringa stra;
             stra.add_tokens(strBody, "\n", TRUE);
-            for(int i = 0; i < stra.get_count(); i++)
+            for(int32_t i = 0; i < stra.get_count(); i++)
             {
                if(stra[i].Mid(0, 1) == ".")
                {
@@ -177,7 +177,7 @@ email::address & email::address::operator= (const char * psz)
       m_domain = m_domain.Mid(1);
    m_top = m_domain;
    {
-      for (int i = 0; i < m_domain.get_length(); i++)
+      for (int32_t i = 0; i < m_domain.get_length(); i++)
       {
          if (m_domain[i] == '.')
          {

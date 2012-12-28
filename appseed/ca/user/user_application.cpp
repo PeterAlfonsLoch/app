@@ -108,7 +108,7 @@ namespace user
          // current application startup won't be
          // exited by timeout.
 
-         int iRetry = 3;
+         int32_t iRetry = 3;
 
 retry_license:
 
@@ -145,7 +145,7 @@ retry_license:
       return "";
    }
 
-   int application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
+   int32_t application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
       if(m_psession != NULL && m_psession->m_pbergedgeInterface != NULL)
@@ -210,7 +210,7 @@ retry_license:
       }
    }
 
-   int application::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int iTimeout, UINT fuStyle)
+   int32_t application::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(puiOwner);
 
@@ -257,7 +257,7 @@ retry_license:
       }
    }
 
-   int application::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
+   int32_t application::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);

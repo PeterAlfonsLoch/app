@@ -71,11 +71,11 @@ null_cipher_set_segment(null_cipher_ctx_t *c,
 
 err_status_t
 null_cipher_encrypt(null_cipher_ctx_t *c,
-          unsigned char *buf, unsigned int *bytes_to_encr);
+          unsigned char *buf, unsigned int32_t *bytes_to_encr);
 
 
 err_status_t
 null_cipher_encrypt_aligned(null_cipher_ctx_t *c,
-             unsigned char *buf, int bytes_to_encr);
+             unsigned char *buf, int32_t bytes_to_encr);
 
 #endif /* NULL_CIPHER_H */

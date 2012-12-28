@@ -17,8 +17,8 @@ public:
    };
 
 
-   int      m_iMonth;
-   int      m_iYear;
+   int32_t      m_iMonth;
+   int32_t      m_iYear;
    bool     m_bRange;
    ::datetime::time    m_time;
    ::datetime::time    m_timeEnd;
@@ -28,18 +28,18 @@ public:
 
 
    virtual void GetRectDay(::datetime::time & time, LPRECT lprect);
-   virtual void GetRectDay(int iWeekDay, int iLine, LPRECT lprect);
+   virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT lprect);
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
-   virtual void set_month(int iYear, int iMonth);
+   virtual void set_month(int32_t iYear, int32_t iMonth);
    virtual void set_time(const ::datetime::time & time);
    virtual void set_time_range(const ::datetime::time & time, const ::datetime::time & timeEnd);
    virtual void set_time_end(const ::datetime::time & timeEnd);
    virtual void get_time(::datetime::time & time);
-   virtual int get_month();
-   virtual int get_year();
+   virtual int32_t get_month();
+   virtual int32_t get_year();
 
-   virtual int get_week_of_month(::datetime::time & time);
+   virtual int32_t get_week_of_month(::datetime::time & time);
 
    virtual void _001OnDraw(::ca::graphics * pdc);
 
@@ -47,9 +47,9 @@ public:
 
    virtual void GetDateTime(::user::str_context * pcontext, string & strDateTime);
 
-   virtual string GetTinyWeekDay(::user::str_context * pcontext, int iWeekDay); // 1 - domingo
-   virtual string GetWeekDay(::user::str_context * pcontext, int iWeekDay); // 1 - domingo
-   virtual string GetMonth(::user::str_context * pcontext, int iMonth); // 1 - janeiro
+   virtual string GetTinyWeekDay(::user::str_context * pcontext, int32_t iWeekDay); // 1 - domingo
+   virtual string GetWeekDay(::user::str_context * pcontext, int32_t iWeekDay); // 1 - domingo
+   virtual string GetMonth(::user::str_context * pcontext, int32_t iMonth); // 1 - janeiro
 
    virtual void previous_month();
    virtual void next_month();

@@ -124,9 +124,9 @@ namespace n7z
    ex1::HRes CFolderOutStream::GetSubStreamSize(uint64 subStream, uint64 * value)
    {
       *value = 0;
-      if ((int)subStream >= _extractStatuses->get_count())
+      if ((int32_t)subStream >= _extractStatuses->get_count())
          return S_FALSE;
-      *value = _db->Files[_startIndex + (int)subStream].get_count;
+      *value = _db->Files[_startIndex + (int32_t)subStream].get_count;
       return S_OK;
    }
 

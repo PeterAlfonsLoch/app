@@ -52,8 +52,8 @@ namespace spa
       DWORD          m_dwDownloadCallbackLast100k;
       DWORD          m_iDownloadCallbackColumn;
       uint64_t       m_dwDownloadLen;
-      int            m_cx;
-      int            m_cy;
+      int32_t            m_cx;
+      int32_t            m_cy;
       vsstring       m_strHost;
       DWORD          m_dwInstallStartTime;
 
@@ -79,11 +79,11 @@ namespace spa
       double         m_dProgress1;
       double         m_dProgress2;
       XNode          m_nodeStringTable;
-      int            m_iStart;
+      int32_t            m_iStart;
       simple_double_array m_daDownloadRate;
       DWORD          m_dwDownloadTick;
       uint64_t          m_dwDownload;
-      int            m_iDownloadRate;
+      int32_t            m_iDownloadRate;
       double         m_dDownloadRate;
       DWORD          m_dwDownloadZeroRateTick;
       DWORD          m_dwDownloadZeroRateRemain;
@@ -115,16 +115,16 @@ namespace spa
       uint64_t       m_dwCurFileLen;
 
 
-      int            m_nCmdShow;
+      int32_t            m_nCmdShow;
 
       bool           m_bShow;
 
-      int            m_iScreen;
-      int            m_iProgressMode;
+      int32_t            m_iScreen;
+      int32_t            m_iProgressMode;
       int64_t        m_iTotalGzLen;
       int64_t        m_iProgressTotalGzLen;
       int64_t        m_iGzLen;
-      int            m_iStyle;
+      int32_t            m_iStyle;
       vsstring       m_strLogin;
       vsstring       m_strSessid;
       vsstring       m_strInstallFilter;
@@ -171,10 +171,10 @@ namespace spa
 
       bool ca2_fy_url(vsstring & str, LPCSTR lpcszPath, bool bExist, int64_t iLength, const char * pszCrc, int64_t iGzLen, bool bIndex = false);
 
-      int GetFileList(stra_dup & stra_dup, LPCSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
-      int GetFileListEx(stra_dup & stra_dup, class stra_dup & straPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
+      int32_t GetFileList(stra_dup & stra_dup, LPCSTR lpcszPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
+      int32_t GetFileListEx(stra_dup & stra_dup, class stra_dup & straPath, simple_string_to_intptr & mapLen, simple_string_to_intptr & mapGzLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapFlag);
 
-      int GetLocalFileList(stra_dup & stra_dup, LPCSTR lpcszUrl);
+      int32_t GetLocalFileList(stra_dup & stra_dup, LPCSTR lpcszUrl);
 
       count UncompressFileList(stra_dup & stra_dup, simple_string_to_string & strmapCrc);
 
@@ -190,30 +190,30 @@ namespace spa
 
       bool ignit_phase2();
 
-      int run_file(const char * pszFile, int nCmdShow);
+      int32_t run_file(const char * pszFile, int32_t nCmdShow);
 
-      int starter_start(const char * pszCommandLine);
+      int32_t starter_start(const char * pszCommandLine);
 
-      int application_name();
+      int32_t application_name();
 
-      int appmatter_list();
+      int32_t appmatter_list();
 
-      int ca2_build_version();
+      int32_t ca2_build_version();
 
-      int calc_host(vsstring & strSpaHost, int &iHostRetry);
+      int32_t calc_host(vsstring & strSpaHost, int32_t &iHostRetry);
 
 
-      int run_uninstall(const char * lpCmdLine, int nCmdShow);
+      int32_t run_uninstall(const char * lpCmdLine, int32_t nCmdShow);
 
-      int run_uninstall_run(const char * lpCmdLine, int nCmdShow);
+      int32_t run_uninstall_run(const char * lpCmdLine, int32_t nCmdShow);
 
-      int run_install(const char * lpCmdLine, int nCmdShow);
+      int32_t run_install(const char * lpCmdLine, int32_t nCmdShow);
 
-      int run_starter_start(int nCmdShow);
+      int32_t run_starter_start(int32_t nCmdShow);
 
-      bool init_instance(HINSTANCE hinstance, int nCmdShow);
+      bool init_instance(HINSTANCE hinstance, int32_t nCmdShow);
 
-      int spaadmin_main(const char * pszCommandLine);
+      int32_t spaadmin_main(const char * pszCommandLine);
 
       bool is_application_opened(const char * psz);
 
@@ -243,8 +243,8 @@ namespace spa
 
 
       void remove_spa_start(const char * pszId);
-      void ms_download_callback( int i, dword_ptr dwLen);
-      void ms_get_callback( int i, dword_ptr dwLen);
+      void ms_download_callback( int32_t i, dword_ptr dwLen);
+      void ms_get_callback( int32_t i, dword_ptr dwLen);
 
       // download rate
       void dlr(uint64_t dwDownload);
@@ -252,12 +252,12 @@ namespace spa
       void new_progress_end(double dMilestone);
 
 
-      int run_ca2_application_installer(const char * id);
+      int32_t run_ca2_application_installer(const char * id);
 
    };
 
 
-   CLASS_DECL_c int ca2_app_install_run(const char * pszCommandLine, DWORD & dwStartError, bool bSynch);
+   CLASS_DECL_c int32_t ca2_app_install_run(const char * pszCommandLine, DWORD & dwStartError, bool bSynch);
 
 
 } // namespace spa

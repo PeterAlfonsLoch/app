@@ -30,7 +30,7 @@ namespace user
       return UpdateBuffer(point.x, point.y);
    }
 
-   bool buffer::UpdateBuffer(int cx, int cy)
+   bool buffer::UpdateBuffer(int32_t cx, int32_t cy)
    {
       m_size.cx = cy;
       m_size.cy = cy;

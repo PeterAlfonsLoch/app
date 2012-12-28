@@ -41,7 +41,7 @@ namespace user
    //   critical_section * pCs = &pSet->m_cs;
       draw_list_item item(plist);
       i = 0;
-      int iCacheIndex = m_iCacheNextIndex;
+      int32_t iCacheIndex = m_iCacheNextIndex;
       for(iIndex = iItemStart; iIndex <= iItemEnd; iIndex++)
       {
          if(m_cacheMap.Lookup(iIndex, pwstra))

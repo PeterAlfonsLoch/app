@@ -43,14 +43,14 @@ var::var(bool * pb)
    operator = (pb);
 }
 
-var::var(int i)
+var::var(int32_t i)
 {
    m_etype = type_new;
    m_pca2 = NULL;
    operator = (i);
 }
 
-var::var(unsigned int ui )
+var::var(unsigned int32_t ui )
 {
    m_etype = type_uint;
    m_pca2 = NULL;
@@ -85,7 +85,7 @@ var::var(unsigned long long ui )
    operator = (ui);
 }
 
-var::var(int * pi)
+var::var(int32_t * pi)
 {
    m_etype = type_new;
    m_pca2 = NULL;
@@ -212,7 +212,7 @@ var::e_type var::get_type() const
    return m_etype;
 }
 
-class var & var::operator ++(int)
+class var & var::operator ++(int32_t)
 {
    switch(get_type())
    {
@@ -376,7 +376,7 @@ class var & var::operator = (bool * pb)
    return *this;
 }
 
-class var & var::operator = (int i)
+class var & var::operator = (int32_t i)
 {
    if(get_type() == type_pinteger)
    {
@@ -397,7 +397,7 @@ class var & var::operator = (int i)
 
 
 
-class var & var::operator = (int * pi)
+class var & var::operator = (int32_t * pi)
 {
    set_type(type_pinteger, false);
    m_pi = pi;
@@ -504,7 +504,7 @@ class var & var::operator = (unsigned long long ull)
    return *this;
 }
 
-class var & var::operator = (unsigned int ui)
+class var & var::operator = (unsigned int32_t ui)
 {
    set_type(type_uint, false);
    m_ui = ui;
@@ -957,7 +957,7 @@ bool var::is_new_or_null() const
 
 void var::read(ex1::byte_input_stream & is)
 {
-   int i;
+   int32_t i;
    is >> i;
    set_type(e_type(i), false);
    switch(get_type())
@@ -987,12 +987,12 @@ void var::read(ex1::byte_input_stream & is)
       break;
    case type_inta:
       {
-         int iCount;
+         int32_t iCount;
          is >> iCount;
          inta().set_size(iCount);
-         for(int i = 0; i < m_pia->get_count(); i++)
+         for(int32_t i = 0; i < m_pia->get_count(); i++)
          {
-            is >> (int &) m_pia->element_at(i);
+            is >> (int32_t &) m_pia->element_at(i);
          }
       }
       break;
@@ -1051,7 +1051,7 @@ void var::read(ex1::byte_input_stream & is)
 
 void var::write(ex1::byte_output_stream & ostream)
 {
-   int i = get_type();
+   int32_t i = get_type();
    ostream << i;
    switch(get_type())
    {
@@ -1075,7 +1075,7 @@ void var::write(ex1::byte_output_stream & ostream)
    case type_inta:
       {
          ostream << inta().get_count();
-         for(int i = 0; i < m_pia->get_count(); i++)
+         for(int32_t i = 0; i < m_pia->get_count(); i++)
          {
             ostream << m_pia->element_at(i);
          }
@@ -1121,7 +1121,7 @@ void var::write(ex1::byte_output_stream & ostream)
    }
 }
 
-int var::compare_ci(const class var & var) const
+int32_t var::compare_ci(const class var & var) const
 {
    if(m_etype == var::type_inta)
    {
@@ -1175,7 +1175,7 @@ int var::compare_ci(const class var & var) const
    }
    else if(is_ulong() || var.is_ulong())
    {
-      return (int) (get_ulong() - var.get_ulong());
+      return (int32_t) (get_ulong() - var.get_ulong());
    }
    else
    {
@@ -1184,14 +1184,14 @@ int var::compare_ci(const class var & var) const
    return -2;
 }
 
-int var::compare_ci(const char * psz) const
+int32_t var::compare_ci(const char * psz) const
 {
    var var(psz);
    return compare_ci(var);
 }
 
 
-int var::compare(const class var & var) const
+int32_t var::compare(const class var & var) const
 {
    if(m_etype == var::type_inta)
    {
@@ -1245,7 +1245,7 @@ int var::compare(const class var & var) const
    }
    else if(is_ulong() || var.is_ulong())
    {
-      return (int) (get_ulong() - var.get_ulong());
+      return (int32_t) (get_ulong() - var.get_ulong());
    }
    else
    {
@@ -1254,7 +1254,7 @@ int var::compare(const class var & var) const
    return -2;
 }
 
-int var::compare(const char * psz) const
+int32_t var::compare(const char * psz) const
 {
    var var(psz);
    return compare(var);
@@ -1352,32 +1352,32 @@ bool var::operator > (const string & str) const
    return get_string() > str;
 }
 
-bool var::operator == (int i) const
+bool var::operator == (int32_t i) const
 {
    return get_integer() == i;
 }
 
-bool var::operator != (int i) const
+bool var::operator != (int32_t i) const
 {
    return get_integer() != i;
 }
 
-bool var::operator < (int i) const
+bool var::operator < (int32_t i) const
 {
    return get_integer() < i;
 }
 
-bool var::operator <= (int i) const
+bool var::operator <= (int32_t i) const
 {
    return get_integer() <= i;
 }
 
-bool var::operator >= (int i) const
+bool var::operator >= (int32_t i) const
 {
    return get_integer() >= i;
 }
 
-bool var::operator > (int i) const
+bool var::operator > (int32_t i) const
 {
    return get_integer() > i;
 }
@@ -1434,7 +1434,7 @@ bool var::strict_equal(double d) const
    return m_etype == type_double && m_d == d;
 }
 
-bool var::strict_equal(int i) const
+bool var::strict_equal(int32_t i) const
 {
    return m_etype == type_integer && m_i == i;
 }
@@ -1464,7 +1464,7 @@ bool var::strict_different(double d) const
    return m_etype != type_double || m_d != d;
 }
 
-bool var::strict_different(int i) const
+bool var::strict_different(int32_t i) const
 {
    return m_etype != type_integer || m_i != i;
 }
@@ -1489,7 +1489,7 @@ bool strict_equal(double d, const class var & var)
    return var.m_etype == var::type_double && d == var.m_d;
 }
 
-bool strict_equal(int i, const class var & var)
+bool strict_equal(int32_t i, const class var & var)
 {
    return var.m_etype == var::type_integer && i == var.m_i;
 }
@@ -1514,7 +1514,7 @@ bool strict_different(double d, const class var & var)
    return var.m_etype != var::type_double || d != var.m_d;
 }
 
-bool strict_different(int i, const class var & var)
+bool strict_different(int32_t i, const class var & var)
 {
    return var.m_etype != var::type_integer || i != var.m_i;
 }
@@ -1530,7 +1530,7 @@ string var::to_r_string() const
    {
       string str;
       str += "array (";
-      for(int i = 0; i < array_get_count(); i++)
+      for(int32_t i = 0; i < array_get_count(); i++)
       {
          if(i > 0)
             str += " ";
@@ -1713,7 +1713,7 @@ id & var::get_ref_id(const char * pszOnNull)
 
 }
 
-int var::get_integer(int iDefault) const
+int32_t var::get_integer(int32_t iDefault) const
 {
    switch(m_etype)
    {
@@ -1722,11 +1722,11 @@ int var::get_integer(int iDefault) const
    case var::type_integer:
       return m_i;
    case var::type_int64:
-      return (int) m_i64;
+      return (int32_t) m_i64;
    case var::type_ulong:
-      return (int) m_ul;
+      return (int32_t) m_ul;
    case var::type_double:
-      return (int) m_d;
+      return (int32_t) m_d;
    case var::type_string:
       {
          gen::str::to(m_str, iDefault);
@@ -1847,9 +1847,9 @@ int_array & var::inta()
    if(m_etype != type_inta)
    {
       int_array * pia =  new int_array();
-      for(int i = 0; i < array_get_count(); i++)
+      for(int32_t i = 0; i < array_get_count(); i++)
       {
-         pia->add((int) at(i));
+         pia->add((int32_t) at(i));
       }
       set_type(type_inta, false);
       ASSERT(m_pca2 == NULL);
@@ -1943,7 +1943,7 @@ var_array & var::vara()
    else if(m_etype != type_vara)
    {
       var_array * pvara =  new var_array();
-      for(int i = 0; i < array_get_count(); i++)
+      for(int32_t i = 0; i < array_get_count(); i++)
       {
          pvara->add(at(i));
       }
@@ -1984,7 +1984,7 @@ gen::property_set & var::propset(::ca::application * papp)
    else if(m_etype != type_propset)
    {
       gen::property_set * ppropset = new gen::property_set();
-      for(int i = 0; i < array_get_count(); i++)
+      for(int32_t i = 0; i < array_get_count(); i++)
       {
          ppropset->add(NULL, at(i));
       }
@@ -2254,12 +2254,12 @@ var var::equals_ci_get(const char * pszCompare, var varOnEqual) const
 }
 
 
-var var::operator - (int i) const
+var var::operator - (int32_t i) const
 {
    return get_integer() - i;
 }
 
-var var::operator - (unsigned int user) const
+var var::operator - (unsigned int32_t user) const
 {
    return get_ulong() - user;
 }
@@ -2279,12 +2279,12 @@ var var::operator - (double d) const
    return get_double() - d;
 }
 
-var CLASS_DECL_ca operator - (int i, const class var & var)
+var CLASS_DECL_ca operator - (int32_t i, const class var & var)
 {
    return i - var.get_integer();
 }
 
-var CLASS_DECL_ca operator - (unsigned int user, const class var & var)
+var CLASS_DECL_ca operator - (unsigned int32_t user, const class var & var)
 {
    return user - var.get_ulong();
 }
@@ -2367,12 +2367,12 @@ var CLASS_DECL_ca operator - (const class var & var1, const class var & var2)
 }
 
 
-var var::operator + (int i) const
+var var::operator + (int32_t i) const
 {
    return get_integer() + i;
 }
 
-var var::operator + (unsigned int user) const
+var var::operator + (unsigned int32_t user) const
 {
    return get_ulong() + user;
 }
@@ -2392,12 +2392,12 @@ var var::operator + (double d) const
    return get_double() + d;
 }
 
-var CLASS_DECL_ca operator + (int i, const class var & var)
+var CLASS_DECL_ca operator + (int32_t i, const class var & var)
 {
    return i + var.get_integer();
 }
 
-var CLASS_DECL_ca operator + (unsigned int user, const class var & var)
+var CLASS_DECL_ca operator + (unsigned int32_t user, const class var & var)
 {
    return user + var.get_ulong();
 }
@@ -2523,12 +2523,12 @@ var CLASS_DECL_ca operator + (const class var & var1, const class var & var2)
 
 
 
-var var::operator / (int i) const
+var var::operator / (int32_t i) const
 {
    return get_integer() / i;
 }
 
-var var::operator / (unsigned int user) const
+var var::operator / (unsigned int32_t user) const
 {
    return get_ulong() / user;
 }
@@ -2548,12 +2548,12 @@ var var::operator / (double d) const
    return get_double() / d;
 }
 
-var CLASS_DECL_ca operator / (int i, const class var & var)
+var CLASS_DECL_ca operator / (int32_t i, const class var & var)
 {
    return i / var.get_integer();
 }
 
-var CLASS_DECL_ca operator / (unsigned int user, const class var & var)
+var CLASS_DECL_ca operator / (unsigned int32_t user, const class var & var)
 {
    return user / var.get_ulong();
 }
@@ -2633,12 +2633,12 @@ var CLASS_DECL_ca operator / (const class var & var1, const class var & var2)
 }
 
 
-var var::operator * (int i) const
+var var::operator * (int32_t i) const
 {
    return get_integer() * i;
 }
 
-var var::operator * (unsigned int user) const
+var var::operator * (unsigned int32_t user) const
 {
    return get_ulong() * user;
 }
@@ -2658,12 +2658,12 @@ var var::operator * (double d) const
    return get_double() * d;
 }
 
-var CLASS_DECL_ca operator * (int i, const class var & var)
+var CLASS_DECL_ca operator * (int32_t i, const class var & var)
 {
    return i * var.get_integer();
 }
 
-var CLASS_DECL_ca operator * (unsigned int user, const class var & var)
+var CLASS_DECL_ca operator * (unsigned int32_t user, const class var & var)
 {
    return user * var.get_ulong();
 }
@@ -2792,13 +2792,13 @@ var CLASS_DECL_ca operator * (const class var & var1, const class var & var2)
 
 
 
-class var & var::operator -= (int i)
+class var & var::operator -= (int32_t i)
 {
    operator =(*this - i);
    return *this;
 }
 
-class var & var::operator -= (unsigned int user)
+class var & var::operator -= (unsigned int32_t user)
 {
    operator =(*this - user);
    return *this;
@@ -2851,13 +2851,13 @@ class var & var::operator -= (const class var & var)
 
 
 
-class var & var::operator += (int i)
+class var & var::operator += (int32_t i)
 {
    operator =(*this + i);
    return *this;
 }
 
-class var & var::operator += (unsigned int user)
+class var & var::operator += (unsigned int32_t user)
 {
    operator =(*this + user);
    return *this;
@@ -2910,13 +2910,13 @@ class var & var::operator += (const class var & var)
 
 
 
-class var & var::operator /= (int i)
+class var & var::operator /= (int32_t i)
 {
    operator =(*this / i);
    return *this;
 }
 
-class var & var::operator /= (unsigned int user)
+class var & var::operator /= (unsigned int32_t user)
 {
    operator =(*this / user);
    return *this;
@@ -2969,13 +2969,13 @@ class var & var::operator /= (const class var & var)
 
 
 
-class var & var::operator *= (int i)
+class var & var::operator *= (int32_t i)
 {
    operator =(*this * i);
    return *this;
 }
 
-class var & var::operator *= (unsigned int user)
+class var & var::operator *= (unsigned int32_t user)
 {
    operator =(*this * user);
    return *this;
@@ -3092,7 +3092,7 @@ bool var::is_double() const
             || str[0] == '-'
             || isdigit(str[0]))
          {
-            int i;
+            int32_t i;
             for(i = 1; i < str.get_length(); i++)
             {
                if(isdigit(str[i]))
@@ -3204,7 +3204,7 @@ bool var::is_integer() const
             || str[0] == '-'
             || isdigit(str[0]))
          {
-            for(int i = 1; i < str.get_length(); i++)
+            for(int32_t i = 1; i < str.get_length(); i++)
             {
                if(!isdigit(str[i]))
                   return false;
@@ -3243,7 +3243,7 @@ bool var::is_ulong() const
          else if(str[0] == '+'
             || isdigit(str[0]))
          {
-            for(int i = 1; i < str.get_length(); i++)
+            for(int32_t i = 1; i < str.get_length(); i++)
             {
                if(!isdigit(str[i]))
                   return false;

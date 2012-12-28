@@ -112,7 +112,7 @@ namespace ca
    template < class TYPE >
    bool is_null(TYPE * p)
    {
-      return (((int) p) < sizeof(TYPE));
+      return (((int32_t) p) < sizeof(TYPE));
    }
 
    template <class t>

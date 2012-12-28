@@ -29,11 +29,11 @@ namespace userbase
       virtual ~menu();
 
 
-      menu_item * GetSubMenu(int i);
+      menu_item * GetSubMenu(int32_t i);
 
       void layout();
 
-      virtual bool TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent);
+      virtual bool TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
 
@@ -52,19 +52,19 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnEnable)
 
 
-      bool _TrackPopupMenu(int iFlags, int x, int y, ::user::interaction * oswindowParent, menu * pmenuParent);
+      bool _TrackPopupMenu(int32_t iFlags, int32_t x, int32_t y, ::user::interaction * oswindowParent, menu * pmenuParent);
       ::user::interaction *     m_oswindowParent;
       menu *        m_pmenuParent;
       HMENU                m_hmenu;
       menu *        _m_pmenu;
       bool                 m_bOwnItem;
       size                 m_size;
-      int                  m_iItemHeight;
+      int32_t                  m_iItemHeight;
       bool                 m_bAutoDelete;
-      int                  m_iHeaderHeight;
+      int32_t                  m_iHeaderHeight;
       ::userbase::button    m_buttonClose;
       id                   m_idSubMenu;
-      int                  m_iHoverSubMenu;
+      int32_t                  m_iHoverSubMenu;
       DWORD                m_dwOut;
       menu *        m_psubmenu;
       id                   m_idTimerMenu;

@@ -84,7 +84,7 @@ namespace user
    {
    }
 
-   /*bool tab::add_tab(UINT uiIdTitle, int iId)
+   /*bool tab::add_tab(UINT uiIdTitle, int32_t iId)
    {
       pane pane;
       pane.m_uiId = uiIdTitle;
@@ -146,7 +146,7 @@ namespace user
    bool tab::remove_tab_by_id(id id)
    {
 
-      for(int i = 0; i < get_data()->m_panea.get_count(); i++)
+      for(int32_t i = 0; i < get_data()->m_panea.get_count(); i++)
       {
 
          if(get_data()->m_panea[i].m_id == id)
@@ -217,7 +217,7 @@ namespace user
 
       if(bVisible)
       {
-         for(int i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
+         for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
          {
             if(get_data()->m_panea[i].m_bVisible)
             {
@@ -322,9 +322,9 @@ namespace user
 
       pdc->set_alpha_mode(::ca::alpha_mode_set);
 
-      int iVisiblePane = 0;
+      int32_t iVisiblePane = 0;
 
-      for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
 
          pane & pane = get_data()->m_panea[iPane];
@@ -538,9 +538,9 @@ namespace user
 
       //pdc->set_alpha_mode(::ca::alpha_mode_set);
 
-      int iVisiblePane = 0;
+      int32_t iVisiblePane = 0;
 
-      for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
 
          pane & pane = get_data()->m_panea[iPane];
@@ -834,13 +834,13 @@ namespace user
 
       if(get_data()->m_bVertical)
       {
-         int iTabWidth = 16;
-         int iTabHeight = 8;
-         int cx;
-         int cy;
+         int32_t iTabWidth = 16;
+         int32_t iTabHeight = 8;
+         int32_t cx;
+         int32_t cy;
          ::ca::client_graphics pdc(this);
          pdc->SelectObject(get_data()->m_fontBold);
-         for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+         for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
             pane & pane = get_data()->m_panea[iPane];
@@ -920,13 +920,13 @@ namespace user
       }
       else
       {
-         int iTabHeight = 16;
-         int cy;
+         int32_t iTabHeight = 16;
+         int32_t cy;
          ::ca::graphics_sp graphics(get_app());
          graphics->CreateCompatibleDC(NULL);
          ::ca::graphics * pdc = graphics;
          pdc->SelectObject(get_data()->m_fontBold);
-         for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+         for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
          {
 
             pane & pane = get_data()->m_panea[iPane];
@@ -986,7 +986,7 @@ namespace user
          get_data()->m_rectTabClient.bottom     = rectClient.bottom;
       }
 
-      for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
 
          if(iPane != _001GetSel())
@@ -1002,7 +1002,7 @@ namespace user
 
    }
 
-   void tab::layout_pane(int iPane)
+   void tab::layout_pane(int32_t iPane)
    {
 
       place_holder * pholder = get_tab_holder(iPane);
@@ -1034,12 +1034,12 @@ namespace user
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
 
-      int iPane = hit_test(point, m_eelement);
+      int32_t iPane = hit_test(point, m_eelement);
 
       get_data()->m_bDrag = false;
       if(iPane >= 0)
       {
-         int iSel = _001GetSel();
+         int32_t iSel = _001GetSel();
          if(m_eelement == element_close_tab_button)
          {
             get_data()->m_iDragTab = iPane;
@@ -1065,7 +1065,7 @@ namespace user
 
       e_element eelement;
 
-      int iPane = hit_test(point, eelement);
+      int32_t iPane = hit_test(point, eelement);
 
       KillTimer(5432187);
       if(iPane >= 0 && get_data()->m_iDragTab == iPane && m_eelement == eelement)
@@ -1104,7 +1104,7 @@ namespace user
          track_mouse_hover();
       }
 
-      int iHover = hit_test(point, m_eelementHover);
+      int32_t iHover = hit_test(point, m_eelementHover);
       if(iHover != m_iHover)
       {
          m_iHover = iHover;
@@ -1190,10 +1190,10 @@ namespace user
          rect rect = get_data()->m_rectTab;
          rect.bottom = rect.top;
 
-         int iPreviousVisibleTabCount = 0;
+         int32_t iPreviousVisibleTabCount = 0;
          {
             index iPane = iTabParam;
-            for(int i = 0; iPane > 0 && i < get_data()->m_panea.get_count(); i++)
+            for(int32_t i = 0; iPane > 0 && i < get_data()->m_panea.get_count(); i++)
             {
                if(get_data()->m_panea[i].m_bVisible)
                {
@@ -1223,9 +1223,9 @@ namespace user
          ::ca::graphics * pdc = graphics;
          rect rect = get_data()->m_rectTab;
          rect.right = rect.left;
-         int ixAdd;
+         int32_t ixAdd;
          //return false;
-         for(int iPane = 0; iPane < iTabParam + 1; iPane++)
+         for(int32_t iPane = 0; iPane < iTabParam + 1; iPane++)
          {
 
             rect.left = rect.right;
@@ -1283,7 +1283,7 @@ namespace user
    index tab::hit_test(point pt, e_element & eelement)
    {
       rect rect;
-      for(int iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
+      for(int32_t iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
          if(get_element_rect(iPane, rect, element_close_tab_button) && rect.contains(pt))
          {
@@ -1447,7 +1447,7 @@ namespace user
 
    tab::pane * tab::pane_array::get_by_id(id id)
    {
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          if(this->element_at(i).m_id == id)
          {
@@ -1462,7 +1462,7 @@ namespace user
 
       count count = 0;
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          if(this->element_at(i).m_bVisible)
          {
@@ -1593,7 +1593,7 @@ namespace user
          return NULL;
       if(bVisible)
       {
-         for(int i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
+         for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
          {
             if(get_data()->m_panea[i].m_bVisible)
             {
@@ -1694,7 +1694,7 @@ namespace user
    {
       if(bVisible)
       {
-         for(int i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
+         for(int32_t i = 0; iPane >= 0 && i < get_data()->m_panea.get_count(); i++)
          {
             if(get_data()->m_panea[i].m_bVisible)
             {
@@ -1897,7 +1897,7 @@ namespace user
          }
       }
       user::interaction * pui = get_top_child();
-//      int iSize;
+//      int32_t iSize;
       try
       {
          while(pui != NULL)
@@ -1984,7 +1984,7 @@ namespace user
       string strSuffix(pszSuffix);
       string strPath;
       pane_array & panea = get_data()->m_panea;
-      for(int i = 0; i < panea.get_count(); i++)
+      for(int32_t i = 0; i < panea.get_count(); i++)
       {
          pane & pane = panea[i];
          if(pane.m_id.is_text())
@@ -2017,7 +2017,7 @@ namespace user
       string strSuffix(pszSuffix);
       string strPath;
       pane_array & panea = get_data()->m_panea;
-      for(int i = 0; i < panea.get_count(); i++)
+      for(int32_t i = 0; i < panea.get_count(); i++)
       {
          pane & pane = panea[i];
          if(pane.m_id.is_text())
@@ -2041,7 +2041,7 @@ namespace user
          return;
       var varId;
       pane_array & panea = get_data()->m_panea;
-      for(int i = 0; i < panea.get_count(); i++)
+      for(int32_t i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i].m_id;
          if(matchany.matches(varId))
@@ -2058,7 +2058,7 @@ namespace user
          return false;
       var varId;
       pane_array & panea = get_data()->m_panea;
-      for(int i = 0; i < panea.get_count(); i++)
+      for(int32_t i = 0; i < panea.get_count(); i++)
       {
          varId = panea[i].m_id;
          if(matchany.matches(varId))
@@ -2072,7 +2072,7 @@ namespace user
    void tab::open_tabs(const var_array & vara)
    {
       stringa stra;
-      for(int i = 0; i < vara.get_count(); i++)
+      for(int32_t i = 0; i < vara.get_count(); i++)
       {
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
          if(vara[i].get_type() == var::type_string && vara[i].get_string() == "app:bergedge")

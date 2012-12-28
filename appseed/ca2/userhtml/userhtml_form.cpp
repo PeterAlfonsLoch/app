@@ -253,7 +253,7 @@ void html_form::_001OnMouseMove(gen::signal_object * pobj)
       if(signal.m_bRet)
          m_elementalptraMouseMove.add(pelemental);
    }
-   for(int i = 0; i < m_elementalptraMouseMove.get_count(); )
+   for(int32_t i = 0; i < m_elementalptraMouseMove.get_count(); )
    {
       try
       {

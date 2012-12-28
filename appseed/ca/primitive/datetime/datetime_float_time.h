@@ -29,8 +29,8 @@ CLASS_DECL_ca WINBOOL   FileTimeToSystemTime(const FILETIME * ft, LPSYSTEMTIME s
 #endif
 
 
-CLASS_DECL_ca int       SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
-CLASS_DECL_ca int       FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
+CLASS_DECL_ca int32_t       SystemTimeToFloatTime(LPSYSTEMTIME lpSt, double *pDateOut);
+CLASS_DECL_ca int32_t       FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt);
 CLASS_DECL_ca HRESULT   FloatTimeFromStr(const char * pstr, LCID lcid, ULONG dwFlags, FLOAT_DATE * pdateOut);
 CLASS_DECL_ca HRESULT   FloatTimeFromUdate(UDATE *pUdateIn, ULONG dwFlags, FLOAT_DATE *pDateOut);
 CLASS_DECL_ca HRESULT   FloatTimeFromUdateEx(UDATE *pUdateIn, LCID lcid, ULONG dwFlags, FLOAT_DATE *pDateOut);
@@ -82,9 +82,9 @@ namespace datetime
       float_time_span(double dblSpanSrc) RELEASENOTHROW;
       float_time_span(
          LONG lDays,
-         int nHours,
-         int nMins,
-         int nSecs) RELEASENOTHROW;
+         int32_t nHours,
+         int32_t nMins,
+         int32_t nSecs) RELEASENOTHROW;
 
 
       double m_span;
@@ -124,9 +124,9 @@ namespace datetime
 
       void SetDateTimeSpan(
          LONG lDays,
-         int nHours,
-         int nMins,
-         int nSecs) RELEASENOTHROW;
+         int32_t nHours,
+         int32_t nMins,
+         int32_t nSecs) RELEASENOTHROW;
 
       // formatting
       string Format(LPCTSTR pFormat) const;
@@ -156,12 +156,12 @@ namespace datetime
       float_time(const FILETIME& filetimeSrc) RELEASENOTHROW;
 
       float_time(
-         int nYear,
-         int nMonth,
-         int nDay,
-         int nHour,
-         int nMin,
-         int nSec) RELEASENOTHROW;
+         int32_t nYear,
+         int32_t nMonth,
+         int32_t nDay,
+         int32_t nHour,
+         int32_t nMin,
+         int32_t nSec) RELEASENOTHROW;
       float_time(WORD wDosDate, WORD wDosTime) RELEASENOTHROW;
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       float_time(const DBTIMESTAMP& dbts) RELEASENOTHROW;
@@ -178,21 +178,21 @@ namespace datetime
       bool GetAsSystemTime(SYSTEMTIME& sysTime) const RELEASENOTHROW;
       bool GetAsUDATE(UDATE& udate) const RELEASENOTHROW;
 
-      int GetYear() const RELEASENOTHROW;
+      int32_t GetYear() const RELEASENOTHROW;
       // Month of year (1 = January)
-      int GetMonth() const RELEASENOTHROW;
+      int32_t GetMonth() const RELEASENOTHROW;
       // Day of month (1-31)
-      int GetDay() const RELEASENOTHROW;
+      int32_t GetDay() const RELEASENOTHROW;
       // Hour in day (0-23)
-      int GetHour() const RELEASENOTHROW;
+      int32_t GetHour() const RELEASENOTHROW;
       // Minute in hour (0-59)
-      int GetMinute() const RELEASENOTHROW;
+      int32_t GetMinute() const RELEASENOTHROW;
       // Second in minute (0-59)
-      int GetSecond() const RELEASENOTHROW;
+      int32_t GetSecond() const RELEASENOTHROW;
       // Day of week (1 = Sunday, 2 = Monday, ..., 7 = Saturday)
-      int GetDayOfWeek() const RELEASENOTHROW;
+      int32_t GetDayOfWeek() const RELEASENOTHROW;
       // Days since start of year (1 = January 1)
-      int GetDayOfYear() const RELEASENOTHROW;
+      int32_t GetDayOfYear() const RELEASENOTHROW;
 
       // Operations
       float_time& operator=(FLOAT_DATE dtSrc) RELEASENOTHROW;
@@ -223,15 +223,15 @@ namespace datetime
 
       operator FLOAT_DATE() const RELEASENOTHROW;
 
-      int SetDateTime(
-         int nYear,
-         int nMonth,
-         int nDay,
-         int nHour,
-         int nMin,
-         int nSec) RELEASENOTHROW;
-      int SetDate(int nYear, int nMonth, int nDay) RELEASENOTHROW;
-      int SetTime(int nHour, int nMin, int nSec) RELEASENOTHROW;
+      int32_t SetDateTime(
+         int32_t nYear,
+         int32_t nMonth,
+         int32_t nDay,
+         int32_t nHour,
+         int32_t nMin,
+         int32_t nSec) RELEASENOTHROW;
+      int32_t SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW;
+      int32_t SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW;
 #ifndef MACOS
       bool ParseDateTime(const char * lpszDate, DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
 #endif
@@ -264,9 +264,9 @@ namespace datetime
 
    inline float_time_span::float_time_span(
       LONG lDays,
-      int nHours,
-      int nMins,
-      int nSecs) RELEASENOTHROW
+      int32_t nHours,
+      int32_t nMins,
+      int32_t nSecs) RELEASENOTHROW
    {
       SetDateTimeSpan(lDays, nHours, nMins, nSecs);
    }
@@ -490,9 +490,9 @@ namespace datetime
 
    inline void float_time_span::SetDateTimeSpan(
       LONG lDays,
-      int nHours,
-      int nMins,
-      int nSecs) RELEASENOTHROW
+      int32_t nHours,
+      int32_t nMins,
+      int32_t nSecs) RELEASENOTHROW
    {
       // Set date span by breaking into fractional days (all input ranges valid)
       m_span = lDays + ((double)nHours)/24 + ((double)nMins)/(24*60) +
@@ -564,12 +564,12 @@ namespace datetime
    }
 
    inline float_time::float_time(
-      int nYear,
-      int nMonth,
-      int nDay,
-      int nHour,
-      int nMin,
-      int nSec) RELEASENOTHROW
+      int32_t nYear,
+      int32_t nMonth,
+      int32_t nDay,
+      int32_t nHour,
+      int32_t nMin,
+      int32_t nSec) RELEASENOTHROW
    {
       SetDateTime(nYear, nMonth, nDay, nHour, nMin, nSec);
    }
@@ -604,49 +604,49 @@ valid : invalid;
       return SUCCEEDED(::VarUdateFromDate(m_dt, 0, &udate));
    }
 
-   inline int float_time::GetYear() const RELEASENOTHROW
+   inline int32_t float_time::GetYear() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wYear : error;
    }
 
-   inline int float_time::GetMonth() const RELEASENOTHROW
+   inline int32_t float_time::GetMonth() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wMonth : error;
    }
 
-   inline int float_time::GetDay() const RELEASENOTHROW
+   inline int32_t float_time::GetDay() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wDay : error;
    }
 
-   inline int float_time::GetHour() const RELEASENOTHROW
+   inline int32_t float_time::GetHour() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wHour : error;
    }
 
-   inline int float_time::GetMinute() const RELEASENOTHROW
+   inline int32_t float_time::GetMinute() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wMinute : error;
    }
 
-   inline int float_time::GetSecond() const RELEASENOTHROW
+   inline int32_t float_time::GetSecond() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wSecond : error;
    }
 
-   inline int float_time::GetDayOfWeek() const RELEASENOTHROW
+   inline int32_t float_time::GetDayOfWeek() const RELEASENOTHROW
    {
       SYSTEMTIME st;
       return GetAsSystemTime(st) ? st.wDayOfWeek + 1 : error;
    }
 
-   inline int float_time::GetDayOfYear() const RELEASENOTHROW
+   inline int32_t float_time::GetDayOfYear() const RELEASENOTHROW
    {
       UDATE udate;
       return GetAsUDATE(udate) ? udate.wDayOfYear : error;
@@ -870,13 +870,13 @@ valid : invalid;
       return( m_dt );
    }
 
-   inline int float_time::SetDateTime(
-      int nYear,
-      int nMonth,
-      int nDay,
-      int nHour,
-      int nMin,
-      int nSec) RELEASENOTHROW
+   inline int32_t float_time::SetDateTime(
+      int32_t nYear,
+      int32_t nMonth,
+      int32_t nDay,
+      int32_t nHour,
+      int32_t nMin,
+      int32_t nSec) RELEASENOTHROW
    {
       SYSTEMTIME st;
       ::memset(&st, 0, sizeof(SYSTEMTIME));
@@ -892,12 +892,12 @@ valid : invalid;
       return m_status;
    }
 
-   inline int float_time::SetDate(int nYear, int nMonth, int nDay) RELEASENOTHROW
+   inline int32_t float_time::SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW
    {
       return SetDateTime(nYear, nMonth, nDay, 0, 0, 0);
    }
 
-   inline int float_time::SetTime(int nHour, int nMin, int nSec) RELEASENOTHROW
+   inline int32_t float_time::SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW
    {
       // Set date to zero date - 12/30/1899
       return SetDateTime(1899, 12, 30, nHour, nMin, nSec);

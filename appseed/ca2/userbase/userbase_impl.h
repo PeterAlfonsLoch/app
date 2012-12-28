@@ -14,7 +14,7 @@ namespace userbase
       virtual ~tool_cmd_ui();
 
       virtual void Enable(bool bOn);
-      virtual void SetCheck(int nCheck);
+      virtual void SetCheck(int32_t nCheck);
       virtual void SetText(const char * lpszText);
    };
 

@@ -6,17 +6,17 @@ namespace  sort
 
    void QuickSort(
                   base_array<DWORD, DWORD> & base_array,
-                  int fCompare(const index, const index),
+                  int32_t fCompare(const index, const index),
                   void swap(void * lpVoidSwapArg, index iA, index iB),
                   void * lpVoidSwapArg);
    
-   void BubbleSort(LPINT lpInt, int size);
+   void BubbleSort(LPINT lpInt, int32_t size);
    
 
 
    void QuickSort(
       base_array<DWORD, DWORD> & base_array,
-      int fCompare(const index, const index),
+      int32_t fCompare(const index, const index),
       void swap(void * lpVoidSwapArg, index iA, index iB),
       void * lpVoidSwapArg)
    {
@@ -96,10 +96,10 @@ namespace  sort
 
    }
 
-   void BubbleSort(LPINT lpInt, int size)
+   void BubbleSort(LPINT lpInt, int32_t size)
    {
-      for(int i = 0; i < size; i++)
-         for(int j = i + 1; j < size; j++)
+      for(int32_t i = 0; i < size; i++)
+         for(int32_t j = i + 1; j < size; j++)
          {
             if(lpInt[i] > lpInt[j])
             {
@@ -127,8 +127,8 @@ namespace  sort
       index iUpperBound;
       index iLPos, iUPos, iMPos;
       
-      int iCmp;
-      int iCompare;
+      int32_t iCmp;
+      int32_t iCompare;
 
       if(iSize >= 2)
       {
@@ -148,7 +148,7 @@ namespace  sort
                   if(iMPos == iUPos)
                      break;
                   iCmp = 0;
-                  for(int i = 0; i < comparefna.get_size(); i++)
+                  for(int32_t i = 0; i < comparefna.get_size(); i++)
                   {
                      iCompare = comparefna[i](comparearga[i], iMPos, iUPos);
                      if(iCompare > 0)
@@ -166,7 +166,7 @@ namespace  sort
                      iUPos--;
                   else
                   {
-                     for(int i = 0; i < swapfna.get_size(); i++)
+                     for(int32_t i = 0; i < swapfna.get_size(); i++)
                      {
                         swapfna[i](swaparga[i], iMPos, iUPos);
                      }
@@ -181,7 +181,7 @@ namespace  sort
                   if(iMPos == iLPos)
                      break;
                   iCmp = 0;
-                  for(int i = 0; i < comparefna.get_size(); i++)
+                  for(int32_t i = 0; i < comparefna.get_size(); i++)
                   {
                      iCompare = comparefna[i](comparearga[i], iLPos, iMPos);
                      if(iCompare > 0)
@@ -199,7 +199,7 @@ namespace  sort
                      iLPos++;
                   else
                   {
-                     for(int i = 0; i < swapfna.get_size(); i++)
+                     for(int32_t i = 0; i < swapfna.get_size(); i++)
                      {
                         swapfna[i](swaparga[i], iLPos, iMPos);
                      }

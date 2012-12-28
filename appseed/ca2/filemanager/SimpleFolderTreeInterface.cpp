@@ -77,8 +77,8 @@ namespace filemanager
 
       m_straUpdatePtrFilter = stra;
 
-      //for(int i = stra.get_size() - 1; i >= 0; i--)
-      for(int i = 0; i < stra.get_size(); i++)
+      //for(int32_t i = stra.get_size() - 1; i >= 0; i--)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
          ::ex1::tree_item * pitem = find_item(strAscendant);
@@ -134,7 +134,7 @@ namespace filemanager
 
          if(iObscured > 0)
          {
-            int iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
+            int32_t iNewScroll = (int32_t) (m_scrollinfo.m_ptScroll.y + iIndex * _001GetItemHeight());
             m_scrollinfo.m_ptScroll.y = max(iNewScroll, 0);
          }
       }
@@ -180,7 +180,7 @@ namespace filemanager
 
    }
 
-   void SimpleFolderTreeInterface::_017UpdateZipList(const char * lpcsz, ::ex1::tree_item * pitemParent, int iLevel)
+   void SimpleFolderTreeInterface::_017UpdateZipList(const char * lpcsz, ::ex1::tree_item * pitemParent, int32_t iLevel)
    {
       index i;
 
@@ -204,8 +204,8 @@ namespace filemanager
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
       base_array < gen::memory_file, gen::memory_file & > filea;
-      int iStart = 0;
-      int iFind;
+      int32_t iStart = 0;
+      int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
       {
       filea.add(gen::memory_file());
@@ -230,7 +230,7 @@ namespace filemanager
       ex1::tree_item_ptr_array ptraRemove;
       pitemParent->get_children(ptraRemove);
 
-      for(int i = 0; i < wstraItem.get_size(); i++)
+      for(int32_t i = 0; i < wstraItem.get_size(); i++)
       {
          wstrItem = wstraItem[i];
 
@@ -306,7 +306,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFolderTreeInterface::_017UpdateList(const char * lpcsz, ::ex1::tree_item * pitemParent, int iLevel)
+   void SimpleFolderTreeInterface::_017UpdateList(const char * lpcsz, ::ex1::tree_item * pitemParent, int32_t iLevel)
    {
       if(lpcsz == NULL)
          lpcsz = "";
@@ -348,7 +348,7 @@ namespace filemanager
 
       pitemBase = get_base_item();
 
-      for(int i = 0; i < straAscendants.get_count(); i++)
+      for(int32_t i = 0; i < straAscendants.get_count(); i++)
       {
          string strItem = straAscendants[i];
          strItem.trim("/\\");
@@ -508,13 +508,13 @@ namespace filemanager
 
       dwTimeIn = GetTickCount();
 
-      int iMaxSize;
+      int32_t iMaxSize;
       iMaxSize = 1000;
 
-      int iSize;
+      int32_t iSize;
       iSize = 0;
 
-      int iChildCount;
+      int32_t iChildCount;
 
       iChildCount = 0;
 
@@ -554,7 +554,7 @@ namespace filemanager
 
       }
 
-      for(int j = 0; j < ptraRemove.get_size(); j++)
+      for(int32_t j = 0; j < ptraRemove.get_size(); j++)
       {
          delete_item(ptraRemove[j]);
       }
@@ -564,7 +564,7 @@ namespace filemanager
 
 
 
-      int i;
+      int32_t i;
 
       for(i = 0; i < straPath.get_size(); i++)
       {
@@ -736,7 +736,7 @@ namespace filemanager
       pcontrol->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::userbase::form_control::DataTypeString);
 
-      int iControl =  _001AddControl(control);
+      int32_t iControl =  _001AddControl(control);
 
       CColumn column;
 
@@ -754,7 +754,7 @@ namespace filemanager
 
    void SimpleFolderTreeInterface::GetSelectedFilePath(stringa & stra)
    {
-      for(int i = 0; i < m_itemptraSelected.get_size(); i++)
+      for(int32_t i = 0; i < m_itemptraSelected.get_size(); i++)
       {
          stra.add(((::fs::tree_item *)m_itemptraSelected[0]->m_pitemdata)->m_strPath);
       }
@@ -778,7 +778,7 @@ namespace filemanager
                KillTimer(123);
                /*
                rect rect;
-               int iArrange = (int) lparam;
+               int32_t iArrange = (int32_t) lparam;
                if(_001IsItemVisible(iArrange))
                {
                m_bCreateImageListRedraw = true;
@@ -840,7 +840,7 @@ namespace filemanager
       }
       else
       {
-         int iCSIDL = MapToCSIDL(efolder);
+         int32_t iCSIDL = MapToCSIDL(efolder);
 
          ASSERT(iCSIDL >= 0);
 
@@ -877,7 +877,7 @@ namespace filemanager
 
    }
 
-   int SimpleFolderTreeInterface::MapToCSIDL(EFolder efolder)
+   int32_t SimpleFolderTreeInterface::MapToCSIDL(EFolder efolder)
    {
       switch(efolder)
       {

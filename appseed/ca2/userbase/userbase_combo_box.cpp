@@ -35,7 +35,7 @@ namespace userbase
       { ASSERT(FALSE); }
    void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
       { ASSERT(FALSE); }
-   int combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
+   int32_t combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
       { ASSERT(FALSE); return 0; }
    void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
       { /* default to nothing */ }
@@ -220,7 +220,7 @@ namespace userbase
 
       //ASSERT(IsWindow());
 
-      //return (int)send_message( CB_INSERTSTRING, nIndex, (LPARAM)lpszString);
+      //return (int32_t)send_message( CB_INSERTSTRING, nIndex, (LPARAM)lpszString);
 
       return -1;
 
@@ -304,23 +304,23 @@ namespace userbase
 
    }
 
-   int combo_box::SetItemHeight(index nIndex, UINT cyItemHeight)
+   int32_t combo_box::SetItemHeight(index nIndex, UINT cyItemHeight)
    {
 
       //ASSERT(IsWindow());
 
-      //return (int)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
+      //return (int32_t)send_message( CB_SETITEMHEIGHT, nIndex, MAKELONG(cyItemHeight, 0));
 
       return -1;
 
    }
 
-   int combo_box::GetItemHeight(index nIndex)
+   int32_t combo_box::GetItemHeight(index nIndex)
    {
 
       //ASSERT(IsWindow());
 
-      //return (int)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
+      //return (int32_t)send_message( CB_GETITEMHEIGHT, nIndex, 0L);
 
       return -1;
 
@@ -337,12 +337,12 @@ namespace userbase
 
    }
 
-   int combo_box::SetExtendedUI(bool bExtended)
+   int32_t combo_box::SetExtendedUI(bool bExtended)
    {
 
       //ASSERT(IsWindow());
 
-      //return (int)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
+      //return (int32_t)send_message( CB_SETEXTENDEDUI, bExtended, 0L);
 
       return -1;
 
@@ -454,23 +454,23 @@ namespace userbase
 
    }
 
-   int combo_box::SetDroppedWidth(UINT nWidth)
+   int32_t combo_box::SetDroppedWidth(UINT nWidth)
    {
 
 //      ASSERT(IsWindow());
 
-//      return (int)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
+//      return (int32_t)send_message( CB_SETDROPPEDWIDTH, nWidth, 0);
 
          return -1;
 
    }
 
-   int combo_box::GetDroppedWidth()
+   int32_t combo_box::GetDroppedWidth()
    {
 
 //      ASSERT(IsWindow());
 
-//      return (int)send_message( CB_GETDROPPEDWIDTH, 0, 0);
+//      return (int32_t)send_message( CB_GETDROPPEDWIDTH, 0, 0);
 
          return -1;
 

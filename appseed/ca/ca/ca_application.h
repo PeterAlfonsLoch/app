@@ -113,13 +113,13 @@ namespace ca
       virtual bool bergedge_start();
       virtual bool os_native_bergedge_start();
 
-      virtual int exit();
+      virtual int32_t exit();
 
       virtual bool finalize();
 
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
-      virtual int main();
+      virtual int32_t main();
 
       virtual application * get_app() const;
 

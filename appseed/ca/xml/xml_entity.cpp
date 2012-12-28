@@ -13,7 +13,7 @@ namespace xml
    {
       m_chEntity  = chEntity;
       m_strRef    = pszReference;
-      m_iRefLen   = (int) strlen(pszReference);
+      m_iRefLen   = (int32_t) strlen(pszReference);
    }
 
    entity::entity(const entity & entity)
@@ -38,9 +38,9 @@ namespace xml
       add(entity(chEntity, pszReference));
    }
 
-   entity * entities::get_entity( int m_chEntity )
+   entity * entities::get_entity( int32_t m_chEntity )
    {
-      for( int i = 0 ; i < this->get_size(); i ++ )
+      for( int32_t i = 0 ; i < this->get_size(); i ++ )
       {
          if( this->element_at(i).m_chEntity == m_chEntity )
             return (class entity *)(&this->element_at(i));
@@ -50,7 +50,7 @@ namespace xml
 
    entity * entities::get_entity(const char * pszEntity)
    {
-      for( int i = 0 ; i < this->get_size(); i ++ )
+      for( int32_t i = 0 ; i < this->get_size(); i ++ )
       {
          const char * pszRef = this->element_at(i).m_strRef;
          const char * psz = pszEntity;
@@ -63,16 +63,16 @@ namespace xml
       return NULL;
    }
 
-   int entities::get_entity_count( const char * str )
+   int32_t entities::get_entity_count( const char * str )
    {
-      int nCount = 0;
+      int32_t nCount = 0;
       char * ps = (char *)str;
       while( ps && *ps )
          if( get_entity( *ps++ ) ) nCount ++;
       return nCount;
    }
 
-   int entities::ref_to_entity( const char * estr, char * str, int strlen )
+   int32_t entities::ref_to_entity( const char * estr, char * str, int32_t strlen )
    {
       char * pes = (char *)estr;
       char * ps = str;
@@ -93,10 +93,10 @@ namespace xml
       *ps = '\0';
 
       // total copied characters
-      return (int) (ps-str);
+      return (int32_t) (ps-str);
    }
 
-   int entities::entity_to_ref( const char * str, char * estr, int estrlen )
+   int32_t entities::entity_to_ref( const char * str, char * estr, int32_t estrlen )
    {
       char * ps = (char *)str;
       char * pes = (char *)estr;
@@ -118,7 +118,7 @@ namespace xml
       *pes = '\0';
 
       // total copied characters
-      return (int) (pes-estr);
+      return (int32_t) (pes-estr);
    }
 
    string entities::ref_to_entity(const char * pszSrc)
@@ -129,7 +129,7 @@ namespace xml
          strsize iLen = strlen(pszSrc);
          char * pszRet = strRet.GetBufferSetLength(iLen);
          if(pszRet != NULL)
-            ref_to_entity(pszSrc, pszRet, (int) iLen);
+            ref_to_entity(pszSrc, pszRet, (int32_t) iLen);
          strRet.ReleaseBuffer();
       }
       return strRet;
@@ -140,13 +140,13 @@ namespace xml
       string s;
       if( str )
       {
-         int nEntityCount = get_entity_count(str);
+         int32_t nEntityCount = get_entity_count(str);
          if( nEntityCount == 0 )
             return string(str);
          strsize len = strlen(str) + nEntityCount*10 ;
          char * sbuf = s.GetBufferSetLength(len + 1);
          if( sbuf )
-            entity_to_ref( str, sbuf, (int) len);
+            entity_to_ref( str, sbuf, (int32_t) len);
          s.ReleaseBuffer();
       }
       return s;

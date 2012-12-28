@@ -6,7 +6,7 @@
 namespace userbase
 {
 
-   __STATUSPANE* status_bar::_GetPanePtr(int nIndex)
+   __STATUSPANE* status_bar::_GetPanePtr(int32_t nIndex)
    {
       return &m_panea[nIndex];
    }
@@ -115,7 +115,7 @@ namespace userbase
             hOldFont = spgraphicsScreen->SelectObject(hFont);*/
 
          __STATUSPANE* pSBP = _GetPanePtr(0);
-         for (int i = 0; i < stra.get_count(); i++)
+         for (int32_t i = 0; i < stra.get_count(); i++)
          {
             pSBP->m_id = stra[i];
             pSBP->nFlags |= SBPF_UPDATE;
@@ -159,9 +159,9 @@ namespace userbase
    }
 
    /*
-   bool status_bar::AllocElements(int nElements, int cbElement)
+   bool status_bar::AllocElements(int32_t nElements, int32_t cbElement)
    {
-      int i;
+      int32_t i;
 
       // destruct old elements
       //__STATUSPANE* pSBP = _GetPanePtr(0);
@@ -202,7 +202,7 @@ namespace userbase
       if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->IsZoomed())
       {
          // get border metrics from common control
-         int rgBorders[3];
+         int32_t rgBorders[3];
          status_bar* pBar = (status_bar*)this;
          pBar->DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
 
@@ -220,7 +220,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
-      int i;
+      int32_t i;
 
 #ifdef WINDOWSEX
 
@@ -232,12 +232,12 @@ namespace userbase
          rect rect; GetWindowRect(rect);
          rect.offset(-rect.left, -rect.top);
          CalcInsideRect(rect, TRUE);
-         int rgBorders[3];
+         int32_t rgBorders[3];
          VERIFY(DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders) != FALSE);
 
          // determine extra space for stretchy pane
-         int cxExtra = rect.width() + rgBorders[2];
-         int nStretchyCount = 0;
+         int32_t cxExtra = rect.width() + rgBorders[2];
+         int32_t nStretchyCount = 0;
          //__STATUSPANE* pSBP = _GetPanePtr(0);
          for (i = 0; i < m_panea.get_count(); i++)
          {
@@ -249,8 +249,8 @@ namespace userbase
          }
 
          // determine right edge of each pane
-         int* rgRights = (int*)_alloca(m_panea.get_count() * sizeof(int));
-         int right = rgBorders[0];
+         int32_t* rgRights = (int32_t*)_alloca(m_panea.get_count() * sizeof(int32_t));
+         int32_t right = rgBorders[0];
    //      pSBP = _GetPanePtr(0);
          for (i = 0; i < m_panea.get_count(); i++)
          {
@@ -261,7 +261,7 @@ namespace userbase
             if ((pSBP->nStyle & SBPS_STRETCH) && cxExtra > 0)
             {
                ASSERT(nStretchyCount != 0);
-               int cxAddExtra = cxExtra / nStretchyCount;
+               int32_t cxAddExtra = cxExtra / nStretchyCount;
                right += cxAddExtra;
                --nStretchyCount;
                cxExtra -= cxAddExtra;
@@ -300,14 +300,14 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // status_bar attribute access
 
-   int status_bar::CommandToIndex(id id)
+   int32_t status_bar::CommandToIndex(id id)
    {
       ASSERT_VALID(this);
 
       if (m_panea.get_count() <= 0)
          return -1;
 
-      for (int i = 0; i < m_panea.get_count(); i++)
+      for (int32_t i = 0; i < m_panea.get_count(); i++)
       {
          __STATUSPANE* pSBP = _GetPanePtr(i);
          if (pSBP->m_id == id)
@@ -317,13 +317,13 @@ namespace userbase
       return -1;
    }
 
-   id status_bar::GetItemId(int nIndex)
+   id status_bar::GetItemId(int32_t nIndex)
    {
       ASSERT_VALID(this);
       return _GetPanePtr(nIndex)->m_id;
    }
 
-   void status_bar::GetItemRect(int nIndex, LPRECT lpRect)
+   void status_bar::GetItemRect(int32_t nIndex, LPRECT lpRect)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -337,12 +337,12 @@ namespace userbase
 #endif
    }
 
-   UINT status_bar::GetPaneStyle(int nIndex)
+   UINT status_bar::GetPaneStyle(int32_t nIndex)
    {
       return _GetPanePtr(nIndex)->nStyle;
    }
 
-   void status_bar::SetPaneStyle(int nIndex, UINT nStyle)
+   void status_bar::SetPaneStyle(int32_t nIndex, UINT nStyle)
    {
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       if (pSBP->nStyle != nStyle)
@@ -362,8 +362,8 @@ namespace userbase
       }
    }
 
-   void status_bar::GetPaneInfo(int nIndex, id & id, UINT& nStyle,
-      int& cxWidth)
+   void status_bar::GetPaneInfo(int32_t nIndex, id & id, UINT& nStyle,
+      int32_t& cxWidth)
    {
       ASSERT_VALID(this);
 
@@ -373,7 +373,7 @@ namespace userbase
       cxWidth = pSBP->cxText;
    }
 
-   void status_bar::SetPaneInfo(int nIndex, id id, UINT nStyle, int cxWidth)
+   void status_bar::SetPaneInfo(int32_t nIndex, id id, UINT nStyle, int32_t cxWidth)
    {
       ASSERT_VALID(this);
 
@@ -402,7 +402,7 @@ namespace userbase
          UpdateAllPanes(TRUE, FALSE);
    }
 
-   void status_bar::GetPaneText(int nIndex, string & s)
+   void status_bar::GetPaneText(int32_t nIndex, string & s)
    {
       ASSERT_VALID(this);
 
@@ -410,7 +410,7 @@ namespace userbase
       s = pSBP->strText;
    }
 
-   string status_bar::GetPaneText(int nIndex)
+   string status_bar::GetPaneText(int32_t nIndex)
    {
       ASSERT_VALID(this);
 
@@ -418,7 +418,7 @@ namespace userbase
       return pSBP->strText;
    }
 
-   bool status_bar::SetPaneText(int nIndex, const char * lpszNewText, bool bUpdate)
+   bool status_bar::SetPaneText(int32_t nIndex, const char * lpszNewText, bool bUpdate)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -491,7 +491,7 @@ namespace userbase
       class rect rect;
       rect.null();
       CalcInsideRect(rect, bHorz);
-      int rgBorders[3];
+      int32_t rgBorders[3];
       size size;
       size.cx =0;
       size.cy =0;
@@ -638,7 +638,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
-      int nIndex = CommandToIndex(0);
+      int32_t nIndex = CommandToIndex(0);
       if (nIndex < 0)
       {
          pbase->set_lresult(-1);
@@ -655,7 +655,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
-      int nMaxLen = (int)pbase->m_wparam;
+      int32_t nMaxLen = (int32_t)pbase->m_wparam;
       if (nMaxLen == 0)
       {
          // nothing copied
@@ -666,7 +666,7 @@ namespace userbase
       LPTSTR lpszDest = (LPTSTR)pbase->m_lparam;
 
       int_ptr nLen = 0;
-      int nIndex = CommandToIndex(0); // use pane with ID zero
+      int32_t nIndex = CommandToIndex(0); // use pane with ID zero
       if (nIndex >= 0)
       {
          __STATUSPANE* pSBP = _GetPanePtr(nIndex);
@@ -688,7 +688,7 @@ namespace userbase
       ASSERT(IsWindow());
 
       int_ptr nLen = 0;
-      int nIndex = CommandToIndex(0); // use pane with ID zero
+      int32_t nIndex = CommandToIndex(0); // use pane with ID zero
       if (nIndex >= 0)
       {
          __STATUSPANE* pSBP = _GetPanePtr(nIndex);
@@ -702,7 +702,7 @@ namespace userbase
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
       LRESULT lResult = Default();
-      m_nMinHeight = (int)pbase->m_wparam;
+      m_nMinHeight = (int32_t)pbase->m_wparam;
       pbase->set_lresult(lResult);
    }
 
@@ -735,10 +735,10 @@ namespace userbase
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
-      UINT nNewStyle = pStatusBar->GetPaneStyle((int) m_iIndex) & ~SBPS_DISABLED;
+      UINT nNewStyle = pStatusBar->GetPaneStyle((int32_t) m_iIndex) & ~SBPS_DISABLED;
       if (!bOn)
          nNewStyle |= SBPS_DISABLED;
-      pStatusBar->SetPaneStyle((int) m_iIndex, nNewStyle);
+      pStatusBar->SetPaneStyle((int32_t) m_iIndex, nNewStyle);
    }
 
    void CStatusCmdUI::SetCheck(check::e_check echeck) // "checking" will pop out the text
@@ -749,10 +749,10 @@ namespace userbase
       ASSERT(m_iIndex < m_iCount);
 
 #ifdef WINDOWSEX
-      UINT nNewStyle = pStatusBar->GetPaneStyle((int) m_iIndex) & ~SBPS_POPOUT;
+      UINT nNewStyle = pStatusBar->GetPaneStyle((int32_t) m_iIndex) & ~SBPS_POPOUT;
       if (echeck != check::unchecked)
          nNewStyle |= SBPS_POPOUT;
-      pStatusBar->SetPaneStyle((int) m_iIndex, nNewStyle);
+      pStatusBar->SetPaneStyle((int32_t) m_iIndex, nNewStyle);
 #else
       throw todo(get_app());
 #endif
@@ -766,7 +766,7 @@ namespace userbase
       ASSERT_KINDOF(status_bar, pStatusBar);
       ASSERT(m_iIndex < m_iCount);
 
-      pStatusBar->SetPaneText((int) m_iIndex, lpszText);
+      pStatusBar->SetPaneText((int32_t) m_iIndex, lpszText);
    }
 
 
@@ -777,7 +777,7 @@ namespace userbase
       state.m_iCount = (UINT)m_panea.get_count();
       for (state.m_iIndex = 0; state.m_iIndex < state.m_iCount; state.m_iIndex++)
       {
-         state.m_id = _GetPanePtr((int) state.m_iIndex)->m_id;
+         state.m_id = _GetPanePtr((int32_t) state.m_iIndex)->m_id;
 
          // allow the statusbar itself to have update handlers
          if (::user::interaction::_001OnUpdateCmdUi(&state))
@@ -807,7 +807,7 @@ namespace userbase
 
       if (dumpcontext.GetDepth() > 0)
       {
-         for (int i = 0; i < m_panea.get_count(); i++)
+         for (int32_t i = 0; i < m_panea.get_count(); i++)
          {
             __STATUSPANE * ppane = ((status_bar *) this)->_GetPanePtr(i);
             dumpcontext << "\nstatus pane[" << i << "] = {";
@@ -856,7 +856,7 @@ namespace userbase
    }
 
 
-   void status_bar::SetPaneInfo(int nIndex, int iId, UINT nStyle, int cxWidth)
+   void status_bar::SetPaneInfo(int32_t nIndex, int32_t iId, UINT nStyle, int32_t cxWidth)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(iId);
@@ -865,7 +865,7 @@ namespace userbase
       //SetPaneInfo(nIndex, iId, nStyle, cxWidth);
    }
 
-   void status_bar::SetPaneInfo(int nIndex, const char * pszId, UINT nStyle, int cxWidth)
+   void status_bar::SetPaneInfo(int32_t nIndex, const char * pszId, UINT nStyle, int32_t cxWidth)
    {
       UNREFERENCED_PARAMETER(nIndex);
       UNREFERENCED_PARAMETER(pszId);

@@ -24,7 +24,7 @@ namespace ca2
       return m_str;
    }
 
-   int datetime::get_month_day_count(int year, int month)
+   int32_t datetime::get_month_day_count(int32_t year, int32_t month)
    {
       switch(month)
       {
@@ -60,21 +60,21 @@ namespace ca2
    }
 
 // 0 is Sunday
-   int datetime::get_weekday(int year, int month, int day)
+   int32_t datetime::get_weekday(int32_t year, int32_t month, int32_t day)
    {
       ::datetime::time time(year, month, day, 0, 0, 0);
       return atoi(time.Format("%w"));
    }
 
-   int64_t datetime::get_timestamp(int year, int month, int day)
+   int64_t datetime::get_timestamp(int32_t year, int32_t month, int32_t day)
    {
       string strInternationalDate;
       strInternationalDate.Format("%d-%02d-%02d", year, month, day);
-      int i;
+      int32_t i;
       return strtotime(NULL, strInternationalDate, 0, i);
    }
 
-   int64_t datetime::strtotime(::user::str_context * pcontext, const char * psz, int iPath, int & iPathCount)
+   int64_t datetime::strtotime(::user::str_context * pcontext, const char * psz, int32_t iPath, int32_t & iPathCount)
    {
       ::datetime::time time;
       ::datetime::value val =::datetime::strtotime(get_app(), pcontext, psz, iPath, iPathCount);
@@ -85,7 +85,7 @@ namespace ca2
       return time.get_time();
    }
 
-   int64_t datetime::strtotime(::user::str_context * pcontext, const char * psz, time_t timeParam, int iPath, int & iPathCount)
+   int64_t datetime::strtotime(::user::str_context * pcontext, const char * psz, time_t timeParam, int32_t iPath, int32_t & iPathCount)
    {
       UNREFERENCED_PARAMETER(iPath);
       ::datetime::time time(timeParam);
@@ -207,7 +207,7 @@ namespace ca2
       return m_pdatetime->international().get_gmt_date_time(::datetime::time::get_current_time());
    }
 
-   time_t datetime::mktime(int iHour, int iMinute, int iSecond, int iMonth, int iDay, int iYear)
+   time_t datetime::mktime(int32_t iHour, int32_t iMinute, int32_t iSecond, int32_t iMonth, int32_t iDay, int32_t iYear)
    {
       struct tm tm;
       memset(&tm, 0, sizeof(tm));
@@ -224,22 +224,22 @@ namespace ca2
       #endif
    }
 
-   string datetime::get_week_day_str(user::str_context * pcontext, int iWeekDay) // 1 - domingo
+   string datetime::get_week_day_str(user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext, "datetimestr_weekday_long[" + gen::str::from(iWeekDay - 1) + "]");
    }
 
-   string datetime::get_tiny_week_day_str(user::str_context * pcontext, int iWeekDay) // 1 - domingo
+   string datetime::get_tiny_week_day_str(user::str_context * pcontext, int32_t iWeekDay) // 1 - domingo
    {
       return System.str().get(pcontext, "datetimestr_weekday_tiny[" + gen::str::from(iWeekDay - 1) + "]");
    }
 
-   string datetime::get_month_str(user::str_context * pcontext, int iMonth)
+   string datetime::get_month_str(user::str_context * pcontext, int32_t iMonth)
    {
       return System.str().get(pcontext, "datetimestr_month[" + gen::str::from(iMonth - 1) + "]");
    }
 
-   ::datetime::time datetime::from_gmt_date_time(int iYear, int iMonth, int iDay, int iHour, int iMinute, int iSecond)
+   ::datetime::time datetime::from_gmt_date_time(int32_t iYear, int32_t iMonth, int32_t iDay, int32_t iHour, int32_t iMinute, int32_t iSecond)
    {
       ::datetime::time timeLocalNow = ::datetime::time::get_current_time();
       struct tm tmLocalNow;
@@ -274,7 +274,7 @@ namespace ca2
    //The simple week number we define such that
    //    week 1 starts on January 1st of a given year,
    //    week n+1 starts 7 days after week n
-   int datetime::SWN(int y, int m, int d )
+   int32_t datetime::SWN(int32_t y, int32_t m, int32_t d )
    {
       return 1 + (DP( y, m ) + d-1 ) / 7;
    }
@@ -282,7 +282,7 @@ namespace ca2
    //where DP ("Days Passed") is given by:
    //   DP( y, 1 ) = 0
    //  DP( y, m+1 ) = DP( y, m ) + ML( y, m )
-   int datetime::DP(int y, int m)
+   int32_t datetime::DP(int32_t y, int32_t m)
    {
       if(m == 1)
          return 0;
@@ -290,7 +290,7 @@ namespace ca2
          return DP(y, m - 1) + ML(y, m - 1);
    }
 
-   int datetime::ML(int y, int m)
+   int32_t datetime::ML(int32_t y, int32_t m)
    {
       switch(m)
       {
@@ -322,7 +322,7 @@ namespace ca2
       throw invalid_argument_exception(get_app());
    }
 
-   int datetime::LEAP(int y )
+   int32_t datetime::LEAP(int32_t y )
    {
       if((y % 4 == 0) && ((y % 100 != 0) || (y % 400 == 0)))
          return 1;
@@ -333,27 +333,27 @@ namespace ca2
 
    // Use this elegant code by Tomohiko Sakamoto:
 
-   int datetime::dayofweek(int y, int m, int d)	/* 0 = Sunday */
+   int32_t datetime::dayofweek(int32_t y, int32_t m, int32_t d)	/* 0 = Sunday */
    {
-	   static int t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
+	   static int32_t t[] = {0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4};
 	   y -= m < 3;
 	   return (y + y/4 - y/100 + y/400 + t[m-1] + d) % 7;
    }
 
-   int datetime::SDOW(int y,int m, int d ) // ( 0 = Monday, ..., 6 = Sunday )
+   int32_t datetime::SDOW(int32_t y,int32_t m, int32_t d ) // ( 0 = Monday, ..., 6 = Sunday )
    {
       return (DP( y, m ) + d-1 ) % 7;
    }
 
 
-   int datetime::DOW(int y, int m, int d)
+   int32_t datetime::DOW(int32_t y, int32_t m, int32_t d)
    {
       //return SDOW(y, m, d);
       return getDayOfWeek(m, d, y, 0);
    }
 
 
-int datetime::getDayOfWeek(int month, int day, int year, int CalendarSystem)
+int32_t datetime::getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem)
 {
      // CalendarSystem = 1 for Gregorian Calendar
      if (month < 3)
@@ -364,11 +364,11 @@ int datetime::getDayOfWeek(int month, int day, int year, int CalendarSystem)
      return (
              day
              + (2 * month)
-             + int(6 * (month + 1) / 10)
+             + int32_t(6 * (month + 1) / 10)
              + year
-             + int(year / 4)
-             - int(year / 100)
-             + int(year / 400)
+             + int32_t(year / 4)
+             - int32_t(year / 100)
+             + int32_t(year / 400)
              + CalendarSystem
             ) % 7;
 }
@@ -382,7 +382,7 @@ int datetime::getDayOfWeek(int month, int day, int year, int CalendarSystem)
 
    If we adapt approximation SWN5 for the simple week number to reflect the differences between the definitions of both week numbers, we arrive at the final solution, adopted for the week number wristapp:
    */
-   /*int ISO_WN(int  y, int m, int d, int dow, int dow0101 )
+   /*int32_t ISO_WN(int32_t  y, int32_t m, int32_t d, int32_t dow, int32_t dow0101 )
    {
        dow     = DOW( y, m, d );
        dow0101 = DOW( y, 1, 1 );
@@ -410,10 +410,10 @@ int datetime::getDayOfWeek(int month, int day, int year, int CalendarSystem)
    }*/
 
 
-int datetime::ISO_WN(int  y, int m, int d )
+int32_t datetime::ISO_WN(int32_t  y, int32_t m, int32_t d )
 {
-    int dow     = DOW( y, m, d );
-    int dow0101 = DOW( y, 1, 1 );
+    int32_t dow     = DOW( y, m, d );
+    int32_t dow0101 = DOW( y, 1, 1 );
 
     if      ( m == 1  &&  3 < dow0101 && dow0101 < (7 - (d-1)) )
     {

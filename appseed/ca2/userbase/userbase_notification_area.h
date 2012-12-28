@@ -50,15 +50,15 @@ namespace userbase
 
       virtual void Initialize(::ca::application * papp);
 
-      void ListTrayIcons(int defindex = 0);
-      void EditCopy(int iItem);
-      void DoubleClick(int iItem);
-      void RightClick(int iItem);
-      void LeftClick(int iItem);
-      void MoveLeft(int iItem);
-      void MoveRight(int iItem);
+      void ListTrayIcons(int32_t defindex = 0);
+      void EditCopy(int32_t iItem);
+      void DoubleClick(int32_t iItem);
+      void RightClick(int32_t iItem);
+      void LeftClick(int32_t iItem);
+      void MoveLeft(int32_t iItem);
+      void MoveRight(int32_t iItem);
       void Refresh();
-      void PostMessageToTrayIcon(int iItem, LPARAM lParam);
+      void PostMessageToTrayIcon(int32_t iItem, LPARAM lParam);
 
 
    };

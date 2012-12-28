@@ -33,8 +33,8 @@ namespace ex1
 namespace plugin
 {
 
-   void ms_get_dup_status_callback(void * p, int i, dword_ptr dw);
-   void my_se_translator_function(unsigned int, struct _EXCEPTION_POINTERS* );
+   void ms_get_dup_status_callback(void * p, int32_t i, dword_ptr dw);
+   void my_se_translator_function(unsigned int32_t, struct _EXCEPTION_POINTERS* );
 
 
    plugin::plugin()
@@ -74,7 +74,7 @@ namespace plugin
       UNREFERENCED_PARAMETER(pszInstall);
    }
 
-   int plugin::start_ca2_system()
+   int32_t plugin::start_ca2_system()
    {
 
 #ifdef METROWIN
@@ -114,7 +114,7 @@ namespace plugin
 
          mlSystem.unlock();
 
-//         int nReturnCode = 0;
+//         int32_t nReturnCode = 0;
 
 /*         ::win::main_init_data * pinitmaindata  = new ::win::main_init_data;
 
@@ -416,12 +416,12 @@ namespace plugin
    }
 
 
-   void ms_get_dup_status_callback(void * p, int i, dword_ptr dw)
+   void ms_get_dup_status_callback(void * p, int32_t i, dword_ptr dw)
    {
 
       if(i == -3)
       {
-         int * pi = (int *) p;
+         int32_t * pi = (int32_t *) p;
          simple_http_status * ps = (simple_http_status *) dw;
          *pi = ps->m_dwStatusCode;
       }
@@ -471,7 +471,7 @@ namespace plugin
 
             strUrl = System.url().set(strUrl, "authnone", 1);
 
-            for(int iAttempt = 0; iAttempt < 3; iAttempt++)
+            for(int32_t iAttempt = 0; iAttempt < 3; iAttempt++)
             {
 
                //strPluginData = ms_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
@@ -557,7 +557,7 @@ namespace plugin
          {
             LPSTR lpszStart = lpszAlloc;
             LPSTR lpszEnd = NULL;
-            int i = 0;
+            int32_t i = 0;
             for(; i < iCount; i++)
             {
                lpszEnd = &lpszStart[i];
@@ -731,7 +731,7 @@ namespace plugin
 
                         strCommandLine = ": app=session session_start=" + strId;
 
-                        for(int i = 0; i < set.m_propertya.get_count(); i++)
+                        for(int32_t i = 0; i < set.m_propertya.get_count(); i++)
                         {
 
                            if(!set.m_propertya[i].get_string().has_char()
@@ -818,7 +818,7 @@ namespace plugin
       }
    }
 
-   void my_se_translator_function(unsigned int, struct _EXCEPTION_POINTERS* )
+   void my_se_translator_function(unsigned int32_t, struct _EXCEPTION_POINTERS* )
    {
    }
 
@@ -867,7 +867,7 @@ namespace plugin
             }
             pthread->m_pbReady = m_pbReady;
             pthread->m_bRun = false;
-            int iRepeat = 0;
+            int32_t iRepeat = 0;
             while((m_pbReady != NULL || !*m_pbReady) && iRepeat < 49)
             {
                Sleep(284);
@@ -990,7 +990,7 @@ namespace plugin
 
 #else
 
-   int plugin::message_handler(XEvent * pevent)
+   int32_t plugin::message_handler(XEvent * pevent)
    {
 
       return 0;

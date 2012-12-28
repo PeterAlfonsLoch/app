@@ -22,9 +22,9 @@ BEGIN_EXTERN_C
 void _ve_envelope_init(envelope_lookup *e,vorbis_info *vi){
   codec_setup_info *ci=(codec_setup_info *) vi->codec_setup;
   vorbis_info_psy_global *gi=&ci->psy_g_param;
-  int ch=vi->channels;
-  int i,j;
-  int n=e->winlength=128;
+  int32_t ch=vi->channels;
+  int32_t i,j;
+  int32_t n=e->winlength=128;
   e->searchstep=64; /* not random */
 
   e->minenergy=gi->preecho_minenergy;
@@ -59,12 +59,12 @@ void _ve_envelope_init(envelope_lookup *e,vorbis_info *vi){
   }
 
   e->filter=(envelope_filter_state *) _ogg_calloc(VE_BANDS*ch,sizeof(*e->filter));
-  e->mark=(int *) _ogg_calloc(e->storage,sizeof(*e->mark));
+  e->mark=(int32_t *) _ogg_calloc(e->storage,sizeof(*e->mark));
 
 }
 
 void _ve_envelope_clear(envelope_lookup *e){
-  int i;
+  int32_t i;
   mdct_clear(&e->mdct);
   for(i=0;i<VE_BANDS;i++)
     _ogg_free(e->band[i].window);
@@ -77,13 +77,13 @@ void _ve_envelope_clear(envelope_lookup *e){
 /* fairly straight threshhold-by-band based until we find something
    that works better and isn't patented. */
 
-static int _ve_amp(envelope_lookup *ve,
+static int32_t _ve_amp(envelope_lookup *ve,
                    vorbis_info_psy_global *gi,
                    float *data,
                    envelope_band *bands,
                    envelope_filter_state *filters){
   long n=ve->winlength;
-  int ret=0;
+  int32_t ret=0;
   long i,j;
   float decay;
 
@@ -96,7 +96,7 @@ static int _ve_amp(envelope_lookup *ve,
 
   /* stretch is used to gradually lengthen the number of windows
      considered prevoius-to-potential-trigger */
-  int stretch=max(VE_MINSTRETCH,ve->stretch/2);
+  int32_t stretch=max(VE_MINSTRETCH,ve->stretch/2);
   float penalty=gi->stretch_penalty-(ve->stretch/2-VE_MINSTRETCH);
   if(penalty<0.f)penalty=0.f;
   if(penalty>gi->stretch_penalty)penalty=gi->stretch_penalty;
@@ -115,7 +115,7 @@ static int _ve_amp(envelope_lookup *ve,
      psychoacoustics, just sidelobe leakage and window size */
   {
     float temp=vec[0]*vec[0]+.7*vec[1]*vec[1]+.2*vec[2]*vec[2];
-    int ptr=filters->nearptr;
+    int32_t ptr=filters->nearptr;
 
     /* the accumulation is regularly refreshed from scratch to avoid
        floating point creep */
@@ -162,7 +162,7 @@ static int _ve_amp(envelope_lookup *ve,
 
     /* convert amplitude to delta */
     {
-      int p,thiscount=filters[j].ampptr;
+      int32_t p,thiscount=filters[j].ampptr;
       float postmax,postmin,premax=-99999.f,premin=99999.f;
 
       p=thiscount;
@@ -199,7 +199,7 @@ static int _ve_amp(envelope_lookup *ve,
 }
 
 #if 0
-static int seq=0;
+static int32_t seq=0;
 static ogg_int64_t totalshift=-1024;
 #endif
 
@@ -210,18 +210,18 @@ long _ve_envelope_search(vorbis_dsp_state *v){
   envelope_lookup *ve=((private_state *)(v->backend_state))->ve;
   long i,j;
 
-  int first=ve->current/ve->searchstep;
-  int last=v->pcm_current/ve->searchstep-VE_WIN;
+  int32_t first=ve->current/ve->searchstep;
+  int32_t last=v->pcm_current/ve->searchstep-VE_WIN;
   if(first<0)first=0;
 
   /* make sure we have enough storage to match the PCM */
   if(last+VE_WIN+VE_POST>ve->storage){
     ve->storage=last+VE_WIN+VE_POST; /* be sure */
-    ve->mark=(int *) _ogg_realloc(ve->mark,ve->storage*sizeof(*ve->mark));
+    ve->mark=(int32_t *) _ogg_realloc(ve->mark,ve->storage*sizeof(*ve->mark));
   }
 
   for(j=first;j<last;j++){
-    int ret=0;
+    int32_t ret=0;
 
     ve->stretch++;
     if(ve->stretch>VE_MAXSTRETCH*2)
@@ -270,7 +270,7 @@ long _ve_envelope_search(vorbis_dsp_state *v){
 #if 0
           if(j>ve->curmark){
             float *marker=alloca(v->pcm_current*sizeof(*marker));
-            int l,m;
+            int32_t l,m;
             memset(marker,0,sizeof(*marker)*v->pcm_current);
             fprintf(stderr,"mark! seq=%d, cursor:%fs time:%fs\n",
                     seq,
@@ -317,7 +317,7 @@ long _ve_envelope_search(vorbis_dsp_state *v){
   return(-1);
 }
 
-int _ve_envelope_mark(vorbis_dsp_state *v){
+int32_t _ve_envelope_mark(vorbis_dsp_state *v){
   envelope_lookup *ve=((private_state *)(v->backend_state))->ve;
   vorbis_info *vi=v->vi;
   codec_setup_info *ci=(codec_setup_info *) vi->codec_setup;
@@ -344,9 +344,9 @@ int _ve_envelope_mark(vorbis_dsp_state *v){
 }
 
 void _ve_envelope_shift(envelope_lookup *e,long shift){
-  int smallsize=e->current/e->searchstep+VE_POST; /* adjust for placing marks
+  int32_t smallsize=e->current/e->searchstep+VE_POST; /* adjust for placing marks
                                                      ahead of ve->current */
-  int smallshift=shift/e->searchstep;
+  int32_t smallshift=shift/e->searchstep;
 
   memmove(e->mark,e->mark+smallshift,(smallsize-smallshift)*sizeof(*e->mark));
 

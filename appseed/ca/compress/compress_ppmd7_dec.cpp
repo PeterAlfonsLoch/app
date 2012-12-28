@@ -76,7 +76,7 @@ void Ppmd7z_RangeDec_CreateVTable(CPpmd7z_RangeDec *p)
 
 #define MASK(sym) ((signed char *)charMask)[sym]
 
-int Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc)
+int32_t Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc)
 {
   size_t charMask[256 / sizeof(size_t)];
   if (p->MinContext->NumStats != 1)
@@ -154,7 +154,7 @@ int Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc)
     num = p->MinContext->NumStats - numMasked;
     do
     {
-      int k = (int)(MASK(s->Symbol));
+      int32_t k = (int32_t)(MASK(s->Symbol));
       hiCnt += (s->Freq & k);
       ps[i] = s++;
       i -= k;

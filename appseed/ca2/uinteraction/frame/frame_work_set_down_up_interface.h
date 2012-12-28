@@ -15,8 +15,8 @@ namespace uinteraction
 
 
          UpDownTarget *       m_pupdowntarget;
-         int                  m_iType;
-         int                  m_iIndex;
+         int32_t                  m_iType;
+         int32_t                  m_iIndex;
 
 
          CWorkSetDownUpInterface();

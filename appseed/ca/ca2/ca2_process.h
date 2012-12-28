@@ -25,7 +25,7 @@ namespace ca2
 
 
          process_thread(::ca::application * papp);
-         int run();
+         int32_t run();
 
 
       };
@@ -49,12 +49,12 @@ namespace ca2
 
       // run process and get output
       var get_output(const char * pszCmdLine);
-      DWORD retry(const char * pszCmdLine, DWORD dwTimeOut, int iShow = SW_HIDE);
-      DWORD synch(const char * pszCmdLine, int iShow = SW_HIDE);
-      bool launch(const char * pszCmdLine, int iShow = SW_HIDE);
+      DWORD retry(const char * pszCmdLine, DWORD dwTimeOut, int32_t iShow = SW_HIDE);
+      DWORD synch(const char * pszCmdLine, int32_t iShow = SW_HIDE);
+      bool launch(const char * pszCmdLine, int32_t iShow = SW_HIDE);
 
 
-      static int s_on_retry(int iTry, dword_ptr dwParam);
+      static int32_t s_on_retry(int32_t iTry, dword_ptr dwParam);
 
 
    };

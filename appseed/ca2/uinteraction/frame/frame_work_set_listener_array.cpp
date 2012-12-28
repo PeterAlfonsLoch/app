@@ -27,7 +27,7 @@ namespace frame
       ::user::interaction * pwnd,
       EGrip egrip)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnSizingGripMove(
@@ -41,7 +41,7 @@ namespace frame
       WorkSet * pwf,
       ::user::interaction * pwnd)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnDock(
@@ -54,7 +54,7 @@ namespace frame
       WorkSet * pwf,
       ::user::interaction * pwnd)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnClose(
@@ -69,7 +69,7 @@ namespace frame
       UINT nHitTest,
       point point)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          WorkSetListener * plistener = this->element_at(i);
          plistener->WFLOnNcLButtonDown(

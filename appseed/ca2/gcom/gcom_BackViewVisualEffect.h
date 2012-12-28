@@ -55,16 +55,16 @@ namespace gcom
       {
       public:
 
-         int         m_iWidth;
-         int         m_iHeight;
+         int32_t         m_iWidth;
+         int32_t         m_iHeight;
          bool      m_bDrawWithLight;
-         int         m_iLightModifier;
-         int         m_iHpage;// The current heightfield
+         int32_t         m_iLightModifier;
+         int32_t         m_iHpage;// The current heightfield
          double      m_density;// The water density - can change the density...
          double      m_minradius;
          //  the height fields
-      //   int*      m_iHeightField1;
-      //   int*      m_iHeightField2;
+      //   int32_t*      m_iHeightField1;
+      //   int32_t*      m_iHeightField2;
 
          double m_z;
 
@@ -76,23 +76,23 @@ namespace gcom
          PixelExplosion();
          virtual ~PixelExplosion();
 
-         void create(int iWidth,int iHeight);
+         void create(int32_t iWidth,int32_t iHeight);
          void to(DWORD* pSrcImage,DWORD* pTargetImage);
 
-         void CalcWater(int npage, int density);
-         void Calc2(int npage, int density);
-         void SmoothWater(int npage);
+         void CalcWater(int32_t npage, int32_t density);
+         void Calc2(int32_t npage, int32_t density);
+         void SmoothWater(int32_t npage);
          void FlattenWater();
 
-         void SineBlob(int x, int y, int radius, int height, int page);
-         void WarpBlob(int x, int y, int radius, int height, int page);
-         void HeightBox (int x, int y, int radius, int height, int page);
+         void SineBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page);
+         void WarpBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page);
+         void HeightBox (int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page);
          void Reset();
-         void CalcWaterBigFilter(int npage, int density);
+         void CalcWaterBigFilter(int32_t npage, int32_t density);
 
-         void DrawWaterNoLight(int page,DWORD* pSrcImage,DWORD* pTargetImage);
-         //void DrawWaterWithLight(int page, int LightModifier,DWORD* pSrcImage,DWORD* pTargetImage);
-         COLORREF GetShiftedColor(COLORREF color,int shift);
+         void DrawWaterNoLight(int32_t page,DWORD* pSrcImage,DWORD* pTargetImage);
+         //void DrawWaterWithLight(int32_t page, int32_t LightModifier,DWORD* pSrcImage,DWORD* pTargetImage);
+         COLORREF GetShiftedColor(COLORREF color,int32_t shift);
 
       };
 
@@ -105,24 +105,24 @@ namespace gcom
 
          static void StepGrow001(
             color & color, 
-            int & iGrowColor,
-            int & iGrowMax);
+            int32_t & iGrowColor,
+            int32_t & iGrowMax);
          static void StepGrow034(
             color & color, 
-            int & iGrowColor,
-            int & iGrowMax);
+            int32_t & iGrowColor,
+            int32_t & iGrowMax);
          static void StepGrow001(
             color & color, 
-            int & iGrowColor,
-            int & iGrowMax,
+            int32_t & iGrowColor,
+            int32_t & iGrowMax,
             bool & bGrowColor);
          struct Tool001
          {
-            int   cx;
-            int   cy;
+            int32_t   cx;
+            int32_t   cy;
             rect rectClient;
-            int   page;
-            int   frame;
+            int32_t   page;
+            int32_t   frame;
             double  dmod;
             double   dminsize;
             double   dalpha;
@@ -132,11 +132,11 @@ namespace gcom
 
          struct RandomGrow
          {
-            int i;
-            int imax;
-            int lbound;
-            int maxlbound;
-            int maxubound;
+            int32_t i;
+            int32_t imax;
+            int32_t lbound;
+            int32_t maxlbound;
+            int32_t maxubound;
          public:
             bool Step();
          };
@@ -155,24 +155,24 @@ namespace gcom
          };
 
 
-         int            m_iVisual;
+         int32_t            m_iVisual;
          bool           m_bGrowColor0;
          color          m_color;
-         int            m_iGrowColor;
-         int            m_iGrowMax;
+         int32_t            m_iGrowColor;
+         int32_t            m_iGrowMax;
          double         m_dAngle;
 
          color          m_color2;
-         int            m_iGrowColor2;
-         int            m_iGrowMax2;
+         int32_t            m_iGrowColor2;
+         int32_t            m_iGrowMax2;
 
          color          m_color3;
-         int            m_iGrowColor3;
-         int            m_iGrowMax3;
+         int32_t            m_iGrowColor3;
+         int32_t            m_iGrowMax3;
 
          color          m_color4;
-         int            m_iGrowColor4;
-         int            m_iGrowMax4;
+         int32_t            m_iGrowColor4;
+         int32_t            m_iGrowMax4;
 
          point          m_ptColorTrack;
          RandomGrow     m_rndgrowVelocity;
@@ -203,7 +203,7 @@ namespace gcom
          virtual ~VisualEffect();
 
 
-         int GetEffectCount();
+         int32_t GetEffectCount();
          void InitialRender();
          void RenderBuffer(rect_array & recta);
 

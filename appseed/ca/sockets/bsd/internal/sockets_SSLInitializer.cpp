@@ -36,25 +36,25 @@ namespace sockets
 {
    
 
-   void rand_seed(const void * buf, int num);
-   int rand_bytes(unsigned char * buf, int num);
+   void rand_seed(const void * buf, int32_t num);
+   int32_t rand_bytes(unsigned char * buf, int32_t num);
    void rand_cleanup();
-   void rand_add(const void * buf, int num, double entropy);
-   int rand_pseudorand(unsigned char * buf, int num);
-   int rand_status();
+   void rand_add(const void * buf, int32_t num, double entropy);
+   int32_t rand_pseudorand(unsigned char * buf, int32_t num);
+   int32_t rand_status();
    
    
    RAND_METHOD rand_meth;
 
    ::plane::system * g_psystem = NULL;
 
-   void rand_seed(const void * buf, int num)
+   void rand_seed(const void * buf, int32_t num)
    {
       UNREFERENCED_PARAMETER(buf);
       UNREFERENCED_PARAMETER(num);
    }
 
-   int rand_bytes(unsigned char * buf, int num)
+   int32_t rand_bytes(unsigned char * buf, int32_t num)
    {
       g_psystem->math().gen_rand(buf, num);
       return num;
@@ -64,20 +64,20 @@ namespace sockets
    {
    }
 
-   void rand_add(const void * buf, int num, double entropy)
+   void rand_add(const void * buf, int32_t num, double entropy)
    {
       UNREFERENCED_PARAMETER(buf);
       UNREFERENCED_PARAMETER(num);
       UNREFERENCED_PARAMETER(entropy);
    }
 
-   int rand_pseudorand(unsigned char * buf, int num)
+   int32_t rand_pseudorand(unsigned char * buf, int32_t num)
    {
       g_psystem->math().gen_rand(buf, num);
       return num;
    }
 
-   int rand_status()
+   int32_t rand_status()
    {
       return 1024;
    }
@@ -135,9 +135,9 @@ namespace sockets
       //memstorage.allocate(1984 + 1977);
       //System.math().gen_rand(memstorage.get_data(), memstorage.get_size());
 
-      /*for(int i = 0; i < memstorage.get_size(); i += 3)
+      /*for(int32_t i = 0; i < memstorage.get_size(); i += 3)
       {
-         int iValue = System.math().RandRange(0, 0x00ffffff);
+         int32_t iValue = System.math().RandRange(0, 0x00ffffff);
          memstorage.get_data()[i] = iValue & 0xff;
          memstorage.get_data()[i+1] = (iValue >> 8) & 0xff;
          memstorage.get_data()[i+2] = (iValue >> 16) & 0xff;
@@ -151,7 +151,7 @@ namespace sockets
 
 
 
-      int iWritten = RAND_write_file(m_rand_file);
+      int32_t iWritten = RAND_write_file(m_rand_file);
       m_rand_size = iWritten;
       //}
       //else
@@ -198,12 +198,12 @@ namespace sockets
    }
 
 
-   void SSLInitializer::SSL_locking_function(int mode, int n, const char * file, int line)
+   void SSLInitializer::SSL_locking_function(int32_t mode, int32_t n, const char * file, int32_t line)
    {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(line);
 
-      static ::collection::map < int, int, mutex *, mutex *> mmap;
+      static ::collection::map < int32_t, int32_t, mutex *, mutex *> mmap;
       mutex * pmutex;
       if(!mmap.Lookup(n, pmutex))
       {

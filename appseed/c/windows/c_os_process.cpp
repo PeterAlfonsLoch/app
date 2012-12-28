@@ -3,11 +3,11 @@
 #include <string.h>
 
 
-CLASS_DECL_c int call_async(
+CLASS_DECL_c int32_t call_async(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,
-   int iShow)
+   int32_t iShow)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -20,7 +20,7 @@ CLASS_DECL_c int call_async(
    infoa.lpDirectory    = pszDir;
    infoa.nShow          = iShow;
 
-   int iOk = ::ShellExecuteExA(&infoa);
+   int32_t iOk = ::ShellExecuteExA(&infoa);
 
    return iOk;
 
@@ -32,10 +32,10 @@ CLASS_DECL_c DWORD call_sync(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,
-   int iShow,
-   int iRetry, 
-   int iSleep, 
-   int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
+   int32_t iShow,
+   int32_t iRetry, 
+   int32_t iSleep, 
+   int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
    dword_ptr dwParam)
 {
 
@@ -56,7 +56,7 @@ CLASS_DECL_c DWORD call_sync(
 
    DWORD dwExitCode;
    
-   int iTry = 0;
+   int32_t iTry = 0;
 
    while(iRetry < 0 || iTry <= iRetry)
    {
@@ -80,7 +80,7 @@ CLASS_DECL_c DWORD call_sync(
 
 
 
-int get_current_processor_index()
+int32_t get_current_processor_index()
 {
 
 
@@ -89,7 +89,7 @@ int get_current_processor_index()
 
 }
 
-int get_current_process_maximum_affinity()
+int32_t get_current_process_maximum_affinity()
 {
    
    dword_ptr dwProcessAffinityMask;
@@ -98,9 +98,9 @@ int get_current_process_maximum_affinity()
    {
       return 0;
    }
-   int iMax = -1;
+   int32_t iMax = -1;
    dword_ptr dwMask = 1;
-   for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   for(int32_t i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if((dwMask & dwProcessAffinityMask) != 0)
       {
@@ -113,7 +113,7 @@ int get_current_process_maximum_affinity()
 
 }
 
-int get_current_process_affinity_order()
+int32_t get_current_process_affinity_order()
 {
    
    
@@ -123,9 +123,9 @@ int get_current_process_affinity_order()
    {
       return 0;
    }
-   int iCount = 0;
+   int32_t iCount = 0;
    dword_ptr dwMask = 1;
-   for(int i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
+   for(int32_t i = 0; i < sizeof(dwProcessAffinityMask) * 8; i++)
    {
       if((dwMask & dwProcessAffinityMask) != 0)
       {
@@ -148,18 +148,18 @@ bool process_modules(stra_dup & stra, DWORD processID)
    
    DWORD cbNeeded;
    
-   unsigned int i;
+   unsigned int32_t i;
 
    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID );
 
    if (NULL == hProcess)
       return false;
 
-   const int iMaxModuleCount = 1024 * 8;
+   const int32_t iMaxModuleCount = 1024 * 8;
    
    HMODULE * hMods = new HMODULE[iMaxModuleCount];
 
-   const int iImageSize = MAX_PATH * 8;
+   const int32_t iImageSize = MAX_PATH * 8;
 
    char * szImage = (char *) _ca_alloc(iImageSize);
 
@@ -213,7 +213,7 @@ bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszE
 
    }
 
-   for(int i = 0; i < straOld.get_count(); i++)
+   for(int32_t i = 0; i < straOld.get_count(); i++)
    {
 
       bFound = false;
@@ -235,7 +235,7 @@ bool load_modules_diff(stra_dup & straOld, stra_dup & straNew, const char * pszE
 
       }
 
-      for(int j = 0; j < straNew.get_count(); j++)
+      for(int32_t j = 0; j < straNew.get_count(); j++)
       {
 
          if(stricmp(straOld[i], straNew[j]) == 0)

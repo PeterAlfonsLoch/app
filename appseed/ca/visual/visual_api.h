@@ -22,14 +22,14 @@ namespace visual
       void DrawAndFillBeziers(
          ::ca::graphics                     *pdc,
          LPPOINT             lppoints,
-         int                  iCount,
+         int32_t                  iCount,
          double               dRateX,
          LPPOINT               lppointOffset);
 
       void DrawBeziers(
          ::ca::graphics                     *pdc,
          LPPOINT             lppoints,
-         int                  iCount,
+         int32_t                  iCount,
          double               dRateX,
          LPPOINT               lppointOffset);
 
@@ -54,18 +54,18 @@ namespace visual
          double               dHeight,
          const char *         psz,
          LPINT                  lpiCharsPositions,
-         int                  iCharsPositions,
-         int                  iOffset);
+         int32_t                  iCharsPositions,
+         int32_t                  iOffset);
 
       void EmbossedTextOut(
          ::ca::graphics *             pdc,
          const char *      lpcsz,
-         int               iLeft,
-         int               iTop,
-         int               iWidht,
+         int32_t               iLeft,
+         int32_t               iTop,
+         int32_t               iWidht,
          COLORREF          crText,
          COLORREF          crOutline,
-         int               iLen);
+         int32_t               iLen);
 
 
       void SimpleTextOut(
@@ -75,8 +75,8 @@ namespace visual
          double            dHeight,
          const char *      psz,
          LPINT               lpiCharsPositions,
-         int               iCharsPositions,
-         int               iOffset);
+         int32_t               iCharsPositions,
+         int32_t               iOffset);
 
 
    };

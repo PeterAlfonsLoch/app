@@ -46,7 +46,7 @@ protected:
         return traits_type::not_eof(ch);
     }
 
-    int sync()
+    int32_t sync()
     {
         output_debug_string(m_buf);
         m_buf.erase();

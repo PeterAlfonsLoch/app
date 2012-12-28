@@ -14,7 +14,7 @@
       LPARAM            m_lparam;
       LRESULT send();
       static UINT ThreadProcSendMessage(LPVOID lp);
-      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int nPriority = 0);
+      static void post(::user::interaction * puie, UINT uiMessage, WPARAM wparam, LPARAM lparam, int32_t nPriority = 0);
    };
 
 } // namespace win*/
@@ -177,7 +177,7 @@ namespace ca
 #else
          DWORD64 dwLimit = get_tick_count() - 1000;
 #endif
-         for(int i = 0; i < this->get_count();)
+         for(int32_t i = 0; i < this->get_count();)
          {
             if(dwLimit > m_pData[i].m_dwTickCount)
             {
@@ -199,7 +199,7 @@ namespace ca
       {
          UNREFERENCED_PARAMETER(bRemove);
 
-         for(int mi = 0; mi < this->get_count(); mi++)
+         for(int32_t mi = 0; mi < this->get_count(); mi++)
          {
             if(m_pData[mi].contains(p))
             {
@@ -255,7 +255,7 @@ namespace ca
       bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
       dword_ptr                           m_dwAlive;
       bool                                m_bReady;
-      int                                 m_iReturnCode;
+      int32_t                                 m_iReturnCode;
       ::ca::application *                 m_pappDelete;
       ph(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       ph(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
@@ -289,7 +289,7 @@ namespace ca
       virtual void construct();
       virtual void construct(__THREADPROC pfnThreadProc, LPVOID pParam);
 
-      virtual int main();
+      virtual int32_t main();
 
       virtual void CommonConstruct();
 
@@ -317,25 +317,25 @@ namespace ca
 
       virtual bool finalize();
 
-      virtual int exit();
+      virtual int32_t exit();
 
       virtual ::gen::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
-      virtual int run();
+      virtual int32_t run();
       virtual void pre_translate_message(gen::signal_object * pobj);
       virtual bool pump_message();     // low level message pump
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual bool is_idle_message(gen::signal_object * pobj);  // checks for special messages
 
       // thread termination
-      virtual int exit_instance(); // default will 'delete this'
+      virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
       virtual void ProcessWndProcException(base_exception * e, gen::signal_object * pobj);
 
       // Advanced: handling messages sent to message filter hook
-      virtual void ProcessMessageFilter(int code, gen::signal_object * pobj);
+      virtual void ProcessMessageFilter(int32_t code, gen::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
       virtual ::user::interaction * GetMainWnd();
@@ -401,7 +401,7 @@ namespace ca
 		///  \param		duration time period to wait for item (default: infinite)
 		///  \return	result of waiting action as defined in wait_result
 		//wait_result wait(size_t numberOfItems, WaitableItem * waitableItems[], const boost::posix_time::time_duration& duration=InfiniteTime, bool waitForAll = false);
-		// int wait (unsigned TimeoutMs, unsigned NumberOfEvents, ...);
+		// int32_t wait (unsigned TimeoutMs, unsigned NumberOfEvents, ...);
 
 		//void suspend ()
 		//{ ::SuspendThread(item()); }
@@ -419,11 +419,11 @@ namespace ca
 
 		///  \brief		sets thread priority
 		///  \param		new priority
-		void set_priority(int priority);
+		void set_priority(int32_t priority);
 
 		///  \brief		gets thread priority
 		///  \param		priority
-		int priority();
+		int32_t priority();
 
 		///  \brief		destructor
 //		virtual ~Thread()

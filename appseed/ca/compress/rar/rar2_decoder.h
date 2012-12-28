@@ -24,7 +24,7 @@ namespace compress
       const uint32 kNumRepDists = 4;
       const uint32 kDistTableSize = 48;
 
-      const int kMMTableSize = 256 + 1;
+      const int32_t kMMTableSize = 256 + 1;
 
       const uint32 kMainTableSize = 298;
       const uint32 kLenTableSize = 28;
@@ -80,27 +80,27 @@ namespace compress
 
          struct filter
          {
-            int K1,K2,K3,K4,K5;
-            int D1,D2,D3,D4;
-            int LastDelta;
+            int32_t K1,K2,K3,K4,K5;
+            int32_t D1,D2,D3,D4;
+            int32_t LastDelta;
             uint32 Dif[11];
             uint32 ByteCount;
-            int LastChar;
+            int32_t LastChar;
 
-            byte Decode(int &channelDelta, byte delta);
+            byte Decode(int32_t &channelDelta, byte delta);
 
             void Init() { memset(this, 0, sizeof(*this)); }
 
          };
 
-         const int kNumChanelsMax = 4;
+         const int32_t kNumChanelsMax = 4;
 
          class filter2
          {
          public:
             filter  m_Filters[kNumChanelsMax];
-            int m_ChannelDelta;
-            int CurrentChannel;
+            int32_t m_ChannelDelta;
+            int32_t CurrentChannel;
 
             void Init() { memset(this, 0, sizeof(*this)); }
             byte Decode(byte delta)
@@ -113,7 +113,7 @@ namespace compress
       }
 
 
-      const int kNumHuffmanBits = 15;
+      const int32_t kNumHuffmanBits = 15;
 
       class decoder :
          public ::compress::coder_interface,
@@ -130,7 +130,7 @@ namespace compress
          bool m_AudioMode;
 
          multimedia::filter2 m_MmFilter;
-         int m_NumChannels;
+         int32_t m_NumChannels;
 
          uint32 m_RepDists[kNumRepDists];
          uint32 m_RepDistPtr;
@@ -143,7 +143,7 @@ namespace compress
          bool m_IsSolid;
 
          void InitStructures();
-         uint32 ReadBits(int numBits);
+         uint32 ReadBits(int32_t numBits);
          bool ReadTables();
          bool ReadLastTables();
 

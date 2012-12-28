@@ -78,7 +78,7 @@ namespace fs
 
    index list_item_array::find_item_by_path(const char * pszPath)
    {
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          if(m_itema.element_at(i).m_strPath == pszPath)
             return i;
@@ -89,8 +89,8 @@ namespace fs
    void list_item_array::arrange(e_arrange earrange)
    {
       string str;
-      int iItem;
-      for(int iItem = 0; iItem < this->get_size(); iItem++)
+      int32_t iItem;
+      for(int32_t iItem = 0; iItem < this->get_size(); iItem++)
       {
          str = get_item(iItem).m_strName;
       }

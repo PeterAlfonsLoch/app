@@ -14,10 +14,10 @@ namespace gen
       public:
          double   m_dCosPhi;
          double   m_dSinPhi;
-         int      m_iXCenter;
-         int      m_iYCenter;
+         int32_t      m_iXCenter;
+         int32_t      m_iYCenter;
          
-         void rotate(LPPOINT lppoint, int iCount);
+         void rotate(LPPOINT lppoint, int32_t iCount);
       };
 
       class CLASS_DECL_ca geometry  :
@@ -26,8 +26,8 @@ namespace gen
       public:
          double rotate_y(double x, double y, double phi);
          double rotate_x(double x, double y, double phi);
-         void rotate(int x, int y, LPPOINT lppoint, int iCount, double phi);
-         void rotate(int x, int y, LPPOINT lppoint, int iCount, double cosphi, double sinphi);
+         void rotate(int32_t x, int32_t y, LPPOINT lppoint, int32_t iCount, double phi);
+         void rotate(int32_t x, int32_t y, LPPOINT lppoint, int32_t iCount, double cosphi, double sinphi);
 
 
          void RandomPoint(POINT & pt, LPCRECT lpcrect);

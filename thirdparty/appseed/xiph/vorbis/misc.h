@@ -34,10 +34,10 @@ extern void *_vorbis_block_alloc(vorbis_block *vb,long bytes);
 extern void _vorbis_block_ripcord(vorbis_block *vb);
 
 #ifdef ANALYSIS
-extern int analysis_noisy;
-extern void _analysis_output(char *base,int i,float *v,int n,int bark,int dB,
+extern int32_t analysis_noisy;
+extern void _analysis_output(char *base,int32_t i,float *v,int32_t n,int32_t bark,int32_t dB,
                              ogg_int64_t off);
-extern void _analysis_output_always(char *base,int i,float *v,int n,int bark,int dB,
+extern void _analysis_output_always(char *base,int32_t i,float *v,int32_t n,int32_t bark,int32_t dB,
                              ogg_int64_t off);
 #endif
 

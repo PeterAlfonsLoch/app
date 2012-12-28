@@ -29,7 +29,7 @@ namespace userbase
    bool split_bar::create(split_layout * pparent)
    {
       m_pparent = pparent;
-//      int nClassStyle = 0;
+//      int32_t nClassStyle = 0;
 //      const char * lpClassName = System.RegisterWndClass(
          //nClassStyle,
          //0,
@@ -135,7 +135,7 @@ namespace userbase
 
       if((m_pparent->m_iState == split_layout::stateDragging) && (m_iIndex == m_pparent->m_iIndex))
       {
-         int nPos;
+         int32_t nPos;
          bool bMove;
          nPos = m_pparent->GetPos(ptClient.x, ptClient.y);
          if(m_iIndex <= 0)
@@ -144,7 +144,7 @@ namespace userbase
          }
          else
          {
-            bMove = nPos > (int) m_pparent->m_splitbara[m_iIndex - 1].m_dwPosition;
+            bMove = nPos > (int32_t) m_pparent->m_splitbara[m_iIndex - 1].m_dwPosition;
          }
          if(m_pparent->get_pane_count() >= m_iIndex )
          {
@@ -152,7 +152,7 @@ namespace userbase
          }
          else
          {
-            bMove = bMove && nPos < (int) m_pparent->m_splitbara[m_iIndex].m_dwPosition;
+            bMove = bMove && nPos < (int32_t) m_pparent->m_splitbara[m_iIndex].m_dwPosition;
          }
          if(bMove)
          {
@@ -165,17 +165,17 @@ namespace userbase
             if(dRate < m_dMinimumRate)
             {
                dRate = m_dMinimumRate;
-               nPos = (int) (m_pparent->get_normal_dimension() * dRate);
+               nPos = (int32_t) (m_pparent->get_normal_dimension() * dRate);
             }
             else if(dRate > m_dMaximumRate)
             {
                dRate = m_dMaximumRate;
-               nPos = (int) (m_pparent->get_normal_dimension() * dRate);
+               nPos = (int32_t) (m_pparent->get_normal_dimension() * dRate);
             }
          }
          if(bMove)
          {
-            bMove = nPos != (int) m_pparent->m_splitbara[m_iIndex].m_dwPosition;
+            bMove = nPos != (int32_t) m_pparent->m_splitbara[m_iIndex].m_dwPosition;
          }
 
          TRACE("split_layout::RelayChildEvent nPos %d\nOldPos", m_pparent->m_splitbara[m_iIndex].m_dwPosition);

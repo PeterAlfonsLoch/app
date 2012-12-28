@@ -26,31 +26,31 @@
   _x: The input coefficients.
       Every 8th entry is used (e.g., from a column of an 8x8 block).*/
 static void oc_fdct8(ogg_int16_t _y[8],const ogg_int16_t *_x){
-  int t0;
-  int t1;
-  int t2;
-  int t3;
-  int t4;
-  int t5;
-  int t6;
-  int t7;
-  int r;
-  int s;
-  int u;
-  int v;
+  int32_t t0;
+  int32_t t1;
+  int32_t t2;
+  int32_t t3;
+  int32_t t4;
+  int32_t t5;
+  int32_t t6;
+  int32_t t7;
+  int32_t r;
+  int32_t s;
+  int32_t u;
+  int32_t v;
   /*Stage 1:*/
   /*0-7 butterfly.*/
-  t0=_x[0<<3]+(int)_x[7<<3];
-  t7=_x[0<<3]-(int)_x[7<<3];
+  t0=_x[0<<3]+(int32_t)_x[7<<3];
+  t7=_x[0<<3]-(int32_t)_x[7<<3];
   /*1-6 butterfly.*/
-  t1=_x[1<<3]+(int)_x[6<<3];
-  t6=_x[1<<3]-(int)_x[6<<3];
+  t1=_x[1<<3]+(int32_t)_x[6<<3];
+  t6=_x[1<<3]-(int32_t)_x[6<<3];
   /*2-5 butterfly.*/
-  t2=_x[2<<3]+(int)_x[5<<3];
-  t5=_x[2<<3]-(int)_x[5<<3];
+  t2=_x[2<<3]+(int32_t)_x[5<<3];
+  t5=_x[2<<3]-(int32_t)_x[5<<3];
   /*3-4 butterfly.*/
-  t3=_x[3<<3]+(int)_x[4<<3];
-  t4=_x[3<<3]-(int)_x[4<<3];
+  t3=_x[3<<3]+(int32_t)_x[4<<3];
+  t4=_x[3<<3]-(int32_t)_x[4<<3];
   /*Stage 2:*/
   /*0-3 butterfly.*/
   r=t0+t3;
@@ -135,7 +135,7 @@ void oc_enc_fdct8x8_c(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
   ogg_int16_t       *end;
   ogg_int16_t       *out;
   ogg_int16_t        w[64];
-  int                i;
+  int32_t                i;
   /*Add two extra bits of working precision to improve accuracy; any more and
      we could overflow.*/
   for(i=0;i<64;i++)w[i]=_x[i]<<2;
@@ -309,11 +309,11 @@ static const oc_extension_info OC_EXTENSION_INFO[OC_NSHAPES]={
 static void oc_fdct8_ext(ogg_int16_t _y[8],ogg_int16_t *_x,
  const oc_extension_info *_e){
   const unsigned char *pi;
-  int                  na;
+  int32_t                  na;
   na=_e->na;
   pi=_e->pi;
   if(na==1){
-    int ci;
+    int32_t ci;
     /*While the branch below is still correct for shapes with na==1, we can
        perform the entire transform with just 1 multiply in this case instead
        of 23.*/
@@ -322,9 +322,9 @@ static void oc_fdct8_ext(ogg_int16_t _y[8],ogg_int16_t *_x,
   }
   else{
     const ogg_int16_t *const *ext;
-    int                       zpi;
-    int                       api;
-    int                       nz;
+    int32_t                       zpi;
+    int32_t                       api;
+    int32_t                       nz;
     /*First multiply by the extension matrix to compute the padding values.*/
     nz=8-na;
     ext=_e->ext;
@@ -356,10 +356,10 @@ void oc_fdct8x8_border(const oc_border_info *_border,
   ogg_int64_t              mask;
   const oc_extension_info *cext;
   const oc_extension_info *rext;
-  int                      cmask;
-  int                      rmask;
-  int                      ri;
-  int                      ci;
+  int32_t                      cmask;
+  int32_t                      rmask;
+  int32_t                      ri;
+  int32_t                      ci;
   /*Identify the shapes of the non-zero rows and columns.*/
   rmask=cmask=0;
   mask=_border->mask;

@@ -15,7 +15,7 @@ str_sort_array::~str_sort_array()
 
 void str_sort_array::Sort()
 {
-   int (*fCompare)(const char *, const char *) = m_pfnCompare;
+   int32_t (*fCompare)(const char *, const char *) = m_pfnCompare;
    index_array stackLowerBound;
    index_array stackUpperBound;
    index iLowerBound;
@@ -87,12 +87,12 @@ void str_sort_array::Sort()
 
 index str_sort_array::SortFind(const char * lpcsz)
 {
-   int (*fCompare)(const char *, const char *) = m_pfnCompare;
+   int32_t (*fCompare)(const char *, const char *) = m_pfnCompare;
    if(!m_bSorted)
       Sort();
 
    index iPos, iLoPos, iHiPos;
-   int iCompare;
+   int32_t iCompare;
    iLoPos = 0;
    iHiPos = this->get_size() - 1;
    string strFind(lpcsz);
@@ -117,10 +117,10 @@ index str_sort_array::SortFind(const char * lpcsz)
 }
 
 
-/*int stringa::SortFindNoCase(const char * lpcsz)
+/*int32_t stringa::SortFindNoCase(const char * lpcsz)
 {
-    int iPos, iLoPos, iHiPos;
-    int iCompare;
+    int32_t iPos, iLoPos, iHiPos;
+    int32_t iCompare;
     iLoPos = 0;
     iHiPos = this->get_size() - 1;
     string strFind(lpcsz);
@@ -151,7 +151,7 @@ index str_sort_array::SortFind(const char * lpcsz)
     return -1;
 }*/
 
-void str_sort_array::SetCompareFunction(int (__cdecl *fCompare)(const char *,const char *))
+void str_sort_array::SetCompareFunction(int32_t (__cdecl *fCompare)(const char *,const char *))
 {
    m_pfnCompare = fCompare;
 }

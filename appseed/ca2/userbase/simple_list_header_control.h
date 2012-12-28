@@ -7,7 +7,7 @@ class CLASS_DECL_ca2 simple_list_header_control :
 public:
 
 
-   static const int         s_iDividerWidth;
+   static const int32_t         s_iDividerWidth;
 
 
 

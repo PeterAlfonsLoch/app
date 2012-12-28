@@ -36,12 +36,12 @@ namespace fs
 
       stringa straFs;
 
-      for(int i = 0; i < m_spafsdata.get_count(); i++)
+      for(int32_t i = 0; i < m_spafsdata.get_count(); i++)
       {
          straFs.remove_all();
          m_spafsdata[i]->root_ones(straFs);
          stra.add(straFs);
-         for(int j = 0; j < straFs.get_size(); j++)
+         for(int32_t j = 0; j < straFs.get_size(); j++)
          {
             m_fsdatamap[straFs[j]] = m_spafsdata[i];
          }
@@ -76,7 +76,7 @@ namespace fs
       {
          stringa straPath;
          root_ones(straPath);
-         for(int i = 0; i < straPath.get_size(); i++)
+         for(int32_t i = 0; i < straPath.get_size(); i++)
          {
             if(pstraPath != NULL)
             {
@@ -185,7 +185,7 @@ namespace fs
    }
 
 
-   string set::eat_end_level(const char * psz, int iLevel)
+   string set::eat_end_level(const char * psz, int32_t iLevel)
    {
       
       ::fs::data * pdata = path_data(psz);

@@ -47,7 +47,7 @@ namespace colorertake5
             markupWriter << "</span>";
             pos += end - l1->start;
          }
-         if ((unsigned int) pos < strlen(line)){
+         if ((unsigned int32_t) pos < strlen(line)){
             textWriter.write(&line[pos], strlen(line) - pos);
          }
       }
@@ -108,7 +108,7 @@ namespace colorertake5
 
          }
 
-         if((unsigned int) pos < strlen(line))
+         if((unsigned int32_t) pos < strlen(line))
          {
             textWriter.write(&line[pos], strlen(line) - pos);
          }
@@ -141,7 +141,7 @@ namespace colorertake5
             index end = l1->end;
 
             if (end == -1)
-               end = int(strlen(line));
+               end = int32_t(strlen(line));
 
             if (l1->start > pos)
             {
@@ -150,15 +150,15 @@ namespace colorertake5
             }
 
             if (docLinkHash->get_size() > 0)
-               writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (int)(end - l1->start)), true);
+               writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (int32_t)(end - l1->start)), true);
             writeStart(markupWriter, l1->styled());
             textWriter.write(&line[pos], end - l1->start);
             writeEnd(markupWriter, l1->styled());
             if (docLinkHash->get_size() > 0)
-               writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (int)(end - l1->start)), false);
+               writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (int32_t)(end - l1->start)), false);
             pos += end - l1->start;
          }
-         if((unsigned int) pos < strlen(line)){
+         if((unsigned int32_t) pos < strlen(line)){
             textWriter.write(&line[pos], strlen(line) - pos);
          }
       }
@@ -167,7 +167,7 @@ namespace colorertake5
       */
       void ParsedLineWriter::writeStyle(ex1::byte_output_stream & writer, const StyledRegion *lr){
          static char span[256];
-         int cp = 0;
+         int32_t cp = 0;
          if (lr->bfore) cp += sprintf(span, "color:#%.6x; ", lr->fore);
          if (lr->bback) cp += sprintf(span+cp, "background:#%.6x; ", lr->back);
          if (lr->style&StyledRegion::RD_BOLD) cp += sprintf(span+cp, "font-weight:bold; ");

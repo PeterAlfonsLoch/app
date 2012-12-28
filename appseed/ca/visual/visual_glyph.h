@@ -29,11 +29,11 @@ namespace visual
 
 #ifdef WINDOWSEX
 
-      void Initialize(LPTTPOLYGONHEADER lpph, DWORD cbSize, int iFontHiHeight);
+      void Initialize(LPTTPOLYGONHEADER lpph, DWORD cbSize, int32_t iFontHiHeight);
 
 #endif
 
-      void GetGlyphRect(int x, int y, LPRECT lpRect);
+      void GetGlyphRect(int32_t x, int32_t y, LPRECT lpRect);
 
       void clear();
 

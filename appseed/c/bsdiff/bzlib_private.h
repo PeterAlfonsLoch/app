@@ -45,8 +45,8 @@
 typedef unsigned char   Bool;
 typedef char            Char;
 typedef unsigned char   UChar;
-typedef int             int32;
-typedef unsigned int    uint32;
+typedef int32_t             int32;
+typedef unsigned int32_t    uint32;
 typedef short           Int16;
 typedef unsigned short  UInt16;
 
@@ -65,7 +65,7 @@ typedef unsigned short  UInt16;
 
 #ifndef BZ_NO_STDIO
 
-extern void BZ2_bz__AssertH__fail ( int errcode );
+extern void BZ2_bz__AssertH__fail ( int32_t errcode );
 #define AssertH(cond,errcode) \
    { if (!(cond)) BZ2_bz__AssertH__fail ( errcode ); }
 
@@ -95,7 +95,7 @@ extern void BZ2_bz__AssertH__fail ( int errcode );
 
 #else
 
-extern void bz_internal_error ( int errcode );
+extern void bz_internal_error ( int32_t errcode );
 #define AssertH(cond,errcode) \
    { if (!(cond)) bz_internal_error ( errcode ); }
 #define AssertD(cond,msg)                do { } while (0)

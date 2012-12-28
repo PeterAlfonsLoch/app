@@ -12,7 +12,7 @@ namespace mail
       
       
       string      m_strName;
-      int         m_iIdentation;
+      int32_t         m_iIdentation;
       account *   m_paccount;
       string      m_strFolder;
 

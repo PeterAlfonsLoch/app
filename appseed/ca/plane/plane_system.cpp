@@ -234,7 +234,7 @@ namespace plane
    bool system::initialize()
    {
 
-      int error = FT_Init_FreeType( &m_ftlibrary );
+      int32_t error = FT_Init_FreeType( &m_ftlibrary );
       if ( error )
       {
          TRACE("an error occurred during Free Type library initialization");
@@ -387,7 +387,7 @@ namespace plane
 
       Application.dir().ls_pattern(System.dir().ca2module(), "*.*", NULL,& straTitle);
 
-      for(int i = 0; i < straTitle.get_count(); i++)
+      for(int32_t i = 0; i < straTitle.get_count(); i++)
       {
 
          strLibraryId = straTitle[i];
@@ -470,7 +470,7 @@ namespace plane
 
       strRoot += "/";
 
-      for(int i = 0; i < stra.get_count(); i++)
+      for(int32_t i = 0; i < stra.get_count(); i++)
       {
 
          m_mapAppLibrary.set_at(strRoot + stra[i], pszLibrary);
@@ -548,7 +548,7 @@ namespace plane
 
          appptra = this->appptra();
 
-         for(int i = 0; i < appptra.get_size(); )
+         for(int32_t i = 0; i < appptra.get_size(); )
          {
             try
             {
@@ -578,7 +578,7 @@ namespace plane
    }
 
 
-   int system::exit_instance()
+   int32_t system::exit_instance()
    {
 
       try
@@ -590,7 +590,7 @@ namespace plane
          TRACE("system::exit_instance: Potentially catastrophical error : error disabling simple factory request");
       }
 
-      int iRet = 0;
+      int32_t iRet = 0;
       try
       {
          iRet = ::fontopus::application::exit_instance();
@@ -872,7 +872,7 @@ namespace plane
 
    void system::appa_load_string_table()
    {
-      for(int i = 0; i < appptra().get_size(); i++)
+      for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
          papp->load_string_table();
@@ -881,7 +881,7 @@ namespace plane
 
    void system::appa_set_locale(const char * pszLocale, bool bUser)
    {
-      for(int i = 0; i < appptra().get_size(); i++)
+      for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
          papp->set_locale(pszLocale, bUser);
@@ -890,7 +890,7 @@ namespace plane
 
    void system::appa_set_schema(const char * pszStyle, bool bUser)
    {
-      for(int i = 0; i < appptra().get_size(); i++)
+      for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
          papp->set_schema(pszStyle, bUser);
@@ -1185,10 +1185,10 @@ namespace plane
       UNREFERENCED_PARAMETER(pca);
    }
 
-   int system::________ca2_votagus_logging_Report(
-      int iReportType,
+   int32_t system::________ca2_votagus_logging_Report(
+      int32_t iReportType,
       const char * pszFileName,
-      int iLineNumber,
+      int32_t iLineNumber,
       const char * pszModuleName,
       const char * pszFormat, va_list list)
    {
@@ -1247,7 +1247,7 @@ namespace plane
       }
    }
 
-   bool system::assert_failed_line(const char * lpszFileName, int iLine)
+   bool system::assert_failed_line(const char * lpszFileName, int32_t iLine)
    {
       if(!on_assert_failed_line(lpszFileName, iLine))
          return false;
@@ -1270,7 +1270,7 @@ namespace plane
       bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
 #ifdef WINDOWSEX
       if (bQuit)
-         PostQuitMessage((int)msg.wParam);
+         PostQuitMessage((int32_t)msg.wParam);
 #endif
       return bResult;
 #else
@@ -1310,7 +1310,7 @@ namespace plane
       }
    }
 
-   int system::_001OnDebugReport(int i1, const char * psz1, int i2, const char * psz2, const char * psz3, va_list args)
+   int32_t system::_001OnDebugReport(int32_t i1, const char * psz1, int32_t i2, const char * psz2, const char * psz3, va_list args)
    {
       return ________ca2_votagus_logging_Report(i1, psz1, i2, psz2, psz3, args);
    }
@@ -1358,7 +1358,7 @@ namespace plane
       /*   Parse pa(lpszUrl,":/");
       string protocol = pa.getword();
       string host = pa.getword();
-      int port;
+      int32_t port;
       {
       Parse pa((const char *) host,":");
       pa.getword();
@@ -1378,7 +1378,7 @@ namespace plane
       if(pcookies != NULL)
       {
       string strCookie;
-      for(int i = 0; i < pcookies->get_size(); i++)
+      for(int32_t i = 0; i < pcookies->get_size(); i++)
       {
       strCookie += (const char *) (pcookies->element_at(i).m_strName + "=" + pcookies->element_at(i).m_strValue);
       strCookie += ";";
@@ -1411,19 +1411,19 @@ namespace plane
       }
       if(bRead)
       {
-      int iMaxpath = MAX_PATH;
-      int iLen = strlen(filename);
+      int32_t iMaxpath = MAX_PATH;
+      int32_t iLen = strlen(filename);
       gzFile gzf = gzopen(filename, "rb");
-      int iRead;
+      int32_t iRead;
       gen::memory_file memfile;
-      int iBufSize = (1024 * 256);
+      int32_t iBufSize = (1024 * 256);
       char * buf = (char *) malloc(iBufSize);
       while((iRead = gzread(gzf, buf, iBufSize)) > 0)
       {
       memfile.write(buf, iRead);
       }
       free(buf);
-      int iErr;
+      int32_t iErr;
       const char * pszErr = gzerror(gzf, &iErr);
       char ch = '\0';
       memfile.write(&ch, 1);
@@ -1825,7 +1825,7 @@ namespace plane
    }
 
 
-   string system::get_fontopus_server(const char * pszUrl, ::ca::application * papp, int iRetry)
+   string system::get_fontopus_server(const char * pszUrl, ::ca::application * papp, int32_t iRetry)
    {
 
       string strFontopusServer;
@@ -1895,7 +1895,7 @@ retry:
 
       plibrary->get_create_view_id_list(ida);
 
-      for(int i = 0; i < ida.get_count(); i++)
+      for(int32_t i = 0; i < ida.get_count(); i++)
       {
 
          m_idmapCreateViewLibrary.set_at(ida[i], plibrary);

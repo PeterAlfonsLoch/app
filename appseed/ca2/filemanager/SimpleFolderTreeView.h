@@ -19,7 +19,7 @@ namespace filemanager
 
       virtual void _017OpenFolder(const ::fs::item & item);
       void StartAnimation();
-      void RenameFile(int iLine, string & str);
+      void RenameFile(int32_t iLine, string & str);
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 

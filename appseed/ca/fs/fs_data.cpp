@@ -39,7 +39,7 @@ namespace fs
    }
 
 
-   string data::eat_end_level(const char * pszPath, int iCount)
+   string data::eat_end_level(const char * pszPath, int32_t iCount)
    {
       string strPath(pszPath);
       strsize iFind;
@@ -103,7 +103,7 @@ namespace fs
       stringa stra;
       get_ascendants_name(lpcsz, stra);
       string str;
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          str += stra[i];
          if(i != 0 || !gen::str::ends(str, "//"))
@@ -120,7 +120,7 @@ namespace fs
       straSeparator.add("/");
       straSeparator.add("\\");
       straParam.add_smallest_tokens(lpcsz, straSeparator, TRUE);
-      for(int i = 0; i < straParam.get_size(); )
+      for(int32_t i = 0; i < straParam.get_size(); )
       {
          if(straParam[i].is_empty())
          {

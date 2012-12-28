@@ -21,9 +21,9 @@ BEGIN_EXTERN_C
 
 /* packs the given codebook into the bitstream **************************/
 
-int vorbis_staticbook_pack(const static_codebook *c,oggpack_buffer *opb){
+int32_t vorbis_staticbook_pack(const static_codebook *c,oggpack_buffer *opb){
   long i,j;
-  int ordered=0;
+  int32_t ordered=0;
 
   /* first the basic parameters */
   oggpack_write(opb,0x564342,24);
@@ -109,7 +109,7 @@ int vorbis_staticbook_pack(const static_codebook *c,oggpack_buffer *opb){
     oggpack_write(opb,c->q_sequencep,1);
 
     {
-      int quantvals;
+      int32_t quantvals;
       switch(c->maptype){
       case 1:
         /* a single column of (c->entries/c->dim) quantized values for
@@ -156,7 +156,7 @@ static_codebook *vorbis_staticbook_unpack(oggpack_buffer *opb){
   if(_ilog(s->dim)+_ilog(s->entries)>24)goto _eofout;
 
   /* codeword ordering.... length ordered or unordered? */
-  switch((int)oggpack_read(opb,1)){
+  switch((int32_t)oggpack_read(opb,1)){
   case 0:{
     long unused;
     /* allocated but unused entries? */
@@ -231,7 +231,7 @@ static_codebook *vorbis_staticbook_unpack(oggpack_buffer *opb){
     if(s->q_sequencep==-1)goto _eofout;
 
     {
-      int quantvals=0;
+      int32_t quantvals=0;
       switch(s->maptype){
       case 1:
         quantvals=(s->dim==0?0:_book_maptype1_quantvals(s));
@@ -265,7 +265,7 @@ static_codebook *vorbis_staticbook_unpack(oggpack_buffer *opb){
 }
 
 /* returns the number of bits ************************************************/
-int vorbis_book_encode(codebook *book, int a, oggpack_buffer *b){
+int32_t vorbis_book_encode(codebook *book, int32_t a, oggpack_buffer *b){
   if(a<0 || a>=book->c->entries)return(0);
   oggpack_write(b,book->codelist[a],book->c->lengthlist[a]);
   return(book->c->lengthlist[a]);
@@ -288,7 +288,7 @@ static ogg_uint32_t bitreverse(ogg_uint32_t x){
 }
 
 STIN long decode_packed_entry_number(codebook *book, oggpack_buffer *b){
-  int  read=book->dec_maxlength;
+  int32_t  read=book->dec_maxlength;
   long lo,hi;
   long lok = oggpack_look(b,book->dec_firsttablen);
 
@@ -361,12 +361,12 @@ long vorbis_book_decode(codebook *book, oggpack_buffer *b){
 }
 
 /* returns 0 on OK or -1 on eof *************************************/
-long vorbis_book_decodevs_add(codebook *book,float *a,oggpack_buffer *b,int n){
+long vorbis_book_decodevs_add(codebook *book,float *a,oggpack_buffer *b,int32_t n){
   if(book->used_entries>0){
-    int step=n/book->dim;
+    int32_t step=n/book->dim;
     long *entry = (long *) alloca(sizeof(*entry)*step);
     float **t = (float **) alloca(sizeof(*t)*step);
-    int i,j,o;
+    int32_t i,j,o;
 
     for (i = 0; i < step; i++) {
       entry[i]=decode_packed_entry_number(book,b);
@@ -380,9 +380,9 @@ long vorbis_book_decodevs_add(codebook *book,float *a,oggpack_buffer *b,int n){
   return(0);
 }
 
-long vorbis_book_decodev_add(codebook *book,float *a,oggpack_buffer *b,int n){
+long vorbis_book_decodev_add(codebook *book,float *a,oggpack_buffer *b,int32_t n){
   if(book->used_entries>0){
-    int i,j,entry;
+    int32_t i,j,entry;
     float *t;
 
     if(book->dim>8){
@@ -399,7 +399,7 @@ long vorbis_book_decodev_add(codebook *book,float *a,oggpack_buffer *b,int n){
         if(entry==-1)return(-1);
         t     = book->valuelist+entry*book->dim;
         j=0;
-        switch((int)book->dim){
+        switch((int32_t)book->dim){
         case 8:
           a[i++]+=t[j++];
         case 7:
@@ -425,9 +425,9 @@ long vorbis_book_decodev_add(codebook *book,float *a,oggpack_buffer *b,int n){
   return(0);
 }
 
-long vorbis_book_decodev_set(codebook *book,float *a,oggpack_buffer *b,int n){
+long vorbis_book_decodev_set(codebook *book,float *a,oggpack_buffer *b,int32_t n){
   if(book->used_entries>0){
-    int i,j,entry;
+    int32_t i,j,entry;
     float *t;
 
     for(i=0;i<n;){
@@ -438,7 +438,7 @@ long vorbis_book_decodev_set(codebook *book,float *a,oggpack_buffer *b,int n){
         a[i++]=t[j++];
     }
   }else{
-    int i,j;
+    int32_t i,j;
 
     for(i=0;i<n;){
       for (j=0;j<book->dim;)
@@ -448,11 +448,11 @@ long vorbis_book_decodev_set(codebook *book,float *a,oggpack_buffer *b,int n){
   return(0);
 }
 
-long vorbis_book_decodevv_add(codebook *book,float **a,long offset,int ch,
-                              oggpack_buffer *b,int n){
+long vorbis_book_decodevv_add(codebook *book,float **a,long offset,int32_t ch,
+                              oggpack_buffer *b,int32_t n){
 
   long i,j,entry;
-  int chptr=0;
+  int32_t chptr=0;
   if(book->used_entries>0){
     for(i=offset/ch;i<(offset+n)/ch;){
       entry = decode_packed_entry_number(book,b);

@@ -33,7 +33,7 @@ namespace dynamic_source
 
 
 
-      int                                 m_iDebug;
+      int32_t                                 m_iDebug;
       
       script_interface();
       virtual ~script_interface();

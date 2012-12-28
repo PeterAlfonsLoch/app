@@ -93,16 +93,16 @@ extern "C" {
  *  tables and codebooks cannot be changed, but the frame-level features will
  *  be enabled or disabled as requested.
  *
- * \param[in]  _buf <tt>int</tt>: a non-zero value to enable VP3 compatibility,
+ * \param[in]  _buf <tt>int32_t</tt>: a non-zero value to enable VP3 compatibility,
  *                   or 0 to disable it (the default).
- * \param[out] _buf <tt>int</tt>: 1 if all bitstream features required for
+ * \param[out] _buf <tt>int32_t</tt>: 1 if all bitstream features required for
  *                   VP3-compatibility could be set, and 0 otherwise.
  *                  The latter will be returned if the pixel format is not
  *                   4:2:0, the picture region is smaller than the full frame,
  *                   or if encoding has begun, preventing the quantization
  *                   tables and codebooks from being set.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int)</tt>.
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int32_t)</tt>.
  * \retval TH_EIMPL   Not supported by this implementation.*/
 #define TH_ENCCTL_SET_VP3_COMPATIBLE (10)
 /**Gets the maximum speed level.
@@ -113,19 +113,19 @@ extern "C" {
  * The maximum value, and the meaning of each value, may change depending on
  *  the current encoding mode (VBR vs. constant quality, etc.).
  *
- * \param[out] _buf <tt>int</tt>: The maximum encoding speed level.
+ * \param[out] _buf <tt>int32_t</tt>: The maximum encoding speed level.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int)</tt>.
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int32_t)</tt>.
  * \retval TH_EIMPL   Not supported by this implementation in the current
  *                    encoding mode.*/
 #define TH_ENCCTL_GET_SPLEVEL_MAX (12)
 /**Sets the speed level.
  * The current speed level may be retrieved using #TH_ENCCTL_GET_SPLEVEL.
  *
- * \param[in] _buf <tt>int</tt>: The new encoding speed level.
+ * \param[in] _buf <tt>int32_t</tt>: The new encoding speed level.
  *                 0 is slowest, larger values use less CPU.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int)</tt>, or the
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int32_t)</tt>, or the
  *                    encoding speed level is out of bounds.
  *                   The maximum encoding speed level may be
  *                    implementation- and encoding mode-specific, and can be
@@ -140,10 +140,10 @@ extern "C" {
  * The maximum encoding speed level may be implementation- and encoding
  *  mode-specific, and can be obtained via #TH_ENCCTL_GET_SPLEVEL_MAX.
  *
- * \param[out] _buf <tt>int</tt>: The current encoding speed level.
+ * \param[out] _buf <tt>int32_t</tt>: The current encoding speed level.
  *                  0 is slowest, larger values use less CPU.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int)</tt>.
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int32_t)</tt>.
  * \retval TH_EIMPL   Not supported by this implementation in the current
  *                    encoding mode.*/
 #define TH_ENCCTL_GET_SPLEVEL (16)
@@ -160,10 +160,10 @@ extern "C" {
  * You MUST call th_encode_packetout() repeatedly until it returns 0, or the
  *  extra duplicate frames will be lost.
  *
- * \param[in] _buf <tt>int</tt>: The number of duplicates to produce.
+ * \param[in] _buf <tt>int32_t</tt>: The number of duplicates to produce.
  *                 If this is negative or zero, no duplicates will be produced.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int)</tt>, or the
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int32_t)</tt>, or the
  *                    number of duplicates is greater than or equal to the
  *                    maximum keyframe interval.
  *                   In the latter case, NO duplicate frames will be produced.
@@ -180,7 +180,7 @@ extern "C" {
  * The flags are set by default to
  *  <tt>#TH_RATECTL_DROP_FRAMES|#TH_RATECTL_CAP_OVERFLOW</tt>.
  *
- * \param[in] _buf <tt>int</tt>: Any combination of
+ * \param[in] _buf <tt>int32_t</tt>: Any combination of
  *                  \ref ratectlflags "the available flags":
  *                 - #TH_RATECTL_DROP_FRAMES: Enable frame dropping.
  *                 - #TH_RATECTL_CAP_OVERFLOW: Don't bank excess bits for later
@@ -188,7 +188,7 @@ extern "C" {
  *                 - #TH_RATECTL_CAP_UNDERFLOW: Don't try to make up shortfalls
  *                    later.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int)</tt> or rate control
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int32_t)</tt> or rate control
  *                    is not enabled.
  * \retval TH_EIMPL   Not supported by this implementation in the current
  *                    encoding mode.*/
@@ -208,11 +208,11 @@ extern "C" {
  *  requested.
  * The actual value set will be returned.
  *
- * \param[in]  _buf <tt>int</tt>: Requested size of the reservoir measured in
+ * \param[in]  _buf <tt>int32_t</tt>: Requested size of the reservoir measured in
  *                   frames.
- * \param[out] _buf <tt>int</tt>: The actual size of the reservoir set.
+ * \param[out] _buf <tt>int32_t</tt>: The actual size of the reservoir set.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int)</tt>, or rate control
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(int32_t)</tt>, or rate control
  *                    is not enabled.  The buffer has an implementation
  *                    defined minimum and maximum size and the value in _buf
  *                    will be adjusted to match the actual value set.
@@ -303,7 +303,7 @@ extern "C" {
  * If it is set before the headers are emitted, the target quality encoded in
  *  them will be updated.
  *
- * \param[in] _buf <tt>int</tt>: The new target quality, in the range 0...63,
+ * \param[in] _buf <tt>int32_t</tt>: The new target quality, in the range 0...63,
  *                  inclusive.
  * \retval 0             Success.
  * \retval TH_EFAULT     \a _enc_ctx or \a _buf is <tt>NULL</tt>.
@@ -418,7 +418,7 @@ extern th_enc_ctx *th_encode_alloc(const th_info *_info);
  *                 for details.
  * \param _buf    The parameters for this control code.
  * \param _buf_sz The size of the parameter buffer.*/
-extern int th_encode_ctl(th_enc_ctx *_enc,int _req,void *_buf,size_t _buf_sz);
+extern int32_t th_encode_ctl(th_enc_ctx *_enc,int32_t _req,void *_buf,size_t _buf_sz);
 /**Outputs the next header packet.
  * This should be called repeatedly after encoder initialization until it
  *  returns 0 in order to get all of the header packets, in order, before
@@ -436,7 +436,7 @@ extern int th_encode_ctl(th_enc_ctx *_enc,int _req,void *_buf,size_t _buf_sz);
  *          produced.
  * \retval 0         No packet was produced, and no more header packets remain.
  * \retval TH_EFAULT \a _enc, \a _comments, or \a _op was <tt>NULL</tt>.*/
-extern int th_encode_flushheader(th_enc_ctx *_enc,
+extern int32_t th_encode_flushheader(th_enc_ctx *_enc,
  th_comment *_comments,ogg_packet *_op);
 /**Submits an uncompressed frame to the encoder.
  * \param _enc   A #th_enc_ctx handle.
@@ -446,7 +446,7 @@ extern int th_encode_flushheader(th_enc_ctx *_enc,
  * \retval TH_EINVAL The buffer size does not match the frame size the encoder
  *                    was initialized with, or encoding has already
  *                    completed.*/
-extern int th_encode_ycbcr_in(th_enc_ctx *_enc,th_ycbcr_buffer _ycbcr);
+extern int32_t th_encode_ycbcr_in(th_enc_ctx *_enc,th_ycbcr_buffer _ycbcr);
 /**Retrieves encoded video data packets.
  * This should be called repeatedly after each frame is submitted to flush any
  *  encoded packets, until it returns 0.
@@ -470,7 +470,7 @@ extern int th_encode_ycbcr_in(th_enc_ctx *_enc,th_ycbcr_buffer _ycbcr);
  * \retval 0         No packet was produced, and no more encoded video data
  *                    remains.
  * \retval TH_EFAULT \a _enc or \a _op was <tt>NULL</tt>.*/
-extern int th_encode_packetout(th_enc_ctx *_enc,int _last,ogg_packet *_op);
+extern int32_t th_encode_packetout(th_enc_ctx *_enc,int32_t _last,ogg_packet *_op);
 /**Frees an allocated encoder instance.
  * \param _enc A #th_enc_ctx handle.*/
 extern void th_encode_free(th_enc_ctx *_enc);

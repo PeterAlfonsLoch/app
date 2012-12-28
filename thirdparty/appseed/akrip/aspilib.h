@@ -56,8 +56,8 @@ typedef struct
   bool                        cacmAvail;
 } SENSEMASK, *PSENSEMASK, FAR *LPSENSEMASK;
 
-int getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
-		    LPBYTE pDevType, char * lpDevType, int iDevTypeLen );
+int32_t getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
+		    LPBYTE pDevType, char * lpDevType, int32_t iDevTypeLen );
 
 
 typedef DWORD (*CDREADFN)( HCDROM hCD, LPTRACKBUF t );
@@ -88,9 +88,9 @@ typedef struct {
   bool      smRead;
   CDREADFN  pfnRead;
   CDDEINIT  pfnDeinit;
-  int       numCheck;     // used for jitter correction
-  int       numOverlap;   // ...
-  int       readMode;
+  int32_t       numCheck;     // used for jitter correction
+  int32_t       numOverlap;   // ...
+  int32_t       readMode;
 } CDHANDLEREC;
 
 

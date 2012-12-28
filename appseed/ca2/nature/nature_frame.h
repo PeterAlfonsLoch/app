@@ -11,7 +11,7 @@ namespace nature
       
       
       string                     m_strAnimatedStatusBarText;
-      int                        m_iAnimateStep;
+      int32_t                        m_iAnimateStep;
       image_list *               m_pimagelist;
       bool                       m_bTimerOn;
       bool                       m_bHoverMouse;
@@ -37,7 +37,7 @@ namespace nature
       void OnHoverAction();
 
 
-      int OnCreate(LPCREATESTRUCT lpCreateStruct);
+      int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
       void OnTimer(UINT nIDEvent);
 
    };

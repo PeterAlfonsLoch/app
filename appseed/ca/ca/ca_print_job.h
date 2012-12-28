@@ -9,16 +9,16 @@ namespace ca
    {
    public:
 
-      int      m_iPageStart;
-      int      m_iPageCount;
+      int32_t      m_iPageStart;
+      int32_t      m_iPageCount;
 
-      int      m_iPrintingPage;
+      int32_t      m_iPrintingPage;
 
       print_job(::ca::application * papp);
       virtual ~print_job();
 
 
-      virtual int run() = 0;
+      virtual int32_t run() = 0;
 
    };
 

@@ -25,8 +25,8 @@ namespace user
          size        m_sizeClient;
          bool        m_bVScroll;   
          bool        m_bHScroll;
-         int         m_iScrollHeight;
-         int         m_iScrollWidth;
+         int32_t         m_iScrollHeight;
+         int32_t         m_iScrollWidth;
       };
 
 
@@ -56,7 +56,7 @@ namespace user
 
       virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-      virtual int get_wheel_scroll_delta();
+      virtual int32_t get_wheel_scroll_delta();
 
       void _001GetScrollInfo(scroll_info & info);
 

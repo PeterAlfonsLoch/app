@@ -5,7 +5,7 @@ namespace spa
 {
 
 
-   void installer::ms_download_callback( int i, dword_ptr dwLen)
+   void installer::ms_download_callback( int32_t i, dword_ptr dwLen)
    {
       bool bProgress = true;
       if(i == -1)
@@ -28,7 +28,7 @@ namespace spa
          m_dwDownloadLen = dwLen;
          /*if(bProgress)
          {
-            for(int i = 0; i < ((dwLen - m_dwDownloadCallbackLast100k) / (100 * 1024)); i++)
+            for(int32_t i = 0; i < ((dwLen - m_dwDownloadCallbackLast100k) / (100 * 1024)); i++)
             {
                if(m_iDownloadCallbackColumn >= 84)
                {
@@ -60,7 +60,7 @@ namespace spa
       }
    }
 
-   void installer::ms_get_callback( int i, dword_ptr dwLen)
+   void installer::ms_get_callback( int32_t i, dword_ptr dwLen)
    {
 //      bool bProgress = true;
       if(i == -3)
@@ -91,7 +91,7 @@ namespace spa
 } // namespace spa
 
 
-void ms_download_callback(void * param, int i, dword_ptr dwLen)
+void ms_download_callback(void * param, int32_t i, dword_ptr dwLen)
 {
    spa::installer * pinstaller = ((spa::installer *) param);
    pinstaller->ms_download_callback(i, dwLen);
@@ -100,7 +100,7 @@ void ms_download_callback(void * param, int i, dword_ptr dwLen)
 
 
 
-void ms_get_callback(void * param, int i, dword_ptr dwLen)
+void ms_get_callback(void * param, int32_t i, dword_ptr dwLen)
 {
    spa::installer * pinstaller = ((spa::installer *) param);
    pinstaller->ms_get_callback(i, dwLen);

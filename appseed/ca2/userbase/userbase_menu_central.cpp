@@ -74,7 +74,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::ca::application * papp)
 /*bool BaseMenuCentral::MenuV033CreateImageMap(UINT uiaMenuV003Map [][2])
 {
    UINT user = 0;
-   int i;
+   int32_t i;
    while(true)
    {
       if(uiaMenuV003Map[user][0] == 0xffffffff &&
@@ -114,9 +114,9 @@ bool BaseMenuCentral::MenuV033AddImageMap(xml::node * lpnode)
    {
       return FALSE;
    }*/
-   int iIndex;
+   int32_t iIndex;
    id id;
-   for(int i = 0; i < lpnode->children().get_count(); i++)
+   for(int32_t i = 0; i < lpnode->children().get_count(); i++)
    {
       xml::node * lpchild = lpnode->child_at(i);
       string strId;
@@ -252,9 +252,9 @@ image_list * BaseMenuCentral::MenuV033GetImageListHueLight()
     return m_pilHueLight;
 }
 
-LRESULT CALLBACK BaseMenuCentral::CBTHook(int nCode, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK BaseMenuCentral::CBTHook(int32_t nCode, WPARAM wParam, LPARAM lParam)
 {
-   static int cbt_counter = 0;
+   static int32_t cbt_counter = 0;
 
    LRESULT lRes;
 
@@ -321,7 +321,7 @@ void BaseMenuCentral::UnhookCBTHook()
 /* trans
 void BaseMenuCentral::RemoveBorder(oswindow oswindow)
 {
-   const int SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
+   const int32_t SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
       SWP_NOZORDER | SWP_NOACTIVATE;
 
    DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);

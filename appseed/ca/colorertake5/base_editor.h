@@ -71,7 +71,7 @@ namespace colorertake5
       * @param backParse Number of lines. If <= 0, dropped into default
       * value.
       */
-      void setBackParse(int backParse);
+      void setBackParse(int32_t backParse);
 
       /**
       * Initial HRC type, used for parse processing.
@@ -123,7 +123,7 @@ namespace colorertake5
       *        Paired region is found, if it includes specified position
       *        or ends directly at one char before line position.
       */
-      PairMatch *searchLocalPair(int lineNo, int pos);
+      PairMatch *searchLocalPair(int32_t lineNo, int32_t pos);
 
       /**
       * Searches pair match in all available text, possibly,
@@ -132,7 +132,7 @@ namespace colorertake5
       *        Paired region is found, if it includes specified position
       *        or ends directly at one char before line position.
       */
-      PairMatch *searchGlobalPair(int lineNo, int pos);
+      PairMatch *searchGlobalPair(int32_t lineNo, int32_t pos);
 
       /**
       * Searches and creates pair match object of first enwrapping block.
@@ -144,7 +144,7 @@ namespace colorertake5
       * @param lineNo Line number, where to search paired region.
       * @param pos position in line, where paired region to be searched.
       */
-      PairMatch *getEnwrappedPairMatch(int lineNo, int pos);
+      PairMatch *getEnwrappedPairMatch(int32_t lineNo, int32_t pos);
 
       /**
       * Frees previously allocated PairMatch object.
@@ -186,7 +186,7 @@ namespace colorertake5
       * @param time integer between 0 and 100, shows an abount of time,
       *             available for this job.
       */
-      void idleJob(int time);
+      void idleJob(int32_t time);
 
       /**
       * Informs base_editor object about text modification event.
@@ -254,7 +254,7 @@ namespace colorertake5
       comparable_array<RegionHandler*> regionHandlers;
       comparable_array<EditorListener*> editorListeners;
 
-      int backParse;
+      int32_t backParse;
       // ::ca::window area
       index wStart;
       count wSize;

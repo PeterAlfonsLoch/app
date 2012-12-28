@@ -39,7 +39,7 @@ namespace html
       class CLASS_DECL_ca2 layout_state
       {
       public:
-         int      m_iBody;
+         int32_t      m_iBody;
          float    m_y;
          float    m_cy;
          float    m_x;
@@ -131,7 +131,7 @@ namespace html
 
       DECL_GEN_SIGNAL(_001OnKeyDown)
 
-      int get_image_index(const char * pszUrl);
+      int32_t get_image_index(const char * pszUrl);
       void load_image_asynch(image * pimage);
       static UINT c_cdecl LoadImageProc(LPVOID lpParam);
       bool load_image(image * pimage);
@@ -155,7 +155,7 @@ namespace html
    protected:
 
 
-      int create_font(elemental * pelemental);
+      int32_t create_font(elemental * pelemental);
 
 
    private:

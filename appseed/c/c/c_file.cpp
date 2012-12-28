@@ -240,9 +240,9 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 }
 
 
-void sprint_hex(char * sz, int iValue)
+void sprint_hex(char * sz, int32_t iValue)
 {
-   int i = 8;
+   int32_t i = 8;
    sz[i] = '\0';
    i--;
    for(; i >= 0; i--)
@@ -325,7 +325,7 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
    strcat_dup(bufTime, "-");
    strcat_dup(bufTime, bufItem);
 
-   for(int i = 0; i < (1024 * 1024); i++)
+   for(int32_t i = 0; i < (1024 * 1024); i++)
    {
       strcpy_dup(szRet, lpPathBuffer);
       {
@@ -405,7 +405,7 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
    strcat_dup(bufTime, "-");
    strcat_dup(bufTime, bufItem);
 
-   for(int i = 0; i < (1024 * 1024); i++)
+   for(int32_t i = 0; i < (1024 * 1024); i++)
    {
       strcpy_dup(szRet, lpPathBuffer);
       strcat_dup(szRet, pszName);
@@ -583,13 +583,13 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
 
 
    file_read_ex1_string_dup(hfile1, NULL, strVersion);
-   int n;
+   int32_t n;
    vsstring strRelative;
    vsstring strMd5;
    vsstring strMd5New;
-   int iBufSize = 1024 * 1024;
+   int32_t iBufSize = 1024 * 1024;
    unsigned char * buf = (unsigned char *)  _ca_alloc(iBufSize);
-   int iLen;
+   int32_t iLen;
    ::md5::md5 ctx;
 #ifdef WINDOWS
    DWORD dwRead;
@@ -668,7 +668,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
 }
 
 
-/*   void file::write_n_number(FILE * pfile, ::md5::md5  * pctx, int iNumber)
+/*   void file::write_n_number(FILE * pfile, ::md5::md5  * pctx, int32_t iNumber)
 {
 vsstring str;
 str.Format("%dn", iNumber);
@@ -680,9 +680,9 @@ MD5_Update(pctx, (const char *) str, str.get_length());
 }
 */
 #ifdef WINDOWS
-void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int & iNumber)
+void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
 #else
-void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int & iNumber)
+void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
 #endif
 {
    vsstring str;
@@ -715,7 +715,7 @@ void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int & iNumber)
 
 /* void file::write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
 {
-int iLen = str.get_length();
+int32_t iLen = str.get_length();
 write_n_number(pfile, pctx, iLen);
 pfile->Write((const char *) str, str.get_length());
 if(pctx != NULL)
@@ -730,7 +730,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
 
 #endif
 {
-   int iLen;
+   int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
    LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
 #ifdef WINDOWS
@@ -783,12 +783,12 @@ strVersion = "fileset v1";
 MD5_CTX ctx;
 write_ex1_string(spfile, NULL, strVersion);
 ex1::filesp file2(get_app());
-int iBufSize = 1024 * 1024;
-int uiRead;
+int32_t iBufSize = 1024 * 1024;
+int32_t uiRead;
 unsigned char * buf = (unsigned char *)  malloc(iBufSize);
 string strMd5 = "01234567012345670123456701234567";
-int iPos;
-for(int i = 0; i < stra_dup.get_size(); i++)
+int32_t iPos;
+for(int32_t i = 0; i < stra_dup.get_size(); i++)
 {
 if(System.dir().is(stra_dup[i]))
 continue;
@@ -809,7 +809,7 @@ spfile->Seek(iPos, ::ex1::file::SeekBegin);
 MD5_Final(buf,&ctx);
 strMd5.Empty();
 string strFormat;
-for(int i = 0; i < 16; i++)
+for(int32_t i = 0; i < 16; i++)
 {
 strFormat.Format("%02x", buf[i]);
 strMd5 += strFormat;
@@ -832,13 +832,13 @@ spfile = fopen(pszFile, "rb");
 if(!spfile)
 throw "failed";
 read_ex1_string(spfile, NULL, strVersion);
-int n;
+int32_t n;
 vsstring strRelative;
 vsstring strMd5;
 vsstring strMd5New;
-int iBufSize = 1024 * 1024;
+int32_t iBufSize = 1024 * 1024;
 unsigned char * buf = (unsigned char *)  malloc(iBufSize);
-int iLen;
+int32_t iLen;
 ::md5::md5 ctx;
 uint_ptr uiRead;
 if(strVersion == "fileset v1")
@@ -894,7 +894,7 @@ return false;
 }
 
 
-/*   void file::write_n_number(FILE * pfile, ::md5::md5  * pctx, int iNumber)
+/*   void file::write_n_number(FILE * pfile, ::md5::md5  * pctx, int32_t iNumber)
 {
 vsstring str;
 str.Format("%dn", iNumber);
@@ -905,7 +905,7 @@ MD5_Update(pctx, (const char *) str, str.get_length());
 }
 }
 */
-/*   void file::read_n_number(FILE * pfile, ::md5::md5 * pctx, int & iNumber)
+/*   void file::read_n_number(FILE * pfile, ::md5::md5 * pctx, int32_t & iNumber)
 {
 uint_ptr uiRead;
 vsstring str;
@@ -932,7 +932,7 @@ iNumber = atoi(str);
 
 /* void file::write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
 {
-int iLen = str.get_length();
+int32_t iLen = str.get_length();
 write_n_number(pfile, pctx, iLen);
 pfile->Write((const char *) str, str.get_length());
 if(pctx != NULL)
@@ -943,7 +943,7 @@ MD5_Update(pctx, (const char *) str, str.get_length());
 
 /* void file::read_ex1_string(FILE * pfile, ::md5::md5 * pctx, vsstring & str)
 {
-int iLen;
+int32_t iLen;
 read_n_number(pfile, pctx, iLen);
 LPSTR lpsz = (LPSTR) malloc(iLen + 1);
 fread(lpsz, 1, iLen, pfile);
@@ -964,7 +964,7 @@ bool PrintModules(vsstring & strImage, DWORD processID, const char * pszDll )
 {
    HANDLE hProcess;
    DWORD cbNeeded;
-   unsigned int i;
+   unsigned int32_t i;
    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
       PROCESS_VM_READ,
       FALSE, processID );
@@ -975,12 +975,12 @@ bool PrintModules(vsstring & strImage, DWORD processID, const char * pszDll )
    if (NULL == hProcess)
       return false;
 
-   const int iMaxModuleCount = 1024;
+   const int32_t iMaxModuleCount = 1024;
    HMODULE * hMods = new HMODULE[iMaxModuleCount];
 
 
 
-   const int iImageSize = MAX_PATH * 8;
+   const int32_t iImageSize = MAX_PATH * 8;
    char * szImage = (char *) _ca_alloc(iImageSize);
    GetModuleFileNameEx(hProcess, NULL, szImage, iImageSize);
    strImage = szImage;
@@ -1019,7 +1019,7 @@ void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char
    DWORD * aProcesses = new DWORD[1024 * 8];
 
    DWORD cbNeeded, cProcesses;
-   unsigned int i;
+   unsigned int32_t i;
 
    if ( !EnumProcesses( aProcesses, 124 * 8 * sizeof(DWORD), &cbNeeded ) )
    {
@@ -1084,12 +1084,12 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 
 #else
 
-   int input, output;
+   int32_t input, output;
    size_t filesize;
    void *source, *target;
 
 
-   int flags = O_RDWR|O_CREAT|O_TRUNC;
+   int32_t flags = O_RDWR|O_CREAT|O_TRUNC;
    if(!bOverwrite)
       flags |= O_EXCL;
    if((output = open(pszNew, flags, 0666)) == -1)
@@ -1144,14 +1144,14 @@ bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
 {
 #ifdef WINDOWSEX
-   const int iBufSize = MAX_PATH * 8;
+   const int32_t iBufSize = MAX_PATH * 8;
    const wchar_t * pwsz1 = utf8_to_16(psz1);
    const wchar_t * pwsz2 = utf8_to_16(psz2);
    wchar_t * pwszFile1;
    wchar_t * pwszFile2;
    wchar_t * pwszPath1 = new wchar_t[iBufSize];
    wchar_t * pwszPath2 = new wchar_t[iBufSize];
-   int iCmp = -1;
+   int32_t iCmp = -1;
    if(GetFullPathNameW(pwsz1, iBufSize, pwszPath1, &pwszFile1))
    {
       if(GetFullPathNameW(pwsz2, iBufSize, pwszPath2, &pwszFile2))

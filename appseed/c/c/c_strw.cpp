@@ -22,25 +22,25 @@ count wcslen_dup(const wchar_t * str)
 
 }
 
-CLASS_DECL_c int iswalpha_dup(int ch)
+CLASS_DECL_c int32_t iswalpha_dup(int32_t ch)
 {
    return (ch >= L'A' && ch <= L'Z') || (ch >= L'a' && ch <= L'z');
 }
 
 
-CLASS_DECL_c int iswdigit_dup(int ch)
+CLASS_DECL_c int32_t iswdigit_dup(int32_t ch)
 {
    return ch >= L'0' && ch <= L'9';
 }
 
 
-CLASS_DECL_c int iswspace_dup(int ch)
+CLASS_DECL_c int32_t iswspace_dup(int32_t ch)
 {
    return ch == L' ' || ch == L'\t' || ch == L'\r' || ch == L'\n' || ch == L'\t';
 }
 
 
-int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
+int32_t wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 {
    if(sz1 == NULL)
    {
@@ -53,7 +53,7 @@ int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
    {
       return 1;
    }
-   int iCmp = 0;
+   int32_t iCmp = 0;
    while(*sz1 != L'\0' && *sz2 != L'\0')
    {
       iCmp = w_to_lower(*sz1) - w_to_lower(*sz2);
@@ -65,7 +65,7 @@ int wcsicmp_dup(const wchar_t * sz1, const wchar_t * sz2)
    return iCmp;
 }
 
-int wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
+int32_t wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
 {
    if(sz1 == NULL)
    {
@@ -78,7 +78,7 @@ int wcscmp_dup(const wchar_t * sz1, const wchar_t * sz2)
    {
       return 1;
    }
-   int iCmp = 0;
+   int32_t iCmp = 0;
    while(*sz1 != L'\0' && *sz2 != L'\0')
    {
       iCmp = *sz1 - *sz2;
@@ -125,7 +125,7 @@ CLASS_DECL_c errno_t wcsupr_s_dup(wchar_t * sz, size_t size)
 }
 
 
-CLASS_DECL_c int iswalnum_dup(int wch)
+CLASS_DECL_c int32_t iswalnum_dup(int32_t wch)
 {
    if(wch >= 256 || wch <= -128)
       return 0;
@@ -158,12 +158,12 @@ CLASS_DECL_c wchar_t * wcschr_dup(const wchar_t * sz, wchar_t ch)
 
 
 
-void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int * numargs, int * numchars)
+void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t * numargs, int32_t * numchars)
 {
         WCHAR *p;
         WCHAR c;
-        int inquote;                    /* 1 = inside quotes */
-        int copychar;                   /* 1 = copy char to *args */
+        int32_t inquote;                    /* 1 = inside quotes */
+        int32_t copychar;                   /* 1 = copy char to *args */
         unsigned numslash;              /* num of backslashes seen */
 
         *numchars = 0;
@@ -376,7 +376,7 @@ void wcscat_dup(wchar_t * dest, const wchar_t * cat)
 
 
 
-void uitow_dup(wchar_t * sz, unsigned int ui, int iBase)
+void uitow_dup(wchar_t * sz, unsigned int32_t ui, int32_t iBase)
 {
    if(ui == 0)
    {
@@ -384,10 +384,10 @@ void uitow_dup(wchar_t * sz, unsigned int ui, int iBase)
       sz[1] = L'\0';
       return;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(ui > 0)
    {
-      int iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iBase);
       wchar_t wch;
       if(iDigit <= 9)
       {
@@ -407,7 +407,7 @@ void uitow_dup(wchar_t * sz, unsigned int ui, int iBase)
 
 
 
-void itow_dup(wchar_t * sz, int i, int iBase)
+void itow_dup(wchar_t * sz, int32_t i, int32_t iBase)
 {
    if(i == 0)
    {
@@ -421,10 +421,10 @@ void itow_dup(wchar_t * sz, int i, int iBase)
       i = -i;
       bNegative = true;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
+      int32_t iDigit = (i % iBase);
       wchar_t wch;
       if(iDigit <= 9)
       {

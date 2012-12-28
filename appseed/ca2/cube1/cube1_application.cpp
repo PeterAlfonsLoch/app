@@ -27,7 +27,7 @@ namespace cube1
 
       rect rect;
       get_monitor_rect(0, &rect);
-      for(int i = 1; i < get_monitor_count(); i++)
+      for(int32_t i = 1; i < get_monitor_count(); i++)
       {
          class rect rectMonitor;
          get_monitor_rect(i, &rectMonitor);

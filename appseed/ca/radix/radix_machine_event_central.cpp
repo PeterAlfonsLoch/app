@@ -23,7 +23,7 @@ bool machine_event_central::initialize()
 }
 
 
-int machine_event_central::run()
+int32_t machine_event_central::run()
 {
    while(get_run())
    {

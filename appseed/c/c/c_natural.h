@@ -1,16 +1,16 @@
 #pragma once
 
-#define INT_TO_NATURAL(i) (i >= 0 ? (unsigned int) i : 0)
+#define INT_TO_NATURAL(i) (i >= 0 ? (unsigned int32_t) i : 0)
 
 
 #pragma once
 
-inline unsigned int natural(int i)
+inline unsigned int32_t natural(int32_t i)
 {
-   return i >= 0 ? (unsigned int) i : 0;
+   return i >= 0 ? (unsigned int32_t) i : 0;
 }
 
-inline unsigned int natural(unsigned int ui)
+inline unsigned int32_t natural(unsigned int32_t ui)
 {
    return ui;
 }

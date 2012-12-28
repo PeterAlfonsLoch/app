@@ -76,10 +76,10 @@ typedef enum {
 /* state maintained between inflate() calls.  Approximately 7K bytes. */
 struct inflate_state {
     inflate_mode mode;          /* current inflate mode */
-    int last;                   /* true if processing last block */
-    int wrap;                   /* bit 0 true for zlib, bit 1 true for gzip */
-    int havedict;               /* true if dictionary provided */
-    int flags;                  /* gzip header method and flags (0 if zlib) */
+    int32_t last;                   /* true if processing last block */
+    int32_t wrap;                   /* bit 0 true for zlib, bit 1 true for gzip */
+    int32_t havedict;               /* true if dictionary provided */
+    int32_t flags;                  /* gzip header method and flags (0 if zlib) */
     unsigned dmax;              /* zlib header max distance (INFLATE_STRICT) */
     uint32_t check;        /* protected copy of check value */
     unsigned long total;        /* protected copy of output count */

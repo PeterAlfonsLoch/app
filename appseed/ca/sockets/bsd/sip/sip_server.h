@@ -13,13 +13,13 @@ namespace sockets
       
       
       string   m_strIp;
-      int      m_iPort;
+      int32_t      m_iPort;
 
 
       sip_server(::ca::application * papp);
    
 
-      virtual int run();
+      virtual int32_t run();
 
 
    };

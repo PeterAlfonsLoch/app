@@ -25,7 +25,7 @@ image_list::~image_list()
 }
 
 
-bool image_list::create(int cx, int cy, UINT nFlags, int nInitial, int nGrow)
+bool image_list::create(int32_t cx, int32_t cy, UINT nFlags, int32_t nInitial, int32_t nGrow)
 {
 
    UNREFERENCED_PARAMETER(nFlags);
@@ -75,7 +75,7 @@ bool image_list::create(image_list * pimagelist)
    return true;
 }
 
-/*bool image_list::create(const char * lpszBitmapID, int cx, int nGrow, COLORREF crMask)
+/*bool image_list::create(const char * lpszBitmapID, int32_t cx, int32_t nGrow, COLORREF crMask)
 {
    ::ca::bitmap bitmap;
    if(!bitmap.LoadBitmap(lpszBitmapID))
@@ -100,14 +100,14 @@ bool image_list::create(image_list * pimagelist)
 }
 */
 
-int image_list::get_image_count() const
+int32_t image_list::get_image_count() const
 {
 
    return m_iSize;
 
 }
 
-bool image_list::draw(::ca::graphics *pdc, int iImage, point pt, int iFlag)
+bool image_list::draw(::ca::graphics *pdc, int32_t iImage, point pt, int32_t iFlag)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
@@ -117,7 +117,7 @@ bool image_list::draw(::ca::graphics *pdc, int iImage, point pt, int iFlag)
 }
 
 
-bool image_list::draw(::ca::graphics * pdc, int iImage, point pt, size sz, point ptOffset, int iFlag)
+bool image_list::draw(::ca::graphics * pdc, int32_t iImage, point pt, size sz, point ptOffset, int32_t iFlag)
 {
 
    UNREFERENCED_PARAMETER(iFlag);
@@ -131,15 +131,15 @@ bool image_list::draw(::ca::graphics * pdc, int iImage, point pt, size sz, point
 
 }
 
-int image_list::add_icon_os_data(void * pvoid)
+int32_t image_list::add_icon_os_data(void * pvoid)
 {
    ::visual::icon icon((HICON) pvoid);
    return add(&icon);
 }
 
-int image_list::add(::visual::icon * picon)
+int32_t image_list::add(::visual::icon * picon)
 {
-   int iItem = m_iSize;
+   int32_t iItem = m_iSize;
    if(iItem >= _get_alloc_count())
    {
       _grow();
@@ -202,14 +202,14 @@ int image_list::add(::visual::icon * picon)
 }
 
 
-int image_list::add_icon(const char * psz)
+int32_t image_list::add_icon(const char * psz)
 {
 
    ::visual::icon icon;
 
 #ifdef WINDOWSEX
 
-   int iSize = min(m_size.cx, m_size.cy);
+   int32_t iSize = min(m_size.cx, m_size.cy);
    
    icon.m_picon = (void *) (HICON) ::LoadImage(NULL, psz, IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE);
 
@@ -220,7 +220,7 @@ int image_list::add_icon(const char * psz)
 }
 
 
-int image_list::add_matter_icon(const char * pszMatter)
+int32_t image_list::add_matter_icon(const char * pszMatter)
 {
 
    return add_icon(Application.dir().matter(pszMatter));
@@ -228,7 +228,7 @@ int image_list::add_matter_icon(const char * pszMatter)
 }
 
 
-int image_list::add_file(const char * lpcsz)
+int32_t image_list::add_file(const char * lpcsz)
 {
 
    ::visual::dib_sp dib(get_app());
@@ -236,7 +236,7 @@ int image_list::add_file(const char * lpcsz)
    if(!dib.load_from_file(lpcsz))
       return -1;
 
-   int iItem = m_iSize;
+   int32_t iItem = m_iSize;
    if(iItem >= _get_alloc_count())
    {
       _grow();
@@ -252,7 +252,7 @@ int image_list::add_file(const char * lpcsz)
    return iItem;
 }
 
-int image_list::add_matter(const char * lpcsz, ::ca::application * papp)
+int32_t image_list::add_matter(const char * lpcsz, ::ca::application * papp)
 {
    if(papp == NULL)
    {
@@ -264,12 +264,12 @@ int image_list::add_matter(const char * lpcsz, ::ca::application * papp)
    }
 }
 
-int image_list::add_std_matter(const char * lpcsz)
+int32_t image_list::add_std_matter(const char * lpcsz)
 {
    return add_file(Application.dir().matter(lpcsz));
 }
 
-int image_list::_get_alloc_count()
+int32_t image_list::_get_alloc_count()
 {
    if(m_size.cx == 0)
       return 0;
@@ -279,10 +279,10 @@ int image_list::_get_alloc_count()
 
 bool image_list::_grow()
 {
-   int cx = m_size.cx;
-   int cy = m_size.cy;
+   int32_t cx = m_size.cx;
+   int32_t cy = m_size.cy;
 
-   int iAllocSize = _get_alloc_count() + m_iGrow;
+   int32_t iAllocSize = _get_alloc_count() + m_iGrow;
 
    if(_get_alloc_count() == 0)
    {
@@ -308,7 +308,7 @@ bool image_list::_grow()
    return true;
 }
 
-bool image_list::get_image_info(int nImage, info * pinfo) const
+bool image_list::get_image_info(int32_t nImage, info * pinfo) const
 {
 
    try

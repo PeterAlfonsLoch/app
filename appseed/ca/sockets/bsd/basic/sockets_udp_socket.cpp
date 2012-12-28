@@ -44,7 +44,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 namespace sockets
 {
 
-   udp_socket::udp_socket(socket_handler_base& h, int ibufsz, bool ipv6, int retries) : socket(h)
+   udp_socket::udp_socket(socket_handler_base& h, int32_t ibufsz, bool ipv6, int32_t retries) : socket(h)
    , m_ibuf(new char[ibufsz])
    , m_ibufsz(ibufsz)
    , m_bind_ok(false)
@@ -64,7 +64,7 @@ namespace sockets
    }
 
 
-   int udp_socket::Bind(port_t &port, int range)
+   int32_t udp_socket::Bind(port_t &port, int32_t range)
    {
       if (IsIpv6())
       {
@@ -76,7 +76,7 @@ namespace sockets
    }
 
 
-   int udp_socket::Bind(const string & intf, port_t &port, int range)
+   int32_t udp_socket::Bind(const string & intf, port_t &port, int32_t range)
    {
       if (IsIpv6())
       {
@@ -98,21 +98,21 @@ namespace sockets
    }
 
 
-   int udp_socket::Bind(in_addr a, port_t &port, int range)
+   int32_t udp_socket::Bind(in_addr a, port_t &port, int32_t range)
    {
       address ad(get_app(), a, port);
       return Bind(ad, range);
    }
 
 
-   int udp_socket::Bind(in6_addr a, port_t &port, int range)
+   int32_t udp_socket::Bind(in6_addr a, port_t &port, int32_t range)
    {
       address ad(get_app(), a, port);
       return Bind(ad, range);
    }
 
 
-   int udp_socket::Bind(sockets::address& ad, int range)
+   int32_t udp_socket::Bind(sockets::address& ad, int32_t range)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -121,8 +121,8 @@ namespace sockets
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         int n = bind(GetSocket(), ad.sa(), ad.sa_len());
-         int tries = range;
+         int32_t n = bind(GetSocket(), ad.sa(), ad.sa_len());
+         int32_t tries = range;
          while (n == -1 && tries--)
          {
             ad.set_service_number(ad.get_service_number() + 1);
@@ -219,26 +219,26 @@ namespace sockets
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(const string & h, port_t p, const char *data, int32_t len, int32_t flags)
    {
       SendToBuf(address(get_app(), h, p), data, len, flags);
    }
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const in_addr & a, port_t p, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(const in_addr & a, port_t p, const char *data, int32_t len, int32_t flags)
    {
       SendToBuf(address(get_app(), a, p), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(const in6_addr & a, port_t p, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(const in6_addr & a, port_t p, const char *data, int32_t len, int32_t flags)
    {
       SendToBuf(address(get_app(), a, p), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(const sockets::address & ad, const char *data, int len, int flags)
+   void udp_socket::SendToBuf(const sockets::address & ad, const char *data, int32_t len, int32_t flags)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -247,7 +247,7 @@ namespace sockets
       if (GetSocket() != INVALID_SOCKET)
       {
          SetNonblocking(true);
-         if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), (int) ad.sa_len())) == -1)
+         if ((m_last_size_written = sendto(GetSocket(), data, len, flags, ad.sa(), (int32_t) ad.sa_len())) == -1)
          {
             Handler().LogError(this, "sendto", Errno, StrError(Errno), ::gen::log::level::error);
          }
@@ -255,53 +255,53 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(const string & a, port_t p, const string & str, int flags)
+   void udp_socket::SendTo(const string & a, port_t p, const string & str, int32_t flags)
    {
-      SendToBuf(a, p, str, (int)str.get_length(), flags);
+      SendToBuf(a, p, str, (int32_t)str.get_length(), flags);
    }
 
 
-   void udp_socket::SendTo(in_addr a, port_t p, const string & str, int flags)
+   void udp_socket::SendTo(in_addr a, port_t p, const string & str, int32_t flags)
    {
-      SendToBuf(a, p, str, (int)str.get_length(), flags);
+      SendToBuf(a, p, str, (int32_t)str.get_length(), flags);
    }
 
 
-   void udp_socket::SendTo(in6_addr a, port_t p, const string & str, int flags)
+   void udp_socket::SendTo(in6_addr a, port_t p, const string & str, int32_t flags)
    {
-      SendToBuf(a, p, str, (int)str.get_length(), flags);
+      SendToBuf(a, p, str, (int32_t)str.get_length(), flags);
    }
 
 
-   void udp_socket::SendTo(sockets::address& ad, const string & str, int flags)
+   void udp_socket::SendTo(sockets::address& ad, const string & str, int32_t flags)
    {
-      SendToBuf(ad, str, (int)str.get_length(), flags);
+      SendToBuf(ad, str, (int32_t)str.get_length(), flags);
    }
 
 
    /** send to connected address */
-   void udp_socket::SendBuf(const char *data, size_t len, int flags)
+   void udp_socket::SendBuf(const char *data, size_t len, int32_t flags)
    {
       if (!IsConnected())
       {
          Handler().LogError(this, "SendBuf", 0, "not connected", ::gen::log::level::error);
          return;
       }
-      if ((m_last_size_written = send(GetSocket(), data, (int)len, flags)) == -1)
+      if ((m_last_size_written = send(GetSocket(), data, (int32_t)len, flags)) == -1)
       {
          Handler().LogError(this, "send", Errno, StrError(Errno), ::gen::log::level::error);
       }
    }
 
 
-   void udp_socket::Send(const string & str, int flags)
+   void udp_socket::Send(const string & str, int32_t flags)
    {
-      SendBuf(str, (int)str.get_length(), flags);
+      SendBuf(str, (int32_t)str.get_length(), flags);
    }
 
 
    #if defined(LINUX) || defined(MACOSX)
-   int udp_socket::ReadTS(char *ioBuf, int inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts)
+   int32_t udp_socket::ReadTS(char *ioBuf, int32_t inBufSize, struct sockaddr *from, socklen_t fromlen, struct timeval *ts)
    {
       struct msghdr msg;
       struct iovec vec[1];
@@ -311,7 +311,7 @@ namespace sockets
    #ifdef __DARWIN_UNIX03
    #define ALIGNBYTES __DARWIN_ALIGNBYTES
    #endif
-   #define myALIGN(p) (((unsigned int)(p) + ALIGNBYTES) &~ ALIGNBYTES)
+   #define myALIGN(p) (((unsigned int32_t)(p) + ALIGNBYTES) &~ ALIGNBYTES)
    #define myCMSG_SPACE(l) (myALIGN(sizeof(struct cmsghdr)) + myALIGN(l))
          char data[ myCMSG_SPACE(sizeof(struct timeval)) ];
    #else
@@ -342,9 +342,9 @@ namespace sockets
       msg.msg_flags = 0;
 
       // Original version - for reference only
-      //int n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
+      //int32_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 
-      int n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);
+      int32_t n = recvmsg(GetSocket(), &msg, MSG_DONTWAIT);
 
       // now ioBuf will contain the data, as if we used recvfrom
 
@@ -383,7 +383,7 @@ namespace sockets
    #if !defined(LINUX) && !defined(MACOSX)
             size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
    #else
-            int n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &ts);
+            int32_t n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &ts);
    #endif
             if (n > 0)
             {
@@ -402,7 +402,7 @@ namespace sockets
             return;
          }
          size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-         int q = m_retries; // receive max 10 at one cycle
+         int32_t q = m_retries; // receive max 10 at one cycle
          while (n > 0)
          {
             if (sa_len != sizeof(sa))
@@ -435,7 +435,7 @@ namespace sockets
    #if !defined(LINUX) && !defined(MACOSX)
          size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
    #else
-         int n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &ts);
+         int32_t n = ReadTS(m_ibuf, m_ibufsz, (struct sockaddr *)&sa, sa_len, &ts);
    #endif
          if (n > 0)
          {
@@ -454,7 +454,7 @@ namespace sockets
          return;
       }
       size_t n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
-      int q = m_retries;
+      int32_t q = m_retries;
       while (n > 0)
       {
          if (sa_len != sizeof(sa))
@@ -481,8 +481,8 @@ namespace sockets
 
    void udp_socket::SetBroadcast(bool b)
    {
-      int one = 1;
-      int zero = 0;
+      int32_t one = 1;
+      int32_t zero = 0;
 
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -507,7 +507,7 @@ namespace sockets
 
    bool udp_socket::IsBroadcast()
    {
-      int is_broadcast = 0;
+      int32_t is_broadcast = 0;
       socklen_t size;
 
       if (GetSocket() == INVALID_SOCKET)
@@ -522,23 +522,23 @@ namespace sockets
    }
 
 
-   void udp_socket::SetMulticastTTL(int ttl)
+   void udp_socket::SetMulticastTTL(int32_t ttl)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
          CreateConnection();
       }
-      if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int)) == -1)
+      if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_TTL, (char *)&ttl, sizeof(int32_t)) == -1)
       {
          Handler().LogError(this, "SetMulticastTTL", Errno, StrError(Errno), ::gen::log::level::warning);
       }
    }
 
 
-   int udp_socket::GetMulticastTTL()
+   int32_t udp_socket::GetMulticastTTL()
    {
-      int ttl = 0;
-      socklen_t size = sizeof(int);
+      int32_t ttl = 0;
+      socklen_t size = sizeof(int32_t);
 
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -560,15 +560,15 @@ namespace sockets
       }
       if (IsIpv6())
       {
-         int val = x ? 1 : 0;
-         if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
+         int32_t val = x ? 1 : 0;
+         if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&val, sizeof(int32_t)) == -1)
          {
             Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
          }
          return;
       }
-      int val = x ? 1 : 0;
-      if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int)) == -1)
+      int32_t val = x ? 1 : 0;
+      if (setsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&val, sizeof(int32_t)) == -1)
       {
          Handler().LogError(this, "SetMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
       }
@@ -583,16 +583,16 @@ namespace sockets
       }
       if (IsIpv6())
       {
-         int is_loop = 0;
-         socklen_t size = sizeof(int);
+         int32_t is_loop = 0;
+         socklen_t size = sizeof(int32_t);
          if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
          {
             Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
          }
          return is_loop ? true : false;
       }
-      int is_loop = 0;
-      socklen_t size = sizeof(int);
+      int32_t is_loop = 0;
+      socklen_t size = sizeof(int32_t);
       if (getsockopt(GetSocket(), SOL_IP, IP_MULTICAST_LOOP, (char *)&is_loop, &size) == -1)
       {
          Handler().LogError(this, "IsMulticastLoop", Errno, StrError(Errno), ::gen::log::level::warning);
@@ -601,7 +601,7 @@ namespace sockets
    }
 
 
-   void udp_socket::AddMulticastMembership(const string & group, const string & local_if, int if_index)
+   void udp_socket::AddMulticastMembership(const string & group, const string & local_if, int32_t if_index)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -638,7 +638,7 @@ namespace sockets
    }
 
 
-   void udp_socket::DropMulticastMembership(const string & group, const string & local_if, int if_index)
+   void udp_socket::DropMulticastMembership(const string & group, const string & local_if, int32_t if_index)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -675,7 +675,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SetMulticastHops(int hops)
+   void udp_socket::SetMulticastHops(int32_t hops)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -686,14 +686,14 @@ namespace sockets
          Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::gen::log::level::error);
          return;
       }
-      if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int)) == -1)
+      if (setsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, sizeof(int32_t)) == -1)
       {
          Handler().LogError(this, "SetMulticastHops", Errno, StrError(Errno), ::gen::log::level::warning);
       }
    }
 
 
-   int udp_socket::GetMulticastHops()
+   int32_t udp_socket::GetMulticastHops()
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -704,8 +704,8 @@ namespace sockets
          Handler().LogError(this, "SetMulticastHops", 0, "Ipv6 only", ::gen::log::level::error);
          return -1;
       }
-      int hops = 0;
-      socklen_t size = sizeof(int);
+      int32_t hops = 0;
+      socklen_t size = sizeof(int32_t);
       if (getsockopt(GetSocket(), IPPROTO_IPV6, IPV6_MULTICAST_HOPS, (char *)&hops, &size) == -1)
       {
          Handler().LogError(this, "GetMulticastHops", Errno, StrError(Errno), ::gen::log::level::warning);

@@ -23,7 +23,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void dib::construct (int cx,  int cy)
+   void dib::construct (int32_t cx,  int32_t cy)
    {
       UNREFERENCED_PARAMETER(cx);
       UNREFERENCED_PARAMETER(cy);
@@ -76,7 +76,7 @@ namespace ca
       return create(size.cx, size.cy);
    }
 
-   bool dib::create(int width, int height)
+   bool dib::create(int32_t width, int32_t height)
    {
       return create(::size(width, height));
    }
@@ -175,13 +175,13 @@ namespace ca
       return get_graphics()->from(ptDst, size, pdc, ptSrc, SRCCOPY) != FALSE;
    }
 
-   void dib::set( int R, int G, int B )
+   void dib::set( int32_t R, int32_t G, int32_t B )
    {
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       COLORREF * pcr = get_data();
 
-      for(int i=0; i < size; i++)
+      for(int32_t i=0; i < size; i++)
       {
          ((byte *) pcr)[0] = R;
          ((byte *) pcr)[1] = G;
@@ -191,15 +191,15 @@ namespace ca
 
    }
 
-/*   void dib::Fill ( int R, int G, int B )
+/*   void dib::Fill ( int32_t R, int32_t G, int32_t B )
    {
       COLORREF color=RGB ( B, G, R );
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       COLORREF * pcr;
 
-      int iSize32 = size / 32;
-      int i;
+      int32_t iSize32 = size / 32;
+      int32_t i;
       for (i=0; i < iSize32; i+=32 )
       {
          pcr = &get_data()[i];
@@ -245,10 +245,10 @@ namespace ca
    */
 
 
-   void dib::ToAlpha(int i)
+   void dib::ToAlpha(int32_t i)
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -285,54 +285,54 @@ namespace ca
 
       while (size >= 8)
       {
-         dst[0] = LOBYTE(((int)dst[0] * (int)dst[3])>> 8);
-         dst[1] = LOBYTE(((int)dst[1] * (int)dst[3])>> 8);
-         dst[2] = LOBYTE(((int)dst[2] * (int)dst[3])>> 8);
+         dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
+         dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
+         dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
 
-         dst[4+0] = LOBYTE(((int)dst[4+0] * (int)dst[4+3])>> 8);
-         dst[4+1] = LOBYTE(((int)dst[4+1] * (int)dst[4+3])>> 8);
-         dst[4+2] = LOBYTE(((int)dst[4+2] * (int)dst[4+3])>> 8);
+         dst[4+0] = LOBYTE(((int32_t)dst[4+0] * (int32_t)dst[4+3])>> 8);
+         dst[4+1] = LOBYTE(((int32_t)dst[4+1] * (int32_t)dst[4+3])>> 8);
+         dst[4+2] = LOBYTE(((int32_t)dst[4+2] * (int32_t)dst[4+3])>> 8);
 
-         dst[8+0] = LOBYTE(((int)dst[8+0] * (int)dst[8+3])>> 8);
-         dst[8+1] = LOBYTE(((int)dst[8+1] * (int)dst[8+3])>> 8);
-         dst[8+2] = LOBYTE(((int)dst[8+2] * (int)dst[8+3])>> 8);
+         dst[8+0] = LOBYTE(((int32_t)dst[8+0] * (int32_t)dst[8+3])>> 8);
+         dst[8+1] = LOBYTE(((int32_t)dst[8+1] * (int32_t)dst[8+3])>> 8);
+         dst[8+2] = LOBYTE(((int32_t)dst[8+2] * (int32_t)dst[8+3])>> 8);
 
-         dst[12+0] = LOBYTE(((int)dst[12+0] * (int)dst[12+3])>> 8);
-         dst[12+1] = LOBYTE(((int)dst[12+1] * (int)dst[12+3])>> 8);
-         dst[12+2] = LOBYTE(((int)dst[12+2] * (int)dst[12+3])>> 8);
+         dst[12+0] = LOBYTE(((int32_t)dst[12+0] * (int32_t)dst[12+3])>> 8);
+         dst[12+1] = LOBYTE(((int32_t)dst[12+1] * (int32_t)dst[12+3])>> 8);
+         dst[12+2] = LOBYTE(((int32_t)dst[12+2] * (int32_t)dst[12+3])>> 8);
 
-         dst[16+0] = LOBYTE(((int)dst[16+0] * (int)dst[16+3])>> 8);
-         dst[16+1] = LOBYTE(((int)dst[16+1] * (int)dst[16+3])>> 8);
-         dst[16+2] = LOBYTE(((int)dst[16+2] * (int)dst[16+3])>> 8);
+         dst[16+0] = LOBYTE(((int32_t)dst[16+0] * (int32_t)dst[16+3])>> 8);
+         dst[16+1] = LOBYTE(((int32_t)dst[16+1] * (int32_t)dst[16+3])>> 8);
+         dst[16+2] = LOBYTE(((int32_t)dst[16+2] * (int32_t)dst[16+3])>> 8);
 
-         dst[20+0] = LOBYTE(((int)dst[20+0] * (int)dst[20+3])>> 8);
-         dst[20+1] = LOBYTE(((int)dst[20+1] * (int)dst[20+3])>> 8);
-         dst[20+2] = LOBYTE(((int)dst[20+2] * (int)dst[20+3])>> 8);
+         dst[20+0] = LOBYTE(((int32_t)dst[20+0] * (int32_t)dst[20+3])>> 8);
+         dst[20+1] = LOBYTE(((int32_t)dst[20+1] * (int32_t)dst[20+3])>> 8);
+         dst[20+2] = LOBYTE(((int32_t)dst[20+2] * (int32_t)dst[20+3])>> 8);
 
-         dst[24+0] = LOBYTE(((int)dst[24+0] * (int)dst[24+3])>> 8);
-         dst[24+1] = LOBYTE(((int)dst[24+1] * (int)dst[24+3])>> 8);
-         dst[24+2] = LOBYTE(((int)dst[24+2] * (int)dst[24+3])>> 8);
+         dst[24+0] = LOBYTE(((int32_t)dst[24+0] * (int32_t)dst[24+3])>> 8);
+         dst[24+1] = LOBYTE(((int32_t)dst[24+1] * (int32_t)dst[24+3])>> 8);
+         dst[24+2] = LOBYTE(((int32_t)dst[24+2] * (int32_t)dst[24+3])>> 8);
 
-         dst[28+0] = LOBYTE(((int)dst[28+0] * (int)dst[28+3])>> 8);
-         dst[28+1] = LOBYTE(((int)dst[28+1] * (int)dst[28+3])>> 8);
-         dst[28+2] = LOBYTE(((int)dst[28+2] * (int)dst[28+3])>> 8);
+         dst[28+0] = LOBYTE(((int32_t)dst[28+0] * (int32_t)dst[28+3])>> 8);
+         dst[28+1] = LOBYTE(((int32_t)dst[28+1] * (int32_t)dst[28+3])>> 8);
+         dst[28+2] = LOBYTE(((int32_t)dst[28+2] * (int32_t)dst[28+3])>> 8);
 
          dst += 4 * 8;
          size -= 8;
       }
       while(size--)
       {
-         dst[0] = LOBYTE(((int)dst[0] * (int)dst[3])>> 8);
-         dst[1] = LOBYTE(((int)dst[1] * (int)dst[3])>> 8);
-         dst[2] = LOBYTE(((int)dst[2] * (int)dst[3])>> 8);
+         dst[0] = LOBYTE(((int32_t)dst[0] * (int32_t)dst[3])>> 8);
+         dst[1] = LOBYTE(((int32_t)dst[1] * (int32_t)dst[3])>> 8);
+         dst[2] = LOBYTE(((int32_t)dst[2] * (int32_t)dst[3])>> 8);
          dst += 4;
       }
    }
 
-   void dib::Map(int ToRgb, int FromRgb)
+   void dib::Map(int32_t ToRgb, int32_t FromRgb)
    {
       byte * dst= (byte *) get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -342,10 +342,10 @@ namespace ca
    }
 
 
-   void dib::ToAlphaAndFill(int i, COLORREF cr)
+   void dib::ToAlphaAndFill(int32_t i, COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       BYTE uchB = rgba_get_b(cr);
       BYTE uchG = rgba_get_g(cr);
@@ -364,7 +364,7 @@ namespace ca
    void dib::GrayToARGB(COLORREF cr)
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       DWORD dwB = rgba_get_b(cr);
       DWORD dwG = rgba_get_g(cr);
@@ -381,7 +381,7 @@ namespace ca
    }
 
 
-   void dib::BitBlt(dib *pdib, int op)
+   void dib::BitBlt(dib *pdib, int32_t op)
    {
       if(op == 123) // zero dest RGB, invert alpha, and OR src RGB
       {
@@ -401,7 +401,7 @@ namespace ca
          //x64
 #else
          
-         int isize=cx*cy;
+         int32_t isize=cx*cy;
          LPDWORD lpbitsSrc= (LPDWORD) pdib->get_data();
          LPDWORD lpbitsDest= (LPDWORD) get_data();
          
@@ -446,9 +446,9 @@ fill_last:
 
    void dib::Invert()
    {
-      int size=cx*cy;
+      int32_t size=cx*cy;
       LPBYTE lpb = (LPBYTE) get_data();
-      for ( int i=0; i<size; i++ )
+      for ( int32_t i=0; i<size; i++ )
       {
          lpb[0] = 255 - lpb[0];
          lpb[1] = 255 - lpb[1];
@@ -461,8 +461,8 @@ fill_last:
    {
       int64_t size=area();
       LPBYTE lpb = (LPBYTE) get_data();
-      lpb += ((int)echannel) % 4;
-      for ( int i=0; i<size; i++ )
+      lpb += ((int32_t)echannel) % 4;
+      for ( int32_t i=0; i<size; i++ )
       {
          *lpb = 255 - *lpb;
          lpb += 4;
@@ -475,10 +475,10 @@ fill_last:
          return;
       register int64_t size = area();
       LPBYTE lpb = (LPBYTE) get_data();
-      lpb += ((int)echannel) % 4;
-      register int iDiv = 256 * 256;
-      register int iMul = (int) (dRate * ((double) iDiv));
-      register int iRes;
+      lpb += ((int32_t)echannel) % 4;
+      register int32_t iDiv = 256 * 256;
+      register int32_t iMul = (int32_t) (dRate * ((double) iDiv));
+      register int32_t iRes;
       for(register int64_t i = 0; i < size; i++)
       {
          iRes = *lpb * iMul / iDiv;
@@ -492,11 +492,11 @@ fill_last:
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
-      lpb1 += ((int)echannel) % 4;
-      lpb2 += ((int)echannel) % 4;
+      lpb1 += ((int32_t)echannel) % 4;
+      lpb2 += ((int32_t)echannel) % 4;
       for(register int64_t i = 0; i < size; i++)
       {
-         *lpb1 = (BYTE)(((unsigned int)*lpb1 * (unsigned int)*lpb2) / 255);
+         *lpb1 = (BYTE)(((unsigned int32_t)*lpb1 * (unsigned int32_t)*lpb2) / 255);
          lpb1 += 4;
          lpb2 += 4;
       }
@@ -507,8 +507,8 @@ fill_last:
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
-      lpb1 += ((int)echannel) % 4;
-      lpb2 += ((int)echannel) % 4;
+      lpb1 += ((int32_t)echannel) % 4;
+      lpb2 += ((int32_t)echannel) % 4;
       for(register int64_t i = 0; i < size; i++)
       {
          *lpb1 = *lpb1 < *lpb2 ? *lpb1 : *lpb2;
@@ -522,8 +522,8 @@ fill_last:
       register int64_t size = area();
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
-      lpb1 += ((int)echannel) % 4;
-      lpb2 += ((int)echannel) % 4;
+      lpb1 += ((int32_t)echannel) % 4;
+      lpb2 += ((int32_t)echannel) % 4;
       for(register int64_t i = 0; i < size; i++)
       {
          *lpb1 = *lpb1 > *lpb2 ? *lpb1 : *lpb2;
@@ -540,8 +540,8 @@ fill_last:
       register int64_t size64 = size / 64;
       LPBYTE lpb1 = (LPBYTE) get_data();
       LPBYTE lpb2 = (LPBYTE) pdib->get_data();
-      lpb1 += ((int)echannel) % 4;
-      lpb2 += ((int)echannel) % 4;
+      lpb1 += ((int32_t)echannel) % 4;
+      lpb2 += ((int32_t)echannel) % 4;
       register int64_t i = 0;
       for(; i < size64; i++)
       {
@@ -624,10 +624,10 @@ fill_last:
    }
 
 
-   void dib::FillGlass ( int R, int G, int B, int A )
+   void dib::FillGlass ( int32_t R, int32_t G, int32_t B, int32_t A )
    {
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -638,15 +638,15 @@ fill_last:
       }
    }
 
-   void dib::FillStippledGlass ( int R, int G, int B )
+   void dib::FillStippledGlass ( int32_t R, int32_t G, int32_t B )
    {
       COLORREF color=RGB ( B, G, R );
-      int w=cx;
-      int h=cy;
+      int32_t w=cx;
+      int32_t h=cy;
 
-      for ( int j=0; j<w; j++ )
+      for ( int32_t j=0; j<w; j++ )
       {
-         for ( int i=0; i<h; i++ )
+         for ( int32_t i=0; i<h; i++ )
          {
             get_data()[j*w+i]=((i+j)&0x1) ? get_data()[j*w+i] : color;
          }
@@ -699,7 +699,7 @@ fill_last:
    {
 
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       DWORD dwB = rgba_get_b(cr);
       DWORD dwG = rgba_get_g(cr);
@@ -720,14 +720,14 @@ fill_last:
    }
 
 
-   void dib::Blend(dib * dib, int A)
+   void dib::Blend(dib * dib, int32_t A)
    {
       if(size() != dib->size() )
          return;
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -739,7 +739,7 @@ fill_last:
       }
    }
 
-   bool dib::Blend(dib *pDib, dib *DibA, int A)
+   bool dib::Blend(dib *pDib, dib *DibA, int32_t A)
    {
       if(size() != pDib->size() ||
          size() != DibA->size())
@@ -748,7 +748,7 @@ fill_last:
       BYTE *src=(BYTE*)pDib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)DibA->get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       A = 2 - A;
 
@@ -774,18 +774,18 @@ fill_last:
       BYTE *src=(BYTE*)pdib->get_data();
       BYTE *dst=(BYTE*)get_data();
       BYTE *alf=(BYTE*)pdibRate->get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while(size >= 2)
       {
-         dst[00] = (BYTE) (((((int)src[00] - (int)dst[00]) * (int)alf[00]) + (int)dst[00] * (int)255) / 255);
-         dst[01] = (BYTE) (((((int)src[01] - (int)dst[01]) * (int)alf[01]) + (int)dst[01] * (int)255) / 255);
-         dst[02] = (BYTE) (((((int)src[02] - (int)dst[02]) * (int)alf[02]) + (int)dst[02] * (int)255) / 255);
-         dst[03] = (BYTE) (((((int)src[03] - (int)dst[03]) * (int)alf[03]) + (int)dst[03] * (int)255) / 255);
-         dst[04] = (BYTE) (((((int)src[04] - (int)dst[04]) * (int)alf[04]) + (int)dst[04] * (int)255) / 255);
-         dst[05] = (BYTE) (((((int)src[05] - (int)dst[05]) * (int)alf[05]) + (int)dst[05] * (int)255) / 255);
-         dst[06] = (BYTE) (((((int)src[06] - (int)dst[06]) * (int)alf[06]) + (int)dst[06] * (int)255) / 255);
-         dst[07] = (BYTE) (((((int)src[07] - (int)dst[07]) * (int)alf[07]) + (int)dst[07] * (int)255) / 255);
+         dst[00] = (BYTE) (((((int32_t)src[00] - (int32_t)dst[00]) * (int32_t)alf[00]) + (int32_t)dst[00] * (int32_t)255) / 255);
+         dst[01] = (BYTE) (((((int32_t)src[01] - (int32_t)dst[01]) * (int32_t)alf[01]) + (int32_t)dst[01] * (int32_t)255) / 255);
+         dst[02] = (BYTE) (((((int32_t)src[02] - (int32_t)dst[02]) * (int32_t)alf[02]) + (int32_t)dst[02] * (int32_t)255) / 255);
+         dst[03] = (BYTE) (((((int32_t)src[03] - (int32_t)dst[03]) * (int32_t)alf[03]) + (int32_t)dst[03] * (int32_t)255) / 255);
+         dst[04] = (BYTE) (((((int32_t)src[04] - (int32_t)dst[04]) * (int32_t)alf[04]) + (int32_t)dst[04] * (int32_t)255) / 255);
+         dst[05] = (BYTE) (((((int32_t)src[05] - (int32_t)dst[05]) * (int32_t)alf[05]) + (int32_t)dst[05] * (int32_t)255) / 255);
+         dst[06] = (BYTE) (((((int32_t)src[06] - (int32_t)dst[06]) * (int32_t)alf[06]) + (int32_t)dst[06] * (int32_t)255) / 255);
+         dst[07] = (BYTE) (((((int32_t)src[07] - (int32_t)dst[07]) * (int32_t)alf[07]) + (int32_t)dst[07] * (int32_t)255) / 255);
          dst+=4 * 2;
          src+=4 * 2;
          alf+=4 * 2;
@@ -793,10 +793,10 @@ fill_last:
       }
       while(size > 0)
       {
-         dst[00] = (BYTE) (((((int)src[00] - (int)dst[00]) * (int)alf[00]) + (int)dst[00] * (int)255) / 255);
-         dst[01] = (BYTE) (((((int)src[01] - (int)dst[01]) * (int)alf[01]) + (int)dst[01] * (int)255) / 255);
-         dst[02] = (BYTE) (((((int)src[02] - (int)dst[02]) * (int)alf[02]) + (int)dst[02] * (int)255) / 255);
-         dst[03] = (BYTE) (((((int)src[03] - (int)dst[03]) * (int)alf[03]) + (int)dst[03] * (int)255) / 255);
+         dst[00] = (BYTE) (((((int32_t)src[00] - (int32_t)dst[00]) * (int32_t)alf[00]) + (int32_t)dst[00] * (int32_t)255) / 255);
+         dst[01] = (BYTE) (((((int32_t)src[01] - (int32_t)dst[01]) * (int32_t)alf[01]) + (int32_t)dst[01] * (int32_t)255) / 255);
+         dst[02] = (BYTE) (((((int32_t)src[02] - (int32_t)dst[02]) * (int32_t)alf[02]) + (int32_t)dst[02] * (int32_t)255) / 255);
+         dst[03] = (BYTE) (((((int32_t)src[03] - (int32_t)dst[03]) * (int32_t)alf[03]) + (int32_t)dst[03] * (int32_t)255) / 255);
          dst+=4;
          src+=4;
          alf+=4;
@@ -813,7 +813,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -832,11 +832,11 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
-         int Difference;
+         int32_t Difference;
          Difference=src[0]-dst[0];
          dst[0]=(BYTE)((Difference<0) ? -Difference : Difference);
          Difference=src[1]-dst[1];
@@ -855,7 +855,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -874,7 +874,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -893,7 +893,7 @@ fill_last:
 
       BYTE *src=(BYTE*)dib->get_data();
       BYTE *dst=(BYTE*)get_data();
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       while ( size-- )
       {
@@ -909,13 +909,13 @@ fill_last:
    // Rectangle Functions
    //////////////////////////////////////////////////////////////////////
 
-   void dib::copy ( dib *dib, int x, int y )
+   void dib::copy ( dib *dib, int32_t x, int32_t y )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -936,7 +936,7 @@ fill_last:
       // Do copy
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
             dst[i]=src[i];
          src+=cx;
          dst+=dib->cx;
@@ -944,13 +944,13 @@ fill_last:
 
    }
 
-   void dib::PasteRect ( dib *dib, int x, int y )
+   void dib::PasteRect ( dib *dib, int32_t x, int32_t y )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -965,20 +965,20 @@ fill_last:
       // Do Paste
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
             dst[i]=src[i];
          src+=dib->cx;
          dst+=cx;
       }
    }
 
-   void dib::FillRect ( int x, int y, int w, int h, int R, int G, int B )
+   void dib::FillRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t R, int32_t G, int32_t B )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+w)<cx) ? w : cx-x;
-      int dy=((y+h)<cy) ? h : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+w)<cx) ? w : cx-x;
+      int32_t dy=((y+h)<cy) ? h : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -993,7 +993,7 @@ fill_last:
       // Do Fill
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[i]=color;
          }
@@ -1001,13 +1001,13 @@ fill_last:
       }
    }
 
-   void dib::FillGlassRect ( int x, int y, int w, int h, int R, int G, int B, int A )
+   void dib::FillGlassRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t R, int32_t G, int32_t B, int32_t A )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+w)<cx) ? w : cx-x;
-      int dy=((y+h)<cy) ? h : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+w)<cx) ? w : cx-x;
+      int32_t dy=((y+h)<cy) ? h : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1021,7 +1021,7 @@ fill_last:
       // Do FillGlass
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[0]=(BYTE)(((B-dst[0])*A+(dst[0]<<8))>>8);
             dst[1]=(BYTE)(((G-dst[1])*A+(dst[1]<<8))>>8);
@@ -1032,13 +1032,13 @@ fill_last:
       }
    }
 
-   void dib::FillStippledGlassRect ( int x, int y, int w, int h, int R, int G, int B )
+   void dib::FillStippledGlassRect ( int32_t x, int32_t y, int32_t w, int32_t h, int32_t R, int32_t G, int32_t B )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+w)<cx) ? w : cx-x;
-      int dy=((y+h)<cy) ? h : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+w)<cx) ? w : cx-x;
+      int32_t dy=((y+h)<cy) ? h : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1051,9 +1051,9 @@ fill_last:
       COLORREF color=RGB ( B, G, R );
 
       // Do FillStippledGlass
-      for ( int j=0; j<dy; j++ )
+      for ( int32_t j=0; j<dy; j++ )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[i]=((i+j)&0x1) ? dst[i] : color;
          }
@@ -1061,13 +1061,13 @@ fill_last:
       }
    }
 
-   void dib::BlendRect ( dib *dib, int x, int y, int A )
+   void dib::BlendRect ( dib *dib, int32_t x, int32_t y, int32_t A )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1082,7 +1082,7 @@ fill_last:
       // Do Blend
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[0]=(BYTE)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
             dst[1]=(BYTE)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
@@ -1095,13 +1095,13 @@ fill_last:
       }
    }
 
-   void dib::DarkenRect ( dib *dib, int x, int y )
+   void dib::DarkenRect ( dib *dib, int32_t x, int32_t y )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1116,7 +1116,7 @@ fill_last:
       // Do Darken
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[0]=(BYTE)((src[0]<dst[0]) ? src[0] : dst[0]);
             dst[1]=(BYTE)((src[1]<dst[1]) ? src[1] : dst[1]);
@@ -1129,13 +1129,13 @@ fill_last:
       }
    }
 
-   void dib::DifferenceRect ( dib *dib, int x, int y )
+   void dib::DifferenceRect ( dib *dib, int32_t x, int32_t y )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1150,9 +1150,9 @@ fill_last:
       // Do Difference
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
-            int Difference;
+            int32_t Difference;
             Difference=src[0]-dst[0];
             dst[0]=(BYTE)((Difference<0) ? -Difference : Difference);
             Difference=src[1]-dst[1];
@@ -1167,13 +1167,13 @@ fill_last:
       }
    }
 
-   void dib::LightenRect ( dib *dib, int x, int y )
+   void dib::LightenRect ( dib *dib, int32_t x, int32_t y )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1188,7 +1188,7 @@ fill_last:
       // Do Lighten
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[0]=(BYTE)((src[0]>dst[0]) ? src[0] : dst[0]);
             dst[1]=(BYTE)((src[1]>dst[1]) ? src[1] : dst[1]);
@@ -1201,13 +1201,13 @@ fill_last:
       }
    }
 
-   void dib::MultiplyRect ( dib *dib, int x, int y )
+   void dib::MultiplyRect ( dib *dib, int32_t x, int32_t y )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1222,7 +1222,7 @@ fill_last:
       // Do Multiply
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[0]=(BYTE)(((src[0])*(dst[0]))>>8);
             dst[1]=(BYTE)(((src[1])*(dst[1]))>>8);
@@ -1235,13 +1235,13 @@ fill_last:
       }
    }
 
-   void dib::ScreenRect ( dib *dib, int x, int y )
+   void dib::ScreenRect ( dib *dib, int32_t x, int32_t y )
    {
       // Clip Rect
-      int px=(x>=0) ? x : 0;
-      int py=(y>=0) ? y : 0;
-      int dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
-      int dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
+      int32_t px=(x>=0) ? x : 0;
+      int32_t py=(y>=0) ? y : 0;
+      int32_t dx=((x+dib->cx)<cx) ? dib->cx : cx-x;
+      int32_t dy=((y+dib->cy)<cy) ? dib->cy : cy-y;
       dx=(x>=0) ? dx : dx + x;
       dy=(y>=0) ? dy : dy + y;
 
@@ -1256,7 +1256,7 @@ fill_last:
       // Do Screen
       while ( dy-- )
       {
-         for ( int i=0; i<dx; i++ )
+         for ( int32_t i=0; i<dx; i++ )
          {
             dst[0]=(BYTE)(255-(((255-src[0])*(255-dst[0]))>>8));
             dst[1]=(BYTE)(255-(((255-src[1])*(255-dst[1]))>>8));
@@ -1273,9 +1273,9 @@ fill_last:
    // Line Functions
    //////////////////////////////////////////////////////////////////////
 
-   /*void dib::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
+   /*void dib::Line ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B )
    {
-   int dx, dy, k1, k2, d, x, y;
+   int32_t dx, dy, k1, k2, d, x, y;
    COLORREF color=RGB ( B, G, R );
 
    dx=x2-x1;
@@ -1305,7 +1305,7 @@ fill_last:
    }*/
 
 
-   void dib::horizontal_line(int y, int R, int G, int B, int A, int x1, int x2)
+   void dib::horizontal_line(int32_t y, int32_t R, int32_t G, int32_t B, int32_t A, int32_t x1, int32_t x2)
    {
       if(cx == 0)
          return;
@@ -1317,16 +1317,16 @@ fill_last:
          x1 += cx;
       COLORREF color=RGB ( B, G, R ) | (A << 24);
       COLORREF * pdata = get_data() + y * cx;
-      for(int x = x1; x <= x2; x++)
+      for(int32_t x = x1; x <= x2; x++)
       {
          *pdata = color;
          pdata++;
       }
    }
 
-   void dib::Line ( int x1, int y1, int x2, int y2, int R, int G, int B )
+   void dib::Line ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B )
    {
-      int d, x, y, ca, ay, sx, sy, dx, dy;
+      int32_t d, x, y, ca, ay, sx, sy, dx, dy;
       COLORREF color=RGB ( B, G, R );
 
       dx=x2-x1;
@@ -1370,9 +1370,9 @@ fill_last:
       }
    }
 
-   void dib::LineGlass ( int x1, int y1, int x2, int y2, int R, int G, int B, int A )
+   void dib::LineGlass ( int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t R, int32_t G, int32_t B, int32_t A )
    {
-      int d, x, y, ca, ay, sx, sy, dx, dy;
+      int32_t d, x, y, ca, ay, sx, sy, dx, dy;
 //      COLORREF color=RGB ( B, G, R );
       BYTE *dst=(BYTE *)get_data();
 
@@ -1427,9 +1427,9 @@ fill_last:
       COLORREF crSet = RGB(rgba_get_b(crInMask), rgba_get_g(crInMask), rgba_get_r(crInMask));
       COLORREF crUnset  = RGB(rgba_get_b(crOutMask), rgba_get_g(crOutMask), rgba_get_r(crOutMask));
 
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
-      for ( int i=0; i<size; i++ )
+      for ( int32_t i=0; i<size; i++ )
          if(get_data()[i]== crFind)
             get_data()[i] = crSet;
          else
@@ -1442,7 +1442,7 @@ fill_last:
       COLORREF crFind = color.get_rgb();
       int64_t iSize = area();
 
-      for (int i=0; i<iSize; i++ )
+      for (int32_t i=0; i<iSize; i++ )
          if((get_data()[i] & 0x00ffffff) == crFind)
             ((LPBYTE)&get_data()[i])[3] = 255;
          else
@@ -1451,11 +1451,11 @@ fill_last:
 
    void dib::channel_mask(unsigned char uchFind, unsigned char uchSet, unsigned char uchUnset, visual::rgba::echannel echannel)
    {
-      int size = cx * cy;
+      int32_t size = cx * cy;
       unsigned char * puch = (unsigned char * ) get_data();
-      puch += ((int) echannel) % 4;
+      puch += ((int32_t) echannel) % 4;
 
-      for(int i = 0; i < size; i++)
+      for(int32_t i = 0; i < size; i++)
       {
          if(*puch == uchFind)
             *puch = uchSet;
@@ -1465,7 +1465,7 @@ fill_last:
       }
    }
 
-   DWORD dib::GetPixel(int x, int y)
+   DWORD dib::GetPixel(int32_t x, int32_t y)
    {
       DWORD dw = *(get_data() + x + (cy - y - 1) * cx);
       return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
@@ -1476,19 +1476,19 @@ fill_last:
    // The gradient can´t have more then 256 levels of the most bright color
    // (white). So creating a radial fill of radius 256 and then using fasting
    // stretching algorithms is much faster than calculating radial fill.
-   void dib::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, int xCenter, int yCenter, int iRadius)
+   void dib::RadialFill(BYTE alpha, BYTE red, BYTE green, BYTE blue, int32_t xCenter, int32_t yCenter, int32_t iRadius)
    {
       if (iRadius == 0)
          return;
       /*if(version == 0)
       {
 
-      int iR = iRadius - 1;
+      int32_t iR = iRadius - 1;
 
-      int xL = xCenter - iR;
-      int xU = xCenter + iR;
-      int yL = yCenter - iR;
-      int yU = yCenter + iR;
+      int32_t xL = xCenter - iR;
+      int32_t xU = xCenter + iR;
+      int32_t yL = yCenter - iR;
+      int32_t yU = yCenter + iR;
 
 
       if(xL < 0) xL = 0;
@@ -1499,26 +1499,26 @@ fill_last:
 
       BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.cx));
       DWORD dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
-      int size=m_Size.cx*m_Size.cy;
+      int32_t size=m_Size.cx*m_Size.cy;
       double iLevel;
 
-      int dx, dy;
-      int dx0, dy0;
-      int dx1, dy1;
-      int dx2, dy2;
-      int dx3, dy3;
-      int dx4, dy4;
-      int dx5, dy5;
-      int dx6, dy6;
-      int dx7, dy7;
-      int dx8, dy8;
-      int dx9, dy9;
-      int dxA, dyA;
-      int dxB, dyB;
-      int dxC, dyC;
-      int dxD, dyD;
-      int dxE, dyE;
-      int dxF, dyF;
+      int32_t dx, dy;
+      int32_t dx0, dy0;
+      int32_t dx1, dy1;
+      int32_t dx2, dy2;
+      int32_t dx3, dy3;
+      int32_t dx4, dy4;
+      int32_t dx5, dy5;
+      int32_t dx6, dy6;
+      int32_t dx7, dy7;
+      int32_t dx8, dy8;
+      int32_t dx9, dy9;
+      int32_t dxA, dyA;
+      int32_t dxB, dyB;
+      int32_t dxC, dyC;
+      int32_t dxD, dyD;
+      int32_t dxE, dyE;
+      int32_t dxF, dyF;
 
       unsigned long dr;
       unsigned long dq;
@@ -1538,7 +1538,7 @@ fill_last:
       unsigned long drD, dqD;
       unsigned long drE, dqE;
       unsigned long drF, dqF;
-      int x, y;
+      int32_t x, y;
 
       {
       for(y = yL; y <= yU; y++)
@@ -1568,16 +1568,16 @@ fill_last:
          LPBYTE lpb = ((LPBYTE) NULL) +  (*((puint_ptr) &lpbAlloc[3]) & ~3);
 
 
-         int x, y;
-         int b;
+         int32_t x, y;
+         int32_t b;
 
-//         int r2 = iRadius * iRadius;
+//         int32_t r2 = iRadius * iRadius;
 
          for(y = 0; y < iRadius; y++)
          {
             for(x = y; x < iRadius; x++)
             {
-               b = (int) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
+               b = (int32_t) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
                if(b > 255)
                   b = 0;
                else
@@ -1590,12 +1590,12 @@ fill_last:
          }
 
 
-         int iR = iRadius - 1;
+         int32_t iR = iRadius - 1;
 
-         int xL = xCenter - iR;
-         int xU = xCenter + iR;
-         int yL = yCenter - iR;
-         int yU = yCenter + iR;
+         int32_t xL = xCenter - iR;
+         int32_t xU = xCenter + iR;
+         int32_t yL = yCenter - iR;
+         int32_t yU = yCenter + iR;
 
 
          if(xL < 0) xL = 0;
@@ -1606,9 +1606,9 @@ fill_last:
 
          BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
          DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int size=cx*cy;
+//         int32_t size=cx*cy;
 
-         int dx, dy;
+         int32_t dx, dy;
 
          // Top Left
 
@@ -1636,19 +1636,19 @@ fill_last:
    void dib::RadialFill(
       BYTE alpha1, BYTE red1, BYTE green1, BYTE blue1,
       BYTE alpha2, BYTE red2, BYTE green2, BYTE blue2,
-      int xCenter, int yCenter, int iRadius)
+      int32_t xCenter, int32_t yCenter, int32_t iRadius)
    {
       if (iRadius == 0)
          return;
       /*if(version == 0)
       {
 
-      int iR = iRadius - 1;
+      int32_t iR = iRadius - 1;
 
-      int xL = xCenter - iR;
-      int xU = xCenter + iR;
-      int yL = yCenter - iR;
-      int yU = yCenter + iR;
+      int32_t xL = xCenter - iR;
+      int32_t xU = xCenter + iR;
+      int32_t yL = yCenter - iR;
+      int32_t yU = yCenter + iR;
 
 
       if(xL < 0) xL = 0;
@@ -1659,26 +1659,26 @@ fill_last:
 
       BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.cx));
       DWORD dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
-      int size=m_Size.cx*m_Size.cy;
+      int32_t size=m_Size.cx*m_Size.cy;
       double iLevel;
 
-      int dx, dy;
-      int dx0, dy0;
-      int dx1, dy1;
-      int dx2, dy2;
-      int dx3, dy3;
-      int dx4, dy4;
-      int dx5, dy5;
-      int dx6, dy6;
-      int dx7, dy7;
-      int dx8, dy8;
-      int dx9, dy9;
-      int dxA, dyA;
-      int dxB, dyB;
-      int dxC, dyC;
-      int dxD, dyD;
-      int dxE, dyE;
-      int dxF, dyF;
+      int32_t dx, dy;
+      int32_t dx0, dy0;
+      int32_t dx1, dy1;
+      int32_t dx2, dy2;
+      int32_t dx3, dy3;
+      int32_t dx4, dy4;
+      int32_t dx5, dy5;
+      int32_t dx6, dy6;
+      int32_t dx7, dy7;
+      int32_t dx8, dy8;
+      int32_t dx9, dy9;
+      int32_t dxA, dyA;
+      int32_t dxB, dyB;
+      int32_t dxC, dyC;
+      int32_t dxD, dyD;
+      int32_t dxE, dyE;
+      int32_t dxF, dyF;
 
       unsigned long dr;
       unsigned long dq;
@@ -1698,7 +1698,7 @@ fill_last:
       unsigned long drD, dqD;
       unsigned long drE, dqE;
       unsigned long drF, dqF;
-      int x, y;
+      int32_t x, y;
 
       {
       for(y = yL; y <= yU; y++)
@@ -1728,16 +1728,16 @@ fill_last:
          LPBYTE lpb = ((LPBYTE) NULL) +  (*((puint_ptr) &lpbAlloc[3]) & ~3);
 
 
-         int x, y;
-         int b;
+         int32_t x, y;
+         int32_t b;
 
-//         int r2 = iRadius * iRadius;
+//         int32_t r2 = iRadius * iRadius;
 
          for(y = 0; y < iRadius; y++)
          {
             for(x = y; x < iRadius; x++)
             {
-               b = (int) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
+               b = (int32_t) (sqrt((double) (x * x) + (y * y)) * 255 / iRadius);
                if(b > 255)
                   b = 0;
                else
@@ -1750,12 +1750,12 @@ fill_last:
          }
 
 
-         int iR = iRadius - 1;
+         int32_t iR = iRadius - 1;
 
-         int xL = xCenter - iR;
-         int xU = xCenter + iR;
-         int yL = yCenter - iR;
-         int yU = yCenter + iR;
+         int32_t xL = xCenter - iR;
+         int32_t xU = xCenter + iR;
+         int32_t yL = yCenter - iR;
+         int32_t yU = yCenter + iR;
 
 
          if(xL < 0) xL = 0;
@@ -1766,9 +1766,9 @@ fill_last:
 
          BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
          DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
-//         int size=cx*cy;
+//         int32_t size=cx*cy;
 
-         int dx, dy;
+         int32_t dx, dy;
 
          BYTE bComp;
 
@@ -1797,7 +1797,7 @@ fill_last:
 
 
 
-   void dib::SetIconMask(::visual::icon * picon, int cx, int cy)
+   void dib::SetIconMask(::visual::icon * picon, int32_t cx, int32_t cy)
    {
 
       throw todo(get_app());
@@ -1886,7 +1886,7 @@ fill_last:
       BYTE * r2=(BYTE*)spdib2->get_data();
       BYTE * srcM=(BYTE*)dibM.get_data();
       BYTE * dest=(BYTE*)get_data();
-      int iSize = cx*cy;
+      int32_t iSize = cx*cy;
 
       BYTE b;
       BYTE bMax;
@@ -1925,32 +1925,32 @@ fill_last:
       // ::ca::dib_sp spdib(get_app());
       //   spdib->Paste(this);
 
-      int l = max(cx, cy);
+      int32_t l = max(cx, cy);
 
 
-      int jmax = min(l, cy / 2);
-      int jmin = - jmax;
-      int imax = min(l, cx / 2);
-      int imin = - imax;
+      int32_t jmax = min(l, cy / 2);
+      int32_t jmin = - jmax;
+      int32_t imax = min(l, cx / 2);
+      int32_t imin = - imax;
 
 
-      int joff = cy / 2;
-      int ioff = cx / 2;
+      int32_t joff = cy / 2;
+      int32_t ioff = cx / 2;
 
-      //int iAngle = iStep % 360;
-      //int iAngle = iStep;
-      //int iAngle = 1;
-      //int k = 0;
+      //int32_t iAngle = iStep % 360;
+      //int32_t iAngle = iStep;
+      //int32_t iAngle = 1;
+      //int32_t k = 0;
 
-      /*     for ( int j=jmin; j<jmax; j++ )
+      /*     for ( int32_t j=jmin; j<jmax; j++ )
       {
-      for ( int i=imin; i<imax; i++ )
+      for ( int32_t i=imin; i<imax; i++ )
       {
-      int x, y;
+      int32_t x, y;
 
       // A Combination of a 2d Translation/rotation/Scale Matrix
-      x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-      y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
+      x=int32_t(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
+      y=int32_t(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
       get_data()[(j+joff)*cx+(i+ioff)]=
       spdib->get_data()[abs(y%cy)*cx+abs(x%cx)];
       //k++;
@@ -1958,23 +1958,23 @@ fill_last:
       (j+joff)*cx+(i+ioff)
       }*/
 
-      int k = 0;
+      int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int cx1 = cx - 1;
-      int cy1 = cy - 1;
-      for ( int j=jmin; j<jmax; j++ )
+      int32_t cx1 = cx - 1;
+      int32_t cy1 = cy - 1;
+      for ( int32_t j=jmin; j<jmax; j++ )
       {
-         for ( int i=imin; i<imax; i++ )
+         for ( int32_t i=imin; i<imax; i++ )
          {
-            int x, y;
+            int32_t x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
-            //y=abs((int(dSin * i + dCos * j) + joff) % cy);
+            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % cx);
+            //y=abs((int32_t(dSin * i + dCos * j) + joff) % cy);
 
-            x = (int) abs((dCos * i - dSin * j) + ioff);
-            y = (int) abs((dSin * i + dCos * j) + joff);
+            x = (int32_t) abs((dCos * i - dSin * j) + ioff);
+            y = (int32_t) abs((dSin * i + dCos * j) + joff);
 
             if((x / cx) % 2 == 0)
             {
@@ -2007,13 +2007,13 @@ fill_last:
    void dib::Rotate034(dib * pdib, double dAngle, double dScale)
    {
 
-      int l = max(cx, cy);
+      int32_t l = max(cx, cy);
 
 
-      int jmax = min(l, cy / 2);
-      int jmin = - jmax;
-      int imax = min(l, cx / 2);
-      int imin = - imax;
+      int32_t jmax = min(l, cy / 2);
+      int32_t jmin = - jmax;
+      int32_t imax = min(l, cx / 2);
+      int32_t imin = - imax;
 
 
       if((cy % 2) == 1)
@@ -2022,27 +2022,27 @@ fill_last:
       if((cx % 2) == 1)
          imax++;
 
-      int joff = cy / 2;
-      int ioff = cx / 2;
+      int32_t joff = cy / 2;
+      int32_t ioff = cx / 2;
 
 
-      int k = 0;
+      int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int cx1 = cx - 1;
-      int cy1 = cy - 1;
-      for ( int j=jmin; j<jmax; j++ )
+      int32_t cx1 = cx - 1;
+      int32_t cy1 = cy - 1;
+      for ( int32_t j=jmin; j<jmax; j++ )
       {
-         for ( int i=imin; i<imax; i++ )
+         for ( int32_t i=imin; i<imax; i++ )
          {
-            int x, y;
+            int32_t x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
-            //y=abs((int(dSin * i + dCos * j) + joff) % cy);
+            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % cx);
+            //y=abs((int32_t(dSin * i + dCos * j) + joff) % cy);
 
-            x = (int) abs((dCos * i - dSin * j) + ioff);
-            y = (int) abs((dSin * i + dCos * j) + joff);
+            x = (int32_t) abs((dCos * i - dSin * j) + ioff);
+            y = (int32_t) abs((dSin * i + dCos * j) + joff);
 
             if((x / cx) % 2 == 0)
             {
@@ -2080,34 +2080,34 @@ fill_last:
 
       rect rect(lpcrect);
 
-      int cx = rect.width();
-      int cy = rect.height();
+      int32_t cx = rect.width();
+      int32_t cy = rect.height();
 
-      int l = max(cx, cy);
+      int32_t l = max(cx, cy);
 
-      int jmax = min(l, cy / 2);
-      int jmin = - jmax;
-      int imax = min(l, cx / 2);
-      int imin = - imax;
+      int32_t jmax = min(l, cy / 2);
+      int32_t jmin = - jmax;
+      int32_t imax = min(l, cx / 2);
+      int32_t imin = - imax;
 
 
-      int joff = cy / 2 + rect.left;
-      int ioff = cx / 2 + rect.top;
+      int32_t joff = cy / 2 + rect.left;
+      int32_t ioff = cx / 2 + rect.top;
 
-      //int iAngle = iStep % 360;
-      //int iAngle = iStep;
-      //int iAngle = 1;
-      //int k = 0;
+      //int32_t iAngle = iStep % 360;
+      //int32_t iAngle = iStep;
+      //int32_t iAngle = 1;
+      //int32_t k = 0;
 
-      /*     for ( int j=jmin; j<jmax; j++ )
+      /*     for ( int32_t j=jmin; j<jmax; j++ )
       {
-      for ( int i=imin; i<imax; i++ )
+      for ( int32_t i=imin; i<imax; i++ )
       {
-      int x, y;
+      int32_t x, y;
 
       // A Combination of a 2d Translation/rotation/Scale Matrix
-      x=int(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
-      y=int(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
+      x=int32_t(cos10(i, iAngle) - sin10(j, iAngle)) + ioff;
+      y=int32_t(sin10(i, iAngle) + cos10(j, iAngle)) + joff;
       get_data()[(j+joff)*cx+(i+ioff)]=
       spdib->get_data()[abs(y%cy)*cx+abs(x%cx)];
       //k++;
@@ -2115,23 +2115,23 @@ fill_last:
       (j+joff)*cx+(i+ioff)
       }*/
 
-      int k = 0;
+      int32_t k = 0;
       double dCos = ::cos(dAngle * pi() / 180.0) * dScale;
       double dSin = ::sin(dAngle * pi() / 180.0) * dScale;
-      int cx1 = cx - 1;
-      int cy1 = cy - 1;
-      for ( int j=jmin; j<jmax; j++ )
+      int32_t cx1 = cx - 1;
+      int32_t cy1 = cy - 1;
+      for ( int32_t j=jmin; j<jmax; j++ )
       {
-         for ( int i=imin; i<imax; i++ )
+         for ( int32_t i=imin; i<imax; i++ )
          {
-            int x, y;
+            int32_t x, y;
 
             // A Combination of a 2d Translation/rotation/Scale Matrix
-            //x=abs((int(dCos * i - dSin * j) + ioff) % cx);
-            //y=abs((int(dSin * i + dCos * j) + joff) % cy);
+            //x=abs((int32_t(dCos * i - dSin * j) + ioff) % cx);
+            //y=abs((int32_t(dSin * i + dCos * j) + joff) % cy);
 
-            x = (int) abs((dCos * i - dSin * j) + ioff);
-            y = (int) abs((dSin * i + dCos * j) + joff);
+            x = (int32_t) abs((dCos * i - dSin * j) + ioff);
+            y = (int32_t) abs((dSin * i + dCos * j) + joff);
 
             if((x / cx) % 2 == 0)
             {
@@ -2160,14 +2160,14 @@ fill_last:
       }
    }
 
-   /*int dib::cos(int i, int iAngle)
+   /*int32_t dib::cos(int32_t i, int32_t iAngle)
    {
-   return (int) (((_int64) i * CosN[iAngle]) >> 32);
+   return (int32_t) (((_int64) i * CosN[iAngle]) >> 32);
    }
 
-   int dib::sin(int i, int iAngle)
+   int32_t dib::sin(int32_t i, int32_t iAngle)
    {
-   return (int) (((_int64) i * SinN[iAngle]) >> 32);
+   return (int32_t) (((_int64) i * SinN[iAngle]) >> 32);
    }*/
 
 
@@ -2179,15 +2179,15 @@ fill_last:
    }
 
 
-   void dib::Fill (int A, int R, int G, int B )
+   void dib::Fill (int32_t A, int32_t R, int32_t G, int32_t B )
    {
       COLORREF color = RGB ( B, G, R ) | (A << 24);
-      int size=cx*cy;
+      int32_t size=cx*cy;
 
       COLORREF * pcr;
 
-      int iSize32 = size / 32;
-      int i;
+      int32_t iSize32 = size / 32;
+      int32_t i;
       for (i=0; i < iSize32; i+=32 )
       {
          pcr = &get_data()[i];
@@ -2237,19 +2237,19 @@ fill_last:
       double dR = 0.0;
       double dG = 0.0;
       double dB = 0.0;
-      int iRLine;
-      int iGLine;
-      int iBLine;
+      int32_t iRLine;
+      int32_t iGLine;
+      int32_t iBLine;
       double dDiv = cx * cy;
       if(dDiv > 0)
       {
          LPBYTE lpb = (LPBYTE) get_data();
-         for (int y = 0; y < cy; y++)
+         for (int32_t y = 0; y < cy; y++)
          {
             iRLine = 0;
             iGLine = 0;
             iBLine = 0;
-            for (int x = 0; x < cx; x++)
+            for (int32_t x = 0; x < cx; x++)
             {
                iRLine += lpb[2];
                iGLine += lpb[1];
@@ -2260,9 +2260,9 @@ fill_last:
             dG += iGLine / dDiv;
             dB += iBLine / dDiv;
          }
-         int iR = (int) dR;
-         int iG = (int) dG;
-         int iB = (int) dB;
+         int32_t iR = (int32_t) dR;
+         int32_t iG = (int32_t) dG;
+         int32_t iB = (int32_t) dB;
          return RGB(iR, iG, iB);
       }
       else
@@ -2280,10 +2280,10 @@ fill_last:
       {
          return;
       }
-      int iCount = cx * cy;
+      int32_t iCount = cx * cy;
       LPDWORD lpd1 = (LPDWORD) get_data();
       LPDWORD lpd2 = (LPDWORD) pdib->get_data();
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
          *lpd1 = *lpd1 ^ *lpd2;
          lpd1++;
@@ -2291,30 +2291,30 @@ fill_last:
       }
    }
 
-   void dib::create_frame(::size size, int iFrameCount)
+   void dib::create_frame(::size size, int32_t iFrameCount)
    {
-      int iSliceCount = (int) sqrt((double) iFrameCount);
-      int iFrameWidth = size.cx / iSliceCount;
-      int iFrameHeight = size.cy / iSliceCount;
+      int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
+      int32_t iFrameWidth = size.cx / iSliceCount;
+      int32_t iFrameHeight = size.cy / iSliceCount;
       create(iFrameWidth, iFrameHeight);
    }
 
-   void dib::set_frame1(void * lpdata, int iFrame, int iFrameCount)
+   void dib::set_frame1(void * lpdata, int32_t iFrame, int32_t iFrameCount)
    {
-      int iSliceCount = (int) sqrt((double) iFrameCount);
+      int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int iFrameWidth = cx / iSliceCount;
-      int iFrameHeight = cy / iSliceCount;
-      int iX = iFrame % iSliceCount;
-      int iY = iFrame / iSliceCount;
+      int32_t iFrameWidth = cx / iSliceCount;
+      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iX = iFrame % iSliceCount;
+      int32_t iY = iFrame / iSliceCount;
       COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
-      for(int y = 0; y < iFrameHeight; y++)
+      for(int32_t y = 0; y < iFrameHeight; y++)
       {
          lpDestLine = &lpDest[y * cx];
-         for(int x = 0; x < iFrameWidth; x++)
+         for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine = *lpSrc;
             lpDestLine++;
@@ -2323,22 +2323,22 @@ fill_last:
       }
    }
 
-   void dib::set_frame2(void * lpdata, int iFrame, int iFrameCount)
+   void dib::set_frame2(void * lpdata, int32_t iFrame, int32_t iFrameCount)
    {
-      int iSliceCount = (int) sqrt((double) iFrameCount);
+      int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int iFrameWidth = cx / iSliceCount;
-      int iFrameHeight = cy / iSliceCount;
-      int iX = iFrame % iSliceCount;
-      int iY = iFrame / iSliceCount;
+      int32_t iFrameWidth = cx / iSliceCount;
+      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iX = iFrame % iSliceCount;
+      int32_t iY = iFrame / iSliceCount;
       COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
-      for(int y = iFrameHeight - 1; y >= 0; y--)
+      for(int32_t y = iFrameHeight - 1; y >= 0; y--)
       {
          lpDestLine = &lpDest[y * cx];
-         for(int x = 0; x < iFrameWidth; x++)
+         for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine = *lpSrc;
             lpDestLine++;
@@ -2347,22 +2347,22 @@ fill_last:
       }
    }
 
-   void dib::xor_dib_frame2(void * lpdata, int iFrame, int iFrameCount)
+   void dib::xor_dib_frame2(void * lpdata, int32_t iFrame, int32_t iFrameCount)
    {
-      int iSliceCount = (int) sqrt((double) iFrameCount);
+      int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
       if(iSliceCount == 0)
          iSliceCount = 1;
-      int iFrameWidth = cx / iSliceCount;
-      int iFrameHeight = cy / iSliceCount;
-      int iX = iFrame % iSliceCount;
-      int iY = iFrame / iSliceCount;
+      int32_t iFrameWidth = cx / iSliceCount;
+      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iX = iFrame % iSliceCount;
+      int32_t iY = iFrame / iSliceCount;
       COLORREF * lpDest = &get_data()[iFrameWidth * iX + iY * iFrameHeight * cx];
       COLORREF * lpSrc = (COLORREF *) lpdata;
       COLORREF * lpDestLine;
-      for(int y = iFrameHeight - 1; y >= 0; y--)
+      for(int32_t y = iFrameHeight - 1; y >= 0; y--)
       {
          lpDestLine = &lpDest[y * cx];
-         for(int x = 0; x < iFrameWidth; x++)
+         for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDestLine ^= *lpSrc;
             lpDestLine++;
@@ -2371,20 +2371,20 @@ fill_last:
       }
    }
 
-   void dib::get_frame(void * lpdata, int iFrame, int iFrameCount)
+   void dib::get_frame(void * lpdata, int32_t iFrame, int32_t iFrameCount)
    {
-      int iSliceCount = (int) sqrt((double) iFrameCount);
-      int iFrameWidth = cx / iSliceCount;
-      int iFrameHeight = cy / iSliceCount;
-      int iX = iFrame % iSliceCount;
-      int iY = iFrame / iSliceCount;
+      int32_t iSliceCount = (int32_t) sqrt((double) iFrameCount);
+      int32_t iFrameWidth = cx / iSliceCount;
+      int32_t iFrameHeight = cy / iSliceCount;
+      int32_t iX = iFrame % iSliceCount;
+      int32_t iY = iFrame / iSliceCount;
       COLORREF * lpSrc = &get_data()[iFrameWidth * iX + iY * iFrameHeight *  cx];
       COLORREF * lpDest = (COLORREF *) lpdata;
       COLORREF * lpSrcLine;
-      for(int y = 0; y < iFrameHeight; y++)
+      for(int32_t y = 0; y < iFrameHeight; y++)
       {
          lpSrcLine = &lpSrc[y * cx];
-         for(int x = 0; x < iFrameWidth; x++)
+         for(int32_t x = 0; x < iFrameWidth; x++)
          {
             *lpDest = *lpSrcLine;
             lpDest++;
@@ -2395,9 +2395,9 @@ fill_last:
 
    bool dib::is_rgb_black()
    {
-      int iSize = cx * cy;
+      int32_t iSize = cx * cy;
       COLORREF * lp = get_data();
-      for(int i = 0; i < iSize; i++)
+      for(int32_t i = 0; i < iSize; i++)
       {
          if((*lp & 0x00FFFFFF) != 0)
             return false;
@@ -2406,16 +2406,16 @@ fill_last:
       return true;
    }
 
-   void dib::DivideRGB(int iDivide)
+   void dib::DivideRGB(int32_t iDivide)
    {
       if(iDivide == 0)
       {
          return;
       }
-      int iCount = cx * cy;
+      int32_t iCount = cx * cy;
       LPBYTE lp = ((LPBYTE) get_data());
-      int i = 0;
-      int iCount1 = iCount - iCount % 8;
+      int32_t i = 0;
+      int32_t iCount1 = iCount - iCount % 8;
       for(; i < iCount1; i++)
       {
          lp[0] /= (byte) iDivide;
@@ -2461,15 +2461,15 @@ fill_last:
       }
    }
 
-   void dib::DivideARGB(int iDivide)
+   void dib::DivideARGB(int32_t iDivide)
    {
       if(iDivide == 0)
       {
          return;
       }
-      int iCount = cx * cy;
+      int32_t iCount = cx * cy;
       LPBYTE lp = ((LPBYTE) get_data());
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
          lp[0] /= (byte) iDivide;
          lp[1] /= (byte) iDivide;
@@ -2479,15 +2479,15 @@ fill_last:
       }
    }
 
-   void dib::DivideA(int iDivide)
+   void dib::DivideA(int32_t iDivide)
    {
       if(iDivide == 0)
       {
          return;
       }
-      int iCount = cx * cy;
+      int32_t iCount = cx * cy;
       LPBYTE lp = ((LPBYTE) get_data());
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
          lp[3] /= (byte) iDivide;
          lp +=4;
@@ -2501,40 +2501,40 @@ fill_last:
       throw interface_only_exception(get_app());
    }
 
-   int dib::cos(int i, int iAngle)
+   int32_t dib::cos(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
       throw interface_only_exception(get_app());
    }
 
-   int dib::sin(int i, int iAngle)
+   int32_t dib::sin(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
       throw interface_only_exception(get_app());
    }
 
-   int dib::cos10(int i, int iAngle)
+   int32_t dib::cos10(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
       throw interface_only_exception(get_app());
    }
 
-   int dib::sin10(int i, int iAngle)
+   int32_t dib::sin10(int32_t i, int32_t iAngle)
    {
       UNREFERENCED_PARAMETER(i);
       UNREFERENCED_PARAMETER(iAngle);
       throw interface_only_exception(get_app());
    }
 
-/*   int dib::cx
+/*   int32_t dib::cx
    {
       throw interface_only_exception(get_app());
    }
 
-   int dib::cy
+   int32_t dib::cy
    {
       throw interface_only_exception(get_app());
    }
@@ -2555,7 +2555,7 @@ fill_last:
    }
 
 
-   void dib::fill_channel(int C, visual::rgba::echannel echannel)
+   void dib::fill_channel(int32_t C, visual::rgba::echannel echannel)
    {
       UNREFERENCED_PARAMETER(C);
       UNREFERENCED_PARAMETER(echannel);
@@ -2568,22 +2568,22 @@ fill_last:
       
       map();
 
-      echannelDst = (visual::rgba::echannel) (((int) echannelDst) % 4);
-      echannelSrc = (visual::rgba::echannel) (((int) echannelSrc) % 4);
+      echannelDst = (visual::rgba::echannel) (((int32_t) echannelDst) % 4);
+      echannelSrc = (visual::rgba::echannel) (((int32_t) echannelSrc) % 4);
 
       if(echannelDst == echannelSrc)
          return;
 
       byte * pdata = (byte *) get_data();
 
-      for(int y = 0; y < cy; y++)
+      for(int32_t y = 0; y < cy; y++)
       {
 
-         byte * pdst = &pdata[scan * y + ((int)echannelDst)];
+         byte * pdst = &pdata[scan * y + ((int32_t)echannelDst)];
 
-         byte * psrc = &pdata[scan * y + ((int)echannelDst)];
+         byte * psrc = &pdata[scan * y + ((int32_t)echannelDst)];
 
-         for(int x = 0; x < cx; x++)
+         for(int32_t x = 0; x < cx; x++)
          {
 
             *pdst = *psrc;
@@ -2598,12 +2598,12 @@ fill_last:
 
    void dib::write(::ex1::byte_output_stream & ostream)
    {
-      ostream << (int) cx;
-      ostream << (int) cy;
+      ostream << (int32_t) cx;
+      ostream << (int32_t) cy;
       if(area() <= 0)
          return;
       map();
-      for(int i = 0; i < cy; i++)
+      for(int32_t i = 0; i < cy; i++)
       {
          ostream.write(&((byte *) get_data())[scan * i], scan);
       }
@@ -2611,8 +2611,8 @@ fill_last:
 
    void dib::read(::ex1::byte_input_stream & istream)
    {
-      int width;
-      int height;
+      int32_t width;
+      int32_t height;
       istream >> width;
       if(width < 0)
          return;
@@ -2624,13 +2624,13 @@ fill_last:
       if(!create(width, height))
          throw 0;
       map();
-      for(int i = 0; i < cy; i++)
+      for(int32_t i = 0; i < cy; i++)
       {
          istream.read(&((byte *) get_data())[scan * i], scan);
       }
    }
 
-   void dib::set_rgb ( int R, int G, int B )
+   void dib::set_rgb ( int32_t R, int32_t G, int32_t B )
    {
       UNREFERENCED_PARAMETER(R);
       UNREFERENCED_PARAMETER(G);
@@ -2670,7 +2670,7 @@ fill_last:
       return false;
    }
 
-   bool dib::pixelate(int iSize)
+   bool dib::pixelate(int32_t iSize)
    {
 
       if(iSize <= 1)
@@ -2678,33 +2678,33 @@ fill_last:
 
 
 
-      int w = cx;
-      int h = cy;
+      int32_t w = cx;
+      int32_t h = cy;
 
-      int xCount = w / iSize;
-      int yCount = h / iSize;
+      int32_t xCount = w / iSize;
+      int32_t yCount = h / iSize;
 
 
 
-      int iDiv;
-      int iDiv2;
+      int32_t iDiv;
+      int32_t iDiv2;
 
-      int a;
-      int r;
-      int g;
-      int b;
-      int a2;
-      int r2;
-      int g2;
-      int b2;
+      int32_t a;
+      int32_t r;
+      int32_t g;
+      int32_t b;
+      int32_t a2;
+      int32_t r2;
+      int32_t g2;
+      int32_t b2;
       bool bFirst;
       COLORREF * pdata = get_data();
-      int x1;
-      int y1;
-      for(int x = 0; x < xCount; x++)
+      int32_t x1;
+      int32_t y1;
+      for(int32_t x = 0; x < xCount; x++)
       {
          x1 = x * iSize;
-         for(int y = 0; y < yCount; y++)
+         for(int32_t y = 0; y < yCount; y++)
          {
             y1 = y * iSize;
             a = 0;
@@ -2718,9 +2718,9 @@ fill_last:
             iDiv = 0;
             iDiv2 = 0;
             bFirst = true;
-            for(int i = 0; i < iSize; i++)
+            for(int32_t i = 0; i < iSize; i++)
             {
-               for(int j = 0; j < iSize; j++)
+               for(int32_t j = 0; j < iSize; j++)
                {
                   COLORREF cr = pdata[x1 + i + (y1 + j) * w];
                   a += GetAValue(cr);
@@ -2751,9 +2751,9 @@ fill_last:
                b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
             }
             COLORREF cr = ARGB(a2, r2, g2, b2);
-            for(int i = 0; i < iSize; i++)
+            for(int32_t i = 0; i < iSize; i++)
             {
-               for(int j = 0; j < iSize; j++)
+               for(int32_t j = 0; j < iSize; j++)
                {
                   pdata[x1 + i + (y1 + j) * w] = cr;
                }
@@ -2765,10 +2765,10 @@ fill_last:
 
       if(w % iSize != 0)
       {
-         int x = xCount;
-         int x1 = x * iSize;
-         int iMax = w - xCount * iSize;
-         for(int y = 0; y < yCount; y++)
+         int32_t x = xCount;
+         int32_t x1 = x * iSize;
+         int32_t iMax = w - xCount * iSize;
+         for(int32_t y = 0; y < yCount; y++)
          {
             y1 = y * iSize;
             a = 0;
@@ -2782,9 +2782,9 @@ fill_last:
             iDiv = 0;
             iDiv2 = 0;
             bFirst = true;
-            for(int i = 0; i < iMax; i++)
+            for(int32_t i = 0; i < iMax; i++)
             {
-               for(int j = 0; j < iSize; j++)
+               for(int32_t j = 0; j < iSize; j++)
                {
                   COLORREF cr = pdata[x1 + i + (y1 + j) * w];
                   a += GetAValue(cr);
@@ -2815,9 +2815,9 @@ fill_last:
                b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
             }
             COLORREF cr = ARGB(a2, r2, g2, b2);
-            for(int i = 0; i < iMax; i++)
+            for(int32_t i = 0; i < iMax; i++)
             {
-               for(int j = 0; j < iSize; j++)
+               for(int32_t j = 0; j < iSize; j++)
                {
                   pdata[x1 + i + (y1 + j) * w] = cr;
                }
@@ -2828,10 +2828,10 @@ fill_last:
 
       if(h % iSize != 0)
       {
-         int y = yCount;
-         int y1 = y * iSize;
-         int jMax = h - yCount * iSize;
-         for(int x = 0; x < xCount; x++)
+         int32_t y = yCount;
+         int32_t y1 = y * iSize;
+         int32_t jMax = h - yCount * iSize;
+         for(int32_t x = 0; x < xCount; x++)
          {
             x1 = x * iSize;
             a = 0;
@@ -2845,9 +2845,9 @@ fill_last:
             iDiv = 0;
             iDiv2 = 0;
             bFirst = true;
-            for(int i = 0; i < iSize; i++)
+            for(int32_t i = 0; i < iSize; i++)
             {
-               for(int j = 0; j < jMax; j++)
+               for(int32_t j = 0; j < jMax; j++)
                {
                   COLORREF cr = pdata[x1 + i + (y1 + j) * w];
                   a += GetAValue(cr);
@@ -2878,9 +2878,9 @@ fill_last:
                b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
             }
             COLORREF cr = ARGB(a2, r2, g2, b2);
-            for(int i = 0; i < iSize; i++)
+            for(int32_t i = 0; i < iSize; i++)
             {
-               for(int j = 0; j < jMax; j++)
+               for(int32_t j = 0; j < jMax; j++)
                {
                   pdata[x1 + i + (y1 + j) * w] = cr;
                }
@@ -2891,12 +2891,12 @@ fill_last:
 
       if(w % iSize != 0)
       {
-         int x = xCount;
-         int x1 = x * iSize;
-         int iMax = w - xCount * iSize;
-         int y = yCount;
-         int y1 = y * iSize;
-         int jMax = h - yCount * iSize;
+         int32_t x = xCount;
+         int32_t x1 = x * iSize;
+         int32_t iMax = w - xCount * iSize;
+         int32_t y = yCount;
+         int32_t y1 = y * iSize;
+         int32_t jMax = h - yCount * iSize;
          x1 = x * iSize;
          a = 0;
          r = 0;
@@ -2909,9 +2909,9 @@ fill_last:
          iDiv = 0;
          iDiv2 = 0;
          bFirst = true;
-         for(int i = 0; i < iMax; i++)
+         for(int32_t i = 0; i < iMax; i++)
          {
-            for(int j = 0; j < jMax; j++)
+            for(int32_t j = 0; j < jMax; j++)
             {
                COLORREF cr = pdata[x1 + i + (y1 + j) * w];
                a += GetAValue(cr);
@@ -2942,9 +2942,9 @@ fill_last:
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
          COLORREF cr = ARGB(a2, r2, g2, b2);
-         for(int i = 0; i < iMax; i++)
+         for(int32_t i = 0; i < iMax; i++)
          {
-            for(int j = 0; j < jMax; j++)
+            for(int32_t j = 0; j < jMax; j++)
             {
                pdata[x1 + i + (y1 + j) * w] = cr;
             }

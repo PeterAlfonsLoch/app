@@ -15,7 +15,7 @@ namespace filemanager
       string      m_strPath;
       stringa     m_straPath;
       stringa     m_straTitle;
-      int         m_iCurFile;
+      int32_t         m_iCurFile;
 
 
       SimplePreviewInterface(::ca::application * papp);

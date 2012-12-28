@@ -83,7 +83,7 @@
 
 /*
  * Compile with -DMAXSEG_64K if the alloc function cannot allocate more
- * than 64k bytes at a time (needed on systems with 16-bit int).
+ * than 64k bytes at a time (needed on systems with 16-bit int32_t).
  */
 #ifdef SYS16BIT
 #  define MAXSEG_64K
@@ -260,7 +260,7 @@
 #if !defined(__MACTYPES__)
 typedef unsigned char  Byte;  /* 8 bits */
 #endif
-typedef unsigned int   uInt;  /* 16 bits or more */
+typedef unsigned int32_t   uInt;  /* 16 bits or more */
 typedef unsigned long  uLong; /* 32 bits or more */
 
 #ifdef SMALL_MEDIUM
@@ -270,7 +270,7 @@ typedef unsigned long  uLong; /* 32 bits or more */
    typedef Byte  FAR Bytef;
 #endif
 typedef char  FAR charf;
-typedef int   FAR intf;
+typedef int32_t   FAR intf;
 typedef uInt  FAR uIntf;
 typedef uLong FAR uLongf;
 

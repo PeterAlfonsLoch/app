@@ -16,7 +16,7 @@ namespace n7z
       ::ca::smart_pointer < ::compress::archive_extract_callback_interface > _extractCallback;
       uint32 _ref2Offset;
       uint32 _startIndex;
-      int _currentIndex;
+      int32_t _currentIndex;
       bool _testMode;
       bool _checkCrc;
       bool _fileIsOpen;

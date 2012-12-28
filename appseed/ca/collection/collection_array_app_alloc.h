@@ -72,7 +72,7 @@ template <class TYPE, class ARG_TYPE>
 void array_app_alloc < TYPE, ARG_TYPE >::copy(const array_app_alloc < TYPE, ARG_TYPE > & a)
 {
    remove_all();
-   for(int i = 0; i < a.get_size(); i++)
+   for(int32_t i = 0; i < a.get_size(); i++)
    {
       add(a[i]);
    }
@@ -99,7 +99,7 @@ inline count array_app_alloc < TYPE, ARG_TYPE >::remove_all(bool bRelease /*=tru
 {
    if(bRelease)
    {
-      for(int iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
+      for(int32_t iIndex = 0; iIndex < this->ptra().get_size(); iIndex++)
       {
          gen::release(this->ptra().element_at(iIndex));
       }

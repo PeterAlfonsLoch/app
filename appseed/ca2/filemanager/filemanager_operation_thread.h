@@ -10,7 +10,7 @@ public:
    filemanager::estate              m_estate;
    file_manager_operation_view *    m_pview;
    array_del_ptr < file_operation, file_operation & > m_fileoperationa;
-   int                              m_iOperation;
+   int32_t                              m_iOperation;
    bool                             m_bStep;
    mutex                            m_mutexFileOperationA;
    mutex                            m_mutexStep;
@@ -21,14 +21,14 @@ public:
    void queue_copy(stringa & stra, const char * pszDest, const char * pszSrcBase, bool bExpand, ::user::interaction * oswindowCallback = NULL, UINT uiMessage = WM_USER, WPARAM wparam = 0x1000);
    void kick();
 
-   int get_item_count();
-   string get_item_message(int iItem);
-   double get_item_progress(int iItem);
+   int32_t get_item_count();
+   string get_item_message(int32_t iItem);
+   double get_item_progress(int32_t iItem);
 
    double get_progress_rate();
 
    bool step();
 
-   int run();
+   int32_t run();
 
 };

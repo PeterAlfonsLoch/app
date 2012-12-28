@@ -50,7 +50,7 @@ namespace compress
          {
             numInStreams = 0;
             numOutStreams = 0;
-            for (int i = 0; i < Coders.get_count(); i++)
+            for (int32_t i = 0; i < Coders.get_count(); i++)
             {
                const CCoderStreamsInfo &coderStreamsInfo = Coders[i];
                numInStreams += coderStreamsInfo.NumInStreams;
@@ -58,16 +58,16 @@ namespace compress
             }
          }
 
-         int FindBinderForInStream(uint32 inStream) const
+         int32_t FindBinderForInStream(uint32 inStream) const
          {
-            for (int i = 0; i < BindPairs.get_count(); i++)
+            for (int32_t i = 0; i < BindPairs.get_count(); i++)
                if (BindPairs[i].InIndex == inStream)
                   return i;
             return -1;
          }
-         int FindBinderForOutStream(uint32 outStream) const
+         int32_t FindBinderForOutStream(uint32 outStream) const
          {
-            for (int i = 0; i < BindPairs.get_count(); i++)
+            for (int32_t i = 0; i < BindPairs.get_count(); i++)
                if (BindPairs[i].OutIndex == outStream)
                   return i;
             return -1;

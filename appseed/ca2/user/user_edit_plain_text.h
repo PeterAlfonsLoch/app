@@ -25,7 +25,7 @@ namespace user
 
       bool                          m_bKeyPressed;
       bool                          m_bColorerTake5;
-      int                           m_iLineCount;
+      int32_t                           m_iLineCount;
       visual::dib_sp                m_dibBk;
       bool                          m_bCustomFrameBefore;
       rect                          m_FullScreenWindowRect;
@@ -42,7 +42,7 @@ namespace user
       index                      m_iLineOffset;
       stringa                    m_straSep;
       colorertake5::text_lines   m_lines;
-      int                        m_y;
+      int32_t                        m_y;
       bool                       m_bGetTextNeedUpdate;
       bool                       m_bNeedScrollUpdate;
 
@@ -50,7 +50,7 @@ namespace user
       strsize                    m_iSelEnd;
       strsize                    m_iViewOffset; // in bytes
       strsize                    m_iViewSize; // in bytes
-      int                        m_iLineHeight;
+      int32_t                        m_iLineHeight;
       index                      m_iColumn;
       bool                       m_bMultiLine;
       bool                       m_bSendEnterKey;
@@ -133,7 +133,7 @@ namespace user
 
       void set_plain_text_data(plain_text_data * pdata, bool bOwnData);
 
-      void _001OnKeyboardFocusTimer(int iTimer);
+      void _001OnKeyboardFocusTimer(int32_t iTimer);
 
       virtual void _001OnAfterChangeText();
 
@@ -144,12 +144,12 @@ namespace user
 
 
 
-      virtual void on_updata_data(::ca::data * pdata, int iHint);
+      virtual void on_updata_data(::ca::data * pdata, int32_t iHint);
 
 
       virtual bool create_control(class user::control::descriptor * pdescriptor);
 
-      virtual strsize char_hit_test(::ca::graphics * pdc, int x, int y);
+      virtual strsize char_hit_test(::ca::graphics * pdc, int32_t x, int32_t y);
 
       colorertake5::file_type * colorer_select_type();
 
@@ -173,9 +173,9 @@ namespace user
 
       index SelToColumn(strsize iSel);
       index SelToLine(strsize iSel);
-      index SelToLineX(strsize iSel, int & x);
+      index SelToLineX(strsize iSel, int32_t & x);
       strsize LineColumnToSel(index iLine, index iColumn);
-      strsize LineXToSel(index iLine, int x);
+      strsize LineXToSel(index iLine, int32_t x);
 
       void OneLineUp();
 

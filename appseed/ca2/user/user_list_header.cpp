@@ -33,7 +33,7 @@ namespace user
 
       rect rectColumn = pdrawitem->rcItem;
 
-      int iColumn = pdrawitem->itemID;
+      int32_t iColumn = pdrawitem->itemID;
 
       list * plist = m_plistctrlinterface;
 
@@ -90,7 +90,7 @@ namespace user
       if(iItem >= plist->_001GetColumnCount())
          return false;
 
-      int x;
+      int32_t x;
       if(plist->m_bGroup && plist->m_bLateralGroup)
       {
          x = plist->m_iLateralGroupWidth;
@@ -99,9 +99,9 @@ namespace user
       {
          x = 0;
       }
-      int xLast = x;
+      int32_t xLast = x;
       draw_list_item item(plist);
-      for(int i = 0; i <= iItem; i++)
+      for(int32_t i = 0; i <= iItem; i++)
       {
          xLast = x;
          item.m_iWidthColumn = ItemToColumnKey(i);
@@ -224,7 +224,7 @@ namespace user
    {
       list * plist = m_plistctrlinterface;
       rect rect;
-      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(int32_t iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          if(GetItemRect(rect, ElementItemBox, iItem))
          {
@@ -252,7 +252,7 @@ namespace user
    {
       list * plist = m_plistctrlinterface;
       rect rect;
-      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(int32_t iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          if(GetItemRect(rect, eelementLButtonDown, iItemLButtonDown, ElementItemBox, iItem))
          {
@@ -286,7 +286,7 @@ namespace user
    bool list_header::DIDDXLayout(bool bSave)
    {
       bool bFail = false;
-      for(int iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
+      for(int32_t iColumn = 0; iColumn < m_plistctrlinterface->_001GetColumnCount(); iColumn++)
       {
          if(!DIDDXColumn(bSave, iColumn))
             bFail = true;
@@ -299,8 +299,8 @@ namespace user
    {
       string str;
 //      bool bLoad = !bSave;
-      int iOldWidth;
-      int iWidth;
+      int32_t iOldWidth;
+      int32_t iWidth;
       str.Format("::user::list_column[%d].width", iColumn);
       draw_list_item item(m_plistctrlinterface);
       if(bSave)
@@ -401,7 +401,7 @@ namespace user
                rect rect;
                GetItemRect(rect, ElementItem, m_iItemLButtonDown);
                rect.right = ptCursor.x;
-               int iNewWidth = rect.width();
+               int32_t iNewWidth = rect.width();
                plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
                plist->Redraw();
                Redraw();
@@ -454,7 +454,7 @@ namespace user
             rect rect;
             GetItemRect(rect, ElementItem, m_iItemLButtonDown);
             rect.right = ptCursor.x;
-            int iNewWidth = rect.width();
+            int32_t iNewWidth = rect.width();
             plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
             plist->Redraw();
             Redraw();
@@ -535,7 +535,7 @@ namespace user
       drawitem.m_pgraphics = pdc;
       list * plist = m_plistctrlinterface;
       rect rectDivider;
-      for(int iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
+      for(int32_t iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
          drawitem.itemID = iItem;
          GetItemRect(&drawitem.rcItem, ElementItemBox, iItem);
@@ -546,7 +546,7 @@ namespace user
 
    }
 
-   int list_header::GetDividerWidth()
+   int32_t list_header::GetDividerWidth()
    {
       return 4;
    }

@@ -63,7 +63,7 @@ namespace sockets
       single_lock lock(&System.m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
-      for (int i = 0; i < 12; i++)
+      for (int32_t i = 0; i < 12; i++)
       {
          char c = System.m_countHttpPostBoundary++ % 128;
          while (!isalnum(c))
@@ -192,14 +192,14 @@ namespace sockets
 
       // fields
       {
-         for(int i = 0; i < m_fields.m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < m_fields.m_propertya.get_count(); i++)
          {
             string name = m_fields.m_propertya[i].name();
             var & var = m_fields.m_propertya[i].get_value();
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"\r\n"
                "\r\n";
-            for(int j = 0; j < var.get_count(); j++)
+            for(int32_t j = 0; j < var.get_count(); j++)
             {
                string value = var[j].get_string();
                tmp += value + "\r\n";
@@ -246,14 +246,14 @@ namespace sockets
 
       // send fields
       {
-         for(int i = 0; i < m_fields.m_propertya.get_count(); i++)
+         for(int32_t i = 0; i < m_fields.m_propertya.get_count(); i++)
          {
             string name = m_fields.m_propertya[i].name();
             var & var = m_fields.m_propertya[i].get_value();
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"\r\n"
                "\r\n";
-            for(int j = 0; j < var.get_count(); j++)
+            for(int32_t j = 0; j < var.get_count(); j++)
             {
                string value = var[j].get_string();
                tmp += value + "\r\n";

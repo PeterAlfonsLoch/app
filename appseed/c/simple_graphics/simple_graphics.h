@@ -40,7 +40,7 @@ public:
 
    
    using ::os_simple_graphics::draw_line;
-   inline bool draw_line(int x1, int y1, int x2, int y2);
+   inline bool draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
    inline bool draw_line(POINT p1, POINT p2, simple_pen & pen);
    inline bool draw_line(POINT p1, POINT p2);
 
@@ -73,13 +73,13 @@ public:
 	//
 	// Returns:     None
 	//
-	bool draw_round_rect(const RECT & r,  simple_pen & pen, int radius);
-   bool draw_round_top_left(const RECT & r,  simple_pen & pen, int radius);
-   bool draw_round_bottom_right(const RECT & r,  simple_pen & pen, int radius);
+	bool draw_round_rect(const RECT & r,  simple_pen & pen, int32_t radius);
+   bool draw_round_top_left(const RECT & r,  simple_pen & pen, int32_t radius);
+   bool draw_round_bottom_right(const RECT & r,  simple_pen & pen, int32_t radius);
 
-	bool draw_round_rect(const RECT & r,  COLORREF color, int radius, int width);
-   bool draw_round_top_left(const RECT & r,  COLORREF color, int radius, int width);
-   bool draw_round_bottom_right(const RECT & r,  COLORREF color, int radius, int width);
+	bool draw_round_rect(const RECT & r,  COLORREF color, int32_t radius, int32_t width);
+   bool draw_round_top_left(const RECT & r,  COLORREF color, int32_t radius, int32_t width);
+   bool draw_round_bottom_right(const RECT & r,  COLORREF color, int32_t radius, int32_t width);
 
 	//=============================================================================
 	//
@@ -95,7 +95,7 @@ public:
 	//
 	// Returns:     None
 	//
-	bool fill_round_rect(const RECT & r,  COLORREF color, int radius);
+	bool fill_round_rect(const RECT & r,  COLORREF color, int32_t radius);
 
 	//=============================================================================
 	//
@@ -113,10 +113,10 @@ public:
 	//
 	// Returns:     None
 	//
-	bool fill_round_rect(const RECT & r, simple_brush & brush, int radius);
+	bool fill_round_rect(const RECT & r, simple_brush & brush, int32_t radius);
 
 
-   bool round_rect(const RECT & r, int radius);
+   bool round_rect(const RECT & r, int32_t radius);
 
 
 
@@ -126,7 +126,7 @@ public:
 
 
 
-inline bool simple_graphics::draw_line(int x1, int y1, int x2, int y2)
+inline bool simple_graphics::draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
    
    return draw_line(x1, y1, x2, y2, m_pen);

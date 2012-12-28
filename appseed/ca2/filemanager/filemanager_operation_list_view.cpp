@@ -45,13 +45,13 @@ void file_manager_operation_list_view::_001GetItemText(::user::list_item * pitem
 {
    if(pitem->m_iSubItem == 0)
    {
-      pitem->m_strText = get_document()->m_thread.get_item_message((int) pitem->m_iItem);
+      pitem->m_strText = get_document()->m_thread.get_item_message((int32_t) pitem->m_iItem);
       pitem->m_bOk = true;
    }
    else
    {
       double d;
-      d = get_document()->m_thread.get_item_progress((int) pitem->m_iItem);
+      d = get_document()->m_thread.get_item_progress((int32_t) pitem->m_iItem);
       pitem->m_strText.Format("%0.1f%%", d * 100.0);
       pitem->m_bOk = true;
    }
@@ -115,7 +115,7 @@ void file_manager_operation_list_view::_001OnTimer(gen::signal_object * pobj)
   }
 }
 
-void file_manager_operation_list_view::OnFileOperationStep(int iOperation, bool bFinal)
+void file_manager_operation_list_view::OnFileOperationStep(int32_t iOperation, bool bFinal)
 {
    UNREFERENCED_PARAMETER(iOperation);
    if(bFinal || ::GetTickCount() - m_dwLast123Update > 184)
@@ -124,7 +124,7 @@ void file_manager_operation_list_view::OnFileOperationStep(int iOperation, bool 
       _001OnUpdateItemCount();
       m_listcache._001Invalidate();
       ::count iItem = 0;
-      for(int i = 0; i < get_document()->m_thread.m_iOperation; i++)
+      for(int32_t i = 0; i < get_document()->m_thread.m_iOperation; i++)
       {
          iItem += get_document()->m_thread.m_fileoperationa.get_size();
       }

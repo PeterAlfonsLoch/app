@@ -288,7 +288,7 @@ void simple_memory::ToAsc(vsstring & str)
 
    ::count iLen = strTo.get_length() - 1;
 
-   for(int i = 0; i < iLen; i+=2)
+   for(int32_t i = 0; i < iLen; i+=2)
    {
 
       if(strTo[i] <= '9')

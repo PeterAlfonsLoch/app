@@ -57,19 +57,19 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 //CLASS_DECL_ca void gen::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
 //CLASS_DECL_ca void gen::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
-/*CLASS_DECL_ca int System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
+/*CLASS_DECL_ca int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
-/*CLASS_DECL_ca int System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
+/*CLASS_DECL_ca int32_t System.simple_message_box(UINT nIDPrompt, UINT nType = MB_OK,
             UINT nIDHelp = (UINT)-1);*/
 
 // Implementation string helpers
 //CLASS_DECL_ca void __format_strings(string & rString, UINT nIDS,
-//            const char * const* rglpsz, int nString);
+//            const char * const* rglpsz, int32_t nString);
 namespace ex1
 {
 
-   CLASS_DECL_ca void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int nString);
-   CLASS_DECL_ca bool extract_sub_string(string & rString, const char * lpszFullString, int iSubString, char chSep = '\n');
+   CLASS_DECL_ca void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
+   CLASS_DECL_ca bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep = '\n');
 
 }
 
@@ -80,10 +80,10 @@ namespace ex1
 
 
 #ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lp)                        ((int)(short)LOWORD(lp))
+#define GET_X_LPARAM(lp)                        ((int32_t)(short)LOWORD(lp))
 #endif
 #ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lp)                        ((int)(short)HIWORD(lp))
+#define GET_Y_LPARAM(lp)                        ((int32_t)(short)HIWORD(lp))
 #endif
 
 
@@ -358,7 +358,7 @@ CLASS_DECL_ca void __reposition_window(__SIZEPARENTPARAMS* lpLayout, ::user::int
 struct NMHDR
 {
 
-    int nId;
+    int32_t nId;
 };
 
 
@@ -415,12 +415,12 @@ struct __EVENT
       propDSCNotify
    };
 
-   __EVENT(int eventKind);
+   __EVENT(int32_t eventKind);
 
-   __EVENT(int eventKind, DISPID dispid, DISPPARAMS* pDispParams = NULL,
+   __EVENT(int32_t eventKind, DISPID dispid, DISPPARAMS* pDispParams = NULL,
       EXCEPINFO* pExcepInfo = NULL, UINT* puArgError = NULL);
 
-   int m_eventKind;
+   int32_t m_eventKind;
    DISPID m_dispid;
    DISPPARAMS* m_pDispParams;
    EXCEPINFO* m_pExcepInfo;
@@ -431,7 +431,7 @@ struct __EVENT
    DSCREASON m_nDSCReason;
 };
 
-inline __EVENT::__EVENT(int eventKind)
+inline __EVENT::__EVENT(int32_t eventKind)
 {
    m_eventKind = eventKind;
    m_dispid = DISPID_UNKNOWN;
@@ -443,7 +443,7 @@ inline __EVENT::__EVENT(int eventKind)
    m_nDSCReason = dscNoReason;
 }
 
-inline __EVENT::__EVENT(int eventKind, DISPID dispid,
+inline __EVENT::__EVENT(int32_t eventKind, DISPID dispid,
    DISPPARAMS* pDispParams, EXCEPINFO* pExcepInfo, UINT* puArgError)
 {
    m_eventKind = eventKind;

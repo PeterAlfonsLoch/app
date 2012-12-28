@@ -18,7 +18,7 @@ public:
    virtual ~input_tree();
 
    virtual bool get_attr(const char * lpcszName, string & strValue);
-   virtual bool get_attr(const char * lpcszName, int & iValue);
+   virtual bool get_attr(const char * lpcszName, int32_t & iValue);
    virtual void get_value(string & strValue);
 
    document * m_pdocument;

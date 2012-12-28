@@ -87,7 +87,7 @@ namespace simpledb
       virtual bool SetFieldValue(index iFieldIndex, const var &value);
 
       virtual var & FieldValueAt(index iFieldIndex);
-      virtual int GetFieldIndex(const char *f_name);
+      virtual int32_t GetFieldIndex(const char *f_name);
 
       base * get_database();
 

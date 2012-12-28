@@ -70,7 +70,7 @@ namespace ca
 
       if(m_pptraListener != NULL)
       {
-         for(int i = 0; i < m_pptraListener->get_size(); i++)
+         for(int32_t i = 0; i < m_pptraListener->get_size(); i++)
          {
             ::ca::ca * plistener = m_pptraListener->element_at(i);
             if(plistener != NULL)
@@ -105,7 +105,7 @@ namespace ca
       }
       if(m_pptraListened != NULL)
       {
-         for(int i = 0; i < m_pptraListened->get_size(); i++)
+         for(int32_t i = 0; i < m_pptraListened->get_size(); i++)
          {
             ::ca::ca * plistened = m_pptraListened->element_at(i);
             if(plistened != NULL)

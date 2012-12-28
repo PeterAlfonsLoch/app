@@ -45,13 +45,13 @@ BEGIN_EXTERN_C
 /* build lookups for trig functions; also pre-figure scaling and
    some window function algebra. */
 
-void mdct_init(mdct_lookup *lookup,int n){
-  int   *bitrev=(int *) _ogg_malloc(sizeof(*bitrev)*(n/4));
+void mdct_init(mdct_lookup *lookup,int32_t n){
+  int32_t   *bitrev=(int32_t *) _ogg_malloc(sizeof(*bitrev)*(n/4));
   DATA_TYPE *T=(DATA_TYPE *) _ogg_malloc(sizeof(*T)*(n+n/4));
 
-  int i;
-  int n2=n>>1;
-  int log2n=lookup->log2n=rint(log((float)n)/log(2.f));
+  int32_t i;
+  int32_t n2=n>>1;
+  int32_t log2n=lookup->log2n=rint(log((float)n)/log(2.f));
   lookup->n=n;
   lookup->trig=T;
   lookup->bitrev=bitrev;
@@ -72,10 +72,10 @@ void mdct_init(mdct_lookup *lookup,int n){
   /* bitreverse lookup... */
 
   {
-    int mask=(1<<(log2n-1))-1,i,j;
-    int msb=1<<(log2n-2);
+    int32_t mask=(1<<(log2n-1))-1,i,j;
+    int32_t msb=1<<(log2n-2);
     for(i=0;i<n/8;i++){
-      int acc=0;
+      int32_t acc=0;
       for(j=0;msb>>j;j++)
         if((msb>>j)&i)acc|=1<<j;
       bitrev[i*2]=((~acc)&mask)-1;
@@ -212,7 +212,7 @@ STIN void mdct_butterfly_32(DATA_TYPE *x){
 /* N point first stage butterfly (in place, 2 register) */
 STIN void mdct_butterfly_first(DATA_TYPE *T,
                                         DATA_TYPE *x,
-                                        int points){
+                                        int32_t points){
 
   DATA_TYPE *x1        = x          + points      - 8;
   DATA_TYPE *x2        = x          + (points>>1) - 8;
@@ -259,8 +259,8 @@ STIN void mdct_butterfly_first(DATA_TYPE *T,
 /* N/stage point generic N stage butterfly (in place, 2 register) */
 STIN void mdct_butterfly_generic(DATA_TYPE *T,
                                           DATA_TYPE *x,
-                                          int points,
-                                          int trigint){
+                                          int32_t points,
+                                          int32_t trigint){
 
   DATA_TYPE *x1        = x          + points      - 8;
   DATA_TYPE *x2        = x          + (points>>1) - 8;
@@ -312,11 +312,11 @@ STIN void mdct_butterfly_generic(DATA_TYPE *T,
 
 STIN void mdct_butterflies(mdct_lookup *init,
                              DATA_TYPE *x,
-                             int points){
+                             int32_t points){
 
   DATA_TYPE *T=init->trig;
-  int stages=init->log2n-5;
-  int i,j;
+  int32_t stages=init->log2n-5;
+  int32_t i,j;
 
   if(--stages>0){
     mdct_butterfly_first(T,x,points);
@@ -342,8 +342,8 @@ void mdct_clear(mdct_lookup *l){
 
 STIN void mdct_bitreverse(mdct_lookup *init,
                             DATA_TYPE *x){
-  int        n       = init->n;
-  int       *bit     = init->bitrev;
+  int32_t        n       = init->n;
+  int32_t       *bit     = init->bitrev;
   DATA_TYPE *w0      = x;
   DATA_TYPE *w1      = x = w0+(n>>1);
   DATA_TYPE *T       = init->trig+n;
@@ -391,9 +391,9 @@ STIN void mdct_bitreverse(mdct_lookup *init,
 }
 
 void mdct_backward(mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out){
-  int n=init->n;
-  int n2=n>>1;
-  int n4=n>>2;
+  int32_t n=init->n;
+  int32_t n2=n>>1;
+  int32_t n4=n>>2;
 
   /* rotate */
 
@@ -487,10 +487,10 @@ void mdct_backward(mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out){
 }
 
 void mdct_forward(mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out){
-  int n=init->n;
-  int n2=n>>1;
-  int n4=n>>2;
-  int n8=n>>3;
+  int32_t n=init->n;
+  int32_t n2=n>>1;
+  int32_t n4=n>>2;
+  int32_t n8=n>>3;
   DATA_TYPE *w= (DATA_TYPE *) alloca(n*sizeof(*w)); /* forward needs working space */
   DATA_TYPE *w2=w+n2;
 
@@ -504,7 +504,7 @@ void mdct_forward(mdct_lookup *init, DATA_TYPE *in, DATA_TYPE *out){
   DATA_TYPE *x1=x0+1;
   DATA_TYPE *T=init->trig+n2;
 
-  int i=0;
+  int32_t i=0;
 
   for(i=0;i<n8;i+=2){
     x0 -=4;

@@ -36,8 +36,8 @@ class CLASS_DECL_ca2 FileManagerTemplate :
 public:
 
 
-   int         m_iTemplate;
-   int         m_iNextDocument;
+   int32_t         m_iTemplate;
+   int32_t         m_iNextDocument;
 
    string      m_strMenuBar;
    string      m_strToolBar;
@@ -80,7 +80,7 @@ public:
    virtual ~FileManagerTemplate();
 
 
-   virtual void Initialize(::ca::application * papp, int iTemplate, const char * pszMatter);
+   virtual void Initialize(::ca::application * papp, int32_t iTemplate, const char * pszMatter);
 
 
 };

@@ -116,8 +116,8 @@ namespace spa
       ::GetWindowRect(m_oswindow, &rectWindow);
 
 
-      int cx = rectWindow.right - rectWindow.left;
-      int cy = rectWindow.bottom - rectWindow.top;
+      int32_t cx = rectWindow.right - rectWindow.left;
+      int32_t cy = rectWindow.bottom - rectWindow.top;
 
       RECT rect;
       rect.left         = 0;

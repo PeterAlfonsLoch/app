@@ -19,8 +19,8 @@ protected:
 
    point    m_point;
    size     m_size;
-   int      m_iColWidth;
-   int      m_iLineHeight;
+   int32_t      m_iColWidth;
+   int32_t      m_iLineHeight;
 
 
 public:
@@ -36,7 +36,7 @@ public:
 
 
    virtual void GetRectDay(::datetime::time & time, LPRECT lprect);
-   virtual void GetRectDay(int iWeekDay, int iLine, LPRECT lprect);
+   virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT lprect);
    virtual void GetRect(LPRECT lprect, enum EElement eelement);
 
    void _001OnDraw(::ca::graphics * pdc);

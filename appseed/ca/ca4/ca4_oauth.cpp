@@ -86,7 +86,7 @@ SHA1(A million repetitions of "a") =
 #if (ULONG_MAX == 0xFFFFFFFF)
 #define UINT_32 unsigned long
 #else
-#define UINT_32 unsigned int
+#define UINT_32 unsigned int32_t
 #endif
 
 #endif
@@ -185,7 +185,7 @@ public:
    } ;
 
 
-   void digest(void * digest, const void * text, int text_len, const void * key, int key_len);
+   void digest(void * digest, const void * text, int32_t text_len, const void * key, int32_t key_len);
 
    void digest(void * digest, const string & strMessage, const string & strKey);
 
@@ -478,7 +478,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
 /*******************************************************************************/
 
 //
-//void oauth_hmac_context::digest(void * digest, const void * text, int text_len, const void * key, int key_len)
+//void oauth_hmac_context::digest(void * digest, const void * text, int32_t text_len, const void * key, int32_t key_len)
 //{
 //
 //   char szReport[HMAC_BUF_LEN];
@@ -503,13 +503,13 @@ void CSHA1::GetHash(UINT_8 *puDest)
 //      memcpy(SHA1_Key, key, key_len);
 //
 //   /* STEP 2 */
-//   for (int i=0; i<sizeof(m_ipad); i++)
+//   for (int32_t i=0; i<sizeof(m_ipad); i++)
 //   {
 //      m_ipad[i] ^= SHA1_Key[i];
 //   }
 //
 //   /* STEP 5 */
-//   for (int j=0; j<sizeof(m_opad); j++)
+//   for (int32_t j=0; j<sizeof(m_opad); j++)
 //   {
 //      m_opad[j] ^= SHA1_Key[j];
 //   }
@@ -544,8 +544,8 @@ namespace ca4
  namespace oAuthLibDefaults
    {
        /* Constants */
-       const int OAUTHLIB_BUFFSIZE = 1024;
-       const int OAUTHLIB_BUFFSIZE_LARGE = 1024;
+       const int32_t OAUTHLIB_BUFFSIZE = 1024;
+       const int32_t OAUTHLIB_BUFFSIZE_LARGE = 1024;
 
 
    };
@@ -571,7 +571,7 @@ namespace ca4
 
       string escaped;
       count max = c.get_length();
-      for(int i=0; i<max; i++)
+      for(int32_t i=0; i<max; i++)
       {
          if ( (48 <= c[i] && c[i] <= 57) ||//0-9
             (65 <= c[i] && c[i] <= 90) ||//ABC...XYZ
@@ -826,7 +826,7 @@ namespace ca4
       memset( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       srand((UINT) time( NULL ) );
       sprintf( szRand, "%x", rand()%1000 );
-      sprintf( szTime, "%ld", (long int) time( NULL ) );
+      sprintf( szTime, "%ld", (long int32_t) time( NULL ) );
 
       m_nonce = szTime;
       m_nonce += szRand;
@@ -1099,7 +1099,7 @@ namespace ca4
          /* Push key-value pairs to a list of strings */
          keyValueList.remove_all();
 
-         for(int i=0 ; i < rawParamMap.get_count() ;i++ )
+         for(int32_t i=0 ; i < rawParamMap.get_count() ;i++ )
          {
             string key = rawParamMap.m_propertya[i].name();
             string value = rawParamMap.m_propertya[i].get_value();
@@ -1122,7 +1122,7 @@ namespace ca4
          {
             keyValueList.QuickSort();
 
-            for(int i = 0; i < keyValueList.get_count(); i++)
+            for(int32_t i = 0; i < keyValueList.get_count(); i++)
             {
                index iFind = keyValueList[i].find("=");
                if(iFind >= 0)

@@ -13,7 +13,7 @@ namespace crypto
       _needCalculate(true),
       _rar350Mode(false)
    {
-      for (int i = 0; i < sizeof(_salt); i++)
+      for (int32_t i = 0; i < sizeof(_salt); i++)
          _salt[i] = 0;
    }
 

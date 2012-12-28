@@ -88,7 +88,7 @@ namespace collection
             return *this;
          }
 
-         iterator operator ++ (int)
+         iterator operator ++ (int32_t)
          {
             if(m_i != 0 && m_pmap != NULL)
             {
@@ -147,7 +147,7 @@ namespace collection
 
 
       fifo_map(::count nBlockSize = 10);
-      fifo_map(pair pairs[], int iCount, ::count nBlockSize = 10);
+      fifo_map(pair pairs[], int32_t iCount, ::count nBlockSize = 10);
       virtual ~fifo_map();
 
 
@@ -339,12 +339,12 @@ namespace collection
    }
 
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
-   fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::fifo_map(pair pairs[], int iCount, ::count nBlockSize)
+   fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::fifo_map(pair pairs[], int32_t iCount, ::count nBlockSize)
    {
 
       construct(nBlockSize);
 
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
 
          set_at(pairs[i].m_key, pairs[i].m_value);
@@ -968,9 +968,9 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = gen::compare < int > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = gen::compare < int32_t > >
    class fifo_int_map :
-      virtual public fifo_attrib_map < fifo_map < int, int, VALUE, ARG_VALUE, COMPARE > >
+      virtual public fifo_attrib_map < fifo_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >
    {
    public:
 
@@ -984,13 +984,13 @@ namespace collection
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    fifo_int_map < VALUE, ARG_VALUE, COMPARE >::fifo_int_map(::count nBlockSize) :
-      fifo_map < int, int, VALUE, ARG_VALUE, COMPARE > (nBlockSize)
+      fifo_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > (nBlockSize)
    {
    }
 
    template < class VALUE, class ARG_VALUE, class COMPARE >
    fifo_int_map < VALUE, ARG_VALUE, COMPARE >::fifo_int_map(const fifo_int_map & fifo_map) :
-      fifo_attrib_map < ::collection::fifo_map < int, int, VALUE, ARG_VALUE, COMPARE > > (fifo_map)
+      fifo_attrib_map < ::collection::fifo_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > > (fifo_map)
    {
    }
 
@@ -1000,15 +1000,15 @@ namespace collection
 
       if(this != &fifo_map)
       {
-         fifo_attrib_map < ::collection::fifo_map < int, int, VALUE, ARG_VALUE, COMPARE > >::operator = (fifo_map);
+         fifo_attrib_map < ::collection::fifo_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >::operator = (fifo_map);
       }
 
       return *this;
 
    }
 
-   typedef CLASS_DECL_ca fifo_attrib_map < fifo_map < int, int, int, int > > fifo_int_to_int;
-   typedef CLASS_DECL_ca fifo_attrib_map < fifo_map < int, int, string, const string & > > fifo_int_to_string;
+   typedef CLASS_DECL_ca fifo_attrib_map < fifo_map < int32_t, int32_t, int32_t, int32_t > > fifo_int_to_int;
+   typedef CLASS_DECL_ca fifo_attrib_map < fifo_map < int32_t, int32_t, string, const string & > > fifo_int_to_string;
    typedef CLASS_DECL_ca ::collection::fifo_string_map < void *, void * > fifo_string_to_ptr;
 
    template < class T >

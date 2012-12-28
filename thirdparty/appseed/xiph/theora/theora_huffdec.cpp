@@ -99,11 +99,11 @@ static const unsigned char OC_DCT_TOKEN_MAP[TH_NDCT_TOKENS]={
   Declaring local static versions so they can be inlined saves considerable
    function call overhead.*/
 
-static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int _bits){
+static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int32_t _bits){
   const unsigned char *ptr;
   const unsigned char *stop;
   oc_pb_window         window;
-  int                  available;
+  int32_t                  available;
   window=_b->window;
   available=_b->bits;
   ptr=_b->ptr;
@@ -125,9 +125,9 @@ static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int _bits){
 
 /*Read in bits without advancing the bit pointer.
   Here we assume 0<=_bits&&_bits<=32.*/
-static long oc_pack_look(oc_pack_buf *_b,int _bits){
+static long oc_pack_look(oc_pack_buf *_b,int32_t _bits){
   oc_pb_window window;
-  int          available;
+  int32_t          available;
   long         result;
   window=_b->window;
   available=_b->bits;
@@ -138,7 +138,7 @@ static long oc_pack_look(oc_pack_buf *_b,int _bits){
 }
 
 /*Advance the bit pointer.*/
-static void oc_pack_adv(oc_pack_buf *_b,int _bits){
+static void oc_pack_adv(oc_pack_buf *_b,int32_t _bits){
   /*We ignore the special cases for _bits==0 and _bits==32 here, since they are
      never used actually used.
     OC_HUFF_SLUSH (defined below) would have to be at least 27 to actually read
@@ -174,14 +174,14 @@ static void oc_pack_adv(oc_pack_buf *_b,int _bits){
           If this is 0, the node is a leaf node.
           Otherwise 1<<_nbits pointers are allocated for children.
   Return: The number of bytes required to store the node.*/
-static size_t oc_huff_node_size(int _nbits){
+static size_t oc_huff_node_size(int32_t _nbits){
   size_t size;
   size=_ogg_offsetof(oc_huff_node,nodes);
   if(_nbits>0)size+=sizeof(oc_huff_node *)*(1<<_nbits);
   return size;
 }
 
-static oc_huff_node *oc_huff_node_init(char **_storage,size_t _size,int _nbits){
+static oc_huff_node *oc_huff_node_init(char **_storage,size_t _size,int32_t _nbits){
   oc_huff_node *ret;
   ret=(oc_huff_node *)*_storage;
   ret->nbits=(unsigned char)_nbits;
@@ -199,8 +199,8 @@ static size_t oc_huff_tree_size(const oc_huff_node *_node){
   size_t size;
   size=oc_huff_node_size(_node->nbits);
   if(_node->nbits){
-    int nchildren;
-    int i;
+    int32_t nchildren;
+    int32_t i;
     nchildren=1<<_node->nbits;
     for(i=0;i<nchildren;i+=1<<_node->nbits-_node->nodes[i]->depth){
       size+=oc_huff_tree_size(_node->nodes[i]);
@@ -215,11 +215,11 @@ static size_t oc_huff_tree_size(const oc_huff_node *_node){
   _binodes:  The nodes to store the sub-tree in.
   _nbinodes: The number of nodes available for the sub-tree.
   Return: 0 on success, or a negative value on error.*/
-static int oc_huff_tree_unpack(oc_pack_buf *_opb,
- oc_huff_node *_binodes,int _nbinodes){
+static int32_t oc_huff_tree_unpack(oc_pack_buf *_opb,
+ oc_huff_node *_binodes,int32_t _nbinodes){
   oc_huff_node *binode;
   long          bits;
-  int           nused;
+  int32_t           nused;
   if(_nbinodes<1)return TH_EBADHEADER;
   binode=_binodes;
   nused=0;
@@ -227,7 +227,7 @@ static int oc_huff_tree_unpack(oc_pack_buf *_opb,
   if(oc_pack_bytes_left(_opb)<0)return TH_EBADHEADER;
   /*Read an internal node:*/
   if(!bits){
-    int ret;
+    int32_t ret;
     nused++;
     binode->nbits=1;
     binode->depth=1;
@@ -243,9 +243,9 @@ static int oc_huff_tree_unpack(oc_pack_buf *_opb,
   }
   /*Read a leaf node:*/
   else{
-    int ntokens;
-    int token;
-    int i;
+    int32_t ntokens;
+    int32_t token;
+    int32_t i;
     bits=oc_pack_read(_opb,OC_NDCT_TOKEN_BITS);
     if(oc_pack_bytes_left(_opb)<0)return TH_EBADHEADER;
     /*Find out how many internal tokens we translate this external token into.*/
@@ -253,7 +253,7 @@ static int oc_huff_tree_unpack(oc_pack_buf *_opb,
     if(_nbinodes<2*ntokens-1)return TH_EBADHEADER;
     /*Fill in a complete binary tree pointing to the internal tokens.*/
     for(i=1;i<ntokens;i<<=1){
-      int j;
+      int32_t j;
       binode=_binodes+nused;
       nused+=i;
       for(j=0;j<i;j++){
@@ -281,9 +281,9 @@ static int oc_huff_tree_unpack(oc_pack_buf *_opb,
            _binode->nbits must be 0 or 1.
   Return: The smallest depth of a leaf node in this sub-tree.
           0 indicates this sub-tree is a leaf node.*/
-static int oc_huff_tree_mindepth(oc_huff_node *_binode){
-  int depth0;
-  int depth1;
+static int32_t oc_huff_tree_mindepth(oc_huff_node *_binode){
+  int32_t depth0;
+  int32_t depth1;
   if(_binode->nbits==0)return 0;
   depth0=oc_huff_tree_mindepth(_binode->nodes[0]);
   depth1=oc_huff_tree_mindepth(_binode->nodes[1]);
@@ -297,7 +297,7 @@ static int oc_huff_tree_mindepth(oc_huff_node *_binode){
            _binode->nbits must be 0 or 1.
   Return: The number of entries that would be contained in a jump table of the
            given depth.*/
-static int oc_huff_tree_occupancy(oc_huff_node *_binode,int _depth){
+static int32_t oc_huff_tree_occupancy(oc_huff_node *_binode,int32_t _depth){
   if(_binode->nbits==0||_depth<=0)return 1;
   else{
     return oc_huff_tree_occupancy(_binode->nodes[0],_depth-1)+
@@ -314,9 +314,9 @@ static oc_huff_node *oc_huff_tree_copy(const oc_huff_node *_node,
   ret=oc_huff_node_init(_storage,oc_huff_node_size(_node->nbits),_node->nbits);
   ret->depth=_node->depth;
   if(_node->nbits){
-    int nchildren;
-    int i;
-    int inext;
+    int32_t nchildren;
+    int32_t i;
+    int32_t inext;
     nchildren=1<<_node->nbits;
     for(i=0;i<nchildren;){
       ret->nodes[i]=oc_huff_tree_copy(_node->nodes[i],_storage);
@@ -328,12 +328,12 @@ static oc_huff_node *oc_huff_tree_copy(const oc_huff_node *_node,
   return ret;
 }
 
-static size_t oc_huff_tree_collapse_size(oc_huff_node *_binode,int _depth){
+static size_t oc_huff_tree_collapse_size(oc_huff_node *_binode,int32_t _depth){
   size_t size;
-  int    mindepth;
-  int    depth;
-  int    loccupancy;
-  int    occupancy;
+  int32_t    mindepth;
+  int32_t    depth;
+  int32_t    loccupancy;
+  int32_t    occupancy;
   if(_binode->nbits!=0&&_depth>0){
     return oc_huff_tree_collapse_size(_binode->nodes[0],_depth-1)+
      oc_huff_tree_collapse_size(_binode->nodes[1],_depth-1);
@@ -371,9 +371,9 @@ static oc_huff_node *oc_huff_tree_collapse(oc_huff_node *_binode,
   _depth:  The depth of the nodes to fill the table with, relative to their
             parent.*/
 static void oc_huff_node_fill(oc_huff_node **_nodes,
- oc_huff_node *_binode,int _level,int _depth,char **_storage){
+ oc_huff_node *_binode,int32_t _level,int32_t _depth,char **_storage){
   if(_level<=0||_binode->nbits==0){
-    int i;
+    int32_t i;
     _binode->depth=(unsigned char)(_depth-_level);
     _nodes[0]=oc_huff_tree_collapse(_binode,_storage);
     for(i=1;i<1<<_level;i++)_nodes[i]=_nodes[0];
@@ -396,10 +396,10 @@ static oc_huff_node *oc_huff_tree_collapse(oc_huff_node *_binode,
  char **_storage){
   oc_huff_node *root;
   size_t        size;
-  int           mindepth;
-  int           depth;
-  int           loccupancy;
-  int           occupancy;
+  int32_t           mindepth;
+  int32_t           depth;
+  int32_t           loccupancy;
+  int32_t           occupancy;
   depth=mindepth=oc_huff_tree_mindepth(_binode);
   occupancy=1<<mindepth;
   do{
@@ -421,14 +421,14 @@ static oc_huff_node *oc_huff_tree_collapse(oc_huff_node *_binode,
   _opb:   The buffer to unpack the trees from.
   _nodes: The table to fill with the Huffman trees.
   Return: 0 on success, or a negative value on error.*/
-int oc_huff_trees_unpack(oc_pack_buf *_opb,
+int32_t oc_huff_trees_unpack(oc_pack_buf *_opb,
  oc_huff_node *_nodes[TH_NHUFFMAN_TABLES]){
-  int i;
+  int32_t i;
   for(i=0;i<TH_NHUFFMAN_TABLES;i++){
     oc_huff_node  nodes[511];
     char         *storage;
     size_t        size;
-    int           ret;
+    int32_t           ret;
     /*Unpack the full tree into a temporary buffer.*/
     ret=oc_huff_tree_unpack(_opb,nodes,sizeof(nodes)/sizeof(*nodes));
     if(ret<0)return ret;
@@ -445,9 +445,9 @@ int oc_huff_trees_unpack(oc_pack_buf *_opb,
 /*Makes a copy of the given set of Huffman trees.
   _dst: The array to store the copy in.
   _src: The array of trees to copy.*/
-int oc_huff_trees_copy(oc_huff_node *_dst[TH_NHUFFMAN_TABLES],
+int32_t oc_huff_trees_copy(oc_huff_node *_dst[TH_NHUFFMAN_TABLES],
  const oc_huff_node *const _src[TH_NHUFFMAN_TABLES]){
-  int i;
+  int32_t i;
   for(i=0;i<TH_NHUFFMAN_TABLES;i++){
     size_t  size;
     char   *storage;
@@ -465,7 +465,7 @@ int oc_huff_trees_copy(oc_huff_node *_dst[TH_NHUFFMAN_TABLES],
 /*Frees the memory used by a set of Huffman trees.
   _nodes: The array of trees to free.*/
 void oc_huff_trees_clear(oc_huff_node *_nodes[TH_NHUFFMAN_TABLES]){
-  int i;
+  int32_t i;
   for(i=0;i<TH_NHUFFMAN_TABLES;i++)_ogg_free(_nodes[i]);
 }
 
@@ -473,7 +473,7 @@ void oc_huff_trees_clear(oc_huff_node *_nodes[TH_NHUFFMAN_TABLES]){
   _opb:  The buffer to unpack the token from.
   _node: The tree to unpack the token with.
   Return: The token value.*/
-int oc_huff_token_decode(oc_pack_buf *_opb,const oc_huff_node *_node){
+int32_t oc_huff_token_decode(oc_pack_buf *_opb,const oc_huff_node *_node){
   long bits;
   while(_node->nbits!=0){
     bits=oc_pack_look(_opb,_node->nbits);

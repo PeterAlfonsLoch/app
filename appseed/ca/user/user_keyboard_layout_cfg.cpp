@@ -48,7 +48,7 @@ namespace user
 
       stringa straPath;
       System.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
-      for(int i = 0; i < straPath.get_count(); i++)
+      for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_cfg_id layoutid;
          if(System.keyboard().initialize(&layoutid, straPath[i]))
@@ -60,8 +60,8 @@ namespace user
       m_layoutida.QuickSort(true);
       if(&System.keyboard().layout() != NULL)
       {
-         int iFind = -1;
-         for(int i = 0; i < m_layoutida.get_count(); i++)
+         int32_t iFind = -1;
+         for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
             if(m_layoutida[i].m_strPath.CompareNoCase(System.keyboard().layout().m_strPath) == 0)
             {
@@ -110,7 +110,7 @@ namespace user
       if(node.load(System.file_as_string(System.dir().appdata("proxy.xml"))))
       {
          string strProxy = node.get_attr("server");
-         int iProxyPort = node.get_attr("port");
+         int32_t iProxyPort = node.get_attr("port");
          ::user::interaction * pguie = m_pview->get_child_by_name("server");
          text_interface * ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(strProxy);
@@ -131,7 +131,7 @@ namespace user
             m_plistview->_001GetSelection(range);
             if(range.get_item_count() > 0)
             {
-               int iItem = range.ItemAt(0).GetLBound();
+               int32_t iItem = range.ItemAt(0).GetLBound();
                if(iItem >= 0 && iItem < m_layoutida.get_count())
                {
                   System.set_keyboard_layout_cfg(m_layoutida[iItem].m_strPath, true);

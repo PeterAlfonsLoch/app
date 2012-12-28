@@ -55,13 +55,13 @@ namespace sockets
    }
 
 
-   void stream_socket::SetConnectTimeout(int x)
+   void stream_socket::SetConnectTimeout(int32_t x)
    {
       m_connect_timeout = x;
    }
 
 
-   int stream_socket::GetConnectTimeout()
+   int32_t stream_socket::GetConnectTimeout()
    {
       return m_connect_timeout;
    }
@@ -79,19 +79,19 @@ namespace sockets
    }
 
 
-   int stream_socket::GetConnectionRetry()
+   int32_t stream_socket::GetConnectionRetry()
    {
       return m_connection_retry;
    }
 
 
-   void stream_socket::SetConnectionRetry(int x)
+   void stream_socket::SetConnectionRetry(int32_t x)
    {
       m_connection_retry = x;
    }
 
 
-   int stream_socket::GetConnectionRetries()
+   int32_t stream_socket::GetConnectionRetries()
    {
       return m_retries;
    }
@@ -137,13 +137,13 @@ namespace sockets
 
 
 
-   void stream_socket::SetShutdown(int x)
+   void stream_socket::SetShutdown(int32_t x)
    {
       m_shutdown = x;
    }
 
 
-   int stream_socket::GetShutdown()
+   int32_t stream_socket::GetShutdown()
    {
       return m_shutdown;
    }

@@ -78,7 +78,7 @@ typedef struct cipher_t      *cipher_pointer_t;
  */
 
 typedef err_status_t (*cipher_alloc_func_t)
-     (cipher_pointer_t *cp, int key_len);
+     (cipher_pointer_t *cp, int32_t key_len);
 
 /* 
  * a cipher_init_func_t [re-]initializes a cipher_t with a given key
@@ -99,18 +99,18 @@ typedef err_status_t (*cipher_set_segment_func_t)
 
 /* by ca2 camilost */
 typedef err_status_t (*cipher_crypt_func_t)
-     (void *state, uint8_t *buffer, unsigned int *octets_to_encrypt);
+     (void *state, uint8_t *buffer, unsigned int32_t *octets_to_encrypt);
 
 
 /* a cipher_encrypt_func_t encrypts data in-place */
 
 typedef err_status_t (*cipher_encrypt_func_t)
-     (void *state, uint8_t *buffer, unsigned int *octets_to_encrypt);
+     (void *state, uint8_t *buffer, unsigned int32_t *octets_to_encrypt);
 
 /* a cipher_decrypt_func_t decrypts data in-place */
 
 typedef err_status_t (*cipher_decrypt_func_t)
-     (void *state, uint8_t *buffer, unsigned int *octets_to_decrypt);
+     (void *state, uint8_t *buffer, unsigned int32_t *octets_to_decrypt);
 
 /* 
  * a cipher_set_nonce_seq_func_t function sets both the nonce
@@ -129,12 +129,12 @@ typedef err_status_t (*cipher_set_iv_func_t)
  */
 
 typedef struct cipher_test_case_t {
-  int key_length_octets;                      /* octets in key            */
+  int32_t key_length_octets;                      /* octets in key            */
   uint8_t *key;                               /* key                      */
   uint8_t *idx;                               /* packet index             */
-  int plaintext_length_octets;                /* octets in plaintext      */ 
+  int32_t plaintext_length_octets;                /* octets in plaintext      */ 
   uint8_t *plaintext;                         /* plaintext                */
-  int ciphertext_length_octets;               /* octets in plaintext      */ 
+  int32_t ciphertext_length_octets;               /* octets in plaintext      */ 
   uint8_t *ciphertext;                        /* ciphertext               */
   struct cipher_test_case_t *next_test_case;  /* pointer to next testcase */
 } cipher_test_case_t;
@@ -149,7 +149,7 @@ typedef struct cipher_type_t {
   cipher_encrypt_func_t       decrypt;
   cipher_set_iv_func_t        set_iv;
   char                       *description;
-  int                         ref_count;
+  int32_t                         ref_count;
   cipher_test_case_t         *test_data;
   debug_module_t             *debug;
 } cipher_type_t;
@@ -162,9 +162,9 @@ typedef struct cipher_type_t {
 typedef struct cipher_t {
   cipher_type_t *type;
   void          *state;
-  int            key_len;
+  int32_t            key_len;
 #ifdef FORCE_64BIT_ALIGN
-  int            pad;
+  int32_t            pad;
 #endif
 } cipher_t;
 
@@ -187,12 +187,12 @@ typedef struct cipher_t {
                                 err_status_no_such_op)  
 
 err_status_t
-cipher_output(cipher_t *c, uint8_t *buffer, int num_octets_to_output);
+cipher_output(cipher_t *c, uint8_t *buffer, int32_t num_octets_to_output);
 
 
 /* some bookkeeping functions */
 
-int
+int32_t
 cipher_get_key_length(const cipher_t *c);
 
 
@@ -218,7 +218,7 @@ cipher_type_self_test(const cipher_type_t *ct);
  */
 
 uint64_t
-cipher_bits_per_second(cipher_t *c, int octets_in_buffer, int num_trials);
+cipher_bits_per_second(cipher_t *c, int32_t octets_in_buffer, int32_t num_trials);
 
 #endif /* CIPHER_H */
 

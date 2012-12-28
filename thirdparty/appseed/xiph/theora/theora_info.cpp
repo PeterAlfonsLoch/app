@@ -21,8 +21,8 @@
    everywhere, and this is a fairly trivial function, so we include it.
   Note: We take advantage of the fact that we know _n is less than or equal to
    the length of at least one of the strings.*/
-static int oc_tagcompare(const char *_s1,const char *_s2,int _n){
-  int c;
+static int32_t oc_tagcompare(const char *_s1,const char *_s2,int32_t _n){
+  int32_t c;
   for(c=0;c<_n;c++){
     if(toupper(_s1[c])!=toupper(_s2[c]))return !0;
   }
@@ -51,13 +51,13 @@ void th_comment_init(th_comment *_tc){
 
 void th_comment_add(th_comment *_tc,char *_comment){
   char **user_comments;
-  int   *comment_lengths;
-  int    comment_len;
+  int32_t   *comment_lengths;
+  int32_t    comment_len;
   user_comments=(char **) _ogg_realloc(_tc->user_comments,
    (_tc->comments+2)*sizeof(*_tc->user_comments));
   if(user_comments==NULL)return;
   _tc->user_comments=user_comments;
-  comment_lengths=(int *) _ogg_realloc(_tc->comment_lengths,
+  comment_lengths=(int32_t *) _ogg_realloc(_tc->comment_lengths,
    (_tc->comments+2)*sizeof(*_tc->comment_lengths));
   if(comment_lengths==NULL)return;
   _tc->comment_lengths=comment_lengths;
@@ -72,8 +72,8 @@ void th_comment_add(th_comment *_tc,char *_comment){
 
 void th_comment_add_tag(th_comment *_tc,char *_tag,char *_val){
   char *comment;
-  int   tag_len;
-  int   val_len;
+  int32_t   tag_len;
+  int32_t   val_len;
   tag_len=strlen(_tag);
   val_len=strlen(_val);
   /*+2 for '=' and '\0'.*/
@@ -86,10 +86,10 @@ void th_comment_add_tag(th_comment *_tc,char *_tag,char *_val){
   _ogg_free(comment);
 }
 
-char *th_comment_query(th_comment *_tc,char *_tag,int _count){
+char *th_comment_query(th_comment *_tc,char *_tag,int32_t _count){
   long i;
-  int  found;
-  int  tag_len;
+  int32_t  found;
+  int32_t  tag_len;
   tag_len=strlen(_tag);
   found=0;
   for(i=0;i<_tc->comments;i++){
@@ -102,10 +102,10 @@ char *th_comment_query(th_comment *_tc,char *_tag,int _count){
   return NULL;
 }
 
-int th_comment_query_count(th_comment *_tc,char *_tag){
+int32_t th_comment_query_count(th_comment *_tc,char *_tag){
   long i;
-  int  tag_len;
-  int  count;
+  int32_t  tag_len;
+  int32_t  count;
   tag_len=strlen(_tag);
   count=0;
   for(i=0;i<_tc->comments;i++){

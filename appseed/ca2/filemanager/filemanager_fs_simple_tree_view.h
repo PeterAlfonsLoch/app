@@ -23,15 +23,15 @@ namespace filemanager
             int64_t        m_iFolder;
             string         m_strName;
             EFolderType    m_etype;
-            int            m_iImage;
-            int            m_iImageSelected;
+            int32_t            m_iImage;
+            int32_t            m_iImageSelected;
          };
 
          class FolderArray :
             public array_ptr_alloc < Folder, Folder & >
          {
          public:
-            int FindAbsolute(int64_t iFolder);
+            int32_t FindAbsolute(int64_t iFolder);
          };
 
          class CLASS_DECL_ca2 tree_view :
@@ -40,10 +40,10 @@ namespace filemanager
          {
          public:
 
-            int                              m_iIconFolderNormal;
-            int                              m_iIconFolderSelected;
-            int                              m_iIconArtistNormal;
-            int                              m_iIconArtistSelected;
+            int32_t                              m_iIconFolderNormal;
+            int32_t                              m_iIconFolderSelected;
+            int32_t                              m_iIconArtistNormal;
+            int32_t                              m_iIconArtistSelected;
             ::filemanager::fs::simple::view *   m_pserver;
             FolderArray                         m_foldera; 
             int64_t                             m_iParentFolder;

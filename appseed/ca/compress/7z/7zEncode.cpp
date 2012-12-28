@@ -30,7 +30,7 @@ namespace n7z
       // folder.OutStreams.clear();
       folder.PackStreams.remove_all();
       folder.BindPairs.remove_all();
-      int i;
+      int32_t i;
       for (i = 0; i < bindInfo.BindPairs.get_count(); i++)
       {
          CBindPair bindPair;
@@ -60,7 +60,7 @@ namespace n7z
       _mixerCoderSpec = new ::compress::coder_mixer::CCoderMixer2MT(get_app());
       _mixerCoder = _mixerCoderSpec;
       RINOK(_mixerCoderSpec->SetBindInfo(_bindInfo));
-      for (int i = 0; i < _options.Methods.get_count(); i++)
+      for (int32_t i = 0; i < _options.Methods.get_count(); i++)
       {
          const CMethodFull &methodFull = _options.Methods[i];
          _codersInfo.add(CCoderInfo());
@@ -123,7 +123,7 @@ namespace n7z
             wstring password = gen::international::utf8_to_unicode(_options.Password);
             const uint32 sizeInBytes = (const uint32) (password.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
-            for (int i = 0; i < password.get_length(); i++)
+            for (int32_t i = 0; i < password.get_length(); i++)
             {
                wchar_t c = password[i];
                ((byte *)buffer)[i * 2] = (byte)c;
@@ -267,9 +267,9 @@ namespace n7z
          packSizes.add((file_size) inOutTempBuffer.GetDataSize());
       }
 
-      for (i = 0; i < (int)_bindReverseConverter->NumSrcInStreams; i++)
+      for (i = 0; i < (int32_t)_bindReverseConverter->NumSrcInStreams; i++)
       {
-         int binder = _bindInfo.FindBinderForInStream(
+         int32_t binder = _bindInfo.FindBinderForInStream(
             _bindReverseConverter->DestOutToSrcInMap[i]);
          file_size streamSize;
          if (binder < 0)
@@ -326,7 +326,7 @@ namespace n7z
       {
 
          uint32 numInStreams = 0, numOutStreams = 0;
-         int i;
+         int32_t i;
          for (i = 0; i < _options.Methods.get_count(); i++)
          {
             const CMethodFull &methodFull = _options.Methods[i];
@@ -364,12 +364,12 @@ namespace n7z
                bindPair.OutIndex = _bindInfo.GetCoderOutStreamIndex(bind.OutCoder) + bind.OutStream;
                _bindInfo.BindPairs.add(bindPair);
             }
-            for (i = 0; i < (int)numOutStreams; i++)
+            for (i = 0; i < (int32_t)numOutStreams; i++)
                if (_bindInfo.FindBinderForOutStream(i) == -1)
                   _bindInfo.OutStreams.add(i);
          }
 
-         for (i = 0; i < (int)numInStreams; i++)
+         for (i = 0; i < (int32_t)numInStreams; i++)
             if (_bindInfo.FindBinderForInStream(i) == -1)
                _bindInfo.InStreams.add(i);
 
@@ -377,13 +377,13 @@ namespace n7z
             throw 1; // this is error
 
          // Make main stream first in list
-         int inIndex = _bindInfo.InStreams[0];
+         int32_t inIndex = _bindInfo.InStreams[0];
          for (;;)
          {
             uint32 coderIndex, coderStreamIndex;
             _bindInfo.FindInStream(inIndex, coderIndex, coderStreamIndex);
             uint32 outIndex = _bindInfo.GetCoderOutStreamIndex(coderIndex);
-            int binder = _bindInfo.FindBinderForOutStream(outIndex);
+            int32_t binder = _bindInfo.FindBinderForOutStream(outIndex);
             if (binder >= 0)
             {
                inIndex = _bindInfo.BindPairs[binder].InIndex;

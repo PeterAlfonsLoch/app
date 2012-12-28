@@ -5,11 +5,11 @@
 typedef struct{
   const unsigned char *stream;
   ::primitive::memory_size get_length;
-  int pointer;
-  int error;
+  int32_t pointer;
+  int32_t error;
 } MemoryFile;
 
-voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const char *filename, int mode)
+voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const char *filename, int32_t mode)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   mf->error = 0;
@@ -21,7 +21,7 @@ uLong ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uLo
 
   MemoryFile *mf = (MemoryFile*)opaque;
 
-  if (mf->pointer+(int)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
+  if (mf->pointer+(int32_t)this->get_size > mf->get_length) this->get_size = mf->get_length - mf->pointer;
   memmove(buf, mf->stream+mf->pointer, this->get_size);
   mf->pointer += this->get_size;
   return this->get_size;
@@ -40,10 +40,10 @@ long ZCALLBACK mem_tell_file_func (voidpf opaque, voidpf stream)
   return mf->pointer;
 }
 
-long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uLong offset, int origin)
+long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
-  int cpointer;
+  int32_t cpointer;
 
   switch (origin){
     case ZLIB_FILEFUNC_SEEK_CUR :
@@ -70,12 +70,12 @@ long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uLong offset, i
   return 0;
 }
 
-int ZCALLBACK mem_close_file_func (voidpf opaque, voidpf stream)
+int32_t ZCALLBACK mem_close_file_func (voidpf opaque, voidpf stream)
 {
   return 0;
 }
 
-int ZCALLBACK mem_error_file_func (voidpf opaque, voidpf stream)
+int32_t ZCALLBACK mem_error_file_func (voidpf opaque, voidpf stream)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   return mf->error;

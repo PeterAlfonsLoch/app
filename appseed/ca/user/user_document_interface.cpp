@@ -120,7 +120,7 @@ namespace user
       }
 
       // now do it again counting the unique ones
-      int nFrames = 0;
+      int32_t nFrames = 0;
       count = get_view_count();
       for(index = 0; index < count; index++)
       {
@@ -141,7 +141,7 @@ namespace user
 
       // lastly walk the frames and update titles (assume same order)
       // go through frames updating the appropriate one
-      int iFrame = 1;
+      int32_t iFrame = 1;
       count = get_view_count();
       for(index = 0; index < count; index++)
       {

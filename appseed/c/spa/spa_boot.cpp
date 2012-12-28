@@ -7,7 +7,7 @@
 
 
 
-int app_install(const char * param)
+int32_t app_install(const char * param)
 {
 
    /*

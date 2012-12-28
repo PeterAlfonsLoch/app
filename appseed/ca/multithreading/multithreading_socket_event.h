@@ -12,7 +12,7 @@ public:
 	bool m_bActive;
 
 	/// internal member holding the socket handle
-	unsigned int m_iSocket;
+	unsigned int32_t m_iSocket;
 
 	/// internal member which is true if this event is used by a thread
 	/// which waits for socket connections
@@ -21,7 +21,7 @@ public:
 	///  \brief		constructor with passed socket handle and read state
 	///  \param		socket socket handle (default: -1)
 	///  \param		read true if socket should be ready to read (default: true)
-	socket_event(::ca::application * papp, unsigned int socket = -1, bool read = true);
+	socket_event(::ca::application * papp, unsigned int32_t socket = -1, bool read = true);
 
 	///  \brief		destructor
 	virtual ~socket_event();
@@ -33,7 +33,7 @@ public:
 
 	///  \brief		socket handle setter
 	///  \param		socket socket handle
-	void SetSocketHandle(unsigned int socket);
+	void SetSocketHandle(unsigned int32_t socket);
 	//void SetSocketHandle(const SocketBase& socket) { socket_ = socket.get_handle_(); }   // MBO: alternative solution
 	//void ChangeSocketHandle(SOCKET socket);
 

@@ -16,13 +16,13 @@ public:
   ~bit_array();
 
   /** Sets bit at position @c pos */
-  void set_bit(int pos);
+  void set_bit(int32_t pos);
   /** Clears bit at position @c pos */
-  void clear_bit(int pos);
+  void clear_bit(int32_t pos);
   /** Sets bit range */
-  void add_range(int s, int e);
+  void add_range(int32_t s, int32_t e);
   /** Clears bit range */
-  void clear_range(int s, int e);
+  void clear_range(int32_t s, int32_t e);
   /** Sets bits to 1, whose corresponding values
       in passed bit array are also 1 (bitwize OR) */
   void add_bit_array(bit_array &);
@@ -33,25 +33,25 @@ public:
       the passed bit array (bitwize AND) */
   void intersect_bit_array(bit_array &);
   /** Adds bit array from the passed byte stream. */
-  void add_bit_array(char*, int);
+  void add_bit_array(char*, int32_t);
   /** Clears bit array from the passed byte stream. */
-  void clear_bit_array(char*, int);
+  void clear_bit_array(char*, int32_t);
   /** Returns bit value at position @c pos. */
-  bool get_bit(int pos) const;
+  bool get_bit(int32_t pos) const;
 
 
 
 #define CNAME "bit_array"
 #include "ca/primitive/primitive_memory_operator.h"
 
-  void ensure_size(int iSize, bool bSet = false);
-  void set_size(int iBitCount, bool set = false);
-  int get_size();
+  void ensure_size(int32_t iSize, bool bSet = false);
+  void set_size(int32_t iBitCount, bool set = false);
+  int32_t get_size();
 
 private:
-  int * m_pdata;
-  int m_iDataCount;
-  int m_iBitCount;
+  int32_t * m_pdata;
+  int32_t m_iDataCount;
+  int32_t m_iBitCount;
 
 };
 

@@ -43,9 +43,9 @@ extern "C" {
  * level setting for this post-processor, corresponding to maximum
  * improvement and computational expense.
  *
- * \param[out] _buf int: The maximum post-processing level.
+ * \param[out] _buf int32_t: The maximum post-processing level.
  * \retval TH_EFAULT  \a _dec_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL  \a _buf_sz is not <tt>sizeof(int)</tt>.
+ * \retval TH_EINVAL  \a _buf_sz is not <tt>sizeof(int32_t)</tt>.
  * \retval TH_EIMPL   Not supported by this implementation.*/
 #define TH_DECCTL_GET_PPLEVEL_MAX (1)
 /**Sets the post-processing level.
@@ -55,10 +55,10 @@ extern "C" {
  * compressed stream. This must be a value between zero (off)
  * and the maximum returned by TH_DECCTL_GET_PPLEVEL_MAX.
  *
- * \param[in] _buf int: The new post-processing level.
+ * \param[in] _buf int32_t: The new post-processing level.
  *                      0 to disable; larger values use more CPU.
  * \retval TH_EFAULT  \a _dec_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL  \a _buf_sz is not <tt>sizeof(int)</tt>, or the
+ * \retval TH_EINVAL  \a _buf_sz is not <tt>sizeof(int32_t)</tt>, or the
  *                     post-processing level is out of bounds.
  *                    The maximum post-processing level may be
  *                     implementation-specific, and can be obtained via
@@ -136,7 +136,7 @@ extern "C" {
  *                   I.e., this section contains fragment rows
  *                    <tt>\a _yfrag0 ...\a _yfrag_end -1</tt>.*/
 typedef void (*th_stripe_decoded_func)(void *_ctx,th_ycbcr_buffer _buf,
- int _yfrag0,int _yfrag_end);
+ int32_t _yfrag0,int32_t _yfrag_end);
 
 /**The striped decode callback data to pass to #TH_DECCTL_SET_STRIPE_CB.*/
 typedef struct{
@@ -228,7 +228,7 @@ typedef struct th_setup_info th_setup_info;
  *                        <tt>libtheoradec</tt>.
  * \retval TH_ENOTFORMAT The packet was not a Theora header.
  */
-extern int th_decode_headerin(th_info *_info,th_comment *_tc,
+extern int32_t th_decode_headerin(th_info *_info,th_comment *_tc,
  th_setup_info **_setup,ogg_packet *_op);
 /**Allocates a decoder instance.
  *
@@ -268,7 +268,7 @@ extern void th_setup_free(th_setup_info *_setup);
  *                 for details.
  * \param _buf    The parameters for this control code.
  * \param _buf_sz The size of the parameter buffer.*/
-extern int th_decode_ctl(th_dec_ctx *_dec,int _req,void *_buf,
+extern int32_t th_decode_ctl(th_dec_ctx *_dec,int32_t _req,void *_buf,
  size_t _buf_sz);
 /**Submits a packet containing encoded video data to the decoder.
  * \param _dec     A #th_dec_ctx handle.
@@ -291,7 +291,7 @@ extern int th_decode_ctl(th_dec_ctx *_dec,int _req,void *_buf,
  * \retval TH_EBADPACKET \a _op does not contain encoded video data.
  * \retval TH_EIMPL      The video data uses bitstream features which this
  *                        library does not support.*/
-extern int th_decode_packetin(th_dec_ctx *_dec,const ogg_packet *_op,
+extern int32_t th_decode_packetin(th_dec_ctx *_dec,const ogg_packet *_op,
  ogg_int64_t *_granpos);
 /**Outputs the next available frame of decoded Y'CbCr data.
  * If a striped decode callback has been set with #TH_DECCTL_SET_STRIPE_CB,
@@ -308,7 +308,7 @@ extern int th_decode_packetin(th_dec_ctx *_dec,const ogg_packet *_op,
  * \retval 0 Success
  * \retval TH_EFAULT     \a _dec or \a _ycbcr was <tt>NULL</tt>.
  */
-extern int th_decode_ycbcr_out(th_dec_ctx *_dec,
+extern int32_t th_decode_ycbcr_out(th_dec_ctx *_dec,
  th_ycbcr_buffer _ycbcr);
 /**Frees an allocated decoder instance.
  * \param _dec A #th_dec_ctx handle.*/

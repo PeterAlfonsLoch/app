@@ -30,10 +30,10 @@ BEGIN_EXTERN_C
 
 
 
-extern int vorbis_lpc_to_lsp(float *lpc,float *lsp,int m);
+extern int32_t vorbis_lpc_to_lsp(float *lpc,float *lsp,int32_t m);
 
-extern void vorbis_lsp_to_curve(float *curve,int *map,int n,int ln,
-                                float *lsp,int m,
+extern void vorbis_lsp_to_curve(float *curve,int32_t *map,int32_t n,int32_t ln,
+                                float *lsp,int32_t m,
                                 float amp,float ampoffset);
 END_EXTERN_C
 #endif

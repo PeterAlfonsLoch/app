@@ -36,7 +36,7 @@ namespace gcom
          ::ca::graphics_sp               m_dcScreen;
          rect             m_rectFinalPlacement;
 
-         ::collection::map < int, int, ::ca::dib *, ::ca::dib * > m_mapDib;
+         ::collection::map < int32_t, int32_t, ::ca::dib *, ::ca::dib * > m_mapDib;
          ::ca::draw_dib_sp         m_spdrawdib;
 
          mutex   m_mutex1Back;
@@ -67,7 +67,7 @@ namespace gcom
          ::ca::graphics & GetSourceDC(); // m_dcBackViewSource
          ::ca::graphics & GetScreenDC(); // m_dcBackViewSource
 
-         ::ca::dib * GetDib(int iIndex);
+         ::ca::dib * GetDib(int32_t iIndex);
          ::ca::draw_dib & GetDrawDib();
 
          ::ca::bitmap & GetTransferBitmap(); // m_bmpBackView2
@@ -75,7 +75,7 @@ namespace gcom
          ::ca::bitmap & GetBufferBitmap(); // m_bmpBackView2
          ::ca::bitmap & GetSourceBitmap(); // m_bmpBackViewSource
 
-         virtual void OnCreateDib(::ca::dib * pdib, int iIndex);
+         virtual void OnCreateDib(::ca::dib * pdib, int32_t iIndex);
          
 
          ::ca::bitmap & GetBackBitmap(); // m_bmpBackView
@@ -96,12 +96,12 @@ namespace gcom
 //         ::ca::bitmap            m_bmpTransfer;
 //         ::ca::bitmap            m_bmpTransferOld;
 
-         // Source tools keep the original bitmap int its original size
+         // Source tools keep the original bitmap int32_t its original size
 //         ::ca::graphics_sp               m_dcSource;
 //         ::ca::bitmap            m_bmpSource;
 //         ::ca::bitmap            m_bmpSourceOld;
 
-         // Source tools keep the original bitmap int its original size
+         // Source tools keep the original bitmap int32_t its original size
 //         ::ca::graphics_sp               m_dcFrame1;
 //         ::ca::bitmap            m_bmpFrame1;
 //       ::ca::bitmap            m_bmpFrame1Old;

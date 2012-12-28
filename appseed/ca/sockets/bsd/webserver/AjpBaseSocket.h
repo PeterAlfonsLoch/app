@@ -40,7 +40,7 @@ namespace sockets
          ::collection::int_to_string Method;
          ::collection::int_to_string header;
          ::collection::int_to_string Attribute;
-         ::collection::string_map < int > ResponseHeader;
+         ::collection::string_map < int32_t > ResponseHeader;
 
       };
 
@@ -52,20 +52,20 @@ namespace sockets
       virtual void OnPacket( const char *buf, size_t sz ) = 0;
 
    protected:
-      unsigned char get_byte(const char *buf, int& ptr);
-      bool get_boolean(const char *buf, int& ptr);
-      short get_integer(const char *buf, int& ptr);
-      string get_string(const char *buf, int& ptr);
+      unsigned char get_byte(const char *buf, int32_t& ptr);
+      bool get_boolean(const char *buf, int32_t& ptr);
+      short get_integer(const char *buf, int32_t& ptr);
+      string get_string(const char *buf, int32_t& ptr);
 
-      void put_byte(char *buf, int& ptr, unsigned char zz);
-      void put_boolean(char *buf, int& ptr, bool zz);
-      void put_integer(char *buf, int& ptr, short zz);
-      void put_string(char *buf, int& ptr, const char * psz);
+      void put_byte(char *buf, int32_t& ptr, unsigned char zz);
+      void put_boolean(char *buf, int32_t& ptr, bool zz);
+      void put_integer(char *buf, int32_t& ptr, short zz);
+      void put_string(char *buf, int32_t& ptr, const char * psz);
 
    private:
-      int m_state;
-      int m_length;
-      int m_ptr;
+      int32_t m_state;
+      int32_t m_length;
+      int32_t m_ptr;
       char m_message[8192];
    };
 

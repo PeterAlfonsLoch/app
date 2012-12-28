@@ -23,20 +23,20 @@
 
 /* A complete description of Ogg framing exists in docs/framing.html */
 
-int ogg_page_version(const ogg_page *og){
-  return((int)(og->header[4]));
+int32_t ogg_page_version(const ogg_page *og){
+  return((int32_t)(og->header[4]));
 }
 
-int ogg_page_continued(const ogg_page *og){
-  return((int)(og->header[5]&0x01));
+int32_t ogg_page_continued(const ogg_page *og){
+  return((int32_t)(og->header[5]&0x01));
 }
 
-int ogg_page_bos(const ogg_page *og){
-  return((int)(og->header[5]&0x02));
+int32_t ogg_page_bos(const ogg_page *og){
+  return((int32_t)(og->header[5]&0x02));
 }
 
-int ogg_page_eos(const ogg_page *og){
-  return((int)(og->header[5]&0x04));
+int32_t ogg_page_eos(const ogg_page *og){
+  return((int32_t)(og->header[5]&0x04));
 }
 
 ogg_int64_t ogg_page_granulepos(const ogg_page *og){
@@ -52,7 +52,7 @@ ogg_int64_t ogg_page_granulepos(const ogg_page *og){
   return(granulepos);
 }
 
-int ogg_page_serialno(const ogg_page *og){
+int32_t ogg_page_serialno(const ogg_page *og){
   return(og->header[14] |
          (og->header[15]<<8) |
          (og->header[16]<<16) |
@@ -85,8 +85,8 @@ long ogg_page_pageno(const ogg_page *og){
      ogg_page_continued(page) !=0
 */
 
-int ogg_page_packets(const ogg_page *og){
-  int i,n=og->header[26],count=0;
+int32_t ogg_page_packets(const ogg_page *og){
+  int32_t i,n=og->header[26],count=0;
   for(i=0;i<n;i++)
     if(og->header[27+i]<255)count++;
   return(count);
@@ -98,7 +98,7 @@ int ogg_page_packets(const ogg_page *og){
    use the static init below) */
 
 static ogg_uint32_t _ogg_crc_entry(unsigned long index){
-  int           i;
+  int32_t           i;
   unsigned long r;
 
   r = index << 24;
@@ -182,14 +182,14 @@ static const ogg_uint32_t crc_lookup[256]={
 
 /* init the encode/decode logical stream state */
 
-int ogg_stream_init(ogg_stream_state *os,int serialno){
+int32_t ogg_stream_init(ogg_stream_state *os,int32_t serialno){
   if(os){
     memset(os,0,sizeof(*os));
     os->body_storage=16*1024;
     os->lacing_storage=1024;
 
     os->body_data= (unsigned char *) _ogg_malloc(os->body_storage*sizeof(*os->body_data));
-    os->lacing_vals= (int *) _ogg_malloc(os->lacing_storage*sizeof(*os->lacing_vals));
+    os->lacing_vals= (int32_t *) _ogg_malloc(os->lacing_storage*sizeof(*os->lacing_vals));
     os->granule_vals= (ogg_int64_t *) _ogg_malloc(os->lacing_storage*sizeof(*os->granule_vals));
 
     if(!os->body_data || !os->lacing_vals || !os->granule_vals){
@@ -205,13 +205,13 @@ int ogg_stream_init(ogg_stream_state *os,int serialno){
 }
 
 /* async/delayed error detection for the ogg_stream_state */
-int ogg_stream_check(ogg_stream_state *os){
+int32_t ogg_stream_check(ogg_stream_state *os){
   if(!os || !os->body_data) return -1;
   return 0;
 }
 
 /* _clear does not free os, only the non-flat storage within */
-int ogg_stream_clear(ogg_stream_state *os){
+int32_t ogg_stream_clear(ogg_stream_state *os){
   if(os){
     if(os->body_data)_ogg_free(os->body_data);
     if(os->lacing_vals)_ogg_free(os->lacing_vals);
@@ -222,7 +222,7 @@ int ogg_stream_clear(ogg_stream_state *os){
   return(0);
 }
 
-int ogg_stream_destroy(ogg_stream_state *os){
+int32_t ogg_stream_destroy(ogg_stream_state *os){
   if(os){
     ogg_stream_clear(os);
     _ogg_free(os);
@@ -233,7 +233,7 @@ int ogg_stream_destroy(ogg_stream_state *os){
 /* Helpers for ogg_stream_encode; this keeps the structure and
    what's happening fairly clear */
 
-static int _os_body_expand(ogg_stream_state *os,int needed){
+static int32_t _os_body_expand(ogg_stream_state *os,int32_t needed){
   if(os->body_storage<=os->body_fill+needed){
     void *ret;
     ret=_ogg_realloc(os->body_data,(os->body_storage+needed+1024)*
@@ -248,7 +248,7 @@ static int _os_body_expand(ogg_stream_state *os,int needed){
   return 0;
 }
 
-static int _os_lacing_expand(ogg_stream_state *os,int needed){
+static int32_t _os_lacing_expand(ogg_stream_state *os,int32_t needed){
   if(os->lacing_storage<=os->lacing_fill+needed){
     void *ret;
     ret=_ogg_realloc(os->lacing_vals,(os->lacing_storage+needed+32)*
@@ -257,7 +257,7 @@ static int _os_lacing_expand(ogg_stream_state *os,int needed){
       ogg_stream_clear(os);
       return -1;
     }
-    os->lacing_vals= (int *) ret;
+    os->lacing_vals= (int32_t *) ret;
     ret=_ogg_realloc(os->granule_vals,(os->lacing_storage+needed+32)*
                      sizeof(*os->granule_vals));
     if(!ret){
@@ -277,7 +277,7 @@ static int _os_lacing_expand(ogg_stream_state *os,int needed){
 void ogg_page_checksum_set(ogg_page *og){
   if(og){
     ogg_uint32_t crc_reg=0;
-    int i;
+    int32_t i;
 
     /* safety; needed for API behavior, but not framing code */
     og->header[22]=0;
@@ -298,15 +298,15 @@ void ogg_page_checksum_set(ogg_page *og){
 }
 
 /* submit data to the internal buffer of the framing engine */
-int ogg_stream_iovecin(ogg_stream_state *os, ogg_iovec_t *iov, int count,
+int32_t ogg_stream_iovecin(ogg_stream_state *os, ogg_iovec_t *iov, int32_t count,
                        long e_o_s, ogg_int64_t granulepos){
 
-  int bytes = 0, lacing_vals, i;
+  int32_t bytes = 0, lacing_vals, i;
 
   if(ogg_stream_check(os)) return -1;
   if(!iov) return 0;
 
-  for (i = 0; i < count; ++i) bytes += (int)iov[i].iov_len;
+  for (i = 0; i < count; ++i) bytes += (int32_t)iov[i].iov_len;
   lacing_vals=bytes/255+1;
 
   if(os->body_returned){
@@ -332,7 +332,7 @@ int ogg_stream_iovecin(ogg_stream_state *os, ogg_iovec_t *iov, int count,
 
   for (i = 0; i < count; ++i) {
     memcpy(os->body_data+os->body_fill, iov[i].iov_base, iov[i].iov_len);
-    os->body_fill += (int)iov[i].iov_len;
+    os->body_fill += (int32_t)iov[i].iov_len;
   }
 
   /* Store lacing vals for this packet */
@@ -356,7 +356,7 @@ int ogg_stream_iovecin(ogg_stream_state *os, ogg_iovec_t *iov, int count,
   return(0);
 }
 
-int ogg_stream_packetin(ogg_stream_state *os,ogg_packet *op){
+int32_t ogg_stream_packetin(ogg_stream_state *os,ogg_packet *op){
   ogg_iovec_t iov;
   iov.iov_base = op->packet;
   iov.iov_len = op->bytes;
@@ -366,11 +366,11 @@ int ogg_stream_packetin(ogg_stream_state *os,ogg_packet *op){
 /* Conditionally flush a page; force==0 will only flush nominal-size
    pages, force==1 forces us to flush a page regardless of page size
    so long as there's any data available at all. */
-static int ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int force, int nfill){
-  int i;
-  int vals=0;
-  int maxvals=(os->lacing_fill>255?255:os->lacing_fill);
-  int bytes=0;
+static int32_t ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int32_t force, int32_t nfill){
+  int32_t i;
+  int32_t vals=0;
+  int32_t maxvals=(os->lacing_fill>255?255:os->lacing_fill);
+  int32_t bytes=0;
   long acc=0;
   ogg_int64_t granule_pos=-1;
 
@@ -401,8 +401,8 @@ static int ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int force, int 
        without requiring an application to explicitly request a specific optimized
        behavior. We'll want an explicit behavior setup pathway eventually as well. */
 
-    int packets_done=0;
-    int packet_just_done=0;
+    int32_t packets_done=0;
+    int32_t packet_just_done=0;
     for(vals=0;vals<maxvals;vals++){
       if(acc>nfill && packet_just_done>=4){
         force=1;
@@ -511,7 +511,7 @@ static int ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int force, int 
    (and *not* ogg_stream_flush) unless you specifically need to flush
    a page regardless of size in the middle of a stream. */
 
-int ogg_stream_flush(ogg_stream_state *os,ogg_page *og){
+int32_t ogg_stream_flush(ogg_stream_state *os,ogg_page *og){
   return ogg_stream_flush_i(os,og,1,4096);
 }
 
@@ -519,7 +519,7 @@ int ogg_stream_flush(ogg_stream_state *os,ogg_page *og){
    page size for applications which are smart enough to provide their
    own delay based flushing */
 
-int ogg_stream_flush_fill(ogg_stream_state *os,ogg_page *og, int nfill){
+int32_t ogg_stream_flush_fill(ogg_stream_state *os,ogg_page *og, int32_t nfill){
   return ogg_stream_flush_i(os,og,1,nfill);
 }
 
@@ -527,8 +527,8 @@ int ogg_stream_flush_fill(ogg_stream_state *os,ogg_page *og, int nfill){
 returned are to static buffers; do not free. The returned buffers are
 good only until the next call (using the same ogg_stream_state) */
 
-int ogg_stream_pageout(ogg_stream_state *os, ogg_page *og){
-  int force=0;
+int32_t ogg_stream_pageout(ogg_stream_state *os, ogg_page *og){
+  int32_t force=0;
   if(ogg_stream_check(os)) return 0;
 
   if((os->e_o_s&&os->lacing_fill) ||          /* 'were done, now flush' case */
@@ -542,8 +542,8 @@ int ogg_stream_pageout(ogg_stream_state *os, ogg_page *og){
 page size for applications which are smart enough to provide their
 own delay based flushing */
 
-int ogg_stream_pageout_fill(ogg_stream_state *os, ogg_page *og, int nfill){
-  int force=0;
+int32_t ogg_stream_pageout_fill(ogg_stream_state *os, ogg_page *og, int32_t nfill){
+  int32_t force=0;
   if(ogg_stream_check(os)) return 0;
 
   if((os->e_o_s&&os->lacing_fill) ||          /* 'were done, now flush' case */
@@ -553,7 +553,7 @@ int ogg_stream_pageout_fill(ogg_stream_state *os, ogg_page *og, int nfill){
   return(ogg_stream_flush_i(os,og,force,nfill));
 }
 
-int ogg_stream_eos(ogg_stream_state *os){
+int32_t ogg_stream_eos(ogg_stream_state *os){
   if(ogg_stream_check(os)) return 1;
   return os->e_o_s;
 }
@@ -574,7 +574,7 @@ int ogg_stream_eos(ogg_stream_state *os){
    ogg_stream_state. */
 
 /* initialize the struct to a known state */
-int ogg_sync_init(ogg_sync_state *oy){
+int32_t ogg_sync_init(ogg_sync_state *oy){
   if(oy){
     oy->storage = -1; /* used as a readiness flag */
     memset(oy,0,sizeof(*oy));
@@ -583,7 +583,7 @@ int ogg_sync_init(ogg_sync_state *oy){
 }
 
 /* clear non-flat storage within */
-int ogg_sync_clear(ogg_sync_state *oy){
+int32_t ogg_sync_clear(ogg_sync_state *oy){
   if(oy){
     if(oy->data)_ogg_free(oy->data);
     memset(oy,0,sizeof(*oy));
@@ -591,7 +591,7 @@ int ogg_sync_clear(ogg_sync_state *oy){
   return(0);
 }
 
-int ogg_sync_destroy(ogg_sync_state *oy){
+int32_t ogg_sync_destroy(ogg_sync_state *oy){
   if(oy){
     ogg_sync_clear(oy);
     _ogg_free(oy);
@@ -599,7 +599,7 @@ int ogg_sync_destroy(ogg_sync_state *oy){
   return(0);
 }
 
-int ogg_sync_check(ogg_sync_state *oy){
+int32_t ogg_sync_check(ogg_sync_state *oy){
   if(oy->storage<0) return -1;
   return 0;
 }
@@ -636,7 +636,7 @@ char *ogg_sync_buffer(ogg_sync_state *oy, long size){
   return((char *)oy->data+oy->fill);
 }
 
-int ogg_sync_wrote(ogg_sync_state *oy, long bytes){
+int32_t ogg_sync_wrote(ogg_sync_state *oy, long bytes){
   if(ogg_sync_check(oy))return -1;
   if(oy->fill+bytes>oy->storage)return -1;
   oy->fill+=bytes;
@@ -661,7 +661,7 @@ long ogg_sync_pageseek(ogg_sync_state *oy,ogg_page *og){
   if(ogg_sync_check(oy))return 0;
 
   if(oy->headerbytes==0){
-    int headerbytes,i;
+    int32_t headerbytes,i;
     if(bytes<27)return(0); /* not enough for a header */
 
     /* verify capture pattern */
@@ -736,7 +736,7 @@ long ogg_sync_pageseek(ogg_sync_state *oy,ogg_page *og){
   if(!next)
     next=oy->data+oy->fill;
 
-  oy->returned=(int)(next-oy->data);
+  oy->returned=(int32_t)(next-oy->data);
   return((long)-(next-page));
 }
 
@@ -751,7 +751,7 @@ long ogg_sync_pageseek(ogg_sync_state *oy,ogg_page *og){
    Returns pointers into buffered data; invalidated by next call to
    _stream, _clear, _init, or _buffer */
 
-int ogg_sync_pageout(ogg_sync_state *oy, ogg_page *og){
+int32_t ogg_sync_pageout(ogg_sync_state *oy, ogg_page *og){
 
   if(ogg_sync_check(oy))return 0;
 
@@ -784,20 +784,20 @@ int ogg_sync_pageout(ogg_sync_state *oy, ogg_page *og){
 /* add the incoming page to the stream state; we decompose the page
    into packet segments here as well. */
 
-int ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
+int32_t ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
   unsigned char *header=og->header;
   unsigned char *body=og->body;
   long           bodysize=og->body_len;
-  int            segptr=0;
+  int32_t            segptr=0;
 
-  int version=ogg_page_version(og);
-  int continued=ogg_page_continued(og);
-  int bos=ogg_page_bos(og);
-  int eos=ogg_page_eos(og);
+  int32_t version=ogg_page_version(og);
+  int32_t continued=ogg_page_continued(og);
+  int32_t bos=ogg_page_bos(og);
+  int32_t eos=ogg_page_eos(og);
   ogg_int64_t granulepos=ogg_page_granulepos(og);
-  int serialno=ogg_page_serialno(og);
+  int32_t serialno=ogg_page_serialno(og);
   long pageno=ogg_page_pageno(og);
-  int segments=header[26];
+  int32_t segments=header[26];
 
   if(ogg_stream_check(os)) return -1;
 
@@ -836,7 +836,7 @@ int ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
 
   /* are we in sequence? */
   if(pageno!=os->pageno){
-    int i;
+    int32_t i;
 
     /* unroll previous partial packet (if any) */
     for(i=os->lacing_packet;i<os->lacing_fill;i++)
@@ -857,7 +857,7 @@ int ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
        os->lacing_vals[os->lacing_fill-1]==0x400){
       bos=0;
       for(;segptr<segments;segptr++){
-        int val=header[27+segptr];
+        int32_t val=header[27+segptr];
         body+=val;
         bodysize-=val;
         if(val<255){
@@ -875,9 +875,9 @@ int ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
   }
 
   {
-    int saved=-1;
+    int32_t saved=-1;
     while(segptr<segments){
-      int val=header[27+segptr];
+      int32_t val=header[27+segptr];
       os->lacing_vals[os->lacing_fill]=val;
       os->granule_vals[os->lacing_fill]=-1;
 
@@ -913,7 +913,7 @@ int ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
 }
 
 /* clear things to an initial state.  Good to call, eg, before seeking */
-int ogg_sync_reset(ogg_sync_state *oy){
+int32_t ogg_sync_reset(ogg_sync_state *oy){
   if(ogg_sync_check(oy))return -1;
 
   oy->fill=0;
@@ -924,7 +924,7 @@ int ogg_sync_reset(ogg_sync_state *oy){
   return(0);
 }
 
-int ogg_stream_reset(ogg_stream_state *os){
+int32_t ogg_stream_reset(ogg_stream_state *os){
   if(ogg_stream_check(os)) return -1;
 
   os->body_fill=0;
@@ -945,20 +945,20 @@ int ogg_stream_reset(ogg_stream_state *os){
   return(0);
 }
 
-int ogg_stream_reset_serialno(ogg_stream_state *os,int serialno){
+int32_t ogg_stream_reset_serialno(ogg_stream_state *os,int32_t serialno){
   if(ogg_stream_check(os)) return -1;
   ogg_stream_reset(os);
   os->serialno=serialno;
   return(0);
 }
 
-static int _packetout(ogg_stream_state *os,ogg_packet *op,int adv){
+static int32_t _packetout(ogg_stream_state *os,ogg_packet *op,int32_t adv){
 
   /* The last part of decode. We have the stream broken into packet
      segments.  Now we need to group them into packets (or return the
      out of sync markers) */
 
-  int ptr=os->lacing_returned;
+  int32_t ptr=os->lacing_returned;
 
   if(os->lacing_packet<=ptr)return(0);
 
@@ -976,13 +976,13 @@ static int _packetout(ogg_stream_state *os,ogg_packet *op,int adv){
 
   /* Gather the whole packet. We'll have no holes or a partial packet */
   {
-    int size=os->lacing_vals[ptr]&0xff;
+    int32_t size=os->lacing_vals[ptr]&0xff;
     long bytes=size;
-    int eos=os->lacing_vals[ptr]&0x200; /* last packet of the stream? */
-    int bos=os->lacing_vals[ptr]&0x100; /* first packet of the stream? */
+    int32_t eos=os->lacing_vals[ptr]&0x200; /* last packet of the stream? */
+    int32_t bos=os->lacing_vals[ptr]&0x100; /* first packet of the stream? */
 
     while(size==255){
-      int val=os->lacing_vals[++ptr];
+      int32_t val=os->lacing_vals[++ptr];
       size=val&0xff;
       if(val&0x200)eos=0x200;
       bytes+=size;
@@ -1006,12 +1006,12 @@ static int _packetout(ogg_stream_state *os,ogg_packet *op,int adv){
   return(1);
 }
 
-int ogg_stream_packetout(ogg_stream_state *os,ogg_packet *op){
+int32_t ogg_stream_packetout(ogg_stream_state *os,ogg_packet *op){
   if(ogg_stream_check(os)) return 0;
   return _packetout(os,op,1);
 }
 
-int ogg_stream_packetpeek(ogg_stream_state *os,ogg_packet *op){
+int32_t ogg_stream_packetpeek(ogg_stream_state *os,ogg_packet *op){
   if(ogg_stream_check(os)) return 0;
   return _packetout(os,op,0);
 }
@@ -1026,10 +1026,10 @@ void ogg_packet_clear(ogg_packet *op) {
 ogg_stream_state os_en, os_de;
 ogg_sync_state oy;
 
-void checkpacket(ogg_packet *op,long len, int no, long pos){
+void checkpacket(ogg_packet *op,long len, int32_t no, long pos){
   long j;
-  static int sequence=0;
-  static int lastno=0;
+  static int32_t sequence=0;
+  static int32_t lastno=0;
 
   if(op->bytes!=len){
     fprintf(stderr,"incorrect packet length (%ld != %ld)!\n",op->bytes,len);
@@ -1065,7 +1065,7 @@ void checkpacket(ogg_packet *op,long len, int no, long pos){
     }
 }
 
-void check_page(unsigned char *data,const int *header,ogg_page *og){
+void check_page(unsigned char *data,const int32_t *header,ogg_page *og){
   long j;
   /* Test data */
   for(j=0;j<og->body_len;j++)
@@ -1093,11 +1093,11 @@ void check_page(unsigned char *data,const int *header,ogg_page *og){
 }
 
 void print_header(ogg_page *og){
-  int j;
+  int32_t j;
   fprintf(stderr,"\nHEADER:\n");
   fprintf(stderr,"  capture: %c %c %c %c  version: %d  flags: %x\n",
           og->header[0],og->header[1],og->header[2],og->header[3],
-          (int)og->header[4],(int)og->header[5]);
+          (int32_t)og->header[4],(int32_t)og->header[5]);
 
   fprintf(stderr,"  granulepos: %d  serialno: %d  pageno: %ld\n",
           (og->header[9]<<24)|(og->header[8]<<16)|
@@ -1108,12 +1108,12 @@ void print_header(ogg_page *og){
           (og->header[19]<<8)|og->header[18]);
 
   fprintf(stderr,"  checksum: %02x:%02x:%02x:%02x\n  segments: %d (",
-          (int)og->header[22],(int)og->header[23],
-          (int)og->header[24],(int)og->header[25],
-          (int)og->header[26]);
+          (int32_t)og->header[22],(int32_t)og->header[23],
+          (int32_t)og->header[24],(int32_t)og->header[25],
+          (int32_t)og->header[26]);
 
   for(j=27;j<og->header_len;j++)
-    fprintf(stderr,"%d ",(int)og->header[j]);
+    fprintf(stderr,"%d ",(int32_t)og->header[j]);
   fprintf(stderr,")\n\n");
 }
 
@@ -1138,7 +1138,7 @@ void error(){
 }
 
 /* 17 only */
-const int head1_0[] = {0x4f,0x67,0x67,0x53,0,0x06,
+const int32_t head1_0[] = {0x4f,0x67,0x67,0x53,0,0x06,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0x15,0xed,0xec,0x91,
@@ -1146,13 +1146,13 @@ const int head1_0[] = {0x4f,0x67,0x67,0x53,0,0x06,
                        17};
 
 /* 17, 254, 255, 256, 500, 510, 600 byte, pad */
-const int head1_1[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_1[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0x59,0x10,0x6c,0x2c,
                        1,
                        17};
-const int head2_1[] = {0x4f,0x67,0x67,0x53,0,0x04,
+const int32_t head2_1[] = {0x4f,0x67,0x67,0x53,0,0x04,
                        0x07,0x18,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,1,0,0,0,
                        0x89,0x33,0x85,0xce,
@@ -1161,13 +1161,13 @@ const int head2_1[] = {0x4f,0x67,0x67,0x53,0,0x04,
                        255,255,90};
 
 /* nil packets; beginning,middle,end */
-const int head1_2[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_2[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0xff,0x7b,0x23,0x17,
                        1,
                        0};
-const int head2_2[] = {0x4f,0x67,0x67,0x53,0,0x04,
+const int32_t head2_2[] = {0x4f,0x67,0x67,0x53,0,0x04,
                        0x07,0x28,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,1,0,0,0,
                        0x5c,0x3f,0x66,0xcb,
@@ -1176,7 +1176,7 @@ const int head2_2[] = {0x4f,0x67,0x67,0x53,0,0x04,
                        255,255,90,0};
 
 /* large initial packet */
-const int head1_3[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_3[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0x01,0x27,0x31,0xaa,
@@ -1184,7 +1184,7 @@ const int head1_3[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        255,255,255,255,255,255,255,255,
                        255,255,255,255,255,255,255,255,255,10};
 
-const int head2_3[] = {0x4f,0x67,0x67,0x53,0,0x04,
+const int32_t head2_3[] = {0x4f,0x67,0x67,0x53,0,0x04,
                        0x07,0x08,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,1,0,0,0,
                        0x7f,0x4e,0x8a,0xd2,
@@ -1193,14 +1193,14 @@ const int head2_3[] = {0x4f,0x67,0x67,0x53,0,0x04,
 
 
 /* continuing packet test */
-const int head1_4[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_4[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0xff,0x7b,0x23,0x17,
                        1,
                        0};
 
-const int head2_4[] = {0x4f,0x67,0x67,0x53,0,0x00,
+const int32_t head2_4[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
                        0x01,0x02,0x03,0x04,1,0,0,0,
                        0xf8,0x3c,0x19,0x79,
@@ -1238,7 +1238,7 @@ const int head2_4[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        255,255,255,255,255,255,255,255,
                        255,255,255,255,255,255,255};
 
-const int head3_4[] = {0x4f,0x67,0x67,0x53,0,0x05,
+const int32_t head3_4[] = {0x4f,0x67,0x67,0x53,0,0x05,
                        0x07,0x0c,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,2,0,0,0,
                        0x38,0xe6,0xb6,0x28,
@@ -1247,14 +1247,14 @@ const int head3_4[] = {0x4f,0x67,0x67,0x53,0,0x05,
 
 
 /* spill expansion test */
-const int head1_4b[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_4b[] = {0x4f,0x67,0x67,0x53,0,0x02,
                         0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                         0x01,0x02,0x03,0x04,0,0,0,0,
                         0xff,0x7b,0x23,0x17,
                         1,
                         0};
 
-const int head2_4b[] = {0x4f,0x67,0x67,0x53,0,0x00,
+const int32_t head2_4b[] = {0x4f,0x67,0x67,0x53,0,0x00,
                         0x07,0x10,0x00,0x00,0x00,0x00,0x00,0x00,
                         0x01,0x02,0x03,0x04,1,0,0,0,
                         0xce,0x8f,0x17,0x1a,
@@ -1263,7 +1263,7 @@ const int head2_4b[] = {0x4f,0x67,0x67,0x53,0,0x00,
                         255,255,255,255,255,255,255,255,255,10,255,4,255,0,0};
 
 
-const int head3_4b[] = {0x4f,0x67,0x67,0x53,0,0x04,
+const int32_t head3_4b[] = {0x4f,0x67,0x67,0x53,0,0x04,
                         0x07,0x14,0x00,0x00,0x00,0x00,0x00,0x00,
                         0x01,0x02,0x03,0x04,2,0,0,0,
                         0x9b,0xb2,0x50,0xa1,
@@ -1271,14 +1271,14 @@ const int head3_4b[] = {0x4f,0x67,0x67,0x53,0,0x04,
                         0};
 
 /* page with the 255 segment limit */
-const int head1_5[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_5[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0xff,0x7b,0x23,0x17,
                        1,
                        0};
 
-const int head2_5[] = {0x4f,0x67,0x67,0x53,0,0x00,
+const int32_t head2_5[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        0x07,0xfc,0x03,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,1,0,0,0,
                        0xed,0x2a,0x2e,0xa7,
@@ -1316,7 +1316,7 @@ const int head2_5[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        10,10,10,10,10,10,10,10,
                        10,10,10,10,10,10,10};
 
-const int head3_5[] = {0x4f,0x67,0x67,0x53,0,0x04,
+const int32_t head3_5[] = {0x4f,0x67,0x67,0x53,0,0x04,
                        0x07,0x00,0x04,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,2,0,0,0,
                        0x6c,0x3b,0x82,0x3d,
@@ -1325,14 +1325,14 @@ const int head3_5[] = {0x4f,0x67,0x67,0x53,0,0x04,
 
 
 /* packet that overspans over an entire page */
-const int head1_6[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_6[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0xff,0x7b,0x23,0x17,
                        1,
                        0};
 
-const int head2_6[] = {0x4f,0x67,0x67,0x53,0,0x00,
+const int32_t head2_6[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        0x07,0x04,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,1,0,0,0,
                        0x68,0x22,0x7c,0x3d,
@@ -1371,7 +1371,7 @@ const int head2_6[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        255,255,255,255,255,255,255,255,
                        255,255,255,255,255,255};
 
-const int head3_6[] = {0x4f,0x67,0x67,0x53,0,0x01,
+const int32_t head3_6[] = {0x4f,0x67,0x67,0x53,0,0x01,
                        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
                        0x01,0x02,0x03,0x04,2,0,0,0,
                        0xf4,0x87,0xba,0xf3,
@@ -1409,7 +1409,7 @@ const int head3_6[] = {0x4f,0x67,0x67,0x53,0,0x01,
                        255,255,255,255,255,255,255,255,
                        255,255,255,255,255,255,255};
 
-const int head4_6[] = {0x4f,0x67,0x67,0x53,0,0x05,
+const int32_t head4_6[] = {0x4f,0x67,0x67,0x53,0,0x05,
                        0x07,0x10,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,3,0,0,0,
                        0xf7,0x2f,0x6c,0x60,
@@ -1417,14 +1417,14 @@ const int head4_6[] = {0x4f,0x67,0x67,0x53,0,0x05,
                        254,255,4,255,0};
 
 /* packet that overspans over an entire page */
-const int head1_7[] = {0x4f,0x67,0x67,0x53,0,0x02,
+const int32_t head1_7[] = {0x4f,0x67,0x67,0x53,0,0x02,
                        0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,0,0,0,0,
                        0xff,0x7b,0x23,0x17,
                        1,
                        0};
 
-const int head2_7[] = {0x4f,0x67,0x67,0x53,0,0x00,
+const int32_t head2_7[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        0x07,0x04,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,1,0,0,0,
                        0x68,0x22,0x7c,0x3d,
@@ -1463,26 +1463,26 @@ const int head2_7[] = {0x4f,0x67,0x67,0x53,0,0x00,
                        255,255,255,255,255,255,255,255,
                        255,255,255,255,255,255};
 
-const int head3_7[] = {0x4f,0x67,0x67,0x53,0,0x05,
+const int32_t head3_7[] = {0x4f,0x67,0x67,0x53,0,0x05,
                        0x07,0x08,0x00,0x00,0x00,0x00,0x00,0x00,
                        0x01,0x02,0x03,0x04,2,0,0,0,
                        0xd4,0xe0,0x60,0xe5,
                        1,
                        0};
 
-void test_pack(const int *pl, const int **headers, int byteskip,
-               int pageskip, int packetskip){
+void test_pack(const int32_t *pl, const int32_t **headers, int32_t byteskip,
+               int32_t pageskip, int32_t packetskip){
   unsigned char *data=_ogg_malloc(1024*1024); /* for scripted test cases only */
   long inptr=0;
   long outptr=0;
   long deptr=0;
   long depacket=0;
   long granule_pos=7,pageno=0;
-  int i,j,packets,pageout=pageskip;
-  int eosflag=0;
-  int bosflag=0;
+  int32_t i,j,packets,pageout=pageskip;
+  int32_t eosflag=0;
+  int32_t bosflag=0;
 
-  int byteskipcount=0;
+  int32_t byteskipcount=0;
 
   ogg_stream_reset(&os_en);
   ogg_stream_reset(&os_de);
@@ -1496,7 +1496,7 @@ void test_pack(const int *pl, const int **headers, int byteskip,
   for(i=0;i<packets;i++){
     /* construct a test packet */
     ogg_packet op;
-    int len=pl[i];
+    int32_t len=pl[i];
 
     op.packet=data+inptr;
     op.bytes=len;
@@ -1558,7 +1558,7 @@ void test_pack(const int *pl, const int **headers, int byteskip,
           ogg_sync_wrote(&oy,next-buf);
 
           while(1){
-            int ret=ogg_sync_pageout(&oy,&og_de);
+            int32_t ret=ogg_sync_pageout(&oy,&og_de);
             if(ret==0)break;
             if(ret<0)continue;
             /* got a page.  Happy happy.  Verify that it's good. */
@@ -1649,7 +1649,7 @@ void test_pack(const int *pl, const int **headers, int byteskip,
   fprintf(stderr,"ok.\n");
 }
 
-int main(){
+int32_t main(){
 
   ogg_stream_init(&os_en,0x04030201);
   ogg_stream_init(&os_de,0x04030201);
@@ -1660,8 +1660,8 @@ int main(){
 
   {
     /* 17 only */
-    const int packets[]={17, -1};
-    const int *headret[]={head1_0,NULL};
+    const int32_t packets[]={17, -1};
+    const int32_t *headret[]={head1_0,NULL};
 
     fprintf(stderr,"testing single page encoding... ");
     test_pack(packets,headret,0,0,0);
@@ -1669,8 +1669,8 @@ int main(){
 
   {
     /* 17, 254, 255, 256, 500, 510, 600 byte, pad */
-    const int packets[]={17, 254, 255, 256, 500, 510, 600, -1};
-    const int *headret[]={head1_1,head2_1,NULL};
+    const int32_t packets[]={17, 254, 255, 256, 500, 510, 600, -1};
+    const int32_t *headret[]={head1_1,head2_1,NULL};
 
     fprintf(stderr,"testing basic page encoding... ");
     test_pack(packets,headret,0,0,0);
@@ -1678,8 +1678,8 @@ int main(){
 
   {
     /* nil packets; beginning,middle,end */
-    const int packets[]={0,17, 254, 255, 0, 256, 0, 500, 510, 600, 0, -1};
-    const int *headret[]={head1_2,head2_2,NULL};
+    const int32_t packets[]={0,17, 254, 255, 0, 256, 0, 500, 510, 600, 0, -1};
+    const int32_t *headret[]={head1_2,head2_2,NULL};
 
     fprintf(stderr,"testing basic nil packets... ");
     test_pack(packets,headret,0,0,0);
@@ -1687,8 +1687,8 @@ int main(){
 
   {
     /* large initial packet */
-    const int packets[]={4345,259,255,-1};
-    const int *headret[]={head1_3,head2_3,NULL};
+    const int32_t packets[]={4345,259,255,-1};
+    const int32_t *headret[]={head1_3,head2_3,NULL};
 
     fprintf(stderr,"testing initial-packet lacing > 4k... ");
     test_pack(packets,headret,0,0,0);
@@ -1697,8 +1697,8 @@ int main(){
   {
     /* continuing packet test; with page spill expansion, we have to
        overflow the lacing table. */
-    const int packets[]={0,65500,259,255,-1};
-    const int *headret[]={head1_4,head2_4,head3_4,NULL};
+    const int32_t packets[]={0,65500,259,255,-1};
+    const int32_t *headret[]={head1_4,head2_4,head3_4,NULL};
 
     fprintf(stderr,"testing single packet page span... ");
     test_pack(packets,headret,0,0,0);
@@ -1706,8 +1706,8 @@ int main(){
 
   {
     /* spill expand packet test */
-    const int packets[]={0,4345,259,255,0,0,-1};
-    const int *headret[]={head1_4b,head2_4b,head3_4b,NULL};
+    const int32_t packets[]={0,4345,259,255,0,0,-1};
+    const int32_t *headret[]={head1_4b,head2_4b,head3_4b,NULL};
 
     fprintf(stderr,"testing page spill expansion... ");
     test_pack(packets,headret,0,0,0);
@@ -1716,7 +1716,7 @@ int main(){
   /* page with the 255 segment limit */
   {
 
-    const int packets[]={0,10,10,10,10,10,10,10,10,
+    const int32_t packets[]={0,10,10,10,10,10,10,10,10,
                    10,10,10,10,10,10,10,10,
                    10,10,10,10,10,10,10,10,
                    10,10,10,10,10,10,10,10,
@@ -1748,7 +1748,7 @@ int main(){
                    10,10,10,10,10,10,10,10,
                    10,10,10,10,10,10,10,10,
                    10,10,10,10,10,10,10,50,-1};
-    const int *headret[]={head1_5,head2_5,head3_5,NULL};
+    const int32_t *headret[]={head1_5,head2_5,head3_5,NULL};
 
     fprintf(stderr,"testing max packet segments... ");
     test_pack(packets,headret,0,0,0);
@@ -1756,8 +1756,8 @@ int main(){
 
   {
     /* packet that overspans over an entire page */
-    const int packets[]={0,100,130049,259,255,-1};
-    const int *headret[]={head1_6,head2_6,head3_6,head4_6,NULL};
+    const int32_t packets[]={0,100,130049,259,255,-1};
+    const int32_t *headret[]={head1_6,head2_6,head3_6,head4_6,NULL};
 
     fprintf(stderr,"testing very large packets... ");
     test_pack(packets,headret,0,0,0);
@@ -1766,8 +1766,8 @@ int main(){
   {
     /* test for the libogg 1.1.1 resync in large continuation bug
        found by Josh Coalson)  */
-    const int packets[]={0,100,130049,259,255,-1};
-    const int *headret[]={head1_6,head2_6,head3_6,head4_6,NULL};
+    const int32_t packets[]={0,100,130049,259,255,-1};
+    const int32_t *headret[]={head1_6,head2_6,head3_6,head4_6,NULL};
 
     fprintf(stderr,"testing continuation resync in very large packets... ");
     test_pack(packets,headret,100,2,3);
@@ -1775,8 +1775,8 @@ int main(){
 
   {
     /* term only page.  why not? */
-    const int packets[]={0,100,64770,-1};
-    const int *headret[]={head1_7,head2_7,head3_7,NULL};
+    const int32_t packets[]={0,100,64770,-1};
+    const int32_t *headret[]={head1_7,head2_7,head3_7,NULL};
 
     fprintf(stderr,"testing zero data page (1 nil packet)... ");
     test_pack(packets,headret,0,0,0);
@@ -1787,15 +1787,15 @@ int main(){
   {
     /* build a bunch of pages for testing */
     unsigned char *data=_ogg_malloc(1024*1024);
-    int pl[]={0, 1,1,98,4079, 1,1,2954,2057, 76,34,912,0,234,1000,1000, 1000,300,-1};
-    int inptr=0,i,j;
+    int32_t pl[]={0, 1,1,98,4079, 1,1,2954,2057, 76,34,912,0,234,1000,1000, 1000,300,-1};
+    int32_t inptr=0,i,j;
     ogg_page og[5];
 
     ogg_stream_reset(&os_en);
 
     for(i=0;pl[i]!=-1;i++){
       ogg_packet op;
-      int len=pl[i];
+      int32_t len=pl[i];
 
       op.packet=data+inptr;
       op.bytes=len;

@@ -42,7 +42,7 @@ namespace calculator
       DECL_GEN_SIGNAL(_001OnViewEncoding)
       DECL_GEN_SIGNAL(_001OnWavePlayerEvent)
 
-      virtual void _001OnTabClick(int iTab);
+      virtual void _001OnTabClick(int32_t iTab);
 
    };
 

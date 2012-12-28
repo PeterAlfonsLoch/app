@@ -191,8 +191,8 @@ namespace ca2
          m_pvOldWindow = (void *) ::GetFocus();
 #endif
 
-         int iWidth = rectOpen.width();
-         int iHeight = rectOpen.height();
+         int32_t iWidth = rectOpen.width();
+         int32_t iHeight = rectOpen.height();
          rectOpen.deflate(iWidth / 5, iHeight / 5);
          simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (m_pviewAuth->GetTopLevelParent());
          if(pframe != NULL)
@@ -444,7 +444,7 @@ namespace ca2
 
          post["hash"] = straHash.implode(";");
          post["source"] = straHash.implode(";");
-         for(int i = 0; i < 3; i++)
+         for(int32_t i = 0; i < 3; i++)
          {
             if(Application.http().get(strUrl, strResponse, post, headers, set))
                break;
@@ -695,8 +695,8 @@ namespace ca2
          pview->set_view_creator(this);
          rect rectOpen;
          System.get_screen_rect(rectOpen);
-         int iWidth = rectOpen.width();
-         int iHeight = rectOpen.width();
+         int32_t iWidth = rectOpen.width();
+         int32_t iHeight = rectOpen.width();
          rectOpen.deflate(iWidth / 5, iHeight / 5);
          m_ptabview->GetParentFrame()->SetWindowPos(ZORDER_TOP, rectOpen.left,
             rectOpen.top,

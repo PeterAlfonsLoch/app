@@ -50,7 +50,7 @@ namespace userex
 
       virtual filemanager::document * get_tabbed_filemanager_document();
 
-      virtual void _001OnTabClose(int iTab);
+      virtual void _001OnTabClose(int32_t iTab);
 
    };
 

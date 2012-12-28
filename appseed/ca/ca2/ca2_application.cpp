@@ -609,7 +609,7 @@ namespace ca2
       if(!doc.load(strFile))
          return;
       string_to_string_map * pmapNew = new string_to_string_map;
-      for(int i = 0; i < doc.get_root()->children().get_count(); i++)
+      for(int32_t i = 0; i < doc.get_root()->children().get_count(); i++)
       {
          string strId      = doc.get_root()->child_at(i)->attr("id");
          string strValue   = doc.get_root()->child_at(i)->get_value();
@@ -641,7 +641,7 @@ namespace ca2
    }
 
 
-   int application::run()
+   int32_t application::run()
    {
       TRACE("::ca2::application::run");
       /*if(directrix().m_varTopicQuery.has_property("install"))
@@ -686,7 +686,7 @@ namespace ca2
       user::oswindow_array oswindowa;
       wnda.get_wnda(oswindowa);
       user::window_util::SortByZOrder(oswindowa);
-      for(int i = 0; i < oswindowa.get_count(); i++)
+      for(int32_t i = 0; i < oswindowa.get_count(); i++)
       {
          ::user::interaction * puieWindow = wnda.find_first(oswindowa[i]);
          ::user::interaction * puie = puieWindow->_001FromPoint(pt);
@@ -777,14 +777,14 @@ namespace ca2
    }
 
 
-   bool application::is_key_pressed(int iKey)
+   bool application::is_key_pressed(int32_t iKey)
    {
 
       if(is_session())
       {
          if(m_pmapKeyPressed  == NULL)
          {
-            m_pmapKeyPressed = new ::collection::map < int, int, bool, bool >;
+            m_pmapKeyPressed = new ::collection::map < int32_t, int32_t, bool, bool >;
          }
          bool bPressed = false;
          m_pmapKeyPressed->Lookup(iKey, bPressed);
@@ -805,13 +805,13 @@ namespace ca2
 
    }
 
-   void application::set_key_pressed(int iKey, bool bPressed)
+   void application::set_key_pressed(int32_t iKey, bool bPressed)
    {
       if(is_session())
       {
          if(m_pmapKeyPressed  == NULL)
          {
-            m_pmapKeyPressed = new ::collection::map < int, int, bool, bool >;
+            m_pmapKeyPressed = new ::collection::map < int32_t, int32_t, bool, bool >;
          }
          (*m_pmapKeyPressed)[iKey] = bPressed;
       }

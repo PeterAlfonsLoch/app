@@ -44,7 +44,7 @@ namespace visual
 
       glyph * lpglyph;
       strsize iSize = str.get_length();
-      for(int i = 0; i < iSize; i++)
+      for(int32_t i = 0; i < iSize; i++)
       {
          lpglyph = GetGlyph(str[i]);
          if(lpglyph != NULL)
@@ -77,7 +77,7 @@ namespace visual
 
    }
 
-   void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int iCharsPositions, int iOffset)
+   void font::EmbossedTextOut(::ca::graphics * pdc, LPCRECT lpcrect, double dRateX, double dHeight, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions, int32_t iOffset)
    {
 
       System.visual()->EmbossedTextOut(pdc, lpcrect, dRateX, dHeight, str, lpiCharsPositions, iCharsPositions, iOffset);
@@ -126,7 +126,7 @@ namespace visual
 
       rect clipRect;
 
-      int iOldMapMode = pgraphics->GetMapMode();
+      int32_t iOldMapMode = pgraphics->GetMapMode();
       pgraphics->SetMapMode(MM_TEXT);
       pgraphics->TextOut(x, y, str);
       pgraphics->BeginPath();
@@ -139,7 +139,7 @@ namespace visual
       ClearDC();*/
    }
 
-   void font::SimpleTextOut(::ca::graphics * pgraphics, int x, int y, string & str, LPINT lpiCharsPositions, int iCharsPositions)
+   void font::SimpleTextOut(::ca::graphics * pgraphics, int32_t x, int32_t y, string & str, LPINT lpiCharsPositions, int32_t iCharsPositions)
    {
       UNREFERENCED_PARAMETER(lpiCharsPositions);
       UNREFERENCED_PARAMETER(iCharsPositions);
@@ -147,7 +147,7 @@ namespace visual
       SelectFont();
 
       rect clipRect;
-      int iOldMapMode = pgraphics->GetMapMode();
+      int32_t iOldMapMode = pgraphics->GetMapMode();
 
 #ifdef WINDOWS
 
@@ -293,7 +293,7 @@ namespace visual
    {
       char            ch;
       string            str;
-      int               i, j, k;
+      int32_t               i, j, k;
       bool             forceInsertion = FALSE;
       stringa *   p1DTokens;
 
@@ -348,7 +348,7 @@ namespace visual
    {
       string str(lpStr);
       SelectFont();
-      for(int i = 0; i < str.get_length(); i++)
+      for(int32_t i = 0; i < str.get_length(); i++)
       {
          AddGlyph(str[i]);
       }
@@ -362,9 +362,9 @@ namespace visual
       double               dHeight,
       string                 &str,
       LPINT                lpiCharsPositions,
-       int                     iCharsPositions,
-      int                  iOffset,
-       int                     iEffect)
+       int32_t                     iCharsPositions,
+      int32_t                  iOffset,
+       int32_t                     iEffect)
    {
        switch(iEffect)
        {
@@ -390,7 +390,7 @@ namespace visual
    }
 
 
-   int font::GetMegaHeight()
+   int32_t font::GetMegaHeight()
    {
 
 #ifdef WINDOWS
@@ -436,7 +436,7 @@ namespace visual
 } // namespace visual
 
 
-bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
+bool CLASS_DECL_ca TextOutU(HDC hdc, int32_t x, int32_t y, const char * lpString, int32_t c)
 {
 
 #ifdef WINDOWSEX
@@ -449,7 +449,7 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
 
-   bool bRet = ::TextOutW(hdc, x, y, wstr, (int) wstr.get_length()) != FALSE;
+   bool bRet = ::TextOutW(hdc, x, y, wstr, (int32_t) wstr.get_length()) != FALSE;
 
    return bRet;
 
@@ -464,7 +464,7 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
       return ::TextOut(hdc, x, y, NULL, 0) != FALSE;
    }
 
-   return ::TextOut(hdc, x, y, wstr, (int) wstr.get_length()) != FALSE;
+   return ::TextOut(hdc, x, y, wstr, (int32_t) wstr.get_length()) != FALSE;
 */
 
 #endif
@@ -472,7 +472,7 @@ bool CLASS_DECL_ca TextOutU(HDC hdc, int x, int y, const char * lpString, int c)
 }
 
 
-CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, LPSIZE psizl)
+CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int32_t c, LPSIZE psizl)
 {
 
 #ifdef WINDOWSEX
@@ -486,7 +486,7 @@ CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, 
 
    wstring wstr = gen::international::utf8_to_unicode(lpString, c);
 
-   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int) wstr.get_length(), psizl) != FALSE;
+   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (int32_t) wstr.get_length(), psizl) != FALSE;
 
    return bRet;
 
@@ -499,7 +499,7 @@ CLASS_DECL_ca bool GetTextExtentPoint32U(HDC hdc, const char * lpString, int c, 
 }
 
 
-CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT lprc, UINT format)
+CLASS_DECL_ca int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText, LPRECT lprc, UINT format)
 {
 
 #ifdef WINDOWSEX
@@ -513,7 +513,7 @@ CLASS_DECL_ca int  DrawTextU(HDC hdc, const char * lpchText, int cchText, LPRECT
 
    wstring wstr = gen::international::utf8_to_unicode(lpchText, cchText);
 
-   bool bRet = ::DrawTextW(hdc, wstr, (int) wcslen(wstr), lprc, format) != FALSE;
+   bool bRet = ::DrawTextW(hdc, wstr, (int32_t) wcslen(wstr), lprc, format) != FALSE;
 
    return bRet;
 

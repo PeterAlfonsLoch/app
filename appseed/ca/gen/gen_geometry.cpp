@@ -29,7 +29,7 @@ namespace gen
          return x * sin(phi) + y * cos(phi);
       }
 
-      void geometry::rotate(int xParam, int yParam, LPPOINT lppoint, int iCount, double phi)
+      void geometry::rotate(int32_t xParam, int32_t yParam, LPPOINT lppoint, int32_t iCount, double phi)
       {
          double phicos = cos(phi);
          double phisin = sin(phi);
@@ -37,14 +37,14 @@ namespace gen
       }
 
       void geometry::rotate(
-         int xParam,
-         int yParam,
+         int32_t xParam,
+         int32_t yParam,
          LPPOINT lppoint,
-         int iCount, 
+         int32_t iCount, 
          double phicos,
          double phisin)
       {
-         for(int i = 0; i < iCount; i++)
+         for(int32_t i = 0; i < iCount; i++)
          {
             double x = lppoint[i].x - xParam;
             double y = lppoint[i].y - yParam;
@@ -90,9 +90,9 @@ namespace gen
       }
 
 
-      void rotation::rotate(LPPOINT lppoint, int iCount)
+      void rotation::rotate(LPPOINT lppoint, int32_t iCount)
       {
-         for(int i = 0; i < iCount; i++)
+         for(int32_t i = 0; i < iCount; i++)
          {
             long x = lppoint[i].x - m_iXCenter;
             long y = lppoint[i].y - m_iYCenter;

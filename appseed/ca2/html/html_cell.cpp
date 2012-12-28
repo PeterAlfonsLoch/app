@@ -72,7 +72,7 @@ namespace html
 
          size size = pcellParent->get_bound_size();
          float iColumnWidth = calc_width();
-         int iTableBorder = get_table()->m_iBorder;
+         int32_t iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
             iTableBorder += 2;
@@ -96,7 +96,7 @@ namespace html
             l = get_row()->get_bound_point().x;
             if(pcellParent->is_tag())
             {
-               for(int i = 0; i < pcellParent->m_iColBeg; i++)
+               for(int32_t i = 0; i < pcellParent->m_iColBeg; i++)
                {
                   if(!get_row()->m_cellholdera[i].is_null())
                   {
@@ -191,9 +191,9 @@ namespace html
          m_iRowBeg = prow->m_iRow;
          m_iRowEnd = m_iRowBeg + m_iRowSpan - 1;
 
-         for(int iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
+         for(int32_t iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
          {
-            for(int iRow = m_iRowBeg; iRow <= m_iRowEnd; iRow++)
+            for(int32_t iRow = m_iRowBeg; iRow <= m_iRowEnd; iRow++)
             {
                ptable->set_cell(iCol, iRow, this);
                prow->set_cell(iCol, iRow, this);
@@ -422,13 +422,13 @@ namespace html
       }
 
 
-      int cell::get_min_col()
+      int32_t cell::get_min_col()
       {
-         int iMinCol = 0;
+         int32_t iMinCol = 0;
          table_row * prow = get_row();
          if(prow != NULL)
          {
-            for(int i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
+            for(int32_t i = 0; i < prow->m_pelemental->m_elementalptra.get_count(); i++)
             {
                ::html::elemental * pelemental = prow->m_pelemental->m_elementalptra[i];
                if(pelemental == m_pelemental)
@@ -463,7 +463,7 @@ namespace html
 
       }
 
-      cell::holder::holder(int iCol, int iRow)
+      cell::holder::holder(int32_t iCol, int32_t iRow)
       {
 
          m_pcell     = NULL;
@@ -472,7 +472,7 @@ namespace html
 
       }
 
-      cell::holder::holder(cell * pcell, int iCol, int iRow)
+      cell::holder::holder(cell * pcell, int32_t iCol, int32_t iRow)
       {
 
          m_pcell     = pcell;
@@ -521,10 +521,10 @@ namespace html
 /*         if(get_table()->m_iBorder > 0)
          {
 
-            int x = get_x();
-            int y = get_y();
-            int cx = get_cx();
-            int cy = get_cy();
+            int32_t x = get_x();
+            int32_t y = get_y();
+            int32_t cx = get_cx();
+            int32_t cy = get_cy();
             
             pdata->m_pdc->Draw3dRect(x, y, cx, cy, ARGB(255, 84, 84, 84), ARGB(255, 184, 184, 184));
 
@@ -532,17 +532,17 @@ namespace html
 
       }
 
-      bool cell::contains_column(int iCol)
+      bool cell::contains_column(int32_t iCol)
       {
          return iCol >= m_iColBeg && iCol <= m_iColEnd;
       }
 
-      bool cell::contains_row(int iRow)
+      bool cell::contains_row(int32_t iRow)
       {
          return iRow >= m_iRowBeg && iRow <= m_iRowEnd;
       }
 
-      bool cell::contains_cell(int iCol, int iRow)
+      bool cell::contains_cell(int32_t iCol, int32_t iRow)
       {
          return contains_column(iCol) && contains_row(iRow);
       }

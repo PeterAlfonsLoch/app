@@ -9,9 +9,9 @@ public:
 	simple_object_array();
 
 // Attributes
-	int get_size() const;
-	int get_upper_bound() const;
-	void SetSize(int nNewSize, int nGrowBy = -1);
+	int32_t get_size() const;
+	int32_t get_upper_bound() const;
+	void SetSize(int32_t nNewSize, int32_t nGrowBy = -1);
 
 // Operations
 	// Clean up
@@ -19,39 +19,39 @@ public:
 	void remove_all();
 
 	// Accessing elements
-	::radix::object* GetAt(int nIndex) const;
-	void SetAt(int nIndex, ::radix::object* newElement);
+	::radix::object* GetAt(int32_t nIndex) const;
+	void SetAt(int32_t nIndex, ::radix::object* newElement);
 
-	::radix::object*& ElementAt(int nIndex);
+	::radix::object*& ElementAt(int32_t nIndex);
 
 	// Direct Access to the element data (may return NULL)
 	const ::radix::object** GetData() const;
 	::radix::object** GetData();
 
 	// Potentially growing the array
-	void SetAtGrow(int nIndex, ::radix::object* newElement);
+	void SetAtGrow(int32_t nIndex, ::radix::object* newElement);
 
-	int add(::radix::object* newElement);
+	int32_t add(::radix::object* newElement);
 
-	int Append(const simple_object_array& src);
+	int32_t Append(const simple_object_array& src);
 	void Copy(const simple_object_array& src);
 
 	// overloaded operator helpers
-	::radix::object* operator[](int nIndex) const;
-	::radix::object*& operator[](int nIndex);
+	::radix::object* operator[](int32_t nIndex) const;
+	::radix::object*& operator[](int32_t nIndex);
 
 	// Operations that move elements around
-	void InsertAt(int nIndex, ::radix::object* newElement, int nCount = 1);
+	void InsertAt(int32_t nIndex, ::radix::object* newElement, int32_t nCount = 1);
 
-	void RemoveAt(int nIndex, int nCount = 1);
-	void InsertAt(int nStartIndex, simple_object_array* pNewArray);
+	void RemoveAt(int32_t nIndex, int32_t nCount = 1);
+	void InsertAt(int32_t nStartIndex, simple_object_array* pNewArray);
 
 // Implementation
 protected:
 	::radix::object** m_pData;   // the actual array of data
-	int m_nSize;     // # of elements (upperBound - 1)
-	int m_nMaxSize;  // max allocated
-	int m_nGrowBy;   // grow amount
+	int32_t m_nSize;     // # of elements (upperBound - 1)
+	int32_t m_nMaxSize;  // max allocated
+	int32_t m_nGrowBy;   // grow amount
 
 
 public:

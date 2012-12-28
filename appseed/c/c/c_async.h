@@ -232,7 +232,7 @@ namespace async
 
       }
 
-      virtual int run()
+      virtual int32_t run()
       {
 
          defer_call_completion(status_complete);

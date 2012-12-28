@@ -26,7 +26,7 @@ public:
 
 
    virtual bool signalize(ENUM eenum);
-   virtual int signalize(flags < ENUM > & f);
+   virtual int32_t signalize(flags < ENUM > & f);
    bool is_signalized(ENUM eenum) const;
    virtual bool unsignalize(ENUM eenum);
    virtual bool unsignalize_all();
@@ -79,10 +79,10 @@ bool flags < ENUM > ::signalize(ENUM eenum)
 }
 
 template < class ENUM >
-int flags < ENUM > ::signalize(flags < ENUM > & f)
+int32_t flags < ENUM > ::signalize(flags < ENUM > & f)
 {
-   int iCount = 0;
-   for(int i = 0; i < f.get_size(); i++)
+   int32_t iCount = 0;
+   for(int32_t i = 0; i < f.get_size(); i++)
    {
       if(signalize((ENUM) f[i]))
          iCount++;
@@ -113,7 +113,7 @@ bool flags < ENUM > ::unsignalize(ENUM eenum)
 template < class ENUM >
 bool flags < ENUM > ::toggle_signalization(ENUM eenum)
 {
-   ASSERT(((int) eenum) < 128);
+   ASSERT(((int32_t) eenum) < 128);
    if(is_signalized(eenum))
    {
       return unsignalize(eenum);
@@ -159,7 +159,7 @@ class flags_listener
    friend class flags_ex < ENUM >;
 protected:
    virtual void on_change_signalization(ENUM eenum);
-   void on_change_signalization(int iEnum);
+   void on_change_signalization(int32_t iEnum);
 };
 
 template < class ENUM >
@@ -168,7 +168,7 @@ void flags_listener < ENUM > ::on_change_signalization(ENUM)
 }
 
 template < class ENUM >
-void flags_listener < ENUM > ::on_change_signalization(int iEnum)
+void flags_listener < ENUM > ::on_change_signalization(int32_t iEnum)
 {
    on_change_signalization((ENUM) iEnum);
 }
@@ -267,7 +267,7 @@ class flag_change_signalization :
 {
 public:
 
-   int m_iEnum;
+   int32_t m_iEnum;
 
 
    flag_change_signalization(::gen::signal * psignal) : 
@@ -284,7 +284,7 @@ void flags_ex < ENUM > ::on_change_signalization(ENUM eenum)
    
    flag_change_signalization obj(&m_signal);
    
-   obj.m_iEnum = (int) eenum;
+   obj.m_iEnum = (int32_t) eenum;
 
    m_signal.emit(&obj);
 

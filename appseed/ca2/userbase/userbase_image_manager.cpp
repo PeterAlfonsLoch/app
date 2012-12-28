@@ -33,7 +33,7 @@ namespace userbase
          return FALSE;
       }
       UINT user = 0;
-      int i;
+      int32_t i;
       while(true)
       {
          if(uiaMenuV003Map[user][0] == 0xffffffff &&

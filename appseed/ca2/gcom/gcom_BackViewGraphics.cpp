@@ -96,8 +96,8 @@ namespace gcom
 
          HelperGetMain().GetInterface().BackViewGetClientRect(rectClient);
 
-         int cx = rectClient.width();
-         int cy = rectClient.height();
+         int32_t cx = rectClient.width();
+         int32_t cy = rectClient.height();
 
          single_lock sl1Back(&m_mutex1Back, TRUE);
          ::ca::graphics & dcBack = GetBackDC();
@@ -152,15 +152,15 @@ namespace gcom
          rect rectScreen = rectClient;
          iface.BackViewClientToScreen(rectScreen);
 
-         int cx = rectClient.width();
-         int cy = rectClient.height();
+         int32_t cx = rectClient.width();
+         int32_t cy = rectClient.height();
 
-         //         const int ciBufferBitmapNotCreated = 1;
-         //         const int ciBackBitmapNotCreated = 2;
-         //         const int ciBufferBitmapNotSelected = 3;
-         //         const int ciBackBitmapNotSelected = 4;
-         //         const int ciBufferBitmapInfoNotAvailable = 5;
-         //         const int ciScaledBitmapInfoNotAvailable = 6;
+         //         const int32_t ciBufferBitmapNotCreated = 1;
+         //         const int32_t ciBackBitmapNotCreated = 2;
+         //         const int32_t ciBufferBitmapNotSelected = 3;
+         //         const int32_t ciBackBitmapNotSelected = 4;
+         //         const int32_t ciBufferBitmapInfoNotAvailable = 5;
+         //         const int32_t ciScaledBitmapInfoNotAvailable = 6;
 
          single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
@@ -207,12 +207,12 @@ namespace gcom
                rect rectMeta(0, 0, emh.rclBounds.right - emh.rclBounds.left, emh.rclBounds.bottom - emh.rclBounds.top);
                rectMeta.FitOnCenterOf(rect(0, 0, 64, 64));
 
-               int iW = rectMeta.width();
-               int iH = rectMeta.height();
-               int iXMod = (cx - iW) / 2;
-               int iYMod = (cy - iH) / 2;
-               int iXOffset =  iXMod;
-               int iYOffset =  iYMod;
+               int32_t iW = rectMeta.width();
+               int32_t iH = rectMeta.height();
+               int32_t iXMod = (cx - iW) / 2;
+               int32_t iYMod = (cy - iH) / 2;
+               int32_t iXOffset =  iXMod;
+               int32_t iYOffset =  iYMod;
                iXOffset %= iW;
                while(iXOffset > 0)
                {
@@ -223,14 +223,14 @@ namespace gcom
                {
                   iYOffset -= iH;
                }
-               int iCount = (iXMod < 0) ? 1 : cx / iW + (iXOffset == 0 ? 0 : 2);
-               int jCount = (iYMod < 0) ? 1 : cy / iH + (iYOffset == 0 ? 0 : 2);
+               int32_t iCount = (iXMod < 0) ? 1 : cx / iW + (iXOffset == 0 ? 0 : 2);
+               int32_t jCount = (iYMod < 0) ? 1 : cy / iH + (iYOffset == 0 ? 0 : 2);
 
                rectMeta.left = iXOffset;
-               for(int i = 0; i < iCount; i++)
+               for(int32_t i = 0; i < iCount; i++)
                {
                   rectMeta.top = iYOffset;
-                  for(int j = 0; j < jCount; j++)
+                  for(int32_t j = 0; j < jCount; j++)
                   {
                      rectMeta.SetBottomRightSize(iW, iH);
                      dcBuffer.PlayMetaFile(hemf, rectMeta);
@@ -267,10 +267,10 @@ namespace gcom
                class size sizeSource = bmpSource.get_size();
 
 
-               int finalX;
-               int finalY;
-               int finalW;
-               int finalH;
+               int32_t finalX;
+               int32_t finalY;
+               int32_t finalW;
+               int32_t finalH;
 
                ImageChange & imagechange = main.GetImageChange();
 
@@ -278,23 +278,23 @@ namespace gcom
                if(imagechange.m_eplacement == ImagePlacementZoomAll)
                {
                   dRate = min((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
-                  finalW = (int) (sizeSource.cx * dRate);
-                  finalH = (int)(sizeSource.cy * dRate);
+                  finalW = (int32_t) (sizeSource.cx * dRate);
+                  finalH = (int32_t)(sizeSource.cy * dRate);
                   finalX = (cx - finalW) / 2;
                   finalY = (cy - finalH) / 2;
                }
                else if (imagechange.m_eplacement == ImagePlacementZoomExtend)
                {
                   dRate = max((double) cx / sizeSource.cx, (double) cy / sizeSource.cy);
-                  finalW = (int) (sizeSource.cx * dRate);
-                  finalH = (int) (sizeSource.cy * dRate);
+                  finalW = (int32_t) (sizeSource.cx * dRate);
+                  finalH = (int32_t) (sizeSource.cy * dRate);
                   finalX = (cx - finalW) / 2;
                   finalY = (cy - finalH) / 2;
                }
                else if (imagechange.m_eplacement == ImagePlacementStretch)
                {
-                  finalW = (int) cx;
-                  finalH = (int) cy;
+                  finalW = (int32_t) cx;
+                  finalH = (int32_t) cy;
                   finalX = 0;
                   finalY = 0;
                }
@@ -303,12 +303,12 @@ namespace gcom
                if(imagechange.m_eplacement == ImagePlacementTile)
                {
 
-                  int iW = sizeSource.cx;
-                  int iH = sizeSource.cy;
-                  int iXMod = (cx - iW) / 2;
-                  int iYMod = (cy - iH) / 2;
-                  int iXOffset =  iXMod;
-                  int iYOffset =  iYMod;
+                  int32_t iW = sizeSource.cx;
+                  int32_t iH = sizeSource.cy;
+                  int32_t iXMod = (cx - iW) / 2;
+                  int32_t iYMod = (cy - iH) / 2;
+                  int32_t iXOffset =  iXMod;
+                  int32_t iYOffset =  iYMod;
                   while(iXOffset > 0)
                   {
                      iXOffset -= iW;
@@ -317,14 +317,14 @@ namespace gcom
                   {
                      iYOffset -= iH;
                   }
-                  int iCount = (iXMod < 0) ? 1 : cx / iW + (iXOffset == 0 ? 0 : 2);
-                  int jCount = (iYMod < 0) ? 1 : cy / iH + (iYOffset == 0 ? 0 : 2);
-                  for(int i = 0; i < iCount; i++)
+                  int32_t iCount = (iXMod < 0) ? 1 : cx / iW + (iXOffset == 0 ? 0 : 2);
+                  int32_t jCount = (iYMod < 0) ? 1 : cy / iH + (iYOffset == 0 ? 0 : 2);
+                  for(int32_t i = 0; i < iCount; i++)
                   {
-                     int iX = iXOffset + iW * i;
-                     for(int j = 0; j < jCount; j++)
+                     int32_t iX = iXOffset + iW * i;
+                     for(int32_t j = 0; j < jCount; j++)
                      {
-                        int iY = iYOffset + iH * j;
+                        int32_t iY = iYOffset + iH * j;
                         dcBuffer.BitBlt(
                            iX, iY,
                            iW, iH,
@@ -345,10 +345,10 @@ namespace gcom
                   imagechange.m_eplacement == ImagePlacementStretch)
                {
 
-                  int srcX = 0;
-                  int srcY = 0;
-                  int srcW = sizeSource.cx;
-                  int srcH = sizeSource.cy;
+                  int32_t srcX = 0;
+                  int32_t srcY = 0;
+                  int32_t srcW = sizeSource.cx;
+                  int32_t srcH = sizeSource.cy;
 
                   dcBuffer.SetStretchBltMode(HALFTONE);
                   dcBuffer.StretchBlt(
@@ -386,7 +386,7 @@ namespace gcom
                }*/
             }
          }
-         catch(int)
+         catch(int32_t)
          {
          }
          //GetDib(100)->from(&dcBuffer, &bmpBuffer);
@@ -398,8 +398,8 @@ namespace gcom
          rect rectClient;
          Interface & iface = HelperGetMain().GetInterface();
          iface.BackViewGetClientRect(rectClient);
-         int cx = rectClient.width();
-         int cy = rectClient.height();
+         int32_t cx = rectClient.width();
+         int32_t cy = rectClient.height();
 
          single_lock sl1Back(&m_mutex1Back, TRUE);
          single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
@@ -448,7 +448,7 @@ namespace gcom
          return eplacement;
       }
 
-      ::ca::dib * Graphics::GetDib(int iIndex)
+      ::ca::dib * Graphics::GetDib(int32_t iIndex)
       {
          ::ca::dib * pdib;
          if(m_mapDib.Lookup(iIndex, pdib))
@@ -487,7 +487,7 @@ namespace gcom
          GetDib(_graphics::DibTransfer)->copy(GetDib(_graphics::DibBack));
 
       }
-      void Graphics::OnCreateDib(::ca::dib *pdib, int iIndex)
+      void Graphics::OnCreateDib(::ca::dib *pdib, int32_t iIndex)
       {
          switch(iIndex)
          {

@@ -22,7 +22,7 @@ static const unsigned char OC_DEBRUIJN_IDX32[32]={
 };
 #endif
 
-int oc_ilog32(ogg_uint32_t _v){
+int32_t oc_ilog32(ogg_uint32_t _v){
 #if defined(OC_CLZ32)
   return (OC_CLZ32_OFFS-OC_CLZ32(_v))&-!!_v;
 #else
@@ -30,8 +30,8 @@ int oc_ilog32(ogg_uint32_t _v){
    multiplications on 1,000,000,000 random 32-bit integers, edging out a
    similar version with branches, and a 256-entry LUT version.*/
 # if defined(OC_ILOG_NODEBRUIJN)
-  int ret;
-  int m;
+  int32_t ret;
+  int32_t m;
   ret=_v>0;
   m=(_v>0xFFFFU)<<4;
   _v>>=m;
@@ -49,7 +49,7 @@ int oc_ilog32(ogg_uint32_t _v){
   return ret;
 /*This de Bruijn sequence version is faster if you have a fast multiplier.*/
 # else
-  int ret;
+  int32_t ret;
   ret=_v>0;
   _v|=_v>>1;
   _v|=_v>>2;
@@ -63,14 +63,14 @@ int oc_ilog32(ogg_uint32_t _v){
 #endif
 }
 
-int oc_ilog64(ogg_int64_t _v){
+int32_t oc_ilog64(ogg_int64_t _v){
 #if defined(OC_CLZ64)
   return (OC_CLZ64_OFFS-OC_CLZ64(_v))&-!!_v;
 #else
 # if defined(OC_ILOG_NODEBRUIJN)
   ogg_uint32_t v;
-  int          ret;
-  int          m;
+  int32_t          ret;
+  int32_t          m;
   ret=_v>0;
   m=(_v>0xFFFFFFFFU)<<5;
   v=(ogg_uint32_t)(_v>>m);
@@ -93,8 +93,8 @@ int oc_ilog64(ogg_int64_t _v){
 /*If we don't have a 64-bit word, split it into two 32-bit halves.*/
 #  if LONG_MAX<9223372036854775807LL
   ogg_uint32_t v;
-  int          ret;
-  int          m;
+  int32_t          ret;
+  int32_t          m;
   ret=_v>0;
   m=(_v>0xFFFFFFFFU)<<5;
   v=(ogg_uint32_t)(_v>>m);
@@ -115,7 +115,7 @@ int oc_ilog64(ogg_int64_t _v){
     63, 6,12,18,24,27,33,39,16,37,45,47,30,53,49,56,
     62,11,23,32,36,44,52,55,61,22,43,51,60,42,59,58
   };
-  int ret;
+  int32_t ret;
   ret=_v>0;
   _v|=_v>>1;
   _v|=_v>>2;
@@ -150,15 +150,15 @@ static const ogg_int64_t OC_ATANH_LOG2[32]={
 ogg_int64_t oc_bexp64(ogg_int64_t _z){
   ogg_int64_t w;
   ogg_int64_t z;
-  int         ipart;
-  ipart=(int)(_z>>57);
+  int32_t         ipart;
+  ipart=(int32_t)(_z>>57);
   if(ipart<0)return 0;
   if(ipart>=63)return 0x7FFFFFFFFFFFFFFFLL;
   z=_z-OC_Q57(ipart);
   if(z){
     ogg_int64_t mask;
     long        wlo;
-    int         i;
+    int32_t         i;
     /*C doesn't give us 64x64->128 muls, so we use CORDIC.
       This is not particularly fast, but it's not being used in time-critical
        code; it is very accurate.*/
@@ -230,7 +230,7 @@ ogg_int64_t oc_bexp64(ogg_int64_t _z){
 /*Computes the binary logarithm of _w, returned in Q57 format.*/
 ogg_int64_t oc_blog64(ogg_int64_t _w){
   ogg_int64_t z;
-  int         ipart;
+  int32_t         ipart;
   if(_w<=0)return -1;
   ipart=OC_ILOGNZ_64(_w)-1;
   if(ipart>61)_w>>=ipart-61;
@@ -241,7 +241,7 @@ ogg_int64_t oc_blog64(ogg_int64_t _w){
     ogg_int64_t y;
     ogg_int64_t u;
     ogg_int64_t mask;
-    int         i;
+    int32_t         i;
     /*C doesn't give us 64x64->128 muls, so we use CORDIC.
       This is not particularly fast, but it's not being used in time-critical
        code; it is very accurate.*/

@@ -19,13 +19,13 @@
 BEGIN_EXTERN_C
 
 
-int vorbis_synthesis(vorbis_block *vb,ogg_packet *op){
+int32_t vorbis_synthesis(vorbis_block *vb,ogg_packet *op){
   vorbis_dsp_state     *vd= vb ? vb->vd : 0;
   private_state        *b= vd ? vd->backend_state : 0;
   vorbis_info          *vi= vd ? vd->vi : 0;
   codec_setup_info     *ci= vi ? vi->codec_setup : 0;
   oggpack_buffer       *opb=vb ? &vb->opb : 0;
-  int                   type,mode,i;
+  int32_t                   type,mode,i;
 
   if (!vd || !b || !vi || !ci || !opb) {
     return OV_EBADPACKET;
@@ -87,13 +87,13 @@ int vorbis_synthesis(vorbis_block *vb,ogg_packet *op){
 
 /* used to track pcm position without actually performing decode.
    Useful for sequential 'fast forward' */
-int vorbis_synthesis_trackonly(vorbis_block *vb,ogg_packet *op){
+int32_t vorbis_synthesis_trackonly(vorbis_block *vb,ogg_packet *op){
   vorbis_dsp_state     *vd=vb->vd;
   private_state        *b=vd->backend_state;
   vorbis_info          *vi=vd->vi;
   codec_setup_info     *ci=vi->codec_setup;
   oggpack_buffer       *opb=&vb->opb;
-  int                   mode;
+  int32_t                   mode;
 
   /* first things first.  Make sure decode is ready */
   _vorbis_block_ripcord(vb);
@@ -139,7 +139,7 @@ int vorbis_synthesis_trackonly(vorbis_block *vb,ogg_packet *op){
 long vorbis_packet_blocksize(vorbis_info *vi,ogg_packet *op){
   codec_setup_info     *ci=vi->codec_setup;
   oggpack_buffer       opb;
-  int                  mode;
+  int32_t                  mode;
 
   oggpack_readinit(&opb,op->packet,op->bytes);
 
@@ -150,8 +150,8 @@ long vorbis_packet_blocksize(vorbis_info *vi,ogg_packet *op){
   }
 
   {
-    int modebits=0;
-    int v=ci->modes;
+    int32_t modebits=0;
+    int32_t v=ci->modes;
     while(v>1){
       modebits++;
       v>>=1;
@@ -164,7 +164,7 @@ long vorbis_packet_blocksize(vorbis_info *vi,ogg_packet *op){
   return(ci->blocksizes[ci->mode_param[mode]->blockflag]);
 }
 
-int vorbis_synthesis_halfrate(vorbis_info *vi,int flag){
+int32_t vorbis_synthesis_halfrate(vorbis_info *vi,int32_t flag){
   /* set / clear half-sample-rate mode */
   codec_setup_info     *ci=vi->codec_setup;
 
@@ -174,7 +174,7 @@ int vorbis_synthesis_halfrate(vorbis_info *vi,int flag){
   return 0;
 }
 
-int vorbis_synthesis_halfrate_p(vorbis_info *vi){
+int32_t vorbis_synthesis_halfrate_p(vorbis_info *vi){
   codec_setup_info     *ci=vi->codec_setup;
   return ci->halfrate_flag;
 }

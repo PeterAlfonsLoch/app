@@ -66,7 +66,7 @@ namespace ca
    }
 
 
-   /*bool region::CreateRectRgn(int x1, int y1, int x2, int y2)
+   /*bool region::CreateRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
       m_pta.remove_all();
@@ -98,7 +98,7 @@ namespace ca
 
    }
 
-   bool region::CreateEllipticRgn(int x1, int y1, int x2, int y2)
+   bool region::CreateEllipticRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
       m_pta.remove_all();
@@ -130,12 +130,12 @@ namespace ca
 
    }
 
-   bool region::CreatePolygonRgn(LPPOINT lpPoints, int nCount, int nMode)
+   bool region::CreatePolygonRgn(LPPOINT lpPoints, int32_t nCount, int32_t nMode)
    {
 
       m_pta.remove_all();
 
-      for(int i = 0; i < nCount; i++)
+      for(int32_t i = 0; i < nCount; i++)
       {
          m_pta.add(pointd(lpPoints[i].x, lpPoints[i].y));
       }
@@ -148,18 +148,18 @@ namespace ca
 
    }
 
-   bool region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int nCount, int nPolyFillMode)
+   bool region::CreatePolyPolygonRgn(LPPOINT lpPoints, LPINT lpPolyCounts, int32_t nCount, int32_t nPolyFillMode)
    {
 
       m_pta.remove_all();
       m_iaCount.remove_all();
 
-      int n = 0;
+      int32_t n = 0;
 
-      for(int i = 0; i < nCount; i++)
+      for(int32_t i = 0; i < nCount; i++)
       {
          m_iaCount.add(lpPolyCounts[i]);
-         for(int j = 0; j < lpPolyCounts[i]; j++)
+         for(int32_t j = 0; j < lpPolyCounts[i]; j++)
          {
             m_pta.add(pointd(lpPoints[n].x, lpPoints[n].y));
             n++;
@@ -174,7 +174,7 @@ namespace ca
 
    }
 
-   bool region::CreateRoundRectRgn(int x1, int y1, int x2, int y2, int x3, int y3)
+   bool region::CreateRoundRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3)
    {
 
       m_pta.remove_all();
@@ -200,7 +200,7 @@ namespace ca
 
 #ifdef WINDOWS
 
-   bool region::CreateFromData(const XFORM* lpXForm, int nCount, const RGNDATA* pRgnData)
+   bool region::CreateFromData(const XFORM* lpXForm, int32_t nCount, const RGNDATA* pRgnData)
    {
       UNREFERENCED_PARAMETER(lpXForm);
       UNREFERENCED_PARAMETER(nCount);
@@ -208,7 +208,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int region::GetRegionData(LPRGNDATA lpRgnData, int nDataSize) const
+   int32_t region::GetRegionData(LPRGNDATA lpRgnData, int32_t nDataSize) const
    {
       UNREFERENCED_PARAMETER(lpRgnData);
       UNREFERENCED_PARAMETER(nDataSize);
@@ -217,7 +217,7 @@ namespace ca
 
 #endif
 
-   void region::SetRectRgn(int x1, int y1, int x2, int y2)
+   void region::SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
       UNREFERENCED_PARAMETER(x1);
       UNREFERENCED_PARAMETER(y1);
@@ -232,7 +232,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int region::CombineRgn(const region* pRgn1, const region* pRgn2, int nCombineMode)
+   int32_t region::CombineRgn(const region* pRgn1, const region* pRgn2, int32_t nCombineMode)
    {
       UNREFERENCED_PARAMETER(pRgn1);
       UNREFERENCED_PARAMETER(pRgn2);
@@ -240,7 +240,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int region::CopyRgn(const region* pRgnSrc)
+   int32_t region::CopyRgn(const region* pRgnSrc)
    {
       UNREFERENCED_PARAMETER(pRgnSrc);
       throw interface_only_exception(get_app());
@@ -252,34 +252,34 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int region::OffsetRgn(int x, int y)
+   int32_t region::OffsetRgn(int32_t x, int32_t y)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
       throw interface_only_exception(get_app());
    }
 
-   int region::OffsetRgn(POINT point)
+   int32_t region::OffsetRgn(POINT point)
    {
       UNREFERENCED_PARAMETER(point);
       throw interface_only_exception(get_app());
    }
 
-   int region::GetRgnBox(LPRECT lpRect) const
+   int32_t region::GetRgnBox(LPRECT lpRect) const
    {
       UNREFERENCED_PARAMETER(lpRect);
       throw interface_only_exception(get_app());
    }
 
-   int region::GetRgnBox(rect64 * lpRect) const
+   int32_t region::GetRgnBox(rect64 * lpRect) const
    {
       rect rect;
-      int iRgn = GetRgnBox(rect);
+      int32_t iRgn = GetRgnBox(rect);
       *lpRect = rect;
       return iRgn;
    }
 
-   bool region::PtInRegion(int x, int y) const
+   bool region::PtInRegion(int32_t x, int32_t y) const
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -300,7 +300,7 @@ namespace ca
 */
 
 
-   bool region::create_rect(int x1, int y1, int x2, int y2)
+   bool region::create_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
       if(m_etype != type_none)
@@ -344,7 +344,7 @@ namespace ca
 
    }
 
-   bool region::create_oval(int x1, int y1, int x2, int y2)
+   bool region::create_oval(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
       if(m_etype != type_none)
@@ -386,7 +386,7 @@ namespace ca
 
    }
 
-   bool region::create_polygon(LPPOINT lppoints, int nCount, ::ca::e_fill_mode efillmode)
+   bool region::create_polygon(LPPOINT lppoints, int32_t nCount, ::ca::e_fill_mode efillmode)
    {
 
       if(m_etype != type_none)
@@ -406,7 +406,7 @@ namespace ca
       return true;
    }
 
-   bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int nCount, ::ca::e_fill_mode efillmode)
+   bool region::create_poly_polygon(LPPOINT lppoints, LPINT lppolycounts, int32_t nCount, ::ca::e_fill_mode efillmode)
    {
 
       if(m_etype != type_none)
@@ -421,8 +421,8 @@ namespace ca
       m_nCount = nCount;
       m_lppolycounts = new INT[m_nCount];
       memcpy(m_lppolycounts, lppolycounts, sizeof(INT) * m_nCount);
-      int iTotalCount = 0;
-      for(int i = 0; i < nCount; i++)
+      int32_t iTotalCount = 0;
+      for(int32_t i = 0; i < nCount; i++)
       {
          iTotalCount += m_lppolycounts[i];
       }
@@ -433,10 +433,10 @@ namespace ca
       return true;
 
    }
-   //virtual bool add_round_rect(int x1, int y1, int x2, int y2, int x3, int y3);
+   //virtual bool add_round_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
 //      virtual bool add_path(::ca::graphics_path * ppath);
 
-//      virtual void SetRectRgn(int x1, int y1, int x2, int y2);
+//      virtual void SetRectRgn(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 //      virtual void SetRectRgn(LPCRECT lpRect);
    bool region::combine(const ::ca::region * prgn1, const ::ca::region * prgn2, e_combine ecombine)
    {
@@ -497,8 +497,8 @@ namespace ca
             m_nCount = regionSrc.m_nCount;
             m_lppolycounts = new INT[m_nCount];
             memcpy(m_lppolycounts, regionSrc.m_lppolycounts, sizeof(INT) * m_nCount);
-            int iTotalCount = 0;
-            for(int i = 0; i < m_nCount; i++)
+            int32_t iTotalCount = 0;
+            for(int32_t i = 0; i < m_nCount; i++)
             {
                iTotalCount += m_lppolycounts[i];
             }
@@ -543,7 +543,7 @@ namespace ca
    }
 
 
-   bool region::translate(int x, int y)
+   bool region::translate(int32_t x, int32_t y)
    {
       m_bUpdated = false;
       switch(m_etype)
@@ -561,7 +561,7 @@ namespace ca
          m_y2 += y;
          return true;
       case type_polygon:
-         for(int i = 0; i < m_nCount; i++)
+         for(int32_t i = 0; i < m_nCount; i++)
          {
             m_lppoints[i].x += x;
             m_lppoints[i].y += y;
@@ -569,12 +569,12 @@ namespace ca
          return true;
       case type_poly_polygon:
          {
-            int iTotalCount = 0;
-            for(int i = 0; i < m_nCount; i++)
+            int32_t iTotalCount = 0;
+            for(int32_t i = 0; i < m_nCount; i++)
             {
                iTotalCount += m_lppolycounts[i];
             }
-            for(int i = 0; i < iTotalCount; i++)
+            for(int32_t i = 0; i < iTotalCount; i++)
             {
                m_lppoints[i].x += x;
                m_lppoints[i].y += y;

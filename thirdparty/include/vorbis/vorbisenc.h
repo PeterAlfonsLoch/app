@@ -68,7 +68,7 @@ extern "C"
  * \retval OV_EINVAL  Invalid setup request, eg, out of range argument.
  * \retval OV_EIMPL   Unimplemented mode; unable to comply with bitrate request.
  */
-extern int vorbis_encode_init(vorbis_info *vi,
+extern int32_t vorbis_encode_init(vorbis_info *vi,
                               long channels,
                               long rate,
 
@@ -105,7 +105,7 @@ extern int vorbis_encode_init(vorbis_info *vi,
  * \retval OV_EINVAL   Invalid setup request, eg, out of range argument.
  * \retval OV_EIMPL    Unimplemented mode; unable to comply with bitrate request.
  */
-extern int vorbis_encode_setup_managed(vorbis_info *vi,
+extern int32_t vorbis_encode_setup_managed(vorbis_info *vi,
                                        long channels,
                                        long rate,
 
@@ -137,7 +137,7 @@ extern int vorbis_encode_setup_managed(vorbis_info *vi,
  * \retval  OV_EINVAL  Invalid setup request, eg, out of range argument.
  * \retval  OV_EIMPL   Unimplemented mode; unable to comply with quality level request.
  */
-extern int vorbis_encode_setup_vbr(vorbis_info *vi,
+extern int32_t vorbis_encode_setup_vbr(vorbis_info *vi,
                                   long channels,
                                   long rate,
 
@@ -166,7 +166,7 @@ extern int vorbis_encode_setup_vbr(vorbis_info *vi,
  * \retval OV_EINVAL   Invalid setup request, eg, out of range argument.
  * \retval OV_EIMPL    Unimplemented mode; unable to comply with quality level request.
  */
-extern int vorbis_encode_init_vbr(vorbis_info *vi,
+extern int32_t vorbis_encode_init_vbr(vorbis_info *vi,
                                   long channels,
                                   long rate,
 
@@ -200,7 +200,7 @@ extern int vorbis_encode_init_vbr(vorbis_info *vi,
  * initialize the high-level encoding setup
  *
  */
-extern int vorbis_encode_setup_init(vorbis_info *vi);
+extern int32_t vorbis_encode_setup_init(vorbis_info *vi);
 
 /**
  * This function implements a generic interface to miscellaneous encoder
@@ -228,7 +228,7 @@ extern int vorbis_encode_setup_init(vorbis_info *vi);
  *
  * \retval OV_EIMPL   Unimplemented or unknown request
  */
-extern int vorbis_encode_ctl(vorbis_info *vi,int number,void *arg);
+extern int32_t vorbis_encode_ctl(vorbis_info *vi,int32_t number,void *arg);
 
 /**
  * \deprecated This is a deprecated interface. Please use vorbis_encode_ctl()
@@ -242,7 +242,7 @@ extern int vorbis_encode_ctl(vorbis_info *vi,int number,void *arg);
  * configuration.
 */
 struct ovectl_ratemanage_arg {
-  int    management_active; /**< nonzero if bitrate management is active*/
+  int32_t    management_active; /**< nonzero if bitrate management is active*/
 /** hard lower limit (in kilobits per second) below which the stream bitrate
     will never be allowed for any given bitrate_hard_window seconds of time.*/
   long   bitrate_hard_min;
@@ -279,7 +279,7 @@ struct ovectl_ratemanage_arg {
  *
 */
 struct ovectl_ratemanage2_arg {
-  int    management_active; /**< nonzero if bitrate management is active */
+  int32_t    management_active; /**< nonzero if bitrate management is active */
 /** Lower allowed bitrate limit in kilobits per second */
   long   bitrate_limit_min_kbps;
 /** Upper allowed bitrate limit in kilobits per second */
@@ -370,17 +370,17 @@ struct ovectl_ratemanage2_arg {
 #define OV_ECTL_IBLOCK_SET           0x31
 
 /**
- *  Returns the current encoder coupling setting in the int pointed
+ *  Returns the current encoder coupling setting in the int32_t pointed
  *  to by arg.
  *
- * Argument: <tt>int *</tt>
+ * Argument: <tt>int32_t *</tt>
 */
 #define OV_ECTL_COUPLING_GET         0x40
 
 /**
  *  Enables/disables channel coupling in multichannel encoding according to arg.
  *
- * Argument: <tt>int *</tt>
+ * Argument: <tt>int32_t *</tt>
  *
  *  Zero disables channel coupling for multichannel inputs, nonzer enables
  *  channel coupling.  Setting has no effect on monophonic encoding or

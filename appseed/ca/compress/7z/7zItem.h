@@ -57,23 +57,23 @@ namespace n7z
          return result;
       }
 
-      int FindBindPairForInStream(CNum inStreamIndex) const
+      int32_t FindBindPairForInStream(CNum inStreamIndex) const
       {
-         for(int i = 0; i < BindPairs.get_count(); i++)
+         for(int32_t i = 0; i < BindPairs.get_count(); i++)
             if (BindPairs[i].InIndex == inStreamIndex)
                return i;
          return -1;
       }
-      int FindBindPairForOutStream(CNum outStreamIndex) const
+      int32_t FindBindPairForOutStream(CNum outStreamIndex) const
       {
-         for(int i = 0; i < BindPairs.get_count(); i++)
+         for(int32_t i = 0; i < BindPairs.get_count(); i++)
             if (BindPairs[i].OutIndex == outStreamIndex)
                return i;
          return -1;
       }
-      int FindPackStreamArrayIndex(CNum inStreamIndex) const
+      int32_t FindPackStreamArrayIndex(CNum inStreamIndex) const
       {
-         for(int i = 0; i < PackStreams.get_count(); i++)
+         for(int32_t i = 0; i < PackStreams.get_count(); i++)
             if (PackStreams[i] == inStreamIndex)
                return i;
          return -1;
@@ -233,16 +233,16 @@ namespace n7z
       {
          count size = Files.get_count();
          return (
-            CTime.CheckSize((int) size) &&
-            ATime.CheckSize((int) size) &&
-            MTime.CheckSize((int) size) &&
-            StartPos.CheckSize((int) size) &&
+            CTime.CheckSize((int32_t) size) &&
+            ATime.CheckSize((int32_t) size) &&
+            MTime.CheckSize((int32_t) size) &&
+            StartPos.CheckSize((int32_t) size) &&
             (size == IsAnti.get_count() || IsAnti.get_count() == 0));
       }
 
       bool IsSolid() const
       {
-         for (int i = 0; i < NumUnpackStreamsVector.get_count(); i++)
+         for (int32_t i = 0; i < NumUnpackStreamsVector.get_count(); i++)
             if (NumUnpackStreamsVector[i] > 1)
                return true;
          return false;

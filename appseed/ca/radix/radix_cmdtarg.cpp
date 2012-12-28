@@ -28,7 +28,7 @@ bool command_target::handle(BaseCmdMsg * pcmdmsg)
 // command_target windows message dispatching
 
 /*
-__STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int nCode,
+__STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nCode,
    __PMSG pfn, void * pExtra, uint_ptr nSig,
       // return TRUE to stop routing
 {
@@ -503,8 +503,8 @@ __STATIC void __load_dot_bitmap()
    ENSURE(size.cx > 4 && size.cy > 5); // not too small please
    if (size.cx > 32)
       size.cx = 32;
-   int iwRow = (size.cx + 15) >> 4;    // # of WORDs per raster line
-   int nShift = (size.cx - DOT_WIDTH) / 2;     // # of bits to shift over
+   int32_t iwRow = (size.cx + 15) >> 4;    // # of WORDs per raster line
+   int32_t nShift = (size.cx - DOT_WIDTH) / 2;     // # of bits to shift over
    nShift += ((iwRow * 16) - size.cx); // padding for word alignment
    if (nShift > 16 - DOT_WIDTH)
       nShift = 16 - DOT_WIDTH;    // maximum shift for 1 word
@@ -519,7 +519,7 @@ __STATIC void __load_dot_bitmap()
    BYTE* pbOut = &rgbBitmap[iwRow * sizeof(WORD) *
                      ((size.cy - (DOT_HEIGHT+1)) >> 1)];
    const BYTE* pbIn = gen_Dot;
-   for (int y = 0; y < DOT_HEIGHT; y++)
+   for (int32_t y = 0; y < DOT_HEIGHT; y++)
    {
       WORD w = (WORD)~(((DWORD)*pbIn++) << nShift);
       // bitmaps are always hi-lo

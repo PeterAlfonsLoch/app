@@ -23,13 +23,13 @@ namespace compress
    namespace rar3
    {
 
-      uint32 mem_bit_decoder::ReadBits(int numBits)
+      uint32 mem_bit_decoder::ReadBits(int32_t numBits)
       {
          uint32 res = 0;
          for (;;)
          {
             byte b = _bitPos < _bitSize ? _data[_bitPos >> 3] : 0;
-            int avail = (int)(8 - (_bitPos & 7));
+            int32_t avail = (int32_t)(8 - (_bitPos & 7));
             if (numBits <= avail)
             {
                _bitPos += numBits;
@@ -426,7 +426,7 @@ namespace compress
                case CMD_SHL:
                   {
                      uint32 v1 = GetOperand32(&cmd->Op1);
-                     int v2 = (int)GetOperand32(&cmd->Op2);
+                     int32_t v2 = (int32_t)GetOperand32(&cmd->Op2);
                      uint32 res = v1 << v2;
                      SetOperand32(&cmd->Op1, res);
                      Flags = (res == 0 ? FLAG_Z : (res & FLAG_S)) | ((v1 << (v2 - 1)) & 0x80000000 ? FLAG_C : 0);
@@ -435,7 +435,7 @@ namespace compress
                case CMD_SHLB:
                   {
                      byte v1 = GetOperand8(&cmd->Op1);
-                     int v2 = (int)GetOperand8(&cmd->Op2);
+                     int32_t v2 = (int32_t)GetOperand8(&cmd->Op2);
                      byte res = (byte)(v1 << v2);
                      SetOperand8(&cmd->Op1, res);
                      Flags = (res == 0 ? FLAG_Z : GET_FLAG_S_B(res)) | ((v1 << (v2 - 1)) & 0x80 ? FLAG_C : 0);
@@ -444,7 +444,7 @@ namespace compress
                case CMD_SHR:
                   {
                      uint32 v1 = GetOperand32(&cmd->Op1);
-                     int v2 = (int)GetOperand32(&cmd->Op2);
+                     int32_t v2 = (int32_t)GetOperand32(&cmd->Op2);
                      uint32 res = v1 >> v2;
                      SetOperand32(&cmd->Op1, res);
                      Flags = (res == 0 ? FLAG_Z : (res & FLAG_S)) | ((v1 >> (v2 - 1)) & FLAG_C);
@@ -453,7 +453,7 @@ namespace compress
                case CMD_SHRB:
                   {
                      byte v1 = GetOperand8(&cmd->Op1);
-                     int v2 = (int)GetOperand8(&cmd->Op2);
+                     int32_t v2 = (int32_t)GetOperand8(&cmd->Op2);
                      byte res = (byte)(v1 >> v2);
                      SetOperand8(&cmd->Op1, res);
                      Flags = (res == 0 ? FLAG_Z : GET_FLAG_S_B(res)) | ((v1 >> (v2 - 1)) & FLAG_C);
@@ -462,7 +462,7 @@ namespace compress
                case CMD_SAR:
                   {
                      uint32 v1 = GetOperand32(&cmd->Op1);
-                     int v2 = (int)GetOperand32(&cmd->Op2);
+                     int32_t v2 = (int32_t)GetOperand32(&cmd->Op2);
                      uint32 res = uint32(((int32)v1) >> v2);
                      SetOperand32(&cmd->Op1, res);
                      Flags= (res == 0 ? FLAG_Z : (res & FLAG_S)) | ((v1 >> (v2 - 1)) & FLAG_C);
@@ -471,7 +471,7 @@ namespace compress
                case CMD_SARB:
                   {
                      byte v1 = GetOperand8(&cmd->Op1);
-                     int v2 = (int)GetOperand8(&cmd->Op2);
+                     int32_t v2 = (int32_t)GetOperand8(&cmd->Op2);
                      byte res = (byte)(((signed char)v1) >> v2);
                      SetOperand8(&cmd->Op1, res);
                      Flags= (res == 0 ? FLAG_Z : GET_FLAG_S_B(res)) | ((v1 >> (v2 - 1)) & FLAG_C);
@@ -712,7 +712,7 @@ namespace compress
                   cmd->ByteMode = (inp.ReadBit()) ? true : false;
                else
                   cmd->ByteMode = 0;
-               int opNum = (kCmdFlags[cmd->OpCode] & CF_OPMASK);
+               int32_t opNum = (kCmdFlags[cmd->OpCode] & CF_OPMASK);
                if (opNum > 0)
                {
                   DecodeArg(inp, cmd->Op1, cmd->ByteMode);
@@ -722,7 +722,7 @@ namespace compress
                   {
                      if (cmd->Op1.Type == OP_TYPE_INT && (kCmdFlags[cmd->OpCode] & (CF_JUMP | CF_PROC)))
                      {
-                        int Distance = cmd->Op1.Data;
+                        int32_t Distance = cmd->Op1.Data;
                         if (Distance >= 256)
                            Distance -= 256;
                         else
@@ -733,7 +733,7 @@ namespace compress
                               Distance -= 8;
                            else if (Distance >= 8)
                               Distance -= 16;
-                           Distance += (int) (prg->Commands.get_size() - 1);
+                           Distance += (int32_t) (prg->Commands.get_size() - 1);
                         }
                         cmd->Op1.Data = Distance;
                      }
@@ -794,10 +794,10 @@ namespace compress
             {  40, 0x46b9c560, SF_UPCASE }
          };
 
-         static int FindStandardFilter(const byte *code, uint32 codeSize)
+         static int32_t FindStandardFilter(const byte *code, uint32 codeSize)
          {
             uint32 crc = crc_calc(code, codeSize);
-            for (int i = 0; i < sizeof(kStdFilters) / sizeof(kStdFilters[0]); i++)
+            for (int32_t i = 0; i < sizeof(kStdFilters) / sizeof(kStdFilters[0]); i++)
             {
                StandardFilterSignature &sfs = kStdFilters[i];
                if (sfs.CRC == crc && sfs.Length == codeSize)
@@ -867,9 +867,9 @@ namespace compress
             }
          }
 
-         static inline uint32 ItaniumGetOpType(const byte *data, int bitPos)
+         static inline uint32 ItaniumGetOpType(const byte *data, int32_t bitPos)
          {
-            return (data[(unsigned int)bitPos >> 3] >> (bitPos & 7)) & 0xF;
+            return (data[(unsigned int32_t)bitPos >> 3] >> (bitPos & 7)) & 0xF;
          }
 
 
@@ -879,26 +879,26 @@ namespace compress
             fileOffset >>= 4;
             while (curPos < dataSize - 21)
             {
-               int b = (data[0] & 0x1F) - 0x10;
+               int32_t b = (data[0] & 0x1F) - 0x10;
                if (b >= 0)
                {
                   static byte kCmdMasks[16] = {4,4,6,6,0,0,7,7,4,4,0,0,4,4,0,0};
                   byte cmdMask = kCmdMasks[b];
                   if (cmdMask != 0)
-                     for (int i = 0; i < 3; i++)
+                     for (int32_t i = 0; i < 3; i++)
                         if (cmdMask & (1 << i))
                         {
-                           int startPos = i * 41 + 18;
+                           int32_t startPos = i * 41 + 18;
                            if (ItaniumGetOpType(data, startPos + 24) == 5)
                            {
                               const uint32 kMask = 0xFFFFF;
-                              byte *p = data + ((unsigned int)startPos >> 3);
+                              byte *p = data + ((unsigned int32_t)startPos >> 3);
                               uint32 bitField =  ((uint32)p[0]) | ((uint32)p[1] <<  8) | ((uint32)p[2] << 16);
-                              int inBit = (startPos & 7);
+                              int32_t inBit = (startPos & 7);
                               uint32 offset = (bitField >> inBit) & kMask;
                               uint32 andMask = ~(kMask << inBit);
                               bitField = ((offset - fileOffset) & kMask) << inBit;
-                              for (int j = 0; j < 3; j++)
+                              for (int32_t j = 0; j < 3; j++)
                               {
                                  p[j] &= andMask;
                                  p[j] |= bitField;
@@ -936,17 +936,17 @@ namespace compress
 
                for (uint32 i = curChannel; i < dataSize; i+= numChannels)
                {
-                  unsigned int predicted;
+                  unsigned int32_t predicted;
                   if (i < width)
                      predicted = prevByte;
                   else
                   {
-                     unsigned int upperLeftByte = destData[i - width];
-                     unsigned int upperByte = destData[i - width + 3];
+                     unsigned int32_t upperLeftByte = destData[i - width];
+                     unsigned int32_t upperByte = destData[i - width + 3];
                      predicted = prevByte + upperByte - upperLeftByte;
-                     int pa = abs((int)(predicted - prevByte));
-                     int pb = abs((int)(predicted - upperByte));
-                     int pc = abs((int)(predicted - upperLeftByte));
+                     int32_t pa = abs((int32_t)(predicted - prevByte));
+                     int32_t pb = abs((int32_t)(predicted - upperByte));
+                     int32_t pc = abs((int32_t)(predicted - upperLeftByte));
                      if (pa <= pb && pa <= pc)
                         predicted = prevByte;
                      else
@@ -1008,7 +1008,7 @@ namespace compress
                   {
                      uint32 minDif = dif[0], numMinDif = 0;
                      dif[0] = 0;
-                     for (int j = 1; j < sizeof(dif) / sizeof(dif[0]); j++)
+                     for (int32_t j = 1; j < sizeof(dif) / sizeof(dif[0]); j++)
                      {
                         if (dif[j] < minDif)
                         {
@@ -1044,7 +1044,7 @@ namespace compress
             return destPos - dataSize;
          }
 
-         void vm::ExecuteStandardFilter(int filterIndex)
+         void vm::ExecuteStandardFilter(int32_t filterIndex)
          {
             uint32 dataSize = R[4];
             if (dataSize >= kGlobalOffset)

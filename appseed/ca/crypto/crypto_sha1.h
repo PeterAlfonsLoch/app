@@ -37,10 +37,10 @@ typedef struct SHA1Context
     unsigned Length_High;       /* Message length in bits           */
 
     unsigned char Message_Block[64]; /* 512-bit message blocks      */
-    int Message_Block_Index;    /* Index into message block array   */
+    int32_t Message_Block_Index;    /* Index into message block array   */
 
-    int Computed;               /* Is the digest computed?          */
-    int Corrupted;              /* Is the message digest corruped?  */
+    int32_t Computed;               /* Is the digest computed?          */
+    int32_t Corrupted;              /* Is the message digest corruped?  */
 } sha1_ctx_t;
 
 /*
@@ -48,7 +48,7 @@ typedef struct SHA1Context
  */
 void __sha1_init(sha1_ctx_t *);
 void __sha1_update(sha1_ctx_t *, const void *, size_t);
-int  __sha1_final(sha1_ctx_t *, void *);
+int32_t  __sha1_final(sha1_ctx_t *, void *);
 
 void __sha1_core(const unsigned char Message_Block[64], uint32_t Message_Digest[5]);
 
@@ -96,8 +96,8 @@ namespace crypto
          void GetBlockDigest(void * blockData, uint32 *destDigest, bool returnRes);
          //void
          // PrepareBlock can be used only when size <= 13. size in Words
-//         void PrepareBlock(uint32 *block, unsigned int size) const;
-         void update(const void * msg, int iSize);
+//         void PrepareBlock(uint32 *block, unsigned int32_t size) const;
+         void update(const void * msg, int32_t iSize);
       };
 
       class CLASS_DECL_ca CContextBase2: public CContextBase

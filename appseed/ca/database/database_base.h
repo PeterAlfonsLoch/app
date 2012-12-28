@@ -55,19 +55,19 @@ namespace database
 
       /* virtual methods that must be overloaded in derived classes */
 
-      virtual int init() { return DB_COMMAND_OK; }
-      virtual int status() { return DB_CONNECTION_NONE; }
-      virtual int setErr(int err_code)=0;
+      virtual int32_t init() { return DB_COMMAND_OK; }
+      virtual int32_t status() { return DB_CONNECTION_NONE; }
+      virtual int32_t setErr(int32_t err_code)=0;
       virtual const char *getErrorMsg() { return error; }
 
-      virtual int connect() { return DB_COMMAND_OK; }
-      virtual int connectFull( const char *newDb, const char *newHost=NULL,
+      virtual int32_t connect() { return DB_COMMAND_OK; }
+      virtual int32_t connectFull( const char *newDb, const char *newHost=NULL,
          const char *newLogin=NULL, const char *newPasswd=NULL,const char *newPort=NULL);
       virtual void disconnect() { active = false; }
-      virtual int reset() { return DB_COMMAND_OK; }
+      virtual int32_t reset() { return DB_COMMAND_OK; }
       using ::ex1::request_interface::create;
-      virtual int create() { return DB_COMMAND_OK; }
-      virtual int drop() { return DB_COMMAND_OK; }
+      virtual int32_t create() { return DB_COMMAND_OK; }
+      virtual int32_t drop() { return DB_COMMAND_OK; }
       virtual long nextid(const char* seq_name)=0;
 
       /* virtual methods for transaction */

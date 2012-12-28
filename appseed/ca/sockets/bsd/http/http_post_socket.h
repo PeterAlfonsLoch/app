@@ -49,7 +49,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          ::collection::string_map < long >   m_mapContentLength;
          string_to_string_map                m_mapContentType;
          bool                                m_bMultipart;
-         //static int m_boundary_count;
+         //static int32_t m_boundary_count;
          //static mutex m_boundary_mutex;
 
 

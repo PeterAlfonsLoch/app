@@ -66,7 +66,7 @@ namespace ca
       virtual bool is_in_use() const;
 
 
-      virtual void on_update_data(int iHint);
+      virtual void on_update_data(int32_t iHint);
 
 
       virtual void edit(::ca::base_edit * pbaseedit);

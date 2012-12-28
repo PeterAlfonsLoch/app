@@ -54,7 +54,7 @@ v32_weight(v32_t a);
 unsigned char
 v32_distance(v32_t x, v32_t y);
 
-unsigned int
+unsigned int32_t
 v32_dot_product(v32_t a, v32_t b);
 
 char *
@@ -78,10 +78,10 @@ v32_hex_string(v32_t x);
 char *
 v64_hex_string(const v64_t *x);
 
-int
+int32_t
 hex_char_to_nibble(uint8_t c);
 
-int
+int32_t
 is_hex_string(char *s);
 
 v16_t
@@ -111,11 +111,11 @@ v64_copy_octet_string(v64_t *x, const uint8_t s[8]);
 void
 v128_add(v128_t *z, v128_t *x, v128_t *y);
 
-int
-octet_string_is_eq(uint8_t *a, uint8_t *b, int len);
+int32_t
+octet_string_is_eq(uint8_t *a, uint8_t *b, int32_t len);
 
 void
-octet_string_set_to_zero(uint8_t *s, int len);
+octet_string_set_to_zero(uint8_t *s, int32_t len);
 
 
 
@@ -190,7 +190,7 @@ A_times_x_plus_b(uint8_t A[8], uint8_t x, uint8_t b);
 void
 v128_set_to_zero(v128_t *x);
 
-int
+int32_t
 v128_is_eq(const v128_t *x, const v128_t *y);
 
 void
@@ -208,17 +208,17 @@ v128_or(v128_t *z, v128_t *x, v128_t *y);
 void
 v128_complement(v128_t *x);
 
-int
-v128_get_bit(const v128_t *x, int i);
+int32_t
+v128_get_bit(const v128_t *x, int32_t i);
 
 void
-v128_set_bit(v128_t *x, int i) ;     
+v128_set_bit(v128_t *x, int32_t i) ;     
 
 void
-v128_clear_bit(v128_t *x, int i);    
+v128_clear_bit(v128_t *x, int32_t i);    
 
 void
-v128_set_bit_to(v128_t *x, int i, int y);
+v128_set_bit_to(v128_t *x, int32_t i, int32_t y);
 
 #endif /* DATATYPES_USE_MACROS */
 
@@ -227,11 +227,11 @@ v128_set_bit_to(v128_t *x, int i, int y);
  * and b are not equal, returns 0 otherwise
  */
 
-int
-octet_string_is_eq(uint8_t *a, uint8_t *b, int len);
+int32_t
+octet_string_is_eq(uint8_t *a, uint8_t *b, int32_t len);
 
 void
-octet_string_set_to_zero(uint8_t *s, int len);
+octet_string_set_to_zero(uint8_t *s, int32_t len);
 
 
 /*
@@ -253,19 +253,19 @@ typedef struct {
   uint32_t *word;
 } bitvector_t;
 
-int
+int32_t
 bitvector_alloc(bitvector_t *v, unsigned long length);
 
 void
-bitvector_set_bit(bitvector_t *v, int bit_index);
+bitvector_set_bit(bitvector_t *v, int32_t bit_index);
 
-int
-bitvector_get_bit(const bitvector_t *v, int bit_index);
+int32_t
+bitvector_get_bit(const bitvector_t *v, int32_t bit_index);
 
-int
+int32_t
 bitvector_print_hex(const bitvector_t *v, FILE *stream);
 
-int
+int32_t
 bitvector_set_from_hex(bitvector_t *v, char *string);
 
 #endif /* MATH_H */

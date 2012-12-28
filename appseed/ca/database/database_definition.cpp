@@ -165,7 +165,7 @@ namespace database
    {
       ostream << name;
       ostream << display_name;
-      ostream << (int) type;
+      ostream << (int32_t) type;
       ostream << field_table; //?
       ostream << read_only;
       ostream << field_len;
@@ -177,7 +177,7 @@ namespace database
    {
       istream >> name;
       istream >> display_name;
-      istream >> (int &) type;
+      istream >> (int32_t &) type;
       istream >> field_table; //?
       istream >> read_only;
       istream >> field_len;

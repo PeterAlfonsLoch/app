@@ -17,7 +17,7 @@ namespace mysql
       void * fetch_row(); // MYSQL_ROW
       unsigned long * fetch_lengths(); // MYSQL_ROW
       int64_t num_rows();
-      int num_fields();
+      int32_t num_fields();
 
       friend class database;
    protected:
@@ -26,7 +26,7 @@ namespace mysql
       bool free_result();
       database * m_pdatabase;
       void * m_pres; // MYSQL_RES
-      int   m_iFieldCount;
+      int32_t   m_iFieldCount;
       bool m_bAutoDelete;
    };
 

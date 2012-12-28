@@ -186,7 +186,7 @@ namespace ca
       return true;
    }
 
-   int thread::exit()
+   int32_t thread::exit()
    {
 
       try
@@ -205,7 +205,7 @@ namespace ca
    }
 
    // main running routine until thread exits
-   int thread::run()
+   int32_t thread::run()
    {
       throw interface_only_exception(get_app());
    }
@@ -216,7 +216,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   int thread::exit_instance()
+   int32_t thread::exit_instance()
    {
       throw interface_only_exception(get_app());
    }
@@ -252,7 +252,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void thread::ProcessMessageFilter(int code, gen::signal_object * pobj)
+   void thread::ProcessMessageFilter(int32_t code, gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(code);
       UNREFERENCED_PARAMETER(pobj);
@@ -441,7 +441,7 @@ namespace ca
    }
 
 
-   int thread::main()
+   int32_t thread::main()
    {
       return 0;
    }
@@ -494,7 +494,7 @@ namespace ca
 
 	///  \brief		sets thread priority
 	///  \param		new priority
-	void thread::set_priority(int priority)
+	void thread::set_priority(int32_t priority)
 	{
       UNREFERENCED_PARAMETER(priority);
       throw not_implemented(get_app());
@@ -502,7 +502,7 @@ namespace ca
 
 	///  \brief		gets thread priority
 	///  \param		priority
-	int thread::priority()
+	int32_t thread::priority()
 	{
       throw not_implemented(get_app());
       return 0x80000000;

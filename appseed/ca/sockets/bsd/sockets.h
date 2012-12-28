@@ -116,7 +116,7 @@ in read operations - helps on ECOS */
 
 // all typedefs in this file will be declared outside the sockets namespace,
 // because some System's will already have one or more of the type defined.
-typedef int SOCKET;
+typedef int32_t SOCKET;
 #define Errno errno
 #define StrError strerror
 
@@ -219,7 +219,7 @@ namespace sockets {
 
 #elif defined(METROWIN)
 
-CLASS_DECL_ca const char *StrError(int x);
+CLASS_DECL_ca const char *StrError(int32_t x);
 #define Errno GetLastError()
 
 #elif defined(WINDOWSEX)
@@ -238,7 +238,7 @@ CLASS_DECL_ca const char *StrError(int x);
 #define SHUT_WR 1
 
 #define Errno WSAGetLastError()
-CLASS_DECL_ca const char *StrError(int x);
+CLASS_DECL_ca const char *StrError(int32_t x);
 
 namespace sockets
 {

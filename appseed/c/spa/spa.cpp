@@ -4,13 +4,13 @@
 
 
 
-int LangFromOS();
+int32_t LangFromOS();
 
 
 
 
 
-int run_file(const char * pszFile, int nCmdShow);
+int32_t run_file(const char * pszFile, int32_t nCmdShow);
 
 
 
@@ -66,7 +66,7 @@ vsstring Login()
 /*bool Get(const vsstring& url_in,vsstring & document)
 {
    bool https = !strcasecmp(url.substr(0,8), "https://");
-	int port = https ? 443 : 80;
+	int32_t port = https ? 443 : 80;
 	vsstring url = url_in;
 	vsstring file; // get filename at end of url
 	vsstring dir; // get filename at end of url
@@ -142,7 +142,7 @@ vsstring Login()
 
 
 
-vsstring url_query_param(int & iParam, const char * pszParam)
+vsstring url_query_param(int32_t & iParam, const char * pszParam)
 {
    vsstring str;
    if(iParam == 0)
@@ -172,7 +172,7 @@ vsstring url_query_param(int & iParam, const char * pszParam)
 
 
 
-int synch_spaadmin(const char * pszCommandLine)
+int32_t synch_spaadmin(const char * pszCommandLine)
 {
 
    ::spa::installer * pinstaller    = new ::spa::installer();
@@ -186,7 +186,7 @@ int synch_spaadmin(const char * pszCommandLine)
 }
 
 
-int start_spaadmin(const char * pszCommandLine)
+int32_t start_spaadmin(const char * pszCommandLine)
 {
 
    ::spa::installer * pinstaller    = new ::spa::installer();
@@ -219,7 +219,7 @@ void installation_file_lock(bool bLock)
 
    strPath = get_installation_lock_file_path();
 
-   int iRetry = 84;
+   int32_t iRetry = 84;
 
    if(bLock)
    {

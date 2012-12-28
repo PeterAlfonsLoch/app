@@ -53,7 +53,7 @@ void theora_clear(theora_state *_th){
   memset(_th,0,sizeof(*_th));
 }
 
-int theora_control(theora_state *_th,int _req,void *_buf,size_t _buf_sz){
+int32_t theora_control(theora_state *_th,int32_t _req,void *_buf,size_t _buf_sz){
   /*Provide compatibility with mixed encoder and decoder shared lib versions.*/
   if(_th->internal_decode!=NULL){
     return (*((oc_state_dispatch_vtable *)_th->internal_decode)->control)(_th,
@@ -123,17 +123,17 @@ void oc_theora_info2th_info(th_info *_info,const theora_info *_ci){
    OC_MINI(31,oc_ilog(_ci->keyframe_frequency_force-1)):0;
 }
 
-int theora_packet_isheader(ogg_packet *_op){
+int32_t theora_packet_isheader(ogg_packet *_op){
   return th_packet_isheader(_op);
 }
 
-int theora_packet_iskeyframe(ogg_packet *_op){
+int32_t theora_packet_iskeyframe(ogg_packet *_op){
   return th_packet_iskeyframe(_op);
 }
 
-int theora_granule_shift(theora_info *_ci){
+int32_t theora_granule_shift(theora_info *_ci){
   /*This breaks when keyframe_frequency_force is not positive or is larger than
-     2**31 (if your int is more than 32 bits), but that's what the original
+     2**31 (if your int32_t is more than 32 bits), but that's what the original
      function does.*/
   return oc_ilog(_ci->keyframe_frequency_force-1);
 }
@@ -142,11 +142,11 @@ void theora_comment_init(theora_comment *_tc){
   th_comment_init((th_comment *)_tc);
 }
 
-char *theora_comment_query(theora_comment *_tc,char *_tag,int _count){
+char *theora_comment_query(theora_comment *_tc,char *_tag,int32_t _count){
   return th_comment_query((th_comment *)_tc,_tag,_count);
 }
 
-int theora_comment_query_count(theora_comment *_tc,char *_tag){
+int32_t theora_comment_query_count(theora_comment *_tc,char *_tag){
   return th_comment_query_count((th_comment *)_tc,_tag);
 }
 

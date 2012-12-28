@@ -9,7 +9,7 @@ public:
 protected:
    bool        m_bSorted;
    stringa   m_stra;
-   int       (*m_pfnCompare)(const char *, const char *);
+   int32_t       (*m_pfnCompare)(const char *, const char *);
 
    inline void _Swap(index iA, index iB);
 
@@ -18,7 +18,7 @@ public:
 
    count get_size();
 
-   void SetCompareFunction(int fCompare(const char *, const char *));
+   void SetCompareFunction(int32_t fCompare(const char *, const char *));
    void Sort();
    index SortFind(const char * lpcsz);
    index SortFindNoCase(const char * lpcsz);
@@ -48,8 +48,8 @@ public:
    void add_unique(const char * lpcsz);
    void add_normal(const char * lpcsz);
 
-   static int Compare(const char * lpcszA, const char * lpcszB);
-   static int CompareNoCase(const char * lpcszA, const char * lpcszB);
+   static int32_t Compare(const char * lpcszA, const char * lpcszB);
+   static int32_t CompareNoCase(const char * lpcszA, const char * lpcszB);
 
 };
 
@@ -181,13 +181,13 @@ inline void str_sort_array::add_normal(const char * lpcsz)
 }
 
 // strA - strB
-inline int str_sort_array::Compare(const char * lpcszA, const char * lpcszB)
+inline int32_t str_sort_array::Compare(const char * lpcszA, const char * lpcszB)
 {
    return strcmp(lpcszA, lpcszB);
 }
 
 // strA - strB
-inline int str_sort_array::CompareNoCase(const char * lpcszA, const char * lpcszB)
+inline int32_t str_sort_array::CompareNoCase(const char * lpcszA, const char * lpcszB)
 {
    return stricmp_dup(lpcszA, lpcszB);
 }

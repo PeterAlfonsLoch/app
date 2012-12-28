@@ -27,13 +27,13 @@ namespace crypto
 
          uint32_t M[16];
 
-         for (int i = 0 ; i < 16; i++)
+         for (int32_t i = 0 ; i < 16; i++)
             M[i] = ((byte *)data)[i];
 
          __sha1_core((const unsigned char *) M, (uint32_t *) destDigest);
 
          if (returnRes)
-            for (int i = 0 ; i < 16; i++)
+            for (int32_t i = 0 ; i < 16; i++)
                ((byte *)data)[i] = M[i];
 
          // Wipe variables
@@ -46,7 +46,7 @@ namespace crypto
 
          uint32_t M[16];
 
-         for (int i = 0 ; i < 16; i++)
+         for (int32_t i = 0 ; i < 16; i++)
             M[i] = ((const byte *)data)[i];
 
          __sha1_core((const unsigned char *) M, (uint32_t *) destDigest);
@@ -66,7 +66,7 @@ namespace crypto
       }*/
 
       
-      void CContextBase::update(const void * msg, int iSize)
+      void CContextBase::update(const void * msg, int32_t iSize)
       {
 
          __sha1_update(&m_ctx, msg, iSize);
@@ -84,7 +84,7 @@ namespace crypto
          while (size--)
          {
 
-            int pos = (int)(curBufferPos & 3);
+            int32_t pos = (int32_t)(curBufferPos & 3);
 
             if (pos == 0)
                _buffer[curBufferPos >> 2] = 0;
@@ -115,7 +115,7 @@ namespace crypto
          while (size--)
          {
 
-            int pos = (int)(curBufferPos & 3);
+            int32_t pos = (int32_t)(curBufferPos & 3);
 
             if (pos == 0)
                _buffer[curBufferPos >> 2] = 0;
@@ -130,7 +130,7 @@ namespace crypto
                CContextBase::UpdateBlock((char *) _buffer, returnRes);
 
                if (returnRes)
-                  for (int i = 0; i < kBlockSizeInWords; i++)
+                  for (int32_t i = 0; i < kBlockSizeInWords; i++)
                   {
                      uint32 d = _buffer[i];
                      data[i * 4 + 0 - kBlockSize] = (byte)(d);
@@ -155,7 +155,7 @@ namespace crypto
 
 /*         const uint64 lenInBits = (_count << 9) + ((uint64)_count2 << 3);
          unsigned curBufferPos = _count2;
-         int pos = (int)(curBufferPos & 3);
+         int32_t pos = (int32_t)(curBufferPos & 3);
          curBufferPos >>= 2;
          if (pos == 0)
             _buffer[curBufferPos] = 0;
@@ -172,7 +172,7 @@ namespace crypto
          _buffer[curBufferPos++] = (uint32)(lenInBits);
          UpdateBlock();
 
-         int i;
+         int32_t i;
          for (i = 0; i < kDigestSizeInWords; i++)
          {
             uint32 state = m_ctx.H[i] & 0xFFFFFFFF;

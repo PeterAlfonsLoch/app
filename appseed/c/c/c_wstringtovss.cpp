@@ -1,6 +1,6 @@
 #include "framework.h"
 
-wstringtovss::wstringtovss(vsstring & str, int iAllocCount)
+wstringtovss::wstringtovss(vsstring & str, int32_t iAllocCount)
 {
    m_pstringUtf8 = &str;
    m_pwsz = NULL;

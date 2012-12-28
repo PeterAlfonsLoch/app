@@ -74,7 +74,7 @@ public:
 
 	trace_process *GetProcess() const {return m_pProcess;}
 	trace_module *GetModule(index iModule) const;
-//	::gen::trace::category *GetCategory(int iModule, unsigned nCategory) const;
+//	::gen::trace::category *GetCategory(int32_t iModule, unsigned nCategory) const;
 	::gen::trace::category* GetCategory(index iCategory) const;
 
 	/*
@@ -89,7 +89,7 @@ public:
 
 	count GetModuleCount() const;
 	count GetCategoryCount(index iModule) const;
-	int GetCategoryCount(const trace_module& Module) const;
+	int32_t GetCategoryCount(const trace_module& Module) const;
 
 	bool FindModule(const WCHAR *pszModuleName, unsigned *pnModule) const;
 

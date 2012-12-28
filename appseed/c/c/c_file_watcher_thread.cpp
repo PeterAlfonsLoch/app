@@ -5,7 +5,7 @@ namespace file_watcher
 {
 
 
-   int thread::run()
+   int32_t thread::run()
    {
 
 #ifndef METROWIN

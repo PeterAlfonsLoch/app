@@ -24,7 +24,7 @@ public:
    }
    inline Ex17MemoryFile & operator << (ex1::filesp & file)
    {
-      int nRead;
+      int32_t nRead;
       char buf[1024];
       while(nRead = spfile->read(buf, sizeof(buf)))
       {

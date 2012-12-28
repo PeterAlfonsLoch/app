@@ -31,7 +31,7 @@ namespace html
 
       string special_chars(const char * psz);
       string entities(const char * psz);
-      int resolve_entity(const char * lpszEntity, string & strChar);
+      int32_t resolve_entity(const char * lpszEntity, string & strChar);
 
    };
 

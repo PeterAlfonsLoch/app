@@ -1,6 +1,6 @@
 #include "framework.h"
 
-void * memset_dup(void * p, int uch, size_t iSize)
+void * memset_dup(void * p, int32_t uch, size_t iSize)
 {
    unsigned char * puch = (unsigned char * ) p;
    while(iSize > 0)
@@ -44,14 +44,14 @@ void * memand_dup(void * p, const void * p1, const void * p2, size_t iSize)
 
 /*#pragma function(memcmp)
 
-int memcmp(const void * sz1, const void * sz2, size_t iLen)
+int32_t memcmp(const void * sz1, const void * sz2, size_t iLen)
 {
    return memcmp_dup(sz1, sz2, iLen);
 }
 
 #pragma function(memset)
 
-void * memset(void * p, int uch, size_t iSize)
+void * memset(void * p, int32_t uch, size_t iSize)
 {
    return memset_dup(p, uch, iSize);
 }*/
@@ -102,7 +102,7 @@ void * memmov_dup(void * dst, const void * src, size_t iSize)
    return dst;
 }
 
-int memcmp_dup(const void * sz1, const void * sz2, size_t iLen)
+int32_t memcmp_dup(const void * sz1, const void * sz2, size_t iLen)
 {
    if(iLen <= 0)
       return 0; // equal
@@ -118,7 +118,7 @@ int memcmp_dup(const void * sz1, const void * sz2, size_t iLen)
       return 1;
    }
    return memcmp(sz1, sz2, iLen);
-   /*int iCmp = 0;
+   /*int32_t iCmp = 0;
    while(iLen > 0)
    {
       iCmp = *(unsigned char *)sz1 - *(unsigned char *)sz2;

@@ -96,7 +96,7 @@ void *_alloca(size_t size);
 /* Special i386 GCC implementation */
 #if defined(__i386__) && defined(__GNUC__) && !defined(__BEOS__)
 #  define VORBIS_FPU_CONTROL
-/* both GCC and MSVC are kinda stupid about rounding/casting to int.
+/* both GCC and MSVC are kinda stupid about rounding/casting to int32_t.
    Because of encapsulation constraints (GCC can't see inside the asm
    block and so we end up doing stupid things like a store/load that
    is collectively a noop), we do it this way */
@@ -121,10 +121,10 @@ static inline void vorbis_fpu_restore(vorbis_fpu_control fpu){
 }
 
 /* assumes the FPU is in round mode! */
-static inline int vorbis_ftoi(double f){  /* yes, double!  Otherwise,
+static inline int32_t vorbis_ftoi(double f){  /* yes, double!  Otherwise,
                                              we get extra fst/fld to
                                              truncate precision */
-  int i;
+  int32_t i;
   __asm__("fistl %0": "=m"(i) : "t"(f));
   return(i);
 }
@@ -138,8 +138,8 @@ static inline int vorbis_ftoi(double f){  /* yes, double!  Otherwise,
 
 typedef ogg_int16_t vorbis_fpu_control;
 
-static __inline int vorbis_ftoi(double f){
-        int i;
+static __inline int32_t vorbis_ftoi(double f){
+        int32_t i;
         __asm{
                 fld f
                 fistp i
@@ -167,7 +167,7 @@ static __inline void vorbis_fpu_restore(vorbis_fpu_control fpu)
 typedef ogg_int16_t vorbis_fpu_control;
 
 #include <emmintrin.h>
-static __inline int vorbis_ftoi(double f){
+static __inline int32_t vorbis_ftoi(double f){
         return _mm_cvtsd_si32(_mm_load_sd(&f));
 }
 
@@ -184,13 +184,13 @@ static __inline void vorbis_fpu_restore(vorbis_fpu_control fpu){
    use the default implementation here: */
 #ifndef VORBIS_FPU_CONTROL
 
-typedef int vorbis_fpu_control;
+typedef int32_t vorbis_fpu_control;
 
-static int vorbis_ftoi(double f){
+static int32_t vorbis_ftoi(double f){
         /* Note: MSVC and GCC (at least on some systems) round towards zero, thus,
            the floor() call is required to ensure correct roudning of
            negative numbers */
-        return (int)floor(f+.5);
+        return (int32_t)floor(f+.5);
 }
 
 /* We don't have special code for this compiler/arch, so do it the slow way */

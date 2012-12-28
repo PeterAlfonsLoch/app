@@ -98,7 +98,7 @@ mutex::mutex(::ca::application * papp, const char * pstrName, HANDLE h) :
 
 #else
 
-mutex::mutex(const char * pstrName, key_t key, int semid) :
+mutex::mutex(const char * pstrName, key_t key, int32_t semid) :
    sync_object(pstrName)
 {
 
@@ -149,7 +149,7 @@ wait_result mutex::wait(const duration & duration)
    delay.tv_sec = 0;
    delay.tv_nsec = 1000000;  // 1 milli sec delay
 
-   int irc;
+   int32_t irc;
 
    DWORD start = ::get_tick_count();
 
@@ -170,7 +170,7 @@ wait_result mutex::wait(const duration & duration)
          operation[0].sem_num = 0;
          operation[0].sem_flg = IPC_NOWAIT;
 
-         int ret = semop(m_semid, operation,1);
+         int32_t ret = semop(m_semid, operation,1);
 
          if(ret < 0)
          {
@@ -317,7 +317,7 @@ mutex * mutex::open_mutex(::ca::application * papp,  const char * pstrName)
 
    key_t key = ftok(strName, 0); //Generate a unique key or supply a value
 
-   int semid = semget(
+   int32_t semid = semget(
                key, // a unique identifier to identify semaphore set
                1,  // number of semaphore in the semaphore set
                0666 // permissions (rwxrwxrwx) on the new

@@ -42,22 +42,22 @@ namespace ex1
    #define SZ_ERROR_ARCHIVE 16
    #define SZ_ERROR_NO_ARCHIVE 17
 
-   typedef int SRes;
+   typedef int32_t SRes;
 
    #ifdef _WIN32
    typedef DWORD WRes;
    #else
-   typedef int WRes;
+   typedef int32_t WRes;
    #endif
 
    // return - result - if not ok
    #ifndef RINOK
-   #define RINOK(x) { int __result__ = (x); if (__result__ != 0) return __result__; }
+   #define RINOK(x) { int32_t __result__ = (x); if (__result__ != 0) return __result__; }
    #endif
 
    // throw - exception - result exception - if not ok
    #ifndef TINOK
-   #define TINOK(e, x) { int __result__ = (x); if (__result__ != 0) throw new e(get_app(), __result__); }
+   #define TINOK(e, x) { int32_t __result__ = (x); if (__result__ != 0) throw new e(get_app(), __result__); }
    #endif
 
    /* The following interfaces use first parameter as pointer to structure */
@@ -136,7 +136,7 @@ namespace ex1
    //  byte buf[LookToRead_BUF_SIZE];
    //} CLookToRead;
 
-   //void LookToRead_CreateVTable(CLookToRead *p, int lookahead);
+   //void LookToRead_CreateVTable(CLookToRead *p, int32_t lookahead);
    //void LookToRead_Init(CLookToRead *p);
 
    //typedef struct
@@ -190,7 +190,7 @@ namespace ex1
    EXTERN_C_END
 
 
-   typedef int HRes;
+   typedef int32_t HRes;
 
 
 

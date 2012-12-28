@@ -39,7 +39,7 @@ namespace n7z
       uint64 GetFullSize() const
       {
          uint64 size = 0;
-         for (int i = 0; i < Sizes.get_count(); i++)
+         for (int32_t i = 0; i < Sizes.get_count(); i++)
             size += Sizes[i];
          return size;
       }

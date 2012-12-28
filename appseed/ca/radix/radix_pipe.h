@@ -38,7 +38,7 @@ namespace gen
 
 #else
 
-      int                  m_fd[2];
+      int32_t                  m_fd[2];
 
 #endif
 

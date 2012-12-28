@@ -223,7 +223,7 @@ namespace exception
 
       HANDLE hprocess = SymGetProcessHandle();
       DWORD64 displacement = 0;
-      int r = SymGetSymFromAddr64(hprocess, m_uiAddress, &displacement, pSym);
+      int32_t r = SymGetSymFromAddr64(hprocess, m_uiAddress, &displacement, pSym);
       if (!r) return 0;
       if (pdisplacement)
          *pdisplacement = displacement;
@@ -763,7 +763,7 @@ retry_get_base:
    bool engine::load_module(HANDLE hProcess, HMODULE hMod)
    {
 
-      for(int i = 0; i < m_ha.get_count(); i++)
+      for(int32_t i = 0; i < m_ha.get_count(); i++)
       {
          if(m_ha[i] == hMod)
             return true;
@@ -843,7 +843,7 @@ retry_get_base:
    struct current_context : CONTEXT
    {
       HANDLE   thread;
-      volatile int signal;
+      volatile int32_t signal;
    };
 
    DWORD WINAPI engine::stack_trace_ThreadProc(void * lpvoidParam)
@@ -856,8 +856,8 @@ retry_get_base:
       {
          // Konstantin, 14.01.2002 17:21:32
          // must wait in spin lock until main thread will leave a ResumeThread (must return back to ::fontopus::user context)
-         int iInverseAgility = 26 + 33; // former iPatienceQuota
-         int iPatience = iInverseAgility;
+         int32_t iInverseAgility = 26 + 33; // former iPatienceQuota
+         int32_t iPatience = iInverseAgility;
          while(pcontext->signal && iPatience > 0)
          {
             if(!SwitchToThread())
@@ -943,8 +943,8 @@ retry_get_base:
       //VERIFY(SetThreadPriority(hthreadWorker, THREAD_PRIORITY_TIME_CRITICAL)); //  THREAD_PRIORITY_HIGHEST
       if (-1 != ResumeThread(hthreadWorker))
       {
-      int iInverseAgility = 26 + 33; // former iPatienceQuota
-      int iPatience = iInverseAgility;
+      int32_t iInverseAgility = 26 + 33; // former iPatienceQuota
+      int32_t iPatience = iInverseAgility;
       // Konstantin, 14.01.2002 17:21:32
       context.signal = 0;            // only now the worker thread can get this thread context
       while (!context.signal && iPatience > 0)
@@ -985,7 +985,7 @@ retry_get_base:
 
 
        void * array[1024];
-       int size = backtrace(array, 1024);
+       int32_t size = backtrace(array, 1024);
 
        if(caller_address != NULL)
        {
@@ -998,7 +998,7 @@ retry_get_base:
        char ** messages = backtrace_symbols(array, size);
 
        // skip first stack frame (points here)
-       for (int i = 1; i < size && messages != NULL; ++i)
+       for (int32_t i = 1; i < size && messages != NULL; ++i)
        {
            char *mangled_name = 0, *offset_begin = 0, *offset_end = 0;
 
@@ -1030,7 +1030,7 @@ retry_get_base:
               
 #ifdef LINUX
 
-               int status;
+               int32_t status;
                char * real_name = abi::__cxa_demangle(mangled_name, 0, 0, &status);
 
                // if demangling is successful, output the demangled function name

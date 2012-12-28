@@ -32,7 +32,7 @@ namespace userbase
       if(straCommandTitle.get_size() < straCommand.get_size())
          return false;
 
-      for(int i = 0; i < iItemCount; i++)
+      for(int32_t i = 0; i < iItemCount; i++)
       {
          string strCommand = straCommand[i];
          string strCommandTitle = straCommandTitle[i];
@@ -65,11 +65,11 @@ namespace userbase
       return load_menu(lpnode, m_iLevel);
    }
 
-   bool menu_item::load_menu(xml::node * lpnode, int iLevel)
+   bool menu_item::load_menu(xml::node * lpnode, int32_t iLevel)
    {
 
       ::count iItemCount = lpnode->get_children_count();
-      for(int i = 0; i < iItemCount; i++)
+      for(int32_t i = 0; i < iItemCount; i++)
       {
          xml::node * pnodeChild = lpnode->child_at(i);
 
@@ -141,7 +141,7 @@ namespace userbase
    menu_item * menu_item_ptra::find(id id)
    {
       menu_item * pitemFind;
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          menu_item * pitem = ptr_at(i);
          if(pitem->m_id  == id)

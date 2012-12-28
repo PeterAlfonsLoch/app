@@ -224,7 +224,7 @@ namespace sockets
       }
       SetIsClient(); // client because we connect
       SetClientRemoteAddress(ad);
-      int n = 0;
+      int32_t n = 0;
       if (bind_ad.get_service_number() != 0)
       {
          bind(s, bind_ad.sa(), bind_ad.sa_len());
@@ -251,10 +251,10 @@ namespace sockets
       {
    #ifdef _WIN32
          // check error code that means a connect is in progress
-         int iError = ::WSAGetLastError();
+         int32_t iError = ::WSAGetLastError();
          if (iError == WSAEWOULDBLOCK || iError == 0)
    #else
-         int iError = Errno;
+         int32_t iError = Errno;
          if(iError == EINPROGRESS)
    #endif
          {
@@ -342,9 +342,9 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnResolved(int id,in_addr & a,port_t port)
+   void tcp_socket::OnResolved(int32_t id,in_addr & a,port_t port)
    {
-      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, *(unsigned int*) &a, port);
+      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, *(unsigned int32_t*) &a, port);
       if (id == m_resolver_id)
       {
          if (ISNT_ZERO(a) && port)
@@ -373,7 +373,7 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnResolved(int id,in6_addr& a,port_t port)
+   void tcp_socket::OnResolved(int32_t id,in6_addr& a,port_t port)
    {
       if (id == m_resolver_id)
       {
@@ -401,7 +401,7 @@ namespace sockets
    void tcp_socket::OnRead()
    {
       DWORD dw1, dw2;
-      int n = 0;
+      int32_t n = 0;
    #ifdef SOCKETS_DYNAMIC_TEMP
       char *buf = m_buf;
    #else
@@ -547,7 +547,7 @@ namespace sockets
    {
       if (Connecting())
       {
-         int err = SoError();
+         int32_t err = SoError();
 
          // don't reset connecting flag on error here, we want the OnConnectFailed timeout later on
          if (!err) // ok
@@ -595,7 +595,7 @@ namespace sockets
             return;
          OUTPUT * p = m_obuf.get_at(pos);
          repeat = false;
-         int n = TryWrite(p -> Buf(), p -> Len());
+         int32_t n = TryWrite(p -> Buf(), p -> Len());
          if (n > 0)
          {
             size_t left = p -> remove(n);
@@ -636,16 +636,16 @@ namespace sockets
    }
 
 
-   int tcp_socket::TryWrite(const char *buf, size_t len)
+   int32_t tcp_socket::TryWrite(const char *buf, size_t len)
    {
-      int n = 0;
+      int32_t n = 0;
    #ifdef HAVE_OPENSSL
       if (IsSSL())
       {
-         n = SSL_write(m_ssl, buf, (int)len);
+         n = SSL_write(m_ssl, buf, (int32_t)len);
          if (n == -1)
          {
-            int errnr = SSL_get_error(m_ssl, n);
+            int32_t errnr = SSL_get_error(m_ssl, n);
             if ( errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE )
             {
                OnDisconnect();
@@ -664,7 +664,7 @@ namespace sockets
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            int errnr = SSL_get_error(m_ssl, n);
+            int32_t errnr = SSL_get_error(m_ssl, n);
             const char *errbuf = ERR_error_string(errnr, NULL);
             TRACE("SSL_write() returns 0: %d : %s\n",errnr, errbuf);
          }
@@ -672,7 +672,7 @@ namespace sockets
       else
    #endif // HAVE_OPENSSL
       {
-         n = send(GetSocket(), buf, (int)len, MSG_NOSIGNAL);
+         n = send(GetSocket(), buf, (int32_t)len, MSG_NOSIGNAL);
          if (n == -1)
          {
          // normal error codes:
@@ -737,13 +737,13 @@ namespace sockets
    }
 
 
-   void tcp_socket::Send(const string &str,int i)
+   void tcp_socket::Send(const string &str,int32_t i)
    {
       SendBuf(str,str.get_length(),i);
    }
 
 
-   void tcp_socket::SendBuf(const char *buf,size_t len,int)
+   void tcp_socket::SendBuf(const char *buf,size_t len,int32_t)
    {
       if (!Ready() && !Connecting())
       {
@@ -767,8 +767,8 @@ namespace sockets
          buffer(buf, len);
          return;
       }
-      int n = TryWrite(buf, len);
-      if (n >= 0 && n < (int)len)
+      int32_t n = TryWrite(buf, len);
+      if (n >= 0 && n < (int32_t)len)
       {
          buffer(buf + n, len - n);
       }
@@ -961,7 +961,7 @@ namespace sockets
             return;
          }
          SSL_set_mode(m_ssl, SSL_MODE_AUTO_RETRY);
-         m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
+         m_sbio = BIO_new_socket((int32_t)GetSocket(), BIO_NOCLOSE);
          if (!m_sbio)
          {
    TRACE(" m_sbio is NULL\n");
@@ -1004,7 +1004,7 @@ namespace sockets
             return;
          }
          SSL_set_mode(m_ssl, SSL_MODE_AUTO_RETRY);
-         m_sbio = BIO_new_socket((int)GetSocket(), BIO_NOCLOSE);
+         m_sbio = BIO_new_socket((int32_t)GetSocket(), BIO_NOCLOSE);
          if (!m_sbio)
          {
    TRACE(" m_sbio is NULL\n");
@@ -1028,7 +1028,7 @@ namespace sockets
          {
             SSL_set_session(m_ssl, m_spsslclientcontext->m_psession);
          }
-         int r = SSL_connect(m_ssl);
+         int32_t r = SSL_connect(m_ssl);
          if (r > 0)
          {
             SetSSLNegotiate(false);
@@ -1110,7 +1110,7 @@ namespace sockets
       }
       else // server
       {
-         int r = SSL_accept(m_ssl);
+         int32_t r = SSL_accept(m_ssl);
          if (r > 0)
          {
             SetSSLNegotiate(false);
@@ -1204,7 +1204,7 @@ namespace sockets
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
          if (context.get_length())
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (unsigned int)context.get_length());
+            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (unsigned int32_t)context.get_length());
          else
             SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *)"--is_empty--", 9);
       }
@@ -1243,7 +1243,7 @@ namespace sockets
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
          if (context.get_length())
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (unsigned int)context.get_length());
+            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (unsigned int32_t)context.get_length());
          else
             SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *)"--is_empty--", 9);
       }
@@ -1268,7 +1268,7 @@ namespace sockets
    }
 
 
-   int tcp_socket::SSL_password_cb(char *buf,int num,int rwflag,void *userdata)
+   int32_t tcp_socket::SSL_password_cb(char *buf,int32_t num,int32_t rwflag,void *userdata)
    {
       UNREFERENCED_PARAMETER(rwflag);
       socket *p0 = static_cast<socket *>(userdata);
@@ -1279,18 +1279,18 @@ namespace sockets
          return 0;
       }
       strcpy(buf,pw);
-      return (int)pw.get_length();
+      return (int32_t)pw.get_length();
    }
 
 
-   int tcp_socket::close()
+   int32_t tcp_socket::close()
    {
       if (GetSocket() == INVALID_SOCKET) // this could happen
       {
          Handler().LogError(this, "socket::close", 0, "file descriptor invalid", ::gen::log::level::warning);
          return 0;
       }
-      int n;
+      int32_t n;
       SetNonblocking(true);
       if (!Lost() && IsConnected() && !(GetShutdown() & SHUT_WR))
       {
@@ -1407,7 +1407,7 @@ namespace sockets
    }
 
 
-   void tcp_socket::OnOptions(int family, int type, int protocol, SOCKET s)
+   void tcp_socket::OnOptions(int32_t family, int32_t type, int32_t protocol, SOCKET s)
    {
       UNREFERENCED_PARAMETER(family);
       UNREFERENCED_PARAMETER(type);
@@ -1432,7 +1432,7 @@ namespace sockets
    bool tcp_socket::SetTcpNodelay(bool x)
    {
    #ifdef TCP_NODELAY
-      int optval = x ? 1 : 0;
+      int32_t optval = x ? 1 : 0;
       if (setsockopt(GetSocket(), IPPROTO_TCP, TCP_NODELAY, (char *)&optval, sizeof(optval)) == -1)
       {
          Handler().LogError(this, "setsockopt(IPPROTO_TCP, TCP_NODELAY)", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -1488,7 +1488,7 @@ namespace sockets
    {
       if (Connecting())
       {
-         int iError = this->Handler().m_iSelectErrno;
+         int32_t iError = this->Handler().m_iSelectErrno;
          if(iError == ETIMEDOUT)
          {
             m_estatus = status_connection_timed_out;
@@ -1518,14 +1518,14 @@ namespace sockets
       }
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
-      int err = SoError();
+      int32_t err = SoError();
       Handler().LogError(this, "exception on select", err, StrError(err), ::gen::log::level::fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32
 
 
-   int tcp_socket::Protocol()
+   int32_t tcp_socket::Protocol()
    {
       return IPPROTO_TCP;
    }

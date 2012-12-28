@@ -20,14 +20,14 @@ namespace user
 
 
          UINT    mask;
-         int     cxy;
+         int32_t     cxy;
          LPWSTR  pszText;
          HBITMAP hbm;
-         int     cchTextMax;
-         int     fmt;
+         int32_t     cchTextMax;
+         int32_t     fmt;
          LPARAM  lParam;
-         int     iImage;        // index of bitmap in ImageList
-         int     iOrder;
+         int32_t     iImage;        // index of bitmap in ImageList
+         int32_t     iOrder;
          UINT    type;           // [in] filter type (defined what pvFilter is a pointer to)
          void *  pvFilter;       // [in] fillter data see above
          UINT   state;
@@ -72,7 +72,7 @@ namespace user
       virtual index MapItemToOrder(index iItem);
       virtual index ItemToColumnKey(index iItem);
 
-      virtual int GetDividerWidth();
+      virtual int32_t GetDividerWidth();
 
 
       bool GetItemRect(

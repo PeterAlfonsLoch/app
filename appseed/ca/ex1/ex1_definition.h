@@ -16,17 +16,17 @@ namespace ex1
       return a > b ? a : b; 
    }
 
-   template <class T> inline int MyCompare(T a, T b)
+   template <class T> inline int32_t MyCompare(T a, T b)
    {
       return a < b ? -1 : (a == b ? 0 : 1);
    }
 
-   inline int BoolToInt(bool value)
+   inline int32_t BoolToInt(bool value)
    { 
       return (value ? 1 : 0); 
    }
 
-   inline bool IntToBool(int value)
+   inline bool IntToBool(int32_t value)
    { 
       return (value != 0); 
    }

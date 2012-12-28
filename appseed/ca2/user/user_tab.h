@@ -67,14 +67,14 @@ namespace user
       {
       public:
 
-         int                              m_iHeightAddUp;
+         int32_t                              m_iHeightAddUp;
          ::ca::pen_sp                     m_pen;
          ::ca::font_sp                    m_font;
          ::ca::font_sp                    m_fontUnderline;
          ::ca::font_sp                    m_fontBold;
          bool                             m_bCreated;
-         int                              m_iTabHeight;
-         int                              m_iTabWidth;
+         int32_t                              m_iTabHeight;
+         int32_t                              m_iTabWidth;
          pane_array                       m_panea;
          rect                             m_rectTab;
          rect                             m_rectTabClient;
@@ -171,7 +171,7 @@ namespace user
       virtual bool get_element_rect(::index iTab, LPRECT lprect, e_element eelement);
 
       virtual void layout();
-      virtual void layout_pane(int iPane);
+      virtual void layout_pane(int32_t iPane);
 
       virtual void GetTabClientRect(LPRECT lprect);
       virtual void GetTabClientRect(__rect64 * lprect);

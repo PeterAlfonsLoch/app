@@ -24,7 +24,7 @@ namespace zip
 
    }
 
-   voidpf memory_file::open_file_func (voidpf opaque, const char* filename, int mode)
+   voidpf memory_file::open_file_func (voidpf opaque, const char* filename, int32_t mode)
    {
       UNREFERENCED_PARAMETER(mode);
       UNREFERENCED_PARAMETER(filename);
@@ -55,7 +55,7 @@ namespace zip
       return (long) pfile->get_position();      
    }
 
-   long   memory_file::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int origin)
+   long   memory_file::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin)
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
@@ -65,7 +65,7 @@ namespace zip
          return 0;
    }
 
-   int    memory_file::close_file_func (voidpf opaque, voidpf stream)
+   int32_t    memory_file::close_file_func (voidpf opaque, voidpf stream)
    {
       UNREFERENCED_PARAMETER(opaque);
       UNREFERENCED_PARAMETER(stream);
@@ -73,7 +73,7 @@ namespace zip
       return 1;
    }
 
-   int memory_file::testerror_file_func (voidpf opaque, voidpf stream)
+   int32_t memory_file::testerror_file_func (voidpf opaque, voidpf stream)
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;

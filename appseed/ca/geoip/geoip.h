@@ -25,15 +25,15 @@ typedef struct GeoIPTag {
   char *file_path;
    unsigned char *cache;
    unsigned char *index_cache;
-   unsigned int *databaseSegments;
+   unsigned int32_t *databaseSegments;
    char databaseType;
    time_t mtime;
-   int flags;
+   int32_t flags;
    off_t   size;
    char record_length;
-   int charset; /* 0 iso-8859-1 1 utf8 */
-   int record_iter; /* used in GeoIP_next_record */
-   int netmask; /* netmask of last lookup - set using depth in _GeoIP_seek_record */
+   int32_t charset; /* 0 iso-8859-1 1 utf8 */
+   int32_t record_iter; /* used in GeoIP_next_record */
+   int32_t netmask; /* netmask of last lookup - set using depth in _GeoIP_seek_record */
    time_t last_mtime_check;
 } GeoIP;
 
@@ -102,10 +102,10 @@ extern const char GeoIP_country_continent[253][3];
 #define GEOIP_API CLASS_DECL_ca
 
 GEOIP_API void GeoIP_setup_custom_directory(char *dir);
-GEOIP_API GeoIP* GeoIP_open_type (int type, int flags);
-GEOIP_API GeoIP* GeoIP_new(int flags);
-GEOIP_API GeoIP* GeoIP_open(const char * filename, int flags);
-GEOIP_API int GeoIP_db_avail(int type);
+GEOIP_API GeoIP* GeoIP_open_type (int32_t type, int32_t flags);
+GEOIP_API GeoIP* GeoIP_new(int32_t flags);
+GEOIP_API GeoIP* GeoIP_open(const char * filename, int32_t flags);
+GEOIP_API int32_t GeoIP_db_avail(int32_t type);
 GEOIP_API void GeoIP_delete(GeoIP* gi);
 GEOIP_API const char *GeoIP_country_code_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API const char *GeoIP_country_code_by_name (GeoIP* gi, const char *host);
@@ -123,8 +123,8 @@ GEOIP_API const char *GeoIP_country_code_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum
 GEOIP_API const char *GeoIP_country_code3_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum);
 
 /* Deprecated - for backwards compatibility only */
-GEOIP_API int GeoIP_country_id_by_addr (GeoIP* gi, const char *addr);
-GEOIP_API int GeoIP_country_id_by_name (GeoIP* gi, const char *host);
+GEOIP_API int32_t GeoIP_country_id_by_addr (GeoIP* gi, const char *addr);
+GEOIP_API int32_t GeoIP_country_id_by_name (GeoIP* gi, const char *host);
 GEOIP_API char *GeoIP_org_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API char *GeoIP_org_by_name (GeoIP* gi, const char *host);
 GEOIP_API char *GeoIP_org_by_ipnum (GeoIP* gi, unsigned long ipnum);
@@ -135,13 +135,13 @@ GEOIP_API char *GeoIP_org_by_name_v6 (GeoIP* gi, const char *name);
 
 /* End deprecated */
 
-GEOIP_API int GeoIP_id_by_addr (GeoIP* gi, const char *addr);
-GEOIP_API int GeoIP_id_by_name (GeoIP* gi, const char *host);
-GEOIP_API int GeoIP_id_by_ipnum (GeoIP* gi, unsigned long ipnum);
+GEOIP_API int32_t GeoIP_id_by_addr (GeoIP* gi, const char *addr);
+GEOIP_API int32_t GeoIP_id_by_name (GeoIP* gi, const char *host);
+GEOIP_API int32_t GeoIP_id_by_ipnum (GeoIP* gi, unsigned long ipnum);
 
-GEOIP_API int GeoIP_id_by_addr_v6 (GeoIP* gi, const char *addr);
-GEOIP_API int GeoIP_id_by_name_v6 (GeoIP* gi, const char *host);
-GEOIP_API int GeoIP_id_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum);
+GEOIP_API int32_t GeoIP_id_by_addr_v6 (GeoIP* gi, const char *addr);
+GEOIP_API int32_t GeoIP_id_by_name_v6 (GeoIP* gi, const char *host);
+GEOIP_API int32_t GeoIP_id_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum);
 
 GEOIP_API GeoIPRegion * GeoIP_region_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API GeoIPRegion * GeoIP_region_by_name (GeoIP* gi, const char *host);
@@ -168,19 +168,19 @@ GEOIP_API char *GeoIP_name_by_addr_v6 (GeoIP* gi, const char *addr);
 GEOIP_API char *GeoIP_name_by_name_v6 (GeoIP* gi, const char *name);
 
 /** return two letter country code */
-GEOIP_API const char* GeoIP_code_by_id(int id);
+GEOIP_API const char* GeoIP_code_by_id(int32_t id);
 
 /** return three letter country code */
-GEOIP_API const char* GeoIP_code3_by_id(int id);
+GEOIP_API const char* GeoIP_code3_by_id(int32_t id);
 
 /** return full name of country */
-GEOIP_API const char* GeoIP_name_by_id(int id);
+GEOIP_API const char* GeoIP_name_by_id(int32_t id);
 
 /** return continent of country */
-GEOIP_API const char* GeoIP_continent_by_id(int id);
+GEOIP_API const char* GeoIP_continent_by_id(int32_t id);
 
 /** return id by country code **/
-GEOIP_API int GeoIP_id_by_code(const char *country);
+GEOIP_API int32_t GeoIP_id_by_code(const char *country);
 
 /** return return number of known countries */
 GEOIP_API unsigned GeoIP_num_countries();
@@ -188,10 +188,10 @@ GEOIP_API unsigned GeoIP_num_countries();
 GEOIP_API char *GeoIP_database_info (GeoIP* gi);
 GEOIP_API unsigned char GeoIP_database_edition (GeoIP* gi);
 
-GEOIP_API int GeoIP_charset (GeoIP* gi);
-GEOIP_API int GeoIP_set_charset (GeoIP* gi, int charset);
+GEOIP_API int32_t GeoIP_charset (GeoIP* gi);
+GEOIP_API int32_t GeoIP_set_charset (GeoIP* gi, int32_t charset);
 
-GEOIP_API int GeoIP_last_netmask (GeoIP* gi);
+GEOIP_API int32_t GeoIP_last_netmask (GeoIP* gi);
 GEOIP_API char **GeoIP_range_by_ip (GeoIP* gi, const char *addr);
 GEOIP_API void GeoIP_range_by_ip_delete(char **ptr);
 

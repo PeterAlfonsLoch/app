@@ -26,15 +26,15 @@ namespace hotplugin
       vsstring                      m_strPluginUrl;
       vsstring                      m_strPluginHeaders;
       BYTE *                        m_lpbMemory;
-      int                           m_iMemory;
+      int32_t                           m_iMemory;
       bool                          m_bOnPaint;
       RECT                          m_rect;
       bool                          m_bInitialized;
       FILE *                        m_pfile;
       bool                          m_bPreCheck;
-      int                           m_iHealingSurface;
+      int32_t                           m_iHealingSurface;
       DWORD                         m_last_redraw;
-      int                           m_iEdge;
+      int32_t                           m_iEdge;
       bool                          m_bAppStarted;
       bool *                        m_pbReady;
       bool                          m_bApp;
@@ -58,7 +58,7 @@ namespace hotplugin
       HANDLE                        m_hfileBitmap;
       HANDLE                        m_hfilemapBitmap;
 #else
-      int                           m_hfileBitmap;
+      int32_t                           m_hfileBitmap;
 #endif
       simple_mutex *                m_pmutexBitmap;
       SIZE                          m_sizeBitmapData;
@@ -114,7 +114,7 @@ namespace hotplugin
 
       virtual void start_plugin();
 
-      virtual int  start_ca2_system();
+      virtual int32_t  start_ca2_system();
 
       virtual void on_paint(simple_graphics & gWindow, LPCRECT lprect);
 
@@ -125,7 +125,7 @@ namespace hotplugin
 #ifdef WINDOWS
       virtual uint_ptr message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam);
 #else
-      virtual int message_handler(XEvent * pevent);
+      virtual int32_t message_handler(XEvent * pevent);
 #endif
 
       virtual void on_bare_paint(simple_graphics & g, LPCRECT lprect);
@@ -144,7 +144,7 @@ namespace hotplugin
 
       virtual void restart_small_ipc_channel();
 
-      virtual void ensure_bitmap_data(int cx, int cy, bool bCreateFile);
+      virtual void ensure_bitmap_data(int32_t cx, int32_t cy, bool bCreateFile);
 
    };
 

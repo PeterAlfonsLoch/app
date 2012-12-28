@@ -21,7 +21,7 @@ class CLASS_DECL_ca2 simple_menu_bar :
 public:
 
 
-   int                  m_iHover;
+   int32_t                  m_iHover;
 /* array_ptr_alloc < SimpleMenuBarButton , SimpleMenuBarButton &>
                         m_buttona;*/
 
@@ -30,9 +30,9 @@ public:
    int_int_spreadset *  m_prel;
 
    bool                 m_bTracking;
-   int                  m_iTracking;
+   int32_t                  m_iTracking;
    UINT                 m_uiResourceID;
-   int                  m_iTopMenuCount;
+   int32_t                  m_iTopMenuCount;
    ::userbase::menu     m_menu;
 
 
@@ -59,7 +59,7 @@ public:
 
 
    LRESULT CALLBACK MessageProc(
-        int code,       // hook code
+        int32_t code,       // hook code
         WPARAM wParam,  // undefined
         LPARAM lParam   // address of structure with message data
         );
@@ -69,17 +69,17 @@ public:
    protected:
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
-   virtual int _001GetHoverItem();
+   virtual int32_t _001GetHoverItem();
    virtual void OnUpdateHover();
-   void _001OnClick(int iItem);
-   void _001OnDropDown(int iItem);
-   //int _001GetHoverItem();
+   void _001OnClick(int32_t iItem);
+   void _001OnDropDown(int32_t iItem);
+   //int32_t _001GetHoverItem();
    //void _001Hover(point pt);
    //void _001Hover();
-   //void _001DrawItem(::ca::graphics * pdc, int iItem);
-   //int _001HitTest(const POINT * point);
-   //bool _001CheckItem(int iItem, bool bCheck);
-   //bool _001GetItemRect(int iItem, LPRECT lprect, EElement eelement);
+   //void _001DrawItem(::ca::graphics * pdc, int32_t iItem);
+   //int32_t _001HitTest(const POINT * point);
+   //bool _001CheckItem(int32_t iItem, bool bCheck);
+   //bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
    //virtual void _001OnDraw(::ca::graphics * pdc);
    bool ReloadMenuBar();
    virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
@@ -91,15 +91,15 @@ public:
       int_int_spreadset * prel,
       ::ca::font * pfont);
 
-   //size CalcLayout(DWORD dwMode, int nLength);
+   //size CalcLayout(DWORD dwMode, int32_t nLength);
 
    //size CalcFixedLayout(bool bStretch, bool bHorz);
 
-   //size CalcDynamicLayout(int nLength, DWORD dwMode);
+   //size CalcDynamicLayout(int32_t nLength, DWORD dwMode);
    //static VMSRESULT CalcSize(::userbase::tool_bar_control & tbc, size & size);
    //static VMSRESULT CalcSize(CToolBarCtrl & tbc, size & size);
    VMSRESULT _TrackPopupMenu(point point);
-   VMSRESULT _TrackPopupMenu(int iItem);
+   VMSRESULT _TrackPopupMenu(int32_t iItem);
    bool LoadMenuBar(UINT nIDResource);
    void SetMenuID(UINT nIDResource);
 
@@ -112,7 +112,7 @@ public:
    DECL_GEN_SIGNAL(_001OnLButtonDown)
    DECL_GEN_SIGNAL(_001OnTimer)
 
-   virtual int OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
+   virtual int32_t OnMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam);
 
    DECL_GEN_SIGNAL(_001OnAppLanguage)
 

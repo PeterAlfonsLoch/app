@@ -93,7 +93,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    while (true);
 
    // extract attribute name
-   string   strAttrName(lpszBegin, int(lpszEnd - lpszBegin));
+   string   strAttrName(lpszBegin, int32_t(lpszEnd - lpszBegin));
 
    if (*lpszEnd != '=')
    {
@@ -158,7 +158,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          // this will automatically normalize data before
          // assigning according to the specs and will
          // also resolve entity references!!!
-         putValue(preader, string(lpszBegin,int(lpszEnd - lpszBegin)));
+         putValue(preader, string(lpszBegin,int32_t(lpszEnd - lpszBegin)));
 
       // calculate and return the count of characters successfully parsed
       return (lpszEnd - lpszString) + strChar.get_length();
@@ -381,7 +381,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
       if (m_strValue.get_length() > 1)
       {
 
-         for (int i = 1; i < m_strValue.get_length(); i++)
+         for (int32_t i = 1; i < m_strValue.get_length(); i++)
          {
 
             if (!::isdigit((unsigned char) m_strValue[i]))

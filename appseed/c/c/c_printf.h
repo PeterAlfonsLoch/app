@@ -8,8 +8,8 @@
 
 #pragma once
 
-CLASS_DECL_c int printf_dup(const char *format, ...);
-CLASS_DECL_c int wprintf_dup(const wchar_t *format, ...);
-CLASS_DECL_c int vprintf_dup(const char *format, va_list args);
-CLASS_DECL_c int vwprintf_dup(const wchar_t *format, va_list args);
+CLASS_DECL_c int32_t printf_dup(const char *format, ...);
+CLASS_DECL_c int32_t wprintf_dup(const wchar_t *format, ...);
+CLASS_DECL_c int32_t vprintf_dup(const char *format, va_list args);
+CLASS_DECL_c int32_t vwprintf_dup(const wchar_t *format, va_list args);
 

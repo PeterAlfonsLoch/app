@@ -45,7 +45,7 @@ namespace filehandler
 
       plibrary->get_extension_list(straExtension);
 
-      for(int i = 0; i < straExtension.get_count(); i++)
+      for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
          ::ex1::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
          if(pitem == NULL)
@@ -58,7 +58,7 @@ namespace filehandler
          
       plibrary->get_mime_type_list(straMimeType);
 
-      for(int i = 0; i < straMimeType.get_count(); i++)
+      for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
          ::ex1::tree_item * pitem = get_extension_tree_item(straMimeType[i], true);
          if(pitem == NULL)
@@ -76,7 +76,7 @@ namespace filehandler
 
       plibrary->get_extension_list(straExtension);
 
-      for(int i = 0; i < straExtension.get_count(); i++)
+      for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
          ::ex1::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
          if(pitem == NULL)
@@ -89,7 +89,7 @@ namespace filehandler
          
       plibrary->get_mime_type_list(straMimeType);
 
-      for(int i = 0; i < straMimeType.get_count(); i++)
+      for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
          ::ex1::tree_item * pitem = get_mime_type_tree_item(straMimeType[i], true);
          if(pitem == NULL)
@@ -206,13 +206,13 @@ namespace filehandler
          pitem = pitem->get_next(true, true, &iLevel);
          if(pitem == NULL)
             break;
-         ostream << (int) iLevel;
-         ostream << (int) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;
+         ostream << (int32_t) iLevel;
+         ostream << (int32_t) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;
          ostream << dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic;
          ostream << dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp;
       }
 
-      ostream << (int) -1;
+      ostream << (int32_t) -1;
 
    }
 
@@ -221,8 +221,8 @@ namespace filehandler
 
       ::ex1::tree_item * pitem = m_sptree->get_base_item();
 
-      int iPreviousLevel = 0;
-      int iLevel = 0;
+      int32_t iPreviousLevel = 0;
+      int32_t iLevel = 0;
 
       while(true)
       {
@@ -244,7 +244,7 @@ namespace filehandler
             pitem = m_sptree->create_item(pitem, ex1::RelativeLastSibling);
          }
 
-         istream >> (int &) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;
+         istream >> (int32_t &) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;
          istream >> dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic;
          istream >> dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp;
       }

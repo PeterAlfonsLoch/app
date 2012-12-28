@@ -125,7 +125,7 @@ public:
       return m_dispatchCommand.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_update_cmd_range_ui(int iStart, int iEnd, void (T::*pfn)(gen::signal_object *))
+   bool connect_update_cmd_range_ui(int32_t iStart, int32_t iEnd, void (T::*pfn)(gen::signal_object *))
    {
       command_signalrange signalrange;
       gen::signalid * pid;
@@ -135,7 +135,7 @@ public:
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_command_range(int iStart, int iEnd, void (T::*pfn)(gen::signal_object *))
+   bool connect_command_range(int32_t iStart, int32_t iEnd, void (T::*pfn)(gen::signal_object *))
    {
       command_signalrange signalrange;
       gen::signalid * pid;
@@ -271,7 +271,7 @@ public:
 
 public: // re-implementations only
    virtual void Enable(bool bOn);
-   virtual void SetCheck(int nCheck);
+   virtual void SetCheck(int32_t nCheck);
    virtual void SetRadio(bool bOn);
    virtual void SetText(const char *);
 

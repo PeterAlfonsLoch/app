@@ -274,7 +274,7 @@ void color::set_hls(
 
    dH *= 6.0;
 
-   double dA = dH - (double) ((int) dH);
+   double dA = dH - (double) ((int32_t) dH);
 
    if(dH >= 3.0)
    {

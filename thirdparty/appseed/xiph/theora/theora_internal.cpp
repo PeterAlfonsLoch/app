@@ -84,8 +84,8 @@ const unsigned char OC_DCT_TOKEN_EXTRA_BITS[TH_NDCT_TOKENS]={
 
 
 
-int oc_ilog(unsigned _v){
-  int ret;
+int32_t oc_ilog(unsigned _v){
+  int32_t ret;
   for(ret=0;_v;ret++)_v>>=1;
   return ret;
 }
@@ -99,8 +99,8 @@ int oc_ilog(unsigned _v){
   _cbmvs: The chroma block-level motion vectors to fill in.
   _lbmvs: The luma block-level motion vectors.*/
 static void oc_set_chroma_mvs00(oc_mv _cbmvs[4],const oc_mv _lbmvs[4]){
-  int dx;
-  int dy;
+  int32_t dx;
+  int32_t dy;
   dx=_lbmvs[0][0]+_lbmvs[1][0]+_lbmvs[2][0]+_lbmvs[3][0];
   dy=_lbmvs[0][1]+_lbmvs[1][1]+_lbmvs[2][1]+_lbmvs[3][1];
   _cbmvs[0][0]=(signed char)OC_DIV_ROUND_POW2(dx,2,2);
@@ -113,8 +113,8 @@ static void oc_set_chroma_mvs00(oc_mv _cbmvs[4],const oc_mv _lbmvs[4]){
   _cbmvs: The chroma block-level motion vectors to fill in.
   _lbmvs: The luma block-level motion vectors.*/
 static void oc_set_chroma_mvs01(oc_mv _cbmvs[4],const oc_mv _lbmvs[4]){
-  int dx;
-  int dy;
+  int32_t dx;
+  int32_t dy;
   dx=_lbmvs[0][0]+_lbmvs[2][0];
   dy=_lbmvs[0][1]+_lbmvs[2][1];
   _cbmvs[0][0]=(signed char)OC_DIV_ROUND_POW2(dx,1,1);
@@ -131,8 +131,8 @@ static void oc_set_chroma_mvs01(oc_mv _cbmvs[4],const oc_mv _lbmvs[4]){
   _cbmvs: The chroma block-level motion vectors to fill in.
   _lbmvs: The luma block-level motion vectors.*/
 static void oc_set_chroma_mvs10(oc_mv _cbmvs[4],const oc_mv _lbmvs[4]){
-  int dx;
-  int dy;
+  int32_t dx;
+  int32_t dy;
   dx=_lbmvs[0][0]+_lbmvs[1][0];
   dy=_lbmvs[0][1]+_lbmvs[1][1];
   _cbmvs[0][0]=(signed char)OC_DIV_ROUND_POW2(dx,1,1);
@@ -223,7 +223,7 @@ void oc_free_2d(void *_ptr){
   _src: The source buffer.*/
 void oc_ycbcr_buffer_flip(th_ycbcr_buffer _dst,
  const th_ycbcr_buffer _src){
-  int pli;
+  int32_t pli;
   for(pli=0;pli<3;pli++){
     _dst[pli].width=_src[pli].width;
     _dst[pli].height=_src[pli].height;
@@ -244,7 +244,7 @@ ogg_uint32_t th_version_number(){
 /*Determines the packet type.
   Note that this correctly interprets a 0-byte packet as a video data packet.
   Return: 1 for a header packet, 0 for a data packet.*/
-int th_packet_isheader(ogg_packet *_op){
+int32_t th_packet_isheader(ogg_packet *_op){
   return _op->bytes>0?_op->packet[0]>>7:0;
 }
 
@@ -252,6 +252,6 @@ int th_packet_isheader(ogg_packet *_op){
   Note that this correctly interprets a 0-byte packet as a delta frame.
   Return: 1 for a key frame, 0 for a delta frame, and -1 for a header
            packet.*/
-int th_packet_iskeyframe(ogg_packet *_op){
+int32_t th_packet_iskeyframe(ogg_packet *_op){
   return _op->bytes<=0?0:_op->packet[0]&0x80?-1:!(_op->packet[0]&0x40);
 }

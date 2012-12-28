@@ -28,17 +28,17 @@ zlib_local void fixedtables OF((struct inflate_state FAR *state));
    windowBits is in the range 8..15, and window is a user-supplied
    window and output buffer that is 2**windowBits bytes.
  */
-int ZEXPORT inflateBackInit_(
+int32_t ZEXPORT inflateBackInit_(
 z_streamp strm,
-int windowBits,
+int32_t windowBits,
 unsigned char FAR *window,
 const char *version,
-int stream_size)
+int32_t stream_size)
 {
     struct inflate_state FAR *state;
 
     if (version == Z_NULL || version[0] != ZLIB_VERSION[0] ||
-        stream_size != (int)(sizeof(z_stream)))
+        stream_size != (int32_t)(sizeof(z_stream)))
         return Z_VERSION_ERROR;
     if (strm == Z_NULL || window == Z_NULL ||
         windowBits < 8 || windowBits > 15)
@@ -77,7 +77,7 @@ zlib_local void fixedtables(
 struct inflate_state FAR *state)
 {
 #ifdef BUILDFIXED
-    static int virgin = 1;
+    static int32_t virgin = 1;
     static code *lenfix, *distfix;
     static code fixed[544];
 
@@ -241,7 +241,7 @@ struct inflate_state FAR *state)
    inflateBack() can also return Z_STREAM_ERROR if the input parameters
    are not correct, i.e. strm is Z_NULL or the state was not initialized.
  */
-int ZEXPORT inflateBack(
+int32_t ZEXPORT inflateBack(
 z_streamp strm,
 in_func in,
 void FAR *in_desc,
@@ -259,7 +259,7 @@ void FAR *out_desc)
     code codeThis;                  /* current decoding table entry */
     code last;                  /* parent table entry */
     unsigned len;               /* length to copy for repeats, bits to drop */
-    int ret;                    /* return code */
+    int32_t ret;                    /* return code */
     static const unsigned short order[19] = /* permutation of code lengths */
         {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
 
@@ -614,7 +614,7 @@ void FAR *out_desc)
     return ret;
 }
 
-int ZEXPORT inflateBackEnd(
+int32_t ZEXPORT inflateBackEnd(
 z_streamp strm)
 {
     if (strm == Z_NULL || strm->state == Z_NULL || strm->zfree == (free_func)0)

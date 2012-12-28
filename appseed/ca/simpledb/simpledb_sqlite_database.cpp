@@ -3,7 +3,7 @@
 namespace sqlite
 {
 
-   extern int callback(void * res_ptr,int ncol, char** reslt,char** cols);
+   extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
 
    base::base(::ca::application * papp) :
       ca(papp)
@@ -32,13 +32,13 @@ namespace sqlite
       return new class set((base*)this);
    }
 
-   int base::status()
+   int32_t base::status()
    {
       if (active == false) return DB_CONNECTION_NONE;
       return DB_CONNECTION_OK;
    }
 
-   int base::setErr(int err_code)
+   int32_t base::setErr(int32_t err_code)
    {
       switch (err_code) {
       case SQLITE_OK: error ="Successful result";
@@ -92,7 +92,7 @@ namespace sqlite
       return error;
    }
 
-   int base::connect()
+   int32_t base::connect()
    {
       disconnect();
       if(sqlite3_open(db, (sqlite3 * *) &conn) == SQLITE_OK)
@@ -116,11 +116,11 @@ namespace sqlite
       active = false;
    };
 
-   int base::create() {
+   int32_t base::create() {
       return connect();
    };
 
-   int base::drop() {
+   int32_t base::drop() {
       if (active == false) return DB_ERROR;
       disconnect();
       if (!_unlink(db))
@@ -131,7 +131,7 @@ namespace sqlite
 
    long base::nextid(const char* sname) {
       if (!active) return DB_UNEXPECTED_RESULT;
-      int id;
+      int32_t id;
       database::result_set res;
       char sqlcmd[512];
       sprintf(sqlcmd,"select nextid from %s where seq_name = '%s'",sequence_table.c_str(), sname);

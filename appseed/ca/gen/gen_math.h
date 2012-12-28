@@ -9,7 +9,7 @@ namespace gen
    {
 
 
-      CLASS_DECL_ca int ceil_div(int num, int den);
+      CLASS_DECL_ca int32_t ceil_div(int32_t num, int32_t den);
       CLASS_DECL_ca int64_t ceil_div(int64_t num, int64_t den);
 
 
@@ -38,12 +38,12 @@ namespace gen
          int64_t RandRange(int64_t iMin, int64_t iMax);
 
 
-         int LinearMap(int iMin, int iMax, int iValue, int iValueMin, int iValueMax);
+         int32_t LinearMap(int32_t iMin, int32_t iMax, int32_t iValue, int32_t iValueMin, int32_t iValueMax);
          uint64_t gen_rand();
          void gen_rand(void * buf, DWORD dwLen);
          unsigned long rnd();
-         int random_context_entropy(int iMin, int iMax, int iLevel = 3);
-         int rand_max();
+         int32_t random_context_entropy(int32_t iMin, int32_t iMax, int32_t iLevel = 3);
+         int32_t rand_max();
          double LinearMap(
             double dMin, double dMax,
             double dValue,
@@ -51,14 +51,14 @@ namespace gen
             double dValueMax);
          double GetPi();
 
-         static bool IsPowerOfTwo(unsigned int uiValue);
-         static unsigned int ReverseBits (unsigned index, unsigned NumBits );
+         static bool IsPowerOfTwo(unsigned int32_t uiValue);
+         static unsigned int32_t ReverseBits (unsigned index, unsigned NumBits );
       //   template <class N> static inline void MaxClip(N * pnClipValue, N nMaxValue);
       //   template <class N> static inline void MinClip(N * pnClipValue, N nMinValue);
          static inline void MaxClip(double * pnClipValue, double nMaxValue);
          static inline void MinClip(double * pnClipValue, double nMinValue);
 
-         int RangeRate(int iMin, int iMax, double dRate);
+         int32_t RangeRate(int32_t iMin, int32_t iMax, double dRate);
 
 
 

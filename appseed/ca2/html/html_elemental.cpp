@@ -575,7 +575,7 @@ namespace html
 
          bool bOk = false;
 
-         for(int i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
+         for(int32_t i = 0; i < m_pelemental->m_elementalptra.get_size(); i++)
          {
 
             elemental * pelemental = m_pelemental->m_elementalptra[i]->m_pimpl;
@@ -711,7 +711,7 @@ namespace html
    {
       ::ca::data::writing writing(m_pdata);
       delete m_pimpl;
-      for(int i = 0; i < m_elementalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          delete m_elementalptra[i];
       }
@@ -867,7 +867,7 @@ namespace html
       m_style.get_surround_box("margin", NULL, pdata, this, m_pimpl->m_margin);
 
       m_pimpl->implement_phase1(pdata, this);
-      for(int i = 0; i < m_elementalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          m_elementalptra[i]->implement_phase1(pdata);
       }
@@ -881,13 +881,13 @@ namespace html
       while(true)
       {
          m_pimpl->implement_phase2(pdata);
-         int cxMax = m_pimpl->m_cxMax;
-         int cxMin = m_pimpl->m_cxMin;
+         int32_t cxMax = m_pimpl->m_cxMax;
+         int32_t cxMin = m_pimpl->m_cxMin;
          if(cxMax <= -2)
             cxMax = -1;
          if(cxMin <= -2)
             cxMin = -1;
-         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
             if(m_elementalptra[i]->m_pimpl->m_cxMax <= -2
             || m_elementalptra[i]->m_pimpl->m_cxMin <= -2)
@@ -1015,7 +1015,7 @@ namespace html
          }
       }
       m_pimpl->layout_phase1(pdata);
-      for(int i = 0; i < m_elementalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          m_elementalptra[i]->layout_phase1(pdata);
       }
@@ -1081,7 +1081,7 @@ namespace html
          }
       }
       m_pimpl->layout_phase2(pdata);
-      int i;
+      int32_t i;
       for(i = 0; i < m_elementalptra.get_size(); i++)
       {
          m_elementalptra[i]->layout_phase2(pdata);
@@ -1158,7 +1158,7 @@ namespace html
       index iIndex = -1;
       if(m_pparent != NULL)
       {
-         for(int i = 0; i < m_pparent->m_elementalptra.get_count(); i++)
+         for(int32_t i = 0; i < m_pparent->m_elementalptra.get_count(); i++)
          {
             if(m_pparent->m_elementalptra[i] == this)
             {
@@ -1254,7 +1254,7 @@ namespace html
 
       m_pimpl->layout_phase3(pdata);
       //m_pimpl->set_cxy(pdata);
-      int i;
+      int32_t i;
       for(i = 0; i < m_elementalptra.get_size(); i++)
       {
          m_elementalptra[i]->layout_phase3(pdata);
@@ -1269,8 +1269,8 @@ namespace html
       if(m_pbase->get_type() == ::html::base::type_tag && strTag == "td")
       {
 
-         int iLastCol = pcell->get_table()->m_columna.get_upper_bound();
-         int iLastRow = pcell->get_table()->m_rowptra.get_upper_bound();
+         int32_t iLastCol = pcell->get_table()->m_columna.get_upper_bound();
+         int32_t iLastRow = pcell->get_table()->m_rowptra.get_upper_bound();
          if(pcell->m_iColEnd == iLastCol)
          {
             if(pcell->m_iRowEnd == iLastRow)
@@ -1381,7 +1381,7 @@ namespace html
       ||    (m_style.m_propertyset["display"].get_string().is_empty()
                && strTag == "table"))
       {
-         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
             m_elementalptra[i]->_001OnDraw(pdata);
          }
@@ -1396,7 +1396,7 @@ namespace html
          {
             m_pimpl->_001OnDraw(pdata);
          }
-         for(int i = 0; i < m_elementalptra.get_size(); i++)
+         for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
          {
             m_elementalptra[i]->_001OnDraw(pdata);
          }
@@ -1422,11 +1422,11 @@ namespace html
       {
          ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pbase);
          m_propertyset["PropertyTag"] = ptag->get_name();
-         for(int i = 0; i < ptag->attra().get_size(); i++)
+         for(int32_t i = 0; i < ptag->attra().get_size(); i++)
          {
             m_propertyset[ptag->attra()[i].get_name()] = ptag->attra()[i].get_value();
          }
-         for(int i = 0; i < ptag->baseptra().get_size(); i++)
+         for(int32_t i = 0; i < ptag->baseptra().get_size(); i++)
          {
             elemental * pelemental = new elemental(pdata, this);
             pelemental->load(pdata, ptag->baseptra()[i]);
@@ -1647,7 +1647,7 @@ namespace html
       if(id == ptag->get_attr_value("name"))
          return this;
       elemental * pelemental = NULL;
-      for(int i = 0; i < m_elementalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          pelemental = m_elementalptra[i]->get_element_by_name(id);
          if(pelemental != NULL)
@@ -1664,7 +1664,7 @@ namespace html
       if(id == ptag->get_attr_value("id"))
          return this;
       elemental * pelemental = NULL;
-      for(int i = 0; i < m_elementalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          pelemental = m_elementalptra[i]->get_element_by_id(id);
          if(pelemental != NULL)
@@ -1696,7 +1696,7 @@ namespace html
          if(m_pimpl->hit_test(pdata, pt))
          {
             elemental * pelemental;
-            for(int i = 0; i < m_elementalptra.get_size(); i++)
+            for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
             {
                pelemental = m_elementalptra[i]->hit_test(pdata, pt);
                if(pelemental != NULL)
@@ -1738,8 +1738,8 @@ namespace html
          {
             dMin = d;
 //            elemental * pelemental;
-//            int iFound = 0;
-            for(int i = 0; i < m_elementalptra.get_size(); i++)
+//            int32_t iFound = 0;
+            for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
             {
                elemental * pelemental = m_elementalptra[i]->bound_hit_test(pdata, pt, dMin);
                if(pelemental != NULL)
@@ -1784,7 +1784,7 @@ namespace html
       if(m_pimpl == NULL)
          return;
       m_pimpl->delete_implementation();
-      for(int i = 0; i < m_elementalptra.get_size(); i++)
+      for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
       {
          if(m_elementalptra[i] != NULL)
             m_elementalptra[i]->delete_implementation();
@@ -1801,7 +1801,7 @@ namespace html
       {
          str += "<";
          str += get_tag_name();
-         for(int i = 0; i < this->m_propertyset.m_propertya.get_size(); i++)
+         for(int32_t i = 0; i < this->m_propertyset.m_propertya.get_size(); i++)
          {
             if(m_propertyset.m_propertya[i].name().CompareNoCase("PropertyBody") == 0)
                continue;
@@ -1819,7 +1819,7 @@ namespace html
          }
          else
          {
-            for(int i = 0; i < m_elementalptra.get_size(); i++)
+            for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
             {
                string strHtml;
                m_elementalptra[i]->get_html(pdata, strHtml);

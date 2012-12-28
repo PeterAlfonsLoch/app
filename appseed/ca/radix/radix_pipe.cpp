@@ -85,7 +85,7 @@ namespace gen
 
 #else
 
-      int iFlags = bBlock ? 0 : O_NONBLOCK;
+      int32_t iFlags = bBlock ? 0 : O_NONBLOCK;
 
       if(::pipe(m_fd))
       {
@@ -160,7 +160,7 @@ namespace gen
    string pipe::read()
    {
       string str;
-      const int BUFSIZE = 1024 * 8;
+      const int32_t BUFSIZE = 1024 * 8;
 #ifdef WINDOWS
       DWORD dwRead;
 #else
@@ -200,7 +200,7 @@ namespace gen
    string pipe::one_pass_read()
    {
       string str;
-      const int BUFSIZE = 1024 * 8;
+      const int32_t BUFSIZE = 1024 * 8;
 #ifdef WINDOWS
       DWORD dwRead;
 #else
@@ -262,7 +262,7 @@ namespace gen
       UNREFERENCED_PARAMETER(dwErrorCode);
       overlapped * plap = NULL;
       plap = plap->from(lpOverlapped);
-      int iLimit = min(dwNumberOfBytesTransfered, 1024);
+      int32_t iLimit = min(dwNumberOfBytesTransfered, 1024);
       plap->m_ppipe->m_pchBuf[iLimit] = '\0';
       plap->m_ppipe->m_strRead += plap->m_ppipe->m_pchBuf;
    }

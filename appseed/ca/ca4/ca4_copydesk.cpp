@@ -14,7 +14,7 @@ namespace ca4
    {
    }
 
-   int copydesk::get_file_count()
+   int32_t copydesk::get_file_count()
    {
 
       throw interface_only_exception(get_app());

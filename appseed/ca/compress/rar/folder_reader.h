@@ -10,9 +10,9 @@ namespace rar
 
    struct CRefItem
    {
-     int VolumeIndex;
-     int ItemIndex;
-     int NumItems;
+     int32_t VolumeIndex;
+     int32_t ItemIndex;
+     int32_t NumItems;
    };
 
    class folder_reader :
@@ -24,7 +24,7 @@ namespace rar
      base_array<input_file> *_archives;
      const base_array<CItemEx> *_items;
      CRefItem _refItem;
-     int _curIndex;
+     int32_t _curIndex;
      uint32 _crc;
      bool _fileIsOpen;
      ex1::reader * _stream;

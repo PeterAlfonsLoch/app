@@ -10,7 +10,7 @@ public:
    int_ptr           m_object;
    bool              m_bManualEvent;
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
-   int               m_iSignalId;  // meaningful only when m_bManualEvent
+   int32_t               m_iSignalId;  // meaningful only when m_bManualEvent
 
 #else
    CRITICAL_SECTION     m_sect;

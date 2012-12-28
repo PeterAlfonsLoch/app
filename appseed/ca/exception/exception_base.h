@@ -14,8 +14,8 @@ class CLASS_DECL_ca base_exception :
 public:
 
 
-   base_exception(::ca::application * papp, unsigned int uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
-   explicit base_exception(::ca::application * papp, bool bAutoDelete, unsigned int uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
+   base_exception(::ca::application * papp, unsigned int32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = TRUE
+   explicit base_exception(::ca::application * papp, bool bAutoDelete, unsigned int32_t uiSkip = 4 /* -1 for disable call stack*/);   // sets m_bAutoDelete = bAutoDelete
    // Implementation (setting m_bAutoDelete to FALSE is advanced)
    virtual ~base_exception();
 
@@ -27,11 +27,11 @@ public:
    virtual string get_message(PUINT pnHelpContext = NULL);
 
 
-   virtual int ReportError(UINT nType = MB_OK, const char * pszMessageID = NULL);
+   virtual int32_t ReportError(UINT nType = MB_OK, const char * pszMessageID = NULL);
 
 
    void PASCAL operator delete(void * pbData);
-   void PASCAL operator delete(void * pbData, const char * lpszFileName, int nLine);
+   void PASCAL operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
 
 
 };

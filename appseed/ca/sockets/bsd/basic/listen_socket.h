@@ -59,7 +59,7 @@
          }
 
          /** close file descriptor. */
-         int close()
+         int32_t close()
          {
 
             if (GetSocket() != INVALID_SOCKET)
@@ -72,7 +72,7 @@
          /** Bind and listen to any interface.
          \param port Port (0 is random)
          \param depth Listen queue depth */
-         int Bind(port_t port,int depth = 20) {
+         int32_t Bind(port_t port,int32_t depth = 20) {
             if (IsIpv6())
             {
                ipv6_address ad(get_app(), port);
@@ -85,7 +85,7 @@
             }
          }
 
-         int Bind(sockets::address& ad,int depth) {
+         int32_t Bind(sockets::address& ad,int32_t depth) {
 #ifdef USE_SCTP
             if (dynamic_cast<SctpSocket *>(m_creator))
             {
@@ -99,7 +99,7 @@
          \param port Port (0 is random)
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(port_t port,const string & protocol,int depth = 20) {
+         int32_t Bind(port_t port,const string & protocol,int32_t depth = 20) {
             if (IsIpv6())
             {
                ipv6_address ad(get_app(), port);
@@ -116,7 +116,7 @@
          \param intf Interface hostname
          \param port Port (0 is random)
          \param depth Listen queue depth */
-         int Bind(const string & intf,port_t port,int depth = 20)
+         int32_t Bind(const string & intf,port_t port,int32_t depth = 20)
          {
             address ad(get_app(), intf, port);
             if (ad.is_valid())
@@ -132,7 +132,7 @@
          \param port Port (0 is random)
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(const string & intf,port_t port,const string & protocol,int depth = 20) {
+         int32_t Bind(const string & intf,port_t port,const string & protocol,int32_t depth = 20) {
             address ad(get_app(), intf, port);
             if (ad.is_valid())
             {
@@ -146,7 +146,7 @@
          \param a Ipv4 interface address
          \param port Port (0 is random)
          \param depth Listen queue depth */
-         int Bind(in_addr a,port_t port,int depth = 20) {
+         int32_t Bind(in_addr a,port_t port,int32_t depth = 20) {
             ipv4_address ad(get_app(), a, port);
 #ifdef USE_SCTP
             if (dynamic_cast<SctpSocket *>(m_creator))
@@ -161,7 +161,7 @@
          \param port Port (0 is random)
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(in_addr a,port_t port,const string & protocol,int depth) {
+         int32_t Bind(in_addr a,port_t port,const string & protocol,int32_t depth) {
             address ad(get_app(), a, port);
             return Bind(ad, protocol, depth);
          }
@@ -170,7 +170,7 @@
          \param a Ipv6 interface address
          \param port Port (0 is random)
          \param depth Listen queue depth */
-         int Bind(in6_addr a,port_t port,int depth = 20) {
+         int32_t Bind(in6_addr a,port_t port,int32_t depth = 20) {
             address ad(get_app(), a, port);
 #ifdef USE_SCTP
             if (dynamic_cast<SctpSocket *>(m_creator))
@@ -185,7 +185,7 @@
          \param port Port (0 is random)
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(in6_addr a,port_t port,const string & protocol,int depth) {
+         int32_t Bind(in6_addr a,port_t port,const string & protocol,int32_t depth) {
             ipv6_address ad(get_app(), a, port);
             return Bind(ad, protocol, depth);
          }
@@ -194,7 +194,7 @@
          \param ad Interface address
          \param protocol Network protocol
          \param depth Listen queue depth */
-         int Bind(sockets::address& ad,const string & protocol,int depth)
+         int32_t Bind(sockets::address& ad,const string & protocol,int32_t depth)
          {
 
             SOCKET s;
@@ -228,7 +228,7 @@
       //   }
 
          /** Return listen queue depth. */
-         int GetDepth()
+         int32_t GetDepth()
          {
             return m_depth;
          }
@@ -254,7 +254,7 @@
             }
             if (Handler().get_count() >= FD_SETSIZE)
             {
-               Handler().LogError(this, "accept", (int)Handler().get_count(), "socket_handler_base fd_set limit reached", ::gen::log::level::fatal);
+               Handler().LogError(this, "accept", (int32_t)Handler().get_count(), "socket_handler_base fd_set limit reached", ::gen::log::level::fatal);
                ::closesocket(a_s);
                return;
             }
@@ -304,7 +304,7 @@
 
          bool HasCreator() { return m_bHasCreate; }
 
-         void OnOptions(int,int,int,SOCKET)
+         void OnOptions(int32_t,int32_t,int32_t,SOCKET)
          {
             SetSoReuseaddr(true);
          }
@@ -313,7 +313,7 @@
          listen_socket(const listen_socket& s) : socket(s) {}
       public:
          listen_socket& operator=(const listen_socket& ) { return *this; }
-         int m_depth;
+         int32_t m_depth;
          X *m_creator;
          bool m_bHasCreate;
 

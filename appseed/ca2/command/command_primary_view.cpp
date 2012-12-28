@@ -93,7 +93,7 @@ namespace command
                         string strMinFrac;
                         strMinFrac.Format("%f", pelement->get_value().mod() / 60.0);
                         string strMin;
-                        strMin.Format("%d", ((int)pelement->get_value().mod() / 60));
+                        strMin.Format("%d", ((int32_t)pelement->get_value().mod() / 60));
                         string strMinSec;
                         strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
                         string strNewText = str + pelement->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
@@ -112,7 +112,7 @@ namespace command
                         string strMinFrac;
                         strMinFrac.Format("%f", pelement->get_value().mod() / 60.0);
                         string strMin;
-                        strMin.Format("%d", ((int)pelement->get_value().mod() / 60));
+                        strMin.Format("%d", ((int32_t)pelement->get_value().mod() / 60));
                         string strMinSec;
                         strMinSec.Format("%f", fmod(pelement->get_value().mod(), 60.0));
                         string strNewText = str + pelement->get_expression() + " segundos = " + strValue  + " segundos = " + strMinFrac + " minutos = " + strMin + " minutos e " + strMinSec + " segundos\n";
@@ -120,7 +120,7 @@ namespace command
                         _001SetText(strNewText);
                         str = strNewText;
                         m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
-                        Application.send_simple_command("winactionareaview::show_calendar(\""+ gen::str::from((int) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        Application.send_simple_command("winactionareaview::show_calendar(\""+ gen::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
                         bOk = true;
                      }
                   }

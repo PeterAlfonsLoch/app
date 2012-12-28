@@ -43,7 +43,7 @@ bool FileManagerFileListCallback::initialize()
 }
 
 
-int FileManagerFileListCallback::GetActionButtonCount()
+int32_t FileManagerFileListCallback::GetActionButtonCount()
 {
    return 0;
 }

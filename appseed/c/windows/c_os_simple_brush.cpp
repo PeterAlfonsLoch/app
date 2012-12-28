@@ -85,7 +85,7 @@ bool simple_brush::create_linear_gradient(simple_graphics & g, POINT np1, POINT 
 }
 
 
-bool simple_brush::from_stock(int iId)
+bool simple_brush::from_stock(int32_t iId)
 {
 
    if(m_pbrush != NULL)

@@ -111,12 +111,12 @@ namespace user
       return m_uiptraHold[0];
    }
 
-   int place_holder_ptra::hold(::user::interaction * pui)
+   int32_t place_holder_ptra::hold(::user::interaction * pui)
    {
 
-      int count = 0;
+      int32_t count = 0;
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          try
          {
@@ -134,12 +134,12 @@ namespace user
 
    }
 
-   int place_holder_ptra::unhold(::user::interaction * pui)
+   int32_t place_holder_ptra::unhold(::user::interaction * pui)
    {
 
-      int count = 0;
+      int32_t count = 0;
 
-      for(int i = 0; i < this->get_count(); i++)
+      for(int32_t i = 0; i < this->get_count(); i++)
       {
          try
          {

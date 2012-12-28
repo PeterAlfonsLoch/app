@@ -267,10 +267,10 @@ namespace visual
    }
 
    // should not call base class implementation because visual::application is inside a n-furcation of user::application
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
 
-      int iExitCode = 0;
+      int32_t iExitCode = 0;
       
       try
       {

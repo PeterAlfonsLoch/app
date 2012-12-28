@@ -165,7 +165,7 @@ void string_array::copy(const int64_array & src)
 
    set_size(src.m_nSize);
 
-   for(int i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < m_nSize; i++)
    {
       m_pData[i] = gen::str::from(src[i]);
    }
@@ -309,7 +309,7 @@ void string_array::insert_at(index nStartIndex, const string_array & NewArray)
    if (NewArray.get_size() > 0)
    {
       insert_at(nStartIndex, NewArray.get_at(0), NewArray.get_size());
-      for (int i = 0; i < NewArray.get_size(); i++)
+      for (int32_t i = 0; i < NewArray.get_size(); i++)
          set_at(nStartIndex + i, NewArray.get_at(i));
    }
 }
@@ -327,14 +327,14 @@ void string_array::insert_at(index nStartIndex, const string_array & NewArray)
    if (ar.IsStoring())
    {
       ar.WriteCount(m_nSize);
-      for (int i = 0; i < m_nSize; i++)
+      for (int32_t i = 0; i < m_nSize; i++)
          ar << m_pData[i];
    }
    else
    {
       DWORD nOldSize = ar.ReadCount();
       set_size(nOldSize);
-      for (int i = 0; i < m_nSize; i++)
+      for (int32_t i = 0; i < m_nSize; i++)
          ar >> m_pData[i];
    }
 }
@@ -349,7 +349,7 @@ void string_array::dump(dump_context & dumpcontext) const
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)
    {
-      for (int i = 0; i < m_nSize; i++)
+      for (int32_t i = 0; i < m_nSize; i++)
          dumpcontext << "\n\t[" << i << "] = " << m_pData[i];
    }
 
@@ -668,21 +668,21 @@ void string_array::add(const var & var)
    }
    else if(var.get_type() == var::type_vara)
    {
-      for(int i = 0; i < var.vara().get_count(); i++)
+      for(int32_t i = 0; i < var.vara().get_count(); i++)
       {
          add(var.vara()[i].get_string());
       }
    }
    else if(var.get_type() == var::type_inta)
    {
-      for(int i = 0; i < var.inta().get_count(); i++)
+      for(int32_t i = 0; i < var.inta().get_count(); i++)
       {
          add(gen::str::from(var.inta()[i]));
       }
    }
    else if(var.get_type() == var::type_propset)
    {
-      for(int i = 0; i < var.propset().m_propertya.get_count(); i++)
+      for(int32_t i = 0; i < var.propset().m_propertya.get_count(); i++)
       {
          add(var.propset().m_propertya[i].get_value().get_string());
       }

@@ -3,10 +3,10 @@
 
 HANDLE g_hmutexBoot = NULL;
 
-int installer(const char * param);
+int32_t installer(const char * param);
 
 
-int APIENTRY ca2_cube_install(const char * pszCommandLine, bool bBackground)
+int32_t APIENTRY ca2_cube_install(const char * pszCommandLine, bool bBackground)
 {
 
    wait_until_mutex_does_not_exist("Global\\ca2::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
@@ -31,7 +31,7 @@ int APIENTRY ca2_cube_install(const char * pszCommandLine, bool bBackground)
 
 
 
-int APIENTRY start_ca2_cube_install(const char * pszCommandLine, bool bBackground)
+int32_t APIENTRY start_ca2_cube_install(const char * pszCommandLine, bool bBackground)
 {
 
    wait_until_mutex_does_not_exist("Global\\ca2::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");

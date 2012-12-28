@@ -46,7 +46,7 @@ namespace gen
 
       void SendGlobalMessage(MPARAM mparam, NPARAM nparam, OPARAM oparam)
       {
-         for(int i = 0; i < theMessageHandlerArray.get_size(); i++)
+         for(int32_t i = 0; i < theMessageHandlerArray.get_size(); i++)
          {
             theMessageHandlerArray[i]->OnMessage(mparam, nparam, oparam);
          }
@@ -283,7 +283,7 @@ namespace gen
             return;
          }
          m_signala.GetSignalsByMessage(signalptra, pbase->m_uiMessage, 0, 0);
-         for(int i = 0; i < signalptra.get_size(); i++)
+         for(int32_t i = 0; i < signalptra.get_size(); i++)
          {
             Signal & signal = *signalptra[i];
             gen::signal * psignal = signal.m_psignal;
@@ -310,7 +310,7 @@ namespace gen
          // BaseCommand * pcommand,
          //bool & b)
       //{
-         /*int & i = m_iHandling;
+         /*int32_t & i = m_iHandling;
          SignalPtrArray signalptra;
          m_signala.GetSignalsByMessage(signalptra, nMsg, nCode, nID);
          for(i = 0; i < signalptra.get_size(); i++)
@@ -378,7 +378,7 @@ namespace gen
       {
          UNREFERENCED_PARAMETER(psignalizable);
    /* xxx     HandlerItemArray & itema = m_handlerset.m_itema;
-         for(int i = 0; i < itema.get_size();)
+         for(int32_t i = 0; i < itema.get_size();)
          {
             if(itema[i]->get_signalizable() == psignalizable)
             {
@@ -417,7 +417,7 @@ namespace gen
    //xxx      UnhookMessageHandler(this);
       }
 
-      int Handler::OnMessage(UINT /*message*/, UINT /*uiParam1*/, UINT /*uiParam2*/)
+      int32_t Handler::OnMessage(UINT /*message*/, UINT /*uiParam1*/, UINT /*uiParam2*/)
       {
          return 0;
       }
@@ -809,9 +809,9 @@ namespace gen
          return (LPNMHDR) m_lparam;
       }
 
-      int notify::get_ctrl_id()
+      int32_t notify::get_ctrl_id()
       {
-         return (int) m_wparam;
+         return (int32_t) m_wparam;
       }
 
 #endif
@@ -837,7 +837,7 @@ namespace gen
 
       dispatch::HandlerItemArray::~HandlerItemArray()
       {
-         for(int i = 0; i < this->get_size(); i++)
+         for(int32_t i = 0; i < this->get_size(); i++)
          {
             delete this->element_at(i);
          }
@@ -845,7 +845,7 @@ namespace gen
 
       bool dispatch::HandlerItemArray::HasSignalizable(gen::signalizable * psignalizable)
       {
-         for(int i = 0; i < this->get_size(); i++)
+         for(int32_t i = 0; i < this->get_size(); i++)
          {
             if(this->element_at(i)->get_signalizable() == psignalizable)
                return true;

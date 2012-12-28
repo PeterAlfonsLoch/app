@@ -22,17 +22,17 @@ typedef unsigned char u8;
 #if UINT_MAX >= 4294967295UL
 
 typedef signed short s16;
-typedef signed int s32;
+typedef signed int32_t s32;
 typedef unsigned short u16;
-typedef unsigned int u32;
+typedef unsigned int32_t u32;
 
 #define ONE32   0xffffffffU
 
 #else
 
-typedef signed int s16;
+typedef signed int32_t s16;
 typedef signed long s32;
-typedef unsigned int u16;
+typedef unsigned int32_t u16;
 typedef unsigned long u32;
 
 #define ONE32   0xffffffffUL
@@ -120,8 +120,8 @@ typedef signed long long s64;
 typedef struct NESSIEstruct {
    u8  bitLength[LENGTHBYTES]; /* global number of hashed bits (256-bit counter) */
    u8  buffer[WBLOCKBYTES];   /* buffer of data to hash */
-   int bufferBits;              /* current number of bits on the buffer */
-   int bufferPos;              /* current (possibly incomplete) byte slot on the buffer */
+   int32_t bufferBits;              /* current number of bits on the buffer */
+   int32_t bufferPos;              /* current (possibly incomplete) byte slot on the buffer */
    u64 hash[DIGESTBYTES/8];    /* the hashing state */
 } NESSIEstruct;
 

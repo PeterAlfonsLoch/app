@@ -72,7 +72,7 @@ namespace mail
    void db_pop3::filter_id()
    {
       single_lock slDataset(&m_csDataset, TRUE);
-      for(int i = 0; i < m_straId.get_size();)
+      for(int32_t i = 0; i < m_straId.get_size();)
       {
          m_pdataset->query("select count(*) from inbox where id = '" + m_straId[i] + "'");
          if(m_pdataset->num_rows() == 0)
@@ -116,8 +116,8 @@ namespace mail
       bool bAlpha = false;
       string strLastSeparator;
 
-      int iLen = int(strlen(psz));
-      int i = 0;
+      int32_t iLen = int32_t(strlen(psz));
+      int32_t i = 0;
 
       while(i <= iLen)
       {
@@ -202,7 +202,7 @@ namespace mail
          i++;
       }
 
-      for(int i = 0; i < straDate.get_size();)
+      for(int32_t i = 0; i < straDate.get_size();)
       {
          if(baAlpha[i])
          {
@@ -393,7 +393,7 @@ ret:
       string strLine;
       string strSender;
       strsize iPos;
-      for(int i = 0; i < straHeaders.get_size(); i++)
+      for(int32_t i = 0; i < straHeaders.get_size(); i++)
       {
          strLine = straHeaders[i];
          iPos = strLine.find(":");

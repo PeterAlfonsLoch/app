@@ -21,7 +21,7 @@ namespace colorertake5
 
       baseEditor->removeEditorListener(this);
 
-      for(int idx = 0; idx < outline.get_size(); idx++)
+      for(int32_t idx = 0; idx < outline.get_size(); idx++)
          delete outline.element_at(idx);
    }
 

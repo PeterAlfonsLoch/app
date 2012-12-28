@@ -25,11 +25,11 @@ void oc_pack_readinit(oc_pack_buf *_b,unsigned char *_buf,long _bytes){
   _b->stop=_buf+_bytes;
 }
 
-static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int _bits){
+static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int32_t _bits){
   const unsigned char *ptr;
   const unsigned char *stop;
   oc_pb_window         window;
-  int                  available;
+  int32_t                  available;
   window=_b->window;
   available=_b->bits;
   ptr=_b->ptr;
@@ -50,9 +50,9 @@ static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int _bits){
   return window;
 }
 
-int oc_pack_look1(oc_pack_buf *_b){
+int32_t oc_pack_look1(oc_pack_buf *_b){
   oc_pb_window window;
-  int          available;
+  int32_t          available;
   window=_b->window;
   available=_b->bits;
   if(available<1)_b->window=window=oc_pack_refill(_b,1);
@@ -65,9 +65,9 @@ void oc_pack_adv1(oc_pack_buf *_b){
 }
 
 /*Here we assume that 0<=_bits&&_bits<=32.*/
-long oc_pack_read(oc_pack_buf *_b,int _bits){
+long oc_pack_read(oc_pack_buf *_b,int32_t _bits){
   oc_pb_window window;
-  int          available;
+  int32_t          available;
   long         result;
   window=_b->window;
   available=_b->bits;
@@ -85,10 +85,10 @@ long oc_pack_read(oc_pack_buf *_b,int _bits){
   return result;
 }
 
-int oc_pack_read1(oc_pack_buf *_b){
+int32_t oc_pack_read1(oc_pack_buf *_b){
   oc_pb_window window;
-  int          available;
-  int          result;
+  int32_t          available;
+  int32_t          result;
   window=_b->window;
   available=_b->bits;
   if(available<1){

@@ -6,8 +6,8 @@
 class CLASS_DECL_c base_simple_list
 {
 public:
-   base_simple_list(int nNextOffset = 0);
-   void Construct(int nNextOffset);
+   base_simple_list(int32_t nNextOffset = 0);
+   void Construct(int32_t nNextOffset);
 
 // Operations
    bool is_empty() const;
@@ -24,9 +24,9 @@ public:
    void ** GetNextPtr(void * p) const;   // somewhat trusting...
 };
 
-inline base_simple_list::base_simple_list(int nNextOffset)
+inline base_simple_list::base_simple_list(int32_t nNextOffset)
    { m_pHead = NULL; m_nNextOffset = nNextOffset; }
-inline void base_simple_list::Construct(int nNextOffset)
+inline void base_simple_list::Construct(int32_t nNextOffset)
    { m_nNextOffset = nNextOffset; }
 inline bool base_simple_list::is_empty() const
    { return m_pHead == NULL; }
@@ -43,7 +43,7 @@ template < class TYPE >
 class simple_list : public base_simple_list
 {
 public:
-   simple_list(int nNextOffset = 0)
+   simple_list(int32_t nNextOffset = 0)
       : base_simple_list(nNextOffset) { }
    void add_head(TYPE p)
       { base_simple_list::add_head(p); }

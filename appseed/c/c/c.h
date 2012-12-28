@@ -191,13 +191,13 @@ namespace ca
 
 extern "C"
 {
-   int _c_lock_is_active(const char * pszName);
-   int _c_lock(const char * pszName, void ** pdata);
-   int _c_unlock(void ** pdata);
+   int32_t _c_lock_is_active(const char * pszName);
+   int32_t _c_lock(const char * pszName, void ** pdata);
+   int32_t _c_unlock(void ** pdata);
 }
 
 
-CLASS_DECL_c vsstring _c_get_file_name(const char * psz, bool bCreate = false, int * pfd = NULL);
+CLASS_DECL_c vsstring _c_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
 CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
 

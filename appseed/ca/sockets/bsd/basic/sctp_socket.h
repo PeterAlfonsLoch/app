@@ -41,22 +41,22 @@ namespace sockets
       /** SctpSocket constructor.
          \param h Owner
          \param type SCTP_STREAM or SCTP_SEQPACKET */
-      SctpSocket(socket_handler_base& h,int type);
+      SctpSocket(socket_handler_base& h,int32_t type);
       ~SctpSocket();
 
       /** bind() */
-      int Bind(const string &,port_t);
-      int Bind(sockets::address&);
+      int32_t Bind(const string &,port_t);
+      int32_t Bind(sockets::address&);
       /** sctp_bindx() */
-      int AddAddress(const string &,port_t);
-      int AddAddress(sockets::address&);
+      int32_t AddAddress(const string &,port_t);
+      int32_t AddAddress(sockets::address&);
       /** sctp_bindx() */
-      int RemoveAddress(const string &,port_t);
-      int RemoveAddress(sockets::address&);
+      int32_t RemoveAddress(const string &,port_t);
+      int32_t RemoveAddress(sockets::address&);
 
       /** connect() */
-      int open(const string &,port_t);
-      int open(sockets::address&);
+      int32_t open(const string &,port_t);
+      int32_t open(sockets::address&);
 
       /** Connect timeout callback. */
       void OnConnectTimeout();
@@ -67,24 +67,24 @@ namespace sockets
 
    #ifndef SOLARIS
       /** sctp_connectx() */
-      int AddConnection(const string &,port_t);
-      int AddConnection(sockets::address&);
+      int32_t AddConnection(const string &,port_t);
+      int32_t AddConnection(sockets::address&);
    #endif
 
       /** get peer addresses of an association. */
-      int getpaddrs(sctp_assoc_t id,list<string>&);
+      int32_t getpaddrs(sctp_assoc_t id,list<string>&);
       /** get all bound addresses of an association. */
-      int getladdrs(sctp_assoc_t id,list<string>&);
+      int32_t getladdrs(sctp_assoc_t id,list<string>&);
 
       /** sctp_peeloff */
-      int PeelOff(sctp_assoc_t id);
+      int32_t PeelOff(sctp_assoc_t id);
 
       /** recvmsg callback */
-      virtual void OnReceiveMessage(const char *buf,size_t sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags) = 0;
+      virtual void OnReceiveMessage(const char *buf,size_t sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int32_t msg_flags) = 0;
 
-      void OnOptions(int,int,int,SOCKET) {}
+      void OnOptions(int32_t,int32_t,int32_t,SOCKET) {}
 
-      virtual int Protocol();
+      virtual int32_t Protocol();
 
    protected:
       SctpSocket(const SctpSocket& s) : stream_socket(s) {}
@@ -93,7 +93,7 @@ namespace sockets
 
    private:
       SctpSocket& operator=(const SctpSocket& s) { return *this; }
-      int m_type; ///< SCTP_STREAM or SCTP_SEQPACKET
+      int32_t m_type; ///< SCTP_STREAM or SCTP_SEQPACKET
       char *m_buf; ///< Temporary receive buffer
    };
 

@@ -43,10 +43,10 @@
  */
 #include "framework.h"
 
-int
+int32_t
 v32_low_bit(v32_t *w);
 
-int 
+int32_t 
 octet_weight[256] = {
   0, 1, 1, 2, 1, 2, 2, 3,
   1, 2, 2, 3, 2, 3, 3, 4,
@@ -82,7 +82,7 @@ octet_weight[256] = {
   5, 6, 6, 7, 6, 7, 7, 8
 };
 
-int
+int32_t
 low_bit[256] = {
   -1, 0, 1, 0, 2, 0, 1, 0,
   3, 0, 1, 0, 2, 0, 1, 0,
@@ -119,7 +119,7 @@ low_bit[256] = {
 };
 
 
-int
+int32_t
 high_bit[256] = {
   -1, 0, 1, 1, 2, 2, 2, 2,
   3, 3, 3, 3, 3, 3, 3, 3,
@@ -155,16 +155,16 @@ high_bit[256] = {
   7, 7, 7, 7, 7, 7, 7, 7
 };
 
-int
+int32_t
 octet_get_weight(uint8_t octet) {
-  extern int octet_weight[256];
+  extern int32_t octet_weight[256];
 
   return octet_weight[octet];
 }  
 
 unsigned char
 v32_weight(v32_t a) {
-  unsigned int wt = 0;
+  unsigned int32_t wt = 0;
   
   wt += octet_weight[a.v8[0]];  /** note: endian-ness makes no difference */
   wt += octet_weight[a.v8[1]];
@@ -180,7 +180,7 @@ v32_distance(v32_t x, v32_t y) {
   return v32_weight(x);
 }
 
-unsigned int
+unsigned int32_t
 v32_dot_product(v32_t a, v32_t b) {
   a.value &= b.value;
   return v32_weight(a) & 1;
@@ -197,7 +197,7 @@ char bit_string[MAX_STRING_LENGTH];
 
 char *
 octet_bit_string(uint8_t x) {
-  int mask, index;
+  int32_t mask, index;
 
   for (mask = 1, index = 0; mask < 256; mask <<= 1)
     if ((x & mask) == 0)
@@ -212,7 +212,7 @@ octet_bit_string(uint8_t x) {
 
 char *
 v16_bit_string(v16_t x) {
-  int i, mask, index;
+  int32_t i, mask, index;
 
   for (i = index = 0; i < 2; i++) {
     for (mask = 1; mask < 256; mask <<= 1)
@@ -227,7 +227,7 @@ v16_bit_string(v16_t x) {
 
 char *
 v32_bit_string(v32_t x) {
-  int i, mask, index;
+  int32_t i, mask, index;
 
   for (i = index = 0; i < 4; i++) {
     for (mask = 128; mask > 0; mask >>= 1)
@@ -242,7 +242,7 @@ v32_bit_string(v32_t x) {
 
 char *
 v64_bit_string(const v64_t *x) {
-  int i, mask, index;
+  int32_t i, mask, index;
 
   for (i = index = 0; i < 8; i++) {
     for (mask = 1; mask < 256; mask <<= 1)
@@ -257,7 +257,7 @@ v64_bit_string(const v64_t *x) {
 
 char *
 v128_bit_string(v128_t *x) {
-  int j, index;
+  int32_t j, index;
   uint32_t mask;
   
   for (j=index=0; j < 4; j++) {
@@ -292,9 +292,9 @@ octet_hex_string(uint8_t x) {
 }
 
 char *
-octet_string_hex_string(const void *str, int length) {
+octet_string_hex_string(const void *str, int32_t length) {
   const uint8_t *s = (byte *) str;
-  int i;
+  int32_t i;
   
   /** double length, since one octet takes two hex characters */
   length *= 2;
@@ -313,7 +313,7 @@ octet_string_hex_string(const void *str, int length) {
 
 char *
 v16_hex_string(v16_t x) {
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 2; i++) {
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] >> 4);
@@ -326,7 +326,7 @@ v16_hex_string(v16_t x) {
 
 char *
 v32_hex_string(v32_t x) {
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 4; i++) {
     bit_string[j++]  = nibble_to_hex_char(x.v8[i] >> 4);
@@ -339,7 +339,7 @@ v32_hex_string(v32_t x) {
 
 char *
 v64_hex_string(const v64_t *x) {
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 8; i++) {
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] >> 4);
@@ -352,7 +352,7 @@ v64_hex_string(const v64_t *x) {
 
 char *
 v128_hex_string(v128_t *x) {
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 16; i++) {
     bit_string[j++]  = nibble_to_hex_char(x->v8[i] >> 4);
@@ -364,8 +364,8 @@ v128_hex_string(v128_t *x) {
 }
 
 char *
-char_to_hex_string(char *x, int num_char) {
-  int i, j;
+char_to_hex_string(char *x, int32_t num_char) {
+  int32_t i, j;
 
   if (num_char >= 16)
     num_char = 16;
@@ -378,7 +378,7 @@ char_to_hex_string(char *x, int num_char) {
   return bit_string;
 }
 
-int
+int32_t
 hex_char_to_nibble(uint8_t c) {
   switch(c) {
   case ('0'): return 0x0;
@@ -409,7 +409,7 @@ hex_char_to_nibble(uint8_t c) {
   return -1;  /** this keeps compilers from complaining */
 }
 
-int
+int32_t
 is_hex_string(char *s) {
   while(*s != 0)
     if (hex_char_to_nibble(*s++) == -1)
@@ -432,11 +432,11 @@ hex_string_to_octet(char *s) {
  * of length 2 * len to a raw octet string of length len
  */
 
-int
-hex_string_to_octet_string(char *raw, char *hex, int len) {
+int32_t
+hex_string_to_octet_string(char *raw, char *hex, int32_t len) {
   uint8_t x;
-  int tmp;
-  int hex_len;
+  int32_t tmp;
+  int32_t hex_len;
 
   hex_len = 0;
   while (hex_len < len) {
@@ -459,7 +459,7 @@ hex_string_to_octet_string(char *raw, char *hex, int len) {
 v16_t
 hex_string_to_v16(char *s) {
   v16_t x;
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 4; i += 2, j++) {
     x.v8[j] = (hex_char_to_nibble(s[i]) << 4)
@@ -471,7 +471,7 @@ hex_string_to_v16(char *s) {
 v32_t
 hex_string_to_v32(char *s) {
   v32_t x;
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 8; i += 2, j++) {
     x.v8[j] = (hex_char_to_nibble(s[i]) << 4)
@@ -483,7 +483,7 @@ hex_string_to_v32(char *s) {
 v64_t
 hex_string_to_v64(char *s) {
   v64_t x;
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 16; i += 2, j++) {
     x.v8[j] = (hex_char_to_nibble(s[i]) << 4)
@@ -495,7 +495,7 @@ hex_string_to_v64(char *s) {
 v128_t
 hex_string_to_v128(char *s) {
   v128_t x;
-  int i, j;
+  int32_t i, j;
 
   for (i=j=0; i < 32; i += 2, j++) {
     x.v8[j] = (hex_char_to_nibble(s[i]) << 4)
@@ -513,7 +513,7 @@ hex_string_to_v128(char *s) {
 
 uint8_t 
 A_times_x_plus_b(uint8_t A[8], uint8_t x, uint8_t b) {
-  int index = 0;
+  int32_t index = 0;
   unsigned mask;
   
   for (mask=1; mask < 256; mask *= 2) {
@@ -604,28 +604,28 @@ v128_complement(v128_t *x) {
   _v128_complement(x);
 }
 
-int
+int32_t
 v128_is_eq(const v128_t *x, const v128_t *y) {
   return _v128_is_eq(x, y);
 }
 
-int
-v128_get_bit(const v128_t *x, int i) {
+int32_t
+v128_get_bit(const v128_t *x, int32_t i) {
   return _v128_get_bit(x, i);
 }
 
 void
-v128_set_bit(v128_t *x, int i) {
+v128_set_bit(v128_t *x, int32_t i) {
   _v128_set_bit(x, i);
 }     
 
 void
-v128_clear_bit(v128_t *x, int i){
+v128_clear_bit(v128_t *x, int32_t i){
   _v128_clear_bit(x, i);
 }    
 
 void
-v128_set_bit_to(v128_t *x, int i, int y){
+v128_set_bit_to(v128_t *x, int32_t i, int32_t y){
   _v128_set_bit_to(x, i, y);
 }
 
@@ -634,10 +634,10 @@ v128_set_bit_to(v128_t *x, int i, int y){
 
 
 inline void
-v128_left_shift2(v128_t *x, int num_bits) {
-  int i;
-  int word_shift = num_bits >> 5;
-  int bit_shift  = num_bits & 31;
+v128_left_shift2(v128_t *x, int32_t num_bits) {
+  int32_t i;
+  int32_t word_shift = num_bits >> 5;
+  int32_t bit_shift  = num_bits & 31;
 
   for (i=0; i < (4-word_shift); i++) {
     x->v32[i] = x->v32[i+word_shift] << bit_shift;
@@ -650,10 +650,10 @@ v128_left_shift2(v128_t *x, int num_bits) {
 }
 
 void
-v128_right_shift(v128_t *x, int index) {
-  const int base_index = index >> 5;
-  const int bit_index = index & 31;
-  int i, from;
+v128_right_shift(v128_t *x, int32_t index) {
+  const int32_t base_index = index >> 5;
+  const int32_t bit_index = index & 31;
+  int32_t i, from;
   uint32_t b;
     
   if (index > 127) {
@@ -688,10 +688,10 @@ v128_right_shift(v128_t *x, int index) {
 }
 
 void
-v128_left_shift(v128_t *x, int index) {
-  int i;
-  const int base_index = index >> 5;
-  const int bit_index = index & 31;
+v128_left_shift(v128_t *x, int32_t index) {
+  int32_t i;
+  const int32_t base_index = index >> 5;
+  const int32_t bit_index = index & 31;
 
   if (index > 127) {
     v128_set_to_zero(x);
@@ -755,8 +755,8 @@ v128_add(v128_t *z, v128_t *x, v128_t *y) {
 }
 #endif
 
-int
-octet_string_is_eq(uint8_t *a, uint8_t *b, int len) {
+int32_t
+octet_string_is_eq(uint8_t *a, uint8_t *b, int32_t len) {
   uint8_t *end = b + len;
   while (b < end)
     if (*a++ != *b++)
@@ -765,7 +765,7 @@ octet_string_is_eq(uint8_t *a, uint8_t *b, int len) {
 }
 
 void
-octet_string_set_to_zero(uint8_t *s, int len) {
+octet_string_set_to_zero(uint8_t *s, int32_t len) {
   uint8_t *end = s + len;
 
   do {
@@ -777,9 +777,9 @@ octet_string_set_to_zero(uint8_t *s, int len) {
 
 /** functions below not yet tested! */
 
-int
+int32_t
 v32_low_bit(v32_t *w) {
-  int value;
+  int32_t value;
 
   value = low_bit[w->v8[0]];
   if (value != -1)

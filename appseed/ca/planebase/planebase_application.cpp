@@ -202,7 +202,7 @@ namespace planebase
    }
 
 
-   int application::pre_run()
+   int32_t application::pre_run()
    {
 
 //      m_dir.m_psystem      = m_psystem;
@@ -423,9 +423,9 @@ InitFailure:
    }
 
 
-   int application::on_run()
+   int32_t application::on_run()
    {
-      int m_iReturnCode = 0;
+      int32_t m_iReturnCode = 0;
 
       try
       {
@@ -705,7 +705,7 @@ InitFailure:
 
          m_dwAlive = ::get_tick_count();
          TRACE(string(typeid(*this).name()) + "pre_run");;
-         int m_iReturnCode = pre_run();
+         int32_t m_iReturnCode = pre_run();
          if(m_iReturnCode != 0)
          {
             m_bReady = true;
@@ -748,7 +748,7 @@ InitFailure:
 
    }
 
-   int application::main()
+   int32_t application::main()
    {
 
       TRACE(string(typeid(*this).name()) + " main");;
@@ -1127,7 +1127,7 @@ exit_application:
 
    }
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
 
       try
@@ -1504,7 +1504,7 @@ exit_application:
    }
 
 
-   int application::run()
+   int32_t application::run()
    {
 
       if((command().m_varTopicQuery.has_property("install")
@@ -1687,7 +1687,7 @@ exit_application:
 
                }
 
-               for(int i = 1; i < stra.get_upper_bound(); i++)
+               for(int32_t i = 1; i < stra.get_upper_bound(); i++)
                {
                   stra[i] == "_" + stra[i];
                }
@@ -1728,9 +1728,9 @@ exit_application:
 
             fill_locale_schema(localeschema);
 
-            int iStdStdCount = 0;
+            int32_t iStdStdCount = 0;
 
-            for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
+            for(int32_t i = 0; i < localeschema.m_idaLocale.get_count(); i++)
             {
                if(localeschema.m_idaLocale[i] == __id(std) &&
                   localeschema.m_idaSchema[i] == __id(std))
@@ -1863,7 +1863,7 @@ exit_application:
 
       //update_appmatter(h, psession, pszRoot, pszRelative, localeschema.m_idLocale, localeschema.m_idSchema);
 
-      for(int i = 0; i < localeschema.m_idaLocale.get_count(); i++)
+      for(int32_t i = 0; i < localeschema.m_idaLocale.get_count(); i++)
       {
          if(localeschema.m_idaLocale[i] == __id(std) && localeschema.m_idaSchema[i] == __id(std) && bIgnoreStdStd)
             continue;

@@ -15,17 +15,17 @@ protected:
    bool_array                 m_baLocked;
    duration             m_durationLock;
    duration             m_durationSleep;
-   int                  m_iRetry;
+   int32_t                  m_iRetry;
 
 
 public:
 
 
-   retry_multi_lock(sync_object_ptra syncobjectptra, duration durationLock, duration durationSleep, int iRetry = -1, bool bInitialLock = true);
+   retry_multi_lock(sync_object_ptra syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry = -1, bool bInitialLock = true);
    ~retry_multi_lock();
 
 
-   void construct(const sync_object_ptra & syncobjectptra, duration durationLock, duration durationSleep, int iRetry = -1, bool bInitialLock = true);
+   void construct(const sync_object_ptra & syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry = -1, bool bInitialLock = true);
 
    wait_result lock(bool bWaitForAll = TRUE, DWORD dwWakeMask = 0);
    bool unlock();

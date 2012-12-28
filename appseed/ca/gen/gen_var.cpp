@@ -5,7 +5,7 @@ namespace gen
 
    bool ok(para_return eret)
    {
-      return ((int)eret) >= 0;
+      return ((int32_t)eret) >= 0;
    }
 
 

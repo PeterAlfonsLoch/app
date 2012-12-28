@@ -43,8 +43,8 @@ namespace user
    {
    public:
 
-      int hold(::user::interaction * pui);
-      int unhold(::user::interaction * pui);
+      int32_t hold(::user::interaction * pui);
+      int32_t unhold(::user::interaction * pui);
 
    };
 

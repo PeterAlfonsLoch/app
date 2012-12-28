@@ -32,7 +32,7 @@ namespace calculator
       };
       e_type         value;
       string      m_str;
-      int         m_iType;
+      int32_t         m_iType;
       bool        m_bKeyword;
    };
 

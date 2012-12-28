@@ -15,7 +15,7 @@ namespace ca
       virtual bool CreateHalftonePalette(::ca::graphics * pgraphics);
 
 
-      virtual int GetEntryCount();
+      virtual int32_t GetEntryCount();
       virtual UINT GetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors) const;
       virtual UINT SetPaletteEntries(UINT nStartIndex, UINT nNumEntries, LPPALETTEENTRY lpPaletteColors);
 

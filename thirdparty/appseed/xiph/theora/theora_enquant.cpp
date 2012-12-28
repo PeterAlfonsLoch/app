@@ -21,18 +21,18 @@
 void oc_quant_params_pack(oggpack_buffer *_opb,const th_quant_info *_qinfo){
   const th_quant_ranges *qranges;
   const th_quant_base   *base_mats[2*3*64];
-  int                    indices[2][3][64];
-  int                    nbase_mats;
-  int                    nbits;
-  int                    ci;
-  int                    qi;
-  int                    qri;
-  int                    qti;
-  int                    pli;
-  int                    qtj;
-  int                    plj;
-  int                    bmi;
-  int                    i;
+  int32_t                    indices[2][3][64];
+  int32_t                    nbase_mats;
+  int32_t                    nbits;
+  int32_t                    ci;
+  int32_t                    qi;
+  int32_t                    qri;
+  int32_t                    qti;
+  int32_t                    pli;
+  int32_t                    qtj;
+  int32_t                    plj;
+  int32_t                    bmi;
+  int32_t                    i;
   i=_qinfo->loop_filter_limits[0];
   for(qi=1;qi<64;qi++)i=OC_MAXI(i,_qinfo->loop_filter_limits[qi]);
   nbits=OC_ILOG_32(i);
@@ -119,7 +119,7 @@ void oc_quant_params_pack(oggpack_buffer *_opb,const th_quant_info *_qinfo){
 
 static void oc_iquant_init(oc_iquant *_this,ogg_uint16_t _d){
   ogg_uint32_t t;
-  int          l;
+  int32_t          l;
   _d<<=1;
   l=OC_ILOGNZ_32(_d)-1;
   t=1+((ogg_uint32_t)1<<16+l)/_d;
@@ -131,17 +131,17 @@ static void oc_iquant_init(oc_iquant *_this,ogg_uint16_t _d){
    storage should be initialized.*/
 void oc_enquant_tables_init(ogg_uint16_t *_dequant[64][3][2],
  oc_iquant *_enquant[64][3][2],const th_quant_info *_qinfo){
-  int qi;
-  int pli;
-  int qti;
+  int32_t qi;
+  int32_t pli;
+  int32_t qti;
   /*Initialize the dequantization tables first.*/
   oc_dequant_tables_init(_dequant,NULL,_qinfo);
   /*Derive the quantization tables directly from the dequantization tables.*/
   for(qi=0;qi<64;qi++)for(qti=0;qti<2;qti++)for(pli=0;pli<3;pli++){
-    int zzi;
-    int plj;
-    int qtj;
-    int dupe;
+    int32_t zzi;
+    int32_t plj;
+    int32_t qtj;
+    int32_t dupe;
     dupe=0;
     for(qtj=0;qtj<=qti;qtj++){
       for(plj=0;plj<(qtj<qti?3:pli);plj++){
@@ -246,11 +246,11 @@ static const ogg_uint16_t OC_PCD[4][3]={
    rest of the code).
   The value Q*lambda completely determines the entropy of the coefficients.*/
 void oc_enquant_qavg_init(ogg_int64_t _log_qavg[2][64],
- ogg_uint16_t *_dequant[64][3][2],int _pixel_fmt){
-  int qi;
-  int pli;
-  int qti;
-  int ci;
+ ogg_uint16_t *_dequant[64][3][2],int32_t _pixel_fmt){
+  int32_t qi;
+  int32_t pli;
+  int32_t qti;
+  int32_t ci;
   for(qti=0;qti<2;qti++)for(qi=0;qi<64;qi++){
     ogg_int64_t q2;
     q2=0;

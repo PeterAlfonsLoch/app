@@ -54,19 +54,19 @@ typedef struct auth_type_t *auth_type_pointer;
 typedef struct auth_t      *auth_pointer_t;
 
 typedef err_status_t (*auth_alloc_func)
-     (auth_pointer_t *ap, int key_len, int out_len);
+     (auth_pointer_t *ap, int32_t key_len, int32_t out_len);
 
 typedef err_status_t (*auth_init_func)
-     (void *state, const uint8_t *key, int key_len);
+     (void *state, const uint8_t *key, int32_t key_len);
 
 typedef err_status_t (*auth_dealloc_func)(auth_pointer_t ap);
 
 typedef err_status_t (*auth_compute_func)
-     (void *state, uint8_t *buffer, int octets_to_auth, 
-      int tag_len, uint8_t *tag);
+     (void *state, uint8_t *buffer, int32_t octets_to_auth, 
+      int32_t tag_len, uint8_t *tag);
 
 typedef err_status_t (*auth_update_func)
-     (void *state, uint8_t *buffer, int octets_to_auth);
+     (void *state, uint8_t *buffer, int32_t octets_to_auth);
 
 typedef err_status_t (*auth_start_func)(void *state);
      
@@ -90,13 +90,13 @@ typedef err_status_t (*auth_start_func)(void *state);
 
 /* functions to get information about a particular auth_t */
 
-int
+int32_t
 auth_get_key_length(const struct auth_t *a);
 
-int
+int32_t
 auth_get_tag_length(const struct auth_t *a);
 
-int
+int32_t
 auth_get_prefix_length(const struct auth_t *a);
 
 /*
@@ -108,11 +108,11 @@ auth_get_prefix_length(const struct auth_t *a);
  */
 
 typedef struct auth_test_case_t {
-  int key_length_octets;                    /* octets in key            */
+  int32_t key_length_octets;                    /* octets in key            */
   uint8_t *key;                             /* key                      */
-  int data_length_octets;                   /* octets in data           */ 
+  int32_t data_length_octets;                   /* octets in data           */ 
   uint8_t *data;                            /* data                     */
-  int tag_length_octets;                    /* octets in tag            */
+  int32_t tag_length_octets;                    /* octets in tag            */
   uint8_t *tag;                             /* tag                      */
   struct auth_test_case_t *next_test_case;  /* pointer to next testcase */
 } auth_test_case_t;
@@ -127,7 +127,7 @@ typedef struct auth_type_t {
   auth_update_func     update;
   auth_start_func      start;
   char                *description;
-  int                  ref_count;
+  int32_t                  ref_count;
   auth_test_case_t    *test_data;
   debug_module_t      *debug;
 } auth_type_t;
@@ -135,9 +135,9 @@ typedef struct auth_type_t {
 typedef struct auth_t {
   auth_type_t *type;
   void        *state;                   
-  int          out_len;           /* length of output tag in octets */
-  int          key_len;           /* length of key in octets        */
-  int          prefix_len;        /* length of keystream prefix     */
+  int32_t          out_len;           /* length of output tag in octets */
+  int32_t          key_len;           /* length of key in octets        */
+  int32_t          prefix_len;        /* length of keystream prefix     */
 } auth_t;
 
 /* 
@@ -154,7 +154,7 @@ auth_type_self_test(const auth_type_t *at);
  * of instantiations) of the auth_type_t at
  */
 
-int
+int32_t
 auth_type_get_ref_count(const auth_type_t *at);
 
 #endif /* AUTH_H */

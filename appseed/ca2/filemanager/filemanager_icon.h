@@ -7,7 +7,7 @@ public:
    icon_key();
    icon_key(const icon_key & key);
    string      m_strPath;
-   int         m_iIcon;
+   int32_t         m_iIcon;
    string      m_strExtension;
 
    operator DWORD () const
@@ -23,5 +23,5 @@ class icon
 public:
    icon();
    HICON         m_hicon;
-   int         m_iImage;
+   int32_t         m_iImage;
 };

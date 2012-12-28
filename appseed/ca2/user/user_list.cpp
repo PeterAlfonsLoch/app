@@ -264,15 +264,15 @@ namespace user
       if(m_bGroup && m_bLateralGroup)
       {
 
-         int iGroupFirst = 0;
-         int iGroupFirstTopIndex = 0;
+         int32_t iGroupFirst = 0;
+         int32_t iGroupFirstTopIndex = 0;
          for(; iGroupFirst < m_nGroupCount; iGroupFirst++)
          {
             if(iItemFirst >= iGroupFirstTopIndex && iItemFirst < (iGroupFirstTopIndex + _001GetGroupItemCount(iGroupFirst)))
                break;
          }
-         int iGroupLast = iGroupFirst;
-         int iGroupLastTopIndex = iGroupFirstTopIndex;
+         int32_t iGroupLast = iGroupFirst;
+         int32_t iGroupLastTopIndex = iGroupFirstTopIndex;
          for(; iGroupLast < m_nGroupCount; iGroupLast++)
          {
             if(iItemLast >= iGroupLastTopIndex && iItemLast < (iGroupLastTopIndex + _001GetGroupItemCount(iGroupLast)))
@@ -463,7 +463,7 @@ namespace user
          if(m_bGroup)
          {
             m_pdrawlistitem->m_iGroupTopIndex = 0;
-//            int igroup;
+//            int32_t igroup;
             for(m_pdrawlistitem->m_iGroup = 0; m_pdrawlistitem->m_iGroup < m_nGroupCount; m_pdrawlistitem->m_iGroup++)
             {
                m_pdrawlistitem->m_iGroupCount = _001GetGroupItemCount(m_pdrawlistitem->m_iGroup);
@@ -722,8 +722,8 @@ namespace user
          _001LayoutTopText();
 
       ::count iCount = m_nItemCount;
-      int iMaxWidth = 0;
-      int iWidth;
+      int32_t iMaxWidth = 0;
+      int32_t iWidth;
       if(m_bSingleColumnMode)
       {
          for(index i = 0; i < iCount; i++)
@@ -883,7 +883,7 @@ namespace user
             if(m_bGroup)
             {
                itemLast.m_iGroupTopIndex = 0;
-//               int igroup;
+//               int32_t igroup;
                for(itemLast.m_iGroup = 0; itemLast.m_iGroup < m_nGroupCount; itemLast.m_iGroup++)
                {
                   itemLast.m_iGroupCount = _001GetGroupItemCount(itemLast.m_iGroup);
@@ -1120,9 +1120,9 @@ namespace user
          iItemHeight = size.cy + 2;
       }
 
-      m_iItemHeight = (int) iItemHeight;
+      m_iItemHeight = (int32_t) iItemHeight;
 
-      m_iItemWidth = (int) iItemWidth;
+      m_iItemWidth = (int32_t) iItemWidth;
 
       if(m_bSingleColumnMode)
       {
@@ -1149,7 +1149,7 @@ namespace user
             hditem.cchTextMax = 0;
             hditem.cxy = pcolumn->m_iWidth;;
             hditem.lParam = iColumn;
-            hditem.iOrder = (int) iOrder;
+            hditem.iOrder = (int32_t) iOrder;
             //         m_pheaderctrl->InsertItem(iColumn, &hditem);
          }
       }
@@ -1161,7 +1161,7 @@ namespace user
 
    }
 
-   void list::_001SetColumnWidth(index iColumn, int iWidth)
+   void list::_001SetColumnWidth(index iColumn, int32_t iWidth)
    {
       ASSERT(iColumn >= 0);
       ASSERT(iColumn < m_columna.VisibleGetCount());
@@ -1686,12 +1686,12 @@ namespace user
 
                if(pdrawitem->m_iDisplayItem > pdrawitem->m_iItemRectItem)
                {
-                  int iOffset                               = (int) ((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopIndex) * m_iItemHeight);
+                  int32_t iOffset                               = (int32_t) ((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopIndex) * m_iItemHeight);
                   pdrawitem->m_rectItem.top                -= iOffset;
                   pdrawitem->m_rectItem.bottom              = pdrawitem->m_rectItem.top + m_iItemHeight;
                   while(pdrawitem->m_iGroupTopIndex + pdrawitem->m_iGroupCount < pdrawitem->m_iDisplayItem)
                   {
-//                     int iHeight                            = _001GetGroupHeight(pdrawitem->m_iGroup);
+//                     int32_t iHeight                            = _001GetGroupHeight(pdrawitem->m_iGroup);
                      pdrawitem->m_rectItem.top             += iOffset;
                      pdrawitem->m_rectItem.bottom           = pdrawitem->m_rectItem.top + m_iItemHeight;
                      if((pdrawitem->m_iGroup + 1) >= m_nGroupCount)
@@ -1706,7 +1706,7 @@ namespace user
                }
                else
                {
-                  int iOffset                               = (int) ((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopIndex) * m_iItemHeight);
+                  int32_t iOffset                               = (int32_t) ((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopIndex) * m_iItemHeight);
                   pdrawitem->m_rectItem.top                -= iOffset;
                   pdrawitem->m_rectItem.bottom              = pdrawitem->m_rectItem.top + m_iItemHeight;
                   while(pdrawitem->m_iGroupTopIndex + pdrawitem->m_iGroupCount > pdrawitem->m_iDisplayItem)
@@ -1716,7 +1716,7 @@ namespace user
                         break;
                      }
                      pdrawitem->m_iGroup--;
-                     int iHeight                         = _001GetGroupHeight(pdrawitem->m_iGroup);
+                     int32_t iHeight                         = _001GetGroupHeight(pdrawitem->m_iGroup);
                      pdrawitem->m_rectItem.top          -= iHeight;
                      pdrawitem->m_rectItem.bottom        = pdrawitem->m_rectItem.top + m_iItemHeight;
                      pdrawitem->m_iGroupCount            = _001GetGroupItemCount(pdrawitem->m_iGroup);
@@ -1914,8 +1914,8 @@ namespace user
         (eelement == userbase::_list::ElementGroupImage
       || eelement == userbase::_list::ElementGroupItemText))
       {
-         int x = pdrawitem->m_rectGroup.left;
-         int iImageBottom = pdrawitem->m_rectGroup.top;
+         int32_t x = pdrawitem->m_rectGroup.left;
+         int32_t iImageBottom = pdrawitem->m_rectGroup.top;
 
          if(m_pilGroup != NULL)
          {
@@ -1927,7 +1927,7 @@ namespace user
             _001GetGroupImage(pdrawitem);
             if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
             {
-               m_pilGroup->get_image_info((int) pdrawitem->m_iImage, &ii);
+               m_pilGroup->get_image_info((int32_t) pdrawitem->m_iImage, &ii);
                if(eelement == userbase::_list::ElementGroupImage)
                {
                   pdrawitem->m_rectImage.left      = x;
@@ -1991,7 +1991,7 @@ namespace user
          {
             if(eelement == userbase::_list::ElementImage)
             {
-               int iIconSize                  = m_columna[0].m_sizeIcon.cy;
+               int32_t iIconSize                  = m_columna[0].m_sizeIcon.cy;
                pdrawitem->m_rectImage.left      = pdrawitem->m_rectItem.left    + iIconSize / 2;
                pdrawitem->m_rectImage.top       = pdrawitem->m_rectItem.top;
                pdrawitem->m_rectImage.right     = pdrawitem->m_rectImage.left  + iIconSize;
@@ -2000,7 +2000,7 @@ namespace user
             }
             else if(eelement == userbase::_list::ElementText)
             {
-               int iIconSize               = m_columna[0].m_sizeIcon.cy;
+               int32_t iIconSize               = m_columna[0].m_sizeIcon.cy;
                pdrawitem->m_rectText.left    = pdrawitem->m_rectItem.left;
                pdrawitem->m_rectText.top     = pdrawitem->m_rectItem.top + iIconSize;
                pdrawitem->m_rectText.right   = pdrawitem->m_rectText.left + iIconSize * 2;
@@ -2015,7 +2015,7 @@ namespace user
          if(!pdrawitem->m_bOk)
             return;
 
-         int x = pdrawitem->m_rectSubItem.left;
+         int32_t x = pdrawitem->m_rectSubItem.left;
 
          if(pdrawitem->m_iListItem == -1)
          {
@@ -2057,7 +2057,7 @@ namespace user
                _001GetItemImage(pdrawitem);
                if(pdrawitem->m_bOk && pdrawitem->m_iImage >= 0)
                {
-                  pdrawitem->m_pcolumnSubItemRect->m_pil->get_image_info((int) pdrawitem->m_iImage, &ii);
+                  pdrawitem->m_pcolumnSubItemRect->m_pil->get_image_info((int32_t) pdrawitem->m_iImage, &ii);
                   if(eelement == userbase::_list::ElementImage)
                   {
                      pdrawitem->m_rectImage.left      = x;
@@ -2594,7 +2594,7 @@ namespace user
             for(index iLine = itemrange.GetLBound();
                iLine <= itemrange.GetUBound(); iLine++)
             {
-               selection.add_item(key, (int) iLine);
+               selection.add_item(key, (int32_t) iLine);
             }
          }
       }
@@ -3046,7 +3046,7 @@ namespace user
 
    index list_column_array::VisibleMapSubItemToColumn(index iSubItem)
    {
-      int iVisible = 0;
+      int32_t iVisible = 0;
       for(index iColumn = 0; iColumn < this->get_count(); iColumn++)
       {
          list_column * pcolumn = ptr_at(iColumn);
@@ -3067,7 +3067,7 @@ namespace user
 
    index list_column_array::NonVisibleMapSubItemToColumn(index iSubItem)
    {
-      int iNonVisible = 0;
+      int32_t iNonVisible = 0;
       for(index iColumn = 0; iColumn < this->get_count(); iColumn++)
       {
          list_column * pcolumn = ptr_at(iColumn);
@@ -3923,23 +3923,23 @@ namespace user
 
    }
 
-   int list::_001CalcItemWidth(index iItem, index iSubItem)
+   int32_t list::_001CalcItemWidth(index iItem, index iSubItem)
    {
       ::ca::client_graphics pdc(this);
       ::ca::font * pfont = _001GetFont();
       index cx = _001CalcItemWidth(pdc, pfont, iItem, iSubItem);
 
-      return (int) cx;
+      return (int32_t) cx;
 
    }
 
-   int list::_001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem)
+   int32_t list::_001CalcItemWidth(::ca::graphics * pdc, ::ca::font * pfont, index iItem, index iSubItem)
    {
       pdc->SelectObject(pfont);
       return _001CalcItemWidth(pdc, iItem, iSubItem);
    }
 
-   int list::_001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem)
+   int32_t list::_001CalcItemWidth(::ca::graphics * pdc, index iItem, index iSubItem)
    {
 #ifdef WINDOWSEX
       ::image_list::info ii;
@@ -3956,7 +3956,7 @@ namespace user
          _001GetItemImage(&item);
          if(item.m_bOk && item.m_iImage >= 0)
          {
-            pcolumn->m_pil->get_image_info((int) item.m_iImage, &ii);
+            pcolumn->m_pil->get_image_info((int32_t) item.m_iImage, &ii);
             rect = ii.m_rect;
             cx += rect.width();
             cx += 2;
@@ -3969,7 +3969,7 @@ namespace user
          cx += size.cx;
       }
 
-      return (int) cx;
+      return (int32_t) cx;
 #else
       throw todo(get_app());
 #endif
@@ -4438,7 +4438,7 @@ namespace user
          }
       }
 
-      m_iFilter1Step = (int) iFilter1Step;
+      m_iFilter1Step = (int32_t) iFilter1Step;
 
       if(m_eview == ViewIcon)
       {
@@ -4619,21 +4619,21 @@ namespace user
    }
 
 
-   int list::_001CalcListWidth()
+   int32_t list::_001CalcListWidth()
    {
       ASSERT(FALSE);
       return -1;
    }
 
-   int list::_001CalcColumnWidth(index iColumn)
+   int32_t list::_001CalcColumnWidth(index iColumn)
    {
       UNREFERENCED_PARAMETER(iColumn);
       ::ca::client_graphics pdc(this);
       ::ca::font * pfont = _001GetFont();
       pdc->SelectObject(pfont);
-      int iMaxWidth = 0;
+      int32_t iMaxWidth = 0;
       ::count iCount = m_nItemCount;
-      int iWidth;
+      int32_t iWidth;
       for(index i = 0; i < iCount; i++)
       {
          iWidth = _001CalcItemWidth(pdc, i, 0);
@@ -4658,7 +4658,7 @@ namespace user
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   int list::get_wheel_scroll_delta()
+   int32_t list::get_wheel_scroll_delta()
    {
       return 3 * m_iItemHeight;
    }
@@ -4983,7 +4983,7 @@ namespace user
                else
                   iIconSize = 32;
                index iItemSize = iIconSize * 2;
-               m_iconlayout.m_iWidth = (int) (max(1, rectClient.width() / iItemSize));
+               m_iconlayout.m_iWidth = (int32_t) (max(1, rectClient.width() / iItemSize));
             }
             return do_drop(iDisplayDrop, iDisplayDrag);
          }
@@ -5156,9 +5156,9 @@ namespace user
       return -1;
    }
 
-   int list::_001GetGroupHeight(index iGroup)
+   int32_t list::_001GetGroupHeight(index iGroup)
    {
-      int iListHeight = (int) (_001GetGroupItemCount(iGroup) * m_iItemHeight);
+      int32_t iListHeight = (int32_t) (_001GetGroupItemCount(iGroup) * m_iItemHeight);
       return max(m_iGroupMinHeight, iListHeight);
    }
 
@@ -5226,7 +5226,7 @@ namespace user
       if(m_pcolumn->m_bIcon)
       {
          visual::icon * picon;
-         if(m_pcolumn->m_mapIcon.Lookup((int)m_iImage, picon))
+         if(m_pcolumn->m_mapIcon.Lookup((int32_t)m_iImage, picon))
          {
             m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
             return m_pgraphics->DrawIcon(m_rectImage.top_left(), picon) != FALSE;
@@ -5235,7 +5235,7 @@ namespace user
       else
       {
          m_pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
-         return get_image_list()->draw(m_pgraphics, (int) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
+         return get_image_list()->draw(m_pgraphics, (int32_t) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
       }
       return false;
    }
@@ -5243,7 +5243,7 @@ namespace user
 
    bool draw_list_item::draw_group_image()
    {
-      return m_plist->m_pilGroup->draw(m_pgraphics, (int) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
+      return m_plist->m_pilGroup->draw(m_pgraphics, (int32_t) m_iImage, m_rectImage.top_left(), m_rectImage.size(), point(0,0), 0);
    }
 
 

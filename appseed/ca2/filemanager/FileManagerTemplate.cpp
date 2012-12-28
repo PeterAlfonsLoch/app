@@ -152,7 +152,7 @@ FileManagerTemplate::~FileManagerTemplate()
    return NULL;
 }
 
-void FileManagerTemplate::Initialize(::ca::application * papp, int iTemplate, const char * pszMatter)
+void FileManagerTemplate::Initialize(::ca::application * papp, int32_t iTemplate, const char * pszMatter)
 {
    m_iTemplate       = iTemplate;
    m_pdoctemplateMain = new ::userbase::multiple_document_template(

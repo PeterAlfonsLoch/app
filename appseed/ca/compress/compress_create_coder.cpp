@@ -13,8 +13,8 @@
 namespace compress
 {
 
-   static const unsigned int kNumCodecsMax = 64;
-   unsigned int g_NumCodecs = 0;
+   static const unsigned int32_t kNumCodecsMax = 64;
+   unsigned int32_t g_NumCodecs = 0;
    const codec_info *g_Codecs[kNumCodecsMax];
    void RegisterCodec(const codec_info *codecInfo)
    {
@@ -22,7 +22,7 @@ namespace compress
          g_Codecs[g_NumCodecs++] = codecInfo;
    }
 
-   static HRESULT ReadNumberOfStreams(::compress::codecs_info_interface * codecsInfo, uint32 index, int propID, uint32 & res)
+   static HRESULT ReadNumberOfStreams(::compress::codecs_info_interface * codecsInfo, uint32 index, int32_t propID, uint32 & res)
    {
       var prop;
       RINOK(codecsInfo->GetProperty(index, propID, &prop));
@@ -35,7 +35,7 @@ namespace compress
       return S_OK;
    }
 
-   #define PROPID int
+   #define PROPID int32_t
 
    static HRESULT ReadIsAssignedProp(::compress::codecs_info_interface  * codecsInfo, uint32 index, PROPID propID, bool &res)
    {
@@ -67,7 +67,7 @@ namespace compress
             continue; // old Interface
             // return E_INVALIDARG;
          }
-         info.Id = (long unsigned int) prop;
+         info.Id = (long unsigned int32_t) prop;
          prop.unset();
 
          RINOK(codecsInfo->GetProperty(i, method_prop_Name, &prop));

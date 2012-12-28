@@ -1163,7 +1163,7 @@ static const u64 rc[R + 1] = {
  * The core Whirlpool transform.
  */
 static void processBuffer(struct NESSIEstruct * const structpointer) {
-    int i, r;
+    int32_t i, r;
     u64 K[8];        /* the round key */
     u64 block[8];    /* mu(buffer) */
     u64 state[8];    /* the cipher state */
@@ -1242,78 +1242,78 @@ static void processBuffer(struct NESSIEstruct * const structpointer) {
          * compute K^r from K^{r-1}:
          */
         L[0] =
-            C0[(int)((K[0] >> 56) & 0xff)] ^
-            C1[(int)((K[7] >> 48) & 0xff)] ^
-            C2[(int)((K[6] >> 40) & 0xff)] ^
-            C3[(int)((K[5] >> 32) & 0xff)] ^
-            C4[(int)((K[4] >> 24) & 0xff)] ^
-            C5[(int)((K[3] >> 16) & 0xff)] ^
-            C6[(int)((K[2] >>  8) & 0xff)] ^
-            C7[(int)((K[1]      ) & 0xff)] ^
+            C0[(int32_t)((K[0] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[7] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[6] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[5] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[4] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[3] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[2] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[1]      ) & 0xff)] ^
             rc[r];
         L[1] =
-            C0[(int)((K[1] >> 56) & 0xff)] ^
-            C1[(int)((K[0] >> 48) & 0xff)] ^
-            C2[(int)((K[7] >> 40) & 0xff)] ^
-            C3[(int)((K[6] >> 32) & 0xff)] ^
-            C4[(int)((K[5] >> 24) & 0xff)] ^
-            C5[(int)((K[4] >> 16) & 0xff)] ^
-            C6[(int)((K[3] >>  8) & 0xff)] ^
-            C7[(int)((K[2]      ) & 0xff)];
+            C0[(int32_t)((K[1] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[0] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[7] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[6] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[5] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[4] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[3] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[2]      ) & 0xff)];
         L[2] =
-            C0[(int)((K[2] >> 56) & 0xff)] ^
-            C1[(int)((K[1] >> 48) & 0xff)] ^
-            C2[(int)((K[0] >> 40) & 0xff)] ^
-            C3[(int)((K[7] >> 32) & 0xff)] ^
-            C4[(int)((K[6] >> 24) & 0xff)] ^
-            C5[(int)((K[5] >> 16) & 0xff)] ^
-            C6[(int)((K[4] >>  8) & 0xff)] ^
-            C7[(int)((K[3]      ) & 0xff)];
+            C0[(int32_t)((K[2] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[1] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[0] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[7] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[6] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[5] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[4] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[3]      ) & 0xff)];
         L[3] =
-            C0[(int)((K[3] >> 56) & 0xff)] ^
-            C1[(int)((K[2] >> 48) & 0xff)] ^
-            C2[(int)((K[1] >> 40) & 0xff)] ^
-            C3[(int)((K[0] >> 32) & 0xff)] ^
-            C4[(int)((K[7] >> 24) & 0xff)] ^
-            C5[(int)((K[6] >> 16) & 0xff)] ^
-            C6[(int)((K[5] >>  8) & 0xff)] ^
-            C7[(int)((K[4]      ) & 0xff)];
+            C0[(int32_t)((K[3] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[2] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[1] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[0] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[7] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[6] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[5] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[4]      ) & 0xff)];
         L[4] =
-            C0[(int)((K[4] >> 56) & 0xff)] ^
-            C1[(int)((K[3] >> 48) & 0xff)] ^
-            C2[(int)((K[2] >> 40) & 0xff)] ^
-            C3[(int)((K[1] >> 32) & 0xff)] ^
-            C4[(int)((K[0] >> 24) & 0xff)] ^
-            C5[(int)((K[7] >> 16) & 0xff)] ^
-            C6[(int)((K[6] >>  8) & 0xff)] ^
-            C7[(int)((K[5]      ) & 0xff)];
+            C0[(int32_t)((K[4] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[3] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[2] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[1] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[0] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[7] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[6] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[5]      ) & 0xff)];
         L[5] =
-            C0[(int)((K[5] >> 56) & 0xff)] ^
-            C1[(int)((K[4] >> 48) & 0xff)] ^
-            C2[(int)((K[3] >> 40) & 0xff)] ^
-            C3[(int)((K[2] >> 32) & 0xff)] ^
-            C4[(int)((K[1] >> 24) & 0xff)] ^
-            C5[(int)((K[0] >> 16) & 0xff)] ^
-            C6[(int)((K[7] >>  8) & 0xff)] ^
-            C7[(int)((K[6]      ) & 0xff)];
+            C0[(int32_t)((K[5] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[4] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[3] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[2] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[1] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[0] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[7] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[6]      ) & 0xff)];
         L[6] =
-            C0[(int)((K[6] >> 56) & 0xff)] ^
-            C1[(int)((K[5] >> 48) & 0xff)] ^
-            C2[(int)((K[4] >> 40) & 0xff)] ^
-            C3[(int)((K[3] >> 32) & 0xff)] ^
-            C4[(int)((K[2] >> 24) & 0xff)] ^
-            C5[(int)((K[1] >> 16) & 0xff)] ^
-            C6[(int)((K[0] >>  8) & 0xff)] ^
-            C7[(int)((K[7]      ) & 0xff)];
+            C0[(int32_t)((K[6] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[5] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[4] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[3] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[2] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[1] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[0] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[7]      ) & 0xff)];
         L[7] =
-            C0[(int)((K[7] >> 56) & 0xff)] ^
-            C1[(int)((K[6] >> 48) & 0xff)] ^
-            C2[(int)((K[5] >> 40) & 0xff)] ^
-            C3[(int)((K[4] >> 32) & 0xff)] ^
-            C4[(int)((K[3] >> 24) & 0xff)] ^
-            C5[(int)((K[2] >> 16) & 0xff)] ^
-            C6[(int)((K[1] >>  8) & 0xff)] ^
-            C7[(int)((K[0]      ) & 0xff)];
+            C0[(int32_t)((K[7] >> 56) & 0xff)] ^
+            C1[(int32_t)((K[6] >> 48) & 0xff)] ^
+            C2[(int32_t)((K[5] >> 40) & 0xff)] ^
+            C3[(int32_t)((K[4] >> 32) & 0xff)] ^
+            C4[(int32_t)((K[3] >> 24) & 0xff)] ^
+            C5[(int32_t)((K[2] >> 16) & 0xff)] ^
+            C6[(int32_t)((K[1] >>  8) & 0xff)] ^
+            C7[(int32_t)((K[0]      ) & 0xff)];
         K[0] = L[0];
         K[1] = L[1];
         K[2] = L[2];
@@ -1326,84 +1326,84 @@ static void processBuffer(struct NESSIEstruct * const structpointer) {
          * apply the r-th round transformation:
          */
         L[0] =
-            C0[(int)((state[0] >> 56) & 0xff)] ^
-            C1[(int)((state[7] >> 48) & 0xff)] ^
-            C2[(int)((state[6] >> 40) & 0xff)] ^
-            C3[(int)((state[5] >> 32) & 0xff)] ^
-            C4[(int)((state[4] >> 24) & 0xff)] ^
-            C5[(int)((state[3] >> 16) & 0xff)] ^
-            C6[(int)((state[2] >>  8) & 0xff)] ^
-            C7[(int)((state[1]      ) & 0xff)] ^
+            C0[(int32_t)((state[0] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[7] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[6] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[5] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[4] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[3] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[2] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[1]      ) & 0xff)] ^
             K[0];
         L[1] =
-            C0[(int)((state[1] >> 56) & 0xff)] ^
-            C1[(int)((state[0] >> 48) & 0xff)] ^
-            C2[(int)((state[7] >> 40) & 0xff)] ^
-            C3[(int)((state[6] >> 32) & 0xff)] ^
-            C4[(int)((state[5] >> 24) & 0xff)] ^
-            C5[(int)((state[4] >> 16) & 0xff)] ^
-            C6[(int)((state[3] >>  8) & 0xff)] ^
-            C7[(int)((state[2]      ) & 0xff)] ^
+            C0[(int32_t)((state[1] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[0] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[7] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[6] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[5] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[4] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[3] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[2]      ) & 0xff)] ^
             K[1];
         L[2] =
-            C0[(int)((state[2] >> 56) & 0xff)] ^
-            C1[(int)((state[1] >> 48) & 0xff)] ^
-            C2[(int)((state[0] >> 40) & 0xff)] ^
-            C3[(int)((state[7] >> 32) & 0xff)] ^
-            C4[(int)((state[6] >> 24) & 0xff)] ^
-            C5[(int)((state[5] >> 16) & 0xff)] ^
-            C6[(int)((state[4] >>  8) & 0xff)] ^
-            C7[(int)((state[3]      ) & 0xff)] ^
+            C0[(int32_t)((state[2] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[1] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[0] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[7] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[6] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[5] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[4] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[3]      ) & 0xff)] ^
             K[2];
         L[3] =
-            C0[(int)((state[3] >> 56) & 0xff)] ^
-            C1[(int)((state[2] >> 48) & 0xff)] ^
-            C2[(int)((state[1] >> 40) & 0xff)] ^
-            C3[(int)((state[0] >> 32) & 0xff)] ^
-            C4[(int)((state[7] >> 24) & 0xff)] ^
-            C5[(int)((state[6] >> 16) & 0xff)] ^
-            C6[(int)((state[5] >>  8) & 0xff)] ^
-            C7[(int)((state[4]      ) & 0xff)] ^
+            C0[(int32_t)((state[3] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[2] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[1] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[0] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[7] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[6] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[5] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[4]      ) & 0xff)] ^
             K[3];
         L[4] =
-            C0[(int)((state[4] >> 56) & 0xff)] ^
-            C1[(int)((state[3] >> 48) & 0xff)] ^
-            C2[(int)((state[2] >> 40) & 0xff)] ^
-            C3[(int)((state[1] >> 32) & 0xff)] ^
-            C4[(int)((state[0] >> 24) & 0xff)] ^
-            C5[(int)((state[7] >> 16) & 0xff)] ^
-            C6[(int)((state[6] >>  8) & 0xff)] ^
-            C7[(int)((state[5]      ) & 0xff)] ^
+            C0[(int32_t)((state[4] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[3] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[2] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[1] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[0] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[7] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[6] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[5]      ) & 0xff)] ^
             K[4];
         L[5] =
-            C0[(int)((state[5] >> 56) & 0xff)] ^
-            C1[(int)((state[4] >> 48) & 0xff)] ^
-            C2[(int)((state[3] >> 40) & 0xff)] ^
-            C3[(int)((state[2] >> 32) & 0xff)] ^
-            C4[(int)((state[1] >> 24) & 0xff)] ^
-            C5[(int)((state[0] >> 16) & 0xff)] ^
-            C6[(int)((state[7] >>  8) & 0xff)] ^
-            C7[(int)((state[6]      ) & 0xff)] ^
+            C0[(int32_t)((state[5] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[4] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[3] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[2] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[1] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[0] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[7] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[6]      ) & 0xff)] ^
             K[5];
         L[6] =
-            C0[(int)((state[6] >> 56) & 0xff)] ^
-            C1[(int)((state[5] >> 48) & 0xff)] ^
-            C2[(int)((state[4] >> 40) & 0xff)] ^
-            C3[(int)((state[3] >> 32) & 0xff)] ^
-            C4[(int)((state[2] >> 24) & 0xff)] ^
-            C5[(int)((state[1] >> 16) & 0xff)] ^
-            C6[(int)((state[0] >>  8) & 0xff)] ^
-            C7[(int)((state[7]      ) & 0xff)] ^
+            C0[(int32_t)((state[6] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[5] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[4] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[3] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[2] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[1] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[0] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[7]      ) & 0xff)] ^
             K[6];
         L[7] =
-            C0[(int)((state[7] >> 56) & 0xff)] ^
-            C1[(int)((state[6] >> 48) & 0xff)] ^
-            C2[(int)((state[5] >> 40) & 0xff)] ^
-            C3[(int)((state[4] >> 32) & 0xff)] ^
-            C4[(int)((state[3] >> 24) & 0xff)] ^
-            C5[(int)((state[2] >> 16) & 0xff)] ^
-            C6[(int)((state[1] >>  8) & 0xff)] ^
-            C7[(int)((state[0]      ) & 0xff)] ^
+            C0[(int32_t)((state[7] >> 56) & 0xff)] ^
+            C1[(int32_t)((state[6] >> 48) & 0xff)] ^
+            C2[(int32_t)((state[5] >> 40) & 0xff)] ^
+            C3[(int32_t)((state[4] >> 32) & 0xff)] ^
+            C4[(int32_t)((state[3] >> 24) & 0xff)] ^
+            C5[(int32_t)((state[2] >> 16) & 0xff)] ^
+            C6[(int32_t)((state[1] >>  8) & 0xff)] ^
+            C7[(int32_t)((state[0]      ) & 0xff)] ^
             K[7];
         state[0] = L[0];
         state[1] = L[1];
@@ -1472,7 +1472,7 @@ static void processBuffer(struct NESSIEstruct * const structpointer) {
  * Initialize the hashing state.
  */
 void NESSIEinit(struct NESSIEstruct * const structpointer) {
-    int i;
+    int32_t i;
 
     memset(structpointer->bitLength, 0, 32);
     structpointer->bufferBits = structpointer->bufferPos = 0;
@@ -1522,15 +1522,15 @@ void NESSIEadd(const unsigned char * const source,
                     |
                     bufferPos
     */
-    int sourcePos    = 0; /* index of leftmost source u8 containing data (1 to 8 bits). */
-    int sourceGap    = (8 - ((int)sourceBits & 7)) & 7; /* space on source[sourcePos]. */
-    int bufferRem    = structpointer->bufferBits & 7; /* occupied bits on buffer[bufferPos]. */
-    int i;
+    int32_t sourcePos    = 0; /* index of leftmost source u8 containing data (1 to 8 bits). */
+    int32_t sourceGap    = (8 - ((int32_t)sourceBits & 7)) & 7; /* space on source[sourcePos]. */
+    int32_t bufferRem    = structpointer->bufferBits & 7; /* occupied bits on buffer[bufferPos]. */
+    int32_t i;
     u32 b, carry;
     u8 *buffer       = structpointer->buffer;
     u8 *bitLength    = structpointer->bitLength;
-    int bufferBits   = structpointer->bufferBits;
-    int bufferPos    = structpointer->bufferPos;
+    int32_t bufferBits   = structpointer->bufferBits;
+    int32_t bufferPos    = structpointer->bufferPos;
 
     /*
      * tally the length of the added data:
@@ -1614,7 +1614,7 @@ void NESSIEadd(const unsigned char * const source,
             bufferBits = bufferPos = 0;
         }
         buffer[bufferPos] = (u8)((b << (8 - bufferRem)) & 0xff);
-        bufferBits += (int)sourceBits;
+        bufferBits += (int32_t)sourceBits;
     }
     structpointer->bufferBits   = bufferBits;
     structpointer->bufferPos    = bufferPos;
@@ -1627,11 +1627,11 @@ void NESSIEadd(const unsigned char * const source,
  */
 void NESSIEfinalize(struct NESSIEstruct * const structpointer,
                     unsigned char * const result) {
-    int i;
+    int32_t i;
     u8 *buffer      = structpointer->buffer;
     u8 *bitLength   = structpointer->bitLength;
-    int bufferBits  = structpointer->bufferBits;
-    int bufferPos   = structpointer->bufferPos;
+    int32_t bufferBits  = structpointer->bufferBits;
+    int32_t bufferPos   = structpointer->bufferPos;
     u8 *digest      = result;
 
     /*
@@ -1686,8 +1686,8 @@ void NESSIEfinalize(struct NESSIEstruct * const structpointer,
 }
 
 /*
-static void display(const u8 array[], int length) {
-    int i;
+static void display(const u8 array[], int32_t length) {
+    int32_t i;
     for (i = 0; i < length; i++) {
         if (i%32 == 0) {
             printf("\n");
@@ -1712,7 +1712,7 @@ static void display(const u8 array[], int length) {
  * 3. the iterated hashing of the 512-bit string of zero bits a large number of times.
  */
 void makeNESSIETestVectors() {
-    int i;
+    int32_t i;
     struct NESSIEstruct w;
     u8 digest[DIGESTBYTES];
     u8 data[128];
@@ -1755,7 +1755,7 @@ void makeNESSIETestVectors() {
 #define TIMING_ITERATIONS 100000
 
 static void timing() {
-    int i;
+    int32_t i;
     NESSIEstruct w;
     u8 digest[DIGESTBYTES];
     u8 data[1024];

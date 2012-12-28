@@ -24,13 +24,13 @@ namespace html
          public:
 
             
-            int m_iCol;
-            int m_iRow;
+            int32_t m_iCol;
+            int32_t m_iRow;
 
 
             holder();
-            holder(int iCol, int iRow);
-            holder(cell * pcell, int iCol, int iRow);
+            holder(int32_t iCol, int32_t iRow);
+            holder(cell * pcell, int32_t iCol, int32_t iRow);
             holder(const class holder & holder);
             ::html::impl::cell *   m_pcell;
 
@@ -59,21 +59,21 @@ namespace html
          // |        |                  |
          // -----------------------------
          // population: (1, 1), (1, 2), (2, 1), (2, 2)
-         int m_iColBeg;
-         int m_iRowBeg;
-         int m_iColEnd;
-         int m_iRowEnd;
+         int32_t m_iColBeg;
+         int32_t m_iRowBeg;
+         int32_t m_iColEnd;
+         int32_t m_iRowEnd;
          
          
          float m_fWidth;
 
-         int m_iRowSpan;
-         int m_iColSpan;
+         int32_t m_iRowSpan;
+         int32_t m_iColSpan;
 
 
          table * get_table();
          table_row * get_row();
-         int get_min_col();
+         int32_t get_min_col();
 
          using text::set_xy;
          void set_xy(data * pdoc);
@@ -96,9 +96,9 @@ namespace html
          virtual float calc_width();
 
 
-         virtual bool contains_column(int iCol);
-         virtual bool contains_row(int iRow);
-         virtual bool contains_cell(int iCol, int iRow);
+         virtual bool contains_column(int32_t iCol);
+         virtual bool contains_row(int32_t iRow);
+         virtual bool contains_cell(int32_t iCol, int32_t iRow);
 
          virtual float get_table_border();
          virtual float get_cell_spacing();

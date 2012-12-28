@@ -20,7 +20,7 @@
 # include "quant.h"
 # include "bitpack.h"
 
-int oc_quant_params_unpack(oc_pack_buf *_opb,
+int32_t oc_quant_params_unpack(oc_pack_buf *_opb,
  th_quant_info *_qinfo);
 void oc_quant_params_clear(th_quant_info *_qinfo);
 

@@ -18,12 +18,12 @@ namespace html
          {
          public:
 
-            int      m_iCol;
-            int      m_cxMax;
-            int      m_cxMin;
+            int32_t      m_iCol;
+            int32_t      m_cxMax;
+            int32_t      m_cxMin;
 
             column();
-            column(int iCol);
+            column(int32_t iCol);
 
          };
 
@@ -40,7 +40,7 @@ namespace html
          virtual ~table();
 
 
-         void set_cell(int iCol, int iRow, cell * pcell);
+         void set_cell(int32_t iCol, int32_t iRow, cell * pcell);
 
          virtual void implement_phase2(data * pdata);
          virtual void layout_phase3(data * pdata);

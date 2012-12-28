@@ -14,7 +14,7 @@ simple_app::~simple_app()
 }
 
 
-int simple_app::main()
+int32_t simple_app::main()
 {
 
    //Sleep(15 * 1000);
@@ -139,7 +139,7 @@ bool simple_app::initialize()
    return true;
 }
 
-int simple_app::run()
+int32_t simple_app::run()
 {
 
 	while(true)

@@ -30,7 +30,7 @@ namespace datetime
 
 
       element *new_node();
-      int precedence(token::e_type next, token::e_type current);
+      int32_t precedence(token::e_type next, token::e_type current);
       double parse(element *current_node);
       double node_traverse(element *current_node, double value);
       double apply_traverse_operator(element *current_node, double total);

@@ -3,7 +3,7 @@
 
 #ifdef SetWindowLongPtrA
 #undef SetWindowLongPtrA
-inline long_ptr SetWindowLongPtrA( oswindow oswindow, int nIndex, long_ptr dwNewLong )
+inline long_ptr SetWindowLongPtrA( oswindow oswindow, int32_t nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongA( oswindow, nIndex, LONG( dwNewLong ) ) );
 }
@@ -11,7 +11,7 @@ inline long_ptr SetWindowLongPtrA( oswindow oswindow, int nIndex, long_ptr dwNew
 
 #ifdef SetWindowLongPtrW
 #undef SetWindowLongPtrW
-inline long_ptr SetWindowLongPtrW( oswindow oswindow, int nIndex, long_ptr dwNewLong )
+inline long_ptr SetWindowLongPtrW( oswindow oswindow, int32_t nIndex, long_ptr dwNewLong )
 {
    return( ::SetWindowLongW( oswindow, nIndex, LONG( dwNewLong ) ) );
 }
@@ -19,7 +19,7 @@ inline long_ptr SetWindowLongPtrW( oswindow oswindow, int nIndex, long_ptr dwNew
 
 #ifdef GetWindowLongPtrA
 #undef GetWindowLongPtrA
-inline long_ptr GetWindowLongPtrA( oswindow oswindow, int nIndex )
+inline long_ptr GetWindowLongPtrA( oswindow oswindow, int32_t nIndex )
 {
    return( ::GetWindowLongA( oswindow, nIndex ) );
 }
@@ -27,7 +27,7 @@ inline long_ptr GetWindowLongPtrA( oswindow oswindow, int nIndex )
 
 #ifdef GetWindowLongPtrW
 #undef GetWindowLongPtrW
-inline long_ptr GetWindowLongPtrW( oswindow oswindow, int nIndex )
+inline long_ptr GetWindowLongPtrW( oswindow oswindow, int32_t nIndex )
 {
    return( ::GetWindowLongW( oswindow, nIndex ) );
 }
@@ -39,13 +39,13 @@ inline long_ptr GetWindowLongPtrW( oswindow oswindow, int nIndex )
 struct CLASS_DECL_ca AUX_DATA
 {
    // system metrics
-   int cxVScroll, cyHScroll;
-   int cxIcon, cyIcon;
+   int32_t cxVScroll, cyHScroll;
+   int32_t cxIcon, cyIcon;
 
-   int cxBorder2, cyBorder2;
+   int32_t cxBorder2, cyBorder2;
 
    // device metrics for screen
-   int cxPixelsPerInch, cyPixelsPerInch;
+   int32_t cxPixelsPerInch, cyPixelsPerInch;
 
    // convenient system color
    HBRUSH hbrWindowFrame;
@@ -152,8 +152,8 @@ extern UINT gen_MsgSETRGB;
 typedef uint_ptr (CALLBACK* COMMDLGPROC)(oswindow, UINT, WPARAM, LPARAM);
 
 // conversion helpers
-//int c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
-//int c_cdecl _mbstowcsz(wchar_t* wcstr, const char* mbstr, size_t count);
+//int32_t c_cdecl _wcstombsz(char* mbstr, const wchar_t* wcstr, size_t count);
+//int32_t c_cdecl _mbstowcsz(wchar_t* wcstr, const char* mbstr, size_t count);
 
 /////////////////////////////////////////////////////////////////////////////
 // Extended dialog templates (new in Win95)
@@ -203,13 +203,13 @@ typedef struct
 #endif
 
 #ifndef ___PORTABLE
-int c_cdecl __critical_new_handler(size_t nSize);
+int32_t c_cdecl __critical_new_handler(size_t nSize);
 #endif
 
 
 /////////////////////////////////////////////////////////////////////////////
 // locale-invariant comparison helpers till CRT gets that support
-inline int __invariant_stricmp(const char *pszLeft, const char *pszRight)
+inline int32_t __invariant_stricmp(const char *pszLeft, const char *pszRight)
 {
 #ifdef WINDOWSEX
     return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
@@ -223,7 +223,7 @@ inline int __invariant_stricmp(const char *pszLeft, const char *pszRight)
 #endif
 }
 
-inline int __invariant_stricmp(const wchar_t *pwszLeft, const wchar_t *pwszRight)
+inline int32_t __invariant_stricmp(const wchar_t *pwszLeft, const wchar_t *pwszRight)
 {
 #ifdef WINDOWSEX
     return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),

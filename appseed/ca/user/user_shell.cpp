@@ -16,14 +16,14 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-      int _017ItemIDListGetLen(LPITEMIDLIST lpiidl)
+      int32_t _017ItemIDListGetLen(LPITEMIDLIST lpiidl)
       {
          if(lpiidl == NULL)
             return 0;
          LPSHITEMID  lpshiid = (LPSHITEMID) lpiidl;
          LPSHITEMID  lpshiidLast = NULL;
          USHORT cb;
-         int iLen = 0;
+         int32_t iLen = 0;
          while(true)
          {
             cb = lpshiid->cb;
@@ -94,7 +94,7 @@ namespace filemanager
 
          hr = SHGetMalloc(&lpmalloc);
 
-         int iLen = _017ItemIDListGetLen(lpiidl);
+         int32_t iLen = _017ItemIDListGetLen(lpiidl);
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iLen + 2);
@@ -108,16 +108,16 @@ namespace filemanager
          return lpiidlRet;
       }
 
-      int _017ItemIDListIHash(LPITEMIDLIST lpiidl)
+      int32_t _017ItemIDListIHash(LPITEMIDLIST lpiidl)
       {
          if(lpiidl == NULL)
             return NULL;
 
-         int iLen = _017ItemIDListGetLen(lpiidl);
+         int32_t iLen = _017ItemIDListGetLen(lpiidl);
 
 
-         int iHash = 0;
-         int iRemain = iLen;
+         int32_t iHash = 0;
+         int32_t iRemain = iLen;
          DWORD * lpdw = (DWORD *) lpiidl;
          while(iRemain >= 4)
          {
@@ -143,8 +143,8 @@ namespace filemanager
 
          hr = SHGetMalloc(&lpmalloc);
 
-         int iLenParent = _017ItemIDListGetLen(lpiidlParent);
-         int iLen = _017ItemIDListGetLen(lpiidl);
+         int32_t iLenParent = _017ItemIDListGetLen(lpiidlParent);
+         int32_t iLen = _017ItemIDListGetLen(lpiidl);
 
          LPITEMIDLIST lpiidlRet = (LPITEMIDLIST)
             lpmalloc->Alloc(iLenParent + iLen + 2);
@@ -181,7 +181,7 @@ namespace filemanager
             lpshiidLast = lpshiid;
             lpshiid = (LPSHITEMID) (((LPBYTE) lpshiid) + cb);
          }
-         int iCount = *((USHORT *) lpshiidLast);
+         int32_t iCount = *((USHORT *) lpshiidLast);
 
          if(iCount == 0)
             return NULL;
@@ -208,7 +208,7 @@ namespace filemanager
          stringa stra2;
          stra2.add_smallest_tokens(lpcsz, stra, FALSE);
          string str;
-         for(int i = 0; i < stra2.get_size() - 1; i++)
+         for(int32_t i = 0; i < stra2.get_size() - 1; i++)
          {
             str += stra2[i];
             str += "\\";
@@ -378,7 +378,7 @@ namespace filemanager
 
          App(papp).dir().ls(gen::international::unicode_to_utf8(szPath), &stra);
 
-         for(int i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
 
             efolder = GetFolderType(papp, stra[i]);
@@ -465,7 +465,7 @@ namespace filemanager
 
       stra.remove(".");
       stra.remove("..");
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          stra[i] = wstrBase + stra[i];
       }
@@ -527,10 +527,10 @@ namespace filemanager
       m_pil48Hover->add_matter("filemanager\\check_on_16.png");
    }
 
-   int ImageSet::GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon)
+   int32_t ImageSet::GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon)
    {
 
-      int iImage = 0x80000000;
+      int32_t iImage = 0x80000000;
 
 #ifdef WINDOWSEX
 
@@ -545,13 +545,13 @@ namespace filemanager
       imagekey.m_iIcon = 0;
       if(!m_imagemap.Lookup(imagekey, iImage))
       {
-         int iFileAttr = FILE_ATTRIBUTE_NORMAL;
+         int32_t iFileAttr = FILE_ATTRIBUTE_NORMAL;
          if(eattribute == FileAttributeDirectory)
          {
             iFileAttr = FILE_ATTRIBUTE_DIRECTORY;
          }
 
-         int iFlags = SHGFI_USEFILEATTRIBUTES | SHGFI_ICON | SHGFI_SMALLICON;
+         int32_t iFlags = SHGFI_USEFILEATTRIBUTES | SHGFI_ICON | SHGFI_SMALLICON;
 
          if(eicon == IconOpen)
          {
@@ -586,7 +586,7 @@ namespace filemanager
 
 #ifdef WINDOWSEX
 
-   int ImageSet::GetImage(
+   int32_t ImageSet::GetImage(
       oswindow oswindow,
       IShellFolder * lpsf,
       LPITEMIDLIST lpiidlAbsolute,
@@ -596,7 +596,7 @@ namespace filemanager
    {
       if(lpsf == NULL)
          return 0x80000000;
-      int iType;
+      int32_t iType;
       switch(eicon)
       {
       case IconNormal:
@@ -625,7 +625,7 @@ namespace filemanager
 
       CHAR szPath[_MAX_PATH * 10];
       string strPath;
-      int iImage = 0x80000000;
+      int32_t iImage = 0x80000000;
 
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
@@ -646,7 +646,7 @@ namespace filemanager
 
 
 
-      int iIcon = 0x80000000;
+      int32_t iIcon = 0x80000000;
       UINT uiFlags = 0;
 
       SHFILEINFO shfi16;
@@ -663,7 +663,7 @@ namespace filemanager
       }
       else
       {
-         int iFind = item.m_strExtra.reverse_find(L'.');
+         int32_t iFind = item.m_strExtra.reverse_find(L'.');
          if(iFind >= 0)
          {
             gen::international::UnicodeToOEM(strName, item.m_strExtra);
@@ -741,7 +741,7 @@ namespace filemanager
 
             LPITEMIDLIST lpiidlParent2    = _017ItemIDListGetFolderParent(lpiidl2);
 
-            int iImage = GetImage(
+            int32_t iImage = GetImage(
                oswindow,
                lpsf,
                lpiidl2,
@@ -1016,9 +1016,9 @@ namespace filemanager
 
 #endif
 
-   int ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
+   int32_t ImageSet::GetImageByExtension(oswindow oswindow, const char * pszPath, EIcon eicon, bool bFolder)
    {
-      int iImage = 0x80000000;
+      int32_t iImage = 0x80000000;
 
 #ifdef WINDOWSEX
 
@@ -1029,7 +1029,7 @@ namespace filemanager
 
       string strExtension = System.file().extension(strPath);
 
-      int iType;
+      int32_t iType;
       switch(eicon)
       {
       case IconNormal:
@@ -1056,7 +1056,7 @@ namespace filemanager
       string strExtra;
 
 
-      int iIcon = 0x80000000;
+      int32_t iIcon = 0x80000000;
       UINT uiFlags = 0;
 
       SHFILEINFO shfi16;
@@ -1155,7 +1155,7 @@ namespace filemanager
    {
       if(lpsf == NULL)
          return false;
-      int iType;
+      int32_t iType;
       switch(eicon)
       {
       case IconNormal:
@@ -1184,7 +1184,7 @@ namespace filemanager
 
       CHAR szPath[_MAX_PATH * 10];
       string strPath;
-   //   int iImage = 0x80000000;
+   //   int32_t iImage = 0x80000000;
 
       HICON hicon16 = NULL;
       HICON hicon48 = NULL;
@@ -1205,7 +1205,7 @@ namespace filemanager
 
 
 
-      int iIcon = 0x80000000;
+      int32_t iIcon = 0x80000000;
       UINT uiFlags = 0;
 
       SHFILEINFO shfi16;
@@ -1222,7 +1222,7 @@ namespace filemanager
       }
       else
       {
-         int iFind = item.m_strExtra.reverse_find(L'.');
+         int32_t iFind = item.m_strExtra.reverse_find(L'.');
          if(iFind >= 0)
          {
             gen::international::UnicodeToOEM(strName, item.m_strExtra);
@@ -1425,7 +1425,7 @@ namespace filemanager
 
 
 
-   int ImageSet::GetImage(
+   int32_t ImageSet::GetImage(
       oswindow oswindow,
       LPITEMIDLIST lpiidlAbsolute,
       const wchar_t * lpcszExtra,
@@ -1436,7 +1436,7 @@ namespace filemanager
 
 
       LPITEMIDLIST lpiidlChild = _017ItemIDListGetLast(lpiidlAbsolute);
-      int iImage = GetImage(
+      int32_t iImage = GetImage(
          oswindow,
          lpsf,
          lpiidlAbsolute,
@@ -1453,7 +1453,7 @@ namespace filemanager
 
 #endif
 
-   int ImageSet::GetImage(
+   int32_t ImageSet::GetImage(
       oswindow oswindow,
       const char * psz,
       const wchar_t * lpcszExtra,
@@ -1462,7 +1462,7 @@ namespace filemanager
    {
       string strPath(psz);
 
-      int iImage = 0x80000000;
+      int32_t iImage = 0x80000000;
 
       if(gen::str::ends_ci(strPath, ".ca2"))
       {
@@ -1490,7 +1490,7 @@ namespace filemanager
       if(iFind >= 0)
       {
          string strProtocol = strPath.Left(iFind);
-         int i = 0;
+         int32_t i = 0;
          while(i < strProtocol.get_length() && isalnum(strProtocol[i]))
          {
             i++;
@@ -1595,7 +1595,7 @@ index Shell::GetCSIDL(LPITEMIDLIST lpiidl)
    SHGetMalloc(&lpmalloc);
    LPITEMIDLIST ppidl;
 
-   int csidla[] =
+   int32_t csidla[] =
    {
       CSIDL_DESKTOP,
       CSIDL_DRIVES,
@@ -1606,7 +1606,7 @@ index Shell::GetCSIDL(LPITEMIDLIST lpiidl)
       -1,
    };
 
-   int * pcsidl = csidla;
+   int32_t * pcsidl = csidla;
 
    while(*pcsidl != -1)
    {
@@ -1669,7 +1669,7 @@ void Shell::Free(base_array < LPITEMIDLIST, LPITEMIDLIST > & lpiidla)
 
    SHGetMalloc(&lpmalloc);
 
-   for(int i = 0; i < lpiidla.get_size(); i++)
+   for(int32_t i = 0; i < lpiidla.get_size(); i++)
    {
       lpmalloc->Free(lpiidla[i]);
    }

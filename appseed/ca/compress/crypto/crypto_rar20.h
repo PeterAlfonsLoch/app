@@ -20,10 +20,10 @@ namespace crypto
 
          uint32 SubstLong(uint32 t)
          {
-            return (uint32)SubstTable[(int)t & 255] |
-               ((uint32)SubstTable[(int)(t >> 8) & 255] << 8) |
-               ((uint32)SubstTable[(int)(t >> 16) & 255] << 16) |
-               ((uint32)SubstTable[(int)(t >> 24) & 255] << 24);
+            return (uint32)SubstTable[(int32_t)t & 255] |
+               ((uint32)SubstTable[(int32_t)(t >> 8) & 255] << 8) |
+               ((uint32)SubstTable[(int32_t)(t >> 16) & 255] << 16) |
+               ((uint32)SubstTable[(int32_t)(t >> 24) & 255] << 24);
          }
 
          void UpdateKeys(const byte *data);

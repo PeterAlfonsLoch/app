@@ -13,7 +13,7 @@
       return g_pfixedallocaWstring;
    fixed_alloc_array * pa = new fixed_alloc_array();
    bool bEnable = __enable_memory_tracking(FALSE);
-   int iCharSize = 2;
+   int32_t iCharSize = 2;
    try
    {
       pa->add(new fixed_alloc(ROUND4(32 * iCharSize), 1024));
@@ -100,14 +100,14 @@ verisimple_wstring::~verisimple_wstring()
    }
 }
 
-wchar_t * verisimple_wstring::alloc(int iCount)
+wchar_t * verisimple_wstring::alloc(int32_t iCount)
 {
    if(m_pwsz != NULL)
    {
       free(m_pwsz);
       m_pwsz = NULL;
    }
-   int iAlloc = (iCount + 1) * sizeof(wchar_t);
+   int32_t iAlloc = (iCount + 1) * sizeof(wchar_t);
    //m_pwsz = (wchar_t *) g_pfixedallocaWstring->alloc(iAlloc);
    m_pwsz = (wchar_t *) ca2_alloc(iAlloc);
    m_pwsz[iCount] = L'\0';
@@ -154,7 +154,7 @@ verisimple_wstring & verisimple_wstring::operator = (const wchar_t * pwsz)
 */
 
 
-wstringtou::wstringtou(string & str, int iAllocCount)
+wstringtou::wstringtou(string & str, int32_t iAllocCount)
 {
    m_pstringUtf8 = &str;
    m_pwsz = wstring_data::get_nil();

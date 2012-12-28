@@ -20,7 +20,7 @@ void strcat_dup(char * dest, const char * cat)
 }
 
 
-int stricmp_dup(const char * sz1, const char * sz2)
+int32_t stricmp_dup(const char * sz1, const char * sz2)
 {
    if(sz1 == NULL)
    {
@@ -33,7 +33,7 @@ int stricmp_dup(const char * sz1, const char * sz2)
    {
       return 1;
    }
-   int iCmp = 0;
+   int32_t iCmp = 0;
    while(*sz1 != '\0' && *sz2 != '\0')
    {
       iCmp = to_lower(*sz1) - to_lower(*sz2);
@@ -45,7 +45,7 @@ int stricmp_dup(const char * sz1, const char * sz2)
    return to_lower(*sz1) - to_lower(*sz2);
 }
 
-int strcmp_dup(const char * sz1, const char * sz2)
+int32_t strcmp_dup(const char * sz1, const char * sz2)
 {
    if(sz1 == NULL)
    {
@@ -58,7 +58,7 @@ int strcmp_dup(const char * sz1, const char * sz2)
    {
       return 1;
    }
-   int iCmp;
+   int32_t iCmp;
    while(*sz1 != '\0' && *sz2 != '\0')
    {
       iCmp = *sz1 - *sz2;
@@ -70,7 +70,7 @@ int strcmp_dup(const char * sz1, const char * sz2)
    return *sz1 - *sz2;
 }
 
-int strnicmp_dup(const char * sz1, const char * sz2, count iLen)
+int32_t strnicmp_dup(const char * sz1, const char * sz2, count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
@@ -85,7 +85,7 @@ int strnicmp_dup(const char * sz1, const char * sz2, count iLen)
    {
       return 1;
    }
-   int iCmp = 0;
+   int32_t iCmp = 0;
    while(iLen > 0 && *sz1 != '\0' && *sz2 != '\0')
    {
       iCmp = to_lower(*sz1) - to_lower(*sz2);
@@ -98,7 +98,7 @@ int strnicmp_dup(const char * sz1, const char * sz2, count iLen)
    return iCmp;
 }
 
-int strncmp_dup(const char * sz1, const char * sz2, count iLen)
+int32_t strncmp_dup(const char * sz1, const char * sz2, count iLen)
 {
    if(iLen <= 0)
       return 0; // equal
@@ -113,7 +113,7 @@ int strncmp_dup(const char * sz1, const char * sz2, count iLen)
    {
       return 1;
    }
-   int iCmp = 0;
+   int32_t iCmp = 0;
    while(iLen > 0 && *sz1 != '\0' && *sz2 != '\0')
    {
       iCmp = *sz1 - *sz2;
@@ -143,7 +143,7 @@ char * strrchr_dup(char * szStart, char ch)
 
 }
 
-char to_lower(int ch)
+char to_lower(int32_t ch)
 {
    if(ch >= 'A' && ch <= 'Z')
    {
@@ -258,7 +258,7 @@ char * strnistr_dup(const char * src, const char * find, int_ptr iLen)
 }
 
 
-void uitoa_dup(char * sz, uint64_t ui, int iBase)
+void uitoa_dup(char * sz, uint64_t ui, int32_t iBase)
 {
    if(ui == 0)
    {
@@ -266,10 +266,10 @@ void uitoa_dup(char * sz, uint64_t ui, int iBase)
       sz[1] = '\0';
       return;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(ui > 0)
    {
-      int iDigit = (ui % iBase);
+      int32_t iDigit = (ui % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -289,7 +289,7 @@ void uitoa_dup(char * sz, uint64_t ui, int iBase)
 
 
 
-void itoa_dup(char * sz, int64_t i, int iBase)
+void itoa_dup(char * sz, int64_t i, int32_t iBase)
 {
    if(i == 0)
    {
@@ -303,10 +303,10 @@ void itoa_dup(char * sz, int64_t i, int iBase)
       i = -i;
       bNegative = true;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
+      int32_t iDigit = (i % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -435,7 +435,7 @@ char * str_begins_inc_dup(const char * sz1, const char * prefix)
 }
 
 
-int str_begins_dup(const char * sz1, const char * prefix)
+int32_t str_begins_dup(const char * sz1, const char * prefix)
 {
    if(sz1 == NULL)
       return FALSE;
@@ -451,7 +451,7 @@ int str_begins_dup(const char * sz1, const char * prefix)
    return *prefix == '\0';
 }
 
-int str_begins_ci_dup(const char * sz1, const char * prefix)
+int32_t str_begins_ci_dup(const char * sz1, const char * prefix)
 {
    if(sz1 == NULL)
       return FALSE;
@@ -467,7 +467,7 @@ int str_begins_ci_dup(const char * sz1, const char * prefix)
    return *prefix == '\0';
 }
 
-int str_ends_ci_dup(const char * psz, const char * pszSuffix)
+int32_t str_ends_ci_dup(const char * psz, const char * pszSuffix)
 {
 
    count iLen = strlen_dup(psz);
@@ -504,12 +504,12 @@ int str_ends_ci_dup(const char * psz, const char * pszSuffix)
 #define DQUOTECHAR  '\"'
 
 
-void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int * numargs, int * numchars)
+void __cdecl parse_cmdline(char *cmdstart, char **argv, char *args, int32_t * numargs, int32_t * numchars)
 {
         char *p;
         char c;
-        int inquote;                    /* 1 = inside quotes */
-        int copychar;                   /* 1 = copy char to *args */
+        int32_t inquote;                    /* 1 = inside quotes */
+        int32_t copychar;                   /* 1 = copy char to *args */
         unsigned numslash;              /* num of backslashes seen */
 
         *numchars = 0;
@@ -719,27 +719,27 @@ CLASS_DECL_c char * strchr_dup(const char * sz, char ch)
 }
 
 
-int isdigit_dup(int ch)
+int32_t isdigit_dup(int32_t ch)
 {
    return ch >= '0' && ch <= '9';
 }
 
-int isxdigit_dup(int ch)
+int32_t isxdigit_dup(int32_t ch)
 {
    return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
 }
 
-int isalpha_dup(int ch)
+int32_t isalpha_dup(int32_t ch)
 {
    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
 }
 
-int isalnum_dup(int ch)
+int32_t isalnum_dup(int32_t ch)
 {
    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9');
 }
 
-int isspace_dup(int ch)
+int32_t isspace_dup(int32_t ch)
 {
    return ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n' || ch == '\t';
 }
@@ -786,7 +786,7 @@ CLASS_DECL_c vsstring itohex_dup(int64_t i)
    return vsstring(sz);
 }
 
-CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int iPad)
+CLASS_DECL_c vsstring itohexpad_dup(int64_t i, int32_t iPad)
 {
    vsstring str = itohex_dup(i);
    while(iPad > str.length())

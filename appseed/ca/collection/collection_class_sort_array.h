@@ -7,8 +7,8 @@ class class_sort_array :
 {
 public:
 
-   bool SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex);
-   void SortInsert(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t);
+   bool SortFind(int32_t (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex);
+   void SortInsert(int32_t (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t);
 
    virtual void QuickSort(
       TYPE & (BASE_CLASS:: * lpfnGet)(index),
@@ -25,16 +25,16 @@ public:
 template < class BASE_CLASS, class TYPE, class ARG_TYPE, class BASE_ARRAY >
 bool
 class_sort_array < BASE_CLASS, TYPE, ARG_TYPE, BASE_ARRAY >::
-SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex)
+SortFind(int32_t (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex)
 {
    if(this->get_size() == 0)
 	{
 		return false;
 	}
-   int iIntProperty = (((TYPE &)t).*lpfnIntSortProperty)();
+   int32_t iIntProperty = (((TYPE &)t).*lpfnIntSortProperty)();
 	index iLBound = iIndex;
 	index iUBound = this->get_size() - 1;
-	int iCompare;
+	int32_t iCompare;
 	while(true)
 	{
 		iIndex = (iUBound + iLBound) / 2;
@@ -62,7 +62,7 @@ SortFind(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t, index & iIndex)
 template < class BASE_CLASS, class TYPE, class ARG_TYPE, class BASE_ARRAY >
 void
 class_sort_array < BASE_CLASS, TYPE, ARG_TYPE, BASE_ARRAY >::
-SortInsert(int (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t)
+SortInsert(int32_t (TYPE::* lpfnIntSortProperty)(), ARG_TYPE t)
 {
 	
    index iIndex = 0;

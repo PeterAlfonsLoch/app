@@ -84,7 +84,7 @@ void HRCParserImpl::loadFileType(file_type *filetype)
    }
 }
 
-file_type *HRCParserImpl::chooseFileType(const char *fileName, const char *firstLine, int typeNo)
+file_type *HRCParserImpl::chooseFileType(const char *fileName, const char *firstLine, int32_t typeNo)
 {
    file_type_impl *best = NULL;
    double max_prior = 0;
@@ -124,7 +124,7 @@ file_type *HRCParserImpl::getFileType(const char *name) {
    return fileTypeHash[name];
 }
 
-file_type *HRCParserImpl::enumerateFileTypes(int index) {
+file_type *HRCParserImpl::enumerateFileTypes(int32_t index) {
    if (index < fileTypeVector.get_size()) return fileTypeVector.element_at(index);
    return NULL;
 }
@@ -133,7 +133,7 @@ count HRCParserImpl::getRegionCount() {
    return regionNamesVector.get_size();
 }
 
-class region *HRCParserImpl::getRegion(int id) {
+class region *HRCParserImpl::getRegion(int32_t id) {
    if (id < 0 || id >= regionNamesVector.get_size()){
       return NULL;
    }
@@ -290,7 +290,7 @@ void HRCParserImpl::addPrototype(xml::node *elem)
             delete matchRE;
             continue;
          };
-         int ctype = content->get_name() == "filename" ? 0 : 1;
+         int32_t ctype = content->get_name() == "filename" ? 0 : 1;
          double prior = content->get_name() == "filename" ? 2 : 1;
          if(content->find_attr("weight") != NULL)
          {

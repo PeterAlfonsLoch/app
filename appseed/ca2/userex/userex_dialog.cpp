@@ -124,8 +124,8 @@ void dialog::on_position_parent_frame()
 {
    rect rectOpen;
    Bergedge.get_screen_rect(rectOpen);
-   int iWidth = rectOpen.width();
-   int iHeight = rectOpen.height();
+   int32_t iWidth = rectOpen.width();
+   int32_t iHeight = rectOpen.height();
    rectOpen.deflate(iWidth / 5, iHeight / 5);
    m_pframe->SetWindowPos(ZORDER_TOP, rectOpen.left,
       rectOpen.top,
@@ -173,11 +173,11 @@ CLASS_DECL_ca2 void DDX_Text(::user::data_exchange * pdx, id idControl, string &
 {
 }
 
-CLASS_DECL_ca2 void DDV_MaxChars(::user::data_exchange * pdx, string & str, int iMax)
+CLASS_DECL_ca2 void DDV_MaxChars(::user::data_exchange * pdx, string & str, int32_t iMax)
 {
 }
 
-CLASS_DECL_ca2 void DDX_Check(::user::data_exchange * pdx, id idControl, int & iBool)
+CLASS_DECL_ca2 void DDX_Check(::user::data_exchange * pdx, id idControl, int32_t & iBool)
 {
 }
 

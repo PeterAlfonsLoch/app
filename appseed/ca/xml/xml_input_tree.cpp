@@ -88,7 +88,7 @@ namespace xml
    }
 
 
-   bool input_tree::get_attr(const char * lpcszName, int & iValue)
+   bool input_tree::get_attr(const char * lpcszName, int32_t & iValue)
    {
       return m_pnode->get_attr(lpcszName, iValue);
    }

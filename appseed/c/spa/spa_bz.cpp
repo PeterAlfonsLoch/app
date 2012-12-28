@@ -1,11 +1,11 @@
 #include "framework.h"
 
-const int g_iGzUncompressLen = 1024 * 1024;
+const int32_t g_iGzUncompressLen = 1024 * 1024;
 char * g_pchGzUncompressBuffer = NULL;
 
 
 
-int bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
+int32_t bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
 {
    if(g_pchGzUncompressBuffer == NULL)
    {
@@ -25,7 +25,7 @@ int bzuncompress(LPCSTR lpcszUncompressed, LPCSTR lpcszGzFileCompressed)
       BZ2_bzclose(file);
       return -1;
    }
-   int uncomprLen;
+   int32_t uncomprLen;
    while((uncomprLen = BZ2_bzread(file, g_pchGzUncompressBuffer, g_iGzUncompressLen)) > 0)
    {
       fwrite_dup(g_pchGzUncompressBuffer, 1, uncomprLen, fileUn);

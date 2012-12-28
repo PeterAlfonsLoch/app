@@ -39,7 +39,7 @@ namespace compress
          int64 m_UnpackSize;
          bool m_IsSolid;
 
-         uint32 ReadBits(int numBits);
+         uint32 ReadBits(int32_t numBits);
          HRESULT CopyBlock(uint32 distance, uint32 len);
 
          uint32 DecodeNum(const uint32 *posTab);
@@ -56,7 +56,7 @@ namespace compress
          uint32 Place[256],PlaceA[256],PlaceB[256],PlaceC[256];
          uint32 NToPl[256],NToPlB[256],NToPlC[256];
          uint32 FlagBuf,AvrPlc,AvrPlcB,AvrLn1,AvrLn2,AvrLn3;
-         int Buf60,NumHuf,StMode,LCount,FlagsCnt;
+         int32_t Buf60,NumHuf,StMode,LCount,FlagsCnt;
          uint32 Nhfb,Nlzb,MaxDist3;
 
          void InitStructures();

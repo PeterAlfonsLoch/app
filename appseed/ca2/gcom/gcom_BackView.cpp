@@ -199,7 +199,7 @@ namespace gcom
 
       }
 
-      int Main::SetState(e_state estate)
+      int32_t Main::SetState(e_state estate)
       {
          m_estate = estate;
          switch(estate)
@@ -220,7 +220,7 @@ namespace gcom
 
 #define ONRESIZEDELAY 5000
 
-      int Main::PulseEvent(e_event eevent)
+      int32_t Main::PulseEvent(e_event eevent)
       {
 
          if(!IsEnabled())

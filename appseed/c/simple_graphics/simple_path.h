@@ -48,9 +48,9 @@ public:
 	//
 	// Returns:     None
 	//
-	bool add_round_rect(const RECT & rect, int dia);
-   bool add_round_top_left(const RECT & rect, int dia);
-   bool add_round_bottom_right(const RECT & rect, int dia);
+	bool add_round_rect(const RECT & rect, int32_t dia);
+   bool add_round_top_left(const RECT & rect, int32_t dia);
+   bool add_round_bottom_right(const RECT & rect, int32_t dia);
 
 
    using os_simple_path::add_line;

@@ -22,7 +22,7 @@ namespace database
       virtual ::database::server * get_data_server();
 
 
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
 
    };

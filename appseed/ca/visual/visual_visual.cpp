@@ -18,7 +18,7 @@ namespace visual
 
    void visual::Polygon(const point_array & pointa)
    {
-      m_pdc->Polygon(pointa.get_data(), (int) pointa.get_size());
+      m_pdc->Polygon(pointa.get_data(), (int32_t) pointa.get_size());
    }
 
 

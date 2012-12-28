@@ -125,7 +125,7 @@ bool command_target_interface::_001OnCommand(id id)
    gen::dispatch::signal_ptr_array signalptra;
    get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
    bool bOk = false;
-   for(int i = 0; i < signalptra.get_size(); i++)
+   for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
       BaseCommand command(signalptra[i]->m_psignal);
       command.m_id = id;
@@ -153,7 +153,7 @@ bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
    gen::dispatch::signal_ptr_array signalptra;
    get_command_signal_array(BaseCmdMsg::type_cmdui, signalptra, pcmdui->m_id);
    bool bOk = false;
-   for(int i = 0; i < signalptra.get_size(); i++)
+   for(int32_t i = 0; i < signalptra.get_size(); i++)
    {
       base_cmd_ui cmdui(signalptra[i]->m_psignal);
       cmdui.m_pcmdui = pcmdui;
@@ -171,7 +171,7 @@ void command_target_interface::get_command_signal_array(
    command_signalid signalid;
    signalid.m_id = id;
    // collect all signals with the specified command id (pszId)
-   for(int i = 0; i < m_signalidaCommand.get_size(); i++)
+   for(int32_t i = 0; i < m_signalidaCommand.get_size(); i++)
    {
       class ::gen::signalid * pid = m_signalidaCommand[i];
       if(pid->matches(&signalid))

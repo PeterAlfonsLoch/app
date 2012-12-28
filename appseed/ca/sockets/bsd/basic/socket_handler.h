@@ -64,7 +64,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void RegStdLog(StdLog *log);
 
          /** Log error to log class for print out / storage. */
-         void LogError(socket *p,const string & user_text,int err,const string & sys_err, ::gen::log::level::e_level elevel = ::gen::log::level::warning);
+         void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::gen::log::level::e_level elevel = ::gen::log::level::warning);
 
          /** add socket instance to socket ::collection::map. Removal is always automatic. */
          void add(socket *);
@@ -76,13 +76,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void Set(SOCKET s,bool bRead,bool bWrite,bool bException = true);
 
          /** Wait for events, generate callbacks. */
-         int Select(int sec, int usec);
+         int32_t Select(int32_t sec, int32_t usec);
 
          /** This method will not return until an event has been detected. */
-         int Select();
+         int32_t Select();
 
          /** Wait for events, generate callbacks. */
-         int Select(struct timeval *tsel);
+         int32_t Select(struct timeval *tsel);
 
          /** Check that a socket really is handled by this socket handler. */
          bool Valid(socket *);
@@ -99,7 +99,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Connection pool
          /** find available open connection (used by connection pool). */
-         socket_handler_base::PoolSocket *FindConnection(int type,const string & protocol,sockets::address&);
+         socket_handler_base::PoolSocket *FindConnection(int32_t type,const string & protocol,sockets::address&);
          /** Enable connection pool (by default disabled). */
          void EnablePool(bool x = true);
          /** Check pool status.
@@ -140,11 +140,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Queue a dns request.
          \param host Hostname to be resolved
          \param port Port number will be echoed in socket::OnResolved callback */
-         int Resolve(socket *,const string & host,port_t port);
-         int Resolve6(socket *,const string & host,port_t port);
+         int32_t Resolve(socket *,const string & host,port_t port);
+         int32_t Resolve6(socket *,const string & host,port_t port);
          /** Do a reverse dns lookup. */
-         int Resolve(socket *,in_addr a);
-         int Resolve(socket *,in6_addr& a);
+         int32_t Resolve(socket *,in_addr a);
+         int32_t Resolve(socket *,in6_addr& a);
          /** get listen port of asynchronous dns server. */
          port_t GetResolverPort();
          /** Resolver thread ready for queries. */
@@ -153,17 +153,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool Resolving(socket *);
 
          /** Fetch unique trigger id. */
-         int TriggerID(socket *src);
+         int32_t TriggerID(socket *src);
          /** Subscribe socket to trigger id. */
-         bool Subscribe(int id, socket *dst);
+         bool Subscribe(int32_t id, socket *dst);
          /** Unsubscribe socket from trigger id. */
-         bool Unsubscribe(int id, socket *dst);
+         bool Unsubscribe(int32_t id, socket *dst);
          /** Execute OnTrigger for subscribed sockets.
          \param id Trigger ID
          \param data Data passed from source to destination
          \param erase Empty trigger id source and destination maps if 'true',
          Leave them in place if 'false' - if a trigger should be called many times */
-         void Trigger(int id, socket::TriggerData& data, bool erase = true);
+         void Trigger(int32_t id, socket::TriggerData& data, bool erase = true);
 
          /** Indicates that the handler runs under socket_thread. */
          void SetSlave(bool x = true);
@@ -190,8 +190,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          fd_set m_rfds; ///< file descriptor set monitored for read events
          fd_set m_wfds; ///< file descriptor set monitored for write events
          fd_set m_efds; ///< file descriptor set monitored for exceptions
-         int m_preverror; ///< debug select() error
-         int m_errcnt; ///< debug select() error
+         int32_t m_preverror; ///< debug select() error
+         int32_t m_errcnt; ///< debug select() error
          time_t m_tlast; ///< timeout control
 
          // state lists
@@ -206,14 +206,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          port_t m_socks4_port; ///< Socks4 server port number
          string m_socks4_userid; ///< Socks4 userid
          bool m_bTryDirect; ///< Try direct connection if socks4 server fails
-         int m_resolv_id; ///< Resolver id counter
+         int32_t m_resolv_id; ///< Resolver id counter
          resolv_server *m_resolver; ///< Resolver thread pointer
          port_t m_resolver_port; ///< Resolver listen port
          ::collection::map < socket *, socket *, bool, bool> m_resolve_q; ///< resolve queue
          bool m_b_enable_pool; ///< Connection pool enabled if true
-         int m_next_trigger_id; ///< Unique trigger id counter
-         ::collection::map<int, int, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
-         ::collection::map<int, int, ::collection::map<socket *, socket *, bool, bool>, ::collection::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
+         int32_t m_next_trigger_id; ///< Unique trigger id counter
+         ::collection::map<int32_t, int32_t, socket *, socket *> m_trigger_src; ///< mapping trigger id to source socket
+         ::collection::map<int32_t, int32_t, ::collection::map<socket *, socket *, bool, bool>, ::collection::map<socket *, socket *, bool, bool> & > m_trigger_dst; ///< mapping trigger id to destination sockets
          bool m_slave; ///< Indicates that this is a socket_handler_base run in socket_thread
       };
 

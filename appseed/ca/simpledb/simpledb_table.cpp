@@ -30,7 +30,7 @@ namespace simpledb
 
       ::xml::node * pfields = m_xmldocumentMeta.get_root()->get_child("fields");
 
-      for(int i = 0; i < pfields->get_children_count(); i++)
+      for(int32_t i = 0; i < pfields->get_children_count(); i++)
       {
          ::xml::node * pfield = pfields->child_at(i);
          if(pfield->get_name() != "field")

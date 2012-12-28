@@ -116,7 +116,7 @@ namespace bergedge
 
    }
 
-   int bergedge::exit_instance()
+   int32_t bergedge::exit_instance()
    {
       try
       {
@@ -181,7 +181,7 @@ namespace bergedge
 
    void bergedge::initialize_bergedge_application_interface()
    {
-      int iCount = 32; // todo: get from bergedge profile
+      int32_t iCount = 32; // todo: get from bergedge profile
       System.factory().creatable < ::bergedge::document > (iCount);
       System.factory().creatable < ::bergedge::view > (iCount);
       System.factory().creatable < ::bergedge::pane_view > (iCount);
@@ -345,7 +345,7 @@ namespace bergedge
 
          }
 
-         for(int i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
+         for(int32_t i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
          {
 
             strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];
@@ -897,7 +897,7 @@ alt1:
 
    }
 
-   int bergedge::main()
+   int32_t bergedge::main()
    {
 
 

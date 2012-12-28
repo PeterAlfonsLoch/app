@@ -70,13 +70,13 @@ static const unsigned char index_hex[256] = {
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
 {
    const unsigned char *s = (const unsigned char *)string;
-   int section = 0;        /* index of the current section (a 16-bit
+   int32_t section = 0;        /* index of the current section (a 16-bit
                            * piece of the address */
-   int double_colon = -1;  /* index of the section after the first
+   int32_t double_colon = -1;  /* index of the section after the first
                            * 16-bit group of zeros represented by
                            * the double colon */
-   unsigned int val;
-   int len;
+   unsigned int32_t val;
+   int32_t len;
 
    /* Handle initial (double) colon */
    if (*s == ':') {
@@ -159,8 +159,8 @@ CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
 
    if (double_colon != -1) {
       /* Stretch the double colon */
-      int tosection;
-      int ncopy = section - double_colon;
+      int32_t tosection;
+      int32_t ncopy = section - double_colon;
       for (tosection = 7; ncopy--; tosection--) {
          addr->pr_s6_addr16[tosection] =
             addr->pr_s6_addr16[double_colon + ncopy];
@@ -190,15 +190,15 @@ CLASS_DECL_c vsstring to_string(const in6_addr * addr)
 
 #define STUFF(c) { str += (c); }
 
-   int double_colon = -1;          /* index of the first 16-bit
+   int32_t double_colon = -1;          /* index of the first 16-bit
                                    * group of zeros represented
                                    * by the double colon */
-   int double_colon_length = 1;    /* use double colon only if
+   int32_t double_colon_length = 1;    /* use double colon only if
                                    * there are two or more 16-bit
                                    * groups of zeros */
-   int zero_length;
-   int section;
-   unsigned int val;
+   int32_t zero_length;
+   int32_t section;
+   unsigned int32_t val;
 
    /* Scan to find the placement of the double colon */
    for (section = 0; section < 8; section++) {
@@ -309,22 +309,22 @@ CLASS_DECL_c bool from_string(in_addr * addrParam, const char * string)
    if(stra.get_count() != 4)
       return false;
 
-   int i1 = atoi_dup(stra[0]);
+   int32_t i1 = atoi_dup(stra[0]);
 
    if(i1 < 0 || i1 > 255)
       return false;
 
-   int i2 = atoi_dup(stra[1]);
+   int32_t i2 = atoi_dup(stra[1]);
 
    if(i2 < 0 || i2 > 255)
       return false;
 
-   int i3 = atoi_dup(stra[2]);
+   int32_t i3 = atoi_dup(stra[2]);
 
    if(i3 < 0 || i3 > 255)
       return false;
 
-   int i4 = atoi_dup(stra[3]);
+   int32_t i4 = atoi_dup(stra[3]);
 
    if(i4 < 0 || i4 > 255)
       return false;
@@ -374,7 +374,7 @@ CLASS_DECL_c vsstring to_string(const in_addr * addrParam)
 }
 
 
-CLASS_DECL_c int c_inet_pton(int af, const char *src, void *dst)
+CLASS_DECL_c int32_t c_inet_pton(int32_t af, const char *src, void *dst)
 {
 
    if(af == AF_INET)
@@ -409,7 +409,7 @@ CLASS_DECL_c int c_inet_pton(int af, const char *src, void *dst)
 }
 
 
-CLASS_DECL_c vsstring c_inet_ntop(int af, const void *src)
+CLASS_DECL_c vsstring c_inet_ntop(int32_t af, const void *src)
 {
 
    vsstring str;
@@ -435,7 +435,7 @@ CLASS_DECL_c vsstring c_inet_ntop(int af, const void *src)
 
 }
 
-CLASS_DECL_c const char * c_inet_ntop(int af, const void *src, char *dst, int cnt)
+CLASS_DECL_c const char * c_inet_ntop(int32_t af, const void *src, char *dst, int32_t cnt)
 {
 
    if(dst == NULL)

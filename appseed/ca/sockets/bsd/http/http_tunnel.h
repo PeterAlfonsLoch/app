@@ -17,7 +17,7 @@
          };
          http_tunnel(socket_handler_base & h);
          string      m_strProxy;
-         int         m_iProxyPort;
+         int32_t         m_iProxyPort;
          bool        m_bSslTunnel;
          bool        m_bOk ;
          string m_host; ///< Hostname from url_in
@@ -28,7 +28,7 @@
          primitive::memory      m_memoryBody;
          primitive::memory      m_memoryBuf;
          gen::memory_file m_fileBody;
-         int         m_iContentLength;
+         int32_t         m_iContentLength;
          bool        m_bHeaders;
          bool        m_bDirect;
          string      m_strPasswordFile;

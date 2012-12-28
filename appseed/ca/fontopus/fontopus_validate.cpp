@@ -9,13 +9,13 @@
 
 #endif
 
-string chunk_split (const string & body, int chunklen = 76, const string & end = "\r\n");
+string chunk_split (const string & body, int32_t chunklen = 76, const string & end = "\r\n");
 
 
-string chunk_split (const string & body, int chunklen, const string & end)
+string chunk_split (const string & body, int32_t chunklen, const string & end)
 {
 
-   int pos = 0;
+   int32_t pos = 0;
    string strRet;
    long iRead;
    while(pos < body.get_length())
@@ -424,8 +424,8 @@ namespace fontopus
       {
          m_ptabview->GetParentFrame()->get_parent()->GetClientRect(rectOpen);
       }
-      int iWidth = rectOpen.width();
-      int iHeight = rectOpen.height();
+      int32_t iWidth = rectOpen.width();
+      int32_t iHeight = rectOpen.height();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
       simple_frame_window * pframe = dynamic_cast < simple_frame_window * > (m_pviewAuth->GetTopLevelParent());
       if(pframe != NULL)
@@ -684,7 +684,7 @@ namespace fontopus
 
       post["hash"] = straHash.implode(";");
       post["source"] = straHash.implode(";");
-      for(int i = 0; i < 3; i++)
+      for(int32_t i = 0; i < 3; i++)
       {
          if(Application.http().get(strUrl, strResponse, post, headers, set))
             break;
@@ -728,7 +728,7 @@ namespace fontopus
       return "";
    }
 
-   int login_thread::run()
+   int32_t login_thread::run()
    {
       ca4::http::e_status estatus;
       string strResponse = Login(&estatus);
@@ -850,7 +850,7 @@ namespace fontopus
       if(m_straRequestingServer.get_count() > 0)
       {
          string strLogin;
-         for(int i = 0; i < m_straRequestingServer.get_count(); i++)
+         for(int32_t i = 0; i < m_straRequestingServer.get_count(); i++)
          {
             m_strRequestingServer  = m_straRequestingServer[i];
             strLogin = NetLogin(pestatus);
@@ -907,7 +907,7 @@ namespace fontopus
             straLicense.explode(";", strLicense);
             if(straLicense.get_count() != 2)
                return ""; // license validation
-            int iPathCount = 0;
+            int32_t iPathCount = 0;
             time_t timeLicense = System.datetime().strtotime(NULL, straLicense[0], 0, iPathCount);
             // TODO: take with timeNow, it should be always be greater than before.
             time_t timeNow = time(NULL);
@@ -977,7 +977,7 @@ namespace fontopus
 
       string strRsaModulus;
 
-      for(int iRetry = 0; iRetry <= 8; iRetry++)
+      for(int32_t iRetry = 0; iRetry <= 8; iRetry++)
       {
 
          if(iRetry > 0)
@@ -1296,7 +1296,7 @@ namespace fontopus
 
       memory.allocate(2048);
 
-      int i = RSA_public_encrypt((int) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), memory.get_data(), rsa, RSA_PKCS1_PADDING);
+      int32_t i = RSA_public_encrypt((int32_t) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), memory.get_data(), rsa, RSA_PKCS1_PADDING);
 
       const char * psz = ERR_error_string(ERR_get_error(), NULL);
 
@@ -1358,7 +1358,7 @@ namespace fontopus
       string strFilename;
       string strResponse;
       gen::property_set set;
-      for(int i = 0; i < m_httpexecutea.get_size(); i++)
+      for(int32_t i = 0; i < m_httpexecutea.get_size(); i++)
       {
          strFilename = System.file().time_square(get_app());
          System.http().download(
@@ -1571,8 +1571,8 @@ namespace fontopus
       pview->set_view_creator(this);
       rect rectOpen;
       System.get_screen_rect(rectOpen);
-      int iWidth = rectOpen.width();
-      int iHeight = rectOpen.width();
+      int32_t iWidth = rectOpen.width();
+      int32_t iHeight = rectOpen.width();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
       m_ptabview->GetParentFrame()->SetWindowPos(ZORDER_TOP, rectOpen.left,
          rectOpen.top,

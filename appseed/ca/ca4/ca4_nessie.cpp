@@ -8,7 +8,7 @@ namespace ca4
    {
       string strFormat;
       string str;
-//      int i;
+//      int32_t i;
       NESSIEstruct ns;
       u8 digest[DIGESTBYTES];
       NESSIEinit(&ns);
@@ -35,7 +35,7 @@ namespace ca4
 
    string file::nessie(ex1:: file * pfile)
    {
-      int iBufSize = 1024 * 256;
+      int32_t iBufSize = 1024 * 256;
       unsigned char * buf = new unsigned char[iBufSize];
       NESSIEstruct ns;
       NESSIEinit(&ns);
@@ -48,7 +48,7 @@ namespace ca4
       NESSIEfinalize(&ns, digest);
       string str;
       string strFormat;
-      for(int i = 0; i < DIGESTBYTES; i++)
+      for(int32_t i = 0; i < DIGESTBYTES; i++)
       {
          strFormat.Format("%02x", digest[i]);
          str += strFormat;

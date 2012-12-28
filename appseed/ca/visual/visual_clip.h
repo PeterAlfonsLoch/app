@@ -15,7 +15,7 @@ namespace visual
    protected:
       ::ca::region   m_rgn; // applied clipping region   
       ::ca::region    m_rgnOld; // previous clipping region
-      int      m_iOldType; // previous clipping region type
+      int32_t      m_iOldType; // previous clipping region type
       ::ca::graphics   *   m_pdc; // clipped device context
       ::ca::window *  m_pwnd; // ::ca::window that draws at the device context
       bool   m_bAcquired; // Do function has been called

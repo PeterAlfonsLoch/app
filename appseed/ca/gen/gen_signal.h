@@ -162,7 +162,7 @@ namespace gen
       template < class T >
       bool is_connected(T * psignalizable, void (T::*pfn)(signal_object *))
       {
-         for(int i = 0; i < m_delegatea.get_size(); i++)
+         for(int32_t i = 0; i < m_delegatea.get_size(); i++)
          {
             signal_delegate_instance < T > * pdelegate = m_delegatea.typed_ptr_at < signal_delegate_instance < T > > (i);
             if(pdelegate != NULL && pdelegate->m_psignalizable == psignalizable && pdelegate->m_pfn == pfn)
@@ -312,7 +312,7 @@ namespace gen
          }
 
       public:
-         int                  m_iHandling;
+         int32_t                  m_iHandling;
          signal_array          m_signala;
 
 
@@ -325,7 +325,7 @@ namespace gen
    inline void dispatch::signal_array::
    GetSignalsById(dispatch::signal_ptr_array & signalptra, signalid * pid)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          signal & signal = this->element_at(i);
          if(signal.m_pid->matches(pid))
@@ -337,7 +337,7 @@ namespace gen
 
    inline dispatch::signal * dispatch::signal_array::GetSignalById(signalid * pid)
    {
-      for(int i = 0; i < this->get_size(); i++)
+      for(int32_t i = 0; i < this->get_size(); i++)
       {
          signal & signal = this->element_at(i);
          if(signal.m_pid->matches(pid))

@@ -80,7 +80,7 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
 
    LPXNode lpnodeId = NULL;
 
-   for(int ui = 0; ui < lpnodeType->childs.get_count(); ui++)
+   for(int32_t ui = 0; ui < lpnodeType->childs.get_count(); ui++)
    {
 
       lpnodeId = lpnodeType->childs[ui];
@@ -102,7 +102,7 @@ found_id:
 
    LPXNode lpnodeLocalization = NULL;
 
-   for(int ui = 0; ui < lpnodeId->childs.get_count(); ui++)
+   for(int32_t ui = 0; ui < lpnodeId->childs.get_count(); ui++)
    {
 
       lpnodeLocalization = lpnodeId->childs[ui];
@@ -173,7 +173,7 @@ CLASS_DECL_c vsstring fetch_latest_build_number(const char * pszVersion)
 
    }
 
-   int iRetry = 0;
+   int32_t iRetry = 0;
 
 RetryBuildNumber:
 

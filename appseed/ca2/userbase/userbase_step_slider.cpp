@@ -61,8 +61,8 @@ namespace userbase
    void step_slider::_001OnLButtonUp(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::mouse, pmouse, pobj);
-      int iLButtonUp = hit_test(pmouse->m_pt);
-      int iMin, iMax;
+      int32_t iLButtonUp = hit_test(pmouse->m_pt);
+      int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
       m_pscalar->GetMaxScalar(m_iScalar, iMax);
       if(iLButtonUp == m_iLButtonDown &&
@@ -99,13 +99,13 @@ namespace userbase
          RGB(150, 200, 255),
          127);
       
-      int iMin, iMax, iValue;
+      int32_t iMin, iMax, iValue;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
       m_pscalar->GetMaxScalar(m_iScalar, iMax);
       m_pscalar->GetScalar(m_iScalar, iValue);
 
       rect rect;
-      for(int i = iMin; i <= iMax; i++)
+      for(int32_t i = iMin; i <= iMax; i++)
       {
          GetStepRect(i, rect);
          if(i == iValue)
@@ -150,9 +150,9 @@ namespace userbase
    }
 
 
-   void step_slider::GetStepHoverRect(int iStep, LPRECT lprect)
+   void step_slider::GetStepHoverRect(int32_t iStep, LPRECT lprect)
    {
-      int iMin, iMax;
+      int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
       m_pscalar->GetMaxScalar(m_iScalar, iMax);
       if((iMax - iMin) == 0)
@@ -165,27 +165,27 @@ namespace userbase
       lprect->left = (LONG) (dWidth * (iStep - iMin));
       lprect->right = (LONG) (dWidth * (iStep - iMin + 1));
    }
-   void step_slider::GetStepRect(int iStep, LPRECT lprect)
+   void step_slider::GetStepRect(int32_t iStep, LPRECT lprect)
    {
-      int iMin, iMax;
+      int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
       m_pscalar->GetMaxScalar(m_iScalar, iMax);
 
       if((iMax - iMin) == 0)
          return;
       GetStepHoverRect(iStep, lprect);
-      int halfm = (lprect->right - lprect->left - 2) / 2;
+      int32_t halfm = (lprect->right - lprect->left - 2) / 2;
       lprect->left +=  halfm;
       lprect->right -=  halfm;
    }
 
-   int step_slider::hit_test(point point)
+   int32_t step_slider::hit_test(point point)
    {
       rect rect;
-      int iMin, iMax;
+      int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
       m_pscalar->GetMaxScalar(m_iScalar, iMax);
-      for(int i = iMin; i <= iMax; i++)
+      for(int32_t i = iMin; i <= iMax; i++)
       {
          GetStepHoverRect(i, rect);
          if(rect.contains(point))

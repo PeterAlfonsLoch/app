@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_c vsstring i64toa_dup(int64_t i, int iBase)
+CLASS_DECL_c vsstring i64toa_dup(int64_t i, int32_t iBase)
 {
 
    char sz[128 + 64];
@@ -18,10 +18,10 @@ CLASS_DECL_c vsstring i64toa_dup(int64_t i, int iBase)
       i = -i;
       bNegative = true;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
+      int32_t iDigit = (i % iBase);
       char ch;
       if(iDigit <= 9)
       {
@@ -57,7 +57,7 @@ CLASS_DECL_c vsstring i64toa_dup(int64_t i)
 
 
 
-CLASS_DECL_c vsstring ui64toa_dup(int64_t i, int iBase)
+CLASS_DECL_c vsstring ui64toa_dup(int64_t i, int32_t iBase)
 {
 
    char sz[128 + 64];
@@ -68,10 +68,10 @@ CLASS_DECL_c vsstring ui64toa_dup(int64_t i, int iBase)
       sz[1] = '\0';
       return sz;
    }
-   int iIndex = 0;
+   int32_t iIndex = 0;
    while(i > 0)
    {
-      int iDigit = (i % iBase);
+      int32_t iDigit = (i % iBase);
       char ch;
       if(iDigit <= 9)
       {

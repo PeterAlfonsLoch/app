@@ -6,12 +6,12 @@ void PASCAL base_exception::operator delete(void * pbData)
    ::radix::object::operator delete(pbData);
 }
 
-void PASCAL base_exception::operator delete(void * pbData,   const char * /* lpszFileName */, int /* nLine */)
+void PASCAL base_exception::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
 {
    operator delete(pbData);
 }
 
-base_exception::base_exception(::ca::application * papp, unsigned int uiSkip) :
+base_exception::base_exception(::ca::application * papp, unsigned int32_t uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
 {
@@ -20,7 +20,7 @@ base_exception::base_exception(::ca::application * papp, unsigned int uiSkip) :
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(::ca::application * papp, bool bAutoDelete, unsigned int uiSkip) :
+base_exception::base_exception(::ca::application * papp, bool bAutoDelete, unsigned int32_t uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
 {
@@ -79,11 +79,11 @@ string base_exception::get_message(PUINT pnHelpContext)
 
 
 
-int base_exception::ReportError(UINT nType /* = MB_OK */,
+int32_t base_exception::ReportError(UINT nType /* = MB_OK */,
    const char * pszMessageId /* = NULL */)
 {
    string   strErrorMessage;
-   int     nDisposition;
+   int32_t     nDisposition;
    UINT    nHelpContext;
 
    // nHelpContext should come with the message "<helpcontext id=\"123\" />"

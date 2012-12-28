@@ -131,7 +131,7 @@ namespace database
       signal.m_key.m_idKey = key;
       signal.m_key.m_idIndex = idIndex;
       signal.m_puh = puh;
-      for(int i = 0; i < client_array::get_count(); i++)
+      for(int32_t i = 0; i < client_array::get_count(); i++)
       {
          client_array::element_at(i)->data_on_before_change(&signal);
          if(!signal.m_bOk)
@@ -150,7 +150,7 @@ namespace database
       signal.m_key.m_idKey       = key;
       signal.m_key.m_idIndex     = idIndex;
       signal.m_puh = puh;
-      for(int i = 0; i < client_array::get_count(); i++)
+      for(int32_t i = 0; i < client_array::get_count(); i++)
       {
          client_array::element_at(i)->data_on_after_change(&signal);
       }

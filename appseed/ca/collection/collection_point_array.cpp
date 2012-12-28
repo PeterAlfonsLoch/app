@@ -5,9 +5,9 @@ point_array::~point_array()
 {
 }
 
-void point_array::offset(int x, int y)
+void point_array::offset(int32_t x, int32_t y)
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i).x += x;
       this->element_at(i).y += y;
@@ -24,12 +24,12 @@ void point_array::offset(int x, int y)
 void point_array::rotate(double dAngle)
 {
 
-   int x;
-   int y;
+   int32_t x;
+   int32_t y;
    double dCos = cos(dAngle);
    double dSin = sin(dAngle);
 
-   for(int i = 0; i < get_count(); i++)
+   for(int32_t i = 0; i < get_count(); i++)
 	{
       x = element_at(i).x;
       y = element_at(i).y;
@@ -39,10 +39,10 @@ void point_array::rotate(double dAngle)
 
 }
 
-	/*public void translatePolygonD(PolygonD p, int dx, int dy)
+	/*public void translatePolygonD(PolygonD p, int32_t dx, int32_t dy)
 		{
 		double lx, ly;
-		for(int i = 0; i < p.npoints; i++)
+		for(int32_t i = 0; i < p.npoints; i++)
 			{
 			p.xpoints[i] += dx;
 			p.ypoints[i] += dy;
@@ -76,7 +76,7 @@ void point_array::get_bounding_rect(LPRECT lprect, const POINT * lppoint, count 
       lprect->right     = lppoint[0].x;
       lprect->bottom    = lppoint[0].y;
 
-      for(int i = 1; i < count; i++)
+      for(int32_t i = 1; i < count; i++)
       {
          if(lppoint[i].x < lprect->left)
             lprect->left = lppoint[i].x;
@@ -107,7 +107,7 @@ point64_array::~point64_array()
 
 void point64_array::offset(int64_t x, int64_t y)
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i).x += x;
       this->element_at(i).y += y;
@@ -121,7 +121,7 @@ pointd_array::~pointd_array()
 
 void pointd_array::offset(double x, double y)
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i).x += x;
       this->element_at(i).y += y;
@@ -157,7 +157,7 @@ void pointd_array::get_bounding_rect(LPRECTD lprect, const POINTD * lppoint, cou
       lprect->right     = lppoint[0].x;
       lprect->bottom    = lppoint[0].y;
 
-      for(int i = 1; i < count; i++)
+      for(int32_t i = 1; i < count; i++)
       {
          if(lppoint[i].x < lprect->left)
             lprect->left = lppoint[i].x;

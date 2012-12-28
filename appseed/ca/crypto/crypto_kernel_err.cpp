@@ -95,7 +95,7 @@ err_reporting_init(const char *ident) {
 }
 
 void
-err_report(int priority, const char *format, ...) {
+err_report(int32_t priority, const char *format, ...) {
   va_list args;
 
   if (priority <= err_level) {
@@ -107,7 +107,7 @@ err_report(int priority, const char *format, ...) {
     }
 #ifdef ERR_REPORTING_SYSLOG
     if (1) { /* FIXME: Make this a runtime option. */
-      int syslogpri;
+      int32_t syslogpri;
 
       switch (priority) {
       case err_level_emergency:

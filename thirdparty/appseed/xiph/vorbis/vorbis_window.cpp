@@ -2094,12 +2094,12 @@ static const float *const vwin[8] = {
   vwin8192,
 };
 
-const float *_vorbis_window_get(int n){
+const float *_vorbis_window_get(int32_t n){
   return vwin[n];
 }
 
-void _vorbis_apply_window(float *d,int *winno,long *blocksizes,
-                          int lW,int W,int nW){
+void _vorbis_apply_window(float *d,int32_t *winno,long *blocksizes,
+                          int32_t lW,int32_t W,int32_t nW){
   lW=(W?lW:0);
   nW=(W?nW:0);
 
@@ -2117,7 +2117,7 @@ void _vorbis_apply_window(float *d,int *winno,long *blocksizes,
     long rightbegin=n/2+n/4-rn/4;
     long rightend=rightbegin+rn/2;
 
-    int i,p;
+    int32_t i,p;
 
     for(i=0;i<leftbegin;i++)
       d[i]=0.f;

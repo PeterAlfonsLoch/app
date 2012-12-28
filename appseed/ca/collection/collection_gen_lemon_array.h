@@ -151,22 +151,22 @@ namespace gen
          A elema;
          A topermut;
          array_ptr_alloc < A > perm2;
-         for(int i = 0; i < count; i++)
+         for(int32_t i = 0; i < count; i++)
 		   {
             elema.remove_all();
             elema.add(a[i]);
             topermut.remove_all();
-            for(int j = 0; j < i; j++)
+            for(int32_t j = 0; j < i; j++)
             {
                topermut.add(a[j]);
             }
-            for(int j = i + 1; j < count; j++)
+            for(int32_t j = i + 1; j < count; j++)
             {
                topermut.add(a[j]);
             }
             perm2.remove_all();
 			   array_permute(perm2, topermut);
-			   for(int j = 0; j < perm2.get_count(); j++)
+			   for(int32_t j = 0; j < perm2.get_count(); j++)
 			   {
                perm.add(elema + perm2[j]);
 		      }

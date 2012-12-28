@@ -58,12 +58,12 @@ public:
   /**
    * Enumerates all declared hrd classes
    */
-  //string enumerateHRDClasses(int idx);
+  //string enumerateHRDClasses(int32_t idx);
 
   /**
    * Enumerates all declared hrd instances of specified class
    */
-  //string enumerateHRDInstances(const string &classID, int idx);
+  //string enumerateHRDInstances(const string &classID, int32_t idx);
 
   /**
    * Returns description of HRD instance, pointed by classID and nameID parameters.

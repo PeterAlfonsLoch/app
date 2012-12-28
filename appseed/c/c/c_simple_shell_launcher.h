@@ -19,7 +19,7 @@ public:
    vsstring    m_vssFile;
    vsstring    m_vssParameters;
    vsstring    m_vssDirectory;
-   int         m_iShow;
+   int32_t         m_iShow;
 
 #ifdef WINDOWS
 
@@ -40,22 +40,22 @@ public:
 #else
 
    bool        m_bOk;
-   int         m_dwResult;
-   int         m_pid;
+   int32_t         m_dwResult;
+   int32_t         m_pid;
 
 #endif
 
 protected:
 
 
-   int         m_iMode;
+   int32_t         m_iMode;
 
 
 public:
 
 
    simple_shell_launcher();
-   simple_shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, int iShow);
+   simple_shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, int32_t iShow);
 
 
    void execute();

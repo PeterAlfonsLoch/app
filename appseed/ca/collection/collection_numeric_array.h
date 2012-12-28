@@ -207,7 +207,7 @@ public:
    const numeric_array  < TYPE > & array1,
    const numeric_array  < TYPE > & array2);*/
 
-   //void divide(int i);
+   //void divide(int32_t i);
 
    //void ElementDiff(
    // const numeric_array  < TYPE > & array1,
@@ -215,9 +215,9 @@ public:
 
    //TYPE GetMean();
 
-   //void Set(const TYPE & t, int iStart = 0, int iEnd = -1);
+   //void Set(const TYPE & t, int32_t iStart = 0, int32_t iEnd = -1);
 
-   //int Cmp(const numeric_array  < TYPE > & array1);
+   //int32_t Cmp(const numeric_array  < TYPE > & array1);
 
 
    /*virtual void QuickSort(bool bAsc = true)
@@ -324,7 +324,7 @@ numeric_array < TYPE > numeric_array < TYPE >::unique() const
 
    numeric_array < TYPE > a;
 
-   for(int i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       a.add_unique(this->element_at(i));
    }
@@ -339,7 +339,7 @@ void numeric_array < TYPE >::unique()
 
    numeric_array < TYPE > a;
 
-   for(int i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       a.add_unique(this->element_at(i));
    }
@@ -550,7 +550,7 @@ public:
 
 
 class CLASS_DECL_ca int_array :
-   virtual public numeric_array < int >
+   virtual public numeric_array < int32_t >
 {
 public:
    int_array(::ca::application * papp = NULL);
@@ -587,7 +587,7 @@ public:
 };
 
 class CLASS_DECL_ca unique_int_sort_array :
-   virtual public unique_number_sort_array < int >
+   virtual public unique_number_sort_array < int32_t >
 {
 public:
    unique_int_sort_array(::ca::application * papp = NULL);

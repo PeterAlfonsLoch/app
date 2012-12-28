@@ -56,7 +56,7 @@ public:
    ::id           m_idHelp;         // xxx mrs
 
 
-   int m_nWindow;  // general purpose ::ca::window number - display as ":n"
+   int32_t m_nWindow;  // general purpose ::ca::window number - display as ":n"
                // -1 => unknown, 0 => only ::ca::window viewing ::user::document_interface
                // 1 => first of many windows viewing ::user::document_interface, 2=> second
 
@@ -69,7 +69,7 @@ public:
 
    pointer_list m_listControlBars; // base_array of all control bars that have this
                         // ::ca::window as their dock site
-   int m_nShowDelay;           // SW_ command for delay show/hide
+   int32_t m_nShowDelay;           // SW_ command for delay show/hide
 
    bool m_bFrameMoveEnable;
 
@@ -109,7 +109,7 @@ public:
             ::user::interaction* pParentWnd = NULL,
             ::ca::create_context* pContext = NULL);
 
-   virtual bool ShowWindow(int nCmdShow);
+   virtual bool ShowWindow(int32_t nCmdShow);
 
 
 // Attributes
@@ -133,7 +133,7 @@ public:
 
 // Operations
    virtual void layout();
-   virtual void ActivateFrame(int nCmdShow = -1);
+   virtual void ActivateFrame(int32_t nCmdShow = -1);
    virtual void InitialUpdateFrame(::user::document_interface * pDoc, bool bMakeVisible);
    virtual void InitialFramePosition(bool bForceRestore = false);
    void set_title(const char * lpszTitle);
@@ -200,8 +200,8 @@ public:
    virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
    virtual void PostNcDestroy();   // default to delete this.
-   int OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
-   void BringToTop(int nCmdShow);
+   int32_t OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* pContext);
+   void BringToTop(int32_t nCmdShow);
       // bring ::ca::window to top for SW_ commands which affect z-order
 
    // implementation helpers for Shift+F1 help mode
@@ -229,7 +229,7 @@ public:
    void OnSetFocus(::user::interaction* pOldWnd);
    void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
    void OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
-   void OnSize(UINT nType, int cx, int cy);
+   void OnSize(UINT nType, int32_t cx, int32_t cy);
    bool OnEraseBkgnd(::ca::graphics * pgraphics);
    //void OnActivate(UINT nState, ::user::interaction* pWndOther, bool bMinimized);
    DECL_GEN_SIGNAL(_001OnActivate)

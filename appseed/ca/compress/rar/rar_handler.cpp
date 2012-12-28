@@ -45,7 +45,7 @@ namespace rar
       L"BeOS"
    };
 
-   static const int kNumHostOSes = sizeof(kHostOS) / sizeof(kHostOS[0]);
+   static const int32_t kNumHostOSes = sizeof(kHostOS) / sizeof(kHostOS[0]);
 
    static const wchar_t *kUnknownOS = L"Unknown";
 
@@ -101,16 +101,16 @@ namespace rar
    IMP_IInArchive_Props
       IMP_IInArchive_ArcProps
 
-   uint64 handler::GetPackSize(int refIndex) const
+   uint64 handler::GetPackSize(int32_t refIndex) const
    {
       const CRefItem &refItem = _refItems[refIndex];
       uint64 totalPackSize = 0;
-      for (int i = 0; i < refItem.NumItems; i++)
+      for (int32_t i = 0; i < refItem.NumItems; i++)
          totalPackSize += _items[refItem.ItemIndex + i].PackSize;
       return totalPackSize;
    }
 
-   ex1::HRes handler::GetArchiveProperty(int propID, var *value)
+   ex1::HRes handler::GetArchiveProperty(int32_t propID, var *value)
    {
       var var;
       switch(propID)
@@ -125,7 +125,7 @@ namespace rar
       case ::compress::kpidNumBlocks:
          {
             uint32 numBlocks = 0;
-            for (int i = 0; i < _refItems.get_size(); i++)
+            for (int32_t i = 0; i < _refItems.get_size(); i++)
                if (!IsSolid(i))
                   numBlocks++;
             var = (int32)numBlocks;
@@ -176,7 +176,7 @@ namespace rar
       prop = utcFileTime;
    }
 
-   ex1::HRes handler::GetProperty(uint32 index, int propID,  var *value)
+   ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
    {
       var prop;
       const CRefItem &refItem = _refItems[index];
@@ -293,7 +293,7 @@ namespace rar
             return true;
          }
 
-         int numLetters = 1;
+         int32_t numLetters = 1;
          if (basePart.Right(numLetters) == "1" || basePart.Right(numLetters) == "0")
          {
             while (numLetters < basePart.get_length())
@@ -450,9 +450,9 @@ namespace rar
                if (needAdd)
                {
                   CRefItem refItem;
-                  refItem.ItemIndex = (int) _items.get_size();
+                  refItem.ItemIndex = (int32_t) _items.get_size();
                   refItem.NumItems = 1;
-                  refItem.VolumeIndex = (int) _archives.get_size();
+                  refItem.VolumeIndex = (int32_t) _archives.get_size();
                   _refItems.add(refItem);
                }
                _items.add(item);
@@ -519,18 +519,18 @@ namespace rar
          numItems = (uint32_t) _refItems.get_size();
       if (numItems == 0)
          return S_OK;
-      int lastIndex = 0;
+      int32_t lastIndex = 0;
       int_array importantIndexes;
       bool_array extractStatuses;
 
       for (uint32 t = 0; t < numItems; t++)
       {
-         int index = allFilesMode ? t : indices[t];
+         int32_t index = allFilesMode ? t : indices[t];
          const CRefItem &refItem = _refItems[index];
          const CItemEx &item = _items[refItem.ItemIndex];
          censoredTotalUnPacked += item.Size;
          // censoredTotalPacked += item.PackSize;
-         int j;
+         int32_t j;
          for (j = lastIndex; j <= index; j++)
             // if (!_items[_refItems[j].ItemIndex].IsSolid())
             if (!IsSolid(j))
@@ -576,7 +576,7 @@ namespace rar
       lps->Init(extractCallback, false);
 
       bool solidStart = true;
-      for (int i = 0; i < importantIndexes.get_count(); i++, currentImportantTotalUnPacked += currentUnPackSize, currentImportantTotalPacked += currentPackSize)
+      for (int32_t i = 0; i < importantIndexes.get_count(); i++, currentImportantTotalUnPacked += currentUnPackSize, currentImportantTotalPacked += currentPackSize)
       {
          lps->InSize = currentImportantTotalPacked;
          lps->OutSize = currentImportantTotalUnPacked;
@@ -636,7 +636,7 @@ namespace rar
          //realOutStream.Release();
 
          /*
-         for (int partIndex = 0; partIndex < 1; partIndex++)
+         for (int32_t partIndex = 0; partIndex < 1; partIndex++)
          {
          CMyComPtr<::ex1::reader> inStream;
 
@@ -711,7 +711,7 @@ namespace rar
                   wstring unicodePassword = gen::international::utf8_to_unicode(password);
                   const uint32 sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
                   buffer.SetCapacity(sizeInBytes);
-                  for (int i = 0; i < unicodePassword.get_length(); i++)
+                  for (int32_t i = 0; i < unicodePassword.get_length(); i++)
                   {
                      wchar_t c = unicodePassword[i];
                      ((byte *)buffer)[i * 2] = (byte)c;
@@ -840,7 +840,7 @@ namespace rar
          else
          {
          bool crcOK = true;
-         for (int partIndex = 0; partIndex < refItem.NumItems; partIndex++)
+         for (int32_t partIndex = 0; partIndex < refItem.NumItems; partIndex++)
          {
          const CItemEx &item = _items[refItem.ItemIndex + partIndex];
          if (item.FileCRC != folderInStreamSpec->CRCs[partIndex])
@@ -867,7 +867,7 @@ namespace rar
    }
 
 
-   bool handler::IsSolid(int refIndex)
+   bool handler::IsSolid(int32_t refIndex)
    {
       const CItemEx &item = _items[_refItems[refIndex].ItemIndex];
       if (item.UnPackVersion < 20)

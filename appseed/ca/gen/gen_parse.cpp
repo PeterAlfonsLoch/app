@@ -98,7 +98,7 @@ namespace gen {
 
    short parse::issplit(const char c)
    {
-      for (int i = 0; i < pa_splits.get_length(); i++)
+      for (int32_t i = 0; i < pa_splits.get_length(); i++)
          if (pa_splits[i] == c)
             return 1;
       return 0;
@@ -127,9 +127,9 @@ namespace gen {
    string parse::getword()
    {
       index x;
-      int disabled = 0;
-      int quote = 0;
-      int rem = 0;
+      int32_t disabled = 0;
+      int32_t quote = 0;
+      int32_t rem = 0;
 
       if (pa_nospace)
       {
@@ -218,7 +218,7 @@ namespace gen {
       s = pa_ord;
    }
 
-   void parse::getword(string &s,string &fill,int l)
+   void parse::getword(string &s,string &fill,int32_t l)
    {
       parse::getword();
       s = "";
@@ -254,7 +254,7 @@ namespace gen {
       pa_breakchar = c;
    }
 
-   int parse::getwordlen()
+   int32_t parse::getwordlen()
    {
       index x,y = pa_the_ptr,len;
 
@@ -273,10 +273,10 @@ namespace gen {
          pa_the_ptr++;
       len = pa_the_ptr - x;
       pa_the_ptr = y;
-      return (int)len;
+      return (int32_t)len;
    }
 
-   int parse::getrestlen()
+   int32_t parse::getrestlen()
    {
       index y = pa_the_ptr;
       index len;
@@ -285,7 +285,7 @@ namespace gen {
          pa_the_ptr++;
       len = strlen(pa_the_str.Mid(pa_the_ptr));
       pa_the_ptr = y;
-      return (int)len;
+      return (int32_t)len;
    }
 
    void parse::getline()

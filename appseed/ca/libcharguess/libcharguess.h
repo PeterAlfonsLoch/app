@@ -24,13 +24,13 @@ public:
    LibCharGuess();
    // TODO: add your methods here.
 
-   static int Init();
+   static int32_t Init();
    static const char * GuessCharset(const char * lpsz);
    static unsigned long GuessCodePage(const char * lpsz);
-   static int Done();
+   static int32_t Done();
 };
 
-extern LIBCHARGUESS_API int nLibcharguess;
+extern LIBCHARGUESS_API int32_t nLibcharguess;
 
-LIBCHARGUESS_API int fnLibcharguess();
+LIBCHARGUESS_API int32_t fnLibcharguess();
 

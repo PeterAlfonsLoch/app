@@ -7,12 +7,12 @@ namespace datetime
    {
    public:
 
-      int            m_iYear;
-      int            m_iMonth;
-      int            m_iDay;
-      int            m_iHour;
-      int            m_iMinute;
-      int            m_iSecond;
+      int32_t            m_iYear;
+      int32_t            m_iMonth;
+      int32_t            m_iDay;
+      int32_t            m_iHour;
+      int32_t            m_iMinute;
+      int32_t            m_iSecond;
       bool           m_bSpan;
 
       value(const ::datetime::time & time);
@@ -37,7 +37,7 @@ namespace datetime
    };
 
    CLASS_DECL_ca value span_strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz);
-   CLASS_DECL_ca value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int & iPath, int & iPathCount);
+   CLASS_DECL_ca value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount);
 
 } // namespace datetime
 

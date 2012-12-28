@@ -39,7 +39,7 @@ namespace userstack
       virtual void construct();
 
       bool initialize_instance();
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
       virtual bool bergedge_start();
 
@@ -87,7 +87,7 @@ namespace userstack
 
       virtual bool os_native_bergedge_start();
 
-      virtual int main();
+      virtual int32_t main();
 
       virtual bool on_uninstall();
 

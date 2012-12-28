@@ -15,9 +15,9 @@ wait_result::wait_result(unsigned long value, count objectCount)
 
 	default:
 		if (value>=WAIT_ABANDONED_0 && value<=(WAIT_ABANDONED_0 + objectCount - 1))
-			m_iWaitResult = Abandon0-((int)value-WAIT_ABANDONED_0);
+			m_iWaitResult = Abandon0-((int32_t)value-WAIT_ABANDONED_0);
 		else if (/*value>=WAIT_OBJECT_0 &&*/ value<=(WAIT_OBJECT_0 + objectCount - 1))
-			m_iWaitResult = Event0+((int)value-WAIT_OBJECT_0);
+			m_iWaitResult = Event0+((int32_t)value-WAIT_OBJECT_0);
 		break;
 	}		
 

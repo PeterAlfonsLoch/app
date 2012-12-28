@@ -22,7 +22,7 @@ public:
    virtual count _001GetItemCount();
    virtual void _001GetItemText(::user::list_item * pitem);
 
-   void OnFileOperationStep(int iOperation, bool bFinal);
+   void OnFileOperationStep(int32_t iOperation, bool bFinal);
 
    ::user::list_cache               m_listcache;
    simple_list_header_control       m_headerctrl;

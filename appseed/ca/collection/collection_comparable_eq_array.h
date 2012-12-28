@@ -123,7 +123,7 @@ count comparable_eq_array<TYPE, ARG_TYPE, ARRAY_TYPE>::add_unique(const ARRAY_TY
 
    ::count cAdd = a.get_count();
 
-   for(int i = 0; i < cAdd; i++)
+   for(int32_t i = 0; i < cAdd; i++)
    {
       if(add_unique(a[i]))
          c++;

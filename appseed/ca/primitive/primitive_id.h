@@ -37,8 +37,8 @@ public:
    id(int_ptr i);
    id(uint_ptr ui);
 #if defined(_LP64) || defined(_AMD64_)
-   id(int i);
-   id(unsigned int ui);
+   id(int32_t i);
+   id(unsigned int32_t ui);
 #endif
    id(const string & str);
    id(const string_interface & str);
@@ -91,13 +91,13 @@ public:
 #if defined(_LP64) || defined(_AMD64_)
 
 
-   inline bool operator == (int i) const;
-   inline bool operator != (int i) const;
-   inline bool operator < (int i) const;
-   inline bool operator <= (int i) const;
-   inline bool operator > (int i) const;
-   inline bool operator >= (int i) const;
-   inline id & operator = (int i);
+   inline bool operator == (int32_t i) const;
+   inline bool operator != (int32_t i) const;
+   inline bool operator < (int32_t i) const;
+   inline bool operator <= (int32_t i) const;
+   inline bool operator > (int32_t i) const;
+   inline bool operator >= (int32_t i) const;
+   inline id & operator = (int32_t i);
 
 
 #endif
@@ -225,31 +225,31 @@ inline bool id::operator >= (const char * psz) const
 
 #if defined(_LP64) || defined(_AMD64_)
 
-inline bool id::operator == (int i) const
+inline bool id::operator == (int32_t i) const
 {
    return !id_cmp(this, i);
 }
-inline bool id::operator != (int i) const
+inline bool id::operator != (int32_t i) const
 {
    return id_cmp(this, i) != 0;
 }
-inline bool id::operator < (int i) const
+inline bool id::operator < (int32_t i) const
 {
    return id_cmp(this, i) < 0;
 }
-inline bool id::operator <= (int i) const
+inline bool id::operator <= (int32_t i) const
 {
    return id_cmp(this, i) <= 0;
 }
-inline bool id::operator > (int i) const
+inline bool id::operator > (int32_t i) const
 {
    return id_cmp(this, i) > 0;
 }
-inline bool id::operator >= (int i) const
+inline bool id::operator >= (int32_t i) const
 {
    return id_cmp(this, i) >= 0;
 }
-inline id & id::operator = (int i)
+inline id & id::operator = (int32_t i)
 {
    m_i        = i;
    m_chType    = IDTYPE_TYPE_NUMBER;

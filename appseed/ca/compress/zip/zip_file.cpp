@@ -111,7 +111,7 @@ namespace zip
       if(unzLocateFile(m_pfUnzip, str, 1) != UNZ_OK)
          return;
       BYTE buf[1024];
-      int iRead;
+      int32_t iRead;
       if(unzOpenCurrentFile(m_pfUnzip) != UNZ_OK)
          return;
 
@@ -124,7 +124,7 @@ namespace zip
    }
 
 
-   voidpf File::open_file_func (voidpf opaque, const char* filename, int mode)
+   voidpf File::open_file_func (voidpf opaque, const char* filename, int32_t mode)
    {
       UNREFERENCED_PARAMETER(mode);
       UNREFERENCED_PARAMETER(filename);
@@ -155,7 +155,7 @@ namespace zip
       return (long) pfile->get_position();      
    }
 
-   long   File::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int origin)
+   long   File::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
@@ -167,7 +167,7 @@ namespace zip
 
    }
 
-   int    File::close_file_func (voidpf opaque, voidpf stream)
+   int32_t    File::close_file_func (voidpf opaque, voidpf stream)
    {
       UNREFERENCED_PARAMETER(opaque);
       UNREFERENCED_PARAMETER(stream);
@@ -176,7 +176,7 @@ namespace zip
       return 1;
    }
 
-   int File::testerror_file_func (voidpf opaque, voidpf stream)
+   int32_t File::testerror_file_func (voidpf opaque, voidpf stream)
    {
       UNREFERENCED_PARAMETER(opaque);
       UNREFERENCED_PARAMETER(stream);

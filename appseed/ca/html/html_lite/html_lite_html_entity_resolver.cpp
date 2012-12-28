@@ -135,7 +135,7 @@ LiteHTMLEntityResolver::CharEntityRefs::CharEntityRefs() :
 }
 
 
-int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strChar)
+int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strChar)
 {
    ASSERT(m_CharEntityRefs.get_count());
    ASSERT(__is_valid_string(lpszEntity));
@@ -167,7 +167,7 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
    {
       lpszBegin++;
       chTemp = *lpszBegin;
-      int   radix = (::isdigit(chTemp) ? 10 :
+      int32_t   radix = (::isdigit(chTemp) ? 10 :
                (chTemp == 'x' ||
                   chTemp == 'X' ? 16 : 0));
       if (radix)
@@ -177,14 +177,14 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
 
          unsigned long  ulNum = ::strtoul(lpszBegin, NULL, radix);
          strChar = gen::str::uni_to_utf8(ulNum);
-         return (int) (lpszEnd - lpszEntity + 1);
+         return (int32_t) (lpszEnd - lpszEntity + 1);
       }
    }
 
    // character entity reference?
    else
    {
-      string   strKey(lpszBegin, (int)(lpszEnd - lpszBegin));
+      string   strKey(lpszBegin, (int32_t)(lpszEnd - lpszBegin));
 
       // because some character entity references are
       // case-sensitive, we must fix them manually
@@ -227,7 +227,7 @@ int LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & strC
       if (m_CharEntityRefs.Lookup(strKey, chTemp))
       {
          strChar = chTemp;
-         return (int) (lpszEnd - lpszEntity + 1);
+         return (int32_t) (lpszEnd - lpszEntity + 1);
       }
    }
 

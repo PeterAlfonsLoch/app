@@ -55,7 +55,7 @@ namespace gen
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
 
-      virtual int run();
+      virtual int32_t run();
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
       virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
 
@@ -81,12 +81,12 @@ namespace gen
 #endif
 
       bool CreateFileFromRawResource(UINT nID, const char * lcszType, const char * lpcszFilePath);
-      virtual LRESULT GetPaintMsgProc(int nCode, WPARAM wParam, LPARAM lParam);
+      virtual LRESULT GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam);
 
       virtual bool process_initialize();
 
       virtual bool initialize_instance();
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
       virtual bool verb();
 
@@ -124,7 +124,7 @@ namespace gen
     WCHAR *cmdstart,
     WCHAR **argv,
     WCHAR *args,
-    int *numargs,
-    int *numchars
+    int32_t *numargs,
+    int32_t *numchars
     );
 */

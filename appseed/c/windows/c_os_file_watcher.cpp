@@ -70,7 +70,7 @@ namespace file_watcher
 				}
 #			else
 				{
-					int count = WideCharToMultiByte(CP_ACP, 0, pNotify->FileName,
+					int32_t count = WideCharToMultiByte(CP_ACP, 0, pNotify->FileName,
 						pNotify->FileNameLength / sizeof(WCHAR),
 						szFile, MAX_PATH - 1, NULL, NULL);
 					szFile[count] = TEXT('\0');

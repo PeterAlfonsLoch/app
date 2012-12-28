@@ -49,14 +49,14 @@ namespace ca
    }
    */
 
-   bool graphics_path::add_arc(const RECT & rect, int iStart, int iAngle)
+   bool graphics_path::add_arc(const RECT & rect, int32_t iStart, int32_t iAngle)
    {
 
       throw interface_only_exception(get_app());
 
    }
 
-   bool graphics_path::add_rect(int x1, int y1, int x2, int y2)
+   bool graphics_path::add_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
       
       rect rect;
@@ -77,7 +77,7 @@ namespace ca
 
    }
 
-   bool graphics_path::add_line(int x1, int y1, int x2, int y2)
+   bool graphics_path::add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
    {
 
       return add_line(point(x1, y1), point(x2, y2));
@@ -92,7 +92,7 @@ namespace ca
 
    }
 
-   bool graphics_path::add_line(int x, int y)
+   bool graphics_path::add_line(int32_t x, int32_t y)
    {
 
       return add_line(point(x, y));
@@ -106,12 +106,12 @@ namespace ca
 
    }
 
-   bool graphics_path::add_lines(const POINT * lppoint, int nCount)
+   bool graphics_path::add_lines(const POINT * lppoint, int32_t nCount)
    {
 
       bool bOk = true;
 
-      for(int i = 0; i < nCount; i++)
+      for(int32_t i = 0; i < nCount; i++)
       {
 
          if(!add_line(lppoint[i]))
@@ -122,7 +122,7 @@ namespace ca
 
    }
 
-   bool graphics_path::add_move(int x, int y)
+   bool graphics_path::add_move(int32_t x, int32_t y)
    {
 
       return add_move(point(x, y));

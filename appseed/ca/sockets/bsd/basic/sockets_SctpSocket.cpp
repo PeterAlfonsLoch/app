@@ -28,7 +28,7 @@ namespace sockets
 {
 
 
-   SctpSocket::SctpSocket(socket_handler_base& h,int type) : stream_socket(h)
+   SctpSocket::SctpSocket(socket_handler_base& h,int32_t type) : stream_socket(h)
    ,m_type(type)
    ,m_buf(new char[SCTP_BUFSIZE_READ])
    {
@@ -44,7 +44,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::Bind(const string & a,port_t p)
+   int32_t SctpSocket::Bind(const string & a,port_t p)
    {
    #ifdef ENABLE_IPV6
    #ifdef IPPROTO_IPV6
@@ -60,7 +60,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::Bind(sockets::address& ad)
+   int32_t SctpSocket::Bind(sockets::address& ad)
    {
       if (!ad.IsValid())
       {
@@ -73,7 +73,7 @@ namespace sockets
       }
       if (GetSocket() != INVALID_SOCKET)
       {
-         int n = bind(GetSocket(), ad, ad);
+         int32_t n = bind(GetSocket(), ad, ad);
          if (n == -1)
          {
             Handler().LogError(this, "SctpSocket", -1, "bind() failed", ::gen::log::level::error);
@@ -87,7 +87,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::AddAddress(const string & a,port_t p)
+   int32_t SctpSocket::AddAddress(const string & a,port_t p)
    {
    #ifdef ENABLE_IPV6
    #ifdef IPPROTO_IPV6
@@ -103,7 +103,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::AddAddress(sockets::address& ad)
+   int32_t SctpSocket::AddAddress(sockets::address& ad)
    {
       if (!ad.IsValid())
       {
@@ -115,7 +115,7 @@ namespace sockets
          Handler().LogError(this, "SctpSocket", -1, "AddAddress called with invalid file descriptor", ::gen::log::level::error);
          return -1;
       }
-      int n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_ADD_ADDR);
+      int32_t n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_ADD_ADDR);
       if (n == -1)
       {
          Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::gen::log::level::error);
@@ -124,7 +124,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::RemoveAddress(const string & a,port_t p)
+   int32_t SctpSocket::RemoveAddress(const string & a,port_t p)
    {
    #ifdef ENABLE_IPV6
    #ifdef IPPROTO_IPV6
@@ -140,7 +140,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::RemoveAddress(sockets::address& ad)
+   int32_t SctpSocket::RemoveAddress(sockets::address& ad)
    {
       if (!ad.IsValid())
       {
@@ -152,7 +152,7 @@ namespace sockets
          Handler().LogError(this, "SctpSocket", -1, "RemoveAddress called with invalid file descriptor", ::gen::log::level::error);
          return -1;
       }
-      int n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_REM_ADDR);
+      int32_t n = sctp_bindx(GetSocket(), ad, ad, SCTP_BINDX_REM_ADDR);
       if (n == -1)
       {
          Handler().LogError(this, "SctpSocket", -1, "sctp_bindx() failed", ::gen::log::level::error);
@@ -161,7 +161,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::open(const string & a,port_t p)
+   int32_t SctpSocket::open(const string & a,port_t p)
    {
    #ifdef ENABLE_IPV6
    #ifdef IPPROTO_IPV6
@@ -177,7 +177,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::open(sockets::address& ad)
+   int32_t SctpSocket::open(sockets::address& ad)
    {
       if (!ad.IsValid())
       {
@@ -194,7 +194,7 @@ namespace sockets
          {
             return -1;
          }
-         int n = connect(GetSocket(), ad, ad);
+         int32_t n = connect(GetSocket(), ad, ad);
          if (n == -1)
          {
             // check error code that means a connect is in progress
@@ -219,7 +219,7 @@ namespace sockets
 
 
    #ifndef SOLARIS
-   int SctpSocket::AddConnection(const string & a,port_t p)
+   int32_t SctpSocket::AddConnection(const string & a,port_t p)
    {
    #ifdef ENABLE_IPV6
    #ifdef IPPROTO_IPV6
@@ -235,7 +235,7 @@ namespace sockets
    }
 
 
-   int SctpSocket::AddConnection(sockets::address& ad)
+   int32_t SctpSocket::AddConnection(sockets::address& ad)
    {
       if (!ad.IsValid())
       {
@@ -247,7 +247,7 @@ namespace sockets
          Handler().LogError(this, "SctpSocket", -1, "AddConnection called with invalid file descriptor", ::gen::log::level::error);
          return -1;
       }
-      int n = sctp_connectx(GetSocket(), ad, ad);
+      int32_t n = sctp_connectx(GetSocket(), ad, ad);
       if (n == -1)
       {
          Handler().LogError(this, "SctpSocket", -1, "sctp_connectx() failed", ::gen::log::level::error);
@@ -261,16 +261,16 @@ namespace sockets
    #endif
 
 
-   int SctpSocket::getpaddrs(sctp_assoc_t id,list<string>& vec)
+   int32_t SctpSocket::getpaddrs(sctp_assoc_t id,list<string>& vec)
    {
       struct sockaddr *p = NULL;
-      int n = sctp_getpaddrs(GetSocket(), id, &p);
+      int32_t n = sctp_getpaddrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
          Handler().LogError(this, "SctpSocket", -1, "sctp_getpaddrs failed", ::gen::log::level::warning);
          return n;
       }
-      for (int i = 0; i < n; i++)
+      for (int32_t i = 0; i < n; i++)
       {
          vec.push_back(Utility::Sa2String(&p[i]));
       }
@@ -279,16 +279,16 @@ namespace sockets
    }
 
 
-   int SctpSocket::getladdrs(sctp_assoc_t id,list<string>& vec)
+   int32_t SctpSocket::getladdrs(sctp_assoc_t id,list<string>& vec)
    {
       struct sockaddr *p = NULL;
-      int n = sctp_getladdrs(GetSocket(), id, &p);
+      int32_t n = sctp_getladdrs(GetSocket(), id, &p);
       if (!n || n == -1)
       {
          Handler().LogError(this, "SctpSocket", -1, "sctp_getladdrs failed", ::gen::log::level::warning);
          return n;
       }
-      for (int i = 0; i < n; i++)
+      for (int32_t i = 0; i < n; i++)
       {
          vec.push_back(Utility::Sa2String(&p[i]));
       }
@@ -297,9 +297,9 @@ namespace sockets
    }
 
 
-   int SctpSocket::PeelOff(sctp_assoc_t id)
+   int32_t SctpSocket::PeelOff(sctp_assoc_t id)
    {
-      int n = sctp_peeloff(GetSocket(), id);
+      int32_t n = sctp_peeloff(GetSocket(), id);
       if (n == -1)
       {
          Handler().LogError(this, "SctpSocket", -1, "PeelOff failed", ::gen::log::level::warning);
@@ -316,9 +316,9 @@ namespace sockets
    void SctpSocket::OnRead()
    {
    /*
-      int sctp_recvmsg(int sd, void * msg, size_t * len,
+      int32_t sctp_recvmsg(int32_t sd, void * msg, size_t * len,
          struct sockaddr * from, socklen_t * fromlen,
-         struct sctp_sndrcvinfo * sinfo, int * msg_flags);
+         struct sctp_sndrcvinfo * sinfo, int32_t * msg_flags);
 
       DESCRIPTION
       sctp_recvmsg  is  a  wrapper library function that can be used to receive a message from a socket while using the advanced
@@ -335,8 +335,8 @@ namespace sockets
       struct sockaddr sa;
       socklen_t sa_len = 0;
       struct sctp_sndrcvinfo sinfo;
-      int flags = 0;
-      int n = sctp_recvmsg(GetSocket(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
+      int32_t flags = 0;
+      int32_t n = sctp_recvmsg(GetSocket(), m_buf, SCTP_BUFSIZE_READ, &sa, &sa_len, &sinfo, &flags);
       if (n == -1)
       {
          Handler().LogError(this, "SctpSocket", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -349,7 +349,7 @@ namespace sockets
    }
 
 
-   void SctpSocket::OnReceiveMessage(const char *buf,size_t sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int msg_flags)
+   void SctpSocket::OnReceiveMessage(const char *buf,size_t sz,struct sockaddr *sa,socklen_t sa_len,struct sctp_sndrcvinfo *sinfo,int32_t msg_flags)
    {
    }
 
@@ -358,7 +358,7 @@ namespace sockets
    {
       if (Connecting())
       {
-         int err = SoError();
+         int32_t err = SoError();
 
          // don't reset connecting flag on error here, we want the OnConnectFailed timeout later on
          /// \todo add to read fd_set here
@@ -465,14 +465,14 @@ namespace sockets
       }
       // %! exception doesn't always mean something bad happened, this code should be reworked
       // errno valid here?
-      int err = SoError();
+      int32_t err = SoError();
       Handler().LogError(this, "exception on select", err, StrError(err), ::gen::log::level::fatal);
       SetCloseAndDelete();
    }
    #endif // _WIN32
 
 
-   int SctpSocket::Protocol()
+   int32_t SctpSocket::Protocol()
    {
       return IPPROTO_SCTP;
    }

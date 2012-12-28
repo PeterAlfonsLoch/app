@@ -22,8 +22,8 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool draw_dib::Begin ( ::ca::graphics * pdc, int dxDest, int dyDest,
-      LPBITMAPINFOHEADER lpbi, int dxSrc, int dySrc, UINT wFlags )
+   bool draw_dib::Begin ( ::ca::graphics * pdc, int32_t dxDest, int32_t dyDest,
+      LPBITMAPINFOHEADER lpbi, int32_t dxSrc, int32_t dySrc, UINT wFlags )
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(dxDest);
@@ -40,9 +40,9 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool draw_dib::draw ( ::ca::graphics * pdc, int xDst, int yDst,
-      int dxDst, int dyDst, LPBITMAPINFOHEADER lpbi, LPVOID lpBits,
-      int xSrc, int ySrc, int dxSrc, int dySrc, UINT wFlags )
+   bool draw_dib::draw ( ::ca::graphics * pdc, int32_t xDst, int32_t yDst,
+      int32_t dxDst, int32_t dyDst, LPBITMAPINFOHEADER lpbi, LPVOID lpBits,
+      int32_t xSrc, int32_t ySrc, int32_t dxSrc, int32_t dySrc, UINT wFlags )
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(xDst);
@@ -59,8 +59,8 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool draw_dib::draw (::ca::dib *dib, ::ca::graphics * pgraphics, int xDst, int yDst,
-      int dxDst, int dyDst, UINT wFlags)
+   bool draw_dib::draw (::ca::dib *dib, ::ca::graphics * pgraphics, int32_t xDst, int32_t yDst,
+      int32_t dxDst, int32_t dyDst, UINT wFlags)
    {
       UNREFERENCED_PARAMETER(dib);
       UNREFERENCED_PARAMETER(pgraphics);
@@ -74,15 +74,15 @@ namespace ca
 
    bool draw_dib::draw (
       ::ca::graphics * pdc,
-      int      xDst,
-      int      yDst,
-      int      dxDst,
-      int      dyDst,
+      int32_t      xDst,
+      int32_t      yDst,
+      int32_t      dxDst,
+      int32_t      dyDst,
       ::ca::dib *    pdib,
-      int      xSrc,
-      int      ySrc,
-      int      dxSrc,
-      int      dySrc,
+      int32_t      xSrc,
+      int32_t      ySrc,
+      int32_t      dxSrc,
+      int32_t      dySrc,
       UINT     wFlags )
    {
       UNREFERENCED_PARAMETER(pdc);
@@ -126,7 +126,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool draw_dib::ChangePalette(::ca::draw_dib * pdd, int iStart, int iLen, LPPALETTEENTRY lppe)
+   bool draw_dib::ChangePalette(::ca::draw_dib * pdd, int32_t iStart, int32_t iLen, LPPALETTEENTRY lppe)
    {
       UNREFERENCED_PARAMETER(pdd);
       UNREFERENCED_PARAMETER(iStart);

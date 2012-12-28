@@ -19,7 +19,7 @@ bool simple_form_list_edit::OnEraseBkgnd(::ca::graphics * pgraphics)
    return TRUE;   
 }
 
-int simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
+int32_t simple_form_list_edit::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
    UNREFERENCED_PARAMETER(lpCreateStruct);
 // trans   if (::user::interaction::OnCreate(lpCreateStruct) == -1)
@@ -82,7 +82,7 @@ void simple_form_list_edit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 // trans   ::user::interaction::OnChar(nChar, nRepCnt, nFlags);
 }
 
-int simple_form_list_edit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message) 
+int32_t simple_form_list_edit::OnMouseActivate(::user::interaction* pDesktopWnd, UINT nHitTest, UINT message) 
 {
    UNREFERENCED_PARAMETER(pDesktopWnd);
    UNREFERENCED_PARAMETER(nHitTest);

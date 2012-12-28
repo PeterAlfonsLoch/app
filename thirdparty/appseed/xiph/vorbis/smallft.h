@@ -32,14 +32,14 @@ BEGIN_EXTERN_C
 
 
 typedef struct {
-  int n;
+  int32_t n;
   float *trigcache;
-  int *splitcache;
+  int32_t *splitcache;
 } drft_lookup;
 
 extern void drft_forward(drft_lookup *l,float *data);
 extern void drft_backward(drft_lookup *l,float *data);
-extern void drft_init(drft_lookup *l,int n);
+extern void drft_init(drft_lookup *l,int32_t n);
 extern void drft_clear(drft_lookup *l);
 
 

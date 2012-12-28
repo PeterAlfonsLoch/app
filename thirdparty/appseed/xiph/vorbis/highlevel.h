@@ -34,7 +34,7 @@ typedef struct highlevel_byblocktype {
 } highlevel_byblocktype;
 
 typedef struct highlevel_encode_setup {
-  int   set_in_stone;
+  int32_t   set_in_stone;
   const void *setup;
   double base_setting;
 
@@ -42,7 +42,7 @@ typedef struct highlevel_encode_setup {
 
   /* bitrate management below all settable */
   float  req;
-  int    managed;
+  int32_t    managed;
   long   bitrate_min;
   long   bitrate_av;
   double bitrate_av_damp;
@@ -50,13 +50,13 @@ typedef struct highlevel_encode_setup {
   long   bitrate_reservoir;
   double bitrate_reservoir_bias;
 
-  int impulse_block_p;
-  int noise_normalize_p;
-  int coupling_p;
+  int32_t impulse_block_p;
+  int32_t noise_normalize_p;
+  int32_t coupling_p;
 
   double stereo_point_setting;
   double lowpass_kHz;
-  int    lowpass_altered;
+  int32_t    lowpass_altered;
 
   double ath_floating_dB;
   double ath_absolute_dB;

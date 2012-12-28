@@ -435,7 +435,7 @@ static void SwapStates(CPpmd_State *t1, CPpmd_State *t2)
 
 static CPpmd_Void_Ref CutOff(CPpmd8 *p, CTX_PTR ctx, unsigned order)
 {
-  int i;
+  int32_t i;
   unsigned tmp;
   CPpmd_State *s;
   

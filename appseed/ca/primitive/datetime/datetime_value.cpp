@@ -25,7 +25,7 @@ namespace datetime
       const char * psz = str;
       string strNumber;
       string strText1;
-      for(int i = 0;*psz; psz = gen::str::utf8_inc(psz))
+      for(int32_t i = 0;*psz; psz = gen::str::utf8_inc(psz))
       {
          string strChar = gen::str::utf8_char(psz);
          if(gen::ch::is_whitespace(psz))
@@ -121,7 +121,7 @@ namespace datetime
    }
 
 
-   value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int & iPath, int & iPathCount)
+   value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount)
    {
       ::datetime::time time;
       string str(psz);
@@ -129,7 +129,7 @@ namespace datetime
       str += " ";
       gen::property_set set;
       bool bBaseTime = false;
-      int iStart = 0;
+      int32_t iStart = 0;
 
       // if is international date time 2009-04-31 21:45:59
       if(str.get_length() >= 19)
@@ -224,9 +224,9 @@ namespace datetime
       if(!bBaseTime && cregexp_util::match(stra, str, "/^\\s*((\\d+)\\s*/\\s*(\\d+))((\\d|$)?!)/", true, 4) > 0)
       {
          time = ::datetime::time::get_current_time();
-         int i1 = atoi(stra[2]);
-         int i2 = atoi(stra[3]);
-         int iCount = 0;
+         int32_t i1 = atoi(stra[2]);
+         int32_t i2 = atoi(stra[3]);
+         int32_t iCount = 0;
          bool bFirst = false;
          if(i1 != i2
          && i1 >= 1 && i1 <= 12
@@ -246,16 +246,16 @@ namespace datetime
          {
             if((iCount == 1 && bFirst) || (iCount == 2 && (iPath % iCount) == 0))
             {
-               int iDay = i2;
-               int iMonth = i1;
+               int32_t iDay = i2;
+               int32_t iMonth = i1;
                time = ::datetime::time(time.GetYear(), iMonth, iDay,
                   time.GetHour(), time.GetMinute(), time.GetSecond());
                time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
             }
             else if((iCount == 1 && !bFirst) || (iCount == 2 && (iPath % iCount) == 1))
             {
-               int iDay = i1;
-               int iMonth = i2;
+               int32_t iDay = i1;
+               int32_t iMonth = i2;
                time = ::datetime::time(time.GetYear(), iMonth, iDay,
                   time.GetHour(), time.GetMinute(), time.GetSecond());
                time = ::datetime::time(time.GetYear(), time.GetMonth(), time.GetDay(), 0, 0, 0);
@@ -485,10 +485,10 @@ datetime::value operator + (const datetime::value & val1, const datetime::value 
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
-      int iTotalSecond = val1.m_iSecond + val2.m_iSecond;
-      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute + val2.m_iMinute;
-      int iTotalHour = iTotalMinute / 60 + val1.m_iHour + val2.m_iHour;
-      int iTotalDay = iTotalHour / 24 + val1.m_iDay + val2.m_iDay;
+      int32_t iTotalSecond = val1.m_iSecond + val2.m_iSecond;
+      int32_t iTotalMinute = iTotalSecond / 60 + val1.m_iMinute + val2.m_iMinute;
+      int32_t iTotalHour = iTotalMinute / 60 + val1.m_iHour + val2.m_iHour;
+      int32_t iTotalDay = iTotalHour / 24 + val1.m_iDay + val2.m_iDay;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -525,10 +525,10 @@ datetime::value operator - (const datetime::value & val1, const datetime::value 
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
-      int iTotalSecond = val1.m_iSecond - val2.m_iSecond;
-      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
-      int iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
-      int iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
+      int32_t iTotalSecond = val1.m_iSecond - val2.m_iSecond;
+      int32_t iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
+      int32_t iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
+      int32_t iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -547,12 +547,12 @@ datetime::value operator - (const datetime::value & val1, const datetime::value 
    else
    {
       val.m_bSpan = true;
-      int iTotalSecond = val1.m_iSecond - val2.m_iSecond;
-      int iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
-      int iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
-      int iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
-      int iTotalMonth = iTotalDay / 31 + val1.m_iMonth - val2.m_iMonth;
-      int iTotalYear = iTotalMonth / 12 + val1.m_iYear - val2.m_iYear;
+      int32_t iTotalSecond = val1.m_iSecond - val2.m_iSecond;
+      int32_t iTotalMinute = iTotalSecond / 60 + val1.m_iMinute - val2.m_iMinute;
+      int32_t iTotalHour = iTotalMinute / 60 + val1.m_iHour - val2.m_iHour;
+      int32_t iTotalDay = iTotalHour / 24 + val1.m_iDay - val2.m_iDay;
+      int32_t iTotalMonth = iTotalDay / 31 + val1.m_iMonth - val2.m_iMonth;
+      int32_t iTotalYear = iTotalMonth / 12 + val1.m_iYear - val2.m_iYear;
       val.m_iSecond = iTotalSecond % 60;
       val.m_iMinute = iTotalMinute % 60;
       val.m_iHour   = iTotalHour % 24;
@@ -574,10 +574,10 @@ datetime::value operator * (const datetime::value & val1, double d)
       double dTotalMinute = dTotalSecond / 60.0;
       double dTotalHour = dTotalMinute / 60.0;
       double dTotalDay = dTotalHour / 24.0;
-      val.m_iSecond = (int) fmod(dTotalSecond, 60.0);
-      val.m_iMinute = (int) fmod(dTotalMinute, 60.0);
-      val.m_iHour   = (int) fmod(dTotalHour, 24.0);
-      val.m_iDay    = (int) dTotalDay;
+      val.m_iSecond = (int32_t) fmod(dTotalSecond, 60.0);
+      val.m_iMinute = (int32_t) fmod(dTotalMinute, 60.0);
+      val.m_iHour   = (int32_t) fmod(dTotalHour, 24.0);
+      val.m_iDay    = (int32_t) dTotalDay;
    }
    else
    {
@@ -600,10 +600,10 @@ datetime::value operator / (const datetime::value & val1, double d)
       double dTotalMinute = dTotalSecond / 60.0;
       double dTotalHour = dTotalMinute / 60.0;
       double dTotalDay = dTotalHour / 24.0;
-      val.m_iSecond = (int) fmod(dTotalSecond, 60.0);
-      val.m_iMinute = (int) fmod(dTotalMinute, 60.0);
-      val.m_iHour   = (int) fmod(dTotalHour, 24.0);
-      val.m_iDay    = (int) dTotalDay;
+      val.m_iSecond = (int32_t) fmod(dTotalSecond, 60.0);
+      val.m_iMinute = (int32_t) fmod(dTotalMinute, 60.0);
+      val.m_iHour   = (int32_t) fmod(dTotalHour, 24.0);
+      val.m_iDay    = (int32_t) dTotalDay;
    }
    else
    {

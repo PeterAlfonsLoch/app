@@ -62,7 +62,7 @@ HANDLE ExtractAndInstallDrv()
 		/*OSVERSIONINFO info = { 0 }; 
 		info.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 		GetVersionEx(&info); 
-		int nDriverId = IDR_VISTA_DRIVER;
+		int32_t nDriverId = IDR_VISTA_DRIVER;
 		if( info.dwMajorVersion == 5 )
 		{
 			nDriverId = IDR_XPDRIVER;

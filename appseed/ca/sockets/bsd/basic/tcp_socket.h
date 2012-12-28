@@ -103,13 +103,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          BIO *m_sbio; ///< ssl bio
          string m_password; ///< ssl password
 
-         int m_socks4_state; ///< socks4 support
+         int32_t m_socks4_state; ///< socks4 support
          char m_socks4_vn; ///< socks4 support, temporary var
          char m_socks4_cd; ///< socks4 support, temporary var
          unsigned short m_socks4_dstport; ///< socks4 support
          unsigned long m_socks4_dstip; ///< socks4 support
 
-         int m_resolver_id; ///< Resolver id (if any) for current open call
+         int32_t m_resolver_id; ///< Resolver id (if any) for current open call
 
          bool m_bReconnect; ///< Reconnect on lost connection flag
          bool m_bTryingReconnect; ///< Trying to reconnect
@@ -161,19 +161,19 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          /** close file descriptor - internal use only.
          \sa SetCloseAndDelete */
-         int close();
+         int32_t close();
 
          /** Send a string.
          \param s string to send
          \param f Dummy flags -- not used */
-         void Send(const string &s,int f = 0);
+         void Send(const string &s,int32_t f = 0);
          /** Send string using printf formatting. */
          void Sendf(const char *format, ...);
          /** Send buffer of bytes.
          \param buf buffer pointer
          \param len Length of data
          \param f Dummy flags -- not used */
-         void SendBuf(const char *buf,size_t len,int f = 0);
+         void SendBuf(const char *buf,size_t len,int32_t f = 0);
          /** This callback is executed after a successful read from the socket.
          \param buf Pointer to the data
          \param len Length of the data */
@@ -206,8 +206,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          bool OnSocks4Read();
 
          /** Callback executed when resolver thread has finished a resolve request. */
-         void OnResolved(int id, in_addr & addr, port_t port);
-         void OnResolved(int id,in6_addr& a,port_t port);
+         void OnResolved(int32_t id, in_addr & addr, port_t port);
+         void OnResolved(int32_t id,in6_addr& a,port_t port);
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
          void OnSSLConnect();
          /** Callback for 'New' ssl support - replaces SSLSocket. Internal use. */
@@ -230,14 +230,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          void DisableInputBuffer(bool = true);
 
-         void OnOptions(int,int,int,SOCKET);
+         void OnOptions(int32_t,int32_t,int32_t,SOCKET);
 
          void SetLineProtocol(bool = true);
 
          // TCP options
          bool SetTcpNodelay(bool = true);
 
-         virtual int Protocol();
+         virtual int32_t Protocol();
 
          /** Trigger limit for callback OnTransferLimit. */
          void SetTransferLimit(size_t sz);
@@ -269,7 +269,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param meth_in SSL method */
          void InitializeContext(const string & context, const string & certfile, const string & keyfile, const string & password, const SSL_METHOD *meth_in = NULL);
          /** SSL; Password callback method. */
-         static   int SSL_password_cb(char *buf,int num,int rwflag,void *userdata);
+         static   int32_t SSL_password_cb(char *buf,int32_t num,int32_t rwflag,void *userdata);
          /** SSL; get pointer to ssl context structure. */
          virtual SSL_CTX *GetSslContext();
          /** SSL; get pointer to ssl structure. */
@@ -292,7 +292,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          tcp_socket& operator=(const tcp_socket& ) { return *this; }
 
          /** the actual send() */
-         int TryWrite(const char *buf, size_t len);
+         int32_t TryWrite(const char *buf, size_t len);
          /** add data to output buffer top */
          void buffer(const char *buf, size_t len);
 

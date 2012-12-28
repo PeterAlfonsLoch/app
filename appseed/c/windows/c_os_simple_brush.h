@@ -21,7 +21,7 @@ public:
 
 
    // platform-specific
-   bool from_stock(int iId);
+   bool from_stock(int32_t iId);
 
 
    simple_brush & operator = (const simple_brush & brush);

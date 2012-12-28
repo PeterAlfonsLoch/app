@@ -14,7 +14,7 @@ namespace user
       }
    }
 
-   void keyboard_focus::keyboard_focus_OnTimer(int iTimer)
+   void keyboard_focus::keyboard_focus_OnTimer(int32_t iTimer)
    {
       UNREFERENCED_PARAMETER(iTimer);
    }

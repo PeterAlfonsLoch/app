@@ -15,16 +15,16 @@ namespace compress
       namespace multimedia
       {
 
-         byte filter::Decode(int &channelDelta, byte deltaByte)
+         byte filter::Decode(int32_t &channelDelta, byte deltaByte)
          {
             D4 = D3;
             D3 = D2;
             D2 = LastDelta - D1;
             D1 = LastDelta;
-            int predictedValue = ((8 * LastChar + K1 * D1 + K2 * D2 + K3 * D3 + K4 * D4 + K5 * channelDelta) >> 3);
+            int32_t predictedValue = ((8 * LastChar + K1 * D1 + K2 * D2 + K3 * D3 + K4 * D4 + K5 * channelDelta) >> 3);
 
             byte realValue = (byte)(predictedValue - deltaByte);
-            int i = ((int)(signed char)deltaByte) << 3;
+            int32_t i = ((int32_t)(signed char)deltaByte) << 3;
 
             Dif[0] += abs(i);
             Dif[1] += abs(i - D1);
@@ -77,7 +77,7 @@ namespace compress
 
       static const uint32 kHistorySize = 1 << 20;
 
-      static const int kNumStats = 11;
+      static const int32_t kNumStats = 11;
 
       static const uint32 kWindowReservSize = (1 << 22) + 256;
 
@@ -89,14 +89,14 @@ namespace compress
       void decoder::InitStructures()
       {
          m_MmFilter.Init();
-         for(int i = 0; i < kNumRepDists; i++)
+         for(int32_t i = 0; i < kNumRepDists; i++)
             m_RepDists[i] = 0;
          m_RepDistPtr = 0;
          m_LastLength = 0;
          memset(m_LastLevels, 0, kMaxTableSize);
       }
 
-      uint32 decoder::ReadBits(int numBits) { return m_InBitStream.ReadBits(numBits); }
+      uint32 decoder::ReadBits(int32_t numBits) { return m_InBitStream.ReadBits(numBits); }
 
 #define RIF(x) { if (!(x)) return false; }
 
@@ -108,7 +108,7 @@ namespace compress
 
          if (ReadBits(1) == 0)
             memset(m_LastLevels, 0, kMaxTableSize);
-         int numLevels;
+         int32_t numLevels;
          if (m_AudioMode)
          {
             m_NumChannels = ReadBits(2) + 1;
@@ -119,7 +119,7 @@ namespace compress
          else
             numLevels = kHeapTablesSizesSum;
 
-         int i;
+         int32_t i;
          for (i = 0; i < kLevelTableSize; i++)
             levelLevels[i] = (byte)ReadBits(4);
          RIF(m_LevelDecoder.SetCodeLengths(levelLevels));
@@ -136,13 +136,13 @@ namespace compress
             {
                if (number == kTableLevelRepNumber)
                {
-                  int t = ReadBits(2) + 3;
-                  for (int reps = t; reps > 0 && i < numLevels ; reps--, i++)
+                  int32_t t = ReadBits(2) + 3;
+                  for (int32_t reps = t; reps > 0 && i < numLevels ; reps--, i++)
                      newLevels[i] = newLevels[i - 1];
                }
                else
                {
-                  int num;
+                  int32_t num;
                   if (number == kTableLevel0Number)
                      num = ReadBits(3) + 3;
                   else if (number == kTableLevel0Number2)

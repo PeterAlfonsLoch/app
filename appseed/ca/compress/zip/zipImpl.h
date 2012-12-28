@@ -64,7 +64,7 @@ extern "C" {
 #if defined(STRICTZIP) || defined(STRICTZIPUNZIP)
 /* like the STRICT of WIN32, we define a pointer that cannot be converted
     from (void *) without cast */
-typedef struct TagzipFile__ { int unused; } zipFile__;
+typedef struct TagzipFile__ { int32_t unused; } zipFile__;
 typedef zipFile__ *zipFile;
 #else
 typedef voidp zipFile;
@@ -114,7 +114,7 @@ typedef const char* zipcharpc;
 #define APPEND_STATUS_CREATEAFTER   (1)
 #define APPEND_STATUS_ADDINZIP      (2)
 
-extern zipFile CLASS_DECL_ca zipOpen OF((const char *pathname, int append));
+extern zipFile CLASS_DECL_ca zipOpen OF((const char *pathname, int32_t append));
 /*
   create a zipfile.
      pathname contain on Windows XP a filename like "c:\\zlib\\zlib113.zip" or on
@@ -135,11 +135,11 @@ extern zipFile CLASS_DECL_ca zipOpen OF((const char *pathname, int append));
 */
 
 extern zipFile CLASS_DECL_ca zipOpen2 OF((const char *pathname,
-                                   int append,
+                                   int32_t append,
                                    zipcharpc* globalcomment,
                                    zlib_filefunc_def* pzlib_filefunc_def));
 
-extern int CLASS_DECL_ca zipOpenNewFileInZip OF((zipFile file,
+extern int32_t CLASS_DECL_ca zipOpenNewFileInZip OF((zipFile file,
                        const char* filename,
                        const zip_fileinfo* zipfi,
                        const void * extrafield_local,
@@ -147,8 +147,8 @@ extern int CLASS_DECL_ca zipOpenNewFileInZip OF((zipFile file,
                        const void * extrafield_global,
                        uInt size_extrafield_global,
                        const char* comment,
-                       int method,
-                       int level));
+                       int32_t method,
+                       int32_t level));
 /*
   open a file in the ZIP for writing.
   filename : the filename in zip (if NULL, '-' without quote will be used
@@ -163,7 +163,7 @@ extern int CLASS_DECL_ca zipOpenNewFileInZip OF((zipFile file,
 */
 
 
-extern int CLASS_DECL_ca zipOpenNewFileInZip2 OF((zipFile file,
+extern int32_t CLASS_DECL_ca zipOpenNewFileInZip2 OF((zipFile file,
                                             const char* filename,
                                             const zip_fileinfo* zipfi,
                                             const void * extrafield_local,
@@ -171,15 +171,15 @@ extern int CLASS_DECL_ca zipOpenNewFileInZip2 OF((zipFile file,
                                             const void * extrafield_global,
                                             uInt size_extrafield_global,
                                             const char* comment,
-                                            int method,
-                                            int level,
-                                            int raw));
+                                            int32_t method,
+                                            int32_t level,
+                                            int32_t raw));
 
 /*
   Same than zipOpenNewFileInZip, except if raw=1, we write raw file
  */
 
-extern int CLASS_DECL_ca zipOpenNewFileInZip3 OF((zipFile file,
+extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 OF((zipFile file,
                                             const char* filename,
                                             const zip_fileinfo* zipfi,
                                             const void * extrafield_local,
@@ -187,12 +187,12 @@ extern int CLASS_DECL_ca zipOpenNewFileInZip3 OF((zipFile file,
                                             const void * extrafield_global,
                                             uInt size_extrafield_global,
                                             const char* comment,
-                                            int method,
-                                            int level,
-                                            int raw,
-                                            int windowBits,
-                                            int memLevel,
-                                            int strategy,
+                                            int32_t method,
+                                            int32_t level,
+                                            int32_t raw,
+                                            int32_t windowBits,
+                                            int32_t memLevel,
+                                            int32_t strategy,
                                             const char* password,
                                             uint32_t  crcForCtypting));
 
@@ -204,20 +204,20 @@ extern int CLASS_DECL_ca zipOpenNewFileInZip3 OF((zipFile file,
  */
 
 
-extern int CLASS_DECL_ca zipWriteInFileInZip OF((zipFile file,
+extern int32_t CLASS_DECL_ca zipWriteInFileInZip OF((zipFile file,
                        const void * buf,
                        unsigned len));
 /*
   write data in the zipfile
 */
 
-extern int CLASS_DECL_ca zipCloseFileInZip OF((zipFile file));
+extern int32_t CLASS_DECL_ca zipCloseFileInZip OF((zipFile file));
 /*
   close the current file in the zipfile
 */
 
 
-extern int CLASS_DECL_ca zipCloseFileInZipRaw OF((zipFile file,
+extern int32_t CLASS_DECL_ca zipCloseFileInZipRaw OF((zipFile file,
                                             uLong uncompressed_size,
                                             uLong crc32));
 /*
@@ -226,7 +226,7 @@ extern int CLASS_DECL_ca zipCloseFileInZipRaw OF((zipFile file,
   uncompressed_size and crc32 are value for the uncompressed size
 */
 
-extern int CLASS_DECL_ca zipClose OF((zipFile file,
+extern int32_t CLASS_DECL_ca zipClose OF((zipFile file,
                 const char* global_comment));
 /*
   close the zipfile

@@ -154,7 +154,7 @@ namespace sockets
 
       m_response.m_propertysetHeader.lowset(__str(content_length), (int64_t) m_response.file().get_size());
 
-      for(int i = 0; i < m_response.cookies().get_size(); i++)
+      for(int32_t i = 0; i < m_response.cookies().get_size(); i++)
       {
       
          m_response.m_propertysetHeader.add(__str(set_cookie), m_response.cookies().element_at(i).get_cookie_string());
@@ -224,7 +224,7 @@ namespace sockets
    string http_base_socket::set_cookie(
          const char * name,
          var var,
-         int iExpire,
+         int32_t iExpire,
          const char * path,
          const char * domain,
          bool bSecure)

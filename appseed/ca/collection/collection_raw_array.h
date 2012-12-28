@@ -98,7 +98,7 @@ public:
          return *this;
       }
 
-      iterator & operator +(int i)
+      iterator & operator +(int32_t i)
       {
          m_i += i;
          if(m_i >= m_parray->get_size())
@@ -431,7 +431,7 @@ raw_array<TYPE, ARG_TYPE>::~raw_array()
 
    if (m_pData != NULL)
    {
-      for( int i = 0; i < m_nSize; i++ )
+      for( int32_t i = 0; i < m_nSize; i++ )
          (m_pData + i)->~TYPE();
       delete[] (BYTE*)m_pData;
    }
@@ -641,7 +641,7 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, cou
       // re-init slots we copied from
       memset((void *)(m_pData + nIndex), 0, (size_t)nCount * sizeof(TYPE));
 #undef new
-      for( int i = 0; i < nCount; i++ )
+      for( int32_t i = 0; i < nCount; i++ )
          ::new( (void *)( m_pData + nIndex + i ) ) TYPE;
 #define new DEBUG_NEW
    }

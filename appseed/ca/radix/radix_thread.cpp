@@ -90,7 +90,7 @@ namespace radix
       return m_p->post_thread_message(message, wParam, lParam);
    }
 
-   void thread::ProcessMessageFilter(int code, gen::signal_object * pobj)
+   void thread::ProcessMessageFilter(int32_t code, gen::signal_object * pobj)
    {
       return  m_p->ProcessMessageFilter(code, pobj);
    }
@@ -132,7 +132,7 @@ namespace radix
    }
 
    // running and idle processing
-   int thread::run()
+   int32_t thread::run()
    {
       return m_p->run();
    }
@@ -160,7 +160,7 @@ namespace radix
    }
 
    // thread termination
-   int thread::exit_instance() // default will 'delete this'
+   int32_t thread::exit_instance() // default will 'delete this'
    {
 
 
@@ -333,7 +333,7 @@ namespace radix
       return m_p->step_timer();
    }
 
-   int thread::main()
+   int32_t thread::main()
    {
       return m_p->main();
    }

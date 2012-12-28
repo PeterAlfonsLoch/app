@@ -57,7 +57,7 @@ namespace colorertake5
    @param ex End X position of region in line
    @param region region information
    */
-   //virtual void RegionHandler::addRegion(int lno, const char *line, int sx, int ex, class region *region) = 0;
+   //virtual void RegionHandler::addRegion(int32_t lno, const char *line, int32_t sx, int32_t ex, class region *region) = 0;
 
    /** Informs handler about entering into specified scheme.
    Parameter <code>region</code> is used to specify
@@ -70,7 +70,7 @@ namespace colorertake5
    @param region scheme region information (background)
    @param scheme Additional scheme information
    */
-   //virtual void RegionHandler::enterScheme(int lno, const char *line, int sx, int ex, class region *region, class scheme *scheme) = 0;
+   //virtual void RegionHandler::enterScheme(int32_t lno, const char *line, int32_t sx, int32_t ex, class region *region, class scheme *scheme) = 0;
 
    /** Informs handler about leaveing specified scheme.
    Parameter <code>region</code> is used to specify
@@ -85,7 +85,7 @@ namespace colorertake5
    @param region scheme region information (background)
    @param scheme Additional scheme information
    */
-   //void RegionHandler::leaveScheme(int lno, const char  *line, int sx, int ex, class region *region, class scheme *scheme) = 0
+   //void RegionHandler::leaveScheme(int32_t lno, const char  *line, int32_t sx, int32_t ex, class region *region, class scheme *scheme) = 0
 
 
 } // namespace colorertake5

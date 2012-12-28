@@ -46,7 +46,7 @@ namespace xml
    void edit_item::write(::ex1::byte_output_stream & ostream)
    {
 
-      ostream << (int) m_eaction;
+      ostream << (int32_t) m_eaction;
       ostream << m_iaPath;
       ostream << m_strName;
       ostream << m_strValue;
@@ -56,7 +56,7 @@ namespace xml
    void edit_item::read(::ex1::byte_input_stream & istream)
    {
 
-      istream >> (int &) m_eaction;
+      istream >> (int32_t &) m_eaction;
       istream >> m_iaPath;
       istream >> m_strName;
       istream >> m_strValue;

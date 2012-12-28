@@ -48,7 +48,7 @@ namespace ca
       inline smart_pointer & operator = (T * p);
       inline smart_pointer & operator = (const smart_pointer < T > & t);
       inline smart_pointer & operator = (dword_ptr dw);
-      inline smart_pointer & operator = (int i);
+      inline smart_pointer & operator = (int32_t i);
 
       inline smart_pointer & operator() (T * p);
 
@@ -204,7 +204,7 @@ namespace ca
    }
 
    template < class T >
-   inline smart_pointer < T > & smart_pointer < T > ::operator = (int i)
+   inline smart_pointer < T > & smart_pointer < T > ::operator = (int32_t i)
    {
 
       if(i == 0)

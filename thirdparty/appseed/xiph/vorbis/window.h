@@ -28,9 +28,9 @@ BEGIN_EXTERN_C
 
 
 
-extern const float *_vorbis_window_get(int n);
-extern void _vorbis_apply_window(float *d,int *winno,long *blocksizes,
-                          int lW,int W,int nW);
+extern const float *_vorbis_window_get(int32_t n);
+extern void _vorbis_apply_window(float *d,int32_t *winno,long *blocksizes,
+                          int32_t lW,int32_t W,int32_t nW);
 
 
 

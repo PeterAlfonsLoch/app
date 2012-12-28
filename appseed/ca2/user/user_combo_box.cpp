@@ -75,7 +75,7 @@ namespace user
 
       get_element_rect(rectText, element_text);;
 
-      int iMargin = rectClient.height() / 8;
+      int32_t iMargin = rectClient.height() / 8;
 
       rectText.deflate(iMargin, iMargin);
 
@@ -111,7 +111,7 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      int iMargin = rectClient.height() / 8;
+      int32_t iMargin = rectClient.height() / 8;
 
       rect rectDropDown;
 
@@ -179,7 +179,7 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      int iMargin = rectClient.height() / 8;
+      int32_t iMargin = rectClient.height() / 8;
 
       rect rectDropDown;
 
@@ -187,9 +187,9 @@ namespace user
 
       rect r = rectDropDown;
 
-      int iColorRate;
+      int32_t iColorRate;
 
-      int i = 0;
+      int32_t i = 0;
 
 #ifdef WINDOWSEX
 
@@ -197,7 +197,7 @@ namespace user
 
       g.reference_os_data((Gdiplus::Graphics *) pdc->get_os_data());
 
-      for(int radius = iMargin * 2 / 3; radius >= 1; radius--)
+      for(int32_t radius = iMargin * 2 / 3; radius >= 1; radius--)
       {
 
          iColorRate = ((iMargin * 2 / 3) - radius) * 26 / (iMargin * 2 / 3);
@@ -435,13 +435,13 @@ namespace user
 
          ((combo_box *) this)->GetClientRect(rectClient);
 
-         int iMargin = rectClient.height() / 8;
+         int32_t iMargin = rectClient.height() / 8;
 
          rect rectDropDown;
 
          rectDropDown = rectClient;
 
-         int iW = rectClient.height() * 5 / 8;
+         int32_t iW = rectClient.height() * 5 / 8;
 
          rectDropDown.right      -= iMargin;
          rectDropDown.bottom     -= iMargin;
@@ -460,9 +460,9 @@ namespace user
 
          ((combo_box *) this)->GetClientRect(rectClient);
 
-         int iMargin = rectClient.height() / 8;
+         int32_t iMargin = rectClient.height() / 8;
 
-         int iW = rectClient.height() * 5 / 8;
+         int32_t iW = rectClient.height() * 5 / 8;
 
          rect rectText = rectClient;
 
@@ -487,7 +487,7 @@ namespace user
 
       ((combo_box *) this)->GetClientRect(rectClient);
 
-      int iMargin = rectClient.height() / 8;
+      int32_t iMargin = rectClient.height() / 8;
 
       rect rectDropDown;
 

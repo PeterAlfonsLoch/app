@@ -2,7 +2,7 @@
 
 namespace sqlite
 {
-   extern int callback(void * res_ptr,int ncol, char** reslt,char** cols);
+   extern int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols);
 
    set::set(::ca::application * papp) :
       ca(papp),
@@ -60,7 +60,7 @@ namespace sqlite
 
          //close();
 
-         for (int i = 0; i <_sql.get_size(); i++)
+         for (int32_t i = 0; i <_sql.get_size(); i++)
          {
             query = _sql.element_at(i);
             char* err=NULL;
@@ -120,7 +120,7 @@ namespace sqlite
       {
          fields_object.set_size(result.record_header.get_size());
          edit_object.set_size(result.record_header.get_size());
-         for (int i = 0; i < result.record_header.get_size(); i++)
+         for (int32_t i = 0; i < result.record_header.get_size(); i++)
          {
             fields_object[i].m_properties    = result.record_header[i];
             edit_object[i].m_properties      = result.record_header[i];
@@ -130,14 +130,14 @@ namespace sqlite
       //Filling result
       if (result.records.get_size() != 0)
       {
-         for (int i = 0; i < result.records[frecno].get_size(); i++)
+         for (int32_t i = 0; i < result.records[frecno].get_size(); i++)
          {
             fields_object[i].m_value   = result.records[frecno][i];
             edit_object[i].m_value     = result.records[frecno][i];
          }
       }
       else
-         for (int i = 0; i < result.record_header.get_size(); i++)
+         for (int32_t i = 0; i < result.record_header.get_size(); i++)
          {
             fields_object[i].m_value = "";
             edit_object[i].m_value = "";
@@ -365,7 +365,7 @@ namespace sqlite
       bool found = false;
       if(ds_state == database::dsSelect)
       {
-         for (int i=0; i < fields_object.get_size(); i++)
+         for (int32_t i=0; i < fields_object.get_size(); i++)
          {
             if(result.record_header[i].name == f_name)
             {
@@ -433,9 +433,9 @@ namespace sqlite
       //  return false;
    }
 
-   int set::GetFieldIndex(const char *f_name)
+   int32_t set::GetFieldIndex(const char *f_name)
    {
-      for (int i=0; i < fields_object.get_size(); i++)
+      for (int32_t i=0; i < fields_object.get_size(); i++)
       {
          if(result.record_header[i].name == f_name)
          {
@@ -448,10 +448,10 @@ namespace sqlite
 
    bool set::find_first(char * fieldname, var & value)
    {
-      int iFound = -1;
+      int32_t iFound = -1;
       if(ds_state == database::dsSelect)
       {
-         int i;
+         int32_t i;
          for(i=0; i < fields_object.get_size(); i++)
             if(result.record_header[i].name == fieldname)
             {
@@ -515,7 +515,7 @@ namespace sqlite
    **********************************************************************/
    //************* Callback function ***************************
 
-   int callback(void * res_ptr,int ncol, char** reslt,char** cols){
+   int32_t callback(void * res_ptr,int32_t ncol, char** reslt,char** cols){
 
       database::result_set* r = (database::result_set*)res_ptr;//dynamic_cast<result_set*>(res_ptr);
       count sz = r->records.get_size();
@@ -553,7 +553,7 @@ namespace sqlite
 
       if (reslt != NULL)
       {
-         for (int i=0; i<ncol; i++)
+         for (int32_t i=0; i<ncol; i++)
          {
             if (reslt[i] == NULL)
             {

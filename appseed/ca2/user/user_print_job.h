@@ -16,7 +16,7 @@ namespace user
       virtual ~print_job();
 
 
-      virtual int run();
+      virtual int32_t run();
 
    };
 

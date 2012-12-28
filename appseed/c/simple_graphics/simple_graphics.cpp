@@ -15,42 +15,42 @@ simple_graphics::~simple_graphics()
 
 
 
-void fastblur(DWORD * pdata, int w, int h, int radius)
+void fastblur(DWORD * pdata, int32_t w, int32_t h, int32_t radius)
 {
    if(radius < 1)
    {
       return;
    }
-  int wm=w-1;
-  int hm=h-1;
-  int wh=w*h;
-  int div=radius+radius+1;
+  int32_t wm=w-1;
+  int32_t hm=h-1;
+  int32_t wh=w*h;
+  int32_t div=radius+radius+1;
   simple_int_array iaA;
   iaA.set_size(wh);
-  int * a = iaA.get_data();
+  int32_t * a = iaA.get_data();
   simple_int_array iaR;
   iaR.set_size(wh);
-  int * r = iaR.get_data();
+  int32_t * r = iaR.get_data();
   simple_int_array iaG;
   iaG.set_size(wh);
-  int * g = iaG.get_data();
+  int32_t * g = iaG.get_data();
   simple_int_array iaB;
   iaB.set_size(wh);
-  int * b = iaB.get_data();
-  int asum, rsum,gsum,bsum,x,y,i,yp,yi,yw;
-  int p;
-  int p1;
-  int p2;
+  int32_t * b = iaB.get_data();
+  int32_t asum, rsum,gsum,bsum,x,y,i,yp,yi,yw;
+  int32_t p;
+  int32_t p1;
+  int32_t p2;
   simple_int_array iaVmin;
   iaVmin.set_size(max(w,h));
-  int * vmin = iaVmin.get_data();
+  int32_t * vmin = iaVmin.get_data();
   simple_int_array iaVmax;
   iaVmax.set_size(max(w,h));
-  int * vmax = iaVmax.get_data();
-  int * pix=(int *) pdata;
+  int32_t * vmax = iaVmax.get_data();
+  int32_t * pix=(int32_t *) pdata;
   simple_int_array iaDv;
   iaDv.set_size(256*div);
-  int * dv = iaDv.get_data();
+  int32_t * dv = iaDv.get_data();
   for (i=0;i<iaDv.get_count();i++)
   {
       dv[i]= min(255, i/div);
@@ -147,7 +147,7 @@ void fastblur(DWORD * pdata, int w, int h, int radius)
 //
 // Returns:     None
 //
-bool simple_graphics::draw_round_rect(const RECT & rect, simple_pen & pen, int radius)
+bool simple_graphics::draw_round_rect(const RECT & rect, simple_pen & pen, int32_t radius)
 {
 
    simple_path path;
@@ -179,19 +179,19 @@ bool simple_graphics::draw_round_rect(const RECT & rect, simple_pen & pen, int r
 //
 // Returns:     None
 //
-bool simple_graphics::draw_round_rect(const RECT & rect, COLORREF cr, int radius, int width)
+bool simple_graphics::draw_round_rect(const RECT & rect, COLORREF cr, int32_t radius, int32_t width)
 {
 
    RECT r = rect;
 
-   int dia	= 2 * radius;
+   int32_t dia	= 2 * radius;
 
    simple_solid_pen pen(*this, cr);
 
    draw_round_rect(r, pen, radius);
 
 
-   for(int i=1; i<width; i++)
+   for(int32_t i=1; i<width; i++)
    {
       dia++;
 
@@ -212,7 +212,7 @@ bool simple_graphics::draw_round_rect(const RECT & rect, COLORREF cr, int radius
 }
 
 
-bool simple_graphics::draw_round_top_left(const RECT & rect, simple_pen & pen, int radius)
+bool simple_graphics::draw_round_top_left(const RECT & rect, simple_pen & pen, int32_t radius)
 {
 
    simple_path path;
@@ -230,19 +230,19 @@ bool simple_graphics::draw_round_top_left(const RECT & rect, simple_pen & pen, i
 }
 
 
-bool simple_graphics::draw_round_top_left(const RECT & rect, COLORREF cr, int radius, int width)
+bool simple_graphics::draw_round_top_left(const RECT & rect, COLORREF cr, int32_t radius, int32_t width)
 {
 
    RECT r = rect;
 
-   int dia	= 2 * radius;
+   int32_t dia	= 2 * radius;
 
    simple_solid_pen pen(*this, cr);
 
    draw_round_top_left(r, pen, radius);
 
 
-   for(int i=1; i<width; i++)
+   for(int32_t i=1; i<width; i++)
    {
       dia++;
 
@@ -263,7 +263,7 @@ bool simple_graphics::draw_round_top_left(const RECT & rect, COLORREF cr, int ra
 }
 
 
-bool simple_graphics::draw_round_bottom_right(const RECT & rect, simple_pen & pen, int radius)
+bool simple_graphics::draw_round_bottom_right(const RECT & rect, simple_pen & pen, int32_t radius)
 {
 
    simple_path path;
@@ -281,19 +281,19 @@ bool simple_graphics::draw_round_bottom_right(const RECT & rect, simple_pen & pe
 }
 
 
-bool simple_graphics::draw_round_bottom_right(const RECT & rect, COLORREF cr, int radius, int width)
+bool simple_graphics::draw_round_bottom_right(const RECT & rect, COLORREF cr, int32_t radius, int32_t width)
 {
 
    RECT r = rect;
 
-   int dia	= 2 * radius;
+   int32_t dia	= 2 * radius;
 
    simple_solid_pen pen(*this, cr);
 
    draw_round_bottom_right(r, pen, radius);
 
 
-   for(int i=1; i<width; i++)
+   for(int32_t i=1; i<width; i++)
    {
 
       dia++;
@@ -328,7 +328,7 @@ bool simple_graphics::draw_round_bottom_right(const RECT & rect, COLORREF cr, in
 //
 // Returns:     None
 //
-bool simple_graphics::fill_round_rect(const RECT & r, COLORREF cr, int radius)
+bool simple_graphics::fill_round_rect(const RECT & r, COLORREF cr, int32_t radius)
 {
 
    simple_solid_brush br(*this, cr);
@@ -353,7 +353,7 @@ bool simple_graphics::fill_round_rect(const RECT & r, COLORREF cr, int radius)
 //
 // Returns:     None
 //
-bool simple_graphics::fill_round_rect(const RECT & rect, simple_brush & br, int radius)
+bool simple_graphics::fill_round_rect(const RECT & rect, simple_brush & br, int32_t radius)
 {
 
    simple_path path;
@@ -370,7 +370,7 @@ bool simple_graphics::fill_round_rect(const RECT & rect, simple_brush & br, int 
 
 }
 
-bool simple_graphics::round_rect(const RECT & r, int radius)
+bool simple_graphics::round_rect(const RECT & r, int32_t radius)
 {
 
    bool bOk1 = fill_round_rect(r, m_brush, radius);

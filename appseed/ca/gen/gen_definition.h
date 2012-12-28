@@ -150,7 +150,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #ifndef ENSURE_RETURN_HR
 #define ENSURE_RETURN_HR(expr, hr)          \
 do {                                           \
-   int __atl_condVal=!!(expr);                \
+   int32_t __atl_condVal=!!(expr);                \
    ASSERT(__atl_condVal);                  \
    if(!(__atl_condVal)) return hr;            \
 } while (0)

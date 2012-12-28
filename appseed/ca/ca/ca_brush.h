@@ -33,23 +33,23 @@ namespace ca
 
 
       //virtual void construct(COLORREF crColor);                // create_solid
-      //virtual void construct(int nIndex, COLORREF crColor);    // CreateHatchBrush
+      //virtual void construct(int32_t nIndex, COLORREF crColor);    // CreateHatchBrush
       //virtual void construct(bitmap * pbitmap);                // CreatePatternBrush
 
       virtual bool create_null();
       virtual bool create_solid(COLORREF crColor);
-      virtual bool CreateHatchBrush(int nIndex, COLORREF crColor);
+      virtual bool CreateHatchBrush(int32_t nIndex, COLORREF crColor);
       virtual bool CreateBrushIndirect(const LOGBRUSH* lpLogBrush);
       virtual bool CreatePatternBrush(::ca::bitmap* pBitmap);
 #ifdef WINDOWS
       virtual bool CreateDIBPatternBrush(HGLOBAL hPackedDIB, UINT nUsage);
 #endif
       virtual bool CreateDIBPatternBrush(const void * lpPackedDIB, UINT nUsage);
-      virtual bool CreateSysColorBrush(int nIndex);
+      virtual bool CreateSysColorBrush(int32_t nIndex);
 
       virtual bool CreateLinearGradientBrush(point p1, point p2, COLORREF cr1, COLORREF cr2);
 
-      virtual int GetLogBrush(LOGBRUSH* pLogBrush);
+      virtual int32_t GetLogBrush(LOGBRUSH* pLogBrush);
 
       brush & operator = (const ::ca::brush & brushSrc);
 
@@ -85,7 +85,7 @@ namespace ca
 
 /*
       // CreateHatchBrush
-      brush_sp(::ca::application * papp, int nIndex, COLORREF crColor) :
+      brush_sp(::ca::application * papp, int32_t nIndex, COLORREF crColor) :
          smart_pointer < brush > (papp)
       {
          m_p->construct(nIndex, crColor);

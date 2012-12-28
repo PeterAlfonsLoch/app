@@ -41,7 +41,7 @@ void __stdcall gen_TraceCloseProcess( dword_ptr dwProcess );
 void __stdcall gen_TraceSnapshotProcess( dword_ptr dwProcess );
 
 /*dword_ptr __stdcall gen_TraceRegister(HINSTANCE hInst,
-   int (__cdecl *fnCrtDbgReport)(int,const char *,int,const char *,const char *,va_list));
+   int32_t (__cdecl *fnCrtDbgReport)(int32_t,const char *,int32_t,const char *,const char *,va_list));
 bool __stdcall gen_TraceUnregister(dword_ptr dwModule);*/
 
 /*dword_ptr __stdcall gen_TraceRegisterCategoryA(dword_ptr dwModule, const CHAR szCategoryName[TRACE_MAX_NAME_SIZE]);
@@ -62,9 +62,9 @@ void __stdcall gen_TraceGetUpdateEventNameU(WCHAR *pszEventName);
 void __stdcall gen_TraceGetUpdateEventNameA_s(CHAR *pszEventName, size_t cchEventName);
 void __stdcall gen_TraceGetUpdateEventNameU_s(WCHAR *pszEventName, size_t cchEventName);*/
 
-void __cdecl gen_TraceVA(dword_ptr dwModule, const char *pszFileName, int nLineNo,
+void __cdecl gen_TraceVA(dword_ptr dwModule, const char *pszFileName, int32_t nLineNo,
                   dword_ptr dwCategory, UINT nLevel, const CHAR *pszFormat, va_list ptr);
-void __cdecl gen_TraceVU(dword_ptr dwModule,const char *pszFileName, int nLineNo,
+void __cdecl gen_TraceVU(dword_ptr dwModule,const char *pszFileName, int32_t nLineNo,
                   dword_ptr dwCategory, UINT nLevel, const WCHAR *pszFormat, va_list ptr);
 
 bool __stdcall gen_TraceLoadSettingsA(const CHAR *pszFileName, dword_ptr dwProcess = 0);
@@ -89,7 +89,7 @@ typedef struct TRACEPROCESSINFO
    WCHAR szName[TRACE_MAX_NAME_SIZE], szPath[MAX_PATH];
    DWORD dwId;
    TRACEPROCESSSETTINGS settings;
-   int nModules;
+   int32_t nModules;
 } TRACEPROCESSINFO;
 
 typedef struct TRACEMODULEINFO
@@ -97,7 +97,7 @@ typedef struct TRACEMODULEINFO
    WCHAR szName[TRACE_MAX_NAME_SIZE], szPath[MAX_PATH];
    TRACESETTINGS settings;
    dword_ptr dwModule;
-   int nCategories;
+   int32_t nCategories;
 } TRACEMODULEINFO;
 
 typedef struct TRACECATEGORYINFO
@@ -108,8 +108,8 @@ typedef struct TRACECATEGORYINFO
 } TRACECATEGORYINFO;
 
 bool __stdcall gen_TraceGetProcessInfo(dword_ptr dwProcess, TRACEPROCESSINFO* pProcessInfo);
-void __stdcall gen_TraceGetModuleInfo(dword_ptr dwProcess, int iModule, TRACEMODULEINFO* pModuleInfo);
-void __stdcall gen_TraceGetCategoryInfo(dword_ptr dwProcess, dword_ptr dwModule, int iCategory, TRACECATEGORYINFO* pAtlTraceCategoryInfo);
+void __stdcall gen_TraceGetModuleInfo(dword_ptr dwProcess, int32_t iModule, TRACEMODULEINFO* pModuleInfo);
+void __stdcall gen_TraceGetCategoryInfo(dword_ptr dwProcess, dword_ptr dwModule, int32_t iCategory, TRACECATEGORYINFO* pAtlTraceCategoryInfo);
 */
 
 #ifdef UNICODE

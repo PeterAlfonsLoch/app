@@ -12,9 +12,9 @@ static const char *toTrace[] = {"BaseEditorNative", "JavaLineSource" };
 
 static FILE * log = 0;
 
-static void file_logger(int level, const char *cname, const char *msg, va_list v){
+static void file_logger(int32_t level, const char *cname, const char *msg, va_list v){
 
-  int idx = 0;
+  int32_t idx = 0;
 
   while (log == 0 && idx < 10){
     char log_name[30];
@@ -36,7 +36,7 @@ static void file_logger(int level, const char *cname, const char *msg, va_list v
   fflush(log);
 }
 
-static void console_logger(int level, const char *cname, const char *msg, va_list v){
+static void console_logger(int32_t level, const char *cname, const char *msg, va_list v){
 
   printf("[%s][%s] ", levelNames[level], cname);
 
@@ -84,11 +84,11 @@ void colorer_logger_info(const char *cname, const char *msg, ...){
 
 
 
-void colorer_logger(int level, const char *cname, const char *msg, va_list v){
+void colorer_logger(int32_t level, const char *cname, const char *msg, va_list v){
 
   bool found = false;
 
-  for (int idx = 0; idx < sizeof(toTrace)/sizeof(toTrace[0]); idx++)
+  for (int32_t idx = 0; idx < sizeof(toTrace)/sizeof(toTrace[0]); idx++)
   {
 #ifdef WINDOWS
       if (_stricmp(toTrace[idx], cname) == 0)

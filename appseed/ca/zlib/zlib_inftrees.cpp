@@ -32,7 +32,7 @@ const char inflate_copyright[] =
    table index bits.  It will differ if the request is greater than the
    longest code or if it is less than the shortest code.
  */
-int inflate_table(
+int32_t inflate_table(
 codetype type,
 unsigned short FAR *lens,
 unsigned codes,
@@ -46,7 +46,7 @@ unsigned short FAR *work)
     unsigned root;              /* number of index bits for root table */
     unsigned curr;              /* number of index bits for current table */
     unsigned drop;              /* code bits to drop for sub-table */
-    int left;                   /* number of prefix codes available */
+    int32_t left;                   /* number of prefix codes available */
     unsigned used;              /* code entries in table used */
     unsigned huff;              /* Huffman code */
     unsigned incr;              /* for incrementing code, index */
@@ -57,7 +57,7 @@ unsigned short FAR *work)
     code FAR *next;             /* next available space in table */
     const unsigned short FAR *base;     /* base value table to use */
     const unsigned short FAR *extra;    /* extra bits table to use */
-    int end;                    /* use base and extra for symbol > end */
+    int32_t end;                    /* use base and extra for symbol > end */
     unsigned short count[MAXBITS+1];    /* number of codes of each length */
     unsigned short offs[MAXBITS+1];     /* offsets in table for each length */
     static const unsigned short lbase[31] = { /* Length codes 257..285 base */
@@ -219,11 +219,11 @@ unsigned short FAR *work)
     for (;;) {
         /* create table entry */
         codeThis.bits = (unsigned char)(len - drop);
-        if ((int)(work[sym]) < end) {
+        if ((int32_t)(work[sym]) < end) {
             codeThis.op = (unsigned char)0;
             codeThis.val = work[sym];
         }
-        else if ((int)(work[sym]) > end) {
+        else if ((int32_t)(work[sym]) > end) {
             codeThis.op = (unsigned char)(extra[work[sym]]);
             codeThis.val = base[work[sym]];
         }
@@ -270,7 +270,7 @@ unsigned short FAR *work)
 
             /* determine length of next table */
             curr = len - drop;
-            left = (int)(1 << curr);
+            left = (int32_t)(1 << curr);
             while (curr + drop < max) {
                 left -= count[curr + drop];
                 if (left <= 0) break;

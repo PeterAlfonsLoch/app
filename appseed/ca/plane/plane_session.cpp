@@ -105,7 +105,7 @@ namespace plane
       return true;
    }
 
-   int session::exit_instance()
+   int32_t session::exit_instance()
    {
       try
       {
@@ -162,7 +162,7 @@ namespace plane
 
    void session::initialize_bergedge_application_interface()
    {
-//      int iCount = 32;  todo: get from session profile
+//      int32_t iCount = 32;  todo: get from session profile
 /*      System.factory().creatable < ::session::document > (iCount);
       System.factory().creatable < ::session::view > (iCount);
       System.factory().creatable < ::session::pane_view > (iCount);
@@ -356,7 +356,7 @@ namespace plane
             return;
          }
 
-         for(int i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
+         for(int32_t i = 0; i < pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count(); i++)
          {
 
             string strApp = pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[i];

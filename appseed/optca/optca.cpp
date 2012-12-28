@@ -2,7 +2,7 @@
 
 
 
-bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte * dv, int stride)
+bool optca_fastblur(DWORD * pdata, int32_t w, int32_t h, int32_t radius, DWORD * prgba, byte * dv, int32_t stride)
 {
 
    if(radius < 1)
@@ -10,20 +10,20 @@ bool optca_fastblur(DWORD * pdata, int w, int h, int radius, DWORD * prgba, byte
       return false;
    }
 
-   register int rsum,gsum,bsum,asum;
-   int x;
-   int y;
-   int i;
-   int yp;
-   int yw;
+   register int32_t rsum,gsum,bsum,asum;
+   int32_t x;
+   int32_t y;
+   int32_t i;
+   int32_t yp;
+   int32_t yw;
    register byte * p1;
    register byte * p2;
-   int wm         = w - 1;
-   int hm         = h - 1;
-   int wr         = wm - radius;
-   int hr         = hm - radius;
-   int div        = radius + radius + 1;
-   int * pix      = (int *) pdata;
+   int32_t wm         = w - 1;
+   int32_t hm         = h - 1;
+   int32_t wr         = wm - radius;
+   int32_t hr         = hm - radius;
+   int32_t div        = radius + radius + 1;
+   int32_t * pix      = (int32_t *) pdata;
    byte * pb      = (byte *) pdata;
    byte * pwork   = (byte *) prgba;
    byte * pwk     = (byte *) prgba;

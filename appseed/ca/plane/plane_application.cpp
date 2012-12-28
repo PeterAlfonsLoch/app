@@ -117,7 +117,7 @@ namespace plane
       return planebase::application::initialize_instance();
    }
 
-   int application::exit_instance()
+   int32_t application::exit_instance()
    {
       string strId = m_strId;
       char chFirst = '\0';
@@ -239,7 +239,7 @@ namespace plane
    }
 
 
-   int application::run()
+   int32_t application::run()
    {
 
       return ::planebase::application::run();
@@ -285,7 +285,7 @@ namespace plane
          
          bool bFound = false;
 
-         for(int i  = 0; i < System.m_appptra.get_count(); i++)
+         for(int32_t i  = 0; i < System.m_appptra.get_count(); i++)
          {
             try
             {

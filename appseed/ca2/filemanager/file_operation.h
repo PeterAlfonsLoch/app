@@ -35,11 +35,11 @@ public:
 //   virtual double size();
 //   virtual double progress();
 
-   int get_item_count();
-   string get_item_message(int iItem);
-   double get_item_progress(int iItem);
-   double get_item_read(int iItem);
-   double get_item_size(int iItem);
+   int32_t get_item_count();
+   string get_item_message(int32_t iItem);
+   double get_item_progress(int32_t iItem);
+   double get_item_read(int32_t iItem);
+   double get_item_size(int32_t iItem);
 
    void expand(stringa & straExpanded, stringa & straExpand);
 
@@ -65,10 +65,10 @@ public:
    double            m_dRead;
    ex1::filesp           m_fileSrc;
    ex1::filesp           m_fileDst;
-   int               m_iFile;
+   int32_t               m_iFile;
    bool              m_bReplaceAll;
    char *            m_pchBuffer;
-   int         m_iBufferSize;
+   int32_t         m_iBufferSize;
    ::user::interaction *  m_oswindowCallback;
    UINT              m_uiCallbackMessage;
    WPARAM            m_wparamCallback;

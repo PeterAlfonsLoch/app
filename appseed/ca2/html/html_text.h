@@ -44,9 +44,9 @@ namespace html
          virtual string link();
 
          using user::edit_plain_text::hit_test;
-         virtual int hit_test(data * pdoc, ::point pt);
+         virtual int32_t hit_test(data * pdoc, ::point pt);
 
-         virtual strsize char_hit_test(::ca::graphics * pdc, int x, int y);
+         virtual strsize char_hit_test(::ca::graphics * pdc, int32_t x, int32_t y);
 
          virtual float get_first_line_height();
          virtual float get_last_line_height();

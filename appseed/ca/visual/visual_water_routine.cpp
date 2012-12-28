@@ -29,7 +29,7 @@ namespace visual
       m_iHeightField1 = NULL;
       m_iHeightField2 = NULL;
    }
-   void water_routine::create(int iWidth,int iHeight)
+   void water_routine::create(int32_t iWidth,int32_t iHeight)
    {
       if(m_iHeightField1 != NULL)
          delete [] m_iHeightField1;
@@ -37,12 +37,12 @@ namespace visual
          delete [] m_iHeightField2;
 
       // create our height fields
-      m_iHeightField1 = new int[(iWidth*iHeight)];
-      m_iHeightField2 = new int[(iWidth*iHeight)];
+      m_iHeightField1 = new int32_t[(iWidth*iHeight)];
+      m_iHeightField2 = new int32_t[(iWidth*iHeight)];
 
       // clear our height fields
-      memset(m_iHeightField1,0,(iWidth*iHeight)*sizeof(int));
-      memset(m_iHeightField2,0,(iWidth*iHeight)*sizeof(int));
+      memset(m_iHeightField1,0,(iWidth*iHeight)*sizeof(int32_t));
+      memset(m_iHeightField2,0,(iWidth*iHeight)*sizeof(int32_t));
 
       m_iWidth = iWidth;
       m_iHeight = iHeight;
@@ -54,8 +54,8 @@ namespace visual
    void water_routine::FlattenWater()
    {
       // clear our height fields
-      memset(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(int));
-      memset(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(int));
+      memset(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(int32_t));
+      memset(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(int32_t));
    }
    void water_routine::to(DWORD* pSrcImage,DWORD* pTargetImage)
    {
@@ -74,12 +74,12 @@ namespace visual
       m_iHpage ^= 1;
 
    }
-   void water_routine::CalcWater(int npage, int density)
+   void water_routine::CalcWater(int32_t npage, int32_t density)
    {
-     int newh;
-     int count = m_iWidth + 1;
-     int *newptr;
-     int *oldptr;
+     int32_t newh;
+     int32_t count = m_iWidth + 1;
+     int32_t *newptr;
+     int32_t *oldptr;
 
      // Set up the pointers
      if(npage == 0)
@@ -93,7 +93,7 @@ namespace visual
       oldptr = &m_iHeightField1[0];
      }
 
-     int x, y;
+     int32_t x, y;
 
      // Sorry, this function might not be as readable as I'd like, because
      // I optimized it somewhat.  (enough to make me feel satisfied with it)
@@ -135,13 +135,13 @@ namespace visual
        }
      }
    }
-   void water_routine::SmoothWater(int npage)
+   void water_routine::SmoothWater(int32_t npage)
    {
-     int newh;
-     int count = m_iWidth + 1;
+     int32_t newh;
+     int32_t count = m_iWidth + 1;
 
-     int *newptr;
-     int *oldptr;
+     int32_t *newptr;
+     int32_t *oldptr;
 
      // Set up the pointers
      if(npage == 0)
@@ -156,7 +156,7 @@ namespace visual
      }
 
 
-     int x, y;
+     int32_t x, y;
 
      // Sorry, this function might not be as readable as I'd like, because
      // I optimized it somewhat.  (enough to make me feel satisfied with it)
@@ -186,13 +186,13 @@ namespace visual
      }
    }
 
-   void water_routine::CalcWaterBigFilter(int npage, int density)
+   void water_routine::CalcWaterBigFilter(int32_t npage, int32_t density)
    {
-     int newh;
-     int count = (2*m_iWidth) + 2;
+     int32_t newh;
+     int32_t count = (2*m_iWidth) + 2;
 
-     int *newptr;
-     int *oldptr;
+     int32_t *newptr;
+     int32_t *oldptr;
 
      // Set up the pointers
      if(npage == 0)
@@ -206,7 +206,7 @@ namespace visual
       oldptr = &m_iHeightField1[0];
      }
 
-     int x, y;
+     int32_t x, y;
 
      // Sorry, this function might not be as readable as I'd like, because
      // I optimized it somewhat.  (enough to make me feel satisfied with it)
@@ -257,14 +257,14 @@ namespace visual
      }
    }
 
-   void water_routine::HeightBlob(int x, int y, int radius, int height, int page)
+   void water_routine::HeightBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page)
    {
-     int rquad;
-     int cx, cy, cyq;
-     int left, top, right, bottom;
+     int32_t rquad;
+     int32_t cx, cy, cyq;
+     int32_t left, top, right, bottom;
 
-     int *newptr;
-     int *oldptr;
+     int32_t *newptr;
+     int32_t *oldptr;
 
      // Set up the pointers
      if(page == 0)
@@ -306,12 +306,12 @@ namespace visual
 
    }
 
-   void water_routine::HeightBox (int x, int y, int radius, int height, int page)
+   void water_routine::HeightBox (int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page)
    {
-     int cx, cy;
-     int left, top, right, bottom;
-     int *newptr;
-     int *oldptr;
+     int32_t cx, cy;
+     int32_t left, top, right, bottom;
+     int32_t *newptr;
+     int32_t *oldptr;
 
      // Set up the pointers
      if(page == 0)
@@ -348,14 +348,14 @@ namespace visual
    }
 
 
-   void water_routine::WarpBlob(int x, int y, int radius, int height, int page)
+   void water_routine::WarpBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page)
    {
-     int cx, cy;
-     int left,top,right,bottom;
-     int square;
-     int radsquare = radius * radius;
-     int *newptr;
-     int *oldptr;
+     int32_t cx, cy;
+     int32_t left,top,right,bottom;
+     int32_t square;
+     int32_t radsquare = radius * radius;
+     int32_t *newptr;
+     int32_t *oldptr;
 
      // Set up the pointers
      if(page == 0)
@@ -393,21 +393,21 @@ namespace visual
    //        height[page][WATERWID*(cy+y) + cx+x]
    //          += (sqrt(radsquare)-sqrt(square))*height;
            newptr[m_iWidth*(cy+y) + cx+x]
-             += int((radius-sqrt((float)square))*(float)(height));
+             += int32_t((radius-sqrt((float)square))*(float)(height));
          }
        }
      }
    }
 
-   void water_routine::SineBlob(int x, int y, int radius, int height, int page)
+   void water_routine::SineBlob(int32_t x, int32_t y, int32_t radius, int32_t height, int32_t page)
    {
-     int cx, cy;
-     int left,top,right,bottom;
-     int square, dist;
-     int radsquare = radius * radius;
+     int32_t cx, cy;
+     int32_t left,top,right,bottom;
+     int32_t square, dist;
+     int32_t radsquare = radius * radius;
      float length = float((1024.0/(float)radius)*(1024.0/(float)radius));
-     int *newptr;
-     int *oldptr;
+     int32_t *newptr;
+     int32_t *oldptr;
 
      // Set up the pointers
      if(page == 0)
@@ -447,25 +447,25 @@ namespace visual
          square = cy*cy + cx*cx;
          if(square < radsquare)
          {
-           dist = int(sqrt(square*length));
+           dist = int32_t(sqrt(square*length));
            newptr[m_iWidth*(cy+y) + cx+x]
-             += (int)((cos((float) dist)+0xffff)*(height)) >> 19;
+             += (int32_t)((cos((float) dist)+0xffff)*(height)) >> 19;
          }
        }
      }
    }
 
-   void water_routine::DrawWaterNoLight(int page,DWORD* pSrcImage,DWORD* pTargetImage)
+   void water_routine::DrawWaterNoLight(int32_t page,DWORD* pSrcImage,DWORD* pTargetImage)
    {
       UNREFERENCED_PARAMETER(page);
-   //  int ox, oy;
-     int dx, dy;
-     int x, y;
+   //  int32_t ox, oy;
+     int32_t dx, dy;
+     int32_t x, y;
      DWORD c;
 
-     int offset=m_iWidth + 1;
+     int32_t offset=m_iWidth + 1;
 
-     int *ptr = &m_iHeightField1[0];
+     int32_t *ptr = &m_iHeightField1[0];
 
      for (y = (m_iHeight-1)*m_iWidth; offset < y; offset += 2)
      {
@@ -495,20 +495,20 @@ namespace visual
      }
    }
 
-   void water_routine::DrawWaterWithLight(int page, int LightModifier,DWORD* pSrcImage,DWORD* pTargetImage)
+   void water_routine::DrawWaterWithLight(int32_t page, int32_t LightModifier,DWORD* pSrcImage,DWORD* pTargetImage)
    {
       UNREFERENCED_PARAMETER(page);
       UNREFERENCED_PARAMETER(LightModifier);
-   //  int ox, oy;
-     int dx, dy;
-     int x, y;
+   //  int32_t ox, oy;
+     int32_t dx, dy;
+     int32_t x, y;
      DWORD c;
 
-     int offset=m_iWidth + 1;
+     int32_t offset=m_iWidth + 1;
      long lIndex;
      long lBreak = m_iWidth*m_iHeight;
 
-     int *ptr = &m_iHeightField1[0];
+     int32_t *ptr = &m_iHeightField1[0];
 
 
      for (y = (m_iHeight-2)*m_iWidth; offset < y; )
@@ -546,7 +546,7 @@ namespace visual
      }
     
    }
-   inline COLORREF water_routine::GetShiftedColor(COLORREF color,int shift)
+   inline COLORREF water_routine::GetShiftedColor(COLORREF color,int32_t shift)
    {
       long R;
       long G;

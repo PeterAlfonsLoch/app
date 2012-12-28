@@ -53,7 +53,7 @@ namespace sockets
          \param eid Event ID to remove */
       void RemoveEvent(long eid);
       /** Event callback will fire when time is up. */
-      virtual void OnEvent(int) = 0;
+      virtual void OnEvent(int32_t) = 0;
 
       IEventHandler& EventHandler();
       void SetHandlerInvalid(bool x = true) { m_handler_invalid = x; }

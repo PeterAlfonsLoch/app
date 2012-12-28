@@ -1,6 +1,6 @@
 #include "framework.h"
 
-const int simple_list_header_control::s_iDividerWidth = 4;
+const int32_t simple_list_header_control::s_iDividerWidth = 4;
 
 simple_list_header_control::simple_list_header_control(::ca::application * papp) :
    ca(papp),
@@ -32,7 +32,7 @@ void simple_list_header_control::install_message_handling(::gen::message::dispat
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_list_header_control::_001OnMouseMove);
 }
 
-/*int simple_list_header_control::GetItemWidth(int iItem)
+/*int32_t simple_list_header_control::GetItemWidth(int32_t iItem)
 {
    HDITEM hditem;
 
@@ -197,7 +197,7 @@ void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
 
 }*/
 
-/*LPARAM simple_list_header_control::GetItemLParam(int iItem)
+/*LPARAM simple_list_header_control::GetItemLParam(int32_t iItem)
 {
    HDITEM hditem;
 

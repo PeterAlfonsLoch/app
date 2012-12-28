@@ -63,13 +63,13 @@ void file_manager_operation_view::_001OnMainPostMessage(gen::signal_object * pob
    SCAST_PTR(::gen::message::base, pbase, pobj)
    if(pbase->m_wparam == MessageMainPostFileOperation)
    {
-      m_pinfoview->OnFileOperationStep((int) pbase->m_lparam, false);
-      m_plistview->OnFileOperationStep((int) pbase->m_lparam, false);
+      m_pinfoview->OnFileOperationStep((int32_t) pbase->m_lparam, false);
+      m_plistview->OnFileOperationStep((int32_t) pbase->m_lparam, false);
    }
    else if(pbase->m_wparam == MessageMainPostFileOperationFinal)
    {
-      m_pinfoview->OnFileOperationStep((int) pbase->m_lparam, true);
-      m_plistview->OnFileOperationStep((int) pbase->m_lparam, true);
+      m_pinfoview->OnFileOperationStep((int32_t) pbase->m_lparam, true);
+      m_plistview->OnFileOperationStep((int32_t) pbase->m_lparam, true);
    }
 }
 

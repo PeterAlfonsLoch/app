@@ -21,7 +21,7 @@ namespace fs
 
       virtual void _017OpenFolder(const item & item);
       void StartAnimation();
-      void RenameFile(int iLine, string & str);
+      void RenameFile(int32_t iLine, string & str);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 

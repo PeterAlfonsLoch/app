@@ -22,7 +22,7 @@ public:
 #ifdef WINDOWS
    HANDLE            m_hMutex;
 #else
-   int               m_semid;
+   int32_t               m_semid;
    key_t             m_key;
    pthread_mutex_t   m_mutex;
 #endif

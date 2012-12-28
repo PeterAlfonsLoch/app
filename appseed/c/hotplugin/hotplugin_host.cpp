@@ -184,9 +184,9 @@ namespace hotplugin
 
    //bool host::os_native_bergedge_start();
 
-   //int starter_start(const char * pszId);
+   //int32_t starter_start(const char * pszId);
 
-   int host::start_ca2_system()
+   int32_t host::start_ca2_system()
    {
       if(m_pplugin != NULL)
       {
@@ -231,7 +231,7 @@ namespace hotplugin
       return 0;
    }
 #else
-   int host::message_handler(XEvent * pevent)
+   int32_t host::message_handler(XEvent * pevent)
    {
       if(m_pplugin != NULL)
       {
@@ -363,7 +363,7 @@ namespace hotplugin
    }
 
 
-   int host::starter_start(const char * pszCommandLine)
+   int32_t host::starter_start(const char * pszCommandLine)
    {
 
       return starter_start(pszCommandLine, this);
@@ -371,7 +371,7 @@ namespace hotplugin
    }
 
 
-   int host::starter_start(const char * pszCommandLine, plugin * pplugin)
+   int32_t host::starter_start(const char * pszCommandLine, plugin * pplugin)
    {
       set_installing_ca2();
       spa_starter_start * pstart    = new spa_starter_start;
@@ -391,7 +391,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 #else
       pthread_t * threadId;
       pthread_attr_t  attr;
-      int rc = 0;
+      int32_t rc = 0;
 
       if((rc = pthread_attr_init(&attr)))
          return -1;
@@ -405,7 +405,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
       return 0;
    }
 
-   int host::starter_start_sync(const char * pszCommandLine, plugin * pplugin)
+   int32_t host::starter_start_sync(const char * pszCommandLine, plugin * pplugin)
    {
 
       set_installing_ca2();
@@ -463,7 +463,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    void host::set_bitmap(simple_graphics & gWindow, LPCRECT lprect)
    {
 
-      ensure_bitmap_data((int)width(lprect), (int)height(lprect), false);
+      ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
 
       if(m_pcolorref == NULL)
          return;
@@ -499,7 +499,7 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
    void host::paint_bitmap(simple_graphics & gWindow, LPCRECT lprect)
    {
 
-      ensure_bitmap_data((int)width(lprect), (int)height(lprect), false);
+      ensure_bitmap_data((int32_t)width(lprect), (int32_t)height(lprect), false);
 
       if(m_pcolorref == NULL)
          return;
@@ -538,9 +538,9 @@ NULL : &pplugin->m_nCa2StarterStartThreadID);
 
       LPCRECT lprect = &m_pplugin->m_rect;
 
-      m_sizeBitmap.cx = abs_dup((int)width(lprect));
+      m_sizeBitmap.cx = abs_dup((int32_t)width(lprect));
 
-      m_sizeBitmap.cy = abs_dup((int)height(lprect));
+      m_sizeBitmap.cy = abs_dup((int32_t)height(lprect));
 
       ensure_bitmap_data(m_sizeBitmap.cx, m_sizeBitmap.cy, false);
 

@@ -19,7 +19,7 @@
 //using namespace NWindows;
 
 uint64 ConvertStringToUInt64(const char *s, const char **end);
-int ParseStringToUInt32(const string &srcString, uint32 &number);
+int32_t ParseStringToUInt32(const string &srcString, uint32 &number);
 
 
 uint64 ConvertStringToUInt64(const char *s, const char **end)
@@ -41,7 +41,7 @@ uint64 ConvertStringToUInt64(const char *s, const char **end)
 }
 
 
-int ParseStringToUInt32(const string &srcString, uint32 &number)
+int32_t ParseStringToUInt32(const string &srcString, uint32 &number)
 {
   const char *start = srcString;
   const char *end;
@@ -52,11 +52,11 @@ int ParseStringToUInt32(const string &srcString, uint32 &number)
     return 0;
   }
   number = (uint32)number64;
-  return (int)(end - start);
+  return (int32_t)(end - start);
 }
 
 
-inline bool IntToBool(int value)
+inline bool IntToBool(int32_t value)
   { return (value != 0); }
 
 
@@ -108,9 +108,9 @@ namespace n7z
          ::compress::COneMethodInfo oneMethodInfo;
          oneMethodInfo.MethodName = kLZMAMethodName;
          oneMethodInfo.Props[NCoderPropID::kMatchFinder] = kLzmaMatchFinderForHeaders;
-         oneMethodInfo.Props[NCoderPropID::kAlgorithm] = (int) kAlgorithmForHeaders;
-         oneMethodInfo.Props[NCoderPropID::kNumFastBytes] = (int) kAlgorithmForHeaders;
-         oneMethodInfo.Props[NCoderPropID::kDictionarySize] = (int) kDictionaryForHeaders;
+         oneMethodInfo.Props[NCoderPropID::kAlgorithm] = (int32_t) kAlgorithmForHeaders;
+         oneMethodInfo.Props[NCoderPropID::kNumFastBytes] = (int32_t) kAlgorithmForHeaders;
+         oneMethodInfo.Props[NCoderPropID::kDictionarySize] = (int32_t) kDictionaryForHeaders;
          headerMethodInfoVector.add(oneMethodInfo);
          ex1::HRes res = SetCompressionMethod(headerMethod, headerMethodInfoVector
 #ifndef _7ZIP_ST
@@ -140,7 +140,7 @@ namespace n7z
       }
 
       bool needSolid = false;
-      for(int i = 0; i < methodsInfo.get_count(); i++)
+      for(int32_t i = 0; i < methodsInfo.get_count(); i++)
       {
          ::compress::COneMethodInfo &oneMethodInfo = methodsInfo[i];
          SetCompressionMethod2(oneMethodInfo
@@ -163,7 +163,7 @@ namespace n7z
 
          if (!_numSolidBytesDefined)
          {
-            for (int j = 0; j < methodFull.Props.m_propertya.get_count(); j++)
+            for (int32_t j = 0; j < methodFull.Props.m_propertya.get_count(); j++)
             {
                const gen::property &prop = methodFull.Props.m_propertya[j];
                if ((atoi(prop.name()) == NCoderPropID::kDictionarySize ||
@@ -188,9 +188,9 @@ namespace n7z
       return S_OK;
    }
 
-   #define PROPID int
+   #define PROPID int32_t
 
-   static ex1::HRes GetTime(::compress::archive_update_callback_interface *updateCallback, int index, bool writeTime, PROPID propID, uint64 &ft, bool &ftDefined)
+   static ex1::HRes GetTime(::compress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64 &ft, bool &ftDefined)
    {
       ft = 0;
       ftDefined = false;
@@ -442,14 +442,14 @@ namespace n7z
    static ex1::HRes GetBindInfoPart(string &srcString, uint32 &coder, uint32 &stream)
    {
       stream = 0;
-      int index = ParseStringToUInt32(srcString, coder);
+      int32_t index = ParseStringToUInt32(srcString, coder);
       if (index == 0)
          return E_INVALIDARG;
       srcString.Delete(0, index);
       if (srcString[0] == 'S')
       {
          srcString.Delete(0);
-         int index = ParseStringToUInt32(srcString, stream);
+         int32_t index = ParseStringToUInt32(srcString, stream);
          if (index == 0)
             return E_INVALIDARG;
          srcString.Delete(0, index);
@@ -474,7 +474,7 @@ namespace n7z
       _binds.remove_all();
       BeforeSetProperty();
 
-      for (int i = 0; i < numProperties; i++)
+      for (int32_t i = 0; i < numProperties; i++)
       {
          string name = names[i];
          name.make_upper();

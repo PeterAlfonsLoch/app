@@ -73,7 +73,7 @@ inline array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & array_ptr_copy < TYPE, ARG
 {
    if(&a == this)
       return *this;
-   int i;
+   int32_t i;
    for(i = 0; i < this->ptra().get_size(); i++)
    {
       this->element_at(i) = *a.ptra()[i];
@@ -98,7 +98,7 @@ template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 count array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA >::add(const array_ptr_copy < TYPE, ARG_TYPE, BASE_PTRA > & a)
 {
    count countOld = this->get_count();
-   for(int i = 0; i < a.get_size(); i++)
+   for(int32_t i = 0; i < a.get_size(); i++)
    {
       this->add(a[i]);
    }

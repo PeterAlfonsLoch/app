@@ -20,10 +20,10 @@ BEGIN_EXTERN_C
 
 
 typedef struct {
-  int ln;
-  int  m;
-  int **linearmap;
-  int  n[2];
+  int32_t ln;
+  int32_t  m;
+  int32_t **linearmap;
+  int32_t  n[2];
 
   vorbis_info_floor0 *vi;
 
@@ -60,7 +60,7 @@ static void floor0_free_look(vorbis_look_floor *i){
 
 static vorbis_info_floor *floor0_unpack (vorbis_info *vi,oggpack_buffer *opb){
   codec_setup_info     *ci=(codec_setup_info *) vi->codec_setup;
-  int j;
+  int32_t j;
 
   vorbis_info_floor0 *info=(vorbis_info_floor0 *)_ogg_malloc(sizeof(*info));
   info->order=oggpack_read(opb,8);
@@ -104,8 +104,8 @@ static void floor0_map_lazy_init(vorbis_block      *vb,
     vorbis_info        *vi=vd->vi;
     codec_setup_info   *ci=(codec_setup_info *) vi->codec_setup;
     vorbis_info_floor0 *info=(vorbis_info_floor0 *)infoX;
-    int W=vb->W;
-    int n=ci->blocksizes[W]/2,j;
+    int32_t W=vb->W;
+    int32_t n=ci->blocksizes[W]/2,j;
 
     /* we choose a scaling constant so that:
        floor(bark(rate/2-1)*C)=mapped-1
@@ -118,9 +118,9 @@ static void floor0_map_lazy_init(vorbis_block      *vb,
        the encoder may do what it wishes in filling them.  They're
        necessary in some mapping combinations to keep the scale spacing
        accurate */
-    look->linearmap[W]=(int *) _ogg_malloc((n+1)*sizeof(**look->linearmap));
+    look->linearmap[W]=(int32_t *) _ogg_malloc((n+1)*sizeof(**look->linearmap));
     for(j=0;j<n;j++){
-      int val=floor( toBARK((info->rate/2.f)/n*j)
+      int32_t val=floor( toBARK((info->rate/2.f)/n*j)
                      *scale); /* bark numbers represent band edges */
       if(val>=look->ln)val=look->ln-1; /* guard against the approximation */
       look->linearmap[W][j]=val;
@@ -138,7 +138,7 @@ static vorbis_look_floor *floor0_look(vorbis_dsp_state *vd,
   look->ln=info->barkmap;
   look->vi=info;
 
-  look->linearmap=(int **) _ogg_calloc(2,sizeof(*look->linearmap));
+  look->linearmap=(int32_t **) _ogg_calloc(2,sizeof(*look->linearmap));
 
   return look;
 }
@@ -146,13 +146,13 @@ static vorbis_look_floor *floor0_look(vorbis_dsp_state *vd,
 static void *floor0_inverse1(vorbis_block *vb,vorbis_look_floor *i){
   vorbis_look_floor0 *look=(vorbis_look_floor0 *)i;
   vorbis_info_floor0 *info=look->vi;
-  int j,k;
+  int32_t j,k;
 
-  int ampraw=oggpack_read(&vb->opb,info->ampbits);
+  int32_t ampraw=oggpack_read(&vb->opb,info->ampbits);
   if(ampraw>0){ /* also handles the -1 out of data case */
     long maxval=(1<<info->ampbits)-1;
     float amp=(float)ampraw/maxval*info->ampdB;
-    int booknum=oggpack_read(&vb->opb,_ilog(info->numbooks));
+    int32_t booknum=oggpack_read(&vb->opb,_ilog(info->numbooks));
 
     if(booknum!=-1 && booknum<info->numbooks){ /* be paranoid */
       codec_setup_info  *ci=(codec_setup_info *) vb->vd->vi->codec_setup;
@@ -179,7 +179,7 @@ static void *floor0_inverse1(vorbis_block *vb,vorbis_look_floor *i){
   return(NULL);
 }
 
-static int floor0_inverse2(vorbis_block *vb,vorbis_look_floor *i,
+static int32_t floor0_inverse2(vorbis_block *vb,vorbis_look_floor *i,
                            void *memo,float *out){
   vorbis_look_floor0 *look=(vorbis_look_floor0 *)i;
   vorbis_info_floor0 *info=look->vi;

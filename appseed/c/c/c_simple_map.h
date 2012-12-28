@@ -158,8 +158,8 @@ template<class KEY,  class VALUE>
 simple_map< KEY,  VALUE >::simple_map(pair pairs[])
 {
    construct();
-   int iCount = sizeof(pairs) / sizeof(pair);
-   for(int i = 0; i < iCount; i++)
+   int32_t iCount = sizeof(pairs) / sizeof(pair);
+   for(int32_t i = 0; i < iCount; i++)
    {
       set_at(pairs[i].m_key, pairs[i].m_value);
    }
@@ -503,8 +503,8 @@ void simple_map< KEY,  VALUE >::Serialize(CArchive& ar)
             // obtain the address of a given object.  We then use the following trick to
             // get the address
             //
-            pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
-            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int& >( static_cast< VALUE& >( pAssoc->value ) ) );
+            pKey = reinterpret_cast< KEY* >( &reinterpret_cast< int32_t& >( const_cast< KEY& > ( static_cast< const KEY& >( pAssoc->key ) ) ) );
+            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int32_t& >( static_cast< VALUE& >( pAssoc->value ) ) );
             SerializeElements<KEY>(ar, pKey, 1);
             SerializeElements<VALUE>(ar, pValue, 1);
          }
@@ -710,8 +710,8 @@ template < class VALUE>
 simple_string_map < VALUE >::simple_string_map(pair pairs[])
 {
    construct();
-   int iCount = sizeof(pairs) / sizeof(pair);
-   for(int i = 0; i < iCount; i++)
+   int32_t iCount = sizeof(pairs) / sizeof(pair);
+   for(int32_t i = 0; i < iCount; i++)
    {
       set_at(pairs[i].m_vsstring, pairs[i].m_value);
    }
@@ -1053,8 +1053,8 @@ void simple_string_map < VALUE >::Serialize(CArchive& ar)
             // obtain the address of a given object.  We then use the following trick to
             // get the address
             //
-            pvsstring = reinterpret_cast< vsstring* >( &reinterpret_cast< int& >( const_cast< vsstring& > ( static_cast< const vsstring& >( pAssoc->vsstring ) ) ) );
-            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int& >( static_cast< VALUE& >( pAssoc->value ) ) );
+            pvsstring = reinterpret_cast< vsstring* >( &reinterpret_cast< int32_t& >( const_cast< vsstring& > ( static_cast< const vsstring& >( pAssoc->vsstring ) ) ) );
+            pValue = reinterpret_cast< VALUE* >( &reinterpret_cast< int32_t& >( static_cast< VALUE& >( pAssoc->value ) ) );
             SerializeElements<vsstring>(ar, pvsstring, 1);
             SerializeElements<VALUE>(ar, pValue, 1);
          }
@@ -1200,7 +1200,7 @@ simple_attrib_map< KEY,  VALUE > & simple_attrib_map< KEY,  VALUE >::operator = 
 
 
 class CLASS_DECL_c simple_int_to_string :
-   virtual public simple_attrib_map < int, vsstring >
+   virtual public simple_attrib_map < int32_t, vsstring >
 {
 public:
 };

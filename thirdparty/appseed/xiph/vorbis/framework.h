@@ -77,5 +77,5 @@
 
 
 BEGIN_EXTERN_C
-extern float * vorbis_window(vorbis_dsp_state *v,int W);
+extern float * vorbis_window(vorbis_dsp_state *v,int32_t W);
 END_EXTERN_C

@@ -17,7 +17,7 @@ namespace ca4
       virtual bool base_support();
 
       virtual bool initialize();
-      virtual int exit_instance();
+      virtual int32_t exit_instance();
 
       DECL_GEN_SIGNAL(on_application_signal);
 

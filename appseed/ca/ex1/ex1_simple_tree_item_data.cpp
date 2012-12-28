@@ -41,7 +41,7 @@ namespace ex1
 
 
 /*#undef new
-   void * simple_tree_item_data::operator new(size_t, const char *, int)
+   void * simple_tree_item_data::operator new(size_t, const char *, int32_t)
    {
       return _alloc001SimpleTreeItem.Alloc();
    }
@@ -57,7 +57,7 @@ namespace ex1
       return _alloc001SimpleTreeItem.Free(p);
    }
 
-   void simple_tree_item_data::operator delete(void * p, const char *, int)
+   void simple_tree_item_data::operator delete(void * p, const char *, int32_t)
    {
       return _alloc001SimpleTreeItem.Free(p);
    }*/

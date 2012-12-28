@@ -53,7 +53,7 @@ inline array_parent_alloc <TYPE, ARG_TYPE> & array_parent_alloc < TYPE, ARG_TYPE
 {
    if(&a == this)
       return *this;
-   int i;
+   int32_t i;
    for(i = 0; i < this->ptra().get_size(); i++)
    {
       this->element_at(i) = *a.ptra()[i];

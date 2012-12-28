@@ -5,24 +5,24 @@
 # ifdef __GNUC_PREREQ
 #  if __GNUC_PREREQ(3,4)
 #   include <limits.h>
-/*Note the casts to (int) below: this prevents OC_CLZ{32|64}_OFFS from
+/*Note the casts to (int32_t) below: this prevents OC_CLZ{32|64}_OFFS from
    "upgrading" the type of an entire expression to an (unsigned) size_t.*/
 #   if INT_MAX>=2147483647
-#    define OC_CLZ32_OFFS ((int)sizeof(unsigned)*CHAR_BIT)
+#    define OC_CLZ32_OFFS ((int32_t)sizeof(unsigned)*CHAR_BIT)
 #    define OC_CLZ32(_x) (__builtin_clz(_x))
 #   elif LONG_MAX>=2147483647L
-#    define OC_CLZ32_OFFS ((int)sizeof(unsigned long)*CHAR_BIT)
+#    define OC_CLZ32_OFFS ((int32_t)sizeof(unsigned long)*CHAR_BIT)
 #    define OC_CLZ32(_x) (__builtin_clzl(_x))
 #   endif
 #   if INT_MAX>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int)sizeof(unsigned)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(unsigned)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clz(_x))
 #   elif LONG_MAX>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int)sizeof(unsigned long)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(unsigned long)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clzl(_x))
 #   elif LLONG_MAX>=9223372036854775807LL|| \
      __LONG_LONG_MAX__>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int)sizeof(unsigned long long)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(unsigned long long)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clzll(_x))
 #   endif
 #  endif
@@ -39,7 +39,7 @@
  * The OC_ILOG_32() or OC_ILOGNZ_32() macros may be able to use a builtin
  *  function instead, which should be faster.
  */
-int oc_ilog32(ogg_uint32_t _v);
+int32_t oc_ilog32(ogg_uint32_t _v);
 /**
  * oc_ilog64 - Integer binary logarithm of a 64-bit value.
  * @_v: A 64-bit value.
@@ -49,7 +49,7 @@ int oc_ilog32(ogg_uint32_t _v);
  * The OC_ILOG_64() or OC_ILOGNZ_64() macros may be able to use a builtin
  *  function instead, which should be faster.
  */
-int oc_ilog64(ogg_int64_t _v);
+int32_t oc_ilog64(ogg_int64_t _v);
 
 
 # if defined(OC_CLZ32)

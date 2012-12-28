@@ -25,9 +25,9 @@ namespace mysql
       const char * pszUser,
       const char * pszPassword,
       const char * pszDatabase,
-      int iPort,
+      int32_t iPort,
       const char * pszSocketName,
-      unsigned int uiFlags)
+      unsigned int32_t uiFlags)
    {
       /* initialize connection handler */
       m_pmysql = mysql_init (NULL);
@@ -61,7 +61,7 @@ namespace mysql
    {
       if(m_pmysql == NULL)
          return false;
-      for(int i = 0; i < m_resultptra.get_count(); i++)
+      for(int32_t i = 0; i < m_resultptra.get_count(); i++)
       {
          if(m_resultptra[i]->m_bAutoDelete)
          {
@@ -190,7 +190,7 @@ namespace mysql
          return ::var(::var::type_new);
       var a;
       MYSQL_ROW row;
-      int i = 0;
+      int32_t i = 0;
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(row[0] == NULL)
@@ -210,8 +210,8 @@ namespace mysql
       if(row == NULL)
          return ::var(::var::type_new);
       var a;
-      int iNumFields = presult->num_fields();
-      for(int j = 0; j < iNumFields; j++)
+      int32_t iNumFields = presult->num_fields();
+      for(int32_t j = 0; j < iNumFields; j++)
       {
          if(row[j] == NULL)
             a.propset().add(gen::str::from(j), ::var(::var::type_null));
@@ -232,11 +232,11 @@ namespace mysql
       //a2.vara(); // create var array;
 
       count iNumRows = (::count) presult->num_rows();
-      int iNumFields = presult->num_fields();
+      int32_t iNumFields = presult->num_fields();
       a.m_pvara->set_size(iNumRows);
       //a2.m_pvara->set_size(iNumFields);
 
-      int i = 0;
+      int32_t i = 0;
 
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
@@ -246,7 +246,7 @@ namespace mysql
             a.m_pvara->set_size(iNumRows);
          }
          a.m_pvara->element_at(i).vara().set_size(iNumFields);
-         for(int j = 0; j < iNumFields; j++)
+         for(int32_t j = 0; j < iNumFields; j++)
          {
             if(row[j] == NULL)
                a.m_pvara->element_at(i).vara()[j].set_type(::var::type_null);

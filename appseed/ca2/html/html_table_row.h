@@ -15,8 +15,8 @@ namespace html
 
 
          index                         m_iRow;
-         int                           m_cyMin;
-         int                           m_cyMax;
+         int32_t                           m_cyMin;
+         int32_t                           m_cyMax;
          base_array < cell::holder >   m_cellholdera;
 
 
@@ -28,7 +28,7 @@ namespace html
 
          table * get_table();
 
-         void set_cell(int iCol, int iRow, cell * pcell);
+         void set_cell(int32_t iCol, int32_t iRow, cell * pcell);
 
 
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);

@@ -23,15 +23,15 @@
 class CLASS_DECL_ca wait_result
 {
 	/// Internal member holding the result of the last waiting action
-	int                        m_iWaitResult;
+	int32_t                        m_iWaitResult;
 
 public:
-	static const int Abandon0	= -10;		/// waiting abandoned because thread stopped
+	static const int32_t Abandon0	= -10;		/// waiting abandoned because thread stopped
 	// place additional failure codes here
-	static const int Failure	= -3;		/// waiting failure
-	static const int BadThread	= -2;		/// thread not found?
-	static const int Timeout	= -1;		/// timeout occured
-	static const int Event0		=  0;		/// signaled
+	static const int32_t Failure	= -3;		/// waiting failure
+	static const int32_t BadThread	= -2;		/// thread not found?
+	static const int32_t Timeout	= -1;		/// timeout occured
+	static const int32_t Event0		=  0;		/// signaled
 
 public:
 //#if defined(WIN32) || defined(WIN64)
@@ -42,7 +42,7 @@ public:
 //#endif
 	///  \brief		constructor with result value passed
 	///  \param		value waiting result value as passed by Windows API function
-	explicit wait_result(int value )
+	explicit wait_result(int32_t value )
 		: m_iWaitResult(value)
 	{}
 

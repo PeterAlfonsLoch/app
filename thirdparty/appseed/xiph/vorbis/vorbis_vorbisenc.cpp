@@ -27,9 +27,9 @@ typedef struct {
 } static_bookblock;
 
 typedef struct {
-  int res_type;
-  int limit_type; /* 0 lowpass limited, 1 point stereo limited */
-  int grouping;
+  int32_t res_type;
+  int32_t limit_type; /* 0 lowpass limited, 1 point stereo limited */
+  int32_t grouping;
   const vorbis_info_residue0 *res;
   const static_codebook  *book_aux;
   const static_codebook  *book_aux_managed;
@@ -43,11 +43,11 @@ typedef struct {
 } vorbis_mapping_template;
 
 typedef struct vp_adjblock{
-  int block[P_BANDS];
+  int32_t block[P_BANDS];
 } vp_adjblock;
 
 typedef struct {
-  int data[NOISE_COMPAND_LEVELS];
+  int32_t data[NOISE_COMPAND_LEVELS];
 } compandblock;
 
 /* high level configuration information for setting things up
@@ -58,43 +58,43 @@ typedef struct {
    setup, then flushed out to the real codec setup structs later. */
 
 typedef struct {
-  int att[P_NOISECURVES];
+  int32_t att[P_NOISECURVES];
   float boost;
   float decay;
 } att3;
-typedef struct { int data[P_NOISECURVES]; } adj3;
+typedef struct { int32_t data[P_NOISECURVES]; } adj3;
 
 typedef struct {
-  int   pre[PACKETBLOBS];
-  int   post[PACKETBLOBS];
+  int32_t   pre[PACKETBLOBS];
+  int32_t   post[PACKETBLOBS];
   float kHz[PACKETBLOBS];
   float lowpasskHz[PACKETBLOBS];
 } adj_stereo;
 
 typedef struct {
-  int lo;
-  int hi;
-  int fixed;
+  int32_t lo;
+  int32_t hi;
+  int32_t fixed;
 } noiseguard;
 typedef struct {
-  int data[P_NOISECURVES][17];
+  int32_t data[P_NOISECURVES][17];
 } noise3;
 
 typedef struct {
-  int      mappings;
+  int32_t      mappings;
   const double  *rate_mapping;
   const double  *quality_mapping;
-  int      coupling_restriction;
+  int32_t      coupling_restriction;
   long     samplerate_min_restriction;
   long     samplerate_max_restriction;
 
 
-  const int     *blocksize_short;
-  const int     *blocksize_long;
+  const int32_t     *blocksize_short;
+  const int32_t     *blocksize_long;
 
   const att3    *psy_tone_masteratt;
-  const int     *psy_tone_0dB;
-  const int     *psy_tone_dBsuppress;
+  const int32_t     *psy_tone_0dB;
+  const int32_t     *psy_tone_dBsuppress;
 
   const vp_adjblock *psy_tone_adj_impulse;
   const vp_adjblock *psy_tone_adj_long;
@@ -105,18 +105,18 @@ typedef struct {
   const noise3      *psy_noise_bias_padding;
   const noise3      *psy_noise_bias_trans;
   const noise3      *psy_noise_bias_long;
-  const int         *psy_noise_dBsuppress;
+  const int32_t         *psy_noise_dBsuppress;
 
   const compandblock  *psy_noise_compand;
   const double        *psy_noise_compand_short_mapping;
   const double        *psy_noise_compand_long_mapping;
 
-  const int      *psy_noise_normal_start[2];
-  const int      *psy_noise_normal_partition[2];
+  const int32_t      *psy_noise_normal_start[2];
+  const int32_t      *psy_noise_normal_partition[2];
   const double   *psy_noise_normal_thresh;
 
-  const int      *psy_ath_float;
-  const int      *psy_ath_abs;
+  const int32_t      *psy_ath_float;
+  const int32_t      *psy_ath_abs;
 
   const double   *psy_lowpass;
 
@@ -126,8 +126,8 @@ typedef struct {
 
   const static_codebook *const *const *const floor_books;
   const vorbis_info_floor1 *floor_params;
-  const int floor_mappings;
-  const int **floor_mapping_list;
+  const int32_t floor_mappings;
+  const int32_t **floor_mapping_list;
 
   const vorbis_mapping_template *maps;
 } ve_setup_data_template;
@@ -178,11 +178,11 @@ static const ve_setup_data_template *const setup_list[]={
   0
 };
 
-static void vorbis_encode_floor_setup(vorbis_info *vi,int s,
+static void vorbis_encode_floor_setup(vorbis_info *vi,int32_t s,
                                      const static_codebook *const *const *const books,
                                      const vorbis_info_floor1 *in,
-                                     const int *x){
-  int i,k,is=s;
+                                     const int32_t *x){
+  int32_t i,k,is=s;
   vorbis_info_floor1 *f=(vorbis_info_floor1 *)  _ogg_calloc(1,sizeof(*f));
   codec_setup_info *ci=vi->codec_setup;
 
@@ -190,9 +190,9 @@ static void vorbis_encode_floor_setup(vorbis_info *vi,int s,
 
   /* books */
   {
-    int partitions=f->partitions;
-    int maxclass=-1;
-    int maxbook=-1;
+    int32_t partitions=f->partitions;
+    int32_t maxclass=-1;
+    int32_t maxbook=-1;
     for(i=0;i<partitions;i++)
       if(f->partitionclass[i]>maxclass)maxclass=f->partitionclass[i];
     for(i=0;i<=maxclass;i++){
@@ -219,15 +219,15 @@ static void vorbis_encode_floor_setup(vorbis_info *vi,int s,
 static void vorbis_encode_global_psych_setup(vorbis_info *vi,double s,
                                             const vorbis_info_psy_global *in,
                                             const double *x){
-  int i,is=s;
+  int32_t i,is=s;
   double ds=s-is;
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy_global *g=&ci->psy_g_param;
 
-  memcpy(g,in+(int)x[is],sizeof(*g));
+  memcpy(g,in+(int32_t)x[is],sizeof(*g));
 
   ds=x[is]*(1.-ds)+x[is+1]*ds;
-  is=(int)ds;
+  is=(int32_t)ds;
   ds-=is;
   if(ds==0 && is>0){
     is--;
@@ -247,7 +247,7 @@ static void vorbis_encode_global_stereo(vorbis_info *vi,
                                         const highlevel_encode_setup *const hi,
                                         const adj_stereo *p){
   float s=hi->stereo_point_setting;
-  int i,is=s;
+  int32_t i,is=s;
   double ds=s-is;
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy_global *g=&ci->psy_g_param;
@@ -293,14 +293,14 @@ static void vorbis_encode_global_stereo(vorbis_info *vi,
 }
 
 static void vorbis_encode_psyset_setup(vorbis_info *vi,double s,
-                                       const int *nn_start,
-                                       const int *nn_partition,
+                                       const int32_t *nn_start,
+                                       const int32_t *nn_partition,
                                        const double *nn_thresh,
-                                       int block){
+                                       int32_t block){
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy *p=ci->psy_param[block];
   highlevel_encode_setup *hi=&ci->hi;
-  int is=s;
+  int32_t is=s;
 
   if(block>=ci->psys)
     ci->psys=block+1;
@@ -322,11 +322,11 @@ static void vorbis_encode_psyset_setup(vorbis_info *vi,double s,
   return;
 }
 
-static void vorbis_encode_tonemask_setup(vorbis_info *vi,double s,int block,
+static void vorbis_encode_tonemask_setup(vorbis_info *vi,double s,int32_t block,
                                          const att3 *att,
-                                         const int  *max,
+                                         const int32_t  *max,
                                          const vp_adjblock *in){
-  int i,is=s;
+  int32_t i,is=s;
   double ds=s-is;
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy *p=ci->psy_param[block];
@@ -347,16 +347,16 @@ static void vorbis_encode_tonemask_setup(vorbis_info *vi,double s,int block,
 }
 
 
-static void vorbis_encode_compand_setup(vorbis_info *vi,double s,int block,
+static void vorbis_encode_compand_setup(vorbis_info *vi,double s,int32_t block,
                                         const compandblock *in,
                                         const double *x){
-  int i,is=s;
+  int32_t i,is=s;
   double ds=s-is;
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy *p=ci->psy_param[block];
 
   ds=x[is]*(1.-ds)+x[is+1]*ds;
-  is=(int)ds;
+  is=(int32_t)ds;
   ds-=is;
   if(ds==0 && is>0){
     is--;
@@ -369,9 +369,9 @@ static void vorbis_encode_compand_setup(vorbis_info *vi,double s,int block,
   return;
 }
 
-static void vorbis_encode_peak_setup(vorbis_info *vi,double s,int block,
-                                    const int *suppress){
-  int is=s;
+static void vorbis_encode_peak_setup(vorbis_info *vi,double s,int32_t block,
+                                    const int32_t *suppress){
+  int32_t is=s;
   double ds=s-is;
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy *p=ci->psy_param[block];
@@ -381,12 +381,12 @@ static void vorbis_encode_peak_setup(vorbis_info *vi,double s,int block,
   return;
 }
 
-static void vorbis_encode_noisebias_setup(vorbis_info *vi,double s,int block,
-                                         const int *suppress,
+static void vorbis_encode_noisebias_setup(vorbis_info *vi,double s,int32_t block,
+                                         const int32_t *suppress,
                                          const noise3 *in,
                                          const noiseguard *guard,
                                          double userbias){
-  int i,is=s,j;
+  int32_t i,is=s,j;
   double ds=s-is;
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy *p=ci->psy_param[block];
@@ -413,7 +413,7 @@ static void vorbis_encode_noisebias_setup(vorbis_info *vi,double s,int block,
   return;
 }
 
-static void vorbis_encode_ath_setup(vorbis_info *vi,int block){
+static void vorbis_encode_ath_setup(vorbis_info *vi,int32_t block){
   codec_setup_info *ci=vi->codec_setup;
   vorbis_info_psy *p=ci->psy_param[block];
 
@@ -423,8 +423,8 @@ static void vorbis_encode_ath_setup(vorbis_info *vi,int block){
 }
 
 
-static int book_dup_or_new(codec_setup_info *ci,const static_codebook *book){
-  int i;
+static int32_t book_dup_or_new(codec_setup_info *ci,const static_codebook *book){
+  int32_t i;
   for(i=0;i<ci->books;i++)
     if(ci->book_param[i]==book)return(i);
 
@@ -432,24 +432,24 @@ static int book_dup_or_new(codec_setup_info *ci,const static_codebook *book){
 }
 
 static void vorbis_encode_blocksize_setup(vorbis_info *vi,double s,
-                                         const int *shortb,const int *longb){
+                                         const int32_t *shortb,const int32_t *longb){
 
   codec_setup_info *ci=vi->codec_setup;
-  int is=s;
+  int32_t is=s;
 
-  int blockshort=shortb[is];
-  int blocklong=longb[is];
+  int32_t blockshort=shortb[is];
+  int32_t blocklong=longb[is];
   ci->blocksizes[0]=blockshort;
   ci->blocksizes[1]=blocklong;
 
 }
 
 static void vorbis_encode_residue_setup(vorbis_info *vi,
-                                        int number, int block,
+                                        int32_t number, int32_t block,
                                         const vorbis_residue_template *res){
 
   codec_setup_info *ci=vi->codec_setup;
-  int i;
+  int32_t i;
 
   ci->residue_param[number]= (vorbis_info_residue0 * ) _ogg_malloc(sizeof(vorbis_info_residue0));
   vorbis_info_residue0 *r = (vorbis_info_residue0 * ) ci->residue_param[number];
@@ -462,7 +462,7 @@ static void vorbis_encode_residue_setup(vorbis_info *vi,
 
   /* fill in all the books */
   {
-    int booklist=0,k;
+    int32_t booklist=0,k;
 
     if(ci->hi.managed){
       for(i=0;i<r->partitions;i++)
@@ -476,7 +476,7 @@ static void vorbis_encode_residue_setup(vorbis_info *vi,
       for(i=0;i<r->partitions;i++){
         for(k=0;k<4;k++){
           if(res->books_base_managed->books[i][k]){
-            int bookid=book_dup_or_new(ci,res->books_base_managed->books[i][k]);
+            int32_t bookid=book_dup_or_new(ci,res->books_base_managed->books[i][k]);
             r->booklist[booklist++]=bookid;
             ci->book_param[bookid]=(static_codebook *)res->books_base_managed->books[i][k];
           }
@@ -496,7 +496,7 @@ static void vorbis_encode_residue_setup(vorbis_info *vi,
       for(i=0;i<r->partitions;i++){
         for(k=0;k<4;k++){
           if(res->books_base->books[i][k]){
-            int bookid=book_dup_or_new(ci,res->books_base->books[i][k]);
+            int32_t bookid=book_dup_or_new(ci,res->books_base->books[i][k]);
             r->booklist[booklist++]=bookid;
             ci->book_param[bookid]=(static_codebook *)res->books_base->books[i][k];
           }
@@ -547,7 +547,7 @@ static void vorbis_encode_residue_setup(vorbis_info *vi,
       /* Multiple maps/submaps can point to the same residue.  In the case
          of residue 2, they all better have the same number of
          channels/samples. */
-      int j,k,ch=0;
+      int32_t j,k,ch=0;
       for(i=0;i<ci->maps&&ch==0;i++){
         vorbis_info_mapping0 *mi=(vorbis_info_mapping0 *)ci->map_param[i];
         for(j=0;j<mi->submaps && ch==0;j++)
@@ -557,14 +557,14 @@ static void vorbis_encode_residue_setup(vorbis_info *vi,
                 ch++;
       }
 
-      r->end=(int)((freq/nyq*blocksize*ch)/r->grouping+.9)* /* round up only if we're well past */
+      r->end=(int32_t)((freq/nyq*blocksize*ch)/r->grouping+.9)* /* round up only if we're well past */
         r->grouping;
       /* the blocksize and grouping may disagree at the end */
       if(r->end>blocksize*ch)r->end=blocksize*ch/r->grouping*r->grouping;
 
     }else{
 
-      r->end=(int)((freq/nyq*blocksize)/r->grouping+.9)* /* round up only if we're well past */
+      r->end=(int32_t)((freq/nyq*blocksize)/r->grouping+.9)* /* round up only if we're well past */
         r->grouping;
       /* the blocksize and grouping may disagree at the end */
       if(r->end>blocksize)r->end=blocksize/r->grouping*r->grouping;
@@ -581,7 +581,7 @@ static void vorbis_encode_map_n_res_setup(vorbis_info *vi,double s,
                                           const vorbis_mapping_template *maps){
 
   codec_setup_info *ci=vi->codec_setup;
-  int i,j,is=s,modes=2;
+  int32_t i,j,is=s,modes=2;
   const vorbis_info_mapping0 *map=maps[is].map;
   const vorbis_info_mode *mode=_mode_template;
   const vorbis_residue_template *res=maps[is].res;
@@ -610,9 +610,9 @@ static double setting_to_approx_bitrate(vorbis_info *vi){
   codec_setup_info *ci=vi->codec_setup;
   highlevel_encode_setup *hi=&ci->hi;
   ve_setup_data_template *setup=(ve_setup_data_template *)hi->setup;
-  int is=hi->base_setting;
+  int32_t is=hi->base_setting;
   double ds=hi->base_setting-is;
-  int ch=vi->channels;
+  int32_t ch=vi->channels;
   const double *r=setup->rate_mapping;
 
   if(r==NULL)
@@ -622,9 +622,9 @@ static double setting_to_approx_bitrate(vorbis_info *vi){
 }
 
 static const void *get_setup_template(long ch,long srate,
-                                      double req,int q_or_bitrate,
+                                      double req,int32_t q_or_bitrate,
                                       double *base_setting){
-  int i=0,j;
+  int32_t i=0,j;
   if(q_or_bitrate)req/=ch;
 
   while(setup_list[i]){
@@ -632,7 +632,7 @@ static const void *get_setup_template(long ch,long srate,
        setup_list[i]->coupling_restriction==ch){
       if(srate>=setup_list[i]->samplerate_min_restriction &&
          srate<=setup_list[i]->samplerate_max_restriction){
-        int mappings=setup_list[i]->mappings;
+        int32_t mappings=setup_list[i]->mappings;
         const double *map=(q_or_bitrate?
                      setup_list[i]->rate_mapping:
                      setup_list[i]->quality_mapping);
@@ -669,8 +669,8 @@ static const void *get_setup_template(long ch,long srate,
    layer on top */
 
 /* the final setup call */
-int vorbis_encode_setup_init(vorbis_info *vi){
-  int i,i0=0,singleblock=0;
+int32_t vorbis_encode_setup_init(vorbis_info *vi){
+  int32_t i,i0=0,singleblock=0;
   codec_setup_info *ci=vi->codec_setup;
   ve_setup_data_template *setup=NULL;
   highlevel_encode_setup *hi=&ci->hi;
@@ -682,7 +682,7 @@ int vorbis_encode_setup_init(vorbis_info *vi){
   if(hi->ath_floating_dB>-80)hi->ath_floating_dB=-80;
   if(hi->ath_floating_dB<-200)hi->ath_floating_dB=-200;
 
-  /* again, bound this to avoid the app shooting itself int he foot
+  /* again, bound this to avoid the app shooting itself int32_t he foot
      too badly */
   if(hi->amplitude_track_dBpersec>0.)hi->amplitude_track_dBpersec=0.;
   if(hi->amplitude_track_dBpersec<-99999.)hi->amplitude_track_dBpersec=-99999.;
@@ -852,7 +852,7 @@ int vorbis_encode_setup_init(vorbis_info *vi){
 static void vorbis_encode_setup_setting(vorbis_info *vi,
                                        long  channels,
                                        long  rate){
-  int i,is;
+  int32_t i,is;
   codec_setup_info *ci=vi->codec_setup;
   highlevel_encode_setup *hi=&ci->hi;
   const ve_setup_data_template *setup = (const ve_setup_data_template *) hi->setup;
@@ -890,7 +890,7 @@ static void vorbis_encode_setup_setting(vorbis_info *vi,
   }
 }
 
-int vorbis_encode_setup_vbr(vorbis_info *vi,
+int32_t vorbis_encode_setup_vbr(vorbis_info *vi,
                             long  channels,
                             long  rate,
                             float quality){
@@ -911,13 +911,13 @@ int vorbis_encode_setup_vbr(vorbis_info *vi,
   return 0;
 }
 
-int vorbis_encode_init_vbr(vorbis_info *vi,
+int32_t vorbis_encode_init_vbr(vorbis_info *vi,
                            long channels,
                            long rate,
 
                            float base_quality /* 0. to 1. */
                            ){
-  int ret=0;
+  int32_t ret=0;
 
   ret=vorbis_encode_setup_vbr(vi,channels,rate,base_quality);
 
@@ -931,7 +931,7 @@ int vorbis_encode_init_vbr(vorbis_info *vi,
   return(ret);
 }
 
-int vorbis_encode_setup_managed(vorbis_info *vi,
+int32_t vorbis_encode_setup_managed(vorbis_info *vi,
                                 long channels,
                                 long rate,
 
@@ -978,7 +978,7 @@ int vorbis_encode_setup_managed(vorbis_info *vi,
 
 }
 
-int vorbis_encode_init(vorbis_info *vi,
+int32_t vorbis_encode_init(vorbis_info *vi,
                        long channels,
                        long rate,
 
@@ -986,7 +986,7 @@ int vorbis_encode_init(vorbis_info *vi,
                        long nominal_bitrate,
                        long min_bitrate){
 
-  int ret=vorbis_encode_setup_managed(vi,channels,rate,
+  int32_t ret=vorbis_encode_setup_managed(vi,channels,rate,
                                       max_bitrate,
                                       nominal_bitrate,
                                       min_bitrate);
@@ -1001,11 +1001,11 @@ int vorbis_encode_init(vorbis_info *vi,
   return(ret);
 }
 
-int vorbis_encode_ctl(vorbis_info *vi,int number,void *arg){
+int32_t vorbis_encode_ctl(vorbis_info *vi,int32_t number,void *arg){
   if(vi){
     codec_setup_info *ci=vi->codec_setup;
     highlevel_encode_setup *hi=&ci->hi;
-    int setp=(number&0xf); /* a read request has a low nibble of 0 */
+    int32_t setp=(number&0xf); /* a read request has a low nibble of 0 */
 
     if(setp && hi->set_in_stone)return(OV_EINVAL);
 
@@ -1171,7 +1171,7 @@ int vorbis_encode_ctl(vorbis_info *vi,int number,void *arg){
       return(0);
     case OV_ECTL_COUPLING_GET:
       {
-        int *iarg=(int *)arg;
+        int32_t *iarg=(int32_t *)arg;
         *iarg=hi->coupling_p;
       }
       return(0);
@@ -1179,7 +1179,7 @@ int vorbis_encode_ctl(vorbis_info *vi,int number,void *arg){
       {
         const void *new_template;
         double new_base=0.;
-        int *iarg=(int *)arg;
+        int32_t *iarg=(int32_t *)arg;
         hi->coupling_p=((*iarg)!=0);
 
         /* Fetching a new template can alter the base_setting, which

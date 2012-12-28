@@ -17,7 +17,7 @@ namespace ca
 
       bool listen(data * pdata, bool bListen = true);
 
-      virtual void on_update_data(data * pdata, int iHint);
+      virtual void on_update_data(data * pdata, int32_t iHint);
    };
 
 } // namespace ca

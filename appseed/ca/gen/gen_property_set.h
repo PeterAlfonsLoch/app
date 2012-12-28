@@ -48,8 +48,8 @@ namespace gen
       property & operator[](index iIndex);
       property operator[](index iIndex) const;
 #ifdef AMD64
-      inline property & operator[](int iIndex) { return operator []((index) iIndex); }
-      inline property operator[](int iIndex) const { return operator []((index) iIndex); }
+      inline property & operator[](int32_t iIndex) { return operator []((index) iIndex); }
+      inline property operator[](int32_t iIndex) const { return operator []((index) iIndex); }
 #endif
       property & operator[](const var & var);
       property operator[](const var & var) const;
@@ -413,7 +413,7 @@ namespace gen
 
 inline var var::first() const
 {
-   return operator[]((var)(int) 0);
+   return operator[]((var)(int32_t) 0);
 }
 
 inline var var::last() const

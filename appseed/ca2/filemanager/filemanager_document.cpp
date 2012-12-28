@@ -157,7 +157,7 @@ namespace filemanager
    }
    else
    {
-   int nMsg = HIWORD(nCode);
+   int32_t nMsg = HIWORD(nCode);
    nCode = LOWORD(nCode);
 
    // for backward compatibility HIWORD(nCode)==0 is WM_COMMAND

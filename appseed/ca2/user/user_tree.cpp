@@ -52,7 +52,7 @@ namespace user
 
    }
 
-   //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ex1::tree_path & itempath, int iValidateCount)
+   //bool tree::_001DynamicGetItemData(BaseTreeItemData & itemdata, ex1::tree_path & itempath, int32_t iValidateCount)
    //{
    /*   if(m_pdatainterface001 != NULL)
       {
@@ -230,7 +230,7 @@ namespace user
       if(m_spdata->is_in_use())
          return;
 
-      pdc->OffsetViewportOrg((int) -m_scrollinfo.m_ptScroll.x, (int) -(m_scrollinfo.m_ptScroll.y % _001GetItemHeight()));
+      pdc->OffsetViewportOrg((int32_t) -m_scrollinfo.m_ptScroll.x, (int32_t) -(m_scrollinfo.m_ptScroll.y % _001GetItemHeight()));
 
    //   BaseTreeItemData itemdata;
 /*      ex1::tree_path itempath;*/
@@ -275,8 +275,8 @@ namespace user
          iItem++;
          iIndex++;
       }
-      /*int iValidateItemCount = 30;
-      int iItem = 0;
+      /*int32_t iValidateItemCount = 30;
+      int32_t iItem = 0;
       if(_001DynamicGetItemData(itemdata, m_itempathFirstVisible, iValidateItemCount))
       {
          m_iItemCount = m_pmetadataRoot->GetDescendantCount();
@@ -328,14 +328,14 @@ namespace user
 
          _001GetItemElementRect(rect, data, tree_element_expand_box);
 
-         int iImage;
+         int32_t iImage;
          if(data.m_pitem->m_dwState & ::ex1::tree_item_state_expanded)
          {
-            iImage = (int) ptree->m_iImageCollapse;
+            iImage = (int32_t) ptree->m_iImageCollapse;
          }
          else
          {
-            iImage = (int) ptree->m_iImageExpand;
+            iImage = (int32_t) ptree->m_iImageExpand;
          }
          pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0);
       }
@@ -394,7 +394,7 @@ namespace user
 
       if(pimagelistItem != NULL)
       {
-         int iImage = (int) data.m_pitem->get_image();
+         int32_t iImage = (int32_t) data.m_pitem->get_image();
          if(iImage >= 0)
          {
             _001GetItemElementRect(
@@ -624,7 +624,7 @@ namespace user
 
       if(iItemHeight != 0)
       {
-         iItem = (int) ((iy + m_scrollinfo.m_ptScroll.y) / iItemHeight);
+         iItem = (int32_t) ((iy + m_scrollinfo.m_ptScroll.y) / iItemHeight);
       }
 
       if(iItem < 0)
@@ -639,7 +639,7 @@ namespace user
       if(pitem == NULL)
          return NULL;
 
-      index x = (int) (pt. x - _001GetIndentation() * iLevel + m_scrollinfo.m_ptScroll.x);
+      index x = (int32_t) (pt. x - _001GetIndentation() * iLevel + m_scrollinfo.m_ptScroll.x);
       if(x >= 0 && x < 16)
          eelement = tree_element_expand_box;
       if(x >= 18 && x < 34)
@@ -652,7 +652,7 @@ namespace user
 
    }
 
-   int tree::_001GetItemHeight()
+   int32_t tree::_001GetItemHeight()
    {
       return m_iItemHeight;
    }
@@ -756,7 +756,7 @@ namespace user
 
             if(iObscured > 0)
             {
-               index iNewScroll = (int) (m_scrollinfo.m_ptScroll.y + iObscured * _001GetItemHeight());
+               index iNewScroll = (int32_t) (m_scrollinfo.m_ptScroll.y + iObscured * _001GetItemHeight());
                if(iNewScroll > (iParentIndex * _001GetItemHeight()))
                   iNewScroll = (iParentIndex * _001GetItemHeight());
                m_scrollinfo.m_ptScroll.y = (LONG) max(iNewScroll, 0);
@@ -926,22 +926,22 @@ namespace user
       return rect.height() / _001GetItemHeight() - 1;
    }
 
-   int tree::_001CalcCurrentViewWidth()
+   int32_t tree::_001CalcCurrentViewWidth()
    {
       rect rectClient;
       GetClientRect(rectClient);
 
       count iCount = _001GetVisibleItemCount();
-      int iMaxWidth = rectClient.width();
-      int iWidth;
+      int32_t iMaxWidth = rectClient.width();
+      int32_t iWidth;
       index iLevel = m_iFirstVisibleItemLevel;
       index iIndent  = _001GetIndentation();
       ::ex1::tree_item * pitem = m_pitemFirstVisible;
       if(pitem == NULL)
          return iMaxWidth;
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
-         iWidth = (int) (200 + iIndent * iLevel);
+         iWidth = (int32_t) (200 + iIndent * iLevel);
          if(iWidth > iMaxWidth)
          {
             iMaxWidth = iWidth;
@@ -954,7 +954,7 @@ namespace user
    }
 
    /*
-   void tree::_001SetYScroll(int y, bool bRedraw)
+   void tree::_001SetYScroll(int32_t y, bool bRedraw)
    {
       m_ptScroll.y = y;
 
@@ -1030,7 +1030,7 @@ namespace user
    }
 
 
-   int tree::get_wheel_scroll_delta()
+   int32_t tree::get_wheel_scroll_delta()
    {
 
 

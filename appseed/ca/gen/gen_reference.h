@@ -13,7 +13,7 @@ class reference :
    public pointer < DERIVED >
 {
 public:
-   int      m_iRefCount;
+   int32_t      m_iRefCount;
 
    reference();
    virtual ~reference();
@@ -127,7 +127,7 @@ public:
    virtual ~reference_array();
 
    virtual index add(reference < DERIVED > * p);
-   virtual void set_at(int iIndex, reference < DERIVED > * p);
+   virtual void set_at(int32_t iIndex, reference < DERIVED > * p);
    virtual count remove(reference < DERIVED > * p);
 
    virtual void remove_all();
@@ -148,7 +148,7 @@ template < class DERIVED >
 void reference_array < DERIVED >::
 remove_all()
 {
-   int i;
+   int32_t i;
    for(i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->remove_listener(this);
@@ -176,7 +176,7 @@ add(reference < DERIVED > * p)
 
 template < class DERIVED >
 void reference_array < DERIVED >::
-set_at(int iIndex, reference < DERIVED > * p)
+set_at(int32_t iIndex, reference < DERIVED > * p)
 {
    ASSERT(p != NULL);
    if(p != NULL)

@@ -27,7 +27,7 @@ namespace mail
    {
       m_psocket = new pop3_socket(m_handler);
       m_psocket->m_ppop3 = this;
-      int iPort = 995;
+      int32_t iPort = 995;
       if(iPort == 995)
       {
          m_psocket->m_bSsl = true;
@@ -96,17 +96,17 @@ namespace mail
       return "STAT";
    }
 
-   void pop3::set_stat_count(int iCount)
+   void pop3::set_stat_count(int32_t iCount)
    {
       UNREFERENCED_PARAMETER(iCount);
    }
 
-   void pop3::set_stat_size(int iSize)
+   void pop3::set_stat_size(int32_t iSize)
    {
       UNREFERENCED_PARAMETER(iSize);
    }
 
-   void pop3::set_list_size(int iSize)
+   void pop3::set_list_size(int32_t iSize)
    {
       UNREFERENCED_PARAMETER(iSize);
    }

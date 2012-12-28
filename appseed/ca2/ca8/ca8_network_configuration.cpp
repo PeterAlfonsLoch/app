@@ -52,7 +52,7 @@ namespace ca8
       if(doc.load(System.file_as_string(&System, System.dir().appdata("proxy.xml"))))
       {
          string strProxy = doc.get_root()->attr("server");
-         int iProxyPort = doc.get_root()->attr("port");
+         int32_t iProxyPort = doc.get_root()->attr("port");
          ::user::interaction * pguie = m_pview->get_child_by_name("server");
          text_interface * ptext = dynamic_cast < text_interface * > (pguie);
          ptext->_001SetText(strProxy);

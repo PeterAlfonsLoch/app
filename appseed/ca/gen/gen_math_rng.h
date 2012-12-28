@@ -20,11 +20,11 @@ namespace gen
          public:
             rng();
 
-            void seed(int iTwistLen, unsigned long seed);
+            void seed(int32_t iTwistLen, unsigned long seed);
             unsigned long get();
 
          private:
-            int m_value;
+            int32_t m_value;
             dword_array m_dwa;
          };
    

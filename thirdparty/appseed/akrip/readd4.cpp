@@ -28,9 +28,9 @@
 extern CDHANDLEREC *cdHandles;
 extern HANDLE *cdMutexes;
 extern CRITICAL_SECTION getHandle;
-extern int alErrCode;
+extern int32_t alErrCode;
 extern BYTE alAspiErr;
-extern int *nextHandle;
+extern int32_t *nextHandle;
 
 extern DWORD (*pfnSendASPI32Command)(LPSRB);
 
@@ -45,7 +45,7 @@ DWORD readCDAudioLBA_D4( HCDROM hCD, LPTRACKBUF t )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
     {
@@ -144,7 +144,7 @@ DWORD d4_1ModeSelect( HCDROM hCD )
   DWORD dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
-  int idx = (int)hCD - 1;
+  int32_t idx = (int32_t)hCD - 1;
   BYTE buf[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x09, 0x30 };
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )

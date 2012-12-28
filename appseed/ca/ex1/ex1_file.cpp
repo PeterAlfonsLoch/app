@@ -164,7 +164,7 @@ namespace ex1
    #endif*/
 
 
-   /*void vfxThrowFileException(int cause, LONG lOsError,
+   /*void vfxThrowFileException(int32_t cause, LONG lOsError,
    //   const char * lpszFileName /* == NULL */
    /*{
    #ifdef DEBUG

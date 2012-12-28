@@ -123,7 +123,7 @@ namespace fs
       {
          stringa stra;
          GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
-         for(int i = 0; i < stra.get_size(); i++)
+         for(int32_t i = 0; i < stra.get_size(); i++)
          {
             item.m_flags.unsignalize_all();
             if(get_fs_data()->is_dir(stra[i]))
@@ -145,10 +145,10 @@ namespace fs
 
       string strParent = lpcsz;
 
-      int iMaxSize;
+      int32_t iMaxSize;
       iMaxSize = 1000;
 
-      int iSize;
+      int32_t iSize;
       iSize = 0;
 
       get_fs_list_data()->m_itema.SetItemCount(iMaxSize);
@@ -167,7 +167,7 @@ namespace fs
          get_document()->set().ls(lpcsz, &straPath, & straTitle);
       }
 
-      for(int i = 0; i < straPath.get_size(); i++)
+      for(int32_t i = 0; i < straPath.get_size(); i++)
       {
          item.m_flags.unsignalize_all();
          if(get_document()->set().is_dir(straPath[i]))
@@ -246,7 +246,7 @@ namespace fs
       _001RedrawWindow();
 
       //file_size_add_request(true);
-   /*   for(int i = 0; i < m_itema.get_item_count(); i++)
+   /*   for(int32_t i = 0; i < m_itema.get_item_count(); i++)
       {
          pset->m_table.add_request(m_itema.get_item(i).m_strPath);
       }*/
@@ -503,7 +503,7 @@ namespace fs
       BaseButtonControl * pbutton = dynamic_cast < BaseButtonControl * > (pcontrol);
       if(pcallback != NULL && pbutton != NULL)
       {
-         pcallback->InitializeActionButton(((int) pcontrol->descriptor().m_id) - 1000, pbutton);
+         pcallback->InitializeActionButton(((int32_t) pcontrol->descriptor().m_id) - 1000, pbutton);
       } */
    }
 
@@ -517,8 +517,8 @@ namespace fs
       if(pcallback != NULL)
       {
          ::fs::item item;
-         int iItem = pcontrol->GetEditItem();
-         int iStrict;
+         int32_t iItem = pcontrol->GetEditItem();
+         int32_t iStrict;
          if(m_eview == ViewIcon)
          {
             iStrict = m_iconlayout.m_iaDisplayToStrict.get_b(iItem);
@@ -529,7 +529,7 @@ namespace fs
          }
          item.m_strPath         = pdata->m_itema.get_item(iStrict).m_strPath;
          item.m_strExtra        = pdata->m_itema.get_item(iStrict).m_strExtra;
-         pcallback->OnButtonAction((int) pcontrol->descriptor().m_id - 1000, item);
+         pcallback->OnButtonAction((int32_t) pcontrol->descriptor().m_id - 1000, item);
       } */
    }
 
@@ -645,14 +645,14 @@ namespace fs
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
       /*if(pshow->m_bShow)
       {
-         for(int i = 0; i < m_itema.get_item_count(); i++)
+         for(int32_t i = 0; i < m_itema.get_item_count(); i++)
          {
             pset->m_table.add_request(m_itema.get_item(i).m_strPath);
          }
       }
       else
       {
-         for(int i = 0; i < m_itema.get_item_count(); i++)
+         for(int32_t i = 0; i < m_itema.get_item_count(); i++)
          {
             pset->m_table.remove_request(m_itema.get_item(i).m_strPath);
          }
@@ -789,13 +789,13 @@ namespace fs
    {
    }
 
-   int list_interface::create_image_list_thread::run()
+   int32_t list_interface::create_image_list_thread::run()
    {
-      int iStepSetCount = 84;
-      int iStepSetSleep = 23;
+      int32_t iStepSetCount = 84;
+      int32_t iStepSetSleep = 23;
       while(get_run())
       {
-         int i = iStepSetCount;
+         int32_t i = iStepSetCount;
          while(i > 0 && get_run())
          {
             if(!m_plist->_001CreateImageListStep())
@@ -838,7 +838,7 @@ namespace fs
 
       if(column.m_iSubItem == m_iNameSubItem)
       {
-         Item & item = m_itema.get_item((int) m_iCreateImageListStep);
+         Item & item = m_itema.get_item((int32_t) m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
          item.m_iImage = System.shellimageset().GetImage(

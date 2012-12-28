@@ -12,7 +12,7 @@ void rect::DeflateBottomRightSizeByRate(double dRate)
     bottom -= (long) dy;
 }
 
-void rect::SetBottomRightSize(int iWidth, int iHeight)
+void rect::SetBottomRightSize(int32_t iWidth, int32_t iHeight)
 {
     right = left + iWidth;
     bottom = top + iHeight;
@@ -21,15 +21,15 @@ void rect::SetBottomRightSize(int iWidth, int iHeight)
 void rect::ExtendOnCenter(LPCRECT lpcrect)
 {
 
-   int cx = width();
-   int cy = height();
+   int32_t cx = width();
+   int32_t cy = height();
 
    double dx = lpcrect->right - lpcrect->left;
    double dy = lpcrect->bottom - lpcrect->top;
    double dr = max(dx / cx, dy / cy);
 
-   int cw = (int) (cx * dr);
-   int ch = (int) (cy * dr);
+   int32_t cw = (int32_t) (cx * dr);
+   int32_t ch = (int32_t) (cy * dr);
    
    left = (LONG) ((dx - cw) / 2.0);
    top = (LONG) ((dy - ch) / 2.0);
@@ -42,15 +42,15 @@ void rect::ExtendOnCenter(LPCRECT lpcrect)
 void rect::FitOnCenterOf(LPCRECT lpcrect)
 {
    
-   int cx = width();
-   int cy = height();
+   int32_t cx = width();
+   int32_t cy = height();
 
    double dx = lpcrect->right - lpcrect->left;
    double dy = lpcrect->bottom - lpcrect->top;
    double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 
-   int cw = cx == 0 ? (int) dx : ((int) (cx * dr));
-   int ch = cy == 0 ? (int) dy : ((int) (cy * dr));
+   int32_t cw = cx == 0 ? (int32_t) dx : ((int32_t) (cx * dr));
+   int32_t ch = cy == 0 ? (int32_t) dy : ((int32_t) (cy * dr));
 
    left = (LONG) ((lpcrect->left) + (dx - cw) / 2.0);
    top = (LONG) ((lpcrect->top) + (dy - ch) / 2.0);
@@ -59,7 +59,7 @@ void rect::FitOnCenterOf(LPCRECT lpcrect)
    
 }
 
-void rect::ScaleRect(double dx, double dy, int ix, int iy)
+void rect::ScaleRect(double dx, double dy, int32_t ix, int32_t iy)
 {
    left    = (LONG) (((left    - ix) * dx) + ix);
    top     = (LONG) (((top     - iy) * dy) + iy);
@@ -68,9 +68,9 @@ void rect::ScaleRect(double dx, double dy, int ix, int iy)
 
 }
 
-void rect::ScaleHeightAspect(int iNewHeight, int iCenterX, int iCenterY)
+void rect::ScaleHeightAspect(int32_t iNewHeight, int32_t iCenterX, int32_t iCenterY)
 {
-   int iHeight = height();
+   int32_t iHeight = height();
    if(iHeight != 0)
    {
       double d = (double) iNewHeight / iHeight;
@@ -78,7 +78,7 @@ void rect::ScaleHeightAspect(int iNewHeight, int iCenterX, int iCenterY)
    }
 }
 
-void rect::Align(int align, LPCRECT lpcrect)
+void rect::Align(int32_t align, LPCRECT lpcrect)
 {
 
    point pt(0, 0);
@@ -472,7 +472,7 @@ void rect64::SubtractRectMinor(const __rect64 *  lpcrectMajor, const __rect64 * 
 rect::rect() throw()
    { /* random filled */ }
 rect::rect(int64_t l, int64_t t, int64_t r, int64_t b) throw()
-   { left = (int) l; top = (int) t; right = (int) r; bottom = (int) b; }
+   { left = (int32_t) l; top = (int32_t) t; right = (int32_t) r; bottom = (int32_t) b; }
 rect::rect(const RECT& srcRect) throw()
    { ::CopyRect(this, (LPCRECT) &srcRect); }
 rect::rect(const __rect64& srcRect) throw()
@@ -484,9 +484,9 @@ rect::rect(POINT point, SIZE size) throw()
 rect::rect(POINT topLeft, POINT bottomRight) throw()
    { left = topLeft.x; top = topLeft.y;
       right = bottomRight.x; bottom = bottomRight.y; }
-int rect::width() const throw()
+int32_t rect::width() const throw()
    { return right - left; }
-int rect::height() const throw()
+int32_t rect::height() const throw()
    { return bottom - top; }
 class size rect::size() const throw()
    {
@@ -510,7 +510,7 @@ rect::operator LPCRECT() const throw()
    { return (LPCRECT) this; }
 bool rect::contains(POINT point) const throw()
    { return ::PtInRect((LPCRECT) this, point) != FALSE; }
-void rect::set(int x1, int y1, int x2, int y2) throw()
+void rect::set(int32_t x1, int32_t y1, int32_t x2, int32_t y2) throw()
    { ::SetRect(this, x1, y1, x2, y2); }
 void rect::set(POINT topLeft, POINT bottomRight) throw()
    { ::SetRect(this, topLeft.x, topLeft.y, bottomRight.x, bottomRight.y); }
@@ -520,25 +520,25 @@ void rect::copy(LPCRECT lpSrcRect) throw()
    { ::CopyRect(this, lpSrcRect); }
 bool rect::is_equal(LPCRECT lpRect) const throw()
    { return ::EqualRect((LPCRECT) this, lpRect) != FALSE; }
-void rect::inflate(int x, int y) throw()
+void rect::inflate(int32_t x, int32_t y) throw()
    { ::InflateRect(this, x, y); }
 void rect::inflate(SIZE size) throw()
    { ::InflateRect(this, size.cx, size.cy); }
-void rect::deflate(int x, int y) throw()
+void rect::deflate(int32_t x, int32_t y) throw()
    { ::InflateRect(this, -x, -y); }
 void rect::deflate(SIZE size) throw()
    { ::InflateRect(this, -size.cx, -size.cy); }
-void rect::offset(int x, int y) throw()
+void rect::offset(int32_t x, int32_t y) throw()
    { ::OffsetRect(this, x, y); }
 void rect::offset(POINT point) throw()
    { ::OffsetRect(this, point.x, point.y); }
 void rect::offset(SIZE size) throw()
    { ::OffsetRect(this, size.cx, size.cy); }
-void rect::move_to_y(int y) throw()
+void rect::move_to_y(int32_t y) throw()
    { bottom = height() + y; top = y; }
-void rect::move_to_x(int x) throw()
+void rect::move_to_x(int32_t x) throw()
    { right = width() + x; left = x; }
-void rect::move_to(int x, int y) throw()
+void rect::move_to(int32_t x, int32_t y) throw()
    { move_to_x(x); move_to_y(y); }
 void rect::move_to(POINT pt) throw()
    { move_to_x(pt.x); move_to_y(pt.y); }
@@ -591,7 +591,7 @@ bool rect::subtract(LPCRECT lpRectSrc1, LPCRECT lpRectSrc2) throw()
 
 void rect::normalize() throw()
    {
-      int nTemp;
+      int32_t nTemp;
       if (left > right)
       {
          nTemp = left;
@@ -612,7 +612,7 @@ void rect::inflate(LPCRECT lpRect) throw()
       right += lpRect->right;      bottom += lpRect->bottom;
    }
 
-void rect::inflate(int l, int t, int r, int b) throw()
+void rect::inflate(int32_t l, int32_t t, int32_t r, int32_t b) throw()
    {
       left -= l;         top -= t;
       right += r;         bottom += b;
@@ -624,13 +624,13 @@ void rect::deflate(LPCRECT lpRect) throw()
    right -= lpRect->right;   bottom -= lpRect->bottom;
 }
 
-void rect::deflate(int l, int t, int r, int b) throw()
+void rect::deflate(int32_t l, int32_t t, int32_t r, int32_t b) throw()
    {
       left += l;      top += t;
       right -= r;      bottom -= b;
    }
 
-rect rect::MulDiv(int nMultiplier, int nDivisor) const throw()
+rect rect::MulDiv(int32_t nMultiplier, int32_t nDivisor) const throw()
    {
       return rect(
          ::MulDiv(left, nMultiplier, nDivisor),

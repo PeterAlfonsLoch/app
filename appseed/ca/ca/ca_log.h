@@ -37,21 +37,21 @@ namespace ca
 {
 
 
-   CLASS_DECL_ca int SimpleDebugReport(int,const char *,int,const char *,const char * pszFormat, va_list list);
+   CLASS_DECL_ca int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat, va_list list);
 
-/*   CLASS_DECL_ca int __cdecl ca2_votagus_logging_Report(
-                                             int iReportType,
+/*   CLASS_DECL_ca int32_t __cdecl ca2_votagus_logging_Report(
+                                             int32_t iReportType,
                                              const char * pszFileName,
-                                             int iLineNumber,
+                                             int32_t iLineNumber,
                                              const char * pszModuleName,
                                              const char * pszFormat,
                                              va_list list);
 
 
-   extern CLASS_DECL_ca int  ( __cdecl *  ________ca2_votagus_logging_Report)(
-                                             int iReportType,
+   extern CLASS_DECL_ca int32_t  ( __cdecl *  ________ca2_votagus_logging_Report)(
+                                             int32_t iReportType,
                                              const char * pszFileName,
-                                             int iLineNumber,
+                                             int32_t iLineNumber,
                                              const char * pszModuleName,
                                              const char * pszFormat,
                                              va_list list);*/
@@ -75,9 +75,9 @@ namespace ca
       bool                    m_bInitialized;
       string *                m_pstrLogPath;
       id *                    m_pid;
-      int                     m_iYear;
-      int                     m_iMonth;
-      int                     m_iDay;
+      int32_t                     m_iYear;
+      int32_t                     m_iMonth;
+      int32_t                     m_iDay;
 
 
       log(::ca::application * papp);
@@ -89,9 +89,9 @@ namespace ca
       virtual bool initialize(id id);
       virtual bool finalize();
 
-      void trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
+      void trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args) const;
 
-      void set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel);
+      void set_trace_category(DWORD dwCategory, const char * pszName, unsigned int32_t uiLevel);
 
 
          /** error level enum. */
@@ -109,14 +109,14 @@ namespace ca
       virtual bool get_extended_log();
 
 
-      //virtual void trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const char * pszFmt, va_list args) const;
-//      virtual void trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const wchar_t * pszFmt, va_list args) const;
+      //virtual void trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args) const;
+//      virtual void trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const wchar_t * pszFmt, va_list args) const;
 
       void __cdecl trace(const char * pszFormat, ...);
       void __cdecl trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...);
 
 
-      //virtual void set_trace_category(unsigned int dwCategory, const char * pszName, unsigned int uiLevel);
+      //virtual void set_trace_category(unsigned int32_t dwCategory, const char * pszName, unsigned int32_t uiLevel);
 
 
    

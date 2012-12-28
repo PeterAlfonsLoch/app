@@ -71,7 +71,7 @@ namespace gen
 
    base64::base64()
    {
-      int i;
+      int32_t i;
 
       // etable
       for(i= 0;i<9;i++)
@@ -139,9 +139,9 @@ namespace gen
 
    void base64::encode(ex1::plain_text_output_stream & ostream, ex1::byte_input_stream & istream)
    {
-      int i,hiteof= FALSE;
+      int32_t i,hiteof= FALSE;
       byte igroup[3],ogroup[4];
-      int n;
+      int32_t n;
       char ch;
 
       while(!hiteof)
@@ -181,7 +181,7 @@ namespace gen
 
    void base64::decode(ex1::byte_output_stream & ostream, ex1::plain_text_input_stream & istream)
    {
-      int i;
+      int32_t i;
       byte a[4],b[4],o[3];
       unsigned char uch;
 

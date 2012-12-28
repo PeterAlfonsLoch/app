@@ -14,6 +14,6 @@ public:
 
    virtual ~FileManagerMainFrame();
 
-   int OnCreate(LPCREATESTRUCT lpCreateStruct);
+   int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
 };
 

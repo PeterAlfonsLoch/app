@@ -112,7 +112,7 @@ void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* 
 
             _001UpdateFunctionStatic();
 
-            for(int i = 0; i < m_controldescriptorset.get_size(); i++)
+            for(int32_t i = 0; i < m_controldescriptorset.get_size(); i++)
             {
                user::control * pcontrol = m_controldescriptorset[i].m_pcontrol;
                if(pcontrol != NULL)
@@ -142,7 +142,7 @@ string html_form_view::GetLocationURL()
    return m_strPath;
 }
 
-bool html_form_view::Refresh2(int i)
+bool html_form_view::Refresh2(int32_t i)
 {
    UNREFERENCED_PARAMETER(i);
    get_document()->on_open_document(GetLocationURL());

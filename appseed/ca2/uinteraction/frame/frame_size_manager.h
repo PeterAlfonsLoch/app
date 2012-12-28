@@ -27,7 +27,7 @@ namespace frame
       UINT                 m_uiSWPFlags;
       EGrip                  m_egripMask;
       DWORD                m_dwPaintDelay;
-      int                  m_iPaintCount;
+      int32_t                  m_iPaintCount;
    public:
       SizeManager(WorkSet * pworkset);
       virtual ~SizeManager();

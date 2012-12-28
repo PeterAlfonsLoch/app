@@ -12,7 +12,7 @@ static void theora_encode_clear(theora_state *_te){
   memset(_te,0,sizeof(*_te));
 }
 
-static int theora_encode_control(theora_state *_te,int _req,
+static int32_t theora_encode_control(theora_state *_te,int32_t _req,
  void *_buf,size_t _buf_sz){
   return th_encode_ctl(((th_api_wrapper *)_te->i->codec_setup)->encode,
    _req,_buf,_buf_sz);
@@ -34,7 +34,7 @@ static const oc_state_dispatch_vtable OC_ENC_DISPATCH_VTBL={
   (oc_state_granule_time_func)theora_encode_granule_time,
 };
 
-int theora_encode_init(theora_state *_te,theora_info *_ci){
+int32_t theora_encode_init(theora_state *_te,theora_info *_ci){
   th_api_info *apiinfo;
   th_info      info;
   ogg_uint32_t keyframe_frequency_force;
@@ -71,10 +71,10 @@ int theora_encode_init(theora_state *_te,theora_info *_ci){
   return 0;
 }
 
-int theora_encode_YUVin(theora_state *_te,yuv_buffer *_yuv){
+int32_t theora_encode_YUVin(theora_state *_te,yuv_buffer *_yuv){
   th_api_wrapper  *api;
   th_ycbcr_buffer  buf;
-  int              ret;
+  int32_t              ret;
   api=(th_api_wrapper *)_te->i->codec_setup;
   buf[0].width=_yuv->y_width;
   buf[0].height=_yuv->y_height;
@@ -94,16 +94,16 @@ int theora_encode_YUVin(theora_state *_te,yuv_buffer *_yuv){
   return ret;
 }
 
-int theora_encode_packetout(theora_state *_te,int _last_p,ogg_packet *_op){
+int32_t theora_encode_packetout(theora_state *_te,int32_t _last_p,ogg_packet *_op){
   th_api_wrapper *api;
   api=(th_api_wrapper *)_te->i->codec_setup;
   return th_encode_packetout(api->encode,_last_p,_op);
 }
 
-int theora_encode_header(theora_state *_te,ogg_packet *_op){
+int32_t theora_encode_header(theora_state *_te,ogg_packet *_op){
   oc_enc_ctx     *enc;
   th_api_wrapper *api;
-  int             ret;
+  int32_t             ret;
   api=(th_api_wrapper *)_te->i->codec_setup;
   enc=api->encode;
   /*If we've already started encoding, fail.*/
@@ -116,11 +116,11 @@ int theora_encode_header(theora_state *_te,ogg_packet *_op){
   return ret>=0?0:ret;
 }
 
-int theora_encode_comment(theora_comment *_tc,ogg_packet *_op){
+int32_t theora_encode_comment(theora_comment *_tc,ogg_packet *_op){
   oggpack_buffer  opb;
   void           *buf;
-  int             packet_state;
-  int             ret;
+  int32_t             packet_state;
+  int32_t             ret;
   packet_state=OC_PACKET_COMMENT_HDR;
   oggpackB_writeinit(&opb);
   ret=oc_state_flushheader(NULL,&packet_state,&opb,NULL,NULL,
@@ -146,10 +146,10 @@ int theora_encode_comment(theora_comment *_tc,ogg_packet *_op){
   return ret;
 }
 
-int theora_encode_tables(theora_state *_te,ogg_packet *_op){
+int32_t theora_encode_tables(theora_state *_te,ogg_packet *_op){
   oc_enc_ctx     *enc;
   th_api_wrapper *api;
-  int             ret;
+  int32_t             ret;
   api=(th_api_wrapper *)_te->i->codec_setup;
   enc=api->encode;
   /*If we've already started encoding, fail.*/

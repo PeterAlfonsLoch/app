@@ -337,7 +337,7 @@ public:
    dword_ptr ReadFile(HANDLE hFile);
 #else
    // parses an HTML document from a file given its file descriptor
-   dword_ptr ReadFile(int fd);
+   dword_ptr ReadFile(int32_t fd);
 #endif
 
 // Helpers

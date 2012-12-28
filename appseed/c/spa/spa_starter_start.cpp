@@ -124,7 +124,7 @@ bool is_updated()
 
 #ifdef WINDOWS
 
-void __cdecl _null_se_translator(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+void __cdecl _null_se_translator(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
 {
    UNREFERENCED_PARAMETER(uiCode);
    UNREFERENCED_PARAMETER(ppointers);
@@ -186,7 +186,7 @@ UINT spa_starter_start::start()
 
    keep_true keepStarting(s_bStarting);
 
-   int i = 0;
+   int32_t i = 0;
 
    vsstring strBuildNumber;
 

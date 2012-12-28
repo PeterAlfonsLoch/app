@@ -10,10 +10,10 @@ namespace dynamic_source
    public:
 
 
-      int m_iCode;
+      int32_t m_iCode;
 
 
-      exit_exception(int iCode);
+      exit_exception(int32_t iCode);
       
 
    };

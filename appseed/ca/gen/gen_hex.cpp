@@ -21,10 +21,10 @@ namespace gen
       return num;
    }
 
-   unsigned int hex::to_uint(const string & str)
+   unsigned int32_t hex::to_uint(const string & str)
    {
-      unsigned int r = 0;
-      for (int i = 0; i < str.get_length(); i++)
+      unsigned int32_t r = 0;
+      for (int32_t i = 0; i < str.get_length(); i++)
       {
          r = r * 16 + str[i] - 48 - ((str[i] >= 'A') ? 7 : 0) - ((str[i] >= 'a') ? 32 : 0);
       }

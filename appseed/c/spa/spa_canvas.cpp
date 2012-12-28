@@ -41,8 +41,8 @@ class canvas_zero
 public:
    DWORD m_dwCurZero;
    DWORD m_dwNextZero;
-   int m_iMaxSize;
-   int m_iLast;
+   int32_t m_iMaxSize;
+   int32_t m_iLast;
    simple_array < POINT > m_pta;
    simple_int_array m_ia;
    RECT m_rect;
@@ -56,12 +56,12 @@ public:
    canvas_zero();
    void prepare(HDC hdc, LPCRECT lpcrect);
    void on_paint(simple_graphics & g, LPCRECT lpcrect);
-   virtual void zero(HDC hdc, POINT pt, int iSize, int iStep);
+   virtual void zero(HDC hdc, POINT pt, int32_t iSize, int32_t iStep);
 };
 
 #endif
 
-int canvas::increment_mode()
+int32_t canvas::increment_mode()
 {
 
    m_iMode++;
@@ -75,16 +75,16 @@ int canvas::increment_mode()
 
 void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 {
-   int iMode = m_iMode;
+   int32_t iMode = m_iMode;
 #ifdef SUPORTA_TELA_AVANCADA
    static canvas_zero czero;
    #endif
 
    static vsstring s_strLastStatus;
    RECT rect = *lpcrect;
-//   int cx = lpcrect->right - lpcrect->left;
-//   int cy = lpcrect->bottom - lpcrect->top;
-//   int iThankYouHeight = 30;
+//   int32_t cx = lpcrect->right - lpcrect->left;
+//   int32_t cy = lpcrect->bottom - lpcrect->top;
+//   int32_t iThankYouHeight = 30;
 
    simple_font font;
 
@@ -122,27 +122,27 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
    }
    SIZE size = g.get_text_extent("CCpp");
-//   int iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
+//   int32_t iLineCount = (rect.bottom - 30 - iThankYouHeight) / size.cy;
    if(iMode == 5) // if(m_bHealingSurface)
    {
 #ifdef SUPORTA_TELA_AVANCADA
-      int iCount = max(1, cx / 25);
-      int jCount = max(1, cy / 25);
+      int32_t iCount = max(1, cx / 25);
+      int32_t jCount = max(1, cy / 25);
 
-      for(int i = 0; i < iCount; i++)
+      for(int32_t i = 0; i < iCount; i++)
       {
-         for(int j = 0; j < jCount; j++)
+         for(int32_t j = 0; j < jCount; j++)
          {
-            //int iPhase =
+            //int32_t iPhase =
             // 400
             //* (0.5 + (sin_dup(((double) ::get_tick_count() * 3.1415 * 2.0  * 0.084 / 1000.0) + ((double) (i) * 3.1415 * 2.0 / (double) (iCount))) / 2.0));
             //* (0.5 + (cos_dup(((double) ::get_tick_count() * 3.1415 * 2.0  * 0.084 / 1000.0) + ((double) (0) * 3.1415 * 2.0 / (double) (jCount))) / 2.0));
             double dPhase = fmod_dup((((double) ::get_tick_count() * 360  * 0.5984 / 1000.0) + (i * 360.0 / (double) iCount)  + (j * 360.0 / (double) jCount) + ((double) (sin_dup(((double) ::get_tick_count() * 3.1415 * 2.0  *0.0484 / 1000.0)+i * 3.1415 * 2.0 * 2.0 / (double) (iCount)) * sin_dup(((double) ::get_tick_count() * 3.1415 * 2.0  * 0.0484 / 1000.0)+j * 3.1415 * 2.0 * 2.0 / (double) (jCount)) * 360))), 360.0);
-            int iR;
-            int iG;
-            int iB;
+            int32_t iR;
+            int32_t iG;
+            int32_t iB;
             double dRate = fmod_dup(dPhase, 60.0) / 60.0;
-            int iColor = (int) (dRate * 155.0);
+            int32_t iColor = (int32_t) (dRate * 155.0);
             if(dPhase < 60)
             {
                // purple to blue
@@ -186,11 +186,11 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
                iB = 100 + iColor;
             }
 
-            double z = ((int) (360 - (dPhase - 240 + ::get_tick_count() * 360  * 0.1984 / 1000.0))) % 360;
+            double z = ((int32_t) (360 - (dPhase - 240 + ::get_tick_count() * 360  * 0.1984 / 1000.0))) % 360;
             if(dPhase == 240)
                z = 360;
 
-            int iInflate = (int) (z * 33.0 / 360.0);
+            int32_t iInflate = (int32_t) (z * 33.0 / 360.0);
 
             rect.left = cx * i / iCount + 8 - iInflate;
             rect.right = cx * (i + 1) / iCount - 8 + iInflate;
@@ -213,10 +213,10 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
-      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
+      g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
-//      int iLineMin = 5;
-  //    int iLine = ((rect.bottom - 10) / size.cy) - 1;
+//      int32_t iLineMin = 5;
+  //    int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
 
@@ -225,10 +225,10 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
          if(hfile != INVALID_HANDLE_VALUE)
          {
-            int iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
+            int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
             iTell--;
             vsstring strLine;
-            int iSkip = 0;
+            int32_t iSkip = 0;
 //            ::SetBkMode(hdc, TRANSPARENT);
             bool bNormal = false;
             bool bBold = false;
@@ -300,21 +300,21 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       size_t iRefresh = 884;
       size_t iEat = 8;
       const char * psz = "development message so international english last lines of file \"C:\\ca2\\install.log\" ::::::::";
-      g.text_out(10, 10 + size.cy * 2, psz, (int) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
+      g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       g.select(fontBold);
       g.text_out( 10, 10 + size.cy * 3, s_strLastStatus);
       DWORD dwRead;
-      int iLineMin = 5;
-      int iLine = ((rect.bottom - 10) / size.cy) - 1;
+      int32_t iLineMin = 5;
+      int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
          HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile != INVALID_HANDLE_VALUE)
          {
-            int iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
+            int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
             iTell--;
             vsstring strLine;
-            int iSkip = 0;
+            int32_t iSkip = 0;
             while(iTell > 0 && iLine >= iLineMin)
             {
                ::SetFilePointer(hfile, iTell, NULL, SEEK_SET);
@@ -425,8 +425,8 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
    m_rect.right   = lpcrect->right;
    m_rect.bottom  = lpcrect->bottom;
 
-   int cx = m_rect.right - m_rect.left;
-   int cy = m_rect.bottom - m_rect.top;
+   int32_t cx = m_rect.right - m_rect.left;
+   int32_t cy = m_rect.bottom - m_rect.top;
 
    #ifdef WINDOWSEX
 
@@ -449,7 +449,7 @@ void canvas_zero::prepare(HDC hdc, LPCRECT lpcrect)
 
    #endif
 
-   /*int iMid = (m_rect.bottom + m_rect.top) / 2;
+   /*int32_t iMid = (m_rect.bottom + m_rect.top) / 2;
 
    HPEN hpen = ::create_solid(1, RGB(0x7c, 0x7c, 0x7c));
 
@@ -473,11 +473,11 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
       prepare(hdc, lpcrect);
    }
 
-   int cx = m_rect.right - m_rect.left;
-   int cy = m_rect.bottom - m_rect.top;
+   int32_t cx = m_rect.right - m_rect.left;
+   int32_t cy = m_rect.bottom - m_rect.top;
 
 
-   int iTimeFactor = 100; // greater faster
+   int32_t iTimeFactor = 100; // greater faster
 
    if(::get_tick_count() >= m_dwNextZero)
    {
@@ -489,9 +489,9 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
       m_dwCurZero = ::get_tick_count();
       m_dwNextZero = m_dwCurZero + m_ia[m_ia.get_count() - 1] * 1000 / iTimeFactor + 1984 + 1977;
       m_iLast = 0;
-      int iSize = m_ia[0];
-      int w = iSize * 2 + 1;
-      int h = iSize * 2 + 1;
+      int32_t iSize = m_ia[0];
+      int32_t w = iSize * 2 + 1;
+      int32_t h = iSize * 2 + 1;
 
       #ifdef WINDOWSEX
       BITMAPINFO m_Info;
@@ -519,11 +519,11 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
 
 
 
-   int i = 1;
+   int32_t i = 1;
 /*   for(; i < m_pta.size(); i++)
    {
       POINT pt = m_pta[i];
-      int iSize = m_ia[i];
+      int32_t iSize = m_ia[i];
       zero(hdc, pt, iSize, iSize);
    }*/
 
@@ -535,8 +535,8 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
 
    bool bReady = false;
    POINT pt;
-   int iSize;
-   int iCurStep;
+   int32_t iSize;
+   int32_t iCurStep;
    if(m_pta.get_count() > 0)
    {
       pt = m_pta[0];
@@ -572,16 +572,16 @@ void canvas_zero::on_paint(simple_graphics & gPaint, LPCRECT lpcrect)
 }
 
 
-void canvas_zero::zero(HDC hdc, POINT pt, int iSize, int iStep)
+void canvas_zero::zero(HDC hdc, POINT pt, int32_t iSize, int32_t iStep)
 {
-   int cx = m_rect.right - m_rect.left;
-   int cy = m_rect.bottom - m_rect.top;
+   int32_t cx = m_rect.right - m_rect.left;
+   int32_t cy = m_rect.bottom - m_rect.top;
 
-   int w = iSize * 2 + 1;
-   int radius = iStep - 1;
-   for(int j = -iSize; j < iSize; j++)
+   int32_t w = iSize * 2 + 1;
+   int32_t radius = iStep - 1;
+   for(int32_t j = -iSize; j < iSize; j++)
    {
-      for(int k = -iSize; k < iSize; k++)
+      for(int32_t k = -iSize; k < iSize; k++)
       {
          double dj = j;
          double dk = k;
@@ -590,14 +590,14 @@ void canvas_zero::zero(HDC hdc, POINT pt, int iSize, int iStep)
          {
             double dLum = (double) (distance) / (double) radius;
             dLum = pow_dup(dLum, 0.2);
-            int x = j + iSize;
-            int y = k + iSize;
-            int iAlpha = dLum * 255.0;
+            int32_t x = j + iSize;
+            int32_t y = k + iSize;
+            int32_t iAlpha = dLum * 255.0;
             if(iAlpha > 255)
                iAlpha = 255;
             if(iAlpha < 0)
                iAlpha = 0;
-            int iLum = 255 - iAlpha;
+            int32_t iLum = 255 - iAlpha;
             m_pdataZero[x + y * w] = RGB(iLum, iLum, iLum) | (iLum << 24);
          }
       }

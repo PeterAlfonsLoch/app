@@ -4,16 +4,16 @@
 #include <math.h>
 #endif
 
-static int lastrand;
+static int32_t lastrand;
 
 #ifdef WINDOWS
-//extern "C" int _fltused = 0;
+//extern "C" int32_t _fltused = 0;
 #else
-int _fltused = 0;
+int32_t _fltused = 0;
 #endif
 
 
-CLASS_DECL_c int abs_dup(int i)
+CLASS_DECL_c int32_t abs_dup(int32_t i)
 {
    if(i < 0)
       return -i;
@@ -158,12 +158,12 @@ CLASS_DECL_c double cos_dup(double d)
 
 #endif
 
-CLASS_DECL_c void srand_dup(unsigned int seed)
+CLASS_DECL_c void srand_dup(unsigned int32_t seed)
 {
 	lastrand = seed;
 }
 
-CLASS_DECL_c  int rand_dup()
+CLASS_DECL_c  int32_t rand_dup()
 {
 	return (((lastrand = lastrand * 214013L + 2531011L) >> 16) & 0x7FFF);
 }
@@ -190,13 +190,13 @@ CLASS_DECL_c  int rand_dup()
    }
 }*/
 
-int ftol(double d)
+int32_t ftol(double d)
 {
-   int u = 0x7fffffff;
-   int l = 0x80000000;
+   int32_t u = 0x7fffffff;
+   int32_t l = 0x80000000;
    double m;
    double delta;
-   int i = 0;
+   int32_t i = 0;
    while(i < 128)
    {
       if(u <= l)

@@ -125,12 +125,12 @@ namespace uinteraction
          rect rectEvent = rectWindow;
          rectEvent.move_to(pt);
 
-         const int iMinIntersectSize = 33;
-         int iMatchMonitor = -1;
+         const int32_t iMinIntersectSize = 33;
+         int32_t iMatchMonitor = -1;
          size sizeMatch(0, 0);
-         int iMaxMonitor = -1;
+         int32_t iMaxMonitor = -1;
          size sizeMax(0, 0);
-         for(int iMonitor = 0; iMonitor < Cube.get_monitor_count(); iMonitor++)
+         for(int32_t iMonitor = 0; iMonitor < Cube.get_monitor_count(); iMonitor++)
          {
             rect rectParentClient;
             Cube.get_monitor_rect(iMonitor, rectParentClient);
@@ -348,8 +348,8 @@ namespace uinteraction
          //{
          //hicon = pwnd->GetIcon(TRUE);
          //}
-         /*int iStyle = pwnd->GetStyle();
-         int iStyleEx = pwnd->GetExStyle();
+         /*int32_t iStyle = pwnd->GetStyle();
+         int32_t iStyleEx = pwnd->GetExStyle();
          if(pwnd->GetSafeoswindow_() != pview->GetParentFrame()->GetSafeoswindow_()
          && (iStyle & WS_VISIBLE)
          && !(iStyleEx & WS_EX_TOOLWINDOW)

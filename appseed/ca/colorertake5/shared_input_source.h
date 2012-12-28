@@ -19,12 +19,12 @@ public:
   static SharedInputSource *getInputSource(string path, ex1::byte_input_stream & base);
 
   /** Increments reference counter */
-  int addref(){
+  int32_t addref(){
     return ++ref_count;
   }
 
   /** Decrements reference counter */
-  int delref(){
+  int32_t delref(){
     if (ref_count == 0){
       CLR_ERROR("SharedInputSource", "delref: already zeroed references");
     }
@@ -67,7 +67,7 @@ private:
 
   ex1::byte_input_stream & is;
   const byte *stream;
-  int ref_count;
+  int32_t ref_count;
 };
 
 #endif

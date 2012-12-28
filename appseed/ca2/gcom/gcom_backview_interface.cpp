@@ -251,8 +251,8 @@ namespace gcom
 
       void Interface::BackViewRender(
          ::ca::graphics * pdc,
-         int x, int y,
-         int w, int h)
+         int32_t x, int32_t y,
+         int32_t w, int32_t h)
       {
 
          Main & main = GetMain();

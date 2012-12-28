@@ -14,8 +14,8 @@ namespace n7z
 
    struct CUpdateItem
    {
-      int IndexInArchive;
-      int IndexInClient;
+      int32_t IndexInArchive;
+      int32_t IndexInClient;
 
       uint64 CTime;
       uint64 ATime;

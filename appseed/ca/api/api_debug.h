@@ -38,8 +38,8 @@ typedef void *_HFILE; /* file handle pointer */
 #define _CRTDBG_REPORT_FILE   ((_HFILE)(int64_t)-6)
 #endif
 
-typedef int (DECL_C * _CRT_REPORT_HOOK)(int, char *, int *);
-typedef int (DECL_C * _CRT_REPORT_HOOKW)(int, wchar_t *, int *);
+typedef int32_t (DECL_C * _CRT_REPORT_HOOK)(int32_t, char *, int32_t *);
+typedef int32_t (DECL_C * _CRT_REPORT_HOOKW)(int32_t, wchar_t *, int32_t *);
 
 #define _CRT_RPTHOOK_INSTALL  0
 #define _CRT_RPTHOOK_REMOVE   1
@@ -60,12 +60,12 @@ typedef int (DECL_C * _CRT_REPORT_HOOKW)(int, wchar_t *, int *);
 #define _HOOK_FREE      3
 
 #if !defined(_M_CEE_PURE)
-typedef int (DECL_C * _CRT_ALLOC_HOOK)(int, void *, size_t, int, long, const unsigned char *, int);
+typedef int32_t (DECL_C * _CRT_ALLOC_HOOK)(int32_t, void *, size_t, int32_t, long, const unsigned char *, int32_t);
 #else
-typedef int (__clrcall * _CRT_ALLOC_HOOK)(int, void *, size_t, int, long, const unsigned char *, int);
+typedef int32_t (__clrcall * _CRT_ALLOC_HOOK)(int32_t, void *, size_t, int32_t, long, const unsigned char *, int32_t);
 #endif
 #if defined(_M_CEE)
-typedef int (__clrcall * _CRT_ALLOC_HOOK_M)(int, void *, size_t, int, long, const unsigned char *, int);
+typedef int32_t (__clrcall * _CRT_ALLOC_HOOK_M)(int32_t, void *, size_t, int32_t, long, const unsigned char *, int32_t);
 #endif
 
  /****************************************************************************
@@ -259,9 +259,9 @@ typedef struct _CrtMemState
 
 #define _CrtSetReportHook(f)                ((_CRT_REPORT_HOOK)0)
 #define _CrtGetReportHook()                 ((_CRT_REPORT_HOOK)0)
-#define _CrtSetReportHook2(t, f)            ((int)0)
-#define _CrtSetReportHookW2(t, f)           ((int)0)
-#define _CrtSetReportMode(t, f)             ((int)0)
+#define _CrtSetReportHook2(t, f)            ((int32_t)0)
+#define _CrtSetReportHookW2(t, f)           ((int32_t)0)
+#define _CrtSetReportMode(t, f)             ((int32_t)0)
 #define _CrtSetReportFile(t, f)             ((_HFILE)0)
 
 #define _CrtDbgBreak()                      (()0)
@@ -271,26 +271,26 @@ typedef struct _CrtMemState
 #define _CrtSetAllocHook(f)                 ((_CRT_ALLOC_HOOK)0)
 #define _CrtGetAllocHook()                  ((_CRT_ALLOC_HOOK)0)
 
-#define _CrtCheckMemory()                   ((int)1)
-#define _CrtSetDbgFlag(f)                   ((int)0)
+#define _CrtCheckMemory()                   ((int32_t)1)
+#define _CrtSetDbgFlag(f)                   ((int32_t)0)
 #define _CrtDoForAllClientObjects(f, c)     (()0)
-#define _CrtIsValidPointer(p, n, r)         ((int)1)
-#define _CrtIsValidHeapPointer(p)           ((int)1)
-#define _CrtIsMemoryBlock(p, t, r, f, l)    ((int)1)
-#define _CrtReportBlockType(p)              ((int)-1)
+#define _CrtIsValidPointer(p, n, r)         ((int32_t)1)
+#define _CrtIsValidHeapPointer(p)           ((int32_t)1)
+#define _CrtIsMemoryBlock(p, t, r, f, l)    ((int32_t)1)
+#define _CrtReportBlockType(p)              ((int32_t)-1)
 
 #define _CrtSetDumpClient(f)                ((_CRT_DUMP_CLIENT)0)
 #define _CrtGetDumpClient()                 ((_CRT_DUMP_CLIENT)0)
 
 #define _CrtMemCheckpoint(s)                (()0)
-#define _CrtMemDifference(s1, s2, s3)       ((int)0)
+#define _CrtMemDifference(s1, s2, s3)       ((int32_t)0)
 #define _CrtMemDumpAllObjectsSince(s)       (()0)
 #define _CrtMemDumpStatistics(s)            (()0)
-#define _CrtDumpMemoryLeaks()               ((int)0)
+#define _CrtDumpMemoryLeaks()               ((int32_t)0)
 #define _CrtSetDebugFillThreshold(t)        ((size_t)0)
 
-#define _CrtSetCheckCount(f)                ((int)0)
-#define _CrtGetCheckCount()                 ((int)0)
+#define _CrtSetCheckCount(f)                ((int32_t)0)
+#define _CrtGetCheckCount()                 ((int32_t)0)
 
 #else   /* DEBUG */
 
@@ -341,15 +341,15 @@ CLASS_DECL__ _CRT_REPORT_HOOK DECL_C _CrtGetReportHook(
  * For pure and native, we just need clrcall and cdecl, respectively.
  */
 CLASS_DECL__ _CRT_REPORT_HOOK DECL_C _CrtSetReportHook(_CRT_REPORT_HOOK _PFnNewHook);
-CLASS_DECL__ int DECL_C _CrtSetReportHook2(int _Mode, _CRT_REPORT_HOOK _PFnNewHook);
-CLASS_DECL__ int DECL_C _CrtSetReportHookW2(int _Mode, _CRT_REPORT_HOOKW _PFnNewHook);
+CLASS_DECL__ int32_t DECL_C _CrtSetReportHook2(int32_t _Mode, _CRT_REPORT_HOOK _PFnNewHook);
+CLASS_DECL__ int32_t DECL_C _CrtSetReportHookW2(int32_t _Mode, _CRT_REPORT_HOOKW _PFnNewHook);
 
-CLASS_DECL__ int DECL_C _CrtSetReportMode(int _ReportType, int _ReportMode);
-CLASS_DECL__ _HFILE DECL_C _CrtSetReportFile(int _ReportType, _HFILE _ReportFile);
-CLASS_DECL__ int DECL_C _CrtDbgReport(int _ReportType, const char * _Filename, int _Linenumber, const char * _ModuleName, const char * _Format, ...);
+CLASS_DECL__ int32_t DECL_C _CrtSetReportMode(int32_t _ReportType, int32_t _ReportMode);
+CLASS_DECL__ _HFILE DECL_C _CrtSetReportFile(int32_t _ReportType, _HFILE _ReportFile);
+CLASS_DECL__ int32_t DECL_C _CrtDbgReport(int32_t _ReportType, const char * _Filename, int32_t _Linenumber, const char * _ModuleName, const char * _Format, ...);
 CLASS_DECL__ size_t DECL_C _CrtSetDebugFillThreshold(size_t _NewDebugFillThreshold);
 
-CLASS_DECL__ int DECL_C _CrtDbgReportW(int _ReportType, const wchar_t * _Filename, int _LineNumber, const wchar_t * _ModuleName, const wchar_t * _Format, ...);
+CLASS_DECL__ int32_t DECL_C _CrtDbgReportW(int32_t _ReportType, const wchar_t * _Filename, int32_t _LineNumber, const wchar_t * _ModuleName, const wchar_t * _Format, ...);
 
 /* Asserts */
 /* We use !! below to ensure that any overloaded operators used to evaluate expr do not end up at operator || */
@@ -528,37 +528,37 @@ CLASS_DECL__ long DECL_C _CrtSetBreakAlloc(long _BreakAlloc);
  * Prototypes for malloc, free, realloc, etc are in malloc.h
  */
 
-CLASS_DECL__ void * DECL_C _malloc_dbg(size_t _Size, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _calloc_dbg(size_t _Count, size_t _Size, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _realloc_dbg(void * _Memory, size_t _NewSize, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _expand_dbg(void * _Memory, size_t _NewSize, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void DECL_C _free_dbg(void * _Memory, int _BlockType);
-CLASS_DECL__ size_t DECL_C _msize_dbg(void * _Memory, int _BlockType);
+CLASS_DECL__ void * DECL_C _malloc_dbg(size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _calloc_dbg(size_t _Count, size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _realloc_dbg(void * _Memory, size_t _NewSize, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _expand_dbg(void * _Memory, size_t _NewSize, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void DECL_C _free_dbg(void * _Memory, int32_t _BlockType);
+CLASS_DECL__ size_t DECL_C _msize_dbg(void * _Memory, int32_t _BlockType);
 CLASS_DECL__ size_t DECL_C _aligned_msize_dbg(void * _Memory, size_t _Alignment, size_t _Offset);
-CLASS_DECL__ void * DECL_C _aligned_malloc_dbg(size_t _Size, size_t _Alignment, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _aligned_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _aligned_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _aligned_offset_malloc_dbg(size_t _Size, size_t _Alignment, size_t _Offset, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _aligned_offset_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, size_t _Offset, const char * _Filename, int _LineNumber);
-CLASS_DECL__ void * DECL_C _aligned_offset_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, size_t _Offset, const char * _Filename, int _LineNumber);
+CLASS_DECL__ void * DECL_C _aligned_malloc_dbg(size_t _Size, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _aligned_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _aligned_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _aligned_offset_malloc_dbg(size_t _Size, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _aligned_offset_realloc_dbg(void * _Memory, size_t _NewSize, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ void * DECL_C _aligned_offset_recalloc_dbg(void * _Memory, size_t _NumOfElements, size_t _SizeOfElements, size_t _Alignment, size_t _Offset, const char * _Filename, int32_t _LineNumber);
 CLASS_DECL__ void DECL_C _aligned_free_dbg(void * _Memory);
-CLASS_DECL__ char * DECL_C _strdup_dbg(const char * _Str, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ wchar_t * DECL_C _wcsdup_dbg(const wchar_t * _Str, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ char * DECL_C _tempnam_dbg(const char * _DirName, const char * _FilePrefix, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ wchar_t * DECL_C _wtempnam_dbg(const wchar_t * _DirName, const wchar_t * _FilePrefix, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ char * DECL_C _fullpath_dbg(char * _FullPath, const char * _Path, size_t _SizeInBytes, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ wchar_t * DECL_C _wfullpath_dbg(wchar_t * _FullPath, const wchar_t * _Path, size_t _SizeInWords, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ char * DECL_C _getcwd_dbg(char * _DstBuf, int _SizeInBytes, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ wchar_t * DECL_C _wgetcwd_dbg(wchar_t * _DstBuf, int _SizeInWords, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ char * DECL_C _getdcwd_dbg(int _Drive, char * _DstBuf, int _SizeInBytes, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ wchar_t * DECL_C _wgetdcwd_dbg(int _Drive, wchar_t * _DstBuf, int _SizeInWords, int _BlockType, const char * _Filename, int _LineNumber);
+CLASS_DECL__ char * DECL_C _strdup_dbg(const char * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ wchar_t * DECL_C _wcsdup_dbg(const wchar_t * _Str, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ char * DECL_C _tempnam_dbg(const char * _DirName, const char * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ wchar_t * DECL_C _wtempnam_dbg(const wchar_t * _DirName, const wchar_t * _FilePrefix, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ char * DECL_C _fullpath_dbg(char * _FullPath, const char * _Path, size_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ wchar_t * DECL_C _wfullpath_dbg(wchar_t * _FullPath, const wchar_t * _Path, size_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ char * DECL_C _getcwd_dbg(char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ wchar_t * DECL_C _wgetcwd_dbg(wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ char * DECL_C _getdcwd_dbg(int32_t _Drive, char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ wchar_t * DECL_C _wgetdcwd_dbg(int32_t _Drive, wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 
-char * DECL_C _getdcwd_lk_dbg(int _Drive, char * _DstBuf, int _SizeInBytes, int _BlockType, const char * _Filename, int _LineNumber);
-wchar_t * DECL_C _wgetdcwd_lk_dbg(int _Drive, wchar_t * _DstBuf, int _SizeInWords, int _BlockType, const char * _Filename, int _LineNumber);
+char * DECL_C _getdcwd_lk_dbg(int32_t _Drive, char * _DstBuf, int32_t _SizeInBytes, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+wchar_t * DECL_C _wgetdcwd_lk_dbg(int32_t _Drive, wchar_t * _DstBuf, int32_t _SizeInWords, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 
-CLASS_DECL__ errno_t DECL_C _dupenv_s_dbg(char ** _PBuffer, size_t * _PBufferSizeInBytes, const char * _VarName, int _BlockType, const char * _Filename, int _LineNumber);
-CLASS_DECL__ errno_t DECL_C _wdupenv_s_dbg(wchar_t ** _PBuffer, size_t * _PBufferSizeInWords, const wchar_t * _VarName, int _BlockType, const char * _Filename, int _LineNumber);
+CLASS_DECL__ errno_t DECL_C _dupenv_s_dbg(char ** _PBuffer, size_t * _PBufferSizeInBytes, const char * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
+CLASS_DECL__ errno_t DECL_C _wdupenv_s_dbg(wchar_t ** _PBuffer, size_t * _PBufferSizeInWords, const wchar_t * _VarName, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 
 /*_Success_(return!=0)
 _Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL__ void * DECL_C _recalloc_dbg
@@ -566,27 +566,27 @@ _Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL__ 
         _Post_ptr_invalid_ void * _Memory,
         _In_ size_t _NumOfElements,
         _In_ size_t _SizeOfElements,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
 );
 
 _Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL__ void * DECL_C _expand_dbg(
         _Pre_notnull_ void * _Memory,
         _In_ size_t _NewSize,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 CLASS_DECL__ void DECL_C _free_dbg(
         _Post_ptr_invalid_ void * _Memory,
-        _In_ int _BlockType
+        _In_ int32_t _BlockType
         );
 
 CLASS_DECL__ size_t DECL_C _msize_dbg (
         _Pre_notnull_ void * _Memory,
-        _In_ int _BlockType
+        _In_ int32_t _BlockType
         );
 
 CLASS_DECL__ size_t DECL_C _aligned_msize_dbg (
@@ -599,7 +599,7 @@ _Check_return_ _Ret_opt_bytecap_(_Size) CLASS_DECL__ void * DECL_C _aligned_mall
         _In_ size_t _Size,
         _In_ size_t _Alignment,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Success_(return!=0)
@@ -608,7 +608,7 @@ _Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL__ void * DECL_C _aligned_r
         _In_ size_t _NewSize,
         _In_ size_t _Alignment,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Success_(return!=0)
@@ -619,7 +619,7 @@ _Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL__ 
         _In_ size_t _SizeOfElements,
         _In_ size_t _Alignment,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
 );
 
 _Check_return_ _Ret_opt_bytecap_(_Size) CLASS_DECL__ void * DECL_C _aligned_offset_malloc_dbg(
@@ -627,7 +627,7 @@ _Check_return_ _Ret_opt_bytecap_(_Size) CLASS_DECL__ void * DECL_C _aligned_offs
         _In_ size_t _Alignment,
         _In_ size_t _Offset,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Success_(return!=0)
@@ -637,7 +637,7 @@ _Check_return_ _Ret_opt_bytecap_(_NewSize) CLASS_DECL__ void * DECL_C _aligned_o
         _In_ size_t _Alignment,
         _In_ size_t _Offset,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Success_(return!=0)
@@ -649,7 +649,7 @@ _Check_return_ _Ret_opt_bytecap_x_(_NumOfElements*_SizeOfElements) CLASS_DECL__ 
         _In_ size_t _Alignment,
         _In_ size_t _Offset,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
 );
 
 CLASS_DECL__ void DECL_C _aligned_free_dbg(
@@ -658,120 +658,120 @@ CLASS_DECL__ void DECL_C _aligned_free_dbg(
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ char * DECL_C _strdup_dbg(
         _In_opt_z_ const char * _Str,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ wchar_t * DECL_C _wcsdup_dbg(
         _In_opt_z_ const wchar_t * _Str,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ char * DECL_C _tempnam_dbg(
         _In_opt_z_ const char * _DirName,
         _In_opt_z_ const char * _FilePrefix,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ wchar_t * DECL_C _wtempnam_dbg(
         _In_opt_z_ const wchar_t * _DirName,
         _In_opt_z_ const wchar_t * _FilePrefix,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ char * DECL_C _fullpath_dbg(
         _Out_opt_z_cap_(_SizeInBytes) char * _FullPath,
         _In_z_ const char * _Path,
         _In_ size_t _SizeInBytes,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ wchar_t * DECL_C _wfullpath_dbg(
         _Out_opt_z_cap_(_SizeInWords) wchar_t * _FullPath,
         _In_z_ const wchar_t * _Path,
         _In_ size_t _SizeInWords,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ char * DECL_C _getcwd_dbg(
         _Out_opt_z_cap_(_SizeInBytes) char * _DstBuf,
-        _In_ int _SizeInBytes,
-        _In_ int _BlockType,
+        _In_ int32_t _SizeInBytes,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ wchar_t * DECL_C _wgetcwd_dbg(
         _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
-        _In_ int _SizeInWords,
-        _In_ int _BlockType,
+        _In_ int32_t _SizeInWords,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ char * DECL_C _getdcwd_dbg(
-        _In_ int _Drive,
+        _In_ int32_t _Drive,
         _Out_opt_z_cap_(_SizeInBytes) char * _DstBuf,
-        _In_ int _SizeInBytes,
-        _In_ int _BlockType,
+        _In_ int32_t _SizeInBytes,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ CLASS_DECL__ wchar_t * DECL_C _wgetdcwd_dbg(
-        _In_ int _Drive,
+        _In_ int32_t _Drive,
         _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
-        _In_ int _SizeInWords,
-        _In_ int _BlockType,
+        _In_ int32_t _SizeInWords,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ char * DECL_C _getdcwd_lk_dbg(
-        _In_ int _Drive,
+        _In_ int32_t _Drive,
         _Out_opt_z_cap_(_SizeInBytes) char * _DstBuf,
-        _In_ int _SizeInBytes,
-        _In_ int _BlockType,
+        _In_ int32_t _SizeInBytes,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_ _Ret_opt_z_ wchar_t * DECL_C _wgetdcwd_lk_dbg(
-        _In_ int _Drive,
+        _In_ int32_t _Drive,
         _Out_opt_z_cap_(_SizeInWords) wchar_t * _DstBuf,
-        _In_ int _SizeInWords,
-        _In_ int _BlockType,
+        _In_ int32_t _SizeInWords,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_wat_ CLASS_DECL__ errno_t DECL_C _dupenv_s_dbg(
         _Out_ _Deref_post_opt_z_cap_(*_PBufferSizeInBytes) char ** _PBuffer,
         _Out_opt_ size_t * _PBufferSizeInBytes,
         _In_z_ const char * _VarName,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 
 _Check_return_wat_ CLASS_DECL__ errno_t DECL_C _wdupenv_s_dbg(
         _Out_ _Deref_post_opt_z_cap_(*_PBufferSizeInWords) wchar_t ** _PBuffer,
         _Out_opt_ size_t * _PBufferSizeInWords,
         _In_z_ const wchar_t * _VarName,
-        _In_ int _BlockType,
+        _In_ int32_t _BlockType,
         _In_opt_z_ const char * _Filename,
-        _In_ int _LineNumber
+        _In_ int32_t _LineNumber
         );
 */
 
@@ -838,16 +838,16 @@ echo you got owned
  */
 
 #if !defined(_M_CEE_PURE)
-CLASS_DECL__ extern int _crtDbgFlag;
+CLASS_DECL__ extern int32_t _crtDbgFlag;
 #endif /* !defined(_M_CEE_PURE) */
 
-CLASS_DECL__ int DECL_C _CrtCheckMemory();
-CLASS_DECL__ int DECL_C _CrtSetDbgFlag(int _NewFlag);
+CLASS_DECL__ int32_t DECL_C _CrtCheckMemory();
+CLASS_DECL__ int32_t DECL_C _CrtSetDbgFlag(int32_t _NewFlag);
 CLASS_DECL__ void DECL_C _CrtDoForAllClientObjects(void (DECL_C *_PFn)(void *, void *), void * _Context);
-CLASS_DECL__ int DECL_C _CrtIsValidPointer(const void * _Ptr, unsigned int _Bytes, int _ReadWrite);
-CLASS_DECL__ int DECL_C _CrtIsValidHeapPointer(const void * _HeapPtr);
-CLASS_DECL__ int DECL_C _CrtIsMemoryBlock(const void * _Memory, unsigned int _Bytes, long * _RequestNumber, char ** _Filename, int * _LineNumber);
-CLASS_DECL__ int DECL_C _CrtReportBlockType(const void * _Memory);
+CLASS_DECL__ int32_t DECL_C _CrtIsValidPointer(const void * _Ptr, unsigned int32_t _Bytes, int32_t _ReadWrite);
+CLASS_DECL__ int32_t DECL_C _CrtIsValidHeapPointer(const void * _HeapPtr);
+CLASS_DECL__ int32_t DECL_C _CrtIsMemoryBlock(const void * _Memory, unsigned int32_t _Bytes, long * _RequestNumber, char ** _Filename, int32_t * _LineNumber);
+CLASS_DECL__ int32_t DECL_C _CrtReportBlockType(const void * _Memory);
 
 
  /****************************************************************************
@@ -884,12 +884,12 @@ _MRTIMP _CRT_DUMP_CLIENT DECL_C _CrtSetDumpClient
 #endif
 
 CLASS_DECL__ void DECL_C _CrtMemCheckpoint(_CrtMemState * _State);
-CLASS_DECL__ int DECL_C _CrtMemDifference(_CrtMemState * _State, const _CrtMemState * _OldState, const _CrtMemState * _NewState);
+CLASS_DECL__ int32_t DECL_C _CrtMemDifference(_CrtMemState * _State, const _CrtMemState * _OldState, const _CrtMemState * _NewState);
 CLASS_DECL__ void DECL_C _CrtMemDumpAllObjectsSince(const _CrtMemState * _State);
 CLASS_DECL__ void DECL_C _CrtMemDumpStatistics(const _CrtMemState * _State);
-CLASS_DECL__ int DECL_C _CrtDumpMemoryLeaks();
-CLASS_DECL__ int DECL_C _CrtSetCheckCount(int _CheckCount);
-CLASS_DECL__ int DECL_C _CrtGetCheckCount();
+CLASS_DECL__ int32_t DECL_C _CrtDumpMemoryLeaks();
+CLASS_DECL__ int32_t DECL_C _CrtSetCheckCount(int32_t _CheckCount);
+CLASS_DECL__ int32_t DECL_C _CrtGetCheckCount();
 
 #endif  /* DEBUG */
 

@@ -75,9 +75,9 @@ ex1::HRes handler::GetPropertyInfo(uint32 /* index */,
 /*struct STATPROPSTG
 {
 
-  int m_i1;
-  int m_i2;
-  int m_i3;
+  int32_t m_i1;
+  int32_t m_i2;
+  int32_t m_i3;
 };*/
 
 stat_prop_stg kArcProps[] =
@@ -90,7 +90,7 @@ stat_prop_stg kArcProps[] =
   { NULL, ::compress::kpidOffset, var::type_uint64}
 };
 
-ex1::HRes handler::GetArchiveProperty(int propID, var *value)
+ex1::HRes handler::GetArchiveProperty(int32_t propID, var *value)
 {
   var prop;
   switch(propID)
@@ -99,7 +99,7 @@ ex1::HRes handler::GetArchiveProperty(int propID, var *value)
     {
       string resString;
       uint64_array ids;
-      int i;
+      int32_t i;
       for (i = 0; i < _db.Folders.get_count(); i++)
       {
         const CFolder &f = _db.Folders[i];
@@ -136,7 +136,7 @@ IMP_IInArchive_ArcProps
 
 #endif
 
-static void SetPropFromUInt64Def(CUInt64DefVector &v, int index, var &prop)
+static void SetPropFromUInt64Def(CUInt64DefVector &v, int32_t index, var &prop)
 {
   uint64 value;
   if (v.GetItem(index, value))
@@ -157,7 +157,7 @@ static string ConvertUInt32ToString(uint32 value)
 
 static string GetStringForSizeValue(uint32 value)
 {
-  for (int i = 31; i >= 0; i--)
+  for (int32_t i = 31; i >= 0; i--)
     if ((uint32(1) << i) == value)
       return ConvertUInt32ToString(i);
   string result;
@@ -205,7 +205,7 @@ bool handler::IsEncrypted(uint32 index2) const
   return false;
 }
 
-ex1::HRes handler::GetProperty(uint32 index, int propID,  var *value)
+ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
 {
   var prop;
 
@@ -372,7 +372,7 @@ ex1::HRes handler::GetProperty(uint32 index, int propID,  var *value)
         {
           const CFolder &folderInfo = _db.Folders[folderIndex];
           if (_db.FolderStartFileIndex[folderIndex] == (CNum)index2 &&
-              folderInfo.PackStreams.get_count() > (int)(propID - kpidPackedSize0))
+              folderInfo.PackStreams.get_count() > (int32_t)(propID - kpidPackedSize0))
           {
             prop = _db.GetFolderPackStreamSize(folderIndex, propID - kpidPackedSize0);
           }
@@ -453,7 +453,7 @@ ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *value
   const uint32 numProcessors = NSystem::GetNumberOfProcessors();
   _numThreads = numProcessors;
 
-  for (int i = 0; i < numProperties; i++)
+  for (int32_t i = 0; i < numProperties; i++)
   {
     string name = names[i];
     name.MakeUpper();
@@ -461,7 +461,7 @@ ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *value
       return E_INVALIDARG;
     const PROPVARIANT &value = values[i];
     uint32 number;
-    int index = ParseStringToUInt32(name, number);
+    int32_t index = ParseStringToUInt32(name, number);
     if (index == 0)
     {
       if(name.Left(2).CompareNoCase(L"MT") == 0)
@@ -489,7 +489,7 @@ ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *value
    }
 
 
-   /*bool handler::IsSolid(int refIndex)
+   /*bool handler::IsSolid(int32_t refIndex)
    {
       const CItemEx &item = _items[_refItems[refIndex].ItemIndex];
       if (item.UnPackVersion < 20)

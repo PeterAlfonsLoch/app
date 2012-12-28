@@ -9,8 +9,8 @@ namespace datetime
    {
    public:
       date_span();
-      int m_iMonth;
-      int m_iYear;
+      int32_t m_iMonth;
+      int32_t m_iYear;
       bool m_bConstraintMonth;
    };
 
@@ -19,7 +19,7 @@ namespace datetime
    public:
       time_span() NOTHROW;
       time_span( __time64_t time ) NOTHROW;
-      time_span( LONG lDays, int nHours, int nMins, int nSecs ) NOTHROW;
+      time_span( LONG lDays, int32_t nHours, int32_t nMins, int32_t nSecs ) NOTHROW;
 
       LONGLONG GetDays() const NOTHROW;
       LONGLONG GetTotalHours() const NOTHROW;
@@ -66,11 +66,11 @@ namespace datetime
 
       time() NOTHROW;
       time( __time64_t time ) NOTHROW;
-      time( int nYear, int nMonth, int nDay, int nHour, int nMin, int nSec,
-         int nDST = -1 );
-      time( WORD wDosDate, WORD wDosTime, int nDST = -1 );
-      time( const SYSTEMTIME& st, int nDST = -1 );
-      time( const FILETIME& ft, int nDST = -1 );
+      time( int32_t nYear, int32_t nMonth, int32_t nDay, int32_t nHour, int32_t nMin, int32_t nSec,
+         int32_t nDST = -1 );
+      time( WORD wDosDate, WORD wDosTime, int32_t nDST = -1 );
+      time( const SYSTEMTIME& st, int32_t nDST = -1 );
+      time( const FILETIME& ft, int32_t nDST = -1 );
 
       time& operator=( __time64_t time ) NOTHROW;
 
@@ -109,21 +109,21 @@ namespace datetime
 
       __time64_t get_time() const NOTHROW;
 
-      int GetYear() const NOTHROW;
-      int GetMonth() const NOTHROW;
-      int GetDay() const NOTHROW;
-      int GetHour() const NOTHROW;
-      int GetMinute() const NOTHROW;
-      int GetSecond() const NOTHROW;
-      int GetDayOfWeek() const NOTHROW;
+      int32_t GetYear() const NOTHROW;
+      int32_t GetMonth() const NOTHROW;
+      int32_t GetDay() const NOTHROW;
+      int32_t GetHour() const NOTHROW;
+      int32_t GetMinute() const NOTHROW;
+      int32_t GetSecond() const NOTHROW;
+      int32_t GetDayOfWeek() const NOTHROW;
 
-      int GetGmtYear() const NOTHROW;
-      int GetGmtMonth() const NOTHROW;
-      int GetGmtDay() const NOTHROW;
-      int GetGmtHour() const NOTHROW;
-      int GetGmtMinute() const NOTHROW;
-      int GetGmtSecond() const NOTHROW;
-      int GetGmtDayOfWeek() const NOTHROW;
+      int32_t GetGmtYear() const NOTHROW;
+      int32_t GetGmtMonth() const NOTHROW;
+      int32_t GetGmtDay() const NOTHROW;
+      int32_t GetGmtHour() const NOTHROW;
+      int32_t GetGmtMinute() const NOTHROW;
+      int32_t GetGmtSecond() const NOTHROW;
+      int32_t GetGmtDayOfWeek() const NOTHROW;
 
       // formatting using "C" strftime
       template < class tstring >
@@ -223,7 +223,7 @@ namespace datetime
    extern CLASS_DECL_ca const char * const szInvalidDateTime;
    extern CLASS_DECL_ca const char * const szInvalidDateTimeSpan;
 
-   const int maxTimeBufferSize = 128;
+   const int32_t maxTimeBufferSize = 128;
    const long maxDaysInSpan  =   3615897L;
 
 
@@ -243,7 +243,7 @@ namespace datetime
 
 
 #ifdef __oledb_h__
-   inline time::time( const DBTIMESTAMP& dbts, int nDST ) NOTHROW
+   inline time::time( const DBTIMESTAMP& dbts, int32_t nDST ) NOTHROW
    {
       struct tm atm;
       atm.tm_sec = dbts.second;

@@ -28,9 +28,9 @@ public:
 // Attributes (in addition to RECT members)
 
    // retrieves the width
-   int width() const throw();
+   int32_t width() const throw();
    // returns the height
-   int height() const throw();
+   int32_t height() const throw();
    // returns the size
    class size size() const throw();
    // reference to the top-left point
@@ -61,7 +61,7 @@ public:
 // Operations
 
    // set rectangle from left, top, right, and bottom
-   void set(int x1, int y1, int x2, int y2) throw();
+   void set(int32_t x1, int32_t y1, int32_t x2, int32_t y2) throw();
    void set(POINT topLeft, POINT bottomRight) throw();
    // is_empty the rectangle
    void null() throw();
@@ -73,7 +73,7 @@ public:
    // Inflate rectangle's width and height by
    // x units to the left and right ends of the rectangle
    // and y units to the top and bottom.
-   void inflate(int x, int y) throw();
+   void inflate(int32_t x, int32_t y) throw();
    // Inflate rectangle's width and height by
    // size.cx units to the left and right ends of the rectangle
    // and size.cy units to the top and bottom.
@@ -82,25 +82,25 @@ public:
    // Left side is moved to the left, right side is moved to the right,
    // top is moved up and bottom is moved down.
    void inflate(LPCRECT lpRect) throw();
-   void inflate(int l, int t, int r, int b) throw();
+   void inflate(int32_t l, int32_t t, int32_t r, int32_t b) throw();
 
    // deflate the rectangle's width and height without
    // moving its top or left
-   void deflate(int x, int y) throw();
+   void deflate(int32_t x, int32_t y) throw();
    void deflate(SIZE size) throw();
    void deflate(LPCRECT lpRect) throw();
-   void deflate(int l, int t, int r, int b) throw();
+   void deflate(int32_t l, int32_t t, int32_t r, int32_t b) throw();
 
    // translate the rectangle by moving its top and left
-   void offset(int x, int y) throw();
+   void offset(int32_t x, int32_t y) throw();
    void offset(SIZE size) throw();
    void offset(POINT point) throw();
    void normalize() throw();
 
    // absolute position of rectangle
-   void move_to_y(int y) throw();
-   void move_to_x(int x) throw();
-   void move_to(int x, int y) throw();
+   void move_to_y(int32_t y) throw();
+   void move_to_x(int32_t x) throw();
+   void move_to(int32_t x, int32_t y) throw();
    void move_to(POINT point) throw();
 
    // set this rectangle to intersection of two others
@@ -134,19 +134,19 @@ public:
    rect operator-(LPCRECT lpRect) const throw();
    rect operator&(const RECT& rect2) const throw();
    rect operator|(const RECT& rect2) const throw();
-   rect MulDiv(int nMultiplier, int nDivisor) const throw();
+   rect MulDiv(int32_t nMultiplier, int32_t nDivisor) const throw();
 
    int64_t area();
 
    bool contains(LPCRECT lpcrect) const;
    void ConstraintV5(LPCRECT lpcrect, const class size sizeMin);
-   void Align(int align, LPCRECT lpcrect);
-   void ScaleHeightAspect(int iNewHeight, int iCenterX, int iCenterY);
-   void ScaleRect(double dx, double dy, int ix, int iy);
+   void Align(int32_t align, LPCRECT lpcrect);
+   void ScaleHeightAspect(int32_t iNewHeight, int32_t iCenterX, int32_t iCenterY);
+   void ScaleRect(double dx, double dy, int32_t ix, int32_t iy);
    void ExtendOnCenter(LPCRECT lpcrect);
    void FitOnCenterOf(LPCRECT lpcrect);
    void DeflateBottomRightSizeByRate(double dRate);
-   void SetBottomRightSize(int iWidth, int iHeight);
+   void SetBottomRightSize(int32_t iWidth, int32_t iHeight);
    inline point top_right();
    inline point bottom_left();
 

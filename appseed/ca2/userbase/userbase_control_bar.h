@@ -92,8 +92,8 @@ public:
    ::userbase::control_bar * m_pBar;    // bar which this refers to (transient)
 
 //   void Serialize(CArchive& ar, BaseDockState* pDockState);
-   bool LoadState(const char * lpszProfileName, int nIndex, BaseDockState* pDockState);
-   bool SaveState(const char * lpszProfileName, int nIndex);
+   bool LoadState(const char * lpszProfileName, int32_t nIndex, BaseDockState* pDockState);
+   bool SaveState(const char * lpszProfileName, int32_t nIndex);
 };
 
 namespace userbase
@@ -107,7 +107,7 @@ namespace userbase
 
    // Attributes
    public:
-      //int get_count();
+      //int32_t get_count();
 
       // for styles specific to ::userbase::control_bar
       DWORD GetBarStyle();
@@ -117,13 +117,13 @@ namespace userbase
 
       // getting and setting border space
       void SetBorders(LPCRECT lpRect);
-      void SetBorders(int cxLeft = 0, int cyTop = 0, int cxRight = 0, int cyBottom = 0);
+      void SetBorders(int32_t cxLeft = 0, int32_t cyTop = 0, int32_t cxRight = 0, int32_t cyBottom = 0);
       rect GetBorders();
 
       userbase::frame_window* GetDockingFrame();
       bool IsFloating();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
-      virtual size CalcDynamicLayout(int nLength, DWORD nMode);
+      virtual size CalcDynamicLayout(int32_t nLength, DWORD nMode);
 
    // Operations
       void EnableDocking(DWORD dwDockStyle);
@@ -149,14 +149,14 @@ namespace userbase
       virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
 
       // info about bar (for status bar and toolbar)
-      int m_cxLeftBorder, m_cxRightBorder;
-      int m_cyTopBorder, m_cyBottomBorder;
-      int m_cxDefaultGap;         // default gap value
+      int32_t m_cxLeftBorder, m_cxRightBorder;
+      int32_t m_cyTopBorder, m_cyBottomBorder;
+      int32_t m_cxDefaultGap;         // default gap value
       UINT m_nMRUWidth;   // For dynamic resizing.
       bool  m_bDockTrack;
 
       // base_array of elements
-      //int m_nCount;
+      //int32_t m_nCount;
       //void * m_pData;        // m_nCount elements - type depends on derived class
 
       // support for delayed hide/show
@@ -182,8 +182,8 @@ namespace userbase
 
       // implementation helpers
       void CalcInsideRect(rect& rect, bool bHorz) const; // adjusts borders etc
-      //bool AllocElements(int nElements, int cbElement);
-      virtual bool SetStatusText(int nHit);
+      //bool AllocElements(int32_t nElements, int32_t cbElement);
+      virtual bool SetStatusText(int32_t nHit);
       void ResetTimer(UINT nEvent, UINT nTime);
       void EraseNonClient();
       void EraseNonClient(::ca::graphics * pdc);

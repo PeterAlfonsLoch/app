@@ -56,7 +56,7 @@ namespace ca2
          return true;
       }
 
-      int application::exit_instance()
+      int32_t application::exit_instance()
       {
          if(is_cube())
          {
@@ -94,7 +94,7 @@ namespace ca2
       void application::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
       {
          ::user::interaction_ptr_array wnda = frames();
-         for(int i = 0; i < wnda.get_size(); i++)
+         for(int32_t i = 0; i < wnda.get_size(); i++)
          {
             ::user::interaction * pwnd = wnda.element_at(i);
             if(pwnd != NULL && pwnd->IsWindow())
@@ -106,11 +106,11 @@ namespace ca2
       }
 
 
-      int application::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)
+      int32_t application::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)
       {
          ::user::interaction_ptr_array wnda = frames();
-         int iCount = 0;
-         for(int i = 0; i < wnda.get_size(); i++)
+         int32_t iCount = 0;
+         for(int32_t i = 0; i < wnda.get_size(); i++)
          {
               ::user::interaction * pwnd = wnda.element_at(i);
               if(pwnd != NULL &&
@@ -123,11 +123,11 @@ namespace ca2
           return iCount;
       }
 
-      int application::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
+      int32_t application::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
       {
          ::user::interaction_ptr_array wnda = frames();
-         int iCount = 0;
-         for(int i = 0; i < wnda.get_size(); i++)
+         int32_t iCount = 0;
+         for(int32_t i = 0; i < wnda.get_size(); i++)
          {
             ::user::interaction * pwnd = wnda.element_at(i);
             if(pwnd != NULL &&
@@ -142,11 +142,11 @@ namespace ca2
          return iCount;
       }
 
-      int application::GetVisibleFrameCount()
+      int32_t application::GetVisibleFrameCount()
       {
          ::user::interaction_ptr_array wnda = frames();
-         int iCount = 0;
-         for(int i = 0; i < wnda.get_size(); i++)
+         int32_t iCount = 0;
+         for(int32_t i = 0; i < wnda.get_size(); i++)
          {
             ::user::interaction * pwnd = wnda.element_at(i);
             if(pwnd != NULL

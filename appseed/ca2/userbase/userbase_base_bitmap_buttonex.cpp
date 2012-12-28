@@ -185,10 +185,10 @@ namespace userbase
       GetClientRect(lprect);
    }
 
-   int bitmap_button::BaseToolTipGetIndex()
+   int32_t bitmap_button::BaseToolTipGetIndex()
    {
       // use ::ca::window dialog control id as the index
-      return (int) GetDlgCtrlId();
+      return (int32_t) GetDlgCtrlId();
    }
 
 

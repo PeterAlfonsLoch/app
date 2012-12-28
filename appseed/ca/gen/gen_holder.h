@@ -463,7 +463,7 @@ void pointer < DERIVED >::pointer_clear_references()
 {
    try
    {
-      int i;
+      int32_t i;
       for(i = 0; i < m_deriveda.get_size() ; i++)
       {
          *m_deriveda.element_at(i) = NULL;
@@ -579,7 +579,7 @@ public:
    virtual void OnPointerClear(DERIVED * p);
 
    virtual index add(pointer < DERIVED > * p);
-   virtual void set_at(int iIndex, pointer < DERIVED > * p);
+   virtual void set_at(int32_t iIndex, pointer < DERIVED > * p);
    virtual count remove(pointer < DERIVED > * p);
 
    virtual void remove_all();
@@ -600,7 +600,7 @@ public:
 template < class DERIVED >
 void pointer_array < DERIVED >::get_array(raw_array < DERIVED * > & a)
 {
-   for(int i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       a.add(derived_at(i));
    }
@@ -609,7 +609,7 @@ void pointer_array < DERIVED >::get_array(raw_array < DERIVED * > & a)
 template < class DERIVED >
 void pointer_array < DERIVED >::get_array(comparable_array < DERIVED * > & a)
 {
-   for(int i = 0; i < this->get_count(); i++)
+   for(int32_t i = 0; i < this->get_count(); i++)
    {
       a.add(derived_at(i));
    }
@@ -639,7 +639,7 @@ template < class DERIVED >
 void pointer_array < DERIVED >::
 remove_all()
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i)->remove_listener(this);
    }
@@ -671,7 +671,7 @@ add(pointer < DERIVED > * p)
 
 template < class DERIVED >
 void pointer_array < DERIVED >::
-set_at(int iIndex, pointer < DERIVED > * p)
+set_at(int32_t iIndex, pointer < DERIVED > * p)
 {
    if(p != NULL)
    {
@@ -718,7 +718,7 @@ operator = (const pointer_array & a)
    if(this != &a)
    {
       set_app(a.get_app());
-      for(int i = 0; i < a.get_size(); i++)
+      for(int32_t i = 0; i < a.get_size(); i++)
       {
          add(a.element_at(i));
       }

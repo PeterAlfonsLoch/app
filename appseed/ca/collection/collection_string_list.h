@@ -90,7 +90,7 @@ public:
 
       }
 
-      iterator & operator +(int i)
+      iterator & operator +(int32_t i)
       {
 
          while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
@@ -117,7 +117,7 @@ public:
 
       }
 
-      iterator & operator -(int i)
+      iterator & operator -(int32_t i)
       {
 
          while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)
@@ -204,7 +204,7 @@ public:
 
       }
 
-      const_iterator & operator +(int i)
+      const_iterator & operator +(int32_t i)
       {
 
          while(m_pos != NULL && m_pos != m_plist->get_tail_position() && i > 0)
@@ -231,7 +231,7 @@ public:
 
       }
 
-      const_iterator & operator -(int i)
+      const_iterator & operator -(int32_t i)
       {
 
          while(m_pos != NULL && m_pos != m_plist->get_head_position() && i > 0)

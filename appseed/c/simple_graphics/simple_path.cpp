@@ -40,12 +40,12 @@
 //
 // Returns:     None
 //
-bool simple_path::add_round_rect(const RECT & r, int dia)
+bool simple_path::add_round_rect(const RECT & r, int32_t dia)
 {
 
    // diameter can't exceed width or height
-   if(dia > width(r))	dia = (int) width(r);
-   if(dia > height(r))	dia = (int) height(r);
+   if(dia > width(r))	dia = (int32_t) width(r);
+   if(dia > height(r))	dia = (int32_t) height(r);
 
    // define a corner
    RECT Corner(rect_dim(r.left, r.top, dia, dia));
@@ -57,7 +57,7 @@ bool simple_path::add_round_rect(const RECT & r, int dia)
    add_arc(Corner, 180, 90);
 
    // tweak needed for radius of 10 (dia of 20)
-   int dia2 = dia;
+   int32_t dia2 = dia;
    if(dia % 2 == 0)
    {
       dia2++;
@@ -83,7 +83,7 @@ bool simple_path::add_round_rect(const RECT & r, int dia)
 }
 
 
-bool simple_path::add_round_top_left(const RECT & r, int dia)
+bool simple_path::add_round_top_left(const RECT & r, int32_t dia)
 {
    // diameter can't exceed width or height
    if(dia > width(r))	dia = width(r);
@@ -100,7 +100,7 @@ bool simple_path::add_round_top_left(const RECT & r, int dia)
 //   path.m_ppath->AddArc(Corner, 180, 90);
 
    // tweak needed for radius of 10 (dia of 20)
-   int dia2 = dia;
+   int32_t dia2 = dia;
    if(dia % 2 == 0)
    {
       dia2++;
@@ -144,7 +144,7 @@ bool simple_path::add_round_top_left(const RECT & r, int dia)
 
 
 
-bool simple_path::add_round_bottom_right(const RECT & r, int dia)
+bool simple_path::add_round_bottom_right(const RECT & r, int32_t dia)
 {
    // diameter can't exceed width or height
    if(dia > width(r))	dia = width(r);
@@ -161,7 +161,7 @@ bool simple_path::add_round_bottom_right(const RECT & r, int dia)
 //   path.m_ppath->AddArc(Corner, 180, 90);
 
    // tweak needed for radius of 10 (dia of 20)
-   int dia2 = dia;
+   int32_t dia2 = dia;
    if(dia % 2 == 0)
    {
       dia2++;

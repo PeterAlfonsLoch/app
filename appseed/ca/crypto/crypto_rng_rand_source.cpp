@@ -68,7 +68,7 @@
 #define RAND_SOURCE_NOT_READY (-1)
 #define RAND_SOURCE_READY     (17)
 
-static int dev_random_fdes = RAND_SOURCE_NOT_READY;
+static int32_t dev_random_fdes = RAND_SOURCE_NOT_READY;
 
 
 err_status_t
@@ -104,10 +104,10 @@ rand_source_get_octet_string(void *dest, uint32_t len) {
   if (read(dev_random_fdes, dest, len) != len)
     return err_status_fail;
 #elif (_MSC_VER >= 1400)
-  unsigned int *dst = (unsigned int *) dest;
+  unsigned int32_t *dst = (unsigned int32_t *) dest;
   while (len)
   {
-      unsigned int val = 0;
+      unsigned int32_t val = 0;
      errno_t err = rand_s(&val);
       if (err != 0)
          {
@@ -123,7 +123,7 @@ rand_source_get_octet_string(void *dest, uint32_t len) {
   uint8_t *dst = (uint8_t *)dest;
   while (len)
   {
-     int val = rand();
+     int32_t val = rand();
      /* rand() returns 0-32767 (ugh) */
      /* Is this a good enough way to get random bytes?
         It is if it passes FIPS-140... */

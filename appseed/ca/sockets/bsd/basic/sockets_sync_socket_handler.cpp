@@ -90,7 +90,7 @@ namespace sockets
       return str;
    }
 
-   void sync_socket_handler::read_payload_v1(string & xml_payload, int iTimeout)
+   void sync_socket_handler::read_payload_v1(string & xml_payload, int32_t iTimeout)
    {
       UNREFERENCED_PARAMETER(xml_payload);
       if(iTimeout < 0)
@@ -105,7 +105,7 @@ namespace sockets
          throw simple_exception(get_app());
    }
 
-   void sync_socket_handler::write_payload_v1(const char * xml_payload, int iTimeout)
+   void sync_socket_handler::write_payload_v1(const char * xml_payload, int32_t iTimeout)
    {
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;

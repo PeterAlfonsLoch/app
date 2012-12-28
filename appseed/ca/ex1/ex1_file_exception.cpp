@@ -5,7 +5,7 @@ namespace ex1
 {
 
 
-   file_exception::file_exception(::ca::application * papp, int cause , LONG lOsError, const char * lpszArchiveName) :
+   file_exception::file_exception(::ca::application * papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       ca(papp),
       ::call_stack(papp),
       ::ex1::exception(papp)
@@ -14,7 +14,7 @@ namespace ex1
    }
 
 
-   void file_exception::Construct(int cause, LONG lOsError, const char * pstrFileName /* = NULL */)
+   void file_exception::Construct(int32_t cause, LONG lOsError, const char * pstrFileName /* = NULL */)
    {
 
       m_cause              = cause;
@@ -27,7 +27,7 @@ namespace ex1
    {
    }
 
-   int file_exception::get_cause()
+   int32_t file_exception::get_cause()
    {
       return m_cause;
    }

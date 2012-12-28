@@ -11,7 +11,7 @@
 #include "zutil.h"
 
 #ifndef NO_DUMMY_DECL
-struct internal_state      {int dummy;}; /* for buggy compilers */
+struct internal_state      {int32_t dummy;}; /* for buggy compilers */
 #endif
 
 const char * const z_errmsg[10] = {
@@ -120,7 +120,7 @@ uLong ZEXPORT zlibCompileFlags()
 #  ifndef verbose
 #    define verbose 0
 #  endif
-int z_verbose = verbose;
+int32_t z_verbose = verbose;
 
 void z_error (const char *m)
 {
@@ -133,7 +133,7 @@ void z_error (const char *m)
  * uncompress()
  */
 const char * ZEXPORT zError(
-    int err)
+    int32_t err)
 {
     return ERR_MSG(err);
 }
@@ -143,7 +143,7 @@ const char * ZEXPORT zError(
      * errno.  We define it as a global var to simplify porting.
      * Its value is always 0 and should not be used.
      */
-    int errno = 0;
+    int32_t errno = 0;
 #endif
 
 #ifndef HAVE_MEMCPY
@@ -159,7 +159,7 @@ void zmemcpy(dest, source, len)
     } while (--len != 0);
 }
 
-int zmemcmp(s1, s2, len)
+int32_t zmemcmp(s1, s2, len)
     const Bytef* s1;
     const Bytef* s2;
     uInt  len;
@@ -200,7 +200,7 @@ void zmemzero(dest, len)
 #define MAX_PTR 10
 /* 10*64K = 640K */
 
-zlib_local int next_ptr = 0;
+zlib_local int32_t next_ptr = 0;
 
 typedef struct ptr_table_s {
     voidpf org_ptr;
@@ -241,7 +241,7 @@ voidpf zcalloc (voidpf opaque, unsigned items, unsigned size)
 
 void  zcfree (voidpf opaque, voidpf ptr)
 {
-    int n;
+    int32_t n;
     if (*(ush*)&ptr != 0) { /* object < 64K */
         farfree(ptr);
         return;

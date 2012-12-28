@@ -151,7 +151,7 @@ namespace sockets
    {
       char slask[100]; // l2ip temporary
       *slask = 0;
-      unsigned int prev = 0;
+      unsigned int32_t prev = 0;
       bool skipped = false;
       bool ok_to_skip = true;
       if (mixed)
@@ -201,7 +201,7 @@ namespace sockets
    }
 
 
-   int ipv6_address::GetFamily()
+   int32_t ipv6_address::GetFamily()
    {
       return m_addr.sin6_family;
    }

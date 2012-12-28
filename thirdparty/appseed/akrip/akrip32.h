@@ -63,7 +63,7 @@ typedef struct
   DWORD   maxLen;           /* 08: length of buffer itself        */
   DWORD   len;              /* 0C: length of data actually in buf */
   DWORD   status;           /* 10: status of last read operation  */
-  int     startOffset;      /* 14: offset of valid data in buf    */
+  int32_t     startOffset;      /* 14: offset of valid data in buf    */
   BYTE    buf[1024*1024];     /* 18: the data itself                */
 } *PTRACKBUF, FAR *LPTRACKBUF;
 
@@ -74,7 +74,7 @@ typedef struct
   DWORD   maxLen;           /* 08: length of buffer itself        */
   DWORD   len;              /* 0C: length of data actually in buf */
   DWORD   status;           /* 10: status of last read operation  */
-  int     startOffset;      /* 14: offset of valid data in buf    */
+  int32_t     startOffset;      /* 14: offset of valid data in buf    */
 } TRACKBUFDUMMY;
 #define TRACKBUFEXTRA   sizeof(TRACKBUFDUMMY)
 
@@ -136,7 +136,7 @@ typedef struct
 
 typedef struct
 {
-  int   trackNo;
+  int32_t   trackNo;
   DWORD startLBA;
   DWORD trackLen;
   BYTE  type;
@@ -295,17 +295,17 @@ typedef struct _GETCDHAND {
 #define CDDB_OPT_USERAUTH    11
 #define CDDB_OPT_PROTOLEVEL  12
 
-int GetNumAdapters();
-int GetCDList( LPCDLIST cd );
-int GetAspiLibError();
+int32_t GetNumAdapters();
+int32_t GetCDList( LPCDLIST cd );
+int32_t GetAspiLibError();
 BYTE GetAspiLibAspiError();
 
-DWORD GetCDId( HCDROM hCD, char *buf, int maxBuf );
+DWORD GetCDId( HCDROM hCD, char *buf, int32_t maxBuf );
 DWORD GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec );
 DWORD ReadTOC( HCDROM hCD, LPTOC lpToc );
 DWORD ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF );
-bool QueryCDParms( HCDROM hCD, int which, DWORD *pNum );
-bool ModifyCDParms( HCDROM hCD, int which, DWORD val );
+bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum );
+bool ModifyCDParms( HCDROM hCD, int32_t which, DWORD val );
 HCDROM GetCDHandle( LPGETCDHAND lpcd );
 bool CloseCDHandle( HCDROM );
 DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF, LPTRACKBUF );
@@ -324,7 +324,7 @@ typedef struct {
 
 
 typedef struct {
-  int num;
+  int32_t num;
   LPCDDBQUERYITEM q;
 } CDDBQUERY, FAR *LPCDDBQUERY;
 
@@ -332,7 +332,7 @@ typedef struct {
 typedef struct {
   char szServer[81];
   bool bHTTP;
-  int  iPort;
+  int32_t  iPort;
   char szCGI[81];
   char szNorth[16];
   char szSouth[16];
@@ -341,15 +341,15 @@ typedef struct {
 
 
 typedef struct {
-  int num;
+  int32_t num;
   LPCDDBSITE s;
 } CDDBSITELIST, FAR *LPCDDBSITELIST;
 
 
-DWORD GetCDDBDiskID( HCDROM hCD, DWORD *pID, int numEntries );
+DWORD GetCDDBDiskID( HCDROM hCD, DWORD *pID, int32_t numEntries );
 DWORD CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq );
-DWORD CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int maxLen );
-void CDDBSetOption( int what, char *szVal, int iVal );
+DWORD CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen );
+void CDDBSetOption( int32_t what, char *szVal, int32_t iVal );
 DWORD CDDBGetServerList( LPCDDBSITELIST lpSiteList );
 DWORD CDDBSubmit( DWORD dwDiscID, bool bTest, char *szEmail, char *szCategory,
 		  char *szEntry );

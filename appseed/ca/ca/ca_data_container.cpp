@@ -29,7 +29,7 @@ namespace ca
       return m_spdata->is_in_use();
    }
 
-   void data_container::on_update_data(int iHint)
+   void data_container::on_update_data(int32_t iHint)
    {
       UNREFERENCED_PARAMETER(iHint);
    }

@@ -54,7 +54,7 @@ namespace user
       ::ex1::tree_item *            m_pitemFirstVisible;
       index                         m_iFirstVisibleItemLevel;
       index                         m_iFirstVisibleItemProperIndex;
-      int                           m_iCurrentViewWidth;
+      int32_t                           m_iCurrentViewWidth;
       COLORREF                      m_crText;
       COLORREF                      m_crTextSelected;
       COLORREF                      m_crTextHighlight;
@@ -63,7 +63,7 @@ namespace user
       image_list *                  m_pimagelist;
       index                         m_iImageCollapse;
       index                         m_iImageExpand;
-      int                           m_iItemHeight;
+      int32_t                           m_iItemHeight;
       
 
       tree(::ca::application * papp);
@@ -79,7 +79,7 @@ namespace user
 
       void _001OnTreeDataChange();
       ::ex1::tree_item * CalcFirstVisibleItem(index & iLevel, index & iProperIndex);
-      virtual int _001CalcCurrentViewWidth();
+      virtual int32_t _001CalcCurrentViewWidth();
       void _001SelectItem(::ex1::tree_item * pitem);
       count _001GetVisibleItemCount();
       void _001SetCollapseImage(HICON hicon);
@@ -91,7 +91,7 @@ namespace user
       virtual void _001OnItemCollapse(::ex1::tree_item * pitem);
       virtual bool _001GetItemElementRect(LPRECT lprect, tree_draw_item & drawitem, ::user::e_tree_element eelement);
       virtual void install_message_handling(::gen::message::dispatch * pdispatch);
-      int _001GetItemHeight();
+      int32_t _001GetItemHeight();
       virtual index _001GetIndentation();
       
       
@@ -100,7 +100,7 @@ namespace user
       void _001OnClick(UINT uiFlags, point point);
 
 
-      virtual int get_wheel_scroll_delta();
+      virtual int32_t get_wheel_scroll_delta();
 
       virtual void _001OnUpdateScrollPosition();
 

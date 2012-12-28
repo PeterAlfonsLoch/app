@@ -27,7 +27,7 @@ namespace primitive
 
    memory_base & memory_base::prefix_der_length()
    {
-      int msb = ::msb(get_size());
+      int32_t msb = ::msb(get_size());
       if(msb < 7)
       {
          move_and_grow(1);
@@ -35,12 +35,12 @@ namespace primitive
       }
       else
       {
-         int iLen = (msb + 8) / 8;
+         int32_t iLen = (msb + 8) / 8;
          move_and_grow(1 + iLen);
          get_data()[0] = 0x80 | iLen;
          auto s = get_size() - 1 - iLen;
          byte * p = (byte *) &s;
-         for(int i = 1; i <= iLen; i++)
+         for(int32_t i = 1; i <= iLen; i++)
          {
             get_data()[i] = p[iLen - i];
          }
@@ -62,7 +62,7 @@ namespace primitive
       return *this;
    }
 
-   memory_base & memory_base::prefix_der_type(int iType)
+   memory_base & memory_base::prefix_der_type(int32_t iType)
    {
       
       move_and_grow(1);

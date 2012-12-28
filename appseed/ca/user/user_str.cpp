@@ -88,7 +88,7 @@ namespace user
 
          strid_array stridaFailedLocale;
 
-         for(int i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
+         for(int32_t i = 0; i < m_plocaleschema->m_idaLocale.get_count(); i++)
          {
             
             ::id & idLocale = m_plocaleschema->m_idaLocale[i];
@@ -184,7 +184,7 @@ namespace user
       stringa straLangPath;
       stringa straLang;
       Application.dir().ls_dir(strMain, &straLangPath, &straLang);
-      for(int iLang = 0; iLang < straLang.get_count(); iLang++)
+      for(int32_t iLang = 0; iLang < straLang.get_count(); iLang++)
       {
          string strLang = straLang[iLang];
          if(strLang.CompareNoCase(".svn") == 0)
@@ -192,7 +192,7 @@ namespace user
          stringa straStylePath;
          stringa straStyle;
          Application.dir().ls_dir(straLangPath[iLang], &straStylePath, &straStyle);
-         for(int iStyle = 0; iStyle < straStyle.get_count(); iStyle++)
+         for(int32_t iStyle = 0; iStyle < straStyle.get_count(); iStyle++)
          {
             string idStyle = straStyle[iStyle];
             if(idStyle.CompareNoCase(".svn") == 0)
@@ -201,7 +201,7 @@ namespace user
             Application.dir().rls(
                System.dir().path(straStylePath[iStyle], "uistr"),
                &straPath);
-            for(int iPath = 0; iPath < straPath.get_count(); iPath++)
+            for(int32_t iPath = 0; iPath < straPath.get_count(); iPath++)
             {
                string strPath = straPath[iPath];
                if(gen::str::ends_ci(strPath, "\\.svn"))
@@ -219,7 +219,7 @@ namespace user
 
 /*      xml::node node(get_app());
       node.load(Application.file().as_string(pszFileName));
-      for(int i = 0; i < node.get_children_count(); i++)
+      for(int32_t i = 0; i < node.get_children_count(); i++)
       {
          add(
             node.child_at(i)->get_attr("root"),
@@ -271,7 +271,7 @@ namespace user
                return str;
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
@@ -368,7 +368,7 @@ namespace user
                stra.add(str);
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
@@ -419,7 +419,7 @@ namespace user
 
       string str;
       string strLine;
-      int i = 0;
+      int32_t i = 0;
       while(i < straLines.get_count())
       {
          for(; i < straLines.get_count(); i++)
@@ -506,7 +506,7 @@ namespace user
                return true;
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
@@ -576,7 +576,7 @@ namespace user
                return true;
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
@@ -646,7 +646,7 @@ namespace user
                return true;
          }
 
-         for(int i = 0; i < pcontext->m_schemaptra.get_count(); i++)
+         for(int32_t i = 0; i < pcontext->m_schemaptra.get_count(); i++)
          {
             
             str = (*pcontext->m_schemaptra[i])[id];

@@ -46,7 +46,7 @@ namespace user
       };
 
       class CToolMap :
-         public ::collection::map < int, int, tool_tip_tool *, tool_tip_tool * >
+         public ::collection::map < int32_t, int32_t, tool_tip_tool *, tool_tip_tool * >
       {
       public:
           void AddTool(tool_tip_tool * ptool);
@@ -57,8 +57,8 @@ namespace user
       CEnumAlign                 m_ealignDefault;  // default alignment of the tool tip
       ::user::interaction *      m_pwnd;           // ::ca::window associate with this tool tip wnd
       string                     m_strTip;         // tip string
-      int                        m_iEventTool;     // item selected
-      int                        m_iTool;          // item where the tip will be showed
+      int32_t                        m_iEventTool;     // item selected
+      int32_t                        m_iTool;          // item where the tip will be showed
       ::ca::font_sp              m_font;           // tip string font
       point                      m_ptOffset;       // tip point offset
       size                       m_sizeArrow;      // arrow size
@@ -68,10 +68,10 @@ namespace user
       CToolMap                   m_toolmap;        // ::collection::map of tool index to tool pointers
 
       void RemoveAllTools();
-      tool_tip_tool * GetTool(int iTool);
-      bool GetToolText(int iTool, string &str);
+      tool_tip_tool * GetTool(int32_t iTool);
+      bool GetToolText(int32_t iTool, string &str);
       void AddTool(tool_tip_tool * ptool);
-      bool GetToolRect(int iTool, LPRECT lprect);
+      bool GetToolRect(int32_t iTool, LPRECT lprect);
       tool_tip_window(::ca::application * papp);
       virtual ~tool_tip_window();
       void UpdateDrawingObjects();
@@ -81,13 +81,13 @@ namespace user
       bool HideTip();
       virtual bool create(::user::interaction * pwnd, id id);
       bool CalcRect(::ca::graphics * pdc, LPRECT lprect, LPCRECT lprectToolScreen, const char * lpcsz);
-      void ShowTip(int iTool, bool bForce = false);
+      void ShowTip(int32_t iTool, bool bForce = false);
       void SetPositionHint(::ca::window * pwnd, e_position eposition);
       void relay_event(tool_tip_tool * pwnd, gen::signal_object * pobj);
 
       void OnPaint();
       void OnTimer(UINT nIDEvent);
-      void OnSize(UINT nType, int cx, int cy);
+      void OnSize(UINT nType, int32_t cx, int32_t cy);
       void OnDestroy();
 
 

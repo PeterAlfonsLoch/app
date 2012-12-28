@@ -73,7 +73,7 @@ namespace exception
    }
 
 #ifdef WINDOWS
-   void __cdecl translator::filter2(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+   void __cdecl translator::filter2(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
    {
       if(g_bExiting)
          return;
@@ -171,7 +171,7 @@ namespace exception
       }
    }
 #ifdef WINDOWS
-   void translator::filter(unsigned int uiCode, EXCEPTION_POINTERS * ppointers)
+   void translator::filter(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
    {
       UNREFERENCED_PARAMETER(uiCode);
       switch (ppointers->ExceptionRecord->ExceptionCode)
@@ -206,7 +206,7 @@ namespace exception
       };
    }
 
-   vsstring translator::name(unsigned int uiCode)
+   vsstring translator::name(unsigned int32_t uiCode)
    {
 
       vsstring str;
@@ -249,7 +249,7 @@ namespace exception
 
    }
 
-   vsstring translator::description(unsigned int uiCode)
+   vsstring translator::description(unsigned int32_t uiCode)
    {
 
       vsstring str;
@@ -340,7 +340,7 @@ namespace exception
    }
 #else
 
-   void translator::filter_sigsegv(int signal, siginfo_t * psiginfo, void * pc)
+   void translator::filter_sigsegv(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
       sigset_t set;
@@ -352,7 +352,7 @@ namespace exception
 
    }
 
-   void translator::filter_sigfpe(int signal, siginfo_t * psiginfo, void * pc)
+   void translator::filter_sigfpe(int32_t signal, siginfo_t * psiginfo, void * pc)
    {
 
       sigset_t set;

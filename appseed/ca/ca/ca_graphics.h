@@ -125,9 +125,9 @@ namespace ca
       virtual bool DeleteDC();
 
    // Device-Context Functions
-      virtual int SaveDC();
-      virtual bool RestoreDC(int nSavedDC);
-      virtual int GetDeviceCaps(int nIndex) const;
+      virtual int32_t SaveDC();
+      virtual bool RestoreDC(int32_t nSavedDC);
+      virtual int32_t GetDeviceCaps(int32_t nIndex) const;
       virtual UINT SetBoundsRect(LPCRECT lpRectBounds, UINT flags);
       virtual UINT GetBoundsRect(LPRECT lpRectBounds, UINT flags);
 #ifdef WINDOWS
@@ -136,19 +136,19 @@ namespace ca
 
    // Drawing-Tool Functions
       virtual point GetBrushOrg() const;
-      virtual point SetBrushOrg(int x, int y);
+      virtual point SetBrushOrg(int32_t x, int32_t y);
       virtual point SetBrushOrg(POINT point);
-      virtual int EnumObjects(int nObjectType,
-            int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData);
+      virtual int32_t EnumObjects(int32_t nObjectType,
+            int32_t (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData);
 
    // Type-safe selection helpers
    public:
-      virtual ::ca::graphics_object* SelectStockObject(int nIndex);
+      virtual ::ca::graphics_object* SelectStockObject(int32_t nIndex);
       virtual ::ca::pen* SelectObject(::ca::pen* pPen);
       virtual ::ca::brush* SelectObject(::ca::brush* pBrush);
       virtual ::ca::font* SelectObject(::ca::font* pFont);
       virtual ::ca::bitmap* SelectObject(::ca::bitmap* pBitmap);
-      virtual int SelectObject(::ca::region* pRgn);       // special return for regions
+      virtual int32_t SelectObject(::ca::region* pRgn);       // special return for regions
       virtual ::ca::graphics_object* SelectObject(::ca::graphics_object* pObject);
          // ::ca::graphics_object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
@@ -160,20 +160,20 @@ namespace ca
 
    // Drawing-Attribute Functions
       virtual COLORREF GetBkColor() const;
-      virtual int GetBkMode() const;
-      virtual int GetPolyFillMode() const;
-      virtual int GetROP2() const;
-      virtual int GetStretchBltMode() const;
+      virtual int32_t GetBkMode() const;
+      virtual int32_t GetPolyFillMode() const;
+      virtual int32_t GetROP2() const;
+      virtual int32_t GetStretchBltMode() const;
       virtual COLORREF GetTextColor() const;
 
 
       virtual double get_dpix() const;
 
       virtual COLORREF SetBkColor(COLORREF crColor);
-      virtual int SetBkMode(int nBkMode);
-      virtual int SetPolyFillMode(int nPolyFillMode);
-      virtual int SetROP2(int nDrawMode);
-      virtual int SetStretchBltMode(int nStretchMode);
+      virtual int32_t SetBkMode(int32_t nBkMode);
+      virtual int32_t SetPolyFillMode(int32_t nPolyFillMode);
+      virtual int32_t SetROP2(int32_t nDrawMode);
+      virtual int32_t SetStretchBltMode(int32_t nStretchMode);
       virtual COLORREF SetTextColor(COLORREF crColor);
 
       virtual COLORREF SetColor(COLORREF crColor);
@@ -200,8 +200,8 @@ namespace ca
    #endif
 
       // Graphics mode
-      virtual int SetGraphicsMode(int iMode);
-      virtual int GetGraphicsMode() const;
+      virtual int32_t SetGraphicsMode(int32_t iMode);
+      virtual int32_t GetGraphicsMode() const;
 
       // World transform
 #ifdef WINDOWS
@@ -211,37 +211,37 @@ namespace ca
 #endif
 
       // Mapping Functions
-      virtual int GetMapMode() const;
+      virtual int32_t GetMapMode() const;
       virtual point GetViewportOrg() const;
-      virtual int SetMapMode(int nMapMode);
+      virtual int32_t SetMapMode(int32_t nMapMode);
       // Viewport Origin
-      virtual point SetViewportOrg(int x, int y);
+      virtual point SetViewportOrg(int32_t x, int32_t y);
       virtual point SetViewportOrg(POINT point);
-      virtual point OffsetViewportOrg(int nWidth, int nHeight);
+      virtual point OffsetViewportOrg(int32_t nWidth, int32_t nHeight);
 
       // Viewport Extent
       virtual size GetViewportExt() const;
-      virtual size SetViewportExt(int cx, int cy);
+      virtual size SetViewportExt(int32_t cx, int32_t cy);
       virtual size SetViewportExt(SIZE size);
-      virtual size ScaleViewportExt(int xNum, int xDenom, int yNum, int yDenom);
+      virtual size ScaleViewportExt(int32_t xNum, int32_t xDenom, int32_t yNum, int32_t yDenom);
 
       // Window Origin
       virtual point GetWindowOrg() const;
-      virtual point SetWindowOrg(int x, int y);
+      virtual point SetWindowOrg(int32_t x, int32_t y);
       virtual point SetWindowOrg(POINT point);
-      virtual point OffsetWindowOrg(int nWidth, int nHeight);
+      virtual point OffsetWindowOrg(int32_t nWidth, int32_t nHeight);
 
       // Window extent
       virtual size GetWindowExt() const;
-      virtual size SetWindowExt(int cx, int cy);
+      virtual size SetWindowExt(int32_t cx, int32_t cy);
       virtual size SetWindowExt(SIZE size);
-      virtual size ScaleWindowExt(int xNum, int xDenom, int yNum, int yDenom);
+      virtual size ScaleWindowExt(int32_t xNum, int32_t xDenom, int32_t yNum, int32_t yDenom);
 
    // Coordinate Functions
-      virtual void DPtoLP(LPPOINT lpPoints, int nCount = 1) const;
+      virtual void DPtoLP(LPPOINT lpPoints, int32_t nCount = 1) const;
       virtual void DPtoLP(LPRECT lpRect) const;
       virtual void DPtoLP(LPSIZE lpSize) const;
-      virtual void LPtoDP(LPPOINT lpPoints, int nCount = 1) const;
+      virtual void LPtoDP(LPPOINT lpPoints, int32_t nCount = 1) const;
       virtual void LPtoDP(LPRECT lpRect) const;
       virtual void LPtoDP(LPSIZE lpSize) const;
 
@@ -253,74 +253,74 @@ namespace ca
 
    // Region Functions
       virtual bool FillRgn(::ca::region* pRgn, ::ca::brush* pBrush);
-      virtual bool FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int nWidth, int nHeight);
+      virtual bool FrameRgn(::ca::region* pRgn, ::ca::brush* pBrush, int32_t nWidth, int32_t nHeight);
       virtual bool InvertRgn(::ca::region* pRgn);
       virtual bool PaintRgn(::ca::region* pRgn);
 
    // Clipping Functions
-      virtual int GetClipBox(LPRECT lpRect) const;
-      virtual int GetClipBox(rect64 * lpRect) const;
-      virtual bool PtVisible(int x, int y) const;
+      virtual int32_t GetClipBox(LPRECT lpRect) const;
+      virtual int32_t GetClipBox(rect64 * lpRect) const;
+      virtual bool PtVisible(int32_t x, int32_t y) const;
       virtual bool PtVisible(POINT point) const;
       virtual bool RectVisible(LPCRECT lpRect) const;
-      virtual int SelectClipRgn(::ca::region* pRgn);
-      virtual int ExcludeClipRect(int x1, int y1, int x2, int y2);
-      virtual int ExcludeClipRect(LPCRECT lpRect);
-      virtual int ExcludeUpdateRgn(::ca::window* pWnd);
-      virtual int IntersectClipRect(int x1, int y1, int x2, int y2);
-      virtual int IntersectClipRect(LPCRECT lpRect);
-      virtual int OffsetClipRgn(int x, int y);
-      virtual int OffsetClipRgn(SIZE size);
-      virtual int SelectClipRgn(::ca::region* pRgn, int nMode);
+      virtual int32_t SelectClipRgn(::ca::region* pRgn);
+      virtual int32_t ExcludeClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+      virtual int32_t ExcludeClipRect(LPCRECT lpRect);
+      virtual int32_t ExcludeUpdateRgn(::ca::window* pWnd);
+      virtual int32_t IntersectClipRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+      virtual int32_t IntersectClipRect(LPCRECT lpRect);
+      virtual int32_t OffsetClipRgn(int32_t x, int32_t y);
+      virtual int32_t OffsetClipRgn(SIZE size);
+      virtual int32_t SelectClipRgn(::ca::region* pRgn, int32_t nMode);
 
    // Line-Output Functions
 
-      virtual point DrawLine(int x1, int y1, int x2, int y2);
-      virtual point drawLine(int x1, int y1, int x2, int y2);
-      virtual point draw_line(int x1, int y1, int x2, int y2);
+      virtual point DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+      virtual point drawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+      virtual point draw_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
       virtual point DrawLine(float x1, float y1, float x2, float y2);
       virtual point drawLine(float x1, float y1, float x2, float y2);
       virtual point draw_line(float x1, float y1, float x2, float y2);
 
-      virtual bool DrawRect(int x1, int y1, int x2, int y2);
-      virtual bool drawRect(int x1, int y1, int x2, int y2);
-      virtual bool draw_rect(int x1, int y1, int x2, int y2);
+      virtual bool DrawRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+      virtual bool drawRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
+      virtual bool draw_rect(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
 
       virtual point GetCurrentPosition() const;
-      virtual point MoveTo(int x, int y);
+      virtual point MoveTo(int32_t x, int32_t y);
       virtual pointd MoveTo(double x, double y);
       virtual point MoveTo(POINT point);
-      virtual bool LineTo(int x, int y);
+      virtual bool LineTo(int32_t x, int32_t y);
       virtual bool LineTo(double x, double y);
       virtual bool LineTo(POINT point);
-      virtual bool Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+      virtual bool Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       virtual bool Arc(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
-      virtual bool Arc(int x1, int y1, int x2, int y2, double start, double extends);
+      virtual bool Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, double start, double extends);
       virtual bool Arc(LPCRECT lpRect, double start, double extends);
-      virtual bool Polyline(const POINT* lpPoints, int nCount);
+      virtual bool Polyline(const POINT* lpPoints, int32_t nCount);
 
-      virtual bool AngleArc(int x, int y, int nRadius, float fStartAngle, float fSweepAngle);
-      virtual bool ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+      virtual bool AngleArc(int32_t x, int32_t y, int32_t nRadius, float fStartAngle, float fSweepAngle);
+      virtual bool ArcTo(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       virtual bool ArcTo(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
-      virtual int GetArcDirection() const;
-      virtual int SetArcDirection(int nArcDirection);
+      virtual int32_t GetArcDirection() const;
+      virtual int32_t SetArcDirection(int32_t nArcDirection);
 
-      virtual bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int nCount);
-      virtual bool PolylineTo(const POINT* lpPoints, int nCount);
-      virtual bool PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int nCount);
+      virtual bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int32_t nCount);
+      virtual bool PolylineTo(const POINT* lpPoints, int32_t nCount);
+      virtual bool PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int32_t nCount);
 
-      virtual bool PolyBezier(const POINT* lpPoints, int nCount);
-      virtual bool PolyBezierTo(const POINT* lpPoints, int nCount);
+      virtual bool PolyBezier(const POINT* lpPoints, int32_t nCount);
+      virtual bool PolyBezierTo(const POINT* lpPoints, int32_t nCount);
 
    // Simple Drawing Functions
       virtual void FillRect(LPCRECT lpRect, ::ca::brush* pBrush);
       virtual void FrameRect(LPCRECT lpRect, ::ca::brush* pBrush);
       virtual void InvertRect(LPCRECT lpRect);
-      virtual bool DrawIcon(int x, int y, ::visual::icon * picon);
+      virtual bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon);
       virtual bool DrawIcon(POINT point, ::visual::icon * picon);
-      virtual bool DrawIcon(int x, int y, ::visual::icon * picon, int cx, int cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
+      virtual bool DrawIcon(int32_t x, int32_t y, ::visual::icon * picon, int32_t cx, int32_t cy, UINT istepIfAniCur, HBRUSH hbrFlickerFreeDraw, UINT diFlags);
       virtual bool DrawState(point pt, size size, HBITMAP hBitmap, UINT nFlags,
          HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, ::ca::bitmap* pBitmap, UINT nFlags,
@@ -332,9 +332,9 @@ namespace ca
          ::ca::brush* pBrush = NULL);
 #endif
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = NULL);
+         bool bPrefixText = TRUE, int32_t nTextLen = 0, HBRUSH hBrush = NULL);
       virtual bool DrawState(point pt, size size, const char * lpszText, UINT nFlags,
-         bool bPrefixText = TRUE, int nTextLen = 0, ::ca::brush* pBrush = NULL);
+         bool bPrefixText = TRUE, int32_t nTextLen = 0, ::ca::brush* pBrush = NULL);
 #ifdef WINDOWSEX
       virtual bool DrawState(point pt, size size, DRAWSTATEPROC lpDrawProc,
          LPARAM lData, UINT nFlags, HBRUSH hBrush = NULL);
@@ -342,69 +342,69 @@ namespace ca
          LPARAM lData, UINT nFlags, ::ca::brush* pBrush = NULL);
 #endif
    // Ellipse and Polygon Functions
-      virtual bool Chord(int x1, int y1, int x2, int y2, int x3, int y3,
-         int x4, int y4);
+      virtual bool Chord(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3,
+         int32_t x4, int32_t y4);
       virtual bool Chord(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
       virtual void DrawFocusRect(LPCRECT lpRect);
-      virtual bool Ellipse(int x1, int y1, int x2, int y2);
+      virtual bool Ellipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool Ellipse(LPCRECT lpRect);
-      virtual bool DrawEllipse(int x1, int y1, int x2, int y2);
+      virtual bool DrawEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool DrawEllipse(LPCRECT lpRect);
-      virtual bool FillEllipse(int x1, int y1, int x2, int y2);
+      virtual bool FillEllipse(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool FillEllipse(LPCRECT lpRect);
-      virtual bool Pie(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
+      virtual bool Pie(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3, int32_t x4, int32_t y4);
       virtual bool Pie(LPCRECT lpRect, POINT ptStart, POINT ptEnd);
-      virtual bool fill_polygon(const POINTD * lpPoints, int nCount);
-      virtual bool fill_polygon(const POINT* lpPoints, int nCount);
+      virtual bool fill_polygon(const POINTD * lpPoints, int32_t nCount);
+      virtual bool fill_polygon(const POINT* lpPoints, int32_t nCount);
       virtual bool Polygon(point_array & pta);
-      virtual bool Polygon(const POINT* lpPoints, int nCount);
-      virtual bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int nCount);
-      virtual bool Rectangle(int x1, int y1, int x2, int y2);
+      virtual bool Polygon(const POINT* lpPoints, int32_t nCount);
+      virtual bool PolyPolygon(const POINT* lpPoints, const INT* lpPolyCounts, int32_t nCount);
+      virtual bool Rectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool Rectangle(LPCRECT lpRect);
-      virtual bool DrawRectangle(int x1, int y1, int x2, int y2);
+      virtual bool DrawRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool DrawRectangle(LPCRECT lpRect);
-      virtual bool FillRectangle(int x1, int y1, int x2, int y2);
+      virtual bool FillRectangle(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
       virtual bool FillRectangle(LPCRECT lpRect);
-      virtual bool RoundRect(int x1, int y1, int x2, int y2, int x3, int y3);
+      virtual bool RoundRect(int32_t x1, int32_t y1, int32_t x2, int32_t y2, int32_t x3, int32_t y3);
       virtual bool RoundRect(LPCRECT lpRect, POINT point);
 
    // Bitmap Functions
       virtual bool from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop);
       virtual bool from(size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop);
       virtual bool from(size size, ::ca::graphics * pgraphicsSrc, DWORD dwRop);
-      virtual bool PatBlt(int x, int y, int nWidth, int nHeight, DWORD dwRop);
-      virtual bool BitBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
-         int xSrc, int ySrc, DWORD dwRop);
-      virtual bool StretchBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
-         int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, DWORD dwRop);
-      virtual COLORREF GetPixel(int x, int y) const;
+      virtual bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, DWORD dwRop);
+      virtual bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc,
+         int32_t xSrc, int32_t ySrc, DWORD dwRop);
+      virtual bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc,
+         int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop);
+      virtual COLORREF GetPixel(int32_t x, int32_t y) const;
       virtual COLORREF GetPixel(POINT point) const;
-      virtual COLORREF SetPixel(int x, int y, COLORREF crColor);
+      virtual COLORREF SetPixel(int32_t x, int32_t y, COLORREF crColor);
       virtual COLORREF SetPixel(POINT point, COLORREF crColor);
-      virtual bool FloodFill(int x, int y, COLORREF crColor);
-      virtual bool ExtFloodFill(int x, int y, COLORREF crColor, UINT nFillType);
-      virtual bool MaskBlt(int x, int y, int nWidth, int nHeight, ::ca::graphics * pgraphicsSrc,
-         int xSrc, int ySrc, ::ca::bitmap& maskBitmap, int xMask, int yMask,
+      virtual bool FloodFill(int32_t x, int32_t y, COLORREF crColor);
+      virtual bool ExtFloodFill(int32_t x, int32_t y, COLORREF crColor, UINT nFillType);
+      virtual bool MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc,
+         int32_t xSrc, int32_t ySrc, ::ca::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
          DWORD dwRop);
-      virtual bool PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc,
-         int nWidth, int nHeight, ::ca::bitmap& maskBitmap, int xMask, int yMask);
-      virtual bool SetPixelV(int x, int y, COLORREF crColor);
+      virtual bool PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
+         int32_t nWidth, int32_t nHeight, ::ca::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
+      virtual bool SetPixelV(int32_t x, int32_t y, COLORREF crColor);
       virtual bool SetPixelV(POINT point, COLORREF crColor);
       virtual bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
         void * pMesh, ULONG nMeshElements, DWORD dwMode);
-      virtual bool TransparentBlt(int xDest, int yDest, int nDestWidth, int nDestHeight,
-        ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
+      virtual bool TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
+        ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         UINT clrTransparent);
 
-      virtual bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight, ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight, double dOpacity);
+      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight, ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, double dOpacity);
       virtual bool alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, double dOpacity);
       virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
       virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, double dOpacity);
       virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, point ptSrc, double dOpacity);
       virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, double dOpacity);
 
-/*      virtual bool alpha_blend(int xDest, int yDest, int nDestWidth, int nDestHeight,
-        ::ca::graphics * pgraphicsSrc, int xSrc, int ySrc, int nSrcWidth, int nSrcHeight,
+/*      virtual bool alpha_blend(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
+        ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         BLENDFUNCTION blend);*/
 /*      virtual bool alpha_blend(point ptDst, size szDst,::ca::graphics * pgraphicsSrc, point ptSrc, size szSrc, BLENDFUNCTION blend);
       virtual bool alpha_blend(point ptDst, size sz,::ca::graphics * pgraphicsSrc, point ptSrc, BLENDFUNCTION blend);
@@ -413,66 +413,66 @@ namespace ca
       virtual bool alpha_blend(size sz,::ca::graphics * pgraphicsSrc, BLENDFUNCTION blend);*/
 
    // Text Functions
-      virtual bool TextOut(int x, int y, const char * lpszString, int nCount);
-      virtual bool TextOut(int x, int y, const string & str);
-      virtual bool TextOut(double x, double y, const char * lpszString, int nCount);
+      virtual bool TextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount);
+      virtual bool TextOut(int32_t x, int32_t y, const string & str);
+      virtual bool TextOut(double x, double y, const char * lpszString, int32_t nCount);
       virtual bool TextOut(double x, double y, const string & str);
-      virtual bool ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
+      virtual bool ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRect,
                const char * lpszString, UINT nCount, LPINT lpDxWidths);
-      virtual bool ExtTextOut(int x, int y, UINT nOptions, LPCRECT lpRect,
+      virtual bool ExtTextOut(int32_t x, int32_t y, UINT nOptions, LPCRECT lpRect,
                const string & str, LPINT lpDxWidths);
-      virtual size TabbedTextOut(int x, int y, const char * lpszString, int nCount,
-               int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
-      virtual size TabbedTextOut(int x, int y, const string & str,
-               int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
+      virtual size TabbedTextOut(int32_t x, int32_t y, const char * lpszString, int32_t nCount,
+               int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin);
+      virtual size TabbedTextOut(int32_t x, int32_t y, const string & str,
+               int32_t nTabPositions, LPINT lpnTabStopPositions, int32_t nTabOrigin);
 
 
-      virtual int draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat);
-      virtual int draw_text(const string & str, LPRECT lpRect, UINT nFormat);
+      virtual int32_t draw_text(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat);
+      virtual int32_t draw_text(const string & str, LPRECT lpRect, UINT nFormat);
 
 #ifndef METROWIN
-      virtual int draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
-      virtual int draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+      virtual int32_t draw_text_ex(const char * lpszString, strsize nCount, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
+      virtual int32_t draw_text_ex(const string & str, LPRECT lpRect, UINT nFormat, LPDRAWTEXTPARAMS lpDTParams);
 #endif
 
-      virtual size GetTextExtent(const char * lpszString, strsize nCount, int iIndex) const;
+      virtual size GetTextExtent(const char * lpszString, strsize nCount, int32_t iIndex) const;
       virtual size GetTextExtent(const char * lpszString, strsize nCount) const;
       virtual size GetTextExtent(const string & str) const;
-      virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, int iIndex) const;
+      virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount, int32_t iIndex) const;
       virtual bool GetTextExtent(sized & size, const char * lpszString, strsize nCount) const;
       virtual bool GetTextExtent(sized & size, const string & str) const;
       virtual size GetOutputTextExtent(const char * lpszString, strsize nCount) const;
       virtual size GetOutputTextExtent(const string & str) const;
-      virtual size GetTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual size GetTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual size GetOutputTabbedTextExtent(const string & str, int nTabPositions, LPINT lpnTabStopPositions) const;
-      virtual bool GrayString(::ca::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, int x, int y, int nWidth, int nHeight);
+      virtual size GetTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual size GetOutputTabbedTextExtent(const string & str, int32_t nTabPositions, LPINT lpnTabStopPositions) const;
+      virtual bool GrayString(::ca::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int32_t), LPARAM lpData, int32_t nCount, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight);
       virtual UINT GetTextAlign() const;
       virtual UINT SetTextAlign(UINT nFlags);
-      virtual int GetTextFace(int nCount, LPTSTR lpszFacename) const;
-      virtual int GetTextFace(string & rString) const;
+      virtual int32_t GetTextFace(int32_t nCount, LPTSTR lpszFacename) const;
+      virtual int32_t GetTextFace(string & rString) const;
 
 
       virtual bool get_text_metrics(LPTEXTMETRIC lpMetrics) const;
       virtual bool get_output_text_metrics(LPTEXTMETRIC lpMetrics) const;
 
 
-      virtual int SetTextJustification(int nBreakExtra, int nBreakCount);
-      virtual int GetTextCharacterExtra() const;
-      virtual int SetTextCharacterExtra(int nCharExtra);
+      virtual int32_t SetTextJustification(int32_t nBreakExtra, int32_t nBreakCount);
+      virtual int32_t GetTextCharacterExtra() const;
+      virtual int32_t SetTextCharacterExtra(int32_t nCharExtra);
 
 #ifdef WINDOWSEX
 
-      virtual DWORD GetCharacterPlacement(const char * lpString, int nCount, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
-      virtual DWORD GetCharacterPlacement(string & str, int nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
+      virtual DWORD GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
+      virtual DWORD GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
 
 #endif
 
 #if (_WIN32_WINNT >= 0x0500)
 
-      virtual bool GetTextExtentExPointI(LPWORD pgiIn, int cgi, int nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
-      virtual bool GetTextExtentPointI(LPWORD pgiIn, int cgi, __out_opt LPSIZE lpSize) const;
+      virtual bool GetTextExtentExPointI(LPWORD pgiIn, int32_t cgi, int32_t nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE lpSize) const;
+      virtual bool GetTextExtentPointI(LPWORD pgiIn, int32_t cgi, __out_opt LPSIZE lpSize) const;
 
 #endif
 
@@ -483,7 +483,7 @@ namespace ca
       virtual bool DrawFrameControl(LPRECT lpRect, UINT nType, UINT nState);
 
    // Scrolling Functions
-      virtual bool ScrollDC(int dx, int dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
+      virtual bool ScrollDC(int32_t dx, int32_t dy, LPCRECT lpRectScroll, LPCRECT lpRectClip,
          ::ca::region* pRgnUpdate, LPRECT lpRectUpdate);
 
    // font Functions
@@ -502,7 +502,7 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-      virtual int GetKerningPairs(int nPairs, LPKERNINGPAIR lpkrnpair) const;
+      virtual int32_t GetKerningPairs(int32_t nPairs, LPKERNINGPAIR lpkrnpair) const;
       virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
       virtual DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
@@ -522,24 +522,24 @@ namespace ca
 #endif
 
    // Printer/Device Escape Functions
-      virtual int Escape(int nEscape, int nCount, const char * lpszInData, LPVOID lpOutData);
-      virtual int Escape(int nEscape, int nInputSize, const char * lpszInputData, int nOutputSize, char * lpszOutputData);
-      virtual int DrawEscape(int nEscape, int nInputSize, const char * lpszInputData);
+      virtual int32_t Escape(int32_t nEscape, int32_t nCount, const char * lpszInData, LPVOID lpOutData);
+      virtual int32_t Escape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData, int32_t nOutputSize, char * lpszOutputData);
+      virtual int32_t DrawEscape(int32_t nEscape, int32_t nInputSize, const char * lpszInputData);
 
       // Escape helpers
-      virtual int StartDoc(const char * lpszDocName);  // old Win3.0 version
+      virtual int32_t StartDoc(const char * lpszDocName);  // old Win3.0 version
 
 #ifdef WINDOWSEX
 
-      virtual int StartDoc(LPDOCINFO lpDocInfo);
+      virtual int32_t StartDoc(LPDOCINFO lpDocInfo);
 
 #endif
 
-      virtual int StartPage();
-      virtual int EndPage();
-      virtual int SetAbortProc(bool (CALLBACK* lpfn)(HDC, int));
-      virtual int AbortDoc();
-      virtual int EndDoc();
+      virtual int32_t StartPage();
+      virtual int32_t EndPage();
+      virtual int32_t SetAbortProc(bool (CALLBACK* lpfn)(HDC, int32_t));
+      virtual int32_t AbortDoc();
+      virtual int32_t EndDoc();
 
       // MetaFile Functions
 #ifdef WINDOWS
@@ -561,8 +561,8 @@ namespace ca
       virtual bool WidenPath();
       virtual float GetMiterLimit() const;
       virtual bool SetMiterLimit(float fMiterLimit);
-      virtual int GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int nCount) const;
-      virtual bool SelectClipPath(int nMode);
+      virtual int32_t GetPath(LPPOINT lpPoints, LPBYTE lpTypes, int32_t nCount) const;
+      virtual bool SelectClipPath(int32_t nMode);
 
 
       virtual bool draw_path(::ca::graphics_path * ppath);
@@ -576,9 +576,9 @@ namespace ca
          ::ca::brush* pBrush = NULL, ::ca::brush* pBrushLast = NULL);
       virtual void FillSolidRect(const __rect64 * lpRect, COLORREF clr);
       virtual void FillSolidRect(LPCRECT lpRect, COLORREF clr);
-      virtual void FillSolidRect(int x, int y, int cx, int cy, COLORREF clr);
+      virtual void FillSolidRect(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF clr);
       virtual void Draw3dRect(LPCRECT lpRect, COLORREF clrTopLeft, COLORREF clrBottomRight);
-      virtual void Draw3dRect(int x, int y, int cx, int cy,
+      virtual void Draw3dRect(int32_t x, int32_t y, int32_t cx, int32_t cy,
          COLORREF clrTopLeft, COLORREF clrBottomRight);
 
       virtual void assert_valid() const;

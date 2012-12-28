@@ -31,10 +31,10 @@
 typedef unsigned char u_char;
 
 #ifdef WINDOWS
-typedef signed int ssize_t;
+typedef signed int32_t ssize_t;
 #endif
 
-int err(int i, const char* str)
+int32_t err(int32_t i, const char* str)
 {
     
    wchar_t lastErrorTxt[1024];
@@ -62,7 +62,7 @@ int err(int i, const char* str)
     
 }
 
-int errx(int i, const char* str)
+int32_t errx(int32_t i, const char* str)
 {
    printf_dup("%s",str);
    return (i);
@@ -87,11 +87,11 @@ static off_t offtin(u_char *buf)
    return y;
 }
 
-int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
+int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfile)
 {
    _FILE * f, * cpf, * dpf, * epf;
    BZFILE * cpfbz2, * dpfbz2, * epfbz2;
-   int cbz2err, dbz2err, ebz2err;
+   int32_t cbz2err, dbz2err, ebz2err;
    _FILE * fd;
    ssize_t oldsize,newsize;
    ssize_t bzctrllen,bzdatalen;
@@ -289,7 +289,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
 
       /* _read diff string */
-      lenread = BZ2_bzRead(&dbz2err, dpfbz2, _new + newpos, (int)ctrl[0]);
+      lenread = BZ2_bzRead(&dbz2err, dpfbz2, _new + newpos, (int32_t)ctrl[0]);
       if ((lenread < ctrl[0]) ||
           ((dbz2err != BZ_OK) && (dbz2err != BZ_STREAM_END)))
       {
@@ -324,7 +324,7 @@ int bspatch(const char * oldfile, const char * newfile, const char * patchfile)
       }
 
       /* _read extra string */
-      lenread = BZ2_bzRead(&ebz2err, epfbz2, _new + newpos, (int)ctrl[1]);
+      lenread = BZ2_bzRead(&ebz2err, epfbz2, _new + newpos, (int32_t)ctrl[1]);
       if ((lenread < ctrl[1]) ||
           ((ebz2err != BZ_OK) && (ebz2err != BZ_STREAM_END)))
       {

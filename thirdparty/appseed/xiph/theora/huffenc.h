@@ -13,7 +13,7 @@ extern const th_huff_code
 
 
 
-int oc_huff_codes_pack(oggpack_buffer *_opb,
+int32_t oc_huff_codes_pack(oggpack_buffer *_opb,
  const th_huff_code _codes[TH_NHUFFMAN_TABLES][TH_NDCT_TOKENS]);
 
 #endif

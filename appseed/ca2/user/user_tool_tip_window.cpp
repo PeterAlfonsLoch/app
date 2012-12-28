@@ -51,7 +51,7 @@ namespace user
 
 
    void tool_tip_window::ShowTip(
-         int iTool,    // [in] item selected
+         int32_t iTool,    // [in] item selected
          bool bForce)
    {
       if(!IsTipEnabled())
@@ -353,7 +353,7 @@ namespace user
    // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
-   void tool_tip_window::OnSize(UINT nType, int cx, int cy)
+   void tool_tip_window::OnSize(UINT nType, int32_t cx, int32_t cy)
    {
        ::ca::window::OnSize(nType, cx, cy);
 
@@ -546,7 +546,7 @@ namespace user
 
 
 
-   bool tool_tip_window::GetToolRect(int iTool, LPRECT lprect)
+   bool tool_tip_window::GetToolRect(int32_t iTool, LPRECT lprect)
    {
       GetTool(iTool)->BaseToolTipGetRect(lprect);
       return true;
@@ -565,7 +565,7 @@ namespace user
       set_at(ptool->BaseToolTipGetIndex(), ptool);
    }
 
-   bool tool_tip_window::GetToolText(int iTool, string &str)
+   bool tool_tip_window::GetToolText(int32_t iTool, string &str)
    {
       ::user::tool_tip_tool * ptool = GetTool(iTool);
 
@@ -591,7 +591,7 @@ namespace user
       return true;
    }
 
-   ::user::tool_tip_tool * tool_tip_window::GetTool(int iTool)
+   ::user::tool_tip_tool * tool_tip_window::GetTool(int32_t iTool)
    {
       return m_toolmap[iTool];
    }

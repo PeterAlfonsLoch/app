@@ -49,7 +49,7 @@ namespace html
       m_ptag->set_name(pTag->getTagName());
       if(pTag->getAttributes() != NULL)
       {
-         for(int i = 0; i < pTag->getAttributes()->getCount(); i++)
+         for(int32_t i = 0; i < pTag->getAttributes()->getCount(); i++)
          {
             attribute * pattr = m_ptag->attra().add_new();
             pattr->set_name(pTag->getAttributes()->getAttribute(i).getName().make_lower());

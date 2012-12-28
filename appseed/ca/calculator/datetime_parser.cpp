@@ -123,7 +123,7 @@ element * parser::expr(element * pelement1)
          m_scanner.next();
          node                = new_node();
          node->m_ptoken      = m_scanner.m_ptoken;
-         int iCount;
+         int32_t iCount;
          if(node->m_ptoken->m_str == "sqr")
          {
             iCount = 1;
@@ -153,7 +153,7 @@ element * parser::expr(element * pelement1)
             throw "unknown function";
          }
          expect(token::open_paren);
-         int iElem = 1;
+         int32_t iElem = 1;
          if(iCount > 0)
          {
             while(true)

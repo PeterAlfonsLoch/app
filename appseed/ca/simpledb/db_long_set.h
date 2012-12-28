@@ -63,7 +63,7 @@ public:
       virtual ~sync_queue();
 
 
-      virtual int run();
+      virtual int32_t run();
 
 
       void queue(const char * pszKey, int64_t l);

@@ -18,14 +18,14 @@ simple_edit_box::~simple_edit_box()
 
 
 
-void simple_edit_box::on_lbutton_down(int x, int y)
+void simple_edit_box::on_lbutton_down(int32_t x, int32_t y)
 {
 
    set_focus(this);
 
 }
 
-void simple_edit_box::on_lbutton_up(int x, int y)
+void simple_edit_box::on_lbutton_up(int32_t x, int32_t y)
 {
 }
 
@@ -41,7 +41,7 @@ bool simple_edit_box::is_focusable()
 
 
 
-CLASS_DECL_c char to_upper(int ch)
+CLASS_DECL_c char to_upper(int32_t ch)
 {
 if(ch >= 'a' && ch <= 'z')
 {
@@ -81,7 +81,7 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
    simple_solid_brush b(g, ARGB(223, 49, 49, 23));
 
-   simple_pixel_font f(g, (int)height(&m_rect) * 10, "Geneva");
+   simple_pixel_font f(g, (int32_t)height(&m_rect) * 10, "Geneva");
 
    g.select(b);
 
@@ -89,11 +89,11 @@ void simple_edit_box::draw_this(simple_graphics & g)
 
    float fMargin = (height(&m_rect) * ((1.0f - 0.7f) / 2.0f));
 
-   g.text_out((int) (m_rect.left + fMargin), (int) (m_rect.top + fMargin), m_strText);
+   g.text_out((int32_t) (m_rect.left + fMargin), (int32_t) (m_rect.top + fMargin), m_strText);
 
 }
 
-void simple_edit_box::on_char(int iKey, const vsstring & strChar)
+void simple_edit_box::on_char(int32_t iKey, const vsstring & strChar)
 {
 
    if(iKey == VK_TAB)

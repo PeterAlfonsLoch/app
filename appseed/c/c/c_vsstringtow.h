@@ -8,7 +8,7 @@ public:
 
    wstring * m_pwstring;
 
-   vsstringtow(wstring & str, int iAllocCount = 0);
+   vsstringtow(wstring & str, int32_t iAllocCount = 0);
    ~vsstringtow();
 
 

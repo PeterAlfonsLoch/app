@@ -91,7 +91,7 @@ namespace ca
 
 //   extern ::ca::application * g_papp;
 
-   CLASS_DECL_ca int SimpleDebugReport(int,const char *,int,const char *,const char * pszFormat, va_list list)
+   CLASS_DECL_ca int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat, va_list list)
    {
       #ifdef WIN32
       char buf[2048];
@@ -103,10 +103,10 @@ namespace ca
       return 0;
    }
 
-   /*int ca2_votagus_logging_Report(
-                                 int iReportType,
+   /*int32_t ca2_votagus_logging_Report(
+                                 int32_t iReportType,
                                  const char * pszFileName,
-                                 int iLineNumber,
+                                 int32_t iLineNumber,
                                  const char * pszModuleName,
                                  const char * pszFormat,
                                  va_list list)
@@ -132,7 +132,7 @@ namespace ca
 
 
 
-   void log::trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
+   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, unsigned int32_t nLevel, const char * pszFormat, va_list args) const
    {
       if(!m_bTrace)
          return;
@@ -152,13 +152,13 @@ namespace ca
       va_end(args);
       stringa stra;
       stra.add_smallest_tokens(str, *plog->m_pstraSeparator, FALSE);
-      /*for(int i = 0; i < stra.get_size(); i++)
+      /*for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(stra[i].get_length() > 200)
          {
             string & strLine = stra[i];
             const char * psz = strLine;
-            int j = 200;
+            int32_t j = 200;
             while(*psz != NULL && j >= 0 && !gen::ch::is_space_char(psz))
             {
                j--;
@@ -189,7 +189,7 @@ namespace ca
             fclose(plog->m_pfile);
             plog->m_pfile = NULL;
          }
-         int iRetry = 0;
+         int32_t iRetry = 0;
          retry:
          string strRelative;
          time.Format(strRelative, "%Y/%m/%d");
@@ -205,7 +205,7 @@ namespace ca
             }
             if(!(plog->m_pfile = fopen(*m_pstrLogPath, "at")))
             {
-               int iError = errno;
+               int32_t iError = errno;
                if(iError == EAGAIN)
                {
                }
@@ -240,7 +240,7 @@ namespace ca
          plog->print("<log>Starting Log</log>");
       }
       fseek(plog->m_pfile, 0, SEEK_END);
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string strLine = strPre + strTick + stra[i] + "\r\n";
          try
@@ -256,11 +256,11 @@ namespace ca
 
    }
 
-/*   void log::trace_v(const char *pszFileName, int nLine, unsigned int dwCategory, unsigned int nLevel, const wchar_t * pszFmt, va_list args) const
+/*   void log::trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const wchar_t * pszFmt, va_list args) const
    {
    }*/
 
-/*   void log::set_trace_category(unsigned int dwCategory, const char * pszName, unsigned int uiLevel)
+/*   void log::set_trace_category(unsigned int32_t dwCategory, const char * pszName, unsigned int32_t uiLevel)
    {
    }*/
 
@@ -332,7 +332,7 @@ namespace ca
    }
 
 
-/*   void log::trace_v(const char *pszFileName, int nLine, DWORD dwCategory, unsigned int nLevel, const char * pszFormat, va_list args) const
+/*   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, unsigned int32_t nLevel, const char * pszFormat, va_list args) const
    {
       if(!m_bTrace)
          return;
@@ -352,13 +352,13 @@ namespace ca
       va_end(args);
       stringa stra;
       stra.add_smallest_tokens(str, plog->m_straSeparator, FALSE);
-      /*for(int i = 0; i < stra.get_size(); i++)
+      /*for(int32_t i = 0; i < stra.get_size(); i++)
       {
          if(stra[i].get_length() > 200)
          {
             string & strLine = stra[i];
             const char * psz = strLine;
-            int j = 200;
+            int32_t j = 200;
             while(*psz != NULL && j >= 0 && !gen::ch::is_space_char(psz))
             {
                j--;
@@ -388,7 +388,7 @@ namespace ca
             plog->m_spfile->Flush();
             plog->m_spfile->close();
          }
-         int iRetry = 0;
+         int32_t iRetry = 0;
          retry:
          string strRelative;
          time.Format(strRelative, "%Y/%m/%d");
@@ -438,7 +438,7 @@ namespace ca
          plog->print("<log>Starting Log</log>");
       }
       plog->m_spfile->seek_to_end();
-      for(int i = 0; i < stra.get_size(); i++)
+      for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string strLine = strPre + strTick + stra[i] + "\r\n";
          try
@@ -453,7 +453,7 @@ namespace ca
       }
    }*/
 
-   void log::set_trace_category(DWORD dwCategory, const char * pszName, unsigned int uiLevel)
+   void log::set_trace_category(DWORD dwCategory, const char * pszName, unsigned int32_t uiLevel)
    {
       gen::trace::category & category = m_ptrace->operator[](dwCategory);
       category.m_strCategory = pszName;

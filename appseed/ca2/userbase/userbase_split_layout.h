@@ -49,56 +49,56 @@ namespace userbase
       array_app_alloc < split_bar, split_bar & >   m_splitbara;
       array_ptr_alloc < Pane, Pane &>              m_panea;
       e_orientation                                m_eorientationSplit;
-      int                                          m_iIndex;
-      int                                          m_iState;
+      int32_t                                          m_iIndex;
+      int32_t                                          m_iState;
       bool                                         m_bInitialized;
       ::critical_section                           m_mutex;
-      static const int                             m_iMarging;
-      int                                          m_cxBorder;
-      int                                          m_cyBorder;
+      static const int32_t                             m_iMarging;
+      int32_t                                          m_cxBorder;
+      int32_t                                          m_cyBorder;
 
 
       split_layout(::ca::application * papp);
       virtual ~split_layout();
 
 
-      virtual int get_normal_dimension();
-      virtual int get_ortogonal_dimension();
+      virtual int32_t get_normal_dimension();
+      virtual int32_t get_ortogonal_dimension();
 
-      void RelayEventSplitBar(int iSplitBar, UINT message, WPARAM wParam, LPARAM lParam);
+      void RelayEventSplitBar(int32_t iSplitBar, UINT message, WPARAM wParam, LPARAM lParam);
       e_orientation GetSplitOrientation();
-      int GetMaxPos(int iPane);
-      int GetMinPos(int iPane);
-      bool InsertPaneAt(int iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
-      bool SetPane(int iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
-      bool RemovePaneAt(int iIndex);
-      void SetPaneFixedSize(int iIndex, SIZE * pSize);
+      int32_t GetMaxPos(int32_t iPane);
+      int32_t GetMinPos(int32_t iPane);
+      bool InsertPaneAt(int32_t iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
+      bool SetPane(int32_t iIndex, ::user::interaction *pWnd, bool bFixedSize, id idPane = id());
+      bool RemovePaneAt(int32_t iIndex);
+      void SetPaneFixedSize(int32_t iIndex, SIZE * pSize);
       void SetVisible(bool bNewValue);
-      void CalcSplitBarRect(int iIndex, LPRECT lpRect);
-      void CalcPaneRect(int nMinPos, int nMaxPos, LPRECT lpRect);
-      void CalcPaneRect(int iIndex, LPRECT lpRect);
+      void CalcSplitBarRect(int32_t iIndex, LPRECT lpRect);
+      void CalcPaneRect(int32_t nMinPos, int32_t nMaxPos, LPRECT lpRect);
+      void CalcPaneRect(int32_t iIndex, LPRECT lpRect);
 
-      virtual ::user::interaction  * get_pane_window(int iPane);
-      virtual ::user::place_holder * get_pane_holder(int iPane);
-      virtual id get_pane_id(int iPane);
-      virtual int get_pane_by_id(::id id);
+      virtual ::user::interaction  * get_pane_window(int32_t iPane);
+      virtual ::user::place_holder * get_pane_holder(int32_t iPane);
+      virtual id get_pane_id(int32_t iPane);
+      virtual int32_t get_pane_by_id(::id id);
 
 
-      int get_pane_count();
+      int32_t get_pane_count();
 
-      int get_split_count();
-      int get_position(int iIndex);
-      void set_position(int iIndex, int nPos);
-      void set_position_rate(int iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
+      int32_t get_split_count();
+      int32_t get_position(int32_t iIndex);
+      void set_position(int32_t iIndex, int32_t nPos);
+      void set_position_rate(int32_t iIndex, double dRate, double dMinimumRate = 0.1, double dMaximumRate = 0.9);
       void layout();
-      int GetMaxPos();
-      int GetMinPos();
-      int GetPos(int xPos, int yPos);
-      void RelayChildEvent(int iIndex, const MESSAGE *  lpMsg);
+      int32_t GetMaxPos();
+      int32_t GetMinPos();
+      int32_t GetPos(int32_t xPos, int32_t yPos);
+      void RelayChildEvent(int32_t iIndex, const MESSAGE *  lpMsg);
 
       void SetSplitOrientation(e_orientation eorientation);
 
-      bool SetPaneCount(int iPaneCount);
+      bool SetPaneCount(int32_t iPaneCount);
 
    };
 

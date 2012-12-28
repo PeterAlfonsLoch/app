@@ -15,7 +15,7 @@ bool cregexp_util::match(::user::str_context * pcontext, string_array & stra, co
 {
    stringa straCandidate;
    pcontext->get(straCandidate, pszRoot);
-   for(int i = 0; i < straCandidate.get_count(); i++)
+   for(int32_t i = 0; i < straCandidate.get_count(); i++)
    {
       string strCandidate = straCandidate[i];
       strCandidate.replace("-", "\\-");
@@ -210,7 +210,7 @@ bool cregexp_util::match(const char * lpsz, cregexp * re)
 void cregexp_util::Format(string & str, string_array & wstraArg)
 {
    string wstrExp;
-   for(int i = 0; i < wstraArg.get_size(); i++)
+   for(int32_t i = 0; i < wstraArg.get_size(); i++)
    {
       wstrExp.Format("/(%%%d)(\\d?!|$)/", i);
       cregexp * pre = CompileExpression(wstrExp, false);

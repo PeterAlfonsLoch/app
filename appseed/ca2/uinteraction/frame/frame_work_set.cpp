@@ -122,8 +122,8 @@ namespace frame
          if(IsAppearanceEnabled())
          {
             UINT fwSizeType = lpmsg->wParam;      // resizing flag
-            int nWidth = LOWORD(lpmsg->lParam);  // width of client area
-            int nHeight = HIWORD(lpmsg->lParam);
+            int32_t nWidth = LOWORD(lpmsg->lParam);  // width of client area
+            int32_t nHeight = HIWORD(lpmsg->lParam);
             OnSizeRegion(fwSizeType, nWidth, nHeight);
          }
        }*/
@@ -354,7 +354,7 @@ namespace frame
       return true;
    }
 
-   /*void WorkSet::OnSizeRegion( UINT nType, int cx, int cy )
+   /*void WorkSet::OnSizeRegion( UINT nType, int32_t cx, int32_t cy )
    {
        if(m_pappearance != NULL)
        {
@@ -570,7 +570,7 @@ namespace frame
             rect rectWindow;
             rect rect;
             rgn.create_rect(0, 0, 0, 0);
-            int i;
+            int32_t i;
             for(::user::interaction * pwnd = GetWndRegion()->GetWindow(GW_CHILD) ;
                pwnd ; pwnd = pwnd->GetNextWindow())
             {
@@ -1084,7 +1084,7 @@ namespace frame
       return m_bNotifyIconEnable;
    }
 
-   void WorkSet::OnSize(UINT nType, int cx, int cy)
+   void WorkSet::OnSize(UINT nType, int32_t cx, int32_t cy)
    {
       UNREFERENCED_PARAMETER(nType);
       UNREFERENCED_PARAMETER(cx);

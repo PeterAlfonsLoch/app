@@ -14,7 +14,7 @@ namespace ca2
    }
 
 
-   int service::start(const char * pszServiceName)
+   int32_t service::start(const char * pszServiceName)
    {
 
 #ifdef WINDOWSEX
@@ -50,7 +50,7 @@ namespace ca2
 
    }
 
-   int service::stop(const char * psz)
+   int32_t service::stop(const char * psz)
    {
 
 #ifdef WINDOWSEX
@@ -86,7 +86,7 @@ namespace ca2
    }
 
 
-   int service::remove(const char * psz)
+   int32_t service::remove(const char * psz)
    {
 
 #ifdef WINDOWSEX
@@ -121,7 +121,7 @@ namespace ca2
    }
 
 
-   int service::create(const char * psz, const char * pszDisplayName, const char * pszVotagus)
+   int32_t service::create(const char * psz, const char * pszDisplayName, const char * pszVotagus)
    {
 
 #ifdef WINDOWSEX

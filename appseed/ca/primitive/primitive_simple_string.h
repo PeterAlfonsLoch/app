@@ -86,16 +86,16 @@ public:
    string_manager();
 
 
-   inline string_data * allocate(strsize nChars, int nCharSize);
+   inline string_data * allocate(strsize nChars, int32_t nCharSize);
    inline void Free(string_data * pData);
-   inline string_data * Reallocate(string_data * pData, strsize nChars, int nCharSize);
+   inline string_data * Reallocate(string_data * pData, strsize nChars, int32_t nCharSize);
    inline string_data * GetNilString() ;
    inline string_manager * Clone() { return this; }
 
 };
 
 
-inline string_data * string_manager::allocate(strsize nChars, int nCharSize )
+inline string_data * string_manager::allocate(strsize nChars, int32_t nCharSize )
 {
    size_t nTotalSize;
    string_data * pData;
@@ -143,7 +143,7 @@ inline void string_manager::Free(string_data * pData)
    //ca2_free(pData, 0);
 }
 
-inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars, int nCharSize)
+inline string_data * string_manager::Reallocate(string_data * pOldData, strsize nChars, int32_t nCharSize)
 {
    string_data * pNewData = NULL;
    size_t nNewTotalSize;
@@ -282,11 +282,11 @@ extern "C"
       {
    public:
       // allocate a new string_data
-      virtual string_data * allocate(strsize nAllocLength, int nCharSize) = 0;
+      virtual string_data * allocate(strsize nAllocLength, int32_t nCharSize) = 0;
       // Free an existing string_data
       virtual void Free(string_data * pData) = 0;
       // Change the size of an existing string_data
-      virtual string_data * Reallocate(string_data * pData, strsize nAllocLength, int nCharSize ) = 0;
+      virtual string_data * Reallocate(string_data * pData, strsize nAllocLength, int32_t nCharSize ) = 0;
       // get the string_data for a Nil string
       virtual string_data * GetNilString() = 0;
       virtual string_manager* Clone() = 0;

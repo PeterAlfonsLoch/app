@@ -39,7 +39,7 @@
        */
 #     define errno z_errno
 #   endif
-    extern int errno;
+    extern int32_t errno;
 #else
 #  ifndef _WIN32_WCE
 #    include <errno.h>
@@ -162,7 +162,7 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #  if defined(_WIN32_WCE)
 #    define fdopen(fd,mode) NULL /* No fdopen() */
 #    ifndef _PTRDIFF_T_DEFINED
-       typedef int ptrdiff_t;
+       typedef int32_t ptrdiff_t;
 #      define _PTRDIFF_T_DEFINED
 #    endif
 #  else
@@ -245,13 +245,13 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #  endif
 #else
    extern void zmemcpy  OF((Bytef* dest, const Bytef* source, uInt len));
-   extern int  zmemcmp  OF((const Bytef* s1, const Bytef* s2, uInt len));
+   extern int32_t  zmemcmp  OF((const Bytef* s1, const Bytef* s2, uInt len));
    extern void zmemzero OF((Bytef* dest, uInt len));
 #endif
 
 /* Diagnostic functions */
 #ifdef DEBUG
-   extern int z_verbose;
+   extern int32_t z_verbose;
    extern void z_error    OF((const char *m));
 #  define Assert(cond,msg) {if(!(cond)) z_error(msg);}
 #  define Trace(x) {if (z_verbose>=0) fprintf x ;}

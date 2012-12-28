@@ -22,7 +22,7 @@ namespace cube
       virtual void construct();
       
       virtual bool initialize_instance();
-      virtual int  exit_instance();
+      virtual int32_t  exit_instance();
 
       virtual void _001OnFileNew();
       virtual bool bergedge_start();
@@ -35,7 +35,7 @@ namespace cube
       virtual bool on_install();
       virtual bool on_uninstall();
 
-      virtual int run();
+      virtual int32_t run();
 
       virtual void on_request(::ca::create_context * pcreatecontext);
 

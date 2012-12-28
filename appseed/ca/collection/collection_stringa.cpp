@@ -62,7 +62,7 @@ void stringa::add_tokens(const char * lpcsz, const char * lpcszSeparator, bool b
    }
 }
 
-int g_add_smallest_tokens = 0;
+int32_t g_add_smallest_tokens = 0;
 
 void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, bool bAddEmpty, bool bWithSeparator)
 {
@@ -98,7 +98,7 @@ void stringa::get_format_string(string & str, const char * lpcszSeparator) const
    {
       str = get_at(0);
    }
-   for(int i = 1; i < m_nSize; i++)
+   for(int32_t i = 1; i < m_nSize; i++)
    {
       str += lpcszSeparator + get_at(i);
    }
@@ -113,12 +113,12 @@ void stringa::get_format_string(string & str, const char * lpcszSeparator) const
 {
 stringa strArray;
 dword_array dwa;
-for(int i = 0; i < m_nSize; i++)
+for(int32_t i = 0; i < m_nSize; i++)
 {
 strArray.add_tokens(get_at(i), "/", FALSE);
 if(strArray.get_size() > 1)
 {
-for(int j = 0; j < strArray.get_size(); j++)
+for(int32_t j = 0; j < strArray.get_size(); j++)
 {
 add_unique(strArray.get_at(j));
 }
@@ -148,7 +148,7 @@ index stringa::add_unique(const char * lpcsz)
 count stringa::add_unique(const string_array & stra)
 {
    count count = 0;
-   for(int i = 0; i < stra.get_size(); i++)
+   for(int32_t i = 0; i < stra.get_size(); i++)
    {
       if(add_unique(stra[i]) >= 0)
          count++;
@@ -167,7 +167,7 @@ index stringa::add_unique_ci(const char * lpcsz)
 count stringa::add_unique_ci(const string_array & stra)
 {
    count count = 0;
-   for(int i = 0; i < stra.get_size(); i++)
+   for(int32_t i = 0; i < stra.get_size(); i++)
    {
       if(add_unique_ci(stra[i]) >= 0)
          count++;
@@ -316,7 +316,7 @@ count stringa::remove(const char * lpcsz, index find, index last, count countMin
 count stringa::remove_ci(const string_array & stra)
 {
    count count = 0;
-   for(int i = 0; i < stra.get_size(); i++)
+   for(int32_t i = 0; i < stra.get_size(); i++)
    {
       count += remove_ci(stra[i]);
    }
@@ -326,7 +326,7 @@ count stringa::remove_ci(const string_array & stra)
 count stringa::remove(const string_array & stra)
 {
    count count = 0;
-   for(int i = 0; i < stra.get_size(); i++)
+   for(int32_t i = 0; i < stra.get_size(); i++)
    {
       count += remove(stra[i]);
    }
@@ -335,7 +335,7 @@ count stringa::remove(const string_array & stra)
 
 void stringa::trim_left(const char * pszChars)
 {
-   for(int i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < m_nSize; i++)
    {
       operator[](i).trim_left(pszChars);
    }
@@ -343,7 +343,7 @@ void stringa::trim_left(const char * pszChars)
 
 void stringa::trim_right(const char * pszChars)
 {
-   for(int i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < m_nSize; i++)
    {
       operator[](i).trim_right(pszChars);
    }
@@ -351,7 +351,7 @@ void stringa::trim_right(const char * pszChars)
 
 void stringa::trim(const char * pszChars)
 {
-   for(int i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < m_nSize; i++)
    {
       operator[](i).trim(pszChars);
    }
@@ -360,7 +360,7 @@ void stringa::trim(const char * pszChars)
 
 void stringa::trim_left()
 {
-   for(int i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < m_nSize; i++)
    {
       operator[](i).trim_left();
    }
@@ -368,7 +368,7 @@ void stringa::trim_left()
 
 void stringa::trim_right()
 {
-   for(int i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < m_nSize; i++)
    {
       operator[](i).trim_right();
    }
@@ -376,7 +376,7 @@ void stringa::trim_right()
 
 void stringa::trim()
 {
-   for(int i = 0; i < m_nSize; i++)
+   for(int32_t i = 0; i < m_nSize; i++)
    {
       operator[](i).trim();
    }
@@ -495,7 +495,7 @@ stringa & stringa::operator =(const int64_array & ia)
 }
 
 
-/*int stringa::CountPrefixNoCase(const char * lpcszPrefix)
+/*int32_t stringa::CountPrefixNoCase(const char * lpcszPrefix)
 {
 string str;
 if(lpcszPrefix != NULL)
@@ -506,9 +506,9 @@ return this->get_size();
 }
 else
 {
-int iCount = 0;
-int iLen = str.get_length();
-for(int i = 0; i < this->get_size(); i++)
+int32_t iCount = 0;
+int32_t iLen = str.get_length();
+for(int32_t i = 0; i < this->get_size(); i++)
 {
 string & strLeft = this->element_at(i).Left(iLen);
 if(strLeft.get_length() == iLen)
@@ -526,8 +526,8 @@ return iCount;
 /*void stringa::ExtractPrefixNoSortNoCase(
 stringa &stra,
 const char * lpcsz,
-int iLength,
-int iMinLength)
+int32_t iLength,
+int32_t iMinLength)
 {
 ASSERT(iLength >= iMinLength);
 remove_all();
@@ -536,7 +536,7 @@ if(lpcsz != NULL)
 str = lpcsz;
 if(str.is_empty())
 {
-for(int i = 0; i < stra.get_size(); i++)
+for(int32_t i = 0; i < stra.get_size(); i++)
 {
 string & strMid = stra[i].Left(iLength);
 if(strMid.get_length() >= iMinLength)
@@ -550,8 +550,8 @@ add(strMid);
 }
 else
 {
-int iLen = max(str.get_length(), iMinLength);
-for(int i = 0; i < stra.get_size(); i++)
+int32_t iLen = max(str.get_length(), iMinLength);
+for(int32_t i = 0; i < stra.get_size(); i++)
 {
 string & strMid = stra[i].Left(iLength);
 if(strMid.get_length() >= iLen)
@@ -569,9 +569,9 @@ add(strMid);
 
 }
 
-int stringa::FindFirstNoSortNoCase(const char * lpcsz)
+int32_t stringa::FindFirstNoSortNoCase(const char * lpcsz)
 {
-for(int i = 0; i < this->get_size(); i++)
+for(int32_t i = 0; i < this->get_size(); i++)
 {
 if(CompareNoCase(lpcsz, this->element_at(i)) == 0)
 {
@@ -586,7 +586,7 @@ return -1;
 void stringa::write(ex1::byte_output_stream & ostream)
 {
    ostream.write_arbitrary(m_nSize);
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       ostream << this->element_at(i);
    }
@@ -598,7 +598,7 @@ void stringa::read(ex1::byte_input_stream & istream)
    istream.read_arbitrary(iSize);
 
    set_size(iSize);
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       istream >> this->element_at(i);
    }
@@ -608,7 +608,7 @@ void stringa::read(ex1::byte_input_stream & istream)
 
 ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string)
 {
-   int nConvert = 0;   // if we get UNICODE, convert
+   int32_t nConvert = 0;   // if we get UNICODE, convert
 
    UINT nNewLen = __read_string_length(ar);
    if (nNewLen == (UINT)-1)
@@ -625,7 +625,7 @@ ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string
    if (nNewLen == 0)
       lpBuf = string.GetBufferSetLength(0);
    else
-      lpBuf = string.GetBufferSetLength((int)nByteLen+nConvert);
+      lpBuf = string.GetBufferSetLength((int32_t)nByteLen+nConvert);
 
    // read in the characters
    if (nNewLen != 0)
@@ -795,7 +795,7 @@ stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
    string istring(psz);
 
    // 1 = st // 2 = str
-   int status = 1;
+   int32_t status = 1;
    char to;
 
    add("");
@@ -841,7 +841,7 @@ stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
 
 void stringa::replace(const char * lpszSearch, const char * lpszReplace)
 {
-   for(int i = 0; i < this->get_size(); i++)
+   for(int32_t i = 0; i < this->get_size(); i++)
    {
       this->element_at(i).replace(lpszSearch, lpszReplace);
    }
@@ -1159,7 +1159,7 @@ comparable_array < id > stringa::get_comparable_ida() const
 
    comparable_array < id > ida;
 
-   for(int i = 0; i < get_count(); i++)
+   for(int32_t i = 0; i < get_count(); i++)
    {
       ida.add(element_at(i));
    }

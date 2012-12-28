@@ -17,7 +17,7 @@ namespace user
    {
    }
 
-   int print_job::run()
+   int32_t print_job::run()
    {
 
       if(!m_phprinter->is_opened())
@@ -42,8 +42,8 @@ namespace user
       docinfo.cbSize = sizeof(docinfo);
       pgraphics->StartDocA(&docinfo);
 
-      int iPageCount = m_pview->get_total_page_count(this);
-      int iPageEnd = -1;
+      int32_t iPageCount = m_pview->get_total_page_count(this);
+      int32_t iPageEnd = -1;
       if(m_iPageStart < 0)
          m_iPageStart = 0;
       if(m_iPageCount >= 0)

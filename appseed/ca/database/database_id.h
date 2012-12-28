@@ -9,8 +9,8 @@ namespace database
       id(const id & id);
       id(::id id);
       id(const char * psz);
-      id(int i);
-      id(int i1, int i2, int i3);
+      id(int32_t i);
+      id(int32_t i1, int32_t i2, int32_t i3);
       id(const string & str);
       id();
       ~id();
@@ -24,11 +24,11 @@ namespace database
 
       bool operator == (const id & id) const;
       bool operator == (const char * psz) const;
-      bool operator == (int i) const;
+      bool operator == (int32_t i) const;
 
       const id & operator = (::id id);
       const id & operator = (const char * psz);
-      const id & operator = (int i);
+      const id & operator = (int32_t i);
       const id & operator = (const string & str);
    };
 
@@ -52,12 +52,12 @@ namespace database
       m_id = psz;
    }
 
-   inline id::id(int i)
+   inline id::id(int32_t i)
    {
       m_id = i;
    }
 
-   inline id::id(int i1, int i2, int i3)
+   inline id::id(int32_t i1, int32_t i2, int32_t i3)
    {
       m_id = gen::str::from(i1) + "." + gen::str::from(i2) + "." + gen::str::from(i3);
    }
@@ -80,7 +80,7 @@ namespace database
       return m_id == psz;
    }
 
-   inline bool id::operator == (int i) const
+   inline bool id::operator == (int32_t i) const
    {
       return m_id.m_i == i;
    }
@@ -97,7 +97,7 @@ namespace database
       return *this;
    }
 
-   inline const id & id::operator = (int i)
+   inline const id & id::operator = (int32_t i)
    {
       m_id = i;
       return *this;

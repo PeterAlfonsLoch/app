@@ -18,7 +18,7 @@ namespace userbase
 
       //bool LoadToolBar(const char * lpszResourceName);
       //bool LoadToolBar(UINT nIDResource);
-      bool SetButtons(const UINT* lpIDArray, int nIDCount);
+      bool SetButtons(const UINT* lpIDArray, int32_t nIDCount);
 
 
 
@@ -26,53 +26,53 @@ namespace userbase
       bool create(DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID);
 
 
-      bool IsButtonEnabled(int nID);
-      bool IsButtonChecked(int nID);
-      bool IsButtonPressed(int nID);
-      bool IsButtonHidden(int nID);
-      bool IsButtonIndeterminate(int nID);
-      bool SetState(int nID, UINT nState);
-      int GetState(int nID);
+      bool IsButtonEnabled(int32_t nID);
+      bool IsButtonChecked(int32_t nID);
+      bool IsButtonPressed(int32_t nID);
+      bool IsButtonHidden(int32_t nID);
+      bool IsButtonIndeterminate(int32_t nID);
+      bool SetState(int32_t nID, UINT nState);
+      int32_t GetState(int32_t nID);
 #ifdef WINDOWSEX
-      bool GetButton(int nIndex, LPTBBUTTON lpButton);
+      bool GetButton(int32_t nIndex, LPTBBUTTON lpButton);
 #endif
-      int GetButtonCount();
-      bool GetItemRect(int nIndex, LPRECT lpRect);
-      bool GetRect(int nID, LPRECT lpRect);
-      void SetButtonStructSize(int nSize);
+      int32_t GetButtonCount();
+      bool GetItemRect(int32_t nIndex, LPRECT lpRect);
+      bool GetRect(int32_t nID, LPRECT lpRect);
+      void SetButtonStructSize(int32_t nSize);
       DWORD GetButtonSize();
       bool SetButtonSize(size size);
       bool SetBitmapSize(size size);
       void set_owner(::user::interaction* pWnd);
-      void SetRows(int nRows, bool bLarger, LPRECT lpRect);
-      int GetRows();
-      bool SetCmdID(int nIndex, UINT nID);
+      void SetRows(int32_t nRows, bool bLarger, LPRECT lpRect);
+      int32_t GetRows();
+      bool SetCmdID(int32_t nIndex, UINT nID);
       UINT GetBitmapFlags();
       image_list* GetDisabledImageList();
       image_list* GetHotImageList();
       image_list* GetImageList();
       DWORD GetStyle();
-      int GetMaxTextRows();
-      bool IsButtonHighlighted(int nID);
-      bool SetButtonWidth(int cxMin, int cxMax);
+      int32_t GetMaxTextRows();
+      bool IsButtonHighlighted(int32_t nID);
+      bool SetButtonWidth(int32_t cxMin, int32_t cxMax);
       image_list* SetDisabledImageList(image_list* pImageList);
       image_list* SetHotImageList(image_list* pImageList);
       image_list* SetImageList(image_list* pImageList);
       HRESULT GetDropTarget(IDropTarget** ppDropTarget);
-      bool SetIndent(int iIndent);
-      bool SetMaxTextRows(int iMaxRows);
+      bool SetIndent(int32_t iIndent);
+      bool SetMaxTextRows(int32_t iMaxRows);
       void SetStyle(DWORD dwStyle);
 #ifdef WINDOWSEX
-      bool GetButtonInfo(int nID, TBBUTTONINFO* ptbbi);
-      bool SetButtonInfo(int nID, TBBUTTONINFO* ptbbi);
-      bool GetButtonInfo(int nID, TBBUTTONINFOW* ptbbi);
-      bool SetButtonInfo(int nID, TBBUTTONINFOW* ptbbi);
+      bool GetButtonInfo(int32_t nID, TBBUTTONINFO* ptbbi);
+      bool SetButtonInfo(int32_t nID, TBBUTTONINFO* ptbbi);
+      bool GetButtonInfo(int32_t nID, TBBUTTONINFOW* ptbbi);
+      bool SetButtonInfo(int32_t nID, TBBUTTONINFOW* ptbbi);
 #endif
       DWORD SetDrawTextFlags(DWORD dwMask, DWORD dwDTFlags);
       bool GetAnchorHighlight();
       bool SetAnchorHighlight(bool fAnchor = TRUE);
-      int GetHotItem();
-      int SetHotItem(int nHot);
+      int32_t GetHotItem();
+      int32_t SetHotItem(int32_t nHot);
 #ifdef WINDOWSEX
       void GetInsertMark(TBINSERTMARK* ptbim);
       void SetInsertMark(TBINSERTMARK* ptbim);
@@ -88,36 +88,36 @@ namespace userbase
 
    // Operations
    public:
-      bool EnableButton(int nID, bool bEnable = TRUE);
-      bool CheckButton(int nID, bool bCheck = TRUE);
-      bool PressButton(int nID, bool bPress = TRUE);
-      bool HideButton(int nID, bool bHide = TRUE);
-      bool Indeterminate(int nID, bool bIndeterminate = TRUE);
-      int AddBitmap(int nNumButtons, ::ca::bitmap* pBitmap);
+      bool EnableButton(int32_t nID, bool bEnable = TRUE);
+      bool CheckButton(int32_t nID, bool bCheck = TRUE);
+      bool PressButton(int32_t nID, bool bPress = TRUE);
+      bool HideButton(int32_t nID, bool bHide = TRUE);
+      bool Indeterminate(int32_t nID, bool bIndeterminate = TRUE);
+      int32_t AddBitmap(int32_t nNumButtons, ::ca::bitmap* pBitmap);
 #ifdef WINDOWSEX
-      bool AddButtons(int nNumButtons, LPTBBUTTON lpButtons);
-      bool InsertButton(int nIndex, LPTBBUTTON lpButton);
+      bool AddButtons(int32_t nNumButtons, LPTBBUTTON lpButtons);
+      bool InsertButton(int32_t nIndex, LPTBBUTTON lpButton);
 #endif
-      bool DeleteButton(int nIndex);
+      bool DeleteButton(int32_t nIndex);
       UINT CommandToIndex(UINT nID);
 #ifdef WINDOWSEX
       void SaveState(HKEY hKeyRoot, const char * lpszSubKey, const char * lpszValueName);
       void RestoreState(HKEY hKeyRoot, const char * lpszSubKey, const char * lpszValueName);
 #endif
-      void LoadImages(int iBitmapID, HINSTANCE hinst);
+      void LoadImages(int32_t iBitmapID, HINSTANCE hinst);
       bool MapAccelerator(char chAccel, UINT* pIDBtn);
-      bool MarkButton(int nID, bool fHighlight = TRUE);
+      bool MarkButton(int32_t nID, bool fHighlight = TRUE);
       bool MoveButton(UINT nOldPos, UINT nNewPos);
-      int hit_test(LPPOINT ppt);
+      int32_t hit_test(LPPOINT ppt);
 
       void Customize();
-      int AddStrings(const char * lpszStrings);
+      int32_t AddStrings(const char * lpszStrings);
       void AutoSize();
 
-      int GetButtonText(UINT uiID, string &str);
+      int32_t GetButtonText(UINT uiID, string &str);
       virtual ~tool_bar_control();
 
-      int OnCreate(LPCREATESTRUCT lpCreateStruct);
+      int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
 
    };
 

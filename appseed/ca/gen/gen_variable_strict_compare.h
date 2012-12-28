@@ -13,26 +13,26 @@ public:
    bool operator == (const char * psz) const;
    bool operator == (const string & str) const;
    bool operator == (double d) const;
-   bool operator == (int i) const;
+   bool operator == (int32_t i) const;
    bool operator == (bool b) const;
 
    bool operator != (const var & var) const;
    bool operator != (const char * psz) const;
    bool operator != (const string & str) const;
    bool operator != (double d) const;
-   bool operator != (int i) const;
+   bool operator != (int32_t i) const;
    bool operator != (bool b) const;
 
    friend bool CLASS_DECL_ca operator == (const char * psz, const variable_strict_compare & var);
    friend bool CLASS_DECL_ca operator == (const string & str, const variable_strict_compare & var);
    friend bool CLASS_DECL_ca operator == (double d, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator == (int i, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca operator == (int32_t i, const variable_strict_compare & var);
    friend bool CLASS_DECL_ca operator == (bool b, const variable_strict_compare & var);
 
    friend bool CLASS_DECL_ca operator != (const char * psz, const variable_strict_compare & var);
    friend bool CLASS_DECL_ca operator != (const string & str, const variable_strict_compare & var);
    friend bool CLASS_DECL_ca operator != (double d, const variable_strict_compare & var);
-   friend bool CLASS_DECL_ca operator != (int i, const variable_strict_compare & var);
+   friend bool CLASS_DECL_ca operator != (int32_t i, const variable_strict_compare & var);
    friend bool CLASS_DECL_ca operator != (bool b, const variable_strict_compare & var);
 
 };

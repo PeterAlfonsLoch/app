@@ -56,7 +56,7 @@ namespace user
       return false;
    }
 
-   string keyboard::process_key(int iCode, int iKey, int iFlags)
+   string keyboard::process_key(int32_t iCode, int32_t iKey, int32_t iFlags)
    {
       if(m_playout == NULL)
       {
@@ -92,7 +92,7 @@ namespace user
       keyboard_layout_ida layoutida;
       stringa straPath;
       Application.dir().matter_ls("keyboard layout", straPath);
-      for(int i = 0; i < straPath.get_count(); i++)
+      for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
          if(initialize(&layoutid, straPath[i]))
@@ -110,7 +110,7 @@ namespace user
 
       HKL hkl = ::GetKeyboardLayout(0);
 
-      for(int i = 0; i < layoutida.get_count(); i++)
+      for(int32_t i = 0; i < layoutida.get_count(); i++)
       {
          if(layoutida[i].m_hkla.contains(hkl))
          {
@@ -118,7 +118,7 @@ namespace user
          }
       }
       hkl = (HKL) (((DWORD) hkl) & 0xffff);
-      for(int i = 0; i < layoutida.get_count(); i++)
+      for(int32_t i = 0; i < layoutida.get_count(); i++)
       {
          if(layoutida[i].m_hkla.contains(hkl))
          {
@@ -169,7 +169,7 @@ namespace user
 
 #ifdef WINDOWS
 
-      for(int i = 0; i < straHkl.get_count(); i++)
+      for(int32_t i = 0; i < straHkl.get_count(); i++)
       {
          string strHkl = straHkl[i];
          HKL hkl;

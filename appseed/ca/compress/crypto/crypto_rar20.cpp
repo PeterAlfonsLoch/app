@@ -12,7 +12,7 @@ namespace crypto
 {
    namespace rar20 {
 
-      static const int kNumRounds = 32;
+      static const int32_t kNumRounds = 32;
 
       static const byte InitSubstTable[256] = {
          215, 19,149, 35, 73,197,192,205,249, 28, 16,119, 48,221,  2, 42,
@@ -35,8 +35,8 @@ namespace crypto
 
       void data::UpdateKeys(const byte *data)
       {
-         for (int i = 0; i < 16; i += 4)
-            for (int j = 0; j < 4; j++)
+         for (int32_t i = 0; i < 16; i += 4)
+            for (int32_t j = 0; j < 4; j++)
                Keys[j] ^= g_CrcTable[data[i + j]];
       }
 
@@ -84,7 +84,7 @@ namespace crypto
          if (!encrypt)
             memcpy(inBuf, buf, sizeof(inBuf));
 
-         for (int i = 0; i < kNumRounds; i++)
+         for (int32_t i = 0; i < kNumRounds; i++)
          {
             uint32 key = Keys[(encrypt ? i : (kNumRounds - 1 - i)) & 3];
             T = ((C + rotlFixed(D, 11)) ^ key);

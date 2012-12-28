@@ -13,7 +13,7 @@ public:
    simple_pen();
    ~simple_pen();
 
-   bool create_solid(simple_graphics & g, COLORREF cr, int iWidth = 1);
+   bool create_solid(simple_graphics & g, COLORREF cr, int32_t iWidth = 1);
 
    bool destroy();
 

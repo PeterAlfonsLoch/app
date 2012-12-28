@@ -28,7 +28,7 @@ unsigned ___WriteProc   (void *buffer, unsigned size, unsigned count, fi_handle 
       return --count;
    }
 }
-int      ___SeekProc    (fi_handle handle, long offset, int origin)
+int32_t      ___SeekProc    (fi_handle handle, long offset, int32_t origin)
 {
    if(origin == SEEK_SET)
       origin = FILE_BEGIN;
@@ -71,7 +71,7 @@ unsigned __WriteProc (void *buffer, unsigned size, unsigned count, fi_handle han
       return --count;
    }
 }
-int __SeekProc (fi_handle handle, long offset, int origin)
+int32_t __SeekProc (fi_handle handle, long offset, int32_t origin)
 {
    if(origin == SEEK_SET)
       origin = FILE_BEGIN;
@@ -116,7 +116,7 @@ unsigned _stdcall __WriteProc2 (void *buffer, unsigned size, unsigned count, fi_
    }
    return count;
 }
-int _stdcall __SeekProc2 (fi_handle handle, long offset, int origin)
+int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
 {
    ex1::file * pfile = (ex1::file *) handle;
    if(origin == SEEK_SET)
@@ -138,7 +138,7 @@ long _stdcall __TellProc2 (fi_handle handle)
 
    //static unsigned _stdcall  __ReadProc3 (void *buffer, unsigned size, unsigned count, fi_handle handle);
    //static unsigned _stdcall __WriteProc3 (void *buffer, unsigned size, unsigned count, fi_handle handle);
-   //static int _stdcall __SeekProc3 (fi_handle handle, long offset, int origin);
+   //static int32_t _stdcall __SeekProc3 (fi_handle handle, long offset, int32_t origin);
    //static long _stdcall __TellProc3 (fi_handle handle);
 
 unsigned _stdcall  ___Ex1File__ReadProc (void *buffer, unsigned size, unsigned count, fi_handle handle)
@@ -170,7 +170,7 @@ unsigned _stdcall ___Ex1File__WriteProc(void *buffer, unsigned size, unsigned co
    return count;
 }
 
-int _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int origin)
+int32_t _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int32_t origin)
 {
    ex1::file * pfile = (ex1::file *) handle;
    if(origin == SEEK_SET)

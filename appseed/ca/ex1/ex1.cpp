@@ -9,7 +9,7 @@ namespace ex1
 {
 
 
-   void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int nString)
+   void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString)
    {
       ENSURE_ARG(lpszFormat != NULL);
       ENSURE_ARG(rglpsz != NULL);
@@ -24,7 +24,7 @@ namespace ex1
             (pchSrc[1] >= 'A' && pchSrc[1] <= 'Z')) )
          {
             // %A comes after %9 -- we'll need it someday
-            int i;
+            int32_t i;
             if (pchSrc[1] > '9')
                i = 9 + (pchSrc[1] - 'A');
             else
@@ -50,7 +50,7 @@ namespace ex1
             (pchSrc[1] >= 'A' && pchSrc[1] <= 'Z')) )
          {
             // %A comes after %9 -- we'll need it someday
-            int i;
+            int32_t i;
             if (pchSrc[1] > '9')
                i = 9 + (pchSrc[1] - 'A');
             else
@@ -78,11 +78,11 @@ namespace ex1
          }
 
       }
-      rString.ReleaseBuffer((int)((const char *)pchDest - (const char *)rString));
+      rString.ReleaseBuffer((int32_t)((const char *)pchDest - (const char *)rString));
       // ReleaseBuffer will assert if we went too far
    }
 
-   bool extract_sub_string(string & rString, const char * lpszFullString, int iSubString, char chSep)
+   bool extract_sub_string(string & rString, const char * lpszFullString, int32_t iSubString, char chSep)
    {
       if (lpszFullString == NULL)
          return FALSE;
@@ -100,7 +100,7 @@ namespace ex1
 
       const char * lpchEnd = strchr(lpszFullString, chSep);
 
-      int nLen = (lpchEnd == NULL) ? strlen(lpszFullString) : (int)(lpchEnd - lpszFullString);
+      int32_t nLen = (lpchEnd == NULL) ? strlen(lpszFullString) : (int32_t)(lpchEnd - lpszFullString);
 
       ASSERT(nLen >= 0);
 

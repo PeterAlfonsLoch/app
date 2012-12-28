@@ -131,7 +131,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl itoa_s(int _Val, char *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl itoa_s(int32_t _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_itoa_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -140,7 +140,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ltoa_s(long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl ltoa_s(long _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ltoa_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -149,7 +149,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ultoa_s(unsigned long _Val, char *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl ultoa_s(unsigned long _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultoa_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -158,7 +158,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ultow_s(unsigned long _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl ultow_s(unsigned long _Val, wchar_t *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultow_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -167,7 +167,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl i64toa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl i64toa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64toa_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -176,7 +176,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl i64tow_s(int64_t _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl i64tow_s(int64_t _Val, wchar_t *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_i64tow_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -185,7 +185,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ui64toa_s(uint64_t _Val, char *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl ui64toa_s(uint64_t _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ui64toa_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -194,7 +194,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ui64tow_s(uint64_t _Val, wchar_t *_Buf, size_t _SizeInChars, int _Radix)
+   inline void __cdecl ui64tow_s(uint64_t _Val, wchar_t *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ui64tow_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -203,7 +203,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl gcvt_s(char *_Buffer, size_t _SizeInChars, double _Value, int _Ndec)
+   inline void __cdecl gcvt_s(char *_Buffer, size_t _SizeInChars, double _Value, int32_t _Ndec)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_gcvt_s(_Buffer, _SizeInChars, _Value, _Ndec));
@@ -247,8 +247,8 @@ namespace gen
 #endif
    }
 
-   CLASS_DECL_ca int get_errno();
-   CLASS_DECL_ca void set_errno(int _Value);
+   CLASS_DECL_ca int32_t get_errno();
+   CLASS_DECL_ca void set_errno(int32_t _Value);
 
 
 

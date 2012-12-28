@@ -121,7 +121,7 @@ index_advance(xtd_seq_num_t *pi, sequence_number_t s) {
  * unsigned integer!  
  */
 
-int
+int32_t
 index_guess(const xtd_seq_num_t *local,
          xtd_seq_num_t *guess,
          sequence_number_t s) {
@@ -141,7 +141,7 @@ index_guess(const xtd_seq_num_t *local,
   uint32_t guess_roc = (uint32_t)(*guess >> 16);
   uint16_t guess_seq = (uint16_t) *guess;  
 #endif
-  int difference;
+  int32_t difference;
   
   if (local_seq < seq_num_median) {
     if (s - local_seq > seq_num_median) {
@@ -198,7 +198,7 @@ rdbx_init(rdbx_t *rdbx) {
  */
 
 err_status_t
-rdbx_check(const rdbx_t *rdbx, int delta) {
+rdbx_check(const rdbx_t *rdbx, int32_t delta) {
   
   if (delta > 0) {       /* if delta is positive, it's good */
     return err_status_ok;
@@ -225,7 +225,7 @@ rdbx_check(const rdbx_t *rdbx, int delta) {
  */
 
 err_status_t
-rdbx_add_index(rdbx_t *rdbx, int delta) {
+rdbx_add_index(rdbx_t *rdbx, int32_t delta) {
   
   if (delta > 0) {
     /* shift forward by delta */
@@ -253,7 +253,7 @@ rdbx_add_index(rdbx_t *rdbx, int delta) {
  * *guess and the locally stored synch info
  */
 
-int
+int32_t
 rdbx_estimate_index(const rdbx_t *rdbx,
           xtd_seq_num_t *guess,
           sequence_number_t s) {

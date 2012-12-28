@@ -74,7 +74,7 @@ void Ppmd7z_RangeEnc_FlushData(CPpmd7z_RangeEnc *p)
 
 #define MASK(sym) ((signed char *)charMask)[sym]
 
-void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int symbol)
+void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
 {
   size_t charMask[256 / sizeof(size_t)];
   if (p->MinContext->NumStats != 1)
@@ -156,14 +156,14 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int symbol)
     i = p->MinContext->NumStats;
     do
     {
-      int cur = s->Symbol;
+      int32_t cur = s->Symbol;
       if (cur == symbol)
       {
         uint32 low = sum;
         CPpmd_State *s1 = s;
         do
         {
-          sum += (s->Freq & (int)(MASK(s->Symbol)));
+          sum += (s->Freq & (int32_t)(MASK(s->Symbol)));
           s++;
         }
         while (--i);
@@ -173,7 +173,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int symbol)
         Ppmd7_Update2(p);
         return;
       }
-      sum += (s->Freq & (int)(MASK(cur)));
+      sum += (s->Freq & (int32_t)(MASK(cur)));
       MASK(cur) = 0;
       s++;
     }

@@ -52,7 +52,7 @@ namespace filemanager
          ImageKey();
          ImageKey(const ImageKey & key);
          string      m_strPath;
-         int         m_iIcon;
+         int32_t         m_iIcon;
          string      m_strExtension;
 
          operator DWORD () const
@@ -81,7 +81,7 @@ namespace filemanager
          image_list *            m_pil16;
          image_list *            m_pil48;
          image_list *            m_pil48Hover;
-         ::collection::map < ImageKey, const ImageKey &, int, int > m_imagemap;
+         ::collection::map < ImageKey, const ImageKey &, int32_t, int32_t > m_imagemap;
 
 
       public:
@@ -104,14 +104,14 @@ namespace filemanager
 #endif
 
 #ifdef WINDOWSEX
-         int GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
+         int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, const char * pszPath, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
-         int GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon) ;
-         int GetImage(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
-         int GetImageByExtension(oswindow oswindow, const char * lpcsz, EIcon eicon, bool bFolder);
+         int32_t GetImage(const char * lpcsz, EFileAttribute eattribute, EIcon eicon) ;
+         int32_t GetImage(oswindow oswindow, const char * lpcsz, const wchar_t * lpcszExtra, EIcon eicon, bool bFolder);
+         int32_t GetImageByExtension(oswindow oswindow, const char * lpcsz, EIcon eicon, bool bFolder);
 #ifdef WINDOWSEX
-         int GetImage(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
-         int GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
+         int32_t GetImage(oswindow oswindow, IShellFolder * lpsf, LPITEMIDLIST lpiidlAbsolute, LPITEMIDLIST lpiidlChild, const wchar_t * lpcszExtra, EIcon eicon);
+         int32_t GetImage(oswindow oswindow, LPITEMIDLIST lpiidlAbsolute, const wchar_t * lpcszExtra, EIcon eicon);
 #endif
 
 
@@ -136,7 +136,7 @@ namespace filemanager
 //      string CLASS_DECL_ca _017FilePathGetParent(const char * lpcsz);
 
 #ifdef WINDOWSEX
-      HICON CLASS_DECL_ca CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int cx, int cy);
+      HICON CLASS_DECL_ca CalcIcon(LPITEMIDLIST lpiidl, const char * lpcszExtra, int32_t cx, int32_t cy);
       bool CLASS_DECL_ca _017HasSubFolder(::ca::application * papp, LPITEMIDLIST lpiidl, const char * lpcszExtra);
 #endif
       EFolder CLASS_DECL_ca GetFolderType(::ca::application * papp, const wchar_t * lpcszPath);
@@ -144,7 +144,7 @@ namespace filemanager
 //      void CLASS_DECL_ca GetChildren(stringa & stra, const char * lpcszPath);
 #ifdef WINDOWSEX
       LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetLast(LPITEMIDLIST lpiidl);
-      int CLASS_DECL_ca _017ItemIDListGetLen(LPITEMIDLIST lpiidl);
+      int32_t CLASS_DECL_ca _017ItemIDListGetLen(LPITEMIDLIST lpiidl);
       LPITEMIDLIST CLASS_DECL_ca _017ItemIDListDup(LPITEMIDLIST lpiidl);
       LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetFolderParent(LPITEMIDLIST lpiidl);
       LPITEMIDLIST CLASS_DECL_ca _017ItemIDListGetAbsolute(LPITEMIDLIST lpiidlParent, LPITEMIDLIST lpiidl);

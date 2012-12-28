@@ -107,7 +107,7 @@ namespace filehandler
             pane_view_update_hint * puh = (pane_view_update_hint *) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeGetView))
             {
-               puh->m_eview = (EPaneView) (int) get_view_id();
+               puh->m_eview = (EPaneView) (int32_t) get_view_id();
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeSetView))
             {

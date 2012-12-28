@@ -53,7 +53,7 @@ namespace userbase
       ListTrayIcons();
    }
 
-   void notification_area::ListTrayIcons(int defindex /*= 0*/)
+   void notification_area::ListTrayIcons(int32_t defindex /*= 0*/)
    {
 #ifdef WINDOWSEX
       UNREFERENCED_PARAMETER(defindex);
@@ -77,14 +77,14 @@ namespace userbase
       if(dwTrayPid == 0)
          return;
 
-      int count = (int)::SendMessage(m_oswindowTray, TB_BUTTONCOUNT, 0, 0);
+      int32_t count = (int32_t)::SendMessage(m_oswindowTray, TB_BUTTONCOUNT, 0, 0);
 
       process_data<TBBUTTON> data(dwTrayPid);
       TBBUTTON tb = {0};
       TRAYDATA tray = {0};
       TrayItemInfo info = {0};
 
-      for(int i=0; i<count; i++)
+      for(int32_t i=0; i<count; i++)
       {
          ::SendMessage(m_oswindowTray, TB_GETBUTTON, i, (LPARAM)data.get_data());
          data.ReadData(&tb);
@@ -101,7 +101,7 @@ namespace userbase
 
          if(!(tb.fsState&TBSTATE_HIDDEN))
          {
-            int x = 0;
+            int32_t x = 0;
             do
             {
                if(x == 1023)
@@ -123,7 +123,7 @@ namespace userbase
 
          info.bVisible = !(tb.fsState & TBSTATE_HIDDEN);
 
-         int iconindex = 0;
+         int32_t iconindex = 0;
          ICONINFO  iinfo;
          if(GetIconInfo(tray.hIcon,&iinfo) != 0)
          {
@@ -140,7 +140,7 @@ namespace userbase
          //lv.iImage = iconindex;
 
          m_infoa.add(info);
-         //int index = GetListCtrl().InsertItem(&lv);
+         //int32_t index = GetListCtrl().InsertItem(&lv);
          //GetListCtrl().SetItemText(index,1,info.sTip);
          //GetListCtrl().SetItemText(index,2,info.sProcessPath);
       }
@@ -154,13 +154,13 @@ namespace userbase
 #endif
    }
 
-   void notification_area::EditCopy(int iItem)
+   void notification_area::EditCopy(int32_t iItem)
    {
       UNREFERENCED_PARAMETER(iItem);
    /*   POSITION pos = GetListCtrl().GetFirstSelectedItemPosition();
       if(pos)
       {
-         int index = GetListCtrl().GetNextSelectedItem(pos);
+         int32_t index = GetListCtrl().GetNextSelectedItem(pos);
          OpenClipboard();
          EmptyClipboard();
          HGLOBAL hText = GlobalAlloc(GMEM_MOVEABLE, sizeof char * 512);
@@ -173,24 +173,24 @@ namespace userbase
       }*/
    }
 
-   void notification_area::DoubleClick(int iItem)
+   void notification_area::DoubleClick(int32_t iItem)
    {
       PostMessageToTrayIcon(iItem, WM_LBUTTONDBLCLK);
    }
 
-   void notification_area::LeftClick(int iItem)
+   void notification_area::LeftClick(int32_t iItem)
    {
       PostMessageToTrayIcon(iItem, WM_LBUTTONDOWN);
       PostMessageToTrayIcon(iItem, WM_LBUTTONUP);
    }
 
-   void notification_area::RightClick(int iItem)
+   void notification_area::RightClick(int32_t iItem)
    {
       PostMessageToTrayIcon(iItem, WM_RBUTTONDOWN);
       PostMessageToTrayIcon(iItem, WM_RBUTTONUP);
    }
 
-   void notification_area::PostMessageToTrayIcon(int iItem, LPARAM lParam)
+   void notification_area::PostMessageToTrayIcon(int32_t iItem, LPARAM lParam)
    {
       ::PostMessage(m_infoa[iItem].m_oswindow,
          m_infoa[iItem].uCallbackMessage,
@@ -198,7 +198,7 @@ namespace userbase
          lParam);
    }
 
-   void notification_area::MoveLeft(int iItem)
+   void notification_area::MoveLeft(int32_t iItem)
    {
 #ifdef WINDOWSEX
       if(iItem > 0)
@@ -211,7 +211,7 @@ namespace userbase
 #endif
    }
 
-   void notification_area::MoveRight(int iItem)
+   void notification_area::MoveRight(int32_t iItem)
    {
 #ifdef WINDOWSEX
       if(iItem < (m_infoa.get_size() - 1))

@@ -41,9 +41,9 @@ namespace mysql
          const char * pszUser,
          const char * pszPassword,
          const char * pszDatabase,
-         int iPort = 0,
+         int32_t iPort = 0,
          const char * pszSocketName = NULL,
-         unsigned int uiFlags = 0);
+         unsigned int32_t uiFlags = 0);
 
       bool close();
 
