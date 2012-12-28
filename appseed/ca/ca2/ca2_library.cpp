@@ -180,7 +180,7 @@ namespace ca2
          catch(...)
          {
 
-            m_plibrary = false;
+            m_plibrary = NULL;
 
             bOk = false;
 
@@ -253,7 +253,7 @@ namespace ca2
       {
 
          strAppName     = pszAppId;
-         
+
          strPrefix      = get_root();
 
          strPrefix += "/";

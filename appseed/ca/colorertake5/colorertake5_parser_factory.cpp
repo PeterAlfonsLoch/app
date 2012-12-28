@@ -146,7 +146,7 @@ ParserFactory::~ParserFactory()
 const char *ParserFactory::getVersion()
 {
 
-   return "Colorer-take5 Library be5 "__TIMESTAMP__;
+   return "Colorer-take5 Library be5 " __TIMESTAMP__;
 
 }
 

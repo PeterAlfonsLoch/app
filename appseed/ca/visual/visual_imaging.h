@@ -11,7 +11,7 @@ struct FIBITMAP;
 
 class image_list;
 
-class CLASS_DECL_ca imaging : 
+class CLASS_DECL_ca imaging :
    virtual public ::radix::object
 {
 public:
@@ -20,7 +20,7 @@ public:
       public:
          // use DWORD instead of RGBQUAD so we can compare two RGBQUADs easily
          DWORD rgbqFrom;
-         int iSysColorTo;
+         DWORD iSysColorTo;
    };
 
 protected:
@@ -45,7 +45,7 @@ public:
 
    virtual void blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iRadius);
    virtual void blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc);
-   
+
    virtual bool channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iChannel, int iRadius);
    virtual bool channel_gray_blur(::ca::graphics * pdcDest, point ptDst, size size, ::ca::graphics * pdcSrc, point ptSrc, int iChannel, int iRadius);
    virtual bool channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iChannel, int iFilterWidth, int iFilterHeight,  LPBYTE lpbFilter);
@@ -59,36 +59,36 @@ public:
    bool channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int iChannel, int iRadius, COLORREF cr);
 
    bool alpha_spread_R2(
-      ::ca::graphics * pdcDest, 
+      ::ca::graphics * pdcDest,
       point ptDst,
-      size size, 
-      ::ca::graphics * pdcSrc, 
+      size size,
+      ::ca::graphics * pdcSrc,
       point ptSrc,
       BYTE bMin);
 
    bool alpha_spread(
-      ::ca::graphics * pdcDest, 
+      ::ca::graphics * pdcDest,
       point ptDst,
       size size,
-      ::ca::graphics * pdcSrc, 
+      ::ca::graphics * pdcSrc,
       point ptSrc,
       BYTE bMin,
       int iRadius);
 
    bool channel_spread(
-      ::ca::graphics * pdcDest, 
+      ::ca::graphics * pdcDest,
       point ptDst,
       size size,
-      ::ca::graphics * pdcSrc, 
+      ::ca::graphics * pdcSrc,
       point ptSrc,
       int iChannel,
       int iRadius);
 
    bool channel_spread_set_color(
-      ::ca::graphics * pdcDest, 
+      ::ca::graphics * pdcDest,
       point ptDst,
       size size,
-      ::ca::graphics * pdcSrc, 
+      ::ca::graphics * pdcSrc,
       point ptSrc,
       int iChannel,
       int iRadius,
@@ -98,7 +98,7 @@ public:
    bool true_blend(::ca::graphics * pdc, LPCRECT lpcrect, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = NULL, ::ca::dib * pdibWork2 = NULL, ::ca::dib * pdibWork3 = NULL);
 
    bool true_blend(::ca::graphics * pdc, point pt, size size, ::ca::graphics * pdcColorAlpha, point ptAlpha, ::ca::dib * pdibWork = NULL, ::ca::dib * pdibWork2 = NULL, ::ca::dib * pdibWork3 = NULL);
-   
+
    bool blur(::ca::graphics * pdcDst, point ptDst, size size, ::ca::graphics * pdcSrc, point ptSrc, int iRadius);
 
    void color_blend_24CC(
@@ -125,7 +125,7 @@ public:
    bool color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
    bool color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha);
    bool color_blend(::ca::graphics * pdc,   const __rect64 * lpcrect, COLORREF cr,   BYTE alpha);
-   
+
    bool color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::ca::dib * pdibWork);
    bool color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::dib * pdibWork);
 
@@ -135,7 +135,7 @@ public:
 
    bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha);
    bool clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha);
-   
+
 /*
    bool clip_color_blend(::ca::graphics * pdc, point pt, size size, COLORREF cr, BYTE alpha, ::ca::region * prgnClip);
    bool clip_color_blend(::ca::graphics * pdc, LPCRECT lpcrect, COLORREF cr, BYTE alpha, ::ca::region * prgnClip);
@@ -143,24 +143,24 @@ public:
 
 
    static bool CreateBitmap(
-      ::ca::graphics * pdc, 
+      ::ca::graphics * pdc,
       ::ca::bitmap * pbitmapOld,
-      ::ca::bitmap * pbitmap, 
-      BITMAP * pbmp, 
-      int cx, 
+      ::ca::bitmap * pbitmap,
+      BITMAP * pbmp,
+      int cx,
       int cy);
 
    static bool CreateBitmap(
-      ::ca::graphics * pdc, 
-      ::ca::graphics * pdcScreen, 
-      ::ca::bitmap * pbitmap, 
+      ::ca::graphics * pdc,
+      ::ca::graphics * pdcScreen,
+      ::ca::bitmap * pbitmap,
       ::ca::bitmap * pbitmapOld,
-      BITMAP * pbmp, 
-      int cx, 
+      BITMAP * pbmp,
+      int cx,
       int cy);
-   
+
    void AlphaTextOut(::ca::graphics * pdc, int left, int top, const char * lpcsz, int len, COLORREF cr, double dBlend);
-   
+
 /*
 
    bool ClipSave(
@@ -256,9 +256,9 @@ public:
 
 
    bool BitmapBlend2(::ca::graphics * pdcDst, point pt, size size, ::ca::graphics * pdcSrc, point ptSrc,
-      ::ca::graphics * pdcAlpha, // alpha information device (in alpha channel) 
+      ::ca::graphics * pdcAlpha, // alpha information device (in alpha channel)
       point ptAlpha);
-   
+
    /*bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, ::ca::graphics * pdcSrc, point ptSrc,
       ::ca::graphics * pdcAlpha, // alpha information device (in red channel)
       point ptAlpha,
@@ -278,7 +278,7 @@ public:
       ::ca::graphics * pdcAlphaComplement, // alpha information device (in alpha channel)
       point ptAlphaComplement);*/
 
-   bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size, 
+   bool bitmap_blend(::ca::graphics * pdcDst, point pt, size size,
       ::ca::graphics * pdcSrcWithAlpha, // source device
       point ptSrc);
 
@@ -322,8 +322,8 @@ public:
    virtual ::ca::bitmap_sp CreateBitmap(::ca::graphics * pdc,FIBITMAP * pFreeImage);
 
 /*   virtual ::ca::bitmap * LoadSysColorBitmap(
-      ::ca::graphics * pdcCompatible, 
-      HINSTANCE hInst, 
+      ::ca::graphics * pdcCompatible,
+      HINSTANCE hInst,
       HRSRC hRsrc,
       bool bMono = false);*/
 

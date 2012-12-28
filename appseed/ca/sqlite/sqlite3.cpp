@@ -20722,7 +20722,7 @@ afp_end_lock:
       }
       do{
          assert( pVfs->mxPathname==MAX_PATHNAME );
-         sqlite3_snprintf(nBuf-17, zBuf, "%s/"SQLITE_TEMP_FILE_PREFIX, zDir);
+         sqlite3_snprintf(nBuf-17, zBuf, "%s/" SQLITE_TEMP_FILE_PREFIX, zDir);
          j = (int) strlen(zBuf);
          sqlite3Randomness(15, &zBuf[j]);
          for(i=0; i<15; i++, j++){
@@ -21897,7 +21897,7 @@ afp_end_lock:
       int res;
       OVERLAPPED ov;
       zero(&ov, sizeof(ov));
-      
+
       if( isNT() ){
          ov.Offset = SHARED_FIRST;
          res = UnlockFileEx(pFile->h, 0, SHARED_SIZE, 0, &ov);

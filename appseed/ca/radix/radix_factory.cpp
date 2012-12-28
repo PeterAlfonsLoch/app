@@ -180,7 +180,7 @@ factory_allocator * factory::get_allocator(const char * pszType)
    index iFind;
 
    if(!m_pstrida->find(info.m_id, iFind))
-      return false;
+      return NULL;
 
    factory_item_base * pitem = m_itemptra.element_at(iFind);
 

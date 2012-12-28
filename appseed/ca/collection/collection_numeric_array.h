@@ -321,7 +321,7 @@ string numeric_array < TYPE >::surround_and_implode(const char * pszSeparator, c
 template < class TYPE >
 numeric_array < TYPE > numeric_array < TYPE >::unique() const
 {
-   
+
    numeric_array < TYPE > a;
 
    for(int i = 0; i < this->get_count(); i++)
@@ -493,7 +493,7 @@ void numeric_array < TYPE >::Set(const TYPE & t, index iStart, index iEnd)
       iEnd = this->get_upper_bound();
    for(index i = iStart; i <= iEnd; i++)
    {
-      set_at(i, t);
+      this->set_at(i, t);
    }
 }
 
