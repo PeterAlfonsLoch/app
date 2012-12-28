@@ -771,7 +771,7 @@ var::operator unsigned int()
 }
 
 // returns 0 for unknown conversions
-var::operator long()
+var::operator long() const
 {
    switch(m_etype)
    {

@@ -216,7 +216,7 @@ public:
    var & operator ++(int);
 
    operator unsigned int();
-   operator long();
+   operator long() const;
    operator int();
    operator int64_t();
 
