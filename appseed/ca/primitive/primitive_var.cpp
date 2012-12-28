@@ -743,9 +743,50 @@ var::operator const char *() const
    return get_string();
 }
 
+// returns 0 for unknown conversions
+var::operator int32_t() const
+{
+   switch(m_etype)
+   {
+   case type_null:
+      return 0;
+   case type_empty:
+      return 0;
+   case type_string:
+      return atoi(m_str);
+   case type_integer:
+      return m_i;
+   case type_int64:
+      return (int32_t) m_i64;
+   case type_uint64:
+      return (int32_t) m_ui64;
+   case type_ulong:
+      return (int32_t)m_ul;
+   case type_ca2:
+      return 0;
+   case type_pvar:
+      return m_pvar->operator int32_t();
+   case type_pstring:
+      return atoi(*m_pstr);
+   case type_id:
+   {
+      if(!is32integer((int64_t) m_id))
+         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
+      return (int32_t) (int64_t) m_id;
+   }
+   case type_pid:
+   {
+      if(!is32integer((int64_t) *m_pid))
+         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
+      return (int32_t) (int64_t) *m_pid;
+   }
+   default:
+      return 0;
+   }
+}
 
 // returns 0 for unknown conversions
-var::operator unsigned int()
+var::operator uint32_t() const
 {
    switch(m_etype)
    {
@@ -758,20 +799,20 @@ var::operator unsigned int()
    case type_integer:
       return m_i;
    case type_ulong:
-      return (unsigned int) m_ul;
+      return (uint32_t) m_ul;
    case type_ca2:
       return 0;
    case type_uint64:
-      return (unsigned int) m_ui64;
+      return (uint32_t) m_ui64;
    case type_pvar:
-      return m_pvar->operator unsigned int();
+      return m_pvar->operator uint32_t();
    default:
       return 0;
    }
 }
 
 // returns 0 for unknown conversions
-var::operator long() const
+var::operator int64_t() const
 {
    switch(m_etype)
    {
@@ -788,14 +829,14 @@ var::operator long() const
    case type_ca2:
       return 0;
    case type_pvar:
-      return m_pvar->operator long();
+      return m_pvar->operator int64_t();
    default:
       return 0;
    }
 }
 
 // returns 0 for unknown conversions
-var::operator int()
+var::operator uint64_t() const
 {
    switch(m_etype)
    {
@@ -804,67 +845,20 @@ var::operator int()
    case type_empty:
       return 0;
    case type_string:
-      return atoi(m_str);
+      return atol(m_str);
    case type_integer:
       return m_i;
-   case type_int64:
-      return (int) m_i64;
-   case type_uint64:
-      return (int) m_ui64;
-   case type_ulong:
-      return (unsigned int)m_ul;
-   case type_ca2:
-      return 0;
-   case type_pvar:
-      return m_pvar->operator int();
-   case type_pstring:
-      return atoi(*m_pstr);
-   case type_id:
-   {
-      if(!is32integer((int64_t) m_id))
-         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
-      return (int) (int64_t) m_id;
-   }
-   case type_pid:
-   {
-      if(!is32integer((int64_t) *m_pid))
-         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
-      return (int) (int64_t) *m_pid;
-   }
-   default:
-      return 0;
-   }
-}
-
-#ifdef WINDOWS
-// returns 0 for unknown conversions
-var::operator int64_t()
-{
-   switch(m_etype)
-   {
-   case type_null:
-      return 0;
-   case type_empty:
-      return 0;
-   case type_string:
-      return atoi(m_str);
-   case type_integer:
-      return m_i;
-   case type_int64:
-      return m_i64;
    case type_ulong:
       return m_ul;
    case type_ca2:
       return 0;
    case type_pvar:
-      return m_pvar->operator int();
-   case type_pstring:
-      return atoi(*m_pstr);
+      return m_pvar->operator uint64_t();
    default:
       return 0;
    }
 }
-#endif
+
 
 bool var::is_true() const
 {

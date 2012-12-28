@@ -239,7 +239,7 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
       if(m_pdataset->num_rows() <= 0)
          return false;
 
-      *plValue = m_pdataset->fv("value").operator int64_t();
+      *plValue = m_pdataset->fv("value");
 
       return true;
 

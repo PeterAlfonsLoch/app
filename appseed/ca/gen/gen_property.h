@@ -309,7 +309,7 @@ namespace gen
          get_value() = i;
          return *this;
       }
-      
+
 #ifdef MACOS
 
       property & operator =(long l)
@@ -317,7 +317,7 @@ namespace gen
          get_value() = l;
          return *this;
       }
-      
+
 #endif
 
       property & operator =(bool b)
@@ -376,14 +376,14 @@ namespace gen
          return get_value().get_double();
       }
 
-      operator int()
+      operator int32_t()
       {
-         return get_value().get_integer();
+         return get_value().operator int32_t();
       }
 
       operator int64_t()
       {
-         return get_value().get_integer();
+         return get_value().operator int64_t();
       }
 
       operator bool()

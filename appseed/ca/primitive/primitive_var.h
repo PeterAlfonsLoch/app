@@ -215,27 +215,30 @@ public:
 
    var & operator ++(int);
 
-   operator unsigned int();
-   operator long() const;
-   operator int();
-   operator int64_t();
-
-   operator long unsigned int()
+   operator bool() const
    {
-      return operator unsigned int();
+      return m_etype == type_bool && m_b;
    }
+
+   operator int32_t() const;
+   operator int64_t() const;
+
+   operator uint32_t() const;
+   operator uint64_t() const;
+
    //operator string & ();
    //operator id &();
    operator const char * () const;
    //operator ::file_time & ();
+
    operator ::datetime::file_time () const;
+
    operator ::datetime::time() const;
-   operator bool()
-   {
-      return m_etype == type_bool && m_b;
-   }
+
    void get_string(char * psz) const;
+
    strsize get_length() const;
+
    var & operator = (::ca::ca * pca2);
    var & operator = (gen::para_return & eret);
    var & operator = (bool b);
