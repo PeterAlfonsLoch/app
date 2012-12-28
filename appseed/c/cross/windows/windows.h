@@ -34,6 +34,9 @@ struct win_handle
 #endif
 
 
+#include "windows_types.h"
+
+
 #include "windows_gdi.h"
 
 
@@ -41,4 +44,9 @@ struct win_handle
 
 
 #include "windows_thread.h"
+
+
+#include "windows_ole_automation.h"
+
+
 
