@@ -4,7 +4,7 @@
 	<File name="ansios/ansios.h" open="0" top="0" tabpos="10">
 		<Cursor position="63" topLine="0" />
 	</File>
-	<File name="ansios/ansios_cross_win.cpp" open="1" top="0" tabpos="5">
+	<File name="ansios/ansios_cross_win.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="424" topLine="8" />
 	</File>
 	<File name="ansios/ansios_cross_win_file.cpp" open="0" top="0" tabpos="0">
@@ -43,7 +43,7 @@
 	<File name="c/c_debug.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="150" topLine="0" />
 	</File>
-	<File name="c/c_dir.cpp" open="1" top="0" tabpos="2">
+	<File name="c/c_dir.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="8932" topLine="319" />
 	</File>
 	<File name="c/c_file.cpp" open="0" top="0" tabpos="10">
@@ -106,32 +106,35 @@
 	<File name="c/c_str.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="15543" topLine="723" />
 	</File>
-	<File name="c/c_strx.cpp" open="1" top="0" tabpos="8">
+	<File name="c/c_strx.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="4911" topLine="148" />
 	</File>
 	<File name="c/c_user.h" open="0" top="0" tabpos="131">
 		<Cursor position="526" topLine="23" />
 	</File>
-	<File name="c/c_verisimple_string.cpp" open="1" top="0" tabpos="6">
+	<File name="c/c_verisimple_string.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="69" topLine="0" />
 	</File>
-	<File name="c/c_verisimple_string.h" open="1" top="0" tabpos="7">
+	<File name="c/c_verisimple_string.h" open="0" top="0" tabpos="7">
 		<Cursor position="1328" topLine="53" />
 	</File>
 	<File name="c/c_verisimple_wstring.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="464" topLine="18" />
 	</File>
-	<File name="c/c_verisimple_wstring.h" open="1" top="0" tabpos="4">
+	<File name="c/c_verisimple_wstring.h" open="0" top="0" tabpos="4">
 		<Cursor position="3280" topLine="90" />
 	</File>
 	<File name="cross/cross.h" open="0" top="0" tabpos="13">
 		<Cursor position="13" topLine="0" />
 	</File>
-	<File name="cross/windows/windows.h" open="0" top="0" tabpos="42">
-		<Cursor position="106" topLine="0" />
+	<File name="cross/windows/windows.h" open="0" top="0" tabpos="79">
+		<Cursor position="463" topLine="15" />
 	</File>
 	<File name="cross/windows/windows_gdi.h" open="0" top="0" tabpos="41">
 		<Cursor position="8" topLine="0" />
+	</File>
+	<File name="cross/windows/windows_ole_automation.h" open="0" top="0" tabpos="80">
+		<Cursor position="60566" topLine="1387" />
 	</File>
 	<File name="cross/windows/windows_thread.h" open="0" top="0" tabpos="15">
 		<Cursor position="3093" topLine="55" />
@@ -175,7 +178,7 @@
 	<File name="linux/c_os_display.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2268" topLine="95" />
 	</File>
-	<File name="linux/c_os_file.cpp" open="1" top="0" tabpos="3">
+	<File name="linux/c_os_file.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="583" topLine="10" />
 	</File>
 	<File name="linux/c_os_file.h" open="0" top="0" tabpos="8">
@@ -217,7 +220,7 @@
 	<File name="linux/c_os_win_base.cpp" open="0" top="0" tabpos="30">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="linux/c_os_window.cpp" open="1" top="0" tabpos="1">
+	<File name="linux/c_os_window.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1099" topLine="56" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="0">
