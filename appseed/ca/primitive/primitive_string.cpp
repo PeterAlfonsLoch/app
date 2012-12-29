@@ -1044,7 +1044,7 @@ string & string::assign(int64_t n, int64_t c)
    return assign((uint64) n, (uint64) c);
 }
 
-string & string::assign(unsigned int32_t n, unsigned int32_t c)
+string & string::assign(uint32_t n, uint32_t c)
 {
    return assign((uint64) n, (uint64) c);
 }

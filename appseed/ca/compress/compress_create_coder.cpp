@@ -13,8 +13,8 @@
 namespace compress
 {
 
-   static const unsigned int32_t kNumCodecsMax = 64;
-   unsigned int32_t g_NumCodecs = 0;
+   static const uint32_t kNumCodecsMax = 64;
+   uint32_t g_NumCodecs = 0;
    const codec_info *g_Codecs[kNumCodecsMax];
    void RegisterCodec(const codec_info *codecInfo)
    {
@@ -28,7 +28,7 @@ namespace compress
       RINOK(codecsInfo->GetProperty(index, propID, &prop));
       if (prop.is_empty())
          res = 1;
-      else if (prop.get_type() == var::type_ulong || prop.get_type() == var::type_integer)
+      else if (prop.get_type() == var::type_uint32 || prop.get_type() == var::type_int32)
          res = (uint32_t) prop.get_ulong();
       else
          return E_INVALIDARG;
@@ -67,7 +67,7 @@ namespace compress
             continue; // old Interface
             // return E_INVALIDARG;
          }
-         info.Id = (long unsigned int32_t) prop;
+         info.Id = (uint64_t) prop;
          prop.unset();
 
          RINOK(codecsInfo->GetProperty(i, method_prop_Name, &prop));

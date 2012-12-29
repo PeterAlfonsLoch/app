@@ -311,7 +311,7 @@ namespace sockets
    #ifdef __DARWIN_UNIX03
    #define ALIGNBYTES __DARWIN_ALIGNBYTES
    #endif
-   #define myALIGN(p) (((unsigned int32_t)(p) + ALIGNBYTES) &~ ALIGNBYTES)
+   #define myALIGN(p) (((uint32_t)(p) + ALIGNBYTES) &~ ALIGNBYTES)
    #define myCMSG_SPACE(l) (myALIGN(sizeof(struct cmsghdr)) + myALIGN(l))
          char data[ myCMSG_SPACE(sizeof(struct timeval)) ];
    #else

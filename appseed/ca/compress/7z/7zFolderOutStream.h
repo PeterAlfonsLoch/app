@@ -23,7 +23,7 @@ namespace n7z
       uint64 _rem;
 
       ex1::HRes OpenFile();
-      ex1::HRes CloseFileAndSetResult(int32 res);
+      ex1::HRes CloseFileAndSetResult(int32_t res);
       ex1::HRes CloseFileAndSetResult();
       ex1::HRes ProcessEmptyFiles();
    public:
@@ -39,7 +39,7 @@ namespace n7z
          const bool_array *extractStatuses,
          ::compress::archive_extract_callback_interface *extractCallback,
          bool testMode, bool checkCrc);
-      ex1::HRes FlushCorrupted(int32 resultEOperationResult);
+      ex1::HRes FlushCorrupted(int32_t resultEOperationResult);
       ex1::HRes WasWritingFinished() const
       { return (_currentIndex == _extractStatuses->get_count()) ? S_OK: E_FAIL; }
    };

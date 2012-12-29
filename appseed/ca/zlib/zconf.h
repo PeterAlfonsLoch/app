@@ -274,7 +274,7 @@
 #if !defined(__MACTYPES__)
 typedef unsigned char  Byte;  /* 8 bits */
 #endif
-typedef unsigned int32_t   uInt;  /* 16 bits or more */
+typedef uint32_t   uInt;  /* 16 bits or more */
 #ifdef WINDOWS
 #ifdef AMD64
 typedef uint64_t  uLong; /* 32 bits or more */

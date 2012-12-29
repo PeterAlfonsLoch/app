@@ -132,7 +132,7 @@ namespace ca
 
 
 
-   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, unsigned int32_t nLevel, const char * pszFormat, va_list args) const
+   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, uint32_t nLevel, const char * pszFormat, va_list args) const
    {
       if(!m_bTrace)
          return;
@@ -256,11 +256,11 @@ namespace ca
 
    }
 
-/*   void log::trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const wchar_t * pszFmt, va_list args) const
+/*   void log::trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const wchar_t * pszFmt, va_list args) const
    {
    }*/
 
-/*   void log::set_trace_category(unsigned int32_t dwCategory, const char * pszName, unsigned int32_t uiLevel)
+/*   void log::set_trace_category(uint32_t dwCategory, const char * pszName, uint32_t uiLevel)
    {
    }*/
 
@@ -332,7 +332,7 @@ namespace ca
    }
 
 
-/*   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, unsigned int32_t nLevel, const char * pszFormat, va_list args) const
+/*   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, uint32_t nLevel, const char * pszFormat, va_list args) const
    {
       if(!m_bTrace)
          return;
@@ -453,7 +453,7 @@ namespace ca
       }
    }*/
 
-   void log::set_trace_category(DWORD dwCategory, const char * pszName, unsigned int32_t uiLevel)
+   void log::set_trace_category(DWORD dwCategory, const char * pszName, uint32_t uiLevel)
    {
       gen::trace::category & category = m_ptrace->operator[](dwCategory);
       category.m_strCategory = pszName;

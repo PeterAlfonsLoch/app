@@ -184,7 +184,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(unsigned int32_t ui) : \
+      c(uint32_t ui) : \
          c_number < T > (throw_cast < T > (ui)) \
       { \
       } \
@@ -262,7 +262,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(unsigned int32_t ui) : \
+      c(uint32_t ui) : \
          c_number < T > (throw_cast < T > (ui)) \
       { \
       } \

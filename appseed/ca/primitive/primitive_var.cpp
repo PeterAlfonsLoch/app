@@ -50,7 +50,7 @@ var::var(int32_t i)
    operator = (i);
 }
 
-var::var(unsigned int32_t ui )
+var::var(uint32_t ui )
 {
    m_etype = type_uint;
    m_pca2 = NULL;
@@ -222,37 +222,37 @@ class var & var::operator ++(int32_t)
    case type_inta:
    case type_empty:
    case type_ca2:
-      set_type(type_integer);
-      m_i = 1;
+      set_type(type_int32);
+      m_i32 = 1;
       break;
    case type_bool:
       if(!m_b)
       {
-         set_type(type_integer);
-         m_i = 1;
+         set_type(type_int32);
+         m_i32 = 1;
       }
       else
       {
-         set_type(type_integer);
-         m_i = 2;
+         set_type(type_int32);
+         m_i32 = 2;
       }
       break;
    case type_string:
-      set_type(type_integer);
-      m_i = atoi(m_str) + 1;
+      set_type(type_int32);
+      m_i32 = atoi(m_str) + 1;
       break;
    case type_double:
       m_d += 1.0;
       break;
-   case type_integer:
-      m_i++;
+   case type_int32:
+      m_i32++;
       break;
-   case type_ulong:
-      m_ul++;
+   case type_uint32:
+      m_ui32++;
       break;
    default:
-      set_type(type_integer, false);
-      m_i = 1;
+      set_type(type_int32, false);
+      m_i32 = 1;
       break;
    }
    return *this;
@@ -273,11 +273,11 @@ void var::set_type(e_type e_type, bool bConvert)
    {
       switch(e_type)
       {
-      case type_integer:
-         m_i      = get_integer();
+      case type_int32:
+         m_i32      = int32();
          break;
-      case type_ulong:
-         m_ul     = get_ulong();
+      case type_uint32:
+         m_ui32     = get_ulong();
          break;
       case type_double:
          m_d      = get_double();
@@ -378,9 +378,9 @@ class var & var::operator = (bool * pb)
 
 class var & var::operator = (int32_t i)
 {
-   if(get_type() == type_pinteger)
+   if(get_type() == type_pint32)
    {
-      *m_pi = i;
+      *m_pi32 = i;
    }
    else if(get_type() == type_pvar)
    {
@@ -388,8 +388,8 @@ class var & var::operator = (int32_t i)
    }
    else
    {
-      set_type(type_integer, false);
-      m_i = i;
+      set_type(type_int32, false);
+      m_i32 = i;
    }
    return *this;
 }
@@ -399,8 +399,15 @@ class var & var::operator = (int32_t i)
 
 class var & var::operator = (int32_t * pi)
 {
-   set_type(type_pinteger, false);
-   m_pi = pi;
+   set_type(type_pint32, false);
+   m_pi32 = pi;
+   return *this;
+}
+
+class var & var::operator = (uint32_t * pui)
+{
+   set_type(type_puint32, false);
+   m_pui32 = pui;
    return *this;
 }
 
@@ -413,7 +420,7 @@ class var & var::operator = (int64_t * pi)
 
 class var & var::operator = (uint64_t * pui)
 {
-   set_type(type_pint64, false);
+   set_type(type_puint64, false);
    m_pui64 = pui;
    return *this;
 }
@@ -432,7 +439,7 @@ class var & var::operator = (const FILETIME & filetime)
    return *this;
 }
 
-class var & var::operator = (long l)
+class var & var::operator = (int64_t l)
 {
    if(get_type() == type_pint64)
    {
@@ -450,7 +457,7 @@ class var & var::operator = (long l)
    return *this;
 }
 
-class var & var::operator = (unsigned long ul)
+class var & var::operator = (uint64_t ul)
 {
    if(get_type() == type_puint64)
    {
@@ -468,46 +475,11 @@ class var & var::operator = (unsigned long ul)
    return *this;
 }
 
-class var & var::operator = (long long ll)
-{
-   if(get_type() == type_pint64)
-   {
-      *m_pi64 = ll;
-   }
-   else if(get_type() == type_pvar)
-   {
-      *m_pvar = ll;
-   }
-   else
-   {
-      set_type(type_int64, false);
-      m_i64 = ll;
-   }
-   return *this;
-}
 
-class var & var::operator = (unsigned long long ull)
-{
-   if(get_type() == type_puint64)
-   {
-      *m_pui64 = ull;
-   }
-   else if(get_type() == type_pvar)
-   {
-      *m_pvar = ull;
-   }
-   else
-   {
-      set_type(type_uint64, false);
-      m_ui64 = ull;
-   }
-   return *this;
-}
-
-class var & var::operator = (unsigned int32_t ui)
+class var & var::operator = (uint32_t ui)
 {
    set_type(type_uint, false);
-   m_ui = ui;
+   m_ui32 = ui;
    return *this;
 }
 
@@ -574,9 +546,9 @@ class var & var::operator = (const class var & var)
          // should dereference (this operator here means a content copy)
          *this  = *((class var &)var).m_pvar;
          return *this;
-      case type_pinteger:
+      case type_pint32:
          // should dereference (this operator here means a content copy)
-         *this  = *((class var &)var).m_pi;
+         *this  = *((class var &)var).m_pi32;
          return *this;
       case type_pstring:
          // should dereference (this operator here means a content copy)
@@ -592,11 +564,11 @@ class var & var::operator = (const class var & var)
       case type_bool:
          m_b      = var.m_b;
          break;
-      case type_integer:
-         m_i      = var.m_i;
+      case type_int32:
+         m_i32      = var.m_i32;
          break;
       case type_uint:
-         m_ui      = var.m_ui;
+         m_ui32      = var.m_ui32;
          break;
       case type_int64:
          m_i64    = var.m_i64;
@@ -604,8 +576,8 @@ class var & var::operator = (const class var & var)
       case type_uint64:
          m_ui64    = var.m_ui64;
          break;
-      case type_ulong:
-         m_ul     = var.m_ul;
+      case type_uint32:
+         m_ui32     = var.m_ui32;
          break;
       case type_double:
          m_d      = var.m_d;
@@ -754,14 +726,14 @@ var::operator int32_t() const
       return 0;
    case type_string:
       return atoi(m_str);
-   case type_integer:
-      return m_i;
+   case type_int32:
+      return m_i32;
    case type_int64:
       return (int32_t) m_i64;
    case type_uint64:
       return (int32_t) m_ui64;
-   case type_ulong:
-      return (int32_t)m_ul;
+   case type_uint32:
+      return (int32_t)m_ui32;
    case type_ca2:
       return 0;
    case type_pvar:
@@ -796,10 +768,10 @@ var::operator uint32_t() const
       return 0;
    case type_string:
       return atoi(m_str);
-   case type_integer:
-      return m_i;
-   case type_ulong:
-      return (uint32_t) m_ul;
+   case type_int32:
+      return m_i32;
+   case type_uint32:
+      return (uint32_t) m_ui32;
    case type_ca2:
       return 0;
    case type_uint64:
@@ -822,10 +794,10 @@ var::operator int64_t() const
       return 0;
    case type_string:
       return atol(m_str);
-   case type_integer:
-      return m_i;
-   case type_ulong:
-      return m_ul;
+   case type_int32:
+      return m_i32;
+   case type_uint32:
+      return m_ui32;
    case type_ca2:
       return 0;
    case type_pvar:
@@ -846,10 +818,10 @@ var::operator uint64_t() const
       return 0;
    case type_string:
       return atol(m_str);
-   case type_integer:
-      return m_i;
-   case type_ulong:
-      return m_ul;
+   case type_int32:
+      return m_i32;
+   case type_uint32:
+      return m_ui32;
    case type_ca2:
       return 0;
    case type_pvar:
@@ -870,10 +842,10 @@ bool var::is_true() const
       return false;
    case type_string:
       return !m_str.is_empty() && !m_str.CompareNoCase("false");
-   case type_integer:
-      return m_i != 0;
-   case type_ulong:
-      return m_ul != 0;
+   case type_int32:
+      return m_i32 != 0;
+   case type_uint32:
+      return m_ui32 != 0;
    case type_double:
       return m_d != 0;
    case type_ca2:
@@ -899,10 +871,10 @@ bool var::is_empty() const
       return true;
    case type_string:
       return m_str.is_empty();
-   case type_integer:
-      return m_i == 0;
-   case type_ulong:
-      return m_ul == 0;
+   case type_int32:
+      return m_i32 == 0;
+   case type_uint32:
+      return m_ui32 == 0;
    case type_double:
       return m_d == 0.0;
    case type_ca2:
@@ -971,9 +943,9 @@ void var::read(ex1::byte_input_stream & is)
          m_str.ReleaseBuffer();
       }
       break;
-   case type_integer:
+   case type_int32:
       {
-         is >> m_i;
+         is >> m_i32;
       }
       break;
    case type_bool:
@@ -1062,8 +1034,8 @@ void var::write(ex1::byte_output_stream & ostream)
          ostream.write((const char *) m_str, m_str.get_length() + 1);
       }
       break;
-   case type_integer:
-      ostream << m_i;
+   case type_int32:
+      ostream << m_i32;
       break;
    case type_bool:
       ostream << m_b;
@@ -1132,7 +1104,7 @@ int32_t var::compare_ci(const class var & var) const
       else
       {
          //var = var1;
-         //var.inta().remove(var2.get_integer());
+         //var.inta().remove(var2.int32());
       }
    }
    else if(m_etype == var::type_stra)
@@ -1171,7 +1143,7 @@ int32_t var::compare_ci(const class var & var) const
    }
    else if(is_integer() || var.is_integer())
    {
-      return get_integer() - var.get_integer();
+      return int32() - var.int32();
    }
    else if(is_ulong() || var.is_ulong())
    {
@@ -1202,7 +1174,7 @@ int32_t var::compare(const class var & var) const
       else
       {
          //var = var1;
-         //var.inta().remove(var2.get_integer());
+         //var.inta().remove(var2.int32());
       }
    }
    else if(m_etype == var::type_stra)
@@ -1241,7 +1213,7 @@ int32_t var::compare(const class var & var) const
    }
    else if(is_integer() || var.is_integer())
    {
-      return get_integer() - var.get_integer();
+      return int32() - var.int32();
    }
    else if(is_ulong() || var.is_ulong())
    {
@@ -1354,32 +1326,32 @@ bool var::operator > (const string & str) const
 
 bool var::operator == (int32_t i) const
 {
-   return get_integer() == i;
+   return int32() == i;
 }
 
 bool var::operator != (int32_t i) const
 {
-   return get_integer() != i;
+   return int32() != i;
 }
 
 bool var::operator < (int32_t i) const
 {
-   return get_integer() < i;
+   return int32() < i;
 }
 
 bool var::operator <= (int32_t i) const
 {
-   return get_integer() <= i;
+   return int32() <= i;
 }
 
 bool var::operator >= (int32_t i) const
 {
-   return get_integer() >= i;
+   return int32() >= i;
 }
 
 bool var::operator > (int32_t i) const
 {
-   return get_integer() > i;
+   return int32() > i;
 }
 
 
@@ -1436,7 +1408,7 @@ bool var::strict_equal(double d) const
 
 bool var::strict_equal(int32_t i) const
 {
-   return m_etype == type_integer && m_i == i;
+   return m_etype == type_int32 && m_i32 == i;
 }
 
 bool var::strict_equal(bool b) const
@@ -1466,7 +1438,7 @@ bool var::strict_different(double d) const
 
 bool var::strict_different(int32_t i) const
 {
-   return m_etype != type_integer || m_i != i;
+   return m_etype != type_int32 || m_i32 != i;
 }
 
 bool var::strict_different(bool b) const
@@ -1491,7 +1463,7 @@ bool strict_equal(double d, const class var & var)
 
 bool strict_equal(int32_t i, const class var & var)
 {
-   return var.m_etype == var::type_integer && i == var.m_i;
+   return var.m_etype == var::type_int32 && i == var.m_i32;
 }
 
 bool strict_equal(bool b, const class var & var)
@@ -1516,7 +1488,7 @@ bool strict_different(double d, const class var & var)
 
 bool strict_different(int32_t i, const class var & var)
 {
-   return var.m_etype != var::type_integer || i != var.m_i;
+   return var.m_etype != var::type_int32 || i != var.m_i32;
 }
 
 bool strict_different(bool b, const class var & var)
@@ -1567,13 +1539,13 @@ string var::get_string(const char * pszOnNull) const
       {
          str = pszOnNull;
       }
-      else if(m_etype == var::type_integer)
+      else if(m_etype == var::type_int32)
       {
-         str.Format("%I32d", m_i);
+         str.Format("%I32d", m_i32);
       }
       else if(m_etype == var::type_uint)
       {
-         str.Format("%I32u", m_ui);
+         str.Format("%I32u", m_ui32);
       }
       else if(m_etype == var::type_int64)
       {
@@ -1583,9 +1555,9 @@ string var::get_string(const char * pszOnNull) const
       {
          str.Format("%I64u", m_ui64);
       }
-      else if(m_etype == var::type_ulong)
+      else if(m_etype == var::type_uint32)
       {
-         str.Format("%d", m_ul);
+         str.Format("%d", m_ui32);
       }
       else if(m_etype == var::type_double)
       {
@@ -1654,17 +1626,17 @@ inline id var::get_id(const char * pszOnNull) const
       {
          id = pszOnNull;
       }
-      else if(m_etype == var::type_integer)
+      else if(m_etype == var::type_int32)
       {
-         id = m_i;
+         id = m_i32;
       }
       else if(m_etype == var::type_int64)
       {
          id = (int_ptr) m_i64;
       }
-      else if(m_etype == var::type_ulong)
+      else if(m_etype == var::type_uint32)
       {
-         id = (int_ptr) m_ul;
+         id = (int_ptr) m_ui32;
       }
       else if(m_etype == var::type_double)
       {
@@ -1713,18 +1685,18 @@ id & var::get_ref_id(const char * pszOnNull)
 
 }
 
-int32_t var::get_integer(int32_t iDefault) const
+int32_t var::int32(int32_t iDefault) const
 {
    switch(m_etype)
    {
    case var::type_pvar:
-      return m_pvar->get_integer(iDefault);
-   case var::type_integer:
-      return m_i;
+      return m_pvar->int32(iDefault);
+   case var::type_int32:
+      return m_i32;
    case var::type_int64:
       return (int32_t) m_i64;
-   case var::type_ulong:
-      return (int32_t) m_ul;
+   case var::type_uint32:
+      return (int32_t) m_ui32;
    case var::type_double:
       return (int32_t) m_d;
    case var::type_string:
@@ -1740,13 +1712,13 @@ int32_t var::get_integer(int32_t iDefault) const
 unsigned long var::get_ulong() const
 {
    unsigned long ul;
-   if(m_etype == var::type_integer)
+   if(m_etype == var::type_int32)
    {
-      ul = (unsigned long) m_i;
+      ul = (unsigned long) m_i32;
    }
-   else if(m_etype == var::type_ulong)
+   else if(m_etype == var::type_uint32)
    {
-      ul = m_ul;
+      ul = m_ui32;
    }
    else if(m_etype == var::type_double)
    {
@@ -1762,13 +1734,13 @@ unsigned long var::get_ulong() const
 double var::get_double() const
 {
    double d;
-   if(m_etype == var::type_integer)
+   if(m_etype == var::type_int32)
    {
-      d = (double) m_i;
+      d = (double) m_i32;
    }
-   else if(m_etype == var::type_ulong)
+   else if(m_etype == var::type_uint32)
    {
-      d = (double) m_ul;
+      d = (double) m_ui32;
    }
    else if(m_etype == var::type_double)
    {
@@ -1784,13 +1756,13 @@ double var::get_double() const
 bool var::get_bool() const
 {
    bool b;
-   if(m_etype == var::type_integer)
+   if(m_etype == var::type_int32)
    {
-      b = m_i != 0;
+      b = m_i32 != 0;
    }
-   else if(m_etype == var::type_ulong)
+   else if(m_etype == var::type_uint32)
    {
-      b = m_ul != 0;
+      b = m_ui32 != 0;
    }
    else if(m_etype == var::type_double)
    {
@@ -2110,8 +2082,8 @@ var var::dereference()
       return m_pvar->dereference();
    else if(get_type() == type_pstring)
       return *m_pstr;
-   else if(get_type() == type_pinteger)
-      return *m_pi;
+   else if(get_type() == type_pint32)
+      return *m_pi32;
    else if(get_type() == type_pbool)
       return *m_pb;
    else
@@ -2256,17 +2228,17 @@ var var::equals_ci_get(const char * pszCompare, var varOnEqual) const
 
 var var::operator - (int32_t i) const
 {
-   return get_integer() - i;
+   return int32() - i;
 }
 
-var var::operator - (unsigned int32_t user) const
+var var::operator - (uint32_t user) const
 {
    return get_ulong() - user;
 }
 
 var var::operator - (long l) const
 {
-   return get_integer() - l;
+   return int32() - l;
 }
 
 var var::operator - (unsigned long ul) const
@@ -2281,17 +2253,17 @@ var var::operator - (double d) const
 
 var CLASS_DECL_ca operator - (int32_t i, const class var & var)
 {
-   return i - var.get_integer();
+   return i - var.int32();
 }
 
-var CLASS_DECL_ca operator - (unsigned int32_t user, const class var & var)
+var CLASS_DECL_ca operator - (uint32_t user, const class var & var)
 {
    return user - var.get_ulong();
 }
 
 var CLASS_DECL_ca operator - (long l, const class var & var)
 {
-   return l - var.get_integer();
+   return l - var.int32();
 }
 
 var CLASS_DECL_ca operator - (unsigned long ul, const class var & var)
@@ -2316,7 +2288,7 @@ var CLASS_DECL_ca operator - (const class var & var1, const class var & var2)
       else
       {
          var = var1;
-         var.inta().remove(var2.get_integer());
+         var.inta().remove(var2.int32());
       }
    }
    else if(var1.m_etype == var::type_stra)
@@ -2353,7 +2325,7 @@ var CLASS_DECL_ca operator - (const class var & var1, const class var & var2)
    }
    else if(var1.is_integer() || var2.is_integer())
    {
-      var = var1.get_integer() - var2.get_integer();
+      var = var1.int32() - var2.int32();
    }
    else if(var1.is_ulong() || var2.is_ulong())
    {
@@ -2369,17 +2341,17 @@ var CLASS_DECL_ca operator - (const class var & var1, const class var & var2)
 
 var var::operator + (int32_t i) const
 {
-   return get_integer() + i;
+   return int32() + i;
 }
 
-var var::operator + (unsigned int32_t user) const
+var var::operator + (uint32_t user) const
 {
    return get_ulong() + user;
 }
 
 var var::operator + (long l) const
 {
-   return get_integer() + l;
+   return int32() + l;
 }
 
 var var::operator + (unsigned long ul) const
@@ -2394,17 +2366,17 @@ var var::operator + (double d) const
 
 var CLASS_DECL_ca operator + (int32_t i, const class var & var)
 {
-   return i + var.get_integer();
+   return i + var.int32();
 }
 
-var CLASS_DECL_ca operator + (unsigned int32_t user, const class var & var)
+var CLASS_DECL_ca operator + (uint32_t user, const class var & var)
 {
    return user + var.get_ulong();
 }
 
 var CLASS_DECL_ca operator + (long l, const class var & var)
 {
-   return l + var.get_integer();
+   return l + var.int32();
 }
 
 var CLASS_DECL_ca operator + (unsigned long ul, const class var & var)
@@ -2432,13 +2404,13 @@ var CLASS_DECL_ca operator + (const class var & var1, const class var & var2)
          else
          {
             var = var1;
-            var.inta().add(var2.get_integer());
+            var.inta().add(var2.int32());
          }
       }
       else
       {
          var = var2;
-         var.inta().add(var1.get_integer());
+         var.inta().add(var1.int32());
       }
    }
    else if(var1.m_etype == var::type_stra
@@ -2489,7 +2461,7 @@ var CLASS_DECL_ca operator + (const class var & var1, const class var & var2)
    }
    else if(var1.is_integer() && var2.is_integer())
    {
-      var = var1.get_integer() + var2.get_integer();
+      var = var1.int32() + var2.int32();
    }
    else if(var1.is_ulong() && var2.is_ulong())
    {
@@ -2525,17 +2497,17 @@ var CLASS_DECL_ca operator + (const class var & var1, const class var & var2)
 
 var var::operator / (int32_t i) const
 {
-   return get_integer() / i;
+   return int32() / i;
 }
 
-var var::operator / (unsigned int32_t user) const
+var var::operator / (uint32_t user) const
 {
    return get_ulong() / user;
 }
 
 var var::operator / (long l) const
 {
-   return get_integer() / l;
+   return int32() / l;
 }
 
 var var::operator / (unsigned long ul) const
@@ -2550,17 +2522,17 @@ var var::operator / (double d) const
 
 var CLASS_DECL_ca operator / (int32_t i, const class var & var)
 {
-   return i / var.get_integer();
+   return i / var.int32();
 }
 
-var CLASS_DECL_ca operator / (unsigned int32_t user, const class var & var)
+var CLASS_DECL_ca operator / (uint32_t user, const class var & var)
 {
    return user / var.get_ulong();
 }
 
 var CLASS_DECL_ca operator / (long l, const class var & var)
 {
-   return l / var.get_integer();
+   return l / var.int32();
 }
 
 var CLASS_DECL_ca operator / (unsigned long ul, const class var & var)
@@ -2586,7 +2558,7 @@ var CLASS_DECL_ca operator / (const class var & var1, const class var & var2)
       else
       {
          var = var1;
-         var.inta().divide(var2.get_integer());
+         var.inta().divide(var2.int32());
       }
    }
    else if(var1.m_etype == var::type_stra)
@@ -2619,7 +2591,7 @@ var CLASS_DECL_ca operator / (const class var & var1, const class var & var2)
    }
    else if(var1.is_integer() || var2.is_integer())
    {
-      var = var1.get_integer() / var2.get_integer();
+      var = var1.int32() / var2.int32();
    }
    else if(var1.is_ulong() || var2.is_ulong())
    {
@@ -2635,17 +2607,17 @@ var CLASS_DECL_ca operator / (const class var & var1, const class var & var2)
 
 var var::operator * (int32_t i) const
 {
-   return get_integer() * i;
+   return int32() * i;
 }
 
-var var::operator * (unsigned int32_t user) const
+var var::operator * (uint32_t user) const
 {
    return get_ulong() * user;
 }
 
 var var::operator * (long l) const
 {
-   return get_integer() * l;
+   return int32() * l;
 }
 
 var var::operator * (unsigned long ul) const
@@ -2660,17 +2632,17 @@ var var::operator * (double d) const
 
 var CLASS_DECL_ca operator * (int32_t i, const class var & var)
 {
-   return i * var.get_integer();
+   return i * var.int32();
 }
 
-var CLASS_DECL_ca operator * (unsigned int32_t user, const class var & var)
+var CLASS_DECL_ca operator * (uint32_t user, const class var & var)
 {
    return user * var.get_ulong();
 }
 
 var CLASS_DECL_ca operator * (long l, const class var & var)
 {
-   return l * var.get_integer();
+   return l * var.int32();
 }
 
 var CLASS_DECL_ca operator * (unsigned long ul, const class var & var)
@@ -2698,13 +2670,13 @@ var CLASS_DECL_ca operator * (const class var & var1, const class var & var2)
          else
          {
             var = var1;
-            var.inta().add(var2.get_integer());
+            var.inta().add(var2.int32());
          }
       }
       else
       {
          var = var2;
-         var.inta().add(var1.get_integer());
+         var.inta().add(var1.int32());
       }
    }
    else if(var1.m_etype == var::type_stra
@@ -2755,7 +2727,7 @@ var CLASS_DECL_ca operator * (const class var & var1, const class var & var2)
    }
    else if(var1.is_integer() || var2.is_integer())
    {
-      var = var1.get_integer() * var2.get_integer();
+      var = var1.int32() * var2.int32();
    }
    else if(var1.is_ulong() || var2.is_ulong())
    {
@@ -2798,7 +2770,7 @@ class var & var::operator -= (int32_t i)
    return *this;
 }
 
-class var & var::operator -= (unsigned int32_t user)
+class var & var::operator -= (uint32_t user)
 {
    operator =(*this - user);
    return *this;
@@ -2857,7 +2829,7 @@ class var & var::operator += (int32_t i)
    return *this;
 }
 
-class var & var::operator += (unsigned int32_t user)
+class var & var::operator += (uint32_t user)
 {
    operator =(*this + user);
    return *this;
@@ -2916,7 +2888,7 @@ class var & var::operator /= (int32_t i)
    return *this;
 }
 
-class var & var::operator /= (unsigned int32_t user)
+class var & var::operator /= (uint32_t user)
 {
    operator =(*this / user);
    return *this;
@@ -2975,7 +2947,7 @@ class var & var::operator *= (int32_t i)
    return *this;
 }
 
-class var & var::operator *= (unsigned int32_t user)
+class var & var::operator *= (uint32_t user)
 {
    operator =(*this * user);
    return *this;
@@ -3039,9 +3011,9 @@ bool var::is_scalar() const
       return false;
    }
    else if(m_etype == type_string
-   || m_etype == type_integer
-   || m_etype == type_pinteger
-   || m_etype == type_ulong
+   || m_etype == type_int32
+   || m_etype == type_pint32
+   || m_etype == type_uint32
    || m_etype == type_bool
    || m_etype == type_double)
    {
@@ -3183,7 +3155,7 @@ dot2:
 
 bool var::is_integer() const
 {
-   if(m_etype == type_integer)
+   if(m_etype == type_int32)
    {
       return true;
    }
@@ -3223,7 +3195,7 @@ bool var::is_integer() const
 
 bool var::is_ulong() const
 {
-   if(m_etype == type_ulong)
+   if(m_etype == type_uint32)
    {
       return true;
    }
@@ -3449,9 +3421,9 @@ bool var::is_numeric() const
       case type_pstring: // may be improved MBI
          return false;
 
-      case type_integer:
-      case type_pinteger:
-      case type_ulong:
+      case type_int32:
+      case type_pint32:
+      case type_uint32:
          return true;
 
       case type_pvar:

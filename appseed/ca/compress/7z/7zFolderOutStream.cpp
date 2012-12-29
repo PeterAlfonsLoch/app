@@ -37,7 +37,7 @@ namespace n7z
 
    ex1::HRes CFolderOutStream::OpenFile()
    {
-      int32 askMode = ((*_extractStatuses)[_currentIndex]) ? (_testMode ?
+      int32_t askMode = ((*_extractStatuses)[_currentIndex]) ? (_testMode ?
          ::compress::archive::extract::ask_mode_test :
       ::compress::archive::extract::ask_mode_extract) :
       ::compress::archive::extract::ask_mode_skip;
@@ -55,7 +55,7 @@ namespace n7z
       return _extractCallback->PrepareOperation(askMode);
    }
 
-   ex1::HRes CFolderOutStream::CloseFileAndSetResult(int32 res)
+   ex1::HRes CFolderOutStream::CloseFileAndSetResult(int32_t res)
    {
       _crcStreamSpec->ReleaseStream();
       _fileIsOpen = false;
@@ -130,7 +130,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes CFolderOutStream::FlushCorrupted(int32 resultEOperationResult)
+   ex1::HRes CFolderOutStream::FlushCorrupted(int32_t resultEOperationResult)
    {
       while (_currentIndex < _extractStatuses->get_count())
       {

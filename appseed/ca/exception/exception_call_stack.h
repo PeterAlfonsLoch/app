@@ -40,17 +40,17 @@ public:
 
    void * m_caller_address;
 
-   call_stack(::ca::application * papp, unsigned int32_t uiSkip = 3, void * caller_address = NULL);
+   call_stack(::ca::application * papp, uint32_t uiSkip = 3, void * caller_address = NULL);
 
 #else
 
-   call_stack(::ca::application * papp, unsigned int32_t uiSkip = 3);
+   call_stack(::ca::application * papp, uint32_t uiSkip = 3);
 
 #endif
 
    call_stack(const ::call_stack & cs);
 
-   vsstring get(unsigned int32_t uiSkip = 2);
+   vsstring get(uint32_t uiSkip = 2);
 
    const char * stack_trace() const;
 

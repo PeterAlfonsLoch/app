@@ -52,7 +52,7 @@ bool bzip::write(void * buf, ::primitive::memory_size len)
    if (len == 0)
    { m_z_err = BZ_OK; return true; };
 
-   m_zstream.avail_in = (unsigned int32_t) len;
+   m_zstream.avail_in = (uint32_t) len;
    m_zstream.next_in  = (char *) buf;
 
    while (true) {
@@ -108,7 +108,7 @@ void bzip::construct()
    //GZIP header[10]={0x1f,0x8b,Z_DEFLATED, 0 /*flags*/, 0,0,0,0 /*time*/, 0 /*xflags*/, OS_CODE};
    //m_postream->write(header,10);
    m_zstream.next_out      = (char *) m_memory.get_data();
-   m_zstream.avail_out     = (unsigned int32_t) m_memory.get_size();
+   m_zstream.avail_out     = (uint32_t) m_memory.get_size();
 }
 
 

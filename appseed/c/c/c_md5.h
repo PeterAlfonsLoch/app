@@ -69,9 +69,9 @@ namespace md5
 	public:
 
 
-		typedef unsigned       int32_t uint4;
-		typedef unsigned short int32_t uint2;
-		typedef unsigned      char uchar;
+		typedef uint32_t		uint4;
+		typedef uint16_t		uint2;
+		typedef unsigned char	uchar;
 
 		typedef struct
 		{

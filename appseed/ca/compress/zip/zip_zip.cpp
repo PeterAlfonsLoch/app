@@ -827,7 +827,7 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     if ((err==Z_OK) && (password != NULL))
     {
         unsigned char bufHead[RAND_HEAD_LEN];
-        unsigned int32_t sizeHead;
+        uint32_t sizeHead;
         zi->ci.encrypt = 1;
         zi->ci.pcrc_32_tab = get_crc_table();
         /*init_keys(password,zi->ci.keys,zi->ci.pcrc_32_tab);*/

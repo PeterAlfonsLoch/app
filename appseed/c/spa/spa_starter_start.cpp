@@ -124,7 +124,7 @@ bool is_updated()
 
 #ifdef WINDOWS
 
-void __cdecl _null_se_translator(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
+void __cdecl _null_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 {
    UNREFERENCED_PARAMETER(uiCode);
    UNREFERENCED_PARAMETER(ppointers);

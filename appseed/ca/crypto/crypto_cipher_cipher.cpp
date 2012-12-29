@@ -58,7 +58,7 @@ cipher_output(cipher_t *c, uint8_t *buffer, int32_t num_octets_to_output) {
   octet_string_set_to_zero(buffer, num_octets_to_output);
   
   /* exor keystream into buffer */
-  return cipher_encrypt(c, buffer, (unsigned int32_t *) &num_octets_to_output);
+  return cipher_encrypt(c, buffer, (uint32_t *) &num_octets_to_output);
 }
 
 /* some bookkeeping functions */
@@ -85,7 +85,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
   err_status_t status;
   uint8_t buffer[SELF_TEST_BUF_OCTETS];
   uint8_t buffer2[SELF_TEST_BUF_OCTETS];
-  unsigned int32_t len;
+  uint32_t len;
   int32_t i, j, case_num = 0;
 
   debug_print(mod_cipher, "running self-test for cipher %s", 
@@ -281,7 +281,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
       octet_string_hex_string(buffer, length));
 
     /* copy plaintext into second buffer */
-    for (i=0; (unsigned int32_t)i < length; i++)
+    for (i=0; (uint32_t)i < length; i++)
       buffer2[i] = buffer[i];
     
     /* choose a key at random */
@@ -379,7 +379,7 @@ cipher_bits_per_second(cipher_t *c, int32_t octets_in_buffer, int32_t num_trials
   v128_t nonce;
   clock_t timer;
   unsigned char *enc_buf;
-  unsigned int32_t len = octets_in_buffer;
+  uint32_t len = octets_in_buffer;
 
   enc_buf = (unsigned char*) crypto_alloc(octets_in_buffer);
   if (enc_buf == NULL)

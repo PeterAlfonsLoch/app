@@ -670,8 +670,8 @@ namespace userbase
       {
 
          int32_t   fwKeys = (int32_t) wParam;        // key flags
-//         int32_t xPos = splitRect.left + (short int32_t) LOWORD(lParam);  // horizontal position of cursor
-//         int32_t yPos = splitRect.top + (short int32_t) HIWORD(lParam);  // vertical position of cursor
+//         int32_t xPos = splitRect.left + (int16_t) LOWORD(lParam);  // horizontal position of cursor
+//         int32_t yPos = splitRect.top + (int16_t) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0)
          {
             ::userbase::split_bar * pSplitBar = &m_splitbara.element_at(iSplitBar);
@@ -683,8 +683,8 @@ namespace userbase
       else if(uiMessage == WM_LBUTTONUP)
       {
 //         int32_t   fwKeys = wParam;        // key flags
-//         int32_t xPos = splitRect.left + (short int32_t) LOWORD(lParam);  // horizontal position of cursor
-//         int32_t yPos = splitRect.top + (short int32_t) HIWORD(lParam);  // vertical position of cursor
+//         int32_t xPos = splitRect.left + (int16_t) LOWORD(lParam);  // horizontal position of cursor
+//         int32_t yPos = splitRect.top + (int16_t) HIWORD(lParam);  // vertical position of cursor
          if(m_iState != stateInitial)
          {
             System.release_capture_uie();
@@ -697,8 +697,8 @@ namespace userbase
       else if(uiMessage == WM_MOUSEMOVE)
       {
          int32_t   fwKeys = (int32_t) wParam;        // key flags
-         int32_t xPos = splitRect.left + (short int32_t) LOWORD(lParam);  // horizontal position of cursor
-         int32_t yPos = splitRect.top + (short int32_t) HIWORD(lParam);  // vertical position of cursor
+         int32_t xPos = splitRect.left + (int16_t) LOWORD(lParam);  // horizontal position of cursor
+         int32_t yPos = splitRect.top + (int16_t) HIWORD(lParam);  // vertical position of cursor
          if((fwKeys & MK_LBUTTON) > 0 && (m_iState == stateDragging) && (iSplitBar == m_iIndex))
          {
             if(m_mutex.lock(duration::zero()))

@@ -47,7 +47,7 @@ namespace colorertake5
             markupWriter << "</span>";
             pos += end - l1->start;
          }
-         if ((unsigned int32_t) pos < strlen(line)){
+         if ((uint32_t) pos < strlen(line)){
             textWriter.write(&line[pos], strlen(line) - pos);
          }
       }
@@ -108,7 +108,7 @@ namespace colorertake5
 
          }
 
-         if((unsigned int32_t) pos < strlen(line))
+         if((uint32_t) pos < strlen(line))
          {
             textWriter.write(&line[pos], strlen(line) - pos);
          }
@@ -158,7 +158,7 @@ namespace colorertake5
                writeHref(markupWriter, docLinkHash, l1->scheme, string(&line[pos], (int32_t)(end - l1->start)), false);
             pos += end - l1->start;
          }
-         if((unsigned int32_t) pos < strlen(line)){
+         if((uint32_t) pos < strlen(line)){
             textWriter.write(&line[pos], strlen(line) - pos);
          }
       }

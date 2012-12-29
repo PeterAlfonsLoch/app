@@ -92,7 +92,7 @@ extern float *_book_logdist(const static_codebook *b,float *vals);
 extern float _float32_unpack(long val);
 extern long   _float32_pack(float val);
 extern int32_t  _best(codebook *book, float *a, int32_t step);
-extern int32_t _ilog(unsigned int32_t v);
+extern int32_t _ilog(uint32_t v);
 extern long _book_maptype1_quantvals(const static_codebook *b);
 
 extern int32_t vorbis_book_besterror(codebook *book,float *a,int32_t step,int32_t addmul);

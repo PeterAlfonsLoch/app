@@ -20,7 +20,7 @@
 
 
 #define int64           int64_t_t
-#define int32           __int32_t
+#define int32_t           __int32_t
 #define int16           __int16_t
 
 

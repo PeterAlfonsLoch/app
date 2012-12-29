@@ -54,7 +54,7 @@ debug_module_t mod_aes_cbc = {
 
 err_status_t aes_cbc_alloc(cipher_t ** c, int32_t key_len);
 err_status_t aes_cbc_dealloc(cipher_t * c);
-err_status_t aes_cbc_decrypt(aes_cbc_ctx_t * c, unsigned char *data, unsigned int32_t *bytes_in_data);
+err_status_t aes_cbc_decrypt(aes_cbc_ctx_t * c, unsigned char *data, uint32_t *bytes_in_data);
 
 
 
@@ -157,7 +157,7 @@ aes_cbc_set_iv(aes_cbc_ctx_t *c, void *iv) {
 err_status_t
 aes_cbc_encrypt(aes_cbc_ctx_t *c,
       unsigned char *data, 
-      unsigned int32_t *bytes_in_data) {
+      uint32_t *bytes_in_data) {
   int32_t i;
   unsigned char *input  = data;   /* pointer to data being read    */
   unsigned char *output = data;   /* pointer to data being written */
@@ -207,7 +207,7 @@ aes_cbc_encrypt(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_decrypt(aes_cbc_ctx_t *c,
       unsigned char *data, 
-      unsigned int32_t *bytes_in_data)
+      uint32_t *bytes_in_data)
 {
 
    int32_t i;
@@ -273,7 +273,7 @@ aes_cbc_decrypt(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
            unsigned char *data, 
-           unsigned int32_t *bytes_in_data) {
+           uint32_t *bytes_in_data) {
   int32_t i;
   unsigned char *pad_start; 
   int32_t num_pad_bytes;
@@ -309,7 +309,7 @@ aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
 err_status_t
 aes_cbc_nist_decrypt(aes_cbc_ctx_t *c,
            unsigned char *data, 
-           unsigned int32_t *bytes_in_data) {
+           uint32_t *bytes_in_data) {
   unsigned char *pad_end;
   int32_t num_pad_bytes;
   err_status_t status;

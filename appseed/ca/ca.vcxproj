@@ -2137,9 +2137,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="collection\collection_numeric_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="collection\collection_collection_string_list.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="collection\collection_comparable_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -2173,6 +2170,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="collection\collection_string_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="collection\collection_string_list.cpp" />
     <ClCompile Include="collection\collection_string_sort_array.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>

@@ -813,8 +813,8 @@ retry:
                keeplive.keep(&Sess(papp));
                keeplive.keep(&Sys(papp));
             }
-            oprop("dw").get_value().set_type(var::type_ulong);
-            dw1 = oprop("dw").get_value().m_ul;
+            oprop("dw").get_value().set_type(var::type_uint32);
+            dw1 = oprop("dw");
             dw2 = ::get_tick_count();
 
             TRACE("intertime system::request time(%d) = %d, %d, %d\n", iIteration, dw1, dw2, dw2 - dw1);
@@ -842,7 +842,7 @@ retry:
 
             keeplive.keep_alive();
 
-            oprop("dw").get_value().m_ul = (unsigned long) ::get_tick_count();
+            oprop("dw") = ::get_tick_count();
 
 
             headers = psession->outheaders();

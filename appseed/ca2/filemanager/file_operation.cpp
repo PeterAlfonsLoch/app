@@ -285,8 +285,8 @@ bool file_operation::initialize()
          varLen = System.file().length(m_stra[i]);
          if(varLen.is_null())
             return false;
-         m_dSize += (unsigned int32_t) varLen;
-         m_daSize.add((double) (unsigned int32_t) varLen);
+         m_dSize += (uint32_t) varLen;
+         m_daSize.add((double) (uint32_t) varLen);
          m_daRead.add(0.0);
       }
    }

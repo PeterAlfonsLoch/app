@@ -18,7 +18,7 @@ namespace crypto
       virtual public ::radix::object
    {
    public:
-      virtual ex1::HRes CryptoGetTextPassword2(int32 *passwordIsDefined, string & password) = 0;
+      virtual ex1::HRes CryptoGetTextPassword2(int32_t *passwordIsDefined, string & password) = 0;
    };
 
 } // namespace crypto

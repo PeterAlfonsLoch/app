@@ -84,9 +84,9 @@ inline bool var::is_array() const
       return false;
    }
    else if(m_etype == type_string
-   || m_etype == type_integer
-   || m_etype == type_pinteger
-   || m_etype == type_ulong
+   || m_etype == type_int32
+   || m_etype == type_pint32
+   || m_etype == type_uint32
    || m_etype == type_bool
    || m_etype == type_double)
    {
@@ -133,7 +133,7 @@ inline id & id::operator = (const var & var)
 {
    if(var.is_integer())
    {
-      *this = var.get_integer();
+      *this = var.int32();
    }
    else
    {

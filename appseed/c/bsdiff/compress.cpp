@@ -70,7 +70,7 @@ void bsFinishWrite ( e_state* s )
 /*---------------------------------------------------*/
 static
 __inline__
-void bsW ( e_state* s, int32 n, uint32 v )
+void bsW ( e_state* s, int32_t n, uint32 v )
 {
    bsNEEDW ( n );
    s->bsBuff |= (v << (32 - s->bsLive - n));
@@ -105,7 +105,7 @@ void bsPutUChar ( e_state* s, UChar c )
 static
 void makeMaps_e ( e_state* s )
 {
-   int32 i;
+   int32_t i;
    s->nInUse = 0;
    for (i = 0; i < 256; i++)
       if (s->inUse[i]) {
@@ -120,10 +120,10 @@ static
 void generateMTFValues ( e_state* s )
 {
    UChar   yy[256];
-   int32   i, j;
-   int32   zPend;
-   int32   wr;
-   int32   EOB;
+   int32_t   i, j;
+   int32_t   zPend;
+   int32_t   wr;
+   int32_t   EOB;
 
    /* 
       After sorting (eg, here),
@@ -202,7 +202,7 @@ void generateMTFValues ( e_state* s )
                *ryy_j = rtmp2;
             };
             yy[0] = rtmp;
-            j = (int32) (ryy_j - &(yy[0]));
+            j = (int32_t) (ryy_j - &(yy[0]));
             mtfv[wr] = j+1; wr++; s->mtfFreq[j+1]++;
          }
 
@@ -238,23 +238,23 @@ void generateMTFValues ( e_state* s )
 static
 void sendMTFValues ( e_state* s )
 {
-   int32 v, t, i, j, gs, ge, totc, bt, bc, iter;
-   int32 nSelectors, alphaSize, minLen, maxLen, selCtr;
-   int32 nGroups, nBytes;
+   int32_t v, t, i, j, gs, ge, totc, bt, bc, iter;
+   int32_t nSelectors, alphaSize, minLen, maxLen, selCtr;
+   int32_t nGroups, nBytes;
 
    /*--
    UChar  len [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
    is a global since the decoder also needs it.
 
-   int32  code[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
-   int32  rfreq[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+   int32_t  code[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+   int32_t  rfreq[BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
    are also globals only used in this proc.
    Made global to keep stack frame size small.
    --*/
 
 
    UInt16 cost[BZ_N_GROUPS];
-   int32  fave[BZ_N_GROUPS];
+   int32_t  fave[BZ_N_GROUPS];
 
    UInt16* mtfv = s->mtfv;
 
@@ -278,7 +278,7 @@ void sendMTFValues ( e_state* s )
 
    /*--- Generate an initial set of coding tables ---*/
    { 
-      int32 nPart, remF, tFreq, aFreq;
+      int32_t nPart, remF, tFreq, aFreq;
 
       nPart = nGroups;
       remF  = s->nMTF;
@@ -529,7 +529,7 @@ void sendMTFValues ( e_state* s )
    nBytes = s->numZ;
 
    for (t = 0; t < nGroups; t++) {
-      int32 curr = s->len[t][0];
+      int32_t curr = s->len[t][0];
       bsW ( s, 5, curr );
       for (i = 0; i < alphaSize; i++) {
          while (curr < s->len[t][i]) { bsW(s,2,2); curr++; /* 10 */ };
@@ -556,7 +556,7 @@ void sendMTFValues ( e_state* s )
             UInt16 mtfv_i;
             UChar* s_len_sel_selCtr 
                = &(s->len[s->selector[selCtr]][0]);
-            int32* s_code_sel_selCtr
+            int32_t* s_code_sel_selCtr
                = &(s->code[s->selector[selCtr]][0]);
 
 #           define BZ_ITAH(nn)                      \

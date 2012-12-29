@@ -492,7 +492,7 @@ void dir::ls(stra_dup & stra, const char *psz)
 
    ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::IStorageItem ^ > ^ a = wait(folder->GetItemsAsync());
 
-   for(unsigned int32_t ui = 0; ui < a->Size; ui++)
+   for(uint32_t ui = 0; ui < a->Size; ui++)
    {
       stra.add(begin(a->GetAt(ui)->Path));
    }
@@ -556,7 +556,7 @@ void dir::ls_dir(stra_dup & stra, const char *psz)
 
    ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
-   for(unsigned int32_t ui = 0; ui < a->Size; ui++)
+   for(uint32_t ui = 0; ui < a->Size; ui++)
    {
       stra.add(begin(a->GetAt(ui)->Path));
    }

@@ -31,7 +31,7 @@
 typedef unsigned char u_char;
 
 #ifdef WINDOWS
-typedef signed int32_t ssize_t;
+typedef uint_ptr ssize_t;
 #endif
 
 int32_t err(int32_t i, const char* str)

@@ -553,10 +553,10 @@ namespace user
                      ptext->_001SetText(str);
                   }
                   break;
-               case var::type_integer:
+               case var::type_int32:
                   {
                      string str;
-                     str.Format("%d", var.m_i);
+                     str.Format("%d", var.int32());
                      ptext->_001SetText(str);
                   }
                   break;

@@ -12,10 +12,10 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 namespace gen
 {
 
-   //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
+   //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
-   CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
-   //CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+   //CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
 
    //extern CLASS_DECL_ca PFN_trace_v trace_v;
 
@@ -76,7 +76,7 @@ namespace gen
 
          operator DWORD() const throw();
 
-         unsigned int32_t      m_dwCategory;
+         uint32_t      m_dwCategory;
          string            m_strCategory;
          UINT              m_uiLevel;
          e_status          m_estatus;

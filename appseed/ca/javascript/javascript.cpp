@@ -1569,7 +1569,7 @@ CScriptVarLink *tinyjs::factor(bool &execute) {
     }
     if (l->tk==LEX_ID) {
         CScriptVarLink *a = execute ? findInScopes(l->tkStr) : new CScriptVarLink(new CScriptVar());
-        //printf("0x%08X for %s at %s\n", (unsigned int32_t)a, l->tkStr.c_str(), l->getPosition().c_str());
+        //printf("0x%08X for %s at %s\n", (uint32_t)a, l->tkStr.c_str(), l->getPosition().c_str());
         /* The parent if we're executing a method call */
         CScriptVar *parent = 0;
 
@@ -1826,7 +1826,7 @@ CScriptVarLink *tinyjs::shift(bool &execute) {
     if (execute) {
       if (op==LEX_LSHIFT) a->var->setInt(a->var->getInt() << shift);
       if (op==LEX_RSHIFT) a->var->setInt(a->var->getInt() >> shift);
-      if (op==LEX_RSHIFTUNSIGNED) a->var->setInt(((unsigned int32_t)a->var->getInt()) >> shift);
+      if (op==LEX_RSHIFTUNSIGNED) a->var->setInt(((uint32_t)a->var->getInt()) >> shift);
     }
   }
   return a;

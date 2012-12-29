@@ -25,7 +25,7 @@
 static
 void makeMaps_d ( DState* s )
 {
-   int32 i;
+   int32_t i;
    s->nInUse = 0;
    for (i = 0; i < 256; i++)
       if (s->inUse[i]) {
@@ -102,38 +102,38 @@ void makeMaps_d ( DState* s )
 
 
 /*---------------------------------------------------*/
-int32 BZ2_decompress ( DState* s )
+int32_t BZ2_decompress ( DState* s )
 {
    UChar      uc;
-   int32      retVal;
-   int32      minLen, maxLen;
+   int32_t      retVal;
+   int32_t      minLen, maxLen;
    bz_stream* strm = s->strm;
 
    /* stuff that needs to be saved/restored */
-   int32  i;
-   int32  j;
-   int32  t;
-   int32  alphaSize;
-   int32  nGroups;
-   int32  nSelectors;
-   int32  EOB;
-   int32  groupNo;
-   int32  groupPos;
-   int32  nextSym;
-   int32  nblockMAX;
-   int32  nblock;
-   int32  es;
-   int32  N;
-   int32  curr;
-   int32  zt;
-   int32  zn; 
-   int32  zvec;
-   int32  zj;
-   int32  gSel;
-   int32  gMinlen;
-   int32* gLimit;
-   int32* gBase;
-   int32* gPerm;
+   int32_t  i;
+   int32_t  j;
+   int32_t  t;
+   int32_t  alphaSize;
+   int32_t  nGroups;
+   int32_t  nSelectors;
+   int32_t  EOB;
+   int32_t  groupNo;
+   int32_t  groupPos;
+   int32_t  nextSym;
+   int32_t  nblockMAX;
+   int32_t  nblock;
+   int32_t  es;
+   int32_t  N;
+   int32_t  curr;
+   int32_t  zt;
+   int32_t  zn; 
+   int32_t  zvec;
+   int32_t  zj;
+   int32_t  gSel;
+   int32_t  gMinlen;
+   int32_t* gLimit;
+   int32_t* gBase;
+   int32_t* gPerm;
 
    if (s->state == BZ_X_MAGIC_1) {
       /*initialise the save area*/
@@ -214,7 +214,7 @@ int32 BZ2_decompress ( DState* s )
                    );
          if (s->ll16 == NULL || s->ll4 == NULL) RETURN(BZ_MEM_ERROR);
       } else {
-         s->tt  = (uint32_t *)BZALLOC( s->blockSize100k * 100000 * sizeof(int32) );
+         s->tt  = (uint32_t *)BZALLOC( s->blockSize100k * 100000 * sizeof(int32_t) );
          if (s->tt == NULL) RETURN(BZ_MEM_ERROR);
       }
 
@@ -251,11 +251,11 @@ int32 BZ2_decompress ( DState* s )
 
       s->origPtr = 0;
       GET_UCHAR(BZ_X_ORIGPTR_1, uc);
-      s->origPtr = (s->origPtr << 8) | ((int32)uc);
+      s->origPtr = (s->origPtr << 8) | ((int32_t)uc);
       GET_UCHAR(BZ_X_ORIGPTR_2, uc);
-      s->origPtr = (s->origPtr << 8) | ((int32)uc);
+      s->origPtr = (s->origPtr << 8) | ((int32_t)uc);
       GET_UCHAR(BZ_X_ORIGPTR_3, uc);
-      s->origPtr = (s->origPtr << 8) | ((int32)uc);
+      s->origPtr = (s->origPtr << 8) | ((int32_t)uc);
 
       if (s->origPtr < 0)
          RETURN(BZ_DATA_ERROR);
@@ -356,7 +356,7 @@ int32 BZ2_decompress ( DState* s )
 
       /*-- MTF init --*/
       {
-         int32 ii, jj, kk;
+         int32_t ii, jj, kk;
          kk = MTFA_SIZE-1;
          for (ii = 256 / MTFL_SIZE - 1; ii >= 0; ii--) {
             for (jj = MTFL_SIZE-1; jj >= 0; jj--) {
@@ -414,7 +414,7 @@ int32 BZ2_decompress ( DState* s )
 
             /*-- uc = MTF ( nextSym-1 ) --*/
             {
-               int32 ii, jj, kk, pp, lno, off;
+               int32_t ii, jj, kk, pp, lno, off;
                uint32 nn;
                nn = (uint32)(nextSym - 1);
 
@@ -423,7 +423,7 @@ int32 BZ2_decompress ( DState* s )
                   pp = s->mtfbase[0];
                   uc = s->mtfa[pp+nn];
                   while (nn > 3) {
-                     int32 z = pp+nn;
+                     int32_t z = pp+nn;
                      s->mtfa[(z)  ] = s->mtfa[(z)-1];
                      s->mtfa[(z)-1] = s->mtfa[(z)-2];
                      s->mtfa[(z)-2] = s->mtfa[(z)-3];
@@ -516,7 +516,7 @@ int32 BZ2_decompress ( DState* s )
          i = s->origPtr;
          j = GET_LL(i);
          do {
-            int32 tmp = GET_LL(j);
+            int32_t tmp = GET_LL(j);
             SET_LL(j, i);
             i = j;
             j = tmp;

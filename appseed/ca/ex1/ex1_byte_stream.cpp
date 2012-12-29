@@ -82,11 +82,11 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (unsigned int32_t & ui)
+   byte_input_stream & byte_input_stream::operator >> (uint32_t & ui)
    {
       uint64_t uiRead = read(&ui, sizeof(ui));
       if(uiRead != sizeof(ui))
-         throw "failed to read unsigned int32_t";
+         throw "failed to read uint32_t";
       return *this;
    }
 
@@ -392,7 +392,7 @@ namespace ex1
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (unsigned int32_t ui)
+   byte_output_stream & byte_output_stream::operator << (uint32_t ui)
    {
       write(&ui, sizeof(ui));
       return *this;

@@ -237,11 +237,11 @@ struct oc_fragment{
     For fragments completely inside or outside this region, this is -1.
     Note that the C standard requires an explicit signed keyword for bitfield
      types, since some compilers may treat them as unsigned without it.*/
-  signed int32_t borderi:5;
+  int32_t borderi:5;
   /*The prediction-corrected DC component.
     Note that the C standard requires an explicit signed keyword for bitfield
      types, since some compilers may treat them as unsigned without it.*/
-  signed int32_t dc:16;
+  int32_t dc:16;
 };
 
 

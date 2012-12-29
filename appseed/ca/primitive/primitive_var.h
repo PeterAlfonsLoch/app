@@ -46,9 +46,14 @@ public:
       type_empty_argument,
       type_string,
       type_pstring,
-      type_integer,
-      type_pinteger,
-      type_ulong,
+      type_int32,
+      type_pint32,
+      type_uint32,
+      type_puint32,
+      type_int64,
+      type_pint64,
+      type_uint64,
+      type_puint64,
       type_pvar,
       type_ca2,
       type_bool,
@@ -60,10 +65,6 @@ public:
       type_propset,
       type_prop,
       type_memory,
-      type_int64,
-      type_pint64,
-      type_uint64,
-      type_puint64,
       type_time,
       type_filetime,
       type_uint,
@@ -92,7 +93,7 @@ public:
    inline var(e_type etype);
    var(bool b);
    var(int32_t i);
-   var(unsigned int32_t ui);
+   var(uint32_t ui);
    var(long l);
    var(unsigned long ul);
    var(long long ll);
@@ -126,21 +127,21 @@ public:
    union
    {
       gen::para_return     m_parareturn;
-      int32_t                  m_i;
+      int32_t              m_i32;
+      uint32_t             m_ui32;
       int64_t              m_i64;
-      uint64_t     m_ui64;
-      int32_t *                m_pi;
+      uint64_t             m_ui64;
+      int32_t *            m_pi32;
+      uint32_t *           m_pui32;
       int64_t *            m_pi64;
-      uint64_t *   m_pui64;
+      uint64_t *           m_pui64;
       bool *               m_pb;
       string *             m_pstr;
-      unsigned long        m_ul;
       bool                 m_b;
       double               m_d;
       var *                m_pvar;
       __time64_t           m_time;
       FILETIME             m_filetime;
-      unsigned int32_t         m_ui;
       id *                 m_pid;
       int_array *          m_pia;
       stringa *            m_pstra;
@@ -160,7 +161,7 @@ public:
    string &                         get_ref_string(const char * pszOnNull = NULL);
    id                               get_id(const char * pszOnNull = NULL)   const;
    id &                             get_ref_id(const char * pszOnNull = NULL);
-   int32_t                              get_integer(int32_t iDefault = 0)  const;
+   int32_t                          int32(int32_t iDefault = 0)  const;
    unsigned long                    get_ulong()    const;
    double                           get_double()   const;
    bool                             get_bool()     const;
@@ -221,9 +222,10 @@ public:
    }
 
    operator int32_t() const;
-   operator int64_t() const;
-
+   operator LONG() const;
    operator uint32_t() const;
+   operator DWORD() const;
+   operator int64_t() const;
    operator uint64_t() const;
 
    //operator string & ();
@@ -245,6 +247,10 @@ public:
    var & operator = (bool * pb);
    var & operator = (int32_t i);
    var & operator = (int32_t * pi);
+   var & operator = (uint32_t ui);
+   var & operator = (uint32_t * pui);
+   var & operator = (DWORD ui);
+   var & operator = (LPDWORD pui);
    var & operator = (int64_t i);
    var & operator = (int64_t * pi);
    var & operator = (uint64_t i);
@@ -252,14 +258,6 @@ public:
    var & operator = (const ::datetime::time & time);
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
-#ifndef LINUX
-   var & operator = (long int32_t l);
-   var & operator = (unsigned long ul);
-#else
-   var & operator = (long long l);
-   var & operator = (unsigned long long l);
-#endif
-   var & operator = (unsigned int32_t ui);
    var & operator = (double d);
    var & operator = (string str);
    var & operator = (string * pstr);
@@ -409,80 +407,80 @@ public:
 
 
    var operator - (int32_t i) const;
-   var operator - (unsigned int32_t user) const;
+   var operator - (uint32_t user) const;
    var operator - (long i) const;
    var operator - (unsigned long user) const;
    var operator - (double d) const;
 
    friend var CLASS_DECL_ca operator - (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator - (unsigned int32_t user, const var & var);
+   friend var CLASS_DECL_ca operator - (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator - (long l, const var & var);
    friend var CLASS_DECL_ca operator - (unsigned long ul, const var & var);
    friend var CLASS_DECL_ca operator - (double d, const var & var);
    friend var CLASS_DECL_ca operator - (const var & var1, const var & var2);
 
    var operator + (int32_t i) const;
-   var operator + (unsigned int32_t user) const;
+   var operator + (uint32_t user) const;
    var operator + (long i) const;
    var operator + (unsigned long user) const;
    var operator + (double d) const;
 
    friend var CLASS_DECL_ca operator + (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator + (unsigned int32_t user, const var & var);
+   friend var CLASS_DECL_ca operator + (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator + (long l, const var & var);
    friend var CLASS_DECL_ca operator + (unsigned long ul, const var & var);
    friend var CLASS_DECL_ca operator + (double d, const var & var);
    friend var CLASS_DECL_ca operator + (const var & var1, const var & var2);
 
    var operator / (int32_t i) const;
-   var operator / (unsigned int32_t user) const;
+   var operator / (uint32_t user) const;
    var operator / (long i) const;
    var operator / (unsigned long user) const;
    var operator / (double d) const;
 
    friend var CLASS_DECL_ca operator / (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator / (unsigned int32_t user, const var & var);
+   friend var CLASS_DECL_ca operator / (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator / (long l, const var & var);
    friend var CLASS_DECL_ca operator / (unsigned long ul, const var & var);
    friend var CLASS_DECL_ca operator / (double d, const var & var);
    friend var CLASS_DECL_ca operator / (const var & var1, const var & var2);
 
    var operator * (int32_t i) const;
-   var operator * (unsigned int32_t user) const;
+   var operator * (uint32_t user) const;
    var operator * (long i) const;
    var operator * (unsigned long user) const;
    var operator * (double d) const;
 
    friend var CLASS_DECL_ca operator * (int32_t i, const var & var);
-   friend var CLASS_DECL_ca operator * (unsigned int32_t user, const var & var);
+   friend var CLASS_DECL_ca operator * (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator * (long l, const var & var);
    friend var CLASS_DECL_ca operator * (unsigned long ul, const var & var);
    friend var CLASS_DECL_ca operator * (double d, const var & var);
    friend var CLASS_DECL_ca operator * (const var & var1, const var & var2);
 
    var & operator -= (int32_t i);
-   var & operator -= (unsigned int32_t user);
+   var & operator -= (uint32_t user);
    var & operator -= (long i);
    var & operator -= (unsigned long user);
    var & operator -= (double d);
    var & operator -= (const var & var);
 
    var & operator += (int32_t i);
-   var & operator += (unsigned int32_t user);
+   var & operator += (uint32_t user);
    var & operator += (long i);
    var & operator += (unsigned long user);
    var & operator += (double d);
    var & operator += (const var & var);
 
    var & operator /= (int32_t i);
-   var & operator /= (unsigned int32_t user);
+   var & operator /= (uint32_t user);
    var & operator /= (long i);
    var & operator /= (unsigned long user);
    var & operator /= (double d);
    var & operator /= (const var & var);
 
    var & operator *= (int32_t i);
-   var & operator *= (unsigned int32_t user);
+   var & operator *= (uint32_t user);
    var & operator *= (long i);
    var & operator *= (unsigned long user);
    var & operator *= (double d);
@@ -576,6 +574,35 @@ inline string CLASS_DECL_ca operator+ (const var & var, const string & str)
    strResult += str;
 
    return strResult;
+}
+
+inline var::operator LONG () const
+{
+
+	return operator int32_t();
+
+}
+
+inline var::operator DWORD () const
+{
+
+	return operator uint32_t();
+
+}
+
+inline var & var::operator = (DWORD ui)
+{
+
+	return operator = ((uint32_t) ui);
+
+}
+ 
+
+inline var & var::operator = (LPDWORD pui)
+{
+
+	return operator = ((uint32_t *) pui);
+
 }
 
 

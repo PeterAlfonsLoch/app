@@ -38,7 +38,7 @@ public:
    id(uint_ptr ui);
 #if defined(_LP64) || defined(_AMD64_)
    id(int32_t i);
-   id(unsigned int32_t ui);
+   id(uint32_t ui);
 #endif
    id(const string & str);
    id(const string_interface & str);

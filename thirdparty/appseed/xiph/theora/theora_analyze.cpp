@@ -218,10 +218,10 @@ struct oc_fr_state{
   unsigned   b_coded_count_prev:8;
   unsigned   b_coded_count:8;
   unsigned   b_count:8;
-  signed int32_t sb_partial:2;
-  signed int32_t sb_full:2;
-  signed int32_t b_coded_prev:2;
-  signed int32_t b_coded:2;
+  int32_t sb_partial:2;
+  int32_t sb_full:2;
+  int32_t b_coded_prev:2;
+  int32_t b_coded:2;
 };
 
 
@@ -397,9 +397,9 @@ static int32_t oc_fr_cost4(const oc_fr_state *_pre,const oc_fr_state *_post){
 struct oc_qii_state{
   ptrdiff_t  bits;
   unsigned   qi01_count:14;
-  signed int32_t qi01:2;
+  int32_t qi01:2;
   unsigned   qi12_count:14;
-  signed int32_t qi12:2;
+  int32_t qi12:2;
 };
 
 

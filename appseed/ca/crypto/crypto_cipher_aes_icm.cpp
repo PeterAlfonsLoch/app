@@ -331,10 +331,10 @@ inline void aes_icm_advance(aes_icm_ctx_t *c) {
 
 err_status_t
 aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
-              unsigned char *buf, unsigned int32_t *enc_len, 
+              unsigned char *buf, uint32_t *enc_len, 
               int32_t forIsmacryp) {
-  unsigned int32_t bytes_to_encr = *enc_len;
-  unsigned int32_t i;
+  uint32_t bytes_to_encr = *enc_len;
+  uint32_t i;
   uint32_t *b;
 
   /* check that there's enough segment left but not for ismacryp*/
@@ -343,7 +343,7 @@ aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
 
  debug_print(mod_aes_icm, "block index: %d", 
            htons(c->counter.v16[7]));
-  if (bytes_to_encr <= (unsigned int32_t)c->bytes_in_buffer) {
+  if (bytes_to_encr <= (uint32_t)c->bytes_in_buffer) {
     
     /* deal with odd case of small bytes_to_encr */
     for (i = (sizeof(v128_t) - c->bytes_in_buffer);
@@ -438,13 +438,13 @@ aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
 }
 
 err_status_t
-aes_icm_encrypt(aes_icm_ctx_t *c, unsigned char *buf, unsigned int32_t *enc_len) {
+aes_icm_encrypt(aes_icm_ctx_t *c, unsigned char *buf, uint32_t *enc_len) {
   return aes_icm_encrypt_ismacryp(c, buf, enc_len, 0);
 }
 
 err_status_t
 aes_icm_output(aes_icm_ctx_t *c, uint8_t *buffer, int32_t num_octets_to_output) {
-  unsigned int32_t len = num_octets_to_output;
+  uint32_t len = num_octets_to_output;
   
   /* zeroize the buffer */
   octet_string_set_to_zero(buffer, num_octets_to_output);

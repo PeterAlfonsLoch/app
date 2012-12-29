@@ -55,14 +55,14 @@ extern "C" {
 typedef
    struct {
       char *next_in;
-      unsigned int32_t avail_in;
-      unsigned int32_t total_in_lo32;
-      unsigned int32_t total_in_hi32;
+      uint32_t avail_in;
+      uint32_t total_in_lo32;
+      uint32_t total_in_hi32;
 
       char *next_out;
-      unsigned int32_t avail_out;
-      unsigned int32_t total_out_lo32;
-      unsigned int32_t total_out_hi32;
+      uint32_t avail_out;
+      uint32_t total_out_lo32;
+      uint32_t total_out_hi32;
 
       void *state;
 
@@ -195,18 +195,18 @@ BZ_EXTERN void BZ_API(BZ2_bzWriteClose) (
       int32_t*          bzerror,
       BZFILE*       b,
       int32_t           abandon,
-      unsigned int32_t* nbytes_in,
-      unsigned int32_t* nbytes_out
+      uint32_t* nbytes_in,
+      uint32_t* nbytes_out
    );
 
 BZ_EXTERN void BZ_API(BZ2_bzWriteClose64) (
       int32_t*          bzerror,
       BZFILE*       b,
       int32_t           abandon,
-      unsigned int32_t* nbytes_in_lo32,
-      unsigned int32_t* nbytes_in_hi32,
-      unsigned int32_t* nbytes_out_lo32,
-      unsigned int32_t* nbytes_out_hi32
+      uint32_t* nbytes_in_lo32,
+      uint32_t* nbytes_in_hi32,
+      uint32_t* nbytes_out_lo32,
+      uint32_t* nbytes_out_hi32
    );
 #endif
 
@@ -215,9 +215,9 @@ BZ_EXTERN void BZ_API(BZ2_bzWriteClose64) (
 
 BZ_EXTERN int32_t BZ_API(BZ2_bzBuffToBuffCompress) (
       char*         dest,
-      unsigned int32_t* destLen,
+      uint32_t* destLen,
       char*         source,
-      unsigned int32_t  sourceLen,
+      uint32_t  sourceLen,
       int32_t           blockSize100k,
       int32_t           verbosity,
       int32_t           workFactor
@@ -225,9 +225,9 @@ BZ_EXTERN int32_t BZ_API(BZ2_bzBuffToBuffCompress) (
 
 BZ_EXTERN int32_t BZ_API(BZ2_bzBuffToBuffDecompress) (
       char*         dest,
-      unsigned int32_t* destLen,
+      uint32_t* destLen,
       char*         source,
-      unsigned int32_t  sourceLen,
+      uint32_t  sourceLen,
       int32_t           small,
       int32_t           verbosity
    );

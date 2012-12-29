@@ -82,7 +82,7 @@ namespace mail
          else
          {
             m_pdataset->first();
-            if(m_pdataset->FieldValueAt(0).get_integer() < 1)
+            if(m_pdataset->FieldValueAt(0).int32() < 1)
             {
                i++;
             }

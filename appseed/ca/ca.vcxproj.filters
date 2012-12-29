@@ -5170,9 +5170,6 @@
     <ClCompile Include="collection\collection_comparable_array.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
-    <ClCompile Include="collection\collection_collection_string_list.cpp">
-      <Filter>Source Files\collection</Filter>
-    </ClCompile>
     <ClCompile Include="collection\collection_class_sort_array.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
@@ -5484,6 +5481,9 @@
     </ClCompile>
     <ClCompile Include="ex1\ex1.cpp">
       <Filter>Source Files\ex1</Filter>
+    </ClCompile>
+    <ClCompile Include="collection\collection_string_list.cpp">
+      <Filter>Source Files\collection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

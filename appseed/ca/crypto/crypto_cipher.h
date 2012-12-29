@@ -99,18 +99,18 @@ typedef err_status_t (*cipher_set_segment_func_t)
 
 /* by ca2 camilost */
 typedef err_status_t (*cipher_crypt_func_t)
-     (void *state, uint8_t *buffer, unsigned int32_t *octets_to_encrypt);
+     (void *state, uint8_t *buffer, uint32_t *octets_to_encrypt);
 
 
 /* a cipher_encrypt_func_t encrypts data in-place */
 
 typedef err_status_t (*cipher_encrypt_func_t)
-     (void *state, uint8_t *buffer, unsigned int32_t *octets_to_encrypt);
+     (void *state, uint8_t *buffer, uint32_t *octets_to_encrypt);
 
 /* a cipher_decrypt_func_t decrypts data in-place */
 
 typedef err_status_t (*cipher_decrypt_func_t)
-     (void *state, uint8_t *buffer, unsigned int32_t *octets_to_decrypt);
+     (void *state, uint8_t *buffer, uint32_t *octets_to_decrypt);
 
 /* 
  * a cipher_set_nonce_seq_func_t function sets both the nonce

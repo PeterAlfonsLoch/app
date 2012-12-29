@@ -117,23 +117,23 @@ namespace compress
 
    static CNameToPropID g_NameToPropID[] =
    {
-      { NCoderPropID::kBlockSize, var::type_integer, "C" },
-      { NCoderPropID::kDictionarySize, var::type_integer, "D" },
-      { NCoderPropID::kUsedMemorySize, var::type_integer, "MEM" },
+      { NCoderPropID::kBlockSize, var::type_int32, "C" },
+      { NCoderPropID::kDictionarySize, var::type_int32, "D" },
+      { NCoderPropID::kUsedMemorySize, var::type_int32, "MEM" },
 
-      { NCoderPropID::kOrder, var::type_integer, "O" },
-      { NCoderPropID::kPosStateBits, var::type_integer, "PB" },
-      { NCoderPropID::kLitContextBits, var::type_integer, "LC" },
-      { NCoderPropID::kLitPosBits, var::type_integer, "LP" },
+      { NCoderPropID::kOrder, var::type_int32, "O" },
+      { NCoderPropID::kPosStateBits, var::type_int32, "PB" },
+      { NCoderPropID::kLitContextBits, var::type_int32, "LC" },
+      { NCoderPropID::kLitPosBits, var::type_int32, "LP" },
       { NCoderPropID::kEndMarker, var::type_bool, "eos" },
 
-      { NCoderPropID::kNumPasses, var::type_integer, "Pass" },
-      { NCoderPropID::kNumFastBytes, var::type_integer, "fb" },
-      { NCoderPropID::kMatchFinderCycles, var::type_integer, "mc" },
-      { NCoderPropID::kAlgorithm, var::type_integer, "a" },
+      { NCoderPropID::kNumPasses, var::type_int32, "Pass" },
+      { NCoderPropID::kNumFastBytes, var::type_int32, "fb" },
+      { NCoderPropID::kMatchFinderCycles, var::type_int32, "mc" },
+      { NCoderPropID::kAlgorithm, var::type_int32, "a" },
       { NCoderPropID::kMatchFinder, var::type_string, "mf" },
-      { NCoderPropID::kNumThreads, var::type_integer, "mt" },
-      { NCoderPropID::kDefaultProp, var::type_integer, "" }
+      { NCoderPropID::kNumThreads, var::type_int32, "mt" },
+      { NCoderPropID::kDefaultProp, var::type_int32, "" }
    };
 
    static bool ConvertProperty(var srcProp, var::e_type varType, var &destProp)
@@ -146,7 +146,7 @@ namespace compress
       throw "should implement below";
       /*if (varType == VT_UI1)
       {
-         if (srcProp.vt == var::type_integer)
+         if (srcProp.vt == var::type_int32)
          {
             uint32 value = srcProp.ulVal;
             if (value > 0xFF)

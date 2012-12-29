@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_c void srand_dup(unsigned int32_t seed);
+CLASS_DECL_c void srand_dup(uint32_t seed);
 CLASS_DECL_c int32_t  rand_dup();
 
 CLASS_DECL_c int32_t abs_dup(int32_t i);

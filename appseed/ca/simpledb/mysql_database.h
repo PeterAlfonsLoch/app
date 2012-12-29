@@ -43,7 +43,7 @@ namespace mysql
          const char * pszDatabase,
          int32_t iPort = 0,
          const char * pszSocketName = NULL,
-         unsigned int32_t uiFlags = 0);
+         uint32_t uiFlags = 0);
 
       bool close();
 

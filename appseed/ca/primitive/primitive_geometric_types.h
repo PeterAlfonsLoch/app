@@ -5,14 +5,14 @@
 #include <intsafe.h>
 #else
 #ifndef LODWORD
-#define LODWORD(l)           ((unsigned int32_t)(((uint64_t)(l)) & 0xffffffff))
+#define LODWORD(l)           ((uint32_t)(((uint64_t)(l)) & 0xffffffff))
 #endif
 #ifndef HIDWORD
-#define HIDWORD(l)           ((unsigned int32_t)((((uint64_t)(l)) >> 32) & 0xffffffff))
+#define HIDWORD(l)           ((uint32_t)((((uint64_t)(l)) >> 32) & 0xffffffff))
 #endif
 #endif
 
-#define MAKELONG64(a, b)      (((uint64_t)(((unsigned int32_t)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((unsigned int32_t)(((uint64_t)(b)) & 0xffffffff))) << 32)))
+#define MAKELONG64(a, b)      (((uint64_t)(((uint32_t)(((uint64_t)(a)) & 0xffffffff)) | ((uint64_t)((uint32_t)(((uint64_t)(b)) & 0xffffffff))) << 32)))
 
 #ifndef GET_X_LPARAM
 #define GET_X_LPARAM(lp)                        ((int32_t)(short)LOWORD(lp))
@@ -50,7 +50,7 @@ typedef unsigned char      byte;
 typedef unsigned short     word;
 //typedef unsigned long      dword;
 typedef __uint64_t         qword;
-typedef unsigned int32_t       uint;
+typedef uint32_t       uint;
 typedef dword_ptr          dwordptr;
 
 class __size64;

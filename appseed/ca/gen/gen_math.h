@@ -51,8 +51,8 @@ namespace gen
             double dValueMax);
          double GetPi();
 
-         static bool IsPowerOfTwo(unsigned int32_t uiValue);
-         static unsigned int32_t ReverseBits (unsigned index, unsigned NumBits );
+         static bool IsPowerOfTwo(uint32_t uiValue);
+         static uint32_t ReverseBits (unsigned index, unsigned NumBits );
       //   template <class N> static inline void MaxClip(N * pnClipValue, N nMaxValue);
       //   template <class N> static inline void MinClip(N * pnClipValue, N nMinValue);
          static inline void MaxClip(double * pnClipValue, double nMaxValue);

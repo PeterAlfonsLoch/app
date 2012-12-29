@@ -27,7 +27,7 @@ namespace mysql
       const char * pszDatabase,
       int32_t iPort,
       const char * pszSocketName,
-      unsigned int32_t uiFlags)
+      uint32_t uiFlags)
    {
       /* initialize connection handler */
       m_pmysql = mysql_init (NULL);

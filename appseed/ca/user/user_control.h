@@ -173,7 +173,7 @@ namespace user
       };
 
 #ifdef WINDOWSEX
-      static const unsigned int32_t  g_uiMessage;
+      static const uint32_t  g_uiMessage;
 #endif
       index                      m_iHover;
       e_element                  m_eelementHover;

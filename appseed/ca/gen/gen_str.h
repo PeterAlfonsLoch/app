@@ -149,7 +149,7 @@ namespace gen
 
       CLASS_DECL_ca  int_ptr        to_int_ptr(const char * psz);
       CLASS_DECL_ca  int32_t            to_int(const char * psz);
-      CLASS_DECL_ca  unsigned int32_t   to_uint(const char * psz);
+      CLASS_DECL_ca  uint32_t   to_uint(const char * psz);
 
 
 /** C++ Sockets Library \file Utility.cpp
@@ -183,7 +183,7 @@ namespace gen
       inline CLASS_DECL_ca string  from(long l);
 #endif
       inline CLASS_DECL_ca string  from(int64_t i);
-      inline CLASS_DECL_ca string  from(unsigned int32_t ui);
+      inline CLASS_DECL_ca string  from(uint32_t ui);
       inline CLASS_DECL_ca string  from(unsigned long ui);
       inline CLASS_DECL_ca string  from(uint64_t ui);
       inline CLASS_DECL_ca string  from(const var & var);
@@ -195,7 +195,7 @@ namespace gen
       CLASS_DECL_ca  string &       from(string & str, int32_t i);
       CLASS_DECL_ca  string &       from(string & str, long l);
       CLASS_DECL_ca  string &       from(string & str, long long ll);
-      CLASS_DECL_ca  string &       from(string & str, unsigned int32_t ui);
+      CLASS_DECL_ca  string &       from(string & str, uint32_t ui);
       CLASS_DECL_ca  string &       from(string & str, unsigned long ui);
       CLASS_DECL_ca  string &       from(string & str, unsigned long long ui);
       inline CLASS_DECL_ca string & from(string & str, const var & var);
@@ -261,7 +261,7 @@ namespace gen
 
       void format(string_format * pformat, int32_t const &  i);
 
-      void format(string_format * pformat, unsigned int32_t const &  i);
+      void format(string_format * pformat, uint32_t const &  i);
 
       void format(string_format * pformat, long const & i);
 

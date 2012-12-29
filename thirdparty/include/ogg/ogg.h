@@ -17,6 +17,8 @@
 #ifndef _OGG_H
 #define _OGG_H
 
+#include "c/c/c.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif

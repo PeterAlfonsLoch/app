@@ -10,7 +10,7 @@ namespace gen
 
 
       CLASS_DECL_ca int64_t         to_int64(const char * lpcsz);
-      CLASS_DECL_ca unsigned int32_t    to_uint(const string & str);
+      CLASS_DECL_ca uint32_t    to_uint(const string & str);
 
       CLASS_DECL_ca int64_t         from_char(const char * pszUtf8Char);
 

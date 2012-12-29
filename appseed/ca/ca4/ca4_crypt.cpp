@@ -4,8 +4,8 @@
 #include <openssl/md5.h>
 #endif
 
-#define V5_FINAL_HASH_BYTES (DIGESTBYTES * 16)
-#define V5_SALT_BYTES (V5_FINAL_HASH_BYTES - DIGESTBYTES)
+#define CA4_CRYPT_V5_FINAL_HASH_BYTES (NESSIE_DIGESTBYTES * 16)
+#define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES)
 
 
 namespace ca4
@@ -684,7 +684,7 @@ namespace ca4
    {
       string strSalt;
       string strFormat;
-      for(int32_t i = 0; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i+=2)
+      for(int32_t i = 0; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i+=2)
       {
          int64_t iDigit = System.math().RandRange(0, 255);
          strFormat.Format("%02x", iDigit);
@@ -699,8 +699,8 @@ namespace ca4
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
-      strSalt = strSalt.Left(V5_SALT_BYTES);
-      for(int32_t i = iOrder; i < V5_FINAL_HASH_BYTES - DIGESTBYTES; i++)
+      strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
+      for(int32_t i = iOrder; i < CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
          strHash = nessie(strStepSalt + strHash);
@@ -712,7 +712,7 @@ namespace ca4
    {
       string strHash(pszPassword);
       string strSalt(pszSalt);
-      strSalt = strSalt.Left(V5_SALT_BYTES);
+      strSalt = strSalt.Left(CA4_CRYPT_V5_SALT_BYTES);
       for(int32_t i = 0; i < iMaxOrder; i++)
       {
          string strStepSalt = strSalt.Mid(i) + strSalt.Left(i);
@@ -724,7 +724,7 @@ namespace ca4
    bool crypt::v5_compare_password(const char * pszPassword, const char * pszHash, int32_t iOrder)
    {
       string strHash(pszHash);
-      string strSalt = strHash.Left(V5_SALT_BYTES);
+      string strSalt = strHash.Left(CA4_CRYPT_V5_SALT_BYTES);
       return strHash == v5_get_password_hash(strSalt, pszPassword, iOrder);
    }
 

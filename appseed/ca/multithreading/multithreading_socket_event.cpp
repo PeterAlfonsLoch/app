@@ -4,7 +4,7 @@
 ///  \brief		constructor with passed socket handle and read state
 ///  \param		socket socket handle (default: -1)
 ///  \param		read true if socket should be ready to read (default: true)
-socket_event::socket_event(::ca::application * papp, unsigned int32_t socket, bool read) :
+socket_event::socket_event(::ca::application * papp, uint32_t socket, bool read) :
    ca(papp),
 	event(papp, false, true),
 	m_bRead(read),
@@ -31,7 +31,7 @@ void socket_event::set_active(bool active)
 
 ///  \brief		socket handle setter
 ///  \param		socket socket handle
-void socket_event::SetSocketHandle(unsigned int32_t socket)
+void socket_event::SetSocketHandle(uint32_t socket)
 {
    m_iSocket = socket;
 }

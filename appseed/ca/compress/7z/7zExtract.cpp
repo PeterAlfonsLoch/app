@@ -45,7 +45,7 @@ namespace n7z
    };
 
    ex1::HRes handler::Extract(const uint32 *indices, uint32 numItems,
-       int32 testModeSpec, ::compress::archive_extract_callback_interface *extractCallbackSpec)
+       int32_t testModeSpec, ::compress::archive_extract_callback_interface *extractCallbackSpec)
    {
      bool testMode = (testModeSpec != 0);
      ::ca::smart_pointer < ::compress::archive_extract_callback_interface > extractCallback = extractCallbackSpec;

@@ -220,7 +220,7 @@ namespace gen
          return str;
       }
 
-      inline CLASS_DECL_ca  string  from(unsigned int32_t ui)
+      inline CLASS_DECL_ca  string  from(uint32_t ui)
       {
          string str;
          from(str, ui);

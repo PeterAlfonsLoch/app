@@ -344,7 +344,7 @@ namespace sockets
 
    void tcp_socket::OnResolved(int32_t id,in_addr & a,port_t port)
    {
-      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, *(unsigned int32_t*) &a, port);
+      TRACE("tcp_socket::OnResolved id %d addr %x port %d\n", id, *(uint32_t*) &a, port);
       if (id == m_resolver_id)
       {
          if (ISNT_ZERO(a) && port)
@@ -1204,7 +1204,7 @@ namespace sockets
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
          if (context.get_length())
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (unsigned int32_t)context.get_length());
+            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (uint32_t)context.get_length());
          else
             SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *)"--is_empty--", 9);
       }
@@ -1243,7 +1243,7 @@ namespace sockets
          SSL_CTX_set_mode(m_ssl_ctx, SSL_MODE_AUTO_RETRY);
          // session id
          if (context.get_length())
-            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (unsigned int32_t)context.get_length());
+            SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *) (const  char *)context, (uint32_t)context.get_length());
          else
             SSL_CTX_set_session_id_context(m_ssl_ctx, (const unsigned char *)"--is_empty--", 9);
       }

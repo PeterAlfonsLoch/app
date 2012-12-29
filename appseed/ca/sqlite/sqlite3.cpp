@@ -6251,21 +6251,21 @@ namespace sqlite
 # ifdef HAVE_UINT32_T
 #  define UINT32_TYPE uint32_t
 # else
-#  define UINT32_TYPE unsigned int32_t
+#  define UINT32_TYPE uint32_t
 # endif
 #endif
 #ifndef UINT16_TYPE
 # ifdef HAVE_UINT16_T
 #  define UINT16_TYPE uint16_t
 # else
-#  define UINT16_TYPE unsigned short int32_t
+#  define UINT16_TYPE uint16_t
 # endif
 #endif
 #ifndef INT16_TYPE
 # ifdef HAVE_INT16_T
 #  define INT16_TYPE int16_t
 # else
-#  define INT16_TYPE short int32_t
+#  define INT16_TYPE int16_t
 # endif
 #endif
 #ifndef UINT8_TYPE
@@ -6993,7 +6993,7 @@ namespace sqlite
    ** The type used to represent a page number.  The first page in a file
    ** is called page 1.  0 is used to represent "not a page".
    */
-   typedef unsigned int32_t Pgno;
+   typedef uint32_t Pgno;
 
    /*
    ** Each open file is managed by a separate instance of the "Pager" structure.
@@ -7312,7 +7312,7 @@ namespace sqlite
 #ifndef SQLITE_TEST
 #define PENDING_BYTE      0x40000000  /* First byte past the 1GB boundary */
 #else
-   SQLITE_API extern unsigned int32_t sqlite3_pending_byte;
+   SQLITE_API extern uint32_t sqlite3_pending_byte;
 #define PENDING_BYTE sqlite3_pending_byte
 #endif
 
@@ -12047,7 +12047,7 @@ zulu_time:
 #ifndef SQLITE_POW2_LOGMAX
 # define SQLITE_POW2_LOGMAX 18
 #endif
-#define POW2_MAX (((unsigned int32_t)1)<<SQLITE_POW2_LOGMAX)
+#define POW2_MAX (((uint32_t)1)<<SQLITE_POW2_LOGMAX)
 
    /*
    ** Number of distinct allocation sizes.
@@ -14041,14 +14041,14 @@ zulu_time:
             switch( xtype ){
             case etPOINTER:
                flag_longlong = sizeof(char*)==sizeof(i64);
-               flag_long = sizeof(char*)==sizeof(long int32_t);
+               flag_long = sizeof(char*)==sizeof(long int);
                /* Fall through into the next case */
             case etORDINAL:
             case etRADIX:
                if( infop->flags & FLAG_SIGNED ){
                   i64 v;
                   if( flag_longlong )   v = va_arg(ap,i64);
-                  else if( flag_long )  v = va_arg(ap,long int32_t);
+                  else if( flag_long )  v = va_arg(ap,long int);
                   else                  v = va_arg(ap,int32_t);
                   if( v<0 ){
                      longvalue = -v;
@@ -14061,8 +14061,8 @@ zulu_time:
                   }
                }else{
                   if( flag_longlong )   longvalue = va_arg(ap,u64);
-                  else if( flag_long )  longvalue = va_arg(ap,unsigned long int32_t);
-                  else                  longvalue = va_arg(ap,unsigned int32_t);
+                  else if( flag_long )  longvalue = va_arg(ap,unsigned long int);
+                  else                  longvalue = va_arg(ap,uint32_t);
                   prefix = 0;
                }
                if( longvalue==0 ) flag_alternateform = 0;
@@ -15302,7 +15302,7 @@ zulu_time:
       unsigned char *zIn;                   /* Input iterator */
       unsigned char *zTerm;                 /* End of input */
       unsigned char *z;                     /* Output iterator */
-      unsigned int32_t c;
+      uint32_t c;
 
       assert( pMem->db==0 || sqlite3_mutex_held(pMem->db->mutex) );
       assert( pMem->flags&MEM_Str );
@@ -15551,7 +15551,7 @@ translate_out:
    ** in pZ (or up until the first pair of 0x00 bytes, whichever comes first).
    */
    SQLITE_PRIVATE int32_t sqlite3Utf16ByteLen(const void *zIn, int32_t nChar){
-      unsigned int32_t c = 1;
+      uint32_t c = 1;
       char const *z = (const char *) zIn;
       int32_t n = 0;
       if( SQLITE_UTF16NATIVE==SQLITE_UTF16BE ){
@@ -15584,12 +15584,12 @@ translate_out:
    ** characters in each encoding are inverses of each other.
    */
    SQLITE_PRIVATE void sqlite3UtfSelfTest(){
-      unsigned int32_t i, t;
+      uint32_t i, t;
       unsigned char zBuf[20];
       unsigned char *z;
       unsigned char *zTerm;
       int32_t n;
-      unsigned int32_t c;
+      uint32_t c;
 
       for(i=0; i<0x00110000; i++){
          z = zBuf;
@@ -17026,7 +17026,7 @@ translate_out:
    * pending-byte in the database spfile->
    */
 #ifdef SQLITE_TEST
-   SQLITE_API unsigned int32_t sqlite3_pending_byte = 0x40000000;
+   SQLITE_API uint32_t sqlite3_pending_byte = 0x40000000;
 #endif
 
 #ifdef SQLITE_DEBUG
@@ -17063,7 +17063,7 @@ translate_out:
       return x;
    }
    static unsigned long long int32_t g_start;
-   static unsigned int32_t elapse;
+   static uint32_t elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
 #define TIMER_ELAPSED     elapse
@@ -18197,7 +18197,7 @@ translate_out:
    * pending-byte in the database spfile->
    */
 #ifdef SQLITE_TEST
-   SQLITE_API unsigned int32_t sqlite3_pending_byte = 0x40000000;
+   SQLITE_API uint32_t sqlite3_pending_byte = 0x40000000;
 #endif
 
 #ifdef SQLITE_DEBUG
@@ -18234,7 +18234,7 @@ translate_out:
       return x;
    }
    static unsigned long long int32_t g_start;
-   static unsigned int32_t elapse;
+   static uint32_t elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
 #define TIMER_ELAPSED     elapse
@@ -21060,7 +21060,7 @@ afp_end_lock:
    * pending-byte in the database spfile->
    */
 #ifdef SQLITE_TEST
-   SQLITE_API unsigned int32_t sqlite3_pending_byte = 0x40000000;
+   SQLITE_API uint32_t sqlite3_pending_byte = 0x40000000;
 #endif
 
 #ifdef SQLITE_DEBUG
@@ -21097,7 +21097,7 @@ afp_end_lock:
       return x;
    }
    static unsigned long long int32_t g_start;
-   static unsigned int32_t elapse;
+   static uint32_t elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
 #define TIMER_ELAPSED     elapse
@@ -23163,7 +23163,7 @@ afp_end_lock:
       u8 needSync;                   /* Sync journal before writing this page */
       u8 alwaysRollback;             /* Disable DontRollback() for this page */
       u8 needRead;                   /* Read content if PagerWrite() is called */
-      short int32_t nRef;                /* Number of users of this page */
+      int16_t nRef;                /* Number of users of this page */
       PgHdr *pDirty, *pPrevDirty;    /* Dirty pages */
 #ifdef SQLITE_ENABLE_MEMORY_MANAGEMENT
       PagerLruLink gfree;            /* Global list of nRef==0 pages */
@@ -23787,7 +23787,7 @@ afp_end_lock:
       u32 len;
       i64 szJ;
       u32 cksum;
-      unsigned int32_t ui;
+      uint32_t ui;
       unsigned char aMagic[8]; /* A buffer to hold the magic header */
 
       zMaster[0] = '\0';
@@ -24632,7 +24632,7 @@ delmaster_out:
       sqlite3_vfs *pVfs = pPager->pVfs;
       i64 szJ;                 /* Size of the journal file in bytes */
       u32 nRec;                /* Number of Records in the journal */
-      unsigned int32_t ui;                   /* Loop counter */
+      uint32_t ui;                   /* Loop counter */
       Pgno mxPg = 0;           /* Size of the original file in pages */
       int32_t rc;                  /* Result code of a subroutine */
       char *zMaster = 0;       /* Name of master journal file if any */
@@ -42417,7 +42417,7 @@ arithmetic_result_is_null:
                   u32 *aOffset;      /* aOffset[i] is offset to start of data for i-th column */
                   u32 nField;        /* number of fields in the record */
                   int32_t len;           /* The length of the serialized data for the column */
-                  unsigned int32_t ui;             /* Loop counter */
+                  uint32_t ui;             /* Loop counter */
                   char *zData;       /* Part of the record being decoded */
                   Mem *pDest;        /* Where to write the extracted value */
                   Mem sMem;          /* For storing the record being decoded */
@@ -49966,7 +49966,7 @@ exit_begin_add_column:
       analysisInfo *pInfo = (analysisInfo*)pData;
       Index *pIndex;
       int32_t i, c;
-      unsigned int32_t v;
+      uint32_t v;
       const char *z;
 
       assert( argc==2 );
@@ -67312,7 +67312,7 @@ end_of_vacuum:
          addModuleArgument(db, pTable, sqlite3NameFromToken(db, pModuleName));
          addModuleArgument(db, pTable, sqlite3DbStrDup(db, db->aDb[iDb].zName));
          addModuleArgument(db, pTable, sqlite3DbStrDup(db, pTable->zName));
-         pParse->sNameToken.n = (unsigned int32_t) (pModuleName->z + pModuleName->n - pName1->z);
+         pParse->sNameToken.n = (uint32_t) (pModuleName->z + pModuleName->n - pName1->z);
 
 #ifndef SQLITE_OMIT_AUTHORIZATION
          /* Creating a virtual table invokes the authorization callback twice.
@@ -67377,7 +67377,7 @@ end_of_vacuum:
 
          /* Compute the complete text of the CREATE VIRTUAL TABLE statement */
          if( pEnd ){
-            pParse->sNameToken.n = (unsigned int32_t) (pEnd->z - pParse->sNameToken.z + pEnd->n);
+            pParse->sNameToken.n = (uint32_t) (pEnd->z - pParse->sNameToken.z + pEnd->n);
          }
          zStmt = sqlite3MPrintf(db, "CREATE VIRTUAL TABLE %T", &pParse->sNameToken);
 
@@ -67452,7 +67452,7 @@ end_of_vacuum:
          pArg->n = p->n;
       }else{
          assert(pArg->z < p->z);
-         pArg->n = (unsigned int32_t) (p->z + p->n - pArg->z);
+         pArg->n = (uint32_t) (p->z + p->n - pArg->z);
       }
    }
 
@@ -70888,7 +70888,7 @@ whereBeginNoMem:
    */
 #define YYCODETYPE unsigned char
 #define YYNOCODE 248
-#define YYACTIONTYPE unsigned short int32_t
+#define YYACTIONTYPE uint16_t
 #define YYWILDCARD 59
 #define sqlite3ParserTOKENTYPE Token
    typedef union {
@@ -72783,7 +72783,7 @@ whereBeginNoMem:
          case 30: /* column ::= columnid type carglist */
             {
                yygotominor.yy410.z = yymsp[-2].minor.yy410.z;
-               yygotominor.yy410.n = (unsigned int32_t) ((pParse->sLastToken.z-yymsp[-2].minor.yy410.z) + pParse->sLastToken.n);
+               yygotominor.yy410.n = (uint32_t) ((pParse->sLastToken.z-yymsp[-2].minor.yy410.z) + pParse->sLastToken.n);
             }
             break;
          case 31: /* columnid ::= nm */
@@ -72819,17 +72819,17 @@ whereBeginNoMem:
          case 40: /* typetoken ::= typename LP signed RP */
             {
                yygotominor.yy410.z = yymsp[-3].minor.yy410.z;
-               yygotominor.yy410.n = (unsigned int32_t) (&yymsp[0].minor.yy0.z[yymsp[0].minor.yy0.n] - yymsp[-3].minor.yy410.z);
+               yygotominor.yy410.n = (uint32_t) (&yymsp[0].minor.yy0.z[yymsp[0].minor.yy0.n] - yymsp[-3].minor.yy410.z);
             }
             break;
          case 41: /* typetoken ::= typename LP signed COMMA signed RP */
             {
                yygotominor.yy410.z = yymsp[-5].minor.yy410.z;
-               yygotominor.yy410.n =(unsigned int32_t) ( &yymsp[0].minor.yy0.z[yymsp[0].minor.yy0.n] - yymsp[-5].minor.yy410.z);
+               yygotominor.yy410.n =(uint32_t) ( &yymsp[0].minor.yy0.z[yymsp[0].minor.yy0.n] - yymsp[-5].minor.yy410.z);
             }
             break;
          case 43: /* typename ::= typename ids */
-            {yygotominor.yy410.z=yymsp[-1].minor.yy410.z; yygotominor.yy410.n=(unsigned int32_t) (yymsp[0].minor.yy410.n+(yymsp[0].minor.yy410.z-yymsp[-1].minor.yy410.z));}
+            {yygotominor.yy410.z=yymsp[-1].minor.yy410.z; yygotominor.yy410.n=(uint32_t) (yymsp[0].minor.yy410.n+(yymsp[0].minor.yy410.z-yymsp[-1].minor.yy410.z));}
             break;
          case 50: /* ccons ::= DEFAULT term */
          case 52: /* ccons ::= DEFAULT PLUS term */
@@ -73496,7 +73496,7 @@ whereBeginNoMem:
             {
                Token all;
                all.z = yymsp[-3].minor.yy410.z;
-               all.n = (unsigned int32_t) ((yymsp[0].minor.yy0.z - yymsp[-3].minor.yy410.z) + yymsp[0].minor.yy0.n);
+               all.n = (uint32_t) ((yymsp[0].minor.yy0.z - yymsp[-3].minor.yy410.z) + yymsp[0].minor.yy0.n);
                sqlite3FinishTrigger(pParse, yymsp[-1].minor.yy243, &all);
             }
             break;
@@ -74012,7 +74012,7 @@ whereBeginNoMem:
          2,   4,   4,   4,   4,   4,   2,   2,   4,   6,   2,   3,   6,
          5,   8,   5,   5,   8,   3,   5,   5,   6,   4,   9,   3,
       };
-      static const unsigned short int32_t aOffset[116] = {
+      static const uint16_t aOffset[116] = {
          0,   2,   2,   6,  10,  13,  18,  23,  25,  26,  31,  33,  37,
          40,  47,  55,  58,  61,  63,  65,  70,  71,  76,  85,  86,  91,
          95,  99, 102, 107, 113, 123, 126, 131, 136, 141, 144, 148, 148,
@@ -78411,9 +78411,9 @@ error_out:
    ** function.
    */
    typedef struct QueryTerm {
-      short int32_t nPhrase; /* How many following terms are part of the same phrase */
-      short int32_t iPhrase; /* This is the i-th term of a phrase. */
-      short int32_t iColumn; /* Column of the index that must match this term */
+      int16_t nPhrase; /* How many following terms are part of the same phrase */
+      int16_t iPhrase; /* This is the i-th term of a phrase. */
+      int16_t iColumn; /* Column of the index that must match this term */
       signed char nNear; /* term followed by a NEAR operator with span=(nNear-1) */
       signed char isOr;  /* this term is preceded by "OR" */
       signed char isNot; /* this term is preceded by "-" */
@@ -78471,10 +78471,10 @@ error_out:
       int32_t nAlloc;     /* Space allocated for aMatch[] */
       struct snippetMatch { /* One entry for each matching term */
          char snStatus;       /* Status flag for use while constructing snippets */
-         short int32_t iCol;      /* The column that contains the match */
-         short int32_t iTerm;     /* The index in Query.pTerms[] of the matching term */
+         int16_t iCol;      /* The column that contains the match */
+         int16_t iTerm;     /* The index in Query.pTerms[] of the matching term */
          int32_t iToken;          /* The index of the matching document token */
-         short int32_t nByte;     /* Number of bytes in the term */
+         int16_t nByte;     /* Number of bytes in the term */
          int32_t iStart;          /* The offset to the first character of the term */
       } *aMatch;      /* Points to space obtained from ca2_alloc */
       char *zOffset;  /* Text rendering of aMatch[] */
@@ -79138,7 +79138,7 @@ error_out:
    */
    typedef struct FtsToken {
       const char *z;       /* Pointer to token text.  Not '\000' terminated */
-      short int32_t n;         /* Length of the token text in bytes. */
+      int16_t n;         /* Length of the token text in bytes. */
    } FtsToken;
 
    /*
@@ -79756,14 +79756,14 @@ out:
          int32_t nTerm;                           /* Number of query string terms */
          int32_t i, j;                            /* Loop counters */
          int32_t rc;                              /* Return code */
-         unsigned int32_t match, prevMatch;       /* Phrase search bitmasks */
+         uint32_t match, prevMatch;       /* Phrase search bitmasks */
          const char *zToken;                  /* Next token from the tokenizer */
          int32_t nToken;                          /* Size of zToken */
          int32_t iBegin, iEnd, iPos;              /* Offsets of beginning and end */
 
          /* The following variables keep a circular buffer of the last
          ** few tokens */
-         unsigned int32_t iRotor = 0;             /* Index of current token */
+         uint32_t iRotor = 0;             /* Index of current token */
          int32_t iRotorBegin[FTS3_ROTOR_SZ];      /* Beginning offset of token */
          int32_t iRotorLen[FTS3_ROTOR_SZ];        /* Length of token */
 

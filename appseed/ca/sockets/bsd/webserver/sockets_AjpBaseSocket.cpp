@@ -145,8 +145,8 @@ namespace sockets
                   return; // read more
                }
                int32_t p = 0;
-               short id = get_integer(m_message, p);
-               short length = get_integer(m_message, p);
+               short id = int32(m_message, p);
+               short length = int32(m_message, p);
                OnHeader(id, length);
                m_state = 1;
                m_length = length;
@@ -190,7 +190,7 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   short AjpBaseSocket::get_integer(const char *buf, int32_t& ptr)
+   short AjpBaseSocket::int32(const char *buf, int32_t& ptr)
    {
       short n;
       memcpy(&n, buf + ptr, 2);
@@ -202,7 +202,7 @@ namespace sockets
    // ---------------------------------------------------------------------------
    string AjpBaseSocket::get_string(const char *buf, int32_t& ptr)
    {
-      short len = get_integer(buf, ptr);
+      short len = int32(buf, ptr);
       if (len != -1)
       {
          string tmp = buf + ptr;

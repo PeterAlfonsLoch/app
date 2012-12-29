@@ -26,8 +26,8 @@ namespace gen
 
    namespace trace
    {
-      typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args);
+      typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
+      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
       CLASS_DECL_ca PFN_trace_v trace_v = &raw_trace_v;
 
       /*   category::category( const char * pszCategoryName, UINT nStartingLevel ) throw() :
@@ -47,7 +47,7 @@ namespace gen
          CHAR szBuf[nCount] = {'\0'};
          int32_t nLen = 0;*/
 
-         category & category = ((trace *) this)->m_map[(unsigned int32_t ) dwCategory];
+         category & category = ((trace *) this)->m_map[(uint32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
          if(category.m_estatus == gen::trace::status_disabled || nLevel > category.m_uiLevel)
@@ -132,7 +132,7 @@ namespace gen
          return m_uiLevel;
       }
 
-      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args)
+      CLASS_DECL_ca void raw_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
@@ -144,7 +144,7 @@ namespace gen
          ::OutputDebugStringW(gen::international::utf8_to_unicode(str));
       }
 
-      /*CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int32_t nLine, unsigned int32_t dwCategory, unsigned int32_t nLevel, const char * pszFmt, va_list args)
+      /*CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
       {
       System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
       }*/

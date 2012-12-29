@@ -63,7 +63,7 @@ static void floor1_free_look(vorbis_look_floor *i){
   }
 }
 
-static int32_t ilog(unsigned int32_t v){
+static int32_t ilog(uint32_t v){
   int32_t ret=0;
   while(v){
     ret++;
@@ -72,7 +72,7 @@ static int32_t ilog(unsigned int32_t v){
   return(ret);
 }
 
-static int32_t ilog2(unsigned int32_t v){
+static int32_t ilog2(uint32_t v){
   int32_t ret=0;
   if(v)--v;
   while(v){

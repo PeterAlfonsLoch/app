@@ -75,7 +75,7 @@ CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
    int32_t double_colon = -1;  /* index of the section after the first
                            * 16-bit group of zeros represented by
                            * the double colon */
-   unsigned int32_t val;
+   uint32_t val;
    int32_t len;
 
    /* Handle initial (double) colon */
@@ -198,7 +198,7 @@ CLASS_DECL_c vsstring to_string(const in6_addr * addr)
                                    * groups of zeros */
    int32_t zero_length;
    int32_t section;
-   unsigned int32_t val;
+   uint32_t val;
 
    /* Scan to find the placement of the double colon */
    for (section = 0; section < 8; section++) {

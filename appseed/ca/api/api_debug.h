@@ -844,9 +844,9 @@ CLASS_DECL__ extern int32_t _crtDbgFlag;
 CLASS_DECL__ int32_t DECL_C _CrtCheckMemory();
 CLASS_DECL__ int32_t DECL_C _CrtSetDbgFlag(int32_t _NewFlag);
 CLASS_DECL__ void DECL_C _CrtDoForAllClientObjects(void (DECL_C *_PFn)(void *, void *), void * _Context);
-CLASS_DECL__ int32_t DECL_C _CrtIsValidPointer(const void * _Ptr, unsigned int32_t _Bytes, int32_t _ReadWrite);
+CLASS_DECL__ int32_t DECL_C _CrtIsValidPointer(const void * _Ptr, uint32_t _Bytes, int32_t _ReadWrite);
 CLASS_DECL__ int32_t DECL_C _CrtIsValidHeapPointer(const void * _HeapPtr);
-CLASS_DECL__ int32_t DECL_C _CrtIsMemoryBlock(const void * _Memory, unsigned int32_t _Bytes, long * _RequestNumber, char ** _Filename, int32_t * _LineNumber);
+CLASS_DECL__ int32_t DECL_C _CrtIsMemoryBlock(const void * _Memory, uint32_t _Bytes, long * _RequestNumber, char ** _Filename, int32_t * _LineNumber);
 CLASS_DECL__ int32_t DECL_C _CrtReportBlockType(const void * _Memory);
 
 

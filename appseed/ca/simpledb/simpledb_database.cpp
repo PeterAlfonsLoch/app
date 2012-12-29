@@ -101,7 +101,7 @@ namespace simpledb
       }
       else
       {
-         id = res.records[0][0].get_integer()+1;
+         id = res.records[0][0].int32()+1;
          sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table,id,sname);
          if (last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;

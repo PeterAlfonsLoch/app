@@ -38,7 +38,7 @@
 #    include <limits.h>
 #    define BYFOUR
 #    if (UINT_MAX == 0xffffffffUL)
-       typedef unsigned int32_t u4;
+       typedef uint32_t u4;
 #    else
 #      if (ULONG_MAX == 0xffffffffUL)
          typedef unsigned long u4;

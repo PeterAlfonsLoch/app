@@ -38,7 +38,7 @@ typedef short VARIANT_BOOL;
 
 typedef int32_t INT;
 typedef int32_t INT32;
-typedef unsigned int32_t UINT;
+typedef uint32_t UINT;
 typedef uint32_t UINT32;
 #ifndef METROWIN
 typedef INT32 LONG;   // LONG, ULONG and DWORD must be 32-bit

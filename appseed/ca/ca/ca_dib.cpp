@@ -496,7 +496,7 @@ fill_last:
       lpb2 += ((int32_t)echannel) % 4;
       for(register int64_t i = 0; i < size; i++)
       {
-         *lpb1 = (BYTE)(((unsigned int32_t)*lpb1 * (unsigned int32_t)*lpb2) / 255);
+         *lpb1 = (BYTE)(((uint32_t)*lpb1 * (uint32_t)*lpb2) / 255);
          lpb1 += 4;
          lpb2 += 4;
       }

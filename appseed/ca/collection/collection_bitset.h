@@ -140,7 +140,7 @@ public:
  #if _HAS_CPP0X
 	bitset(int32_t _Ival)
 		{	// construct from bits in int32_t
-		unsigned int32_t _Val = (unsigned int32_t)_Ival;
+		uint32_t _Val = (uint32_t)_Ival;
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)

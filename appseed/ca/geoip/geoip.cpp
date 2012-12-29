@@ -340,11 +340,11 @@ void _setup_segments(GeoIP * gi) {
 
          if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV0) {
             /* Region Edition, pre June 2003 */
-            gi->databaseSegments = (unsigned int32_t *) malloc(sizeof(int32_t));
+            gi->databaseSegments = (uint32_t *) malloc(sizeof(int32_t));
             gi->databaseSegments[0] = STATE_BEGIN_REV0;
          } else if (gi->databaseType == (char) GEOIP_REGION_EDITION_REV1) {
             /* Region Edition, post June 2003 */
-            gi->databaseSegments = (unsigned int32_t *) malloc(sizeof(int32_t));
+            gi->databaseSegments = (uint32_t *) malloc(sizeof(int32_t));
             gi->databaseSegments[0] = STATE_BEGIN_REV1;
          } else if (gi->databaseType == (char) GEOIP_CITY_EDITION_REV0 ||
             gi->databaseType == (char) GEOIP_CITY_EDITION_REV1 ||
@@ -352,7 +352,7 @@ void _setup_segments(GeoIP * gi) {
             gi->databaseType == (char) GEOIP_ISP_EDITION ||
             gi->databaseType == (char) GEOIP_ASNUM_EDITION) {
                /* City/Org Editions have two segments, read offset of second segment */
-               gi->databaseSegments = (unsigned int32_t *) malloc(sizeof(int32_t));
+               gi->databaseSegments = (uint32_t *) malloc(sizeof(int32_t));
                gi->databaseSegments[0] = 0;
                silence = fread(buf, SEGMENT_RECORD_LENGTH, 1, gi->GeoIPDatabase);
                for (j = 0; j < SEGMENT_RECORD_LENGTH; j++) {
@@ -371,7 +371,7 @@ void _setup_segments(GeoIP * gi) {
       gi->databaseType == (char) GEOIP_PROXY_EDITION ||
       gi->databaseType == (char) GEOIP_NETSPEED_EDITION ||
       gi->databaseType == (char) GEOIP_COUNTRY_EDITION_V6 ) {
-         gi->databaseSegments = (unsigned int32_t *)  malloc(sizeof(int32_t));
+         gi->databaseSegments = (uint32_t *)  malloc(sizeof(int32_t));
          gi->databaseSegments[0] = COUNTRY_BEGIN;
    }
 }
@@ -482,13 +482,13 @@ int32_t _check_mtime(GeoIP *gi) {
 }
 
 #define ADDR_STR_LEN (8 * 4 + 7 + 1)
-unsigned int32_t _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum) {
+uint32_t _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum) {
    int32_t depth;
    char paddr[ADDR_STR_LEN];
-   unsigned int32_t x;
+   uint32_t x;
    unsigned char stack_buffer[2 * MAX_RECORD_LENGTH];
    const unsigned char *buf = (gi->cache == NULL) ? stack_buffer : NULL;
-   unsigned int32_t offset = 0;
+   uint32_t offset = 0;
 
    const unsigned char * p;
    int32_t j;
@@ -567,12 +567,12 @@ _GeoIP_addr_to_num_v6(const char *addr)
    return IPV6_NULL;
 }
 
-unsigned int32_t _GeoIP_seek_record (GeoIP *gi, unsigned long ipnum) {
+uint32_t _GeoIP_seek_record (GeoIP *gi, unsigned long ipnum) {
    int32_t depth;
-   unsigned int32_t x;
+   uint32_t x;
    unsigned char stack_buffer[2 * MAX_RECORD_LENGTH];
    const unsigned char *buf = (gi->cache == NULL) ? stack_buffer : NULL;
-   unsigned int32_t offset = 0;
+   uint32_t offset = 0;
 
    const unsigned char * p;
    int32_t j;
@@ -644,7 +644,7 @@ unsigned int32_t _GeoIP_seek_record (GeoIP *gi, unsigned long ipnum) {
 unsigned long
 _GeoIP_addr_to_num(const char *addr)
 {
-   unsigned int32_t    c, octet, t;
+   uint32_t    c, octet, t;
    unsigned long   ipnum;
    int32_t             i = 3;
 
@@ -1140,7 +1140,7 @@ char *GeoIP_database_info (GeoIP* gi) {
 /* GeoIP Region Edition functions */
 
 void GeoIP_assign_region_by_inetaddr(GeoIP* gi, unsigned long inetaddr, GeoIPRegion *region) {
-   unsigned int32_t seek_region;
+   uint32_t seek_region;
 
    /* This also writes in the terminating NULs (if you decide to
    * keep them) and clear any fields that are not set. */
@@ -1185,7 +1185,7 @@ void GeoIP_assign_region_by_inetaddr(GeoIP* gi, unsigned long inetaddr, GeoIPReg
 }
 
 void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegion *region) {
-   unsigned int32_t seek_region;
+   uint32_t seek_region;
 
    /* This also writes in the terminating NULs (if you decide to
    * keep them) and clear any fields that are not set. */

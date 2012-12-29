@@ -236,7 +236,7 @@ namespace compress
 
          bool vm::ExecuteCode(const CProgram *prg)
          {
-            int32 maxOpCount = 25000000;
+            int32_t maxOpCount = 25000000;
             const CCommand *commands = &prg->Commands[0];
             const CCommand *cmd = commands;
             uint32 numCommands = (uint32_t) prg->Commands.get_size();
@@ -463,7 +463,7 @@ namespace compress
                   {
                      uint32 v1 = GetOperand32(&cmd->Op1);
                      int32_t v2 = (int32_t)GetOperand32(&cmd->Op2);
-                     uint32 res = uint32(((int32)v1) >> v2);
+                     uint32 res = uint32(((int32_t)v1) >> v2);
                      SetOperand32(&cmd->Op1, res);
                      Flags= (res == 0 ? FLAG_Z : (res & FLAG_S)) | ((v1 >> (v2 - 1)) & FLAG_C);
                   }
@@ -578,7 +578,7 @@ namespace compress
                   SetOperand32(&cmd->Op1, GetOperand8(&cmd->Op2));
                   break;
                case CMD_MOVSX:
-                  SetOperand32(&cmd->Op1, (uint32)(int32)(signed char)GetOperand8(&cmd->Op2));
+                  SetOperand32(&cmd->Op1, (uint32)(int32_t)(signed char)GetOperand8(&cmd->Op2));
                   break;
                case CMD_XCHG:
                   {
@@ -856,10 +856,10 @@ namespace compress
                if (curByte == 0xE8 || curByte == cmpByte2)
                {
                   uint32 offset = curPos + fileOffset;
-                  uint32 addr = (int32)GetValue32(data);
+                  uint32 addr = (int32_t)GetValue32(data);
                   if (addr < kFileSize)
                      SetValue32(data, addr - offset);
-                  else if ((int32)addr < 0 && (int32)(addr + offset) >= 0)
+                  else if ((int32_t)addr < 0 && (int32_t)(addr + offset) >= 0)
                      SetValue32(data, addr + kFileSize);
                   data += 4;
                   curPos += 4;
@@ -869,7 +869,7 @@ namespace compress
 
          static inline uint32 ItaniumGetOpType(const byte *data, int32_t bitPos)
          {
-            return (data[(unsigned int32_t)bitPos >> 3] >> (bitPos & 7)) & 0xF;
+            return (data[(uint32_t)bitPos >> 3] >> (bitPos & 7)) & 0xF;
          }
 
 
@@ -892,7 +892,7 @@ namespace compress
                            if (ItaniumGetOpType(data, startPos + 24) == 5)
                            {
                               const uint32 kMask = 0xFFFFF;
-                              byte *p = data + ((unsigned int32_t)startPos >> 3);
+                              byte *p = data + ((uint32_t)startPos >> 3);
                               uint32 bitField =  ((uint32)p[0]) | ((uint32)p[1] <<  8) | ((uint32)p[2] << 16);
                               int32_t inBit = (startPos & 7);
                               uint32 offset = (bitField >> inBit) & kMask;
@@ -936,13 +936,13 @@ namespace compress
 
                for (uint32 i = curChannel; i < dataSize; i+= numChannels)
                {
-                  unsigned int32_t predicted;
+                  uint32_t predicted;
                   if (i < width)
                      predicted = prevByte;
                   else
                   {
-                     unsigned int32_t upperLeftByte = destData[i - width];
-                     unsigned int32_t upperByte = destData[i - width + 3];
+                     uint32_t upperLeftByte = destData[i - width];
+                     uint32_t upperByte = destData[i - width + 3];
                      predicted = prevByte + upperByte - upperLeftByte;
                      int32_t pa = abs((int32_t)(predicted - prevByte));
                      int32_t pb = abs((int32_t)(predicted - upperByte));
@@ -974,8 +974,8 @@ namespace compress
             for (uint32 curChannel = 0; curChannel < numChannels; curChannel++)
             {
                uint32 prevByte = 0, prevDelta = 0, dif[7];
-               int32 D1 = 0, D2 = 0, D3;
-               int32 K1 = 0, K2 = 0, K3 = 0;
+               int32_t D1 = 0, D2 = 0, D3;
+               int32_t K1 = 0, K2 = 0, K3 = 0;
                memset(dif, 0, sizeof(dif));
 
                for (uint32 i = curChannel, byteCount = 0; i < dataSize; i += numChannels, byteCount++)
@@ -991,10 +991,10 @@ namespace compress
 
                   predicted -= curByte;
                   destData[i] = (byte)predicted;
-                  prevDelta = (uint32)(int32)(signed char)(predicted - prevByte);
+                  prevDelta = (uint32)(int32_t)(signed char)(predicted - prevByte);
                   prevByte = predicted;
 
-                  int32 D = ((int32)(signed char)curByte) << 3;
+                  int32_t D = ((int32_t)(signed char)curByte) << 3;
 
                   dif[0] += abs(D);
                   dif[1] += abs(D - D1);

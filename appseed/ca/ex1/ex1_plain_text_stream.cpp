@@ -138,11 +138,11 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (unsigned int32_t & ui)
+   plain_text_input_stream & plain_text_input_stream::operator >> (uint32_t & ui)
    {
       uint64_t uiRead = read(&ui, sizeof(ui));
       if(uiRead != sizeof(ui))
-         throw "failed to read unsigned int32_t";
+         throw "failed to read uint32_t";
       return *this;
    }
 
@@ -268,7 +268,7 @@ namespace ex1
 
    plain_text_output_stream & plain_text_output_stream::operator << (unsigned char uch)
    {
-      return operator << ((unsigned int32_t) uch);
+      return operator << ((uint32_t) uch);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (short sh)
@@ -278,7 +278,7 @@ namespace ex1
 
    plain_text_output_stream & plain_text_output_stream::operator << (unsigned short ush)
    {
-      return operator << ((unsigned int32_t) ush);
+      return operator << ((uint32_t) ush);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (wchar_t wch)
@@ -299,7 +299,7 @@ namespace ex1
       return raw_print(gen::str::from(i));
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (unsigned int32_t ui)
+   plain_text_output_stream & plain_text_output_stream::operator << (uint32_t ui)
    {
       return raw_print(gen::str::from(ui));
    }

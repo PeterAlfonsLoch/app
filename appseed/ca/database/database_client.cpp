@@ -110,10 +110,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         var var;
-         var.set_type(var::type_integer);
-         var.m_i = i;
-         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, var, puh);
+         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, (var) i, puh);
       }
       return false;
    }
@@ -122,10 +119,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         var var;
-         var.set_type(var::type_integer);
-         var.m_i64 = i;
-         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, var, puh);
+         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, (var) i, puh);
       }
       return false;
    }
@@ -294,9 +288,7 @@ namespace database
          var var;
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, var))
             return false;
-         if(var.get_type() != var::type_integer)
-            return false;
-         i = var.m_i;
+         i = var;
          return true;
       }
       return false;
@@ -309,9 +301,7 @@ namespace database
          var var;
          if(!m_pdataserver->data_server_load(this, m_dataid, id, idIndex, var))
             return false;
-         if(var.get_type() != var::type_integer)
-            return false;
-         i = var.m_i;
+         i = var;
          return true;
       }
       return false;

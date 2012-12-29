@@ -1853,7 +1853,7 @@ namespace gcom
       UINT c_cdecl TransitionEffect::ThreadProcRunStep(LPVOID lpParameter)
       {
          TransitionEffect * peffect = (TransitionEffect *) lpParameter;
-         srand((unsigned int32_t) time(NULL));
+         srand((uint32_t) time(NULL));
          manual_reset_event event(peffect->get_app());
 
          event.ResetEvent();

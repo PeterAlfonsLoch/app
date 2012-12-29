@@ -54,7 +54,7 @@ v32_weight(v32_t a);
 unsigned char
 v32_distance(v32_t x, v32_t y);
 
-unsigned int32_t
+uint32_t
 v32_dot_product(v32_t a, v32_t b);
 
 char *

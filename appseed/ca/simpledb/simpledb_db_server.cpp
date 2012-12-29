@@ -302,7 +302,7 @@ bool db_server::data_server_save(::database::client * pclient, ::database::id id
          stra.add(idSection.m_id);
          stra.add(id.m_id);
          stra.add(idIndex.m_id);
-         if(!data_save("ca2_fontopus_votagus", "database_change", varChange.get_integer(), stra))
+         if(!data_save("ca2_fontopus_votagus", "database_change", varChange.int32(), stra))
          {
             m_pdb->rollback_transaction();
             goto end_write_change;

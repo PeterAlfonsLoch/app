@@ -31,7 +31,7 @@ aes_icm_set_iv(aes_icm_ctx_t *c, void *iv);
 
 err_status_t
 aes_icm_encrypt(aes_icm_ctx_t *c,
-      unsigned char *buf, unsigned int32_t *bytes_to_encr);
+      unsigned char *buf, uint32_t *bytes_to_encr);
 
 err_status_t
 aes_icm_output(aes_icm_ctx_t *c,
@@ -43,7 +43,7 @@ aes_icm_dealloc(cipher_t *c);
 err_status_t 
 aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c, 
           unsigned char *buf, 
-          unsigned int32_t *enc_len, 
+          uint32_t *enc_len, 
           int32_t forIsmacryp);
  
 err_status_t 

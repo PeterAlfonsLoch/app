@@ -73,7 +73,7 @@ namespace exception
    }
 
 #ifdef WINDOWS
-   void __cdecl translator::filter2(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
+   void __cdecl translator::filter2(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
    {
       if(g_bExiting)
          return;
@@ -171,7 +171,7 @@ namespace exception
       }
    }
 #ifdef WINDOWS
-   void translator::filter(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
+   void translator::filter(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
    {
       UNREFERENCED_PARAMETER(uiCode);
       switch (ppointers->ExceptionRecord->ExceptionCode)
@@ -206,7 +206,7 @@ namespace exception
       };
    }
 
-   vsstring translator::name(unsigned int32_t uiCode)
+   vsstring translator::name(uint32_t uiCode)
    {
 
       vsstring str;
@@ -249,7 +249,7 @@ namespace exception
 
    }
 
-   vsstring translator::description(unsigned int32_t uiCode)
+   vsstring translator::description(uint32_t uiCode)
    {
 
       vsstring str;

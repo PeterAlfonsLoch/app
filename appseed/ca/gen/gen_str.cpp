@@ -1284,7 +1284,7 @@ namespace gen
 
    }
 
-   string & str::from(string & str, unsigned int32_t ui)
+   string & str::from(string & str, uint32_t ui)
    {
 
       str = ui64toa_dup(ui);
@@ -2163,9 +2163,9 @@ namespace gen
       return atoi_dup(psz);
    }
 
-   unsigned int32_t str::to_uint(const char * psz)
+   uint32_t str::to_uint(const char * psz)
    {
-      return (unsigned int32_t) atoi64_dup(psz);
+      return (uint32_t) atoi64_dup(psz);
    }
 
    int64_t str::to_int64(const string & str)

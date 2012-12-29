@@ -59,9 +59,9 @@ namespace ca
 
 #define CN_UPDATE_COMMAND_UI 23
 #define WM_REFLECT_BASE 2048
-#define MPARAM unsigned int32_t
-#define NPARAM unsigned int32_t
-#define OPARAM unsigned int32_t
+#define MPARAM uint32_t
+#define NPARAM uint32_t
+#define OPARAM uint32_t
 
 // message
 #define MX_APPLANGUAGE 1000

@@ -31,7 +31,7 @@
 
 #define UPHEAP(z)                                     \
 {                                                     \
-   int32 zz, tmp;                                     \
+   int32_t zz, tmp;                                     \
    zz = z; tmp = heap[zz];                            \
    while (weight[tmp] < weight[heap[zz >> 1]]) {      \
       heap[zz] = heap[zz >> 1];                       \
@@ -42,7 +42,7 @@
 
 #define DOWNHEAP(z)                                   \
 {                                                     \
-   int32 zz, yy, tmp;                                 \
+   int32_t zz, yy, tmp;                                 \
    zz = z; tmp = heap[zz];                            \
    while (True) {                                     \
       yy = zz << 1;                                   \
@@ -60,20 +60,20 @@
 
 /*---------------------------------------------------*/
 void BZ2_hbMakeCodeLengths ( UChar *len, 
-                             int32 *freq,
-                             int32 alphaSize,
-                             int32 maxLen )
+                             int32_t *freq,
+                             int32_t alphaSize,
+                             int32_t maxLen )
 {
    /*--
       Nodes and heap entries run from 1.  Entry 0
       for both the heap and nodes is a sentinel.
    --*/
-   int32 nNodes, nHeap, n1, n2, i, j, k;
+   int32_t nNodes, nHeap, n1, n2, i, j, k;
    Bool  tooLong;
 
-   int32 *heap  =new int32 [ BZ_MAX_ALPHA_SIZE + 2 ];
-   int32* weight =new int32 [ BZ_MAX_ALPHA_SIZE * 2 ];
-   int32 *parent=new int32  [ BZ_MAX_ALPHA_SIZE * 2 ]; 
+   int32_t *heap  =new int32_t [ BZ_MAX_ALPHA_SIZE + 2 ];
+   int32_t* weight =new int32_t [ BZ_MAX_ALPHA_SIZE * 2 ];
+   int32_t *parent=new int32_t  [ BZ_MAX_ALPHA_SIZE * 2 ]; 
 
    for (i = 0; i < alphaSize; i++)
       weight[i+1] = (freq[i] == 0 ? 1 : freq[i]) << 8;
@@ -151,13 +151,13 @@ void BZ2_hbMakeCodeLengths ( UChar *len,
 
 
 /*---------------------------------------------------*/
-void BZ2_hbAssignCodes ( int32 *code,
+void BZ2_hbAssignCodes ( int32_t *code,
                          UChar *length,
-                         int32 minLen,
-                         int32 maxLen,
-                         int32 alphaSize )
+                         int32_t minLen,
+                         int32_t maxLen,
+                         int32_t alphaSize )
 {
-   int32 n, vec, i;
+   int32_t n, vec, i;
 
    vec = 0;
    for (n = minLen; n <= maxLen; n++) {
@@ -169,15 +169,15 @@ void BZ2_hbAssignCodes ( int32 *code,
 
 
 /*---------------------------------------------------*/
-void BZ2_hbCreateDecodeTables ( int32 *limit,
-                                int32 *base,
-                                int32 *perm,
+void BZ2_hbCreateDecodeTables ( int32_t *limit,
+                                int32_t *base,
+                                int32_t *perm,
                                 UChar *length,
-                                int32 minLen,
-                                int32 maxLen,
-                                int32 alphaSize )
+                                int32_t minLen,
+                                int32_t maxLen,
+                                int32_t alphaSize )
 {
-   int32 pp, i, j, vec;
+   int32_t pp, i, j, vec;
 
    pp = 0;
    for (i = minLen; i <= maxLen; i++)

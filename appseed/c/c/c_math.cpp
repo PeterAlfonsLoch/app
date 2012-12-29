@@ -158,7 +158,7 @@ CLASS_DECL_c double cos_dup(double d)
 
 #endif
 
-CLASS_DECL_c void srand_dup(unsigned int32_t seed)
+CLASS_DECL_c void srand_dup(uint32_t seed)
 {
 	lastrand = seed;
 }

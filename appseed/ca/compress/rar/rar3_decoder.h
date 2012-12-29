@@ -210,7 +210,7 @@ namespace compress
 
          HRESULT InitPPM();
          int32_t DecodePpmSymbol();
-         HRESULT DecodePPM(int32 num, bool &keepDecompressing);
+         HRESULT DecodePPM(int32_t num, bool &keepDecompressing);
 
          HRESULT ReadTables(bool &keepDecompressing);
          HRESULT ReadEndOfBlock(bool &keepDecompressing);

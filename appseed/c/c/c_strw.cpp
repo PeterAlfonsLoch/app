@@ -376,7 +376,7 @@ void wcscat_dup(wchar_t * dest, const wchar_t * cat)
 
 
 
-void uitow_dup(wchar_t * sz, unsigned int32_t ui, int32_t iBase)
+void uitow_dup(wchar_t * sz, uint32_t ui, int32_t iBase)
 {
    if(ui == 0)
    {

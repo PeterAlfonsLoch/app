@@ -442,7 +442,7 @@ namespace html
                {
                   if(!pelemental->m_propertyset.is_new_or_null("colspan"))
                   {
-                     iMinCol += pelemental->m_propertyset["colspan"].get_integer();
+                     iMinCol += pelemental->m_propertyset["colspan"].int32();
                   }
                   else
                   {

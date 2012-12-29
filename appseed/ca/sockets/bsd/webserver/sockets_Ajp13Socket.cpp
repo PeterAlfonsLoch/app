@@ -120,7 +120,7 @@ namespace sockets
       string    remote_addr = get_string(buf, ptr);
       string    remote_host = get_string(buf, ptr);
       string    server_name = get_string(buf, ptr);
-      short             server_port = get_integer(buf, ptr);
+      short             server_port = int32(buf, ptr);
       bool               is_ssl = get_boolean(buf, ptr);
 
       string method_str = gen::str::from( method );
@@ -135,7 +135,7 @@ namespace sockets
       m_request.attr("https") = is_ssl;
 
       // get Headers
-      short             num_headers = get_integer(buf, ptr);
+      short             num_headers = int32(buf, ptr);
       for (int32_t i = 0; i < num_headers; i++)
       {
          string key;
@@ -143,7 +143,7 @@ namespace sockets
          {
          case 0xa0:
             {
-               unsigned short x = (unsigned short)get_integer(buf, ptr);
+               unsigned short x = (unsigned short)int32(buf, ptr);
                if (!dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->header.Lookup(x, key))
                {
                   TRACE("Unknown header key value: %x\n", x);

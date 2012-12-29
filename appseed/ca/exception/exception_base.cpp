@@ -11,7 +11,7 @@ void PASCAL base_exception::operator delete(void * pbData,   const char * /* lps
    operator delete(pbData);
 }
 
-base_exception::base_exception(::ca::application * papp, unsigned int32_t uiSkip) :
+base_exception::base_exception(::ca::application * papp, uint32_t uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
 {
@@ -20,7 +20,7 @@ base_exception::base_exception(::ca::application * papp, unsigned int32_t uiSkip
    m_ulFlags &= ~flag_ready_for_delete;
 }
 
-base_exception::base_exception(::ca::application * papp, bool bAutoDelete, unsigned int32_t uiSkip) :
+base_exception::base_exception(::ca::application * papp, bool bAutoDelete, uint32_t uiSkip) :
    ca(papp),
    ::call_stack(papp, uiSkip)
 {

@@ -7,16 +7,13 @@ vsstring crypt_nessie(const char * psz)
    vsstring str;
 //      int32_t i;
    NESSIEstruct ns;
-   u8 digest[DIGESTBYTES];
+   uint8_t digest[NESSIE_DIGESTBYTES];
    NESSIEinit(&ns);
    NESSIEadd((const byte *) psz, (unsigned long) (8*strlen(psz)), &ns);
    NESSIEfinalize(&ns, digest);
-   for(int32_t i = 0; i < DIGESTBYTES; i++)
-   {
-      strFormat = itohex_dup(digest[i]);
-      zero_pad(strFormat, 2);
-      str += strFormat;
-   }
+   char * pszOut = str.alloc(NESSIE_DIGESTBYTES * 2);
+   lo_hex_from(pszOut, digest, NESSIE_DIGESTBYTES);
+   pszOut[NESSIE_DIGESTBYTES * 2] = '\0';
    return str;
 }
 

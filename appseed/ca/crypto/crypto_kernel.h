@@ -246,6 +246,6 @@ crypto_kernel_set_debug_module(char *mod_name, int32_t v);
  * @ingroup SRTP
  */
 err_status_t
-crypto_get_random(unsigned char *buffer, unsigned int32_t length);
+crypto_get_random(unsigned char *buffer, uint32_t length);
      
 #endif /* CRYPTO_KERNEL */

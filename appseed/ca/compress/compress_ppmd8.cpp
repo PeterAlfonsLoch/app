@@ -348,7 +348,7 @@ static void RestartModel(CPpmd8 *p)
   p->GlueCount = 0;
 
   p->OrderFall = p->MaxOrder;
-  p->RunLength = p->InitRL = -(int32)((p->MaxOrder < 12) ? p->MaxOrder : 12) - 1;
+  p->RunLength = p->InitRL = -(int32_t)((p->MaxOrder < 12) ? p->MaxOrder : 12) - 1;
   p->PrevSuccess = 0;
 
   p->MinContext = p->MaxContext = (CTX_PTR)(p->HiUnit -= UNIT_SIZE); /* AllocContext(p); */

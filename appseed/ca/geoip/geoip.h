@@ -25,7 +25,7 @@ typedef struct GeoIPTag {
   char *file_path;
    unsigned char *cache;
    unsigned char *index_cache;
-   unsigned int32_t *databaseSegments;
+   uint32_t *databaseSegments;
    char databaseType;
    time_t mtime;
    int32_t flags;

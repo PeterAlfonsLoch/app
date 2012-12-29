@@ -445,7 +445,7 @@ namespace compress
 
       int32_t decoder::DecodePpmSymbol() { return Ppmd7_DecodeSymbol(&_ppmd, &m_InBitStream.s); }
 
-      HRESULT decoder::DecodePPM(int32 num, bool &keepDecompressing)
+      HRESULT decoder::DecodePPM(int32_t num, bool &keepDecompressing)
       {
          keepDecompressing = false;
          if (PpmError)
@@ -517,7 +517,7 @@ namespace compress
                   if (distance >= _lzSize)
                      return S_FALSE;
                   CopyBlock(distance, length);
-                  num -= (int32)length;
+                  num -= (int32_t)length;
                   continue;
                }
             }

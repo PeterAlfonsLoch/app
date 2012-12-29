@@ -40,7 +40,7 @@ typedef struct
   CPpmd7_Context *MinContext, *MaxContext;
   CPpmd_State *FoundState;
   unsigned OrderFall, InitEsc, PrevSuccess, MaxOrder, HiBitsFlag;
-  int32 RunLength, InitRL; /* must be 32-bit at least */
+  int32_t RunLength, InitRL; /* must be 32-bit at least */
 
   uint32 Size;
   uint32 GlueCount;

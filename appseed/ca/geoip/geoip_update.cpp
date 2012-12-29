@@ -8,7 +8,7 @@
 #include <netdb.h>
 #endif
 
-short int32_t parse_http_proxy(char **proxy_host, int32_t *port);
+int16_t parse_http_proxy(char **proxy_host, int32_t *port);
 #ifdef BSD_STYLE_SOCKETS
 struct hostent *GeoIP_get_host_or_proxy ();
 #else
@@ -157,7 +157,7 @@ static const char * GeoIPProxiedHost = "";
  *
  * A "::fontopus::user:password@" part will break this.
  */
-short int32_t parse_http_proxy(char **proxy_host, int32_t *port) {
+int16_t parse_http_proxy(char **proxy_host, int32_t *port) {
 
 #ifdef METROWIN
 
@@ -221,7 +221,7 @@ string GeoIP_get_host_or_proxy ()
 #endif
 }
 
-short int32_t GeoIP_update_database (::ca::application * papp, char * license_key, int32_t verbose, void (*f)( char * ))
+int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int32_t verbose, void (*f)( char * ))
 {
 
 #ifdef BSD_STYLE_SOCKETS
@@ -241,7 +241,7 @@ short int32_t GeoIP_update_database (::ca::application * papp, char * license_ke
 //   unsigned char buffer[1024], digest[16];
    unsigned char buffer[1024];
    char hex_digest[34] = "00000000000000000000000000000000\0";
-//   unsigned int32_t i;
+//   uint32_t i;
    GeoIP * gi;
    char * db_info;
    char block[BLOCK_SIZE];
@@ -490,7 +490,7 @@ short int32_t GeoIP_update_database (::ca::application * papp, char * license_ke
 
 }
 
-short int32_t GeoIP_update_database_general (::ca::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
+int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,char * license_key,char *data_base_type, int32_t verbose,char ** client_ipaddr, void (*f)( char *)) {
 
 #ifdef BSD_STYLE_SOCKETS
    struct hostent *hostlist;
@@ -510,7 +510,7 @@ short int32_t GeoIP_update_database_general (::ca::application * papp, char * us
 //   unsigned char digest[16] ,digest2[16];
    char hex_digest[33] = "0000000000000000000000000000000\0";
    char hex_digest2[33] = "0000000000000000000000000000000\0";
-//   unsigned int32_t i;
+//   uint32_t i;
    char *f_str;
    GeoIP * gi;
    char * db_info;

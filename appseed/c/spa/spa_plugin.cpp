@@ -23,7 +23,7 @@
 
 #ifdef WINDOWS
 
-void simple_se_translator(unsigned int32_t uiCode, EXCEPTION_POINTERS * ppointers)
+void simple_se_translator(uint32_t uiCode, EXCEPTION_POINTERS * ppointers)
 {
    //throw 0;
 }

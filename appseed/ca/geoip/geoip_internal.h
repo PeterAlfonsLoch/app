@@ -1,9 +1,9 @@
 #pragma once
 
-GEOIP_API unsigned int32_t _GeoIP_seek_record (GeoIP *gi, unsigned long ipnum);
+GEOIP_API uint32_t _GeoIP_seek_record (GeoIP *gi, unsigned long ipnum);
 GEOIP_API unsigned long _GeoIP_addr_to_num (const char *addr);
 
-GEOIP_API unsigned int32_t _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum);
+GEOIP_API uint32_t _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum);
 GEOIP_API geoipv6_t _GeoIP_addr_to_num_v6 (const char *addr);
 
 GEOIP_API unsigned long _GeoIP_lookupaddress (const char *host);

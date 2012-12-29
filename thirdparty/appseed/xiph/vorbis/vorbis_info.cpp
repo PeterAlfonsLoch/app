@@ -26,7 +26,7 @@ BEGIN_EXTERN_C
 #define ENCODE_VENDOR_STRING "Xiph.Org libVorbis I 20101101 (Schaufenugget)"
 
 /* helpers */
-static int32_t ilog2(unsigned int32_t v){
+static int32_t ilog2(uint32_t v){
   int32_t ret=0;
   if(v)--v;
   while(v){

@@ -16,26 +16,36 @@
  * i.e., to specify the size of the result of each expression.
  */
 
-typedef signed char s8;
+/*typedef signed char s8;
 typedef unsigned char u8;
 
 #if UINT_MAX >= 4294967295UL
 
-typedef signed short s16;
-typedef signed int32_t s32;
-typedef unsigned short u16;
-typedef unsigned int32_t u32;
+typedef int16_t s16;
+typedef int32_t s32;
+typedef uint16_t u16;
+typedef uint32_t u32;
 
 #define ONE32   0xffffffffU
 
 #else
 
-typedef signed int32_t s16;
+typedef int32_t s16;
 typedef signed long s32;
-typedef unsigned int32_t u16;
+typedef uint32_t u16;
 typedef unsigned long u32;
 
 #define ONE32   0xffffffffUL
+
+#endif*/
+
+#if UINT_MAX >= 4294967295UL
+
+#define NESSIE_ONE32   0xffffffffU
+
+#else
+
+#define NESSIE_ONE32   0xffffffffUL
 
 #endif
 
@@ -47,13 +57,13 @@ typedef unsigned long u32;
 #define T32(x)  ((x) & ONE32)
 
 #ifdef _MSC_VER
-typedef uint64_t u64;
-typedef int64_t s64;
+//typedef uint64_t u64;
+//typedef int64_t s64;
 #define LL(v)   (v##ui64)
 #define ONE64   LL(0xffffffffffffffff)
 #else  /* !_MSC_VER */
-typedef unsigned long long u64;
-typedef signed long long s64;
+//typedef unsigned long long u64;
+//typedef signed long long s64;
 #define LL(v)   (v##ULL)
 #define ONE64   LL(0xffffffffffffffff)
 #endif /* ?_MSC_VER */
@@ -108,21 +118,21 @@ typedef signed long long s64;
  * Whirlpool-specific definitions.
  */
 
-#define DIGESTBYTES 64
-#define DIGESTBITS  (8*DIGESTBYTES) /* 512 */
+#define NESSIE_DIGESTBYTES 64
+#define NESSIE_DIGESTBITS  (8*NESSIE_DIGESTBYTES) /* 512 */
 
-#define WBLOCKBYTES 64
-#define WBLOCKBITS  (8*WBLOCKBYTES) /* 512 */
+#define NESSIE_WBLOCKBYTES 64
+#define NESSIE_WBLOCKBITS  (8*NESSIE_WBLOCKBYTES) /* 512 */
 
-#define LENGTHBYTES 32
-#define LENGTHBITS  (8*LENGTHBYTES) /* 256 */
+#define NESSIE_LENGTHBYTES 32
+#define NESSIE_LENGTHBITS  (8*NESSIE_LENGTHBYTES) /* 256 */
 
 typedef struct NESSIEstruct {
-   u8  bitLength[LENGTHBYTES]; /* global number of hashed bits (256-bit counter) */
-   u8  buffer[WBLOCKBYTES];   /* buffer of data to hash */
+   uint8_t  bitLength[NESSIE_LENGTHBYTES]; /* global number of hashed bits (256-bit counter) */
+   uint8_t  buffer[NESSIE_WBLOCKBYTES];   /* buffer of data to hash */
    int32_t bufferBits;              /* current number of bits on the buffer */
    int32_t bufferPos;              /* current (possibly incomplete) byte slot on the buffer */
-   u64 hash[DIGESTBYTES/8];    /* the hashing state */
+   uint64_t hash[NESSIE_DIGESTBYTES/8];    /* the hashing state */
 } NESSIEstruct;
 
 

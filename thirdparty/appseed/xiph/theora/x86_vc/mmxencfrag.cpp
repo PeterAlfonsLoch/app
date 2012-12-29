@@ -14,6 +14,8 @@
   last mod: $Id: dsp_mmx.c 14579 2008-03-12 06:42:40Z xiphmont $
 
  ********************************************************************/
+
+#include "framework.h"
 #include <stddef.h>
 #include "x86enc.h"
 

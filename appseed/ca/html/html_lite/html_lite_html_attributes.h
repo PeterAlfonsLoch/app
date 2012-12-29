@@ -198,7 +198,7 @@ public:
       { return (::strtod(m_strValue, NULL)); }
 
    /**
-    * Converts attribute value to signed short int32_t
+    * Converts attribute value to signed int16_t
     * @return 0 on failure, otherwise, an integer value
     * @since 1.0
     * @author Gurmeet S. Kochar

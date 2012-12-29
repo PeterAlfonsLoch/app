@@ -148,7 +148,7 @@ namespace compress
          bool ReadLastTables();
 
          bool DecodeMm(uint32 pos);
-         bool DecodeLz(int32 pos);
+         bool DecodeLz(int32_t pos);
 
          HRESULT CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress);
 

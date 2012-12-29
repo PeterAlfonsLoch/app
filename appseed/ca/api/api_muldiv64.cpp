@@ -183,12 +183,12 @@ typedef struct  {
  * determine the msb of a value in O(log log n)
  * @author Sean Eron Anderson
  */
-inline unsigned int32_t msb(uint64_t value)
+inline uint32_t msb(uint64_t value)
 {
     const int32_t MAX_LOGLOG = 6;
     const uint64_t BIT_LL[MAX_LOGLOG] = {0x2, 0xC, 0xF0, 0xFF00, 0xFFFF0000, 0xFFFFFFFF00000000uLL};
-    const unsigned int32_t EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
-    unsigned int32_t r = 0;
+    const uint32_t EXP_LL[MAX_LOGLOG] = {1, 2, 4, 8, 16, 32};
+    uint32_t r = 0;
     for (int32_t i = MAX_LOGLOG-1; i >= 0; i--)  {
         if (value & BIT_LL[i])  {
             value >>= EXP_LL[i];

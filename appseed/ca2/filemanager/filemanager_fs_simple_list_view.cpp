@@ -204,7 +204,7 @@ namespace filemanager
                GetAlbumBuild().m_fileinfo.m_iaRemove.get_size() > 0))
             {
                int32_t iId;
-               iId = pds->result.records[iItem][FieldIndexId].get_integer();
+               iId = pds->result.records[iItem][FieldIndexId].int32();
                int32_t iFound;
                if((iFound = mediamanager::get(get_app())->GetAlbumBuild().m_fileinfo.m_iaUpdate.find_first(iId)) >= 0)
                {
@@ -249,7 +249,7 @@ namespace filemanager
             else if(eindex == FieldIndexId)
             {
                str.Format("%05d",
-                  pds->result.records[iItem][(int32_t) eindex].get_integer());
+                  pds->result.records[iItem][(int32_t) eindex].int32());
                return true;
             }
             else
@@ -694,7 +694,7 @@ namespace filemanager
                if(iItem >= 0)
                {
                   pds->seek(iItem);
-                  iId = pds->fv("id").get_integer();
+                  iId = pds->fv("id").int32();
                   ia.add(iId);
                }
             }

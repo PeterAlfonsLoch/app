@@ -964,7 +964,7 @@ bool PrintModules(vsstring & strImage, DWORD processID, const char * pszDll )
 {
    HANDLE hProcess;
    DWORD cbNeeded;
-   unsigned int32_t i;
+   uint32_t i;
    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
       PROCESS_VM_READ,
       FALSE, processID );
@@ -1019,7 +1019,7 @@ void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char
    DWORD * aProcesses = new DWORD[1024 * 8];
 
    DWORD cbNeeded, cProcesses;
-   unsigned int32_t i;
+   uint32_t i;
 
    if ( !EnumProcesses( aProcesses, 124 * 8 * sizeof(DWORD), &cbNeeded ) )
    {

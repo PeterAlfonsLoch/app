@@ -66,13 +66,13 @@ public:
 
 
 #ifdef WINDOWS
-   unsigned int32_t         code() const         { return m_ppointers->ExceptionRecord->ExceptionCode; }
+   uint32_t         code() const         { return m_ppointers->ExceptionRecord->ExceptionCode; }
    void *               address() const      { return m_ppointers->ExceptionRecord->ExceptionAddress; }
    EXCEPTION_POINTERS * info() const         { return m_ppointers; }
    const char *         name() const         { return ::exception::translator::name(code()); }
    const char *         description() const  { return ::exception::translator::description(code()); }
 #else
-   unsigned int32_t         code() const         { return m_siginfo.si_code; }
+   uint32_t         code() const         { return m_siginfo.si_code; }
    void *               address() const      { return m_siginfo.si_addr; }
    const siginfo_t *    info() const         { return &m_siginfo; }
    const ucontext_t *   context() const      { return &m_ucontext; }

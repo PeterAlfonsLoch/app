@@ -152,9 +152,9 @@ namespace datetime
                atm.tm_sec = set["second"];
                atm.tm_min = set["minute"];
                atm.tm_hour = set["hour"];
-               atm.tm_mday = set["day"].get_integer();
-               atm.tm_mon = set["month"].get_integer() - 1;        // tm_mon is 0 based
-               atm.tm_year = set["year"].get_integer() - 1900;     // tm_year is 1900 based
+               atm.tm_mday = set["day"].int32();
+               atm.tm_mon = set["month"].int32() - 1;        // tm_mon is 0 based
+               atm.tm_year = set["year"].int32() - 1900;     // tm_year is 1900 based
                atm.tm_isdst = -1;
                /*time_t now = _time64(NULL);
                time_t nowUtc = mktime(gmtime(&now));

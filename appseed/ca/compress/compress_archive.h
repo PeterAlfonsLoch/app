@@ -91,9 +91,9 @@ namespace compress
 
    #define CA2_COMPRESS_INTERFACE_archive_ExtractCallback(specifier) \
      CA2_EX1_progress_interface(specifier) \
-     virtual ex1::HRes GetStream(uint32 index, ex1::writer **outStream,  int32 askExtractMode) specifier; \
-     virtual ex1::HRes PrepareOperation(int32 askExtractMode) specifier; \
-     virtual ex1::HRes SetOperationResult(int32 resultEOperationResult) specifier; \
+     virtual ex1::HRes GetStream(uint32 index, ex1::writer **outStream,  int32_t askExtractMode) specifier; \
+     virtual ex1::HRes PrepareOperation(int32_t askExtractMode) specifier; \
+     virtual ex1::HRes SetOperationResult(int32_t resultEOperationResult) specifier; \
 
    class CLASS_DECL_ca archive_extract_callback_interface :
       virtual public ex1::progress_interface
@@ -141,7 +141,7 @@ namespace compress
      virtual ex1::HRes Close() specifier; \
      virtual ex1::HRes GetNumberOfItems(uint32 *numItems) specifier; \
      virtual ex1::HRes GetProperty(uint32 index, int32_t propID, var *value) specifier; \
-     virtual ex1::HRes Extract(const uint32* indices, uint32 numItems, int32 testMode, ::compress::archive_extract_callback_interface *extractCallback) specifier; \
+     virtual ex1::HRes Extract(const uint32* indices, uint32 numItems, int32_t testMode, ::compress::archive_extract_callback_interface *extractCallback) specifier; \
      virtual ex1::HRes GetArchiveProperty(int32_t propID, var *value) specifier; \
      virtual ex1::HRes GetNumberOfProperties(uint32 *numProperties) specifier; \
      virtual ex1::HRes GetPropertyInfo(uint32 index, string & name, int32_t *propID, var::e_type *varType) specifier; \
@@ -165,13 +165,13 @@ namespace compress
    #define CA2_COMPRESS_INTERFACE_archive_update_callback(specifier) \
      CA2_EX1_progress_interface(specifier); \
      virtual ex1::HRes GetUpdateItemInfo(uint32 index,  \
-         int32 *newData, /*1 - new data, 0 - old data */ \
-         int32 *newProperties, /* 1 - new properties, 0 - old properties */ \
+         int32_t *newData, /*1 - new data, 0 - old data */ \
+         int32_t *newProperties, /* 1 - new properties, 0 - old properties */ \
          uint32 *indexInArchive /* -1 if there is no in archive, or if doesn't matter */ \
          )  specifier; \
      virtual ex1::HRes GetProperty(uint32 index, int32_t propID, var *value) specifier; \
      virtual ex1::HRes GetStream(uint32 index, ex1::byte_input_stream **inStream) specifier; \
-     virtual ex1::HRes SetOperationResult(int32 operationResult) specifier; \
+     virtual ex1::HRes SetOperationResult(int32_t operationResult) specifier; \
 
    class CLASS_DECL_ca archive_update_callback_interface :
       virtual public ex1::progress_interface
@@ -207,7 +207,7 @@ namespace compress
    class CLASS_DECL_ca set_properties_interface
    {
    public:
-      virtual ex1::HRes SetProperties(const char **names, const var *values, int32 numProperties) PURE;
+      virtual ex1::HRes SetProperties(const char **names, const var *values, int32_t numProperties) PURE;
    };
 
 

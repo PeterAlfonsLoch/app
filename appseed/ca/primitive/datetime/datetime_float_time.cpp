@@ -348,7 +348,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
     1,2,3,4,5,6,7,8,9,10,11,12,13,
     1,2,3,4,5,6,7,8,9,10,11,12,13
   };
-  unsigned int32_t i;
+  uint32_t i;
   BSTR tokens[sizeof(ParseDateTokens)/sizeof(ParseDateTokens[0])];
   DATEPARSE dp;
   DWORD dwDateSeps = 0, iDate = 0;

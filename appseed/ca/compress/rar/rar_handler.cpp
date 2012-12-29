@@ -119,7 +119,7 @@ namespace rar
       case ::compress::kpidCharacts: FLAGS_TO_PROP(k_Flags, _archiveInfo.Flags, &var); break;
          // case ::compress::kpidEncrypted: prop = _archiveInfo.IsEncrypted(); break; // it's for encrypted names.
       case ::compress::kpidIsVolume: var = _archiveInfo.IsVolume(); break;
-      case ::compress::kpidNumVolumes: var = (int32)_archives.get_size(); break;
+      case ::compress::kpidNumVolumes: var = (int32_t)_archives.get_size(); break;
       case ::compress::kpidOffset: if (_archiveInfo.StartPosition != 0) var = _archiveInfo.StartPosition; break;
          // case ::compress::kpidCommented: prop = _archiveInfo.IsCommented(); break;
       case ::compress::kpidNumBlocks:
@@ -128,7 +128,7 @@ namespace rar
             for (int32_t i = 0; i < _refItems.get_size(); i++)
                if (!IsSolid(i))
                   numBlocks++;
-            var = (int32)numBlocks;
+            var = (int32_t)numBlocks;
             break;
          }
       case ::compress::kpidError: if (!_errorMessage.is_empty()) var = _errorMessage; break;
@@ -194,7 +194,7 @@ namespace rar
       case ::compress::kpidMTime: RarTimeToProp(get_app(), item.MTime, prop); break;
       case ::compress::kpidCTime: if (item.CTimeDefined) RarTimeToProp(get_app(), item.CTime, prop); break;
       case ::compress::kpidATime: if (item.ATimeDefined) RarTimeToProp(get_app(), item.ATime, prop); break;
-      case ::compress::kpidAttrib: prop = (int32) item.GetWinAttributes(); break;
+      case ::compress::kpidAttrib: prop = (int32_t) item.GetWinAttributes(); break;
       case ::compress::kpidEncrypted: prop = item.IsEncrypted(); break;
       case ::compress::kpidSolid: prop = IsSolid(index); break;
       case ::compress::kpidCommented: prop = item.IsCommented(); break;
@@ -203,7 +203,7 @@ namespace rar
       case ::compress::kpidCRC:
          {
             const CItemEx &lastItem = _items[refItem.ItemIndex + refItem.NumItems - 1];
-            prop = (int32) (((lastItem.IsSplitAfter()) ? item.FileCRC : lastItem.FileCRC));
+            prop = (int32_t) (((lastItem.IsSplitAfter()) ? item.FileCRC : lastItem.FileCRC));
             break;
          }
       case ::compress::kpidUnpackVer: prop = item.UnPackVersion; break;
@@ -507,7 +507,7 @@ namespace rar
    };
 
 
-   ex1::HRes handler::Extract(const uint32 *indices, uint32 numItems, int32 testMode, ::compress::archive_extract_callback_interface *extractCallback)
+   ex1::HRes handler::Extract(const uint32 *indices, uint32 numItems, int32_t testMode, ::compress::archive_extract_callback_interface *extractCallback)
    {
       ::crypto::get_text_password_interface * getTextPassword = NULL;
       file_size censoredTotalUnPacked = 0,
@@ -583,7 +583,7 @@ namespace rar
          RINOK(lps->SetCur());
          ::ex1::writer * realOutStream;
 
-         int32 askMode;
+         int32_t askMode;
          if (extractStatuses[i])
             askMode = testMode ? ::compress::archive::extract::ask_mode_test : ::compress::archive::extract::ask_mode_extract;
          else

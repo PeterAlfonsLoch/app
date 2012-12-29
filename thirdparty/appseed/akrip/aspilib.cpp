@@ -958,7 +958,7 @@ DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
     }
 #endif
 
-  lenData = ((unsigned int32_t)b[0] << 8) + b[1];
+  lenData = ((uint32_t)b[0] << 8) + b[1];
 
   /* set to first sense mask, and then walk through the masks */
   p = b + 8;

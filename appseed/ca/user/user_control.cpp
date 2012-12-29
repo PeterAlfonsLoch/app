@@ -4,7 +4,7 @@ namespace user
 {
 
 #ifdef WINDOWSEX
-   const unsigned int32_t control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
+   const uint32_t control::g_uiMessage = ::RegisterWindowMessage("user::control::g_uiMessage");
 #endif
 
    control::descriptor::descriptor()
@@ -321,8 +321,7 @@ namespace user
          return true;
       case DataTypeNatural:
          {
-            var.set_type(var::type_integer);
-            var.m_i = atoi(str);
+            var = atoi(str);
             return true;
          }
          break;

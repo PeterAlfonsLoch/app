@@ -230,7 +230,7 @@ namespace compress
          return true;
       }
 
-      bool decoder::DecodeLz(int32 pos)
+      bool decoder::DecodeLz(int32_t pos)
       {
          while (pos > 0)
          {
@@ -354,7 +354,7 @@ namespace compress
             }
             else
             {
-               if (!DecodeLz((int32)blockSize))
+               if (!DecodeLz((int32_t)blockSize))
                   return S_FALSE;
             }
             uint64 globalPos = m_OutWindowStream.GetProcessedSize();

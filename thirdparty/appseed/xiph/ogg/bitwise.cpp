@@ -30,7 +30,7 @@ static const unsigned long mask[]=
  0x01ffffff,0x03ffffff,0x07ffffff,0x0fffffff,0x1fffffff,
  0x3fffffff,0x7fffffff,0xffffffff };
 
-static const unsigned int32_t mask8B[]=
+static const uint32_t mask8B[]=
 {0x00,0x80,0xc0,0xe0,0xf0,0xf8,0xfc,0xfe,0xff};
 
 void oggpack_writeinit(oggpack_buffer *b){
@@ -521,7 +521,7 @@ unsigned char *oggpackB_get_buffer(oggpack_buffer *b){
 
 #ifdef _V_SELFTEST
 
-static int32_t ilog(unsigned int32_t v){
+static int32_t ilog(uint32_t v){
   int32_t ret=0;
   while(v){
     ret++;

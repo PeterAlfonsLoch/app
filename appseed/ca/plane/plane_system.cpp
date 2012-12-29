@@ -505,8 +505,8 @@ namespace plane
       /*set_enum_name(var::type_null      , "null");
       set_enum_name(var::type_empty     , "is_empty");
       set_enum_name(var::type_string    , "string");
-      set_enum_name(var::type_integer   , "integer");
-      set_enum_name(var::type_ulong     , "ulong");
+      set_enum_name(var::type_int32   , "integer");
+      set_enum_name(var::type_uint32     , "ulong");
       set_enum_name(var::type_ca2       , "ca2");
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/

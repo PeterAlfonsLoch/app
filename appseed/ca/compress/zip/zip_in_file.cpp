@@ -255,7 +255,7 @@ namespace zip
       ASSERT(__is_valid_address(lpBuf, (uint_ptr) nCount));
 
       uint64_t iRead;
-      iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpBuf, (unsigned int32_t) nCount);
+      iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpBuf, (uint32_t) nCount);
       m_iPosition += iRead;
 
       return (UINT)iRead;
@@ -320,7 +320,7 @@ namespace zip
          while(iRemain > 0)
          {
             iGet = min(iRemain, 1024);
-            iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpbBuf, (unsigned int32_t) iGet);
+            iRead = unzReadCurrentFile(get_zip_file()->m_pfUnzip, lpbBuf, (uint32_t) iGet);
             iRemain -= iRead;
             if(iRead < iGet)
                break;
@@ -644,7 +644,7 @@ namespace zip
       primitive::memory_size uiRead;
       while((uiRead = file->read(mem, mem.get_size())) > 0)
       {
-         zipWriteInFileInZip(get_zip_file()->m_pfZip, mem.get_data(), (unsigned int32_t) uiRead);
+         zipWriteInFileInZip(get_zip_file()->m_pfZip, mem.get_data(), (uint32_t) uiRead);
       }
 
       zipCloseFileInZip(get_zip_file()->m_pfZip);

@@ -46,7 +46,7 @@ namespace ex1
       byte_input_stream & operator >> (wchar_t & wch);
       byte_input_stream & operator >> (bool & b);
       byte_input_stream & operator >> (int32_t & i);
-      byte_input_stream & operator >> (unsigned int32_t & ui);
+      byte_input_stream & operator >> (uint32_t & ui);
       void read_arbitrary(int32_t & i);
       void read_arbitrary(uint32_t & ui);
 #if defined(WINDOWS) || defined(__LP64__)
@@ -110,7 +110,7 @@ namespace ex1
       byte_output_stream & operator << (wchar_t wch);
       byte_output_stream & operator << (bool b);
       byte_output_stream & operator << (int32_t i);
-      byte_output_stream & operator << (unsigned int32_t ui);
+      byte_output_stream & operator << (uint32_t ui);
       void write_arbitrary(int32_t i);
       void write_arbitrary(uint32_t ui);
 #if defined(WINDOWS) || defined(__LP64__)

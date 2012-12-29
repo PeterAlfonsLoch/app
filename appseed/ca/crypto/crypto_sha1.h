@@ -96,7 +96,7 @@ namespace crypto
          void GetBlockDigest(void * blockData, uint32 *destDigest, bool returnRes);
          //void
          // PrepareBlock can be used only when size <= 13. size in Words
-//         void PrepareBlock(uint32 *block, unsigned int32_t size) const;
+//         void PrepareBlock(uint32 *block, uint32_t size) const;
          void update(const void * msg, int32_t iSize);
       };
 

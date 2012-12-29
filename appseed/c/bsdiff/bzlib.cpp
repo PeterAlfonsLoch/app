@@ -105,7 +105,7 @@ int32_t bz_config_ok ( void )
 
 /*---------------------------------------------------*/
 static
-void * default_bzalloc ( void * opaque, int32 items, int32 size )
+void * default_bzalloc ( void * opaque, int32_t items, int32_t size )
 {
    void * v = _ca_alloc ( items * size );
    return v;
@@ -122,7 +122,7 @@ void default_bzfree ( void * opaque, void * addr )
 static
 void prepare_new_block ( e_state* s )
 {
-   int32 i;
+   int32_t i;
    s->nblock = 0;
    s->numZ = 0;
    s->state_out_pos = 0;
@@ -157,7 +157,7 @@ int32_t BZ_API(BZ2_bzCompressInit)
                      int32_t        verbosity,
                      int32_t        workFactor )
 {
-   int32   n;
+   int32_t   n;
    e_state* s;
 
    if (!bz_config_ok()) return BZ_CONFIG_ERROR;
@@ -221,7 +221,7 @@ int32_t BZ_API(BZ2_bzCompressInit)
 static
 void add_pair_to_block ( e_state* s )
 {
-   int32 i;
+   int32_t i;
    UChar ch = (UChar)(s->state_in_ch);
    for (i = 0; i < s->state_in_len; i++) {
       BZ_UPDATE_CRC( s->blockCRC, ch );
@@ -587,7 +587,7 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
    
          BZ_GET_FAST(k1); BZ_RAND_UPD_MASK; 
          k1 ^= BZ_RAND_MASK; s->nblock_used++;
-         s->state_out_len = ((int32)k1) + 4;
+         s->state_out_len = ((int32_t)k1) + 4;
          BZ_GET_FAST(s->k0); BZ_RAND_UPD_MASK; 
          s->k0 ^= BZ_RAND_MASK; s->nblock_used++;
       }
@@ -597,18 +597,18 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
       /* restore */
       uint32        c_calculatedBlockCRC = s->calculatedBlockCRC;
       UChar         c_state_out_ch       = s->state_out_ch;
-      int32         c_state_out_len      = s->state_out_len;
-      int32         c_nblock_used        = s->nblock_used;
-      int32         c_k0                 = s->k0;
+      int32_t         c_state_out_len      = s->state_out_len;
+      int32_t         c_nblock_used        = s->nblock_used;
+      int32_t         c_k0                 = s->k0;
       uint32*       c_tt                 = s->tt;
       uint32        c_tPos               = s->tPos;
       char*         cs_next_out          = s->strm->next_out;
-      unsigned int32_t  cs_avail_out         = s->strm->avail_out;
+      uint32_t  cs_avail_out         = s->strm->avail_out;
       /* end restore */
 
       uint32       avail_out_INIT = cs_avail_out;
-      int32        s_save_nblockPP = s->save_nblock+1;
-      unsigned int32_t total_out_lo32_old;
+      int32_t        s_save_nblockPP = s->save_nblock+1;
+      uint32_t total_out_lo32_old;
 
       while (True) {
 
@@ -661,7 +661,7 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
          if (k1 != c_k0) { c_k0 = k1; continue; };
    
          BZ_GET_FAST_C(k1); c_nblock_used++;
-         c_state_out_len = ((int32)k1) + 4;
+         c_state_out_len = ((int32_t)k1) + 4;
          BZ_GET_FAST_C(c_k0); c_nblock_used++;
       }
 
@@ -689,9 +689,9 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
 
 
 /*---------------------------------------------------*/
-__inline__ int32 BZ2_indexIntoF ( int32 indx, int32 *cftab )
+__inline__ int32_t BZ2_indexIntoF ( int32_t indx, int32_t *cftab )
 {
-   int32 nb, na, mid;
+   int32_t nb, na, mid;
    nb = 0;
    na = 256;
    do {
@@ -756,7 +756,7 @@ Bool unRLE_obuf_to_output_SMALL ( DState* s )
    
          BZ_GET_SMALL(k1); BZ_RAND_UPD_MASK; 
          k1 ^= BZ_RAND_MASK; s->nblock_used++;
-         s->state_out_len = ((int32)k1) + 4;
+         s->state_out_len = ((int32_t)k1) + 4;
          BZ_GET_SMALL(s->k0); BZ_RAND_UPD_MASK; 
          s->k0 ^= BZ_RAND_MASK; s->nblock_used++;
       }
@@ -801,7 +801,7 @@ Bool unRLE_obuf_to_output_SMALL ( DState* s )
          if (k1 != s->k0) { s->k0 = k1; continue; };
    
          BZ_GET_SMALL(k1); s->nblock_used++;
-         s->state_out_len = ((int32)k1) + 4;
+         s->state_out_len = ((int32_t)k1) + 4;
          BZ_GET_SMALL(s->k0); s->nblock_used++;
       }
 
@@ -844,7 +844,7 @@ int32_t BZ_API(BZ2_bzDecompress) ( bz_stream *strm )
          }
       }
       if (s->state >= BZ_X_MAGIC_1) {
-         int32 r = BZ2_decompress ( s );
+         int32_t r = BZ2_decompress ( s );
          if (r == BZ_STREAM_END) {
             if (s->verbosity >= 3)
                VPrintf2 ( "\n    combined CRCs: stored = 0x%08x, computed = 0x%08x", 
@@ -898,10 +898,10 @@ typedef
    struct {
       _FILE*     handle;
       Char      buf[BZ_MAX_UNUSED];
-      int32     bufN;
+      int32_t     bufN;
       Bool      writing;
       bz_stream strm;
-      int32     lastErr;
+      int32_t     lastErr;
       Bool      initialisedOk;
    }
    bzFile;
@@ -910,7 +910,7 @@ typedef
 /*---------------------------------------------*/
 static Bool myfeof ( _FILE* f )
 {
-   int32 c = fgetc_dup ( f );
+   int32_t c = fgetc_dup ( f );
    if (c == EOF) return True;
    ungetc_dup ( c, f );
    return False;
@@ -925,7 +925,7 @@ BZFILE* BZ_API(BZ2_bzWriteOpen)
                       int32_t   verbosity,
                       int32_t   workFactor )
 {
-   int32   ret;
+   int32_t   ret;
    bzFile* bzf = NULL;
 
    BZ_SETERR(BZ_OK);
@@ -972,7 +972,7 @@ void BZ_API(BZ2_bzWrite)
                void *   buf, 
                int32_t     len )
 {
-   int32 n, n2, ret;
+   int32_t n, n2, ret;
    bzFile* bzf = (bzFile*)b;
 
    BZ_SETERR(BZ_OK);
@@ -1015,8 +1015,8 @@ void BZ_API(BZ2_bzWriteClose)
                   ( int32_t*          bzerror, 
                     BZFILE*       b, 
                     int32_t           abandon,
-                    unsigned int32_t* nbytes_in,
-                    unsigned int32_t* nbytes_out )
+                    uint32_t* nbytes_in,
+                    uint32_t* nbytes_out )
 {
    BZ2_bzWriteClose64 ( bzerror, b, abandon, 
                         nbytes_in, NULL, nbytes_out, NULL );
@@ -1027,12 +1027,12 @@ void BZ_API(BZ2_bzWriteClose64)
                   ( int32_t*          bzerror, 
                     BZFILE*       b, 
                     int32_t           abandon,
-                    unsigned int32_t* nbytes_in_lo32,
-                    unsigned int32_t* nbytes_in_hi32,
-                    unsigned int32_t* nbytes_out_lo32,
-                    unsigned int32_t* nbytes_out_hi32 )
+                    uint32_t* nbytes_in_lo32,
+                    uint32_t* nbytes_in_hi32,
+                    uint32_t* nbytes_out_lo32,
+                    uint32_t* nbytes_out_hi32 )
 {
-   int32   n, n2, ret;
+   int32_t   n, n2, ret;
    bzFile* bzf = (bzFile*)b;
 
    if (bzf == NULL)
@@ -1169,7 +1169,7 @@ int32_t BZ_API(BZ2_bzRead)
              void *   buf, 
              int32_t     len )
 {
-   int32   n, ret;
+   int32_t   n, ret;
    bzFile* bzf = (bzFile*)b;
 
    BZ_SETERR(BZ_OK);
@@ -1251,9 +1251,9 @@ void BZ_API(BZ2_bzReadGetUnused)
 /*---------------------------------------------------*/
 int32_t BZ_API(BZ2_bzBuffToBuffCompress) 
                          ( char*         dest, 
-                           unsigned int32_t* destLen,
+                           uint32_t* destLen,
                            char*         source, 
-                           unsigned int32_t  sourceLen,
+                           uint32_t  sourceLen,
                            int32_t           blockSize100k, 
                            int32_t           verbosity, 
                            int32_t           workFactor )
@@ -1303,9 +1303,9 @@ int32_t BZ_API(BZ2_bzBuffToBuffCompress)
 /*---------------------------------------------------*/
 int32_t BZ_API(BZ2_bzBuffToBuffDecompress) 
                            ( char*         dest, 
-                             unsigned int32_t* destLen,
+                             uint32_t* destLen,
                              char*         source, 
-                             unsigned int32_t  sourceLen,
+                             uint32_t  sourceLen,
                              int32_t           small,
                              int32_t           verbosity )
 {

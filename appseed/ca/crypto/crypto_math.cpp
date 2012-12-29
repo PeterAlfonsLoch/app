@@ -164,7 +164,7 @@ octet_get_weight(uint8_t octet) {
 
 unsigned char
 v32_weight(v32_t a) {
-  unsigned int32_t wt = 0;
+  uint32_t wt = 0;
   
   wt += octet_weight[a.v8[0]];  /** note: endian-ness makes no difference */
   wt += octet_weight[a.v8[1]];
@@ -180,7 +180,7 @@ v32_distance(v32_t x, v32_t y) {
   return v32_weight(x);
 }
 
-unsigned int32_t
+uint32_t
 v32_dot_product(v32_t a, v32_t b) {
   a.value &= b.value;
   return v32_weight(a) & 1;

@@ -55,7 +55,7 @@ namespace n7z
       handler();
 
       virtual ex1::HRes SetCompressCodecsInfo(::compress::codecs_info_interface *compressCodecsInfo) = 0;
-      virtual ex1::HRes SetProperties(const char **names, const var *values, int32 numProperties);
+      virtual ex1::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
 
    private:
       ::ca::smart_pointer < ::ex1::byte_input_stream > _inStream;

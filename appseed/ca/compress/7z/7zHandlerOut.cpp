@@ -230,7 +230,7 @@ namespace n7z
 
       for (uint32 i = 0; i < numItems; i++)
       {
-         int32 newData, newProps;
+         int32_t newData, newProps;
          uint32 indexInArchive;
          if (!updateCallback)
             return E_FAIL;
@@ -271,7 +271,7 @@ namespace n7z
                   return E_INVALIDARG;
                else
                {
-                  ui.Attrib = prop.get_integer();
+                  ui.Attrib = prop.int32();
                   ui.AttribDefined = true;
                }
             }
@@ -339,9 +339,9 @@ namespace n7z
          {
             var prop;
             RINOK(updateCallback->GetProperty(i, ::compress::kpidSize, &prop));
-            if (prop.get_type() != var::type_integer) // todo: type_byte
+            if (prop.get_type() != var::type_int32) // todo: type_byte
                return E_INVALIDARG;
-            ui.get_count = (uint64)prop.m_i;
+            ui.get_count = prop;
             if (ui.get_count != 0 && ui.IsAnti)
                return E_INVALIDARG;
          }
@@ -361,7 +361,7 @@ namespace n7z
       if (getPassword2)
       {
          string password;
-         int32 passwordIsDefined;
+         int32_t passwordIsDefined;
          RINOK(getPassword2->CryptoGetTextPassword2(&passwordIsDefined, password));
          methodMode.PasswordIsDefined = IntToBool(passwordIsDefined);
          if (methodMode.PasswordIsDefined)
@@ -469,7 +469,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes handler::SetProperties(const char **names, const var *values, int32 numProperties)
+   ex1::HRes handler::SetProperties(const char **names, const var *values, int32_t numProperties)
    {
       _binds.remove_all();
       BeforeSetProperty();

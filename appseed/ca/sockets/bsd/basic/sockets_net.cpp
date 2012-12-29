@@ -306,7 +306,7 @@ namespace sockets
 
       char slask[100]; // l2ip temporary
       *slask = 0;
-      unsigned int32_t prev = 0;
+      uint32_t prev = 0;
       bool skipped = false;
       bool ok_to_skip = true;
       if (mixed)
@@ -763,7 +763,7 @@ namespace sockets
          {
             char slask[100]; // l2ip temporary
             *slask = 0;
-            unsigned int32_t prev = 0;
+            uint32_t prev = 0;
             bool skipped = false;
             bool ok_to_skip = true;
             {

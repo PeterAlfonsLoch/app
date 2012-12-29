@@ -144,7 +144,7 @@ void res0_free_look(vorbis_look_residue *i){
   }
 }
 
-static int32_t ilog(unsigned int32_t v){
+static int32_t ilog(uint32_t v){
   int32_t ret=0;
   while(v){
     ret++;
@@ -153,7 +153,7 @@ static int32_t ilog(unsigned int32_t v){
   return(ret);
 }
 
-static int32_t icount(unsigned int32_t v){
+static int32_t icount(uint32_t v){
   int32_t ret=0;
   while(v){
     ret+=v&1;

@@ -285,7 +285,7 @@ namespace gen
       }
 
       bool math::IsPowerOfTwo(
-         unsigned int32_t uiValue)
+         uint32_t uiValue)
       {
           if (uiValue < 2)
               return FALSE;
@@ -296,7 +296,7 @@ namespace gen
           return TRUE;
       }
 
-      unsigned int32_t math::ReverseBits (unsigned index, unsigned NumBits )
+      uint32_t math::ReverseBits (unsigned index, unsigned NumBits )
       {
           unsigned i, rev;
 
@@ -333,7 +333,7 @@ namespace gen
          return (int32_t) dRand;
       }
 
-      unsigned int32_t math::RandRange(unsigned int32_t ui1, unsigned int32_t ui2)
+      uint32_t math::RandRange(uint32_t ui1, uint32_t ui2)
       {
          // dRandRange == 0.0 is impossible event due this next statement;
          if(ui1 == ui2)

@@ -4,7 +4,7 @@ static
 const int32_t FULL_RECORD_LENGTH = 50;
 
 static
-GeoIPRecord * _extract_record(GeoIP* gi, unsigned int32_t seek_record, int32_t *next_record_ptr) {
+GeoIPRecord * _extract_record(GeoIP* gi, uint32_t seek_record, int32_t *next_record_ptr) {
    int32_t record_pointer;
    unsigned char *record_buf = NULL;
    unsigned char *begin_record_buf = NULL;
@@ -112,7 +112,7 @@ for (j = 0; j < 3; ++j)
 
 static
 GeoIPRecord * _get_record(GeoIP* gi, unsigned long ipnum) {
-   unsigned int32_t seek_record;
+   uint32_t seek_record;
 
    if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
          gi->databaseType != (char) GEOIP_CITY_EDITION_REV1) {
@@ -126,7 +126,7 @@ GeoIPRecord * _get_record(GeoIP* gi, unsigned long ipnum) {
 
 static
 GeoIPRecord * _get_record_v6(GeoIP* gi, geoipv6_t ipnum) {
-       unsigned int32_t seek_record;
+       uint32_t seek_record;
 
        if (gi->databaseType != (char) GEOIP_CITY_EDITION_REV0 &&
                        gi->databaseType != (char) GEOIP_CITY_EDITION_REV1) {

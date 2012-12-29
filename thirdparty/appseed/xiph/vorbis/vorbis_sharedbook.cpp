@@ -20,7 +20,7 @@ BEGIN_EXTERN_C
 
 
 /**** pack/unpack helpers ******************************************/
-int32_t _ilog(unsigned int32_t v){
+int32_t _ilog(uint32_t v){
   int32_t ret=0;
   while(v){
     ret++;

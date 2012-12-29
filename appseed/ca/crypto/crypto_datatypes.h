@@ -94,7 +94,7 @@ typedef union {
 
 /* some useful and simple math functions */
 
-#define pow_2(X) ( (unsigned int32_t)1 << (X) )   /* 2^X     */
+#define pow_2(X) ( (uint32_t)1 << (X) )   /* 2^X     */
 
 #define pow_minus_one(X) ( (X) ? -1 : 1 )      /* (-1)^X  */
 

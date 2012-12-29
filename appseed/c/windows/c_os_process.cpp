@@ -148,7 +148,7 @@ bool process_modules(stra_dup & stra, DWORD processID)
    
    DWORD cbNeeded;
    
-   unsigned int32_t i;
+   uint32_t i;
 
    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID );
 

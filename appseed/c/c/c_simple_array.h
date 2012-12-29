@@ -344,7 +344,7 @@ public:
 
 
 class CLASS_DECL_c simple_uint_array :
-   virtual public simple_array < unsigned int32_t >
+   virtual public simple_array < uint32_t >
 {
 public:
 };

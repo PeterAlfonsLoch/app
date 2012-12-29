@@ -174,7 +174,7 @@ dump_context& dump_context::dumpAsHex(WORD w)
 
 #if defined(LINUX)
 
-dump_context& dump_context::operator<<(unsigned int32_t ui)
+dump_context& dump_context::operator<<(uint32_t ui)
 {
 
    string str;

@@ -86,7 +86,7 @@ SHA1(A million repetitions of "a") =
 #if (ULONG_MAX == 0xFFFFFFFF)
 #define UINT_32 unsigned long
 #else
-#define UINT_32 unsigned int32_t
+#define UINT_32 uint32_t
 #endif
 
 #endif
@@ -826,7 +826,7 @@ namespace ca4
       memset( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       srand((UINT) time( NULL ) );
       sprintf( szRand, "%x", rand()%1000 );
-      sprintf( szTime, "%ld", (long int32_t) time( NULL ) );
+      sprintf( szTime, "%ld", (int32_t) time( NULL ) );
 
       m_nonce = szTime;
       m_nonce += szRand;
