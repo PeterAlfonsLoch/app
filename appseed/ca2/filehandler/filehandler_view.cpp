@@ -188,7 +188,7 @@ namespace filehandler
 
       e_element eelement;
 
-      int32_t iItem = hit_test(pmouse->m_pt, eelement);
+      index iItem = hit_test(pmouse->m_pt, eelement);
 
       if(iItem >= 0)
       {

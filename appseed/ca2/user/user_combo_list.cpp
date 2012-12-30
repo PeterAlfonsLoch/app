@@ -118,7 +118,7 @@ namespace user
 
       if(m_pcombo->m_iSel >= 0)
       {
-         rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel));
+         rectItem.top = (LONG) (rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel)));
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if(rectItem.contains(ptCursor))
          {
@@ -201,7 +201,7 @@ namespace user
 
       if(m_pcombo->m_iSel >= 0)
       {
-         rectItem.top = rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel));
+         rectItem.top = (LONG) (rectClient.top + (_001GetItemHeight() * (1 + m_pcombo->m_iSel)));
          rectItem.bottom = rectItem.top + _001GetItemHeight();
          if(rectItem.contains(ptCursor))
          {
@@ -268,7 +268,7 @@ namespace user
 
       }
 
-      lpsize->cy = _001GetItemHeight() * (m_pcombo->_001GetListCount() + 1);
+      lpsize->cy = (LONG) (_001GetItemHeight() * (m_pcombo->_001GetListCount() + 1));
 
    }
 

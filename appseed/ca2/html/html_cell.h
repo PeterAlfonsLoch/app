@@ -59,21 +59,21 @@ namespace html
          // |        |                  |
          // -----------------------------
          // population: (1, 1), (1, 2), (2, 1), (2, 2)
-         int32_t m_iColBeg;
-         int32_t m_iRowBeg;
-         int32_t m_iColEnd;
-         int32_t m_iRowEnd;
+         index m_iColBeg;
+         index m_iRowBeg;
+         index m_iColEnd;
+         index m_iRowEnd;
          
          
          float m_fWidth;
 
-         int32_t m_iRowSpan;
-         int32_t m_iColSpan;
+         count m_iRowSpan;
+         count m_iColSpan;
 
 
          table * get_table();
          table_row * get_row();
-         int32_t get_min_col();
+         index get_min_col();
 
          using text::set_xy;
          void set_xy(data * pdoc);
@@ -96,9 +96,9 @@ namespace html
          virtual float calc_width();
 
 
-         virtual bool contains_column(int32_t iCol);
-         virtual bool contains_row(int32_t iRow);
-         virtual bool contains_cell(int32_t iCol, int32_t iRow);
+         virtual bool contains_column(index iCol);
+         virtual bool contains_row(index iRow);
+         virtual bool contains_cell(index iCol, index iRow);
 
          virtual float get_table_border();
          virtual float get_cell_spacing();

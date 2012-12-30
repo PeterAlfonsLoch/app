@@ -171,7 +171,7 @@ namespace user
       virtual bool get_element_rect(::index iTab, LPRECT lprect, e_element eelement);
 
       virtual void layout();
-      virtual void layout_pane(int32_t iPane);
+      virtual void layout_pane(index iPane);
 
       virtual void GetTabClientRect(LPRECT lprect);
       virtual void GetTabClientRect(__rect64 * lprect);

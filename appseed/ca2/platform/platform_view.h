@@ -50,46 +50,46 @@ namespace platform
          void show();
       };
 
-      int32_t                  m_iV; // veriwell votagus vida
-      int32_t                  m_iVH;
-      int32_t                  m_iVW;
-      visual::dib_sp       m_dibV;
-      int32_t                  m_i_veriwell; // veriwell votagus vida
-      int32_t                  m_i_veriwell_h;
-      int32_t                  m_i_veriwell_w;
-      visual::dib_sp       m_dib_veriwell;
-      int32_t                  m_i_winactionarea; // que ponta!!cc
-      int32_t                  m_i_winactionarea_h;
-      int32_t                  m_i_winactionarea_w;
-      visual::dib_sp       m_dib_winactionarea;
-      oswindow                  m_oswindowWinactionarea;
-      oswindow                  m_oswindowCommand;
-      oswindow                  m_oswindowWinutil;
-      oswindow                 m_oswindowWinservice1;
-      oswindow                  m_oswindowBergedge;
-      int32_t                  m_iHitArea;
+      int32_t                    m_iV; // veriwell votagus vida
+      int32_t                    m_iVH;
+      int32_t                    m_iVW;
+      visual::dib_sp             m_dibV;
+      int32_t                    m_i_veriwell; // veriwell votagus vida
+      int32_t                    m_i_veriwell_h;
+      int32_t                    m_i_veriwell_w;
+      visual::dib_sp             m_dib_veriwell;
+      int32_t                    m_i_winactionarea; // que ponta!!cc
+      int32_t                    m_i_winactionarea_h;
+      int32_t                    m_i_winactionarea_w;
+      visual::dib_sp             m_dib_winactionarea;
+      oswindow                   m_oswindowWinactionarea;
+      oswindow                   m_oswindowCommand;
+      oswindow                   m_oswindowWinutil;
+      oswindow                   m_oswindowWinservice1;
+      oswindow                   m_oswindowBergedge;
+      index                      m_iHitArea;
 
       ::user::front_end_schema::button  
-                           m_buttonschema;
+                                 m_buttonschema;
 
       array_del_ptr < link, link & > 
-                           m_linka;
+                                 m_linka;
 
-      int32_t m_iScreen;
-      ::ca::font_sp m_font1;
-      ::ca::font_sp m_font2;
-      ::ca::font_sp m_font3;
-      ::ca::brush_sp m_brushBk;
-      ::ca::brush_sp m_brushProgress3;
-      ::ca::brush_sp m_brushProgress2;
-      ::ca::brush_sp m_brushProgress1;
-      visual::dib_sp m_dibBk;
-      visual::dib_sp m_dibBkImage;
-      double m_dProgress;
-      double m_dProgress1;
-      double m_dProgress2;
-      string m_strStatus1;
-      string m_strStatus2;
+      int32_t                    m_iScreen;
+      ::ca::font_sp              m_font1;
+      ::ca::font_sp              m_font2;
+      ::ca::font_sp              m_font3;
+      ::ca::brush_sp             m_brushBk;
+      ::ca::brush_sp             m_brushProgress3;
+      ::ca::brush_sp             m_brushProgress2;
+      ::ca::brush_sp             m_brushProgress1;
+      visual::dib_sp             m_dibBk;
+      visual::dib_sp             m_dibBkImage;
+      double                     m_dProgress;
+      double                     m_dProgress1;
+      double                     m_dProgress2;
+      string                     m_strStatus1;
+      string                     m_strStatus2;
 
 
       

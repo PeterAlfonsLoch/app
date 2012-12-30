@@ -680,7 +680,7 @@ namespace user
       lprect->left = 0;
       lprect->top = 0;
       lprect->right = m_iCurrentViewWidth;
-      lprect->bottom = get_proper_item_count() * _001GetItemHeight();
+      lprect->bottom = (LONG) (get_proper_item_count() * _001GetItemHeight());
 
 
    }

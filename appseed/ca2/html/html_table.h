@@ -18,12 +18,12 @@ namespace html
          {
          public:
 
-            int32_t      m_iCol;
+            index        m_iCol;
             int32_t      m_cxMax;
             int32_t      m_cxMin;
 
             column();
-            column(int32_t iCol);
+            column(index iCol);
 
          };
 

@@ -160,7 +160,7 @@ namespace user
 
             e_element eelement;
 
-            int32_t iHover = hit_test(pmouse->m_pt, eelement);
+            index iHover = hit_test(pmouse->m_pt, eelement);
             if(iHover != m_iHover)
             {
                int32_t iOldHover = m_iHover;

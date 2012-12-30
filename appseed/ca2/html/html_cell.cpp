@@ -72,7 +72,7 @@ namespace html
 
          size size = pcellParent->get_bound_size();
          float iColumnWidth = calc_width();
-         int32_t iTableBorder = get_table()->m_iBorder;
+         float iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
             iTableBorder += 2;
@@ -191,9 +191,9 @@ namespace html
          m_iRowBeg = prow->m_iRow;
          m_iRowEnd = m_iRowBeg + m_iRowSpan - 1;
 
-         for(int32_t iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
+         for(index iCol = m_iColBeg; iCol <= m_iColEnd; iCol++)
          {
-            for(int32_t iRow = m_iRowBeg; iRow <= m_iRowEnd; iRow++)
+            for(index iRow = m_iRowBeg; iRow <= m_iRowEnd; iRow++)
             {
                ptable->set_cell(iCol, iRow, this);
                prow->set_cell(iCol, iRow, this);
@@ -422,9 +422,9 @@ namespace html
       }
 
 
-      int32_t cell::get_min_col()
+      index cell::get_min_col()
       {
-         int32_t iMinCol = 0;
+         index iMinCol = 0;
          table_row * prow = get_row();
          if(prow != NULL)
          {

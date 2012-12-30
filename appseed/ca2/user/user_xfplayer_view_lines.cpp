@@ -229,7 +229,7 @@ void XfplayerViewLines::get_sel_text(string & strSelText, const char * pszLineSe
 
          strSelText = element_at(iLineStart).m_str.Mid(iCharStart);
 
-         for(int32_t iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
+         for(index iLine = iLineStart + 1; iLine < iLineEnd; iLine++)
          {
 
             strSelText += pszLineSeparator;

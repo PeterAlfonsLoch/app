@@ -1034,12 +1034,12 @@ namespace user
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
 
-      int32_t iPane = hit_test(point, m_eelement);
+      index iPane = hit_test(point, m_eelement);
 
       get_data()->m_bDrag = false;
       if(iPane >= 0)
       {
-         int32_t iSel = _001GetSel();
+         index iSel = _001GetSel();
          if(m_eelement == element_close_tab_button)
          {
             get_data()->m_iDragTab = iPane;
@@ -1065,7 +1065,7 @@ namespace user
 
       e_element eelement;
 
-      int32_t iPane = hit_test(point, eelement);
+      index iPane = hit_test(point, eelement);
 
       KillTimer(5432187);
       if(iPane >= 0 && get_data()->m_iDragTab == iPane && m_eelement == eelement)
@@ -1104,12 +1104,14 @@ namespace user
          track_mouse_hover();
       }
 
-      int32_t iHover = hit_test(point, m_eelementHover);
+      index iHover = hit_test(point, m_eelementHover);
+
       if(iHover != m_iHover)
       {
          m_iHover = iHover;
          _001RedrawWindow();
       }
+
    }
 
 
