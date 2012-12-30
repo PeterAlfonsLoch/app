@@ -709,8 +709,8 @@ void oc_state_borders_fill_caps(oc_theora_state *_state,int32_t _refi,int32_t _p
   int32_t            hpadding;
   int32_t            vpadding;
   int32_t            fullw;
-  hpadding=OC_UMV_PADDING>>(_pli!=0&&!(_state->info.pixel_fmt&1));
-  vpadding=OC_UMV_PADDING>>(_pli!=0&&!(_state->info.pixel_fmt&2));
+  hpadding = OC_UMV_PADDING >> safe_int_bool(_pli != 0 && !(_state->info.pixel_fmt & 1));
+  vpadding = OC_UMV_PADDING >> safe_int_bool(_pli != 0 && !(_state->info.pixel_fmt & 2));
   iplane=_state->ref_frame_bufs[_refi]+_pli;
   stride=iplane->stride;
   fullw=iplane->width+(hpadding<<1);

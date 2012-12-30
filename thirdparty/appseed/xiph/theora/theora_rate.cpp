@@ -1084,7 +1084,7 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
             ogg_int32_t       log_scale;
             int32_t               qti;
             /*Read the metrics for the next frame.*/
-            dup_count=(ogg_int64_t) oc_rc_unbuffer_val(&_enc->rc,4);
+            dup_count=(ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
             log_scale=(ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
             /*Add the to the circular buffer.*/
             fmi=_enc->rc.frame_metrics_head+_enc->rc.nframe_metrics++;

@@ -27,20 +27,20 @@ namespace html
 
          };
 
-         float                                         m_iBorder;
-         float                                         m_iCellSpacing;
-         float                                         m_iCellPadding;
+         float                                           m_iBorder;
+         float                                           m_iCellSpacing;
+         float                                           m_iCellPadding;
 
-         base_array < base_array < cell::holder > >   m_cellholdera;
-         comparable_array < table_row * >             m_rowptra;
-         base_array < column >                        m_columna;
+         base_array < base_array < cell::holder > >      m_cellholdera;
+         comparable_array < table_row * >                m_rowptra;
+         base_array < column >                           m_columna;
 
          
          table();
          virtual ~table();
 
 
-         void set_cell(int32_t iCol, int32_t iRow, cell * pcell);
+         void set_cell(index iCol, index iRow, cell * pcell);
 
          virtual void implement_phase2(data * pdata);
          virtual void layout_phase3(data * pdata);

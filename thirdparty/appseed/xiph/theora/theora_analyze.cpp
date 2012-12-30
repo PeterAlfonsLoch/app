@@ -1105,8 +1105,7 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
       oc_qii_state_advance(qt+0,qs[bi-1]+0,qii);
       cur_rate=oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],0,0,satd);
       best_ssd=ssd[bi-1][0]+cur_ssd;
-      best_rate= (uint32_t) rate[bi-1][0]+cur_rate
-       +(qt[0].bits-qs[bi-1][0].bits<<OC_BIT_SCALE);
+      best_rate = (uint32_t) (rate[bi-1][0]+cur_rate + (qt[0].bits-qs[bi-1][0].bits<<OC_BIT_SCALE));
       best_cost=OC_MODE_RD_COST(best_ssd,best_rate,lambda);
       best_qij=0;
       for(qij=1;qij<nqis;qij++){
@@ -1115,8 +1114,7 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
         unsigned chain_cost;
         oc_qii_state_advance(qt+qij,qs[bi-1]+qij,qii);
         chain_ssd=ssd[bi-1][qij]+cur_ssd;
-        chain_rate= (uint32_t) rate[bi-1][qij]+cur_rate
-         +(qt[qij].bits-qs[bi-1][qij].bits<<OC_BIT_SCALE);
+        chain_rate = (uint32_t) (rate[bi-1][qij]+cur_rate + (qt[qij].bits-qs[bi-1][qij].bits<<OC_BIT_SCALE));
         chain_cost=OC_MODE_RD_COST(chain_ssd,chain_rate,lambda);
         if(chain_cost<best_cost){
           best_cost=chain_cost;
@@ -1176,8 +1174,7 @@ static unsigned oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
     unsigned cur_rate;
     unsigned cur_ssd;
     oc_qii_state_advance(qt+qii,_qs,qii);
-    cur_rate= (uint32_t) oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],_pli,0,satd)
-     +(qt[qii].bits-_qs->bits<<OC_BIT_SCALE);
+    cur_rate= (uint32_t) (oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],_pli,0,satd) + (qt[qii].bits-_qs->bits<<OC_BIT_SCALE));
     cost[qii]=OC_MODE_RD_COST(cur_ssd,cur_rate,lambda);
   }
   best_cost=cost[0];
@@ -1547,7 +1544,7 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
     uncoded_ssd-=uncoded_dc*uncoded_dc>>2;
     /*DC is a special case; if there's more than a full-quantizer improvement
        in the effective DC component, always force-code the block.*/
-    dc_flag = (int32_t) (abs(uncoded_dc)> (dc_dequant<<1));
+    dc_flag = (int32_t) (natural(abs(uncoded_dc)) > (dc_dequant << 1));
     uncoded_ssd|=-dc_flag;
     _pipe->skip_ssd[0][fragi-_pipe->froffset[0]]=_ssd[bi]=uncoded_ssd;
   }

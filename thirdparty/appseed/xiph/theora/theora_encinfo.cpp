@@ -64,8 +64,8 @@ int32_t oc_state_flushheader(oc_theora_state *_state,int32_t *_packet_state,
       /*Write the codec string.*/
       oc_pack_octets(_opb,"theora",6);
       /*Write the vendor string.*/
-      oggpack_write(_opb,vendor_len,32);
-      oc_pack_octets(_opb,_vendor,vendor_len);
+      oggpack_write(_opb, (uint32_t) vendor_len,32);
+      oc_pack_octets(_opb,_vendor, (int32_t) vendor_len);
       oggpack_write(_opb,_tc->comments,32);
       for(i=0;i<_tc->comments;i++){
         if(_tc->user_comments[i]!=NULL){

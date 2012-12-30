@@ -414,7 +414,7 @@ static void oc_sb_run_pack(oggpack_buffer *_opb,ptrdiff_t _run_count,
     if(_run_count<=0)return;
   }
   for(i=0;_run_count>=OC_SB_RUN_VAL_MIN[i+1];i++);
-  oggpackB_write(_opb, (ptrdiff_t) (OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i]),
+  oggpackB_write(_opb, (unsigned long) (OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i]),
    OC_SB_RUN_CODE_NBITS[i]);
 }
 
