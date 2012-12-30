@@ -31,7 +31,7 @@ namespace primitive
       if(msb < 7)
       {
          move_and_grow(1);
-         get_data()[0] = get_size() - 1;
+         get_data()[0] = (BYTE) (get_size() - 1);
       }
       else
       {

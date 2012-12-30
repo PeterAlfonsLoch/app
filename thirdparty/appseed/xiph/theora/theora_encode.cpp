@@ -414,7 +414,7 @@ static void oc_sb_run_pack(oggpack_buffer *_opb,ptrdiff_t _run_count,
     if(_run_count<=0)return;
   }
   for(i=0;_run_count>=OC_SB_RUN_VAL_MIN[i+1];i++);
-  oggpackB_write(_opb,OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i],
+  oggpackB_write(_opb, (ptrdiff_t) (OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i]),
    OC_SB_RUN_CODE_NBITS[i]);
 }
 
@@ -965,7 +965,7 @@ static void oc_enc_mb_info_init(oc_enc_ctx *_enc){
         for(ni=0;ni<NCNEIGHBORS[quadi];ni++){
           nmbx=mbx+CDX[quadi][ni];
           nmby=mby+CDY[quadi][ni];
-          if(nmbx<0||nmbx>=nhmbs||nmby<0||nmby>=nvmbs)continue;
+          if(nmbx<0||natural(nmbx)>=nhmbs||nmby<0||natural(nmby)>=nvmbs)continue;
           nmbi=(nmby&~1)*nhmbs+((nmbx&~1)<<1)+OC_MB_MAP[nmby&1][nmbx&1];
           if(mb_modes[nmbi]==OC_MODE_INVALID)continue;
           embs[mbi].cneighbors[embs[mbi].ncneighbors++]=nmbi;
@@ -974,7 +974,7 @@ static void oc_enc_mb_info_init(oc_enc_ctx *_enc){
         for(ni=0;ni<4;ni++){
           nmbx=mbx+PDX[ni];
           nmby=mby+PDY[ni];
-          if(nmbx<0||nmbx>=nhmbs||nmby<0||nmby>=nvmbs)continue;
+          if(nmbx<0||natural(nmbx)>=nhmbs||nmby<0||natural(nmby)>=nvmbs)continue;
           nmbi=(nmby&~1)*nhmbs+((nmbx&~1)<<1)+OC_MB_MAP[nmby&1][nmbx&1];
           if(mb_modes[nmbi]==OC_MODE_INVALID)continue;
           embs[mbi].pneighbors[embs[mbi].npneighbors++]=nmbi;
@@ -1315,7 +1315,7 @@ int32_t th_encode_ctl(th_enc_ctx *_enc,int32_t _req,void *_buf,size_t _buf_sz){
       if(_enc==NULL||_buf==NULL)return TH_EFAULT;
       if(_buf_sz!=sizeof(dup_count))return TH_EINVAL;
       dup_count=*(int32_t *)_buf;
-      if(dup_count>=_enc->keyframe_frequency_force)return TH_EINVAL;
+      if(natural(dup_count)>=_enc->keyframe_frequency_force)return TH_EINVAL;
       _enc->dup_count=OC_MAXI(dup_count,0);
       return 0;
     }break;
@@ -1425,7 +1425,7 @@ static void oc_img_plane_copy_pad(th_img_plane *_dst,th_img_plane *_src,
     src_data=_src->data;
     dst=dst_data+_pic_y*(ptrdiff_t)dstride+_pic_x;
     src=src_data+_pic_y*(ptrdiff_t)sstride+_pic_x;
-    for(y=0;y<_pic_height;y++){
+    for(y=0;y<natural(_pic_height);y++){
       memcpy(dst,src,_pic_width);
       dst+=dstride;
       src+=sstride;
@@ -1434,18 +1434,18 @@ static void oc_img_plane_copy_pad(th_img_plane *_dst,th_img_plane *_src,
     /*Left side.*/
     for(x=_pic_x;x-->0;){
       dst=dst_data+_pic_y*(ptrdiff_t)dstride+x;
-      for(y=0;y<_pic_height;y++){
+      for(y=0;y<natural(_pic_height);y++){
         dst[0]=(dst[1]<<1)+(dst-(dstride&-(y>0)))[1]
-         +(dst+(dstride&-(y+1<_pic_height)))[1]+2>>2;
+         +(dst+(dstride&-(y+1<natural(_pic_height))))[1]+2>>2;
         dst+=dstride;
       }
     }
     /*Right side.*/
     for(x=_pic_x+_pic_width;x<frame_width;x++){
       dst=dst_data+_pic_y*(ptrdiff_t)dstride+x-1;
-      for(y=0;y<_pic_height;y++){
+      for(y=0;y<natural(_pic_height);y++){
         dst[1]=(dst[0]<<1)+(dst-(dstride&-(y>0)))[0]
-         +(dst+(dstride&-(y+1<_pic_height)))[0]+2>>2;
+         +(dst+(dstride&-(y+1<natural(_pic_height))))[0]+2>>2;
         dst+=dstride;
       }
     }

@@ -208,7 +208,7 @@ ogg_int64_t oc_bexp64(ogg_int64_t _z){
          earlier, but that's no reason for an extra special case).*/
       for(;;i++){
         mask=-(z<0);
-        wlo+=(w>>i)+mask^mask;
+        wlo+=(long) ((w>>i)+mask^mask);
         z-=OC_ATANH_LOG2[31]+mask^mask;
         /*Repeat iteration 40.*/
         if(i>=39)break;
@@ -216,7 +216,7 @@ ogg_int64_t oc_bexp64(ogg_int64_t _z){
       }
       for(;i<61;i++){
         mask=-(z<0);
-        wlo+=(w>>i)+mask^mask;
+        wlo+=(long) ((w>>i)+mask^mask);
         z=(z-(OC_ATANH_LOG2[31]+mask^mask))<<1;
       }
     }

@@ -10,9 +10,9 @@ typedef unsigned char u_char;
 typedef long pid_t;
 #endif
 
-static void split(off_t *I,off_t *V,off_t start,off_t len,off_t h)
+static void split(file_offset *I,file_offset *V,file_offset start,file_offset len,file_offset h)
 {
-   off_t i,j,k,x,tmp,jj,kk;
+   file_offset i,j,k,x,tmp,jj,kk;
 
    if(len<16) {
       for(k=start;k<start+len;k+=j) {
@@ -71,10 +71,10 @@ static void split(off_t *I,off_t *V,off_t start,off_t len,off_t h)
    if(start+len>kk) split(I,V,kk,start+len-kk,h);
 }
 
-static void qsufsort(off_t *I,off_t *V,u_char *old,off_t oldsize)
+static void qsufsort(file_offset *I,file_offset *V,u_char *old, file_offset oldsize)
 {
-   off_t buckets[256];
-   off_t i,h,len;
+   file_offset buckets[256];
+   file_offset i,h,len;
 
    for(i=0;i<256;i++) buckets[i]=0;
    for(i=0;i<oldsize;i++) buckets[old[i]]++;
@@ -109,9 +109,9 @@ static void qsufsort(off_t *I,off_t *V,u_char *old,off_t oldsize)
    for(i=0;i<oldsize+1;i++) I[V[i]]=i;
 }
 
-static off_t matchlen(u_char *old,off_t oldsize,u_char *_new,off_t newsize)
+static file_offset matchlen(u_char *old,file_offset oldsize,u_char *_new,file_offset newsize)
 {
-   off_t i;
+   file_offset i;
 
    for(i=0;(i<oldsize)&&(i<newsize);i++)
       if(old[i]!=_new[i]) break;
@@ -119,10 +119,10 @@ static off_t matchlen(u_char *old,off_t oldsize,u_char *_new,off_t newsize)
    return i;
 }
 
-static off_t search(off_t *I,u_char *old,off_t oldsize,
-      u_char *_new,off_t newsize,off_t st,off_t en,off_t *pos)
+static file_offset search(file_offset *I,u_char *old,file_offset oldsize,
+      u_char *_new,file_offset newsize,file_offset st,file_offset en, file_offset *pos)
 {
-   off_t x,y;
+   file_offset x,y;
 
    if(en-st<2) {
       x=matchlen(old+I[st],oldsize-I[st],_new,newsize);
@@ -145,9 +145,9 @@ static off_t search(off_t *I,u_char *old,off_t oldsize,
    };
 }
 
-static void offtout(off_t x,u_char *buf)
+static void offtout(file_offset x,u_char *buf)
 {
-   off_t y;
+   file_offset y;
 
    if(x<0) y=-x; else y=x;
 
@@ -165,26 +165,30 @@ static void offtout(off_t x,u_char *buf)
 
 int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfile)
 {
-   _FILE * fd = 0;
-   u_char *old = NULL;
-   u_char *_new = NULL;
-   off_t oldsize,newsize;
-   off_t * I = NULL;
-   off_t * V = NULL;
-   off_t scan,pos,len;
-   off_t lastscan,lastpos,lastoffset;
-   off_t oldscore,scsc;
-   off_t s,Sf,lenf,Sb,lenb;
-   off_t overlap,Ss,lens;
-   off_t i;
-   off_t dblen,eblen;
-   u_char *db = NULL;
-   u_char *eb = NULL;
-   u_char buf[8];
-   u_char header[32];
-   _FILE * pf = NULL;
-   BZFILE * pfbz2 = NULL;
-   int32_t bz2err;
+   _FILE *        fd = 0;
+   u_char *       old = NULL;
+   u_char *       _new = NULL;
+   file_offset    oldsize,newsize;
+   file_offset *  I = NULL;
+   file_offset *  V = NULL;
+   file_offset    scan;
+   file_offset    len;
+   file_offset    pos;
+   file_offset    lastscan;
+   file_offset    lastoffset;
+   file_offset    lastpos;
+   file_offset    oldscore,scsc;
+   file_offset    s,Sf,lenf,Sb,lenb;
+   file_offset    overlap,Ss,lens;
+   file_offset    i;
+   file_offset    dblen,eblen;
+   u_char *       db = NULL;
+   u_char *       eb = NULL;
+   u_char         buf[8];
+   u_char         header[32];
+   _FILE *        pf = NULL;
+   BZFILE *       pfbz2 = NULL;
+   int32_t        bz2err;
 
    /* allocate oldsize+1 bytes instead of oldsize bytes to ensure
       that we never try to _ca_alloc(0) and get a NULL pointer */
@@ -213,9 +217,9 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
       return err(1,"%s",oldfile);
    }
 
-   off_t r = oldsize;
+   file_offset r = oldsize;
 
-   while(r > 0 && (i = (off_t) fread_dup(old + oldsize - r, 1, r, fd)) > 0)
+   while(r > 0 && (i = (file_offset) fread_dup(old + oldsize - r, 1, r, fd)) > 0)
       r-=i;
    if (r>0 || fclose_dup(fd)>0)
    {
@@ -224,8 +228,8 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
    }
 
 
-   if(((I=(off_t*)_ca_alloc((oldsize+1)*sizeof(off_t)))==NULL) ||
-      ((V=(off_t*)_ca_alloc((oldsize+1)*sizeof(off_t)))==NULL))
+   if(((I=(file_offset*)_ca_alloc((oldsize+1)*sizeof(file_offset)))==NULL) ||
+      ((V=(file_offset*)_ca_alloc((oldsize+1)*sizeof(file_offset)))==NULL))
    {
       _ca_free(old, 0);
       if(I != NULL)
@@ -269,7 +273,7 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
    }
 
    r=newsize;
-   while(r > 0 && (i = (off_t) fread_dup(_new + newsize - r, 1, r, fd)) > 0)
+   while(r > 0 && (i = (file_offset) fread_dup(_new + newsize - r, 1, r, fd)) > 0)
       r-=i;
    if (r>0 || fclose_dup(fd)> 0)
    {

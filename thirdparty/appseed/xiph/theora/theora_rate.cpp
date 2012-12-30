@@ -262,7 +262,7 @@ static void oc_enc_rc_reset(oc_enc_ctx *_enc){
      initial level gives us maximum flexibility for over/under-shooting in
      subsequent frames.*/
   _enc->rc.target=(_enc->rc.max+1>>1)+(_enc->rc.bits_per_frame+2>>2)*
-   OC_MINI(_enc->keyframe_frequency_force,_enc->rc.buf_delay);
+   OC_MINI(_enc->keyframe_frequency_force,natural(_enc->rc.buf_delay));
   _enc->rc.fullness=_enc->rc.target;
   /*Pick exponents and initial scales for quantizer selection.*/
   npixels=_enc->state.info.frame_width*
@@ -359,7 +359,7 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
     _enc->rc.buf_delay=OC_MAXI(_enc->rc.buf_delay,12);
     _enc->rc.max=_enc->rc.bits_per_frame*_enc->rc.buf_delay;
     _enc->rc.target=(_enc->rc.max+1>>1)+(_enc->rc.bits_per_frame+2>>2)*
-     OC_MINI(_enc->keyframe_frequency_force,_enc->rc.buf_delay);
+     OC_MINI(_enc->keyframe_frequency_force,natural(_enc->rc.buf_delay));
     /*Update the INTER-frame scale filter delay.
       We jump to it immediately if we've already seen enough frames; otherwise
        it is simply set as the new target.*/
@@ -378,7 +378,7 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
     int32_t reset_window;
     buf_delay=_enc->rc.buf_delay;
     reset_window=_enc->rc.frame_metrics==NULL&&(_enc->rc.frames_total[0]==0||
-     buf_delay<_enc->rc.frames_total[0]+_enc->rc.frames_total[1]
+     natural(buf_delay)<_enc->rc.frames_total[0]+_enc->rc.frames_total[1]
      +_enc->rc.frames_total[2]);
     cfm=_enc->rc.cframe_metrics;
     /*Only try to resize the frame metrics buffer if a) it's too small and
@@ -418,8 +418,7 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
     if(reset_window){
       _enc->rc.nframes[0]=_enc->rc.nframes[1]=_enc->rc.nframes[2]=0;
       _enc->rc.scale_sum[0]=_enc->rc.scale_sum[1]=0;
-      _enc->rc.scale_window_end=_enc->rc.scale_window0=
-       _enc->state.curframe_num+_enc->prev_dup_count+1;
+      _enc->rc.scale_window_end=_enc->rc.scale_window0= (int32_t) (_enc->state.curframe_num+_enc->prev_dup_count+1);
       if(_enc->rc.twopass_buffer_bytes){
         int32_t qti;
         /*We already read the metrics for the first frame in the window.*/
@@ -481,9 +480,8 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
       ogg_uint32_t next_key_frame;
       /*Single pass mode: assume only forced keyframes and attempt to estimate
          the drop count for VFR content.*/
-      next_key_frame=_qti?_enc->keyframe_frequency_force
-       -(_enc->state.curframe_num-_enc->state.keyframe_num):0;
-      nframes[0]=(_enc->rc.buf_delay-OC_MINI(next_key_frame,_enc->rc.buf_delay)
+      next_key_frame= (ogg_uint32_t) (_qti?_enc->keyframe_frequency_force - (_enc->state.curframe_num-_enc->state.keyframe_num):0);
+      nframes[0]=(_enc->rc.buf_delay-OC_MINI(next_key_frame,natural(_enc->rc.buf_delay))
        +_enc->keyframe_frequency_force-1)/_enc->keyframe_frequency_force;
       if(nframes[0]+_qti>1){
         nframes[0]--;
@@ -1051,8 +1049,8 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
           int32_t          qti;
           int32_t          arg;
           /*Read the metrics for the next frame.*/
-          dup_count=oc_rc_unbuffer_val(&_enc->rc,4);
-          log_scale=oc_rc_unbuffer_val(&_enc->rc,4);
+          dup_count = (ogg_uint32_t) oc_rc_unbuffer_val(&_enc->rc,4);
+          log_scale = (ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
           _enc->rc.cur_metrics.log_scale=log_scale;
           qti=(dup_count&0x80000000)>>31;
           _enc->rc.cur_metrics.dup_count=dup_count&0x7FFFFFFF;
@@ -1068,8 +1066,8 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
       else{
         int32_t frames_needed;
         /*We're using a finite buffer:*/
-        frames_needed=OC_CLAMPI(0,_enc->rc.buf_delay
-         -(_enc->rc.scale_window_end-_enc->rc.scale_window0),
+        frames_needed=OC_CLAMPI(0, natural(_enc->rc.buf_delay
+         -(_enc->rc.scale_window_end-_enc->rc.scale_window0)),
          _enc->rc.frames_left[0]+_enc->rc.frames_left[1]
          -_enc->rc.nframes[0]-_enc->rc.nframes[1]);
         while(frames_needed>0){
@@ -1086,8 +1084,8 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
             ogg_int32_t       log_scale;
             int32_t               qti;
             /*Read the metrics for the next frame.*/
-            dup_count=oc_rc_unbuffer_val(&_enc->rc,4);
-            log_scale=oc_rc_unbuffer_val(&_enc->rc,4);
+            dup_count=(ogg_int64_t) oc_rc_unbuffer_val(&_enc->rc,4);
+            log_scale=(ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
             /*Add the to the circular buffer.*/
             fmi=_enc->rc.frame_metrics_head+_enc->rc.nframe_metrics++;
             if(fmi>=_enc->rc.cframe_metrics)fmi-=_enc->rc.cframe_metrics;
@@ -1103,8 +1101,8 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
             _enc->rc.scale_window_end+=m->dup_count+1;
             /*Compute an upper bound on the number of remaining packets needed
                for the current window.*/
-            frames_needed=OC_CLAMPI(0,_enc->rc.buf_delay
-             -(_enc->rc.scale_window_end-_enc->rc.scale_window0),
+            frames_needed=OC_CLAMPI(0, natural(_enc->rc.buf_delay
+             -(_enc->rc.scale_window_end-_enc->rc.scale_window0)),
              _enc->rc.frames_left[0]+_enc->rc.frames_left[1]
              -_enc->rc.nframes[0]-_enc->rc.nframes[1]);
             /*Clear the buffer for the next frame.*/

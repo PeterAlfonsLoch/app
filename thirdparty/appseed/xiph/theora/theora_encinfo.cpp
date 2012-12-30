@@ -54,7 +54,7 @@ int32_t oc_state_flushheader(oc_theora_state *_state,int32_t *_packet_state,
     }break;
     /*Comment header.*/
     case OC_PACKET_COMMENT_HDR:{
-      int32_t vendor_len;
+      strsize vendor_len;
       int32_t i;
       if(_tc==NULL)return TH_EFAULT;
       vendor_len=strlen(_vendor);

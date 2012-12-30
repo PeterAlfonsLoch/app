@@ -524,7 +524,7 @@ install:
 
 #ifdef WINDOWS
 
-   uint_ptr plugin::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
+   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
 
       if(!is_installing() && is_ca2_installed())
@@ -535,9 +535,9 @@ install:
          memset(&msg, 0, sizeof(msg));
 
          // only valid fields
-         msg.message = uiMessage;
-         msg.wParam = wparam;
-         msg.lParam = lparam;
+         msg.message    = uiMessage;
+         msg.wParam     = wparam;
+         msg.lParam     = lparam;
 
 #ifdef METROWIN
 
@@ -757,7 +757,7 @@ install:
    }
 
 
-   void plugin::on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b)
+   void plugin::on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b)
    {
 
       if(prxchannel == &m_rxchannel)

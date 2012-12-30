@@ -32,9 +32,9 @@ public:
    bool select(simple_font & font);
    bool select(simple_brush & brush);
    bool select(simple_pen & brush);
-   bool text_out(int32_t x, int32_t y, const char * pszUtf8, int32_t iLen = -1);
+   bool text_out(int32_t x, int32_t y, const char * pszUtf8, strsize iLen = -1);
    bool blend_bitmap_data(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF * pdata);
-   SIZE get_text_extent(const char * psz, int32_t iLen = -1);
+   SIZE get_text_extent(const char * psz, strsize iLen = -1);
    bool set_text_color(COLORREF cr);
 
    bool is_null();

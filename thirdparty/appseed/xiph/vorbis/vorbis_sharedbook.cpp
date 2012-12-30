@@ -46,8 +46,8 @@ long _float32_pack(float val){
     sign=0x80000000;
     val= -val;
   }
-  exp= floor(log(val)/log(2.f)+.001); //+epsilon
-  mant=rint(ldexp(val,(VQ_FMAN-1)-exp));
+  exp= (long) floor(log(val)/log(2.f)+.001); //+epsilon
+  mant = (long) rint(ldexp(val,(VQ_FMAN-1)-exp));
   exp=(exp+VQ_FEXP_BIAS)<<VQ_FMAN;
 
   return(sign|exp|mant);
@@ -58,7 +58,7 @@ float _float32_unpack(long val){
   int32_t    sign=val&0x80000000;
   long   exp =(val&0x7fe00000L)>>VQ_FMAN;
   if(sign)mant= -mant;
-  return(ldexp(mant,exp-(VQ_FMAN-1)-VQ_FEXP_BIAS));
+  return (float) (ldexp(mant,exp-(VQ_FMAN-1)-VQ_FEXP_BIAS));
 }
 
 /* given a list of word lengths, generate a list of codewords.  Works
@@ -155,7 +155,7 @@ ogg_uint32_t *_make_words(long *l,long n,long sparsecount){
    that's portable and totally safe against roundoff, but I haven't
    thought of it.  Therefore, we opt on the side of caution */
 long _book_maptype1_quantvals(const static_codebook *b){
-  long vals=floor(pow((float)b->entries,1.f/b->dim));
+  long vals= (long) floor(pow((float)b->entries,1.f/b->dim));
 
   /* the above *should* be reliable, but we'll not assume that FP is
      ever reliable when bitstream sync is at stake; verify via integer
@@ -213,7 +213,7 @@ float *_book_unquantize(const static_codebook *b,int32_t n,int32_t *sparsemap){
           int32_t indexdiv=1;
           for(k=0;k<b->dim;k++){
             int32_t index= (j/indexdiv)%quantvals;
-            float val=b->quantlist[index];
+            float val=(float) b->quantlist[index];
             val=fabs(val)*delta+mindel+last;
             if(b->q_sequencep)last=val;
             if(sparsemap)
@@ -233,7 +233,7 @@ float *_book_unquantize(const static_codebook *b,int32_t n,int32_t *sparsemap){
           float last=0.f;
 
           for(k=0;k<b->dim;k++){
-            float val=b->quantlist[j*b->dim+k];
+            float val=(float) (b->quantlist[j*b->dim+k]);
             val=fabs(val)*delta+mindel+last;
             if(b->q_sequencep)last=val;
             if(sparsemap)
@@ -347,7 +347,7 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
     c->codelist= (ogg_uint32_t *) _ogg_malloc(n*sizeof(*c->codelist));
     /* the index is a reverse index */
     for(i=0;i<n;i++){
-      int32_t position=codep[i]-codes;
+      int32_t position= (int32_t) (codep[i]-codes);
       sortindex[position]=i;
     }
 
@@ -366,7 +366,7 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
     c->dec_codelengths = (char *) _ogg_malloc(n*sizeof(*c->dec_codelengths));
     for(n=0,i=0;i<s->entries;i++)
       if(s->lengthlist[i]>0)
-        c->dec_codelengths[sortindex[n++]]=s->lengthlist[i];
+        c->dec_codelengths[sortindex[n++]] = (char) (s->lengthlist[i]);
 
     c->dec_firsttablen=_ilog(c->used_entries)-4; /* this is magic */
     if(c->dec_firsttablen<5)c->dec_firsttablen=5;

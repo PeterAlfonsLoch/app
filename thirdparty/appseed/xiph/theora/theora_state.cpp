@@ -679,7 +679,7 @@ void oc_state_borders_fill_rows(oc_theora_state *_state,int32_t _refi,int32_t _p
   unsigned char *epix;
   int32_t            stride;
   int32_t            hpadding;
-  hpadding=OC_UMV_PADDING>>(_pli!=0&&!(_state->info.pixel_fmt&1));
+  hpadding=OC_UMV_PADDING>>safe_int_bool(_pli!=0&&!(_state->info.pixel_fmt&1));
   iplane=_state->ref_frame_bufs[_refi]+_pli;
   stride=iplane->stride;
   apix=iplane->data+_y0*(ptrdiff_t)stride;

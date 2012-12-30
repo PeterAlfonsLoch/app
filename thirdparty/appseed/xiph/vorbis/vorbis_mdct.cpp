@@ -51,7 +51,7 @@ void mdct_init(mdct_lookup *lookup,int32_t n){
 
   int32_t i;
   int32_t n2=n>>1;
-  int32_t log2n=lookup->log2n=rint(log((float)n)/log(2.f));
+  int32_t log2n=lookup->log2n=(int32_t) rint(log((float)n)/log(2.f));
   lookup->n=n;
   lookup->trig=T;
   lookup->bitrev=bitrev;
@@ -65,8 +65,8 @@ void mdct_init(mdct_lookup *lookup,int32_t n){
     T[n2+i*2+1]=FLOAT_CONV(sin((M_PI/(2*n))*(2*i+1)));
   }
   for(i=0;i<n/8;i++){
-    T[n+i*2]=FLOAT_CONV(cos((M_PI/n)*(4*i+2))*.5);
-    T[n+i*2+1]=FLOAT_CONV(-sin((M_PI/n)*(4*i+2))*.5);
+    T[n+i*2]=(float) FLOAT_CONV(cos((M_PI/n)*(4*i+2))*.5);
+    T[n+i*2+1]=(float) FLOAT_CONV(-sin((M_PI/n)*(4*i+2))*.5);
   }
 
   /* bitreverse lookup... */

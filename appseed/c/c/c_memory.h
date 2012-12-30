@@ -1,6 +1,48 @@
 #pragma once
 
 
+namespace primitive
+{
+
+#if defined(__LP64__)  // X64
+
+   
+   typedef unsigned long  memory_size;
+   typedef unsigned long  memory_position;
+   typedef long   memory_offset;
+
+#elif defined(_M_X64) // X64
+
+
+//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_size         , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_position     , uint64_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca, memory_offset       ,  int64_t)
+
+typedef uint64_t  memory_size;
+typedef uint64_t  memory_position;
+typedef int64_t   memory_offset;
+
+
+#else
+
+//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_size         , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_position     , uint32_t)
+//DEFINE_C_NUMBER(CLASS_DECL_ca,   memory_offset       ,  int32_t)
+
+typedef uint32_t  memory_size;
+typedef uint32_t  memory_position;
+typedef int32_t   memory_offset;
+
+
+#endif
+
+
+} // namespace primitive
+
+
+
+
+
 CLASS_DECL_c void * memset_dup(void * p, int32_t uch, size_t iSize);
 CLASS_DECL_c void * memand_dup(void * p, const void * p1, const void * p2, size_t iSize);
 CLASS_DECL_c void * memcpy_dup(void * dst, const void * src, size_t iSize);

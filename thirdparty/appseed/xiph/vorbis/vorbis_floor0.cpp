@@ -120,7 +120,7 @@ static void floor0_map_lazy_init(vorbis_block      *vb,
        accurate */
     look->linearmap[W]=(int32_t *) _ogg_malloc((n+1)*sizeof(**look->linearmap));
     for(j=0;j<n;j++){
-      int32_t val=floor( toBARK((info->rate/2.f)/n*j)
+      int32_t val = (int32_t) floor( toBARK((info->rate/2.f)/n*j)
                      *scale); /* bark numbers represent band edges */
       if(val>=look->ln)val=look->ln-1; /* guard against the approximation */
       look->linearmap[W][j]=val;

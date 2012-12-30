@@ -15,9 +15,9 @@ string chunk_split (const string & body, int32_t chunklen = 76, const string & e
 string chunk_split (const string & body, int32_t chunklen, const string & end)
 {
 
-   int32_t pos = 0;
+   strsize pos = 0;
    string strRet;
-   long iRead;
+   strsize iRead;
    while(pos < body.get_length())
    {
       iRead = min(chunklen, body.get_length() - pos);

@@ -344,7 +344,7 @@ static int32_t Laguerre_With_Deflation(float *a,int32_t ord,float *r){
       lastdelta=delta;
     }
 
-    r[m-1]=newDouble;
+    r[m-1]= (float) newDouble;
 
     /* forward deflation */
 
@@ -391,7 +391,7 @@ static int32_t Newton_Raphson(float *a,int32_t ord,float *r){
   /* Replaced the original bubble sort with a real sort.  With your
      help, we can eliminate the bubble sort in our lifetime. --Monty */
 
-  for(i=0; i<ord;i++) r[i] = root[i];
+  for(i=0; i<ord;i++) r[i] = (float) root[i];
   return(0);
 }
 

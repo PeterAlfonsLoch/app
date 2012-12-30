@@ -73,7 +73,7 @@ public:
 
       virtual void on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
       virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
-      virtual void on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b);
+      virtual void on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
 
    };
 
@@ -102,7 +102,7 @@ public:
 
    virtual void * on_receive(small_ipc_rx_channel * prxchannel, const char * pszMessage);
    virtual void * on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
-   virtual void * on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b);
+   virtual void * on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
 
 
    virtual bool on_idle();

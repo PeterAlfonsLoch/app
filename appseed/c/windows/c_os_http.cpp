@@ -328,7 +328,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strReq = strUrl.substr(iPos);
       iPort = 443;
    }
-   int32_t iFind = strReq.find("?");
+   strsize iFind = strReq.find("?");
    if(iFind >= 0)
    {
       vsstring strQ = strReq.substr(iFind);

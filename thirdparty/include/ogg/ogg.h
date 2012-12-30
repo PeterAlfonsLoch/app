@@ -19,6 +19,11 @@
 
 #include "c/c/c.h"
 
+#include <string.h>
+#include <stdlib.h>
+#include <limits.h>
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif

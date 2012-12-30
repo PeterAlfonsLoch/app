@@ -1078,7 +1078,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" 
     <ClInclude Include="c\c_launcher.h" />
     <ClInclude Include="c\c_library.h" />
     <ClInclude Include="c\c_md5.h" />
-    <ClInclude Include="c\c_mem.h" />
+    <ClInclude Include="c\c_memory.h" />
     <ClInclude Include="c\c_message_loop.h" />
     <ClInclude Include="c\c_mutex_lock.h" />
     <ClInclude Include="c\c_printf.h" />
@@ -1094,7 +1094,6 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" 
     <ClInclude Include="c\c_simple_shell_launcher.h" />
     <ClInclude Include="c\c_small_ipc_channel.h" />
     <ClInclude Include="c\c_sprintf.h" />
-    <ClInclude Include="c\c_std_file.h" />
     <ClInclude Include="c\c_str.h" />
     <ClInclude Include="c\c_stra.h" />
     <ClInclude Include="c\c_template.h" />

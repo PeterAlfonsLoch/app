@@ -70,13 +70,12 @@ namespace ca
 #include "c_printf.h"
 #include "c_sprintf.h"
 #include "c_str.h"
-#include "c_std_file.h"
 
 
 
 #include "c_heap.h"
 #include "c/simple_graphics/simple_graphics_first_phase.h"
-#include "c_mem.h"
+#include "c_memory.h"
 
 #include "c_math.h"
 

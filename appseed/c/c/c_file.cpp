@@ -216,7 +216,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 
    DWORD dwRead;
 
-   ::ReadFile(hfile, memory.m_psz, memory.m_iSize, &dwRead, NULL);
+   ::ReadFile(hfile, memory.m_psz, (DWORD) memory.m_iSize, &dwRead, NULL);
 
    ::CloseHandle(hfile);
 

@@ -122,7 +122,8 @@ float vorbis_lpc_from_data(float *data,float *lpci,int32_t n,int32_t m){
   /* we need the error value to know how big an impulse to hit the
      filter with later */
 
-  return error;
+  return (float) error;
+
 }
 
 void vorbis_lpc_predict(float *coeff,float *prime,int32_t m,

@@ -1,10 +1,6 @@
 #pragma once
 
 
-typedef int_ptr strsize;
-
-
-
 class string_manager;
 
 

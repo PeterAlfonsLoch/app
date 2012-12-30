@@ -212,7 +212,7 @@ static vorbis_look_floor *floor1_look(vorbis_dsp_state *vd,
   qsort(sortpointer,n,sizeof(*sortpointer),icomp);
 
   /* points from sort order back to range number */
-  for(i=0;i<n;i++)look->forward_index[i]=sortpointer[i]-info->postlist;
+  for(i=0;i<n;i++)look->forward_index[i]=(int32_t) (sortpointer[i]-info->postlist);
   /* points from range order to sorted position */
   for(i=0;i<n;i++)look->reverse_index[look->forward_index[i]]=i;
   /* we actually need the post values too */
@@ -277,7 +277,7 @@ static int32_t render_point(int32_t x0,int32_t x1,int32_t y0,int32_t y1,int32_t 
 }
 
 static int32_t vorbis_dBquant(const float *x){
-  int32_t i= *x*7.3142857f+1023.5f;
+  int32_t i= (int32_t) (*x*7.3142857f+1023.5f);
   if(i>1023)return(1023);
   if(i<0)return(0);
   return i;
@@ -501,8 +501,8 @@ static int32_t fit_line(lsfit_acc *a,int32_t fits,int32_t *y0,int32_t *y1,
     if(denom>0.){
       double a=(yb*x2b-xyb*xb)/denom;
       double b=(bn*xyb-xb*yb)/denom;
-      *y0=rint(a+b*x0);
-      *y1=rint(a+b*x1);
+      *y0=(int32_t) rint(a+b*x0);
+      *y1=(int32_t) rint(a+b*x1);
 
       /* limit to our range! */
       if(*y0>1023)*y0=1023;

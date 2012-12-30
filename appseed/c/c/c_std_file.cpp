@@ -307,7 +307,7 @@ int32_t fflush_dup(_FILE * fp)
 
 }
 
-int32_t fseek_dup(_FILE *fp, long offset, int32_t origin)
+file_position fseek_dup(_FILE *fp, file_offset offset, int32_t origin)
 {
 
 #ifdef WINDOWS
@@ -317,9 +317,10 @@ int32_t fseek_dup(_FILE *fp, long offset, int32_t origin)
 		meth = FILE_CURRENT;
 	else if (origin == SEEK_END)
 		meth = FILE_END;
-	DWORD dw = ::SetFilePointer((HANDLE)((_FILE*)fp)->_base, offset, 0, meth);
+   LONG offsetHigh = (offset >> 32) & 0xffffffffLL;
+	DWORD dw = ::SetFilePointer((HANDLE)((_FILE*)fp)->_base, offset & 0xffffffff, &offsetHigh, meth);
 	((_FILE*)fp)->_flag &= ~_FILE_EOF;
-	return dw;
+	return (uint64_t) dw | (((uint64_t) offsetHigh) << 32);
 
 #else
 

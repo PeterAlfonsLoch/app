@@ -110,8 +110,8 @@ static int32_t oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
   int32_t scheme_bits;
   scheme0=_chooser->scheme_list[0];
   scheme1=_chooser->scheme_list[1];
-  best_bits=_chooser->scheme_bits[scheme0];
-  mode_bits=OC_MODE_BITS[scheme0+1>>3][_chooser->mode_ranks[scheme0][_mb_mode]];
+  best_bits = (int32_t) _chooser->scheme_bits[scheme0];
+  mode_bits = OC_MODE_BITS[scheme0+1>>3][_chooser->mode_ranks[scheme0][_mb_mode]];
   /*Typical case: If the difference between the best scheme and the next best
      is greater than 6 bits, then adding just one mode cannot change which
      scheme we use.*/
@@ -124,8 +124,7 @@ static int32_t oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
     /*For any scheme except 0, we can just use the bit cost of the mode's rank
        in that scheme.*/
     if(scheme1!=0){
-      scheme_bits=_chooser->scheme_bits[scheme1]+
-       OC_MODE_BITS[scheme1+1>>3][_chooser->mode_ranks[scheme1][_mb_mode]];
+      scheme_bits = (int32_t) (_chooser->scheme_bits[scheme1] + OC_MODE_BITS[scheme1+1>>3][_chooser->mode_ranks[scheme1][_mb_mode]]);
     }
     else{
       int32_t ri;
@@ -139,14 +138,14 @@ static int32_t oc_mode_scheme_chooser_cost(oc_mode_scheme_chooser *_chooser,
       for(ri=_chooser->scheme0_ranks[_mb_mode];ri>0&&
        _chooser->mode_counts[_mb_mode]>=
        _chooser->mode_counts[_chooser->scheme0_list[ri-1]];ri--);
-      scheme_bits=_chooser->scheme_bits[0]+OC_MODE_BITS[0][ri];
+      scheme_bits=(int32_t) (_chooser->scheme_bits[0]+OC_MODE_BITS[0][ri]);
     }
     if(scheme_bits<best_bits)best_bits=scheme_bits;
     if(++si>=8)break;
     scheme1=_chooser->scheme_list[si];
   }
   while(_chooser->scheme_bits[scheme1]-_chooser->scheme_bits[scheme0]<=6);
-  return best_bits-_chooser->scheme_bits[scheme0];
+  return (int32_t) (best_bits-_chooser->scheme_bits[scheme0]);
 }
 
 /*Incrementally update the mode counts and per-scheme bit counts and re-order
@@ -180,7 +179,7 @@ static void oc_mode_scheme_chooser_update(oc_mode_scheme_chooser *_chooser,
     int32_t bits0;
     sj=si;
     scheme0=_chooser->scheme_list[si];
-    bits0=_chooser->scheme_bits[scheme0];
+    bits0=(int32_t) (_chooser->scheme_bits[scheme0]);
     do{
       int32_t scheme1;
       scheme1=_chooser->scheme_list[sj-1];
@@ -284,7 +283,8 @@ static void oc_fr_state_advance_sb(oc_fr_state *_fr,
 static void oc_fr_state_flush_sb(oc_fr_state *_fr){
   ptrdiff_t bits;
   int32_t       sb_partial;
-  int32_t       sb_full=sb_full;
+//  int32_t       sb_full=sb_full;
+    int32_t       sb_full = 0;
   int32_t       b_coded_count;
   int32_t       b_coded;
   int32_t       b_count;
@@ -322,7 +322,8 @@ static void oc_fr_state_advance_block(oc_fr_state *_fr,int32_t _b_coded){
   int32_t       b_coded_count;
   int32_t       b_count;
   int32_t       sb_partial;
-  int32_t       sb_full=sb_full;
+//  int32_t       sb_full=sb_full;
+    int32_t       sb_full = 0;
   bits=_fr->bits;
   /*Extend the b_coded run, or start a new one.*/
   b_coded_count=_fr->b_coded_count;
@@ -560,7 +561,7 @@ static int32_t oc_enc_pipeline_set_stripe(oc_enc_ctx *_enc,
   int32_t                      pli;
   mcu_nvsbs=_enc->mcu_nvsbs;
   sby_end=_enc->state.fplanes[0].nvsbs;
-  notdone=_sby+mcu_nvsbs<sby_end;
+  notdone=_sby+mcu_nvsbs<natural(sby_end);
   if(notdone)sby_end=_sby+mcu_nvsbs;
   vdec=0;
   for(pli=0;pli<3;pli++){
@@ -598,7 +599,7 @@ static void oc_enc_pipeline_finish_mcu_plane(oc_enc_ctx *_enc,
   oc_enc_tokenize_dc_frag_list(_enc,_pli,
    _pipe->coded_fragis[_pli],_pipe->ncoded_fragis[_pli],
    _pipe->ndct_tokens1[_pli],_pipe->eob_run1[_pli]);
-  _pipe->ndct_tokens1[_pli]=_enc->ndct_tokens[_pli][1];
+  _pipe->ndct_tokens1[_pli]= (int32_t) _enc->ndct_tokens[_pli][1];
   _pipe->eob_run1[_pli]=_enc->eob_run[_pli][1];
   /*And advance the coded fragment list.*/
   _enc->state.ncoded_fragis[_pli]+=_pipe->ncoded_fragis[_pli];
@@ -833,7 +834,7 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
           compatibility is enabled.*/
        (!_enc->vp3_compatible||mb_mode!=OC_MODE_INTER_MV_FOUR||_pli)){
         /*Hm, not worth it; roll back.*/
-        oc_enc_tokenlog_rollback(_enc,checkpoint,(*_stack)-checkpoint);
+        oc_enc_tokenlog_rollback(_enc,checkpoint, (int32_t) ((*_stack)-checkpoint));
         *_stack=checkpoint;
         frags[_fragi].coded=0;
         return 0;
@@ -906,7 +907,7 @@ static int32_t oc_enc_mb_transform_quantize_luma(oc_enc_ctx *_enc,
       if(mo.uncoded_ac_ssd<=cost){
         /*Taking macroblock overhead into account, it is not worth coding this
            MB.*/
-        oc_enc_tokenlog_rollback(_enc,stack,stackptr-stack);
+        oc_enc_tokenlog_rollback(_enc,stack, (int32_t) (stackptr-stack));
         *(_pipe->fr+0)=*&fr_checkpoint;
         *(_pipe->qs+0)=*&qs_checkpoint;
         for(bi=0;bi<4;bi++){
@@ -1087,8 +1088,8 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
   lambda=_enc->lambda;
   for(qii=0;qii<nqis;qii++){
     oc_qii_state_advance(qs[0]+qii,_qs,qii);
-    rate[0][qii]=oc_dct_cost2(ssd[0]+qii,_enc->state.qis[qii],0,0,satd)
-     +(qs[0][qii].bits-_qs->bits<<OC_BIT_SCALE);
+    rate[0][qii]= (uint32_t) (oc_dct_cost2(ssd[0]+qii,_enc->state.qis[qii],0,0,satd)
+     +(qs[0][qii].bits-_qs->bits<<OC_BIT_SCALE));
     cost[0][qii]=OC_MODE_RD_COST(ssd[0][qii],rate[0][qii],lambda);
   }
   for(bi=1;bi<4;bi++){
@@ -1104,7 +1105,7 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
       oc_qii_state_advance(qt+0,qs[bi-1]+0,qii);
       cur_rate=oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],0,0,satd);
       best_ssd=ssd[bi-1][0]+cur_ssd;
-      best_rate=rate[bi-1][0]+cur_rate
+      best_rate= (uint32_t) rate[bi-1][0]+cur_rate
        +(qt[0].bits-qs[bi-1][0].bits<<OC_BIT_SCALE);
       best_cost=OC_MODE_RD_COST(best_ssd,best_rate,lambda);
       best_qij=0;
@@ -1114,7 +1115,7 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
         unsigned chain_cost;
         oc_qii_state_advance(qt+qij,qs[bi-1]+qij,qii);
         chain_ssd=ssd[bi-1][qij]+cur_ssd;
-        chain_rate=rate[bi-1][qij]+cur_rate
+        chain_rate= (uint32_t) rate[bi-1][qij]+cur_rate
          +(qt[qij].bits-qs[bi-1][qij].bits<<OC_BIT_SCALE);
         chain_cost=OC_MODE_RD_COST(chain_ssd,chain_rate,lambda);
         if(chain_cost<best_cost){
@@ -1175,7 +1176,7 @@ static unsigned oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
     unsigned cur_rate;
     unsigned cur_ssd;
     oc_qii_state_advance(qt+qii,_qs,qii);
-    cur_rate=oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],_pli,0,satd)
+    cur_rate= (uint32_t) oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],_pli,0,satd)
      +(qt[qii].bits-_qs->bits<<OC_BIT_SCALE);
     cost[qii]=OC_MODE_RD_COST(cur_ssd,cur_rate,lambda);
   }
@@ -1378,16 +1379,16 @@ static void oc_analyze_mb_mode_luma(oc_enc_ctx *_enc,
     *(ft+0)=*&fr;
     oc_fr_code_block(ft+0);
     oc_qii_state_advance(qt+0,&qs,0);
-    best_overhead=(ft[0].bits-fr.bits<<OC_BIT_SCALE);
-    best_rate=oc_dct_cost2(&best_ssd,_enc->state.qis[0],0,_qti,satd)
-     +(qt[0].bits-qs.bits<<OC_BIT_SCALE);
+    best_overhead = (int32_t) (ft[0].bits-fr.bits<<OC_BIT_SCALE);
+    best_rate = (uint32_t) (oc_dct_cost2(&best_ssd,_enc->state.qis[0],0,_qti,satd)
+     +(qt[0].bits-qs.bits<<OC_BIT_SCALE));
     best_cost=OC_MODE_RD_COST(ssd+best_ssd,rate+best_rate+best_overhead,lambda);
     best_fri=0;
     best_qii=0;
     for(qii=1;qii<nqis;qii++){
       oc_qii_state_advance(qt+qii,&qs,qii);
-      cur_rate=oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],0,_qti,satd)
-       +(qt[qii].bits-qs.bits<<OC_BIT_SCALE);
+      cur_rate= (uint32_t) (oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],0,_qti,satd)
+       +(qt[qii].bits-qs.bits<<OC_BIT_SCALE));
       cur_cost=OC_MODE_RD_COST(ssd+cur_ssd,rate+cur_rate+best_overhead,lambda);
       if(cur_cost<best_cost){
         best_cost=cur_cost;
@@ -1399,7 +1400,7 @@ static void oc_analyze_mb_mode_luma(oc_enc_ctx *_enc,
     if(_skip_ssd[bi]<UINT_MAX&&nskipped<3){
       *(ft+1)=*&fr;
       oc_fr_skip_block(ft+1);
-      cur_overhead=ft[1].bits-fr.bits<<OC_BIT_SCALE;
+      cur_overhead = (int32_t) (ft[1].bits-fr.bits<<OC_BIT_SCALE);
       cur_ssd=_skip_ssd[bi]<<OC_BIT_SCALE;
       cur_cost=OC_MODE_RD_COST(ssd+cur_ssd,rate+cur_overhead,lambda);
       if(cur_cost<=best_cost){
@@ -1546,7 +1547,7 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
     uncoded_ssd-=uncoded_dc*uncoded_dc>>2;
     /*DC is a special case; if there's more than a full-quantizer improvement
        in the effective DC component, always force-code the block.*/
-    dc_flag=abs(uncoded_dc)>dc_dequant<<1;
+    dc_flag = (int32_t) (abs(uncoded_dc)> (dc_dequant<<1));
     uncoded_ssd|=-dc_flag;
     _pipe->skip_ssd[0][fragi-_pipe->froffset[0]]=_ssd[bi]=uncoded_ssd;
   }
@@ -1585,7 +1586,7 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
       uncoded_ssd-=uncoded_dc*uncoded_dc>>2;
       /*DC is a special case; if there's more than a full-quantizer improvement
          in the effective DC component, always force-code the block.*/
-      dc_flag=abs(uncoded_dc)>dc_dequant<<1;
+      dc_flag = (int32_t) (abs(uncoded_dc) > (dc_dequant<<1));
       uncoded_ssd|=-dc_flag;
       _pipe->skip_ssd[pli][fragi-_pipe->froffset[pli]]=_ssd[mapii]=uncoded_ssd;
     }
@@ -1735,8 +1736,7 @@ static int32_t oc_cost_inter1mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
   int32_t bits0;
   oc_cost_inter(_enc,_modec,_mbi,_mb_mode,_mv,_fr,_qs,_skip_ssd);
   bits0=OC_MV_BITS[0][_mv[0]+31]+OC_MV_BITS[0][_mv[1]+31];
-  _modec->overhead+=OC_MINI(_enc->mv_bits[0]+bits0,_enc->mv_bits[1]+12)
-   -OC_MINI(_enc->mv_bits[0],_enc->mv_bits[1])<<OC_BIT_SCALE;
+  _modec->overhead+= (uint32_t) (OC_MINI(_enc->mv_bits[0]+bits0,_enc->mv_bits[1]+12) - OC_MINI(_enc->mv_bits[0],_enc->mv_bits[1])<<OC_BIT_SCALE);
   oc_mode_set_cost(_modec,_enc->lambda);
   return bits0;
 }
@@ -1842,10 +1842,10 @@ static void oc_cost_inter4mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
     frag_satd[mapii]=satd;
   }
   oc_analyze_mb_mode_chroma(_enc,_modec,_fr,_qs,frag_satd,_skip_ssd,1);
-  _modec->overhead+=
-   oc_mode_scheme_chooser_cost(&_enc->chooser,OC_MODE_INTER_MV_FOUR)
+  _modec->overhead+= (uint32_t)
+   (oc_mode_scheme_chooser_cost(&_enc->chooser,OC_MODE_INTER_MV_FOUR)
    +OC_MINI(_enc->mv_bits[0]+bits0,_enc->mv_bits[1]+bits1)
-   -OC_MINI(_enc->mv_bits[0],_enc->mv_bits[1])<<OC_BIT_SCALE;
+   -OC_MINI(_enc->mv_bits[0],_enc->mv_bits[1])<<OC_BIT_SCALE);
   oc_mode_set_cost(_modec,_enc->lambda);
 }
 

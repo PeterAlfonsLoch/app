@@ -372,7 +372,7 @@ bool os_simple_graphics::blend_bitmap_data(int32_t x, int32_t y, int32_t cx, int
 
 }
 
-SIZE os_simple_graphics::get_text_extent(const char * psz, int32_t iLen)
+SIZE os_simple_graphics::get_text_extent(const char * psz, strsize iLen)
 {
 
    if(iLen < 0)
@@ -521,7 +521,7 @@ void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF clr)
    m_pgraphics->FillRectangle(&Gdiplus::SolidBrush(Gdiplus::Color(GetAValue(clr), GetRValue(clr), GetGValue(clr), GetBValue(clr))), lpRect->left, lpRect->top, width(lpRect), height(lpRect));
 }
 
-bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, int32_t iSize)
+bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, strsize iSize)
 {
    
    wstring wstr(pszUtf8);
@@ -532,7 +532,7 @@ bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, in
                            | Gdiplus::StringFormatFlagsNoClip | Gdiplus::StringFormatFlagsMeasureTrailingSpaces
                            | Gdiplus::StringFormatFlagsLineLimit | Gdiplus::StringFormatFlagsNoWrap);
 
-   return m_pgraphics->DrawString(wstr, wstr.get_length(), m_font.m_pfont, Gdiplus::PointF((Gdiplus::REAL) x, (Gdiplus::REAL)  y), &strFormat, m_brush.m_pbrush) == Gdiplus::Ok;
+   return m_pgraphics->DrawString(wstr, (INT) wstr.get_length(), m_font.m_pfont, Gdiplus::PointF((Gdiplus::REAL) x, (Gdiplus::REAL)  y), &strFormat, m_brush.m_pbrush) == Gdiplus::Ok;
 
 }
 

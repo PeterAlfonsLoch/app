@@ -100,7 +100,7 @@ namespace ex1
 
       const char * lpchEnd = strchr(lpszFullString, chSep);
 
-      int32_t nLen = (lpchEnd == NULL) ? strlen(lpszFullString) : (int32_t)(lpchEnd - lpszFullString);
+      strsize nLen = (lpchEnd == NULL) ? strlen(lpszFullString) : (int32_t)(lpchEnd - lpszFullString);
 
       ASSERT(nLen >= 0);
 

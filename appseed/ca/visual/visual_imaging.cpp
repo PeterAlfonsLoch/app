@@ -359,7 +359,7 @@ void EmbossedTextOut(
    ** or 'drop shadowed' look depending on what shadow color
    ** and offset are used.
    */
-   GetTextExtentPoint32(hDC, lpcsz, cb, &sizeText);
+   GetTextExtentPoint32(hDC, lpcsz, (int) cb, &sizeText);
    rcText.left   = x;    rcText.right  = x+cx+sizeText.cx;
    rcText.top    = y;    rcText.bottom = y+cy+sizeText.cy;
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rcText, lpsz, cb, NULL);
@@ -368,10 +368,10 @@ void EmbossedTextOut(
    //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
-   ExtTextOut(hDC, x+cx, y+cy, NULL, NULL, lpcsz, cb, NULL);
+   ExtTextOut(hDC, x+cx, y+cy, NULL, NULL, lpcsz, (int) cb, NULL);
    SetBkMode(hDC, TRANSPARENT);
    SetTextColor(hDC, crText);
-   if(!ExtTextOut(hDC, x, y, 0, NULL, lpcsz, cb, NULL))
+   if(!ExtTextOut(hDC, x, y, 0, NULL, lpcsz, (int) cb, NULL))
    {
       //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
    }

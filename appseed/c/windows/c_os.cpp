@@ -171,7 +171,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
    }
 
 
-   int32_t iRet = ToUnicodeEx(wparam, lparam, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+   int32_t iRet = ToUnicodeEx((UINT) wparam, (UINT) lparam, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
 
    if(iRet > 0)
    {

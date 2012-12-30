@@ -124,9 +124,9 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int32_t
     /* normalize curves so the driving amplitude is 0dB */
     /* make temp curves with the ATH overlayed */
     for(j=0;j<P_LEVELS;j++){
-      attenuate_curve(workc[i][j],curveatt_dB[i]+100.-(j<2?2:j)*10.-P_LEVEL_0);
+      attenuate_curve(workc[i][j],(float) (curveatt_dB[i]+100.-(j<2?2:j)*10.-P_LEVEL_0));
       memcpy(athc[j],ath,EHMER_MAX*sizeof(**athc));
-      attenuate_curve(athc[j],+100.-j*10.f-P_LEVEL_0);
+      attenuate_curve(athc[j],(float) (+100.-j*10.f-P_LEVEL_0));
       max_curve(athc[j],workc[i][j]);
     }
 
@@ -160,9 +160,9 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int32_t
        octave values may also be composited. */
 
     /* which octave curves will we be compositing? */
-    bin=floor(fromOC(i*.5)/binHz);
-    lo_curve=  ceil(toOC(bin*binHz+1)*2);
-    hi_curve=  floor(toOC((bin+1)*binHz)*2);
+    bin = (int32_t) floor(fromOC(i*.5)/binHz);
+    lo_curve = (int32_t) ceil(toOC(bin*binHz+1)*2);
+    hi_curve = (int32_t) floor(toOC((bin+1)*binHz)*2);
     if(lo_curve>i)lo_curve=i;
     if(lo_curve<0)lo_curve=0;
     if(hi_curve>=P_BANDS)hi_curve=P_BANDS-1;
@@ -179,8 +179,8 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int32_t
         int32_t l=0;
 
         for(j=0;j<EHMER_MAX;j++){
-          int32_t lo_bin= fromOC(j*.125+k*.5-2.0625)/binHz;
-          int32_t hi_bin= fromOC(j*.125+k*.5-1.9375)/binHz+1;
+          int32_t lo_bin= (int32_t) (fromOC(j*.125+k*.5-2.0625)/binHz);
+          int32_t hi_bin= (int32_t) (fromOC(j*.125+k*.5-1.9375)/binHz+1);
 
           if(lo_bin<0)lo_bin=0;
           if(lo_bin>n)lo_bin=n;
@@ -204,8 +204,8 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int32_t
         int32_t l=0;
         k=i+1;
         for(j=0;j<EHMER_MAX;j++){
-          int32_t lo_bin= fromOC(j*.125+i*.5-2.0625)/binHz;
-          int32_t hi_bin= fromOC(j*.125+i*.5-1.9375)/binHz+1;
+          int32_t lo_bin= (int32_t) (fromOC(j*.125+i*.5-2.0625)/binHz);
+          int32_t hi_bin= (int32_t) (fromOC(j*.125+i*.5-1.9375)/binHz+1);
 
           if(lo_bin<0)lo_bin=0;
           if(lo_bin>n)lo_bin=n;
@@ -226,7 +226,7 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int32_t
 
 
       for(j=0;j<EHMER_MAX;j++){
-        int32_t bin=fromOC(j*.125+i*.5-2.)/binHz;
+        int32_t bin= (int32_t) (fromOC(j*.125+i*.5-2.)/binHz);
         if(bin<0){
           ret[i][m][j+2]=-999.;
         }else{
@@ -241,12 +241,12 @@ static float ***setup_tone_curves(float curveatt_dB[P_BANDS],float binHz,int32_t
       /* add fenceposts */
       for(j=0;j<EHMER_OFFSET;j++)
         if(ret[i][m][j+2]>-200.f)break;
-      ret[i][m][0]=j;
+      ret[i][m][0]=(float) j;
 
       for(j=EHMER_MAX-1;j>EHMER_OFFSET+1;j--)
         if(ret[i][m][j+2]>-200.f)
           break;
-      ret[i][m][1]=j;
+      ret[i][m][1]=(float) j;
 
     }
   }
@@ -261,10 +261,10 @@ void _vp_psy_init(vorbis_look_psy *p,vorbis_info_psy *vi,
   memset(p,0,sizeof(*p));
 
   p->eighth_octave_lines=gi->eighth_octave_lines;
-  p->shiftoc=rint(log(gi->eighth_octave_lines*8.f)/log(2.f))-1;
+  p->shiftoc= (long) rint(log(gi->eighth_octave_lines*8.f)/log(2.f))-1;
 
-  p->firstoc=toOC(.25f*rate*.5/n)*(1<<(p->shiftoc+1))-gi->eighth_octave_lines;
-  maxoc=toOC((n+.25f)*rate*.5/n)*(1<<(p->shiftoc+1))+.5f;
+  p->firstoc= (long) (toOC(.25f*rate*.5/n)*(1<<(p->shiftoc+1))-gi->eighth_octave_lines);
+  maxoc= (long) (toOC((n+.25f)*rate*.5/n)*(1<<(p->shiftoc+1))+.5f);
   p->total_octave_lines=maxoc-p->firstoc+1;
   p->ath = (float *) _ogg_malloc(n*sizeof(*p->ath));
 
@@ -276,19 +276,19 @@ void _vp_psy_init(vorbis_look_psy *p,vorbis_info_psy *vi,
 
   /* AoTuV HF weighting */
   p->m_val = 1.;
-  if(rate < 26000) p->m_val = 0;
-  else if(rate < 38000) p->m_val = .94;   /* 32kHz */
-  else if(rate > 46000) p->m_val = 1.275; /* 48kHz */
+  if(rate < 26000) p->m_val = 0.f;
+  else if(rate < 38000) p->m_val = .94f;   /* 32kHz */
+  else if(rate > 46000) p->m_val = 1.275f; /* 48kHz */
 
   /* set up the lookups for a given blocksize and sample rate */
 
   for(i=0,j=0;i<MAX_ATH-1;i++){
-    int32_t endpos=rint(fromOC((i+1)*.125-2.)*2*n/rate);
+    int32_t endpos=(int32_t) rint(fromOC((i+1)*.125-2.)*2*n/rate);
     float base=ATH[i];
     if(j<endpos){
       float delta=(ATH[i+1]-base)/(endpos-j);
       for(;j<endpos && j<n;j++){
-        p->ath[j]=base+100.;
+        p->ath[j]=(float) (base+100.);
         base+=delta;
       }
     }
@@ -312,9 +312,9 @@ void _vp_psy_init(vorbis_look_psy *p,vorbis_info_psy *vi,
   }
 
   for(i=0;i<n;i++)
-    p->octave[i]=toOC((i+.25f)*.5*rate/n)*(1<<(p->shiftoc+1))+.5f;
+    p->octave[i]=(long) (toOC((i+.25f)*.5*rate/n)*(1<<(p->shiftoc+1))+.5f);
 
-  p->tonecurves=setup_tone_curves(vi->toneatt,rate*.5/n,n,
+  p->tonecurves=setup_tone_curves(vi->toneatt,rate*.5f/n,n,
                                   vi->tone_centerboost,vi->tone_decay);
 
   /* set up rolling noise median */
@@ -323,7 +323,7 @@ void _vp_psy_init(vorbis_look_psy *p,vorbis_info_psy *vi,
     p->noiseoffset[i] = (float *) _ogg_malloc(n*sizeof(**p->noiseoffset));
 
   for(i=0;i<n;i++){
-    float halfoc=toOC((i+.5)*rate/(2.*n))*2.;
+    float halfoc=(float) (toOC((i+.5)*rate/(2.*n))*2.);
     int32_t inthalfoc;
     float del;
 
@@ -333,9 +333,9 @@ void _vp_psy_init(vorbis_look_psy *p,vorbis_info_psy *vi,
     del=halfoc-inthalfoc;
 
     for(j=0;j<P_NOISECURVES;j++)
-      p->noiseoffset[j][i]=
-        p->vi->noiseoff[j][inthalfoc]*(1.-del) +
-        p->vi->noiseoff[j][inthalfoc+1]*del;
+      p->noiseoffset[j][i]= (float)
+        (p->vi->noiseoff[j][inthalfoc]*(1.-del) +
+        p->vi->noiseoff[j][inthalfoc+1]*del);
 
   }
 #if 0
@@ -389,9 +389,9 @@ static void seed_curve(float *seed,
   posts=curves[choice];
   curve=posts+2;
   post1=(int32_t)posts[1];
-  seedptr=oc+(posts[0]-EHMER_OFFSET)*linesper-(linesper>>1);
+  seedptr= (int32_t) (oc+(posts[0]-EHMER_OFFSET)*linesper-(linesper>>1));
 
-  for(i=posts[0];i<post1;i++){
+  for(i=(int32_t) posts[0];i<post1;i++){
     if(seedptr>0){
       float lin=amp+curve[i];
       if(seed[seedptr]<lin)seed[seedptr]=lin;
@@ -557,7 +557,7 @@ static void bark_noise_hybridmp(int32_t n,const long *b,
   y = f[0] + offset;
   if (y < 1.f) y = 1.f;
 
-  w = y * y * .5;
+  w = (float) (y * y * .5);
 
   tN += w;
   tX += w;
@@ -725,7 +725,7 @@ void _vp_noisemask(vorbis_look_psy *p,
 #endif
 
   for(i=0;i<n;i++){
-    int32_t dB=logmask[i]+.5;
+    int32_t dB= (int32_t) (logmask[i]+.5);
     if(dB>=NOISE_COMPAND_LEVELS)dB=NOISE_COMPAND_LEVELS-1;
     if(dB<0)dB=0;
     logmask[i]= work[i]+p->vi->noisecompand[dB];
@@ -787,24 +787,24 @@ void _vp_offset_and_mix(vorbis_look_psy *p,
     */
 
     if(offset_select == 1) {
-      coeffi = -17.2;       /* coeffi is a -17.2dB threshold */
+      coeffi = (float) (-17.2);       /* coeffi is a -17.2dB threshold */
       val = val - logmdct[i];  /* val == mdct line value relative to floor in dB */
 
       if(val > coeffi){
         /* mdct value is > -17.2 dB below floor */
 
-        de = 1.0-((val-coeffi)*0.005*cx);
+        de = (float) (1.0-((val-coeffi)*0.005*cx));
         /* pro-rated attenuation:
            -0.00 dB boost if mdct value is -17.2dB (relative to floor)
            -0.77 dB boost if mdct value is 0dB (relative to floor)
            -1.64 dB boost if mdct value is +17.2dB (relative to floor)
            etc... */
 
-        if(de < 0) de = 0.0001;
+        if(de < 0) de = (float) (0.0001);
       }else
         /* mdct value is <= -17.2 dB below floor */
 
-        de = 1.0-((val-coeffi)*0.0003*cx);
+        de = (float) (1.0-((val-coeffi)*0.0003*cx));
       /* pro-rated attenuation:
          +0.00 dB atten if mdct value is -17.2dB (relative to floor)
          +0.45 dB atten if mdct value is -34.4dB (relative to floor)
@@ -939,9 +939,9 @@ static float noise_normalize(vorbis_look_psy *p, int32_t limit, float *r, float 
                                 energy would be incorrect. */
       float ve = q[j]/f[j];
       if(r[j]<0)
-        out[j] = -rint(sqrt(ve));
+        out[j] = (int32_t) (-rint(sqrt(ve)));
       else
-        out[j] = rint(sqrt(ve));
+        out[j] = (int32_t) rint(sqrt(ve));
     }
   }
 
@@ -962,9 +962,9 @@ static float noise_normalize(vorbis_look_psy *p, int32_t limit, float *r, float 
       }else{
         /* For now: no acc adjustment for nonzero quantization.  populate *out and q as this value is final. */
         if(r[j]<0)
-          out[j] = -rint(sqrt(ve));
+          out[j] = (int32_t) -rint(sqrt(ve));
         else
-          out[j] = rint(sqrt(ve));
+          out[j] = (int32_t) rint(sqrt(ve));
         q[j] = out[j]*out[j]*f[j];
       }
     }/* else{
@@ -976,9 +976,9 @@ static float noise_normalize(vorbis_look_psy *p, int32_t limit, float *r, float 
     /* noise norm to do */
     qsort(sort,count,sizeof(*sort),apsort);
     for(j=0;j<count;j++){
-      int32_t k=sort[j]-q;
+      int32_t k = (int32_t) (sort[j] - q);
       if(acc>=vi->normal_thresh){
-        out[k]=unitnorm(r[k]);
+        out[k] = (int32_t) (unitnorm(r[k]));
         acc-=1.f;
         q[k]=f[k];
       }else{
@@ -1007,9 +1007,9 @@ void _vp_couple_quantize_normalize(int32_t blobno,
   int32_t n = p->n;
   int32_t partition=(p->vi->normal_p ? p->vi->normal_partition : 16);
   int32_t limit = g->coupling_pointlimit[p->vi->blockflag][blobno];
-  float prepoint=stereo_threshholds[g->coupling_prepointamp[blobno]];
-  float postpoint=stereo_threshholds[g->coupling_postpointamp[blobno]];
-  float de=0.1*p->m_val; /* a blend of the AoTuV M2 and M3 code here and below */
+  float prepoint= (float) (stereo_threshholds[g->coupling_prepointamp[blobno]]);
+  float postpoint= (float) (stereo_threshholds[g->coupling_postpointamp[blobno]]);
+  float de = (float) (0.1*p->m_val); /* a blend of the AoTuV M2 and M3 code here and below */
 
   /* mdct is our raw mdct output, floor not removed. */
   /* inout passes in the ifloor, passes back quantized result */
@@ -1034,7 +1034,7 @@ void _vp_couple_quantize_normalize(int32_t blobno,
 
   /* The threshold of a stereo is changed with the size of n */
   if(n > 1000)
-    postpoint=stereo_threshholds_limited[g->coupling_postpointamp[blobno]];
+    postpoint = (float) (stereo_threshholds_limited[g->coupling_postpointamp[blobno]]);
 
   raw[0]   = (float *) alloca(ch*partition*sizeof(**raw));
   quant[0] = (float *) alloca(ch*partition*sizeof(**quant));

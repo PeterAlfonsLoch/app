@@ -81,7 +81,7 @@ namespace spa
 
 #ifdef WINDOWS
 
-      virtual uint_ptr message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam);
+      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 
 #else
 
@@ -97,7 +97,7 @@ namespace spa
 
 #ifndef METROWIN
 
-      virtual void on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b);
+      virtual void on_post(small_ipc_rx_channel * prxchannel, int64_t a, int64_t b);
 
       virtual void on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len);
 

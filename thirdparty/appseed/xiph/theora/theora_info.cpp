@@ -61,7 +61,7 @@ void th_comment_add(th_comment *_tc,char *_comment){
    (_tc->comments+2)*sizeof(*_tc->comment_lengths));
   if(comment_lengths==NULL)return;
   _tc->comment_lengths=comment_lengths;
-  comment_len=strlen(_comment);
+  comment_len=(int32_t) strlen(_comment);
   comment_lengths[_tc->comments]=comment_len;
   user_comments[_tc->comments]=(char *) _ogg_malloc(comment_len+1);
   if(user_comments[_tc->comments]==NULL)return;
@@ -74,8 +74,8 @@ void th_comment_add_tag(th_comment *_tc,char *_tag,char *_val){
   char *comment;
   int32_t   tag_len;
   int32_t   val_len;
-  tag_len=strlen(_tag);
-  val_len=strlen(_val);
+  tag_len=(int32_t) strlen(_tag);
+  val_len=(int32_t) strlen(_val);
   /*+2 for '=' and '\0'.*/
   comment=(char *) _ogg_malloc(tag_len+val_len+2);
   if(comment==NULL)return;
@@ -90,7 +90,7 @@ char *th_comment_query(th_comment *_tc,char *_tag,int32_t _count){
   long i;
   int32_t  found;
   int32_t  tag_len;
-  tag_len=strlen(_tag);
+  tag_len=(int32_t) strlen(_tag);
   found=0;
   for(i=0;i<_tc->comments;i++){
     if(!oc_tagcompare(_tc->user_comments[i],_tag,tag_len)){
@@ -106,7 +106,7 @@ int32_t th_comment_query_count(th_comment *_tc,char *_tag){
   long i;
   int32_t  tag_len;
   int32_t  count;
-  tag_len=strlen(_tag);
+  tag_len=(int32_t) strlen(_tag);
   count=0;
   for(i=0;i<_tc->comments;i++){
     if(!oc_tagcompare(_tc->user_comments[i],_tag,tag_len))count++;

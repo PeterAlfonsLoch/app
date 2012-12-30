@@ -308,9 +308,6 @@
     <ClInclude Include="c\c_md5.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
-    <ClInclude Include="c\c_mem.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
     <ClInclude Include="c\c_message_loop.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
@@ -354,9 +351,6 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_sprintf.h">
-      <Filter>Header Files\c</Filter>
-    </ClInclude>
-    <ClInclude Include="c\c_std_file.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_str.h">
@@ -432,6 +426,9 @@
       <Filter>Header Files\c</Filter>
     </ClInclude>
     <ClInclude Include="c\c_string_to_integer.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
+    <ClInclude Include="c\c_memory.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
   </ItemGroup>

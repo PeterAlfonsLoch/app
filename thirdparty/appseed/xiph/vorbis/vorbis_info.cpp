@@ -45,7 +45,7 @@ static void _v_writestring(oggpack_buffer *o,const char *s, int32_t bytes){
 
 static void _v_readstring(oggpack_buffer *o,char *buf,int32_t bytes){
   while(bytes--){
-    *buf++=oggpack_read(o,8);
+    *buf++= (char) oggpack_read(o,8);
   }
 }
 
@@ -58,7 +58,7 @@ void vorbis_comment_add(vorbis_comment *vc,const char *comment){
                             (vc->comments+2)*sizeof(*vc->user_comments));
   vc->comment_lengths=(int32_t *) _ogg_realloc(vc->comment_lengths,
                                   (vc->comments+2)*sizeof(*vc->comment_lengths));
-  vc->comment_lengths[vc->comments]=strlen(comment);
+  vc->comment_lengths[vc->comments]= (int32_t) strlen(comment);
   vc->user_comments[vc->comments]=(char *) _ogg_malloc(vc->comment_lengths[vc->comments]+1);
   strcpy(vc->user_comments[vc->comments], comment);
   vc->comments++;
@@ -88,7 +88,7 @@ static int32_t tagcompare(const char *s1, const char *s2, int32_t n){
 char *vorbis_comment_query(vorbis_comment *vc, const char *tag, int32_t count){
   long i;
   int32_t found = 0;
-  int32_t taglen = strlen(tag)+1; /* +1 for the = we append */
+  int32_t taglen = (int32_t) (strlen(tag)+1); /* +1 for the = we append */
   char *fulltag = (char *) alloca(taglen+ 1);
 
   strcpy(fulltag, tag);
@@ -108,7 +108,7 @@ char *vorbis_comment_query(vorbis_comment *vc, const char *tag, int32_t count){
 
 int32_t vorbis_comment_query_count(vorbis_comment *vc, const char *tag){
   int32_t i,count=0;
-  int32_t taglen = strlen(tag)+1; /* +1 for the = we append */
+  int32_t taglen = (int32_t) (strlen(tag)+1); /* +1 for the = we append */
   char *fulltag = (char *) alloca(taglen+1);
   strcpy(fulltag,tag);
   strcat(fulltag, "=");
@@ -450,7 +450,7 @@ static int32_t _vorbis_pack_info(oggpack_buffer *opb,vorbis_info *vi){
 }
 
 static int32_t _vorbis_pack_comment(oggpack_buffer *opb,vorbis_comment *vc){
-  int32_t bytes = strlen(ENCODE_VENDOR_STRING);
+  int32_t bytes = (int32_t) strlen(ENCODE_VENDOR_STRING);
 
   /* preamble */
   oggpack_write(opb,0x03,8);

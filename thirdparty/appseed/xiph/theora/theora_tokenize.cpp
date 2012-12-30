@@ -241,11 +241,16 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
   for(zzi=OC_MINI(_zzi,63);zzi>0;zzi--){
     ogg_int32_t  lambda;
     ogg_uint32_t best_cost;
-    int32_t          best_bits=best_bits;
-    int32_t          best_next=best_next;
-    int32_t          best_token=best_token;
-    int32_t          best_eb=best_eb;
-    int32_t          best_qc=best_qc;
+    //int32_t          best_bits=best_bits;
+    //int32_t          best_next=best_next;
+    //int32_t          best_token=best_token;
+    //int32_t          best_eb=best_eb;
+    //int32_t          best_qc=best_qc;
+    int32_t          best_bits=0;
+    int32_t          best_next=0;
+    int32_t          best_token=0;
+    int32_t          best_eb=0;
+    int32_t          best_qc=0;
     int32_t          flush_bits;
     ogg_uint32_t d2;
     int32_t          dq;
@@ -789,8 +794,10 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
   int32_t                neobs1;
   int32_t                token;
   int32_t                eb;
-  int32_t                token1=token1;
-  int32_t                eb1=eb1;
+//  int32_t                token1=token1;
+  //int32_t                eb1=eb1;
+  int32_t                token1=0;
+   int32_t                eb1=0;
   /*Return immediately if there are no coded fragments; otherwise we'd flush
      any trailing EOB run into the AC 1 list and never read it back out.*/
   if(_ncoded_fragis<=0)return;
@@ -1029,7 +1036,8 @@ void oc_enc_tokenize_finish(oc_enc_ctx *_enc){
     int32_t       new_eb;
     int32_t       zzj;
     int32_t       plj;
-    ptrdiff_t ti=ti;
+    //ptrdiff_t ti=ti;
+    ptrdiff_t ti=0;
     int32_t       run_count;
     /*Make sure this coefficient has tokens at all.*/
     if(_enc->ndct_tokens[pli][zzi]<=0)continue;
