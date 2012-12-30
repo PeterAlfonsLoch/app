@@ -3,7 +3,7 @@
 #include <errno.h>
 
 
-int create_process(const char * _cmd_line, int * pprocessId)
+int32_t create_process(const char * _cmd_line, int32_t * pprocessId)
 {
    char *   exec_path_name;
    char *	cmd_line;
@@ -20,7 +20,7 @@ int create_process(const char * _cmd_line, int * pprocessId)
       // child
       char		*pArg, *pPtr;
       char		*argv[1024 + 1];
-      int		 argc;
+      int32_t		 argc;
       if( ( pArg = strrchr_dup( exec_path_name, '/' ) ) != NULL )
          pArg++;
       else
@@ -57,11 +57,11 @@ int create_process(const char * _cmd_line, int * pprocessId)
    return 1;
 }
 
-CLASS_DECL_c int call_async(
+CLASS_DECL_c int32_t call_async(
                             const char * pszPath,
                             const char * pszParam,
                             const char * pszDir,
-                            int iShow)
+                            int32_t iShow)
 {
     vsstring strCmdLine;
 
@@ -72,7 +72,7 @@ CLASS_DECL_c int call_async(
         strCmdLine += pszParam;
     }
 
-    int processId;
+    int32_t processId;
 
     if(!create_process(strCmdLine, &processId))
         return -1;
@@ -85,10 +85,10 @@ CLASS_DECL_c DWORD call_sync(
                              const char * pszPath,
                              const char * pszParam,
                              const char * pszDir,
-                             int iShow,
-                             int iRetry,
-                             int iSleep,
-                             int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
+                             int32_t iShow,
+                             int32_t iRetry,
+                             int32_t iSleep,
+                             int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
                              dword_ptr dwParam)
 {
     vsstring strCmdLine;
@@ -100,7 +100,7 @@ CLASS_DECL_c DWORD call_sync(
         strCmdLine += pszParam;
     }
 
-    int processId;
+    int32_t processId;
 
     if(!create_process(strCmdLine, &processId))
         return -1;

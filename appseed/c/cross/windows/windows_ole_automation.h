@@ -69,7 +69,7 @@
 //WINOLEAUTAPI_(BSTR) SysAllocString(_In_opt_z_ const OLECHAR * psz);
 //WINOLEAUTAPI_(INT)  SysReAllocString(_Inout_ _At_(*pbstr, _Pre_z_ _Post_z_ _Post_readable_size_(_String_length_(psz)+1)) BSTR* pbstr, _In_opt_z_ const OLECHAR* psz);
 //WINOLEAUTAPI_(_Ret_writes_maybenull_z_(ui+1) BSTR) SysAllocStringLen(_In_reads_opt_(ui) const OLECHAR * strIn, UINT ui);
-//_Check_return_ WINOLEAUTAPI_(INT)  SysReAllocStringLen(_Inout_ _At_(*pbstr, _Pre_z_ _Post_z_ _Post_readable_size_(len+1)) BSTR* pbstr, _In_opt_z_ const OLECHAR* psz, _In_ unsigned int len);
+//_Check_return_ WINOLEAUTAPI_(INT)  SysReAllocStringLen(_Inout_ _At_(*pbstr, _Pre_z_ _Post_z_ _Post_readable_size_(len+1)) BSTR* pbstr, _In_opt_z_ const OLECHAR* psz, _In_ unsigned int32_t len);
 //WINOLEAUTAPI_(void) SysFreeString(_In_opt_ BSTR bstrString);
 //WINOLEAUTAPI_(_Post_equal_to_(pbstr == NULL ? 0 : _String_length_(pbstr)) UINT) SysStringLen(_In_opt_ BSTR pbstr);
 //
@@ -813,7 +813,7 @@
 //STDAPI VarNeg(_In_ LPVARIANT pvarIn, _Out_ LPVARIANT pvarResult);
 //STDAPI VarNot(_In_ LPVARIANT pvarIn, _Out_ LPVARIANT pvarResult);
 //
-//STDAPI VarRound(_In_ LPVARIANT pvarIn, _In_ int cDecimals, _Out_ LPVARIANT pvarResult);
+//STDAPI VarRound(_In_ LPVARIANT pvarIn, _In_ int32_t cDecimals, _Out_ LPVARIANT pvarResult);
 //
 //// dwFlags passed to CompareString if a string compare
 //STDAPI VarCmp(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _In_ LCID lcid, _In_ ULONG dwFlags);
@@ -860,7 +860,7 @@
 //STDAPI VarDecInt(_In_ LPDECIMAL pdecIn, _Out_ LPDECIMAL pdecResult);
 //STDAPI VarDecNeg(_In_ LPDECIMAL pdecIn, _Out_ LPDECIMAL pdecResult);
 //
-//STDAPI VarDecRound(_In_ LPDECIMAL pdecIn, int cDecimals, _Out_ LPDECIMAL pdecResult);
+//STDAPI VarDecRound(_In_ LPDECIMAL pdecIn, int32_t cDecimals, _Out_ LPDECIMAL pdecResult);
 //
 //STDAPI VarDecCmp(_In_ LPDECIMAL pdecLeft, _In_ LPDECIMAL pdecRight);
 //STDAPI VarDecCmpR8(_In_ LPDECIMAL pdecLeft, _In_ double dblRight);
@@ -879,7 +879,7 @@
 //STDAPI VarCyInt(_In_ CY cyIn, _Out_ LPCY pcyResult);
 //STDAPI VarCyNeg(_In_ CY cyIn, _Out_ LPCY pcyResult);
 //
-//STDAPI VarCyRound(_In_ CY cyIn, _In_ int cDecimals, _Out_ LPCY pcyResult);
+//STDAPI VarCyRound(_In_ CY cyIn, _In_ int32_t cDecimals, _Out_ LPCY pcyResult);
 //
 //STDAPI VarCyCmp(_In_ CY cyLeft, _In_ CY cyRight);
 //STDAPI VarCyCmpR8(_In_ CY cyLeft, _In_ double dblRight);
@@ -891,7 +891,7 @@
 //STDAPI VarBstrCmp(_In_ BSTR bstrLeft, _In_ BSTR bstrRight, _In_ LCID lcid, _In_ ULONG dwFlags); // dwFlags passed to CompareString
 //STDAPI VarR8Pow(_In_ double dblLeft, _In_ double dblRight, _Out_ double *pdblResult);
 //STDAPI VarR4CmpR8(_In_ float fltLeft, _In_ double dblRight);
-//STDAPI VarR8Round(_In_ double dblIn, _In_ int cDecimals, _Out_ double *pdblResult);
+//STDAPI VarR8Round(_In_ double dblIn, _In_ int32_t cDecimals, _Out_ double *pdblResult);
 //
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */
 //#pragma endregion
@@ -964,60 +964,60 @@
 //WINOLEAUTAPI VarFormat(
 //	_In_ LPVARIANT pvarIn,
 //	_In_opt_ LPOLESTR pstrFormat,
-//	int iFirstDay,
-//	int iFirstWeek,
+//	int32_t iFirstDay,
+//	int32_t iFirstWeek,
 //	ULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarFormatDateTime(
 //	_In_ LPVARIANT pvarIn,
-//	int iNamedFormat,
+//	int32_t iNamedFormat,
 //	ULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarFormatNumber(
 //	_In_ LPVARIANT pvarIn,
-//	int iNumDig,
-//	int iIncLead,
-//	int iUseParens,
-//	int iGroup,
+//	int32_t iNumDig,
+//	int32_t iIncLead,
+//	int32_t iUseParens,
+//	int32_t iGroup,
 //	ULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarFormatPercent(
 //	_In_ LPVARIANT pvarIn,
-//	int iNumDig,
-//	int iIncLead,
-//	int iUseParens,
-//	int iGroup,
+//	int32_t iNumDig,
+//	int32_t iIncLead,
+//	int32_t iUseParens,
+//	int32_t iGroup,
 //	ULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarFormatCurrency(
 //	_In_ LPVARIANT pvarIn,
-//	int iNumDig,
-//	int iIncLead,
-//	int iUseParens,
-//	int iGroup,
+//	int32_t iNumDig,
+//	int32_t iIncLead,
+//	int32_t iUseParens,
+//	int32_t iGroup,
 //	ULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarWeekdayName(
-//	int iWeekday,
-//	int fAbbrev,
-//	int iFirstDay,
+//	int32_t iWeekday,
+//	int32_t fAbbrev,
+//	int32_t iFirstDay,
 //	ULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
 //
 //WINOLEAUTAPI VarMonthName(
-//	int iMonth,
-//	int fAbbrev,
+//	int32_t iMonth,
+//	int32_t fAbbrev,
 //	ULONG dwFlags,
 //	_Out_ BSTR *pbstrOut
 //	);
@@ -1034,11 +1034,11 @@
 //WINOLEAUTAPI VarTokenizeFormatString(
 //	_In_opt_ LPOLESTR pstrFormat,
 //	_Inout_ LPBYTE rgbTok,
-//	int cbTok,
-//	int iFirstDay,
-//	int iFirstWeek,
+//	int32_t cbTok,
+//	int32_t iFirstDay,
+//	int32_t iFirstWeek,
 //	LCID lcid,
-//	_In_opt_ int *pcbActual
+//	_In_opt_ int32_t *pcbActual
 //	);
 //
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_APP) */

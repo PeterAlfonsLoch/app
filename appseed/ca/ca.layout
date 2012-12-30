@@ -13,8 +13,8 @@
 	<File name="api/api.h" open="0" top="0" tabpos="2">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="api/api_debug.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1802" topLine="35" />
+	<File name="api/api_debug.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="1864" topLine="40" />
 	</File>
 	<File name="api/api_debug.h" open="0" top="0" tabpos="1">
 		<Cursor position="35002" topLine="849" />
@@ -24,6 +24,9 @@
 	</File>
 	<File name="api/api_muldiv64.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="14973" topLine="458" />
+	</File>
+	<File name="api/mktime.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="6612" topLine="156" />
 	</File>
 	<File name="ca.h" open="0" top="0" tabpos="10">
 		<Cursor position="37" topLine="0" />
@@ -218,7 +221,7 @@
 		<Cursor position="15294" topLine="501" />
 	</File>
 	<File name="ca4/ca4_ip_enum.h" open="0" top="0" tabpos="46">
-		<Cursor position="296" topLine="21" />
+		<Cursor position="296" topLine="3" />
 	</File>
 	<File name="ca4/ca4_oauth.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1384" topLine="23" />
@@ -243,6 +246,9 @@
 	</File>
 	<File name="collection/collection.h" open="0" top="0" tabpos="118">
 		<Cursor position="4175" topLine="171" />
+	</File>
+	<File name="collection/collection.inl" open="1" top="0" tabpos="3">
+		<Cursor position="1538" topLine="30" />
 	</File>
 	<File name="collection/collection_array_ptr.h" open="0" top="0" tabpos="0">
 		<Cursor position="3550" topLine="97" />
@@ -294,6 +300,42 @@
 	</File>
 	<File name="colorertake5/xmldom.h" open="0" top="0" tabpos="0">
 		<Cursor position="1107" topLine="48" />
+	</File>
+	<File name="compress/7z/compress_archive.h" open="1" top="0" tabpos="4">
+		<Cursor position="9269" topLine="213" />
+	</File>
+	<File name="compress/7z/compress_bzip_helper.h" open="1" top="0" tabpos="5">
+		<Cursor position="2286" topLine="19" />
+	</File>
+	<File name="compress/7z/compress_codecs_info_interface.h" open="1" top="0" tabpos="6">
+		<Cursor position="271" topLine="0" />
+	</File>
+	<File name="compress/7z/compress_coder_mixer2.h" open="1" top="0" tabpos="7">
+		<Cursor position="1871" topLine="32" />
+	</File>
+	<File name="compress/7z/compress_coder_mixer2mt.h" open="1" top="0" tabpos="8">
+		<Cursor position="1978" topLine="27" />
+	</File>
+	<File name="compress/7z/compress_filter_coder.h" open="1" top="0" tabpos="9">
+		<Cursor position="3859" topLine="58" />
+	</File>
+	<File name="compress/7z/compress_gzip_helper.h" open="1" top="0" tabpos="10">
+		<Cursor position="2748" topLine="35" />
+	</File>
+	<File name="compress/7z/compress_huffman_decoder.h" open="1" top="0" tabpos="11">
+		<Cursor position="2542" topLine="36" />
+	</File>
+	<File name="compress/7z/compress_ppmd7.h" open="1" top="0" tabpos="12">
+		<Cursor position="3792" topLine="94" />
+	</File>
+	<File name="compress/7z/compress_ppmd8.h" open="1" top="0" tabpos="13">
+		<Cursor position="3490" topLine="87" />
+	</File>
+	<File name="compress/7z/compress_register_codec.h" open="1" top="0" tabpos="14">
+		<Cursor position="868" topLine="0" />
+	</File>
+	<File name="compress/7z/compress_set_coder_properties_interface.h" open="1" top="0" tabpos="15">
+		<Cursor position="1117" topLine="14" />
 	</File>
 	<File name="compress/compress_create_coder.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="1843" topLine="55" />
@@ -478,6 +520,9 @@
 	<File name="exception/exception.h" open="0" top="0" tabpos="113">
 		<Cursor position="31" topLine="0" />
 	</File>
+	<File name="exception/exception_archive_exception.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="74" topLine="0" />
+	</File>
 	<File name="exception/exception_base.cpp" open="0" top="0" tabpos="61">
 		<Cursor position="546" topLine="0" />
 	</File>
@@ -562,8 +607,8 @@
 	<File name="gen/gen.h" open="0" top="0" tabpos="22">
 		<Cursor position="33" topLine="0" />
 	</File>
-	<File name="gen/gen_1.h" open="0" top="0" tabpos="0">
-		<Cursor position="6184" topLine="102" />
+	<File name="gen/gen_1.h" open="1" top="0" tabpos="17">
+		<Cursor position="7439" topLine="148" />
 	</File>
 	<File name="gen/gen_Debug.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="963" topLine="0" />
@@ -694,29 +739,29 @@
 	<File name="libcharguess/types.h" open="0" top="0" tabpos="0">
 		<Cursor position="929" topLine="0" />
 	</File>
-	<File name="linux/os.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="530" topLine="0" />
+	<File name="linux/os.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="1310" topLine="27" />
 	</File>
 	<File name="linux/os.h" open="0" top="0" tabpos="6">
 		<Cursor position="14" topLine="0" />
 	</File>
-	<File name="linux/os_allocate_debug.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="19" topLine="0" />
+	<File name="linux/os_allocate_debug.cpp" open="1" top="0" tabpos="19">
+		<Cursor position="949" topLine="0" />
 	</File>
-	<File name="linux/os_debug.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="19" topLine="0" />
+	<File name="linux/os_debug.cpp" open="1" top="0" tabpos="20">
+		<Cursor position="335" topLine="0" />
 	</File>
-	<File name="linux/os_debug.h" open="0" top="0" tabpos="0">
-		<Cursor position="97" topLine="0" />
+	<File name="linux/os_debug.h" open="1" top="0" tabpos="21">
+		<Cursor position="125" topLine="0" />
 	</File>
-	<File name="linux/os_multithreading.cpp" open="0" top="0" tabpos="26">
-		<Cursor position="2385" topLine="74" />
+	<File name="linux/os_multithreading.cpp" open="1" top="0" tabpos="22">
+		<Cursor position="1243" topLine="26" />
 	</File>
 	<File name="linux/os_multithreading.h" open="0" top="0" tabpos="24">
 		<Cursor position="402" topLine="0" />
 	</File>
-	<File name="macos/macos.h" open="0" top="0" tabpos="0">
-		<Cursor position="1320" topLine="10" />
+	<File name="macos/macos.h" open="1" top="0" tabpos="23">
+		<Cursor position="633" topLine="10" />
 	</File>
 	<File name="multithreading/multithreading.h" open="0" top="0" tabpos="17">
 		<Cursor position="666" topLine="0" />
@@ -829,26 +874,26 @@
 	<File name="os/os_cross_windows.h" open="0" top="0" tabpos="5">
 		<Cursor position="891" topLine="23" />
 	</File>
-	<File name="os/os_cross_windows_crt.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="434" topLine="0" />
+	<File name="os/os_cross_windows_crt.cpp" open="1" top="0" tabpos="24">
+		<Cursor position="332" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_crt.h" open="0" top="0" tabpos="0">
-		<Cursor position="94" topLine="0" />
+	<File name="os/os_cross_windows_crt.h" open="1" top="0" tabpos="25">
+		<Cursor position="67" topLine="0" />
 	</File>
 	<File name="os/os_cross_windows_guid_def.h" open="0" top="0" tabpos="7">
 		<Cursor position="238" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_internals.h" open="0" top="0" tabpos="1">
-		<Cursor position="93886" topLine="2249" />
+	<File name="os/os_cross_windows_internals.h" open="1" top="0" tabpos="26">
+		<Cursor position="99252" topLine="2301" />
 	</File>
-	<File name="os/os_cross_windows_shared_memory.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="3131" topLine="121" />
+	<File name="os/os_cross_windows_shared_memory.cpp" open="1" top="0" tabpos="27">
+		<Cursor position="2046" topLine="44" />
 	</File>
-	<File name="os/os_cross_windows_shared_memory.h" open="0" top="0" tabpos="0">
-		<Cursor position="383" topLine="0" />
+	<File name="os/os_cross_windows_shared_memory.h" open="1" top="0" tabpos="28">
+		<Cursor position="109" topLine="0" />
 	</File>
-	<File name="os/os_cross_windows_time.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="1485" topLine="11" />
+	<File name="os/os_cross_windows_time.cpp" open="1" top="0" tabpos="29">
+		<Cursor position="26116" topLine="822" />
 	</File>
 	<File name="os/os_cross_windows_time.h" open="0" top="0" tabpos="27">
 		<Cursor position="0" topLine="0" />
@@ -877,20 +922,26 @@
 	<File name="plane/plane_system_allocate.h" open="0" top="0" tabpos="30">
 		<Cursor position="517" topLine="0" />
 	</File>
-	<File name="plane/plane_system_gen_str.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="1628" topLine="42" />
+	<File name="plane/plane_system_gen_str.cpp" open="1" top="0" tabpos="30">
+		<Cursor position="1571" topLine="46" />
 	</File>
 	<File name="plane/plane_system_gen_str.h" open="0" top="0" tabpos="20">
 		<Cursor position="1674" topLine="55" />
 	</File>
-	<File name="plane/plane_system_primitive_string_format_spec.h" open="0" top="0" tabpos="4">
-		<Cursor position="105" topLine="0" />
+	<File name="plane/plane_system_primitive_string_format_spec.h" open="1" top="0" tabpos="31">
+		<Cursor position="78" topLine="0" />
 	</File>
 	<File name="plane/plane_system_primitive_var.h" open="0" top="0" tabpos="2">
 		<Cursor position="18" topLine="0" />
 	</File>
+	<File name="plane/plane_system_radix_factory.h" open="1" top="0" tabpos="32">
+		<Cursor position="797" topLine="0" />
+	</File>
 	<File name="plane/plane_system_template_trace.h" open="0" top="0" tabpos="51">
 		<Cursor position="2973" topLine="75" />
+	</File>
+	<File name="planebase/cube4_application.h" open="1" top="0" tabpos="33">
+		<Cursor position="384" topLine="0" />
 	</File>
 	<File name="planebase/planebase.h" open="0" top="0" tabpos="13">
 		<Cursor position="55" topLine="0" />
@@ -970,11 +1021,11 @@
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
 	</File>
-	<File name="primitive/primitive_string_format.cpp" open="0" top="0" tabpos="19">
-		<Cursor position="1557" topLine="80" />
+	<File name="primitive/primitive_string_format.cpp" open="1" top="0" tabpos="34">
+		<Cursor position="2653" topLine="97" />
 	</File>
-	<File name="primitive/primitive_string_format.h" open="0" top="0" tabpos="52">
-		<Cursor position="8394" topLine="235" />
+	<File name="primitive/primitive_string_format.h" open="1" top="0" tabpos="35">
+		<Cursor position="7512" topLine="183" />
 	</File>
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13131" topLine="728" />
@@ -988,14 +1039,17 @@
 	<File name="primitive/primitive_virtual_memory.h" open="0" top="0" tabpos="11">
 		<Cursor position="900" topLine="0" />
 	</File>
+	<File name="primitive/wstringtou.h" open="1" top="0" tabpos="36">
+		<Cursor position="152" topLine="0" />
+	</File>
 	<File name="radix/radix.h" open="0" top="0" tabpos="114">
 		<Cursor position="13994" topLine="503" />
 	</File>
-	<File name="radix/radix.inl" open="0" top="0" tabpos="13">
-		<Cursor position="2174" topLine="13" />
+	<File name="radix/radix.inl" open="1" top="0" tabpos="37">
+		<Cursor position="11543" topLine="239" />
 	</File>
-	<File name="radix/radix_afxcrit.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2489" topLine="58" />
+	<File name="radix/radix_afxcrit.cpp" open="1" top="0" tabpos="38">
+		<Cursor position="2347" topLine="60" />
 	</File>
 	<File name="radix/radix_allocate.h" open="0" top="0" tabpos="15">
 		<Cursor position="683" topLine="7" />
@@ -1168,8 +1222,8 @@
 	<File name="sockets/http_file.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="625" topLine="7" />
 	</File>
-	<File name="sockets/http_file.h" open="0" top="0" tabpos="0">
-		<Cursor position="868" topLine="16" />
+	<File name="sockets/http_file.h" open="1" top="0" tabpos="39">
+		<Cursor position="826" topLine="16" />
 	</File>
 	<File name="sockets/sockets.h" open="0" top="0" tabpos="3">
 		<Cursor position="18" topLine="0" />
@@ -1183,8 +1237,8 @@
 	<File name="sockets/sockets_http_file.h" open="0" top="0" tabpos="0">
 		<Cursor position="560" topLine="0" />
 	</File>
-	<File name="sqlite/sqlite3.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="894565" topLine="22203" />
+	<File name="sqlite/sqlite3.cpp" open="1" top="0" tabpos="40">
+		<Cursor position="611820" topLine="14043" />
 	</File>
 	<File name="sqlite/sqlite3.h" open="0" top="0" tabpos="0">
 		<Cursor position="7184" topLine="148" />
@@ -1255,6 +1309,9 @@
 	<File name="user/user_frame_window_interface.h" open="0" top="0" tabpos="0">
 		<Cursor position="258" topLine="0" />
 	</File>
+	<File name="user/user_front_end.h" open="1" top="0" tabpos="41">
+		<Cursor position="530" topLine="0" />
+	</File>
 	<File name="user/user_interaction.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="40540" topLine="1618" />
 	</File>
@@ -1316,7 +1373,7 @@
 		<Cursor position="40" topLine="0" />
 	</File>
 	<File name="visual/visual_api.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="13862" topLine="468" />
+		<Cursor position="7413" topLine="231" />
 	</File>
 	<File name="visual/visual_application.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="898" topLine="9" />
@@ -1363,6 +1420,15 @@
 	<File name="visual/visual_imaging.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="62084" topLine="2788" />
 	</File>
+	<File name="x/x_charcategory2.h" open="1" top="0" tabpos="42">
+		<Cursor position="23463" topLine="59" />
+	</File>
+	<File name="x/x_encodings.h" open="1" top="0" tabpos="43">
+		<Cursor position="1079" topLine="6" />
+	</File>
+	<File name="x/x_tables.h" open="1" top="0" tabpos="44">
+		<Cursor position="16355" topLine="0" />
+	</File>
 	<File name="xml/xml.h" open="0" top="0" tabpos="1">
 		<Cursor position="112" topLine="0" />
 	</File>
@@ -1377,6 +1443,9 @@
 	</File>
 	<File name="xml/xml_xmlite.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="8076" topLine="233" />
+	</File>
+	<File name="xml/xml_xmlite.h" open="1" top="0" tabpos="45">
+		<Cursor position="4952" topLine="78" />
 	</File>
 	<File name="zlib/zconf.h" open="0" top="0" tabpos="0">
 		<Cursor position="9373" topLine="299" />

@@ -70,7 +70,7 @@ namespace file_watcher
 		/// The last watchid
 		id mLastWatchID;
 		/// inotify file descriptor
-		int mFD;
+		int32_t mFD;
 		/// time out data
 		struct timeval mTimeOut;
 		/// File descriptor set

@@ -4,10 +4,10 @@
 #include <errno.h>
 #include <unistd.h>
 
-int _c_lock_is_active(const char * pszName)
+int32_t _c_lock_is_active(const char * pszName)
 {
 
-   int * pfd;
+   int32_t * pfd;
 
    if(_c_lock(pszName, (void **) &pfd))
    {
@@ -20,10 +20,10 @@ int _c_lock_is_active(const char * pszName)
 }
 
 
-int _c_lock(const char * pszName, void ** pdata)
+int32_t _c_lock(const char * pszName, void ** pdata)
 {
 
-   int fd;
+   int32_t fd;
 
    _c_get_file_name(dir::path("/var/lib/ca2/", pszName), true, &fd);
 
@@ -46,7 +46,7 @@ int _c_lock(const char * pszName, void ** pdata)
       }
    }
 
-   int * pi = new int;
+   int32_t * pi = new int32_t;
    *pi = fd;
    *pdata = pi;
 
@@ -55,10 +55,10 @@ int _c_lock(const char * pszName, void ** pdata)
 }
 
 
-int _c_unlock(void ** pdata)
+int32_t _c_unlock(void ** pdata)
 {
 
-   int * pfd = (int *) *pdata;
+   int32_t * pfd = (int32_t *) *pdata;
 
    if(flock(*pfd, LOCK_EX | LOCK_NB | LOCK_UN) == -1)
    {
@@ -79,7 +79,7 @@ int _c_unlock(void ** pdata)
 
 
 
-vsstring _c_get_file_name(const char * pszName, bool bCreate, int * pfd)
+vsstring _c_get_file_name(const char * pszName, bool bCreate, int32_t * pfd)
 {
 
    vsstring str(pszName);
@@ -91,7 +91,7 @@ vsstring _c_get_file_name(const char * pszName, bool bCreate, int * pfd)
 
    if(bCreate)
    {
-      int fd = open(str, O_CREAT | O_RDWR);
+      int32_t fd = open(str, O_CREAT | O_RDWR);
       if(fd == -1)
          return "";
       if(pfd != NULL)

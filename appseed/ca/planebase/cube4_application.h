@@ -25,14 +25,14 @@ namespace planebase
       virtual bool is_serviceable();
 
 
-      virtual int run();
+      virtual int32_t run();
 
-      
+
       service_base * get_service();
       virtual service_base * allocate_new_service();
       virtual bool create_new_service();
 
-      
+
       virtual bool create_service();
       virtual bool remove_service();
 

@@ -183,7 +183,7 @@ CLASS_DECL_ca void gen::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
 struct NMHDR
 {
 
-    int nId;
+    int32_t nId;
 };
 
 

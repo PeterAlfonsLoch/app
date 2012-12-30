@@ -45,8 +45,8 @@ void _initterm(_PVFV *pfbegin, _PVFV *pfend)
 
 
 static _PVFV *atexitlist = 0;
-static unsigned int max_atexit_entries = 0;
-static unsigned int cur_atexit_entries = 0;
+static unsigned int32_t max_atexit_entries = 0;
+static unsigned int32_t cur_atexit_entries = 0;
 
 void _init_atexit()
 {
@@ -54,7 +54,7 @@ void _init_atexit()
 	atexitlist = (_PVFV*)_ca_alloc(max_atexit_entries * sizeof(_PVFV*));
 }
 
-int atexit(_PVFV func)
+int32_t atexit(_PVFV func)
 {
 	if (cur_atexit_entries < max_atexit_entries)
 	{
@@ -76,7 +76,7 @@ void _doexit()
 	}
 }
 
-void exit(int code)
+void exit(int32_t code)
 {
 	_doexit();
 	ExitProcess(code);
@@ -84,7 +84,7 @@ void exit(int code)
 
 */
 
-int _purecall()
+int32_t _purecall()
 {
 	ExitProcess((UINT)-1);
 }

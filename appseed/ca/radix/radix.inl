@@ -25,13 +25,13 @@ _AFX_INLINE invalid_argument_exception::invalid_argument_exception(WINBOOL bAuto
    : simple_exception(bAutoDelete) { m_nResourceID = nResourceID; }
 _AFX_INLINE invalid_argument_exception::~invalid_argument_exception(get_app())
    { }
-/*_AFX_INLINE CArchiveException::CArchiveException(int cause,
+/*_AFX_INLINE CArchiveException::CArchiveException(int32_t cause,
    LPCTSTR lpszFileName /* = NULL *//*)
    { m_cause = cause; m_strFileName = lpszFileName; }
 
 _AFX_INLINE CArchiveException::~CArchiveException()
    { }*/
-/*_AFX_INLINE ex1::file_exception_sp::ex1::file_exception_sp(int cause, LONG lOsError,
+/*_AFX_INLINE ex1::file_exception_sp::ex1::file_exception_sp(int32_t cause, LONG lOsError,
    LPCTSTR pstrFileName /* = NULL *///)
    /*{ m_cause = cause; m_lOsError = lOsError; m_strFileName = pstrFileName; }
 _AFX_INLINE ex1::file_exception_sp::~ex1::file_exception_sp()
@@ -100,7 +100,7 @@ _AFX_INLINE void CArchive::SetLoadParams(UINT nGrowBy)
    ASSERT(m_pLoadArray == NULL);   // must be before first object read
    m_nGrowSize = nGrowBy;
 }
-_AFX_INLINE CArchive& CArchive::operator<<(int i)
+_AFX_INLINE CArchive& CArchive::operator<<(int32_t i)
    { return CArchive::operator<<((LONG)i); }
 _AFX_INLINE CArchive& CArchive::operator<<(unsigned u)
    { return CArchive::operator<<((LONG)u); }
@@ -172,7 +172,7 @@ _AFX_INLINE CArchive& CArchive::operator<<(double d)
       *(UNALIGNED double*)m_lpBufCur = d; m_lpBufCur += sizeof(double); return *this;
 }
 
-_AFX_INLINE CArchive& CArchive::operator>>(int& i)
+_AFX_INLINE CArchive& CArchive::operator>>(int32_t& i)
    { return CArchive::operator>>((LONG&)i); }
 _AFX_INLINE CArchive& CArchive::operator>>(unsigned& u)
    { return CArchive::operator>>((LONG&)u); }
@@ -272,9 +272,9 @@ _AFX_INLINE void CArchive::EnsureRead(void *lpBuf, UINT nCount)
 }
 */
 // dump_context
-_AFX_INLINE int dump_context::GetDepth() const
+_AFX_INLINE int32_t dump_context::GetDepth() const
    { return m_nDepth; }
-_AFX_INLINE void dump_context::SetDepth(int nNewDepth)
+_AFX_INLINE void dump_context::SetDepth(int32_t nNewDepth)
    { m_nDepth = nNewDepth; }
 _AFX_INLINE dump_context::dump_context(const dump_context& /* dcSrc */)
    { }

@@ -76,8 +76,8 @@ public:
    bool end_figure(bool bClose);
 
 
-   bool add_arc(const RECT & rect, int iStart, int iAngle);
-   bool add_line(int x1, int y1, int x2, int y2);
+   bool add_arc(const RECT & rect, int32_t iStart, int32_t iAngle);
+   bool add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 
 
 

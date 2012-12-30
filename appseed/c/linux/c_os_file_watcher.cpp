@@ -69,7 +69,7 @@ namespace file_watcher
 	//--------
 	id os_file_watcher::add_watch(const char * directory,  file_watch_listener* pwatcher)
 	{
-		int wd = inotify_add_watch (mFD, directory,
+		int32_t wd = inotify_add_watch (mFD, directory,
 			IN_CLOSE_WRITE | IN_MOVED_TO | IN_CREATE | IN_MOVED_FROM | IN_DELETE);
 		if (wd < 0)
 		{
@@ -135,7 +135,7 @@ namespace file_watcher
 
 		FD_SET(mFD, &mDescriptorSet);
 
-		int ret = select(mFD + 1, &mDescriptorSet, NULL, NULL, &mTimeOut);
+		int32_t ret = select(mFD + 1, &mDescriptorSet, NULL, NULL, &mTimeOut);
 
 		if(ret < 0)
 		{

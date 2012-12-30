@@ -4,15 +4,15 @@
 #include <openssl/err.h>
 
 
-int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key)
+int32_t crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageDecrypt, simple_memory & key)
 {
-   int plainlen = (int) storageDecrypt.get_size();
-   int cipherlen, tmplen;
+   int32_t plainlen = (int32_t) storageDecrypt.get_size();
+   int32_t cipherlen, tmplen;
    unsigned char iv[8] = {1,2,3,4,5,6,7,8};
    EVP_CIPHER_CTX ctx;
    EVP_CIPHER_CTX_init(&ctx);
    EVP_EncryptInit(&ctx,EVP_bf_cbc(),(unsigned char *) key.get_data(),iv);
-   cipherlen = (int) (storageDecrypt.get_size() + 16 - 1); //; 16 = key size
+   cipherlen = (int32_t) (storageDecrypt.get_size() + 16 - 1); //; 16 = key size
    storageEncrypt.allocate(cipherlen);
    if (!EVP_EncryptUpdate(&ctx,(unsigned char *) storageEncrypt.get_data(),&cipherlen, (const unsigned char *) storageDecrypt.get_data(),plainlen))
    {
@@ -28,15 +28,15 @@ int crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storageD
    return cipherlen;
 }
 
-int crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key)
+int32_t crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storageEncrypt, simple_memory & key)
 {
-   int cipherlen = (int) storageEncrypt.get_size();
-   int plainlen, tmplen;
+   int32_t cipherlen = (int32_t) storageEncrypt.get_size();
+   int32_t plainlen, tmplen;
    unsigned char iv[8] = {1,2,3,4,5,6,7,8};
    EVP_CIPHER_CTX ctx;
    EVP_CIPHER_CTX_init(&ctx);
    EVP_DecryptInit(&ctx,EVP_bf_cbc(), (const unsigned char *) key.get_data(),iv);
-   plainlen = (int) storageEncrypt.get_size();
+   plainlen = (int32_t) storageEncrypt.get_size();
    storageDecrypt.allocate(plainlen);
    if(!EVP_DecryptUpdate(&ctx, (unsigned char *) storageDecrypt.get_data(),&plainlen, (const unsigned char *) storageEncrypt.get_data(),cipherlen))
    {

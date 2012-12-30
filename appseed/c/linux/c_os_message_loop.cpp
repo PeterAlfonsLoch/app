@@ -97,7 +97,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
    mutex_lock lockMutex(m_mutex, false);
 
 
-   for(int i = 0; i < m_threadptra.get_count(); i++)
+   for(int32_t i = 0; i < m_threadptra.get_count(); i++)
    {
       if(m_threadptra[i]->m_pthread == pthread)
          return m_threadptra[i];

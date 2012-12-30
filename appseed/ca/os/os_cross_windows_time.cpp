@@ -114,7 +114,7 @@ struct timeval
 
 //WINE_DEFAULT_DEBUG_CHANNEL(ntdll);
 
-static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
+static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi);
 
 /*extern RTL_CRITICAL_SECTION TIME_tz_section;
 static RTL_CRITICAL_SECTION_DEBUG critsect_debug =
@@ -156,13 +156,13 @@ simple_mutex g_mutexTz;
 #define TICKS_1601_TO_UNIX_MAX ((SECS_1601_TO_1970 + INT_MAX) * TICKSPERSEC)
 
 
-static const int MonthLengths[2][MONSPERYEAR] =
+static const int32_t MonthLengths[2][MONSPERYEAR] =
 {
 	{ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 },
 	{ 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 }
 };
 
-static inline int IsLeapYear(int Year)
+static inline int32_t IsLeapYear(int32_t Year)
 {
 	return Year % 4 == 0 && (Year % 100 != 0 || Year % 400 == 0) ? 1 : 0;
 }
@@ -183,9 +183,9 @@ VOID WINAPI RtlTimeToTimeFields(
 	const LARGE_INTEGER *liTime,
 	PTIME_FIELDS TimeFields)
 {
-	int SecondsInDay;
-        long int cleaps, years, yearday, months;
-	long int Days;
+	int32_t SecondsInDay;
+        long int32_t cleaps, years, yearday, months;
+	long int32_t Days;
 	LONGLONG Time;
 
 	/* Extract millisecond from time and convert time into seconds */
@@ -249,7 +249,7 @@ WINBOOL WINAPI RtlTimeFieldsToTime(
 	PTIME_FIELDS tfTimeFields,
 	PLARGE_INTEGER Time)
 {
-        int month, year, cleaps, day;
+        int32_t month, year, cleaps, day;
 
 	/* FIXME: normalize the TIME_FIELDS structure here */
         /* No, native just returns 0 (error) if the fields are not */
@@ -320,7 +320,7 @@ static LONG TIME_GetBias(void)
     if (utc != last_utc)
     {
         RTL_TIME_ZONE_INFORMATION tzi;
-        int is_dst = init_tz_info( &tzi );
+        int32_t is_dst = init_tz_info( &tzi );
 
 	last_utc = utc;
         last_bias = tzi.Bias;
@@ -510,19 +510,19 @@ const __int64 DELTA_EPOCH_IN_MICROSECS= 11644473600000000;
  it will be next: tz_minuteswest is the real diffrence in minutes from GMT(UTC) and a tz_dsttime is a flag
  indicates whether daylight is now in use
 */
-struct timezone2 
+struct timezone2
 {
   __int32  tz_minuteswest; /* minutes W of Greenwich */
   bool  tz_dsttime;     /* type of dst correction */
 };
 
 
-int gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
+int32_t gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
 {
   FILETIME ft;
   __int64 tmpres = 0;
   TIME_ZONE_INFORMATION tz_winapi;
-  int rez=0;
+  int32_t rez=0;
 
    ZeroMemory(&ft,sizeof(ft));
    ZeroMemory(&tz_winapi,sizeof(tz_winapi));
@@ -535,7 +535,7 @@ int gettimeofday(timeval *tv/*in*/, struct timezone2 *tz/*in*/)
 
     /*converting file time to unix epoch*/
     tmpres /= 10;  /*convert into microseconds*/
-    tmpres -= DELTA_EPOCH_IN_MICROSECS; 
+    tmpres -= DELTA_EPOCH_IN_MICROSECS;
     tv->tv_sec = (__int32)(tmpres*0.000001);
     tv->tv_usec =(tmpres%1000000);
 
@@ -616,11 +616,11 @@ ULONG WINAPI NtGetTickCount(void)
  *
  * Note: year, day and month must be in unix format.
  */
-static int weekday_to_mday(int year, int day, int mon, int day_of_week)
+static int32_t weekday_to_mday(int32_t year, int32_t day, int32_t mon, int32_t day_of_week)
 {
     struct tm date;
     time_t tmp;
-    int wday, mday;
+    int32_t wday, mday;
 
     /* find first day in the month matching week day of the date */
     memset(&date, 0, sizeof(date));
@@ -828,7 +828,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
           tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth, tzi->DaylightDate.wYear);
 }*/
 
-static time_t find_dst_change(unsigned long min, unsigned long max, int *is_dst)
+static time_t find_dst_change(unsigned long min, unsigned long max, int32_t *is_dst)
 {
     time_t start;
     struct tm *tm;
@@ -851,13 +851,13 @@ static time_t find_dst_change(unsigned long min, unsigned long max, int *is_dst)
     return min;
 }
 
-static int init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
+static int32_t init_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
 {
     static RTL_TIME_ZONE_INFORMATION cached_tzi;
-    static int current_year = -1;
+    static int32_t current_year = -1;
     struct tm *tm;
     time_t year_start, year_end, tmp, dlt = 0, std = 0;
-    int is_dst, current_is_dst;
+    int32_t is_dst, current_is_dst;
 
    mutex_lock ml(g_mutexTz, true);
 //    RtlEnterCriticalSection( &TIME_tz_section );

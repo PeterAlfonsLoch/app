@@ -70,8 +70,8 @@ struct PendingThreadInfo
    LPVOID lpParameter;
    simple_event  * completionEvent;
    simple_event  * suspensionEvent;
-   int nPriority;
-   int cbStack;
+   int32_t nPriority;
+   int32_t cbStack;
 
    PendingThreadInfo()
    {
@@ -155,7 +155,7 @@ static simple_mutex tlsAllocationLock;
 
 
 // Converts a Win32 thread priority to WinRT format.
-static int GetWorkItemPriority(int nPriority)
+static int32_t GetWorkItemPriority(int32_t nPriority)
 {
    if (nPriority < 0)
       return nPriority; // WorkItemPriority::Low;
@@ -167,7 +167,7 @@ static int GetWorkItemPriority(int nPriority)
 
 
 // Helper shared between CreateThread and ResumeThread.
-static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, simple_event * completionEvent, int nPriority, SIZE_T cbStack)
+static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, simple_event * completionEvent, int32_t nPriority, SIZE_T cbStack)
 {
 
    os_thread * pthread = new os_thread(pfn, pv);
@@ -332,7 +332,7 @@ DWORD WINAPI ResumeThread(simple_event * hThread)
 }
 
 
-WINBOOL WINAPI SetThreadPriority(simple_event * hThread, int nPriority)
+WINBOOL WINAPI SetThreadPriority(simple_event * hThread, int32_t nPriority)
 {
    mutex_lock lock(pendingThreadsLock);
 
@@ -377,7 +377,7 @@ WINBOOL WINAPI TlsFree(DWORD dwTlsIndex)
    mutex_lock lock(tlsAllocationLock);
 
    //assert(dwTlsIndex < nextTlsIndex);
-/*   for(int i = 0; i < freeTlsIndices.get_count(); i++)
+/*   for(int32_t i = 0; i < freeTlsIndices.get_count(); i++)
    {
       assert(freeTlsIndices.element_at(i) != dwTlsIndex);
    }*/
@@ -570,7 +570,7 @@ void WINAPI TlsShutdown()
 
 
 
-int WINAPI GetThreadPriority(simple_event * hThread)
+int32_t WINAPI GetThreadPriority(simple_event * hThread)
 {
 
    mutex_lock lock(pendingThreadsLock);
@@ -648,7 +648,7 @@ void * WINAPI thread_proc_create_thread(LPVOID lpparameter)
 }
 
 
-simple_event * start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
+simple_event * start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int32_t iPriority)
 {
 
    UNREFERENCED_PARAMETER(iPriority);
@@ -795,7 +795,7 @@ restart:
 
    ml.lock();
 
-   for(int i = 0; i < pmq->ma.get_count(); i++)
+   for(int32_t i = 0; i < pmq->ma.get_count(); i++)
    {
       MESSAGE & msg = pmq->ma[i];
 
@@ -838,7 +838,7 @@ CLASS_DECL_c WINBOOL WINAPI PeekMessageW(LPMESSAGE lpMsg, oswindow oswindow, UIN
    if(wMsgFilterMax == 0)
       wMsgFilterMax = (UINT) -1;
 
-   for(int i = 0; i < pmq->ma.get_count(); i++)
+   for(int32_t i = 0; i < pmq->ma.get_count(); i++)
    {
       MESSAGE & msg = pmq->ma[i];
 
@@ -987,7 +987,7 @@ thread_layer::~thread_layer()
 }
 
 
-int thread_layer::run()
+int32_t thread_layer::run()
 {
 
    MESSAGE msg;

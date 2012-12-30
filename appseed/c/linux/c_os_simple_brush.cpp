@@ -33,7 +33,7 @@ bool simple_brush::create_solid(simple_graphics & graphics, COLORREF cr)
 }
 
 
-bool simple_brush::from_stock(int iId)
+bool simple_brush::from_stock(int32_t iId)
 {
 
    if(iId != NULL_BRUSH)

@@ -9,7 +9,7 @@ class CLASS_DECL_ca hglobal
 public:
 
    char     m_szFile[256];
-   int      m_fd;
+   int32_t      m_fd;
    void *   m_map;
 
 };

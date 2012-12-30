@@ -6,18 +6,18 @@
 #include <sys/wait.h>
 
 
-int is_gdb_present()
+int32_t is_gdb_present()
 {
 
    return gdb_check();
 
 }
 
-int gdb_check()
+int32_t gdb_check()
 {
-  int pid = fork();
-  int status;
-  int res;
+  int32_t pid = fork();
+  int32_t status;
+  int32_t res;
 
   if (pid == -1)
     {
@@ -27,7 +27,7 @@ int gdb_check()
 
   if (pid == 0)
     {
-      int ppid = getppid();
+      int32_t ppid = getppid();
 
       /* Child */
       if (ptrace(PTRACE_ATTACH, ppid, NULL, NULL) == 0)

@@ -112,7 +112,7 @@ void Ppmd7z_RangeDec_CreateVTable(CPpmd7z_RangeDec *p);
 bool Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p);
 #define Ppmd7z_RangeDec_IsFinishedOK(p) ((p)->Code == 0)
 
-int Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc);
+int32_t Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc);
 
 
 /* ---------- Encode ---------- */
@@ -129,5 +129,5 @@ typedef struct
 void Ppmd7z_RangeEnc_Init(CPpmd7z_RangeEnc *p);
 void Ppmd7z_RangeEnc_FlushData(CPpmd7z_RangeEnc *p);
 
-void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int symbol);
+void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol);
 

@@ -20,7 +20,7 @@ simple_bitmap::~simple_bitmap()
 
 }
 
-bool simple_bitmap::create(int cx, int cy, simple_graphics & g,  COLORREF ** ppdata)
+bool simple_bitmap::create(int32_t cx, int32_t cy, simple_graphics & g,  COLORREF ** ppdata)
 {
 
    /*BITMAPINFO m_Info;
@@ -58,7 +58,7 @@ bool simple_bitmap::create(int cx, int cy, simple_graphics & g,  COLORREF ** ppd
 }
 
 
-bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_graphics & g)
+bool simple_bitmap::create_from_data(int32_t cx, int32_t cy, COLORREF * pdata, simple_graphics & g)
 {
 
    if(m_psurface != NULL)
@@ -68,16 +68,16 @@ bool simple_bitmap::create_from_data(int cx, int cy, COLORREF * pdata, simple_gr
 
    }
 
-   int iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cx);
+   int32_t iStride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, cx);
 
    m_mem.allocate(iStride * cy);
 
    if(cx * 4 != iStride)
    {
 
-      int iW = cx * 4;
+      int32_t iW = cx * 4;
 
-      for(int i = 0; i < cy; i++)
+      for(int32_t i = 0; i < cy; i++)
       {
 
          memcpy(&((byte *) m_mem.get_data())[iStride * i], &pdata[iW * i], iW);

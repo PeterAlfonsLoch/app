@@ -13,7 +13,7 @@
 HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
 {
 
-   int result;
+   int32_t result;
 
 
    HGLOBAL hglobal = new class hglobal();
@@ -79,7 +79,7 @@ HGLOBAL WINAPI GlobalAlloc(UINT uFlags, SIZE_T dwBytes)
 HGLOBAL WINAPI GlobalReAlloc(HGLOBAL hglobal, SIZE_T dwBytes, UINT uFlags)
 {
 
-   int result = ftruncate(hglobal->m_fd, dwBytes);
+   int32_t result = ftruncate(hglobal->m_fd, dwBytes);
    if(result == -1)
    {
       close(hglobal->m_fd);

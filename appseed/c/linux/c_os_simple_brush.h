@@ -17,7 +17,7 @@ public:
 
    e_type               m_etype;
    COLORREF             m_cr;
-   int                  m_iStock;
+   int32_t                  m_iStock;
    POINT                m_p1;
    POINT                m_p2;
    COLORREF             m_cr1;
@@ -37,7 +37,7 @@ public:
 
 
    // platform-specific
-   bool from_stock(int iId);
+   bool from_stock(int32_t iId);
 
 
 };

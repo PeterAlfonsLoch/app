@@ -2,12 +2,12 @@
 
 class CLASS_DECL_ca mail_frame : public simple_frame_window
 {
-	
+
 public:
    mail_frame(::ca::application * papp);
 
    string                    m_strAnimatedStatusBarText;
-   int                        m_iAnimateStep;
+   int32_t                        m_iAnimateStep;
    image_list                  m_imagelist;
    bool m_bTimerOn;
 
@@ -38,7 +38,7 @@ protected:
 
 
 	//{{AFX_MSG(mail_frame)
-	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnTimer(UINT nIDEvent);
 };
 

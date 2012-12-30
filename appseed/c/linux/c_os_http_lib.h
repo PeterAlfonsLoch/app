@@ -60,9 +60,9 @@ public:
 
 
    vsstring    m_strHttpServer;
-   int         m_iHttpPort;
+   int32_t         m_iHttpPort;
    vsstring    m_strProxyServer;
-   int         m_iHttpProxyPort;
+   int32_t         m_iHttpProxyPort;
    vsstring    m_strUserAgent;
    vsstring    m_strFileName;
 
@@ -71,16 +71,16 @@ public:
    tiny_http();
    ~tiny_http();
 
-   http_retcode t_put(const char * data, int length, int overwrite, void (*callback)(void *, int, dword_ptr) = NULL, void * callback_param = NULL);
-   http_retcode t_get(char ** pdata, int * plength, void (*callback)(void *, int, dword_ptr) = NULL, void * callback_param = NULL);
+   http_retcode t_put(const char * data, int32_t length, int32_t overwrite, void (*callback)(void *, int32_t, dword_ptr) = NULL, void * callback_param = NULL);
+   http_retcode t_get(char ** pdata, int32_t * plength, void (*callback)(void *, int32_t, dword_ptr) = NULL, void * callback_param = NULL);
    http_retcode t_delete() ;
-   http_retcode t_head(int *plength);
+   http_retcode t_head(int32_t *plength);
    http_retcode t_parse_url(const char *url);
 
-   int t_read_line (int fd,char *buffer, int max) ;
-   int t_read_buffer (int fd,char *buffer, int max, void (*callback)(void *, int, dword_ptr) = NULL, void * callback_param = NULL) ;
+   int32_t t_read_line (int32_t fd,char *buffer, int32_t max) ;
+   int32_t t_read_buffer (int32_t fd,char *buffer, int32_t max, void (*callback)(void *, int32_t, dword_ptr) = NULL, void * callback_param = NULL) ;
 
-   http_retcode t_query(const char *command, const char *url, const char *additional_header, querymode mode, char* data, int length, int *pfd);
+   http_retcode t_query(const char *command, const char *url, const char *additional_header, querymode mode, char* data, int32_t length, int32_t *pfd);
 };
 
 

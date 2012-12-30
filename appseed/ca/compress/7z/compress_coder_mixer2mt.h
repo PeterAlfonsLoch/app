@@ -17,7 +17,7 @@ namespace compress
 
          CCoder2(::ca::application * papp, uint32 numInStreams, uint32 numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
-         virtual int run();
+         virtual int32_t run();
          void Code(progress_info_interface *progress);
       };
 
@@ -43,7 +43,7 @@ namespace compress
       {
          CBindInfo _bindInfo;
          base_array < ::ex1::stream_binder > _streamBinders;
-         int _progressCoderIndex;
+         int32_t _progressCoderIndex;
 
          void AddCoderCommon();
          HRESULT Init(::ex1::reader **inStreams, ::ex1::writer **outStreams);
@@ -62,7 +62,7 @@ namespace compress
          ex1::HRes SetBindInfo(const CBindInfo &bindInfo);
          void AddCoder(::compress::coder_interface *coder);
          void AddCoder2(::compress::coder2_interface *coder);
-         void SetProgressCoderIndex(int coderIndex) {  _progressCoderIndex = coderIndex; }
+         void SetProgressCoderIndex(int32_t coderIndex) {  _progressCoderIndex = coderIndex; }
 
          void ReInit();
          void SetCoderInfo(uint32 coderIndex, const file_size **inSizes, const file_size **outSizes)

@@ -1004,10 +1004,10 @@ RegisterWindowMessageW(
 typedef struct tagWINDOWPOS {
     oswindow    hwnd;
     oswindow    hwndInsertAfter;
-    int     x;
-    int     y;
-    int     cx;
-    int     cy;
+    int32_t     x;
+    int32_t     y;
+    int32_t     cx;
+    int32_t     cy;
     UINT    flags;
 } WINDOWPOS, *LPWINDOWPOS, *PWINDOWPOS;
 
@@ -1264,7 +1264,7 @@ TrackMouseEvent(
 //#pragma region Desktop Family
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
 
-CLASS_DECL_c int WINAPI GetSystemMetrics(int nIndex);
+CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 
 //#endif /* WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP) */
@@ -1371,7 +1371,7 @@ CLASS_DECL_c int WINAPI GetSystemMetrics(int nIndex);
 #define SCF_ISSECURE    0x00000001
 #endif /* WINVER >= 0x0600 */
 
-#define GET_SC_WPARAM(wParam) ((int)wParam & 0xFFF0)
+#define GET_SC_WPARAM(wParam) ((int32_t)wParam & 0xFFF0)
 
 /*
  * Obsolete names
@@ -1473,8 +1473,8 @@ CLASS_DECL_c bool PtInRect(LPCRECT prect, POINT point);
 CLASS_DECL_c bool SetRect(LPRECT prect, long x1, long y1, long x2, long y2);
 CLASS_DECL_c bool SetRectEmpty(LPRECT prect);
 CLASS_DECL_c bool EqualRect(LPCRECT prect1, LPCRECT prect2);
-CLASS_DECL_c bool InflateRect(LPRECT prect, int x, int y);
-CLASS_DECL_c bool OffsetRect(LPRECT prect, int x, int y);
+CLASS_DECL_c bool InflateRect(LPRECT prect, int32_t x, int32_t y);
+CLASS_DECL_c bool OffsetRect(LPRECT prect, int32_t x, int32_t y);
 CLASS_DECL_c bool IntersectRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_c bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_c bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);

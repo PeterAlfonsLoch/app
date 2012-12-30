@@ -9182,11 +9182,11 @@ namespace sqlite
 # define IOTRACE(A)
 # define sqlite3VdbeIOTraceSql(X)
 #endif
-   
+
 #ifndef MACOS
    SQLITE_PRIVATE void (*sqlite3IoTrace)(const char*,...);
 #endif
-   
+
 #endif
 
    /************** End of sqliteInt.h *******************************************/
@@ -14041,14 +14041,14 @@ zulu_time:
             switch( xtype ){
             case etPOINTER:
                flag_longlong = sizeof(char*)==sizeof(i64);
-               flag_long = sizeof(char*)==sizeof(long int);
+               flag_long = sizeof(char*)==sizeof(long int32_t);
                /* Fall through into the next case */
             case etORDINAL:
             case etRADIX:
                if( infop->flags & FLAG_SIGNED ){
                   i64 v;
                   if( flag_longlong )   v = va_arg(ap,i64);
-                  else if( flag_long )  v = va_arg(ap,long int);
+                  else if( flag_long )  v = va_arg(ap,long int32_t);
                   else                  v = va_arg(ap,int32_t);
                   if( v<0 ){
                      longvalue = -v;
@@ -14061,7 +14061,7 @@ zulu_time:
                   }
                }else{
                   if( flag_longlong )   longvalue = va_arg(ap,u64);
-                  else if( flag_long )  longvalue = va_arg(ap,unsigned long int);
+                  else if( flag_long )  longvalue = va_arg(ap,unsigned long int32_t);
                   else                  longvalue = va_arg(ap,uint32_t);
                   prefix = 0;
                }

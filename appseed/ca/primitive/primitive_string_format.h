@@ -40,7 +40,7 @@ u	Unsigned decimal integer	7235
 x	Unsigned hexadecimal integer	7fa
 X	Unsigned hexadecimal integer (capital letters)	7FA
 p	Pointer address	B800:0000
-n	Nothing printed. The argument must be a pointer to a signed int, where the number of characters written so far is stored.
+n	Nothing printed. The argument must be a pointer to a signed int32_t, where the number of characters written so far is stored.
 %	A % followed by another % character will write % to stdout.	%
 
 The tag can also contain flags, width, .precision and length sub-specifiers, which are optional and follow these specifications:
@@ -68,8 +68,8 @@ When no precision is specified, the default is 1. If the period is specified wit
 .*	The precision is not specified in the format string, but as an additional integer value argument preceding the argument that has to be formatted.
 
 length	description
-h	The argument is interpreted as a short int or unsigned short int (only applies to integer specifiers: i, d, o, u, x and X).
-l	The argument is interpreted as a long int or unsigned long int for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s.
+h	The argument is interpreted as a short int32_t or unsigned short int32_t (only applies to integer specifiers: i, d, o, u, x and X).
+l	The argument is interpreted as a long int32_t or unsigned long int32_t for integer specifiers (i, d, o, u, x and X), and as a wide character or wide character string for specifiers c and s.
 L	The argument is interpreted as a long double (only applies to floating point specifiers: e, E, f, g and G).
 
 additional arguments
@@ -94,8 +94,8 @@ public:
 
 
    char *                           m_pszBuffer;
-   int                              m_iSize;
-   int                              m_iLength;
+   int32_t                              m_iSize;
+   int32_t                              m_iLength;
 
 
    string_format_printer *          m_pprinter;
@@ -110,8 +110,8 @@ public:
    bool        m_bSharp;
    bool        m_bZeroPadding;
 
-   int         m_iWidth;
-   int         m_iPrecision;
+   int32_t         m_iWidth;
+   int32_t         m_iPrecision;
 
    char        m_chLength;
    char        m_chSpec;
@@ -132,7 +132,7 @@ public:
 
    void construct(string_format_printer * pprinter, string_format_printer::PRINTER pfnPrinter, void * pvoidPrinter);
 
-   void allocate_add_up(int iLenAddUp);
+   void allocate_add_up(int32_t iLenAddUp);
 
    inline void append(char ch)
    {
@@ -203,13 +203,13 @@ public:
       if(m_estate == state_waiting_width)
       {
 
-         throw "width should plain int";
+         throw "width should plain int32_t";
 
       }
       else if(m_estate == state_waiting_precision)
       {
 
-         throw "width should plain int";
+         throw "width should plain int32_t";
 
       }
 
@@ -218,7 +218,7 @@ public:
    }
 
    template < typename T, typename... Args>
-   inline void defer_get_additional_argument(const char * & s, const int & value, Args... args)
+   inline void defer_get_additional_argument(const char * & s, const int32_t & value, Args... args)
    {
 
       if(m_estate == state_initial || m_estate == state_parse_precision || m_estate == state_parse_length)

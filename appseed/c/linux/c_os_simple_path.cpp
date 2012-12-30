@@ -16,7 +16,7 @@ os_simple_path::~os_simple_path()
 }
 
 
-bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
+bool os_simple_path::add_arc(const RECT & rect, int32_t iStart, int32_t iAngle)
 {
 
    if(width(rect) <= 0 || height(rect) <= 0)
@@ -38,7 +38,7 @@ bool os_simple_path::add_arc(const RECT & rect, int iStart, int iAngle)
 
 }
 
-bool os_simple_path::add_line(int x1, int y1, int x2, int y2)
+bool os_simple_path::add_line(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 
    element e;

@@ -337,7 +337,7 @@ bool os_simple_graphics::destroy()
 
 }
 
-bool os_simple_graphics::set_offset(int x, int y)
+bool os_simple_graphics::set_offset(int32_t x, int32_t y)
 {
 
    POINT ptViewport;
@@ -349,7 +349,7 @@ bool os_simple_graphics::set_offset(int x, int y)
 
 }
 
-bool os_simple_graphics::offset(int x, int y)
+bool os_simple_graphics::offset(int32_t x, int32_t y)
 {
 
    POINT ptViewport;
@@ -362,7 +362,7 @@ bool os_simple_graphics::offset(int x, int y)
 }
 
 
-bool os_simple_graphics::bit_blt(int x, int y, int cx, int cy, simple_graphics & gSrc, int x1, int y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int32_t x, int32_t y, int32_t cx, int32_t cy, simple_graphics & gSrc, int32_t x1, int32_t y1, DWORD rop)
 {
 
 //   return ::BitBlt(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, rop) != FALSE;
@@ -371,7 +371,7 @@ return false;
 
 }
 
-bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORREF * pdata)
+bool os_simple_graphics::blend_bitmap_data(int32_t x, int32_t y, int32_t cx, int32_t cy, COLORREF * pdata)
 {
 
    /*try
@@ -405,7 +405,7 @@ bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORRE
 
 }
 
-SIZE os_simple_graphics::get_text_extent(const char * psz, int iLen)
+SIZE os_simple_graphics::get_text_extent(const char * psz, int32_t iLen)
 {
 
    vsstring str(psz, iLen);
@@ -539,7 +539,7 @@ bool os_simple_graphics::set_text_color(COLORREF cr)
 
 */
 /*
-bool os_simple_graphics::alpha_blend(int x, int y, int cx, int cy, os_simple_graphics & gSrc, int x1, int y1, int cx1, int cy1, BLENDFUNCTION bf)
+bool os_simple_graphics::alpha_blend(int32_t x, int32_t y, int32_t cx, int32_t cy, os_simple_graphics & gSrc, int32_t x1, int32_t y1, int32_t cx1, int32_t cy1, BLENDFUNCTION bf)
 {
 
    //return ::AlphaBlend(m_hdc, x, y, cx, cy, gSrc.m_hdc, x1, y1, cx1, cy1, bf) != FALSE;
@@ -561,7 +561,7 @@ void os_simple_graphics::fill_solid_rect(LPCRECT lpRect, COLORREF cr)
 }
 
 
-bool os_simple_graphics::text_out(int x, int y, const char * pszUtf8, int iSize)
+bool os_simple_graphics::text_out(int32_t x, int32_t y, const char * pszUtf8, int32_t iSize)
 {
 
    cairo_move_to(m_pdc, x, y);
@@ -651,7 +651,7 @@ bool os_simple_graphics::set(simple_pen & pen)
 bool os_simple_graphics::set(simple_path & path)
 {
 
-   for(int i = 0; i < path.m_elementa.get_count(); i++)
+   for(int32_t i = 0; i < path.m_elementa.get_count(); i++)
    {
 
       set(path.m_elementa[i]);
@@ -761,7 +761,7 @@ bool os_simple_graphics::replace_clip(const RECT & rect)
 
 }
 
-bool os_simple_graphics::fill_polygon(POINT * p, int iCount, ::ca::e_fill_mode)
+bool os_simple_graphics::fill_polygon(POINT * p, int32_t iCount, ::ca::e_fill_mode)
 {
 
       return true;
@@ -777,7 +777,7 @@ bool os_simple_graphics::draw_rect(LPCRECT lpcrect, simple_pen &pen)
 }
 
 
-bool os_simple_graphics::draw_line(int, int, int, int, simple_pen &)
+bool os_simple_graphics::draw_line(int32_t, int32_t, int32_t, int32_t, simple_pen &)
 {
 
    return true;

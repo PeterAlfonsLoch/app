@@ -3,7 +3,7 @@
 #if defined(LINUX)
 
 /*
-inline void string_format::format(int i)
+inline void string_format::format(int32_t i)
 {
 
    append(gen::str::from(i));

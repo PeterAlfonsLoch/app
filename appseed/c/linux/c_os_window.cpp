@@ -16,10 +16,10 @@ public:
 oswindow_dataptra * oswindow::s_pdataptra = new oswindow_dataptra;
 
 
-int oswindow::find(Display * pdisplay, Window window)
+int32_t oswindow::find(Display * pdisplay, Window window)
 {
 
-   for(int i = 0; i < s_pdataptra->get_count(); i++)
+   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
       if(s_pdataptra->element_at(i)->m_osdisplay == pdisplay
       && s_pdataptra->element_at(i)->m_window == window)
@@ -131,7 +131,7 @@ bool oswindow::remove(Display * pdisplay, Window window)
 
 }
 
-int oswindow::store_name(const char * psz)
+int32_t oswindow::store_name(const char * psz)
 {
 
    return XStoreName(display(), window(), psz);
@@ -139,7 +139,7 @@ int oswindow::store_name(const char * psz)
 }
 
 
-int oswindow::select_input(int iInput)
+int32_t oswindow::select_input(int32_t iInput)
 {
 
    return XSelectInput(display(), window(), iInput);
@@ -147,7 +147,7 @@ int oswindow::select_input(int iInput)
 }
 
 
-int oswindow::select_all_input()
+int32_t oswindow::select_all_input()
 {
 
    return select_input(ExposureMask | ButtonPressMask);
@@ -155,7 +155,7 @@ int oswindow::select_all_input()
 }
 
 
-int oswindow::map_window()
+int32_t oswindow::map_window()
 {
 
    return XMapWindow(display(), window());
@@ -250,7 +250,7 @@ oswindow oswindow::get_parent()
    Window root = 0;
    Window parent = 0;
    Window * pchildren = NULL;
-   unsigned int ncount = 0;
+   unsigned int32_t ncount = 0;
 
    XQueryTree(display(), window(), &root, &parent, &pchildren, &ncount);
 
@@ -275,7 +275,7 @@ oswindow oswindow::set_parent(oswindow oswindow)
 
 }
 
-bool oswindow::show_window(int nCmdShow)
+bool oswindow::show_window(int32_t nCmdShow)
 {
 
    if(nCmdShow == SW_HIDE)
@@ -295,11 +295,11 @@ bool oswindow::show_window(int nCmdShow)
 
 
 
-LONG oswindow::get_window_long(int nIndex)
+LONG oswindow::get_window_long(int32_t nIndex)
 {
 
    Atom type = 0;
-   int format = 0;
+   int32_t format = 0;
    unsigned long itemcount = 0;
    unsigned long remaining = 0;
    LONG * pl = NULL;
@@ -316,7 +316,7 @@ LONG oswindow::get_window_long(int nIndex)
 }
 
 
-LONG oswindow::set_window_long(int nIndex, LONG l)
+LONG oswindow::set_window_long(int32_t nIndex, LONG l)
 {
 
    LONG lOld = get_window_long(nIndex);
@@ -343,7 +343,7 @@ bool oswindow::screen_to_client(POINT * pp)
 
 }
 
-Atom get_window_long_atom(int nIndex);
+Atom get_window_long_atom(int32_t nIndex);
 
 
 
@@ -356,8 +356,8 @@ long oswindow::get_state()
   unsigned long nitems;
   unsigned long leftover;
   Atom xa_WM_STATE, actual_type;
-  int actual_format;
-  int status;
+  int32_t actual_format;
+  int32_t status;
   unsigned char* p = NULL;
 
   xa_WM_STATE = XInternAtom(display(), "WM_STATE", false);
@@ -459,7 +459,7 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 	Window rootwin;
 	Window win;
 	XEvent e;
-	int scr;
+	int32_t scr;
 	cairo_surface_t *cs;
 
 	if(!(dpy=XOpenDisplay(NULL))) {
@@ -492,7 +492,7 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 
 
 
-int WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
+int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCaption, UINT uType)
 {
 
    message_box_show_xlib(lpText, lpCaption);

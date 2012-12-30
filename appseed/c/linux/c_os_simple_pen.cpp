@@ -16,7 +16,7 @@ simple_pen::~simple_pen()
 
 }
 
-bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int iWidth)
+bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int32_t iWidth)
 {
 
    m_iStock = -1;
@@ -32,7 +32,7 @@ bool simple_pen::create_solid(simple_graphics & g, COLORREF cr, int iWidth)
 
 }
 
-bool simple_pen::from_stock(int iId)
+bool simple_pen::from_stock(int32_t iId)
 {
 
    if(iId != NULL_PEN)

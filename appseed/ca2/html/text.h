@@ -9,7 +9,7 @@ namespace html
    {
 
 
-      class text : 
+      class text :
          virtual public elemental,
          virtual public user::edit_plain_text
       {
@@ -43,12 +43,12 @@ namespace html
          virtual string link();
 
          using user::edit_plain_text::hit_test;
-         virtual int hit_test(data * pdoc, point pt);
+         virtual int32_t hit_test(data * pdoc, point pt);
 
-         virtual strsize char_hit_test(::ca::graphics * pdc, int x, int y);
+         virtual strsize char_hit_test(::ca::graphics * pdc, int32_t x, int32_t y);
 
-         virtual int get_first_line_height();
-         virtual int get_last_line_height();
+         virtual int32_t get_first_line_height();
+         virtual int32_t get_last_line_height();
 
          virtual void _001OnAfterChangeText();
 

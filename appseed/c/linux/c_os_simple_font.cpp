@@ -39,14 +39,14 @@ os_simple_font::~os_simple_font()
 
 
 
-bool os_simple_font::create_point(simple_graphics & g, int nPointSize, const char * lpszFaceName, bool bBold)
+bool os_simple_font::create_point(simple_graphics & g, int32_t nPointSize, const char * lpszFaceName, bool bBold)
 {
 
    return create_pixel(g, nPointSize * 96 / 72, lpszFaceName, bBold);
 
 }
 
-bool os_simple_font::create_point_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName)
+bool os_simple_font::create_point_bold(simple_graphics & g, int32_t nPointSize, const char * lpszFaceName)
 {
 
    return create_point(g, nPointSize, lpszFaceName, true);
@@ -55,7 +55,7 @@ bool os_simple_font::create_point_bold(simple_graphics & g, int nPointSize, cons
 }
 
 
-bool os_simple_font::create_pixel(simple_graphics & g, int nPixelSize, const char * lpszFaceName, bool bBold)
+bool os_simple_font::create_pixel(simple_graphics & g, int32_t nPixelSize, const char * lpszFaceName, bool bBold)
 {
 
    m_strFamily    = lpszFaceName;
@@ -69,7 +69,7 @@ bool os_simple_font::create_pixel(simple_graphics & g, int nPixelSize, const cha
 
 }
 
-bool os_simple_font::create_pixel_bold(simple_graphics & g, int nPointSize, const char * lpszFaceName)
+bool os_simple_font::create_pixel_bold(simple_graphics & g, int32_t nPointSize, const char * lpszFaceName)
 {
 
    return create_point(g, nPointSize, lpszFaceName, true);

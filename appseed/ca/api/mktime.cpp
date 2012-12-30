@@ -60,8 +60,8 @@ mktime_dup(struct tm *tm)
   time_t loctime;               /* The time_t value of local time. */
   time_t then;                  /* The time to return. */
   long tzoffset_adj;            /* timezone-adjustment `remainder' */
-  int bailout_cnt;              /* counter of tries for tz correction */
-  int save_isdst;               /* Copy of the tm->isdst input value */
+  int32_t bailout_cnt;              /* counter of tries for tz correction */
+  int32_t save_isdst;               /* Copy of the tm->isdst input value */
 
   save_isdst = tm->tm_isdst;
   loctime = mkgmtime_dup(tm);
@@ -191,7 +191,7 @@ static ZCONST short ydays[] =
 time_t
 mkgmtime_dup(struct tm *tm)
 {
-  int years, months, days, hours, minutes, seconds;
+  int32_t years, months, days, hours, minutes, seconds;
 
   years = tm->tm_year + 1900;   /* year - 1900 -> year */
   months = tm->tm_mon;          /* 0..11 */

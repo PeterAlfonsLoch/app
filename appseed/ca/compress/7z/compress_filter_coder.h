@@ -57,7 +57,7 @@ namespace compress
 
       filter_coder();
       ~filter_coder();
-      
+
       HRESULT WriteWithLimit(::ex1::writer *outStream, uint32 size);
 
       /*      MY_QUERYINTERFACE_BEGIN2(::compress::coder_interface)
@@ -88,12 +88,12 @@ namespace compress
       ex1::HRes SetOutStream(::ex1::writer *outStream);
       ex1::HRes ReleaseInStream();
       ex1::HRes ReleaseOutStream();
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size); 
+      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
       void Flush();
 
       ex1::HRes CryptoSetPassword(const byte *data, uint32 size);
-      ex1::HRes SetCoderProperties(const int *propIDs, const var *properties, uint32 numProperties);
+      ex1::HRes SetCoderProperties(const int32_t *propIDs, const var *properties, uint32 numProperties);
       ex1::HRes WriteCoderProperties(::ex1::writer *outStream);
       // ex1::HRes ResetSalt();
       ex1::HRes ResetInitVector();

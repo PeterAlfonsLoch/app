@@ -53,7 +53,7 @@ CLASS_DECL__ bool EqualRect(LPCRECT prect1, LPCRECT prect2)
 }
 
 
-CLASS_DECL__ bool InflateRect(LPRECT prect, int x, int y)
+CLASS_DECL__ bool InflateRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left -= x;
       prect->top -= y;
@@ -62,7 +62,7 @@ CLASS_DECL__ bool InflateRect(LPRECT prect, int x, int y)
       return true;
 }
 
-CLASS_DECL__ bool OffsetRect(LPRECT prect, int x, int y)
+CLASS_DECL__ bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left += x;
       prect->top += y;

@@ -7,7 +7,7 @@ namespace xml
 
    //========================================================
    // Name   : _tcschrs
-   // Desc   : same with strpbrk 
+   // Desc   : same with strpbrk
    // Param  :
    // Return :
    //--------------------------------------------------------
@@ -19,7 +19,7 @@ namespace xml
    //========================================================
    // Name   : _tcsskip
    // Desc   : skip space
-   // Param  : 
+   // Param  :
    // Return : skiped string
    //--------------------------------------------------------
    // Coder    Date                      Desc
@@ -31,89 +31,89 @@ namespace xml
    // Name   : _tcsechr
    // Desc   : similar with strchr with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca char * _tcsechr( const char * psz, int ch, int escape );
+   CLASS_DECL_ca char * _tcsechr( const char * psz, int32_t ch, int32_t escape );
 
    //========================================================
    // Name   : _tcselen
    // Desc   : similar with strlen with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca int _tcselen( int escape, char * srt, char * end = NULL ) ;
+   CLASS_DECL_ca int32_t _tcselen( int32_t escape, char * srt, char * end = NULL ) ;
 
    //========================================================
    // Name   : _tcsecpy
    // Desc   : similar with _tcscpy with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca void _tcsecpy( char * psz, int escape, char * srt, char * end = NULL );
+   CLASS_DECL_ca void _tcsecpy( char * psz, int32_t escape, char * srt, char * end = NULL );
 
    //========================================================
    // Name   : _tcsepbrk
    // Desc   : similar with strpbrk with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca char * _tcsepbrk( const char * psz, const char * chset, int escape );
+   CLASS_DECL_ca char * _tcsepbrk( const char * psz, const char * chset, int32_t escape );
 
    //========================================================
    // Name   : _tcsenicmp
    // Desc   : similar with strnicmp with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca int _tcsenicmp( const char * psz, const char * str, strsize len, int escape );
+   CLASS_DECL_ca int32_t _tcsenicmp( const char * psz, const char * str, strsize len, int32_t escape );
 
    //========================================================
    // Name   : _tcsenistr
    // Desc   : similar with _tcsistr with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca char * _tcsenistr( const char * psz, const char * str, strsize len, int escape );
+   CLASS_DECL_ca char * _tcsenistr( const char * psz, const char * str, strsize len, int32_t escape );
 
    //========================================================
    // Name   : _tcseistr
    // Desc   : similar with _tcsistr with escape process
    // Param  : escape - will be escape character
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca char * _tcseistr( const char * psz, const char * str, int escape );
+   CLASS_DECL_ca char * _tcseistr( const char * psz, const char * str, int32_t escape );
 
    //========================================================
    // Name   : _SetString
    // Desc   : put string of (psz~end) on ps string
    // Param  : trim - will be trim?
-   // Return : 
+   // Return :
    //--------------------------------------------------------
    // Coder    Date                      Desc
    // bro      2002-10-29
    //========================================================
-   CLASS_DECL_ca void _SetString( char * psz, char * end, string* ps, bool trim = FALSE, int escape = 0 );
+   CLASS_DECL_ca void _SetString( char * psz, char * end, string* ps, bool trim = FALSE, int32_t escape = 0 );
 
 
 

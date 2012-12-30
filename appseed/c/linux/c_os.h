@@ -54,7 +54,7 @@ DWORD GetTickCount();
 union semun
 {
 
-   int val;
+   int32_t val;
    struct semid_ds * buf;
    USHORT * array;
 
@@ -66,4 +66,4 @@ CLASS_DECL_c DWORD GetLastError();
 CLASS_DECL_c DWORD SetLastError(DWORD dw);
 
 
-CLASS_DECL_c bool _istlead(int ch);
+CLASS_DECL_c bool _istlead(int32_t ch);

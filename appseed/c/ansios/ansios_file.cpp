@@ -2,7 +2,7 @@
 #include <sys/stat.h>
 
 
-void ensure_file_size(int fd, size_t iSize)
+void ensure_file_size(int32_t fd, size_t iSize)
 {
 
    if(ftruncate(fd, iSize) == -1)
@@ -11,7 +11,7 @@ void ensure_file_size(int fd, size_t iSize)
 }
 
 
-size_t get_file_size(int fd)
+size_t get_file_size(int32_t fd)
 {
 
    struct stat st;

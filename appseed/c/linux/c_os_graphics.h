@@ -41,14 +41,14 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
 
 /**code for argb visual*/
   /*  bool  argbVisual=false;
-    int screen = DefaultScreen ( dpy );
+    int32_t screen = DefaultScreen ( dpy );
     Colormap colormap = 0;
     Visual *visual = 0;
-    int eventBase, errorBase;
+    int32_t eventBase, errorBase;
 
     if ( XRenderQueryExtension ( dpy, &eventBase, &errorBase ) ) {
         qWarning ("You have ARGB support");
-        int nvi;
+        int32_t nvi;
         XVisualInfo templ;
         templ.screen  = screen;
         templ.depth   = 32;
@@ -57,7 +57,7 @@ if you want to make a ARGB window using xlib/Qt here is the code i use
                                             VisualDepthMask |
                                             VisualClassMask, &templ, &nvi );
 
-        for ( int i = 0; i < nvi; ++i ) {
+        for ( int32_t i = 0; i < nvi; ++i ) {
             XRenderPictFormat *format = XRenderFindVisualFormat ( dpy,
                                         xvi[i].visual );
             if ( format->type == PictTypeDirect && format->direct.alphaMask

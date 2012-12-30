@@ -50,7 +50,7 @@ namespace http
       inline void to_string(string & str)
       {
 
-         read(str.GetBufferSetLength((int)get_length()), (int)(get_length()));
+         read(str.GetBufferSetLength((int32_t)get_length()), (int32_t)(get_length()));
 
          str.ReleaseBuffer();
 

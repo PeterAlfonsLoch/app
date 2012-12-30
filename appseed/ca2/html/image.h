@@ -9,7 +9,7 @@ namespace html
       class image : public elemental
       {
       public:
-         int      m_iImage;
+         int32_t      m_iImage;
          rect    m_rect;
 
          void _001OnDraw(data * pdoc);

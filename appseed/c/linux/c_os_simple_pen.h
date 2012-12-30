@@ -13,17 +13,17 @@ public:
    };
 
 
-   int                  m_iStock;
+   int32_t                  m_iStock;
    e_type               m_etype;
-   int                  m_iWidth;
+   int32_t                  m_iWidth;
    COLORREF             m_cr;
 
 
    simple_pen();
    ~simple_pen();
 
-   bool create_solid(simple_graphics & g, COLORREF cr, int iWidth = 1);
-   bool from_stock(int iId);
+   bool create_solid(simple_graphics & g, COLORREF cr, int32_t iWidth = 1);
+   bool from_stock(int32_t iId);
 
    bool destroy();
 

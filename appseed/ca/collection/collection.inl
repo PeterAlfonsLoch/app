@@ -30,7 +30,7 @@ namespace gen
           pvar->parray = SafeArrayCreate(vt, 1, rgsabound);
           if(pvar->parray == NULL)
               return false;
-          for(int i = 0; i < get_size(); i++)
+          for(int32_t i = 0; i < get_size(); i++)
           {
               SafeArrayPutElement(pvar->parray, (long *) &i, &ar.element_at(i));
           }
@@ -65,7 +65,7 @@ namespace gen
           }
 
           DWORD dw;
-          for(int i = lLBound; i <= lUBound; i++)
+          for(int32_t i = lLBound; i <= lUBound; i++)
           {
               SafeArrayGetElement(pvar->parray, (long *) &i, &dw);
               ar.add(dw);

@@ -84,7 +84,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 
 
 
-int FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
+int32_t FillRect(HDC hdc, const RECT * lprc, HBRUSH hbr)
 {
    XFillRectangle(hdc->m_display, hdc->m_d, hdc->m_gc, lprc->left, lprc->top, lprc->right - lprc->left, lprc->bottom - lprc->top);
    return 1;
@@ -116,9 +116,9 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
 
    Window root_return;
    Window child_return;
-   int win_x_return;
-   int win_y_return;
-   unsigned int mask_return;
+   int32_t win_x_return;
+   int32_t win_y_return;
+   unsigned int32_t mask_return;
 
    Display * display = XOpenDisplay(NULL);
 
@@ -132,12 +132,12 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
 
 
 
-WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, UINT uFlags)
+WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT uFlags)
 {
 
    Display * display = XOpenDisplay(NULL);
 
-   int value_mask = 0;
+   int32_t value_mask = 0;
 
    XWindowChanges values;
 
@@ -190,7 +190,7 @@ WINBOOL SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int 
 
 
 
-int _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
+int32_t _c_XErrorHandler(Display * display, XErrorEvent * perrorevent)
 {
    return 0;
 }

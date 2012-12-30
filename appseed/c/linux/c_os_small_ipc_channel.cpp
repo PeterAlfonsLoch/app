@@ -63,9 +63,9 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
       return false;
 
    /* The length is essentially the size of the structure minus sizeof(mtype) */
-   int length = sizeof(data_struct) - sizeof(long);
+   int32_t length = sizeof(data_struct) - sizeof(long);
 
-   int result;
+   int32_t result;
 
    if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
    {
@@ -76,7 +76,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
 }
 
 
-bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTimeout)
+bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, DWORD dwTimeout)
 {
 
    if(message == 0x80000000)
@@ -95,7 +95,7 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
    data_struct data;
    data.mtype        = 15111984;
    data.request      = 0x80000000;
-   data.size         = (int)strlen_dup(pszMessage);
+   data.size         = (int32_t)strlen_dup(pszMessage);
 
    ::count cPos = 0;
 
@@ -113,12 +113,12 @@ bool small_ipc_tx_channel::send(int message, void * pdata, int len, DWORD dwTime
       if(c > 0)
          data.size = 512;
       else
-         data.size = (int) cSend;
+         data.size = (int32_t) cSend;
 
       /* The length is essentially the size of the structure minus sizeof(mtype) */
-      int length = sizeof(data_struct) - sizeof(long);
+      int32_t length = sizeof(data_struct) - sizeof(long);
 
-      int result;
+      int32_t result;
 
       if((result = msgsnd(m_iQueue, &data, length, 0)) == -1)
       {
@@ -174,7 +174,7 @@ bool small_ipc_rx_channel::create(const char * pszKey)
 bool small_ipc_rx_channel::destroy()
 {
 
-   int iRetry = 23;
+   int32_t iRetry = 23;
    while(m_bRunning && iRetry > 0)
    {
       m_bRun = false;
@@ -233,11 +233,11 @@ void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchanne
 {
 }
 
-void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+void small_ipc_rx_channel::receiver::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
 {
 }
 
-void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+void small_ipc_rx_channel::receiver::on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b)
 {
 }
 
@@ -257,7 +257,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, const
 
 }
 
-void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int message, void * pdata, int len)
+void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int32_t message, void * pdata, int32_t len)
 {
 
    if(m_preceiver != NULL)
@@ -274,7 +274,7 @@ void * small_ipc_rx_channel::on_receive(small_ipc_rx_channel * prxchannel, int m
 
 
 
-void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int a, int b)
+void * small_ipc_rx_channel::on_post(small_ipc_rx_channel * prxchannel, int32_t a, int32_t b)
 {
 
    if(m_preceiver != NULL)
@@ -319,7 +319,7 @@ void * small_ipc_rx_channel::receive()
 
       ssize_t  result;
 
-      int length;
+      int32_t length;
 
       data_struct data;
 

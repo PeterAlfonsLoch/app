@@ -26,7 +26,7 @@ CLASS_DECL_c COLORREF GetSysColor(DWORD dw)
 
 
 
-CLASS_DECL_c int WINAPI GetSystemMetrics(int nIndex)
+CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex)
 {
 
    switch(nIndex)
@@ -91,7 +91,7 @@ CLASS_DECL_c bool EqualRect(LPCRECT prect1, LPCRECT prect2)
 }
 
 
-CLASS_DECL_c bool InflateRect(LPRECT prect, int x, int y)
+CLASS_DECL_c bool InflateRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left -= x;
       prect->top -= y;
@@ -100,7 +100,7 @@ CLASS_DECL_c bool InflateRect(LPRECT prect, int x, int y)
       return true;
 }
 
-CLASS_DECL_c bool OffsetRect(LPRECT prect, int x, int y)
+CLASS_DECL_c bool OffsetRect(LPRECT prect, int32_t x, int32_t y)
 {
       prect->left += x;
       prect->top += y;
@@ -162,15 +162,15 @@ CLASS_DECL_c bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 
 #ifndef METROWIN
 
-int
+int32_t
 WINAPI
 MultiByteToWideChar(
     UINT     CodePage,
     DWORD    dwFlags,
     LPCSTR   lpMultiByteStr,
-    int      cbMultiByte,
+    int32_t      cbMultiByte,
     LPWSTR  lpWideCharStr,
-    int      cchWideChar)
+    int32_t      cchWideChar)
 {
 
    vsstring str(lpMultiByteStr, cbMultiByte);
@@ -189,7 +189,7 @@ MultiByteToWideChar(
       }
    }
 
-   int iLen = min(cchWideChar, wstr.get_length());
+   int32_t iLen = min(cchWideChar, wstr.get_length());
 
    if(lpWideCharStr != NULL)
    {
@@ -211,20 +211,20 @@ MultiByteToWideChar(
    }
    else
    {
-      return iLen; 
+      return iLen;
    }
-   
+
 }
 
-int
+int32_t
 WINAPI
 WideCharToMultiByte(
     UINT     CodePage,
     DWORD    dwFlags,
     LPCWSTR  lpWideCharStr,
-    int      cchWideChar,
+    int32_t      cchWideChar,
     LPSTR   lpMultiByteStr,
-    int      cbMultiByte,
+    int32_t      cbMultiByte,
     LPCSTR   lpDefaultChar,
     LPBOOL  lpUsedDefaultChar)
 {
@@ -245,7 +245,7 @@ WideCharToMultiByte(
       }
    }
 
-   int iLen = min(cbMultiByte, str.get_length());
+   int32_t iLen = min(cbMultiByte, str.get_length());
 
    if(lpMultiByteStr != NULL)
    {
@@ -267,7 +267,7 @@ WideCharToMultiByte(
    }
    else
    {
-      return iLen; 
+      return iLen;
    }
 
 }
@@ -282,5 +282,5 @@ CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
 }
 
 
-#endif 
+#endif
 

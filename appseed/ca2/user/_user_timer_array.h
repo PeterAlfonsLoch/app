@@ -8,7 +8,7 @@ namespace user
       interaction *     m_pguie;
       UINT                 m_uiId;
       UINT                 m_uiElapse;
-      UINT                 m_uiLastSent;  
+      UINT                 m_uiLastSent;
       void check();
    };
 
@@ -23,8 +23,8 @@ namespace user
          void check();
          bool unset(interaction * pguie, UINT uiId);
          void unset(interaction * pguie);
-         int find(interaction * pguie, UINT uiId);
-         int find_from(interaction * pguie, int iStart);
+         int32_t find(interaction * pguie, UINT uiId);
+         int32_t find_from(interaction * pguie, int32_t iStart);
 
          virtual void assert_valid() const;
          virtual void dump(dump_context & dc) const;

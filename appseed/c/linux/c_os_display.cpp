@@ -16,10 +16,10 @@ public:
 osdisplay_dataptra * osdisplay::s_pdataptra = new osdisplay_dataptra;
 
 
-int osdisplay::find(Display * pdisplay)
+int32_t osdisplay::find(Display * pdisplay)
 {
 
-   for(int i = 0; i < s_pdataptra->get_count(); i++)
+   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
    {
       if(s_pdataptra->element_at(i)->m_pdisplay == pdisplay)
       {
@@ -104,7 +104,7 @@ bool osdisplay::remove(Display * pdisplay)
 
 }
 
-Atom osdisplay::get_window_long_atom(int nIndex)
+Atom osdisplay::get_window_long_atom(int32_t nIndex)
 {
 
    if(m_pdata == NULL)

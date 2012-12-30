@@ -24,8 +24,8 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
    if(bWaitForAll)
    {
 
-      int i;
-      int j;
+      int32_t i;
+      int32_t j;
       i = 0;
       for(; i < dwSize;)
       {
@@ -59,8 +59,8 @@ DWORD MsgWaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, DWORD
    else
    {
 
-      int i;
-      int j;
+      int32_t i;
+      int32_t j;
       while(true)
       {
 

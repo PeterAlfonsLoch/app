@@ -42,7 +42,7 @@ string_format::~string_format()
 }
 
 
-void string_format::allocate_add_up(int iLenAddUp)
+void string_format::allocate_add_up(int32_t iLenAddUp)
 {
 
    if(m_iSize <= 0)
@@ -132,7 +132,7 @@ bool string_format::parse(const char * & s)
       }
       if(s > start)
       {
-         m_iWidth = (int) natoi_dup(start, s - start);
+         m_iWidth = (int32_t) natoi_dup(start, s - start);
       }
       m_estate = state_parse_precision;
    }

@@ -10,12 +10,12 @@
 
 using namespace std;
 
-int get_process_pid(const char * procNameParam)
+int32_t get_process_pid(const char * procNameParam)
 {
 
    std::string procName(procNameParam);
 
-    int pid = -1;
+    int32_t pid = -1;
 
     // Open the /proc directory
     DIR *dp = opendir("/proc");
@@ -26,7 +26,7 @@ int get_process_pid(const char * procNameParam)
         while (pid < 0 && (dirp = readdir(dp)))
         {
             // Skip non-numeric entries
-            int id = atoi(dirp->d_name);
+            int32_t id = atoi(dirp->d_name);
             if (id > 0)
             {
                 // Read contents of virtual /proc/{pid}/cmdline file

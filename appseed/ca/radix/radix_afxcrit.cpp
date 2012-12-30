@@ -51,7 +51,7 @@ void AfxCriticalTerm()
       DeleteCriticalSection(&_afxLockInitLock);
 
       // delete specific resource critical sections
-      for (int i = 0; i < CRIT_MAX; i++)
+      for (int32_t i = 0; i < CRIT_MAX; i++)
       {
 #ifdef DEBUG
          ASSERT(!_afxResourceLocked[i]);
@@ -65,7 +65,7 @@ void AfxCriticalTerm()
    }
 }
 
-void AfxLockGlobals(int nLockType)
+void AfxLockGlobals(int32_t nLockType)
 {
    ENSURE((UINT)nLockType < CRIT_MAX);
 
@@ -95,7 +95,7 @@ void AfxLockGlobals(int nLockType)
 #endif
 }
 
-void AfxUnlockGlobals(int nLockType)
+void AfxUnlockGlobals(int32_t nLockType)
 {
    ASSERT(_afxCriticalInit);
    ENSURE((UINT)nLockType < CRIT_MAX);

@@ -21,10 +21,10 @@ namespace userbase
 
       virtual void _017OpenFolder(FileManagerItem & item);
       void StartAnimation();
-      void RenameFile(int iLine, string & str);
+      void RenameFile(int32_t iLine, string & str);
       virtual void _001InstallMessageHandling(::user::win::message::dispatch * pinterface);
 
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
+      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
       virtual void on_update(::view * pSender, LPARAM lHint, base_object* pHint);
       virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -38,7 +38,7 @@ namespace userbase
       virtual index _001GetItemImage(::ex1::tree_item * pitem, bool bSelected);
 
 
-    
+
    #ifdef _DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;

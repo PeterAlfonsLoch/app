@@ -1,7 +1,7 @@
 /* version: 1.0, Feb, 2003
    Author : Gao Dasheng
    Copyright (C) 1995-2002 Gao Dasheng(dsgao@hotmail.com)
-   
+
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
   arising from the use of this software.
@@ -19,11 +19,11 @@
   3. This notice may not be removed or altered from any source distribution.
 //////////////////////////////////////////////////////////////////////////////
   Introduce:
-     This file includes two classes CA2GZIP and CGZIP2A which do compressing and 
+     This file includes two classes CA2GZIP and CGZIP2A which do compressing and
     uncompressing in primitive::memory. and It 's very easy to use for small data compressing.
-    Some compress and uncompress codes came from gzip  unzip function of zlib 1.1.x. 
+    Some compress and uncompress codes came from gzip  unzip function of zlib 1.1.x.
 
-  Usage: 
+  Usage:
      these two classes work used with zlib 1.1.x (http://www.gzip.org/zlib/).
     They were tested in Window OS.
   Exmaple:
@@ -33,12 +33,12 @@
         char plainText[]="Plain text here";
       CA2GZIP gzip(plainText,strlen(plainText));  // do compressing here;
       LPGZIP pgzip=gzip.pgzip;  // pgzip is zipped data pointer, you can use it directly
-      int len=gzip.Length;      // Length is length of zipped data;
+      int32_t len=gzip.Length;      // Length is length of zipped data;
 
       CGZIP2A plain(pgzip,len);  // do decompressing here
 
       char *pplain=plain.psz;    // psz is plain data pointer
-      int  aLen=plain.Length;    // Length is length of unzipped data.
+      int32_t  aLen=plain.Length;    // Length is length of unzipped data.
     }
 //////////////////////////////////////////////////////////////////////////////
 */
@@ -52,9 +52,9 @@ class bzip
 public:
    ex1::byte_output_stream m_ostream;
    primitive::memory m_memory;
-   int m_CurrentBufferSize;
+   int32_t m_CurrentBufferSize;
    bz_stream m_zstream;
-   int      m_z_err;   /* error code for last stream operation */
+   int32_t      m_z_err;   /* error code for last stream operation */
    //byte     *m_outbuf; /* output buffer */
    uLong    m_crc;     /* crc32 of uncompressed data */
 

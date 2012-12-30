@@ -27,7 +27,7 @@ namespace compress
 
    #define REGISTER_CODECS_NAME(x) CRegisterCodecs ## x
    #define REGISTER_CODECS(x) struct REGISTER_CODECS_NAME(x) { \
-       REGISTER_CODECS_NAME(x)() { for (int i = 0; i < sizeof(g_CodecsInfo) / sizeof(g_CodecsInfo[0]); i++) \
+       REGISTER_CODECS_NAME(x)() { for (int32_t i = 0; i < sizeof(g_CodecsInfo) / sizeof(g_CodecsInfo[0]); i++) \
        RegisterCodec(&g_CodecsInfo[i]); }}; \
        static REGISTER_CODECS_NAME(x) g_RegisterCodecs;
 
