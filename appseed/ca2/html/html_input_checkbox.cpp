@@ -70,7 +70,7 @@ namespace html
          //rect rectWindow;
          //m_pcheckbox->GetWindowRect(rectWindow);
          ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->OffsetViewportOrg(m_box.left, m_box.top);
+         pdata->m_pdc->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
          m_pcheckbox->_001OnDraw(pdata->m_pdc);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
       }
@@ -78,7 +78,7 @@ namespace html
       void input_check_box::on_change_layout(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         m_pcheckbox->SetWindowPos(0, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
+         m_pcheckbox->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
       }
 
    }

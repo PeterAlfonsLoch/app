@@ -532,17 +532,17 @@ namespace html
 
       }
 
-      bool cell::contains_column(int32_t iCol)
+      bool cell::contains_column(index iCol)
       {
          return iCol >= m_iColBeg && iCol <= m_iColEnd;
       }
 
-      bool cell::contains_row(int32_t iRow)
+      bool cell::contains_row(index iRow)
       {
          return iRow >= m_iRowBeg && iRow <= m_iRowEnd;
       }
 
-      bool cell::contains_cell(int32_t iCol, int32_t iRow)
+      bool cell::contains_cell(index iCol, index iRow)
       {
          return contains_column(iCol) && contains_row(iRow);
       }

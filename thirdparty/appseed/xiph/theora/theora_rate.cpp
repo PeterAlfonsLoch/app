@@ -922,7 +922,7 @@ int32_t oc_enc_rc_2pass_out(oc_enc_ctx *_enc,unsigned char **_buf){
 
 static size_t oc_rc_buffer_fill(oc_rc_state *_rc,
  unsigned char *_buf,size_t _bytes,size_t _consumed,size_t _goal){
-  while(_rc->twopass_buffer_fill<_goal&&_consumed<_bytes){
+  while(natural(_rc->twopass_buffer_fill)<_goal&&_consumed<_bytes){
     _rc->twopass_buffer[_rc->twopass_buffer_fill++]=_buf[_consumed++];
   }
   return _consumed;

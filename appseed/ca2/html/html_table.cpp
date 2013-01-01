@@ -45,17 +45,17 @@ namespace html
 
             if(ptag->get_attr_value("border").has_char())
             {
-               m_iBorder         = (uint32_t) gen::str::to_uint(ptag->get_attr_value("border"));
+               m_iBorder         = (float) gen::str::to_uint(ptag->get_attr_value("border"));
             }
 
             if(ptag->get_attr_value("cellspacing").has_char())
             {
-               m_iCellSpacing    = (uint32_t) gen::str::to_uint(ptag->get_attr_value("cellspacing"));
+               m_iCellSpacing    = (float) gen::str::to_uint(ptag->get_attr_value("cellspacing"));
             }
 
             if(ptag->get_attr_value("cellpadding").has_char())
             {
-               m_iCellPadding    = (uint32_t) gen::str::to_uint(ptag->get_attr_value("cellpadding"));
+               m_iCellPadding    = (float) gen::str::to_uint(ptag->get_attr_value("cellpadding"));
             }
 
          }
@@ -170,54 +170,54 @@ namespace html
             return;
          }
 
-         int32_t cxMax;
-         int32_t cxMin;
+         float cxMax;
+         float cxMin;
          while(true)
          {
-            cxMax = -1;
-            cxMin = -1;
+            cxMax = -1.f;
+            cxMin = -1.f;
             for(int32_t i = 0; i < m_columna.get_size(); i++)
             {
-               if(m_columna[i].m_cxMax <= -2
-                  || m_columna[i].m_cxMin <= -2)
+               if(m_columna[i].m_cxMax <= -2.f
+               || m_columna[i].m_cxMin <= -2.f)
                {
-                  for(int32_t j = 0; j < m_rowptra.get_size(); j++)
+                  for(index j = 0; j < m_rowptra.get_size(); j++)
                   {
                      m_rowptra[j]->m_pelemental->implement_phase2(pdata);
                   }
                }
-               if(cxMax > -2)
+               if(cxMax > -2.f)
                {
                   if(m_columna[i].m_cxMax > cxMax)
                   {
                      cxMax = m_columna[i].m_cxMax;
                   }
-                  else if(m_columna[i].m_cxMax <= -2)
+                  else if(m_columna[i].m_cxMax <= -2.f)
                   {
                      cxMax = m_columna[i].m_cxMax;
                   }
                }
-               if(cxMin > -2)
+               if(cxMin > -2.f)
                {
                   if(m_columna[i].m_cxMin > cxMin)
                   {
                      cxMin = m_columna[i].m_cxMin;
                   }
-                  else if(m_columna[i].m_cxMin <= -2)
+                  else if(m_columna[i].m_cxMin <= -2.f)
                   {
                      cxMin = m_columna[i].m_cxMin;
                   }
                }
             }
-            if(cxMax >= -1
-               && cxMin >= -1)
+            if(cxMax >= -1.f
+            && cxMin >= -1.f)
             {
                break;
             }
          }
          cxMax = 0;
          cxMin = 0;
-         for(int32_t i = 0; i < m_cellholdera.get_size(); i++)
+         for(index i = 0; i < m_cellholdera.get_size(); i++)
          {
             cxMax += max(0, m_columna[i].m_cxMax);
             cxMin += max(0, m_columna[i].m_cxMin);
@@ -229,8 +229,8 @@ namespace html
       void table::layout_phase3(data * pdata)
       {
          UNREFERENCED_PARAMETER(pdata);
-         int32_t cx = 0;
-         int32_t cy = 0;
+         float cx = 0.f;
+         float cy = 0.f;
          for(int32_t i = 0; i < m_columna.get_size(); i++)
          {
             cx += m_columna[i].m_cxMax;
@@ -250,14 +250,14 @@ namespace html
          m_cxMin  = -2;
       }
 
-      table::column::column(int32_t iCol)
+      table::column::column(index iCol)
       {
          m_iCol   = iCol;
          m_cxMax  = -2;
          m_cxMin  = -2;
       }
 
-      void table::set_cell(int32_t iCol, int32_t iRow, cell * pcell)
+      void table::set_cell(index iCol, index iRow, cell * pcell)
       {
 
          m_cellholdera.element_at_grow(iCol).element_at_grow(iRow).m_pcell = pcell;

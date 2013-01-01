@@ -193,11 +193,19 @@ namespace html
       {
          const class style & style = m_stylea.element_at(i);
          if(&style == pstyle1)
-            return pstyle1;
+         {
+            pstyleRet   = pstyle1;
+            iRet        = i1;
+            varRet      = var1;
+         }
          else if(&style == pstyle2)
-            return pstyle2;
+         {
+            pstyleRet   = pstyle2;
+            iRet        = i2;
+            varRet      = var2;
+         }
       }
-      return NULL;
+      return false;
    }
 
    bool style_sheet::greater(const style * & pstyleRet, index & iRet, var & varRet, const style * pstyle1, index i1, const var & var1, const style * pstyle2, index i2, const var & var2) const

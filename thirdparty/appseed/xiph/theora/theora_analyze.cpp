@@ -1583,7 +1583,7 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
       uncoded_ssd-=uncoded_dc*uncoded_dc>>2;
       /*DC is a special case; if there's more than a full-quantizer improvement
          in the effective DC component, always force-code the block.*/
-      dc_flag = (int32_t) (abs(uncoded_dc) > (dc_dequant<<1));
+      dc_flag = (int32_t) (natural(abs(uncoded_dc)) > (dc_dequant<<1));
       uncoded_ssd|=-dc_flag;
       _pipe->skip_ssd[pli][fragi-_pipe->froffset[pli]]=_ssd[mapii]=uncoded_ssd;
     }

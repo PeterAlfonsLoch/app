@@ -1002,7 +1002,7 @@ namespace user
 
    }
 
-   void tab::layout_pane(int32_t iPane)
+   void tab::layout_pane(index iPane)
    {
 
       place_holder * pholder = get_tab_holder(iPane);

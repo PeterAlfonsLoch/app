@@ -28,7 +28,7 @@ namespace html
 
          table * get_table();
 
-         void set_cell(int32_t iCol, int32_t iRow, cell * pcell);
+         void set_cell(index iCol, index iRow, cell * pcell);
 
 
          virtual void implement_phase1(data * pdoc, ::html::elemental * pelemental);

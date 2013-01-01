@@ -447,12 +447,12 @@ namespace user
             pdc->SetBkColor(crBkSel);
             pdc->TextOut(left, y, strExtent1);
             sized size1(0.0, 0.0);
-            pdc->GetTextExtent(size1, strLine, (int32_t) strLine.length(), iStart);
+            pdc->GetTextExtent(size1, strLine, (int32_t) strLine.length(), (int32_t) iStart);
             pdc->SetBkMode(OPAQUE);
             sized sizeb(0.0, 0.0);
             pdc->GetTextExtent(sizeb, strLine, iEnd);
             sized size2(0.0, 0.0);
-            pdc->GetTextExtent(size2, strLine, (int32_t) strLine.length(), iEnd);
+            pdc->GetTextExtent(size2, strLine, (int32_t) strLine.length(), (int32_t) iEnd);
             size2.cx -= size1.cx;
             if(iEnd > iStart)
             {
@@ -1061,8 +1061,8 @@ namespace user
 
             pgraphics->SelectObject(GetFont());
             pgraphics->set_text_rendering(::ca::text_rendering_anti_alias_grid_fit);
-            size size1 = pgraphics->GetTextExtent(straLines[i], (int32_t) straLines[i].length(), iSel - i1);
-            size size2 = pgraphics->GetTextExtent(straLines[i], iSel - i1);
+            size size1 = pgraphics->GetTextExtent(straLines[i], (int32_t) straLines[i].length(), (int32_t) (iSel - i1));
+            size size2 = pgraphics->GetTextExtent(straLines[i], (int32_t) iSel - i1);
 
 
 
@@ -1264,7 +1264,7 @@ namespace user
          strExtent = string(psz, pszEnd - psz);
          strExtent.replace("\t", "   ");
          class size size;
-         class ::size size1 = pdc->GetTextExtent(strLine, (int32_t) strLine.length(), strExtent.length());
+         class ::size size1 = pdc->GetTextExtent(strLine, (int32_t) strLine.length(), (int32_t) strExtent.length());
          class ::size size2 = pdc->GetTextExtent(strLine, strExtent.length());
          lim2 = (size1.cx + size2.cx) / 2;
          lim = lim2;

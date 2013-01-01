@@ -61,6 +61,7 @@ namespace ca
 
 #include "c_count.h"
 #include "c_index.h"
+#include "c_number.h"
 #include "c_keep_true.h"
 
 

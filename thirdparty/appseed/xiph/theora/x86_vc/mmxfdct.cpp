@@ -464,7 +464,7 @@
 
 /*MMX implementation of the fDCT.*/
 void oc_enc_fdct8x8_mmx(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
-  ptrdiff_t a;
+  //ptrdiff_t diffA;
   __asm{
 #define Y eax
 #define A ecx

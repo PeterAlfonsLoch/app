@@ -122,7 +122,7 @@ namespace html
          }
          return true;
       }
-      style * pstyle;
+//      style * pstyle;
       index i;
       for(i = get_upper_bound(); i >= 0; i--)
       {

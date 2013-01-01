@@ -691,6 +691,7 @@
     <ClInclude Include="c\c_mutex_lock.h" />
     <ClInclude Include="c\c_natural.h" />
     <ClInclude Include="c\c_net.h" />
+    <ClInclude Include="c\c_number.h" />
     <ClInclude Include="c\c_printf.h" />
     <ClInclude Include="c\c_simple_app.h" />
     <ClInclude Include="c\c_simple_array.h" />

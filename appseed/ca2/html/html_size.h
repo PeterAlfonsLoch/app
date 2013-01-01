@@ -15,6 +15,7 @@ namespace html
 
 
       inline size();
+      inline size(const ::size & size);
       inline size(float cx, float cy);
 
    };
@@ -24,6 +25,12 @@ namespace html
    {
       cx = 0.0f;
       cy = 0.0f;
+   }
+
+   inline size::size(const ::size & size)
+   {
+      cx = (float) size.cx;
+      cy = (float) size.cy;
    }
 
    inline size::size(float cx, float cy)

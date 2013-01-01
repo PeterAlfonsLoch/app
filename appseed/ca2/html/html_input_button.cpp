@@ -70,7 +70,7 @@ namespace html
             pdata->m_layoutstate.m_bLastBlockX = false;
             pdata->m_layoutstate.m_bLastBlockY = false;
          }*/
-         m_pbutton->SetWindowPos(0, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
+         m_pbutton->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
       }
 
       void input_button::_001OnDraw(data * pdata)
@@ -79,15 +79,18 @@ namespace html
          //m_pbutton->GetWindowRect(rectWindow);
          //m_pbutton->get_wnd()->ScreenToClient(rectWindow);
          ::point ptPreviousViewportOrg = pdata->m_pdc->GetViewportOrg();
-         pdata->m_pdc->OffsetViewportOrg(m_box.left, m_box.top);
+         pdata->m_pdc->OffsetViewportOrg((int32_t) m_box.left, (int32_t) m_box.top);
          m_pbutton->_001OnDraw(pdata->m_pdc);
          pdata->m_pdc->SetViewportOrg(ptPreviousViewportOrg);
       }
 
       void input_button::on_change_layout(data * pdata)
       {
+         
          UNREFERENCED_PARAMETER(pdata);
-         m_pbutton->SetWindowPos(0, m_box.left, m_box.top, m_box.get_cx(), m_box.get_cy(), SWP_NOREDRAW);
+
+         m_pbutton->SetWindowPos(0, (int32_t) m_box.left, (int32_t) m_box.top, (int32_t) m_box.get_cx(), (int32_t) m_box.get_cy(), SWP_NOREDRAW);
+
       }
 
    }

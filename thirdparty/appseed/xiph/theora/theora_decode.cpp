@@ -390,7 +390,7 @@ static int32_t oc_dec_init(oc_dec_ctx *_dec,const th_info *_info,
       qsum+=_dec->state.dequant_tables[qti][pli][qi][12]+
        _dec->state.dequant_tables[qti][pli][qi][17]+
        _dec->state.dequant_tables[qti][pli][qi][18]+
-       _dec->state.dequant_tables[qti][pli][qi][24]<<(pli==0);
+       _dec->state.dequant_tables[qti][pli][qi][24] << safe_int_bool(pli == 0);
     }
     _dec->pp_sharp_mod[qi]=-(qsum>>11);
   }
@@ -1031,7 +1031,7 @@ static ptrdiff_t oc_dec_dc_coeff_unpack(oc_dec_ctx *_dec,int32_t _huff_idxs[2],
        accounted for by runs started in this coefficient.*/
     for(rli=64;rli-->0;)_ntoks_left[pli][rli]-=run_counts[rli];
   }
-  _dec->dct_tokens_count=ti;
+  _dec->dct_tokens_count = (int32_t) ti;
   return eobs;
 }
 
@@ -1103,8 +1103,8 @@ static int32_t oc_dec_ac_coeff_unpack(oc_dec_ctx *_dec,int32_t _zzi,int32_t _huf
        accounted for by runs started in this coefficient.*/
     for(rli=64-_zzi;rli-->0;)_ntoks_left[pli][_zzi+rli]-=run_counts[rli];
   }
-  _dec->dct_tokens_count=ti;
-  return _eobs;
+  _dec->dct_tokens_count = (int32_t) ti;
+  return (int32_t) _eobs;
 }
 
 /*Tokens describing the DCT coefficients that belong to each fragment are
@@ -1224,8 +1224,8 @@ static int32_t oc_dec_postprocess_init(oc_dec_ctx *_dec){
     int32_t    c_w;
     int32_t    c_h;
     frame_sz=_dec->state.info.frame_width*(size_t)_dec->state.info.frame_height;
-    c_w=_dec->state.info.frame_width>>!(_dec->state.info.pixel_fmt&1);
-    c_h=_dec->state.info.frame_height>>!(_dec->state.info.pixel_fmt&2);
+    c_w = _dec->state.info.frame_width >> safe_int_bool(!(_dec->state.info.pixel_fmt&1));
+    c_h = _dec->state.info.frame_height >> safe_int_bool(!(_dec->state.info.pixel_fmt&2));
     c_sz=c_w*(size_t)c_h;
     /*Allocate space for the chroma planes, even if we're not going to use
        them; this simplifies allocation state management, though it may waste
@@ -1262,8 +1262,8 @@ static int32_t oc_dec_postprocess_init(oc_dec_ctx *_dec){
       int32_t    c_h;
       /*Otherwise, set up pointers to all three PP planes.*/
       y_sz=_dec->state.info.frame_width*(size_t)_dec->state.info.frame_height;
-      c_w=_dec->state.info.frame_width>>!(_dec->state.info.pixel_fmt&1);
-      c_h=_dec->state.info.frame_height>>!(_dec->state.info.pixel_fmt&2);
+      c_w=_dec->state.info.frame_width >> safe_int_bool(!(_dec->state.info.pixel_fmt&1));
+      c_h=_dec->state.info.frame_height >> safe_int_bool(!(_dec->state.info.pixel_fmt&2));
       c_sz=c_w*(size_t)c_h;
       _dec->pp_frame_buf[0].width=_dec->state.info.frame_width;
       _dec->pp_frame_buf[0].height=_dec->state.info.frame_height;
@@ -1321,7 +1321,7 @@ static void oc_dec_pipeline_init(oc_dec_ctx *_dec,
   int32_t              qti;
   /*If chroma is sub-sampled in the vertical direction, we have to decode two
      super block rows of Y' for each super block row of Cb and Cr.*/
-  _pipe->mcu_nvfrags=4<<!(_dec->state.info.pixel_fmt&2);
+  _pipe->mcu_nvfrags=4 << safe_int_bool(!(_dec->state.info.pixel_fmt&2));
   /*Initialize the token and extra bits indices for each plane and
      coefficient.*/
   memcpy(_pipe->ti,_dec->ti0,sizeof(_pipe->ti));
@@ -1538,7 +1538,7 @@ static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
         int32_t       rlen;
         int32_t       coeff;
         int32_t       lti;
-        lti=ti[zzi];
+        lti = (int32_t) ti[zzi];
         token=dct_tokens[lti++];
         cw=OC_DCT_CODE_WORD[token];
         /*These parts could be done branchless, but the branches are fairly
@@ -2050,8 +2050,8 @@ static void oc_dec_init_dummy_frame(th_dec_ctx *_dec){
   info=&_dec->state.info;
   yhstride=info->frame_width+2*OC_UMV_PADDING;
   yheight=info->frame_height+2*OC_UMV_PADDING;
-  chstride=yhstride>>!(info->pixel_fmt&1);
-  cheight=yheight>>!(info->pixel_fmt&2);
+  chstride=yhstride >> safe_int_bool(!(info->pixel_fmt&1));
+  cheight=yheight >> safe_int_bool(!(info->pixel_fmt&2));
   yplane_sz=yhstride*(size_t)yheight;
   cplane_sz=chstride*(size_t)cheight;
   memset(_dec->state.ref_frame_data[0],0x80,yplane_sz+2*cplane_sz);

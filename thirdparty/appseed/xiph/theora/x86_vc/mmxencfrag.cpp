@@ -23,7 +23,7 @@
 
 unsigned oc_enc_frag_sad_mmxext(const unsigned char *_src,
  const unsigned char *_ref,int32_t _ystride){
-  ptrdiff_t ret;
+  ptrdiff_t diffRet;
   __asm{
 #define SRC esi
 #define REF edx
@@ -72,13 +72,13 @@ unsigned oc_enc_frag_sad_mmxext(const unsigned char *_src,
     psadbw mm2,mm3
     paddw mm0,mm6
     paddw mm0,mm2
-    movd [ret],mm0
+    movd [diffRet],mm0
 #undef SRC
 #undef REF
 #undef YSTRIDE
 #undef YSTRIDE3
   }
-  return (unsigned)ret;
+  return (unsigned)diffRet;
 }
 
 unsigned oc_enc_frag_sad_thresh_mmxext(const unsigned char *_src,
@@ -144,7 +144,7 @@ unsigned oc_enc_frag_sad_thresh_mmxext(const unsigned char *_src,
 unsigned oc_enc_frag_sad2_thresh_mmxext(const unsigned char *_src,
  const unsigned char *_ref1,const unsigned char *_ref2,int32_t _ystride,
  unsigned _thresh){
-  ptrdiff_t ret;
+  ptrdiff_t diffRet;
   __asm{
 #define REF1 ecx
 #define REF2 edi
@@ -169,14 +169,14 @@ unsigned oc_enc_frag_sad2_thresh_mmxext(const unsigned char *_src,
     OC_SAD2_LOOP
     OC_SAD2_LOOP
     OC_SAD2_TAIL
-    mov [ret],RET
+    mov [diffRet],RET
 #undef REF1
 #undef REF2
 #undef YSTRIDE
 #undef SRC
 #undef RET
   }
-  return (unsigned)ret;
+  return (unsigned)diffRet;
 }
 
 /*Load an 8x4 array of pixel values from %[src] and %[ref] and compute their
@@ -474,8 +474,8 @@ static unsigned oc_int_frag_satd_thresh_mmxext(const unsigned char *_src,
  int32_t _src_ystride,const unsigned char *_ref,int32_t _ref_ystride,unsigned _thresh){
   OC_ALIGN8(ogg_int16_t  buf[64]);
   ogg_int16_t           *bufp;
-  unsigned               ret1;
-  unsigned               ret2;
+  unsigned               diffRet1;
+  //unsigned               diffRet2;
   bufp=buf;
   __asm{
 #define SRC esi
@@ -549,7 +549,7 @@ static unsigned oc_int_frag_satd_thresh_mmxext(const unsigned char *_src,
     lea RET,[RET+RET2*2]
     align 16
 at_end:
-    mov ret1,RET
+    mov diffRet1,RET
 #undef SRC
 #undef REF
 #undef SRC_YSTRIDE
@@ -558,7 +558,7 @@ at_end:
 #undef RET
 #undef RET2
   }
-  return ret1;
+  return diffRet1;
 }
 
 unsigned oc_enc_frag_satd_thresh_mmxext(const unsigned char *_src,
@@ -709,7 +709,7 @@ unsigned oc_enc_frag_intra_satd_mmxext(const unsigned char *_src,
   OC_ALIGN8(ogg_int16_t  buf[64]);
   ogg_int16_t           *bufp;
   unsigned               ret1;
-  unsigned               ret2;
+//  unsigned               ret2;
   bufp=buf;
   __asm{
 #define SRC eax

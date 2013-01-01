@@ -158,8 +158,8 @@ namespace userbase
       size size = pdc->GetTextExtent(strText);
 
       rect rect(0, 0, 0, 0);
-      rect.right = size.cx / 0.77 + 4;
-      rect.bottom = size.cy / 0.77 + 4;
+      rect.right = (LONG) (size.cx / 0.77 + 4);
+      rect.bottom = (LONG) (size.cy / 0.77 + 4);
 
       SetWindowPos(0, 0, 0, rect.width(), rect.height(), SWP_NOMOVE);
 

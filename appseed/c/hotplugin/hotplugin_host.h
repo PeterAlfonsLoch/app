@@ -92,7 +92,7 @@ namespace hotplugin
 
 
 #ifdef WINDOWS
-      virtual uint_ptr message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam);
+      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 #else
       virtual int32_t message_handler(XEvent * pevent);
 #endif

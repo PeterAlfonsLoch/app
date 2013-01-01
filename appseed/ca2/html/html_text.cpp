@@ -84,7 +84,9 @@ namespace html
 
 
          ::size size = pdc->GetTextExtent(str);
-         m_cxMax = size.cx;
+
+
+         m_cxMax = (float) size.cx;
 
 
          strsize iLastSpace = 0;
@@ -138,7 +140,7 @@ namespace html
             {
                size = pdc->GetTextExtent(m_straWordSpace[i]);
                if(size.cx > m_cxMin)
-                  m_cxMin = size.cx;
+                  m_cxMin = (float) size.cx;
             }
          }
       }
@@ -171,8 +173,8 @@ namespace html
                pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
                m_box.set_cx(0);
                class ::size size = pdc->GetTextExtent(unitext("MAÚqg"));
-               m_box.set_cy(size.cy);
-               pdata->m_layoutstate.m_cy = size.cy;
+               m_box.set_cy((float) size.cy);
+               pdata->m_layoutstate.m_cy = (float) size.cy;
             }
             pdata->m_layoutstate.m_bLastBlockX = true;
             pdata->m_layoutstate.m_bLastBlockY = true;
@@ -213,7 +215,7 @@ namespace html
             strsize iLastSpace = 0;
             point pointBound(get_x(), get_y());
             pointBound.x += m_margin.left + m_border.left + m_padding.left;
-            int32_t x = pointBound.x;
+            float x = pointBound.x;
             size sizeContent = size(get_bound_size());
             sizeContent.cx = max(0, sizeContent.cx - m_padding.left - m_padding.right - m_border.left - m_border.right - m_margin.left - m_margin.right);
             sizeContent.cy = max(0, sizeContent.cy - m_padding.top - m_padding.bottom - m_border.top - m_border.bottom - m_margin.top - m_margin.bottom);
@@ -265,7 +267,7 @@ namespace html
                      m_straLines.add(strLine);
                      strLine.Empty();
                   }
-                  m_sizea.add(sizeText);
+                  m_sizea.add(size(sizeText));
                   iLastSpace = 0;
                   x = pointBound.x;
                }
@@ -274,12 +276,12 @@ namespace html
             {
                sizeText = pdc->GetTextExtent(strLine);
                m_straLines.add(strLine);
-               m_sizea.add(sizeText);
+               m_sizea.add(size(sizeText));
             }
             if(pdata->m_bEdit && m_straLines.get_size() == 0)
             {
                m_straLines.add("");
-               m_sizea.add(::size(0, 0));
+               m_sizea.add(size(0.f, 0.f));
             }
             if((bParent && m_pelemental->m_pparent->m_style.m_propertyset["display"] != "table-cell")
             || (!bParent && m_pelemental->m_style.m_propertyset["display"] != "table-cell"))
@@ -469,18 +471,21 @@ namespace html
 
 
          pdc->SelectObject(pdata->get_font(m_pelemental)->m_font);
-         int32_t x = get_x();
-         int32_t y = get_y();
+
+         float x = get_x();
+
+         float y = get_y();
 
          if(m_pelemental->m_pparent != NULL)
          {
 
             x += m_pelemental->m_pparent->m_pimpl->m_border.left + m_pelemental->m_pparent->m_pimpl->m_padding.left + m_pelemental->m_pparent->m_pimpl->m_margin.left;
+
             y += m_pelemental->m_pparent->m_pimpl->m_border.top + m_pelemental->m_pparent->m_pimpl->m_padding.top + m_pelemental->m_pparent->m_pimpl->m_margin.top;
 
          }
 
-         int32_t cy = 0;
+         float cy = 0;
          string str1;
          string str2;
          string str3;
@@ -491,11 +496,11 @@ namespace html
         for(int32_t i = 0; i < m_straLines.get_size(); i++)
         {
          string strLine = m_straLines[i];
-         int32_t left = i == 0 ? x : m_bound.left;
-         int32_t top = y + cy;
+         float left = i == 0 ? x : m_bound.left;
+         float top = y + cy;
          if(pdata->m_bEdit)
          {
-            int32_t y = top;
+            float y = top;
             stringa stra;
             strsize i1 = iSelStart - lim;
             strsize i2 = iSelEnd - lim;
@@ -625,11 +630,11 @@ namespace html
       int32_t text::hit_test(data * pdoc, ::point pt)
       {
          UNREFERENCED_PARAMETER(pdoc);
-         int32_t x = get_x();
+         float x = get_x();
 //         int32_t y = get_y();
-        int32_t cy = 0;
-        int32_t x1;
-        int32_t x2;
+        float cy = 0.f;
+        float x1;
+        float x2;
         bool bTag = is_tag();
         bool bValue = is_value();
         for(int32_t i = 0; i < m_straLines.get_size(); i++)
@@ -749,24 +754,24 @@ namespace html
          m_box.get(rect);
 
          pdc->SelectObject(m_pelemental->m_pdata->get_font(m_pelemental)->m_font);
-         int32_t x = get_x();
-         int32_t y = get_y();
-         int32_t cy = 0;
+         float x = get_x();
+         float y = get_y();
+         float cy = 0;
          if(py < y)
             return 0;
-         int32_t iFind = 0;
+         strsize iFind = 0;
          strsize iLen = 0;
          for(int32_t i = 0; i < m_straLines.get_size(); i++)
          {
             string str = m_straLines[i];
             const char * lpszStart = str;
             const char * lpszEnd = lpszStart;
-            int32_t cur_x = i == 0 ? x : m_bound.left;
+            float cur_x = i == 0 ? x : m_bound.left;
 //            int32_t cur_y = y + cy;
             if(py >= (y + cy) && py < (y + m_sizea[i].cy))
             {
                class ::size size(0, 0);
-               int32_t iChar = 0;
+               strsize iChar = 0;
                while(true)
                {
                   if(px < cur_x + size.cx)

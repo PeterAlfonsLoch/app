@@ -428,6 +428,9 @@
     <ClInclude Include="c\c_string_to_integer.h">
       <Filter>Header Files\c</Filter>
     </ClInclude>
+    <ClInclude Include="c\c_number.h">
+      <Filter>Header Files\c</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hotplugin\hotplugin_host.cpp">

@@ -19,8 +19,8 @@ namespace html
          public:
 
             index        m_iCol;
-            int32_t      m_cxMax;
-            int32_t      m_cxMin;
+            float        m_cxMax;
+            float        m_cxMin;
 
             column();
             column(index iCol);

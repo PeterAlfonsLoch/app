@@ -186,17 +186,23 @@ namespace hotplugin
 
    }
 
+
 #ifdef WINDOWS
-   uint_ptr plugin::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
+
+   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       return 0;
    }
+
 #else
+
    int32_t plugin::message_handler(XEvent * pevent)
    {
       return 0;
    }
+
 #endif
+
 
    int32_t plugin::start_ca2_system()
    {

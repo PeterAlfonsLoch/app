@@ -62,63 +62,63 @@ namespace html
          }
 
 
-         int32_t iTableBorder = get_table()->m_iBorder;
+         float iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
             iTableBorder += 1;
          }
 
-         int32_t cxMax;
-         int32_t cxMin;
+         float cxMax;
+         float cxMin;
          while(true)
          {
-            cxMax = -1;
-            cxMin = -1;
-            int32_t i;
+            cxMax = -1.f;
+            cxMin = -1.f;
+            index i;
             for(i = 0; i < m_cellholdera.get_size() && i < get_table()->m_columna.get_size(); i++)
             {
                cell * pcell = m_cellholdera[i].m_pcell;
                if(pcell != NULL)
                {
-                  if(pcell->m_cxMax <= -2
-                  || pcell->m_cxMin <= -2)
+                  if(pcell->m_cxMax <= -2.f
+                  || pcell->m_cxMin <= -2.f)
                   {
                      pcell->m_pelemental->implement_phase2(pdata);
                   }
-                  if(cxMax > -2)
+                  if(cxMax > -2.f)
                   {
                      if(pcell->m_cxMax > cxMax)
                      {
                         cxMax = pcell->m_cxMax;
                      }
-                     else if(pcell->m_cxMax <= -2)
+                     else if(pcell->m_cxMax <= -2.f)
                      {
                         cxMax = pcell->m_cxMax;
                      }
                   }
-                  if(cxMin > -2)
+                  if(cxMin > -2.f)
                   {
                      if(pcell->m_cxMin > cxMin)
                      {
                         cxMin = pcell->m_cxMin;
                      }
-                     else if(pcell->m_cxMin <= -2)
+                     else if(pcell->m_cxMin <= -2.f)
                      {
                         cxMin = pcell->m_cxMin;
                      }
                   }
-                  if(pcell->m_cxMax >= -1)
+                  if(pcell->m_cxMax >= -1.f)
                   {
                      if(pcell->m_cxMax > get_table()->m_columna[i].m_cxMax)
                      {
-                        get_table()->m_columna[i].m_cxMax = pcell->m_cxMax + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2 : iTableBorder);
+                        get_table()->m_columna[i].m_cxMax = pcell->m_cxMax + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2.f : iTableBorder);
                      }
                   }
-                  if(pcell->m_cxMin >= -1)
+                  if(pcell->m_cxMin >= -1.f)
                   {
                      if(pcell->m_cxMin > get_table()->m_columna[i].m_cxMin)
                      {
-                        get_table()->m_columna[i].m_cxMin = pcell->m_cxMin + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2 : iTableBorder);
+                        get_table()->m_columna[i].m_cxMin = pcell->m_cxMin + (i == get_table()->m_columna.get_upper_bound() ?  iTableBorder * 2.f : iTableBorder);
                      }
                   }
                }
@@ -127,31 +127,31 @@ namespace html
             {
                for(; i < get_table()->m_columna.get_size(); i++)
                {
-                 if(get_table()->m_columna[i].m_cxMax <= -2)
+                 if(get_table()->m_columna[i].m_cxMax <= -2.f)
                   {
-                     get_table()->m_columna[i].m_cxMax = -1;
+                     get_table()->m_columna[i].m_cxMax = -1.f;
                   }
-                  if(get_table()->m_columna[i].m_cxMin <= -2)
+                  if(get_table()->m_columna[i].m_cxMin <= -2.f)
                   {
-                     get_table()->m_columna[i].m_cxMin = -1;
+                     get_table()->m_columna[i].m_cxMin = -1.f;
                   }
 
                }
             }
-            if(cxMax >= -1
-            && cxMin >= -1)
+            if(cxMax >= -1.f
+            && cxMin >= -1.f)
             {
                break;
             }
          }
-         cxMax = 0;
-         cxMin = 0;
+         cxMax = 0.f;
+         cxMin = 0.f;
          if(get_table() != NULL)
          {
-            for(int32_t i = 0; i < get_table()->m_columna.get_size(); i++)
+            for(index i = 0; i < get_table()->m_columna.get_size(); i++)
             {
-               cxMax += max(0, get_table()->m_columna[i].m_cxMax);
-               cxMin += max(0, get_table()->m_columna[i].m_cxMin);
+               cxMax += max(0.f, get_table()->m_columna[i].m_cxMax);
+               cxMin += max(0.f, get_table()->m_columna[i].m_cxMin);
             }
          }
          cxMax += m_padding.left + m_padding.right + m_border.left + m_border.right + m_margin.left + m_margin.right;
@@ -173,7 +173,7 @@ namespace html
             prow = dynamic_cast < table_row * > (m_pelemental->m_elementalptra[0]->m_pimpl);
          }*/
 
-         int32_t iTableBorder = get_table()->m_iBorder;
+         float iTableBorder = get_table()->m_iBorder;
          if(iTableBorder > 0)
          {
             iTableBorder += 2;
@@ -240,7 +240,7 @@ namespace html
 
       }
 
-      void table_row::set_cell(int32_t iCol, int32_t iRow, cell * pcell)
+      void table_row::set_cell(index iCol, index iRow, cell * pcell)
       {
          
          if(iRow != m_iRow)

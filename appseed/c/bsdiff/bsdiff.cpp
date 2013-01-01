@@ -138,7 +138,7 @@ static file_offset search(file_offset *I,u_char *old,file_offset oldsize,
    };
 
    x=st+(en-st)/2;
-   if(memcmp_dup(old+I[x],_new,min(oldsize-I[x],newsize))<0) {
+   if(memcmp_dup(old+I[x],_new, (size_t) min(oldsize-I[x],newsize))<0) {
       return search(I,old,oldsize,_new,newsize,x,en,pos);
    } else {
       return search(I,old,oldsize,_new,newsize,st,x,pos);
@@ -203,7 +203,7 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
    //fread_dup in chunks, don't rely on fread_dup always returns full data!
    if(((fd=fopen_dup(oldfile,"rb")) ==0) ||
       ((oldsize=fseek_dup(fd,0,SEEK_END))==-1) ||
-      ((old=(u_char*)_ca_alloc(oldsize+1))==NULL) ||
+      ((old=(u_char*)_ca_alloc((size_t) (oldsize + 1)))==NULL) ||
       (fseek_dup(fd,0,SEEK_SET)!=0))
    {
       if(fd != 0)
@@ -219,7 +219,7 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
 
    file_offset r = oldsize;
 
-   while(r > 0 && (i = (file_offset) fread_dup(old + oldsize - r, 1, r, fd)) > 0)
+   while(r > 0 && (i = (file_offset) fread_dup(old + oldsize - r, 1, (size_t) r, fd)) > 0)
       r-=i;
    if (r>0 || fclose_dup(fd)>0)
    {
@@ -228,8 +228,8 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
    }
 
 
-   if(((I=(file_offset*)_ca_alloc((oldsize+1)*sizeof(file_offset)))==NULL) ||
-      ((V=(file_offset*)_ca_alloc((oldsize+1)*sizeof(file_offset)))==NULL))
+   if(((I=(file_offset*)_ca_alloc((size_t) ((oldsize+1)*sizeof(file_offset))))==NULL) ||
+      ((V=(file_offset*)_ca_alloc((size_t) ((oldsize+1)*sizeof(file_offset))))==NULL))
    {
       _ca_free(old, 0);
       if(I != NULL)
@@ -260,7 +260,7 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
    //fread_dup in chunks, don't rely on fread_dup always returns full data!
    if(((fd=fopen_dup(newfile,"rb"))== NULL) ||
       ((newsize=fseek_dup(fd,0,SEEK_END))==-1) ||
-      ((_new=(u_char*)_ca_alloc(newsize+1))==NULL) ||
+      ((_new=(u_char*)_ca_alloc((size_t) (newsize + 1)))==NULL) ||
       (fseek_dup(fd,0,SEEK_SET)!=0))
    {
       if(fd != 0)
@@ -273,7 +273,7 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
    }
 
    r=newsize;
-   while(r > 0 && (i = (file_offset) fread_dup(_new + newsize - r, 1, r, fd)) > 0)
+   while(r > 0 && (i = (file_offset) fread_dup(_new + newsize - r, 1, (size_t) r, fd)) > 0)
       r-=i;
    if (r>0 || fclose_dup(fd)> 0)
    {
@@ -283,8 +283,8 @@ int32_t bsdiff(const char * oldfile, const char * newfile, const char * patchfil
       return err(1,"%s",oldfile);
    }
 
-   if(((db=(u_char*)_ca_alloc(newsize+1))==NULL) ||
-      ((eb=(u_char*)_ca_alloc(newsize+1))==NULL))
+   if(((db=(u_char*)_ca_alloc((size_t) (newsize + 1)))==NULL) ||
+      ((eb=(u_char*)_ca_alloc((size_t) (newsize + 1)))==NULL))
    {
       _ca_free(old, 0);
       _ca_free(_new, 0);

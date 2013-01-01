@@ -215,7 +215,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
    //new:
    //_read in chunks, don't rely on _read always returns full data!
    if(((fd=fopen_dup(oldfile,"rb"))==0) ||
-      ((oldsize=fseek_dup(fd,0,SEEK_END))==-1) ||
+      ((oldsize = (ssize_t) fseek_dup(fd,0,SEEK_END))==-1) ||
       ((old=(u_char*)_ca_alloc(oldsize+1))==NULL) ||
       (fseek_dup(fd,0,SEEK_SET)!=0))
    {
@@ -258,7 +258,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
    }
 
    oldpos=0;newpos=0;
-   while(newpos<newsize) {
+   while(natural(newpos)<newsize) {
       /* _read control data */
       for(i=0;i<=2;i++) {
          lenread = BZ2_bzRead(&cbz2err, cpfbz2, buf, 8);
@@ -277,7 +277,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
       };
 
       /* Sanity-check */
-      if(newpos+ctrl[0]>newsize)
+      if(natural(newpos + ctrl[0]) > newsize)
       {
          fclose_dup(cpf);
          fclose_dup(dpf);
@@ -304,7 +304,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
 
       /* add old data to diff string */
       for(i=0;i<ctrl[0];i++)
-         if((oldpos+i>=0) && (oldpos+i<oldsize))
+         if((oldpos+i>=0) && (natural(oldpos + i) <oldsize))
             _new[newpos+i]+=old[oldpos+i];
 
       /* Adjust pointers */
@@ -312,7 +312,7 @@ int32_t bspatch(const char * oldfile, const char * newfile, const char * patchfi
       oldpos+=ctrl[0];
 
       /* Sanity-check */
-      if(newpos+ctrl[1]>newsize)
+      if(natural(newpos + ctrl[1]) >newsize)
       {
          fclose_dup(cpf);
          fclose_dup(dpf);

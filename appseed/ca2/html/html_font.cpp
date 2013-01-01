@@ -60,7 +60,7 @@ namespace html
          {
          }
       }
-      strsize iLen;
+//      strsize iLen;
       string strName;
       if(stra.get_count() > 0)
       {

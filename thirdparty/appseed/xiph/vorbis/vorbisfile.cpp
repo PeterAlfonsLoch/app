@@ -59,7 +59,7 @@ static long _get_data(OggVorbis_File *vf){
   if(!(vf->callbacks.read_func))return(-1);
   if(vf->datasource){
     char *buffer=ogg_sync_buffer(&vf->oy,READSIZE);
-    long bytes=(vf->callbacks.read_func)(buffer,1,READSIZE,vf->datasource);
+    long bytes = (long) (vf->callbacks.read_func)(buffer,1,READSIZE,vf->datasource);
     if(bytes>0)ogg_sync_wrote(&vf->oy,bytes);
     if(bytes==0 && errno)return(-1);
     return(bytes);
@@ -246,7 +246,7 @@ static ogg_int64_t _get_prev_page_serial(OggVorbis_File *vf,
           *granpos=ret_gran;
         }
 
-        if(!_lookup_serialno(ret_serialno,serial_list,serial_n)){
+        if(!_lookup_serialno((long) ret_serialno,serial_list,serial_n)){
           /* we fell off the end of the link, which means we seeked
              back too far and shouldn't have been looking in that link
              to begin with.  If we found the preferred serial number,
@@ -260,7 +260,7 @@ static ogg_int64_t _get_prev_page_serial(OggVorbis_File *vf,
   /* we're not interested in the page... just the serialno and granpos. */
   if(prefoffset>=0)return(prefoffset);
 
-  *serialno = ret_serialno;
+  *serialno = (int32_t) ret_serialno;
   *granpos = ret_gran;
   return(offset);
 
@@ -526,7 +526,7 @@ static int32_t _bisect_forward_serialno(OggVorbis_File *vf,
 
       if(bisect != vf->offset){
         ret=_seek_helper(vf,bisect);
-        if(ret)return(ret);
+        if(ret)return (int32_t) (ret);
       }
 
       last=_get_next_page(vf,&og,-1);
@@ -553,11 +553,11 @@ static int32_t _bisect_forward_serialno(OggVorbis_File *vf,
 
     if(vf->offset!=next){
       ret=_seek_helper(vf,next);
-      if(ret)return(ret);
+      if(ret) return (int32_t) (ret);
     }
 
     ret=_fetch_headers(vf,&vi,&vc,&next_serialno_list,&next_serialnos,NULL);
-    if(ret)return(ret);
+    if(ret) return (int32_t) (ret);
     serialno = vf->os.serialno;
     dataoffset = vf->offset;
 
@@ -567,7 +567,7 @@ static int32_t _bisect_forward_serialno(OggVorbis_File *vf,
 
     ret=_bisect_forward_serialno(vf,next,vf->offset,end,endgran,endserial,
                                  next_serialno_list,next_serialnos,m+1);
-    if(ret)return(ret);
+    if(ret) return (int32_t) (ret);
 
     if(next_serialno_list)_ogg_free(next_serialno_list);
 
@@ -629,7 +629,7 @@ static int32_t _open_seekable2(OggVorbis_File *vf){
      we're lucky the last vorbis page of this link as most OggVorbis
      files will contain a single logical bitstream */
   end=_get_prev_page_serial(vf,vf->serialnos+2,vf->serialnos[1],&endserial,&endgran);
-  if(end<0)return(end);
+  if(end<0) return (int32_t) (end);
 
   /* now determine bitstream structure recursively */
   if(_bisect_forward_serialno(vf,0,dataoffset,vf->offset,endgran,endserial,
@@ -862,7 +862,7 @@ static int32_t _fetch_and_process_packet(OggVorbis_File *vf,
    fseek64 */
 static int32_t _fseek64_wrap(FILE *f,ogg_int64_t off,int32_t whence){
   if(f==NULL)return(-1);
-  return fseek(f,off,whence);
+  return fseek(f, (long) off,whence);
 }
 
 static int32_t _ov_open1(void *f,OggVorbis_File *vf,const char *initial,
@@ -1102,12 +1102,12 @@ long ov_bitrate(OggVorbis_File *vf,int32_t i){
      * gcc 3.x on x86 miscompiled this at optimisation level 2 and above,
      * so this is slightly transformed to make it work.
      */
-    br = bits/ov_time_total(vf,-1);
-    return(rint(br));
+    br = (float) (bits/ov_time_total(vf,-1));
+    return (long) (rint(br));
   }else{
     if(vf->seekable){
       /* return the actual bitrate */
-      return(rint((vf->offsets[i+1]-vf->dataoffsets[i])*8/ov_time_total(vf,i)));
+      return (long) (rint((vf->offsets[i+1]-vf->dataoffsets[i])*8/ov_time_total(vf,i)));
     }else{
       /* return nominal if set */
       if(vf->vi[i].bitrate_nominal>0){
@@ -1135,7 +1135,7 @@ long ov_bitrate_instant(OggVorbis_File *vf){
   long ret;
   if(vf->ready_state<OPENED)return(OV_EINVAL);
   if(vf->samptrack==0)return(OV_FALSE);
-  ret=vf->bittrack/vf->samptrack*vf->vi[link].rate+.5;
+  ret = (long) (vf->bittrack/vf->samptrack*vf->vi[link].rate+.5);
   vf->bittrack=0.f;
   vf->samptrack=0.f;
   return(ret);
@@ -1663,7 +1663,7 @@ int32_t ov_pcm_seek(OggVorbis_File *vf,ogg_int64_t pos){
       ogg_int64_t target=(pos-vf->pcm_offset)>>hs;
       long samples=vorbis_synthesis_pcmout(&vf->vd,NULL);
 
-      if(samples>target)samples=target;
+      if(samples>target) samples = (long) target;
       vorbis_synthesis_read(&vf->vd,samples);
       vf->pcm_offset+=samples<<hs;
 
@@ -1700,7 +1700,7 @@ int32_t ov_time_seek(OggVorbis_File *vf,double seconds){
 
   /* enough information to convert time offset to pcm offset */
   {
-    ogg_int64_t target=pcm_total+(seconds-time_total)*vf->vi[link].rate;
+    ogg_int64_t target = (ogg_int64_t) (pcm_total+(seconds-time_total)*vf->vi[link].rate);
     return(ov_pcm_seek(vf,target));
   }
 }
@@ -1730,7 +1730,7 @@ int32_t ov_time_seek_page(OggVorbis_File *vf,double seconds){
 
   /* enough information to convert time offset to pcm offset */
   {
-    ogg_int64_t target=pcm_total+(seconds-time_total)*vf->vi[link].rate;
+    ogg_int64_t target = (ogg_int64_t) (pcm_total+(seconds-time_total)*vf->vi[link].rate);
     return(ov_pcm_seek_page(vf,target));
   }
 }
@@ -2065,8 +2065,8 @@ static void _ov_splice(float **pcm,float **lappcm,
     float *d=pcm[j];
 
     for(i=0;i<n;i++){
-      float wd=w[i]*w[i];
-      float ws=1.-wd;
+      float wd = w[i] * w[i];
+      float ws = 1.f - wd;
       d[i]=d[i]*wd + s[i]*ws;
     }
   }

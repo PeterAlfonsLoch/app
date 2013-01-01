@@ -221,8 +221,10 @@ namespace hotplugin
 
    }
 
+
 #ifdef WINDOWS
-   uint_ptr host::message_handler(uint_ptr uiMessage, WPARAM wparam, LPARAM lparam)
+
+   LRESULT host::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
       if(m_pplugin != NULL)
       {
@@ -230,7 +232,9 @@ namespace hotplugin
       }
       return 0;
    }
+
 #else
+
    int32_t host::message_handler(XEvent * pevent)
    {
       if(m_pplugin != NULL)
@@ -239,6 +243,7 @@ namespace hotplugin
       }
       return 0;
    }
+
 #endif
 
 

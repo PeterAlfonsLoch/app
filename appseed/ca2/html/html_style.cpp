@@ -1098,7 +1098,7 @@ namespace html
       }
       if(i >= str.get_length())
       {
-         f = strtod(&str[iFindDigit], NULL);
+         f = (float) strtod(&str[iFindDigit], NULL);
          return true;
       }
       if(str[i] == '.')
@@ -1107,7 +1107,7 @@ namespace html
       }
       if(i >= str.get_length())
       {
-         f = strtod(&str[iFindDigit], NULL);
+         f = (float) strtod(&str[iFindDigit], NULL);
          return true;
       }
       while(i < str.get_length() && i < isdigit(str[i]))
@@ -1116,7 +1116,7 @@ namespace html
       }
       if(i >= str.get_length())
       {
-         f = strtod(&str[iFindDigit], NULL);
+         f = (float) strtod(&str[iFindDigit], NULL);
          return true;
       }
       while(i < str.get_length() && i < isspace(str[i]))
@@ -1125,10 +1125,10 @@ namespace html
       }
       if(i >= str.get_length())
       {
-         f = strtod(&str[iFindDigit], NULL);
+         f = (float) strtod(&str[iFindDigit], NULL);
          return true;
       }
-      f = strtod(&str[iFindDigit], NULL);
+      f = (float) strtod(&str[iFindDigit], NULL);
       str = str.Mid(i);
       if(gen::str::begins_ci(str, "pt"))
       {
@@ -1194,15 +1194,15 @@ namespace html
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, "(");
             gen::str::consume_spaces(psz, 0);
-            int32_t R = gen::str::consume_natural(psz, 255);
+            int32_t R = (int32_t) gen::str::consume_natural(psz, 255);
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, ",");
             gen::str::consume_spaces(psz, 0);
-            int32_t G = gen::str::consume_natural(psz, 255);
+            int32_t G = (int32_t) gen::str::consume_natural(psz, 255);
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, ",");
             gen::str::consume_spaces(psz, 0);
-            int32_t B = gen::str::consume_natural(psz, 255);
+            int32_t B = (int32_t) gen::str::consume_natural(psz, 255);
             gen::str::consume_spaces(psz, 0);
             gen::str::consume(psz, ")");
             cr = ARGB(255, R, G, B);

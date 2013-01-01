@@ -924,7 +924,7 @@ namespace plugin
 
 #ifdef WINDOWSEX
 
-   uint_ptr plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
 
       if(m_puiHost != NULL)

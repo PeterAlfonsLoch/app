@@ -74,11 +74,15 @@ namespace plugin
       virtual void open_ca2_string(const char * psz);
 
 #ifdef WINDOWS
-      virtual uint_ptr message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+
+      virtual LRESULT message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+
 #elif defined(METROWIN)
 
 #else
+
       virtual int32_t message_handler(XEvent * pevent);
+
 #endif
 
       void start_ca2_login();

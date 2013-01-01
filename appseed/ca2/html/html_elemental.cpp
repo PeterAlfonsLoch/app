@@ -881,37 +881,37 @@ namespace html
       while(true)
       {
          m_pimpl->implement_phase2(pdata);
-         int32_t cxMax = m_pimpl->m_cxMax;
-         int32_t cxMin = m_pimpl->m_cxMin;
-         if(cxMax <= -2)
-            cxMax = -1;
-         if(cxMin <= -2)
-            cxMin = -1;
-         for(int32_t i = 0; i < m_elementalptra.get_size(); i++)
+         float cxMax = m_pimpl->m_cxMax;
+         float cxMin = m_pimpl->m_cxMin;
+         if(cxMax <= -2.f)
+            cxMax = -1.f;
+         if(cxMin <= -2.f)
+            cxMin = -1.f;
+         for(index i = 0; i < m_elementalptra.get_size(); i++)
          {
-            if(m_elementalptra[i]->m_pimpl->m_cxMax <= -2
-            || m_elementalptra[i]->m_pimpl->m_cxMin <= -2)
+            if(m_elementalptra[i]->m_pimpl->m_cxMax <= -2.f
+            || m_elementalptra[i]->m_pimpl->m_cxMin <= -2.f)
             {
                m_elementalptra[i]->implement_phase2(pdata);
             }
-            if(cxMax > -2)
+            if(cxMax > -2.f)
             {
                if(m_elementalptra[i]->m_pimpl->m_cxMax > cxMax)
                {
                   cxMax = m_elementalptra[i]->m_pimpl->m_cxMax;
                }
-               else if(m_elementalptra[i]->m_pimpl->m_cxMax <= -2)
+               else if(m_elementalptra[i]->m_pimpl->m_cxMax <= -2.f)
                {
                   cxMax = m_elementalptra[i]->m_pimpl->m_cxMax;
                }
             }
-            if(cxMin > -2)
+            if(cxMin > -2.f)
             {
                if(m_elementalptra[i]->m_pimpl->m_cxMin > cxMin)
                {
                   cxMin = m_elementalptra[i]->m_pimpl->m_cxMin;
                }
-               else if(m_elementalptra[i]->m_pimpl->m_cxMin <= -2)
+               else if(m_elementalptra[i]->m_pimpl->m_cxMin <= -2.f)
                {
                   cxMin = m_elementalptra[i]->m_pimpl->m_cxMin;
                }
@@ -919,8 +919,8 @@ namespace html
          }
          m_pimpl->m_cxMax = cxMax;
          m_pimpl->m_cxMin = cxMin;
-         if(m_pimpl->m_cxMax >= -1
-         && m_pimpl->m_cxMin >= -1)
+         if(m_pimpl->m_cxMax >= -1.f
+         && m_pimpl->m_cxMin >= -1.f)
          {
             break;
          }
@@ -1269,8 +1269,8 @@ namespace html
       if(m_pbase->get_type() == ::html::base::type_tag && strTag == "td")
       {
 
-         int32_t iLastCol = pcell->get_table()->m_columna.get_upper_bound();
-         int32_t iLastRow = pcell->get_table()->m_rowptra.get_upper_bound();
+         index iLastCol = pcell->get_table()->m_columna.get_upper_bound();
+         index iLastRow = pcell->get_table()->m_rowptra.get_upper_bound();
          if(pcell->m_iColEnd == iLastCol)
          {
             if(pcell->m_iRowEnd == iLastRow)
