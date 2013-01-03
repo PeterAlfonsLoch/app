@@ -27,6 +27,8 @@
    from the valid ranges. The adjustment process does not check for overflows
    or wrap arounds in the struct tm components.  */
 
+#include "framework.h"
+
 #ifndef OF
 #  ifdef __STDC__
 #    define OF(a) a

@@ -663,8 +663,8 @@ namespace sqlite
       typedef int64_t sqlite_int64;
       typedef uint64_t sqlite_uint64;
 #else
-      typedef long long int32_t sqlite_int64;
-      typedef unsigned long long int32_t sqlite_uint64;
+      typedef int64_t sqlite_int64;
+      typedef uint64_t sqlite_uint64;
 #endif
       typedef sqlite_int64 sqlite3_int64;
       typedef sqlite_uint64 sqlite3_uint64;

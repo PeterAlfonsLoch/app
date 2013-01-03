@@ -118,7 +118,7 @@ WINBOOL GetCursorPos(LPPOINT lpptCursor)
    Window child_return;
    int32_t win_x_return;
    int32_t win_y_return;
-   unsigned int32_t mask_return;
+   uint32_t mask_return;
 
    Display * display = XOpenDisplay(NULL);
 

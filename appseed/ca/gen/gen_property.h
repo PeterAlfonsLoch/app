@@ -304,11 +304,15 @@ namespace gen
          return *this;
       }
 
+#ifdef WINDOWS
+
       property & operator =(LONG l)
       {
          get_value() = l;
          return *this;
       }
+
+#endif
 
       property & operator =(uint32_t ui)
       {
@@ -316,11 +320,16 @@ namespace gen
          return *this;
       }
 
+
+#ifdef WINDOWS
+
       property & operator =(DWORD dw)
       {
          get_value() = dw;
          return *this;
       }
+
+#endif
 
       property & operator =(int64_t i)
       {
@@ -405,20 +414,28 @@ namespace gen
          return get_value().operator int32_t();
       }
 
+#ifdef WINDOWS
+
       operator LONG()
       {
          return get_value().operator LONG();
       }
+
+#endif
 
       operator uint32_t()
       {
          return get_value().operator uint32_t();
       }
 
+#ifdef WINDOWS
+
       operator DWORD()
       {
          return get_value().operator DWORD();
       }
+
+#endif
 
       operator int64_t()
       {

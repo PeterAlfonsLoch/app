@@ -25,12 +25,16 @@ public:
 #if defined(_LP64)
    dump_context& operator<<(int_ptr i);
    dump_context& operator<<(uint_ptr ui);
+#ifndef LINUX
    dump_context& operator<<(long_ptr l);
+#endif
 //   dump_context& operator<<(dword_ptr dw);
    dump_context& operator<<(int32_t n);
    dump_context& operator<<(uint32_t u);
    dump_context& dumpAsHex(int_ptr i);
+#ifndef LINUX
    dump_context& dumpAsHex(long_ptr l);
+#endif
    dump_context& dumpAsHex(dword_ptr dw);
    dump_context& dumpAsHex(int32_t n);
    dump_context& dumpAsHex(uint32_t u);

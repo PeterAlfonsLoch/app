@@ -250,7 +250,7 @@ oswindow oswindow::get_parent()
    Window root = 0;
    Window parent = 0;
    Window * pchildren = NULL;
-   unsigned int32_t ncount = 0;
+   uint32_t ncount = 0;
 
    XQueryTree(display(), window(), &root, &parent, &pchildren, &ncount);
 

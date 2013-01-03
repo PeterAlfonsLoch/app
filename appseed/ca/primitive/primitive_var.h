@@ -94,17 +94,20 @@ public:
    var(bool b);
    var(int32_t i);
    var(uint32_t ui);
-   var(long l);
-   var(unsigned long ul);
-   var(long long ll);
-   var(unsigned long long ull);
+   var(int64_t i);
+   var(uint64_t ui);
+   var(int32_t * pi);
+   var(uint32_t * pi);
+   var(int64_t * pi);
+   var(uint64_t * pui);
+//   var(long l);
+//   var(unsigned long ul);
+//   var(long long ll);
+//   var(unsigned long long ull);
    var(double d);
    var(const char * psz);
    var(string str);
    var(bool * pb);
-   var(int32_t * pi);
-   var(int64_t * pi);
-   var(uint64_t * pui);
    var(const ::datetime::time & time);
    var(const FILETIME & time);
    var(const SYSTEMTIME & time);
@@ -222,9 +225,13 @@ public:
    }
 
    operator int32_t() const;
+#ifdef WINDOWS
    operator LONG() const;
+#endif
    operator uint32_t() const;
+#ifdef WINDOWS
    operator DWORD() const;
+#endif
    operator int64_t() const;
    operator uint64_t() const;
 
@@ -249,8 +256,10 @@ public:
    var & operator = (int32_t * pi);
    var & operator = (uint32_t ui);
    var & operator = (uint32_t * pui);
+#ifdef WINDOWS
    var & operator = (DWORD ui);
    var & operator = (LPDWORD pui);
+#endif
    var & operator = (int64_t i);
    var & operator = (int64_t * pi);
    var & operator = (uint64_t i);
@@ -576,6 +585,8 @@ inline string CLASS_DECL_ca operator+ (const var & var, const string & str)
    return strResult;
 }
 
+#ifdef WINDOWS
+
 inline var::operator LONG () const
 {
 
@@ -596,7 +607,7 @@ inline var & var::operator = (DWORD ui)
 	return operator = ((uint32_t) ui);
 
 }
- 
+
 
 inline var & var::operator = (LPDWORD pui)
 {
@@ -604,5 +615,7 @@ inline var & var::operator = (LPDWORD pui)
 	return operator = ((uint32_t *) pui);
 
 }
+
+#endif
 
 

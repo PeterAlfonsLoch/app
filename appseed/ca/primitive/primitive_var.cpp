@@ -57,33 +57,20 @@ var::var(uint32_t ui )
    operator = (ui);
 }
 
-var::var(long i)
+var::var(int64_t i)
 {
    m_etype = type_new;
    m_pca2 = NULL;
    operator = (i);
 }
 
-var::var(unsigned long ui )
+var::var(uint64_t ui )
 {
    m_etype = type_uint;
    m_pca2 = NULL;
    operator = (ui);
 }
 
-var::var(long long i)
-{
-   m_etype = type_new;
-   m_pca2 = NULL;
-   operator = (i);
-}
-
-var::var(unsigned long long ui )
-{
-   m_etype = type_uint;
-   m_pca2 = NULL;
-   operator = (ui);
-}
 
 var::var(int32_t * pi)
 {
@@ -92,11 +79,25 @@ var::var(int32_t * pi)
    operator = (pi);
 }
 
+var::var(uint32_t * pui)
+{
+   m_etype = type_new;
+   m_pca2 = NULL;
+   operator = (pui);
+}
+
 var::var(int64_t * pi)
 {
    m_etype = type_new;
    m_pca2 = NULL;
    operator = (pi);
+}
+
+var::var(uint64_t * pui)
+{
+   m_etype = type_new;
+   m_pca2 = NULL;
+   operator = (pui);
 }
 
 var::var(double d)

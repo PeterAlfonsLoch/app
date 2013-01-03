@@ -76,12 +76,12 @@ namespace gen
       void format(string_format * pformat, unsigned short const & ush)
       {
 
-         pformat->append(gen::str::from((unsigned int32_t) ush));
+         pformat->append(gen::str::from((uint32_t) ush));
 
       }
 
 
-      void format(string_format * pformat, unsigned int32_t const & ui)
+      void format(string_format * pformat, uint32_t const & ui)
       {
          // TODO: use specs
          pformat->append(gen::str::from(ui));

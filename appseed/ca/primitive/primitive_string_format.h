@@ -40,7 +40,7 @@ u	Unsigned decimal integer	7235
 x	Unsigned hexadecimal integer	7fa
 X	Unsigned hexadecimal integer (capital letters)	7FA
 p	Pointer address	B800:0000
-n	Nothing printed. The argument must be a pointer to a signed int32_t, where the number of characters written so far is stored.
+n	Nothing printed. The argument must be a pointer to a int32_t, where the number of characters written so far is stored.
 %	A % followed by another % character will write % to stdout.	%
 
 The tag can also contain flags, width, .precision and length sub-specifiers, which are optional and follow these specifications:

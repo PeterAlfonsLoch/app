@@ -226,10 +226,10 @@
 	<File name="html/html_reader.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="1327" topLine="38" />
 	</File>
-	<File name="html/image.h" open="1" top="0" tabpos="1">
+	<File name="html/image.h" open="0" top="0" tabpos="1">
 		<Cursor position="142" topLine="0" />
 	</File>
-	<File name="html/text.h" open="1" top="0" tabpos="2">
+	<File name="html/text.h" open="0" top="0" tabpos="2">
 		<Cursor position="1346" topLine="13" />
 	</File>
 	<File name="mail/mail.h" open="0" top="0" tabpos="65">
@@ -238,8 +238,8 @@
 	<File name="mail/mail_db_pop3.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="8961" topLine="325" />
 	</File>
-	<File name="mail/mail_frame.h" open="1" top="0" tabpos="3">
-		<Cursor position="987" topLine="3" />
+	<File name="mail/mail_frame.h" open="0" top="0" tabpos="3">
+		<Cursor position="987" topLine="0" />
 	</File>
 	<File name="nature/nature.h" open="0" top="0" tabpos="58">
 		<Cursor position="145" topLine="0" />
@@ -289,7 +289,7 @@
 	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="74">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="user/_user_timer_array.h" open="1" top="0" tabpos="4">
+	<File name="user/_user_timer_array.h" open="0" top="0" tabpos="4">
 		<Cursor position="788" topLine="0" />
 	</File>
 	<File name="user/user.h" open="0" top="0" tabpos="49">
@@ -460,7 +460,7 @@
 	<File name="userbase/userbase_toolbar_ctrl.cpp" open="0" top="0" tabpos="42">
 		<Cursor position="21023" topLine="1087" />
 	</File>
-	<File name="userbase/userbase_tree_set.h" open="1" top="0" tabpos="5">
+	<File name="userbase/userbase_tree_set.h" open="0" top="0" tabpos="5">
 		<Cursor position="621" topLine="0" />
 	</File>
 	<File name="userbase/userbase_view.cpp" open="0" top="0" tabpos="43">

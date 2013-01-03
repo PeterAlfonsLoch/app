@@ -110,7 +110,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, (var) i, puh);
+         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, (var &) i, puh);
       }
       return false;
    }
@@ -119,7 +119,7 @@ namespace database
    {
       if(m_pdataserver != NULL)
       {
-         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, (var) i, puh);
+         return m_pdataserver->data_server_save(this, m_dataid, id, idIndex, (var &) i, puh);
       }
       return false;
    }

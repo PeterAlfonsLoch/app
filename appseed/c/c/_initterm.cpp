@@ -45,8 +45,8 @@ void _initterm(_PVFV *pfbegin, _PVFV *pfend)
 
 
 static _PVFV *atexitlist = 0;
-static unsigned int32_t max_atexit_entries = 0;
-static unsigned int32_t cur_atexit_entries = 0;
+static uint32_t max_atexit_entries = 0;
+static uint32_t cur_atexit_entries = 0;
 
 void _init_atexit()
 {

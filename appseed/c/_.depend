@@ -1,15 +1,15 @@
 # depslib dependency file v1.0
-1356545223 source:/ca2/app/appseed/c/ansios/ansios_cross_win.cpp
+1355853361 source:/ca2/app/appseed/c/ansios/ansios_cross_win.cpp
 	"framework.h"
 
-1356699997 /ca2/app/appseed/c/framework.h
+1357180608 /ca2/app/appseed/c/framework.h
 	"c_mm.h"
 	"c/c.h"
 	"macos/c_os_internal.h"
 	"linux/c_os_internal.h"
 	"windows/c_os_internal.h"
 
-1356830624 /ca2/app/appseed/c/c/c.h
+1357180588 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -22,15 +22,15 @@
 	"c_libc.h"
 	"c_count.h"
 	"c_index.h"
+	"c_number.h"
 	"c_keep_true.h"
 	"c_debug.h"
 	"c_printf.h"
 	"c_sprintf.h"
 	"c_str.h"
-	"c_std_file.h"
 	"c_heap.h"
 	"c/simple_graphics/simple_graphics_first_phase.h"
-	"c_mem.h"
+	"c_memory.h"
 	"c_math.h"
 	"c_geometric_types.h"
 	"c_verisimple_string.h"
@@ -80,16 +80,16 @@
 	"c_user.h"
 	"c_simple_app.h"
 
-1356545222 /ca2/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
+1354886566 /ca2/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
 
-1356545316 /ca2/nodeapp/operational_system/_.h
+1347082010 /ca2/nodeapp/operational_system/_.h
 	"get_platform.h"
 
-1356545316 /ca2/nodeapp/operational_system/get_platform.h
+1355476594 /ca2/nodeapp/operational_system/get_platform.h
 	<features.h>
 	"bare_operational_system.h"
 
-1356832017 /ca2/nodeapp/operational_system/bare_operational_system.h
+1357202867 /ca2/nodeapp/operational_system/bare_operational_system.h
 	<features.h>
 	<stdlib.h>
 	<stdio.h>
@@ -113,16 +113,16 @@
 	"version_cpu.h"
 	"cross/win/win.h"
 
-1356832011 /ca2/nodeapp/operational_system/osdisplay.h
+1357180614 /ca2/nodeapp/operational_system/osdisplay.h
 
-1356832010 /ca2/nodeapp/operational_system/oswindow.h
+1357180613 /ca2/nodeapp/operational_system/oswindow.h
 	<inttypes.h>
 
-1356545316 /ca2/nodeapp/operational_system/version_linux.h
+1345878529 /ca2/nodeapp/operational_system/version_linux.h
 
-1356545316 /ca2/nodeapp/operational_system/version_cpu.h
+1345878529 /ca2/nodeapp/operational_system/version_cpu.h
 
-1356832015 /ca2/nodeapp/operational_system/cross/win/win.h
+1357202447 /ca2/nodeapp/operational_system/cross/win/win.h
 	"base_tsd.h"
 	"win_def.h"
 	"win_crt.h"
@@ -138,12 +138,12 @@
 	"win_mmsystem.h"
 	"ntstatus.h"
 
-1356832016 /ca2/nodeapp/operational_system/cross/win/base_tsd.h
+1357202319 /ca2/nodeapp/operational_system/cross/win/base_tsd.h
 
-1356832014 /ca2/nodeapp/operational_system/cross/win/win_def.h
+1357202439 /ca2/nodeapp/operational_system/cross/win/win_def.h
 	"win_nt.h"
 
-1356832012 /ca2/nodeapp/operational_system/cross/win/win_nt.h
+1357180611 /ca2/nodeapp/operational_system/cross/win/win_nt.h
 	"base_tsd.h"
 	"win_guid_def.h"
 	<ctype.h>
@@ -169,10 +169,10 @@
 	"pshpack8.h"
 	"poppack.h"
 
-1356832013 /ca2/nodeapp/operational_system/cross/win/win_guid_def.h
+1357202449 /ca2/nodeapp/operational_system/cross/win/win_guid_def.h
 	<string.h>
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/pshpack2.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/pshpack2.h
 	"poppack.h"
 	"poppack.h"
 	"poppack.h"
@@ -188,25 +188,9 @@
 	"poppack.h"
 	"poppack.h"
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/poppack.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/poppack.h
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/pshpack8.h
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-	"poppack.h"
-
-1356545316 /ca2/nodeapp/operational_system/cross/win/pshpack4.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/pshpack8.h
 	"poppack.h"
 	"poppack.h"
 	"poppack.h"
@@ -222,140 +206,156 @@
 	"poppack.h"
 	"poppack.h"
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/win_crt.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/pshpack4.h
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
+	"poppack.h"
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/win_error.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/win_crt.h
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/win_base.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/win_error.h
 
-1356832013 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
+1354897762 /ca2/nodeapp/operational_system/cross/win/win_base.h
 
-1356832011 /ca2/nodeapp/operational_system/cross/win/win_user.h
+1357180611 /ca2/nodeapp/operational_system/cross/win/win_gdi.h
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/win_errno.h
+1357180610 /ca2/nodeapp/operational_system/cross/win/win_user.h
 
-1356832015 /ca2/nodeapp/operational_system/cross/win/win_crtdefs.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/win_errno.h
 
-1356832012 /ca2/nodeapp/operational_system/cross/win/win_nls.h
+1357202448 /ca2/nodeapp/operational_system/cross/win/win_crtdefs.h
+
+1357180611 /ca2/nodeapp/operational_system/cross/win/win_nls.h
 	<macwin32.h>
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/win_file.h
+1345878529 /ca2/nodeapp/operational_system/cross/win/win_file.h
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/win_mmeapi.h
+1349512048 /ca2/nodeapp/operational_system/cross/win/win_mmeapi.h
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/win_mmsystem.h
+1352004562 /ca2/nodeapp/operational_system/cross/win/win_mmsystem.h
 
-1356545316 /ca2/nodeapp/operational_system/cross/win/ntstatus.h
+1347059520 /ca2/nodeapp/operational_system/cross/win/ntstatus.h
 
-1356545223 /ca2/app/appseed/c/vms/vms.h
+1354886566 /ca2/app/appseed/c/vms/vms.h
 	"veriwell_musical_studio.h"
 
-1356545223 /ca2/app/appseed/c/vms/veriwell_musical_studio.h
+1354886566 /ca2/app/appseed/c/vms/veriwell_musical_studio.h
 
-1356830624 /ca2/app/appseed/c/version/version.h
+1357180591 /ca2/app/appseed/c/version/version.h
 	"version.config.h"
 
-1356545223 /ca2/app/appseed/c/version/version.config.h
+1354886566 /ca2/app/appseed/c/version/version.config.h
 	"include/product.version.config.h"
 
-1356545238 /ca2/app/appseed/include/product.version.config.h
+1354886573 /ca2/app/appseed/include/product.version.config.h
 
-1356830624 /ca2/app/appseed/c/c/c_types.h
+1357180588 /ca2/app/appseed/c/c/c_types.h
 
-1356830624 /ca2/app/appseed/c/c/c_natural.h
+1357202483 /ca2/app/appseed/c/c/c_natural.h
 
-1356545223 /ca2/app/appseed/c/c/c_logic.h
+1357180588 /ca2/app/appseed/c/c/c_logic.h
 
-1356545223 /ca2/app/appseed/c/c/c_time.h
+1354886566 /ca2/app/appseed/c/c/c_time.h
 
-1356830624 /ca2/app/appseed/c/c/c_cpu_architecture.h
+1357180588 /ca2/app/appseed/c/c/c_cpu_architecture.h
 
-1356830624 /ca2/app/appseed/c/c/c_libc.h
+1357180588 /ca2/app/appseed/c/c/c_libc.h
 	<tchar.h>
 	"c_heap.h"
 
-1356830624 /ca2/app/appseed/c/c/c_heap.h
+1357180588 /ca2/app/appseed/c/c/c_heap.h
 	"c_heap.h"
 
-1356545223 /ca2/app/appseed/c/c/c_count.h
+1354886566 /ca2/app/appseed/c/c/c_count.h
 
-1356545223 /ca2/app/appseed/c/c/c_index.h
+1354886566 /ca2/app/appseed/c/c/c_index.h
 
-1356545223 /ca2/app/appseed/c/c/c_keep_true.h
+1354886566 /ca2/app/appseed/c/c/c_keep_true.h
 
-1356830624 /ca2/app/appseed/c/c/c_debug.h
+1357180588 /ca2/app/appseed/c/c/c_debug.h
 
-1356830624 /ca2/app/appseed/c/c/c_printf.h
+1357180588 /ca2/app/appseed/c/c/c_printf.h
 
-1356830624 /ca2/app/appseed/c/c/c_sprintf.h
+1357180588 /ca2/app/appseed/c/c/c_sprintf.h
 
-1356830624 /ca2/app/appseed/c/c/c_str.h
+1357180588 /ca2/app/appseed/c/c/c_str.h
 
 1356830624 /ca2/app/appseed/c/c/c_std_file.h
 
-1356545222 /ca2/app/appseed/c/simple_graphics/simple_graphics_first_phase.h
+1354886566 /ca2/app/appseed/c/simple_graphics/simple_graphics_first_phase.h
 
 1356830624 /ca2/app/appseed/c/c/c_mem.h
 
-1356830624 /ca2/app/appseed/c/c/c_math.h
+1357180588 /ca2/app/appseed/c/c/c_math.h
 
-1356545223 /ca2/app/appseed/c/c/c_geometric_types.h
+1354886566 /ca2/app/appseed/c/c/c_geometric_types.h
 
-1356830624 /ca2/app/appseed/c/c/c_verisimple_string.h
+1357180588 /ca2/app/appseed/c/c/c_verisimple_string.h
 
-1356830624 /ca2/app/appseed/c/c/c_verisimple_wstring.h
+1357180588 /ca2/app/appseed/c/c/c_verisimple_wstring.h
 
-1356830624 /ca2/app/appseed/c/c/c_vsstringtow.h
+1357180588 /ca2/app/appseed/c/c/c_vsstringtow.h
 
-1356830624 /ca2/app/appseed/c/c/c_wstringtovss.h
+1357180588 /ca2/app/appseed/c/c/c_wstringtovss.h
 
-1356545223 /ca2/app/appseed/c/c/c_dir.h
+1355775089 /ca2/app/appseed/c/c/c_dir.h
 
-1356830624 /ca2/app/appseed/c/c/c_md5.h
+1357180588 /ca2/app/appseed/c/c/c_md5.h
 
-1356545223 /ca2/app/appseed/c/c/c_simple_obj.h
+1354886566 /ca2/app/appseed/c/c/c_simple_obj.h
 
-1356545223 /ca2/app/appseed/c/c/c_template.h
+1354886566 /ca2/app/appseed/c/c/c_template.h
 
-1356830624 /ca2/app/appseed/c/c/c_simple_array.h
+1357180588 /ca2/app/appseed/c/c/c_simple_array.h
 
-1356830624 /ca2/app/appseed/c/c/c_simple_map.h
+1357180588 /ca2/app/appseed/c/c/c_simple_map.h
 
-1356830624 /ca2/app/appseed/c/c/c_simple_list.h
+1357180588 /ca2/app/appseed/c/c/c_simple_list.h
 
-1356545223 /ca2/app/appseed/c/c/c_stra.h
+1354886566 /ca2/app/appseed/c/c/c_stra.h
 
-1356830624 /ca2/app/appseed/c/c/c_xmlite.h
+1357180588 /ca2/app/appseed/c/c/c_xmlite.h
 
-1356830624 /ca2/app/appseed/c/c/c_file.h
+1357180588 /ca2/app/appseed/c/c/c_file.h
 
-1356545223 /ca2/app/appseed/c/c/c_launcher.h
+1354886566 /ca2/app/appseed/c/c/c_launcher.h
 
-1356830624 /ca2/app/appseed/c/c/c_small_ipc_channel.h
+1357180588 /ca2/app/appseed/c/c/c_small_ipc_channel.h
 	<pthread.h>
 	<pthread.h>
 	"c_simple_mutex.h"
 
-1356830624 /ca2/app/appseed/c/c/c_simple_mutex.h
+1357180588 /ca2/app/appseed/c/c/c_simple_mutex.h
 	<sys/sem.h>
 	<pthread.h>
 
-1356830624 /ca2/app/appseed/c/c/c_simple_event.h
+1357180588 /ca2/app/appseed/c/c/c_simple_event.h
 	<pthread.h>
 
-1356545223 /ca2/app/appseed/c/c/c_mutex_lock.h
+1354886566 /ca2/app/appseed/c/c/c_mutex_lock.h
 
-1356545223 /ca2/app/appseed/c/c/c_simple_critical_section.h
+1354886566 /ca2/app/appseed/c/c/c_simple_critical_section.h
 
-1356545223 /ca2/app/appseed/c/c/c_library.h
+1354886566 /ca2/app/appseed/c/c/c_library.h
 
-1356545223 /ca2/app/appseed/c/c/c_simple_memory.h
+1354886566 /ca2/app/appseed/c/c/c_simple_memory.h
 
-1356545223 /ca2/app/appseed/c/c/c_file_watcher.h
+1354886566 /ca2/app/appseed/c/c/c_file_watcher.h
 
-1356545223 /ca2/app/appseed/c/c/c_file_watcher_impl.h
+1354886566 /ca2/app/appseed/c/c/c_file_watcher_impl.h
 
-1356545218 /ca2/app/appseed/c/os/os.h
+1354898758 /ca2/app/appseed/c/os/os.h
 	"os_thread.h"
 	"os_process.h"
 	"c/ansios/ansios.h"
@@ -367,21 +367,21 @@
 	"c/metrowin/c_os.h"
 	"c/windows/c_os.h"
 
-1356830623 /ca2/app/appseed/c/os/os_thread.h
+1357180568 /ca2/app/appseed/c/os/os_thread.h
 
-1356830623 /ca2/app/appseed/c/os/os_process.h
+1357180568 /ca2/app/appseed/c/os/os_process.h
 
-1356545223 /ca2/app/appseed/c/ansios/ansios.h
+1354898398 /ca2/app/appseed/c/ansios/ansios.h
 	"ansios_file.h"
 	"ansios_thread.h"
 
-1356832106 /ca2/app/appseed/c/ansios/ansios_file.h
+1357180595 /ca2/app/appseed/c/ansios/ansios_file.h
 
-1356545223 /ca2/app/appseed/c/ansios/ansios_thread.h
+1355314289 /ca2/app/appseed/c/ansios/ansios_thread.h
 
-1356832067 /ca2/app/appseed/c/os/os_binreloc.h
+1357180568 /ca2/app/appseed/c/os/os_binreloc.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os.h
+1354974458 /ca2/app/appseed/c/macos/c_os.h
 	<stdarg.h>
 	<wchar.h>
 	"c_os_graphics.h"
@@ -392,7 +392,7 @@
 	"c_os_cross_win_file.h"
 	"c_os_file_watcher.h"
 
-1356545222 /ca2/app/appseed/c/macos/c_os_graphics.h
+1354886566 /ca2/app/appseed/c/macos/c_os_graphics.h
 	"c_os_simple_bitmap.h"
 	"c_os_simple_brush.h"
 	"c_os_simple_pen.h"
@@ -400,31 +400,31 @@
 	"c_os_simple_path.h"
 	"c_os_simple_graphics.h"
 
-1356545222 /ca2/app/appseed/c/macos/c_os_simple_bitmap.h
+1354886566 /ca2/app/appseed/c/macos/c_os_simple_bitmap.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_simple_brush.h
+1354886566 /ca2/app/appseed/c/macos/c_os_simple_brush.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_simple_pen.h
+1354886566 /ca2/app/appseed/c/macos/c_os_simple_pen.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_simple_font.h
+1354886566 /ca2/app/appseed/c/macos/c_os_simple_font.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_simple_path.h
+1354886566 /ca2/app/appseed/c/macos/c_os_simple_path.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
+1354886566 /ca2/app/appseed/c/macos/c_os_simple_graphics.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_http_lib.h
+1354886566 /ca2/app/appseed/c/macos/c_os_http_lib.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_http.h
+1354886566 /ca2/app/appseed/c/macos/c_os_http.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_process.h
+1354886566 /ca2/app/appseed/c/macos/c_os_process.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_cross_win_gdi.h
+1354886566 /ca2/app/appseed/c/macos/c_os_cross_win_gdi.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_cross_win_file.h
+1354886566 /ca2/app/appseed/c/macos/c_os_cross_win_file.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_file_watcher.h
+1354886566 /ca2/app/appseed/c/macos/c_os_file_watcher.h
 
-1356832097 /ca2/app/appseed/c/linux/c_os.h
+1357180602 /ca2/app/appseed/c/linux/c_os.h
 	<stdarg.h>
 	<wchar.h>
 	"c_os_graphics.h"
@@ -436,7 +436,7 @@
 	"c_os_file.h"
 	"c_os_file_watcher.h"
 
-1356832089 /ca2/app/appseed/c/linux/c_os_graphics.h
+1357180602 /ca2/app/appseed/c/linux/c_os_graphics.h
 	<X11/Xlib.h>
 	<X11/Xutil.h>
 	<cairo/cairo.h>
@@ -448,33 +448,33 @@
 	"c_os_simple_graphics.h"
 	<X11/Xlib.h>
 
-1356832077 /ca2/app/appseed/c/linux/c_os_simple_brush.h
+1357180602 /ca2/app/appseed/c/linux/c_os_simple_brush.h
 
-1356832078 /ca2/app/appseed/c/linux/c_os_simple_bitmap.h
+1357180602 /ca2/app/appseed/c/linux/c_os_simple_bitmap.h
 
-1356832075 /ca2/app/appseed/c/linux/c_os_simple_font.h
+1357180602 /ca2/app/appseed/c/linux/c_os_simple_font.h
 
-1356832071 /ca2/app/appseed/c/linux/c_os_simple_pen.h
+1357180602 /ca2/app/appseed/c/linux/c_os_simple_pen.h
 
-1356832072 /ca2/app/appseed/c/linux/c_os_simple_path.h
+1357180602 /ca2/app/appseed/c/linux/c_os_simple_path.h
 
-1356832074 /ca2/app/appseed/c/linux/c_os_simple_graphics.h
+1357180602 /ca2/app/appseed/c/linux/c_os_simple_graphics.h
 
-1356832085 /ca2/app/appseed/c/linux/c_os_http_lib.h
+1357180602 /ca2/app/appseed/c/linux/c_os_http_lib.h
 
-1356832087 /ca2/app/appseed/c/linux/c_os_http.h
+1357180602 /ca2/app/appseed/c/linux/c_os_http.h
 
-1356832081 /ca2/app/appseed/c/linux/c_os_process.h
+1357180602 /ca2/app/appseed/c/linux/c_os_process.h
 
-1356832095 /ca2/app/appseed/c/linux/c_os_cross_win_gdi.h
+1357180602 /ca2/app/appseed/c/linux/c_os_cross_win_gdi.h
 
-1356545223 /ca2/app/appseed/c/linux/c_os_cross_win_file.h
+1354886566 /ca2/app/appseed/c/linux/c_os_cross_win_file.h
 
-1356832092 /ca2/app/appseed/c/linux/c_os_file.h
+1357180602 /ca2/app/appseed/c/linux/c_os_file.h
 
-1356832090 /ca2/app/appseed/c/linux/c_os_file_watcher.h
+1357180602 /ca2/app/appseed/c/linux/c_os_file_watcher.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os.h
+1355771451 /ca2/app/appseed/c/metrowin/c_os.h
 	"c/os/os.h"
 	"c_os_gdi.h"
 	"c_os_thread.h"
@@ -485,7 +485,7 @@
 	"c_os_file.h"
 	"c_os_file_watcher.h"
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_gdi.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_gdi.h
 	<D2D1_1.h>
 	<DWRITE.h>
 	<d3d11_1.h>
@@ -496,33 +496,33 @@
 	"c_os_simple_path.h"
 	"c_os_simple_graphics.h"
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_simple_brush.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_simple_brush.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_simple_bitmap.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_simple_bitmap.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_simple_font.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_simple_font.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_simple_pen.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_simple_pen.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_simple_path.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_simple_path.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_simple_graphics.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_simple_graphics.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_thread.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_thread.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_sockets.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_sockets.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_http.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_http.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_process.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_process.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_simple_hold_handle.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_simple_hold_handle.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_file.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_file.h
 
-1356545222 /ca2/app/appseed/c/metrowin/c_os_file_watcher.h
+1354886566 /ca2/app/appseed/c/metrowin/c_os_file_watcher.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os.h
+1356103980 /ca2/app/appseed/c/windows/c_os.h
 	"openssl/ssl.h"
 	"openssl/applink.c"
 	"c/os/os.h"
@@ -535,7 +535,7 @@
 	"c_os_file_watcher.h"
 	"c_os_graphics_round_rect.h"
 
-1356545219 /ca2/app/appseed/c/windows/c_os_gdi.h
+1354886565 /ca2/app/appseed/c/windows/c_os_gdi.h
 	"c_os_simple_brush.h"
 	"c_os_simple_bitmap.h"
 	"c_os_simple_font.h"
@@ -543,59 +543,59 @@
 	"c_os_simple_path.h"
 	"c_os_simple_graphics.h"
 
-1356830623 /ca2/app/appseed/c/windows/c_os_simple_brush.h
+1357180569 /ca2/app/appseed/c/windows/c_os_simple_brush.h
 
-1356830623 /ca2/app/appseed/c/windows/c_os_simple_bitmap.h
+1357180569 /ca2/app/appseed/c/windows/c_os_simple_bitmap.h
 
-1356830623 /ca2/app/appseed/c/windows/c_os_simple_font.h
+1357180569 /ca2/app/appseed/c/windows/c_os_simple_font.h
 
-1356830623 /ca2/app/appseed/c/windows/c_os_simple_pen.h
+1357180569 /ca2/app/appseed/c/windows/c_os_simple_pen.h
 
-1356830623 /ca2/app/appseed/c/windows/c_os_simple_path.h
+1357180569 /ca2/app/appseed/c/windows/c_os_simple_path.h
 
-1356830623 /ca2/app/appseed/c/windows/c_os_simple_graphics.h
+1357180569 /ca2/app/appseed/c/windows/c_os_simple_graphics.h
 
-1356830623 /ca2/app/appseed/c/windows/c_os_http.h
+1357180569 /ca2/app/appseed/c/windows/c_os_http.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os_registry.h
+1354886565 /ca2/app/appseed/c/windows/c_os_registry.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os_process.h
+1354886565 /ca2/app/appseed/c/windows/c_os_process.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os_simple_hold_handle.h
+1354886565 /ca2/app/appseed/c/windows/c_os_simple_hold_handle.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os_file.h
+1354886565 /ca2/app/appseed/c/windows/c_os_file.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os_file_watcher.h
+1354886565 /ca2/app/appseed/c/windows/c_os_file_watcher.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os_graphics_round_rect.h
+1354886565 /ca2/app/appseed/c/windows/c_os_graphics_round_rect.h
 
-1356545219 /ca2/app/appseed/c/cross/cross.h
+1354899562 /ca2/app/appseed/c/cross/cross.h
 	"c/cross/windows/windows.h"
 
-1356692654 /ca2/app/appseed/c/cross/windows/windows.h
+1357180568 /ca2/app/appseed/c/cross/windows/windows.h
 	"windows_types.h"
 	"windows_gdi.h"
 	"windows_user.h"
 	"windows_thread.h"
 	"windows_ole_automation.h"
 
-1356687015 /ca2/app/appseed/c/cross/windows/windows_types.h
+1357180568 /ca2/app/appseed/c/cross/windows/windows_types.h
 
-1356545219 /ca2/app/appseed/c/cross/windows/windows_gdi.h
+1355266172 /ca2/app/appseed/c/cross/windows/windows_gdi.h
 
-1356832099 /ca2/app/appseed/c/cross/windows/windows_user.h
+1357180568 /ca2/app/appseed/c/cross/windows/windows_user.h
 
-1356832100 /ca2/app/appseed/c/cross/windows/windows_thread.h
+1357180568 /ca2/app/appseed/c/cross/windows/windows_thread.h
 
-1356832101 /ca2/app/appseed/c/cross/windows/windows_ole_automation.h
+1357202442 /ca2/app/appseed/c/cross/windows/windows_ole_automation.h
 
-1356830624 /ca2/app/appseed/c/c/c_conv.h
+1357180588 /ca2/app/appseed/c/c/c_conv.h
 
-1356830624 /ca2/app/appseed/c/c/c_string_to_integer.h
+1357180588 /ca2/app/appseed/c/c/c_string_to_integer.h
 
-1356830624 /ca2/app/appseed/c/c/c_integer_to_string.h
+1357180588 /ca2/app/appseed/c/c/c_integer_to_string.h
 
-1356545222 /ca2/app/appseed/c/simple_graphics/simple_graphics_second_phase.h
+1354886566 /ca2/app/appseed/c/simple_graphics/simple_graphics_second_phase.h
 	"simple_solid_brush.h"
 	"simple_linear_gradient_brush.h"
 	"simple_solid_pen.h"
@@ -604,62 +604,61 @@
 	"simple_path.h"
 	"simple_graphics.h"
 
-1356545222 /ca2/app/appseed/c/simple_graphics/simple_solid_brush.h
+1354886566 /ca2/app/appseed/c/simple_graphics/simple_solid_brush.h
 
-1356830624 /ca2/app/appseed/c/simple_graphics/simple_linear_gradient_brush.h
+1357180571 /ca2/app/appseed/c/simple_graphics/simple_linear_gradient_brush.h
 
-1356830624 /ca2/app/appseed/c/simple_graphics/simple_solid_pen.h
+1357180571 /ca2/app/appseed/c/simple_graphics/simple_solid_pen.h
 
-1356830624 /ca2/app/appseed/c/simple_graphics/simple_font.h
+1357180571 /ca2/app/appseed/c/simple_graphics/simple_font.h
 
-1356830624 /ca2/app/appseed/c/simple_graphics/simple_pixel_font.h
+1357180571 /ca2/app/appseed/c/simple_graphics/simple_pixel_font.h
 
-1356830624 /ca2/app/appseed/c/simple_graphics/simple_path.h
+1357180571 /ca2/app/appseed/c/simple_graphics/simple_path.h
 
-1356830624 /ca2/app/appseed/c/simple_graphics/simple_graphics.h
+1357180570 /ca2/app/appseed/c/simple_graphics/simple_graphics.h
 
-1356830624 /ca2/app/appseed/c/c/c_simple_shell_launcher.h
+1357180588 /ca2/app/appseed/c/c/c_simple_shell_launcher.h
 
-1356830624 /ca2/app/appseed/c/c/c_file_watcher_thread.h
+1357180588 /ca2/app/appseed/c/c/c_file_watcher_thread.h
 
-1356545223 /ca2/app/appseed/c/c/c_file_watcher_listener_thread.h
+1354886566 /ca2/app/appseed/c/c/c_file_watcher_listener_thread.h
 
-1356830624 /ca2/app/appseed/c/c/c_async.h
+1357180588 /ca2/app/appseed/c/c/c_async.h
 
-1356545223 /ca2/app/appseed/c/c/c_base64.h
+1354886566 /ca2/app/appseed/c/c/c_base64.h
 
-1356545223 /ca2/app/appseed/c/hotplugin/hotplugin.h
+1354886566 /ca2/app/appseed/c/hotplugin/hotplugin.h
 	"hotplugin_plugin.h"
 	"hotplugin_host.h"
 	"hotplugin_container_launcher.h"
 
-1356830625 /ca2/app/appseed/c/hotplugin/hotplugin_plugin.h
+1357180606 /ca2/app/appseed/c/hotplugin/hotplugin_plugin.h
 
-1356830625 /ca2/app/appseed/c/hotplugin/hotplugin_host.h
+1357180606 /ca2/app/appseed/c/hotplugin/hotplugin_host.h
 
-1356545223 /ca2/app/appseed/c/hotplugin/hotplugin_container_launcher.h
+1354886566 /ca2/app/appseed/c/hotplugin/hotplugin_container_launcher.h
 
-1356830624 /ca2/app/appseed/c/simple_ui/simple_ui.h
+1357180593 /ca2/app/appseed/c/simple_ui/simple_ui.h
 	"simple_edit_box.h"
 	"simple_label.h"
 	"simple_password.h"
 	"simple_tap.h"
 
-1356830624 /ca2/app/appseed/c/simple_ui/simple_edit_box.h
+1357180593 /ca2/app/appseed/c/simple_ui/simple_edit_box.h
 
-1356545223 /ca2/app/appseed/c/simple_ui/simple_label.h
+1354886566 /ca2/app/appseed/c/simple_ui/simple_label.h
 
-1356545223 /ca2/app/appseed/c/simple_ui/simple_password.h
+1354886566 /ca2/app/appseed/c/simple_ui/simple_password.h
 
-1356830624 /ca2/app/appseed/c/simple_ui/simple_tap.h
+1357180593 /ca2/app/appseed/c/simple_ui/simple_tap.h
 
-1356545223 /ca2/app/appseed/c/crypt/crypt.h
+1354886566 /ca2/app/appseed/c/crypt/crypt.h
 	"nessie.h"
 
-1356830625 /ca2/app/appseed/c/crypt/nessie.h
-	<limits.h>
+1357180603 /ca2/app/appseed/c/crypt/nessie.h
 
-1356830623 /ca2/app/appseed/c/spa/spa.h
+1357180568 /ca2/app/appseed/c/spa/spa.h
 	"spa_spa.h"
 	"spa_starter_start.h"
 	"spa_boot.h"
@@ -682,172 +681,606 @@
 	"spa_plugin.h"
 	"spa_installer.h"
 
-1356545219 /ca2/app/appseed/c/spa/spa_spa.h
+1354886565 /ca2/app/appseed/c/spa/spa_spa.h
 
-1356545219 /ca2/app/appseed/c/spa/spa_starter_start.h
+1354886565 /ca2/app/appseed/c/spa/spa_starter_start.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_boot.h
+1357180568 /ca2/app/appseed/c/spa/spa_boot.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_cube_run.h
+1357180568 /ca2/app/appseed/c/spa/spa_cube_run.h
 
-1356545219 /ca2/app/appseed/c/spa/spa_small_bell.h
+1354886565 /ca2/app/appseed/c/spa/spa_small_bell.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_install_ca2.h
+1357180568 /ca2/app/appseed/c/spa/spa_install_ca2.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_canvas.h
+1357180568 /ca2/app/appseed/c/spa/spa_canvas.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_window.h
+1357180568 /ca2/app/appseed/c/spa/spa_window.h
 
-1356545218 /ca2/app/appseed/c/spa/spa_trace.h
+1354886565 /ca2/app/appseed/c/spa/spa_trace.h
 
-1356545218 /ca2/app/appseed/c/spa/spa_machine_event_data.h
+1354886565 /ca2/app/appseed/c/spa/spa_machine_event_data.h
 
-1356545219 /ca2/app/appseed/c/spa/spa_machine_event.h
+1354886565 /ca2/app/appseed/c/spa/spa_machine_event.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_installer.h
+1357180568 /ca2/app/appseed/c/spa/spa_installer.h
 
-1356545219 /ca2/app/appseed/c/spa/resource.h
+1354886565 /ca2/app/appseed/c/spa/resource.h
 
-1356545219 /ca2/app/appseed/c/spa/spa_focus.h
+1354886565 /ca2/app/appseed/c/spa/spa_focus.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_http.h
+1357180568 /ca2/app/appseed/c/spa/spa_http.h
 
-1356545219 /ca2/app/appseed/c/spa/spa_login.h
+1354886565 /ca2/app/appseed/c/spa/spa_login.h
 
-1356830623 /ca2/app/appseed/c/spa/spa_plugin.h
+1357180568 /ca2/app/appseed/c/spa/spa_plugin.h
 	"c/os/os.h"
 
-1356830624 /ca2/app/appseed/c/bsdiff/bsdiff.h
+1357180598 /ca2/app/appseed/c/bsdiff/bsdiff.h
 	"bzlib.h"
 
-1356830624 /ca2/app/appseed/c/bsdiff/bzlib.h
+1357180599 /ca2/app/appseed/c/bsdiff/bzlib.h
 
-1356545223 /ca2/app/appseed/c/c/c_message_loop.h
+1354886566 /ca2/app/appseed/c/c/c_message_loop.h
 
-1356545223 /ca2/app/appseed/c/c/c_url.h
+1354886566 /ca2/app/appseed/c/c/c_url.h
 
-1356830624 /ca2/app/appseed/c/c/c_net.h
+1357180588 /ca2/app/appseed/c/c/c_net.h
 	<netinet/in.h>
 
-1356545223 /ca2/app/appseed/c/c/c_international.h
+1354886566 /ca2/app/appseed/c/c/c_international.h
 
-1356545223 /ca2/app/appseed/c/c/c_user.h
+1355503564 /ca2/app/appseed/c/c/c_user.h
 
-1356830624 /ca2/app/appseed/c/c/c_simple_app.h
+1357180588 /ca2/app/appseed/c/c/c_simple_app.h
 
-1356545222 /ca2/app/appseed/c/macos/c_os_internal.h
+1354886566 /ca2/app/appseed/c/macos/c_os_internal.h
 	"c/c.h"
 
-1356545223 /ca2/app/appseed/c/linux/c_os_internal.h
+1354886566 /ca2/app/appseed/c/linux/c_os_internal.h
 
-1356545219 /ca2/app/appseed/c/windows/c_os_internal.h
+1354886565 /ca2/app/appseed/c/windows/c_os_internal.h
 
-1356699997 source:/ca2/app/appseed/c/ansios/ansios_cross_win_file.cpp
+1357180595 source:/ca2/app/appseed/c/ansios/ansios_cross_win_file.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/bsdiff/crctable.cpp
+1354886566 source:/ca2/app/appseed/c/bsdiff/crctable.cpp
 	"framework.h"
 	"bzlib_private.h"
 
-1356830624 /ca2/app/appseed/c/bsdiff/bzlib_private.h
+1357180598 /ca2/app/appseed/c/bsdiff/bzlib_private.h
 	"bzlib.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_dir2.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_dir2.cpp
 	"framework.h"
 	<Shlobj.h>
 
-1356545223 source:/ca2/app/appseed/c/c/c_file_spa.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_file_spa.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_file_watcher.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_file_watcher.cpp
 	"framework.h"
 	"c/windows/c_os_file_watcher.h"
 	"c/macos/c_os_file_watcher.h"
 	"c/linux/c_os_file_watcher.h"
 	"c/metrowin/c_os_file_watcher.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_file_watcher_impl.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_file_watcher_impl.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_file_watcher_listener_thread.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_file_watcher_listener_thread.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_geometric_types.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_geometric_types.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_international.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_international.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_mktime.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_mktime.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_mutex_lock.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_mutex_lock.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_simple_array.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_simple_array.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_simple_critical_section.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_simple_critical_section.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_simple_list.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_simple_list.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_simple_obj.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_simple_obj.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_strdup.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_strdup.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_template.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_template.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_url.cpp
+1354886566 source:/ca2/app/appseed/c/c/c_url.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/c/c_verisimple_wstring.cpp
+1355560770 source:/ca2/app/appseed/c/c/c_verisimple_wstring.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/framework.cpp
+1354886566 source:/ca2/app/appseed/c/framework.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/hotplugin/hotplugin_container_launcher.cpp
+1354886566 source:/ca2/app/appseed/c/hotplugin/hotplugin_container_launcher.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/linux/c_os_cross_win_file.cpp
+1354886566 source:/ca2/app/appseed/c/linux/c_os_cross_win_file.cpp
 
-1356545223 source:/ca2/app/appseed/c/linux/c_os_launcher.cpp
+1355474810 source:/ca2/app/appseed/c/linux/c_os_launcher.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/linux/c_os_library.cpp
+1355439197 source:/ca2/app/appseed/c/linux/c_os_library.cpp
 	"framework.h"
 	<dlfcn.h>
 
-1356545223 source:/ca2/app/appseed/c/linux/c_os_simple_shell_launcher.cpp
+1354886566 source:/ca2/app/appseed/c/linux/c_os_simple_shell_launcher.cpp
 	"framework.h"
 
-1356545223 source:/ca2/app/appseed/c/linux/c_os_win_base.cpp
+1354886566 source:/ca2/app/appseed/c/linux/c_os_win_base.cpp
 	"framework.h"
 	<stdlib.h>
 	<string.h>
 
-1356545218 source:/ca2/app/appseed/c/os/os_process.cpp
+1354886564 source:/ca2/app/appseed/c/os/os_process.cpp
 	"framework.h"
 
-1356545218 source:/ca2/app/appseed/c/os/os_thread.cpp
+1354887690 source:/ca2/app/appseed/c/os/os_thread.cpp
 	"framework.h"
 
-1356545219 source:/ca2/app/appseed/c/spa/spa_focus.cpp
+1354886565 source:/ca2/app/appseed/c/spa/spa_focus.cpp
 	"framework.h"
 
-1356545218 source:/ca2/app/appseed/c/spa/spa_machine_event.cpp
+1354886565 source:/ca2/app/appseed/c/spa/spa_machine_event.cpp
 	"framework.h"
 
-1356545219 source:/ca2/app/appseed/c/spa/spa_machine_event_data.cpp
+1354886565 source:/ca2/app/appseed/c/spa/spa_machine_event_data.cpp
 	"framework.h"
 
-1356545219 source:/ca2/app/appseed/c/spa/spa_small_bell.cpp
+1354886565 source:/ca2/app/appseed/c/spa/spa_small_bell.cpp
 	"framework.h"
 
-1356545218 source:/ca2/app/appseed/c/spa/windows/spa_windows_win.cpp
+1354977258 source:/ca2/app/appseed/c/spa/windows/spa_windows_win.cpp
+
+1357180588 /ca2/app/appseed/c/c/c_number.h
+	<limits.h>
+
+1357180588 /ca2/app/appseed/c/c/c_memory.h
+
+1357180595 source:/ca2/app/appseed/c/ansios/ansios_file.cpp
+	"framework.h"
+	<sys/stat.h>
+
+1357180595 source:/ca2/app/appseed/c/ansios/ansios_thread.cpp
+	"framework.h"
+	"framework.h"
+	"framework.h"
+	<assert.h>
+
+1357180594 source:/ca2/app/appseed/c/ansios/crypto/ansios_crypt.cpp
+	"framework.h"
+	<openssl/ssl.h>
+	<openssl/md5.h>
+	<openssl/err.h>
+
+1357180598 source:/ca2/app/appseed/c/bsdiff/blocksort.cpp
+	"framework.h"
+	"bzlib_private.h"
+
+1357180599 source:/ca2/app/appseed/c/bsdiff/bsdiff.cpp
+	"framework.h"
+	"bzlib.h"
+	"bsdiff.h"
+	"bsdiff_private.h"
+
+1357180599 /ca2/app/appseed/c/bsdiff/bsdiff_private.h
+
+1357180599 source:/ca2/app/appseed/c/bsdiff/bspatch.cpp
+	"framework.h"
+	"bsdiff_private.h"
+	"bzlib.h"
+	"bsdiff.h"
+
+1357180599 source:/ca2/app/appseed/c/bsdiff/bzlib.cpp
+	"framework.h"
+	"bzlib_private.h"
+	<fcntl.h>
+	<io.h>
+
+1357180599 source:/ca2/app/appseed/c/bsdiff/compress.cpp
+	"framework.h"
+	"bzlib_private.h"
+
+1357180599 source:/ca2/app/appseed/c/bsdiff/decompress.cpp
+	"framework.h"
+	"bzlib_private.h"
+
+1357180599 source:/ca2/app/appseed/c/bsdiff/huffman.cpp
+	"framework.h"
+	"bzlib_private.h"
+
+1357180599 source:/ca2/app/appseed/c/bsdiff/randtable.cpp
+	"framework.h"
+	"bzlib_private.h"
+
+1357202441 source:/ca2/app/appseed/c/c/_initterm.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_argcargv.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_base64.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_conv.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_cpu_architecture.cpp
+	"framework.h"
+	<intrin.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_debug.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_dir.cpp
+	"framework.h"
+	<Shlobj.h>
+	<Security.h>
+	<sys/types.h>
+	<dirent.h>
+	<sys/stat.h>
+	<unistd.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_file.cpp
+	"framework.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<sys/mman.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_file_watcher_thread.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_heap.cpp
+	"framework.h"
+	<malloc/malloc.h>
+	<malloc.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_integer_to_string.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_math.cpp
+	"framework.h"
+	<math.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_md5.cpp
+	"framework.h"
+	<sys/mman.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<stdlib.h>
+	<stdio.h>
+	<unistd.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_mem.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_net.cpp
+	"framework.h"
+	<netdb.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_printf.cpp
+	"framework.h"
+	<stdarg.h>
+	<wchar.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_simple_event.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_simple_memory.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_simple_mutex.cpp
+	"framework.h"
+	<sys/ipc.h>
+	<sys/types.h>
+	<sys/sem.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_simple_shell_launcher.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_small_ipc_channel.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_sprintf.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_std_file.cpp
+	"framework.h"
+	<stdarg.h>
+
+1357180588 source:/ca2/app/appseed/c/c/c_str.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_stra.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_string_to_integer.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_strw.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_strx.cpp
+	"framework.h"
+	"ca/x/x_defines.h"
+	"ca/x/x_tables.h"
+	"ca/x/x_charcategory.h"
+
+1354886571 /ca2/app/appseed/ca/x/x_defines.h
+
+1357180723 /ca2/app/appseed/ca/x/x_tables.h
+
+1354886571 /ca2/app/appseed/ca/x/x_charcategory.h
+
+1357180588 source:/ca2/app/appseed/c/c/c_verisimple_string.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_version.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_vsstringtow.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_wstringtovss.cpp
+	"framework.h"
+
+1357180588 source:/ca2/app/appseed/c/c/c_xmlite.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/cross/windows/windows_user.cpp
+	"framework.h"
+
+1357180603 source:/ca2/app/appseed/c/crypt/crypt.cpp
+	"framework.h"
+	<openssl/ssl.h>
+	<openssl/md5.h>
+	<openssl/err.h>
+
+1357180603 source:/ca2/app/appseed/c/crypt/nessie.cpp
+	"framework.h"
+
+1357180603 source:/ca2/app/appseed/c/crypt/whirpool.cpp
+	"framework.h"
+
+1357180606 source:/ca2/app/appseed/c/hotplugin/hotplugin_host.cpp
+	"framework.h"
+	<gdiplus.h>
+	<sys/mman.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<stdlib.h>
+	<stdio.h>
+	<unistd.h>
+
+1357180606 source:/ca2/app/appseed/c/hotplugin/hotplugin_plugin.cpp
+	"framework.h"
+	<math.h>
+	<sys/mman.h>
+	<sys/stat.h>
+	<fcntl.h>
+	<stdlib.h>
+	<stdio.h>
+	<unistd.h>
+	"c/linux/c_os_cross_win_gdi_internal.h"
+	<gdiplus.h>
+
+1354886566 /ca2/app/appseed/c/linux/c_os_cross_win_gdi_internal.h
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os.cpp
+	"framework.h"
+	<unistd.h>
+
+1357202444 source:/ca2/app/appseed/c/linux/c_os_cross_win_gdi.cpp
+	"framework.h"
+	"c_os_cross_win_gdi_internal.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_display.cpp
+	"framework.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_file.cpp
+	"framework.h"
+	<sys/stat.h>
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_file_watcher.cpp
+	"framework.h"
+	<sys/stat.h>
+	<fcntl.h>
+	<string.h>
+	<stdio.h>
+	<errno.h>
+	<sys/inotify.h>
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_http.cpp
+	"framework.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_http_lib.cpp
+	"framework.h"
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<ctype.h>
+	<unistd.h>
+	<modes.h>
+	<types.h>
+	<machine/reg.h>
+	<INET/socket.h>
+	<INET/in.h>
+	<INET/netdb.h>
+	<INET/pwd.h>
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_lock.cpp
+	"c/c.h"
+	<fcntl.h>
+	<sys/file.h>
+	<errno.h>
+	<unistd.h>
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_message_loop.cpp
+	"framework.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_process.cpp
+	"framework.h"
+	<signal.h>
+	<errno.h>
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_process_pid.cpp
+	<sys/types.h>
+	<dirent.h>
+	<errno.h>
+	<vector>
+	<string>
+	<iostream>
+	<fstream>
+	<stdlib.h>
+	<stdio.h>
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_simple_bitmap.cpp
+	"framework.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_simple_brush.cpp
+	"framework.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_simple_font.cpp
+	"framework.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_simple_graphics.cpp
+	"framework.h"
+	"linux/c_os_cross_win_gdi_internal.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_simple_path.cpp
+	"framework.h"
+
+1357180602 source:/ca2/app/appseed/c/linux/c_os_simple_pen.cpp
+	"framework.h"
+
+1357202445 source:/ca2/app/appseed/c/linux/c_os_window.cpp
+	"framework.h"
+	<cairo/cairo.h>
+	<cairo/cairo-xlib.h>
+	<X11/Xlib.h>
+
+1357180568 source:/ca2/app/appseed/c/os/os_binreloc.cpp
+	"framework.h"
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<limits.h>
+
+1357180568 source:/ca2/app/appseed/c/os/os_http.cpp
+	"framework.h"
+
+1357180571 source:/ca2/app/appseed/c/simple_graphics/simple_graphics.cpp
+	"framework.h"
+
+1357180571 source:/ca2/app/appseed/c/simple_graphics/simple_path.cpp
+	"framework.h"
+
+1357180593 source:/ca2/app/appseed/c/simple_ui/simple_edit_box.cpp
+	"framework.h"
+
+1357180593 source:/ca2/app/appseed/c/simple_ui/simple_label.cpp
+	"framework.h"
+
+1357180593 source:/ca2/app/appseed/c/simple_ui/simple_password.cpp
+	"framework.h"
+
+1357180593 source:/ca2/app/appseed/c/simple_ui/simple_tap.cpp
+	"framework.h"
+
+1357180593 source:/ca2/app/appseed/c/simple_ui/simple_ui.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa.cpp
+	"framework.h"
+	<math.h>
+
+1357202513 source:/ca2/app/appseed/c/linux/c_os_small_ipc_channel.cpp
+	"framework.h"
+	<sys/ipc.h>
+	<sys/msg.h>
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_boot.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_bz.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_canvas.cpp
+	"framework.h"
+	"c/linux/c_os_cross_win_gdi_internal.h"
+	<math.h>
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_cube_run.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_http.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_install_ca2.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_installer.cpp
+	"framework.h"
+	<WinInet.h>
+	<Winternl.h>
+	<sys/param.h>
+	<mach-o/dyld.h>
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_installer_square.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_login.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_main.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_plugin.cpp
+	"framework.h"
+	<gdiplus.h>
+	"c/linux/c_os_cross_win_gdi_internal.h"
+	<process.h>
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_spa.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_starter_start.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_trace.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/spa_window.cpp
+	"framework.h"
+	"c/linux/c_os_cross_win_gdi_internal.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/windows/spa_windows_boot.cpp
+	"framework.h"
+
+1357180568 source:/ca2/app/appseed/c/spa/windows/spa_windows_service.cpp
+	<WinSvc.h>
 

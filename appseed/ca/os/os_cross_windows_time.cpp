@@ -184,8 +184,8 @@ VOID WINAPI RtlTimeToTimeFields(
 	PTIME_FIELDS TimeFields)
 {
 	int32_t SecondsInDay;
-        long int32_t cleaps, years, yearday, months;
-	long int32_t Days;
+   long int cleaps, years, yearday, months;
+	long int Days;
 	LONGLONG Time;
 
 	/* Extract millisecond from time and convert time into seconds */
