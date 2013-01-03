@@ -161,7 +161,7 @@ uint64_array::uint64_array(::ca::application * papp) :
 }
 
 uint64_array::uint64_array(const uint64_array & base_array) :
-   numeric_array < uint64 >(base_array)
+   numeric_array < uint64_t >(base_array)
 {
    operator = (base_array);
 }

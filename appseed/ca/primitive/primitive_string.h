@@ -295,7 +295,7 @@ public:
    string & assign(int64_t n, int64_t c);
    string & assign(int32_t n, int32_t c);
    string & assign(uint32_t n, uint32_t c);
-   string & assign(uint64 n, uint64 c);
+   string & assign(uint64_t n, uint64_t c);
    template <class InputIterator>
    string & assign (InputIterator first, InputIterator last);
 

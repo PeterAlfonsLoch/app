@@ -16,11 +16,11 @@ namespace n7z
 
       bool _currentSizeIsDefined;
       bool _fileIsOpen;
-      uint64 _currentSize;
-      uint64 _filePos;
-      const uint32 *_fileIndices;
-      uint32 _numFiles;
-      uint32 _fileIndex;
+      uint64_t _currentSize;
+      uint64_t _filePos;
+      const uint32_t *_fileIndices;
+      uint32_t _numFiles;
+      uint32_t _fileIndex;
 
       HRESULT OpenStream();
       HRESULT CloseStream();
@@ -28,17 +28,17 @@ namespace n7z
 
    public:
       base_array<bool> Processed;
-      base_array<uint32> CRCs;
-      base_array<uint64> Sizes;
+      base_array<uint32_t> CRCs;
+      base_array<uint64_t> Sizes;
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
-      virtual ex1::HRes GetSubStreamSize(uint64 subStream, uint64 *value);
+      virtual ex1::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
 
       CFolderInStream();
-      void Init(::compress::archive_update_callback_interface *updateCallback, const uint32 *fileIndices, uint32 numFiles);
-      uint64 GetFullSize() const
+      void Init(::compress::archive_update_callback_interface *updateCallback, const uint32_t *fileIndices, uint32_t numFiles);
+      uint64_t GetFullSize() const
       {
-         uint64 size = 0;
+         uint64_t size = 0;
          for (int32_t i = 0; i < Sizes.get_count(); i++)
             size += Sizes[i];
          return size;

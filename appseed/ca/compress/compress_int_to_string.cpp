@@ -4,12 +4,12 @@
 
 //#include "IntToString.h"
 
-string uint64_to_string(uint64 value);
-string uint32_base_to_string(uint32 value, uint32 base);
-string int64_to_string(int64 value);
-string uint32_to_zero_padded_hex(uint32 value);
+string uint64_to_string(uint64_t value);
+string uint32_base_to_string(uint32_t value, uint32_t base);
+string int64_to_string(int64_t value);
+string uint32_to_zero_padded_hex(uint32_t value);
 
-string convert_to_string(uint64 value, uint32 base)
+string convert_to_string(uint64_t value, uint32_t base)
 {
   if (base < 2 || base > 36)
   {
@@ -27,7 +27,7 @@ string convert_to_string(uint64 value, uint32 base)
   return sz;
 }
 
-string uint64_to_string(uint64 value)
+string uint64_to_string(uint64_t value)
 {
   char sz[32];
   int32_t pos = 0;
@@ -40,19 +40,19 @@ string uint64_to_string(uint64 value)
   return sz;
 }
 
-string uint32_base_to_string(uint32 value, uint32 base)
+string uint32_base_to_string(uint32_t value, uint32_t base)
 {
-   return convert_to_string((uint64) value, base);
+   return convert_to_string((uint64_t) value, base);
 }
 
 
-string int64_to_string(int64 value)
+string int64_to_string(int64_t value)
 {
-   return value < 0 ? "-" + uint64_to_string((uint64) -value) : uint64_to_string((uint64) value);
+   return value < 0 ? "-" + uint64_to_string((uint64_t) -value) : uint64_to_string((uint64_t) value);
 }
 
 
-string uint32_to_zero_padded_hex(uint32 value)
+string uint32_to_zero_padded_hex(uint32_t value)
 {
    char sz[9];
    for (int32_t i = 0; i < 8; i++)

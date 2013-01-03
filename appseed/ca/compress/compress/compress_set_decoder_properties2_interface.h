@@ -9,7 +9,7 @@ namespace compress
       virtual public ::radix::object
    {
    public:
-      virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32 size) = 0;
+      virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32_t size) = 0;
    };
 
 

@@ -90,7 +90,7 @@ in read operations - helps on ECOS */
 #include <sys/param.h>
 #endif
 
-// int64
+// int64_t
 #ifdef _WIN32
 #else
 #include <stdlib.h>

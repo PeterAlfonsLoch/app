@@ -13,7 +13,7 @@ namespace n7z
    }
 
    void CFolderInStream::Init(::compress::archive_update_callback_interface *updateCallback,
-      const uint32 *fileIndices, uint32 numFiles)
+      const uint32_t *fileIndices, uint32_t numFiles)
    {
       _updateCallback = updateCallback;
       _numFiles = numFiles;
@@ -100,7 +100,7 @@ namespace n7z
       return processedSize;
    }
 
-   ex1::HRes CFolderInStream::GetSubStreamSize(uint64 subStream, uint64 *value)
+   ex1::HRes CFolderInStream::GetSubStreamSize(uint64_t subStream, uint64_t *value)
    {
       *value = 0;
       index index2 = (index)subStream;

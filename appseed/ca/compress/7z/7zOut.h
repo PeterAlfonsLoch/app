@@ -55,31 +55,31 @@ namespace n7z
       virtual public ::radix::object
    {
    public:
-      uint64 _prefixHeaderPos;
+      uint64_t _prefixHeaderPos;
 
-      HRESULT WriteDirect(const void *data, uint32 size);
+      HRESULT WriteDirect(const void *data, uint32_t size);
 
-      uint64 GetPos() const;
+      uint64_t GetPos() const;
       void WriteBytes(const void *data, size_t size);
       void WriteBytes(const ::ex1::byte_buffer &data) { WriteBytes(data, data.GetCapacity()); }
       void WriteByte(byte b);
-      void WriteUInt32(uint32 value);
-      void WriteUInt64(uint64 value);
-      void WriteNumber(uint64 value);
-      void WriteID(uint64 value) { WriteNumber(value); }
+      void WriteUInt32(uint32_t value);
+      void WriteUInt64(uint64_t value);
+      void WriteNumber(uint64_t value);
+      void WriteID(uint64_t value) { WriteNumber(value); }
 
       void WriteFolder(const CFolder &folder);
       HRESULT WriteFileHeader(const CFileItem &itemInfo);
       void WriteBoolVector(const bool_array &boolVector);
       void WriteHashDigests(
          const bool_array &digestsDefined,
-         const base_array<uint32> &hashDigests);
+         const base_array<uint32_t> &hashDigests);
 
       void WritePackInfo(
-         uint64 dataOffset,
+         uint64_t dataOffset,
          const base_array<file_size> &packSizes,
          const bool_array &packCRCsDefined,
-         const base_array<uint32> &packCRCs);
+         const base_array<uint32_t> &packCRCs);
 
       void WriteUnpackInfo(const array_ptr_alloc<CFolder> &folders);
 
@@ -88,7 +88,7 @@ namespace n7z
          const base_array<CNum> &numUnpackStreamsInFolders,
          const base_array<file_size> &unpackSizes,
          const bool_array &digestsDefined,
-         const base_array<uint32> &hashDigests);
+         const base_array<uint32_t> &hashDigests);
 
       void SkipAlign(unsigned pos, unsigned alignSize);
       void WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, unsigned itemSize);
@@ -101,12 +101,12 @@ namespace n7z
       void WriteHeader(
          const CArchiveDatabase &db,
          const CHeaderOptions &headerOptions,
-         uint64 &headerOffset);
+         uint64_t &headerOffset);
 
       bool _countMode;
       bool _writeToStream;
       size_t _countSize;
-      uint32 _crc;
+      uint32_t _crc;
       ex1::out_buffer _outByte;
       CWriteBufferLoc _outByte2;
 
@@ -129,8 +129,8 @@ namespace n7z
          const CCompressionMethodMode *options,
          const CHeaderOptions &headerOptions);
 
-      static uint32 GetVolHeadersSize(uint64 dataSize, int32_t nameLength = 0, bool props = false);
-      static uint64 GetVolPureSize(uint64 volSize, int32_t nameLength = 0, bool props = false);
+      static uint32_t GetVolHeadersSize(uint64_t dataSize, int32_t nameLength = 0, bool props = false);
+      static uint64_t GetVolPureSize(uint64_t volSize, int32_t nameLength = 0, bool props = false);
 
    };
 

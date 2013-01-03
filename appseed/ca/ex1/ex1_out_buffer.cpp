@@ -21,7 +21,7 @@
             WriteByte(((const byte *)data)[i]);
       }
 
-      uint64 GetProcessedSize() const;*/
+      uint64_t GetProcessedSize() const;*/
 
 // OutBuffer.cpp
 // from 7-zip on 2012-12-23, dawn
@@ -78,9 +78,9 @@ namespace ex1
    #endif
    }
 
-   uint64 out_buffer::GetProcessedSize() const
+   uint64_t out_buffer::GetProcessedSize() const
    {
-      uint64 res = _processedSize + _pos - _streamPos;
+      uint64_t res = _processedSize + _pos - _streamPos;
       if (_streamPos > _pos)
          res += m_memory.get_size();
       return res;

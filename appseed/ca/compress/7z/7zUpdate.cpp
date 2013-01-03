@@ -73,21 +73,21 @@ namespace n7z
    }
 
 
-   static const uint64 k_LZMA = 0x030101;
-   static const uint64 k_BCJ  = 0x03030103;
-   static const uint64 k_BCJ2 = 0x0303011B;
+   static const uint64_t k_LZMA = 0x030101;
+   static const uint64_t k_BCJ  = 0x03030103;
+   static const uint64_t k_BCJ2 = 0x0303011B;
 
    static const wchar_t *kMatchFinderForBCJ2_LZMA = L"BT2";
-   static const uint32 kDictionaryForBCJ2_LZMA = 1 << 20;
-   static const uint32 kAlgorithmForBCJ2_LZMA = 1;
-   static const uint32 kNumFastBytesForBCJ2_LZMA = 64;
+   static const uint32_t kDictionaryForBCJ2_LZMA = 1 << 20;
+   static const uint32_t kAlgorithmForBCJ2_LZMA = 1;
+   static const uint32_t kNumFastBytesForBCJ2_LZMA = 64;
 
 #ifdef MY_CPU_X86_OR_AMD64
 #define USE_86_FILTER
 #endif
 
    static HRESULT WriteRange(::ex1::byte_input_stream *inStream, ::ex1::writer *outStream,
-      uint64 position, uint64 size, ::compress::progress_info_interface *progress)
+      uint64_t position, uint64_t size, ::compress::progress_info_interface *progress)
    {
       inStream->seek(position, ::ex1::seek_begin);
       ::ex1::limited_reader *streamSpec = new ::ex1::limited_reader;
@@ -307,7 +307,7 @@ namespace n7z
       strsize ExtensionPos;
       strsize NamePos;
       strsize ExtensionIndex;
-      CRefItem(uint32 index, const CUpdateItem &ui, bool sortByType):
+      CRefItem(uint32_t index, const CUpdateItem &ui, bool sortByType):
       UpdateItem(&ui),
          Index(index),
          ExtensionPos(0),
@@ -385,7 +385,7 @@ namespace n7z
 
    struct CSolidGroup
    {
-      base_array<uint32> Indices;
+      base_array<uint32_t> Indices;
    };
 
    static const char *g_ExeExts[] =
@@ -407,7 +407,7 @@ namespace n7z
 
 #ifdef USE_86_FILTER
 
-   static inline void GetMethodFull(uint64 methodID, uint32 numInStreams, CMethodFull &methodResult)
+   static inline void GetMethodFull(uint64_t methodID, uint32_t numInStreams, CMethodFull &methodResult)
    {
       methodResult.Id = methodID;
       methodResult.NumInStreams = numInStreams;
@@ -492,10 +492,10 @@ namespace n7z
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
       ::ca::smart_pointer < ::ex1::writer > _outStream;
-      uint32 _startIndex;
+      uint32_t _startIndex;
       int32_t _currentIndex;
       bool _fileIsOpen;
-      uint64 _rem;
+      uint64_t _rem;
 
       void OpenFile();
       void CloseFile();
@@ -510,14 +510,14 @@ namespace n7z
          _crcStream = _crcStreamSpec;
       }
 
-      HRESULT Init(const CArchiveDatabaseEx *db, uint32 startIndex, const bool_array *extractStatuses, ::ex1::writer *outStream);
+      HRESULT Init(const CArchiveDatabaseEx *db, uint32_t startIndex, const bool_array *extractStatuses, ::ex1::writer *outStream);
       void ReleaseOutStream();
       HRESULT CheckFinishedState() const { return (_currentIndex == _extractStatuses->get_count()) ? S_OK: E_FAIL; }
 
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
    };
 
-   HRESULT CFolderOutStream2::Init(const CArchiveDatabaseEx *db, uint32 startIndex,
+   HRESULT CFolderOutStream2::Init(const CArchiveDatabaseEx *db, uint32_t startIndex,
       const bool_array *extractStatuses, ::ex1::writer *outStream)
    {
       _db = db;
@@ -577,7 +577,7 @@ namespace n7z
       {
          if (_fileIsOpen)
          {
-            ::primitive::memory_size cur = size < _rem ? size : (uint32)_rem;
+            ::primitive::memory_size cur = size < _rem ? size : (uint32_t)_rem;
             _crcStream->write(data, cur, &cur);
             if (cur == 0)
                break;
@@ -618,7 +618,7 @@ namespace n7z
       CFolderOutStream2 *FosSpec;
       ::ca::smart_pointer < ::ex1::writer > Fos;
 
-      uint64 StartPos;
+      uint64_t StartPos;
       const file_size *PackSizes;
       const CFolder *Folder;
 #ifndef _NO_CRYPTO
@@ -632,7 +632,7 @@ namespace n7z
 
 #ifndef _7ZIP_ST
       bool MtMode;
-      uint32 NumThreads;
+      uint32_t NumThreads;
 #endif
 
       CThreadDecoder(::ca::application * papp):
@@ -739,7 +739,7 @@ namespace n7z
 #endif
       )
    {
-      uint64 numSolidFiles = options.NumSolidFiles;
+      uint64_t numSolidFiles = options.NumSolidFiles;
       if (numSolidFiles == 0)
          numSolidFiles = 1;
       /*
@@ -749,7 +749,7 @@ namespace n7z
       return E_NOTIMPL;
       */
 
-      uint64 startBlockSize = db != 0 ? db->ArchiveInfo.StartPosition: 0;
+      uint64_t startBlockSize = db != 0 ? db->ArchiveInfo.StartPosition: 0;
       if (startBlockSize > 0 && !options.RemoveSfxBlock)
       {
          RINOK(WriteRange(inStream, seqOutStream, 0, startBlockSize, NULL));
@@ -757,8 +757,8 @@ namespace n7z
 
       base_array<int32_t> fileIndexToUpdateIndexMap;
       base_array<CFolderRepack> folderRefs;
-      uint64 complexity = 0;
-      uint64 inSizeForReduce2 = 0;
+      uint64_t complexity = 0;
+      uint64_t inSizeForReduce2 = 0;
       bool needEncryptedRepack = false;
       if (db != 0)
       {
@@ -779,7 +779,7 @@ namespace n7z
             CNum indexInFolder = 0;
             CNum numCopyItems = 0;
             CNum numUnpackStreams = db->NumUnpackStreamsVector[i];
-            uint64 repackSize = 0;
+            uint64_t repackSize = 0;
             for (CNum fi = db->FolderStartFileIndex[i]; indexInFolder < numUnpackStreams; fi++)
             {
                const CFileItem &file = db->Files[fi];
@@ -838,7 +838,7 @@ namespace n7z
       if (inSizeForReduce2 > inSizeForReduce)
          inSizeForReduce = inSizeForReduce2;
 
-      const uint32 kMinReduceSize = (1 << 16);
+      const uint32_t kMinReduceSize = (1 << 16);
       if (inSizeForReduce < kMinReduceSize)
          inSizeForReduce = kMinReduceSize;
 
@@ -969,7 +969,7 @@ namespace n7z
 
             if (rep.NumCopyFiles == db->NumUnpackStreamsVector[folderIndex])
             {
-               uint64 packSize = db->GetFolderFullPackSize(folderIndex);
+               uint64_t packSize = db->GetFolderFullPackSize(folderIndex);
                RINOK(WriteRange(inStream, archive.SeqStream,
                   db->GetFolderStreamPos(folderIndex, 0), packSize, progress));
                lps->ProgressOffset += packSize;
@@ -1086,7 +1086,7 @@ namespace n7z
          throw "should implement below";
          //refItems.Sort(CompareUpdateItems, (void *)&sortByType);
 
-         base_array<uint32> indices;
+         base_array<uint32_t> indices;
          indices.set_size(0, numFiles);
 
          for (i = 0; i < numFiles; i++)
@@ -1108,7 +1108,7 @@ namespace n7z
 
          for (i = 0; i < numFiles;)
          {
-            uint64 totalSize = 0;
+            uint64_t totalSize = 0;
             int32_t numSubFiles;
             string prevExtension;
             for (numSubFiles = 0; i + numSubFiles < numFiles &&

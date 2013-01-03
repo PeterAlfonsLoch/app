@@ -9,8 +9,8 @@
 #include "IDecl.h"*/
 
 #define CA2_EX1_progress_interface(x) \
-  virtual ex1::HRes SetTotal(uint64 total) x; \
-  virtual ex1::HRes SetCompleted(const uint64 *completeValue) x; \
+  virtual ex1::HRes SetTotal(uint64_t total) x; \
+  virtual ex1::HRes SetCompleted(const uint64_t *completeValue) x; \
 
 namespace ex1
 {
@@ -32,7 +32,7 @@ MIDL_INTERFACE("23170F69-40C1-278A-0000-000000050002")
 IProgress2: public IUnknown
 {
 public:
-  ex1::HRes SetTotal)(const uint64 *total) PURE;
-  ex1::HRes SetCompleted)(const uint64 *completeValue) PURE;
+  ex1::HRes SetTotal)(const uint64_t *total) PURE;
+  ex1::HRes SetCompleted)(const uint64_t *completeValue) PURE;
 };
 */

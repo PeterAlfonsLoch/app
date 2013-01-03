@@ -15,7 +15,7 @@ namespace compress
          base_array < ::ex1::reader * > InStreamPointers;
          base_array < ::ex1::writer * > OutStreamPointers;
 
-         CCoder2(::ca::application * papp, uint32 numInStreams, uint32 numOutStreams);
+         CCoder2(::ca::application * papp, uint32_t numInStreams, uint32_t numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
          virtual int32_t run();
          void Code(progress_info_interface *progress);
@@ -26,7 +26,7 @@ namespace compress
       SetBindInfo()
       for each coder
       AddCoder[2]()
-      SetProgressIndex(uint32 coderIndex);
+      SetProgressIndex(uint32_t coderIndex);
 
       for each file
       {
@@ -56,10 +56,10 @@ namespace compress
 
          ex1::HRes Code(::ex1::reader **inStreams,
             const file_size **inSizes,
-            uint32 numInStreams,
+            uint32_t numInStreams,
             ::ex1::writer **outStreams,
             const file_size **outSizes,
-            uint32 numOutStreams,
+            uint32_t numOutStreams,
             progress_info_interface *progress);
 
          ex1::HRes SetBindInfo(const CBindInfo &bindInfo);
@@ -68,9 +68,9 @@ namespace compress
          void SetProgressCoderIndex(int32_t coderIndex) {  _progressCoderIndex = coderIndex; }
 
          void ReInit();
-         void SetCoderInfo(uint32 coderIndex, const file_size **inSizes, const file_size **outSizes)
+         void SetCoderInfo(uint32_t coderIndex, const file_size **inSizes, const file_size **outSizes)
          {  _coders[coderIndex].SetCoderInfo(inSizes, outSizes); }
-         uint64 GetWriteProcessedSize(uint32 binderIndex) const
+         uint64_t GetWriteProcessedSize(uint32_t binderIndex) const
          {  return _streamBinders[binderIndex].ProcessedSize; }
       };
 

@@ -3,7 +3,7 @@
 
 void StringToProp(const string &s, var * value);
 
-string FlagsToString(const CUInt32PCharPair *pairs, unsigned num, uint32 flags);
+string FlagsToString(const CUInt32PCharPair *pairs, unsigned num, uint32_t flags);
 
 
 void StringToProp(const string &s, var * value)
@@ -12,13 +12,13 @@ void StringToProp(const string &s, var * value)
 }
 
 
-string FlagsToString(const CUInt32PCharPair *pairs, unsigned num, uint32 flags)
+string FlagsToString(const CUInt32PCharPair *pairs, unsigned num, uint32_t flags)
 {
   string s;
   for (unsigned i = 0; i < num; i++)
   {
     const CUInt32PCharPair &p = pairs[i];
-    uint32 flag = (uint32)1 << (unsigned)p.Value;
+    uint32_t flag = (uint32_t)1 << (unsigned)p.Value;
     if ((flags & flag) != 0)
     {
       if (!s.is_empty())
@@ -39,7 +39,7 @@ string FlagsToString(const CUInt32PCharPair *pairs, unsigned num, uint32 flags)
 }
 
 
-void FlagsToProp(const CUInt32PCharPair *pairs, unsigned num, uint32 flags, var * value)
+void FlagsToProp(const CUInt32PCharPair *pairs, unsigned num, uint32_t flags, var * value)
 {
   StringToProp(FlagsToString(pairs, num, flags), value);
 }

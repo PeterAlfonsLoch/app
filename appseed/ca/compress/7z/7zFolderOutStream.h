@@ -14,13 +14,13 @@ namespace n7z
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
       ::ca::smart_pointer < ::compress::archive_extract_callback_interface > _extractCallback;
-      uint32 _ref2Offset;
-      uint32 _startIndex;
+      uint32_t _ref2Offset;
+      uint32_t _startIndex;
       int32_t _currentIndex;
       bool _testMode;
       bool _checkCrc;
       bool _fileIsOpen;
-      uint64 _rem;
+      uint64_t _rem;
 
       ex1::HRes OpenFile();
       ex1::HRes CloseFileAndSetResult(int32_t res);
@@ -31,11 +31,11 @@ namespace n7z
          CFolderOutStream();
 
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
-      ex1::HRes  GetSubStreamSize(uint64 subStream, uint64 *value);
+      ex1::HRes  GetSubStreamSize(uint64_t subStream, uint64_t *value);
 
       ex1::HRes Init(
          const CArchiveDatabaseEx *db,
-         uint32 ref2Offset, uint32 startIndex,
+         uint32_t ref2Offset, uint32_t startIndex,
          const bool_array *extractStatuses,
          ::compress::archive_extract_callback_interface *extractCallback,
          bool testMode, bool checkCrc);

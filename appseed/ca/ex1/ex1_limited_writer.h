@@ -10,7 +10,7 @@ namespace ex1
       public writer
    {
       writer *    _stream;
-      uint64      _size;
+      uint64_t      _size;
       bool        _overflow;
       bool        _overflowIsAllowed;
    public:
@@ -20,14 +20,14 @@ namespace ex1
       { 
          //_stream.Release(); 
       }
-      void Init(uint64 size, bool overflowIsAllowed = false)
+      void Init(uint64_t size, bool overflowIsAllowed = false)
       {
          _size = size;
          _overflow = false;
          _overflowIsAllowed = overflowIsAllowed;
       }
       bool IsFinishedOK() const { return (_size == 0 && !_overflow); }
-      uint64 GetRem() const { return _size; }
+      uint64_t GetRem() const { return _size; }
    };
 
 } // namespace ex1

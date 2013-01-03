@@ -12,7 +12,7 @@ namespace compress
      return realProcessedSize;
    }
 
-   ex1::HRes size_count_reader2::GetSubStreamSize(uint64 subStream, uint64 *value)
+   ex1::HRes size_count_reader2::GetSubStreamSize(uint64_t subStream, uint64_t *value)
    {
      if (_getSubStreamSize == NULL)
        return E_NOTIMPL;

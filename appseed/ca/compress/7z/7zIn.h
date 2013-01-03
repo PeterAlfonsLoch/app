@@ -12,7 +12,7 @@ namespace n7z
       file_position StartPositionAfterHeader;
       file_position DataStartPosition;
       file_position DataStartPosition2;
-      base_array<uint64> FileInfoPopIDs;
+      base_array<uint64_t> FileInfoPopIDs;
       void clear()
       {
          FileInfoPopIDs.remove_all();
@@ -101,16 +101,16 @@ namespace n7z
       void ReadBytes(byte *data, size_t size);
       void SkipData(file_size size);
       void SkipData();
-      uint64 ReadNumber();
+      uint64_t ReadNumber();
       CNum ReadNum();
-      uint32 ReadUInt32();
-      uint64 ReadUInt64();
+      uint32_t ReadUInt32();
+      uint64_t ReadUInt64();
       void ReadString(string &s);
    };
 
    class CStreamSwitch;
 
-   const uint32 kHeaderSize = 32;
+   const uint32_t kHeaderSize = 32;
 
    class CInArchive :
       virtual ::radix::object
@@ -147,25 +147,25 @@ namespace n7z
 
       void ReadBytes(byte *data, size_t size) { _inByteBack->ReadBytes(data, size); }
       byte ReadByte() { return _inByteBack->ReadByte(); }
-      uint64 ReadNumber() { return _inByteBack->ReadNumber(); }
+      uint64_t ReadNumber() { return _inByteBack->ReadNumber(); }
       CNum ReadNum() { return _inByteBack->ReadNum(); }
-      uint64 ReadID() { return _inByteBack->ReadNumber(); }
-      uint32 ReadUInt32() { return _inByteBack->ReadUInt32(); }
-      uint64 ReadUInt64() { return _inByteBack->ReadUInt64(); }
+      uint64_t ReadID() { return _inByteBack->ReadNumber(); }
+      uint32_t ReadUInt32() { return _inByteBack->ReadUInt32(); }
+      uint64_t ReadUInt64() { return _inByteBack->ReadUInt64(); }
       void SkipData(file_size size) { _inByteBack->SkipData(size); }
       void SkipData() { _inByteBack->SkipData(); }
-      void WaitAttribute(uint64 attribute);
+      void WaitAttribute(uint64_t attribute);
 
       void ReadArchiveProperties(CInArchiveInfo &archiveInfo);
       void GetNextFolderItem(CFolder &itemInfo);
       void ReadHashDigests(int32_t numItems,
-         bool_array &digestsDefined, base_array<uint32> &digests);
+         bool_array &digestsDefined, base_array<uint32_t> &digests);
 
       void ReadPackInfo(
          file_position &dataOffset,
          base_array<file_size> &packSizes,
          bool_array &packCRCsDefined,
-         base_array<uint32> &packCRCs);
+         base_array<uint32_t> &packCRCs);
 
       void ReadUnpackInfo(
          const array_ptr_alloc < ::ex1::byte_buffer >  *dataVector,
@@ -176,19 +176,19 @@ namespace n7z
          base_array<CNum> &numUnpackStreamsInFolders,
          base_array<file_size> &unpackSizes,
          bool_array &digestsDefined,
-         base_array<uint32> &digests);
+         base_array<uint32_t> &digests);
 
       void ReadStreamsInfo(
          const array_ptr_alloc < ::ex1::byte_buffer >  *dataVector,
          file_position &dataOffset,
          base_array<file_size> &packSizes,
          bool_array &packCRCsDefined,
-         base_array<uint32> &packCRCs,
+         base_array<uint32_t> &packCRCs,
          array_ptr_alloc<CFolder> &folders,
          base_array<CNum> &numUnpackStreamsInFolders,
          base_array<file_size> &unpackSizes,
          bool_array &digestsDefined,
-         base_array<uint32> &digests);
+         base_array<uint32_t> &digests);
 
 
       void ReadBoolVector(int32_t numItems, bool_array &v);

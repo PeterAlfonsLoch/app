@@ -21,7 +21,7 @@ namespace plugin
       virtual ~instance();
 
 
-      uint16 HandleEvent(void * pvoid);
+      uint16_t HandleEvent(void * pvoid);
 
 
       virtual host_interaction * create_host_interaction();

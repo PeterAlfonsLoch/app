@@ -14,7 +14,7 @@ namespace compress
       {
          srcBindInfo.GetNumStreams(NumSrcInStreams, _numSrcOutStreams);
 
-         uint32  j;
+         uint32_t  j;
          for (j = 0; j < NumSrcInStreams; j++)
          {
             _srcInToDestOutMap.add(0);
@@ -26,10 +26,10 @@ namespace compress
             _destInToSrcOutMap.add(0);
          }
 
-         uint32 destInOffset = 0;
-         uint32 destOutOffset = 0;
-         uint32 srcInOffset = NumSrcInStreams;
-         uint32 srcOutOffset = _numSrcOutStreams;
+         uint32_t destInOffset = 0;
+         uint32_t destOutOffset = 0;
+         uint32_t srcInOffset = NumSrcInStreams;
+         uint32_t srcOutOffset = _numSrcOutStreams;
 
          for(index i = srcBindInfo.Coders.get_count() - 1; i >= 0; i--)
          {
@@ -38,16 +38,16 @@ namespace compress
             srcInOffset -= srcCoderInfo.NumInStreams;
             srcOutOffset -= srcCoderInfo.NumOutStreams;
 
-            uint32 j;
+            uint32_t j;
             for (j = 0; j < srcCoderInfo.NumInStreams; j++, destOutOffset++)
             {
-               uint32 index = srcInOffset + j;
+               uint32_t index = srcInOffset + j;
                _srcInToDestOutMap[index] = destOutOffset;
                DestOutToSrcInMap[destOutOffset] = index;
             }
             for (j = 0; j < srcCoderInfo.NumOutStreams; j++, destInOffset++)
             {
-               uint32 index = srcOutOffset + j;
+               uint32_t index = srcOutOffset + j;
                _srcOutToDestInMap[index] = destInOffset;
                _destInToSrcOutMap[destInOffset] = index;
             }
@@ -84,7 +84,7 @@ namespace compress
             destBindInfo.InStreams.add(_srcOutToDestInMap[_srcBindInfo.OutStreams[i]]);
       }
 
-      CCoderInfo2::CCoderInfo2(uint32 numInStreams, uint32 numOutStreams):
+      CCoderInfo2::CCoderInfo2(uint32_t numInStreams, uint32_t numOutStreams):
       NumInStreams(numInStreams),
          NumOutStreams(numOutStreams)
       {
@@ -95,11 +95,11 @@ namespace compress
       }
 
       static void SetSizes(const file_size **srcSizes, base_array<file_size> &sizes,
-         base_array<const file_size *> &sizePointers, uint32 numItems)
+         base_array<const file_size *> &sizePointers, uint32_t numItems)
       {
          sizes.remove_all();
          sizePointers.remove_all();
-         for(uint32 i = 0; i < numItems; i++)
+         for(uint32_t i = 0; i < numItems; i++)
          {
             if (srcSizes == 0 || srcSizes[i] == NULL)
             {

@@ -34,9 +34,9 @@ namespace rar
       return false;
    }
 
-   uint32 CItem::GetWinAttributes() const
+   uint32_t CItem::GetWinAttributes() const
    {
-      uint32 winAttributes;
+      uint32_t winAttributes;
       switch(HostOS)
       {
       case header::file::kHostMSDOS:

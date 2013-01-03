@@ -79,7 +79,7 @@ namespace crypto
       {
       protected:
          sha1_ctx_t     m_ctx;
-         uint64         _count;
+         uint64_t         _count;
          void UpdateBlock(void * data, bool returnRes)
          {
             GetBlockDigest(data, m_ctx.Message_Digest, returnRes);
@@ -92,11 +92,11 @@ namespace crypto
          }
       public:
          void Init();
-         void GetBlockDigest(const void * blockData, uint32 *destDigest);
-         void GetBlockDigest(void * blockData, uint32 *destDigest, bool returnRes);
+         void GetBlockDigest(const void * blockData, uint32_t *destDigest);
+         void GetBlockDigest(void * blockData, uint32_t *destDigest, bool returnRes);
          //void
          // PrepareBlock can be used only when size <= 13. size in Words
-//         void PrepareBlock(uint32 *block, uint32_t size) const;
+//         void PrepareBlock(uint32_t *block, uint32_t size) const;
          void update(const void * msg, int32_t iSize);
       };
 
@@ -121,8 +121,8 @@ namespace crypto
       class CLASS_DECL_ca CContext32: public CContextBase2
       {
       public:
-         void Update(const uint32 *data, size_t size);
-         void Final(uint32 *digest);
+         void Update(const uint32_t *data, size_t size);
+         void Final(uint32_t *digest);
       };
 
 

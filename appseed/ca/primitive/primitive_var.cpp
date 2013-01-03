@@ -100,6 +100,13 @@ var::var(uint64_t * pui)
    operator = (pui);
 }
 
+var::var(float f)
+{
+   m_etype = type_new;
+   m_pca2 = NULL;
+   operator = (f);
+}
+
 var::var(double d)
 {
    m_etype = type_new;
@@ -275,19 +282,19 @@ void var::set_type(e_type e_type, bool bConvert)
       switch(e_type)
       {
       case type_int32:
-         m_i32      = int32();
+         m_i32       = int32();
          break;
       case type_uint32:
-         m_ui32     = get_ulong();
+         m_ui32      = uint32();
          break;
       case type_double:
-         m_d      = get_double();
+         m_d         = get_double();
          break;
       case type_string:
-         m_str    = get_string();
+         m_str       = get_string();
          break;
       case type_id:
-         m_id     = get_id();
+         m_id        = get_id();
          break;
       default:
          break;
@@ -483,6 +490,14 @@ class var & var::operator = (uint32_t ui)
    m_ui32 = ui;
    return *this;
 }
+
+class var & var::operator = (float f)
+{
+   set_type(type_float, false);
+   m_f = f;
+   return *this;
+}
+
 
 class var & var::operator = (double d)
 {
@@ -716,131 +731,17 @@ var::operator const char *() const
    return get_string();
 }
 
-// returns 0 for unknown conversions
-var::operator int32_t() const
+
+
+
+bool var::is_true(bool bDefault) const
 {
    switch(m_etype)
    {
    case type_null:
-      return 0;
+      return bDefault;
    case type_empty:
-      return 0;
-   case type_string:
-      return atoi(m_str);
-   case type_int32:
-      return m_i32;
-   case type_int64:
-      return (int32_t) m_i64;
-   case type_uint64:
-      return (int32_t) m_ui64;
-   case type_uint32:
-      return (int32_t)m_ui32;
-   case type_ca2:
-      return 0;
-   case type_pvar:
-      return m_pvar->operator int32_t();
-   case type_pstring:
-      return atoi(*m_pstr);
-   case type_id:
-   {
-      if(!is32integer((int64_t) m_id))
-         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
-      return (int32_t) (int64_t) m_id;
-   }
-   case type_pid:
-   {
-      if(!is32integer((int64_t) *m_pid))
-         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
-      return (int32_t) (int64_t) *m_pid;
-   }
-   default:
-      return 0;
-   }
-}
-
-// returns 0 for unknown conversions
-var::operator uint32_t() const
-{
-   switch(m_etype)
-   {
-   case type_null:
-      return 0;
-   case type_empty:
-      return 0;
-   case type_string:
-      return atoi(m_str);
-   case type_int32:
-      return m_i32;
-   case type_uint32:
-      return (uint32_t) m_ui32;
-   case type_ca2:
-      return 0;
-   case type_uint64:
-      return (uint32_t) m_ui64;
-   case type_pvar:
-      return m_pvar->operator uint32_t();
-   default:
-      return 0;
-   }
-}
-
-// returns 0 for unknown conversions
-var::operator int64_t() const
-{
-   switch(m_etype)
-   {
-   case type_null:
-      return 0;
-   case type_empty:
-      return 0;
-   case type_string:
-      return atol(m_str);
-   case type_int32:
-      return m_i32;
-   case type_uint32:
-      return m_ui32;
-   case type_ca2:
-      return 0;
-   case type_pvar:
-      return m_pvar->operator int64_t();
-   default:
-      return 0;
-   }
-}
-
-// returns 0 for unknown conversions
-var::operator uint64_t() const
-{
-   switch(m_etype)
-   {
-   case type_null:
-      return 0;
-   case type_empty:
-      return 0;
-   case type_string:
-      return atol(m_str);
-   case type_int32:
-      return m_i32;
-   case type_uint32:
-      return m_ui32;
-   case type_ca2:
-      return 0;
-   case type_pvar:
-      return m_pvar->operator uint64_t();
-   default:
-      return 0;
-   }
-}
-
-
-bool var::is_true() const
-{
-   switch(m_etype)
-   {
-   case type_null:
-      return false;
-   case type_empty:
-      return false;
+      return bDefault;
    case type_string:
       return !m_str.is_empty() && !m_str.CompareNoCase("false");
    case type_int32:
@@ -854,9 +755,9 @@ bool var::is_true() const
    case type_bool:
       return m_b;
    case type_pvar:
-      return m_pvar->is_true();
+      return m_pvar->is_true(bDefault);
    default:
-      return false;
+      return bDefault;
    }
 }
 
@@ -1146,9 +1047,9 @@ int32_t var::compare_ci(const class var & var) const
    {
       return int32() - var.int32();
    }
-   else if(is_ulong() || var.is_ulong())
+   else if(is_natural() || var.is_natural())
    {
-      return (int32_t) (get_ulong() - var.get_ulong());
+      return (int32_t) (uint32() - var.uint32());
    }
    else
    {
@@ -1216,9 +1117,9 @@ int32_t var::compare(const class var & var) const
    {
       return int32() - var.int32();
    }
-   else if(is_ulong() || var.is_ulong())
+   else if(is_natural() || var.is_natural())
    {
-      return (int32_t) (get_ulong() - var.get_ulong());
+      return (int32_t) (uint32() - var.uint32());
    }
    else
    {
@@ -1327,32 +1228,32 @@ bool var::operator > (const string & str) const
 
 bool var::operator == (int32_t i) const
 {
-   return int32() == i;
+   return int32_t() == i;
 }
 
 bool var::operator != (int32_t i) const
 {
-   return int32() != i;
+   return int32_t() != i;
 }
 
 bool var::operator < (int32_t i) const
 {
-   return int32() < i;
+   return int32_t() < i;
 }
 
 bool var::operator <= (int32_t i) const
 {
-   return int32() <= i;
+   return int32_t() <= i;
 }
 
 bool var::operator >= (int32_t i) const
 {
-   return int32() >= i;
+   return int32_t() >= i;
 }
 
 bool var::operator > (int32_t i) const
 {
-   return int32() > i;
+   return int32_t() > i;
 }
 
 
@@ -1686,56 +1587,166 @@ id & var::get_ref_id(const char * pszOnNull)
 
 }
 
+
+
 int32_t var::int32(int32_t iDefault) const
 {
    switch(m_etype)
    {
-   case var::type_pvar:
-      return m_pvar->int32(iDefault);
-   case var::type_int32:
+   case type_null:
+      return iDefault;
+   case type_empty:
+      return iDefault;
+   case type_string:
+      return atoi(m_str);
+   case type_int32:
       return m_i32;
-   case var::type_int64:
+   case type_int64:
       return (int32_t) m_i64;
-   case var::type_uint32:
-      return (int32_t) m_ui32;
-   case var::type_double:
-      return (int32_t) m_d;
-   case var::type_string:
-      {
-         gen::str::to(m_str, iDefault);
-         return iDefault;
-      }
+   case type_uint64:
+      return (int32_t) m_ui64;
+   case type_uint32:
+      return (int32_t)m_ui32;
+   case type_ca2:
+      return iDefault;
+   case type_pvar:
+      return m_pvar->int32(iDefault);
+   case type_pstring:
+      return atoi(*m_pstr);
+   case type_id:
+   {
+      if(!is32integer((int64_t) m_id))
+         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
+      return (int32_t) (int64_t) m_id;
+   }
+   case type_pid:
+   {
+      if(!is32integer((int64_t) *m_pid))
+         throw overflow_error(::ca::get_thread_app(), "var contains id that does not fit 32 bit integer");
+      return (int32_t) (int64_t) *m_pid;
+   }
    default:
       return iDefault;
    }
 }
 
-unsigned long var::get_ulong() const
+uint32_t var::uint32(uint32_t uiDefault) const
 {
-   unsigned long ul;
-   if(m_etype == var::type_int32)
+   switch(m_etype)
    {
-      ul = (unsigned long) m_i32;
+   case type_null:
+      return uiDefault;
+   case type_empty:
+      return uiDefault;
+   case type_string:
+      return atoi(m_str);
+   case type_int32:
+      return m_i32;
+   case type_uint32:
+      return (uint32_t) m_ui32;
+   case type_ca2:
+      return uiDefault;
+   case type_uint64:
+      return (uint32_t) m_ui64;
+   case type_pvar:
+      return m_pvar->uint32(uiDefault);
+   default:
+      return uiDefault;
    }
-   else if(m_etype == var::type_uint32)
-   {
-      ul = m_ui32;
-   }
-   else if(m_etype == var::type_double)
-   {
-      ul = (unsigned long) m_d;
-   }
-   else
-   {
-      ul = atoi(m_str);
-   }
-   return ul;
 }
 
-double var::get_double() const
+int64_t var::int64(int64_t iDefault) const
+{
+   switch(m_etype)
+   {
+   case type_null:
+      return iDefault;
+   case type_empty:
+      return iDefault;
+   case type_string:
+      return atol(m_str);
+   case type_int32:
+      return m_i32;
+   case type_uint32:
+      return m_ui32;
+   case type_ca2:
+      return iDefault;
+   case type_pvar:
+      return m_pvar->int64(iDefault);
+   default:
+      return iDefault;
+   }
+}
+
+
+uint64_t var::uint64(uint64_t uiDefault) const
+{
+   switch(m_etype)
+   {
+   case type_null:
+      return uiDefault;
+   case type_empty:
+      return uiDefault;
+   case type_string:
+      return atol(m_str);
+   case type_int32:
+      return m_i32;
+   case type_uint32:
+      return m_ui32;
+   case type_ca2:
+      return uiDefault;
+   case type_pvar:
+      return m_pvar->uint64(uiDefault);
+   default:
+      return uiDefault;
+   }
+
+}
+
+
+float var::get_float(float fDefault) const
+{
+   switch(m_etype)
+   {
+   case type_null:
+      return fDefault;
+   case type_empty:
+      return fDefault;
+   case type_int32:
+      return (float) m_i32;
+   case type_uint32:
+      return (float) m_ui32;
+   case type_int64:
+      return (float) m_i64;
+   case type_uint64:
+      return (float) m_ui64;
+   case type_float:
+      return m_f;
+   case type_double:
+      return (float) m_d;
+   case type_string:
+      return (float) atof(m_str);
+   case type_pvar:
+      return m_pvar->get_float(fDefault);
+   default:
+      return fDefault;
+   }
+
+}
+
+
+double var::get_double(double dDefault) const
 {
    double d;
-   if(m_etype == var::type_int32)
+   if(m_etype == type_null)
+   {
+      return dDefault;
+   }
+   else if(m_etype == type_empty)
+   {
+      return dDefault;
+   }
+   else if(m_etype == var::type_int32)
    {
       d = (double) m_i32;
    }
@@ -1743,43 +1754,37 @@ double var::get_double() const
    {
       d = (double) m_ui32;
    }
+   else if(m_etype == var::type_int64)
+   {
+      d = (double) m_i64;
+   }
+   else if(m_etype == var::type_uint64)
+   {
+      d = (double) m_ui64;
+   }
+   else if(m_etype == var::type_float)
+   {
+      d = (double) m_f;
+   }
    else if(m_etype == var::type_double)
    {
       d = m_d;
    }
-   else
+   else if(m_etype == var::type_string)
    {
       d = atof(m_str);
+   }
+   else if(m_etype == var::type_pvar)
+   {
+      d = m_pvar->get_double(dDefault);
+   }
+   else
+   {
+      return dDefault;
    }
    return d;
 }
 
-bool var::get_bool() const
-{
-   bool b;
-   if(m_etype == var::type_int32)
-   {
-      b = m_i32 != 0;
-   }
-   else if(m_etype == var::type_uint32)
-   {
-      b = m_ui32 != 0;
-   }
-   else if(m_etype == var::type_double)
-   {
-      b = m_d != 0.0;
-   }
-   else if(m_etype == var::type_bool)
-   {
-      b = m_b;
-   }
-   else
-   {
-      b = m_str.get_length() > 0 &&
-          m_str.CompareNoCase("false") != 0;
-   }
-   return b;
-}
 
 class primitive::memory & var::memory()
 {
@@ -2229,22 +2234,22 @@ var var::equals_ci_get(const char * pszCompare, var varOnEqual) const
 
 var var::operator - (int32_t i) const
 {
-   return int32() - i;
+   return int32_t() - i;
 }
 
 var var::operator - (uint32_t user) const
 {
-   return get_ulong() - user;
+   return uint32() - user;
 }
 
 var var::operator - (long l) const
 {
-   return int32() - l;
+   return int32_t() - l;
 }
 
 var var::operator - (unsigned long ul) const
 {
-   return get_ulong() - ul;
+   return (int32_t) (uint32() - ul);
 }
 
 var var::operator - (double d) const
@@ -2259,7 +2264,7 @@ var CLASS_DECL_ca operator - (int32_t i, const class var & var)
 
 var CLASS_DECL_ca operator - (uint32_t user, const class var & var)
 {
-   return user - var.get_ulong();
+   return user - var.uint32();
 }
 
 var CLASS_DECL_ca operator - (long l, const class var & var)
@@ -2269,7 +2274,7 @@ var CLASS_DECL_ca operator - (long l, const class var & var)
 
 var CLASS_DECL_ca operator - (unsigned long ul, const class var & var)
 {
-   return ul - var.get_ulong();
+   return (int32_t) (ul - var.uint32());
 }
 
 var CLASS_DECL_ca operator - (double d, const class var & var)
@@ -2328,9 +2333,9 @@ var CLASS_DECL_ca operator - (const class var & var1, const class var & var2)
    {
       var = var1.int32() - var2.int32();
    }
-   else if(var1.is_ulong() || var2.is_ulong())
+   else if(var1.is_natural() || var2.is_natural())
    {
-      var = var1.get_ulong() - var2.get_ulong();
+      var = var1.uint32() - var2.uint32();
    }
    else
    {
@@ -2342,22 +2347,22 @@ var CLASS_DECL_ca operator - (const class var & var1, const class var & var2)
 
 var var::operator + (int32_t i) const
 {
-   return int32() + i;
+   return int32_t() + i;
 }
 
 var var::operator + (uint32_t user) const
 {
-   return get_ulong() + user;
+   return uint32() + user;
 }
 
 var var::operator + (long l) const
 {
-   return int32() + l;
+   return int32_t() + l;
 }
 
 var var::operator + (unsigned long ul) const
 {
-   return get_ulong() + ul;
+   return (uint32_t) (uint32() + ul);
 }
 
 var var::operator + (double d) const
@@ -2372,7 +2377,7 @@ var CLASS_DECL_ca operator + (int32_t i, const class var & var)
 
 var CLASS_DECL_ca operator + (uint32_t user, const class var & var)
 {
-   return user + var.get_ulong();
+   return user + var.uint32();
 }
 
 var CLASS_DECL_ca operator + (long l, const class var & var)
@@ -2382,7 +2387,7 @@ var CLASS_DECL_ca operator + (long l, const class var & var)
 
 var CLASS_DECL_ca operator + (unsigned long ul, const class var & var)
 {
-   return ul + var.get_ulong();
+   return (uint32_t) (ul + var.uint32());
 }
 
 var CLASS_DECL_ca operator + (double d, const class var & var)
@@ -2464,9 +2469,9 @@ var CLASS_DECL_ca operator + (const class var & var1, const class var & var2)
    {
       var = var1.int32() + var2.int32();
    }
-   else if(var1.is_ulong() && var2.is_ulong())
+   else if(var1.is_natural() && var2.is_natural())
    {
-      var = var1.get_ulong() + var2.get_ulong();
+      var = var1.uint32() + var2.uint32();
    }
    else
    {
@@ -2498,22 +2503,48 @@ var CLASS_DECL_ca operator + (const class var & var1, const class var & var2)
 
 var var::operator / (int32_t i) const
 {
-   return int32() / i;
+   return int32_t() / i;
 }
 
 var var::operator / (uint32_t user) const
 {
-   return get_ulong() / user;
+   return uint32() / user;
 }
 
 var var::operator / (long l) const
 {
-   return int32() / l;
+   return int32_t() / l;
 }
 
 var var::operator / (unsigned long ul) const
 {
-   return get_ulong() / ul;
+
+   switch(m_etype)
+   {
+   case ::var::type_null:
+      return var(type_null);
+   case ::var::type_empty:
+      return 0.0 / ul; // throws division by zero exception if ul is zero
+   case ::var::type_int32:
+      return m_i32 / (int_ptr) ul;
+   case ::var::type_uint32:
+      return m_ui32 / (uint_ptr) ul;
+   case ::var::type_int64:
+      return m_i64 / (int64_t) ul;
+   case ::var::type_uint64:
+      return m_ui64 / (uint64_t) ul;
+   case ::var::type_float:
+      return m_f / (float) ul;
+   case ::var::type_double:
+      return m_d / (double) ul;
+   case ::var::type_string:
+      return atof(m_str) / (double) ul;
+   case ::var::type_pvar:
+      return m_pvar->operator / (ul);
+   default:
+      return 0.0 / ul; // throws division by zero exception if ul is zero
+   }
+
 }
 
 var var::operator / (double d) const
@@ -2528,7 +2559,7 @@ var CLASS_DECL_ca operator / (int32_t i, const class var & var)
 
 var CLASS_DECL_ca operator / (uint32_t user, const class var & var)
 {
-   return user / var.get_ulong();
+   return user / var.uint32();
 }
 
 var CLASS_DECL_ca operator / (long l, const class var & var)
@@ -2538,8 +2569,34 @@ var CLASS_DECL_ca operator / (long l, const class var & var)
 
 var CLASS_DECL_ca operator / (unsigned long ul, const class var & var)
 {
-   return ul / var.get_ulong();
+   switch(var.m_etype)
+   {
+   case ::var::type_null:
+      throw simple_exception(::ca::get_thread_app(), "division by zero");
+   case ::var::type_empty:
+      throw simple_exception(::ca::get_thread_app(), "division by zero");
+   case ::var::type_int32:
+      return (int_ptr) ul / var.m_i32;
+   case ::var::type_uint32:
+      return (uint_ptr) ul / var.m_ui32;
+   case ::var::type_int64:
+      return (int64_t) ul / var.m_i64;
+   case ::var::type_uint64:
+      return (uint64_t) ul / var.m_ui64;
+   case ::var::type_float:
+      return (float) ul / var.m_f;
+   case ::var::type_double:
+      return (double) ul / var.m_d;
+   case ::var::type_string:
+      return (double) ul / atof(var.m_str);
+   case ::var::type_pvar:
+      return operator / (ul, *var.m_pvar);
+   default:
+      throw simple_exception(::ca::get_thread_app(), "division by zero");
+   }
+
 }
+
 
 var CLASS_DECL_ca operator / (double d, const class var & var)
 {
@@ -2594,9 +2651,9 @@ var CLASS_DECL_ca operator / (const class var & var1, const class var & var2)
    {
       var = var1.int32() / var2.int32();
    }
-   else if(var1.is_ulong() || var2.is_ulong())
+   else if(var1.is_natural() || var2.is_natural())
    {
-      var = var1.get_ulong() / var2.get_ulong();
+      var = var1.uint32() / var2.uint32();
    }
    else
    {
@@ -2608,22 +2665,47 @@ var CLASS_DECL_ca operator / (const class var & var1, const class var & var2)
 
 var var::operator * (int32_t i) const
 {
-   return int32() * i;
+   return int32_t() * i;
 }
 
 var var::operator * (uint32_t user) const
 {
-   return get_ulong() * user;
+   return uint32() * user;
 }
 
 var var::operator * (long l) const
 {
-   return int32() * l;
+   return int32_t() * l;
 }
 
 var var::operator * (unsigned long ul) const
 {
-   return get_ulong() * ul;
+   switch(m_etype)
+   {
+   case ::var::type_null:
+      return var(type_null);
+   case ::var::type_empty:
+      return 0.0;
+   case ::var::type_int32:
+      return m_i32 * (int_ptr) ul;
+   case ::var::type_uint32:
+      return m_ui32 * (uint_ptr) ul;
+   case ::var::type_int64:
+      return m_i64 * (int64_t) ul;
+   case ::var::type_uint64:
+      return m_ui64 * (uint64_t) ul;
+   case ::var::type_float:
+      return m_f * (float) ul;
+   case ::var::type_double:
+      return m_d * (double) ul;
+   case ::var::type_string:
+      return atof(m_str) * (double) ul;
+   case ::var::type_pvar:
+      return m_pvar->operator * (ul);
+   default:
+      return 0.0;
+   }
+
 }
 
 var var::operator * (double d) const
@@ -2638,7 +2720,7 @@ var CLASS_DECL_ca operator * (int32_t i, const class var & var)
 
 var CLASS_DECL_ca operator * (uint32_t user, const class var & var)
 {
-   return user * var.get_ulong();
+   return user * var.uint32();
 }
 
 var CLASS_DECL_ca operator * (long l, const class var & var)
@@ -2648,8 +2730,35 @@ var CLASS_DECL_ca operator * (long l, const class var & var)
 
 var CLASS_DECL_ca operator * (unsigned long ul, const class var & var)
 {
-   return ul * var.get_ulong();
+
+   switch(var.m_etype)
+   {
+   case ::var::type_null:
+      return ::var(::var::type_null);
+   case ::var::type_empty:
+      return NULL;
+   case ::var::type_int32:
+      return (int_ptr) ul * var.m_i32;
+   case ::var::type_uint32:
+      return (uint_ptr) ul * var.m_ui32;
+   case ::var::type_int64:
+      return (int64_t) ul * var.m_i64;
+   case ::var::type_uint64:
+      return (uint64_t) ul * var.m_ui64;
+   case ::var::type_float:
+      return (float) ul * var.m_f;
+   case ::var::type_double:
+      return (double) ul * var.m_d;
+   case ::var::type_string:
+      return (double) ul * atof(var.m_str);
+   case ::var::type_pvar:
+      return operator * (ul, *var.m_pvar);
+   default:
+      return 0;
+   }
+
 }
+
 
 var CLASS_DECL_ca operator * (double d, const class var & var)
 {
@@ -2730,9 +2839,9 @@ var CLASS_DECL_ca operator * (const class var & var1, const class var & var2)
    {
       var = var1.int32() * var2.int32();
    }
-   else if(var1.is_ulong() || var2.is_ulong())
+   else if(var1.is_natural() || var2.is_natural())
    {
-      var = var1.get_ulong() * var2.get_ulong();
+      var = var1.uint32() * var2.uint32();
    }
    else
    {
@@ -3041,6 +3150,118 @@ bool var::is_scalar() const
    }
 }
 
+bool var::is_real() const
+{
+   if(m_etype == type_double || m_etype == type_float)
+   {
+      return true;
+   }
+   // simple, lazy, slow, and a bit incorrect
+   // incorrect because atof and atoi returns partials results even if it
+   // encounters non-numerical symbols
+   else
+   {
+      string str = get_string();
+      if(is_scalar()
+      && (fmod(atof(str), 1.0) == 0.0
+      && abs(atof(str)) <= pow(2.0, 31.0)))
+      {
+         str.trim();
+         if(str.get_length() == 0)
+            return false;
+         else if(str[0] == '+'
+            || str[0] == '-'
+            || isdigit(str[0]))
+         {
+            int32_t i;
+            for(i = 1; i < str.get_length(); i++)
+            {
+               if(isdigit(str[i]))
+                  continue;
+               if(str[i] == '.')
+               {
+                  i++;
+                  goto dot1;
+               }
+               if(isspace(str[i]))
+               {
+                  i++;
+                  goto sp1;
+               }
+               if(str[i] == 'e' || str[i] == 'E')
+               {
+                  i++;
+                  goto e;
+               }
+               return false;
+            }
+dot1:
+            for(; i < str.get_length(); i++)
+            {
+               if(isdigit(str[i]))
+                  continue;
+               if(str[i] == 'e' || str[i] == 'E')
+                  goto e;
+               return false;
+            }
+sp1:
+            for(; i < str.get_length(); i++)
+            {
+               if(isspace(str[i]))
+                  continue;
+               if(str[i] == 'e' || str[i] == 'E')
+                  goto e;
+               return false;
+            }
+e:
+//sp2:
+            for(; i < str.get_length(); i++)
+            {
+               if(isspace(str[i]))
+                  continue;
+               if(str[i] == '.')
+               {
+                  i++;
+                  goto dot2;
+               }
+               if(isdigit(str[i]))
+               {
+                  i++;
+                  break;
+               }
+               return false;
+            }
+            for(; i < str.get_length(); i++)
+            {
+               if(isdigit(str[i]))
+                  continue;
+               if(str[i] == '.')
+               {
+                  i++;
+                  goto dot2;
+               }
+               return false;
+            }
+dot2:
+            for(; i < str.get_length(); i++)
+            {
+               if(isdigit(str[i]))
+                  continue;
+               return false;
+            }
+            return true;
+         }
+         else
+            return false;
+      }
+      else
+      {
+         return false;
+      }
+   }
+
+}
+
 
 bool var::is_double() const
 {
@@ -3156,7 +3377,7 @@ dot2:
 
 bool var::is_integer() const
 {
-   if(m_etype == type_int32)
+   if(m_etype == type_int32 || m_etype == type_int64)
    {
       return true;
    }
@@ -3177,7 +3398,7 @@ bool var::is_integer() const
             || str[0] == '-'
             || isdigit(str[0]))
          {
-            for(int32_t i = 1; i < str.get_length(); i++)
+            for(index i = 1; i < str.get_length(); i++)
             {
                if(!isdigit(str[i]))
                   return false;
@@ -3194,9 +3415,9 @@ bool var::is_integer() const
    }
 }
 
-bool var::is_ulong() const
+bool var::is_natural() const
 {
-   if(m_etype == type_uint32)
+   if(m_etype == type_uint32 || m_etype == type_uint64)
    {
       return true;
    }
@@ -3216,7 +3437,7 @@ bool var::is_ulong() const
          else if(str[0] == '+'
             || isdigit(str[0]))
          {
-            for(int32_t i = 1; i < str.get_length(); i++)
+            for(index i = 1; i < str.get_length(); i++)
             {
                if(!isdigit(str[i]))
                   return false;

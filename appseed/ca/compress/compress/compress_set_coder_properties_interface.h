@@ -49,7 +49,7 @@ namespace compress
       virtual public ::radix::object
    {
    public:
-      virtual ex1::HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32 numProps) = 0;
+      virtual ex1::HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32_t numProps) = 0;
    };
 
 } // namespace compress

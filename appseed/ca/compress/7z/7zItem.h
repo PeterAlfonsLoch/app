@@ -7,9 +7,9 @@
 namespace n7z
 {
 
-   const uint64 k_AES = 0x06F10701;
+   const uint64_t k_AES = 0x06F10701;
 
-   typedef uint32 CNum;
+   typedef uint32_t CNum;
    const CNum kNumMax     = 0x7FFFFFFF;
    const CNum kNumNoIndex = 0xFFFFFFFF;
 
@@ -34,7 +34,7 @@ namespace n7z
       base_array<CBindPair> BindPairs;
       base_array<CNum> PackStreams;
       base_array<file_size> UnpackSizes;
-      uint32 UnpackCRC;
+      uint32_t UnpackCRC;
       bool UnpackCRCDefined;
 
       CFolder(): UnpackCRCDefined(false) {}
@@ -107,7 +107,7 @@ namespace n7z
          Values.free_extra();
       }
 
-      bool GetItem(index index, uint64 &value) const
+      bool GetItem(index index, uint64_t &value) const
       {
          if (index < Defined.get_count() && Defined[index])
          {
@@ -118,7 +118,7 @@ namespace n7z
          return false;
       }
 
-      void SetItem(index index, bool defined, uint64 value)
+      void SetItem(index index, bool defined, uint64_t value)
       {
          while (index >= Defined.get_count())
             Defined.add(false);
@@ -140,8 +140,8 @@ namespace n7z
    struct CFileItem
    {
       file_size get_count;
-      uint32 Attrib;
-      uint32 Crc;
+      uint32_t Attrib;
+      uint32_t Crc;
       string Name;
 
       bool HasStream; // Test it !!! it means that there is
@@ -156,7 +156,7 @@ namespace n7z
          CrcDefined(false),
          AttribDefined(false)
       {}
-      void SetAttrib(uint32 attrib)
+      void SetAttrib(uint32_t attrib)
       {
          AttribDefined = true;
          Attrib = attrib;
@@ -165,10 +165,10 @@ namespace n7z
 
    struct CFileItem2
    {
-      uint64 CTime;
-      uint64 ATime;
-      uint64 MTime;
-      uint64 StartPos;
+      uint64_t CTime;
+      uint64_t ATime;
+      uint64_t MTime;
+      uint64_t StartPos;
       bool CTimeDefined;
       bool ATimeDefined;
       bool MTimeDefined;
@@ -180,7 +180,7 @@ namespace n7z
    {
       base_array<file_size> PackSizes;
       bool_array PackCRCsDefined;
-      base_array<uint32> PackCRCs;
+      base_array<uint32_t> PackCRCs;
       array_ptr_alloc<CFolder> Folders;
       base_array<CNum> NumUnpackStreamsVector;
       array_ptr_alloc<CFileItem> Files;

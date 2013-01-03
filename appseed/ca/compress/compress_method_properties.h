@@ -23,7 +23,7 @@ namespace compress
       
       array_ptr_alloc < method > methods;
       
-      uint32 NumThreads;
+      uint32_t NumThreads;
 
 
       method_mode()

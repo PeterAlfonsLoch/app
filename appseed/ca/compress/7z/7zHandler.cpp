@@ -25,7 +25,7 @@
 
 using namespace NWindows;*/
 
-extern string ConvertMethodIdToString(uint64 id);
+extern string ConvertMethodIdToString(uint64_t id);
 
 
 namespace n7z
@@ -48,7 +48,7 @@ handler::handler()
   #endif
 }
 
-ex1::HRes handler::GetNumberOfItems(uint32 *numItems)
+ex1::HRes handler::GetNumberOfItems(uint32_t *numItems)
 {
   *numItems = (uint32_t) _db.Files.get_count();
   return S_OK;
@@ -58,12 +58,12 @@ ex1::HRes handler::GetNumberOfItems(uint32 *numItems)
 
 IMP_IInArchive_ArcProps_NO
 
-ex1::HRes handler::GetNumberOfProperties(uint32 * /* numProperties */)
+ex1::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
 {
   return E_NOTIMPL;
 }
 
-ex1::HRes handler::GetPropertyInfo(uint32 /* index */,
+ex1::HRes handler::GetPropertyInfo(uint32_t /* index */,
       BSTR * /* name */, PROPID * /* propID */, VARTYPE * /* varType */)
 {
   return E_NOTIMPL;
@@ -110,7 +110,7 @@ ex1::HRes handler::GetArchiveProperty(int32_t propID, var *value)
 
       for (i = 0; i < ids.get_count(); i++)
       {
-        uint64 id = ids[i];
+        uint64_t id = ids[i];
         string methodName;
         /* bool methodIsKnown = */ FindMethod(_codecsInfo, &_externalCodecs, id, methodName);
         if (methodName.is_empty())
@@ -138,7 +138,7 @@ IMP_IInArchive_ArcProps
 
 static void SetPropFromUInt64Def(CUInt64DefVector &v, int32_t index, var &prop)
 {
-  uint64 value;
+  uint64_t value;
   if (v.GetItem(index, value))
   {
     FILETIME ft;
@@ -150,15 +150,15 @@ static void SetPropFromUInt64Def(CUInt64DefVector &v, int32_t index, var &prop)
 
 #ifndef _SFX
 
-static string ConvertUInt32ToString(uint32 value)
+static string ConvertUInt32ToString(uint32_t value)
 {
-  return convert_to_string((uint64) value);
+  return convert_to_string((uint64_t) value);
 }
 
-static string GetStringForSizeValue(uint32 value)
+static string GetStringForSizeValue(uint32_t value)
 {
   for (int32_t i = 31; i >= 0; i--)
-    if ((uint32(1) << i) == value)
+    if ((uint32_t(1) << i) == value)
       return ConvertUInt32ToString(i);
   string result;
   if (value % (1 << 20) == 0)
@@ -179,11 +179,11 @@ static string GetStringForSizeValue(uint32 value)
   return result;
 }
 
-static const uint64 k_Copy = 0x0;
-static const uint64 k_Delta = 3;
-static const uint64 k_LZMA2 = 0x21;
-static const uint64 k_LZMA  = 0x030101;
-static const uint64 k_PPMD  = 0x030401;
+static const uint64_t k_Copy = 0x0;
+static const uint64_t k_Delta = 3;
+static const uint64_t k_LZMA2 = 0x21;
+static const uint64_t k_LZMA  = 0x030101;
+static const uint64_t k_PPMD  = 0x030401;
 
 static wchar_t GetHex(byte value)
 {
@@ -197,7 +197,7 @@ static inline void AddHexToString(string &res, byte value)
 
 #endif
 
-bool handler::IsEncrypted(uint32 index2) const
+bool handler::IsEncrypted(uint32_t index2) const
 {
   CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
   if (folderIndex != kNumNoIndex)
@@ -205,7 +205,7 @@ bool handler::IsEncrypted(uint32 index2) const
   return false;
 }
 
-ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
+ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 {
   var prop;
 
@@ -217,7 +217,7 @@ ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
   */
 
   const CFileItem &item = _db.Files[index];
-  uint32 index2 = index;
+  uint32_t index2 = index;
 
   switch(propID)
   {
@@ -246,20 +246,20 @@ ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
             prop = _db.GetFolderFullPackSize(folderIndex);
           /*
           else
-            prop = (uint64)0;
+            prop = (uint64_t)0;
           */
         }
         else
-          prop = (uint64)0;
+          prop = (uint64_t)0;
       }
       break;
     }
-    case ::compress::kpidPosition:  { uint64 v; if (_db.StartPos.GetItem(index2, v)) prop = v; break; }
+    case ::compress::kpidPosition:  { uint64_t v; if (_db.StartPos.GetItem(index2, v)) prop = v; break; }
     case ::compress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, index2, prop); break;
     case ::compress::kpidATime:  SetPropFromUInt64Def(_db.ATime, index2, prop); break;
     case ::compress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, index2, prop); break;
-    case ::compress::kpidAttrib:  if (item.AttribDefined) prop = (uint64) item.Attrib; break;
-    case ::compress::kpidCRC:  if (item.CrcDefined) prop = (uint64) item.Crc; break;
+    case ::compress::kpidAttrib:  if (item.AttribDefined) prop = (uint64_t) item.Attrib; break;
+    case ::compress::kpidCRC:  if (item.CrcDefined) prop = (uint64_t) item.Crc; break;
     case ::compress::kpidEncrypted:  prop = IsEncrypted(index2); break;
     case ::compress::kpidIsAnti:  prop = _db.IsItemAnti(index2); break;
     #ifndef _SFX
@@ -287,16 +287,16 @@ ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
             {
               methodsString += methodName;
               if (coder.MethodID == k_Delta && coder.Props.GetCapacity() == 1)
-                propsString = ConvertUInt32ToString((uint32)coder.Props[0] + 1);
+                propsString = ConvertUInt32ToString((uint32_t)coder.Props[0] + 1);
               else if (coder.MethodID == k_LZMA && coder.Props.GetCapacity() == 5)
               {
-                uint32 dicSize = GetUi32((const byte *)coder.Props + 1);
+                uint32_t dicSize = GetUi32((const byte *)coder.Props + 1);
                 propsString = GetStringForSizeValue(dicSize);
               }
               else if (coder.MethodID == k_LZMA2 && coder.Props.GetCapacity() == 1)
               {
                 byte p = coder.Props[0];
-                uint32 dicSize = (((uint32)2 | ((p) & 1)) << ((p) / 2 + 11));
+                uint32_t dicSize = (((uint32_t)2 | ((p) & 1)) << ((p) / 2 + 11));
                 propsString = GetStringForSizeValue(dicSize);
               }
               else if (coder.MethodID == k_PPMD && coder.Props.GetCapacity() == 5)
@@ -305,20 +305,20 @@ ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
                 propsString = L'o';
                 propsString += ConvertUInt32ToString(order);
                 propsString += L":mem";
-                uint32 dicSize = GetUi32((const byte *)coder.Props + 1);
+                uint32_t dicSize = GetUi32((const byte *)coder.Props + 1);
                 propsString += GetStringForSizeValue(dicSize);
               }
               else if (coder.MethodID == k_AES && coder.Props.GetCapacity() >= 1)
               {
                 const byte *data = (const byte *)coder.Props;
                 byte firstByte = *data++;
-                uint32 numCyclesPower = firstByte & 0x3F;
+                uint32_t numCyclesPower = firstByte & 0x3F;
                 propsString = ConvertUInt32ToString(numCyclesPower);
                 /*
                 if ((firstByte & 0xC0) != 0)
                 {
-                  uint32 saltSize = (firstByte >> 7) & 1;
-                  uint32 ivSize = (firstByte >> 6) & 1;
+                  uint32_t saltSize = (firstByte >> 7) & 1;
+                  uint32_t ivSize = (firstByte >> 6) & 1;
                   if (coder.Props.GetCapacity() >= 2)
                   {
                     byte secondByte = *data++;
@@ -358,7 +358,7 @@ ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
       {
         CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
         if (folderIndex != kNumNoIndex)
-          prop = (uint64) folderIndex;
+          prop = (uint64_t) folderIndex;
       }
       break;
     case kpidPackedSize0:
@@ -377,10 +377,10 @@ ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
             prop = _db.GetFolderPackStreamSize(folderIndex, propID - kpidPackedSize0);
           }
           else
-            prop = (uint64)0;
+            prop = (uint64_t)0;
         }
         else
-          prop = (uint64)0;
+          prop = (uint64_t)0;
       }
       break;
     #endif
@@ -450,7 +450,7 @@ gen::release(_inStream.m_p);
 ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
 {
   COM_TRY_BEGIN
-  const uint32 numProcessors = NSystem::GetNumberOfProcessors();
+  const uint32_t numProcessors = NSystem::GetNumberOfProcessors();
   _numThreads = numProcessors;
 
   for (int32_t i = 0; i < numProperties; i++)
@@ -460,7 +460,7 @@ ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *value
     if (name.is_empty())
       return E_INVALIDARG;
     const PROPVARIANT &value = values[i];
-    uint32 number;
+    uint32_t number;
     int32_t index = ParseStringToUInt32(name, number);
     if (index == 0)
     {

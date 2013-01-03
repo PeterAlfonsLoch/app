@@ -18,9 +18,9 @@ namespace ex1
    {
    }
 
-   bool in_buffer::Create(uint32 bufferSize)
+   bool in_buffer::Create(uint32_t bufferSize)
    {
-      const uint32 kMinBlockSize = 1;
+      const uint32_t kMinBlockSize = 1;
       if (bufferSize < kMinBlockSize)
          bufferSize = kMinBlockSize;
       if (_bufferBase != 0 && _bufferSize == bufferSize)

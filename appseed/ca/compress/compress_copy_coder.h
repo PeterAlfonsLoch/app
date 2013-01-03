@@ -17,14 +17,14 @@ namespace compress
 
 
       byte *_buffer;
-      uint64 TotalSize;
+      uint64_t TotalSize;
 
 
       copy_coder();
       ~copy_coder();
 
       virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
-      virtual ex1::HRes GetInStreamProcessedSize(uint64 *value);
+      virtual ex1::HRes GetInStreamProcessedSize(uint64_t *value);
    };
 
    HRESULT CopyStream(::ex1::reader * inStream, ::ex1::writer * outStream, ::compress::progress_info_interface * progress);

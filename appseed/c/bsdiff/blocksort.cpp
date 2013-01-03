@@ -29,13 +29,13 @@
 /*---------------------------------------------*/
 static 
 __inline__
-void fallbackSimpleSort ( uint32* fmap, 
-                          uint32* eclass, 
+void fallbackSimpleSort ( uint32_t* fmap, 
+                          uint32_t* eclass, 
                           int32_t   lo, 
                           int32_t   hi )
 {
    int32_t i, j, tmp;
-   uint32 ec_tmp;
+   uint32_t ec_tmp;
 
    if (lo == hi) return;
 
@@ -90,14 +90,14 @@ void fallbackSimpleSort ( uint32* fmap,
 
 
 static
-void fallbackQSort3 ( uint32* fmap, 
-                      uint32* eclass,
+void fallbackQSort3 ( uint32_t* fmap, 
+                      uint32_t* eclass,
                       int32_t   loSt, 
                       int32_t   hiSt )
 {
    int32_t unLo, unHi, ltLo, gtHi, n, m;
    int32_t sp, lo, hi;
-   uint32 med, r, r3;
+   uint32_t med, r, r3;
    int32_t stackLo[FALLBACK_QSORT_STACK_SIZE];
    int32_t stackHi[FALLBACK_QSORT_STACK_SIZE];
 
@@ -209,9 +209,9 @@ void fallbackQSort3 ( uint32* fmap,
 #define UNALIGNED_BH(zz)  ((zz) & 0x01f)
 
 static
-void fallbackSort ( uint32* fmap, 
-                    uint32* eclass, 
-                    uint32* bhtab,
+void fallbackSort ( uint32_t* fmap, 
+                    uint32_t* eclass, 
+                    uint32_t* bhtab,
                     int32_t   nblock,
                     int32_t   verb )
 {
@@ -344,11 +344,11 @@ void fallbackSort ( uint32* fmap,
 /*---------------------------------------------*/
 static
 __inline__
-Bool mainGtU ( uint32  i1, 
-               uint32  i2,
+Bool mainGtU ( uint32_t  i1, 
+               uint32_t  i2,
                UChar*  block, 
                UInt16* quadrant,
-               uint32  nblock,
+               uint32_t  nblock,
                int32_t*  budget )
 {
    int32_t  k;
@@ -482,7 +482,7 @@ int32_t incs[14] = { 1, 4, 13, 40, 121, 364, 1093, 3280,
                    797161, 2391484 };
 
 static
-void mainSimpleSort ( uint32* ptr,
+void mainSimpleSort ( uint32_t* ptr,
                       UChar*  block,
                       UInt16* quadrant,
                       int32_t   nblock,
@@ -492,7 +492,7 @@ void mainSimpleSort ( uint32* ptr,
                       int32_t*  budget )
 {
    int32_t i, j, h, bigN, hp;
-   uint32 v;
+   uint32_t v;
 
    bigN = hi - lo + 1;
    if (bigN < 2) return;
@@ -618,7 +618,7 @@ UChar mmed3 ( UChar a, UChar b, UChar c )
 #define MAIN_QSORT_STACK_SIZE 100
 
 static
-void mainQSort3 ( uint32* ptr,
+void mainQSort3 ( uint32_t* ptr,
                   UChar*  block,
                   UInt16* quadrant,
                   int32_t   nblock,
@@ -748,10 +748,10 @@ void mainQSort3 ( uint32* ptr,
 #define CLEARMASK (~(SETMASK))
 
 static
-void mainSort ( uint32* ptr, 
+void mainSort ( uint32_t* ptr, 
                 UChar*  block,
                 UInt16* quadrant, 
-                uint32* ftab,
+                uint32_t* ftab,
                 int32_t   nblock,
                 int32_t   verb,
                 int32_t*  budget )
@@ -1030,9 +1030,9 @@ void mainSort ( uint32* ptr,
 */
 void BZ2_blockSort ( e_state* s )
 {
-   uint32* ptr    = s->ptr; 
+   uint32_t* ptr    = s->ptr; 
    UChar*  block  = s->block;
-   uint32* ftab   = s->ftab;
+   uint32_t* ftab   = s->ftab;
    int32_t   nblock = s->nblock;
    int32_t   verb   = s->verbosity;
    int32_t   wfact  = s->workFactor;

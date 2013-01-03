@@ -26,15 +26,15 @@ namespace compress
       ex1::HRes SetSolidSettings(const string &s);
       ex1::HRes SetSolidSettings(var value);
 
-      uint32 _numThreads;
+      uint32_t _numThreads;
 
-      uint32 _crcSize;
+      uint32_t _crcSize;
 
       array_ptr_alloc<COneMethodInfo> _methods;
       bool _removeSfxBlock;
 
-      uint64 _numSolidFiles;
-      uint64 _numSolidBytes;
+      uint64_t _numSolidFiles;
+      uint64_t _numSolidBytes;
       bool _numSolidBytesDefined;
       bool _solidExtension;
 
@@ -47,17 +47,17 @@ namespace compress
       bool WriteMTime;
 
       bool _autoFilter;
-      uint32 _level;
+      uint32_t _level;
 
       bool _volumeMode;
 
       ex1::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
       ex1::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
 
-      void SetCompressionMethod2(COneMethodInfo &oneMethodInfo, uint32 numThreads);
+      void SetCompressionMethod2(COneMethodInfo &oneMethodInfo, uint32_t numThreads);
 
-      void InitSolidFiles() { _numSolidFiles = (uint64)(int64)(-1); }
-      void InitSolidSize()  { _numSolidBytes = (uint64)(int64)(-1); }
+      void InitSolidFiles() { _numSolidFiles = (uint64_t)(int64_t)(-1); }
+      void InitSolidSize()  { _numSolidBytes = (uint64_t)(int64_t)(-1); }
       void InitSolid()
       {
          InitSolidFiles();
@@ -72,10 +72,10 @@ namespace compress
 
       void BeforeSetProperty();
 
-      uint32 minNumber;
-      uint32 numProcessors;
-      uint32 mainDicSize;
-      uint32 mainDicMethodIndex;
+      uint32_t minNumber;
+      uint32_t numProcessors;
+      uint32_t mainDicSize;
+      uint32_t mainDicMethodIndex;
    };
 
 } // namespace compress

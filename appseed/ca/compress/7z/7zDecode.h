@@ -41,7 +41,7 @@ namespace n7z
          ::ex1::writer *outStream,
          ::compress::progress_info_interface *compressProgress,
          ::crypto::get_text_password_interface *getTextPasswordSpec, bool &passwordIsDefined,
-         bool mtMode, uint32 numThreads
+         bool mtMode, uint32_t numThreads
          );
    };
 

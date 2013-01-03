@@ -24,7 +24,7 @@ namespace ex1
       ex1::filesp                      _outFile;
       string                           _tempFileName;
       bool                             _tempFileCreated;
-      uint32                           _crc;
+      uint32_t                           _crc;
       ::primitive::memory              m_memory;
       ::primitive::memory_position     _bufPos;
       ::primitive::memory_size         _size;

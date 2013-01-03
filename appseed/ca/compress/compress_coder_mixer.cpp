@@ -11,7 +11,7 @@ namespace compress
    namespace coder_mixer 
    {
 
-      void coder_info::SetCoderInfo(const uint64 *inSize, const uint64 *outSize)
+      void coder_info::SetCoderInfo(const uint64_t *inSize, const uint64_t *outSize)
       {
         InSizeAssigned = (inSize != 0);
         if (InSizeAssigned)

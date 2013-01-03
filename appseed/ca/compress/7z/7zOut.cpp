@@ -36,7 +36,7 @@ namespace n7z
    }
 
 
-   HRESULT COutArchive::WriteDirect(const void *data, uint32 size)
+   HRESULT COutArchive::WriteDirect(const void *data, uint32_t size)
    {
       return ::WriteBytes(SeqStream, data, size);
    }
@@ -62,13 +62,13 @@ namespace n7z
    }
 #endif
 
-   static void SetUInt32(byte *p, uint32 d)
+   static void SetUInt32(byte *p, uint32_t d)
    {
       for (int32_t i = 0; i < 4; i++, d >>= 8)
          p[i] = (byte)d;
    }
 
-   static void SetUInt64(byte *p, uint64 d)
+   static void SetUInt64(byte *p, uint64_t d)
    {
       for (int32_t i = 0; i < 8; i++, d >>= 8)
          p[i] = (byte)d;
@@ -124,8 +124,8 @@ namespace n7z
       {
          /*
          CStartHeader sh;
-         sh.NextHeaderOffset = (uint32)(Int32)-1;
-         sh.NextHeaderSize = (uint32)(Int32)-1;
+         sh.NextHeaderOffset = (uint32_t)(Int32)-1;
+         sh.NextHeaderSize = (uint32_t)(Int32)-1;
          sh.NextHeaderCRC = 0;
          WriteStartHeader(sh);
          */
@@ -157,7 +157,7 @@ namespace n7z
       return S_OK;
    }
 
-   uint64 COutArchive::GetPos() const
+   uint64_t COutArchive::GetPos() const
    {
       if (_countMode)
          return _countSize;
@@ -192,7 +192,7 @@ namespace n7z
          _outByte2.WriteByte(b);
    }
 
-   void COutArchive::WriteUInt32(uint32 value)
+   void COutArchive::WriteUInt32(uint32_t value)
    {
       for (int32_t i = 0; i < 4; i++)
       {
@@ -201,7 +201,7 @@ namespace n7z
       }
    }
 
-   void COutArchive::WriteUInt64(uint64 value)
+   void COutArchive::WriteUInt64(uint64_t value)
    {
       for (int32_t i = 0; i < 8; i++)
       {
@@ -210,14 +210,14 @@ namespace n7z
       }
    }
 
-   void COutArchive::WriteNumber(uint64 value)
+   void COutArchive::WriteNumber(uint64_t value)
    {
       byte firstByte = 0;
       byte mask = 0x80;
       int32_t i;
       for (i = 0; i < 8; i++)
       {
-         if (value < ((uint64(1) << ( 7  * (i + 1)))))
+         if (value < ((uint64_t(1) << ( 7  * (i + 1)))))
          {
             firstByte |= byte(value >> (8 * i));
             break;
@@ -233,19 +233,19 @@ namespace n7z
       }
    }
 
-   static uint32 GetBigNumberSize(uint64 value)
+   static uint32_t GetBigNumberSize(uint64_t value)
    {
       int32_t i;
       for (i = 1; i < 9; i++)
-         if (value < (((uint64)1 << (i * 7))))
+         if (value < (((uint64_t)1 << (i * 7))))
             break;
       return i;
    }
 
 #ifdef _7Z_VOL
-   uint32 COutArchive::GetVolHeadersSize(uint64 dataSize, int32_t nameLength, bool props)
+   uint32_t COutArchive::GetVolHeadersSize(uint64_t dataSize, int32_t nameLength, bool props)
    {
-      uint32 result = GetBigNumberSize(dataSize) * 2 + 41;
+      uint32_t result = GetBigNumberSize(dataSize) * 2 + 41;
       if (nameLength != 0)
       {
          nameLength = (nameLength + 1) * 2;
@@ -261,16 +261,16 @@ namespace n7z
       return result;
    }
 
-   uint64 COutArchive::GetVolPureSize(uint64 volSize, int32_t nameLength, bool props)
+   uint64_t COutArchive::GetVolPureSize(uint64_t volSize, int32_t nameLength, bool props)
    {
-      uint32 headersSizeBase = COutArchive::GetVolHeadersSize(1, nameLength, props);
+      uint32_t headersSizeBase = COutArchive::GetVolHeadersSize(1, nameLength, props);
       int32_t testSize;
       if (volSize > headersSizeBase)
          testSize = volSize - headersSizeBase;
       else
          testSize = 1;
-      uint32 headersSize = COutArchive::GetVolHeadersSize(testSize, nameLength, props);
-      uint64 pureSize = 1;
+      uint32_t headersSize = COutArchive::GetVolHeadersSize(testSize, nameLength, props);
+      uint64_t pureSize = 1;
       if (volSize > headersSize)
          pureSize = volSize - headersSize;
       return pureSize;
@@ -287,7 +287,7 @@ namespace n7z
          {
             size_t propsSize = coder.Props.GetCapacity();
 
-            uint64 id = coder.MethodID;
+            uint64_t id = coder.MethodID;
             int32_t idSize;
             for (idSize = 1; idSize < sizeof(id); idSize++)
                if ((id >> (8 * idSize)) == 0)
@@ -349,7 +349,7 @@ namespace n7z
 
    void COutArchive::WriteHashDigests(
       const bool_array &digestsDefined,
-      const base_array<uint32> &digests)
+      const base_array<uint32_t> &digests)
    {
       int32_t numDefined = 0;
       int32_t i;
@@ -373,10 +373,10 @@ namespace n7z
    }
 
    void COutArchive::WritePackInfo(
-      uint64 dataOffset,
+      uint64_t dataOffset,
       const base_array<file_size> &packSizes,
       const bool_array &packCRCsDefined,
-      const base_array<uint32> &packCRCs)
+      const base_array<uint32_t> &packCRCs)
    {
       if (packSizes.is_empty())
          return;
@@ -417,7 +417,7 @@ namespace n7z
       }
 
       bool_array unpackCRCsDefined;
-      base_array<uint32> unpackCRCs;
+      base_array<uint32_t> unpackCRCs;
       for (i = 0; i < folders.get_count(); i++)
       {
          const CFolder &folder = folders[i];
@@ -434,7 +434,7 @@ namespace n7z
       const base_array<CNum> &numUnpackStreamsInFolders,
       const base_array<file_size> &unpackSizes,
       const bool_array &digestsDefined,
-      const base_array<uint32> &digests)
+      const base_array<uint32_t> &digests)
    {
       WriteByte(NID::kSubStreamsInfo);
 
@@ -467,7 +467,7 @@ namespace n7z
          }
 
          bool_array digestsDefined2;
-         base_array<uint32> digests2;
+         base_array<uint32_t> digests2;
 
          int32_t digestIndex = 0;
          for (i = 0; i < folders.get_count(); i++)
@@ -516,7 +516,7 @@ namespace n7z
    void COutArchive::WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, unsigned itemSize)
    {
       const unsigned bvSize = (numDefined == v.get_count()) ? 0 : Bv_GetSizeInBytes(v);
-      const uint64 dataSize = (uint64)numDefined * itemSize + bvSize + 2;
+      const uint64_t dataSize = (uint64_t)numDefined * itemSize + bvSize + 2;
       SkipAlign(3 + (unsigned)bvSize + (unsigned)GetBigNumberSize(dataSize), itemSize);
 
       WriteByte(type);
@@ -569,7 +569,7 @@ namespace n7z
       CFolder folderItem;
       folderItem.UnpackCRCDefined = true;
       folderItem.UnpackCRC = crc_calc(data, data.GetCapacity());
-      //  uint64 dataSize64 = data.GetCapacity();
+      //  uint64_t dataSize64 = data.GetCapacity();
       throw "uncomment below if implement above";
       /*  RINOK(encoder.Encode(
       codecsInfo, externalCodecs,
@@ -581,11 +581,11 @@ namespace n7z
    void COutArchive::WriteHeader(
       const CArchiveDatabase &db,
       const CHeaderOptions &headerOptions,
-      uint64 &headerOffset)
+      uint64_t &headerOffset)
    {
       int32_t i;
 
-      uint64 packedSize = 0;
+      uint64_t packedSize = 0;
       for (i = 0; i < db.PackSizes.get_count(); i++)
          packedSize += db.PackSizes[i];
 
@@ -606,7 +606,7 @@ namespace n7z
 
          base_array<file_size> unpackSizes;
          bool_array digestsDefined;
-         base_array<uint32> digests;
+         base_array<uint32_t> digests;
          for (i = 0; i < db.Files.get_count(); i++)
          {
             const CFileItem &file = db.Files[i];
@@ -767,9 +767,9 @@ namespace n7z
       if (!db.CheckNumFiles())
          return E_FAIL;
 
-      uint64 headerOffset;
-      uint32 headerCRC;
-      uint64 headerSize;
+      uint64_t headerOffset;
+      uint32_t headerCRC;
+      uint64_t headerSize;
       if (db.is_empty())
       {
          headerSize = 0;
@@ -825,7 +825,7 @@ namespace n7z
 
             WriteID(NID::kEncodedHeader);
             WritePackInfo(headerOffset, packSizes,
-               bool_array(), base_array<uint32>());
+               bool_array(), base_array<uint32_t>());
             WriteUnpackInfo(folders);
             WriteByte(NID::kEnd);
             for (int32_t i = 0; i < packSizes.get_count(); i++)
@@ -842,7 +842,7 @@ namespace n7z
          h.NextHeaderSize = headerSize;
          h.NextHeaderCRC = headerCRC;
          h.NextHeaderOffset =
-            uint64(0) - (headerSize +
+            uint64_t(0) - (headerSize +
             4 + kFinishHeaderSize);
          h.ArchiveStartOffset = h.NextHeaderOffset - headerOffset;
          h.AdditionalStartBlockSize = 0;

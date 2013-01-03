@@ -8,7 +8,7 @@ namespace compress
    namespace coder_mixer
    {
 
-      CCoder2::CCoder2(::ca::application * papp, uint32 numInStreams, uint32 numOutStreams):
+      CCoder2::CCoder2(::ca::application * papp, uint32_t numInStreams, uint32_t numOutStreams):
                ca(papp),
             thread(papp),
          CCoderInfo2(numInStreams, numOutStreams)
@@ -25,13 +25,13 @@ namespace compress
       {
          InStreamPointers.remove_all();
          OutStreamPointers.remove_all();
-         for(uint32 i = 0; i < NumInStreams; i++)
+         for(uint32_t i = 0; i < NumInStreams; i++)
          {
             if (InSizePointers[i] != NULL)
                InSizePointers[i] = &InSizes[i];
             InStreamPointers.add((::ex1::reader *)InStreams[i]);
          }
-         for(uint32 i = 0; i < NumOutStreams; i++)
+         for(uint32_t i = 0; i < NumOutStreams; i++)
          {
             if (OutSizePointers[i] != NULL)
                OutSizePointers[i] = &OutSizes[i];
@@ -56,11 +56,11 @@ namespace compress
       }
 
       static void SetSizes(const file_size **srcSizes, base_array<file_size> &sizes,
-         base_array<const file_size *> &sizePointers, uint32 numItems)
+         base_array<const file_size *> &sizePointers, uint32_t numItems)
       {
          sizes.remove_all();
          sizePointers.remove_all();
-         for (uint32 i = 0; i < numItems; i++)
+         for (uint32_t i = 0; i < numItems; i++)
          {
             if (srcSizes == 0 || srcSizes[i] == NULL)
             {
@@ -141,7 +141,7 @@ namespace compress
             CCoder2 &coderInfo = _coders[i];
             const CCoderStreamsInfo &coderStreamsInfo = _bindInfo.Coders[i];
             coderInfo.InStreams.remove_all();
-            uint32 j;
+            uint32_t j;
             for (j = 0; j < coderStreamsInfo.NumInStreams; j++)
                coderInfo.InStreams.add_new();
             coderInfo.OutStreams.remove_all();
@@ -152,8 +152,8 @@ namespace compress
          for (i = 0; i < _bindInfo.BindPairs.get_count(); i++)
          {
             const CBindPair &bindPair = _bindInfo.BindPairs[i];
-            uint32 inCoderIndex, inCoderStreamIndex;
-            uint32 outCoderIndex, outCoderStreamIndex;
+            uint32_t inCoderIndex, inCoderStreamIndex;
+            uint32_t outCoderIndex, outCoderStreamIndex;
             _bindInfo.FindInStream(bindPair.InIndex, inCoderIndex, inCoderStreamIndex);
             _bindInfo.FindOutStream(bindPair.OutIndex, outCoderIndex, outCoderStreamIndex);
 
@@ -167,7 +167,7 @@ namespace compress
             outSetSize = dynamic_cast < ::compress::set_buffer_size_interface * > (_coders[outCoderIndex].m_p);
             if (inSetSize && outSetSize)
             {
-               const uint32 kBufSize = 1 << 19;
+               const uint32_t kBufSize = 1 << 19;
                inSetSize->SetInBufSize(inCoderStreamIndex, kBufSize);
                outSetSize->SetOutBufSize(outCoderStreamIndex, kBufSize);
             }*/
@@ -175,14 +175,14 @@ namespace compress
 
          for (i = 0; i < _bindInfo.InStreams.get_count(); i++)
          {
-            uint32 inCoderIndex, inCoderStreamIndex;
+            uint32_t inCoderIndex, inCoderStreamIndex;
             _bindInfo.FindInStream(_bindInfo.InStreams[i], inCoderIndex, inCoderStreamIndex);
             _coders[inCoderIndex].InStreams[inCoderStreamIndex] = inStreams[i];
          }
 
          for (i = 0; i < _bindInfo.OutStreams.get_count(); i++)
          {
-            uint32 outCoderIndex, outCoderStreamIndex;
+            uint32_t outCoderIndex, outCoderStreamIndex;
             _bindInfo.FindOutStream(_bindInfo.OutStreams[i], outCoderIndex, outCoderStreamIndex);
             _coders[outCoderIndex].OutStreams[outCoderStreamIndex] = outStreams[i];
          }
@@ -199,14 +199,14 @@ namespace compress
 
       ex1::HRes CCoderMixer2MT::Code(::ex1::reader **inStreams,
          const file_size ** /* inSizes */,
-         uint32 numInStreams,
+         uint32_t numInStreams,
          ::ex1::writer **outStreams,
          const file_size ** /* outSizes */,
-         uint32 numOutStreams,
+         uint32_t numOutStreams,
          ::compress::progress_info_interface *progress)
       {
-         if (numInStreams != (uint32)_bindInfo.InStreams.get_count() ||
-            numOutStreams != (uint32)_bindInfo.OutStreams.get_count())
+         if (numInStreams != (uint32_t)_bindInfo.InStreams.get_count() ||
+            numOutStreams != (uint32_t)_bindInfo.OutStreams.get_count())
             return E_INVALIDARG;
 
          Init(inStreams, outStreams);

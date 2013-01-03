@@ -7,7 +7,7 @@ namespace compress
       virtual public ::radix::object
    {
    public:
-      virtual ex1::HRes SetRatioInfo(const uint64 *inSize, const uint64 *outSize) = 0;
+      virtual ex1::HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize) = 0;
    };
 
 } // namespace compress

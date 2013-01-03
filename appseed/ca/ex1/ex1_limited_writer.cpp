@@ -22,7 +22,7 @@ namespace ex1
                *processedSize = size;
             return;
          }
-         size = (uint32)_size;
+         size = (uint32_t)_size;
       }
       if (_stream)
          _stream->write(data, size, &size);

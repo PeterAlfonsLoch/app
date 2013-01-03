@@ -18,8 +18,8 @@
 #include "HandlerOut.h"*/
 
 bool StringToBool(const string &s, bool &res);
-int32_t ParseStringToUInt32(const string &srcString, uint32 &number);
-uint64 ConvertStringToUInt64(const char *s, const char **end);
+int32_t ParseStringToUInt32(const string &srcString, uint32_t &number);
+uint64_t ConvertStringToUInt64(const char *s, const char **end);
 
 namespace compress
 {
@@ -35,53 +35,53 @@ namespace compress
    static const char *kLzmaMatchFinderX1 = "HC4";
    static const char *kLzmaMatchFinderX5 = "BT4";
 
-   static const uint32 kLzmaAlgoX1 = 0;
-   static const uint32 kLzmaAlgoX5 = 1;
+   static const uint32_t kLzmaAlgoX1 = 0;
+   static const uint32_t kLzmaAlgoX5 = 1;
 
-   static const uint32 kLzmaDicSizeX1 = 1 << 16;
-   static const uint32 kLzmaDicSizeX3 = 1 << 20;
-   static const uint32 kLzmaDicSizeX5 = 1 << 24;
-   static const uint32 kLzmaDicSizeX7 = 1 << 25;
-   static const uint32 kLzmaDicSizeX9 = 1 << 26;
+   static const uint32_t kLzmaDicSizeX1 = 1 << 16;
+   static const uint32_t kLzmaDicSizeX3 = 1 << 20;
+   static const uint32_t kLzmaDicSizeX5 = 1 << 24;
+   static const uint32_t kLzmaDicSizeX7 = 1 << 25;
+   static const uint32_t kLzmaDicSizeX9 = 1 << 26;
 
-   static const uint32 kLzmaFastBytesX1 = 32;
-   static const uint32 kLzmaFastBytesX7 = 64;
+   static const uint32_t kLzmaFastBytesX1 = 32;
+   static const uint32_t kLzmaFastBytesX7 = 64;
 
-   static const uint32 kPpmdMemSizeX1 = (1 << 22);
-   static const uint32 kPpmdMemSizeX5 = (1 << 24);
-   static const uint32 kPpmdMemSizeX7 = (1 << 26);
-   static const uint32 kPpmdMemSizeX9 = (192 << 20);
+   static const uint32_t kPpmdMemSizeX1 = (1 << 22);
+   static const uint32_t kPpmdMemSizeX5 = (1 << 24);
+   static const uint32_t kPpmdMemSizeX7 = (1 << 26);
+   static const uint32_t kPpmdMemSizeX9 = (192 << 20);
 
-   static const uint32 kPpmdOrderX1 = 4;
-   static const uint32 kPpmdOrderX5 = 6;
-   static const uint32 kPpmdOrderX7 = 16;
-   static const uint32 kPpmdOrderX9 = 32;
+   static const uint32_t kPpmdOrderX1 = 4;
+   static const uint32_t kPpmdOrderX5 = 6;
+   static const uint32_t kPpmdOrderX7 = 16;
+   static const uint32_t kPpmdOrderX9 = 32;
 
-   static const uint32 kDeflateAlgoX1 = 0;
-   static const uint32 kDeflateAlgoX5 = 1;
+   static const uint32_t kDeflateAlgoX1 = 0;
+   static const uint32_t kDeflateAlgoX5 = 1;
 
-   static const uint32 kDeflateFastBytesX1 = 32;
-   static const uint32 kDeflateFastBytesX7 = 64;
-   static const uint32 kDeflateFastBytesX9 = 128;
+   static const uint32_t kDeflateFastBytesX1 = 32;
+   static const uint32_t kDeflateFastBytesX7 = 64;
+   static const uint32_t kDeflateFastBytesX9 = 128;
 
-   static const uint32 kDeflatePassesX1 = 1;
-   static const uint32 kDeflatePassesX7 = 3;
-   static const uint32 kDeflatePassesX9 = 10;
+   static const uint32_t kDeflatePassesX1 = 1;
+   static const uint32_t kDeflatePassesX7 = 3;
+   static const uint32_t kDeflatePassesX9 = 10;
 
-   static const uint32 kBZip2NumPassesX1 = 1;
-   static const uint32 kBZip2NumPassesX7 = 2;
-   static const uint32 kBZip2NumPassesX9 = 7;
+   static const uint32_t kBZip2NumPassesX1 = 1;
+   static const uint32_t kBZip2NumPassesX7 = 2;
+   static const uint32_t kBZip2NumPassesX9 = 7;
 
-   static const uint32 kBZip2DicSizeX1 = 100000;
-   static const uint32 kBZip2DicSizeX3 = 500000;
-   static const uint32 kBZip2DicSizeX5 = 900000;
+   static const uint32_t kBZip2DicSizeX1 = 100000;
+   static const uint32_t kBZip2DicSizeX3 = 500000;
+   static const uint32_t kBZip2DicSizeX5 = 900000;
 
    static const char *kDefaultMethodName = kLZMAMethodName;
 
 //   static const char *kLzmaMatchFinderForHeaders = "BT2";
-   static const uint32 kDictionaryForHeaders = 1 << 20;
-   static const uint32 kNumFastBytesForHeaders = 273;
-   static const uint32 kAlgorithmForHeaders = kLzmaAlgoX5;
+   static const uint32_t kDictionaryForHeaders = 1 << 20;
+   static const uint32_t kNumFastBytesForHeaders = 273;
+   static const uint32_t kAlgorithmForHeaders = kLzmaAlgoX5;
 
    static bool AreEqual(const string &methodName, const char *s)
    { return (methodName.CompareNoCase(s) == 0); }
@@ -148,7 +148,7 @@ namespace compress
       {
          if (srcProp.vt == var::type_int32)
          {
-            uint32 value = srcProp.ulVal;
+            uint32_t value = srcProp.ulVal;
             if (value > 0xFF)
                return false;
             destProp = (Byte)value;
@@ -200,28 +200,28 @@ namespace compress
 
    void out_handler::SetCompressionMethod2(COneMethodInfo &oneMethodInfo
 #ifndef _7ZIP_ST
-      , uint32 numThreads
+      , uint32_t numThreads
 #endif
       )
    {
-      uint32 level = _level;
+      uint32_t level = _level;
       if (oneMethodInfo.MethodName.is_empty())
          oneMethodInfo.MethodName = kDefaultMethodName;
 
       if (oneMethodInfo.IsLzma())
       {
-         uint32 dicSize =
+         uint32_t dicSize =
             (level >= 9 ? kLzmaDicSizeX9 :
             (level >= 7 ? kLzmaDicSizeX7 :
             (level >= 5 ? kLzmaDicSizeX5 :
             (level >= 3 ? kLzmaDicSizeX3 :
             kLzmaDicSizeX1))));
 
-         uint32 algo =
+         uint32_t algo =
             (level >= 5 ? kLzmaAlgoX5 :
             kLzmaAlgoX1);
 
-         uint32 fastBytes =
+         uint32_t fastBytes =
             (level >= 7 ? kLzmaFastBytesX7 :
             kLzmaFastBytesX1);
 
@@ -239,17 +239,17 @@ namespace compress
       }
       else if (IsDeflateMethod(oneMethodInfo.MethodName))
       {
-         uint32 fastBytes =
+         uint32_t fastBytes =
             (level >= 9 ? kDeflateFastBytesX9 :
             (level >= 7 ? kDeflateFastBytesX7 :
             kDeflateFastBytesX1));
 
-         uint32 numPasses =
+         uint32_t numPasses =
             (level >= 9 ? kDeflatePassesX9 :
             (level >= 7 ? kDeflatePassesX7 :
             kDeflatePassesX1));
 
-         uint32 algo =
+         uint32_t algo =
             (level >= 5 ? kDeflateAlgoX5 :
             kDeflateAlgoX1);
 
@@ -259,12 +259,12 @@ namespace compress
       }
       else if (IsBZip2Method(oneMethodInfo.MethodName))
       {
-         uint32 numPasses =
+         uint32_t numPasses =
             (level >= 9 ? kBZip2NumPassesX9 :
             (level >= 7 ? kBZip2NumPassesX7 :
             kBZip2NumPassesX1));
 
-         uint32 dicSize =
+         uint32_t dicSize =
             (level >= 5 ? kBZip2DicSizeX5 :
             (level >= 3 ? kBZip2DicSizeX3 :
             kBZip2DicSizeX1));
@@ -277,13 +277,13 @@ namespace compress
       }
       else if (IsPpmdMethod(oneMethodInfo.MethodName))
       {
-         uint32 useMemSize =
+         uint32_t useMemSize =
             (level >= 9 ? kPpmdMemSizeX9 :
             (level >= 7 ? kPpmdMemSizeX7 :
             (level >= 5 ? kPpmdMemSizeX5 :
             kPpmdMemSizeX1)));
 
-         uint32 order =
+         uint32_t order =
             (level >= 9 ? kPpmdOrderX9 :
             (level >= 7 ? kPpmdOrderX7 :
             (level >= 5 ? kPpmdOrderX5 :
@@ -352,7 +352,7 @@ namespace compress
       {
          throw "should implement below";
          /*
-         uint32 dicSize;
+         uint32_t dicSize;
          RINOK(ParsePropDictionaryValue(value, dicSize));
          prop.Value = dicSize;
          */
@@ -372,7 +372,7 @@ namespace compress
          }
          else
          {
-            uint32 number;
+            uint32_t number;
             if (ParseStringToUInt32(value, number) == value.get_length())
                propValue = number;
             else
@@ -411,7 +411,7 @@ namespace compress
       {
          const char *start = ((const char *)s2) + i;
          const char *end;
-         uint64 v = ConvertStringToUInt64(start, &end);
+         uint64_t v = ConvertStringToUInt64(start, &end);
          if (start == end)
          {
             if (s2[i++] != 'E')
@@ -548,7 +548,7 @@ namespace compress
          //return ParsePropValue(name, value, _crcSize);
       }
 
-      uint32 number;
+      uint32_t number;
       int32_t index = ParseStringToUInt32(name, number);
       string realName = name.Mid(index);
       if (index == 0)
@@ -618,7 +618,7 @@ namespace compress
             atoi(prop.name()) == NCoderPropID::kDictionarySize ||
             atoi(prop.name()) == NCoderPropID::kUsedMemorySize)
          {
-            uint32 dicSize;
+            uint32_t dicSize;
             throw "should implement below";
             //RINOK(ParsePropDictionaryValue(realName.Mid(MyStringLen(nameToPropID.Name)), value, dicSize));
             //prop.Value = dicSize;

@@ -113,7 +113,7 @@ namespace user
             string strValue = pnode->attr("value");
             string strEscape = pnode->attr("escape");
             iMap = 0;
-            if(pnode->attr("shift").int32() == 1)
+            if(pnode->attr("shift") == 1)
             {
                iMap |= 0x80000000;
             }

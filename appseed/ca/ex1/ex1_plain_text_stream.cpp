@@ -454,7 +454,7 @@ namespace ex1
       return "<unknown plain_text_io_stream location>";
    }
 
-   /*static const uint32 kBlockSize = ((uint32)1 << 31);
+   /*static const uint32_t kBlockSize = ((uint32_t)1 << 31);
 
    HRESULT ReadStream(reader * stream, void * data, uint64_t * processedSize)
    {
@@ -462,8 +462,8 @@ namespace ex1
       *processedSize = 0;
       while (size != 0)
       {
-         uint32 curSize = (size < kBlockSize) ? (uint32)size : kBlockSize;
-         uint32 processedSizeLoc;
+         uint32_t curSize = (size < kBlockSize) ? (uint32_t)size : kBlockSize;
+         uint32_t processedSizeLoc;
          HRESULT res = S_OK;
          try
          {

@@ -23,9 +23,9 @@ namespace compress
    namespace rar3
    {
 
-      uint32 mem_bit_decoder::ReadBits(int32_t numBits)
+      uint32_t mem_bit_decoder::ReadBits(int32_t numBits)
       {
-         uint32 res = 0;
+         uint32_t res = 0;
          for (;;)
          {
             byte b = _bitPos < _bitSize ? _data[_bitPos >> 3] : 0;
@@ -36,21 +36,21 @@ namespace compress
                return (res | (b >> (avail - numBits))) & ((1 << numBits) - 1);
             }
             numBits -= avail;
-            res |= (uint32)(b & ((1 << avail) - 1)) << numBits;
+            res |= (uint32_t)(b & ((1 << avail) - 1)) << numBits;
             _bitPos += avail;
          }
       }
 
-      uint32 mem_bit_decoder::ReadBit() { return ReadBits(1); }
+      uint32_t mem_bit_decoder::ReadBit() { return ReadBits(1); }
 
       namespace vm
       {
 
-         static const uint32 kStackRegIndex = kNumRegs - 1;
+         static const uint32_t kStackRegIndex = kNumRegs - 1;
 
-         static const uint32 FLAG_C = 1;
-         static const uint32 FLAG_Z = 2;
-         static const uint32 FLAG_S = 0x80000000;
+         static const uint32_t FLAG_C = 1;
+         static const uint32_t FLAG_Z = 2;
+         static const uint32_t FLAG_S = 0x80000000;
 
          static const byte CF_OP0 = 0;
          static const byte CF_OP1 = 1;
@@ -130,10 +130,10 @@ namespace compress
             R[kNumRegs] = 0;
             Flags = 0;
 
-            uint32 globalSize = min((uint32)initState->GlobalData.get_size(), kGlobalSize);
+            uint32_t globalSize = min((uint32_t)initState->GlobalData.get_size(), kGlobalSize);
             if (globalSize != 0)
                memcpy(Mem + kGlobalOffset, &initState->GlobalData[0], globalSize);
-            uint32 staticSize = min((uint32)prg->StaticData.get_size(), kGlobalSize - globalSize);
+            uint32_t staticSize = min((uint32_t)prg->StaticData.get_size(), kGlobalSize - globalSize);
             if (staticSize != 0)
                memcpy(Mem + kGlobalOffset + globalSize, &prg->StaticData[0], staticSize);
 
@@ -148,21 +148,21 @@ namespace compress
                if (!res)
                   prg->Commands[0].OpCode = CMD_RET;
             }
-            uint32 newBlockPos = GetFixedGlobalValue32(NGlobalOffset::kBlockPos) & kSpaceMask;
-            uint32 newBlockSize = GetFixedGlobalValue32(NGlobalOffset::kBlockSize) & kSpaceMask;
+            uint32_t newBlockPos = GetFixedGlobalValue32(NGlobalOffset::kBlockPos) & kSpaceMask;
+            uint32_t newBlockSize = GetFixedGlobalValue32(NGlobalOffset::kBlockSize) & kSpaceMask;
             if (newBlockPos + newBlockSize >= kSpaceSize)
                newBlockPos = newBlockSize = 0;
             outBlockRef.Offset = newBlockPos;
             outBlockRef.Size = newBlockSize;
 
             //outGlobalData.remove_all();
-            uint32 dataSize = GetFixedGlobalValue32(NGlobalOffset::kGlobalMemOutSize);
+            uint32_t dataSize = GetFixedGlobalValue32(NGlobalOffset::kGlobalMemOutSize);
             dataSize = min(dataSize, kGlobalSize - kFixedGlobalSize);
             if (dataSize != 0)
             {
                dataSize += kFixedGlobalSize;
                outGlobalData.set_size(0, dataSize);
-               for (uint32 i = 0; i < dataSize; i++)
+               for (uint32_t i = 0; i < dataSize; i++)
                   outGlobalData.add(Mem[kGlobalOffset + i]);
             }
             return res;
@@ -175,11 +175,11 @@ namespace compress
    cmd = commands + (IP);
 
 #define GET_FLAG_S_B(res) (((res) & 0x80) ? FLAG_S : 0)
-#define SET_IP_OP1 { uint32 val = GetOperand32(&cmd->Op1); SET_IP(val); }
+#define SET_IP_OP1 { uint32_t val = GetOperand32(&cmd->Op1); SET_IP(val); }
 #define FLAGS_UPDATE_SZ Flags = res == 0 ? FLAG_Z : res & FLAG_S
 #define FLAGS_UPDATE_SZ_B Flags = (res & 0xFF) == 0 ? FLAG_Z : GET_FLAG_S_B(res)
 
-         uint32 vm::GetOperand32(const COperand *op) const
+         uint32_t vm::GetOperand32(const COperand *op) const
          {
             switch(op->Type)
             {
@@ -189,7 +189,7 @@ namespace compress
             }
          }
 
-         void vm::SetOperand32(const COperand *op, uint32 val)
+         void vm::SetOperand32(const COperand *op, uint32_t val)
          {
             switch(op->Type)
             {
@@ -219,14 +219,14 @@ namespace compress
             }
          }
 
-         uint32 vm::GetOperand(bool byteMode, const COperand *op) const
+         uint32_t vm::GetOperand(bool byteMode, const COperand *op) const
          {
             if (byteMode)
                return GetOperand8(op);
             return GetOperand32(op);
          }
 
-         void vm::SetOperand(bool byteMode, const COperand *op, uint32 val)
+         void vm::SetOperand(bool byteMode, const COperand *op, uint32_t val)
          {
             if (byteMode)
                SetOperand8(op, (byte)(val & 0xFF));
@@ -239,7 +239,7 @@ namespace compress
             int32_t maxOpCount = 25000000;
             const CCommand *commands = &prg->Commands[0];
             const CCommand *cmd = commands;
-            uint32 numCommands = (uint32_t) prg->Commands.get_size();
+            uint32_t numCommands = (uint32_t) prg->Commands.get_size();
             for (;;)
             {
                switch(cmd->OpCode)
@@ -254,8 +254,8 @@ namespace compress
                   break;
                case CMD_CMP:
                   {
-                     uint32 v1 = GetOperand32(&cmd->Op1);
-                     uint32 res = v1 - GetOperand32(&cmd->Op2);
+                     uint32_t v1 = GetOperand32(&cmd->Op1);
+                     uint32_t res = v1 - GetOperand32(&cmd->Op2);
                      Flags = res == 0 ? FLAG_Z : (res > v1) | (res & FLAG_S);
                   }
                   break;
@@ -269,8 +269,8 @@ namespace compress
                   break;
                case CMD_ADD:
                   {
-                     uint32 v1 = GetOperand32(&cmd->Op1);
-                     uint32 res = v1 + GetOperand32(&cmd->Op2);
+                     uint32_t v1 = GetOperand32(&cmd->Op1);
+                     uint32_t res = v1 + GetOperand32(&cmd->Op2);
                      SetOperand32(&cmd->Op1, res);
                      Flags = (res < v1) | (res == 0 ? FLAG_Z : (res & FLAG_S));
                   }
@@ -286,9 +286,9 @@ namespace compress
                   break;
                case CMD_ADC:
                   {
-                     uint32 v1 = GetOperand(cmd->ByteMode, &cmd->Op1);
-                     uint32 FC = (Flags & FLAG_C);
-                     uint32 res = v1 + GetOperand(cmd->ByteMode, &cmd->Op2) + FC;
+                     uint32_t v1 = GetOperand(cmd->ByteMode, &cmd->Op1);
+                     uint32_t FC = (Flags & FLAG_C);
+                     uint32_t res = v1 + GetOperand(cmd->ByteMode, &cmd->Op2) + FC;
                      if (cmd->ByteMode)
                         res &= 0xFF;
                      SetOperand(cmd->ByteMode, &cmd->Op1, res);
@@ -297,25 +297,25 @@ namespace compress
                   break;
                case CMD_SUB:
                   {
-                     uint32 v1 = GetOperand32(&cmd->Op1);
-                     uint32 res = v1 - GetOperand32(&cmd->Op2);
+                     uint32_t v1 = GetOperand32(&cmd->Op1);
+                     uint32_t res = v1 - GetOperand32(&cmd->Op2);
                      SetOperand32(&cmd->Op1, res);
                      Flags = res == 0 ? FLAG_Z : (res > v1) | (res & FLAG_S);
                   }
                   break;
                case CMD_SUBB:
                   {
-                     uint32 v1 = GetOperand8(&cmd->Op1);
-                     uint32 res = v1 - GetOperand8(&cmd->Op2);
+                     uint32_t v1 = GetOperand8(&cmd->Op1);
+                     uint32_t res = v1 - GetOperand8(&cmd->Op2);
                      SetOperand8(&cmd->Op1, (byte)res);
                      Flags = res == 0 ? FLAG_Z : (res > v1) | (res & FLAG_S);
                   }
                   break;
                case CMD_SBB:
                   {
-                     uint32 v1 = GetOperand(cmd->ByteMode, &cmd->Op1);
-                     uint32 FC = (Flags & FLAG_C);
-                     uint32 res = v1 - GetOperand(cmd->ByteMode, &cmd->Op2) - FC;
+                     uint32_t v1 = GetOperand(cmd->ByteMode, &cmd->Op1);
+                     uint32_t FC = (Flags & FLAG_C);
+                     uint32_t res = v1 - GetOperand(cmd->ByteMode, &cmd->Op2) - FC;
                      // Flags = res == 0 ? FLAG_Z : (res > v1 || res == v1 && FC) | (res & FLAG_S);
                      if (cmd->ByteMode)
                         res &= 0xFF;
@@ -325,7 +325,7 @@ namespace compress
                   break;
                case CMD_INC:
                   {
-                     uint32 res = GetOperand32(&cmd->Op1) + 1;
+                     uint32_t res = GetOperand32(&cmd->Op1) + 1;
                      SetOperand32(&cmd->Op1, res);
                      FLAGS_UPDATE_SZ;
                   }
@@ -339,7 +339,7 @@ namespace compress
                   break;
                case CMD_DEC:
                   {
-                     uint32 res = GetOperand32(&cmd->Op1) - 1;
+                     uint32_t res = GetOperand32(&cmd->Op1) - 1;
                      SetOperand32(&cmd->Op1, res);
                      FLAGS_UPDATE_SZ;
                   }
@@ -353,7 +353,7 @@ namespace compress
                   break;
                case CMD_XOR:
                   {
-                     uint32 res = GetOperand32(&cmd->Op1) ^ GetOperand32(&cmd->Op2);
+                     uint32_t res = GetOperand32(&cmd->Op1) ^ GetOperand32(&cmd->Op2);
                      SetOperand32(&cmd->Op1, res);
                      FLAGS_UPDATE_SZ;
                   }
@@ -367,7 +367,7 @@ namespace compress
                   break;
                case CMD_AND:
                   {
-                     uint32 res = GetOperand32(&cmd->Op1) & GetOperand32(&cmd->Op2);
+                     uint32_t res = GetOperand32(&cmd->Op1) & GetOperand32(&cmd->Op2);
                      SetOperand32(&cmd->Op1, res);
                      FLAGS_UPDATE_SZ;
                   }
@@ -381,7 +381,7 @@ namespace compress
                   break;
                case CMD_OR:
                   {
-                     uint32 res = GetOperand32(&cmd->Op1) | GetOperand32(&cmd->Op2);
+                     uint32_t res = GetOperand32(&cmd->Op1) | GetOperand32(&cmd->Op2);
                      SetOperand32(&cmd->Op1, res);
                      FLAGS_UPDATE_SZ;
                   }
@@ -395,7 +395,7 @@ namespace compress
                   break;
                case CMD_TEST:
                   {
-                     uint32 res = GetOperand32(&cmd->Op1) & GetOperand32(&cmd->Op2);
+                     uint32_t res = GetOperand32(&cmd->Op1) & GetOperand32(&cmd->Op2);
                      FLAGS_UPDATE_SZ;
                   }
                   break;
@@ -410,7 +410,7 @@ namespace compress
                   break;
                case CMD_NEG:
                   {
-                     uint32 res = 0 - GetOperand32(&cmd->Op1);
+                     uint32_t res = 0 - GetOperand32(&cmd->Op1);
                      SetOperand32(&cmd->Op1, res);
                      Flags = res == 0 ? FLAG_Z : FLAG_C | (res & FLAG_S);
                   }
@@ -425,9 +425,9 @@ namespace compress
 
                case CMD_SHL:
                   {
-                     uint32 v1 = GetOperand32(&cmd->Op1);
+                     uint32_t v1 = GetOperand32(&cmd->Op1);
                      int32_t v2 = (int32_t)GetOperand32(&cmd->Op2);
-                     uint32 res = v1 << v2;
+                     uint32_t res = v1 << v2;
                      SetOperand32(&cmd->Op1, res);
                      Flags = (res == 0 ? FLAG_Z : (res & FLAG_S)) | ((v1 << (v2 - 1)) & 0x80000000 ? FLAG_C : 0);
                   }
@@ -443,9 +443,9 @@ namespace compress
                   break;
                case CMD_SHR:
                   {
-                     uint32 v1 = GetOperand32(&cmd->Op1);
+                     uint32_t v1 = GetOperand32(&cmd->Op1);
                      int32_t v2 = (int32_t)GetOperand32(&cmd->Op2);
-                     uint32 res = v1 >> v2;
+                     uint32_t res = v1 >> v2;
                      SetOperand32(&cmd->Op1, res);
                      Flags = (res == 0 ? FLAG_Z : (res & FLAG_S)) | ((v1 >> (v2 - 1)) & FLAG_C);
                   }
@@ -461,9 +461,9 @@ namespace compress
                   break;
                case CMD_SAR:
                   {
-                     uint32 v1 = GetOperand32(&cmd->Op1);
+                     uint32_t v1 = GetOperand32(&cmd->Op1);
                      int32_t v2 = (int32_t)GetOperand32(&cmd->Op2);
-                     uint32 res = uint32(((int32_t)v1) >> v2);
+                     uint32_t res = uint32_t(((int32_t)v1) >> v2);
                      SetOperand32(&cmd->Op1, res);
                      Flags= (res == 0 ? FLAG_Z : (res & FLAG_S)) | ((v1 >> (v2 - 1)) & FLAG_C);
                   }
@@ -548,20 +548,20 @@ namespace compress
                   break;
                case CMD_CALL:
                   R[kStackRegIndex] -= 4;
-                  SetValue32(&Mem[R[kStackRegIndex] & kSpaceMask], (uint32)(cmd - commands + 1));
+                  SetValue32(&Mem[R[kStackRegIndex] & kSpaceMask], (uint32_t)(cmd - commands + 1));
                   SET_IP_OP1;
                   continue;
 
                case CMD_PUSHA:
                   {
-                     for (uint32 i = 0, SP = R[kStackRegIndex] - 4; i < kNumRegs; i++, SP -= 4)
+                     for (uint32_t i = 0, SP = R[kStackRegIndex] - 4; i < kNumRegs; i++, SP -= 4)
                         SetValue32(&Mem[SP & kSpaceMask], R[i]);
                      R[kStackRegIndex] -= kNumRegs * 4;
                   }
                   break;
                case CMD_POPA:
                   {
-                     for (uint32 i = 0, SP = R[kStackRegIndex]; i < kNumRegs; i++, SP += 4)
+                     for (uint32_t i = 0, SP = R[kStackRegIndex]; i < kNumRegs; i++, SP += 4)
                         R[kStackRegIndex - i] = GetValue32(&Mem[SP & kSpaceMask]);
                   }
                   break;
@@ -578,18 +578,18 @@ namespace compress
                   SetOperand32(&cmd->Op1, GetOperand8(&cmd->Op2));
                   break;
                case CMD_MOVSX:
-                  SetOperand32(&cmd->Op1, (uint32)(int32_t)(signed char)GetOperand8(&cmd->Op2));
+                  SetOperand32(&cmd->Op1, (uint32_t)(int32_t)(signed char)GetOperand8(&cmd->Op2));
                   break;
                case CMD_XCHG:
                   {
-                     uint32 v1 = GetOperand(cmd->ByteMode, &cmd->Op1);
+                     uint32_t v1 = GetOperand(cmd->ByteMode, &cmd->Op1);
                      SetOperand(cmd->ByteMode, &cmd->Op1, GetOperand(cmd->ByteMode, &cmd->Op2));
                      SetOperand(cmd->ByteMode, &cmd->Op2, v1);
                   }
                   break;
                case CMD_MUL:
                   {
-                     uint32 res = GetOperand32(&cmd->Op1) * GetOperand32(&cmd->Op2);
+                     uint32_t res = GetOperand32(&cmd->Op1) * GetOperand32(&cmd->Op2);
                      SetOperand32(&cmd->Op1, res);
                   }
                   break;
@@ -601,10 +601,10 @@ namespace compress
                   break;
                case CMD_DIV:
                   {
-                     uint32 divider = GetOperand(cmd->ByteMode, &cmd->Op2);
+                     uint32_t divider = GetOperand(cmd->ByteMode, &cmd->Op2);
                      if (divider != 0)
                      {
-                        uint32 res = GetOperand(cmd->ByteMode, &cmd->Op1) / divider;
+                        uint32_t res = GetOperand(cmd->ByteMode, &cmd->Op1) / divider;
                         SetOperand(cmd->ByteMode, &cmd->Op1, res);
                      }
                   }
@@ -616,7 +616,7 @@ namespace compress
                   {
                      if (R[kStackRegIndex] >= kSpaceSize)
                         return true;
-                     uint32 ip = GetValue32(&Mem[R[kStackRegIndex] & kSpaceMask]);
+                     uint32_t ip = GetValue32(&Mem[R[kStackRegIndex] & kSpaceMask]);
                      SET_IP(ip);
                      R[kStackRegIndex] += 4;
                      continue;
@@ -633,7 +633,7 @@ namespace compress
          //////////////////////////////////////////////////////
          // Read program
 
-         uint32 ReadEncodedUInt32(mem_bit_decoder &inp)
+         uint32_t ReadEncodedUInt32(mem_bit_decoder &inp)
          {
             switch(inp.ReadBits(2))
             {
@@ -641,7 +641,7 @@ namespace compress
                return inp.ReadBits(4);
             case 1:
                {
-                  uint32 v = inp.ReadBits(4);
+                  uint32_t v = inp.ReadBits(4);
                   if (v == 0)
                      return 0xFFFFFF00 | inp.ReadBits(8);
                   else
@@ -688,7 +688,7 @@ namespace compress
             }
          }
 
-         void vm::ReadVmProgram(const byte *code, uint32 codeSize, CProgram *prg)
+         void vm::ReadVmProgram(const byte *code, uint32_t codeSize, CProgram *prg)
          {
             mem_bit_decoder inp;
             inp.Init(code, codeSize);
@@ -696,8 +696,8 @@ namespace compress
             prg->StaticData.remove_all();
             if (inp.ReadBit())
             {
-               uint32 dataSize = ReadEncodedUInt32(inp) + 1;
-               for (uint32 i = 0; inp.Avail() && i < dataSize; i++)
+               uint32_t dataSize = ReadEncodedUInt32(inp) + 1;
+               for (uint32_t i = 0; inp.Avail() && i < dataSize; i++)
                   prg->StaticData.add((byte)inp.ReadBits(8));
             }
             while (inp.Avail())
@@ -779,8 +779,8 @@ namespace compress
 
          struct StandardFilterSignature
          {
-            uint32 Length;
-            uint32 CRC;
+            uint32_t Length;
+            uint32_t CRC;
             EStandardFilter Type;
          }
          kStdFilters[]=
@@ -794,9 +794,9 @@ namespace compress
             {  40, 0x46b9c560, SF_UPCASE }
          };
 
-         static int32_t FindStandardFilter(const byte *code, uint32 codeSize)
+         static int32_t FindStandardFilter(const byte *code, uint32_t codeSize)
          {
-            uint32 crc = crc_calc(code, codeSize);
+            uint32_t crc = crc_calc(code, codeSize);
             for (int32_t i = 0; i < sizeof(kStdFilters) / sizeof(kStdFilters[0]); i++)
             {
                StandardFilterSignature &sfs = kStdFilters[i];
@@ -808,10 +808,10 @@ namespace compress
 
 #endif
 
-         void vm::PrepareProgram(const byte *code, uint32 codeSize, CProgram *prg)
+         void vm::PrepareProgram(const byte *code, uint32_t codeSize, CProgram *prg)
          {
             byte xorSum = 0;
-            for (uint32 i = 1; i < codeSize; i++)
+            for (uint32_t i = 1; i < codeSize; i++)
                xorSum ^= code[i];
 
             prg->Commands.remove_all();
@@ -834,7 +834,7 @@ namespace compress
             cmd->OpCode = CMD_RET;
          }
 
-         void vm::SetMemory(uint32 pos, const byte *data, uint32 dataSize)
+         void vm::SetMemory(uint32_t pos, const byte *data, uint32_t dataSize)
          {
             if (pos < kSpaceSize && data != Mem + pos)
                memmove(Mem + pos, data, min(dataSize, kSpaceSize - pos));
@@ -842,21 +842,21 @@ namespace compress
 
 #ifdef RARVM_STANDARD_FILTERS
 
-         static void E8E9Decode(byte *data, uint32 dataSize, uint32 fileOffset, bool e9)
+         static void E8E9Decode(byte *data, uint32_t dataSize, uint32_t fileOffset, bool e9)
          {
             if (dataSize <= 4)
                return;
             dataSize -= 4;
-            const uint32 kFileSize = 0x1000000;
+            const uint32_t kFileSize = 0x1000000;
             byte cmpByte2 = (e9 ? 0xE9 : 0xE8);
-            for (uint32 curPos = 0; curPos < dataSize;)
+            for (uint32_t curPos = 0; curPos < dataSize;)
             {
                byte curByte = *(data++);
                curPos++;
                if (curByte == 0xE8 || curByte == cmpByte2)
                {
-                  uint32 offset = curPos + fileOffset;
-                  uint32 addr = (int32_t)GetValue32(data);
+                  uint32_t offset = curPos + fileOffset;
+                  uint32_t addr = (int32_t)GetValue32(data);
                   if (addr < kFileSize)
                      SetValue32(data, addr - offset);
                   else if ((int32_t)addr < 0 && (int32_t)(addr + offset) >= 0)
@@ -867,15 +867,15 @@ namespace compress
             }
          }
 
-         static inline uint32 ItaniumGetOpType(const byte *data, int32_t bitPos)
+         static inline uint32_t ItaniumGetOpType(const byte *data, int32_t bitPos)
          {
             return (data[(uint32_t)bitPos >> 3] >> (bitPos & 7)) & 0xF;
          }
 
 
-         static void ItaniumDecode(byte *data, uint32 dataSize, uint32 fileOffset)
+         static void ItaniumDecode(byte *data, uint32_t dataSize, uint32_t fileOffset)
          {
-            uint32 curPos = 0;
+            uint32_t curPos = 0;
             fileOffset >>= 4;
             while (curPos < dataSize - 21)
             {
@@ -891,12 +891,12 @@ namespace compress
                            int32_t startPos = i * 41 + 18;
                            if (ItaniumGetOpType(data, startPos + 24) == 5)
                            {
-                              const uint32 kMask = 0xFFFFF;
+                              const uint32_t kMask = 0xFFFFF;
                               byte *p = data + ((uint32_t)startPos >> 3);
-                              uint32 bitField =  ((uint32)p[0]) | ((uint32)p[1] <<  8) | ((uint32)p[2] << 16);
+                              uint32_t bitField =  ((uint32_t)p[0]) | ((uint32_t)p[1] <<  8) | ((uint32_t)p[2] << 16);
                               int32_t inBit = (startPos & 7);
-                              uint32 offset = (bitField >> inBit) & kMask;
-                              uint32 andMask = ~(kMask << inBit);
+                              uint32_t offset = (bitField >> inBit) & kMask;
+                              uint32_t andMask = ~(kMask << inBit);
                               bitField = ((offset - fileOffset) & kMask) << inBit;
                               for (int32_t j = 0; j < 3; j++)
                               {
@@ -914,27 +914,27 @@ namespace compress
             }
          }
 
-         static void DeltaDecode(byte *data, uint32 dataSize, uint32 numChannels)
+         static void DeltaDecode(byte *data, uint32_t dataSize, uint32_t numChannels)
          {
-            uint32 srcPos = 0;
-            uint32 border = dataSize * 2;
-            for (uint32 curChannel = 0; curChannel < numChannels; curChannel++)
+            uint32_t srcPos = 0;
+            uint32_t border = dataSize * 2;
+            for (uint32_t curChannel = 0; curChannel < numChannels; curChannel++)
             {
                byte prevByte = 0;
-               for (uint32 destPos = dataSize + curChannel; destPos < border; destPos += numChannels)
+               for (uint32_t destPos = dataSize + curChannel; destPos < border; destPos += numChannels)
                   data[destPos] = (prevByte = prevByte - data[srcPos++]);
             }
          }
 
-         static void RgbDecode(byte *srcData, uint32 dataSize, uint32 width, uint32 posR)
+         static void RgbDecode(byte *srcData, uint32_t dataSize, uint32_t width, uint32_t posR)
          {
             byte *destData = srcData + dataSize;
-            const uint32 numChannels = 3;
-            for (uint32 curChannel = 0; curChannel < numChannels; curChannel++)
+            const uint32_t numChannels = 3;
+            for (uint32_t curChannel = 0; curChannel < numChannels; curChannel++)
             {
                byte prevByte = 0;
 
-               for (uint32 i = curChannel; i < dataSize; i+= numChannels)
+               for (uint32_t i = curChannel; i < dataSize; i+= numChannels)
                {
                   uint32_t predicted;
                   if (i < width)
@@ -960,7 +960,7 @@ namespace compress
             }
             if (dataSize < 3)
                return;
-            for (uint32 i = posR, border = dataSize - 2; i < border; i += 3)
+            for (uint32_t i = posR, border = dataSize - 2; i < border; i += 3)
             {
                byte g = destData[i + 1];
                destData[i] = destData[i] + g;
@@ -968,30 +968,30 @@ namespace compress
             }
          }
 
-         static void AudioDecode(byte *srcData, uint32 dataSize, uint32 numChannels)
+         static void AudioDecode(byte *srcData, uint32_t dataSize, uint32_t numChannels)
          {
             byte *destData = srcData + dataSize;
-            for (uint32 curChannel = 0; curChannel < numChannels; curChannel++)
+            for (uint32_t curChannel = 0; curChannel < numChannels; curChannel++)
             {
-               uint32 prevByte = 0, prevDelta = 0, dif[7];
+               uint32_t prevByte = 0, prevDelta = 0, dif[7];
                int32_t D1 = 0, D2 = 0, D3;
                int32_t K1 = 0, K2 = 0, K3 = 0;
                memset(dif, 0, sizeof(dif));
 
-               for (uint32 i = curChannel, byteCount = 0; i < dataSize; i += numChannels, byteCount++)
+               for (uint32_t i = curChannel, byteCount = 0; i < dataSize; i += numChannels, byteCount++)
                {
                   D3 = D2;
                   D2 = prevDelta - D1;
                   D1 = prevDelta;
 
-                  uint32 predicted = 8 * prevByte + K1 * D1 + K2 * D2 + K3 * D3;
+                  uint32_t predicted = 8 * prevByte + K1 * D1 + K2 * D2 + K3 * D3;
                   predicted = (predicted >> 3) & 0xFF;
 
-                  uint32 curByte = *(srcData++);
+                  uint32_t curByte = *(srcData++);
 
                   predicted -= curByte;
                   destData[i] = (byte)predicted;
-                  prevDelta = (uint32)(int32_t)(signed char)(predicted - prevByte);
+                  prevDelta = (uint32_t)(int32_t)(signed char)(predicted - prevByte);
                   prevByte = predicted;
 
                   int32_t D = ((int32_t)(signed char)curByte) << 3;
@@ -1006,7 +1006,7 @@ namespace compress
 
                   if ((byteCount & 0x1F) == 0)
                   {
-                     uint32 minDif = dif[0], numMinDif = 0;
+                     uint32_t minDif = dif[0], numMinDif = 0;
                      dif[0] = 0;
                      for (int32_t j = 1; j < sizeof(dif) / sizeof(dif[0]); j++)
                      {
@@ -1031,9 +1031,9 @@ namespace compress
             }
          }
 
-         static uint32 UpCaseDecode(byte *data, uint32 dataSize)
+         static uint32_t UpCaseDecode(byte *data, uint32_t dataSize)
          {
-            uint32 srcPos = 0, destPos = dataSize;
+            uint32_t srcPos = 0, destPos = dataSize;
             while (srcPos < dataSize)
             {
                byte curByte = data[srcPos++];
@@ -1046,7 +1046,7 @@ namespace compress
 
          void vm::ExecuteStandardFilter(int32_t filterIndex)
          {
-            uint32 dataSize = R[4];
+            uint32_t dataSize = R[4];
             if (dataSize >= kGlobalOffset)
                return;
             EStandardFilter filterType = kStdFilters[filterIndex].Type;
@@ -1070,7 +1070,7 @@ namespace compress
                if (dataSize >= kGlobalOffset / 2)
                   break;
                {
-                  uint32 width = R[0];
+                  uint32_t width = R[0];
                   if (width <= 3)
                      break;
                   SetBlockPos(dataSize);
@@ -1086,7 +1086,7 @@ namespace compress
             case SF_UPCASE:
                if (dataSize >= kGlobalOffset / 2)
                   break;
-               uint32 destSize = UpCaseDecode(Mem, dataSize);
+               uint32_t destSize = UpCaseDecode(Mem, dataSize);
                SetBlockSize(destSize);
                SetBlockPos(dataSize);
                break;
@@ -1095,12 +1095,12 @@ namespace compress
 
 #endif
 
-         uint32 GetValue32(const void *addr)
+         uint32_t GetValue32(const void *addr)
          {
             return GetUi32(addr);
          }
 
-         void SetValue32(void *addr, uint32 value)
+         void SetValue32(void *addr, uint32_t value)
          {
             SetUi32(addr, value);
          }

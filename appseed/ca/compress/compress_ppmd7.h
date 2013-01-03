@@ -21,14 +21,14 @@ typedef
   #ifdef PPMD_32BIT
     struct CPpmd7_Context_ *
   #else
-    uint32
+    uint32_t
   #endif
   CPpmd7_Context_Ref;
 
 typedef struct CPpmd7_Context_
 {
-  uint16 NumStats;
-  uint16 SummFreq;
+  uint16_t NumStats;
+  uint16_t SummFreq;
   CPpmd_State_Ref Stats;
   CPpmd7_Context_Ref Suffix;
 } CPpmd7_Context;
@@ -42,21 +42,21 @@ typedef struct
   unsigned OrderFall, InitEsc, PrevSuccess, MaxOrder, HiBitsFlag;
   int32_t RunLength, InitRL; /* must be 32-bit at least */
 
-  uint32 Size;
-  uint32 GlueCount;
+  uint32_t Size;
+  uint32_t GlueCount;
   byte *Base, *LoUnit, *HiUnit, *Text, *UnitsStart;
-  uint32 AlignOffset;
+  uint32_t AlignOffset;
 
   byte Indx2Units[PPMD_NUM_INDEXES];
   byte Units2Indx[128];
   CPpmd_Void_Ref FreeList[PPMD_NUM_INDEXES];
   byte NS2Indx[256], NS2BSIndx[256], HB2Flag[256];
   CPpmd_See DummySee, See[25][16];
-  uint16 BinSumm[128][64];
+  uint16_t BinSumm[128][64];
 } CPpmd7;
 
 void Ppmd7_Construct(CPpmd7 *p);
-bool Ppmd7_Alloc(CPpmd7 *p, uint32 size, ::ex1::ISzAlloc *alloc);
+bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ex1::ISzAlloc *alloc);
 void Ppmd7_Free(CPpmd7 *p, ::ex1::ISzAlloc *alloc);
 void Ppmd7_Init(CPpmd7 *p, unsigned maxOrder);
 #define Ppmd7_WasAllocated(p) ((p)->Base != NULL)
@@ -88,23 +88,23 @@ void Ppmd7_UpdateBin(CPpmd7 *p);
     2 * p->HB2Flag[Ppmd7Context_OneState(p->MinContext)->Symbol] + \
     ((p->RunLength >> 26) & 0x20)]
 
-CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, uint32 *scale);
+CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, uint32_t *scale);
 
 
 /* ---------- Decode ---------- */
 
 typedef struct
 {
-  uint32 (*GetThreshold)(void *p, uint32 total);
-  void (*Decode)(void *p, uint32 start, uint32 size);
-  uint32 (*DecodeBit)(void *p, uint32 size0);
+  uint32_t (*GetThreshold)(void *p, uint32_t total);
+  void (*Decode)(void *p, uint32_t start, uint32_t size);
+  uint32_t (*DecodeBit)(void *p, uint32_t size0);
 } IPpmd7_RangeDec;
 
 typedef struct
 {
   IPpmd7_RangeDec p;
-  uint32 Range;
-  uint32 Code;
+  uint32_t Range;
+  uint32_t Code;
   ::ex1::IByteIn *Stream;
 } CPpmd7z_RangeDec;
 
@@ -119,10 +119,10 @@ int32_t Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc);
 
 typedef struct
 {
-  uint64 Low;
-  uint32 Range;
+  uint64_t Low;
+  uint32_t Range;
   byte Cache;
-  uint64 CacheSize;
+  uint64_t CacheSize;
   ::ex1::IByteOut *Stream;
 } CPpmd7z_RangeEnc;
 

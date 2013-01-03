@@ -32,9 +32,9 @@ static void BoolVector_Fill_False(bool_array &v, int32_t size)
     v.add(false);
 }
 
-static bool BoolVector_GetAndSet(bool_array &v, uint32 index)
+static bool BoolVector_GetAndSet(bool_array &v, uint32_t index)
 {
-  if (index >= (uint32)v.get_count())
+  if (index >= (uint32_t)v.get_count())
     return true;
   bool res = v[index];
   v[index] = true;
@@ -43,8 +43,8 @@ static bool BoolVector_GetAndSet(bool_array &v, uint32 index)
 
 bool CFolder::CheckStructure() const
 {
-  const int32_t kNumCodersMax = sizeof(uint32) * 8; // don't change it
-  const int32_t kMaskSize = sizeof(uint32) * 8; // it must be >= kNumCodersMax
+  const int32_t kNumCodersMax = sizeof(uint32_t) * 8; // don't change it
+  const int32_t kMaskSize = sizeof(uint32_t) * 8; // it must be >= kNumCodersMax
   const int32_t kNumBindsMax = 32;
 
   if (Coders.get_count() > kNumCodersMax || BindPairs.get_count() > kNumBindsMax)
@@ -68,7 +68,7 @@ bool CFolder::CheckStructure() const
         return false;
   }
 
-  uint32 mask[kMaskSize];
+  uint32_t mask[kMaskSize];
   int32_t i;
   for (i = 0; i < kMaskSize; i++)
     mask[i] = 0;
@@ -208,24 +208,24 @@ void CInByte2::SkipData()
   SkipData(ReadNumber());
 }
 
-uint64 CInByte2::ReadNumber()
+uint64_t CInByte2::ReadNumber()
 {
   if (_pos >= _size)
     ThrowEndOfData();
   byte firstByte = _buffer[_pos++];
   byte mask = 0x80;
-  uint64 value = 0;
+  uint64_t value = 0;
   for (int32_t i = 0; i < 8; i++)
   {
     if ((firstByte & mask) == 0)
     {
-      uint64 highPart = firstByte & (mask - 1);
+      uint64_t highPart = firstByte & (mask - 1);
       value += (highPart << (i * 8));
       return value;
     }
     if (_pos >= _size)
       ThrowEndOfData();
-    value |= ((uint64)_buffer[_pos++] << (8 * i));
+    value |= ((uint64_t)_buffer[_pos++] << (8 * i));
     mask >>= 1;
   }
   return value;
@@ -233,26 +233,26 @@ uint64 CInByte2::ReadNumber()
 
 CNum CInByte2::ReadNum()
 {
-  uint64 value = ReadNumber();
+  uint64_t value = ReadNumber();
   if (value > kNumMax)
     ThrowUnsupported();
   return (CNum)value;
 }
 
-uint32 CInByte2::ReadUInt32()
+uint32_t CInByte2::ReadUInt32()
 {
   if (_pos + 4 > _size)
     ThrowEndOfData();
-  uint32 res = Get32(_buffer + _pos);
+  uint32_t res = Get32(_buffer + _pos);
   _pos += 4;
   return res;
 }
 
-uint64 CInByte2::ReadUInt64()
+uint64_t CInByte2::ReadUInt64()
 {
   if (_pos + 8 > _size)
     ThrowEndOfData();
-  uint64 res = Get64(_buffer + _pos);
+  uint64_t res = Get64(_buffer + _pos);
   _pos += 8;
   return res;
 }
@@ -311,7 +311,7 @@ HRESULT CInArchive::FindAndReadSignature(::ex1::byte_input_stream *stream, const
     return S_OK;
 
   ::ex1::byte_buffer byteBuffer;
-  const uint32 kBufferSize = (1 << 16);
+  const uint32_t kBufferSize = (1 << 16);
   byteBuffer.SetCapacity(kBufferSize);
   byte *buffer = byteBuffer;
   ::primitive::memory_size numPrevBytes = kHeaderSize;
@@ -408,9 +408,9 @@ void CInArchive::GetNextFolderItem(CFolder &folder)
       ReadBytes(longID, idSize);
       if (idSize > 8)
         ThrowUnsupported();
-      uint64 id = 0;
+      uint64_t id = 0;
       for (int32_t j = 0; j < idSize; j++)
-        id |= (uint64)longID[idSize - 1 - j] << (8 * j);
+        id |= (uint64_t)longID[idSize - 1 - j] << (8 * j);
       coder.MethodID = id;
 
       if ((mainByte & 0x10) != 0)
@@ -467,11 +467,11 @@ void CInArchive::GetNextFolderItem(CFolder &folder)
       folder.PackStreams.add(ReadNum());
 }
 
-void CInArchive::WaitAttribute(uint64 attribute)
+void CInArchive::WaitAttribute(uint64_t attribute)
 {
   for (;;)
   {
-    uint64 type = ReadID();
+    uint64_t type = ReadID();
     if (type == attribute)
       return;
     if (type == NID::kEnd)
@@ -482,14 +482,14 @@ void CInArchive::WaitAttribute(uint64 attribute)
 
 void CInArchive::ReadHashDigests(int32_t numItems,
     bool_array &digestsDefined,
-    base_array<uint32> &digests)
+    base_array<uint32_t> &digests)
 {
   ReadBoolVector2(numItems, digestsDefined);
   digests.remove_all();
   digests.set_size(0, numItems);
   for (int32_t i = 0; i < numItems; i++)
   {
-    uint32 crc = 0;
+    uint32_t crc = 0;
     if (digestsDefined[i])
       crc = ReadUInt32();
     digests.add(crc);
@@ -500,7 +500,7 @@ void CInArchive::ReadPackInfo(
     file_position &dataOffset,
     base_array<file_size> &packSizes,
     bool_array &packCRCsDefined,
-    base_array<uint32> &packCRCs)
+    base_array<uint32_t> &packCRCs)
 {
   dataOffset = ReadNumber();
   CNum numPackStreams = ReadNum();
@@ -511,7 +511,7 @@ void CInArchive::ReadPackInfo(
   for (CNum i = 0; i < numPackStreams; i++)
     packSizes.add((file_size) ReadNumber());
 
-  uint64 type;
+  uint64_t type;
   for (;;)
   {
     type = ReadID();
@@ -566,13 +566,13 @@ void CInArchive::ReadUnpackInfo(
 
   for (;;)
   {
-    uint64 type = ReadID();
+    uint64_t type = ReadID();
     if (type == NID::kEnd)
       return;
     if (type == NID::kCRC)
     {
       bool_array crcsDefined;
-      base_array<uint32> crcs;
+      base_array<uint32_t> crcs;
       ReadHashDigests(numFolders, crcsDefined, crcs);
       for (i = 0; i < numFolders; i++)
       {
@@ -591,11 +591,11 @@ void CInArchive::ReadSubStreamsInfo(
     base_array<CNum> &numUnpackStreamsInFolders,
     base_array<file_size> &unpackSizes,
     bool_array &digestsDefined,
-    base_array<uint32> &digests)
+    base_array<uint32_t> &digests)
 {
   numUnpackStreamsInFolders.remove_all();
   numUnpackStreamsInFolders.set_size(0, folders.get_count());
-  uint64 type;
+  uint64_t type;
   for (;;)
   {
     type = ReadID();
@@ -624,11 +624,11 @@ void CInArchive::ReadSubStreamsInfo(
     CNum numSubstreams = numUnpackStreamsInFolders[i];
     if (numSubstreams == 0)
       continue;
-    uint64 sum = 0;
+    uint64_t sum = 0;
     for (CNum j = 1; j < numSubstreams; j++)
       if (type == NID::kSize)
       {
-        uint64 size = ReadNumber();
+        uint64_t size = ReadNumber();
         unpackSizes.add((file_size) size);
         sum += size;
       }
@@ -652,7 +652,7 @@ void CInArchive::ReadSubStreamsInfo(
     if (type == NID::kCRC)
     {
       bool_array digestsDefined2;
-      base_array<uint32> digests2;
+      base_array<uint32_t> digests2;
       ReadHashDigests(numDigests, digestsDefined2, digests2);
       int32_t digestIndex = 0;
       for (i = 0; i < folders.get_count(); i++)
@@ -694,19 +694,19 @@ void CInArchive::ReadStreamsInfo(
     file_position & dataOffset,
     base_array < file_size > & packSizes,
     bool_array & packCRCsDefined,
-    base_array < uint32 > & packCRCs,
+    base_array < uint32_t > & packCRCs,
     array_ptr_alloc < CFolder > & folders,
     base_array < CNum > & numUnpackStreamsInFolders,
     base_array < file_size > & unpackSizes,
     bool_array & digestsDefined,
-    base_array < uint32 > & digests)
+    base_array < uint32_t > & digests)
 {
   for (;;)
   {
-    uint64 type = ReadID();
-    if (type > ((uint32)1 << 30))
+    uint64_t type = ReadID();
+    if (type > ((uint32_t)1 << 30))
       ThrowIncorrect();
-    switch((uint32)type)
+    switch((uint32_t)type)
     {
       case NID::kEnd:
         return;
@@ -774,7 +774,7 @@ void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer 
 
   for (int32_t i = 0; i < numFiles; i++)
   {
-    uint64 t = 0;
+    uint64_t t = 0;
     if (v.Defined[i])
       t = ReadUInt64();
     v.Values.add(t);
@@ -800,13 +800,13 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
 
   base_array<file_size> packSizes;
   bool_array packCRCsDefined;
-  base_array<uint32> packCRCs;
+  base_array<uint32_t> packCRCs;
   array_ptr_alloc<CFolder> folders;
 
   base_array<CNum> numUnpackStreamsInFolders;
   base_array<file_size> unpackSizes;
   bool_array digestsDefined;
-  base_array<uint32> digests;
+  base_array<uint32_t> digests;
 
   ReadStreamsInfo(NULL,
     dataOffset,
@@ -829,13 +829,13 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
     true
     #endif
     );
-  uint64 dataStartPos = baseOffset + dataOffset;
+  uint64_t dataStartPos = baseOffset + dataOffset;
   for (int32_t i = 0; i < folders.get_count(); i++)
   {
     const CFolder &folder = folders[i];
     dataVector.add(::ex1::byte_buffer());
     ::ex1::byte_buffer &data = dataVector.last_element();
-    uint64 unpackSize64 = folder.GetUnpackSize();
+    uint64_t unpackSize64 = folder.GetUnpackSize();
     size_t unpackSize = (size_t)unpackSize64;
     if (unpackSize != unpackSize64)
       ThrowUnsupported();
@@ -864,7 +864,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
         ThrowIncorrect();
     for (int32_t j = 0; j < folder.PackStreams.get_count(); j++)
     {
-      uint64 packSize = packSizes[packIndex++];
+      uint64_t packSize = packSizes[packIndex++];
       dataStartPos += packSize;
       HeadersSize += packSize;
     }
@@ -881,7 +881,7 @@ HRESULT CInArchive::ReadHeader(
     #endif
     )
 {
-  uint64 type = ReadID();
+  uint64_t type = ReadID();
 
   if (type == NID::kArchiveProperties)
   {
@@ -909,7 +909,7 @@ HRESULT CInArchive::ReadHeader(
 
   base_array<file_size> unpackSizes;
   bool_array digestsDefined;
-  base_array<uint32> digests;
+  base_array<uint32_t> digests;
 
   if (type == NID::kMainStreamsInfo)
   {
@@ -965,16 +965,16 @@ HRESULT CInArchive::ReadHeader(
 
   for (;;)
   {
-    uint64 type = ReadID();
+    uint64_t type = ReadID();
     if (type == NID::kEnd)
       break;
-    uint64 size = ReadNumber();
+    uint64_t size = ReadNumber();
     size_t ppp = _inByteBack->_pos;
     bool addPropIdToList = true;
     bool isKnownType = true;
-    if (type > ((uint32)1 << 30))
+    if (type > ((uint32_t)1 << 30))
       isKnownType = false;
-    else switch((uint32)type)
+    else switch((uint32_t)type)
     {
       case NID::kName:
       {
@@ -1019,7 +1019,7 @@ HRESULT CInArchive::ReadHeader(
       case NID::kMTime:  ReadUInt64DefVector(dataVector, db.MTime, (int32_t)numFiles); break;
       case NID::kDummy:
       {
-        for (uint64 j = 0; j < size; j++)
+        for (uint64_t j = 0; j < size; j++)
           if (ReadByte() != 0)
             ThrowIncorrect();
         addPropIdToList = false;
@@ -1164,16 +1164,16 @@ HRESULT CInArchive::ReadDatabase2(
   if (db.ArchiveInfo.Version.Major != kMajorVersion)
     ThrowUnsupportedVersion();
 
-  uint32 crcFromArchive = Get32(_header + 8);
-  uint64 nextHeaderOffset = Get64(_header + 0xC);
-  uint64 nextHeaderSize = Get64(_header + 0x14);
-  uint32 nextHeaderCRC = Get32(_header + 0x1C);
-  uint32 crc = crc_calc(_header + 0xC, 20);
+  uint32_t crcFromArchive = Get32(_header + 8);
+  uint64_t nextHeaderOffset = Get64(_header + 0xC);
+  uint64_t nextHeaderSize = Get64(_header + 0x14);
+  uint32_t nextHeaderCRC = Get32(_header + 0x1C);
+  uint32_t crc = crc_calc(_header + 0xC, 20);
 
   #ifdef FORMAT_7Z_RECOVERY
   if (crcFromArchive == 0 && nextHeaderOffset == 0 && nextHeaderSize == 0 && nextHeaderCRC == 0)
   {
-    uint64 cur, cur2;
+    uint64_t cur, cur2;
     cur = _stream->seek(0, ex1::seek_current);
     const int32_t kCheckSize = 500;
     byte buf[kCheckSize];
@@ -1208,10 +1208,10 @@ HRESULT CInArchive::ReadDatabase2(
   if (nextHeaderSize == 0)
     return S_OK;
 
-  if (nextHeaderSize > (uint64)0xFFFFFFFF)
+  if (nextHeaderSize > (uint64_t)0xFFFFFFFF)
     return S_FALSE;
 
-  if ((int64)nextHeaderOffset < 0)
+  if ((int64_t)nextHeaderOffset < 0)
     return S_FALSE;
 
   _stream->seek(nextHeaderOffset, ex1::seek_current); // RINOK
@@ -1223,7 +1223,7 @@ HRESULT CInArchive::ReadDatabase2(
   HeadersSize += kHeaderSize + nextHeaderSize;
   db.PhySize = kHeaderSize + nextHeaderOffset + nextHeaderSize;
 
-  if (crc_calc(buffer2, (uint32)nextHeaderSize) != nextHeaderCRC)
+  if (crc_calc(buffer2, (uint32_t)nextHeaderSize) != nextHeaderCRC)
     ThrowIncorrect();
 
   CStreamSwitch streamSwitch;
@@ -1231,7 +1231,7 @@ HRESULT CInArchive::ReadDatabase2(
 
   array_ptr_alloc < ::ex1::byte_buffer > dataVector;
 
-  uint64 type = ReadID();
+  uint64_t type = ReadID();
   if (type != NID::kHeader)
   {
     if (type != NID::kEncodedHeader)

@@ -21,9 +21,9 @@ namespace crypto
 
 
       ex1::HRes Init();
-      uint32 Filter(byte *data, uint32 size);
-      ex1::HRes SetKey(const byte *data, uint32 size);
-      ex1::HRes SetInitVector(const byte *data, uint32 size);
+      uint32_t Filter(byte *data, uint32_t size);
+      ex1::HRes SetKey(const byte *data, uint32_t size);
+      ex1::HRes SetInitVector(const byte *data, uint32_t size);
    };
 
    struct aes_cbc_encoder : 

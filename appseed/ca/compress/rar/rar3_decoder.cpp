@@ -22,11 +22,11 @@ namespace compress
       static void SzBigFree(void *, void *address) { BigFree(address); }
       static ::ex1::ISzAlloc g_BigAlloc = { SzBigAlloc, SzBigFree };
 
-      static const uint32 kNumAlignReps = 15;
+      static const uint32_t kNumAlignReps = 15;
 
-      static const uint32 kSymbolReadTable = 256;
-      static const uint32 kSymbolRep = 259;
-      static const uint32 kSymbolLen2 = kSymbolRep + kNumReps;
+      static const uint32_t kSymbolReadTable = 256;
+      static const uint32_t kSymbolRep = 259;
+      static const uint32_t kSymbolLen2 = kSymbolRep + kNumReps;
 
       static const byte kLenStart[kLenTableSize]      = {0,1,2,3,4,5,6,7,8,10,12,14,16,20,24,28,32,40,48,56,64,80,96,112,128,160,192,224};
       static const byte kLenDirectBits[kLenTableSize] = {0,0,0,0,0,0,0,0,1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4,  4,  5,  5,  5,  5};
@@ -41,23 +41,23 @@ namespace compress
       static const byte kLen2DistStarts[kNumLen2Symbols]={0,4,8,16,32,64,128,192};
       static const byte kLen2DistDirectBits[kNumLen2Symbols]={2,2,3, 4, 5, 6,  6,  6};
 
-      static const uint32 kDistLimit3 = 0x2000 - 2;
-      static const uint32 kDistLimit4 = 0x40000 - 2;
+      static const uint32_t kDistLimit3 = 0x2000 - 2;
+      static const uint32_t kDistLimit4 = 0x40000 - 2;
 
-      static const uint32 kNormalMatchMinLen = 3;
+      static const uint32_t kNormalMatchMinLen = 3;
 
-      static const uint32 kVmDataSizeMax = 1 << 16;
-      static const uint32 kVmCodeSizeMax = 1 << 16;
+      static const uint32_t kVmDataSizeMax = 1 << 16;
+      static const uint32_t kVmCodeSizeMax = 1 << 16;
 
       extern "C" {
 
-         static uint32 Range_GetThreshold(void *pp, uint32 total)
+         static uint32_t Range_GetThreshold(void *pp, uint32_t total)
          {
             CRangeDecoder *p = (CRangeDecoder *)pp;
             return p->Code / (p->Range /= total);
          }
 
-         static void Range_Decode(void *pp, uint32 start, uint32 size)
+         static void Range_Decode(void *pp, uint32_t start, uint32_t size)
          {
             CRangeDecoder *p = (CRangeDecoder *)pp;
             start *= p->Range;
@@ -67,7 +67,7 @@ namespace compress
             p->Normalize();
          }
 
-         static uint32 Range_DecodeBit(void *pp, uint32 size0)
+         static uint32_t Range_DecodeBit(void *pp, uint32_t size0)
          {
             CRangeDecoder *p = (CRangeDecoder *)pp;
             if (p->Code / (p->Range >>= 14) < size0)
@@ -112,27 +112,27 @@ namespace compress
          Ppmd7_Free(&_ppmd, &g_BigAlloc);
       }
 
-      HRESULT decoder::WriteDataToStream(const byte *data, uint32 size)
+      HRESULT decoder::WriteDataToStream(const byte *data, uint32_t size)
       {
          return WriteStream(_outStream, data, size);
       }
 
-      HRESULT decoder::WriteData(const byte *data, uint32 size)
+      HRESULT decoder::WriteData(const byte *data, uint32_t size)
       {
          HRESULT res = S_OK;
          if (_writtenFileSize < _unpackSize)
          {
-            uint32 curSize = size;
-            uint64 remain = _unpackSize - _writtenFileSize;
+            uint32_t curSize = size;
+            uint64_t remain = _unpackSize - _writtenFileSize;
             if (remain < curSize)
-               curSize = (uint32)remain;
+               curSize = (uint32_t)remain;
             res = WriteDataToStream(data, curSize);
          }
          _writtenFileSize += size;
          return res;
       }
 
-      HRESULT decoder::WriteArea(uint32 startPtr, uint32 endPtr)
+      HRESULT decoder::WriteArea(uint32_t startPtr, uint32_t endPtr)
       {
          if (startPtr <= endPtr)
             return WriteData(_window + startPtr, endPtr - startPtr);
@@ -143,9 +143,9 @@ namespace compress
       void decoder::ExecuteFilter(int32_t tempFilterIndex, vm::CBlockRef &outBlockRef)
       {
          temp_filter *tempFilter = _tempFilters[tempFilterIndex];
-         tempFilter->InitR[6] = (uint32)_writtenFileSize;
-         vm::SetValue32(&tempFilter->GlobalData[0x24], (uint32)_writtenFileSize);
-         vm::SetValue32(&tempFilter->GlobalData[0x28], (uint32)(_writtenFileSize >> 32));
+         tempFilter->InitR[6] = (uint32_t)_writtenFileSize;
+         vm::SetValue32(&tempFilter->GlobalData[0x24], (uint32_t)_writtenFileSize);
+         vm::SetValue32(&tempFilter->GlobalData[0x28], (uint32_t)(_writtenFileSize >> 32));
          filter *filter = _filters[tempFilter->FilterIndex];
          _vm.Execute(filter, tempFilter, outBlockRef, filter->GlobalData);
          delete tempFilter;
@@ -154,8 +154,8 @@ namespace compress
 
       HRESULT decoder::WriteBuf()
       {
-         uint32 writtenBorder = _wrPtr;
-         uint32 writeSize = (_winPos - writtenBorder) & kWindowMask;
+         uint32_t writtenBorder = _wrPtr;
+         uint32_t writeSize = (_winPos - writtenBorder) & kWindowMask;
          for (int32_t i = 0; i < _tempFilters.get_size(); i++)
          {
             temp_filter *filter = _tempFilters[i];
@@ -166,8 +166,8 @@ namespace compress
                filter->NextWindow = false;
                continue;
             }
-            uint32 blockStart = filter->BlockStart;
-            uint32 blockSize = filter->BlockSize;
+            uint32_t blockStart = filter->BlockStart;
+            uint32_t blockSize = filter->BlockSize;
             if (((blockStart - writtenBorder) & kWindowMask) < writeSize)
             {
                if (writtenBorder != blockStart)
@@ -178,12 +178,12 @@ namespace compress
                }
                if (blockSize <= writeSize)
                {
-                  uint32 blockEnd = (blockStart + blockSize) & kWindowMask;
+                  uint32_t blockEnd = (blockStart + blockSize) & kWindowMask;
                   if (blockStart < blockEnd || blockEnd == 0)
                      _vm.SetMemory(0, _window + blockStart, blockSize);
                   else
                   {
-                     uint32 tailSize = kWindowSize - blockStart;
+                     uint32_t tailSize = kWindowSize - blockStart;
                      _vm.SetMemory(0, _window + blockStart, tailSize);
                      _vm.SetMemory(tailSize, _window, blockEnd);
                   }
@@ -233,12 +233,12 @@ namespace compress
          _filters.remove_all();
       }
 
-      bool decoder::AddVmCode(uint32 firstByte, uint32 codeSize)
+      bool decoder::AddVmCode(uint32_t firstByte, uint32_t codeSize)
       {
          mem_bit_decoder inp;
          inp.Init(_vmData, codeSize);
 
-         uint32 filterIndex;
+         uint32_t filterIndex;
          if (firstByte & 0x80)
          {
             filterIndex = vm::ReadEncodedUInt32(inp);
@@ -249,10 +249,10 @@ namespace compress
          }
          else
             filterIndex = _lastFilter;
-         if (filterIndex > (uint32)_filters.get_size())
+         if (filterIndex > (uint32_t)_filters.get_size())
             return false;
          _lastFilter = filterIndex;
-         bool newFilter = (filterIndex == (uint32)_filters.get_size());
+         bool newFilter = (filterIndex == (uint32_t)_filters.get_size());
 
          filter *filter;
          if (newFilter)
@@ -289,7 +289,7 @@ namespace compress
          tempFilter->FilterIndex = filterIndex;
          tempFilter->ExecCount = filter->ExecCount;
 
-         uint32 blockStart = vm::ReadEncodedUInt32(inp);
+         uint32_t blockStart = vm::ReadEncodedUInt32(inp);
          if (firstByte & 0x40)
             blockStart += 258;
          tempFilter->BlockStart = (blockStart + _winPos) & kWindowMask;
@@ -304,17 +304,17 @@ namespace compress
          tempFilter->InitR[5] = tempFilter->ExecCount;
          if (firstByte & 0x10)
          {
-            uint32 initMask = inp.ReadBits(vm::kNumGpRegs);
+            uint32_t initMask = inp.ReadBits(vm::kNumGpRegs);
             for (int32_t i = 0; i < vm::kNumGpRegs; i++)
                if (initMask & (1 << i))
                   tempFilter->InitR[i] = vm::ReadEncodedUInt32(inp);
          }
          if (newFilter)
          {
-            uint32 vmCodeSize = vm::ReadEncodedUInt32(inp);
+            uint32_t vmCodeSize = vm::ReadEncodedUInt32(inp);
             if (vmCodeSize >= kVmCodeSizeMax || vmCodeSize == 0)
                return false;
-            for (uint32 i = 0; i < vmCodeSize; i++)
+            for (uint32_t i = 0; i < vmCodeSize; i++)
                _vmCode[i] = (byte)inp.ReadBits(8);
             _vm.PrepareProgram(_vmCode, vmCodeSize, filter);
          }
@@ -330,7 +330,7 @@ namespace compress
 
          if (firstByte & 8)
          {
-            uint32 dataSize = vm::ReadEncodedUInt32(inp);
+            uint32_t dataSize = vm::ReadEncodedUInt32(inp);
             if (dataSize > vm::kGlobalSize - vm::kFixedGlobalSize)
                return false;
             byte_array &globalData = tempFilter->GlobalData;
@@ -341,7 +341,7 @@ namespace compress
                for (; globalData.get_size() < requredSize; i++)
                   globalData.add(0);
             }
-            for (uint32 i = 0; i < dataSize; i++)
+            for (uint32_t i = 0; i < dataSize; i++)
                globalData[vm::kFixedGlobalSize + i] = (byte)inp.ReadBits(8);
          }
          return true;
@@ -349,15 +349,15 @@ namespace compress
 
       bool decoder::ReadVmCodeLZ()
       {
-         uint32 firstByte = ReadBits(8);
-         uint32 length = (firstByte & 7) + 1;
+         uint32_t firstByte = ReadBits(8);
+         uint32_t length = (firstByte & 7) + 1;
          if (length == 7)
             length = ReadBits(8) + 7;
          else if (length == 8)
             length = ReadBits(16);
          if (length > kVmDataSizeMax)
             return false;
-         for (uint32 i = 0; i < length; i++)
+         for (uint32_t i = 0; i < length; i++)
             _vmData[i] = (byte)ReadBits(8);
          return AddVmCode(firstByte, length);
       }
@@ -367,7 +367,7 @@ namespace compress
          int32_t firstByte = DecodePpmSymbol();
          if (firstByte < 0)
             return false;
-         uint32 length = (firstByte & 7) + 1;
+         uint32_t length = (firstByte & 7) + 1;
          if (length == 7)
          {
             int32_t b1 = DecodePpmSymbol();
@@ -387,7 +387,7 @@ namespace compress
          }
          if (length > kVmDataSizeMax)
             return false;
-         for (uint32 i = 0; i < length; i++)
+         for (uint32_t i = 0; i < length; i++)
          {
             int32_t b = DecodePpmSymbol();
             if (b < 0)
@@ -399,7 +399,7 @@ namespace compress
 
 #define RIF(x) { if (!(x)) return S_FALSE; }
 
-      uint32 decoder::ReadBits(int32_t numBits) { return m_InBitStream.bitDecoder.ReadBits(numBits); }
+      uint32_t decoder::ReadBits(int32_t numBits) { return m_InBitStream.bitDecoder.ReadBits(numBits); }
 
       /////////////////////////////////////////////////
       // PPM
@@ -490,8 +490,8 @@ namespace compress
                }
                if (nextCh == 4 || nextCh == 5)
                {
-                  uint32 distance = 0;
-                  uint32 length = 4;
+                  uint32_t distance = 0;
+                  uint32_t length = 4;
                   if (nextCh == 4)
                   {
                      for (int32_t i = 0; i < 3; i++)
@@ -555,10 +555,10 @@ namespace compress
          int32_t i;
          for (i = 0; i < kLevelTableSize; i++)
          {
-            uint32 length = ReadBits(4);
+            uint32_t length = ReadBits(4);
             if (length == 15)
             {
-               uint32 zeroCount = ReadBits(4);
+               uint32_t zeroCount = ReadBits(4);
                if (zeroCount != 0)
                {
                   zeroCount += 2;
@@ -574,7 +574,7 @@ namespace compress
          i = 0;
          while (i < kTablesSizesSum)
          {
-            uint32 number = m_LevelDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
+            uint32_t number = m_LevelDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
             if (number < 16)
             {
                newLevels[i] = byte((number + m_LastLevels[i]) & 15);
@@ -648,7 +648,7 @@ namespace compress
          return S_OK;
       }
 
-      uint32 kDistStart[kDistTableSize];
+      uint32_t kDistStart[kDistTableSize];
 
       class CDistInit
       {
@@ -656,8 +656,8 @@ namespace compress
          CDistInit() { Init(); }
          void Init()
          {
-            uint32 start = 0;
-            for (uint32 i = 0; i < kDistTableSize; i++)
+            uint32_t start = 0;
+            for (uint32_t i = 0; i < kDistTableSize; i++)
             {
                kDistStart[i] = start;
                start += (1 << kDistDirectBits[i]);
@@ -667,11 +667,11 @@ namespace compress
 
       HRESULT decoder::DecodeLZ(bool &keepDecompressing)
       {
-         uint32 rep0 = _reps[0];
-         uint32 rep1 = _reps[1];
-         uint32 rep2 = _reps[2];
-         uint32 rep3 = _reps[3];
-         uint32 length = _lastLength;
+         uint32_t rep0 = _reps[0];
+         uint32_t rep1 = _reps[1];
+         uint32_t rep2 = _reps[2];
+         uint32_t rep3 = _reps[3];
+         uint32_t length = _lastLength;
          for (;;)
          {
             if (((_wrPtr - _winPos) & kWindowMask) < 260 && _wrPtr != _winPos)
@@ -683,7 +683,7 @@ namespace compress
                   return S_OK;
                }
             }
-            uint32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
+            uint32_t number = m_MainDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
             if (number < 256)
             {
                PutByte((byte)number);
@@ -709,7 +709,7 @@ namespace compress
             {
                if (number != kSymbolRep)
                {
-                  uint32 distance;
+                  uint32_t distance;
                   if (number == kSymbolRep + 1)
                      distance = rep1;
                   else
@@ -727,7 +727,7 @@ namespace compress
                   rep0 = distance;
                }
 
-               uint32 number = m_LenDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
+               uint32_t number = m_LenDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
                if (number >= kLenTableSize)
                   return S_FALSE;
                length = 2 + kLenStart[number] + m_InBitStream.bitDecoder.ReadBits(kLenDirectBits[number]);
@@ -746,8 +746,8 @@ namespace compress
                else if (number < 299)
                {
                   number -= 271;
-                  length = kNormalMatchMinLen + (uint32)kLenStart[number] + m_InBitStream.bitDecoder.ReadBits(kLenDirectBits[number]);
-                  uint32 number = m_DistDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
+                  length = kNormalMatchMinLen + (uint32_t)kLenStart[number] + m_InBitStream.bitDecoder.ReadBits(kLenDirectBits[number]);
+                  uint32_t number = m_DistDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
                   if (number >= kDistTableSize)
                      return S_FALSE;
                   rep0 = kDistStart[number];
@@ -763,7 +763,7 @@ namespace compress
                      }
                      else
                      {
-                        uint32 number = m_AlignDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
+                        uint32_t number = m_AlignDecoder.DecodeSymbol(&m_InBitStream.bitDecoder);
                         if (number < (1 << kNumAlignBits))
                         {
                            rep0 += number;
@@ -834,13 +834,13 @@ namespace compress
             {
                RINOK(DecodePPM(1 << 18, keepDecompressing))
             }
-            uint64 packSize = m_InBitStream.bitDecoder.GetProcessedSize();
+            uint64_t packSize = m_InBitStream.bitDecoder.GetProcessedSize();
             RINOK(progress->SetRatioInfo(&packSize, &_writtenFileSize));
             if (!keepDecompressing)
                break;
          }
          RINOK(WriteBuf());
-         uint64 packSize = m_InBitStream.bitDecoder.GetProcessedSize();
+         uint64_t packSize = m_InBitStream.bitDecoder.GetProcessedSize();
          RINOK(progress->SetRatioInfo(&packSize, &_writtenFileSize));
          if (_writtenFileSize < _unpackSize)
             return S_FALSE;
@@ -889,7 +889,7 @@ namespace compress
          // by error in data stream.
       }
 
-      ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32 size)
+      ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

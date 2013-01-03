@@ -23,7 +23,7 @@ namespace n7z
      CNum FileIndex;
      CNum FolderIndex;
      bool_array ExtractStatuses;
-     uint64 UnpackSize;
+     uint64_t UnpackSize;
      CExtractFolderInfo(
        #ifdef _7Z_VOL
        int32_t volumeIndex,
@@ -44,14 +44,14 @@ namespace n7z
      };
    };
 
-   ex1::HRes handler::Extract(const uint32 *indices, uint32 numItems,
+   ex1::HRes handler::Extract(const uint32_t *indices, uint32_t numItems,
        int32_t testModeSpec, ::compress::archive_extract_callback_interface *extractCallbackSpec)
    {
      bool testMode = (testModeSpec != 0);
      ::ca::smart_pointer < ::compress::archive_extract_callback_interface > extractCallback = extractCallbackSpec;
-     uint64 importantTotalUnpacked = 0;
+     uint64_t importantTotalUnpacked = 0;
 
-     bool allFilesMode = (numItems == (uint32)-1);
+     bool allFilesMode = (numItems == (uint32_t)-1);
      if (allFilesMode)
        numItems =
        #ifdef _7Z_VOL
@@ -72,13 +72,13 @@ namespace n7z
      */
 
      array_del_ptr<CExtractFolderInfo> extractFolderInfoVector;
-     for (uint32 ii = 0; ii < numItems; ii++)
+     for (uint32_t ii = 0; ii < numItems; ii++)
      {
-       // uint32 fileIndex = allFilesMode ? indexIndex : indices[indexIndex];
-       uint32 ref2Index = allFilesMode ? ii : indices[ii];
+       // uint32_t fileIndex = allFilesMode ? indexIndex : indices[indexIndex];
+       uint32_t ref2Index = allFilesMode ? ii : indices[ii];
        // const CRef2 &ref2 = _refs[ref2Index];
 
-       // for (uint32 ri = 0; ri < ref2.Refs.get_count(); ri++)
+       // for (uint32_t ri = 0; ri < ref2.Refs.get_count(); ri++)
        {
          #ifdef _7Z_VOL
          // const CRef &ref = ref2.Refs[ri];
@@ -87,10 +87,10 @@ namespace n7z
          int32_t volumeIndex = ref.VolumeIndex;
          const CVolume &volume = _volumes[volumeIndex];
          const CArchiveDatabaseEx &db = volume.Database;
-         uint32 fileIndex = ref.ItemIndex;
+         uint32_t fileIndex = ref.ItemIndex;
          #else
          const CArchiveDatabaseEx &db = _db;
-         uint32 fileIndex = ref2Index;
+         uint32_t fileIndex = ref2Index;
          #endif
 
          CNum folderIndex = db.FileIndexToFolderIndexMap[fileIndex];
@@ -116,7 +116,7 @@ namespace n7z
                #endif
                kNumNoIndex, folderIndex));
            const CFolder &folderInfo = db.Folders[folderIndex];
-           uint64 unpackSize = folderInfo.GetUnpackSize();
+           uint64_t unpackSize = folderInfo.GetUnpackSize();
            importantTotalUnpacked += unpackSize;
            extractFolderInfoVector.last_element().UnpackSize = unpackSize;
          }
@@ -128,7 +128,7 @@ namespace n7z
          for(CNum index = (CNum) efi.ExtractStatuses.get_count();
              index <= fileIndex - startIndex; index++)
          {
-           // uint64 unpackSize = _db.Files[startIndex + index].UnpackSize;
+           // uint64_t unpackSize = _db.Files[startIndex + index].UnpackSize;
            // Count partial_folder_size
            // efi.UnpackSize += unpackSize;
            // importantTotalUnpacked += unpackSize;
@@ -148,9 +148,9 @@ namespace n7z
        );
      // CDecoder1 decoder;
 
-     uint64 totalPacked = 0;
-     uint64 totalUnpacked = 0;
-     uint64 curPacked, curUnpacked;
+     uint64_t totalPacked = 0;
+     uint64_t totalUnpacked = 0;
+     uint64_t curPacked, curUnpacked;
 
      ::compress::local_progress *lps = new ::compress::local_progress;
      ::ca::smart_pointer < ::compress::progress_info_interface > progress = lps;
@@ -205,7 +205,7 @@ namespace n7z
        curPacked = _db.GetFolderFullPackSize(folderIndex);
 
        CNum packStreamIndex = db.FolderStartPackStreamIndex[folderIndex];
-       uint64 folderStartPackPos = db.GetFolderStreamPos(folderIndex, 0);
+       uint64_t folderStartPackPos = db.GetFolderStreamPos(folderIndex, 0);
 
        #ifndef _NO_CRYPTO
        ::ca::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;

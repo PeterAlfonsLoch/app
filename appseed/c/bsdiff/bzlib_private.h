@@ -46,7 +46,7 @@ typedef unsigned char   Bool;
 typedef char            Char;
 typedef unsigned char   UChar;
 typedef int32_t             int32_t;
-typedef uint32_t    uint32;
+typedef uint32_t    uint32_t;
 typedef short           Int16;
 typedef unsigned short  UInt16;
 
@@ -162,7 +162,7 @@ extern int32_t BZ2_rNums[512];
 
 /*-- Stuff for doing CRCs. --*/
 
-extern uint32 BZ2_crc32Table[256];
+extern uint32_t BZ2_crc32Table[256];
 
 #define BZ_INITIALISE_CRC(crcVar)              \
 {                                              \
@@ -214,16 +214,16 @@ typedef
       int32_t    state;
 
       /* remembers avail_in when flush/finish requested */
-      uint32   avail_in_expect;
+      uint32_t   avail_in_expect;
 
       /* for doing the block sorting */
-      uint32*  arr1;
-      uint32*  arr2;
-      uint32*  ftab;
+      uint32_t*  arr1;
+      uint32_t*  arr2;
+      uint32_t*  ftab;
       int32_t    origPtr;
 
       /* aliases for arr1 and arr2 */
-      uint32*  ptr;
+      uint32_t*  ptr;
       UChar*   block;
       UInt16*  mtfv;
       UChar*   zbits;
@@ -232,7 +232,7 @@ typedef
       int32_t    workFactor;
 
       /* run-length-encoding of the input */
-      uint32   state_in_ch;
+      uint32_t   state_in_ch;
       int32_t    state_in_len;
       BZ_RAND_DECLS;
 
@@ -248,12 +248,12 @@ typedef
       UChar    unseqToSeq[256];
 
       /* the buffer for bit stream creation */
-      uint32   bsBuff;
+      uint32_t   bsBuff;
       int32_t    bsLive;
 
       /* block and combined CRCs */
-      uint32   blockCRC;
-      uint32   combinedCRC;
+      uint32_t   blockCRC;
+      uint32_t   combinedCRC;
 
       /* misc administratium */
       int32_t    verbosity;
@@ -270,7 +270,7 @@ typedef
       int32_t    code    [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       int32_t    rfreq   [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       /* second dimension: only 3 needed; 4 makes index calculations faster */
-      uint32   len_pack[BZ_MAX_ALPHA_SIZE][4];
+      uint32_t   len_pack[BZ_MAX_ALPHA_SIZE][4];
 
    }
    e_state;
@@ -369,7 +369,7 @@ typedef
       BZ_RAND_DECLS;
 
       /* the buffer for bit stream reading */
-      uint32   bsBuff;
+      uint32_t   bsBuff;
       int32_t    bsLive;
 
       /* misc administratium */
@@ -380,7 +380,7 @@ typedef
 
       /* for undoing the Burrows-Wheeler transform */
       int32_t    origPtr;
-      uint32   tPos;
+      uint32_t   tPos;
       int32_t    k0;
       int32_t    unzftab[256];
       int32_t    nblock_used;
@@ -388,17 +388,17 @@ typedef
       int32_t    cftabCopy[257];
 
       /* for undoing the Burrows-Wheeler transform (FAST) */
-      uint32   *tt;
+      uint32_t   *tt;
 
       /* for undoing the Burrows-Wheeler transform (SMALL) */
       UInt16   *ll16;
       UChar    *ll4;
 
       /* stored and calculated CRCs */
-      uint32   storedBlockCRC;
-      uint32   storedCombinedCRC;
-      uint32   calculatedBlockCRC;
-      uint32   calculatedCombinedCRC;
+      uint32_t   storedBlockCRC;
+      uint32_t   storedCombinedCRC;
+      uint32_t   calculatedBlockCRC;
+      uint32_t   calculatedCombinedCRC;
 
       /* map of bytes used in block */
       int32_t    nInUse;
@@ -468,7 +468,7 @@ typedef
    }
 
 #define GET_LL4(i)                             \
-   ((((uint32)(s->ll4[(i) >> 1])) >> (((i) << 2) & 0x4)) & 0xF)
+   ((((uint32_t)(s->ll4[(i) >> 1])) >> (((i) << 2) & 0x4)) & 0xF)
 
 #define SET_LL(i,n)                          \
    { s->ll16[i] = (UInt16)(n & 0x0000ffff);  \
@@ -476,7 +476,7 @@ typedef
    }
 
 #define GET_LL(i) \
-   (((uint32)s->ll16[i]) | (GET_LL4(i) << 16))
+   (((uint32_t)s->ll16[i]) | (GET_LL4(i) << 16))
 
 #define BZ_GET_SMALL(cccc)                            \
       cccc = BZ2_indexIntoF ( s->tPos, s->cftab );    \

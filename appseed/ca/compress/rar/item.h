@@ -7,7 +7,7 @@ namespace rar
 
    struct CRarTime
    {
-      uint32 DosTime;
+      uint32_t DosTime;
       byte LowSecond;
       byte SubTime[3];
    };
@@ -21,10 +21,10 @@ namespace rar
       CRarTime ATime;
       CRarTime MTime;
 
-      uint32 FileCRC;
-      uint32 Attrib;
+      uint32_t FileCRC;
+      uint32_t Attrib;
 
-      uint16 Flags;
+      uint16_t Flags;
       byte HostOS;
       byte UnPackVersion;
       byte Method;
@@ -46,10 +46,10 @@ namespace rar
       bool HasUnicodeName()const { return (Flags & header::file::kUnicodeName) != 0; }
       bool IsOldVersion()  const { return (Flags & header::file::kOldVersion) != 0; }
 
-      uint32 GetDictSize() const { return (Flags >> header::file::kDictBitStart) & header::file::kDictMask; }
+      uint32_t GetDictSize() const { return (Flags >> header::file::kDictBitStart) & header::file::kDictMask; }
       bool IsDir() const;
       bool IgnoreItem() const;
-      uint32 GetWinAttributes() const;
+      uint32_t GetWinAttributes() const;
 
       CItem(): CTimeDefined(false), ATimeDefined(false) {}
    };
@@ -57,14 +57,14 @@ namespace rar
    class CItemEx: public CItem
    {
    public:
-      uint64 Position;
-      uint16 MainPartSize;
-      uint16 CommentSize;
-      uint16 AlignSize;
-      uint64 GetFullSize()  const { return MainPartSize + CommentSize + AlignSize + PackSize; };
+      uint64_t Position;
+      uint16_t MainPartSize;
+      uint16_t CommentSize;
+      uint16_t AlignSize;
+      uint64_t GetFullSize()  const { return MainPartSize + CommentSize + AlignSize + PackSize; };
       //  DWORD GetHeaderWithCommentSize()  const { return MainPartSize + CommentSize; };
-      uint64 GetCommentPosition() const { return Position + MainPartSize; };
-      uint64 GetDataPosition()    const { return GetCommentPosition() + CommentSize + AlignSize; };
+      uint64_t GetCommentPosition() const { return Position + MainPartSize; };
+      uint64_t GetDataPosition()    const { return GetCommentPosition() + CommentSize + AlignSize; };
    };
 
 } // namespace rar

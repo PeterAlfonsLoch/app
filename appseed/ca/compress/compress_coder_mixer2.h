@@ -10,22 +10,22 @@ namespace compress
 
       struct CBindPair
       {
-         uint32 InIndex;
-         uint32 OutIndex;
+         uint32_t InIndex;
+         uint32_t OutIndex;
       };
 
       struct CCoderStreamsInfo
       {
-         uint32 NumInStreams;
-         uint32 NumOutStreams;
+         uint32_t NumInStreams;
+         uint32_t NumOutStreams;
       };
 
       struct CBindInfo
       {
          base_array<CCoderStreamsInfo> Coders;
          base_array<CBindPair> BindPairs;
-         base_array<uint32> InStreams;
-         base_array<uint32> OutStreams;
+         base_array<uint32_t> InStreams;
+         base_array<uint32_t> OutStreams;
 
          void remove_all()
          {
@@ -36,17 +36,17 @@ namespace compress
          }
 
          /*
-         uint32 GetCoderStartOutStream(uint32 coderIndex) const
+         uint32_t GetCoderStartOutStream(uint32_t coderIndex) const
          {
-         uint32 numOutStreams = 0;
-         for (uint32 i = 0; i < coderIndex; i++)
+         uint32_t numOutStreams = 0;
+         for (uint32_t i = 0; i < coderIndex; i++)
          numOutStreams += Coders[i].NumOutStreams;
          return numOutStreams;
          }
          */
 
 
-         void GetNumStreams(uint32 &numInStreams, uint32 &numOutStreams) const
+         void GetNumStreams(uint32_t &numInStreams, uint32_t &numOutStreams) const
          {
             numInStreams = 0;
             numOutStreams = 0;
@@ -58,14 +58,14 @@ namespace compress
             }
          }
 
-         int32_t FindBinderForInStream(uint32 inStream) const
+         int32_t FindBinderForInStream(uint32_t inStream) const
          {
             for (int32_t i = 0; i < BindPairs.get_count(); i++)
                if (BindPairs[i].InIndex == inStream)
                   return i;
             return -1;
          }
-         int32_t FindBinderForOutStream(uint32 outStream) const
+         int32_t FindBinderForOutStream(uint32_t outStream) const
          {
             for (int32_t i = 0; i < BindPairs.get_count(); i++)
                if (BindPairs[i].OutIndex == outStream)
@@ -73,29 +73,29 @@ namespace compress
             return -1;
          }
 
-         uint32 GetCoderInStreamIndex(uint32 coderIndex) const
+         uint32_t GetCoderInStreamIndex(uint32_t coderIndex) const
          {
-            uint32 streamIndex = 0;
-            for (uint32 i = 0; i < coderIndex; i++)
+            uint32_t streamIndex = 0;
+            for (uint32_t i = 0; i < coderIndex; i++)
                streamIndex += Coders[i].NumInStreams;
             return streamIndex;
          }
 
-         uint32 GetCoderOutStreamIndex(uint32 coderIndex) const
+         uint32_t GetCoderOutStreamIndex(uint32_t coderIndex) const
          {
-            uint32 streamIndex = 0;
-            for (uint32 i = 0; i < coderIndex; i++)
+            uint32_t streamIndex = 0;
+            for (uint32_t i = 0; i < coderIndex; i++)
                streamIndex += Coders[i].NumOutStreams;
             return streamIndex;
          }
 
 
-         void FindInStream(uint32 streamIndex, uint32 &coderIndex,
-            uint32 &coderStreamIndex) const
+         void FindInStream(uint32_t streamIndex, uint32_t &coderIndex,
+            uint32_t &coderStreamIndex) const
          {
-            for (coderIndex = 0; coderIndex < (uint32)Coders.get_count(); coderIndex++)
+            for (coderIndex = 0; coderIndex < (uint32_t)Coders.get_count(); coderIndex++)
             {
-               uint32 curSize = Coders[coderIndex].NumInStreams;
+               uint32_t curSize = Coders[coderIndex].NumInStreams;
                if (streamIndex < curSize)
                {
                   coderStreamIndex = streamIndex;
@@ -105,12 +105,12 @@ namespace compress
             }
             throw 1;
          }
-         void FindOutStream(uint32 streamIndex, uint32 &coderIndex,
-            uint32 &coderStreamIndex) const
+         void FindOutStream(uint32_t streamIndex, uint32_t &coderIndex,
+            uint32_t &coderStreamIndex) const
          {
-            for (coderIndex = 0; coderIndex < (uint32)Coders.get_count(); coderIndex++)
+            for (coderIndex = 0; coderIndex < (uint32_t)Coders.get_count(); coderIndex++)
             {
-               uint32 curSize = Coders[coderIndex].NumOutStreams;
+               uint32_t curSize = Coders[coderIndex].NumOutStreams;
                if (streamIndex < curSize)
                {
                   coderStreamIndex = streamIndex;
@@ -124,14 +124,14 @@ namespace compress
 
       class CBindReverseConverter
       {
-         uint32 _numSrcOutStreams;
+         uint32_t _numSrcOutStreams;
          ::compress::coder_mixer::CBindInfo _srcBindInfo;
-         base_array<uint32> _srcInToDestOutMap;
-         base_array<uint32> _srcOutToDestInMap;
-         base_array<uint32> _destInToSrcOutMap;
+         base_array<uint32_t> _srcInToDestOutMap;
+         base_array<uint32_t> _srcOutToDestInMap;
+         base_array<uint32_t> _destInToSrcOutMap;
       public:
-         uint32 NumSrcInStreams;
-         base_array<uint32> DestOutToSrcInMap;
+         uint32_t NumSrcInStreams;
+         base_array<uint32_t> DestOutToSrcInMap;
 
          CBindReverseConverter(const ::compress::coder_mixer::CBindInfo &srcBindInfo);
          void CreateReverseBindInfo(::compress::coder_mixer::CBindInfo &destBindInfo);
@@ -141,15 +141,15 @@ namespace compress
       {
          sp(::compress::coder_interface) Coder;
          sp(::compress::coder2_interface) Coder2;
-         uint32 NumInStreams;
-         uint32 NumOutStreams;
+         uint32_t NumInStreams;
+         uint32_t NumOutStreams;
 
          base_array<file_size> InSizes;
          base_array<file_size> OutSizes;
          base_array<const file_size *> InSizePointers;
          base_array<const file_size *> OutSizePointers;
 
-         CCoderInfo2(uint32 numInStreams, uint32 numOutStreams);
+         CCoderInfo2(uint32_t numInStreams, uint32_t numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
 
       };
@@ -159,7 +159,7 @@ namespace compress
       public:
          virtual ex1::HRes SetBindInfo(const CBindInfo &bindInfo) = 0;
          virtual void ReInit() = 0;
-         virtual void SetCoderInfo(uint32 coderIndex, const file_size **inSizes, const file_size **outSizes) = 0;
+         virtual void SetCoderInfo(uint32_t coderIndex, const file_size **inSizes, const file_size **outSizes) = 0;
       };
 
    } // namespace coder_mixer

@@ -11,7 +11,7 @@
 namespace compress 
 {
 
-   static const uint32 kBufferSize = 1 << 17;
+   static const uint32_t kBufferSize = 1 << 17;
 
    copy_coder::copy_coder() :
       TotalSize(0),
@@ -41,7 +41,7 @@ namespace compress
          ::primitive::memory_size size = kBufferSize;
          if (outSize != 0)
             if (size > *outSize - TotalSize)
-               size = (uint32)(*outSize - TotalSize);
+               size = (uint32_t)(*outSize - TotalSize);
          size = inStream->read(_buffer, size);
          if (size == 0)
             break;
@@ -58,7 +58,7 @@ namespace compress
       return S_OK;
    }
 
-   ex1::HRes copy_coder::GetInStreamProcessedSize(uint64 *value)
+   ex1::HRes copy_coder::GetInStreamProcessedSize(uint64_t *value)
    {
       *value = TotalSize;
       return S_OK;

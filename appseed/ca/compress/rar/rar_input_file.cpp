@@ -88,7 +88,7 @@ namespace rar
       }
       m_Position = m_StreamStartPosition;
 
-      uint64 arcStartPos;
+      uint64_t arcStartPos;
       arcStartPos = stream->find(header::kMarker, header::kMarkerSize, searchHeaderSizeLimit);
       if(arcStartPos == ::numeric_info::get_maximum_value < uint64_t >())
          return E_FAIL;
@@ -107,12 +107,12 @@ namespace rar
       AddToSeekValue(header::archive::kArchiveHeaderSize);
 
 
-      uint32 blockSize = Get16(buf + 5);
+      uint32_t blockSize = Get16(buf + 5);
 
       _header.EncryptVersion = 0;
       _header.Flags = Get16(buf + 3);
 
-      uint32 headerSize = header::archive::kArchiveHeaderSize;
+      uint32_t headerSize = header::archive::kArchiveHeaderSize;
       if (_header.IsThereEncryptVer())
       {
          if (blockSize <= headerSize)
@@ -124,7 +124,7 @@ namespace rar
       }
       if (blockSize < headerSize ||
          buf[2] != header::block_type::kArchiveHeader ||
-         (uint32)Get16(buf) != (crc_calc(buf + 2, headerSize - 2) & 0xFFFF))
+         (uint32_t)Get16(buf) != (crc_calc(buf + 2, headerSize - 2) & 0xFFFF))
          return S_FALSE;
 
       ::primitive::memory_size commentSize = blockSize - headerSize;
@@ -230,24 +230,24 @@ namespace rar
       return m_CurData[m_CurPos++];
    }
 
-   uint16 input_file::ReadUInt16()
+   uint16_t input_file::ReadUInt16()
    {
-      uint16 value = 0;
+      uint16_t value = 0;
       for (int32_t i = 0; i < 2; i++)
       {
          byte b = ReadByte();
-         value |= (uint16(b) << (8 * i));
+         value |= (uint16_t(b) << (8 * i));
       }
       return value;
    }
 
-   uint32 input_file::ReadUInt32()
+   uint32_t input_file::ReadUInt32()
    {
-      uint32 value = 0;
+      uint32_t value = 0;
       for (int32_t i = 0; i < 4; i++)
       {
          byte b = ReadByte();
-         value |= (uint32(b) << (8 * i));
+         value |= (uint32_t(b) << (8 * i));
       }
       return value;
    }
@@ -281,8 +281,8 @@ namespace rar
 
       if((item.Flags & header::file::kSize64Bits) != 0)
       {
-         item.PackSize |= ((uint64)ReadUInt32() << 32);
-         item.Size |= ((uint64)ReadUInt32() << 32);
+         item.PackSize |= ((uint64_t)ReadUInt32() << 32);
+         item.Size |= ((uint64_t)ReadUInt32() << 32);
       }
 
       ReadName(item, nameSize);
@@ -314,20 +314,20 @@ namespace rar
          }
       }
 
-      uint16 fileHeaderWithNameSize = (uint16)m_CurPos;
+      uint16_t fileHeaderWithNameSize = (uint16_t)m_CurPos;
 
       item.Position = m_Position;
       item.MainPartSize = fileHeaderWithNameSize;
-      item.CommentSize = (uint16)(m_BlockHeader.HeadSize - fileHeaderWithNameSize);
+      item.CommentSize = (uint16_t)(m_BlockHeader.HeadSize - fileHeaderWithNameSize);
 
       if (m_CryptoMode)
-         item.AlignSize = (uint16)((16 - ((m_BlockHeader.HeadSize) & 0xF)) & 0xF);
+         item.AlignSize = (uint16_t)((16 - ((m_BlockHeader.HeadSize) & 0xF)) & 0xF);
       else
          item.AlignSize = 0;
       AddToSeekValue(m_BlockHeader.HeadSize);
    }
 
-   void input_file::AddToSeekValue(uint64 addValue)
+   void input_file::AddToSeekValue(uint64_t addValue)
    {
       m_Position += addValue;
    }
@@ -352,7 +352,7 @@ namespace rar
             m_RarAESSpec->SetRar350Mode(_header.IsEncryptOld());
 
             // Salt
-            const uint32 kSaltSize = 8;
+            const uint32_t kSaltSize = 8;
             byte salt[kSaltSize];
             if(!ReadBytesAndTestSize(salt, kSaltSize))
                return S_FALSE;
@@ -364,7 +364,7 @@ namespace rar
             wstring unicodePassword = gen::international::utf8_to_unicode(password);
 
             ex1::byte_buffer buffer;
-            const uint32 sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
+            const uint32_t sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
             for (int32_t i = 0; i < unicodePassword.get_length(); i++)
             {
@@ -375,17 +375,17 @@ namespace rar
 
             RINOK(m_RarAESSpec->CryptoSetPassword((const byte *)buffer, sizeInBytes));
 
-            const uint32 kDecryptedBufferSize = (1 << 12);
+            const uint32_t kDecryptedBufferSize = (1 << 12);
             if (m_DecryptedData.GetCapacity() == 0)
             {
-               const uint32 kAlign = 16;
+               const uint32_t kAlign = 16;
                m_DecryptedData.SetCapacity(kDecryptedBufferSize + kAlign);
                m_DecryptedDataAligned = (byte *)((ptrdiff_t)((byte *)m_DecryptedData + kAlign - 1) & ~(ptrdiff_t)(kAlign - 1));
             }
             RINOK(m_RarAES->Init());
             ::primitive::memory_size decryptedDataSizeT = kDecryptedBufferSize;
             RINOK(ReadStream(m_Stream, m_DecryptedDataAligned, &decryptedDataSizeT));
-            m_DecryptedDataSize = (uint32)decryptedDataSizeT;
+            m_DecryptedDataSize = (uint32_t)decryptedDataSizeT;
             m_DecryptedDataSize = m_RarAES->Filter(m_DecryptedDataAligned, (uint32_t) m_DecryptedDataSize);
 
             m_CryptoMode = true;
@@ -454,7 +454,7 @@ namespace rar
                return S_FALSE;
             }
             m_PosLimit = 7 + 4;
-            uint32 dataSize = ReadUInt32();
+            uint32_t dataSize = ReadUInt32();
             AddToSeekValue(dataSize);
             if (m_CryptoMode && dataSize > (1 << 27))
             {

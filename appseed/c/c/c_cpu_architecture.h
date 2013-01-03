@@ -58,16 +58,16 @@ Stop_Compiling_Bad_Endian
 
 #ifdef MY_CPU_LE_UNALIGN
 
-#define GetUi16(p) (*(const uint16 *)(p))
+#define GetUi16(p) (*(const uint16_t *)(p))
 #define GetUi32(p) (*(const uint32_t *)(p))
-#define GetUi64(p) (*(const uint64 *)(p))
-#define SetUi16(p, d) *(uint16 *)(p) = (d);
+#define GetUi64(p) (*(const uint64_t *)(p))
+#define SetUi16(p, d) *(uint16_t *)(p) = (d);
 #define SetUi32(p, d) *(uint32_t *)(p) = (d);
-#define SetUi64(p, d) *(uint64 *)(p) = (d);
+#define SetUi64(p, d) *(uint64_t *)(p) = (d);
 
 #else
 
-#define GetUi16(p) (((const byte *)(p))[0] | ((uint16)((const byte *)(p))[1] << 8))
+#define GetUi16(p) (((const byte *)(p))[0] | ((uint16_t)((const byte *)(p))[1] << 8))
 
 #define GetUi32(p) ( \
              ((const byte *)(p))[0]        | \
@@ -75,7 +75,7 @@ Stop_Compiling_Bad_Endian
     ((uint32_t)((const byte *)(p))[2] << 16) | \
     ((uint32_t)((const byte *)(p))[3] << 24))
 
-#define GetUi64(p) (GetUi32(p) | ((uint64)GetUi32(((const byte *)(p)) + 4) << 32))
+#define GetUi64(p) (GetUi32(p) | ((uint64_t)GetUi32(((const byte *)(p)) + 4) << 32))
 
 #define SetUi16(p, d) { uint32_t _x_ = (d); \
     ((byte *)(p))[0] = (byte)_x_; \
@@ -87,7 +87,7 @@ Stop_Compiling_Bad_Endian
     ((byte *)(p))[2] = (byte)(_x_ >> 16); \
     ((byte *)(p))[3] = (byte)(_x_ >> 24); }
 
-#define SetUi64(p, d) { uint64 _x64_ = (d); \
+#define SetUi64(p, d) { uint64_t _x64_ = (d); \
     SetUi32(p, (uint32_t)_x64_); \
     SetUi32(((byte *)(p)) + 4, (uint32_t)(_x64_ >> 32)); }
 
@@ -98,7 +98,7 @@ Stop_Compiling_Bad_Endian
 //#pragma intrinsic(_byteswap_ulong)
 //#pragma intrinsic(_byteswap_uint64)
 #define GetBe32(p) _byteswap_ulong(*(const uint32_t *)(const byte *)(p))
-#define GetBe64(p) _byteswap_uint64(*(const uint64 *)(const byte *)(p))
+#define GetBe64(p) _byteswap_uint64(*(const uint64_t *)(const byte *)(p))
 
 #else
 
@@ -108,11 +108,11 @@ Stop_Compiling_Bad_Endian
     ((uint32_t)((const byte *)(p))[2] <<  8) | \
              ((const byte *)(p))[3] )
 
-#define GetBe64(p) (((uint64)GetBe32(p) << 32) | GetBe32(((const byte *)(p)) + 4))
+#define GetBe64(p) (((uint64_t)GetBe32(p) << 32) | GetBe32(((const byte *)(p)) + 4))
 
 #endif
 
-#define GetBe16(p) (((uint16)((const byte *)(p))[0] << 8) | ((const byte *)(p))[1])
+#define GetBe16(p) (((uint16_t)((const byte *)(p))[0] << 8) | ((const byte *)(p))[1])
 
 
 #ifdef MY_CPU_X86_OR_AMD64

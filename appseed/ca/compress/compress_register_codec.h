@@ -13,7 +13,7 @@ namespace compress
      pfn_create_codec   m_pfnCreateEncoder;
      method_id          Id;
      const char *       Name;
-     uint32             NumInStreams;
+     uint32_t             NumInStreams;
      bool               IsFilter;
    };
 

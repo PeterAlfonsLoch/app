@@ -180,9 +180,9 @@ int32_t BZ_API(BZ2_bzCompressInit)
    s->ftab = NULL;
 
    n       = 100000 * blockSize100k;
-   s->arr1 = (uint32_t *) BZALLOC( n                  * sizeof(uint32) );
-   s->arr2 = (uint32_t *) BZALLOC( (n+BZ_N_OVERSHOOT) * sizeof(uint32) );
-   s->ftab = (uint32_t *) BZALLOC( 65537              * sizeof(uint32) );
+   s->arr1 = (uint32_t *) BZALLOC( n                  * sizeof(uint32_t) );
+   s->arr2 = (uint32_t *) BZALLOC( (n+BZ_N_OVERSHOOT) * sizeof(uint32_t) );
+   s->ftab = (uint32_t *) BZALLOC( 65537              * sizeof(uint32_t) );
 
    if (s->arr1 == NULL || s->arr2 == NULL || s->ftab == NULL) {
       if (s->arr1 != NULL) BZFREE(s->arr1);
@@ -204,7 +204,7 @@ int32_t BZ_API(BZ2_bzCompressInit)
    s->block             = (UChar*)s->arr2;
    s->mtfv              = (UInt16*)s->arr1;
    s->zbits             = NULL;
-   s->ptr               = (uint32*)s->arr1;
+   s->ptr               = (uint32_t*)s->arr1;
 
    strm->state          = s;
    strm->total_in_lo32  = 0;
@@ -265,7 +265,7 @@ void flush_RL ( e_state* s )
 /*---------------------------------------------------*/
 #define ADD_CHAR_TO_BLOCK(zs,zchh0)               \
 {                                                 \
-   uint32 zchh = (uint32)(zchh0);                 \
+   uint32_t zchh = (uint32_t)(zchh0);                 \
    /*-- fast track the common case --*/           \
    if (zchh != zs->state_in_ch &&                 \
        zs->state_in_len == 1) {                   \
@@ -305,7 +305,7 @@ Bool copy_input_until_stop ( e_state* s )
          /*-- no input? --*/
          if (s->strm->avail_in == 0) break;
          progress_in = True;
-         ADD_CHAR_TO_BLOCK ( s, (uint32)(*((UChar*)(s->strm->next_in))) ); 
+         ADD_CHAR_TO_BLOCK ( s, (uint32_t)(*((UChar*)(s->strm->next_in))) ); 
          s->strm->next_in++;
          s->strm->avail_in--;
          s->strm->total_in_lo32++;
@@ -323,7 +323,7 @@ Bool copy_input_until_stop ( e_state* s )
          /*-- flush/finish end? --*/
          if (s->avail_in_expect == 0) break;
          progress_in = True;
-         ADD_CHAR_TO_BLOCK ( s, (uint32)(*((UChar*)(s->strm->next_in))) ); 
+         ADD_CHAR_TO_BLOCK ( s, (uint32_t)(*((UChar*)(s->strm->next_in))) ); 
          s->strm->next_in++;
          s->strm->avail_in--;
          s->strm->total_in_lo32++;
@@ -595,18 +595,18 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
    } else {
 
       /* restore */
-      uint32        c_calculatedBlockCRC = s->calculatedBlockCRC;
+      uint32_t        c_calculatedBlockCRC = s->calculatedBlockCRC;
       UChar         c_state_out_ch       = s->state_out_ch;
       int32_t         c_state_out_len      = s->state_out_len;
       int32_t         c_nblock_used        = s->nblock_used;
       int32_t         c_k0                 = s->k0;
-      uint32*       c_tt                 = s->tt;
-      uint32        c_tPos               = s->tPos;
+      uint32_t*       c_tt                 = s->tt;
+      uint32_t        c_tPos               = s->tPos;
       char*         cs_next_out          = s->strm->next_out;
       uint32_t  cs_avail_out         = s->strm->avail_out;
       /* end restore */
 
-      uint32       avail_out_INIT = cs_avail_out;
+      uint32_t       avail_out_INIT = cs_avail_out;
       int32_t        s_save_nblockPP = s->save_nblock+1;
       uint32_t total_out_lo32_old;
 

@@ -9,24 +9,24 @@ namespace n7z
 
    struct CMethodFull: public ::compress::method
    {
-      uint32 NumInStreams;
-      uint32 NumOutStreams;
+      uint32_t NumInStreams;
+      uint32_t NumOutStreams;
       bool IsSimpleCoder() const { return (NumInStreams == 1) && (NumOutStreams == 1); }
    };
 
    struct CBind
    {
-      uint32 InCoder;
-      uint32 InStream;
-      uint32 OutCoder;
-      uint32 OutStream;
+      uint32_t InCoder;
+      uint32_t InStream;
+      uint32_t OutCoder;
+      uint32_t OutStream;
    };
 
    struct CCompressionMethodMode
    {
       array_ptr_alloc <CMethodFull> Methods;
       base_array<CBind> Binds;
-      uint32 NumThreads;
+      uint32_t NumThreads;
       bool PasswordIsDefined;
       string Password;
 

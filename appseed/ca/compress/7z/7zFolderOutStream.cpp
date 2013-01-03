@@ -16,7 +16,7 @@ namespace n7z
 
    ex1::HRes CFolderOutStream::Init(
       const CArchiveDatabaseEx *db,
-      uint32 ref2Offset, uint32 startIndex,
+      uint32_t ref2Offset, uint32_t startIndex,
       const bool_array *extractStatuses,
       ::compress::archive_extract_callback_interface *extractCallback,
       bool testMode, bool checkCrc)
@@ -42,7 +42,7 @@ namespace n7z
       ::compress::archive::extract::ask_mode_extract) :
       ::compress::archive::extract::ask_mode_skip;
       ::ca::smart_pointer < ::ex1::writer > realOutStream;
-      uint32 index = _startIndex + _currentIndex;
+      uint32_t index = _startIndex + _currentIndex;
       RINOK(_extractCallback->GetStream(_ref2Offset + index, &realOutStream.m_p, askMode));
       _crcStreamSpec->SetStream(realOutStream);
       _crcStreamSpec->Init(_checkCrc);
@@ -90,7 +90,7 @@ namespace n7z
       {
          if (_fileIsOpen)
          {
-            ::primitive::memory_size cur = size < _rem ? size : (uint32)_rem;
+            ::primitive::memory_size cur = size < _rem ? size : (uint32_t)_rem;
             _crcStream->write(data, cur, &cur);
             if (cur == 0)
                break;
@@ -121,7 +121,7 @@ namespace n7z
       }
    }
 
-   ex1::HRes CFolderOutStream::GetSubStreamSize(uint64 subStream, uint64 * value)
+   ex1::HRes CFolderOutStream::GetSubStreamSize(uint64_t subStream, uint64_t * value)
    {
       *value = 0;
       if ((int32_t)subStream >= _extractStatuses->get_count())

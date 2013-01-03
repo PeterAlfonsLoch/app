@@ -15,8 +15,8 @@ namespace compress
         sp(::ex1::writer) OutStream;
         sp(::compress::progress_info_interface) Progress;
 
-        uint64 InSizeValue;
-        uint64 OutSizeValue;
+        uint64_t InSizeValue;
+        uint64_t OutSizeValue;
         bool InSizeAssigned;
         bool OutSizeAssigned;
 
@@ -25,7 +25,7 @@ namespace compress
           InSizeAssigned = OutSizeAssigned = false;
         }
 
-        void SetCoderInfo(const uint64 *inSize, const uint64 *outSize);
+        void SetCoderInfo(const uint64_t *inSize, const uint64_t *outSize);
       };
 
    } // namespace coder_mixer

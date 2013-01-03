@@ -13,9 +13,9 @@
 #include "7zEncode.h"
 #include "7zSpecStream.h"*/
 
-static const uint64 k_Delta = 0x03;
-static const uint64 k_BCJ = 0x03030103;
-static const uint64 k_BCJ2 = 0x0303011B;
+static const uint64_t k_Delta = 0x03;
+static const uint64_t k_BCJ = 0x03030103;
+static const uint64_t k_BCJ2 = 0x0303011B;
 
 
 namespace n7z
@@ -121,7 +121,7 @@ namespace n7z
          {
             ::ex1::byte_buffer buffer;
             wstring password = gen::international::utf8_to_unicode(_options.Password);
-            const uint32 sizeInBytes = (const uint32) (password.get_length() * 2);
+            const uint32_t sizeInBytes = (const uint32_t) (password.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
             for (int32_t i = 0; i < password.get_length(); i++)
             {
@@ -186,13 +186,13 @@ namespace n7z
 
       if (_bindInfo.InStreams.is_empty())
          return E_FAIL;
-      uint32 mainCoderIndex, mainStreamIndex;
+      uint32_t mainCoderIndex, mainStreamIndex;
       _bindInfo.FindInStream(_bindInfo.InStreams[0], mainCoderIndex, mainStreamIndex);
 
       if (inStreamSize != NULL)
       {
          base_array<const file_size *> sizePointers;
-         for (uint32 i = 0; i < _bindInfo.Coders[mainCoderIndex].NumInStreams; i++)
+         for (uint32_t i = 0; i < _bindInfo.Coders[mainCoderIndex].NumInStreams; i++)
             if (i == mainStreamIndex)
                sizePointers.add(inStreamSize);
             else
@@ -201,7 +201,7 @@ namespace n7z
       }
 
 
-      // uint64 outStreamStartPos;
+      // uint64_t outStreamStartPos;
       // RINOK(stream->Seek(0, STREAM_SEEK_CUR, &outStreamStartPos));
 
       ::compress::size_count_reader2 * inStreamSizeCountSpec = new ::compress::size_count_reader2;
@@ -243,11 +243,11 @@ namespace n7z
          }
       }
 
-      uint32 progressIndex = mainCoderIndex;
+      uint32_t progressIndex = mainCoderIndex;
 
       for (i = 0; i + 1 < _codersInfo.get_count(); i++)
       {
-         uint64 m = _codersInfo[i].MethodID;
+         uint64_t m = _codersInfo[i].MethodID;
          if (m == k_Delta || m == k_BCJ || m == k_BCJ2)
             progressIndex = (uint32_t) (i + 1);
       }
@@ -325,7 +325,7 @@ namespace n7z
       else
       {
 
-         uint32 numInStreams = 0, numOutStreams = 0;
+         uint32_t numInStreams = 0, numOutStreams = 0;
          int32_t i;
          for (i = 0; i < _options.Methods.get_count(); i++)
          {
@@ -344,7 +344,7 @@ namespace n7z
                }
                else
                   _bindInfo.OutStreams.insert_at(0, numOutStreams);
-               for (uint32 j = 1; j < coderStreamsInfo.NumOutStreams; j++)
+               for (uint32_t j = 1; j < coderStreamsInfo.NumOutStreams; j++)
                   _bindInfo.OutStreams.add(numOutStreams + j);
             }
 
@@ -380,9 +380,9 @@ namespace n7z
          int32_t inIndex = _bindInfo.InStreams[0];
          for (;;)
          {
-            uint32 coderIndex, coderStreamIndex;
+            uint32_t coderIndex, coderStreamIndex;
             _bindInfo.FindInStream(inIndex, coderIndex, coderStreamIndex);
-            uint32 outIndex = _bindInfo.GetCoderOutStreamIndex(coderIndex);
+            uint32_t outIndex = _bindInfo.GetCoderOutStreamIndex(coderIndex);
             int32_t binder = _bindInfo.FindBinderForOutStream(outIndex);
             if (binder >= 0)
             {

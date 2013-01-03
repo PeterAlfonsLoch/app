@@ -20,9 +20,9 @@ namespace compress
       progress_info_interface * _ratioProgress;
 
       bool _inSizeIsMain;
-      uint64 ProgressOffset;
-      uint64 InSize;
-      uint64 OutSize;
+      uint64_t ProgressOffset;
+      uint64_t InSize;
+      uint64_t OutSize;
       bool SendRatio;
       bool SendProgress;
 
@@ -32,7 +32,7 @@ namespace compress
 
       //MY_UNKNOWN_IMP
 
-      ex1::HRes SetRatioInfo(const uint64 *inSize, const uint64 *outSize);
+      ex1::HRes SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize);
    };
 
 } // namespace compress

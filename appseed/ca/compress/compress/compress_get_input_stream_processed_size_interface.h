@@ -7,7 +7,7 @@ namespace compress
       virtual public ::radix::object
    {
    public:
-      virtual ex1::HRes GetInStreamProcessedSize(uint64 *value) = 0;
+      virtual ex1::HRes GetInStreamProcessedSize(uint64_t *value) = 0;
    };
 
 } // namespace compress

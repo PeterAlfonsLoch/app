@@ -47,7 +47,7 @@ namespace crypto
          *b2 = b;
       }
 
-      void data::SetPassword(const byte *password, uint32 passwordLen)
+      void data::SetPassword(const byte *password, uint32_t passwordLen)
       {
          Keys[0] = 0xD3A3B879L;
          Keys[1] = 0x3F6D12F7L;
@@ -59,22 +59,22 @@ namespace crypto
          memcpy(psw, password, passwordLen);
          memcpy(SubstTable, InitSubstTable, sizeof(SubstTable));
 
-         for (uint32 j = 0; j < 256; j++)
-            for (uint32 i = 0; i < passwordLen; i += 2)
+         for (uint32_t j = 0; j < 256; j++)
+            for (uint32_t i = 0; i < passwordLen; i += 2)
             {
-               uint32 n2 = (byte)g_CrcTable[(psw[i + 1] + j) & 0xFF];
-               uint32 n1 = (byte)g_CrcTable[(psw[i] - j) & 0xFF];
-               for (uint32 k = 1; (n1 & 0xFF) != n2; n1++, k++)
+               uint32_t n2 = (byte)g_CrcTable[(psw[i + 1] + j) & 0xFF];
+               uint32_t n1 = (byte)g_CrcTable[(psw[i] - j) & 0xFF];
+               for (uint32_t k = 1; (n1 & 0xFF) != n2; n1++, k++)
                   Swap(&SubstTable[n1 & 0xFF], &SubstTable[(n1 + i + k) & 0xFF]);
             }
-            for (uint32 i = 0; i < passwordLen; i+= 16)
+            for (uint32_t i = 0; i < passwordLen; i+= 16)
                EncryptBlock(&psw[i]);
       }
 
       void data::CryptBlock(byte *buf, bool encrypt)
       {
          byte inBuf[16];
-         uint32 A, B, C, D, T, TA, TB;
+         uint32_t A, B, C, D, T, TA, TB;
 
          A = GetUi32(buf +  0) ^ Keys[0];
          B = GetUi32(buf +  4) ^ Keys[1];
@@ -86,7 +86,7 @@ namespace crypto
 
          for (int32_t i = 0; i < kNumRounds; i++)
          {
-            uint32 key = Keys[(encrypt ? i : (kNumRounds - 1 - i)) & 3];
+            uint32_t key = Keys[(encrypt ? i : (kNumRounds - 1 - i)) & 3];
             T = ((C + rotlFixed(D, 11)) ^ key);
             TA = A ^ SubstLong(T);
             T = ((D ^ rotlFixed(C, 17)) + key);
@@ -105,7 +105,7 @@ namespace crypto
          UpdateKeys(encrypt ? buf : inBuf);
       }
 
-      ex1::HRes decoder::CryptoSetPassword(const byte *data, uint32 size)
+      ex1::HRes decoder::CryptoSetPassword(const byte *data, uint32_t size)
       {
          _cipher.SetPassword(data, size);
          return S_OK;
@@ -116,15 +116,15 @@ namespace crypto
          return S_OK;
       }
 
-      static const uint32 kBlockSize = 16;
+      static const uint32_t kBlockSize = 16;
 
-      uint32 decoder::Filter(byte *data, uint32 size)
+      uint32_t decoder::Filter(byte *data, uint32_t size)
       {
          if (size == 0)
             return 0;
          if (size < kBlockSize)
             return kBlockSize;
-         uint32 i;
+         uint32_t i;
          size -= kBlockSize;
          for (i = 0; i <= size; i += kBlockSize)
             _cipher.DecryptBlock(data + i);

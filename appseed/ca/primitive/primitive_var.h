@@ -54,11 +54,12 @@ public:
       type_pint64,
       type_uint64,
       type_puint64,
+      type_float,
+      type_double,
       type_pvar,
       type_ca2,
       type_bool,
       type_pbool,
-      type_double,
       type_stra,
       type_inta,
       type_vara,
@@ -104,6 +105,7 @@ public:
 //   var(unsigned long ul);
 //   var(long long ll);
 //   var(unsigned long long ull);
+   var(float f);
    var(double d);
    var(const char * psz);
    var(string str);
@@ -130,6 +132,8 @@ public:
    union
    {
       gen::para_return     m_parareturn;
+      bool                 m_b;
+      bool *               m_pb;
       int32_t              m_i32;
       uint32_t             m_ui32;
       int64_t              m_i64;
@@ -138,9 +142,8 @@ public:
       uint32_t *           m_pui32;
       int64_t *            m_pi64;
       uint64_t *           m_pui64;
-      bool *               m_pb;
       string *             m_pstr;
-      bool                 m_b;
+      float                m_f;
       double               m_d;
       var *                m_pvar;
       __time64_t           m_time;
@@ -159,15 +162,18 @@ public:
    string                           m_str;
    id                               m_id;
 
+   bool                             get_bool(bool bDefault = false)     const;
+   int32_t                          int32(int32_t iDefault = 0)  const;
+   uint32_t                         uint32(uint32_t uiDefault = 0)  const;
+   int64_t                          int64(int64_t iDefault = 0)  const;
+   uint64_t                         uint64(uint64_t uiDefault = 0)  const;
+   float                            get_float(float fDefault = 0.f)   const;
+   double                           get_double(double dDefault = 0.0)   const;
    string                           to_r_string() const;
    string                           get_string(const char * pszOnNull = NULL) const;
    string &                         get_ref_string(const char * pszOnNull = NULL);
    id                               get_id(const char * pszOnNull = NULL)   const;
    id &                             get_ref_id(const char * pszOnNull = NULL);
-   int32_t                          int32(int32_t iDefault = 0)  const;
-   unsigned long                    get_ulong()    const;
-   double                           get_double()   const;
-   bool                             get_bool()     const;
    class primitive::memory &        memory();
    stringa &                        stra();
    int_array &                      inta();
@@ -185,9 +191,11 @@ public:
 
    bool is_scalar() const;
    inline bool is_array() const;
-   bool is_double() const;
+   bool is_real() const;
    bool is_integer() const;
-   bool is_ulong() const;
+   bool is_natural() const;
+
+   bool is_double() const;
 
    bool ok() const;
    bool failed() const;
@@ -205,7 +213,7 @@ public:
    void           set_id(const id & id);
    void unset();
 
-   bool is_true() const;
+   bool is_true(bool bDefault = false) const;
 
 
    bool is_set() const;
@@ -264,10 +272,11 @@ public:
    var & operator = (int64_t * pi);
    var & operator = (uint64_t i);
    var & operator = (uint64_t * pi);
+   var & operator = (float f);
+   var & operator = (double d);
    var & operator = (const ::datetime::time & time);
    var & operator = (const FILETIME & time);
    var & operator = (const SYSTEMTIME & time);
-   var & operator = (double d);
    var & operator = (string str);
    var & operator = (string * pstr);
    var & operator = (var * pvar);
@@ -585,6 +594,37 @@ inline string CLASS_DECL_ca operator+ (const var & var, const string & str)
    return strResult;
 }
 
+
+inline bool var::get_bool(bool bDefault) const
+{
+   return is_true(bDefault);
+}
+
+// returns 0 for unknown conversions
+inline var::operator int32_t() const
+{
+   return int32();
+}
+
+// returns 0 for unknown conversions
+inline var::operator uint32_t() const
+{
+   return uint32();
+}
+
+// returns 0 for unknown conversions
+inline var::operator int64_t() const
+{
+   return int64();
+}
+
+// returns 0 for unknown conversions
+inline var::operator uint64_t() const
+{
+   return uint64();
+}
+
+
 #ifdef WINDOWS
 
 inline var::operator LONG () const
@@ -617,5 +657,8 @@ inline var & var::operator = (LPDWORD pui)
 }
 
 #endif
+
+
+
 
 

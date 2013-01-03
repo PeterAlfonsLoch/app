@@ -5,20 +5,20 @@
 namespace compress
 {
 
-   static const uint64 k_LZMA = 0x030101;
-   static const uint64 k_LZMA2 = 0x21;
+   static const uint64_t k_LZMA = 0x030101;
+   static const uint64_t k_LZMA2 = 0x21;
 
    #define IUnknown ::radix::object
 
    HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca *coder)
    {
       bool tryReduce = false;
-      uint32 reducedDictionarySize = 1 << 10;
+      uint32_t reducedDictionarySize = 1 << 10;
       if (inSizeForReduce != 0 && (method.Id == k_LZMA || method.Id == k_LZMA2))
       {
          for (;;)
          {
-            const uint32 step = (reducedDictionarySize >> 1);
+            const uint32_t step = (reducedDictionarySize >> 1);
             if (reducedDictionarySize >= *inSizeForReduce)
             {
                tryReduce = true;
@@ -30,7 +30,7 @@ namespace compress
                tryReduce = true;
                break;
             }
-            if (reducedDictionarySize >= ((uint32)3 << 30))
+            if (reducedDictionarySize >= ((uint32_t)3 << 30))
                break;
             reducedDictionarySize += step;
          }
@@ -62,8 +62,8 @@ namespace compress
                   if (tryReduce)
                      if (atoi(prop.name()) == NCoderPropID::kDictionarySize)
                         if (value.is_integer())
-                           if (reducedDictionarySize < value.get_ulong())
-                              value = (uint64) reducedDictionarySize;
+                           if (reducedDictionarySize < value.uint32())
+                              value = (uint64_t) reducedDictionarySize;
                }
                ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
                setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface *> (coder);

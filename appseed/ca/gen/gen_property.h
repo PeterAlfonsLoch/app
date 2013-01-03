@@ -215,9 +215,9 @@ namespace gen
 
 
 
-      int32_t int32(int32_t iDefault = 0)
+      bool get_bool() const
       {
-         return get_value().int32(iDefault);
+         return get_value().get_bool();
       }
 
       int32_t int32(int32_t iDefault = 0) const
@@ -225,29 +225,24 @@ namespace gen
          return get_value().int32(iDefault);
       }
 
-      double get_double()
+      uint32_t uint32(uint32_t uiDefault = 0) const
       {
-         return get_value().get_double();
+         return get_value().uint32(uiDefault);
+      }
+
+      int64_t int64(int64_t iDefault = 0) const
+      {
+         return get_value().int64(iDefault);
+      }
+
+      uint64_t int64(uint64_t uiDefault = 0) const
+      {
+         return get_value().uint64(uiDefault);
       }
 
       double get_double() const
       {
          return get_value().get_double();
-      }
-
-      bool get_bool()
-      {
-         return get_value().get_bool();
-      }
-
-      bool get_bool() const
-      {
-         return get_value().get_bool();
-      }
-
-      string get_string()
-      {
-         return get_value().get_string();
       }
 
       string get_string() const

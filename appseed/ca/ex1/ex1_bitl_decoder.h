@@ -14,7 +14,7 @@ namespace ex1
       const unsigned kNumValueBytes = 3;
       const unsigned kNumValueBits = 8  * kNumValueBytes;
 
-      const uint32 kMask = (1 << kNumValueBits) - 1;
+      const uint32_t kMask = (1 << kNumValueBits) - 1;
 
       extern byte kInvertTable[256];
 
@@ -23,11 +23,11 @@ namespace ex1
       {
       protected:
          unsigned m_BitPos;
-         uint32 m_Value;
+         uint32_t m_Value;
          TInByte m_Stream;
       public:
-         uint32 NumExtraBytes;
-         bool Create(uint32 bufferSize) { return m_Stream.Create(bufferSize); }
+         uint32_t NumExtraBytes;
+         bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(reader *inStream) { m_Stream.SetStream(inStream); }
          void ReleaseStream() { m_Stream.ReleaseStream(); }
          void Init()
@@ -37,7 +37,7 @@ namespace ex1
             m_Value = 0;
             NumExtraBytes = 0;
          }
-         uint64 GetProcessedSize() const { return m_Stream.GetProcessedSize() + NumExtraBytes - (kNumBigValueBits - m_BitPos) / 8; }
+         uint64_t GetProcessedSize() const { return m_Stream.GetProcessedSize() + NumExtraBytes - (kNumBigValueBits - m_BitPos) / 8; }
 
          void Normalize()
          {
@@ -53,10 +53,10 @@ namespace ex1
             }
          }
 
-         uint32 ReadBits(unsigned numBits)
+         uint32_t ReadBits(unsigned numBits)
          {
             Normalize();
-            uint32 res = m_Value & ((1 << numBits) - 1);
+            uint32_t res = m_Value & ((1 << numBits) - 1);
             m_BitPos += numBits;
             m_Value >>= numBits;
             return res;
@@ -66,7 +66,7 @@ namespace ex1
          {
             if (NumExtraBytes == 0)
                return false;
-            return ((uint32)(kNumBigValueBits - m_BitPos) < (NumExtraBytes << 3));
+            return ((uint32_t)(kNumBigValueBits - m_BitPos) < (NumExtraBytes << 3));
          }
       };
 
@@ -74,7 +74,7 @@ namespace ex1
       class decoder : 
          public base_decoder < TInByte >
       {
-         uint32 m_NormalValue;
+         uint32_t m_NormalValue;
 
       public:
          void Init()
@@ -98,7 +98,7 @@ namespace ex1
             }
          }
 
-         uint32 GetValue(unsigned numBits)
+         uint32_t GetValue(unsigned numBits)
          {
             Normalize();
             return ((this->m_Value >> (8 - this->m_BitPos)) & kMask) >> (kNumValueBits - numBits);
@@ -110,10 +110,10 @@ namespace ex1
             m_NormalValue >>= numBits;
          }
 
-         uint32 ReadBits(unsigned numBits)
+         uint32_t ReadBits(unsigned numBits)
          {
             Normalize();
-            uint32 res = m_NormalValue & ((1 << numBits) - 1);
+            uint32_t res = m_NormalValue & ((1 << numBits) - 1);
             MovePos(numBits);
             return res;
          }

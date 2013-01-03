@@ -15,22 +15,22 @@ namespace crypto
 
 
          byte SubstTable[256];
-         uint32 Keys[4];
+         uint32_t Keys[4];
 
 
-         uint32 SubstLong(uint32 t)
+         uint32_t SubstLong(uint32_t t)
          {
-            return (uint32)SubstTable[(int32_t)t & 255] |
-               ((uint32)SubstTable[(int32_t)(t >> 8) & 255] << 8) |
-               ((uint32)SubstTable[(int32_t)(t >> 16) & 255] << 16) |
-               ((uint32)SubstTable[(int32_t)(t >> 24) & 255] << 24);
+            return (uint32_t)SubstTable[(int32_t)t & 255] |
+               ((uint32_t)SubstTable[(int32_t)(t >> 8) & 255] << 8) |
+               ((uint32_t)SubstTable[(int32_t)(t >> 16) & 255] << 16) |
+               ((uint32_t)SubstTable[(int32_t)(t >> 24) & 255] << 24);
          }
 
          void UpdateKeys(const byte *data);
          void CryptBlock(byte *buf, bool encrypt);
          void EncryptBlock(byte *buf) { CryptBlock(buf, true); }
          void DecryptBlock(byte *buf) { CryptBlock(buf, false); }
-         void SetPassword(const byte *password, uint32 passwordLen);
+         void SetPassword(const byte *password, uint32_t passwordLen);
       };
 
       class CLASS_DECL_ca decoder:
@@ -44,8 +44,8 @@ namespace crypto
 
 
          ex1::HRes Init();
-         uint32 Filter(byte *data, uint32 size);
-         ex1::HRes CryptoSetPassword(const byte *data, uint32 size);
+         uint32_t Filter(byte *data, uint32_t size);
+         ex1::HRes CryptoSetPassword(const byte *data, uint32_t size);
       };
 
    } // namespace rar20

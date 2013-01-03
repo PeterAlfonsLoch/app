@@ -12,7 +12,7 @@ namespace ex1
       virtual public stream_base
    {
    public:
-      virtual int32_t GetSize(uint64 * psize) const = 0;
+      virtual int32_t GetSize(uint64_t * psize) const = 0;
    };
 
    enum e_seek

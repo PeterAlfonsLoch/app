@@ -79,15 +79,15 @@ namespace rar
          // byte Type;
          // uint16_t Flags;
          // uint16_t HeadSize;
-         uint32 PackSize;
-         uint32 UnPackSize;
+         uint32_t PackSize;
+         uint32_t UnPackSize;
          byte HostOS;
-         uint32 FileCRC;
-         uint32 Time;
+         uint32_t FileCRC;
+         uint32_t Time;
          byte UnPackVersion;
          byte Method;
          uint16_t NameSize;
-         uint32 Attributes;
+         uint32_t Attributes;
          };
          */
 
@@ -98,16 +98,16 @@ namespace rar
          byte Type;
          uint16_t Flags;
          uint16_t HeadSize;
-         uint32 PackSize;
-         uint32 UnPackSize;
+         uint32_t PackSize;
+         uint32_t UnPackSize;
          byte HostOS;
-         uint32 FileCRC;
-         uint32 Time;
+         uint32_t FileCRC;
+         uint32_t Time;
          byte UnPackVersion;
          byte Method;
          uint16_t NameSize;
-         uint32 Attributes;
-         uint16_t GetRealCRC(const void *aName, uint32 aNameSize,
+         uint32_t Attributes;
+         uint16_t GetRealCRC(const void *aName, uint32_t aNameSize,
          bool anExtraDataDefined = false, byte *anExtraData = 0) const;
          };
          struct CBlock64
@@ -116,18 +116,18 @@ namespace rar
          byte Type;
          uint16_t Flags;
          uint16_t HeadSize;
-         uint32 PackSizeLow;
-         uint32 UnPackSizeLow;
+         uint32_t PackSizeLow;
+         uint32_t UnPackSizeLow;
          byte HostOS;
-         uint32 FileCRC;
-         uint32 Time;
+         uint32_t FileCRC;
+         uint32_t Time;
          byte UnPackVersion;
          byte Method;
          uint16_t NameSize;
-         uint32 Attributes;
-         uint32 PackSizeHigh;
-         uint32 UnPackSizeHigh;
-         uint16_t GetRealCRC(const void *aName, uint32 aNameSize) const;
+         uint32_t Attributes;
+         uint32_t PackSizeHigh;
+         uint32_t UnPackSizeHigh;
+         uint16_t GetRealCRC(const void *aName, uint32_t aNameSize) const;
          };
          */
 
@@ -154,7 +154,7 @@ namespace rar
             byte Type;
             uint16_t Flags;
             uint16_t HeadSize;
-            //  uint32 DataSize;
+            //  uint32_t DataSize;
          };
       }
 
@@ -165,7 +165,7 @@ namespace rar
       byte HeadType;
       uint16_t Flags;
       uint16_t HeadSize;
-      uint32 DataSize;
+      uint32_t DataSize;
       uint16_t SubType;
       byte Level; // Reserved : Must be 0
       };
@@ -189,10 +189,10 @@ namespace rar
       byte HeadType;
       uint16_t Flags;
       uint16_t HeadSize;
-      uint32 DataSize;
+      uint32_t DataSize;
       byte Version;
       uint16_t RecSectors;
-      uint32 TotalBlocks;
+      uint32_t TotalBlocks;
       byte Mark[8];
       };
       */

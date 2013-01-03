@@ -16,7 +16,7 @@ namespace n7z
    
    struct CPropMap
    {
-      uint64 FilePropID;
+      uint64_t FilePropID;
       stat_prop_stg StatPROPSTG;
    };
 
@@ -54,7 +54,7 @@ namespace n7z
 
    static const int32_t kPropMapSize = sizeof(kPropMap) / sizeof(kPropMap[0]);
 
-   static int32_t FindPropInMap(uint64 filePropID)
+   static int32_t FindPropInMap(uint64_t filePropID)
    {
       for (int32_t i = 0; i < kPropMapSize; i++)
       if (kPropMap[i].FilePropID == filePropID)
@@ -62,8 +62,8 @@ namespace n7z
       return -1;
    }
 
-   static void CopyOneItem(base_array<uint64> &src,
-      base_array<uint64> &dest, uint32 item)
+   static void CopyOneItem(base_array<uint64_t> &src,
+      base_array<uint64_t> &dest, uint32_t item)
    {
       for (int32_t i = 0; i < src.get_count(); i++)
          if (src[i] == item)
@@ -74,7 +74,7 @@ namespace n7z
          }
    }
 
-   static void RemoveOneItem(base_array<uint64> &src, uint32 item)
+   static void RemoveOneItem(base_array<uint64_t> &src, uint32_t item)
    {
       for (int32_t i = 0; i < src.get_count(); i++)
          if (src[i] == item)
@@ -84,7 +84,7 @@ namespace n7z
          }
    }
 
-   static void InsertToHead(base_array<uint64> &dest, uint32 item)
+   static void InsertToHead(base_array<uint64_t> &dest, uint32_t item)
    {
       for (int32_t i = 0; i < dest.get_count(); i++)
          if (dest[i] == item)
@@ -106,7 +106,7 @@ namespace n7z
       const CArchiveDatabaseEx &_db = volume.Database;
 #endif
 
-      base_array<uint64> fileInfoPopIDs = _db.ArchiveInfo.FileInfoPopIDs;
+      base_array<uint64_t> fileInfoPopIDs = _db.ArchiveInfo.FileInfoPopIDs;
 
       RemoveOneItem(fileInfoPopIDs, NID::kEmptyStream);
       RemoveOneItem(fileInfoPopIDs, NID::kEmptyFile);
@@ -144,7 +144,7 @@ namespace n7z
 #endif
    }
 
-   ex1::HRes handler::GetNumberOfProperties(uint32 *numProperties)
+   ex1::HRes handler::GetNumberOfProperties(uint32_t *numProperties)
    {
 
       *numProperties = (uint32_t) _fileInfoPopIDs.get_count();
@@ -153,7 +153,7 @@ namespace n7z
 
    }
 
-   ex1::HRes handler::GetPropertyInfo(uint32 index, string & name, int32_t * propID, var::e_type *varType)
+   ex1::HRes handler::GetPropertyInfo(uint32_t index, string & name, int32_t * propID, var::e_type *varType)
    {
       if ((int32_t)index >= _fileInfoPopIDs.get_count())
          return E_INVALIDARG;

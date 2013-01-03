@@ -19,44 +19,44 @@ namespace compress
       class mem_bit_decoder
       {
          const byte *_data;
-         uint32 _bitSize;
-         uint32 _bitPos;
+         uint32_t _bitSize;
+         uint32_t _bitPos;
       public:
-         void Init(const byte *data, uint32 byteSize)
+         void Init(const byte *data, uint32_t byteSize)
          {
             _data = data;
             _bitSize = (byteSize << 3);
             _bitPos = 0;
          }
-         uint32 ReadBits(int32_t numBits);
-         uint32 ReadBit();
+         uint32_t ReadBits(int32_t numBits);
+         uint32_t ReadBit();
          bool Avail() const { return (_bitPos < _bitSize); }
       };
 
       namespace vm
       {
 
-         uint32 GetValue32(const void *addr);
-         void SetValue32(void *addr, uint32 value);
+         uint32_t GetValue32(const void *addr);
+         void SetValue32(void *addr, uint32_t value);
 
-         uint32 ReadEncodedUInt32(mem_bit_decoder &inp);
+         uint32_t ReadEncodedUInt32(mem_bit_decoder &inp);
 
          const int32_t kNumRegBits = 3;
-         const uint32 kNumRegs = 1 << kNumRegBits;
-         const uint32 kNumGpRegs = kNumRegs - 1;
+         const uint32_t kNumRegs = 1 << kNumRegBits;
+         const uint32_t kNumGpRegs = kNumRegs - 1;
 
-         const uint32 kSpaceSize = 0x40000;
-         const uint32 kSpaceMask = kSpaceSize -1;
-         const uint32 kGlobalOffset = 0x3C000;
-         const uint32 kGlobalSize = 0x2000;
-         const uint32 kFixedGlobalSize = 64;
+         const uint32_t kSpaceSize = 0x40000;
+         const uint32_t kSpaceMask = kSpaceSize -1;
+         const uint32_t kGlobalOffset = 0x3C000;
+         const uint32_t kGlobalSize = 0x2000;
+         const uint32_t kFixedGlobalSize = 64;
 
          namespace NGlobalOffset
          {
-            const uint32 kBlockSize = 0x1C;
-            const uint32 kBlockPos  = 0x20;
-            const uint32 kExecCount = 0x2C;
-            const uint32 kGlobalMemOutSize = 0x30;
+            const uint32_t kBlockSize = 0x1C;
+            const uint32_t kBlockPos  = 0x20;
+            const uint32_t kExecCount = 0x2C;
+            const uint32_t kGlobalMemOutSize = 0x30;
          }
 
          enum ECommand
@@ -79,8 +79,8 @@ namespace compress
          struct COperand
          {
             EOpType Type;
-            uint32 Data;
-            uint32 Base;
+            uint32_t Data;
+            uint32_t Base;
             COperand(): Type(OP_TYPE_NONE), Data(0), Base(0) {}
          };
 
@@ -93,8 +93,8 @@ namespace compress
 
          struct CBlockRef
          {
-            uint32 Offset;
-            uint32 Size;
+            uint32_t Offset;
+            uint32_t Size;
          };
 
          struct CProgram
@@ -108,20 +108,20 @@ namespace compress
 
          struct CProgramInitState
          {
-            uint32 InitR[kNumGpRegs];
+            uint32_t InitR[kNumGpRegs];
             byte_array GlobalData;
 
             void AllocateEmptyFixedGlobal()
             {
                GlobalData.set_size(0, kFixedGlobalSize);
-               for (uint32 i = 0; i < kFixedGlobalSize; i++)
+               for (uint32_t i = 0; i < kFixedGlobalSize; i++)
                   GlobalData.add(0);
             }
          };
 
          class vm
          {
-            static uint32 GetValue(bool byteMode, const void *addr)
+            static uint32_t GetValue(bool byteMode, const void *addr)
             {
                if (byteMode)
                   return(*(const byte *)addr);
@@ -129,7 +129,7 @@ namespace compress
                   return GetUi32(addr);
             }
 
-            static void SetValue(bool byteMode, void *addr, uint32 value)
+            static void SetValue(bool byteMode, void *addr, uint32_t value)
             {
                if (byteMode)
                   *(byte *)addr = (byte)value;
@@ -137,19 +137,19 @@ namespace compress
                   SetUi32(addr, value);
             }
 
-            uint32 GetFixedGlobalValue32(uint32 globalOffset) { return GetValue(false, &Mem[kGlobalOffset + globalOffset]); }
+            uint32_t GetFixedGlobalValue32(uint32_t globalOffset) { return GetValue(false, &Mem[kGlobalOffset + globalOffset]); }
 
-            void SetBlockSize(uint32 v) { SetValue(&Mem[kGlobalOffset + NGlobalOffset::kBlockSize], v); }
-            void SetBlockPos(uint32 v) { SetValue(&Mem[kGlobalOffset + NGlobalOffset::kBlockPos], v); }
+            void SetBlockSize(uint32_t v) { SetValue(&Mem[kGlobalOffset + NGlobalOffset::kBlockSize], v); }
+            void SetBlockPos(uint32_t v) { SetValue(&Mem[kGlobalOffset + NGlobalOffset::kBlockPos], v); }
          public:
-            static void SetValue(void *addr, uint32 value) { SetValue(false, addr, value); }
+            static void SetValue(void *addr, uint32_t value) { SetValue(false, addr, value); }
          private:
-            uint32 GetOperand32(const COperand *op) const;
-            void SetOperand32(const COperand *op, uint32 val);
+            uint32_t GetOperand32(const COperand *op) const;
+            void SetOperand32(const COperand *op, uint32_t val);
             byte GetOperand8(const COperand *op) const;
             void SetOperand8(const COperand *op, byte val);
-            uint32 GetOperand(bool byteMode, const COperand *op) const;
-            void SetOperand(bool byteMode, const COperand *op, uint32 val);
+            uint32_t GetOperand(bool byteMode, const COperand *op) const;
+            void SetOperand(bool byteMode, const COperand *op, uint32_t val);
 
             void DecodeArg(mem_bit_decoder &inp, COperand &op, bool byteMode);
 
@@ -160,18 +160,18 @@ namespace compress
 #endif
 
             byte *Mem;
-            uint32 R[kNumRegs + 1]; // R[kNumRegs] = 0 always (speed optimization)
-            uint32 Flags;
-            void ReadVmProgram(const byte *code, uint32 codeSize, CProgram *prg);
+            uint32_t R[kNumRegs + 1]; // R[kNumRegs] = 0 always (speed optimization)
+            uint32_t Flags;
+            void ReadVmProgram(const byte *code, uint32_t codeSize, CProgram *prg);
          public:
             vm();
             ~vm();
             bool Create();
-            void PrepareProgram(const byte *code, uint32 codeSize, CProgram *prg);
-            void SetMemory(uint32 pos, const byte *data, uint32 dataSize);
+            void PrepareProgram(const byte *code, uint32_t codeSize, CProgram *prg);
+            void SetMemory(uint32_t pos, const byte *data, uint32_t dataSize);
             bool Execute(CProgram *prg, const CProgramInitState *initState,
                CBlockRef &outBlockRef, byte_array &outGlobalData);
-            const byte *GetDataPointer(uint32 offset) const { return Mem + offset; }
+            const byte *GetDataPointer(uint32_t offset) const { return Mem + offset; }
 
          };
 

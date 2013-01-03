@@ -19,7 +19,7 @@ namespace compress
    namespace rar1
    {
 
-      const uint32 kNumRepDists = 4;
+      const uint32_t kNumRepDists = 4;
 
 
       class decoder :
@@ -30,34 +30,34 @@ namespace compress
          ::compress::lz_out_window        m_OutWindowStream;
          ::ex1::bitm::in_buffer_decoder   m_InBitStream;
 
-         uint32 m_RepDists[kNumRepDists];
-         uint32 m_RepDistPtr;
+         uint32_t m_RepDists[kNumRepDists];
+         uint32_t m_RepDistPtr;
 
-         uint32 LastDist;
-         uint32 LastLength;
+         uint32_t LastDist;
+         uint32_t LastLength;
 
-         int64 m_UnpackSize;
+         int64_t m_UnpackSize;
          bool m_IsSolid;
 
-         uint32 ReadBits(int32_t numBits);
-         HRESULT CopyBlock(uint32 distance, uint32 len);
+         uint32_t ReadBits(int32_t numBits);
+         HRESULT CopyBlock(uint32_t distance, uint32_t len);
 
-         uint32 DecodeNum(const uint32 *posTab);
+         uint32_t DecodeNum(const uint32_t *posTab);
          HRESULT ShortLZ();
          HRESULT LongLZ();
          HRESULT HuffDecode();
          void GetFlagsBuf();
          void InitData();
          void InitHuff();
-         void CorrHuff(uint32 *CharSet, uint32 *NumToPlace);
+         void CorrHuff(uint32_t *CharSet, uint32_t *NumToPlace);
          void OldUnpWriteBuf();
 
-         uint32 ChSet[256],ChSetA[256],ChSetB[256],ChSetC[256];
-         uint32 Place[256],PlaceA[256],PlaceB[256],PlaceC[256];
-         uint32 NToPl[256],NToPlB[256],NToPlC[256];
-         uint32 FlagBuf,AvrPlc,AvrPlcB,AvrLn1,AvrLn2,AvrLn3;
+         uint32_t ChSet[256],ChSetA[256],ChSetB[256],ChSetC[256];
+         uint32_t Place[256],PlaceA[256],PlaceB[256],PlaceC[256];
+         uint32_t NToPl[256],NToPlB[256],NToPlC[256];
+         uint32_t FlagBuf,AvrPlc,AvrPlcB,AvrLn1,AvrLn2,AvrLn3;
          int32_t Buf60,NumHuf,StMode,LCount,FlagsCnt;
-         uint32 Nhfb,Nlzb,MaxDist3;
+         uint32_t Nhfb,Nlzb,MaxDist3;
 
          void InitStructures();
 
@@ -76,7 +76,7 @@ namespace compress
 
          virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress);
 
-         virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32 size);
+         virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
       };
 

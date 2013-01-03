@@ -17,11 +17,11 @@ namespace ex1
          unsigned m_BitPos;
          byte m_CurByte;
       public:
-         bool Create(uint32 bufferSize) { return m_Stream.Create(bufferSize); }
+         bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(writer *outStream) { m_Stream.SetStream(outStream); }
          void ReleaseStream() { m_Stream.ReleaseStream(); }
-         uint32 GetBitPosition() const { return (8 - m_BitPos); }
-         uint64 GetProcessedSize() const { return m_Stream.GetProcessedSize() + (8 - m_BitPos + 7) /8; }
+         uint32_t GetBitPosition() const { return (8 - m_BitPos); }
+         uint64_t GetProcessedSize() const { return m_Stream.GetProcessedSize() + (8 - m_BitPos + 7) /8; }
          void Init()
          {
             m_Stream.Init();
@@ -40,7 +40,7 @@ namespace ex1
             m_BitPos = 8;
             m_CurByte = 0;
          }
-         void WriteBits(uint32 value, unsigned numBits)
+         void WriteBits(uint32_t value, unsigned numBits)
          {
             while (numBits > 0)
             {

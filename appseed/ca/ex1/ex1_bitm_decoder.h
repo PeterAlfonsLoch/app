@@ -14,16 +14,16 @@ namespace ex1
       const unsigned kNumValueBytes = 3;
       const unsigned kNumValueBits = 8  * kNumValueBytes;
 
-      const uint32 kMask = (1 << kNumValueBits) - 1;
+      const uint32_t kMask = (1 << kNumValueBits) - 1;
 
       template<class TInByte>
       class decoder
       {
          unsigned m_BitPos;
-         uint32 m_Value;
+         uint32_t m_Value;
       public:
          TInByte m_Stream;
-         bool Create(uint32 bufferSize) { return m_Stream.Create(bufferSize); }
+         bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
          void SetStream(reader *inStream) { m_Stream.SetStream(inStream);}
          void ReleaseStream() { m_Stream.ReleaseStream();}
 
@@ -34,7 +34,7 @@ namespace ex1
             Normalize();
          }
 
-         uint64 GetProcessedSize() const { return m_Stream.GetProcessedSize() - (kNumBigValueBits - m_BitPos) / 8; }
+         uint64_t GetProcessedSize() const { return m_Stream.GetProcessedSize() - (kNumBigValueBits - m_BitPos) / 8; }
 
          void Normalize()
          {
@@ -42,7 +42,7 @@ namespace ex1
                m_Value = (m_Value << 8) | m_Stream.ReadByte();
          }
 
-         uint32 GetValue(unsigned numBits) const
+         uint32_t GetValue(unsigned numBits) const
          {
             // return (m_Value << m_BitPos) >> (kNumBigValueBits - numBits);
             return ((m_Value >> (8 - m_BitPos)) & kMask) >> (kNumValueBits - numBits);
@@ -54,9 +54,9 @@ namespace ex1
             Normalize();
          }
 
-         uint32 ReadBits(unsigned numBits)
+         uint32_t ReadBits(unsigned numBits)
          {
-            uint32 res = GetValue(numBits);
+            uint32_t res = GetValue(numBits);
             MovePos(numBits);
             return res;
          }

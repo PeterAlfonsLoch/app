@@ -16,7 +16,7 @@ typedef
   #ifdef PPMD_32BIT
     struct CPpmd8_Context_ *
   #else
-    uint32
+    uint32_t
   #endif
   CPpmd8_Context_Ref;
 
@@ -24,7 +24,7 @@ typedef struct CPpmd8_Context_
 {
   byte NumStats;
   byte Flags;
-  uint16 SummFreq;
+  uint16_t SummFreq;
   CPpmd_State_Ref Stats;
   CPpmd8_Context_Ref Suffix;
 } CPpmd8_Context;
@@ -51,16 +51,16 @@ typedef struct
   unsigned OrderFall, InitEsc, PrevSuccess, MaxOrder;
   int32_t RunLength, InitRL; /* must be 32-bit at least */
 
-  uint32 Size;
-  uint32 GlueCount;
+  uint32_t Size;
+  uint32_t GlueCount;
   byte *Base, *LoUnit, *HiUnit, *Text, *UnitsStart;
-  uint32 AlignOffset;
+  uint32_t AlignOffset;
   unsigned RestoreMethod;
 
   /* Range Coder */
-  uint32 Range;
-  uint32 Code;
-  uint32 Low;
+  uint32_t Range;
+  uint32_t Code;
+  uint32_t Low;
   union
   {
     ::ex1::IByteIn *In;
@@ -70,15 +70,15 @@ typedef struct
   byte Indx2Units[PPMD_NUM_INDEXES];
   byte Units2Indx[128];
   CPpmd_Void_Ref FreeList[PPMD_NUM_INDEXES];
-  uint32 Stamps[PPMD_NUM_INDEXES];
+  uint32_t Stamps[PPMD_NUM_INDEXES];
 
   byte NS2BSIndx[256], NS2Indx[260];
   CPpmd_See DummySee, See[24][32];
-  uint16 BinSumm[25][64];
+  uint16_t BinSumm[25][64];
 } CPpmd8;
 
 void Ppmd8_Construct(CPpmd8 *p);
-bool Ppmd8_Alloc(CPpmd8 *p, uint32 size, ::ex1::ISzAlloc *alloc);
+bool Ppmd8_Alloc(CPpmd8 *p, uint32_t size, ::ex1::ISzAlloc *alloc);
 void Ppmd8_Free(CPpmd8 *p, ::ex1::ISzAlloc *alloc);
 void Ppmd8_Init(CPpmd8 *p, unsigned maxOrder, unsigned restoreMethod);
 #define Ppmd8_WasAllocated(p) ((p)->Base != NULL)
@@ -108,7 +108,7 @@ void Ppmd8_UpdateBin(CPpmd8 *p);
     p->NS2BSIndx[Ppmd8_GetContext(p, p->MinContext->Suffix)->NumStats] + \
     p->PrevSuccess + p->MinContext->Flags + ((p->RunLength >> 26) & 0x20)]
 
-CPpmd_See *Ppmd8_MakeEscFreq(CPpmd8 *p, unsigned numMasked, uint32 *scale);
+CPpmd_See *Ppmd8_MakeEscFreq(CPpmd8 *p, unsigned numMasked, uint32_t *scale);
 
 
 /* ---------- Decode ---------- */

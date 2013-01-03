@@ -13,7 +13,7 @@ namespace compress
 
       ::ca::smart_pointer < ::ex1::reader > _stream;
       ::ca::smart_pointer < ::compress::get_sub_stream_size_interface > _getSubStreamSize;
-      uint64 _size;
+      uint64_t _size;
 
       void Init(::ex1::reader *stream)
       {
@@ -21,13 +21,13 @@ namespace compress
          _getSubStreamSize = dynamic_cast < ::compress::get_sub_stream_size_interface * > (_stream.m_p);
          _size = 0;
       }
-      uint64 GetSize() const { return _size; }
+      uint64_t GetSize() const { return _size; }
 
    //   MY_UNKNOWN_IMP1(::compress::get_sub_stream_size_interface)
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
 
-      ex1::HRes GetSubStreamSize(uint64 subStream, uint64 *value);
+      ex1::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
    };
 
 } // namespace compress

@@ -100,7 +100,7 @@ void
 index_advance(xtd_seq_num_t *pi, sequence_number_t s) {
 #ifdef NO_64BIT_MATH
   /* a > ~b means a+b will generate a carry */
-  /* s is uint16 here */
+  /* s is uint16_t here */
   *pi = make64(high32(*pi) + (s > ~low32(*pi) ? 1 : 0),low32(*pi) + s);
 #else
   *pi += s;

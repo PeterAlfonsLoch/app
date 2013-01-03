@@ -70,7 +70,7 @@ void bsFinishWrite ( e_state* s )
 /*---------------------------------------------------*/
 static
 __inline__
-void bsW ( e_state* s, int32_t n, uint32 v )
+void bsW ( e_state* s, int32_t n, uint32_t v )
 {
    bsNEEDW ( n );
    s->bsBuff |= (v << (32 - s->bsLive - n));
@@ -80,7 +80,7 @@ void bsW ( e_state* s, int32_t n, uint32 v )
 
 /*---------------------------------------------------*/
 static
-void bsPutUInt32 ( e_state* s, uint32 u )
+void bsPutUInt32 ( e_state* s, uint32_t u )
 {
    bsW ( s, 8, (u >> 24) & 0xffL );
    bsW ( s, 8, (u >> 16) & 0xffL );
@@ -93,7 +93,7 @@ void bsPutUInt32 ( e_state* s, uint32 u )
 static
 void bsPutUChar ( e_state* s, UChar c )
 {
-   bsW( s, 8, (uint32)c );
+   bsW( s, 8, (uint32_t)c );
 }
 
 
@@ -147,7 +147,7 @@ void generateMTFValues ( e_state* s )
       except for the last one, which is arranged in 
       compressBlock().
    */
-   uint32* ptr   = s->ptr;
+   uint32_t* ptr   = s->ptr;
    UChar* block  = s->block;
    UInt16* mtfv  = s->mtfv;
 
@@ -357,7 +357,7 @@ void sendMTFValues ( e_state* s )
 
          if (nGroups == 6 && 50 == ge-gs+1) {
             /*--- fast track the common case ---*/
-            register uint32 cost01, cost23, cost45;
+            register uint32_t cost01, cost23, cost45;
             register UInt16 icv;
             cost01 = cost23 = cost45 = 0;
 

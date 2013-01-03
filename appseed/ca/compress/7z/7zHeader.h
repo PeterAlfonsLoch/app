@@ -29,20 +29,20 @@ namespace n7z
 
    struct CStartHeader
    {
-      uint64 NextHeaderOffset;
-      uint64 NextHeaderSize;
-      uint32 NextHeaderCRC;
+      uint64_t NextHeaderOffset;
+      uint64_t NextHeaderSize;
+      uint32_t NextHeaderCRC;
    };
 
-   const uint32 kStartHeaderSize = 20;
+   const uint32_t kStartHeaderSize = 20;
 
    struct CFinishHeader: public CStartHeader
    {
-      uint64 ArchiveStartOffset;  // data offset from end if that struct
-      uint64 AdditionalStartBlockSize; // start  signature & start header size
+      uint64_t ArchiveStartOffset;  // data offset from end if that struct
+      uint64_t AdditionalStartBlockSize; // start  signature & start header size
    };
 
-   const uint32 kFinishHeaderSize = kStartHeaderSize + 16;
+   const uint32_t kFinishHeaderSize = kStartHeaderSize + 16;
 
    namespace NID
    {

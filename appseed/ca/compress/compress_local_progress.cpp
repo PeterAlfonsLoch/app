@@ -21,9 +21,9 @@ namespace compress
      _inSizeIsMain = inSizeIsMain;
    }
 
-   ex1::HRes local_progress::SetRatioInfo(const uint64 *inSize, const uint64 *outSize)
+   ex1::HRes local_progress::SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize)
    {
-     uint64 inSizeNew = InSize, outSizeNew = OutSize;
+     uint64_t inSizeNew = InSize, outSizeNew = OutSize;
      if (inSize)
        inSizeNew += (*inSize);
      if (outSize)

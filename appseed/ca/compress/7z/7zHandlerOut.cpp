@@ -18,13 +18,13 @@
 
 //using namespace NWindows;
 
-uint64 ConvertStringToUInt64(const char *s, const char **end);
-int32_t ParseStringToUInt32(const string &srcString, uint32 &number);
+uint64_t ConvertStringToUInt64(const char *s, const char **end);
+int32_t ParseStringToUInt32(const string &srcString, uint32_t &number);
 
 
-uint64 ConvertStringToUInt64(const char *s, const char **end)
+uint64_t ConvertStringToUInt64(const char *s, const char **end)
 {
-  uint64 result = 0;
+  uint64_t result = 0;
   for (;;)
   {
     char c = *s;
@@ -41,17 +41,17 @@ uint64 ConvertStringToUInt64(const char *s, const char **end)
 }
 
 
-int32_t ParseStringToUInt32(const string &srcString, uint32 &number)
+int32_t ParseStringToUInt32(const string &srcString, uint32_t &number)
 {
   const char *start = srcString;
   const char *end;
-  uint64 number64 = ConvertStringToUInt64(start, &end);
+  uint64_t number64 = ConvertStringToUInt64(start, &end);
   if (number64 > 0xFFFFFFFF)
   {
     number = 0;
     return 0;
   }
-  number = (uint32)number64;
+  number = (uint32_t)number64;
   return (int32_t)(end - start);
 }
 
@@ -67,22 +67,22 @@ namespace n7z
    static const char * kCopyMethod = "Copy";
    static const char * kDefaultMethodName = kLZMAMethodName;
 
-   static const uint32 kLzmaAlgorithmX5 = 1;
+   static const uint32_t kLzmaAlgorithmX5 = 1;
    static const char * kLzmaMatchFinderForHeaders = "BT2";
-   static const uint32 kDictionaryForHeaders =
+   static const uint32_t kDictionaryForHeaders =
 #ifdef UNDER_CE
       1 << 18
 #else
       1 << 20
 #endif
       ;
-   static const uint32 kNumFastBytesForHeaders = 273;
-   static const uint32 kAlgorithmForHeaders = kLzmaAlgorithmX5;
+   static const uint32_t kNumFastBytesForHeaders = 273;
+   static const uint32_t kAlgorithmForHeaders = kLzmaAlgorithmX5;
 
    static inline bool IsCopyMethod(const string &methodName)
    { return (methodName.CompareNoCase(kCopyMethod) == 0); }
 
-   ex1::HRes handler::GetFileTimeType(uint32 *type)
+   ex1::HRes handler::GetFileTimeType(uint32_t *type)
    {
       *type = ::compress::NFileTimeType::kWindows;
       return S_OK;
@@ -126,11 +126,11 @@ namespace n7z
       CCompressionMethodMode &methodMode,
       array_ptr_alloc < ::compress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
-      , uint32 numThreads
+      , uint32_t numThreads
 #endif
       )
    {
-      uint32 level = _level;
+      uint32_t level = _level;
 
       if (methodsInfo.is_empty())
       {
@@ -169,8 +169,8 @@ namespace n7z
                if ((atoi(prop.name()) == NCoderPropID::kDictionarySize ||
                   atoi(prop.name()) == NCoderPropID::kUsedMemorySize) && prop.get_value().is_integer())
                {
-                  _numSolidBytes = ((uint64)prop.get_value().get_ulong()) << 7;
-                  const uint64 kMinSize = (1 << 24);
+                  _numSolidBytes = ((uint64_t)prop.get_value().uint64()) << 7;
+                  const uint64_t kMinSize = (1 << 24);
                   if (_numSolidBytes < kMinSize)
                      _numSolidBytes = kMinSize;
                   _numSolidBytesDefined = true;
@@ -190,7 +190,7 @@ namespace n7z
 
    #define PROPID int32_t
 
-   static ex1::HRes GetTime(::compress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64 &ft, bool &ftDefined)
+   static ex1::HRes GetTime(::compress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64_t &ft, bool &ftDefined)
    {
       ft = 0;
       ftDefined = false;
@@ -200,7 +200,7 @@ namespace n7z
       RINOK(updateCallback->GetProperty(index, propID, &prop));
       if (prop.get_type() == var::type_filetime)
       {
-         ft = prop.m_filetime.dwLowDateTime | ((uint64)prop.m_filetime.dwHighDateTime << 32);
+         ft = prop.m_filetime.dwLowDateTime | ((uint64_t)prop.m_filetime.dwHighDateTime << 32);
          ftDefined = true;
       }
       else if (prop.get_type() != var::type_empty)
@@ -208,7 +208,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes handler::UpdateItems(::ex1::writer *outStream, uint32 numItems,
+   ex1::HRes handler::UpdateItems(::ex1::writer *outStream, uint32_t numItems,
       ::compress::archive_update_callback_interface *updateCallback)
    {
          const CArchiveDatabaseEx *db = 0;
@@ -228,10 +228,10 @@ namespace n7z
 
       array_ptr_alloc<CUpdateItem> updateItems;
 
-      for (uint32 i = 0; i < numItems; i++)
+      for (uint32_t i = 0; i < numItems; i++)
       {
          int32_t newData, newProps;
-         uint32 indexInArchive;
+         uint32_t indexInArchive;
          if (!updateCallback)
             return E_FAIL;
          RINOK(updateCallback->GetUpdateItemInfo(i, &newData, &newProps, &indexInArchive));
@@ -271,7 +271,7 @@ namespace n7z
                   return E_INVALIDARG;
                else
                {
-                  ui.Attrib = prop.int32();
+                  ui.Attrib = prop;
                   ui.AttribDefined = true;
                }
             }
@@ -439,7 +439,7 @@ namespace n7z
       return archive.WriteDatabase(_codecsInfo, &_externalCodecs, newDatabase, options.HeaderMethod, options.HeaderOptions);
    }
 
-   static ex1::HRes GetBindInfoPart(string &srcString, uint32 &coder, uint32 &stream)
+   static ex1::HRes GetBindInfoPart(string &srcString, uint32_t &coder, uint32_t &stream)
    {
       stream = 0;
       int32_t index = ParseStringToUInt32(srcString, coder);

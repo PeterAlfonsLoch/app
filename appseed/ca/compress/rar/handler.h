@@ -34,7 +34,7 @@ namespace rar
 
 
 
-      uint64 GetPackSize(int32_t refIndex) const;
+      uint64_t GetPackSize(int32_t refIndex) const;
 
       bool IsSolid(int32_t refIndex);
       void AddErrorMessage(const string &s);

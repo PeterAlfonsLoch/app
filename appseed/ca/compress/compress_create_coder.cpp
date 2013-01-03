@@ -22,14 +22,14 @@ namespace compress
          g_Codecs[g_NumCodecs++] = codecInfo;
    }
 
-   static HRESULT ReadNumberOfStreams(::compress::codecs_info_interface * codecsInfo, uint32 index, int32_t propID, uint32 & res)
+   static HRESULT ReadNumberOfStreams(::compress::codecs_info_interface * codecsInfo, uint32_t index, int32_t propID, uint32_t & res)
    {
       var prop;
       RINOK(codecsInfo->GetProperty(index, propID, &prop));
       if (prop.is_empty())
          res = 1;
       else if (prop.get_type() == var::type_uint32 || prop.get_type() == var::type_int32)
-         res = (uint32_t) prop.get_ulong();
+         res = prop;
       else
          return E_INVALIDARG;
       return S_OK;
@@ -37,7 +37,7 @@ namespace compress
 
    #define PROPID int32_t
 
-   static HRESULT ReadIsAssignedProp(::compress::codecs_info_interface  * codecsInfo, uint32 index, PROPID propID, bool &res)
+   static HRESULT ReadIsAssignedProp(::compress::codecs_info_interface  * codecsInfo, uint32_t index, PROPID propID, bool &res)
    {
       var prop;
       RINOK(codecsInfo->GetProperty(index, propID, &prop));
@@ -52,9 +52,9 @@ namespace compress
 
    HRESULT LoadExternalCodecs(::compress::codecs_info_interface  * codecsInfo, base_array<codec_info_ex> &externalCodecs)
    {
-      uint32 num;
+      uint32_t num;
       RINOK(codecsInfo->GetNumberOfMethods(&num));
-      for (uint32 i = 0; i < num; i++)
+      for (uint32_t i = 0; i < num; i++)
       {
          codec_info_ex info;
          var prop;
@@ -90,10 +90,10 @@ namespace compress
    bool FindMethod(
       ::compress::codecs_info_interface * /*codecsInfo*/, const base_array<codec_info_ex> *externalCodecs,
       const string &name,
-      method_id &methodId, uint32 &numInStreams, uint32 &numOutStreams)
+      method_id &methodId, uint32_t &numInStreams, uint32_t &numOutStreams)
    {
       UNREFERENCED_PARAMETER(externalCodecs);
-      uint32 i;
+      uint32_t i;
       for (i = 0; i < g_NumCodecs; i++)
       {
          const codec_info &codec = *g_Codecs[i];
@@ -107,7 +107,7 @@ namespace compress
       }
 #ifdef EXTERNAL_CODECS
       if (externalCodecs)
-         for (i = 0; i < (uint32)externalCodecs->Size(); i++)
+         for (i = 0; i < (uint32_t)externalCodecs->Size(); i++)
          {
             const codec_info_ex &codec = (*externalCodecs)[i];
             if (codec.Name.CompareNoCase(name) == 0)
@@ -127,7 +127,7 @@ namespace compress
       method_id methodId, string &name)
    {
       UNREFERENCED_PARAMETER(externalCodecs);
-      uint32 i;
+      uint32_t i;
       for (i = 0; i < g_NumCodecs; i++)
       {
          const codec_info &codec = *g_Codecs[i];
@@ -139,7 +139,7 @@ namespace compress
       }
 #ifdef EXTERNAL_CODECS
       if (externalCodecs)
-         for (i = 0; i < (uint32)externalCodecs->Size(); i++)
+         for (i = 0; i < (uint32_t)externalCodecs->Size(); i++)
          {
             const codec_info_ex &codec = (*externalCodecs)[i];
             if (methodId == codec.Id)
@@ -161,7 +161,7 @@ namespace compress
       bool encode, bool onlyCoder)
    {
       bool created = false;
-      uint32 i;
+      uint32_t i;
       for (i = 0; i < g_NumCodecs; i++)
       {
          const codec_info &codec = *g_Codecs[i];
@@ -193,7 +193,7 @@ namespace compress
       }
 
       if (!created && externalCodecs)
-         for (i = 0; i < (uint32)externalCodecs->get_size(); i++)
+         for (i = 0; i < (uint32_t)externalCodecs->get_size(); i++)
          {
             const codec_info_ex &codec = (*externalCodecs)[i];
             if (codec.Id == methodId)

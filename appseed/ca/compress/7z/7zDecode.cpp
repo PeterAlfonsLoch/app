@@ -22,25 +22,25 @@ namespace n7z
       for (i = 0; i < folder.BindPairs.get_count(); i++)
       {
          ::compress::coder_mixer::CBindPair bindPair;
-         bindPair.InIndex = (uint32)folder.BindPairs[i].InIndex;
-         bindPair.OutIndex = (uint32)folder.BindPairs[i].OutIndex;
+         bindPair.InIndex = (uint32_t)folder.BindPairs[i].InIndex;
+         bindPair.OutIndex = (uint32_t)folder.BindPairs[i].OutIndex;
          bindInfo.BindPairs.add(bindPair);
       }
-      uint32 outStreamIndex = 0;
+      uint32_t outStreamIndex = 0;
       for (i = 0; i < folder.Coders.get_count(); i++)
       {
          ::compress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
          const CCoderInfo &coderInfo = folder.Coders[i];
-         coderStreamsInfo.NumInStreams = (uint32)coderInfo.NumInStreams;
-         coderStreamsInfo.NumOutStreams = (uint32)coderInfo.NumOutStreams;
+         coderStreamsInfo.NumInStreams = (uint32_t)coderInfo.NumInStreams;
+         coderStreamsInfo.NumOutStreams = (uint32_t)coderInfo.NumOutStreams;
          bindInfo.Coders.add(coderStreamsInfo);
          bindInfo.CoderMethodIDs.add(coderInfo.MethodID);
-         for (uint32 j = 0; j < coderStreamsInfo.NumOutStreams; j++, outStreamIndex++)
+         for (uint32_t j = 0; j < coderStreamsInfo.NumOutStreams; j++, outStreamIndex++)
             if (folder.FindBindPairForOutStream(outStreamIndex) < 0)
                bindInfo.OutStreams.add(outStreamIndex);
       }
       for (i = 0; i < folder.PackStreams.get_count(); i++)
-         bindInfo.InStreams.add((uint32)folder.PackStreams[i]);
+         bindInfo.InStreams.add((uint32_t)folder.PackStreams[i]);
    }
 
    static bool AreCodersEqual(const ::compress::coder_mixer::CCoderStreamsInfo &a1,
@@ -101,7 +101,7 @@ namespace n7z
       ::ex1::writer *outStream,
       ::compress::progress_info_interface *compressProgress,
       ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined,
-      bool mtMode, uint32 numThreads
+      bool mtMode, uint32_t numThreads
       )
    {
       ex1::HRes hr;
@@ -216,9 +216,9 @@ namespace n7z
       int32_t i;
       _mixerCoderCommon->ReInit();
 
-      uint32 packStreamIndex = 0, unpackStreamIndex = 0;
-      uint32 coderIndex = 0;
-      // uint32 coder2Index = 0;
+      uint32_t packStreamIndex = 0, unpackStreamIndex = 0;
+      uint32_t coderIndex = 0;
+      // uint32_t coder2Index = 0;
 
       for (i = 0; i < numCoders; i++)
       {
@@ -236,7 +236,7 @@ namespace n7z
                   return E_NOTIMPL;
                // if (size > 0)
                {
-                  RINOK(setDecoderProperties->SetDecoderProperties2((const byte *)props, (uint32)size));
+                  RINOK(setDecoderProperties->SetDecoderProperties2((const byte *)props, (uint32_t)size));
                }
             }
          }
@@ -266,7 +266,7 @@ namespace n7z
                ::ex1::byte_buffer buffer;
                passwordIsDefined = true;
                wstring password(gen::international::utf8_to_unicode(passwordBSTR));
-               const uint32 sizeInBytes = (const uint32_t ) (password.get_length() * 2);
+               const uint32_t sizeInBytes = (const uint32_t ) (password.get_length() * 2);
                buffer.SetCapacity(sizeInBytes);
                for (int32_t i = 0; i < password.get_length(); i++)
                {
@@ -280,13 +280,13 @@ namespace n7z
 
          coderIndex++;
 
-         uint32 numInStreams = (uint32)coderInfo.NumInStreams;
-         uint32 numOutStreams = (uint32)coderInfo.NumOutStreams;
+         uint32_t numInStreams = (uint32_t)coderInfo.NumInStreams;
+         uint32_t numOutStreams = (uint32_t)coderInfo.NumOutStreams;
          base_array<const file_size *> packSizesPointers;
          base_array<const file_size *> unpackSizesPointers;
          packSizesPointers.set_size(0, numInStreams);
          unpackSizesPointers.set_size(0, numOutStreams);
-         uint32 j;
+         uint32_t j;
          for (j = 0; j < numOutStreams; j++, unpackStreamIndex++)
             unpackSizesPointers.add(&folderInfo.UnpackSizes[unpackStreamIndex]);
 
@@ -295,7 +295,7 @@ namespace n7z
             int32_t bindPairIndex = folderInfo.FindBindPairForInStream(packStreamIndex);
             if (bindPairIndex >= 0)
                packSizesPointers.add(
-               &folderInfo.UnpackSizes[(uint32)folderInfo.BindPairs[bindPairIndex].OutIndex]);
+               &folderInfo.UnpackSizes[(uint32_t)folderInfo.BindPairs[bindPairIndex].OutIndex]);
             else
             {
                int32_t index = folderInfo.FindPackStreamArrayIndex(packStreamIndex);
@@ -309,7 +309,7 @@ namespace n7z
             &packSizesPointers.first_element(),
             &unpackSizesPointers.first_element());
       }
-      uint32 mainCoder, temp;
+      uint32_t mainCoder, temp;
       bindInfo.FindOutStream(bindInfo.OutStreams[0], mainCoder, temp);
 
       if (_multiThread)

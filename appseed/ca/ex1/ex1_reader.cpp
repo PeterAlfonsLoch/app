@@ -34,7 +34,7 @@ namespace ex1
    {
       byte * signature = (byte *) pFind;
       primitive::memory_size signatureSize = size;
-      uint64 resPos = 0;
+      uint64_t resPos = 0;
       byte_buffer byteBuffer2;
       byteBuffer2.SetCapacity(signatureSize);
       if(FAILED(ReadStream_FALSE(this, byteBuffer2, signatureSize)))
@@ -43,7 +43,7 @@ namespace ex1
       if (memcmp(byteBuffer2, signature, signatureSize) == 0)
          return resPos;
 
-      const uint32 kBufferSize = (1 << 16);
+      const uint32_t kBufferSize = (1 << 16);
       byte_buffer byteBuffer;
       byteBuffer.SetCapacity(kBufferSize);
       Byte *buffer = byteBuffer;
@@ -66,7 +66,7 @@ namespace ex1
          }
          while (numPrevBytes < signatureSize);
          uint32_t numTests = (uint32_t) (numPrevBytes - signatureSize + 1);
-         for (uint32 pos = 0; pos < numTests; pos++)
+         for (uint32_t pos = 0; pos < numTests; pos++)
          {
             Byte b = signature[0];
             for (; buffer[pos] != b && pos < numTests; pos++);

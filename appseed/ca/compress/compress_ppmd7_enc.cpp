@@ -16,7 +16,7 @@ void Ppmd7z_RangeEnc_Init(CPpmd7z_RangeEnc *p)
 
 static void RangeEnc_ShiftLow(CPpmd7z_RangeEnc *p)
 {
-  if ((uint32)p->Low < (uint32)0xFF000000 || (unsigned)(p->Low >> 32) != 0)
+  if ((uint32_t)p->Low < (uint32_t)0xFF000000 || (unsigned)(p->Low >> 32) != 0)
   {
     byte temp = p->Cache;
     do
@@ -25,13 +25,13 @@ static void RangeEnc_ShiftLow(CPpmd7z_RangeEnc *p)
       temp = 0xFF;
     }
     while(--p->CacheSize != 0);
-    p->Cache = (byte)((uint32)p->Low >> 24);
+    p->Cache = (byte)((uint32_t)p->Low >> 24);
   }
   p->CacheSize++;
-  p->Low = (uint32)p->Low << 8;
+  p->Low = (uint32_t)p->Low << 8;
 }
 
-static void RangeEnc_Encode(CPpmd7z_RangeEnc *p, uint32 start, uint32 size, uint32 total)
+static void RangeEnc_Encode(CPpmd7z_RangeEnc *p, uint32_t start, uint32_t size, uint32_t total)
 {
   p->Low += start * (p->Range /= total);
   p->Range *= size;
@@ -42,7 +42,7 @@ static void RangeEnc_Encode(CPpmd7z_RangeEnc *p, uint32 start, uint32 size, uint
   }
 }
 
-static void RangeEnc_EncodeBit_0(CPpmd7z_RangeEnc *p, uint32 size0)
+static void RangeEnc_EncodeBit_0(CPpmd7z_RangeEnc *p, uint32_t size0)
 {
   p->Range = (p->Range >> 14) * size0;
   while (p->Range < kTopValue)
@@ -52,9 +52,9 @@ static void RangeEnc_EncodeBit_0(CPpmd7z_RangeEnc *p, uint32 size0)
   }
 }
 
-static void RangeEnc_EncodeBit_1(CPpmd7z_RangeEnc *p, uint32 size0)
+static void RangeEnc_EncodeBit_1(CPpmd7z_RangeEnc *p, uint32_t size0)
 {
-  uint32 newBound = (p->Range >> 14) * size0;
+  uint32_t newBound = (p->Range >> 14) * size0;
   p->Low += newBound;
   p->Range -= newBound;
   while (p->Range < kTopValue)
@@ -80,7 +80,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
   if (p->MinContext->NumStats != 1)
   {
     CPpmd_State *s = Ppmd7_GetStats(p, p->MinContext);
-    uint32 sum;
+    uint32_t sum;
     unsigned i;
     if (s->Symbol == symbol)
     {
@@ -114,12 +114,12 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
   }
   else
   {
-    uint16 *prob = Ppmd7_GetBinSumm(p);
+    uint16_t *prob = Ppmd7_GetBinSumm(p);
     CPpmd_State *s = Ppmd7Context_OneState(p->MinContext);
     if (s->Symbol == symbol)
     {
       RangeEnc_EncodeBit_0(rc, *prob);
-      *prob = (uint16)PPMD_UPDATE_PROB_0(*prob);
+      *prob = (uint16_t)PPMD_UPDATE_PROB_0(*prob);
       p->FoundState = s;
       Ppmd7_UpdateBin(p);
       return;
@@ -127,7 +127,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
     else
     {
       RangeEnc_EncodeBit_1(rc, *prob);
-      *prob = (uint16)PPMD_UPDATE_PROB_1(*prob);
+      *prob = (uint16_t)PPMD_UPDATE_PROB_1(*prob);
       p->InitEsc = PPMD7_kExpEscape[*prob >> 10];
       PPMD_SetAllBitsIn256Bytes(charMask);
       MASK(s->Symbol) = 0;
@@ -136,10 +136,10 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
   }
   for (;;)
   {
-    uint32 escFreq;
+    uint32_t escFreq;
     CPpmd_See *see;
     CPpmd_State *s;
-    uint32 sum;
+    uint32_t sum;
     unsigned i, numMasked = p->MinContext->NumStats;
     do
     {
@@ -159,7 +159,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
       int32_t cur = s->Symbol;
       if (cur == symbol)
       {
-        uint32 low = sum;
+        uint32_t low = sum;
         CPpmd_State *s1 = s;
         do
         {
@@ -180,6 +180,6 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
     while (--i);
     
     RangeEnc_Encode(rc, sum, escFreq, sum + escFreq);
-    see->Summ = (uint16)(see->Summ + sum + escFreq);
+    see->Summ = (uint16_t)(see->Summ + sum + escFreq);
   }
 }

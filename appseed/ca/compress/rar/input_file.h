@@ -87,16 +87,16 @@ namespace rar
 
 
       byte *                                          m_CurData; // it must point to start of Rar::Block
-      uint32                                          m_CurPos;
-      uint32                                          m_PosLimit;
+      uint32_t                                          m_CurPos;
+      uint32_t                                          m_PosLimit;
 
       ex1::byte_buffer                                m_DecryptedData;
       byte *                                          m_DecryptedDataAligned;
       ::primitive::memory_size                        m_DecryptedDataSize;
 
       bool m_CryptoMode;
-      uint32 m_CryptoPos;
-      uint64 m_Position;
+      uint32_t m_CryptoPos;
+      uint64_t m_Position;
 
       void ReadName(CItemEx &item, int32_t nameSize);
       void ReadHeaderReal(CItemEx &item);
@@ -109,12 +109,12 @@ namespace rar
       void ThrowExceptionWithCode(input_file_exception::CCauseType cause);
       void ThrowUnexpectedEndOfArchiveException();
 
-      void AddToSeekValue(uint64 addValue);
+      void AddToSeekValue(uint64_t addValue);
 
 
       byte ReadByte();
-      uint16 ReadUInt16();
-      uint32 ReadUInt32();
+      uint16_t ReadUInt16();
+      uint32_t ReadUInt32();
       void ReadTime(byte mask, CRarTime &rarTime);
 
       void FinishCryptoBlock()

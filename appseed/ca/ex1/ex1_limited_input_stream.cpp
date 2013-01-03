@@ -15,10 +15,10 @@ namespace ex1
          else
             throw system_exception(get_app(), E_FAIL);
       }
-      uint64 rem = _size - _virtPos;
+      uint64_t rem = _size - _virtPos;
       if (rem < size)
-         size = (uint32)rem;
-      uint64 newPos = _startOffset + _virtPos;
+         size = (uint32_t)rem;
+      uint64_t newPos = _startOffset + _virtPos;
       if (newPos != _physPos)
       {
          _physPos = newPos;
@@ -46,7 +46,7 @@ namespace ex1
 
 
 
-   reader * create_limited_input_stream(byte_input_stream *inStream, uint64 pos, uint64 size)
+   reader * create_limited_input_stream(byte_input_stream *inStream, uint64_t pos, uint64_t size)
    {
       limited_input_stream *streamSpec = new limited_input_stream;
       streamSpec->SetStream(inStream);

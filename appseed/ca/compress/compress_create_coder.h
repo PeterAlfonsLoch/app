@@ -8,8 +8,8 @@ namespace compress
    {
       string      Name;
       method_id   Id;
-      uint32      NumInStreams;
-      uint32      NumOutStreams;
+      uint32_t      NumInStreams;
+      uint32_t      NumOutStreams;
       bool        EncoderIsAssigned;
       bool        DecoderIsAssigned;
       
@@ -29,7 +29,7 @@ namespace compress
 
    bool FindMethod(
       ::compress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
-      const string &name, method_id &methodId, uint32 &numInStreams, uint32 &numOutStreams);
+      const string &name, method_id &methodId, uint32_t &numInStreams, uint32_t &numOutStreams);
 
    bool FindMethod(
       ::compress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,

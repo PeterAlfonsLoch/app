@@ -8,7 +8,7 @@ namespace compress
       virtual public ::radix::object
    {
    public:
-      virtual ex1::HRes SetNumberOfThreads(uint32 numThreads) = 0;
+      virtual ex1::HRes SetNumberOfThreads(uint32_t numThreads) = 0;
    };
 
 } // namespace compress

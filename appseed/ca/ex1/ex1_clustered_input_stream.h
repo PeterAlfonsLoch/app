@@ -8,13 +8,13 @@ namespace ex1
    class clustered_input_stream:
       public byte_input_stream
    {
-      uint64 _virtPos;
-      uint64 _physPos;
-      uint64 _curRem;
+      uint64_t _virtPos;
+      uint64_t _physPos;
+      uint64_t _curRem;
    public:
       byte_input_stream * Stream;
-      uint64 StartOffset;
-      uint64 Size;
+      uint64_t StartOffset;
+      uint64_t Size;
       int32_t BlockSizeLog;
       uint64_array Vector;
 

@@ -4,7 +4,7 @@
 
 struct CUInt32PCharPair
 {
-  uint32 Value;
+  uint32_t Value;
   const char *Name;
 };
 
@@ -86,6 +86,6 @@ namespace compress
 
 } // namespace compress
 
-   void FlagsToProp(const CUInt32PCharPair *pairs, unsigned num, uint32 flags, var  * value);
+   void FlagsToProp(const CUInt32PCharPair *pairs, unsigned num, uint32_t flags, var  * value);
 
 #define FLAGS_TO_PROP(pairs, value, prop) FlagsToProp(pairs, sizeof(pairs) / sizeof(pairs[0]), value, prop)

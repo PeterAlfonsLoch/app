@@ -17,7 +17,7 @@ namespace crypto
       return S_OK; 
    }
 
-   uint32 aes_cbc_coder::Filter(byte *data, uint32 size)
+   uint32_t aes_cbc_coder::Filter(byte *data, uint32_t size)
    {
       if (size == 0)
          return 0;
@@ -28,7 +28,7 @@ namespace crypto
       return size << 4;
    }
 
-   ex1::HRes aes_cbc_coder::SetKey(const byte *data, uint32 size)
+   ex1::HRes aes_cbc_coder::SetKey(const byte *data, uint32_t size)
    {
       if ((size & 0x7) != 0 || size < 16 || size > 32)
          return E_INVALIDARG;
@@ -36,7 +36,7 @@ namespace crypto
       return S_OK;
    }
 
-   ex1::HRes aes_cbc_coder::SetInitVector(const byte *data, uint32 size)
+   ex1::HRes aes_cbc_coder::SetInitVector(const byte *data, uint32_t size)
    {
       if (size != AES_BLOCK_SIZE)
          return E_INVALIDARG;

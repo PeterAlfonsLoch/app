@@ -17,7 +17,7 @@ namespace crypto
          _salt[i] = 0;
    }
 
-   ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32 size)
+   ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
    {
       bool thereIsSaltPrev = _thereIsSalt;
       _thereIsSalt = false;
@@ -49,7 +49,7 @@ namespace crypto
 
    static const unsigned kMaxPasswordLength = 127 * 2;
 
-   ex1::HRes decoder::CryptoSetPassword(const byte *data, uint32 size)
+   ex1::HRes decoder::CryptoSetPassword(const byte *data, uint32_t size)
    {
       if (size > kMaxPasswordLength)
          size = kMaxPasswordLength;
@@ -57,7 +57,7 @@ namespace crypto
       if (size == buffer.GetCapacity())
       {
          same = true;
-         for (uint32 i = 0; i < size; i++)
+         for (uint32_t i = 0; i < size; i++)
             if (data[i] != buffer[i])
             {
                same = false;

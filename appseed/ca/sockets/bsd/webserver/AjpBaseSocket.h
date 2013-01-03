@@ -54,7 +54,7 @@ namespace sockets
    protected:
       unsigned char get_byte(const char *buf, int32_t& ptr);
       bool get_boolean(const char *buf, int32_t& ptr);
-      short int32(const char *buf, int32_t& ptr);
+      short get_integer(const char *buf, int32_t& ptr);
       string get_string(const char *buf, int32_t& ptr);
 
       void put_byte(char *buf, int32_t& ptr, unsigned char zz);

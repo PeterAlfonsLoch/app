@@ -17,14 +17,14 @@ namespace n7z
       int32_t IndexInArchive;
       int32_t IndexInClient;
 
-      uint64 CTime;
-      uint64 ATime;
-      uint64 MTime;
+      uint64_t CTime;
+      uint64_t ATime;
+      uint64_t MTime;
 
-      uint64 get_count;
+      uint64_t get_count;
       string Name;
 
-      uint32 Attrib;
+      uint32_t Attrib;
 
       bool NewData;
       bool NewProps;
@@ -62,8 +62,8 @@ namespace n7z
 
       CHeaderOptions HeaderOptions;
 
-      uint64 NumSolidFiles;
-      uint64 NumSolidBytes;
+      uint64_t NumSolidFiles;
+      uint64_t NumSolidBytes;
       bool SolidExtension;
       bool RemoveSfxBlock;
       bool VolumeMode;

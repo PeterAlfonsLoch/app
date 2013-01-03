@@ -10,10 +10,10 @@ namespace ex1
       public byte_input_stream
    {
       byte_input_stream *    _stream;
-      uint64            _virtPos;
-      uint64            _physPos;
-      uint64            _size;
-      uint64         _startOffset;
+      uint64_t            _virtPos;
+      uint64_t            _physPos;
+      uint64_t            _size;
+      uint64_t         _startOffset;
 
       uint64_t SeekToPhys()
       { 
@@ -25,8 +25,8 @@ namespace ex1
          _stream = stream; 
       }
 
-      //HRESULT InitAndSeek(uint64 startOffset, uint64 size)
-      uint64_t InitAndSeek(uint64 startOffset, uint64 size)
+      //HRESULT InitAndSeek(uint64_t startOffset, uint64_t size)
+      uint64_t InitAndSeek(uint64_t startOffset, uint64_t size)
       {
          _startOffset = startOffset;
          _physPos = startOffset;
@@ -40,6 +40,6 @@ namespace ex1
 
    };
 
-   reader * create_limited_input_stream(byte_input_stream *inStream, uint64 pos, uint64 size);
+   reader * create_limited_input_stream(byte_input_stream *inStream, uint64_t pos, uint64_t size);
 
 } // namespace ex1

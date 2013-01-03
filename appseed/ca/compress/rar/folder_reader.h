@@ -25,7 +25,7 @@ namespace rar
      const base_array<CItemEx> *_items;
      CRefItem _refItem;
      int32_t _curIndex;
-     uint32 _crc;
+     uint32_t _crc;
      bool _fileIsOpen;
      ex1::reader * _stream;
      uint_array CRCs;

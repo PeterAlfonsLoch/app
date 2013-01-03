@@ -43,8 +43,8 @@ namespace compress
 
             if (((++ByteCount) & 0x1F) == 0)
             {
-               uint32 minDif = Dif[0];
-               uint32 numMinDif = 0;
+               uint32_t minDif = Dif[0];
+               uint32_t numMinDif = 0;
                Dif[0] = 0;
                for (i = 1; i < sizeof(Dif) / sizeof(Dif[0]); i++)
                {
@@ -75,11 +75,11 @@ namespace compress
 
 //      static const char *kNumberErrorMessage = "Number error";
 
-      static const uint32 kHistorySize = 1 << 20;
+      static const uint32_t kHistorySize = 1 << 20;
 
       static const int32_t kNumStats = 11;
 
-      static const uint32 kWindowReservSize = (1 << 22) + 256;
+      static const uint32_t kWindowReservSize = (1 << 22) + 256;
 
       decoder::decoder():
       m_IsSolid(false)
@@ -96,7 +96,7 @@ namespace compress
          memset(m_LastLevels, 0, kMaxTableSize);
       }
 
-      uint32 decoder::ReadBits(int32_t numBits) { return m_InBitStream.ReadBits(numBits); }
+      uint32_t decoder::ReadBits(int32_t numBits) { return m_InBitStream.ReadBits(numBits); }
 
 #define RIF(x) { if (!(x)) return false; }
 
@@ -126,7 +126,7 @@ namespace compress
          i = 0;
          while (i < numLevels)
          {
-            uint32 number = m_LevelDecoder.DecodeSymbol(&m_InBitStream);
+            uint32_t number = m_LevelDecoder.DecodeSymbol(&m_InBitStream);
             if (number < kTableDirectLevels)
             {
                newLevels[i] = (byte)((number + m_LastLevels[i]) & kLevelMask);
@@ -172,13 +172,13 @@ namespace compress
       bool decoder::ReadLastTables()
       {
          // it differs a little from pure RAR sources;
-         // uint64 ttt = m_InBitStream.GetProcessedSize() + 2;
+         // uint64_t ttt = m_InBitStream.GetProcessedSize() + 2;
          // + 2 works for: return 0xFF; in CInBuffer::ReadByte.
          if (m_InBitStream.GetProcessedSize() + 7 <= m_PackSize) // test it: probably incorrect;
          {  // if (m_InBitStream.GetProcessedSize() + 2 <= m_PackSize) // test it: probably incorrect;
             if (m_AudioMode)
             {
-               uint32 symbol = m_MMDecoders[m_MmFilter.CurrentChannel].DecodeSymbol(&m_InBitStream);
+               uint32_t symbol = m_MMDecoders[m_MmFilter.CurrentChannel].DecodeSymbol(&m_InBitStream);
                if (symbol == 256)
                   return ReadTables();
                if (symbol >= kMMTableSize)
@@ -186,7 +186,7 @@ namespace compress
             }
             else
             {
-               uint32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
+               uint32_t number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
                if (number == kReadTableNumber)
                   return ReadTables();
                if (number >= kMainTableSize)
@@ -208,11 +208,11 @@ namespace compress
          }
       };
 
-      bool decoder::DecodeMm(uint32 pos)
+      bool decoder::DecodeMm(uint32_t pos)
       {
          while (pos-- > 0)
          {
-            uint32 symbol = m_MMDecoders[m_MmFilter.CurrentChannel].DecodeSymbol(&m_InBitStream);
+            uint32_t symbol = m_MMDecoders[m_MmFilter.CurrentChannel].DecodeSymbol(&m_InBitStream);
             if (symbol == 256)
                return true;
             if (symbol >= kMMTableSize)
@@ -234,8 +234,8 @@ namespace compress
       {
          while (pos > 0)
          {
-            uint32 number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
-            uint32 length, distance;
+            uint32_t number = m_MainDecoder.DecodeSymbol(&m_InBitStream);
+            uint32_t length, distance;
             if (number < 256)
             {
                m_OutWindowStream.PutByte(byte(number));
@@ -245,7 +245,7 @@ namespace compress
             else if (number >= kMatchNumber)
             {
                number -= kMatchNumber;
-               length = kNormalMatchMinLen + uint32(kLenStart[number]) +
+               length = kNormalMatchMinLen + uint32_t(kLenStart[number]) +
                   m_InBitStream.ReadBits(kLenDirectBits[number]);
                number = m_DistDecoder.DecodeSymbol(&m_InBitStream);
                if (number >= kDistTableSize)
@@ -318,7 +318,7 @@ namespace compress
 
          m_PackSize = *inSize;
 
-         uint64 pos = 0, unPackSize = *outSize;
+         uint64_t pos = 0, unPackSize = *outSize;
 
          m_OutWindowStream.SetStream(outStream);
          m_OutWindowStream.Init(m_IsSolid);
@@ -340,13 +340,13 @@ namespace compress
                return S_FALSE;
          }
 
-         uint64 startPos = m_OutWindowStream.GetProcessedSize();
+         uint64_t startPos = m_OutWindowStream.GetProcessedSize();
          while(pos < unPackSize)
          {
-            uint32 blockSize = 1 << 20;
+            uint32_t blockSize = 1 << 20;
             if (blockSize > unPackSize - pos)
-               blockSize = (uint32)(unPackSize - pos);
-            uint64 blockStartPos = m_OutWindowStream.GetProcessedSize();
+               blockSize = (uint32_t)(unPackSize - pos);
+            uint64_t blockStartPos = m_OutWindowStream.GetProcessedSize();
             if (m_AudioMode)
             {
                if (!DecodeMm(blockSize))
@@ -357,7 +357,7 @@ namespace compress
                if (!DecodeLz((int32_t)blockSize))
                   return S_FALSE;
             }
-            uint64 globalPos = m_OutWindowStream.GetProcessedSize();
+            uint64_t globalPos = m_OutWindowStream.GetProcessedSize();
             pos = globalPos - blockStartPos;
             if (pos < blockSize)
                if (!ReadTables())
@@ -365,7 +365,7 @@ namespace compress
             pos = globalPos - startPos;
             if (progress != 0)
             {
-               uint64 packSize = m_InBitStream.GetProcessedSize();
+               uint64_t packSize = m_InBitStream.GetProcessedSize();
                RINOK(progress->SetRatioInfo(&packSize, &pos));
             }
          }
@@ -385,7 +385,7 @@ namespace compress
          catch(...) { return S_FALSE; }
       }
 
-      ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32 size)
+      ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

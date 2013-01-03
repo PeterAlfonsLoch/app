@@ -145,7 +145,7 @@ namespace sqlite
          return id;
       }
       else {
-         id = res.records[0][0].int32()+1;
+         id = res.records[0][0].int32() + 1;
          sprintf(sqlcmd,"update %s set nextid=%d where seq_name = '%s'",sequence_table.c_str(),id,sname);
          if ((last_err = sqlite3_exec((sqlite3 *) conn,sqlcmd,NULL,NULL,NULL)) != SQLITE_OK) return DB_UNEXPECTED_RESULT;
          return id;

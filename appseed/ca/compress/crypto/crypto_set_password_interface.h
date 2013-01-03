@@ -9,7 +9,7 @@ namespace crypto
       virtual public ::radix::object
    {
    public:
-     virtual ex1::HRes CryptoSetPassword(const byte *data, uint32 size) = 0;
+     virtual ex1::HRes CryptoSetPassword(const byte *data, uint32_t size) = 0;
    };
 
 } // namespace crypto

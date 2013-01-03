@@ -30,8 +30,8 @@ namespace ex1
      byte *_bufferLimit;
      byte *_bufferBase;
      reader * _stream;
-     uint64 _processedSize;
-     uint32 _bufferSize;
+     uint64_t _processedSize;
+     uint32_t _bufferSize;
      bool _wasFinished;
 
      bool ReadBlock();
@@ -43,7 +43,7 @@ namespace ex1
      in_buffer();
      ~in_buffer() { Free(); }
 
-     bool Create(uint32 bufferSize);
+     bool Create(uint32_t bufferSize);
      void Free();
   
      void SetStream(reader *stream);
@@ -67,16 +67,16 @@ namespace ex1
          return ReadBlock2();
        return *_buffer++;
      }
-     uint32 ReadBytes(byte *buf, uint32 size)
+     uint32_t ReadBytes(byte *buf, uint32_t size)
      {
-       if ((uint32)(_bufferLimit - _buffer) >= size)
+       if ((uint32_t)(_bufferLimit - _buffer) >= size)
        {
-         for (uint32 i = 0; i < size; i++)
+         for (uint32_t i = 0; i < size; i++)
            buf[i] = _buffer[i];
          _buffer += size;
          return size;
        }
-       for (uint32 i = 0; i < size; i++)
+       for (uint32_t i = 0; i < size; i++)
        {
          if (_buffer >= _bufferLimit)
            if (!ReadBlock())
@@ -85,7 +85,7 @@ namespace ex1
        }
        return size;
      }
-     uint64 GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
+     uint64_t GetProcessedSize() const { return _processedSize + (_buffer - _bufferBase); }
      bool WasFinished() const { return _wasFinished; }
    };
 

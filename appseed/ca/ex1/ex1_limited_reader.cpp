@@ -11,7 +11,7 @@ namespace ex1
    ::primitive::memory_size limited_reader::read(void *data, ::primitive::memory_size size)
    {
      primitive::memory_size realProcessedSize = 0;
-     uint32 sizeToRead = (uint32)min((_size - _pos), (uint64)size);
+     uint32_t sizeToRead = (uint32_t)min((_size - _pos), (uint64_t)size);
 //     HRESULT result = S_OK;
      if (sizeToRead > 0)
      {

@@ -27,7 +27,7 @@
 namespace compress
 {
 
-   typedef uint64 method_id;
+   typedef uint64_t method_id;
 
 } // namespace compress
 

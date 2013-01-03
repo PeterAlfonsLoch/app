@@ -819,7 +819,7 @@ namespace ex1
       return *this;
    }
 
-   static const ::primitive::memory_size kBlockSize = ((uint32)1 << 31);
+   static const ::primitive::memory_size kBlockSize = ((uint32_t)1 << 31);
 
    HRESULT ReadStream(::ex1::reader * stream, void * data, ::primitive::memory_size * processedSize)
    {

@@ -43,7 +43,7 @@ void makeMaps_d ( DState* s )
    case lll: s->state = lll;                      \
    while (True) {                                 \
       if (s->bsLive >= nnn) {                     \
-         uint32 v;                                \
+         uint32_t v;                                \
          v = (s->bsBuff >>                        \
              (s->bsLive-nnn)) & ((1 << nnn)-1);   \
          s->bsLive -= nnn;                        \
@@ -53,7 +53,7 @@ void makeMaps_d ( DState* s )
       if (s->strm->avail_in == 0) RETURN(BZ_OK);  \
       s->bsBuff                                   \
          = (s->bsBuff << 8) |                     \
-           ((uint32)                              \
+           ((uint32_t)                              \
               (*((UChar*)(s->strm->next_in))));   \
       s->bsLive += 8;                             \
       s->strm->next_in++;                         \
@@ -239,13 +239,13 @@ int32_t BZ2_decompress ( DState* s )
  
       s->storedBlockCRC = 0;
       GET_UCHAR(BZ_X_BCRC_1, uc);
-      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32)uc);
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32_t)uc);
       GET_UCHAR(BZ_X_BCRC_2, uc);
-      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32)uc);
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32_t)uc);
       GET_UCHAR(BZ_X_BCRC_3, uc);
-      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32)uc);
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32_t)uc);
       GET_UCHAR(BZ_X_BCRC_4, uc);
-      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32)uc);
+      s->storedBlockCRC = (s->storedBlockCRC << 8) | ((uint32_t)uc);
 
       GET_BITS(BZ_X_RANDBIT, s->blockRandomised, 1);
 
@@ -401,7 +401,7 @@ int32_t BZ2_decompress ( DState* s )
             else
                while (es > 0) {
                   if (nblock >= nblockMAX) RETURN(BZ_DATA_ERROR);
-                  s->tt[nblock] = (uint32)uc;
+                  s->tt[nblock] = (uint32_t)uc;
                   nblock++;
                   es--;
                };
@@ -415,8 +415,8 @@ int32_t BZ2_decompress ( DState* s )
             /*-- uc = MTF ( nextSym-1 ) --*/
             {
                int32_t ii, jj, kk, pp, lno, off;
-               uint32 nn;
-               nn = (uint32)(nextSym - 1);
+               uint32_t nn;
+               nn = (uint32_t)(nextSym - 1);
 
                if (nn < MTFL_SIZE) {
                   /* avoid general-case expense */
@@ -469,7 +469,7 @@ int32_t BZ2_decompress ( DState* s )
             s->unzftab[s->seqToUnseq[uc]]++;
             if (s->smallDecompress)
                s->ll16[nblock] = (UInt16)(s->seqToUnseq[uc]); else
-               s->tt[nblock]   = (uint32)(s->seqToUnseq[uc]);
+               s->tt[nblock]   = (uint32_t)(s->seqToUnseq[uc]);
             nblock++;
 
             GET_MTF_VAL(BZ_X_MTF_5, BZ_X_MTF_6, nextSym);
@@ -573,13 +573,13 @@ int32_t BZ2_decompress ( DState* s )
 
       s->storedCombinedCRC = 0;
       GET_UCHAR(BZ_X_CCRC_1, uc);
-      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32)uc);
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32_t)uc);
       GET_UCHAR(BZ_X_CCRC_2, uc);
-      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32)uc);
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32_t)uc);
       GET_UCHAR(BZ_X_CCRC_3, uc);
-      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32)uc);
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32_t)uc);
       GET_UCHAR(BZ_X_CCRC_4, uc);
-      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32)uc);
+      s->storedCombinedCRC = (s->storedCombinedCRC << 8) | ((uint32_t)uc);
 
       s->state = BZ_X_IDLE;
       RETURN(BZ_STREAM_END);

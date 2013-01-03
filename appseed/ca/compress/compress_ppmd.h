@@ -31,7 +31,7 @@ This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 /* SEE-contexts for PPM-contexts with masked symbols */
 typedef struct
 {
-  uint16 Summ; /* Freq */
+  uint16_t Summ; /* Freq */
   byte Shift;  /* Speed of Freq change; low Shift is for fast change */
   byte Count;  /* Count to next change of Shift */
 } CPpmd_See;
@@ -43,15 +43,15 @@ typedef struct
 {
   byte Symbol;
   byte Freq;
-  uint16 SuccessorLow;
-  uint16 SuccessorHigh;
+  uint16_t SuccessorLow;
+  uint16_t SuccessorHigh;
 } CPpmd_State;
 
 typedef
   #ifdef PPMD_32BIT
     CPpmd_State *
   #else
-    uint32
+    uint32_t
   #endif
   CPpmd_State_Ref;
 
@@ -59,7 +59,7 @@ typedef
   #ifdef PPMD_32BIT
     void *
   #else
-    uint32
+    uint32_t
   #endif
   CPpmd_Void_Ref;
 
@@ -67,7 +67,7 @@ typedef
   #ifdef PPMD_32BIT
     byte *
   #else
-    uint32
+    uint32_t
   #endif
   CPpmd_Byte_Ref;
 

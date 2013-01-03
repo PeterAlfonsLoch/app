@@ -7,14 +7,14 @@
 #include "../../Common/MyString.h"*/
 
 
-string ConvertMethodIdToString(uint64 id);
+string ConvertMethodIdToString(uint64_t id);
 
 static inline wchar_t GetHex(byte value)
 {
   return (wchar_t)((value < 10) ? ('0' + value) : ('A' + (value - 10)));
 }
 
-string ConvertMethodIdToString(uint64 id)
+string ConvertMethodIdToString(uint64_t id)
 {
   wchar_t s[32];
   int32_t len = 32;

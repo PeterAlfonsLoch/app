@@ -119,7 +119,7 @@ namespace ex1
    //} ILookInStream;
 
    //SRes LookInStream_LookRead(ILookInStream *stream, void *buf, size_t *size);
-   //SRes LookInStream_SeekTo(ILookInStream *stream, uint64 offset);
+   //SRes LookInStream_SeekTo(ILookInStream *stream, uint64_t offset);
 
    ///* reads via ILookInStream::Read */
    //SRes LookInStream_Read2(ILookInStream *stream, void *buf, size_t size, SRes errorType);
@@ -157,9 +157,9 @@ namespace ex1
 
    //typedef struct
    //{
-   //  SRes (*Progress)(void *p, uint64 inSize, uint64 outSize);
+   //  SRes (*Progress)(void *p, uint64_t inSize, uint64_t outSize);
    //    /* Returns: result. (result != SZ_OK) means break.
-   //       Value (uint64)(Int64)-1 for size means unknown value. */
+   //       Value (uint64_t)(Int64)-1 for size means unknown value. */
    //} ICompressProgress;
 
    typedef struct

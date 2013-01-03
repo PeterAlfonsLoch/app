@@ -19,8 +19,8 @@ namespace compress
 
 
       ::ex1::writer *   _stream;
-      uint64            _size;
-      uint32            _crc;
+      uint64_t            _size;
+      uint32_t            _crc;
       bool              _calculate;
 
 
@@ -35,8 +35,8 @@ namespace compress
          _crc = CRC_INIT_VAL;
       }
       void InitCRC() { _crc = CRC_INIT_VAL; }
-      uint64 GetSize() const { return _size; }
-      uint32 GetCRC() const { return CRC_GET_DIGEST(_crc); }
+      uint64_t GetSize() const { return _size; }
+      uint32_t GetCRC() const { return CRC_GET_DIGEST(_crc); }
    };
 
 } // namespace compress

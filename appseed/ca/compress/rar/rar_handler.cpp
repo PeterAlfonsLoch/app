@@ -101,10 +101,10 @@ namespace rar
    IMP_IInArchive_Props
       IMP_IInArchive_ArcProps
 
-   uint64 handler::GetPackSize(int32_t refIndex) const
+   uint64_t handler::GetPackSize(int32_t refIndex) const
    {
       const CRefItem &refItem = _refItems[refIndex];
-      uint64 totalPackSize = 0;
+      uint64_t totalPackSize = 0;
       for (int32_t i = 0; i < refItem.NumItems; i++)
          totalPackSize += _items[refItem.ItemIndex + i].PackSize;
       return totalPackSize;
@@ -124,7 +124,7 @@ namespace rar
          // case ::compress::kpidCommented: prop = _archiveInfo.IsCommented(); break;
       case ::compress::kpidNumBlocks:
          {
-            uint32 numBlocks = 0;
+            uint32_t numBlocks = 0;
             for (int32_t i = 0; i < _refItems.get_size(); i++)
                if (!IsSolid(i))
                   numBlocks++;
@@ -137,7 +137,7 @@ namespace rar
       return S_OK;
    }
 
-   ex1::HRes handler::GetNumberOfItems(uint32 * numItems)
+   ex1::HRes handler::GetNumberOfItems(uint32_t * numItems)
    {
 
       *numItems = (uint32_t) _refItems.get_size();
@@ -152,11 +152,11 @@ namespace rar
    {
       if (!windows::file_time::DosTimeToFileTime(rarTime.DosTime, result))
          return false;
-      uint64 value =  (((uint64)result.dwHighDateTime) << 32) + result.dwLowDateTime;
-      value += (uint64)rarTime.LowSecond * 10000000;
-      value += ((uint64)rarTime.SubTime[2] << 16) +
-         ((uint64)rarTime.SubTime[1] << 8) +
-         ((uint64)rarTime.SubTime[0]);
+      uint64_t value =  (((uint64_t)result.dwHighDateTime) << 32) + result.dwLowDateTime;
+      value += (uint64_t)rarTime.LowSecond * 10000000;
+      value += ((uint64_t)rarTime.SubTime[2] << 16) +
+         ((uint64_t)rarTime.SubTime[1] << 8) +
+         ((uint64_t)rarTime.SubTime[0]);
       result.dwLowDateTime = (DWORD)value;
       result.dwHighDateTime = DWORD(value >> 32);
       return true;
@@ -176,7 +176,7 @@ namespace rar
       prop = utcFileTime;
    }
 
-   ex1::HRes handler::GetProperty(uint32 index, int32_t propID,  var *value)
+   ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
    {
       var prop;
       const CRefItem &refItem = _refItems[index];
@@ -213,16 +213,16 @@ namespace rar
             if (item.Method >= byte('0') && item.Method <= byte('5'))
             {
                method = "m";
-               method += convert_to_string((uint64)(item.Method - byte('0')));
+               method += convert_to_string((uint64_t)(item.Method - byte('0')));
                if (!item.IsDir())
                {
                   method += ":";
-                  method += convert_to_string((uint64)( 16 + item.GetDictSize()));;
+                  method += convert_to_string((uint64_t)( 16 + item.GetDictSize()));;
                }
             }
             else
             {
-               method += convert_to_string((uint64) item.Method);
+               method += convert_to_string((uint64_t) item.Method);
             }
             prop = method;
             break;
@@ -355,8 +355,8 @@ namespace rar
 
          CVolumeName seqName;
 
-         uint64 totalBytes = 0;
-         uint64 curBytes = 0;
+         uint64_t totalBytes = 0;
+         uint64_t curBytes = 0;
 
          if (openCallback)
          {
@@ -399,7 +399,7 @@ namespace rar
             else
                inStream = stream;
 
-            uint64 endPos = 0;
+            uint64_t endPos = 0;
             endPos = stream->seek(0, ::ex1::seek_end);
             stream->seek(0, ::ex1::seek_begin);
             if (openCallback)
@@ -458,8 +458,8 @@ namespace rar
                _items.add(item);
                if (openCallback && _items.get_size() % 100 == 0)
                {
-                  uint64 numFiles = _items.get_size();
-                  uint64 numBytes = curBytes + item.Position;
+                  uint64_t numFiles = _items.get_size();
+                  uint64_t numBytes = curBytes + item.Position;
                   RINOK(openCallback->SetCompleted(&numFiles, &numBytes));
                }
             }
@@ -507,14 +507,14 @@ namespace rar
    };
 
 
-   ex1::HRes handler::Extract(const uint32 *indices, uint32 numItems, int32_t testMode, ::compress::archive_extract_callback_interface *extractCallback)
+   ex1::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::compress::archive_extract_callback_interface *extractCallback)
    {
       ::crypto::get_text_password_interface * getTextPassword = NULL;
       file_size censoredTotalUnPacked = 0,
          // censoredTotalPacked = 0,
          importantTotalUnPacked = 0;
       // importantTotalPacked = 0;
-      bool allFilesMode = (numItems == (uint32)-1);
+      bool allFilesMode = (numItems == (uint32_t)-1);
       if (allFilesMode)
          numItems = (uint32_t) _refItems.get_size();
       if (numItems == 0)
@@ -523,7 +523,7 @@ namespace rar
       int_array importantIndexes;
       bool_array extractStatuses;
 
-      for (uint32 t = 0; t < numItems; t++)
+      for (uint32_t t = 0; t < numItems; t++)
       {
          int32_t index = allFilesMode ? t : indices[t];
          const CRefItem &refItem = _refItems[index];
@@ -551,9 +551,9 @@ namespace rar
       }
 
       RINOK(extractCallback->SetTotal(importantTotalUnPacked));
-      uint64 currentImportantTotalUnPacked = 0;
-      uint64 currentImportantTotalPacked = 0;
-      uint64 currentUnPackSize, currentPackSize;
+      uint64_t currentImportantTotalUnPacked = 0;
+      uint64_t currentImportantTotalPacked = 0;
+      uint64_t currentUnPackSize, currentPackSize;
 
       base_array < CMethodItem > methodItems;
 
@@ -589,7 +589,7 @@ namespace rar
          else
             askMode = ::compress::archive::extract::ask_mode_skip;
 
-         uint32 index = importantIndexes[i];
+         uint32_t index = importantIndexes[i];
 
          const CRefItem &refItem = _refItems[index];
          const CItemEx &item = _items[refItem.ItemIndex];
@@ -709,7 +709,7 @@ namespace rar
                {
                   ::ex1::byte_buffer buffer;
                   wstring unicodePassword = gen::international::utf8_to_unicode(password);
-                  const uint32 sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
+                  const uint32_t sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
                   buffer.SetCapacity(sizeInBytes);
                   for (int32_t i = 0; i < unicodePassword.get_length(); i++)
                   {

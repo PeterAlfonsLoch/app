@@ -69,10 +69,10 @@ namespace n7z
 #ifdef EXTRACT_ONLY
 
 #ifdef __7Z_SET_PROPERTIES
-      uint32 _numThreads;
+      uint32_t _numThreads;
 #endif
 
-      uint32 _crcSize;
+      uint32_t _crcSize;
 
 #else
 
@@ -80,7 +80,7 @@ namespace n7z
 
       ::ex1::HRes SetCompressionMethod(CCompressionMethodMode &method,
          array_ptr_alloc < ::compress::COneMethodInfo > &methodsInfo
-         , uint32 numThreads
+         , uint32_t numThreads
          );
 
       ::ex1::HRes SetCompressionMethod(
@@ -89,10 +89,10 @@ namespace n7z
 
 #endif
 
-      bool IsEncrypted(uint32 index2) const;
+      bool IsEncrypted(uint32_t index2) const;
 //#ifndef _SFX
 
-      base_array<uint64> _fileInfoPopIDs;
+      base_array<uint64_t> _fileInfoPopIDs;
       void FillPopIDs();
 
 //#endif

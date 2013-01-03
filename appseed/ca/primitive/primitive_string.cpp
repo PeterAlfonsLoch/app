@@ -1036,20 +1036,20 @@ string & string::assign(strsize n, char c)
 
 string & string::assign(int32_t n, int32_t c)
 {
-   return assign((uint64) n, (uint64) c);
+   return assign((uint64_t) n, (uint64_t) c);
 }
 
 string & string::assign(int64_t n, int64_t c)
 {
-   return assign((uint64) n, (uint64) c);
+   return assign((uint64_t) n, (uint64_t) c);
 }
 
 string & string::assign(uint32_t n, uint32_t c)
 {
-   return assign((uint64) n, (uint64) c);
+   return assign((uint64_t) n, (uint64_t) c);
 }
 
-string & string::assign(uint64 n, uint64 c)
+string & string::assign(uint64_t n, uint64_t c)
 {
    string strChar = gen::str::uni_to_utf8(c);
    while(n > 0)

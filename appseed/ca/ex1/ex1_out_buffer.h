@@ -33,7 +33,7 @@ namespace ex1
       file_position                        _limitPos;
       file_position                        _streamPos;
       writer *                         _stream;
-      uint64                           _processedSize;
+      uint64_t                           _processedSize;
       byte *                           _buffer2;
       bool                             _overDict;
 
@@ -57,7 +57,7 @@ namespace ex1
       void WriteByte(byte b);
       void WriteBytes(const void *data, size_t size);
 
-      uint64 GetProcessedSize() const;
+      uint64_t GetProcessedSize() const;
 
 
    };

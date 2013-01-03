@@ -28,7 +28,7 @@
   comp.compression FAQ.
 --*/
 
-uint32 BZ2_crc32Table[256] = {
+uint32_t BZ2_crc32Table[256] = {
 
    /*-- Ugly, innit? --*/
 

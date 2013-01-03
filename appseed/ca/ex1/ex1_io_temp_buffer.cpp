@@ -14,7 +14,7 @@ using namespace NDirectory;*/
 namespace ex1
 {
 
-   static const uint32 kTempBufSize = (1 << 20);
+   static const uint32_t kTempBufSize = (1 << 20);
 
    static LPCSTR kTempFilePrefixString = "7zt";
 
@@ -75,8 +75,8 @@ namespace ex1
    {
       _outFile->close();
 
-      uint64 size = 0;
-      uint32 crc = CRC_INIT_VAL;
+      uint64_t size = 0;
+      uint32_t crc = CRC_INIT_VAL;
 
       if (_bufPos > 0)
       {
@@ -92,7 +92,7 @@ namespace ex1
             return E_FAIL;
          while (size < _size)
          {
-            uint32 processed;
+            uint32_t processed;
             throw "should implement below ReadPart from InFile";
             /*if (!inFile.ReadPart(m_memory.get_data(), kTempBufSize, processed))
                return E_FAIL;*/

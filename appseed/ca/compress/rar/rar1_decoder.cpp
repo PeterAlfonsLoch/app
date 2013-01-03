@@ -9,15 +9,15 @@
 namespace compress {
    namespace rar1 {
 
-      static uint32 PosL1[]={0,0,0,2,3,5,7,11,16,20,24,32,32, 256};
-      static uint32 PosL2[]={0,0,0,0,5,7,9,13,18,22,26,34,36, 256};
-      static uint32 PosHf0[]={0,0,0,0,0,8,16,24,33,33,33,33,33, 257};
-      static uint32 PosHf1[]={0,0,0,0,0,0,4,44,60,76,80,80,127, 257};
-      static uint32 PosHf2[]={0,0,0,0,0,0,2,7,53,117,233, 257,0};
-      static uint32 PosHf3[]={0,0,0,0,0,0,0,2,16,218,251, 257,0};
-      static uint32 PosHf4[]={0,0,0,0,0,0,0,0,0,255, 257,0,0};
+      static uint32_t PosL1[]={0,0,0,2,3,5,7,11,16,20,24,32,32, 256};
+      static uint32_t PosL2[]={0,0,0,0,5,7,9,13,18,22,26,34,36, 256};
+      static uint32_t PosHf0[]={0,0,0,0,0,8,16,24,33,33,33,33,33, 257};
+      static uint32_t PosHf1[]={0,0,0,0,0,0,4,44,60,76,80,80,127, 257};
+      static uint32_t PosHf2[]={0,0,0,0,0,0,2,7,53,117,233, 257,0};
+      static uint32_t PosHf3[]={0,0,0,0,0,0,0,2,16,218,251, 257,0};
+      static uint32_t PosHf4[]={0,0,0,0,0,0,0,0,0,255, 257,0,0};
 
-      static const uint32 kHistorySize = (1 << 16);
+      static const uint32_t kHistorySize = (1 << 16);
 
       class CCoderReleaser
       {
@@ -38,9 +38,9 @@ namespace compress {
          LastDist = 0;
       }
 
-      uint32 decoder::ReadBits(int32_t numBits) { return m_InBitStream.ReadBits(numBits); }
+      uint32_t decoder::ReadBits(int32_t numBits) { return m_InBitStream.ReadBits(numBits); }
 
-      HRESULT decoder::CopyBlock(uint32 distance, uint32 len)
+      HRESULT decoder::CopyBlock(uint32_t distance, uint32_t len)
       {
          if (len == 0)
             return S_FALSE;
@@ -49,13 +49,13 @@ namespace compress {
       }
 
 
-      uint32 decoder::DecodeNum(const uint32 *posTab)
+      uint32_t decoder::DecodeNum(const uint32_t *posTab)
       {
-         uint32 startPos = 2;
-         uint32 num = m_InBitStream.GetValue(12);
+         uint32_t startPos = 2;
+         uint32_t num = m_InBitStream.GetValue(12);
          for (;;)
          {
-            uint32 cur = (posTab[startPos + 1] - posTab[startPos]) << (12 - startPos);
+            uint32_t cur = (posTab[startPos + 1] - posTab[startPos]) << (12 - startPos);
             if (num < cur)
                break;
             startPos++;
@@ -69,15 +69,15 @@ namespace compress {
       static byte kShortLen1a[] = {1,4,4,4,5,6,7,8,8,4,4,5,6,6,4 };
       static byte kShortLen2[]  = {2,3,3,3,4,4,5,6,6,4,4,5,6,6 };
       static byte kShortLen2a[] = {2,3,3,4,4,4,5,6,6,4,4,5,6,6,4 };
-      static uint32 kShortXor1[] = {0,0xa0,0xd0,0xe0,0xf0,0xf8,0xfc,0xfe,0xff,0xc0,0x80,0x90,0x98,0x9c,0xb0};
-      static uint32 kShortXor2[] = {0,0x40,0x60,0xa0,0xd0,0xe0,0xf0,0xf8,0xfc,0xc0,0x80,0x90,0x98,0x9c,0xb0};
+      static uint32_t kShortXor1[] = {0,0xa0,0xd0,0xe0,0xf0,0xf8,0xfc,0xfe,0xff,0xc0,0x80,0x90,0x98,0x9c,0xb0};
+      static uint32_t kShortXor2[] = {0,0x40,0x60,0xa0,0xd0,0xe0,0xf0,0xf8,0xfc,0xc0,0x80,0x90,0x98,0x9c,0xb0};
 
       HRESULT decoder::ShortLZ()
       {
-         uint32 len, saveLen, dist;
+         uint32_t len, saveLen, dist;
          int32_t distancePlace;
          byte *kShortLen;
-         const uint32 *kShortXor;
+         const uint32_t *kShortXor;
          NumHuf = 0;
 
          if (LCount == 2)
@@ -87,7 +87,7 @@ namespace compress {
             LCount = 0;
          }
 
-         uint32 bitField = m_InBitStream.GetValue(8);
+         uint32_t bitField = m_InBitStream.GetValue(8);
 
          if (AvrLn1 < 37)
          {
@@ -145,7 +145,7 @@ namespace compress {
             if (--distancePlace != -1)
             {
                PlaceA[dist]--;
-               uint32 lastDistance = ChSetA[distancePlace];
+               uint32_t lastDistance = ChSetA[distancePlace];
                PlaceA[lastDistance]++;
                ChSetA[distancePlace + 1] = lastDistance;
                ChSetA[distancePlace] = dist;
@@ -162,10 +162,10 @@ namespace compress {
 
       HRESULT decoder::LongLZ()
       {
-         uint32 len;
-         uint32 dist;
-         uint32 distancePlace, newDistancePlace;
-         uint32 oldAvr2, oldAvr3;
+         uint32_t len;
+         uint32_t dist;
+         uint32_t distancePlace, newDistancePlace;
+         uint32_t oldAvr2, oldAvr3;
 
          NumHuf = 0;
          Nlzb += 16;
@@ -182,7 +182,7 @@ namespace compress {
             len = DecodeNum(PosL1);
          else
          {
-            uint32 bitField = m_InBitStream.GetValue(16);
+            uint32_t bitField = m_InBitStream.GetValue(16);
             if (bitField < 0x100)
             {
                len = bitField;
@@ -260,9 +260,9 @@ namespace compress {
 
       HRESULT decoder::HuffDecode()
       {
-         uint32 curByte, newBytePlace;
-         uint32 len;
-         uint32 dist;
+         uint32_t curByte, newBytePlace;
+         uint32_t len;
+         uint32_t dist;
          int32_t bytePlace;
 
          if      (AvrPlc > 0x75ff)  bytePlace = DecodeNum(PosHf4);
@@ -321,8 +321,8 @@ namespace compress {
 
       void decoder::GetFlagsBuf()
       {
-         uint32 flags, newFlagsPlace;
-         uint32 flagsPlace = DecodeNum(PosHf2);
+         uint32_t flags, newFlagsPlace;
+         uint32_t flagsPlace = DecodeNum(PosHf2);
 
          for (;;)
          {
@@ -353,7 +353,7 @@ namespace compress {
          LCount = 0;
       }
 
-      void decoder::CorrHuff(uint32 *CharSet,uint32 *NumToPlace)
+      void decoder::CorrHuff(uint32_t *CharSet,uint32_t *NumToPlace)
       {
          int32_t i;
          for (i = 7; i >= 0; i--)
@@ -366,7 +366,7 @@ namespace compress {
 
       void decoder::InitHuff()
       {
-         for (uint32 i = 0; i < 256; i++)
+         for (uint32_t i = 0; i < 256; i++)
          {
             Place[i] = PlaceA[i] = PlaceB[i] = i;
             PlaceC[i] = (~i + 1) & 0xff;
@@ -391,7 +391,7 @@ namespace compress {
          if (!m_InBitStream.Create(1 << 20))
             return E_OUTOFMEMORY;
 
-         m_UnpackSize = (int64)*outSize;
+         m_UnpackSize = (int64_t)*outSize;
          m_OutWindowStream.SetStream(outStream);
          m_OutWindowStream.Init(m_IsSolid);
          m_InBitStream.SetStream(inStream);
@@ -476,7 +476,7 @@ namespace compress {
          catch(...) { return S_FALSE; }
       }
 
-      ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32 size)
+      ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

@@ -24,16 +24,16 @@ namespace ex1
          file_size virtBlock = _virtPos >> BlockSizeLog;
          file_size offsetInBlock = _virtPos & (blockSize - 1);
          file_size phyBlock = Vector[(index)virtBlock];
-         file_size newPos = StartOffset + ((uint64)phyBlock << BlockSizeLog) + offsetInBlock;
+         file_size newPos = StartOffset + ((uint64_t)phyBlock << BlockSizeLog) + offsetInBlock;
          if (newPos != _physPos)
          {
             _physPos = newPos;
             SeekToPhys();
          }
          _curRem = blockSize - offsetInBlock;
-         for (int32_t i = 1; i < 64 && (virtBlock + i) < (uint32)Vector.get_size() && phyBlock + i == Vector[(index)(virtBlock + i)]; i++)
-            _curRem += (uint64)((uint32) 1 << (uint32) BlockSizeLog);
-         uint64 rem = Size - _virtPos;
+         for (int32_t i = 1; i < 64 && (virtBlock + i) < (uint32_t)Vector.get_size() && phyBlock + i == Vector[(index)(virtBlock + i)]; i++)
+            _curRem += (uint64_t)((uint32_t) 1 << (uint32_t) BlockSizeLog);
+         uint64_t rem = Size - _virtPos;
          if (_curRem > rem)
             _curRem = rem;
       }
@@ -49,7 +49,7 @@ namespace ex1
 
    file_position clustered_input_stream::seek(file_offset offset, e_seek seekOrigin)
    {
-      uint64 newVirtPos = offset;
+      uint64_t newVirtPos = offset;
       switch(seekOrigin)
       {
       case STREAM_SEEK_SET: break;

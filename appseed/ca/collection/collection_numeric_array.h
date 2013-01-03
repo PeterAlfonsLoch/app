@@ -563,7 +563,7 @@ public:
 
 
 class CLASS_DECL_ca int64_array :
-   virtual public numeric_array < int64 >
+   virtual public numeric_array < int64_t >
 {
 public:
    int64_array(::ca::application * papp = NULL);
@@ -575,7 +575,7 @@ public:
 };
 
 class CLASS_DECL_ca uint64_array :
-   virtual public numeric_array < uint64 >
+   virtual public numeric_array < uint64_t >
 {
 public:
    uint64_array(::ca::application * papp = NULL);
