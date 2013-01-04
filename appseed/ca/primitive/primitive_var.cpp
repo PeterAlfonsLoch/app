@@ -1228,32 +1228,32 @@ bool var::operator > (const string & str) const
 
 bool var::operator == (int32_t i) const
 {
-   return int32_t() == i;
+   return int32() == i;
 }
 
 bool var::operator != (int32_t i) const
 {
-   return int32_t() != i;
+   return int32() != i;
 }
 
 bool var::operator < (int32_t i) const
 {
-   return int32_t() < i;
+   return int32() < i;
 }
 
 bool var::operator <= (int32_t i) const
 {
-   return int32_t() <= i;
+   return int32() <= i;
 }
 
 bool var::operator >= (int32_t i) const
 {
-   return int32_t() >= i;
+   return int32() >= i;
 }
 
 bool var::operator > (int32_t i) const
 {
-   return int32_t() > i;
+   return int32() > i;
 }
 
 
@@ -2234,7 +2234,7 @@ var var::equals_ci_get(const char * pszCompare, var varOnEqual) const
 
 var var::operator - (int32_t i) const
 {
-   return int32_t() - i;
+   return int32() - i;
 }
 
 var var::operator - (uint32_t user) const
@@ -2244,7 +2244,7 @@ var var::operator - (uint32_t user) const
 
 var var::operator - (long l) const
 {
-   return int32_t() - l;
+   return int32() - l;
 }
 
 var var::operator - (unsigned long ul) const
@@ -2347,7 +2347,7 @@ var CLASS_DECL_ca operator - (const class var & var1, const class var & var2)
 
 var var::operator + (int32_t i) const
 {
-   return int32_t() + i;
+   return int32() + i;
 }
 
 var var::operator + (uint32_t user) const
@@ -2357,7 +2357,7 @@ var var::operator + (uint32_t user) const
 
 var var::operator + (long l) const
 {
-   return int32_t() + l;
+   return int32() + l;
 }
 
 var var::operator + (unsigned long ul) const
@@ -2503,7 +2503,7 @@ var CLASS_DECL_ca operator + (const class var & var1, const class var & var2)
 
 var var::operator / (int32_t i) const
 {
-   return int32_t() / i;
+   return int32() / i;
 }
 
 var var::operator / (uint32_t user) const
@@ -2513,7 +2513,7 @@ var var::operator / (uint32_t user) const
 
 var var::operator / (long l) const
 {
-   return int32_t() / l;
+   return int32() / l;
 }
 
 var var::operator / (unsigned long ul) const
@@ -2665,7 +2665,7 @@ var CLASS_DECL_ca operator / (const class var & var1, const class var & var2)
 
 var var::operator * (int32_t i) const
 {
-   return int32_t() * i;
+   return int32() * i;
 }
 
 var var::operator * (uint32_t user) const
@@ -2675,7 +2675,7 @@ var var::operator * (uint32_t user) const
 
 var var::operator * (long l) const
 {
-   return int32_t() * l;
+   return int32() * l;
 }
 
 var var::operator * (unsigned long ul) const
