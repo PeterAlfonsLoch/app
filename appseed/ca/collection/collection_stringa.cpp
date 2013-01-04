@@ -405,9 +405,7 @@ count stringa::remove_empty()
    return count;
 }
 
-/*
-
-const char * stringa::GetFormatV004()
+primitive::memory stringa::GetFormatV004()
 {
 
    strsize iTotalLength = 0;
@@ -429,14 +427,17 @@ const char * stringa::GetFormatV004()
       iTotalLength++;
    }
 
-   LPTSTR lpsz = (LPTSTR) malloc(iTotalLength * sizeof(char));
+   primitive::memory mem;
+
+   mem.allocate(iTotalLength * sizeof(char));
+   
+   char * lpsz = (char *) mem.get_data();
 
    memset(lpsz, 0x00, iTotalLength * sizeof(char));
 
-   LPTSTR lpszN = lpsz;
+   char * lpszN = lpsz;
 
    strsize iLength;
-
 
    for(i = 0; i < m_nSize; i++)
    {
@@ -470,12 +471,9 @@ const char * stringa::GetFormatV004()
       memset(lpszN, 0x00, sizeof(char));
    }
 
-   return lpsz;
-
-
+   return mem;
 
 }
-*/
 
 
 stringa & stringa::operator =(const stringa & tokena)
