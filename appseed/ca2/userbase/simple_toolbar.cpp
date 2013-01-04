@@ -402,13 +402,11 @@ size simple_toolbar::CalcSize(int32_t nCount)
    point cur(0,0);
    size sizeResult(0,0);
 
-   int32_t buttonx, buttony;
-
-
    //   DWORD dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
 #ifdef WINDOWSEX
 
-
+   int32_t buttonx, buttony;
+   
    for (int32_t i = 0; i < nCount; i++)
    {
       //WINBUG: The IE4 version of COMCTL32.DLL calculates the separation
@@ -1216,7 +1214,7 @@ void simple_toolbar::layout()
    //   int32_t intrax = max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
    //            - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
    //          + max(ITEMPADLEFT, ITEMPADRIGHT);
-   int32_t buttonx1, buttonx2, buttony, cx, cy;
+   int32_t buttonx1, buttonx2, buttony;
    buttonx1 = m_sizeImage.cx
       + max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
       - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
@@ -1251,7 +1249,11 @@ void simple_toolbar::layout()
             item.m_str,
             sizeText);
       }
+
 #ifdef WINDOWSEX
+
+      int32_t cx, cy;
+
       if((item.m_fsState & TBSTATE_WRAP) != 0)
       {
          if((item.m_fsStyle & TBSTYLE_SEP) != 0)

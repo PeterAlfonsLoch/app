@@ -1371,7 +1371,11 @@ CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 #define SCF_ISSECURE    0x00000001
 #endif /* WINVER >= 0x0600 */
 
+#ifndef METROWIN
+
 #define GET_SC_WPARAM(wParam) ((int32_t)wParam & 0xFFF0)
+
+#endif
 
 /*
  * Obsolete names

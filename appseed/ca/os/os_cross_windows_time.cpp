@@ -22,6 +22,9 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
+
+#include "framework.h"
+
 #define server_start_time 0
 
 
@@ -31,7 +34,7 @@
 //#define WIN32_NO_STATUS
 #define  _CRT_SECURE_NO_WARNINGS
 #define __WINESRC__
-#define __CA__DLL
+//#define __CA__DLL
 
 
 
@@ -89,20 +92,20 @@
 #ifdef HAVE_SYS_TIME_H
 # include <sys/time.h>
 #endif
-#ifdef HAVE_UNISTD_H
-# include <unistd.h>
-#endif
+//#ifdef HAVE_UNISTD_H
+//# include <unistd.h>
+//#endif
 
 
-#ifdef METROWIN
+/*#ifdef METROWIN
 
 struct timeval
 {
    __int32    tv_sec;         /* seconds */
-   __int32    tv_usec;        /* microseconds */
-};
+   //__int32    tv_usec;        /* microseconds */
+//};
 
-#endif
+//#endif
 
 
 //#include "nodeapp/operational_system/cross/win/win.h"
@@ -179,13 +182,13 @@ static inline int32_t IsLeapYear(int32_t Year)
  * RETURNS
  *   Nothing.
  */
-VOID WINAPI RtlTimeToTimeFields(
+CLASS_DECL_ca void WINAPI RtlTimeToTimeFields(
 	const LARGE_INTEGER *liTime,
 	PTIME_FIELDS TimeFields)
 {
 	int32_t SecondsInDay;
-   long int cleaps, years, yearday, months;
-	long int Days;
+   uint64_t cleaps, years, yearday, months;
+	uint64_t Days;
 	LONGLONG Time;
 
 	/* Extract millisecond from time and convert time into seconds */
@@ -219,16 +222,16 @@ VOID WINAPI RtlTimeToTimeFields(
          * To convert take 12 from Januari and Februari and
          * increase the year by one. */
         if( months < 14 ) {
-            TimeFields->Month = months - 1;
-            TimeFields->Year = years + 1524;
+            TimeFields->Month = (CSHORT) (months - 1);
+            TimeFields->Year = (CSHORT) (years + 1524);
         } else {
-            TimeFields->Month = months - 13;
-            TimeFields->Year = years + 1525;
+            TimeFields->Month = (CSHORT) (months - 13);
+            TimeFields->Year = (CSHORT) (years + 1525);
         }
         /* calculation of day of month is based on the wonderful
          * sequence of INT( n * 30.6): it reproduces the
          * 31-30-31-30-31-31 month lengths exactly for small n's */
-        TimeFields->Day = yearday - (1959 * months) / 64 ;
+        TimeFields->Day = (CSHORT) (yearday - (1959 * months) / 64);
         return;
 }
 
@@ -484,12 +487,12 @@ void WINAPI RtlTimeToElapsedTimeFields( const LARGE_INTEGER *Time, PTIME_FIELDS 
     INT rem;
 
     time = Time->QuadPart / TICKSPERSEC;
-    TimeFields->Milliseconds = (Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC;
+    TimeFields->Milliseconds = (CSHORT) ((Time->QuadPart % TICKSPERSEC) / TICKSPERMSEC);
 
     /* time is now in seconds */
     TimeFields->Year  = 0;
     TimeFields->Month = 0;
-    TimeFields->Day   = time / SECSPERDAY;
+    TimeFields->Day   = (CSHORT) (time / SECSPERDAY);
 
     /* rem is now the remaining seconds in the last day */
     rem = time % SECSPERDAY;
@@ -608,7 +611,7 @@ ULONG WINAPI NtGetTickCount(void)
     LARGE_INTEGER now;
 
     NtQuerySystemTime( &now );
-    return (now.QuadPart - server_start_time) / 10000;
+    return (CSHORT) ((now.QuadPart - server_start_time) / 10000);
 }
 
 /* calculate the mday of dst change date, so that for instance Sun 5 Oct 2007
@@ -828,7 +831,7 @@ static void find_reg_tz_info(RTL_TIME_ZONE_INFORMATION *tzi)
           tzi->DaylightDate.wDay, tzi->DaylightDate.wMonth, tzi->DaylightDate.wYear);
 }*/
 
-static time_t find_dst_change(unsigned long min, unsigned long max, int32_t *is_dst)
+static time_t find_dst_change(time_t min, time_t max, int32_t *is_dst)
 {
     time_t start;
     struct tm *tm;
@@ -1060,7 +1063,7 @@ NTSTATUS WINAPI NtSetSystemTime(const LARGE_INTEGER *NewTime, LARGE_INTEGER *Old
 /*********************************************************************
  *      LocalFileTimeToFileTime                         (KERNEL32.@)
  */
-CLASS_DECL_ca WINBOOL LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
+CLASS_DECL_ca WINBOOL WINAPI LocalFileTimeToFileTime( const FILETIME *localft, LPFILETIME utcft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -1085,7 +1088,7 @@ CLASS_DECL_ca WINBOOL LocalFileTimeToFileTime( const FILETIME *localft, LPFILETI
 /*********************************************************************
  *      FileTimeToLocalFileTime                         (KERNEL32.@)
  */
-WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
+CLASS_DECL_ca WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
 {
     NTSTATUS status;
     LARGE_INTEGER local, utc;
@@ -1170,7 +1173,7 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *   Nothing.
  */
 #ifndef METROWIN
-VOID WINAPI GetSystemTimeAsFileTime(
+CLASS_DECL_metrowin void GetSystemTimeAsFileTime(
     LPFILETIME time) /* [out] Destination for the current utc time */
 {
     LARGE_INTEGER t;

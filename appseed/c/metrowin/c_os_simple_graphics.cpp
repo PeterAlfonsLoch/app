@@ -499,7 +499,7 @@ bool os_simple_graphics::blend_bitmap_data(int x, int y, int cx, int cy, COLORRE
 
       b.create_from_data(cx, cy, pdata, (simple_graphics & ) *this);
 
-      m_pdc->DrawImage(b.m_pbitmap, D2D1::Point2F(x, y), D2D1::RectF(0.f, 0.f, (float) cx, (float) cy));
+      m_pdc->DrawImage(b.m_pbitmap, D2D1::Point2F((FLOAT) x, (FLOAT) y), D2D1::RectF(0.f, 0.f, (float) cx, (float) cy));
 
       return true;
 

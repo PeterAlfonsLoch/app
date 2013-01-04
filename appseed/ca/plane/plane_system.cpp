@@ -1870,8 +1870,8 @@ retry:
 #ifdef METROWIN
       Windows::Foundation::Point p;
       p = m_pwindow->get_cursor_pos();
-      lppoint->x = p.X;
-      lppoint->y = p.Y;
+      lppoint->x = (LONG) p.X;
+      lppoint->y = (LONG) p.Y;
 #else
       ::GetCursorPos(lppoint);
 #endif
@@ -1945,10 +1945,10 @@ retry:
             return false;
          }
 
-         lprect->left = rect.X;
-         lprect->top = rect.Y;
-         lprect->right = lprect->left + rect.Width;
-         lprect->bottom = lprect->top + rect.Height;
+         lprect->left      = (LONG) rect.X;
+         lprect->top       = (LONG) rect.Y;
+         lprect->right     = (LONG) (lprect->left + rect.Width);
+         lprect->bottom    = (LONG) (lprect->top + rect.Height);
 
 
          return true;

@@ -981,7 +981,7 @@ namespace plugin
 
 #elif defined(METROWIN)
 
-   uint_ptr plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
    {
 
       return 0;

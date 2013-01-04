@@ -602,7 +602,7 @@ strsize __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
    return  gen::str::utf8_char(pch).get_length();
 }
 
-DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize ) throw()
+DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize )
 {
 
 #ifdef METROWIN

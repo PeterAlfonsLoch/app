@@ -281,13 +281,14 @@ LRESULT CALLBACK BaseMenuCentral::CBTHook(int32_t nCode, WPARAM wParam, LPARAM l
 
    lRes = CallNextHookEx(m_hCBTHook, nCode, wParam, lParam);
 
+out:
+
 #else
 
    throw todo(::ca::get_thread_app());
 
 #endif
 
-out:
    --cbt_counter;
    return lRes;
 }

@@ -165,7 +165,7 @@ public:
    static strsize       __cdecl  SafeStringLen( const wchar_t * psz ) throw();
    static strsize       __cdecl  GetCharLen(const wchar_t* pch ) throw();
    static strsize       __cdecl  GetCharLen(const char* pch ) throw();
-   static DWORD         __cdecl  GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize ) throw();
+   static DWORD         __cdecl  GetEnvironmentVariable(const char * pszVar, char * pszBuffer, DWORD dwSize);
 
 };
 

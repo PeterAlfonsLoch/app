@@ -353,7 +353,7 @@ _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
 
       all_thread_data().get_next_assoc(pos, hThread, pdata);
 
-      if(pdata->get_count() > dwTlsIndex)
+      if(natural(pdata->get_count()) > dwTlsIndex)
       {
          pdata->element_at(dwTlsIndex) = nullptr;
       }
@@ -367,7 +367,7 @@ _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = currentThreadData;
 
-   if (threadData && threadData->get_count() > dwTlsIndex)
+   if (threadData && natural(threadData->get_count()) > dwTlsIndex)
    {
       // Return the value of an allocated TLS slot.
       return threadData->element_at(dwTlsIndex);
@@ -383,7 +383,7 @@ _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(HANDLE hthread, DWORD dwTlsInde
 {
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
-   if (threadData && threadData->get_count() > dwTlsIndex)
+   if (threadData && natural(threadData->get_count()) > dwTlsIndex)
    {
       // Return the value of an allocated TLS slot.
       return threadData->element_at(dwTlsIndex);

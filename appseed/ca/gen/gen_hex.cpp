@@ -55,8 +55,8 @@ namespace gen
    CLASS_DECL_ca string hex::lo_from(void * p, primitive::memory_size s)
    {
       string str;
-      LPTSTR lpsz = str.GetBufferSetLength(s * 2);
-	  lo_hex_from(lpsz, p, s);
+      char * lpsz = str.GetBufferSetLength(s * 2);
+	   lo_hex_from(lpsz, p, s);
       lpsz[s * 2] = '\0';
       str.ReleaseBuffer(s * 2);
       return str;
@@ -66,8 +66,8 @@ namespace gen
    CLASS_DECL_ca string hex::hi_from(void * p, primitive::memory_size s)
    {
       string str;
-      LPTSTR lpsz = str.GetBufferSetLength(s * 2);
-	  hi_hex_from(lpsz, p, s);
+      char * lpsz = str.GetBufferSetLength(s * 2);
+	   hi_hex_from(lpsz, p, s);
       lpsz[s * 2] = '\0';
       str.ReleaseBuffer(s * 2);
       return str;

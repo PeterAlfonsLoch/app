@@ -187,11 +187,11 @@ namespace user
 
       rect r = rectDropDown;
 
-      int32_t iColorRate;
-
       int32_t i = 0;
 
 #ifdef WINDOWSEX
+
+      int32_t iColorRate;
 
       simple_graphics g;
 

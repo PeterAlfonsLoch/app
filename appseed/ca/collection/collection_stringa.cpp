@@ -405,8 +405,9 @@ count stringa::remove_empty()
    return count;
 }
 
+/*
 
-LPTSTR stringa::GetFormatV004()
+const char * stringa::GetFormatV004()
 {
 
    strsize iTotalLength = 0;
@@ -474,6 +475,7 @@ LPTSTR stringa::GetFormatV004()
 
 
 }
+*/
 
 
 stringa & stringa::operator =(const stringa & tokena)

@@ -1303,13 +1303,13 @@ namespace user
 
    ::ca::window * tab::GetNotifyWnd()
    {
-      ::ca::window * pwnd;
-   //   if((pwnd = m_pguie->get_owner()) != NULL)
-     //    return pwnd;
 #ifdef METROWIN
       return NULL;
 
 #else
+      ::ca::window * pwnd;
+   //   if((pwnd = m_pguie->get_owner()) != NULL)
+     //    return pwnd;
       if((pwnd = m_pguie->get_parent()->get_wnd()) != NULL)
          return pwnd;
       return NULL;

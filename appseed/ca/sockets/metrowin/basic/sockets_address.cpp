@@ -109,9 +109,10 @@ namespace sockets
       string strService = gen::international::unicode_to_utf8(m_strService->Begin());
 
       if(gen::str::is_simple_natural(strService))
-         return service_name_to_number(strService);
-      else
          return gen::str::to_int(strService);
+      else
+         return service_name_to_number(strService);
+         
 
    }
    

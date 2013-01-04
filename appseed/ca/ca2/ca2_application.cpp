@@ -678,6 +678,9 @@ namespace ca2
       {
          return System.open_link(pszLink, pszTarget);
       }
+
+      return false;
+
    }
 
    ::user::interaction * application::uie_from_point(point pt)

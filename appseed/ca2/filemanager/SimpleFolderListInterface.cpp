@@ -140,10 +140,10 @@ namespace filemanager
 #endif
          {
 
+#ifdef WINDOWSEX
             string str;
             HICON hicon = NULL;
             int32_t iIndex;
-#ifdef WINDOWSEX
             for(POSITION pos = m_iconmap.get_start_position();
                pos != NULL;
                m_iconmap.get_next_assoc(pos, hicon, iIndex))

@@ -220,9 +220,9 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
-      int32_t i;
-
 #ifdef WINDOWSEX
+
+      int32_t i;
 
       // update the status pane locations
       if (bUpdateRects)
@@ -473,7 +473,7 @@ namespace userbase
       ASSERT(IsWindow());
 
       // determinme size of font being used by the status bar
-      TEXTMETRIC tm;
+//      TEXTMETRIC tm;
       {
          // os independence
          throw not_implemented(get_app());
@@ -491,12 +491,13 @@ namespace userbase
       class rect rect;
       rect.null();
       CalcInsideRect(rect, bHorz);
-      int32_t rgBorders[3];
       size size;
       size.cx =0;
       size.cy =0;
 
 #ifdef WINDOWSEX
+      int32_t rgBorders[3];
+      TEXTMETRIC tm;
       DefWindowProc(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
 
       // determine size, including borders
