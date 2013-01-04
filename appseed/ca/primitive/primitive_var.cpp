@@ -595,6 +595,9 @@ class var & var::operator = (const class var & var)
       case type_uint32:
          m_ui32     = var.m_ui32;
          break;
+      case type_float:
+         m_f      = var.m_f;
+         break;
       case type_double:
          m_d      = var.m_d;
          break;

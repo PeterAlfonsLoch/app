@@ -838,10 +838,10 @@ template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::set_at_grow(index nIndex, ARG_TYPE newElement)
 {
    ASSERT_VALID(this);
-   ASSERT(nIndex >= 0);
+//   ASSERT(nIndex >= 0);
 
    if(nIndex < 0)
-      throw invalid_argument_exception(get_app());
+      throw invalid_index_exception(get_app());
 
    if (nIndex >= m_nSize)
       set_size(nIndex+1, -1);

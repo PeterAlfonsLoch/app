@@ -816,7 +816,7 @@ namespace ca
       void system::matter_ls(::ca::application * papp, const string & str, stringa & stra)
       {
 
-         string strDir = matter(papp, stra, true);
+         string strDir = matter(papp, str, true);
 
          ls(papp, strDir, &stra);
 
@@ -825,7 +825,7 @@ namespace ca
       void system::matter_ls_file(::ca::application * papp, const string & str, stringa & stra)
       {
 
-         string strDir = matter(papp, stra, true);
+         string strDir = matter(papp, str, true);
 
          ls_file(papp, strDir, &stra);
 
