@@ -44,9 +44,9 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (uchar & uchar)
+   byte_input_stream & byte_input_stream::operator >> (uchar & uch)
    {
-      read(&uchar, sizeof(uchar));
+      read(&uch, sizeof(uch));
       return *this;
    }
 
@@ -90,38 +90,6 @@ namespace ex1
       return *this;
    }
 
-   void byte_input_stream::read_arbitrary(int32_t & i)
-   {
-
-      read_arbitrary(&i, sizeof(i));
-
-   }
-
-   void byte_input_stream::read_arbitrary(uint32_t & ui)
-   {
-
-      read_arbitrary(&ui, sizeof(ui));
-
-   }
-
-#if defined(WINDOWS)
-
-   byte_input_stream & byte_input_stream::operator >> (long & l)
-   {
-      uint64_t uiRead = read(&l, sizeof(l));
-      if(uiRead != sizeof(l))
-         throw "failed to read long";
-      return *this;
-   }
-
-   byte_input_stream & byte_input_stream::operator >> (uint32_t long & ul)
-   {
-      read(&ul, sizeof(ul));
-      return *this;
-   }
-
-#endif
-
    byte_input_stream & byte_input_stream::operator >> (int64_t & i)
    {
       if(sizeof(i) != read(&i, sizeof(i)))
@@ -134,6 +102,20 @@ namespace ex1
       if(sizeof(ui) != read(&ui, sizeof(ui)))
          throw "could not read int32_t";
       return *this;
+   }
+
+   void byte_input_stream::read_arbitrary(int32_t & i)
+   {
+
+      read_arbitrary(&i, sizeof(i));
+
+   }
+
+   void byte_input_stream::read_arbitrary(uint32_t & ui)
+   {
+
+      read_arbitrary(&ui, sizeof(ui));
+
    }
 
    void byte_input_stream::read_arbitrary(int64_t & i)

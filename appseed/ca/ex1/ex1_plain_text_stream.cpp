@@ -94,27 +94,21 @@ namespace ex1
 
    }
 
+   plain_text_input_stream & plain_text_input_stream::operator >> (bool & b)
+   {
+      read(&b, sizeof(b));
+      return *this;
+   }
+
    plain_text_input_stream & plain_text_input_stream::operator >> (char & ch)
    {
       read(&ch, sizeof(ch));
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (uchar & uchar)
+   plain_text_input_stream & plain_text_input_stream::operator >> (uchar & uch)
    {
-      read(&uchar, sizeof(uchar));
-      return *this;
-   }
-
-   plain_text_input_stream & plain_text_input_stream::operator >> (int16_t & sh)
-   {
-      read(&sh, sizeof(sh));
-      return *this;
-   }
-
-   plain_text_input_stream & plain_text_input_stream::operator >> (uint16_t & uint16_t)
-   {
-      read(&uint16_t, sizeof(uint16_t));
+      read(&uch, sizeof(uch));
       return *this;
    }
 
@@ -124,9 +118,15 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (bool & b)
+   plain_text_input_stream & plain_text_input_stream::operator >> (int16_t & sh)
    {
-      read(&b, sizeof(b));
+      read(&sh, sizeof(sh));
+      return *this;
+   }
+
+   plain_text_input_stream & plain_text_input_stream::operator >> (uint16_t & ui)
+   {
+      read(&uint16_t, sizeof(ui));
       return *this;
    }
 
@@ -145,24 +145,6 @@ namespace ex1
          throw "failed to read uint32_t";
       return *this;
    }
-
-#ifdef WINDOWS
-
-   plain_text_input_stream & plain_text_input_stream::operator >> (long & l)
-   {
-      uint64_t uiRead = read(&l, sizeof(l));
-      if(uiRead != sizeof(l))
-         throw "failed to read long";
-      return *this;
-   }
-
-   plain_text_input_stream & plain_text_input_stream::operator >> (uint32_t long & ul)
-   {
-      read(&ul, sizeof(ul));
-      return *this;
-   }
-
-#endif
 
    plain_text_input_stream & plain_text_input_stream::operator >> (int64_t & i)
    {

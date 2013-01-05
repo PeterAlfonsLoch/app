@@ -30,7 +30,7 @@ namespace ex1
       {
          return false; // overflow
       }
-      m_count += (uint32_t long)l;
+      m_count += (uint_ptr) l;
       if (m_t + l > m_max) // block crosses circular border
       {
          size_t l1 = m_max - m_t; // size left until circular border crossing
@@ -120,11 +120,11 @@ namespace ex1
    }
 
 
-   uint32_t long circular_buffer::ByteCounter(bool clear)
+   uint_ptr circular_buffer::ByteCounter(bool clear)
    {
       if (clear)
       {
-         uint32_t long x = m_count;
+         uint_ptr x = m_count;
          m_count = 0;
          return x;
       }

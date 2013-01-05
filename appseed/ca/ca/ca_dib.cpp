@@ -2173,9 +2173,12 @@ fill_last:
 
    void dib::FillByte(uchar uch)
    {
+      
       if(area() <= 0 || get_data() == NULL)
          return;
-      memset(get_data(), uchar, (::primitive::memory_size) (area() * sizeof(COLORREF)));
+
+      memset(get_data(), uch, (::primitive::memory_size) (area() * sizeof(COLORREF)));
+
    }
 
 

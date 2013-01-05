@@ -659,18 +659,18 @@ ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string 
 {
    if (string.get_length() < 255)
    {
-      ar << (BYTE)string.get_length();
+      ar << (byte)         string.get_length();
    }
    else if (string.get_length() < 0xfffe)
    {
-      ar << (BYTE)0xff;
-      ar << (WORD)string.get_length();
+      ar << (byte)         0xff;
+      ar << (uint16_t)     string.get_length();
    }
    else
    {
-      ar << (BYTE)0xff;
-      ar << (WORD)0xffff;
-      ar << (DWORD)string.get_length();
+      ar << (byte)         0xff;
+      ar << (uint16_t)     0xffff;
+      ar << (uint32_t)     string.get_length();
    }
 
    ar.write((const char *) string, string.get_length());

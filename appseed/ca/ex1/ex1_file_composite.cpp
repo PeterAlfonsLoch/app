@@ -189,10 +189,10 @@ namespace ex1
 
    }
 
-   bool file_composite::read(uchar & uchar)
+   bool file_composite::read(uchar & uch)
    {
 
-      return m_spfile->read(uchar);
+      return m_spfile->read(uch);
 
    }
 
@@ -217,10 +217,10 @@ namespace ex1
 
    }
 
-   bool file_composite::peek(uchar & uchar)
+   bool file_composite::peek(uchar & uch)
    {
 
-      return m_spfile->peek(uchar);
+      return m_spfile->peek(uch);
 
    }
 

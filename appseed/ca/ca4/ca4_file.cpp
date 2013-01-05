@@ -5,7 +5,7 @@
 #endif
 
 CLASS_DECL_c void NESSIEinit(struct NESSIEstruct * const structpointer);
-CLASS_DECL_c void NESSIEadd(const uchar * const source, uint32_t long sourceBits, struct NESSIEstruct * const structpointer);
+CLASS_DECL_c void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
 CLASS_DECL_c void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
 
 
@@ -135,7 +135,7 @@ namespace ca4
          while((uiRead = file2->read(buf, iBufSize)) > 0)
          {
             spfile->write(buf, uiRead);
-            ctx.update(buf, (uint32_t long) uiRead);
+            ctx.update(buf, uiRead);
          }
          spfile->seek(iPos, ::ex1::seek_begin);
          strMd5 = ctx.to_hex();
@@ -185,8 +185,8 @@ namespace ca4
              if(uiRead == 0)
                 break;
                file2->write(buf, uiRead);
-               ctx.update(buf, (uint32_t long) uiRead);
-               iLen -= (uint32_t long) uiRead;
+               ctx.update(buf, uiRead);
+               iLen -= uiRead;
             }
             file2->close();
             strMd5New = ctx.to_hex();

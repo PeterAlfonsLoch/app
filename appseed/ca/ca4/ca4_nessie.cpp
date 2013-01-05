@@ -14,7 +14,7 @@ namespace ca4
       NESSIEstruct ns;
       uint8_t digest[NESSIE_DIGESTBYTES];
       NESSIEinit(&ns);
-      NESSIEadd((const byte *) psz, (uint32_t long) (8*strlen(psz)), &ns);
+      NESSIEadd((const byte *) psz, (uint_ptr) (8 * strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
       return gen::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
