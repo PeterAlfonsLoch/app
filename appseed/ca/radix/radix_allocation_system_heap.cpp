@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-// DWORD aligned allocation
+// uint32_t aligned allocation
 
 #ifdef WINDOWSEX
 
@@ -43,9 +43,9 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
    if(p == NULL)
       return NULL;
 
-   ((DWORD *)p)[0] = 0;
+   ((uint32_t *)p)[0] = 0;
 
-   *((size_t *)&((DWORD *)p)[1]) = size;
+   *((size_t *)&((uint32_t *)p)[1]) = size;
 
    int32_t iMod = ((uint_ptr)p) % 4;
 
@@ -64,7 +64,7 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
    int32_t iMod = pOld[- 1 - iSize];
    if(iMod < 1 || iMod > 4)
       return NULL;
-   size_t sizeOld = *((size_t *)&((DWORD *) (pOld - iMod - sizeof(size_t)))[1]);
+   size_t sizeOld = *((size_t *)&((uint32_t *) (pOld - iMod - sizeof(size_t)))[1]);
 #ifdef WINDOWSEX
    byte * p = (byte *) ::HeapReAlloc(g_system_heap(), 0, pOld - iMod- sizeof(size_t), ((size + 4+  sizeof(size_t)  + 3) & ~3));
 #else
@@ -92,9 +92,9 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
    {
       // memset(&p[sizeOld], 0, ((size + 4 + 3) & ~3) - sizeOld);  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
    }
-   ((DWORD *)p)[0] = 0;
+   ((uint32_t *)p)[0] = 0;
    iMod = ((uint_ptr)p) % 4;
-   *((size_t *)&((DWORD *)p)[1]) = size;
+   *((size_t *)&((uint32_t *)p)[1]) = size;
    p[3 - iMod] = (uint8_t) (4 - iMod);
    return &p[4 + sizeof(size_t) - iMod];
 }
@@ -119,7 +119,7 @@ CLASS_DECL_ca void system_heap_free(void * pvoid)
    if(!::HeapFree(g_system_heap(), 0, p - iMod - sizeof(size_t)))
    {
 
-      DWORD dw = ::GetLastError();
+      uint32_t dw = ::GetLastError();
 
       ::OutputDebugString("system_heap_free : Failed to free memory");
 

@@ -233,11 +233,11 @@ namespace datetime
       int32_t SetDate(int32_t nYear, int32_t nMonth, int32_t nDay) RELEASENOTHROW;
       int32_t SetTime(int32_t nHour, int32_t nMin, int32_t nSec) RELEASENOTHROW;
 #ifndef MACOS
-      bool ParseDateTime(const char * lpszDate, DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
+      bool ParseDateTime(const char * lpszDate, uint32_t dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) RELEASENOTHROW;
 #endif
 #ifdef _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
       // formatting
-      string Format(DWORD dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
+      string Format(uint32_t dwFlags = 0, LCID lcid = LANG_USER_DEFAULT) const;
       string Format(LPCTSTR lpszFormat) const;
       string Format(UINT nFormatID) const;
 #endif // _ATL_USE_WINAPI_FAMILY_DESKTOP_APP
@@ -945,7 +945,7 @@ valid : invalid;
    }
 
 #ifndef MACOS
-   inline bool float_time::ParseDateTime(const char * lpszDate, DWORD dwFlags, LCID lcid) RELEASENOTHROW
+   inline bool float_time::ParseDateTime(const char * lpszDate, uint32_t dwFlags, LCID lcid) RELEASENOTHROW
    {
 
       const char * pszDate = ( lpszDate == NULL ) ? "" : lpszDate;
@@ -999,7 +999,7 @@ valid : invalid;
 
 #if defined(_UNICODE) || !defined(_CSTRING_DISABLE_NARROW_WIDE_CONVERSION)
    inline string float_time::Format(
-      DWORD dwFlags,
+      uint32_t dwFlags,
       LCID lcid) const
    {
       // If null, return empty string

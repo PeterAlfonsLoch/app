@@ -40,7 +40,7 @@ public:
    void hls_mult(double dRateH, double dRateL, double dRateS);
    void hls_rate(double dRateH, double dRateL, double dRateS);
    void set_rgb(COLORREF cr);
-   void set_bgr(DWORD dw);
+   void set_bgr(uint32_t dw);
    void set_rgbquad(RGBQUAD quad);
    void get_hls(
       double & dH,
@@ -58,10 +58,10 @@ public:
    void set_hls(
       const hls & hls);
 
-   DWORD get_rgb() const;
-   DWORD get_bgr() const;
-   DWORD get_rgba() const;
-   DWORD get_bgra() const;
+   uint32_t get_rgb() const;
+   uint32_t get_bgr() const;
+   uint32_t get_rgba() const;
+   uint32_t get_bgra() const;
    RGBQUAD get_rgbquad() const;
 
 

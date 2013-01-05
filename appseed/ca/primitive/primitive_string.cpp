@@ -545,7 +545,7 @@ bool __cdecl crt_char_traits::ReAllocSysString( const char* pchData,BSTR* pbstr,
 
 #endif
 
-DWORD __cdecl crt_char_traits::FormatMessage(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw()
+uint32_t __cdecl crt_char_traits::FormatMessage(uint32_t dwFlags, LPCVOID pSource, uint32_t dwMessageID,uint32_t dwLanguageID, char * pszBuffer, uint32_t nSize, va_list* pArguments ) throw()
 {
 
 #ifdef WINDOWS
@@ -562,7 +562,7 @@ DWORD __cdecl crt_char_traits::FormatMessage(DWORD dwFlags, LPCVOID pSource, DWO
 
 }
 
-DWORD __cdecl crt_char_traits::format_message(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw()
+uint32_t __cdecl crt_char_traits::format_message(uint32_t dwFlags, LPCVOID pSource, uint32_t dwMessageID,uint32_t dwLanguageID, char * pszBuffer, uint32_t nSize, va_list* pArguments ) throw()
 {
 
 #ifdef WINDOWS
@@ -602,7 +602,7 @@ strsize __cdecl crt_char_traits::GetCharLen(const char* pch ) throw()
    return  gen::str::utf8_char(pch).get_length();
 }
 
-DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,DWORD dwSize )
+uint32_t __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char * pszBuffer,uint32_t dwSize )
 {
 
 #ifdef METROWIN
@@ -615,7 +615,7 @@ DWORD __cdecl crt_char_traits::GetEnvironmentVariable(const char * pszVar, char 
 
 #else
 
-   return (DWORD) strlen(strncpy(pszBuffer, getenv(pszVar), dwSize));
+   return (uint32_t) strlen(strncpy(pszBuffer, getenv(pszVar), dwSize));
 
 #endif
 
@@ -629,10 +629,10 @@ void crt_char_traits::ConvertToAnsi(char* pstrString,size_t size)
 
    if(size>UINT_MAX)
    {
-      // API only allows DWORD size
+      // API only allows uint32_t size
       throw invalid_argument_exception(::ca::get_thread_app());
    }
-   DWORD dwSize=static_cast<DWORD>(size);
+   uint32_t dwSize=static_cast<uint32_t>(size);
    bool fSuccess=::OemToCharBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
@@ -651,10 +651,10 @@ void crt_char_traits::ConvertToOem(char* pstrString,size_t size)
 
    if(size>UINT_MAX)
    {
-      // API only allows DWORD size
+      // API only allows uint32_t size
       throw invalid_argument_exception(::ca::get_thread_app());
    }
-   DWORD dwSize=static_cast<DWORD>(size);
+   uint32_t dwSize=static_cast<uint32_t>(size);
    bool fSuccess=::CharToOemBuffA(pstrString, pstrString, dwSize) != 0;
    if(!fSuccess)
    {
@@ -2520,7 +2520,7 @@ void string::FormatMessageV(PCXSTR pszFormat, va_list* pArgList )
 
    XCHAR * pszTemp;
 
-   DWORD dwResult = string_trait::FormatMessage( FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER, pszFormat, 0, 0, reinterpret_cast< PXSTR >( &pszTemp ), 0, pArgList );
+   uint32_t dwResult = string_trait::FormatMessage( FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER, pszFormat, 0, 0, reinterpret_cast< PXSTR >( &pszTemp ), 0, pArgList );
 
    if(dwResult == 0)
    {
@@ -2576,7 +2576,7 @@ BSTR string::SetSysString(BSTR* pbstr ) const
 bool string::GetEnvironmentVariable(PCXSTR pszVar )
 {
 
-   DWORD nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
+   uint32_t nLength = string_trait::GetEnvironmentVariable( pszVar, NULL, 0 );
    bool bRetVal = FALSE;
 
    if( nLength == 0 )

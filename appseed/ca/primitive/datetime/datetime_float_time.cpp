@@ -19,7 +19,7 @@ namespace datetime
 #define IsLeapYear(y) (((y % 4) == 0) && (((y % 100) != 0) || ((y % 400) == 0)))
 
 /* Determine if a day is valid in a given month of a given year */
-static WINBOOL FLOATTIME_IsValidMonthDay(DWORD day, DWORD month, DWORD year)
+static WINBOOL FLOATTIME_IsValidMonthDay(uint32_t day, uint32_t month, uint32_t year)
 {
   static const BYTE days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
@@ -42,16 +42,16 @@ static WINBOOL FLOATTIME_IsValidMonthDay(DWORD day, DWORD month, DWORD year)
 
 typedef struct tagDATEPARSE
 {
-    DWORD dwCount;      /* Number of fields found so far (maximum 6) */
-    DWORD dwParseFlags; /* Global parse flags (DP_ Flags above) */
-    DWORD dwFlags[6];   /* Flags for each field */
-    DWORD dwValues[6];  /* Value of each field */
+    uint32_t dwCount;      /* Number of fields found so far (maximum 6) */
+    uint32_t dwParseFlags; /* Global parse flags (DP_ Flags above) */
+    uint32_t dwFlags[6];   /* Flags for each field */
+    uint32_t dwValues[6];  /* Value of each field */
 } DATEPARSE;
 
 
 
 
-static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, DWORD iDate, DWORD offset, SYSTEMTIME *st);
+static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, uint32_t iDate, uint32_t offset, SYSTEMTIME *st);
 
 /***********************************************************************
  *              SystemTimeToVariantTime [OLEAUT32.184]
@@ -351,7 +351,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
   uint32_t i;
   BSTR tokens[sizeof(ParseDateTokens)/sizeof(ParseDateTokens[0])];
   DATEPARSE dp;
-  DWORD dwDateSeps = 0, iDate = 0;
+  uint32_t dwDateSeps = 0, iDate = 0;
   HRESULT hRet = S_OK;
 
   if ((dwFlags & (VAR_TIMEVALUEONLY|VAR_DATEVALUEONLY)) ==
@@ -412,9 +412,9 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
 
       for (i = 0; i < sizeof(tokens)/sizeof(tokens[0]); i++)
       {
-//xxx        DWORD dwLen = strlenW(tokens[i]);
-// xxx         DWORD dwLen = strlen(tokens[i]);
-         DWORD dwLen = -1;
+//xxx        uint32_t dwLen = strlenW(tokens[i]);
+// xxx         uint32_t dwLen = strlen(tokens[i]);
+         uint32_t dwLen = -1;
 //xxx        if (dwLen && !strncmpiW(strIn, tokens[i], dwLen))
         //if (dwLen && !strnicmp_dup(strIn, tokens[i], dwLen))
          if(dwLen && 0)
@@ -511,7 +511,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
   if (SUCCEEDED(hRet))
   {
     SYSTEMTIME st;
-    DWORD dwOffset = 0; /* Start of date fields in dp.dwValues */
+    uint32_t dwOffset = 0; /* Start of date fields in dp.dwValues */
 
     st.wDayOfWeek = st.wHour = st.wMinute = st.wSecond = st.wMilliseconds = 0;
 
@@ -684,9 +684,9 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
 #define ORDER_MYD 0x10 /* Synthetic order, used only for funky 2 digit dates */
 
 /* Determine a date for a particular locale, from 3 numbers */
-static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, DWORD iDate, DWORD offset, SYSTEMTIME *st)
+static inline HRESULT FLOATTIME_MakeDate(DATEPARSE *dp, uint32_t iDate, uint32_t offset, SYSTEMTIME *st)
 {
-  DWORD dwAllOrders, dwTry, dwCount = 0, v1, v2, v3;
+  uint32_t dwAllOrders, dwTry, dwCount = 0, v1, v2, v3;
 
   if (!dp->dwCount)
   {
@@ -739,7 +739,7 @@ VARIANT_MakeDate_Start:
 
   while (dwAllOrders)
   {
-    DWORD dwTemp;
+    uint32_t dwTemp;
 
     if (dwCount == 0)
     {

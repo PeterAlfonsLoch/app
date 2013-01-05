@@ -39,7 +39,7 @@ size::size(const __size64 *  pinitSize) throw()
    { cx = (int32_t) pinitSize->cx; cy = (int32_t) pinitSize->cy; }
 size::size(POINT initPt) throw()
    { *(POINT*)this = initPt; }
-size::size(DWORD dwSize) throw()
+size::size(uint32_t dwSize) throw()
    {
       cx = (int16_t)LOWORD(dwSize);
       cy = (int16_t)HIWORD(dwSize);
@@ -266,7 +266,7 @@ sized::sized(const __size64 *  pinitSize) throw()
    { cx = (int32_t) pinitSize->cx; cy = (int32_t) pinitSize->cy; }
 sized::sized(POINT initPt) throw()
    { *(POINT*)this = initPt; }
-sized::sized(DWORD dwSize) throw()
+sized::sized(uint32_t dwSize) throw()
    {
       cx = (int16_t)LOWORD(dwSize);
       cy = (int16_t)HIWORD(dwSize);

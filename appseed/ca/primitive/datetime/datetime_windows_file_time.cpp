@@ -123,8 +123,8 @@ bool FileTimeToDosTime(const FILETIME &ft, uint32_t &dosTime)
 void UnixTimeToFileTime(uint32_t unixTime, FILETIME &ft)
 {
   uint64_t v = kUnixTimeStartValue + ((uint64_t)unixTime) * kNumTimeQuantumsInSecond;
-  ft.dwLowDateTime = (DWORD)v;
-  ft.dwHighDateTime = (DWORD)(v >> 32);
+  ft.dwLowDateTime = (uint32_t)v;
+  ft.dwHighDateTime = (uint32_t)(v >> 32);
 }
 
 bool FileTimeToUnixTime(const FILETIME &ft, uint32_t &unixTime)

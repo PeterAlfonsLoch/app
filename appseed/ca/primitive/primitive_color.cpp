@@ -364,22 +364,22 @@ void color::set_hls(
 
 } 
 
-DWORD color::get_rgb() const
+uint32_t color::get_rgb() const
 {
    return m_uchR | (m_uchG << 8) | (m_uchB << 16);
 }
 
-DWORD color::get_bgr() const
+uint32_t color::get_bgr() const
 {
    return m_uchB | (m_uchG << 8) | (m_uchR << 16);
 }
 
-DWORD color::get_rgba() const
+uint32_t color::get_rgba() const
 {
    return m_uchR | (m_uchG << 8) | (m_uchB << 16) | (m_uchA << 24);
 }
 
-DWORD color::get_bgra() const
+uint32_t color::get_bgra() const
 {
    return m_uchB | (m_uchG << 8) | (m_uchR << 16) | (m_uchA << 24);
 }
@@ -416,7 +416,7 @@ void color::set_rgb(COLORREF cr)
    m_dA     = m_uchA / 255.0;
 }
 
-void color::set_bgr(DWORD bgr)
+void color::set_bgr(uint32_t bgr)
 {
    m_uchR   = bgr_get_r_value(bgr);
    m_uchG   = bgr_get_g_value(bgr);
@@ -654,7 +654,7 @@ void CColor::set_hls(
 
 } 
 
-DWORD CColor::get_rgb()
+uint32_t CColor::get_rgb()
 {
    return RGB(m_bRed, m_bGreen, m_bBlue);
 }*/

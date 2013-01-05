@@ -20,8 +20,8 @@ public:
    size(const __size64 * pinitSize) throw();
    // create from a point
    size(POINT initPt) throw();
-   // create from a DWORD: cx = LOWORD(dw) cy = HIWORD(dw)
-   size(DWORD dwSize) throw();
+   // create from a uint32_t: cx = LOWORD(dw) cy = HIWORD(dw)
+   size(uint32_t dwSize) throw();
 
    operator SIZE *() throw();
    operator const SIZE *() const throw();
@@ -73,7 +73,7 @@ public:
    size64(const __size64 *pinitSize) throw();
    // create from a point
    size64(__point64 initPt) throw();
-   // create from a DWORD: cx = LODWORD(dw) cy = HIDWORD(dw)
+   // create from a uint32_t: cx = LODWORD(dw) cy = HIDWORD(dw)
    size64(uint64_t dwSize) throw();
 
 
@@ -132,8 +132,8 @@ public:
    sized(const __size64 * pinitSize) throw();
    // create from a pointd
    sized(POINT initPt) throw();
-   // create from a DWORD: cx = LOWORD(dw) cy = HIWORD(dw)
-   sized(DWORD dwSize) throw();
+   // create from a uint32_t: cx = LOWORD(dw) cy = HIWORD(dw)
+   sized(uint32_t dwSize) throw();
 
    operator SIZED *() throw();
    operator const SIZED *() const throw();

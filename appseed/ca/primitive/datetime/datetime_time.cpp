@@ -823,8 +823,8 @@ namespace datetime
 
    file_time::file_time( ULONGLONG nTime ) throw()
    {
-      dwLowDateTime = DWORD( nTime );
-      dwHighDateTime = DWORD( nTime>>32 );
+      dwLowDateTime = uint32_t( nTime );
+      dwHighDateTime = uint32_t( nTime>>32 );
    }
 
    file_time& file_time::operator=( const FILETIME& ft ) throw()
@@ -908,8 +908,8 @@ namespace datetime
 
    void file_time::SetTime( ULONGLONG nTime ) throw()
    {
-      dwLowDateTime = DWORD( nTime );
-      dwHighDateTime = DWORD( nTime>>32 );
+      dwLowDateTime = uint32_t( nTime );
+      dwHighDateTime = uint32_t( nTime>>32 );
    }
 
    file_time file_time::UTCToLocal() const throw()
@@ -947,7 +947,7 @@ namespace datetime
 
 
 
-dump_context& operator <<(dump_context & dumpcontext, ::datetime::time time)
+dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
 {
    char psz[32];
    psz[0] = '\0';
@@ -978,7 +978,7 @@ CArchive& operator <<(CArchive& ar, ::datetime::time time)
 // This version serializes 32 bits of invalid time and after 64 bits
 // time64. New code will support both 64 serialization and 32/64 deserialization.
 __time64_t ttime = time.get_time();
-ar << (DWORD)cTime64Mark;
+ar << (uint32_t)cTime64Mark;
 return ar << (int64_t) ttime;
 }
 
@@ -988,7 +988,7 @@ CArchive& operator >>(CArchive& ar, ::datetime::time& rtime)
 //If the first 32 bits are cTime64Mark (which is invalid time32 value), then
 //The next 64 bits are read to form time64 value, else, it must be a legacy (VC6-7.1) time32 value.
 __time32_t timeOld;
-CArchive& retRef = ar >> (DWORD&) timeOld;
+CArchive& retRef = ar >> (uint32_t&) timeOld;
 if (static_cast<__int32>(timeOld)==cTime64Mark)
 {
 __time64_t t64;
@@ -1005,7 +1005,7 @@ return retRef;
 // time_span - relative time
 
 
-dump_context& operator <<(dump_context & dumpcontext, ::datetime::time_span timeSpan)
+dump_context & operator <<(dump_context & dumpcontext, ::datetime::time_span timeSpan)
 {
    return dumpcontext << "time_span(" << timeSpan.GetDays() << " days, " <<
       timeSpan.GetHours() << " hours, " <<
@@ -1029,14 +1029,14 @@ ASSERT( timespan <= UINT_MAX);
 if( timespan > UINT_MAX)
 throw invalid_argument_exception(get_app());
 time_t timeConverted = (time_t)timespan;
-return ar << (DWORD) timeConverted;
+return ar << (uint32_t) timeConverted;
 }
 
 CArchive& operator >>(CArchive& ar, time_span& rtimeSpan)
 {
 // this version serializes only 32 bits
 __time32_t timeOld;
-CArchive& retRef = ar >> (DWORD&) timeOld;
+CArchive& retRef = ar >> (uint32_t&) timeOld;
 rtimeSpan = __time64_t(timeOld);
 return retRef;
 }*/

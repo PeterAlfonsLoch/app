@@ -25,7 +25,7 @@ namespace gen
       public:
 
 
-         DWORD    m_dwCategory;
+         uint32_t    m_dwCategory;
          UINT     m_nLevel;
 
 
@@ -50,7 +50,7 @@ namespace gen
 
 #ifdef WINDOWS
 
-      inline void __cdecl operator()(DWORD dwCategory, UINT nLevel, const char *pszFmt, ...) const
+      inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt, ...) const
       {
          va_list ptr; va_start(ptr, pszFmt);
          System.log().trace_v(m_pszFileName, m_nLineNo, dwCategory, nLevel, pszFmt, ptr);
@@ -84,7 +84,7 @@ namespace gen
 
       }
 
-      inline void __cdecl operator()(DWORD dwCategory, UINT nLevel, const char *pszFmt) const
+      inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char *pszFmt) const
       {
 
          category_level categorylevel;
@@ -100,7 +100,7 @@ namespace gen
       }
 
       template<typename T, typename... Args>
-      inline void __cdecl operator()(DWORD dwCategory, UINT nLevel, const char * pszFmt, const T & value, Args... args) const
+      inline void __cdecl operator()(uint32_t dwCategory, UINT nLevel, const char * pszFmt, const T & value, Args... args) const
       {
 
          category_level categorylevel;

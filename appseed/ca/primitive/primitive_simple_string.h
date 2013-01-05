@@ -1165,7 +1165,7 @@ public:
       m_pszBuffer = m_str.GetBuffer();
    }
 
-   string_buffer(StringType& str,strsize nMinLength,DWORD dwFlags = AUTO_LENGTH ) THROWS :
+   string_buffer(StringType& str,strsize nMinLength,uint32_t dwFlags = AUTO_LENGTH ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
 #ifdef DEBUG

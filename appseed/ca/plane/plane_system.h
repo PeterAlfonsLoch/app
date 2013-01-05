@@ -488,7 +488,7 @@ namespace plane
       static void register_delete(::ca::ca * plistened, ::ca::ca * plistener);
       static void unregister_delete(::ca::ca * plistened, ::ca::ca * plistenerOld);
 
-      virtual bool wait_twf(DWORD dwTimeOut = INFINITE);
+      virtual bool wait_twf(uint32_t dwTimeOut = INFINITE);
 
       template < class T >
       ::ca::type_info & type_info()

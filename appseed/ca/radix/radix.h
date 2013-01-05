@@ -530,9 +530,9 @@ enum __HELP_TYPE
 
 #ifdef DEBUG
 // Diagnostic Output
-CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, SIZE size);
-CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, POINT point);
-CLASS_DECL_ca dump_context& operator<<(dump_context & dumpcontext, const RECT& rect);
+CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, SIZE size);
+CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, POINT point);
+CLASS_DECL_ca dump_context & operator<<(dump_context & dumpcontext, const RECT& rect);
 #endif //DEBUG
 
 // Serialization
@@ -577,13 +577,13 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca ::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca ::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca thread* __begin_thread(::ca::type_info pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
-   DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
+   uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
 
 template < class THREAD_TYPE >
-THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
+THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
    pthread->Begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
@@ -669,7 +669,7 @@ __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszVal
 struct __system_policy_data
 {
    const char * szPolicyName;
-   DWORD dwID;
+   uint32_t dwID;
 };
 
 struct __system_policies
@@ -684,7 +684,7 @@ class CLASS_DECL_ca file_manager_interface :
 public:
    file_manager_interface();
    virtual ~file_manager_interface();
-   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
    bool initialize(::ca::application * papp);
 

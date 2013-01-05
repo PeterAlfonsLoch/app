@@ -159,13 +159,13 @@ public:
 
 #endif
 
-   static DWORD         __cdecl  FormatMessage(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
-   static DWORD         __cdecl  format_message(DWORD dwFlags, LPCVOID pSource, DWORD dwMessageID,DWORD dwLanguageID, char * pszBuffer, DWORD nSize, va_list* pArguments ) throw();
+   static uint32_t         __cdecl  FormatMessage(uint32_t dwFlags, LPCVOID pSource, uint32_t dwMessageID,uint32_t dwLanguageID, char * pszBuffer, uint32_t nSize, va_list* pArguments ) throw();
+   static uint32_t         __cdecl  format_message(uint32_t dwFlags, LPCVOID pSource, uint32_t dwMessageID,uint32_t dwLanguageID, char * pszBuffer, uint32_t nSize, va_list* pArguments ) throw();
    static strsize       __cdecl  SafeStringLen( const char * psz ) throw();
    static strsize       __cdecl  SafeStringLen( const wchar_t * psz ) throw();
    static strsize       __cdecl  GetCharLen(const wchar_t* pch ) throw();
    static strsize       __cdecl  GetCharLen(const char* pch ) throw();
-   static DWORD         __cdecl  GetEnvironmentVariable(const char * pszVar, char * pszBuffer, DWORD dwSize);
+   static uint32_t         __cdecl  GetEnvironmentVariable(const char * pszVar, char * pszBuffer, uint32_t dwSize);
 
 };
 

@@ -274,7 +274,7 @@ namespace primitive
    }
 
 
-   void memory_file::Flush()
+   void memory_file::flush()
    {
    }
 

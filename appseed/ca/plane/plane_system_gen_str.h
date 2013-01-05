@@ -113,7 +113,7 @@ namespace gen
 
 
 
-   inline dump_context& dump_context::operator<<(const string & str)
+   inline dump_context & dump_context::operator<<(const string & str)
    {
       *this << static_cast< const char * >( str );
       return *this;

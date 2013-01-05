@@ -145,22 +145,22 @@ namespace numeric_info
    #ifdef WINDOWS
 
    template <>
-   inline DWORD get_maximum_value < DWORD > ()
+   inline uint32_t get_maximum_value < uint32_t > ()
    {
-      return static_cast < DWORD > (0xffffffff);
+      return static_cast < uint32_t > (0xffffffff);
    }
    template <>
-   inline DWORD get_minimum_value < DWORD > ()
+   inline uint32_t get_minimum_value < uint32_t > ()
    {
-      return (DWORD) 0;
+      return (uint32_t) 0;
    }
    template <>
-   inline DWORD get_null_value < DWORD > ()
+   inline uint32_t get_null_value < uint32_t > ()
    {
       return 0;
    }
    template <>
-   inline DWORD get_unitary_value < DWORD >()
+   inline uint32_t get_unitary_value < uint32_t >()
    {
       return 1;
    }

@@ -44,7 +44,7 @@ namespace primitive
 
       virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
 
-      void Flush();
+      void flush();
 
 
       virtual void full_load(const char * psz);
