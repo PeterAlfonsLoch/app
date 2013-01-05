@@ -100,7 +100,7 @@ namespace visual
       sizea.set_size(iLen);
       if(iLen > 0)
       {
-         sizea[0] = (DWORD) 0;
+         sizea[0] = (uint32_t) 0;
       }
       for(int32_t i = 1; i < iLen; i++)
       {
@@ -372,7 +372,7 @@ namespace visual
             str,
             iLen,
             &sz);*/
-//         DWORD dw = ::GetLastError();
+//         uint32_t dw = ::GetLastError();
          if(sz.cx > rectClip.width())
          {
             strsize i = iLen;

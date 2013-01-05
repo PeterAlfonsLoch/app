@@ -29,7 +29,7 @@ namespace visual
 
 #ifdef WINDOWSEX
 
-      void Initialize(LPTTPOLYGONHEADER lpph, DWORD cbSize, int32_t iFontHiHeight);
+      void Initialize(LPTTPOLYGONHEADER lpph, uint32_t cbSize, int32_t iFontHiHeight);
 
 #endif
 

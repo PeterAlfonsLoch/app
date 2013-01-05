@@ -131,7 +131,7 @@ namespace user
 
       rect rectUpdate(*lpcrectUpdate);
 
-      DWORD dwTimeIn = get_tick_count();
+      uint32_t dwTimeIn = get_tick_count();
 
       oswindow oswindowParam = oswindowtree.m_oswindow;
 
@@ -233,7 +233,7 @@ namespace user
 
 
 
-      DWORD dwTimeOut = get_tick_count();
+      uint32_t dwTimeOut = get_tick_count();
    //   TRACE("// Average Window Rendering time\n");
    //   TRACE("// Window Class: %s\n", (pwnd!=NULL) ? pwnd->GetRuntimeClass()->m_lpszClassName : "(Not available)");
    //   TRACE("// TickCount: %d \n", dwTimeOut - dwTimeIn);

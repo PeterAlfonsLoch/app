@@ -333,7 +333,7 @@ namespace visual
    *
    *  RETURNS    : none.
    ****************************************************************************/
-   void glyph::Initialize(LPTTPOLYGONHEADER lpHeader, DWORD size, int32_t iFontHiHeight)
+   void glyph::Initialize(LPTTPOLYGONHEADER lpHeader, uint32_t size, int32_t iFontHiHeight)
    {
 
       WORD                i;
@@ -342,8 +342,8 @@ namespace visual
       LPTTPOLYCURVE       lpCurve;    // the current curve of a contour
       //  LPPOINT             pt;         // the bezier buffer
       POINTFX             ptStart;    // The starting point of a curve
-      DWORD               dwMaxPts = size/sizeof(POINTFX); // max possible pts.
-      DWORD               dwBuffSize;
+      uint32_t               dwMaxPts = size/sizeof(POINTFX); // max possible pts.
+      uint32_t               dwBuffSize;
 
       dwBuffSize = dwMaxPts *     // Maximum possible # of contour points.
          sizeof(POINT) * // sizeof buffer element
@@ -356,8 +356,8 @@ namespace visual
       // Loop until we have processed the entire buffer of contours.
       // The buffer may contain one or more contours that begin with
       // a TTPOLYGONHEADER. We have them all when we the end of the buffer.
-      //while ((DWORD)lpHeader < (DWORD)(((char *)lpStart) + size) && pt != NULL)
-      while ((DWORD)lpHeader < (DWORD)(((char *)lpStart) + size))
+      //while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size) && pt != NULL)
+      while ((uint32_t)lpHeader < (uint32_t)(((char *)lpStart) + size))
       {
          if (lpHeader->dwType == TT_POLYGON_TYPE)
             // draw each coutour, currently this is the only valid
@@ -388,7 +388,7 @@ namespace visual
 
             // Walk this contour and process each curve( or line ) segment
             // and add it to the Beziers
-            while ((DWORD)lpCurve < (DWORD)(((char *)lpHeader) + lpHeader->cb))
+            while ((uint32_t)lpCurve < (uint32_t)(((char *)lpHeader) + lpHeader->cb))
             {
                //**********************************************
                // Format assumption:

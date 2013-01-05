@@ -1589,9 +1589,9 @@ void imaging::BitmapBlend24CC(
       LPBYTE lpbC = (LPBYTE) lpbCParam + (w3 * i);
       for(j = 0; j < cx; j++)
       {
-         *lpbA++ = (BYTE) (((((DWORD) *lpbA) * ((DWORD) (255 - *lpbC)) + (((DWORD) *lpbB++) * ((DWORD) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((DWORD) *lpbA) * ((DWORD) (255 - *lpbC)) + (((DWORD) *lpbB++) * ((DWORD) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((DWORD) *lpbA) * ((DWORD) (255 - *lpbC)) + (((DWORD) *lpbB++) * ((DWORD) *lpbC++)))) / 255);
+         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) *lpbB++) * ((uint32_t) *lpbC++)))) / 255);
+         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) *lpbB++) * ((uint32_t) *lpbC++)))) / 255);
+         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) *lpbB++) * ((uint32_t) *lpbC++)))) / 255);
       }
    }
 
@@ -1681,7 +1681,7 @@ void imaging::BitmapBlend24CC(
       LPBYTE lpbSrc = (LPBYTE) lpushSrc;
       for(;j < maxw; j++)
       {
-      *lpbDst++ = (BYTE) (((DWORD) (*lpbSrc++ - *lpbDst) * ((DWORD) (bAlpha))) / 256) + *lpbDst;
+      *lpbDst++ = (BYTE) (((uint32_t) (*lpbSrc++ - *lpbDst) * ((uint32_t) (bAlpha))) / 256) + *lpbDst;
       }
       lpbDst = (LPBYTE) lpbDestParam + iDestPadding;
       lpbSrc = (LPBYTE) lpbSrcParam + iSrcPadding;
@@ -3252,8 +3252,8 @@ return NULL;
 memcpy(lpBitmapInfo, lpBitmap, nSize);
 
 // color table is in RGBQUAD DIB format
-DWORD* pColorTable =
-(DWORD*)(((LPBYTE)lpBitmapInfo) + (UINT)lpBitmapInfo->biSize);
+uint32_t* pColorTable =
+(uint32_t*)(((LPBYTE)lpBitmapInfo) + (UINT)lpBitmapInfo->biSize);
 
 for (int32_t iColor = 0; iColor < nColorTableSize; iColor++)
 {
@@ -3558,10 +3558,10 @@ void imaging::blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int32_t iRadiu
    lpbSource++;
    }
    }*/
-   DWORD dwR;
-   DWORD dwG;
-   DWORD dwB;
-   DWORD dwA;
+   uint32_t dwR;
+   uint32_t dwG;
+   uint32_t dwB;
+   uint32_t dwA;
 
    int32_t iFilterXBegin;
    int32_t iFilterXEnd;
@@ -3771,10 +3771,10 @@ void imaging::blur_32CC_r2(::ca::dib * pdibDst, ::ca::dib * pdibSrc)
    //   int32_t max3x2 = (maxx1 - 5) * 4;
    ///   int32_t max3x3 = (maxx1 - 2) * 4;
    //   int32_t w = cx * 3;
-   DWORD dwR;
-   DWORD dwG;
-   DWORD dwB;
-   DWORD dwA;
+   uint32_t dwR;
+   uint32_t dwG;
+   uint32_t dwB;
+   uint32_t dwA;
 
    int32_t yL = 2;
    int32_t yU = maxy1 - 2;
@@ -3968,7 +3968,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    BYTE *lpbSource_2;
    BYTE *lpbSource_3;
 
-   DWORD dwI;
+   uint32_t dwI;
 
    int32_t x, y;
    int32_t x2;
@@ -4170,7 +4170,7 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
    BYTE *lpbSource_2;
    BYTE *lpbSource_3;
 
-   DWORD dwI;
+   uint32_t dwI;
 
    int32_t x, y;
    int32_t x2;
@@ -4444,7 +4444,7 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
    lpbSource++;
    }
    }*/
-   DWORD dwI;
+   uint32_t dwI;
 
    int32_t iFilterXBegin;
    int32_t iFilterXEnd;
@@ -4760,9 +4760,9 @@ void imaging::color_blend_24CC(
       LPBYTE lpbC = (LPBYTE) lpbCParam + (w3 * i);
       for(j = 0; j < cx; j++)
       {
-         *lpbA++ = (BYTE) (((((DWORD) *lpbA) * ((DWORD) (255 - *lpbC)) + (((DWORD) bB) * ((DWORD) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((DWORD) *lpbA) * ((DWORD) (255 - *lpbC)) + (((DWORD) bG) * ((DWORD) *lpbC++)))) / 255);
-         *lpbA++ = (BYTE) (((((DWORD) *lpbA) * ((DWORD) (255 - *lpbC)) + (((DWORD) bR) * ((DWORD) *lpbC++)))) / 255);
+         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) bB) * ((uint32_t) *lpbC++)))) / 255);
+         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) bG) * ((uint32_t) *lpbC++)))) / 255);
+         *lpbA++ = (BYTE) (((((uint32_t) *lpbA) * ((uint32_t) (255 - *lpbC)) + (((uint32_t) bR) * ((uint32_t) *lpbC++)))) / 255);
       }
    }
 
@@ -5115,9 +5115,9 @@ void imaging::alpha_spread_R2_24CC(LPBYTE lpbDst, int32_t xDest, int32_t yDest, 
    //   int32_t max3x2 = (maxx1 - iFilterHeight) * 3;
    //   int32_t max3x3 = (maxx1 - iFilterHeight / 2) * 3;
    //   int32_t w = cx * 3;
-   DWORD dwR;
-   DWORD dwG;
-   DWORD dwB;
+   uint32_t dwR;
+   uint32_t dwG;
+   uint32_t dwB;
 
    int32_t iFilterXBegin;
    int32_t iFilterXEnd;
@@ -5172,7 +5172,7 @@ void imaging::alpha_spread_R2_24CC(LPBYTE lpbDst, int32_t xDest, int32_t yDest, 
    int32_t x1;
    int32_t x2;
 
-   DWORD bMin3 = bMin * 3;
+   uint32_t bMin3 = bMin * 3;
 
    divisor = (iFilterYEnd - iFilterYBegin) * (iFilterXEnd - iFilterXBegin );
 
@@ -5214,7 +5214,7 @@ void imaging::alpha_spread_R2_24CC(LPBYTE lpbDst, int32_t xDest, int32_t yDest, 
 
          if(bSpread)
          {
-            *((DWORD *) lpwDestination) |= 0x00ffffff;
+            *((uint32_t *) lpwDestination) |= 0x00ffffff;
             lpwDestination += 3;
          }
          else
@@ -5296,9 +5296,9 @@ void imaging::alpha_spread__24CC(
    //   int32_t max3x2 = (maxx1 - iFilterH) * 3;
    //   int32_t max3x3 = (maxx1 - iFilterH / 2) * 3;
    //   int32_t w = cx * 3;
-   DWORD dwR;
-   DWORD dwG;
-   DWORD dwB;
+   uint32_t dwR;
+   uint32_t dwG;
+   uint32_t dwB;
 
 
    int32_t iFilterXLBound;
@@ -5341,7 +5341,7 @@ void imaging::alpha_spread__24CC(
    int32_t yU;
 
    bool bSpread;
-   DWORD bMin3 = bMin * 3;
+   uint32_t bMin3 = bMin * 3;
 
 
    for(i = 0; i < 4; i++)
@@ -5417,7 +5417,7 @@ void imaging::alpha_spread__24CC(
 
                      if(dwR + dwG + dwB > bMin3)
                      {
-                        *((DWORD *) lpwDestination) |= 0x00ffffff;
+                        *((uint32_t *) lpwDestination) |= 0x00ffffff;
                         goto breakFilter;
                      }
                   }
@@ -5497,7 +5497,7 @@ breakFilter:
 
          if(bSpread)
          {
-            *((DWORD *) lpwDestination) |= 0x00ffffff;
+            *((uint32_t *) lpwDestination) |= 0x00ffffff;
             lpwDestination += 3;
          }
          else
@@ -5742,7 +5742,7 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
          x1 = xL;
          x2 = (x1 - iFilterHalfW) * 4;
          lpwDestination = lpbDst + (wDst  * y1) + x1 * 4;
-         if(*((DWORD *) lpwDestination) != 0xffffffff)
+         if(*((uint32_t *) lpwDestination) != 0xffffffff)
          {
             for(; x1 <= xU; x1++)
             {
@@ -5776,7 +5776,7 @@ bool imaging::channel_spread__32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int
                      {
                         if(lpbSource_2[0] > 0)
                         {
-                           *((DWORD *) lpwDestination) = crSpreadSetColor;
+                           *((uint32_t *) lpwDestination) = crSpreadSetColor;
                            goto breakFilter;
                         }
                      }
@@ -5827,7 +5827,7 @@ breakFilter:
          lpbSource_1 = lpbSource + x2;
          lpFilter = pFilter;
 
-         if(*((DWORD *) lpwDestination) != 0xffffffff)
+         if(*((uint32_t *) lpwDestination) != 0xffffffff)
          {
             for(int32_t yFilter = iFilterYLBound; yFilter <= iFilterYUBound; yFilter++)
             {
@@ -5839,7 +5839,7 @@ breakFilter:
                   {
                      if(lpbSource_2[0] > 0)
                      {
-                        *((DWORD *) lpwDestination) = crSpreadSetColor;
+                        *((uint32_t *) lpwDestination) = crSpreadSetColor;
                         goto breakFilter2;
                      }
                   }
@@ -6138,9 +6138,9 @@ void imaging::pixelate_24CC(
    //   int32_t max3x3 = (maxx1 - iFilterHeight / 2) * 3;
    //int32_t w = cx * 3;
 
-   DWORD dwR;
-   DWORD dwG;
-   DWORD dwB;
+   uint32_t dwR;
+   uint32_t dwG;
+   uint32_t dwB;
 
    int32_t iFilterXBegin;
    int32_t iFilterXEnd;
@@ -6603,9 +6603,9 @@ void imaging::alpha_pixelate_24CC(
    BYTE *lpbSource2_2;
    //   WORD *lpwDestination_2;
    //   BYTE *lpFilter;
-   //DWORD *lpConv;
+   //uint32_t *lpConv;
    //   BYTE pFilter[constFilterHeight *constFilterWidth];
-   //DWORD pConv[constFilterHeight * constFilterWidth * 3];
+   //uint32_t pConv[constFilterHeight * constFilterWidth * 3];
    //   memset(pFilter, 1, constFilterHeight * constFilterWidth);
 
    int32_t iFilterWidth = iSize;
@@ -6632,12 +6632,12 @@ void imaging::alpha_pixelate_24CC(
    lpbSource++;
    }
    }*/
-   DWORD dwR1;
-   DWORD dwG1;
-   DWORD dwB1;
-   DWORD dwR2;
-   DWORD dwG2;
-   DWORD dwB2;
+   uint32_t dwR1;
+   uint32_t dwG1;
+   uint32_t dwB1;
+   uint32_t dwR2;
+   uint32_t dwG2;
+   uint32_t dwB2;
 
    int32_t iFilterXBegin;
    int32_t iFilterXEnd;
@@ -6777,9 +6777,9 @@ void imaging::alpha_pixelate_24CC(
    int32_t iRate1 = iAlpha;
    int32_t iRate2 = 255 - iAlpha;
 
-   DWORD dwR;
-   DWORD dwG;
-   DWORD dwB;
+   uint32_t dwR;
+   uint32_t dwG;
+   uint32_t dwB;
 
    int32_t cFilter  = wDest - iFilterWidth * 3;
    int32_t cFilter1 = wSrc1 - iFilterWidth * 3;
@@ -6900,7 +6900,7 @@ bool imaging::HueVRCP(::ca::dib * pdib, COLORREF crHue, double dCompress)
 
    for(int64_t i = 0; i < area; i++)
    {
-      *((DWORD *) lpb) = (cra[(lpb[0] + lpb[1] + lpb[2]) / 3]) | lpb[3] << 24;
+      *((uint32_t *) lpb) = (cra[(lpb[0] + lpb[1] + lpb[2]) / 3]) | lpb[3] << 24;
       lpb += 4;
    }
 

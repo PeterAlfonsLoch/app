@@ -181,7 +181,7 @@ bool virtual_user_interface::create_message_window()
    return true;
 }
 
-bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT & rect, ::user::interaction * pparent, id id, LPVOID lpParam)
+bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction * pparent, id id, LPVOID lpParam)
 {
 
    if(m_bCreate)
@@ -312,7 +312,7 @@ bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassNam
 
 
 
-bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle,  const RECT& rect, ::user::interaction*  pparent, id id, ::ca::create_context * pContext)
+bool virtual_user_interface::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle,  const RECT& rect, ::user::interaction*  pparent, id id, ::ca::create_context * pContext)
 {
    if(m_bCreate)
    {
@@ -553,7 +553,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 
 /*   bool virtual_user_interface::create(const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
+      const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, UINT nID,
       create_context* pContext)
@@ -562,16 +562,16 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    }
 
    // advanced creation (allows access to extended styles)
-   bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
+   bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName,
+      const char * lpszWindowName, uint32_t dwStyle,
       int32_t x, int32_t y, int32_t nWidth, int32_t nHeight,
       oswindow oswindow_Parent, HMENU nIDorHMenu, LPVOID lpParam)
    {
       return FALSE;
    }
 
-   bool virtual_user_interface::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
+   bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClassName,
+      const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       ::ca::window* pParentWnd, UINT nID,
       LPVOID lpParam)
@@ -610,7 +610,7 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 {
    UNREFERENCED_PARAMETER(lpClientRect);
    UNREFERENCED_PARAMETER(nAdjustType);
-   //DWORD dwExStyle = GetExStyle();
+   //uint32_t dwExStyle = GetExStyle();
    //if (nAdjustType == 0)
    //   dwExStyle &= ~WS_EX_CLIENTEDGE;
    //::AdjustWindowRectEx(lpClientRect, GetStyle(), FALSE, dwExStyle);
@@ -746,15 +746,15 @@ bool virtual_user_interface::IsWindowEnabled()
 }
 
 
-DWORD virtual_user_interface::GetStyle()
+uint32_t virtual_user_interface::GetStyle()
 {
-   DWORD dwStyle = 0;
+   uint32_t dwStyle = 0;
    if(m_bVisible)
       dwStyle |= WS_VISIBLE;
    return dwStyle;
 }
 
-DWORD virtual_user_interface::GetExStyle()
+uint32_t virtual_user_interface::GetExStyle()
 {
    return 0;
 }
@@ -1336,7 +1336,7 @@ void virtual_user_interface::SetFont(::ca::font* pFont, bool bRedraw)
 }
 
 uint_ptr virtual_user_interface::SetTimer(uint_ptr nIDEvent, UINT nElapse,
-      void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
+      void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t))
 {
    UNREFERENCED_PARAMETER(lpfnTimer);
    m_pguie->m_pthread->m_pthread->set_timer(m_pguie, nIDEvent, nElapse);
@@ -1438,7 +1438,7 @@ void virtual_user_interface::on_delete(::ca::ca * pui)
    ::user::interaction::on_delete(pui);
 }
 
-/*int32_t virtual_user_interface::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
+/*int32_t virtual_user_interface::RunModalLoop(uint32_t dwFlags, ::ca::live_object * pliveobject)
 {
    if(dynamic_cast < virtual_user_interface * > (GetTopLevelFrame()) == this)
       return ::user::interaction::RunModalLoop(dwFlags, pliveobject);

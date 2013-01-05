@@ -57,7 +57,7 @@ namespace user
       oswindow_tree(const oswindow_tree & tree);
 
       oswindow   m_oswindow;
-      DWORD m_dwUser;
+      uint32_t m_dwUser;
       oswindow m_pvoidUser;
       Array m_oswindowtreea;
       public:

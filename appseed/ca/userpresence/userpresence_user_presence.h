@@ -15,7 +15,7 @@ namespace userpresence
          };
 
 
-         DWORD          m_dwLastActivity;
+         uint32_t          m_dwLastActivity;
          int64_t        m_iShortStatusCynceTag;
          string         m_strLongStatus;
 

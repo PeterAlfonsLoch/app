@@ -118,7 +118,7 @@ namespace filemanager
 
          int32_t iHash = 0;
          int32_t iRemain = iLen;
-         DWORD * lpdw = (DWORD *) lpiidl;
+         uint32_t * lpdw = (uint32_t *) lpiidl;
          while(iRemain >= 4)
          {
             iHash += *lpdw;
@@ -718,7 +718,7 @@ namespace filemanager
 
             LPITEMIDLIST lpiidl2 = NULL;
 
-            DWORD dwAttrib = 0;
+            uint32_t dwAttrib = 0;
 
 //            uint32_t long ulEaten;
 

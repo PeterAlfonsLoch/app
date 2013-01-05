@@ -67,7 +67,7 @@ namespace visual
       try
       {
 
-         b = optca_fastblur((DWORD *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (DWORD *) m_ucha.get_data(), m_uchaDiv.get_data(), m_p->scan);
+         b = optca_fastblur((uint32_t *) m_p->get_data(), m_size.cx, m_size.cy, m_iRadius, (uint32_t *) m_ucha.get_data(), m_uchaDiv.get_data(), m_p->scan);
 
       }
       catch(...)

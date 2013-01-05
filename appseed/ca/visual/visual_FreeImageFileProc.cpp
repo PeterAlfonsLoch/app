@@ -5,7 +5,7 @@
 
 /*uint32_t ___ReadProc    (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   DWORD dwRead;
+   uint32_t dwRead;
    if(ReadFile(handle, buffer, count * size, &dwRead, NULL))
    {
       return count;
@@ -18,7 +18,7 @@
 }
 uint32_t ___WriteProc   (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   DWORD dwWritten;
+   uint32_t dwWritten;
    if(WriteFile(handle, buffer, count * size, &dwWritten, NULL))
    {
       return count;
@@ -48,7 +48,7 @@ long     ___TellProc    (fi_handle handle)
 
 uint32_t __ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   DWORD dwRead;
+   uint32_t dwRead;
    if(ReadFile(handle, buffer, count * size, &dwRead, NULL))
    {
       return count;
@@ -61,7 +61,7 @@ uint32_t __ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle hand
 }
 uint32_t __WriteProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   DWORD dwWritten;
+   uint32_t dwWritten;
    if(WriteFile(handle, buffer, count * size, &dwWritten, NULL))
    {
       return count;

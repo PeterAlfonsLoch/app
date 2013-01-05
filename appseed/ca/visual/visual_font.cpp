@@ -214,7 +214,7 @@ namespace visual
       mat2.eM22.fract = 0;
       GLYPHMETRICS gm;
 
-      DWORD cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, NULL, &mat2);
+      uint32_t cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, NULL, &mat2);
 
       if(cbBuffer == GDI_ERROR)
          return FALSE;

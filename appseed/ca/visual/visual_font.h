@@ -20,10 +20,10 @@ namespace visual
 //#endif
 
       int32_t            m_iFontHiHeight;
-      //static const DWORD m_dwAllocationAddUp;
+      //static const uint32_t m_dwAllocationAddUp;
       //LPVOID         m_lpData;
-      //DWORD         m_dwSize;
-      //DWORD         m_dwAllocation;
+      //uint32_t         m_dwSize;
+      //uint32_t         m_dwAllocation;
       //int32_t            m_iUsedGlyphs;
       ::ca::graphics *         m_pDC;
       //static mutex m_mutex;

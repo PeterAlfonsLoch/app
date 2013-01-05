@@ -4,8 +4,8 @@ class CLASS_DECL_ca wait_message_dialog :
    virtual public ::radix::object
 {
 public:
-   DWORD       m_dwStartTime;
-   DWORD       m_dwDelay;
+   uint32_t       m_dwStartTime;
+   uint32_t       m_dwDelay;
    string      m_strResponse;
 
 
@@ -17,7 +17,7 @@ public:
 //   virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
 
    virtual bool on_timeout();
-   virtual void on_timer_soft_reload(DWORD dwTimeout);
+   virtual void on_timer_soft_reload(uint32_t dwTimeout);
 
 };
 

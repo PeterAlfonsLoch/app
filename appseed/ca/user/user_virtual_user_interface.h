@@ -51,13 +51,13 @@ public:
    void RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDLeftOver, UINT nFlags, LPRECT lpRectParam, LPCRECT lpRectClient, bool bStretch);
 
 
-   //virtual int32_t RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+   //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
 
 
    virtual bool DestroyWindow();
 
-   virtual DWORD GetStyle();
-   virtual DWORD GetExStyle();
+   virtual uint32_t GetStyle();
+   virtual uint32_t GetExStyle();
    virtual LRESULT Default();
 
    virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
@@ -83,7 +83,7 @@ public:
 
 // Timer Functions
    virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-      void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
+      void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
    virtual bool KillTimer(uint_ptr nIDEvent);
 
 
@@ -94,12 +94,12 @@ public:
    virtual void VirtualOnSize();
    virtual bool create(::user::interaction *pparent, id id);
    virtual bool create(const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
+      const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
       ::ca::create_context* pContext = NULL);
-   virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
+   virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
+      const char * lpszWindowName, uint32_t dwStyle,
       const RECT& rect,
       ::user::interaction* pParentWnd, id id,
       LPVOID lpParam = NULL);

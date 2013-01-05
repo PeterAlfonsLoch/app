@@ -44,7 +44,7 @@ bool wait_message_dialog::BaseOnControlEvent(::user::form * pview, ::user::contr
    {
       if(pevent->m_uiEvent == 5432175)
       {
-         DWORD dwTimeout = ::get_tick_count() - m_dwStartTime;
+         uint32_t dwTimeout = ::get_tick_count() - m_dwStartTime;
          if(dwTimeout > m_dwDelay)
          {
             if(on_timeout())
@@ -69,7 +69,7 @@ bool wait_message_dialog::on_timeout()
    return true;
 }
 
-void wait_message_dialog::on_timer_soft_reload(DWORD dwTimeout)
+void wait_message_dialog::on_timer_soft_reload(uint32_t dwTimeout)
 {
    string str;
    str.Format("%d", (int32_t) ((m_dwDelay - dwTimeout) / 1000));

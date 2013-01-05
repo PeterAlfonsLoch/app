@@ -43,15 +43,15 @@ public:
 
    // OLE drag/drop support
 /*   virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-      DWORD dwKeyState, point point);
+      uint32_t dwKeyState, point point);
    virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-      DWORD dwKeyState, point point);
+      uint32_t dwKeyState, point point);
    virtual void OnDragLeave();
    virtual bool OnDrop(COleDataObject* pDataObject,
       DROPEFFECT dropEffect, point point);
    virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
       DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
-   virtual DROPEFFECT OnDragScroll(DWORD dwKeyState, point point);*/
+   virtual DROPEFFECT OnDragScroll(uint32_t dwKeyState, point point);*/
 
    virtual void OnPrepareDC(::ca::graphics * pgraphics, CPrintInfo* pInfo = NULL);
 
@@ -87,7 +87,7 @@ public:
 
    static user::document_interface * get_document(::user::interaction * pguie);
 
-   virtual void dump(dump_context&) const;
+   virtual void dump(dump_context &) const;
    virtual void assert_valid() const;
 
    // Advanced: for implementing custom print preview

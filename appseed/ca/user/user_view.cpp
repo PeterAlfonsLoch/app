@@ -134,7 +134,7 @@ void view::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustType)
       ::AdjustWindowRectEx(lpClientRect, 0, FALSE, GetExStyle());
 
       // default behavior for in-place editing handles scrollbars
-      DWORD dwStyle = GetStyle();
+      uint32_t dwStyle = GetStyle();
       if (dwStyle & WS_VSCROLL)
       {
          int32_t nAdjust = afxData.cxVScroll;
@@ -315,7 +315,7 @@ bool view::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
 /////////////////////////////////////////////////////////////////////////////
 // ::view drag/drop support
 
-///*DROPEFFECT view::OnDragScroll(DWORD /*dwKeyState*/, point /*point*/)
+///*DROPEFFECT view::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
 //{
 //#ifndef ___NO_OLE_SUPPORT
   // return DROPEFFECT_SCROLL; // this means do the default
@@ -325,13 +325,13 @@ bool view::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
 //}
 
 //DROPEFFECT view::OnDragEnter(COleDataObject* /*pDataObject*/,
-  // DWORD /*dwKeyState*/, point /*point*/)
+  // uint32_t /*dwKeyState*/, point /*point*/)
 //{
   // return 0;   // DROPEFFECT_NONE
 //}
 
 //DROPEFFECT view::OnDragOver(COleDataObject* /*pDataObject*/,
-   //DWORD /*dwKeyState*/, point /*point*/)
+   //uint32_t /*dwKeyState*/, point /*point*/)
 //{
    //return 0;   // DROPEFFECT_NONE
 //}

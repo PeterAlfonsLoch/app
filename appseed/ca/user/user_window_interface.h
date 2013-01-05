@@ -97,12 +97,12 @@ namespace user
 
 
       /*oswindow GetHandle() const;
-      DWORD GetStyle() const;
-      DWORD GetExStyle() const;
-      bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
-      bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyle(oswindow oswindow, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyleEx(oswindow oswindow, DWORD dwRemove, DWORD dwAdd, UINT uiFlags);
+      uint32_t GetStyle() const;
+      uint32_t GetExStyle() const;
+      bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
+      bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
+      static bool PASCAL ModifyStyle(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
+      static bool PASCAL ModifyStyleEx(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
 
       LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
       bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);*/
@@ -135,7 +135,7 @@ namespace user
       bool RedrawWindow(LPCRECT lpRectUpdate = NULL,
          ::ca::region* prgnUpdate = NULL,
          UINT flags = RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE);
-      bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, DWORD));
+      bool SetTimer(UINT nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, UINT, uint32_t));
       bool KillTimer(int32_t nIDEvent);
       bool SetWindowPos(const ::ca::window* pWndInsertAfter, int32_t x, int32_t y, int32_t cx, int32_t cy, UINT nFlags);
       ::ca::window * SetFocus();*/
