@@ -391,9 +391,9 @@ void simple_frame_window::WfiOnFullScreen(bool bFullScreen)
 
       ShowControlBars(false);
 
-  //    DWORD dwStyle = GetStyle();
+  //    uint32_t dwStyle = GetStyle();
 
-//      DWORD dwStyleEx = GetExStyle();
+//      uint32_t dwStyleEx = GetExStyle();
 
       rect rectDesktop;
 
@@ -675,7 +675,7 @@ void simple_frame_window::_001OnNcActivate(gen::signal_object * pobj)
 
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle, ::user::interaction* pParentWnd, ::ca::create_context* pContext)
+bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle, ::user::interaction* pParentWnd, ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(pParentWnd);
@@ -723,11 +723,11 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle
 
 /*bool simple_frame_window::create(const char * lpszClassName,
    const char * lpszWindowName,
-   DWORD dwStyle,
+   uint32_t dwStyle,
    const RECT& rect,
    ::user::interaction* pParentWnd,
    const char * lpszMenuName,
-   DWORD dwExStyle,
+   uint32_t dwExStyle,
    create_context* pContext)
 {
    HMENU hMenu = NULL;
@@ -766,7 +766,7 @@ static const char gen_OldWndProc[] = "gen::OldWndProc423";
 void simple_frame_window::_001OnDdeInitiate(gen::signal_object * pobj)
 {
    SCAST_PTR(::gen::message::base, pbase, pobj)
-   pbase->set_lresult(DefWindowProc((DWORD) pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
+   pbase->set_lresult(DefWindowProc((uint32_t) pbase->m_wparam, pbase->m_lparam, pbase->get_lresult()));
 }
 
 
@@ -981,7 +981,7 @@ bool simple_frame_window::is_application_main_window()
 }
 
 
-void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle, DWORD dwStyle)
+void simple_frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
 {
    ::user::interaction * pui = m_toolbarmap[idToolBar];
    simple_toolbar * ptoolbar;
@@ -1045,11 +1045,11 @@ void simple_frame_window::WfiOnUp()
 
 bool simple_frame_window::create(const char * lpszClassName,
          const char * lpszWindowName,
-         DWORD dwStyle,
+         uint32_t dwStyle,
          const RECT& rect,
          ::user::interaction* pParentWnd,        // != NULL for popups
          const char * lpszMenuName,
-         DWORD dwExStyle,
+         uint32_t dwExStyle,
          ::ca::create_context* pContext)
 {
    return ::userbase::frame_window::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, lpszMenuName, dwExStyle, pContext);

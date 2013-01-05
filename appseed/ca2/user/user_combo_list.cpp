@@ -280,7 +280,7 @@ namespace user
    }
 
 
-   const char * combo_list::GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter)
+   const char * combo_list::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
    {
 
    #ifdef WINDOWSEX

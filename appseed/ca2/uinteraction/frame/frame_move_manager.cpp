@@ -10,7 +10,7 @@ namespace uinteraction
    {
 
 
-      const DWORD MoveManager::s_dwMoveTime = 150;
+      const uint32_t MoveManager::s_dwMoveTime = 150;
 
       MoveManager::MoveManager(WorkSet * pworkset) :
          ::ca::ca(pworkset->get_app())
@@ -75,7 +75,7 @@ namespace uinteraction
          return Relay(pmouse);
       }
 
-      DWORD g_dwLastMove;
+      uint32_t g_dwLastMove;
       // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
       bool MoveManager::Relay(::gen::message::mouse * pmouse)
       {
@@ -258,7 +258,7 @@ namespace uinteraction
          if(lpMsg->message == WM_MOUSEMOVE &&
          m_dwLastMovingTime + 10 > GetTickCount())
          return true;
-         DWORD fwKeys = lpMsg->wParam;        // key flags
+         uint32_t fwKeys = lpMsg->wParam;        // key flags
          point ptCursor = lpMsg->pt;
          point pt;
          pt = m_ptWindowOrigin + ptCursor - m_ptCursorOrigin;
@@ -320,8 +320,8 @@ namespace uinteraction
       {
          UNREFERENCED_PARAMETER(lParam);
          //      oswindow oswindowParam= lParam;
-         //DWORD dwThreadId;
-         //DWORD dwProcessId;
+         //uint32_t dwThreadId;
+         //uint32_t dwProcessId;
          //HICON hicon16;
          //HICON hicon48;
          rect rectWindow;
@@ -494,7 +494,7 @@ namespace uinteraction
                pbase->m_bRet = true;
                return;
             }
-            //           DWORD fwKeys = pbase->m_wparam;        // key flags
+            //           uint32_t fwKeys = pbase->m_wparam;        // key flags
             point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
             pwnd->ClientToScreen(&ptCursor);
             point pt;

@@ -55,7 +55,7 @@ namespace gcom
          bool GetNextImagePath(string & str);
          ::mutex & GetTransferMutex();
          ::ca::graphics & GetTransferDC();
-         void SetBackgroundImageChangeInterval(DWORD dwMillis);
+         void SetBackgroundImageChangeInterval(uint32_t dwMillis);
          void OnImageLoaded(::ca::dib * pdib);
          void UpdateDrawingObjects();
          void OnDestroy();

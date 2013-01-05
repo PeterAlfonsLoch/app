@@ -15,7 +15,7 @@ namespace fs
       index                      m_iSelectionSubItem;
       index                      m_iSizeSubItem;
       bool                       m_bPendingSize;
-      DWORD                      m_dwLastFileSizeGet;
+      uint32_t                      m_dwLastFileSizeGet;
 
       list_item_array            m_itema; 
 

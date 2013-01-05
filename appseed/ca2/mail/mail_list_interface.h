@@ -35,7 +35,7 @@ namespace mail
 
       virtual void   _001InsertColumns();
 
-      virtual bool _001OnUpdateItemCount(DWORD dwFlags = 0);
+      virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
       
 

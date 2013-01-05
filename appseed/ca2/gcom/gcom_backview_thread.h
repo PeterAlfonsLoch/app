@@ -29,7 +29,7 @@ namespace gcom
          typedef struct tagStretchImageStructure
          {
          //    LPSTREAM    m_lpstrmCallback;
-            DWORD       m_dwCallbackThread;
+            uint32_t       m_dwCallbackThread;
          //   VARIANT varInfoHeader;
          //   VARIANT varBits;
          //   VARIANT varUserData;
@@ -47,7 +47,7 @@ namespace gcom
          //   HDC      m_hDCPersistent;
          //   oswindow   m_oswindow_Return;
          //   LPSTREAM * m_lpStreamEvents;
-         //   DWORD   m_dwEventsCount;
+         //   uint32_t   m_dwEventsCount;
          //   LPSTREAM m_lpStreamImageLoader;
          //   LPSTREAM m_lpStreamImageLoaderCP;
             ::ca::bitmap * m_pbitmap;
@@ -65,7 +65,7 @@ namespace gcom
             int32_t          m_cy;
             int32_t          m_iUserData;
          //   LPSTREAM * m_lpStreamEvents;
-         //   DWORD   m_dwEventsCount;
+         //   uint32_t   m_dwEventsCount;
          //   LPSTREAM m_lpStreamImageLoader;
          //   LPSTREAM m_lpStreamImageLoaderCP;
 
@@ -85,7 +85,7 @@ namespace gcom
 
          void install_message_handling(::gen::message::dispatch * pinterface);
 
-          static DWORD WINAPI ThreadProcStretchImage(LPVOID lpParameter);
+          static uint32_t WINAPI ThreadProcStretchImage(LPVOID lpParameter);
           static UINT c_cdecl ThreadProcLoadImage(LPVOID lpParameter);
 
          //void OnImageLoaded(HBITMAP hbitmap);

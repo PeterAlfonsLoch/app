@@ -23,10 +23,10 @@ namespace frame
       rect                 m_rcWindowOrigin;
       size                 m_minSize;
       size                 m_minBorder;
-      DWORD                m_dwLastSizingTime;
+      uint32_t                m_dwLastSizingTime;
       UINT                 m_uiSWPFlags;
       EGrip                  m_egripMask;
-      DWORD                m_dwPaintDelay;
+      uint32_t                m_dwPaintDelay;
       int32_t                  m_iPaintCount;
    public:
       SizeManager(WorkSet * pworkset);

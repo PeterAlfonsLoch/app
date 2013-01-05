@@ -46,7 +46,7 @@ namespace fs
       delete m_pdata;
    }
 
-   bool list_interface::_001OnUpdateItemCount(DWORD dwFlags)
+   bool list_interface::_001OnUpdateItemCount(uint32_t dwFlags)
    {
       return ::user::list::_001OnUpdateItemCount(dwFlags);
    }

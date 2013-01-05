@@ -34,7 +34,7 @@ namespace user
 
       virtual int32_t _001GetItemHeight() const;
 
-      const char * GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter);
+      const char * GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter);
 
 
       bool pre_create_window(CREATESTRUCT & cs);

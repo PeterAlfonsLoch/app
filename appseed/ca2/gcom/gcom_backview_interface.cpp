@@ -67,7 +67,7 @@ namespace gcom
          return relay_event(lpmsg->message, lpmsg->wParam, lpmsg->lParam);
       }*/
 
-      DWORD d_dwLastBackViewUpdate;
+      uint32_t d_dwLastBackViewUpdate;
 
       void Interface::OnBackViewMessage(gen::signal_object * pobj)
       {
@@ -198,7 +198,7 @@ namespace gcom
 
       }
 
-      void Interface::SetBackgroundImageChangeInterval(DWORD dwMillis)
+      void Interface::SetBackgroundImageChangeInterval(uint32_t dwMillis)
       {
          GetMain().SetBackgroundImageChangeInterval(dwMillis);
       }

@@ -36,7 +36,7 @@ namespace cube2
    BOOL CALLBACK application::GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam)
    {
       application * papp = (application *) lParam;
-      DWORD dwptr;
+      uint32_t dwptr;
       if(!::SendMessageTimeout(oswindow, WM_APP + 2000, 1, 0, SMTO_BLOCK, 10, (PDWORD_PTR) &dwptr) || dwptr != 2)
       {
          return TRUE;
@@ -191,7 +191,7 @@ namespace cube2
       COPYDATASTRUCT cds;
       memset(&cds, 0, sizeof(cds));
       cds.dwData = 198477;
-      cds.cbData = (DWORD) strlen(psz);
+      cds.cbData = (uint32_t) strlen(psz);
       cds.lpData = (PVOID) psz;
       return (int32_t) SendMessage(oswindow, WM_COPYDATA, (WPARAM) osdataSender, (LPARAM) &cds);
 #else

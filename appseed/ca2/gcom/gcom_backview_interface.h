@@ -48,7 +48,7 @@ namespace gcom
 
          Main *               m_pmain;
          bool                 m_bTransferVoid;
-         DWORD                m_dwTimerStep;
+         uint32_t                m_dwTimerStep;
 
 
          ex2::file_set_sp     m_spfilesetBackgroundImage;
@@ -72,7 +72,7 @@ namespace gcom
          EImagePlacement GetCurrentImagePlacement();
          ::mutex & GetTransferMutex();
          ::ca::graphics & GetTransferDC();
-         void SetBackgroundImageChangeInterval(DWORD dwMillis);
+         void SetBackgroundImageChangeInterval(uint32_t dwMillis);
          Main & GetMain();
          void OnImageLoaded(::ca::dib * pdib);
          void UpdateDrawingObjects();

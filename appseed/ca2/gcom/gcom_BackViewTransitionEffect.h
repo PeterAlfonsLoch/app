@@ -221,13 +221,13 @@ namespace gcom
          bool                 m_bRun;
          bool                 m_bInitialized;
          bool                 m_bActive;
-         DWORD                m_dwTransitionStepLastRunTime;
-         DWORD                m_dwDelay;
+         uint32_t                m_dwTransitionStepLastRunTime;
+         uint32_t                m_dwDelay;
          bool                 m_bTransitionStepRunActive;
          bool                 m_bTransitionStepPostActive;
-         DWORD                m_dwTransitionStepPostActive;
+         uint32_t                m_dwTransitionStepPostActive;
    
-         DWORD                m_dwLastTransitionTime;
+         uint32_t                m_dwLastTransitionTime;
 
          index                  m_iVisual;
 

@@ -37,7 +37,7 @@ namespace command
    #endif
 
       bool m_bHoverMouse;
-      DWORD m_dwLastHover;
+      uint32_t m_dwLastHover;
 
       void OnHoverAction(bool bShowWinActionArea);
    

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//CLASS_DECL_ca2 COLORREF GetSysColor(DWORD dw);
+//CLASS_DECL_ca2 COLORREF GetSysColor(uint32_t dw);
 
 namespace user
 {

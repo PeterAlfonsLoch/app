@@ -9,8 +9,8 @@ namespace ca8
       virtual public dialog
    {
    public:
-      DWORD       m_dwStartTime;
-      DWORD       m_dwDelay;
+      uint32_t       m_dwStartTime;
+      uint32_t       m_dwDelay;
       string      m_strResponse;
 
 
@@ -22,7 +22,7 @@ namespace ca8
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 
       virtual bool on_timeout();
-      virtual void on_timer_soft_reload(DWORD dwTimeout);
+      virtual void on_timer_soft_reload(uint32_t dwTimeout);
 
    };
 

@@ -29,7 +29,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
-   DWORD                            m_dwLast123Update;
+   uint32_t                            m_dwLast123Update;
 
    
 

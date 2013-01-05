@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-extern "C" int32_t WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
+extern "C" int32_t WINAPI DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID)
 {
 
    if (dwReason == DLL_PROCESS_ATTACH)

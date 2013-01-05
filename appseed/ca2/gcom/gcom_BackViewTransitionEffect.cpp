@@ -740,7 +740,7 @@ namespace gcom
                   (double) 0, (double) iFrameCountEx);*/
                   //dAlpha /= 8.0;
 
-                  //m_dwDelay = (DWORD) min(10, dAlpha * 10 / 255);
+                  //m_dwDelay = (uint32_t) min(10, dAlpha * 10 / 255);
                 //  m_dwDelay = 0;
 
                   int32_t iAlphaAccumul = 0;;
@@ -1771,7 +1771,7 @@ namespace gcom
 
          Main & main = HelperGetMain();
 
-         DWORD dwTime = GetTickCount();
+         uint32_t dwTime = GetTickCount();
          if(dwTime - m_dwTransitionStepLastRunTime >= 5 + m_dwDelay
             && !m_bTransitionStepRunActive
             && (!m_bTransitionStepPostActive

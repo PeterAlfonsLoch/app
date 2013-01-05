@@ -56,7 +56,7 @@ namespace user
    //{
    /*   if(m_pdatainterface001 != NULL)
       {
-         Carray < DWORD, DWORD > ida;
+         Carray < uint32_t, uint32_t > ida;
          Ex1TreeItemMetaData * pdata = _001StaticGetMetaData(itempath);
          if(pdata == NULL)
             return false;

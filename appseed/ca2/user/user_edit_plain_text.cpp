@@ -1009,7 +1009,7 @@ namespace user
       {
          strLine = straLines[i];
          strLine.replace("\t", "   ");
-         size = (DWORD) (strLine.get_length() * size3.cx / 8);
+         size = (uint32_t) (strLine.get_length() * size3.cx / 8);
 //         maxcy = max(size.cy, size3.cy);
          if(size.cx > m_scrollinfo.m_sizeTotal.cx)
             m_scrollinfo.m_sizeTotal.cx = (int32_t) size.cx;
@@ -1323,7 +1323,7 @@ namespace user
 
    void edit_plain_text::FileSave()
    {
-      m_pdata->m_editfile.Flush();
+      m_pdata->m_editfile.flush();
    }
 
    void edit_plain_text::OnFileUpdate()

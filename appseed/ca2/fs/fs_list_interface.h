@@ -21,7 +21,7 @@ namespace fs
 
       virtual void _001InsertColumns();
 
-      virtual bool _001OnUpdateItemCount(DWORD dwFlags = 0);
+      virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
       document * get_document();
       virtual list_data * get_fs_list_data();

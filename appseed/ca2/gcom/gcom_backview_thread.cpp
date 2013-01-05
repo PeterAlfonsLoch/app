@@ -48,7 +48,7 @@ namespace gcom
             MessageCommand,
             CommandPreTransitionImage,
             (LPARAM) pview);
-      /*   DWORD dwThreadID = 0;
+      /*   uint32_t dwThreadID = 0;
          __begin_thread(
             ThreadProcPreTransitionImage,
             pview,
@@ -393,7 +393,7 @@ namespace gcom
             CommandLoadImage,
             (LPARAM) lploadimage);
 
-         /*DWORD dwThreadID = 0;
+         /*uint32_t dwThreadID = 0;
          load_image * lploadimage = new load_image(loadimage);
          __begin_thread(
             ThreadProcLoadImage,
@@ -407,7 +407,7 @@ namespace gcom
       void thread::StretchImageAsync(LPSTRETCHIMAGESTRUCTURE lpSi, bool bBitmapLocked)
       {
          UNREFERENCED_PARAMETER(bBitmapLocked);
-         DWORD dwThreadID = 0;
+         uint32_t dwThreadID = 0;
           ::create_thread(NULL, 0, ThreadProcStretchImage, lpSi, 0, &dwThreadID);
       }
 
@@ -434,11 +434,11 @@ namespace gcom
          m_pbackviewinterface = pmain;
       }
 
-      DWORD WINAPI thread::ThreadProcStretchImage(LPVOID lpParameter)
+      uint32_t WINAPI thread::ThreadProcStretchImage(LPVOID lpParameter)
       {
          UNREFERENCED_PARAMETER(lpParameter);
          ASSERT(FALSE);
-         return (DWORD) -1;
+         return (uint32_t) -1;
       }
 
       thread_dispatch::thread_dispatch(thread * pbackviewthread)

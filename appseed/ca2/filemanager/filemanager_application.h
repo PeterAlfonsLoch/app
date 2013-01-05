@@ -38,7 +38,7 @@ namespace filemanager
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);
 
 
-      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+      virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
       string get_file_manager_initial_browse_path(const char * pszDefault = NULL);
 

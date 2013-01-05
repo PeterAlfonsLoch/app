@@ -15,24 +15,24 @@ namespace gcom
       public:
 
 
-         DWORD                      m_dwBackgroundUpdateMillis;
+         uint32_t                      m_dwBackgroundUpdateMillis;
          EImagePlacement            m_eplacement;
          
          event                      m_evImageChangeFinish;
-         DWORD                      m_dwLoadCounter;
-         DWORD                      m_dwBackgroundLastUpdateTime;
-         DWORD                      m_dwBackgroundPreTransitionStartTime;
+         uint32_t                      m_dwLoadCounter;
+         uint32_t                      m_dwBackgroundLastUpdateTime;
+         uint32_t                      m_dwBackgroundPreTransitionStartTime;
          bool                       m_bLastLoadImageSynch;
          string                     m_wstrCurrentImagePath;
-         DWORD                      m_dwLoadStartTime;
+         uint32_t                      m_dwLoadStartTime;
 
          ::ca::dib_sp               m_spdib;
 
          struct NO_PRECISION_TIMER
          {
 
-            DWORD                        m_dwHundredCounter;
-            DWORD                        m_dwThousandCounter;
+            uint32_t                        m_dwHundredCounter;
+            uint32_t                        m_dwThousandCounter;
 
          } m_noprecisiontimer;
 
@@ -48,8 +48,8 @@ namespace gcom
          bool LoadImageAsync(const char * lpcwszImagePath);
          bool LoadImageAsync();
 
-         DWORD GetBackgroundUpdateMillis();
-         void SetBackgroundUpdateMillis(DWORD dwMillis);
+         uint32_t GetBackgroundUpdateMillis();
+         void SetBackgroundUpdateMillis(uint32_t dwMillis);
 
 
       };

@@ -55,11 +55,11 @@ public:
    using userbase::frame_window::create;
    virtual bool create(const char * lpszClassName,
             const char * lpszWindowName,
-            DWORD dwStyle = WS_OVERLAPPEDWINDOW,
+            uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
             const RECT& rect = rect(0, 0, 0, 0),
             ::user::interaction* pParentWnd = NULL,        // != NULL for popups
             const char * lpszMenuName = NULL,
-            DWORD dwExStyle = 0,
+            uint32_t dwExStyle = 0,
             ::ca::create_context* pContext = NULL);
 
 
@@ -88,7 +88,7 @@ public:
 
    virtual ::uinteraction::frame::frame * create_frame_schema();
 
-   virtual bool LoadFrame(const char * pszMatter, DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ca::create_context* pContext = NULL);
+   virtual bool LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction* pParentWnd = NULL, ::ca::create_context* pContext = NULL);
 
    DECL_GEN_SIGNAL(_001OnNcActivate);
 
@@ -98,9 +98,9 @@ public:
 
 
 #ifdef WINDOWSEX
-   void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = TBSTYLE_FLAT, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #else
-   void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = 0, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = 0, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #endif
 
    virtual void InitialFramePosition(bool bForceRestore = false);

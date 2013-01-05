@@ -1712,7 +1712,7 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
       }
       else // bInside == true
       {
-         DWORD fwKeys = user; // key flags
+         uint32_t fwKeys = user; // key flags
          if(m_tokenaMain.get_size() <= 0)
             return false;
          if(CalcChar(pt, iToken, iChar))

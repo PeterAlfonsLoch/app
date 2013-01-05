@@ -503,8 +503,8 @@ namespace filemanager
       stringa straChildItem;
       string str;
 
-      DWORD dwTimeIn;
-      DWORD dwTimeOut;
+      uint32_t dwTimeIn;
+      uint32_t dwTimeOut;
 
       dwTimeIn = GetTickCount();
 

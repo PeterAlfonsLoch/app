@@ -105,7 +105,7 @@ namespace filemanager
       index                     m_iSelectionSubItem;
       index                     m_iSizeSubItem;
       bool                    m_bPendingSize;
-      DWORD                   m_dwLastFileSizeGet;
+      uint32_t                   m_dwLastFileSizeGet;
 
       ::collection::map < icon_key, const icon_key &, icon, icon & > m_iconmap;
 
@@ -123,7 +123,7 @@ namespace filemanager
 
       string                  m_strPath;
 
-      DWORD             m_dwLastRedraw;
+      uint32_t             m_dwLastRedraw;
       bool              m_bRestartCreateImageList;
 
       bool              m_bStatic;
@@ -136,7 +136,7 @@ namespace filemanager
          index         m_iIcon;
          string      m_strExtension;
 
-         operator DWORD () const
+         operator uint32_t () const
          {
             return m_iIcon;
          }

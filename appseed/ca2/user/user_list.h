@@ -663,7 +663,7 @@ namespace user
 
       //void SetScrollSizes();
 
-      virtual bool _001OnUpdateItemCount(DWORD dwFlags = 0);
+      virtual bool _001OnUpdateItemCount(uint32_t dwFlags = 0);
 
       void _001GetViewRect(LPRECT lprect);
       void _001GetViewClientRect(LPRECT lprect);

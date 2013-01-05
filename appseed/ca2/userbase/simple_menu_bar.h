@@ -42,17 +42,17 @@ public:
 
    using ::simple_toolbar::create;
    bool create(::user::interaction* pParentWnd,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
+      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       UINT nID = __IDW_TOOLBAR);
    using ::simple_toolbar::CreateEx;
 #ifdef WINDOWSEX
-   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
+      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       UINT nID = __IDW_TOOLBAR);
 #else
-   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       UINT nID = __IDW_TOOLBAR);
 #endif
@@ -91,11 +91,11 @@ public:
       int_int_spreadset * prel,
       ::ca::font * pfont);
 
-   //size CalcLayout(DWORD dwMode, int32_t nLength);
+   //size CalcLayout(uint32_t dwMode, int32_t nLength);
 
    //size CalcFixedLayout(bool bStretch, bool bHorz);
 
-   //size CalcDynamicLayout(int32_t nLength, DWORD dwMode);
+   //size CalcDynamicLayout(int32_t nLength, uint32_t dwMode);
    //static VMSRESULT CalcSize(::userbase::tool_bar_control & tbc, size & size);
    //static VMSRESULT CalcSize(CToolBarCtrl & tbc, size & size);
    VMSRESULT _TrackPopupMenu(point point);

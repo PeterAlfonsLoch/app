@@ -43,8 +43,8 @@ void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
 
    pobj->previous();
 
-   DWORD cbNeeded = 0;
-   DWORD cbReturned = 0;
+   uint32_t cbNeeded = 0;
+   uint32_t cbReturned = 0;
 #ifdef WINDOWSEX
    ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, NULL, 1, NULL, 0, &cbNeeded, &cbReturned);
 #else
@@ -60,7 +60,7 @@ void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
 
    stringa stra;
 
-   for(DWORD i = 0; i < cbReturned; i++)
+   for(uint32_t i = 0; i < cbReturned; i++)
    {
 
       stra.add(infoa[i].pName);

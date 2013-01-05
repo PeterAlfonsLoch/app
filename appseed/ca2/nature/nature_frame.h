@@ -15,7 +15,7 @@ namespace nature
       image_list *               m_pimagelist;
       bool                       m_bTimerOn;
       bool                       m_bHoverMouse;
-      DWORD                      m_dwLastHover;
+      uint32_t                      m_dwLastHover;
 
 
       frame(::ca::application * papp);

@@ -128,8 +128,8 @@ namespace filemanager
 //      ULONG ulRet;
 //      STRRET strretDisplayName;
 //      HRESULT hr;
-      DWORD dwTimeIn;
-      DWORD dwTimeOut;
+      uint32_t dwTimeIn;
+      uint32_t dwTimeOut;
 
       dwTimeIn = GetTickCount();
 
@@ -784,7 +784,7 @@ namespace filemanager
       {
       case MessageMainPostCreateImageListItemStepSetRedraw:
          {
-            DWORD dwNow = GetTickCount();
+            uint32_t dwNow = GetTickCount();
             if(dwNow - m_dwLastRedraw > 284)
             {
                m_dwLastRedraw = dwNow;

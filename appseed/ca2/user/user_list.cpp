@@ -761,7 +761,7 @@ namespace user
 
 
 
-   bool list::_001OnUpdateItemCount(DWORD dwFlags)
+   bool list::_001OnUpdateItemCount(uint32_t dwFlags)
    {
       UNREFERENCED_PARAMETER(dwFlags);
 
@@ -4390,8 +4390,8 @@ namespace user
 
    bool list::Filter1Step()
    {
-      DWORD dwIn = GetTickCount();
-      DWORD dwOut;
+      uint32_t dwIn = GetTickCount();
+      uint32_t dwOut;
       TRACE("list::Filter1Step\n");
       TRACE("dwIn = %d\n", dwIn);
       if(!m_bFilter1)

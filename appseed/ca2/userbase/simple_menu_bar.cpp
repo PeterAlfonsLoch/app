@@ -226,7 +226,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(
 
         if(pmsg->message == WM_MOUSEMOVE)
         {
-            DWORD fwKeys = (DWORD) pmsg->wParam;        // key flags
+            uint32_t fwKeys = (uint32_t) pmsg->wParam;        // key flags
             int32_t xPos = LOWORD(pmsg->lParam);  // horizontal position of cursor
             int32_t yPos = HIWORD(pmsg->lParam);
             TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, xPos, yPos);
@@ -535,13 +535,13 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 }*/
 
 
-bool simple_menu_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, UINT nID)
+bool simple_menu_bar::create(::user::interaction* pParentWnd, uint32_t dwStyle, UINT nID)
 {
    return CreateEx(pParentWnd, 0, dwStyle,
       rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
 }
 
-bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, UINT nID)
+bool simple_menu_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
 {
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -591,7 +591,7 @@ void simple_menu_bar::_001OnLButtonDown(gen::signal_object * pobj)
    }
 }
 
-/*size simple_menu_bar::CalcDynamicLayout(int32_t nLength, DWORD dwMode)
+/*size simple_menu_bar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
 {
     if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -601,7 +601,7 @@ void simple_menu_bar::_001OnLButtonDown(gen::signal_object * pobj)
    return CalcLayout(dwMode, nLength);
 
 }
-size simple_menu_bar::CalcLayout(DWORD dwMode, int32_t nLength)
+size simple_menu_bar::CalcLayout(uint32_t dwMode, int32_t nLength)
 {
    _001Layout();
    size sizeResult;
@@ -619,7 +619,7 @@ size simple_menu_bar::CalcLayout(DWORD dwMode, int32_t nLength)
 
 size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
-   DWORD dwMode = bStretch ? LM_STRETCH : 0;
+   uint32_t dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
 
    return CalcLayout(dwMode, -1);

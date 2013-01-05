@@ -77,7 +77,7 @@ namespace gcom
          virtual ~PixelExplosion();
 
          void create(int32_t iWidth,int32_t iHeight);
-         void to(DWORD* pSrcImage,DWORD* pTargetImage);
+         void to(uint32_t* pSrcImage,uint32_t* pTargetImage);
 
          void CalcWater(int32_t npage, int32_t density);
          void Calc2(int32_t npage, int32_t density);
@@ -90,8 +90,8 @@ namespace gcom
          void Reset();
          void CalcWaterBigFilter(int32_t npage, int32_t density);
 
-         void DrawWaterNoLight(int32_t page,DWORD* pSrcImage,DWORD* pTargetImage);
-         //void DrawWaterWithLight(int32_t page, int32_t LightModifier,DWORD* pSrcImage,DWORD* pTargetImage);
+         void DrawWaterNoLight(int32_t page,uint32_t* pSrcImage,uint32_t* pTargetImage);
+         //void DrawWaterWithLight(int32_t page, int32_t LightModifier,uint32_t* pSrcImage,uint32_t* pTargetImage);
          COLORREF GetShiftedColor(COLORREF color,int32_t shift);
 
       };

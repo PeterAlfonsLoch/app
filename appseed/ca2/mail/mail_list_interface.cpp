@@ -96,7 +96,7 @@ namespace mail
       pdataset->query_items(m_straId, "select id from inbox");
    }
 
-   bool list_interface::_001OnUpdateItemCount(DWORD dwFlags)
+   bool list_interface::_001OnUpdateItemCount(uint32_t dwFlags)
    {
       m_pdata->update();
       return ::user::list::_001OnUpdateItemCount(dwFlags);

@@ -66,7 +66,7 @@ void XfplayerViewLineSelection::relay_event(XfplayerViewLine & viewline, gen::si
       }
       else if(bInside)
       {
-         //DWORD fwKeys = pbase->m_wparam; // key flags
+         //uint32_t fwKeys = pbase->m_wparam; // key flags
          if(message == WM_LBUTTONDOWN)
          {
             if(viewline.CalcChar(ptCursor, iChar))
@@ -436,7 +436,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(XfplayerViewLine & viewline, UINT 
    }
    else if(bInside)
    {
-      //             DWORD fwKeys = user; // key flags
+      //             uint32_t fwKeys = user; // key flags
       if(viewline.CalcChar(pt1, iChar))
       {
          iLine = viewline.m_iIndex;
@@ -497,7 +497,7 @@ bool XfplayerViewLineSelection::OnMouseMove(XfplayerViewLine & viewline, UINT us
    }
    else if(bInside && GetState() == StateTracking)
    {
-      //DWORD fwKeys = user; // key flags
+      //uint32_t fwKeys = user; // key flags
       if(GetState() == StateTracking)
       {
          if(viewline.m_iaPosition.get_size() <= 0)
@@ -578,7 +578,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(XfplayerViewLine & viewline, UINT us
    }
    else if(bInside)
    {
-      //DWORD fwKeys = user; // key flags
+      //uint32_t fwKeys = user; // key flags
       if(GetState() == StateTracking)
       {
          if(viewline.m_iaPosition.get_size() <= 0)

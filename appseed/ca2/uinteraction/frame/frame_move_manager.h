@@ -26,7 +26,7 @@ namespace frame
 
    protected:
       WorkSet *            m_pworkset;
-      DWORD                m_dwLastMoveTime;
+      uint32_t                m_dwLastMoveTime;
       bool                 m_bPendingMove;
       point                m_ptPendingMove;
       void *                 m_oswindowPendingMove;
@@ -34,9 +34,9 @@ namespace frame
       point                m_ptCursorOrigin;
       point                m_ptWindowOrigin;
       bool                 m_bMoving;
-      DWORD                m_dwLastMovingTime;
+      uint32_t                m_dwLastMovingTime;
       UINT                 m_uiSWPFlags;
-      DWORD                m_dwPaintDelay;
+      uint32_t                m_dwPaintDelay;
    public:
 
       MoveManager(WorkSet * pworkset);
@@ -62,7 +62,7 @@ namespace frame
       bool relay_event(MESSAGE * lpMsg);
       bool update(WorkSet * pwf);
 
-      static const DWORD s_dwMoveTime;
+      static const uint32_t s_dwMoveTime;
 
       void message_handler(::user::interaction * pwnd, gen::signal_object * pobj);
    };

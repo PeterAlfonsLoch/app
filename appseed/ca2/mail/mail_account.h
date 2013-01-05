@@ -13,8 +13,8 @@ namespace mail
       string         m_strServer;
       string         m_strLogin;
       string         m_strMailDb;
-      DWORD          m_dwLastCheck;
-      DWORD          m_dwCheckTime;
+      uint32_t          m_dwLastCheck;
+      uint32_t          m_dwCheckTime;
       db_pop3        m_pop3;
    };
 

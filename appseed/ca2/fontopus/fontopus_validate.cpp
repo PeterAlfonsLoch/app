@@ -202,7 +202,7 @@ namespace ca2
          int_ptr ui1 = GetCurrentThreadId();
          int_ptr ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->m_pthread->get_os_int();
 #ifdef WINDOWSEX
-         if(::AttachThreadInput((DWORD) ui1, (DWORD) ui2, TRUE))
+         if(::AttachThreadInput((uint32_t) ui1, (uint32_t) ui2, TRUE))
          {
             TRACE("AttachedThreadInput");
          }
@@ -342,12 +342,12 @@ namespace ca2
          SetDllDirectory(NULL);
    #endif
          ::LoadLibraryA("salt.dll");
-         DWORD dwNeeded;
+         uint32_t dwNeeded;
          if(!EnumProcessModules(::GetCurrentProcess(),  NULL,  0,  &dwNeeded))
          {
             return;
          }
-         DWORD dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
+         uint32_t dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
          HMODULE * pmodulea = new HMODULE[dwAlloc / sizeof(HMODULE)];
          if(pmodulea == NULL)
             return;
@@ -360,7 +360,7 @@ namespace ca2
          ex1::file_system_sp fs(get_app());
          string strModuleFolder(System.get_ca2_module_folder());
          fs->FullPath(strModuleFolder, strModuleFolder);
-         for(DWORD dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
+         for(uint32_t dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
          {
             strModule.Empty();
             GetModuleFileName(pmodulea[dw], strModule.GetBufferSetLength(4096), 4096);

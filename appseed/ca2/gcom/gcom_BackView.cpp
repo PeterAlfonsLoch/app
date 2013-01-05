@@ -232,7 +232,7 @@ namespace gcom
 
          thread * pbackviewthreadIdle = GetIdleThread();
 
-         DWORD dwTime = GetTickCount();
+         uint32_t dwTime = GetTickCount();
 
          if(eevent == event_timer)
          {
@@ -472,7 +472,7 @@ namespace gcom
          GetInterface().BackViewPostMessage(Interface::BackViewWparamImageChangeEvent, (LPARAM) eevent);
       }
 
-      void Main::SetBackgroundImageChangeInterval(DWORD dwMillis)
+      void Main::SetBackgroundImageChangeInterval(uint32_t dwMillis)
       {
          UNREFERENCED_PARAMETER(dwMillis);
          GetImageChange().SetBackgroundUpdateMillis(1000);

@@ -32,7 +32,7 @@ namespace filemanager
       stringa                          m_straOpenWith;
       bool                             m_bFileSize;
       bool                             m_bShow;
-      DWORD                            m_dwLastFileSize;
+      uint32_t                            m_dwLastFileSize;
 
 
 

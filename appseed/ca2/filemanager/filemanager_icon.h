@@ -10,7 +10,7 @@ public:
    int32_t         m_iIcon;
    string      m_strExtension;
 
-   operator DWORD () const
+   operator uint32_t () const
    {
       return m_iIcon;
    }

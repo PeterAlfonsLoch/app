@@ -235,7 +235,7 @@ namespace ca2
                int32_t iSel = pcombo->get_cur_sel();
                if(iSel != CB_ERR)
                {
-                  DWORD dwData = pcontrol->GetComboBox()->m_dwaData[iSel];
+                  uint32_t dwData = pcontrol->GetComboBox()->m_dwaData[iSel];
                   VmsDataSet(pcontrol->descriptor().m_dataid, 0, 0, (int32_t) dwData);
                }*/
             }
@@ -462,7 +462,7 @@ namespace ca2
          int32_t i;
          if(VmsDataGet(pcontrol->descriptor().m_dataid, 0, 0, i))
          {
-            int_ptr iSel = pcontrol->GetComboBox()->m_dwaData.find_first((DWORD) i);
+            int_ptr iSel = pcontrol->GetComboBox()->m_dwaData.find_first((uint32_t) i);
             if(iSel >= 0)
             {
                simple_combo_box * pcombo = (simple_combo_box *) get_child_by_id(pcontrol->m_id);
@@ -1028,7 +1028,7 @@ namespace ca2
          return false;
       }
 
-      void form::OnBeforeNavigate2(var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
+      void form::OnBeforeNavigate2(var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
       {
          UNREFERENCED_PARAMETER(varFile);
          UNREFERENCED_PARAMETER(nFlags);

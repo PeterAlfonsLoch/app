@@ -17,7 +17,7 @@ namespace platform
       bool                       m_bMouseLeaveTimer;
       bool                       m_bHideTimer;
       bool                       m_bOnDraw;
-      DWORD                      m_dwLastSuperDock;
+      uint32_t                      m_dwLastSuperDock;
 
       frame(::ca::application * papp);
       virtual ~frame();
@@ -40,7 +40,7 @@ namespace platform
 
 
       bool m_bHoverMouse;
-      DWORD m_dwLastHover;
+      uint32_t m_dwLastHover;
 
       void OnHoverAction();
 
