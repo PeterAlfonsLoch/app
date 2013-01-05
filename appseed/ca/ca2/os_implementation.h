@@ -3,7 +3,7 @@
 
 #ifdef SetWindowLongPtrA
 #undef SetWindowLongPtrA
-inline long_ptr SetWindowLongPtrA( oswindow oswindow, int32_t nIndex, long_ptr dwNewLong )
+inline int_ptr SetWindowLongPtrA( oswindow oswindow, int32_t nIndex, int_ptr dwNewLong )
 {
    return( ::SetWindowLongA( oswindow, nIndex, LONG( dwNewLong ) ) );
 }
@@ -11,7 +11,7 @@ inline long_ptr SetWindowLongPtrA( oswindow oswindow, int32_t nIndex, long_ptr d
 
 #ifdef SetWindowLongPtrW
 #undef SetWindowLongPtrW
-inline long_ptr SetWindowLongPtrW( oswindow oswindow, int32_t nIndex, long_ptr dwNewLong )
+inline int_ptr SetWindowLongPtrW( oswindow oswindow, int32_t nIndex, int_ptr dwNewLong )
 {
    return( ::SetWindowLongW( oswindow, nIndex, LONG( dwNewLong ) ) );
 }
@@ -19,7 +19,7 @@ inline long_ptr SetWindowLongPtrW( oswindow oswindow, int32_t nIndex, long_ptr d
 
 #ifdef GetWindowLongPtrA
 #undef GetWindowLongPtrA
-inline long_ptr GetWindowLongPtrA( oswindow oswindow, int32_t nIndex )
+inline int_ptr GetWindowLongPtrA( oswindow oswindow, int32_t nIndex )
 {
    return( ::GetWindowLongA( oswindow, nIndex ) );
 }
@@ -27,7 +27,7 @@ inline long_ptr GetWindowLongPtrA( oswindow oswindow, int32_t nIndex )
 
 #ifdef GetWindowLongPtrW
 #undef GetWindowLongPtrW
-inline long_ptr GetWindowLongPtrW( oswindow oswindow, int32_t nIndex )
+inline int_ptr GetWindowLongPtrW( oswindow oswindow, int32_t nIndex )
 {
    return( ::GetWindowLongW( oswindow, nIndex ) );
 }

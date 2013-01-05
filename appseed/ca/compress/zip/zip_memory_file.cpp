@@ -32,14 +32,14 @@ namespace zip
       return (voidpf) pfile;
    }
 
-   uLong  memory_file::read_file_func (voidpf opaque, voidpf stream, void * buf, uLong size)
+   uint_ptr  memory_file::read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
-      return (uLong) pfile->read(buf, size);
+      return (uint_ptr) pfile->read(buf, size);
    }
 
-   uLong  memory_file::write_file_func (voidpf opaque, voidpf stream, const void * buf, uLong size)
+   uint_ptr  memory_file::write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
@@ -55,7 +55,7 @@ namespace zip
       return (long) pfile->get_position();      
    }
 
-   long   memory_file::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin)
+   long   memory_file::seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;

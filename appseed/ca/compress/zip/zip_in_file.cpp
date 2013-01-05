@@ -279,8 +279,8 @@ namespace zip
       //ASSERT(::ex1::seek_begin == FILE_BEGIN && ::ex1::seek_end == FILE_END && ::ex1::seek_current == FILE_CURRENT);
    /*typedef struct unz_file_pos_s
    {
-       uLong pos_in_zip_directory;   /* offset in zip file directory */
-     //  uLong num_of_file;            /* # of file */
+       uint_ptr pos_in_zip_directory;   /* offset in zip file directory */
+     //  uint_ptr num_of_file;            /* # of file */
    //} unz_file_pos;
 
 

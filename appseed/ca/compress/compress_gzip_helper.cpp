@@ -143,7 +143,7 @@ gzip::~gzip()
       return err;
    }
 
-   void gzip::putLong (uLong x)
+   void gzip::putLong (uint_ptr x)
    {
       for(int32_t n = 0; n < 4; n++) {
          uchar c=(uchar)(x & 0xff);

@@ -56,7 +56,7 @@ public:
    bz_stream m_zstream;
    int32_t      m_z_err;   /* error code for last stream operation */
    //byte     *m_outbuf; /* output buffer */
-   uLong    m_crc;     /* crc32 of uncompressed data */
+   uint_ptr    m_crc;     /* crc32 of uncompressed data */
 
 
    bzip(ex1::file * pfileDest);

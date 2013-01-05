@@ -71,6 +71,6 @@ protected:
    void construct();
    int32_t _finish();
    int32_t destroy();
-   void putLong (uLong x);
+   void putLong (uint_ptr x);
 };
 

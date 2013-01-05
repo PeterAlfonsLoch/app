@@ -1003,7 +1003,7 @@ void _tr_flush_block(
     }
     Assert (s->compressed_len == s->bits_sent, "bad compressed size");
     /* The above check is made mod 2^32, for files larger than 512 MB
-     * and uLong implemented on 32 bits.
+     * and uint_ptr implemented on 32 bits.
      */
     init_block(s);
 

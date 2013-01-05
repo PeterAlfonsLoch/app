@@ -713,7 +713,7 @@ namespace ca2
       ::ex2::application::set_env_var(var, value);
    }
 
-   uint32_t long application::get_thread_id()
+   uint32_t application::get_thread_id()
    {
       return ::ex2::application::get_thread_id();
    }

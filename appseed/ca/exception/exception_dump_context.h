@@ -26,14 +26,14 @@ public:
    dump_context& operator<<(int_ptr i);
    dump_context& operator<<(uint_ptr ui);
 #ifndef LINUX
-   dump_context& operator<<(long_ptr l);
+   dump_context& operator<<(int_ptr l);
 #endif
 //   dump_context& operator<<(uint_ptr dw);
    dump_context& operator<<(int32_t n);
    dump_context& operator<<(uint32_t u);
    dump_context& dumpAsHex(int_ptr i);
 #ifndef LINUX
-   dump_context& dumpAsHex(long_ptr l);
+   dump_context& dumpAsHex(int_ptr l);
 #endif
    dump_context& dumpAsHex(uint_ptr dw);
    dump_context& dumpAsHex(int32_t n);
@@ -48,16 +48,8 @@ public:
    dump_context& dumpAsHex(int32_t n);
    dump_context& dumpAsHex(UINT u);
 #else
-#ifdef WINDOWS
-   dump_context& operator<<(long_ptr l);
-   dump_context& operator<<(uint_ptr dw);
-#endif
    dump_context& operator<<(int_ptr n);
    dump_context& operator<<(uint_ptr u);
-#ifdef WINDOWS
-   dump_context& dumpAsHex(long_ptr l);
-   dump_context& dumpAsHex(uint_ptr dw);
-#endif
    dump_context& dumpAsHex(int_ptr n);
    dump_context& dumpAsHex(uint_ptr u);
 #endif

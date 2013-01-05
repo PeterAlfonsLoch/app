@@ -132,14 +132,14 @@ namespace zip
       ex1::file * pfile = pzipfile->m_pfile;
       return (voidpf) pfile;
    }
-   uLong  File::read_file_func (voidpf opaque, voidpf stream, void * buf, uLong size)
+   uint_ptr  File::read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
       ex1::file * pfile = pzipfile->m_pfile;
-      return (uLong) pfile->read(buf, size);
+      return (uint_ptr) pfile->read(buf, size);
    }
-   uLong  File::write_file_func (voidpf opaque, voidpf stream, const void * buf, uLong size)
+   uint_ptr  File::write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;
@@ -155,7 +155,7 @@ namespace zip
       return (long) pfile->get_position();      
    }
 
-   long   File::seek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin)
+   long   File::seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
    {
       UNREFERENCED_PARAMETER(stream);
       File * pzipfile = (File *) opaque;

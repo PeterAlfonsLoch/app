@@ -49,7 +49,7 @@
 #  define out_func              z_out_func
 #  define Byte                  z_Byte
 #  define uInt                  z_uInt
-#  define uLong                 z_uLong
+#  define uint_ptr                 z_uLong
 #  define Bytef                 z_Bytef
 #  define charf                 z_charf
 #  define intf                  z_intf
@@ -261,7 +261,7 @@
 typedef uchar  Byte;  /* 8 bits */
 #endif
 typedef uint32_t   uInt;  /* 16 bits or more */
-typedef uint32_t long  uLong; /* 32 bits or more */
+typedef uint32_t long  uint_ptr; /* 32 bits or more */
 
 #ifdef SMALL_MEDIUM
    /* Borland C/C++ and some old MSC versions ignore FAR inside typedef */
@@ -272,7 +272,7 @@ typedef uint32_t long  uLong; /* 32 bits or more */
 typedef char  FAR charf;
 typedef int32_t   FAR intf;
 typedef uInt  FAR uIntf;
-typedef uLong FAR uLongf;
+typedef uint_ptr FAR uLongf;
 
 #ifdef STDC
    typedef void const *voidpc;

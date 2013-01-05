@@ -100,11 +100,11 @@ typedef struct tm_zip_s
 typedef struct
 {
     tm_zip      tmz_date;       /* date in understandable format           */
-    uLong       dosDate;       /* if dos_date == 0, tmu_date is used      */
-/*    uLong       flag;        */   /* general purpose bit flag        2 bytes */
+    uint_ptr       dosDate;       /* if dos_date == 0, tmu_date is used      */
+/*    uint_ptr       flag;        */   /* general purpose bit flag        2 bytes */
 
-    uLong       internal_fa;    /* internal file attributes        2 bytes */
-    uLong       external_fa;    /* external file attributes        4 bytes */
+    uint_ptr       internal_fa;    /* internal file attributes        2 bytes */
+    uint_ptr       external_fa;    /* external file attributes        4 bytes */
 } zip_fileinfo;
 
 typedef const char* zipcharpc;
@@ -218,8 +218,8 @@ extern int32_t CLASS_DECL_ca zipCloseFileInZip OF((zipFile file));
 
 
 extern int32_t CLASS_DECL_ca zipCloseFileInZipRaw OF((zipFile file,
-                                            uLong uncompressed_size,
-                                            uLong crc32));
+                                            uint_ptr uncompressed_size,
+                                            uint_ptr crc32));
 /*
   close the current file in the zipfile, for fiel opened with
     parameter raw=1 in zipOpenNewFileInZip2

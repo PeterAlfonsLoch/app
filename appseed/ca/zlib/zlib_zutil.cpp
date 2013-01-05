@@ -32,9 +32,9 @@ const char * ZEXPORT zlibVersion()
     return ZLIB_VERSION;
 }
 
-uLong ZEXPORT zlibCompileFlags()
+uint_ptr ZEXPORT zlibCompileFlags()
 {
-    uLong flags;
+    uint_ptr flags;
 
     flags = 0;
     switch (sizeof(uInt)) {
@@ -43,7 +43,7 @@ uLong ZEXPORT zlibCompileFlags()
     case 8:     flags += 2;     break;
     default:    flags += 3;
     }
-    switch (sizeof(uLong)) {
+    switch (sizeof(uint_ptr)) {
     case 2:     break;
     case 4:     flags += 1 << 2;        break;
     case 8:     flags += 2 << 2;        break;

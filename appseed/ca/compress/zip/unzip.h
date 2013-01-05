@@ -93,30 +93,30 @@ typedef struct tm_unz_s
    These data comes from the end of central dir */
 typedef struct unz_global_info_s
 {
-    uLong number_entry;         /* total number of entries in
+    uint_ptr number_entry;         /* total number of entries in
                        the central dir on this disk */
-    uLong size_comment;         /* size of the global comment of the zipfile */
+    uint_ptr size_comment;         /* size of the global comment of the zipfile */
 } unz_global_info;
 
 
 /* unz_file_info contain information about a file in the zipfile */
 typedef struct unz_file_info_s
 {
-    uLong version;              /* version made by                 2 bytes */
-    uLong version_needed;       /* version needed to extract       2 bytes */
-    uLong flag;                 /* general purpose bit flag        2 bytes */
-    uLong compression_method;   /* compression method              2 bytes */
-    uLong dosDate;              /* last mod file date in Dos fmt   4 bytes */
-    uLong crc;                  /* crc-32                          4 bytes */
-    uLong compressed_size;      /* compressed size                 4 bytes */
-    uLong uncompressed_size;    /* uncompressed size               4 bytes */
-    uLong size_filename;        /* filename length                 2 bytes */
-    uLong size_file_extra;      /* extra field length              2 bytes */
-    uLong size_file_comment;    /* file comment length             2 bytes */
+    uint_ptr version;              /* version made by                 2 bytes */
+    uint_ptr version_needed;       /* version needed to extract       2 bytes */
+    uint_ptr flag;                 /* general purpose bit flag        2 bytes */
+    uint_ptr compression_method;   /* compression method              2 bytes */
+    uint_ptr dosDate;              /* last mod file date in Dos fmt   4 bytes */
+    uint_ptr crc;                  /* crc-32                          4 bytes */
+    uint_ptr compressed_size;      /* compressed size                 4 bytes */
+    uint_ptr uncompressed_size;    /* uncompressed size               4 bytes */
+    uint_ptr size_filename;        /* filename length                 2 bytes */
+    uint_ptr size_file_extra;      /* extra field length              2 bytes */
+    uint_ptr size_file_comment;    /* file comment length             2 bytes */
 
-    uLong disk_num_start;       /* disk number start               2 bytes */
-    uLong internal_fa;          /* internal file attributes        2 bytes */
-    uLong external_fa;          /* external file attributes        4 bytes */
+    uint_ptr disk_num_start;       /* disk number start               2 bytes */
+    uint_ptr internal_fa;          /* internal file attributes        2 bytes */
+    uint_ptr external_fa;          /* external file attributes        4 bytes */
 
     tm_unz tmu_date;
 } unz_file_info;
@@ -169,7 +169,7 @@ extern int32_t CLASS_DECL_ca unzGetGlobalInfo OF((unzFile file,
 
 extern int32_t CLASS_DECL_ca unzGetGlobalComment OF((unzFile file,
                                            char *szComment,
-                                           uLong uSizeBuf));
+                                           uint_ptr uSizeBuf));
 /*
   get the global comment string of the ZipFile, in the szComment buffer.
   uSizeBuf is the size of the szComment buffer.
@@ -211,8 +211,8 @@ extern int32_t CLASS_DECL_ca unzLocateFile OF((unzFile file,
 /* unz_file_info contain information about a file in the zipfile */
 typedef struct unz_file_pos_s
 {
-    uLong pos_in_zip_directory;   /* offset in zip file directory */
-    uLong num_of_file;            /* # of file */
+    uint_ptr pos_in_zip_directory;   /* offset in zip file directory */
+    uint_ptr num_of_file;            /* # of file */
 } unz_file_pos;
 
 extern int32_t CLASS_DECL_ca unzGetFilePos(
@@ -228,11 +228,11 @@ extern int32_t CLASS_DECL_ca unzGoToFilePos(
 extern int32_t CLASS_DECL_ca unzGetCurrentFileInfo OF((unzFile file,
                          unz_file_info *pfile_info,
                          char *szFileName,
-                         uLong fileNameBufferSize,
+                         uint_ptr fileNameBufferSize,
                          void *extraField,
-                         uLong extraFieldBufferSize,
+                         uint_ptr extraFieldBufferSize,
                          char *szComment,
-                         uLong commentBufferSize));
+                         uint_ptr commentBufferSize));
 /*
   get Info about the current file
   if pfile_info!=NULL, the *pfile_info structure will contain somes info about

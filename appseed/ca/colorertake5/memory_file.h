@@ -17,7 +17,7 @@ voidpf ZCALLBACK mem_open_file_func (voidpf opaque, const char *filename, int32_
   return (voidpf)0x666888;
 }
 
-uLong ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uLong this->get_size){
+uint_ptr ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uint_ptr this->get_size){
 
   MemoryFile *mf = (MemoryFile*)opaque;
 
@@ -28,7 +28,7 @@ uLong ZCALLBACK mem_read_file_func (voidpf opaque, voidpf stream, void *buf, uLo
 };
 
 
-uLong ZCALLBACK mem_write_file_func (voidpf opaque, voidpf stream, const void *buf, uLong this->get_size)
+uint_ptr ZCALLBACK mem_write_file_func (voidpf opaque, voidpf stream, const void *buf, uint_ptr this->get_size)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   return 0;
@@ -40,7 +40,7 @@ long ZCALLBACK mem_tell_file_func (voidpf opaque, voidpf stream)
   return mf->pointer;
 }
 
-long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin)
+long ZCALLBACK mem_seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
 {
   MemoryFile *mf = (MemoryFile*)opaque;
   int32_t cpointer;

@@ -34,17 +34,17 @@ voidpf ZCALLBACK fopen_file_func OF((
    const char* filename,
    int32_t mode));
 
-uLong ZCALLBACK fread_file_func OF((
+uint_ptr ZCALLBACK fread_file_func OF((
    voidpf opaque,
    voidpf stream,
    void * buf,
-   uLong size));
+   uint_ptr size));
 
-uLong ZCALLBACK fwrite_file_func OF((
+uint_ptr ZCALLBACK fwrite_file_func OF((
    voidpf opaque,
    voidpf stream,
    const void * buf,
-   uLong size));
+   uint_ptr size));
 
 long ZCALLBACK ftell_file_func OF((
    voidpf opaque,
@@ -53,7 +53,7 @@ long ZCALLBACK ftell_file_func OF((
 long ZCALLBACK fseek_file_func OF((
    voidpf opaque,
    voidpf stream,
-   uLong offset,
+   uint_ptr offset,
    int32_t origin));
 
 int32_t ZCALLBACK fclose_file_func OF((
@@ -97,18 +97,18 @@ voidpf ZCALLBACK fopen_file_func (voidpf opaque, const char * filename, int32_t 
 }
 
 
-uLong ZCALLBACK fread_file_func (voidpf opaque, voidpf stream, void * buf, uLong size)
+uint_ptr ZCALLBACK fread_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size)
 {
-    uLong ret;
-    ret = (uLong) fread(buf, 1, (size_t) size, (FILE *)stream);
+    uint_ptr ret;
+    ret = (uint_ptr) fread(buf, 1, (size_t) size, (FILE *)stream);
     return ret;
 }
 
 
-uLong ZCALLBACK fwrite_file_func (voidpf opaque, voidpf stream, const void * buf, uLong size)
+uint_ptr ZCALLBACK fwrite_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size)
 {
-    uLong ret;
-    ret = (uLong) fwrite(buf, 1, (size_t) size, (FILE *)stream);
+    uint_ptr ret;
+    ret = (uint_ptr) fwrite(buf, 1, (size_t) size, (FILE *)stream);
     return ret;
 }
 
@@ -119,7 +119,7 @@ long ZCALLBACK ftell_file_func (voidpf opaque, voidpf stream)
     return ret;
 }
 
-long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin)
+long ZCALLBACK fseek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin)
 {
    int32_t fseek_origin=0;
    long ret;

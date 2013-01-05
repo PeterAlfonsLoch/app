@@ -210,7 +210,7 @@ dump_context& dump_context::operator<<(uint_ptr u)
 #ifdef _WIN64
 dump_context& dump_context::operator<<(LONG l)
 #else
-dump_context& dump_context::operator<<(long_ptr l)
+dump_context& dump_context::operator<<(int_ptr l)
 #endif
 {
 
@@ -285,7 +285,7 @@ dump_context& dump_context::dumpAsHex(uint_ptr u)
 #ifdef _WIN64
 dump_context& dump_context::dumpAsHex(LONG l)
 #else
-dump_context& dump_context::dumpAsHex(long_ptr l)
+dump_context& dump_context::dumpAsHex(int_ptr l)
 #endif
 {
 

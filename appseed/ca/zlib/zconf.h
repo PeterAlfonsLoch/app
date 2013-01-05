@@ -51,7 +51,7 @@
 #  define out_func              z_out_func
 #  define Byte                  z_Byte
 #  define uInt                  z_uInt
-#  define uLong                 z_uLong
+#  define uint_ptr                 z_uLong
 #  define Bytef                 z_Bytef
 #  define charf                 z_charf
 #  define intf                  z_intf
@@ -277,12 +277,12 @@ typedef uchar  Byte;  /* 8 bits */
 typedef uint32_t   uInt;  /* 16 bits or more */
 #ifdef WINDOWS
 #ifdef AMD64
-typedef uint64_t  uLong; /* 32 bits or more */
+typedef uint64_t  uint_ptr; /* 32 bits or more */
 #else
-typedef uint32_t  uLong; /* 32 bits or more */
+typedef uint32_t  uint_ptr; /* 32 bits or more */
 #endif
 #else
-typedef uint32_t long  uLong; /* 32 bits or more */
+typedef uint32_t long  uint_ptr; /* 32 bits or more */
 #endif
 
 #ifdef SMALL_MEDIUM
@@ -294,7 +294,7 @@ typedef uint32_t long  uLong; /* 32 bits or more */
 typedef char  FAR charf;
 typedef int32_t   FAR intf;
 typedef uInt  FAR uIntf;
-typedef uLong FAR uLongf;
+typedef uint_ptr FAR uLongf;
 
 #ifdef STDC
    typedef void const *voidpc;

@@ -97,7 +97,7 @@ typedef struct z_stream_s {
 
     int32_t     data_type;  /* best guess about the data type: binary or text */
     uint32_t   adler;      /* adler32 value of the uncompressed data */
-    uLong   reserved;   /* reserved for future use */
+    uint_ptr   reserved;   /* reserved for future use */
 } z_stream;
 
 typedef z_stream FAR *z_streamp;
@@ -108,7 +108,7 @@ typedef z_stream FAR *z_streamp;
 */
 typedef struct gz_header_s {
     int32_t     text;       /* true if compressed data believed to be text */
-    uLong   time;       /* modification time */
+    uint_ptr   time;       /* modification time */
     int32_t     xflags;     /* extra flags (not used when writing a gzip file) */
     int32_t     os;         /* operating system */
     Bytef   *extra;     /* pointer to extra field or Z_NULL if none */
@@ -641,8 +641,8 @@ ZEXTERN int32_t ZEXPORT deflateTune OF((z_streamp strm,
    returns Z_OK on success, or Z_STREAM_ERROR for an invalid deflate stream.
  */
 
-ZEXTERN uLong ZEXPORT deflateBound OF((z_streamp strm,
-                                       uLong sourceLen));
+ZEXTERN uint_ptr ZEXPORT deflateBound OF((z_streamp strm,
+                                       uint_ptr sourceLen));
 /*
      deflateBound() returns an upper bound on the compressed size after
    deflation of sourceLen bytes.  It must be called after deflateInit()
@@ -954,12 +954,12 @@ ZEXTERN int32_t ZEXPORT inflateBackEnd OF((z_streamp strm));
    state was inconsistent.
 */
 
-ZEXTERN uLong ZEXPORT zlibCompileFlags OF(());
+ZEXTERN uint_ptr ZEXPORT zlibCompileFlags OF(());
 /* Return flags indicating compile-time options.
 
     Type sizes, two bits each, 00 = 16 bits, 01 = 32, 10 = 64, 11 = other:
      1.0: size of uInt
-     3.2: size of uLong
+     3.2: size of uint_ptr
      5.4: size of voidpf (pointer)
      7.6: size of z_off_t
 
@@ -1007,7 +1007,7 @@ ZEXTERN uLong ZEXPORT zlibCompileFlags OF(());
 */
 
 ZEXTERN int32_t ZEXPORT zlib_compress OF((Bytef *dest,   uLongf *destLen,
-                                 const Bytef *source, uLong sourceLen));
+                                 const Bytef *source, uint_ptr sourceLen));
 /*
      Compresses the source buffer into the destination buffer.  sourceLen is
    the byte length of the source buffer. Upon entry, destLen is the total
@@ -1022,7 +1022,7 @@ ZEXTERN int32_t ZEXPORT zlib_compress OF((Bytef *dest,   uLongf *destLen,
 */
 
 ZEXTERN int32_t ZEXPORT compress2 OF((Bytef *dest,   uLongf *destLen,
-                                  const Bytef *source, uLong sourceLen,
+                                  const Bytef *source, uint_ptr sourceLen,
                                   int32_t level));
 /*
      Compresses the source buffer into the destination buffer. The level
@@ -1037,7 +1037,7 @@ ZEXTERN int32_t ZEXPORT compress2 OF((Bytef *dest,   uLongf *destLen,
    Z_STREAM_ERROR if the level parameter is invalid.
 */
 
-ZEXTERN uLong ZEXPORT compressBound OF((uLong sourceLen));
+ZEXTERN uint_ptr ZEXPORT compressBound OF((uint_ptr sourceLen));
 /*
      compressBound() returns an upper bound on the compressed size after
    compress() or compress2() on sourceLen bytes.  It would be used before
@@ -1045,7 +1045,7 @@ ZEXTERN uLong ZEXPORT compressBound OF((uLong sourceLen));
 */
 
 ZEXTERN int32_t ZEXPORT uncompress OF((Bytef *dest,   uLongf *destLen,
-                                   const Bytef *source, uLong sourceLen));
+                                   const Bytef *source, uint_ptr sourceLen));
 /*
      Decompresses the source buffer into the destination buffer.  sourceLen is
    the byte length of the source buffer. Upon entry, destLen is the total
@@ -1265,7 +1265,7 @@ ZEXTERN uint32_t ZEXPORT adler32 OF((uint32_t adler, const Bytef *buf, uInt len)
    An Adler-32 checksum is almost as reliable as a CRC32 but can be computed
    much faster. Usage example:
 
-     uLong adler = adler32(0L, Z_NULL, 0);
+     uint_ptr adler = adler32(0L, Z_NULL, 0);
 
      while (read_buffer(buffer, length) != EOF) {
        adler = adler32(adler, buffer, length);
@@ -1290,7 +1290,7 @@ ZEXTERN uint32_t ZEXPORT crc32   OF((uint32_t crc, const Bytef *buf, size_t len)
    performed within this function so it shouldn't be done by the application.
    Usage example:
 
-     uLong crc = crc32(0L, Z_NULL, 0);
+     uint_ptr crc = crc32(0L, Z_NULL, 0);
 
      while (read_buffer(buffer, length) != EOF) {
        crc = crc32(crc, buffer, length);

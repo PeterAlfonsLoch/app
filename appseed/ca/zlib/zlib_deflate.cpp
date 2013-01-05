@@ -488,12 +488,12 @@ int32_t ZEXPORT deflateTune(
  * But even the conservative upper bound of about 14% expansion does not
  * seem onerous for output buffer allocation.
  */
-uLong ZEXPORT deflateBound(
+uint_ptr ZEXPORT deflateBound(
     z_streamp strm,
-    uLong sourceLen)
+    uint_ptr sourceLen)
 {
     deflate_state *s;
-    uLong destLen;
+    uint_ptr destLen;
 
     /* conservative upper bound */
     destLen = sourceLen +

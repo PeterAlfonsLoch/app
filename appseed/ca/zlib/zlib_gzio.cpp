@@ -84,8 +84,8 @@ zlib_local int32_t do_flush        OF((gzFile file, int32_t flush));
 zlib_local int32_t    get_byte     OF((gz_stream *s));
 zlib_local void   check_header OF((gz_stream *s));
 zlib_local int32_t    destroy      OF((gz_stream *s));
-zlib_local void   putLong      OF((FILE *file, uLong x));
-zlib_local uLong  getLong      OF((gz_stream *s));
+zlib_local void   putLong      OF((FILE *file, uint_ptr x));
+zlib_local uint_ptr  getLong      OF((gz_stream *s));
 
 /* ===========================================================================
      Opens a gzip (.gz) file for reading or writing. The mode parameter
@@ -928,7 +928,7 @@ int32_t ZEXPORT gzdirect (
 */
 zlib_local void putLong (
     FILE *file,
-    uLong x)
+    uint_ptr x)
 {
     int32_t n;
     for (n = 0; n < 4; n++) {
@@ -941,17 +941,17 @@ zlib_local void putLong (
    Reads a long in LSB order from the given gz_stream. Sets z_err in case
    of error.
 */
-zlib_local uLong getLong (
+zlib_local uint_ptr getLong (
     gz_stream *s)
 {
-    uLong x = (uLong)get_byte(s);
+    uint_ptr x = (uint_ptr)get_byte(s);
     int32_t c;
 
-    x += ((uLong)get_byte(s))<<8;
-    x += ((uLong)get_byte(s))<<16;
+    x += ((uint_ptr)get_byte(s))<<8;
+    x += ((uint_ptr)get_byte(s))<<16;
     c = get_byte(s);
     if (c == EOF) s->z_err = Z_DATA_ERROR;
-    x += ((uLong)c)<<24;
+    x += ((uint_ptr)c)<<24;
     return x;
 }
 
@@ -974,7 +974,7 @@ int32_t ZEXPORT gzclose (
             return destroy((gz_stream*)file);
 
         putLong (s->file, s->crc);
-        putLong (s->file, (uLong)(s->in & 0xffffffff));
+        putLong (s->file, (uint_ptr)(s->in & 0xffffffff));
 #endif
     }
     return destroy((gz_stream*)file);

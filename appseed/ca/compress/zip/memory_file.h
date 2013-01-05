@@ -13,10 +13,10 @@ namespace zip
       memory_file(::ca::application * papp);
       virtual ~memory_file();
       static voidpf open_file_func (voidpf opaque, const char* filename, int32_t mode);
-      static uLong  read_file_func (voidpf opaque, voidpf stream, void * buf, uLong size);
-      static uLong  write_file_func (voidpf opaque, voidpf stream, const void * buf, uLong size);
+      static uint_ptr  read_file_func (voidpf opaque, voidpf stream, void * buf, uint_ptr size);
+      static uint_ptr  write_file_func (voidpf opaque, voidpf stream, const void * buf, uint_ptr size);
       static long   tell_file_func (voidpf opaque, voidpf stream);
-      static long   seek_file_func (voidpf opaque, voidpf stream, uLong offset, int32_t origin);
+      static long   seek_file_func (voidpf opaque, voidpf stream, uint_ptr offset, int32_t origin);
       static int32_t    close_file_func (voidpf opaque, voidpf stream);
       static int32_t testerror_file_func (voidpf opaque, voidpf stream);
 
