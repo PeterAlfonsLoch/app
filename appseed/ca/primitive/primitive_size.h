@@ -74,7 +74,7 @@ public:
    // create from a point
    size64(__point64 initPt) throw();
    // create from a DWORD: cx = LODWORD(dw) cy = HIDWORD(dw)
-   size64(__uint64_t dwSize) throw();
+   size64(uint64_t dwSize) throw();
 
 
    operator __size64 *() throw();

@@ -164,8 +164,8 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(uchar uch) : \
-         c_number < T > (throw_cast < T > (uch)) \
+      c(uchar uchar) : \
+         c_number < T > (throw_cast < T > (uchar)) \
       { \
       } \
       \
@@ -174,8 +174,8 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(uint16_t ush) : \
-         c_number < T > (throw_cast < T > (ush)) \
+      c(uint16_t uint16_t) : \
+         c_number < T > (throw_cast < T > (uint16_t)) \
       { \
       } \
       \
@@ -186,16 +186,6 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       \
       c(uint32_t ui) : \
          c_number < T > (throw_cast < T > (ui)) \
-      { \
-      } \
-      \
-      c(long l) : \
-         c_number < T > (throw_cast < T > (l)) \
-      { \
-      } \
-      \
-      c(uint32_t long ul) : \
-         c_number < T > (throw_cast < T > (ul)) \
       { \
       } \
       \
@@ -242,8 +232,8 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(uchar uch) : \
-         c_number < T > (throw_cast < T > (uch)) \
+      c(uchar uchar) : \
+         c_number < T > (throw_cast < T > (uchar)) \
       { \
       } \
       \
@@ -252,8 +242,8 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(uint16_t ush) : \
-         c_number < T > (throw_cast < T > (ush)) \
+      c(uint16_t uint16_t) : \
+         c_number < T > (throw_cast < T > (uint16_t)) \
       { \
       } \
       \

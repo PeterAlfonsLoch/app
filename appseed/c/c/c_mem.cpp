@@ -1,11 +1,11 @@
 #include "framework.h"
 
-void * memset_dup(void * p, int32_t uch, size_t iSize)
+void * memset_dup(void * p, int32_t i, size_t iSize)
 {
    uchar * puch = (uchar * ) p;
    while(iSize > 0)
    {
-      *puch = static_cast < uchar > (uch);
+      *puch = static_cast < uchar > (i);
       puch++;
       iSize--;
    }
@@ -51,9 +51,9 @@ int32_t memcmp(const void * sz1, const void * sz2, size_t iLen)
 
 #pragma function(memset)
 
-void * memset(void * p, int32_t uch, size_t iSize)
+void * memset(void * p, int32_t uchar, size_t iSize)
 {
-   return memset_dup(p, uch, iSize);
+   return memset_dup(p, uchar, iSize);
 }*/
 
 //#endif

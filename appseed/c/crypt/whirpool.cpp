@@ -1507,9 +1507,8 @@ void NESSIEinit(struct NESSIEstruct * const structpointer) {
  *
  * This method maintains the invariant: bufferBits < DIGESTBITS
  */
-void NESSIEadd(const uchar * const source,
-               uint32_t long sourceBits,
-               struct NESSIEstruct * const structpointer) {
+void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer)
+{
     /*
                        sourcePos
                        |

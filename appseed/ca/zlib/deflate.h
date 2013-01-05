@@ -61,12 +61,12 @@
 /* Data structure describing a single value and its code string. */
 typedef struct ct_data_s {
     union {
-        ush  freq;       /* frequency count */
-        ush  code;       /* bit string */
+        uint16_t  freq;       /* frequency count */
+        uint16_t  code;       /* bit string */
     } fc;
     union {
-        ush  dad;        /* father node in Huffman tree */
-        ush  len;        /* length of bit string */
+        uint16_t  dad;        /* father node in Huffman tree */
+        uint16_t  len;        /* length of bit string */
     } dl;
 } FAR ct_data;
 
@@ -83,7 +83,7 @@ typedef struct tree_desc_s {
     static_tree_desc *stat_desc; /* the corresponding static tree */
 } FAR tree_desc;
 
-typedef ush Pos;
+typedef uint16_t Pos;
 typedef Pos FAR Posf;
 typedef uint32_t IPos;
 
@@ -95,7 +95,7 @@ typedef struct internal_state {
     z_streamp strm;      /* pointer back to this zlib stream */
     int32_t   status;        /* as the name implies */
     Bytef *pending_buf;  /* output still pending */
-    ulg   pending_buf_size; /* size of pending_buf */
+    uint32_t   pending_buf_size; /* size of pending_buf */
     Bytef *pending_out;  /* next pending byte to output to the stream */
     uInt   pending;      /* nb of bytes in the pending buffer */
     int32_t   wrap;          /* bit 0 true for zlib, bit 1 true for gzip */
@@ -120,7 +120,7 @@ typedef struct internal_state {
      * To do: use the user input buffer as sliding window.
      */
 
-    ulg window_size;
+    uint32_t window_size;
     /* Actual size of window: 2*wSize, except when the user input buffer
      * is directly used as sliding window.
      */
@@ -197,7 +197,7 @@ typedef struct internal_state {
     struct tree_desc_s d_desc;               /* desc. for distance tree */
     struct tree_desc_s bl_desc;              /* desc. for bit length tree */
 
-    ush bl_count[MAX_BITS+1];
+    uint16_t bl_count[MAX_BITS+1];
     /* number of codes at each bit length for an optimal tree */
 
     int32_t heap[2*L_CODES+1];      /* heap used to build the Huffman trees */
@@ -207,11 +207,11 @@ typedef struct internal_state {
      * The same heap base_array is used to build all trees.
      */
 
-    uch depth[2*L_CODES+1];
+    uchar depth[2*L_CODES+1];
     /* Depth of each subtree used as tie breaker for trees of equal frequency
      */
 
-    uchf *l_buf;          /* buffer for literals or lengths */
+    uchar *l_buf;          /* buffer for literals or lengths */
 
     uInt  lit_bufsize;
     /* Size of match buffer for literals/lengths.  There are 4 reasons for
@@ -235,23 +235,23 @@ typedef struct internal_state {
 
     uInt last_lit;      /* running index in l_buf */
 
-    ushf *d_buf;
+    uint16_t *d_buf;
     /* buffer for distances. To simplify the code, d_buf and l_buf have
      * the same number of elements. To use different lengths, an extra flag
      * base_array would be necessary.
      */
 
-    ulg opt_len;        /* bit length of current block with optimal trees */
-    ulg static_len;     /* bit length of current block with static trees */
+    uint32_t opt_len;        /* bit length of current block with optimal trees */
+    uint32_t static_len;     /* bit length of current block with static trees */
     uInt matches;       /* number of string matches in current block */
     int32_t last_eob_len;   /* bit length of EOB code for last block */
 
 #ifdef DEBUG
-    ulg compressed_len; /* total bit length of compressed file mod 2^32 */
-    ulg bits_sent;      /* bit length of compressed data sent mod 2^32 */
+    uint32_t compressed_len; /* total bit length of compressed file mod 2^32 */
+    uint32_t bits_sent;      /* bit length of compressed data sent mod 2^32 */
 #endif
 
-    ush bi_buf;
+    uint16_t bi_buf;
     /* Output buffer. bits are inserted starting at the bottom (least
      * significant bits).
      */
@@ -281,10 +281,10 @@ typedef struct internal_state {
         /* in trees.c */
 void _tr_init         OF((deflate_state *s));
 int32_t  _tr_tally        OF((deflate_state *s, uint32_t dist, uint32_t lc));
-void _tr_flush_block  OF((deflate_state *s, charf *buf, ulg stored_len,
+void _tr_flush_block  OF((deflate_state *s, charf *buf, uint32_t stored_len,
                           int32_t eof));
 void _tr_align        OF((deflate_state *s));
-void _tr_stored_block OF((deflate_state *s, charf *buf, ulg stored_len,
+void _tr_stored_block OF((deflate_state *s, charf *buf, uint32_t stored_len,
                           int32_t eof));
 
 #define d_code(dist) \
@@ -298,23 +298,23 @@ void _tr_stored_block OF((deflate_state *s, charf *buf, ulg stored_len,
 /* Inline versions of _tr_tally for speed: */
 
 #if defined(GEN_TREES_H) || !defined(STDC)
-  extern uch _length_code[];
-  extern uch _dist_code[];
+  extern uchar _length_code[];
+  extern uchar _dist_code[];
 #else
-  extern const uch _length_code[];
-  extern const uch _dist_code[];
+  extern const uchar _length_code[];
+  extern const uchar _dist_code[];
 #endif
 
 # define _tr_tally_lit(s, c, flush) \
-  { uch cc = (c); \
+  { uchar cc = (c); \
     s->d_buf[s->last_lit] = 0; \
     s->l_buf[s->last_lit++] = cc; \
     s->dyn_ltree[cc].Freq++; \
     flush = (s->last_lit == s->lit_bufsize-1); \
    }
 # define _tr_tally_dist(s, distance, length, flush) \
-  { uch len = (length); \
-    ush dist = (distance); \
+  { uchar len = (length); \
+    uint16_t dist = (distance); \
     s->d_buf[s->last_lit] = dist; \
     s->l_buf[s->last_lit++] = len; \
     dist--; \

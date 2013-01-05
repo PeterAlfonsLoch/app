@@ -232,9 +232,7 @@ namespace numeric_info
    template < > class CLASS_DECL_ca offset < uchar > { public: typedef char TYPE; };
    template < > class CLASS_DECL_ca offset < uint16_t > { public: typedef int16_t TYPE; };
    template < > class CLASS_DECL_ca offset < uint32_t > { public: typedef int32_t TYPE; };
-   template < > class CLASS_DECL_ca offset < uint32_t long > { public: typedef long TYPE; };
-#if defined(WINDOWS)
    template < > class CLASS_DECL_ca offset < uint64_t > { public: typedef int64_t TYPE; };
-#endif
+
 
 } // numeric_info

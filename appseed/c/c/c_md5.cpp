@@ -282,7 +282,7 @@ namespace md5
    void md5::update(void *data, size_t size)
    {
 	   size_t saved_lo;
-	   uint32_t long used, free;
+	   uint_ptr used, free;
 
 	   saved_lo = m_ctx.lo;
 	   if ((m_ctx.lo = (saved_lo + size) & 0x1fffffff) < saved_lo)
@@ -316,7 +316,7 @@ namespace md5
    void md5::finalize()
    {
       uchar * result = m_uchaDigest;
-	   uint32_t long used, free;
+	   uint_ptr used, free;
 
 	   used = m_ctx.lo & 0x3f;
 

@@ -6,25 +6,25 @@
 #endif
 
 
-uint32_t long c_inet_to_ui(const char * src)
+uint32_t c_inet_to_ui(const char * src)
 {
 
    if(str_begins_ci_dup(src, "0x"))
    {
 
-      return (uint32_t long) atoi64_dup(&src[2], NULL, 16);
+      return (uint32_t) atoi64_dup(&src[2], NULL, 16);
 
    }
    else if(str_begins_dup(src, "0"))
    {
 
-      return (uint32_t long) atoi64_dup(&src[1], NULL, 16);
+      return (uint32_t) atoi64_dup(&src[1], NULL, 16);
 
    }
    else
    {
 
-      return (uint32_t long) atoi64_dup(src, NULL, 10);
+      return (uint32_t) atoi64_dup(src, NULL, 10);
 
    }
 
@@ -455,9 +455,9 @@ CLASS_DECL_c const char * c_inet_ntop(int32_t af, const void *src, char *dst, in
 
 }
 
-#define C_INADDR_NONE ((uint32_t long ) -1)
+#define C_INADDR_NONE ((uint32_t) -1)
 
-CLASS_DECL_c uint32_t long c_inet_addr(const char * src)
+CLASS_DECL_c uint32_t c_inet_addr(const char * src)
 {
 
    stra_dup stra;
@@ -478,7 +478,7 @@ CLASS_DECL_c uint32_t long c_inet_addr(const char * src)
 
       c_in_addr addr;
 
-      uint32_t long ul;
+      uint32_t ul;
 
       if(stra.get_count() == 2)
       {

@@ -357,9 +357,9 @@ namespace ex1
       return read(&ch);
    }
 
-   bool file::read(uchar & uch)
+   bool file::read(uchar & uchar)
    {
-      return read(&uch);
+      return read(&uchar);
    }
 
    bool file::peek(char & ch)
@@ -367,9 +367,9 @@ namespace ex1
       return peek(&ch);
    }
 
-   bool file::peek(uchar & uch)
+   bool file::peek(uchar & uchar)
    {
-      return peek(&uch);
+      return peek(&uchar);
    }
 
 } // namespace ex1

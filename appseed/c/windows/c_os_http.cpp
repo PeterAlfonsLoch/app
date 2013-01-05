@@ -531,22 +531,22 @@ vsstring url_encode_dup(const char * psz)
    char sz[256];
    while(*psz != '\0')
    {
-      uchar uch = *psz;
-      if(isdigit_dup(uch)
-         || isalpha_dup(uch)
-         || uch == '.'
-         || uch == '-'
-         || uch== '_')
+      uchar uchar = *psz;
+      if(isdigit_dup(uchar)
+         || isalpha_dup(uchar)
+         || uchar == '.'
+         || uchar == '-'
+         || uchar== '_')
       {
-         str += uch;
+         str += uchar;
       }
-      else if(uch == ' ')
+      else if(uchar == ' ')
       {
          str += "+";
       }
       else
       {
-         itoa_dup(sz, uch, 16);
+         itoa_dup(sz, uchar, 16);
          if(strlen_dup(sz) == 0)
          {
             str += "%00";

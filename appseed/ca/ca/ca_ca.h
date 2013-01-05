@@ -143,15 +143,15 @@ namespace ca
 
       enum flag
       {
-         flag_auto_clean = 1,
-         flag_discard_to_factory = 2,
-         flag_ready_for_delete = 4,
-         flag_auto_delete = 8,
-         //flag_heap_alloc = 16,
-         flag_locked = 32,
+         flag_auto_clean = 1 << 0,
+         flag_discard_to_factory = 1 << 1,
+         flag_ready_for_delete = 1 << 2,
+         flag_auto_delete = 1 << 3,
+         //flag_heap_alloc = 1 << 4,
+         flag_locked = 1 << 5,
       };
 
-      uint32_t long           m_ulFlags;
+      uint32_t                m_ulFlags;
       ::ca::application *     m_papp;
       int64_t                 m_countReference;
       ::ca::ptra *            m_pptraListener;
@@ -180,7 +180,7 @@ namespace ca
 
       inline bool is_set_ca_flag(::ca::ca::flag eflag)
       {
-         return (m_ulFlags & ((uint32_t long) eflag)) == (uint32_t long) eflag;
+         return (m_ulFlags & ((uint32_t) eflag)) == (uint32_t) eflag;
       }
 
       inline void clear_ca_flag(::ca::ca::flag eflag)

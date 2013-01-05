@@ -90,17 +90,17 @@ namespace html
 
 
          strsize iLastSpace = 0;
-         uchar uch;
+         uchar uchar;
          int32_t iSpace = 0;
          string strLine;
          for(int32_t i = 0; i < str.get_length();)
          {
             iSpace = 0;
-            uch = (uchar) str[i];
+            uchar = (uchar) str[i];
             while(i < str.get_length())
             {
-               uch = (uchar) str[i];
-               if(!isspace(uch))
+               uchar = (uchar) str[i];
+               if(!isspace(uchar))
                   break;
                iSpace++;
                if(iSpace == 1)
@@ -120,8 +120,8 @@ namespace html
             }
             while(i < str.get_length())
             {
-               uch = (uchar) str[i];
-               if(isspace(uch))
+               uchar = (uchar) str[i];
+               if(isspace(uchar))
                   break;
                strLine += str[i];
                i++;
@@ -135,8 +135,8 @@ namespace html
          m_cxMin = 0;
          for(int32_t i = 0; i < m_straWordSpace.get_size(); i++)
          {
-            uch = (uchar) m_straWordSpace[i][0];
-            if(!isspace(uch))
+            uchar = (uchar) m_straWordSpace[i][0];
+            if(!isspace(uchar))
             {
                size = pdc->GetTextExtent(m_straWordSpace[i]);
                if(size.cx > m_cxMin)
@@ -211,7 +211,7 @@ namespace html
             ::size sizeText;
             int32_t iSpace;
             string strLine;
-            uchar uch;
+            uchar uchar;
             strsize iLastSpace = 0;
             point pointBound(get_x(), get_y());
             pointBound.x += m_margin.left + m_border.left + m_padding.left;
@@ -222,11 +222,11 @@ namespace html
             for(int32_t i = 0; i < str.get_length();)
             {
                iSpace = 0;
-               uch = (uchar) str[i];
+               uchar = (uchar) str[i];
                while(i < str.get_length())
                {
-                  uch = (uchar) str[i];
-                  if(!isspace(uch))
+                  uchar = (uchar) str[i];
+                  if(!isspace(uchar))
                      break;
                   iSpace++;
                   if(iSpace == 1)
@@ -242,8 +242,8 @@ namespace html
                }
                while(i < str.get_length())
                {
-                  uch = (uchar) str[i];
-                  if(isspace(uch))
+                  uchar = (uchar) str[i];
+                  if(isspace(uchar))
                      break;
                   strLine += str[i];
                   i++;

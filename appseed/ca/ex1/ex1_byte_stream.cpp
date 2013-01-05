@@ -44,9 +44,9 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (uchar & uch)
+   byte_input_stream & byte_input_stream::operator >> (uchar & uchar)
    {
-      read(&uch, sizeof(uch));
+      read(&uchar, sizeof(uchar));
       return *this;
    }
 
@@ -56,9 +56,9 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (uint16_t & ush)
+   byte_input_stream & byte_input_stream::operator >> (uint16_t & uint16_t)
    {
-      read(&ush, sizeof(ush));
+      read(&uint16_t, sizeof(uint16_t));
       return *this;
    }
 
@@ -356,9 +356,9 @@ namespace ex1
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (uchar uch)
+   byte_output_stream & byte_output_stream::operator << (uchar uchar)
    {
-      write(&uch, sizeof(uch));
+      write(&uchar, sizeof(uchar));
       return *this;
    }
 
@@ -368,9 +368,9 @@ namespace ex1
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (uint16_t ush)
+   byte_output_stream & byte_output_stream::operator << (uint16_t uint16_t)
    {
-      write(&ush, sizeof(ush));
+      write(&uint16_t, sizeof(uint16_t));
       return *this;
    }
 

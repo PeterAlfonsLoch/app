@@ -14,32 +14,32 @@ string CLASS_DECL_ca operator + (const string & str, const gen::property & prop)
 
 var CLASS_DECL_ca operator - (int32_t i, const gen::property & prop);
 var CLASS_DECL_ca operator - (uint32_t user, const gen::property & prop);
-var CLASS_DECL_ca operator - (long l, const gen::property & prop);
-var CLASS_DECL_ca operator - (uint32_t long ul, const gen::property & prop);
+var CLASS_DECL_ca operator - (int64_t i, const gen::property & prop);
+var CLASS_DECL_ca operator - (uint64_t ui, const gen::property & prop);
 var CLASS_DECL_ca operator - (double d, const gen::property & prop);
 var CLASS_DECL_ca operator - (const var & var, const gen::property & prop);
 var CLASS_DECL_ca operator - (const gen::property & prop1, const gen::property & prop2);
 
 var CLASS_DECL_ca operator + (int32_t i, const gen::property & prop);
 var CLASS_DECL_ca operator + (uint32_t user, const gen::property & prop);
-var CLASS_DECL_ca operator + (long l, const gen::property & prop);
-var CLASS_DECL_ca operator + (uint32_t long ul, const gen::property & prop);
+var CLASS_DECL_ca operator + (int64_t i, const gen::property & prop);
+var CLASS_DECL_ca operator + (uint64_t ui, const gen::property & prop);
 var CLASS_DECL_ca operator + (double d, const gen::property & prop);
 var CLASS_DECL_ca operator + (const var & var, const gen::property & prop);
 var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property & prop2);
 
 var CLASS_DECL_ca operator / (int32_t i, const gen::property & prop);
 var CLASS_DECL_ca operator / (uint32_t user, const gen::property & prop);
-var CLASS_DECL_ca operator / (long l, const gen::property & prop);
-var CLASS_DECL_ca operator / (uint32_t long ul, const gen::property & prop);
+var CLASS_DECL_ca operator / (int64_t i, const gen::property & prop);
+var CLASS_DECL_ca operator / (uint64_t ui, const gen::property & prop);
 var CLASS_DECL_ca operator / (double d, const gen::property & prop);
 var CLASS_DECL_ca operator / (const var & var, const gen::property & prop);
 var CLASS_DECL_ca operator / (const gen::property & prop1, const gen::property & prop2);
 
 var CLASS_DECL_ca operator * (int32_t i, const gen::property & prop);
 var CLASS_DECL_ca operator * (uint32_t user, const gen:: property & prop);
-var CLASS_DECL_ca operator * (long l, const gen::property & prop);
-var CLASS_DECL_ca operator * (uint32_t long ul, const gen::property & prop);
+var CLASS_DECL_ca operator * (int64_t i, const gen::property & prop);
+var CLASS_DECL_ca operator * (uint64_t ui, const gen::property & prop);
 var CLASS_DECL_ca operator * (double d, const gen::property & prop);
 var CLASS_DECL_ca operator * (const var & var, const gen::property & prop);
 var CLASS_DECL_ca operator * (const gen::property & prop1, const gen::property & prop2);
@@ -340,7 +340,7 @@ namespace gen
 
 #ifdef MACOS
 
-      property & operator =(long l)
+      property & operator =(int64_t i)
       {
          get_value() = l;
          return *this;
@@ -546,76 +546,76 @@ namespace gen
 
       var operator - (int32_t i) const;
       var operator - (uint32_t user) const;
-      var operator - (long i) const;
-      var operator - (uint32_t long user) const;
+      var operator - (int64_t i) const;
+      var operator - (uint64_t ui) const;
       var operator - (double d) const;
       var operator - (const var & var) const;
 
 //      friend var CLASS_DECL_ca operator - (int32_t i, const property & prop);
 //      friend var CLASS_DECL_ca operator - (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator - (long l, const property & prop);
-//      friend var CLASS_DECL_ca operator - (uint32_t long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator - (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator - (uint64_t ui, const property & prop);
 //      friend var CLASS_DECL_ca operator - (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator - (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator - (const property & prop1, const property & prop2);
 
       var operator + (int32_t i) const;
       var operator + (uint32_t user) const;
-      var operator + (long i) const;
-      var operator + (uint32_t long user) const;
+      var operator + (int64_t i) const;
+      var operator + (uint64_t ui) const;
       var operator + (double d) const;
       var operator + (const var & var) const;
 
 //      friend var CLASS_DECL_ca operator + (int32_t i, const property & prop);
 //      friend var CLASS_DECL_ca operator + (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator + (long l, const property & prop);
-//      friend var CLASS_DECL_ca operator + (uint32_t long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator + (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator + (uint64_t ui, const property & prop);
 //      friend var CLASS_DECL_ca operator + (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator + (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator + (const property & prop1, const property & prop2);
 
       var operator / (int32_t i) const;
       var operator / (uint32_t user) const;
-      var operator / (long i) const;
-      var operator / (uint32_t long user) const;
+      var operator / (int64_t i) const;
+      var operator / (uint64_t ui) const;
       var operator / (double d) const;
       var operator / (const var & var) const;
 
 //      friend var CLASS_DECL_ca operator / (int32_t i, const property & prop);
 //      friend var CLASS_DECL_ca operator / (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator / (long l, const property & prop);
-//      friend var CLASS_DECL_ca operator / (uint32_t long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator / (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator / (uint64_t ui, const property & prop);
 //      friend var CLASS_DECL_ca operator / (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator / (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator / (const property & prop1, const property & prop2);
 
       var operator * (int32_t i) const;
       var operator * (uint32_t user) const;
-      var operator * (long i) const;
-      var operator * (uint32_t long user) const;
+      var operator * (int64_t i) const;
+      var operator * (uint64_t ui) const;
       var operator * (double d) const;
       var operator * (const var & var) const;
 
 //      friend var CLASS_DECL_ca operator * (int32_t i, const property & prop);
 //      friend var CLASS_DECL_ca operator * (uint32_t user, const property & prop);
-//      friend var CLASS_DECL_ca operator * (long l, const property & prop);
-//      friend var CLASS_DECL_ca operator * (uint32_t long ul, const property & prop);
+//      friend var CLASS_DECL_ca operator * (int64_t i, const property & prop);
+//      friend var CLASS_DECL_ca operator * (uint64_t ui, const property & prop);
 //      friend var CLASS_DECL_ca operator * (double d, const property & prop);
 //      friend var CLASS_DECL_ca operator * (const var & var, const property & prop);
 //      friend var CLASS_DECL_ca operator * (const property & prop1, const property & prop2);
 
       property & operator -= (int32_t i);
       property & operator -= (uint32_t user);
-      property & operator -= (long i);
-      property & operator -= (uint32_t long user);
+      property & operator -= (int64_t i);
+      property & operator -= (uint64_t ui);
       property & operator -= (double d);
       property & operator -= (const var & var);
       property & operator -= (const property & prop);
 
       property & operator += (int32_t i);
       property & operator += (uint32_t user);
-      property & operator += (long i);
-      property & operator += (uint32_t long user);
+      property & operator += (int64_t i);
+      property & operator += (uint64_t ui);
       property & operator += (double d);
       property & operator += (const var & var);
       property & operator += (const property & prop);
@@ -624,16 +624,16 @@ namespace gen
 
       property & operator /= (int32_t i);
       property & operator /= (uint32_t user);
-      property & operator /= (long i);
-      property & operator /= (uint32_t long user);
+      property & operator /= (int64_t i);
+      property & operator /= (uint64_t ui);
       property & operator /= (double d);
       property & operator /= (const var & var);
       property & operator /= (const property & prop);
 
       property & operator *= (int32_t i);
       property & operator *= (uint32_t user);
-      property & operator *= (long i);
-      property & operator *= (uint32_t long user);
+      property & operator *= (int64_t i);
+      property & operator *= (uint64_t ui);
       property & operator *= (double d);
       property & operator *= (const var & var);
       property & operator *= (const property & prop);

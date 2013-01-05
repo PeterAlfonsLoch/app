@@ -221,17 +221,6 @@ namespace gen
          return str;
       }
 
-#if !defined(LINUX) && !defined(MACOS)
-
-      inline CLASS_DECL_ca  string  from(uint32_t long ui)
-      {
-         string str;
-         from(str, ui);
-         return str;
-      }
-
-#endif
-
       inline CLASS_DECL_ca string from(uint64_t ui)
       {
          string str;

@@ -237,14 +237,14 @@ void base64::decode(simple_memory & ostream, const simple_memory & istream)
             }
             return;
          }
-         if(dtable[uch]&0x80)
+         if(dtable[uchar]&0x80)
          {
-            //TRACE("Illegal character '%c' in input spfile->\n",uch);
+            //TRACE("Illegal character '%c' in input spfile->\n",uchar);
             i--;
             continue;
          }
-         a[i]= (uchar) uch;
-         b[i]= (uchar) dtable[uch];
+         a[i]= (uchar) uchar;
+         b[i]= (uchar) dtable[uchar];
       }
       o[0]= (b[0]<<2)|(b[1]>>4);
       o[1]= (b[1]<<4)|(b[2]>>2);

@@ -66,7 +66,7 @@ os_lock_duration duration::os_lock_duration() const
 //      return INFINITE;
    if(get_total_milliseconds() >= 0xffffffff)
       return 0xfffffffe;
-   return (DWORD) get_total_milliseconds();
+   return (uint32_t) get_total_milliseconds();
 }
 
 duration::operator ::os_lock_duration() const

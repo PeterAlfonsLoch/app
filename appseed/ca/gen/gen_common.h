@@ -133,33 +133,6 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ltoa_s(long _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
-   {
-#ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_ltoa_s(_Val, _Buf, _SizeInChars, _Radix));
-#else
-      itoa_dup(_Buf, _Val, _Radix);
-#endif
-   }
-
-   inline void __cdecl ultoa_s(uint32_t long _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
-   {
-#ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_ultoa_s(_Val, _Buf, _SizeInChars, _Radix));
-#else
-      uitoa_dup(_Buf, _Val, _Radix);
-#endif
-   }
-
-   inline void __cdecl ultow_s(uint32_t long _Val, wchar_t *_Buf, size_t _SizeInChars, int32_t _Radix)
-   {
-#ifdef WINDOWS
-      C_RUNTIME_ERROR_CHECK(::_ultow_s(_Val, _Buf, _SizeInChars, _Radix));
-#else
-      uitow_dup(_Buf, _Val, _Radix);
-#endif
-   }
-
    inline void __cdecl i64toa_s(int64_t _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS

@@ -184,7 +184,6 @@ namespace gen
 #endif
       inline CLASS_DECL_ca string  from(int64_t i);
       inline CLASS_DECL_ca string  from(uint32_t ui);
-      inline CLASS_DECL_ca string  from(uint32_t long ui);
       inline CLASS_DECL_ca string  from(uint64_t ui);
       inline CLASS_DECL_ca string  from(const var & var);
       inline CLASS_DECL_ca string  from(const id & id);
@@ -193,21 +192,18 @@ namespace gen
 
 
       CLASS_DECL_ca  string &       from(string & str, int32_t i);
-      CLASS_DECL_ca  string &       from(string & str, long l);
-      CLASS_DECL_ca  string &       from(string & str, long long ll);
       CLASS_DECL_ca  string &       from(string & str, uint32_t ui);
-      CLASS_DECL_ca  string &       from(string & str, uint32_t long ui);
-      CLASS_DECL_ca  string &       from(string & str, uint32_t long long ui);
-      inline CLASS_DECL_ca string & from(string & str, const var & var);
+      CLASS_DECL_ca  string &       from(string & str, int64_t i);
+      CLASS_DECL_ca  string &       from(string & str, uint64_t ui);
+      CLASS_DECL_ca  string &       from(string & str, float f);
+      CLASS_DECL_ca  string &       from(string & str, double d);
       inline CLASS_DECL_ca string & from(string & str, const id & id);
-      CLASS_DECL_ca string &        from(string & str, int64_t i);
-      CLASS_DECL_ca string &        from(string & str, double d);
-      CLASS_DECL_ca string &        from(string & str, float f);
+      inline CLASS_DECL_ca string & from(string & str, const var & var);
 
       //inline CLASS_DECL_ca string   i64toa(int64_t i);
 
 
-      CLASS_DECL_ca  int32_t            get_escaped_char(const char * str, strsize pos, strsize &retPos);
+      CLASS_DECL_ca  int32_t        get_escaped_char(const char * str, strsize pos, strsize &retPos);
       CLASS_DECL_ca  bool           get_curly_content(const char * psz, string & str);
       CLASS_DECL_ca  bool           is_simple_natural(const char * psz);
 
@@ -263,13 +259,9 @@ namespace gen
 
       void format(string_format * pformat, uint32_t const &  i);
 
-      void format(string_format * pformat, long const & i);
+      void format(string_format * pformat, int64_t const & i);
 
-      void format(string_format * pformat, uint32_t long const & i);
-
-      void format(string_format * pformat, long long const & i);
-
-      void format(string_format * pformat, uint32_t long long const & i);
+      void format(string_format * pformat, uint64_t const & i);
 
       void format(string_format * pformat, double const &  i);
 

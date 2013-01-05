@@ -218,14 +218,14 @@ zlib_local ptr_table table[MAX_PTR];
 voidpf zcalloc (voidpf opaque, uint32_t items, uint32_t size)
 {
     voidpf buf = opaque; /* just to make some compilers happy */
-    ulg bsize = (ulg)items*size;
+    uint32_t bsize = (uint32_t)items*size;
 
     /* If we allocate less than 65520 bytes, we assume that farmalloc
      * will return a usable pointer which doesn't have to be normalized.
      */
     if (bsize < 65520L) {
         buf = farmalloc(bsize);
-        if (*(ush*)&buf != 0) return buf;
+        if (*(uint16_t*)&buf != 0) return buf;
     } else {
         buf = farmalloc(bsize + 16L);
     }
@@ -233,8 +233,8 @@ voidpf zcalloc (voidpf opaque, uint32_t items, uint32_t size)
     table[next_ptr].org_ptr = buf;
 
     /* Normalize the pointer to seg:0 */
-    *((ush*)&buf+1) += ((ush)((uch*)buf-0) + 15) >> 4;
-    *(ush*)&buf = 0;
+    *((uint16_t*)&buf+1) += ((uint16_t)((uchar*)buf-0) + 15) >> 4;
+    *(uint16_t*)&buf = 0;
     table[next_ptr++].new_ptr = buf;
     return buf;
 }
@@ -242,7 +242,7 @@ voidpf zcalloc (voidpf opaque, uint32_t items, uint32_t size)
 void  zcfree (voidpf opaque, voidpf ptr)
 {
     int32_t n;
-    if (*(ush*)&ptr != 0) { /* object < 64K */
+    if (*(uint16_t*)&ptr != 0) { /* object < 64K */
         farfree(ptr);
         return;
     }

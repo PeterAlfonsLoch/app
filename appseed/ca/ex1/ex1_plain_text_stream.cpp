@@ -100,9 +100,9 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (uchar & uch)
+   plain_text_input_stream & plain_text_input_stream::operator >> (uchar & uchar)
    {
-      read(&uch, sizeof(uch));
+      read(&uchar, sizeof(uchar));
       return *this;
    }
 
@@ -112,9 +112,9 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (uint16_t & ush)
+   plain_text_input_stream & plain_text_input_stream::operator >> (uint16_t & uint16_t)
    {
-      read(&ush, sizeof(ush));
+      read(&uint16_t, sizeof(uint16_t));
       return *this;
    }
 
@@ -266,9 +266,9 @@ namespace ex1
       return *this;
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (uchar uch)
+   plain_text_output_stream & plain_text_output_stream::operator << (uchar uchar)
    {
-      return operator << ((uint32_t) uch);
+      return operator << ((uint32_t) uchar);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (int16_t sh)
@@ -276,9 +276,9 @@ namespace ex1
       return operator << ((int32_t) sh);
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (uint16_t ush)
+   plain_text_output_stream & plain_text_output_stream::operator << (uint16_t uint16_t)
    {
-      return operator << ((uint32_t) ush);
+      return operator << ((uint32_t) uint16_t);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (wchar_t wch)

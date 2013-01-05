@@ -150,10 +150,10 @@ public:
 	bitset(_ULonglong _Val)
 
  #else /* _HAS_CPP0X */
-	bitset(uint32_t long _Val)
+	bitset(uint64_t _Val)
  #endif /* _HAS_CPP0X */
 
-		{	// construct from bits in uint32_t long
+		{	// construct from bits in uint64_t
 		_Tidy();
 		for (size_t _Pos = 0; _Val != 0 && _Pos < _Bits; _Val >>= 1, ++_Pos)
 			if (_Val & 1)
@@ -306,19 +306,19 @@ public:
 		return (*this);
 		}
 
-	uint32_t long to_ulong() const
-   {	// convert bitset to uint32_t long
+	uint64_t to_ulong() const
+   {	// convert bitset to uint64_t
 		uint64_t _Val = to_ullong();
-		uint32_t long _Ans = (uint32_t long)_Val;
+		uint64_t _Ans = (uint64_t)_Val;
 		if (_Ans  != _Val)
 			_Xoflo();
 		return (_Ans);
 	}
 
 	uint64_t to_ullong() const
-	{	// convert bitset to uint32_t long long
+	{	// convert bitset to uint64_t long
 		enum
-			{	// cause zero divide if uint32_t long long not multiple of _Ty
+			{	// cause zero divide if uint64_t long not multiple of _Ty
 			_Assertion = 1
 				/ (int32_t)(sizeof (uint64_t) % sizeof (_Ty) == 0)};
 

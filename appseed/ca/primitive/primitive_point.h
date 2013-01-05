@@ -80,7 +80,7 @@ public:
    // create from a size
    point64(__size64 initSize) throw();
    // create from an UINT64: x = LODWORD(dw) y = HIDWORD(dw)
-   point64(__uint64_t dwPoint) throw();
+   point64(uint64_t dwPoint) throw();
 
    operator __point64 *() throw();
    operator const __point64 *() const throw();
@@ -113,7 +113,7 @@ public:
    rect64 operator+(const __rect64 * lpRect) const throw();
    rect64 operator-(const __rect64 * lpRect) const throw();
 
-   __uint64_t _001GetLparam();
+   uint64_t _001GetLparam();
 };
 
 

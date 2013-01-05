@@ -195,7 +195,7 @@ char * utf16_to_8(const wchar_t * pwsz)
 
 CLASS_DECL_c wchar_t w_to_lower(int32_t c)
 {
-   uint32_t long c1 = CHAR_PROP(c);
+   uint32_t c1 = CHAR_PROP(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c+1);
    return wchar_t(c - (c1>>16));
@@ -212,7 +212,7 @@ CLASS_DECL_c wchar_t w_to_lower(int32_t c)
 CLASS_DECL_c wchar_t w_to_upper(int32_t c)
 {
    
-   uint32_t long c1 = CHAR_PROP(c);
+   uint32_t c1 = CHAR_PROP(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c-1);
    return wchar_t(c - (c1>>16));

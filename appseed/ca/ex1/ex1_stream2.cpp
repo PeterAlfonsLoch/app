@@ -20,15 +20,15 @@ namespace ex1
 
 
 
-output_stream2 & output_stream2::operator << (uchar uch)
+output_stream2 & output_stream2::operator << (uchar uchar)
 {
-   byte_output_stream::operator << (uch);
+   byte_output_stream::operator << (uchar);
    return *this;
 }
 
-output_stream2 & output_stream2::operator << (uint16_t ush)
+output_stream2 & output_stream2::operator << (uint16_t uint16_t)
 {
-   byte_output_stream::operator << (ush);
+   byte_output_stream::operator << (uint16_t);
    return *this;
 }
 

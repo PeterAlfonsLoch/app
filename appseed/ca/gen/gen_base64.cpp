@@ -183,13 +183,13 @@ namespace gen
    {
       int32_t i;
       byte a[4],b[4],o[3];
-      uchar uch;
+      uchar uchar;
 
       while(TRUE)
       {
          for(i= 0;i<4;i++)
          {
-            if(istream.read(&uch, 1) == 0)
+            if(istream.read(&uchar, 1) == 0)
             {
                if( i > 0)
                {
@@ -198,14 +198,14 @@ namespace gen
                }
                return;
             }
-            if(dtable[uch]&0x80)
+            if(dtable[uchar]&0x80)
             {
-               TRACE("Illegal character '%c' in input spfile->\n",uch);
+               TRACE("Illegal character '%c' in input spfile->\n",uchar);
                i--;
                continue;
             }
-            a[i]= (uchar) uch;
-            b[i]= (uchar) dtable[uch];
+            a[i]= (uchar) uchar;
+            b[i]= (uchar) dtable[uchar];
          }
          o[0]= (b[0]<<2)|(b[1]>>4);
          o[1]= (b[1]<<4)|(b[2]>>2);
