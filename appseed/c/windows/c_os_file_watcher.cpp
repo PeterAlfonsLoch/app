@@ -32,7 +32,7 @@ namespace file_watcher
 		HANDLE m_hDirectory;
 		BYTE m_buffer[32 * 1024];
 		LPARAM m_lparam;
-		DWORD m_dwNotify;
+		uint32_t m_dwNotify;
 		bool m_bStop;
 		file_watcher_impl* m_pwatcher;
 		file_watch_listener* m_plistener;
@@ -46,7 +46,7 @@ namespace file_watcher
 	bool RefreshWatch(watch_struct* pWatch, bool _clear = false);
 
 	/// Unpacks events and passes them to a user defined callback.
-	void CALLBACK WatchCallback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
+	void CALLBACK WatchCallback(uint32_t dwErrorCode, uint32_t dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
 	{
 		TCHAR szFile[MAX_PATH];
 		PFILE_NOTIFY_INFORMATION pNotify;
@@ -119,7 +119,7 @@ namespace file_watcher
 	}
 
 	/// Starts monitoring a directory.
-	watch_struct* CreateWatch(LPCTSTR szDirectory, DWORD m_dwNotify)
+	watch_struct* CreateWatch(LPCTSTR szDirectory, uint32_t m_dwNotify)
 	{
 		watch_struct* pWatch;
 		size_t ptrsize = sizeof(*pWatch);

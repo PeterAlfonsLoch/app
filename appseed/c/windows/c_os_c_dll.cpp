@@ -2,7 +2,7 @@
 
 
 
-int32_t c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
+int32_t c_dll_main(HINSTANCE hinstance, uint32_t dwReason, LPVOID lpReserved)
 {
 	UNREFERENCED_PARAMETER(lpReserved);
 	if(dwReason == DLL_PROCESS_ATTACH)
@@ -32,7 +32,7 @@ int32_t c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 
 
 
-/*extern "C" int32_t APIENTRY _DllMainCRTStartup(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
+/*extern "C" int32_t APIENTRY _DllMainCRTStartup(HINSTANCE hinstance, uint32_t dwReason, LPVOID lpReserved)
 {
    return c_dll_main(hinstance, dwReason, lpReserved);
 }
@@ -40,7 +40,7 @@ int32_t c_dll_main(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
 */
 
 extern "C"
-BOOL WINAPI DllMain(HINSTANCE hinstance, DWORD dwReason, LPVOID lpReserved)
+BOOL WINAPI DllMain(HINSTANCE hinstance, uint32_t dwReason, LPVOID lpReserved)
 {
    return c_dll_main(hinstance, dwReason, lpReserved);
 }

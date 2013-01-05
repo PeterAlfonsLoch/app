@@ -24,8 +24,8 @@ void ensure_trace_file()
    {
       // best really determination that g_ftrace is valid, if it is valid, it is not necessary to create or open it
       vsstring str2 = "ensure_trace_file";
-      DWORD dwWritten;
-      if(WriteFile(g_ftrace, str2, (DWORD) str2.length(), &dwWritten, NULL))
+      uint32_t dwWritten;
+      if(WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, NULL))
       {
          ::FlushFileBuffers(g_ftrace);
          return;
@@ -127,9 +127,9 @@ void on_trace(vsstring & str, vsstring & str2)
    }*/
    if(g_ftrace != NULL && str2.length() > 0)
    {
-      DWORD dwWritten;
+      uint32_t dwWritten;
       ::SetFilePointer(g_ftrace, 0, NULL, SEEK_END);
-      WriteFile(g_ftrace, str2, (DWORD) str2.length(), &dwWritten, NULL);
+      WriteFile(g_ftrace, str2, (uint32_t) str2.length(), &dwWritten, NULL);
       ::FlushFileBuffers(g_ftrace);
    }
 

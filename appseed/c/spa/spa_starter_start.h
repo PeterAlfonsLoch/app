@@ -31,4 +31,4 @@ public:
 
 };
 
-DWORD WINAPI _ca2_starter_start(LPVOID pvoid);
+uint32_t WINAPI _ca2_starter_start(LPVOID pvoid);

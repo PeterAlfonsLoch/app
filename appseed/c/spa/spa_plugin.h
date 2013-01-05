@@ -41,15 +41,15 @@ namespace spa
       thread_start_ca2  m_startca2;
       spa_login      m_login;
       canvas         m_canvas;
-      DWORD          m_dwLastInstallingCheck;
-      DWORD          m_dwLastRestart;
+      uint32_t          m_dwLastInstallingCheck;
+      uint32_t          m_dwLastRestart;
       // logged in ? alatel comments
       bool           m_bLogged;
       // in login process, login screen should be shown
       bool           m_bLogin;
       bool           m_bRestartCa2;
       bool           m_bPendingStream;
-      DWORD          m_dwLastOk;
+      uint32_t          m_dwLastOk;
 
 
 

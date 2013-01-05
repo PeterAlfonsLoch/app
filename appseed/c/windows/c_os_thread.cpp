@@ -2,14 +2,14 @@
 #include <gdiplus.h>
 
 
-os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
+os_thread::os_thread(uint32_t (WINAPI * pfn)(LPVOID), LPVOID pv)
 {
    m_pfn = pfn;
    m_pv = pv;
 }
 
 
-DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
+uint32_t WINAPI thread_proc_create_thread(LPVOID lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
@@ -49,7 +49,7 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
 
    }*/
 
-   DWORD dwRet = 0xffffffff;
+   uint32_t dwRet = 0xffffffff;
 
    try
    {
@@ -72,7 +72,7 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
 }
 
 
-HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int32_t iPriority)
+HANDLE start_thread(uint32_t (WINAPI * pfn)(LPVOID), LPVOID pv, int32_t iPriority)
 {
 
    UNREFERENCED_PARAMETER(iPriority);
@@ -81,7 +81,7 @@ HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int32_t iPriority)
 
 }
 
-HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, DWORD f, LPDWORD lpdwId)
+HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t (WINAPI * pfn)(LPVOID), LPVOID pv, uint32_t f, LPDWORD lpdwId)
 {
 
    return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, lpdwId);
@@ -139,7 +139,7 @@ bool thread_layer::on_idle()
 
 }
 
-void thread_layer::wait_thread(DWORD dwMillis)
+void thread_layer::wait_thread(uint32_t dwMillis)
 {
 
    ::WaitForSingleObject(m_hthread, dwMillis);
@@ -195,7 +195,7 @@ CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
 }
 
 
-DWORD WINAPI thread_layer::proc(LPVOID lp)
+uint32_t WINAPI thread_layer::proc(LPVOID lp)
 {
 
    thread_layer * player   = (thread_layer *) lp;

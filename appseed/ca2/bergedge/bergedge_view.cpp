@@ -286,13 +286,13 @@ namespace bergedge
    {
       UNREFERENCED_PARAMETER(uiRedraw);
       m_rectaUpdate.add(recta);
-      DWORD dwNow = GetTickCount();
+      uint32_t dwNow = GetTickCount();
       if(m_rectaUpdate.get_size() <= 0)
       {
          m_dwLastUpdate = dwNow;
          return 0;
       }
-      DWORD dwElapseOptimization = 83;
+      uint32_t dwElapseOptimization = 83;
       if(dwNow - m_dwLastUpdate < dwElapseOptimization)
       {
    //      TRACE("Great Optimization!\n");

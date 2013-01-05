@@ -5,7 +5,7 @@
 typedef bool
 (WINAPI * LPFN_ChangeWindowMessageFilter)(
     _In_ UINT message,
-    _In_ DWORD dwFlag);
+    _In_ uint32_t dwFlag);
 
 
 LPFN_ChangeWindowMessageFilter g_pfnChangeWindowMessageFilter = NULL;
@@ -16,7 +16,7 @@ LSTATUS
     HKEY hkey,
     LPCWSTR lpSubKey,
     LPCWSTR lpValue,
-    DWORD dwFlags,
+    uint32_t dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
     LPDWORD pcbData
@@ -65,7 +65,7 @@ WinRegGetValueW(
     HKEY hkey,
     LPCWSTR lpSubKey,
     LPCWSTR lpValue,
-    DWORD dwFlags,
+    uint32_t dwFlags,
     LPDWORD pdwType,
 	 PVOID pvData,
     LPDWORD pcbData
@@ -215,7 +215,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
 }
 
-CLASS_DECL_c vsstring get_system_error_message(DWORD dwError)
+CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError)
 {
 
    LPWSTR lpBuffer;

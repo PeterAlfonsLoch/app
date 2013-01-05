@@ -26,7 +26,7 @@ public:
    // aim to be all-platoform - but if there is no equivalent because no op : create empty method
    bool create();
    bool destroy();
-   bool bit_blt(int32_t x, int32_t y, int32_t cx, int32_t cy, simple_graphics & gSrc, int32_t x1, int32_t y1, DWORD rop);
+   bool bit_blt(int32_t x, int32_t y, int32_t cx, int32_t cy, simple_graphics & gSrc, int32_t x1, int32_t y1, uint32_t rop);
    bool create_from_bitmap(simple_bitmap & b);
    bool detach_bitmap();
    bool select(simple_font & font);

@@ -379,7 +379,7 @@ namespace bergedge
             {
 
 
-               DWORD dw = WM_APP + 2043;
+               uint32_t dw = WM_APP + 2043;
 
                papp->post_thread_message(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
@@ -502,7 +502,7 @@ namespace bergedge
          file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;
-         data.cbData = (DWORD) file.get_length();
+         data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
          ::oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::bergedge::");
 

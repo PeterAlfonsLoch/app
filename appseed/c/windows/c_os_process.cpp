@@ -28,7 +28,7 @@ CLASS_DECL_c int32_t call_async(
 
 
 
-CLASS_DECL_c DWORD call_sync(
+CLASS_DECL_c uint32_t call_sync(
    const char * pszPath, 
    const char * pszParam, 
    const char * pszDir,
@@ -54,7 +54,7 @@ CLASS_DECL_c DWORD call_sync(
 
    ::ShellExecuteExA(&infoa);
 
-   DWORD dwExitCode;
+   uint32_t dwExitCode;
    
    int32_t iTry = 0;
 
@@ -145,12 +145,12 @@ int32_t get_current_process_affinity_order()
 
 
 
-bool process_modules(stra_dup & stra, DWORD processID)
+bool process_modules(stra_dup & stra, uint32_t processID)
 {
    
    HANDLE hProcess;
    
-   DWORD cbNeeded;
+   uint32_t cbNeeded;
    
    uint32_t i;
 

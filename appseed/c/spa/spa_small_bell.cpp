@@ -6,7 +6,7 @@
 #define ID_MP3_SMALL_BELL			40000
 
 
-DWORD g_dwPrepareSmallBell = 0;
+uint32_t g_dwPrepareSmallBell = 0;
 
 
 void prepare_small_bell(bool bExistsOk)

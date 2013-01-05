@@ -11,13 +11,13 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
 
    DATA_BLOB DataSalt;
    DataSalt.pbData = (BYTE *) memorySalt.get_data();
-   DataSalt.cbData = (DWORD) memorySalt.get_size();
+   DataSalt.cbData = (uint32_t) memorySalt.get_size();
 
    //--------------------------------------------------------------------
    // Initialize the DataIn structure.
 
    DataIn.pbData = (BYTE *) storageEncrypt.get_data();
-   DataIn.cbData = (DWORD) storageEncrypt.get_size();
+   DataIn.cbData = (uint32_t) storageEncrypt.get_size();
 
    wchar_t * lpwsz = NULL;
 
@@ -46,7 +46,7 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
    }
    else
    {
-      DWORD dwLastError = GetLastError();
+      uint32_t dwLastError = GetLastError();
   //    TRACELASTERROR();
     //  TRACE("crypt::decrypt Decryption error! (1)");
       return false;
@@ -60,14 +60,14 @@ bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storage
 
    DATA_BLOB DataSalt;
    DataSalt.pbData = (BYTE *) memorySalt.get_data();
-   DataSalt.cbData = (DWORD) memorySalt.get_size();
+   DataSalt.cbData = (uint32_t) memorySalt.get_size();
 
 
    //--------------------------------------------------------------------
    // Initialize the DataIn structure.
 
    DataIn.pbData = (BYTE *) storageDecrypt.get_data();
-   DataIn.cbData = (DWORD) storageDecrypt.get_size();
+   DataIn.cbData = (uint32_t) storageDecrypt.get_size();
 
 //      wchar_t * lpwsz = NULL;
 
@@ -95,7 +95,7 @@ bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storage
    }
    else
    {
-      DWORD dwLastError = GetLastError();
+      uint32_t dwLastError = GetLastError();
       //TRACE("crypt::encrypt Encryption error! (1)");
          return false;
    }

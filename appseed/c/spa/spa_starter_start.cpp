@@ -11,7 +11,7 @@ char * g_pszCa2Build = NULL;
 extern oswindow g_oswindowMessage;
 
 
-DWORD WINAPI  _ca2_starter_start(LPVOID pvoid);
+uint32_t WINAPI  _ca2_starter_start(LPVOID pvoid);
 
 const char * get_starter_version()
 {
@@ -244,7 +244,7 @@ UINT spa_starter_start::start()
    return 0;
 }
 
-DWORD WINAPI _ca2_starter_start(LPVOID pvoid)
+uint32_t WINAPI _ca2_starter_start(LPVOID pvoid)
 {
 
 

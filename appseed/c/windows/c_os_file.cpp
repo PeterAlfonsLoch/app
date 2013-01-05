@@ -4,9 +4,9 @@
 CLASS_DECL_c void ensure_file_size(HANDLE h, int64_t iSize)
 {
 
-   DWORD dwHi;
+   uint32_t dwHi;
 
-   DWORD dwLo = ::GetFileSize(h, &dwHi);
+   uint32_t dwLo = ::GetFileSize(h, &dwHi);
 
    if(((uint64_t) dwLo | ((int64_t)dwHi << 32)) != iSize)
    {

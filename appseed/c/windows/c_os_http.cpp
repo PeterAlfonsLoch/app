@@ -4,7 +4,7 @@
 HINTERNET  g_hSession = NULL;
 HINTERNET  g_hConnect = NULL;
 HINTERNET  g_hPreviousRequest = NULL;
-DWORD g_MsDownloadSize = 1024 * 16;
+uint32_t g_MsDownloadSize = 1024 * 16;
 char * g_MsDownloadBuffer = NULL;
 vsstring * g_pstrHost = NULL;
 
@@ -100,7 +100,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
       strHost = strUrl.substr(7, iPos - 7);
       strReq = strUrl.substr(iPos);
    }
-   DWORD dwSize = 0;
+   uint32_t dwSize = 0;
    LPSTR pszOutBuffer;
    bool  bResults = FALSE;
 
@@ -162,9 +162,9 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
 
 
-   DWORD dwStatusCode = 0;
-   DWORD dwBufferLen = sizeof(dwStatusCode);
-   DWORD dwIndex = 0;
+   uint32_t dwStatusCode = 0;
+   uint32_t dwBufferLen = sizeof(dwStatusCode);
+   uint32_t dwIndex = 0;
    if(bResults)
       bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    if(piStatus != NULL)
@@ -212,12 +212,12 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    if (bResults)
    {
 
-      DWORD dwWritten;
-      DWORD dwError;
-      DWORD dwDownloaded;
+      uint32_t dwWritten;
+      uint32_t dwError;
+      uint32_t dwDownloaded;
       vsstring strPath;
       strPath = pszFile;
-      DWORD dwLen = 0;
+      uint32_t dwLen = 0;
       dir::mk(dir::name(strPath));
       HANDLE hfile = ::create_file(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
       if(hfile == INVALID_HANDLE_VALUE)
@@ -225,7 +225,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
          dwError = ::GetLastError();
          return false;
       }
-      DWORD dwSize = g_MsDownloadSize;
+      uint32_t dwSize = g_MsDownloadSize;
       pszOutBuffer = g_MsDownloadBuffer;
       if (!pszOutBuffer)
       {
@@ -335,8 +335,8 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strQ.replace("/", "%2F");
       strReq = strReq.substr(0, iFind) + strQ;
    }
-   DWORD dwSize = 0;
-   DWORD dwDownloaded = 0;
+   uint32_t dwSize = 0;
+   uint32_t dwDownloaded = 0;
    LPSTR pszOutBuffer;
    bool  bResults = FALSE;
    HINTERNET  hSession = NULL,
@@ -377,7 +377,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       iPort == 443 ? INTERNET_FLAG_SECURE : 0,
       1);
 
-   DWORD dwFlags = 0;
+   uint32_t dwFlags = 0;
 
    if(!bCache)
    {
@@ -415,9 +415,9 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       }
    }
 
-   DWORD dwStatusCode = 0;
-   DWORD dwBufferLen = sizeof(dwStatusCode);
-   DWORD dwIndex = 0;
+   uint32_t dwStatusCode = 0;
+   uint32_t dwBufferLen = sizeof(dwStatusCode);
+   uint32_t dwIndex = 0;
    if(bResults)
       bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    dwBufferLen = 1024;
@@ -450,8 +450,8 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       _ca_free(pszStatus, 0);
    }
 
-   DWORD dwLen = 0;
-   DWORD dwLast100k = 0;
+   uint32_t dwLen = 0;
+   uint32_t dwLast100k = 0;
    dwSize = 1024 * 64;
    // Allocate space for the buffer.
    pszOutBuffer = new char[dwSize+1];
@@ -597,8 +597,8 @@ strHost = strUrl.substr(8, iPos - 8);
 strReq = strUrl.substr(iPos);
 iPort = 443;
 }
-DWORD dwSize = 0;
-DWORD dwDownloaded = 0;
+uint32_t dwSize = 0;
+uint32_t dwDownloaded = 0;
 LPSTR pszOutBuffer;
 bool  bResults = FALSE;
 HINTERNET  hSession = NULL,
@@ -667,7 +667,7 @@ WINHTTP_NO_ADDITIONAL_HEADERS,
 0, WINHTTP_NO_REQUEST_DATA, 0,
 strlen(pszPost), 0);
 
-DWORD dwUploaded;
+uint32_t dwUploaded;
 if (bResults)
 if (! (bResults = WinHttpWriteData( hRequest, (LPVOID)pszPost,
 strlen(pszPost), &dwUploaded)))
@@ -721,7 +721,7 @@ delete [] pszOutBuffer;
 } while (dwSize>0);
 }
 
-DWORD dw = GetLastError();
+uint32_t dw = GetLastError();
 // Report any errors.
 if (!bResults)
 printf("Error %d has occurred.\n",dw);
@@ -745,7 +745,7 @@ WINHTTP_AUTOPROXY_OPTIONS apop;
 
 char szPac[4096];
 memset_dup(szPac, 0, sizeof(szPac));
-DWORD lcbPac;
+uint32_t lcbPac;
 HKEY hkey;
 memset_dup(&apop, 0, sizeof(apop));
 bool bGot = false;
@@ -755,7 +755,7 @@ if(RegOpenKey(HKEY_CURRENT_USER,
 &hkey) == ERROR_SUCCESS)
 {
 LONG l;
-DWORD dw;
+uint32_t dw;
 if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", NULL, NULL, (LPBYTE) &szPac, &lcbPac)) == ERROR_SUCCESS
 && (szPac[8] & 8))
 {

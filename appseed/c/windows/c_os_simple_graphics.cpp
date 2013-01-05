@@ -337,7 +337,7 @@ bool os_simple_graphics::offset(int32_t x, int32_t y)
 }
 
 
-bool os_simple_graphics::bit_blt(int32_t x, int32_t y, int32_t cx, int32_t cy, simple_graphics & gSrc, int32_t x1, int32_t y1, DWORD rop)
+bool os_simple_graphics::bit_blt(int32_t x, int32_t y, int32_t cx, int32_t cy, simple_graphics & gSrc, int32_t x1, int32_t y1, uint32_t rop)
 {
    
    return m_pgraphics->DrawImage(gSrc.m_bitmap.m_pbitmap, x, y, x1, y1, cx, cy, Gdiplus::UnitPixel) != FALSE;

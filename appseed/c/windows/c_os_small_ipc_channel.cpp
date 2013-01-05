@@ -2,7 +2,7 @@
 
 extern bool (WINAPI * g_pfnChangeWindowMessageFilter)(
     _In_ UINT message,
-    _In_ DWORD dwFlag);
+    _In_ uint32_t dwFlag);
 
 
 small_ipc_channel_base::small_ipc_channel_base()
@@ -71,7 +71,7 @@ bool small_ipc_tx_channel::close()
 }
 
 
-bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
+bool small_ipc_tx_channel::send(const char * pszMessage, uint32_t dwTimeout)
 {
 
    if(!is_tx_ok())
@@ -80,7 +80,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    COPYDATASTRUCT cds;
 
    cds.dwData = 0x80000000;
-   cds.cbData = (DWORD) strlen_dup(pszMessage);
+   cds.cbData = (uint32_t) strlen_dup(pszMessage);
    cds.lpData = (void *) pszMessage;
 
    if(dwTimeout == INFINITE)
@@ -97,7 +97,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
       if(!::SendMessageTimeout(m_oswindow, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
          return false;
 
-      DWORD dwError = ::GetLastError();
+      uint32_t dwError = ::GetLastError();
 
       if(dwError == ERROR_TIMEOUT)
          return false;
@@ -107,7 +107,7 @@ bool small_ipc_tx_channel::send(const char * pszMessage, DWORD dwTimeout)
    return true;
 }
 
-bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, DWORD dwTimeout)
+bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, uint32_t dwTimeout)
 {
 
    if(message == 0x80000000)
@@ -118,8 +118,8 @@ bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, DWOR
 
    COPYDATASTRUCT cds;
 
-   cds.dwData = (DWORD) message;
-   cds.cbData = (DWORD) max(0, len);
+   cds.dwData = (uint32_t) message;
+   cds.cbData = (uint32_t) max(0, len);
    cds.lpData = (void *) pdata;
 
    if(dwTimeout == INFINITE)
@@ -136,7 +136,7 @@ bool small_ipc_tx_channel::send(int32_t message, void * pdata, int32_t len, DWOR
       if(!::SendMessageTimeout(m_oswindow, WM_COPYDATA, (WPARAM) NULL, (LPARAM) &cds, SMTO_BLOCK, dwTimeout, &dwptr))
          return false;
 
-      DWORD dwError = ::GetLastError();
+      uint32_t dwError = ::GetLastError();
 
       if(dwError == ERROR_TIMEOUT)
          return false;
@@ -190,7 +190,7 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
    
    if(m_oswindow == NULL)
    {
-      DWORD dwLastError = ::GetLastError();
+      uint32_t dwLastError = ::GetLastError();
       return false;
    }
 

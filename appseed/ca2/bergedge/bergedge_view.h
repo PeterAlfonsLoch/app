@@ -44,7 +44,7 @@ namespace bergedge
       bool m_bDestroy;
       //::user::buffer                  m_gdibuffer;
       rect_array       m_rectaUpdate;
-      DWORD                m_dwLastUpdate;
+      uint32_t                m_dwLastUpdate;
       mutex m_mutexDraw;
 
 

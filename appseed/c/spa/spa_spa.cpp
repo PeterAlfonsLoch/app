@@ -125,7 +125,7 @@ found_id:
 
 static simple_string_to_string g_strmapLatestBuildNumber;
 
-DWORD g_dwLatestBuildNumberLastFetch = 0;
+uint32_t g_dwLatestBuildNumberLastFetch = 0;
 
 CLASS_DECL_c vsstring get_latest_build_number(const char * pszVersion)
 {
