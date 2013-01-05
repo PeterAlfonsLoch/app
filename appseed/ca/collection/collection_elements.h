@@ -24,7 +24,7 @@
 *   the FOO constructor on every element.  Then copy the original array, element
 *   by element using a possibly overloaded assignment operator.  Finally destroy
 *   the original array element by element.
-*   For built-in data types (WORD, DWORD, pointer types), this is complete
+*   For built-in data types (WORD, uint32_t, pointer types), this is complete
 *   overkill.  For non-trivial classes (eg: string in particular) this is
 *   a terrible implementation.
 *

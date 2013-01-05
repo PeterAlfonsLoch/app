@@ -23,7 +23,7 @@ namespace sort
    static void BubbleSort(LPINT lpInt, index size);
 
    static void QuickSort(
-      base_array<DWORD, DWORD> & a,
+      base_array<uint32_t, uint32_t> & a,
       index (*fCompare)(const index, const index),
       void (*swap)(void * lpVoidSwapArg, index iA, index iB),
       void * lpVoidSwapArg);
@@ -110,7 +110,7 @@ namespace sort
       index iLowerBound;
       index iUpperBound;
       index iLPos, iUPos, iMPos;
-      //   DWORD t;
+      //   uint32_t t;
 
       if(a.get_size() >= 2)
       {
@@ -182,7 +182,7 @@ namespace sort
       index iLowerBound;
       index iUpperBound;
       index iLPos, iUPos, iMPos;
-      //   DWORD t;
+      //   uint32_t t;
 
       if(a.get_size() >= 2)
       {

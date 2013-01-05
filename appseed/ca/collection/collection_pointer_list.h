@@ -85,7 +85,7 @@ protected:
 	void FreeNode(node*);
 
 public:
-	void dump(dump_context&) const;
+	void dump(dump_context &) const;
 	void assert_valid() const;
 	// local typedefs for class templates
 	typedef void * BASE_TYPE;

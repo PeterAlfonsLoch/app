@@ -5,7 +5,7 @@ namespace  sort
 {
 
    void QuickSort(
-                  base_array<DWORD, DWORD> & base_array,
+                  base_array<uint32_t, uint32_t> & base_array,
                   int32_t fCompare(const index, const index),
                   void swap(void * lpVoidSwapArg, index iA, index iB),
                   void * lpVoidSwapArg);
@@ -15,7 +15,7 @@ namespace  sort
 
 
    void QuickSort(
-      base_array<DWORD, DWORD> & base_array,
+      base_array<uint32_t, uint32_t> & base_array,
       int32_t fCompare(const index, const index),
       void swap(void * lpVoidSwapArg, index iA, index iB),
       void * lpVoidSwapArg)
@@ -27,7 +27,7 @@ namespace  sort
       index iUpperBound;
       index iLPos, iUPos, iMPos;
 
-      DWORD t;
+      uint32_t t;
 
       if(base_array.get_size() >= 2)
       {

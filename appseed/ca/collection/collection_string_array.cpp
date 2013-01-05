@@ -332,7 +332,7 @@ void string_array::insert_at(index nStartIndex, const string_array & NewArray)
    }
    else
    {
-      DWORD nOldSize = ar.ReadCount();
+      uint32_t nOldSize = ar.ReadCount();
       set_size(nOldSize);
       for (int32_t i = 0; i < m_nSize; i++)
          ar >> m_pData[i];

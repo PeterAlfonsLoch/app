@@ -56,7 +56,7 @@ protected:
 
 public:
 	~simple_pointer_array();
-	void dump(dump_context&) const;
+	void dump(dump_context &) const;
 	void assert_valid() const;
 
 protected:

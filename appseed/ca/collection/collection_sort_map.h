@@ -128,7 +128,7 @@ namespace collection
       void construct(::count nBlockSize = 10);
 
 
-      void dump(dump_context&) const;
+      void dump(dump_context &) const;
       void assert_valid() const;
 
 

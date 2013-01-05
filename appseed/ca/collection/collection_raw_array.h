@@ -199,7 +199,7 @@ public:
 
 public:
    virtual ~raw_array();
-   void dump(dump_context&) const;
+   void dump(dump_context &) const;
    void assert_valid() const;
 
    typedef TYPE BASE_TYPE;
