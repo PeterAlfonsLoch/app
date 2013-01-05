@@ -49,7 +49,6 @@
 # include <unistd.h>         /* for close() */
 #elif (_MSC_VER >= 1400)
 #define _CRT_RAND_S
-//# include <stdlib.h>
 #endif
 
 

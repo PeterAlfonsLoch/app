@@ -74,8 +74,8 @@
 #define STATUS_PRIVILEGE_NOT_HELD 1
 #include <time.h>
 #else
-#define HAVE_SYS_TIME_H
-#define HAVE_UNISTD_H
+//#define HAVE_SYS_TIME_H
+//#define HAVE_UNISTD_H
 #endif
 
 #include "os_cross_windows_internals.h"
@@ -84,17 +84,20 @@
 #include "c/c/c_simple_mutex.h"
 #include "c/c/c_mutex_lock.h"
 #include <stdarg.h>
-#include <stdlib.h>
 #include <errno.h>
 #include <string.h>
 #include <limits.h>
 #include <time.h>
-#ifdef HAVE_SYS_TIME_H
-# include <sys/time.h>
+
+
+#ifdef LINUX
+
+#define _USE_BSD
+#include <sys/time.h>
+#include <unistd.h>
+
 #endif
-//#ifdef HAVE_UNISTD_H
-//# include <unistd.h>
-//#endif
+
 
 
 /*#ifdef METROWIN
@@ -1173,7 +1176,7 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *   Nothing.
  */
 #ifndef METROWIN
-CLASS_DECL_metrowin void GetSystemTimeAsFileTime(
+CLASS_DECL_ca void GetSystemTimeAsFileTime(
     LPFILETIME time) /* [out] Destination for the current utc time */
 {
     LARGE_INTEGER t;

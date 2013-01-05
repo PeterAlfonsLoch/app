@@ -93,7 +93,6 @@ in read operations - helps on ECOS */
 // int64_t
 #ifdef _WIN32
 #else
-#include <stdlib.h>
 #ifdef SOLARIS
 # include <sys/types.h>
 #else
@@ -104,15 +103,6 @@ in read operations - helps on ECOS */
 */
 
 #ifndef _WIN32
-// ----------------------------------------
-// common unix includes / defines
-#include <unistd.h>
-//#include <sys/time.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-//#include <netdb.h>
 
 // all typedefs in this file will be declared outside the sockets namespace,
 // because some System's will already have one or more of the type defined.

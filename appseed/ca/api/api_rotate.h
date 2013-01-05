@@ -10,7 +10,6 @@ BEGIN_EXTERN_C
 
 
 
-//#include <stdlib.h>
 #define rotlFixed(x, n) _rotl((x), (n))
 #define rotrFixed(x, n) _rotr((x), (n))
 

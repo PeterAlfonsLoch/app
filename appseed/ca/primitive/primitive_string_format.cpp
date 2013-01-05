@@ -45,29 +45,34 @@ string_format::~string_format()
 void string_format::allocate_add_up(int32_t iLenAddUp)
 {
 
+   int32_t iNewSize;
+
    if(m_iSize <= 0)
    {
 
-      m_iSize = ((iLenAddUp + 1 + 1023) & ~1024);
-
-      m_pszBuffer = (char *) ca2_alloc(m_iSize);
-
-
-      if(m_pszBuffer == NULL)
-         throw memory_exception(::ca::get_thread_app());
+      iNewSize = ((iLenAddUp + 1 + 1023) & ~1023);
 
    }
    else
    {
 
-      m_iSize = ((m_iLength + iLenAddUp + 1 + 1023) & ~1024);
+      iNewSize = ((m_iLength + iLenAddUp + 1 + 1023) & ~1023);
 
-      m_pszBuffer = (char *) ca2_realloc(m_pszBuffer, m_iSize);
+      if(iNewSize < m_iSize)
+      {
 
-      if(m_pszBuffer == NULL)
-         throw memory_exception(::ca::get_thread_app());
+         return;
+
+      }
 
    }
+
+   m_pszBuffer = (char *) ca2_realloc(m_pszBuffer, iNewSize);
+
+   if(m_pszBuffer == NULL)
+      throw memory_exception(::ca::get_thread_app());
+
+   m_iSize = iNewSize;
 
    memset(&m_pszBuffer[m_iLength], 0, m_iSize - m_iLength);
 

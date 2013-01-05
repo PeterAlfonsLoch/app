@@ -89,36 +89,59 @@ inline void plex_heap_alloc_sync::Free(void * p)
       return;
 
    m_protect.lock();
+
    try
    {
 
       // simply return the node to the free list
-      node* pNode = (node*)p;
-      if(pNode == m_pnodeFree) // dbgsnp - debug snippet
+      node* pnode = (node*)p;
+
+      node * pnodeFree = m_pnodeFree;
+
+      while(pnodeFree != NULL)
       {
 
-         if(is_debugger_attached())
+         if(pnode == pnodeFree) // dbgsnp - debug snippet
          {
 
-            __debug_break();
+            // already in free list
+
+            if(is_debugger_attached())
+            {
+
+               __debug_break();
+
+            }
+
+            return;
 
          }
+
+         pnodeFree = pnodeFree->pNext;
 
       }
 
 #if STORE_LAST_BLOCK
+
       if(m_pnodeLastBlock != NULL)
          system_heap_free(m_pnodeLastBlock);
+
       m_pnodeLastBlock = (node *) system_heap_alloc(m_nAllocSize + 32);
-      memcpy(m_pnodeLastBlock, pNode, m_nAllocSize + 32);
+
+      memcpy(m_pnodeLastBlock, pnode, m_nAllocSize + 32);
+
 #endif
 
-      pNode->pNext = m_pnodeFree;
-      m_pnodeFree = pNode;
+      pnode->pNext = m_pnodeFree;
+
+      m_pnodeFree = pnode;
+
    }
    catch(...)
    {
+
    }
+
    m_protect.unlock();
 
 }

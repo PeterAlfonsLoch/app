@@ -48,48 +48,52 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 
    m_bManualEvent    = bManualReset;
 
-   bool bSet;
-
-   if(m_bManualEvent)
-   {
-      bSet         = bInitiallyOwn != FALSE;
-   }
-   else
-   {
-      bSet         = false;
-   }
-
-   if(pstrName != NULL && *pstrName != '\0')
+   if(bManualReset)
    {
 
-      string strPath = "/ca2/time/ftok/event/" + string(pstrName);
+      pthread_mutex_init(&m_mutex, 0);
 
-      m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
+      pthread_cond_init(&m_cond, 0);
+
+      m_bSignaled = bInitiallyOwn;
 
    }
    else
    {
 
-      m_object = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
+      if(pstrName != NULL && *pstrName != '\0')
+      {
+
+         string strPath = "/ca2/time/ftok/event/" + string(pstrName);
+
+         m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
+
+      }
+      else
+      {
+
+         m_object = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
+
+      }
+
+      semun semctl_arg;
+
+      if(bInitiallyOwn)
+      {
+
+         semctl_arg.val = 1;
+
+      }
+      else
+      {
+
+         semctl_arg.val = 0;
+
+      }
+
+      semctl((int32_t) m_object, 0, SETVAL, semctl_arg);
 
    }
-
-   semun semctl_arg;
-
-   if(bSet)
-   {
-
-      semctl_arg.val = 1;
-
-   }
-   else
-   {
-
-      semctl_arg.val = 0;
-
-   }
-
-   semctl((int32_t) m_object, 0, SETVAL, semctl_arg);
 
 
 #endif
@@ -119,13 +123,31 @@ bool event::SetEvent()
 
 #else
 
-   sembuf sb;
+   if(m_bManualEvent)
+   {
 
-   sb.sem_op   = 1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
+      pthread_mutex_lock(&m_mutex);
 
-   return semop((int32_t) m_object, &sb, 1) == 0;
+      m_bSignaled = true;
+
+      m_iSignalId++;
+
+      pthread_cond_broadcast(&m_cond);
+
+      pthread_mutex_unlock(&m_mutex);
+
+   }
+   else
+   {
+      sembuf sb;
+
+      sb.sem_op   = 1;
+      sb.sem_num  = 0;
+      sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
+
+      return semop((int32_t) m_object, &sb, 1) == 0;
+   }
+
 
 #endif
 
@@ -171,13 +193,22 @@ bool event::ResetEvent()
 
 #else
 
-   sembuf sb;
+   if(m_bManualEvent)
+   {
 
-   sb.sem_op   = 0;
-   sb.sem_num  = 0;
-   sb.sem_flg  = m_bManualEvent ? 0 : SEM_UNDO;
+      pthread_mutex_lock(&m_mutex);
 
-   return semop((int32_t) m_object, &sb, 1) == 0;
+      m_bSignaled = false;
+
+      pthread_mutex_unlock(&m_mutex);
+
+   }
+   else
+   {
+
+      throw "simple_exception";
+
+   }
 
 #endif
 
@@ -194,13 +225,35 @@ void event::wait ()
 
 #else
 
-   sembuf sb;
+   if(m_bManualEvent)
+   {
 
-   sb.sem_op   = -1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = 0;
+      pthread_mutex_lock(&m_mutex);
 
-   semop((int32_t) m_object, &sb, 1);
+      int iSignal = m_iSignalId;
+
+      while(!m_bSignaled && iSignal == m_iSignalId)
+      {
+
+         pthread_cond_wait(&m_cond, &m_mutex);
+
+      }
+
+      pthread_mutex_unlock(&m_mutex);
+
+   }
+   else
+   {
+
+      sembuf sb;
+
+      sb.sem_op   = -1;
+      sb.sem_num  = 0;
+      sb.sem_flg  = 0;
+
+      semop((int32_t) m_object, &sb, 1);
+
+   }
 
 #endif
 
@@ -209,10 +262,8 @@ void event::wait ()
 ///  \brief		waits for an event for a specified time
 ///  \param		duration time period to wait for an event
 ///  \return	waiting action result as WaitResult
-wait_result event::wait (const duration & duration)
+wait_result event::wait (const duration & durationTimeout)
 {
-
-	DWORD timeout = duration.os_lock_duration();
 
 #ifdef WINDOWS
 
@@ -220,45 +271,94 @@ wait_result event::wait (const duration & duration)
 
 #else
 
-	DWORD start = ::get_tick_count();
-
 	timespec delay;
 
-	delay.tv_sec = 0;
-	delay.tv_nsec = 1000000;
+   if(m_bManualEvent)
+   {
 
-	while(duration.is_pos_infinity() || ::get_tick_count() - start < timeout)
-	{
+      ((duration & ) durationTimeout).normalize();
 
-      sembuf sb;
+      delay.tv_sec = durationTimeout.m_iSeconds;
 
-      sb.sem_op   = -1;
-      sb.sem_num  = 0;
-      sb.sem_flg  = IPC_NOWAIT;
+      delay.tv_nsec = durationTimeout.m_iNanoseconds;
 
-      int32_t ret = semop((int32_t) m_object, &sb, 1);
+      pthread_mutex_lock(&m_mutex);
 
-      if(ret < 0)
+      int iSignal = m_iSignalId;
+
+      while(!m_bSignaled && iSignal == m_iSignalId)
       {
-         if(ret == EPERM)
+
+         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay) == 0)
          {
-            nanosleep(&delay, NULL);
+
+            if(errno == ETIMEDOUT)
+            {
+
+               return wait_result(wait_result::Timeout);
+
+            }
+            else
+            {
+
+               return wait_result(wait_result::Failure);
+
+            }
+
+         }
+
+      }
+
+      pthread_mutex_unlock(&m_mutex);
+
+      return wait_result(wait_result::Event0);
+
+   }
+   else
+   {
+
+      DWORD timeout = durationTimeout.os_lock_duration();
+
+      DWORD start = ::get_tick_count();
+
+      while(durationTimeout.is_pos_infinity() || ::get_tick_count() - start < timeout)
+      {
+
+
+         sembuf sb;
+
+         sb.sem_op   = -1;
+         sb.sem_num  = 0;
+         sb.sem_flg  = IPC_NOWAIT;
+
+         int32_t ret = semop((int32_t) m_object, &sb, 1);
+
+         if(ret < 0)
+         {
+            if(ret == EPERM)
+            {
+               nanosleep(&delay, NULL);
+            }
+            else
+            {
+               return wait_result(wait_result::Failure);
+            }
          }
          else
          {
-            return wait_result(wait_result::Failure);
+            return wait_result(wait_result::Event0);
          }
-      }
-      else
-      {
-         return wait_result(wait_result::Event0);
+
       }
 
-	}
+      return wait_result(wait_result::Timeout);
 
-	return wait_result(wait_result::Timeout);
+   }
+
 
 #endif
+
+
 }
 
 
@@ -286,28 +386,39 @@ bool event::is_signaled() const
 
 #else
 
-   sembuf sb;
-
-   sb.sem_op   = -1;
-   sb.sem_num  = 0;
-   sb.sem_flg  = IPC_NOWAIT;
-
-   int32_t ret = semop((int32_t) m_object, &sb, 1);
-
-   if(ret < 0)
+   if(m_bManualEvent)
    {
-      if(ret == EPERM)
+
+      return m_bSignaled;
+
+   }
+   else
+   {
+
+      sembuf sb;
+
+      sb.sem_op   = -1;
+      sb.sem_num  = 0;
+      sb.sem_flg  = IPC_NOWAIT;
+
+      int32_t ret = semop((int32_t) m_object, &sb, 1);
+
+      if(ret < 0)
       {
-         return true;
+         if(ret == EPERM)
+         {
+            return true;
+         }
+         else
+         {
+            return false;
+         }
       }
       else
       {
          return false;
       }
-   }
-   else
-   {
-      return false;
+
    }
 
 #endif
@@ -337,43 +448,88 @@ bool event::lock(const duration & durationTimeout)
 
 #else
 
-   DWORD timeout = durationTimeout.os_lock_duration();
 
-	DWORD start = ::get_tick_count();
+   timespec delay;
 
-	timespec delay;
 
-	delay.tv_sec = 0;
-	delay.tv_nsec = 1000000;
+   if(m_bManualEvent)
+   {
 
-	while(::get_tick_count() - start < timeout)
-	{
+      ((duration & ) durationTimeout).normalize();
 
-      sembuf sb;
+      delay.tv_sec = durationTimeout.m_iSeconds;
 
-      sb.sem_op   = -1;
-      sb.sem_num  = 0;
-      sb.sem_flg  = IPC_NOWAIT;
+      delay.tv_nsec = durationTimeout.m_iNanoseconds;
 
-      int32_t ret = semop((int32_t) m_object, &sb, 1);
+      pthread_mutex_lock(&m_mutex);
 
-      if(ret < 0)
+      int iSignal = m_iSignalId;
+
+      while(!m_bSignaled && iSignal == m_iSignalId)
       {
-         if(ret == EPERM)
+
+         if(pthread_cond_timedwait(&m_cond, &m_mutex, &delay) == 0)
          {
-            nanosleep(&delay, NULL);
+
+            if(errno == ETIMEDOUT)
+            {
+
+               return false;
+
+            }
+            else
+            {
+
+               return false;
+
+            }
+
+         }
+
+      }
+
+      pthread_mutex_unlock(&m_mutex);
+
+      return true;
+
+   }
+   else
+   {
+
+      DWORD timeout = durationTimeout.os_lock_duration();
+
+      DWORD start = ::get_tick_count();
+
+      while(::get_tick_count() - start < timeout)
+      {
+
+         sembuf sb;
+
+         sb.sem_op   = -1;
+         sb.sem_num  = 0;
+         sb.sem_flg  = IPC_NOWAIT;
+
+         int32_t ret = semop((int32_t) m_object, &sb, 1);
+
+         if(ret < 0)
+         {
+            if(ret == EPERM)
+            {
+               nanosleep(&delay, NULL);
+            }
+            else
+            {
+               return false;
+            }
          }
          else
          {
-            return false;
+            return true;
          }
-      }
-      else
-      {
-         return true;
+
       }
 
-	}
+   }
 
 	return false;
 

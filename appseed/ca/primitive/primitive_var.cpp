@@ -2739,7 +2739,7 @@ var CLASS_DECL_ca operator * (unsigned long ul, const class var & var)
    case ::var::type_null:
       return ::var(::var::type_null);
    case ::var::type_empty:
-      return NULL;
+      return 0;
    case ::var::type_int32:
       return (int_ptr) ul * var.m_i32;
    case ::var::type_uint32:

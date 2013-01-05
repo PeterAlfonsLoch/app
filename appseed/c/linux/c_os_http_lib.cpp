@@ -51,7 +51,6 @@ static const char *rcsid="$Id: http_lib.c,v 3.5 1998/09/23 06:19:15 dl Exp $";
 #include <ctype.h>
 //#include <string.h>
 #include <unistd.h>
-//#include <stdlib.h>
 
 #else
 /* OS/9 includes */

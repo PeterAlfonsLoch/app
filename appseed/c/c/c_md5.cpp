@@ -38,8 +38,6 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 #endif
 
@@ -412,7 +410,7 @@ vsstring get_file_md5_by_map(const char * path)
    DWORD dwHigh;
 
 #ifdef AMD64
-   
+
    DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
 
    dwSize |= ((DWORD64) dwHigh) << 32;
@@ -423,7 +421,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    if(dwHigh > 0)
    {
-      
+
       // cannot optimize getting md5 by map by mapping file entirely into memory view
 
       return "";
@@ -483,7 +481,7 @@ vsstring get_file_md5_by_map(const char * path)
 
 
 #ifdef AMD64
-   
+
    DWORD64 dwSize = ::GetFileSize(hfile, &dwHigh);
 
    dwSize |= ((DWORD64) dwHigh) << 32;
@@ -494,7 +492,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    if(dwHigh > 0)
    {
-      
+
       // cannot optimize getting md5 by map by mapping file entirely into memory view
 
       return "";
@@ -749,22 +747,22 @@ vsstring get_file_md5(const char * path)
 
 vsstring get_md5(const void * data, ::count c)
 {
-   
+
    if(c < 0)
    {
-      
+
       c = strlen_dup((const char *) data);
-      
+
    }
-   
+
    ::md5::md5 md5;
-   
+
    md5.initialize();
-   
+
    md5.update((void *) data, c);
-   
+
    md5.finalize();
-   
+
    return md5.to_string();
-   
+
 }

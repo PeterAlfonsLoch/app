@@ -14,10 +14,6 @@
 #pragma once
 
 
-#ifndef WINDOWS
-//#include <sys/time.h> // Unix based system specific
-#endif
-
 
 namespace gen
 {

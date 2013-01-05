@@ -29,9 +29,45 @@ namespace ca
       }
 
 
+      CLASS_DECL_ca int64_t micros()
+      {
+#ifdef WINDOWSEX
+         int64_t iCount;
+         if(g_iFrequency
+         && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))
+         {
+            return iCount * 1000 * 1000 / g_iFrequency;
+         }
+         else
+         {
+            return ::get_tick_count() * 1000;
+         }
+#elif defined(METROWIN)
+         int64_t iCount;
+         if(g_iFrequency
+         && QueryPerformanceCounter((LARGE_INTEGER *) &iCount))
+         {
+            return iCount * 1000 * 1000 / g_iFrequency;
+         }
+         else
+         {
+            return ::GetTickCount64() * 1000;
+         }
+#else
+         timeval t;
+         gettimeofday(&t, NULL);
+         return t.tv_sec * 1000 * 1000 + t.tv_usec;
+#endif
+
+
+      }
+
+
    } // namespace profiler
 
 
 } // namespace gen
+
+
 
 

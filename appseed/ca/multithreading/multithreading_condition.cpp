@@ -10,7 +10,7 @@
 condition::condition(::ca::application * papp) :
    ca(papp)
 {
-   
+
    if(papp == NULL)
       throw invalid_argument_exception(::ca::get_thread_app());
 
@@ -24,19 +24,7 @@ condition::condition(::ca::application * papp) :
 
 #else
 
-   m_bManualReset    = bManualReset;
-
-   bool bSet;
-
-   if(m_bManualReset)
-   {
-      bSet         = bInitiallyOwn != FALSE;
-   }
-   else
-   {
-      bSet         = false;
-   }
-
+/*
    if(pstrName != NULL && *pstrName != '\0')
    {
 
@@ -46,11 +34,14 @@ condition::condition(::ca::application * papp) :
 
    }
    else
+*/
    {
 
       m_object = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
 
    }
+
+/*
 
    semun semctl_arg;
 
@@ -69,6 +60,7 @@ condition::condition(::ca::application * papp) :
 
    semctl((int32_t) m_object, 0, SETVAL, semctl_arg);
 
+*/
 
 #endif
 
@@ -77,7 +69,13 @@ condition::condition(::ca::application * papp) :
 
 condition::~condition()
 {
+
+#ifdef WINDOWS
+
    ::DeleteCriticalSection(&m_sect);
+
+#endif
+
 }
 
 
@@ -126,7 +124,7 @@ void condition::wait ()
    semop((int32_t) m_object, &sb, 1);
 
 #endif
-   
+
 }
 
 ///  \brief		waits for an condition for a specified time
@@ -278,7 +276,7 @@ bool condition::unlock()
 
 void * condition::get_os_data() const
 {
-   
+
    throw not_supported_exception(get_app());
 
 }

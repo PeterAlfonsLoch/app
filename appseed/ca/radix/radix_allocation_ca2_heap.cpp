@@ -66,7 +66,7 @@ CLASS_DECL_ca void * ca2_heap_realloc_dbg(void * pvoidOld, size_t size, int32_t 
    return ((byte *) &psize[1]) + 128;
 #else
    size_t * psize = (size_t *) g_heap.realloc(&((size_t *)(((byte *)pvoidOld)))[-1], ((size_t *)(((byte *)pvoidOld)))[-1], size + sizeof(size_t));
-   psize[0] = size + sizeof(size_t) + 128;
+   psize[0] = size + sizeof(size_t);
    return &psize[1];
 #endif
 #endif

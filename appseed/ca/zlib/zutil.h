@@ -28,7 +28,6 @@
 #    include <stddef.h>
 #  endif
 //#  include <string.h>
-//#  include <stdlib.h>
 #endif
 #ifdef NO_ERRNO_H
 #   ifdef _WIN32_WCE

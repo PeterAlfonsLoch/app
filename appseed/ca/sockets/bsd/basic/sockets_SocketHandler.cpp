@@ -28,7 +28,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-//#include <stdlib.h>
 //#include <errno.h>
 
 namespace sockets
@@ -249,7 +248,7 @@ namespace sockets
 
    int32_t socket_handler::Select(int32_t lSeconds, int32_t lMicroseconds)
    {
-      
+
       struct timeval timeval;
 
       timeval.tv_sec    = lSeconds;
@@ -375,7 +374,7 @@ namespace sockets
             if(ppair->m_value != NULL)
             {
                //TRACE("tmout sckt(%d):\"%s\"", ppair->m_key, ppair->m_value->oprop("meta_info").get_string());
-               
+
                SOCKET s = ppair->m_key;
 
                class socket * psocket = ppair->m_value;
@@ -383,7 +382,7 @@ namespace sockets
                TRACE("tmout sckt(%d):remote_address=\"%s\""          , s, psocket->GetRemoteAddress().get_display_number());
 //               TRACE("tmout sckt(%d):remote_canonical_name=\"%s\""   , s, psocket->GetRemoteAddress().get_canonical_name());
                TRACE("tmout sckt(%d):short_desc=\"%s\""              , s, psocket->get_short_description());
-               
+
                time_t tnow = time(NULL);
 
                if(psocket->Timeout(tnow))
@@ -427,7 +426,7 @@ namespace sockets
             {
                TRACE("WSEINVAL");
             }
-            
+
             // test bad fd
             for (SOCKET i = 0; i <= m_maxsock; i++)
             {
@@ -472,7 +471,7 @@ namespace sockets
          /// \no more todo rebuild fd_set's from active sockets list (m_sockets) here
          /// done : http://jbmon.googlecode.com/svn/trunk/sockets/SocketHandler.cpp : rebuild fd_set's from active sockets list (m_sockets) here
          {
-	         
+
             FD_ZERO(&rfds);
 		      FD_ZERO(&wfds);
 		      FD_ZERO(&efds);
@@ -661,7 +660,7 @@ namespace sockets
                         psocket -> OnSocks4Connect();
                      else
                      {
-                     
+
                         if (tcp)
                         {
                            if (tcp -> GetOutputLength())
@@ -774,7 +773,7 @@ namespace sockets
                {
                   if(tcp -> RetryClientConnect())
                   {
-                  
+
                      SOCKET nn = socket; //(*it3).first;
                      tcp -> SetRetryClientConnect(false);
                      //TRACE("close() before retry client connect\n");

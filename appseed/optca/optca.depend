@@ -81,11 +81,11 @@
 1347082010 /ca2/nodeapp/operational_system/_.h
 	"get_platform.h"
 
-1355476594 /ca2/nodeapp/operational_system/get_platform.h
+1357344662 /ca2/nodeapp/operational_system/get_platform.h
 	<features.h>
 	"bare_operational_system.h"
 
-1357202867 /ca2/nodeapp/operational_system/bare_operational_system.h
+1357344937 /ca2/nodeapp/operational_system/bare_operational_system.h
 	<features.h>
 	<stdlib.h>
 	<stdio.h>
@@ -101,6 +101,11 @@
 	<sys/time.h>
 	<pthread.h>
 	<sys/resource.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<netdb.h>
 	<X11/Xlib.h>
 	<X11/Xutil.h>
 	"osdisplay.h"
@@ -256,7 +261,7 @@
 
 1354886573 /ca2/app/appseed/include/product.version.config.h
 
-1357180588 /ca2/app/appseed/c/c/c_types.h
+1357342860 /ca2/app/appseed/c/c/c_types.h
 
 1357202483 /ca2/app/appseed/c/c/c_natural.h
 
@@ -264,7 +269,7 @@
 
 1354886566 /ca2/app/appseed/c/c/c_time.h
 
-1357180588 /ca2/app/appseed/c/c/c_cpu_architecture.h
+1357342860 /ca2/app/appseed/c/c/c_cpu_architecture.h
 
 1357180588 /ca2/app/appseed/c/c/c_libc.h
 	<tchar.h>
@@ -580,7 +585,7 @@
 
 1355266172 /ca2/app/appseed/c/cross/windows/windows_gdi.h
 
-1357180568 /ca2/app/appseed/c/cross/windows/windows_user.h
+1357342860 /ca2/app/appseed/c/cross/windows/windows_user.h
 
 1357180568 /ca2/app/appseed/c/cross/windows/windows_thread.h
 

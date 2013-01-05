@@ -57,9 +57,6 @@
 #else /* SRTP_KERNEL */
 
 /* use standard integer definitions, if they're available  */
-//#ifdef HAVE_STDLIB_H
-//# include <stdlib.h>
-//#endif
 #ifdef HAVE_STDINT_H
 # include <stdint.h>
 #endif

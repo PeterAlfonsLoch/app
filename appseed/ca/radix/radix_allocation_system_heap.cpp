@@ -13,7 +13,7 @@
 
 CLASS_DECL_ca HANDLE g_system_heap()
 {
-   
+
    static HANDLE s_hSystemHeap = HeapCreate(0, 0, 0);
 
    return s_hSystemHeap;
@@ -27,23 +27,38 @@ static simple_mutex g_mutexSystemHeap;
 
 CLASS_DECL_ca void * system_heap_alloc(size_t size)
 {
+
    mutex_lock lock(g_mutexSystemHeap, true);
+
+   size_t sizeAlloc = (size + 4 + sizeof(size_t) + 3) & ~3;
+
 //#if ZEROED_ALLOC
   // byte * p = (byte *) ::HeapAlloc(g_hSystemHeap, HEAP_ZERO_MEMORY, ((size + 4 + 3) & ~3));
 //#else  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
 #ifdef WINDOWSEX
-   byte * p = (byte *) ::HeapAlloc(g_system_heap(), 0, ((size + 4 + sizeof(size_t) + 3) & ~3));
+
+   byte * p = (byte *) ::HeapAlloc(g_system_heap(), 0, sizeAlloc);
+
 #else
-   byte * p = (byte *) ::malloc((size + 4 +  sizeof(size_t)  + 3) & ~3);
+
+   byte * p = (byte *) ::malloc(sizeAlloc);
+
 #endif
 //#endif
+
    if(p == NULL)
       return NULL;
+
    ((DWORD *)p)[0] = 0;
+
    *((size_t *)&((DWORD *)p)[1]) = size;
+
    int32_t iMod = ((dword_ptr)p) % 4;
+
    p[3 - iMod] = (uint8_t) (4 - iMod);
+
    return &p[4 + sizeof(size_t) - iMod];
+
 }
 
 
