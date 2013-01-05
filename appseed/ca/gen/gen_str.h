@@ -120,7 +120,7 @@ namespace gen
       string CLASS_DECL_ca if_null(const char * psz, const char * pszIfNull = NULL);
 
 
-      FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(unsigned char) *psz]; }
+      FORCEINLINE  const char * __utf8_inc(const char * psz) { return psz + 1 + trailingBytesForUTF8[(uchar) *psz]; }
 
 
       CLASS_DECL_ca  const char *   utf8_inc(const char * psz);
@@ -184,7 +184,7 @@ namespace gen
 #endif
       inline CLASS_DECL_ca string  from(int64_t i);
       inline CLASS_DECL_ca string  from(uint32_t ui);
-      inline CLASS_DECL_ca string  from(unsigned long ui);
+      inline CLASS_DECL_ca string  from(uint32_t long ui);
       inline CLASS_DECL_ca string  from(uint64_t ui);
       inline CLASS_DECL_ca string  from(const var & var);
       inline CLASS_DECL_ca string  from(const id & id);
@@ -196,8 +196,8 @@ namespace gen
       CLASS_DECL_ca  string &       from(string & str, long l);
       CLASS_DECL_ca  string &       from(string & str, long long ll);
       CLASS_DECL_ca  string &       from(string & str, uint32_t ui);
-      CLASS_DECL_ca  string &       from(string & str, unsigned long ui);
-      CLASS_DECL_ca  string &       from(string & str, unsigned long long ui);
+      CLASS_DECL_ca  string &       from(string & str, uint32_t long ui);
+      CLASS_DECL_ca  string &       from(string & str, uint32_t long long ui);
       inline CLASS_DECL_ca string & from(string & str, const var & var);
       inline CLASS_DECL_ca string & from(string & str, const id & id);
       CLASS_DECL_ca string &        from(string & str, int64_t i);
@@ -253,11 +253,11 @@ namespace gen
 
       void format(string_format * pformat, char const &  i);
 
-      void format(string_format * pformat, unsigned char const &  i);
+      void format(string_format * pformat, uchar const &  i);
 
-      void format(string_format * pformat, short const &  i);
+      void format(string_format * pformat, int16_t const &  i);
 
-      void format(string_format * pformat, unsigned short const &  i);
+      void format(string_format * pformat, uint16_t const &  i);
 
       void format(string_format * pformat, int32_t const &  i);
 
@@ -265,11 +265,11 @@ namespace gen
 
       void format(string_format * pformat, long const & i);
 
-      void format(string_format * pformat, unsigned long const & i);
+      void format(string_format * pformat, uint32_t long const & i);
 
       void format(string_format * pformat, long long const & i);
 
-      void format(string_format * pformat, unsigned long long const & i);
+      void format(string_format * pformat, uint32_t long long const & i);
 
       void format(string_format * pformat, double const &  i);
 
@@ -279,7 +279,7 @@ namespace gen
 
       void format(string_format * pformat, const void * const & p);
 
-      void format(string_format * pformat, unsigned char * const & p);
+      void format(string_format * pformat, uchar * const & p);
 
       void format(string_format * pformat, const char * const & psz);
 

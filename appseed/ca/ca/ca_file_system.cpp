@@ -288,7 +288,7 @@ namespace ca
                   i--;
                   continue;
                }
-               if(!isdigit((unsigned char) str[0]) || !isdigit((unsigned char) str[1]))
+               if(!isdigit((uchar) str[0]) || !isdigit((uchar) str[1]))
                {
                   stra.remove_at(i);
                   i--;
@@ -1559,7 +1559,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 // 		{
 // 			if( bShortPath )
 // 			{
-// 				// Some times the file name may be in short path form.
+// 				// Some times the file name may be in int16_t path form.
 // 				if( -1 == csFileName.Find( csShortName ))
 // 				{
 // 					continue;
@@ -1575,7 +1575,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 		{
 			if( bShortPath )
 			{
-				// Some times the file name may be in short path form.
+				// Some times the file name may be in int16_t path form.
 				if( 0 != _tcsncmp( lpShortPath, csFileName, csShortName.get_length()))
 				{
 					continue;

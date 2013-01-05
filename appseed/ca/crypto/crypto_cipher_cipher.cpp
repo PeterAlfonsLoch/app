@@ -266,7 +266,7 @@ cipher_type_self_test(const cipher_type_t *ct) {
   rand_source_init();
   
   for (j=0; j < NUM_RAND_TESTS; j++) {
-    unsigned length;
+    uint32_t length;
     int32_t plaintext_len;
     uint8_t key[MAX_KEY_LEN];
     uint8_t  iv[MAX_KEY_LEN];
@@ -378,10 +378,10 @@ cipher_bits_per_second(cipher_t *c, int32_t octets_in_buffer, int32_t num_trials
   int32_t i;
   v128_t nonce;
   clock_t timer;
-  unsigned char *enc_buf;
+  uchar *enc_buf;
   uint32_t len = octets_in_buffer;
 
-  enc_buf = (unsigned char*) crypto_alloc(octets_in_buffer);
+  enc_buf = (uchar*) crypto_alloc(octets_in_buffer);
   if (enc_buf == NULL)
     return 0;  /* indicate bad parameters by returning null */
   

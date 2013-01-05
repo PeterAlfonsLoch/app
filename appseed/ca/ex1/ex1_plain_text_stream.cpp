@@ -100,19 +100,19 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (unsigned char & uch)
+   plain_text_input_stream & plain_text_input_stream::operator >> (uchar & uch)
    {
       read(&uch, sizeof(uch));
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (short & sh)
+   plain_text_input_stream & plain_text_input_stream::operator >> (int16_t & sh)
    {
       read(&sh, sizeof(sh));
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (unsigned short & ush)
+   plain_text_input_stream & plain_text_input_stream::operator >> (uint16_t & ush)
    {
       read(&ush, sizeof(ush));
       return *this;
@@ -156,7 +156,7 @@ namespace ex1
       return *this;
    }
 
-   plain_text_input_stream & plain_text_input_stream::operator >> (unsigned long & ul)
+   plain_text_input_stream & plain_text_input_stream::operator >> (uint32_t long & ul)
    {
       read(&ul, sizeof(ul));
       return *this;
@@ -266,17 +266,17 @@ namespace ex1
       return *this;
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (unsigned char uch)
+   plain_text_output_stream & plain_text_output_stream::operator << (uchar uch)
    {
       return operator << ((uint32_t) uch);
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (short sh)
+   plain_text_output_stream & plain_text_output_stream::operator << (int16_t sh)
    {
       return operator << ((int32_t) sh);
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (unsigned short ush)
+   plain_text_output_stream & plain_text_output_stream::operator << (uint16_t ush)
    {
       return operator << ((uint32_t) ush);
    }
@@ -311,7 +311,7 @@ namespace ex1
       return raw_print(gen::str::from(l));
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (unsigned long ul)
+   plain_text_output_stream & plain_text_output_stream::operator << (uint32_t long ul)
    {
       return raw_print(gen::str::from(ul));
    }

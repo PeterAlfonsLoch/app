@@ -63,13 +63,13 @@ public:
    fixed_string(const string::XCHAR* psz);
    fixed_string(const string::XCHAR* psz,int32_t nLength);
    explicit fixed_string(const string::YCHAR* psz);
-   explicit fixed_string(const unsigned char* psz);
+   explicit fixed_string(const uchar* psz);
    ~fixed_string() throw();
 
    fixed_string< t_nChars >& operator=(const fixed_string< t_nChars >& str );
    fixed_string< t_nChars >& operator=(const char* psz );
    fixed_string< t_nChars >& operator=(const wchar_t* psz );
-   fixed_string< t_nChars >& operator=(const unsigned char* psz);
+   fixed_string< t_nChars >& operator=(const uchar* psz);
    fixed_string< t_nChars >& operator=(const string & str );
 
 };
@@ -124,7 +124,7 @@ fixed_string< t_nChars >::fixed_string(const string::YCHAR* psz ) :
 }
 
 template < int32_t t_nChars >
-fixed_string< t_nChars >::fixed_string(const unsigned char* psz ) :
+fixed_string< t_nChars >::fixed_string(const uchar* psz ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, static_cast< fixed_string_manager* >( this ) )
 {
@@ -158,7 +158,7 @@ fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const wchar_t* psz
 }
 
 template < int32_t t_nChars >
-fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const unsigned char* psz )
+fixed_string< t_nChars >& fixed_string< t_nChars >::operator=(const uchar* psz )
 {
    string::operator=( psz );
    return *this;

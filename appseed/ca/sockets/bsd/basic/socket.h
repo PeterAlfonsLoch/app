@@ -86,7 +86,7 @@ namespace sockets
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
-      //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
+      //    uint32_t long           m_flags; ///< boolean flags, replacing old 'bool' members
 
 #ifdef WINDOWSEX
 
@@ -410,8 +410,8 @@ namespace sockets
       //@{
 
       bool SetIpOptions(const void *p, socklen_t len);
-      bool SetIpTOS(unsigned char tos);
-      unsigned char IpTOS();
+      bool SetIpTOS(uchar tos);
+      uchar IpTOS();
       bool SetIpTTL(int32_t ttl);
       int32_t IpTTL();
       bool SetIpHdrincl(bool x = true);

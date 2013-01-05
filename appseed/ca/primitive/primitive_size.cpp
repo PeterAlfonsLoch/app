@@ -41,8 +41,8 @@ size::size(POINT initPt) throw()
    { *(POINT*)this = initPt; }
 size::size(DWORD dwSize) throw()
    {
-      cx = (short)LOWORD(dwSize);
-      cy = (short)HIWORD(dwSize);
+      cx = (int16_t)LOWORD(dwSize);
+      cy = (int16_t)HIWORD(dwSize);
    }
 
 size::operator SIZE *() throw()
@@ -268,8 +268,8 @@ sized::sized(POINT initPt) throw()
    { *(POINT*)this = initPt; }
 sized::sized(DWORD dwSize) throw()
    {
-      cx = (short)LOWORD(dwSize);
-      cy = (short)HIWORD(dwSize);
+      cx = (int16_t)LOWORD(dwSize);
+      cy = (int16_t)HIWORD(dwSize);
    }
 
 sized::operator SIZED *() throw()

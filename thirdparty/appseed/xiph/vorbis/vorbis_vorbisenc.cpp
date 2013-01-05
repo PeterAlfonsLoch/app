@@ -695,7 +695,7 @@ int32_t vorbis_encode_setup_init(vorbis_info *vi){
   hi->set_in_stone=1;
   /* choose block sizes from configured sizes as well as paying
      attention to long_block_p and short_block_p.  If the configured
-     short and long blocks are the same length, we set long_block_p
+     int16_t and long blocks are the same length, we set long_block_p
      and unset short_block_p */
   vorbis_encode_blocksize_setup(vi,hi->base_setting,
                                 setup->blocksize_short,
@@ -710,7 +710,7 @@ int32_t vorbis_encode_setup_init(vorbis_info *vi){
                               setup->floor_params,
                               setup->floor_mapping_list[i]);
 
-  /* setup of [mostly] short block detection and stereo*/
+  /* setup of [mostly] int16_t block detection and stereo*/
   vorbis_encode_global_psych_setup(vi,hi->trigger_setting,
                                    setup->global_params,
                                    setup->global_mapping);

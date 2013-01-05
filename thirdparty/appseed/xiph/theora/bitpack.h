@@ -20,7 +20,7 @@
 
 
 
-typedef unsigned long      oc_pb_window;
+typedef uint32_t long      oc_pb_window;
 typedef struct oc_pack_buf oc_pack_buf;
 
 
@@ -35,13 +35,13 @@ typedef struct oc_pack_buf oc_pack_buf;
 
 struct oc_pack_buf{
   oc_pb_window         window;
-  const unsigned char *ptr;
-  const unsigned char *stop;
+  const uchar *ptr;
+  const uchar *stop;
   int32_t                  bits;
   int32_t                  eof;
 };
 
-void oc_pack_readinit(oc_pack_buf *_b,unsigned char *_buf,long _bytes);
+void oc_pack_readinit(oc_pack_buf *_b,uchar *_buf,long _bytes);
 int32_t oc_pack_look1(oc_pack_buf *_b);
 void oc_pack_adv1(oc_pack_buf *_b);
 /*Here we assume 0<=_bits&&_bits<=32.*/

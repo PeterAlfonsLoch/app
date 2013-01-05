@@ -115,11 +115,11 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   unsigned short getPercentValue(unsigned short max = USHRT_MAX) const
+   uint16_t getPercentValue(uint16_t max = USHRT_MAX) const
    {
       ASSERT(max > 0);
       if (!isPercentValue())   return (0);
-      unsigned short   percentVal = (unsigned short)((short)*this);
+      uint16_t   percentVal = (uint16_t)((int16_t)*this);
       return ((percentVal > max ? max : percentVal));
    }
 
@@ -134,7 +134,7 @@ public:
     * @author Gurmeet S. Kochar
     */
    enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, pt, pc };
-   short getLengthValue(LengthUnitsEnum &rUnit) const
+   int16_t getLengthValue(LengthUnitsEnum &rUnit) const
    {
       static const char   _szUnits[][4] =
       {
@@ -176,11 +176,11 @@ public:
          return (true);
       if (!m_strValue.CompareNoCase("false"))
          return (false);
-      return (((short)*this ? true : false));
+      return (((int16_t)*this ? true : false));
    }
 
    /**
-    * Converts attribute value to BYTE (unsigned char)
+    * Converts attribute value to BYTE (uchar)
     * @return the left-most character of attribute value
     * @since 1.0
     * @author Gurmeet S. Kochar
@@ -203,8 +203,8 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   operator short() const
-      { return ((short)::atoi(m_strValue)); }
+   operator int16_t() const
+      { return ((int16_t)::atoi(m_strValue)); }
 
    /**
     * @return attribute value

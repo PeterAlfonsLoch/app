@@ -9,7 +9,7 @@ namespace sockets
    public:
       Ajp13Socket(socket_handler_base& h);
 
-      void OnHeader( short id, short len );
+      void OnHeader( int16_t id, int16_t len );
       void OnPacket( const char *buf, size_t sz );
 
       virtual void Respond();

@@ -11,7 +11,7 @@
 // Collection implementation helpers
 
 /*
-* The short story:
+* The int16_t story:
 *   this file contains inline functions that make up the building blocks
 *   for implementing the string versions of standard parameterized
 *   collection shapes

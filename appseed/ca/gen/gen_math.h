@@ -41,7 +41,7 @@ namespace gen
          int32_t LinearMap(int32_t iMin, int32_t iMax, int32_t iValue, int32_t iValueMin, int32_t iValueMax);
          uint64_t gen_rand();
          void gen_rand(void * buf, DWORD dwLen);
-         unsigned long rnd();
+         uint32_t long rnd();
          int32_t random_context_entropy(int32_t iMin, int32_t iMax, int32_t iLevel = 3);
          int32_t rand_max();
          double LinearMap(
@@ -52,7 +52,7 @@ namespace gen
          double GetPi();
 
          static bool IsPowerOfTwo(uint32_t uiValue);
-         static uint32_t ReverseBits (unsigned index, unsigned NumBits );
+         static uint32_t ReverseBits (uint32_t index, uint32_t NumBits );
       //   template <class N> static inline void MaxClip(N * pnClipValue, N nMaxValue);
       //   template <class N> static inline void MinClip(N * pnClipValue, N nMinValue);
          static inline void MaxClip(double * pnClipValue, double nMaxValue);

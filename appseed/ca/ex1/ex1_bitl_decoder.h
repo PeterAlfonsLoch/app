@@ -10,9 +10,9 @@ namespace ex1
    namespace bitl 
    {
 
-      const unsigned kNumBigValueBits = 8 * 4;
-      const unsigned kNumValueBytes = 3;
-      const unsigned kNumValueBits = 8  * kNumValueBytes;
+      const uint32_t kNumBigValueBits = 8 * 4;
+      const uint32_t kNumValueBytes = 3;
+      const uint32_t kNumValueBits = 8  * kNumValueBytes;
 
       const uint32_t kMask = (1 << kNumValueBits) - 1;
 
@@ -22,7 +22,7 @@ namespace ex1
       class base_decoder
       {
       protected:
-         unsigned m_BitPos;
+         uint32_t m_BitPos;
          uint32_t m_Value;
          TInByte m_Stream;
       public:
@@ -53,7 +53,7 @@ namespace ex1
             }
          }
 
-         uint32_t ReadBits(unsigned numBits)
+         uint32_t ReadBits(uint32_t numBits)
          {
             Normalize();
             uint32_t res = m_Value & ((1 << numBits) - 1);
@@ -98,19 +98,19 @@ namespace ex1
             }
          }
 
-         uint32_t GetValue(unsigned numBits)
+         uint32_t GetValue(uint32_t numBits)
          {
             Normalize();
             return ((this->m_Value >> (8 - this->m_BitPos)) & kMask) >> (kNumValueBits - numBits);
          }
 
-         void MovePos(unsigned numBits)
+         void MovePos(uint32_t numBits)
          {
             this->m_BitPos += numBits;
             m_NormalValue >>= numBits;
          }
 
-         uint32_t ReadBits(unsigned numBits)
+         uint32_t ReadBits(uint32_t numBits)
          {
             Normalize();
             uint32_t res = m_NormalValue & ((1 << numBits) - 1);

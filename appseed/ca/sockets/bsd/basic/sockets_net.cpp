@@ -38,7 +38,7 @@ namespace sockets
       string dst;
       for (int32_t i = 0; i < src.get_length(); i++)
       {
-         if (isalnum((unsigned char) src[i]))
+         if (isalnum((uchar) src[i]))
          {
             dst += src[i];
          }
@@ -49,7 +49,7 @@ namespace sockets
             }
             else
             {
-               unsigned char c = static_cast<unsigned char>(src[i]);
+               uchar c = static_cast<uchar>(src[i]);
                dst += '%';
                dst += hex[c / 16];
                dst += hex[c % 16];
@@ -68,7 +68,7 @@ namespace sockets
       string dst;
       for (int32_t i = 0; i < src.get_length(); i++)
       {
-         if (src[i] == '%' && isxdigit((unsigned char) (src[i + 1])) && isxdigit((unsigned char) (src[i + 2])))
+         if (src[i] == '%' && isxdigit((uchar) (src[i + 1])) && isxdigit((uchar) (src[i + 2])))
          {
             char c1 = src[++i];
             char c2 = src[++i];
@@ -99,7 +99,7 @@ namespace sockets
          if (str[i] == '.')
             dots++;
          else
-            if (!isdigit((unsigned char) str[i]))
+            if (!isdigit((uchar) str[i]))
                return false;
       }
       if (dots != 3)
@@ -184,17 +184,17 @@ namespace sockets
          ::gen::parse pa((const char *)host, ".");
          union {
             struct {
-               unsigned char b1;
-               unsigned char b2;
-               unsigned char b3;
-               unsigned char b4;
+               uchar b1;
+               uchar b2;
+               uchar b3;
+               uchar b4;
             } a;
             ipaddr_t l;
          } u;
-         u.a.b1 = static_cast<unsigned char>(pa.getvalue());
-         u.a.b2 = static_cast<unsigned char>(pa.getvalue());
-         u.a.b3 = static_cast<unsigned char>(pa.getvalue());
-         u.a.b4 = static_cast<unsigned char>(pa.getvalue());
+         u.a.b1 = static_cast<uchar>(pa.getvalue());
+         u.a.b2 = static_cast<uchar>(pa.getvalue());
+         u.a.b3 = static_cast<uchar>(pa.getvalue());
+         u.a.b4 = static_cast<uchar>(pa.getvalue());
          memcpy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
          return true;
       }
@@ -311,8 +311,8 @@ namespace sockets
       bool ok_to_skip = true;
       if (mixed)
       {
-         unsigned short x;
-         unsigned short addr16[8];
+         uint16_t x;
+         uint16_t addr16[8];
          memcpy(addr16, &ip, sizeof(addr16));
          for (index i = 0; i < 6; i++)
          {
@@ -501,17 +501,17 @@ namespace sockets
          ::gen::parse pa((const char *)host, ".");
          union {
             struct {
-               unsigned char b1;
-               unsigned char b2;
-               unsigned char b3;
-               unsigned char b4;
+               uchar b1;
+               uchar b2;
+               uchar b3;
+               uchar b4;
             } a;
             ipaddr_t l;
          } u;
-         u.a.b1 = static_cast<unsigned char>(pa.getvalue());
-         u.a.b2 = static_cast<unsigned char>(pa.getvalue());
-         u.a.b3 = static_cast<unsigned char>(pa.getvalue());
-         u.a.b4 = static_cast<unsigned char>(pa.getvalue());
+         u.a.b1 = static_cast<uchar>(pa.getvalue());
+         u.a.b2 = static_cast<uchar>(pa.getvalue());
+         u.a.b3 = static_cast<uchar>(pa.getvalue());
+         u.a.b4 = static_cast<uchar>(pa.getvalue());
          memcpy(&sa.sin_addr, &u.l, sizeof(sa.sin_addr));
          return true;
       }
@@ -605,10 +605,10 @@ namespace sockets
                {
                   Parse pa(s,".");
                   char slask[100]; // u2ip temporary hex2string conversion
-                  unsigned long b0 = static_cast<unsigned long>(pa.getvalue());
-                  unsigned long b1 = static_cast<unsigned long>(pa.getvalue());
-                  unsigned long b2 = static_cast<unsigned long>(pa.getvalue());
-                  unsigned long b3 = static_cast<unsigned long>(pa.getvalue());
+                  uint32_t long b0 = static_cast<uint32_t long>(pa.getvalue());
+                  uint32_t long b1 = static_cast<uint32_t long>(pa.getvalue());
+                  uint32_t long b2 = static_cast<uint32_t long>(pa.getvalue());
+                  uint32_t long b3 = static_cast<uint32_t long>(pa.getvalue());
                   sprintf(slask,"%lx",b0 * 256 + b1);
                   vec.push_back(slask);
                   sprintf(slask,"%lx",b2 * 256 + b3);
@@ -624,7 +624,7 @@ namespace sockets
          }
          index sz = vec.get_length(); // number of byte pairs
          index i = 0; // index in in6_addr.in6_u.u6_addr16[] ( 0 .. 7 )
-         unsigned short addr16[8];
+         uint16_t addr16[8];
          for (list<string>::iterator it = vec.begin(); it != vec.end(); it++)
          {
             string bytepair = *it;
@@ -732,10 +732,10 @@ namespace sockets
          {
             union {
                struct {
-                  unsigned char b1;
-                  unsigned char b2;
-                  unsigned char b3;
-                  unsigned char b4;
+                  uchar b1;
+                  uchar b2;
+                  uchar b3;
+                  uchar b4;
                } a;
                ipaddr_t l;
             } u;
@@ -767,12 +767,12 @@ namespace sockets
             bool skipped = false;
             bool ok_to_skip = true;
             {
-               unsigned short addr16[8];
+               uint16_t addr16[8];
                struct sockaddr_in6 *sa_in6 = (struct sockaddr_in6 *)sa;
                memcpy(addr16, &sa_in6 -> sin6_addr, sizeof(addr16));
                for (index i = 0; i < 8; i++)
                {
-                  unsigned short x = ntohs(addr16[i]);
+                  uint16_t x = ntohs(addr16[i]);
                   if (*slask && (x || !ok_to_skip || prev))
                      strcat(slask,":");
                   if (x || !ok_to_skip)

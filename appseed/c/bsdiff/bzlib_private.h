@@ -42,13 +42,12 @@
 #undef True
 #undef False
 
-typedef unsigned char   Bool;
+typedef uchar   Bool;
 typedef char            Char;
-typedef unsigned char   UChar;
+typedef uchar   UChar;
 typedef int32_t             int32_t;
 typedef uint32_t    uint32_t;
-typedef short           Int16;
-typedef unsigned short  UInt16;
+typedef int16_t           Int16;
 
 
 
@@ -225,7 +224,7 @@ typedef
       /* aliases for arr1 and arr2 */
       uint32_t*  ptr;
       UChar*   block;
-      UInt16*  mtfv;
+      uint16_t*  mtfv;
       UChar*   zbits;
 
       /* for deciding when to use the fallback sorting algorithm */
@@ -391,7 +390,7 @@ typedef
       uint32_t   *tt;
 
       /* for undoing the Burrows-Wheeler transform (SMALL) */
-      UInt16   *ll16;
+      uint16_t   *ll16;
       UChar    *ll4;
 
       /* stored and calculated CRCs */
@@ -471,7 +470,7 @@ typedef
    ((((uint32_t)(s->ll4[(i) >> 1])) >> (((i) << 2) & 0x4)) & 0xF)
 
 #define SET_LL(i,n)                          \
-   { s->ll16[i] = (UInt16)(n & 0x0000ffff);  \
+   { s->ll16[i] = (uint16_t)(n & 0x0000ffff);  \
      SET_LL4(i, n >> 16);                    \
    }
 

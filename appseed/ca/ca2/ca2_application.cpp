@@ -465,7 +465,7 @@ namespace ca2
       }
 
       // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-      // short file name so we need to use the short file name.
+      // int16_t file name so we need to use the int16_t file name.
       string strShortName;
       strShortName = get_module_file_path();
 
@@ -713,7 +713,7 @@ namespace ca2
       ::ex2::application::set_env_var(var, value);
    }
 
-   unsigned long application::get_thread_id()
+   uint32_t long application::get_thread_id()
    {
       return ::ex2::application::get_thread_id();
    }

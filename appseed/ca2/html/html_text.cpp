@@ -90,16 +90,16 @@ namespace html
 
 
          strsize iLastSpace = 0;
-         unsigned char uch;
+         uchar uch;
          int32_t iSpace = 0;
          string strLine;
          for(int32_t i = 0; i < str.get_length();)
          {
             iSpace = 0;
-            uch = (unsigned char) str[i];
+            uch = (uchar) str[i];
             while(i < str.get_length())
             {
-               uch = (unsigned char) str[i];
+               uch = (uchar) str[i];
                if(!isspace(uch))
                   break;
                iSpace++;
@@ -120,7 +120,7 @@ namespace html
             }
             while(i < str.get_length())
             {
-               uch = (unsigned char) str[i];
+               uch = (uchar) str[i];
                if(isspace(uch))
                   break;
                strLine += str[i];
@@ -135,7 +135,7 @@ namespace html
          m_cxMin = 0;
          for(int32_t i = 0; i < m_straWordSpace.get_size(); i++)
          {
-            uch = (unsigned char) m_straWordSpace[i][0];
+            uch = (uchar) m_straWordSpace[i][0];
             if(!isspace(uch))
             {
                size = pdc->GetTextExtent(m_straWordSpace[i]);
@@ -211,7 +211,7 @@ namespace html
             ::size sizeText;
             int32_t iSpace;
             string strLine;
-            unsigned char uch;
+            uchar uch;
             strsize iLastSpace = 0;
             point pointBound(get_x(), get_y());
             pointBound.x += m_margin.left + m_border.left + m_padding.left;
@@ -222,10 +222,10 @@ namespace html
             for(int32_t i = 0; i < str.get_length();)
             {
                iSpace = 0;
-               uch = (unsigned char) str[i];
+               uch = (uchar) str[i];
                while(i < str.get_length())
                {
-                  uch = (unsigned char) str[i];
+                  uch = (uchar) str[i];
                   if(!isspace(uch))
                      break;
                   iSpace++;
@@ -242,7 +242,7 @@ namespace html
                }
                while(i < str.get_length())
                {
-                  uch = (unsigned char) str[i];
+                  uch = (uchar) str[i];
                   if(isspace(uch))
                      break;
                   strLine += str[i];

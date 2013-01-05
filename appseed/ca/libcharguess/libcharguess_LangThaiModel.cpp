@@ -37,7 +37,7 @@
 //The following result for thai was collected from a limited sample (1M). 
 
 //Character Mapping Table:
-unsigned char TIS620CharToOrderMap[] =
+uchar TIS620CharToOrderMap[] =
 {
 255,255,255,255,255,255,255,255,255,255,254,255,255,254,255,255,  //00
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,  //10

@@ -62,7 +62,7 @@ void CrcGenerateTable()
   for (i = 0; i < 256; i++)
   {
     uint32_t r = i;
-    unsigned j;
+    uint32_t j;
     for (j = 0; j < 8; j++)
       r = (r >> 1) ^ (kCrcPoly & ~((r & 1) - 1));
     g_CrcTable[i] = r;

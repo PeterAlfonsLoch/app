@@ -200,7 +200,7 @@ __STATIC_DATA __ALLOC_HOOK pfnAllocHook = __default_alloc_hook;
 __STATIC_DATA _CRT_ALLOC_HOOK pfnCrtAllocHook = NULL;
 #if _MSC_VER >= 1200
 int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize,
-   int32_t nBlockUse, long lRequest, const unsigned char * szFilename, int32_t nLine)
+   int32_t nBlockUse, long lRequest, const uchar * szFilename, int32_t nLine)
 #else
 int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize,
    int32_t nBlockUse, long lRequest, const char * szFilename, int32_t nLine)
@@ -209,10 +209,10 @@ int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSi
 #if _MSC_VER >= 1200
    if (nAllocType != _HOOK_ALLOC)
       return (pfnCrtAllocHook)(nAllocType, pvData, nSize,
-         nBlockUse, lRequest, (const unsigned char*) szFilename, nLine);
+         nBlockUse, lRequest, (const uchar*) szFilename, nLine);
    if ((pfnAllocHook)(nSize, _BLOCK_TYPE(nBlockUse) == ___CLIENT_BLOCK, lRequest))
       return (pfnCrtAllocHook)(nAllocType, pvData, nSize,
-         nBlockUse, lRequest, (const unsigned char*) szFilename, nLine);
+         nBlockUse, lRequest, (const uchar*) szFilename, nLine);
 #else
    if (nAllocType != _HOOK_ALLOC)
       return (pfnCrtAllocHook)(nAllocType, pvData, nSize,

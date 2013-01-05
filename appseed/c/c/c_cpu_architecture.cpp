@@ -132,7 +132,7 @@ static uint32_t kVendors[][3] =
 
 int32_t x86cpuid_GetFirm(const struct Cx86cpuid *p)
 {
-  unsigned i;
+  uint32_t i;
   for (i = 0; i < sizeof(kVendors) / sizeof(kVendors[i]); i++)
   {
     const uint32_t *v = kVendors[i];

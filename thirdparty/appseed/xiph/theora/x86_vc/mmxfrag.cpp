@@ -29,8 +29,8 @@
 
 /*Copies an 8x8 block of pixels from _src to _dst, assuming _ystride bytes
    between rows.*/
-void oc_frag_copy_mmx(unsigned char *_dst,
- const unsigned char *_src,int32_t _ystride){
+void oc_frag_copy_mmx(uchar *_dst,
+ const uchar *_src,int32_t _ystride){
 #define SRC edx
 #define DST eax
 #define YSTRIDE ecx
@@ -42,7 +42,7 @@ void oc_frag_copy_mmx(unsigned char *_dst,
 #undef YSTRIDE3
 }
 
-void oc_frag_recon_intra_mmx(unsigned char *_dst,int32_t _ystride,
+void oc_frag_recon_intra_mmx(uchar *_dst,int32_t _ystride,
  const ogg_int16_t *_residue){
   __asm{
 #define DST edx
@@ -165,7 +165,7 @@ void oc_frag_recon_intra_mmx(unsigned char *_dst,int32_t _ystride,
   }
 }
 
-void oc_frag_recon_inter_mmx(unsigned char *_dst,const unsigned char *_src,
+void oc_frag_recon_inter_mmx(uchar *_dst,const uchar *_src,
  int32_t _ystride,const ogg_int16_t *_residue){
   int32_t i;
   /*Zero mm0.*/
@@ -229,8 +229,8 @@ void oc_frag_recon_inter_mmx(unsigned char *_dst,const unsigned char *_src,
   }
 }
 
-void oc_frag_recon_inter2_mmx(unsigned char *_dst,const unsigned char *_src1,
- const unsigned char *_src2,int32_t _ystride,const ogg_int16_t *_residue){
+void oc_frag_recon_inter2_mmx(uchar *_dst,const uchar *_src1,
+ const uchar *_src2,int32_t _ystride,const ogg_int16_t *_residue){
   int32_t i;
   /*Zero mm7.*/
   __asm pxor mm7,mm7;

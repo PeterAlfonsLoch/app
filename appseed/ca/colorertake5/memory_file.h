@@ -3,7 +3,7 @@
 #include<contrib/minizip/unzip.h>
 
 typedef struct{
-  const unsigned char *stream;
+  const uchar *stream;
   ::primitive::memory_size get_length;
   int32_t pointer;
   int32_t error;

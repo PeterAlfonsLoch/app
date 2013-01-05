@@ -331,7 +331,7 @@ inline void aes_icm_advance(aes_icm_ctx_t *c) {
 
 err_status_t
 aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
-              unsigned char *buf, uint32_t *enc_len, 
+              uchar *buf, uint32_t *enc_len, 
               int32_t forIsmacryp) {
   uint32_t bytes_to_encr = *enc_len;
   uint32_t i;
@@ -387,7 +387,7 @@ aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
     *b++ ^= c->keystream_buffer.v32[3];
     buf = (uint8_t *)b;
 #else    
-    if ((((unsigned long) buf) & 0x03) != 0) {
+    if ((((uint32_t long) buf) & 0x03) != 0) {
       *buf++ ^= c->keystream_buffer.v8[0];
       *buf++ ^= c->keystream_buffer.v8[1];
       *buf++ ^= c->keystream_buffer.v8[2];
@@ -438,7 +438,7 @@ aes_icm_encrypt_ismacryp(aes_icm_ctx_t *c,
 }
 
 err_status_t
-aes_icm_encrypt(aes_icm_ctx_t *c, unsigned char *buf, uint32_t *enc_len) {
+aes_icm_encrypt(aes_icm_ctx_t *c, uchar *buf, uint32_t *enc_len) {
   return aes_icm_encrypt_ismacryp(c, buf, enc_len, 0);
 }
 

@@ -22,9 +22,9 @@
    of a literal, the base length or distance, or the offset from
    the current table to the next table.  Each entry is four bytes. */
 typedef struct {
-    unsigned char op;           /* operation, extra bits, table bits */
-    unsigned char bits;         /* bits in this part of the code */
-    unsigned short val;         /* offset in table or code value */
+    uchar op;           /* operation, extra bits, table bits */
+    uchar bits;         /* bits in this part of the code */
+    uint16_t val;         /* offset in table or code value */
 } code;
 
 /* op values as set by inflate_table():
@@ -50,6 +50,6 @@ typedef enum {
     DISTS
 } codetype;
 
-extern int32_t inflate_table OF((codetype type, unsigned short FAR *lens,
-                             unsigned codes, code FAR * FAR *table,
-                             unsigned FAR *bits, unsigned short FAR *work));
+extern int32_t inflate_table OF((codetype type, uint16_t FAR *lens,
+                             uint32_t codes, code FAR * FAR *table,
+                             uint32_t FAR *bits, uint16_t FAR *work));

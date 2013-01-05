@@ -118,7 +118,7 @@ namespace ex2
       virtual void get_time(timeval *p);
 #endif
       virtual void set_env_var(const string & var,const string & value);
-      virtual unsigned long get_thread_id();
+      virtual uint32_t long get_thread_id();
 
    };
 

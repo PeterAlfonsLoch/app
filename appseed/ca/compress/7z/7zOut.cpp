@@ -486,7 +486,7 @@ namespace n7z
          WriteByte(NID::kEnd);
    }
 
-   void COutArchive::SkipAlign(unsigned /* pos */, unsigned /* alignSize */)
+   void COutArchive::SkipAlign(uint32_t /* pos */, uint32_t /* alignSize */)
    {
       return;
    }
@@ -494,30 +494,30 @@ namespace n7z
    /*
    7-Zip 4.50 - 4.58 contain BUG, so they do not support .7z archives with Unknown field.
 
-   void COutArchive::SkipAlign(unsigned pos, unsigned alignSize)
+   void COutArchive::SkipAlign(uint32_t pos, uint32_t alignSize)
    {
-   pos += (unsigned)GetPos();
+   pos += (uint32_t)GetPos();
    pos &= (alignSize - 1);
    if (pos == 0)
    return;
-   unsigned skip = alignSize - pos;
+   uint32_t skip = alignSize - pos;
    if (skip < 2)
    skip += alignSize;
    skip -= 2;
    WriteByte(NID::kDummy);
    WriteByte((byte)skip);
-   for (unsigned i = 0; i < skip; i++)
+   for (uint32_t i = 0; i < skip; i++)
    WriteByte(0);
    }
    */
 
-   static inline unsigned Bv_GetSizeInBytes(const bool_array &v) { return ((unsigned)v.get_count() + 7) / 8; }
+   static inline uint32_t Bv_GetSizeInBytes(const bool_array &v) { return ((uint32_t)v.get_count() + 7) / 8; }
 
-   void COutArchive::WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, unsigned itemSize)
+   void COutArchive::WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, uint32_t itemSize)
    {
-      const unsigned bvSize = (numDefined == v.get_count()) ? 0 : Bv_GetSizeInBytes(v);
+      const uint32_t bvSize = (numDefined == v.get_count()) ? 0 : Bv_GetSizeInBytes(v);
       const uint64_t dataSize = (uint64_t)numDefined * itemSize + bvSize + 2;
-      SkipAlign(3 + (unsigned)bvSize + (unsigned)GetBigNumberSize(dataSize), itemSize);
+      SkipAlign(3 + (uint32_t)bvSize + (uint32_t)GetBigNumberSize(dataSize), itemSize);
 
       WriteByte(type);
       WriteNumber(dataSize);

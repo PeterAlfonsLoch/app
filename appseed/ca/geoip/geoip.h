@@ -23,8 +23,8 @@ typedef struct in6_addr geoipv6_t;
 typedef struct GeoIPTag {
   FILE *GeoIPDatabase;
   char *file_path;
-   unsigned char *cache;
-   unsigned char *index_cache;
+   uchar *cache;
+   uchar *index_cache;
    uint32_t *databaseSegments;
    char databaseType;
    time_t mtime;
@@ -113,9 +113,9 @@ GEOIP_API const char *GeoIP_country_code3_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API const char *GeoIP_country_code3_by_name (GeoIP* gi, const char *host);
 GEOIP_API const char *GeoIP_country_name_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API const char *GeoIP_country_name_by_name (GeoIP* gi, const char *host);
-GEOIP_API const char *GeoIP_country_name_by_ipnum (GeoIP* gi, unsigned long ipnum);
-GEOIP_API const char *GeoIP_country_code_by_ipnum (GeoIP* gi, unsigned long ipnum);
-GEOIP_API const char *GeoIP_country_code3_by_ipnum (GeoIP* gi, unsigned long ipnum);
+GEOIP_API const char *GeoIP_country_name_by_ipnum (GeoIP* gi, uint32_t long ipnum);
+GEOIP_API const char *GeoIP_country_code_by_ipnum (GeoIP* gi, uint32_t long ipnum);
+GEOIP_API const char *GeoIP_country_code3_by_ipnum (GeoIP* gi, uint32_t long ipnum);
 
 /* */
 GEOIP_API const char *GeoIP_country_name_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum);
@@ -127,7 +127,7 @@ GEOIP_API int32_t GeoIP_country_id_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API int32_t GeoIP_country_id_by_name (GeoIP* gi, const char *host);
 GEOIP_API char *GeoIP_org_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API char *GeoIP_org_by_name (GeoIP* gi, const char *host);
-GEOIP_API char *GeoIP_org_by_ipnum (GeoIP* gi, unsigned long ipnum);
+GEOIP_API char *GeoIP_org_by_ipnum (GeoIP* gi, uint32_t long ipnum);
 
 GEOIP_API char *GeoIP_org_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum);
 GEOIP_API char *GeoIP_org_by_addr_v6 (GeoIP* gi, const char *addr);
@@ -137,7 +137,7 @@ GEOIP_API char *GeoIP_org_by_name_v6 (GeoIP* gi, const char *name);
 
 GEOIP_API int32_t GeoIP_id_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API int32_t GeoIP_id_by_name (GeoIP* gi, const char *host);
-GEOIP_API int32_t GeoIP_id_by_ipnum (GeoIP* gi, unsigned long ipnum);
+GEOIP_API int32_t GeoIP_id_by_ipnum (GeoIP* gi, uint32_t long ipnum);
 
 GEOIP_API int32_t GeoIP_id_by_addr_v6 (GeoIP* gi, const char *addr);
 GEOIP_API int32_t GeoIP_id_by_name_v6 (GeoIP* gi, const char *host);
@@ -145,7 +145,7 @@ GEOIP_API int32_t GeoIP_id_by_ipnum_v6 (GeoIP* gi, geoipv6_t ipnum);
 
 GEOIP_API GeoIPRegion * GeoIP_region_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API GeoIPRegion * GeoIP_region_by_name (GeoIP* gi, const char *host);
-GEOIP_API GeoIPRegion * GeoIP_region_by_ipnum (GeoIP *gi, unsigned long ipnum);
+GEOIP_API GeoIPRegion * GeoIP_region_by_ipnum (GeoIP *gi, uint32_t long ipnum);
 
 GEOIP_API GeoIPRegion * GeoIP_region_by_addr_v6 (GeoIP* gi, const char *addr);
 GEOIP_API GeoIPRegion * GeoIP_region_by_name_v6 (GeoIP* gi, const char *host);
@@ -154,12 +154,12 @@ GEOIP_API GeoIPRegion * GeoIP_region_by_ipnum_v6 (GeoIP *gi, geoipv6_t ipnum);
 /* Warning - don't call this after GeoIP_assign_region_by_inetaddr calls */
 GEOIP_API void GeoIPRegion_delete (GeoIPRegion *gir);
 
-GEOIP_API void GeoIP_assign_region_by_inetaddr(GeoIP* gi, unsigned long inetaddr, GeoIPRegion *gir);
+GEOIP_API void GeoIP_assign_region_by_inetaddr(GeoIP* gi, uint32_t long inetaddr, GeoIPRegion *gir);
 
 GEOIP_API void GeoIP_assign_region_by_inetaddr_v6(GeoIP* gi, geoipv6_t inetaddr, GeoIPRegion *gir);
 
 /* Used to query GeoIP Organization, ISP and AS Number databases */
-GEOIP_API char *GeoIP_name_by_ipnum (GeoIP* gi, unsigned long ipnum);
+GEOIP_API char *GeoIP_name_by_ipnum (GeoIP* gi, uint32_t long ipnum);
 GEOIP_API char *GeoIP_name_by_addr (GeoIP* gi, const char *addr);
 GEOIP_API char *GeoIP_name_by_name (GeoIP* gi, const char *host);
 
@@ -183,10 +183,10 @@ GEOIP_API const char* GeoIP_continent_by_id(int32_t id);
 GEOIP_API int32_t GeoIP_id_by_code(const char *country);
 
 /** return return number of known countries */
-GEOIP_API unsigned GeoIP_num_countries();
+GEOIP_API uint32_t GeoIP_num_countries();
 
 GEOIP_API char *GeoIP_database_info (GeoIP* gi);
-GEOIP_API unsigned char GeoIP_database_edition (GeoIP* gi);
+GEOIP_API uchar GeoIP_database_edition (GeoIP* gi);
 
 GEOIP_API int32_t GeoIP_charset (GeoIP* gi);
 GEOIP_API int32_t GeoIP_set_charset (GeoIP* gi, int32_t charset);

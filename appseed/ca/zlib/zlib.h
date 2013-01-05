@@ -548,7 +548,7 @@ ZEXTERN int32_t ZEXPORT deflateSetDictionary OF((z_streamp strm,
      The dictionary should consist of strings (byte sequences) that are likely
    to be encountered later in the data to be compressed, with the most commonly
    used strings preferably put towards the end of the dictionary. Using a
-   dictionary is most useful when the data to be compressed is short and can be
+   dictionary is most useful when the data to be compressed is int16_t and can be
    predicted with good accuracy; the data can then be compressed better than
    with the default is_empty dictionary.
 
@@ -854,7 +854,7 @@ ZEXTERN int32_t ZEXPORT inflateGetHeader OF((z_streamp strm,
 
 /*
 ZEXTERN int32_t ZEXPORT inflateBackInit OF((z_streamp strm, int32_t windowBits,
-                                        unsigned char FAR *window));
+                                        uchar FAR *window));
 
      Initialize the internal stream state for decompression using inflateBack()
    calls.  The fields zalloc, zfree and opaque in strm must be initialized
@@ -874,8 +874,8 @@ ZEXTERN int32_t ZEXPORT inflateBackInit OF((z_streamp strm, int32_t windowBits,
    match the version of the header spfile->
 */
 
-typedef unsigned (*in_func) OF((void FAR *, unsigned char FAR * FAR *));
-typedef int32_t (*out_func) OF((void FAR *, unsigned char FAR *, unsigned));
+typedef uint32_t (*in_func) OF((void FAR *, uchar FAR * FAR *));
+typedef int32_t (*out_func) OF((void FAR *, uchar FAR *, uint32_t));
 
 ZEXTERN int32_t ZEXPORT inflateBack OF((z_streamp strm,
                                     in_func in, void FAR *in_desc,
@@ -1103,7 +1103,7 @@ ZEXTERN int32_t ZEXPORT gzsetparams OF((gzFile file, int32_t level, int32_t stra
    opened for writing.
 */
 
-ZEXTERN int32_t ZEXPORT    gzread  OF((gzFile file, voidp buf, unsigned len));
+ZEXTERN int32_t ZEXPORT    gzread  OF((gzFile file, voidp buf, uint32_t len));
 /*
      Reads the given number of uncompressed bytes from the compressed spfile->
    If the input file was not in gzip format, gzread copies the given number
@@ -1112,7 +1112,7 @@ ZEXTERN int32_t ZEXPORT    gzread  OF((gzFile file, voidp buf, unsigned len));
    end of file, -1 for error). */
 
 ZEXTERN int32_t ZEXPORT    gzwrite OF((gzFile file,
-                                   voidpc buf, unsigned len));
+                                   voidpc buf, uint32_t len));
 /*
      Writes the given number of uncompressed bytes into the compressed spfile->
    gzwrite returns the number of uncompressed bytes actually written
@@ -1150,7 +1150,7 @@ ZEXTERN char * ZEXPORT gzgets OF((gzFile file, char *buf, int32_t len));
 
 ZEXTERN int32_t ZEXPORT    gzputc OF((gzFile file, int32_t c));
 /*
-      Writes c, converted to an unsigned char, into the compressed spfile->
+      Writes c, converted to an uchar, into the compressed spfile->
    gzputc returns the value that was written, or -1 in case of error.
 */
 
@@ -1325,7 +1325,7 @@ ZEXTERN int32_t ZEXPORT deflateInit2_ OF((z_streamp strm, int32_t  level, int32_
 ZEXTERN int32_t ZEXPORT inflateInit2_ OF((z_streamp strm, int32_t  windowBits,
                                       const char *version, int32_t stream_size));
 ZEXTERN int32_t ZEXPORT inflateBackInit_ OF((z_streamp strm, int32_t windowBits,
-                                         unsigned char FAR *window,
+                                         uchar FAR *window,
                                          const char *version,
                                          int32_t stream_size));
 #define deflateInit(strm, level) \

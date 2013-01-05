@@ -156,7 +156,7 @@ local int32_t unzlocal_getByte OF((
 
 local int32_t unzlocal_getByte(const zlib_filefunc_def * pzlib_filefunc_def, voidpf filestream, int32_t * pi)
 {
-    unsigned char c;
+    uchar c;
     int32_t err = (int32_t)ZREAD(*pzlib_filefunc_def,filestream,&c,1);
     if (err==1)
     {
@@ -306,7 +306,7 @@ local uLong unzlocal_SearchCentralDir OF((
     const zlib_filefunc_def* pzlib_filefunc_def,
     voidpf filestream));
 
-int32_t isEndOfCentralDir(unsigned char * buf)
+int32_t isEndOfCentralDir(uchar * buf)
 {
    long * pl = (long *) buf;
    if(*pl == 0x06054b50
@@ -322,7 +322,7 @@ local uLong unzlocal_SearchCentralDir(
     const zlib_filefunc_def* pzlib_filefunc_def,
     voidpf filestream)
 {
-    unsigned char* buf;
+    uchar* buf;
     uLong uSizeFile;
     uLong uBackRead;
     uLong uMaxBack=0xffff; /* maximum size of global comment */
@@ -337,7 +337,7 @@ local uLong unzlocal_SearchCentralDir(
     if (uMaxBack>uSizeFile)
         uMaxBack = uSizeFile;
 
-    buf = (unsigned char*)ALLOC(BUFREADCOMMENT+4);
+    buf = (uchar*)ALLOC(BUFREADCOMMENT+4);
     if (buf==NULL)
         return 0;
 
@@ -1193,7 +1193,7 @@ extern int32_t CLASS_DECL_ca unzOpenCurrentFile2 (
 extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
     unzFile file,
     voidp buf,
-    unsigned len)
+    uint32_t len)
 {
     int32_t err=UNZ_OK;
     uInt iRead = 0;
@@ -1396,7 +1396,7 @@ extern int32_t CLASS_DECL_ca unzeof (
 extern int32_t CLASS_DECL_ca unzGetLocalExtrafield (
     unzFile file,
     voidp buf,
-    unsigned len)
+    uint32_t len)
 {
     unz_s* s;
     file_in_zip_read_info_s* pfile_in_zip_read_info;

@@ -156,10 +156,10 @@ zlib_local void send_all_trees OF((deflate_state *s, int32_t lcodes, int32_t dco
 zlib_local void compress_block OF((deflate_state *s, ct_data *ltree,
                               ct_data *dtree));
 zlib_local void set_data_type  OF((deflate_state *s));
-zlib_local unsigned bi_reverse OF((unsigned value, int32_t length));
+zlib_local uint32_t bi_reverse OF((uint32_t value, int32_t length));
 zlib_local void bi_windup      OF((deflate_state *s));
 zlib_local void bi_flush       OF((deflate_state *s));
-zlib_local void copy_block     OF((deflate_state *s, charf *buf, unsigned len,
+zlib_local void copy_block     OF((deflate_state *s, charf *buf, uint32_t len,
                               int32_t header));
 
 #ifdef GEN_TREES_H
@@ -177,7 +177,7 @@ zlib_local void gen_trees_header OF(());
 #endif
 
 /* ===========================================================================
- * Output a short LSB first on the stream.
+ * Output a int16_t LSB first on the stream.
  * IN assertion: there is enough room in pendingBuf.
  */
 #define put_short(s, w) { \
@@ -308,7 +308,7 @@ zlib_local void tr_static_init()
     /* The static distance tree is trivial: */
     for (n = 0; n < D_CODES; n++) {
         static_dtree[n].Len = 5;
-        static_dtree[n].Code = bi_reverse((unsigned)n, 5);
+        static_dtree[n].Code = bi_reverse((uint32_t)n, 5);
     }
     static_init_done = 1;
 
@@ -555,7 +555,7 @@ zlib_local void gen_bitlen(
         while (n != 0) {
             m = s->heap[--h];
             if (m > max_code) continue;
-            if ((unsigned) tree[m].Len != (unsigned) bits) {
+            if ((uint32_t) tree[m].Len != (uint32_t) bits) {
                 Trace((stderr,"code %d bits %d->%d\n", m, tree[m].Len, bits));
                 s->opt_len += ((long)bits - (long)tree[m].Len)
                               *(long)tree[m].Freq;
@@ -877,7 +877,7 @@ void _tr_stored_block(
     s->compressed_len = (s->compressed_len + 3 + 7) & (ulg)~7L;
     s->compressed_len += (stored_len + 4) << 3;
 #endif
-    copy_block(s, buf, (unsigned)stored_len, 1); /* with header */
+    copy_block(s, buf, (uint32_t)stored_len, 1); /* with header */
 }
 
 /* ===========================================================================
@@ -1023,8 +1023,8 @@ void _tr_flush_block(
  */
 int32_t _tr_tally (
     deflate_state *s,
-    unsigned dist,  /* distance of matched string */
-    unsigned lc)    /* match length-MIN_MATCH or unmatched char (if dist==0) */
+    uint32_t dist,  /* distance of matched string */
+    uint32_t lc)    /* match length-MIN_MATCH or unmatched char (if dist==0) */
 {
     s->d_buf[s->last_lit] = (ush)dist;
     s->l_buf[s->last_lit++] = (uch)lc;
@@ -1076,10 +1076,10 @@ zlib_local void compress_block(
     ct_data *ltree, /* literal tree */
     ct_data *dtree) /* distance tree */
 {
-    unsigned dist;      /* distance of matched string */
+    uint32_t dist;      /* distance of matched string */
     int32_t lc;             /* match length or unmatched char (if dist == 0) */
-    unsigned lx = 0;    /* running index in l_buf */
-    unsigned code;      /* the code to send */
+    uint32_t lx = 0;    /* running index in l_buf */
+    uint32_t code;      /* the code to send */
     int32_t extra;          /* number of extra bits to send */
 
     if (s->last_lit != 0) do {
@@ -1145,11 +1145,11 @@ zlib_local void set_data_type(
  * method would use a table)
  * IN assertion: 1 <= len <= 15
  */
-zlib_local unsigned bi_reverse(
-    unsigned code, /* the value to invert */
+zlib_local uint32_t bi_reverse(
+    uint32_t code, /* the value to invert */
     int32_t len)       /* its bit length */
 {
-    register unsigned res = 0;
+    register uint32_t res = 0;
     do {
         res |= code & 1;
         code >>= 1, res <<= 1;
@@ -1199,7 +1199,7 @@ zlib_local void bi_windup(
 zlib_local void copy_block(
     deflate_state *s,
     charf    *buf,    /* the input data */
-    unsigned len,     /* its length */
+    uint32_t len,     /* its length */
     int32_t      header)  /* true if block header must be written */
 {
     bi_windup(s);        /* align on byte boundary */

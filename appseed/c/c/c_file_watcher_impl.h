@@ -65,7 +65,7 @@ namespace file_watcher
 #ifdef METROWIN
 		virtual void handle_action(watch_struct ^ watch, ::Windows::Storage::Search::IStorageQueryResultBase ^ r) = 0;
 #else
-      virtual void handle_action(watch_struct * watch, const char * filename, unsigned long ulOsAction) = 0;
+      virtual void handle_action(watch_struct * watch, const char * filename, uint32_t ulOsAction) = 0;
 #endif
 
 	};

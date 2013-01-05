@@ -20,7 +20,7 @@ public:
 	Ffftrd(int32_t iSize);
 	virtual ~Ffftrd();
 
-   void Fft(short * pshIn, short * pshOut);
+   void Fft(int16_t * pshIn, int16_t * pshOut);
 
 protected:
    int32_t               m_iSize;

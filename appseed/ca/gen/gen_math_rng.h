@@ -20,8 +20,8 @@ namespace gen
          public:
             rng();
 
-            void seed(int32_t iTwistLen, unsigned long seed);
-            unsigned long get();
+            void seed(int32_t iTwistLen, uint32_t long seed);
+            uint32_t long get();
 
          private:
             int32_t m_value;

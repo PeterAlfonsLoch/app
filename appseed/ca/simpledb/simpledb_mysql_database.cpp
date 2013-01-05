@@ -141,7 +141,7 @@ namespace mysql
             * SHOW, DESCRIBE, etc.); just report rows-affected value.
             */
             m_iLastUsedTime = ::ca::profiler::micros();
-            TRACE("Number of rows affected: %lu\n", (unsigned long) mysql_affected_rows ((MYSQL *) m_pmysql));
+            TRACE("Number of rows affected: %lu\n", (uint32_t long) mysql_affected_rows ((MYSQL *) m_pmysql));
             return new result(this, true, NULL);
          }
          else /* an error occurred */
@@ -177,7 +177,7 @@ namespace mysql
          return false;
       else
       {
-         unsigned long * pul =  presult->fetch_lengths();
+         uint32_t long * pul =  presult->fetch_lengths();
          memory.allocate(*pul);
          memcpy(memory.get_data(), row[0], memory.get_size());
          return true;
@@ -307,7 +307,7 @@ namespace mysql
       char * psz = str.GetBufferSetLength(iLen * 2 + 1);
       if(psz == NULL)
          throw memory_exception(get_app());
-      mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (unsigned long) iLen);
+      mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (uint32_t long) iLen);
       str.ReleaseBuffer();
       return str;
    }

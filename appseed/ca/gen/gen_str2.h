@@ -223,7 +223,7 @@ namespace gen
 
 #if !defined(LINUX) && !defined(MACOS)
 
-      inline CLASS_DECL_ca  string  from(unsigned long ui)
+      inline CLASS_DECL_ca  string  from(uint32_t long ui)
       {
          string str;
          from(str, ui);

@@ -45,7 +45,7 @@ namespace sockets
 
 
    // --------------------------------------------------------------------------------------
-   void Ajp13Socket::OnHeader( short id, short len )
+   void Ajp13Socket::OnHeader( int16_t id, int16_t len )
    {
       if (id != 0x1234)
       {
@@ -90,7 +90,7 @@ namespace sockets
          put_byte(msg, ptr, 0x06); // GET_BODY_CHUNK;
          put_integer(msg, ptr, 1000); // request 1000 bytes
 
-         short len = htons((u_short)( ptr - 4 ));
+         int16_t len = htons((u_short)( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
          SendBuf( msg, ptr );
@@ -114,13 +114,13 @@ namespace sockets
       int32_t ptr = 0;
 
       get_byte(buf, ptr); // skip first byte: prefix_code
-      unsigned char method    = get_byte(buf, ptr);
+      uchar method    = get_byte(buf, ptr);
       string    protocol      = get_string(buf, ptr);
       string    req_uri       = get_string(buf, ptr);
       string    remote_addr   = get_string(buf, ptr);
       string    remote_host   = get_string(buf, ptr);
       string    server_name   = get_string(buf, ptr);
-      short     server_port   = get_integer(buf, ptr);
+      int16_t     server_port   = get_integer(buf, ptr);
       bool      is_ssl        = get_boolean(buf, ptr);
 
       string method_str = gen::str::from( method );
@@ -135,15 +135,15 @@ namespace sockets
       m_request.attr("https") = is_ssl;
 
       // get Headers
-      short             num_headers = get_integer(buf, ptr);
+      int16_t             num_headers = get_integer(buf, ptr);
       for (int32_t i = 0; i < num_headers; i++)
       {
          string key;
-         switch ( (unsigned char)buf[ptr]) // 0xa0
+         switch ( (uchar)buf[ptr]) // 0xa0
          {
          case 0xa0:
             {
-               unsigned short x = (unsigned short)get_integer(buf, ptr);
+               uint16_t x = (uint16_t)get_integer(buf, ptr);
                if (!dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->header.Lookup(x, key))
                {
                   TRACE("Unknown header key value: %x\n", x);
@@ -166,10 +166,10 @@ namespace sockets
       m_body_size_left = m_request.ContentLength();
 
       // get Attributes
-      while ( (unsigned char)buf[ptr] != 0xff)
+      while ( (uchar)buf[ptr] != 0xff)
       {
          string key;
-         unsigned char code = buf[ptr++];
+         uchar code = buf[ptr++];
          switch ( code)
          {
          case 10: // req_attribute, attribute name follow
@@ -261,9 +261,9 @@ namespace sockets
       {
          int32_t ptr = 4;
          put_byte(msg, ptr, 0x04); // send headers
-         put_integer(msg, ptr, (short)(int32_t)m_response.attr("http_status_code"));
+         put_integer(msg, ptr, (int16_t)(int32_t)m_response.attr("http_status_code"));
          put_string(msg, ptr, m_response.attr("http_status"));
-         put_integer(msg, ptr, (short)m_response.headers().m_propertya.get_size() );
+         put_integer(msg, ptr, (int16_t)m_response.headers().m_propertya.get_size() );
          for (int32_t i = 0; i < m_response.headers().m_propertya.get_size(); i++)
          {
             string strNameLower(m_response.headers().m_propertya[i].name());
@@ -271,7 +271,7 @@ namespace sockets
             int32_t iValue;
             if(dynamic_cast < application_interface * >(get_app())->m_pajpbasesocketinit->ResponseHeader.Lookup(strNameLower, iValue))
             {
-               put_integer(msg, ptr, (short) iValue);
+               put_integer(msg, ptr, (int16_t) iValue);
             }
             else
             {
@@ -297,7 +297,7 @@ namespace sockets
             }
          }*/
 
-         short len = htons((u_short) ( ptr - 4 ));
+         int16_t len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
          SendBuf( msg, ptr );
@@ -320,10 +320,10 @@ namespace sockets
       {
          int32_t ptr = 4;
          put_byte(msg, ptr, 0x03); // send body chunk
-         put_integer(msg, ptr, (short)n);
+         put_integer(msg, ptr, (int16_t)n);
          ptr += (int32_t)n;
 
-         short len = htons((u_short) ( ptr - 4 ));
+         int16_t len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
          SendBuf( msg, ptr );
@@ -348,7 +348,7 @@ namespace sockets
             - also reset any AjpBaseSocket/Ajp13Socket specific states
          */
 
-         short len = htons((u_short) ( ptr - 4 ));
+         int16_t len = htons((u_short) ( ptr - 4 ));
          memcpy( msg + 2, &len, 2 );
 
          SendBuf( msg, ptr );

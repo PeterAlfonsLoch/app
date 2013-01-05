@@ -31,7 +31,7 @@ zlib_local void fixedtables OF((struct inflate_state FAR *state));
 int32_t ZEXPORT inflateBackInit_(
 z_streamp strm,
 int32_t windowBits,
-unsigned char FAR *window,
+uchar FAR *window,
 const char *version,
 int32_t stream_size)
 {
@@ -167,7 +167,7 @@ struct inflate_state FAR *state)
     do { \
         PULL(); \
         have--; \
-        hold += (unsigned long)(*next++) << bits; \
+        hold += (uint32_t long)(*next++) << bits; \
         bits += 8; \
     } while (0)
 
@@ -176,19 +176,19 @@ struct inflate_state FAR *state)
    an error. */
 #define NEEDBITS(n) \
     do { \
-        while (bits < (unsigned)(n)) \
+        while (bits < (uint32_t)(n)) \
             PULLBYTE(); \
     } while (0)
 
 /* Return the low n bits of the bit accumulator (n < 16) */
 #define BITS(n) \
-    ((unsigned)hold & ((1U << (n)) - 1))
+    ((uint32_t)hold & ((1U << (n)) - 1))
 
 /* remove n bits from the bit accumulator */
 #define DROPBITS(n) \
     do { \
         hold >>= (n); \
-        bits -= (unsigned)(n); \
+        bits -= (uint32_t)(n); \
     } while (0)
 
 /* remove zero to seven bits as needed to go to a byte boundary */
@@ -249,19 +249,19 @@ out_func out,
 void FAR *out_desc)
 {
     struct inflate_state FAR *state;
-    unsigned char FAR *next;    /* next input */
-    unsigned char FAR *put;     /* next output */
+    uchar FAR *next;    /* next input */
+    uchar FAR *put;     /* next output */
     uint32_t have;            /* available input and output */
    uint32_t left;           /* available input and output */
     uint32_t hold;         /* bit buffer */
     uint32_t bits;              /* bits in bit buffer */
     uint32_t copy;              /* number of stored or match bytes to copy */
-    unsigned char FAR *from;    /* where to copy match bytes from */
+    uchar FAR *from;    /* where to copy match bytes from */
     code codeThis;                  /* current decoding table entry */
     code last;                  /* parent table entry */
     uint32_t len;               /* length to copy for repeats, bits to drop */
     int32_t ret;                    /* return code */
-    static const unsigned short order[19] = /* permutation of code lengths */
+    static const uint16_t order[19] = /* permutation of code lengths */
         {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
 
     /* Check that the strm exists and that the state was initialized */
@@ -327,7 +327,7 @@ void FAR *out_desc)
                 state->mode = BAD;
                 break;
             }
-            state->length = (unsigned)hold & 0xffff;
+            state->length = (uint32_t)hold & 0xffff;
             Tracev((stderr, "inflate:       stored length %u\n",
                     state->length));
             INITBITS();
@@ -372,7 +372,7 @@ void FAR *out_desc)
             state->have = 0;
             while (state->have < state->ncode) {
                 NEEDBITS(3);
-                state->lens[order[state->have++]] = (unsigned short)BITS(3);
+                state->lens[order[state->have++]] = (uint16_t)BITS(3);
                 DROPBITS(3);
             }
             while (state->have < 19)
@@ -394,7 +394,7 @@ void FAR *out_desc)
             while (state->have < state->nlen + state->ndist) {
                 for (;;) {
                     codeThis = state->lencode[BITS(state->lenbits)];
-                    if ((unsigned)(codeThis.bits) <= bits) break;
+                    if ((uint32_t)(codeThis.bits) <= bits) break;
                     PULLBYTE();
                 }
                 if (codeThis.val < 16) {
@@ -411,7 +411,7 @@ void FAR *out_desc)
                             state->mode = BAD;
                             break;
                         }
-                        len = (unsigned)(state->lens[state->have - 1]);
+                        len = (uint32_t)(state->lens[state->have - 1]);
                         copy = 3 + BITS(2);
                         DROPBITS(2);
                     }
@@ -435,7 +435,7 @@ void FAR *out_desc)
                         break;
                     }
                     while (copy--)
-                        state->lens[state->have++] = (unsigned short)len;
+                        state->lens[state->have++] = (uint16_t)len;
                 }
             }
 
@@ -479,7 +479,7 @@ void FAR *out_desc)
             /* get a literal, length, or end-of-block code */
             for (;;) {
                 codeThis = state->lencode[BITS(state->lenbits)];
-                if ((unsigned)(codeThis.bits) <= bits) break;
+                if ((uint32_t)(codeThis.bits) <= bits) break;
                 PULLBYTE();
             }
             if (codeThis.op && (codeThis.op & 0xf0) == 0) {
@@ -487,13 +487,13 @@ void FAR *out_desc)
                 for (;;) {
                     codeThis = state->lencode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
-                    if ((unsigned)(last.bits + codeThis.bits) <= bits) break;
+                    if ((uint32_t)(last.bits + codeThis.bits) <= bits) break;
                     PULLBYTE();
                 }
                 DROPBITS(last.bits);
             }
             DROPBITS(codeThis.bits);
-            state->length = (unsigned)codeThis.val;
+            state->length = (uint32_t)codeThis.val;
 
             /* process literal */
             if (codeThis.op == 0) {
@@ -501,7 +501,7 @@ void FAR *out_desc)
                         "inflate:         literal '%c'\n" :
                         "inflate:         literal 0x%02x\n", codeThis.val));
                 ROOM();
-                *put++ = (unsigned char)(state->length);
+                *put++ = (uchar)(state->length);
                 left--;
                 state->mode = LEN;
                 break;
@@ -522,7 +522,7 @@ void FAR *out_desc)
             }
 
             /* length code -- get extra bits, if any */
-            state->extra = (unsigned)(codeThis.op) & 15;
+            state->extra = (uint32_t)(codeThis.op) & 15;
             if (state->extra != 0) {
                 NEEDBITS(state->extra);
                 state->length += BITS(state->extra);
@@ -533,7 +533,7 @@ void FAR *out_desc)
             /* get distance code */
             for (;;) {
                 codeThis = state->distcode[BITS(state->distbits)];
-                if ((unsigned)(codeThis.bits) <= bits) break;
+                if ((uint32_t)(codeThis.bits) <= bits) break;
                 PULLBYTE();
             }
             if ((codeThis.op & 0xf0) == 0) {
@@ -541,7 +541,7 @@ void FAR *out_desc)
                 for (;;) {
                     codeThis = state->distcode[last.val +
                             (BITS(last.bits + last.op) >> last.bits)];
-                    if ((unsigned)(last.bits + codeThis.bits) <= bits) break;
+                    if ((uint32_t)(last.bits + codeThis.bits) <= bits) break;
                     PULLBYTE();
                 }
                 DROPBITS(last.bits);
@@ -552,10 +552,10 @@ void FAR *out_desc)
                 state->mode = BAD;
                 break;
             }
-            state->offset = (unsigned)codeThis.val;
+            state->offset = (uint32_t)codeThis.val;
 
             /* get distance extra bits, if any */
-            state->extra = (unsigned)(codeThis.op) & 15;
+            state->extra = (uint32_t)(codeThis.op) & 15;
             if (state->extra != 0) {
                 NEEDBITS(state->extra);
                 state->offset += BITS(state->extra);

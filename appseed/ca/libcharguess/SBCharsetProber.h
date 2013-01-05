@@ -34,7 +34,7 @@
 
 typedef struct
 {
-  unsigned char *charToOrderMap;     //[256] table use to find a char's order
+  uchar *charToOrderMap;     //[256] table use to find a char's order
   char *precedenceMatrix;           //[SAMPLE_SIZE][SAMPLE_SIZE]; table to find a 2-char sequence's frequency
   float  mTypicalPositiveRatio;     // = freqSeqs / totalSeqs 
   PRBool keepEnglishLetter;         //it says if this script contains latin letters
@@ -62,7 +62,7 @@ protected:
   SequenceModel *mModel;
 
   //char order of last character
-  unsigned char mLastOrder;
+  uchar mLastOrder;
 
   PRUint32 mTotalSeqs;
   PRUint32 mSeqCounters[NUMBER_OF_SEQ_CAT];

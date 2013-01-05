@@ -187,7 +187,7 @@ UINT lite_html_tag::parseFromStr(::lite_html_reader * preader, const string & st
          lpszEnd = lpszBegin + nTemp;
 
          // skip white-space after attribute/value pairs
-         while (::isspace((unsigned char) *lpszEnd))
+         while (::isspace((uchar) *lpszEnd))
             lpszEnd++;
 
          // tag's ending delimeter could not be found?

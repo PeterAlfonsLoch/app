@@ -14,7 +14,7 @@ namespace ca4
       NESSIEstruct ns;
       uint8_t digest[NESSIE_DIGESTBYTES];
       NESSIEinit(&ns);
-      NESSIEadd((const byte *) psz, (unsigned long) (8*strlen(psz)), &ns);
+      NESSIEadd((const byte *) psz, (uint32_t long) (8*strlen(psz)), &ns);
       NESSIEfinalize(&ns, digest);
       return gen::hex::lo_from(digest, NESSIE_DIGESTBYTES);
 
@@ -44,7 +44,7 @@ namespace ca4
    {
       
 	   int32_t iBufSize = 1024 * 256;
-      unsigned char * buf = new unsigned char[iBufSize];
+      uchar * buf = new uchar[iBufSize];
       NESSIEstruct ns;
       NESSIEinit(&ns);
       uint64_t iRead;

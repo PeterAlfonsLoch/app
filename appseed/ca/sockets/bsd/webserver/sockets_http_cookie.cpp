@@ -317,7 +317,7 @@ void cookies::parse_header(const char * psz)
    class cookie c;
    while(true)
    {
-      while(*pszParam != '\0' && isspace((unsigned char ) *pszParam))
+      while(*pszParam != '\0' && isspace((uchar ) *pszParam))
       {
          pszParam++;
       }

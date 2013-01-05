@@ -136,7 +136,7 @@ namespace sockets
          case 0:
             {
                size_t missing = m_length - m_ptr;
-               short len = (short)(missing < left ? missing : left);
+               int16_t len = (int16_t)(missing < left ? missing : left);
                memcpy(m_message + m_ptr, buf + ptr, len);
                m_ptr += len;
                ptr += len;
@@ -145,8 +145,8 @@ namespace sockets
                   return; // read more
                }
                int32_t p = 0;
-               short id = get_integer(m_message, p);
-               short length = get_integer(m_message, p);
+               int16_t id = get_integer(m_message, p);
+               int16_t length = get_integer(m_message, p);
                OnHeader(id, length);
                m_state = 1;
                m_length = length;
@@ -156,7 +156,7 @@ namespace sockets
          case 1:
             {
                size_t missing = m_length - m_ptr;
-               short len = (short)(missing < left ? missing : left);
+               int16_t len = (int16_t)(missing < left ? missing : left);
                memcpy(m_message + m_ptr, buf + ptr, len);
                m_ptr += len;
                ptr += len;
@@ -176,23 +176,23 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   unsigned char AjpBaseSocket::get_byte(const char *buf, int32_t& ptr)
+   uchar AjpBaseSocket::get_byte(const char *buf, int32_t& ptr)
    {
-      return (unsigned char)buf[ptr++];
+      return (uchar)buf[ptr++];
    }
 
 
    // ---------------------------------------------------------------------------
    bool AjpBaseSocket::get_boolean(const char *buf, int32_t& ptr)
    {
-      return ( (unsigned char)buf[ptr++] & 1) == 1 ? true : false;
+      return ( (uchar)buf[ptr++] & 1) == 1 ? true : false;
    }
 
 
    // ---------------------------------------------------------------------------
-   short AjpBaseSocket::get_integer(const char *buf, int32_t& ptr)
+   int16_t AjpBaseSocket::get_integer(const char *buf, int32_t& ptr)
    {
-      short n;
+      int16_t n;
       memcpy(&n, buf + ptr, 2);
       ptr += 2;
       return ntohs(n);
@@ -202,7 +202,7 @@ namespace sockets
    // ---------------------------------------------------------------------------
    string AjpBaseSocket::get_string(const char *buf, int32_t& ptr)
    {
-      short len = get_integer(buf, ptr);
+      int16_t len = get_integer(buf, ptr);
       if (len != -1)
       {
          string tmp = buf + ptr;
@@ -216,7 +216,7 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_byte(char *buf, int32_t& ptr, unsigned char zz)
+   void AjpBaseSocket::put_byte(char *buf, int32_t& ptr, uchar zz)
    {
       buf[ptr++] = zz;
    }
@@ -230,9 +230,9 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::put_integer(char *buf, int32_t& ptr, short zz)
+   void AjpBaseSocket::put_integer(char *buf, int32_t& ptr, int16_t zz)
    {
-      short tmp = htons(zz);
+      int16_t tmp = htons(zz);
       memcpy(buf + ptr, &tmp, 2);
       ptr += 2;
    }
@@ -242,7 +242,7 @@ namespace sockets
    void AjpBaseSocket::put_string(char *buf, int32_t& ptr, const char * psz)
    {
       string str(psz);
-      put_integer(buf, ptr, (short)str.get_length() );
+      put_integer(buf, ptr, (int16_t)str.get_length() );
       memcpy(buf + ptr, (const char *) str, str.get_length());
       ptr += (int32_t)str.get_length();
       put_byte(buf, ptr, 0);

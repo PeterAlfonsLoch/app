@@ -171,7 +171,7 @@ namespace sqlite
    ** KEYWORDS: sqlite_int64 sqlite_uint64
    **
    ** Because there is no cross-platform way to specify 64-bit integer types
-   ** SQLite includes typedefs for 64-bit signed and unsigned integers.
+   ** SQLite includes typedefs for 64-bit signed and uint32_t integers.
    **
    ** The sqlite3_int64 and sqlite3_uint64 are the preferred type
    ** definitions.  The sqlite_int64 and sqlite_uint64 types are
@@ -183,11 +183,11 @@ namespace sqlite
    **          64-bit signed integer.
    **
    ** {F10202} The [sqlite_uint64] and [sqlite3_uint64] types specify
-   **          a 64-bit unsigned integer.
+   **          a 64-bit uint32_t integer.
    */
 #ifdef SQLITE_INT64_TYPE
    typedef SQLITE_INT64_TYPE sqlite_int64;
-   typedef unsigned SQLITE_INT64_TYPE sqlite_uint64;
+   typedef uint32_t SQLITE_INT64_TYPE sqlite_uint64;
 #elif defined(_MSC_VER) || defined(__BORLANDC__)
    typedef int64_t sqlite_int64;
    typedef uint64_t sqlite_uint64;
@@ -3167,7 +3167,7 @@ namespace sqlite
    double sqlite3_column_double(sqlite3_stmt*, int32_t iCol);
    int32_t sqlite3_column_int(sqlite3_stmt*, int32_t iCol);
    sqlite3_int64 sqlite3_column_int64(sqlite3_stmt*, int32_t iCol);
-   const unsigned char *sqlite3_column_text(sqlite3_stmt*, int32_t iCol);
+   const uchar *sqlite3_column_text(sqlite3_stmt*, int32_t iCol);
    const void *sqlite3_column_text16(sqlite3_stmt*, int32_t iCol);
    int32_t sqlite3_column_type(sqlite3_stmt*, int32_t iCol);
    sqlite3_value *sqlite3_column_value(sqlite3_stmt*, int32_t iCol);
@@ -3512,7 +3512,7 @@ namespace sqlite
    double sqlite3_value_double(sqlite3_value*);
    int32_t sqlite3_value_int(sqlite3_value*);
    sqlite3_int64 sqlite3_value_int64(sqlite3_value*);
-   const unsigned char *sqlite3_value_text(sqlite3_value*);
+   const uchar *sqlite3_value_text(sqlite3_value*);
    const void *sqlite3_value_text16(sqlite3_value*);
    const void *sqlite3_value_text16le(sqlite3_value*);
    const void *sqlite3_value_text16be(sqlite3_value*);
@@ -4746,20 +4746,20 @@ namespace sqlite
       int32_t nConstraint;           /* Number of entries in aConstraint */
       struct sqlite3_index_constraint {
          int32_t iColumn;              /* Column on left-hand side of constraint */
-         unsigned char op;         /* Constraint operator */
-         unsigned char usable;     /* True if this constraint is usable */
+         uchar op;         /* Constraint operator */
+         uchar usable;     /* True if this constraint is usable */
          int32_t iTermOffset;          /* Used internally - xBestIndex should ignore */
       } *aConstraint;            /* Table of WHERE clause constraints */
       int32_t nOrderBy;              /* Number of terms in the ORDER BY clause */
       struct sqlite3_index_orderby {
          int32_t iColumn;              /* Column number */
-         unsigned char desc;       /* True for DESC.  False for ASC. */
+         uchar desc;       /* True for DESC.  False for ASC. */
       } *aOrderBy;               /* The ORDER BY clause */
 
       /* Outputs */
       struct sqlite3_index_constraint_usage {
          int32_t argvIndex;           /* if >0, constraint is part of argv to xFilter */
-         unsigned char omit;      /* Do not code a test for this constraint */
+         uchar omit;      /* Do not code a test for this constraint */
       } *aConstraintUsage;
       int32_t idxNum;                /* Number used to identify the index */
       char *idxStr;              /* string, possibly obtained from sqlite3_malloc */

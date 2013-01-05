@@ -70,15 +70,15 @@ SHA1(A million repetitions of "a") =
 
 #ifdef _MSC_VER
 
-#define UINT_8  unsigned __int8
-#define UINT_32 unsigned __int32
+#define UINT_8  uint32_t __int8
+#define UINT_32 uint32_t __int32
 
 #else
 
-#define UINT_8 unsigned char
+#define UINT_8 uchar
 
 #if (ULONG_MAX == 0xFFFFFFFF)
-#define UINT_32 unsigned long
+#define UINT_32 uint32_t long
 #else
 #define UINT_32 uint32_t
 #endif
@@ -131,7 +131,7 @@ public:
 
    // Report functions: as pre-formatted and raw data
 #ifdef SHA1_UTILITY_FUNCTIONS
-   void ReportHash(char *szReport, unsigned char uReportType = REPORT_HEX);
+   void ReportHash(char *szReport, uchar uReportType = REPORT_HEX);
 #endif
    void GetHash(UINT_8 *puDest);
 
@@ -157,7 +157,7 @@ by Chien-Chung, Chung (Jim Chung) <jimchung1221@gmail.com>
 #define __HMAC_SHA1_H__
 
 
-typedef unsigned char BYTE ;
+typedef uchar BYTE ;
 
 */
 
@@ -348,8 +348,8 @@ void CSHA1::Update(UINT_8 *data, UINT_32 len)
 // Hash in file contents
 bool CSHA1::HashFile(char *szFileName)
 {
-   unsigned long ulFileSize, ulRest, ulBlocks;
-   unsigned long i;
+   uint32_t long ulFileSize, ulRest, ulBlocks;
+   uint32_t long i;
    UINT_8 uData[SHA1_MAX_FILE_BUFFER];
    FILE *fIn;
 
@@ -359,7 +359,7 @@ bool CSHA1::HashFile(char *szFileName)
    if(fIn == NULL) return false;
 
    fseek(fIn, 0, SEEK_END);
-   ulFileSize = (unsigned long)ftell(fIn);
+   ulFileSize = (uint32_t long)ftell(fIn);
    fseek(fIn, 0, SEEK_SET);
 
    if(ulFileSize != 0)
@@ -424,9 +424,9 @@ void CSHA1::Final()
 
 #ifdef SHA1_UTILITY_FUNCTIONS
 // Get the final hash as a pre-formatted string
-void CSHA1::ReportHash(char *szReport, unsigned char uReportType)
+void CSHA1::ReportHash(char *szReport, uchar uReportType)
 {
-   unsigned char i;
+   uchar i;
    char szTemp[16];
 
    if(szReport == NULL) return;

@@ -19,15 +19,15 @@
 /*We're 'MSb' endian; if we write a word but read individual bits,
    then we'll read the MSb first.*/
 
-void oc_pack_readinit(oc_pack_buf *_b,unsigned char *_buf,long _bytes){
+void oc_pack_readinit(oc_pack_buf *_b,uchar *_buf,long _bytes){
   memset(_b,0,sizeof(*_b));
   _b->ptr=_buf;
   _b->stop=_buf+_bytes;
 }
 
 static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int32_t _bits){
-  const unsigned char *ptr;
-  const unsigned char *stop;
+  const uchar *ptr;
+  const uchar *stop;
   oc_pb_window         window;
   int32_t                  available;
   window=_b->window;

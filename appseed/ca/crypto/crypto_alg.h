@@ -85,19 +85,19 @@
 typedef err_status_t (*cryptoalg_func_t) 
      (void *key,            
       const void *clear,          
-      unsigned clear_len,   
+      uint32_t clear_len,   
       void *iv,             
       void *protect,         
-      unsigned *protected_len);
+      uint32_t *protected_len);
 
 typedef 
 err_status_t (*cryptoalg_inv_t)
      (void *key,            /* location of secret key                  */
       const void *clear,     /* data to be authenticated only           */
-      unsigned clear_len,   /* length of data to be authenticated only */
+      uint32_t clear_len,   /* length of data to be authenticated only */
       void *iv,             /* location of iv                          */
       void *opaque,         /* data to be decrypted and authenticated  */
-      unsigned *opaque_len  /* location of the length of data to be
+      uint32_t *opaque_len  /* location of the length of data to be
               * decrypted and authd (before and after) 
               */
       );
@@ -105,10 +105,10 @@ err_status_t (*cryptoalg_inv_t)
 typedef struct cryptoalg_ctx_t {
   cryptoalg_func_t enc;
   cryptoalg_inv_t  dec;
-  unsigned key_len;
-  unsigned iv_len;
-  unsigned auth_tag_len;
-  unsigned max_expansion; 
+  uint32_t key_len;
+  uint32_t iv_len;
+  uint32_t auth_tag_len;
+  uint32_t max_expansion; 
 } cryptoalg_ctx_t;
 
 typedef cryptoalg_ctx_t *cryptoalg_t;

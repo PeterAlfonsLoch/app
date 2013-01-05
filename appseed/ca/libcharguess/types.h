@@ -20,11 +20,11 @@
 
 
 typedef signed long   PRInt32;
-typedef unsigned long PRUint32;
-typedef signed short    PRInt16;
-typedef unsigned short  PRUint16;
+typedef uint32_t long PRUint32;
+typedef signed int16_t    PRInt16;
+typedef uint16_t  PRUint16;
 typedef signed char   PRInt8;
-typedef unsigned char PRUint8;
+typedef uchar PRUint8;
 typedef uint32_t PRUintn;
 typedef char PRBool;
 

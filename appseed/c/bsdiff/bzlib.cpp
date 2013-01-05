@@ -97,7 +97,7 @@ static
 int32_t bz_config_ok ( void )
 {
    if (sizeof(int32_t)   != 4) return 0;
-   if (sizeof(short) != 2) return 0;
+   if (sizeof(int16_t) != 2) return 0;
    if (sizeof(char)  != 1) return 0;
    return 1;
 }
@@ -202,7 +202,7 @@ int32_t BZ_API(BZ2_bzCompressInit)
    s->workFactor        = workFactor;
 
    s->block             = (UChar*)s->arr2;
-   s->mtfv              = (UInt16*)s->arr1;
+   s->mtfv              = (uint16_t*)s->arr1;
    s->zbits             = NULL;
    s->ptr               = (uint32_t*)s->arr1;
 

@@ -68,7 +68,7 @@ namespace gen
 
       inline wchar_t to_lower_case(wchar_t wch)
       {
-        unsigned long c1 = CHAR_PROP(wch);
+        uint32_t long c1 = CHAR_PROP(wch);
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(wch);
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(wch+1);
         return wchar_t(wch - (c1>>16));
@@ -82,7 +82,7 @@ namespace gen
 
       inline wchar_t to_upper_case(wchar_t wch)
       {
-        unsigned long c1 = CHAR_PROP(wch);
+        uint32_t long c1 = CHAR_PROP(wch);
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(wch);
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(wch-1);
         return wchar_t(wch - (c1>>16));
@@ -99,7 +99,7 @@ namespace gen
          int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
-        unsigned long c1 = CHAR_PROP(c);
+        uint32_t long c1 = CHAR_PROP(c);
         if (!NUMBER(c1)) return false;
         *f = CHAR_PROP2(c);
         return true;

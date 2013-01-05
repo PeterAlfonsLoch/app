@@ -166,10 +166,10 @@ typedef struct
    DWORD exStyle;
    DWORD style;
    WORD cDlgItems;
-   short x;
-   short y;
-   short cx;
-   short cy;
+   int16_t x;
+   int16_t y;
+   int16_t cx;
+   int16_t cy;
 } DLGTEMPLATEEX;
 
 typedef struct
@@ -177,10 +177,10 @@ typedef struct
    DWORD helpID;
    DWORD exStyle;
    DWORD style;
-   short x;
-   short y;
-   short cx;
-   short cy;
+   int16_t x;
+   int16_t y;
+   int16_t cx;
+   int16_t cy;
    DWORD id;
 } DLGITEMTEMPLATEEX;
 

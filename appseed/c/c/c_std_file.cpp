@@ -587,8 +587,8 @@ int32_t fgetc_dup(_FILE *s)
 	if (s == 0 || feof_dup(s))
 		return EOF;
 
-	unsigned char c;
-	fread_dup(&c, 1, sizeof(unsigned char), s);
+	uchar c;
+	fread_dup(&c, 1, sizeof(uchar), s);
 
 	return (int32_t)c;
 }

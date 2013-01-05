@@ -531,7 +531,7 @@ vsstring url_encode_dup(const char * psz)
    char sz[256];
    while(*psz != '\0')
    {
-      unsigned char uch = *psz;
+      uchar uch = *psz;
       if(isdigit_dup(uch)
          || isalpha_dup(uch)
          || uch == '.'

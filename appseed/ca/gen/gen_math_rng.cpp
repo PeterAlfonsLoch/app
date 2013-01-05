@@ -19,7 +19,7 @@ namespace gen
          seed(624, 0);
       }
 
-      void rng::seed(int32_t iTwistLen, unsigned long seed)
+      void rng::seed(int32_t iTwistLen, uint32_t long seed)
       {
          iTwistLen = max(TWIST_IA + 10, iTwistLen);
          m_dwa.set_size(iTwistLen);
@@ -31,26 +31,26 @@ namespace gen
       }
 
 
-      unsigned long rng::get()
+      uint32_t long rng::get()
       {
          if(m_dwa.get_size() == 0)
             return 0;
-         unsigned long val = m_dwa[m_value % m_dwa.get_size()];
+         uint32_t long val = m_dwa[m_value % m_dwa.get_size()];
          ++m_value;
          if (m_value == TWIST_LEN)
          {
             int32_t i = 0;
             for (i = 0; i < TWIST_IB; ++i)
             {
-               unsigned long s = TWIST(m_dwa, i, i + 1);
+               uint32_t long s = TWIST(m_dwa, i, i + 1);
                m_dwa[i] = m_dwa[i + TWIST_IA] ^ (s >> 1) ^ MAGIC_TWIST(s);
             }
             for (; i < TWIST_LEN - 1; ++i)
             {
-               unsigned long s = TWIST(m_dwa, i, i + 1);
+               uint32_t long s = TWIST(m_dwa, i, i + 1);
                m_dwa[i] = m_dwa[i - TWIST_IB] ^ (s >> 1) ^ MAGIC_TWIST(s);
             }
-            unsigned long s = TWIST(m_dwa, TWIST_LEN - 1, 0);
+            uint32_t long s = TWIST(m_dwa, TWIST_LEN - 1, 0);
             m_dwa[TWIST_LEN - 1] = m_dwa[TWIST_IA - 1] ^ (s >> 1) ^ MAGIC_TWIST(s);
 
             m_value = 0;

@@ -39,26 +39,26 @@ typedef uint32_t u4;
 #  define REV(w) (((w)>>24)+(((w)>>8)&0xff00)+ \
                 (((w)&0xff00)<<8)+(((w)&0xff)<<24))
    zlib_local uint32_t crc32_little OF((uint32_t,
-                        const unsigned char FAR *, size_t));
+                        const uchar FAR *, size_t));
    zlib_local uint32_t crc32_big OF((uint32_t,
-                        const unsigned char FAR *, size_t));
+                        const uchar FAR *, size_t));
 #  define TBLS 8
 #else
 #  define TBLS 1
 #endif /* BYFOUR */
 
 /* Local functions for crc concatenation */
-zlib_local unsigned long gf2_matrix_times OF((unsigned long *mat,
-                                         unsigned long vec));
-zlib_local void gf2_matrix_square OF((unsigned long *square, unsigned long *mat));
+zlib_local uint32_t long gf2_matrix_times OF((uint32_t long *mat,
+                                         uint32_t long vec));
+zlib_local void gf2_matrix_square OF((uint32_t long *square, uint32_t long *mat));
 
 #ifdef DYNAMIC_CRC_TABLE
 
 zlib_local volatile int32_t crc_table_empty = 1;
-zlib_local unsigned long FAR crc_table[TBLS][256];
+zlib_local uint32_t long FAR crc_table[TBLS][256];
 zlib_local void make_crc_table OF(());
 #ifdef MAKECRCH
-   zlib_local void write_table OF((FILE *, const unsigned long FAR *));
+   zlib_local void write_table OF((FILE *, const uint32_t long FAR *));
 #endif /* MAKECRCH */
 /*
   Generate tables for a byte-wise 32-bit CRC calculation on the polynomial:
@@ -88,12 +88,12 @@ zlib_local void make_crc_table OF(());
 */
 zlib_local void make_crc_table()
 {
-    unsigned long c;
+    uint32_t long c;
     int32_t n, k;
-    unsigned long poly;                 /* polynomial exclusive-or pattern */
+    uint32_t long poly;                 /* polynomial exclusive-or pattern */
     /* terms of polynomial defining this crc (except x^32): */
     static volatile int32_t first = 1;      /* flag to limit concurrent making */
-    static const unsigned char p[] = {0,1,2,4,5,7,8,10,11,12,16,22,23,26};
+    static const uchar p[] = {0,1,2,4,5,7,8,10,11,12,16,22,23,26};
 
     /* See if another task is already doing this (not thread-safe, but better
        than nothing -- significantly reduces duration of vulnerability in
@@ -103,12 +103,12 @@ zlib_local void make_crc_table()
 
         /* make exclusive-or pattern from polynomial (0xedb88320UL) */
         poly = 0UL;
-        for (n = 0; n < sizeof(p)/sizeof(unsigned char); n++)
+        for (n = 0; n < sizeof(p)/sizeof(uchar); n++)
             poly |= 1UL << (31 - p[n]);
 
         /* generate a crc for every 8-bit value */
         for (n = 0; n < 256; n++) {
-            c = (unsigned long)n;
+            c = (uint32_t long)n;
             for (k = 0; k < 8; k++)
                 c = c & 1 ? poly ^ (c >> 1) : c >> 1;
             crc_table[0][n] = c;
@@ -145,7 +145,7 @@ zlib_local void make_crc_table()
         if (out == NULL) return;
         fprintf(out, "/* crc32.h -- tables for rapid CRC calculation\n");
         fprintf(out, " * Generated automatically by crc32.c\n */\n\n");
-        fprintf(out, "zlib_local const unsigned long FAR ");
+        fprintf(out, "zlib_local const uint32_t long FAR ");
         fprintf(out, "crc_table[TBLS][256] =\n{\n  {\n");
         write_table(out, crc_table[0]);
 #  ifdef BYFOUR
@@ -165,7 +165,7 @@ zlib_local void make_crc_table()
 #ifdef MAKECRCH
 zlib_local void write_table(out, table)
     FILE *out;
-    const unsigned long FAR *table;
+    const uint32_t long FAR *table;
 {
     int32_t n;
 
@@ -199,7 +199,7 @@ const uint32_t FAR * ZEXPORT get_crc_table()
 #define DO8 DO1; DO1; DO1; DO1; DO1; DO1; DO1; DO1
 
 /* ========================================================================= */
-uint32_t ZEXPORT crc32(uint32_t crc, const unsigned char FAR *buf, size_t len)
+uint32_t ZEXPORT crc32(uint32_t crc, const uchar FAR *buf, size_t len)
 {
     if (buf == Z_NULL) return 0UL;
 
@@ -213,7 +213,7 @@ uint32_t ZEXPORT crc32(uint32_t crc, const unsigned char FAR *buf, size_t len)
         u4 endian;
 
         endian = 1;
-        if (*((unsigned char *)(&endian)))
+        if (*((uchar *)(&endian)))
             return crc32_little(crc, buf, len);
         else
             return crc32_big(crc, buf, len);
@@ -241,7 +241,7 @@ uint32_t ZEXPORT crc32(uint32_t crc, const unsigned char FAR *buf, size_t len)
 /* ========================================================================= */
 zlib_local uint32_t crc32_little(
     uint32_t crc,
-    const unsigned char FAR *buf,
+    const uchar FAR *buf,
     size_t len)
 {
     register u4 c;
@@ -263,7 +263,7 @@ zlib_local uint32_t crc32_little(
         DOLIT4;
         len -= 4;
     }
-    buf = (const unsigned char FAR *)buf4;
+    buf = (const uchar FAR *)buf4;
 
     if (len) do {
         c = crc_table[0][(c ^ *buf++) & 0xff] ^ (c >> 8);
@@ -281,7 +281,7 @@ zlib_local uint32_t crc32_little(
 /* ========================================================================= */
 zlib_local uint32_t crc32_big(
     uint32_t crc,
-    const unsigned char FAR *buf,
+    const uchar FAR *buf,
     size_t len)
 {
     register u4 c;
@@ -305,7 +305,7 @@ zlib_local uint32_t crc32_big(
         len -= 4;
     }
     buf4++;
-    buf = (const unsigned char FAR *)buf4;
+    buf = (const uchar FAR *)buf4;
 
     if (len) do {
         c = crc_table[4][(c >> 24) ^ *buf++] ^ (c << 8);

@@ -147,8 +147,8 @@ void vorbis_lsp_to_curve(float *curve,int32_t *map,int32_t n,int32_t ln,float *l
   i=0;
   while(i<n){
     int32_t j,k=map[i];
-    unsigned long pi=46341; /* 2**-.5 in 0.16 */
-    unsigned long qi=46341;
+    uint32_t long pi=46341; /* 2**-.5 in 0.16 */
+    uint32_t long qi=46341;
     int32_t qexp=0,shift;
     long wi=vorbis_coslook_i(k*65536/ln);
 

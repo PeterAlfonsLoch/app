@@ -6,23 +6,23 @@
 #  if __GNUC_PREREQ(3,4)
 #   include <limits.h>
 /*Note the casts to (int32_t) below: this prevents OC_CLZ{32|64}_OFFS from
-   "upgrading" the type of an entire expression to an (unsigned) size_t.*/
+   "upgrading" the type of an entire expression to an (uint32_t) size_t.*/
 #   if INT_MAX>=2147483647
-#    define OC_CLZ32_OFFS ((int32_t)sizeof(unsigned)*CHAR_BIT)
+#    define OC_CLZ32_OFFS ((int32_t)sizeof(uint32_t)*CHAR_BIT)
 #    define OC_CLZ32(_x) (__builtin_clz(_x))
 #   elif LONG_MAX>=2147483647L
-#    define OC_CLZ32_OFFS ((int32_t)sizeof(unsigned long)*CHAR_BIT)
+#    define OC_CLZ32_OFFS ((int32_t)sizeof(uint32_t long)*CHAR_BIT)
 #    define OC_CLZ32(_x) (__builtin_clzl(_x))
 #   endif
 #   if INT_MAX>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int32_t)sizeof(unsigned)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(uint32_t)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clz(_x))
 #   elif LONG_MAX>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int32_t)sizeof(unsigned long)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(uint32_t long)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clzl(_x))
 #   elif LLONG_MAX>=9223372036854775807LL|| \
      __LONG_LONG_MAX__>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int32_t)sizeof(unsigned long long)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(uint32_t long long)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clzll(_x))
 #   endif
 #  endif
@@ -111,7 +111,7 @@ int32_t oc_ilog64(ogg_int64_t _v);
 # define OC_STATIC_ILOG6(_v) \
  (((_v)&0xFFFFFFFF00000000ULL)?32+OC_STATIC_ILOG5((_v)>>32):OC_STATIC_ILOG5(_v))
 /**
- * OC_STATIC_ILOG_32 - The integer logarithm of an (unsigned, 32-bit) constant.
+ * OC_STATIC_ILOG_32 - The integer logarithm of an (uint32_t, 32-bit) constant.
  * @_v: A non-negative 32-bit constant.
  * Returns floor(log2(_v))+1, or 0 if _v==0.
  * This is the number of bits that would be required to represent _v in two's
@@ -122,7 +122,7 @@ int32_t oc_ilog64(ogg_int64_t _v);
  */
 # define OC_STATIC_ILOG_32(_v) (OC_STATIC_ILOG5((ogg_uint32_t)(_v)))
 /**
- * OC_STATIC_ILOG_64 - The integer logarithm of an (unsigned, 64-bit) constant.
+ * OC_STATIC_ILOG_64 - The integer logarithm of an (uint32_t, 64-bit) constant.
  * @_v: A non-negative 64-bit constant.
  * Returns floor(log2(_v))+1, or 0 if _v==0.
  * This is the number of bits that would be required to represent _v in two's

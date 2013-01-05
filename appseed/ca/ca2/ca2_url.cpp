@@ -232,8 +232,8 @@ namespace ca2
       while(*psz != '\0')
       {
 
-         if(isdigit((unsigned char)*psz)
-         || isalpha((unsigned char)*psz)
+         if(isdigit((uchar)*psz)
+         || isalpha((uchar)*psz)
          || *psz == '.'
          || *psz == '-'
          || *psz == '_')
@@ -341,7 +341,7 @@ namespace ca2
             {
                i++;
                iLen--;
-               *psz = (char) (unsigned char) (from_hex_char(*lpszUrl) * 16 + from_hex_char(*(lpszUrl + 1)));
+               *psz = (char) (uchar) (from_hex_char(*lpszUrl) * 16 + from_hex_char(*(lpszUrl + 1)));
                psz++;
                lpszUrl += 2;
             }
@@ -421,7 +421,7 @@ namespace ca2
 
          ch = strCandidate[i];
 
-         if(isalpha((unsigned char) ch))
+         if(isalpha((uchar) ch))
             i++;
          else if(ch == '.')
             i++;

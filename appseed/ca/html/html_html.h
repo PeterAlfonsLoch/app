@@ -21,7 +21,7 @@ namespace html
 
 
       const COLORREF             m_clrInvalid;   // an invalid color
-      const unsigned short       m_percentMax;   // maximum allowable percentage value
+      const uint16_t       m_percentMax;   // maximum allowable percentage value
       CNamedColors               m_namedColors;   // collection of named colors
       LiteHTMLEntityResolver     m_entityresolver;
 

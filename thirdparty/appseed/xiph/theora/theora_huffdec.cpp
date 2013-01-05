@@ -22,7 +22,7 @@
  ((size_t)((char *)&((_type *)0)->_field-(char *)0))
 
 /*The number of internal tokens associated with each of the spec tokens.*/
-static const unsigned char OC_DCT_TOKEN_MAP_ENTRIES[TH_NDCT_TOKENS]={
+static const uchar OC_DCT_TOKEN_MAP_ENTRIES[TH_NDCT_TOKENS]={
   1,1,1,4,8,1,1,8,1,1,1,1,1,2,2,2,2,4,8,2,2,2,4,2,2,2,2,2,8,2,4,8
 };
 
@@ -34,7 +34,7 @@ static const unsigned char OC_DCT_TOKEN_MAP_ENTRIES[TH_NDCT_TOKENS]={
   OC_DCT_REPEAT_RUN3_TOKEN is placed first, as it is an extra-special case, so
    giving it index 0 may simplify comparisons on some architectures.
   These requirements require some substantial reordering.*/
-static const unsigned char OC_DCT_TOKEN_MAP[TH_NDCT_TOKENS]={
+static const uchar OC_DCT_TOKEN_MAP[TH_NDCT_TOKENS]={
   /*OC_DCT_EOB1_TOKEN (0 extra bits)*/
   15,
   /*OC_DCT_EOB2_TOKEN (0 extra bits)*/
@@ -100,8 +100,8 @@ static const unsigned char OC_DCT_TOKEN_MAP[TH_NDCT_TOKENS]={
    function call overhead.*/
 
 static oc_pb_window oc_pack_refill(oc_pack_buf *_b,int32_t _bits){
-  const unsigned char *ptr;
-  const unsigned char *stop;
+  const uchar *ptr;
+  const uchar *stop;
   oc_pb_window         window;
   int32_t                  available;
   window=_b->window;
@@ -184,7 +184,7 @@ static size_t oc_huff_node_size(int32_t _nbits){
 static oc_huff_node *oc_huff_node_init(char **_storage,size_t _size,int32_t _nbits){
   oc_huff_node *ret;
   ret=(oc_huff_node *)*_storage;
-  ret->nbits=(unsigned char)_nbits;
+  ret->nbits=(uchar)_nbits;
   (*_storage)+=_size;
   return ret;
 }
@@ -374,7 +374,7 @@ static void oc_huff_node_fill(oc_huff_node **_nodes,
  oc_huff_node *_binode,int32_t _level,int32_t _depth,char **_storage){
   if(_level<=0||_binode->nbits==0){
     int32_t i;
-    _binode->depth=(unsigned char)(_depth-_level);
+    _binode->depth=(uchar)(_depth-_level);
     _nodes[0]=oc_huff_tree_collapse(_binode,_storage);
     for(i=1;i<1<<_level;i++)_nodes[i]=_nodes[0];
   }

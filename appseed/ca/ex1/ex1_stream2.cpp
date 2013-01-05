@@ -20,13 +20,13 @@ namespace ex1
 
 
 
-output_stream2 & output_stream2::operator << (unsigned char uch)
+output_stream2 & output_stream2::operator << (uchar uch)
 {
    byte_output_stream::operator << (uch);
    return *this;
 }
 
-output_stream2 & output_stream2::operator << (unsigned short ush)
+output_stream2 & output_stream2::operator << (uint16_t ush)
 {
    byte_output_stream::operator << (ush);
    return *this;
@@ -38,7 +38,7 @@ output_stream2 & output_stream2::operator << (int32_t i)
    return *this;
 }
 
-output_stream2 & output_stream2::operator << (unsigned long ul)
+output_stream2 & output_stream2::operator << (uint32_t long ul)
 {
    byte_output_stream::operator << (ul);
    return *this;

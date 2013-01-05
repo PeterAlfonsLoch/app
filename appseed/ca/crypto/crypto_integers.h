@@ -76,9 +76,9 @@
 /* Can we do 64 bit integers? */
 #ifndef HAVE_UINT64_T
 # if SIZEOF_UNSIGNED_LONG == 8
-typedef unsigned long      uint64_t;
+typedef uint32_t long      uint64_t;
 # elif SIZEOF_UNSIGNED_LONG_LONG == 8
-typedef unsigned long long   uint64_t;
+typedef uint32_t long long   uint64_t;
 # else
 #  define NO_64BIT_MATH 1
 # endif
@@ -87,7 +87,7 @@ typedef unsigned long long   uint64_t;
 /* Reasonable defaults for 32 bit machines - you may need to
  * edit these definitions for your own machine. */
 #ifndef HAVE_UINT8_T
-typedef unsigned char      uint8_t;
+typedef uchar      uint8_t;
 #endif
 #ifndef HAVE_UINT16_T
 typedef uint16_t   uint16_t;
@@ -115,27 +115,27 @@ extern uint32_t low32(uint64_t value);
 #ifdef WORDS_BIGENDIAN
 #define PUT_32(addr,value) \
     { \
-        ((unsigned char *) (addr))[0] = (value >> 24); \
-        ((unsigned char *) (addr))[1] = (value >> 16) & 0xff; \
-        ((unsigned char *) (addr))[2] = (value >> 8) & 0xff; \
-        ((unsigned char *) (addr))[3] = (value)      & 0xff; \
+        ((uchar *) (addr))[0] = (value >> 24); \
+        ((uchar *) (addr))[1] = (value >> 16) & 0xff; \
+        ((uchar *) (addr))[2] = (value >> 8) & 0xff; \
+        ((uchar *) (addr))[3] = (value)      & 0xff; \
     }
-#define GET_32(addr) ((((unsigned char *) (addr))[0] << 24) |  \
-                      (((unsigned char *) (addr))[1] << 16) |  \
-                      (((unsigned char *) (addr))[2] << 8)  |  \
-                      (((unsigned char *) (addr))[3]))
+#define GET_32(addr) ((((uchar *) (addr))[0] << 24) |  \
+                      (((uchar *) (addr))[1] << 16) |  \
+                      (((uchar *) (addr))[2] << 8)  |  \
+                      (((uchar *) (addr))[3]))
 #else
 #define PUT_32(addr,value) \
     { \
-        ((unsigned char *) (addr))[3] = (value >> 24); \
-        ((unsigned char *) (addr))[2] = (value >> 16) & 0xff; \
-        ((unsigned char *) (addr))[1] = (value >> 8) & 0xff; \
-        ((unsigned char *) (addr))[0] = (value)      & 0xff; \
+        ((uchar *) (addr))[3] = (value >> 24); \
+        ((uchar *) (addr))[2] = (value >> 16) & 0xff; \
+        ((uchar *) (addr))[1] = (value >> 8) & 0xff; \
+        ((uchar *) (addr))[0] = (value)      & 0xff; \
     }
-#define GET_32(addr) ((((unsigned char *) (addr))[3] << 24) |  \
-                      (((unsigned char *) (addr))[2] << 16) |  \
-                      (((unsigned char *) (addr))[1] << 8)  |  \
-                      (((unsigned char *) (addr))[0]))
+#define GET_32(addr) ((((uchar *) (addr))[3] << 24) |  \
+                      (((uchar *) (addr))[2] << 16) |  \
+                      (((uchar *) (addr))[1] << 8)  |  \
+                      (((uchar *) (addr))[0]))
 #endif // WORDS_BIGENDIAN
 #else
 #define PUT_32(addr,value) *(((uint32_t *) (addr)) = (value)

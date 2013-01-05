@@ -29,7 +29,7 @@ typedef enum {
    eItsMe = 2 
 } nsSMState;
 
-#define GETCLASS(c) GETFROMPCK(((unsigned char)(c)), mModel->classTable)
+#define GETCLASS(c) GETFROMPCK(((uchar)(c)), mModel->classTable)
 
 //state machine model
 typedef struct 

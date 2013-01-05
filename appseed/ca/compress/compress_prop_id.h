@@ -86,6 +86,6 @@ namespace compress
 
 } // namespace compress
 
-   void FlagsToProp(const CUInt32PCharPair *pairs, unsigned num, uint32_t flags, var  * value);
+   void FlagsToProp(const CUInt32PCharPair *pairs, uint32_t num, uint32_t flags, var  * value);
 
 #define FLAGS_TO_PROP(pairs, value, prop) FlagsToProp(pairs, sizeof(pairs) / sizeof(pairs[0]), value, prop)

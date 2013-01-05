@@ -13,7 +13,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 */
 
 /* kiss_fft.h
-   defines kiss_fft_scalar as either short or a double type
+   defines kiss_fft_scalar as either int16_t or a double type
    and defines
    typedef struct { kiss_fft_scalar r; kiss_fft_scalar i; }kiss_fft_cpx; */
 #include "kiss_fft.h"
@@ -44,7 +44,7 @@ struct kiss_fft_state{
 #ifdef FIXED_POINT
 
 #   define smul(a,b) ( (long)(a)*(b) )
-#   define sround( x )  (short)( ( (x) + (1<<14) ) >>15 )
+#   define sround( x )  (int16_t)( ( (x) + (1<<14) ) >>15 )
 
 #   define S_MUL(a,b) sround( smul(a,b) )
 

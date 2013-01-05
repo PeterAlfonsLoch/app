@@ -247,7 +247,7 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
    memory.allocate(2048);
 
-   int32_t i = RSA_public_encrypt((int32_t) memIn.get_size(), (const unsigned char * ) (const char *) memIn.get_data(), (unsigned char *)  memory.get_data(), rsa, RSA_PKCS1_PADDING);
+   int32_t i = RSA_public_encrypt((int32_t) memIn.get_size(), (const uchar * ) (const char *) memIn.get_data(), (uchar *)  memory.get_data(), rsa, RSA_PKCS1_PADDING);
 
    ERR_error_string(ERR_get_error(), NULL);
 //   const char * pszError = ERR_error_string(ERR_get_error(), NULL);

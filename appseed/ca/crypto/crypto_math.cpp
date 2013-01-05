@@ -162,7 +162,7 @@ octet_get_weight(uint8_t octet) {
   return octet_weight[octet];
 }  
 
-unsigned char
+uchar
 v32_weight(v32_t a) {
   uint32_t wt = 0;
   
@@ -174,7 +174,7 @@ v32_weight(v32_t a) {
   return wt;
 }
 
-inline unsigned char
+inline uchar
 v32_distance(v32_t x, v32_t y) {
   x.value ^= y.value;
   return v32_weight(x);
@@ -514,7 +514,7 @@ hex_string_to_v128(char *s) {
 uint8_t 
 A_times_x_plus_b(uint8_t A[8], uint8_t x, uint8_t b) {
   int32_t index = 0;
-  unsigned mask;
+  uint32_t mask;
   
   for (mask=1; mask < 256; mask *= 2) {
     if (x & mask)

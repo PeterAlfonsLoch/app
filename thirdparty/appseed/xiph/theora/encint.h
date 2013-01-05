@@ -60,47 +60,47 @@ typedef struct oc_token_checkpoint    oc_token_checkpoint;
 
 
 /*The bits used for each of the MB mode codebooks.*/
-extern const unsigned char OC_MODE_BITS[2][OC_NMODES];
+extern const uchar OC_MODE_BITS[2][OC_NMODES];
 
 /*The bits used for each of the MV codebooks.*/
-extern const unsigned char OC_MV_BITS[2][64];
+extern const uchar OC_MV_BITS[2][64];
 
 /*The minimum value that can be stored in a SB run for each codeword.
   The last entry is the upper bound on the length of a single SB run.*/
 extern const ogg_uint16_t  OC_SB_RUN_VAL_MIN[8];
 /*The bits used for each SB run codeword.*/
-extern const unsigned char OC_SB_RUN_CODE_NBITS[7];
+extern const uchar OC_SB_RUN_CODE_NBITS[7];
 
 /*The bits used for each block run length (starting with 1).*/
-extern const unsigned char OC_BLOCK_RUN_CODE_NBITS[30];
+extern const uchar OC_BLOCK_RUN_CODE_NBITS[30];
 
 
 
 /*Encoder specific functions with accelerated variants.*/
 struct oc_enc_opt_vtable{
-  unsigned (*frag_sad)(const unsigned char *_src,
-   const unsigned char *_ref,int32_t _ystride);
-  unsigned (*frag_sad_thresh)(const unsigned char *_src,
-   const unsigned char *_ref,int32_t _ystride,unsigned _thresh);
-  unsigned (*frag_sad2_thresh)(const unsigned char *_src,
-   const unsigned char *_ref1,const unsigned char *_ref2,int32_t _ystride,
-   unsigned _thresh);
-  unsigned (*frag_satd_thresh)(const unsigned char *_src,
-   const unsigned char *_ref,int32_t _ystride,unsigned _thresh);
-  unsigned (*frag_satd2_thresh)(const unsigned char *_src,
-   const unsigned char *_ref1,const unsigned char *_ref2,int32_t _ystride,
-   unsigned _thresh);
-  unsigned (*frag_intra_satd)(const unsigned char *_src,int32_t _ystride);
-  void     (*frag_sub)(ogg_int16_t _diff[64],const unsigned char *_src,
-   const unsigned char *_ref,int32_t _ystride);
+  uint32_t (*frag_sad)(const uchar *_src,
+   const uchar *_ref,int32_t _ystride);
+  uint32_t (*frag_sad_thresh)(const uchar *_src,
+   const uchar *_ref,int32_t _ystride,uint32_t _thresh);
+  uint32_t (*frag_sad2_thresh)(const uchar *_src,
+   const uchar *_ref1,const uchar *_ref2,int32_t _ystride,
+   uint32_t _thresh);
+  uint32_t (*frag_satd_thresh)(const uchar *_src,
+   const uchar *_ref,int32_t _ystride,uint32_t _thresh);
+  uint32_t (*frag_satd2_thresh)(const uchar *_src,
+   const uchar *_ref1,const uchar *_ref2,int32_t _ystride,
+   uint32_t _thresh);
+  uint32_t (*frag_intra_satd)(const uchar *_src,int32_t _ystride);
+  void     (*frag_sub)(ogg_int16_t _diff[64],const uchar *_src,
+   const uchar *_ref,int32_t _ystride);
   void     (*frag_sub_128)(ogg_int16_t _diff[64],
-   const unsigned char *_src,int32_t _ystride);
-  void     (*frag_copy2)(unsigned char *_dst,
-   const unsigned char *_src1,const unsigned char *_src2,int32_t _ystride);
-  void     (*frag_recon_intra)(unsigned char *_dst,int32_t _ystride,
+   const uchar *_src,int32_t _ystride);
+  void     (*frag_copy2)(uchar *_dst,
+   const uchar *_src1,const uchar *_src2,int32_t _ystride);
+  void     (*frag_recon_intra)(uchar *_dst,int32_t _ystride,
    const ogg_int16_t _residue[64]);
-  void     (*frag_recon_inter)(unsigned char *_dst,
-   const unsigned char *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+  void     (*frag_recon_inter)(uchar *_dst,
+   const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
   void     (*fdct8x8)(ogg_int16_t _y[64],const ogg_int16_t _x[64]);
 };
 
@@ -112,15 +112,15 @@ void oc_enc_vtable_init(oc_enc_ctx *_enc);
 /*Encoder-specific macroblock information.*/
 struct oc_mb_enc_info{
   /*Neighboring macro blocks that have MVs available from the current frame.*/
-  unsigned      cneighbors[4];
+  uint32_t      cneighbors[4];
   /*Neighboring macro blocks to use for MVs from the previous frame.*/
-  unsigned      pneighbors[4];
+  uint32_t      pneighbors[4];
   /*The number of current-frame neighbors.*/
-  unsigned char ncneighbors;
+  uchar ncneighbors;
   /*The number of previous-frame neighbors.*/
-  unsigned char npneighbors;
+  uchar npneighbors;
   /*Flags indicating which MB modes have been refined.*/
-  unsigned char refined;
+  uchar refined;
   /*Motion vectors for a macro block for the current frame and the
      previous two frames.
     Each is a set of 2 vectors against OC_FRAME_GOLD and OC_FRAME_PREV, which
@@ -137,9 +137,9 @@ struct oc_mb_enc_info{
   /*Minimum motion estimation error from the analysis stage.*/
   ogg_uint16_t  error[2];
   /*MB error for half-pel refinement for each frame type.*/
-  unsigned      satd[2];
+  uint32_t      satd[2];
   /*Block error for half-pel refinement.*/
-  unsigned      block_satd[4];
+  uint32_t      block_satd[4];
 };
 
 
@@ -150,17 +150,17 @@ struct oc_mode_scheme_chooser{
      alphabet used by each scheme.
     The first entry points to the dynamic scheme0_ranks, while the remaining 7
      point to the constant entries stored in OC_MODE_SCHEMES.*/
-  const unsigned char *mode_ranks[8];
+  const uchar *mode_ranks[8];
   /*The ranks for each mode when coded with scheme 0.
     These are optimized so that the more frequent modes have lower ranks.*/
-  unsigned char        scheme0_ranks[OC_NMODES];
+  uchar        scheme0_ranks[OC_NMODES];
   /*The list of modes, sorted in descending order of frequency, that
     corresponds to the ranks above.*/
-  unsigned char        scheme0_list[OC_NMODES];
+  uchar        scheme0_list[OC_NMODES];
   /*The number of times each mode has been chosen so far.*/
   int32_t                  mode_counts[OC_NMODES];
   /*The list of mode coding schemes, sorted in ascending order of bit cost.*/
-  unsigned char        scheme_list[8];
+  uchar        scheme_list[8];
   /*The number of bits used by each mode coding scheme.*/
   ptrdiff_t            scheme_bits[8];
 };
@@ -187,9 +187,9 @@ struct oc_frame_metrics{
   /*The log base 2 of the scale factor for this frame in Q24 format.*/
   ogg_int32_t   log_scale;
   /*The number of application-requested duplicates of this frame.*/
-  unsigned      dup_count:31;
+  uint32_t      dup_count:31;
   /*The frame type from pass 1.*/
-  unsigned      frame_type:1;
+  uint32_t      frame_type:1;
 };
 
 
@@ -209,7 +209,7 @@ struct oc_rc_state{
   /*The log of the number of pixels in a frame in Q57 format.*/
   ogg_int64_t        log_npixels;
   /*The exponent used in the rate model in Q8 format.*/
-  unsigned           exp[2];
+  uint32_t           exp[2];
   /*The number of frames to distribute the buffer usage over.*/
   int32_t                buf_delay;
   /*The total drop count from the previous frame.
@@ -224,11 +224,11 @@ struct oc_rc_state{
   /*The log of the target quantizer level in Q57 format.*/
   ogg_int64_t        log_qtarget;
   /*Will we drop frames to meet bitrate target?*/
-  unsigned char      drop_frames;
+  uchar      drop_frames;
   /*Do we respect the maximum buffer fullness?*/
-  unsigned char      cap_overflow;
+  uchar      cap_overflow;
   /*Can the reservoir go negative?*/
-  unsigned char      cap_underflow;
+  uchar      cap_underflow;
   /*Second-order lowpass filters to track scale and VFR.*/
   oc_iir_filter      scalefilter[2];
   int32_t                inter_count;
@@ -241,14 +241,14 @@ struct oc_rc_state{
     2 => 2nd pass of 2-pass encoding.*/
   int32_t                twopass;
   /*Buffer for current frame metrics.*/
-  unsigned char      twopass_buffer[48];
+  uchar      twopass_buffer[48];
   /*The number of bytes in the frame metrics buffer.
     When 2-pass encoding is enabled, this is set to 0 after each frame is
      submitted, and must be non-zero before the next frame will be accepted.*/
   int32_t                twopass_buffer_bytes;
   int32_t                twopass_buffer_fill;
   /*Whether or not to force the next frame to be a keyframe.*/
-  unsigned char      twopass_force_kf;
+  uchar      twopass_force_kf;
   /*The metrics for the previous frame.*/
   oc_frame_metrics   prev_metrics;
   /*The metrics for the current frame.*/
@@ -286,8 +286,8 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp);
 void oc_enc_calc_lambda(oc_enc_ctx *_enc,int32_t _frame_type);
 int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
  long _bits,int32_t _qti,int32_t _qi,int32_t _trial,int32_t _droppable);
-int32_t oc_enc_rc_2pass_out(oc_enc_ctx *_enc,unsigned char **_buf);
-int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes);
+int32_t oc_enc_rc_2pass_out(oc_enc_ctx *_enc,uchar **_buf);
+int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes);
 
 
 
@@ -302,7 +302,7 @@ struct th_enc_ctx{
   /*DC coefficients after prediction.*/
   ogg_int16_t             *frag_dc;
   /*The list of coded macro blocks, in coded order.*/
-  unsigned                *coded_mbis;
+  uint32_t                *coded_mbis;
   /*The number of coded macro blocks.*/
   size_t                   ncoded_mbis;
   /*Whether or not packets are ready to be emitted.
@@ -321,16 +321,16 @@ struct th_enc_ctx{
   /*The current speed level.*/
   int32_t                      sp_level;
   /*Whether or not VP3 compatibility mode has been enabled.*/
-  unsigned char            vp3_compatible;
+  uchar            vp3_compatible;
   /*Whether or not any INTER frames have been coded.*/
-  unsigned char            coded_inter_frame;
+  uchar            coded_inter_frame;
   /*Whether or not previous frame was dropped.*/
-  unsigned char            prevframe_dropped;
+  uchar            prevframe_dropped;
   /*Stores most recently chosen Huffman tables for each frame type, DC and AC
      coefficients, and luma and chroma tokens.
     The actual Huffman table used for a given coefficient depends not only on
      the choice made here, but also its index in the zig-zag ordering.*/
-  unsigned char            huff_idxs[2][2][2];
+  uchar            huff_idxs[2][2][2];
   /*Current count of bits used by each MV coding mode.*/
   size_t                   mv_bits[2];
   /*The mode scheme chooser for estimating mode coding costs.*/
@@ -338,9 +338,9 @@ struct th_enc_ctx{
   /*The number of vertical super blocks in an MCU.*/
   int32_t                      mcu_nvsbs;
   /*The SSD error for skipping each fragment in the current MCU.*/
-  unsigned                *mcu_skip_ssd;
+  uint32_t                *mcu_skip_ssd;
   /*The DCT token lists for each coefficient and each plane.*/
-  unsigned char          **dct_tokens[3];
+  uchar          **dct_tokens[3];
   /*The extra bits associated with each DCT token.*/
   ogg_uint16_t           **extra_bits[3];
   /*The number of DCT tokens for each coefficient for each plane.*/
@@ -348,14 +348,14 @@ struct th_enc_ctx{
   /*Pending EOB runs for each coefficient for each plane.*/
   ogg_uint16_t             eob_run[3][64];
   /*The offset of the first DCT token for each coefficient for each plane.*/
-  unsigned char            dct_token_offs[3][64];
+  uchar            dct_token_offs[3][64];
   /*The last DC coefficient for each plane and reference frame.*/
   int32_t                      dc_pred_last[3][3];
 #if defined(OC_COLLECT_METRICS)
   /*Fragment SATD statistics for MB mode estimation metrics.*/
-  unsigned                *frag_satd;
+  uint32_t                *frag_satd;
   /*Fragment SSD statistics for MB mode estimation metrics.*/
-  unsigned                *frag_ssd;
+  uint32_t                *frag_ssd;
 #endif
   /*The R-D optimization parameter.*/
   int32_t                      lambda;
@@ -402,9 +402,9 @@ void oc_mcenc_refine4mv(oc_enc_ctx *_enc,int32_t _mbi);
   A checkpoint is taken right before each token is added.*/
 struct oc_token_checkpoint{
   /*The color plane the token was added to.*/
-  unsigned char pli;
+  uchar pli;
   /*The zig-zag index the token was added to.*/
-  unsigned char zzi;
+  uchar zzi;
   /*The outstanding EOB run count before the token was added.*/
   ogg_uint16_t  eob_run;
   /*The token count before the token was added.*/
@@ -438,31 +438,31 @@ int32_t oc_state_flushheader(oc_theora_state *_state,int32_t *_packet_state,
 
 /*Encoder-specific accelerated functions.*/
 void oc_enc_frag_sub(const oc_enc_ctx *_enc,ogg_int16_t _diff[64],
- const unsigned char *_src,const unsigned char *_ref,int32_t _ystride);
+ const uchar *_src,const uchar *_ref,int32_t _ystride);
 void oc_enc_frag_sub_128(const oc_enc_ctx *_enc,ogg_int16_t _diff[64],
- const unsigned char *_src,int32_t _ystride);
-unsigned oc_enc_frag_sad(const oc_enc_ctx *_enc,const unsigned char *_src,
- const unsigned char *_ref,int32_t _ystride);
-unsigned oc_enc_frag_sad_thresh(const oc_enc_ctx *_enc,
- const unsigned char *_src,const unsigned char *_ref,int32_t _ystride,
- unsigned _thresh);
-unsigned oc_enc_frag_sad2_thresh(const oc_enc_ctx *_enc,
- const unsigned char *_src,const unsigned char *_ref1,
- const unsigned char *_ref2,int32_t _ystride,unsigned _thresh);
-unsigned oc_enc_frag_satd_thresh(const oc_enc_ctx *_enc,
- const unsigned char *_src,const unsigned char *_ref,int32_t _ystride,
- unsigned _thresh);
-unsigned oc_enc_frag_satd2_thresh(const oc_enc_ctx *_enc,
- const unsigned char *_src,const unsigned char *_ref1,
- const unsigned char *_ref2,int32_t _ystride,unsigned _thresh);
-unsigned oc_enc_frag_intra_satd(const oc_enc_ctx *_enc,
- const unsigned char *_src,int32_t _ystride);
-void oc_enc_frag_copy2(const oc_enc_ctx *_enc,unsigned char *_dst,
- const unsigned char *_src1,const unsigned char *_src2,int32_t _ystride);
+ const uchar *_src,int32_t _ystride);
+uint32_t oc_enc_frag_sad(const oc_enc_ctx *_enc,const uchar *_src,
+ const uchar *_ref,int32_t _ystride);
+uint32_t oc_enc_frag_sad_thresh(const oc_enc_ctx *_enc,
+ const uchar *_src,const uchar *_ref,int32_t _ystride,
+ uint32_t _thresh);
+uint32_t oc_enc_frag_sad2_thresh(const oc_enc_ctx *_enc,
+ const uchar *_src,const uchar *_ref1,
+ const uchar *_ref2,int32_t _ystride,uint32_t _thresh);
+uint32_t oc_enc_frag_satd_thresh(const oc_enc_ctx *_enc,
+ const uchar *_src,const uchar *_ref,int32_t _ystride,
+ uint32_t _thresh);
+uint32_t oc_enc_frag_satd2_thresh(const oc_enc_ctx *_enc,
+ const uchar *_src,const uchar *_ref1,
+ const uchar *_ref2,int32_t _ystride,uint32_t _thresh);
+uint32_t oc_enc_frag_intra_satd(const oc_enc_ctx *_enc,
+ const uchar *_src,int32_t _ystride);
+void oc_enc_frag_copy2(const oc_enc_ctx *_enc,uchar *_dst,
+ const uchar *_src1,const uchar *_src2,int32_t _ystride);
 void oc_enc_frag_recon_intra(const oc_enc_ctx *_enc,
- unsigned char *_dst,int32_t _ystride,const ogg_int16_t _residue[64]);
-void oc_enc_frag_recon_inter(const oc_enc_ctx *_enc,unsigned char *_dst,
- const unsigned char *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+ uchar *_dst,int32_t _ystride,const ogg_int16_t _residue[64]);
+void oc_enc_frag_recon_inter(const oc_enc_ctx *_enc,uchar *_dst,
+ const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
 void oc_enc_fdct8x8(const oc_enc_ctx *_enc,ogg_int16_t _y[64],
  const ogg_int16_t _x[64]);
 
@@ -470,24 +470,24 @@ void oc_enc_fdct8x8(const oc_enc_ctx *_enc,ogg_int16_t _y[64],
 void oc_enc_vtable_init_c(oc_enc_ctx *_enc);
 
 void oc_enc_frag_sub_c(ogg_int16_t _diff[64],
- const unsigned char *_src,const unsigned char *_ref,int32_t _ystride);
+ const uchar *_src,const uchar *_ref,int32_t _ystride);
 void oc_enc_frag_sub_128_c(ogg_int16_t _diff[64],
- const unsigned char *_src,int32_t _ystride);
-void oc_enc_frag_copy2_c(unsigned char *_dst,
- const unsigned char *_src1,const unsigned char *_src2,int32_t _ystride);
-unsigned oc_enc_frag_sad_c(const unsigned char *_src,
- const unsigned char *_ref,int32_t _ystride);
-unsigned oc_enc_frag_sad_thresh_c(const unsigned char *_src,
- const unsigned char *_ref,int32_t _ystride,unsigned _thresh);
-unsigned oc_enc_frag_sad2_thresh_c(const unsigned char *_src,
- const unsigned char *_ref1,const unsigned char *_ref2,int32_t _ystride,
- unsigned _thresh);
-unsigned oc_enc_frag_satd_thresh_c(const unsigned char *_src,
- const unsigned char *_ref,int32_t _ystride,unsigned _thresh);
-unsigned oc_enc_frag_satd2_thresh_c(const unsigned char *_src,
- const unsigned char *_ref1,const unsigned char *_ref2,int32_t _ystride,
- unsigned _thresh);
-unsigned oc_enc_frag_intra_satd_c(const unsigned char *_src,int32_t _ystride);
+ const uchar *_src,int32_t _ystride);
+void oc_enc_frag_copy2_c(uchar *_dst,
+ const uchar *_src1,const uchar *_src2,int32_t _ystride);
+uint32_t oc_enc_frag_sad_c(const uchar *_src,
+ const uchar *_ref,int32_t _ystride);
+uint32_t oc_enc_frag_sad_thresh_c(const uchar *_src,
+ const uchar *_ref,int32_t _ystride,uint32_t _thresh);
+uint32_t oc_enc_frag_sad2_thresh_c(const uchar *_src,
+ const uchar *_ref1,const uchar *_ref2,int32_t _ystride,
+ uint32_t _thresh);
+uint32_t oc_enc_frag_satd_thresh_c(const uchar *_src,
+ const uchar *_ref,int32_t _ystride,uint32_t _thresh);
+uint32_t oc_enc_frag_satd2_thresh_c(const uchar *_src,
+ const uchar *_ref1,const uchar *_ref2,int32_t _ystride,
+ uint32_t _thresh);
+uint32_t oc_enc_frag_intra_satd_c(const uchar *_src,int32_t _ystride);
 void oc_enc_fdct8x8_c(ogg_int16_t _y[64],const ogg_int16_t _x[64]);
 
 #endif

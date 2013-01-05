@@ -812,7 +812,7 @@ namespace gen
       return get_value() - i;
    }
 
-   var property::operator - (unsigned long user) const
+   var property::operator - (uint32_t long user) const
    {
       return get_value() - user;
    }
@@ -845,7 +845,7 @@ namespace gen
       return get_value() + i;
    }
 
-   var property::operator + (unsigned long user) const
+   var property::operator + (uint32_t long user) const
    {
       return get_value() + user;
    }
@@ -921,7 +921,7 @@ namespace gen
       return get_value() / i;
    }
 
-   var property::operator / (unsigned long user) const
+   var property::operator / (uint32_t long user) const
    {
       return get_value() / user;
    }
@@ -954,7 +954,7 @@ namespace gen
       return get_value() * i;
    }
 
-   var property::operator * (unsigned long user) const
+   var property::operator * (uint32_t long user) const
    {
       return get_value() * user;
    }
@@ -1035,7 +1035,7 @@ namespace gen
       return *this;
    }
 
-   property & property::operator -= (unsigned long user)
+   property & property::operator -= (uint32_t long user)
    {
       operator=(*this - user);
       return *this;
@@ -1131,7 +1131,7 @@ namespace gen
       return *this;
    }
 
-   property & property::operator += (unsigned long user)
+   property & property::operator += (uint32_t long user)
    {
       operator=(*this + user);
       return *this;
@@ -1209,7 +1209,7 @@ namespace gen
       return *this;
    }
 
-   property & property::operator /= (unsigned long user)
+   property & property::operator /= (uint32_t long user)
    {
       operator=(*this / user);
       return *this;
@@ -1275,7 +1275,7 @@ namespace gen
       return *this;
    }
 
-   property & property::operator *= (unsigned long user)
+   property & property::operator *= (uint32_t long user)
    {
       operator=(*this * user);
       return *this;
@@ -2764,7 +2764,7 @@ var CLASS_DECL_ca operator - (long l, const gen::property & prop)
 }
 
 
-var CLASS_DECL_ca operator - (unsigned long ul, const gen::property & prop)
+var CLASS_DECL_ca operator - (uint32_t long ul, const gen::property & prop)
 {
    return ul - prop.get_value();
 }
@@ -2820,7 +2820,7 @@ var CLASS_DECL_ca operator + (long l, const gen::property & prop)
 }
 
 
-var CLASS_DECL_ca operator + (unsigned long ul, const gen::property & prop)
+var CLASS_DECL_ca operator + (uint32_t long ul, const gen::property & prop)
 {
    return ul + prop.get_value();
 }
@@ -2876,7 +2876,7 @@ var CLASS_DECL_ca operator / (long l, const gen::property & prop)
 }
 
 
-var CLASS_DECL_ca operator / (unsigned long ul, const gen::property & prop)
+var CLASS_DECL_ca operator / (uint32_t long ul, const gen::property & prop)
 {
    return ul / prop.get_value();
 }
@@ -2932,7 +2932,7 @@ var CLASS_DECL_ca operator * (long l, const gen::property & prop)
 }
 
 
-var CLASS_DECL_ca operator * (unsigned long ul, const gen::property & prop)
+var CLASS_DECL_ca operator * (uint32_t long ul, const gen::property & prop)
 {
    return ul * prop.get_value();
 }

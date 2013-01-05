@@ -31,12 +31,12 @@ BEGIN_EXTERN_C
  */
 typedef struct SHA1Context
 {
-    unsigned Message_Digest[5]; /* Message Digest (output)          */
+    uint32_t Message_Digest[5]; /* Message Digest (output)          */
 
-    unsigned Length_Low;        /* Message length in bits           */
-    unsigned Length_High;       /* Message length in bits           */
+    uint32_t Length_Low;        /* Message length in bits           */
+    uint32_t Length_High;       /* Message length in bits           */
 
-    unsigned char Message_Block[64]; /* 512-bit message blocks      */
+    uchar Message_Block[64]; /* 512-bit message blocks      */
     int32_t Message_Block_Index;    /* Index into message block array   */
 
     int32_t Computed;               /* Is the digest computed?          */
@@ -50,7 +50,7 @@ void __sha1_init(sha1_ctx_t *);
 void __sha1_update(sha1_ctx_t *, const void *, size_t);
 int32_t  __sha1_final(sha1_ctx_t *, void *);
 
-void __sha1_core(const unsigned char Message_Block[64], uint32_t Message_Digest[5]);
+void __sha1_core(const uchar Message_Block[64], uint32_t Message_Digest[5]);
 
 
 END_EXTERN_C
@@ -69,11 +69,11 @@ namespace crypto
    namespace sha1 
    {
 
-      const unsigned kBlockSize = 64;
-      const unsigned kDigestSize = 20;
+      const uint32_t kBlockSize = 64;
+      const uint32_t kDigestSize = 20;
 
-      const unsigned kBlockSizeInWords = (kBlockSize >> 2);
-      const unsigned kDigestSizeInWords = (kDigestSize >> 2);
+      const uint32_t kBlockSizeInWords = (kBlockSize >> 2);
+      const uint32_t kDigestSizeInWords = (kDigestSize >> 2);
 
       class CLASS_DECL_ca CContextBase
       {
@@ -103,7 +103,7 @@ namespace crypto
       class CLASS_DECL_ca CContextBase2: public CContextBase
       {
       protected:
-         unsigned _count2;
+         uint32_t _count2;
          uint32_t _buffer[kBlockSizeInWords];
          void UpdateBlock() { CContextBase::UpdateBlock(_buffer); }
       public:

@@ -151,7 +151,7 @@ namespace ca
          flag_locked = 32,
       };
 
-      unsigned long           m_ulFlags;
+      uint32_t long           m_ulFlags;
       ::ca::application *     m_papp;
       int64_t                 m_countReference;
       ::ca::ptra *            m_pptraListener;
@@ -180,7 +180,7 @@ namespace ca
 
       inline bool is_set_ca_flag(::ca::ca::flag eflag)
       {
-         return (m_ulFlags & ((unsigned long) eflag)) == (unsigned long) eflag;
+         return (m_ulFlags & ((uint32_t long) eflag)) == (uint32_t long) eflag;
       }
 
       inline void clear_ca_flag(::ca::ca::flag eflag)

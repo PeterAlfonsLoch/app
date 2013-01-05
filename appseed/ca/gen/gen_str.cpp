@@ -1295,7 +1295,7 @@ namespace gen
 
 #if !defined(_LP64)
 
-   string & str::from(string & str, unsigned long ul)
+   string & str::from(string & str, uint32_t long ul)
    {
 
       str = ui64toa_dup(ul);
@@ -1331,7 +1331,7 @@ namespace gen
 
    const char * str::utf8_inc(const char * psz)
    {
-      char len =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
+      char len =  1 + gen::str::trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)      return psz;
       if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
       if(len == 1)      return psz;
@@ -1351,7 +1351,7 @@ namespace gen
    // macos mountain lion near Finados - inha |-) at veriverse on 2012-11-04 with Mom with Carol speaking about Mom Dream with gone Grandma - extrem care feeling
    const char * str::utf8_inc_slide(strsize * pslide, const char * psz)
    {
-      char len =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
+      char len =  1 + gen::str::trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)   { *pslide += 0; return psz; }
       if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
       if(len == 1)   { *pslide += 1; return psz; }
@@ -1559,7 +1559,7 @@ namespace gen
 
    int32_t str::utf8_char(::gen::utf8_char * pchar, const char * psz)
    {
-      char chLen =  1 + gen::str::trailingBytesForUTF8[(unsigned char) *psz];
+      char chLen =  1 + gen::str::trailingBytesForUTF8[(uchar) *psz];
       char ch = 0;
       for(; ch < chLen; ch++)
       {
@@ -2198,7 +2198,7 @@ namespace gen
 
       int32_t i = 0;
 
-      for (; *psz != '\0' && i < 30 && isspace((unsigned char ) *psz); i++, psz++);
+      for (; *psz != '\0' && i < 30 && isspace((uchar ) *psz); i++, psz++);
 
       bool bNegative = *psz == '-';
 
@@ -2207,7 +2207,7 @@ namespace gen
 
       uint64_t ui = 0;
 
-      for(; *psz != '\0' && i < 30 && isdigit((unsigned char ) *psz); psz++, i++)
+      for(; *psz != '\0' && i < 30 && isdigit((uchar ) *psz); psz++, i++)
       {
          ui = ui * 10 + *psz - 48;
       }

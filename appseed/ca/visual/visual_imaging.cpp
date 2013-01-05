@@ -1664,8 +1664,8 @@ void imaging::BitmapBlend24CC(
          lpbDst = (LPBYTE) lpbDst + iDestPadding;
          lpbSrc = (LPBYTE) lpbSrc + iSrcPadding;
       }
-      /*      lpushDest = (unsigned short *) lpbDestParam;
-      lpushSrc = (unsigned short *) lpbSrcParam;
+      /*      lpushDest = (uint16_t *) lpbDestParam;
+      lpushSrc = (uint16_t *) lpbSrcParam;
       for(i = 0; i < cy; i++)
       {
       for(j = 0; j < cw; j+=2)
@@ -3728,10 +3728,10 @@ void imaging::blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc, int32_t iRadiu
          }
 
 
-         *lpwDestination++ = (unsigned char) (dwR / divisor);
-         *lpwDestination++ = (unsigned char) (dwG / divisor);
-         *lpwDestination++ = (unsigned char) (dwB / divisor);
-         *lpwDestination++ = (unsigned char) (dwA / divisor);
+         *lpwDestination++ = (uchar) (dwR / divisor);
+         *lpwDestination++ = (uchar) (dwG / divisor);
+         *lpwDestination++ = (uchar) (dwB / divisor);
+         *lpwDestination++ = (uchar) (dwA / divisor);
          x1 += 3;
          x2 += 3;
       }
@@ -4117,10 +4117,10 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
          }
 
          dwI /= iDivisor;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) lpbSrc[(wDst * yL) + xL * 4];
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) lpbSrc[(wDst * yL) + xL * 4];
 
          x1++;
          lpbSource_1 += 4;
@@ -4321,10 +4321,10 @@ bool imaging::channel_alpha_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdib
          }
 
          dwI /= iDivisor;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) dwI;
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) dwI;
 
          x1++;
          lpbSource_1 += 4;
@@ -4619,10 +4619,10 @@ bool imaging::channel_gray_blur_32CC(::ca::dib * pdibDst, ::ca::dib * pdibSrc,
          }
 
          dwI /= divisor;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) dwI;
-         *lpwDestination++ = (unsigned char) lpbSource_1[3];
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) dwI;
+         *lpwDestination++ = (uchar) lpbSource_1[3];
          //      x1 += 3;
          x1++;
          lpbSource_1 += 4;

@@ -156,8 +156,8 @@ namespace sockets
       bool ok_to_skip = true;
       if (mixed)
       {
-         unsigned short x;
-         unsigned short addr16[8];
+         uint16_t x;
+         uint16_t addr16[8];
          memcpy(addr16, &a, sizeof(addr16));
          for (size_t i = 0; i < 6; i++)
          {

@@ -89,7 +89,7 @@ static void oc_mcenc_find_candidates(oc_enc_ctx *_enc,oc_mcenc_ctx *_mcenc,
   oc_mb_enc_info *embs;
   int32_t             a[3][2];
   int32_t             ncandidates;
-  unsigned        nmbi;
+  uint32_t        nmbi;
   int32_t             i;
   embs=_enc->mb_info;
   /*Skip a position to store the median predictor in.*/
@@ -151,11 +151,11 @@ static void oc_mcenc_find_candidates(oc_enc_ctx *_enc,oc_mcenc_ctx *_mcenc,
 }
 
 #if 0
-static unsigned oc_sad16_halfpel(const oc_enc_ctx *_enc,
+static uint32_t oc_sad16_halfpel(const oc_enc_ctx *_enc,
  const ptrdiff_t *_frag_buf_offs,const ptrdiff_t _fragis[4],
- int32_t _mvoffset0,int32_t _mvoffset1,const unsigned char *_src,
- const unsigned char *_ref,int32_t _ystride,unsigned _best_err){
-  unsigned err;
+ int32_t _mvoffset0,int32_t _mvoffset1,const uchar *_src,
+ const uchar *_ref,int32_t _ystride,uint32_t _best_err){
+  uint32_t err;
   int32_t      bi;
   err=0;
   for(bi=0;bi<4;bi++){
@@ -168,11 +168,11 @@ static unsigned oc_sad16_halfpel(const oc_enc_ctx *_enc,
 }
 #endif
 
-static unsigned oc_satd16_halfpel(const oc_enc_ctx *_enc,
+static uint32_t oc_satd16_halfpel(const oc_enc_ctx *_enc,
  const ptrdiff_t *_frag_buf_offs,const ptrdiff_t _fragis[4],
- int32_t _mvoffset0,int32_t _mvoffset1,const unsigned char *_src,
- const unsigned char *_ref,int32_t _ystride,unsigned _best_err){
-  unsigned err;
+ int32_t _mvoffset0,int32_t _mvoffset1,const uchar *_src,
+ const uchar *_ref,int32_t _ystride,uint32_t _best_err){
+  uint32_t err;
   int32_t      bi;
   err=0;
   for(bi=0;bi<4;bi++){
@@ -184,18 +184,18 @@ static unsigned oc_satd16_halfpel(const oc_enc_ctx *_enc,
   return err;
 }
 
-static unsigned oc_mcenc_ysad_check_mbcandidate_fullpel(const oc_enc_ctx *_enc,
+static uint32_t oc_mcenc_ysad_check_mbcandidate_fullpel(const oc_enc_ctx *_enc,
  const ptrdiff_t *_frag_buf_offs,const ptrdiff_t _fragis[4],int32_t _dx,int32_t _dy,
- const unsigned char *_src,const unsigned char *_ref,int32_t _ystride,
- unsigned _block_err[4]){
-  unsigned err;
+ const uchar *_src,const uchar *_ref,int32_t _ystride,
+ uint32_t _block_err[4]){
+  uint32_t err;
   int32_t      mvoffset;
   int32_t      bi;
   mvoffset=_dx+_dy*_ystride;
   err=0;
   for(bi=0;bi<4;bi++){
     ptrdiff_t frag_offs;
-    unsigned  block_err;
+    uint32_t  block_err;
     frag_offs=_frag_buf_offs[_fragis[bi]];
     block_err=oc_enc_frag_sad(_enc,
      _src+frag_offs,_ref+frag_offs+mvoffset,_ystride);
@@ -207,7 +207,7 @@ static unsigned oc_mcenc_ysad_check_mbcandidate_fullpel(const oc_enc_ctx *_enc,
 
 static int32_t oc_mcenc_ysatd_check_mbcandidate_fullpel(const oc_enc_ctx *_enc,
  const ptrdiff_t *_frag_buf_offs,const ptrdiff_t _fragis[4],int32_t _dx,int32_t _dy,
- const unsigned char *_src,const unsigned char *_ref,int32_t _ystride){
+ const uchar *_src,const uchar *_ref,int32_t _ystride){
   int32_t mvoffset;
   int32_t err;
   int32_t bi;
@@ -222,9 +222,9 @@ static int32_t oc_mcenc_ysatd_check_mbcandidate_fullpel(const oc_enc_ctx *_enc,
   return err;
 }
 
-static unsigned oc_mcenc_ysatd_check_bcandidate_fullpel(const oc_enc_ctx *_enc,
+static uint32_t oc_mcenc_ysatd_check_bcandidate_fullpel(const oc_enc_ctx *_enc,
  ptrdiff_t _frag_offs,int32_t _dx,int32_t _dy,
- const unsigned char *_src,const unsigned char *_ref,int32_t _ystride){
+ const uchar *_src,const uchar *_ref,int32_t _ystride){
   return oc_enc_frag_satd_thresh(_enc,
    _src+_frag_offs,_ref+_frag_offs+_dx+_dy*_ystride,_ystride,UINT_MAX);
 }
@@ -258,15 +258,15 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
   oc_mcenc_ctx         mcenc;
   const ptrdiff_t     *frag_buf_offs;
   const ptrdiff_t     *fragis;
-  const unsigned char *src;
-  const unsigned char *ref;
+  const uchar *src;
+  const uchar *ref;
   int32_t                  ystride;
   oc_mb_enc_info      *embs;
   ogg_int32_t          hit_cache[31];
   ogg_int32_t          hitbit;
-  unsigned             best_block_err[4];
-  unsigned             block_err[4];
-  unsigned             best_err;
+  uint32_t             best_block_err[4];
+  uint32_t             block_err[4];
+  uint32_t             best_err;
   int32_t                  best_vec[2];
   int32_t                  best_block_vec[4][2];
   int32_t                  candx;
@@ -300,8 +300,8 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
   }
   /*If this predictor fails, move on to set A.*/
   if(best_err>OC_YSAD_THRESH1){
-    unsigned err;
-    unsigned t2;
+    uint32_t err;
+    uint32_t t2;
     int32_t      ncs;
     int32_t      ci;
     /*Compute the early termination threshold for set A.*/
@@ -528,8 +528,8 @@ void oc_mcenc_search(oc_enc_ctx *_enc,int32_t _mbi){
 #if 0
 static int32_t oc_mcenc_ysad_halfpel_mbrefine(const oc_enc_ctx *_enc,int32_t _mbi,
  int32_t _vec[2],int32_t _best_err,int32_t _frame){
-  const unsigned char *src;
-  const unsigned char *ref;
+  const uchar *src;
+  const uchar *ref;
   const ptrdiff_t     *frag_buf_offs;
   const ptrdiff_t     *fragis;
   int32_t                  offset_y[9];
@@ -581,10 +581,10 @@ static int32_t oc_mcenc_ysad_halfpel_mbrefine(const oc_enc_ctx *_enc,int32_t _mb
 }
 #endif
 
-static unsigned oc_mcenc_ysatd_halfpel_mbrefine(const oc_enc_ctx *_enc,
- int32_t _mbi,int32_t _vec[2],unsigned _best_err,int32_t _frame){
-  const unsigned char *src;
-  const unsigned char *ref;
+static uint32_t oc_mcenc_ysatd_halfpel_mbrefine(const oc_enc_ctx *_enc,
+ int32_t _mbi,int32_t _vec[2],uint32_t _best_err,int32_t _frame){
+  const uchar *src;
+  const uchar *ref;
   const ptrdiff_t     *frag_buf_offs;
   const ptrdiff_t     *fragis;
   int32_t                  offset_y[9];
@@ -649,15 +649,15 @@ void oc_mcenc_refine1mv(oc_enc_ctx *_enc,int32_t _mbi,int32_t _frame){
 
 #if 0
 static int32_t oc_mcenc_ysad_halfpel_brefine(const oc_enc_ctx *_enc,
- int32_t _vec[2],const unsigned char *_src,const unsigned char *_ref,int32_t _ystride,
- int32_t _offset_y[9],unsigned _best_err){
+ int32_t _vec[2],const uchar *_src,const uchar *_ref,int32_t _ystride,
+ int32_t _offset_y[9],uint32_t _best_err){
   int32_t mvoffset_base;
   int32_t best_site;
   int32_t sitei;
   mvoffset_base=_vec[0]+_vec[1]*_ystride;
   best_site=4;
   for(sitei=0;sitei<8;sitei++){
-    unsigned err;
+    uint32_t err;
     int32_t      site;
     int32_t      xmask;
     int32_t      ymask;
@@ -690,16 +690,16 @@ static int32_t oc_mcenc_ysad_halfpel_brefine(const oc_enc_ctx *_enc,
 }
 #endif
 
-static unsigned oc_mcenc_ysatd_halfpel_brefine(const oc_enc_ctx *_enc,
- int32_t _vec[2],const unsigned char *_src,const unsigned char *_ref,int32_t _ystride,
- int32_t _offset_y[9],unsigned _best_err){
+static uint32_t oc_mcenc_ysatd_halfpel_brefine(const oc_enc_ctx *_enc,
+ int32_t _vec[2],const uchar *_src,const uchar *_ref,int32_t _ystride,
+ int32_t _offset_y[9],uint32_t _best_err){
   int32_t mvoffset_base;
   int32_t best_site;
   int32_t sitei;
   mvoffset_base=_vec[0]+_vec[1]*_ystride;
   best_site=4;
   for(sitei=0;sitei<8;sitei++){
-    unsigned err;
+    uint32_t err;
     int32_t      site;
     int32_t      xmask;
     int32_t      ymask;
@@ -735,8 +735,8 @@ void oc_mcenc_refine4mv(oc_enc_ctx *_enc,int32_t _mbi){
   oc_mb_enc_info      *embs;
   const ptrdiff_t     *frag_buf_offs;
   const ptrdiff_t     *fragis;
-  const unsigned char *src;
-  const unsigned char *ref;
+  const uchar *src;
+  const uchar *ref;
   int32_t                  offset_y[9];
   int32_t                  ystride;
   int32_t                  bi;

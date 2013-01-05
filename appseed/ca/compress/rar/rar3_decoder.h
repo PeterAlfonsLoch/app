@@ -45,7 +45,7 @@ namespace compress
       class bit_decoder
       {
          uint32_t m_Value;
-         unsigned m_BitPos;
+         uint32_t m_BitPos;
       public:
          ::ex1::in_buffer m_Stream;
          bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
@@ -65,7 +65,7 @@ namespace compress
          uint64_t GetProcessedSize() const { return m_Stream.GetProcessedSize() - (m_BitPos) / 8; }
          uint32_t GetBitPosition() const { return ((8 - m_BitPos) & 7); }
 
-         uint32_t GetValue(unsigned numBits)
+         uint32_t GetValue(uint32_t numBits)
          {
             if (m_BitPos < numBits)
             {
@@ -80,13 +80,13 @@ namespace compress
             return m_Value >> (m_BitPos - numBits);
          }
 
-         void MovePos(unsigned numBits)
+         void MovePos(uint32_t numBits)
          {
             m_BitPos -= numBits;
             m_Value = m_Value & ((1 << m_BitPos) - 1);
          }
 
-         uint32_t ReadBits(unsigned numBits)
+         uint32_t ReadBits(uint32_t numBits)
          {
             uint32_t res = GetValue(numBits);
             MovePos(numBits);

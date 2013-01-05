@@ -347,13 +347,13 @@ __inline__
 Bool mainGtU ( uint32_t  i1, 
                uint32_t  i2,
                UChar*  block, 
-               UInt16* quadrant,
+               uint16_t* quadrant,
                uint32_t  nblock,
                int32_t*  budget )
 {
    int32_t  k;
    UChar  c1, c2;
-   UInt16 s1, s2;
+   uint16_t s1, s2;
 
    AssertD ( i1 != i2, "mainGtU" );
    /* 1 */
@@ -484,7 +484,7 @@ int32_t incs[14] = { 1, 4, 13, 40, 121, 364, 1093, 3280,
 static
 void mainSimpleSort ( uint32_t* ptr,
                       UChar*  block,
-                      UInt16* quadrant,
+                      uint16_t* quadrant,
                       int32_t   nblock,
                       int32_t   lo, 
                       int32_t   hi, 
@@ -620,7 +620,7 @@ UChar mmed3 ( UChar a, UChar b, UChar c )
 static
 void mainQSort3 ( uint32_t* ptr,
                   UChar*  block,
-                  UInt16* quadrant,
+                  uint16_t* quadrant,
                   int32_t   nblock,
                   int32_t   loSt, 
                   int32_t   hiSt, 
@@ -750,7 +750,7 @@ void mainQSort3 ( uint32_t* ptr,
 static
 void mainSort ( uint32_t* ptr, 
                 UChar*  block,
-                UInt16* quadrant, 
+                uint16_t* quadrant, 
                 uint32_t* ftab,
                 int32_t   nblock,
                 int32_t   verb,
@@ -763,7 +763,7 @@ void mainSort ( uint32_t* ptr,
    int32_t  copyEnd  [256];
    UChar  c1;
    int32_t  numQSorted;
-   UInt16 s;
+   uint16_t s;
    if (verb >= 4) VPrintf0 ( "        main sort initialise ...\n" );
 
    /*-- set up the 2-byte frequency table --*/
@@ -773,21 +773,21 @@ void mainSort ( uint32_t* ptr,
    i = nblock-1;
    for (; i >= 3; i -= 4) {
       quadrant[i] = 0;
-      j = (j >> 8) | ( ((UInt16)block[i]) << 8);
+      j = (j >> 8) | ( ((uint16_t)block[i]) << 8);
       ftab[j]++;
       quadrant[i-1] = 0;
-      j = (j >> 8) | ( ((UInt16)block[i-1]) << 8);
+      j = (j >> 8) | ( ((uint16_t)block[i-1]) << 8);
       ftab[j]++;
       quadrant[i-2] = 0;
-      j = (j >> 8) | ( ((UInt16)block[i-2]) << 8);
+      j = (j >> 8) | ( ((uint16_t)block[i-2]) << 8);
       ftab[j]++;
       quadrant[i-3] = 0;
-      j = (j >> 8) | ( ((UInt16)block[i-3]) << 8);
+      j = (j >> 8) | ( ((uint16_t)block[i-3]) << 8);
       ftab[j]++;
    }
    for (; i >= 0; i--) {
       quadrant[i] = 0;
-      j = (j >> 8) | ( ((UInt16)block[i]) << 8);
+      j = (j >> 8) | ( ((uint16_t)block[i]) << 8);
       ftab[j]++;
    }
 
@@ -995,7 +995,7 @@ void mainSort ( uint32_t* ptr,
 
          for (j = bbSize-1; j >= 0; j--) {
             int32_t a2update     = ptr[bbStart + j];
-            UInt16 qVal        = (UInt16)(j >> shifts);
+            uint16_t qVal        = (uint16_t)(j >> shifts);
             quadrant[a2update] = qVal;
             if (a2update < BZ_N_OVERSHOOT)
                quadrant[a2update + nblock] = qVal;
@@ -1036,7 +1036,7 @@ void BZ2_blockSort ( e_state* s )
    int32_t   nblock = s->nblock;
    int32_t   verb   = s->verbosity;
    int32_t   wfact  = s->workFactor;
-   UInt16* quadrant;
+   uint16_t* quadrant;
    int32_t   budget;
    int32_t   budgetInit;
    int32_t   i;
@@ -1051,7 +1051,7 @@ void BZ2_blockSort ( e_state* s )
       */
       i = nblock+BZ_N_OVERSHOOT;
       if (i & 1) i++;
-      quadrant = (UInt16*)(&(block[i]));
+      quadrant = (uint16_t*)(&(block[i]));
 
       /* (wfact-1) / 3 puts the default-factor-30
          transition point at very roughly the same place as 

@@ -36,7 +36,7 @@
 //this talbe is modified base on win1251BulgarianCharToOrderMap, so 
 //only number <64 is sure valid
 
-unsigned char Latin5_BulgarianCharToOrderMap[] =
+uchar Latin5_BulgarianCharToOrderMap[] =
 {
 255,255,255,255,255,255,255,255,255,255,254,255,255,254,255,255,  //00
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,  //10
@@ -56,7 +56,7 @@ unsigned char Latin5_BulgarianCharToOrderMap[] =
  62,242,243,244, 58,245, 98,246,247,248,249,250,251, 91,252,253,  //f0
 };
 
-unsigned char win1251BulgarianCharToOrderMap[] =
+uchar win1251BulgarianCharToOrderMap[] =
 {
 255,255,255,255,255,255,255,255,255,255,254,255,255,254,255,255,  //00
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,  //10

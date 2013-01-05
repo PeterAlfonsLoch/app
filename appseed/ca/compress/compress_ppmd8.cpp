@@ -56,13 +56,13 @@ typedef struct CPpmd8_Node_
 
 void Ppmd8_Construct(CPpmd8 *p)
 {
-  unsigned i, k, m;
+  uint32_t i, k, m;
 
   p->Base = 0;
 
   for (i = 0, k = 0; i < PPMD_NUM_INDEXES; i++)
   {
-    unsigned step = (i >= 12 ? 4 : (i >> 2) + 1);
+    uint32_t step = (i >= 12 ? 4 : (i >> 2) + 1);
     do { p->Units2Indx[k++] = (byte)i; } while(--step);
     p->Indx2Units[i] = (byte)k;
   }
@@ -107,7 +107,7 @@ bool Ppmd8_Alloc(CPpmd8 *p, uint32_t size, ::ex1::ISzAlloc *alloc)
   return true;
 }
 
-static void InsertNode(CPpmd8 *p, void *node, unsigned indx)
+static void InsertNode(CPpmd8 *p, void *node, uint32_t indx)
 {
   ((CPpmd8_Node *)node)->Stamp = EMPTY_NODE;
   ((CPpmd8_Node *)node)->Next = (CPpmd8_Node_Ref)p->FreeList[indx];
@@ -116,7 +116,7 @@ static void InsertNode(CPpmd8 *p, void *node, unsigned indx)
   p->Stamps[indx]++;
 }
 
-static void *RemoveNode(CPpmd8 *p, unsigned indx)
+static void *RemoveNode(CPpmd8 *p, uint32_t indx)
 {
   CPpmd8_Node *node = NODE((CPpmd8_Node_Ref)p->FreeList[indx]);
   p->FreeList[indx] = node->Next;
@@ -124,13 +124,13 @@ static void *RemoveNode(CPpmd8 *p, unsigned indx)
   return node;
 }
 
-static void SplitBlock(CPpmd8 *p, void *ptr, unsigned oldIndx, unsigned newIndx)
+static void SplitBlock(CPpmd8 *p, void *ptr, uint32_t oldIndx, uint32_t newIndx)
 {
-  unsigned i, nu = I2U(oldIndx) - I2U(newIndx);
+  uint32_t i, nu = I2U(oldIndx) - I2U(newIndx);
   ptr = (byte *)ptr + U2B(I2U(newIndx));
   if (I2U(i = U2I(nu)) != nu)
   {
-    unsigned k = I2U(--i);
+    uint32_t k = I2U(--i);
     InsertNode(p, ((byte *)ptr) + U2B(k), nu - k - 1);
   }
   InsertNode(p, ptr, i);
@@ -140,7 +140,7 @@ static void GlueFreeBlocks(CPpmd8 *p)
 {
   CPpmd8_Node_Ref head = 0;
   CPpmd8_Node_Ref *prev = &head;
-  unsigned i;
+  uint32_t i;
 
   p->GlueCount = 1 << 13;
   memset(p->Stamps, 0, sizeof(p->Stamps));
@@ -178,7 +178,7 @@ static void GlueFreeBlocks(CPpmd8 *p)
   while (head != 0)
   {
     CPpmd8_Node *node = NODE(head);
-    unsigned nu;
+    uint32_t nu;
     head = node->Next;
     nu = node->NU;
     if (nu == 0)
@@ -187,16 +187,16 @@ static void GlueFreeBlocks(CPpmd8 *p)
       InsertNode(p, node, PPMD_NUM_INDEXES - 1);
     if (I2U(i = U2I(nu)) != nu)
     {
-      unsigned k = I2U(--i);
+      uint32_t k = I2U(--i);
       InsertNode(p, node + k, nu - k - 1);
     }
     InsertNode(p, node, i);
   }
 }
 
-static void *AllocUnitsRare(CPpmd8 *p, unsigned indx)
+static void *AllocUnitsRare(CPpmd8 *p, uint32_t indx)
 {
-  unsigned i;
+  uint32_t i;
   void *retVal;
   if (p->GlueCount == 0)
   {
@@ -220,7 +220,7 @@ static void *AllocUnitsRare(CPpmd8 *p, unsigned indx)
   return retVal;
 }
 
-static void *AllocUnits(CPpmd8 *p, unsigned indx)
+static void *AllocUnits(CPpmd8 *p, uint32_t indx)
 {
   uint32_t numBytes;
   if (p->FreeList[indx] != 0)
@@ -239,10 +239,10 @@ static void *AllocUnits(CPpmd8 *p, unsigned indx)
   { uint32_t *d = (uint32_t *)dest; const uint32_t *s = (const uint32_t *)src; uint32_t n = num; \
     do { d[0] = s[0]; d[1] = s[1]; d[2] = s[2]; s += 3; d += 3; } while(--n); }
 
-static void *ShrinkUnits(CPpmd8 *p, void *oldPtr, unsigned oldNU, unsigned newNU)
+static void *ShrinkUnits(CPpmd8 *p, void *oldPtr, uint32_t oldNU, uint32_t newNU)
 {
-  unsigned i0 = U2I(oldNU);
-  unsigned i1 = U2I(newNU);
+  uint32_t i0 = U2I(oldNU);
+  uint32_t i1 = U2I(newNU);
   if (i0 == i1)
     return oldPtr;
   if (p->FreeList[i1] != 0)
@@ -256,7 +256,7 @@ static void *ShrinkUnits(CPpmd8 *p, void *oldPtr, unsigned oldNU, unsigned newNU
   return oldPtr;
 }
 
-static void FreeUnits(CPpmd8 *p, void *ptr, unsigned nu)
+static void FreeUnits(CPpmd8 *p, void *ptr, uint32_t nu)
 {
   InsertNode(p, ptr, U2I(nu));
 }
@@ -274,9 +274,9 @@ static void SpecialFreeUnit(CPpmd8 *p, void *ptr)
   }
 }
 
-static void *MoveUnitsUp(CPpmd8 *p, void *oldPtr, unsigned nu)
+static void *MoveUnitsUp(CPpmd8 *p, void *oldPtr, uint32_t nu)
 {
-  unsigned indx = U2I(nu);
+  uint32_t indx = U2I(nu);
   void *ptr;
   if ((byte *)oldPtr > p->UnitsStart + 16 * 1024 || REF(oldPtr) > p->FreeList[indx])
     return oldPtr;
@@ -292,7 +292,7 @@ static void *MoveUnitsUp(CPpmd8 *p, void *oldPtr, unsigned nu)
 static void ExpandTextArea(CPpmd8 *p)
 {
   uint32_t count[PPMD_NUM_INDEXES];
-  unsigned i;
+  uint32_t i;
   memset(count, 0, sizeof(count));
   if (p->LoUnit != p->HiUnit)
     ((CPpmd8_Node *)p->LoUnit)->Stamp = 0;
@@ -338,7 +338,7 @@ static void SetSuccessor(CPpmd_State *p, CPpmd_Void_Ref v)
 
 static void RestartModel(CPpmd8 *p)
 {
-  unsigned i, k, m, r;
+  uint32_t i, k, m, r;
 
   memset(p->FreeList, 0, sizeof(p->FreeList));
   memset(p->Stamps, 0, sizeof(p->Stamps));
@@ -393,7 +393,7 @@ static void RestartModel(CPpmd8 *p)
   }
 }
 
-void Ppmd8_Init(CPpmd8 *p, unsigned maxOrder, unsigned restoreMethod)
+void Ppmd8_Init(CPpmd8 *p, uint32_t maxOrder, uint32_t restoreMethod)
 {
   p->MaxOrder = maxOrder;
   p->RestoreMethod = restoreMethod;
@@ -403,9 +403,9 @@ void Ppmd8_Init(CPpmd8 *p, unsigned maxOrder, unsigned restoreMethod)
   p->DummySee.Count = 64; /* unused */
 }
 
-static void Refresh(CPpmd8 *p, CTX_PTR ctx, unsigned oldNU, unsigned scale)
+static void Refresh(CPpmd8 *p, CTX_PTR ctx, uint32_t oldNU, uint32_t scale)
 {
-  unsigned i = ctx->NumStats, escFreq, sumFreq, flags;
+  uint32_t i = ctx->NumStats, escFreq, sumFreq, flags;
   CPpmd_State *s = (CPpmd_State *)ShrinkUnits(p, STATS(ctx), oldNU, (i + 2) >> 1);
   ctx->Stats = REF(s);
   #ifdef PPMD8_FREEZE_SUPPORT
@@ -433,10 +433,10 @@ static void SwapStates(CPpmd_State *t1, CPpmd_State *t2)
   *t2 = tmp;
 }
 
-static CPpmd_Void_Ref CutOff(CPpmd8 *p, CTX_PTR ctx, unsigned order)
+static CPpmd_Void_Ref CutOff(CPpmd8 *p, CTX_PTR ctx, uint32_t order)
 {
   int32_t i;
-  unsigned tmp;
+  uint32_t tmp;
   CPpmd_State *s;
   
   if (!ctx->NumStats)
@@ -455,7 +455,7 @@ static CPpmd_Void_Ref CutOff(CPpmd8 *p, CTX_PTR ctx, unsigned order)
     return 0;
   }
 
-  ctx->Stats = STATS_REF(MoveUnitsUp(p, STATS(ctx), tmp = ((unsigned)ctx->NumStats + 2) >> 1));
+  ctx->Stats = STATS_REF(MoveUnitsUp(p, STATS(ctx), tmp = ((uint32_t)ctx->NumStats + 2) >> 1));
 
   for (s = STATS(ctx) + (i = ctx->NumStats); s >= STATS(ctx); s--)
     if ((byte *)Ppmd8_GetPtr(p, SUCCESSOR(s)) < p->UnitsStart)
@@ -484,7 +484,7 @@ static CPpmd_Void_Ref CutOff(CPpmd8 *p, CTX_PTR ctx, unsigned order)
       ctx->Flags = (ctx->Flags & 0x10) + 0x08 * (s->Symbol >= 0x40);
       *ONE_STATE(ctx) = *s;
       FreeUnits(p, s, tmp);
-      ONE_STATE(ctx)->Freq = (byte)((unsigned)ONE_STATE(ctx)->Freq + 11) >> 3;
+      ONE_STATE(ctx)->Freq = (byte)((uint32_t)ONE_STATE(ctx)->Freq + 11) >> 3;
     }
     else
       Refresh(p, ctx, tmp, ctx->SummFreq > 16 * i);
@@ -493,7 +493,7 @@ static CPpmd_Void_Ref CutOff(CPpmd8 *p, CTX_PTR ctx, unsigned order)
 }
 
 #ifdef PPMD8_FREEZE_SUPPORT
-static CPpmd_Void_Ref RemoveBinContexts(CPpmd8 *p, CTX_PTR ctx, unsigned order)
+static CPpmd_Void_Ref RemoveBinContexts(CPpmd8 *p, CTX_PTR ctx, uint32_t order)
 {
   CPpmd_State *s;
   if (!ctx->NumStats)
@@ -527,7 +527,7 @@ static CPpmd_Void_Ref RemoveBinContexts(CPpmd8 *p, CTX_PTR ctx, unsigned order)
 static uint32_t GetUsedMemory(const CPpmd8 *p)
 {
   uint32_t v = 0;
-  unsigned i;
+  uint32_t i;
   for (i = 0; i < PPMD_NUM_INDEXES; i++)
     v += p->Stamps[i] * I2U(i);
   return p->Size - (uint32_t)(p->HiUnit - p->LoUnit) - (uint32_t)(p->UnitsStart - p->Text) - U2B(v);
@@ -607,7 +607,7 @@ static CTX_PTR CreateSuccessors(CPpmd8 *p, bool skip, CPpmd_State *s1, CTX_PTR c
   CPpmd_Byte_Ref upBranch = (CPpmd_Byte_Ref)SUCCESSOR(p->FoundState);
   /* fixed over Shkarin's code. Maybe it could work without + 1 too. */
   CPpmd_State *ps[PPMD8_MAX_ORDER + 1];
-  unsigned numPs = 0;
+  uint32_t numPs = 0;
   
   if (!skip)
     ps[numPs++] = p->FoundState;
@@ -698,7 +698,7 @@ static CTX_PTR ReduceOrder(CPpmd8 *p, CPpmd_State *s1, CTX_PTR c)
   #ifdef PPMD8_FREEZE_SUPPORT
   /* The BUG in Shkarin's code was fixed: ps could overflow in CUT_OFF mode. */
   CPpmd_State *ps[PPMD8_MAX_ORDER + 1];
-  unsigned numPs = 0;
+  uint32_t numPs = 0;
   ps[numPs++] = p->FoundState;
   #endif
 
@@ -792,7 +792,7 @@ static void UpdateModel(CPpmd8 *p)
 {
   CPpmd_Void_Ref successor, fSuccessor = SUCCESSOR(p->FoundState);
   CTX_PTR c;
-  unsigned s0, ns, fFreq = p->FoundState->Freq;
+  uint32_t s0, ns, fFreq = p->FoundState->Freq;
   byte flag, fSymbol = p->FoundState->Symbol;
   CPpmd_State *s = NULL;
   
@@ -891,15 +891,15 @@ static void UpdateModel(CPpmd8 *p)
   
   for (; c != p->MinContext; c = SUFFIX(c))
   {
-    unsigned ns1;
+    uint32_t ns1;
     uint32_t cf, sf;
     if ((ns1 = c->NumStats) != 0)
     {
       if ((ns1 & 1) != 0)
       {
         /* Expand for one UNIT */
-        unsigned oldNU = (ns1 + 1) >> 1;
-        unsigned i = U2I(oldNU);
+        uint32_t oldNU = (ns1 + 1) >> 1;
+        uint32_t i = U2I(oldNU);
         if (i != U2I(oldNU + 1))
         {
           void *ptr = AllocUnits(p, i + 1);
@@ -959,7 +959,7 @@ static void UpdateModel(CPpmd8 *p)
   
 static void Rescale(CPpmd8 *p)
 {
-  unsigned i, adder, sumFreq, escFreq;
+  uint32_t i, adder, sumFreq, escFreq;
   CPpmd_State *stats = STATS(p->MinContext);
   CPpmd_State *s = p->FoundState;
   {
@@ -998,8 +998,8 @@ static void Rescale(CPpmd8 *p)
   
   if (s->Freq == 0)
   {
-    unsigned numStats = p->MinContext->NumStats;
-    unsigned n0, n1;
+    uint32_t numStats = p->MinContext->NumStats;
+    uint32_t n0, n1;
     do { i++; } while ((--s)->Freq == 0);
     escFreq += i;
     p->MinContext->NumStats = (byte)(p->MinContext->NumStats - i);
@@ -1028,18 +1028,18 @@ static void Rescale(CPpmd8 *p)
   p->FoundState = STATS(p->MinContext);
 }
 
-CPpmd_See *Ppmd8_MakeEscFreq(CPpmd8 *p, unsigned numMasked1, uint32_t *escFreq)
+CPpmd_See *Ppmd8_MakeEscFreq(CPpmd8 *p, uint32_t numMasked1, uint32_t *escFreq)
 {
   CPpmd_See *see;
   if (p->MinContext->NumStats != 0xFF)
   {
     see = p->See[p->NS2Indx[p->MinContext->NumStats + 2] - 3] +
-        (p->MinContext->SummFreq > 11 * ((unsigned)p->MinContext->NumStats + 1)) +
-        2 * (2 * (unsigned)p->MinContext->NumStats <
-        ((unsigned)SUFFIX(p->MinContext)->NumStats + numMasked1)) +
+        (p->MinContext->SummFreq > 11 * ((uint32_t)p->MinContext->NumStats + 1)) +
+        2 * (2 * (uint32_t)p->MinContext->NumStats <
+        ((uint32_t)SUFFIX(p->MinContext)->NumStats + numMasked1)) +
         p->MinContext->Flags;
     {
-      unsigned r = (see->Summ >> see->Shift);
+      uint32_t r = (see->Summ >> see->Shift);
       see->Summ = (uint16_t)(see->Summ - r);
       *escFreq = r + (r == 0);
     }

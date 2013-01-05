@@ -22,17 +22,17 @@ CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD
 
 
 typedef char CHAR;
-typedef unsigned char UCHAR;
+typedef uchar UCHAR;
 
 #undef BYTE
-typedef unsigned char BYTE;
+typedef uchar BYTE;
 
-typedef short SHORT;
-typedef unsigned short USHORT;
+typedef int16_t SHORT;
+typedef uint16_t USHORT;
 
 #undef WORD
-typedef unsigned short WORD;
-typedef short VARIANT_BOOL;
+typedef uint16_t WORD;
+typedef int16_t VARIANT_BOOL;
 
 typedef int32_t INT;
 typedef int32_t INT32;
@@ -150,7 +150,7 @@ enum VARENUM
   VT_FILETIME = 64
 };
 #endif
-typedef unsigned short VARTYPE;
+typedef uint16_t VARTYPE;
 typedef WORD PROPVAR_PAD1;
 typedef WORD PROPVAR_PAD2;
 typedef WORD PROPVAR_PAD3;

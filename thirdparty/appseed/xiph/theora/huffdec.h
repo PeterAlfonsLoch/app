@@ -62,16 +62,16 @@ struct oc_huff_node{
     0 indicates a leaf node.
     Otherwise there are 1<<nbits nodes in the nodes table, which can be
      indexed by reading nbits bits from the stream.*/
-  unsigned char  nbits;
+  uchar  nbits;
   /*The value of a token stored in a leaf node.
     The value in non-leaf nodes is undefined.*/
-  unsigned char  token;
+  uchar  token;
   /*The depth of the current node, relative to its parent in the collapsed
      tree.
     This can be less than its parent's nbits value, in which case there are
      1<<nbits-depth copies of this node in the table, and the bitstream should
      only be advanced depth bits after reaching this node.*/
-  unsigned char  depth;
+  uchar  depth;
   /*The table of child nodes.
     The ACTUAL size of this array is 1<<nbits, despite what the declaration
      below claims.

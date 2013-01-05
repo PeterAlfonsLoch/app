@@ -258,8 +258,8 @@ void oc_enquant_qavg_init(ogg_int64_t _log_qavg[2][64],
       ogg_uint32_t qp;
       qp=0;
       for(ci=0;ci<64;ci++){
-        unsigned rq;
-        unsigned qd;
+        uint32_t rq;
+        uint32_t qd;
         qd=_dequant[qi][pli][qti][OC_IZIG_ZAG[ci]];
         rq=(OC_RPSD[qti][ci]+(qd>>1))/qd;
         qp+=rq*(ogg_uint32_t)rq;

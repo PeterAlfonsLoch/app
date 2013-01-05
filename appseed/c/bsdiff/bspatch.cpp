@@ -28,7 +28,7 @@
 #include "bzlib.h"
 #include "bsdiff.h"
 
-typedef unsigned char u_char;
+typedef uchar u_char;
 
 #ifdef WINDOWS
 typedef uint_ptr ssize_t;

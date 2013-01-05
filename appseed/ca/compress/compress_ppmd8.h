@@ -48,14 +48,14 @@ typedef struct
 {
   CPpmd8_Context *MinContext, *MaxContext;
   CPpmd_State *FoundState;
-  unsigned OrderFall, InitEsc, PrevSuccess, MaxOrder;
+  uint32_t OrderFall, InitEsc, PrevSuccess, MaxOrder;
   int32_t RunLength, InitRL; /* must be 32-bit at least */
 
   uint32_t Size;
   uint32_t GlueCount;
   byte *Base, *LoUnit, *HiUnit, *Text, *UnitsStart;
   uint32_t AlignOffset;
-  unsigned RestoreMethod;
+  uint32_t RestoreMethod;
 
   /* Range Coder */
   uint32_t Range;
@@ -80,7 +80,7 @@ typedef struct
 void Ppmd8_Construct(CPpmd8 *p);
 bool Ppmd8_Alloc(CPpmd8 *p, uint32_t size, ::ex1::ISzAlloc *alloc);
 void Ppmd8_Free(CPpmd8 *p, ::ex1::ISzAlloc *alloc);
-void Ppmd8_Init(CPpmd8 *p, unsigned maxOrder, unsigned restoreMethod);
+void Ppmd8_Init(CPpmd8 *p, uint32_t maxOrder, uint32_t restoreMethod);
 #define Ppmd8_WasAllocated(p) ((p)->Base != NULL)
 
 
@@ -108,7 +108,7 @@ void Ppmd8_UpdateBin(CPpmd8 *p);
     p->NS2BSIndx[Ppmd8_GetContext(p, p->MinContext->Suffix)->NumStats] + \
     p->PrevSuccess + p->MinContext->Flags + ((p->RunLength >> 26) & 0x20)]
 
-CPpmd_See *Ppmd8_MakeEscFreq(CPpmd8 *p, unsigned numMasked, uint32_t *scale);
+CPpmd_See *Ppmd8_MakeEscFreq(CPpmd8 *p, uint32_t numMasked, uint32_t *scale);
 
 
 /* ---------- Decode ---------- */

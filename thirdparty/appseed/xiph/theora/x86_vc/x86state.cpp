@@ -23,7 +23,7 @@
 
 /*This table has been modified from OC_FZIG_ZAG by baking a 4x4 transpose into
    each quadrant of the destination.*/
-static const unsigned char OC_FZIG_ZAG_MMX[128]={
+static const uchar OC_FZIG_ZAG_MMX[128]={
    0, 8, 1, 2, 9,16,24,17,
   10, 3,32,11,18,25, 4,12,
    5,26,19,40,33,34,41,48,

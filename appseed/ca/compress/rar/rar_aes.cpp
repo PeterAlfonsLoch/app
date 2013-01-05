@@ -32,7 +32,7 @@ namespace crypto
          same = true;
          if (_thereIsSalt)
          {
-            for (unsigned i = 0; i < sizeof(_salt); i++)
+            for (uint32_t i = 0; i < sizeof(_salt); i++)
                if (_salt[i] != data[i])
                {
                   same = false;
@@ -40,14 +40,14 @@ namespace crypto
                }
          }
       }
-      for (unsigned i = 0; i < sizeof(_salt); i++)
+      for (uint32_t i = 0; i < sizeof(_salt); i++)
          _salt[i] = data[i];
       if (!_needCalculate && !same)
          _needCalculate = true;
       return S_OK;
    }
 
-   static const unsigned kMaxPasswordLength = 127 * 2;
+   static const uint32_t kMaxPasswordLength = 127 * 2;
 
    ex1::HRes decoder::CryptoSetPassword(const byte *data, uint32_t size)
    {
@@ -83,7 +83,7 @@ namespace crypto
    {
       if (_needCalculate)
       {
-         const unsigned kSaltSize = 8;
+         const uint32_t kSaltSize = 8;
 
          byte rawPassword[kMaxPasswordLength + kSaltSize];
 
@@ -101,8 +101,8 @@ namespace crypto
          sha.Init();
 
          // rar reverts hash for sha.
-         const unsigned kNumRounds = (1 << 18);
-         unsigned i;
+         const uint32_t kNumRounds = (1 << 18);
+         uint32_t i;
          for (i = 0; i < kNumRounds; i++)
          {
             sha.UpdateRar(rawPassword, rawLength, _rar350Mode);
@@ -126,7 +126,7 @@ namespace crypto
          byte digest[20];
          sha.Final(digest);
          for (i = 0; i < 4; i++)
-            for (unsigned j = 0; j < 4; j++)
+            for (uint32_t j = 0; j < 4; j++)
                aesKey[i * 4 + j] = (digest[i * 4 + 3 - j]);
       }
       _needCalculate = false;

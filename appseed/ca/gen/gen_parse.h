@@ -42,9 +42,9 @@ namespace gen
       parse();
       parse(const string &);
       parse(const string &,const string &);
-      parse(const string &,const string &,short);
+      parse(const string &,const string &,int16_t);
       ~parse();
-      short issplit(const char);
+      int16_t issplit(const char);
       void getsplit();
       void getsplit(string &);
       string getword();
@@ -79,7 +79,7 @@ namespace gen
       char     pa_breakchar;
       char     pa_enable;
       char     pa_disable;
-      short    pa_nospace;
+      int16_t    pa_nospace;
       bool     pa_quote;
    };
 

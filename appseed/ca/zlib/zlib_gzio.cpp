@@ -400,7 +400,7 @@ zlib_local int32_t destroy (
 int32_t ZEXPORT gzread (
     gzFile file,
     voidp buf,
-    unsigned len)
+    uint32_t len)
 {
     gz_stream *s = (gz_stream*)file;
     Bytef *start = (Bytef*)buf; /* starting point for crc computation */
@@ -513,7 +513,7 @@ int32_t ZEXPORT gzread (
 int32_t ZEXPORT gzgetc(
     gzFile file)
 {
-    unsigned char c;
+    uchar c;
 
     return gzread(file, &c, 1) == 1 ? c : -1;
 }
@@ -569,7 +569,7 @@ char * ZEXPORT gzgets(
 int32_t ZEXPORT gzwrite (
     gzFile file,
     voidpc buf,
-    unsigned len)
+    uint32_t len)
 {
     gz_stream *s = (gz_stream*)file;
 
@@ -639,7 +639,7 @@ int32_t ZEXPORTVA gzprintf (gzFile file, const char *format, /* args */ ...)
 #endif
     if (len <= 0 || len >= (int32_t)sizeof(buf) || buf[sizeof(buf) - 1] != 0)
         return 0;
-    return gzwrite(file, buf, (unsigned)len);
+    return gzwrite(file, buf, (uint32_t)len);
 }
 #else /* not ANSI C */
 
@@ -681,14 +681,14 @@ int32_t ZEXPORTVA gzprintf (file, format, a1, a2, a3, a4, a5, a6, a7, a8, a9, a1
 #endif
 
 /* ===========================================================================
-      Writes c, converted to an unsigned char, into the compressed spfile->
+      Writes c, converted to an uchar, into the compressed spfile->
    gzputc returns the value that was written, or -1 in case of error.
 */
 int32_t ZEXPORT gzputc(
     gzFile file,
     int32_t c)
 {
-    unsigned char cc = (unsigned char) c; /* required for big endian systems */
+    uchar cc = (uchar) c; /* required for big endian systems */
 
     return gzwrite(file, &cc, 1) == 1 ? (int32_t)cc : -1;
 }
@@ -703,7 +703,7 @@ int32_t ZEXPORT gzputs(
     gzFile file,
     const char *s)
 {
-    return gzwrite(file, (char*)s, (unsigned)strlen(s));
+    return gzwrite(file, (char*)s, (uint32_t)strlen(s));
 }
 
 

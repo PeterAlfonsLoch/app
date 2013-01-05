@@ -23,11 +23,11 @@ typedef struct {
 
 err_status_t
 aes_cbc_set_key(aes_cbc_ctx_t *c,
-      const unsigned char *key); 
+      const uchar *key); 
 
 err_status_t
 aes_cbc_encrypt(aes_cbc_ctx_t *c, 
-      unsigned char *buf, 
+      uchar *buf, 
       uint32_t  *bytes_in_data);
 
 err_status_t
@@ -39,12 +39,12 @@ aes_cbc_set_iv(aes_cbc_ctx_t *c, void *iv);
 
 err_status_t
 aes_cbc_nist_encrypt(aes_cbc_ctx_t *c,
-           unsigned char *data, 
+           uchar *data, 
            uint32_t *bytes_in_data);
 
 err_status_t
 aes_cbc_nist_decrypt(aes_cbc_ctx_t *c,
-           unsigned char *data, 
+           uchar *data, 
            uint32_t *bytes_in_data);
 
 #endif /* AES_CBC_H */

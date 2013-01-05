@@ -43,11 +43,11 @@ static int32_t oc_info_unpack(oc_pack_buf *_opb,th_info *_info){
   long val;
   /*Check the codec bitstream version.*/
   val=oc_pack_read(_opb,8);
-  _info->version_major=(unsigned char)val;
+  _info->version_major=(uchar)val;
   val=oc_pack_read(_opb,8);
-  _info->version_minor=(unsigned char)val;
+  _info->version_minor=(uchar)val;
   val=oc_pack_read(_opb,8);
-  _info->version_subminor=(unsigned char)val;
+  _info->version_subminor=(uchar)val;
   /*verify we can parse this bitstream version.
      We accept earlier minors and all subminors, by spec*/
   if(_info->version_major>TH_VERSION_MAJOR||

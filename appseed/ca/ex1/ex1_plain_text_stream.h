@@ -87,16 +87,16 @@ namespace ex1
 
 
       plain_text_input_stream & operator >> (char & ch);
-      plain_text_input_stream & operator >> (unsigned char & uch);
-      plain_text_input_stream & operator >> (short & sh);
-      plain_text_input_stream & operator >> (unsigned short & ush);
+      plain_text_input_stream & operator >> (uchar & uch);
+      plain_text_input_stream & operator >> (int16_t & sh);
+      plain_text_input_stream & operator >> (uint16_t & ush);
       plain_text_input_stream & operator >> (wchar_t & wch);
       plain_text_input_stream & operator >> (bool & b);
       plain_text_input_stream & operator >> (int32_t & i);
       plain_text_input_stream & operator >> (uint32_t & ui);
 #if defined(WINDOWS) || defined(__LP64__)
       plain_text_input_stream & operator >> (long & l);
-      plain_text_input_stream & operator >> (unsigned long & ul);
+      plain_text_input_stream & operator >> (uint32_t long & ul);
 #endif
 #if !defined(LINUX)
       plain_text_input_stream & operator >> (int64_t & i);
@@ -136,16 +136,16 @@ namespace ex1
 
 
       plain_text_output_stream & operator << (char ch);
-      plain_text_output_stream & operator << (unsigned char uch);
-      plain_text_output_stream & operator << (short sh);
-      plain_text_output_stream & operator << (unsigned short ush);
+      plain_text_output_stream & operator << (uchar uch);
+      plain_text_output_stream & operator << (int16_t sh);
+      plain_text_output_stream & operator << (uint16_t ush);
       plain_text_output_stream & operator << (wchar_t wch);
       plain_text_output_stream & operator << (bool b);
       plain_text_output_stream & operator << (int32_t i);
       plain_text_output_stream & operator << (uint32_t ui);
 #if defined(WINDOWS) || defined(__LP64__)
       plain_text_output_stream & operator << (long i);
-      plain_text_output_stream & operator << (unsigned long i);
+      plain_text_output_stream & operator << (uint32_t long i);
 #endif
 #if !defined(LINUX)
       plain_text_output_stream & operator << (int64_t i);

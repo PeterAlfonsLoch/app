@@ -17,7 +17,7 @@ namespace ca
 
    ca::ca()
    {
-      m_ulFlags            = (unsigned long) flag_auto_clean;
+      m_ulFlags            = (uint32_t long) flag_auto_clean;
       m_papp               = 0; // NULL
       m_countReference     = 1; // avoid creating a "perambulator" phantom
       m_pptraListener      = NULL;
@@ -37,7 +37,7 @@ namespace ca
 
    ca::ca(::ca::application * papp)
    {
-      m_ulFlags            = (unsigned long) flag_auto_clean;
+      m_ulFlags            = (uint32_t long) flag_auto_clean;
       m_papp               = papp;
       m_countReference     = 1; // avoid creating a "perambulator" phantom
       m_pptraListener      = NULL;

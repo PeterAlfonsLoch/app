@@ -74,7 +74,7 @@
 /**
  * @defgroup Ciphers Cipher Types
  *
- * @brief    Each cipher type is identified by an unsigned integer.  The
+ * @brief    Each cipher type is identified by an uint32_t integer.  The
  *           cipher types available in this edition of libSRTP are given 
  *           by the #defines below.
  *
@@ -140,7 +140,7 @@
  * @defgroup Authentication Authentication Function Types
  * 
  * @brief Each authentication function type is identified by an
- * unsigned integer.  The authentication function types available in
+ * uint32_t integer.  The authentication function types available in
  * this edition of libSRTP are given by the #defines below.
  *
  * An auth_type_id_t is an identifier for an authentication function type;

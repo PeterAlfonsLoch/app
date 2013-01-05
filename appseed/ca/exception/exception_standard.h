@@ -130,7 +130,7 @@ public:
 
 typedef struct _sig_ucontext
 {
-   unsigned long     uc_flags;
+   uint32_t long     uc_flags;
    struct ucontext   *uc_link;
    stack_t           uc_stack;
    sigcontext uc_mcontext;

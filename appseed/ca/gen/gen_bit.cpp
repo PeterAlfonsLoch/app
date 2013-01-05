@@ -52,9 +52,9 @@ namespace gen
 
       void set(void * p, bool b, int32_t start, int32_t end)
       {
-         unsigned char * pDest = (unsigned char *) p;
-         unsigned char * pFullDestStart = &pDest[start / BYTE_ALIGN];
-         unsigned char * pFullDestEnd = &pDest[end / BYTE_ALIGN];
+         uchar * pDest = (uchar *) p;
+         uchar * pFullDestStart = &pDest[start / BYTE_ALIGN];
+         uchar * pFullDestEnd = &pDest[end / BYTE_ALIGN];
          if((start % BYTE_ALIGN) > 0)
          {
             pFullDestStart++;            
@@ -74,7 +74,7 @@ namespace gen
          }
       }
 
-      void byte_set(unsigned char * pDest, bool b, int32_t start, int32_t end)
+      void byte_set(uchar * pDest, bool b, int32_t start, int32_t end)
       {
          if(b)
          {

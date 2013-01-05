@@ -333,7 +333,7 @@ namespace sockets
    bool socket::SetNonblocking(bool bNb)
    {
    #ifdef _WIN32
-      unsigned long l = bNb ? 1 : 0;
+      uint32_t long l = bNb ? 1 : 0;
       int32_t n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
       {
@@ -366,7 +366,7 @@ namespace sockets
    bool socket::SetNonblocking(bool bNb, SOCKET s)
    {
    #ifdef _WIN32
-      unsigned long l = bNb ? 1 : 0;
+      uint32_t long l = bNb ? 1 : 0;
       int32_t n = ioctlsocket(s, FIONBIO, &l);
       if (n != 0)
       {
@@ -996,7 +996,7 @@ namespace sockets
    #endif
 
 
-   bool socket::SetIpTOS(unsigned char tos)
+   bool socket::SetIpTOS(uchar tos)
    {
    #ifdef IP_TOS
       if (setsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, sizeof(tos)) == -1)
@@ -1012,9 +1012,9 @@ namespace sockets
    }
 
 
-   unsigned char socket::IpTOS()
+   uchar socket::IpTOS()
    {
-      unsigned char tos = 0;
+      uchar tos = 0;
    #ifdef IP_TOS
       socklen_t len = sizeof(tos);
       if (getsockopt(GetSocket(), IPPROTO_IP, IP_TOS, (char *)&tos, &len) == -1)

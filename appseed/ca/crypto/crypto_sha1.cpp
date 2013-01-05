@@ -30,7 +30,7 @@ namespace crypto
          for (int32_t i = 0 ; i < 16; i++)
             M[i] = ((byte *)data)[i];
 
-         __sha1_core((const unsigned char *) M, (uint32_t *) destDigest);
+         __sha1_core((const uchar *) M, (uint32_t *) destDigest);
 
          if (returnRes)
             for (int32_t i = 0 ; i < 16; i++)
@@ -49,14 +49,14 @@ namespace crypto
          for (int32_t i = 0 ; i < 16; i++)
             M[i] = ((const byte *)data)[i];
 
-         __sha1_core((const unsigned char *) M, (uint32_t *) destDigest);
+         __sha1_core((const uchar *) M, (uint32_t *) destDigest);
 
       }
 
       
-      /*void CContextBase::PrepareBlock(uint32_t *block, unsigned size) const
+      /*void CContextBase::PrepareBlock(uint32_t *block, uint32_t size) const
       {
-         unsigned curBufferPos = size & 0xF;
+         uint32_t curBufferPos = size & 0xF;
          block[curBufferPos++] = 0x80000000;
          while (curBufferPos != (16 - 2))
             block[curBufferPos++] = 0;
@@ -79,7 +79,7 @@ namespace crypto
 
          const byte * data = (const byte *) data0;
 
-         unsigned curBufferPos = _count2;
+         uint32_t curBufferPos = _count2;
 
          while (size--)
          {
@@ -110,7 +110,7 @@ namespace crypto
 
          bool returnRes = false;
 
-         unsigned curBufferPos = _count2;
+         uint32_t curBufferPos = _count2;
 
          while (size--)
          {
@@ -154,7 +154,7 @@ namespace crypto
          Init();
 
 /*         const uint64_t lenInBits = (_count << 9) + ((uint64_t)_count2 << 3);
-         unsigned curBufferPos = _count2;
+         uint32_t curBufferPos = _count2;
          int32_t pos = (int32_t)(curBufferPos & 3);
          curBufferPos >>= 2;
          if (pos == 0)
@@ -213,7 +213,7 @@ namespace crypto
          Init();
 
          /*const uint64_t lenInBits = (_count << 9) + ((uint64_t)_count2 << 5);
-         unsigned curBufferPos = _count2;
+         uint32_t curBufferPos = _count2;
          _buffer[curBufferPos++] = 0x80000000;
          while (curBufferPos != (16 - 2))
          {

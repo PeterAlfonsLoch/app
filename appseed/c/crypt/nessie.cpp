@@ -9,7 +9,7 @@ vsstring crypt_nessie(const char * psz)
    NESSIEstruct ns;
    uint8_t digest[NESSIE_DIGESTBYTES];
    NESSIEinit(&ns);
-   NESSIEadd((const byte *) psz, (unsigned long) (8*strlen(psz)), &ns);
+   NESSIEadd((const byte *) psz, (uint32_t long) (8*strlen(psz)), &ns);
    NESSIEfinalize(&ns, digest);
    char * pszOut = str.alloc(NESSIE_DIGESTBYTES * 2);
    lo_hex_from(pszOut, digest, NESSIE_DIGESTBYTES);
@@ -37,7 +37,7 @@ vsstring crypt_nessie(const char * psz)
    string file::nessie(ex1:: file * pfile)
    {
       int32_t iBufSize = 1024 * 256;
-      unsigned char * buf = new unsigned char[iBufSize];
+      uchar * buf = new uchar[iBufSize];
       NESSIEstruct ns;
       NESSIEinit(&ns);
       uint64_t iRead;

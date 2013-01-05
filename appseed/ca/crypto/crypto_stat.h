@@ -64,6 +64,6 @@ err_status_t
 stat_test_rand_source(rand_source_func_t rs);
 
 err_status_t
-stat_test_rand_source_with_repetition(rand_source_func_t source, unsigned num_trials);
+stat_test_rand_source_with_repetition(rand_source_func_t source, uint32_t num_trials);
 
 #endif /* STAT_H */

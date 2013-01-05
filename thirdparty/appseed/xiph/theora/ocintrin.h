@@ -56,7 +56,7 @@
   _b: The value to clamp.
   _c: The upper boud.*/
 #define OC_CLAMPI(_a,_b,_c) (OC_MAXI(_a,OC_MINI(_b,_c)))
-#define OC_CLAMP255(_x)     ((unsigned char)((((_x)<0)-1)&((_x)|-((_x)>255))))
+#define OC_CLAMP255(_x)     ((uchar)((((_x)<0)-1)&((_x)|-((_x)>255))))
 /*This has a chance of compiling branchless, and is just as fast as the
    bit-twiddling method, which is slightly less portable, since it relies on a
    sign-extended rightshift, which is not guaranteed by ANSI (but present on
@@ -106,7 +106,7 @@
 #define OC_BYTE_TABLE32(_a,_b,_c,_d,_i) \
   ((signed char) \
    (((_a)&0xFF|((_b)&0xFF)<<8|((_c)&0xFF)<<16|((_d)&0xFF)<<24)>>(_i)*8))
-/*Accesses one of eight (unsigned) nibbles given an index.
+/*Accesses one of eight (uint32_t) nibbles given an index.
   This can be used to avoid small lookup tables.*/
 #define OC_UNIBBLE_TABLE32(_a,_b,_c,_d,_e,_f,_g,_h,_i) \
   ((((_a)&0xF|((_b)&0xF)<<4|((_c)&0xF)<<8|((_d)&0xF)<<12| \

@@ -243,11 +243,11 @@ namespace colorertak5
    class xml::node
    {
    public:
-     static const short COMMENT_NODE;
-     static const short DOCUMENT_NODE;
-     static const short ELEMENT_NODE;
-     static const short PROCESSING_INSTRUCTION_NODE;
-     static const short TEXT_NODE;
+     static const int16_t COMMENT_NODE;
+     static const int16_t DOCUMENT_NODE;
+     static const int16_t ELEMENT_NODE;
+     static const int16_t PROCESSING_INSTRUCTION_NODE;
+     static const int16_t TEXT_NODE;
 
      bool hasChildNodes()
      {
@@ -295,7 +295,7 @@ namespace colorertak5
        return null;
      };
 
-     short getNodeType()
+     int16_t getNodeType()
      {
        return type;
      }

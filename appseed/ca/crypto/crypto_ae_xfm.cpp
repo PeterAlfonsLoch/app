@@ -19,69 +19,69 @@
 err_status_t
 aes_128_cbc_hmac_sha1_96_func(void *key,
                               void *clear,
-                              unsigned clear_len,
+                              uint32_t clear_len,
                               void *iv,
                               void *opaque,
-                              unsigned *opaque_len,
+                              uint32_t *opaque_len,
                               void *auth_tag);
 
 err_status_t
 aes_128_cbc_hmac_sha1_96_inv(void *key,
                              void *clear,
-                             unsigned clear_len,
+                             uint32_t clear_len,
                              void *iv,
                              void *opaque,
-                             unsigned *opaque_len,
+                             uint32_t *opaque_len,
                              void *auth_tag);
 
 err_status_t
 aes_128_cbc_hmac_sha1_96_enc(void *key,
                              const void *clear,
-                             unsigned clear_len,
+                             uint32_t clear_len,
                              void *iv,
                              void *opaque,
-                             unsigned *opaque_len);
+                             uint32_t *opaque_len);
 
 err_status_t
 aes_128_cbc_hmac_sha1_96_dec(void *key,
                              const void *clear,
-                             unsigned clear_len,
+                             uint32_t clear_len,
                              void *iv,
                              void *opaque,
-                             unsigned *opaque_len);
+                             uint32_t *opaque_len);
 
 err_status_t
 null_enc(void *key,
          const void *clear,
-         unsigned clear_len,
+         uint32_t clear_len,
          void *iv,
          void *opaque,
-         unsigned *opaque_len);
+         uint32_t *opaque_len);
 
 err_status_t
 null_dec(void *key,
          const void *clear,
-         unsigned clear_len,
+         uint32_t clear_len,
          void *iv,
          void *opaque,
-         unsigned *opaque_len);
+         uint32_t *opaque_len);
 
 
 
 err_status_t
 aes_128_cbc_hmac_sha1_96_func(void *key,            
                void *clear,          
-               unsigned clear_len,       
+               uint32_t clear_len,       
                void *iv,             
                void *opaque,         
-               unsigned *opaque_len, 
+               uint32_t *opaque_len, 
                void *auth_tag)
 {
 
    aes_cbc_ctx_t aes_ctx;
    hmac_ctx_t hmac_ctx;
-   unsigned char enc_key[ENC_KEY_LEN];
-   unsigned char mac_key[MAC_KEY_LEN];
+   uchar enc_key[ENC_KEY_LEN];
+   uchar mac_key[MAC_KEY_LEN];
    err_status_t status;
 
   /* check if we're doing authentication only */
@@ -148,19 +148,19 @@ aes_128_cbc_hmac_sha1_96_func(void *key,
 err_status_t
 aes_128_cbc_hmac_sha1_96_inv(void *key,            
               void *clear,          
-              unsigned clear_len,       
+              uint32_t clear_len,       
               void *iv,             
               void *opaque,         
-              unsigned *opaque_len, 
+              uint32_t *opaque_len, 
               void *auth_tag)
 {
 
    aes_cbc_ctx_t aes_ctx;
    hmac_ctx_t hmac_ctx;
-   unsigned char enc_key[ENC_KEY_LEN];
-   unsigned char mac_key[MAC_KEY_LEN];
-   unsigned char tmp_tag[TAG_LEN];
-   unsigned char *tag = (byte *) auth_tag;
+   uchar enc_key[ENC_KEY_LEN];
+   uchar mac_key[MAC_KEY_LEN];
+   uchar tmp_tag[TAG_LEN];
+   uchar *tag = (byte *) auth_tag;
    err_status_t status;
    int32_t i;
   
@@ -236,17 +236,17 @@ aes_128_cbc_hmac_sha1_96_inv(void *key,
 err_status_t
 aes_128_cbc_hmac_sha1_96_enc(void *key,            
               const void *clear,          
-              unsigned clear_len,       
+              uint32_t clear_len,       
               void *iv,             
               void *opaque,         
-              unsigned *opaque_len)
+              uint32_t *opaque_len)
 {
 
    aes_cbc_ctx_t aes_ctx;
    hmac_ctx_t hmac_ctx;
-   unsigned char enc_key[ENC_KEY_LEN];
-   unsigned char mac_key[MAC_KEY_LEN];
-   unsigned char *auth_tag;
+   uchar enc_key[ENC_KEY_LEN];
+   uchar mac_key[MAC_KEY_LEN];
+   uchar *auth_tag;
    err_status_t status;
 
   /* check if we're doing authentication only */
@@ -326,7 +326,7 @@ aes_128_cbc_hmac_sha1_96_enc(void *key,
     printf("hmac input: %s\n", 
       octet_string_hex_string(clear, clear_len));
 #endif
-    auth_tag = (unsigned char *)opaque;
+    auth_tag = (uchar *)opaque;
     auth_tag += *opaque_len;    
     status = hmac_compute(&hmac_ctx, opaque, *opaque_len, TAG_LEN, auth_tag);
     if (status) return status;
@@ -351,19 +351,19 @@ aes_128_cbc_hmac_sha1_96_enc(void *key,
 err_status_t
 aes_128_cbc_hmac_sha1_96_dec(void *key,            
               const void *clear,          
-              unsigned clear_len,       
+              uint32_t clear_len,       
               void *iv,             
               void *opaque,         
-              unsigned *opaque_len)
+              uint32_t *opaque_len)
 {
 
    aes_cbc_ctx_t aes_ctx;
    hmac_ctx_t hmac_ctx;
-   unsigned char enc_key[ENC_KEY_LEN];
-   unsigned char mac_key[MAC_KEY_LEN];
-   unsigned char tmp_tag[TAG_LEN];
-   unsigned char *auth_tag;
-   unsigned ciphertext_len;
+   uchar enc_key[ENC_KEY_LEN];
+   uchar mac_key[MAC_KEY_LEN];
+   uchar tmp_tag[TAG_LEN];
+   uchar *auth_tag;
+   uint32_t ciphertext_len;
    err_status_t status;
    int32_t i;
   
@@ -442,7 +442,7 @@ aes_128_cbc_hmac_sha1_96_dec(void *key,
      * compare the computed tag with the one provided as input (which
      * immediately follows the ciphertext)
      */
-    auth_tag = (unsigned char *)opaque;
+    auth_tag = (uchar *)opaque;
     auth_tag += ciphertext_len;  
 #ifdef DEBUG
     printf("auth_tag: %s\n", octet_string_hex_string(auth_tag, TAG_LEN));
@@ -501,15 +501,15 @@ cryptoalg_t cryptoalg = &cryptoalg_ctx;
 err_status_t
 null_enc(void *key,            
     const void *clear,          
-    unsigned clear_len,       
+    uint32_t clear_len,       
     void *iv,             
     void *opaque,         
-    unsigned *opaque_len)
+    uint32_t *opaque_len)
 {
 
    int32_t i;
-   unsigned char *auth_tag;
-   unsigned char *init_vec = (byte *) iv;
+   uchar *auth_tag;
+   uchar *init_vec = (byte *) iv;
 
   /* check if we're doing authentication only */
   if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {
@@ -560,13 +560,13 @@ null_enc(void *key,
 err_status_t
 null_dec(void *key,            
     const void *clear,          
-    unsigned clear_len,       
+    uint32_t clear_len,       
     void *iv,             
     void *opaque,         
-    unsigned *opaque_len)
+    uint32_t *opaque_len)
 {
 
-   unsigned char *auth_tag;
+   uchar *auth_tag;
   
   /* check if we're doing authentication only */
   if ((iv == NULL) && (opaque == NULL) && (opaque_len == NULL)) {

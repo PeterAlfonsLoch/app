@@ -8,7 +8,7 @@ This code is based on PPMd var.H (2001): Dmitry Shkarin : Public domain */
 
 bool Ppmd7z_RangeDec_Init(CPpmd7z_RangeDec *p)
 {
-  unsigned i;
+  uint32_t i;
   p->Code = 0;
   p->Range = 0xFFFFFFFF;
   if (p->Stream->Read((void *)p->Stream) != 0)
@@ -82,7 +82,7 @@ int32_t Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc)
   if (p->MinContext->NumStats != 1)
   {
     CPpmd_State *s = Ppmd7_GetStats(p, p->MinContext);
-    unsigned i;
+    uint32_t i;
     uint32_t count, hiCnt;
     if ((count = rc->GetThreshold(rc, p->MinContext->SummFreq)) < (hiCnt = s->Freq))
     {
@@ -139,7 +139,7 @@ int32_t Ppmd7_DecodeSymbol(CPpmd7 *p, IPpmd7_RangeDec *rc)
     CPpmd_State *ps[256], *s;
     uint32_t freqSum, count, hiCnt;
     CPpmd_See *see;
-    unsigned i, num, numMasked = p->MinContext->NumStats;
+    uint32_t i, num, numMasked = p->MinContext->NumStats;
     do
     {
       p->OrderFall++;

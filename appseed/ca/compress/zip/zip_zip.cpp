@@ -83,7 +83,7 @@ typedef struct linkedlist_datablock_internal_s
   uLong  avail_in_this_block;
   uLong  filled_in_this_block;
   uLong  unused; /* for future use and alignement */
-  unsigned char data[SIZEDATA_INDATABLOCK];
+  uchar data[SIZEDATA_INDATABLOCK];
 } linkedlist_datablock_internal;
 
 typedef struct linkedlist_data_s
@@ -183,7 +183,7 @@ local int32_t add_data_in_datablock(
     uLong len)
 {
     linkedlist_datablock_internal* ldi;
-    const unsigned char* from_copy;
+    const uchar* from_copy;
 
     if (ll==NULL)
         return ZIP_INTERNALERROR;
@@ -196,13 +196,13 @@ local int32_t add_data_in_datablock(
     }
 
     ldi = ll->last_block;
-    from_copy = (unsigned char*)buf;
+    from_copy = (uchar*)buf;
 
     while (len>0)
     {
         uInt copy_this;
         uInt i;
-        unsigned char* to_copy;
+        uchar* to_copy;
 
         if (ldi->avail_in_this_block==0)
         {
@@ -238,7 +238,7 @@ local int32_t add_data_in_datablock(
 #ifndef NO_ADDFILEINEXISTINGZIP
 /* ===========================================================================
    Inputs a long in LSB order to the given file
-   nbByte == 1, 2 or 4 (byte, short or long)
+   nbByte == 1, 2 or 4 (byte, int16_t or long)
 */
 
 local int32_t ziplocal_putValue OF((const zlib_filefunc_def* pzlib_filefunc_def,
@@ -249,10 +249,10 @@ local int32_t ziplocal_putValue (
     uLong x,
     int32_t nbByte)
 {
-    unsigned char buf[4];
+    uchar buf[4];
     int32_t n;
     for (n = 0; n < nbByte; n++) {
-        buf[n] = (unsigned char)(x & 0xff);
+        buf[n] = (uchar)(x & 0xff);
         x >>= 8;
     }
     if (ZWRITE(*pzlib_filefunc_def,filestream,buf,nbByte)!=(uLong)nbByte)
@@ -267,10 +267,10 @@ local void ziplocal_putValue_inmemory (
     uLong x,
     int32_t nbByte)
 {
-    unsigned char* buf=(unsigned char*)dest;
+    uchar* buf=(uchar*)dest;
     int32_t n;
     for (n = 0; n < nbByte; n++) {
-        buf[n] = (unsigned char)(x & 0xff);
+        buf[n] = (uchar)(x & 0xff);
         x >>= 8;
     }
 }
@@ -304,7 +304,7 @@ local int32_t ziplocal_getByte(
     voidpf filestream,
     int32_t *pi)
 {
-    unsigned char c;
+    uchar c;
     int32_t err = (int32_t)ZREAD(*pzlib_filefunc_def,filestream,&c,1);
     if (err==1)
     {
@@ -403,7 +403,7 @@ local uLong ziplocal_SearchCentralDir(
     const zlib_filefunc_def* pzlib_filefunc_def,
     voidpf filestream)
 {
-    unsigned char* buf;
+    uchar* buf;
     uLong uSizeFile;
     uLong uBackRead;
     uLong uMaxBack=0xffff; /* maximum size of global comment */
@@ -418,7 +418,7 @@ local uLong ziplocal_SearchCentralDir(
     if (uMaxBack>uSizeFile)
         uMaxBack = uSizeFile;
 
-    buf = (unsigned char*)ALLOC(BUFREADCOMMENT+4);
+    buf = (uchar*)ALLOC(BUFREADCOMMENT+4);
     if (buf==NULL)
         return 0;
 
@@ -815,7 +815,7 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     zi->ci.crypt_header_size = 0;
     if ((err==Z_OK) && (password != NULL))
     {
-        unsigned char bufHead[RAND_HEAD_LEN];
+        uchar bufHead[RAND_HEAD_LEN];
         uint32_t sizeHead;
         zi->ci.encrypt = 1;
         zi->ci.pcrc_32_tab = get_crc_table();
@@ -898,7 +898,7 @@ local int32_t zipFlushWriteBuffer(
 extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
     zipFile file,
     const void * buf,
-    unsigned len)
+    uint32_t len)
 {
     zip_internal* zi;
     int32_t err=ZIP_OK;

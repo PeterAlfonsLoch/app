@@ -102,9 +102,9 @@ public:
    var(int64_t * pi);
    var(uint64_t * pui);
 //   var(long l);
-//   var(unsigned long ul);
+//   var(uint32_t long ul);
 //   var(long long ll);
-//   var(unsigned long long ull);
+//   var(uint32_t long long ull);
    var(float f);
    var(double d);
    var(const char * psz);
@@ -155,7 +155,7 @@ public:
       var_array *          m_pvara;
       gen::property_set *  m_pset;
       gen::property *      m_pprop;
-      unsigned char        m_uch;
+      uchar        m_uch;
       char                 m_ch;
    };
    ::ca::ca *                       m_pca2;
@@ -427,80 +427,80 @@ public:
    var operator - (int32_t i) const;
    var operator - (uint32_t user) const;
    var operator - (long i) const;
-   var operator - (unsigned long user) const;
+   var operator - (uint32_t long user) const;
    var operator - (double d) const;
 
    friend var CLASS_DECL_ca operator - (int32_t i, const var & var);
    friend var CLASS_DECL_ca operator - (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator - (long l, const var & var);
-   friend var CLASS_DECL_ca operator - (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca operator - (uint32_t long ul, const var & var);
    friend var CLASS_DECL_ca operator - (double d, const var & var);
    friend var CLASS_DECL_ca operator - (const var & var1, const var & var2);
 
    var operator + (int32_t i) const;
    var operator + (uint32_t user) const;
    var operator + (long i) const;
-   var operator + (unsigned long user) const;
+   var operator + (uint32_t long user) const;
    var operator + (double d) const;
 
    friend var CLASS_DECL_ca operator + (int32_t i, const var & var);
    friend var CLASS_DECL_ca operator + (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator + (long l, const var & var);
-   friend var CLASS_DECL_ca operator + (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca operator + (uint32_t long ul, const var & var);
    friend var CLASS_DECL_ca operator + (double d, const var & var);
    friend var CLASS_DECL_ca operator + (const var & var1, const var & var2);
 
    var operator / (int32_t i) const;
    var operator / (uint32_t user) const;
    var operator / (long i) const;
-   var operator / (unsigned long user) const;
+   var operator / (uint32_t long user) const;
    var operator / (double d) const;
 
    friend var CLASS_DECL_ca operator / (int32_t i, const var & var);
    friend var CLASS_DECL_ca operator / (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator / (long l, const var & var);
-   friend var CLASS_DECL_ca operator / (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca operator / (uint32_t long ul, const var & var);
    friend var CLASS_DECL_ca operator / (double d, const var & var);
    friend var CLASS_DECL_ca operator / (const var & var1, const var & var2);
 
    var operator * (int32_t i) const;
    var operator * (uint32_t user) const;
    var operator * (long i) const;
-   var operator * (unsigned long user) const;
+   var operator * (uint32_t long user) const;
    var operator * (double d) const;
 
    friend var CLASS_DECL_ca operator * (int32_t i, const var & var);
    friend var CLASS_DECL_ca operator * (uint32_t user, const var & var);
    friend var CLASS_DECL_ca operator * (long l, const var & var);
-   friend var CLASS_DECL_ca operator * (unsigned long ul, const var & var);
+   friend var CLASS_DECL_ca operator * (uint32_t long ul, const var & var);
    friend var CLASS_DECL_ca operator * (double d, const var & var);
    friend var CLASS_DECL_ca operator * (const var & var1, const var & var2);
 
    var & operator -= (int32_t i);
    var & operator -= (uint32_t user);
    var & operator -= (long i);
-   var & operator -= (unsigned long user);
+   var & operator -= (uint32_t long user);
    var & operator -= (double d);
    var & operator -= (const var & var);
 
    var & operator += (int32_t i);
    var & operator += (uint32_t user);
    var & operator += (long i);
-   var & operator += (unsigned long user);
+   var & operator += (uint32_t long user);
    var & operator += (double d);
    var & operator += (const var & var);
 
    var & operator /= (int32_t i);
    var & operator /= (uint32_t user);
    var & operator /= (long i);
-   var & operator /= (unsigned long user);
+   var & operator /= (uint32_t long user);
    var & operator /= (double d);
    var & operator /= (const var & var);
 
    var & operator *= (int32_t i);
    var & operator *= (uint32_t user);
    var & operator *= (long i);
-   var & operator *= (unsigned long user);
+   var & operator *= (uint32_t long user);
    var & operator *= (double d);
    var & operator *= (const var & var);
 

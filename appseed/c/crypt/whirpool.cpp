@@ -1507,8 +1507,8 @@ void NESSIEinit(struct NESSIEstruct * const structpointer) {
  *
  * This method maintains the invariant: bufferBits < DIGESTBITS
  */
-void NESSIEadd(const unsigned char * const source,
-               unsigned long sourceBits,
+void NESSIEadd(const uchar * const source,
+               uint32_t long sourceBits,
                struct NESSIEstruct * const structpointer) {
     /*
                        sourcePos
@@ -1626,7 +1626,7 @@ void NESSIEadd(const unsigned char * const source,
  * This method uses the invariant: bufferBits < DIGESTBITS
  */
 void NESSIEfinalize(struct NESSIEstruct * const structpointer,
-                    unsigned char * const result) {
+                    uchar * const result) {
     int32_t i;
     uint8_t *buffer      = structpointer->buffer;
     uint8_t *bitLength   = structpointer->bitLength;

@@ -2250,7 +2250,7 @@ var var::operator - (long l) const
    return int32() - l;
 }
 
-var var::operator - (unsigned long ul) const
+var var::operator - (uint32_t long ul) const
 {
    return (int32_t) (uint32() - ul);
 }
@@ -2275,7 +2275,7 @@ var CLASS_DECL_ca operator - (long l, const class var & var)
    return l - var.int32();
 }
 
-var CLASS_DECL_ca operator - (unsigned long ul, const class var & var)
+var CLASS_DECL_ca operator - (uint32_t long ul, const class var & var)
 {
    return (int32_t) (ul - var.uint32());
 }
@@ -2363,7 +2363,7 @@ var var::operator + (long l) const
    return int32() + l;
 }
 
-var var::operator + (unsigned long ul) const
+var var::operator + (uint32_t long ul) const
 {
    return (uint32_t) (uint32() + ul);
 }
@@ -2388,7 +2388,7 @@ var CLASS_DECL_ca operator + (long l, const class var & var)
    return l + var.int32();
 }
 
-var CLASS_DECL_ca operator + (unsigned long ul, const class var & var)
+var CLASS_DECL_ca operator + (uint32_t long ul, const class var & var)
 {
    return (uint32_t) (ul + var.uint32());
 }
@@ -2519,7 +2519,7 @@ var var::operator / (long l) const
    return int32() / l;
 }
 
-var var::operator / (unsigned long ul) const
+var var::operator / (uint32_t long ul) const
 {
 
    switch(m_etype)
@@ -2570,7 +2570,7 @@ var CLASS_DECL_ca operator / (long l, const class var & var)
    return l / var.int32();
 }
 
-var CLASS_DECL_ca operator / (unsigned long ul, const class var & var)
+var CLASS_DECL_ca operator / (uint32_t long ul, const class var & var)
 {
    switch(var.m_etype)
    {
@@ -2681,7 +2681,7 @@ var var::operator * (long l) const
    return int32() * l;
 }
 
-var var::operator * (unsigned long ul) const
+var var::operator * (uint32_t long ul) const
 {
    switch(m_etype)
    {
@@ -2731,7 +2731,7 @@ var CLASS_DECL_ca operator * (long l, const class var & var)
    return l * var.int32();
 }
 
-var CLASS_DECL_ca operator * (unsigned long ul, const class var & var)
+var CLASS_DECL_ca operator * (uint32_t long ul, const class var & var)
 {
 
    switch(var.m_etype)
@@ -2895,7 +2895,7 @@ class var & var::operator -= (long i)
    return *this;
 }
 
-class var & var::operator -= (unsigned long user)
+class var & var::operator -= (uint32_t long user)
 {
    operator =(*this - user);
    return *this;
@@ -2954,7 +2954,7 @@ class var & var::operator += (long i)
    return *this;
 }
 
-class var & var::operator += (unsigned long user)
+class var & var::operator += (uint32_t long user)
 {
    operator =(*this + user);
    return *this;
@@ -3013,7 +3013,7 @@ class var & var::operator /= (long i)
    return *this;
 }
 
-class var & var::operator /= (unsigned long user)
+class var & var::operator /= (uint32_t long user)
 {
    operator =(*this / user);
    return *this;
@@ -3072,7 +3072,7 @@ class var & var::operator *= (long i)
    return *this;
 }
 
-class var & var::operator *= (unsigned long user)
+class var & var::operator *= (uint32_t long user)
 {
    operator =(*this * user);
    return *this;

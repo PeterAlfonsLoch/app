@@ -74,22 +74,22 @@ base64::base64()
    // etable
    for(i= 0;i<9;i++)
    {
-      etable[i+N1_A]    = (unsigned char) ('A'+i);
-      etable[i+N1_J]    = (unsigned char) ('J'+i);
-      etable[i+N1_a]    = (unsigned char) ('a'+i);
-      etable[i+N1_j]    = (unsigned char) ('j'+i);
+      etable[i+N1_A]    = (uchar) ('A'+i);
+      etable[i+N1_J]    = (uchar) ('J'+i);
+      etable[i+N1_a]    = (uchar) ('a'+i);
+      etable[i+N1_j]    = (uchar) ('j'+i);
    }
    for(i= 0;i<8;i++)
    {
-      etable[i+N1_S]    = (unsigned char) ('S'+i);
-      etable[i+N1_s]    = (unsigned char) ('s'+i);
+      etable[i+N1_S]    = (uchar) ('S'+i);
+      etable[i+N1_s]    = (uchar) ('s'+i);
    }
    for(i= 0;i<10;i++)
    {
-      etable[i+N1_0]    = (unsigned char) ('0'+i);
+      etable[i+N1_0]    = (uchar) ('0'+i);
    }
-   etable[N1_plus]      = (unsigned char) ('+');
-   etable[N1_slash]     = (unsigned char) ('/');
+   etable[N1_plus]      = (uchar) ('+');
+   etable[N1_slash]     = (uchar) ('/');
 
 
    // dtable
@@ -99,35 +99,35 @@ base64::base64()
    }
    for(i= 'A';i<='I';i++)
    {
-      dtable[i]= (unsigned char) (N1_A+(i-'A'));
+      dtable[i]= (uchar) (N1_A+(i-'A'));
    }
    for(i= 'J';i<='R';i++)
    {
-      dtable[i]= (unsigned char) (N1_J+(i-'J'));
+      dtable[i]= (uchar) (N1_J+(i-'J'));
    }
    for(i= 'S';i<='Z';i++)
    {
-      dtable[i]= (unsigned char) (N1_S+(i-'S'));
+      dtable[i]= (uchar) (N1_S+(i-'S'));
    }
    for(i= 'a';i<='i';i++)
    {
-      dtable[i]= (unsigned char) (N1_a+(i-'a'));
+      dtable[i]= (uchar) (N1_a+(i-'a'));
    }
    for(i= 'j';i<='r';i++)
    {
-      dtable[i]= (unsigned char) (N1_j+(i-'j'));
+      dtable[i]= (uchar) (N1_j+(i-'j'));
    }
    for(i= 's';i<='z';i++)
    {
-      dtable[i]= (unsigned char) (N1_s+(i-'s'));
+      dtable[i]= (uchar) (N1_s+(i-'s'));
    }
    for(i= '0';i<='9';i++)
    {
-      dtable[i]= (unsigned char) (N1_0+(i-'0'));
+      dtable[i]= (uchar) (N1_0+(i-'0'));
    }
-   dtable['+']= (unsigned char) (N1_plus);
-   dtable['/']= (unsigned char) (N1_slash);
-   dtable['=']= (unsigned char) (0);
+   dtable['+']= (uchar) (N1_plus);
+   dtable['/']= (uchar) (N1_slash);
+   dtable['=']= (uchar) (0);
 }
 
 base64::~base64()
@@ -152,7 +152,7 @@ void base64::encode(simple_memory & ostream, const simple_memory & istream)
             hiteof= TRUE;
             break;
          }
-         igroup[n]= (unsigned char)ch;
+         igroup[n]= (uchar)ch;
       }
       if(n> 0)
       {
@@ -222,7 +222,7 @@ void base64::decode(simple_memory & ostream, const simple_memory & istream)
 {
    int32_t i;
    byte a[4],b[4],o[3];
-   unsigned char uch;
+   uchar uch;
 
    while(TRUE)
    {
@@ -243,8 +243,8 @@ void base64::decode(simple_memory & ostream, const simple_memory & istream)
             i--;
             continue;
          }
-         a[i]= (unsigned char) uch;
-         b[i]= (unsigned char) dtable[uch];
+         a[i]= (uchar) uch;
+         b[i]= (uchar) dtable[uch];
       }
       o[0]= (b[0]<<2)|(b[1]>>4);
       o[1]= (b[1]<<4)|(b[2]>>2);

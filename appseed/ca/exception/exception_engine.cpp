@@ -568,7 +568,7 @@ retry_get_base:
                if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
                {
                   m_iRef = 0;
-                  for (unsigned i = 0; i < cb / sizeof (HMODULE); ++i)
+                  for (uint32_t i = 0; i < cb / sizeof (HMODULE); ++i)
                   {
                      if (!load_module(hprocess, pmod[i]))
                      {

@@ -15,23 +15,9 @@ inline uint32_t natural(uint32_t ui)
    return ui;
 }
 
-#ifdef WINDOWS
-
-inline unsigned long natural(long l)
-{
-   return l >= 0 ? (unsigned long) l : 0;
-}
-
-inline unsigned long natural(unsigned long ul)
-{
-   return ul;
-}
-
-#endif
-
 inline uint64_t natural(int64_t ll)
 {
-   return ll >= 0 ? (unsigned long long) ll: 0;
+   return ll >= 0 ? (uint64_t) ll: 0;
 }
 
 inline uint64_t natural(uint64_t ull)

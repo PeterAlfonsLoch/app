@@ -17,8 +17,8 @@
 #include "framework.h"
 
 
-static const unsigned OC_DC_QUANT_MIN[2]={4<<2,8<<2};
-static const unsigned OC_AC_QUANT_MIN[2]={2<<2,4<<2};
+static const uint32_t OC_DC_QUANT_MIN[2]={4<<2,8<<2};
+static const uint32_t OC_AC_QUANT_MIN[2]={2<<2,4<<2};
 
 /*Initializes the dequantization tables from a set of quantizer info.
   Currently the dequantizer (and elsewhere enquantizer) tables are expected to
@@ -103,7 +103,7 @@ void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
         if(++qi>=qi_end)break;
         /*Interpolate the next base matrix.*/
         for(ci=0;ci<64;ci++){
-          base[ci]=(unsigned char)(
+          base[ci]=(uchar)(
            (2*((qi_end-qi)*_qinfo->qi_ranges[qti][pli].base_matrices[qri][ci]+
            (qi-qi_start)*_qinfo->qi_ranges[qti][pli].base_matrices[qri+1][ci])
            +_qinfo->qi_ranges[qti][pli].sizes[qri])/

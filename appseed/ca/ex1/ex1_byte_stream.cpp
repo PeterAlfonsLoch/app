@@ -44,19 +44,19 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (unsigned char & uch)
+   byte_input_stream & byte_input_stream::operator >> (uchar & uch)
    {
       read(&uch, sizeof(uch));
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (short & sh)
+   byte_input_stream & byte_input_stream::operator >> (int16_t & sh)
    {
       read(&sh, sizeof(sh));
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (unsigned short & ush)
+   byte_input_stream & byte_input_stream::operator >> (uint16_t & ush)
    {
       read(&ush, sizeof(ush));
       return *this;
@@ -114,7 +114,7 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (unsigned long & ul)
+   byte_input_stream & byte_input_stream::operator >> (uint32_t long & ul)
    {
       read(&ul, sizeof(ul));
       return *this;
@@ -356,19 +356,19 @@ namespace ex1
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (unsigned char uch)
+   byte_output_stream & byte_output_stream::operator << (uchar uch)
    {
       write(&uch, sizeof(uch));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (short sh)
+   byte_output_stream & byte_output_stream::operator << (int16_t sh)
    {
       write(&sh, sizeof(sh));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (unsigned short ush)
+   byte_output_stream & byte_output_stream::operator << (uint16_t ush)
    {
       write(&ush, sizeof(ush));
       return *this;
@@ -474,7 +474,7 @@ namespace ex1
 
 #if defined(WINDOWS)
 
-   byte_output_stream & byte_output_stream::operator << (unsigned long ul)
+   byte_output_stream & byte_output_stream::operator << (uint32_t long ul)
    {
       write(&ul, sizeof(ul));
       return *this;

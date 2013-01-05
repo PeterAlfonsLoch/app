@@ -34,7 +34,7 @@ namespace user
       ph(scroll_bar)    m_pscrollbarVert;
       scroll_info       m_scrollinfo;
 
-      short             m_iWheelDelta;
+      int16_t             m_iWheelDelta;
 
 
 

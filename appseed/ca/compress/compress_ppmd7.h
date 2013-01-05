@@ -39,7 +39,7 @@ typedef struct
 {
   CPpmd7_Context *MinContext, *MaxContext;
   CPpmd_State *FoundState;
-  unsigned OrderFall, InitEsc, PrevSuccess, MaxOrder, HiBitsFlag;
+  uint32_t OrderFall, InitEsc, PrevSuccess, MaxOrder, HiBitsFlag;
   int32_t RunLength, InitRL; /* must be 32-bit at least */
 
   uint32_t Size;
@@ -58,7 +58,7 @@ typedef struct
 void Ppmd7_Construct(CPpmd7 *p);
 bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ex1::ISzAlloc *alloc);
 void Ppmd7_Free(CPpmd7 *p, ::ex1::ISzAlloc *alloc);
-void Ppmd7_Init(CPpmd7 *p, unsigned maxOrder);
+void Ppmd7_Init(CPpmd7 *p, uint32_t maxOrder);
 #define Ppmd7_WasAllocated(p) ((p)->Base != NULL)
 
 
@@ -88,7 +88,7 @@ void Ppmd7_UpdateBin(CPpmd7 *p);
     2 * p->HB2Flag[Ppmd7Context_OneState(p->MinContext)->Symbol] + \
     ((p->RunLength >> 26) & 0x20)]
 
-CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, uint32_t *scale);
+CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, uint32_t numMasked, uint32_t *scale);
 
 
 /* ---------- Decode ---------- */

@@ -233,9 +233,9 @@ public:
    string(const var & var);
    string(const char * pszSrc);
    string(const string & strSrc);
-   string(const unsigned char * pszSrc);
+   string(const uchar * pszSrc);
    //   string(char * pszSrc);
-   string(unsigned char * pszSrc);
+   string(uchar * pszSrc);
    string(wchar_t * pszSrc);
    string(const wchar_t * pszSrc);
    string(const string_interface & str);
@@ -246,7 +246,7 @@ public:
 
 
 
-   string(const unsigned char* pszSrc, string_manager * pstringmanager);
+   string(const uchar* pszSrc, string_manager * pstringmanager);
    explicit string(char ch, strsize nLength = 1);
    string(strsize nLength, char ch);
    string(wchar_t ch, strsize nLength = 1 );
@@ -268,7 +268,7 @@ public:
    string& operator=(const vsstring & strSrc);
    string& operator=(PCXSTR pszSrc);
    string& operator=(PCYSTR pszSrc);
-   string& operator=(const unsigned char* pszSrc );
+   string& operator=(const uchar* pszSrc );
    string& operator=(char ch );
 #ifdef METROWIN
    string& operator=(const Platform::String ^ & str);
@@ -280,7 +280,7 @@ public:
    string& operator+=(const static_string<t_nSize >& strSrc );
    string& operator+=(PCYSTR pszSrc );
    string& operator+=(char ch );
-   string& operator+=(unsigned char ch );
+   string& operator+=(uchar ch );
    string& operator+=(wchar_t ch );
 
    // Override from base class

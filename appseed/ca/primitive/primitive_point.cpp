@@ -13,8 +13,8 @@ point::point(__point64 pt) throw()
    { x = (int32_t) pt.x; y = (int32_t) pt.y; }
 point::point(LPARAM dwPoint) throw()
    {
-      x = (short)GET_X_LPARAM(dwPoint);
-      y = (short)GET_Y_LPARAM(dwPoint);
+      x = (int16_t)GET_X_LPARAM(dwPoint);
+      y = (int16_t)GET_Y_LPARAM(dwPoint);
    }
 
 point::operator POINT *() throw()
@@ -180,8 +180,8 @@ pointd::pointd(__point64 pt) throw()
    { x = (int32_t) pt.x; y = (int32_t) pt.y; }
 pointd::pointd(LPARAM dwPoint) throw()
    {
-      x = (short)GET_X_LPARAM(dwPoint);
-      y = (short)GET_Y_LPARAM(dwPoint);
+      x = (int16_t)GET_X_LPARAM(dwPoint);
+      y = (int16_t)GET_Y_LPARAM(dwPoint);
    }
 
 pointd::operator POINTD *() throw()

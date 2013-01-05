@@ -16,7 +16,7 @@
   }*/
 #if !defined(OC_ILOG_NODEBRUIJN)&& \
  !defined(OC_CLZ32)||!defined(OC_CLZ64)&&LONG_MAX<9223372036854775807LL
-static const unsigned char OC_DEBRUIJN_IDX32[32]={
+static const uchar OC_DEBRUIJN_IDX32[32]={
    0, 1,28, 2,29,14,24, 3,30,22,20,15,25,17, 4, 8,
   31,27,13,23,21,19,16, 7,26,12,18, 6,11, 5,10, 9
 };
@@ -109,7 +109,7 @@ int32_t oc_ilog64(ogg_int64_t _v){
   return ret;
 /*Otherwise do it in one 64-bit operation.*/
 #  else
-  static const unsigned char OC_DEBRUIJN_IDX64[64]={
+  static const uchar OC_DEBRUIJN_IDX64[64]={
      0, 1, 2, 7, 3,13, 8,19, 4,25,14,28, 9,34,20,40,
      5,17,26,38,15,46,29,48,10,31,35,54,21,50,41,57,
     63, 6,12,18,24,27,33,39,16,37,45,47,30,53,49,56,

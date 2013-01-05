@@ -24,7 +24,7 @@ typedef uint32_t rollover_counter_t;   /* 32 bit rollover counter */
 
 #else  /* use small seq_num and roc datatypes for testing purposes */
 
-typedef unsigned char sequence_number_t;         /* 8 bit sequence number   */
+typedef uchar sequence_number_t;         /* 8 bit sequence number   */
 typedef uint16_t rollover_counter_t;   /* 16 bit rollover counter */
 
 #endif
@@ -33,7 +33,7 @@ typedef uint16_t rollover_counter_t;   /* 16 bit rollover counter */
 #define seq_num_max    (1 << (8*sizeof(sequence_number_t)))
 
 /*
- * An xtd_seq_num_t is a 64-bit unsigned integer used as an 'extended'
+ * An xtd_seq_num_t is a 64-bit uint32_t integer used as an 'extended'
  * sequence number.  
  */
 

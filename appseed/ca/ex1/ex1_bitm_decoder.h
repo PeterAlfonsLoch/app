@@ -10,16 +10,16 @@ namespace ex1
    namespace bitm
    {
 
-      const unsigned kNumBigValueBits = 8 * 4;
-      const unsigned kNumValueBytes = 3;
-      const unsigned kNumValueBits = 8  * kNumValueBytes;
+      const uint32_t kNumBigValueBits = 8 * 4;
+      const uint32_t kNumValueBytes = 3;
+      const uint32_t kNumValueBits = 8  * kNumValueBytes;
 
       const uint32_t kMask = (1 << kNumValueBits) - 1;
 
       template<class TInByte>
       class decoder
       {
-         unsigned m_BitPos;
+         uint32_t m_BitPos;
          uint32_t m_Value;
       public:
          TInByte m_Stream;
@@ -42,19 +42,19 @@ namespace ex1
                m_Value = (m_Value << 8) | m_Stream.ReadByte();
          }
 
-         uint32_t GetValue(unsigned numBits) const
+         uint32_t GetValue(uint32_t numBits) const
          {
             // return (m_Value << m_BitPos) >> (kNumBigValueBits - numBits);
             return ((m_Value >> (8 - m_BitPos)) & kMask) >> (kNumValueBits - numBits);
          }
 
-         void MovePos(unsigned numBits)
+         void MovePos(uint32_t numBits)
          {
             m_BitPos += numBits;
             Normalize();
          }
 
-         uint32_t ReadBits(unsigned numBits)
+         uint32_t ReadBits(uint32_t numBits)
          {
             uint32_t res = GetValue(numBits);
             MovePos(numBits);

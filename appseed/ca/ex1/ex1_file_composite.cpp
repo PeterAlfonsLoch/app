@@ -175,7 +175,7 @@ namespace ex1
 
    }
    
-   bool file_composite::read(unsigned char * puch)
+   bool file_composite::read(uchar * puch)
    {
    
       return m_spfile->read(puch);
@@ -189,7 +189,7 @@ namespace ex1
 
    }
 
-   bool file_composite::read(unsigned char & uch)
+   bool file_composite::read(uchar & uch)
    {
 
       return m_spfile->read(uch);
@@ -203,7 +203,7 @@ namespace ex1
 
    }
 
-   bool file_composite::peek(unsigned char * puch)
+   bool file_composite::peek(uchar * puch)
    {
 
       return m_spfile->peek(puch);
@@ -217,7 +217,7 @@ namespace ex1
 
    }
 
-   bool file_composite::peek(unsigned char & uch)
+   bool file_composite::peek(uchar & uch)
    {
 
       return m_spfile->peek(uch);

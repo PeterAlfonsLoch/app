@@ -27,14 +27,14 @@
 
 void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
  int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
-  unsigned char *dst;
+  uchar *dst;
   ptrdiff_t      frag_buf_off;
   int32_t            ystride;
   int32_t            mb_mode;
   /*Apply the inverse transform.*/
   /*Special case only having a DC component.*/
   if(_last_zzi<2){
-    /*Note that this value must be unsigned, to keep the __asm__ block from
+    /*Note that this value must be uint32_t, to keep the __asm__ block from
        sign-extending it when it puts it in a register.*/
     ogg_uint16_t p;
     /*We round this dequant product (and not any of the others) because there's
@@ -84,7 +84,7 @@ void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
   dst=_state->ref_frame_data[_state->ref_frame_idx[OC_FRAME_SELF]]+frag_buf_off;
   if(mb_mode==OC_MODE_INTRA)oc_frag_recon_intra_mmx(dst,ystride,_dct_coeffs);
   else{
-    const unsigned char *ref;
+    const uchar *ref;
     int32_t                  mvoffsets[2];
     ref=
      _state->ref_frame_data[_state->ref_frame_idx[OC_FRAME_FOR_MODE(mb_mode)]]
@@ -112,8 +112,8 @@ void oc_state_frag_copy_list_mmx(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
  int32_t _dst_frame,int32_t _src_frame,int32_t _pli){
   const ptrdiff_t     *frag_buf_offs;
-  const unsigned char *src_frame_data;
-  unsigned char       *dst_frame_data;
+  const uchar *src_frame_data;
+  uchar       *dst_frame_data;
   ptrdiff_t            fragii;
   int32_t                  ystride;
   dst_frame_data=_state->ref_frame_data[_state->ref_frame_idx[_dst_frame]];
@@ -146,11 +146,11 @@ void oc_state_frag_copy_list_mmx(const oc_theora_state *_state,
   _fragy_end: The Y coordinate of the fragment row to stop filtering at.*/
 void oc_state_loop_filter_frag_rows_mmx(const oc_theora_state *_state,
  int32_t _bv[256],int32_t _refi,int32_t _pli,int32_t _fragy0,int32_t _fragy_end){
-  OC_ALIGN8(unsigned char  ll[8]);
+  OC_ALIGN8(uchar  ll[8]);
   const oc_fragment_plane *fplane;
   const oc_fragment       *frags;
   const ptrdiff_t         *frag_buf_offs;
-  unsigned char           *ref_frame_data;
+  uchar           *ref_frame_data;
   ptrdiff_t                fragi_top;
   ptrdiff_t                fragi_bot;
   ptrdiff_t                fragi0;
@@ -180,7 +180,7 @@ void oc_state_loop_filter_frag_rows_mmx(const oc_theora_state *_state,
     fragi_end=fragi+nhfrags;
     while(fragi<fragi_end){
       if(frags[fragi].coded){
-        unsigned char *ref;
+        uchar *ref;
         ref=ref_frame_data+frag_buf_offs[fragi];
 #define PIX eax
 #define YSTRIDE3 edi

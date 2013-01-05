@@ -65,7 +65,7 @@ static const vorbis_info_psy_global _psy_global_44[5]={
 
 /* noise compander lookups * low, mid, high quality ****************/
 static const compandblock _psy_compand_44[6]={
-  /* sub-mode Z short */
+  /* sub-mode Z int16_t */
   {{
     0, 1, 2, 3, 4, 5, 6,  7,     /* 7dB */
     8, 9,10,11,12,13,14, 15,     /* 15dB */
@@ -73,7 +73,7 @@ static const compandblock _psy_compand_44[6]={
     24,25,26,27,28,29,30, 31,     /* 31dB */
     32,33,34,35,36,37,38, 39,     /* 39dB */
   }},
-  /* mode_Z nominal short */
+  /* mode_Z nominal int16_t */
   {{
      0, 1, 2, 3, 4, 5, 6,  6,     /* 7dB */
      7, 7, 7, 7, 6, 6, 6,  7,     /* 15dB */
@@ -81,7 +81,7 @@ static const compandblock _psy_compand_44[6]={
     15,16,17,17,17,18,18, 19,     /* 31dB */
     19,19,20,21,22,23,24, 25,     /* 39dB */
   }},
-  /* mode A short */
+  /* mode A int16_t */
   {{
     0, 1, 2, 3, 4, 5, 5,  5,     /* 7dB */
     6, 6, 6, 5, 4, 4, 4,  4,     /* 15dB */

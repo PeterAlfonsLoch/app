@@ -14,7 +14,7 @@ The following makes PROTOTYPES default to 0 if it has not already
 #endif
 
 /* POINTER defines a generic pointer type */
-typedef unsigned char *POINTER;
+typedef uchar *POINTER;
 
 /* UINT2 defines a two byte word */
 typedef uint16_t UINT2;

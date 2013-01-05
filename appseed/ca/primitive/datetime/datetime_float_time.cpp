@@ -115,7 +115,7 @@ INT WINAPI FloatTimeToSystemTime(double dateIn, LPSYSTEMTIME lpSt)
 static HRESULT FLOATTIME_RollUdate(UDATE *lpUd)
 {
   static const BYTE days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-  short iYear, iMonth, iDay, iHour, iMinute, iSecond;
+  int16_t iYear, iMonth, iDay, iHour, iMinute, iSecond;
 
   /* interpret values signed */
   iYear   = lpUd->st.wYear;
@@ -446,7 +446,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
         if ((*strIn == 'a' || *strIn == 'A' || *strIn == 'p' || *strIn == 'P') &&
             (dp.dwCount && !(dp.dwParseFlags & (DP_AM|DP_PM))))
         {
-          /* Special case - 'a' and 'p' are recognised as short for am/pm */
+          /* Special case - 'a' and 'p' are recognised as int16_t for am/pm */
           if (*strIn == 'a' || *strIn == 'A')
           {
             dp.dwFlags[dp.dwCount - 1] |= DP_AM;

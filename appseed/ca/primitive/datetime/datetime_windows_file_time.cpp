@@ -60,26 +60,26 @@ bool FileTimeToDosTime(const FILETIME &ft, uint32_t &dosTime)
 
   #else
 
-  unsigned year, mon, day, hour, min, sec;
+  uint32_t year, mon, day, hour, min, sec;
   uint64_t v64 = ft.dwLowDateTime | ((uint64_t)ft.dwHighDateTime << 32);
   Byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-  unsigned temp;
+  uint32_t temp;
   uint32_t v;
   v64 += (kNumTimeQuantumsInSecond * 2 - 1);
   v64 /= kNumTimeQuantumsInSecond;
-  sec = (unsigned)(v64 % 60);
+  sec = (uint32_t)(v64 % 60);
   v64 /= 60;
-  min = (unsigned)(v64 % 60);
+  min = (uint32_t)(v64 % 60);
   v64 /= 60;
-  hour = (unsigned)(v64 % 24);
+  hour = (uint32_t)(v64 % 24);
   v64 /= 24;
 
   v = (uint32_t)v64;
 
-  year = (unsigned)(kFileTimeStartYear + v / PERIOD_400 * 400);
+  year = (uint32_t)(kFileTimeStartYear + v / PERIOD_400 * 400);
   v %= PERIOD_400;
 
-  temp = (unsigned)(v / PERIOD_100);
+  temp = (uint32_t)(v / PERIOD_100);
   if (temp == 4)
     temp = 3;
   year += temp * 100;
@@ -101,12 +101,12 @@ bool FileTimeToDosTime(const FILETIME &ft, uint32_t &dosTime)
     ms[1] = 29;
   for (mon = 1; mon <= 12; mon++)
   {
-    unsigned s = ms[mon - 1];
+    uint32_t s = ms[mon - 1];
     if (v < s)
       break;
     v -= s;
   }
-  day = (unsigned)v + 1;
+  day = (uint32_t)v + 1;
 
   dosTime = kLowDosTime;
   if (year < kDosTimeStartYear)
@@ -145,8 +145,8 @@ bool FileTimeToUnixTime(const FILETIME &ft, uint32_t &unixTime)
   return true;
 }
 
-bool GetSecondsSince1601(unsigned year, unsigned month, unsigned day,
-  unsigned hour, unsigned min, unsigned sec, uint64_t &resSeconds)
+bool GetSecondsSince1601(uint32_t year, uint32_t month, uint32_t day,
+  uint32_t hour, uint32_t min, uint32_t sec, uint64_t &resSeconds)
 {
   resSeconds = 0;
   if (year < kFileTimeStartYear || year >= 10000 || month < 1 || month > 12 ||
@@ -158,7 +158,7 @@ bool GetSecondsSince1601(unsigned year, unsigned month, unsigned day,
   if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
     ms[1] = 29;
   month--;
-  for (unsigned i = 0; i < month; i++)
+  for (uint32_t i = 0; i < month; i++)
     numDays += ms[i];
   numDays += day - 1;
   resSeconds = ((uint64_t)(numDays * 24 + hour) * 60 + min) * 60 + sec;

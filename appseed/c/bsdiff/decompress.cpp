@@ -208,7 +208,7 @@ int32_t BZ2_decompress ( DState* s )
       s->blockSize100k -= BZ_HDR_0;
 
       if (s->smallDecompress) {
-         s->ll16 = (UInt16 *)BZALLOC( s->blockSize100k * 100000 * sizeof(UInt16) );
+         s->ll16 = (uint16_t *)BZALLOC( s->blockSize100k * 100000 * sizeof(uint16_t) );
          s->ll4  = (UChar *)BZALLOC( 
                       ((1 + s->blockSize100k * 100000) >> 1) * sizeof(UChar) 
                    );
@@ -394,7 +394,7 @@ int32_t BZ2_decompress ( DState* s )
             if (s->smallDecompress)
                while (es > 0) {
                   if (nblock >= nblockMAX) RETURN(BZ_DATA_ERROR);
-                  s->ll16[nblock] = (UInt16)uc;
+                  s->ll16[nblock] = (uint16_t)uc;
                   nblock++;
                   es--;
                }
@@ -468,7 +468,7 @@ int32_t BZ2_decompress ( DState* s )
 
             s->unzftab[s->seqToUnseq[uc]]++;
             if (s->smallDecompress)
-               s->ll16[nblock] = (UInt16)(s->seqToUnseq[uc]); else
+               s->ll16[nblock] = (uint16_t)(s->seqToUnseq[uc]); else
                s->tt[nblock]   = (uint32_t)(s->seqToUnseq[uc]);
             nblock++;
 

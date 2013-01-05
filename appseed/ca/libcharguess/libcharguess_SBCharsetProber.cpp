@@ -25,11 +25,11 @@
 
 nsProbingState nsSingleByteCharSetProber::HandleData(const char* aBuf, PRUint32 aLen)
 {
-  unsigned char order;
+  uchar order;
 
   for (PRUint32 i = 0; i < aLen; i++)
   {
-    order = mModel->charToOrderMap[(unsigned char)aBuf[i]];
+    order = mModel->charToOrderMap[(uchar)aBuf[i]];
 
     if (order < SYMBOL_CAT_ORDER)
       mTotalChar++;

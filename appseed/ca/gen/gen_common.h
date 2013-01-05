@@ -142,7 +142,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ultoa_s(unsigned long _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
+   inline void __cdecl ultoa_s(uint32_t long _Val, char *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultoa_s(_Val, _Buf, _SizeInChars, _Radix));
@@ -151,7 +151,7 @@ namespace gen
 #endif
    }
 
-   inline void __cdecl ultow_s(unsigned long _Val, wchar_t *_Buf, size_t _SizeInChars, int32_t _Radix)
+   inline void __cdecl ultow_s(uint32_t long _Val, wchar_t *_Buf, size_t _SizeInChars, int32_t _Radix)
    {
 #ifdef WINDOWS
       C_RUNTIME_ERROR_CHECK(::_ultow_s(_Val, _Buf, _SizeInChars, _Radix));

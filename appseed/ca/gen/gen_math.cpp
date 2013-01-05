@@ -146,7 +146,7 @@ namespace gen
 
          {
           //  m_chRngReSeedCountDown = -1;
-            //unsigned long ulRnd = rnd();
+            //uint32_t long ulRnd = rnd();
          }
 
       }
@@ -191,7 +191,7 @@ namespace gen
          return 0xffffff;
       }
 
-      unsigned long math::rnd()
+      uint32_t long math::rnd()
       {
          synch_lock lock(this);
          static int32_t s_iRngReSeedCountDown = -1;
@@ -295,9 +295,9 @@ namespace gen
           return TRUE;
       }
 
-      uint32_t math::ReverseBits (unsigned index, unsigned NumBits )
+      uint32_t math::ReverseBits (uint32_t index, uint32_t NumBits )
       {
-          unsigned i, rev;
+          uint32_t i, rev;
 
           for ( i=rev=0; i < NumBits; i++ )
           {

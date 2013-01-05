@@ -1860,7 +1860,7 @@ CScriptVarLink *tinyjs::logic(bool &execute) {
         l->match(l->tk);
         bool shortCircuit = false;
         bool boolean = false;
-        // if we have short-circuit ops, then if we know the outcome
+        // if we have int16_t-circuit ops, then if we know the outcome
         // we don't bother to execute the other op. Even if not
         // we need to tell mathsOp it's an & or |
         if (op==LEX_ANDAND) {

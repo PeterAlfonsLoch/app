@@ -285,7 +285,7 @@ namespace gen
          return;
       for (int32_t i = 0; i < 256; i++)
       {
-         unsigned short pos = arr_idxCharCategoryIdx[(int32_t(cat)-1) * 256 + i];
+         uint16_t pos = arr_idxCharCategoryIdx[(int32_t(cat)-1) * 256 + i];
          if(!pos)
             continue;
          bit_array *tablePos = infoIndex[i];
@@ -315,7 +315,7 @@ namespace gen
          return;
       for(int32_t i = 0; i < 256; i++)
       {
-         unsigned short pos = arr_idxCharCategoryIdx[(int32_t(cat)-1) * 256 + i];
+         uint16_t pos = arr_idxCharCategoryIdx[(int32_t(cat)-1) * 256 + i];
          if(!pos)
             continue;
          bit_array *tablePos = infoIndex[i];

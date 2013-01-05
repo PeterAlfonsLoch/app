@@ -80,10 +80,10 @@ namespace ex1
 
 
 #ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lp)                        ((int32_t)(short)LOWORD(lp))
+#define GET_X_LPARAM(lp)                        ((int32_t)(int16_t)LOWORD(lp))
 #endif
 #ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lp)                        ((int32_t)(short)HIWORD(lp))
+#define GET_Y_LPARAM(lp)                        ((int32_t)(int16_t)HIWORD(lp))
 #endif
 
 

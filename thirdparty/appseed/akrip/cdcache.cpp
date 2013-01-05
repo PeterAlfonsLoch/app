@@ -242,7 +242,7 @@ DWORD CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders,
     }
 
   sin.sin_family = AF_INET;
-  sin.sin_port = htons( (unsigned short)iProxyPort );
+  sin.sin_port = htons( (uint16_t)iProxyPort );
   memcpy( &sin.sin_addr, h->h_addr, h->h_length );
 
   i = connect( s, (struct sockaddr *)&sin, sizeof(sin) );
@@ -324,7 +324,7 @@ DWORD CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
     return 0;
 
   sin.sin_family = AF_INET;
-  sin.sin_port = htons( (unsigned short)iHTTPPort );
+  sin.sin_port = htons( (uint16_t)iHTTPPort );
   memcpy( &sin.sin_addr, h->h_addr, h->h_length );
 
   i = connect( s, (struct sockaddr *)&sin, sizeof(sin) );

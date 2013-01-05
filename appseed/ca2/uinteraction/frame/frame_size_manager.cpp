@@ -493,7 +493,7 @@ namespace frame
       if(pbase->m_uiMessage == WM_LBUTTONDOWN)
       {
          SCAST_PTR(gen::message::mouse, pmouse, pobj);
-         point ptCursor((short) LOWORD(pbase->m_lparam), (short) HIWORD(pbase->m_lparam));
+         point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
          pwnd->ClientToScreen(&ptCursor);
 //         UINT uiFlags = pbase->m_wparam;
          m_ptCursorOrigin = ptCursor;
@@ -531,7 +531,7 @@ namespace frame
             pbase->m_bRet = true;
             return;
          }
-         point ptCursor((short) LOWORD(pbase->m_lparam), (short) HIWORD(pbase->m_lparam));
+         point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
          pwnd->ClientToScreen(&ptCursor);
          rect rectEvent;
          GetEventWindow()->GetWindowRect(rectEvent);

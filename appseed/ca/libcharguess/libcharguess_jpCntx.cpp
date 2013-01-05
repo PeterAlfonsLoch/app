@@ -160,37 +160,37 @@ float  JapaneseContextAnalysis::GetConfidence()
 PRInt32 SJISContextAnalysis::GetOrder(const char* str, PRUint32 *charLen)
 {
   //find out current char's byte length
-  if (((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f) ||
-      ((unsigned char)*str >= (unsigned char)0xe0 && (unsigned char)*str <= (unsigned char)0xfc) )
+  if (((uchar)*str >= (uchar)0x81 && (uchar)*str <= (uchar)0x9f) ||
+      ((uchar)*str >= (uchar)0xe0 && (uchar)*str <= (uchar)0xfc) )
       *charLen = 2;
   else 
       *charLen = 1;
 
   //return its order if it is hiragana
   if (*str == '\202' && 
-        (unsigned char)*(str+1) >= (unsigned char)0x9f && 
-        (unsigned char)*(str+1) <= (unsigned char)0xf1)
-    return (unsigned char)*(str+1) - (unsigned char)0x9f;
+        (uchar)*(str+1) >= (uchar)0x9f && 
+        (uchar)*(str+1) <= (uchar)0xf1)
+    return (uchar)*(str+1) - (uchar)0x9f;
   return -1;
 }
 
 PRInt32 EUCJPContextAnalysis::GetOrder(const char* str, PRUint32 *charLen)
 {
   //find out current char's byte length
-  if ((unsigned char)*str == (unsigned char)0x8e ||
-      ((unsigned char)*str >= (unsigned char)0xa1 &&
-      (unsigned char)*str <= (unsigned char)0xfe))
+  if ((uchar)*str == (uchar)0x8e ||
+      ((uchar)*str >= (uchar)0xa1 &&
+      (uchar)*str <= (uchar)0xfe))
       *charLen = 2;
-  else if ((unsigned char)*str == (unsigned char)0x8f)
+  else if ((uchar)*str == (uchar)0x8f)
     *charLen = 3;
   else
     *charLen = 1;
 
   //return its order if it is hiragana
-  if ((unsigned char)*str == (unsigned char)0xa4 &&
-      (unsigned char)*(str+1) >= (unsigned char)0xa1 && 
-      (unsigned char)*(str+1) <= (unsigned char)0xf3)
-     return (unsigned char)*(str+1) - (unsigned char)0xa1;
+  if ((uchar)*str == (uchar)0xa4 &&
+      (uchar)*(str+1) >= (uchar)0xa1 && 
+      (uchar)*(str+1) <= (uchar)0xf3)
+     return (uchar)*(str+1) - (uchar)0xa1;
   return -1;
 }
 

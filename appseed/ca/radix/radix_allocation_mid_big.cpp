@@ -23,7 +23,7 @@ void * MyAlloc(size_t size)
   #ifdef _SZ_ALLOC_DEBUG
   {
     void *p = malloc(size);
-    fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", size, g_allocCount++, (unsigned)p);
+    fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", size, g_allocCount++, (uint32_t)p);
     return p;
   }
   #else
@@ -38,7 +38,7 @@ void * MyRealloc(void * addr, size_t sizeOld, size_t sizeNew)
   #ifdef _SZ_ALLOC_DEBUG
   {
     void *p = realloc(addr, sizeNew);
-    fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", sizeNew, g_allocCount++, (unsigned)p);
+    fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", sizeNew, g_allocCount++, (uint32_t)p);
     return p;
   }
   #else
@@ -50,7 +50,7 @@ void MyFree(void * address)
 {
   #ifdef _SZ_ALLOC_DEBUG
   if (address != 0)
-    fprintf(stderr, "\nFree; count = %10d,  addr = %8X", --g_allocCount, (unsigned)address);
+    fprintf(stderr, "\nFree; count = %10d,  addr = %8X", --g_allocCount, (uint32_t)address);
   #endif
   free(address);
 }

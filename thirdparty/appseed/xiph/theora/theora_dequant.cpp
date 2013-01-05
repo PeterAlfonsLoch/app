@@ -36,7 +36,7 @@ int32_t oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
   nbits=(int32_t)val;
   for(qi=0;qi<64;qi++){
     val=oc_pack_read(_opb,nbits);
-    _qinfo->loop_filter_limits[qi]=(unsigned char)val;
+    _qinfo->loop_filter_limits[qi]=(uchar)val;
   }
   val=oc_pack_read(_opb,4);
   nbits=(int32_t)val+1;
@@ -57,7 +57,7 @@ int32_t oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
   for(bmi=0;bmi<nbase_mats;bmi++){
     for(ci=0;ci<64;ci++){
       val=oc_pack_read(_opb,8);
-      base_mats[bmi][ci]=(unsigned char)val;
+      base_mats[bmi][ci]=(uchar)val;
     }
   }
   nbits=oc_ilog(nbase_mats-1);

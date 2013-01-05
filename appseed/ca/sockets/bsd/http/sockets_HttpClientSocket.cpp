@@ -232,7 +232,7 @@ namespace sockets
       return m_b_complete;
    }
 
-   const unsigned char *http_client_socket::GetDataPtr() const
+   const uchar *http_client_socket::GetDataPtr() const
    {
 
       return m_memoryfile.get_data();

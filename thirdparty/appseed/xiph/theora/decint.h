@@ -62,9 +62,9 @@ struct th_dec_ctx{
      plane.*/
   ptrdiff_t            eob_runs[3][64];
   /*The DCT token lists.*/
-  unsigned char       *dct_tokens;
+  uchar       *dct_tokens;
   /*The extra bits associated with DCT tokens.*/
-  unsigned char       *extra_bits;
+  uchar       *extra_bits;
   /*The number of dct tokens unpacked so far.*/
   int32_t                  dct_tokens_count;
   /*The out-of-loop post-processing level.*/
@@ -74,11 +74,11 @@ struct th_dec_ctx{
   /*The sharpen modifier used for out-of-loop deringing.*/
   int32_t                  pp_sharp_mod[64];
   /*The DC quantization index of each block.*/
-  unsigned char       *dc_qis;
+  uchar       *dc_qis;
   /*The variance of each block.*/
   int32_t                 *variances;
   /*The storage for the post-processed frame buffer.*/
-  unsigned char       *pp_frame_data;
+  uchar       *pp_frame_data;
   /*Whether or not the post-processsed frame buffer has space for chroma.*/
   int32_t                  pp_frame_state;
   /*The buffer used for the post-processed frame.
@@ -100,7 +100,7 @@ struct th_dec_ctx{
   int32_t                  telemetry_mv_bytes;
   int32_t                  telemetry_qi_bytes;
   int32_t                  telemetry_dc_bytes;
-  unsigned char       *telemetry_frame_data;
+  uchar       *telemetry_frame_data;
 # endif
 };
 

@@ -134,7 +134,7 @@ void generateMTFValues ( e_state* s )
 
       The first thing to do is generate the MTF values,
       and put them in
-         ((UInt16*)s->arr1) [ 0 .. s->nblock-1 ].
+         ((uint16_t*)s->arr1) [ 0 .. s->nblock-1 ].
       Because there are strictly fewer or equal MTF values
       than block values, ptr values in this area are overwritten
       with MTF values only when they are no longer needed.
@@ -149,7 +149,7 @@ void generateMTFValues ( e_state* s )
    */
    uint32_t* ptr   = s->ptr;
    UChar* block  = s->block;
-   UInt16* mtfv  = s->mtfv;
+   uint16_t* mtfv  = s->mtfv;
 
    makeMaps_e ( s );
    EOB = s->nInUse+1;
@@ -253,10 +253,10 @@ void sendMTFValues ( e_state* s )
    --*/
 
 
-   UInt16 cost[BZ_N_GROUPS];
+   uint16_t cost[BZ_N_GROUPS];
    int32_t  fave[BZ_N_GROUPS];
 
-   UInt16* mtfv = s->mtfv;
+   uint16_t* mtfv = s->mtfv;
 
    if (s->verbosity >= 3)
       VPrintf3( "      %d in block, %d after MTF & 1-2 coding, "
@@ -358,7 +358,7 @@ void sendMTFValues ( e_state* s )
          if (nGroups == 6 && 50 == ge-gs+1) {
             /*--- fast track the common case ---*/
             register uint32_t cost01, cost23, cost45;
-            register UInt16 icv;
+            register uint16_t icv;
             cost01 = cost23 = cost45 = 0;
 
 #           define BZ_ITER(nn)                \
@@ -387,7 +387,7 @@ void sendMTFValues ( e_state* s )
          } else {
        /*--- slow version which correctly handles all situations ---*/
             for (i = gs; i <= ge; i++) { 
-               UInt16 icv = mtfv[i];
+               uint16_t icv = mtfv[i];
                for (t = 0; t < nGroups; t++) cost[t] += s->len[t][icv];
             }
          }
@@ -553,7 +553,7 @@ void sendMTFValues ( e_state* s )
 
       if (nGroups == 6 && 50 == ge-gs+1) {
             /*--- fast track the common case ---*/
-            UInt16 mtfv_i;
+            uint16_t mtfv_i;
             UChar* s_len_sel_selCtr 
                = &(s->len[s->selector[selCtr]][0]);
             int32_t* s_code_sel_selCtr

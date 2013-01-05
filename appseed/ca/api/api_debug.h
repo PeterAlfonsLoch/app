@@ -60,12 +60,12 @@ typedef int32_t (DECL_C * _CRT_REPORT_HOOKW)(int32_t, wchar_t *, int32_t *);
 #define _HOOK_FREE      3
 
 #if !defined(_M_CEE_PURE)
-typedef int32_t (DECL_C * _CRT_ALLOC_HOOK)(int32_t, void *, size_t, int32_t, long, const unsigned char *, int32_t);
+typedef int32_t (DECL_C * _CRT_ALLOC_HOOK)(int32_t, void *, size_t, int32_t, long, const uchar *, int32_t);
 #else
-typedef int32_t (__clrcall * _CRT_ALLOC_HOOK)(int32_t, void *, size_t, int32_t, long, const unsigned char *, int32_t);
+typedef int32_t (__clrcall * _CRT_ALLOC_HOOK)(int32_t, void *, size_t, int32_t, long, const uchar *, int32_t);
 #endif
 #if defined(_M_CEE)
-typedef int32_t (__clrcall * _CRT_ALLOC_HOOK_M)(int32_t, void *, size_t, int32_t, long, const unsigned char *, int32_t);
+typedef int32_t (__clrcall * _CRT_ALLOC_HOOK_M)(int32_t, void *, size_t, int32_t, long, const uchar *, int32_t);
 #endif
 
  /****************************************************************************

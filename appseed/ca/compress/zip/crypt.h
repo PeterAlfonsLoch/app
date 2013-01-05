@@ -34,11 +34,11 @@
  */
 static int32_t decrypt_byte(uint32_t  * pkeys, const uint32_t * pcrc_32_tab)
 {
-    unsigned temp;  /* POTENTIAL BUG:  temp*(temp^1) may overflow in an
+    uint32_t temp;  /* POTENTIAL BUG:  temp*(temp^1) may overflow in an
                      * unpredictable manner on 16-bit systems; not a problem
                      * with any known compiler so far, though */
 
-    temp = ((unsigned)(*(pkeys+2)) & 0xffff) | 2;
+    temp = ((uint32_t)(*(pkeys+2)) & 0xffff) | 2;
     return (int32_t)(((temp * (temp ^ 1)) >> 8) & 0xff);
 }
 
@@ -89,7 +89,7 @@ static void init_keys(const char* passwd, uint32_t * pkeys,const uint32_t * pcrc
 
 static int32_t crypthead(
     const char *passwd,         /* password string */
-    unsigned char *buf,         /* where to write header */
+    uchar *buf,         /* where to write header */
     int32_t bufSize,
     uint32_t * pkeys,
     const uint32_t * pcrc_32_tab,
@@ -98,8 +98,8 @@ static int32_t crypthead(
     int32_t n;                       /* index in random header */
     int32_t t;                       /* temporary */
     int32_t c;                       /* random byte */
-    unsigned char header[RAND_HEAD_LEN-2]; /* random header */
-    static unsigned calls = 0;   /* ensure different random header each time */
+    uchar header[RAND_HEAD_LEN-2]; /* random header */
+    static uint32_t calls = 0;   /* ensure different random header each time */
 
     if (bufSize<RAND_HEAD_LEN)
       return 0;
@@ -110,19 +110,19 @@ static int32_t crypthead(
      */
     if (++calls == 1)
     {
-        srand((unsigned)(time(NULL) ^ ZCR_SEED2));
+        srand((uint32_t)(time(NULL) ^ ZCR_SEED2));
     }
     init_keys(passwd, pkeys, pcrc_32_tab);
     for (n = 0; n < RAND_HEAD_LEN-2; n++)
     {
         c = (rand() >> 7) & 0xff;
-        header[n] = (unsigned char)zencode(pkeys, pcrc_32_tab, c, t);
+        header[n] = (uchar)zencode(pkeys, pcrc_32_tab, c, t);
     }
     /* Encrypt random header (last two bytes is high word of crc) */
     init_keys(passwd, pkeys, pcrc_32_tab);
     for (n = 0; n < RAND_HEAD_LEN-2; n++)
     {
-        buf[n] = (unsigned char)zencode(pkeys, pcrc_32_tab, header[n], t);
+        buf[n] = (uchar)zencode(pkeys, pcrc_32_tab, header[n], t);
     }
     buf[n++] = zencode(pkeys, pcrc_32_tab, (int32_t)(crcForCrypting >> 16) & 0xff, t);
     buf[n++] = zencode(pkeys, pcrc_32_tab, (int32_t)(crcForCrypting >> 24) & 0xff, t);

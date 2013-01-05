@@ -310,14 +310,14 @@ const th_quant_info TH_DEF_QUANT_INFO={
 
 /*The Huffman codes used for macro block modes.*/
 
-const unsigned char OC_MODE_BITS[2][OC_NMODES]={
+const uchar OC_MODE_BITS[2][OC_NMODES]={
   /*Codebook 0: a maximally skewed prefix code.*/
   {1,2,3,4,5,6,7,7},
   /*Codebook 1: a fixed-length code.*/
   {3,3,3,3,3,3,3,3}
 };
 
-static const unsigned char OC_MODE_CODES[2][OC_NMODES]={
+static const uchar OC_MODE_CODES[2][OC_NMODES]={
   /*Codebook 0: a maximally skewed prefix code.*/
   {0x00,0x02,0x06,0x0E,0x1E,0x3E,0x7E,0x7F},
   /*Codebook 1: a fixed-length code.*/
@@ -327,7 +327,7 @@ static const unsigned char OC_MODE_CODES[2][OC_NMODES]={
 
 /*The Huffman codes used for motion vectors.*/
 
-const unsigned char OC_MV_BITS[2][64]={
+const uchar OC_MV_BITS[2][64]={
   /*Codebook 0: VLC code.*/
   {
       8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,
@@ -349,7 +349,7 @@ const unsigned char OC_MV_BITS[2][64]={
   }
 };
 
-static const unsigned char OC_MV_CODES[2][64]={
+static const uchar OC_MV_CODES[2][64]={
   /*Codebook 0: VLC code.*/
   {
          0xFF,0xFD,0xFB,0xF9,0xF7,0xF5,0xF3,
@@ -388,10 +388,10 @@ static const unsigned char OC_MV_CODES[2][64]={
    111110xxxx              18-33
    111111xxxxxxxxxxxx      34-4129*/
 const ogg_uint16_t    OC_SB_RUN_VAL_MIN[8]={1,2,4,6,10,18,34,4130};
-static const unsigned OC_SB_RUN_CODE_PREFIX[7]={
+static const uint32_t OC_SB_RUN_CODE_PREFIX[7]={
   0,4,0xC,0x38,0xF0,0x3E0,0x3F000
 };
-const unsigned char   OC_SB_RUN_CODE_NBITS[7]={1,3,4,6,8,10,18};
+const uchar   OC_SB_RUN_CODE_NBITS[7]={1,3,4,6,8,10,18};
 
 
 /*Writes the bit pattern for the run length of a super block run to the given
@@ -414,7 +414,7 @@ static void oc_sb_run_pack(oggpack_buffer *_opb,ptrdiff_t _run_count,
     if(_run_count<=0)return;
   }
   for(i=0;_run_count>=OC_SB_RUN_VAL_MIN[i+1];i++);
-  oggpackB_write(_opb, (unsigned long) (OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i]),
+  oggpackB_write(_opb, (uint32_t long) (OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i]),
    OC_SB_RUN_CODE_NBITS[i]);
 }
 
@@ -428,7 +428,7 @@ static void oc_sb_run_pack(oggpack_buffer *_opb,ptrdiff_t _run_count,
    1110xx                  7-10
    11110xx                 11-14
    11111xxxx               15-30*/
-const unsigned char OC_BLOCK_RUN_CODE_NBITS[30]={
+const uchar OC_BLOCK_RUN_CODE_NBITS[30]={
   2,2,3,3,4,4,6,6,6,6,7,7,7,7,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9
 };
 static const ogg_uint16_t  OC_BLOCK_RUN_CODE_PATTERN[30]={
@@ -482,11 +482,11 @@ static void oc_enc_frame_header_pack(oc_enc_ctx *_enc){
   These flags are run-length encoded, with the flag value alternating between
    each run.
   Return: The number partially coded SBs.*/
-static unsigned oc_enc_partial_sb_flags_pack(oc_enc_ctx *_enc){
+static uint32_t oc_enc_partial_sb_flags_pack(oc_enc_ctx *_enc){
   const oc_sb_flags *sb_flags;
-  unsigned           nsbs;
-  unsigned           sbi;
-  unsigned           npartial;
+  uint32_t           nsbs;
+  uint32_t           sbi;
+  uint32_t           npartial;
   int32_t                flag;
   sb_flags=_enc->state.sb_flags;
   nsbs=_enc->state.nsbs;
@@ -494,7 +494,7 @@ static unsigned oc_enc_partial_sb_flags_pack(oc_enc_ctx *_enc){
   oggpackB_write(&_enc->opb,flag,1);
   sbi=npartial=0;
   do{
-    unsigned run_count;
+    uint32_t run_count;
     for(run_count=0;sbi<nsbs;sbi++){
       if(sb_flags[sbi].coded_partially!=flag)break;
       run_count++;
@@ -513,8 +513,8 @@ static unsigned oc_enc_partial_sb_flags_pack(oc_enc_ctx *_enc){
    each run.*/
 static void oc_enc_coded_sb_flags_pack(oc_enc_ctx *_enc){
   const oc_sb_flags *sb_flags;
-  unsigned           nsbs;
-  unsigned           sbi;
+  uint32_t           nsbs;
+  uint32_t           sbi;
   int32_t                flag;
   sb_flags=_enc->state.sb_flags;
   nsbs=_enc->state.nsbs;
@@ -523,7 +523,7 @@ static void oc_enc_coded_sb_flags_pack(oc_enc_ctx *_enc){
   flag=sb_flags[sbi].coded_fully;
   oggpackB_write(&_enc->opb,flag,1);
   do{
-    unsigned run_count;
+    uint32_t run_count;
     for(run_count=0;sbi<nsbs;sbi++){
       if(sb_flags[sbi].coded_partially)continue;
       if(sb_flags[sbi].coded_fully!=flag)break;
@@ -538,13 +538,13 @@ static void oc_enc_coded_sb_flags_pack(oc_enc_ctx *_enc){
 static void oc_enc_coded_flags_pack(oc_enc_ctx *_enc){
   const oc_sb_map   *sb_maps;
   const oc_sb_flags *sb_flags;
-  unsigned           nsbs;
+  uint32_t           nsbs;
   const oc_fragment *frags;
-  unsigned           npartial;
+  uint32_t           npartial;
   int32_t                run_count;
   int32_t                flag;
   int32_t                pli;
-  unsigned           sbi;
+  uint32_t           sbi;
   npartial=oc_enc_partial_sb_flags_pack(_enc);
   if(npartial<_enc->state.nsbs)oc_enc_coded_sb_flags_pack(_enc);
   sb_maps=(const oc_sb_map *)_enc->state.sb_maps;
@@ -587,13 +587,13 @@ static void oc_enc_coded_flags_pack(oc_enc_ctx *_enc){
 }
 
 static void oc_enc_mb_modes_pack(oc_enc_ctx *_enc){
-  const unsigned char *mode_codes;
-  const unsigned char *mode_bits;
-  const unsigned char *mode_ranks;
-  unsigned            *coded_mbis;
+  const uchar *mode_codes;
+  const uchar *mode_bits;
+  const uchar *mode_ranks;
+  uint32_t            *coded_mbis;
   size_t               ncoded_mbis;
   const signed char   *mb_modes;
-  unsigned             mbii;
+  uint32_t             mbii;
   int32_t                  scheme;
   int32_t                  mb_mode;
   scheme=_enc->chooser.scheme_list[0];
@@ -626,13 +626,13 @@ static void oc_enc_mv_pack(oc_enc_ctx *_enc,int32_t _mv_scheme,int32_t _dx,int32
 }
 
 static void oc_enc_mvs_pack(oc_enc_ctx *_enc){
-  const unsigned     *coded_mbis;
+  const uint32_t     *coded_mbis;
   size_t              ncoded_mbis;
   const oc_mb_map    *mb_maps;
   const signed char  *mb_modes;
   const oc_fragment  *frags;
   const oc_mv        *frag_mvs;
-  unsigned            mbii;
+  uint32_t            mbii;
   int32_t                 mv_scheme;
   /*Choose the coding scheme.*/
   mv_scheme=_enc->mv_bits[1]<_enc->mv_bits[0];
@@ -648,7 +648,7 @@ static void oc_enc_mvs_pack(oc_enc_ctx *_enc){
   frag_mvs=(const oc_mv *)_enc->state.frag_mvs;
   for(mbii=0;mbii<ncoded_mbis;mbii++){
     ptrdiff_t fragi;
-    unsigned  mbi;
+    uint32_t  mbi;
     int32_t       bi;
     mbi=coded_mbis[mbii];
     switch(mb_modes[mbi]){
@@ -728,7 +728,7 @@ static void oc_enc_block_qis_pack(oc_enc_ctx *_enc){
   _token_counts_c: Returns the token counts for the Cb and Cr planes.*/
 static void oc_enc_count_tokens(oc_enc_ctx *_enc,int32_t _zzi_start,int32_t _zzi_end,
  ptrdiff_t _token_counts_y[32],ptrdiff_t _token_counts_c[32]){
-  const unsigned char *dct_tokens;
+  const uchar *dct_tokens;
   ptrdiff_t            ndct_tokens;
   int32_t                  pli;
   int32_t                  zzi;
@@ -787,7 +787,7 @@ static void oc_enc_huff_group_pack(oc_enc_ctx *_enc,
   for(zzi=_zzi_start;zzi<_zzi_end;zzi++){
     int32_t pli;
     for(pli=0;pli<3;pli++){
-      const unsigned char *dct_tokens;
+      const uchar *dct_tokens;
       const ogg_uint16_t  *extra_bits;
       ptrdiff_t            ndct_tokens;
       const th_huff_code  *huff_codes;
@@ -810,8 +810,8 @@ static void oc_enc_huff_group_pack(oc_enc_ctx *_enc,
 }
 
 static void oc_enc_residual_tokens_pack(oc_enc_ctx *_enc){
-  static const unsigned char  OC_HUFF_GROUP_MIN[6]={0,1,6,15,28,64};
-  static const unsigned char *OC_HUFF_GROUP_MAX=OC_HUFF_GROUP_MIN+1;
+  static const uchar  OC_HUFF_GROUP_MIN[6]={0,1,6,15,28,64};
+  static const uchar *OC_HUFF_GROUP_MAX=OC_HUFF_GROUP_MIN+1;
   ptrdiff_t token_counts_y[32];
   ptrdiff_t token_counts_c[32];
   size_t    bits_y[16];
@@ -831,8 +831,8 @@ static void oc_enc_residual_tokens_pack(oc_enc_ctx *_enc){
   /*Write the DC token list with the chosen tables.*/
   oggpackB_write(&_enc->opb,huff_idxs[0],4);
   oggpackB_write(&_enc->opb,huff_idxs[1],4);
-  _enc->huff_idxs[frame_type][0][0]=(unsigned char)huff_idxs[0];
-  _enc->huff_idxs[frame_type][0][1]=(unsigned char)huff_idxs[1];
+  _enc->huff_idxs[frame_type][0][0]=(uchar)huff_idxs[0];
+  _enc->huff_idxs[frame_type][0][1]=(uchar)huff_idxs[1];
   oc_enc_huff_group_pack(_enc,0,1,huff_idxs);
   /*Choose which Huffman tables to use for the AC token lists.*/
   memset(bits_y,0,sizeof(bits_y));
@@ -848,8 +848,8 @@ static void oc_enc_residual_tokens_pack(oc_enc_ctx *_enc){
   /*Write the AC token lists using the chosen tables.*/
   oggpackB_write(&_enc->opb,huff_idxs[0],4);
   oggpackB_write(&_enc->opb,huff_idxs[1],4);
-  _enc->huff_idxs[frame_type][1][0]=(unsigned char)huff_idxs[0];
-  _enc->huff_idxs[frame_type][1][1]=(unsigned char)huff_idxs[1];
+  _enc->huff_idxs[frame_type][1][0]=(uchar)huff_idxs[0];
+  _enc->huff_idxs[frame_type][1][1]=(uchar)huff_idxs[1];
   for(hgi=1;hgi<5;hgi++){
     huff_idxs[0]+=16;
     huff_idxs[1]+=16;
@@ -906,11 +906,11 @@ void oc_enc_vtable_init_c(oc_enc_ctx *_enc){
 static void oc_enc_mb_info_init(oc_enc_ctx *_enc){
   oc_mb_enc_info    *embs;
   const signed char *mb_modes;
-  unsigned           nhsbs;
-  unsigned           nvsbs;
-  unsigned           nhmbs;
-  unsigned           nvmbs;
-  unsigned           sby;
+  uint32_t           nhsbs;
+  uint32_t           nvsbs;
+  uint32_t           nhmbs;
+  uint32_t           nvmbs;
+  uint32_t           sby;
   mb_modes=_enc->state.mb_modes;
   embs=_enc->mb_info;
   nhsbs=_enc->state.fplanes[0].nhsbs;
@@ -918,7 +918,7 @@ static void oc_enc_mb_info_init(oc_enc_ctx *_enc){
   nhmbs=_enc->state.nhmbs;
   nvmbs=_enc->state.nvmbs;
   for(sby=0;sby<nvsbs;sby++){
-    unsigned sbx;
+    uint32_t sbx;
     for(sbx=0;sbx<nhsbs;sbx++){
       int32_t quadi;
       for(quadi=0;quadi<4;quadi++){
@@ -931,7 +931,7 @@ static void oc_enc_mb_info_init(oc_enc_ctx *_enc){
           Additional vectors are used, so there will always be at least 3,
            except for in the upper-left most macro block.*/
         /*The number of current neighbors for each macro block position.*/
-        static const unsigned char NCNEIGHBORS[4]={4,3,2,4};
+        static const uchar NCNEIGHBORS[4]={4,3,2,4};
         /*The offset of each current neighbor in the X direction.*/
         static const signed char   CDX[4][4]={
           {-1,0,1,-1},
@@ -950,10 +950,10 @@ static void oc_enc_mb_info_init(oc_enc_ctx *_enc){
         static const signed char   PDX[4]={-1,0,1,0};
         /*The offset of each previous neighbor in the Y direction.*/
         static const signed char   PDY[4]={0,-1,0,1};
-        unsigned mbi;
+        uint32_t mbi;
         int32_t      mbx;
         int32_t      mby;
-        unsigned nmbi;
+        uint32_t nmbi;
         int32_t      nmbx;
         int32_t      nmby;
         int32_t      ni;
@@ -1053,7 +1053,7 @@ static int32_t oc_enc_init(oc_enc_ctx *_enc,const th_info *_info){
   _enc->mb_info=(oc_mb_enc_info *) _ogg_calloc(_enc->state.nmbs,sizeof(*_enc->mb_info));
   _enc->frag_dc=(ogg_int16_t *)_ogg_calloc(_enc->state.nfrags,sizeof(*_enc->frag_dc));
   _enc->coded_mbis=
-   (unsigned *)_ogg_malloc(_enc->state.nmbs*sizeof(*_enc->coded_mbis));
+   (uint32_t *)_ogg_malloc(_enc->state.nmbs*sizeof(*_enc->coded_mbis));
   hdec=!(_enc->state.info.pixel_fmt&1);
   vdec=!(_enc->state.info.pixel_fmt&2);
   /*If chroma is sub-sampled in the vertical direction, we have to encode two
@@ -1061,10 +1061,10 @@ static int32_t oc_enc_init(oc_enc_ctx *_enc,const th_info *_info){
   _enc->mcu_nvsbs=1<<vdec;
   mcu_nmbs=_enc->mcu_nvsbs*_enc->state.fplanes[0].nhsbs*(size_t)4;
   mcu_nfrags=4*mcu_nmbs+(8*mcu_nmbs>>hdec+vdec);
-  _enc->mcu_skip_ssd=(unsigned *)_ogg_malloc(
+  _enc->mcu_skip_ssd=(uint32_t *)_ogg_malloc(
    mcu_nfrags*sizeof(*_enc->mcu_skip_ssd));
   for(pli=0;pli<3;pli++){
-    _enc->dct_tokens[pli]=(unsigned char **)oc_malloc_2d(64,
+    _enc->dct_tokens[pli]=(uchar **)oc_malloc_2d(64,
      _enc->state.fplanes[pli].nfrags,sizeof(**_enc->dct_tokens));
     _enc->extra_bits[pli]=(ogg_uint16_t **)oc_malloc_2d(64,
      _enc->state.fplanes[pli].nfrags,sizeof(**_enc->extra_bits));
@@ -1195,7 +1195,7 @@ static void oc_enc_compress_frame(oc_enc_ctx *_enc,int32_t _recode){
 /*Set the granule position for the next packet to output based on the current
    internal state.*/
 static void oc_enc_set_granpos(oc_enc_ctx *_enc){
-  unsigned dup_offs;
+  uint32_t dup_offs;
   /*Add an offset for the number of duplicate frames we've emitted so far.*/
   dup_offs=_enc->prev_dup_count-_enc->nqueued_dups;
   /*If the current frame was a keyframe, use it for the high part.*/
@@ -1326,7 +1326,7 @@ int32_t th_encode_ctl(th_enc_ctx *_enc,int32_t _req,void *_buf,size_t _buf_sz){
       qi=*(int32_t *)_buf;
       if(qi<0||qi>63)return TH_EINVAL;
       _enc->state.info.quality=qi;
-      _enc->state.qis[0]=(unsigned char)qi;
+      _enc->state.qis[0]=(uchar)qi;
       _enc->state.nqis=1;
       return 0;
     }break;
@@ -1368,10 +1368,10 @@ int32_t th_encode_ctl(th_enc_ctx *_enc,int32_t _req,void *_buf,size_t _buf_sz){
       if(_enc==NULL||_buf==NULL)return TH_EFAULT;
       if(_enc->state.info.target_bitrate<=0||
        _enc->state.curframe_num>=0&&_enc->rc.twopass!=1||
-       _buf_sz!=sizeof(unsigned char *)){
+       _buf_sz!=sizeof(uchar *)){
         return TH_EINVAL;
       }
-      return oc_enc_rc_2pass_out(_enc,(unsigned char **)_buf);
+      return oc_enc_rc_2pass_out(_enc,(uchar **)_buf);
     }break;
     case TH_ENCCTL_2PASS_IN:{
       if(_enc==NULL)return TH_EFAULT;
@@ -1379,7 +1379,7 @@ int32_t th_encode_ctl(th_enc_ctx *_enc,int32_t _req,void *_buf,size_t _buf_sz){
        _enc->state.curframe_num>=0&&_enc->rc.twopass!=2){
         return TH_EINVAL;
       }
-      return oc_enc_rc_2pass_in(_enc,(unsigned char *) _buf,_buf_sz);
+      return oc_enc_rc_2pass_in(_enc,(uchar *) _buf,_buf_sz);
     }break;
     default:return TH_EIMPL;
   }
@@ -1395,7 +1395,7 @@ int32_t th_encode_flushheader(th_enc_ctx *_enc,th_comment *_tc,ogg_packet *_op){
 static void oc_img_plane_copy_pad(th_img_plane *_dst,th_img_plane *_src,
  ogg_int32_t _pic_x,ogg_int32_t _pic_y,
  ogg_int32_t _pic_width,ogg_int32_t _pic_height){
-  unsigned char *dst;
+  uchar *dst;
   int32_t            dstride;
   ogg_uint32_t   frame_width;
   ogg_uint32_t   frame_height;
@@ -1413,9 +1413,9 @@ static void oc_img_plane_copy_pad(th_img_plane *_dst,th_img_plane *_src,
   }
   /*Otherwise, copy what we do have, and add our own padding.*/
   else{
-    unsigned char *dst_data;
-    unsigned char *src_data;
-    unsigned char *src;
+    uchar *dst_data;
+    uchar *src_data;
+    uchar *src;
     int32_t            sstride;
     ogg_uint32_t   x;
     /*Step 1: Copy the data we do have.*/
@@ -1574,7 +1574,7 @@ int32_t th_encode_packetout(th_enc_ctx *_enc,int32_t _last_p,ogg_packet *_op){
   if(_enc->packet_state==OC_PACKET_READY){
     _enc->packet_state=OC_PACKET_EMPTY;
     if(_enc->rc.twopass!=1){
-      unsigned char *packet;
+      uchar *packet;
       packet=oggpackB_get_buffer(&_enc->opb);
       /*If there's no packet, malloc failed while writing; it's lost forever.*/
       if(packet==NULL)return TH_EFAULT;

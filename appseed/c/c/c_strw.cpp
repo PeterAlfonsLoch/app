@@ -164,7 +164,7 @@ void __cdecl wparse_cmdline(WCHAR *cmdstart, WCHAR **argv, WCHAR *args, int32_t 
         WCHAR c;
         int32_t inquote;                    /* 1 = inside quotes */
         int32_t copychar;                   /* 1 = copy char to *args */
-        unsigned numslash;              /* num of backslashes seen */
+        uint32_t numslash;              /* num of backslashes seen */
 
         *numchars = 0;
         *numargs = 1;                   /* the program name at least */

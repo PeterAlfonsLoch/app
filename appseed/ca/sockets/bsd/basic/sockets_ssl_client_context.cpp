@@ -48,7 +48,7 @@ namespace sockets
       const SSL_METHOD *meth = meth_in != NULL ? meth_in : SSLv3_method();
       m_pcontext = SSL_CTX_new(meth);
       char buf[255];
-      unsigned long err = ERR_get_error();
+      uint32_t long err = ERR_get_error();
 //         UINT uiReason = ERR_GET_REASON(err);
       ERR_error_string(err, buf);
 //         const char * pszReason = ERR_reason_error_string(err);

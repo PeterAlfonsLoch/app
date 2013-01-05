@@ -40,17 +40,17 @@ typedef struct {
   long endbyte;
   int32_t  endbit;
 
-  unsigned char *buffer;
-  unsigned char *ptr;
+  uchar *buffer;
+  uchar *ptr;
   long storage;
 } oggpack_buffer;
 
 /* ogg_page is used to encapsulate the data in one Ogg bitstream page *****/
 
 typedef struct {
-  unsigned char *header;
+  uchar *header;
   long header_len;
-  unsigned char *body;
+  uchar *body;
   long body_len;
 } ogg_page;
 
@@ -58,7 +58,7 @@ typedef struct {
    Ogg bitstream **********************************************************/
 
 typedef struct {
-  unsigned char   *body_data;    /* bytes from packet bodies */
+  uchar   *body_data;    /* bytes from packet bodies */
   long    body_storage;          /* storage elements allocated */
   long    body_fill;             /* elements stored; fill mark */
   long    body_returned;         /* elements of fill returned */
@@ -73,7 +73,7 @@ typedef struct {
   long    lacing_packet;
   long    lacing_returned;
 
-  unsigned char    header[282];      /* working space for header encode */
+  uchar    header[282];      /* working space for header encode */
   int32_t              header_fill;
 
   int32_t     e_o_s;          /* set when we have buffered the last packet in the
@@ -95,7 +95,7 @@ typedef struct {
    to a single raw Ogg/Vorbis packet *************************************/
 
 typedef struct {
-  unsigned char *packet;
+  uchar *packet;
   long  bytes;
   long  b_o_s;
   long  e_o_s;
@@ -110,7 +110,7 @@ typedef struct {
 } ogg_packet;
 
 typedef struct {
-  unsigned char *data;
+  uchar *data;
   int32_t storage;
   int32_t fill;
   int32_t returned;
@@ -129,8 +129,8 @@ extern void  oggpack_writealign(oggpack_buffer *b);
 extern void  oggpack_writecopy(oggpack_buffer *b,void *source,long bits);
 extern void  oggpack_reset(oggpack_buffer *b);
 extern void  oggpack_writeclear(oggpack_buffer *b);
-extern void  oggpack_readinit(oggpack_buffer *b,unsigned char *buf,int32_t bytes);
-extern void  oggpack_write(oggpack_buffer *b,unsigned long value,int32_t bits);
+extern void  oggpack_readinit(oggpack_buffer *b,uchar *buf,int32_t bytes);
+extern void  oggpack_write(oggpack_buffer *b,uint32_t long value,int32_t bits);
 extern long  oggpack_look(oggpack_buffer *b,int32_t bits);
 extern long  oggpack_look1(oggpack_buffer *b);
 extern void  oggpack_adv(oggpack_buffer *b,int32_t bits);
@@ -139,7 +139,7 @@ extern long  oggpack_read(oggpack_buffer *b,int32_t bits);
 extern long  oggpack_read1(oggpack_buffer *b);
 extern long  oggpack_bytes(oggpack_buffer *b);
 extern long  oggpack_bits(oggpack_buffer *b);
-extern unsigned char *oggpack_get_buffer(oggpack_buffer *b);
+extern uchar *oggpack_get_buffer(oggpack_buffer *b);
 
 extern void  oggpackB_writeinit(oggpack_buffer *b);
 extern int32_t   oggpackB_writecheck(oggpack_buffer *b);
@@ -148,8 +148,8 @@ extern void  oggpackB_writealign(oggpack_buffer *b);
 extern void  oggpackB_writecopy(oggpack_buffer *b,void *source,long bits);
 extern void  oggpackB_reset(oggpack_buffer *b);
 extern void  oggpackB_writeclear(oggpack_buffer *b);
-extern void  oggpackB_readinit(oggpack_buffer *b,unsigned char *buf,int32_t bytes);
-extern void  oggpackB_write(oggpack_buffer *b,unsigned long value,int32_t bits);
+extern void  oggpackB_readinit(oggpack_buffer *b,uchar *buf,int32_t bytes);
+extern void  oggpackB_write(oggpack_buffer *b,uint32_t long value,int32_t bits);
 extern long  oggpackB_look(oggpack_buffer *b,int32_t bits);
 extern long  oggpackB_look1(oggpack_buffer *b);
 extern void  oggpackB_adv(oggpack_buffer *b,int32_t bits);
@@ -158,7 +158,7 @@ extern long  oggpackB_read(oggpack_buffer *b,int32_t bits);
 extern long  oggpackB_read1(oggpack_buffer *b);
 extern long  oggpackB_bytes(oggpack_buffer *b);
 extern long  oggpackB_bits(oggpack_buffer *b);
-extern unsigned char *oggpackB_get_buffer(oggpack_buffer *b);
+extern uchar *oggpackB_get_buffer(oggpack_buffer *b);
 
 /* Ogg BITSTREAM PRIMITIVES: encoding **************************/
 

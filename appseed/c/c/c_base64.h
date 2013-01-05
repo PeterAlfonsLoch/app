@@ -7,8 +7,8 @@ class CLASS_DECL_c base64
 protected:
 
 
-   unsigned char etable[256];
-   unsigned char dtable[256];
+   uchar etable[256];
+   uchar dtable[256];
 
 
 public:

@@ -121,7 +121,7 @@ namespace sockets {
 #define SOCKET_ERROR -1
 
 #ifndef INADDR_NONE
-#define INADDR_NONE ((unsigned long) -1)
+#define INADDR_NONE ((uint32_t long) -1)
 #endif // INADDR_NONE
 
 #ifdef sockets
@@ -144,7 +144,7 @@ namespace sockets {
 #ifdef SOLARIS
 // ----------------------------------------
 // Solaris
-typedef unsigned short port_t;
+typedef uint16_t port_t;
 #ifdef sockets
 namespace sockets {
 #endif
@@ -187,11 +187,11 @@ namespace sockets {
 // ----------------------------------------
 // Mac App X
 #ifdef __DARWIN_UNIX03
-typedef unsigned short port_t;
+typedef uint16_t port_t;
 #else
 #include <mach/port.h>
 #endif // __DARWIN_UNIX03
-typedef unsigned long ipaddr_t;
+typedef uint32_t long ipaddr_t;
 #ifdef sockets
 namespace sockets {
 #endif
@@ -259,8 +259,8 @@ namespace sockets
 
 // ----------------------------------------
 // LINUX
-typedef unsigned long ipaddr_t;
-typedef unsigned short port_t;
+typedef uint32_t long ipaddr_t;
+typedef uint16_t port_t;
 
 namespace sockets
 {

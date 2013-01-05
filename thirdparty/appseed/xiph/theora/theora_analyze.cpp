@@ -40,7 +40,7 @@ typedef struct oc_mode_choice        oc_mode_choice;
   Scheme 0 uses a custom alphabet, which is not stored in this table.
   This is the inverse of the equivalent table OC_MODE_ALPHABETS in the
    decoder.*/
-static const unsigned char OC_MODE_RANKS[7][OC_NMODES]={
+static const uchar OC_MODE_RANKS[7][OC_NMODES]={
   /*Last MV dominates.*/ 
   /*L P M N I G GM 4*/
   {3,4,2,0,1,5,6,7},
@@ -212,11 +212,11 @@ static int32_t oc_block_run_bits(int32_t _run_count){
 /*State to track coded block flags and their bit cost.*/
 struct oc_fr_state{
   ptrdiff_t  bits;
-  unsigned   sb_partial_count:16;
-  unsigned   sb_full_count:16;
-  unsigned   b_coded_count_prev:8;
-  unsigned   b_coded_count:8;
-  unsigned   b_count:8;
+  uint32_t   sb_partial_count:16;
+  uint32_t   sb_full_count:16;
+  uint32_t   b_coded_count_prev:8;
+  uint32_t   b_coded_count:8;
+  uint32_t   b_count:8;
   int32_t sb_partial:2;
   int32_t sb_full:2;
   int32_t b_coded_prev:2;
@@ -397,9 +397,9 @@ static int32_t oc_fr_cost4(const oc_fr_state *_pre,const oc_fr_state *_post){
 
 struct oc_qii_state{
   ptrdiff_t  bits;
-  unsigned   qi01_count:14;
+  uint32_t   qi01_count:14;
   int32_t qi01:2;
-  unsigned   qi12_count:14;
+  uint32_t   qi12_count:14;
   int32_t qi12:2;
 };
 
@@ -468,7 +468,7 @@ struct oc_enc_pipeline_state{
   /*Condensed quantization tables.*/
   const oc_iquant    *enquant[3][3][2];
   /*Skip SSD storage for the current MCU in each plane.*/
-  unsigned           *skip_ssd[3];
+  uint32_t           *skip_ssd[3];
   /*Coded/uncoded fragment lists for each plane for the current MCU.*/
   ptrdiff_t          *coded_fragis[3];
   ptrdiff_t          *uncoded_fragis[3];
@@ -481,9 +481,9 @@ struct oc_enc_pipeline_state{
   /*The ending row for the current MCU in each plane.*/
   int32_t                 fragy_end[3];
   /*The starting superblock for the current MCU in each plane.*/
-  unsigned            sbi0[3];
+  uint32_t            sbi0[3];
   /*The ending superblock for the current MCU in each plane.*/
-  unsigned            sbi_end[3];
+  uint32_t            sbi_end[3];
   /*The number of tokens for zzi=1 for each color plane.*/
   int32_t                 ndct_tokens1[3];
   /*The outstanding eob_run count for zzi=1 for each color plane.*/
@@ -495,7 +495,7 @@ struct oc_enc_pipeline_state{
 
 static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
   ptrdiff_t *coded_fragis;
-  unsigned   mcu_nvsbs;
+  uint32_t   mcu_nvsbs;
   ptrdiff_t  mcu_nfrags;
   int32_t        hdec;
   int32_t        vdec;
@@ -554,7 +554,7 @@ static void oc_enc_pipeline_init(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe){
 static int32_t oc_enc_pipeline_set_stripe(oc_enc_ctx *_enc,
  oc_enc_pipeline_state *_pipe,int32_t _sby){
   const oc_fragment_plane *fplane;
-  unsigned                 mcu_nvsbs;
+  uint32_t                 mcu_nvsbs;
   int32_t                      sby_end;
   int32_t                      notdone;
   int32_t                      vdec;
@@ -643,13 +643,13 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
   const oc_iquant        *enquant;
   ptrdiff_t               frag_offs;
   int32_t                     ystride;
-  const unsigned char    *src;
-  const unsigned char    *ref;
-  unsigned char          *dst;
+  const uchar    *src;
+  const uchar    *ref;
+  uchar          *dst;
   int32_t                     frame_type;
   int32_t                     nonzero;
-  unsigned                uncoded_ssd;
-  unsigned                coded_ssd;
+  uint32_t                uncoded_ssd;
+  uint32_t                coded_ssd;
   int32_t                     coded_dc;
   oc_token_checkpoint    *checkpoint;
   oc_fragment            *frags;
@@ -717,7 +717,7 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
   }
 #if defined(OC_COLLECT_METRICS)
   {
-    unsigned satd;
+    uint32_t satd;
     switch(nmv_offs){
       case 0:satd=oc_enc_frag_intra_satd(_enc,src,ystride);break;
       case 1:{
@@ -852,7 +852,7 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
 }
 
 static int32_t oc_enc_mb_transform_quantize_luma(oc_enc_ctx *_enc,
- oc_enc_pipeline_state *_pipe,unsigned _mbi,int32_t _mode_overhead){
+ oc_enc_pipeline_state *_pipe,uint32_t _mbi,int32_t _mode_overhead){
   /*Worst case token stack usage for 4 fragments.*/
   oc_token_checkpoint  stack[64*4];
   oc_token_checkpoint *stackptr;
@@ -1030,9 +1030,9 @@ static void oc_enc_sb_transform_quantize_chroma(oc_enc_ctx *_enc,
 
 /*Estimate the R-D cost of the DCT coefficients given the SATD of a block after
    prediction.*/
-static unsigned oc_dct_cost2(unsigned *_ssd,
+static uint32_t oc_dct_cost2(uint32_t *_ssd,
  int32_t _qi,int32_t _pli,int32_t _qti,int32_t _satd){
-  unsigned rmse;
+  uint32_t rmse;
   int32_t      bin;
   int32_t      dx;
   int32_t      y0;
@@ -1054,23 +1054,23 @@ static unsigned oc_dct_cost2(unsigned *_ssd,
 }
 
 /*Select luma block-level quantizers for a MB in an INTRA frame.*/
-static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
- const oc_qii_state *_qs,unsigned _mbi){
-  const unsigned char *src;
+static uint32_t oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
+ const oc_qii_state *_qs,uint32_t _mbi){
+  const uchar *src;
   const ptrdiff_t     *frag_buf_offs;
   const oc_sb_map     *sb_maps;
   oc_fragment         *frags;
   ptrdiff_t            frag_offs;
   ptrdiff_t            fragi;
   oc_qii_state         qs[4][3];
-  unsigned             cost[4][3];
-  unsigned             ssd[4][3];
-  unsigned             rate[4][3];
+  uint32_t             cost[4][3];
+  uint32_t             ssd[4][3];
+  uint32_t             rate[4][3];
   int32_t                  prev[3][3];
-  unsigned             satd;
-  unsigned             best_cost;
-  unsigned             best_ssd;
-  unsigned             best_rate;
+  uint32_t             satd;
+  uint32_t             best_cost;
+  uint32_t             best_ssd;
+  uint32_t             best_rate;
   int32_t                  best_qii;
   int32_t                  qii;
   int32_t                  lambda;
@@ -1098,8 +1098,8 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
     satd=oc_enc_frag_intra_satd(_enc,src+frag_offs,ystride);
     for(qii=0;qii<nqis;qii++){
       oc_qii_state qt[3];
-      unsigned     cur_ssd;
-      unsigned     cur_rate;
+      uint32_t     cur_ssd;
+      uint32_t     cur_rate;
       int32_t          best_qij;
       int32_t          qij;
       oc_qii_state_advance(qt+0,qs[bi-1]+0,qii);
@@ -1109,9 +1109,9 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
       best_cost=OC_MODE_RD_COST(best_ssd,best_rate,lambda);
       best_qij=0;
       for(qij=1;qij<nqis;qij++){
-        unsigned chain_ssd;
-        unsigned chain_rate;
-        unsigned chain_cost;
+        uint32_t chain_ssd;
+        uint32_t chain_rate;
+        uint32_t chain_cost;
         oc_qii_state_advance(qt+qij,qs[bi-1]+qij,qii);
         chain_ssd=ssd[bi-1][qij]+cur_ssd;
         chain_rate = (uint32_t) (rate[bi-1][qij]+cur_rate + (qt[qij].bits-qs[bi-1][qij].bits<<OC_BIT_SCALE));
@@ -1149,15 +1149,15 @@ static unsigned oc_analyze_intra_mb_luma(oc_enc_ctx *_enc,
 }
 
 /*Select a block-level quantizer for a single chroma block in an INTRA frame.*/
-static unsigned oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
+static uint32_t oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
  const oc_qii_state *_qs,int32_t _pli,ptrdiff_t _fragi){
-  const unsigned char *src;
+  const uchar *src;
   oc_fragment         *frags;
   ptrdiff_t            frag_offs;
   oc_qii_state         qt[3];
-  unsigned             cost[3];
-  unsigned             satd;
-  unsigned             best_cost;
+  uint32_t             cost[3];
+  uint32_t             satd;
+  uint32_t             best_cost;
   int32_t                  best_qii;
   int32_t                  qii;
   int32_t                  lambda;
@@ -1171,8 +1171,8 @@ static unsigned oc_analyze_intra_chroma_block(oc_enc_ctx *_enc,
   lambda=_enc->lambda;
   best_qii=0;
   for(qii=0;qii<nqis;qii++){
-    unsigned cur_rate;
-    unsigned cur_ssd;
+    uint32_t cur_rate;
+    uint32_t cur_ssd;
     oc_qii_state_advance(qt+qii,_qs,qii);
     cur_rate= (uint32_t) (oc_dct_cost2(&cur_ssd,_enc->state.qis[qii],_pli,0,satd) + (qt[qii].bits-_qs->bits<<OC_BIT_SCALE));
     cost[qii]=OC_MODE_RD_COST(cur_ssd,cur_rate,lambda);
@@ -1224,15 +1224,15 @@ static void oc_enc_sb_transform_quantize_intra_chroma(oc_enc_ctx *_enc,
 /*Analysis stage for an INTRA frame.*/
 void oc_enc_analyze_intra(oc_enc_ctx *_enc,int32_t _recode){
   oc_enc_pipeline_state   pipe;
-  const unsigned char    *map_idxs;
+  const uchar    *map_idxs;
   int32_t                     nmap_idxs;
   oc_sb_flags            *sb_flags;
   signed char            *mb_modes;
   const oc_mb_map        *mb_maps;
   oc_mb_enc_info         *embs;
   oc_fragment            *frags;
-  unsigned                stripe_sby;
-  unsigned                mcu_nvsbs;
+  uint32_t                stripe_sby;
+  uint32_t                mcu_nvsbs;
   int32_t                     notstart;
   int32_t                     notdone;
   int32_t                     refi;
@@ -1256,15 +1256,15 @@ void oc_enc_analyze_intra(oc_enc_ctx *_enc,int32_t _recode){
   notdone=1;
   mcu_nvsbs=_enc->mcu_nvsbs;
   for(stripe_sby=0;notdone;stripe_sby+=mcu_nvsbs){
-    unsigned sbi;
-    unsigned sbi_end;
+    uint32_t sbi;
+    uint32_t sbi_end;
     notdone=oc_enc_pipeline_set_stripe(_enc,&pipe,stripe_sby);
     sbi_end=pipe.sbi_end[0];
     for(sbi=pipe.sbi0[0];sbi<sbi_end;sbi++){
       int32_t quadi;
       /*Mode addressing is through Y plane, always 4 MB per SB.*/
       for(quadi=0;quadi<4;quadi++)if(sb_flags[sbi].quad_valid&1<<quadi){
-        unsigned  mbi;
+        uint32_t  mbi;
         int32_t       mapii;
         int32_t       mapi;
         int32_t       bi;
@@ -1306,11 +1306,11 @@ void oc_enc_analyze_intra(oc_enc_ctx *_enc,int32_t _recode){
 
 /*Cost information about a MB mode.*/
 struct oc_mode_choice{
-  unsigned      cost;
-  unsigned      ssd;
-  unsigned      rate;
-  unsigned      overhead;
-  unsigned char qii[12];
+  uint32_t      cost;
+  uint32_t      ssd;
+  uint32_t      rate;
+  uint32_t      overhead;
+  uchar qii[12];
 };
 
 
@@ -1321,7 +1321,7 @@ static void oc_mode_set_cost(oc_mode_choice *_modec,int32_t _lambda){
 }
 
 /*A set of skip SSD's to use to disable early skipping.*/
-static const unsigned OC_NOSKIP[12]={
+static const uint32_t OC_NOSKIP[12]={
   UINT_MAX,UINT_MAX,UINT_MAX,UINT_MAX,
   UINT_MAX,UINT_MAX,UINT_MAX,UINT_MAX,
   UINT_MAX,UINT_MAX,UINT_MAX,UINT_MAX
@@ -1336,21 +1336,21 @@ static const unsigned OC_NOSKIP[12]={
 
 static void oc_analyze_mb_mode_luma(oc_enc_ctx *_enc,
  oc_mode_choice *_modec,const oc_fr_state *_fr,const oc_qii_state *_qs,
- const unsigned _frag_satd[12],const unsigned _skip_ssd[12],int32_t _qti){
+ const uint32_t _frag_satd[12],const uint32_t _skip_ssd[12],int32_t _qti){
   oc_fr_state  fr;
   oc_qii_state qs;
-  unsigned     ssd;
-  unsigned     rate;
+  uint32_t     ssd;
+  uint32_t     rate;
   int32_t          overhead;
-  unsigned     satd;
-  unsigned     best_ssd;
-  unsigned     best_rate;
+  uint32_t     satd;
+  uint32_t     best_ssd;
+  uint32_t     best_rate;
   int32_t          best_overhead;
   int32_t          best_fri;
   int32_t          best_qii;
-  unsigned     cur_cost;
-  unsigned     cur_ssd;
-  unsigned     cur_rate;
+  uint32_t     cur_cost;
+  uint32_t     cur_ssd;
+  uint32_t     cur_rate;
   int32_t          cur_overhead;
   int32_t          lambda;
   int32_t          nqis;
@@ -1371,7 +1371,7 @@ static void oc_analyze_mb_mode_luma(oc_enc_ctx *_enc,
   for(bi=0;bi<4;bi++){
     oc_fr_state  ft[2];
     oc_qii_state qt[3];
-    unsigned     best_cost;
+    uint32_t     best_cost;
     satd=_frag_satd[bi];
     *(ft+0)=*&fr;
     oc_fr_code_block(ft+0);
@@ -1423,16 +1423,16 @@ static void oc_analyze_mb_mode_luma(oc_enc_ctx *_enc,
 
 static void oc_analyze_mb_mode_chroma(oc_enc_ctx *_enc,
  oc_mode_choice *_modec,const oc_fr_state *_fr,const oc_qii_state *_qs,
- const unsigned _frag_satd[12],const unsigned _skip_ssd[12],int32_t _qti){
-  unsigned ssd;
-  unsigned rate;
-  unsigned satd;
-  unsigned best_ssd;
-  unsigned best_rate;
+ const uint32_t _frag_satd[12],const uint32_t _skip_ssd[12],int32_t _qti){
+  uint32_t ssd;
+  uint32_t rate;
+  uint32_t satd;
+  uint32_t best_ssd;
+  uint32_t best_rate;
   int32_t      best_qii;
-  unsigned cur_cost;
-  unsigned cur_ssd;
-  unsigned cur_rate;
+  uint32_t cur_cost;
+  uint32_t cur_ssd;
+  uint32_t cur_rate;
   int32_t      lambda;
   int32_t      nblocks;
   int32_t      nqis;
@@ -1450,7 +1450,7 @@ static void oc_analyze_mb_mode_chroma(oc_enc_ctx *_enc,
   bi=4;
   for(pli=1;pli<3;pli++){
     for(;bi<nblocks;bi++){
-      unsigned best_cost;
+      uint32_t best_cost;
       satd=_frag_satd[bi];
       best_rate=oc_dct_cost2(&best_ssd,_enc->state.qis[0],pli,_qti,satd)
        +OC_CHROMA_QII_RATE;
@@ -1487,21 +1487,21 @@ static void oc_analyze_mb_mode_chroma(oc_enc_ctx *_enc,
 }
 
 static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
- unsigned _mbi,unsigned _ssd[12]){
+ uint32_t _mbi,uint32_t _ssd[12]){
   OC_ALIGN16(ogg_int16_t  buffer[64]);
-  const unsigned char    *src;
-  const unsigned char    *ref;
+  const uchar    *src;
+  const uchar    *ref;
   int32_t                     ystride;
   const oc_fragment      *frags;
   const ptrdiff_t        *frag_buf_offs;
   const ptrdiff_t        *sb_map;
   const oc_mb_map_plane  *mb_map;
-  const unsigned char    *map_idxs;
+  const uchar    *map_idxs;
   int32_t                     map_nidxs;
   ogg_int64_t             mask;
-  unsigned                uncoded_ssd;
+  uint32_t                uncoded_ssd;
   int32_t                     uncoded_dc;
-  unsigned                dc_dequant;
+  uint32_t                dc_dequant;
   int32_t                     dc_flag;
   int32_t                     mapii;
   int32_t                     mapi;
@@ -1591,13 +1591,13 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
   }
 }
 
-static void oc_mb_intra_satd(oc_enc_ctx *_enc,unsigned _mbi,
- unsigned _frag_satd[12]){
-  const unsigned char   *src;
+static void oc_mb_intra_satd(oc_enc_ctx *_enc,uint32_t _mbi,
+ uint32_t _frag_satd[12]){
+  const uchar   *src;
   const ptrdiff_t       *frag_buf_offs;
   const ptrdiff_t       *sb_map;
   const oc_mb_map_plane *mb_map;
-  const unsigned char   *map_idxs;
+  const uchar   *map_idxs;
   int32_t                    map_nidxs;
   int32_t                    mapii;
   int32_t                    mapi;
@@ -1631,8 +1631,8 @@ static void oc_mb_intra_satd(oc_enc_ctx *_enc,unsigned _mbi,
 }
 
 static void oc_cost_intra(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,const oc_fr_state *_fr,const oc_qii_state *_qs,
- const unsigned _frag_satd[12],const unsigned _skip_ssd[12]){
+ uint32_t _mbi,const oc_fr_state *_fr,const oc_qii_state *_qs,
+ const uint32_t _frag_satd[12],const uint32_t _skip_ssd[12]){
   oc_analyze_mb_mode_luma(_enc,_modec,_fr,_qs,_frag_satd,_skip_ssd,0);
   oc_analyze_mb_mode_chroma(_enc,_modec,_fr,_qs,_frag_satd,_skip_ssd,0);
   _modec->overhead+=
@@ -1641,16 +1641,16 @@ static void oc_cost_intra(oc_enc_ctx *_enc,oc_mode_choice *_modec,
 }
 
 static void oc_cost_inter(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,int32_t _mb_mode,const signed char *_mv,
- const oc_fr_state *_fr,const oc_qii_state *_qs,const unsigned _skip_ssd[12]){
-  unsigned               frag_satd[12];
-  const unsigned char   *src;
-  const unsigned char   *ref;
+ uint32_t _mbi,int32_t _mb_mode,const signed char *_mv,
+ const oc_fr_state *_fr,const oc_qii_state *_qs,const uint32_t _skip_ssd[12]){
+  uint32_t               frag_satd[12];
+  const uchar   *src;
+  const uchar   *ref;
   int32_t                    ystride;
   const ptrdiff_t       *frag_buf_offs;
   const ptrdiff_t       *sb_map;
   const oc_mb_map_plane *mb_map;
-  const unsigned char   *map_idxs;
+  const uchar   *map_idxs;
   int32_t                    map_nidxs;
   int32_t                    mapii;
   int32_t                    mapi;
@@ -1721,15 +1721,15 @@ static void oc_cost_inter(oc_enc_ctx *_enc,oc_mode_choice *_modec,
 }
 
 static void oc_cost_inter_nomv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,int32_t _mb_mode,const oc_fr_state *_fr,const oc_qii_state *_qs,
- const unsigned _skip_ssd[12]){
+ uint32_t _mbi,int32_t _mb_mode,const oc_fr_state *_fr,const oc_qii_state *_qs,
+ const uint32_t _skip_ssd[12]){
   static const oc_mv OC_MV_ZERO;
   oc_cost_inter(_enc,_modec,_mbi,_mb_mode,OC_MV_ZERO,_fr,_qs,_skip_ssd);
 }
 
 static int32_t oc_cost_inter1mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,int32_t _mb_mode,const signed char *_mv,
- const oc_fr_state *_fr,const oc_qii_state *_qs,const unsigned _skip_ssd[12]){
+ uint32_t _mbi,int32_t _mb_mode,const signed char *_mv,
+ const oc_fr_state *_fr,const oc_qii_state *_qs,const uint32_t _skip_ssd[12]){
   int32_t bits0;
   oc_cost_inter(_enc,_modec,_mbi,_mb_mode,_mv,_fr,_qs,_skip_ssd);
   bits0=OC_MV_BITS[0][_mv[0]+31]+OC_MV_BITS[0][_mv[1]+31];
@@ -1739,23 +1739,23 @@ static int32_t oc_cost_inter1mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
 }
 
 /*A mapping from oc_mb_map (raster) ordering to oc_sb_map (Hilbert) ordering.*/
-static const unsigned char OC_MB_PHASE[4][4]={
+static const uchar OC_MB_PHASE[4][4]={
   {0,1,3,2},{0,3,1,2},{0,3,1,2},{2,3,1,0}
 };
 
 static void oc_cost_inter4mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
- unsigned _mbi,oc_mv _mv[4],const oc_fr_state *_fr,const oc_qii_state *_qs,
- const unsigned _skip_ssd[12]){
-  unsigned               frag_satd[12];
+ uint32_t _mbi,oc_mv _mv[4],const oc_fr_state *_fr,const oc_qii_state *_qs,
+ const uint32_t _skip_ssd[12]){
+  uint32_t               frag_satd[12];
   oc_mv                  lbmvs[4];
   oc_mv                  cbmvs[4];
-  const unsigned char   *src;
-  const unsigned char   *ref;
+  const uchar   *src;
+  const uchar   *ref;
   int32_t                    ystride;
   const ptrdiff_t       *frag_buf_offs;
   oc_mv                 *frag_mvs;
   const oc_mb_map_plane *mb_map;
-  const unsigned char   *map_idxs;
+  const uchar   *map_idxs;
   int32_t                    map_nidxs;
   int32_t                    nqis;
   int32_t                    mapii;
@@ -1769,7 +1769,7 @@ static void oc_cost_inter4mv(oc_enc_ctx *_enc,oc_mode_choice *_modec,
   ptrdiff_t              frag_offs;
   int32_t                    bits0;
   int32_t                    bits1;
-  unsigned               satd;
+  uint32_t               satd;
   src=_enc->state.ref_frame_data[OC_FRAME_IO];
   ref=_enc->state.ref_frame_data[_enc->state.ref_frame_idx[OC_FRAME_PREV]];
   ystride=_enc->state.ref_ystride[0];
@@ -1854,10 +1854,10 @@ int32_t oc_enc_analyze_inter(oc_enc_ctx *_enc,int32_t _allow_keyframe,int32_t _r
   oc_mv                   prior_mv;
   ogg_int64_t             interbits;
   ogg_int64_t             intrabits;
-  const unsigned char    *map_idxs;
+  const uchar    *map_idxs;
   int32_t                     nmap_idxs;
-  unsigned               *coded_mbis;
-  unsigned               *uncoded_mbis;
+  uint32_t               *coded_mbis;
+  uint32_t               *uncoded_mbis;
   size_t                  ncoded_mbis;
   size_t                  nuncoded_mbis;
   oc_sb_flags            *sb_flags;
@@ -1868,13 +1868,13 @@ int32_t oc_enc_analyze_inter(oc_enc_ctx *_enc,int32_t _allow_keyframe,int32_t _r
   oc_fragment            *frags;
   oc_mv                  *frag_mvs;
   int32_t                     qi;
-  unsigned                stripe_sby;
-  unsigned                mcu_nvsbs;
+  uint32_t                stripe_sby;
+  uint32_t                mcu_nvsbs;
   int32_t                     notstart;
   int32_t                     notdone;
   int32_t                     vdec;
-  unsigned                sbi;
-  unsigned                sbi_end;
+  uint32_t                sbi;
+  uint32_t                sbi_end;
   int32_t                     refi;
   int32_t                     pli;
   set_chroma_mvs=OC_SET_CHROMA_MVS_TABLE[_enc->state.info.pixel_fmt];
@@ -1917,15 +1917,15 @@ int32_t oc_enc_analyze_inter(oc_enc_ctx *_enc,int32_t _allow_keyframe,int32_t _r
       /*Mode addressing is through Y plane, always 4 MB per SB.*/
       for(quadi=0;quadi<4;quadi++)if(sb_flags[sbi].quad_valid&1<<quadi){
         oc_mode_choice modes[8];
-        unsigned       skip_ssd[12];
-        unsigned       intra_satd[12];
+        uint32_t       skip_ssd[12];
+        uint32_t       intra_satd[12];
         int32_t            mb_mv_bits_0;
         int32_t            mb_gmv_bits_0;
         int32_t            inter_mv_pref;
         int32_t            mb_mode;
         int32_t            dx;
         int32_t            dy;
-        unsigned       mbi;
+        uint32_t       mbi;
         int32_t            mapii;
         int32_t            mapi;
         int32_t            bi;
@@ -2470,7 +2470,7 @@ static ptrdiff_t oc_dct_token_skip(int32_t _token,int32_t _extra_bits){
 
 
 void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
-  static const unsigned char OC_ZZI_HUFF_OFFSET[64]={
+  static const uchar OC_ZZI_HUFF_OFFSET[64]={
      0,16,16,16,16,16,32,32,
     32,32,32,32,32,32,32,48,
     48,48,48,48,48,48,48,48,
@@ -2480,8 +2480,8 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
     64,64,64,64,64,64,64,64
   };
   const oc_fragment *frags;
-  const unsigned    *frag_satd;
-  const unsigned    *frag_ssd;
+  const uint32_t    *frag_satd;
+  const uint32_t    *frag_ssd;
   const ptrdiff_t   *coded_fragis;
   ptrdiff_t          ncoded_fragis;
   ptrdiff_t          fragii;
@@ -2544,7 +2544,7 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
       int32_t          huffi;
       int32_t          skip;
       int32_t          mb_mode;
-      unsigned     satd;
+      uint32_t     satd;
       int32_t          bin;
       fragi=coded_fragis[fragii];
       frag_bits=0;

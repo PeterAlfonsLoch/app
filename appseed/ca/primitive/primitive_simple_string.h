@@ -556,7 +556,7 @@ public:
       return( *this );
    }
 
-   simple_string& operator+=(unsigned char ch )
+   simple_string& operator+=(uchar ch )
    {
       AppendChar( XCHAR( ch ) );
 

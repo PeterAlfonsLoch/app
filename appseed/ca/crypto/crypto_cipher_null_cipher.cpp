@@ -120,7 +120,7 @@ null_cipher_set_iv(null_cipher_ctx_t *c, void *iv) {
 
 err_status_t
 null_cipher_encrypt(null_cipher_ctx_t *c,
-          unsigned char *buf, uint32_t *bytes_to_encr) {
+          uchar *buf, uint32_t *bytes_to_encr) {
   return err_status_ok;
 }
 

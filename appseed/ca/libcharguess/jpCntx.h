@@ -74,9 +74,9 @@ protected:
   {
     //We only interested in Hiragana, so first byte is '\202'
     if (*str == '\202' && 
-          (unsigned char)*(str+1) >= (unsigned char)0x9f && 
-          (unsigned char)*(str+1) <= (unsigned char)0xf1)
-      return (unsigned char)*(str+1) - (unsigned char)0x9f;
+          (uchar)*(str+1) >= (uchar)0x9f && 
+          (uchar)*(str+1) <= (uchar)0xf1)
+      return (uchar)*(str+1) - (uchar)0x9f;
     return -1;
   };
 };
@@ -89,9 +89,9 @@ protected:
     //We only interested in Hiragana, so first byte is '\244'
   {
     if (*str == '\244' &&
-          (unsigned char)*(str+1) >= (unsigned char)0xa1 &&
-          (unsigned char)*(str+1) <= (unsigned char)0xf3)
-      return (unsigned char)*(str+1) - (unsigned char)0xa1;
+          (uchar)*(str+1) >= (uchar)0xa1 &&
+          (uchar)*(str+1) <= (uchar)0xf3)
+      return (uchar)*(str+1) - (uchar)0xa1;
     return -1;
   };
 };

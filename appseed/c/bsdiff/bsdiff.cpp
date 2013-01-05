@@ -4,7 +4,7 @@
 #include "bsdiff_private.h"
 
 
-typedef unsigned char u_char;
+typedef uchar u_char;
 
 #ifdef WINDOWS
 typedef long pid_t;

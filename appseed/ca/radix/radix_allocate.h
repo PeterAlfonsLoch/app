@@ -198,7 +198,7 @@ CLASS_DECL_ca void __free_memory_debug(void * pbData, bool bIsObject);
 
 CLASS_DECL_ca bool __default_alloc_hook(size_t, bool, LONG);
 
-CLASS_DECL_ca int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize, int32_t nBlockUse, long lRequest, const unsigned char * szFilename, int32_t nLine);
+CLASS_DECL_ca int32_t __cdecl __alloc_alloc_hook(int32_t nAllocType, void * pvData, size_t nSize, int32_t nBlockUse, long lRequest, const uchar * szFilename, int32_t nLine);
 CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook);
 
 CLASS_DECL_ca bool __enable_memory_leak_override(bool bEnable);

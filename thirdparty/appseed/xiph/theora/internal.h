@@ -197,9 +197,9 @@ typedef signed char     oc_mv[2];
 
 /*Super block information.*/
 struct oc_sb_flags{
-  unsigned char coded_fully:1;
-  unsigned char coded_partially:1;
-  unsigned char quad_valid:4;
+  uchar coded_fully:1;
+  uchar coded_partially:1;
+  uchar quad_valid:4;
 };
 
 
@@ -221,26 +221,26 @@ struct oc_border_info{
 /*Fragment information.*/
 struct oc_fragment{
   /*A flag indicating whether or not this fragment is coded.*/
-  unsigned   coded:1;
+  uint32_t   coded:1;
   /*A flag indicating that this entire fragment lies outside the displayable
      region of the frame.
     Note the contrast with an invalid macro block, which is outside the coded
      frame, not just the displayable one.
     There are no fragments outside the coded frame by construction.*/
-  unsigned   invalid:1;
+  uint32_t   invalid:1;
   /*The index of the quality index used for this fragment's AC coefficients.*/
-  unsigned   qii:6;
+  uint32_t   qii:6;
   /*The mode of the macroblock this fragment belongs to.*/
-  unsigned   mb_mode:3;
+  uint32_t   mb_mode:3;
   /*The index of the associated border information for fragments which lie
      partially outside the displayable region.
     For fragments completely inside or outside this region, this is -1.
     Note that the C standard requires an explicit signed keyword for bitfield
-     types, since some compilers may treat them as unsigned without it.*/
+     types, since some compilers may treat them as uint32_t without it.*/
   int32_t borderi:5;
   /*The prediction-corrected DC component.
     Note that the C standard requires an explicit signed keyword for bitfield
-     types, since some compilers may treat them as unsigned without it.*/
+     types, since some compilers may treat them as uint32_t without it.*/
   int32_t dc:16;
 };
 
@@ -257,27 +257,27 @@ struct oc_fragment_plane{
   /*The total number of fragments in the plane.*/
   ptrdiff_t nfrags;
   /*The number of super blocks in the horizontal direction.*/
-  unsigned  nhsbs;
+  uint32_t  nhsbs;
   /*The number of super blocks in the vertical direction.*/
-  unsigned  nvsbs;
+  uint32_t  nvsbs;
   /*The offset of the first super block in the plane.*/
-  unsigned  sboffset;
+  uint32_t  sboffset;
   /*The total number of super blocks in the plane.*/
-  unsigned  nsbs;
+  uint32_t  nsbs;
 };
 
 
 
 /*The shared (encoder and decoder) functions that have accelerated variants.*/
 struct oc_base_opt_vtable{
-  void (*frag_copy)(unsigned char *_dst,
-   const unsigned char *_src,int32_t _ystride);
-  void (*frag_recon_intra)(unsigned char *_dst,int32_t _ystride,
+  void (*frag_copy)(uchar *_dst,
+   const uchar *_src,int32_t _ystride);
+  void (*frag_recon_intra)(uchar *_dst,int32_t _ystride,
    const ogg_int16_t _residue[64]);
-  void (*frag_recon_inter)(unsigned char *_dst,
-   const unsigned char *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
-  void (*frag_recon_inter2)(unsigned char *_dst,const unsigned char *_src1,
-   const unsigned char *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
+  void (*frag_recon_inter)(uchar *_dst,
+   const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+  void (*frag_recon_inter2)(uchar *_dst,const uchar *_src1,
+   const uchar *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
   void (*idct8x8)(ogg_int16_t _y[64],int32_t _last_zzi);
   void (*state_frag_recon)(const oc_theora_state *_state,ptrdiff_t _fragi,
    int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant);
@@ -292,7 +292,7 @@ struct oc_base_opt_vtable{
 /*The shared (encoder and decoder) tables that vary according to which variants
    of the above functions are used.*/
 struct oc_base_opt_data{
-  const unsigned char *dct_fzig_zag;
+  const uchar *dct_fzig_zag;
 };
 
 
@@ -322,7 +322,7 @@ struct oc_theora_state{
   /*The list of super block flags, indexed in image order.*/
   oc_sb_flags        *sb_flags;
   /*The total number of super blocks in a single frame.*/
-  unsigned            nsbs;
+  uint32_t            nsbs;
   /*The fragments from each color plane that belong to each macro block.
     Fragments are stored in image order (left to right then top to bottom).
     When chroma components are decimated, the extra fragments have an index of
@@ -333,9 +333,9 @@ struct oc_theora_state{
      coded frame.*/
   signed char        *mb_modes;
   /*The number of macro blocks in the X direction.*/
-  unsigned            nhmbs;
+  uint32_t            nhmbs;
   /*The number of macro blocks in the Y direction.*/
-  unsigned            nvmbs;
+  uint32_t            nvmbs;
   /*The total number of macro blocks.*/
   size_t              nmbs;
   /*The list of coded fragments, in coded order.
@@ -350,7 +350,7 @@ struct oc_theora_state{
   /*The actual buffers used for the previously decoded frames.*/
   th_ycbcr_buffer     ref_frame_bufs[4];
   /*The storage for the reference frame buffers.*/
-  unsigned char      *ref_frame_data[4];
+  uchar      *ref_frame_data[4];
   /*The strides for each plane in the reference frames.*/
   int32_t                 ref_ystride[3];
   /*The number of unique border patterns.*/
@@ -366,19 +366,19 @@ struct oc_theora_state{
   /*The granpos of the current frame.*/
   ogg_int64_t         granpos;
   /*The type of the current frame.*/
-  unsigned char       frame_type;
+  uchar       frame_type;
   /*The bias to add to the frame count when computing granule positions.*/
-  unsigned char       granpos_bias;
+  uchar       granpos_bias;
   /*The number of quality indices used in the current frame.*/
-  unsigned char       nqis;
+  uchar       nqis;
   /*The quality indices of the current frame.*/
-  unsigned char       qis[3];
+  uchar       qis[3];
   /*The dequantization tables, stored in zig-zag order, and indexed by
      qi, pli, qti, and zzi.*/
   ogg_uint16_t       *dequant_tables[64][3][2];
   OC_ALIGN16(oc_quant_table      dequant_table_data[64][3][2]);
   /*Loop filter strength parameters.*/
-  unsigned char       loop_filter_limits[64];
+  uchar       loop_filter_limits[64];
 };
 
 
@@ -396,19 +396,19 @@ typedef void (*oc_set_chroma_mvs_func)(oc_mv _cbmvs[4],const oc_mv _lbmvs[4]);
 
 /*A map from the index in the zig zag scan to the coefficient number in a
    block.*/
-extern const unsigned char OC_FZIG_ZAG[128];
+extern const uchar OC_FZIG_ZAG[128];
 /*A map from the coefficient number in a block to its index in the zig zag
    scan.*/
-extern const unsigned char OC_IZIG_ZAG[64];
+extern const uchar OC_IZIG_ZAG[64];
 /*A map from physical macro block ordering to bitstream macro block
    ordering within a super block.*/
-extern const unsigned char OC_MB_MAP[2][2];
+extern const uchar OC_MB_MAP[2][2];
 /*A list of the indices in the oc_mb_map array that can be valid for each of
    the various chroma decimation types.*/
-extern const unsigned char OC_MB_MAP_IDXS[TH_PF_NFORMATS][12];
+extern const uchar OC_MB_MAP_IDXS[TH_PF_NFORMATS][12];
 /*The number of indices in the oc_mb_map array that can be valid for each of
    the various chroma decimation types.*/
-extern const unsigned char OC_MB_MAP_NIDXS[TH_PF_NFORMATS];
+extern const uchar OC_MB_MAP_NIDXS[TH_PF_NFORMATS];
 /*A table of functions used to fill in the Cb,Cr plane motion vectors for a
    macro block when 4 different motion vectors are specified in the luma
    plane.*/
@@ -416,7 +416,7 @@ extern const oc_set_chroma_mvs_func OC_SET_CHROMA_MVS_TABLE[TH_PF_NFORMATS];
 
 
 
-int32_t oc_ilog(unsigned _v);
+int32_t oc_ilog(uint32_t _v);
 void **oc_malloc_2d(size_t _height,size_t _width,size_t _sz);
 void **oc_calloc_2d(size_t _height,size_t _width,size_t _sz);
 void oc_free_2d(void *_ptr);
@@ -445,14 +445,14 @@ int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
 #endif
 
 /*Shared accelerated functions.*/
-void oc_frag_copy(const oc_theora_state *_state,unsigned char *_dst,
- const unsigned char *_src,int32_t _ystride);
+void oc_frag_copy(const oc_theora_state *_state,uchar *_dst,
+ const uchar *_src,int32_t _ystride);
 void oc_frag_recon_intra(const oc_theora_state *_state,
- unsigned char *_dst,int32_t _dst_ystride,const ogg_int16_t _residue[64]);
-void oc_frag_recon_inter(const oc_theora_state *_state,unsigned char *_dst,
- const unsigned char *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+ uchar *_dst,int32_t _dst_ystride,const ogg_int16_t _residue[64]);
+void oc_frag_recon_inter(const oc_theora_state *_state,uchar *_dst,
+ const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
 void oc_frag_recon_inter2(const oc_theora_state *_state,
- unsigned char *_dst,const unsigned char *_src1,const unsigned char *_src2,
+ uchar *_dst,const uchar *_src1,const uchar *_src2,
  int32_t _ystride,const ogg_int16_t _residue[64]);
 void oc_idct8x8(const oc_theora_state *_state,ogg_int16_t _y[64],int32_t _last_zzi);
 void oc_state_frag_recon(const oc_theora_state *_state,ptrdiff_t _fragi,
@@ -465,14 +465,14 @@ void oc_state_loop_filter_frag_rows(const oc_theora_state *_state,
 void oc_restore_fpu(const oc_theora_state *_state);
 
 /*Default pure-C implementations.*/
-void oc_frag_copy_c(unsigned char *_dst,
- const unsigned char *_src,int32_t _src_ystride);
-void oc_frag_recon_intra_c(unsigned char *_dst,int32_t _dst_ystride,
+void oc_frag_copy_c(uchar *_dst,
+ const uchar *_src,int32_t _src_ystride);
+void oc_frag_recon_intra_c(uchar *_dst,int32_t _dst_ystride,
  const ogg_int16_t _residue[64]);
-void oc_frag_recon_inter_c(unsigned char *_dst,
- const unsigned char *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
-void oc_frag_recon_inter2_c(unsigned char *_dst,const unsigned char *_src1,
- const unsigned char *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
+void oc_frag_recon_inter_c(uchar *_dst,
+ const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+void oc_frag_recon_inter2_c(uchar *_dst,const uchar *_src1,
+ const uchar *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
 void oc_idct8x8_c(ogg_int16_t _y[64],int32_t _last_zzi);
 void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
  int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant);

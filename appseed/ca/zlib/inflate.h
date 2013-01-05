@@ -89,7 +89,7 @@ struct inflate_state {
     uint32_t wsize;             /* window size or zero if not using window */
     uint32_t whave;             /* valid bytes in the window */
     uint32_t write;             /* window write index */
-    unsigned char FAR *window;  /* allocated sliding window, if needed */
+    uchar FAR *window;  /* allocated sliding window, if needed */
         /* bit accumulator */
     uint32_t hold;         /* input bit accumulator */
     uint32_t bits;              /* number of bits in "in" */
@@ -109,7 +109,7 @@ struct inflate_state {
     uint32_t ndist;             /* number of distance code lengths */
     uint32_t have;              /* number of code lengths in lens[] */
     code FAR *next;             /* next available space in codes[] */
-    unsigned short lens[320];   /* temporary storage for code lengths */
-    unsigned short work[288];   /* work area for code table building */
+    uint16_t lens[320];   /* temporary storage for code lengths */
+    uint16_t work[288];   /* work area for code table building */
     code codes[ENOUGH];         /* space for code tables */
 };

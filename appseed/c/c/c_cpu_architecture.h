@@ -70,43 +70,43 @@ Stop_Compiling_Bad_Endian
 #define GetUi16(p) (((const byte *)(p))[0] | ((uint16_t)((const byte *)(p))[1] << 8))
 
 #define GetUi32(p) ( \
-             ((const byte *)(p))[0]        | \
-    ((uint32_t)((const byte *)(p))[1] <<  8) | \
-    ((uint32_t)((const byte *)(p))[2] << 16) | \
-    ((uint32_t)((const byte *)(p))[3] << 24))
+   ((const byte *)(p))[0]        | \
+   ((uint32_t)((const byte *)(p))[1] <<  8) | \
+   ((uint32_t)((const byte *)(p))[2] << 16) | \
+   ((uint32_t)((const byte *)(p))[3] << 24))
 
 #define GetUi64(p) (GetUi32(p) | ((uint64_t)GetUi32(((const byte *)(p)) + 4) << 32))
 
 #define SetUi16(p, d) { uint32_t _x_ = (d); \
-    ((byte *)(p))[0] = (byte)_x_; \
-    ((byte *)(p))[1] = (byte)(_x_ >> 8); }
+   ((byte *)(p))[0] = (byte)_x_; \
+   ((byte *)(p))[1] = (byte)(_x_ >> 8); }
 
 #define SetUi32(p, d) { uint32_t _x_ = (d); \
-    ((byte *)(p))[0] = (byte)_x_; \
-    ((byte *)(p))[1] = (byte)(_x_ >> 8); \
-    ((byte *)(p))[2] = (byte)(_x_ >> 16); \
-    ((byte *)(p))[3] = (byte)(_x_ >> 24); }
+   ((byte *)(p))[0] = (byte)_x_; \
+   ((byte *)(p))[1] = (byte)(_x_ >> 8); \
+   ((byte *)(p))[2] = (byte)(_x_ >> 16); \
+   ((byte *)(p))[3] = (byte)(_x_ >> 24); }
 
 #define SetUi64(p, d) { uint64_t _x64_ = (d); \
-    SetUi32(p, (uint32_t)_x64_); \
-    SetUi32(((byte *)(p)) + 4, (uint32_t)(_x64_ >> 32)); }
+   SetUi32(p, (uint32_t)_x64_); \
+   SetUi32(((byte *)(p)) + 4, (uint32_t)(_x64_ >> 32)); }
 
 #endif
 
 #if defined(MY_CPU_LE_UNALIGN) && defined(_WIN64) && (_MSC_VER >= 1300)
 
-//#pragma intrinsic(_byteswap_ulong)
-//#pragma intrinsic(_byteswap_uint64)
+   //#pragma intrinsic(_byteswap_ulong)
+   //#pragma intrinsic(_byteswap_uint64)
 #define GetBe32(p) _byteswap_ulong(*(const uint32_t *)(const byte *)(p))
 #define GetBe64(p) _byteswap_uint64(*(const uint64_t *)(const byte *)(p))
 
 #else
 
 #define GetBe32(p) ( \
-    ((uint32_t)((const byte *)(p))[0] << 24) | \
-    ((uint32_t)((const byte *)(p))[1] << 16) | \
-    ((uint32_t)((const byte *)(p))[2] <<  8) | \
-             ((const byte *)(p))[3] )
+   ((uint32_t)((const byte *)(p))[0] << 24) | \
+   ((uint32_t)((const byte *)(p))[1] << 16) | \
+   ((uint32_t)((const byte *)(p))[2] <<  8) | \
+   ((const byte *)(p))[3] )
 
 #define GetBe64(p) (((uint64_t)GetBe32(p) << 32) | GetBe32(((const byte *)(p)) + 4))
 
@@ -119,19 +119,19 @@ Stop_Compiling_Bad_Endian
 
 struct Cx86cpuid
 {
-   __uint32_t maxFunc;
-   __uint32_t vendor[3];
-   __uint32_t ver;
-   __uint32_t b;
-   __uint32_t c;
-   __uint32_t d;
+   uint32_t maxFunc;
+   uint32_t vendor[3];
+   uint32_t ver;
+   uint32_t b;
+   uint32_t c;
+   uint32_t d;
 };
 
 enum
 {
-  CPU_FIRM_INTEL,
-  CPU_FIRM_AMD,
-  CPU_FIRM_VIA
+   CPU_FIRM_INTEL,
+   CPU_FIRM_AMD,
+   CPU_FIRM_VIA
 };
 
 CLASS_DECL_c int32_t x86cpuid_CheckAndRead(struct Cx86cpuid *p);

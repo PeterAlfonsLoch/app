@@ -301,7 +301,7 @@ extern int32_t CLASS_DECL_ca unzCloseCurrentFile OF((unzFile file));
 
 extern int32_t CLASS_DECL_ca unzReadCurrentFile OF((unzFile file,
                       voidp buf,
-                      unsigned len));
+                      uint32_t len));
 /*
   read bytes from the current file (opened by unzOpenCurrentFile)
   buf contain buffer where data must be copied
@@ -325,7 +325,7 @@ extern int32_t CLASS_DECL_ca unzeof OF((unzFile file));
 
 extern int32_t CLASS_DECL_ca unzGetLocalExtrafield OF((unzFile file,
                                              voidp buf,
-                                             unsigned len));
+                                             uint32_t len));
 /*
   read extra field from the current file (opened by unzOpenCurrentFile)
   This is the local-header version of the extra field (sometimes, there is

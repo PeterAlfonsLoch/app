@@ -19,7 +19,7 @@ extern "C" {
  */
 
 #ifdef FIXED_POINT
-# define kiss_fft_scalar short
+# define kiss_fft_scalar int16_t
 #else
 # ifndef kiss_fft_scalar
 /*  default is double */

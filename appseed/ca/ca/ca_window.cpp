@@ -1898,7 +1898,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnMouseWheel(UINT, short, point)
+   bool window::OnMouseWheel(UINT, int16_t, point)
    {
       throw interface_only_exception(get_app());
    }

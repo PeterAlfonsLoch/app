@@ -75,7 +75,7 @@ namespace gen {
    {
    }
 
-   parse::parse(const string &s,const string &sp,short nospace)
+   parse::parse(const string &s,const string &sp,int16_t nospace)
    :pa_the_str(s)
    ,pa_splits(sp)
    ,pa_ord("")
@@ -96,7 +96,7 @@ namespace gen {
 
    #define C ((pa_the_ptr<pa_the_str.get_length()) ? ((const char *) pa_the_str)[pa_the_ptr] : 0)
 
-   short parse::issplit(const char c)
+   int16_t parse::issplit(const char c)
    {
       for (int32_t i = 0; i < pa_splits.get_length(); i++)
          if (pa_splits[i] == c)

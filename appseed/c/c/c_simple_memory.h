@@ -62,9 +62,9 @@ public:
 
 #ifdef METROWIN
 
-   inline Platform::Array < unsigned char, 1U > ^ get_os_bytes() const
+   inline Platform::Array < uchar, 1U > ^ get_os_bytes() const
    {
-      return ref new Platform::Array < unsigned char, 1U > ((unsigned char *) m_psz, m_iSize);
+      return ref new Platform::Array < uchar, 1U > ((uchar *) m_psz, m_iSize);
    }
 
    inline ::Windows::Storage::Streams::IBuffer ^ get_os_stream_buffer() const
@@ -72,7 +72,7 @@ public:
       return ::Windows::Security::Cryptography::CryptographicBuffer::CreateFromByteArray(get_os_bytes());
    }
 
-   inline void set_os_bytes(Platform::Array < unsigned char, 1U > ^ a)
+   inline void set_os_bytes(Platform::Array < uchar, 1U > ^ a)
    {
       allocate(a->Length);
       memcpy(get_data(), a->Data, get_size());
@@ -80,7 +80,7 @@ public:
 
    inline void set_os_stream_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf)
    {
-      Platform::Array < unsigned char, 1U > ^ a = nullptr;
+      Platform::Array < uchar, 1U > ^ a = nullptr;
       ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
       return set_os_bytes(a);
    }

@@ -147,7 +147,7 @@ typedef struct{
   /**The offset in bytes between successive rows.*/
   int32_t            stride;
   /**A pointer to the beginning of the first row.*/
-  unsigned char *data;
+  uchar *data;
 }th_img_plane;
 
 /**A complete image buffer for an uncompressed frame.
@@ -205,9 +205,9 @@ typedef struct{
   /**\name Theora version
    * Bitstream version information.*/
   /*@{*/
-  unsigned char version_major;
-  unsigned char version_minor;
-  unsigned char version_subminor;
+  uchar version_major;
+  uchar version_minor;
+  uchar version_subminor;
   /*@}*/
   /**The encoded frame width.
    * This must be a multiple of 16, and less than 1048576.*/
@@ -302,8 +302,8 @@ typedef struct{
  *  the 'comment' header packet.
  * The comment header is meant to be used much like someone jotting a quick
  *  note on the label of a video.
- * It should be a short, to the point text note that can be more than a couple
- *  words, but not more than a short paragraph.
+ * It should be a int16_t, to the point text note that can be more than a couple
+ *  words, but not more than a int16_t paragraph.
  *
  * The metadata is stored as a series of (tag, value) pairs, in
  *  length-encoded string vectors.
@@ -335,7 +335,7 @@ typedef struct th_comment{
 
 
 /**A single base matrix.*/
-typedef unsigned char th_quant_base[64];
+typedef uchar th_quant_base[64];
 
 /**A set of \a qi ranges.*/
 typedef struct{
@@ -412,7 +412,7 @@ typedef struct{
   /**The AC scaling factors.*/
   ogg_uint16_t    ac_scale[64];
   /**The loop filter limit values.*/
-  unsigned char   loop_filter_limits[64];
+  uchar   loop_filter_limits[64];
   /**The \a qi ranges for each \a ci and \a pli.*/
   th_quant_ranges qi_ranges[2][3];
 }th_quant_info;

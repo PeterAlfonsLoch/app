@@ -35,8 +35,8 @@
        AD || BD
  AC || CB || 0
 
- where A and B are the high and low short words of V1,
- C and D are the short words of V2, AD is the product of
+ where A and B are the high and low int16_t words of V1,
+ C and D are the int16_t words of V2, AD is the product of
  A and D, and X || Y is (X << 16) + Y.
  Since the algorithm is programmed in C, we need to be
  careful not to overflow.
@@ -95,7 +95,7 @@ void mul64(int64_t v1, int64_t v2, int64_t & hi, uint64_t & lo)
 }
 
 
-// http://stackoverflow.com/questions/1870158/unsigned-128-bit-division-on-64-bit-machine
+// http://stackoverflow.com/questions/1870158/uint32_t-128-bit-division-on-64-bit-machine
    //64t hi, lo;
    //32t div;
 
@@ -282,7 +282,7 @@ int64_t _stdcall muldiv64(int64_t number, int64_t numerator, int64_t denominator
    /*
    // Declare 128bit storage
    struct{
-      unsigned long DW[4];
+      uint32_t long DW[4];
    }var128, quotient;
    // Change semantics for intermediate results for Full Div
    // by renaming the vars
@@ -297,7 +297,7 @@ int64_t _stdcall muldiv64(int64_t number, int64_t numerator, int64_t denominator
       pushfd
    }
 
-   // Take absolute values because algorithm is for unsigned only
+   // Take absolute values because algorithm is for uint32_t only
    operant      = ABS64(operant);
    multiplier   = ABS64(multiplier);
    divider      = ABS64(divider);
@@ -502,12 +502,12 @@ done:
  *     Xscaled = (Xstart * Multiplier) SHR rshift
  * Uses 128 bit intermediate result
  */
-int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, unsigned char rshift)
+int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, uchar rshift)
 {
    return (operant * multiplier) >> rshift;
 /*   // Declare 128bit storage
    struct{
-      unsigned long DW[4];
+      uint32_t long DW[4];
    }var128;
 
    // Save combined sign on stack
@@ -517,7 +517,7 @@ int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, unsigned char rsh
       pushfd
    }
 
-   // Take absolute values because algorithm is for unsigned only
+   // Take absolute values because algorithm is for uint32_t only
    operant      = ABS64(operant);
    multiplier   = ABS64(multiplier);
 

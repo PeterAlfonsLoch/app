@@ -22,7 +22,7 @@
    Bessel follower below.
   Values of x larger than 85 degrees are extrapolated from the last inteval,
    which is way off, but "good enough".*/
-static unsigned short OC_ROUGH_TAN_LOOKUP[18]={
+static uint16_t OC_ROUGH_TAN_LOOKUP[18]={
       0,  358,  722, 1098, 1491, 1910,
    2365, 2868, 3437, 4096, 4881, 5850,
    7094, 8784,11254,15286,23230,46817
@@ -219,9 +219,9 @@ static ogg_int64_t oc_bexp_q24(ogg_int32_t _log_scale){
 static ogg_int32_t oc_q57_to_q24(ogg_int64_t _in){
   ogg_int64_t ret;
   ret=_in+((ogg_int64_t)1<<32)>>33;
-  /*0x80000000 is automatically converted to unsigned on 32-bit systems.
+  /*0x80000000 is automatically converted to uint32_t on 32-bit systems.
     -0x7FFFFFFF-1 is needed to avoid "promoting" the whole expression to
-    unsigned.*/
+    uint32_t.*/
   return (ogg_int32_t)OC_CLAMPI(-0x7FFFFFFF-1,ret,0x7FFFFFFF);
 }
 
@@ -865,12 +865,12 @@ int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
 
 static void oc_rc_buffer_val(oc_rc_state *_rc,ogg_int64_t _val,int32_t _bytes){
   while(_bytes-->0){
-    _rc->twopass_buffer[_rc->twopass_buffer_bytes++]=(unsigned char)(_val&0xFF);
+    _rc->twopass_buffer[_rc->twopass_buffer_bytes++]=(uchar)(_val&0xFF);
     _val>>=8;
   }
 }
 
-int32_t oc_enc_rc_2pass_out(oc_enc_ctx *_enc,unsigned char **_buf){
+int32_t oc_enc_rc_2pass_out(oc_enc_ctx *_enc,uchar **_buf){
   if(_enc->rc.twopass_buffer_bytes==0){
     if(_enc->rc.twopass==0){
       int32_t qi;
@@ -921,7 +921,7 @@ int32_t oc_enc_rc_2pass_out(oc_enc_ctx *_enc,unsigned char **_buf){
 }
 
 static size_t oc_rc_buffer_fill(oc_rc_state *_rc,
- unsigned char *_buf,size_t _bytes,size_t _consumed,size_t _goal){
+ uchar *_buf,size_t _bytes,size_t _consumed,size_t _goal){
   while(natural(_rc->twopass_buffer_fill)<_goal&&_consumed<_bytes){
     _rc->twopass_buffer[_rc->twopass_buffer_fill++]=_buf[_consumed++];
   }
@@ -940,7 +940,7 @@ static ogg_int64_t oc_rc_unbuffer_val(oc_rc_state *_rc,int32_t _bytes){
   return ret;
 }
 
-int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,unsigned char *_buf,size_t _bytes){
+int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
   size_t consumed;
   consumed=0;
   /*Enable pass 2 mode if this is the first call.*/

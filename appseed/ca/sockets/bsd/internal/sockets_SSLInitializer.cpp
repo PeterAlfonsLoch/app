@@ -37,10 +37,10 @@ namespace sockets
    
 
    void rand_seed(const void * buf, int32_t num);
-   int32_t rand_bytes(unsigned char * buf, int32_t num);
+   int32_t rand_bytes(uchar * buf, int32_t num);
    void rand_cleanup();
    void rand_add(const void * buf, int32_t num, double entropy);
-   int32_t rand_pseudorand(unsigned char * buf, int32_t num);
+   int32_t rand_pseudorand(uchar * buf, int32_t num);
    int32_t rand_status();
    
    
@@ -54,7 +54,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(num);
    }
 
-   int32_t rand_bytes(unsigned char * buf, int32_t num)
+   int32_t rand_bytes(uchar * buf, int32_t num)
    {
       g_psystem->math().gen_rand(buf, num);
       return num;
@@ -71,7 +71,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(entropy);
    }
 
-   int32_t rand_pseudorand(unsigned char * buf, int32_t num)
+   int32_t rand_pseudorand(uchar * buf, int32_t num)
    {
       g_psystem->math().gen_rand(buf, num);
       return num;
@@ -220,12 +220,12 @@ namespace sockets
    }
 
 
-   unsigned long SSLInitializer::SSL_id_function()
+   uint32_t long SSLInitializer::SSL_id_function()
    {
 #ifdef WIN32
       return ::GetCurrentThreadId();
 #else
-      return (unsigned long) (int_ptr) ::pthread_self();
+      return (uint32_t long) (int_ptr) ::pthread_self();
       //return System.get_thread_id();
 #endif
    }

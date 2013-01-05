@@ -29,11 +29,11 @@
 #endif
 /* compile with -Dlocal if your debugger can't find static symbols */
 
-typedef unsigned char  uch;
+typedef uchar  uch;
 typedef uch FAR uchf;
-typedef unsigned short ush;
+typedef uint16_t ush;
 typedef ush FAR ushf;
-typedef unsigned long  ulg;
+typedef uint32_t long  ulg;
 
 extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 /* (size given to avoid silly warnings with Visual C++) */
@@ -77,7 +77,7 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #    if(__STDC__ == 1) && (defined(__LARGE__) || defined(__COMPACT__))
        /* Allow compilation with ANSI keywords only enabled */
        void _Cdecl farfree( void *block );
-       void *_Cdecl farmalloc( unsigned long nbytes );
+       void *_Cdecl farmalloc( uint32_t long nbytes );
 #    else
 #      include <alloc.h>
 #    endif
@@ -245,7 +245,7 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #endif
 
 
-voidpf zcalloc OF((voidpf opaque, unsigned items, unsigned size));
+voidpf zcalloc OF((voidpf opaque, uint32_t items, uint32_t size));
 void   zcfree  OF((voidpf opaque, voidpf ptr));
 
 #define ZALLOC(strm, items, size) \

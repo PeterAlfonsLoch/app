@@ -68,7 +68,7 @@
          bool Complete();
 
          /** get ptr to response data buffer. */
-         const unsigned char *GetDataPtr() const;
+         const uchar *GetDataPtr() const;
 
          /** get length of response data buffer. */
          size_t GetDataLength() const;

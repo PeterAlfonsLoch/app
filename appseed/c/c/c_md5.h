@@ -69,20 +69,16 @@ namespace md5
 	public:
 
 
-		typedef uint32_t		uint4;
-		typedef uint16_t		uint2;
-		typedef unsigned char	uchar;
-
 		typedef struct
 		{
 			size_t            lo;
 			size_t            hi;
-			uint4             a;
-			uint4             b;
-			uint4             c;
-			uint4             d;
+			uint32_t             a;
+			uint32_t             b;
+			uint32_t             c;
+			uint32_t             d;
 			uchar             buffer[64];
-			uint4             block[16];
+			uint32_t             block[16];
 		} context;
 
 
@@ -96,9 +92,9 @@ namespace md5
 		void	            initialize();
 		void	            update(void * pdata, size_t nInputLen);
 		void	            finalize();
-		unsigned char *		digest();
-		vsstring			to_string();
-		void *				body(void *data, uint4 size);
+		unsigned char *   digest();
+		vsstring			   to_string();
+		void *				body(void *data, uint32_t size);
 
 	};
 

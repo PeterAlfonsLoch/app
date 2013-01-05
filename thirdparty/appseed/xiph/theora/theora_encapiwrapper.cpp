@@ -138,7 +138,7 @@ int32_t theora_encode_comment(theora_comment *_tc,ogg_packet *_op){
     }
     else{
       memcpy(buf,_op->packet,_op->bytes);
-      _op->packet=(unsigned char *) buf;
+      _op->packet=(uchar *) buf;
       ret=0;
     }
   }

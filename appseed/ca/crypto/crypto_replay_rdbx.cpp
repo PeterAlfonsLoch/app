@@ -118,7 +118,7 @@ index_advance(xtd_seq_num_t *pi, sequence_number_t s) {
  * and returns the difference between *guess and *local
  *
  * nota bene - the output is a signed integer, DON'T cast it to a
- * unsigned integer!  
+ * uint32_t integer!  
  */
 
 int32_t

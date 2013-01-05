@@ -248,7 +248,7 @@ namespace user
 
       index iDelta = m_iWheelDelta / WHEEL_DELTA;
 
-      m_iWheelDelta -= (short) (WHEEL_DELTA * iDelta);
+      m_iWheelDelta -= (int16_t) (WHEEL_DELTA * iDelta);
 
       m_scrollinfo.m_ptScroll.y -= (LONG) (iDelta * get_wheel_scroll_delta());
 

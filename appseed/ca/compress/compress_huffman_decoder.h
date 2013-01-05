@@ -19,7 +19,7 @@ namespace compress
          uint32_t m_Limits[kNumBitsMax + 1];     // m_Limits[i] = value limit for symbols with length = i
          uint32_t m_Positions[kNumBitsMax + 1];  // m_Positions[i] = index in m_Symbols[] of first symbol with length = i
          uint32_t m_Symbols[m_NumSymbols];
-         byte m_Lengths[1 << kNumTableBits];   // Table oh length for short codes.
+         byte m_Lengths[1 << kNumTableBits];   // Table oh length for int16_t codes.
 
       public:
 

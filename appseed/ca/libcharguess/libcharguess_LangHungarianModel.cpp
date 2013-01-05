@@ -34,7 +34,7 @@
 *****************************************************************/
 
 //Character Mapping Table:
-unsigned char Latin2_HungarianCharToOrderMap[] =
+uchar Latin2_HungarianCharToOrderMap[] =
 {
 255,255,255,255,255,255,255,255,255,255,254,255,255,254,255,255,  //00
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,  //10
@@ -54,7 +54,7 @@ unsigned char Latin2_HungarianCharToOrderMap[] =
 245,246,247, 25, 73, 42, 24,248,249,250, 31, 56, 29,251,252,253,
 };
 
-unsigned char win1250HungarianCharToOrderMap[] =
+uchar win1250HungarianCharToOrderMap[] =
 {
 255,255,255,255,255,255,255,255,255,255,254,255,255,254,255,255,  //00
 255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,  //10

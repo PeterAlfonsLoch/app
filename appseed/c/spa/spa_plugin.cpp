@@ -5,10 +5,10 @@
 
 
 #ifndef GET_X_LPARAM
-#define GET_X_LPARAM(lp)                        ((int32_t)(short)LOWORD(lp))
+#define GET_X_LPARAM(lp)                        ((int32_t)(int16_t)LOWORD(lp))
 #endif
 #ifndef GET_Y_LPARAM
-#define GET_Y_LPARAM(lp)                        ((int32_t)(short)HIWORD(lp))
+#define GET_Y_LPARAM(lp)                        ((int32_t)(int16_t)HIWORD(lp))
 #endif
 
 
@@ -557,26 +557,26 @@ install:
 
             if(uiMessage == WM_LBUTTONDOWN)
             {
-               m_login.on_lbutton_down((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+               m_login.on_lbutton_down((int16_t)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (int16_t)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
             }
             else if(uiMessage == WM_LBUTTONUP)
             {
-               m_login.on_lbutton_up((short)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (short)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
+               m_login.on_lbutton_up((int16_t)GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left, (int16_t)GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top);
             }
             else if(uiMessage == WM_MOUSEMOVE)
             {
 
-               int32_t x = (short) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
+               int32_t x = (int16_t) GET_X_LPARAM(lparam) - ::hotplugin::plugin::m_rect.left;
 
-               int32_t y = (short) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
+               int32_t y = (int16_t) GET_Y_LPARAM(lparam) - ::hotplugin::plugin::m_rect.top;
 
                POINT ptCursor;
 
                ::GetCursorPos(&ptCursor);
 
-               m_ptCursorPhase.x = (short) GET_X_LPARAM(lparam) - ptCursor.x;
+               m_ptCursorPhase.x = (int16_t) GET_X_LPARAM(lparam) - ptCursor.x;
 
-               m_ptCursorPhase.y = (short) GET_Y_LPARAM(lparam) - ptCursor.y;
+               m_ptCursorPhase.y = (int16_t) GET_Y_LPARAM(lparam) - ptCursor.y;
 
                m_login.on_mouse_move(x, y);
 

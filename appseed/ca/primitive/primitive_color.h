@@ -18,10 +18,10 @@ public:
    double            m_dG;
    double            m_dB;
    double            m_dA;
-   unsigned char     m_uchR;
-   unsigned char     m_uchG;
-   unsigned char     m_uchB;
-   unsigned char     m_uchA;
+   uchar     m_uchR;
+   uchar     m_uchG;
+   uchar     m_uchB;
+   uchar     m_uchA;
 
    class CLASS_DECL_ca hls
    {

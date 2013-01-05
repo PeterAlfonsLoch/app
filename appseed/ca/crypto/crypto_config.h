@@ -119,16 +119,16 @@
 /* Define to the full name and version of this package. */
 #define PACKAGE_STRING ""
 
-/* Define to the one symbol short name of this package. */
+/* Define to the one symbol int16_t name of this package. */
 #define PACKAGE_TARNAME ""
 
 /* Define to the version of this package. */
 #define PACKAGE_VERSION ""
 
-/* The size of a `unsigned long', as computed by sizeof. */
+/* The size of a `uint32_t long', as computed by sizeof. */
 #define SIZEOF_UNSIGNED_LONG 4
 
-/* The size of a `unsigned long long', as computed by sizeof. */
+/* The size of a `uint32_t long long', as computed by sizeof. */
 #define SIZEOF_UNSIGNED_LONG_LONG 8
 
 /* Define to use GDOI. */
@@ -162,33 +162,10 @@
 #endif
 #define inline*/
 
-/* Define to `unsigned' if <sys/types.h> does not define. */
+/* Define to `uint32_t' if <sys/types.h> does not define. */
 /* #undef size_t */
 
 #ifdef WINDOWS
-
-#if (_MSC_VER >= 1400) // VC8+
-#ifndef _CRT_SECURE_NO_DEPRECATE
-#define _CRT_SECURE_NO_DEPRECATE
-#endif
-#ifndef _CRT_NONSTDC_NO_DEPRECATE
-#define _CRT_NONSTDC_NO_DEPRECATE
-#endif
-#endif // VC8+
-
-
-
-
-#ifndef uint32_t
-typedef unsigned __int8       uint8_t;
-typedef unsigned __int16      uint16_t;
-typedef unsigned __int32      uint32_t;
-typedef uint64_t      uint64_t;
-typedef __int8                int8_t;
-typedef __int16               int16_t;
-typedef __int32               int32_t;
-typedef int64_t               int64_t;
-#endif
 
 #ifdef _MSC_VER
 #pragma warning(disable:4311)

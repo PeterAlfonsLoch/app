@@ -35,7 +35,7 @@
 
    const char * utf8_inc(const char * psz)
    {
-      char len =  1 + trailingBytesForUTF8[(unsigned char) *psz];
+      char len =  1 + trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)      return NULL;
       if(*psz++ == 0)   return NULL;
       if(len == 1)      return psz;
@@ -55,7 +55,7 @@
 
 int32_t uni_index(const char * pszUtf8)
 {
-unsigned char * source = (unsigned char *) pszUtf8;
+uchar * source = (uchar *) pszUtf8;
 int32_t ch = 0;
 int32_t extraBytesToRead = trailingBytesForUTF8[*source];
 /*         if(natural(extraBytesToRead) >= strlen(pszUtf8))
@@ -195,7 +195,7 @@ char * utf16_to_8(const wchar_t * pwsz)
 
 CLASS_DECL_c wchar_t w_to_lower(int32_t c)
 {
-   unsigned long c1 = CHAR_PROP(c);
+   uint32_t long c1 = CHAR_PROP(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return wchar_t(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c+1);
    return wchar_t(c - (c1>>16));
@@ -212,7 +212,7 @@ CLASS_DECL_c wchar_t w_to_lower(int32_t c)
 CLASS_DECL_c wchar_t w_to_upper(int32_t c)
 {
    
-   unsigned long c1 = CHAR_PROP(c);
+   uint32_t long c1 = CHAR_PROP(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return wchar_t(c);
    if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return wchar_t(c-1);
    return wchar_t(c - (c1>>16));

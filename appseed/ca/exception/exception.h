@@ -116,7 +116,7 @@ enum e_memdbg // primitive::memory debug/diagnostic flags
 
 #define __output_debug_string TRACE
 
-// turn on/off tracking for a short while
+// turn on/off tracking for a int16_t while
 CLASS_DECL_ca bool __enable_memory_tracking(bool bTrack);
 
 // Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE

@@ -16,7 +16,7 @@ int32_t oc_state_flushheader(oc_theora_state *_state,int32_t *_packet_state,
  oggpack_buffer *_opb,const th_quant_info *_qinfo,
  const th_huff_code _codes[TH_NHUFFMAN_TABLES][TH_NDCT_TOKENS],
  const char *_vendor,th_comment *_tc,ogg_packet *_op){
-  unsigned char *packet;
+  uchar *packet;
   int32_t            b_o_s;
   if(_op==NULL)return TH_EFAULT;
   switch(*_packet_state){

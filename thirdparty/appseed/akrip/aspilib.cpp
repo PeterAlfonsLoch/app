@@ -1561,7 +1561,7 @@ DWORD  GetCDId( HCDROM hCD, char *buf, int32_t maxBuf )
 bool allZeros( LPTRACKBUF t )
 {
   DWORD i;
-  unsigned char *p = &t->buf[t->startOffset]; 
+  uchar *p = &t->buf[t->startOffset]; 
 
   for( i = 0; i < t->len; i++ )
     if ( p[i] != 0 )
@@ -1626,7 +1626,7 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
   DWORD retVal;
   int32_t idx = (int32_t)hCD - 1;
   int32_t j, o;
-  unsigned char *pOverAddr;
+  uchar *pOverAddr;
   bool bJitterCorr, bSaveJitter;
 
   if ( (idx<0) || (idx>=MAXCDHAND) )

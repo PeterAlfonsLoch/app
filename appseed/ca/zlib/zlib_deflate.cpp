@@ -85,7 +85,7 @@ zlib_local block_state deflate_slow   OF((deflate_state *s, int32_t flush));
 zlib_local void lm_init        OF((deflate_state *s));
 zlib_local void putShortMSB    OF((deflate_state *s, uInt b));
 zlib_local void flush_pending  OF((z_streamp strm));
-zlib_local int32_t read_buf        OF((z_streamp strm, Bytef *buf, unsigned size));
+zlib_local int32_t read_buf        OF((z_streamp strm, Bytef *buf, uint32_t size));
 #ifndef FASTEST
 #ifdef ASMV
       void match_init OF(()); /* asm code initialization */
@@ -201,7 +201,7 @@ struct static_tree_desc_s {int32_t dummy;}; /* for buggy compilers */
  */
 #define CLEAR_HASH(s) \
     s->head[s->hash_size-1] = NIL; \
-    zmemzero((Bytef *)s->head, (unsigned)(s->hash_size-1)*sizeof(*s->head));
+    zmemzero((Bytef *)s->head, (uint32_t)(s->hash_size-1)*sizeof(*s->head));
 
 /* ========================================================================= */
 int32_t ZEXPORT deflateInit_(
@@ -513,7 +513,7 @@ uLong ZEXPORT deflateBound(
 }
 
 /* =========================================================================
- * Put a short in the pending buffer. The 16-bit value is put in MSB order.
+ * Put a int16_t in the pending buffer. The 16-bit value is put in MSB order.
  * IN assertion: the stream state is correct and there is enough room in
  * pending_buf.
  */
@@ -534,7 +534,7 @@ zlib_local void putShortMSB (
 zlib_local void flush_pending(
     z_streamp strm)
 {
-    unsigned len = strm->state->pending;
+    uint32_t len = strm->state->pending;
 
     if (len > strm->avail_out) len = strm->avail_out;
     if (len == 0) return;
@@ -958,9 +958,9 @@ int32_t ZEXPORT deflateCopy (
 zlib_local int32_t read_buf(
     z_streamp strm,
     Bytef *buf,
-    unsigned size)
+    uint32_t size)
 {
-    unsigned len = strm->avail_in;
+    uint32_t len = strm->avail_in;
 
     if (len > size) len = size;
     if (len == 0) return 0;
@@ -1030,7 +1030,7 @@ zlib_local uInt longest_match(
     deflate_state *s,
     IPos cur_match)                           /* current match */
 {
-    unsigned chain_length = s->max_chain_length;/* max hash chain length */
+    uint32_t chain_length = s->max_chain_length;/* max hash chain length */
     register Bytef *scan = s->window + s->strstart; /* current string */
     register Bytef *match;                       /* matched string */
     register int32_t len;                           /* length of current match */
@@ -1086,7 +1086,7 @@ zlib_local uInt longest_match(
          * the output of deflate is not affected by the uninitialized values.
          */
 #if (defined(UNALIGNED_OK) && MAX_MATCH == 258)
-        /* This code assumes sizeof(unsigned short) == 2. Do not use
+        /* This code assumes sizeof(uint16_t) == 2. Do not use
          * UNALIGNED_OK if your compiler uses a different size.
          */
         if (*(ushf*)(match+best_len-1) != scan_end ||
@@ -1112,7 +1112,7 @@ zlib_local uInt longest_match(
         /* The funny "do {}" generates better code on most compilers */
 
         /* Here, scan <= window+strstart+257 */
-        Assert(scan <= s->window+(unsigned)(s->window_size-1), "wild scan");
+        Assert(scan <= s->window+(uint32_t)(s->window_size-1), "wild scan");
         if (*scan == *match) scan++;
 
         len = (MAX_MATCH - 1) - (int32_t)(strend-scan);
@@ -1144,7 +1144,7 @@ zlib_local uInt longest_match(
                  *++scan == *++match && *++scan == *++match &&
                  scan < strend);
 
-        Assert(scan <= s->window+(unsigned)(s->window_size-1), (char *) "wild scan");
+        Assert(scan <= s->window+(uint32_t)(s->window_size-1), (char *) "wild scan");
 
         len = MAX_MATCH - (int32_t)(strend - scan);
         scan = strend - MAX_MATCH;
@@ -1217,7 +1217,7 @@ zlib_local uInt longest_match_fast(
              *++scan == *++match && *++scan == *++match &&
              scan < strend);
 
-    Assert(scan <= s->window+(unsigned)(s->window_size-1), (char *) "wild scan");
+    Assert(scan <= s->window+(uint32_t)(s->window_size-1), (char *) "wild scan");
 
     len = MAX_MATCH - (int32_t)(strend - scan);
 
@@ -1269,20 +1269,20 @@ zlib_local void check_match(
 zlib_local void fill_window(
     deflate_state *s)
 {
-    register unsigned n, m;
+    register uint32_t n, m;
     register Posf *p;
-    unsigned more;    /* Amount of free space at the end of the window. */
+    uint32_t more;    /* Amount of free space at the end of the window. */
     uInt wsize = s->w_size;
 
     do {
-        more = (unsigned)(s->window_size -(ulg)s->lookahead -(ulg)s->strstart);
+        more = (uint32_t)(s->window_size -(ulg)s->lookahead -(ulg)s->strstart);
 
         /* Deal with !@#$% 64K limit: */
         if (sizeof(int32_t) <= 2) {
             if (more == 0 && s->strstart == 0 && s->lookahead == 0) {
                 more = wsize;
 
-            } else if (more == (unsigned)(-1)) {
+            } else if (more == (uint32_t)(-1)) {
                 /* Very unlikely, but possible on 16 bit machine if
                  * strstart == 0 && lookahead == 1 (input done a byte at time)
                  */
@@ -1295,7 +1295,7 @@ zlib_local void fill_window(
          */
         if (s->strstart >= wsize+MAX_DIST(s)) {
 
-            zmemcpy(s->window, s->window+wsize, (unsigned)wsize);
+            zmemcpy(s->window, s->window+wsize, (uint32_t)wsize);
             s->match_start -= wsize;
             s->strstart    -= wsize; /* we now have strstart >= MAX_DIST */
             s->block_start -= (long) wsize;
@@ -1366,7 +1366,7 @@ zlib_local void fill_window(
  */
 #define FLUSH_BLOCK_ONLY(s, eof) { \
    _tr_flush_block(s, (s->block_start >= 0L ? \
-                   (charf *)&s->window[(unsigned)s->block_start] : \
+                   (charf *)&s->window[(uint32_t)s->block_start] : \
                    (charf *)Z_NULL), \
                 (ulg)((long)s->strstart - s->block_start), \
                 (eof)); \
@@ -1445,7 +1445,7 @@ zlib_local block_state deflate_stored(
  * Compress as much as possible from the input stream, return the current
  * block state.
  * This function does not perform lazy evaluation of matches and inserts
- * new strings in the dictionary only for unmatched strings or for short
+ * new strings in the dictionary only for unmatched strings or for int16_t
  * matches. It is used only for the fast compression options.
  */
 zlib_local block_state deflate_fast(

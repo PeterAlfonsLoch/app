@@ -40,7 +40,7 @@ int32_t ogg_page_eos(const ogg_page *og){
 }
 
 ogg_int64_t ogg_page_granulepos(const ogg_page *og){
-  unsigned char *page=og->header;
+  uchar *page=og->header;
   ogg_int64_t granulepos=page[13]&(0xff);
   granulepos= (granulepos<<8)|(page[12]&0xff);
   granulepos= (granulepos<<8)|(page[11]&0xff);
@@ -97,9 +97,9 @@ int32_t ogg_page_packets(const ogg_page *og){
 /* helper to initialize lookup for direct-table CRC (illustrative; we
    use the static init below) */
 
-static ogg_uint32_t _ogg_crc_entry(unsigned long index){
+static ogg_uint32_t _ogg_crc_entry(uint32_t long index){
   int32_t           i;
-  unsigned long r;
+  uint32_t long r;
 
   r = index << 24;
   for (i=0; i<8; i++)
@@ -188,7 +188,7 @@ int32_t ogg_stream_init(ogg_stream_state *os,int32_t serialno){
     os->body_storage=16*1024;
     os->lacing_storage=1024;
 
-    os->body_data= (unsigned char *) _ogg_malloc(os->body_storage*sizeof(*os->body_data));
+    os->body_data= (uchar *) _ogg_malloc(os->body_storage*sizeof(*os->body_data));
     os->lacing_vals= (int32_t *) _ogg_malloc(os->lacing_storage*sizeof(*os->lacing_vals));
     os->granule_vals= (ogg_int64_t *) _ogg_malloc(os->lacing_storage*sizeof(*os->granule_vals));
 
@@ -243,7 +243,7 @@ static int32_t _os_body_expand(ogg_stream_state *os,int32_t needed){
       return -1;
     }
     os->body_storage+=(needed+1024);
-    os->body_data= (unsigned char *) ret;
+    os->body_data= (uchar *) ret;
   }
   return 0;
 }
@@ -290,10 +290,10 @@ void ogg_page_checksum_set(ogg_page *og){
     for(i=0;i<og->body_len;i++)
       crc_reg=(crc_reg<<8)^crc_lookup[((crc_reg >> 24)&0xff)^og->body[i]];
 
-    og->header[22]=(unsigned char)(crc_reg&0xff);
-    og->header[23]=(unsigned char)((crc_reg>>8)&0xff);
-    og->header[24]=(unsigned char)((crc_reg>>16)&0xff);
-    og->header[25]=(unsigned char)((crc_reg>>24)&0xff);
+    og->header[22]=(uchar)(crc_reg&0xff);
+    og->header[23]=(uchar)((crc_reg>>8)&0xff);
+    og->header[24]=(uchar)((crc_reg>>16)&0xff);
+    og->header[25]=(uchar)((crc_reg>>24)&0xff);
   }
 }
 
@@ -437,7 +437,7 @@ static int32_t ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int32_t for
 
   /* 64 bits of PCM position */
   for(i=6;i<14;i++){
-    os->header[i]=(unsigned char)(granule_pos&0xff);
+    os->header[i]=(uchar)(granule_pos&0xff);
     granule_pos>>=8;
   }
 
@@ -445,7 +445,7 @@ static int32_t ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int32_t for
   {
     long serialno=os->serialno;
     for(i=14;i<18;i++){
-      os->header[i]=(unsigned char)(serialno&0xff);
+      os->header[i]=(uchar)(serialno&0xff);
       serialno>>=8;
     }
   }
@@ -460,7 +460,7 @@ static int32_t ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int32_t for
   {
     long pageno=os->pageno++;
     for(i=18;i<22;i++){
-      os->header[i]=(unsigned char)(pageno&0xff);
+      os->header[i]=(uchar)(pageno&0xff);
       pageno>>=8;
     }
   }
@@ -472,9 +472,9 @@ static int32_t ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int32_t for
   os->header[25]=0;
 
   /* segment table */
-  os->header[26]=(unsigned char)(vals&0xff);
+  os->header[26]=(uchar)(vals&0xff);
   for(i=0;i<vals;i++)
-    bytes+=os->header[i+27]=(unsigned char)(os->lacing_vals[i]&0xff);
+    bytes+=os->header[i+27]=(uchar)(os->lacing_vals[i]&0xff);
 
   /* set pointers in the ogg_page struct */
   og->header=os->header;
@@ -628,7 +628,7 @@ char *ogg_sync_buffer(ogg_sync_state *oy, long size){
       ogg_sync_clear(oy);
       return NULL;
     }
-    oy->data= (unsigned char *) ret;
+    oy->data= (uchar *) ret;
     oy->storage=newsize;
   }
 
@@ -654,8 +654,8 @@ int32_t ogg_sync_wrote(ogg_sync_state *oy, long bytes){
 */
 
 long ogg_sync_pageseek(ogg_sync_state *oy,ogg_page *og){
-  unsigned char *page=oy->data+oy->returned;
-  unsigned char *next;
+  uchar *page=oy->data+oy->returned;
+  uchar *next;
   long bytes=oy->fill-oy->returned;
 
   if(ogg_sync_check(oy))return 0;
@@ -709,7 +709,7 @@ long ogg_sync_pageseek(ogg_sync_state *oy,ogg_page *og){
 
   /* yes, have a whole page all ready to go */
   {
-    unsigned char *page=oy->data+oy->returned;
+    uchar *page=oy->data+oy->returned;
     long bytes;
 
     if(og){
@@ -732,7 +732,7 @@ long ogg_sync_pageseek(ogg_sync_state *oy,ogg_page *og){
   oy->bodybytes=0;
 
   /* search for possible capture */
-  next= (unsigned char *) memchr(page+1,'O',bytes-1);
+  next= (uchar *) memchr(page+1,'O',bytes-1);
   if(!next)
     next=oy->data+oy->fill;
 
@@ -785,8 +785,8 @@ int32_t ogg_sync_pageout(ogg_sync_state *oy, ogg_page *og){
    into packet segments here as well. */
 
 int32_t ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
-  unsigned char *header=og->header;
-  unsigned char *body=og->body;
+  uchar *header=og->header;
+  uchar *body=og->body;
   long           bodysize=og->body_len;
   int32_t            segptr=0;
 
@@ -1065,7 +1065,7 @@ void checkpacket(ogg_packet *op,long len, int32_t no, long pos){
     }
 }
 
-void check_page(unsigned char *data,const int32_t *header,ogg_page *og){
+void check_page(uchar *data,const int32_t *header,ogg_page *og){
   long j;
   /* Test data */
   for(j=0;j<og->body_len;j++)
@@ -1118,7 +1118,7 @@ void print_header(ogg_page *og){
 }
 
 void copy_page(ogg_page *og){
-  unsigned char *temp=_ogg_malloc(og->header_len);
+  uchar *temp=_ogg_malloc(og->header_len);
   memcpy(temp,og->header,og->header_len);
   og->header=temp;
 
@@ -1472,7 +1472,7 @@ const int32_t head3_7[] = {0x4f,0x67,0x67,0x53,0,0x05,
 
 void test_pack(const int32_t *pl, const int32_t **headers, int32_t byteskip,
                int32_t pageskip, int32_t packetskip){
-  unsigned char *data=_ogg_malloc(1024*1024); /* for scripted test cases only */
+  uchar *data=_ogg_malloc(1024*1024); /* for scripted test cases only */
   long inptr=0;
   long outptr=0;
   long deptr=0;
@@ -1786,7 +1786,7 @@ int32_t main(){
 
   {
     /* build a bunch of pages for testing */
-    unsigned char *data=_ogg_malloc(1024*1024);
+    uchar *data=_ogg_malloc(1024*1024);
     int32_t pl[]={0, 1,1,98,4079, 1,1,2954,2057, 76,34,912,0,234,1000,1000, 1000,300,-1};
     int32_t inptr=0,i,j;
     ogg_page og[5];

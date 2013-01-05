@@ -1289,7 +1289,7 @@ int32_t ov_raw_seek(OggVorbis_File *vf,ogg_int64_t pos){
             }else{
 
               /* We can't get a guaranteed correct pcm position out of the
-                 last page in a stream because it might have a 'short'
+                 last page in a stream because it might have a 'int16_t'
                  granpos, which can only be detected in the presence of a
                  preceding page.  However, if the last page is also the first
                  page, the granpos rules of a first page take precedence.  Not
@@ -1815,7 +1815,7 @@ vorbis_comment *ov_comment(OggVorbis_File *vf,int32_t link){
 
 static int32_t host_is_big_endian() {
   ogg_int32_t pattern = 0xfeedface; /* deadbeef */
-  unsigned char *bytewise = (unsigned char *)&pattern;
+  uchar *bytewise = (uchar *)&pattern;
   if (bytewise[0] == 0xfe) return 1;
   return 0;
 }
@@ -1845,7 +1845,7 @@ static int32_t host_is_big_endian() {
                  bigendianp) should the data be packed LSB first (0) or
                              MSB first (1)
                  word) word size for output.  currently 1 (byte) or
-                       2 (16 bit short)
+                       2 (16 bit int16_t)
 
    return values: <0) error/hole in data (OV_HOLE), partial open (OV_EINVAL)
                    0) EOF
@@ -1924,7 +1924,7 @@ long ov_read_filter(OggVorbis_File *vf,char *buffer,int32_t length,
             vorbis_fpu_setround(&fpu);
             for(i=0;i<channels;i++) { /* It's faster in this order */
               float *src=pcm[i];
-              short *dest=((short *)buffer)+i;
+              int16_t *dest=((int16_t *)buffer)+i;
               for(j=0;j<samples;j++) {
                 val=vorbis_ftoi(src[j]*32768.f);
                 if(val>32767)val=32767;
@@ -1940,7 +1940,7 @@ long ov_read_filter(OggVorbis_File *vf,char *buffer,int32_t length,
             vorbis_fpu_setround(&fpu);
             for(i=0;i<channels;i++) {
               float *src=pcm[i];
-              short *dest=((short *)buffer)+i;
+              int16_t *dest=((int16_t *)buffer)+i;
               for(j=0;j<samples;j++) {
                 val=vorbis_ftoi(src[j]*32768.f);
                 if(val>32767)val=32767;

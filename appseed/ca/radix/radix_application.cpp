@@ -2173,7 +2173,7 @@ namespace radix
       }
 
       // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-      // short file name so we need to use the short file name.
+      // int16_t file name so we need to use the int16_t file name.
       string strShortName;
       __get_module_short_file_name(System.m_hInstance, strShortName);
 

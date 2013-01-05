@@ -104,8 +104,8 @@ namespace primitive
       inline void append(const void * pdata, memory_size iCount);
       inline void assign(const void * pdata, memory_size iCount);
       inline void assign(const void * pdata, memory_position iStart, memory_size iCount);
-      inline void append(memory_size iCount, unsigned char uch);
-      inline void assign(memory_size iCount, unsigned char uch);
+      inline void append(memory_size iCount, uchar uch);
+      inline void assign(memory_size iCount, uchar uch);
 
       void move_and_grow(memory_offset offset);
       void move(memory_offset offset, bool bGrow = false);
@@ -147,10 +147,10 @@ namespace primitive
 
 #ifdef METROWIN
 
-      inline Platform::Array < unsigned char, 1U > ^ get_os_bytes(memory_position pos = 0, memory_size size = -1) const;
+      inline Platform::Array < uchar, 1U > ^ get_os_bytes(memory_position pos = 0, memory_size size = -1) const;
       inline ::Windows::Storage::Streams::IBuffer ^ get_os_crypt_buffer(memory_position pos = 0, memory_size size = -1) const;
       inline ::Windows::Storage::Streams::IBuffer ^ get_os_buffer(memory_position pos = 0, memory_size size = -1) const;
-      inline void set_os_bytes(Platform::Array < unsigned char, 1U > ^ a, memory_position pos = 0, memory_size size = -1);
+      inline void set_os_bytes(Platform::Array < uchar, 1U > ^ a, memory_position pos = 0, memory_size size = -1);
       inline void set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
       inline void set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos = 0, memory_size size = -1);
 
@@ -670,7 +670,7 @@ namespace primitive
 
    }
 
-   inline void memory_base::append(memory_size iCount, unsigned char uch)
+   inline void memory_base::append(memory_size iCount, uchar uch)
    {
 
       allocate_add_up(iCount);
@@ -688,7 +688,7 @@ namespace primitive
 
    }
 
-   inline void memory_base::assign(memory_size iCount, unsigned char uch)
+   inline void memory_base::assign(memory_size iCount, uchar uch)
    {
 
       allocate(iCount);
@@ -704,14 +704,14 @@ namespace primitive
 
    }
 
-   inline unsigned char memory_base::operator [] (memory_size i) const
+   inline uchar memory_base::operator [] (memory_size i) const
    {
 
       return this->get_data()[i];
 
    }
 
-   inline unsigned char & memory_base::operator [] (memory_size i)
+   inline uchar & memory_base::operator [] (memory_size i)
    {
 
       return this->get_data()[i];
@@ -755,13 +755,13 @@ namespace primitive
 
 #ifdef METROWIN
 
-   inline Platform::Array < unsigned char, 1U > ^ memory_base::get_os_bytes(memory_position pos, memory_size size) const
+   inline Platform::Array < uchar, 1U > ^ memory_base::get_os_bytes(memory_position pos, memory_size size) const
    {
       if(pos > get_size())
          throw invalid_argument_exception(get_app());
       if(size < 0 || pos + size > get_size())
          size = get_size() - pos;
-      return ref new Platform::Array < unsigned char, 1U > ((unsigned char *) &get_data()[pos], size);
+      return ref new Platform::Array < uchar, 1U > ((uchar *) &get_data()[pos], size);
    }
 
    inline ::Windows::Storage::Streams::IBuffer ^ memory_base::get_os_crypt_buffer(memory_position pos, memory_size size) const
@@ -776,7 +776,7 @@ namespace primitive
       return writer->DetachBuffer();
    }
 
-   inline void memory_base::set_os_bytes(Platform::Array < unsigned char, 1U > ^ a, memory_position pos, memory_size size)
+   inline void memory_base::set_os_bytes(Platform::Array < uchar, 1U > ^ a, memory_position pos, memory_size size)
    {
       if(pos > a->Length)
          throw invalid_argument_exception(get_app());
@@ -790,14 +790,14 @@ namespace primitive
 
    inline void memory_base::set_os_crypt_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
    {
-      Platform::Array < unsigned char, 1U > ^ a = nullptr;
+      Platform::Array < uchar, 1U > ^ a = nullptr;
       ::Windows::Security::Cryptography::CryptographicBuffer::CopyToByteArray(ibuf, &a);
       return set_os_bytes(a, pos, size);
    }
 
    inline void memory_base::set_os_buffer(::Windows::Storage::Streams::IBuffer ^ ibuf, memory_position pos, memory_size size)
    {
-      Platform::Array < unsigned char, 1U > ^ a = nullptr;
+      Platform::Array < uchar, 1U > ^ a = nullptr;
       (::Windows::Storage::Streams::DataReader::FromBuffer(ibuf))->ReadBytes(a);
       return set_os_bytes(a, pos, size);
    }

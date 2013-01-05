@@ -90,8 +90,8 @@ namespace n7z
          const bool_array &digestsDefined,
          const base_array<uint32_t> &hashDigests);
 
-      void SkipAlign(unsigned pos, unsigned alignSize);
-      void WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, unsigned itemSize);
+      void SkipAlign(uint32_t pos, uint32_t alignSize);
+      void WriteAlignedBoolHeader(const bool_array &v, int32_t numDefined, byte type, uint32_t itemSize);
       void WriteUInt64DefVector(const CUInt64DefVector &v, byte type);
 
       HRESULT EncodeStream(

@@ -48,10 +48,10 @@
 #ifndef MATH_H
 #define MATH_H
 
-unsigned char
+uchar
 v32_weight(v32_t a);
 
-unsigned char
+uchar
 v32_distance(v32_t x, v32_t y);
 
 uint32_t
@@ -254,7 +254,7 @@ typedef struct {
 } bitvector_t;
 
 int32_t
-bitvector_alloc(bitvector_t *v, unsigned long length);
+bitvector_alloc(bitvector_t *v, uint32_t long length);
 
 void
 bitvector_set_bit(bitvector_t *v, int32_t bit_index);

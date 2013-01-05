@@ -588,7 +588,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    vsstring strMd5;
    vsstring strMd5New;
    int32_t iBufSize = 1024 * 1024;
-   unsigned char * buf = (unsigned char *)  _ca_alloc(iBufSize);
+   uchar * buf = (uchar *)  _ca_alloc(iBufSize);
    int32_t iLen;
    ::md5::md5 ctx;
 #ifdef WINDOWS
@@ -785,7 +785,7 @@ write_ex1_string(spfile, NULL, strVersion);
 ex1::filesp file2(get_app());
 int32_t iBufSize = 1024 * 1024;
 int32_t uiRead;
-unsigned char * buf = (unsigned char *)  malloc(iBufSize);
+uchar * buf = (uchar *)  malloc(iBufSize);
 string strMd5 = "01234567012345670123456701234567";
 int32_t iPos;
 for(int32_t i = 0; i < stra_dup.get_size(); i++)
@@ -837,7 +837,7 @@ vsstring strRelative;
 vsstring strMd5;
 vsstring strMd5New;
 int32_t iBufSize = 1024 * 1024;
-unsigned char * buf = (unsigned char *)  malloc(iBufSize);
+uchar * buf = (uchar *)  malloc(iBufSize);
 int32_t iLen;
 ::md5::md5 ctx;
 uint_ptr uiRead;

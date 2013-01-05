@@ -55,13 +55,13 @@ typedef struct CPpmd7_Node_
 
 void Ppmd7_Construct(CPpmd7 *p)
 {
-  unsigned i, k, m;
+  uint32_t i, k, m;
 
   p->Base = 0;
 
   for (i = 0, k = 0; i < PPMD_NUM_INDEXES; i++)
   {
-    unsigned step = (i >= 12 ? 4 : (i >> 2) + 1);
+    uint32_t step = (i >= 12 ? 4 : (i >> 2) + 1);
     do { p->Units2Indx[k++] = (byte)i; } while(--step);
     p->Indx2Units[i] = (byte)k;
   }
@@ -113,26 +113,26 @@ bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ex1::ISzAlloc *alloc)
   return true;
 }
 
-static void InsertNode(CPpmd7 *p, void *node, unsigned indx)
+static void InsertNode(CPpmd7 *p, void *node, uint32_t indx)
 {
   *((CPpmd_Void_Ref *)node) = p->FreeList[indx];
   p->FreeList[indx] = REF(node);
 }
 
-static void *RemoveNode(CPpmd7 *p, unsigned indx)
+static void *RemoveNode(CPpmd7 *p, uint32_t indx)
 {
   CPpmd_Void_Ref *node = (CPpmd_Void_Ref *)Ppmd7_GetPtr(p, p->FreeList[indx]);
   p->FreeList[indx] = *node;
   return node;
 }
 
-static void SplitBlock(CPpmd7 *p, void *ptr, unsigned oldIndx, unsigned newIndx)
+static void SplitBlock(CPpmd7 *p, void *ptr, uint32_t oldIndx, uint32_t newIndx)
 {
-  unsigned i, nu = I2U(oldIndx) - I2U(newIndx);
+  uint32_t i, nu = I2U(oldIndx) - I2U(newIndx);
   ptr = (byte *)ptr + U2B(I2U(newIndx));
   if (I2U(i = U2I(nu)) != nu)
   {
-    unsigned k = I2U(--i);
+    uint32_t k = I2U(--i);
     InsertNode(p, ((byte *)ptr) + U2B(k), nu - k - 1);
   }
   InsertNode(p, ptr, i);
@@ -148,7 +148,7 @@ static void GlueFreeBlocks(CPpmd7 *p)
   #endif
   
   CPpmd7_Node_Ref n = head;
-  unsigned i;
+  uint32_t i;
 
   p->GlueCount = 255;
 
@@ -196,13 +196,13 @@ static void GlueFreeBlocks(CPpmd7 *p)
   for (n = NODE(head)->Next; n != head;)
   {
     CPpmd7_Node *node = NODE(n);
-    unsigned nu;
+    uint32_t nu;
     CPpmd7_Node_Ref next = node->Next;
     for (nu = node->NU; nu > 128; nu -= 128, node += 128)
       InsertNode(p, node, PPMD_NUM_INDEXES - 1);
     if (I2U(i = U2I(nu)) != nu)
     {
-      unsigned k = I2U(--i);
+      uint32_t k = I2U(--i);
       InsertNode(p, node + k, nu - k - 1);
     }
     InsertNode(p, node, i);
@@ -210,9 +210,9 @@ static void GlueFreeBlocks(CPpmd7 *p)
   }
 }
 
-static void *AllocUnitsRare(CPpmd7 *p, unsigned indx)
+static void *AllocUnitsRare(CPpmd7 *p, uint32_t indx)
 {
-  unsigned i;
+  uint32_t i;
   void *retVal;
   if (p->GlueCount == 0)
   {
@@ -236,7 +236,7 @@ static void *AllocUnitsRare(CPpmd7 *p, unsigned indx)
   return retVal;
 }
 
-static void *AllocUnits(CPpmd7 *p, unsigned indx)
+static void *AllocUnits(CPpmd7 *p, uint32_t indx)
 {
   uint32_t numBytes;
   if (p->FreeList[indx] != 0)
@@ -255,10 +255,10 @@ static void *AllocUnits(CPpmd7 *p, unsigned indx)
   { uint32_t *d = (uint32_t *)dest; const uint32_t *s = (const uint32_t *)src; uint32_t n = num; \
     do { d[0] = s[0]; d[1] = s[1]; d[2] = s[2]; s += 3; d += 3; } while(--n); }
 
-static void *ShrinkUnits(CPpmd7 *p, void *oldPtr, unsigned oldNU, unsigned newNU)
+static void *ShrinkUnits(CPpmd7 *p, void *oldPtr, uint32_t oldNU, uint32_t newNU)
 {
-  unsigned i0 = U2I(oldNU);
-  unsigned i1 = U2I(newNU);
+  uint32_t i0 = U2I(oldNU);
+  uint32_t i1 = U2I(newNU);
   if (i0 == i1)
     return oldPtr;
   if (p->FreeList[i1] != 0)
@@ -282,7 +282,7 @@ static void SetSuccessor(CPpmd_State *p, CPpmd_Void_Ref v)
 
 static void RestartModel(CPpmd7 *p)
 {
-  unsigned i, k, m;
+  uint32_t i, k, m;
 
   memset(p->FreeList, 0, sizeof(p->FreeList));
   p->Text = p->Base + p->AlignOffset;
@@ -327,7 +327,7 @@ static void RestartModel(CPpmd7 *p)
     }
 }
 
-void Ppmd7_Init(CPpmd7 *p, unsigned maxOrder)
+void Ppmd7_Init(CPpmd7 *p, uint32_t maxOrder)
 {
   p->MaxOrder = maxOrder;
   RestartModel(p);
@@ -342,7 +342,7 @@ static CTX_PTR CreateSuccessors(CPpmd7 *p, int32_t skip)
   CTX_PTR c = p->MinContext;
   CPpmd_Byte_Ref upBranch = (CPpmd_Byte_Ref)SUCCESSOR(p->FoundState);
   CPpmd_State *ps[PPMD7_MAX_ORDER];
-  unsigned numPs = 0;
+  uint32_t numPs = 0;
   
   if (!skip)
     ps[numPs++] = p->FoundState;
@@ -420,7 +420,7 @@ static void UpdateModel(CPpmd7 *p)
 {
   CPpmd_Void_Ref successor, fSuccessor = SUCCESSOR(p->FoundState);
   CTX_PTR c;
-  unsigned s0, ns;
+  uint32_t s0, ns;
   
   if (p->FoundState->Freq < MAX_FREQ / 4 && p->MinContext->Suffix != 0)
   {
@@ -500,15 +500,15 @@ static void UpdateModel(CPpmd7 *p)
   
   for (c = p->MaxContext; c != p->MinContext; c = SUFFIX(c))
   {
-    unsigned ns1;
+    uint32_t ns1;
     uint32_t cf, sf;
     if ((ns1 = c->NumStats) != 1)
     {
       if ((ns1 & 1) == 0)
       {
         /* Expand for one UNIT */
-        unsigned oldNU = ns1 >> 1;
-        unsigned i = U2I(oldNU);
+        uint32_t oldNU = ns1 >> 1;
+        uint32_t i = U2I(oldNU);
         if (i != U2I(oldNU + 1))
         {
           void *ptr = AllocUnits(p, i + 1);
@@ -567,7 +567,7 @@ static void UpdateModel(CPpmd7 *p)
   
 static void Rescale(CPpmd7 *p)
 {
-  unsigned i, adder, sumFreq, escFreq;
+  uint32_t i, adder, sumFreq, escFreq;
   CPpmd_State *stats = STATS(p->MinContext);
   CPpmd_State *s = p->FoundState;
   {
@@ -602,8 +602,8 @@ static void Rescale(CPpmd7 *p)
   
   if (s->Freq == 0)
   {
-    unsigned numStats = p->MinContext->NumStats;
-    unsigned n0, n1;
+    uint32_t numStats = p->MinContext->NumStats;
+    uint32_t n0, n1;
     do { i++; } while ((--s)->Freq == 0);
     escFreq += i;
     p->MinContext->NumStats = (uint16_t)(p->MinContext->NumStats - i);
@@ -629,19 +629,19 @@ static void Rescale(CPpmd7 *p)
   p->FoundState = STATS(p->MinContext);
 }
 
-CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, unsigned numMasked, uint32_t *escFreq)
+CPpmd_See *Ppmd7_MakeEscFreq(CPpmd7 *p, uint32_t numMasked, uint32_t *escFreq)
 {
   CPpmd_See *see;
-  unsigned nonMasked = p->MinContext->NumStats - numMasked;
+  uint32_t nonMasked = p->MinContext->NumStats - numMasked;
   if (p->MinContext->NumStats != 256)
   {
     see = p->See[p->NS2Indx[nonMasked - 1]] +
-        (nonMasked < (unsigned)SUFFIX(p->MinContext)->NumStats - p->MinContext->NumStats) +
+        (nonMasked < (uint32_t)SUFFIX(p->MinContext)->NumStats - p->MinContext->NumStats) +
         2 * (p->MinContext->SummFreq < 11 * p->MinContext->NumStats) +
         4 * (numMasked > nonMasked) +
         p->HiBitsFlag;
     {
-      unsigned r = (see->Summ >> see->Shift);
+      uint32_t r = (see->Summ >> see->Shift);
       see->Summ = (uint16_t)(see->Summ - r);
       *escFreq = r + (r == 0);
     }

@@ -179,17 +179,17 @@ typedef struct oc_extension_info oc_extension_info;
   We could conceivably do the same for all 256 possible shapes.*/
 struct oc_extension_info{
   /*The mask of the active pixels in the shape.*/
-  short                     mask;
+  int16_t                     mask;
   /*The number of active pixels in the shape.*/
-  short                     na;
+  int16_t                     na;
   /*The extension matrix.
     This is (8-na)xna*/
   const ogg_int16_t *const *ext;
   /*The pixel indices: na active pixels followed by 8-na padding pixels.*/
-  unsigned char             pi[8];
+  uchar             pi[8];
   /*The coefficient indices: na unconstrained coefficients followed by 8-na
      coefficients to be forced to zero.*/
-  unsigned char             ci[8];
+  uchar             ci[8];
 };
 
 
@@ -308,7 +308,7 @@ static const oc_extension_info OC_EXTENSION_INFO[OC_NSHAPES]={
   _e: The extension information for the shape.*/
 static void oc_fdct8_ext(ogg_int16_t _y[8],ogg_int16_t *_x,
  const oc_extension_info *_e){
-  const unsigned char *pi;
+  const uchar *pi;
   int32_t                  na;
   na=_e->na;
   pi=_e->pi;

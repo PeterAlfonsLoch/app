@@ -152,9 +152,9 @@ typedef struct {
     int32_t   uv_width;     /**< Width of the Cb and Cr chroma planes */
     int32_t   uv_height;    /**< Height of the chroma planes */
     int32_t   uv_stride;    /**< Offset between successive chroma rows */
-    unsigned char *y;   /**< Pointer to start of luminance data */
-    unsigned char *u;   /**< Pointer to start of Cb data */
-    unsigned char *v;   /**< Pointer to start of Cr data */
+    uchar *y;   /**< Pointer to start of luminance data */
+    uchar *u;   /**< Pointer to start of Cb data */
+    uchar *v;   /**< Pointer to start of Cr data */
 
 } yuv_buffer;
 
@@ -220,9 +220,9 @@ typedef struct {
   int32_t           quick_p;  /**< Quick encode/decode */
 
   /* decode only */
-  unsigned char version_major;
-  unsigned char version_minor;
-  unsigned char version_subminor;
+  uchar version_major;
+  uchar version_minor;
+  uchar version_subminor;
 
   void *codec_setup;
 

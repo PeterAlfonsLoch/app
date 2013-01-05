@@ -14,7 +14,7 @@ namespace ex1
       class encoder
       {
          TOutByte m_Stream;
-         unsigned m_BitPos;
+         uint32_t m_BitPos;
          byte m_CurByte;
       public:
          bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
@@ -40,7 +40,7 @@ namespace ex1
             m_BitPos = 8;
             m_CurByte = 0;
          }
-         void WriteBits(uint32_t value, unsigned numBits)
+         void WriteBits(uint32_t value, uint32_t numBits)
          {
             while (numBits > 0)
             {

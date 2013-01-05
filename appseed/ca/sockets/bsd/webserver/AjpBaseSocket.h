@@ -48,18 +48,18 @@ namespace sockets
 
       void OnRawData(char *buf, size_t sz);
 
-      virtual void OnHeader( short id, short len ) = 0;
+      virtual void OnHeader( int16_t id, int16_t len ) = 0;
       virtual void OnPacket( const char *buf, size_t sz ) = 0;
 
    protected:
-      unsigned char get_byte(const char *buf, int32_t& ptr);
+      uchar get_byte(const char *buf, int32_t& ptr);
       bool get_boolean(const char *buf, int32_t& ptr);
-      short get_integer(const char *buf, int32_t& ptr);
+      int16_t get_integer(const char *buf, int32_t& ptr);
       string get_string(const char *buf, int32_t& ptr);
 
-      void put_byte(char *buf, int32_t& ptr, unsigned char zz);
+      void put_byte(char *buf, int32_t& ptr, uchar zz);
       void put_boolean(char *buf, int32_t& ptr, bool zz);
-      void put_integer(char *buf, int32_t& ptr, short zz);
+      void put_integer(char *buf, int32_t& ptr, int16_t zz);
       void put_string(char *buf, int32_t& ptr, const char * psz);
 
    private:

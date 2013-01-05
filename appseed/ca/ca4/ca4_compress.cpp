@@ -230,7 +230,7 @@ namespace ca4
    bool compress::_compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSize)
    {
       memory.allocate(compressBound(ulSize) * 2);
-      uLong ulDestSize = (unsigned long) memory.get_size();
+      uLong ulDestSize = (uint32_t long) memory.get_size();
       int32_t i = ::zlib_compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, ulSize);
       memory.allocate(ulDestSize);
       return i == Z_OK;

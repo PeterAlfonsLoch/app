@@ -272,7 +272,7 @@
 #endif
 
 #if !defined(__MACTYPES__)
-typedef unsigned char  Byte;  /* 8 bits */
+typedef uchar  Byte;  /* 8 bits */
 #endif
 typedef uint32_t   uInt;  /* 16 bits or more */
 #ifdef WINDOWS
@@ -282,7 +282,7 @@ typedef uint64_t  uLong; /* 32 bits or more */
 typedef uint32_t  uLong; /* 32 bits or more */
 #endif
 #else
-typedef unsigned long  uLong; /* 32 bits or more */
+typedef uint32_t long  uLong; /* 32 bits or more */
 #endif
 
 #ifdef SMALL_MEDIUM

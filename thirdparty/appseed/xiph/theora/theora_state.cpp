@@ -56,7 +56,7 @@ static void oc_sb_create_plane_mapping(oc_sb_map _sb_maps[],
     {{1,1},{1,2},{2,1},{2,2}}
   };
   ptrdiff_t  yfrag;
-  unsigned   sbi;
+  uint32_t   sbi;
   int32_t        y;
   sbi=0;
   yfrag=_frag0;
@@ -211,7 +211,7 @@ static const oc_mb_fill_cmapping_func OC_MB_FILL_CMAPPING_TABLE[4]={
 static void oc_mb_create_mapping(oc_mb_map _mb_maps[],
  signed char _mb_modes[],const oc_fragment_plane _fplanes[3],int32_t _pixel_fmt){
   oc_mb_fill_cmapping_func  mb_fill_cmapping;
-  unsigned                  sbi;
+  uint32_t                  sbi;
   int32_t                       y;
   mb_fill_cmapping=OC_MB_FILL_CMAPPING_TABLE[_pixel_fmt];
   /*Loop through the luma plane super blocks.*/
@@ -223,7 +223,7 @@ static void oc_mb_create_mapping(oc_mb_map _mb_maps[],
       for(ymb=0;ymb<2;ymb++){
         int32_t xmb;
         for(xmb=0;xmb<2;xmb++){
-          unsigned mbi;
+          uint32_t mbi;
           int32_t      mbx;
           int32_t      mby;
           mbi=sbi<<2|OC_MB_MAP[ymb][xmb];
@@ -344,13 +344,13 @@ static int32_t oc_state_frarray_init(oc_theora_state *_state){
   ptrdiff_t yfrags;
   ptrdiff_t cfrags;
   ptrdiff_t nfrags;
-  unsigned  yhsbs;
-  unsigned  yvsbs;
-  unsigned  chsbs;
-  unsigned  cvsbs;
-  unsigned  ysbs;
-  unsigned  csbs;
-  unsigned  nsbs;
+  uint32_t  yhsbs;
+  uint32_t  yvsbs;
+  uint32_t  chsbs;
+  uint32_t  cvsbs;
+  uint32_t  ysbs;
+  uint32_t  csbs;
+  uint32_t  nsbs;
   size_t    nmbs;
   int32_t       hdec;
   int32_t       vdec;
@@ -459,7 +459,7 @@ static void oc_state_frarray_clear(oc_theora_state *_state){
   _nrefs: The number of reference buffers to init; must be 3 or 4.*/
 static int32_t oc_state_ref_bufs_init(oc_theora_state *_state,int32_t _nrefs){
   th_info       *info;
-  unsigned char *ref_frame_data;
+  uchar *ref_frame_data;
   size_t         ref_frame_data_sz;
   size_t         ref_frame_sz;
   size_t         yplane_sz;
@@ -497,7 +497,7 @@ static int32_t oc_state_ref_bufs_init(oc_theora_state *_state,int32_t _nrefs){
    ref_frame_sz<yplane_sz||ref_frame_data_sz/_nrefs!=ref_frame_sz){
     return TH_EIMPL;
   }
-  ref_frame_data=(unsigned char *) _ogg_malloc(ref_frame_data_sz);
+  ref_frame_data=(uchar *) _ogg_malloc(ref_frame_data_sz);
   frag_buf_offs=_state->frag_buf_offs= (ptrdiff_t *) 
    _ogg_malloc(_state->nfrags*sizeof(*frag_buf_offs));
   if(ref_frame_data==NULL||frag_buf_offs==NULL){
@@ -542,7 +542,7 @@ static int32_t oc_state_ref_bufs_init(oc_theora_state *_state,int32_t _nrefs){
   for(pli=0;pli<3;pli++){
     th_img_plane      *iplane;
     oc_fragment_plane *fplane;
-    unsigned char     *vpix;
+    uchar     *vpix;
     ptrdiff_t          stride;
     ptrdiff_t          vfragi_end;
     int32_t                nhfrags;
@@ -554,7 +554,7 @@ static int32_t oc_state_ref_bufs_init(oc_theora_state *_state,int32_t _nrefs){
     stride=iplane->stride;
     while(fragi<vfragi_end){
       ptrdiff_t      hfragi_end;
-      unsigned char *hpix;
+      uchar *hpix;
       hpix=vpix;
       for(hfragi_end=fragi+nhfrags;fragi<hfragi_end;fragi++){
         frag_buf_offs[fragi]=hpix-ref_frame_data;
@@ -606,8 +606,8 @@ int32_t oc_state_init(oc_theora_state *_state,const th_info *_info,int32_t _nref
   /*First validate the parameters.*/
   if(_info==NULL)return TH_EFAULT;
   /*The width and height of the encoded frame must be multiples of 16.
-    They must also, when divided by 16, fit into a 16-bit unsigned integer.
-    The displayable frame offset coordinates must fit into an 8-bit unsigned
+    They must also, when divided by 16, fit into a 16-bit uint32_t integer.
+    The displayable frame offset coordinates must fit into an 8-bit uint32_t
      integer.
     Note that the offset Y in the API is specified on the opposite side from
      how it is specified in the bitstream, because the Y axis is flipped in
@@ -621,8 +621,8 @@ int32_t oc_state_init(oc_theora_state *_state,const th_info *_info,int32_t _nref
    _info->pic_y+_info->pic_height>_info->frame_height||
    _info->pic_x>255||_info->frame_height-_info->pic_height-_info->pic_y>255||
    /*Note: the following <0 comparisons may generate spurious warnings on
-      platforms where enums are unsigned.
-     We could cast them to unsigned and just use the following >= comparison,
+      platforms where enums are uint32_t.
+     We could cast them to uint32_t and just use the following >= comparison,
       but there are a number of compilers which will mis-optimize this.
      It's better to live with the spurious warnings.*/
    _info->colorspace<0||_info->colorspace>=TH_CS_NSPACES||
@@ -674,9 +674,9 @@ void oc_state_clear(oc_theora_state *_state){
 void oc_state_borders_fill_rows(oc_theora_state *_state,int32_t _refi,int32_t _pli,
  int32_t _y0,int32_t _yend){
   th_img_plane  *iplane;
-  unsigned char *apix;
-  unsigned char *bpix;
-  unsigned char *epix;
+  uchar *apix;
+  uchar *bpix;
+  uchar *epix;
   int32_t            stride;
   int32_t            hpadding;
   hpadding=OC_UMV_PADDING>>safe_int_bool(_pli!=0&&!(_state->info.pixel_fmt&1));
@@ -702,9 +702,9 @@ void oc_state_borders_fill_rows(oc_theora_state *_state,int32_t _refi,int32_t _p
   _pli:       The color plane.*/
 void oc_state_borders_fill_caps(oc_theora_state *_state,int32_t _refi,int32_t _pli){
   th_img_plane  *iplane;
-  unsigned char *apix;
-  unsigned char *bpix;
-  unsigned char *epix;
+  uchar *apix;
+  uchar *bpix;
+  uchar *epix;
   int32_t            stride;
   int32_t            hpadding;
   int32_t            vpadding;
@@ -861,7 +861,7 @@ void oc_state_frag_recon(const oc_theora_state *_state,ptrdiff_t _fragi,
 
 void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
  int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
-  unsigned char *dst;
+  uchar *dst;
   ptrdiff_t      frag_buf_off;
   int32_t            ystride;
   int32_t            mb_mode;
@@ -888,7 +888,7 @@ void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
   dst=_state->ref_frame_data[_state->ref_frame_idx[OC_FRAME_SELF]]+frag_buf_off;
   if(mb_mode==OC_MODE_INTRA)oc_frag_recon_intra(_state,dst,ystride,_dct_coeffs);
   else{
-    const unsigned char *ref;
+    const uchar *ref;
     int32_t                  mvoffsets[2];
     ref=
      _state->ref_frame_data[_state->ref_frame_idx[OC_FRAME_FOR_MODE(mb_mode)]]
@@ -920,8 +920,8 @@ void oc_state_frag_copy_list_c(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
  int32_t _dst_frame,int32_t _src_frame,int32_t _pli){
   const ptrdiff_t     *frag_buf_offs;
-  const unsigned char *src_frame_data;
-  unsigned char       *dst_frame_data;
+  const uchar *src_frame_data;
+  uchar       *dst_frame_data;
   ptrdiff_t            fragii;
   int32_t                  ystride;
   dst_frame_data=_state->ref_frame_data[_state->ref_frame_idx[_dst_frame]];
@@ -936,7 +936,7 @@ void oc_state_frag_copy_list_c(const oc_theora_state *_state,
   }
 }
 
-static void loop_filter_h(unsigned char *_pix,int32_t _ystride,int32_t *_bv){
+static void loop_filter_h(uchar *_pix,int32_t _ystride,int32_t *_bv){
   int32_t y;
   _pix-=2;
   for(y=0;y<8;y++){
@@ -952,7 +952,7 @@ static void loop_filter_h(unsigned char *_pix,int32_t _ystride,int32_t *_bv){
   }
 }
 
-static void loop_filter_v(unsigned char *_pix,int32_t _ystride,int32_t *_bv){
+static void loop_filter_v(uchar *_pix,int32_t _ystride,int32_t *_bv){
   int32_t x;
   _pix-=_ystride*2;
   for(x=0;x<8;x++){
@@ -1004,7 +1004,7 @@ void oc_state_loop_filter_frag_rows_c(const oc_theora_state *_state,int32_t *_bv
   const oc_fragment_plane *fplane;
   const oc_fragment       *frags;
   const ptrdiff_t         *frag_buf_offs;
-  unsigned char           *ref_frame_data;
+  uchar           *ref_frame_data;
   ptrdiff_t                fragi_top;
   ptrdiff_t                fragi_bot;
   ptrdiff_t                fragi0;
@@ -1034,7 +1034,7 @@ void oc_state_loop_filter_frag_rows_c(const oc_theora_state *_state,int32_t *_bv
     fragi_end=fragi+nhfrags;
     while(fragi<fragi_end){
       if(frags[fragi].coded){
-        unsigned char *ref;
+        uchar *ref;
         ref=ref_frame_data+frag_buf_offs[fragi];
         if(fragi>fragi0)loop_filter_h(ref,ystride,_bv);
         if(fragi0>fragi_top)loop_filter_v(ref,ystride,_bv);
@@ -1060,12 +1060,12 @@ int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
   png_bytep     *image;
   FILE          *fp;
   char           fname[16];
-  unsigned char *y_row;
-  unsigned char *u_row;
-  unsigned char *v_row;
-  unsigned char *y;
-  unsigned char *u;
-  unsigned char *v;
+  uchar *y_row;
+  uchar *u_row;
+  uchar *v_row;
+  uchar *y;
+  uchar *u;
+  uchar *v;
   ogg_int64_t    iframe;
   ogg_int64_t    pframe;
   int32_t            y_stride;
@@ -1128,9 +1128,9 @@ int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
       float    yval;
       float    uval;
       float    vval;
-      unsigned rval;
-      unsigned gval;
-      unsigned bval;
+      uint32_t rval;
+      uint32_t gval;
+      uint32_t bval;
       /*This is intentionally slow and very accurate.*/
       yval=(*y-16)*(1.0F/219);
       uval=(*u-128)*(2*(1-0.114F)/224);
@@ -1139,12 +1139,12 @@ int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
       gval=OC_CLAMPI(0,(int32_t)(65535*(
        yval-uval*(0.114F/0.587F)-vval*(0.299F/0.587F))+0.5F),65535);
       bval=OC_CLAMPI(0,(int32_t)(65535*(yval+uval)+0.5F),65535);
-      image[imgi][imgj++]=(unsigned char)(rval>>8);
-      image[imgi][imgj++]=(unsigned char)(rval&0xFF);
-      image[imgi][imgj++]=(unsigned char)(gval>>8);
-      image[imgi][imgj++]=(unsigned char)(gval&0xFF);
-      image[imgi][imgj++]=(unsigned char)(bval>>8);
-      image[imgi][imgj++]=(unsigned char)(bval&0xFF);
+      image[imgi][imgj++]=(uchar)(rval>>8);
+      image[imgi][imgj++]=(uchar)(rval&0xFF);
+      image[imgi][imgj++]=(uchar)(gval>>8);
+      image[imgi][imgj++]=(uchar)(gval&0xFF);
+      image[imgi][imgj++]=(uchar)(bval>>8);
+      image[imgi][imgj++]=(uchar)(bval&0xFF);
       dc=(y-y_row&1)|(_state->info.pixel_fmt&1);
       y++;
       u+=dc;

@@ -35,7 +35,7 @@ namespace xml
    CLASS_DECL_ca char * _tcsskip( const char * psz )
    {
       //while( psz && *psz == ' ' && *psz == 13 && *psz == 10 ) psz++;
-      while( psz && isspace((unsigned char ) *psz) ) psz++;
+      while( psz && isspace((uchar ) *psz) ) psz++;
 
       return (char *)psz;
    }

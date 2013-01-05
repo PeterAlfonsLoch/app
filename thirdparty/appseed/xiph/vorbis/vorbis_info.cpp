@@ -135,8 +135,8 @@ void vorbis_comment_clear(vorbis_comment *vc){
   }
 }
 
-/* blocksize 0 is guaranteed to be short, 1 is guaranteed to be long.
-   They may be equal, but short will never ge greater than long */
+/* blocksize 0 is guaranteed to be int16_t, 1 is guaranteed to be long.
+   They may be equal, but int16_t will never ge greater than long */
 int32_t vorbis_info_blocksize(vorbis_info *vi,int32_t zo){
   codec_setup_info *ci =(codec_setup_info *)  vi->codec_setup;
   return ci ? ci->blocksizes[zo] : -1;
@@ -543,7 +543,7 @@ int32_t vorbis_commentheader_out(vorbis_comment *vc,
   oggpack_writeinit(&opb);
   if(_vorbis_pack_comment(&opb,vc)) return OV_EIMPL;
 
-  op->packet = (unsigned char *) _ogg_malloc(oggpack_bytes(&opb));
+  op->packet = (uchar *) _ogg_malloc(oggpack_bytes(&opb));
   memcpy(op->packet, opb.buffer, oggpack_bytes(&opb));
 
   op->bytes=oggpack_bytes(&opb);
@@ -577,7 +577,7 @@ int32_t vorbis_analysis_headerout(vorbis_dsp_state *v,
 
   /* build the packet */
   if(b->header)_ogg_free(b->header);
-  b->header= (unsigned char *) _ogg_malloc(oggpack_bytes(&opb));
+  b->header= (uchar *) _ogg_malloc(oggpack_bytes(&opb));
   memcpy(b->header,opb.buffer,oggpack_bytes(&opb));
   op->packet=b->header;
   op->bytes=oggpack_bytes(&opb);
@@ -592,7 +592,7 @@ int32_t vorbis_analysis_headerout(vorbis_dsp_state *v,
   if(_vorbis_pack_comment(&opb,vc))goto err_out;
 
   if(b->header1)_ogg_free(b->header1);
-  b->header1= (unsigned char *) _ogg_malloc(oggpack_bytes(&opb));
+  b->header1= (uchar *) _ogg_malloc(oggpack_bytes(&opb));
   memcpy(b->header1,opb.buffer,oggpack_bytes(&opb));
   op_comm->packet=b->header1;
   op_comm->bytes=oggpack_bytes(&opb);
@@ -607,7 +607,7 @@ int32_t vorbis_analysis_headerout(vorbis_dsp_state *v,
   if(_vorbis_pack_books(&opb,vi))goto err_out;
 
   if(b->header2)_ogg_free(b->header2);
-  b->header2= (unsigned char *) _ogg_malloc(oggpack_bytes(&opb));
+  b->header2= (uchar *) _ogg_malloc(oggpack_bytes(&opb));
   memcpy(b->header2,opb.buffer,oggpack_bytes(&opb));
   op_code->packet=b->header2;
   op_code->bytes=oggpack_bytes(&opb);
@@ -638,8 +638,8 @@ int32_t vorbis_analysis_headerout(vorbis_dsp_state *v,
 double vorbis_granule_time(vorbis_dsp_state *v,ogg_int64_t granulepos){
   if(granulepos == -1) return -1;
 
-  /* We're not guaranteed a 64 bit unsigned type everywhere, so we
-     have to put the unsigned granpo in a signed type. */
+  /* We're not guaranteed a 64 bit uint32_t type everywhere, so we
+     have to put the uint32_t granpo in a signed type. */
   if(granulepos>=0){
     return((double)granulepos/v->vi->rate);
   }else{

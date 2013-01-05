@@ -1511,7 +1511,7 @@ namespace plane
       return true;
    }
 
-   unsigned long system::guess_code_page(const char * pszText)
+   uint32_t long system::guess_code_page(const char * pszText)
    {
       if(!m_bLibCharGuess)
       {

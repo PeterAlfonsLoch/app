@@ -6,32 +6,32 @@
 #endif
 
 
-unsigned long c_inet_to_ui(const char * src)
+uint32_t long c_inet_to_ui(const char * src)
 {
 
    if(str_begins_ci_dup(src, "0x"))
    {
 
-      return (unsigned long) atoi64_dup(&src[2], NULL, 16);
+      return (uint32_t long) atoi64_dup(&src[2], NULL, 16);
 
    }
    else if(str_begins_dup(src, "0"))
    {
 
-      return (unsigned long) atoi64_dup(&src[1], NULL, 16);
+      return (uint32_t long) atoi64_dup(&src[1], NULL, 16);
 
    }
    else
    {
 
-      return (unsigned long) atoi64_dup(src, NULL, 10);
+      return (uint32_t long) atoi64_dup(src, NULL, 10);
 
    }
 
 }
 
 #define XX 127
-static const unsigned char index_hex[256] = {
+static const uchar index_hex[256] = {
    XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX,
    XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX,
    XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX, XX,XX,XX,XX,
@@ -69,7 +69,7 @@ static const unsigned char index_hex[256] = {
 */
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
 {
-   const unsigned char *s = (const unsigned char *)string;
+   const uchar *s = (const uchar *)string;
    int32_t section = 0;        /* index of the current section (a 16-bit
                            * piece of the address */
    int32_t double_colon = -1;  /* index of the section after the first
@@ -108,7 +108,7 @@ CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
       } else if (*s) {
          return 0; /* bad character */
       }
-      addr->pr_s6_addr16[section++] = htons((unsigned short)val);
+      addr->pr_s6_addr16[section++] = htons((uint16_t)val);
    }
 
    if (*s == '.') {
@@ -169,7 +169,7 @@ CLASS_DECL_c bool from_string(in6_addr * addr, const char * string)
          addr->pr_s6_addr16[tosection--] = 0;
       }
    } else if (section != 8) {
-      return 0; /* too short */
+      return 0; /* too int16_t */
    }
    return 1;
 }
@@ -455,9 +455,9 @@ CLASS_DECL_c const char * c_inet_ntop(int32_t af, const void *src, char *dst, in
 
 }
 
-#define C_INADDR_NONE ((unsigned long ) -1)
+#define C_INADDR_NONE ((uint32_t long ) -1)
 
-CLASS_DECL_c unsigned long c_inet_addr(const char * src)
+CLASS_DECL_c uint32_t long c_inet_addr(const char * src)
 {
 
    stra_dup stra;
@@ -478,7 +478,7 @@ CLASS_DECL_c unsigned long c_inet_addr(const char * src)
 
       c_in_addr addr;
 
-      unsigned long ul;
+      uint32_t long ul;
 
       if(stra.get_count() == 2)
       {

@@ -206,7 +206,7 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 OF((zipFile file,
 
 extern int32_t CLASS_DECL_ca zipWriteInFileInZip OF((zipFile file,
                        const void * buf,
-                       unsigned len));
+                       uint32_t len));
 /*
   write data in the zipfile
 */

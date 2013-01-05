@@ -156,7 +156,7 @@ void __sha1_update(     sha1_ctx_t         *context,
                     const void * message_array0,
                     size_t            length)
 {
-   const unsigned char *message_array = (const unsigned char *) message_array0;
+   const uchar *message_array = (const uchar *) message_array0;
     if (!length)
     {
         return;
@@ -220,9 +220,9 @@ void __sha1_update(     sha1_ctx_t         *context,
  *
  */
 
-void __sha1_core(const unsigned char Message_Block[64], uint32_t Message_Digest[5])
+void __sha1_core(const uchar Message_Block[64], uint32_t Message_Digest[5])
 {
-    const unsigned K[] =            /* Constants defined in SHA-1   */      
+    const uint32_t K[] =            /* Constants defined in SHA-1   */      
     {
         0x5A827999,
         0x6ED9EBA1,
@@ -230,19 +230,19 @@ void __sha1_core(const unsigned char Message_Block[64], uint32_t Message_Digest[
         0xCA62C1D6
     };
     int32_t         t;                  /* Loop counter                 */
-    unsigned    temp;               /* Temporary word value         */
-    unsigned    W[80];              /* Word sequence                */
-    unsigned    A, B, C, D, E;      /* Word buffers                 */
+    uint32_t    temp;               /* Temporary word value         */
+    uint32_t    W[80];              /* Word sequence                */
+    uint32_t    A, B, C, D, E;      /* Word buffers                 */
 
     /*
      *  Initialize the first 16 words in the array W
      */
     for(t = 0; t < 16; t++)
     {
-        W[t] = ((unsigned) Message_Block[t * 4]) << 24;
-        W[t] |= ((unsigned) Message_Block[t * 4 + 1]) << 16;
-        W[t] |= ((unsigned) Message_Block[t * 4 + 2]) << 8;
-        W[t] |= ((unsigned) Message_Block[t * 4 + 3]);
+        W[t] = ((uint32_t) Message_Block[t * 4]) << 24;
+        W[t] |= ((uint32_t) Message_Block[t * 4 + 1]) << 16;
+        W[t] |= ((uint32_t) Message_Block[t * 4 + 2]) << 8;
+        W[t] |= ((uint32_t) Message_Block[t * 4 + 3]);
     }
 
     for(t = 16; t < 80; t++)

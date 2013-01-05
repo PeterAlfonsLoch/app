@@ -2,10 +2,10 @@
 
 void * memset_dup(void * p, int32_t uch, size_t iSize)
 {
-   unsigned char * puch = (unsigned char * ) p;
+   uchar * puch = (uchar * ) p;
    while(iSize > 0)
    {
-      *puch = static_cast < unsigned char > (uch);
+      *puch = static_cast < uchar > (uch);
       puch++;
       iSize--;
    }
@@ -60,8 +60,8 @@ void * memset(void * p, int32_t uch, size_t iSize)
 
 void * memcpy_dup(void * dst, const void * src, size_t iSize)
 {
-   unsigned char * puchDst = (unsigned char * ) dst;
-   unsigned char * puchSrc = (unsigned char * ) src;
+   uchar * puchDst = (uchar * ) dst;
+   uchar * puchSrc = (uchar * ) src;
    if(puchDst == puchSrc)
       return dst;
    memcpy(dst, src, iSize);
@@ -78,8 +78,8 @@ void * memcpy_dup(void * dst, const void * src, size_t iSize)
 
 void * memrcpy_dup(void * dst, const void * src, size_t iSize)
 {
-   unsigned char * puchDst = ((unsigned char * ) dst) + iSize - 1;
-   unsigned char * puchSrc = ((unsigned char * ) src) + iSize - 1;
+   uchar * puchDst = ((uchar * ) dst) + iSize - 1;
+   uchar * puchSrc = ((uchar * ) src) + iSize - 1;
    if(puchDst == puchSrc)
       return dst;
    while(iSize > 0)
@@ -121,11 +121,11 @@ int32_t memcmp_dup(const void * sz1, const void * sz2, size_t iLen)
    /*int32_t iCmp = 0;
    while(iLen > 0)
    {
-      iCmp = *(unsigned char *)sz1 - *(unsigned char *)sz2;
+      iCmp = *(uchar *)sz1 - *(uchar *)sz2;
       if(iCmp != 0)
          return iCmp;
-      ((unsigned char * &)sz1)++;
-      ((unsigned char * &)sz2)++;
+      ((uchar * &)sz1)++;
+      ((uchar * &)sz2)++;
       iLen--;
    }
    return iCmp;*/

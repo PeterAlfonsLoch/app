@@ -65,6 +65,6 @@
 #define OC_NDCT_RUN_MAX          (32)
 #define OC_NDCT_RUN_CAT1A_MAX    (28)
 
-extern const unsigned char OC_DCT_TOKEN_EXTRA_BITS[TH_NDCT_TOKENS];
+extern const uchar OC_DCT_TOKEN_EXTRA_BITS[TH_NDCT_TOKENS];
 
 #endif

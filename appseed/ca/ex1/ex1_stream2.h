@@ -13,10 +13,10 @@ namespace ex1
       output_stream2(writer * pwriter);
       virtual ~output_stream2();
 
-      output_stream2 & operator << (unsigned char uch);
-      output_stream2 & operator << (unsigned short ush);
+      output_stream2 & operator << (uchar uch);
+      output_stream2 & operator << (uint16_t ush);
       output_stream2 & operator << (int32_t i);
-      output_stream2 & operator << (unsigned long i);
+      output_stream2 & operator << (uint32_t long i);
       output_stream2 & operator << (LPCRECT lpcrect);
       output_stream2 & operator << (byte_serializable & serializable);
       output_stream2 & operator << (const char * psz);

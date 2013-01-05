@@ -56,16 +56,16 @@ namespace ex1
       virtual string get_location() const;
 
       virtual bool read(char * pch);
-      virtual bool read(unsigned char * pch);
+      virtual bool read(uchar * pch);
 
       virtual bool read(char & pch);
-      virtual bool read(unsigned char & pch);
+      virtual bool read(uchar & pch);
 
       virtual bool peek(char * pch);
-      virtual bool peek(unsigned char * pch);
+      virtual bool peek(uchar * pch);
 
       virtual bool peek(char & pch);
-      virtual bool peek(unsigned char & pch);
+      virtual bool peek(uchar & pch);
 
       virtual bool IsOpened();
 

@@ -29,7 +29,7 @@
 /*#pragma warning(push, 4)
 
 const COLORREF LiteHTMLElemAttr::_clrInvalid = (COLORREF)0xFFFFFFFF;
-const unsigned short LiteHTMLElemAttr::_percentMax = USHRT_MAX;
+const uint16_t LiteHTMLElemAttr::_percentMax = USHRT_MAX;
 
 // the reason behind setting the block size of our collection
 // to 166 is that we have a total of 166 known named colors
@@ -56,11 +56,11 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    //   char   ch = 0;
 
    // skip leading white-space characters
-   while(::isspace((unsigned char) *lpszBegin))
+   while(::isspace((uchar) *lpszBegin))
       lpszBegin++;
 
    // name doesn't begin with an alphabet?
-   if (!::isalpha((unsigned char) *lpszBegin))
+   if (!::isalpha((uchar) *lpszBegin))
       return (0U);
 
    lpszEnd = lpszBegin;
@@ -68,7 +68,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
    {
       // attribute name may contain letters (a-z, A-Z), digits (0-9),
       // underscores '_', hyphen '-', colons ':', and periods '.'
-      if ( (!::isalnum((unsigned char) *lpszEnd)) &&
+      if ( (!::isalnum((uchar) *lpszEnd)) &&
          (*lpszEnd != '-') && (*lpszEnd != ':') &&
          (*lpszEnd != '_') && (*lpszEnd != '.') )
       {
@@ -78,7 +78,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          // equal-sign, a greater-than symbol, or a forward-slash
          // can act as the separator between an attribute and its
          // value
-         if (*lpszEnd =='\0' || ::isspace((unsigned char) *lpszEnd) ||
+         if (*lpszEnd =='\0' || ::isspace((uchar) *lpszEnd) ||
             *lpszEnd == '=' ||
             *lpszEnd == '>' || *lpszEnd == '/')
          {
@@ -107,7 +107,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
       // and the equal-sign itself
       do {
          lpszEnd++;
-      } while (::isspace((unsigned char) *lpszEnd));
+      } while (::isspace((uchar) *lpszEnd));
 
       lpszBegin = lpszEnd;
       string strChar = string(*lpszEnd);
@@ -146,7 +146,7 @@ dword_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const cha
          // loop until we find a tag ending delimeter or any
          // white-space character, or until we reach at the
          // end of the string buffer
-         while (*lpszEnd != '\0' && !::isspace((unsigned char) *lpszEnd) &&
+         while (*lpszEnd != '\0' && !::isspace((uchar) *lpszEnd) &&
             *lpszEnd != '/' && *lpszEnd != '>');
       }
 
@@ -384,7 +384,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
          for (int32_t i = 1; i < m_strValue.get_length(); i++)
          {
 
-            if (!::isdigit((unsigned char) m_strValue[i]))
+            if (!::isdigit((uchar) m_strValue[i]))
                return false;
 
          }

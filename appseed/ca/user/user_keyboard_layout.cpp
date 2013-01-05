@@ -119,7 +119,7 @@ namespace user
             }
             if(strChar.has_char())
             {
-               iChar = iMap | (int32_t)(unsigned char)(char)(strChar[0]);
+               iChar = iMap | (int32_t)(uchar)(char)(strChar[0]);
                if(strValue.has_char())
                {
                   m_mapChar[iChar] = strValue;

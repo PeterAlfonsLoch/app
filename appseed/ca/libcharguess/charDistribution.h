@@ -110,8 +110,8 @@ protected:
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const char* str) 
-  { if ((unsigned char)*str >= (unsigned char)0xc4)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xc4) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((uchar)*str >= (uchar)0xc4)  
+      return 94*((uchar)str[0]-(uchar)0xc4) + (uchar)str[1] - (uchar)0xa1;
     else
       return -1;
   };
@@ -128,8 +128,8 @@ protected:
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const char* str) 
-  { if ((unsigned char)*str >= (unsigned char)0xb0)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xb0) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((uchar)*str >= (uchar)0xb0)  
+      return 94*((uchar)str[0]-(uchar)0xb0) + (uchar)str[1] - (uchar)0xa1;
     else
       return -1;
   };
@@ -145,8 +145,8 @@ protected:
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const char* str) 
-  { if ((unsigned char)*str >= (unsigned char)0xb0 && (unsigned char)str[1] >= (unsigned char)0xa1)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xb0) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((uchar)*str >= (uchar)0xb0 && (uchar)str[1] >= (uchar)0xa1)  
+      return 94*((uchar)str[0]-(uchar)0xb0) + (uchar)str[1] - (uchar)0xa1;
     else
       return -1;
   };
@@ -163,11 +163,11 @@ protected:
   //  second byte range: 0x40 -- 0x7e , 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const char* str) 
-  { if ((unsigned char)*str >= (unsigned char)0xa4)  
-      if ((unsigned char)str[1] >= (unsigned char)0xa1)
-        return 157*((unsigned char)str[0]-(unsigned char)0xa4) + (unsigned char)str[1] - (unsigned char)0xa1 +63;
+  { if ((uchar)*str >= (uchar)0xa4)  
+      if ((uchar)str[1] >= (uchar)0xa1)
+        return 157*((uchar)str[0]-(uchar)0xa4) + (uchar)str[1] - (uchar)0xa1 +63;
       else
-        return 157*((unsigned char)str[0]-(unsigned char)0xa4) + (unsigned char)str[1] - (unsigned char)0x40;
+        return 157*((uchar)str[0]-(uchar)0xa4) + (uchar)str[1] - (uchar)0x40;
     else
       return -1;
   };
@@ -185,14 +185,14 @@ protected:
   PRInt32 GetOrder(const char* str) 
   { 
     PRInt32 order;
-    if ((unsigned char)*str >= (unsigned char)0x81 && (unsigned char)*str <= (unsigned char)0x9f)  
-      order = 188 * ((unsigned char)str[0]-(unsigned char)0x81);
-    else if ((unsigned char)*str >= (unsigned char)0xe0 && (unsigned char)*str <= (unsigned char)0xef)  
-      order = 188 * ((unsigned char)str[0]-(unsigned char)0xe0 + 31);
+    if ((uchar)*str >= (uchar)0x81 && (uchar)*str <= (uchar)0x9f)  
+      order = 188 * ((uchar)str[0]-(uchar)0x81);
+    else if ((uchar)*str >= (uchar)0xe0 && (uchar)*str <= (uchar)0xef)  
+      order = 188 * ((uchar)str[0]-(uchar)0xe0 + 31);
     else
       return -1;
-    order += (unsigned char)*(str+1) - 0x40;
-    if ((unsigned char)str[1] > (unsigned char)0x7f)
+    order += (uchar)*(str+1) - 0x40;
+    if ((uchar)str[1] > (uchar)0x7f)
       order--;
     return order;
   };
@@ -208,8 +208,8 @@ protected:
   //  second byte range: 0xa1 -- 0xfe
   //no validation needed here. State machine has done that
   PRInt32 GetOrder(const char* str) 
-  { if ((unsigned char)*str >= (unsigned char)0xa0)  
-      return 94*((unsigned char)str[0]-(unsigned char)0xa1) + (unsigned char)str[1] - (unsigned char)0xa1;
+  { if ((uchar)*str >= (uchar)0xa0)  
+      return 94*((uchar)str[0]-(uchar)0xa1) + (uchar)str[1] - (uchar)0xa1;
     else
       return -1;
   };

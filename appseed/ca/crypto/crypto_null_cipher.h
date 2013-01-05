@@ -67,15 +67,15 @@ null_cipher_init(null_cipher_ctx_t *c, const uint8_t *key);
 
 err_status_t
 null_cipher_set_segment(null_cipher_ctx_t *c,
-         unsigned long index);
+         uint32_t long index);
 
 err_status_t
 null_cipher_encrypt(null_cipher_ctx_t *c,
-          unsigned char *buf, uint32_t *bytes_to_encr);
+          uchar *buf, uint32_t *bytes_to_encr);
 
 
 err_status_t
 null_cipher_encrypt_aligned(null_cipher_ctx_t *c,
-             unsigned char *buf, int32_t bytes_to_encr);
+             uchar *buf, int32_t bytes_to_encr);
 
 #endif /* NULL_CIPHER_H */

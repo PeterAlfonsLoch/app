@@ -223,7 +223,7 @@ namespace file_watcher
 		MsgWaitForMultipleObjectsEx(0, NULL, 0, QS_ALLINPUT, MWMO_ALERTABLE);
 	}
 
-	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, unsigned long action)
+	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, uint32_t long action)
 	{
 		e_action eaction;
 

@@ -718,8 +718,8 @@ namespace gen
       void scroll::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
-         m_nSBCode = (short) LOWORD(wparam);
-         m_nPos = (short) HIWORD(wparam);
+         m_nSBCode = (int16_t) LOWORD(wparam);
+         m_nPos = (int16_t) HIWORD(wparam);
          m_pScrollBar = (::user::interaction *) lparam;
       }
 
@@ -773,9 +773,9 @@ namespace gen
          return LOWORD(m_wparam);
       }
 
-      short mouse_wheel::GetDelta()
+      int16_t mouse_wheel::GetDelta()
       {
-         return (short)HIWORD(m_wparam);
+         return (int16_t)HIWORD(m_wparam);
       }
 
       point mouse_wheel::GetPoint()

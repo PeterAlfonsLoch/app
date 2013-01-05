@@ -7,8 +7,8 @@
 
 
 // Since ca2 API itself is built with wchar_t as a native type, it will not have
-// the correct type info for types built with wchar_t typedef'd to unsigned
-// short.  Make sure that the ::fontopus::user's cast builds this type info in this case.
+// the correct type info for types built with wchar_t typedef'd to uint32_t
+// int16_t.  Make sure that the ::fontopus::user's cast builds this type info in this case.
 #ifndef _NATIVE_WCHAR_T_DEFINED
 #define ___FULLTYPEINFO
 #endif
@@ -390,7 +390,7 @@ namespace user
 // Avoid mapping GetFileTitle to GetFileTitle[A/W]
 #ifdef GetFileTitle
 #undef GetFileTitle
-inline short APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WORD cbBuf)
+inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WORD cbBuf)
 #ifdef UNICODE
    { return ::GetFileTitleW(lpszFile, lpszTitle, cbBuf); }
 #else

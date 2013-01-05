@@ -3,7 +3,7 @@
 #include "include/freeimage.h"
 #include "visual_FreeImageFileProc.h"
 
-/*unsigned ___ReadProc    (void *buffer, unsigned size, unsigned count, fi_handle handle)
+/*uint32_t ___ReadProc    (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    DWORD dwRead;
    if(ReadFile(handle, buffer, count * size, &dwRead, NULL))
@@ -16,7 +16,7 @@
    }
 
 }
-unsigned ___WriteProc   (void *buffer, unsigned size, unsigned count, fi_handle handle)
+uint32_t ___WriteProc   (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    DWORD dwWritten;
    if(WriteFile(handle, buffer, count * size, &dwWritten, NULL))
@@ -46,7 +46,7 @@ long     ___TellProc    (fi_handle handle)
    return SetFilePointer(handle, 0, NULL, SEEK_CUR);
 }
 
-unsigned __ReadProc (void *buffer, unsigned size, unsigned count, fi_handle handle)
+uint32_t __ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    DWORD dwRead;
    if(ReadFile(handle, buffer, count * size, &dwRead, NULL))
@@ -59,7 +59,7 @@ unsigned __ReadProc (void *buffer, unsigned size, unsigned count, fi_handle hand
    }
 
 }
-unsigned __WriteProc (void *buffer, unsigned size, unsigned count, fi_handle handle)
+uint32_t __WriteProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    DWORD dwWritten;
    if(WriteFile(handle, buffer, count * size, &dwWritten, NULL))
@@ -89,7 +89,7 @@ long __TellProc (fi_handle handle)
    return SetFilePointer(handle, 0, NULL, SEEK_CUR);
 }*/
 
-unsigned _stdcall  __ReadProc2 (void *buffer, unsigned size, unsigned count, fi_handle handle)
+uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    primitive::memory_size dwRead;
    ex1::file * pfile = (ex1::file *) handle;
@@ -103,7 +103,7 @@ unsigned _stdcall  __ReadProc2 (void *buffer, unsigned size, unsigned count, fi_
    }
 
 }
-unsigned _stdcall __WriteProc2 (void *buffer, unsigned size, unsigned count, fi_handle handle)
+uint32_t _stdcall __WriteProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    ex1::file * pfile = (ex1::file *) handle;
    try
@@ -136,12 +136,12 @@ long _stdcall __TellProc2 (fi_handle handle)
    return (long) pfile->get_position();
 }
 
-   //static unsigned _stdcall  __ReadProc3 (void *buffer, unsigned size, unsigned count, fi_handle handle);
-   //static unsigned _stdcall __WriteProc3 (void *buffer, unsigned size, unsigned count, fi_handle handle);
+   //static uint32_t _stdcall  __ReadProc3 (void *buffer, uint32_t size, uint32_t count, fi_handle handle);
+   //static uint32_t _stdcall __WriteProc3 (void *buffer, uint32_t size, uint32_t count, fi_handle handle);
    //static int32_t _stdcall __SeekProc3 (fi_handle handle, long offset, int32_t origin);
    //static long _stdcall __TellProc3 (fi_handle handle);
 
-unsigned _stdcall  ___Ex1File__ReadProc (void *buffer, unsigned size, unsigned count, fi_handle handle)
+uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    primitive::memory_size dwRead;
    ex1::file * pfile = (ex1::file *) handle;
@@ -156,7 +156,7 @@ unsigned _stdcall  ___Ex1File__ReadProc (void *buffer, unsigned size, unsigned c
 
 }
 
-unsigned _stdcall ___Ex1File__WriteProc(void *buffer, unsigned size, unsigned count, fi_handle handle)
+uint32_t _stdcall ___Ex1File__WriteProc(void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    ex1::file * pfile = (ex1::file *) handle;
    try

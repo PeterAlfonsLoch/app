@@ -401,7 +401,7 @@ namespace ca
 		///  \param		duration time period to wait for item (default: infinite)
 		///  \return	result of waiting action as defined in wait_result
 		//wait_result wait(size_t numberOfItems, WaitableItem * waitableItems[], const boost::posix_time::time_duration& duration=InfiniteTime, bool waitForAll = false);
-		// int32_t wait (unsigned TimeoutMs, unsigned NumberOfEvents, ...);
+		// int32_t wait (uint32_t TimeoutMs, uint32_t NumberOfEvents, ...);
 
 		//void suspend ()
 		//{ ::SuspendThread(item()); }
@@ -432,16 +432,16 @@ namespace ca
 	//	Thread (const Thread &);				// no copy constructor
 		//Thread & operator= (const Thread &);	// no assignment operator
 
-		/*static unsigned __stdcall startExecution_ (thread * thisThread)
+		/*static uint32_t __stdcall startExecution_ (thread * thisThread)
 		{
 			thisThread->threadId_ = ::GetCurrentThreadId();
-			unsigned result = (*thisThread)();
+			uint32_t result = (*thisThread)();
 			if (result == autodelete)
 				delete thisThread;
 			return result;
 		}*/
 
-		//virtual unsigned operator() () = 0;
+		//virtual uint32_t operator() () = 0;
 
       virtual bool is_auto_delete();
 	//};

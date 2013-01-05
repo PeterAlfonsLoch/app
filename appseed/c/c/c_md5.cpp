@@ -40,7 +40,7 @@
 #include <fcntl.h>
 #endif
 
-unsigned char PADDING[64] =
+uchar PADDING[64] =
 {
   0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -92,7 +92,7 @@ unsigned char PADDING[64] =
  *
  * This differs from Colin Plumb's older public domain implementation in that
  * no exactly 32-bit integer data type is required (any 32-bit or wider
- * unsigned integer data type will do), there's no compile-time endianness
+ * uint32_t integer data type will do), there's no compile-time endianness
  * configuration, and the function prototypes match OpenSSL's.  No code from
  * Colin Plumb's implementation has been reused; this comment merely compares
  * the properties of the two independent implementations.
@@ -140,10 +140,10 @@ typedef uint32_t MD5_u32plus;
 #else
 #define SET(n) \
 	(m_ctx.block[(n)] = \
-	(uint4)ptr[(n) * 4] | \
-	((uint4)ptr[(n) * 4 + 1] << 8) | \
-	((uint4)ptr[(n) * 4 + 2] << 16) | \
-	((uint4)ptr[(n) * 4 + 3] << 24))
+	(uint32_t)ptr[(n) * 4] | \
+	((uint32_t)ptr[(n) * 4 + 1] << 8) | \
+	((uint32_t)ptr[(n) * 4 + 2] << 16) | \
+	((uint32_t)ptr[(n) * 4 + 3] << 24))
 #define GET(n) \
 	(m_ctx.block[(n)])
 #endif
@@ -161,13 +161,13 @@ namespace md5
     * This processes one or more 64-byte data blocks, but does NOT update
     * the bit counters.  There are no alignment requirements.
     */
-   void * md5::body(void *data, uint4 size)
+   void * md5::body(void *data, uint32_t size)
    {
-	   unsigned char *ptr;
-	   uint4 a, b, c, d;
-	   uint4 saved_a, saved_b, saved_c, saved_d;
+	   uchar *ptr;
+	   uint32_t a, b, c, d;
+	   uint32_t saved_a, saved_b, saved_c, saved_d;
 
-	   ptr = (unsigned char *) data;
+	   ptr = (uchar *) data;
 
 	   a = m_ctx.a;
 	   b = m_ctx.b;
@@ -282,7 +282,7 @@ namespace md5
    void md5::update(void *data, size_t size)
    {
 	   size_t saved_lo;
-	   unsigned long used, free;
+	   uint32_t long used, free;
 
 	   saved_lo = m_ctx.lo;
 	   if ((m_ctx.lo = (saved_lo + size) & 0x1fffffff) < saved_lo)
@@ -300,7 +300,7 @@ namespace md5
 		   }
 
 		   memcpy_dup(&m_ctx.buffer[used], data, free);
-		   data = (unsigned char *)data + free;
+		   data = (uchar *)data + free;
 		   size -= free;
 		   body(m_ctx.buffer, 64);
 	   }
@@ -315,8 +315,8 @@ namespace md5
 
    void md5::finalize()
    {
-      unsigned char * result = m_uchaDigest;
-	   unsigned long used, free;
+      uchar * result = m_uchaDigest;
+	   uint32_t long used, free;
 
 	   used = m_ctx.lo & 0x3f;
 
@@ -366,7 +366,7 @@ namespace md5
    }
 
 
-   unsigned char * md5::digest()
+   uchar * md5::digest()
    {
 
       return m_uchaDigest;

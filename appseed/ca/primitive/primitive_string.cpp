@@ -206,28 +206,28 @@ const char * __cdecl crt_char_traits::StringFindChar(const char * pszBlock,char 
 /*
 strsize __cdecl crt_char_traits::StringCompare(const char * pszA,const char * pszB ) throw()
 {
-return _mbscmp( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
+return _mbscmp( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 }
 
 strsize __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,const char * pszB ) throw()
 {
-return _mbsicmp( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
+return _mbsicmp( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 }
 
 strsize __cdecl crt_char_traits::StringCollate(const char * pszA,const char * pszB ) throw()
 {
-return _mbscoll( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
+return _mbscoll( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 }
 
 strsize __cdecl crt_char_traits::StringCollateIgnore(const char * pszA,const char * pszB ) throw()
 {
-return _mbsicoll( reinterpret_cast< const unsigned char* >( pszA ), reinterpret_cast< const unsigned char* >( pszB ) );
+return _mbsicoll( reinterpret_cast< const uchar* >( pszA ), reinterpret_cast< const uchar* >( pszB ) );
 }
 
 const char * __cdecl crt_char_traits::StringFindString(const char * pszBlock,const char * pszMatch ) throw()
 {
-return reinterpret_cast< const char * >( _mbsstr( reinterpret_cast< const unsigned char* >( pszBlock ),
-reinterpret_cast< const unsigned char* >( pszMatch ) ) );
+return reinterpret_cast< const char * >( _mbsstr( reinterpret_cast< const uchar* >( pszBlock ),
+reinterpret_cast< const uchar* >( pszMatch ) ) );
 }
 
 char * __cdecl crt_char_traits::StringFindString(char * pszBlock,const char * pszMatch ) throw()
@@ -237,7 +237,7 @@ return( const_cast< char * >( StringFindString( const_cast< const char * >( pszB
 
 const char * __cdecl crt_char_traits::StringFindChar(const char * pszBlock,char chMatch ) throw()
 {
-return reinterpret_cast< const char * >( _mbschr( reinterpret_cast< const unsigned char* >( pszBlock ), (unsigned char)chMatch ) );
+return reinterpret_cast< const char * >( _mbschr( reinterpret_cast< const uchar* >( pszBlock ), (uchar)chMatch ) );
 }
 */
 const char * __cdecl crt_char_traits::StringFindCharRev(const char * psz,char ch, strsize iStart ) throw()
@@ -253,7 +253,7 @@ const char * __cdecl crt_char_traits::StringFindCharRev(const char * psz,char ch
       iStart--;
    }
    return NULL;
-   //      return reinterpret_cast< const char * >( _mbsrchr( reinterpret_cast< const unsigned char* >( &psz[iStart] ), (unsigned char)ch ) );
+   //      return reinterpret_cast< const char * >( _mbsrchr( reinterpret_cast< const uchar* >( &psz[iStart] ), (uchar)ch ) );
 }
 
 
@@ -281,7 +281,7 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
    if(pszMatch == NULL || pszBlock == NULL || *pszBlock == '\0')
       return NULL;
 #ifdef WINDOWSEX
-   return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszMatch ) ) );
+   return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const uchar* >( pszBlock ), reinterpret_cast< const uchar* >( pszMatch ) ) );
 #else
    return reinterpret_cast< const char * >( strpbrk( reinterpret_cast< const char* >( pszBlock ), reinterpret_cast< const char* >( pszMatch ) ) );
 #endif
@@ -294,8 +294,8 @@ const char * __cdecl crt_char_traits::StringScanSet(const char * pszBlock,const 
       pszMatch = gen::str::utf8_inc(pszMatch);
    }
    return NULL;*/
-   //return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const unsigned char* >( pszBlock ),
-   // reinterpret_cast< const unsigned char* >( pszMatch ) ) );
+   //return reinterpret_cast< const char * >( _mbspbrk( reinterpret_cast< const uchar* >( pszBlock ),
+   // reinterpret_cast< const uchar* >( pszMatch ) ) );
 }
 
 strsize __cdecl crt_char_traits::StringSpanIncluding(const char * pszBlock,const char * pszSet ) throw()
@@ -313,12 +313,12 @@ strsize __cdecl crt_char_traits::StringSpanIncluding(const char * pszBlock,const
       return 0;
    else
       return pszBlock - pszLast + gen::str::utf8_char(pszLast).get_length();
-   //return (strsize)_mbsspn( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszSet ) );
+   //return (strsize)_mbsspn( reinterpret_cast< const uchar* >( pszBlock ), reinterpret_cast< const uchar* >( pszSet ) );
 }
 
 strsize __cdecl crt_char_traits::StringSpanExcluding(const char * pszBlock,const char * pszSet ) throw()
 {
-   //   return (strsize)_mbscspn( reinterpret_cast< const unsigned char* >( pszBlock ), reinterpret_cast< const unsigned char* >( pszSet ) );
+   //   return (strsize)_mbscspn( reinterpret_cast< const uchar* >( pszBlock ), reinterpret_cast< const uchar* >( pszSet ) );
    if(pszSet == NULL || pszBlock == NULL)
       return 0;
    const char * psz = StringScanSet(pszBlock, pszSet);
@@ -349,7 +349,7 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringUppe
    return psz;
 
 
-   //   return reinterpret_cast< char * >(( reinterpret_cast< unsigned char* >( psz ) ) );
+   //   return reinterpret_cast< char * >(( reinterpret_cast< uchar* >( psz ) ) );
 #pragma warning (pop)
 }
 
@@ -372,7 +372,7 @@ _INSECURE_DEPRECATE("You must pass an output size to crt_char_traits::StringLowe
    strcpy(p, strFinal);
    return psz;
 
-   //   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< unsigned char* >( psz ) ) );
+   //   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
 #pragma warning (pop)
 }
 
@@ -406,7 +406,7 @@ char * __cdecl crt_char_traits::StringReverse( char * psz ) throw()
    }
    strcpy(psz, strRev);
    return psz;
-   //return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< unsigned char* >( psz ) ) );
+   //return reinterpret_cast< char * >( _mbsrev( reinterpret_cast< uchar* >( psz ) ) );
 }
 
 strsize __cdecl crt_char_traits::GetFormattedLength(const char * pszFormat, va_list args ) throw()
@@ -795,7 +795,7 @@ string::string(const wchar_t * pszSrc,string_manager * pstringmanager ) :
    //      }
 }
 
-string::string( const unsigned char* pszSrc ) :
+string::string( const uchar* pszSrc ) :
    simple_string( string_trait::GetDefaultManager() )
 {
    *this = reinterpret_cast< const char* >( pszSrc );
@@ -811,7 +811,7 @@ const char *psz = reinterpret_cast< const char* >( pszSrc );
 //  }
 }*/
 
-string::string(unsigned char* pszSrc ) :
+string::string(uchar* pszSrc ) :
    simple_string( string_trait::GetDefaultManager() )
 {
    const char *psz = reinterpret_cast< const char* >( pszSrc );
@@ -837,7 +837,7 @@ string::string(const istring & istr) :
    *this = (const char *) istr;
 }
 
-string::string(const unsigned char* pszSrc,string_manager * pstringmanager ) :
+string::string(const uchar* pszSrc,string_manager * pstringmanager ) :
    simple_string( pstringmanager )
 {
    *this = reinterpret_cast< const char* >( pszSrc );
@@ -939,7 +939,7 @@ string& string::operator=(PCYSTR pszSrc )
    return( *this );
 }
 
-string& string::operator=(const unsigned char* pszSrc )
+string& string::operator=(const uchar* pszSrc )
 {
    return( operator=( reinterpret_cast< const char* >( pszSrc ) ) );
 }
@@ -985,7 +985,7 @@ string& string::operator+=(char ch )
    return( *this );
 }
 
-string& string::operator+=(unsigned char ch )
+string& string::operator+=(uchar ch )
 {
    AppendChar((XCHAR)  ch );
 
@@ -1310,7 +1310,7 @@ strsize string::replace(XCHAR chOld,XCHAR chNew, strsize iStart )
 {
    strsize nCount = 0;
 
-   // short-circuit the nop case
+   // int16_t-circuit the nop case
    if( chOld != chNew )
    {
       // otherwise modify each character that matches in the string

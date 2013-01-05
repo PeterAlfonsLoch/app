@@ -77,9 +77,9 @@ typedef struct private_state {
      application does not need to worry about freeing some packets'
      memory and not others'; packet storage is always tracked.
      Cleared next call to a _dsp_ function */
-  unsigned char *header;
-  unsigned char *header1;
-  unsigned char *header2;
+  uchar *header;
+  uchar *header1;
+  uchar *header2;
 
   bitrate_manager_state bms;
 
@@ -95,7 +95,7 @@ typedef struct private_state {
 #include "highlevel.h"
 typedef struct codec_setup_info {
 
-  /* Vorbis supports only short and long blocks, but allows the
+  /* Vorbis supports only int16_t and long blocks, but allows the
      encoder to choose the sizes */
 
   long blocksizes[2];

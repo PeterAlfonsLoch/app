@@ -10,7 +10,7 @@
 #define COMMENT      0x10 /* bit 4 set: file comment present */
 #define RESERVED     0xE0 /* bits 5..7: reserved */
 
-typedef  unsigned char GZIP;
+typedef  uchar GZIP;
 typedef  GZIP* LPGZIP;
 
 static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
@@ -146,7 +146,7 @@ gzip::~gzip()
    void gzip::putLong (uLong x)
    {
       for(int32_t n = 0; n < 4; n++) {
-         unsigned char c=(unsigned char)(x & 0xff);
+         uchar c=(uchar)(x & 0xff);
          m_ostream.write(&c,1);
          x >>= 8;
       }

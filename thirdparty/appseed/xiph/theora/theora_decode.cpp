@@ -41,7 +41,7 @@
 
 /*The mode alphabets for the various mode coding schemes.
   Scheme 0 uses a custom alphabet, which is not stored in this table.*/
-static const unsigned char OC_MODE_ALPHABETS[7][OC_NMODES]={
+static const uchar OC_MODE_ALPHABETS[7][OC_NMODES]={
   /*Last MV dominates */
   {
     OC_MODE_INTER_MV_LAST,OC_MODE_INTER_MV_LAST2,OC_MODE_INTER_MV,
@@ -102,7 +102,7 @@ static const unsigned char OC_MODE_ALPHABETS[7][OC_NMODES]={
 
 /*The number of additional extra bits that are decoded with each of the
    internal DCT tokens.*/
-static const unsigned char OC_INTERNAL_DCT_TOKEN_EXTRA_BITS[15]={
+static const uchar OC_INTERNAL_DCT_TOKEN_EXTRA_BITS[15]={
   12,4,3,3,4,4,5,5,8,8,8,8,3,3,6
 };
 
@@ -370,7 +370,7 @@ static int32_t oc_dec_init(oc_dec_ctx *_dec,const th_info *_info,
      one byte for extra-bits for each token, plus one more byte for the long
      EOB run, just in case it's the very last token and has a run length of
      one.*/
-  _dec->dct_tokens=(unsigned char *)_ogg_malloc((64+64+1)*
+  _dec->dct_tokens=(uchar *)_ogg_malloc((64+64+1)*
    _dec->state.nfrags*sizeof(_dec->dct_tokens[0]));
   if(_dec->dct_tokens==NULL){
     oc_huff_trees_clear(_dec->huff_tables);
@@ -436,17 +436,17 @@ static int32_t oc_dec_frame_header_unpack(oc_dec_ctx *_dec){
   _dec->state.frame_type=(int32_t)val;
   /*Read in the qi list.*/
   val=oc_pack_read(&_dec->opb,6);
-  _dec->state.qis[0]=(unsigned char)val;
+  _dec->state.qis[0]=(uchar)val;
   val=oc_pack_read1(&_dec->opb);
   if(!val)_dec->state.nqis=1;
   else{
     val=oc_pack_read(&_dec->opb,6);
-    _dec->state.qis[1]=(unsigned char)val;
+    _dec->state.qis[1]=(uchar)val;
     val=oc_pack_read1(&_dec->opb);
     if(!val)_dec->state.nqis=2;
     else{
       val=oc_pack_read(&_dec->opb,6);
-      _dec->state.qis[2]=(unsigned char)val;
+      _dec->state.qis[2]=(uchar)val;
       _dec->state.nqis=3;
     }
   }
@@ -474,8 +474,8 @@ static void oc_dec_mark_all_intra(oc_dec_ctx *_dec){
   ptrdiff_t         *coded_fragis;
   ptrdiff_t          ncoded_fragis;
   ptrdiff_t          prev_ncoded_fragis;
-  unsigned           nsbs;
-  unsigned           sbi;
+  uint32_t           nsbs;
+  uint32_t           sbi;
   int32_t                pli;
   coded_fragis=_dec->state.coded_fragis;
   prev_ncoded_fragis=ncoded_fragis=0;
@@ -509,12 +509,12 @@ static void oc_dec_mark_all_intra(oc_dec_ctx *_dec){
 /*Decodes the bit flags indicating whether each super block is partially coded
    or not.
   Return: The number of partially coded super blocks.*/
-static unsigned oc_dec_partial_sb_flags_unpack(oc_dec_ctx *_dec){
+static uint32_t oc_dec_partial_sb_flags_unpack(oc_dec_ctx *_dec){
   oc_sb_flags *sb_flags;
-  unsigned     nsbs;
-  unsigned     sbi;
-  unsigned     npartial;
-  unsigned     run_count;
+  uint32_t     nsbs;
+  uint32_t     sbi;
+  uint32_t     npartial;
+  uint32_t     run_count;
   long         val;
   int32_t          flag;
   val=oc_pack_read1(&_dec->opb);
@@ -551,9 +551,9 @@ static unsigned oc_dec_partial_sb_flags_unpack(oc_dec_ctx *_dec){
   Return: The number of partially coded super blocks.*/
 static void oc_dec_coded_sb_flags_unpack(oc_dec_ctx *_dec){
   oc_sb_flags *sb_flags;
-  unsigned     nsbs;
-  unsigned     sbi;
-  unsigned     run_count;
+  uint32_t     nsbs;
+  uint32_t     sbi;
+  uint32_t     run_count;
   long         val;
   int32_t          flag;
   sb_flags=_dec->state.sb_flags;
@@ -586,9 +586,9 @@ static void oc_dec_coded_flags_unpack(oc_dec_ctx *_dec){
   const oc_sb_map   *sb_maps;
   const oc_sb_flags *sb_flags;
   oc_fragment       *frags;
-  unsigned           nsbs;
-  unsigned           sbi;
-  unsigned           npartial;
+  uint32_t           nsbs;
+  uint32_t           sbi;
+  uint32_t           npartial;
   long               val;
   int32_t                pli;
   int32_t                flag;
@@ -673,8 +673,8 @@ static void oc_dec_mb_modes_unpack(oc_dec_ctx *_dec){
   const oc_mb_map     *mb_maps;
   signed char         *mb_modes;
   const oc_fragment   *frags;
-  const unsigned char *alphabet;
-  unsigned char        scheme0_alphabet[8];
+  const uchar *alphabet;
+  uchar        scheme0_alphabet[8];
   oc_mode_unpack_func  mode_unpack;
   size_t               nmbs;
   size_t               mbi;
@@ -767,7 +767,7 @@ static void oc_dec_mv_unpack_and_frag_modes_fill(oc_dec_ctx *_dec){
   oc_mv_comp_unpack_func  mv_comp_unpack;
   oc_fragment            *frags;
   oc_mv                  *frag_mvs;
-  const unsigned char    *map_idxs;
+  const uchar    *map_idxs;
   int32_t                     map_nidxs;
   oc_mv                   last_mv[2];
   oc_mv                   cbmvs[4];
@@ -961,7 +961,7 @@ static void oc_dec_block_qis_unpack(oc_dec_ctx *_dec){
   Return: The length of any outstanding EOB run.*/
 static ptrdiff_t oc_dec_dc_coeff_unpack(oc_dec_ctx *_dec,int32_t _huff_idxs[2],
  ptrdiff_t _ntoks_left[3][64]){
-  unsigned char   *dct_tokens;
+  uchar   *dct_tokens;
   oc_fragment     *frags;
   const ptrdiff_t *coded_fragis;
   ptrdiff_t        ncoded_fragis;
@@ -995,12 +995,12 @@ static ptrdiff_t oc_dec_dc_coeff_unpack(oc_dec_ctx *_dec,int32_t _huff_idxs[2],
       int32_t skip;
       token=oc_huff_token_decode(&_dec->opb,
        _dec->huff_tables[_huff_idxs[pli+1>>1]]);
-      dct_tokens[ti++]=(unsigned char)token;
+      dct_tokens[ti++]=(uchar)token;
       if(OC_DCT_TOKEN_NEEDS_MORE(token)){
         eb=(int32_t)oc_pack_read(&_dec->opb,
          OC_INTERNAL_DCT_TOKEN_EXTRA_BITS[token]);
-        dct_tokens[ti++]=(unsigned char)eb;
-        if(token==OC_DCT_TOKEN_FAT_EOB)dct_tokens[ti++]=(unsigned char)(eb>>8);
+        dct_tokens[ti++]=(uchar)eb;
+        if(token==OC_DCT_TOKEN_FAT_EOB)dct_tokens[ti++]=(uchar)(eb>>8);
         eb<<=OC_DCT_TOKEN_EB_POS(token);
       }
       else eb=0;
@@ -1015,7 +1015,7 @@ static ptrdiff_t oc_dec_dc_coeff_unpack(oc_dec_ctx *_dec,int32_t _huff_idxs[2],
       }
       else{
         int32_t coeff;
-        skip=(unsigned char)(cw>>OC_DCT_CW_RLEN_SHIFT);
+        skip=(uchar)(cw>>OC_DCT_CW_RLEN_SHIFT);
         cw^=-(cw&1<<OC_DCT_CW_FLIP_BIT);
         coeff=cw>>OC_DCT_CW_MAG_SHIFT;
         if(skip)coeff=0;
@@ -1047,7 +1047,7 @@ static ptrdiff_t oc_dec_dc_coeff_unpack(oc_dec_ctx *_dec,int32_t _huff_idxs[2],
   Return: The length of any outstanding EOB run.*/
 static int32_t oc_dec_ac_coeff_unpack(oc_dec_ctx *_dec,int32_t _zzi,int32_t _huff_idxs[2],
  ptrdiff_t _ntoks_left[3][64],ptrdiff_t _eobs){
-  unsigned char *dct_tokens;
+  uchar *dct_tokens;
   ptrdiff_t      ti;
   int32_t            pli;
   dct_tokens=_dec->dct_tokens;
@@ -1073,17 +1073,17 @@ static int32_t oc_dec_ac_coeff_unpack(oc_dec_ctx *_dec,int32_t _zzi,int32_t _huf
       eob_count+=_eobs;
       token=oc_huff_token_decode(&_dec->opb,
        _dec->huff_tables[_huff_idxs[pli+1>>1]]);
-      dct_tokens[ti++]=(unsigned char)token;
+      dct_tokens[ti++]=(uchar)token;
       if(OC_DCT_TOKEN_NEEDS_MORE(token)){
         eb=(int32_t)oc_pack_read(&_dec->opb,
          OC_INTERNAL_DCT_TOKEN_EXTRA_BITS[token]);
-        dct_tokens[ti++]=(unsigned char)eb;
-        if(token==OC_DCT_TOKEN_FAT_EOB)dct_tokens[ti++]=(unsigned char)(eb>>8);
+        dct_tokens[ti++]=(uchar)eb;
+        if(token==OC_DCT_TOKEN_FAT_EOB)dct_tokens[ti++]=(uchar)(eb>>8);
         eb<<=OC_DCT_TOKEN_EB_POS(token);
       }
       else eb=0;
       cw=OC_DCT_CODE_WORD[token]+eb;
-      skip=(unsigned char)(cw>>OC_DCT_CW_RLEN_SHIFT);
+      skip=(uchar)(cw>>OC_DCT_CW_RLEN_SHIFT);
       _eobs=cw>>OC_DCT_CW_EOB_SHIFT&0xFFF;
       if(cw==OC_DCT_CW_FINISH)_eobs=OC_DCT_EOB_FINISH;
       if(_eobs==0){
@@ -1131,7 +1131,7 @@ static int32_t oc_dec_ac_coeff_unpack(oc_dec_ctx *_dec,int32_t _zzi,int32_t _huf
    two super block rows) is decoded, while the image data is still in cache.*/
 
 static void oc_dec_residual_tokens_unpack(oc_dec_ctx *_dec){
-  static const unsigned char OC_HUFF_LIST_MAX[5]={1,6,15,28,64};
+  static const uchar OC_HUFF_LIST_MAX[5]={1,6,15,28,64};
   ptrdiff_t  ntoks_left[3][64];
   int32_t        huff_idxs[2];
   ptrdiff_t  eobs;
@@ -1187,23 +1187,23 @@ static int32_t oc_dec_postprocess_init(oc_dec_ctx *_dec){
     /*If we haven't been tracking DC quantization indices, there's no point in
        starting now.*/
     if(_dec->state.frame_type!=OC_INTRA_FRAME)return 1;
-    _dec->dc_qis=(unsigned char *)_ogg_malloc(
+    _dec->dc_qis=(uchar *)_ogg_malloc(
      _dec->state.nfrags*sizeof(_dec->dc_qis[0]));
     if(_dec->dc_qis==NULL)return 1;
     memset(_dec->dc_qis,_dec->state.qis[0],_dec->state.nfrags);
   }
   else{
-    unsigned char   *dc_qis;
+    uchar   *dc_qis;
     const ptrdiff_t *coded_fragis;
     ptrdiff_t        ncoded_fragis;
     ptrdiff_t        fragii;
-    unsigned char    qi0;
+    uchar    qi0;
     /*Update the DC quantization index of each coded block.*/
     dc_qis=_dec->dc_qis;
     coded_fragis=_dec->state.coded_fragis;
     ncoded_fragis=_dec->state.ncoded_fragis[0]+
      _dec->state.ncoded_fragis[1]+_dec->state.ncoded_fragis[2];
-    qi0=(unsigned char)_dec->state.qis[0];
+    qi0=(uchar)_dec->state.qis[0];
     for(fragii=0;fragii<ncoded_fragis;fragii++){
       dc_qis[coded_fragis[fragii]]=qi0;
     }
@@ -1231,7 +1231,7 @@ static int32_t oc_dec_postprocess_init(oc_dec_ctx *_dec){
        them; this simplifies allocation state management, though it may waste
        memory on the few systems that don't overcommit pages.*/
     frame_sz+=c_sz<<1;
-    _dec->pp_frame_data=(unsigned char *)_ogg_malloc(
+    _dec->pp_frame_data=(uchar *)_ogg_malloc(
      frame_sz*sizeof(_dec->pp_frame_data[0]));
     _dec->variances=(int32_t *)_ogg_malloc(
      _dec->state.nfrags*sizeof(_dec->variances[0]));
@@ -1493,8 +1493,8 @@ static void oc_dec_dc_unpredict_mcu_plane(oc_dec_ctx *_dec,
    counts.*/
 static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
  oc_dec_pipeline_state *_pipe,int32_t _pli){
-  unsigned char       *dct_tokens;
-  const unsigned char *dct_fzig_zag;
+  uchar       *dct_tokens;
+  const uchar *dct_fzig_zag;
   ogg_uint16_t         dc_quant[2];
   const oc_fragment   *frags;
   const ptrdiff_t     *coded_fragis;
@@ -1552,7 +1552,7 @@ static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
           eob+=dct_tokens[lti++]<<8;
           if(eob==0)eob=OC_DCT_EOB_FINISH;
         }
-        rlen=(unsigned char)(cw>>OC_DCT_CW_RLEN_SHIFT);
+        rlen=(uchar)(cw>>OC_DCT_CW_RLEN_SHIFT);
         cw^=-(cw&1<<OC_DCT_CW_FLIP_BIT);
         coeff=cw>>OC_DCT_CW_MAG_SHIFT;
         eob_runs[zzi]=eob;
@@ -1589,13 +1589,13 @@ static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
 }
 
 /*Filter a horizontal block edge.*/
-static void oc_filter_hedge(unsigned char *_dst,int32_t _dst_ystride,
- const unsigned char *_src,int32_t _src_ystride,int32_t _qstep,int32_t _flimit,
+static void oc_filter_hedge(uchar *_dst,int32_t _dst_ystride,
+ const uchar *_src,int32_t _src_ystride,int32_t _qstep,int32_t _flimit,
  int32_t *_variance0,int32_t *_variance1){
-  unsigned char       *rdst;
-  const unsigned char *rsrc;
-  unsigned char       *cdst;
-  const unsigned char *csrc;
+  uchar       *rdst;
+  const uchar *rsrc;
+  uchar       *cdst;
+  const uchar *csrc;
   int32_t                  r[10];
   int32_t                  sum0;
   int32_t                  sum1;
@@ -1618,22 +1618,22 @@ static void oc_filter_hedge(unsigned char *_dst,int32_t _dst_ystride,
     *_variance0+=OC_MINI(255,sum0);
     *_variance1+=OC_MINI(255,sum1);
     if(sum0<_flimit&&sum1<_flimit&&r[5]-r[4]<_qstep&&r[4]-r[5]<_qstep){
-      *cdst=(unsigned char)(r[0]*3+r[1]*2+r[2]+r[3]+r[4]+4>>3);
+      *cdst=(uchar)(r[0]*3+r[1]*2+r[2]+r[3]+r[4]+4>>3);
       cdst+=_dst_ystride;
-      *cdst=(unsigned char)(r[0]*2+r[1]+r[2]*2+r[3]+r[4]+r[5]+4>>3);
+      *cdst=(uchar)(r[0]*2+r[1]+r[2]*2+r[3]+r[4]+r[5]+4>>3);
       cdst+=_dst_ystride;
       for(by=0;by<4;by++){
-        *cdst=(unsigned char)(r[by]+r[by+1]+r[by+2]+r[by+3]*2+
+        *cdst=(uchar)(r[by]+r[by+1]+r[by+2]+r[by+3]*2+
          r[by+4]+r[by+5]+r[by+6]+4>>3);
         cdst+=_dst_ystride;
       }
-      *cdst=(unsigned char)(r[4]+r[5]+r[6]+r[7]*2+r[8]+r[9]*2+4>>3);
+      *cdst=(uchar)(r[4]+r[5]+r[6]+r[7]*2+r[8]+r[9]*2+4>>3);
       cdst+=_dst_ystride;
-      *cdst=(unsigned char)(r[5]+r[6]+r[7]+r[8]*2+r[9]*3+4>>3);
+      *cdst=(uchar)(r[5]+r[6]+r[7]+r[8]*2+r[9]*3+4>>3);
     }
     else{
       for(by=1;by<=8;by++){
-        *cdst=(unsigned char)r[by];
+        *cdst=(uchar)r[by];
         cdst+=_dst_ystride;
       }
     }
@@ -1643,11 +1643,11 @@ static void oc_filter_hedge(unsigned char *_dst,int32_t _dst_ystride,
 }
 
 /*Filter a vertical block edge.*/
-static void oc_filter_vedge(unsigned char *_dst,int32_t _dst_ystride,
+static void oc_filter_vedge(uchar *_dst,int32_t _dst_ystride,
  int32_t _qstep,int32_t _flimit,int32_t *_variances){
-  unsigned char       *rdst;
-  const unsigned char *rsrc;
-  unsigned char       *cdst;
+  uchar       *rdst;
+  const uchar *rsrc;
+  uchar       *cdst;
   int32_t                  r[10];
   int32_t                  sum0;
   int32_t                  sum1;
@@ -1666,14 +1666,14 @@ static void oc_filter_vedge(unsigned char *_dst,int32_t _dst_ystride,
     _variances[0]+=OC_MINI(255,sum0);
     _variances[1]+=OC_MINI(255,sum1);
     if(sum0<_flimit&&sum1<_flimit&&r[5]-r[4]<_qstep&&r[4]-r[5]<_qstep){
-      *rdst++=(unsigned char)(r[0]*3+r[1]*2+r[2]+r[3]+r[4]+4>>3);
-      *rdst++=(unsigned char)(r[0]*2+r[1]+r[2]*2+r[3]+r[4]+r[5]+4>>3);
+      *rdst++=(uchar)(r[0]*3+r[1]*2+r[2]+r[3]+r[4]+4>>3);
+      *rdst++=(uchar)(r[0]*2+r[1]+r[2]*2+r[3]+r[4]+r[5]+4>>3);
       for(bx=0;bx<4;bx++){
-        *rdst++=(unsigned char)(r[bx]+r[bx+1]+r[bx+2]+r[bx+3]*2+
+        *rdst++=(uchar)(r[bx]+r[bx+1]+r[bx+2]+r[bx+3]*2+
          r[bx+4]+r[bx+5]+r[bx+6]+4>>3);
       }
-      *rdst++=(unsigned char)(r[4]+r[5]+r[6]+r[7]*2+r[8]+r[9]*2+4>>3);
-      *rdst=(unsigned char)(r[5]+r[6]+r[7]+r[8]*2+r[9]*3+4>>3);
+      *rdst++=(uchar)(r[4]+r[5]+r[6]+r[7]*2+r[8]+r[9]*2+4>>3);
+      *rdst=(uchar)(r[5]+r[6]+r[7]+r[8]*2+r[9]*3+4>>3);
     }
     cdst+=_dst_ystride;
   }
@@ -1684,9 +1684,9 @@ static void oc_dec_deblock_frag_rows(oc_dec_ctx *_dec,
  int32_t _fragy_end){
   oc_fragment_plane   *fplane;
   int32_t                 *variance;
-  unsigned char       *dc_qi;
-  unsigned char       *dst;
-  const unsigned char *src;
+  uchar       *dc_qi;
+  uchar       *dst;
+  const uchar *src;
   ptrdiff_t            froffset;
   int32_t                  dst_ystride;
   int32_t                  src_ystride;
@@ -1765,14 +1765,14 @@ static void oc_dec_deblock_frag_rows(oc_dec_ctx *_dec,
   }
 }
 
-static void oc_dering_block(unsigned char *_idata,int32_t _ystride,int32_t _b,
+static void oc_dering_block(uchar *_idata,int32_t _ystride,int32_t _b,
  int32_t _dc_scale,int32_t _sharp_mod,int32_t _strong){
-  static const unsigned char OC_MOD_MAX[2]={24,32};
-  static const unsigned char OC_MOD_SHIFT[2]={1,0};
-  const unsigned char *psrc;
-  const unsigned char *src;
-  const unsigned char *nsrc;
-  unsigned char       *dst;
+  static const uchar OC_MOD_MAX[2]={24,32};
+  static const uchar OC_MOD_SHIFT[2]={1,0};
+  const uchar *psrc;
+  const uchar *src;
+  const uchar *nsrc;
+  uchar       *dst;
   int32_t                  vmod[72];
   int32_t                  hmod[72];
   int32_t                  mod_hi;
@@ -1877,7 +1877,7 @@ static void oc_dec_dering_frag_rows(oc_dec_ctx *_dec,th_img_plane *_img,
   oc_fragment_plane *fplane;
   oc_fragment       *frag;
   int32_t               *variance;
-  unsigned char     *idata;
+  uchar     *idata;
   ptrdiff_t          froffset;
   int32_t                ystride;
   int32_t                nhfrags;
@@ -2286,11 +2286,11 @@ int32_t th_decode_ycbcr_out(th_dec_ctx *_dec,th_ycbcr_buffer _ycbcr){
     Stuff the plane into cairo.*/
   if(_dec->telemetry){
     cairo_surface_t *cs;
-    unsigned char   *data;
-    unsigned char   *y_row;
-    unsigned char   *u_row;
-    unsigned char   *v_row;
-    unsigned char   *rgb_row;
+    uchar   *data;
+    uchar   *y_row;
+    uchar   *u_row;
+    uchar   *v_row;
+    uchar   *rgb_row;
     int32_t              cstride;
     int32_t              w;
     int32_t              h;
@@ -2832,8 +2832,8 @@ int32_t th_decode_ycbcr_out(th_dec_ctx *_dec,th_ycbcr_buffer _ycbcr){
     switch(_dec->state.info.pixel_fmt){
       case TH_PF_420:{
         for(y=0;y<h;y+=2){
-          unsigned char *y_row2;
-          unsigned char *rgb_row2;
+          uchar *y_row2;
+          uchar *rgb_row2;
           y_row2=y_row+_ycbcr[0].stride;
           rgb_row2=rgb_row+cstride;
           for(x=0;x<w;x+=2){

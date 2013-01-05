@@ -1068,15 +1068,15 @@ namespace plane
 
       if(emouse == ::user::mouse_left_button)
       {
-         return (::GetAsyncKeyState(VK_LBUTTON) & (short) 0x8000) != 0;
+         return (::GetAsyncKeyState(VK_LBUTTON) & (int16_t) 0x8000) != 0;
       }
       else if(emouse == ::user::mouse_right_button)
       {
-         return (::GetAsyncKeyState(VK_RBUTTON) & (short) 0x8000) != 0;
+         return (::GetAsyncKeyState(VK_RBUTTON) & (int16_t) 0x8000) != 0;
       }
       else if(emouse == ::user::mouse_middle_button)
       {
-         return (::GetAsyncKeyState(VK_MBUTTON) & (short) 0x8000) != 0;
+         return (::GetAsyncKeyState(VK_MBUTTON) & (int16_t) 0x8000) != 0;
       }
       else
       {

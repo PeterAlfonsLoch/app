@@ -59,7 +59,7 @@
 uint32_t ZEXPORT adler32(uint32_t adler, const Bytef * buf, uInt len)
 {
     uint32_t sum2;
-    unsigned n;
+    uint32_t n;
 
     /* split Adler-32 into component sums */
     sum2 = (adler >> 16) & 0xffff;
@@ -80,7 +80,7 @@ uint32_t ZEXPORT adler32(uint32_t adler, const Bytef * buf, uInt len)
     if (buf == Z_NULL)
         return 1L;
 
-    /* in case short lengths are provided, keep it somewhat fast */
+    /* in case int16_t lengths are provided, keep it somewhat fast */
     if (len < 16) {
         while (len--) {
             adler += *buf++;
@@ -128,10 +128,10 @@ uint32_t ZEXPORT adler32_combine(uint32_t adler1, uint32_t adler2, z_off_t len2)
 {
     uint32_t sum1;
     uint32_t sum2;
-    unsigned rem;
+    uint32_t rem;
 
     /* the derivation of this formula is left as an exercise for the reader */
-    rem = (unsigned)(len2 % BASE);
+    rem = (uint32_t)(len2 % BASE);
     sum1 = adler1 & 0xffff;
     sum2 = rem * sum1;
     MOD(sum2);

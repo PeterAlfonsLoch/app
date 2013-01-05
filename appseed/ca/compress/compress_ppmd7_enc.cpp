@@ -16,7 +16,7 @@ void Ppmd7z_RangeEnc_Init(CPpmd7z_RangeEnc *p)
 
 static void RangeEnc_ShiftLow(CPpmd7z_RangeEnc *p)
 {
-  if ((uint32_t)p->Low < (uint32_t)0xFF000000 || (unsigned)(p->Low >> 32) != 0)
+  if ((uint32_t)p->Low < (uint32_t)0xFF000000 || (uint32_t)(p->Low >> 32) != 0)
   {
     byte temp = p->Cache;
     do
@@ -66,7 +66,7 @@ static void RangeEnc_EncodeBit_1(CPpmd7z_RangeEnc *p, uint32_t size0)
 
 void Ppmd7z_RangeEnc_FlushData(CPpmd7z_RangeEnc *p)
 {
-  unsigned i;
+  uint32_t i;
   for (i = 0; i < 5; i++)
     RangeEnc_ShiftLow(p);
 }
@@ -81,7 +81,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
   {
     CPpmd_State *s = Ppmd7_GetStats(p, p->MinContext);
     uint32_t sum;
-    unsigned i;
+    uint32_t i;
     if (s->Symbol == symbol)
     {
       RangeEnc_Encode(rc, 0, s->Freq, p->MinContext->SummFreq);
@@ -140,7 +140,7 @@ void Ppmd7_EncodeSymbol(CPpmd7 *p, CPpmd7z_RangeEnc *rc, int32_t symbol)
     CPpmd_See *see;
     CPpmd_State *s;
     uint32_t sum;
-    unsigned i, numMasked = p->MinContext->NumStats;
+    uint32_t i, numMasked = p->MinContext->NumStats;
     do
     {
       p->OrderFall++;

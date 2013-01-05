@@ -131,7 +131,7 @@ static int32_t oc_make_dct_token_full(int32_t _zzi,int32_t _zzj,int32_t _val,int
   Late SKIP analysis is tied up in the tokenization process, so we need to be
    able to undo a fragment's tokens on a whim.*/
 
-static const unsigned char OC_ZZI_HUFF_OFFSET[64]={
+static const uchar OC_ZZI_HUFF_OFFSET[64]={
    0,16,16,16,16,16,32,32,
   32,32,32,32,32,32,32,48,
   48,48,48,48,48,48,48,48,
@@ -171,7 +171,7 @@ static void oc_enc_token_log(oc_enc_ctx *_enc,
  int32_t _pli,int32_t _zzi,int32_t _token,int32_t _eb){
   ptrdiff_t ti;
   ti=_enc->ndct_tokens[_pli][_zzi]++;
-  _enc->dct_tokens[_pli][_zzi][ti]=(unsigned char)_token;
+  _enc->dct_tokens[_pli][_zzi][ti]=(uchar)_token;
   _enc->extra_bits[_pli][_zzi][ti]=(ogg_uint16_t)_eb;
 }
 
@@ -198,7 +198,7 @@ typedef struct oc_quant_token oc_quant_token;
     - A token to code if the value is zero (EOB, zero run, or combo token).
     - A token to code if the value is not zero (DCT value token).*/
 struct oc_quant_token{
-  unsigned char next;
+  uchar next;
   signed char   token;
   ogg_int16_t   eb;
   ogg_uint32_t  cost;
@@ -219,7 +219,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
   ogg_uint32_t         d2_accum[64];
   oc_quant_token       tokens[64][2];
   ogg_uint16_t        *eob_run;
-  const unsigned char *dct_fzig_zag;
+  const uchar *dct_fzig_zag;
   ogg_uint32_t         cost;
   int32_t                  bits;
   int32_t                  eob;
@@ -272,7 +272,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
         /*Skip runs that are already quantized to zeros.
           If we considered each zero coefficient in turn, we might
            theoretically find a better way to partition long zero runs (e.g.,
-           a run of > 17 zeros followed by a 1 might be better coded as a short
+           a run of > 17 zeros followed by a 1 might be better coded as a int16_t
            zero run followed by a combo token, rather than the longer zero
            token followed by a 1 value token), but zeros are so common that
            this becomes very computationally expensive (quadratic instead of
@@ -403,7 +403,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
         }
         nzeros=zzj-zzi;
       }
-      tokens[zzi][0].next=(unsigned char)best_next;
+      tokens[zzi][0].next=(uchar)best_next;
       tokens[zzi][0].token=(signed char)best_token;
       tokens[zzi][0].eb=(ogg_int16_t)best_eb;
       tokens[zzi][0].cost=best_cost;
@@ -420,7 +420,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
         zzj=zzi+1&63;
         tj=best_flags>>zzj&1;
         next=(zzj<<1)+tj;
-        tokens[zzi][1].next=(unsigned char)next;
+        tokens[zzi][1].next=(uchar)next;
         tokens[zzi][1].token=(signed char)token;
         tokens[zzi][1].eb=0;
         tokens[zzi][1].cost=d2+lambda*bits+tokens[zzj][tj].cost;
@@ -620,7 +620,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       zzj=zzi+1&63;
       tj=best_flags>>zzj&1;
       next=(zzj<<1)+tj;
-      tokens[zzi][1].next=(unsigned char)next;
+      tokens[zzi][1].next=(uchar)next;
       tokens[zzi][1].token=(signed char)best_token;
       tokens[zzi][1].eb=best_eb;
       tokens[zzi][1].cost=best_cost+tokens[zzj][tj].cost;
@@ -782,8 +782,8 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
  int32_t _prev_ndct_tokens1,int32_t _prev_eob_run1){
   const ogg_int16_t *frag_dc;
   ptrdiff_t          fragii;
-  unsigned char     *dct_tokens0;
-  unsigned char     *dct_tokens1;
+  uchar     *dct_tokens0;
+  uchar     *dct_tokens1;
   ogg_uint16_t      *extra_bits0;
   ogg_uint16_t      *extra_bits1;
   ptrdiff_t          ti0;
@@ -849,13 +849,13 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
       /*Flush any pending EOB run.*/
       if(eob_run0>0){
         token=oc_make_eob_token_full(eob_run0,&eb);
-        dct_tokens0[ti0]=(unsigned char)token;
+        dct_tokens0[ti0]=(uchar)token;
         extra_bits0[ti0]=(ogg_uint16_t)eb;
         ti0++;
         eob_run0=0;
       }
       token=oc_make_dct_token_full(0,0,val,&eb);
-      dct_tokens0[ti0]=(unsigned char)token;
+      dct_tokens0[ti0]=(uchar)token;
       extra_bits0[ti0]=(ogg_uint16_t)eb;
       ti0++;
     }
@@ -868,7 +868,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           Move it to stack 0.*/
         if(++eob_run0>=4095){
           token=oc_make_eob_token_full(eob_run0,&eb);
-          dct_tokens0[ti0]=(unsigned char)token;
+          dct_tokens0[ti0]=(uchar)token;
           extra_bits0[ti0]=(ogg_uint16_t)eb;
           ti0++;
           eob_run0=0;
@@ -880,7 +880,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           Flush it if we've got it.*/
         if(eob_run0>0){
           token=oc_make_eob_token_full(eob_run0,&eb);
-          dct_tokens0[ti0]=(unsigned char)token;
+          dct_tokens0[ti0]=(uchar)token;
           extra_bits0[ti0]=(ogg_uint16_t)eb;
           ti0++;
           eob_run0=0;
@@ -936,7 +936,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           case OC_DCT_RUN_CAT1A+1:
           case OC_DCT_RUN_CAT1A+2:
           case OC_DCT_RUN_CAT1A+3:{
-            dct_tokens0[ti0]=(unsigned char)(token1+1);
+            dct_tokens0[ti0]=(uchar)(token1+1);
             extra_bits0[ti0]=(ogg_uint16_t)eb1;
             ti0++;
             /*Don't write the AC coefficient back out.*/
@@ -975,7 +975,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
             /*Don't write the AC coefficient back out.*/
           }continue;
         }
-        /*We can't merge tokens, write a short zero run and keep going.*/
+        /*We can't merge tokens, write a int16_t zero run and keep going.*/
         dct_tokens0[ti0]=OC_DCT_SHORT_ZRL_TOKEN;
         extra_bits0[ti0]=0;
         ti0++;
@@ -985,13 +985,13 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
       /*Flush any (inactive) EOB run.*/
       if(eob_run1>0){
         token=oc_make_eob_token_full(eob_run1,&eb);
-        dct_tokens1[ti1w]=(unsigned char)token;
+        dct_tokens1[ti1w]=(uchar)token;
         extra_bits1[ti1w]=(ogg_uint16_t)eb;
         ti1w++;
         eob_run1=0;
       }
       /*There's no active EOB run, so log the current token.*/
-      dct_tokens1[ti1w]=(unsigned char)token1;
+      dct_tokens1[ti1w]=(uchar)token1;
       extra_bits1[ti1w]=(ogg_uint16_t)eb1;
       ti1w++;
     }
@@ -1001,7 +1001,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
       /*If we have more than 4095 EOBs outstanding in stack1, flush the run.*/
       if(eob_run1-neobs1>=4095){
         token=oc_make_eob_token_full(4095,&eb);
-        dct_tokens1[ti1w]=(unsigned char)token;
+        dct_tokens1[ti1w]=(uchar)token;
         extra_bits1[ti1w]=(ogg_uint16_t)eb;
         ti1w++;
         eob_run1-=4095;
@@ -1070,7 +1070,7 @@ void oc_enc_tokenize_finish(oc_enc_ctx *_enc){
     if(run_count>=4096)continue;
     /*We CAN combine them into one run.*/
     new_tok=oc_make_eob_token_full(run_count,&new_eb);
-    _enc->dct_tokens[plj][zzj][ti]=(unsigned char)new_tok;
+    _enc->dct_tokens[plj][zzj][ti]=(uchar)new_tok;
     _enc->extra_bits[plj][zzj][ti]=(ogg_uint16_t)new_eb;
     _enc->dct_token_offs[pli][zzi]++;
   }

@@ -7,9 +7,9 @@
 *
 *      MulDiv32(a,b,c) = (a * b) / c         (round down, signed)
 *
-*      MulDivRD(a,b,c) = (a * b) / c         (round down, unsigned)
-*      MulDivRN(a,b,c) = (a * b + c/2) / c   (round nearest, unsigned)
-*      MulDivRU(a,b,c) = (a * b + c-1) / c   (round up, unsigned)
+*      MulDivRD(a,b,c) = (a * b) / c         (round down, uint32_t)
+*      MulDivRN(a,b,c) = (a * b + c/2) / c   (round nearest, uint32_t)
+*      MulDivRU(a,b,c) = (a * b + c-1) / c   (round up, uint32_t)
 *
 *****************************************************************************/
 

@@ -519,7 +519,7 @@ crypto_kernel_set_debug_module(char *name, int32_t on) {
 }
 
 err_status_t
-crypto_get_random(unsigned char *buffer, uint32_t length) {
+crypto_get_random(uchar *buffer, uint32_t length) {
   if (crypto_kernel.state == crypto_kernel_state_secure)
     return ctr_prng_get_octet_string(buffer, length);
   else

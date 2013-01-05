@@ -75,7 +75,7 @@ namespace file_watcher
 		void update();
 
 		/// Handles the action
-		void handle_action(watch_struct* watch, const char * filename, unsigned long ulOsAction);
+		void handle_action(watch_struct* watch, const char * filename, uint32_t ulOsAction);
 
 
 	};

@@ -314,7 +314,7 @@ namespace ex1
       }
    }
 
-   bool file::read(unsigned char * puch)
+   bool file::read(uchar * puch)
    {
       if(read(puch, 1) == 1)
       {
@@ -339,7 +339,7 @@ namespace ex1
       }
    }
 
-   bool file::peek(unsigned char * puch)
+   bool file::peek(uchar * puch)
    {
       if(read(puch, 1) == 1)
       {
@@ -357,7 +357,7 @@ namespace ex1
       return read(&ch);
    }
 
-   bool file::read(unsigned char & uch)
+   bool file::read(uchar & uch)
    {
       return read(&uch);
    }
@@ -367,7 +367,7 @@ namespace ex1
       return peek(&ch);
    }
 
-   bool file::peek(unsigned char & uch)
+   bool file::peek(uchar & uch)
    {
       return peek(&uch);
    }

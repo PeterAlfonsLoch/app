@@ -418,7 +418,7 @@ namespace gen
 
             mouse_wheel(::ca::application * papp) : ca(papp), mouse(papp) {}
             UINT     GetFlags();
-            short    GetDelta();
+            int16_t    GetDelta();
             point    GetPoint();
 
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);

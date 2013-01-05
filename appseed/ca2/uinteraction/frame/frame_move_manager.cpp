@@ -456,7 +456,7 @@ namespace uinteraction
 
          if(pbase->m_uiMessage == WM_LBUTTONDOWN)
          {
-            point ptCursor((short) LOWORD(pbase->m_lparam), (short) HIWORD(pbase->m_lparam));
+            point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
             pwnd->ClientToScreen(&ptCursor);
             m_ptCursorOrigin = ptCursor;
             rect rectWindow;
@@ -495,7 +495,7 @@ namespace uinteraction
                return;
             }
             //           DWORD fwKeys = pbase->m_wparam;        // key flags
-            point ptCursor((short) LOWORD(pbase->m_lparam), (short) HIWORD(pbase->m_lparam));
+            point ptCursor((int16_t) LOWORD(pbase->m_lparam), (int16_t) HIWORD(pbase->m_lparam));
             pwnd->ClientToScreen(&ptCursor);
             point pt;
             pt = m_ptWindowOrigin + ptCursor - m_ptCursorOrigin;
