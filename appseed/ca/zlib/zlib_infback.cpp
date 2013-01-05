@@ -83,7 +83,7 @@ struct inflate_state FAR *state)
 
     /* build fixed huffman tables if first call (may not be thread safe) */
     if (virgin) {
-        unsigned sym, bits;
+        uint32_t sym, bits;
         static code *next;
 
         /* literal/length table */
@@ -251,14 +251,15 @@ void FAR *out_desc)
     struct inflate_state FAR *state;
     unsigned char FAR *next;    /* next input */
     unsigned char FAR *put;     /* next output */
-    unsigned have, left;        /* available input and output */
+    uint32_t have;            /* available input and output */
+   uint32_t left;           /* available input and output */
     uint32_t hold;         /* bit buffer */
-    unsigned bits;              /* bits in bit buffer */
-    unsigned copy;              /* number of stored or match bytes to copy */
+    uint32_t bits;              /* bits in bit buffer */
+    uint32_t copy;              /* number of stored or match bytes to copy */
     unsigned char FAR *from;    /* where to copy match bytes from */
     code codeThis;                  /* current decoding table entry */
     code last;                  /* parent table entry */
-    unsigned len;               /* length to copy for repeats, bits to drop */
+    uint32_t len;               /* length to copy for repeats, bits to drop */
     int32_t ret;                    /* return code */
     static const unsigned short order[19] = /* permutation of code lengths */
         {16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15};
