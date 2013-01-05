@@ -86,7 +86,7 @@ namespace ca
          BYTE a2, BYTE r2, BYTE g2, BYTE b2, // border colors
          int32_t x, int32_t y, int32_t iRadius);
 
-      virtual DWORD GetPixel(int32_t x, int32_t y);
+      virtual uint32_t GetPixel(int32_t x, int32_t y);
       virtual void Mask(COLORREF crMask, COLORREF crInMask, COLORREF crOutMask);
       virtual void channel_mask(BYTE uchFind, BYTE uchSet, BYTE uchUnset, visual::rgba::echannel echannel);
       virtual void transparent_color(color color);

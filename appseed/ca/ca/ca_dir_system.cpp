@@ -471,7 +471,7 @@ namespace ca
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", lpcszPath) >= 0))
          {
             bool bHasSubFolder;
-            DWORD dwLastError;
+            uint32_t dwLastError;
             if(m_isdirmap.lookup(lpcszPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
             bHasSubFolder = m_pziputil->HasSubFolder(papp, lpcszPath);
@@ -496,7 +496,7 @@ namespace ca
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
-            DWORD dwLastError;
+            uint32_t dwLastError;
             if(m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
@@ -527,7 +527,7 @@ namespace ca
          if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
-            DWORD dwLastError;
+            uint32_t dwLastError;
             if(m_isdirmap.lookup(strPath, bHasSubFolder, dwLastError))
                return bHasSubFolder;
             bHasSubFolder = m_pziputil->HasSubFolder(papp, strPath);
@@ -550,12 +550,12 @@ namespace ca
          InitHashTable(16384, TRUE);
       }
 
-      bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir, DWORD & dwLastError)
+      bool system::is_dir_map::lookup(const char * pszPath, bool &bIsDir, uint32_t & dwLastError)
       {
          return lookup(string(pszPath), bIsDir, dwLastError);
       }
 
-      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, DWORD & dwLastError)
+      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, uint32_t & dwLastError)
       {
 
          if(strPath.get_length() <= 0)
@@ -597,7 +597,7 @@ namespace ca
 
       }
 
-      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, DWORD &dwLastError, int32_t iLast)
+      bool system::is_dir_map::lookup(const string & strPath, bool &bIsDir, uint32_t &dwLastError, int32_t iLast)
       {
 
          if(iLast < 0)
@@ -628,7 +628,7 @@ namespace ca
 
       }
 
-      void system::is_dir_map::set(const char * pszPath, bool bIsDir, DWORD dwLastError)
+      void system::is_dir_map::set(const char * pszPath, bool bIsDir, uint32_t dwLastError)
       {
 #ifdef LINUX
          static string strSep = "/";
@@ -646,7 +646,7 @@ namespace ca
          set_at(strPath, isdir);
       }
 
-      void system::is_dir_map::set(const string & strPath, bool bIsDir, DWORD dwLastError)
+      void system::is_dir_map::set(const string & strPath, bool bIsDir, uint32_t dwLastError)
       {
 #ifdef LINUX
          static string strSep = "/";

@@ -18,7 +18,7 @@ namespace ca
       gen::add_ref(this);
 
       //_setmbcp(CP_UTF8);
-//      DWORD dw = ::_getmbcp();
+//      uint32_t dw = ::_getmbcp();
       srand(::get_tick_count());
 
       m_pinitmaindata      = NULL;

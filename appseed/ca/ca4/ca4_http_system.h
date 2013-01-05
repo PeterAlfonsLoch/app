@@ -36,7 +36,7 @@ namespace ca4
             string      m_strUrl;
             string      m_strAutoConfigScript;
             tinyjs      m_js;
-            DWORD       m_dwLastChecked;
+            uint32_t       m_dwLastChecked;
 
 
             pac(::ca::application * papp);
@@ -55,7 +55,7 @@ namespace ca4
             bool        m_bDirect;
             string      m_strProxy;
             int32_t         m_iPort;
-            DWORD       m_dwLastChecked;
+            uint32_t       m_dwLastChecked;
 
 
             proxy(::ca::application * papp);

@@ -21,7 +21,7 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset)
+   bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, uint32_t offset)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lpbmi);
@@ -31,7 +31,7 @@ namespace ca
       UNREFERENCED_PARAMETER(offset);
       throw not_implemented(get_app());
    }
-   bool bitmap::CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
+   bool bitmap::CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(pbmih);
@@ -42,13 +42,13 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-   DWORD bitmap::SetBitmapBits(DWORD dwCount, const void * lpBits)
+   uint32_t bitmap::SetBitmapBits(uint32_t dwCount, const void * lpBits)
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);
       throw not_implemented(get_app());
    }
-   DWORD bitmap::GetBitmapBits(DWORD dwCount, LPVOID lpBits) const
+   uint32_t bitmap::GetBitmapBits(uint32_t dwCount, LPVOID lpBits) const
    {
       UNREFERENCED_PARAMETER(dwCount);
       UNREFERENCED_PARAMETER(lpBits);

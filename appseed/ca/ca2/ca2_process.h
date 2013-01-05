@@ -36,8 +36,8 @@ namespace ca2
       public:
          
          
-         DWORD    m_dwTimeout;
-         DWORD    m_dwStartTime;
+         uint32_t    m_dwTimeout;
+         uint32_t    m_dwStartTime;
 
       };
 
@@ -49,8 +49,8 @@ namespace ca2
 
       // run process and get output
       var get_output(const char * pszCmdLine);
-      DWORD retry(const char * pszCmdLine, DWORD dwTimeOut, int32_t iShow = SW_HIDE);
-      DWORD synch(const char * pszCmdLine, int32_t iShow = SW_HIDE);
+      uint32_t retry(const char * pszCmdLine, uint32_t dwTimeOut, int32_t iShow = SW_HIDE);
+      uint32_t synch(const char * pszCmdLine, int32_t iShow = SW_HIDE);
       bool launch(const char * pszCmdLine, int32_t iShow = SW_HIDE);
 
 

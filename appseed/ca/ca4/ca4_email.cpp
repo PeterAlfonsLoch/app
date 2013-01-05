@@ -19,7 +19,7 @@ namespace ca4
       socket.m_estate = ::sockets::smtp_socket::state_initial;
       socket.m_email = email;
 
-      DWORD dwEnd = ::get_tick_count() + 1000 * 120;
+      uint32_t dwEnd = ::get_tick_count() + 1000 * 120;
       handler.add(&socket);
       while (true)
       {

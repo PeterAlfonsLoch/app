@@ -41,8 +41,8 @@ namespace ca
 
 
             bool        m_bIsDir;
-            DWORD       m_dwLastCheck;
-            DWORD       m_dwError;
+            uint32_t       m_dwLastCheck;
+            uint32_t       m_dwError;
 
 
          };
@@ -55,17 +55,17 @@ namespace ca
 
 
             mutex             m_mutex;
-            DWORD             m_dwTimeOut;
+            uint32_t             m_dwTimeOut;
 
 
             is_dir_map(::ca::application * papp);
 
 
-            bool lookup(const string & strPath, bool &bIsDir, DWORD & dwLastError);
-            bool lookup(const string & strPath, bool &bIsDir, DWORD & dwLastError, int32_t iLast);
-            bool lookup(const char * pszPath, bool &bIsDir, DWORD &dwLastError);
-            void set(const char * pszPath, bool bIsDir, DWORD dwLastError);
-            void set(const string & strPath, bool bIsDir, DWORD dwLastError);
+            bool lookup(const string & strPath, bool &bIsDir, uint32_t & dwLastError);
+            bool lookup(const string & strPath, bool &bIsDir, uint32_t & dwLastError, int32_t iLast);
+            bool lookup(const char * pszPath, bool &bIsDir, uint32_t &dwLastError);
+            void set(const char * pszPath, bool bIsDir, uint32_t dwLastError);
+            void set(const string & strPath, bool bIsDir, uint32_t dwLastError);
 
 
          };

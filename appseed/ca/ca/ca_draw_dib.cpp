@@ -99,7 +99,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   LPVOID draw_dib::GetBuffer(LPBITMAPINFOHEADER lpbi, DWORD dwSize, DWORD dwFlags )
+   LPVOID draw_dib::GetBuffer(LPBITMAPINFOHEADER lpbi, uint32_t dwSize, uint32_t dwFlags )
    {
       UNREFERENCED_PARAMETER(lpbi);
       UNREFERENCED_PARAMETER(dwSize);

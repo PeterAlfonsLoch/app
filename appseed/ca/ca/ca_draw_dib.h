@@ -34,7 +34,7 @@ namespace ca
       virtual bool draw(::ca::dib * pdib, ::ca::graphics * pdc, int32_t xDst, int32_t yDst, int32_t dxDst, int32_t dyDst, UINT wFlags );
       virtual bool draw(::ca::graphics * pdc, int32_t xDst, int32_t yDst, int32_t dxDst, int32_t dyDst, ::ca::dib * dib, int32_t xSrc, int32_t ySrc, int32_t dxSrc, int32_t dySrc, UINT wFlags );
 
-      virtual LPVOID GetBuffer(LPBITMAPINFOHEADER lpbi, DWORD dwSize, DWORD dwFlags);
+      virtual LPVOID GetBuffer(LPBITMAPINFOHEADER lpbi, uint32_t dwSize, uint32_t dwFlags);
 
       virtual bool ProfileDisplay(LPBITMAPINFOHEADER lpbi);
 

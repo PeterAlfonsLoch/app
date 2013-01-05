@@ -366,9 +366,9 @@ namespace ca
       BYTE *dst=(BYTE*)get_data();
       int32_t size=cx*cy;
 
-      DWORD dwB = rgba_get_b(cr);
-      DWORD dwG = rgba_get_g(cr);
-      DWORD dwR = rgba_get_r(cr);
+      uint32_t dwB = rgba_get_b(cr);
+      uint32_t dwG = rgba_get_g(cr);
+      uint32_t dwR = rgba_get_r(cr);
 
       while (size-- > 0)
       {
@@ -701,13 +701,13 @@ fill_last:
       BYTE *dst=(BYTE*)get_data();
       int32_t size=cx*cy;
 
-      DWORD dwB = rgba_get_b(cr);
-      DWORD dwG = rgba_get_g(cr);
-      DWORD dwR = rgba_get_r(cr);
+      uint32_t dwB = rgba_get_b(cr);
+      uint32_t dwG = rgba_get_g(cr);
+      uint32_t dwR = rgba_get_r(cr);
 
-      DWORD dwB_ = dwB << 8;
-      DWORD dwG_ = dwG << 8;
-      DWORD dwR_ = dwR << 8;
+      uint32_t dwB_ = dwB << 8;
+      uint32_t dwG_ = dwG << 8;
+      uint32_t dwR_ = dwR << 8;
 
       while ( size-- )
       {
@@ -1465,9 +1465,9 @@ fill_last:
       }
    }
 
-   DWORD dib::GetPixel(int32_t x, int32_t y)
+   uint32_t dib::GetPixel(int32_t x, int32_t y)
    {
-      DWORD dw = *(get_data() + x + (cy - y - 1) * cx);
+      uint32_t dw = *(get_data() + x + (cy - y - 1) * cx);
       return RGB(rgba_get_b(dw), rgba_get_g(dw), rgba_get_r(dw));
    }
 
@@ -1498,7 +1498,7 @@ fill_last:
 
 
       BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.cx));
-      DWORD dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
+      uint32_t dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
       int32_t size=m_Size.cx*m_Size.cy;
       double iLevel;
 
@@ -1605,7 +1605,7 @@ fill_last:
 
 
          BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
-         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+         uint32_t dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         int32_t size=cx*cy;
 
          int32_t dx, dy;
@@ -1658,7 +1658,7 @@ fill_last:
 
 
       BYTE *dst = ((BYTE*)(get_data() + xL + yL * m_Size.cx));
-      DWORD dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
+      uint32_t dwAdd = ((m_Size.cx - 1 - xU) + xL) * 4;
       int32_t size=m_Size.cx*m_Size.cy;
       double iLevel;
 
@@ -1765,7 +1765,7 @@ fill_last:
 
 
          BYTE *dst = ((BYTE*)(get_data() + xL + yL * cx));
-         DWORD dwAdd = ((cx - 1 - xU) + xL) * 4;
+         uint32_t dwAdd = ((cx - 1 - xU) + xL) * 4;
 //         int32_t size=cx*cy;
 
          int32_t dx, dy;

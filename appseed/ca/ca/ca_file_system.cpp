@@ -11,7 +11,7 @@
 struct PROCESS_INFO_t
 {
     string csProcess;
-    DWORD dwImageListIndex;
+    uint32_t dwImageListIndex;
 };
 
 
@@ -802,7 +802,7 @@ namespace ca
             gen::international::utf8_to_unicode(psz),
             gen::international::utf8_to_unicode(pszNew)))
          {
-            DWORD dwError = ::GetLastError();
+            uint32_t dwError = ::GetLastError();
             string strError;
             strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
             throw strError;
@@ -861,7 +861,7 @@ namespace ca
          if(!::DeleteFileW(
             gen::international::utf8_to_unicode(psz)))
          {
-            DWORD dwError = ::GetLastError();
+            uint32_t dwError = ::GetLastError();
             if(dwError == 2) // the file does not exist, so delete "failed"
                return;
             string strError;
@@ -1116,7 +1116,7 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-         DWORD dwAttrib = GetFileAttributesW(gen::international::utf8_to_unicode(psz));
+         uint32_t dwAttrib = GetFileAttributesW(gen::international::utf8_to_unicode(psz));
          if(dwAttrib & FILE_ATTRIBUTE_READONLY)
             return true;
          return false;
@@ -1331,7 +1331,7 @@ struct THREAD_PARAMS
 	bool bStatus;
 };
 
-DWORD WINAPI ThreadProc( LPVOID lParam )
+uint32_t WINAPI ThreadProc( LPVOID lParam )
 {
 	THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 
@@ -1357,9 +1357,9 @@ DWORD WINAPI ThreadProc( LPVOID lParam )
 			}
 			CloseHandle( hProcess );
 		}
-		//DWORD dwRet = pGetFinalPathNameByHandle( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
-      //DWORD dwRet = GetFileInformationByHandleEx(hDup, FileNameInfo, pinfo, MAX_PATH * 8);
-      DWORD dwRet = GetFinalPathNameByHandleW( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
+		//uint32_t dwRet = pGetFinalPathNameByHandle( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
+      //uint32_t dwRet = GetFileInformationByHandleEx(hDup, FileNameInfo, pinfo, MAX_PATH * 8);
+      uint32_t dwRet = GetFinalPathNameByHandleW( hDup, pThreadParam->lpPath, MAX_PATH, 0 );
       //wcsncpy(pThreadParam->lpPath, pinfo->FileName, pinfo->FileNameLength);
 		if( hDup && (hDup != (HANDLE)sh.wValue))
 		{
@@ -1410,8 +1410,8 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 
 	// Get the list of all handles in the system
 	PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
-	DWORD size = sizeof(SYSTEM_HANDLE_INFORMATION);
-	DWORD needed = 0;
+	uint32_t size = sizeof(SYSTEM_HANDLE_INFORMATION);
+	uint32_t needed = 0;
 	NTSTATUS status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
 	if( !NT_SUCCESS(status))
 	{
@@ -1502,7 +1502,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 	}
 
 	// Walk through the handle list
-	for ( DWORD i = 0; i < pSysHandleInformation->dwCount; i++ )
+	for ( uint32_t i = 0; i < pSysHandleInformation->dwCount; i++ )
 	{
 		SYSTEM_HANDLE& sh = pSysHandleInformation->Handles[i];
 		if( sh.bObjectType != nFileType )// Under windows XP file handle is of type 28
@@ -1517,7 +1517,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 			HANDLE_INFO stHandle = {0};
 			ADDRESS_INFO stAddress;
 			stAddress.pAddress = sh.pAddress;
-			DWORD dwReturn = 0;
+			uint32_t dwReturn = 0;
 			bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO),
 				&stHandle, sizeof(HANDLE_INFO), &dwReturn, NULL ) != FALSE;
 
@@ -1611,9 +1611,9 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 		bShortPath = true;
 	}
 
-	DWORD dwsize = 300;
+	uint32_t dwsize = 300;
 	PDWORD pDwId = (PDWORD)new BYTE[dwsize];
-	DWORD dwRetruned = dwsize;
+	uint32_t dwRetruned = dwsize;
 	// Enum all the process first
 	while( 1 )
 	{
@@ -1626,7 +1626,7 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 		dwsize += 50;
 		pDwId = (PDWORD)new BYTE[dwsize];
 	}
-	int32_t nCount = dwRetruned / sizeof(DWORD);
+	int32_t nCount = dwRetruned / sizeof(uint32_t);
 	int32_t nItemCount = -1;
 	// Enumerate modules of the above process
 	for( int32_t nIdx = 0; nIdx < nCount;nIdx++ )

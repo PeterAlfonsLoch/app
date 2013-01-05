@@ -18,8 +18,8 @@ namespace ca
       virtual bool CreateBitmapIndirect(::ca::graphics * pdc, LPBITMAP lpBitmap);
       virtual bool CreateCompatibleBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
       virtual bool CreateDiscardableBitmap(::ca::graphics * pgraphics, int32_t nWidth, int32_t nHeight);
-      virtual bool CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, DWORD offset);
-      virtual bool CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, DWORD flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
+      virtual bool CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, uint32_t offset);
+      virtual bool CreateDIBitmap(::ca::graphics * pdc, const BITMAPINFOHEADER *pbmih, uint32_t flInit, const void *pjBits, const BITMAPINFO *pbmi, UINT iUsage);
 
       virtual bool attach(void * posdata);
       virtual void * detach();
@@ -32,8 +32,8 @@ namespace ca
       virtual class size size() const;
 
    // Operations
-      virtual DWORD SetBitmapBits(DWORD dwCount, const void * lpBits);
-      virtual DWORD GetBitmapBits(DWORD dwCount, LPVOID lpBits) const;
+      virtual uint32_t SetBitmapBits(uint32_t dwCount, const void * lpBits);
+      virtual uint32_t GetBitmapBits(uint32_t dwCount, LPVOID lpBits) const;
 
       virtual void dump(dump_context & dumpcontext) const;
 

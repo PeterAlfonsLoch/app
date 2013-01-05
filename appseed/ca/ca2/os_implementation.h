@@ -162,9 +162,9 @@ typedef struct
 {
    WORD dlgVer;
    WORD signature;
-   DWORD helpID;
-   DWORD exStyle;
-   DWORD style;
+   uint32_t helpID;
+   uint32_t exStyle;
+   uint32_t style;
    WORD cDlgItems;
    int16_t x;
    int16_t y;
@@ -174,14 +174,14 @@ typedef struct
 
 typedef struct
 {
-   DWORD helpID;
-   DWORD exStyle;
-   DWORD style;
+   uint32_t helpID;
+   uint32_t exStyle;
+   uint32_t style;
    int16_t x;
    int16_t y;
    int16_t cx;
    int16_t cy;
-   DWORD id;
+   uint32_t id;
 } DLGITEMTEMPLATEEX;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -280,7 +280,7 @@ CLASS_DECL_ca string __string_from_clsid(REFCLSID rclsid);
 CLASS_DECL_ca bool __get_in_proc_server(const char * lpszCLSID, string & str);
 #endif // ___NO_OLE_SUPPORT
 
-#define NULL_TLS ((DWORD)-1)
+#define NULL_TLS ((uint32_t)-1)
 
 /////////////////////////////////////////////////////////////////////////////
 // Message ::collection::map and message dispatch
