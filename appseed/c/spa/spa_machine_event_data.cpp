@@ -21,7 +21,7 @@ void blob::read(HANDLE f)
 {
    if(m_pchData != NULL)
       _ca_free(m_pchData, 0);
-   uint32_t dwRead;
+   DWORD dwRead;
    ::ReadFile(f, &m_sizet, sizeof(m_sizet), &dwRead, NULL);
    if(m_sizet == 0)
    {
@@ -46,7 +46,7 @@ void blob::read(HANDLE f)
 
 void blob::write(HANDLE f)
 {
-   uint32_t dwWritten;
+   DWORD dwWritten;
    ::WriteFile(f, &m_sizet, sizeof(m_sizet), &dwWritten, NULL);
    if(m_sizet > 0)
    {

@@ -1292,6 +1292,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\freetype2.3.5-1.dll" 
     <ClCompile Include="windows\c_os.cpp" />
     <ClCompile Include="windows\c_os_c_dll.cpp" />
     <ClCompile Include="windows\c_os_file.cpp" />
+    <ClCompile Include="windows\c_os_file_std.cpp" />
     <ClCompile Include="windows\c_os_file_watcher.cpp" />
     <ClCompile Include="windows\c_os_http.cpp" />
     <ClCompile Include="windows\c_os_launcher.cpp" />

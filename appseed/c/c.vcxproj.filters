@@ -787,6 +787,9 @@
     <ClCompile Include="c\c_file.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
+    <ClCompile Include="windows\c_os_file_std.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="c.def">

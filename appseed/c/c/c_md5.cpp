@@ -476,7 +476,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    }
 
-   uint32_t dwHigh;
+   DWORD dwHigh;
 
 
 #ifdef AMD64
@@ -632,7 +632,7 @@ vsstring get_file_md5_by_read(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
 
-   uint32_t dwHigh;
+   DWORD dwHigh;
 
    iSize = ::GetFileSize(hfile, &dwHigh);
 
