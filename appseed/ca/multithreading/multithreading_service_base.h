@@ -36,30 +36,30 @@ public:
 
 #ifdef WINDOWSEX
 
-   service_base(::ca::application * papp, DWORD controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
+   service_base(::ca::application * papp, uint32_t controlsAccepted = SERVICE_ACCEPT_PAUSE_CONTINUE | SERVICE_ACCEPT_STOP | SERVICE_ACCEPT_SHUTDOWN);
 
 #else
 
-   service_base(::ca::application * papp, DWORD controlsAccepted = 0);
+   service_base(::ca::application * papp, uint32_t controlsAccepted = 0);
 
 #endif
 
    virtual ~service_base();
 
-   virtual void Start(DWORD control) = 0;
-   virtual void Stop(DWORD control) = 0;
+   virtual void Start(uint32_t control) = 0;
+   virtual void Stop(uint32_t control) = 0;
 
    static void run(service_base& service);
 
 
-   void UpdateState(DWORD state, HRESULT errorCode = S_OK);
+   void UpdateState(uint32_t state, HRESULT errorCode = S_OK);
 
    string get_service_name() const;
 
    void SetServiceStatus();
-   static void WINAPI ServiceMain(DWORD argumentCount, PWSTR* arguments);
+   static void WINAPI ServiceMain(uint32_t argumentCount, PWSTR* arguments);
 
-   static void WINAPI ServiceHandler(DWORD control);
+   static void WINAPI ServiceHandler(uint32_t control);
 
 
 };

@@ -158,9 +158,9 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
    for (int32_t i = 0; i < m_waitableelementa.get_size(); i++)
       m_waitableelementa[i].item->init_wait();
 
-   DWORD start(get_tick_count());
+   uint32_t start(get_tick_count());
 
-   DWORD winResult;
+   uint32_t winResult;
    bool FoundExternal=false;
    do {
       //std::cout << "Start waiting in wc :" << m_objecta.size() << std::endl;
@@ -168,17 +168,17 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
       if (timeout)  {
          // if ANY timeout available
          do {
-            DWORD ticks = get_tick_count();
+            uint32_t ticks = get_tick_count();
 
             if (ticks-start >= timeout)
                winResult = WAIT_TIMEOUT;
             else
-               winResult = ::WaitForMultipleObjectsEx(static_cast<DWORD>(m_objecta.size()), &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
+               winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), &*m_objecta.begin(), waitForAll, start + timeout - ticks, true);
 
          } while (winResult == WAIT_IO_COMPLETION);
       }
       else
-         winResult = ::WaitForMultipleObjectsEx(static_cast<DWORD>(m_objecta.size()), &*m_objecta.begin(), waitForAll, 0, FALSE);
+         winResult = ::WaitForMultipleObjectsEx(static_cast<uint32_t>(m_objecta.size()), &*m_objecta.begin(), waitForAll, 0, FALSE);
 
       //std::cout << "Finished waiting in wc" << std::endl;
       if(callback_cnt>0 && winResult!=WAIT_TIMEOUT && winResult!=WAIT_FAILED) {
@@ -214,7 +214,7 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
                   uint32_t long res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
 
                   if ( res != WAIT_TIMEOUT ) {
-                     winResult= (DWORD) (res + position);
+                     winResult= (uint32_t) (res + position);
                      FoundExternal=true;
                   }
                }

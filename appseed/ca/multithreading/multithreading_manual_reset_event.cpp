@@ -58,7 +58,7 @@ manual_reset_event::manual_reset_event(::ca::application * papp, bool bInitially
 //      Description:    Waits for the event to become signaled.
 //
 //*****************************************************************************
-/*bool manual_reset_event::Wait(DWORD timeout)
+/*bool manual_reset_event::Wait(uint32_t timeout)
 {
     return (WAIT_OBJECT_0 == ::WaitForSingleObject(m_event,
                                                    timeout));

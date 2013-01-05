@@ -34,8 +34,8 @@ class CLASS_DECL_ca service_status
 public:
 
 
-   DWORD       dwServiceType;
-   DWORD       dwServiceState;
+   uint32_t       dwServiceType;
+   uint32_t       dwServiceState;
 
 
    service_status()

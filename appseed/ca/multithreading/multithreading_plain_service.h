@@ -14,8 +14,8 @@ public:
    plain_service(::ca::application * papp);
    virtual ~plain_service();
 
-   virtual void Start(DWORD);
-   virtual void Stop(DWORD);
+   virtual void Start(uint32_t);
+   virtual void Stop(uint32_t);
    void CallServiceThread();
    virtual void ServiceThread() = 0;
 

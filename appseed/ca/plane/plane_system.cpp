@@ -531,7 +531,7 @@ namespace plane
    bool system::verb()
    {
 
-      static DWORD dwStart = ::get_tick_count();
+      static uint32_t dwStart = ::get_tick_count();
 
       ::plane::application::verb();
 
@@ -1291,7 +1291,7 @@ namespace plane
 
 
 
-   bool system::wait_twf(DWORD dwTimeOut)
+   bool system::wait_twf(uint32_t dwTimeOut)
    {
       if(dwTimeOut > 1984)
          dwTimeOut = 1984;

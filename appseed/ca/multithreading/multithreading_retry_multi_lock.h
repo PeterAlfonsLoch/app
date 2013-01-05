@@ -27,7 +27,7 @@ public:
 
    void construct(const sync_object_ptra & syncobjectptra, duration durationLock, duration durationSleep, int32_t iRetry = -1, bool bInitialLock = true);
 
-   wait_result lock(bool bWaitForAll = TRUE, DWORD dwWakeMask = 0);
+   wait_result lock(bool bWaitForAll = TRUE, uint32_t dwWakeMask = 0);
    bool unlock();
    bool unlock(LONG lCount, LPLONG lPrevCount = NULL);
    bool IsLocked(index dwItem);

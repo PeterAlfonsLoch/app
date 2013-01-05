@@ -95,12 +95,12 @@ waitable_callback::~waitable_callback()
 ///  \param		duration sleeping time of waitable
 /*CLASS_DECL_ca void sleep(const duration & duration)
 {
-   Sleep((DWORD)duration.total_milliseconds());
+   Sleep((uint32_t)duration.total_milliseconds());
 }*/
 
 CLASS_DECL_ca void sleep(const duration & duration)
 {
-   ::Sleep(static_cast<DWORD>(duration.total_milliseconds()));
+   ::Sleep(static_cast<uint32_t>(duration.total_milliseconds()));
 }
 
 

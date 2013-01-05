@@ -110,7 +110,7 @@ LONG CompareFileTime(const FILETIME* ft1, const FILETIME* ft2)
   return 0;
 }
 
-DWORD GetLastError()
+uint32_t GetLastError()
 {
   return 0;
 }
@@ -121,9 +121,9 @@ DWORD GetLastError()
 
 #ifdef METROWIN
 
-CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
 
-CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
+CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi)
 {
    OVERLAPPED ov;
    zero(&ov, sizeof(ov));
@@ -133,7 +133,7 @@ CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD d
 
 }
 
-CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi)
+CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi)
 {
    OVERLAPPED ov;
    zero(&ov, sizeof(ov));

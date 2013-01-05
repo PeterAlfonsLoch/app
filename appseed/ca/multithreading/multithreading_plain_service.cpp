@@ -13,12 +13,12 @@ plain_service::~plain_service()
 {
 }
 
-void plain_service::Start(DWORD)
+void plain_service::Start(uint32_t)
 {
    thread_pool::QueueUserWorkItem(this, &plain_service::CallServiceThread);
 }
 
-void plain_service::Stop(DWORD)
+void plain_service::Stop(uint32_t)
 {
    m_stopping = true;
    m_stopped.wait();

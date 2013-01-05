@@ -7,8 +7,8 @@
 #else // !defined(WINDOWS)
 
 #ifdef METROWIN
-CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
-CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
+CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
+CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, uint32_t dwLo, uint32_t dwHi, uint32_t dwCountLo, uint32_t dwCountHi);
 #endif
 
 
@@ -39,13 +39,13 @@ typedef int32_t INT32;
 typedef uint32_t UINT;
 typedef uint32_t UINT32;
 #ifndef METROWIN
-typedef INT32 LONG;   // LONG, ULONG and DWORD must be 32-bit
+typedef INT32 LONG;   // LONG, ULONG and uint32_t must be 32-bit
 #endif
 //typedef UINT32 ULONG;
 
 #ifndef METROWIN
-#undef DWORD
-typedef UINT32 DWORD;
+#undef uint32_t
+typedef UINT32 uint32_t;
 #endif
 //typedef int64_t LONGLONG;
 //typedef uint64_t ULONGLONG;
@@ -64,8 +64,8 @@ typedef OLECHAR *LPOLESTR;
 
 /*typedef struct _FILETIME
 {
-  DWORD dwLowDateTime;
-  DWORD dwHighDateTime;
+  uint32_t dwLowDateTime;
+  uint32_t dwHighDateTime;
 }FILETIME;*/
 
 //#define HRESULT LONG
@@ -203,7 +203,7 @@ MY_EXTERN_C UINT SysStringByteLen(BSTR bstr);
 MY_EXTERN_C UINT SysStringLen(BSTR bstr);
 
 
-MY_EXTERN_C DWORD GetLastError();
+MY_EXTERN_C uint32_t GetLastError();
 MY_EXTERN_C LONG CompareFileTime(const FILETIME* ft1, const FILETIME* ft2);
 
 

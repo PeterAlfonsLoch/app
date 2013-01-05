@@ -41,7 +41,7 @@ multi_lock::~multi_lock()
    unlock();
 }
 
-wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD dwWakeMask /* = 0 */)
+wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, uint32_t dwWakeMask /* = 0 */)
 {
    int32_t iResult;
 
@@ -51,7 +51,7 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
    if (dwWakeMask == 0)
    {
 
-      iResult = ::WaitForMultipleObjectsEx((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), FALSE);
+      iResult = ::WaitForMultipleObjectsEx((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), FALSE);
 
    }
    else
@@ -59,7 +59,7 @@ wait_result multi_lock::lock(const duration & duration, bool bWaitForAll, DWORD 
 
 #ifdef WINDOWSEX
 
-      iResult = ::MsgWaitForMultipleObjects((DWORD) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
+      iResult = ::MsgWaitForMultipleObjects((uint32_t) m_objecta.get_count(), m_objecta.get_data(), bWaitForAll, duration.os_lock_duration(), dwWakeMask);
 
 #else
       throw not_supported_exception(get_app());

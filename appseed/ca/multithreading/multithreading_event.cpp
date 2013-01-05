@@ -23,7 +23,7 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 
 #elif defined(METROWIN)
 
-   DWORD dwFlags = 0;
+   uint32_t dwFlags = 0;
 
    if(bInitiallyOwn)
    {
@@ -317,9 +317,9 @@ wait_result event::wait (const duration & durationTimeout)
    else
    {
 
-      DWORD timeout = durationTimeout.os_lock_duration();
+      uint32_t timeout = durationTimeout.os_lock_duration();
 
-      DWORD start = ::get_tick_count();
+      uint32_t start = ::get_tick_count();
 
       while(durationTimeout.is_pos_infinity() || ::get_tick_count() - start < timeout)
       {
@@ -439,7 +439,7 @@ bool event::lock(const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-   DWORD dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.os_lock_duration(), FALSE);
+   uint32_t dwRet = ::WaitForSingleObjectEx(m_object, durationTimeout.os_lock_duration(), FALSE);
 
    if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
       return true;
@@ -496,9 +496,9 @@ bool event::lock(const duration & durationTimeout)
    else
    {
 
-      DWORD timeout = durationTimeout.os_lock_duration();
+      uint32_t timeout = durationTimeout.os_lock_duration();
 
-      DWORD start = ::get_tick_count();
+      uint32_t start = ::get_tick_count();
 
       while(::get_tick_count() - start < timeout)
       {

@@ -76,7 +76,7 @@ private:
 
    template <typename T>
 #ifdef WINDOWSEX
-   static DWORD WINAPI thread_proc(PVOID pcontext)
+   static uint32_t WINAPI thread_proc(PVOID pcontext)
 #else
    static UINT c_cdecl thread_proc(PVOID pcontext)
 #endif

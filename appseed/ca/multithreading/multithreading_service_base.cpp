@@ -11,7 +11,7 @@
 
 #include "framework.h"
 
-DWORD Win32FromHResult(HRESULT value);
+uint32_t Win32FromHResult(HRESULT value);
 
 
 //
@@ -26,7 +26,7 @@ service_base* service_base::s_pservice = 0;
 //                      service_base class.
 //
 //*****************************************************************************
-service_base::service_base(::ca::application * papp, DWORD controlsAccepted) :
+service_base::service_base(::ca::application * papp, uint32_t controlsAccepted) :
    ca(papp)
 #ifdef WINDOWSEx
    , m_handle(0)
@@ -97,7 +97,7 @@ void service_base::run(service_base& service)
 
 }
 
-DWORD Win32FromHResult(HRESULT value)
+uint32_t Win32FromHResult(HRESULT value)
 {
     ASSERT(FACILITY_WIN32 == HRESULT_FACILITY(value));
     return value & ~0x80070000;
@@ -111,7 +111,7 @@ DWORD Win32FromHResult(HRESULT value)
 //                      and notifies the service control manager of the change.
 //
 //*****************************************************************************
-void service_base::UpdateState(DWORD state,
+void service_base::UpdateState(uint32_t state,
                                     HRESULT errorCode)
 {
 
@@ -202,7 +202,7 @@ string service_base::get_service_name() const
 //      Description:    The starting point for the service.
 //
 //*****************************************************************************
-void WINAPI service_base::ServiceMain(DWORD argumentCount,
+void WINAPI service_base::ServiceMain(uint32_t argumentCount,
                                            PWSTR* arguments)
 {
 
@@ -264,7 +264,7 @@ void WINAPI service_base::ServiceMain(DWORD argumentCount,
 //                      when an event occurs.
 //
 //*****************************************************************************
-void WINAPI service_base::ServiceHandler(DWORD control)
+void WINAPI service_base::ServiceHandler(uint32_t control)
 {
 
 

@@ -142,7 +142,7 @@ mutex::~mutex()
 wait_result mutex::wait(const duration & duration)
 {
 
-   DWORD dwTimeout = duration.os_lock_duration();
+   uint32_t dwTimeout = duration.os_lock_duration();
 
    timespec delay;
 
@@ -151,7 +151,7 @@ wait_result mutex::wait(const duration & duration)
 
    int32_t irc;
 
-   DWORD start = ::get_tick_count();
+   uint32_t start = ::get_tick_count();
 
    if(m_semid >= 0)
    {
@@ -160,7 +160,7 @@ wait_result mutex::wait(const duration & duration)
       struct sembuf operation[1] ;
 
 
-      while(dwTimeout == (DWORD) INFINITE && ::get_tick_count() - start < dwTimeout)
+      while(dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout)
       {
 
          //Call Wait for Zero with IPC_NOWAIT option,so it will be
@@ -195,7 +195,7 @@ wait_result mutex::wait(const duration & duration)
    else
    {
 
-      while(dwTimeout == (DWORD) INFINITE && ::get_tick_count() - start < dwTimeout)
+      while(dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout)
       {
 
 

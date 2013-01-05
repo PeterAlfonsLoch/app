@@ -133,13 +133,13 @@ void condition::wait ()
 wait_result condition::wait (const duration & duration)
 {
 
-	DWORD timeout = duration.os_lock_duration();
+	uint32_t timeout = duration.os_lock_duration();
 
 #ifdef WINDOWS
 	return wait_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
 #else
 
-	DWORD start = ::get_tick_count();
+	uint32_t start = ::get_tick_count();
 
 	timespec delay;
 
@@ -225,9 +225,9 @@ bool condition::lock(const duration & durationTimeout)
 
 #else
 
-   DWORD timeout = durationTimeout.os_lock_duration();
+   uint32_t timeout = durationTimeout.os_lock_duration();
 
-	DWORD start = ::get_tick_count();
+	uint32_t start = ::get_tick_count();
 
 	timespec delay;
 

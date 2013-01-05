@@ -10,7 +10,7 @@
 ///				it monitors only the specified directory
 ///  \param		filter filter conditions that satisfy a change notification wait
 ///				can take values described by enum filter
-file_change_event::file_change_event(::ca::application * papp, const char * path, bool watchsubtree, DWORD filter) :
+file_change_event::file_change_event(::ca::application * papp, const char * path, bool watchsubtree, uint32_t filter) :
 	event_base( ::FindFirstChangeNotificationW(gen::international::utf8_to_unicode(path), watchsubtree, filter) )
 {
 	if (item() == 0)
@@ -25,7 +25,7 @@ file_change_event::~file_change_event()
 
 bool file_change_event::lock(const duration & durationTimeout)
 {
-   DWORD dwRet = ::WaitForSingleObject(item(), durationTimeout.os_lock_duration());
+   uint32_t dwRet = ::WaitForSingleObject(item(), durationTimeout.os_lock_duration());
    if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
       return true;
    else
