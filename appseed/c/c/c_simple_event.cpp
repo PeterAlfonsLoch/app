@@ -6,7 +6,7 @@ simple_event::simple_event(bool bInitialWait, bool bManualReset)
 
 #ifdef METROWIN
 
-   DWORD dwFlags = 0;
+   uint32_t dwFlags = 0;
 
    if(bInitialWait)
       dwFlags |= CREATE_EVENT_INITIAL_SET;
@@ -150,7 +150,7 @@ void simple_event::wait()
 
 }
 
-void simple_event::wait(DWORD dwTimeout)
+void simple_event::wait(uint32_t dwTimeout)
 {
 
 #ifdef METROWIN

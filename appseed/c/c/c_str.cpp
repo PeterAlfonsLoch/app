@@ -816,7 +816,7 @@ vsstring read_resource_as_string_dup(HINSTANCE hinst, UINT nID, LPCTSTR lpcszTyp
    if(hres == NULL)
 		return "";
 
-   DWORD dwResSize = ::SizeofResource(hinst, hrsrc);
+   uint32_t dwResSize = ::SizeofResource(hinst, hrsrc);
 
    char * psz = NULL;
 

@@ -199,14 +199,14 @@ extern "C"
 
 CLASS_DECL_c vsstring _c_get_file_name(const char * psz, bool bCreate = false, int32_t * pfd = NULL);
 
-CLASS_DECL_c vsstring get_system_error_message(DWORD dwError);
+CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 
 //#ifndef METROWIN
 //#include <openssl/ssl.h>
 //#endif
 
 #ifndef WINDOWSEX
-CLASS_DECL_c COLORREF GetSysColor(DWORD dw);
+CLASS_DECL_c COLORREF GetSysColor(uint32_t dw);
 #ifndef LINUX
 CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow);
 #endif

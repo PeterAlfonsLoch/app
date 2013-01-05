@@ -35,9 +35,9 @@ CLASS_DECL_c double atan_dup(double d)
 #ifdef X86
     _asm
     {
-        fld DWORD PTR [d]
+        fld uint32_t PTR [d]
         fatan
-        fstp DWORD ptr[d]
+        fstp uint32_t ptr[d]
     }
     return d;
 #else
@@ -60,9 +60,9 @@ CLASS_DECL_c double sqrt_dup(double d)
 #ifdef X86
     _asm
     {
-        fld DWORD PTR [d]
+        fld uint32_t PTR [d]
         fsqrt
-        fstp DWORD ptr[d]
+        fstp uint32_t ptr[d]
     }
     return d;
 #else
@@ -86,9 +86,9 @@ CLASS_DECL_c double exp_dup(double d)
 #ifdef X86
     _asm
     {
-        fld DWORD PTR [d]
+        fld uint32_t PTR [d]
         fexp
-        fstp DWORD ptr[d]
+        fstp uint32_t ptr[d]
     }
     return d;
 #else
@@ -101,9 +101,9 @@ CLASS_DECL_c double log_dup(double d)
 #ifdef X86
     _asm
     {
-        fld DWORD PTR [d]
+        fld uint32_t PTR [d]
         flog
-        fstp DWORD ptr[d]
+        fstp uint32_t ptr[d]
     }
     return d;
 #else
@@ -116,9 +116,9 @@ CLASS_DECL_c double tan_dup(double d)
 #ifdef X86
     _asm
     {
-        fld DWORD PTR [d]
+        fld uint32_t PTR [d]
         ftan
-        fstp DWORD ptr[d]
+        fstp uint32_t ptr[d]
     }
     return d;
 #else
@@ -131,9 +131,9 @@ CLASS_DECL_c double sin_dup(double d)
 #ifdef X86
     _asm
     {
-        fld DWORD PTR [d]
+        fld uint32_t PTR [d]
         fsin
-        fstp DWORD ptr[d]
+        fstp uint32_t ptr[d]
     }
     return d;
 #else
@@ -146,9 +146,9 @@ CLASS_DECL_c double cos_dup(double d)
 #ifdef X86
     _asm
     {
-        fld DWORD PTR [d]
+        fld uint32_t PTR [d]
         fcos
-        fstp DWORD ptr[d]
+        fstp uint32_t ptr[d]
     }
     return d;
 #else

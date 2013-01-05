@@ -28,7 +28,7 @@ bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT n
    if(hglobalResource == NULL)
       return false;
 
-   DWORD dwResourseSize = ::SizeofResource(hinstance, hrsrc);
+   uint32_t dwResourseSize = ::SizeofResource(hinstance, hrsrc);
 
    if(hglobalResource != NULL)
    {
@@ -42,7 +42,7 @@ bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT n
 
       if(hfile != INVALID_HANDLE_VALUE)
       {
-         DWORD dwWritten = 0;
+         uint32_t dwWritten = 0;
          ::WriteFile(hfile, pResource, dwResourseSize, &dwWritten, NULL);
          ::CloseHandle(hfile);
          bOk = dwWritten == dwResourseSize;
@@ -68,7 +68,7 @@ bool file_exists_dup(const char * path1)
    str.replace("/", "\\");
    wstring wstr(L"\\\\?\\");
    wstr = wstr + wstring(str);
-   DWORD dwFileAttributes = ::GetFileAttributesW(wstr);
+   uint32_t dwFileAttributes = ::GetFileAttributesW(wstr);
    if(dwFileAttributes != INVALID_FILE_ATTRIBUTES && (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
       return true;
    else
@@ -117,8 +117,8 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
       dwWrite = strlen_dup(contents);
    else
       dwWrite = len;
-   DWORD dwWritten = 0;
-   bool bOk = ::WriteFile(hfile, contents, (DWORD) dwWrite, &dwWritten, NULL) != FALSE;
+   uint32_t dwWritten = 0;
+   bool bOk = ::WriteFile(hfile, contents, (uint32_t) dwWrite, &dwWritten, NULL) != FALSE;
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
 
@@ -156,13 +156,13 @@ vsstring file_as_string_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
 
-   DWORD dwSizeHigh;
+   uint32_t dwSizeHigh;
 
-   DWORD dwSize = ::GetFileSize(hfile, &dwSizeHigh);
+   uint32_t dwSize = ::GetFileSize(hfile, &dwSizeHigh);
 
    str.alloc(dwSize);
 
-   DWORD dwRead;
+   uint32_t dwRead;
 
    ::ReadFile(hfile, str, dwSize, &dwRead, NULL);
 
@@ -208,15 +208,15 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
 
-   DWORD dwSizeHigh;
+   uint32_t dwSizeHigh;
 
    ::count  count = ::GetFileSize(hfile, &dwSizeHigh);
 
    memory.allocate(count);
 
-   DWORD dwRead;
+   uint32_t dwRead;
 
-   ::ReadFile(hfile, memory.m_psz, (DWORD) memory.m_iSize, &dwRead, NULL);
+   ::ReadFile(hfile, memory.m_psz, (uint32_t) memory.m_iSize, &dwRead, NULL);
 
    ::CloseHandle(hfile);
 
@@ -261,7 +261,7 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
 
 #ifdef WINDOWSEX
 
-   DWORD dwRetVal = GetTempPath(sizeof(lpPathBuffer), lpPathBuffer);
+   uint32_t dwRetVal = GetTempPath(sizeof(lpPathBuffer), lpPathBuffer);
 
    if (dwRetVal > sizeof(lpPathBuffer) || (dwRetVal == 0))
    {
@@ -460,7 +460,7 @@ uint64_t file_length_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
 
-   DWORD dwHigh;
+   uint32_t dwHigh;
 
    uint64_t ui = ::GetFileSize(hfile, &dwHigh);
 
@@ -592,8 +592,8 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    int32_t iLen;
    ::md5::md5 ctx;
 #ifdef WINDOWS
-   DWORD dwRead;
-   DWORD dwWritten;
+   uint32_t dwRead;
+   uint32_t dwWritten;
 #else
    ::count dwRead;
    ::count dwWritten;
@@ -688,7 +688,7 @@ void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
    vsstring str;
    char ch;
 #ifdef WINDOWS
-   DWORD dwRead;
+   uint32_t dwRead;
    while(ReadFile(hfile, &ch, 1, &dwRead, NULL) && dwRead == 1)
 #else
       ::count dwRead;
@@ -734,7 +734,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
    file_read_n_number_dup(hfile, pctx, iLen);
    LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
 #ifdef WINDOWS
-   DWORD dwRead;
+   uint32_t dwRead;
    ReadFile(hfile, lpsz, iLen, &dwRead, NULL);
 #else
    ::count dwRead;
@@ -960,10 +960,10 @@ free(lpsz);
 
 #ifdef WINDOWSEX
 
-bool PrintModules(vsstring & strImage, DWORD processID, const char * pszDll )
+bool PrintModules(vsstring & strImage, uint32_t processID, const char * pszDll )
 {
    HANDLE hProcess;
-   DWORD cbNeeded;
+   uint32_t cbNeeded;
    uint32_t i;
    hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
       PROCESS_VM_READ,
@@ -1016,12 +1016,12 @@ void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char
 {
    // Get the list of process identifiers.
 
-   DWORD * aProcesses = new DWORD[1024 * 8];
+   uint32_t * aProcesses = new uint32_t[1024 * 8];
 
-   DWORD cbNeeded, cProcesses;
+   uint32_t cbNeeded, cProcesses;
    uint32_t i;
 
-   if ( !EnumProcesses( aProcesses, 124 * 8 * sizeof(DWORD), &cbNeeded ) )
+   if ( !EnumProcesses( aProcesses, 124 * 8 * sizeof(uint32_t), &cbNeeded ) )
    {
       delete aProcesses;
       return;
@@ -1029,7 +1029,7 @@ void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char
 
    // Calculate how many process identifiers were returned.
 
-   cProcesses = cbNeeded / sizeof(DWORD);
+   cProcesses = cbNeeded / sizeof(uint32_t);
 
    // Print the name of the modules for each process.
 
@@ -1198,8 +1198,8 @@ CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
       return "";
    {
 
-      DWORD dwType;
-      DWORD dwData;
+      uint32_t dwType;
+      uint32_t dwData;
       dwData = 0;
       if(::WinRegGetValueW(hkeyMozillaFirefox, NULL, L"CurrentVersion", RRF_RT_REG_SZ, &dwType, NULL, &dwData) != ERROR_SUCCESS)
       {

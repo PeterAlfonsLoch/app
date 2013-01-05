@@ -241,7 +241,7 @@ namespace async
 
       }
 
-      virtual T * wait(DWORD dwMillis = INFINITE)
+      virtual T * wait(uint32_t dwMillis = INFINITE)
       {
 
          ::thread_layer::wait_thread(dwMillis);
@@ -340,7 +340,7 @@ public:
    }
 
 
-   T * wait(DWORD dwMillis = INFINITE)
+   T * wait(uint32_t dwMillis = INFINITE)
    {
 
       m_presult = m_ptask->wait(dwMillis);
@@ -355,7 +355,7 @@ public:
 
 
 template < typename T >
-inline  T * wait(::async::task < T > * ptask, DWORD dwMillis = INFINITE)
+inline  T * wait(::async::task < T > * ptask, uint32_t dwMillis = INFINITE)
 {
 
    return waiter_for_async_task < T > (ptask).wait(dwMillis);

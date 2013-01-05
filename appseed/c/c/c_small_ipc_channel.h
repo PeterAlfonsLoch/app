@@ -51,8 +51,8 @@ public:
    bool close();
 
 
-   bool send(const char * pszMessage, DWORD dwTimeout);
-   bool send(int32_t message, void * pdata, int32_t len, DWORD dwTimeout);
+   bool send(const char * pszMessage, uint32_t dwTimeout);
+   bool send(int32_t message, void * pdata, int32_t len, uint32_t dwTimeout);
 
 
    bool is_tx_ok();
@@ -133,7 +133,7 @@ public:
 
    small_ipc_rx_channel       m_rxchannel;
    vsstring                   m_vssChannel;
-   DWORD                      m_dwTimeout;
+   uint32_t                      m_dwTimeout;
 
 
    small_ipc_channel();
@@ -149,8 +149,8 @@ public:
 
    virtual void restart_small_ipc_channel();
 
-   bool ensure_tx(const char * pszMessage, DWORD dwTimeout = INFINITE);
-   bool ensure_tx(int32_t message, void * pdata, int32_t len, DWORD dwTimeout = INFINITE);
+   bool ensure_tx(const char * pszMessage, uint32_t dwTimeout = INFINITE);
+   bool ensure_tx(int32_t message, void * pdata, int32_t len, uint32_t dwTimeout = INFINITE);
 
 
    bool is_rx_tx_ok();

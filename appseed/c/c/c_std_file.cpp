@@ -81,7 +81,7 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 #elif defined(METROWIN)
 
 
-	DWORD access, disp;
+	uint32_t access, disp;
 	if (strchr_dup(attrs, 'w'))
 	{
 		access = GENERIC_WRITE;
@@ -118,7 +118,7 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 
 #else
 
-	DWORD access, disp;
+	uint32_t access, disp;
 	if (strchr_dup(attrs, 'w'))
 	{
 		access = GENERIC_WRITE;
@@ -155,7 +155,7 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 {
 
-	DWORD access, disp;
+	uint32_t access, disp;
 	if (wcschr_dup(attrs, L'w'))
 	{
 		access = GENERIC_WRITE;
@@ -187,7 +187,7 @@ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 {
 
-	DWORD access, disp;
+	uint32_t access, disp;
 	if (wcschr_dup(attrs, L'w'))
 	{
 		access = GENERIC_WRITE;
@@ -309,13 +309,13 @@ file_position fseek_dup(_FILE *fp, file_offset offset, int32_t origin)
 
 #ifdef WINDOWS
 
-	DWORD meth = FILE_BEGIN;
+	uint32_t meth = FILE_BEGIN;
 	if (origin == SEEK_CUR)
 		meth = FILE_CURRENT;
 	else if (origin == SEEK_END)
 		meth = FILE_END;
    LONG offsetHigh = (offset >> 32) & 0xffffffffLL;
-	DWORD dw = ::SetFilePointer((HANDLE)((_FILE*)fp)->_base, offset & 0xffffffff, &offsetHigh, meth);
+	uint32_t dw = ::SetFilePointer((HANDLE)((_FILE*)fp)->_base, offset & 0xffffffff, &offsetHigh, meth);
 	((_FILE*)fp)->_flag &= ~_FILE_EOF;
 	return (uint64_t) dw | (((uint64_t) offsetHigh) << 32);
 
@@ -361,8 +361,8 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 	else
 		src = (char*)buffer;
 
-	DWORD br;
-	if (!ReadFile(hFile, src, (DWORD)(size*count), &br, 0))
+	uint32_t br;
+	if (!ReadFile(hFile, src, (uint32_t)(size*count), &br, 0))
 		((_FILE*)str)->_flag |= _FILE_ERROR;
 	else if (!br)		// nonzero return value and no bytes read = EOF
 		((_FILE*)str)->_flag |= _FILE_EOF;
@@ -374,7 +374,7 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 	if (textMode)		// text mode: must translate CR -> LF
 	{
 		char *dst = (char*)buffer;
-		for (DWORD i = 0; i < br; i++)
+		for (uint32_t i = 0; i < br; i++)
 		{
 			if (src[i] != '\r')
 			{
@@ -396,7 +396,7 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 			else if (br > 1)
 			{
 				// This is the hard part: must peek ahead one byte
-				DWORD br2 = 0;
+				uint32_t br2 = 0;
 				char peekChar = 0;
 				ReadFile(hFile, &peekChar, 1, &br2, 0);
 				if (!br2)
@@ -431,7 +431,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 
 #ifdef WINDOWS
 
-	DWORD bw = 0, bw2 = 0;
+	uint32_t bw = 0, bw2 = 0;
 
 	if (size*count == 0)
 		return 0;
@@ -459,7 +459,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
             size_t dwWritten = 0;
             while(i - startpos - dwWritten > 0)
             {
-				   if(!WriteFile(hFile, &src[startpos + dwWritten], (DWORD) min(1024, i - startpos - dwWritten), &bw2, 0))
+				   if(!WriteFile(hFile, &src[startpos + dwWritten], (uint32_t) min(1024, i - startpos - dwWritten), &bw2, 0))
                   return 0;
                bw += bw2;
                dwWritten += bw2;
@@ -476,7 +476,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
       size_t dwWritten = 0;
       while(i - startpos - dwWritten > 0)
       {
-			WriteFile(hFile, &src[startpos + dwWritten], (DWORD) min(1024, i - startpos - dwWritten), &bw2, 0);
+			WriteFile(hFile, &src[startpos + dwWritten], (uint32_t) min(1024, i - startpos - dwWritten), &bw2, 0);
          bw += bw2;
          dwWritten += bw2;
       }
@@ -488,7 +488,7 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
       size_t dwWritten = 0;
       while(s - dwWritten > 0)
       {
-			WriteFile(hFile, &src[dwWritten], (DWORD) min(1024, s - dwWritten), &bw2, 0);
+			WriteFile(hFile, &src[dwWritten], (uint32_t) min(1024, s - dwWritten), &bw2, 0);
          bw += bw2;
          dwWritten += bw2;
       }
@@ -668,8 +668,8 @@ uint64_t fsize_dup(FILE * fp)
 #else
 uint64_t fsize_dup(HANDLE h)
 {
-   DWORD dwHi;
-   DWORD dwLo = ::GetFileSize(h, &dwHi);
+   uint32_t dwHi;
+   uint32_t dwLo = ::GetFileSize(h, &dwHi);
    if(dwHi)
       return 0;
    return dwLo | (((DWORD64) dwHi) << 32);

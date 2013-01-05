@@ -33,7 +33,7 @@ public:
    void reset_event();
 
    void wait();
-   void wait(DWORD dwTimeout);
+   void wait(uint32_t dwTimeout);
 
 
 };
