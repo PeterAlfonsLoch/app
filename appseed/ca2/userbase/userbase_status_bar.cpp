@@ -43,12 +43,12 @@ namespace userbase
 #endif
    }
 
-   bool status_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, id strId)
+   bool status_bar::create(::user::interaction* pParentWnd, uint32_t dwStyle, id strId)
    {
       return CreateEx(pParentWnd, 0, dwStyle, strId);
    }
 
-   bool status_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, id strId)
+   bool status_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, id strId)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
 
@@ -547,7 +547,7 @@ namespace userbase
 #endif
    }
 
-   void status_bar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
+   void status_bar::OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle)
    {
 
       if (((dwOldStyle & CBRS_BORDER_ANY) != (dwNewStyle & CBRS_BORDER_ANY)))
@@ -623,7 +623,7 @@ namespace userbase
 #ifdef WINDOWSEX
       SCAST_PTR(::gen::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
-      DWORD dwStyle = m_dwStyle;
+      uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
    // trans   ::userbase::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
       pwindowpos->previous();

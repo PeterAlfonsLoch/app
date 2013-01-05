@@ -325,8 +325,8 @@ void BaseMenuCentral::RemoveBorder(oswindow oswindow)
    const int32_t SWP_STYLE = SWP_FRAMECHANGED | SWP_NOSIZE | SWP_NOMOVE |
       SWP_NOZORDER | SWP_NOACTIVATE;
 
-   DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
-   DWORD dwStyleEx = ::GetWindowLong(oswindow, GWL_EXSTYLE);
+   uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
+   uint32_t dwStyleEx = ::GetWindowLong(oswindow, GWL_EXSTYLE);
    ::user::interaction::ModifyStyle(oswindow, WS_POPUP | WS_DLGFRAME | WS_THICKFRAME | WS_BORDER, 0, SWP_STYLE);
    ::user::interaction::ModifyStyleEx(oswindow, WS_EX_STATICEDGE|WS_EX_WINDOWEDGE|WS_EX_DLGMODALFRAME, 0, SWP_STYLE);
 }

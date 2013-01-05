@@ -28,17 +28,17 @@ namespace userbase
 
       using ::userbase::control_bar::create;
       bool create(::user::interaction* pParentWnd,
-         DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
+         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
          UINT nID = __IDW_TOOLBAR);
       using ::userbase::control_bar::CreateEx;
 #ifdef WINDOWSEX
-      bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
-         DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+      bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
+         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
          rect rcBorders = rect(0, 0, 0, 0),
          UINT nID = __IDW_TOOLBAR);
 #else
-      bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
-         DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+      bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
          rect rcBorders = rect(0, 0, 0, 0),
          UINT nID = __IDW_TOOLBAR);
 #endif
@@ -75,11 +75,11 @@ namespace userbase
 
       size CalcSimpleLayout();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
-      virtual size CalcDynamicLayout(int32_t nLength, DWORD nMode);
+      virtual size CalcDynamicLayout(int32_t nLength, uint32_t nMode);
       //virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
       void set_owner(::user::interaction* pOwnerWnd);
       bool AddReplaceBitmap(HBITMAP hbmImageWell);
-      virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
+      virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
 
    #ifdef DEBUG
       virtual void assert_valid() const;
@@ -96,7 +96,7 @@ namespace userbase
       void _GetButton(::index nIndex, TBBUTTON* pButton) const;
       void _SetButton(::index nIndex, TBBUTTON* pButton);
 #endif
-      size CalcLayout(DWORD nMode, int32_t nLength = -1);
+      size CalcLayout(uint32_t nMode, int32_t nLength = -1);
 #ifdef WINDOWSEX
       size CalcSize(TBBUTTON* pData, int32_t nCount);
       int32_t WrapToolBar(TBBUTTON* pData, int32_t nCount, int32_t nWidth);

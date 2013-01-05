@@ -23,7 +23,7 @@ namespace userbase
 
 
       using ::user::interaction::create;
-      bool create(DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID);
+      bool create(uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID);
 
 
       bool IsButtonEnabled(int32_t nID);
@@ -40,7 +40,7 @@ namespace userbase
       bool GetItemRect(int32_t nIndex, LPRECT lpRect);
       bool GetRect(int32_t nID, LPRECT lpRect);
       void SetButtonStructSize(int32_t nSize);
-      DWORD GetButtonSize();
+      uint32_t GetButtonSize();
       bool SetButtonSize(size size);
       bool SetBitmapSize(size size);
       void set_owner(::user::interaction* pWnd);
@@ -51,7 +51,7 @@ namespace userbase
       image_list* GetDisabledImageList();
       image_list* GetHotImageList();
       image_list* GetImageList();
-      DWORD GetStyle();
+      uint32_t GetStyle();
       int32_t GetMaxTextRows();
       bool IsButtonHighlighted(int32_t nID);
       bool SetButtonWidth(int32_t cxMin, int32_t cxMax);
@@ -61,14 +61,14 @@ namespace userbase
       HRESULT GetDropTarget(IDropTarget** ppDropTarget);
       bool SetIndent(int32_t iIndent);
       bool SetMaxTextRows(int32_t iMaxRows);
-      void SetStyle(DWORD dwStyle);
+      void SetStyle(uint32_t dwStyle);
 #ifdef WINDOWSEX
       bool GetButtonInfo(int32_t nID, TBBUTTONINFO* ptbbi);
       bool SetButtonInfo(int32_t nID, TBBUTTONINFO* ptbbi);
       bool GetButtonInfo(int32_t nID, TBBUTTONINFOW* ptbbi);
       bool SetButtonInfo(int32_t nID, TBBUTTONINFOW* ptbbi);
 #endif
-      DWORD SetDrawTextFlags(DWORD dwMask, DWORD dwDTFlags);
+      uint32_t SetDrawTextFlags(uint32_t dwMask, uint32_t dwDTFlags);
       bool GetAnchorHighlight();
       bool SetAnchorHighlight(bool fAnchor = TRUE);
       int32_t GetHotItem();
@@ -81,8 +81,8 @@ namespace userbase
 #ifdef WINDOWSEX
       bool InsertMarkHitTest(LPPOINT ppt, LPTBINSERTMARK ptbim);
 #endif
-      DWORD GetExtendedStyle();
-      DWORD SetExtendedStyle(DWORD dwExStyle);
+      uint32_t GetExtendedStyle();
+      uint32_t SetExtendedStyle(uint32_t dwExStyle);
       COLORREF GetInsertMarkColor();
       COLORREF SetInsertMarkColor(COLORREF clrNew);
 

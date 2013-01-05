@@ -191,7 +191,7 @@ namespace userbase
       rect rectClient;
       GetClientRect(rectClient);
       int32_t iDimension = get_normal_dimension();
-      DWORD dwPosition;
+      uint32_t dwPosition;
       double dRate;
       if(iDimension > 0)
       {
@@ -218,7 +218,7 @@ namespace userbase
             }
 
 
-            m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (DWORD) (m_splitbara[i].m_dRate * iDimension));
+            m_splitbara[i].m_dwPosition = min(m_splitbara[i].m_dwMaxPosition, (uint32_t) (m_splitbara[i].m_dRate * iDimension));
 
          }
       }
@@ -345,7 +345,7 @@ namespace userbase
       m_splitbara[iIndex].m_dRate         = dRate;
       m_splitbara[iIndex].m_dMinimumRate  = dMinimumRate;
       m_splitbara[iIndex].m_dMaximumRate  = dMaximumRate;
-      m_splitbara[iIndex].m_dwPosition    = (DWORD) -1; // disable position evaluation at first on layout
+      m_splitbara[iIndex].m_dwPosition    = (uint32_t) -1; // disable position evaluation at first on layout
    }
 
    int32_t split_layout::get_position(int32_t iIndex)

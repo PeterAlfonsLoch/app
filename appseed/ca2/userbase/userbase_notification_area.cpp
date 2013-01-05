@@ -70,7 +70,7 @@ namespace userbase
          }
       }
 
-      DWORD dwTrayPid = 0;
+      uint32_t dwTrayPid = 0;
       if(!GetWindowThreadProcessId(m_oswindowTray, &dwTrayPid))
          return;
 
@@ -90,7 +90,7 @@ namespace userbase
          data.ReadData(&tb);
          data.ReadData<TRAYDATA>(&tray,(LPCVOID)tb.dwData);
 
-         DWORD dwProcessId = 0;
+         uint32_t dwProcessId = 0;
          GetWindowThreadProcessId(tray.m_oswindow,&dwProcessId);
 
          info.sProcessPath = GetFilenameFromPid(dwProcessId);
@@ -280,7 +280,7 @@ namespace userbase
    }
 
 #ifdef WINDOWSEX
-   string GetFilenameFromPid(DWORD pid)
+   string GetFilenameFromPid(uint32_t pid)
    {
       string strRet = "[Unknown Process]";
       char ImageFileName[1024] = {0};

@@ -14,11 +14,11 @@ namespace userbase
 
       int32_t                           m_iIndex;
       split_layout *                m_pparent;
-      DWORD                         m_dwPosition;
+      uint32_t                         m_dwPosition;
       double                        m_dRate;
       double                        m_dMinimumRate;
       double                        m_dMaximumRate;
-      DWORD                         m_dwMaxPosition;
+      uint32_t                         m_dwMaxPosition;
 
 
 

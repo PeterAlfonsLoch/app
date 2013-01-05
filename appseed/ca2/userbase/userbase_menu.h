@@ -65,7 +65,7 @@ namespace userbase
       ::userbase::button    m_buttonClose;
       id                   m_idSubMenu;
       int32_t                  m_iHoverSubMenu;
-      DWORD                m_dwOut;
+      uint32_t                m_dwOut;
       menu *        m_psubmenu;
       id                   m_idTimerMenu;
       point                m_ptTrack;

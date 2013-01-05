@@ -45,11 +45,11 @@ namespace userbase
 
       using ::userbase::control_bar::create;
       virtual bool create(::user::interaction* pParentWnd,
-         DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
+         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
       using ::userbase::control_bar::CreateEx;
-      virtual bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
-         DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
+      virtual bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+         uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,
          id nID = "status_bar");
       bool SetIndicators(stringa & stra);
 
@@ -84,12 +84,12 @@ namespace userbase
       bool pre_create_window(CREATESTRUCT& cs);
       //bool AllocElements(int32_t nElements, int32_t cbElement);
       void CalcInsideRect(rect& rect, bool bHorz);
-      virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
+      virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
 
    #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;
-      void EnableDocking(DWORD dwDockStyle);
+      void EnableDocking(uint32_t dwDockStyle);
    #endif
       virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
 

@@ -306,7 +306,7 @@ namespace userbase
    }
 
    /*
-   const char * frame_window_interface::GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter)
+   const char * frame_window_interface::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
    {
       HICON hIcon = ::ExtractIcon(
          System.m_hInstance, 

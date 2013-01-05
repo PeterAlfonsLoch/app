@@ -14,7 +14,7 @@ namespace userbase
       m_dMaximumRate                            = 0.9;
       m_dRate                                   = -1.0;
       m_dwPosition                              = 1;
-      m_dwMaxPosition                           = (DWORD) -1;
+      m_dwMaxPosition                           = (uint32_t) -1;
 
    }
 

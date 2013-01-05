@@ -11,7 +11,7 @@ namespace userbase
       oswindow    m_oswindow;
       UINT        uID;
       UINT        uCallbackMessage;
-      DWORD       Reserved[2];
+      uint32_t       Reserved[2];
       HICON       hIcon;
    };
 
@@ -29,7 +29,7 @@ namespace userbase
 
    CLASS_DECL_ca2 char GetDriveLetter(const char * lpDevicePath);
    CLASS_DECL_ca2 oswindow FindTrayToolbarWindow();
-   CLASS_DECL_ca2 string GetFilenameFromPid(DWORD pid);
+   CLASS_DECL_ca2 string GetFilenameFromPid(uint32_t pid);
 
 
    class CLASS_DECL_ca2 notification_area :

@@ -111,13 +111,13 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnQueryEndSession)
       friend class application;
 
-      mini_dock_frame_window* CreateFloatingFrame(DWORD dwStyle);
-      DWORD CanDock(rect rect, DWORD dwDockStyle, BaseDockBar** ppDockBar = NULL); // called by CDockContext
+      mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
+      uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = NULL); // called by CDockContext
       void AddControlBar(::userbase::control_bar *pBar);
       void RemoveControlBar(::userbase::control_bar *pBar);
       void DockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
       void ReDockControlBar(::userbase::control_bar* pBar, BaseDockBar* pDockBar, LPCRECT lpRect = NULL);
-      virtual void NotifyFloatingWindows(DWORD dwFlags);
+      virtual void NotifyFloatingWindows(uint32_t dwFlags);
 
    };
 
