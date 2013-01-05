@@ -165,7 +165,7 @@ namespace gen
 
       }
 
-      void math::gen_rand(void * buf, DWORD dwLen)
+      void math::gen_rand(void * buf, uint32_t dwLen)
       {
 #ifdef WINDOWSEX
          CryptGenRandom(hCryptProv, dwLen, (BYTE *) buf);

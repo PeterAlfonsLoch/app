@@ -18,8 +18,8 @@ namespace fs
       bool                                m_bInitialized;
 
 
-      ::collection::string_map < DWORD >   m_mapdirTimeout;
-      ::collection::string_map < DWORD >   m_mapfileTimeout;
+      ::collection::string_map < uint32_t >   m_mapdirTimeout;
+      ::collection::string_map < uint32_t >   m_mapfileTimeout;
 
 
       remote_native(::ca::application * papp, const char * pszRoot);

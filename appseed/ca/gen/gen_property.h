@@ -318,7 +318,7 @@ namespace gen
 
 #ifdef WINDOWS
 
-      property & operator =(DWORD dw)
+      property & operator =(uint32_t dw)
       {
          get_value() = dw;
          return *this;
@@ -425,9 +425,9 @@ namespace gen
 
 #ifdef WINDOWS
 
-      operator DWORD()
+      operator uint32_t()
       {
-         return get_value().operator DWORD();
+         return get_value().operator uint32_t();
       }
 
 #endif

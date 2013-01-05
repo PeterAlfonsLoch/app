@@ -301,7 +301,7 @@ finishedCa2ModuleFolder:;
        HGLOBAL hres = ::LoadResource(hinst, hrsrc);
       if(hres == NULL)
          return false;
-       DWORD dwResSize = ::SizeofResource(hinst, hrsrc);
+       uint32_t dwResSize = ::SizeofResource(hinst, hrsrc);
 
       if(hres != NULL)
        {
@@ -315,7 +315,7 @@ finishedCa2ModuleFolder:;
               {
                  // write the ::fontopus::user-defined resource to the .mdb file
                  f->write(lpnRes, dwResSize);
-                 f->Flush();
+                 f->flush();
               }
               else
               {
@@ -626,7 +626,7 @@ finishedCa2ModuleFolder:;
       if(hres == NULL)
          return false;
 
-      DWORD dwResSize = ::SizeofResource(hinst, hrsrc);
+      uint32_t dwResSize = ::SizeofResource(hinst, hrsrc);
 
       if(hres != NULL)
       {

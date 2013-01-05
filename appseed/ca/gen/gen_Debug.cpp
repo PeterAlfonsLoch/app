@@ -32,7 +32,7 @@ void TRACELASTERROR()
 #endif
 
 
-string FormatMessageFromSystem(DWORD dwError)
+string FormatMessageFromSystem(uint32_t dwError)
 {
 
 

@@ -48,7 +48,7 @@
 
         } // MulDiv32()
 
-        INLINE DWORD MulDivRN(DWORD a,DWORD b,DWORD c)
+        INLINE uint32_t MulDivRN(uint32_t a,uint32_t b,uint32_t c)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
@@ -63,7 +63,7 @@
 
         } // MulDiv32()
 
-        INLINE DWORD MulDivRU(DWORD a,DWORD b,DWORD c)
+        INLINE uint32_t MulDivRU(uint32_t a,uint32_t b,uint32_t c)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
@@ -78,7 +78,7 @@
 
         } // MulDivRU32()
 
-        INLINE DWORD MulDivRD(DWORD a,DWORD b,DWORD c)
+        INLINE uint32_t MulDivRD(uint32_t a,uint32_t b,uint32_t c)
         {
             _asm     mov     eax,dword ptr a  //  mov  eax, a
             _asm     mov     ebx,dword ptr b  //  mov  ebx, b
@@ -112,21 +112,21 @@
         }
 
 
-        INLINE DWORD MulDivRD( DWORD a, DWORD b, DWORD c )
+        INLINE uint32_t MulDivRD( uint32_t a, uint32_t b, uint32_t c )
         {
-            return (DWORD)( UInt32x32To64(a,b) / c );
+            return (uint32_t)( UInt32x32To64(a,b) / c );
         }
 
 
-        INLINE DWORD MulDivRN( DWORD a, DWORD b, DWORD c )
+        INLINE uint32_t MulDivRN( uint32_t a, uint32_t b, uint32_t c )
         {
-            return (DWORD)( (UInt32x32To64(a,b)+c/2) / c );
+            return (uint32_t)( (UInt32x32To64(a,b)+c/2) / c );
         }
 
 
-        INLINE DWORD MulDivRU( DWORD a, DWORD b, DWORD c )
+        INLINE uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
         {
-            return (DWORD)( (UInt32x32To64(a,b)+c-1) / c );
+            return (uint32_t)( (UInt32x32To64(a,b)+c-1) / c );
         }
 
     #endif
@@ -186,7 +186,7 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     } // MulDiv32()
 
-    INLINE DWORD MulDivRN(DWORD a,DWORD b,DWORD c)
+    INLINE uint32_t MulDivRN(uint32_t a,uint32_t b,uint32_t c)
     {
         _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
@@ -205,7 +205,7 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     } // MulDiv32()
 
-    INLINE DWORD MulDivRU(DWORD a,DWORD b,DWORD c)
+    INLINE uint32_t MulDivRU(uint32_t a,uint32_t b,uint32_t c)
     {
         _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
@@ -225,7 +225,7 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
     } // MulDivRU32()
 
 
-    INLINE DWORD MulDivRD(DWORD a,DWORD b,DWORD c)
+    INLINE uint32_t MulDivRD(uint32_t a,uint32_t b,uint32_t c)
     {
         _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
         _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b

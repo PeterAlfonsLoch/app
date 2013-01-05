@@ -25,7 +25,7 @@ namespace gen
          HCRYPTKEY      hDuplicateKey;
 #endif
 //#endif
-         DWORD          dwMode;
+         uint32_t          dwMode;
          BYTE           pbData[16];
          rng            m_rng;
 
@@ -40,7 +40,7 @@ namespace gen
 
          int32_t LinearMap(int32_t iMin, int32_t iMax, int32_t iValue, int32_t iValueMin, int32_t iValueMax);
          uint64_t gen_rand();
-         void gen_rand(void * buf, DWORD dwLen);
+         void gen_rand(void * buf, uint32_t dwLen);
          uint32_t rnd();
          int32_t random_context_entropy(int32_t iMin, int32_t iMax, int32_t iLevel = 3);
          int32_t rand_max();

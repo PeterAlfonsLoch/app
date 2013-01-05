@@ -57,7 +57,7 @@ struct _OBJMAP_ENTRY20
    _CREATORFUNC* pfnGetClassObject;
    _CREATORFUNC* pfnCreateInstance;
    IUnknown* pCF;
-   DWORD dwRegister;
+   uint32_t dwRegister;
    _DESCRIPTIONFUNC* pfnGetObjectDescription;
 };
 */
@@ -71,7 +71,7 @@ struct _OBJMAP_ENTRY20
    _CREATORFUNC* pfnGetClassObject;
    _CREATORFUNC* pfnCreateInstance;
    IUnknown* pCF;
-   DWORD dwRegister;
+   uint32_t dwRegister;
    _DESCRIPTIONFUNC* pfnGetObjectDescription;
    _CATMAPFUNC* pfnGetCategoryMap;
    HRESULT WINAPI RevokeClassObject()
@@ -80,7 +80,7 @@ struct _OBJMAP_ENTRY20
          return S_OK;
       return CoRevokeClassObject(dwRegister);
    }
-   HRESULT WINAPI RegisterClassObject(DWORD dwClsContext, DWORD dwFlags)
+   HRESULT WINAPI RegisterClassObject(uint32_t dwClsContext, uint32_t dwFlags)
    {
       IUnknown* p = NULL;
       if (pfnGetClassObject == NULL)
@@ -115,7 +115,7 @@ struct _REGMAP_ENTRY
 struct _gen_CreateWndData
 {
    void * m_pThis;
-   DWORD m_dwThreadID;
+   uint32_t m_dwThreadID;
    _gen_CreateWndData* m_pNext;
 };
 */
@@ -304,19 +304,19 @@ API_(bool) gen_WaitWithMessageLoop(HANDLE hEvent);
 // Connection Point Helpers
 
 API gen_Advise(IUnknown* pUnkCP, IUnknown* pUnk, const IID& iid, LPDWORD pdw);
-API gen_Unadvise(IUnknown* pUnkCP, const IID& iid, DWORD dw);
+API gen_Unadvise(IUnknown* pUnkCP, const IID& iid, uint32_t dw);
 */
 /////////////////////////////////////////////////////////////////////////////
 // IDispatch Error handling
 
 //API gen_SetErrorInfo(const CLSID& clsid, LPCOLESTR lpszDesc,
-  // DWORD dwHelpID, LPCOLESTR lpszHelpFile, const IID& iid, HRESULT hRes,
+  // uint32_t dwHelpID, LPCOLESTR lpszHelpFile, const IID& iid, HRESULT hRes,
 //   HINSTANCE hInst);
 
 /////////////////////////////////////////////////////////////////////////////
 // Module
 
-//API gen_ComModuleRegisterClassObjects(_COM_MODULE* pComModule, DWORD dwClsContext, DWORD dwFlags);
+//API gen_ComModuleRegisterClassObjects(_COM_MODULE* pComModule, uint32_t dwClsContext, uint32_t dwFlags);
 //API gen_ComModuleRevokeClassObjects(_COM_MODULE* pComModule);
 
 //API gen_ComModuleGetClassObject(_COM_MODULE* pComModule, REFCLSID rclsid, REFIID riid, LPVOID* ppv);
@@ -333,7 +333,7 @@ API gen_Unadvise(IUnknown* pUnkCP, const IID& iid, DWORD dw);
 API gen_UnRegisterTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex);
 API gen_LoadTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex, BSTR* pbstrPath, ITypeLib** ppTypeLib);
 
-API_(DWORD) gen_GetVersion(void * pReserved);*/
+API_(uint32_t) gen_GetVersion(void * pReserved);*/
 
 /*API gen_ModuleAddTermFunc(_MODULE* pModule, _TERMFUNC* pFunc, uint_ptr dw);
 API_() gen_CallTermFunc(_MODULE* pModule);

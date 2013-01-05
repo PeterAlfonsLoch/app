@@ -74,7 +74,7 @@ namespace gen
          e_status GetStatus() const throw();
          void SetStatus(e_status eStatus) throw();
 
-         operator DWORD() const throw();
+         operator uint32_t() const throw();
 
          uint32_t      m_dwCategory;
          string            m_strCategory;

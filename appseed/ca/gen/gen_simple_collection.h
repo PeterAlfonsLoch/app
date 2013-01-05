@@ -190,7 +190,7 @@ namespace gen
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
          {
-            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
+            atl_raise_exception((uint32_t)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
          }
          return m_aT[nIndex];
       }
@@ -199,7 +199,7 @@ namespace gen
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
          {
-            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
+            atl_raise_exception((uint32_t)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
          }
          return m_aT[nIndex];
       }
@@ -386,7 +386,7 @@ namespace gen
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
-            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
+            atl_raise_exception((uint32_t)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
 
          return m_aKey[nIndex];
       }
@@ -394,7 +394,7 @@ namespace gen
       {
          ASSERT(nIndex >= 0 && nIndex < m_nSize);
          if(nIndex < 0 || nIndex >= m_nSize)
-            atl_raise_exception((DWORD)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
+            atl_raise_exception((uint32_t)EXCEPTION_ARRAY_BOUNDS_EXCEEDED);
 
          return m_aVal[nIndex];
       }

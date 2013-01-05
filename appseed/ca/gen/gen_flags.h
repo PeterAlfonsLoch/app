@@ -94,7 +94,7 @@ template < class ENUM >
 bool flags < ENUM > ::is_signalized(ENUM eenum) const
 {
    index i = 0;
-   return BaseSortFind((DWORD) eenum, i);
+   return BaseSortFind((uint32_t) eenum, i);
 }
 
 template < class ENUM >

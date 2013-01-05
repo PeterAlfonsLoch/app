@@ -122,7 +122,7 @@ namespace gen
       }
 
 
-      category::operator DWORD() const throw()
+      category::operator uint32_t() const throw()
       {
          return( m_dwCategory );
       }

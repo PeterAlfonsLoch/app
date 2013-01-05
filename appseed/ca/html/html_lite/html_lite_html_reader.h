@@ -237,7 +237,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(DWORD dwNewEventMask)
+   EventMaskEnum setEventMask(uint32_t dwNewEventMask)
    {
       EventMaskEnum   oldMask = m_eventMask;
       m_eventMask = (EventMaskEnum)dwNewEventMask;
@@ -255,10 +255,10 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   EventMaskEnum setEventMask(DWORD addFlags, DWORD removeFlags)
+   EventMaskEnum setEventMask(uint32_t addFlags, uint32_t removeFlags)
    {
-      DWORD   dwOldMask = (DWORD)m_eventMask;
-      DWORD   dwNewMask = (dwOldMask | addFlags) & ~removeFlags;
+      uint32_t   dwOldMask = (uint32_t)m_eventMask;
+      uint32_t   dwNewMask = (dwOldMask | addFlags) & ~removeFlags;
       m_eventMask = (EventMaskEnum)dwNewMask;
       return ((EventMaskEnum)dwOldMask);
    }
@@ -284,7 +284,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   uint_ptr setAppData(DWORD dwNewAppData)
+   uint_ptr setAppData(uint32_t dwNewAppData)
    {
       uint_ptr   dwOldAppData = m_dwAppData;
       m_dwAppData = dwNewAppData;
@@ -416,7 +416,7 @@ protected:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   bool getEventNotify(DWORD dwEvent) const ;
+   bool getEventNotify(uint32_t dwEvent) const ;
 
    /**
     * Determines if the character specified by ch is

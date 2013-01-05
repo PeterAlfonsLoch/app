@@ -7,7 +7,7 @@
 #endif
 
 
-CLASS_DECL_ca string FormatMessageFromSystem(DWORD dwError);
+CLASS_DECL_ca string FormatMessageFromSystem(uint32_t dwError);
 
 
 
@@ -36,7 +36,7 @@ extern "C" {
 #define TRACE_MAX_NAME_SIZE 64
 
 
-uint_ptr __stdcall gen_TraceOpenProcess( DWORD idProcess );
+uint_ptr __stdcall gen_TraceOpenProcess( uint32_t idProcess );
 void __stdcall gen_TraceCloseProcess( uint_ptr dwProcess );
 void __stdcall gen_TraceSnapshotProcess( uint_ptr dwProcess );
 
@@ -87,7 +87,7 @@ typedef struct TRACEPROCESSSETTINGS
 typedef struct TRACEPROCESSINFO
 {
    WCHAR szName[TRACE_MAX_NAME_SIZE], szPath[MAX_PATH];
-   DWORD dwId;
+   uint32_t dwId;
    TRACEPROCESSSETTINGS settings;
    int32_t nModules;
 } TRACEPROCESSINFO;

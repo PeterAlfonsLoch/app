@@ -16,7 +16,7 @@ typedef struct tagCREATESTRUCTA {
     LONG        style;
     LPCSTR      lpszName;
     LPCSTR      lpszClass;
-    DWORD       dwExStyle;
+    uint32_t       dwExStyle;
 } CREATESTRUCTA, *LPCREATESTRUCTA;
 typedef struct tagCREATESTRUCTW {
     LPVOID      lpCreateParams;
@@ -30,7 +30,7 @@ typedef struct tagCREATESTRUCTW {
     LONG        style;
     LPCWSTR     lpszName;
     LPCWSTR     lpszClass;
-    DWORD       dwExStyle;
+    uint32_t       dwExStyle;
 } CREATESTRUCTW, *LPCREATESTRUCTW;
 #ifdef UNICODE
 typedef CREATESTRUCTW CREATESTRUCT;

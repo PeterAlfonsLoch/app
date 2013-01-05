@@ -7,7 +7,7 @@ class CLASS_DECL_ca simple_thread :
 public:
 
 
-   DWORD          m_dwFinishTimeout;
+   uint32_t          m_dwFinishTimeout;
 
 
    simple_thread(::ca::application * papp);

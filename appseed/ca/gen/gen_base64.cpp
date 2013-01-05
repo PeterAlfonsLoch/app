@@ -189,7 +189,7 @@ namespace gen
       {
          for(i= 0;i<4;i++)
          {
-            if(istream.read(&uchar, 1) == 0)
+            if(istream.read(&uch, 1) == 0)
             {
                if( i > 0)
                {
@@ -198,14 +198,14 @@ namespace gen
                }
                return;
             }
-            if(dtable[uchar]&0x80)
+            if(dtable[uch]&0x80)
             {
-               TRACE("Illegal character '%c' in input spfile->\n",uchar);
+               TRACE("Illegal character '%c' in input spfile->\n", uch);
                i--;
                continue;
             }
-            a[i]= (uchar) uchar;
-            b[i]= (uchar) dtable[uchar];
+            a[i]= (uchar) uch;
+            b[i]= (uchar) dtable[uch];
          }
          o[0]= (b[0]<<2)|(b[1]>>4);
          o[1]= (b[1]<<4)|(b[2]>>2);

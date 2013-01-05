@@ -11,7 +11,7 @@
 /*
 extern "C" int32_t APIENTRY
 DllMain( HINSTANCE hModule,
-                       DWORD  ul_reason_for_call,
+                       uint32_t  ul_reason_for_call,
                        LPVOID lpReserved
                 )
 {

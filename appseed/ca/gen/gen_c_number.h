@@ -283,7 +283,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
 #endif
 
 //#ifdef WINDOWS
-DEFINE_C_NUMBER(CLASS_DECL_ca, os_lock_duration, DWORD)
+DEFINE_C_NUMBER(CLASS_DECL_ca, os_lock_duration, uint32_t)
 //#endif
 
 //DEFINE_C_NUMBER(CLASS_DECL_ca, file_size        , uint64_t)

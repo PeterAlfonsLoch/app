@@ -207,10 +207,10 @@ namespace gen
       return m_pipe.m_pipeOut.read();
    }
 
-   DWORD process::wait_until_exit(int32_t iWaitMax)
+   uint32_t process::wait_until_exit(int32_t iWaitMax)
    {
-      DWORD dwExitCode = 0;
-      DWORD dwStartTime = ::get_tick_count();
+      uint32_t dwExitCode = 0;
+      uint32_t dwStartTime = ::get_tick_count();
       int32_t i = 1;
       while(true)
       {
@@ -224,9 +224,9 @@ namespace gen
       return dwExitCode;
    }
 
-   bool process::has_exited(DWORD * pdwExitCode)
+   bool process::has_exited(uint32_t * pdwExitCode)
    {
-      DWORD dwExitCode;
+      uint32_t dwExitCode;
       if(pdwExitCode == NULL)
          pdwExitCode = &dwExitCode;
 

@@ -491,7 +491,7 @@ char lite_html_reader::UngetChar()
 }
 
 
-bool lite_html_reader::getEventNotify(DWORD dwEvent) const
+bool lite_html_reader::getEventNotify(uint32_t dwEvent) const
 {
    ASSERT(dwEvent == notifyStartStop  ||
       dwEvent == notifyTagStart   ||
