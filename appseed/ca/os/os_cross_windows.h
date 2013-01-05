@@ -11,8 +11,6 @@ CLASS_DECL_ca BOOL WINAPI LockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD d
 CLASS_DECL_ca BOOL WINAPI UnlockFile(HANDLE hfile, DWORD dwLo, DWORD dwHi, DWORD dwCountLo, DWORD dwCountHi);
 #endif
 
-#include <stddef.h> // for wchar_t
-#include <string.h>
 
 
 #include "os_cross_windows_guid_def.h"

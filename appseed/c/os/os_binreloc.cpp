@@ -19,9 +19,7 @@
 #ifdef ENABLE_BINRELOC
 	#include <sys/types.h>
 	#include <sys/stat.h>
-	#include <unistd.h>
 #endif /* ENABLE_BINRELOC */
-#include <limits.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -502,7 +502,6 @@ namespace sqlite
    */
 #ifndef _SQLITE3_H_
 #define _SQLITE3_H_
-#include <stdarg.h>     /* Needed for the definition of va_list */
 
    /*
    ** Make sure we can call this stuff from C++.
@@ -6154,9 +6153,7 @@ namespace sqlite
 
    /************** End of parse.h ***********************************************/
    /************** Continuing where we left off in sqliteInt.h ******************/
-#include <string.h>
 #include <assert.h>
-#include <stddef.h>
 
 #define sqlite3_isnan(X)  ((X)!=(X))
 
@@ -9239,7 +9236,6 @@ namespace sqlite
    **      Richmond, Virginia (USA)
    */
 #include <ctype.h>
-#include <time.h>
 
 #ifndef SQLITE_OMIT_DATETIME_FUNCS
 
@@ -18101,7 +18097,6 @@ translate_out:
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <unistd.h>
 //#include <sys/time.h>
 #include <errno.h>
 #ifdef SQLITE_ENABLE_LOCKING_STYLE

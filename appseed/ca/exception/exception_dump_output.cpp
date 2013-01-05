@@ -1,15 +1,5 @@
-// This is ca2 API library.
-//
-//
-//
-//
-//
-//
-//
-//
-
 #include "framework.h"
-#include <stdarg.h>
+
 
 #ifdef DEBUG   // entire file
 

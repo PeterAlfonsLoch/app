@@ -148,12 +148,10 @@
 1357202439 /ca2/nodeapp/operational_system/cross/win/win_def.h
 	"win_nt.h"
 
-1357180611 /ca2/nodeapp/operational_system/cross/win/win_nt.h
+1357381296 /ca2/nodeapp/operational_system/cross/win/win_nt.h
 	"base_tsd.h"
 	"win_guid_def.h"
 	<ctype.h>
-	<stddef.h>
-	<string.h>
 	"pshpack2.h"
 	"poppack.h"
 	"pshpack2.h"
@@ -429,8 +427,7 @@
 
 1354886566 /ca2/app/appseed/c/macos/c_os_file_watcher.h
 
-1357180602 /ca2/app/appseed/c/linux/c_os.h
-	<stdarg.h>
+1357380829 /ca2/app/appseed/c/linux/c_os.h
 	<wchar.h>
 	"c_os_graphics.h"
 	"c_os_http_lib.h"
@@ -830,9 +827,8 @@
 1354886566 source:/ca2/app/appseed/c/linux/c_os_simple_shell_launcher.cpp
 	"framework.h"
 
-1357344995 source:/ca2/app/appseed/c/linux/c_os_win_base.cpp
+1357381162 source:/ca2/app/appseed/c/linux/c_os_win_base.cpp
 	"framework.h"
-	<string.h>
 
 1354886564 source:/ca2/app/appseed/c/os/os_process.cpp
 	"framework.h"
@@ -937,14 +933,13 @@
 1357180588 source:/ca2/app/appseed/c/c/c_debug.cpp
 	"framework.h"
 
-1357180588 source:/ca2/app/appseed/c/c/c_dir.cpp
+1357381019 source:/ca2/app/appseed/c/c/c_dir.cpp
 	"framework.h"
 	<Shlobj.h>
 	<Security.h>
 	<sys/types.h>
 	<dirent.h>
 	<sys/stat.h>
-	<unistd.h>
 
 1357180588 source:/ca2/app/appseed/c/c/c_file.cpp
 	"framework.h"
@@ -968,12 +963,11 @@
 	"framework.h"
 	<math.h>
 
-1357345146 source:/ca2/app/appseed/c/c/c_md5.cpp
+1357381023 source:/ca2/app/appseed/c/c/c_md5.cpp
 	"framework.h"
 	<sys/mman.h>
 	<sys/stat.h>
 	<fcntl.h>
-	<unistd.h>
 
 1357180588 source:/ca2/app/appseed/c/c/c_mem.cpp
 	"framework.h"
@@ -982,9 +976,8 @@
 	"framework.h"
 	<netdb.h>
 
-1357180588 source:/ca2/app/appseed/c/c/c_printf.cpp
+1357380817 source:/ca2/app/appseed/c/c/c_printf.cpp
 	"framework.h"
-	<stdarg.h>
 	<wchar.h>
 
 1357180588 source:/ca2/app/appseed/c/c/c_simple_event.cpp
@@ -1008,9 +1001,8 @@
 1357180588 source:/ca2/app/appseed/c/c/c_sprintf.cpp
 	"framework.h"
 
-1357180588 source:/ca2/app/appseed/c/c/c_std_file.cpp
+1357380825 source:/ca2/app/appseed/c/c/c_std_file.cpp
 	"framework.h"
-	<stdarg.h>
 
 1357180588 source:/ca2/app/appseed/c/c/c_str.cpp
 	"framework.h"
@@ -1066,29 +1058,26 @@
 1357180603 source:/ca2/app/appseed/c/crypt/whirpool.cpp
 	"framework.h"
 
-1357345151 source:/ca2/app/appseed/c/hotplugin/hotplugin_host.cpp
+1357381028 source:/ca2/app/appseed/c/hotplugin/hotplugin_host.cpp
 	"framework.h"
 	<gdiplus.h>
 	<sys/mman.h>
 	<sys/stat.h>
 	<fcntl.h>
-	<unistd.h>
 
-1357345154 source:/ca2/app/appseed/c/hotplugin/hotplugin_plugin.cpp
+1357381033 source:/ca2/app/appseed/c/hotplugin/hotplugin_plugin.cpp
 	"framework.h"
 	<math.h>
 	<sys/mman.h>
 	<sys/stat.h>
 	<fcntl.h>
-	<unistd.h>
 	"c/linux/c_os_cross_win_gdi_internal.h"
 	<gdiplus.h>
 
 1354886566 /ca2/app/appseed/c/linux/c_os_cross_win_gdi_internal.h
 
-1357180602 source:/ca2/app/appseed/c/linux/c_os.cpp
+1357381038 source:/ca2/app/appseed/c/linux/c_os.cpp
 	"framework.h"
-	<unistd.h>
 
 1357202444 source:/ca2/app/appseed/c/linux/c_os_cross_win_gdi.cpp
 	"framework.h"
@@ -1101,18 +1090,17 @@
 	"framework.h"
 	<sys/stat.h>
 
-1357345159 source:/ca2/app/appseed/c/linux/c_os_file_watcher.cpp
+1357381152 source:/ca2/app/appseed/c/linux/c_os_file_watcher.cpp
 	"framework.h"
 	<sys/stat.h>
 	<fcntl.h>
-	<string.h>
 	<errno.h>
 	<sys/inotify.h>
 
 1357180602 source:/ca2/app/appseed/c/linux/c_os_http.cpp
 	"framework.h"
 
-1357344977 source:/ca2/app/appseed/c/linux/c_os_http_lib.cpp
+1357381157 source:/ca2/app/appseed/c/linux/c_os_http_lib.cpp
 	"framework.h"
 	<sys/types.h>
 	<sys/socket.h>
@@ -1120,7 +1108,6 @@
 	<arpa/inet.h>
 	<netdb.h>
 	<ctype.h>
-	<unistd.h>
 	<modes.h>
 	<types.h>
 	<machine/reg.h>
@@ -1129,12 +1116,11 @@
 	<INET/netdb.h>
 	<INET/pwd.h>
 
-1357180602 source:/ca2/app/appseed/c/linux/c_os_lock.cpp
+1357381050 source:/ca2/app/appseed/c/linux/c_os_lock.cpp
 	"c/c.h"
 	<fcntl.h>
 	<sys/file.h>
 	<errno.h>
-	<unistd.h>
 
 1357180602 source:/ca2/app/appseed/c/linux/c_os_message_loop.cpp
 	"framework.h"

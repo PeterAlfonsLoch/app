@@ -41,7 +41,6 @@
 #  define ZCONST const
 #endif
 
-#include <time.h>
 
 time_t mkgmtime_dup OF((struct tm *));
 time_t mktime_dup OF((struct tm *));

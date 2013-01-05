@@ -32,26 +32,7 @@
 
 #define zlib_local static
 
-/* find a four-byte integer type for crc32_little() and crc32_big(). */
-#ifndef NOBYFOUR
-#  ifdef STDC           /* need ANSI C limits.h to determine sizes */
-#    include <limits.h>
-#    define BYFOUR
-#    if (UINT_MAX == 0xffffffffUL)
-       typedef uint32_t u4;
-#    else
-#      if (ULONG_MAX == 0xffffffffUL)
-         typedef unsigned long u4;
-#      else
-#        if (USHRT_MAX == 0xffffffffUL)
-           typedef unsigned short u4;
-#        else
-#          undef BYFOUR     /* can't find a four-byte integer type! */
-#        endif
-#      endif
-#    endif
-#  endif /* STDC */
-#endif /* !NOBYFOUR */
+typedef uint32_t u4;
 
 /* Definitions for doing the crc four data bytes at a time. */
 #ifdef BYFOUR

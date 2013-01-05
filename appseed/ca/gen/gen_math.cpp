@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <time.h>
 
 
 namespace gen
@@ -163,7 +162,7 @@ namespace gen
          gen_rand(&ui, sizeof(ui));
          return ui;
 #endif
-         
+
       }
 
       void math::gen_rand(void * buf, DWORD dwLen)
@@ -367,7 +366,7 @@ namespace gen
          uint64_t uiRange = iMax - iMin;
          return (gen_rand() % (uiRange + 1)) + iMin;
       }
-      
+
       /*
 
       uint64_t math::RandRange(uint64_t ui1, uint64_t ui2)
@@ -393,8 +392,8 @@ namespace gen
          dRand += 0.5;
          return (int32_t) dRand;
       }
-       
-       
+
+
        */
 
       int32_t math::LinearMap(int32_t iMin, int32_t iMax, int32_t iValue, int32_t iValueMin, int32_t iValueMax)
@@ -443,7 +442,7 @@ namespace gen
       int32_t CLASS_DECL_ca time_seed();
 
       void CLASS_DECL_ca srand();
-      
+
       int32_t CLASS_DECL_ca time_seed()
       {
          return (time(NULL) % 5000 + (::get_tick_count() / 100) % 5000) % 1000;

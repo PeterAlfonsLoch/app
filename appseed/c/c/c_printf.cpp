@@ -7,7 +7,6 @@
 // 08/12/06 (mv)
 
 #include "framework.h"
-#include <stdarg.h>
 #include <wchar.h>
 
 // Force the linker to include USER32.LIB

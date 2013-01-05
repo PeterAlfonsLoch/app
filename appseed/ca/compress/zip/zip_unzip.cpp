@@ -38,16 +38,6 @@ woven in by Terry Thorsen 1/2003.
 
 #include "unzip.h"
 
-#ifdef STDC
-#  include <stddef.h>
-#  include <string.h>
-#endif
-#ifdef NO_ERRNO_H
-    extern int32_t errno;
-#else
-#   include <errno.h>
-#endif
-
 
 #ifndef local
 #  define local static

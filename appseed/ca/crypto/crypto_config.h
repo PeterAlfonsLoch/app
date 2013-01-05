@@ -67,8 +67,6 @@
 /* Define to 1 if you have the <strings.h> header spfile-> */
 #define HAVE_STRINGS_H 1
 
-/* Define to 1 if you have the <string.h> header spfile-> */
-#define HAVE_STRING_H 1
 
 /* Define to 1 if you have the <syslog.h> header spfile-> */
 /* #undef HAVE_SYSLOG_H */
@@ -100,8 +98,6 @@
 /* Define to 1 if the system has the type `uint8_t'. */
 #define HAVE_UINT8_T 1
 
-/* Define to 1 if you have the <unistd.h> header spfile-> */
-/* #undef HAVE_UNISTD_H */
 
 /* Define to 1 if you have the `usleep' function. */
 /* #undef HAVE_USLEEP */

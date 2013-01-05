@@ -144,12 +144,10 @@
 1357202439 /ca2/nodeapp/operational_system/cross/win/win_def.h
 	"win_nt.h"
 
-1357180611 /ca2/nodeapp/operational_system/cross/win/win_nt.h
+1357381296 /ca2/nodeapp/operational_system/cross/win/win_nt.h
 	"base_tsd.h"
 	"win_guid_def.h"
 	<ctype.h>
-	<stddef.h>
-	<string.h>
 	"pshpack2.h"
 	"poppack.h"
 	"pshpack2.h"
@@ -426,8 +424,7 @@
 
 1354886566 /ca2/app/appseed/c/macos/c_os_file_watcher.h
 
-1357180602 /ca2/app/appseed/c/linux/c_os.h
-	<stdarg.h>
+1357380829 /ca2/app/appseed/c/linux/c_os.h
 	<wchar.h>
 	"c_os_graphics.h"
 	"c_os_http_lib.h"

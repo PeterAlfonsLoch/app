@@ -23,27 +23,6 @@
 #define ZLIB_INTERNAL
 #include "zlib.h"
 
-#ifdef STDC
-#  ifndef _WIN32_WCE
-#    include <stddef.h>
-#  endif
-//#  include <string.h>
-#endif
-#ifdef NO_ERRNO_H
-#   ifdef _WIN32_WCE
-      /* The Microsoft C Run-Time Library for Windows CE doesn't have
-       * errno.  We define it as a global var to simplify porting.
-       * Its value is always 0 and should not be used.  We rename it to
-       * avoid conflict with other libraries that use the same workaround.
-       */
-#     define errno z_errno
-#   endif
-    extern int32_t errno;
-#else
-#  ifndef _WIN32_WCE
-#    include <errno.h>
-#  endif
-#endif
 
 #ifndef zlib_local
 #  define zlib_local static
@@ -102,8 +81,6 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #    else
 #      include <alloc.h>
 #    endif
-#  else /* MSC or DJGPP */
-#    include <malloc.h>
 #  endif
 #endif
 
@@ -123,9 +100,9 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 
 #ifdef OS2
 #  define OS_CODE  0x06
-#  ifdef M_I86
-     #include <malloc.h>
-#  endif
+//#  ifdef M_I86
+//     #include <malloc.h>
+//#  endif
 #endif
 
 #if defined(MACOS) || defined(TARGET_OS_MAC)

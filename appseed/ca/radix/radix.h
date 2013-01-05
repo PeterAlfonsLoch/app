@@ -62,12 +62,6 @@ struct memory_state;
 class dump_context;
 
 
-#ifdef MACOS
-#include <malloc/malloc.h>
-#else
-#include <malloc.h>
-#endif
-
 /////////////////////////////////////////////////////////////////////////////
 // Basic types
 // abstract iteration position

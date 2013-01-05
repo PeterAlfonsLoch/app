@@ -34,9 +34,6 @@ It is provided "as is" without express or implied warranty.
    } while(0);
 
 
-#ifndef MACOS
-#include <malloc.h>
-#endif
 
 #define USED_CONTEXT_FLAGS CONTEXT_FULL
 #ifdef WINDOWSEX
@@ -162,12 +159,12 @@ namespace exception
    // of dbghelp.dll) it is "safe" to use a static-variable
 
 #ifdef WINDOWS
-   
+
    static PReadProcessMemoryRoutine s_readMemoryFunction = NULL;
    static LPVOID s_readMemoryFunction_UserData = NULL;
-   
+
 #endif
-   
+
    engine::engine(::ca::application * papp) :
       ca(papp)
 #ifdef WINDOWSEX
@@ -1027,7 +1024,7 @@ retry_get_base:
                *mangled_name++ = '\0';
                *offset_begin++ = '\0';
                *offset_end++ = '\0';
-              
+
 #ifdef LINUX
 
                int32_t status;
@@ -1043,9 +1040,9 @@ retry_get_base:
                }
                // otherwise, output the mangled function name
                else
-                  
+
 #endif
-                  
+
                {
                    str += "[bt]: (" + gen::str::from(i) + ") " + messages[i] + " : "
                              + mangled_name + "+" + offset_begin + offset_end
@@ -1053,11 +1050,11 @@ retry_get_base:
                }
 
 #ifdef LINUX
-              
+
                free(real_name);
-              
+
 #endif
-              
+
            }
            // otherwise, print the whole line
            else
@@ -1066,7 +1063,7 @@ retry_get_base:
            }
        }
        str += "\n";
-      
+
       return true;
 
    #endif

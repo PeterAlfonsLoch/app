@@ -28,20 +28,11 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-/*#ifdef _WIN32
-#ifdef _MSC_VER
-#pragma warning(disable:4786)
-#endif
-#else
-#include <errno.h>
-#endif*/
-
-// include this to see strange sights
-//#include <linux/in6.h>
 
 
 namespace sockets
 {
+
 
    udp_socket::udp_socket(socket_handler_base& h, int32_t ibufsz, bool ipv6, int32_t retries) : socket(h)
    , m_ibuf(new char[ibufsz])
@@ -755,6 +746,9 @@ namespace sockets
       m_b_read_ts = x;
    }
 
+
 }
+
+
 
 

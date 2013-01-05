@@ -53,7 +53,6 @@
 
 
 #ifndef SRTP_KERNEL
-# include <time.h>
 # if defined(LINUX) || defined(MACOS)
 #  include <netinet/in.h>
 # elif defined HAVE_WINSOCK2_H

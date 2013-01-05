@@ -8,10 +8,6 @@
 #include "primitive/shared_file.h"
 
 
-#if !defined(_INC_MALLOC) && !defined(MACOS)
-   #include <malloc.h>
-#endif
-
 
 // Implementation structures
 struct __SIZEPARENTPARAMS;    // control bar implementationpropergen_property.h

@@ -8,18 +8,8 @@
 #include "framework.h"
 
 
-#include <time.h>
 #include "zipImpl.h"
 
-#ifdef STDC
-#  include <stddef.h>
-#  include <string.h>
-#endif
-#ifdef NO_ERRNO_H
-    extern int32_t errno;
-#else
-#   include <errno.h>
-#endif
 
 
 #ifndef local

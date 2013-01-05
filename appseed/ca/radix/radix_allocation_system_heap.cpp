@@ -1,11 +1,5 @@
 #include "framework.h"
 
-#if defined(MACOS)
-#include <malloc/malloc.h>
-#else
-#include <malloc.h>
-#endif
-
 
 // DWORD aligned allocation
 

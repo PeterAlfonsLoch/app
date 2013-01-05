@@ -1,13 +1,12 @@
 #include "framework.h"
 
-#ifdef LINUX
-#include <errno.h>
-#endif
 
 namespace gen
 {
 
+
 #ifdef WINDOWS
+
 
    CLASS_DECL_ca int32_t get_errno()
    {
@@ -21,7 +20,9 @@ namespace gen
       C_RUNTIME_ERROR_CHECK(::_set_errno(_Value));
    }
 
+
 #else
+
 
    CLASS_DECL_ca int32_t get_errno()
    {
@@ -33,7 +34,12 @@ namespace gen
       errno = _Value;
    }
 
+
 #endif
 
+
 } // namespace gen
+
+
+
 

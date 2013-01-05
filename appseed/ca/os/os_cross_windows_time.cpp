@@ -72,10 +72,6 @@
 #ifdef METROWIN
 #define STATUS_SUCCESS 0
 #define STATUS_PRIVILEGE_NOT_HELD 1
-#include <time.h>
-#else
-//#define HAVE_SYS_TIME_H
-//#define HAVE_UNISTD_H
 #endif
 
 #include "os_cross_windows_internals.h"
@@ -83,10 +79,6 @@
 #include "c/c/c_verisimple_string.h"
 #include "c/c/c_simple_mutex.h"
 #include "c/c/c_mutex_lock.h"
-#include <stdarg.h>
-#include <errno.h>
-#include <string.h>
-#include <limits.h>
 #include <time.h>
 
 
@@ -94,7 +86,6 @@
 
 #define _USE_BSD
 #include <sys/time.h>
-#include <unistd.h>
 
 #endif
 

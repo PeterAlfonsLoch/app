@@ -2,7 +2,6 @@
 
 
 
-#include <stdarg.h>
 #include <wchar.h>
 
 #include "c_os_graphics.h"

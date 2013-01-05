@@ -1,7 +1,5 @@
 #include "framework.h"
-#ifdef LINUX
-#include <malloc.h>
-#endif
+
 #ifdef WINDOWS
 #include <cderr.h>      // Commdlg Error definitions
 #include <winspool.h>
@@ -2942,7 +2940,7 @@ namespace radix
          System.get_window_rect(m_rectScreen);
       }
 #elif defined(LINUX)
-      
+
 #elif defined(MACOS)
 
 #else

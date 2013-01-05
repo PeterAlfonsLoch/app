@@ -461,7 +461,7 @@ int32_t ZEXPORT gzread (
                 if (ferror(s->file)) {
                     s->z_err = Z_ERRNO;
                 break;
-               } 
+               }
                if (feof(s->file)) {
                   s->z_err = Z_STREAM_END;
                   break;
@@ -608,7 +608,6 @@ int32_t ZEXPORT gzwrite (
    uncompressed bytes actually written (0 in case of error).
 */
 #ifdef STDC
-#include <stdarg.h>
 
 int32_t ZEXPORTVA gzprintf (gzFile file, const char *format, /* args */ ...)
 {

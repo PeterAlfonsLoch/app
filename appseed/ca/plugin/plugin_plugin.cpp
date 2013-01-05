@@ -10,7 +10,6 @@
 #include <sys/mman.h>
 //#include <sys/stat.h>
 //#include <fcntl.h>
-//#include <unistd.h>
 #endif
 
 void CLASS_DECL_ca __cdecl _ca2_purecall_();

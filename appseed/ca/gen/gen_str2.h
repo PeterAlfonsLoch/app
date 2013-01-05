@@ -1,18 +1,12 @@
 #pragma once
 
 
-#if defined(LINUX)
-#include <string.h>
-#endif
-
-
 namespace gen
 {
 
 
    namespace str
    {
-
 
 
       // operations.hpp -- string operations for use with std::basic_string<> and character arrays

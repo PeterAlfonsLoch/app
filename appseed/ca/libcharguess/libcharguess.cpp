@@ -3,7 +3,6 @@
 
 #include "libcharguess.h"
 #include "charguess.h"
-#include <string.h>
 
 #ifdef WIN32
 

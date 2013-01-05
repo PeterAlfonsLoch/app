@@ -186,7 +186,6 @@ namespace sockets {
 #elif defined MACOS
 // ----------------------------------------
 // Mac App X
-//#include <string.h>
 #ifdef __DARWIN_UNIX03
 typedef unsigned short port_t;
 #else

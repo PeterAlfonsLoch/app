@@ -1,10 +1,5 @@
 #include "framework.h"
 
-#if defined(MACOS)
-#include <malloc/malloc.h>
-#else
-#include <malloc.h>
-#endif
 
 #ifdef WINDOWS
 CLASS_DECL_c void * (*g_pfnca2_alloc)(size_t size) = NULL;
@@ -20,7 +15,9 @@ CLASS_DECL_c void   (*g_pfnca2_free)(void * pvoid, int32_t iBlockType) = &::_ca_
 CLASS_DECL_c size_t (*g_pfnca2_msize)(void * pvoid, int32_t iBlockType) = &::_ca_msize;
 #endif
 
+
 BEGIN_EXTERN_C
+
 
 void * ca2_alloc(size_t size)
 {

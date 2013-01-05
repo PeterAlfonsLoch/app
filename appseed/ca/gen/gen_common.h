@@ -1,15 +1,8 @@
 #pragma once
 
 
-//#ifdef LINUX
-//#include <stdlib.h>
-//#endif
-
-
 namespace gen
 {
-
-
 
 
    inline void __cdecl memcpy_s(void *_S1, size_t _S1max, const void *_S2, size_t _N)

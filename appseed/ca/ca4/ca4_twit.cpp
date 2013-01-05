@@ -1,9 +1,9 @@
 #include "framework.h"
-#include <time.h>
 
 
 namespace ca4
 {
+
 
    string prepare_basic_authentication(::ca::application * papp, const char * inParam1, const char * inParam2 );
 

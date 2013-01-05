@@ -6,9 +6,6 @@
 
 #include "framework.h"
 
-#if defined(LINUX) || defined(MACOS)
-#include <stdarg.h>
-#endif
 
 #ifdef METROWIN
 

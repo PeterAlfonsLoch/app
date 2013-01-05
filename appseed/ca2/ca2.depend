@@ -803,11 +803,10 @@
 	"radix_application.h"
 	"ca/ca/ca_application_interface.h"
 
-1355387940 /ca2/app/appseed/ca/ca/ca.h
+1357380843 /ca2/app/appseed/ca/ca/ca.h
 	"app/appseed/c/c/c.h"
 	"nodeapp/operational_system/operational_system.h"
 	<vadefs.h>
-	<stdarg.h>
 	"ca_base.h"
 	"ca/api/api_rotate.h"
 	<crtdbg.h>
@@ -957,12 +956,10 @@
 1357202439 /ca2/nodeapp/operational_system/cross/win/win_def.h
 	"win_nt.h"
 
-1357180611 /ca2/nodeapp/operational_system/cross/win/win_nt.h
+1357381296 /ca2/nodeapp/operational_system/cross/win/win_nt.h
 	"base_tsd.h"
 	"win_guid_def.h"
 	<ctype.h>
-	<stddef.h>
-	<string.h>
 	"pshpack2.h"
 	"poppack.h"
 	"pshpack2.h"
@@ -1239,8 +1236,7 @@
 
 1354886566 /ca2/app/appseed/c/macos/c_os_file_watcher.h
 
-1357180602 /ca2/app/appseed/c/linux/c_os.h
-	<stdarg.h>
+1357380829 /ca2/app/appseed/c/linux/c_os.h
 	<wchar.h>
 	"c_os_graphics.h"
 	"c_os_http_lib.h"
@@ -1812,7 +1808,7 @@
 
 1357180647 /ca2/app/appseed/ca/gen/gen_definition.h
 
-1357180647 /ca2/app/appseed/ca/gen/gen_common.h
+1357380780 /ca2/app/appseed/ca/gen/gen_common.h
 
 1357180646 /ca2/app/appseed/ca/gen/gen_core.h
 
@@ -1875,8 +1871,7 @@
 
 1354886568 /ca2/app/appseed/ca/gen/gen_international.h
 
-1357180647 /ca2/app/appseed/ca/gen/gen_str2.h
-	<string.h>
+1357381212 /ca2/app/appseed/ca/gen/gen_str2.h
 
 1357180723 /ca2/app/appseed/ca/primitive/datetime/datetime_time.h
 
@@ -2401,9 +2396,7 @@
 	<Winsvc.h>
 	"WinIoCtl.h"
 
-1357180670 /ca2/app/appseed/ca/os/os_cross_windows.h
-	<stddef.h>
-	<string.h>
+1357381258 /ca2/app/appseed/ca/os/os_cross_windows.h
 	"os_cross_windows_guid_def.h"
 	"os_cross_windows_internals.h"
 	"os_cross_windows_winnt.h"
@@ -2477,19 +2470,17 @@
 
 1354886572 /ca2/app/appseed/ca/primitive/primitive_shared_file.h
 
-1357180631 /ca2/app/appseed/ca/zlib/zconf.h
+1357381105 /ca2/app/appseed/ca/zlib/zconf.h
 	"c/c/c.h"
 	<windows.h>
 	<sys/types.h>
-	<unistd.h>
 	<unixio.h>
 
 1357180628 /ca2/app/appseed/ca/zlib/zlib.h
 	"zconf.h"
 
-1357345116 /ca2/app/appseed/ca/zlib/zutil.h
+1357381282 /ca2/app/appseed/ca/zlib/zutil.h
 	"zlib.h"
-	<stddef.h>
 	<errno.h>
 	<alloc.h>
 	<malloc.h>
@@ -2499,8 +2490,7 @@
 1354886569 /ca2/app/appseed/ca/sqlite/sqlite.h
 	"sqlite3.h"
 
-1357202801 /ca2/app/appseed/ca/sqlite/sqlite3.h
-	<stdarg.h>
+1357380895 /ca2/app/appseed/ca/sqlite/sqlite3.h
 
 1357180729 /ca2/app/appseed/ca/libcharguess/libcharguess.h
 	"ca/ca.h"
@@ -3008,7 +2998,7 @@
 
 1357180720 /ca2/app/appseed/ca/crypto/crypto_err.h
 
-1357345042 /ca2/app/appseed/ca/crypto/crypto_config.h
+1357381203 /ca2/app/appseed/ca/crypto/crypto_config.h
 
 1357345049 /ca2/app/appseed/ca/crypto/crypto_integers.h
 	"kernel_compat.h"
@@ -3017,8 +3007,7 @@
 	<sys/int_types.h>
 	<machine/types.h>
 
-1357180720 /ca2/app/appseed/ca/crypto/crypto_datatypes.h
-	<time.h>
+1357381383 /ca2/app/appseed/ca/crypto/crypto_datatypes.h
 	<netinet/in.h>
 	<winsock2.h>
 	<byteswap.h>
@@ -3406,7 +3395,7 @@
 
 1354886572 /ca2/app/appseed/ca/sockets/http_memory_file.h
 
-1357345110 /ca2/app/appseed/ca/sockets/bsd/sockets.h
+1357381267 /ca2/app/appseed/ca/sockets/bsd/sockets.h
 	"internal/SSLInitializer.h"
 	<sys/param.h>
 	<sys/types.h>
@@ -3506,8 +3495,7 @@
 
 1357180727 /ca2/app/appseed/ca/sockets/bsd/basic/socket_handler.h
 
-1357345093 /ca2/app/appseed/ca/sockets/bsd/basic/listen_socket.h
-	<errno.h>
+1357381774 /ca2/app/appseed/ca/sockets/bsd/basic/listen_socket.h
 
 1354886572 /ca2/app/appseed/ca/sockets/bsd/webserver/http_form.h
 

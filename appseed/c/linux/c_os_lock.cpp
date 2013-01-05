@@ -1,8 +1,7 @@
 #include "c/c.h"
 #include <fcntl.h>
 #include <sys/file.h>
-#include <errno.h>
-#include <unistd.h>
+
 
 int32_t _c_lock_is_active(const char * pszName)
 {

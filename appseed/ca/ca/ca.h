@@ -40,8 +40,6 @@ namespace plane
 
 #if defined(WIN32) && !defined(VC6) && ! defined(VC71)
 #include <vadefs.h>
-#else
-#include <stdarg.h>
 #endif
 
 
