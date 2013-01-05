@@ -166,10 +166,10 @@ namespace ex1
       m_pfile->write(lpBuf, nCount);
    }
 
-   void timeout_file::Flush()
+   void timeout_file::flush()
    {
       single_lock sl(m_spmutex, TRUE);
-      m_pfile->Flush();
+      m_pfile->flush();
    }
 
    void timeout_file::set_length(file_size dwNewLen)

@@ -41,7 +41,7 @@ bool is_debugger_attached()
    
    
 #endif
-/*    DWORD dw;
+/*    uint32_t dw;
 
     __asm
     {
@@ -51,7 +51,7 @@ bool is_debugger_attached()
         mov eax, fs:[0x18]  // get the TIB's linear address
 
         mov eax, dword ptr [eax + 0x30]
-        mov ecx, dword ptr [eax]    // get the whole DWORD
+        mov ecx, dword ptr [eax]    // get the whole uint32_t
 
         mov dw, ecx // Save it
 
@@ -134,7 +134,7 @@ bool misc_exception::get_error_message(string & str, PUINT pnHelpContext)
 /*
 bool EnforceFilter( bool bEnforce )
 {
-   DWORD ErrCode = 0;
+   uint32_t ErrCode = 0;
 
 
    // Obtain the address of SetUnhandledExceptionFilter
@@ -198,9 +198,9 @@ bool EnforceFilter( bool bEnforce )
 // WriteMemory function
 //
 
-bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
+bool WriteMemory( BYTE* pTarget, const BYTE* pSource, uint32_t size )
 {
-   DWORD ErrCode = 0;
+   uint32_t ErrCode = 0;
 
 
    // Check parameters
@@ -232,7 +232,7 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
 
    // Modify protection attributes of the target primitive::memory page
 
-   DWORD OldProtect = 0;
+   uint32_t OldProtect = 0;
 
    if( !VirtualProtect( pTarget, size, PAGE_EXECUTE_READWRITE, &OldProtect ) )
    {
@@ -249,7 +249,7 @@ bool WriteMemory( BYTE* pTarget, const BYTE* pSource, DWORD size )
 
    // Restore primitive::memory protection attributes of the target primitive::memory page
 
-   DWORD Temp = 0;
+   uint32_t Temp = 0;
 
    if( !VirtualProtect( pTarget, size, OldProtect, &Temp ) )
    {
@@ -272,7 +272,7 @@ namespace win
 {
 
 
-   CLASS_DECL_ca string error_message(DWORD dwError)
+   CLASS_DECL_ca string error_message(uint32_t dwError)
    {
 
       return get_system_error_message(dwError);

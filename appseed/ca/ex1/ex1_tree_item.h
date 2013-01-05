@@ -51,7 +51,7 @@ namespace ex1
       tree_item *                m_pchild;
       tree_item *                m_pnext;
       tree_item *                m_pprevious;
-      DWORD                      m_dwState;
+      uint32_t                      m_dwState;
       tree *                     m_ptree;
       tree_item_data *           m_pitemdata;
 

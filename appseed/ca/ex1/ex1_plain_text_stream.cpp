@@ -126,7 +126,7 @@ namespace ex1
 
    plain_text_input_stream & plain_text_input_stream::operator >> (uint16_t & ui)
    {
-      read(&uint16_t, sizeof(ui));
+      read(&ui, sizeof(ui));
       return *this;
    }
 

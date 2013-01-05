@@ -45,7 +45,7 @@ namespace ex1
    typedef int32_t SRes;
 
    #ifdef _WIN32
-   typedef DWORD WRes;
+   typedef uint32_t WRes;
    #else
    typedef int32_t WRes;
    #endif

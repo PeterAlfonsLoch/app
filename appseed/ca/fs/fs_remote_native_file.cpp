@@ -67,7 +67,7 @@ namespace fs
       strUrl = "http://fs.veriwell.net/fs/get?path=" + System.url().url_encode(System.url().get_script(m_strPath))
          + "&server=" + System.url().url_encode(System.url().get_server(m_strPath));
 
-      DWORD dwAdd = 0;
+      uint32_t dwAdd = 0;
 
       if(m_nOpenFlags & hint_unknown_length_supported)
       {

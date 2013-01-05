@@ -68,7 +68,7 @@ HANDLE SymGetProcessHandle();
 WINBOOL __stdcall My_ReadProcessMemory(HANDLE      hProcess,
 DWORD64     qwBaseAddress,
 PVOID       lpBuffer,
-DWORD       nSize,
+uint32_t       nSize,
 LPDWORD     lpNumberOfBytesRead
                                        );
 
@@ -106,7 +106,7 @@ BOOL
 _In_ HANDLE hProcess,
 _In_ DWORD64 qwBaseAddress,
 _Out_writes_bytes_(nSize) PVOID lpBuffer,
-_In_ DWORD nSize,
+_In_ uint32_t nSize,
 _Out_ LPDWORD lpNumberOfBytesRead
 );*/
 
@@ -115,7 +115,7 @@ WINBOOL __stdcall My_ReadProcessMemory (
    HANDLE      hProcess,
    DWORD64     qwBaseAddress,
    PVOID       lpBuffer,
-   DWORD       nSize,
+   uint32_t       nSize,
    LPDWORD     lpNumberOfBytesRead
    )
 {
@@ -127,14 +127,14 @@ WINBOOL __stdcall My_ReadProcessMemory (
    if(!ReadProcessMemory(hProcess, (LPCVOID) qwBaseAddress, (LPVOID) lpBuffer, nSize, &size))
       return FALSE;
 #endif
-   *lpNumberOfBytesRead = (DWORD) size;
+   *lpNumberOfBytesRead = (uint32_t) size;
 
    return TRUE;
 
 }
 /*
 #else
-WINBOOL __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, DWORD nSize, SIZE_T * lpNumberOfBytesRead)
+WINBOOL __stdcall My_ReadProcessMemory (HANDLE, LPCVOID lpBaseAddress, LPVOID lpBuffer, uint32_t nSize, SIZE_T * lpNumberOfBytesRead)
 {
 return ReadProcessMemory(GetCurrentProcess(), lpBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
 }
@@ -148,7 +148,7 @@ namespace exception
       HANDLE      hProcess,
       DWORD64     qwBaseAddress,
       PVOID       lpBuffer,
-      DWORD       nSize,
+      uint32_t       nSize,
       LPDWORD     lpNumberOfBytesRead,
       LPVOID      pUserData  // optional data, which was passed in "ShowCallstack"
       );
@@ -236,7 +236,7 @@ namespace exception
 #ifdef WINDOWSEX
 
 
-   index engine::fileline (vsstring & str, DWORD * pline, DWORD * pdisplacement)
+   index engine::fileline (vsstring & str, uint32_t * pline, uint32_t * pdisplacement)
    {
 
       if (!check())
@@ -247,7 +247,7 @@ namespace exception
       img_line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
       HANDLE hprocess = SymGetProcessHandle();
-      DWORD displacement = 0;
+      uint32_t displacement = 0;
       if (!get_line_from_address(hprocess, m_uiAddress, &displacement, &img_line))
          return 0;
       if (pdisplacement)
@@ -299,13 +299,13 @@ namespace exception
       m_pstackframe->AddrFrame.Offset    = pcontext->Ebp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
 #else
-      m_pstackframe->AddrPC.Offset       = (DWORD)pcontext->Fir;
+      m_pstackframe->AddrPC.Offset       = (uint32_t)pcontext->Fir;
       m_pstackframe->AddrPC.Mode         = AddrModeFlat;
-      m_pstackframe->AddrReturn.Offset   = (DWORD)pcontext->IntRa;
+      m_pstackframe->AddrReturn.Offset   = (uint32_t)pcontext->IntRa;
       m_pstackframe->AddrReturn.Mode     = AddrModeFlat;
-      m_pstackframe->AddrStack.Offset    = (DWORD)pcontext->IntSp;
+      m_pstackframe->AddrStack.Offset    = (uint32_t)pcontext->IntSp;
       m_pstackframe->AddrStack.Mode      = AddrModeFlat;
-      m_pstackframe->AddrFrame.Offset    = (DWORD)pcontext->IntFp;
+      m_pstackframe->AddrFrame.Offset    = (uint32_t)pcontext->IntFp;
       m_pstackframe->AddrFrame.Mode      = AddrModeFlat;
 #endif
 
@@ -335,7 +335,7 @@ namespace exception
       SetLastError(0);
       HANDLE hprocess = SymGetProcessHandle();
 
-      DWORD dwType;
+      uint32_t dwType;
 
       bool bRetry;
 
@@ -346,7 +346,7 @@ namespace exception
 #endif
 
       bool r = StackWalk64(
-         dwType,   // __in      DWORD MachineType,
+         dwType,   // __in      uint32_t MachineType,
          hprocess,        // __in      HANDLE hProcess,
          GetCurrentThread(),         // __in      HANDLE hThread,
          m_pstackframe,                       // __inout   LP STACKFRAME64 StackFrame,
@@ -425,7 +425,7 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::get_line_from_address (HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
+   bool engine::get_line_from_address (HANDLE hprocess, DWORD64 uiAddress, uint32_t * puiDisplacement, IMAGEHLP_LINE64 * pline)
    {
 #ifdef WORK_AROUND_SRCLINE_BUG
       // "Debugging Applications" John Robbins
@@ -433,7 +433,7 @@ retry_get_base:
       // line addresses (after the first lookup) that fall exactly on
       // a zero displacement. I'll walk backward 100 bytes to
       // find the line and return the proper displacement.
-      DWORD dwDisplacement = 0 ;
+      uint32_t dwDisplacement = 0 ;
       while (!SymGetLineFromAddr64 (hprocess, uiAddress - dwDisplacement, puiDisplacement, pline))
       {
          if (100 == ++dwDisplacement)
@@ -447,7 +447,7 @@ retry_get_base:
          *puiDisplacement = dwDisplacement;
       return true;
 #else
-      return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (DWORD *) puiDisplacement, pline);
+      return 0 != SymGetLineFromAddr64 (hprocess, uiAddress, (uint32_t *) puiDisplacement, pline);
 #endif
    }
 
@@ -470,7 +470,7 @@ retry_get_base:
 
       char filename[MAX_PATH];
 
-      DWORD r = GetModuleFileNameA(hmodule, filename, MAX_PATH);
+      uint32_t r = GetModuleFileNameA(hmodule, filename, MAX_PATH);
 
       if(!r)
          return 0;
@@ -546,25 +546,25 @@ retry_get_base:
    {
 
       HANDLE hprocess = SymGetProcessHandle();
-      DWORD  dwPid = GetCurrentProcessId();
+      uint32_t  dwPid = GetCurrentProcessId();
 
       // enumerate modules
       if (IsNT())
       {
-         typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, DWORD, LPDWORD);
+         typedef bool (WINAPI *ENUMPROCESSMODULES)(HANDLE, HMODULE*, uint32_t, LPDWORD);
 
          HINSTANCE hInst = LoadLibrary("psapi.dll");
          if (hInst)
          {
             ENUMPROCESSMODULES fnEnumProcessModules =
                (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-            DWORD cbNeeded = 0;
+            uint32_t cbNeeded = 0;
             if (fnEnumProcessModules &&
                fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
                cbNeeded)
             {
                HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-               DWORD cb = cbNeeded;
+               uint32_t cb = cbNeeded;
                if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
                {
                   m_iRef = 0;
@@ -592,7 +592,7 @@ retry_get_base:
       }
       else
       {
-         typedef HANDLE (WINAPI *CREATESNAPSHOT)(DWORD, DWORD);
+         typedef HANDLE (WINAPI *CREATESNAPSHOT)(uint32_t, uint32_t);
          typedef bool (WINAPI *MODULEWALK)(HANDLE, LPMODULEENTRY32);
 
          HMODULE hMod = GetModuleHandle("kernel32");
@@ -667,7 +667,7 @@ retry_get_base:
          m_iRef = -1;
 
          HANDLE hprocess = SymGetProcessHandle();
-         DWORD  dwPid = GetCurrentProcessId();
+         uint32_t  dwPid = GetCurrentProcessId();
 
          // initializes
          SymSetOptions(SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
@@ -783,7 +783,7 @@ retry_get_base:
       // "Debugging Applications" John Robbins
       // For whatever reason, SymLoadModule can return zero, but it still loads the modules. Sheez.
       SetLastError(ERROR_SUCCESS);
-      if (!SymLoadModule(hProcess, hFile, filename, 0, (DWORD)hMod, 0) && ERROR_SUCCESS != GetLastError())
+      if (!SymLoadModule(hProcess, hFile, filename, 0, (uint32_t)hMod, 0) && ERROR_SUCCESS != GetLastError())
       {
          return false;
       }
@@ -843,7 +843,7 @@ retry_get_base:
       volatile int32_t signal;
    };
 
-   DWORD WINAPI engine::stack_trace_ThreadProc(void * lpvoidParam)
+   uint32_t WINAPI engine::stack_trace_ThreadProc(void * lpvoidParam)
    {
 
 
@@ -931,7 +931,7 @@ retry_get_base:
 
       GET_CURRENT_CONTEXT((&context), USED_CONTEXT_FLAGS);
 
-      /*DWORD dwDummy;
+      /*uint32_t dwDummy;
       HANDLE hthreadWorker = create_thread(0, 0, &engine::stack_trace_ThreadProc, &context, CREATE_SUSPENDED, &dwDummy);
       _ASSERTE(hthreadWorker);
 
@@ -1118,8 +1118,8 @@ retry_get_base:
       vsstring strSymbol;
 
 
-      DWORD uiLineDisplacement = 0;
-      DWORD uiLineNumber = 0;
+      uint32_t uiLineDisplacement = 0;
+      uint32_t uiLineNumber = 0;
       DWORD64 uiSymbolDisplacement = 0;
 
 

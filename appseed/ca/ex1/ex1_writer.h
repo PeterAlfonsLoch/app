@@ -11,7 +11,7 @@ namespace ex1
       virtual public ::radix::object
    {
    public:
-      virtual void Flush() = 0;
+      virtual void flush() = 0;
    };
 
 
@@ -48,7 +48,7 @@ namespace ex1
 
       virtual void from_hex(const char * psz);
 
-      virtual void Flush();
+      virtual void flush();
 
    };
 

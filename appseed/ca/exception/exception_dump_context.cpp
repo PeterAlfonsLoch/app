@@ -46,10 +46,10 @@ void dump_context::SetDepth(int32_t nNewDepth)
    m_nDepth = nNewDepth;
 }
 
-void dump_context::OutputString(const char * lpsz)
+void dump_context::output_string(const char * lpsz)
 {
-   // use C-runtime/OutputDebugString when m_pFile is NULL
-   if (m_pFile == NULL)
+   // use C-runtime/OutputDebugString when m_pfile is NULL
+   if (m_pfile == NULL)
    {
       ::OutputDebugStringW(gen::international::utf8_to_unicode(lpsz));
       //     TRACE(::radix::trace::category_dumpContext, 0, "%s", lpsz);
@@ -61,9 +61,9 @@ void dump_context::OutputString(const char * lpsz)
       throw user_exception(get_app());
    // otherwise, write the string to the file
 #ifdef WINDOWSEX
-   m_pFile->write(lpsz, lstrlen(lpsz)*sizeof(char));
+   m_pfile->write(lpsz, lstrlen(lpsz)*sizeof(char));
 #else
-   m_pFile->write(lpsz, strlen(lpsz)*sizeof(char));
+   m_pfile->write(lpsz, strlen(lpsz)*sizeof(char));
 #endif
 }
 
@@ -72,21 +72,21 @@ dump_context::dump_context(ex1::file * pFile)
    if (pFile)
       ASSERT_VALID(pFile);
 
-   m_pFile = pFile;
+   m_pfile = pFile;
    m_nDepth = 0;
 }
 
-void dump_context::Flush()
+void dump_context::flush()
 {
-   if (m_pFile)
-      m_pFile->Flush();
+   if (m_pfile)
+      m_pfile->flush();
 }
 
-dump_context& dump_context::operator<<(const char * lpsz)
+dump_context & dump_context::operator<<(const char * lpsz)
 {
    if (lpsz == NULL)
    {
-      OutputString("NULL");
+      output_string("NULL");
       return *this;
    }
 
@@ -94,7 +94,7 @@ dump_context& dump_context::operator<<(const char * lpsz)
    if( lpsz == NULL )
       throw user_exception(get_app());
 
-   if (m_pFile == NULL)
+   if (m_pfile == NULL)
    {
       char szBuffer[512];
       LPSTR lpBuf = szBuffer;
@@ -103,7 +103,7 @@ dump_context& dump_context::operator<<(const char * lpsz)
          if (lpBuf > szBuffer + _countof(szBuffer) - 3)
          {
             *lpBuf = '\0';
-            OutputString(szBuffer);
+            output_string(szBuffer);
             lpBuf = szBuffer;
          }
          if (*lpsz == '\n')
@@ -111,61 +111,61 @@ dump_context& dump_context::operator<<(const char * lpsz)
          *lpBuf++ = *lpsz++;
       }
       *lpBuf = '\0';
-      OutputString(szBuffer);
+      output_string(szBuffer);
       return *this;
    }
 
-   m_pFile->write(lpsz, strlen(lpsz)*sizeof(char));
+   m_pfile->write(lpsz, strlen(lpsz)*sizeof(char));
    return *this;
 }
 
-dump_context& dump_context::operator<<(BYTE by)
+dump_context & dump_context::operator<<(BYTE by)
 {
 
    string str;
 
-   str.Format("%d", (DWORD)by);
+   str.Format("%d", (uint32_t)by);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
-dump_context& dump_context::dumpAsHex(BYTE b)
+dump_context & dump_context::hex_dump(BYTE b)
 {
 
    string str;
 
-   str.Format("0x%02x", (DWORD)b);
+   str.Format("0x%02x", (uint32_t)b);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
-dump_context& dump_context::operator<<(WORD w)
+dump_context & dump_context::operator<<(WORD w)
 {
 
    string str;
 
    str.Format("%u", (UINT) w);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
-dump_context& dump_context::dumpAsHex(WORD w)
+dump_context & dump_context::hex_dump(WORD w)
 {
 
    string str;
 
-   str.Format("0x%04x", (DWORD) w);
+   str.Format("0x%04x", (uint32_t) w);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
@@ -174,14 +174,14 @@ dump_context& dump_context::dumpAsHex(WORD w)
 
 #if defined(LINUX)
 
-dump_context& dump_context::operator<<(uint32_t ui)
+dump_context & dump_context::operator<<(uint32_t ui)
 {
 
    string str;
 
    str.Format("%u", ui);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
@@ -191,9 +191,9 @@ dump_context& dump_context::operator<<(uint32_t ui)
 
 
 #if defined(_WIN64) && !defined(_LP64)
-dump_context& dump_context::operator<<(UINT u)
+dump_context & dump_context::operator<<(UINT u)
 #else
-dump_context& dump_context::operator<<(uint_ptr u)
+dump_context & dump_context::operator<<(uint_ptr u)
 #endif
 {
 
@@ -201,16 +201,16 @@ dump_context& dump_context::operator<<(uint_ptr u)
 
    str.Format("%u", u);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
 #ifdef _WIN64
-dump_context& dump_context::operator<<(LONG l)
+dump_context & dump_context::operator<<(LONG l)
 #else
-dump_context& dump_context::operator<<(int_ptr l)
+dump_context & dump_context::operator<<(int_ptr l)
 #endif
 {
 
@@ -218,7 +218,7 @@ dump_context& dump_context::operator<<(int_ptr l)
 
    str.Format("%d", l);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
@@ -227,9 +227,9 @@ dump_context& dump_context::operator<<(int_ptr l)
 #if !defined(_LP64)
 
 #ifdef _WIN64
-dump_context& dump_context::operator<<(DWORD dw)
+dump_context & dump_context::operator<<(uint32_t dw)
 #else
-dump_context& dump_context::operator<<(uint_ptr dw)
+dump_context & dump_context::operator<<(uint_ptr dw)
 #endif
 {
 
@@ -237,7 +237,7 @@ dump_context& dump_context::operator<<(uint_ptr dw)
 
    str.Format("%u", dw);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
@@ -246,9 +246,9 @@ dump_context& dump_context::operator<<(uint_ptr dw)
 #endif
 
 #if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
-dump_context& dump_context::operator<<(int32_t n)
+dump_context & dump_context::operator<<(int32_t n)
 #else
-dump_context& dump_context::operator<<(int_ptr n)
+dump_context & dump_context::operator<<(int_ptr n)
 #endif
 {
 
@@ -256,7 +256,7 @@ dump_context& dump_context::operator<<(int_ptr n)
 
    str.Format("%d", n);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
@@ -265,9 +265,9 @@ dump_context& dump_context::operator<<(int_ptr n)
 #if !defined(_LP64)
 
 #ifdef _WIN64
-dump_context& dump_context::dumpAsHex(UINT u)
+dump_context & dump_context::hex_dump(UINT u)
 #else
-dump_context& dump_context::dumpAsHex(uint_ptr u)
+dump_context & dump_context::hex_dump(uint_ptr u)
 #endif
 {
 
@@ -275,7 +275,7 @@ dump_context& dump_context::dumpAsHex(uint_ptr u)
 
    str.Format("0x%08x", u);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 }
@@ -283,9 +283,9 @@ dump_context& dump_context::dumpAsHex(uint_ptr u)
 #endif
 
 #ifdef _WIN64
-dump_context& dump_context::dumpAsHex(LONG l)
+dump_context & dump_context::hex_dump(LONG l)
 #else
-dump_context& dump_context::dumpAsHex(int_ptr l)
+dump_context & dump_context::hex_dump(int_ptr l)
 #endif
 {
 
@@ -293,16 +293,16 @@ dump_context& dump_context::dumpAsHex(int_ptr l)
 
    str.Format("0x%08x", l);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
 #if defined(_WIN64) && !defined(_LP64)
-dump_context& dump_context::dumpAsHex(DWORD dw)
+dump_context & dump_context::hex_dump(uint32_t dw)
 #else
-dump_context& dump_context::dumpAsHex(uint_ptr dw)
+dump_context & dump_context::hex_dump(uint_ptr dw)
 #endif
 {
 
@@ -310,16 +310,16 @@ dump_context& dump_context::dumpAsHex(uint_ptr dw)
 
    str.Format("0x%08x", dw);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
 #if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
-dump_context& dump_context::dumpAsHex(int32_t n)
+dump_context & dump_context::hex_dump(int32_t n)
 #else
-dump_context& dump_context::dumpAsHex(int_ptr n)
+dump_context & dump_context::hex_dump(int_ptr n)
 #endif
 {
 
@@ -327,7 +327,7 @@ dump_context& dump_context::dumpAsHex(int_ptr n)
 
    str.Format("0x%08x", n);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
@@ -335,53 +335,53 @@ dump_context& dump_context::dumpAsHex(int_ptr n)
 
 #if !defined(_LP64)
 
-dump_context& dump_context::operator<<(LONGLONG n)
+dump_context & dump_context::operator<<(LONGLONG n)
 {
 
    string str;
 
    str.Format("%I64d", n);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
-dump_context& dump_context::operator<<(ULONGLONG n)
+dump_context & dump_context::operator<<(ULONGLONG n)
 {
 
    string str;
 
    str.Format("%I64u", n);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
-dump_context& dump_context::dumpAsHex(LONGLONG n)
+dump_context & dump_context::hex_dump(LONGLONG n)
 {
 
    string str;
 
    str.Format("0x%016I64x", n);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
-dump_context& dump_context::dumpAsHex(ULONGLONG n)
+dump_context & dump_context::hex_dump(ULONGLONG n)
 {
 
    string str;
 
    str.Format("0x%016I64x", n);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
@@ -389,7 +389,7 @@ dump_context& dump_context::dumpAsHex(ULONGLONG n)
 
 #endif
 
-dump_context& dump_context::operator<<(const ::radix::object* pOb)
+dump_context & dump_context::operator<<(const ::radix::object* pOb)
 {
 
    if (pOb == NULL)
@@ -401,14 +401,14 @@ dump_context& dump_context::operator<<(const ::radix::object* pOb)
 
 }
 
-dump_context& dump_context::operator<<(const ::radix::object& ob)
+dump_context & dump_context::operator<<(const ::radix::object& ob)
 {
 
    return *this << &ob;
 
 }
 
-dump_context& dump_context::operator<<(const void * lp)
+dump_context & dump_context::operator<<(const void * lp)
 {
 
    string str;
@@ -416,18 +416,18 @@ dump_context& dump_context::operator<<(const void * lp)
    // prefix a pointer with "$" and print in hex
    str.Format("$%p", lp);
 
-   OutputString(str);
+   output_string(str);
 
    return *this;
 
 }
 
-dump_context& dump_context::operator<<(oswindow h)
+dump_context & dump_context::operator<<(oswindow h)
 {
    return *this << (void *)h;
 }
 
-dump_context& dump_context::operator<<(HDC h)
+dump_context & dump_context::operator<<(HDC h)
 {
    return *this << (void *)h;
 }
@@ -436,12 +436,12 @@ dump_context& dump_context::operator<<(HDC h)
 #ifdef WINDOWS
 
 
-dump_context& dump_context::operator<<(HMENU h)
+dump_context & dump_context::operator<<(HMENU h)
 {
    return *this << (void *)h;
 }
 
-dump_context& dump_context::operator<<(HACCEL h)
+dump_context & dump_context::operator<<(HACCEL h)
 {
    return *this << (void *)h;
 }
@@ -450,7 +450,7 @@ dump_context& dump_context::operator<<(HACCEL h)
 #endif
 
 
-dump_context& dump_context::operator<<(HFONT h)
+dump_context & dump_context::operator<<(HFONT h)
 {
    return *this << (void *)h;
 }
@@ -458,7 +458,7 @@ dump_context& dump_context::operator<<(HFONT h)
 /////////////////////////////////////////////////////////////////////////////
 // Formatted output
 
-void dump_context::Hexdump(const char * lpszLine, BYTE* pby, int32_t nBytes, int32_t nWidth)
+void dump_context::hex_dump(const char * lpszLine, BYTE* pby, int32_t nBytes, int32_t nWidth)
 // do a simple hex-dump (8 per line) to a dump_context
 //  the "lpszLine" is a string to print at the start of each line
 //    (%lx should be used to expand the current address)
@@ -504,12 +504,12 @@ void dump_context::Hexdump(const char * lpszLine, BYTE* pby, int32_t nBytes, int
       *this << "\n";
 }
 
-dump_context& dump_context::operator<<(const wchar_t * lpsz)
+dump_context & dump_context::operator<<(const wchar_t * lpsz)
 {
 
    if (lpsz == NULL)
    {
-      OutputString("(NULL)");
+      output_string("(NULL)");
       return *this;
    }
 

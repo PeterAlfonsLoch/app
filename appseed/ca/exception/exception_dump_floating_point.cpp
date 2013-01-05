@@ -7,7 +7,7 @@
 // Diagnostic Stream output for floating point numbers
 
 
-dump_context& dump_context::operator<<(float f)
+dump_context & dump_context::operator<<(float f)
 {
    char szBuffer[32];
    ::gen::gcvt_s(szBuffer, 32, f, FLT_DIG);
@@ -16,7 +16,7 @@ dump_context& dump_context::operator<<(float f)
    return *this;
 }
 
-dump_context& dump_context::operator<<(double d)
+dump_context & dump_context::operator<<(double d)
 {
    char szBuffer[32];
    ::gen::gcvt_s(szBuffer, 32, d, DBL_DIG);

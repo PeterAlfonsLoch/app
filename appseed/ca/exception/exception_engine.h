@@ -111,10 +111,10 @@ namespace exception
 
 #ifdef WINDOWSEX
 
-      DWORD WINAPI stack_trace_ThreadProc(void * lpvoidParam);
+      uint32_t WINAPI stack_trace_ThreadProc(void * lpvoidParam);
 
 
-      bool get_line_from_address(HANDLE hProc, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline);
+      bool get_line_from_address(HANDLE hProc, DWORD64 uiAddress, uint32_t * puiDisplacement, IMAGEHLP_LINE64 * pline);
       size_t get_module_basename(HMODULE hmodule, vsstring & strName);
 
       vsstring get_frame(const char * pszFormat);
@@ -128,7 +128,7 @@ namespace exception
       // symbol handler queries
       size_t      module  (vsstring & str);
       size_t      symbol  (vsstring & str, DWORD64 * pdisplacement = 0);
-      index       fileline(vsstring & str, DWORD * pline, DWORD * pdisplacement= 0);
+      index       fileline(vsstring & str, uint32_t * pline, uint32_t * pdisplacement= 0);
 
       // stack walk
       bool stack_first (CONTEXT* pctx);

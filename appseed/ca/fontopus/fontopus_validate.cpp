@@ -307,7 +307,7 @@ namespace fontopus
       string strAuth;
       post["entered_license"] = m_strLicense;
       //m_puser->set_sessid(ApplicationUser.m_str, strAuthUrl);
-//      DWORD dwTimeTelmo1 = get_tick_count();
+//      uint32_t dwTimeTelmo1 = get_tick_count();
 
       post["entered_license"] = m_strLicense;
 
@@ -582,12 +582,12 @@ namespace fontopus
       SetDllDirectory(NULL);
 #endif
       ::LoadLibraryA("salt.dll");
-      DWORD dwNeeded;
+      uint32_t dwNeeded;
       if(!EnumProcessModules(::GetCurrentProcess(),  NULL,  0,  &dwNeeded))
       {
          return;
       }
-      DWORD dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
+      uint32_t dwAlloc = (dwNeeded + sizeof(HMODULE)) * 2;
       HMODULE * pmodulea = new HMODULE[dwAlloc / sizeof(HMODULE)];
       if(pmodulea == NULL)
          return;
@@ -600,7 +600,7 @@ namespace fontopus
       ex1::file_system_sp fs(get_app());
       string strModuleFolder(System.get_ca2_module_folder());
       fs->FullPath(strModuleFolder, strModuleFolder);
-      for(DWORD dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
+      for(uint32_t dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
       {
          strModule.Empty();
          GetModuleFileName(pmodulea[dw], strModule.GetBufferSetLength(4096), 4096);
@@ -1342,9 +1342,9 @@ namespace fontopus
 
          m_puser->set_sessid(strSessId, strAuthUrl);
          set["app"] = papp;
-         DWORD dwTimeTelmo1 = get_tick_count();
+         uint32_t dwTimeTelmo1 = get_tick_count();
          Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
-         DWORD dwTimeTelmo2 = get_tick_count();
+         uint32_t dwTimeTelmo2 = get_tick_count();
 
          TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 

@@ -126,7 +126,7 @@ namespace ex1
       write(memory.get_data(), memory.get_size());
    }
 
-   void writer::Flush()
+   void writer::flush()
    {
    }
 

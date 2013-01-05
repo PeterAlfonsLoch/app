@@ -19,7 +19,7 @@
 
 namespace win
 {
-   CLASS_DECL_ca string error_message(DWORD dwError);
+   CLASS_DECL_ca string error_message(uint32_t dwError);
 }
 
 
@@ -173,7 +173,7 @@ bool __diagnostic_init();
 #define __stack_dump_TARGET_DEFAULT           __stack_dump_TARGET_CLIPBOARD
 #endif
 
-void __dump_stack(DWORD dwFlags = __stack_dump_TARGET_DEFAULT);
+void __dump_stack(uint32_t dwFlags = __stack_dump_TARGET_DEFAULT);
 
 #include "exception_dump_context.h"
 

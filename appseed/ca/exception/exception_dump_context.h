@@ -12,75 +12,52 @@ public:
    void SetDepth(int32_t nNewDepth);
 
 // Operations
-   dump_context& operator<<(const char * lpsz);
-   dump_context& operator<<(const wchar_t * lpsz); // automatically thinned
-   dump_context& operator<<(const string & str);
-   dump_context& operator<<(const void * lp);
-   dump_context& operator<<(const ::radix::object* pOb);
-   dump_context& operator<<(const ::radix::object& ob);
-   dump_context& operator<<(BYTE by);
-   dump_context& operator<<(WORD w);
-   dump_context& dumpAsHex(BYTE b);
-   dump_context& dumpAsHex(WORD w);
-#if defined(_LP64)
-   dump_context& operator<<(int_ptr i);
-   dump_context& operator<<(uint_ptr ui);
-#ifndef LINUX
-   dump_context& operator<<(int_ptr l);
-#endif
-//   dump_context& operator<<(uint_ptr dw);
-   dump_context& operator<<(int32_t n);
-   dump_context& operator<<(uint32_t u);
-   dump_context& dumpAsHex(int_ptr i);
-#ifndef LINUX
-   dump_context& dumpAsHex(int_ptr l);
-#endif
-   dump_context& dumpAsHex(uint_ptr dw);
-   dump_context& dumpAsHex(int32_t n);
-   dump_context& dumpAsHex(uint32_t u);
-#elif defined(_WIN64)
-   dump_context& operator<<(LONG l);
-   dump_context& operator<<(DWORD dw);
-   dump_context& operator<<(int32_t n);
-   dump_context& operator<<(UINT u);
-   dump_context& dumpAsHex(LONG l);
-   dump_context& dumpAsHex(DWORD dw);
-   dump_context& dumpAsHex(int32_t n);
-   dump_context& dumpAsHex(UINT u);
-#else
-   dump_context& operator<<(int_ptr n);
-   dump_context& operator<<(uint_ptr u);
-   dump_context& dumpAsHex(int_ptr n);
-   dump_context& dumpAsHex(uint_ptr u);
-#endif
-   dump_context& operator<<(float f);
-   dump_context& operator<<(double d);
+   dump_context & operator<<(const char * lpsz);
+   dump_context & operator<<(const wchar_t * lpsz); // automatically thinned
+   dump_context & operator<<(const string & str);
+   dump_context & operator<<(const void * lp);
+   dump_context & operator<<(const ::radix::object* pOb);
+   dump_context & operator<<(const ::radix::object& ob);
+   dump_context & operator<<(int8_t i);
+   dump_context & operator<<(uint8_t ui);
+   dump_context & operator<<(int16_t i);
+   dump_context & operator<<(uint16_t ui);
+   dump_context & operator<<(int32_t i);
+   dump_context & operator<<(uint32_t ui);
+   dump_context & operator<<(int64_t i);
+   dump_context & operator<<(uint64_t ui);
+   dump_context & hex_dump(int8_t i);
+   dump_context & hex_dump(uint8_t i);
+   dump_context & hex_dump(int16_t i);
+   dump_context & hex_dump(uint16_t i);
+   dump_context & hex_dump(int32_t i);
+   dump_context & hex_dump(uint32_t i);
+   dump_context & hex_dump(int64_t i);
+   dump_context & hex_dump(uint64_t i);
+   dump_context & operator<<(float f);
+   dump_context & operator<<(double d);
+   dump_context & operator<<(oswindow h);
+   dump_context & operator<<(HDC h);
+
 #ifdef WINDOWS
-   dump_context& operator<<(LONGLONG n);
-   dump_context& operator<<(ULONGLONG n);
-   dump_context& dumpAsHex(LONGLONG n);
-   dump_context& dumpAsHex(ULONGLONG n);
+   dump_context & operator<<(HMENU h);
+   dump_context & operator<<(HACCEL h);
+   dump_context & operator<<(HFONT h);
 #endif
-   dump_context& operator<<(oswindow h);
-   dump_context& operator<<(HDC h);
-#ifdef WINDOWS
-   dump_context& operator<<(HMENU h);
-   dump_context& operator<<(HACCEL h);
-#endif
-   dump_context& operator<<(HFONT h);
-   void Hexdump(const char * lpszLine, BYTE* pby, int32_t nBytes, int32_t nWidth);
-   void Flush();
+
+   void hex_dump(const char * lpszLine, BYTE* pby, int32_t nBytes, int32_t nWidth);
+   void flush();
 
 // Implementation
 protected:
    // dump context objects cannot be copied or assigned
-   dump_context(const dump_context& graphicsSrc);
-   void operator=(const dump_context& graphicsSrc);
-   void OutputString(const char * lpsz);
+   dump_context(const dump_context & graphicsSrc);
+   void operator=(const dump_context & graphicsSrc);
+   void output_string(const char * lpsz);
 
    int32_t m_nDepth;
 
 public:
-   ex1::file * m_pFile;
+   ex1::file * m_pfile;
 };
 

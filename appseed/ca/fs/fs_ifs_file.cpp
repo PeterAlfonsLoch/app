@@ -62,7 +62,7 @@ void ifs_file::get_file_data()
 
    strUrl = "http://file.veriwell.net/ifs/get?path=" + System.url().url_encode(m_strPath);
 
-   DWORD dwAdd = 0;
+   uint32_t dwAdd = 0;
 
    if(m_nOpenFlags & hint_unknown_length_supported)
    {

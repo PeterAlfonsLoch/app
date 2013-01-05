@@ -172,7 +172,7 @@ namespace ex1
          pitem = pitem->get_item(TreeNavigationExpandedForward);
          if(pitem == NULL)
             return NULL;
-         if(pitem->m_dwUser == (DWORD) iUserData)
+         if(pitem->m_dwUser == (uint32_t) iUserData)
             return pitem;
       }
    }

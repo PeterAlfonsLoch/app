@@ -42,11 +42,11 @@ bool PreventSetUnhandledExceptionFilter()
    void *pOrgEntry = GetProcAddress(hKernel32, "SetUnhandledExceptionFilter");
    if(pOrgEntry ==  NULL) return FALSE;
    uchar newJump[ 100 ];
-   DWORD dwOrgEntryAddr = (DWORD) pOrgEntry;
+   uint32_t dwOrgEntryAddr = (uint32_t) pOrgEntry;
    dwOrgEntryAddr += 5; // add 5 for 5 op-codes for jmp far
    void *pNewFunc = &MyDummySetUnhandledExceptionFilter;
-   DWORD dwNewEntryAddr = (DWORD) pNewFunc;
-   DWORD dwRelativeAddr = dwNewEntryAddr - dwOrgEntryAddr;
+   uint32_t dwNewEntryAddr = (uint32_t) pNewFunc;
+   uint32_t dwRelativeAddr = dwNewEntryAddr - dwOrgEntryAddr;
    newJump[ 0 ] = 0xE9;  // JMP absolute
    memcpy(&newJump[ 1 ], &dwRelativeAddr, sizeof(pNewFunc));
    SIZE_T bytesWritten;

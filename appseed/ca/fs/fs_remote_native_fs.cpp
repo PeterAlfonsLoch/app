@@ -173,7 +173,7 @@ namespace fs
       defer_initialize();
 
 
-      DWORD dwTimeout;
+      uint32_t dwTimeout;
 
       if(m_mapfileTimeout.Lookup(pszPath, dwTimeout))
       {

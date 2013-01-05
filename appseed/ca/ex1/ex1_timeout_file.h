@@ -13,9 +13,9 @@ namespace ex1
 
       sp(ex1::file)     m_pfile;
       uint64_t          m_uiExpectedSize;
-      DWORD             m_dwTimeOut;
-      DWORD             m_dwLastCall;
-      DWORD             m_dwSleep;
+      uint32_t             m_dwTimeOut;
+      uint32_t             m_dwLastCall;
+      uint32_t             m_dwSleep;
       sp(mutex)         m_spmutex;
 
 
@@ -30,7 +30,7 @@ namespace ex1
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
-      virtual void Flush();
+      virtual void flush();
       virtual void set_length(file_size dwNewLen);
 
 
