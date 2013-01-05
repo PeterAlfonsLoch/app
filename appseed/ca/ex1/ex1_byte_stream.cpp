@@ -356,7 +356,7 @@ namespace ex1
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (uchar uchar)
+   byte_output_stream & byte_output_stream::operator << (uchar uch)
    {
       write(&uchar, sizeof(uchar));
       return *this;

@@ -237,9 +237,9 @@ v128_right_shift(v128_t *x, int32_t index);
 
 /* NOTE!  This assumes an odd ordering! */
 /* This will not be compatible directly with math on some processors */
-/* bit 0 is first 32-bit word, low order bit. in little-endian, that's
-   the first byte of the first 32-bit word.  In big-endian, that's
-   the 3rd byte of the first 32-bit word */
+/* bit 0 is first 32-bit uint16_t, low order bit. in little-endian, that's
+   the first byte of the first 32-bit uint16_t.  In big-endian, that's
+   the 3rd byte of the first 32-bit uint16_t */
 /* The get/set bit code is used by the replay code ONLY, and it doesn't
    really care which bit is which.  AES does care which bit is which, but
    doesn't use the 128-bit get/set or 128-bit shifts  */

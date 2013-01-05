@@ -9,7 +9,7 @@ public:
 
    ::database::id       m_datakeyFill;
    stringa              m_wstra;
-   dword_array          m_dwaData;
+   uint32_array          m_dwaData;
 
 
 };

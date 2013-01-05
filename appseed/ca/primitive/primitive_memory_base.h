@@ -104,8 +104,8 @@ namespace primitive
       inline void append(const void * pdata, memory_size iCount);
       inline void assign(const void * pdata, memory_size iCount);
       inline void assign(const void * pdata, memory_position iStart, memory_size iCount);
-      inline void append(memory_size iCount, uchar uchar);
-      inline void assign(memory_size iCount, uchar uchar);
+      inline void append(memory_size iCount, uchar uch);
+      inline void assign(memory_size iCount, uchar uch);
 
       void move_and_grow(memory_offset offset);
       void move(memory_offset offset, bool bGrow = false);
@@ -670,7 +670,7 @@ namespace primitive
 
    }
 
-   inline void memory_base::append(memory_size iCount, uchar uchar)
+   inline void memory_base::append(memory_size iCount, uchar uch)
    {
 
       allocate_add_up(iCount);
@@ -682,13 +682,13 @@ namespace primitive
       for(memory_position i = iStart; i <= iEnd; i++)
       {
 
-         get_data()[i] = uchar;
+         get_data()[i] = uch;
 
       }
 
    }
 
-   inline void memory_base::assign(memory_size iCount, uchar uchar)
+   inline void memory_base::assign(memory_size iCount, uchar uch)
    {
 
       allocate(iCount);
@@ -698,7 +698,7 @@ namespace primitive
       for(memory_position i = 0; i <= iEnd; i++)
       {
 
-         this->get_data()[i] = uchar;
+         this->get_data()[i] = uch;
 
       }
 

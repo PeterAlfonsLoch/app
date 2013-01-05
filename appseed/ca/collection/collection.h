@@ -50,8 +50,8 @@
 //::radix::object
    // Arrays
    class byte_array;           // base_array of BYTE
-   class word_array;           // base_array of WORD
-   class dword_array;          // base_array of DWORD
+   class uint16_array;           // base_array of WORD
+   class uint32_array;          // base_array of DWORD
    class CUIntArray;           // base_array of UINT
    class CPtrArray;            // base_array of void *
    class CObArray;             // base_array of ::radix::object*
@@ -169,7 +169,7 @@ public:
 
 
 class CLASS_DECL_ca dword_2darray :
-   public array_ptr_alloc < dword_array, dword_array & >
+   public array_ptr_alloc < uint32_array, uint32_array & >
 {
 public:
 };

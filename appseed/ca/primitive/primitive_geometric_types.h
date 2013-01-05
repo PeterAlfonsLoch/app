@@ -47,7 +47,7 @@ public:
 };
 
 typedef uchar      byte;
-typedef uint16_t     word;
+typedef uint16_t     uint16_t;
 //typedef uint32_t long      dword;
 typedef uint64_t         qword;
 typedef uint32_t       uint;

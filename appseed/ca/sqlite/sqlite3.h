@@ -3912,7 +3912,7 @@ namespace sqlite
    ** routine expects to be passed pointers to strings encoded using UTF-8,
    ** UTF-16 little-endian or UTF-16 big-endian respectively. The
    ** third argument might also be [SQLITE_UTF16_ALIGNED] to indicate that
-   ** the routine expects pointers to 16-bit word aligned strings
+   ** the routine expects pointers to 16-bit uint16_t aligned strings
    ** of UTF16 in the native byte order of the host computer.
    **
    ** A pointer to the user supplied routine must be passed as the fifth

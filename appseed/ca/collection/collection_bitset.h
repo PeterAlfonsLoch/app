@@ -93,7 +93,7 @@ private:
 
    enum
    {	// parameters for packing bits into words
-		_Bitsperword = (int32_t)(CHAR_BIT * sizeof (_Ty)),	// bits in each word
+		_Bitsperword = (int32_t)(CHAR_BIT * sizeof (_Ty)),	// bits in each uint16_t
 		_Words = (int32_t)(_Bits == 0
                      ? 0 : (_Bits - 1) / _Bitsperword)};	// NB: number of words - 1
 
@@ -424,7 +424,7 @@ public:
 		}
 
 	_Ty _Getword(size_t _Wpos) const
-		{	// get word at _Wpos
+		{	// get uint16_t at _Wpos
 		return (_Array[_Wpos]);
 		}
 
@@ -439,7 +439,7 @@ private:
 		}
 
 	void _Trim()
-		{	// clear any trailing bits in last word
+		{	// clear any trailing bits in last uint16_t
 		_Trim_if<_Bits % _Bitsperword != 0>();
 		}
 

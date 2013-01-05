@@ -164,8 +164,8 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(uchar uchar) : \
-         c_number < T > (throw_cast < T > (uchar)) \
+      c(uchar uch) : \
+         c_number < T > (throw_cast < T > (uch)) \
       { \
       } \
       \
@@ -232,7 +232,7 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(uchar uchar) : \
+      c(uchar uch) : \
          c_number < T > (throw_cast < T > (uchar)) \
       { \
       } \

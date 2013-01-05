@@ -173,9 +173,9 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     inline LONG MulDiv32(LONG a,LONG b,LONG c)
     {
-        _asm _emit 0x66 _asm    mov     ax,word ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,word ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,word ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
         _asm _emit 0x66 _asm    imul    bx              //  imul ebx
         _asm _emit 0x66 _asm    idiv    cx              //  idiv ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16
@@ -188,9 +188,9 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     INLINE DWORD MulDivRN(DWORD a,DWORD b,DWORD c)
     {
-        _asm _emit 0x66 _asm    mov     ax,word ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,word ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,word ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    shr     bx,1            //  sar  ebx,1
@@ -207,9 +207,9 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     INLINE DWORD MulDivRU(DWORD a,DWORD b,DWORD c)
     {
-        _asm _emit 0x66 _asm    mov     ax,word ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,word ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,word ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    mov     bx,cx           //  mov  ebx,ecx
         _asm _emit 0x66 _asm    dec     bx              //  dec  ebx
@@ -227,9 +227,9 @@ inline uint32_t MulDivRU( uint32_t a, uint32_t b, uint32_t c )
 
     INLINE DWORD MulDivRD(DWORD a,DWORD b,DWORD c)
     {
-        _asm _emit 0x66 _asm    mov     ax,word ptr a   //  mov  eax, a
-        _asm _emit 0x66 _asm    mov     bx,word ptr b   //  mov  ebx, b
-        _asm _emit 0x66 _asm    mov     cx,word ptr c   //  mov  ecx, c
+        _asm _emit 0x66 _asm    mov     ax,uint16_t ptr a   //  mov  eax, a
+        _asm _emit 0x66 _asm    mov     bx,uint16_t ptr b   //  mov  ebx, b
+        _asm _emit 0x66 _asm    mov     cx,uint16_t ptr c   //  mov  ecx, c
         _asm _emit 0x66 _asm    mul     bx              //  mul  ebx
         _asm _emit 0x66 _asm    div     cx              //  div  ecx
         _asm _emit 0x66                                 //  shld edx, eax, 16

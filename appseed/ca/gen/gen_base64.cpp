@@ -183,7 +183,7 @@ namespace gen
    {
       int32_t i;
       byte a[4],b[4],o[3];
-      uchar uchar;
+      uchar uch;
 
       while(TRUE)
       {

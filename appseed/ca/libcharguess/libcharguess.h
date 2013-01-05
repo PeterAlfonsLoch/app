@@ -26,7 +26,7 @@ public:
 
    static int32_t Init();
    static const char * GuessCharset(const char * lpsz);
-   static uint32_t long GuessCodePage(const char * lpsz);
+   static uint32_t GuessCodePage(const char * lpsz);
    static int32_t Done();
 };
 

@@ -531,22 +531,22 @@ vsstring url_encode_dup(const char * psz)
    char sz[256];
    while(*psz != '\0')
    {
-      uchar uchar = *psz;
-      if(isdigit_dup(uchar)
-         || isalpha_dup(uchar)
-         || uchar == '.'
-         || uchar == '-'
-         || uchar== '_')
+      uchar uch = *psz;
+      if(isdigit_dup(uch)
+         || isalpha_dup(uch)
+         || uch == '.'
+         || uch == '-'
+         || uch== '_')
       {
-         str += uchar;
+         str += uch;
       }
-      else if(uchar == ' ')
+      else if(uch == ' ')
       {
          str += "+";
       }
       else
       {
-         itoa_dup(sz, uchar, 16);
+         itoa_dup(sz, uch, 16);
          if(strlen_dup(sz) == 0)
          {
             str += "%00";
@@ -561,10 +561,15 @@ vsstring url_encode_dup(const char * psz)
             str += "%";
             str += sz;
          }
+
       }
+
       psz++;
+
    }
+
    return str;
+
 }
 
 

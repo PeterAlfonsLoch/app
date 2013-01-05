@@ -505,9 +505,9 @@ __STATIC void __load_dot_bitmap()
       size.cx = 32;
    int32_t iwRow = (size.cx + 15) >> 4;    // # of WORDs per raster line
    int32_t nShift = (size.cx - DOT_WIDTH) / 2;     // # of bits to shift over
-   nShift += ((iwRow * 16) - size.cx); // padding for word alignment
+   nShift += ((iwRow * 16) - size.cx); // padding for uint16_t alignment
    if (nShift > 16 - DOT_WIDTH)
-      nShift = 16 - DOT_WIDTH;    // maximum shift for 1 word
+      nShift = 16 - DOT_WIDTH;    // maximum shift for 1 uint16_t
 
    if (size.cy > 32)
       size.cy = 32;

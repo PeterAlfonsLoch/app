@@ -16,10 +16,10 @@ The following makes PROTOTYPES default to 0 if it has not already
 /* POINTER defines a generic pointer type */
 typedef uchar *POINTER;
 
-/* UINT2 defines a two byte word */
+/* UINT2 defines a two byte uint16_t */
 typedef uint16_t UINT2;
 
-/* UINT4 defines a four byte word */
+/* UINT4 defines a four byte uint16_t */
 typedef uint32_t UINT4;
 
 /* PROTO_LIST is defined depending on how PROTOTYPES is defined above.

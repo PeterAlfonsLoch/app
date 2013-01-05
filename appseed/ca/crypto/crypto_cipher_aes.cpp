@@ -1379,7 +1379,7 @@ aes_expand_encryption_key(const v128_t *key,
   /* loop over round keys */
   for (i=1; i < 11; i++) {
 
-    /* munge first word of round key */
+    /* munge first uint16_t of round key */
     expanded_key[i].v8[0] = aes_sbox[expanded_key[i-1].v8[13]] ^ rc;
     expanded_key[i].v8[1] = aes_sbox[expanded_key[i-1].v8[14]];
     expanded_key[i].v8[2] = aes_sbox[expanded_key[i-1].v8[15]];
@@ -1778,7 +1778,7 @@ aes_inv_final_round(v128_t *state, const v128_t *round_key) {
 
 }
 
-#elif CPU_16  /* assume 16-bit word size on processor */
+#elif CPU_16  /* assume 16-bit uint16_t size on processor */
 
 static inline void
 aes_round(v128_t *state, const v128_t *round_key) {

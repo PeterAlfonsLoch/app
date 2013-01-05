@@ -86,12 +86,12 @@ namespace ex1
       virtual ~plain_text_input_stream();
 
 
+      plain_text_input_stream & operator >> (bool & b);
       plain_text_input_stream & operator >> (char & ch);
-      plain_text_input_stream & operator >> (uchar & uchar);
+      plain_text_input_stream & operator >> (uchar & uch);
+      plain_text_input_stream & operator >> (wchar_t & wch);
       plain_text_input_stream & operator >> (int16_t & sh);
       plain_text_input_stream & operator >> (uint16_t & uint16_t);
-      plain_text_input_stream & operator >> (wchar_t & wch);
-      plain_text_input_stream & operator >> (bool & b);
       plain_text_input_stream & operator >> (int32_t & i);
       plain_text_input_stream & operator >> (uint32_t & ui);
       plain_text_input_stream & operator >> (int64_t & i);
@@ -129,12 +129,12 @@ namespace ex1
       virtual ~plain_text_output_stream();
 
 
+      plain_text_output_stream & operator << (bool b);
       plain_text_output_stream & operator << (char ch);
-      plain_text_output_stream & operator << (uchar uchar);
+      plain_text_output_stream & operator << (uchar uch);
+      plain_text_output_stream & operator << (wchar_t wch);
       plain_text_output_stream & operator << (int16_t sh);
       plain_text_output_stream & operator << (uint16_t uint16_t);
-      plain_text_output_stream & operator << (wchar_t wch);
-      plain_text_output_stream & operator << (bool b);
       plain_text_output_stream & operator << (int32_t i);
       plain_text_output_stream & operator << (uint32_t ui);
       plain_text_output_stream & operator << (int64_t i);

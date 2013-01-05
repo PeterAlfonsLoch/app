@@ -23,7 +23,7 @@
  *  Portability Issues:
  *      SHA-1 is defined in terms of 32-bit "words".  This code was
  *      written with the expectation that the processor has at least
- *      a 32-bit machine word size.  If the machine word size is larger,
+ *      a 32-bit machine uint16_t size.  If the machine uint16_t size is larger,
  *      the code should still function properly.  One caveat to that
  *      is that the input functions taking characters and character
  *      arrays assume that only 8 bits of information are stored in each
@@ -43,9 +43,9 @@
 /*
  *  Define the circular shift macro
  */
-#define SHA1CircularShift(bits,word) \
-                ((((word) << (bits)) & 0xFFFFFFFF) | \
-                ((word) >> (32-(bits))))
+#define SHA1CircularShift(bits,uint16_t) \
+                ((((uint16_t) << (bits)) & 0xFFFFFFFF) | \
+                ((uint16_t) >> (32-(bits))))
 
 /* Function prototypes */
 void SHA1PadMessage(sha1_ctx_t *);
@@ -230,7 +230,7 @@ void __sha1_core(const uchar Message_Block[64], uint32_t Message_Digest[5])
         0xCA62C1D6
     };
     int32_t         t;                  /* Loop counter                 */
-    uint32_t    temp;               /* Temporary word value         */
+    uint32_t    temp;               /* Temporary uint16_t value         */
     uint32_t    W[80];              /* Word sequence                */
     uint32_t    A, B, C, D, E;      /* Word buffers                 */
 

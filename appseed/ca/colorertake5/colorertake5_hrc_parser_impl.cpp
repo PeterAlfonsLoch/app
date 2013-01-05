@@ -687,7 +687,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 
          next->kwList = new KeywordList;
          for(xml::node *keywrd_count = tmpel->first_child(); keywrd_count; keywrd_count = keywrd_count->get_next_sibling()){
-            if (keywrd_count->get_name() == "word" ||
+            if (keywrd_count->get_name() == "uint16_t" ||
                keywrd_count->get_name() == "symb")
             {
                next->kwList->num++;
@@ -703,7 +703,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 
          for(xml::node *keywrd = tmpel->first_child(); keywrd; keywrd = keywrd->get_next_sibling()){
             strsize type = 0;
-            if (keywrd->get_name() == "word") type = 1;
+            if (keywrd->get_name() == "uint16_t") type = 1;
             if (keywrd->get_name() == "symb") type = 2;
             if (!type){
                continue;

@@ -59,7 +59,7 @@ namespace user
       COLORREF                      m_crTextSelected;
       COLORREF                      m_crTextHighlight;
       COLORREF                      m_crTextSelectedHighlight;
-      dword_array                   m_dwaItemState;
+      uint32_array                   m_dwaItemState;
       image_list *                  m_pimagelist;
       index                         m_iImageCollapse;
       index                         m_iImageExpand;

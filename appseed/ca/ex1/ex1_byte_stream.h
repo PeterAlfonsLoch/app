@@ -39,12 +39,12 @@ namespace ex1
       virtual ~byte_input_stream();
 
 
+      byte_input_stream & operator >> (bool & b);
       byte_input_stream & operator >> (char & ch);
-      byte_input_stream & operator >> (uchar & uchar);
+      byte_input_stream & operator >> (uchar & uch);
+      byte_input_stream & operator >> (wchar_t & wch);
       byte_input_stream & operator >> (int16_t & sh);
       byte_input_stream & operator >> (uint16_t & uint16_t);
-      byte_input_stream & operator >> (wchar_t & wch);
-      byte_input_stream & operator >> (bool & b);
       byte_input_stream & operator >> (int32_t & i);
       byte_input_stream & operator >> (uint32_t & ui);
       byte_input_stream & operator >> (int64_t & i);
@@ -96,7 +96,7 @@ namespace ex1
 
 
       byte_output_stream & operator << (char ch);
-      byte_output_stream & operator << (uchar uchar);
+      byte_output_stream & operator << (uchar uch);
       byte_output_stream & operator << (int16_t sh);
       byte_output_stream & operator << (uint16_t uint16_t);
       byte_output_stream & operator << (wchar_t wch);

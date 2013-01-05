@@ -2171,7 +2171,7 @@ fill_last:
    }*/
 
 
-   void dib::FillByte(uchar uchar)
+   void dib::FillByte(uchar uch)
    {
       if(area() <= 0 || get_data() == NULL)
          return;

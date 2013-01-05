@@ -4,7 +4,7 @@
 
 void trim001(string & str)
 {
-   uchar uchar;
+   uchar uch;
    while(str.get_length() > 0)
    {
       uchar = str[0];

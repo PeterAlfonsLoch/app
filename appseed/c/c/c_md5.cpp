@@ -125,7 +125,7 @@ uchar PADDING[64] =
 
 /*
  * SET reads 4 input bytes in little-endian byte order and stores them
- * in a properly aligned word in host byte order.
+ * in a properly aligned uint16_t in host byte order.
  *
  * The check for little-endian architectures that tolerate unaligned
  * memory accesses is just an optimization.  Nothing will break if it

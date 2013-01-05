@@ -636,23 +636,23 @@ public:
 };
 
 
-class CLASS_DECL_ca word_array :
-   virtual public numeric_array < word >
+class CLASS_DECL_ca uint16_array :
+   virtual public numeric_array < uint16_t >
 {
 public:
-   word_array();
+   uint16_array();
 };
 
 
 
-class CLASS_DECL_ca dword_array :
-   virtual public numeric_array < dword >
+class CLASS_DECL_ca uint32_array :
+   virtual public numeric_array < uint32_t >
 {
 public:
 
-   dword_array();
-   dword_array(const dword_array & base_array);
-   virtual ~dword_array();
+   uint32_array();
+   uint32_array(const uint32_array & base_array);
+   virtual ~uint32_array();
 
 };
 

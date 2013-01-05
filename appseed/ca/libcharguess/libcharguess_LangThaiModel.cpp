@@ -29,7 +29,7 @@
 /****************************************************************
 255: Control characters that usually does not exist in any text
 254: Carriage/Return
-253: symbol (punctuation) that does not belong to word
+253: symbol (punctuation) that does not belong to uint16_t
 252: 0 - 9
 
 *****************************************************************/

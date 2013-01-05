@@ -107,7 +107,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          char m_socks4_vn; ///< socks4 support, temporary var
          char m_socks4_cd; ///< socks4 support, temporary var
          uint16_t m_socks4_dstport; ///< socks4 support
-         uint32_t long m_socks4_dstip; ///< socks4 support
+         uint32_t m_socks4_dstip; ///< socks4 support
 
          int32_t m_resolver_id; ///< Resolver id (if any) for current open call
 

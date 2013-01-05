@@ -68,7 +68,7 @@ enum EOps
   ReEmpty,
   ReMetaSymb,         // \W \s \d ...
   ReSymb,             // a b c ...
-  ReWord,             // word...
+  ReWord,             // uint16_t...
   ReEnum,             // []
   ReNEnum,            // [^]
   ReBrackets,         // (...)
@@ -140,7 +140,7 @@ public:
   union{
     EMetaSymbols metaSymbol;
     string *symbol;
-    string *word;
+    string *uint16_t;
     gen::ch_class *charclass;
     SRegInfo *param;
   }un;

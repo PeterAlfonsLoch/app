@@ -440,26 +440,26 @@ byte_array::byte_array()
 {
 }*/
 
-word_array::word_array()
+uint16_array::uint16_array()
 {
 }
 
-/*word_array::~word_array()
+/*uint16_array::~uint16_array()
 {
 }*/
 
-dword_array::dword_array()
+uint32_array::uint32_array()
 {
 }
 
-dword_array::dword_array(const dword_array & base_array) :
+uint32_array::uint32_array(const uint32_array & base_array) :
    numeric_array < dword >(base_array)
 {
    operator = (base_array);
 }
 
 
-dword_array::~dword_array()
+uint32_array::~uint32_array()
 {
 }
 

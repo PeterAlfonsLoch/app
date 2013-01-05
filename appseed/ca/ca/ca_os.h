@@ -34,7 +34,7 @@ namespace ca
 #endif
       virtual bool get_pid_by_path(const char * pszName, DWORD & dwPid);
       virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid);
-      virtual void get_all_processes(dword_array & dwa);
+      virtual void get_all_processes(uint32_array & dwa);
       virtual string get_process_path(DWORD dwPid);
 
 

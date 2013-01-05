@@ -20,7 +20,7 @@ namespace ex1
 
 
 
-output_stream2 & output_stream2::operator << (uchar uchar)
+output_stream2 & output_stream2::operator << (uchar uch)
 {
    byte_output_stream::operator << (uchar);
    return *this;

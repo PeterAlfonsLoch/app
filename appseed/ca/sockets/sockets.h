@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef uint32_t long ipaddr_t;
+typedef uint32_t ipaddr_t;
 typedef uint16_t port_t;
 #ifdef WINDOWS
 typedef int32_t socklen_t;

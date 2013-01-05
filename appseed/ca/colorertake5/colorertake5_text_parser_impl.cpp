@@ -306,7 +306,7 @@ namespace colorertake5
                   if (gx + kwlen < lowlen &&
                      (gen::ch::is_letter_or_digit(&((const char *)str)[gx + kwlen]) || ((const char *)str)[gx + kwlen] == '_')) badbound = true;
                }else{
-                  // custom check for word bound
+                  // custom check for uint16_t bound
                   if (gx && !node->worddiv->in_class(&((const char *)str)[gx-1])) badbound = true;
                   if (gx + kwlen < lowlen &&
                      !node->worddiv->in_class(&((const char *)str)[gx + kwlen])) badbound = true;

@@ -266,7 +266,7 @@ namespace ex1
       return *this;
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (uchar uchar)
+   plain_text_output_stream & plain_text_output_stream::operator << (uchar uch)
    {
       return operator << ((uint32_t) uchar);
    }

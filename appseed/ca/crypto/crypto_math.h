@@ -240,8 +240,8 @@ octet_string_set_to_zero(uint8_t *s, int32_t len);
  * A bitvector_t consists of an array of words and an integer
  * representing the number of significant bits stored in the array.
  * The bits are packed as follows: the least significant bit is that
- * of word[0], while the most significant bit is the nth most
- * significant bit of word[m], where length = bits_per_word * m + n.
+ * of uint16_t[0], while the most significant bit is the nth most
+ * significant bit of uint16_t[m], where length = bits_per_word * m + n.
  * 
  */
 
@@ -250,11 +250,11 @@ octet_string_set_to_zero(uint8_t *s, int32_t len);
 
 typedef struct {
   uint32_t length;   
-  uint32_t *word;
+  uint32_t *uint16_t;
 } bitvector_t;
 
 int32_t
-bitvector_alloc(bitvector_t *v, uint32_t long length);
+bitvector_alloc(bitvector_t *v, uint32_t length);
 
 void
 bitvector_set_bit(bitvector_t *v, int32_t bit_index);

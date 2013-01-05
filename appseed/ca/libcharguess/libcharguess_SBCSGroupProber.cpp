@@ -107,7 +107,7 @@ PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PRUint32
         *newptr++ = ' ';
         meetMSB = PR_FALSE;
       }
-      else //ignore current segment. (either because it is just a symbol or just a english word
+      else //ignore current segment. (either because it is just a symbol or just a english uint16_t
         prevPtr = curPtr+1;
     }
   }

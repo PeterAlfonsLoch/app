@@ -377,7 +377,7 @@ namespace planebase
          // to pro-activia and overall benefits workaround:
          // - stateful applications:
          //      - browser urls, tabs, entire history, in the ca2computing cloud;
-         //      - word - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
+         //      - uint16_t - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
          //           - not directly related but use date and title to name document;
          //      - save forms after every key press in .undo.redo.form file parallel to appmatter / form/undo.redo.file parity;
          //      - last karaoke song and scoring, a little less motivated at time of writing;
@@ -540,7 +540,7 @@ InitFailure:
          // to pro-activia and overall benefits workaround:
          // - stateful applications:
          //      - browser urls, tabs, entire history, in the ca2computing cloud;
-         //      - word - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
+         //      - uint16_t - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
          //           - not directly related but use date and title to name document;
          //      - save forms after every key press in .undo.redo.form file parallel to appmatter / form/undo.redo.file parity;
          //      - last karaoke song and scoring, a little less motivated at time of writing;

@@ -4382,7 +4382,7 @@ namespace sqlite
       ** routine expects to be passed pointers to strings encoded using UTF-8,
       ** UTF-16 little-endian or UTF-16 big-endian respectively. The
       ** third argument might also be [SQLITE_UTF16_ALIGNED] to indicate that
-      ** the routine expects pointers to 16-bit word aligned strings
+      ** the routine expects pointers to 16-bit uint16_t aligned strings
       ** of UTF16 in the native byte order of the host computer.
       **
       ** A pointer to the user supplied routine must be passed as the fifth
@@ -10926,7 +10926,7 @@ zulu_time:
    ** The application code sees only a pointer to the allocation.  We have
    ** to back up from the allocation pointer to find the MemBlockHdr.  The
    ** MemBlockHdr tells us the size of the allocation and the number of
-   ** backtrace pointers.  There is also a guard word at the end of the
+   ** backtrace pointers.  There is also a guard uint16_t at the end of the
    ** MemBlockHdr.
    */
    struct MemBlockHdr {
@@ -10935,7 +10935,7 @@ zulu_time:
       char nBacktrace;                    /* Number of backtraces on this alloc */
       char nBacktraceSlots;               /* Available backtrace slots */
       int16_t nTitle;                       /* Bytes of title; includes '\0' */
-      int32_t iForeGuard;                     /* Guard word for sanity */
+      int32_t iForeGuard;                     /* Guard uint16_t for sanity */
    };
 
    /*
@@ -56127,7 +56127,7 @@ delete_from_cleanup:
 
 #ifdef SQLITE_SOUNDEX
    /*
-   ** Compute the soundex encoding of a word.
+   ** Compute the soundex encoding of a uint16_t.
    */
    static void soundexFunc(
       sqlite3_context *context,
@@ -78374,7 +78374,7 @@ error_out:
    typedef struct fulltext_vtab fulltext_vtab;
 
    /* A single term in a query is represented by an instances of
-   ** the following structure. Each word which may match against
+   ** the following structure. Each uint16_t which may match against
    ** document content is a term. Operators, like NEAR or OR, are
    ** not terms. Query terms are organized as a flat list stored
    ** in the Query.pTerms base_array.
@@ -78452,14 +78452,14 @@ error_out:
       QueryTerm *pTerms;    /* Array of terms.  Space obtained from ca2_alloc() */
       int32_t nextIsOr;         /* Set the isOr flag on the next inserted term */
       int32_t nextIsNear;       /* Set the isOr flag on the next inserted term */
-      int32_t nextColumn;       /* Next word parsed must be in this column */
+      int32_t nextColumn;       /* Next uint16_t parsed must be in this column */
       int32_t dfltColumn;       /* The default column */
    } Query;
 
 
    /*
    ** An instance of the following structure keeps track of generated
-   ** matching-word offset information and snippets.
+   ** matching-uint16_t offset information and snippets.
    */
    typedef struct Snippet {
       int32_t nMatch;     /* Total number of matches */
@@ -83524,15 +83524,15 @@ err:
 
    /*
    ** Let any sequence of one or more vowels be represented by V and let
-   ** C be sequence of one or more consonants.  Then every word can be
+   ** C be sequence of one or more consonants.  Then every uint16_t can be
    ** represented as:
    **
    **           [C] (VC){m} [V]
    **
-   ** In prose:  A word is an optional consonant followed by zero or
+   ** In prose:  A uint16_t is an optional consonant followed by zero or
    ** vowel-consonant pairs followed by an optional vowel.  "m" is the
    ** number of vowel consonant pairs.  This routine computes the value
-   ** of m for the first i bytes of a word.
+   ** of m for the first i bytes of a uint16_t.
    **
    ** Return true if the m-value for z is 1 or more.  In other words,
    ** return true if z contains at least one vowel that is followed
@@ -83585,7 +83585,7 @@ err:
    }
 
    /*
-   ** Return TRUE if the word ends in a double consonant.
+   ** Return TRUE if the uint16_t ends in a double consonant.
    **
    ** The text is reversed here. So we are really looking at
    ** the first two characters of z[].
@@ -83595,11 +83595,11 @@ err:
    }
 
    /*
-   ** Return TRUE if the word ends with three letters which
+   ** Return TRUE if the uint16_t ends with three letters which
    ** are consonant-vowel-consonent and where the final consonant
    ** is not 'w', 'x', or 'y'.
    **
-   ** The word is reversed here.  So we are really checking the
+   ** The uint16_t is reversed here.  So we are really checking the
    ** first three letters and the first one cannot be in [wxy].
    */
    static int32_t star_oh(const char *z){
@@ -83611,11 +83611,11 @@ err:
    }
 
    /*
-   ** If the word ends with zFrom and xCond() is true for the stem
-   ** of the word that preceeds the zFrom ending, then change the
+   ** If the uint16_t ends with zFrom and xCond() is true for the stem
+   ** of the uint16_t that preceeds the zFrom ending, then change the
    ** ending to zTo.
    **
-   ** The input word *pz and zFrom are both in reverse order.  zTo
+   ** The input uint16_t *pz and zFrom are both in reverse order.  zTo
    ** is in normal order.
    **
    ** Return TRUE if zFrom matches.  Return FALSE if zFrom does not
@@ -83623,7 +83623,7 @@ err:
    ** no substitution occurs.
    */
    static int32_t stem(
-      char **pz,             /* The word being stemmed (Reversed) */
+      char **pz,             /* The uint16_t being stemmed (Reversed) */
       const char *zFrom,     /* If the ending matches this... (Reversed) */
       const char *zTo,       /* ... change the ending to this (not reversed) */
       int32_t (*xCond)(const char*)   /* Condition that must be true */
@@ -83641,10 +83641,10 @@ err:
 
    /*
    ** This is the fallback stemmer used when the porter stemmer is
-   ** inappropriate.  The input word is copied into the output with
-   ** US-ASCII case folding.  If the input word is too long (more
+   ** inappropriate.  The input uint16_t is copied into the output with
+   ** US-ASCII case folding.  If the input uint16_t is too long (more
    ** than 20 bytes if it contains no digits or more than 6 bytes if
-   ** it contains digits) then word is truncated to 20 or 6 bytes
+   ** it contains digits) then uint16_t is truncated to 20 or 6 bytes
    ** by taking 10 or 3 bytes from the beginning and end.
    */
    static void copy_stemmer(const char *zIn, int32_t nIn, char *zOut, int32_t *pnOut){
@@ -83672,26 +83672,26 @@ err:
 
 
    /*
-   ** Stem the input word zIn[0..nIn-1].  Store the output in zOut.
+   ** Stem the input uint16_t zIn[0..nIn-1].  Store the output in zOut.
    ** zOut is at least big enough to hold nIn bytes.  Write the actual
-   ** size of the output word (exclusive of the '\0' terminator) into *pnOut.
+   ** size of the output uint16_t (exclusive of the '\0' terminator) into *pnOut.
    **
    ** Any upper-case characters in the US-ASCII character set ([A-Z])
    ** are converted to lower case.  Upper-case UTF characters are
    ** unchanged.
    **
    ** Words that are longer than about 20 bytes are stemmed by retaining
-   ** a few bytes from the beginning and the end of the word.  If the
-   ** word contains digits, 3 bytes are taken from the beginning and
+   ** a few bytes from the beginning and the end of the uint16_t.  If the
+   ** uint16_t contains digits, 3 bytes are taken from the beginning and
    ** 3 bytes from the end.  For long words without digits, 10 bytes
    ** are taken from each end.  US-ASCII case folding still applies.
    **
-   ** If the input word contains not digits but does characters not
+   ** If the input uint16_t contains not digits but does characters not
    ** in [a-zA-Z] then no stemming is attempted and this routine just
    ** copies the input into the input into the output with US-ASCII
    ** case folding.
    **
-   ** Stemming never increases the length of the word.  So there is
+   ** Stemming never increases the length of the uint16_t.  So there is
    ** no chance of overflowing the zOut buffer.
    */
    static void porter_stemmer(const char *zIn, int32_t nIn, char *zOut, int32_t *pnOut){
@@ -83699,7 +83699,7 @@ err:
       char zReverse[28];
       char *z, *z2;
       if( nIn<3 || nIn>=sizeof(zReverse)-7 ){
-         /* The word is too big or too small for the porter stemmer.
+         /* The uint16_t is too big or too small for the porter stemmer.
          ** Fallback to the copy stemmer */
          copy_stemmer(zIn, nIn, zOut, pnOut);
          return;
@@ -83901,7 +83901,7 @@ err:
          z++;
       }
 
-      /* z[] is now the stemmed word in reverse order.  Flip it back
+      /* z[] is now the stemmed uint16_t in reverse order.  Flip it back
       ** around into forward order and return.
       */
       *pnOut = i = (int32_t) strlen(z);

@@ -663,14 +663,14 @@ v128_right_shift(v128_t *x, int32_t index) {
 
   if (bit_index == 0) {
 
-    /** copy each word from left size to right side */
+    /** copy each uint16_t from left size to right side */
     x->v32[4-1] = x->v32[4-1-base_index];
     for (i=4-1; i > base_index; i--) 
       x->v32[i-1] = x->v32[i-1-base_index];
 
   } else {
     
-    /** set each word to the "or" of the two bit-shifted words */
+    /** set each uint16_t to the "or" of the two bit-shifted words */
     for (i = 4; i > base_index; i--) {
       from = i-1 - base_index;
       b = x->v32[from] << bit_index;

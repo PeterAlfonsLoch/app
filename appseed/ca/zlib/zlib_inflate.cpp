@@ -384,19 +384,19 @@ uint32_t out)
 
 /* check macros for header crc */
 #ifdef GUNZIP
-#  define CRC2(check, word) \
+#  define CRC2(check, uint16_t) \
     do { \
-        hbuf[0] = (uchar)(word); \
-        hbuf[1] = (uchar)((word) >> 8); \
+        hbuf[0] = (uchar)(uint16_t); \
+        hbuf[1] = (uchar)((uint16_t) >> 8); \
         check = crc32(check, hbuf, 2); \
     } while (0)
 
-#  define CRC4(check, word) \
+#  define CRC4(check, uint16_t) \
     do { \
-        hbuf[0] = (uchar)(word); \
-        hbuf[1] = (uchar)((word) >> 8); \
-        hbuf[2] = (uchar)((word) >> 16); \
-        hbuf[3] = (uchar)((word) >> 24); \
+        hbuf[0] = (uchar)(uint16_t); \
+        hbuf[1] = (uchar)((uint16_t) >> 8); \
+        hbuf[2] = (uchar)((uint16_t) >> 16); \
+        hbuf[3] = (uchar)((uint16_t) >> 24); \
         check = crc32(check, hbuf, 4); \
     } while (0)
 #endif

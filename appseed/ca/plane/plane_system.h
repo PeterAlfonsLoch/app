@@ -464,7 +464,7 @@ namespace plane
       bool set_history(::ca::history * phistory);
 
 
-      uint32_t long guess_code_page(const char * pszText);
+      uint32_t guess_code_page(const char * pszText);
 
 #ifdef METROWIN
 

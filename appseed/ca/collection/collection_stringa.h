@@ -140,8 +140,8 @@ void SortEx(ARRAYCOMPARE * pacompare,
             int32_t fCompare(const char *, const char *),
             ARRAYRELATION * parelation)
 {
-   dword_array stackLowerBound;
-   dword_array stackUpperBound;
+   uint32_array stackLowerBound;
+   uint32_array stackUpperBound;
    index iLowerBound;
    index iUpperBound;
    index iLPos, iUPos, iMPos;
@@ -218,8 +218,8 @@ void SortEx(ARRAYCOMPARE * pacompare,
             int32_t fCompare(const wchar_t *, const wchar_t *),
             ARRAYRELATION * parelation)
 {
-   dword_array stackLowerBound;
-   dword_array stackUpperBound;
+   uint32_array stackLowerBound;
+   uint32_array stackUpperBound;
    index iLowerBound;
    index iUpperBound;
    index iLPos, iUPos, iMPos;

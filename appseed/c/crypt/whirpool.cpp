@@ -1542,7 +1542,7 @@ void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstr
         value >>= 8;
     }
     /*
-     * process data in chunks of 8 bits (a more efficient approach would be to take whole-word chunks):
+     * process data in chunks of 8 bits (a more efficient approach would be to take whole-uint16_t chunks):
      */
     while (sourceBits > 8) {
         /* N.B. at least source[sourcePos] and source[sourcePos+1] contain data. */

@@ -83,8 +83,8 @@ zlib_local void make_crc_table OF(());
   The first table is simply the CRC of all possible eight bit values.  This is
   all the information needed to generate CRCs on data a byte at a time for all
   combinations of CRC register values and incoming bytes.  The remaining tables
-  allow for word-at-a-time CRC calculation for both big-endian and little-
-  endian machines, where a word is four bytes.
+  allow for uint16_t-at-a-time CRC calculation for both big-endian and little-
+  endian machines, where a uint16_t is four bytes.
 */
 zlib_local void make_crc_table()
 {

@@ -52,7 +52,7 @@ namespace ca
       throw interface_only_exception(get_app(), "this is an interface");
    }
 
-   void os::get_all_processes(dword_array & dwa )
+   void os::get_all_processes(uint32_array & dwa )
    {
       UNREFERENCED_PARAMETER(dwa);
       throw interface_only_exception(get_app(), "this is an interface");

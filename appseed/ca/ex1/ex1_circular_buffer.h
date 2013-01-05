@@ -17,7 +17,7 @@ namespace ex1
          size_t m_q;
          size_t m_b;
          size_t m_t;
-         uint32_t long m_count;
+         uint_ptr m_count;
 
 
       public:
@@ -47,7 +47,7 @@ namespace ex1
          size_t Space();
 
          /** return total number of bytes written to this buffer, ever */
-         uint32_t long ByteCounter(bool clear = false);
+         uint_ptr ByteCounter(bool clear = false);
 
       };
 

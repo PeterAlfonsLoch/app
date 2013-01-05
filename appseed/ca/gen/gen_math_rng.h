@@ -20,12 +20,12 @@ namespace gen
          public:
             rng();
 
-            void seed(int32_t iTwistLen, uint32_t long seed);
-            uint32_t long get();
+            void seed(int32_t iTwistLen, uint32_t seed);
+            uint32_t get();
 
          private:
             int32_t m_value;
-            dword_array m_dwa;
+            uint32_array m_dwa;
          };
    
       // http://www.alhem.net/

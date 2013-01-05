@@ -90,7 +90,7 @@ namespace html
 
 
          strsize iLastSpace = 0;
-         uchar uchar;
+         uchar uch;
          int32_t iSpace = 0;
          string strLine;
          for(int32_t i = 0; i < str.get_length();)
@@ -211,7 +211,7 @@ namespace html
             ::size sizeText;
             int32_t iSpace;
             string strLine;
-            uchar uchar;
+            uchar uch;
             strsize iLastSpace = 0;
             point pointBound(get_x(), get_y());
             pointBound.x += m_margin.left + m_border.left + m_padding.left;
