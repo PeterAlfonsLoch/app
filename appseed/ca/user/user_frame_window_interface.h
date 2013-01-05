@@ -24,7 +24,7 @@ namespace user
 
 
       virtual OleFrameHook * GetNotifyHook();
-      virtual void NotifyFloatingWindows(DWORD dwFlags);
+      virtual void NotifyFloatingWindows(uint32_t dwFlags);
 
    };
 

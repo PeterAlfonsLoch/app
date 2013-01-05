@@ -354,7 +354,7 @@ void frame_window::ShowOwnedWindows(bool bShow)
       ::ca::window * pWnd = ::ca::window::FromHandlePermanent(oswindow);
       if (pWnd != NULL && get_handle() != oswindow && __is_descendant(this, pWnd))
       {
-         DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
+         uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
          if (!bShow && (dwStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
          {
             ::ShowWindow(oswindow, SW_HIDE);
@@ -452,7 +452,7 @@ bool frame_window::pre_create_window(CREATESTRUCT& cs)
 
 }
 
-bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, const char * lpszMenuName, DWORD dwExStyle, ::ca::create_context* pContext)
+bool frame_window::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction * pParentWnd, const char * lpszMenuName, uint32_t dwExStyle, ::ca::create_context* pContext)
 {
 
    UNREFERENCED_PARAMETER(lpszMenuName);
@@ -564,7 +564,7 @@ int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* 
    return 0;   // create ok
 }
 
-const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter)
+const char * frame_window::GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter)
 {
 //   ASSERT_VALID_IDR(nIDResource);
 //   HINSTANCE hInst = gen::FindResourceHandle(
@@ -606,7 +606,7 @@ const char * frame_window::GetIconWndClass(DWORD dwDefaultStyle, const char * ps
    return NULL;        // just use the default
 }
 
-bool frame_window::LoadFrame(const char * pszMatter, DWORD dwDefaultStyle,
+bool frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultStyle,
    ::user::interaction * pParentWnd, ::ca::create_context* pContext)
 {
    UNREFERENCED_PARAMETER(pszMatter);
@@ -680,7 +680,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
    }
 
 //   oswindow oswindow = get_handle();
-//   DWORD dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
+//   uint32_t dwStyle = ::GetWindowLong(oswindow, GWL_STYLE);
 //   bool bChild =  dwStyle & WS_CHILD;
 
    if (bMakeVisible)
@@ -1507,7 +1507,7 @@ void frame_window::OnSetPreviewMode(bool bPreview, CPrintPreviewState* pState)
 
 
    // Set visibility of standard ControlBars (only the first 32)
-//   DWORD dwOldStates = 0;
+//   uint32_t dwOldStates = 0;
 
    if (bPreview)
    {
@@ -1764,7 +1764,7 @@ void frame_window::BringToTop(int32_t nCmdShow)
          ::oswindow oswindow = get_handle();
          ::oswindow oswindow_LastPop = ::GetLastActivePopup(oswindow);
 
-         //DWORD dwStyle = ::GetWindowLong(oswindow_LastPop, GWL_STYLE);
+         //uint32_t dwStyle = ::GetWindowLong(oswindow_LastPop, GWL_STYLE);
          if(oswindow_LastPop != (::oswindow) 1)
          {
             if(::IsWindow(oswindow_LastPop))
@@ -1882,7 +1882,7 @@ void frame_window::_001OnSysCommand(gen::signal_object * pobj)
 
 
 
-void frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle, DWORD dwStyle)
+void frame_window::LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle, uint32_t dwStyle)
 {
 
    throw interface_only_exception(get_app());

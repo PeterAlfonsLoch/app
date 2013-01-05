@@ -93,10 +93,10 @@ public:
 
 
    virtual bool create(const char * lpClassName, const char * lpWindowName,
-      DWORD dwStyle, const RECT& rect,
+      uint32_t dwStyle, const RECT& rect,
       virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
-   virtual bool CreateEx(DWORD dwExStyle, const char * lpClassName, const char * lpWindowName,
-      DWORD dwStyle, const RECT& rect,
+   virtual bool CreateEx(uint32_t dwExStyle, const char * lpClassName, const char * lpWindowName,
+      uint32_t dwStyle, const RECT& rect,
       virtual_user_interface* pParentWnd = NULL, UINT nID = 0);
 
 
@@ -109,7 +109,7 @@ public:
    bool OnNcCreate(LPCREATESTRUCT lpcs);
 
 public:
-   static void PASCAL CalcBorders(LPRECT lpClientRect, DWORD dwStyle = 0, DWORD dwExStyle = 0);
+   static void PASCAL CalcBorders(LPRECT lpClientRect, uint32_t dwStyle = 0, uint32_t dwExStyle = 0);
 
 protected:
    virtual bool pre_create_window(CREATESTRUCT& cs);
@@ -124,7 +124,7 @@ protected:
 #pragma warning( default: 4264 )
 
 
-typedef DWORD DROPEFFECT;
+typedef uint32_t DROPEFFECT;
 class COleDataObject;   // forward reference (see afxole.h)
 
 */

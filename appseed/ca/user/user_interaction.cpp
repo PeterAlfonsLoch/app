@@ -1010,7 +1010,7 @@ namespace user
          return m_pimpl->EnableWindow(bEnable);
    }
 
-   bool interaction::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction::ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1018,7 +1018,7 @@ namespace user
          return m_pimpl->ModifyStyle(dwRemove, dwAdd,  nFlags);
    }
 
-   bool interaction::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool interaction::ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags)
    {
       if(m_pimpl == NULL)
          return FALSE;
@@ -1259,7 +1259,7 @@ namespace user
       return true;
    }
 
-   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, interaction* pParentWnd, id id, ::ca::create_context* pContext)
+   bool interaction::create_window(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, interaction* pParentWnd, id id, ::ca::create_context* pContext)
    {
 
       if(IsWindow())
@@ -1324,7 +1324,7 @@ namespace user
 
 
    bool interaction::create(const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
+         const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          ::ca::create_context* pContext)
@@ -1393,8 +1393,8 @@ namespace user
    }
 
 
-   bool interaction::create_window_ex(DWORD dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
+   bool interaction::create_window_ex(uint32_t dwExStyle, const char * lpszClassName,
+         const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          LPVOID lpParam)
@@ -1417,8 +1417,8 @@ namespace user
    }
 
 
-   bool interaction::CreateEx(DWORD dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
+   bool interaction::CreateEx(uint32_t dwExStyle, const char * lpszClassName,
+         const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          LPVOID lpParam)
@@ -1749,7 +1749,7 @@ namespace user
          return m_pimpl->Default();
    }
 
-   DWORD interaction::GetStyle()
+   uint32_t interaction::GetStyle()
    {
       if(m_pimpl == NULL)
          return 0;
@@ -1757,7 +1757,7 @@ namespace user
          return m_pimpl->GetStyle();
    }
 
-   DWORD interaction::GetExStyle()
+   uint32_t interaction::GetExStyle()
    {
       if(m_pimpl == NULL)
          return 0;
@@ -2191,7 +2191,7 @@ namespace user
    }
 #endif
 
-   id interaction::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
+   id interaction::RunModalLoop(uint32_t dwFlags, ::ca::live_object * pliveobject)
    {
 
       // for tracking the idle time state
@@ -2370,7 +2370,7 @@ ExitModal:
 
 #ifdef WINDOWSEX
 
-            ::PostThreadMessageA((DWORD) m_iaModalThread[i], WM_NULL, 0, 0);
+            ::PostThreadMessageA((uint32_t) m_iaModalThread[i], WM_NULL, 0, 0);
 
 #else
 
@@ -2434,7 +2434,7 @@ ExitModal:
 
    // Timer Functions
    uint_ptr interaction::SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
+         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t))
    {
       if(m_pimpl == NULL)
          return 0;

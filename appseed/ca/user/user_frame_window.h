@@ -62,7 +62,7 @@ public:
 
    HMENU m_hMenuDefault;       // default menu resource for this frame
    HACCEL m_hAccelTable;       // accelerator table
-   DWORD m_dwPromptContext;    // current help prompt context for message box
+   uint32_t m_dwPromptContext;    // current help prompt context for message box
    bool m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
    frame_window* m_pNextFrameWnd; // next frame_window in cast global list
    rect m_rectBorder;         // for OLE border space negotiation
@@ -85,7 +85,7 @@ public:
    string m_strTitle;         // default title (original)
    bool m_bInRecalcLayout;     // avoid recursion in layout
    ::ca::type_info m_pFloatingFrameClass;
-   static const DWORD dwDockBarMap[4][2];
+   static const uint32_t dwDockBarMap[4][2];
 
 
    frame_window();
@@ -96,16 +96,16 @@ public:
    using user::frame_window_interface::create;
    virtual bool create(const char * lpszClassName,
             const char * lpszWindowName,
-            DWORD dwStyle = WS_OVERLAPPEDWINDOW,
+            uint32_t dwStyle = WS_OVERLAPPEDWINDOW,
                        const RECT & rect = ::rect(0, 0, 0, 0),
             ::user::interaction* pParentWnd = NULL,        // != NULL for popups
             const char * lpszMenuName = NULL,
-            DWORD dwExStyle = 0,
+            uint32_t dwExStyle = 0,
             ::ca::create_context* pContext = NULL);
 
    // dynamic creation - load frame and associated resources
    virtual bool LoadFrame(const char * pszMatter,
-            DWORD dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
+            uint32_t dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
             ::user::interaction* pParentWnd = NULL,
             ::ca::create_context* pContext = NULL);
 
@@ -166,9 +166,9 @@ public:
    virtual void on_delete(::ca::ca * poc);
 
 #ifdef WINDOWSEX
-   virtual void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = TBSTYLE_FLAT, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   virtual void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = TBSTYLE_FLAT, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #else
-   virtual void LoadToolBar(id idToolBar, const char * pszToolBar, DWORD dwCtrlStyle = 0, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   virtual void LoadToolBar(id idToolBar, const char * pszToolBar, uint32_t dwCtrlStyle = 0, uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 #endif
 
 
@@ -196,7 +196,7 @@ public:
 
 
    void UpdateFrameTitleForDocument(const char * lpszDocName);
-   virtual const char * GetIconWndClass(DWORD dwDefaultStyle, const char * pszMatter);
+   virtual const char * GetIconWndClass(uint32_t dwDefaultStyle, const char * pszMatter);
    virtual bool pre_create_window(CREATESTRUCT& cs);
    virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
    virtual void PostNcDestroy();   // default to delete this.
@@ -205,7 +205,7 @@ public:
       // bring ::ca::window to top for SW_ commands which affect z-order
 
    // implementation helpers for Shift+F1 help mode
-   bool ProcessHelpMsg(MESSAGE & msg, DWORD * pContext);
+   bool ProcessHelpMsg(MESSAGE & msg, uint32_t * pContext);
    oswindow SetHelpCapture(POINT point, bool * pbDescendant);
 
    // frame_window list management

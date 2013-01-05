@@ -117,7 +117,7 @@ namespace user
             return layoutida[i].m_strPath;
          }
       }
-      hkl = (HKL) (((DWORD) hkl) & 0xffff);
+      hkl = (HKL) (((uint32_t) hkl) & 0xffff);
       for(int32_t i = 0; i < layoutida.get_count(); i++)
       {
          if(layoutida[i].m_hkla.contains(hkl))

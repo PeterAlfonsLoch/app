@@ -8,7 +8,7 @@ public:
 
    void on_show(const char * pszMatter, gen::property_set & propertyset);
    bool on_timeout();
-   void on_timer_soft_reload(DWORD dwTimeout);
+   void on_timer_soft_reload(uint32_t dwTimeout);
 
 
 };

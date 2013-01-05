@@ -28,7 +28,7 @@ bool message_box::on_timeout()
    return wait_message_dialog::on_timeout();
 }
 
-void message_box::on_timer_soft_reload(DWORD dwTimeout)
+void message_box::on_timer_soft_reload(uint32_t dwTimeout)
 {
    //m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout"] = (int32_t) ((m_pdocument->get_html_data()->m_propertyset["simple_message_box_timeout_ms"]) / 1000);
    wait_message_dialog::on_timer_soft_reload(dwTimeout);

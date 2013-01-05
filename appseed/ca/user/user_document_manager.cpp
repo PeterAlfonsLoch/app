@@ -50,7 +50,7 @@ bool __delete_reg_key(const char * lpszKey)
 
       // enumerate the keys underneath
       char szScrap[_MAX_PATH+1];
-      DWORD dwLen = _countof(szScrap);
+      uint32_t dwLen = _countof(szScrap);
       bool bItExists = FALSE;
 
       if (::RegEnumKey(hKey, 0, szScrap, dwLen) == ERROR_SUCCESS)
@@ -457,7 +457,7 @@ void document_manager::close_all_documents(bool bEndSession)
    }
 }
 
-bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
+bool document_manager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::document * pdocument)
 {
    return System.do_prompt_file_name(varFile, nIDSTitle, lFlags, bOpenFileDialog, ptemplate, pdocument);
 }

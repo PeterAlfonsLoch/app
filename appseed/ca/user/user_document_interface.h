@@ -126,7 +126,7 @@ namespace user
       virtual void pre_close_frame(frame_window* pFrame);
 
 
-      virtual void dump(dump_context&) const;
+      virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
 
       // implementation helpers

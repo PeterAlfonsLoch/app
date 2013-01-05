@@ -23,7 +23,7 @@ namespace sockets
 
          virtual bool open(const char * lpszFileName, UINT nOpenFlags);
          virtual void close();
-         virtual void Flush();
+         virtual void flush();
 
          virtual void get_file_data() = 0;
          virtual void set_file_data() = 0;

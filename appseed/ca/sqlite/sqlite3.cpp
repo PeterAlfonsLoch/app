@@ -13217,7 +13217,7 @@ zulu_time:
       CRITICAL_SECTION mutex;    /* Mutex controlling the lock */
       int32_t id;                    /* Mutex type */
       int32_t nRef;                  /* Number of enterances */
-      DWORD owner;               /* Thread holding this mutex */
+      uint32_t owner;               /* Thread holding this mutex */
    };
 
    /*
@@ -21419,7 +21419,7 @@ afp_end_lock:
    ** Acquire a lock on the handle h
    */
    static void winceMutexAcquire(HANDLE h){
-      DWORD dwErr;
+      uint32_t dwErr;
       do {
          dwErr = WaitForSingleObject(h, INFINITE);
       } while (dwErr != WAIT_OBJECT_0 && dwErr != WAIT_ABANDONED);
@@ -21542,10 +21542,10 @@ afp_end_lock:
    */
    static bool winceLockFile(
       HANDLE *phFile,
-      DWORD dwFileOffsetLow,
-      DWORD dwFileOffsetHigh,
-      DWORD nNumberOfBytesToLockLow,
-      DWORD nNumberOfBytesToLockHigh
+      uint32_t dwFileOffsetLow,
+      uint32_t dwFileOffsetHigh,
+      uint32_t nNumberOfBytesToLockLow,
+      uint32_t nNumberOfBytesToLockHigh
       ){
          winFile *pFile = HANDLE_TO_WINFILE(phFile);
          bool bReturn = FALSE;
@@ -21603,10 +21603,10 @@ afp_end_lock:
    */
    static bool winceUnlockFile(
       HANDLE *phFile,
-      DWORD dwFileOffsetLow,
-      DWORD dwFileOffsetHigh,
-      DWORD nNumberOfBytesToUnlockLow,
-      DWORD nNumberOfBytesToUnlockHigh
+      uint32_t dwFileOffsetLow,
+      uint32_t dwFileOffsetHigh,
+      uint32_t nNumberOfBytesToUnlockLow,
+      uint32_t nNumberOfBytesToUnlockHigh
       ){
          winFile *pFile = HANDLE_TO_WINFILE(phFile);
          bool bReturn = FALSE;
@@ -21661,10 +21661,10 @@ afp_end_lock:
    */
    static bool winceLockFileEx(
       HANDLE *phFile,
-      DWORD dwFlags,
-      DWORD dwReserved,
-      DWORD nNumberOfBytesToLockLow,
-      DWORD nNumberOfBytesToLockHigh,
+      uint32_t dwFlags,
+      uint32_t dwReserved,
+      uint32_t nNumberOfBytesToLockLow,
+      uint32_t nNumberOfBytesToLockHigh,
       LPOVERLAPPED lpOverlapped
       ){
          /* If the caller wants a shared read lock, forward this call
@@ -21727,7 +21727,7 @@ afp_end_lock:
    ** Some microsoft compilers lack this definition.
    */
 #ifndef INVALID_SET_FILE_POINTER
-# define INVALID_SET_FILE_POINTER ((DWORD)-1)
+# define INVALID_SET_FILE_POINTER ((uint32_t)-1)
 #endif
 
    /*
@@ -21743,8 +21743,8 @@ afp_end_lock:
       ){
          LONG upperBits = (offset>>32) & 0x7fffffff;
          LONG lowerBits = offset & 0xffffffff;
-         DWORD rc;
-         DWORD got;
+         uint32_t rc;
+         uint32_t got;
          winFile *pFile = (winFile*)id;
          assert( id!=0 );
          SimulateIOError(return SQLITE_IOERR_READ);
@@ -21756,7 +21756,7 @@ afp_end_lock:
          if( !ReadFile(pFile->h, pBuf, amt, &got, 0) ){
             return SQLITE_IOERR_READ;
          }
-         if( got==(DWORD)amt ){
+         if( got==(uint32_t)amt ){
             return SQLITE_OK;
          }else{
             memset(&((char*)pBuf)[got], 0, amt-got);
@@ -21776,8 +21776,8 @@ afp_end_lock:
       ){
          LONG upperBits = (offset>>32) & 0x7fffffff;
          LONG lowerBits = offset & 0xffffffff;
-         DWORD rc;
-         DWORD wrote;
+         uint32_t rc;
+         uint32_t wrote;
          winFile *pFile = (winFile*)id;
          assert( id!=0 );
          SimulateIOError(return SQLITE_IOERR_WRITE);
@@ -21849,7 +21849,7 @@ afp_end_lock:
    */
    static int32_t winFileSize(sqlite3_file *id, sqlite3_int64 *pSize){
       winFile *pFile = (winFile*)id;
-      DWORD upperBits, lowerBits;
+      uint32_t upperBits, lowerBits;
       SimulateIOError(return SQLITE_IOERR_FSTAT);
       lowerBits = GetFileSize(pFile->h, &upperBits);
       *pSize = (((sqlite3_int64)upperBits)<<32) + lowerBits;
@@ -22191,10 +22191,10 @@ afp_end_lock:
       int32_t *pOutFlags            /* Status return flags */
       ){
          HANDLE h;
-         DWORD dwDesiredAccess;
-         DWORD dwShareMode;
-         DWORD dwCreationDisposition;
-         DWORD dwFlagsAndAttributes = 0;
+         uint32_t dwDesiredAccess;
+         uint32_t dwShareMode;
+         uint32_t dwCreationDisposition;
+         uint32_t dwFlagsAndAttributes = 0;
          int32_t isTemp;
          winFile *pFile = (winFile*)id;
          //void *zConverted = convertUtf8Filename(zName);
@@ -22348,7 +22348,7 @@ afp_end_lock:
       const char *zFilename,     /* Name of file to check */
       int32_t flags                  /* Type of test to make on this file */
       ){
-//         DWORD attr;
+//         uint32_t attr;
          int32_t rc;
 //         void *zConverted = convertUtf8Filename(zFilename);
   //       if( zConverted==0 ){
@@ -22579,13 +22579,13 @@ afp_end_lock:
          memcpy(&zBuf[n], &x, sizeof(x));
          n += sizeof(x);
       }
-      if( sizeof(DWORD)<=nBuf-n ){
-         DWORD pid = GetCurrentProcessId();
+      if( sizeof(uint32_t)<=nBuf-n ){
+         uint32_t pid = GetCurrentProcessId();
          memcpy(&zBuf[n], &pid, sizeof(pid));
          n += sizeof(pid);
       }
-      if( sizeof(DWORD)<=nBuf-n ){
-         DWORD cnt = get_tick_count();
+      if( sizeof(uint32_t)<=nBuf-n ){
+         uint32_t cnt = get_tick_count();
          memcpy(&zBuf[n], &cnt, sizeof(cnt));
          n += sizeof(cnt);
       }
@@ -80487,7 +80487,7 @@ out:
          ** error codes from here.
          */
 
-         /* Flush any buffered updates before executing the query. */
+         /* flush any buffered updates before executing the query. */
          rc = flushPendingTerms(v);
          if( rc!=SQLITE_OK ) return rc;
 
@@ -81098,7 +81098,7 @@ out:
             return SQLITE_OK;
          }
 
-         /* Flush the first block to %_segments, and create a new level of
+         /* flush the first block to %_segments, and create a new level of
          ** interior node.
          */
          ASSERT_VALID_INTERIOR_BLOCK(block);
@@ -81111,7 +81111,7 @@ out:
             block->term.pData, block->term.nData,
             iBlockid, pWriter->parentWriter);
 
-         /* Flush additional blocks and append to the higher interior
+         /* flush additional blocks and append to the higher interior
          ** node.
          */
          for(block=block->next; block!=NULL; block=block->next){
@@ -81374,7 +81374,7 @@ out:
 #define ASSERT_VALID_LEAF_NODE(p, n) assert( 1 )
 #endif
 
-   /* Flush the current leaf node to %_segments, and adding the resulting
+   /* flush the current leaf node to %_segments, and adding the resulting
    ** blockid and the starting term to the interior node which will
    ** contain it.
    */
@@ -81453,7 +81453,7 @@ out:
             return SQLITE_OK;
          }
 
-         /* Flush remaining leaf data. */
+         /* flush remaining leaf data. */
          if( pWriter->data.nData>0 ){
             int32_t rc = leafWriterFlush(v, pWriter);
             if( rc!=SQLITE_OK ) return rc;
@@ -81661,7 +81661,7 @@ out:
          ** pWriter->data.nData>LEAF_MAX.
          */
          if( iTermData+nTerm+nActualData>LEAF_MAX ){
-            /* Flush out the leading data as a node */
+            /* flush out the leading data as a node */
             rc = leafWriterInternalFlush(v, pWriter, 0, iTermData);
             if( rc!=SQLITE_OK ) return rc;
 

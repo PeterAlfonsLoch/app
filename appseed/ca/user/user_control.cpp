@@ -509,7 +509,7 @@ namespace user
       {
       case WM_MOUSEMOVE:
          {
-            point point((DWORD)pbase->m_lparam);
+            point point((uint32_t)pbase->m_lparam);
             BaseControlExOnMouseMove((UINT)pbase->m_wparam, point);
             break;
          }

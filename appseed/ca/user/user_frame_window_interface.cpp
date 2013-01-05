@@ -35,7 +35,7 @@ namespace user
       return NULL;
    }
 
-   void frame_window_interface::NotifyFloatingWindows(DWORD dwFlags)
+   void frame_window_interface::NotifyFloatingWindows(uint32_t dwFlags)
    {
       UNREFERENCED_PARAMETER(dwFlags);
    }

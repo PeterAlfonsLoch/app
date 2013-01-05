@@ -43,7 +43,7 @@ namespace sockets
          }
       }
 
-      void batch_file::Flush()
+      void batch_file::flush()
       {
          if(m_nOpenFlags & ex1::file::mode_write)
          {

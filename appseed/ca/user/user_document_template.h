@@ -112,7 +112,7 @@ public:
    virtual ~document_template() = 0;
 
 
-   virtual void dump(dump_context&) const;
+   virtual void dump(dump_context &) const;
    virtual void assert_valid() const;
 
    virtual void on_idle();             // for all documents

@@ -174,7 +174,7 @@ namespace user
       // dialog support
       void UpdateDialogControls(command_target* pTarget, bool bDisableIfNoHndler);
       virtual void CenterWindow(interaction * pAlternateOwner = NULL);
-      virtual id   RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+      virtual id   RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
       virtual bool ContinueModal(int32_t iLevel);
       virtual void EndModalLoop(id nResult);
       virtual void EndAllModalLoops(id nResult);
@@ -237,23 +237,23 @@ namespace user
 
       virtual bool create(interaction *pparent, id id);
       virtual bool create_window(const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
+         const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          ::ca::create_context* pContext = NULL);
       using ::ex1::request_interface::create;
       virtual bool create(const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
+         const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          ::ca::create_context* pContext = NULL);
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
+      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName,
+         const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          LPVOID lpParam = NULL);
-      virtual bool create_window_ex(DWORD dwExStyle, const char * lpszClassName,
-         const char * lpszWindowName, DWORD dwStyle,
+      virtual bool create_window_ex(uint32_t dwExStyle, const char * lpszClassName,
+         const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
          interaction* pParentWnd, id id,
          LPVOID lpParam = NULL);
@@ -290,8 +290,8 @@ namespace user
       virtual void ShowOwnedPopups(bool bShow = TRUE);
 
 
-      virtual DWORD GetStyle();
-      virtual DWORD GetExStyle();
+      virtual uint32_t GetStyle();
+      virtual uint32_t GetExStyle();
       virtual LRESULT Default();
 
       virtual LRESULT send_message(::gen::message::base * pbase);
@@ -299,14 +299,14 @@ namespace user
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
 
-      virtual bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
-      virtual bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
+      virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
       virtual bool ShowWindow(int32_t nCmdShow);
       virtual bool IsFrameWnd();
 
    // Timer Functions
       virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse,
-         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
+         void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
       virtual bool IsWindowEnabled();
@@ -518,10 +518,10 @@ namespace user
 
 CLASS_DECL_ca ::user::interaction * WINAPI CreateGuieEx(
    ::ca::application * papp,
-    DWORD dwExStyle,
+    uint32_t dwExStyle,
     const char * lpClassName,
     const char * lpWindowName,
-    DWORD dwStyle,
+    uint32_t dwStyle,
     int32_t X,
     int32_t Y,
     int32_t nWidth,
