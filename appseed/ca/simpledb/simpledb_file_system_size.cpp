@@ -404,7 +404,7 @@ bool FileSystemSizeWnd::get_fs_size(int64_t & i64Size, const char * pszPath, boo
 
    COPYDATASTRUCT data;
    data.dwData = 0;
-   data.cbData = (DWORD) file.get_length();
+   data.cbData = (uint32_t) file.get_length();
    data.lpData = file.get_data();
    ::oswindow oswindowWparam = (::oswindow) m_p->get_os_data();
    WPARAM wparam = (WPARAM) oswindowWparam;
@@ -496,7 +496,7 @@ void FileSystemSizeWnd::_001OnTimer(gen::signal_object * pobj)
             file_size_table::get_fs_size & size = m_sizea[0];
             file.Truncate(0);
             size.write(file);
-            data.cbData = (DWORD) file.get_length();
+            data.cbData = (uint32_t) file.get_length();
             data.lpData = file.get_data();
             ::SendMessage(size.m_oswindow, WM_COPYDATA, (WPARAM) m_p->get_os_data(), (LPARAM) &data);
             m_sizea.remove_at(0);

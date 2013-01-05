@@ -40,7 +40,7 @@ private:
 	
 
    trace_process *   m_pProcess;
-	DWORD             m_dwPageSize;
+	uint32_t             m_dwPageSize;
 	HANDLE            m_hMap;
 	bool              m_bValid;
 	BYTE *            m_pBufferStart;
@@ -67,7 +67,7 @@ public:
 		close();
 	}
 
-	bool Init(const CHAR *pszFileMappingName, DWORD dwMaxSize);
+	bool Init(const CHAR *pszFileMappingName, uint32_t dwMaxSize);
 	bool open(const CHAR *pszFileMappingName);
 	void close(bool bForceUnmap = false);
 	bool IsValid() const {return m_bValid;}
@@ -78,7 +78,7 @@ public:
 	::gen::trace::category* GetCategory(index iCategory) const;
 
 	/*
-	bool Lock(DWORD dwTimeOut);
+	bool Lock(uint32_t dwTimeOut);
 	void Unlock();
 	*/
 

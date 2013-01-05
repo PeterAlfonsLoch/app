@@ -521,7 +521,7 @@ __STATIC void __load_dot_bitmap()
    const BYTE* pbIn = gen_Dot;
    for (int32_t y = 0; y < DOT_HEIGHT; y++)
    {
-      WORD w = (WORD)~(((DWORD)*pbIn++) << nShift);
+      WORD w = (WORD)~(((uint32_t)*pbIn++) << nShift);
       // bitmaps are always hi-lo
       pbOut[0] = HIBYTE(w);
       pbOut[1] = LOBYTE(w);

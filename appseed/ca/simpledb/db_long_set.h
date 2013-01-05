@@ -20,7 +20,7 @@ public:
    {
    public:
 
-      DWORD          m_dwTimeout;
+      uint32_t          m_dwTimeout;
       int64_t        m_l;
 
    };
@@ -30,7 +30,7 @@ public:
    public:
 
       string         m_strKey;
-      DWORD          m_dwTimeout;
+      uint32_t          m_dwTimeout;
       int64_t        m_l;
 
       queue_item();

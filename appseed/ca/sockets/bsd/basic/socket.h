@@ -125,7 +125,7 @@ namespace sockets
       string                  m_line; ///< Current line in line protocol mode
 
       e_status                m_estatus;
-      DWORD                   m_dwStart;
+      uint32_t                   m_dwStart;
 
 
 

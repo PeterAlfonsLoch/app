@@ -77,7 +77,7 @@ namespace gen
       if(!bBlock)
       {
 
-         DWORD dwMode = PIPE_NOWAIT;
+         uint32_t dwMode = PIPE_NOWAIT;
          VERIFY(SetNamedPipeHandleState(m_hRead   , &dwMode, NULL, NULL));
          VERIFY(SetNamedPipeHandleState(m_hWrite  , &dwMode, NULL, NULL));
 
@@ -145,10 +145,10 @@ namespace gen
 
    bool pipe::write(const char * psz)
    {
-      DWORD dwLen = (DWORD) strlen(psz);
+      uint32_t dwLen = (uint32_t) strlen(psz);
       bool bSuccess = FALSE;
 #ifdef WINDOWS
-      DWORD dwWritten;
+      uint32_t dwWritten;
       bSuccess = WriteFile(m_hWrite, (const char *) psz, dwLen, &dwWritten, NULL) != FALSE;
 #else
       size_t dwWritten;
@@ -162,7 +162,7 @@ namespace gen
       string str;
       const int32_t BUFSIZE = 1024 * 8;
 #ifdef WINDOWS
-      DWORD dwRead;
+      uint32_t dwRead;
 #else
       size_t dwRead;
 #endif
@@ -202,7 +202,7 @@ namespace gen
       string str;
       const int32_t BUFSIZE = 1024 * 8;
 #ifdef WINDOWS
-      DWORD dwRead;
+      uint32_t dwRead;
 #else
       size_t dwRead;
 #endif
@@ -254,8 +254,8 @@ namespace gen
    }
 
    void WINAPI pipe::read_complete(
-         DWORD dwErrorCode,
-         DWORD dwNumberOfBytesTransfered,
+         uint32_t dwErrorCode,
+         uint32_t dwNumberOfBytesTransfered,
          LPOVERLAPPED lpOverlapped
          )
    {

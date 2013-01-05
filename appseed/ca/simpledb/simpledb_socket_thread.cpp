@@ -66,13 +66,13 @@ namespace simpledb
       //Sleep(15000);
       if(!m_plistensocket->create(80, SOCK_STREAM))
       {
-      DWORD dw = ::GetLastError();
+      uint32_t dw = ::GetLastError();
       TRACE("error %u", dw);
       return FALSE;
       }
       if(!m_plistensocket->Listen())
       {
-      DWORD dw = ::GetLastError();
+      uint32_t dw = ::GetLastError();
       TRACE("error %u", dw);
       return FALSE;
       }*/

@@ -30,7 +30,7 @@ namespace ca2
             pszServiceName,               // name of service
             SC_MANAGER_ALL_ACCESS);                     // no password
 
-      DWORD Ret = 0;
+      uint32_t Ret = 0;
 
       if (!hdlServ)
          Ret = ::GetLastError();
@@ -64,7 +64,7 @@ namespace ca2
          psz,               // name of service
          SC_MANAGER_ALL_ACCESS);                     // no password
 
-      DWORD Ret = 0;
+      uint32_t Ret = 0;
       if (!hdlServ)
          Ret = ::GetLastError();
       SERVICE_STATUS ss;
@@ -100,7 +100,7 @@ namespace ca2
          psz,               // name of service
          SC_MANAGER_ALL_ACCESS);                     // no password
 
-      DWORD Ret = 0;
+      uint32_t Ret = 0;
       if (!hdlServ)
          Ret = ::GetLastError();
 
@@ -149,7 +149,7 @@ namespace ca2
          0,                      // LocalSystem account
          0);                     // no password
 
-      DWORD Ret = 0;
+      uint32_t Ret = 0;
       if (!hdlServ) Ret = ::GetLastError();
          CloseServiceHandle(hdlServ);
 

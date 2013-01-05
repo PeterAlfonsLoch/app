@@ -84,14 +84,14 @@ namespace radix
 #endif
 
 
-      DWORD                         m_dwPromptContext;        // help context override for message box
+      uint32_t                         m_dwPromptContext;        // help context override for message box
    // LKG
-   //   DWORD m_dwPolicies;            // block for storing boolean system policies
+   //   uint32_t m_dwPolicies;            // block for storing boolean system policies
 
       int32_t                           m_nWaitCursorCount;         // for wait cursor (>0 => waiting)
       HCURSOR                       m_hcurWaitCursorRestore; // old cursor to restore after wait cursor
 
-      DWORD                         m_dwPolicies;            // block for storing boolean system policies
+      uint32_t                         m_dwPolicies;            // block for storing boolean system policies
 
       EExclusiveInstance            m_eexclusiveinstance;
 
@@ -392,7 +392,7 @@ namespace radix
       int32_t get_open_document_count();
 
       // helpers for standard commdlg dialogs
-      bool do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
+      bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -420,7 +420,7 @@ namespace radix
    public :
       // System Policy Settings
       virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
-      bool GetSysPolicyValue(DWORD dwPolicyID, bool *pbValue); // returns the policy's setting in the out parameter
+      bool GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue); // returns the policy's setting in the out parameter
    protected :
       bool _LoadSysPolicies() throw(); // Implementation helper
    public:

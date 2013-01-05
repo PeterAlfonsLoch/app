@@ -107,7 +107,7 @@ namespace sockets
       public:
 
          in_addr       m_ipaddr;
-         DWORD          m_dwLastChecked;
+         uint32_t          m_dwLastChecked;
          bool           r;
 
       };

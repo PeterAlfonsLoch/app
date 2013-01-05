@@ -394,7 +394,7 @@ namespace sockets
 
    void tcp_socket::OnRead()
    {
-      DWORD dw1, dw2;
+      uint32_t dw1, dw2;
       int32_t n = 0;
    #ifdef SOCKETS_DYNAMIC_TEMP
       char *buf = m_buf;

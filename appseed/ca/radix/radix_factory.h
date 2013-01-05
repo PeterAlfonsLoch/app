@@ -21,7 +21,7 @@ class CLASS_DECL_ca factory_allocator
 public:
 
 
-   DWORD                   m_uiAllocSize;
+   uint32_t                   m_uiAllocSize;
    int32_t                     m_iCount;
    int64_t                 m_iAllocCount;
    id                      m_idType;

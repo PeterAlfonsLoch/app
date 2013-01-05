@@ -212,7 +212,7 @@ namespace radix
 // DEBUG versions in objcore.cpp
 //void ::radix::object::AssertValid() const
 //   { /* no asserts in release builds */ }
-//void ::radix::object::Dump(dump_context&) const
+//void ::radix::object::Dump(dump_context &) const
 //   { /* no dumping in release builds */ }
 #endif //!DEBUG
 

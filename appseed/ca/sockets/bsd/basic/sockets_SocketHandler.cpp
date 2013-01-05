@@ -276,7 +276,7 @@ namespace sockets
 
    int32_t socket_handler::Select(struct timeval *tsel)
    {
-      DWORD dw1, dw2;
+      uint32_t dw1, dw2;
       size_t ignore = 0;
       while(natural(m_add.get_size()) > ignore)
       {

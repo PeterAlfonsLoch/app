@@ -46,7 +46,7 @@ protected :
    typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, uint_ptr*);
    static PFNActivateActCtx s_pfnActivateActCtx;
 
-   typedef bool (WINAPI * PFNDeactivateActCtx)(DWORD, uint_ptr);
+   typedef bool (WINAPI * PFNDeactivateActCtx)(uint32_t, uint_ptr);
    static PFNDeactivateActCtx s_pfnDeactivateActCtx;
 
    static bool s_bPFNInitialized;
@@ -239,9 +239,9 @@ namespace radix
 #ifdef WINDOWSEX
 
       HKEY hkPolicy = NULL;
-      DWORD dwValue = 0;
-      DWORD dwDataLen = sizeof(dwValue);
-      DWORD dwType = 0;
+      uint32_t dwValue = 0;
+      uint32_t dwDataLen = sizeof(dwValue);
+      uint32_t dwType = 0;
 
       // clear current policy settings.
       m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
@@ -333,7 +333,7 @@ namespace radix
 
    }
 
-   bool application::GetSysPolicyValue(DWORD dwPolicyID, bool *pbValue)
+   bool application::GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue)
    {
       if (!pbValue)
          return FALSE; // bad pointer
@@ -1357,7 +1357,7 @@ namespace radix
    }
 
    // prompt for file name - used for open and save as
-   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
          // if ptemplate==NULL => all document templates
    {
       if(m_pfilemanager != NULL)
@@ -1751,13 +1751,13 @@ namespace radix
          EnableWindow(oswindow, TRUE);
 
       // set help context if possible
-      DWORD* pdwContext = NULL;
+      uint32_t* pdwContext = NULL;
 
 #ifdef WINDOWS
 
       {
 
-         DWORD dwWndPid=0;
+         uint32_t dwWndPid=0;
          GetWindowThreadProcessId(oswindow, &dwWndPid);
 
          if (oswindow != NULL && dwWndPid==GetCurrentProcessId() )
@@ -1765,7 +1765,7 @@ namespace radix
             // use cast-level context or frame level context
             LRESULT lResult = ::SendMessage(oswindow, WM_HELPPROMPTADDR, 0, 0);
             if (lResult != 0)
-               pdwContext = (DWORD*)lResult;
+               pdwContext = (uint32_t*)lResult;
          }
 
       }
@@ -1775,7 +1775,7 @@ namespace radix
       if (pdwContext == NULL && pApp != NULL)
          pdwContext = &pApp->m_dwPromptContext;
 
-      DWORD dwOldPromptContext = 0;
+      uint32_t dwOldPromptContext = 0;
       if (pdwContext != NULL)
       {
          // save old prompt context for restoration later
@@ -1822,7 +1822,7 @@ namespace radix
 
 #ifdef WINDOWS
          pszAppName = szAppName;
-         DWORD dwLen = GetModuleFileName(NULL, szAppName, _MAX_PATH);
+         uint32_t dwLen = GetModuleFileName(NULL, szAppName, _MAX_PATH);
          if (dwLen == _MAX_PATH)
             szAppName[_MAX_PATH - 1] = '\0';
 #else
@@ -2101,7 +2101,7 @@ namespace radix
 
          // If registry key is is_empty then remove it
 
-         DWORD   dwResult;
+         uint32_t   dwResult;
          if ((dwResult = ::RegOpenKey(HKEY_CURRENT_USER, strKey, &hKey)) ==
             ERROR_SUCCESS)
          {
@@ -2130,7 +2130,7 @@ namespace radix
    {
       char   szSubKeyName[MAX_PATH + 1];
       HKEY    hCurrentKey;
-      DWORD   dwResult;
+      uint32_t   dwResult;
 
       if ((dwResult = RegOpenKey(hParentKey, strKeyName, &hCurrentKey)) ==
          ERROR_SUCCESS)
@@ -2264,7 +2264,7 @@ namespace radix
       if (RegOpenKeyEx(HKEY_CURRENT_USER, "software", 0, KEY_WRITE|KEY_READ,
          &hSoftKey) == ERROR_SUCCESS)
       {
-         DWORD dw;
+         uint32_t dw;
          if (RegCreateKeyEx(hSoftKey, m_pszRegistryKey, 0, REG_NONE,
             REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
             &hCompanyKey, &dw) == ERROR_SUCCESS)
@@ -2295,7 +2295,7 @@ namespace radix
       if (hAppKey == NULL)
          return NULL;
 
-      DWORD dw;
+      uint32_t dw;
       RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE,
          REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
          &hSectionKey, &dw);
@@ -2315,9 +2315,9 @@ namespace radix
          HKEY hSecKey = GetSectionKey(lpszSection);
          if (hSecKey == NULL)
             return nDefault;
-         DWORD dwValue;
-         DWORD dwType;
-         DWORD dwCount = sizeof(DWORD);
+         uint32_t dwValue;
+         uint32_t dwType;
+         uint32_t dwCount = sizeof(uint32_t);
          LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType,
             (LPBYTE)&dwValue, &dwCount);
          RegCloseKey(hSecKey);
@@ -2348,8 +2348,8 @@ namespace radix
          if (hSecKey == NULL)
             return lpszDefault;
          string strValue;
-         DWORD dwType=REG_NONE;
-         DWORD dwCount=0;
+         uint32_t dwType=REG_NONE;
+         uint32_t dwCount=0;
          LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType,
             NULL, &dwCount);
          if (lResult == ERROR_SUCCESS)
@@ -2374,7 +2374,7 @@ namespace radix
          if (lpszDefault == NULL)
             lpszDefault = "";   // don't pass in NULL
          char szT[4096];
-         DWORD dw = ::GetPrivateProfileString(lpszSection, lpszEntry,
+         uint32_t dw = ::GetPrivateProfileString(lpszSection, lpszEntry,
             lpszDefault, szT, _countof(szT), m_pszProfileName);
          ASSERT(dw < 4095);
          return szT;
@@ -2402,8 +2402,8 @@ namespace radix
 
          // linux ::gen::CRegKey rkSecKey(hSecKey);
 
-         DWORD dwType=0;
-         DWORD dwCount=0;
+         uint32_t dwType=0;
+         uint32_t dwCount=0;
          LONG lResult = RegQueryValueEx(hSecKey, (LPTSTR)lpszEntry, NULL, &dwType, NULL, &dwCount);
          *pBytes = dwCount;
          if (lResult == ERROR_SUCCESS)
@@ -3306,7 +3306,7 @@ file_manager_interface::~file_manager_interface()
 {
 }
 
-bool file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, DWORD lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+bool file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
 {
    UNREFERENCED_PARAMETER(varFile);
    UNREFERENCED_PARAMETER(nIDSTitle);

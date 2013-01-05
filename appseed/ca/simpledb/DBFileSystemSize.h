@@ -149,7 +149,7 @@ public:
    };
 
 
-   DWORD                            m_dwLastStartTime;
+   uint32_t                            m_dwLastStartTime;
    bool                             m_bServer;
    file_size_table::get_fs_size     m_size;
    bool                             m_bRet;

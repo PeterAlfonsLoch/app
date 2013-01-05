@@ -63,8 +63,8 @@ namespace gen
 
 
       static void WINAPI read_complete(
-         DWORD dwErrorCode,
-         DWORD dwNumberOfBytesTransfered,
+         uint32_t dwErrorCode,
+         uint32_t dwNumberOfBytesTransfered,
          LPOVERLAPPED lpOverlapped
          );
 

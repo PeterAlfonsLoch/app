@@ -11,8 +11,8 @@ namespace simpledb
 
 
 
-      DWORD                         m_dwBuildTimeWindow;
-      DWORD                         m_dwBuildTimeRandomWindow;
+      uint32_t                         m_dwBuildTimeWindow;
+      uint32_t                         m_dwBuildTimeRandomWindow;
 
       string_to_string_map          m_strmapFunUserKey;
 

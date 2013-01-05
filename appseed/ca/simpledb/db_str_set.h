@@ -10,7 +10,7 @@ public:
    {
    public:
 
-      DWORD          m_dwTimeout;
+      uint32_t          m_dwTimeout;
       string         m_str;
 
    };
@@ -20,7 +20,7 @@ public:
    public:
 
       string         m_strKey;
-      DWORD          m_dwTimeout;
+      uint32_t          m_dwTimeout;
       string         m_str;
 
 

@@ -55,12 +55,12 @@ namespace radix
       return m_p->get_os_int();
    }
 
-   bool thread::Begin(::ca::e_thread_priority epriority, UINT nStackSize, DWORD dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::Begin(::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       return m_p->Begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
    }
 
-   bool thread::create_thread(::ca::e_thread_priority epriority, DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       return m_p->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs);
    }
@@ -75,12 +75,12 @@ namespace radix
       return m_p->set_thread_priority(epriority);
    }
 
-   DWORD thread::SuspendThread()
+   uint32_t thread::SuspendThread()
    {
       return m_p->SuspendThread();
    }
 
-   DWORD thread::ResumeThread()
+   uint32_t thread::ResumeThread()
    {
       return m_p->ResumeThread();
    }
@@ -390,7 +390,7 @@ namespace radix
 
 
 
-::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, DWORD dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);
