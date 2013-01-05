@@ -18,9 +18,9 @@ public:
    class CSysColorMap
    {
       public:
-         // use DWORD instead of RGBQUAD so we can compare two RGBQUADs easily
-         DWORD rgbqFrom;
-         DWORD iSysColorTo;
+         // use uint32_t instead of RGBQUAD so we can compare two RGBQUADs easily
+         uint32_t rgbqFrom;
+         uint32_t iSysColorTo;
    };
 
 protected:

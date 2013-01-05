@@ -73,7 +73,7 @@ HANDLE ExtractAndInstallDrv()
 		HINSTANCE hModule= __get_instance_handle();
 		HRSRC hRsrc = FindResource(hModule, MAKEINTRESOURCE(DRVIER_ID),_T("BINARY"));
 		HGLOBAL hDrvRsrc = LoadResource(hModule, hRsrc);
-		DWORD dwDriverSize = SizeofResource(hModule, hRsrc);
+		uint32_t dwDriverSize = SizeofResource(hModule, hRsrc);
 		LPVOID lpvDriver = LockResource(hDrvRsrc);
 		CFile File;
         if( !File.Open( DRV_FILE_NAME, CFile::modeCreate|CFile::modeWrite ))
@@ -127,7 +127,7 @@ HANDLE ExtractAndInstallDrv()
 
 	if( !StartService( hService, 0, NULL ))
 	{
-      DWORD dwLastError = GetLastError();
+      uint32_t dwLastError = GetLastError();
 		if(dwLastError  != ERROR_SERVICE_ALREADY_RUNNING )
 		{
 			DeleteService(hService);

@@ -30,19 +30,19 @@ typedef LONG NTSTATUS;
 
 typedef struct _SYSTEM_HANDLE
 {
-    DWORD       dwProcessId;
+    uint32_t       dwProcessId;
     BYTE		bObjectType;
     BYTE		bFlags;
     WORD		wValue;
 	PVOID       pAddress;
-	DWORD GrantedAccess;
+	uint32_t GrantedAccess;
 }SYSTEM_HANDLE;
 
 #ifndef METROWIN
 
 typedef struct _SYSTEM_HANDLE_INFORMATION
 {
-    DWORD         dwCount;
+    uint32_t         dwCount;
     SYSTEM_HANDLE Handles[1];
 } SYSTEM_HANDLE_INFORMATION, *PSYSTEM_HANDLE_INFORMATION, **PPSYSTEM_HANDLE_INFORMATION;
 
@@ -69,14 +69,14 @@ typedef NTSTATUS ( WINAPI *PNtQuerySystemInformation)
 // 
 // struct OF_FILE_NAME_INFO
 // {
-// 	DWORD  FileNameLength;
+// 	uint32_t  FileNameLength;
 // 	WCHAR FileName[MAX_PATH];
 // };
 // 
 // struct OF_FILE_STREAM_INFO
 // {  
-// 	DWORD NextEntryOffset;
-// 	DWORD StreamNameLength;
+// 	uint32_t NextEntryOffset;
+// 	uint32_t StreamNameLength;
 // 	LARGE_INTEGER StreamSize;
 // 	LARGE_INTEGER StreamAllocationSize; 
 // 	WCHAR StreamName[MAX_PATH];
@@ -87,13 +87,13 @@ typedef NTSTATUS ( WINAPI *PNtQuerySystemInformation)
 // 	HANDLE hFile,
 // 	OF_FILE_INFO_BY_HANDLE_CLASS FileInformationClass,
 // 	LPVOID lpFileInformation,
-// 	DWORD dwBufferSize);
+// 	uint32_t dwBufferSize);
 
-typedef DWORD (WINAPI* GetFinalPathNameByHandleDef)(
+typedef uint32_t (WINAPI* GetFinalPathNameByHandleDef)(
 	HANDLE hFile,
 	LPWSTR lpszFilePath,
-	DWORD cchFilePath,
-	DWORD dwFlags	);
+	uint32_t cchFilePath,
+	uint32_t dwFlags	);
 	
 
 

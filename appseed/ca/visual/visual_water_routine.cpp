@@ -57,7 +57,7 @@ namespace visual
       memset(m_iHeightField1,0,(m_iWidth*m_iHeight)*sizeof(int32_t));
       memset(m_iHeightField2,0,(m_iWidth*m_iHeight)*sizeof(int32_t));
    }
-   void water_routine::to(DWORD* pSrcImage,DWORD* pTargetImage)
+   void water_routine::to(uint32_t* pSrcImage,uint32_t* pTargetImage)
    {
       // Yes they have to be the same size...(for now)
       if(m_bDrawWithLight == FALSE)
@@ -455,13 +455,13 @@ namespace visual
      }
    }
 
-   void water_routine::DrawWaterNoLight(int32_t page,DWORD* pSrcImage,DWORD* pTargetImage)
+   void water_routine::DrawWaterNoLight(int32_t page,uint32_t* pSrcImage,uint32_t* pTargetImage)
    {
       UNREFERENCED_PARAMETER(page);
    //  int32_t ox, oy;
      int32_t dx, dy;
      int32_t x, y;
-     DWORD c;
+     uint32_t c;
 
      int32_t offset=m_iWidth + 1;
 
@@ -495,14 +495,14 @@ namespace visual
      }
    }
 
-   void water_routine::DrawWaterWithLight(int32_t page, int32_t LightModifier,DWORD* pSrcImage,DWORD* pTargetImage)
+   void water_routine::DrawWaterWithLight(int32_t page, int32_t LightModifier,uint32_t* pSrcImage,uint32_t* pTargetImage)
    {
       UNREFERENCED_PARAMETER(page);
       UNREFERENCED_PARAMETER(LightModifier);
    //  int32_t ox, oy;
      int32_t dx, dy;
      int32_t x, y;
-     DWORD c;
+     uint32_t c;
 
      int32_t offset=m_iWidth + 1;
      long lIndex;

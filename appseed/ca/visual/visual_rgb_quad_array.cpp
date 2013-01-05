@@ -12,11 +12,11 @@ rgb_quad_array::~rgb_quad_array()
 void rgb_quad_array::create_web_palette()
 {
    // Do nothing
-   const DWORD STANDARD_PALETTE[] = {00,51,102,153,204,255};
+   const uint32_t STANDARD_PALETTE[] = {00,51,102,153,204,255};
    const INT STANDARD_COLOR_SIZE = 6;
 //   const INT STANDARD_PALETTE_VAL_DIF = 51;
    set_size(216);
-//   DWORD dwColorMapTable[216] = {0};
+//   uint32_t dwColorMapTable[216] = {0};
    int32_t nColorMapIdx = 0;
    for(int32_t nBlueIdx = 0; nBlueIdx < STANDARD_COLOR_SIZE; ++nBlueIdx)
    {

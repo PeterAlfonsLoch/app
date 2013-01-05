@@ -5,7 +5,7 @@
 
 [Platform::MTAThread]
 extern "C" int32_t APIENTRY
-DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID lpReserved)
 {
    
    
@@ -38,7 +38,7 @@ DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
 
 #else 
 extern "C" int32_t APIENTRY
-DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID lpReserved)
+DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID lpReserved)
 {
    
    

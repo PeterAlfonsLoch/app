@@ -438,7 +438,7 @@ int32_t ZEXPORT deflateParams(
     func = configuration_table[s->level].func;
 
     if (func != configuration_table[level].func && strm->total_in != 0) {
-        /* Flush the last buffer: */
+        /* flush the last buffer: */
         err = deflate(strm, Z_PARTIAL_FLUSH);
     }
     if (s->level != level) {
@@ -526,7 +526,7 @@ zlib_local void putShortMSB (
 }
 
 /* =========================================================================
- * Flush as much pending output as possible. All deflate() output goes
+ * flush as much pending output as possible. All deflate() output goes
  * through this function so some applications may wish to modify it
  * to avoid allocating a large strm->next_out buffer and copying into it.
  * (See also read_buf()).
@@ -755,7 +755,7 @@ int32_t ZEXPORT deflate (
     }
 #endif
 
-    /* Flush as much pending output as possible */
+    /* flush as much pending output as possible */
     if (s->pending != 0) {
         flush_pending(strm);
         if (strm->avail_out == 0) {
@@ -1361,7 +1361,7 @@ zlib_local void fill_window(
 }
 
 /* ===========================================================================
- * Flush the current block, with given end-of-file flag.
+ * flush the current block, with given end-of-file flag.
  * IN assertion: strstart is set to the end of the current match.
  */
 #define FLUSH_BLOCK_ONLY(s, eof) { \
@@ -1430,7 +1430,7 @@ zlib_local block_state deflate_stored(
             s->strstart = (uInt)max_start;
             FLUSH_BLOCK(s, 0);
         }
-        /* Flush if we may have to slide, otherwise block_start may become
+        /* flush if we may have to slide, otherwise block_start may become
          * negative and the data will be gone:
          */
         if (s->strstart - (uInt)s->block_start >= MAX_DIST(s)) {

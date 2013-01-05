@@ -1158,7 +1158,7 @@ zlib_local uint32_t bi_reverse(
 }
 
 /* ===========================================================================
- * Flush the bit buffer, keeping at most 7 bits in it.
+ * flush the bit buffer, keeping at most 7 bits in it.
  */
 zlib_local void bi_flush(
     deflate_state *s)
@@ -1175,7 +1175,7 @@ zlib_local void bi_flush(
 }
 
 /* ===========================================================================
- * Flush the bit buffer and align the output on a byte boundary
+ * flush the bit buffer and align the output on a byte boundary
  */
 zlib_local void bi_windup(
     deflate_state *s)
