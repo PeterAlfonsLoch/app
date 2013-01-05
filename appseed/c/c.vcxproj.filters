@@ -640,9 +640,6 @@
     <ClCompile Include="c\c_dir2.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="c\c_file.cpp">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="c\c_file_spa.cpp">
       <Filter>Source Files\c</Filter>
     </ClCompile>
@@ -786,6 +783,9 @@
     </ClCompile>
     <ClCompile Include="bsdiff\randtable.cpp">
       <Filter>Source Files\bsdiff</Filter>
+    </ClCompile>
+    <ClCompile Include="c\c_file.cpp">
+      <Filter>Source Files\c</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

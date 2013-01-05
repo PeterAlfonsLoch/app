@@ -50,7 +50,7 @@ CLASS_DECL_c void dll_processes(simple_uint_array & dwa, stra_dup & straProcesse
 CLASS_DECL_c bool file_copy_dup(const char * pszDup, const char * pszSrc, bool bOverwrite = true);
 
 
-
+CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue);
 
 
 

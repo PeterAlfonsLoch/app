@@ -1,5 +1,31 @@
 #include "framework.h"
 
+
+CLASS_DECL_c void sprint_hex(char * sz, int32_t iValue)
+{
+   int32_t i = 8;
+   sz[i] = '\0';
+   i--;
+   for(; i >= 0; i--)
+   {
+      sz[i] = to_hi_hex_char((iValue >> (4 * (7 - i))) &  0xf);
+   }
+}
+
+CLASS_DECL_c bool file_put_contents_dup(const char * path, const simple_memory & memory)
+{
+
+   return file_put_contents_dup(path, memory.m_psz, memory.m_iSize);
+
+}
+
+
+CLASS_DECL_c bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
+{
+   return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
+}
+
+
 #if defined(LINUX) || defined(MACOS)
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -13,50 +39,6 @@
 
 #endif
 
-#ifdef WINDOWSEX
-
-bool read_resource_as_file_dup(const char * pszFile, HINSTANCE hinstance, UINT nID, LPCTSTR lpcszType)
-{
-
-   HRSRC hrsrc = ::FindResource(hinstance, MAKEINTRESOURCE(nID), lpcszType);
-
-   if(hrsrc == NULL)
-      return false;
-
-   HGLOBAL hglobalResource = ::LoadResource(hinstance, hrsrc);
-
-   if(hglobalResource == NULL)
-      return false;
-
-   uint32_t dwResourseSize = ::SizeofResource(hinstance, hrsrc);
-
-   if(hglobalResource != NULL)
-   {
-      bool bOk = false;
-
-      UINT FAR* pResource = (UINT FAR*) ::LockResource(hglobalResource);
-
-      dir::mk(dir::name(pszFile));
-
-      HANDLE hfile = ::create_file(pszFile, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
-
-      if(hfile != INVALID_HANDLE_VALUE)
-      {
-         uint32_t dwWritten = 0;
-         ::WriteFile(hfile, pResource, dwResourseSize, &dwWritten, NULL);
-         ::CloseHandle(hfile);
-         bOk = dwWritten == dwResourseSize;
-      }
-
-      ::FreeResource(hglobalResource);
-
-      return bOk;
-   }
-
-   return false;
-
-}
-#endif
 
 
 bool file_exists_dup(const char * path1)
@@ -92,12 +74,6 @@ bool file_exists_dup(const char * path1)
 
 }
 
-bool file_put_contents_dup(const char * path, const simple_memory & memory)
-{
-
-   return file_put_contents_dup(path, memory.m_psz, memory.m_iSize);
-
-}
 
 
 bool file_put_contents_dup(const char * path, const char * contents, ::count len)
@@ -237,18 +213,6 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 
 #endif
 
-}
-
-
-void sprint_hex(char * sz, int32_t iValue)
-{
-   int32_t i = 8;
-   sz[i] = '\0';
-   i--;
-   for(; i >= 0; i--)
-   {
-      sz[i] = to_hi_hex_char((iValue >> (4 * (7 - i))) &  0xf);
-   }
 }
 
 
@@ -443,10 +407,6 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
 }
 
 
-bool get_temp_file_name_dup(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension)
-{
-   return get_temp_file_name_template(szRet, iBufferSize, pszName, pszExtension, NULL);
-}
 
 
 
@@ -484,52 +444,6 @@ uint64_t file_length_dup(const char * path)
 }
 
 
-vsstring file_title_dup(const char * path)
-{
-   vsstring str(path);
-   size_t iPos;
-   size_t iPos1 = str.rfind('\\');
-   size_t iPos2 = str.rfind('/');
-   if(iPos1 != -1 && iPos2 != -1)
-   {
-      if(iPos1 > iPos2)
-      {
-         iPos = iPos1 + 1;
-      }
-      else
-      {
-         iPos = iPos2 + 1;
-      }
-   }
-   else if(iPos1 != -1)
-   {
-      iPos = iPos1 + 1;
-   }
-   else if(iPos2 != -1)
-   {
-      iPos = iPos2 + 1;
-   }
-   else
-   {
-      iPos = 0;
-   }
-   return str.substr(iPos);
-}
-
-
-vsstring file_name_dup(const char * path)
-{
-   vsstring str = file_title_dup(path);
-   size_t iPos = str.find('.');
-   if(iPos != -1)
-   {
-      return str.substr(0, iPos);
-   }
-   else
-   {
-      return str;
-   }
-}
 
 vsstring file_module_path_dup()
 {
@@ -668,17 +582,6 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
 }
 
 
-/*   void file::write_n_number(FILE * pfile, ::md5::md5  * pctx, int32_t iNumber)
-{
-vsstring str;
-str.Format("%dn", iNumber);
-pfile->Write((const char *) str, str.get_length());
-if(pctx != NULL)
-{
-MD5_Update(pctx, (const char *) str, str.get_length());
-}
-}
-*/
 #ifdef WINDOWS
 void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
 #else
@@ -713,16 +616,6 @@ void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
    iNumber = atoi_dup(str);
 }
 
-/* void file::write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
-{
-int32_t iLen = str.get_length();
-write_n_number(pfile, pctx, iLen);
-pfile->Write((const char *) str, str.get_length());
-if(pctx != NULL)
-{
-MD5_Update(pctx, (const char *) str, str.get_length());
-}
-}*/
 #ifdef WINDOWS
 void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
 #else
@@ -770,283 +663,7 @@ void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
 
 
 
-/*   void file::dtf(const char * pszFile, const char * pszDir)
-{
-stringa stra_dup;
-stringa straRelative;
-System.dir().rls(pszDir, &stra_dup, NULL, &straRelative);
-ex1::filesp spfile(get_app());
-if(!spfile->Open(pszFile, ::ex1::file::modeCreate | ::ex1::file::modeWrite  | ::ex1::file::typeBinary))
-throw "failed";
-string strVersion;
-strVersion = "fileset v1";
-MD5_CTX ctx;
-write_ex1_string(spfile, NULL, strVersion);
-ex1::filesp file2(get_app());
-int32_t iBufSize = 1024 * 1024;
-int32_t uiRead;
-uchar * buf = (uchar *)  malloc(iBufSize);
-string strMd5 = "01234567012345670123456701234567";
-int32_t iPos;
-for(int32_t i = 0; i < stra_dup.get_size(); i++)
-{
-if(System.dir().is(stra_dup[i]))
-continue;
-write_n_number(spfile, NULL, 1);
-iPos = spfile->get_position();
-write_ex1_string(spfile, NULL, strMd5);
-MD5_Init(&ctx);
-write_ex1_string(spfile, &ctx, straRelative[i]);
-if(!file2->Open(stra_dup[i], ::ex1::file::modeRead | ::ex1::file::typeBinary))
-throw "failed";
-write_n_number(spfile, &ctx, file2->get_length());
-while((uiRead = file2->Read(buf, iBufSize)) > 0)
-{
-spfile->Write(buf, uiRead);
-MD5_Update(&ctx, buf, uiRead);
-}
-spfile->Seek(iPos, ::ex1::file::SeekBegin);
-MD5_Final(buf,&ctx);
-strMd5.Empty();
-string strFormat;
-for(int32_t i = 0; i < 16; i++)
-{
-strFormat.Format("%02x", buf[i]);
-strMd5 += strFormat;
-}
-write_ex1_string(spfile, NULL, strMd5);
-spfile->SeekToEnd();
 
-}
-write_n_number(spfile, NULL, 2);
-}*/
-
-/*bool file::ftd(const char * pszDir, const char * pszFile)
-{
-FILE * spfile = NULL;
-FILE * file2 = NULL;
-try
-{
-vsstring strVersion;
-spfile = fopen(pszFile, "rb");
-if(!spfile)
-throw "failed";
-read_ex1_string(spfile, NULL, strVersion);
-int32_t n;
-vsstring strRelative;
-vsstring strMd5;
-vsstring strMd5New;
-int32_t iBufSize = 1024 * 1024;
-uchar * buf = (uchar *)  malloc(iBufSize);
-int32_t iLen;
-::md5::md5 ctx;
-uint_ptr uiRead;
-if(strVersion == "fileset v1")
-{
-while(true)
-{
-read_n_number(spfile, NULL, n);
-if(n == 2)
-break;
-read_ex1_string(spfile, NULL, strMd5);
-ctx.initialize();
-read_ex1_string(spfile, &ctx, strRelative);
-vsstring strPath = dir::path(pszDir, strRelative);
-dir::mk(dir::name(strPath));
-file2 = fopen(strPath, "wb");
-if(!file2)
-throw "failed";
-read_n_number(spfile, &ctx, iLen);
-while(iLen > 0)
-{
-uiRead = fread(buf, 1, min(iBufSize, iLen ), spfile);
-if(uiRead == 0)
-break;
-fwrite(buf, 1, uiRead, file2);
-ctx.update(buf, uiRead);
-iLen -= uiRead;
-}
-fclose(file2);
-file2 = NULL;
-ctx.finalize();
-
-strMd5New.clear();
-vsstring strFormat;
-strMd5New = ctx.to_string();
-if(_stricmp(strMd5, strMd5New) != 0)
-throw "failed";
-}
-}
-if(spfile != NULL)
-fclose(spfile);
-if(file2 != NULL)
-fclose(file2);
-return true;
-}
-catch(...)
-{
-if(spfile != NULL)
-fclose(spfile);
-if(file2 != NULL)
-fclose(file2);
-return false;
-}
-}
-
-
-/*   void file::write_n_number(FILE * pfile, ::md5::md5  * pctx, int32_t iNumber)
-{
-vsstring str;
-str.Format("%dn", iNumber);
-pfile->Write((const char *) str, str.get_length());
-if(pctx != NULL)
-{
-MD5_Update(pctx, (const char *) str, str.get_length());
-}
-}
-*/
-/*   void file::read_n_number(FILE * pfile, ::md5::md5 * pctx, int32_t & iNumber)
-{
-uint_ptr uiRead;
-vsstring str;
-char ch;
-while((uiRead = fread(&ch, 1, 1, pfile)) == 1)
-{
-if(ch >= '0' && ch <= '9')
-str += ch;
-else
-break;
-if(pctx != NULL)
-{
-pctx->update(&ch, 1);
-}
-}
-if(ch != 'n')
-throw "failed";
-if(pctx != NULL)
-{
-pctx->update(&ch, 1);
-}
-iNumber = atoi(str);
-}
-
-/* void file::write_ex1_string(ex1::file * pfile, MD5_CTX * pctx, string & str)
-{
-int32_t iLen = str.get_length();
-write_n_number(pfile, pctx, iLen);
-pfile->Write((const char *) str, str.get_length());
-if(pctx != NULL)
-{
-MD5_Update(pctx, (const char *) str, str.get_length());
-}
-}*/
-
-/* void file::read_ex1_string(FILE * pfile, ::md5::md5 * pctx, vsstring & str)
-{
-int32_t iLen;
-read_n_number(pfile, pctx, iLen);
-LPSTR lpsz = (LPSTR) malloc(iLen + 1);
-fread(lpsz, 1, iLen, pfile);
-if(pctx != NULL)
-{
-pctx->update(lpsz, iLen);
-}
-lpsz[iLen] = '\0';
-str = lpsz;
-free(lpsz);
-}
-*/
-
-
-#ifdef WINDOWSEX
-
-bool PrintModules(vsstring & strImage, uint32_t processID, const char * pszDll )
-{
-   HANDLE hProcess;
-   uint32_t cbNeeded;
-   uint32_t i;
-   hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
-      PROCESS_VM_READ,
-      FALSE, processID );
-
-
-
-
-   if (NULL == hProcess)
-      return false;
-
-   const int32_t iMaxModuleCount = 1024;
-   HMODULE * hMods = new HMODULE[iMaxModuleCount];
-
-
-
-   const int32_t iImageSize = MAX_PATH * 8;
-   char * szImage = (char *) _ca_alloc(iImageSize);
-   GetModuleFileNameEx(hProcess, NULL, szImage, iImageSize);
-   strImage = szImage;
-   _ca_free(szImage, 0);
-
-   bool bFound = false;
-
-   if( EnumProcessModules(hProcess, hMods, sizeof(HMODULE) * iMaxModuleCount, &cbNeeded))
-   {
-      for ( i = 0; i < (cbNeeded / sizeof(HMODULE)); i++ )
-      {
-         TCHAR szModName[MAX_PATH];
-
-         // Get the full path to the module's file.
-
-         if ( GetModuleFileNameEx( hProcess, hMods[i], szModName,
-            sizeof(szModName) / sizeof(TCHAR)))
-         {
-            if(!stricmp_dup(szModName, pszDll))
-            {
-               bFound = true;
-               break;
-            }
-         }
-      }
-   }
-   delete hMods;
-   CloseHandle( hProcess );
-   return bFound;
-}
-
-void dll_processes(simple_uint_array & dwa, stra_dup & straProcesses, const char * pszDll)
-{
-   // Get the list of process identifiers.
-
-   uint32_t * aProcesses = new uint32_t[1024 * 8];
-
-   uint32_t cbNeeded, cProcesses;
-   uint32_t i;
-
-   if ( !EnumProcesses( aProcesses, 124 * 8 * sizeof(uint32_t), &cbNeeded ) )
-   {
-      delete aProcesses;
-      return;
-   }
-
-   // Calculate how many process identifiers were returned.
-
-   cProcesses = cbNeeded / sizeof(uint32_t);
-
-   // Print the name of the modules for each process.
-
-   vsstring strImage;
-   for ( i = 0; i < cProcesses; i++ )
-   {
-      if(PrintModules(strImage, aProcesses[i], pszDll ))
-      {
-         straProcesses.add_unique_ci(strImage);
-         dwa.add(aProcesses[i]);
-      }
-   }
-
-   delete aProcesses;
-}
-
-#endif
 
 
 bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
@@ -1257,3 +874,53 @@ ret1:
 }
 
 
+
+
+
+
+vsstring file_title_dup(const char * path)
+{
+   vsstring str(path);
+   size_t iPos;
+   size_t iPos1 = str.rfind('\\');
+   size_t iPos2 = str.rfind('/');
+   if(iPos1 != -1 && iPos2 != -1)
+   {
+      if(iPos1 > iPos2)
+      {
+         iPos = iPos1 + 1;
+      }
+      else
+      {
+         iPos = iPos2 + 1;
+      }
+   }
+   else if(iPos1 != -1)
+   {
+      iPos = iPos1 + 1;
+   }
+   else if(iPos2 != -1)
+   {
+      iPos = iPos2 + 1;
+   }
+   else
+   {
+      iPos = 0;
+   }
+   return str.substr(iPos);
+}
+
+
+vsstring file_name_dup(const char * path)
+{
+   vsstring str = file_title_dup(path);
+   size_t iPos = str.find('.');
+   if(iPos != -1)
+   {
+      return str.substr(0, iPos);
+   }
+   else
+   {
+      return str;
+   }
+}
