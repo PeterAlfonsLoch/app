@@ -23,7 +23,7 @@ namespace userbase
       virtual void on_alloc(::ca::application * papp);
 
    #ifdef DEBUG
-      virtual void dump(dump_context&) const;
+      virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
    #endif //DEBUG
 

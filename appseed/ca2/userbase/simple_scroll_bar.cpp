@@ -37,12 +37,12 @@ void simple_scroll_bar::install_message_handling(::gen::message::dispatch * pint
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &simple_scroll_bar::_001OnDestroy);
 }
 
-bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext) 
+bool simple_scroll_bar::create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction * pParentWnd, UINT nID, ::ca::create_context* pContext) 
 {
    return ::user::interaction::create(lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, nID, pContext);
 }
 
-bool simple_scroll_bar::create(e_orientation eorientation, DWORD dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
+bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rect &rect, ::user::interaction *pParentWnd, UINT nID)
 {
    if(!::user::scroll_bar::create(eorientation, dwStyle, rect, pParentWnd, nID))
       return FALSE;

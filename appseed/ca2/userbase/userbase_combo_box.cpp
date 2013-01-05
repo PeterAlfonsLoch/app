@@ -102,7 +102,7 @@ namespace userbase
    //IA64: Assuming retval of CB_GETEDITSEL won't be expanded
    bool combo_box::GetEditSel(strsize & nStartChar, strsize & nEndChar)
    {
-/*      ASSERT(IsWindow()); DWORD dw = DWORD(send_message( CB_GETEDITSEL, 0, 0));
+/*      ASSERT(IsWindow()); uint32_t dw = uint32_t(send_message( CB_GETEDITSEL, 0, 0));
       nStartChar = LOWORD(dw);
       nEndChar = LOWORD(dw);*/
       return TRUE;

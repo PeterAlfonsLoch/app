@@ -85,7 +85,7 @@ public:
    bool m_bDocking;    // TRUE if this bar has a DockContext
    UINT m_uMRUDockID;  // most recent docked dockbar
    rect m_rectMRUDockPos; // most recent docked position
-   DWORD m_dwMRUFloatStyle; // most recent floating orientation
+   uint32_t m_dwMRUFloatStyle; // most recent floating orientation
    point m_ptMRUFloatPos; // most recent floating position
 
    primitive_array < void * > m_arrBarID;   // bar IDs for bars contained within this one
@@ -110,8 +110,8 @@ namespace userbase
       //int32_t get_count();
 
       // for styles specific to ::userbase::control_bar
-      DWORD GetBarStyle();
-      void SetBarStyle(DWORD dwStyle);
+      uint32_t GetBarStyle();
+      void SetBarStyle(uint32_t dwStyle);
 
       bool m_bAutoDelete;
 
@@ -123,10 +123,10 @@ namespace userbase
       userbase::frame_window* GetDockingFrame();
       bool IsFloating();
       virtual size CalcFixedLayout(bool bStretch, bool bHorz);
-      virtual size CalcDynamicLayout(int32_t nLength, DWORD nMode);
+      virtual size CalcDynamicLayout(int32_t nLength, uint32_t nMode);
 
    // Operations
-      void EnableDocking(DWORD dwDockStyle);
+      void EnableDocking(uint32_t dwDockStyle);
 
    // Overridables
       virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler) = 0;
@@ -142,11 +142,11 @@ namespace userbase
    #endif
       virtual void DelayShow(bool bShow);
       virtual bool IsVisible();
-      virtual DWORD RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout);
+      virtual uint32_t RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout);
 
       virtual bool IsDockBar();
       virtual bool DestroyWindow();
-      virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
+      virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
 
       // info about bar (for status bar and toolbar)
       int32_t m_cxLeftBorder, m_cxRightBorder;
@@ -165,12 +165,12 @@ namespace userbase
       UINT m_nStateFlags;
 
       // support for docking
-      DWORD m_dwStyle;    // creation style (used for layout)
-      DWORD m_dwDockStyle;// indicates how bar can be docked
+      uint32_t m_dwStyle;    // creation style (used for layout)
+      uint32_t m_dwDockStyle;// indicates how bar can be docked
       userbase::frame_window * m_pDockSite; // current dock site, if dockable
       BaseDockBar* m_pDockBar;   // current dock bar, if dockable
       BaseDockContext* m_pDockContext;   // used during dragging
-      DWORD m_dwCtrlStyle;
+      uint32_t m_dwCtrlStyle;
 
       virtual void pre_translate_message(gen::signal_object * pobj);
       virtual bool pre_create_window(CREATESTRUCT& cs);

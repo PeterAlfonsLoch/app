@@ -35,9 +35,9 @@ public:
 
    ::userbase::control_bar* m_pBar;        // the toolbar that created this context
    userbase::frame_window* m_pDockSite;     // the controlling frame of the ::userbase::control_bar
-   DWORD m_dwDockStyle;        // allowable dock styles for bar
-   DWORD m_dwOverDockStyle;    // style of dock that rect is over
-   DWORD m_dwStyle;            // style of control bar
+   uint32_t m_dwDockStyle;        // allowable dock styles for bar
+   uint32_t m_dwOverDockStyle;    // style of dock that rect is over
+   uint32_t m_dwStyle;            // style of control bar
    bool m_bFlip;               // if shift key is down
    bool m_bForceFrame;         // if ctrl key is down
 
@@ -49,7 +49,7 @@ public:
    UINT m_uMRUDockID;
    rect m_rectMRUDockPos;
 
-   DWORD m_dwMRUFloatStyle;
+   uint32_t m_dwMRUFloatStyle;
    point m_ptMRUFloatPos;
 
 // Drag Operations
@@ -77,8 +77,8 @@ public:
    void DrawFocusRect(bool bRemoveRect = FALSE);
       // draws the correct outline
    void UpdateState(bool* pFlag, bool bNewValue);
-   DWORD CanDock();
-   BaseDockBar* GetDockBar(DWORD dwOverDockStyle);
+   uint32_t CanDock();
+   BaseDockBar* GetDockBar(uint32_t dwOverDockStyle);
 
 
    void OnBarMouseMove(UINT uiFlags, point pt);

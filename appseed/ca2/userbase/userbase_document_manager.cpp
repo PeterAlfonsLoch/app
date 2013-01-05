@@ -118,7 +118,7 @@ namespace userbase
 
          // enumerate the keys underneath
          WCHAR szScrap[_MAX_PATH+1];
-         DWORD dwLen = _countof(szScrap);
+         uint32_t dwLen = _countof(szScrap);
          bool bItExists = FALSE;
 
          if (::RegEnumKeyW(hKey, 0, szScrap, dwLen) == ERROR_SUCCESS)

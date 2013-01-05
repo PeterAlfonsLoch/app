@@ -86,17 +86,17 @@ public:
 
    using ::userbase::control_bar::create;
    bool create(::user::interaction* pParentWnd,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
+      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP,
       id nID = "__IDW_TOOLBAR");
    using ::user::interaction::CreateEx;
 #ifdef WINDOWSEX
-   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = TBSTYLE_FLAT,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = TBSTYLE_FLAT,
+      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       id nID = "__IDW_TOOLBAR");
 #else
-   bool CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle = 0,
-      DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
+   bool CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle = 0,
+      uint32_t dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP,
       rect rcBorders = rect(0, 0, 0, 0),
       id nID = "__IDW_TOOLBAR");
 #endif
@@ -105,11 +105,11 @@ public:
    int32_t WrapToolBar(int32_t nCount, int32_t nWidth);
    void SizeToolBar( int32_t nCount, int32_t nLength, bool bVert = FALSE);
 
-   size CalcDynamicLayout(int32_t nLength, DWORD dwMode);
-   size CalcLayout(DWORD dwMode, int32_t nLength = -1);
+   size CalcDynamicLayout(int32_t nLength, uint32_t dwMode);
+   size CalcLayout(uint32_t dwMode, int32_t nLength = -1);
    //bool CalcSize(size & size, bool bHorz);
    size CalcSize(int32_t nCount);
-   virtual void OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle);
+   virtual void OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle);
    virtual size CalcFixedLayout(bool bStretch, bool bHorz);
 
 

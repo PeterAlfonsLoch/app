@@ -24,7 +24,7 @@ public:
 
    virtual void pre_translate_message(gen::signal_object * pobj);
    using ::user::scroll_bar::create;
-   virtual bool create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
+   virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd, UINT nID, ::ca::create_context* pContext = NULL);
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
    virtual void _001OnDraw(::ca::graphics * pdc);
@@ -47,7 +47,7 @@ public:
    virtual bool _001GetScrollInfo(::user::scroll_info * psi);
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true);
 
-   bool create(e_orientation eorientation, DWORD dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
+   bool create(e_orientation eorientation, uint32_t dwStyle, rect & rect, ::user::interaction * pParentWnd, UINT nID);
 
    int32_t SetTrackingPos(point point);
    int32_t GetTrackSize(size & size);

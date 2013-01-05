@@ -125,7 +125,7 @@ namespace userbase
 
    double elastic_slider::CalcScalar()
    {
-      DWORD dwTime = ::GetTickCount();
+      uint32_t dwTime = ::GetTickCount();
       if(dwTime - m_dwLastTime < 300)
          return m_daScalar.GetMean();
       CalcTension();

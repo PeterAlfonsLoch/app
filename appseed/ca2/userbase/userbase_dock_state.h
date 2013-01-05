@@ -26,7 +26,7 @@ public:
    void LoadState(const char * lpszProfileName);
    void SaveState(const char * lpszProfileName);
    void clear(); //deletes all the barinfo's
-   DWORD GetVersion();
+   uint32_t GetVersion();
 
 // Implementation
 protected:
@@ -34,7 +34,7 @@ protected:
    rect m_rectDevice;
    rect m_rectClip;
    size m_sizeLogical;
-   DWORD m_dwVersion;
+   uint32_t m_dwVersion;
 
 public:
    ~BaseDockState();

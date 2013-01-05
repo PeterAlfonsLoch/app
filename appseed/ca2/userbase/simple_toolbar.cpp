@@ -89,13 +89,13 @@ void simple_toolbar::install_message_handling(::gen::message::dispatch * pdispat
 // IMPLEMENT_DYNAMIC(simple_toolbar, ::userbase::control_bar)
 
 
-bool simple_toolbar::create(::user::interaction* pParentWnd, DWORD dwStyle, id nID)
+bool simple_toolbar::create(::user::interaction* pParentWnd, uint32_t dwStyle, id nID)
 {
    return CreateEx(pParentWnd, 0, dwStyle,
       rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
 }
 
-bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, id nID)
+bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, id nID)
 {
    ASSERT_VALID(pParentWnd);   // must have a parent
    ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -139,7 +139,7 @@ bool simple_toolbar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle
 
 size simple_toolbar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
-   DWORD dwMode = bStretch ? LM_STRETCH : 0;
+   uint32_t dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
 
    return CalcLayout(dwMode);
@@ -402,7 +402,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
    point cur(0,0);
    size sizeResult(0,0);
 
-   //   DWORD dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
+   //   uint32_t dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
 #ifdef WINDOWSEX
 
    int32_t buttonx, buttony;
@@ -1860,7 +1860,7 @@ struct ___CONTROLPOS
 };
 
 
-size simple_toolbar::CalcLayout(DWORD dwMode, int32_t nLength)
+size simple_toolbar::CalcLayout(uint32_t dwMode, int32_t nLength)
 {
    ASSERT_VALID(this);
    ASSERT(IsWindow());
@@ -2040,7 +2040,7 @@ ASSERT(m_itema != NULL && nCount > 0);
 point cur(0,0);
 size sizeResult(0,0);
 
-DWORD dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
+uint32_t dwExtendedStyle = DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
 
 for (int32_t i = 0; i < nCount; i++)
 {
@@ -2096,7 +2096,7 @@ cur.y += cySep;
 return sizeResult;
 }*/
 
-void simple_toolbar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
+void simple_toolbar::OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle)
 {
    // a dynamically resizeable toolbar can not have the CBRS_FLOAT_MULTI
    ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) &&
@@ -2118,7 +2118,7 @@ void simple_toolbar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
    m_bDelayedButtonLayout = TRUE;
 }
 
-size simple_toolbar::CalcDynamicLayout(int32_t nLength, DWORD dwMode)
+size simple_toolbar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
 {
    if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))

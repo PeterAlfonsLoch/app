@@ -54,7 +54,7 @@ namespace userbase
    protected:
       EScalar m_escalar;
 
-      DWORD m_dwLastTime;
+      uint32_t m_dwLastTime;
 
       double m_dPos;// 0.0 = min 1.0 = max
       double m_dTensionPos;// 0.0 = min 1.0 = max

@@ -69,7 +69,7 @@ namespace userbase
 
 
 
-   void frame_window::NotifyFloatingWindows(DWORD dwFlags)
+   void frame_window::NotifyFloatingWindows(uint32_t dwFlags)
    {
       ASSERT_VALID(this);
    // trans   ASSERT(get_handle() != NULL);
@@ -337,7 +337,7 @@ namespace userbase
 
 
    // dwDockBarMap
-   /*const DWORD frame_window::dwDockBarMap[4][2] =
+   /*const uint32_t frame_window::dwDockBarMap[4][2] =
    {
       { __IDW_DOCKBAR_TOP,      CBRS_TOP    },
       { __IDW_DOCKBAR_BOTTOM,   CBRS_BOTTOM },

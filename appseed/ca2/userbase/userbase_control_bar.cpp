@@ -78,7 +78,7 @@ namespace userbase
    //   if (afxData.bWin4 && (m_dwStyle & CBRS_BORDER_3D) == 0)
       if ((m_dwStyle & CBRS_BORDER_3D) == 0)
       {
-         DWORD dwNewStyle = 0;
+         uint32_t dwNewStyle = 0;
          switch (m_dwStyle & (CBRS_BORDER_ANY|CBRS_ALIGN_ANY))
          {
          case CBRS_LEFT:
@@ -106,19 +106,19 @@ namespace userbase
       return TRUE;
    }
 
-   void control_bar::SetBarStyle(DWORD dwStyle)
+   void control_bar::SetBarStyle(uint32_t dwStyle)
    {
       ASSERT((dwStyle & CBRS_ALL) == dwStyle);
 
       if (m_dwStyle != dwStyle)
       {
-         DWORD dwOldStyle = m_dwStyle;
+         uint32_t dwOldStyle = m_dwStyle;
          m_dwStyle = dwStyle;
          OnBarStyleChange(dwOldStyle, dwStyle);
       }
    }
 
-   void control_bar::OnBarStyleChange(DWORD, DWORD)
+   void control_bar::OnBarStyleChange(uint32_t, uint32_t)
    {
       // can be overridden in derived classes
    }
@@ -193,7 +193,7 @@ namespace userbase
       return size;
    }
 
-   size control_bar::CalcDynamicLayout(int32_t, DWORD nMode)
+   size control_bar::CalcDynamicLayout(int32_t, uint32_t nMode)
    {
       return CalcFixedLayout((nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
@@ -656,12 +656,12 @@ namespace userbase
       _001OnIdleUpdateCmdUI(&base);
    }
 
-   DWORD control_bar::RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout)
+   uint32_t control_bar::RecalcDelayShow(__SIZEPARENTPARAMS* lpLayout)
    {
       ASSERT(lpLayout != NULL);
 
       // resize and reposition this control bar based on styles
-      DWORD dwStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) |
+      uint32_t dwStyle = (m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) |
          (GetStyle() & WS_VISIBLE);
 
       // handle delay hide/show
@@ -702,7 +702,7 @@ namespace userbase
    {
       SCAST_PTR(::gen::message::base, pbase, pobj)
       __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*)pbase->m_lparam;
-      DWORD dwStyle = RecalcDelayShow(lpLayout);
+      uint32_t dwStyle = RecalcDelayShow(lpLayout);
 
       if ((dwStyle & WS_VISIBLE) && (dwStyle & CBRS_ALIGN_ANY) != 0)
       {
@@ -713,7 +713,7 @@ namespace userbase
          size sizeAvail = rect.size();  // maximum size available
 
          // get maximum requested size
-         DWORD dwMode = lpLayout->bStretch ? LM_STRETCH : 0;
+         uint32_t dwMode = lpLayout->bStretch ? LM_STRETCH : 0;
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
             dwMode |= LM_HORZ | LM_MRUWIDTH;
          else if (dwStyle & CBRS_ORIENT_HORZ)
@@ -802,7 +802,7 @@ namespace userbase
       ASSERT_VALID(this);
       ASSERT_VALID(pdc);
 
-      DWORD dwStyle = m_dwStyle;
+      uint32_t dwStyle = m_dwStyle;
       if (!(dwStyle & CBRS_BORDER_ANY))
          return;
 
@@ -1002,7 +1002,7 @@ namespace userbase
    void control_bar::CalcInsideRect(rect& rect, bool bHorz) const
    {
       ASSERT_VALID(this);
-      DWORD dwStyle = m_dwStyle;
+      uint32_t dwStyle = m_dwStyle;
 
       if (dwStyle & CBRS_BORDER_LEFT)
 //         rect.left += afxData.cxBorder2;
@@ -1081,7 +1081,7 @@ namespace userbase
       return FALSE;
    }
 
-   DWORD control_bar::GetBarStyle()
+   uint32_t control_bar::GetBarStyle()
       { return m_dwStyle; }
    void control_bar::SetBorders(LPCRECT lpRect)
       { SetBorders(lpRect->left, lpRect->top, lpRect->right, lpRect->bottom); }
