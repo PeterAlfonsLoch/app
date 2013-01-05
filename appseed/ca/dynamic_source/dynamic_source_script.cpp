@@ -35,7 +35,7 @@ namespace dynamic_source
      char * lpEnvAddress;  // address of environment strings
      char * lpCmdLine;     // address of command line
      char * lpCmdShow;     // how to show new program
-     DWORD dwReserved;    // must be zero
+     uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
    ds_script::ds_script(::ca::application * papp) :
@@ -288,7 +288,7 @@ namespace dynamic_source
          m_library.open(strStagePath);
          if(m_library.is_closed())
          {
-            DWORD dwMessageId = GetLastError();
+            uint32_t dwMessageId = GetLastError();
             if(dwMessageId == 0x139)
             {
                __debug_break();
@@ -350,7 +350,7 @@ namespace dynamic_source
          bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
-            DWORD dwError = ::GetLastError();
+            uint32_t dwError = ::GetLastError();
             TRACE("ds_script::GetModuleHandle return bool(%d) Unload Error close Handle %s %d\r\n", b, strStagePath, dwError);
          }
          string strPdb;
@@ -360,7 +360,7 @@ namespace dynamic_source
          b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
-            DWORD dwError = ::GetLastError();
+            uint32_t dwError = ::GetLastError();
             TRACE("ds_script::Unload Error close Handle %s %d\r\n", strPdb, dwError);
          }
 

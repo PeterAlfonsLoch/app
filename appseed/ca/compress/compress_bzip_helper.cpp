@@ -156,7 +156,7 @@ void bzip::finish()
       }
    }
 
-//   m_postream->Flush();
+//   m_postream->flush();
 
    BZ_SETERR(BZ_OK);
    BZ2_bzCompressEnd ( &(m_zstream) );

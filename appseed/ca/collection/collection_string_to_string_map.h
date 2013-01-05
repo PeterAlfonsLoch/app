@@ -185,7 +185,7 @@ protected:
 public:
 
 //	void Serialize(CArchive&);
-	void dump(dump_context&) const;
+	void dump(dump_context &) const;
 	void assert_valid() const;
 
 protected:

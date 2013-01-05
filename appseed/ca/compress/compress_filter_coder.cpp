@@ -130,7 +130,7 @@ namespace compress
       }
    }
 
-   void filter_coder::Flush()
+   void filter_coder::flush()
    {
       if (_bufferPos != 0)
       {
@@ -149,7 +149,7 @@ namespace compress
       }
       ::ex1::output_stream_flush_interface * pflush = dynamic_cast < ::ex1::output_stream_flush_interface * > (_outStream) ;
       if(pflush)
-         return pflush->Flush();
+         return pflush->flush();
    }
 
 

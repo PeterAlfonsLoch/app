@@ -157,8 +157,8 @@ namespace rar
       value += ((uint64_t)rarTime.SubTime[2] << 16) +
          ((uint64_t)rarTime.SubTime[1] << 8) +
          ((uint64_t)rarTime.SubTime[0]);
-      result.dwLowDateTime = (DWORD)value;
-      result.dwHighDateTime = DWORD(value >> 32);
+      result.dwLowDateTime = (uint32_t)value;
+      result.dwHighDateTime = uint32_t(value >> 32);
       return true;
    }
 

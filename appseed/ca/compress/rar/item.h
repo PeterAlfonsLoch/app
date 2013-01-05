@@ -62,7 +62,7 @@ namespace rar
       uint16_t CommentSize;
       uint16_t AlignSize;
       uint64_t GetFullSize()  const { return MainPartSize + CommentSize + AlignSize + PackSize; };
-      //  DWORD GetHeaderWithCommentSize()  const { return MainPartSize + CommentSize; };
+      //  uint32_t GetHeaderWithCommentSize()  const { return MainPartSize + CommentSize; };
       uint64_t GetCommentPosition() const { return Position + MainPartSize; };
       uint64_t GetDataPosition()    const { return GetCommentPosition() + CommentSize + AlignSize; };
    };

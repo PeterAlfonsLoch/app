@@ -338,7 +338,7 @@ namespace zip
       return m_iPosition;
    }
 
-   void InFile::Flush()
+   void InFile::flush()
    {
    //   ASSERT_VALID(this);
 

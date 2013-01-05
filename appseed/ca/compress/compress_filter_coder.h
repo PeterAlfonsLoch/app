@@ -90,7 +90,7 @@ namespace compress
       ex1::HRes ReleaseOutStream();
       ::primitive::memory_size read(void *data, ::primitive::memory_size size); 
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
-      void Flush();
+      void flush();
 
       ex1::HRes CryptoSetPassword(const byte *data, uint32_t size);
       ex1::HRes SetCoderProperties(const int32_t *propIDs, const var *properties, uint32_t numProperties);

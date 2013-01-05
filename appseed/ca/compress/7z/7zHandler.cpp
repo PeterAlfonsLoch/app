@@ -142,8 +142,8 @@ static void SetPropFromUInt64Def(CUInt64DefVector &v, int32_t index, var &prop)
   if (v.GetItem(index, value))
   {
     FILETIME ft;
-    ft.dwLowDateTime = (DWORD)value;
-    ft.dwHighDateTime = (DWORD)(value >> 32);
+    ft.dwLowDateTime = (uint32_t)value;
+    ft.dwHighDateTime = (uint32_t)(value >> 32);
     prop = ft;
   }
 }

@@ -374,7 +374,7 @@ namespace compress
 
          if (!ReadLastTables())
             return S_FALSE;
-         return m_OutWindowStream.Flush();
+         return m_OutWindowStream.flush();
       }
 
       ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size * inSize, const file_size * outSize, ::compress::progress_info_interface *progress)

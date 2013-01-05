@@ -831,7 +831,7 @@ namespace n7z
             for (int32_t i = 0; i < packSizes.get_count(); i++)
                headerOffset += packSizes[i];
          }
-         RINOK(_outByte.Flush());
+         RINOK(_outByte.flush());
          headerCRC = CRC_GET_DIGEST(_crc);
          headerSize = _outByte.GetProcessedSize();
       }

@@ -9,7 +9,7 @@ namespace dynamic_source
       char * lpEnvAddress;  // address of environment strings
       char * lpCmdLine;     // address of command line
       char * lpCmdShow;     // how to show new program
-      DWORD dwReserved;    // must be zero
+      uint32_t dwReserved;    // must be zero
    } LOADPARMS32;
 
    library_class::library_class(::ca::application * papp)

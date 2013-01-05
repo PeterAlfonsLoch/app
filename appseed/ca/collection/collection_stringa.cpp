@@ -653,7 +653,7 @@ ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string
 //      UNICODE strings are always prefixed by 0xff, 0xfffe
 //      if < 0xff chars: len:BYTE, char chars
 //      if >= 0xff characters: 0xff, len:WORD, char chars
-//      if >= 0xfffe characters: 0xff, 0xffff, len:DWORD, TCHARs
+//      if >= 0xfffe characters: 0xff, 0xffff, len:uint32_t, TCHARs
 
 ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string & string)
 {
@@ -680,17 +680,17 @@ ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string 
 // return string length or -1 if UNICODE string is found in the archive
 __STATIC UINT __read_string_length(ex1::byte_input_stream & ar)
 {
-   DWORD nNewLen;
+   uint32_t nNewLen;
 
    // attempt BYTE length first
-   BYTE bLen;
+   byte bLen;
    ar >> bLen;
 
    if (bLen < 0xff)
       return bLen;
 
    // attempt WORD length
-   WORD wLen;
+   uint16_t wLen;
    ar >> wLen;
    if (wLen == 0xfffe)
    {
@@ -699,7 +699,7 @@ __STATIC UINT __read_string_length(ex1::byte_input_stream & ar)
    }
    else if (wLen == 0xffff)
    {
-      // read DWORD of length
+      // read uint32_t of length
       ar >> nNewLen;
       return (UINT)nNewLen;
    }
