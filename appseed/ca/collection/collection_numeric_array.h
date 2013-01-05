@@ -658,14 +658,14 @@ public:
 
 
 
-class CLASS_DECL_ca dwordptr_array :
-   virtual public numeric_array < dwordptr >
+class CLASS_DECL_ca uint_ptr_array :
+   virtual public numeric_array < uint_ptr >
 {
 public:
 
-   dwordptr_array();
-   dwordptr_array(const dwordptr_array & base_array);
-   virtual ~dwordptr_array();
+   uint_ptr_array();
+   uint_ptr_array(const uint_ptr_array & base_array);
+   virtual ~uint_ptr_array();
 
 };
 

@@ -470,18 +470,18 @@ uint32_array::~uint32_array()
 
 
 
-dwordptr_array::dwordptr_array()
+uint_ptr_array::uint_ptr_array()
 {
 }
 
-dwordptr_array::dwordptr_array(const dwordptr_array & base_array) :
-   numeric_array < dwordptr >(base_array)
+uint_ptr_array::uint_ptr_array(const uint_ptr_array & base_array) :
+   numeric_array < uint_ptr >(base_array)
 {
    operator = (base_array);
 }
 
 
-dwordptr_array::~dwordptr_array()
+uint_ptr_array::~uint_ptr_array()
 {
 }
 

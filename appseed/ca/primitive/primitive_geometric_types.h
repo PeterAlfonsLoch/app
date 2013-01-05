@@ -51,7 +51,7 @@ typedef uint16_t     uint16_t;
 //typedef uint32_t long      dword;
 typedef uint64_t         qword;
 typedef uint32_t       uint;
-typedef dword_ptr          dwordptr;
+typedef dword_ptr          uint_ptr;
 
 class __size64;
 class size;
