@@ -47,10 +47,10 @@ namespace ca
       bool operator==(const ::ca::window& wnd) const;
       bool operator!=(const ::ca::window& wnd) const;
 
-      virtual DWORD GetStyle();
-      virtual DWORD GetExStyle();
-      virtual bool ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
-      virtual bool ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags = 0);
+      virtual uint32_t GetStyle();
+      virtual uint32_t GetExStyle();
+      virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
+      virtual bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);
 
 
       virtual void mouse_hover_add(::user::interaction* pinterface);
@@ -95,12 +95,12 @@ namespace ca
 
       using ::user::interaction::create;
       // for child windows, views, panes etc
-      virtual bool create(const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction * pParentWnd, id id, create_context* pContext = NULL);
+      virtual bool create(const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction * pParentWnd, id id, create_context* pContext = NULL);
 
       // advanced creation (allows access to extended styles)
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam = NULL);
+      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam = NULL);
 
-      virtual bool CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam = NULL);
+      virtual bool CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam = NULL);
 
       virtual bool DestroyWindow();
 
@@ -179,8 +179,8 @@ namespace ca
       virtual ::ca::graphics * GetDC();
       virtual ::ca::graphics * GetWindowDC();
       virtual bool ReleaseDC(::ca::graphics * pgraphics);
-      virtual void Print(::ca::graphics * pgraphics, DWORD dwFlags) const;
-      virtual void PrintClient(::ca::graphics * pgraphics, DWORD dwFlags) const;
+      virtual void Print(::ca::graphics * pgraphics, uint32_t dwFlags) const;
+      virtual void PrintClient(::ca::graphics * pgraphics, uint32_t dwFlags) const;
 
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
@@ -197,7 +197,7 @@ namespace ca
       virtual bool IsWindowVisible();
       virtual void ShowOwnedPopups(bool bShow = TRUE);
 
-      virtual ::ca::graphics * GetDCEx(::ca::region* prgnClip, DWORD flags);
+      virtual ::ca::graphics * GetDCEx(::ca::region* prgnClip, uint32_t flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
 
@@ -219,7 +219,7 @@ namespace ca
 
    #if(WINVER >= 0x0500)
 
-      virtual bool AnimateWindow(DWORD dwTime, DWORD dwFlags);
+      virtual bool AnimateWindow(uint32_t dwTime, uint32_t dwFlags);
 
    #endif   // WINVER >= 0x0500
 
@@ -233,20 +233,20 @@ namespace ca
 
    #if(_WIN32_WINNT >= 0x0500)
 
-      virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags);
-      virtual bool UpdateLayeredWindow(::ca::graphics * pDCDst, POINT *pptDst, SIZE *psize, ::ca::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, DWORD dwFlags);
+      virtual bool SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, uint32_t dwFlags);
+      virtual bool UpdateLayeredWindow(::ca::graphics * pDCDst, POINT *pptDst, SIZE *psize, ::ca::graphics * pDCSrc, POINT *pptSrc, COLORREF crKey, BLENDFUNCTION *pblend, uint32_t dwFlags);
 
    #endif   // _WIN32_WINNT >= 0x0500
 
    #if(_WIN32_WINNT >= 0x0501)
 
-      virtual bool GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, DWORD *pdwFlags) const;
+      virtual bool GetLayeredWindowAttributes(COLORREF *pcrKey, BYTE *pbAlpha, uint32_t *pdwFlags) const;
 
    #endif   // _WIN32_WINNT >= 0x0501
 
 
    // Timer Functions
-      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD));
+      virtual uint_ptr SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t));
       virtual bool KillTimer(uint_ptr nIDEvent);
 
    // Window State Functions
@@ -354,7 +354,7 @@ namespace ca
 
    #if(WINVER >= 0x0500)
 
-      virtual bool FlashWindowEx(DWORD dwFlags, UINT  uCount, DWORD dwTimeout);
+      virtual bool FlashWindowEx(uint32_t dwFlags, UINT  uCount, uint32_t dwTimeout);
 
    #endif   // WINVER >= 0x0500
 
@@ -378,8 +378,8 @@ namespace ca
       // virtual ::visual::icon * GetIcon(bool bBigIcon) const;
 
       // Context Help Functions
-      virtual bool SetWindowContextHelpId(DWORD dwContextHelpId);
-      virtual DWORD GetWindowContextHelpId() const;
+      virtual bool SetWindowContextHelpId(uint32_t dwContextHelpId);
+      virtual uint32_t GetWindowContextHelpId() const;
 
 
       // Help Command Handlers
@@ -412,7 +412,7 @@ namespace ca
       virtual void CenterWindow(::user::interaction * pAlternateOwner = NULL);
 
 
-      //virtual int32_t RunModalLoop(DWORD dwFlags = 0, ::ca::live_object * pliveobject = NULL);
+      //virtual int32_t RunModalLoop(uint32_t dwFlags = 0, ::ca::live_object * pliveobject = NULL);
       //virtual bool ContinueModal(id iLevel);
       //virtual void EndModalLoop(id nResult);
 
@@ -421,7 +421,7 @@ namespace ca
       virtual bool OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       void OnActivate(UINT nState, ::ca::window* pWndOther, bool bMinimized);
-      void OnActivateApp(bool bActive, DWORD dwThreadID);
+      void OnActivateApp(bool bActive, uint32_t dwThreadID);
       LRESULT OnActivateTopLevel(WPARAM, LPARAM);
       void OnCancelMode();
       void OnChildActivate();
@@ -467,7 +467,7 @@ namespace ca
       void OnSize(UINT nType, int32_t cx, int32_t cy);
 
 
-      void OnTCard(UINT idAction, DWORD dwActionData);
+      void OnTCard(UINT idAction, uint32_t dwActionData);
 
 #ifdef WINDOWSEX
       void OnWindowPosChanging(WINDOWPOS* lpwndpos);

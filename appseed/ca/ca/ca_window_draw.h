@@ -24,7 +24,7 @@ namespace ca
       bool                 m_bRun;
       bool                 m_bProDevianMode;
       ::user::buffer *     m_pbuffer;
-      DWORD                m_iFramesPerSecond;
+      uint32_t                m_iFramesPerSecond;
       event                m_eventFree;
 
 

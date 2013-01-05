@@ -31,9 +31,9 @@ namespace ca
 
    bool window_draw::stop()
    {
-      const DWORD dwTimeOut = 184 * (1984 + 1977);
+      const uint32_t dwTimeOut = 184 * (1984 + 1977);
       m_bRun = false;
-      DWORD dwStart = ::get_tick_count();
+      uint32_t dwStart = ::get_tick_count();
       while(s_bRunning && ((::get_tick_count() - dwStart) < dwTimeOut))
       {
 #ifdef WINDOWSEX

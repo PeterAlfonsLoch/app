@@ -51,7 +51,7 @@
    // Arrays
    class byte_array;           // base_array of BYTE
    class uint16_array;           // base_array of WORD
-   class uint32_array;          // base_array of DWORD
+   class uint32_array;          // base_array of uint32_t
    class CUIntArray;           // base_array of UINT
    class CPtrArray;            // base_array of void *
    class CObArray;             // base_array of ::radix::object*

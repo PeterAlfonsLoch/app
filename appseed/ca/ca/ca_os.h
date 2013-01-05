@@ -32,10 +32,10 @@ namespace ca
 #ifdef WINDOWS
       virtual string get_module_path(HMODULE hmodule);
 #endif
-      virtual bool get_pid_by_path(const char * pszName, DWORD & dwPid);
-      virtual bool get_pid_by_title(const char * pszName, DWORD & dwPid);
+      virtual bool get_pid_by_path(const char * pszName, uint32_t & dwPid);
+      virtual bool get_pid_by_title(const char * pszName, uint32_t & dwPid);
       virtual void get_all_processes(uint32_array & dwa);
-      virtual string get_process_path(DWORD dwPid);
+      virtual string get_process_path(uint32_t dwPid);
 
 
       virtual bool connection_settings_get_auto_detect();
@@ -73,7 +73,7 @@ namespace ca
 
       virtual bool resolve_link(string & strTarget, const char * pszSource, ::user::interaction * puiMessageParentOptional = NULL);
 
-      DECLSPEC_NO_RETURN void raise_exception( DWORD dwExceptionCode, DWORD dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
+      DECLSPEC_NO_RETURN void raise_exception( uint32_t dwExceptionCode, uint32_t dwExceptionFlags = EXCEPTION_NONCONTINUABLE);
 
 
       virtual bool is_remote_session();

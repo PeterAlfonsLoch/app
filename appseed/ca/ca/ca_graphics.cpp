@@ -798,7 +798,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, DWORD dwRop)
+   bool graphics::PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -808,7 +808,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, DWORD dwRop)
+   bool graphics::BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -821,7 +821,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop)
+   bool graphics::StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1060,14 +1060,14 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   DWORD graphics::GetFontLanguageInfo() const
+   uint32_t graphics::GetFontLanguageInfo() const
    {
       throw interface_only_exception(get_app());
    }
 
 #ifdef WINDOWSEX
 
-   DWORD graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const
+   uint32_t graphics::GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(lpString);
       UNREFERENCED_PARAMETER(nCount);
@@ -1077,7 +1077,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   DWORD graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const
+   uint32_t graphics::GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(str);
       UNREFERENCED_PARAMETER(nMaxExtent);
@@ -1159,7 +1159,7 @@ namespace ca
 
 #endif
 
-   DWORD graphics::GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData,  DWORD cbData) const
+   uint32_t graphics::GetFontData(uint32_t dwTable, uint32_t dwOffset, LPVOID lpData,  uint32_t cbData) const
    {
       UNREFERENCED_PARAMETER(dwTable);
       UNREFERENCED_PARAMETER(dwOffset);
@@ -1177,7 +1177,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   DWORD graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,  DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
+   uint32_t graphics::GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm,  uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const
    {
       UNREFERENCED_PARAMETER(nChar);
       UNREFERENCED_PARAMETER(nFormat);
@@ -1224,7 +1224,7 @@ namespace ca
    }
 
    bool graphics::MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc,
-      int32_t xSrc, int32_t ySrc, ::ca::bitmap& maskBitmap, int32_t xMask, int32_t yMask, DWORD dwRop)
+      int32_t xSrc, int32_t ySrc, ::ca::bitmap& maskBitmap, int32_t xMask, int32_t yMask, uint32_t dwRop)
    {
       UNREFERENCED_PARAMETER(x);
       UNREFERENCED_PARAMETER(y);
@@ -1294,7 +1294,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int32_t nCount)
+   bool graphics::PolyPolyline(const POINT* lpPoints, const uint32_t* lpPolyPoints, int32_t nCount)
    {
       UNREFERENCED_PARAMETER(lpPoints);
       UNREFERENCED_PARAMETER(lpPolyPoints);
@@ -1508,7 +1508,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, DWORD dwMode)
+   bool graphics::GradientFill(TRIVERTEX* pVertices, ULONG nVertices, void * pMesh, ULONG nMeshElements, uint32_t dwMode)
    {
       UNREFERENCED_PARAMETER(pVertices);
       UNREFERENCED_PARAMETER(nVertices);
@@ -1799,7 +1799,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool graphics::ModifyWorldTransform(const XFORM* pXform, DWORD iMode)
+   bool graphics::ModifyWorldTransform(const XFORM* pXform, uint32_t iMode)
    {
       UNREFERENCED_PARAMETER(pXform);
       UNREFERENCED_PARAMETER(iMode);
@@ -1975,18 +1975,18 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   DWORD graphics::SetMapperFlags(DWORD dwFlag)
+   uint32_t graphics::SetMapperFlags(uint32_t dwFlag)
    {
       UNREFERENCED_PARAMETER(dwFlag);
       throw interface_only_exception(get_app());
    }
 
-   DWORD graphics::GetLayout() const
+   uint32_t graphics::GetLayout() const
    {
       throw interface_only_exception(get_app());
    }
 
-   DWORD graphics::SetLayout(DWORD dwSetLayout)
+   uint32_t graphics::SetLayout(uint32_t dwSetLayout)
    {
       UNREFERENCED_PARAMETER(dwSetLayout);
       throw interface_only_exception(get_app());
@@ -2190,17 +2190,17 @@ namespace ca
 #endif
 
 
-   bool graphics::from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop)
+   bool graphics::from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
    {
       return BitBlt(ptDst.x, ptDst.y, size.cx, size.cy, pgraphicsSrc, ptSrc.x, ptSrc.y, dwRop) != FALSE;
    }
 
-   bool graphics::from(size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop)
+   bool graphics::from(size size, ::ca::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop)
    {
       return from(null_point(), size, pgraphicsSrc, ptSrc, dwRop);
    }
 
-   bool graphics::from(size size, ::ca::graphics * pgraphicsSrc, DWORD dwRop)
+   bool graphics::from(size size, ::ca::graphics * pgraphicsSrc, uint32_t dwRop)
    {
       return from(size, pgraphicsSrc, null_point(), dwRop);
    }
@@ -2510,17 +2510,17 @@ namespace ca
 } // namespace ca
 
 
-dump_context& operator<<(dump_context & dumpcontext, SIZE size)
+dump_context & operator<<(dump_context & dumpcontext, SIZE size)
 {
    return dumpcontext << "(" << size.cx << " x " << size.cy << ")";
 }
 
-dump_context& operator<<(dump_context & dumpcontext, POINT point)
+dump_context & operator<<(dump_context & dumpcontext, POINT point)
 {
    return dumpcontext << "(" << point.x << ", " << point.y << ")";
 }
 
-dump_context& operator<<(dump_context & dumpcontext, const RECT& rect)
+dump_context & operator<<(dump_context & dumpcontext, const RECT& rect)
 {
    return dumpcontext << "(L " << rect.left << ", T " << rect.top << ", R " <<
       rect.right << ", B " << rect.bottom << ")";

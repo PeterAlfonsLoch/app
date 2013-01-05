@@ -112,8 +112,8 @@ namespace ca
       virtual ::ca::bitmap & GetCurrentBitmap() const;
 
       // for bidi and mirrored localization
-      virtual DWORD GetLayout() const;
-      virtual DWORD SetLayout(DWORD dwLayout);
+      virtual uint32_t GetLayout() const;
+      virtual uint32_t SetLayout(uint32_t dwLayout);
 
    // Constructors
       virtual bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName,
@@ -206,7 +206,7 @@ namespace ca
       // World transform
 #ifdef WINDOWS
       virtual bool SetWorldTransform(const XFORM* pXform);
-      virtual bool ModifyWorldTransform(const XFORM* pXform,DWORD iMode);
+      virtual bool ModifyWorldTransform(const XFORM* pXform,uint32_t iMode);
       virtual bool GetWorldTransform(XFORM* pXform) const;
 #endif
 
@@ -309,7 +309,7 @@ namespace ca
 
       virtual bool PolyDraw(const POINT* lpPoints, const BYTE* lpTypes, int32_t nCount);
       virtual bool PolylineTo(const POINT* lpPoints, int32_t nCount);
-      virtual bool PolyPolyline(const POINT* lpPoints, const DWORD* lpPolyPoints, int32_t nCount);
+      virtual bool PolyPolyline(const POINT* lpPoints, const uint32_t* lpPolyPoints, int32_t nCount);
 
       virtual bool PolyBezier(const POINT* lpPoints, int32_t nCount);
       virtual bool PolyBezierTo(const POINT* lpPoints, int32_t nCount);
@@ -369,14 +369,14 @@ namespace ca
       virtual bool RoundRect(LPCRECT lpRect, POINT point);
 
    // Bitmap Functions
-      virtual bool from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop);
-      virtual bool from(size size, ::ca::graphics * pgraphicsSrc, point ptSrc, DWORD dwRop);
-      virtual bool from(size size, ::ca::graphics * pgraphicsSrc, DWORD dwRop);
-      virtual bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, DWORD dwRop);
+      virtual bool from(point ptDst, size size, ::ca::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
+      virtual bool from(size size, ::ca::graphics * pgraphicsSrc, point ptSrc, uint32_t dwRop);
+      virtual bool from(size size, ::ca::graphics * pgraphicsSrc, uint32_t dwRop);
+      virtual bool PatBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, uint32_t dwRop);
       virtual bool BitBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, DWORD dwRop);
+         int32_t xSrc, int32_t ySrc, uint32_t dwRop);
       virtual bool StretchBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc,
-         int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, DWORD dwRop);
+         int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight, uint32_t dwRop);
       virtual COLORREF GetPixel(int32_t x, int32_t y) const;
       virtual COLORREF GetPixel(POINT point) const;
       virtual COLORREF SetPixel(int32_t x, int32_t y, COLORREF crColor);
@@ -385,13 +385,13 @@ namespace ca
       virtual bool ExtFloodFill(int32_t x, int32_t y, COLORREF crColor, UINT nFillType);
       virtual bool MaskBlt(int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, ::ca::graphics * pgraphicsSrc,
          int32_t xSrc, int32_t ySrc, ::ca::bitmap& maskBitmap, int32_t xMask, int32_t yMask,
-         DWORD dwRop);
+         uint32_t dwRop);
       virtual bool PlgBlt(LPPOINT lpPoint, ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc,
          int32_t nWidth, int32_t nHeight, ::ca::bitmap& maskBitmap, int32_t xMask, int32_t yMask);
       virtual bool SetPixelV(int32_t x, int32_t y, COLORREF crColor);
       virtual bool SetPixelV(POINT point, COLORREF crColor);
       virtual bool GradientFill(TRIVERTEX* pVertices, ULONG nVertices,
-        void * pMesh, ULONG nMeshElements, DWORD dwMode);
+        void * pMesh, ULONG nMeshElements, uint32_t dwMode);
       virtual bool TransparentBlt(int32_t xDest, int32_t yDest, int32_t nDestWidth, int32_t nDestHeight,
         ::ca::graphics * pgraphicsSrc, int32_t xSrc, int32_t ySrc, int32_t nSrcWidth, int32_t nSrcHeight,
         UINT clrTransparent);
@@ -464,8 +464,8 @@ namespace ca
 
 #ifdef WINDOWSEX
 
-      virtual DWORD GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
-      virtual DWORD GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, DWORD dwFlags) const;
+      virtual uint32_t GetCharacterPlacement(const char * lpString, int32_t nCount, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const;
+      virtual uint32_t GetCharacterPlacement(string & str, int32_t nMaxExtent, LPGCP_RESULTS lpResults, uint32_t dwFlags) const;
 
 #endif
 
@@ -489,7 +489,7 @@ namespace ca
    // font Functions
       virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
       virtual bool GetOutputCharWidth(UINT nFirstChar, UINT nLastChar, LPINT lpBuffer) const;
-      virtual DWORD SetMapperFlags(DWORD dwFlag);
+      virtual uint32_t SetMapperFlags(uint32_t dwFlag);
       virtual size GetAspectRatioFilter() const;
 
 #ifdef WINDOWSEX
@@ -498,13 +498,13 @@ namespace ca
 
 #endif
 
-      virtual DWORD GetFontData(DWORD dwTable, DWORD dwOffset, LPVOID lpData, DWORD cbData) const;
+      virtual uint32_t GetFontData(uint32_t dwTable, uint32_t dwOffset, LPVOID lpData, uint32_t cbData) const;
 
 #ifdef WINDOWSEX
 
       virtual int32_t GetKerningPairs(int32_t nPairs, LPKERNINGPAIR lpkrnpair) const;
       virtual UINT GetOutlineTextMetrics(UINT cbData, LPOUTLINETEXTMETRIC lpotm) const;
-      virtual DWORD GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, DWORD cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
+      virtual uint32_t GetGlyphOutline(UINT nChar, UINT nFormat, LPGLYPHMETRICS lpgm, uint32_t cbBuffer, LPVOID lpBuffer, const MAT2* lpmat2) const;
 
       virtual bool GetCharABCWidths(UINT nFirstChar, UINT nLastChar, LPABCFLOAT lpABCF) const;
 
@@ -512,7 +512,7 @@ namespace ca
 
       virtual bool GetCharWidth(UINT nFirstChar, UINT nLastChar, float * lpFloatBuffer) const;
 
-      virtual DWORD GetFontLanguageInfo() const;
+      virtual uint32_t GetFontLanguageInfo() const;
 
 #if defined(WINDOWSEX) && (_WIN32_WINNT >= 0x0500)
 

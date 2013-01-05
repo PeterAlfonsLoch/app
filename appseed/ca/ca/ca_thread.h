@@ -100,7 +100,7 @@ namespace ca
 #ifdef METROWIN
       DWORD64     m_dwTickCount;
 #else
-      DWORD       m_dwTickCount;
+      uint32_t       m_dwTickCount;
 #endif
 
 
@@ -114,7 +114,7 @@ namespace ca
 #ifdef METROWIN
       inline heap_item(void * p, ::primitive::memory_size iSize, DWORD64 dwTick)
 #else
-      inline heap_item(void * p, ::primitive::memory_size iSize, DWORD dwTick)
+      inline heap_item(void * p, ::primitive::memory_size iSize, uint32_t dwTick)
 #endif
       {
          m_pbStart = (byte *) p;
@@ -153,7 +153,7 @@ namespace ca
 #ifdef METROWIN
       DWORD64 m_dwLastCleanup;
 #else
-      DWORD m_dwLastCleanup;
+      uint32_t m_dwLastCleanup;
 #endif
 
       inline void add_item(void * p, ::primitive::memory_size iSize)
@@ -242,7 +242,7 @@ namespace ca
    public:
 		/// thread ID, used to ensure that the thread that calls one of the
 		/// wait methods is really the thread represented by the Thread class
-	//	DWORD threadId_;
+	//	uint32_t threadId_;
 
 
 //	private:
@@ -293,15 +293,15 @@ namespace ca
 
       virtual void CommonConstruct();
 
-      virtual bool Begin(::ca::e_thread_priority epriority = thread_priority_normal, UINT nStackSize = 0, DWORD dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool Begin(::ca::e_thread_priority epriority = thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
-      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), DWORD dwCreateFlags = 0, UINT nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+      virtual bool create_thread(::ca::e_thread_priority epriority = ::get_thread_priority_normal(), uint32_t dwCreateFlags = 0, UINT nStackSize = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 
       virtual ::ca::e_thread_priority get_thread_priority();
       virtual bool set_thread_priority(::ca::e_thread_priority epriority);
 
-      virtual DWORD SuspendThread();
-      virtual DWORD ResumeThread();
+      virtual uint32_t SuspendThread();
+      virtual uint32_t ResumeThread();
       virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
       virtual bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);
 

@@ -138,7 +138,7 @@ namespace ca
    }
 
 
-   bool thread::Begin(::ca::e_thread_priority epriority, UINT nStackSize, DWORD dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::Begin(::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
       UNREFERENCED_PARAMETER(epriority);
@@ -151,7 +151,7 @@ namespace ca
    }
 
 
-   bool thread::create_thread(::ca::e_thread_priority epriority, DWORD dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       UNREFERENCED_PARAMETER(epriority);
       UNREFERENCED_PARAMETER(dwCreateFlags);
@@ -318,12 +318,12 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   DWORD thread::ResumeThread()
+   uint32_t thread::ResumeThread()
    {
       throw interface_only_exception(get_app());
    }
 
-   DWORD thread::SuspendThread()
+   uint32_t thread::SuspendThread()
    {
       throw interface_only_exception(get_app());
    }

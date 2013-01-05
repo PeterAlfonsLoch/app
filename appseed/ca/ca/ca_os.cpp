@@ -32,21 +32,21 @@ namespace ca
       throw interface_only_exception(get_app(), "this is an interface");
    }
 
-   bool os::get_pid_by_path(const char * pszName, DWORD & dwPid)
+   bool os::get_pid_by_path(const char * pszName, uint32_t & dwPid)
    {
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(dwPid);
       throw interface_only_exception(get_app(), "this is an interface");
    }
 
-   bool os::get_pid_by_title(const char * pszName, DWORD & dwPid)
+   bool os::get_pid_by_title(const char * pszName, uint32_t & dwPid)
    {
       UNREFERENCED_PARAMETER(pszName);
       UNREFERENCED_PARAMETER(dwPid);
       throw interface_only_exception(get_app(), "this is an interface");
    }
 
-   string os::get_process_path(DWORD dwPid)
+   string os::get_process_path(uint32_t dwPid)
    {
       UNREFERENCED_PARAMETER(dwPid);
       throw interface_only_exception(get_app(), "this is an interface");

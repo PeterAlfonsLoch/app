@@ -12,7 +12,7 @@ enum OF_TYPE
 
 struct OF_INFO_t
 {
-	DWORD dwPID;
+	uint32_t dwPID;
 	LPCWSTR lpFile;
 	HANDLE hFile;
 };

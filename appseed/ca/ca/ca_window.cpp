@@ -64,14 +64,14 @@ namespace ca
 
 
 
-   bool window::AnimateWindow(DWORD dwTime, DWORD dwFlags)
+   bool window::AnimateWindow(uint32_t dwTime, uint32_t dwFlags)
    {
       UNREFERENCED_PARAMETER(dwTime);
       UNREFERENCED_PARAMETER(dwFlags);
       throw interface_only_exception(get_app());
    }
 
-   bool window::FlashWindowEx(DWORD dwFlags, UINT uCount, DWORD dwTimeout)
+   bool window::FlashWindowEx(uint32_t dwFlags, UINT uCount, uint32_t dwTimeout)
    {
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(uCount);
@@ -79,7 +79,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, DWORD dwFlags)
+   bool window::SetLayeredWindowAttributes(COLORREF crKey, BYTE bAlpha, uint32_t dwFlags)
    {
       UNREFERENCED_PARAMETER(crKey);
       UNREFERENCED_PARAMETER(bAlpha);
@@ -88,7 +88,7 @@ namespace ca
    }
 
    bool window::UpdateLayeredWindow(::ca::graphics * pDCDst, POINT * pptDst, SIZE * psize,
-      ::ca::graphics * pDCSrc, POINT * pptSrc, COLORREF crKey, BLENDFUNCTION * pblend, DWORD dwFlags)
+      ::ca::graphics * pDCSrc, POINT * pptSrc, COLORREF crKey, BLENDFUNCTION * pblend, uint32_t dwFlags)
    {
       UNREFERENCED_PARAMETER(pDCDst);
       UNREFERENCED_PARAMETER(pptDst);
@@ -101,7 +101,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::GetLayeredWindowAttributes(COLORREF * pcrKey, BYTE * pbAlpha, DWORD * pdwFlags) const
+   bool window::GetLayeredWindowAttributes(COLORREF * pcrKey, BYTE * pbAlpha, uint32_t * pdwFlags) const
    {
       UNREFERENCED_PARAMETER(pcrKey);
       UNREFERENCED_PARAMETER(pbAlpha);
@@ -142,7 +142,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // window creation
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, const RECT & rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam /* = NULL */)
+   bool window::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, const RECT & rect, ::user::interaction* pParentWnd, id id, LPVOID lpParam /* = NULL */)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -155,7 +155,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::CreateEx(DWORD dwExStyle, const char * lpszClassName, const char * lpszWindowName, DWORD dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam)
+   bool window::CreateEx(uint32_t dwExStyle, const char * lpszClassName, const char * lpszWindowName, uint32_t dwStyle, int32_t x, int32_t y, int32_t nWidth, int32_t nHeight, oswindow oswindow_Parent, id id, LPVOID lpParam)
    {
       UNREFERENCED_PARAMETER(dwExStyle);
       UNREFERENCED_PARAMETER(lpszClassName);
@@ -179,7 +179,7 @@ namespace ca
    }
 
    bool window::create(const char * lpszClassName,
-      const char * lpszWindowName, DWORD dwStyle,
+      const char * lpszWindowName, uint32_t dwStyle,
       const RECT & rect,
       ::user::interaction * pParentWnd, id id,
       create_context * pContext)
@@ -750,7 +750,7 @@ namespace ca
    }
 
 
-/*   id window::RunModalLoop(DWORD dwFlags, ::ca::live_object * pliveobject)
+/*   id window::RunModalLoop(uint32_t dwFlags, ::ca::live_object * pliveobject)
    {
       UNREFERENCED_PARAMETER(dwFlags);
       UNREFERENCED_PARAMETER(pliveobject);
@@ -920,17 +920,17 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   DWORD window::GetStyle()
+   uint32_t window::GetStyle()
    {
       throw interface_only_exception(get_app());
    }
 
-   DWORD window::GetExStyle()
+   uint32_t window::GetExStyle()
    {
       throw interface_only_exception(get_app());
    }
 
-   bool window::ModifyStyle(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool window::ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(dwRemove);
       UNREFERENCED_PARAMETER(dwAdd);
@@ -938,7 +938,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::ModifyStyleEx(DWORD dwRemove, DWORD dwAdd, UINT nFlags)
+   bool window::ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags)
    {
       UNREFERENCED_PARAMETER(dwRemove);
       UNREFERENCED_PARAMETER(dwAdd);
@@ -1165,7 +1165,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::ca::graphics * window::GetDCEx(::ca::region * prgnClip, DWORD flags)
+   ::ca::graphics * window::GetDCEx(::ca::region * prgnClip, uint32_t flags)
    {
       UNREFERENCED_PARAMETER(prgnClip);
       UNREFERENCED_PARAMETER(flags);
@@ -1213,7 +1213,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, DWORD))
+   uint_ptr window::SetTimer(uint_ptr nIDEvent, UINT nElapse, void (CALLBACK* lpfnTimer)(oswindow, UINT, uint_ptr, uint32_t))
    {
       UNREFERENCED_PARAMETER(nIDEvent);
       UNREFERENCED_PARAMETER(nElapse);
@@ -1501,33 +1501,33 @@ namespace ca
 
    // Win4
 
-   void window::Print(::ca::graphics * pgraphics, DWORD dwFlags) const
+   void window::Print(::ca::graphics * pgraphics, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
       throw interface_only_exception(get_app());
    }
 
-   void window::PrintClient(::ca::graphics * pgraphics, DWORD dwFlags) const
+   void window::PrintClient(::ca::graphics * pgraphics, uint32_t dwFlags) const
    {
       UNREFERENCED_PARAMETER(pgraphics);
       UNREFERENCED_PARAMETER(dwFlags);
       throw interface_only_exception(get_app());
    }
 
-   bool window::SetWindowContextHelpId(DWORD dwContextHelpId)
+   bool window::SetWindowContextHelpId(uint32_t dwContextHelpId)
    {
       UNREFERENCED_PARAMETER(dwContextHelpId);
       throw interface_only_exception(get_app());
    }
 
-   DWORD window::GetWindowContextHelpId() const
+   uint32_t window::GetWindowContextHelpId() const
    {
       throw interface_only_exception(get_app());
    }
 
    // Default message ::collection::map implementations
-   void window::OnActivateApp(bool, DWORD)
+   void window::OnActivateApp(bool, uint32_t)
    {
       throw interface_only_exception(get_app());
    }
@@ -1662,7 +1662,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::OnTCard(UINT, DWORD)
+   void window::OnTCard(UINT, uint32_t)
    {
       throw interface_only_exception(get_app());
    }

@@ -5,7 +5,7 @@ namespace ca
 {
 
 
-   DWORD g_dwFirstTick = ::get_tick_count();
+   uint32_t g_dwFirstTick = ::get_tick_count();
 
 
    log::log(::ca::application * papp) :
@@ -132,7 +132,7 @@ namespace ca
 
 
 
-   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, uint32_t nLevel, const char * pszFormat, va_list args) const
+   void log::trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFormat, va_list args) const
    {
       if(!m_bTrace)
          return;
@@ -264,7 +264,7 @@ namespace ca
    {
    }*/
 
-   void log::trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...)
+   void log::trace2(uint32_t dwCategory, UINT nLevel, const char * pszFormat, ...)
    {
       if(!m_bTrace)
          return;
@@ -332,7 +332,7 @@ namespace ca
    }
 
 
-/*   void log::trace_v(const char *pszFileName, int32_t nLine, DWORD dwCategory, uint32_t nLevel, const char * pszFormat, va_list args) const
+/*   void log::trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFormat, va_list args) const
    {
       if(!m_bTrace)
          return;
@@ -385,7 +385,7 @@ namespace ca
       {
          if(plog->m_spfile->IsOpened())
          {
-            plog->m_spfile->Flush();
+            plog->m_spfile->flush();
             plog->m_spfile->close();
          }
          int32_t iRetry = 0;
@@ -453,7 +453,7 @@ namespace ca
       }
    }*/
 
-   void log::set_trace_category(DWORD dwCategory, const char * pszName, uint32_t uiLevel)
+   void log::set_trace_category(uint32_t dwCategory, const char * pszName, uint32_t uiLevel)
    {
       gen::trace::category & category = m_ptrace->operator[](dwCategory);
       category.m_strCategory = pszName;
@@ -473,7 +473,7 @@ namespace ca
       va_end(ptr);
    }
 
-   /*void log::trace2(DWORD dwCategory, UINT nLevel, const char * pszFormat, ...)
+   /*void log::trace2(uint32_t dwCategory, UINT nLevel, const char * pszFormat, ...)
    {
       if(!m_bTrace)
          return;
