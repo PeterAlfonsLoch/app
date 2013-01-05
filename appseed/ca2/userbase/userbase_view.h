@@ -21,7 +21,7 @@ class BasePreviewView;     // forward reference (see afxpriv.h)
 class CSplitterWnd;     // forward reference (see afxext.h)
 class COleServerDoc;    // forward reference (see afxole.h)
 
-typedef DWORD DROPEFFECT;
+typedef uint32_t DROPEFFECT;
 class COleDataObject;   // forward reference (see afxole.h)
 
 namespace userbase
@@ -47,15 +47,15 @@ namespace userbase
 
       // OLE drag/drop support
       virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-         DWORD dwKeyState, point point);
+         uint32_t dwKeyState, point point);
       virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-         DWORD dwKeyState, point point);
+         uint32_t dwKeyState, point point);
       virtual void OnDragLeave();
       virtual bool OnDrop(COleDataObject* pDataObject,
          DROPEFFECT dropEffect, point point);
       virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
          DROPEFFECT dropDefault, DROPEFFECT dropList, point point);
-      virtual DROPEFFECT OnDragScroll(DWORD dwKeyState, point point);
+      virtual DROPEFFECT OnDragScroll(uint32_t dwKeyState, point point);
 
 
 
@@ -66,7 +66,7 @@ namespace userbase
 
       virtual ~view();
 #ifdef DEBUG
-      virtual void dump(dump_context&) const;
+      virtual void dump(dump_context &) const;
       virtual void assert_valid() const;
 #endif //DEBUG
 

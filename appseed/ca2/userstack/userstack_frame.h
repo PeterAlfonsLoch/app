@@ -21,7 +21,7 @@ namespace userstack
       image_list  *              m_pimagelist;
       document *                 m_pdocument;
       bool                       m_bHoverMouse;
-      DWORD                      m_dwLastHover;
+      uint32_t                      m_dwLastHover;
       bool                       m_bTimerOn;
 
       bool                       m_bMouseOver;

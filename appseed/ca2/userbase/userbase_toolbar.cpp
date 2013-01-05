@@ -26,8 +26,8 @@ UINT HashKey(string & okey)
 
 struct __COLORMAP
 {
-   // use DWORD instead of RGBQUAD so we can compare two RGBQUADs easily
-   DWORD rgbqFrom;
+   // use uint32_t instead of RGBQUAD so we can compare two RGBQUADs easily
+   uint32_t rgbqFrom;
    int32_t iSysColorTo;
 };
 
@@ -97,13 +97,13 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_SYSCOLORCHANGE    , pinterface, this, &tool_bar::_001OnSysColorChange);
    }
 
-   bool tool_bar::create(::user::interaction* pParentWnd, DWORD dwStyle, UINT nID)
+   bool tool_bar::create(::user::interaction* pParentWnd, uint32_t dwStyle, UINT nID)
    {
       return CreateEx(pParentWnd, 0, dwStyle,
          rect(m_cxLeftBorder, m_cyTopBorder, m_cxRightBorder, m_cyBottomBorder), nID);
    }
 
-   bool tool_bar::CreateEx(::user::interaction* pParentWnd, DWORD dwCtrlStyle, DWORD dwStyle, rect rcBorders, UINT nID)
+   bool tool_bar::CreateEx(::user::interaction* pParentWnd, uint32_t dwCtrlStyle, uint32_t dwStyle, rect rcBorders, UINT nID)
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
       ASSERT (!((dwStyle & CBRS_SIZE_FIXED) && (dwStyle & CBRS_SIZE_DYNAMIC)));
@@ -451,7 +451,7 @@ namespace userbase
       if (memcmp(pButton, &button, sizeof(TBBUTTON)) != 0)
       {
          // don't redraw everything while setting the button
-         DWORD dwStyle = GetStyle();
+         uint32_t dwStyle = GetStyle();
          ModifyStyle(WS_VISIBLE, 0);
          VERIFY(DefWindowProc(TB_DELETEBUTTON, nIndex, 0));
          VERIFY(DefWindowProc(TB_INSERTBUTTON, nIndex, (LPARAM)pButton));
@@ -583,7 +583,7 @@ namespace userbase
       point cur(0,0);
       size sizeResult(0,0);
 
-      DWORD dwExtendedStyle = (DWORD) DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
+      uint32_t dwExtendedStyle = (uint32_t) DefWindowProc(TB_GETEXTENDEDSTYLE, 0, 0);
 
       for (int32_t i = 0; i < nCount; i++)
       {
@@ -803,7 +803,7 @@ namespace userbase
       rect rectOldPos;
    };
 
-   size tool_bar::CalcLayout(DWORD dwMode, int32_t nLength)
+   size tool_bar::CalcLayout(uint32_t dwMode, int32_t nLength)
    {
 #ifdef WINDOWSEX
       ASSERT_VALID(this);
@@ -981,13 +981,13 @@ throw todo(get_app());
 
    size tool_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    {
-      DWORD dwMode = bStretch ? LM_STRETCH : 0;
+      uint32_t dwMode = bStretch ? LM_STRETCH : 0;
       dwMode |= bHorz ? LM_HORZ : 0;
 
       return CalcLayout(dwMode);
    }
 
-   size tool_bar::CalcDynamicLayout(int32_t nLength, DWORD dwMode)
+   size tool_bar::CalcDynamicLayout(int32_t nLength, uint32_t dwMode)
    {
       if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
          ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -1165,7 +1165,7 @@ throw todo(get_app());
 #endif
    }
 
-   void tool_bar::OnBarStyleChange(DWORD dwOldStyle, DWORD dwNewStyle)
+   void tool_bar::OnBarStyleChange(uint32_t dwOldStyle, uint32_t dwNewStyle)
    {
       // a dynamically resizeable toolbar can not have the CBRS_FLOAT_MULTI
       ASSERT(!((dwNewStyle & CBRS_SIZE_DYNAMIC) &&
@@ -1200,7 +1200,7 @@ throw todo(get_app());
 #ifdef WINDOWSEX
       SCAST_PTR(::gen::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
-      DWORD dwStyle = m_dwStyle;
+      uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
       //::userbase::control_bar::OnWindowPosChanging(pwindowpos->m_pwindowpos);
       pobj->previous();
@@ -1268,12 +1268,12 @@ throw todo(get_app());
 
 #ifdef WINDOWSEX
       bool bModify = FALSE;
-      DWORD dwStyle = GetStyle();
+      uint32_t dwStyle = GetStyle();
       bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 
       lResult = Default();
       if (lResult)
-         size = (DWORD) lParam;
+         size = (uint32_t) lParam;
 
       if (bModify)
          SetWindowLong(GWL_STYLE, dwStyle);
@@ -1290,7 +1290,7 @@ throw todo(get_app());
 #ifdef LRESULT
 
       bool bModify = FALSE;
-      DWORD dwStyle = 0;
+      uint32_t dwStyle = 0;
       dwStyle = GetStyle();
       bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 

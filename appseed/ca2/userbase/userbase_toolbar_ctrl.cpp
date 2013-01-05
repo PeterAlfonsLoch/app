@@ -8,7 +8,7 @@ namespace userbase
       DestroyWindow();
    }
 
-   bool tool_bar_control::create(DWORD dwStyle, const RECT& rect, ::user::interaction* pParentWnd,
+   bool tool_bar_control::create(uint32_t dwStyle, const RECT& rect, ::user::interaction* pParentWnd,
       UINT nID)
    {
 #ifdef WINDOWSEX
@@ -630,12 +630,12 @@ namespace userbase
    }
 
 
-   DWORD tool_bar_control::GetExtendedStyle()
+   uint32_t tool_bar_control::GetExtendedStyle()
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (DWORD) send_message( TB_GETEXTENDEDSTYLE, 0, 0L);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETEXTENDEDSTYLE, 0, 0L);
 
 #else
 
@@ -646,12 +646,12 @@ namespace userbase
    }
 
 
-   DWORD tool_bar_control::SetExtendedStyle(DWORD dwExStyle)
+   uint32_t tool_bar_control::SetExtendedStyle(uint32_t dwExStyle)
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (DWORD) send_message( TB_SETEXTENDEDSTYLE, 0, dwExStyle);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_SETEXTENDEDSTYLE, 0, dwExStyle);
 
 #else
 
@@ -695,12 +695,12 @@ namespace userbase
 
    /////////////////////////////////////////////////////////////////////////////
 
-   DWORD tool_bar_control::GetButtonSize()
+   uint32_t tool_bar_control::GetButtonSize()
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (DWORD) send_message( TB_GETBUTTONSIZE, 0, 0L);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETBUTTONSIZE, 0, 0L);
 
 #else
 
@@ -759,12 +759,12 @@ namespace userbase
    }
 
 
-   DWORD tool_bar_control::GetStyle()
+   uint32_t tool_bar_control::GetStyle()
    {
 
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (DWORD) send_message( TB_GETSTYLE, 0, 0L);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_GETSTYLE, 0, 0L);
 
 #else
 
@@ -934,7 +934,7 @@ namespace userbase
 #endif
 
    }
-   void tool_bar_control::SetStyle(DWORD dwStyle)
+   void tool_bar_control::SetStyle(uint32_t dwStyle)
    {
 #ifdef WINDOWSEX
 
@@ -997,11 +997,11 @@ namespace userbase
 #endif
 
 
-   DWORD tool_bar_control::SetDrawTextFlags(DWORD dwMask, DWORD dwDTFlags)
+   uint32_t tool_bar_control::SetDrawTextFlags(uint32_t dwMask, uint32_t dwDTFlags)
    {
 #ifdef WINDOWSEX
 
-   ASSERT(IsWindow()); return (DWORD) send_message( TB_SETDRAWTEXTFLAGS, dwMask, dwDTFlags);
+   ASSERT(IsWindow()); return (uint32_t) send_message( TB_SETDRAWTEXTFLAGS, dwMask, dwDTFlags);
 
 #else
 

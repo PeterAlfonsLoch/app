@@ -29,7 +29,7 @@ namespace ca2
       return thread.m_strRead;
    }
 
-   DWORD process::retry(const char * pszCmdLine, DWORD dwTimeout, int32_t iShow)
+   uint32_t process::retry(const char * pszCmdLine, uint32_t dwTimeout, int32_t iShow)
    {
 
       class on_retry onretry;
@@ -49,7 +49,7 @@ namespace ca2
 
 #else
 
-      DWORD dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (uint_ptr) &onretry);
+      uint32_t dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (uint_ptr) &onretry);
 
       return dwExitCode;
 
@@ -70,7 +70,7 @@ namespace ca2
 
    }
 
-   DWORD process::synch(const char * pszCmdLine, int32_t iShow)
+   uint32_t process::synch(const char * pszCmdLine, int32_t iShow)
    {
       return retry(pszCmdLine, 0, iShow);
    }

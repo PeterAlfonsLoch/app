@@ -42,7 +42,7 @@ void MouseMessage(          int32_t nCode,
 
 
    bool m_bHoverMouse;
-   DWORD m_dwLastHover;
+   uint32_t m_dwLastHover;
 
    void OnHoverAction();
 

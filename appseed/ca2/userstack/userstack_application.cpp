@@ -183,7 +183,7 @@ namespace userstack
          file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;
-         data.cbData = (DWORD) file.get_length();
+         data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
          ::oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::application::");
 

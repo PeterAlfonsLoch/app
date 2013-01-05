@@ -268,7 +268,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view drag/drop support
 
-   DROPEFFECT view::OnDragScroll(DWORD /*dwKeyState*/, point /*point*/)
+   DROPEFFECT view::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
    {
    #if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX)
       return DROPEFFECT_SCROLL; // this means do the default
@@ -278,13 +278,13 @@ namespace userbase
    }
 
    DROPEFFECT view::OnDragEnter(COleDataObject* /*pDataObject*/,
-      DWORD /*dwKeyState*/, point /*point*/)
+      uint32_t /*dwKeyState*/, point /*point*/)
    {
       return 0;   // DROPEFFECT_NONE
    }
 
    DROPEFFECT view::OnDragOver(COleDataObject* /*pDataObject*/,
-      DWORD /*dwKeyState*/, point /*point*/)
+      uint32_t /*dwKeyState*/, point /*point*/)
    {
       return 0;   // DROPEFFECT_NONE
    }

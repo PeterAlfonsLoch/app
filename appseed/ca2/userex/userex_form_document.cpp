@@ -8,7 +8,7 @@ form_document::form_document(::ca::application * papp) :
 {
 }
 
-void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, DWORD nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
+void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_t nFlags, const char * lpszTargetFrameName, byte_array& baPostedData, const char * lpszHeaders, bool* pbCancel)
 {
 
    UNREFERENCED_PARAMETER(pdata);
