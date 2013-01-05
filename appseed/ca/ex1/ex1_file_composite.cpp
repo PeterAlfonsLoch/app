@@ -133,10 +133,10 @@ namespace ex1
 
    }
    
-   void file_composite::Flush()
+   void file_composite::flush()
    {
 
-      return m_spfile->Flush();
+      return m_spfile->flush();
 
    }
 

@@ -46,7 +46,7 @@ namespace ex1
    struct PROCESS_INFO_t
    {
        string csProcess;
-       DWORD dwImageListIndex;
+       uint32_t dwImageListIndex;
    };
 
 

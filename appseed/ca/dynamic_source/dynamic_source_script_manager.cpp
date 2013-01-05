@@ -285,7 +285,7 @@ namespace dynamic_source
    void script_manager::LoadEnv()
    {
       /*char * buf;
-      DWORD dwSize = GetDllDirectory(NULL, NULL);
+      uint32_t dwSize = GetDllDirectory(NULL, NULL);
       buf = new char[dwSize + 1024];
       GetDllDirectory(dwSize + 1024, buf);
       TRACE(buf);
@@ -308,7 +308,7 @@ namespace dynamic_source
 
       string strNew;
 #ifdef WINDOWSEX
-      DWORD dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1024];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1024);
       strNew = lpsz;

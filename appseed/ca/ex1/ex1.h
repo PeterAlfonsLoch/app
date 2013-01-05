@@ -311,7 +311,7 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_037E    0x037E
 
 // WM_FORWARDMSG - used by gen to forward a message to another ::ca::window for processing
-//   WPARAM - DWORD dwUserData - defined by ::fontopus::user
+//   WPARAM - uint32_t dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
 #define WM_FORWARDMSG      0x037F
@@ -498,15 +498,15 @@ public:
 
    ex1::HRes read)(void *, ULONG, ULONG*);
    ex1::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
-   ex1::HRes seek)(LARGE_INTEGER, DWORD, ULARGE_INTEGER*);
+   ex1::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
    ex1::HRes set_size)(ULARGE_INTEGER);
    ex1::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
       ULARGE_INTEGER*);
-   ex1::HRes Commit)(DWORD);
+   ex1::HRes Commit)(uint32_t);
    ex1::HRes Revert)();
-   ex1::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,DWORD);
-   ex1::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, DWORD);
-   ex1::HRes Stat)(STATSTG*, DWORD);
+   ex1::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
+   ex1::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
+   ex1::HRes Stat)(STATSTG*, uint32_t);
    ex1::HRes Clone)(LPSTREAM*);
 };
 */

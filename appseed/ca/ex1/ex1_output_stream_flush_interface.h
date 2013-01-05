@@ -8,7 +8,7 @@ namespace ex1
    class CLASS_DECL_ca output_stream_flush_interface
    {
    public:
-      virtual void Flush() = 0;
+      virtual void flush() = 0;
    };
 
 } // namespace ex1

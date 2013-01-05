@@ -33,7 +33,7 @@ namespace dynamic_source
       stringa              m_straLibHppPath;
       string               m_strLibraryPath;
 
-      DWORD                m_dwLastLibraryVersionCheck;
+      uint32_t                m_dwLastLibraryVersionCheck;
       bool                 m_bLastLibraryVersionCheck;
 
 

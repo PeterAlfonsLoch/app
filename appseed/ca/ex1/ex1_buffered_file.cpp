@@ -19,7 +19,7 @@ namespace ex1
 
    buffered_file::~buffered_file()
    {
-      Flush();
+      flush();
    }
 
    uint64_t buffered_file::GetBufferSize()
@@ -92,7 +92,7 @@ namespace ex1
       {
          m_uiPosition = m_pfile->seek(lOff, nFrom);
          if(m_bDirty)
-            Flush();
+            flush();
          m_uiBufLPos     = 0;
          m_uiBufUPos     = 0xffffffff;
          m_uiWriteLPos   = 0xffffffff;
@@ -156,7 +156,7 @@ namespace ex1
    {
       if(m_bDirty)
       {
-         Flush();
+         flush();
       }
       //if(uiGrow == 0 && m_uiPosition > m_pfile->get_length())
         // return false;
@@ -200,7 +200,7 @@ namespace ex1
       }
    }
 
-   void buffered_file::Flush()
+   void buffered_file::flush()
    {
       if(m_bDirty)
       {

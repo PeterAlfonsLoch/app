@@ -65,7 +65,7 @@ namespace ex1
       return 0;
    }
 
-   void file::Flush()
+   void file::flush()
    {
    }
 

@@ -28,10 +28,10 @@ namespace ex1
             m_BitPos = 8;
             m_CurByte = 0;
          }
-         HRESULT Flush()
+         HRESULT flush()
          {
             FlushByte();
-            return m_Stream.Flush();
+            return m_Stream.flush();
          }
          void FlushByte()
          {

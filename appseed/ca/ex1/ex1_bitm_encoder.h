@@ -28,11 +28,11 @@ namespace ex1
             m_BitPos = 8;
             m_CurByte = 0;
          }
-         HRESULT Flush()
+         HRESULT flush()
          {
             if (m_BitPos < 8)
                WriteBits(0, m_BitPos);
-            return m_Stream.Flush();
+            return m_Stream.flush();
          }
          void WriteBits(uint32_t value, uint32_t numBits)
          {

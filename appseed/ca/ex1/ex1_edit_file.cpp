@@ -363,10 +363,10 @@ namespace ex1
       {
          return uiRead;
       }
-//      DWORD dwPosition = m_dwPosition;
-//      DWORD dwFilePosition = m_dwPosition;
-//      DWORD dwMaxCount = m_dwFileLength;
-//      DWORD dwUpperLimit = m_dwFileLength;
+//      uint32_t dwPosition = m_dwPosition;
+//      uint32_t dwFilePosition = m_dwPosition;
+//      uint32_t dwMaxCount = m_dwFileLength;
+//      uint32_t dwUpperLimit = m_dwFileLength;
 //      int32_t iOffset =0;
       ::ex1::tree_item * ptreeitem;
 //      GroupItem * pitemgroup = NULL;
@@ -501,7 +501,7 @@ l1:
       ASSERT(nFrom == ::ex1::seek_begin || nFrom == ::ex1::seek_end || nFrom == ::ex1::seek_current);
       ASSERT(::ex1::seek_begin == FILE_BEGIN && ::ex1::seek_end == FILE_END && ::ex1::seek_current == FILE_CURRENT);
 
-      file_position dwNew = (DWORD) -1;
+      file_position dwNew = (uint32_t) -1;
 
       switch(nFrom)
       {
@@ -539,7 +539,7 @@ l1:
       return m_dwFileLength;
    }
 
-   void edit_file::Flush()
+   void edit_file::flush()
    {
       string strTimeFile;
 
@@ -563,7 +563,7 @@ l1:
       {
          m_pfile->write(buf, uiRead);
       }
-      m_pfile->Flush();
+      m_pfile->flush();
       m_dwFileLength = m_pfile->get_length();
       m_ptreeitemFlush = m_ptreeitem;
    }
@@ -577,7 +577,7 @@ l1:
       {
          ostream.write(buf, uiRead);
       }
-      ostream.Flush();
+      ostream.flush();
       //file.close();
       return true;
    }
@@ -592,7 +592,7 @@ l1:
       {
          file.write(buf, uiRead);
       }
-      file.Flush();
+      file.flush();
       //file.close();
       return true;
    }
@@ -611,7 +611,7 @@ l1:
          str.replace("\n", "\r\n");
          file.write(str, str.get_length());
       }
-      //file.Flush();
+      //file.flush();
       file.close();
       return true;
    }

@@ -34,7 +34,7 @@ namespace ex1
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
-      virtual void Flush();
+      virtual void flush();
       virtual bool buffer(::primitive::memory_size uiGrow = 0);
       virtual void set_length(file_size dwNewLen);
 

@@ -14,7 +14,7 @@ namespace dynamic_source
    public:
 
 
-      DWORD             m_dwCreate;
+      uint32_t             m_dwCreate;
       script *          m_pscriptScriptInstance;
 
       string            m_strDebugRequestUri;

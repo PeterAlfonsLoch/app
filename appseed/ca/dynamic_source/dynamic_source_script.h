@@ -53,14 +53,14 @@ namespace dynamic_source
 #endif
       
       bool                    m_bLastVersionCheck;
-      DWORD                   m_dwLastVersionCheck;
+      uint32_t                   m_dwLastVersionCheck;
       string                  m_strSourcePath;
       string                  m_strSourceDir;
       string                  m_strCppPath;
       string                  m_strScriptPath;
       string                  m_strBuildBat;
       manual_reset_event      m_evCreationEnabled;
-      DWORD                   m_dwLastBuildTime;
+      uint32_t                   m_dwLastBuildTime;
       bool                    m_bShouldBuild;
       bool                    m_bCalcHasTempError;
       bool                    m_bHasTempError;

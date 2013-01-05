@@ -66,7 +66,7 @@ namespace ex1
 
 #endif
 
-      virtual void dump(dump_context&) const;
+      virtual void dump(dump_context &) const;
 
       virtual bool get_error_message(string & str, PUINT pnHelpContext = NULL);
 

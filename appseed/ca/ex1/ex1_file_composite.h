@@ -47,7 +47,7 @@ namespace ex1
       virtual void UnlockRange(file_position dwPos, file_size dwCount);
 
       virtual void Abort();
-      virtual void Flush();
+      virtual void flush();
       virtual void close();
 
 

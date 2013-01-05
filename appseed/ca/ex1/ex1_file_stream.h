@@ -11,7 +11,7 @@ namespace ex1
    public:
 
 
-      output_file_stream(::ca::application * papp, const char * pszFileName, DWORD dwFlags);
+      output_file_stream(::ca::application * papp, const char * pszFileName, uint32_t dwFlags);
       virtual ~output_file_stream();
 
 

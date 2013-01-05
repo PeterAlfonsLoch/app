@@ -49,7 +49,7 @@ namespace ex1
       void SetMemStream(byte *buffer);
       void SetStream(writer *stream);
       void Init();
-      HRESULT Flush();
+      HRESULT flush();
       void FlushWithCheck();
       void ReleaseStream();
       HRESULT FlushPart();

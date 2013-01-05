@@ -139,7 +139,7 @@ namespace dynamic_source
       strItem = System.dir().ca2("stage\\" + m_strPlatform + "\\dynamic_source\\library");
       str = str + strItem + ";";
 #ifdef WINDOWSEX
-      DWORD dwSize = GetEnvironmentVariable("PATH", NULL, 0);
+      uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
       LPTSTR lpsz = new char[dwSize + 1];
       dwSize = GetEnvironmentVariable("PATH", lpsz, dwSize + 1);
       str += lpsz;
@@ -418,8 +418,8 @@ namespace dynamic_source
 
       process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat));
 
-      DWORD dwStart = ::get_tick_count();
-      DWORD dwExitCode;
+      uint32_t dwStart = ::get_tick_count();
+      uint32_t dwExitCode;
       while(true)
       {
          if(process.has_exited(&dwExitCode))
@@ -891,7 +891,7 @@ namespace dynamic_source
          process.create_child_process(strCmd, false, System.dir().ca2("stage\\front"));
 
 
-         DWORD dwExitCode;
+         uint32_t dwExitCode;
          while(true)
          {
             if(process.has_exited(&dwExitCode))
@@ -952,7 +952,7 @@ namespace dynamic_source
 
       process.create_child_process(strCmd, false, System.dir().name(strCmd));
 
-      DWORD dwExitCode;
+      uint32_t dwExitCode;
       while(true)
       {
          if(process.has_exited(&dwExitCode))

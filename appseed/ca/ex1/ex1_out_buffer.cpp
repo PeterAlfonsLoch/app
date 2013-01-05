@@ -1,7 +1,7 @@
 /*      void SetMemStream(byte *buffer) { _buffer2 = buffer; }
       void SetStream(writer *stream);
       void Init();
-      HRESULT Flush();
+      HRESULT flush();
       void FlushWithCheck();
       void ReleaseStream()
       {
@@ -117,7 +117,7 @@ namespace ex1
       return result;
    }
 
-   HRESULT out_buffer::Flush()
+   HRESULT out_buffer::flush()
    {
       while(_streamPos != _pos)
       {
@@ -130,7 +130,7 @@ namespace ex1
 
    void out_buffer::FlushWithCheck()
    {
-      HRESULT result = Flush();
+      HRESULT result = flush();
       if (result != S_OK)
          throw out_buffer_exception(get_app(), result);
    }

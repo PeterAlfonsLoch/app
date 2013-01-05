@@ -85,7 +85,7 @@ namespace dynamic_source
 
 
          string         m_strServer;
-         DWORD          m_dwLast;
+         uint32_t          m_dwLast;
 
 
       };
@@ -140,7 +140,7 @@ namespace dynamic_source
 
 #endif
 
-      DWORD                                     m_dwLastRsa;
+      uint32_t                                     m_dwLastRsa;
 
 
 
@@ -152,8 +152,8 @@ namespace dynamic_source
       mutex                                     m_mutexCynceDbPool;
       script_cache *                            m_pcache;
       script_compiler *                         m_pcompiler;
-      DWORD                                     m_dwBuildTimeWindow;
-      DWORD                                     m_dwBuildTimeRandomWindow;
+      uint32_t                                     m_dwBuildTimeWindow;
+      uint32_t                                     m_dwBuildTimeRandomWindow;
 
       string_to_string_map                      m_strmapFunUserKey;
 
