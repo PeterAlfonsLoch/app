@@ -168,7 +168,7 @@ void spa_login::start_login()
 }
 
 
-DWORD WINAPI spa_login::thread_proc_login(LPVOID lpParam)
+uint32_t WINAPI spa_login::thread_proc_login(LPVOID lpParam)
 {
 
    spa_login * plogin = (spa_login *) lpParam;

@@ -15,7 +15,7 @@ simple_graphics::~simple_graphics()
 
 
 
-void fastblur(DWORD * pdata, int32_t w, int32_t h, int32_t radius)
+void fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius)
 {
    if(radius < 1)
    {

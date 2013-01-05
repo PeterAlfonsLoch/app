@@ -33,7 +33,7 @@ namespace hotplugin
       FILE *                        m_pfile;
       bool                          m_bPreCheck;
       int32_t                           m_iHealingSurface;
-      DWORD                         m_last_redraw;
+      uint32_t                         m_last_redraw;
       int32_t                           m_iEdge;
       bool                          m_bAppStarted;
       bool *                        m_pbReady;
@@ -44,12 +44,12 @@ namespace hotplugin
 
       void *                        m_pbitmap;
       void *                        m_pgraphics;
-      DWORD *                       m_pcolorref;
+      uint32_t *                       m_pcolorref;
       SIZE                          m_sizeBitmap;
 
       vsstring                      m_strStatus;
 
-      DWORD                         m_nCa2StarterStartThreadID;
+      uint32_t                         m_nCa2StarterStartThreadID;
       bool                          m_bReload;
       bool                          m_bInstalling;
       const char *                  m_pszReloadCommandLine;

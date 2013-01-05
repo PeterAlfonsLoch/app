@@ -19,7 +19,7 @@
 
 
 
-void fastblur(DWORD * pdata, int32_t w, int32_t h, int32_t radius);
+void fastblur(uint32_t * pdata, int32_t w, int32_t h, int32_t radius);
 
 
 namespace hotplugin
@@ -480,7 +480,7 @@ namespace hotplugin
          return;
 
 
-      static DWORD s_dwSync = 0;
+      static uint32_t s_dwSync = 0;
       static int32_t s_iDelta = 1984 + 1977;
       RECT rectWindow;
       get_window_rect(&rectWindow);
@@ -1037,7 +1037,7 @@ namespace hotplugin
 
 
 #ifdef WINDOWS
-         DWORD dwError = GetLastError();
+         uint32_t dwError = GetLastError();
          if(m_hfileBitmap == INVALID_HANDLE_VALUE)
 #else
          if(m_hfileBitmap == -1)

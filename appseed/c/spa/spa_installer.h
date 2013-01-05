@@ -49,13 +49,13 @@ namespace spa
 
       vsstring       m_strAppMatterList;
 
-      DWORD          m_dwDownloadCallbackLast100k;
-      DWORD          m_iDownloadCallbackColumn;
+      uint32_t          m_dwDownloadCallbackLast100k;
+      uint32_t          m_iDownloadCallbackColumn;
       uint64_t       m_dwDownloadLen;
       int32_t            m_cx;
       int32_t            m_cy;
       vsstring       m_strHost;
-      DWORD          m_dwInstallStartTime;
+      uint32_t          m_dwInstallStartTime;
 
       HINSTANCE      m_hinstance;
 #ifdef WINDOWS
@@ -81,13 +81,13 @@ namespace spa
       XNode          m_nodeStringTable;
       int32_t            m_iStart;
       simple_double_array m_daDownloadRate;
-      DWORD          m_dwDownloadTick;
+      uint32_t          m_dwDownloadTick;
       uint64_t          m_dwDownload;
       int32_t            m_iDownloadRate;
       double         m_dDownloadRate;
-      DWORD          m_dwDownloadZeroRateTick;
-      DWORD          m_dwDownloadZeroRateRemain;
-      DWORD          m_dwDownloadRemain;
+      uint32_t          m_dwDownloadZeroRateTick;
+      uint32_t          m_dwDownloadZeroRateRemain;
+      uint32_t          m_dwDownloadRemain;
       bool           m_bForceUpdatedBuild;
 
       bool           m_bOfflineInstall;
@@ -139,13 +139,13 @@ namespace spa
       installer();
       ~installer();
 
-      DWORD run();
+      uint32_t run();
 
 
       void set_progress(double dProgress);
       count download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
 
-      static DWORD WINAPI thread_proc_run(LPVOID lpParam);
+      static uint32_t WINAPI thread_proc_run(LPVOID lpParam);
 
       void PaintOpaqueBk(HDC hdc);
 
@@ -257,7 +257,7 @@ namespace spa
    };
 
 
-   CLASS_DECL_c int32_t ca2_app_install_run(const char * pszCommandLine, DWORD & dwStartError, bool bSynch);
+   CLASS_DECL_c int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch);
 
 
 } // namespace spa

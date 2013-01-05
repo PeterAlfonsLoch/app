@@ -65,7 +65,7 @@ namespace spa
 //      bool bProgress = true;
       if(i == -3)
       {
-  //       DWORD dwBufferLen = 1024 + 256;
+  //       uint32_t dwBufferLen = 1024 + 256;
          simple_http_status * pstatus = (simple_http_status *) reinterpret_cast < void * > (dwLen);
          trace("ms_get_dup failed : status : " + itoa_dup(pstatus->m_dwStatusCode) + " - " + pstatus->m_pszStatus);
       }
@@ -73,7 +73,7 @@ namespace spa
       {
          trace("ms_get_dup failed");
 #ifdef WINDOWS
-         DWORD dw = ::GetLastError();
+         uint32_t dw = ::GetLastError();
 	      wchar_t lastErrorTxt[1024];
          memset_dup(lastErrorTxt, 0, sizeof(lastErrorTxt));
 	      FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS, NULL, dw, 0, lastErrorTxt, 1024, NULL);

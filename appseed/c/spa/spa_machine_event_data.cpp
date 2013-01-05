@@ -21,7 +21,7 @@ void blob::read(HANDLE f)
 {
    if(m_pchData != NULL)
       _ca_free(m_pchData, 0);
-   DWORD dwRead;
+   uint32_t dwRead;
    ::ReadFile(f, &m_sizet, sizeof(m_sizet), &dwRead, NULL);
    if(m_sizet == 0)
    {
@@ -46,7 +46,7 @@ void blob::read(HANDLE f)
 
 void blob::write(HANDLE f)
 {
-   DWORD dwWritten;
+   uint32_t dwWritten;
    ::WriteFile(f, &m_sizet, sizeof(m_sizet), &dwWritten, NULL);
    if(m_sizet > 0)
    {
@@ -82,14 +82,14 @@ machine_event_data::fixed::fixed()
 
 void machine_event_data::read(HANDLE f)
 {
-   DWORD dwRead;
+   uint32_t dwRead;
    ::ReadFile(f, &m_fixed, sizeof(m_fixed), &dwRead, NULL);
    m_blobCommand.read(f);
 }
 
 void machine_event_data::write(HANDLE f)
 {
-   DWORD dwWritten;
+   uint32_t dwWritten;
    ::WriteFile(f, &m_fixed, sizeof(m_fixed), &dwWritten, NULL);
    m_blobCommand.write(f);
 }

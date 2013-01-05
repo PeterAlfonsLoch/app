@@ -14,6 +14,6 @@ TARGET throw_cast(SOURCE src)
 #endif
 
 
-typedef DWORD dword;
+typedef uint32_t dword;
 
 

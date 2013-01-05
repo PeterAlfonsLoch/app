@@ -9,7 +9,7 @@ CLASS_DECL_c int32_t call_async(
    const char * pszDir,
    int32_t iShow);
 
-CLASS_DECL_c DWORD call_sync(
+CLASS_DECL_c uint32_t call_sync(
    const char * pszPath,
    const char * pszParam,
    const char * pszDir,

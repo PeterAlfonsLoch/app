@@ -32,19 +32,19 @@ typedef struct _PROCESS_BASIC_INFORMATION64 {
    uint64_t  Reserved3;
 } PROCESS_BASIC_INFORMATION64;
 
-typedef NTSTATUS (NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, DWORD ProcessInformationClass, PVOID ProcessInformation, DWORD ProcessInformationLength, PDWORD ReturnLength);
+typedef NTSTATUS (NTAPI *_NtQueryInformationProcess)(HANDLE ProcessHandle, uint32_t ProcessInformationClass, PVOID ProcessInformation, uint32_t ProcessInformationLength, PDWORD ReturnLength);
 
 
-vsstring get_display_error(DWORD NTStatusMessage);
+vsstring get_display_error(uint32_t NTStatusMessage);
 
 PPEB GetPebAddress(HANDLE handleProcess)
 {
    _NtQueryInformationProcess NtQueryInformationProcess = (_NtQueryInformationProcess)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtQueryInformationProcess");
    PROCESS_BASIC_INFORMATION pbi;
    memset_dup(&pbi, 0, sizeof(pbi));
-   DWORD dwInLen = sizeof(pbi);
-   DWORD dwOutLen = 0xffffffff;
-   DWORD dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
+   uint32_t dwInLen = sizeof(pbi);
+   uint32_t dwOutLen = 0xffffffff;
+   uint32_t dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
    vsstring strError = get_display_error(dwStatus);
    if((dwStatus & 3) == 3)
    {
@@ -54,7 +54,7 @@ PPEB GetPebAddress(HANDLE handleProcess)
 }
 
 
-vsstring get_display_error(DWORD NTStatusMessage)
+vsstring get_display_error(uint32_t NTStatusMessage)
 {
 
    return get_system_error_message(NTStatusMessage);
@@ -151,7 +151,7 @@ namespace spa
    }
 
 
-   DWORD installer::run()
+   uint32_t installer::run()
    {
 
       new_progress_end(0.1);
@@ -312,7 +312,7 @@ RetryHost:
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strFile,
-                     (DWORD) strFile.length());
+                     (uint32_t) strFile.length());
                   vsstring strDisplayName;
                   strDisplayName = "ca2 fontopus votagus - ";
                   strKey = "install_filter_title_" + strId;
@@ -323,21 +323,21 @@ RetryHost:
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strDisplayName,
-                     (DWORD) strDisplayName.length());
+                     (uint32_t) strDisplayName.length());
                   ::RegSetValueEx(
                      hkey,
                      "UninstallString",
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strInstallFilter,
-                     (DWORD) strInstallFilter.length());
+                     (uint32_t) strInstallFilter.length());
                   ::RegSetValueEx(
                      hkey,
                      "ModifyString",
                      0,
                      REG_SZ,
                      (const BYTE *) (const char *) strInstallFilter,
-                     (DWORD) strInstallFilter.length());
+                     (uint32_t) strInstallFilter.length());
                }
             }
          }
@@ -629,7 +629,7 @@ RetryHost:
                   TerminateProcess(hProcess, -1);
 
                   int32_t iRetry = 49;
-                  DWORD dwExitCode = (DWORD) -1;
+                  uint32_t dwExitCode = (uint32_t) -1;
                   while(::GetExitCodeProcess(hProcess, &dwExitCode) && dwExitCode == STILL_ACTIVE && iRetry > 0)
                   {
                      Sleep(184);
@@ -666,7 +666,7 @@ RetryHost:
                COPYDATASTRUCT cds;
                memset_dup(&cds, 0, sizeof(cds));
                cds.dwData = 15111984;
-               cds.cbData = (DWORD) str.length();
+               cds.cbData = (uint32_t) str.length();
                cds.lpData = (PVOID) (const char *) str;
                ::SendMessageA(oswindowSpaBoot, WM_COPYDATA, NULL, (LPARAM) &cds);
             }
@@ -746,12 +746,12 @@ RetryHost:
    }
 
 
-   DWORD WINAPI installer::thread_proc_run(LPVOID lpParam)
+   uint32_t WINAPI installer::thread_proc_run(LPVOID lpParam)
    {
 
       installer * pinstaller = (installer *) lpParam;
 
-      DWORD dw = pinstaller->run();
+      uint32_t dw = pinstaller->run();
 
       delete pinstaller;
 
@@ -2401,7 +2401,7 @@ RetryHost:
          set_progress(((double) i * (0.5 - 0.2) / (double) iCount) + 0.2);
       }
       //set_progress(0.5);
-      //      DWORD dwStartError;
+      //      uint32_t dwStartError;
       trace("starting app-install.exe...");
 
 
@@ -2418,7 +2418,7 @@ RetryHost:
 
       /*if(m_strStart != "_set_windesk" && is_installed("application", "_set_windesk"))
       {
-      //DWORD dwStartError2;
+      //uint32_t dwStartError2;
       trace("starting windeskPackage...");
       int32_t i2 = run_ca2_application_installer("_set_windesk");
       trace("started windeskPackage");
@@ -2483,7 +2483,7 @@ RetryHost:
       }
       else
       {
-         //DWORD dwError = dwStartError;
+         //uint32_t dwError = dwStartError;
          trace("");
          trace("");
          trace("");
@@ -2865,7 +2865,7 @@ RetryHost:
 
    int32_t installer::run_uninstall_run(const char * lpCmdLine, int32_t nCmdShow)
    {
-      DWORD dwStartError = 0;
+      uint32_t dwStartError = 0;
       return ca2_app_install_run(lpCmdLine, dwStartError, true);
    }
 
@@ -3349,8 +3349,8 @@ RetryHost:
    {
       if(!m_bShowPercentage)
          return;
-      DWORD dw = ::get_tick_count();
-      DWORD dwDeltaTime = dw - m_dwDownloadTick;
+      uint32_t dw = ::get_tick_count();
+      uint32_t dwDeltaTime = dw - m_dwDownloadTick;
       if(dwDeltaTime < 184)
          return;
       m_dwDownloadTick = dw;
@@ -3380,7 +3380,7 @@ RetryHost:
       else
       {
          m_dDownloadRate = m_daDownloadRate.average();
-         m_dwDownloadRemain = (DWORD)(((m_iTotalGzLen - m_iGzLen) / 1024.0) / m_daDownloadRate.average());
+         m_dwDownloadRemain = (uint32_t)(((m_iTotalGzLen - m_iGzLen) / 1024.0) / m_daDownloadRate.average());
       }
    }
 
@@ -3490,7 +3490,7 @@ RetryHost:
    }
 
 
-   int32_t ca2_app_install_run(const char * pszCommandLine, DWORD & dwStartError, bool bSynch)
+   int32_t ca2_app_install_run(const char * pszCommandLine, uint32_t & dwStartError, bool bSynch)
    {
 #if defined(METROWIN)
       throw "todo";

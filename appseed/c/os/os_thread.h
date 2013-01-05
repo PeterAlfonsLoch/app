@@ -77,7 +77,7 @@ class CLASS_DECL_c os_thread
 public:
 
 
-   DWORD (WINAPI * m_pfn)(LPVOID);
+   uint32_t (WINAPI * m_pfn)(LPVOID);
    LPVOID           m_pv;
 
 #if defined(LINUX) || defined(MACOS)
@@ -85,7 +85,7 @@ public:
 #endif
 
 
-   os_thread(DWORD (WINAPI * lpStartAddr)(LPVOID), LPVOID);
+   os_thread(uint32_t (WINAPI * lpStartAddr)(LPVOID), LPVOID);
 
 
 
@@ -96,13 +96,13 @@ public:
 
 CLASS_DECL_c HANDLE start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int32_t iPriority = 0);
 
-CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, DWORD f, LPDWORD lpdwId);
+CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, uint32_t f, LPDWORD lpdwId);
 
 #else
 
 CLASS_DECL_c simple_event * start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int32_t iPriority = 0);
 
-CLASS_DECL_c simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, DWORD f, LPDWORD lpdwId);
+CLASS_DECL_c simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, uint32_t f, LPDWORD lpdwId);
 
 #endif
 
@@ -131,12 +131,12 @@ public:
    void begin();
 
 
-   static DWORD WINAPI proc(LPVOID lp);
+   static uint32_t WINAPI proc(LPVOID lp);
 
    virtual int32_t run();
    virtual bool on_idle();
 
-   virtual void wait_thread(DWORD dwMillis = INFINITE);
+   virtual void wait_thread(uint32_t dwMillis = INFINITE);
 
 };
 

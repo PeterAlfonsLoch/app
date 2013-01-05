@@ -634,7 +634,7 @@ install:
 
    double plugin::extract_spa_progress_rate()
    {
-      DWORD dwRead;
+      uint32_t dwRead;
       HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       double dRate = 0.0;

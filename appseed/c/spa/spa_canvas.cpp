@@ -39,8 +39,8 @@ namespace spa
 class canvas_zero
 {
 public:
-   DWORD m_dwCurZero;
-   DWORD m_dwNextZero;
+   uint32_t m_dwCurZero;
+   uint32_t m_dwNextZero;
    int32_t m_iMaxSize;
    int32_t m_iLast;
    simple_array < POINT > m_pta;
@@ -214,7 +214,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       size_t iEat = 8;
       const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
       g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
-      DWORD dwRead;
+      uint32_t dwRead;
 //      int32_t iLineMin = 5;
   //    int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
@@ -303,7 +303,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       g.select(fontBold);
       g.text_out( 10, 10 + size.cy * 3, s_strLastStatus);
-      DWORD dwRead;
+      uint32_t dwRead;
       int32_t iLineMin = 5;
       int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
