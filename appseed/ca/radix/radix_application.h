@@ -355,9 +355,9 @@ namespace radix
 
 #ifdef WINDOWSEX
       // Advanced: Help support
-      virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
-      virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);
-      virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
+      virtual void WinHelp(uint_ptr dwData, UINT nCmd = HELP_CONTEXT);
+      virtual void HtmlHelp(uint_ptr dwData, UINT nCmd = 0x000F);
+      virtual void WinHelpInternal(uint_ptr dwData, UINT nCmd = HELP_CONTEXT);
 #endif
 
    // Command Handlers

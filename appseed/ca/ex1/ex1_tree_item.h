@@ -45,8 +45,8 @@ namespace ex1
    public:
 
 
-      dword_ptr                  m_dwUser;
-      dword_ptr                  m_dwMetaData;
+      uint_ptr                  m_dwUser;
+      uint_ptr                  m_dwMetaData;
       tree_item *                m_pparent;
       tree_item *                m_pchild;
       tree_item *                m_pnext;
@@ -61,8 +61,8 @@ namespace ex1
 
       void delete_descendants();
 
-      tree_item * get_child_by_user_data(dword_ptr iUserData);
-      tree_item * find_next_by_user_data(dword_ptr iUserData);
+      tree_item * get_child_by_user_data(uint_ptr iUserData);
+      tree_item * find_next_by_user_data(uint_ptr iUserData);
       void get_children(ex1::tree_item_ptr_array &ptra);
       count get_children_count();
       count get_expandable_children_count();

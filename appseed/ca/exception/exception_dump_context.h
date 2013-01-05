@@ -28,14 +28,14 @@ public:
 #ifndef LINUX
    dump_context& operator<<(long_ptr l);
 #endif
-//   dump_context& operator<<(dword_ptr dw);
+//   dump_context& operator<<(uint_ptr dw);
    dump_context& operator<<(int32_t n);
    dump_context& operator<<(uint32_t u);
    dump_context& dumpAsHex(int_ptr i);
 #ifndef LINUX
    dump_context& dumpAsHex(long_ptr l);
 #endif
-   dump_context& dumpAsHex(dword_ptr dw);
+   dump_context& dumpAsHex(uint_ptr dw);
    dump_context& dumpAsHex(int32_t n);
    dump_context& dumpAsHex(uint32_t u);
 #elif defined(_WIN64)
@@ -50,13 +50,13 @@ public:
 #else
 #ifdef WINDOWS
    dump_context& operator<<(long_ptr l);
-   dump_context& operator<<(dword_ptr dw);
+   dump_context& operator<<(uint_ptr dw);
 #endif
    dump_context& operator<<(int_ptr n);
    dump_context& operator<<(uint_ptr u);
 #ifdef WINDOWS
    dump_context& dumpAsHex(long_ptr l);
-   dump_context& dumpAsHex(dword_ptr dw);
+   dump_context& dumpAsHex(uint_ptr dw);
 #endif
    dump_context& dumpAsHex(int_ptr n);
    dump_context& dumpAsHex(uint_ptr u);

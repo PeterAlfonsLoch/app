@@ -36,16 +36,16 @@ namespace gen
 #define _CATMAP_ENTRY_REQUIRED 2
 
 /*typedef HRESULT (WINAPI _CREATORFUNC)(void * pv, REFIID riid, LPVOID* ppv);
-typedef HRESULT (WINAPI _CREATORARGFUNC)(void * pv, REFIID riid, LPVOID* ppv, dword_ptr dw);
-typedef HRESULT (WINAPI _MODULEFUNC)(dword_ptr dw);
+typedef HRESULT (WINAPI _CREATORARGFUNC)(void * pv, REFIID riid, LPVOID* ppv, uint_ptr dw);
+typedef HRESULT (WINAPI _MODULEFUNC)(uint_ptr dw);
 typedef const char * (WINAPI _DESCRIPTIONFUNC)();
 typedef const struct _CATMAP_ENTRY* (_CATMAPFUNC)();
-typedef void (__stdcall _TERMFUNC)(dword_ptr dw);
+typedef void (__stdcall _TERMFUNC)(uint_ptr dw);
 
 struct _TERMFUNC_ELEM
 {
    _TERMFUNC* pFunc;
-   dword_ptr dw;
+   uint_ptr dw;
    _TERMFUNC_ELEM* pNext;
 };
 */
@@ -278,7 +278,7 @@ typedef _MODULE70 _MODULE;*/
 struct _INTMAP_ENTRY
 {
    const IID* piid;       // the interface id (IID)
-   dword_ptr dw;
+   uint_ptr dw;
    _CREATORARGFUNC* pFunc; //NULL:end, 1:offset, n:ptr
 };*/
 
@@ -335,7 +335,7 @@ API gen_LoadTypeLib(HINSTANCE hInstTypeLib, LPCOLESTR lpszIndex, BSTR* pbstrPath
 
 API_(DWORD) gen_GetVersion(void * pReserved);*/
 
-/*API gen_ModuleAddTermFunc(_MODULE* pModule, _TERMFUNC* pFunc, dword_ptr dw);
+/*API gen_ModuleAddTermFunc(_MODULE* pModule, _TERMFUNC* pFunc, uint_ptr dw);
 API_() gen_CallTermFunc(_MODULE* pModule);
 
 API gen_WinModuleInit(_WIN_MODULE* pWinModule);

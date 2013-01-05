@@ -40,8 +40,8 @@ namespace userbase
       bool SetEditSel(strsize nStartChar, strsize nEndChar);
 
       // for combobox item
-      dword_ptr GetItemData(index nIndex);
-      index SetItemData(index nIndex, dword_ptr dwItemData);
+      uint_ptr GetItemData(index nIndex);
+      index SetItemData(index nIndex, uint_ptr dwItemData);
       void * GetItemDataPtr(index nIndex);
       index SetItemDataPtr(index nIndex, void * pData);
       index GetLBText(index nIndex, char * lpszText);

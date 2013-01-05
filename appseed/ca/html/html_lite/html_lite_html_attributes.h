@@ -233,7 +233,7 @@ private:
 // Parsing Helpers
 public:
    // parses an attribute/value pair from the given string
-   dword_ptr parseFromStr(::lite_html_reader * preader, const char * lpszString);
+   uint_ptr parseFromStr(::lite_html_reader * preader, const char * lpszString);
 
 };
 
@@ -303,7 +303,7 @@ public:
 // Initialization
 public:
    // parses attribute/value pairs from the given string
-   dword_ptr parseFromStr(::lite_html_reader * papp, const char * lpszString, strsize iLen);
+   uint_ptr parseFromStr(::lite_html_reader * papp, const char * lpszString, strsize iLen);
 
 // Attributes
 public:

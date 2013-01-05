@@ -15,7 +15,7 @@ public:
 	{
 
 
-		dword_ptr   m_dwModule;
+		uint_ptr   m_dwModule;
 		count       m_nCategories;
 		index       m_iFirstCategory;
 

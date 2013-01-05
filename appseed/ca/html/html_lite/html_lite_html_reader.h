@@ -32,41 +32,41 @@ class CLASS_DECL_ca ILiteHTMLReaderEvents
 
 // Events
 protected:
-   virtual void BeginParse(dword_ptr dwAppData, bool &bAbort)
+   virtual void BeginParse(uint_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
-   virtual void StartTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
-   {
-      UNREFERENCED_PARAMETER(pTag);
-      UNREFERENCED_PARAMETER(dwAppData);
-      bAbort = false;
-   }
-
-   virtual void EndTag(lite_html_tag *pTag, dword_ptr dwAppData, bool &bAbort)
+   virtual void StartTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(pTag);
       UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
-   virtual void Characters(const string &rText, dword_ptr dwAppData, bool &bAbort)
+   virtual void EndTag(lite_html_tag *pTag, uint_ptr dwAppData, bool &bAbort)
+   {
+      UNREFERENCED_PARAMETER(pTag);
+      UNREFERENCED_PARAMETER(dwAppData);
+      bAbort = false;
+   }
+
+   virtual void Characters(const string &rText, uint_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(rText);
       UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
-   virtual void Comment(const string &rComment, dword_ptr dwAppData, bool &bAbort)
+   virtual void Comment(const string &rComment, uint_ptr dwAppData, bool &bAbort)
    {
       UNREFERENCED_PARAMETER(rComment);
       UNREFERENCED_PARAMETER(dwAppData);
       bAbort = false;
    }
 
-   virtual void EndParse(dword_ptr dwAppData, bool bIsAborted)
+   virtual void EndParse(uint_ptr dwAppData, bool bIsAborted)
    {
       UNREFERENCED_PARAMETER(dwAppData);
       UNREFERENCED_PARAMETER(bIsAborted);
@@ -153,7 +153,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   dword_ptr   m_dwAppData;
+   uint_ptr   m_dwAppData;
 
    /**
     * position of the seek pointer
@@ -167,7 +167,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   //dword_ptr   m_dwBufLen;
+   //uint_ptr   m_dwBufLen;
 
    /**
     * Bit-mask flags to customize events notification(s)
@@ -271,7 +271,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   dword_ptr getAppData() const
+   uint_ptr getAppData() const
       { return (m_dwAppData); }
 
    /**
@@ -284,9 +284,9 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   dword_ptr setAppData(DWORD dwNewAppData)
+   uint_ptr setAppData(DWORD dwNewAppData)
    {
-      dword_ptr   dwOldAppData = m_dwAppData;
+      uint_ptr   dwOldAppData = m_dwAppData;
       m_dwAppData = dwNewAppData;
       return (dwOldAppData);
    }
@@ -331,13 +331,13 @@ public:
 // Operations
 public:
    // parses an HTML document from the specified string
-   dword_ptr read(const string & str);
+   uint_ptr read(const string & str);
 #ifdef WINDOWS
    // parses an HTML document from a file given its HANDLE
-   dword_ptr ReadFile(HANDLE hFile);
+   uint_ptr ReadFile(HANDLE hFile);
 #else
    // parses an HTML document from a file given its file descriptor
-   dword_ptr ReadFile(int32_t fd);
+   uint_ptr ReadFile(int32_t fd);
 #endif
 
 // Helpers
@@ -346,7 +346,7 @@ protected:
 
    // parses an HTML document, and returns the
    // number of characters successfully parsed
-   virtual dword_ptr parseDocument();
+   virtual uint_ptr parseDocument();
 
    // parses an HTML comment from the buffer starting from
    // the current buffer position and returns true on sucess

@@ -345,14 +345,14 @@ namespace ca
 #ifdef WINDOWSEX
    /////////////////////////////////////////////////////////////////////////////
    // window extensions for help support
-   void window::WinHelp(dword_ptr dwData, UINT nCmd)
+   void window::WinHelp(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
       throw interface_only_exception(get_app());
    }
 
-   void window::HtmlHelp(dword_ptr dwData, UINT nCmd)
+   void window::HtmlHelp(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -366,7 +366,7 @@ namespace ca
    }
 
 #ifdef WINDOWSEX
-   void window::WinHelpInternal(dword_ptr dwData, UINT nCmd)
+   void window::WinHelpInternal(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -2055,7 +2055,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool window::OnDeviceChange(UINT, dword_ptr)
+   bool window::OnDeviceChange(UINT, uint_ptr)
    {
       throw interface_only_exception(get_app());
    }

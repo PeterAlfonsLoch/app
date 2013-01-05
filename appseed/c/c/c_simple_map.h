@@ -512,7 +512,7 @@ void simple_map< KEY,  VALUE >::Serialize(CArchive& ar)
    }
    else
    {
-      dword_ptr nNewCount = ar.ReadCount();
+      uint_ptr nNewCount = ar.ReadCount();
       while (nNewCount--)
       {
          KEY newKey[1];
@@ -1062,7 +1062,7 @@ void simple_string_map < VALUE >::Serialize(CArchive& ar)
    }
    else
    {
-      dword_ptr nNewCount = ar.ReadCount();
+      uint_ptr nNewCount = ar.ReadCount();
       while (nNewCount--)
       {
          vsstring newvsstring[1];

@@ -970,7 +970,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
       else
       {
-         dword_ptr nNewCount = ar.ReadCount();
+         uint_ptr nNewCount = ar.ReadCount();
          while (nNewCount--)
          {
             TYPE newData[1];

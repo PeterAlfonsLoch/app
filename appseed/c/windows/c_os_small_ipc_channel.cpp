@@ -196,7 +196,7 @@ bool small_ipc_rx_channel::create(const char * pszKey, const char * pszWindowPro
 
    SetTimer(m_oswindow, 198477, 84, NULL);
 
-   SetWindowLongPtr(m_oswindow, GWLP_USERDATA, (long_ptr) this);
+   SetWindowLongPtr(m_oswindow, GWLP_USERDATA, (LONG_PTR) this);
 
    m_strWindowProcModule = pszWindowProcModule;
 

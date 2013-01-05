@@ -802,7 +802,7 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, dword_ptr uiSkip, const char * pszFormat)
+   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, uint_ptr uiSkip, const char * pszFormat)
    {
 
       if(!pszFormat)
@@ -900,9 +900,9 @@ retry_get_base:
 
 
 #if defined(LINUX) || defined(METROWIN) || defined(MACOS)
-   bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, void * caller_address, const char * pszFormat)
+   bool engine::stack_trace(vsstring & str, uint_ptr uiSkip, void * caller_address, const char * pszFormat)
 #else
-   bool engine::stack_trace(vsstring & str, dword_ptr uiSkip, const char * pszFormat)
+   bool engine::stack_trace(vsstring & str, uint_ptr uiSkip, const char * pszFormat)
 #endif
    {
 
@@ -1078,7 +1078,7 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, dword_ptr uiSkip, bool bSkip, const char * pszFormat)
+   bool engine::stack_trace(vsstring & str, CONTEXT * pcontext, uint_ptr uiSkip, bool bSkip, const char * pszFormat)
    {
 
       if (!stack_first(pcontext))

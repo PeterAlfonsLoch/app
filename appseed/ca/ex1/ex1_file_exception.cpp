@@ -107,7 +107,7 @@ namespace ex1
 	      csPid.Format( _T("%d ( 0x%x )"), OpenedFileInfo.dwPID , OpenedFileInfo.dwPID );
          m_strAdd += "PID: " + csPid + " Process Name : " + stInfo.csProcess;
 	      //m_list.SetItemText( m_nCount, 2, OpenedFileInfo.lpFile );
-	      //m_list.SetItemData( m_nCount, (dword_ptr)OpenedFileInfo.hFile );
+	      //m_list.SetItemData( m_nCount, (uint_ptr)OpenedFileInfo.hFile );
 
       }
 
@@ -150,7 +150,7 @@ namespace ex1
          wstr = gen::international::utf8_to_unicode(System.dir().name(m_strFileName));
 
 #ifdef WINDOWSEX
-         GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (ulong_ptr)this);
+         GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (uint_ptr)this);
 #endif
 
          if(m_strAdd.has_char())

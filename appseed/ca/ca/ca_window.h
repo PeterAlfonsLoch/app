@@ -388,9 +388,9 @@ namespace ca
       void OnHelpFinder();    // ID_HELP_FINDER, ID_DEFAULT_HELP
       void OnHelpUsing();     // ID_HELP_USING
 #ifdef WINDOWSEX
-      virtual void WinHelp(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
-      virtual void HtmlHelp(dword_ptr dwData, UINT nCmd = 0x000F);
-      virtual void WinHelpInternal(dword_ptr dwData, UINT nCmd = HELP_CONTEXT);
+      virtual void WinHelp(uint_ptr dwData, UINT nCmd = HELP_CONTEXT);
+      virtual void HtmlHelp(uint_ptr dwData, UINT nCmd = 0x000F);
+      virtual void WinHelpInternal(uint_ptr dwData, UINT nCmd = HELP_CONTEXT);
 #endif
 
    // layout and other functions
@@ -597,7 +597,7 @@ namespace ca
       void OnSizing(UINT nSide, LPRECT lpRect);
       void OnMoving(UINT nSide, LPRECT lpRect);
       void OnCaptureChanged(::ca::window* pWnd);
-      bool OnDeviceChange(UINT nEventType, dword_ptr dwData);
+      bool OnDeviceChange(UINT nEventType, uint_ptr dwData);
 
 #ifdef WINDOWSEX
       // Overridables and other helpers (for implementation of derived classes)

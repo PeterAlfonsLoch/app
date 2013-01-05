@@ -49,7 +49,7 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, dword_ptr), void * callback_param )
+bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int32_t * piStatus, void (*callback)(void *, int32_t, uint_ptr), void * callback_param )
 {
 
    if(piStatus != NULL)
@@ -306,7 +306,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 
 
 
-vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, dword_ptr), void * callback_param, bool bProgress)
+vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int32_t, uint_ptr), void * callback_param, bool bProgress)
 {
 
    prepare_http();
@@ -441,7 +441,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
          simple_http_status status;
          status.m_dwStatusCode = dwStatusCode;
          status.m_pszStatus = pszStatus;
-         callback(callback_param, -3, (dword_ptr) (void *) &status);
+         callback(callback_param, -3, (uint_ptr) (void *) &status);
          bResults = FALSE;
       }
    }

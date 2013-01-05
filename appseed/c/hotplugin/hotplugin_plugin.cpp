@@ -1059,7 +1059,7 @@ namespace hotplugin
 
          }
 
-         dword_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
+         uint_ptr size = m_sizeBitmapData.cx * m_sizeBitmapData.cy * sizeof(COLORREF);
 
          ensure_file_size(m_hfileBitmap, size);
 #ifdef METROWIN

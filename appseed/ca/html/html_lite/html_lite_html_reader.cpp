@@ -29,7 +29,7 @@
 #include <sys/mman.h>
 #endif
 
-dword_ptr lite_html_reader::parseDocument()
+uint_ptr lite_html_reader::parseDocument()
 {
    bool   bAbort = false;         // continue parsing or abort?
    bool   bIsClosingTag = false;   // tag parsed is a closing tag?
@@ -37,8 +37,8 @@ dword_ptr lite_html_reader::parseDocument()
    string   strCharacters;         // character data
    string   strComment;            // comment data
    string   strT;               // temporary storage
-   dword_ptr   dwCharDataStart = 0L;   // starting position of character data
-   dword_ptr   dwCharDataLen = 0L;      // length of character data
+   uint_ptr   dwCharDataStart = 0L;   // starting position of character data
+   uint_ptr   dwCharDataLen = 0L;      // length of character data
    LONG   lTemp = 0L;            // temporary storage
    char   ch = 0;               // character at current buffer position
    lite_html_tag   oTag;         // tag information
@@ -212,7 +212,7 @@ LEndParse:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-dword_ptr lite_html_reader::read(const string & str)
+uint_ptr lite_html_reader::read(const string & str)
 {
 
    m_strBuffer    = str;
@@ -234,14 +234,14 @@ dword_ptr lite_html_reader::read(const string & str)
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
+uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
 {
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
 
    HANDLE   hFileMap;
    const char *   lpsz;
-   dword_ptr   nRetVal;
+   uint_ptr   nRetVal;
 
    // determine file size
    strsize dwBufLen = ::GetFileSize(hFile, NULL);
@@ -310,14 +310,14 @@ LCleanExit:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-dword_ptr lite_html_reader::ReadFile(HANDLE hFile)
+uint_ptr lite_html_reader::ReadFile(HANDLE hFile)
 {
    ASSERT(hFile != INVALID_HANDLE_VALUE);
    //ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
 
    HANDLE         hFileMap    = NULL;
    const char *   lpsz        = NULL;
-   dword_ptr      nRetVal     = 0;
+   uint_ptr      nRetVal     = 0;
 
    // determine file size
    strsize dwBufLen = ::GetFileSize(hFile, NULL);
@@ -397,13 +397,13 @@ LCleanExit:
 * @since 1.0
 * @author Gurmeet S. Kochar
 */
-dword_ptr lite_html_reader::ReadFile(int32_t fd)
+uint_ptr lite_html_reader::ReadFile(int32_t fd)
 {
 //   ASSERT(hFile != INVALID_HANDLE_VALUE);
 //   ASSERT(::GetFileType(hFile) == FILE_TYPE_DISK);
 
    char *   lpsz;
-   dword_ptr   nRetVal;
+   uint_ptr   nRetVal;
 
    strsize dwBufLen;
 

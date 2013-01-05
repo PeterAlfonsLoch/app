@@ -253,7 +253,7 @@ namespace ca
       ::user::interaction::timer_array *  m_ptimera;
       comparable_array < ::ca::ca * >     m_captraDeletePool;
       bool                                m_bAutoDelete;       // enables 'delete this' after thread termination
-      dword_ptr                           m_dwAlive;
+      uint_ptr                           m_dwAlive;
       bool                                m_bReady;
       int32_t                                 m_iReturnCode;
       ::ca::application *                 m_pappDelete;

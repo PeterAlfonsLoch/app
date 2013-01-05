@@ -47,7 +47,7 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 #ifdef DEBUG
 #define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca ::gen::trace::category name;
 #else
-#define DECLARE___TRACE_CATEGORY( name ) const dword_ptr name = 0;
+#define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
 
 

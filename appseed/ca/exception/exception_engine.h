@@ -95,13 +95,13 @@ namespace exception
 
 #ifdef WINDOWSEX
 
-      bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 0, const char * pszFormat = default_format());
-      bool stack_trace(vsstring & str, dword_ptr uiSkip = 1, const char * pszFormat = default_format());
-      bool stack_trace(vsstring & str, CONTEXT *, dword_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
+      bool stack_trace(vsstring & str, CONTEXT *, uint_ptr uiSkip = 0, const char * pszFormat = default_format());
+      bool stack_trace(vsstring & str, uint_ptr uiSkip = 1, const char * pszFormat = default_format());
+      bool stack_trace(vsstring & str, CONTEXT *, uint_ptr uiSkip = 1, bool bSkip = false, const char * pszFormat = default_format());
 
 #else
 
-      bool stack_trace(vsstring & str, dword_ptr uiSkip = 0, void * caller_address = NULL, const char * pszFormat = default_format());
+      bool stack_trace(vsstring & str, uint_ptr uiSkip = 0, void * caller_address = NULL, const char * pszFormat = default_format());
 
 #endif
 

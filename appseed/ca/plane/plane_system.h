@@ -235,8 +235,8 @@ namespace plane
 #ifdef WINDOWS
       /*      Gdiplus::GdiplusStartupInput *   m_pgdiplusStartupInput;
       Gdiplus::GdiplusStartupOutput *  m_pgdiplusStartupOutput;
-      ulong_ptr                        m_gdiplusToken;
-      ulong_ptr                        m_gdiplusHookToken;*/
+      uint_ptr                        m_gdiplusToken;
+      uint_ptr                        m_gdiplusHookToken;*/
       //static mutex                     s_mutexGdiplus;
 #endif
 

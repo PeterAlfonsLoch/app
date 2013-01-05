@@ -16,8 +16,8 @@ CLASS_DECL_c DWORD call_sync(
    int32_t iShow,
    int32_t iRetry,
    int32_t iSleep,
-   int32_t (* pfnOnRetry)(int32_t iTry, dword_ptr dwParam),
-   dword_ptr dwParam);
+   int32_t (* pfnOnRetry)(int32_t iTry, uint_ptr dwParam),
+   uint_ptr dwParam);
 
 #endif
 

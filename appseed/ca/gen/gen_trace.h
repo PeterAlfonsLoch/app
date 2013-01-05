@@ -98,12 +98,12 @@ namespace gen
          {
          }
 
-         category & operator[](dword_ptr dwCategory)
+         category & operator[](uint_ptr dwCategory)
          {
             return m_map[dwCategory];
          }
 
-         void TraceV(const char *pszFileName, int32_t nLine, dword_ptr dwCategory, UINT nLevel, const char * pszFmt, va_list args) const;
+         void TraceV(const char *pszFileName, int32_t nLine, uint_ptr dwCategory, UINT nLevel, const char * pszFmt, va_list args) const;
 
 
          /*bool LoadSettings(const char * pszFileName = NULL) const
@@ -111,7 +111,7 @@ namespace gen
          void SaveSettings(const char * pszFileName = NULL) const
          { gen_TraceSaveSettings(pszFileName);}*/
 
-         collection::map < dword_ptr, dword_ptr, category, category > m_map;
+         collection::map < uint_ptr, uint_ptr, category, category > m_map;
       };
 
 
@@ -179,8 +179,8 @@ namespace gen
 
       CLASS_DECL_ca void __cdecl __trace(const char * pszFormat, ...);
       CLASS_DECL_ca void __cdecl __trace(const wchar_t * pszFormat, ...);
-      CLASS_DECL_ca void __cdecl __trace(dword_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
-      CLASS_DECL_ca void __cdecl __trace(dword_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
+      CLASS_DECL_ca void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
+      CLASS_DECL_ca void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
 #define TRACENOTIMPL(funcname)  do { TRACE(gen::atlTraceNotImpl, 0, "gen: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
     

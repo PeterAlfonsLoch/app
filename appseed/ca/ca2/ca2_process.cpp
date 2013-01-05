@@ -49,7 +49,7 @@ namespace ca2
 
 #else
 
-      DWORD dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (dword_ptr) &onretry);
+      DWORD dwExitCode = call_sync(strBin, pszEnd, NULL, iShow, -1, 484, &process::s_on_retry, (uint_ptr) &onretry);
 
       return dwExitCode;
 
@@ -59,7 +59,7 @@ namespace ca2
 
    }
 
-   int32_t process::s_on_retry(int32_t iTry, dword_ptr dwParam)
+   int32_t process::s_on_retry(int32_t iTry, uint_ptr dwParam)
    {
       
       UNREFERENCED_PARAMETER(iTry);

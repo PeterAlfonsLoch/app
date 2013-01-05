@@ -229,7 +229,7 @@ dump_context& dump_context::operator<<(long_ptr l)
 #ifdef _WIN64
 dump_context& dump_context::operator<<(DWORD dw)
 #else
-dump_context& dump_context::operator<<(dword_ptr dw)
+dump_context& dump_context::operator<<(uint_ptr dw)
 #endif
 {
 
@@ -302,7 +302,7 @@ dump_context& dump_context::dumpAsHex(long_ptr l)
 #if defined(_WIN64) && !defined(_LP64)
 dump_context& dump_context::dumpAsHex(DWORD dw)
 #else
-dump_context& dump_context::dumpAsHex(dword_ptr dw)
+dump_context& dump_context::dumpAsHex(uint_ptr dw)
 #endif
 {
 

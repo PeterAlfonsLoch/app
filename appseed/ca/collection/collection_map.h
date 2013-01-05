@@ -885,7 +885,7 @@ namespace collection
       }
       else
       {
-         dword_ptr nNewCount = ar.ReadCount();
+         uint_ptr nNewCount = ar.ReadCount();
          while (nNewCount--)
          {
             KEY newKey[1];

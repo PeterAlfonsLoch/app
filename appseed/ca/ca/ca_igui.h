@@ -15,7 +15,7 @@ namespace ca
        oswindow          oswindowItem;
        graphics *    m_pgraphics;
        RECT          rcItem;
-       ulong_ptr     itemData;
+       uint_ptr     itemData;
    };
 
 } // namespace ca

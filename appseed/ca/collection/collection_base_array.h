@@ -1026,7 +1026,7 @@ void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
    }
    else
    {
-      dword_ptr nOldSize = ar.ReadCount();
+      uint_ptr nOldSize = ar.ReadCount();
       set_size(nOldSize, -1);
    }
    SerializeElements<TYPE>(ar, m_pData, m_nSize);

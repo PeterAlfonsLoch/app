@@ -37,7 +37,7 @@ namespace gen
       gen::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
       }*/
 
-      void trace::TraceV(const char *pszFileName, int32_t nLine, dword_ptr dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
+      void trace::TraceV(const char *pszFileName, int32_t nLine, uint_ptr dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);

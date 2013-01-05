@@ -9,7 +9,7 @@ template < class ARG_KEY >
 inline UINT HashKey(ARG_KEY key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)(((dword_ptr)key)>>4);
+   return (DWORD)(((uint_ptr)key)>>4);
 }
 
 

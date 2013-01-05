@@ -412,7 +412,7 @@ void string_list::Serialize(CArchive& ar)
    }
    else
    {
-      dword_ptr nNewCount = ar.ReadCount();
+      uint_ptr nNewCount = ar.ReadCount();
       string newData;
       while (nNewCount--)
       {

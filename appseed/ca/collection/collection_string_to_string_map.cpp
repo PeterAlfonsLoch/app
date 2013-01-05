@@ -422,7 +422,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
    }
    else
    {
-      dword_ptr nNewCount = ar.ReadCount();
+      uint_ptr nNewCount = ar.ReadCount();
       string newKey;
       string newValue;
       while (nNewCount--)

@@ -93,8 +93,8 @@ WinRegGetValueW(
 
 Gdiplus::GdiplusStartupInput *   g_pgdiplusStartupInput     = NULL;
 Gdiplus::GdiplusStartupOutput *  g_pgdiplusStartupOutput    = NULL;
-ulong_ptr                        g_gdiplusToken             = NULL;
-ulong_ptr                        g_gdiplusHookToken         = NULL;
+DWORD_PTR                        g_gdiplusToken             = NULL;
+DWORD_PTR                        g_gdiplusHookToken         = NULL;
 
 
 bool main_initialize()

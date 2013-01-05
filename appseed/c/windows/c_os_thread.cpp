@@ -16,8 +16,8 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
 
    Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
    Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   ulong_ptr gdiplusToken                                      = NULL;
-   ulong_ptr gdiplusHookToken                                  = NULL;
+   DWORD_PTR gdiplusToken                                      = NULL;
+   DWORD_PTR gdiplusHookToken                                  = NULL;
 
    //pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 

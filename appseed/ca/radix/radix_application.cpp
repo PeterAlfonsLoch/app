@@ -34,7 +34,7 @@ class CActivationContext
 {
 protected :
    HANDLE m_hCtxt;
-   ulong_ptr m_uCookie;
+   uint_ptr m_uCookie;
 
    // If pointers are NULL then we are on a platform that does not support WinSXS.
    typedef HANDLE (WINAPI * PFNCreateActCtx)(PCACTCTX);
@@ -43,10 +43,10 @@ protected :
    typedef void (WINAPI * PFNReleaseActCtx)(HANDLE);
    static PFNReleaseActCtx s_pfnReleaseActCtx;
 
-   typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, ulong_ptr*);
+   typedef bool (WINAPI * PFNActivateActCtx)(HANDLE, uint_ptr*);
    static PFNActivateActCtx s_pfnActivateActCtx;
 
-   typedef bool (WINAPI * PFNDeactivateActCtx)(DWORD, ulong_ptr);
+   typedef bool (WINAPI * PFNDeactivateActCtx)(DWORD, uint_ptr);
    static PFNDeactivateActCtx s_pfnDeactivateActCtx;
 
    static bool s_bPFNInitialized;
@@ -162,7 +162,7 @@ public:
 
       if ( m_uCookie != 0 )
       {
-         ulong_ptr uCookie = m_uCookie;
+         uint_ptr uCookie = m_uCookie;
          m_uCookie = 0;
          return ( s_pfnDeactivateActCtx(0, uCookie) == TRUE );
       }
@@ -717,7 +717,7 @@ namespace radix
    // WinHelp Helper
 
 
-   void application::WinHelp(dword_ptr dwData, UINT nCmd)
+   void application::WinHelp(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -734,7 +734,7 @@ namespace radix
    /////////////////////////////////////////////////////////////////////////////
    // HtmlHelp Helper
 
-   void application::HtmlHelp(dword_ptr dwData, UINT nCmd)
+   void application::HtmlHelp(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);
@@ -749,7 +749,7 @@ namespace radix
    }
 
 
-   void application::WinHelpInternal(dword_ptr dwData, UINT nCmd)
+   void application::WinHelpInternal(uint_ptr dwData, UINT nCmd)
    {
       UNREFERENCED_PARAMETER(dwData);
       UNREFERENCED_PARAMETER(nCmd);

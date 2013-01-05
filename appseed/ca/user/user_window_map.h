@@ -5,14 +5,14 @@ template <>
 inline UINT HashKey(int_ptr key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)(((dword_ptr)key)>>32);
+   return (DWORD)(((uint_ptr)key)>>32);
 }
 #else
 template <>
 inline UINT HashKey(int_ptr key)
 {
    // default identity hash - works for most primitive values
-   return (DWORD)(((dword_ptr)key)>>16);
+   return (DWORD)(((uint_ptr)key)>>16);
 }
 #endif
 

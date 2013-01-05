@@ -121,7 +121,7 @@ namespace userbase
       return true;
    }
 
-   dword_ptr combo_box::GetItemData(index nIndex)
+   uint_ptr combo_box::GetItemData(index nIndex)
    {
 
       //ASSERT(IsWindow());
@@ -131,7 +131,7 @@ namespace userbase
 
    }
 
-   index combo_box::SetItemData(index nIndex, dword_ptr dwItemData)
+   index combo_box::SetItemData(index nIndex, uint_ptr dwItemData)
    {
 
       //ASSERT(IsWindow());
@@ -156,7 +156,7 @@ namespace userbase
 
       //ASSERT(IsWindow());
 
-      //return SetItemData(nIndex, (dword_ptr)(LPVOID)pData);
+      //return SetItemData(nIndex, (uint_ptr)(LPVOID)pData);
 
       return -1;
 

@@ -16,8 +16,8 @@ namespace ex1
       manual_reset_event   _thereAreBytesToReadEvent;
       manual_reset_event   _readStreamIsClosedEvent;
       byte *               _data;
-      dword_ptr            _size;
-      dword_ptr            ProcessedSize;
+      uint_ptr            _size;
+      uint_ptr            ProcessedSize;
 
 
       stream_binder(::ca::application * papp);

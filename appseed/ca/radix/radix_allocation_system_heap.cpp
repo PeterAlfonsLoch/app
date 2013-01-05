@@ -47,7 +47,7 @@ CLASS_DECL_ca void * system_heap_alloc(size_t size)
 
    *((size_t *)&((DWORD *)p)[1]) = size;
 
-   int32_t iMod = ((dword_ptr)p) % 4;
+   int32_t iMod = ((uint_ptr)p) % 4;
 
    p[3 - iMod] = (uint8_t) (4 - iMod);
 
@@ -93,7 +93,7 @@ CLASS_DECL_ca void * system_heap_realloc(void * pvoidOld, size_t size)
       // memset(&p[sizeOld], 0, ((size + 4 + 3) & ~3) - sizeOld);  // let constructors and algorithms initialize... "random initialization" of not initialized :-> C-:!!
    }
    ((DWORD *)p)[0] = 0;
-   iMod = ((dword_ptr)p) % 4;
+   iMod = ((uint_ptr)p) % 4;
    *((size_t *)&((DWORD *)p)[1]) = size;
    p[3 - iMod] = (uint8_t) (4 - iMod);
    return &p[4 + sizeof(size_t) - iMod];

@@ -54,7 +54,7 @@ namespace ca2
       bool launch(const char * pszCmdLine, int32_t iShow = SW_HIDE);
 
 
-      static int32_t s_on_retry(int32_t iTry, dword_ptr dwParam);
+      static int32_t s_on_retry(int32_t iTry, uint_ptr dwParam);
 
 
    };

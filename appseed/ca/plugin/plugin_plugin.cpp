@@ -30,7 +30,7 @@ namespace ex1
 namespace plugin
 {
 
-   void ms_get_dup_status_callback(void * p, int32_t i, dword_ptr dw);
+   void ms_get_dup_status_callback(void * p, int32_t i, uint_ptr dw);
    void my_se_translator_function(uint32_t, struct _EXCEPTION_POINTERS* );
 
 
@@ -413,7 +413,7 @@ namespace plugin
    }
 
 
-   void ms_get_dup_status_callback(void * p, int32_t i, dword_ptr dw)
+   void ms_get_dup_status_callback(void * p, int32_t i, uint_ptr dw)
    {
 
       if(i == -3)

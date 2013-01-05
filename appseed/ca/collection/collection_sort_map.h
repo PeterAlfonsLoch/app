@@ -463,7 +463,7 @@ namespace collection
       if(ppair == NULL)
          return m_ptra.get_size();
 
-      if(ppair == (pair *) (dword_ptr) -1)
+      if(ppair == (pair *) (uint_ptr) -1)
          return 0;
 
       return m_ptra.find_first(ppair);
@@ -592,7 +592,7 @@ namespace collection
 
       index iFirst;
 
-      if(first.m_ppair == (pair *) (dword_ptr) (-1))
+      if(first.m_ppair == (pair *) (uint_ptr) (-1))
          iFirst = 0;
       else
          iFirst = m_ptra.find(first.m_ppair);
