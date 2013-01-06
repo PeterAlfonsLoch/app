@@ -39,7 +39,7 @@
  * The OC_ILOG_32() or OC_ILOGNZ_32() macros may be able to use a builtin
  *  function instead, which should be faster.
  */
-int32_t oc_ilog32(ogg_uint32_t _v);
+int32_t oc_ilog32(uint32_t _v);
 /**
  * oc_ilog64 - Integer binary logarithm of a 64-bit value.
  * @_v: A 64-bit value.
@@ -49,7 +49,7 @@ int32_t oc_ilog32(ogg_uint32_t _v);
  * The OC_ILOG_64() or OC_ILOGNZ_64() macros may be able to use a builtin
  *  function instead, which should be faster.
  */
-int32_t oc_ilog64(ogg_int64_t _v);
+int32_t oc_ilog64(int64_t _v);
 
 
 # if defined(OC_CLZ32)
@@ -120,7 +120,7 @@ int32_t oc_ilog64(ogg_int64_t _v);
  *  used on values that can change at runtime, as it operates via exhaustive
  *  search.
  */
-# define OC_STATIC_ILOG_32(_v) (OC_STATIC_ILOG5((ogg_uint32_t)(_v)))
+# define OC_STATIC_ILOG_32(_v) (OC_STATIC_ILOG5((uint32_t)(_v)))
 /**
  * OC_STATIC_ILOG_64 - The integer logarithm of an (uint32_t, 64-bit) constant.
  * @_v: A non-negative 64-bit constant.
@@ -131,11 +131,11 @@ int32_t oc_ilog64(ogg_int64_t _v);
  *  used on values that can change at runtime, as it operates via exhaustive
  *  search.
  */
-# define OC_STATIC_ILOG_64(_v) (OC_STATIC_ILOG6((ogg_int64_t)(_v)))
+# define OC_STATIC_ILOG_64(_v) (OC_STATIC_ILOG6((int64_t)(_v)))
 
-#define OC_Q57(_v) ((ogg_int64_t)(_v)<<57)
+#define OC_Q57(_v) ((int64_t)(_v)<<57)
 
-ogg_int64_t oc_bexp64(ogg_int64_t _z);
-ogg_int64_t oc_blog64(ogg_int64_t _w);
+int64_t oc_bexp64(int64_t _z);
+int64_t oc_blog64(int64_t _w);
 
 #endif

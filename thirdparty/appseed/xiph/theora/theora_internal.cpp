@@ -237,7 +237,7 @@ const char *th_version_string(){
   return OC_VENDOR_STRING;
 }
 
-ogg_uint32_t th_version_number(){
+uint32_t th_version_number(){
   return (TH_VERSION_MAJOR<<16)+(TH_VERSION_MINOR<<8)+TH_VERSION_SUB;
 }
 

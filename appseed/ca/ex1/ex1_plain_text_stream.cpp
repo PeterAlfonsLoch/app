@@ -19,7 +19,7 @@ namespace ex1
 
       fmtflags fmtflagsOld = m_fmtflags;
 
-      m_fmtflags = (fmtflags) ((uint) m_fmtflags | (uint) flagsAdd);
+      m_fmtflags = (fmtflags) ((uint32_t) m_fmtflags | (uint32_t) flagsAdd);
 
       return fmtflagsOld;
 
@@ -30,7 +30,7 @@ namespace ex1
 
       fmtflags fmtflagsOld = m_fmtflags;
 
-      m_fmtflags = (fmtflags) (((uint) m_fmtflags | (uint) flagsAdd) & (~(uint)flagsRemove));
+      m_fmtflags = (fmtflags) (((uint32_t) m_fmtflags | (uint32_t) flagsAdd) & (~(uint32_t)flagsRemove));
 
       return fmtflagsOld;
 

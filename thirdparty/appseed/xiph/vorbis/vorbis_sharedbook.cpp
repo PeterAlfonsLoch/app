@@ -64,16 +64,16 @@ float _float32_unpack(long val){
 /* given a list of word lengths, generate a list of codewords.  Works
    for length ordered or unordered, always assigns the lowest valued
    codewords first.  Extended to handle unused entries (length 0) */
-ogg_uint32_t *_make_words(long *l,long n,long sparsecount){
+uint32_t *_make_words(long *l,long n,long sparsecount){
   long i,j,count=0;
-  ogg_uint32_t marker[33];
-  ogg_uint32_t *r = (ogg_uint32_t *) _ogg_malloc((sparsecount?sparsecount:n)*sizeof(*r));
+  uint32_t marker[33];
+  uint32_t *r = (uint32_t *) _ogg_malloc((sparsecount?sparsecount:n)*sizeof(*r));
   memset(marker,0,sizeof(marker));
 
   for(i=0;i<n;i++){
     long length=l[i];
     if(length>0){
-      ogg_uint32_t entry=marker[length];
+      uint32_t entry=marker[length];
 
       /* when we claim a node for an entry, we also claim the nodes
          below it (pruning off the imagined tree that may have dangled
@@ -135,7 +135,7 @@ ogg_uint32_t *_make_words(long *l,long n,long sparsecount){
   /* bitreverse the words because our bitwise packer/unpacker is LSb
      endian */
   for(i=0,count=0;i<n;i++){
-    ogg_uint32_t temp=0;
+    uint32_t temp=0;
     for(j=0;j<l[i];j++){
       temp<<=1;
       temp|=(r[count]>>j)&1;
@@ -290,7 +290,7 @@ int32_t vorbis_book_init_encode(codebook *c,const static_codebook *s){
   return(0);
 }
 
-static ogg_uint32_t bitreverse(ogg_uint32_t x){
+static uint32_t bitreverse(uint32_t x){
   x=    ((x>>16)&0x0000ffffUL) | ((x<<16)&0xffff0000UL);
   x=    ((x>> 8)&0x00ff00ffUL) | ((x<< 8)&0xff00ff00UL);
   x=    ((x>> 4)&0x0f0f0f0fUL) | ((x<< 4)&0xf0f0f0f0UL);
@@ -299,8 +299,8 @@ static ogg_uint32_t bitreverse(ogg_uint32_t x){
 }
 
 static int32_t sort32a(const void *a,const void *b){
-  return ( **(ogg_uint32_t **)a>**(ogg_uint32_t **)b)-
-    ( **(ogg_uint32_t **)a<**(ogg_uint32_t **)b);
+  return ( **(uint32_t **)a>**(uint32_t **)b)-
+    ( **(uint32_t **)a<**(uint32_t **)b);
 }
 
 /* decode codebook arrangement is more heavily optimized than encode */
@@ -331,8 +331,8 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
     by sorted bitreversed codeword to allow treeless decode. */
 
     /* perform sort */
-    ogg_uint32_t *codes=_make_words(s->lengthlist,s->entries,c->used_entries);
-    ogg_uint32_t **codep= (ogg_uint32_t **) alloca(sizeof(*codep)*n);
+    uint32_t *codes=_make_words(s->lengthlist,s->entries,c->used_entries);
+    uint32_t **codep= (uint32_t **) alloca(sizeof(*codep)*n);
 
     if(codes==NULL)goto err_out;
 
@@ -344,7 +344,7 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
     qsort(codep,n,sizeof(*codep),sort32a);
 
     sortindex= (int32_t *) alloca(n*sizeof(*sortindex));
-    c->codelist= (ogg_uint32_t *) _ogg_malloc(n*sizeof(*c->codelist));
+    c->codelist= (uint32_t *) _ogg_malloc(n*sizeof(*c->codelist));
     /* the index is a reverse index */
     for(i=0;i<n;i++){
       int32_t position= (int32_t) (codep[i]-codes);
@@ -373,14 +373,14 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
     if(c->dec_firsttablen>8)c->dec_firsttablen=8;
 
     tabn=1<<c->dec_firsttablen;
-    c->dec_firsttable= (ogg_uint32_t *) _ogg_calloc(tabn,sizeof(*c->dec_firsttable));
+    c->dec_firsttable= (uint32_t *) _ogg_calloc(tabn,sizeof(*c->dec_firsttable));
     c->dec_maxlength=0;
 
     for(i=0;i<n;i++){
       if(c->dec_maxlength<c->dec_codelengths[i])
         c->dec_maxlength=c->dec_codelengths[i];
       if(c->dec_codelengths[i]<=c->dec_firsttablen){
-        ogg_uint32_t orig=bitreverse(c->codelist[i]);
+        uint32_t orig=bitreverse(c->codelist[i]);
         for(j=0;j<(1<<(c->dec_firsttablen-c->dec_codelengths[i]));j++)
           c->dec_firsttable[orig|(j<<c->dec_codelengths[i])]=i+1;
       }
@@ -389,11 +389,11 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
     /* now fill in 'unused' entries in the firsttable with hi/lo search
        hints for the non-direct-hits */
     {
-      ogg_uint32_t mask=0xfffffffeUL<<(31-c->dec_firsttablen);
+      uint32_t mask=0xfffffffeUL<<(31-c->dec_firsttablen);
       long lo=0,hi=0;
 
       for(i=0;i<tabn;i++){
-        ogg_uint32_t word=i<<(32-c->dec_firsttablen);
+        uint32_t word=i<<(32-c->dec_firsttablen);
         if(c->dec_firsttable[bitreverse(word)]==0){
           while((lo+1)<n && c->codelist[lo+1]<=word)lo++;
           while(    hi<n && word>=(c->codelist[hi]&mask))hi++;

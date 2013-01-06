@@ -18,12 +18,12 @@ static int32_t theora_encode_control(theora_state *_te,int32_t _req,
    _req,_buf,_buf_sz);
 }
 
-static ogg_int64_t theora_encode_granule_frame(theora_state *_te,
- ogg_int64_t _gp){
+static int64_t theora_encode_granule_frame(theora_state *_te,
+ int64_t _gp){
   return th_granule_frame(((th_api_wrapper *)_te->i->codec_setup)->encode,_gp);
 }
 
-static double theora_encode_granule_time(theora_state *_te,ogg_int64_t _gp){
+static double theora_encode_granule_time(theora_state *_te,int64_t _gp){
   return th_granule_time(((th_api_wrapper *)_te->i->codec_setup)->encode,_gp);
 }
 
@@ -37,7 +37,7 @@ static const oc_state_dispatch_vtable OC_ENC_DISPATCH_VTBL={
 int32_t theora_encode_init(theora_state *_te,theora_info *_ci){
   th_api_info *apiinfo;
   th_info      info;
-  ogg_uint32_t keyframe_frequency_force;
+  uint32_t keyframe_frequency_force;
   /*Allocate our own combined API wrapper/theora_info struct.
     We put them both in one malloc'd block so that when the API wrapper is
      freed, the info struct goes with it.

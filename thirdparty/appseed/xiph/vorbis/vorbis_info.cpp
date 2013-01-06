@@ -635,7 +635,7 @@ int32_t vorbis_analysis_headerout(vorbis_dsp_state *v,
   return(ret);
 }
 
-double vorbis_granule_time(vorbis_dsp_state *v,ogg_int64_t granulepos){
+double vorbis_granule_time(vorbis_dsp_state *v,int64_t granulepos){
   if(granulepos == -1) return -1;
 
   /* We're not guaranteed a 64 bit uint32_t type everywhere, so we
@@ -643,7 +643,7 @@ double vorbis_granule_time(vorbis_dsp_state *v,ogg_int64_t granulepos){
   if(granulepos>=0){
     return((double)granulepos/v->vi->rate);
   }else{
-    ogg_int64_t granuleoff=0xffffffff;
+    int64_t granuleoff=0xffffffff;
     granuleoff<<=31;
     granuleoff|=0x7ffffffff;
     return(((double)granulepos+2+granuleoff+granuleoff)/v->vi->rate);

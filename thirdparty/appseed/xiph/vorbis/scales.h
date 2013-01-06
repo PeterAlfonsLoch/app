@@ -43,7 +43,7 @@ BEGIN_EXTERN_C
 
 static inline float unitnorm(float x){
   union {
-    ogg_uint32_t i;
+    uint32_t i;
     float f;
   } ix;
   ix.f = x;
@@ -54,7 +54,7 @@ static inline float unitnorm(float x){
 /* Segher was off (too high) by ~ .3 decibel.  Center the conversion correctly. */
 static inline float todB(const float *x){
   union {
-    ogg_uint32_t i;
+    uint32_t i;
     float f;
   } ix;
   ix.f = *x;

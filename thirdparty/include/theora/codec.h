@@ -211,20 +211,20 @@ typedef struct{
   /*@}*/
   /**The encoded frame width.
    * This must be a multiple of 16, and less than 1048576.*/
-  ogg_uint32_t  frame_width;
+  uint32_t  frame_width;
   /**The encoded frame height.
    * This must be a multiple of 16, and less than 1048576.*/
-  ogg_uint32_t  frame_height;
+  uint32_t  frame_height;
   /**The displayed picture width.
    * This must be no larger than width.*/
-  ogg_uint32_t  pic_width;
+  uint32_t  pic_width;
   /**The displayed picture height.
    * This must be no larger than height.*/
-  ogg_uint32_t  pic_height;
+  uint32_t  pic_height;
   /**The X offset of the displayed picture.
    * This must be no larger than #frame_width-#pic_width or 255, whichever is
    *  smaller.*/
-  ogg_uint32_t  pic_x;
+  uint32_t  pic_x;
   /**The Y offset of the displayed picture.
    * This must be no larger than #frame_height-#pic_height, and
    *  #frame_height-#pic_height-#pic_y must be no larger than 255.
@@ -232,13 +232,13 @@ typedef struct{
    *  specified from the top of the image for consistency with the standard
    *  graphics left-handed coordinate system used throughout this API, while
    *  it is stored in the encoded stream as an offset from the bottom.*/
-  ogg_uint32_t  pic_y;
+  uint32_t  pic_y;
   /**\name Frame rate
    * The frame rate, as a fraction.
    * If either is 0, the frame rate is undefined.*/
   /*@{*/
-  ogg_uint32_t  fps_numerator;
-  ogg_uint32_t  fps_denominator;
+  uint32_t  fps_numerator;
+  uint32_t  fps_denominator;
   /*@}*/
   /**\name Aspect ratio
    * The aspect ratio of the pixels.
@@ -249,8 +249,8 @@ typedef struct{
    *  aspect_numerator*pic_width/(aspect_denominator*pic_height).
    * \endcode */
   /*@{*/
-  ogg_uint32_t  aspect_numerator;
-  ogg_uint32_t  aspect_denominator;
+  uint32_t  aspect_numerator;
+  uint32_t  aspect_denominator;
   /*@}*/
   /**The color space.*/
   th_colorspace colorspace;
@@ -408,9 +408,9 @@ typedef struct{
    This is not required by the decoder.*/
 typedef struct{
   /**The DC scaling factors.*/
-  ogg_uint16_t    dc_scale[64];
+  uint16_t    dc_scale[64];
   /**The AC scaling factors.*/
-  ogg_uint16_t    ac_scale[64];
+  uint16_t    ac_scale[64];
   /**The loop filter limit values.*/
   uchar   loop_filter_limits[64];
   /**The \a qi ranges for each \a ci and \a pli.*/
@@ -438,7 +438,7 @@ typedef struct{
 typedef struct{
   /**The bit pattern for the code, with the LSbit of the pattern aligned in
    *   the LSbit of the word.*/
-  ogg_uint32_t pattern;
+  uint32_t pattern;
   /**The number of bits in the code.
    * This must be between 0 and 32, inclusive.*/
   int32_t          nbits;
@@ -463,7 +463,7 @@ extern const char *th_version_string();
  * (VERSION_MAJOR<<16)+(VERSION_MINOR<<8)+(VERSION_SUBMINOR)
  * \endcode
  * \return the version number.*/
-extern ogg_uint32_t th_version_number();
+extern uint32_t th_version_number();
 /**Converts a granule position to an absolute frame index, starting at
  *  <tt>0</tt>.
  * The granule position is interpreted in the context of a given
@@ -473,7 +473,7 @@ extern ogg_uint32_t th_version_number();
  * \param _granpos The granule position to convert.
  * \returns The absolute frame index corresponding to \a _granpos.
  * \retval -1 The given granule position was invalid (i.e. negative).*/
-extern ogg_int64_t th_granule_frame(void *_encdec,ogg_int64_t _granpos);
+extern int64_t th_granule_frame(void *_encdec,int64_t _granpos);
 /**Converts a granule position to an absolute time in seconds.
  * The granule position is interpreted in the context of a given
  *  #th_enc_ctx or #th_dec_ctx handle (either will suffice).
@@ -485,7 +485,7 @@ extern ogg_int64_t th_granule_frame(void *_encdec,ogg_int64_t _granpos);
  *          be displayed.
  *         It is not the presentation time.
  * \retval -1 The given granule position was invalid (i.e. negative).*/
-extern double th_granule_time(void *_encdec,ogg_int64_t _granpos);
+extern double th_granule_time(void *_encdec,int64_t _granpos);
 /**Determines whether a Theora packet is a header or not.
  * This function does no verification beyond checking the packet type bit, so
  *  it should not be used for bitstream identification; use

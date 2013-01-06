@@ -155,7 +155,7 @@ static vorbis_info_mapping *mapping0_unpack(vorbis_info *vi,oggpack_buffer *opb)
 
 #if 0
 static long seq=0;
-static ogg_int64_t total=0;
+static int64_t total=0;
 static float FLOOR1_fromdB_LOOKUP[256]={
   1.0649863e-07F, 1.1341951e-07F, 1.2079015e-07F, 1.2863978e-07F,
   1.3699951e-07F, 1.4590251e-07F, 1.5538408e-07F, 1.6548181e-07F,

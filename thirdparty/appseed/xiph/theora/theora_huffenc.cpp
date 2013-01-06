@@ -811,7 +811,7 @@ const th_huff_code TH_VP31_HUFF_CODES[TH_NHUFFMAN_TABLES][TH_NDCT_TOKENS]={
 typedef struct{
   /*The bit pattern, left-shifted so that the MSB of all patterns is
      aligned.*/
-  ogg_uint32_t pattern;
+  uint32_t pattern;
   /*The amount the bit pattern was shifted.*/
   int32_t          shift;
   /*The token this bit pattern represents.*/
@@ -825,8 +825,8 @@ typedef struct{
   _c2: The second entry to compare.
   Return: <0 if _c1<_c2, >0 if _c1>_c2.*/
 static int32_t huff_entry_cmp(const void *_c1,const void *_c2){
-  ogg_uint32_t b1;
-  ogg_uint32_t b2;
+  uint32_t b1;
+  uint32_t b2;
   b1=((const oc_huff_entry *)_c1)->pattern;
   b2=((const oc_huff_entry *)_c2)->pattern;
   return b1<b2?-1:b1>b2?1:0;

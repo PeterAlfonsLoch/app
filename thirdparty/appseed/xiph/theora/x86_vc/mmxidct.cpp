@@ -32,22 +32,22 @@
 
 
 /*A table of constants used by the MMX routines.*/
-static const __declspec(align(16))ogg_uint16_t
+static const __declspec(align(16))uint16_t
  OC_IDCT_CONSTS[(7+1)*4]={
-  (ogg_uint16_t)OC_C1S7,(ogg_uint16_t)OC_C1S7,
-  (ogg_uint16_t)OC_C1S7,(ogg_uint16_t)OC_C1S7,
-  (ogg_uint16_t)OC_C2S6,(ogg_uint16_t)OC_C2S6,
-  (ogg_uint16_t)OC_C2S6,(ogg_uint16_t)OC_C2S6,
-  (ogg_uint16_t)OC_C3S5,(ogg_uint16_t)OC_C3S5,
-  (ogg_uint16_t)OC_C3S5,(ogg_uint16_t)OC_C3S5,
-  (ogg_uint16_t)OC_C4S4,(ogg_uint16_t)OC_C4S4,
-  (ogg_uint16_t)OC_C4S4,(ogg_uint16_t)OC_C4S4,
-  (ogg_uint16_t)OC_C5S3,(ogg_uint16_t)OC_C5S3,
-  (ogg_uint16_t)OC_C5S3,(ogg_uint16_t)OC_C5S3,
-  (ogg_uint16_t)OC_C6S2,(ogg_uint16_t)OC_C6S2,
-  (ogg_uint16_t)OC_C6S2,(ogg_uint16_t)OC_C6S2,
-  (ogg_uint16_t)OC_C7S1,(ogg_uint16_t)OC_C7S1,
-  (ogg_uint16_t)OC_C7S1,(ogg_uint16_t)OC_C7S1,
+  (uint16_t)OC_C1S7,(uint16_t)OC_C1S7,
+  (uint16_t)OC_C1S7,(uint16_t)OC_C1S7,
+  (uint16_t)OC_C2S6,(uint16_t)OC_C2S6,
+  (uint16_t)OC_C2S6,(uint16_t)OC_C2S6,
+  (uint16_t)OC_C3S5,(uint16_t)OC_C3S5,
+  (uint16_t)OC_C3S5,(uint16_t)OC_C3S5,
+  (uint16_t)OC_C4S4,(uint16_t)OC_C4S4,
+  (uint16_t)OC_C4S4,(uint16_t)OC_C4S4,
+  (uint16_t)OC_C5S3,(uint16_t)OC_C5S3,
+  (uint16_t)OC_C5S3,(uint16_t)OC_C5S3,
+  (uint16_t)OC_C6S2,(uint16_t)OC_C6S2,
+  (uint16_t)OC_C6S2,(uint16_t)OC_C6S2,
+  (uint16_t)OC_C7S1,(uint16_t)OC_C7S1,
+  (uint16_t)OC_C7S1,(uint16_t)OC_C7S1,
       8,    8,    8,    8
 };
 

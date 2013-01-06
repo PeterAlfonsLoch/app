@@ -19,9 +19,9 @@ typedef oc_iquant        oc_iquant_table[64];
 
 
 void oc_quant_params_pack(oggpack_buffer *_opb,const th_quant_info *_qinfo);
-void oc_enquant_tables_init(ogg_uint16_t *_dequant[64][3][2],
+void oc_enquant_tables_init(uint16_t *_dequant[64][3][2],
  oc_iquant *_enquant[64][3][2],const th_quant_info *_qinfo);
-void oc_enquant_qavg_init(ogg_int64_t _log_qavg[2][64],
- ogg_uint16_t *_dequant[64][3][2],int32_t _pixel_fmt);
+void oc_enquant_qavg_init(int64_t _log_qavg[2][64],
+ uint16_t *_dequant[64][3][2],int32_t _pixel_fmt);
 
 #endif

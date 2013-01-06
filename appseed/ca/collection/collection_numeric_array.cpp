@@ -496,7 +496,7 @@ uint_array::uint_array()
 }
 
 uint_array::uint_array(const uint_array & base_array) :
-   numeric_array < uint > (base_array)
+   numeric_array < uint32_t > (base_array)
 {
 }
 

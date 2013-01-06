@@ -21,7 +21,7 @@
 #include "framework.h"
 
 #if !defined(OC_X86_ASM)
-static ogg_uint32_t oc_cpu_flags_get(){
+static uint32_t oc_cpu_flags_get(){
   return 0;
 }
 #else
@@ -55,7 +55,7 @@ static ogg_uint32_t oc_cpu_flags_get(){
 /*Visual C cpuid helper function.
   For VS2005 we could as well use the _cpuid builtin, but that wouldn't work
    for VS2003 users, so we do it in inline assembler.*/
-static void oc_cpuid_helper(ogg_uint32_t _cpu_info[4],ogg_uint32_t _op){
+static void oc_cpuid_helper(uint32_t _cpu_info[4],uint32_t _op){
   _asm{
     mov eax,[_op]
     mov esi,_cpu_info
@@ -69,7 +69,7 @@ static void oc_cpuid_helper(ogg_uint32_t _cpu_info[4],ogg_uint32_t _op){
 
 #  define cpuid(_op,_eax,_ebx,_ecx,_edx) \
   do{ \
-    ogg_uint32_t cpu_info[4]; \
+    uint32_t cpu_info[4]; \
     oc_cpuid_helper(cpu_info,_op); \
     (_eax)=cpu_info[0]; \
     (_ebx)=cpu_info[1]; \
@@ -77,7 +77,7 @@ static void oc_cpuid_helper(ogg_uint32_t _cpu_info[4],ogg_uint32_t _op){
     (_edx)=cpu_info[3]; \
   }while(0)
 
-static void oc_detect_cpuid_helper(ogg_uint32_t *_eax,ogg_uint32_t *_ebx){
+static void oc_detect_cpuid_helper(uint32_t *_eax,uint32_t *_ebx){
   _asm{
     pushfd
     pushfd
@@ -97,8 +97,8 @@ static void oc_detect_cpuid_helper(ogg_uint32_t *_eax,ogg_uint32_t *_ebx){
 }
 # endif
 
-static ogg_uint32_t oc_parse_intel_flags(ogg_uint32_t _edx,ogg_uint32_t _ecx){
-  ogg_uint32_t flags;
+static uint32_t oc_parse_intel_flags(uint32_t _edx,uint32_t _ecx){
+  uint32_t flags;
   /*If there isn't even MMX, give up.*/
   if(!(_edx&0x00800000))return 0;
   flags=OC_CPU_X86_MMX;
@@ -111,8 +111,8 @@ static ogg_uint32_t oc_parse_intel_flags(ogg_uint32_t _edx,ogg_uint32_t _ecx){
   return flags;
 }
 
-static ogg_uint32_t oc_parse_amd_flags(ogg_uint32_t _edx,ogg_uint32_t _ecx){
-  ogg_uint32_t flags;
+static uint32_t oc_parse_amd_flags(uint32_t _edx,uint32_t _ecx){
+  uint32_t flags;
   /*If there isn't even MMX, give up.*/
   if(!(_edx&0x00800000))return 0;
   flags=OC_CPU_X86_MMX;
@@ -124,12 +124,12 @@ static ogg_uint32_t oc_parse_amd_flags(ogg_uint32_t _edx,ogg_uint32_t _ecx){
   return flags;
 }
 
-static ogg_uint32_t oc_cpu_flags_get(){
-  ogg_uint32_t flags;
-  ogg_uint32_t eax;
-  ogg_uint32_t ebx;
-  ogg_uint32_t ecx;
-  ogg_uint32_t edx;
+static uint32_t oc_cpu_flags_get(){
+  uint32_t flags;
+  uint32_t eax;
+  uint32_t ebx;
+  uint32_t ecx;
+  uint32_t edx;
 # if !defined(__amd64__)&&!defined(__x86_64__)
   /*Not all x86-32 chips support cpuid, so we have to check.*/
 #  if !defined(_MSC_VER)

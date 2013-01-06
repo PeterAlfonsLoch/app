@@ -467,7 +467,7 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
       }
     }
   }
-  embs[_mbi].error[_frame]=(ogg_uint16_t)best_err;
+  embs[_mbi].error[_frame]=(uint16_t)best_err;
   candx=best_vec[0];
   candy=best_vec[1];
   embs[_mbi].satd[_frame]=oc_mcenc_ysatd_check_mbcandidate_fullpel(_enc,

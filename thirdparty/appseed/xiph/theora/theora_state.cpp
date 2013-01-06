@@ -303,7 +303,7 @@ static void oc_state_border_init(oc_theora_state *_state){
         /*Otherwise, check to see if it straddles the border.*/
         else if(x<crop_x0&&crop_x0<x+8||x<crop_xf&&crop_xf<x+8||
          y<crop_y0&&crop_y0<y+8||y<crop_yf&&crop_yf<y+8){
-          ogg_int64_t mask;
+          int64_t mask;
           int32_t         npixels;
           int32_t         i;
           mask=npixels=0;
@@ -311,7 +311,7 @@ static void oc_state_border_init(oc_theora_state *_state){
             int32_t j;
             for(j=0;j<8;j++){
               if(x+j>=crop_x0&&x+j<crop_xf&&y+i>=crop_y0&&y+i<crop_yf){
-                mask|=(ogg_int64_t)1<<(i<<3|j);
+                mask|=(int64_t)1<<(i<<3|j);
                 npixels++;
               }
             }
@@ -854,13 +854,13 @@ int32_t oc_state_get_mv_offsets(const oc_theora_state *_state,int32_t _offsets[2
 }
 
 void oc_state_frag_recon(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant){
   _state->opt_vtable.state_frag_recon(_state,_fragi,_pli,_dct_coeffs,
    _last_zzi,_dc_quant);
 }
 
 void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant){
   uchar *dst;
   ptrdiff_t      frag_buf_off;
   int32_t            ystride;
@@ -1066,8 +1066,8 @@ int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
   uchar *y;
   uchar *u;
   uchar *v;
-  ogg_int64_t    iframe;
-  ogg_int64_t    pframe;
+  int64_t    iframe;
+  int64_t    pframe;
   int32_t            y_stride;
   int32_t            u_stride;
   int32_t            v_stride;
@@ -1186,12 +1186,12 @@ int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
 
 
 
-ogg_int64_t th_granule_frame(void *_encdec,ogg_int64_t _granpos){
+int64_t th_granule_frame(void *_encdec,int64_t _granpos){
   oc_theora_state *state;
   state=(oc_theora_state *)_encdec;
   if(_granpos>=0){
-    ogg_int64_t iframe;
-    ogg_int64_t pframe;
+    int64_t iframe;
+    int64_t pframe;
     iframe=_granpos>>state->info.keyframe_granule_shift;
     pframe=_granpos-(iframe<<state->info.keyframe_granule_shift);
     /*3.2.0 streams store the frame index in the granule position.
@@ -1203,7 +1203,7 @@ ogg_int64_t th_granule_frame(void *_encdec,ogg_int64_t _granpos){
   return -1;
 }
 
-double th_granule_time(void *_encdec,ogg_int64_t _granpos){
+double th_granule_time(void *_encdec,int64_t _granpos){
   oc_theora_state *state;
   state=(oc_theora_state *)_encdec;
   if(_granpos>=0){

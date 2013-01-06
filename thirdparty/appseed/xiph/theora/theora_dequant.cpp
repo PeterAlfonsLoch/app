@@ -42,13 +42,13 @@ int32_t oc_quant_params_unpack(oc_pack_buf *_opb,th_quant_info *_qinfo){
   nbits=(int32_t)val+1;
   for(qi=0;qi<64;qi++){
     val=oc_pack_read(_opb,nbits);
-    _qinfo->ac_scale[qi]=(ogg_uint16_t)val;
+    _qinfo->ac_scale[qi]=(uint16_t)val;
   }
   val=oc_pack_read(_opb,4);
   nbits=(int32_t)val+1;
   for(qi=0;qi<64;qi++){
     val=oc_pack_read(_opb,nbits);
-    _qinfo->dc_scale[qi]=(ogg_uint16_t)val;
+    _qinfo->dc_scale[qi]=(uint16_t)val;
   }
   val=oc_pack_read(_opb,9);
   nbase_mats=(int32_t)val+1;

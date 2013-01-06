@@ -27,10 +27,10 @@ namespace user
 
       e_event                 m_eevent;
       ::user::interaction*    m_puie;
-      uint                    m_uiEvent;
+      uint32_t                    m_uiEvent;
       bool                    m_bUser;
-      uint                    m_uiVKey;
-      uint                    m_uiFlags;
+      uint32_t                    m_uiVKey;
+      uint32_t                    m_uiFlags;
    };
 
 

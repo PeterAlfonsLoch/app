@@ -300,7 +300,7 @@ namespace userbase
    {
       ::user::interaction::dump(dumpcontext);
 
-      dumpcontext << "m_hAccelTable = " << (UINT_PTR)m_hAccelTable;
+      dumpcontext << "m_hAccelTable = " << (uint_ptr)m_hAccelTable;
       dumpcontext << "\nm_nWindow = " << m_nWindow;
       dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;

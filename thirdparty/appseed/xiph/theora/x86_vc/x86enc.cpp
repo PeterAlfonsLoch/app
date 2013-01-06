@@ -21,7 +21,7 @@
 #include "../theora_cpu.cpp"
 
 void oc_enc_vtable_init_x86(oc_enc_ctx *_enc){
-  ogg_uint32_t cpu_flags;
+  uint32_t cpu_flags;
   cpu_flags=oc_cpu_flags_get();
   oc_enc_vtable_init_c(_enc);
   if(cpu_flags&OC_CPU_X86_MMX){

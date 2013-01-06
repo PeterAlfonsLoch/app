@@ -172,7 +172,7 @@ static void oc_enc_token_log(oc_enc_ctx *_enc,
   ptrdiff_t ti;
   ti=_enc->ndct_tokens[_pli][_zzi]++;
   _enc->dct_tokens[_pli][_zzi][ti]=(uchar)_token;
-  _enc->extra_bits[_pli][_zzi][ti]=(ogg_uint16_t)_eb;
+  _enc->extra_bits[_pli][_zzi][ti]=(uint16_t)_eb;
 }
 
 static void oc_enc_eob_log(oc_enc_ctx *_enc,
@@ -201,7 +201,7 @@ struct oc_quant_token{
   uchar next;
   signed char   token;
   ogg_int16_t   eb;
-  ogg_uint32_t  cost;
+  uint32_t  cost;
   int32_t           bits;
   int32_t           qc;
 };
@@ -210,17 +210,17 @@ struct oc_quant_token{
    dequantizes and de-zig-zags the result.
   The DC coefficient is not preserved; it should be restored by the caller.*/
 int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
- ogg_int16_t *_qdct,const ogg_uint16_t *_dequant,const ogg_int16_t *_dct,
+ ogg_int16_t *_qdct,const uint16_t *_dequant,const ogg_int16_t *_dct,
  int32_t _zzi,oc_token_checkpoint **_stack,int32_t _acmin){
   oc_token_checkpoint *stack;
-  ogg_int64_t          zflags;
-  ogg_int64_t          nzflags;
-  ogg_int64_t          best_flags;
-  ogg_uint32_t         d2_accum[64];
+  int64_t          zflags;
+  int64_t          nzflags;
+  int64_t          best_flags;
+  uint32_t         d2_accum[64];
   oc_quant_token       tokens[64][2];
-  ogg_uint16_t        *eob_run;
+  uint16_t        *eob_run;
   const uchar *dct_fzig_zag;
-  ogg_uint32_t         cost;
+  uint32_t         cost;
   int32_t                  bits;
   int32_t                  eob;
   int32_t                  token;
@@ -240,7 +240,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
   zzj=64;
   for(zzi=OC_MINI(_zzi,63);zzi>0;zzi--){
     ogg_int32_t  lambda;
-    ogg_uint32_t best_cost;
+    uint32_t best_cost;
     //int32_t          best_bits=best_bits;
     //int32_t          best_next=best_next;
     //int32_t          best_token=best_token;
@@ -252,7 +252,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
     int32_t          best_eb=0;
     int32_t          best_qc=0;
     int32_t          flush_bits;
-    ogg_uint32_t d2;
+    uint32_t d2;
     int32_t          dq;
     int32_t          e;
     int32_t          c;
@@ -264,7 +264,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
     qc=qc+s^s;
     c=_dct[OC_FZIG_ZAG[zzi]];
     if(qc<=1){
-      ogg_uint32_t sum_d2;
+      uint32_t sum_d2;
       int32_t          nzeros;
       int32_t          dc_reserve;
       /*The hard case: try a zero run.*/
@@ -409,7 +409,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       tokens[zzi][0].cost=best_cost;
       tokens[zzi][0].bits=best_bits;
       tokens[zzi][0].qc=best_qc;
-      zflags|=(ogg_int64_t)1<<zzi;
+      zflags|=(int64_t)1<<zzi;
       if(qc){
         dq=_dequant[zzi];
         if(zzi<_acmin)lambda=0;
@@ -426,9 +426,9 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
         tokens[zzi][1].cost=d2+lambda*bits+tokens[zzj][tj].cost;
         tokens[zzi][1].bits=bits+tokens[zzj][tj].bits;
         tokens[zzi][1].qc=1+s^s;
-        nzflags|=(ogg_int64_t)1<<zzi;
+        nzflags|=(int64_t)1<<zzi;
         best_flags|=
-         (ogg_int64_t)(tokens[zzi][1].cost<tokens[zzi][0].cost)<<zzi;
+         (int64_t)(tokens[zzi][1].cost<tokens[zzi][0].cost)<<zzi;
       }
     }
     else{
@@ -626,8 +626,8 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       tokens[zzi][1].cost=best_cost+tokens[zzj][tj].cost;
       tokens[zzi][1].bits=best_bits+tokens[zzj][tj].bits;
       tokens[zzi][1].qc=qc+s^s;
-      nzflags|=(ogg_int64_t)1<<zzi;
-      best_flags|=(ogg_int64_t)1<<zzi;
+      nzflags|=(int64_t)1<<zzi;
+      best_flags|=(int64_t)1<<zzi;
     }
     zzj=zzi;
   }
@@ -784,8 +784,8 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
   ptrdiff_t          fragii;
   uchar     *dct_tokens0;
   uchar     *dct_tokens1;
-  ogg_uint16_t      *extra_bits0;
-  ogg_uint16_t      *extra_bits1;
+  uint16_t      *extra_bits0;
+  uint16_t      *extra_bits1;
   ptrdiff_t          ti0;
   ptrdiff_t          ti1r;
   ptrdiff_t          ti1w;
@@ -850,13 +850,13 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
       if(eob_run0>0){
         token=oc_make_eob_token_full(eob_run0,&eb);
         dct_tokens0[ti0]=(uchar)token;
-        extra_bits0[ti0]=(ogg_uint16_t)eb;
+        extra_bits0[ti0]=(uint16_t)eb;
         ti0++;
         eob_run0=0;
       }
       token=oc_make_dct_token_full(0,0,val,&eb);
       dct_tokens0[ti0]=(uchar)token;
-      extra_bits0[ti0]=(ogg_uint16_t)eb;
+      extra_bits0[ti0]=(uint16_t)eb;
       ti0++;
     }
     else{
@@ -869,7 +869,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
         if(++eob_run0>=4095){
           token=oc_make_eob_token_full(eob_run0,&eb);
           dct_tokens0[ti0]=(uchar)token;
-          extra_bits0[ti0]=(ogg_uint16_t)eb;
+          extra_bits0[ti0]=(uint16_t)eb;
           ti0++;
           eob_run0=0;
         }
@@ -881,7 +881,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
         if(eob_run0>0){
           token=oc_make_eob_token_full(eob_run0,&eb);
           dct_tokens0[ti0]=(uchar)token;
-          extra_bits0[ti0]=(ogg_uint16_t)eb;
+          extra_bits0[ti0]=(uint16_t)eb;
           ti0++;
           eob_run0=0;
         }
@@ -899,7 +899,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           case OC_DCT_SHORT_ZRL_TOKEN:{
             if(eb1<7){
               dct_tokens0[ti0]=OC_DCT_SHORT_ZRL_TOKEN;
-              extra_bits0[ti0]=(ogg_uint16_t)(eb1+1);
+              extra_bits0[ti0]=(uint16_t)(eb1+1);
               ti0++;
               /*Don't write the AC coefficient back out.*/
               continue;
@@ -908,27 +908,27 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           }
           case OC_DCT_ZRL_TOKEN:{
             dct_tokens0[ti0]=OC_DCT_ZRL_TOKEN;
-            extra_bits0[ti0]=(ogg_uint16_t)(eb1+1);
+            extra_bits0[ti0]=(uint16_t)(eb1+1);
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
           case OC_ONE_TOKEN:
           case OC_MINUS_ONE_TOKEN:{
             dct_tokens0[ti0]=OC_DCT_RUN_CAT1A;
-            extra_bits0[ti0]=(ogg_uint16_t)(token1-OC_ONE_TOKEN);
+            extra_bits0[ti0]=(uint16_t)(token1-OC_ONE_TOKEN);
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
           case OC_TWO_TOKEN:
           case OC_MINUS_TWO_TOKEN:{
             dct_tokens0[ti0]=OC_DCT_RUN_CAT2A;
-            extra_bits0[ti0]=(ogg_uint16_t)(token1-OC_TWO_TOKEN<<1);
+            extra_bits0[ti0]=(uint16_t)(token1-OC_TWO_TOKEN<<1);
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
           case OC_DCT_VAL_CAT2:{
             dct_tokens0[ti0]=OC_DCT_RUN_CAT2A;
-            extra_bits0[ti0]=(ogg_uint16_t)((eb1<<1)+1);
+            extra_bits0[ti0]=(uint16_t)((eb1<<1)+1);
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
@@ -937,20 +937,20 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           case OC_DCT_RUN_CAT1A+2:
           case OC_DCT_RUN_CAT1A+3:{
             dct_tokens0[ti0]=(uchar)(token1+1);
-            extra_bits0[ti0]=(ogg_uint16_t)eb1;
+            extra_bits0[ti0]=(uint16_t)eb1;
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
           case OC_DCT_RUN_CAT1A+4:{
             dct_tokens0[ti0]=OC_DCT_RUN_CAT1B;
-            extra_bits0[ti0]=(ogg_uint16_t)(eb1<<2);
+            extra_bits0[ti0]=(uint16_t)(eb1<<2);
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
           case OC_DCT_RUN_CAT1B:{
             if((eb1&3)<3){
               dct_tokens0[ti0]=OC_DCT_RUN_CAT1B;
-              extra_bits0[ti0]=(ogg_uint16_t)(eb1+1);
+              extra_bits0[ti0]=(uint16_t)(eb1+1);
               ti0++;
               /*Don't write the AC coefficient back out.*/
               continue;
@@ -960,7 +960,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           }
           case OC_DCT_RUN_CAT1C:{
             dct_tokens0[ti0]=OC_DCT_RUN_CAT1C;
-            extra_bits0[ti0]=(ogg_uint16_t)(eb1+1);
+            extra_bits0[ti0]=(uint16_t)(eb1+1);
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
@@ -970,7 +970,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
           }
           case OC_DCT_RUN_CAT2B:{
             dct_tokens0[ti0]=OC_DCT_RUN_CAT2B;
-            extra_bits0[ti0]=(ogg_uint16_t)(eb1+1);
+            extra_bits0[ti0]=(uint16_t)(eb1+1);
             ti0++;
             /*Don't write the AC coefficient back out.*/
           }continue;
@@ -986,13 +986,13 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
       if(eob_run1>0){
         token=oc_make_eob_token_full(eob_run1,&eb);
         dct_tokens1[ti1w]=(uchar)token;
-        extra_bits1[ti1w]=(ogg_uint16_t)eb;
+        extra_bits1[ti1w]=(uint16_t)eb;
         ti1w++;
         eob_run1=0;
       }
       /*There's no active EOB run, so log the current token.*/
       dct_tokens1[ti1w]=(uchar)token1;
-      extra_bits1[ti1w]=(ogg_uint16_t)eb1;
+      extra_bits1[ti1w]=(uint16_t)eb1;
       ti1w++;
     }
     else{
@@ -1002,7 +1002,7 @@ void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
       if(eob_run1-neobs1>=4095){
         token=oc_make_eob_token_full(4095,&eb);
         dct_tokens1[ti1w]=(uchar)token;
-        extra_bits1[ti1w]=(ogg_uint16_t)eb;
+        extra_bits1[ti1w]=(uint16_t)eb;
         ti1w++;
         eob_run1-=4095;
       }
@@ -1071,7 +1071,7 @@ void oc_enc_tokenize_finish(oc_enc_ctx *_enc){
     /*We CAN combine them into one run.*/
     new_tok=oc_make_eob_token_full(run_count,&new_eb);
     _enc->dct_tokens[plj][zzj][ti]=(uchar)new_tok;
-    _enc->extra_bits[plj][zzj][ti]=(ogg_uint16_t)new_eb;
+    _enc->extra_bits[plj][zzj][ti]=(uint16_t)new_eb;
     _enc->dct_token_offs[pli][zzi]++;
   }
 }

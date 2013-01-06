@@ -672,7 +672,7 @@ public:
 
 
 class CLASS_DECL_ca uint_array :
-   public numeric_array < uint >
+   public numeric_array < uint32_t >
 {
 public:
    uint_array();

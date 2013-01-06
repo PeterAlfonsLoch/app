@@ -21,7 +21,7 @@
 
 #define BUFFER_INCREMENT 256
 
-static const uint32_t long mask[]=
+static const uint32_t mask[]=
 {0x00000000,0x00000001,0x00000003,0x00000007,0x0000000f,
  0x0000001f,0x0000003f,0x0000007f,0x000000ff,0x000001ff,
  0x000003ff,0x000007ff,0x00000fff,0x00001fff,0x00003fff,
@@ -76,7 +76,7 @@ void oggpackB_writetrunc(oggpack_buffer *b,long bits){
 }
 
 /* Takes only up to 32 bits. */
-void oggpack_write(oggpack_buffer *b,uint32_t long value,int32_t bits){
+void oggpack_write(oggpack_buffer *b,uint_ptr value,int32_t bits){
   if(bits<0 || bits>32) goto err;
   if(b->endbyte>=b->storage-4){
     void *ret;
@@ -119,7 +119,7 @@ void oggpack_write(oggpack_buffer *b,uint32_t long value,int32_t bits){
 }
 
 /* Takes only up to 32 bits. */
-void oggpackB_write(oggpack_buffer *b,uint32_t long value,int32_t bits){
+void oggpackB_write(oggpack_buffer *b,uint_ptr value,int32_t bits){
   if(bits<0 || bits>32) goto err;
   if(b->endbyte>=b->storage-4){
     void *ret;
@@ -177,7 +177,7 @@ static void oggpack_writecopy_helper(oggpack_buffer *b,
                                      void *source,
                                      long bits,
                                      void (*w)(oggpack_buffer *,
-                                               uint32_t long,
+                                               uint_ptr,
                                                int32_t),
                                      int32_t msb){
   uchar *ptr=(uchar *)source;
@@ -189,7 +189,7 @@ static void oggpack_writecopy_helper(oggpack_buffer *b,
     int32_t i;
     /* unaligned copy.  Do it the hard way. */
     for(i=0;i<bytes;i++)
-      w(b,(uint32_t long)(ptr[i]),8);
+      w(b,(uint_ptr)(ptr[i]),8);
   }else{
     /* aligned block copy */
     if(b->endbyte+bytes+1>=b->storage){
@@ -211,9 +211,9 @@ static void oggpack_writecopy_helper(oggpack_buffer *b,
   }
   if(bits){
     if(msb)
-      w(b,(uint32_t long)(ptr[bytes]>>(8-bits)),bits);
+      w(b,(uint_ptr)(ptr[bytes]>>(8-bits)),bits);
     else
-      w(b,(uint32_t long)(ptr[bytes]),bits);
+      w(b,(uint_ptr)(ptr[bytes]),bits);
   }
   return;
  err:
@@ -260,8 +260,8 @@ void oggpackB_readinit(oggpack_buffer *b,uchar *buf,int32_t bytes){
 
 /* Read in bits without advancing the bitptr; bits <= 32 */
 long oggpack_look(oggpack_buffer *b,int32_t bits){
-  uint32_t long ret;
-  uint32_t long m;
+  uint_ptr ret;
+  uint_ptr m;
 
   if(bits<0 || bits>32) return -1;
   m=mask[bits];
@@ -292,7 +292,7 @@ long oggpack_look(oggpack_buffer *b,int32_t bits){
 
 /* Read in bits without advancing the bitptr; bits <= 32 */
 long oggpackB_look(oggpack_buffer *b,int32_t bits){
-  uint32_t long ret;
+  uint_ptr ret;
   int32_t m=32-bits;
 
   if(m<0 || m>32) return -1;
@@ -366,7 +366,7 @@ void oggpackB_adv1(oggpack_buffer *b){
 /* bits <= 32 */
 long oggpack_read(oggpack_buffer *b,int32_t bits){
   long ret;
-  uint32_t long m;
+  uint_ptr m;
 
   if(bits<0 || bits>32) goto err;
   m=mask[bits];
@@ -538,7 +538,7 @@ void report(char *in){
   exit(1);
 }
 
-void cliptest(uint32_t long *b,int32_t vals,int32_t bits,int32_t *comp,int32_t compsize){
+void cliptest(uint_ptr *b,int32_t vals,int32_t bits,int32_t *comp,int32_t compsize){
   long bytes,i;
   uchar *buffer;
 
@@ -573,7 +573,7 @@ void cliptest(uint32_t long *b,int32_t vals,int32_t bits,int32_t *comp,int32_t c
   if(oggpack_bytes(&r)!=bytes)report("leftover bytes after read!\n");
 }
 
-void cliptestB(uint32_t long *b,int32_t vals,int32_t bits,int32_t *comp,int32_t compsize){
+void cliptestB(uint_ptr *b,int32_t vals,int32_t bits,int32_t *comp,int32_t compsize){
   long bytes,i;
   uchar *buffer;
 
@@ -611,23 +611,23 @@ void cliptestB(uint32_t long *b,int32_t vals,int32_t bits,int32_t *comp,int32_t 
 int32_t main(){
   uchar *buffer;
   long bytes,i;
-  static uint32_t long testbuffer1[]=
+  static uint_ptr testbuffer1[]=
     {18,12,103948,4325,543,76,432,52,3,65,4,56,32,42,34,21,1,23,32,546,456,7,
        567,56,8,8,55,3,52,342,341,4,265,7,67,86,2199,21,7,1,5,1,4};
   int32_t test1size=43;
 
-  static uint32_t long testbuffer2[]=
+  static uint_ptr testbuffer2[]=
     {216531625L,1237861823,56732452,131,3212421,12325343,34547562,12313212,
        1233432,534,5,346435231,14436467,7869299,76326614,167548585,
        85525151,0,12321,1,349528352};
   int32_t test2size=21;
 
-  static uint32_t long testbuffer3[]=
+  static uint_ptr testbuffer3[]=
     {1,0,14,0,1,0,12,0,1,0,0,0,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,1,1,1,1,1,0,0,1,
        0,1,30,1,1,1,0,0,1,0,0,0,12,0,11,0,1,0,0,1};
   int32_t test3size=56;
 
-  static uint32_t long large[]=
+  static uint_ptr large[]=
     {2136531625L,2137861823,56732452,131,3212421,12325343,34547562,12313212,
        1233432,534,5,2146435231,14436467,7869299,76326614,167548585,
        85525151,0,12321,1,2146528352};

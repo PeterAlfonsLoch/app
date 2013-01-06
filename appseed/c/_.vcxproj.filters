@@ -793,5 +793,8 @@
     <ClCompile Include="bsdiff\randtable.cpp">
       <Filter>Source Files\bsdiff</Filter>
     </ClCompile>
+    <ClCompile Include="windows\c_os_file_std.cpp">
+      <Filter>Source Files\windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

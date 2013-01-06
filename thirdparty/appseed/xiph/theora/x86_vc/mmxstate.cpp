@@ -26,7 +26,7 @@
 #if defined(OC_X86_ASM)
 
 void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant){
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant){
   uchar *dst;
   ptrdiff_t      frag_buf_off;
   int32_t            ystride;
@@ -36,7 +36,7 @@ void oc_state_frag_recon_mmx(const oc_theora_state *_state,ptrdiff_t _fragi,
   if(_last_zzi<2){
     /*Note that this value must be uint32_t, to keep the __asm__ block from
        sign-extending it when it puts it in a register.*/
-    ogg_uint16_t p;
+    uint16_t p;
     /*We round this dequant product (and not any of the others) because there's
        no iDCT rounding.*/
     p=(ogg_int16_t)(_dct_coeffs[0]*(ogg_int32_t)_dc_quant+15>>5);

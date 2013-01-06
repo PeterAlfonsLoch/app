@@ -387,7 +387,7 @@ static const uchar OC_MV_CODES[2][64]={
    11110xxx                10-17
    111110xxxx              18-33
    111111xxxxxxxxxxxx      34-4129*/
-const ogg_uint16_t    OC_SB_RUN_VAL_MIN[8]={1,2,4,6,10,18,34,4130};
+const uint16_t    OC_SB_RUN_VAL_MIN[8]={1,2,4,6,10,18,34,4130};
 static const uint32_t OC_SB_RUN_CODE_PREFIX[7]={
   0,4,0xC,0x38,0xF0,0x3E0,0x3F000
 };
@@ -431,7 +431,7 @@ static void oc_sb_run_pack(oggpack_buffer *_opb,ptrdiff_t _run_count,
 const uchar OC_BLOCK_RUN_CODE_NBITS[30]={
   2,2,3,3,4,4,6,6,6,6,7,7,7,7,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9
 };
-static const ogg_uint16_t  OC_BLOCK_RUN_CODE_PATTERN[30]={
+static const uint16_t  OC_BLOCK_RUN_CODE_PATTERN[30]={
         0x000,0x001,0x004,0x005,0x00C,0x00D,0x038,
   0x039,0x03A,0x03B,0x078,0x079,0x07A,0x07B,0x1F0,
   0x1F1,0x1F2,0x1F3,0x1F4,0x1F5,0x1F6,0x1F7,0x1F8,
@@ -788,7 +788,7 @@ static void oc_enc_huff_group_pack(oc_enc_ctx *_enc,
     int32_t pli;
     for(pli=0;pli<3;pli++){
       const uchar *dct_tokens;
-      const ogg_uint16_t  *extra_bits;
+      const uint16_t  *extra_bits;
       ptrdiff_t            ndct_tokens;
       const th_huff_code  *huff_codes;
       ptrdiff_t            ti;
@@ -1066,7 +1066,7 @@ static int32_t oc_enc_init(oc_enc_ctx *_enc,const th_info *_info){
   for(pli=0;pli<3;pli++){
     _enc->dct_tokens[pli]=(uchar **)oc_malloc_2d(64,
      _enc->state.fplanes[pli].nfrags,sizeof(**_enc->dct_tokens));
-    _enc->extra_bits[pli]=(ogg_uint16_t **)oc_malloc_2d(64,
+    _enc->extra_bits[pli]=(uint16_t **)oc_malloc_2d(64,
      _enc->state.fplanes[pli].nfrags,sizeof(**_enc->extra_bits));
   }
 #if defined(OC_COLLECT_METRICS)
@@ -1249,10 +1249,10 @@ int32_t th_encode_ctl(th_enc_ctx *_enc,int32_t _req,void *_buf,size_t _buf_sz){
       return oc_enc_set_quant_params(_enc,(th_quant_info *)_buf);
     }break;
     case TH_ENCCTL_SET_KEYFRAME_FREQUENCY_FORCE:{
-      ogg_uint32_t keyframe_frequency_force;
+      uint32_t keyframe_frequency_force;
       if(_enc==NULL||_buf==NULL)return TH_EFAULT;
       if(_buf_sz!=sizeof(keyframe_frequency_force))return TH_EINVAL;
-      keyframe_frequency_force=*(ogg_uint32_t *)_buf;
+      keyframe_frequency_force=*(uint32_t *)_buf;
       if(keyframe_frequency_force<=0)keyframe_frequency_force=1;
       if(_enc->packet_state==OC_PACKET_INFO_HDR){
         /*It's still early enough to enlarge keyframe_granule_shift.*/
@@ -1261,8 +1261,8 @@ int32_t th_encode_ctl(th_enc_ctx *_enc,int32_t _req,void *_buf,size_t _buf_sz){
          OC_ILOG_32(keyframe_frequency_force-1),31);
       }
       _enc->keyframe_frequency_force=OC_MINI(keyframe_frequency_force,
-       (ogg_uint32_t)1U<<_enc->state.info.keyframe_granule_shift);
-      *(ogg_uint32_t *)_buf=_enc->keyframe_frequency_force;
+       (uint32_t)1U<<_enc->state.info.keyframe_granule_shift);
+      *(uint32_t *)_buf=_enc->keyframe_frequency_force;
       return 0;
     }break;
     case TH_ENCCTL_SET_VP3_COMPATIBLE:{
@@ -1397,9 +1397,9 @@ static void oc_img_plane_copy_pad(th_img_plane *_dst,th_img_plane *_src,
  ogg_int32_t _pic_width,ogg_int32_t _pic_height){
   uchar *dst;
   int32_t            dstride;
-  ogg_uint32_t   frame_width;
-  ogg_uint32_t   frame_height;
-  ogg_uint32_t   y;
+  uint32_t   frame_width;
+  uint32_t   frame_height;
+  uint32_t   y;
   frame_width=_dst->width;
   frame_height=_dst->height;
   /*If we have _no_ data, just encode a dull green.*/
@@ -1417,7 +1417,7 @@ static void oc_img_plane_copy_pad(th_img_plane *_dst,th_img_plane *_src,
     uchar *src_data;
     uchar *src;
     int32_t            sstride;
-    ogg_uint32_t   x;
+    uint32_t   x;
     /*Step 1: Copy the data we do have.*/
     dstride=_dst->stride;
     sstride=_src->stride;
@@ -1487,8 +1487,8 @@ int32_t th_encode_ycbcr_in(th_enc_ctx *_enc,th_ycbcr_buffer _img){
   if(_enc==NULL||_img==NULL)return TH_EFAULT;
   if(_enc->packet_state==OC_PACKET_DONE)return TH_EINVAL;
   if(_enc->rc.twopass&&_enc->rc.twopass_buffer_bytes==0)return TH_EINVAL;
-  if((ogg_uint32_t)_img[0].width!=_enc->state.info.frame_width||
-   (ogg_uint32_t)_img[0].height!=_enc->state.info.frame_height){
+  if((uint32_t)_img[0].width!=_enc->state.info.frame_width||
+   (uint32_t)_img[0].height!=_enc->state.info.frame_height){
     return TH_EINVAL;
   }
   hdec=!(_enc->state.info.pixel_fmt&1);

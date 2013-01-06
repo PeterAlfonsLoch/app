@@ -40,7 +40,7 @@ static int32_t oc_warp_alpha(int32_t _alpha){
   t0=OC_ROUGH_TAN_LOOKUP[i];
   t1=OC_ROUGH_TAN_LOOKUP[i+1];
   d=_alpha*36-(i<<24);
-  return (int32_t)(((ogg_int64_t)t0<<32)+(t1-t0<<8)*(ogg_int64_t)d>>32);
+  return (int32_t)(((int64_t)t0<<32)+(t1-t0<<8)*(int64_t)d>>32);
 }
 
 /*Re-initialize the Bessel filter coefficients with the specified delay.
@@ -52,21 +52,21 @@ static int32_t oc_warp_alpha(int32_t _alpha){
    safe.*/
 static void oc_iir_filter_reinit(oc_iir_filter *_f,int32_t _delay){
   int32_t         alpha;
-  ogg_int64_t one48;
-  ogg_int64_t warp;
-  ogg_int64_t k1;
-  ogg_int64_t k2;
-  ogg_int64_t d;
-  ogg_int64_t a;
-  ogg_int64_t ik2;
-  ogg_int64_t b1;
-  ogg_int64_t b2;
+  int64_t one48;
+  int64_t warp;
+  int64_t k1;
+  int64_t k2;
+  int64_t d;
+  int64_t a;
+  int64_t ik2;
+  int64_t b1;
+  int64_t b2;
   /*This borrows some code from an unreleased version of Postfish.
     See the recipe at http://unicorn.us.com/alex/2polefilters.html for details
      on deriving the filter coefficients.*/
   /*alpha is Q24*/
   alpha=(1<<24)/_delay;
-  one48=(ogg_int64_t)1<<48;
+  one48=(int64_t)1<<48;
   /*warp is 7.12*/
   warp=OC_MAXI(oc_warp_alpha(alpha),1);
   /*k1 is 9.12*/
@@ -84,8 +84,8 @@ static void oc_iir_filter_reinit(oc_iir_filter *_f,int32_t _delay){
   /*b2 is Q56; in practice, the integer ranges between -2 and 2.*/
   b2=(one48<<8)-(4*a<<24)-b1;
   /*All of the filter parameters are Q24.*/
-  _f->c[0]=(ogg_int32_t)(b1+((ogg_int64_t)1<<31)>>32);
-  _f->c[1]=(ogg_int32_t)(b2+((ogg_int64_t)1<<31)>>32);
+  _f->c[0]=(ogg_int32_t)(b1+((int64_t)1<<31)>>32);
+  _f->c[1]=(ogg_int32_t)(b2+((int64_t)1<<31)>>32);
   _f->g=(ogg_int32_t)(a+128>>8);
 }
 
@@ -97,15 +97,15 @@ static void oc_iir_filter_init(oc_iir_filter *_f,int32_t _delay,ogg_int32_t _val
   _f->y[1]=_f->y[0]=_f->x[1]=_f->x[0]=_value;
 }
 
-static ogg_int64_t oc_iir_filter_update(oc_iir_filter *_f,ogg_int32_t _x){
-  ogg_int64_t c0;
-  ogg_int64_t c1;
-  ogg_int64_t g;
-  ogg_int64_t x0;
-  ogg_int64_t x1;
-  ogg_int64_t y0;
-  ogg_int64_t y1;
-  ogg_int64_t ya;
+static int64_t oc_iir_filter_update(oc_iir_filter *_f,ogg_int32_t _x){
+  int64_t c0;
+  int64_t c1;
+  int64_t g;
+  int64_t x0;
+  int64_t x1;
+  int64_t y0;
+  int64_t y1;
+  int64_t ya;
   c0=_f->c[0];
   c1=_f->c[1];
   g=_f->g;
@@ -127,15 +127,15 @@ static ogg_int64_t oc_iir_filter_update(oc_iir_filter *_f,ogg_int32_t _x){
   We don't assume a linear ordering, but when there are ties we pick the
    quantizer closest to the old one.*/
 static int32_t oc_enc_find_qi_for_target(oc_enc_ctx *_enc,int32_t _qti,int32_t _qi_old,
- int32_t _qi_min,ogg_int64_t _log_qtarget){
-  ogg_int64_t best_qdiff;
+ int32_t _qi_min,int64_t _log_qtarget){
+  int64_t best_qdiff;
   int32_t         best_qi;
   int32_t         qi;
   best_qi=_qi_min;
   best_qdiff=_enc->log_qavg[_qti][best_qi]-_log_qtarget;
   best_qdiff=best_qdiff+OC_SIGNMASK(best_qdiff)^OC_SIGNMASK(best_qdiff);
   for(qi=_qi_min+1;qi<64;qi++){
-    ogg_int64_t qdiff;
+    int64_t qdiff;
     qdiff=_enc->log_qavg[_qti][qi]-_log_qtarget;
     qdiff=qdiff+OC_SIGNMASK(qdiff)^OC_SIGNMASK(qdiff);
     if(qdiff<best_qdiff||
@@ -148,7 +148,7 @@ static int32_t oc_enc_find_qi_for_target(oc_enc_ctx *_enc,int32_t _qti,int32_t _
 }
 
 void oc_enc_calc_lambda(oc_enc_ctx *_enc,int32_t _qti){
-  ogg_int64_t lq;
+  int64_t lq;
   int32_t         qi;
   int32_t         qi1;
   int32_t         nqis;
@@ -204,10 +204,10 @@ void oc_enc_calc_lambda(oc_enc_ctx *_enc,int32_t _qti){
   _log_scale: A binary logarithm in Q24 format.
   Return: The binary exponential in Q24 format, saturated to 2**47-1 if
    _log_scale was too large.*/
-static ogg_int64_t oc_bexp_q24(ogg_int32_t _log_scale){
+static int64_t oc_bexp_q24(ogg_int32_t _log_scale){
   if(_log_scale<(ogg_int32_t)23<<24){
-    ogg_int64_t ret;
-    ret=oc_bexp64(((ogg_int64_t)_log_scale<<33)+OC_Q57(24));
+    int64_t ret;
+    ret=oc_bexp64(((int64_t)_log_scale<<33)+OC_Q57(24));
     return ret<0x7FFFFFFFFFFFLL?ret:0x7FFFFFFFFFFFLL;
   }
   return 0x7FFFFFFFFFFFLL;
@@ -216,9 +216,9 @@ static ogg_int64_t oc_bexp_q24(ogg_int32_t _log_scale){
 /*Convenience function converts Q57 value to a clamped 32-bit Q24 value
   _in: input in Q57 format.
   Return: same number in Q24 */
-static ogg_int32_t oc_q57_to_q24(ogg_int64_t _in){
-  ogg_int64_t ret;
-  ret=_in+((ogg_int64_t)1<<32)>>33;
+static ogg_int32_t oc_q57_to_q24(int64_t _in){
+  int64_t ret;
+  ret=_in+((int64_t)1<<32)>>33;
   /*0x80000000 is automatically converted to uint32_t on 32-bit systems.
     -0x7FFFFFFF-1 is needed to avoid "promoting" the whole expression to
     uint32_t.*/
@@ -230,9 +230,9 @@ static ogg_int32_t oc_q57_to_q24(ogg_int64_t _in){
   _log_scale: A binary logarithm in Q57 format.
   Return: The binary exponential in Q24 format, saturated to 2**31-1 if
    _log_scale was too large.*/
-static ogg_int32_t oc_bexp64_q24(ogg_int64_t _log_scale){
+static ogg_int32_t oc_bexp64_q24(int64_t _log_scale){
   if(_log_scale<OC_Q57(8)){
-    ogg_int64_t ret;
+    int64_t ret;
     ret=oc_bexp64(_log_scale+OC_Q57(24));
     return ret<0x7FFFFFFF?(ogg_int32_t)ret:0x7FFFFFFF;
   }
@@ -241,17 +241,17 @@ static ogg_int32_t oc_bexp64_q24(ogg_int64_t _log_scale){
 
 
 static void oc_enc_rc_reset(oc_enc_ctx *_enc){
-  ogg_int64_t npixels;
-  ogg_int64_t ibpp;
+  int64_t npixels;
+  int64_t ibpp;
   int32_t         inter_delay;
   /*TODO: These parameters should be exposed in a th_encode_ctl() API.*/
   _enc->rc.bits_per_frame=(_enc->state.info.target_bitrate*
-   (ogg_int64_t)_enc->state.info.fps_denominator)/
+   (int64_t)_enc->state.info.fps_denominator)/
    _enc->state.info.fps_numerator;
   /*Insane framerates or frame sizes mean insane bitrates.
     Let's not get carried away.*/
   if(_enc->rc.bits_per_frame>0x400000000000LL){
-    _enc->rc.bits_per_frame=(ogg_int64_t)0x400000000000LL;
+    _enc->rc.bits_per_frame=(int64_t)0x400000000000LL;
   }
   else if(_enc->rc.bits_per_frame<32)_enc->rc.bits_per_frame=32;
   _enc->rc.buf_delay=OC_MAXI(_enc->rc.buf_delay,12);
@@ -266,7 +266,7 @@ static void oc_enc_rc_reset(oc_enc_ctx *_enc){
   _enc->rc.fullness=_enc->rc.target;
   /*Pick exponents and initial scales for quantizer selection.*/
   npixels=_enc->state.info.frame_width*
-   (ogg_int64_t)_enc->state.info.frame_height;
+   (int64_t)_enc->state.info.frame_height;
   _enc->rc.log_npixels=oc_blog64(npixels);
   ibpp=npixels/_enc->rc.bits_per_frame;
   if(ibpp<1){
@@ -348,12 +348,12 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
     /*Otherwise, update the bounds on the buffer, but not the current
        fullness.*/
     _enc->rc.bits_per_frame=(_enc->state.info.target_bitrate*
-     (ogg_int64_t)_enc->state.info.fps_denominator)/
+     (int64_t)_enc->state.info.fps_denominator)/
      _enc->state.info.fps_numerator;
     /*Insane framerates or frame sizes mean insane bitrates.
       Let's not get carried away.*/
     if(_enc->rc.bits_per_frame>0x400000000000LL){
-      _enc->rc.bits_per_frame=(ogg_int64_t)0x400000000000LL;
+      _enc->rc.bits_per_frame=(int64_t)0x400000000000LL;
     }
     else if(_enc->rc.bits_per_frame<32)_enc->rc.bits_per_frame=32;
     _enc->rc.buf_delay=OC_MAXI(_enc->rc.buf_delay,12);
@@ -444,7 +444,7 @@ void oc_enc_rc_resize(oc_enc_ctx *_enc){
 /*Scale the number of frames by the number of expected drops/duplicates.*/
 static int32_t oc_rc_scale_drop(oc_rc_state *_rc,int32_t _nframes){
   if(_rc->prev_drop_count>0||_rc->log_drop_scale>OC_Q57(0)){
-    ogg_int64_t dup_scale;
+    int64_t dup_scale;
     dup_scale=oc_bexp64((_rc->log_drop_scale
      +oc_blog64(_rc->prev_drop_count+1)>>1)+OC_Q57(8));
     if(dup_scale<_nframes<<8){
@@ -458,29 +458,29 @@ static int32_t oc_rc_scale_drop(oc_rc_state *_rc,int32_t _nframes){
 }
 
 int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
-  ogg_int64_t  rate_total;
-  ogg_int64_t  rate_bias;
+  int64_t  rate_total;
+  int64_t  rate_bias;
   int32_t          nframes[2];
   int32_t          buf_delay;
   int32_t          buf_pad;
-  ogg_int64_t  log_qtarget;
-  ogg_int64_t  log_scale0;
-  ogg_int64_t  log_cur_scale;
-  ogg_int64_t  log_qexp;
+  int64_t  log_qtarget;
+  int64_t  log_scale0;
+  int64_t  log_cur_scale;
+  int64_t  log_qexp;
   int32_t          exp0;
   int32_t          old_qi;
   int32_t          qi;
   /*Figure out how to re-distribute bits so that we hit our fullness target
      before the last keyframe in our current buffer window (after the current
      frame), or the end of the buffer window, whichever comes first.*/
-  log_cur_scale=(ogg_int64_t)_enc->rc.scalefilter[_qti].y[0]<<33;
+  log_cur_scale=(int64_t)_enc->rc.scalefilter[_qti].y[0]<<33;
   buf_pad=0;
   switch(_enc->rc.twopass){
     default:{
-      ogg_uint32_t next_key_frame;
+      uint32_t next_key_frame;
       /*Single pass mode: assume only forced keyframes and attempt to estimate
          the drop count for VFR content.*/
-      next_key_frame= (ogg_uint32_t) (_qti?_enc->keyframe_frequency_force - (_enc->state.curframe_num-_enc->state.keyframe_num):0);
+      next_key_frame= (uint32_t) (_qti?_enc->keyframe_frequency_force - (_enc->state.curframe_num-_enc->state.keyframe_num):0);
       nframes[0]=(_enc->rc.buf_delay-OC_MINI(next_key_frame,natural(_enc->rc.buf_delay))
        +_enc->keyframe_frequency_force-1)/_enc->keyframe_frequency_force;
       if(nframes[0]+_qti>1){
@@ -500,7 +500,7 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
       return qi;
     }break;
     case 2:{
-      ogg_int64_t scale_sum[2];
+      int64_t scale_sum[2];
       int32_t         qti;
       /*Pass 2 mode: we know exactly how much of each frame type there is in
          the current buffer window, and have estimates for the scales.*/
@@ -583,7 +583,7 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
          be forced to add in the current buffer window.*/
       qti=_enc->rc.cur_metrics.frame_type;
       if(qti!=_qti){
-        ogg_int64_t scale;
+        int64_t scale;
         scale=_enc->rc.log_scale[_qti]<OC_Q57(23)?
          oc_bexp64(_enc->rc.log_scale[_qti]+OC_Q57(24)):0x7FFFFFFFFFFFLL;
         scale*=nframes[_qti];
@@ -592,12 +592,12 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
         _enc->rc.log_scale[_qti]=oc_blog64(scale)
          -oc_blog64(nframes[qti])-OC_Q57(24);
       }
-      else log_cur_scale=(ogg_int64_t)_enc->rc.cur_metrics.log_scale<<33;
+      else log_cur_scale=(int64_t)_enc->rc.cur_metrics.log_scale<<33;
       /*Add the padding from above.
         This basically reverts to 1-pass estimations in the last keyframe
          interval.*/
       if(buf_pad>0){
-        ogg_int64_t scale;
+        int64_t scale;
         int32_t         nextra_frames;
         /*Extend the buffer.*/
         buf_delay+=buf_pad;
@@ -606,8 +606,8 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
         /*And blend in the low-pass filtered scale according to how many frames
            we added.*/
         scale=
-         oc_bexp64(_enc->rc.log_scale[1]+OC_Q57(24))*(ogg_int64_t)nframes[1]
-         +oc_bexp_q24(_enc->rc.scalefilter[1].y[0])*(ogg_int64_t)nextra_frames;
+         oc_bexp64(_enc->rc.log_scale[1]+OC_Q57(24))*(int64_t)nframes[1]
+         +oc_bexp_q24(_enc->rc.scalefilter[1].y[0])*(int64_t)nextra_frames;
         nframes[1]+=nextra_frames;
         _enc->rc.log_scale[1]=oc_blog64(scale)-oc_blog64(nframes[1])-OC_Q57(24);
       }
@@ -624,18 +624,18 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
      minimum quality permitted.*/
   if(rate_total<=buf_delay)log_qtarget=OC_QUANT_MAX_LOG;
   else{
-    static const ogg_int64_t LOG_KEY_RATIO=0x0137222BB70747BALL;
-    ogg_int64_t log_scale1;
-    ogg_int64_t rlo;
-    ogg_int64_t rhi;
+    static const int64_t LOG_KEY_RATIO=0x0137222BB70747BALL;
+    int64_t log_scale1;
+    int64_t rlo;
+    int64_t rhi;
     log_scale1=_enc->rc.log_scale[1-_qti]+_enc->rc.log_npixels;
     rlo=0;
     rhi=(rate_total+nframes[_qti]-1)/nframes[_qti];
     while(rlo<rhi){
-      ogg_int64_t curr;
-      ogg_int64_t rdiff;
-      ogg_int64_t log_rpow;
-      ogg_int64_t rscale;
+      int64_t curr;
+      int64_t rdiff;
+      int64_t log_rpow;
+      int64_t rscale;
       curr=rlo+rhi>>1;
       log_rpow=oc_blog64(curr)-log_scale0;
       log_rpow=(log_rpow+(_enc->rc.exp[_qti]>>1))/_enc->rc.exp[_qti];
@@ -658,9 +658,9 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
      that here, if we're not using a soft target.*/
   exp0=_enc->rc.exp[_qti];
   if(_enc->rc.cap_overflow){
-    ogg_int64_t margin;
-    ogg_int64_t soft_limit;
-    ogg_int64_t log_soft_limit;
+    int64_t margin;
+    int64_t soft_limit;
+    int64_t log_soft_limit;
     /*Allow 3% of the buffer for prediction error.
       This should be plenty, and we don't mind if we go a bit over; we only
        want to keep these bits from being completely wasted.*/
@@ -680,8 +680,8 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
   /*If this was not one of the initial frames, limit the change in quality.*/
   old_qi=_enc->state.qis[0];
   if(_clamp){
-    ogg_int64_t log_qmin;
-    ogg_int64_t log_qmax;
+    int64_t log_qmin;
+    int64_t log_qmax;
     /*Clamp the target quantizer to within [0.8*Q,1.2*Q], where Q is the
        current quantizer.
       TODO: With user-specified quant matrices, we need to enlarge these limits
@@ -699,7 +699,7 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
      resulting lambda will interact very strangely with SKIP.  The
      resulting artifacts look like waterfalls. */
   if(_enc->state.info.quality==0){
-    ogg_int64_t log_hard_limit;
+    int64_t log_hard_limit;
     /*Compute the maximum number of bits we can use in the next frame.
       Allow 50% of the rate for a single frame for prediction error.
       This may not be enough for keyframes or sudden changes in complexity.*/
@@ -726,8 +726,8 @@ int32_t oc_enc_select_qi(oc_enc_ctx *_enc,int32_t _qti,int32_t _clamp){
 
 int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
  long _bits,int32_t _qti,int32_t _qi,int32_t _trial,int32_t _droppable){
-  ogg_int64_t buf_delta;
-  ogg_int64_t log_scale;
+  int64_t buf_delta;
+  int64_t log_scale;
   int32_t         dropped;
   dropped=0;
   /* Drop frames also disabled for now in the case of infinite-buffer
@@ -742,8 +742,8 @@ int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
     _bits=0;
   }
   else{
-    ogg_int64_t log_bits;
-    ogg_int64_t log_qexp;
+    int64_t log_bits;
+    int64_t log_qexp;
     /*Compute the estimated scale factor for this frame type.*/
     log_bits=oc_blog64(_bits);
     log_qexp=_enc->rc.log_qtarget-OC_Q57(2);
@@ -762,7 +762,7 @@ int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
     case 2:{
       /*Pass 2 mode:*/
       if(!_trial){
-        ogg_int64_t next_frame_num;
+        int64_t next_frame_num;
         int32_t         qti;
         /*Move the current metrics back one frame.*/
         *&_enc->rc.prev_metrics=*&_enc->rc.cur_metrics;
@@ -819,7 +819,7 @@ int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
         dropped=1;
       }
       else{
-        ogg_uint32_t drop_count;
+        uint32_t drop_count;
         /*Update a low-pass filter to estimate the "real" frame rate taking
            drops and duplicates into account.
           This is only done if the frame is coded, as it needs the final
@@ -863,7 +863,7 @@ int32_t oc_enc_update_rc_state(oc_enc_ctx *_enc,
 #define OC_RC_2PASS_HDR_SZ    (38)
 #define OC_RC_2PASS_PACKET_SZ (8)
 
-static void oc_rc_buffer_val(oc_rc_state *_rc,ogg_int64_t _val,int32_t _bytes){
+static void oc_rc_buffer_val(oc_rc_state *_rc,int64_t _val,int32_t _bytes){
   while(_bytes-->0){
     _rc->twopass_buffer[_rc->twopass_buffer_bytes++]=(uchar)(_val&0xFF);
     _val>>=8;
@@ -928,13 +928,13 @@ static size_t oc_rc_buffer_fill(oc_rc_state *_rc,
   return _consumed;
 }
 
-static ogg_int64_t oc_rc_unbuffer_val(oc_rc_state *_rc,int32_t _bytes){
-  ogg_int64_t ret;
+static int64_t oc_rc_unbuffer_val(oc_rc_state *_rc,int32_t _bytes){
+  int64_t ret;
   int32_t         shift;
   ret=0;
   shift=0;
   while(_bytes-->0){
-    ret|=((ogg_int64_t)_rc->twopass_buffer[_rc->twopass_buffer_bytes++])<<shift;
+    ret|=((int64_t)_rc->twopass_buffer[_rc->twopass_buffer_bytes++])<<shift;
     shift+=8;
   }
   return ret;
@@ -967,7 +967,7 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
     consumed=oc_rc_buffer_fill(&_enc->rc,
      _buf,_bytes,consumed,OC_RC_2PASS_HDR_SZ);
     if(_enc->rc.twopass_buffer_fill>=OC_RC_2PASS_HDR_SZ){
-      ogg_int64_t scale_sum[2];
+      int64_t scale_sum[2];
       int32_t         exp[2];
       int32_t         buf_delay;
       /*Read the summary header data.*/
@@ -977,9 +977,9 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
         _enc->rc.twopass_buffer_bytes=0;
         return TH_ENOTFORMAT;
       }
-      _enc->rc.frames_total[0]=(ogg_uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
-      _enc->rc.frames_total[1]=(ogg_uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
-      _enc->rc.frames_total[2]=(ogg_uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
+      _enc->rc.frames_total[0]=(uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
+      _enc->rc.frames_total[1]=(uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
+      _enc->rc.frames_total[2]=(uint32_t)oc_rc_unbuffer_val(&_enc->rc,4);
       exp[0]=(int32_t)oc_rc_unbuffer_val(&_enc->rc,1);
       exp[1]=(int32_t)oc_rc_unbuffer_val(&_enc->rc,1);
       scale_sum[0]=oc_rc_unbuffer_val(&_enc->rc,8);
@@ -990,8 +990,8 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
       buf_delay=_enc->rc.frames_total[0]+_enc->rc.frames_total[1]
        +_enc->rc.frames_total[2];
       if(_enc->rc.frames_total[0]==0||buf_delay<0||
-       (ogg_uint32_t)buf_delay<_enc->rc.frames_total[0]||
-       (ogg_uint32_t)buf_delay<_enc->rc.frames_total[1]){
+       (uint32_t)buf_delay<_enc->rc.frames_total[0]||
+       (uint32_t)buf_delay<_enc->rc.frames_total[1]){
         _enc->rc.frames_total[0]=0;
         _enc->rc.twopass_buffer_bytes=0;
         return TH_EBADHEADER;
@@ -1019,7 +1019,7 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
     }
   }
   if(_enc->rc.frames_total[0]!=0){
-    ogg_int64_t curframe_num;
+    int64_t curframe_num;
     int32_t         nframes_total;
     curframe_num=_enc->state.curframe_num;
     if(curframe_num>=0){
@@ -1044,12 +1044,12 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
         consumed=oc_rc_buffer_fill(&_enc->rc,
          _buf,_bytes,consumed,OC_RC_2PASS_PACKET_SZ);
         if(_enc->rc.twopass_buffer_fill>=OC_RC_2PASS_PACKET_SZ){
-          ogg_uint32_t dup_count;
+          uint32_t dup_count;
           ogg_int32_t  log_scale;
           int32_t          qti;
           int32_t          arg;
           /*Read the metrics for the next frame.*/
-          dup_count = (ogg_uint32_t) oc_rc_unbuffer_val(&_enc->rc,4);
+          dup_count = (uint32_t) oc_rc_unbuffer_val(&_enc->rc,4);
           log_scale = (ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
           _enc->rc.cur_metrics.log_scale=log_scale;
           qti=(dup_count&0x80000000)>>31;
@@ -1080,7 +1080,7 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
           if(_enc->rc.twopass_buffer_fill>=OC_RC_2PASS_PACKET_SZ){
             oc_frame_metrics *m;
             int32_t               fmi;
-            ogg_uint32_t      dup_count;
+            uint32_t      dup_count;
             ogg_int32_t       log_scale;
             int32_t               qti;
             /*Read the metrics for the next frame.*/

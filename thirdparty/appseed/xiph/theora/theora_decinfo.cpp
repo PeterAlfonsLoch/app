@@ -57,21 +57,21 @@ static int32_t oc_info_unpack(oc_pack_buf *_opb,th_info *_info){
   }
   /*Read the encoded frame description.*/
   val=oc_pack_read(_opb,16);
-  _info->frame_width=(ogg_uint32_t)val<<4;
+  _info->frame_width=(uint32_t)val<<4;
   val=oc_pack_read(_opb,16);
-  _info->frame_height=(ogg_uint32_t)val<<4;
+  _info->frame_height=(uint32_t)val<<4;
   val=oc_pack_read(_opb,24);
-  _info->pic_width=(ogg_uint32_t)val;
+  _info->pic_width=(uint32_t)val;
   val=oc_pack_read(_opb,24);
-  _info->pic_height=(ogg_uint32_t)val;
+  _info->pic_height=(uint32_t)val;
   val=oc_pack_read(_opb,8);
-  _info->pic_x=(ogg_uint32_t)val;
+  _info->pic_x=(uint32_t)val;
   val=oc_pack_read(_opb,8);
-  _info->pic_y=(ogg_uint32_t)val;
+  _info->pic_y=(uint32_t)val;
   val=oc_pack_read(_opb,32);
-  _info->fps_numerator=(ogg_uint32_t)val;
+  _info->fps_numerator=(uint32_t)val;
   val=oc_pack_read(_opb,32);
-  _info->fps_denominator=(ogg_uint32_t)val;
+  _info->fps_denominator=(uint32_t)val;
   if(_info->frame_width==0||_info->frame_height==0||
    _info->pic_width+_info->pic_x>_info->frame_width||
    _info->pic_height+_info->pic_y>_info->frame_height||
@@ -84,9 +84,9 @@ static int32_t oc_info_unpack(oc_pack_buf *_opb,th_info *_info){
      applications expect a left-handed one.*/
   _info->pic_y=_info->frame_height-_info->pic_height-_info->pic_y;
   val=oc_pack_read(_opb,24);
-  _info->aspect_numerator=(ogg_uint32_t)val;
+  _info->aspect_numerator=(uint32_t)val;
   val=oc_pack_read(_opb,24);
-  _info->aspect_denominator=(ogg_uint32_t)val;
+  _info->aspect_denominator=(uint32_t)val;
   val=oc_pack_read(_opb,8);
   _info->colorspace=(th_colorspace)val;
   val=oc_pack_read(_opb,24);

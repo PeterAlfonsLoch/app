@@ -387,7 +387,7 @@ uint32_t CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
 uint32_t CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq )
 {
   //int32_t numRead = 0;
-  LPDWORD pdwId;
+  uint32_t * pdwId;
   char *cmd, *p, *retBuf;
   int32_t i;
 
@@ -396,7 +396,7 @@ uint32_t CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq )
       return SS_ERR;
     }
 
-  pdwId = (LPDWORD) GlobalAlloc( GPTR, 103 * sizeof(uint32_t) );
+  pdwId = (uint32_t *) GlobalAlloc( GPTR, 103 * sizeof(uint32_t) );
   cmd = (char *) GlobalAlloc( GPTR, 1024 );
   retBuf = (char *) GlobalAlloc( GPTR, 2048 );
   if ( !cmd || !pdwId || !retBuf )

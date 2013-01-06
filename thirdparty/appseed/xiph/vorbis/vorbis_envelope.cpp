@@ -200,7 +200,7 @@ static int32_t _ve_amp(envelope_lookup *ve,
 
 #if 0
 static int32_t seq=0;
-static ogg_int64_t totalshift=-1024;
+static int64_t totalshift=-1024;
 #endif
 
 long _ve_envelope_search(vorbis_dsp_state *v){

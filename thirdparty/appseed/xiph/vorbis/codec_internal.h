@@ -83,7 +83,7 @@ typedef struct private_state {
 
   bitrate_manager_state bms;
 
-  ogg_int64_t sample_count;
+  int64_t sample_count;
 } private_state;
 
 /* codec_setup_info contains all the setup information specific to the

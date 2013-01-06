@@ -70,11 +70,11 @@ extern "C" {
  * If it is set before encoding begins, th_info#keyframe_granule_shift will
  *  be enlarged appropriately.
  *
- * \param[in]  _buf <tt>ogg_uint32_t</tt>: The maximum distance between key
+ * \param[in]  _buf <tt>uint32_t</tt>: The maximum distance between key
  *                   frames.
- * \param[out] _buf <tt>ogg_uint32_t</tt>: The actual maximum distance set.
+ * \param[out] _buf <tt>uint32_t</tt>: The actual maximum distance set.
  * \retval TH_EFAULT \a _enc_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(ogg_uint32_t)</tt>.
+ * \retval TH_EINVAL \a _buf_sz is not <tt>sizeof(uint32_t)</tt>.
  * \retval TH_EIMPL   Not supported by this implementation.*/
 #define TH_ENCCTL_SET_KEYFRAME_FREQUENCY_FORCE (4)
 /**Disables any encoder features that would prevent lossless transcoding back

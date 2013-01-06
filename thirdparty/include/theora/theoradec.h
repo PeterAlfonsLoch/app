@@ -71,10 +71,10 @@ extern "C" {
  * If you track timestamps yourself and do not use the granule position
  *  returned by the decoder, then you need not call this function.
  *
- * \param[in] _buf <tt>ogg_int64_t</tt>: The granule position of the next
+ * \param[in] _buf <tt>int64_t</tt>: The granule position of the next
  *                  frame.
  * \retval TH_EFAULT  \a _dec_ctx or \a _buf is <tt>NULL</tt>.
- * \retval TH_EINVAL  \a _buf_sz is not <tt>sizeof(ogg_int64_t)</tt>, or the
+ * \retval TH_EINVAL  \a _buf_sz is not <tt>sizeof(int64_t)</tt>, or the
  *                     granule position is negative.*/
 #define TH_DECCTL_SET_GRANPOS (5)
 /**Sets the striped decode callback function.
@@ -292,7 +292,7 @@ extern int32_t th_decode_ctl(th_dec_ctx *_dec,int32_t _req,void *_buf,
  * \retval TH_EIMPL      The video data uses bitstream features which this
  *                        library does not support.*/
 extern int32_t th_decode_packetin(th_dec_ctx *_dec,const ogg_packet *_op,
- ogg_int64_t *_granpos);
+ int64_t *_granpos);
 /**Outputs the next available frame of decoded Y'CbCr data.
  * If a striped decode callback has been set with #TH_DECCTL_SET_STRIPE_CB,
  *  then the application does not need to call this function.

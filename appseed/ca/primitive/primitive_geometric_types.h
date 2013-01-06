@@ -50,7 +50,7 @@ typedef uchar      byte;
 typedef uint16_t     uint16_t;
 //typedef unsigned long      dword;
 typedef uint64_t         qword;
-typedef uint32_t       uint;
+typedef uint32_t       uint32_t;
 typedef uint_ptr          uint_ptr;
 
 class __size64;

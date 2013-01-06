@@ -68,11 +68,11 @@ typedef struct codebook{
   /* for decode, the below are ordered by bitreversed codeword and only
      used entries are populated */
   float        *valuelist;  /* list of dim*entries actual entry values */
-  ogg_uint32_t *codelist;   /* list of bitstream codewords for each entry */
+  uint32_t *codelist;   /* list of bitstream codewords for each entry */
 
   int32_t          *dec_index;  /* only used if sparseness collapsed */
   char         *dec_codelengths;
-  ogg_uint32_t *dec_firsttable;
+  uint32_t *dec_firsttable;
   int32_t           dec_firsttablen;
   int32_t           dec_maxlength;
 

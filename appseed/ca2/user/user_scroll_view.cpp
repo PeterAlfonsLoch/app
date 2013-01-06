@@ -301,7 +301,7 @@ namespace user
          si.fMask       = SIF_ALL;
          si.nMin        = m_scrollinfo.m_rectMargin.left;
          si.nMax        = m_scrollinfo.m_sizeTotal.cx + m_scrollinfo.m_rectMargin.right;
-         si.nPage       = (uint) m_scrollinfo.m_sizePage.cx;
+         si.nPage       = (uint32_t) m_scrollinfo.m_sizePage.cx;
          si.nPos        = m_scrollinfo.m_ptScroll.x;
          si.nTrackPos   = m_scrollinfo.m_ptScroll.x;
          m_pscrollbarHorz->_001SetScrollInfo(&si);
@@ -312,7 +312,7 @@ namespace user
          si.fMask       = SIF_ALL;
          si.nMin        = m_scrollinfo.m_rectMargin.top;
          si.nMax        = m_scrollinfo.m_sizeTotal.cy + m_scrollinfo.m_rectMargin.bottom;
-         si.nPage       = (uint) m_scrollinfo.m_sizePage.cy;
+         si.nPage       = (uint32_t) m_scrollinfo.m_sizePage.cy;
          si.nPos        = m_scrollinfo.m_ptScroll.y;
          si.nTrackPos   = m_scrollinfo.m_ptScroll.y;
          m_pscrollbarVert->_001SetScrollInfo(&si);

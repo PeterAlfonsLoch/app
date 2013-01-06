@@ -353,7 +353,7 @@ void oc_fdct8x8_border(const oc_border_info *_border,
   ogg_int16_t             *in;
   ogg_int16_t             *out;
   ogg_int16_t              w[64];
-  ogg_int64_t              mask;
+  int64_t              mask;
   const oc_extension_info *cext;
   const oc_extension_info *rext;
   int32_t                      cmask;

@@ -39,9 +39,9 @@ int32_t ogg_page_eos(const ogg_page *og){
   return((int32_t)(og->header[5]&0x04));
 }
 
-ogg_int64_t ogg_page_granulepos(const ogg_page *og){
+int64_t ogg_page_granulepos(const ogg_page *og){
   uchar *page=og->header;
-  ogg_int64_t granulepos=page[13]&(0xff);
+  int64_t granulepos=page[13]&(0xff);
   granulepos= (granulepos<<8)|(page[12]&0xff);
   granulepos= (granulepos<<8)|(page[11]&0xff);
   granulepos= (granulepos<<8)|(page[10]&0xff);
@@ -97,7 +97,7 @@ int32_t ogg_page_packets(const ogg_page *og){
 /* helper to initialize lookup for direct-table CRC (illustrative; we
    use the static init below) */
 
-static ogg_uint32_t _ogg_crc_entry(uint32_t long index){
+static uint32_t _ogg_crc_entry(uint32_t long index){
   int32_t           i;
   uint32_t long r;
 
@@ -114,7 +114,7 @@ static ogg_uint32_t _ogg_crc_entry(uint32_t long index){
 }
 #endif
 
-static const ogg_uint32_t crc_lookup[256]={
+static const uint32_t crc_lookup[256]={
   0x00000000,0x04c11db7,0x09823b6e,0x0d4326d9,
   0x130476dc,0x17c56b6b,0x1a864db2,0x1e475005,
   0x2608edb8,0x22c9f00f,0x2f8ad6d6,0x2b4bcb61,
@@ -190,7 +190,7 @@ int32_t ogg_stream_init(ogg_stream_state *os,int32_t serialno){
 
     os->body_data= (uchar *) _ogg_malloc(os->body_storage*sizeof(*os->body_data));
     os->lacing_vals= (int32_t *) _ogg_malloc(os->lacing_storage*sizeof(*os->lacing_vals));
-    os->granule_vals= (ogg_int64_t *) _ogg_malloc(os->lacing_storage*sizeof(*os->granule_vals));
+    os->granule_vals= (int64_t *) _ogg_malloc(os->lacing_storage*sizeof(*os->granule_vals));
 
     if(!os->body_data || !os->lacing_vals || !os->granule_vals){
       ogg_stream_clear(os);
@@ -264,7 +264,7 @@ static int32_t _os_lacing_expand(ogg_stream_state *os,int32_t needed){
       ogg_stream_clear(os);
       return -1;
     }
-    os->granule_vals= (ogg_int64_t *) ret;
+    os->granule_vals= (int64_t *) ret;
     os->lacing_storage+=(needed+32);
   }
   return 0;
@@ -276,7 +276,7 @@ static int32_t _os_lacing_expand(ogg_stream_state *os,int32_t needed){
 
 void ogg_page_checksum_set(ogg_page *og){
   if(og){
-    ogg_uint32_t crc_reg=0;
+    uint32_t crc_reg=0;
     int32_t i;
 
     /* safety; needed for API behavior, but not framing code */
@@ -299,7 +299,7 @@ void ogg_page_checksum_set(ogg_page *og){
 
 /* submit data to the internal buffer of the framing engine */
 int32_t ogg_stream_iovecin(ogg_stream_state *os, ogg_iovec_t *iov, int32_t count,
-                       long e_o_s, ogg_int64_t granulepos){
+                       long e_o_s, int64_t granulepos){
 
   int32_t bytes = 0, lacing_vals, i;
 
@@ -372,7 +372,7 @@ static int32_t ogg_stream_flush_i(ogg_stream_state *os,ogg_page *og, int32_t for
   int32_t maxvals=(os->lacing_fill>255?255:os->lacing_fill);
   int32_t bytes=0;
   long acc=0;
-  ogg_int64_t granule_pos=-1;
+  int64_t granule_pos=-1;
 
   if(ogg_stream_check(os)) return(0);
   if(maxvals==0) return(0);
@@ -794,7 +794,7 @@ int32_t ogg_stream_pagein(ogg_stream_state *os, ogg_page *og){
   int32_t continued=ogg_page_continued(og);
   int32_t bos=ogg_page_bos(og);
   int32_t eos=ogg_page_eos(og);
-  ogg_int64_t granulepos=ogg_page_granulepos(og);
+  int64_t granulepos=ogg_page_granulepos(og);
   int32_t serialno=ogg_page_serialno(og);
   long pageno=ogg_page_pageno(og);
   int32_t segments=header[26];

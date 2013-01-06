@@ -67,7 +67,7 @@ extern const uchar OC_MV_BITS[2][64];
 
 /*The minimum value that can be stored in a SB run for each codeword.
   The last entry is the upper bound on the length of a single SB run.*/
-extern const ogg_uint16_t  OC_SB_RUN_VAL_MIN[8];
+extern const uint16_t  OC_SB_RUN_VAL_MIN[8];
 /*The bits used for each SB run codeword.*/
 extern const uchar OC_SB_RUN_CODE_NBITS[7];
 
@@ -135,7 +135,7 @@ struct oc_mb_enc_info{
   /*Refined block MVs.*/
   oc_mv         ref_mv[4];
   /*Minimum motion estimation error from the analysis stage.*/
-  ogg_uint16_t  error[2];
+  uint16_t  error[2];
   /*MB error for half-pel refinement for each frame type.*/
   uint32_t      satd[2];
   /*Block error for half-pel refinement.*/
@@ -175,7 +175,7 @@ void oc_mode_scheme_chooser_init(oc_mode_scheme_chooser *_chooser);
    critically damped.*/
 struct oc_iir_filter{
   ogg_int32_t c[2];
-  ogg_int64_t g;
+  int64_t g;
   ogg_int32_t x[2];
   ogg_int32_t y[2];
 };
@@ -197,17 +197,17 @@ struct oc_frame_metrics{
 /*Rate control state information.*/
 struct oc_rc_state{
   /*The target average bits per frame.*/
-  ogg_int64_t        bits_per_frame;
+  int64_t        bits_per_frame;
   /*The current buffer fullness (bits available to be used).*/
-  ogg_int64_t        fullness;
+  int64_t        fullness;
   /*The target buffer fullness.
     This is where we'd like to be by the last keyframe the appears in the next
      buf_delay frames.*/
-  ogg_int64_t        target;
+  int64_t        target;
   /*The maximum buffer fullness (total size of the buffer).*/
-  ogg_int64_t        max;
+  int64_t        max;
   /*The log of the number of pixels in a frame in Q57 format.*/
-  ogg_int64_t        log_npixels;
+  int64_t        log_npixels;
   /*The exponent used in the rate model in Q8 format.*/
   uint32_t           exp[2];
   /*The number of frames to distribute the buffer usage over.*/
@@ -215,14 +215,14 @@ struct oc_rc_state{
   /*The total drop count from the previous frame.
     This includes duplicates explicitly requested via the
      TH_ENCCTL_SET_DUP_COUNT API as well as frames we chose to drop ourselves.*/
-  ogg_uint32_t       prev_drop_count;
+  uint32_t       prev_drop_count;
   /*The log of an estimated scale factor used to obtain the real framerate, for
      VFR sources or, e.g., 12 fps content doubled to 24 fps, etc.*/
-  ogg_int64_t        log_drop_scale;
+  int64_t        log_drop_scale;
   /*The log of estimated scale factor for the rate model in Q57 format.*/
-  ogg_int64_t        log_scale[2];
+  int64_t        log_scale[2];
   /*The log of the target quantizer level in Q57 format.*/
-  ogg_int64_t        log_qtarget;
+  int64_t        log_qtarget;
   /*Will we drop frames to meet bitrate target?*/
   uchar      drop_frames;
   /*Do we respect the maximum buffer fullness?*/
@@ -261,11 +261,11 @@ struct oc_rc_state{
   int32_t                frame_metrics_head;
   /*The frame count of each type (keyframes, delta frames, and dup frames);
      32 bits limits us to 2.268 years at 60 fps.*/
-  ogg_uint32_t       frames_total[3];
+  uint32_t       frames_total[3];
   /*The number of frames of each type yet to be processed.*/
-  ogg_uint32_t       frames_left[3];
+  uint32_t       frames_left[3];
   /*The sum of the scale values for each frame type.*/
-  ogg_int64_t        scale_sum[2];
+  int64_t        scale_sum[2];
   /*The start of the window over which the current scale sums are taken.*/
   int32_t                scale_window0;
   /*The end of the window over which the current scale sums are taken.*/
@@ -274,7 +274,7 @@ struct oc_rc_state{
      include dup frames.*/
   int32_t                nframes[3];
   /*The total accumulated estimation bias.*/
-  ogg_int64_t        rate_bias;
+  int64_t        rate_bias;
 };
 
 
@@ -311,13 +311,13 @@ struct th_enc_ctx{
      positive when a frame has been processed and data packets are ready.*/
   int32_t                      packet_state;
   /*The maximum distance between keyframes.*/
-  ogg_uint32_t             keyframe_frequency_force;
+  uint32_t             keyframe_frequency_force;
   /*The number of duplicates to produce for the next frame.*/
-  ogg_uint32_t             dup_count;
+  uint32_t             dup_count;
   /*The number of duplicates remaining to be emitted for the current frame.*/
-  ogg_uint32_t             nqueued_dups;
+  uint32_t             nqueued_dups;
   /*The number of duplicates emitted for the last frame.*/
-  ogg_uint32_t             prev_dup_count;
+  uint32_t             prev_dup_count;
   /*The current speed level.*/
   int32_t                      sp_level;
   /*Whether or not VP3 compatibility mode has been enabled.*/
@@ -342,11 +342,11 @@ struct th_enc_ctx{
   /*The DCT token lists for each coefficient and each plane.*/
   uchar          **dct_tokens[3];
   /*The extra bits associated with each DCT token.*/
-  ogg_uint16_t           **extra_bits[3];
+  uint16_t           **extra_bits[3];
   /*The number of DCT tokens for each coefficient for each plane.*/
   ptrdiff_t                ndct_tokens[3][64];
   /*Pending EOB runs for each coefficient for each plane.*/
-  ogg_uint16_t             eob_run[3][64];
+  uint16_t             eob_run[3][64];
   /*The offset of the first DCT token for each coefficient for each plane.*/
   uchar            dct_token_offs[3][64];
   /*The last DC coefficient for each plane and reference frame.*/
@@ -371,7 +371,7 @@ struct th_enc_ctx{
     They are kept in the log domain to simplify later processing.
     Keep in mind these are DCT domain quantizers, and so are scaled by an
      additional factor of 4 from the pixel domain.*/
-  ogg_int64_t              log_qavg[2][64];
+  int64_t              log_qavg[2][64];
   /*The buffer state used to drive rate control.*/
   oc_rc_state              rc;
   /*Table for encoder acceleration functions.*/
@@ -406,7 +406,7 @@ struct oc_token_checkpoint{
   /*The zig-zag index the token was added to.*/
   uchar zzi;
   /*The outstanding EOB run count before the token was added.*/
-  ogg_uint16_t  eob_run;
+  uint16_t  eob_run;
   /*The token count before the token was added.*/
   ptrdiff_t     ndct_tokens;
 };
@@ -415,7 +415,7 @@ struct oc_token_checkpoint{
 
 void oc_enc_tokenize_start(oc_enc_ctx *_enc);
 int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
- ogg_int16_t *_qdct,const ogg_uint16_t *_dequant,const ogg_int16_t *_dct,
+ ogg_int16_t *_qdct,const uint16_t *_dequant,const ogg_int16_t *_dct,
  int32_t _zzi,oc_token_checkpoint **_stack,int32_t _acmin);
 void oc_enc_tokenlog_rollback(oc_enc_ctx *_enc,
  const oc_token_checkpoint *_stack,int32_t _n);

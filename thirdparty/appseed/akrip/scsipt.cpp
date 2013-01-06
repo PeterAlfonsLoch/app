@@ -390,7 +390,7 @@ uint32_t SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb )
   lpsrb->HA_Identifier[13] = (char)('0'+lpsrb->SRB_HaID);
   ZeroMemory( lpsrb->HA_Unique, 16 );
   lpsrb->HA_Unique[3] = 8;
-  pMTL = (LPDWORD)&lpsrb->HA_Unique[4];
+  pMTL = (uint32_t *)&lpsrb->HA_Unique[4];
   *pMTL = 64 * 1024;
 
   lpsrb->SRB_Status = SS_COMP;

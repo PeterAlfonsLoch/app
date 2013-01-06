@@ -35,12 +35,12 @@ static int32_t theora_decode_control(theora_state *_td,int32_t _req,
    _req,_buf,_buf_sz);
 }
 
-static ogg_int64_t theora_decode_granule_frame(theora_state *_td,
- ogg_int64_t _gp){
+static int64_t theora_decode_granule_frame(theora_state *_td,
+ int64_t _gp){
   return th_granule_frame(((th_api_wrapper *)_td->i->codec_setup)->decode,_gp);
 }
 
-static double theora_decode_granule_time(theora_state *_td,ogg_int64_t _gp){
+static double theora_decode_granule_time(theora_state *_td,int64_t _gp){
   return th_granule_time(((th_api_wrapper *)_td->i->codec_setup)->decode,_gp);
 }
 
@@ -154,7 +154,7 @@ int32_t theora_decode_header(theora_info *_ci,theora_comment *_cc,ogg_packet *_o
 
 int32_t theora_decode_packetin(theora_state *_td,ogg_packet *_op){
   th_api_wrapper *api;
-  ogg_int64_t     gp;
+  int64_t     gp;
   int32_t             ret;
   if(!_td||!_td->i||!_td->i->codec_setup)return OC_FAULT;
   api=(th_api_wrapper *)_td->i->codec_setup;

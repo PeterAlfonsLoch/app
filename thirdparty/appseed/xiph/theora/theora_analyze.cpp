@@ -464,7 +464,7 @@ struct oc_enc_pipeline_state{
   oc_fr_state         fr[3];
   oc_qii_state        qs[3];
   /*Condensed dequantization tables.*/
-  const ogg_uint16_t *dequant[3][3][2];
+  const uint16_t *dequant[3][3][2];
   /*Condensed quantization tables.*/
   const oc_iquant    *enquant[3][3][2];
   /*Skip SSD storage for the current MCU in each plane.*/
@@ -638,8 +638,8 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
  oc_rd_metric *_mo,oc_token_checkpoint **_stack){
   OC_ALIGN16(ogg_int16_t  dct[64]);
   OC_ALIGN16(ogg_int16_t  data[64]);
-  ogg_uint16_t            dc_dequant;
-  const ogg_uint16_t     *dequant;
+  uint16_t            dc_dequant;
+  const uint16_t     *dequant;
   const oc_iquant        *enquant;
   ptrdiff_t               frag_offs;
   int32_t                     ystride;
@@ -804,7 +804,7 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
       }
     }
     else{
-      ogg_int64_t mask;
+      int64_t mask;
       mask=_enc->state.borders[borderi].mask;
       for(pi=0;pi<64;pi++,mask>>=1)if(mask&1){
         coded_ssd+=data[pi]*data[pi];
@@ -1498,7 +1498,7 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
   const oc_mb_map_plane  *mb_map;
   const uchar    *map_idxs;
   int32_t                     map_nidxs;
-  ogg_int64_t             mask;
+  int64_t             mask;
   uint32_t                uncoded_ssd;
   int32_t                     uncoded_dc;
   uint32_t                dc_dequant;
@@ -1531,7 +1531,7 @@ static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
       }
     }
     else{
-      ogg_int64_t mask;
+      int64_t mask;
       mask=_enc->state.borders[borderi].mask;
       for(pi=0;pi<64;pi++,mask>>=1)if(mask&1){
         uncoded_ssd+=buffer[pi]*buffer[pi];
@@ -1852,8 +1852,8 @@ int32_t oc_enc_analyze_inter(oc_enc_ctx *_enc,int32_t _allow_keyframe,int32_t _r
   oc_qii_state            intra_luma_qs;
   oc_mv                   last_mv;
   oc_mv                   prior_mv;
-  ogg_int64_t             interbits;
-  ogg_int64_t             intrabits;
+  int64_t             interbits;
+  int64_t             intrabits;
   const uchar    *map_idxs;
   int32_t                     nmap_idxs;
   uint32_t               *coded_mbis;
@@ -2540,7 +2540,7 @@ void oc_enc_mode_metrics_collect(oc_enc_ctx *_enc){
     ncoded_fragis+=_enc->state.ncoded_fragis[pli];
     for(;fragii<ncoded_fragis;fragii++){
       ptrdiff_t    fragi;
-      ogg_uint32_t frag_bits;
+      uint32_t frag_bits;
       int32_t          huffi;
       int32_t          skip;
       int32_t          mb_mode;

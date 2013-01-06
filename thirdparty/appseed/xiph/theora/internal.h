@@ -210,7 +210,7 @@ struct oc_sb_flags{
 struct oc_border_info{
   /*A bit mask marking which pixels are in the displayable region.
     Pixel (x,y) corresponds to bit (y<<3|x).*/
-  ogg_int64_t mask;
+  int64_t mask;
   /*The number of pixels in the displayable region.
     This is always positive, and always less than 64.*/
   int32_t         npixels;
@@ -280,7 +280,7 @@ struct oc_base_opt_vtable{
    const uchar *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
   void (*idct8x8)(ogg_int16_t _y[64],int32_t _last_zzi);
   void (*state_frag_recon)(const oc_theora_state *_state,ptrdiff_t _fragi,
-   int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant);
+   int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
   void (*state_frag_copy_list)(const oc_theora_state *_state,
    const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
    int32_t _dst_frame,int32_t _src_frame,int32_t _pli);
@@ -305,7 +305,7 @@ struct oc_theora_state{
   /*Table for shared data used by accelerated functions.*/
   oc_base_opt_data    opt_data;
   /*CPU flags to detect the presence of extended instruction sets.*/
-  ogg_uint32_t        cpu_flags;
+  uint32_t        cpu_flags;
   /*The fragment plane descriptions.*/
   oc_fragment_plane   fplanes[3];
   /*The list of fragments, indexed in image order.*/
@@ -360,11 +360,11 @@ struct oc_theora_state{
      list.*/
   oc_border_info      borders[16];
   /*The frame number of the last keyframe.*/
-  ogg_int64_t         keyframe_num;
+  int64_t         keyframe_num;
   /*The frame number of the current frame.*/
-  ogg_int64_t         curframe_num;
+  int64_t         curframe_num;
   /*The granpos of the current frame.*/
-  ogg_int64_t         granpos;
+  int64_t         granpos;
   /*The type of the current frame.*/
   uchar       frame_type;
   /*The bias to add to the frame count when computing granule positions.*/
@@ -375,7 +375,7 @@ struct oc_theora_state{
   uchar       qis[3];
   /*The dequantization tables, stored in zig-zag order, and indexed by
      qi, pli, qti, and zzi.*/
-  ogg_uint16_t       *dequant_tables[64][3][2];
+  uint16_t       *dequant_tables[64][3][2];
   OC_ALIGN16(oc_quant_table      dequant_table_data[64][3][2]);
   /*Loop filter strength parameters.*/
   uchar       loop_filter_limits[64];
@@ -456,7 +456,7 @@ void oc_frag_recon_inter2(const oc_theora_state *_state,
  int32_t _ystride,const ogg_int16_t _residue[64]);
 void oc_idct8x8(const oc_theora_state *_state,ogg_int16_t _y[64],int32_t _last_zzi);
 void oc_state_frag_recon(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant);
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
 void oc_state_frag_copy_list(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
  int32_t _dst_frame,int32_t _src_frame,int32_t _pli);
@@ -475,7 +475,7 @@ void oc_frag_recon_inter2_c(uchar *_dst,const uchar *_src1,
  const uchar *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
 void oc_idct8x8_c(ogg_int16_t _y[64],int32_t _last_zzi);
 void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,ogg_uint16_t _dc_quant);
+ int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
 void oc_state_frag_copy_list_c(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
  int32_t _dst_frame,int32_t _src_frame,int32_t _pli);
@@ -493,10 +493,10 @@ void oc_restore_fpu_c();
 typedef void (*oc_state_clear_func)(theora_state *_th);
 typedef int32_t (*oc_state_control_func)(theora_state *th,int32_t _req,
  void *_buf,size_t _buf_sz);
-typedef ogg_int64_t (*oc_state_granule_frame_func)(theora_state *_th,
- ogg_int64_t _granulepos);
+typedef int64_t (*oc_state_granule_frame_func)(theora_state *_th,
+ int64_t _granulepos);
 typedef double (*oc_state_granule_time_func)(theora_state *_th,
- ogg_int64_t _granulepos);
+ int64_t _granulepos);
 
 
 struct oc_state_dispatch_vtable{

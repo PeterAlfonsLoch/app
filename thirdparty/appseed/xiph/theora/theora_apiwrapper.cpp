@@ -23,7 +23,7 @@ const char *theora_version_string(){
   return th_version_string();
 }
 
-ogg_uint32_t theora_version_number(){
+uint32_t theora_version_number(){
   return th_version_number();
 }
 
@@ -66,7 +66,7 @@ int32_t theora_control(theora_state *_th,int32_t _req,void *_buf,size_t _buf_sz)
   else return TH_EINVAL;
 }
 
-ogg_int64_t theora_granule_frame(theora_state *_th,ogg_int64_t _gp){
+int64_t theora_granule_frame(theora_state *_th,int64_t _gp){
   /*Provide compatibility with mixed encoder and decoder shared lib versions.*/
   if(_th->internal_decode!=NULL){
     return (*((oc_state_dispatch_vtable *)_th->internal_decode)->granule_frame)(
@@ -79,7 +79,7 @@ ogg_int64_t theora_granule_frame(theora_state *_th,ogg_int64_t _gp){
   else return -1;
 }
 
-double theora_granule_time(theora_state *_th, ogg_int64_t _gp){
+double theora_granule_time(theora_state *_th, int64_t _gp){
   /*Provide compatibility with mixed encoder and decoder shared lib versions.*/
   if(_th->internal_decode!=NULL){
     return (*((oc_state_dispatch_vtable *)_th->internal_decode)->granule_time)(

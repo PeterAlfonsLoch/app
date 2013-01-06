@@ -117,19 +117,19 @@ void oc_quant_params_pack(oggpack_buffer *_opb,const th_quant_info *_qinfo){
   }
 }
 
-static void oc_iquant_init(oc_iquant *_this,ogg_uint16_t _d){
-  ogg_uint32_t t;
+static void oc_iquant_init(oc_iquant *_this,uint16_t _d){
+  uint32_t t;
   int32_t          l;
   _d<<=1;
   l=OC_ILOGNZ_32(_d)-1;
-  t=1+((ogg_uint32_t)1<<16+l)/_d;
+  t=1+((uint32_t)1<<16+l)/_d;
   _this->m=(ogg_int16_t)(t-0x10000);
   _this->l=l;
 }
 
 /*See comments at oc_dequant_tables_init() for how the quantization tables'
    storage should be initialized.*/
-void oc_enquant_tables_init(ogg_uint16_t *_dequant[64][3][2],
+void oc_enquant_tables_init(uint16_t *_dequant[64][3][2],
  oc_iquant *_enquant[64][3][2],const th_quant_info *_qinfo){
   int32_t qi;
   int32_t pli;
@@ -197,7 +197,7 @@ void oc_enquant_tables_init(ogg_uint16_t *_dequant[64][3][2],
    mode is significantly flatter) and b) the DPCM prediction of the DC
    coefficient gives a very minor improvement in the INTRA case and a quite
    significant one in the INTER case (over the expected variance).*/
-static const ogg_uint16_t OC_RPSD[2][64]={
+static const uint16_t OC_RPSD[2][64]={
   {
     52725,17370,10399, 6867, 5115, 3798, 2942, 2076,
     17370, 9900, 6948, 4994, 3836, 2869, 2229, 1619,
@@ -226,7 +226,7 @@ static const ogg_uint16_t OC_RPSD[2][64]={
    quantization, over a large set of test video encoded at all possible rates.
   TODO: These values are only from INTER frames; it should be re-measured for
    INTRA frames.*/
-static const ogg_uint16_t OC_PCD[4][3]={
+static const uint16_t OC_PCD[4][3]={
   {59926, 3038, 2572},
   {55201, 5597, 4738},
   {55201, 5597, 4738},
@@ -245,26 +245,26 @@ static const ogg_uint16_t OC_PCD[4][3]={
    confused with the lambda used in R-D optimization throughout most of the
    rest of the code).
   The value Q*lambda completely determines the entropy of the coefficients.*/
-void oc_enquant_qavg_init(ogg_int64_t _log_qavg[2][64],
- ogg_uint16_t *_dequant[64][3][2],int32_t _pixel_fmt){
+void oc_enquant_qavg_init(int64_t _log_qavg[2][64],
+ uint16_t *_dequant[64][3][2],int32_t _pixel_fmt){
   int32_t qi;
   int32_t pli;
   int32_t qti;
   int32_t ci;
   for(qti=0;qti<2;qti++)for(qi=0;qi<64;qi++){
-    ogg_int64_t q2;
+    int64_t q2;
     q2=0;
     for(pli=0;pli<3;pli++){
-      ogg_uint32_t qp;
+      uint32_t qp;
       qp=0;
       for(ci=0;ci<64;ci++){
         uint32_t rq;
         uint32_t qd;
         qd=_dequant[qi][pli][qti][OC_IZIG_ZAG[ci]];
         rq=(OC_RPSD[qti][ci]+(qd>>1))/qd;
-        qp+=rq*(ogg_uint32_t)rq;
+        qp+=rq*(uint32_t)rq;
       }
-      q2+=OC_PCD[_pixel_fmt][pli]*(ogg_int64_t)qp;
+      q2+=OC_PCD[_pixel_fmt][pli]*(int64_t)qp;
     }
     /*qavg=1.0/sqrt(q2).*/
     _log_qavg[qti][qi]=OC_Q57(48)-oc_blog64(q2)>>1;

@@ -1300,7 +1300,7 @@ typedef struct{
   const ptrdiff_t    *uncoded_fragis[3];
   ptrdiff_t           ncoded_fragis[3];
   ptrdiff_t           nuncoded_fragis[3];
-  const ogg_uint16_t *dequant[3][3][2];
+  const uint16_t *dequant[3][3][2];
   int32_t                 fragy0[3];
   int32_t                 fragy_end[3];
   int32_t                 pred_last[3][3];
@@ -1495,7 +1495,7 @@ static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
  oc_dec_pipeline_state *_pipe,int32_t _pli){
   uchar       *dct_tokens;
   const uchar *dct_fzig_zag;
-  ogg_uint16_t         dc_quant[2];
+  uint16_t         dc_quant[2];
   const oc_fragment   *frags;
   const ptrdiff_t     *coded_fragis;
   ptrdiff_t            ncoded_fragis;
@@ -1516,7 +1516,7 @@ static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
        uses the final element as a dumping ground for out-of-range indices
        to protect us from buffer overflow.*/
     OC_ALIGN8(ogg_int16_t dct_coeffs[65]);
-    const ogg_uint16_t *ac_quant;
+    const uint16_t *ac_quant;
     ptrdiff_t           fragi;
     int32_t                 last_zzi;
     int32_t                 zzi;
@@ -1978,10 +1978,10 @@ int32_t th_decode_ctl(th_dec_ctx *_dec,int32_t _req,void *_buf,
     return 0;
   }break;
   case TH_DECCTL_SET_GRANPOS:{
-    ogg_int64_t granpos;
+    int64_t granpos;
     if(_dec==NULL||_buf==NULL)return TH_EFAULT;
-    if(_buf_sz!=sizeof(ogg_int64_t))return TH_EINVAL;
-    granpos=*(ogg_int64_t *)_buf;
+    if(_buf_sz!=sizeof(int64_t))return TH_EINVAL;
+    granpos=*(int64_t *)_buf;
     if(granpos<0)return TH_EINVAL;
     _dec->state.granpos=granpos;
     _dec->state.keyframe_num=(granpos>>_dec->state.info.keyframe_granule_shift)
@@ -2058,7 +2058,7 @@ static void oc_dec_init_dummy_frame(th_dec_ctx *_dec){
 }
 
 int32_t th_decode_packetin(th_dec_ctx *_dec,const ogg_packet *_op,
- ogg_int64_t *_granpos){
+ int64_t *_granpos){
   int32_t ret;
   if(_dec==NULL||_op==NULL)return TH_EFAULT;
   /*A completely empty packet indicates a dropped frame and is treated exactly

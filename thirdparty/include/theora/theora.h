@@ -204,16 +204,16 @@ typedef enum {
  * other paramters and good default settings for the encoder parameters.
  */
 typedef struct {
-  ogg_uint32_t  width;		/**< encoded frame width  */
-  ogg_uint32_t  height;		/**< encoded frame height */
-  ogg_uint32_t  frame_width;	/**< display frame width  */
-  ogg_uint32_t  frame_height;	/**< display frame height */
-  ogg_uint32_t  offset_x;	/**< horizontal offset of the displayed frame */
-  ogg_uint32_t  offset_y;	/**< vertical offset of the displayed frame */
-  ogg_uint32_t  fps_numerator;	    /**< frame rate numerator **/
-  ogg_uint32_t  fps_denominator;    /**< frame rate denominator **/
-  ogg_uint32_t  aspect_numerator;   /**< pixel aspect ratio numerator */
-  ogg_uint32_t  aspect_denominator; /**< pixel aspect ratio denominator */
+  uint32_t  width;		/**< encoded frame width  */
+  uint32_t  height;		/**< encoded frame height */
+  uint32_t  frame_width;	/**< display frame width  */
+  uint32_t  frame_height;	/**< display frame height */
+  uint32_t  offset_x;	/**< horizontal offset of the displayed frame */
+  uint32_t  offset_y;	/**< vertical offset of the displayed frame */
+  uint32_t  fps_numerator;	    /**< frame rate numerator **/
+  uint32_t  fps_denominator;    /**< frame rate denominator **/
+  uint32_t  aspect_numerator;   /**< pixel aspect ratio numerator */
+  uint32_t  aspect_denominator; /**< pixel aspect ratio denominator */
   theora_colorspace colorspace;	    /**< colorspace */
   int32_t           target_bitrate;	    /**< nominal bitrate in bits per second */
   int32_t           quality;  /**< Nominal quality setting, 0-63 */
@@ -229,12 +229,12 @@ typedef struct {
   /* encode only */
   int32_t           dropframes_p;
   int32_t           keyframe_auto_p;
-  ogg_uint32_t  keyframe_frequency;
-  ogg_uint32_t  keyframe_frequency_force;  /* also used for decode init to
+  uint32_t  keyframe_frequency;
+  uint32_t  keyframe_frequency_force;  /* also used for decode init to
                                               get granpos shift correct */
-  ogg_uint32_t  keyframe_data_target_bitrate;
+  uint32_t  keyframe_data_target_bitrate;
   ogg_int32_t   keyframe_auto_threshold;
-  ogg_uint32_t  keyframe_mindistance;
+  uint32_t  keyframe_mindistance;
   ogg_int32_t   noise_sensitivity;
   ogg_int32_t   sharpness;
 
@@ -246,7 +246,7 @@ typedef struct {
  */
 typedef struct{
   theora_info *i;
-  ogg_int64_t granulepos;
+  int64_t granulepos;
 
   void *internal_encode;
   void *internal_decode;
@@ -318,11 +318,11 @@ typedef struct theora_comment{
  * If it is set before encoding begins, th_info#keyframe_granule_shift will
  *  be enlarged appropriately.
  *
- * \param[in]  buf <tt>ogg_uint32_t</tt>: The maximum distance between key
+ * \param[in]  buf <tt>uint32_t</tt>: The maximum distance between key
  *                   frames.
- * \param[out] buf <tt>ogg_uint32_t</tt>: The actual maximum distance set.
+ * \param[out] buf <tt>uint32_t</tt>: The actual maximum distance set.
  * \retval OC_FAULT  \a theora_state or \a buf is <tt>NULL</tt>.
- * \retval OC_EINVAL \a buf_sz is not <tt>sizeof(ogg_uint32_t)</tt>.
+ * \retval OC_EINVAL \a buf_sz is not <tt>sizeof(uint32_t)</tt>.
  * \retval OC_IMPL   Not supported by this implementation.*/
 #define TH_ENCCTL_SET_KEYFRAME_FREQUENCY_FORCE (4)
 
@@ -439,7 +439,7 @@ extern const char *theora_version_string();
 </pre>
 * \returns The version number.
 */
-extern ogg_uint32_t theora_version_number();
+extern uint32_t theora_version_number();
 
 /**
  * Initialize the theora encoder.
@@ -657,7 +657,7 @@ int32_t theora_granule_shift(theora_info *ti);
  *
  * Thus function was added in the 1.0alpha4 release.
  */
-extern ogg_int64_t theora_granule_frame(theora_state *th,ogg_int64_t granulepos);
+extern int64_t theora_granule_frame(theora_state *th,int64_t granulepos);
 
 /**
  * Convert a granulepos to absolute time in seconds. The granulepos is
@@ -674,7 +674,7 @@ extern ogg_int64_t theora_granule_frame(theora_state *th,ogg_int64_t granulepos)
  * \retval -1. The function has been disabled because floating 
  *              point support is not available.
  */
-extern double theora_granule_time(theora_state *th,ogg_int64_t granulepos);
+extern double theora_granule_time(theora_state *th,int64_t granulepos);
 
 /**
  * Initialize a theora_info structure. All values within the given theora_info

@@ -33,7 +33,7 @@ static const uint32_t OC_AC_QUANT_MIN[2]={2<<2,4<<2};
   However, a much, much better option is to only store the quantization
    matrices being used for the current frame, and to recalculate these as the
    qi values change between frames (this is what VP3 did).*/
-void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
+void oc_dequant_tables_init(uint16_t *_dequant[64][3][2],
  int32_t _pp_dc_scale[64],const th_quant_info *_qinfo){
   /*Coding mode: intra or inter.*/
   int32_t          qti;
@@ -46,7 +46,7 @@ void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
     int32_t qri;
     for(qi=0,qri=0;qri<=_qinfo->qi_ranges[qti][pli].nranges;qri++){
       th_quant_base base;
-      ogg_uint32_t  q;
+      uint32_t  q;
       int32_t           qi_start;
       int32_t           qi_end;
       memcpy(base,_qinfo->qi_ranges[qti][pli].base_matrices[qri],
@@ -56,7 +56,7 @@ void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
       else qi_end=qi+_qinfo->qi_ranges[qti][pli].sizes[qri];
       /*Iterate over quality indicies in this range.*/
       for(;;){
-        ogg_uint32_t qfac;
+        uint32_t qfac;
         int32_t          zzi;
         int32_t          ci;
         /*In the original VP3.2 code, the rounding offset and the size of the
@@ -68,18 +68,18 @@ void oc_dequant_tables_init(ogg_uint16_t *_dequant[64][3][2],
           Hence, all of that VP3.2 code is gone from here, and the remaining
            floating point code has been implemented as equivalent integer code
            with exact precision.*/
-        qfac=(ogg_uint32_t)_qinfo->dc_scale[qi]*base[0];
+        qfac=(uint32_t)_qinfo->dc_scale[qi]*base[0];
         /*For postprocessing, not dequantization.*/
         if(_pp_dc_scale!=NULL)_pp_dc_scale[qi]=(int32_t)(qfac/160);
         /*Scale DC the coefficient from the proper table.*/
         q=(qfac/100)<<2;
         q=OC_CLAMPI(OC_DC_QUANT_MIN[qti],q,OC_QUANT_MAX);
-        _dequant[qi][pli][qti][0]=(ogg_uint16_t)q;
+        _dequant[qi][pli][qti][0]=(uint16_t)q;
         /*Now scale AC coefficients from the proper table.*/
         for(zzi=1;zzi<64;zzi++){
-          q=((ogg_uint32_t)_qinfo->ac_scale[qi]*base[OC_FZIG_ZAG[zzi]]/100)<<2;
+          q=((uint32_t)_qinfo->ac_scale[qi]*base[OC_FZIG_ZAG[zzi]]/100)<<2;
           q=OC_CLAMPI(OC_AC_QUANT_MIN[qti],q,OC_QUANT_MAX);
-          _dequant[qi][pli][qti][zzi]=(ogg_uint16_t)q;
+          _dequant[qi][pli][qti][zzi]=(uint16_t)q;
         }
         /*If this is a duplicate of a previous matrix, use that instead.
           This simple check helps us improve cache coherency later.*/
