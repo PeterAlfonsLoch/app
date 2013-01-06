@@ -141,7 +141,7 @@ namespace mysql
             * SHOW, DESCRIBE, etc.); just report rows-affected value.
             */
             m_iLastUsedTime = ::ca::profiler::micros();
-            TRACE("Number of rows affected: %lu\n", (uint32_t long) mysql_affected_rows ((MYSQL *) m_pmysql));
+            TRACE("Number of rows affected: %lu\n", (uint32_t) mysql_affected_rows ((MYSQL *) m_pmysql));
             return new result(this, true, NULL);
          }
          else /* an error occurred */

@@ -27,9 +27,9 @@ namespace mysql
       return row;
    }
 
-   uint32_t long * result::fetch_lengths()
+   unsigned long * result::fetch_lengths()
    {
-      uint32_t long * lengths;
+      unsigned long * lengths;
       if(m_pres == NULL)
          return NULL;
       lengths = mysql_fetch_lengths((MYSQL_RES *) m_pres);

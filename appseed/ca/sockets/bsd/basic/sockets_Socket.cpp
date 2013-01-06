@@ -333,7 +333,7 @@ namespace sockets
    bool socket::SetNonblocking(bool bNb)
    {
    #ifdef _WIN32
-      uint32_t long l = bNb ? 1 : 0;
+      u_long l = bNb ? 1 : 0;
       int32_t n = ioctlsocket(m_socket, FIONBIO, &l);
       if (n != 0)
       {
@@ -366,7 +366,7 @@ namespace sockets
    bool socket::SetNonblocking(bool bNb, SOCKET s)
    {
    #ifdef _WIN32
-      uint32_t long l = bNb ? 1 : 0;
+      u_long l = bNb ? 1 : 0;
       int32_t n = ioctlsocket(s, FIONBIO, &l);
       if (n != 0)
       {

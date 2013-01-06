@@ -77,7 +77,7 @@ namespace gen
       if(!bBlock)
       {
 
-         uint32_t dwMode = PIPE_NOWAIT;
+         DWORD dwMode = PIPE_NOWAIT;
          VERIFY(SetNamedPipeHandleState(m_hRead   , &dwMode, NULL, NULL));
          VERIFY(SetNamedPipeHandleState(m_hWrite  , &dwMode, NULL, NULL));
 
@@ -148,7 +148,7 @@ namespace gen
       uint32_t dwLen = (uint32_t) strlen(psz);
       bool bSuccess = FALSE;
 #ifdef WINDOWS
-      uint32_t dwWritten;
+      DWORD dwWritten;
       bSuccess = WriteFile(m_hWrite, (const char *) psz, dwLen, &dwWritten, NULL) != FALSE;
 #else
       size_t dwWritten;
@@ -162,7 +162,7 @@ namespace gen
       string str;
       const int32_t BUFSIZE = 1024 * 8;
 #ifdef WINDOWS
-      uint32_t dwRead;
+      DWORD dwRead;
 #else
       size_t dwRead;
 #endif
@@ -202,7 +202,7 @@ namespace gen
       string str;
       const int32_t BUFSIZE = 1024 * 8;
 #ifdef WINDOWS
-      uint32_t dwRead;
+      DWORD dwRead;
 #else
       size_t dwRead;
 #endif

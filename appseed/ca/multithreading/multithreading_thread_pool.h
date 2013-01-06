@@ -58,7 +58,7 @@ public:
       simple_signal < T > * psignal = new simple_signal < T >(pobject, pmethod);
 
 #ifdef WINDOWSEX
-      if(!::QueueUserWorkItem(thread_proc < T >, psignal, flags))
+      if(!::QueueUserWorkItem((LPTHREAD_START_ROUTINE) thread_proc < T >, psignal, flags))
       {
          delete psignal;
          throw last_error_exception(pobject->get_app());
@@ -75,11 +75,7 @@ public:
 private:
 
    template <typename T>
-#ifdef WINDOWSEX
    static uint32_t WINAPI thread_proc(PVOID pcontext)
-#else
-   static UINT c_cdecl thread_proc(PVOID pcontext)
-#endif
    {
       simple_signal < T > * psignal =  static_cast < simple_signal < T > * >(pcontext);
 

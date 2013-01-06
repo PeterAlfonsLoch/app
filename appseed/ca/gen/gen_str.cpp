@@ -1293,20 +1293,6 @@ namespace gen
 
    }
 
-#if !defined(_LP64)
-
-   string & str::from(string & str, uint32_t long ul)
-   {
-
-      str = ui64toa_dup(ul);
-
-      return str;
-
-   }
-
-#endif
-
-
    string str::uni_to_utf8(int64_t w)
    {
       string str;
