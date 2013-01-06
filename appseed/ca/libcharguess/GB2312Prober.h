@@ -32,7 +32,7 @@ public:
   nsGB18030Prober(){mCodingSM = new nsCodingStateMachine(&GB18030SMModel);
                       Reset();};
   virtual ~nsGB18030Prober(){delete mCodingSM;};
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, uint32_t aLen);
   const char* GetCharSetName() {return "gb18030";};
   nsProbingState GetState() {return mState;};
   void      Reset();
@@ -40,7 +40,7 @@ public:
   void      SetOpion() {};
 
 protected:
-  void      GetDistribution(PRUint32 aCharLen, const char* aStr);
+  void      GetDistribution(uint32_t aCharLen, const char* aStr);
   
   nsCodingStateMachine* mCodingSM;
   nsProbingState mState;

@@ -56,7 +56,7 @@ const char * LibCharGuess::GuessCharset(const char * lpsz)
    return GuessChardet(lpsz);
 }
 
-uint32_t long LibCharGuess::GuessCodePage(const char * lpsz)
+uint32_t LibCharGuess::GuessCodePage(const char * lpsz)
 {
    if(lpsz == NULL)
       return 0;

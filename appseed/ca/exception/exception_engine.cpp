@@ -68,7 +68,7 @@ HANDLE SymGetProcessHandle();
 WINBOOL __stdcall My_ReadProcessMemory(HANDLE      hProcess,
 DWORD64     qwBaseAddress,
 PVOID       lpBuffer,
-uint32_t       nSize,
+DWORD       nSize,
 LPDWORD     lpNumberOfBytesRead
                                        );
 
@@ -115,7 +115,7 @@ WINBOOL __stdcall My_ReadProcessMemory (
    HANDLE      hProcess,
    DWORD64     qwBaseAddress,
    PVOID       lpBuffer,
-   uint32_t       nSize,
+   DWORD       nSize,
    LPDWORD     lpNumberOfBytesRead
    )
 {
@@ -247,7 +247,7 @@ namespace exception
       img_line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
 
       HANDLE hprocess = SymGetProcessHandle();
-      uint32_t displacement = 0;
+      DWORD displacement = 0;
       if (!get_line_from_address(hprocess, m_uiAddress, &displacement, &img_line))
          return 0;
       if (pdisplacement)
@@ -425,7 +425,7 @@ retry_get_base:
 #ifdef WINDOWSEX
 
 
-   bool engine::get_line_from_address (HANDLE hprocess, DWORD64 uiAddress, uint32_t * puiDisplacement, IMAGEHLP_LINE64 * pline)
+   bool engine::get_line_from_address (HANDLE hprocess, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline)
    {
 #ifdef WORK_AROUND_SRCLINE_BUG
       // "Debugging Applications" John Robbins
@@ -558,13 +558,13 @@ retry_get_base:
          {
             ENUMPROCESSMODULES fnEnumProcessModules =
                (ENUMPROCESSMODULES)GetProcAddress(hInst, "EnumProcessModules");
-            uint32_t cbNeeded = 0;
+            DWORD cbNeeded = 0;
             if (fnEnumProcessModules &&
                fnEnumProcessModules(GetCurrentProcess(), 0, 0, &cbNeeded) &&
                cbNeeded)
             {
                HMODULE * pmod = (HMODULE *)alloca(cbNeeded);
-               uint32_t cb = cbNeeded;
+               DWORD cb = cbNeeded;
                if (fnEnumProcessModules(GetCurrentProcess(), pmod, cb, &cbNeeded))
                {
                   m_iRef = 0;

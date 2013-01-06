@@ -23,7 +23,7 @@ namespace gen
          int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
-        uint32_t long c1 = CHAR_PROP(c);
+        uint32_t c1 = CHAR_PROP(c);
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return string(wchar_t(c));
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(c+1));
         return string(wchar_t(c - (c1>>16)));
@@ -32,7 +32,7 @@ namespace gen
          int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
-        uint32_t long c1 = CHAR_PROP(c);
+        uint32_t c1 = CHAR_PROP(c);
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return string(wchar_t(c));
         if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lt) return string(wchar_t(c-1));
         return string(wchar_t(c - (c1>>16)));
@@ -42,7 +42,7 @@ namespace gen
          int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return "";
-        uint32_t long c1 = CHAR_PROP(c);
+        uint32_t c1 = CHAR_PROP(c);
         if (TITLE_CASE(c1)){ // titlecase exists
           if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Lu) return string(wchar_t(c+1));
           if (CHAR_CATEGORY(c1) == CHAR_CATEGORY_Ll) return string(wchar_t(c-1));
@@ -78,7 +78,7 @@ namespace gen
          int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
-        uint32_t long c1 = CHAR_CATEGORY(CHAR_PROP(c));
+        uint32_t c1 = CHAR_CATEGORY(CHAR_PROP(c));
         return ((( (1 << CHAR_CATEGORY_Lu) |
                    (1 << CHAR_CATEGORY_Ll) |
                    (1 << CHAR_CATEGORY_Lt) |
@@ -90,7 +90,7 @@ namespace gen
          int64_t c = uni_index(pszUtf8Char);
          if(!is_legal_uni_index(c))
             return false;
-        uint32_t long c1 = CHAR_CATEGORY(CHAR_PROP(c));
+        uint32_t c1 = CHAR_CATEGORY(CHAR_PROP(c));
         return ((( (1 << CHAR_CATEGORY_Lu) |
                    (1 << CHAR_CATEGORY_Ll) |
                    (1 << CHAR_CATEGORY_Lt) |

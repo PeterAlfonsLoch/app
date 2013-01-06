@@ -30,7 +30,7 @@ public:
   nsEUCTWProber(){mCodingSM = new nsCodingStateMachine(&EUCTWSMModel);
                       Reset();};
   virtual ~nsEUCTWProber(){delete mCodingSM;};
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, uint32_t aLen);
   const char* GetCharSetName() {return "x-euc-tw";};
   nsProbingState GetState() {return mState;};
   void      Reset();
@@ -38,7 +38,7 @@ public:
   void      SetOpion() {};
 
 protected:
-  void      GetDistribution(PRUint32 aCharLen, const char* aStr);
+  void      GetDistribution(uint32_t aCharLen, const char* aStr);
   
   nsCodingStateMachine* mCodingSM;
   nsProbingState mState;

@@ -232,14 +232,6 @@ namespace plane
       ::plane::application *                       m_pcubeInterface;
 
 
-#ifdef WINDOWS
-      /*      Gdiplus::GdiplusStartupInput *   m_pgdiplusStartupInput;
-      Gdiplus::GdiplusStartupOutput *  m_pgdiplusStartupOutput;
-      uint_ptr                        m_gdiplusToken;
-      uint_ptr                        m_gdiplusHookToken;*/
-      //static mutex                     s_mutexGdiplus;
-#endif
-
       const str_pool                               m_cstrpool;
 
       ::collection::strid_map < ::ca::type_info >  m_typemap;
@@ -247,7 +239,7 @@ namespace plane
       FT_Library                                   m_ftlibrary;
       mutex                                        m_mutexDelete;
       ::ca::application_ptra                       m_appptra;
-      class ::ca::file::system                     m_file;
+      ::ca::file::system_sp                        m_spfile;
       ::ca::dir::system_sp                         m_spdir;
       class ::ca2::stra                            m_stra;
       class ::ca2::url                             m_url;
@@ -414,10 +406,10 @@ namespace plane
       ::ca::application_ptra           & appptra();
       ::ca2::datetime                  & datetime();
 
-      inline ::ca::file::system        & file() { return m_file; }
-      inline ::ca::dir::system         & dir() { return m_spdir; }
+      inline ::ca::file::system        & file()    { return m_spfile; }
+      inline ::ca::dir::system         & dir()     { return m_spdir; }
       ::ca2::stra                      & stra();
-      inline ::ca2::url                & url() { return m_url; }
+      inline ::ca2::url                & url()     { return m_url; }
       ::html::html                     & html();
       ::xml::xml                       & xml();
       ::ca2::install                   & install();

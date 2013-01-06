@@ -57,9 +57,9 @@ public:
    string get_service_name() const;
 
    void SetServiceStatus();
-   static void WINAPI ServiceMain(uint32_t argumentCount, PWSTR* arguments);
+   static void WINAPI ServiceMain(DWORD argumentCount, PWSTR* arguments);
 
-   static void WINAPI ServiceHandler(uint32_t control);
+   static void WINAPI ServiceHandler(DWORD control);
 
 
 };

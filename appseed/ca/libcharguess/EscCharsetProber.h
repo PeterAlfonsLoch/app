@@ -30,7 +30,7 @@ class nsEscCharSetProber: public nsCharSetProber {
 public:
   nsEscCharSetProber();
   virtual ~nsEscCharSetProber();
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, uint32_t aLen);
   const char* GetCharSetName() {return mDetectedCharset;};
   nsProbingState GetState() {return mState;};
   void      Reset();
@@ -38,10 +38,10 @@ public:
   void      SetOpion() {};
 
 protected:
-  void      GetDistribution(PRUint32 aCharLen, const char* aStr);
+  void      GetDistribution(uint32_t aCharLen, const char* aStr);
   
   nsCodingStateMachine* mCodingSM[NUM_OF_ESC_CHARSETS] ;
-  PRUint32    mActiveSM;
+  uint32_t    mActiveSM;
   nsProbingState mState;
   const char *  mDetectedCharset;
 };

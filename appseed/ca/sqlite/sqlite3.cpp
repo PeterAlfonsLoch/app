@@ -14057,8 +14057,8 @@ zulu_time:
                   }
                }else{
                   if( flag_longlong )   longvalue = va_arg(ap,u64);
-                  else if( flag_long )  longvalue = va_arg(ap,uint32_t long int);
-                  else                  longvalue = va_arg(ap,uint32_t int);
+                  else if( flag_long )  longvalue = va_arg(ap,unsigned long int);
+                  else                  longvalue = va_arg(ap,unsigned int);
                   prefix = 0;
                }
                if( longvalue==0 ) flag_alternateform = 0;

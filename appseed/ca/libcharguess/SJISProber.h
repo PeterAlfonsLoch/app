@@ -37,7 +37,7 @@ public:
   nsSJISProber(){mCodingSM = new nsCodingStateMachine(&SJISSMModel);
                       Reset();};
   virtual ~nsSJISProber(){delete mCodingSM;};
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, uint32_t aLen);
   const char* GetCharSetName() {return "Shift_JIS";};
   nsProbingState GetState() {return mState;};
   void      Reset();

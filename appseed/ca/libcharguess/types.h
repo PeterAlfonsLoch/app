@@ -19,21 +19,8 @@
 */
 
 
-typedef signed long   PRInt32;
-typedef uint32_t long PRUint32;
-typedef signed int16_t    PRInt16;
-typedef uint16_t  PRUint16;
-typedef signed char   PRInt8;
-typedef uchar PRUint8;
-typedef uint32_t PRUintn;
-typedef char PRBool;
-
-#define PR_FALSE 0
-#define PR_TRUE  1
-#define nsnull   NULL
-
-#define PR_MALLOC malloc
-#define PR_FREEIF free
+#define PR_MALLOC ca2_alloc
+#define PR_FREEIF ca2_free
 
 
-#define NS_ASSERTION(a,b) { if (!(a)) { puts(b); abort(); } }
+#define NS_ASSERTION(a,b) { if (!(a)) { puts(b); throw simple_exception(::ca::get_thread_app()); } }

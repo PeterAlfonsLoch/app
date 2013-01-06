@@ -242,32 +242,6 @@ namespace ex1
 
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (char ch)
-   {
-      write(&ch, sizeof(ch));
-      return *this;
-   }
-
-   plain_text_output_stream & plain_text_output_stream::operator << (uchar uch)
-   {
-      return operator << ((uint32_t) uchar);
-   }
-
-   plain_text_output_stream & plain_text_output_stream::operator << (int16_t sh)
-   {
-      return operator << ((int32_t) sh);
-   }
-
-   plain_text_output_stream & plain_text_output_stream::operator << (uint16_t uint16_t)
-   {
-      return operator << ((uint32_t) uint16_t);
-   }
-
-   plain_text_output_stream & plain_text_output_stream::operator << (wchar_t wch)
-   {
-      return raw_print(gen::str::uni_to_utf8(wch));
-   }
-
    plain_text_output_stream & plain_text_output_stream::operator << (bool b)
    {
       if(b)
@@ -275,6 +249,33 @@ namespace ex1
       else
          return raw_print("false");
    }
+
+   plain_text_output_stream & plain_text_output_stream::operator << (int8_t i)
+   {
+      write(&i, sizeof(i)); // treat as char - character
+      return *this;
+   }
+
+   plain_text_output_stream & plain_text_output_stream::operator << (uint8_t ui)
+   {
+      return operator << ((uint32_t) ui);
+   }
+
+   plain_text_output_stream & plain_text_output_stream::operator << (int16_t i)
+   {
+      return operator << ((int32_t) i);
+   }
+
+   plain_text_output_stream & plain_text_output_stream::operator << (uint16_t ui)
+   {
+      return operator << ((uint32_t) ui);
+   }
+
+   plain_text_output_stream & plain_text_output_stream::operator << (wchar_t wch)
+   {
+      return raw_print(gen::str::uni_to_utf8(wch));
+   }
+
 
    plain_text_output_stream & plain_text_output_stream::operator << (int32_t i)
    {
@@ -285,20 +286,6 @@ namespace ex1
    {
       return raw_print(gen::str::from(ui));
    }
-
-#if !defined(_LP64)
-
-   plain_text_output_stream & plain_text_output_stream::operator << (long l)
-   {
-      return raw_print(gen::str::from(l));
-   }
-
-   plain_text_output_stream & plain_text_output_stream::operator << (uint32_t long ul)
-   {
-      return raw_print(gen::str::from(ul));
-   }
-
-#endif
 
    plain_text_output_stream & plain_text_output_stream::operator << (int64_t i)
    {

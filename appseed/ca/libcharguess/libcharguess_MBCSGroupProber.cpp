@@ -54,7 +54,7 @@ nsMBCSGroupProber::nsMBCSGroupProber()
 
 nsMBCSGroupProber::~nsMBCSGroupProber()
 {
-  for (PRUint32 i = 0; i < NUM_OF_PROBERS; i++)
+  for (uint32_t i = 0; i < NUM_OF_PROBERS; i++)
   {
     delete mProbers[i];
   }
@@ -73,32 +73,32 @@ const char* nsMBCSGroupProber::GetCharSetName()
 
 void  nsMBCSGroupProber::Reset()
 {
-  for (PRUint32 i = 0; i < NUM_OF_PROBERS; i++)
+  for (uint32_t i = 0; i < NUM_OF_PROBERS; i++)
   {
     mProbers[i]->Reset();
-    mIsActive[i] = PR_TRUE;
+    mIsActive[i] = true;
   }
   mActiveNum = NUM_OF_PROBERS;
   mBestGuess = -1;
   mState = eDetecting;
 }
 
-nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, uint32_t aLen)
 {
   nsProbingState st;
-  PRUint32 i;
+  uint32_t i;
 
   //do filtering to reduce load to probers
   char *highbyteBuf;
   char *hptr;
-  PRBool keepNext = PR_TRUE;   //assume previous is not ascii, it will do not harm except add some noise
+  bool keepNext = true;   //assume previous is not ascii, it will do not harm except add some noise
   hptr = highbyteBuf = (char*)PR_MALLOC(aLen);
   for (i = 0; i < aLen; i++)
   {
     if (aBuf[i] & 0x80)
     {
       *hptr++ = aBuf[i];
-      keepNext = PR_TRUE;
+      keepNext = true;
     }
     else
     {
@@ -106,7 +106,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
       if (keepNext)
       {
           *hptr++ = aBuf[i];
-          keepNext = PR_FALSE;
+          keepNext = false;
       }
     }
   }
@@ -115,7 +115,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
   {
      if (!mIsActive[i])
        continue;
-     st = mProbers[i]->HandleData(highbyteBuf, (PRUint32) (hptr - highbyteBuf));
+     st = mProbers[i]->HandleData(highbyteBuf, (uint32_t) (hptr - highbyteBuf));
      if (st == eFoundIt)
      {
        mBestGuess = i;
@@ -124,7 +124,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
      }
      else if (st == eNotMe)
      {
-       mIsActive[i] = PR_FALSE;
+       mIsActive[i] = false;
        mActiveNum--;
        if (mActiveNum <= 0)
        {
@@ -141,7 +141,7 @@ nsProbingState nsMBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
 
 float nsMBCSGroupProber::GetConfidence()
 {
-  PRUint32 i;
+  uint32_t i;
   float bestConf = 0.0, cf;
 
   switch (mState)
@@ -170,7 +170,7 @@ float nsMBCSGroupProber::GetConfidence()
 void
 nsMBCSGroupProber::dumpStatus()
 {
-  PRUint32 i;
+  uint32_t i;
   float cf;
 
   GetConfidence();

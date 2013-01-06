@@ -119,12 +119,36 @@ dump_context & dump_context::operator<<(const char * lpsz)
    return *this;
 }
 
-dump_context & dump_context::operator<<(BYTE by)
+dump_context & dump_context::operator<<(int8_t i)
 {
 
    string str;
 
-   str.Format("%d", (uint32_t)by);
+   str.Format("%d", (int32_t) i);
+
+   output_string(str);
+
+   return *this;
+
+}
+dump_context & dump_context::operator<<(uint8_t ui)
+{
+
+   string str;
+
+   str.Format("%u", (int32_t) ui);
+
+   output_string(str);
+
+   return *this;
+
+}
+dump_context & dump_context::operator<<(int16_t i)
+{
+
+   string str;
+
+   str.Format("%d", (int32_t) i);
 
    output_string(str);
 
@@ -132,12 +156,12 @@ dump_context & dump_context::operator<<(BYTE by)
 
 }
 
-dump_context & dump_context::hex_dump(BYTE b)
+dump_context & dump_context::operator<<(uint16_t ui)
 {
 
    string str;
 
-   str.Format("0x%02x", (uint32_t)b);
+   str.Format("%u", (uint16_t) ui);
 
    output_string(str);
 
@@ -145,34 +169,18 @@ dump_context & dump_context::hex_dump(BYTE b)
 
 }
 
-dump_context & dump_context::operator<<(WORD w)
+dump_context & dump_context::operator<<(int32_t i)
 {
 
    string str;
 
-   str.Format("%u", (UINT) w);
+   str.Format("%d", i);
 
    output_string(str);
 
    return *this;
 
 }
-
-dump_context & dump_context::hex_dump(WORD w)
-{
-
-   string str;
-
-   str.Format("0x%04x", (uint32_t) w);
-
-   output_string(str);
-
-   return *this;
-
-}
-
-
-#if defined(LINUX)
 
 dump_context & dump_context::operator<<(uint32_t ui)
 {
@@ -187,19 +195,12 @@ dump_context & dump_context::operator<<(uint32_t ui)
 
 }
 
-#endif
-
-
-#if defined(_WIN64) && !defined(_LP64)
-dump_context & dump_context::operator<<(UINT u)
-#else
-dump_context & dump_context::operator<<(uint_ptr u)
-#endif
+dump_context & dump_context::operator<<(int64_t i)
 {
 
    string str;
 
-   str.Format("%u", u);
+   str.Format("%l64d", i);
 
    output_string(str);
 
@@ -207,16 +208,12 @@ dump_context & dump_context::operator<<(uint_ptr u)
 
 }
 
-#ifdef _WIN64
-dump_context & dump_context::operator<<(LONG l)
-#else
-dump_context & dump_context::operator<<(int_ptr l)
-#endif
+dump_context & dump_context::operator<<(uint64_t ui)
 {
 
    string str;
 
-   str.Format("%d", l);
+   str.Format("%l64u", ui);
 
    output_string(str);
 
@@ -224,18 +221,12 @@ dump_context & dump_context::operator<<(int_ptr l)
 
 }
 
-#if !defined(_LP64)
-
-#ifdef _WIN64
-dump_context & dump_context::operator<<(uint32_t dw)
-#else
-dump_context & dump_context::operator<<(uint_ptr dw)
-#endif
+dump_context & dump_context::hex_dump(int8_t i)
 {
 
    string str;
 
-   str.Format("%u", dw);
+   str.Format("0x%02x", (uint32_t) i);
 
    output_string(str);
 
@@ -243,18 +234,13 @@ dump_context & dump_context::operator<<(uint_ptr dw)
 
 }
 
-#endif
 
-#if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
-dump_context & dump_context::operator<<(int32_t n)
-#else
-dump_context & dump_context::operator<<(int_ptr n)
-#endif
+dump_context & dump_context::hex_dump(uint8_t ui)
 {
 
    string str;
 
-   str.Format("%d", n);
+   str.Format("0x%02x", (uint32_t)ui);
 
    output_string(str);
 
@@ -262,36 +248,12 @@ dump_context & dump_context::operator<<(int_ptr n)
 
 }
 
-#if !defined(_LP64)
-
-#ifdef _WIN64
-dump_context & dump_context::hex_dump(UINT u)
-#else
-dump_context & dump_context::hex_dump(uint_ptr u)
-#endif
+dump_context & dump_context::hex_dump(int16_t i)
 {
 
    string str;
 
-   str.Format("0x%08x", u);
-
-   output_string(str);
-
-   return *this;
-}
-
-#endif
-
-#ifdef _WIN64
-dump_context & dump_context::hex_dump(LONG l)
-#else
-dump_context & dump_context::hex_dump(int_ptr l)
-#endif
-{
-
-   string str;
-
-   str.Format("0x%08x", l);
+   str.Format("0x%04x", (uint32_t) i);
 
    output_string(str);
 
@@ -299,16 +261,12 @@ dump_context & dump_context::hex_dump(int_ptr l)
 
 }
 
-#if defined(_WIN64) && !defined(_LP64)
-dump_context & dump_context::hex_dump(uint32_t dw)
-#else
-dump_context & dump_context::hex_dump(uint_ptr dw)
-#endif
+dump_context & dump_context::hex_dump(uint16_t ui)
 {
 
    string str;
 
-   str.Format("0x%08x", dw);
+   str.Format("0x%04x", (uint32_t) ui);
 
    output_string(str);
 
@@ -316,16 +274,26 @@ dump_context & dump_context::hex_dump(uint_ptr dw)
 
 }
 
-#if defined(_WIN64) && !defined(LINUX) && !defined(_LP64)
-dump_context & dump_context::hex_dump(int32_t n)
-#else
-dump_context & dump_context::hex_dump(int_ptr n)
-#endif
+
+
+dump_context & dump_context::hex_dump(int32_t i)
 {
 
    string str;
 
-   str.Format("0x%08x", n);
+   str.Format("0x%08x", i);
+
+   output_string(str);
+
+   return *this;
+}
+
+dump_context & dump_context::hex_dump(uint32_t ui)
+{
+
+   string str;
+
+   str.Format("0x%08x", ui);
 
    output_string(str);
 
@@ -333,61 +301,30 @@ dump_context & dump_context::hex_dump(int_ptr n)
 
 }
 
-#if !defined(_LP64)
-
-dump_context & dump_context::operator<<(LONGLONG n)
+dump_context & dump_context::hex_dump(int64_t i)
 {
 
    string str;
 
-   str.Format("%I64d", n);
+   str.Format("0x%016l64x", i);
+
+   output_string(str);
+
+   return *this;
+}
+
+dump_context & dump_context::hex_dump(uint64_t ui)
+{
+
+   string str;
+
+   str.Format("0x%016l64x", ui);
 
    output_string(str);
 
    return *this;
 
 }
-
-dump_context & dump_context::operator<<(ULONGLONG n)
-{
-
-   string str;
-
-   str.Format("%I64u", n);
-
-   output_string(str);
-
-   return *this;
-
-}
-
-dump_context & dump_context::hex_dump(LONGLONG n)
-{
-
-   string str;
-
-   str.Format("0x%016I64x", n);
-
-   output_string(str);
-
-   return *this;
-
-}
-
-dump_context & dump_context::hex_dump(ULONGLONG n)
-{
-
-   string str;
-
-   str.Format("0x%016I64x", n);
-
-   output_string(str);
-
-   return *this;
-
-}
-
-#endif
 
 dump_context & dump_context::operator<<(const ::radix::object* pOb)
 {

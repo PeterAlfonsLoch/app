@@ -35,9 +35,9 @@ typedef enum {
 typedef struct 
 {
   nsPkgInt classTable;
-  PRUint32 classFactor;
+  uint32_t classFactor;
   nsPkgInt stateTable;
-  const PRUint32* charLenTable;
+  const uint32_t* charLenTable;
   const char* name;
 } SMModel;
 
@@ -49,7 +49,7 @@ public:
         };
   nsSMState NextState(char c){
     //for each byte we get its class , if it is first byte, we also get byte length
-    PRUint32 byteCls = GETCLASS(c);
+    uint32_t byteCls = GETCLASS(c);
     if (mCurrentState == eStart)
     { 
       mCurrentBytePos = 0; 
@@ -61,14 +61,14 @@ public:
     mCurrentBytePos++;
     return mCurrentState;
   };
-  PRUint32  GetCurrentCharLen() {return mCurrentCharLen;};
+  uint32_t  GetCurrentCharLen() {return mCurrentCharLen;};
   void      Reset() {mCurrentState = eStart;};
   const char * GetCodingStateMachine() {return mModel->name;};
 
 protected:
   nsSMState mCurrentState;
-  PRUint32 mCurrentCharLen;
-  PRUint32 mCurrentBytePos;
+  uint32_t mCurrentCharLen;
+  uint32_t mCurrentBytePos;
 
   SMModel *mModel;
 };

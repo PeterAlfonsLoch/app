@@ -25,7 +25,7 @@ namespace gen
 
          private:
             int32_t m_value;
-            uint32_array m_dwa;
+            uint32_array m_uinta;
          };
    
       // http://www.alhem.net/

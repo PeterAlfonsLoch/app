@@ -175,7 +175,7 @@ int32_t LiteHTMLEntityResolver::resolveEntity(const char * lpszEntity, string & 
          if (radix == 16)
             lpszBegin++;
 
-         uint32_t long  ulNum = ::strtoul(lpszBegin, NULL, radix);
+         uint32_t  ulNum = ::strtoul(lpszBegin, NULL, radix);
          strChar = gen::str::uni_to_utf8(ulNum);
          return (int32_t) (lpszEnd - lpszEntity + 1);
       }

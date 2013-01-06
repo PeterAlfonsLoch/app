@@ -267,7 +267,7 @@ wait_result event::wait (const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-	return wait_result(::WaitForSingleObjectEx(item(), durationTimeout, FALSE));
+	return wait_result((uint32_t) ::WaitForSingleObjectEx(item(), durationTimeout.os_lock_duration(), FALSE));
 
 #else
 

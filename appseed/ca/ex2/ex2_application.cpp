@@ -359,7 +359,7 @@ namespace ex2
       ::ca::smart_pointer < ::ex2::application >::m_p->set_env_var(var, value);
    }
 
-   uint32_t long application::get_thread_id()
+   uint32_t application::get_thread_id()
    {
       return ::ca::smart_pointer < ::ex2::application >::m_p->get_thread_id();
    }

@@ -30,7 +30,7 @@ public:
   nsBig5Prober(){mCodingSM = new nsCodingStateMachine(&Big5SMModel);
                       Reset();};
   virtual ~nsBig5Prober() {delete mCodingSM;};
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, uint32_t aLen);
   const char* GetCharSetName() {return "Big5";};
   nsProbingState GetState() {return mState;};
   void      Reset();
@@ -38,7 +38,7 @@ public:
   void      SetOpion() {};
 
 protected:
-  void      GetDistribution(PRUint32 aCharLen, const char* aStr);
+  void      GetDistribution(uint32_t aCharLen, const char* aStr);
   
   nsCodingStateMachine* mCodingSM;
   nsProbingState mState;

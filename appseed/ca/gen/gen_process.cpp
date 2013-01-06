@@ -224,18 +224,46 @@ namespace gen
       return dwExitCode;
    }
 
-   bool process::has_exited(uint32_t * pdwExitCode)
+   bool process::has_exited(uint32_t * puiExitCode)
    {
-      uint32_t dwExitCode;
-      if(pdwExitCode == NULL)
-         pdwExitCode = &dwExitCode;
 
 #ifdef WINDOWSEX
 
-      if(!GetExitCodeProcess(m_pi.hProcess, pdwExitCode))
-         return true;
-      if(*pdwExitCode == STILL_ACTIVE)
-         return false;
+      DWORD dwExitCode;
+
+      bool bExited;
+
+      if(!GetExitCodeProcess(m_pi.hProcess, &dwExitCode))
+      {
+
+         bExited = true;
+
+      }
+      else
+      {
+         
+         if(dwExitCode == STILL_ACTIVE)
+         {
+
+            bExited = false;
+
+         }
+         else
+         {
+
+            bExited = true;
+
+         }
+
+      }
+
+      if(puiExitCode != NULL)
+      {
+
+         *puiExitCode = dwExitCode;
+
+      }
+
       return true;
 
 #elif defined(METROWIN)

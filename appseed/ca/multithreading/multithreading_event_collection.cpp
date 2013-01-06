@@ -205,13 +205,13 @@ wait_result event_collection::wait(bool waitForAll, const duration & duration)
 
             for ( ++position; position<m_objecta.size(); ++position ) {
                if(m_waitableelementa[position].callback) {
-                  uint32_t long res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
+                  int32_t res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
 
                   if ( res != WAIT_TIMEOUT )
                      m_waitableelementa[position].callback->callback(*m_waitableelementa[position].item);
                }
                else if(!FoundExternal) {
-                  uint32_t long res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
+                  int32_t res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
 
                   if ( res != WAIT_TIMEOUT ) {
                      winResult= (uint32_t) (res + position);
@@ -246,10 +246,10 @@ wait_result event_collection::find_next( const wait_result& result ) const
    index position = result.abandoned() ? result.abandoned_index() : result.signaled_index();
    for ( ++position; position<m_objecta.size(); ++position ) {
       if(!m_waitableelementa[position].callback) {
-         uint32_t long res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
+         int32_t res = ::WaitForSingleObjectEx(m_objecta[position], 0, FALSE);
          if ( res == WAIT_TIMEOUT )
             continue;
-         return wait_result( static_cast<uint32_t long>(position), m_objecta.size() );
+         return wait_result( static_cast<int32_t>(position), m_objecta.size() );
       }
    }
    return wait_result( wait_result::Failure );

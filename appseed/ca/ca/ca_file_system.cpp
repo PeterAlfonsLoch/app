@@ -158,7 +158,7 @@ namespace ca
          }
          else
          {
-            varRet = data.nFileSizeLow;
+            varRet = (uint32_t) data.nFileSizeLow;
          }
 
 #else
@@ -1411,7 +1411,7 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 	// Get the list of all handles in the system
 	PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
 	uint32_t size = sizeof(SYSTEM_HANDLE_INFORMATION);
-	uint32_t needed = 0;
+	DWORD needed = 0;
 	NTSTATUS status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
 	if( !NT_SUCCESS(status))
 	{
@@ -1517,9 +1517,8 @@ void EnumerateOpenedFiles( string& csPath, OF_CALLBACK CallBackProc, uint_ptr pU
 			HANDLE_INFO stHandle = {0};
 			ADDRESS_INFO stAddress;
 			stAddress.pAddress = sh.pAddress;
-			uint32_t dwReturn = 0;
-			bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO),
-				&stHandle, sizeof(HANDLE_INFO), &dwReturn, NULL ) != FALSE;
+			DWORD dwReturn = 0;
+			bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, NULL ) != FALSE;
 
 
 			if( bSuccess && stHandle.tcFileName[0] != 0 &&
@@ -1613,12 +1612,12 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 
 	uint32_t dwsize = 300;
 	PDWORD pDwId = (PDWORD)new BYTE[dwsize];
-	uint32_t dwRetruned = dwsize;
+	DWORD dwReturned = dwsize;
 	// Enum all the process first
 	while( 1 )
 	{
-		EnumProcesses( pDwId, dwsize, &dwRetruned );
-		if( dwsize > dwRetruned  )
+		EnumProcesses( pDwId, dwsize, &dwReturned );
+		if( dwsize > dwReturned  )
 		{
 			break;
 		}
@@ -1626,7 +1625,7 @@ void EnumerateLoadedModules( string& csPath, OF_CALLBACK CallBackProc, uint_ptr 
 		dwsize += 50;
 		pDwId = (PDWORD)new BYTE[dwsize];
 	}
-	int32_t nCount = dwRetruned / sizeof(uint32_t);
+	int32_t nCount = dwReturned / sizeof(uint32_t);
 	int32_t nItemCount = -1;
 	// Enumerate modules of the above process
 	for( int32_t nIdx = 0; nIdx < nCount;nIdx++ )

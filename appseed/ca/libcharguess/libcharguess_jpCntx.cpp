@@ -94,11 +94,11 @@ char jp2CharContext[83][83] =
 
 #define MINIMUM_DATA_THRESHOLD  4
 
-void JapaneseContextAnalysis::HandleData(const char* aBuf, PRUint32 aLen)
+void JapaneseContextAnalysis::HandleData(const char* aBuf, uint32_t aLen)
 {
-  PRUint32 charLen;
-  PRInt32 order;
-  PRUint32 i;
+  uint32_t charLen;
+  int32_t order;
+  uint32_t i;
   
   if (mDone)
     return;
@@ -124,7 +124,7 @@ void JapaneseContextAnalysis::HandleData(const char* aBuf, PRUint32 aLen)
         mTotalRel ++;
         if (mTotalRel > MAX_REL_THRESHOLD)
         {
-          mDone = PR_TRUE;
+          mDone = true;
           break;
         }
         mRelSample[jp2CharContext[mLastCharOrder][order]]++;
@@ -139,11 +139,11 @@ void JapaneseContextAnalysis::HandleData(const char* aBuf, PRUint32 aLen)
 void JapaneseContextAnalysis::Reset()
 {
   mTotalRel = 0;
-  for (PRUint32 i = 0; i < NUM_OF_CATEGORY; i++)
+  for (uint32_t i = 0; i < NUM_OF_CATEGORY; i++)
     mRelSample[i] = 0;
   mNeedToSkipCharNum = 0;
   mLastCharOrder = -1;
-  mDone = PR_FALSE;
+  mDone = false;
 }
 #define DONT_KNOW (float)-1
 
@@ -157,7 +157,7 @@ float  JapaneseContextAnalysis::GetConfidence()
 }
 
 
-PRInt32 SJISContextAnalysis::GetOrder(const char* str, PRUint32 *charLen)
+int32_t SJISContextAnalysis::GetOrder(const char* str, uint32_t *charLen)
 {
   //find out current char's byte length
   if (((uchar)*str >= (uchar)0x81 && (uchar)*str <= (uchar)0x9f) ||
@@ -174,7 +174,7 @@ PRInt32 SJISContextAnalysis::GetOrder(const char* str, PRUint32 *charLen)
   return -1;
 }
 
-PRInt32 EUCJPContextAnalysis::GetOrder(const char* str, PRUint32 *charLen)
+int32_t EUCJPContextAnalysis::GetOrder(const char* str, uint32_t *charLen)
 {
   //find out current char's byte length
   if ((uchar)*str == (uchar)0x8e ||

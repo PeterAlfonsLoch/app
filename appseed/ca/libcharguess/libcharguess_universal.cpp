@@ -30,25 +30,25 @@
 
 nsUniversalDetector::nsUniversalDetector()
 {
-  mDone = PR_FALSE;
+  mDone = false;
   mBestGuess = -1;   //illegal value as signal
-  mInTag = PR_FALSE;
-  mEscCharSetProber = nsnull;
+  mInTag = false;
+  mEscCharSetProber = NULL;
 
-  mStart = PR_TRUE;
-  mDetectedCharset = nsnull;
-  mGotData = PR_FALSE;
+  mStart = true;
+  mDetectedCharset = NULL;
+  mGotData = false;
   mInputState = ePureAscii;
   mLastChar = '\0';
 
-  PRUint32 i;
+  uint32_t i;
   for (i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
-    mCharSetProbers[i] = nsnull;
+    mCharSetProbers[i] = NULL;
 }
 
 nsUniversalDetector::~nsUniversalDetector() 
 {
-  for (PRInt32 i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
+  for (int32_t i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
     if (mCharSetProbers[i])      
       delete mCharSetProbers[i];
   if (mEscCharSetProber)
@@ -57,20 +57,20 @@ nsUniversalDetector::~nsUniversalDetector()
 
 void nsUniversalDetector::Reset()
 {
-  mDone = PR_FALSE;
+  mDone = false;
   mBestGuess = -1;   //illegal value as signal
-  mInTag = PR_FALSE;
+  mInTag = false;
 
-  mStart = PR_TRUE;
-  mDetectedCharset = nsnull;
-  mGotData = PR_FALSE;
+  mStart = true;
+  mDetectedCharset = NULL;
+  mGotData = false;
   mInputState = ePureAscii;
   mLastChar = '\0';
 
   if (mEscCharSetProber)
     mEscCharSetProber->Reset();
 
-  PRUint32 i;
+  uint32_t i;
   for (i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
     if (mCharSetProbers[i])
       mCharSetProbers[i]->Reset();
@@ -80,18 +80,18 @@ void nsUniversalDetector::Reset()
 #define SHORTCUT_THRESHOLD      (float)0.95
 #define MINIMUM_THRESHOLD      (float)0.20
 
-void nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
+void nsUniversalDetector::HandleData(const char* aBuf, uint32_t aLen)
 {
   if(mDone) 
     return;
 
   if (aLen > 0)
-    mGotData = PR_TRUE;
+    mGotData = true;
 
   //If the data starts with BOM, we know it is UTF
   if (mStart)
   {
-    mStart = PR_FALSE;
+    mStart = false;
     if (aLen > 3)
       switch (aBuf[0])
         {
@@ -128,12 +128,12 @@ void nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
 
       if (mDetectedCharset)
       {
-        mDone = PR_TRUE;
+        mDone = true;
         return;
       }
   }
   
-  PRUint32 i;
+  uint32_t i;
   for (i = 0; i < aLen; i++)
   {
     //other than 0xa0, if every othe character is ascii, the page is ascii
@@ -148,15 +148,15 @@ void nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
         //kill mEscCharSetProber if it is active
         if (mEscCharSetProber) {
           delete mEscCharSetProber;
-          mEscCharSetProber = nsnull;
+          mEscCharSetProber = NULL;
         }
 
         //start multibyte and singlebyte charset prober
-        if (nsnull == mCharSetProbers[0])
+        if (NULL == mCharSetProbers[0])
           mCharSetProbers[0] = new nsMBCSGroupProber;
-        if (nsnull == mCharSetProbers[1])
+        if (NULL == mCharSetProbers[1])
           mCharSetProbers[1] = new nsSBCSGroupProber;
-        if (nsnull == mCharSetProbers[2])
+        if (NULL == mCharSetProbers[2])
           mCharSetProbers[2] = new nsLatin1Prober; 
       }
     }
@@ -177,12 +177,12 @@ void nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
   switch (mInputState)
   {
   case eEscAscii:
-    if (nsnull == mEscCharSetProber)
+    if (NULL == mEscCharSetProber)
       mEscCharSetProber = new nsEscCharSetProber;
     st = mEscCharSetProber->HandleData(aBuf, aLen);
     if (st == eFoundIt)
     {
-      mDone = PR_TRUE;
+      mDone = true;
       mDetectedCharset = mEscCharSetProber->GetCharSetName();
     }
     break;
@@ -192,7 +192,7 @@ void nsUniversalDetector::HandleData(const char* aBuf, PRUint32 aLen)
       st = mCharSetProbers[i]->HandleData(aBuf, aLen);
       if (st == eFoundIt) 
       {
-        mDone = PR_TRUE;
+        mDone = true;
         mDetectedCharset = mCharSetProbers[i]->GetCharSetName();
         return;
       } 
@@ -218,7 +218,7 @@ void nsUniversalDetector::DataEnd()
 
   if (mDetectedCharset)
   {
-    mDone = PR_TRUE;
+    mDone = true;
     Report(mDetectedCharset);
     return;
   }
@@ -229,9 +229,9 @@ void nsUniversalDetector::DataEnd()
     {
       float proberConfidence;
       float maxProberConfidence = (float)0.0;
-      PRInt32 maxProber = 0;
+      int32_t maxProber = 0;
 
-      for (PRInt32 i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
+      for (int32_t i = 0; i < NUM_OF_CHARSET_PROBERS; i++)
       {
         proberConfidence = mCharSetProbers[i]->GetConfidence();
 #ifdef DEBUG_chardet
@@ -262,14 +262,14 @@ void nsUniversalDetector::Report(const char* aCharset)
 {
    if (!mDone)
    {
-      mDone = PR_TRUE;
+      mDone = true;
       mDetectedCharset = aCharset;
    }
 }
 
 const char* nsUniversalDetector::GetCharset()
 {
-   if (mDone == PR_TRUE)
+   if (mDone == true)
       return (mDetectedCharset);
    else
       return NULL;

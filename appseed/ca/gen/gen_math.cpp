@@ -191,10 +191,13 @@ namespace gen
          return 0xffffff;
       }
 
-      uint32_t long math::rnd()
+      uint32_t math::rnd()
       {
+
          synch_lock lock(this);
+
          static int32_t s_iRngReSeedCountDown = -1;
+
          if(s_iRngReSeedCountDown < 0)
          {
             s_iRngReSeedCountDown = random_context_entropy(19840, 8777);

@@ -202,8 +202,7 @@ string service_base::get_service_name() const
 //      Description:    The starting point for the service.
 //
 //*****************************************************************************
-void WINAPI service_base::ServiceMain(uint32_t argumentCount,
-                                           PWSTR* arguments)
+void WINAPI service_base::ServiceMain(DWORD argumentCount, PWSTR * arguments)
 {
 
 
@@ -264,7 +263,7 @@ void WINAPI service_base::ServiceMain(uint32_t argumentCount,
 //                      when an event occurs.
 //
 //*****************************************************************************
-void WINAPI service_base::ServiceHandler(uint32_t control)
+void WINAPI service_base::ServiceHandler(DWORD control)
 {
 
 

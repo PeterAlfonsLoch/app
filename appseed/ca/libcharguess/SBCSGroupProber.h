@@ -29,9 +29,9 @@ class nsSBCSGroupProber: public nsCharSetProber {
 public:
   nsSBCSGroupProber();
   virtual ~nsSBCSGroupProber();
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
-  PRBool FilterWithoutEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen);
-  PRBool FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen);
+  nsProbingState HandleData(const char* aBuf, uint32_t aLen);
+  bool FilterWithoutEnglishLetters(const char* aBuf, uint32_t aLen, char** newBuf, uint32_t& newLen);
+  bool FilterWithEnglishLetters(const char* aBuf, uint32_t aLen, char** newBuf, uint32_t& newLen);
   const char* GetCharSetName();
   nsProbingState GetState() {return mState;};
   void      Reset();
@@ -45,9 +45,9 @@ public:
 protected:
   nsProbingState mState;
   nsSingleByteCharSetProber* mProbers[NUM_OF_SBCS_PROBERS];
-  PRBool          mIsActive[NUM_OF_SBCS_PROBERS];
-  PRInt32 mBestGuess;
-  PRUint32 mActiveNum;
+  bool          mIsActive[NUM_OF_SBCS_PROBERS];
+  int32_t mBestGuess;
+  uint32_t mActiveNum;
 };
 
 #endif /* nsSBCSGroupProber_h__ */

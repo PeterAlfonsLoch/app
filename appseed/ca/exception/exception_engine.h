@@ -114,7 +114,7 @@ namespace exception
       uint32_t WINAPI stack_trace_ThreadProc(void * lpvoidParam);
 
 
-      bool get_line_from_address(HANDLE hProc, DWORD64 uiAddress, uint32_t * puiDisplacement, IMAGEHLP_LINE64 * pline);
+      bool get_line_from_address(HANDLE hProc, DWORD64 uiAddress, DWORD * puiDisplacement, IMAGEHLP_LINE64 * pline);
       size_t get_module_basename(HMODULE hmodule, vsstring & strName);
 
       vsstring get_frame(const char * pszFormat);

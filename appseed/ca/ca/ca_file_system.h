@@ -147,6 +147,9 @@ namespace ca
       };
 
 
+      typedef smart_pointer < system > system_sp;
+
+
    } // namespace file
 
 

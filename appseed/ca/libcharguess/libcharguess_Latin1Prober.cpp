@@ -97,24 +97,24 @@ void  nsLatin1Prober::Reset()
     mFreqCounter[i] = 0;
 }
 
-PRBool nsLatin1Prober::FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen)
+bool nsLatin1Prober::FilterWithEnglishLetters(const char* aBuf, uint32_t aLen, char** newBuf, uint32_t& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
   char *prevPtr, *curPtr;
-  PRBool isInTag = PR_FALSE;
+  bool isInTag = false;
 
   newptr = *newBuf = (char*)PR_MALLOC(aLen);
   if (!newptr)
-    return PR_FALSE;
+    return false;
 
   for (curPtr = prevPtr = (char*)aBuf; curPtr < aBuf+aLen; curPtr++)
   {
 /*
     if (*curPtr == '>')
-      isInTag = PR_FALSE;
+      isInTag = false;
     else if (*curPtr == '<')
-      isInTag = PR_TRUE;
+      isInTag = true;
 */
 
     if (!(*curPtr & 0x80) &&
@@ -132,16 +132,16 @@ PRBool nsLatin1Prober::FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen,
     }
   }
 
-  newLen = (PRUint32) (newptr - *newBuf);
+  newLen = (uint32_t) (newptr - *newBuf);
 
-  return PR_TRUE;
+  return true;
 }
 
 
-nsProbingState nsLatin1Prober::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsLatin1Prober::HandleData(const char* aBuf, uint32_t aLen)
 {
   char *newBuf1;
-  PRUint32 newLen1;
+  uint32_t newLen1;
 
   if (!FilterWithEnglishLetters(aBuf, aLen, &newBuf1, newLen1)) {
     newBuf1 = (char*)aBuf;
@@ -150,7 +150,7 @@ nsProbingState nsLatin1Prober::HandleData(const char* aBuf, PRUint32 aLen)
   
   uchar charClass;
   uchar freq;
-  for (PRUint32 i = 0; i < newLen1; i++)
+  for (uint32_t i = 0; i < newLen1; i++)
   {
     charClass = Latin1_CharToClass[(uchar)newBuf1[i]];
     freq = Latin1ClassModel[mLastCharClass*CLASS_NUM + charClass];
@@ -174,8 +174,8 @@ float nsLatin1Prober::GetConfidence()
     return 0.01f;
   
   float confidence;
-  PRUint32 total = 0;
-  for (PRInt32 i = 0; i < FREQ_CAT_NUM; i++)
+  uint32_t total = 0;
+  for (int32_t i = 0; i < FREQ_CAT_NUM; i++)
     total += mFreqCounter[i];
 
   confidence = mFreqCounter[3]*1.0f / total;

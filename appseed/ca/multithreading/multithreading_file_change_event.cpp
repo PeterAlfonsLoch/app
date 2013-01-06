@@ -50,7 +50,7 @@ void file_change_event::wait ()
 ///  \return	waiting action result as wait_result
 wait_result file_change_event::wait (const duration & duration)
 {
-	return wait_result(::WaitForSingleObject(item(), duration.os_lock_duration()));
+	return wait_result((uint32_t) ::WaitForSingleObject(item(), duration.os_lock_duration()));
 }
 
 ///  \brief		requests that the operating system signal a change

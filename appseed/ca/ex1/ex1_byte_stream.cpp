@@ -332,39 +332,39 @@ namespace ex1
 
    }
 
-   byte_output_stream & byte_output_stream::operator << (char ch)
+   byte_output_stream & byte_output_stream::operator << (bool b)
    {
-      write(&ch, sizeof(ch));
+      write(&b, sizeof(b));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (uchar uch)
+   byte_output_stream & byte_output_stream::operator << (int8_t i)
    {
-      write(&uchar, sizeof(uchar));
+      write(&i, sizeof(i));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (int16_t sh)
+   byte_output_stream & byte_output_stream::operator << (uint8_t ui)
    {
-      write(&sh, sizeof(sh));
+      write(&ui, sizeof(ui));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (uint16_t uint16_t)
+   byte_output_stream & byte_output_stream::operator << (int16_t i)
    {
-      write(&uint16_t, sizeof(uint16_t));
+      write(&i, sizeof(i));
+      return *this;
+   }
+
+   byte_output_stream & byte_output_stream::operator << (uint16_t ui)
+   {
+      write(&ui, sizeof(ui));
       return *this;
    }
 
    byte_output_stream & byte_output_stream::operator << (wchar_t wch)
    {
       write(&wch, sizeof(wch));
-      return *this;
-   }
-
-   byte_output_stream & byte_output_stream::operator << (bool b)
-   {
-      write(&b, sizeof(b));
       return *this;
    }
 
@@ -375,6 +375,18 @@ namespace ex1
    }
 
    byte_output_stream & byte_output_stream::operator << (uint32_t ui)
+   {
+      write(&ui, sizeof(ui));
+      return *this;
+   }
+
+   byte_output_stream & byte_output_stream::operator << (int64_t i)
+   {
+      write(&i, sizeof(i));
+      return *this;
+   }
+
+   byte_output_stream & byte_output_stream::operator << (uint64_t ui)
    {
       write(&ui, sizeof(ui));
       return *this;
@@ -392,22 +404,6 @@ namespace ex1
 
       write_arbitrary((uint64_t) ui);
 
-   }
-
-#if defined(WINDOWS)
-
-   byte_output_stream & byte_output_stream::operator << (long l)
-   {
-      write(&l, sizeof(l));
-      return *this;
-   }
-
-#endif
-
-   byte_output_stream & byte_output_stream::operator << (int64_t i)
-   {
-      write(&i, sizeof(i));
-      return *this;
    }
 
    void byte_output_stream::write_arbitrary(int64_t i)
@@ -452,22 +448,6 @@ namespace ex1
 
       }
 
-   }
-
-#if defined(WINDOWS)
-
-   byte_output_stream & byte_output_stream::operator << (uint32_t long ul)
-   {
-      write(&ul, sizeof(ul));
-      return *this;
-   }
-
-#endif
-
-   byte_output_stream & byte_output_stream::operator << (uint64_t ui)
-   {
-      write(&ui, sizeof(ui));
-      return *this;
    }
 
    void byte_output_stream::write_arbitrary(uint64_t ui)

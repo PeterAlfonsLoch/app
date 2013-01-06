@@ -37,7 +37,7 @@ typedef struct
   uchar *charToOrderMap;     //[256] table use to find a char's order
   char *precedenceMatrix;           //[SAMPLE_SIZE][SAMPLE_SIZE]; table to find a 2-char sequence's frequency
   float  mTypicalPositiveRatio;     // = freqSeqs / totalSeqs 
-  PRBool keepEnglishLetter;         //it says if this script contains latin letters
+  bool keepEnglishLetter;         //it says if this script contains latin letters
   const char* charsetName;
 } SequenceModel;
 
@@ -46,12 +46,12 @@ class nsSingleByteCharSetProber : public nsCharSetProber{
 public:
   nsSingleByteCharSetProber(SequenceModel *model){mModel = model; Reset();};
   const char* GetCharSetName() {return mModel->charsetName;};
-  nsProbingState HandleData(const char* aBuf, PRUint32 aLen);
+  nsProbingState HandleData(const char* aBuf, uint32_t aLen);
   nsProbingState GetState() {return mState;};
   void      Reset();
   float     GetConfidence();
   void      SetOpion() {};
-  PRBool KeepEnglishLetters() {return mModel->keepEnglishLetter;};
+  bool KeepEnglishLetters() {return mModel->keepEnglishLetter;};
 
 #ifdef DEBUG_chardet
   void  dumpStatus();
@@ -64,12 +64,12 @@ protected:
   //char order of last character
   uchar mLastOrder;
 
-  PRUint32 mTotalSeqs;
-  PRUint32 mSeqCounters[NUMBER_OF_SEQ_CAT];
+  uint32_t mTotalSeqs;
+  uint32_t mSeqCounters[NUMBER_OF_SEQ_CAT];
 
-  PRUint32 mTotalChar;
+  uint32_t mTotalChar;
   //characters that fall in our sampling range
-  PRUint32 mFreqChar;
+  uint32_t mFreqChar;
 };
 
 

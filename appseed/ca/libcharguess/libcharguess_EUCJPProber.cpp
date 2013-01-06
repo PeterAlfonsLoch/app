@@ -31,11 +31,11 @@ void  nsEUCJPProber::Reset()
   mDistributionAnalyser.Reset();
 }
 
-nsProbingState nsEUCJPProber::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsEUCJPProber::HandleData(const char* aBuf, uint32_t aLen)
 {
   nsSMState codingState;
 
-  for (PRUint32 i = 0; i < aLen; i++)
+  for (uint32_t i = 0; i < aLen; i++)
   {
     codingState = mCodingSM->NextState(aBuf[i]);
     if (codingState == eError)
@@ -50,7 +50,7 @@ nsProbingState nsEUCJPProber::HandleData(const char* aBuf, PRUint32 aLen)
     }
     if (codingState == eStart)
     {
-      PRUint32 charLen = mCodingSM->GetCurrentCharLen();
+      uint32_t charLen = mCodingSM->GetCurrentCharLen();
 
       if (i == 0)
       {

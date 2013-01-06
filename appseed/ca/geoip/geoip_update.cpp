@@ -233,7 +233,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    int32_t offset = 0, err;
    char * request_uri;
    char * compr;
-   uint32_t long comprLen;
+   uint32_t comprLen;
    FILE *comp_fh, *cur_db_fh, *gi_fh;
    gzFile gz_fh;
    char * file_path_gz, * file_path_test;
@@ -260,7 +260,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
       
       //MD5_Init(&context);
       while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
-        // MD5_Update (&context, buffer, (uint32_t long) len);
+        // MD5_Update (&context, buffer, (uint32_t) len);
          ctx.update(buffer, len);
       //MD5_Final (buffer, &context);
       //memcpy(digest,buffer,16);
@@ -331,7 +331,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    }
 
    compr = strstr(buf, "\r\n\r\n") + 4;
-   comprLen = (uint32_t long) (offset + buf - compr);
+   comprLen = (uint32_t) (offset + buf - compr);
 
    if (strstr(compr, "License Key Invalid") != NULL) {
       if (verbose == 1)
@@ -500,7 +500,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    int32_t offset = 0, err;
    char * request_uri;
    char * compr;
-   uint32_t long comprLen;
+   uint32_t comprLen;
    FILE *comp_fh, *cur_db_fh, *gi_fh;
    gzFile gz_fh;
    char * file_path_gz, * file_path_test;
@@ -600,7 +600,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
       //MD5_Init(&context);
       while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
          ctx.update(buffer, len);
-        // MD5_Update (&context, buffer, (uint32_t long) len);
+        // MD5_Update (&context, buffer, (uint32_t) len);
 //      MD5_Final (buffer, &context);
   //    memcpy(digest,buffer,16);
       fclose (cur_db_fh);
@@ -690,7 +690,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    ctx2.update(license_key,12);
    ctx2.update(ipaddress, strlen(ipaddress));
 //   MD5_Update (&context2, (byte *)license_key, 12);//add license key to the md5 sum
-//   MD5_Update (&context2, (byte *)ipaddress, (uint32_t long) strlen(ipaddress));//add ip address to the md5 sum
+//   MD5_Update (&context2, (byte *)ipaddress, (uint32_t) strlen(ipaddress));//add ip address to the md5 sum
 //   MD5_Final (bufMd5, &context2);
 //   memcpy(digest2, bufMd5,16);
   // for (i = 0; i < 16; i++)
@@ -747,7 +747,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    }
 
    compr = strstr(buf, "\r\n\r\n") + 4;
-   comprLen = (uint32_t long) (offset + buf - compr);
+   comprLen = (uint32_t) (offset + buf - compr);
 
    if (strstr(compr, "License Key Invalid") != NULL) {
       if (verbose == 1)

@@ -48,7 +48,7 @@ nsSBCSGroupProber::nsSBCSGroupProber()
 
 nsSBCSGroupProber::~nsSBCSGroupProber()
 {
-  for (PRUint32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
+  for (uint32_t i = 0; i < NUM_OF_SBCS_PROBERS; i++)
   {
     delete mProbers[i];
   }
@@ -71,31 +71,31 @@ const char* nsSBCSGroupProber::GetCharSetName()
 
 void  nsSBCSGroupProber::Reset()
 {
-  for (PRUint32 i = 0; i < NUM_OF_SBCS_PROBERS; i++)
+  for (uint32_t i = 0; i < NUM_OF_SBCS_PROBERS; i++)
   {
     mProbers[i]->Reset();
-    mIsActive[i] = PR_TRUE;
+    mIsActive[i] = true;
   }
   mBestGuess = -1;
   mState = eDetecting;
 }
 
 //This filter apply to all scripts that does not use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen)
+bool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, uint32_t aLen, char** newBuf, uint32_t& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
   char *prevPtr, *curPtr;
   
-  PRBool meetMSB = PR_FALSE;   
+  bool meetMSB = false;   
   newptr = *newBuf = (char*)PR_MALLOC(aLen);
   if (!newptr)
-    return PR_FALSE;
+    return false;
 
   for (curPtr = prevPtr = (char*)aBuf; curPtr < aBuf+aLen; curPtr++)
   {
     if (*curPtr & 0x80)
-      meetMSB = PR_TRUE;
+      meetMSB = true;
     else if (*curPtr < 'A' || (*curPtr > 'Z' && *curPtr < 'a') || *curPtr > 'z') 
     {
       //current char is a symbol, most likely a punctuation. we treat it as segment delimiter
@@ -105,37 +105,37 @@ PRBool nsSBCSGroupProber::FilterWithoutEnglishLetters(const char* aBuf, PRUint32
         while (prevPtr < curPtr) *newptr++ = *prevPtr++;  
         prevPtr++;
         *newptr++ = ' ';
-        meetMSB = PR_FALSE;
+        meetMSB = false;
       }
       else //ignore current segment. (either because it is just a symbol or just a english uint16_t
         prevPtr = curPtr+1;
     }
   }
 
-  newLen = (PRUint32) (newptr - *newBuf);
+  newLen = (uint32_t) (newptr - *newBuf);
 
-  return PR_TRUE;
+  return true;
 }
 
 #ifdef  NO_ENGLISH_CONTAMINATION 
 //This filter apply to all scripts that does use latin letters (english letter)
-PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, PRUint32 aLen, char** newBuf, PRUint32& newLen)
+bool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, uint32_t aLen, char** newBuf, uint32_t& newLen)
 {
   //do filtering to reduce load to probers
   char *newptr;
   char *prevPtr, *curPtr;
-  PRBool isInTag = PR_FALSE;
+  bool isInTag = false;
 
   newptr = *newBuf = (char*)PR_MALLOC(aLen);
   if (!newptr)
-    return PR_FALSE;
+    return false;
 
   for (curPtr = prevPtr = (char*)aBuf; curPtr < aBuf+aLen; curPtr++)
   {
       if (*curPtr == '>')
-         isInTag = PR_FALSE;
+         isInTag = false;
     else if (*curPtr == '<')
-      isInTag = PR_TRUE;
+      isInTag = true;
 
     if (!(*curPtr & 0x80) &&
         (*curPtr < 'A' || (*curPtr > 'Z' && *curPtr < 'a') || *curPtr > 'z') )
@@ -154,16 +154,16 @@ PRBool nsSBCSGroupProber::FilterWithEnglishLetters(const char* aBuf, PRUint32 aL
 
   newLen = newptr - *newBuf;
 
-  return PR_TRUE;
+  return true;
 }
 #endif //NO_ENGLISH_CONTAMINATION
 
-nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
+nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, uint32_t aLen)
 {
   nsProbingState st;
-  PRUint32 i;
+  uint32_t i;
   char *newBuf1;
-  PRUint32 newLen1;
+  uint32_t newLen1;
 
   //apply filter to original buffer, and we got new buffer back
   //depend on what script it is, we will feed them the new buffer 
@@ -183,7 +183,7 @@ nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
      }
      else if (st == eNotMe)
      {
-       mIsActive[i] = PR_FALSE;
+       mIsActive[i] = false;
        mActiveNum--;
        if (mActiveNum <= 0)
        {
@@ -200,7 +200,7 @@ nsProbingState nsSBCSGroupProber::HandleData(const char* aBuf, PRUint32 aLen)
 
 float nsSBCSGroupProber::GetConfidence()
 {
-  PRUint32 i;
+  uint32_t i;
   float bestConf = 0.0, cf;
 
   switch (mState)
@@ -229,7 +229,7 @@ float nsSBCSGroupProber::GetConfidence()
 void 
 nsSBCSGroupProber::dumpStatus()
 {
-  PRUint32 i;
+  uint32_t i;
   float cf;
   
   cf = GetConfidence();

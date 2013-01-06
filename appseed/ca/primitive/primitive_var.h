@@ -630,14 +630,6 @@ inline var::operator LONG () const
 
 }
 
-inline var & var::operator = (uint32_t ui)
-{
-
-	return operator = ((uint32_t) ui);
-
-}
-
-
 inline var & var::operator = (LPDWORD pui)
 {
 
