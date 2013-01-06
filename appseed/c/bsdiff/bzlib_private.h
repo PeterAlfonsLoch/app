@@ -38,22 +38,12 @@
 
 #define BZ_VERSION  "1.0.4, 20-Dec-2006"
 
-#undef Bool
+#undef bool
 #undef True
 #undef False
 
-typedef uchar   Bool;
-typedef char            Char;
-typedef uchar   UChar;
-typedef int32_t             int32_t;
-typedef uint32_t    uint32_t;
-typedef int16_t           Int16;
-
-
-
-
-#define True   ((Bool) 1)
-#define False  ((Bool) 0)
+#define True   ((bool) 1)
+#define False  ((bool) 0)
 
 
 
@@ -177,7 +167,7 @@ extern uint32_t BZ2_crc32Table[256];
 {                                              \
    crcVar = (crcVar << 8) ^                    \
             BZ2_crc32Table[(crcVar >> 24) ^    \
-                           ((UChar)cha)];      \
+                           ((uchar)cha)];      \
 }
 
 
@@ -223,9 +213,9 @@ typedef
 
       /* aliases for arr1 and arr2 */
       uint32_t*  ptr;
-      UChar*   block;
+      uchar*   block;
       uint16_t*  mtfv;
-      UChar*   zbits;
+      uchar*   zbits;
 
       /* for deciding when to use the fallback sorting algorithm */
       int32_t    workFactor;
@@ -243,8 +233,8 @@ typedef
 
       /* map of bytes used in block */
       int32_t    nInUse;
-      Bool     inUse[256];
-      UChar    unseqToSeq[256];
+      bool     inUse[256];
+      uchar    unseqToSeq[256];
 
       /* the buffer for bit stream creation */
       uint32_t   bsBuff;
@@ -262,10 +252,10 @@ typedef
       /* stuff for coding the MTF values */
       int32_t    nMTF;
       int32_t    mtfFreq    [BZ_MAX_ALPHA_SIZE];
-      UChar    selector   [BZ_MAX_SELECTORS];
-      UChar    selectorMtf[BZ_MAX_SELECTORS];
+      uchar    selector   [BZ_MAX_SELECTORS];
+      uchar    selectorMtf[BZ_MAX_SELECTORS];
 
-      UChar    len     [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+      uchar    len     [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       int32_t    code    [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       int32_t    rfreq   [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       /* second dimension: only 3 needed; 4 makes index calculations faster */
@@ -282,16 +272,16 @@ extern void
 BZ2_blockSort ( e_state* );
 
 extern void
-BZ2_compressBlock ( e_state*, Bool );
+BZ2_compressBlock ( e_state*, bool );
 
 extern void
 BZ2_bsInitWrite ( e_state* );
 
 extern void
-BZ2_hbAssignCodes ( int32_t*, UChar*, int32_t, int32_t, int32_t );
+BZ2_hbAssignCodes ( int32_t*, uchar*, int32_t, int32_t, int32_t );
 
 extern void
-BZ2_hbMakeCodeLengths ( UChar*, int32_t*, int32_t, int32_t );
+BZ2_hbMakeCodeLengths ( uchar*, int32_t*, int32_t, int32_t );
 
 
 
@@ -362,9 +352,9 @@ typedef
       int32_t    state;
 
       /* for doing the final run-length decoding */
-      UChar    state_out_ch;
+      uchar    state_out_ch;
       int32_t    state_out_len;
-      Bool     blockRandomised;
+      bool     blockRandomised;
       BZ_RAND_DECLS;
 
       /* the buffer for bit stream reading */
@@ -373,7 +363,7 @@ typedef
 
       /* misc administratium */
       int32_t    blockSize100k;
-      Bool     smallDecompress;
+      bool     smallDecompress;
       int32_t    currBlockNo;
       int32_t    verbosity;
 
@@ -391,7 +381,7 @@ typedef
 
       /* for undoing the Burrows-Wheeler transform (SMALL) */
       uint16_t   *ll16;
-      UChar    *ll4;
+      uchar    *ll4;
 
       /* stored and calculated CRCs */
       uint32_t   storedBlockCRC;
@@ -401,16 +391,16 @@ typedef
 
       /* map of bytes used in block */
       int32_t    nInUse;
-      Bool     inUse[256];
-      Bool     inUse16[16];
-      UChar    seqToUnseq[256];
+      bool     inUse[256];
+      bool     inUse16[16];
+      uchar    seqToUnseq[256];
 
       /* for decoding the MTF values */
-      UChar    mtfa   [MTFA_SIZE];
+      uchar    mtfa   [MTFA_SIZE];
       int32_t    mtfbase[256 / MTFL_SIZE];
-      UChar    selector   [BZ_MAX_SELECTORS];
-      UChar    selectorMtf[BZ_MAX_SELECTORS];
-      UChar    len  [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
+      uchar    selector   [BZ_MAX_SELECTORS];
+      uchar    selectorMtf[BZ_MAX_SELECTORS];
+      uchar    len  [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
 
       int32_t    limit  [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
       int32_t    base   [BZ_N_GROUPS][BZ_MAX_ALPHA_SIZE];
@@ -452,12 +442,12 @@ typedef
 
 #define BZ_GET_FAST(cccc)                     \
     s->tPos = s->tt[s->tPos];                 \
-    cccc = (UChar)(s->tPos & 0xff);           \
+    cccc = (uchar)(s->tPos & 0xff);           \
     s->tPos >>= 8;
 
 #define BZ_GET_FAST_C(cccc)                   \
     c_tPos = c_tt[c_tPos];                    \
-    cccc = (UChar)(c_tPos & 0xff);            \
+    cccc = (uchar)(c_tPos & 0xff);            \
     c_tPos >>= 8;
 
 #define SET_LL4(i,n)                                          \
@@ -491,7 +481,7 @@ extern int32_t
 BZ2_decompress ( DState* );
 
 extern void
-BZ2_hbCreateDecodeTables ( int32_t*, int32_t*, int32_t*, UChar*,
+BZ2_hbCreateDecodeTables ( int32_t*, int32_t*, int32_t*, uchar*,
                            int32_t,  int32_t, int32_t );
 
 

@@ -331,11 +331,10 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
       dwWrite = strlen_dup(contents);
    else
       dwWrite = len;
-   uint32_t dwWritten = 0;
+   DWORD dwWritten = 0;
    bool bOk = ::WriteFile(hfile, contents, (uint32_t) dwWrite, &dwWritten, NULL) != FALSE;
    ::CloseHandle(hfile);
    return dwWrite == dwWritten && bOk != FALSE;
-
 
 }
 
@@ -352,13 +351,13 @@ vsstring file_as_string_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
 
-   uint32_t dwSizeHigh;
+   DWORD dwSizeHigh;
 
    uint32_t dwSize = ::GetFileSize(hfile, &dwSizeHigh);
 
    str.alloc(dwSize);
 
-   uint32_t dwRead;
+   DWORD dwRead;
 
    ::ReadFile(hfile, str, dwSize, &dwRead, NULL);
 
@@ -380,13 +379,13 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return false;
 
-   uint32_t dwSizeHigh;
+   DWORD dwSizeHigh;
 
    ::count  count = ::GetFileSize(hfile, &dwSizeHigh);
 
    memory.allocate(count);
 
-   uint32_t dwRead;
+   DWORD dwRead;
 
    ::ReadFile(hfile, memory.m_psz, (uint32_t) memory.m_iSize, &dwRead, NULL);
 
@@ -403,21 +402,17 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
 
    vsstring str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin());
 
-   strcpy(lpPathBuffer, str);
-
    char bufTime[30];
 
    char bufItem[30];
 
    char buf[30];
 
-   size_t iLen= strlen_dup(lpPathBuffer);
-   if(!(lpPathBuffer[iLen - 1] == '/'
-      || lpPathBuffer[iLen - 1] == '\\'))
+   if(!str_ends_dup(str, "/") || !str_ends_dup(str, "\\"))
    {
-      lpPathBuffer[iLen] = '\\';
-      lpPathBuffer[iLen+1] = '\0';
+      str += "\\";
    }
+
    SYSTEMTIME st;
    memset_dup(&st, 0, sizeof(st));
 
@@ -454,7 +449,7 @@ bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char *
 
    for(int32_t i = 0; i < (1024 * 1024); i++)
    {
-      strcpy_dup(szRet, lpPathBuffer);
+      strcpy_dup(szRet, str);
       {
          strcat_dup(szRet, bufTime);
          strcat_dup(szRet, "-");
@@ -500,18 +495,11 @@ uint64_t file_length_dup(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return 0;
 
-   uint32_t dwHigh;
-
-   uint64_t ui = ::GetFileSize(hfile, &dwHigh);
-
-   //ui |= ((uint64_t) dwHigh) << 32;
-
-   if(dwHigh != 0)
-      return 0; // currently invalid for the purposes of this API
+   uint64_t uiSize = fsize_dup(hfile);
 
    ::CloseHandle(hfile);
 
-   return ui;
+   return uiSize;
 
 }
 
@@ -552,8 +540,8 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    uchar * buf = (uchar *)  _ca_alloc(iBufSize);
    int32_t iLen;
    ::md5::md5 ctx;
-   uint32_t dwRead;
-   uint32_t dwWritten;
+   DWORD dwRead;
+   DWORD dwWritten;
    if(strVersion == "fileset v1")
    {
       while(true)

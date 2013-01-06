@@ -627,7 +627,7 @@ void prepare_http()
 }
 
 
-bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, dword_ptr), void * callback_param )
+bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, bool bUrlEncode, int * piStatus, void (*callback)(void *, int, uint_ptr), void * callback_param )
 {
 
    ComPtr<CXMLHttpRequest2Callback> spcallback;

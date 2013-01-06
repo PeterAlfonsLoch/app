@@ -169,12 +169,12 @@ public:
          - [{ALL}]   - as '.',
          - [{ASSIGNED}] - all assigned unicode characters,
          - [{UNASSIGNED}] - all unassigned unicode characters.
-     - Char classes substraction unicode extension:
+     - char classes substraction unicode extension:
          - [{ASSIGNED}-[{Lu}]-[{Ll}]] - all assigned characters except,
          - upper and lower case characters.
-     - Char classes connection syntax:
+     - char classes connection syntax:
          - [{Lu}[{Ll}]] - upper and lower case characters.
-     - Char classes intersection syntax:
+     - char classes intersection syntax:
          - [{ALL}&&[{L}]] - only Letter characters.
      - Character reference syntax: \\x{2028} \\x0A as in Perl.
      - Unicode form \\u2028 is unused (\\u - upper case char).

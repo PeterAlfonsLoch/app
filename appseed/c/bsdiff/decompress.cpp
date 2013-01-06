@@ -47,14 +47,14 @@ void makeMaps_d ( DState* s )
          v = (s->bsBuff >>                        \
              (s->bsLive-nnn)) & ((1 << nnn)-1);   \
          s->bsLive -= nnn;                        \
-         vvv = v;                                 \
+         vvv = v != FALSE;                                 \
          break;                                   \
       }                                           \
       if (s->strm->avail_in == 0) RETURN(BZ_OK);  \
       s->bsBuff                                   \
          = (s->bsBuff << 8) |                     \
            ((uint32_t)                              \
-              (*((UChar*)(s->strm->next_in))));   \
+              (*((uchar*)(s->strm->next_in))));   \
       s->bsLive += 8;                             \
       s->strm->next_in++;                         \
       s->strm->avail_in--;                        \
@@ -104,7 +104,7 @@ void makeMaps_d ( DState* s )
 /*---------------------------------------------------*/
 int32_t BZ2_decompress ( DState* s )
 {
-   UChar      uc;
+   uchar      uc;
    int32_t      retVal;
    int32_t      minLen, maxLen;
    bz_stream* strm = s->strm;
@@ -209,8 +209,8 @@ int32_t BZ2_decompress ( DState* s )
 
       if (s->smallDecompress) {
          s->ll16 = (uint16_t *)BZALLOC( s->blockSize100k * 100000 * sizeof(uint16_t) );
-         s->ll4  = (UChar *)BZALLOC( 
-                      ((1 + s->blockSize100k * 100000) >> 1) * sizeof(UChar) 
+         s->ll4  = (uchar *)BZALLOC( 
+                      ((1 + s->blockSize100k * 100000) >> 1) * sizeof(uchar) 
                    );
          if (s->ll16 == NULL || s->ll4 == NULL) RETURN(BZ_MEM_ERROR);
       } else {
@@ -300,7 +300,7 @@ int32_t BZ2_decompress ( DState* s )
 
       /*--- Undo the MTF values for the selectors. ---*/
       {
-         UChar pos[BZ_N_GROUPS], tmp, v;
+         uchar pos[BZ_N_GROUPS], tmp, v;
          for (v = 0; v < nGroups; v++) pos[v] = v;
    
          for (i = 0; i < nSelectors; i++) {
@@ -360,7 +360,7 @@ int32_t BZ2_decompress ( DState* s )
          kk = MTFA_SIZE-1;
          for (ii = 256 / MTFL_SIZE - 1; ii >= 0; ii--) {
             for (jj = MTFL_SIZE-1; jj >= 0; jj--) {
-               s->mtfa[kk] = (UChar)(ii * MTFL_SIZE + jj);
+               s->mtfa[kk] = (uchar)(ii * MTFL_SIZE + jj);
                kk--;
             }
             s->mtfbase[ii] = kk + 1;
@@ -507,7 +507,7 @@ int32_t BZ2_decompress ( DState* s )
 
          /*-- compute the T vector --*/
          for (i = 0; i < nblock; i++) {
-            uc = (UChar)(s->ll16[i]);
+            uc = (uchar)(s->ll16[i]);
             SET_LL(i, s->cftabCopy[uc]);
             s->cftabCopy[uc]++;
          }
@@ -537,7 +537,7 @@ int32_t BZ2_decompress ( DState* s )
 
          /*-- compute the T^(-1) vector --*/
          for (i = 0; i < nblock; i++) {
-            uc = (UChar)(s->tt[i] & 0xff);
+            uc = (uchar)(s->tt[i] & 0xff);
             s->tt[s->cftab[uc]] |= (i << 8);
             s->cftab[uc]++;
          }

@@ -59,7 +59,7 @@
 
 
 /*---------------------------------------------------*/
-void BZ2_hbMakeCodeLengths ( UChar *len, 
+void BZ2_hbMakeCodeLengths ( uchar *len, 
                              int32_t *freq,
                              int32_t alphaSize,
                              int32_t maxLen )
@@ -69,7 +69,7 @@ void BZ2_hbMakeCodeLengths ( UChar *len,
       for both the heap and nodes is a sentinel.
    --*/
    int32_t nNodes, nHeap, n1, n2, i, j, k;
-   Bool  tooLong;
+   bool  tooLong;
 
    int32_t *heap  =new int32_t [ BZ_MAX_ALPHA_SIZE + 2 ];
    int32_t* weight =new int32_t [ BZ_MAX_ALPHA_SIZE * 2 ];
@@ -152,7 +152,7 @@ void BZ2_hbMakeCodeLengths ( UChar *len,
 
 /*---------------------------------------------------*/
 void BZ2_hbAssignCodes ( int32_t *code,
-                         UChar *length,
+                         uchar *length,
                          int32_t minLen,
                          int32_t maxLen,
                          int32_t alphaSize )
@@ -172,7 +172,7 @@ void BZ2_hbAssignCodes ( int32_t *code,
 void BZ2_hbCreateDecodeTables ( int32_t *limit,
                                 int32_t *base,
                                 int32_t *perm,
-                                UChar *length,
+                                uchar *length,
                                 int32_t minLen,
                                 int32_t maxLen,
                                 int32_t alphaSize )

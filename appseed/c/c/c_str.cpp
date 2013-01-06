@@ -467,6 +467,21 @@ int32_t str_begins_ci_dup(const char * sz1, const char * prefix)
    return *prefix == '\0';
 }
 
+int32_t str_ends_dup(const char * psz, const char * pszSuffix)
+{
+
+   count iLen = strlen_dup(psz);
+
+   count iLenSuffix = strlen_dup(pszSuffix);
+
+   if(iLen < iLenSuffix)
+      return false;
+
+   return strcmp_dup(&psz[iLen - iLenSuffix], pszSuffix) == 0;
+
+}
+
+
 int32_t str_ends_ci_dup(const char * psz, const char * pszSuffix)
 {
 

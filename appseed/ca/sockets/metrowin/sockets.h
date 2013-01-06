@@ -84,24 +84,6 @@ in read operations - helps on ECOS */
 //#include <openssl/ssl.h>
 //#include "internal/SSLInitializer.h"
 
-/*
-// platform specific stuff
-#if (defined(__unix__) || defined(unix)) && !defined(USG)
-#include <sys/param.h>
-#endif
-
-// int64
-#ifdef _WIN32
-#else
-#include <stdlib.h>
-#ifdef SOLARIS
-# include <sys/types.h>
-#else
-# include <stdint.h>
-#endif
-#endif
-
-*/
 
 #ifndef _WIN32
 // ----------------------------------------

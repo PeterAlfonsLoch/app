@@ -406,7 +406,7 @@ vsstring get_file_md5_by_map(const char * path)
 
    }
 
-   uint32_t dwHigh;
+   DWORD dwHigh;
 
 #ifdef AMD64
 
@@ -416,7 +416,7 @@ vsstring get_file_md5_by_map(const char * path)
 
 #else
 
-   uint32_t dwSize = ::GetFileSize(hfile, &dwHigh);
+   DWORD dwSize = ::GetFileSize(hfile, &dwHigh);
 
    if(dwHigh > 0)
    {
@@ -597,7 +597,7 @@ vsstring get_file_md5_by_read(const char * path)
    uint64_t uiSize;
 #ifdef METROWIN
 
-   uint32_t dwRead;
+   DWORD dwRead;
 
    wstring wstr(path);
 
@@ -614,11 +614,11 @@ vsstring get_file_md5_by_read(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
 
-   uint32_t dwHigh;
+   DWORD dwHigh;
 
-   iSize = ::GetFileSize(hfile, &dwHigh);
+   uiSize = ::GetFileSize(hfile, &dwHigh);
 
-   iSize |= (0x7fffffff & (uint64_t) dwHigh) << 32;
+   uiSize |= (0x7fffffff & (uint64_t) dwHigh) << 32;
 
 
 #elif defined(WINDOWS)

@@ -1,6 +1,17 @@
 #pragma once
 
 
+#ifdef WINDOWS
+
+#define HTHREAD HANDLE
+
+#else
+
+#define HTHREAD simple_event *
+
+#endif
+
+
 /**
 * \file		src/lib/pal/linux/thread_linux.hpp
 * \brief	Platform independent threads and synchronization objects (linux version)
@@ -15,7 +26,9 @@ namespace ca
 
 
 	/// An enum representing thread priorities.
-	enum e_thread_priority {
+	enum e_thread_priority
+   {
+
 		thread_priority_idle 	= 1,
 		thread_priority_lowest 	= 48,
 		thread_priority_below_normal,
@@ -23,6 +36,7 @@ namespace ca
 		thread_priority_above_normal,
 		thread_priority_highest,
 		thread_priority_time_critical = 99
+
 	};
 
 	///  \brief		global function to set thread priority for current thread
@@ -77,35 +91,27 @@ class CLASS_DECL_c os_thread
 public:
 
 
-   uint32_t (WINAPI * m_pfn)(LPVOID);
-   LPVOID           m_pv;
+   uint32_t (*       m_pfn)(void *);
+   LPVOID            m_pv;
 
 #if defined(LINUX) || defined(MACOS)
-   simple_event *    m_peventThread;
+
+   HTHREAD           m_hthread;
+
 #endif
 
 
-   os_thread(uint32_t (WINAPI * lpStartAddr)(LPVOID), LPVOID);
-
+   os_thread(uint32_t (* pfn)(void *), void * pv);
 
 
 };
 
 
-#ifdef WINDOWS
 
-CLASS_DECL_c HANDLE start_thread(uint32_t (WINAPI *)(LPVOID), LPVOID pv, int32_t iPriority = 0);
 
-CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t (WINAPI *)(LPVOID), LPVOID pv, uint32_t f, uint32_t * lpdwId);
+CLASS_DECL_c HTHREAD start_thread(uint32_t (*)(void *), void * pv, int32_t iPriority = 0);
 
-#else
-
-CLASS_DECL_c simple_event * start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int32_t iPriority = 0);
-
-CLASS_DECL_c simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, uint32_t f, uint32_t * lpdwId);
-
-#endif
-
+CLASS_DECL_c HTHREAD create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (*)(void *), void * pv, uint32_t uiFlags, uint32_t * puiId);
 
 
 class CLASS_DECL_c thread_layer
@@ -113,15 +119,10 @@ class CLASS_DECL_c thread_layer
 public:
 
 
-   int32_t               m_iSleepiness;
-   int32_t               m_iResult;
-
-#ifdef WINDOWS
-   HANDLE            m_hthread;
-#else
-   simple_event *    m_peventThread;
-#endif
-   UINT              m_nId;
+   int32_t              m_iSleepiness;
+   int32_t              m_iResult;
+   HTHREAD              m_hthread;
+   UINT                 m_nId;
 
 
    thread_layer();
@@ -131,7 +132,7 @@ public:
    void begin();
 
 
-   static uint32_t WINAPI proc(LPVOID lp);
+   static uint32_t proc(void * lp);
 
    virtual int32_t run();
    virtual bool on_idle();

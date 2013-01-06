@@ -192,11 +192,11 @@ void fallbackQSort3 ( uint32_t* fmap,
 /* Pre:
       nblock > 0
       eclass exists for [0 .. nblock-1]
-      ((UChar*)eclass) [0 .. nblock-1] holds block
+      ((uchar*)eclass) [0 .. nblock-1] holds block
       ptr exists for [0 .. nblock-1]
 
    Post:
-      ((UChar*)eclass) [0 .. nblock-1] holds block
+      ((uchar*)eclass) [0 .. nblock-1] holds block
       All other areas of eclass destroyed
       fmap [0 .. nblock-1] holds sorted order
       bhtab [ 0 .. 2+(nblock/32) ] destroyed
@@ -220,7 +220,7 @@ void fallbackSort ( uint32_t* fmap,
    int32_t H, i, j, k, l, r, cc, cc1;
    int32_t nNotDone;
    int32_t nBhtab;
-   UChar* eclass8 = (UChar*)eclass;
+   uchar* eclass8 = (uchar*)eclass;
 
    /*--
       Initial 1-char radix sort to generate
@@ -323,7 +323,7 @@ void fallbackSort ( uint32_t* fmap,
    for (i = 0; i < nblock; i++) {
       while (ftabCopy[j] == 0) j++;
       ftabCopy[j]--;
-      eclass8[fmap[i]] = (UChar)j;
+      eclass8[fmap[i]] = (uchar)j;
    }
    AssertH ( j < 256, 1005 );
 }
@@ -344,15 +344,15 @@ void fallbackSort ( uint32_t* fmap,
 /*---------------------------------------------*/
 static
 __inline__
-Bool mainGtU ( uint32_t  i1, 
+bool mainGtU ( uint32_t  i1, 
                uint32_t  i2,
-               UChar*  block, 
+               uchar*  block, 
                uint16_t* quadrant,
                uint32_t  nblock,
                int32_t*  budget )
 {
    int32_t  k;
-   UChar  c1, c2;
+   uchar  c1, c2;
    uint16_t s1, s2;
 
    AssertD ( i1 != i2, "mainGtU" );
@@ -483,7 +483,7 @@ int32_t incs[14] = { 1, 4, 13, 40, 121, 364, 1093, 3280,
 
 static
 void mainSimpleSort ( uint32_t* ptr,
-                      UChar*  block,
+                      uchar*  block,
                       uint16_t* quadrant,
                       int32_t   nblock,
                       int32_t   lo, 
@@ -580,9 +580,9 @@ void mainSimpleSort ( uint32_t* ptr,
 
 static 
 __inline__
-UChar mmed3 ( UChar a, UChar b, UChar c )
+uchar mmed3 ( uchar a, uchar b, uchar c )
 {
-   UChar t;
+   uchar t;
    if (a > b) { t = a; a = b; b = t; };
    if (b > c) { 
       b = c;
@@ -619,7 +619,7 @@ UChar mmed3 ( UChar a, UChar b, UChar c )
 
 static
 void mainQSort3 ( uint32_t* ptr,
-                  UChar*  block,
+                  uchar*  block,
                   uint16_t* quadrant,
                   int32_t   nblock,
                   int32_t   loSt, 
@@ -732,11 +732,11 @@ void mainQSort3 ( uint32_t* ptr,
 /* Pre:
       nblock > N_OVERSHOOT
       block32 exists for [0 .. nblock-1 +N_OVERSHOOT]
-      ((UChar*)block32) [0 .. nblock-1] holds block
+      ((uchar*)block32) [0 .. nblock-1] holds block
       ptr exists for [0 .. nblock-1]
 
    Post:
-      ((UChar*)block32) [0 .. nblock-1] holds block
+      ((uchar*)block32) [0 .. nblock-1] holds block
       All other areas of block32 destroyed
       ftab [0 .. 65536 ] destroyed
       ptr [0 .. nblock-1] holds sorted order
@@ -749,7 +749,7 @@ void mainQSort3 ( uint32_t* ptr,
 
 static
 void mainSort ( uint32_t* ptr, 
-                UChar*  block,
+                uchar*  block,
                 uint16_t* quadrant, 
                 uint32_t* ftab,
                 int32_t   nblock,
@@ -758,10 +758,10 @@ void mainSort ( uint32_t* ptr,
 {
    int32_t  i, j, k, ss, sb;
    int32_t  runningOrder[256];
-   Bool   bigDone[256];
+   bool   bigDone[256];
    int32_t  copyStart[256];
    int32_t  copyEnd  [256];
-   UChar  c1;
+   uchar  c1;
    int32_t  numQSorted;
    uint16_t s;
    if (verb >= 4) VPrintf0 ( "        main sort initialise ...\n" );
@@ -1019,11 +1019,11 @@ void mainSort ( uint32_t* ptr,
 /* Pre:
       nblock > 0
       arr2 exists for [0 .. nblock-1 +N_OVERSHOOT]
-      ((UChar*)arr2)  [0 .. nblock-1] holds block
+      ((uchar*)arr2)  [0 .. nblock-1] holds block
       arr1 exists for [0 .. nblock-1]
 
    Post:
-      ((UChar*)arr2) [0 .. nblock-1] holds block
+      ((uchar*)arr2) [0 .. nblock-1] holds block
       All other areas of block destroyed
       ftab [ 0 .. 65536 ] destroyed
       arr1 [0 .. nblock-1] holds sorted order
@@ -1031,7 +1031,7 @@ void mainSort ( uint32_t* ptr,
 void BZ2_blockSort ( e_state* s )
 {
    uint32_t* ptr    = s->ptr; 
-   UChar*  block  = s->block;
+   uchar*  block  = s->block;
    uint32_t* ftab   = s->ftab;
    int32_t   nblock = s->nblock;
    int32_t   verb   = s->verbosity;

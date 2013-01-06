@@ -21,16 +21,25 @@ using namespace Windows::System::Threading;
 // Stored data for CREATE_SUSPENDED and ResumeThread.
 struct PendingThreadInfo
 {
-   LPTHREAD_START_ROUTINE lpStartAddress;
-   LPVOID lpParameter;
-   HANDLE completionEvent;
-   HANDLE suspensionEvent;
-   int nPriority;
+
+   
+   uint32_t (*       m_pfn)(void *);
+   void *            m_pv;
+   HANDLE            m_hCompletionEvent;
+   HANDLE            m_hSuspensionEvent;
+   int               m_iPriority;
+   
+
    PendingThreadInfo()
    {
-      suspensionEvent = NULL;
+
+      m_hSuspensionEvent = NULL;
+
    }
+
+
 };
+
 
 static simple_map<HANDLE, PendingThreadInfo> & pendingThreads()
 {
@@ -76,13 +85,13 @@ static simple_map < HANDLE, DWORD > & thread_id_map()
 DWORD DwThreadId()
 {
    static DWORD g_dw_thread_id = 0;
-   
+
    if(g_dw_thread_id  <= 0)
       g_dw_thread_id = 1;
 
    return g_dw_thread_id++;
 }
-    
+
 // Thread local storage.
 typedef simple_array<void*> ThreadLocalData;
 
@@ -119,9 +128,9 @@ static WorkItemPriority GetWorkItemPriority(int nPriority)
 
 
 // Helper shared between CreateThread and ResumeThread.
-static void StartThread(LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, HANDLE completionEvent, int nPriority)
+static void StartThread(uint32_t (* pfn)(void *), void * pv, HANDLE completionEvent, int nPriority)
 {
-   
+
    auto workItemHandler = ref new WorkItemHandler([=](IAsyncAction^)
    {
 
@@ -142,7 +151,7 @@ static void StartThread(LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParamete
       // Run the user callback.
       try
       {
-            lpStartAddress(lpParameter);
+         pfn(pv);
       }
       catch (...) { }
 
@@ -159,12 +168,12 @@ static void StartThread(LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParamete
 }
 
 
-_Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpdwThreadId)
+HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* pfn)(void *) , void * pv, uint32_t uiCreationFlags, uint32_t * puiId)
 {
    // Validate parameters.
    assert(unusedThreadAttributes == nullptr);
    assert(unusedStackSize == 0);
-   assert((dwCreationFlags & ~CREATE_SUSPENDED) == 0);
+   assert((uiCreationFlags & ~CREATE_SUSPENDED) == 0);
    //assert(unusedThreadId == nullptr);
 
    // Create a handle that will be signalled when the thread has completed.
@@ -173,17 +182,14 @@ _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedTh
    if (!threadHandle)
       return nullptr;
 
-
    mutex_lock mlThreadId(threadIdLock);
 
    thread_id_map().set_at(threadHandle, DwThreadId());
 
-   if(lpdwThreadId != NULL)
+   if(puiId != NULL)
    {
-      *lpdwThreadId = thread_id_map()[threadHandle];
+      *puiId = thread_id_map()[threadHandle];
    }
-
-
 
    mutex_lock mlThreadIdHandle(threadIdHandleLock);
 
@@ -197,7 +203,7 @@ _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedTh
    // the caller is responsible for closing the handle returned by CreateThread,
    // and they may do that before or after the thread has finished running.
    HANDLE completionEvent;
-        
+
    if (!DuplicateHandle(GetCurrentProcess(), threadHandle, GetCurrentProcess(), &completionEvent, 0, false, DUPLICATE_SAME_ACCESS))
    {
       CloseHandle(threadHandle);
@@ -212,29 +218,31 @@ _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedTh
 
    try
    {
-      if (dwCreationFlags & CREATE_SUSPENDED)
+
+      if (uiCreationFlags & CREATE_SUSPENDED)
       {
-            // Store info about a suspended thread.
-            PendingThreadInfo info;
 
-            info.lpStartAddress = lpStartAddress;
-            info.lpParameter = lpParameter;
-            info.completionEvent = completionEvent;
-            info.suspensionEvent = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
-            info.nPriority = 0;
+         // Store info about a suspended thread.
+         PendingThreadInfo info;
 
-            mutex_lock lock(pendingThreadsLock);
+         info.m_pfn                 = pfn;
+         info.m_pv                  = pv;
+         info.m_hCompletionEvent    = completionEvent;
+         info.m_hSuspensionEvent    = CreateEventEx(nullptr, nullptr, CREATE_EVENT_MANUAL_RESET, EVENT_ALL_ACCESS);
+         info.m_iPriority           = 0;
 
-            pendingThreads()[threadHandle] = info;
+         mutex_lock lock(pendingThreadsLock);
 
-            //::WaitForSingleObjectEx(info.suspensionEvent, INFINITE, FALSE);
+         pendingThreads()[threadHandle] = info;
+
+         //::WaitForSingleObjectEx(info.suspensionEvent, INFINITE, FALSE);
       }
       else
       {
-            // Start the thread immediately.
-            StartThread(lpStartAddress, lpParameter, completionEvent, 0);
+         // Start the thread immediately.
+         StartThread(pfn, pv, completionEvent, 0);
       }
-    
+
       return threadHandle;
    }
    catch (...)
@@ -248,7 +256,7 @@ _Use_decl_annotations_ HANDLE WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedTh
 }
 
 
-_Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread)
+DWORD WINAPI ResumeThread(HANDLE hThread)
 {
    mutex_lock lock(pendingThreadsLock);
 
@@ -265,9 +273,11 @@ _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread)
    // Start the thread.
    try
    {
+      
       PendingThreadInfo& info = threadInfo->m_value;
 
-      StartThread(info.lpStartAddress, info.lpParameter, info.completionEvent, info.nPriority);
+      StartThread(info.m_pfn, info.m_pv, info.m_hCompletionEvent, info.m_iPriority);
+
    }
    catch (...)
    {
@@ -281,7 +291,7 @@ _Use_decl_annotations_ DWORD WINAPI ResumeThread(HANDLE hThread)
 }
 
 
-_Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriority)
+BOOL WINAPI SetThreadPriority(HANDLE hThread, int iPriority)
 {
    mutex_lock lock(pendingThreadsLock);
 
@@ -296,7 +306,7 @@ _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriori
    }
 
    // Store the new priority.
-   threadInfo->m_value.nPriority = nPriority;
+   threadInfo->m_value.m_iPriority = iPriority;
 
    return true;
 }
@@ -307,7 +317,7 @@ _Use_decl_annotations_ BOOL WINAPI SetThreadPriority(HANDLE hThread, int nPriori
 DWORD WINAPI TlsAlloc()
 {
    mutex_lock lock(tlsAllocationLock);
-        
+
    // Can we reuse a previously freed TLS slot?
    if (freeTlsIndices.get_count() > 0)
    {
@@ -321,7 +331,7 @@ DWORD WINAPI TlsAlloc()
 }
 
 
-_Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
+BOOL WINAPI TlsFree(DWORD dwTlsIndex)
 {
    mutex_lock lock(tlsAllocationLock);
 
@@ -342,7 +352,7 @@ _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
    }
 
    // Zero the value for all threads that might be using this now freed slot.
-   
+
    POSITION pos = all_thread_data().get_start_position();
    while( pos != NULL)
    {
@@ -363,7 +373,7 @@ _Use_decl_annotations_ BOOL WINAPI TlsFree(DWORD dwTlsIndex)
 }
 
 
-_Use_decl_annotations_ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
+LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = currentThreadData;
 
@@ -379,7 +389,7 @@ _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(DWORD dwTlsIndex)
    }
 }
 
-_Use_decl_annotations_ LPVOID WINAPI TlsGetValue(HANDLE hthread, DWORD dwTlsIndex)
+LPVOID WINAPI TlsGetValue(HANDLE hthread, DWORD dwTlsIndex)
 {
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
@@ -396,7 +406,7 @@ _Use_decl_annotations_ LPVOID WINAPI TlsGetValue(HANDLE hthread, DWORD dwTlsInde
 }
 
 
-_Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
+BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
    ThreadLocalData* threadData = currentThreadData;
 
@@ -405,21 +415,21 @@ _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsVal
       // First time allocation of TLS data for this thread.
       try
       {
-            threadData = new ThreadLocalData;
-                
-            mutex_lock lock(tlsAllocationLock);
+         threadData = new ThreadLocalData;
 
-            all_thread_data().set_at(currentThread, threadData);
+         mutex_lock lock(tlsAllocationLock);
 
-            currentThreadData = threadData;
+         all_thread_data().set_at(currentThread, threadData);
+
+         currentThreadData = threadData;
 
       }
       catch (...)
       {
-            if (threadData)
-               delete threadData;
+         if (threadData)
+            delete threadData;
 
-            return false;
+         return false;
       }
    }
 
@@ -429,7 +439,7 @@ _Use_decl_annotations_ BOOL WINAPI TlsSetValue(DWORD dwTlsIndex, LPVOID lpTlsVal
    return true;
 }
 
-_Use_decl_annotations_ BOOL WINAPI TlsSetValue(HANDLE hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
+BOOL WINAPI TlsSetValue(HANDLE hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 {
    ThreadLocalData* threadData = all_thread_data()[hthread];
 
@@ -438,20 +448,20 @@ _Use_decl_annotations_ BOOL WINAPI TlsSetValue(HANDLE hthread, DWORD dwTlsIndex,
       // First time allocation of TLS data for this thread.
       try
       {
-            threadData = new ThreadLocalData;
-                
-            mutex_lock lock(tlsAllocationLock);
+         threadData = new ThreadLocalData;
 
-            all_thread_data().set_at(hthread, threadData);
+         mutex_lock lock(tlsAllocationLock);
 
-            currentThreadData = threadData;
+         all_thread_data().set_at(hthread, threadData);
+
+         currentThreadData = threadData;
       }
       catch (...)
       {
-            if (threadData)
-               delete threadData;
+         if (threadData)
+            delete threadData;
 
-            return false;
+         return false;
       }
    }
 
@@ -472,12 +482,12 @@ void WINAPI TlsShutdown()
 
       try
       {
-         
+
          IDWriteFactory * pfactory = TlsGetWriteFactory();
 
          if(pfactory != NULL)
          {
-            
+
             pfactory->Release();
 
          }
@@ -489,12 +499,12 @@ void WINAPI TlsShutdown()
 
       try
       {
-         
+
          ID2D1Factory1 * pfactory = GetD2D1Factory1();
 
          if(pfactory != NULL)
          {
-            
+
             //pfactory->Release();
 
          }
@@ -521,7 +531,7 @@ void WINAPI TlsShutdown()
 
 int WINAPI GetThreadPriority(_In_ HANDLE hThread)
 {
-   
+
    mutex_lock lock(pendingThreadsLock);
 
    // Look up the requested thread.
@@ -534,21 +544,23 @@ int WINAPI GetThreadPriority(_In_ HANDLE hThread)
 
    }
 
-   return threadInfo->m_value.nPriority;
+   return threadInfo->m_value.m_iPriority;
 
 }
 
 
 
 
-os_thread::os_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv)
+os_thread::os_thread(uint32_t (* pfn)(void *), void * pv)
 {
-   m_pfn = pfn;
-   m_pv = pv;
+
+   m_pfn    = pfn;
+   m_pv     = pv;
+
 }
 
 
-DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
+uint32_t thread_proc_create_thread(void * lpparameter)
 {
 
    os_thread * posthread = (os_thread *) lpparameter;
@@ -568,7 +580,7 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
    {
    }
 
-   
+
    delete posthread;
 
    return dwRet;
@@ -576,7 +588,7 @@ DWORD WINAPI thread_proc_create_thread(LPVOID lpparameter)
 }
 
 
-HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
+HANDLE start_thread(uint32_t ( * pfn)(void *), void * pv, int iPriority)
 {
 
    UNREFERENCED_PARAMETER(iPriority);
@@ -585,10 +597,10 @@ HANDLE start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int iPriority)
 
 }
 
-HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, DWORD f, LPDWORD lpdwId)
+HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t ( * pfn)(void *), void * pv, uint32_t uiFlags, uint32_t * lpuiId)
 {
 
-   return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, lpdwId);
+   return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (void *) new os_thread(pfn, pv), uiFlags, lpuiId);
 
 }
 
@@ -606,32 +618,32 @@ int thread_layer::run()
 
    throw "todo"; // message pumping
 
-/*
+   /*
    MSG msg;
 
    while(true)
    {
 
-      if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
-      {
+   if(!PeekMessage(&msg, NULL, 0, 0xffffffffu, TRUE))
+   {
 
-         if(!on_idle())
-         {
+   if(!on_idle())
+   {
 
-            Sleep(m_iSleepiness);
+   Sleep(m_iSleepiness);
 
-         }
+   }
 
 
-         continue;
+   continue;
 
-      }
+   }
 
-      if(msg.message == WM_QUIT)
-         break;
+   if(msg.message == WM_QUIT)
+   break;
 
-      TranslateMessage(&msg);
-      DispatchMessage(&msg);
+   TranslateMessage(&msg);
+   DispatchMessage(&msg);
 
    }
 
@@ -643,12 +655,12 @@ int thread_layer::run()
 
 bool thread_layer::on_idle()
 {
-   
+
    return false;
 
 }
 
-void thread_layer::wait_thread(DWORD dwMillis)
+void thread_layer::wait_thread(uint32_t dwMillis)
 {
 
    ::WaitForSingleObjectEx(m_hthread, dwMillis, FALSE);
@@ -660,8 +672,8 @@ static UINT g_uiMainThread = -1;
 
 CLASS_DECL_c void set_main_thread(HANDLE hThread)
 {
-   
-//   MSG msg;
+
+   //   MSG msg;
 
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
@@ -673,8 +685,8 @@ CLASS_DECL_c void set_main_thread(HANDLE hThread)
 
 CLASS_DECL_c void set_main_thread_id(UINT uiThread)
 {
-   
-//   MSG msg;
+
+   //   MSG msg;
 
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
@@ -699,21 +711,21 @@ CLASS_DECL_c UINT   get_main_thread_id()
 CLASS_DECL_c void attach_thread_input_to_main_thread(bool bAttach)
 {
    return;
-//   MSG msg;
+   //   MSG msg;
 
    // metrowin todo
    throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 
    //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
-   
-//   AttachThreadInput(::GetCurrentThreadId(), get_main_thread_id(), bAttach ? TRUE : FALSE); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
+
+   //   AttachThreadInput(::GetCurrentThreadId(), get_main_thread_id(), bAttach ? TRUE : FALSE); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
 
 }
 
-DWORD WINAPI thread_layer::proc(LPVOID lp)
+uint32_t thread_layer::proc(void * pv)
 {
 
-   thread_layer * player   = (thread_layer *) lp;
+   thread_layer * player   = (thread_layer *) pv;
 
    player->m_hthread       = ::GetCurrentThread();
 
@@ -899,7 +911,7 @@ CLASS_DECL_c BOOL WINAPI PostThreadMessageW(DWORD idThread, UINT Msg, WPARAM wPa
    msg.lParam  = lParam;
 
    pmq->ma.add(msg);
-   
+
    pmq->m_eventNewMessage.set_event();
 
    return true;

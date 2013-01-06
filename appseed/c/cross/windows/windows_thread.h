@@ -46,7 +46,7 @@
 #endif
 
 
-CLASS_DECL_c HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, SIZE_T unusedStackSize, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD unusedThreadId);
+CLASS_DECL_c HTHREAD WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr unusedStackSize, uint32_t (* lpStartAddress)(void *) , void * lpParameter, uint32_t uiCreationFlags, uint32_t * puiId);
 CLASS_DECL_c DWORD WINAPI ResumeThread(HTHREAD hThread);
 CLASS_DECL_c WINBOOL WINAPI SetThreadPriority(HTHREAD hThread, int32_t nPriority);
 CLASS_DECL_c int32_t WINAPI GetThreadPriority(HTHREAD hThread);

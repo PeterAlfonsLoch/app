@@ -598,6 +598,7 @@ copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)
     <ClCompile Include="metrowin\crypt\c_os_crypt.cpp" />
     <ClCompile Include="metrowin\c_os_c_dll.cpp" />
     <ClCompile Include="metrowin\c_os_file.cpp" />
+    <ClCompile Include="metrowin\c_os_file_std.cpp" />
     <ClCompile Include="metrowin\c_os_file_watcher.cpp" />
     <ClCompile Include="metrowin\c_os_http.cpp" />
     <ClCompile Include="metrowin\c_os_launcher.cpp" />

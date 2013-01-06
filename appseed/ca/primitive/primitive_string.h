@@ -97,10 +97,10 @@ inline UINT _gen_GetConversionACP()
 //
 //    'byte Length' - Length of a buffer in bytes, regardless of character
 //       size
-//    'Char Length' - Number of distinct characters in string.  For wide-
+//    'char Length' - Number of distinct characters in string.  For wide-
 //       character strings, this is equivalent to half the 'byte Length'.
 //       For ANSI strings, this is equivalent to the 'byte Length'.  For MBCS
-//       strings, 'Char Length' counts a lead-byte/trail-byte combination
+//       strings, 'char Length' counts a lead-byte/trail-byte combination
 //       as one character.
 //    'Length' - When neither of the above terms is used, 'Length' refers to
 //       length in XCHARs, which is equal to 'byte Length'/sizeof(XCHAR).

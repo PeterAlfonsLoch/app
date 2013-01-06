@@ -450,6 +450,9 @@
     <ClCompile Include="cross\windows\windows_user.cpp">
       <Filter>Source Files\cross\windows</Filter>
     </ClCompile>
+    <ClCompile Include="metrowin\c_os_file_std.cpp">
+      <Filter>Source Files\metrowin</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

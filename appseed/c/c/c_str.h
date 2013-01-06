@@ -20,6 +20,7 @@ CLASS_DECL_c int32_t strnicmp_dup(const char * sz1, const char * sz2, strsize iL
 CLASS_DECL_c int32_t strncmp_dup(const char * sz1, const char * sz2, strsize iLen);
 CLASS_DECL_c char * str_begins_inc_dup(const char * sz1, const char * prefix);
 CLASS_DECL_c int32_t str_begins_dup(const char * sz1, const char * prefix);
+CLASS_DECL_c int32_t str_ends_dup(const char * sz1, const char * suffix);
 CLASS_DECL_c int32_t str_begins_ci_dup(const char * sz1, const char * prefix);
 CLASS_DECL_c char * strrchr_dup(char * sz, char ch);
 

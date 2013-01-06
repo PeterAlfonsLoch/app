@@ -1122,11 +1122,17 @@ RetryHost:
             }
          }
       }
+
       dir::mk(dir::name((dir + file)));
+
       m_dwCurFileLen = iGzLen;
+
       m_dwDownloadLen = 0;
+
       keep_true keepDownloadTrue(m_bMsDownload);
+
       return ms_download_dup(url_in, (dir + file), false, false, NULL, &::ms_download_callback, (void *) this);
+
    }
 
 

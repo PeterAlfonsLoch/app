@@ -46,7 +46,7 @@ namespace file_watcher
       property ::Platform::String ^                                  m_strDirName;
       property size_t                                                m_pwatcher;   // should be exactly file_watcher_impl *
       property size_t                                                m_plistener;  // should be exactly file_watch_listener *
-      property size_t                                                m_id;
+      property uint64_t                                              m_id;
 
       static watch_struct ^ create_watch(Platform::String ^ strDirectory);
 
@@ -183,7 +183,9 @@ namespace file_watcher
 		m_watchmap.set_at(watchid, pwatch);
 
 		return watchid;
+
 	}
+
 
 	void os_file_watcher::remove_watch(const char * directory)
 	{

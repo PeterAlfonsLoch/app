@@ -142,7 +142,7 @@ void init_RL ( e_state* s )
 
 
 static
-Bool isempty_RL ( e_state* s )
+bool isempty_RL ( e_state* s )
 {
    if (s->state_in_ch < 256 && s->state_in_len > 0)
       return False; else
@@ -201,7 +201,7 @@ int32_t BZ_API(BZ2_bzCompressInit)
    s->verbosity         = verbosity;
    s->workFactor        = workFactor;
 
-   s->block             = (UChar*)s->arr2;
+   s->block             = (uchar*)s->arr2;
    s->mtfv              = (uint16_t*)s->arr1;
    s->zbits             = NULL;
    s->ptr               = (uint32_t*)s->arr1;
@@ -222,31 +222,31 @@ static
 void add_pair_to_block ( e_state* s )
 {
    int32_t i;
-   UChar ch = (UChar)(s->state_in_ch);
+   uchar ch = (uchar)(s->state_in_ch);
    for (i = 0; i < s->state_in_len; i++) {
       BZ_UPDATE_CRC( s->blockCRC, ch );
    }
    s->inUse[s->state_in_ch] = True;
    switch (s->state_in_len) {
       case 1:
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
          break;
       case 2:
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
          break;
       case 3:
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
          break;
       default:
          s->inUse[s->state_in_len-4] = True;
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
-         s->block[s->nblock] = (UChar)ch; s->nblock++;
-         s->block[s->nblock] = ((UChar)(s->state_in_len-4));
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
+         s->block[s->nblock] = (uchar)ch; s->nblock++;
+         s->block[s->nblock] = ((uchar)(s->state_in_len-4));
          s->nblock++;
          break;
    }
@@ -269,10 +269,10 @@ void flush_RL ( e_state* s )
    /*-- fast track the common case --*/           \
    if (zchh != zs->state_in_ch &&                 \
        zs->state_in_len == 1) {                   \
-      UChar ch = (UChar)(zs->state_in_ch);        \
+      uchar ch = (uchar)(zs->state_in_ch);        \
       BZ_UPDATE_CRC( zs->blockCRC, ch );          \
       zs->inUse[zs->state_in_ch] = True;          \
-      zs->block[zs->nblock] = (UChar)ch;          \
+      zs->block[zs->nblock] = (uchar)ch;          \
       zs->nblock++;                               \
       zs->state_in_ch = zchh;                     \
    }                                              \
@@ -292,9 +292,9 @@ void flush_RL ( e_state* s )
 
 /*---------------------------------------------------*/
 static
-Bool copy_input_until_stop ( e_state* s )
+bool copy_input_until_stop ( e_state* s )
 {
-   Bool progress_in = False;
+   bool progress_in = False;
 
    if (s->mode == BZ_M_RUNNING) {
 
@@ -305,7 +305,7 @@ Bool copy_input_until_stop ( e_state* s )
          /*-- no input? --*/
          if (s->strm->avail_in == 0) break;
          progress_in = True;
-         ADD_CHAR_TO_BLOCK ( s, (uint32_t)(*((UChar*)(s->strm->next_in))) ); 
+         ADD_CHAR_TO_BLOCK ( s, (uint32_t)(*((uchar*)(s->strm->next_in))) ); 
          s->strm->next_in++;
          s->strm->avail_in--;
          s->strm->total_in_lo32++;
@@ -323,7 +323,7 @@ Bool copy_input_until_stop ( e_state* s )
          /*-- flush/finish end? --*/
          if (s->avail_in_expect == 0) break;
          progress_in = True;
-         ADD_CHAR_TO_BLOCK ( s, (uint32_t)(*((UChar*)(s->strm->next_in))) ); 
+         ADD_CHAR_TO_BLOCK ( s, (uint32_t)(*((uchar*)(s->strm->next_in))) ); 
          s->strm->next_in++;
          s->strm->avail_in--;
          s->strm->total_in_lo32++;
@@ -337,9 +337,9 @@ Bool copy_input_until_stop ( e_state* s )
 
 /*---------------------------------------------------*/
 static
-Bool copy_output_until_stop ( e_state* s )
+bool copy_output_until_stop ( e_state* s )
 {
-   Bool progress_out = False;
+   bool progress_out = False;
 
    while (True) {
 
@@ -364,10 +364,10 @@ Bool copy_output_until_stop ( e_state* s )
 
 /*---------------------------------------------------*/
 static
-Bool handle_compress ( bz_stream* strm )
+bool handle_compress ( bz_stream* strm )
 {
-   Bool progress_in  = False;
-   Bool progress_out = False;
+   bool progress_in  = False;
+   bool progress_out = False;
    e_state* s = (e_state *) strm->state;
    
    while (True) {
@@ -389,7 +389,7 @@ Bool handle_compress ( bz_stream* strm )
          progress_in |= copy_input_until_stop ( s );
          if (s->mode != BZ_M_RUNNING && s->avail_in_expect == 0) {
             flush_RL ( s );
-            BZ2_compressBlock ( s, (Bool)(s->mode == BZ_M_FINISHING) );
+            BZ2_compressBlock ( s, (bool)(s->mode == BZ_M_FINISHING) );
             s->state = BZ_S_OUTPUT;
          }
          else
@@ -412,7 +412,7 @@ Bool handle_compress ( bz_stream* strm )
 /*---------------------------------------------------*/
 int32_t BZ_API(BZ2_bzCompress) ( bz_stream *strm, int32_t action )
 {
-   Bool progress;
+   bool progress;
    e_state* s;
    if (strm == NULL) return BZ_PARAM_ERROR;
    s = (e_state *) strm->state;
@@ -498,7 +498,7 @@ int32_t BZ_API(BZ2_bzCompressEnd)  ( bz_stream *strm )
 int32_t BZ_API(BZ2_bzDecompressInit) 
                      ( bz_stream* strm, 
                        int32_t        verbosity,
-                       int32_t        small )
+                       bool        small )
 {
    DState* s;
 
@@ -523,7 +523,7 @@ int32_t BZ_API(BZ2_bzDecompressInit)
    strm->total_in_hi32      = 0;
    strm->total_out_lo32     = 0;
    strm->total_out_hi32     = 0;
-   s->smallDecompress       = (Bool)small;
+   s->smallDecompress       = small != FALSE;
    s->ll4                   = NULL;
    s->ll16                  = NULL;
    s->tt                    = NULL;
@@ -539,9 +539,9 @@ int32_t BZ_API(BZ2_bzDecompressInit)
    Returns False if there is no problem.
 */
 static
-Bool unRLE_obuf_to_output_FAST ( DState* s )
+bool unRLE_obuf_to_output_FAST ( DState* s )
 {
-   UChar k1;
+   uchar k1;
 
    if (s->blockRandomised) {
 
@@ -550,7 +550,7 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
          while (True) {
             if (s->strm->avail_out == 0) return False;
             if (s->state_out_len == 0) break;
-            *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            *( (uchar*)(s->strm->next_out) ) = s->state_out_ch;
             BZ_UPDATE_CRC ( s->calculatedBlockCRC, s->state_out_ch );
             s->state_out_len--;
             s->strm->next_out++;
@@ -596,7 +596,7 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
 
       /* restore */
       uint32_t        c_calculatedBlockCRC = s->calculatedBlockCRC;
-      UChar         c_state_out_ch       = s->state_out_ch;
+      uchar         c_state_out_ch       = s->state_out_ch;
       int32_t         c_state_out_len      = s->state_out_len;
       int32_t         c_nblock_used        = s->nblock_used;
       int32_t         c_k0                 = s->k0;
@@ -617,7 +617,7 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
             while (True) {
                if (cs_avail_out == 0) goto return_notr;
                if (c_state_out_len == 1) break;
-               *( (UChar*)(cs_next_out) ) = c_state_out_ch;
+               *( (uchar*)(cs_next_out) ) = c_state_out_ch;
                BZ_UPDATE_CRC ( c_calculatedBlockCRC, c_state_out_ch );
                c_state_out_len--;
                cs_next_out++;
@@ -628,7 +628,7 @@ Bool unRLE_obuf_to_output_FAST ( DState* s )
                if (cs_avail_out == 0) { 
                   c_state_out_len = 1; goto return_notr;
                };
-               *( (UChar*)(cs_next_out) ) = c_state_out_ch;
+               *( (uchar*)(cs_next_out) ) = c_state_out_ch;
                BZ_UPDATE_CRC ( c_calculatedBlockCRC, c_state_out_ch );
                cs_next_out++;
                cs_avail_out--;
@@ -708,9 +708,9 @@ __inline__ int32_t BZ2_indexIntoF ( int32_t indx, int32_t *cftab )
    Returns False if there is no problem.
 */
 static
-Bool unRLE_obuf_to_output_SMALL ( DState* s )
+bool unRLE_obuf_to_output_SMALL ( DState* s )
 {
-   UChar k1;
+   uchar k1;
 
    if (s->blockRandomised) {
 
@@ -719,7 +719,7 @@ Bool unRLE_obuf_to_output_SMALL ( DState* s )
          while (True) {
             if (s->strm->avail_out == 0) return False;
             if (s->state_out_len == 0) break;
-            *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            *( (uchar*)(s->strm->next_out) ) = s->state_out_ch;
             BZ_UPDATE_CRC ( s->calculatedBlockCRC, s->state_out_ch );
             s->state_out_len--;
             s->strm->next_out++;
@@ -768,7 +768,7 @@ Bool unRLE_obuf_to_output_SMALL ( DState* s )
          while (True) {
             if (s->strm->avail_out == 0) return False;
             if (s->state_out_len == 0) break;
-            *( (UChar*)(s->strm->next_out) ) = s->state_out_ch;
+            *( (uchar*)(s->strm->next_out) ) = s->state_out_ch;
             BZ_UPDATE_CRC ( s->calculatedBlockCRC, s->state_out_ch );
             s->state_out_len--;
             s->strm->next_out++;
@@ -812,7 +812,7 @@ Bool unRLE_obuf_to_output_SMALL ( DState* s )
 /*---------------------------------------------------*/
 int32_t BZ_API(BZ2_bzDecompress) ( bz_stream *strm )
 {
-   Bool    corrupt;
+   bool    corrupt;
    DState* s;
    if (strm == NULL) return BZ_PARAM_ERROR;
    s = (DState *) strm->state;
@@ -897,18 +897,18 @@ int32_t BZ_API(BZ2_bzDecompressEnd)  ( bz_stream *strm )
 typedef 
    struct {
       _FILE*     handle;
-      Char      buf[BZ_MAX_UNUSED];
+      char      buf[BZ_MAX_UNUSED];
       int32_t     bufN;
-      Bool      writing;
+      bool      writing;
       bz_stream strm;
       int32_t     lastErr;
-      Bool      initialisedOk;
+      bool      initialisedOk;
    }
    bzFile;
 
 
 /*---------------------------------------------*/
-static Bool myfeof ( _FILE* f )
+static bool myfeof ( _FILE* f )
 {
    int32_t c = fgetc_dup ( f );
    if (c == EOF) return True;
@@ -998,7 +998,7 @@ void BZ_API(BZ2_bzWrite)
 
       if (bzf->strm.avail_out < BZ_MAX_UNUSED) {
          n = BZ_MAX_UNUSED - bzf->strm.avail_out;
-         n2 = (int32_t) fwrite_dup ( (void *)(bzf->buf), sizeof(UChar), 
+         n2 = (int32_t) fwrite_dup ( (void *)(bzf->buf), sizeof(uchar), 
                        n, bzf->handle );
          if (n != n2 || ferror_dup(bzf->handle))
             { BZ_SETERR(BZ_IO_ERROR); return; };
@@ -1057,7 +1057,7 @@ void BZ_API(BZ2_bzWriteClose64)
 
          if (bzf->strm.avail_out < BZ_MAX_UNUSED) {
             n = BZ_MAX_UNUSED - bzf->strm.avail_out;
-            n2 = (int32_t) fwrite_dup ( (void *)(bzf->buf), sizeof(UChar), 
+            n2 = (int32_t) fwrite_dup ( (void *)(bzf->buf), sizeof(uchar), 
                           n, bzf->handle );
             if (n != n2 || ferror_dup(bzf->handle))
                { BZ_SETERR(BZ_IO_ERROR); return; };
@@ -1093,7 +1093,7 @@ BZFILE* BZ_API(BZ2_bzReadOpen)
                    ( int32_t*  bzerror, 
                      _FILE* f, 
                      int32_t   verbosity,
-                     int32_t   small,
+                     bool   small,
                      void * unused,
                      int32_t   nUnused )
 {
@@ -1127,8 +1127,8 @@ BZFILE* BZ_API(BZ2_bzReadOpen)
    bzf->strm.opaque   = NULL;
    
    while (nUnused > 0) {
-      bzf->buf[bzf->bufN] = *((UChar*)(unused)); bzf->bufN++;
-      unused = ((void *)( 1 + ((UChar*)(unused))  ));
+      bzf->buf[bzf->bufN] = *((uchar*)(unused)); bzf->bufN++;
+      unused = ((void *)( 1 + ((uchar*)(unused))  ));
       nUnused--;
    }
 
@@ -1192,7 +1192,7 @@ int32_t BZ_API(BZ2_bzRead)
          { BZ_SETERR(BZ_IO_ERROR); return 0; };
 
       if (bzf->strm.avail_in == 0 && !myfeof(bzf->handle)) {
-         n = (int32_t) fread_dup ( bzf->buf, sizeof(UChar), 
+         n = (int32_t) fread_dup ( bzf->buf, sizeof(uchar), 
                      BZ_MAX_UNUSED, bzf->handle );
          if (ferror_dup(bzf->handle))
             { BZ_SETERR(BZ_IO_ERROR); return 0; };
@@ -1306,7 +1306,7 @@ int32_t BZ_API(BZ2_bzBuffToBuffDecompress)
                              uint32_t* destLen,
                              char*         source, 
                              uint32_t  sourceLen,
-                             int32_t           small,
+                             bool           small,
                              int32_t           verbosity )
 {
    bz_stream strm;
@@ -1392,17 +1392,18 @@ BZFILE * bzopen_or_bzdopen
                  const char *mode,
                  int32_t open_mode)      /* bzopen: 0, bzdopen:1 */
 {
-   int32_t    bzerr;
-   char  * unused = (char *) _ca_alloc(BZ_MAX_UNUSED);
-   int32_t    blockSize100k = 9;
-   int32_t    writing       = 0;
-   char   mode2[10]     = "";
-   _FILE   *fp           = NULL;
-   BZFILE *bzfp         = NULL;
-   int32_t    verbosity     = 0;
-   int32_t    workFactor    = 30;
-   int32_t    smallMode     = 0;
-   int32_t    nUnused       = 0; 
+
+   int32_t     bzerr;
+   char      * unused         = (char *) _ca_alloc(BZ_MAX_UNUSED);
+   int32_t     blockSize100k  = 9;
+   int32_t     writing        = 0;
+   char        mode2[10]      = "";
+   _FILE     * fp             = NULL;
+   BZFILE    * bzfp           = NULL;
+   int32_t     verbosity      = 0;
+   int32_t     workFactor     = 30;
+   bool        smallMode      = false;
+   int32_t     nUnused        = 0; 
 
    if (mode == NULL) return NULL;
    while (*mode) {

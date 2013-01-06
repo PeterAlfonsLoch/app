@@ -21,7 +21,7 @@
 */
 #include "framework.h" // manual
 
-#undef Bool
+#undef bool
 
 namespace sqlite
 {
@@ -90,12 +90,6 @@ namespace sqlite
    /*
    ** Include standard header files as necessary
    */
-#ifdef HAVE_STDINT_H
-#include <stdint.h>
-#endif
-   //#ifdef HAVE_INTTYPES_H
-   //#include <inttypes.h>
-   //#endif
 
    /*
    ** If possible, use the C99 intptr_t type to define an integral type of
@@ -14758,7 +14752,7 @@ zulu_time:
    /*
    ** Boolean values
    */
-   typedef uchar Bool;
+   typedef uchar bool;
 
    /*
    ** A cursor is a pointer into a single BTree within a database spfile->
@@ -14780,16 +14774,16 @@ zulu_time:
       int32_t iDb;              /* Index of cursor database in db->aDb[] (or -1) */
       i64 lastRowid;        /* Last rowid from a Next or NextIdx operation */
       i64 nextRowid;        /* Next rowid returned by OP_NewRowid */
-      Bool zeroed;          /* True if zeroed out and ready for reuse */
-      Bool rowidIsValid;    /* True if lastRowid is valid */
-      Bool atFirst;         /* True if pointing to first entry */
-      Bool useRandomRowid;  /* Generate new record numbers semi-randomly */
-      Bool nullRow;         /* True if pointing to a row with no data */
-      Bool nextRowidValid;  /* True if the nextRowid field is valid */
-      Bool pseudoTable;     /* This is a NEW or OLD pseudo-tables of a trigger */
-      Bool deferredMoveto;  /* A call to sqlite3BtreeMoveto() is needed */
-      Bool isTable;         /* True if a table requiring integer keys */
-      Bool isIndex;         /* True if an index containing keys only - no data */
+      bool zeroed;          /* True if zeroed out and ready for reuse */
+      bool rowidIsValid;    /* True if lastRowid is valid */
+      bool atFirst;         /* True if pointing to first entry */
+      bool useRandomRowid;  /* Generate new record numbers semi-randomly */
+      bool nullRow;         /* True if pointing to a row with no data */
+      bool nextRowidValid;  /* True if the nextRowid field is valid */
+      bool pseudoTable;     /* This is a NEW or OLD pseudo-tables of a trigger */
+      bool deferredMoveto;  /* A call to sqlite3BtreeMoveto() is needed */
+      bool isTable;         /* True if a table requiring integer keys */
+      bool isIndex;         /* True if an index containing keys only - no data */
       u8 bogusIncrKey;      /* Something for pIncrKey to point to if pKeyInfo==0 */
       i64 movetoTarget;     /* Argument to the deferred sqlite3BtreeMoveto() */
       Btree *pBt;           /* Separate file holding temporary table */
