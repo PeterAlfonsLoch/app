@@ -1,18 +1,24 @@
 #pragma once
 
+
 namespace gcom
 {
+
+
    namespace backview
    {
-      
+
+
       class Main;
       class thread_dispatch;
       class load_image;
+
 
       class CLASS_DECL_ca2 thread : 
          virtual public ::radix::thread
       {
       public:
+
 
          enum e_message
          {
@@ -24,15 +30,15 @@ namespace gcom
             CommandPreTransitionImage,
             CommandLoadImage,
          };
-         
+
 
          typedef struct tagStretchImageStructure
          {
-         //    LPSTREAM    m_lpstrmCallback;
+            //    LPSTREAM    m_lpstrmCallback;
             uint32_t       m_dwCallbackThread;
-         //   VARIANT varInfoHeader;
-         //   VARIANT varBits;
-         //   VARIANT varUserData;
+            //   VARIANT varInfoHeader;
+            //   VARIANT varBits;
+            //   VARIANT varUserData;
             ::ca::bitmap     m_pbitmap;
             int32_t         m_iUserData;
             int32_t      cx;
@@ -42,32 +48,32 @@ namespace gcom
 
          typedef struct tagOnLoadImageStructure
          {
-         //   const char *   m_lpImagePath;
-         //   FIBITMAP *   m_pfiBitmap;
-         //   HDC      m_hDCPersistent;
-         //   oswindow   m_oswindow_Return;
-         //   LPSTREAM * m_lpStreamEvents;
-         //   uint32_t   m_dwEventsCount;
-         //   LPSTREAM m_lpStreamImageLoader;
-         //   LPSTREAM m_lpStreamImageLoaderCP;
+            //   const char *   m_lpImagePath;
+            //   FIBITMAP *   m_pfiBitmap;
+            //   HDC      m_hDCPersistent;
+            //   oswindow   m_oswindow_Return;
+            //   LPSTREAM * m_lpStreamEvents;
+            //   uint32_t   m_dwEventsCount;
+            //   LPSTREAM m_lpStreamImageLoader;
+            //   LPSTREAM m_lpStreamImageLoaderCP;
             ::ca::bitmap * m_pbitmap;
 
          } ONLOADIMAGESTRUCTURE, *LPONLOADIMAGESTRUCTURE;
 
          typedef struct tagOnStretchImageStructure
          {
-         //   VARIANT varInfoHeader;
-         //   VARIANT varBits;
-         //   VARIANT varUserData;
+            //   VARIANT varInfoHeader;
+            //   VARIANT varBits;
+            //   VARIANT varUserData;
             //HBITMAP      m_hBitmap;
             ::ca::bitmap *  m_pbitmap;
             int32_t          m_cx;
             int32_t          m_cy;
             int32_t          m_iUserData;
-         //   LPSTREAM * m_lpStreamEvents;
-         //   uint32_t   m_dwEventsCount;
-         //   LPSTREAM m_lpStreamImageLoader;
-         //   LPSTREAM m_lpStreamImageLoaderCP;
+            //   LPSTREAM * m_lpStreamEvents;
+            //   uint32_t   m_dwEventsCount;
+            //   LPSTREAM m_lpStreamImageLoader;
+            //   LPSTREAM m_lpStreamImageLoaderCP;
 
          } ONSTRETCHIMAGESTRUCTURE, *LPONSTRETCHIMAGESTRUCTURE;
 
@@ -76,7 +82,7 @@ namespace gcom
          backview::Main   *          m_pbackviewinterface;   
 
          thread(::ca::application * papp);
-         
+
          static const UINT MESSAGE_BACKVIEW;
          static const WPARAM WPARAM_BACKVIEW_IMAGELOADED;
 
@@ -85,13 +91,13 @@ namespace gcom
 
          void install_message_handling(::gen::message::dispatch * pinterface);
 
-          static uint32_t WINAPI ThreadProcStretchImage(LPVOID lpParameter);
-          static UINT c_cdecl ThreadProcLoadImage(LPVOID lpParameter);
+         static uint32_t ThreadProcStretchImage(void * lpParameter);
+         static uint32_t ThreadProcLoadImage(void * lpParameter);
 
          //void OnImageLoaded(HBITMAP hbitmap);
          long OnImageStretched(::ca::bitmap * pbitmap, long cx, long cy, long iUserData);
 
-      //   ::ca::bitmap & GetBitmap();
+         //   ::ca::bitmap & GetBitmap();
 
          //void OnLyricViewSize(int32_t iType);
          void LoadImageAsync(const load_image & loadimage);
@@ -109,8 +115,8 @@ namespace gcom
          virtual ~thread();
 
          DECL_GEN_SIGNAL(OnUserMessage)
-         DECL_GEN_SIGNAL(OnBackViewMessage)
-         DECL_GEN_SIGNAL(OnCommandMessage)
+            DECL_GEN_SIGNAL(OnBackViewMessage)
+            DECL_GEN_SIGNAL(OnCommandMessage)
 
       };
 
@@ -142,13 +148,13 @@ namespace gcom
          void OnImageLoaded();
 
       protected:
-         
+
 
 
          load_image & operator =(const load_image & loadimage);
       };
 
-      
+
    } // namespace backview
 
 } // namespace gcom

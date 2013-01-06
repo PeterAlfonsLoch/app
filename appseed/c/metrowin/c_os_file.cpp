@@ -590,7 +590,7 @@ void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
 {
    vsstring str;
    char ch;
-   uint32_t dwRead;
+   DWORD dwRead;
    while(ReadFile(hfile, &ch, 1, &dwRead, NULL) && dwRead == 1)
    {
       if(ch >= '0' && ch <= '9')
@@ -616,7 +616,7 @@ void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
    LPSTR lpsz = (LPSTR) _ca_alloc(iLen + 1);
-   uint32_t dwRead;
+   DWORD dwRead;
    ReadFile(hfile, lpsz, iLen, &dwRead, NULL);
    if(pctx != NULL)
    {

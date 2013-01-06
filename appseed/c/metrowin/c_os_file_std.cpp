@@ -7,8 +7,6 @@
 #include "framework.h"
 
 
-#ifdef METROWIN
-
 //_flag values (not the ones used by the normal CRT
 
 _FILE __iob[3];
@@ -31,30 +29,6 @@ void _init_file()
 
 _FILE *__iob_func_dup() {return (_FILE*)__iob;}
 
-#elif defined(WINDOWS)
-
-
-//_flag values (not the ones used by the normal CRT
-
-_FILE __iob[3];
-
-void _init_file()
-{
-	// STDIN
-	__iob[0]._base = (char *) GetStdHandle(STD_INPUT_HANDLE);
-	__iob[0]._flag = _FILE_TEXT;
-
-	// STDOUT
-	__iob[1]._base = (char *) GetStdHandle(STD_OUTPUT_HANDLE);
-	__iob[1]._flag = _FILE_TEXT;
-
-	// STDERR
-	__iob[2]._base = (char *) GetStdHandle(STD_ERROR_HANDLE);
-	__iob[2]._flag = _FILE_TEXT;
-}
-
-_FILE *__iob_func_dup() {return (_FILE*)__iob;}
-#endif
 
    // used directly by the stdin, stdout, and stderr macros
 
@@ -75,10 +49,6 @@ HANDLE _get_osfhandle(int32_t i)
 _FILE *fopen_dup(const char *path, const char *attrs)
 {
 
-#if defined(LINUX) || defined(MACOS)
-
-    return fopen(path, attrs);
-#elif defined(METROWIN)
 
 
 	uint32_t access, disp;
@@ -116,73 +86,9 @@ _FILE *fopen_dup(const char *path, const char *attrs)
 
 	return file;
 
-#else
-
-	uint32_t access, disp;
-	if (strchr_dup(attrs, 'w'))
-	{
-		access = GENERIC_WRITE;
-		disp = CREATE_ALWAYS;
-	}
-	else
-	{
-		access = GENERIC_READ;
-		disp = OPEN_EXISTING;
-	}
-
-   wstring wstr(path);
-
-	HANDLE hFile = CreateFileW(wstr, access, 0, 0, disp, 0, 0);
-
-	if (hFile == INVALID_HANDLE_VALUE)
-		return 0;
-
-	_FILE *file = new _FILE;
-	memset_dup(file, 0, sizeof(_FILE));
-	file->_base = (char *) hFile;
-
-	if (strchr_dup(attrs, 't'))
-		file->_flag |= _FILE_TEXT;
-
-	return file;
-
-#endif
 
 }
 
-#ifdef WINDOWSEX
-
-_FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
-{
-
-	uint32_t access, disp;
-	if (wcschr_dup(attrs, L'w'))
-	{
-		access = GENERIC_WRITE;
-		disp = CREATE_ALWAYS;
-	}
-	else
-	{
-		access = GENERIC_READ;
-		disp = OPEN_EXISTING;
-	}
-
-	HANDLE hFile = CreateFileW(path, access, 0, 0, disp, 0, 0);
-	if (hFile == INVALID_HANDLE_VALUE)
-		return 0;
-
-	_FILE *file = new _FILE;
-	memset_dup(file, 0, sizeof(_FILE));
-	file->_base = (char *) hFile;
-
-	if (wcschr_dup(attrs, L't'))
-		file->_flag |= _FILE_TEXT;
-
-	return file;
-
-}
-
-#elif defined(METROWIN)
 
 _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 {
@@ -214,8 +120,6 @@ _FILE *_wfopen_dup(const wchar_t *path, const wchar_t *attrs)
 
 }
 
-#endif
-
 
 int32_t fprintf_dup(_FILE *fp, const char *s, ...)
 {
@@ -223,11 +127,7 @@ int32_t fprintf_dup(_FILE *fp, const char *s, ...)
 	va_start(args, s);
 
 	char bfr[1024];
-	#ifdef WINDOWSEX
-	int32_t len = wvsprintfA(bfr, s, args);
-	#else
 	int32_t len = vsprintf(bfr, s, args);
-	#endif
 
 	va_end(args);
 
@@ -235,79 +135,34 @@ int32_t fprintf_dup(_FILE *fp, const char *s, ...)
 	return len;
 }
 
-#ifdef WINDOWSEX
-
-int32_t fwprintf_dup(_FILE *fp, const wchar_t *s, ...)
-{
-	va_list args;
-	va_start(args, s);
-
-	wchar_t bfr[1024];
-	int32_t len = wvsprintfW(bfr, s, args);
-
-	va_end(args);
-
-	char ansibfr[1024];
-	WideCharToMultiByte(CP_ACP, 0, bfr, -1, ansibfr, sizeof(ansibfr), 0, 0);
-
-	fwrite_dup(ansibfr, len+1, sizeof(char), fp);
-	return len;
-}
-
-#endif
 
 int32_t fclose_dup(_FILE *fp)
 {
-
-#ifdef WINDOWS
 
 	::CloseHandle((HANDLE)((_FILE*)fp)->_base);
 	delete fp;
 	return 0;
 
-#else
-
-    return fclose(fp);
-
-#endif
 
 }
 
 int32_t feof_dup(_FILE *fp)
 {
 
-#ifdef WINDOWS
-
 	return (fp->_flag & _FILE_EOF) ? 1 : 0;
-
-#else
-
-    return feof(fp);
-
-#endif
 
 }
 
 int32_t fflush_dup(_FILE * fp)
 {
 
-#ifdef WINDOWS
-
    ::FlushFileBuffers((HANDLE) fp->_base);
    return 0;
-
-#else
-
-    return fflush(fp);
-
-#endif
 
 }
 
 file_position fseek_dup(_FILE *fp, file_offset offset, int32_t origin)
 {
-
-#ifdef WINDOWS
 
 	uint32_t meth = FILE_BEGIN;
 	if (origin == SEEK_CUR)
@@ -319,33 +174,17 @@ file_position fseek_dup(_FILE *fp, file_offset offset, int32_t origin)
 	((_FILE*)fp)->_flag &= ~_FILE_EOF;
 	return (uint64_t) dw | (((uint64_t) offsetHigh) << 32);
 
-#else
-
-    return fseek(fp, offset, origin);
-
-#endif
-
 }
 
 long ftell_dup(_FILE *fp)
 {
 
-#ifdef WINDOWS
-
 	return SetFilePointer((HANDLE) ((_FILE*)fp)->_base, 0, 0, FILE_CURRENT);
-
-#else
-
-    return ftell(fp);
-
-#endif
 
 }
 
 size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 {
-
-#ifdef WINDOWS
 
 	if (size*count == 0)
 		return 0;
@@ -418,20 +257,12 @@ size_t fread_dup(void *buffer, size_t size, size_t count, _FILE *str)
 
 	return br/size;
 
-#else
-
-    return fread(buffer, size, count, str);
-
-#endif
-
 }
 
 size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
 {
 
-#ifdef WINDOWS
-
-	uint32_t bw = 0, bw2 = 0;
+	DWORD bw = 0, bw2 = 0;
 
 	if (size*count == 0)
 		return 0;
@@ -495,18 +326,10 @@ size_t fwrite_dup(const void *buffer, size_t size, size_t count, _FILE *str)
    }
 	return bw / size;
 
-#else
-
-    return fwrite(buffer, size, count, str);
-
-#endif
-
 }
 
 char *fgets_dup(char *str, int32_t n, _FILE *s)
 {
-
-#ifdef WINDOWS
 
 	if (feof_dup(s))
 		return 0;
@@ -531,15 +354,8 @@ char *fgets_dup(char *str, int32_t n, _FILE *s)
 	str[i] = 0;
 	return str;
 
-#else
-
-    return fgets_dup(str, n, s);
-
-#endif
 
 }
-
-#ifdef WINDOWS
 
 wchar_t *fgetws_dup(wchar_t *str, int32_t n, _FILE *s)
 {
@@ -579,9 +395,6 @@ wchar_t *fgetws_dup(wchar_t *str, int32_t n, _FILE *s)
 	return str;
 }
 
-#endif
-
-
 int32_t fgetc_dup(_FILE *s)
 {
 	if (s == 0 || feof_dup(s))
@@ -602,8 +415,6 @@ int32_t ungetc_dup(int32_t c, _FILE *s)
 
 	return (int32_t)c;
 }
-
-#ifdef WINDOWS
 
 wint_t fgetwc_dup(_FILE *s)
 {
@@ -638,40 +449,22 @@ wint_t ungetwc_dup(wint_t w, _FILE *s)
 	return (int32_t)w;
 }
 
-#endif
-
 
 int32_t ferror_dup(_FILE *fp)
 {
 
-#ifdef WINDOWS
-
    return fp->_flag & _FILE_ERROR;
 
-#else
-
-    return ferror(fp);
-
-#endif
 
 }
 
-#if defined(LINUX) || defined(MACOS)
-uint64_t fsize_dup(FILE * fp)
-{
-   size_t pos = ftell(fp);
-   fseek(fp, 0, SEEK_END);
-   size_t len = ftell(fp);
-   fseek(fp, pos, SEEK_SET);
-   return len;
-}
-#else
 uint64_t fsize_dup(HANDLE h)
 {
-   uint32_t dwHi;
-   uint32_t dwLo = ::GetFileSize(h, &dwHi);
-   if(dwHi)
-      return 0;
+
+   DWORD dwHi;
+
+   DWORD dwLo = ::GetFileSize(h, &dwHi);
+
    return dwLo | (((DWORD64) dwHi) << 32);
+
 }
-#endif

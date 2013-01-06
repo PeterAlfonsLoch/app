@@ -662,7 +662,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
 }
 
 
-vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, dword_ptr), void * callback_param, bool bProgress)
+vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, int, uint_ptr), void * callback_param, bool bProgress)
 {
 
    ComPtr<CXMLHttpRequest2Callback> spcallback;

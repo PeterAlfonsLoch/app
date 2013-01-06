@@ -746,16 +746,16 @@ RetryHost:
    }
 
 
-   uint32_t WINAPI installer::thread_proc_run(LPVOID lpParam)
+   uint32_t installer::thread_proc_run(void * lpParam)
    {
 
       installer * pinstaller = (installer *) lpParam;
 
-      uint32_t dw = pinstaller->run();
+      uint32_t ui = pinstaller->run();
 
       delete pinstaller;
 
-      return dw;
+      return ui;
 
    }
 

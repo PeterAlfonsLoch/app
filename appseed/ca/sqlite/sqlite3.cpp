@@ -14749,10 +14749,6 @@ zulu_time:
    */
    typedef struct VdbeOp Op;
 
-   /*
-   ** Boolean values
-   */
-   typedef uchar bool;
 
    /*
    ** A cursor is a pointer into a single BTree within a database spfile->
@@ -44075,7 +44071,7 @@ op_column_out:
                   pCrsr = pC->pCursor;
                   assert( pCrsr!=0 );
                   rc = sqlite3BtreeLast(pCrsr, &res);
-                  pC->nullRow = res;
+                  pC->nullRow = res != FALSE;
                   pC->deferredMoveto = 0;
                   pC->cacheStatus = CACHE_STALE;
                   if( res && pOp->p2>0 ){
@@ -44129,7 +44125,7 @@ op_column_out:
                   }else{
                      res = 1;
                   }
-                  pC->nullRow = res;
+                  pC->nullRow = res != FALSE;
                   assert( pOp->p2>0 && pOp->p2<p->nOp );
                   if( res ){
                      pc = pOp->p2 - 1;
@@ -44175,7 +44171,7 @@ op_column_out:
                      assert( pC->deferredMoveto==0 );
                      rc = pOp->opcode==OP_Next ? sqlite3BtreeNext(pCrsr, &res) :
                         sqlite3BtreePrevious(pCrsr, &res);
-                     pC->nullRow = res;
+                     pC->nullRow = res != FALSE;
                      pC->cacheStatus = CACHE_STALE;
                      if( res==0 ){
                         pc = pOp->p2 - 1;

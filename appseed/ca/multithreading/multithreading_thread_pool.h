@@ -10,6 +10,12 @@
 
 #pragma once
 
+#ifdef WINDOWSEX
+#define THREAD_START_ROUTINE_API WINAPI
+#else
+#define THREAD_START_ROUTINE_API
+#endif
+
 template < typename T >
 class simple_signal :
    virtual public ::radix::object
@@ -75,7 +81,7 @@ public:
 private:
 
    template <typename T>
-   static uint32_t WINAPI thread_proc(PVOID pcontext)
+   static uint32_t THREAD_START_ROUTINE_API thread_proc(void * pcontext)
    {
       simple_signal < T > * psignal =  static_cast < simple_signal < T > * >(pcontext);
 

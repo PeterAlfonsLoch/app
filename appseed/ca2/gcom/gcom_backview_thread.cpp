@@ -434,7 +434,7 @@ namespace gcom
          m_pbackviewinterface = pmain;
       }
 
-      uint32_t WINAPI thread::ThreadProcStretchImage(LPVOID lpParameter)
+      uint32_t thread::ThreadProcStretchImage(void * lpParameter)
       {
          UNREFERENCED_PARAMETER(lpParameter);
          ASSERT(FALSE);

@@ -452,13 +452,15 @@ primitive::memory stringa::GetFormatV004()
       strcat(lpszN, *pstr);
 #endif
 
-#ifdef WINDOWS
+#ifdef WINDOWSEX
       iLength = _tcsnbcnt(lpszN, iLength);
+#elif defined(METROWINDOW)
+      iLength = wcsnbcnt(lpszN, iLength);
 #else
       iLength = strlen(lpszN);
 #endif
 
-      lpszN = (LPTSTR) ((LPBYTE)lpszN) + iLength + sizeof(char);
+      lpszN = (char *) ((LPBYTE)lpszN) + iLength + sizeof(char);
 
    }
 

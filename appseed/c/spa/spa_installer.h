@@ -145,7 +145,7 @@ namespace spa
       void set_progress(double dProgress);
       count download_file_list(stra_dup & stra_dup, simple_string_to_intptr & mapLen, simple_string_to_string & mapCrc, simple_string_to_intptr & mapGzLen, simple_string_to_intptr & mapFlag);
 
-      static uint32_t WINAPI thread_proc_run(LPVOID lpParam);
+      static uint32_t thread_proc_run(void * lpParam);
 
       void PaintOpaqueBk(HDC hdc);
 
