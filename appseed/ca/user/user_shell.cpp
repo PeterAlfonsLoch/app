@@ -720,7 +720,7 @@ namespace filemanager
 
             uint32_t dwAttrib = 0;
 
-//            uint32_t long ulEaten;
+//            unsigned long ulEaten;
 
             HRESULT hr;
 

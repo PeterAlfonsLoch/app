@@ -146,7 +146,7 @@ namespace gen
 
          {
           //  m_chRngReSeedCountDown = -1;
-            //uint32_t long ulRnd = rnd();
+            //unsigned long ulRnd = rnd();
          }
 
       }

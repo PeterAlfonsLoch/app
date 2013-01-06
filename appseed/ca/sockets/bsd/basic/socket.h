@@ -86,7 +86,7 @@ namespace sockets
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
-      //    uint32_t long           m_flags; ///< boolean flags, replacing old 'bool' members
+      //    unsigned long           m_flags; ///< boolean flags, replacing old 'bool' members
 
 #ifdef WINDOWSEX
 

@@ -3473,7 +3473,7 @@ namespace gcom
       {
          // clear our height fields
       }
-      void PixelExplosion::to(uint32_t* pSrcImage,uint32_t* pTargetImage)
+      void PixelExplosion::to(COLORREF * pSrcImage, COLORREF * pTargetImage)
       {
          int32_t i = 0;
 
@@ -3711,7 +3711,7 @@ namespace gcom
          UNREFERENCED_PARAMETER(page);
       }
 
-      void PixelExplosion::DrawWaterNoLight(int32_t page,uint32_t* pSrcImage,uint32_t* pTargetImage)
+      void PixelExplosion::DrawWaterNoLight(int32_t page, COLORREF * pSrcImage, COLORREF * pTargetImage)
       {
          UNREFERENCED_PARAMETER(page);
       //  int32_t ox, oy;

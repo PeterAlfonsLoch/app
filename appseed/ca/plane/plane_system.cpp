@@ -224,6 +224,15 @@ namespace plane
          return false;
       }
 
+      m_spfile.create(this);
+      m_spdir.create(this);
+
+      if(!m_spdir->initialize())
+         return false;
+
+      if(!set_main_init_data(m_pinitmaindata))
+         return false;
+
       m_spportforward.create(this);
 
       m_bProcessInitializeResult = true;
@@ -279,11 +288,6 @@ namespace plane
 
       m_spfilesystem.create(this);
       m_spos.create(this);
-      m_spdir.create(this);
-
-
-      if(!m_spdir->initialize())
-         return false;
 
       m_spcrypt.create(this);
 
@@ -1511,7 +1515,7 @@ namespace plane
       return true;
    }
 
-   uint32_t long system::guess_code_page(const char * pszText)
+   uint32_t system::guess_code_page(const char * pszText)
    {
       if(!m_bLibCharGuess)
       {

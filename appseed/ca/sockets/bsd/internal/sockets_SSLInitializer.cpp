@@ -220,12 +220,12 @@ namespace sockets
    }
 
 
-   uint32_t long SSLInitializer::SSL_id_function()
+   unsigned long SSLInitializer::SSL_id_function()
    {
 #ifdef WIN32
       return ::GetCurrentThreadId();
 #else
-      return (uint32_t long) (int_ptr) ::pthread_self();
+      return (unsigned long) (int_ptr) ::pthread_self();
       //return System.get_thread_id();
 #endif
    }

@@ -48,17 +48,17 @@ typedef uint32_t u4;
 #endif /* BYFOUR */
 
 /* Local functions for crc concatenation */
-zlib_local uint32_t long gf2_matrix_times OF((uint32_t long *mat,
-                                         uint32_t long vec));
-zlib_local void gf2_matrix_square OF((uint32_t long *square, uint32_t long *mat));
+zlib_local uint32_t gf2_matrix_times OF((uint32_t *mat,
+                                         uint32_t vec));
+zlib_local void gf2_matrix_square OF((uint32_t *square, uint32_t *mat));
 
 #ifdef DYNAMIC_CRC_TABLE
 
 zlib_local volatile int32_t crc_table_empty = 1;
-zlib_local uint32_t long FAR crc_table[TBLS][256];
+zlib_local uint32_t FAR crc_table[TBLS][256];
 zlib_local void make_crc_table OF(());
 #ifdef MAKECRCH
-   zlib_local void write_table OF((FILE *, const uint32_t long FAR *));
+   zlib_local void write_table OF((FILE *, const uint32_t FAR *));
 #endif /* MAKECRCH */
 /*
   Generate tables for a byte-wise 32-bit CRC calculation on the polynomial:
@@ -88,9 +88,9 @@ zlib_local void make_crc_table OF(());
 */
 zlib_local void make_crc_table()
 {
-    uint32_t long c;
+    uint32_t c;
     int32_t n, k;
-    uint32_t long poly;                 /* polynomial exclusive-or pattern */
+    uint32_t poly;                 /* polynomial exclusive-or pattern */
     /* terms of polynomial defining this crc (except x^32): */
     static volatile int32_t first = 1;      /* flag to limit concurrent making */
     static const uchar p[] = {0,1,2,4,5,7,8,10,11,12,16,22,23,26};
@@ -108,7 +108,7 @@ zlib_local void make_crc_table()
 
         /* generate a crc for every 8-bit value */
         for (n = 0; n < 256; n++) {
-            c = (uint32_t long)n;
+            c = (uint32_t)n;
             for (k = 0; k < 8; k++)
                 c = c & 1 ? poly ^ (c >> 1) : c >> 1;
             crc_table[0][n] = c;
@@ -145,7 +145,7 @@ zlib_local void make_crc_table()
         if (out == NULL) return;
         fprintf(out, "/* crc32.h -- tables for rapid CRC calculation\n");
         fprintf(out, " * Generated automatically by crc32.c\n */\n\n");
-        fprintf(out, "zlib_local const uint32_t long FAR ");
+        fprintf(out, "zlib_local const uint32_t FAR ");
         fprintf(out, "crc_table[TBLS][256] =\n{\n  {\n");
         write_table(out, crc_table[0]);
 #  ifdef BYFOUR
@@ -165,7 +165,7 @@ zlib_local void make_crc_table()
 #ifdef MAKECRCH
 zlib_local void write_table(out, table)
     FILE *out;
-    const uint32_t long FAR *table;
+    const uint32_t FAR *table;
 {
     int32_t n;
 

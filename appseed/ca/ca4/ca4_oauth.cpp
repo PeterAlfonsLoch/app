@@ -78,7 +78,7 @@ SHA1(A million repetitions of "a") =
 #define UINT_8 uchar
 
 #if (ULONG_MAX == 0xFFFFFFFF)
-#define UINT_32 uint32_t long
+#define UINT_32 unsigned long
 #else
 #define UINT_32 uint32_t
 #endif
@@ -348,8 +348,8 @@ void CSHA1::Update(UINT_8 *data, UINT_32 len)
 // Hash in file contents
 bool CSHA1::HashFile(char *szFileName)
 {
-   uint32_t long ulFileSize, ulRest, ulBlocks;
-   uint32_t long i;
+   unsigned long ulFileSize, ulRest, ulBlocks;
+   unsigned long i;
    UINT_8 uData[SHA1_MAX_FILE_BUFFER];
    FILE *fIn;
 
@@ -359,7 +359,7 @@ bool CSHA1::HashFile(char *szFileName)
    if(fIn == NULL) return false;
 
    fseek(fIn, 0, SEEK_END);
-   ulFileSize = (uint32_t long)ftell(fIn);
+   ulFileSize = (unsigned long)ftell(fIn);
    fseek(fIn, 0, SEEK_SET);
 
    if(ulFileSize != 0)

@@ -282,7 +282,7 @@ int64_t _stdcall muldiv64(int64_t number, int64_t numerator, int64_t denominator
    /*
    // Declare 128bit storage
    struct{
-      uint32_t long DW[4];
+      unsigned long DW[4];
    }var128, quotient;
    // Change semantics for intermediate results for Full Div
    // by renaming the vars
@@ -507,7 +507,7 @@ int64_t _stdcall mulshr64(int64_t operant, int64_t multiplier, uchar rshift)
    return (operant * multiplier) >> rshift;
 /*   // Declare 128bit storage
    struct{
-      uint32_t long DW[4];
+      unsigned long DW[4];
    }var128;
 
    // Save combined sign on stack

@@ -122,9 +122,9 @@ uint32_t start)         /* inflate()'s starting value for strm->avail_out */
        input data or output space */
     do {
         if (bits < 15) {
-            hold += (uint32_t long)(PUP(in)) << bits;
+            hold += (uint32_t)(PUP(in)) << bits;
             bits += 8;
-            hold += (uint32_t long)(PUP(in)) << bits;
+            hold += (uint32_t)(PUP(in)) << bits;
             bits += 8;
         }
         codeThis = lcode[hold & lmask];
@@ -144,7 +144,7 @@ uint32_t start)         /* inflate()'s starting value for strm->avail_out */
             op &= 15;                           /* number of extra bits */
             if (op) {
                 if (bits < op) {
-                    hold += (uint32_t long)(PUP(in)) << bits;
+                    hold += (uint32_t)(PUP(in)) << bits;
                     bits += 8;
                 }
                 len += (uint32_t)hold & ((1U << op) - 1);
@@ -153,9 +153,9 @@ uint32_t start)         /* inflate()'s starting value for strm->avail_out */
             }
             Tracevv((stderr, "inflate:         length %u\n", len));
             if (bits < 15) {
-                hold += (uint32_t long)(PUP(in)) << bits;
+                hold += (uint32_t)(PUP(in)) << bits;
                 bits += 8;
-                hold += (uint32_t long)(PUP(in)) << bits;
+                hold += (uint32_t)(PUP(in)) << bits;
                 bits += 8;
             }
             codeThis = dcode[hold & dmask];
@@ -168,10 +168,10 @@ uint32_t start)         /* inflate()'s starting value for strm->avail_out */
                 dist = (uint32_t)(codeThis.val);
                 op &= 15;                       /* number of extra bits */
                 if (bits < op) {
-                    hold += (uint32_t long)(PUP(in)) << bits;
+                    hold += (uint32_t)(PUP(in)) << bits;
                     bits += 8;
                     if (bits < op) {
-                        hold += (uint32_t long)(PUP(in)) << bits;
+                        hold += (uint32_t)(PUP(in)) << bits;
                         bits += 8;
                     }
                 }

@@ -168,7 +168,7 @@ namespace visual
       bool bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1 , PNG_DEFAULT) != FALSE;
 
       BYTE * pbData = NULL;
-      uint32_t dwSize;
+      DWORD dwSize;
       if(bOk)
          bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != FALSE;
       if(bOk)

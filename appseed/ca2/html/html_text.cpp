@@ -96,11 +96,11 @@ namespace html
          for(int32_t i = 0; i < str.get_length();)
          {
             iSpace = 0;
-            uchar = (uchar) str[i];
+            uch = (uchar) str[i];
             while(i < str.get_length())
             {
-               uchar = (uchar) str[i];
-               if(!isspace(uchar))
+               uch = (uchar) str[i];
+               if(!isspace(uch))
                   break;
                iSpace++;
                if(iSpace == 1)
@@ -120,8 +120,8 @@ namespace html
             }
             while(i < str.get_length())
             {
-               uchar = (uchar) str[i];
-               if(isspace(uchar))
+               uch = (uchar) str[i];
+               if(isspace(uch))
                   break;
                strLine += str[i];
                i++;
@@ -135,8 +135,8 @@ namespace html
          m_cxMin = 0;
          for(int32_t i = 0; i < m_straWordSpace.get_size(); i++)
          {
-            uchar = (uchar) m_straWordSpace[i][0];
-            if(!isspace(uchar))
+            uch = (uchar) m_straWordSpace[i][0];
+            if(!isspace(uch))
             {
                size = pdc->GetTextExtent(m_straWordSpace[i]);
                if(size.cx > m_cxMin)
@@ -222,11 +222,11 @@ namespace html
             for(int32_t i = 0; i < str.get_length();)
             {
                iSpace = 0;
-               uchar = (uchar) str[i];
+               uch = (uchar) str[i];
                while(i < str.get_length())
                {
-                  uchar = (uchar) str[i];
-                  if(!isspace(uchar))
+                  uch = (uchar) str[i];
+                  if(!isspace(uch))
                      break;
                   iSpace++;
                   if(iSpace == 1)
@@ -242,8 +242,8 @@ namespace html
                }
                while(i < str.get_length())
                {
-                  uchar = (uchar) str[i];
-                  if(isspace(uchar))
+                  uch = (uchar) str[i];
+                  if(isspace(uch))
                      break;
                   strLine += str[i];
                   i++;

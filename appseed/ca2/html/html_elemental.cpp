@@ -7,15 +7,15 @@ void trim001(string & str)
    uchar uch;
    while(str.get_length() > 0)
    {
-      uchar = str[0];
-      if(isdigit(uchar) || isalpha(uchar))
+      uch = str[0];
+      if(isdigit(uch) || isalpha(uch))
          break;
       str = str.Mid(1);
    }
    while(str.get_length() > 0)
    {
-      uchar = str[str.get_length() - 1];
-      if(isdigit(uchar) || isalpha(uchar))
+      uch = str[str.get_length() - 1];
+      if(isdigit(uch) || isalpha(uch))
          break;
       str = str.Left(str.get_length() - 1);
    }

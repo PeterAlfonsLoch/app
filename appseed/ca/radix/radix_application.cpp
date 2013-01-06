@@ -239,9 +239,9 @@ namespace radix
 #ifdef WINDOWSEX
 
       HKEY hkPolicy = NULL;
-      uint32_t dwValue = 0;
-      uint32_t dwDataLen = sizeof(dwValue);
-      uint32_t dwType = 0;
+      DWORD dwValue = 0;
+      DWORD dwDataLen = sizeof(dwValue);
+      DWORD dwType = 0;
 
       // clear current policy settings.
       m_dwPolicies = ___SYSPOLICY_NOTINITIALIZED;
@@ -2264,7 +2264,7 @@ namespace radix
       if (RegOpenKeyEx(HKEY_CURRENT_USER, "software", 0, KEY_WRITE|KEY_READ,
          &hSoftKey) == ERROR_SUCCESS)
       {
-         uint32_t dw;
+         DWORD dw;
          if (RegCreateKeyEx(hSoftKey, m_pszRegistryKey, 0, REG_NONE,
             REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
             &hCompanyKey, &dw) == ERROR_SUCCESS)
@@ -2295,10 +2295,8 @@ namespace radix
       if (hAppKey == NULL)
          return NULL;
 
-      uint32_t dw;
-      RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE,
-         REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL,
-         &hSectionKey, &dw);
+      DWORD dw;
+      RegCreateKeyEx(hAppKey, lpszSection, 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE|KEY_READ, NULL, &hSectionKey, &dw);
       RegCloseKey(hAppKey);
       return hSectionKey;
    }

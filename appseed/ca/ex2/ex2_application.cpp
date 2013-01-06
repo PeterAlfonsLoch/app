@@ -94,18 +94,11 @@ namespace ex2
       //m_pappDelete = this;
       //::ca::thread_sp::m_p->m_pappDelete = this;
 
-      if(is_system())
-      {
-         if(!set_main_init_data(m_pinitmaindata))
-            return false;
-      }
-
-
       if(!smart_pointer < application >::m_p->process_initialize())
             return false;
 
-
       return true;
+
    }
 
    bool application::initialize1()

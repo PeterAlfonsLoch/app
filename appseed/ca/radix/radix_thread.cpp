@@ -75,15 +75,17 @@ namespace radix
       return m_p->set_thread_priority(epriority);
    }
 
-   uint32_t thread::SuspendThread()
+/*   uint32_t thread::SuspendThread()
    {
       return m_p->SuspendThread();
    }
+   */
 
    uint32_t thread::ResumeThread()
    {
       return m_p->ResumeThread();
    }
+   
 
    bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
    {

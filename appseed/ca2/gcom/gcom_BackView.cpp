@@ -22,26 +22,19 @@ namespace gcom
          m_estate = StateTiming;
          m_bInitialized = false;
 
-         m_pimagechange          = new ImageChange(*this);
-         m_pgraphics             = new Graphics(*this);
-         m_ptransitioneffect     = new TransitionEffect(*this);
-         m_pvisualeffect         = new VisualEffect(*this);
+         m_pimagechange             = new ImageChange(*this);
+         m_pgraphics                = new Graphics(*this);
+         m_ptransitioneffect        = new TransitionEffect(*this);
+         m_pvisualeffect            = new VisualEffect(*this);
 
-         m_pthreadIdlePriority = __begin_thread < thread > (
-            get_app(),
-            ::ca::thread_priority_normal,
-            0,
-            CREATE_SUSPENDED);
+         m_pthreadIdlePriority      = new thread(get_app());
          m_pthreadIdlePriority->SetMain(this);
-         m_pthreadIdlePriority->ResumeThread();
+         m_pthreadIdlePriority->Begin();
 
-         m_pthreadHighestPriority = __begin_thread < thread > (
-            get_app(),
-            ::ca::thread_priority_highest,
-            0,
-            CREATE_SUSPENDED);
+         m_pthreadHighestPriority   = new thread(get_app());
          m_pthreadHighestPriority->SetMain(this);
-         m_pthreadHighestPriority->ResumeThread();
+         m_pthreadHighestPriority->Begin(::ca::thread_priority_highest);
+
          m_bPendingLayout = true;
 
       }

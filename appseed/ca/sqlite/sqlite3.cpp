@@ -17051,14 +17051,14 @@ translate_out:
    ** on i486 hardware.
    */
 #ifdef SQLITE_PERFORMANCE_TRACE
-   __inline__ uint32_t long long int32_t hwtime(){
-      uint32_t long long int32_t x;
+   __inline__ unsigned long long int32_t hwtime(){
+      unsigned long long int32_t x;
       __asm__("rdtsc\n\t"
          "mov %%edx, %%ecx\n\t"
          :"=A" (x));
       return x;
    }
-   static uint32_t long long int32_t g_start;
+   static unsigned long long int32_t g_start;
    static uint32_t elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -18221,14 +18221,14 @@ translate_out:
    ** on i486 hardware.
    */
 #ifdef SQLITE_PERFORMANCE_TRACE
-   __inline__ uint32_t long long int32_t hwtime(){
-      uint32_t long long int32_t x;
+   __inline__ unsigned long long int32_t hwtime(){
+      unsigned long long int32_t x;
       __asm__("rdtsc\n\t"
          "mov %%edx, %%ecx\n\t"
          :"=A" (x));
       return x;
    }
-   static uint32_t long long int32_t g_start;
+   static unsigned long long int32_t g_start;
    static uint32_t elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -19656,15 +19656,15 @@ end_lock:
    */
    typedef struct afpLockingContext afpLockingContext;
    struct afpLockingContext {
-      uint32_t long long sharedLockByte;
+      unsigned long long sharedLockByte;
       const char *filePath;
    };
 
    struct ByteRangeLockPB2
    {
-      uint32_t long long offset;        /* offset to first byte to lock */
-      uint32_t long long length;        /* nbr of bytes to lock */
-      uint32_t long long retRangeStart; /* nbr of 1st byte locked if successful */
+      unsigned long long offset;        /* offset to first byte to lock */
+      unsigned long long length;        /* nbr of bytes to lock */
+      unsigned long long retRangeStart; /* nbr of 1st byte locked if successful */
       uchar unLockFlag;         /* 1 = unlock, 0 = lock */
       uchar startEndFlag;       /* 1=rel to end of fork, 0=rel to start */
       int32_t fd;                           /* file desc to assoc this lock with */
@@ -19681,8 +19681,8 @@ end_lock:
    static int32_t _AFPFSSetLock(
       const char *path,
       int32_t fd,
-      uint32_t long long offset,
-      uint32_t long long length,
+      unsigned long long offset,
+      unsigned long long length,
       int32_t setLockFlag
       ){
          struct ByteRangeLockPB2       pb;
@@ -21084,14 +21084,14 @@ afp_end_lock:
    ** on i486 hardware.
    */
 #ifdef SQLITE_PERFORMANCE_TRACE
-   __inline__ uint32_t long long int32_t hwtime(){
-      uint32_t long long int32_t x;
+   __inline__ unsigned long long int32_t hwtime(){
+      unsigned long long int32_t x;
       __asm__("rdtsc\n\t"
          "mov %%edx, %%ecx\n\t"
          :"=A" (x));
       return x;
    }
-   static uint32_t long long int32_t g_start;
+   static unsigned long long int32_t g_start;
    static uint32_t elapse;
 #define TIMER_START       g_start=hwtime()
 #define TIMER_END         elapse=hwtime()-g_start
@@ -21744,7 +21744,7 @@ afp_end_lock:
          LONG upperBits = (offset>>32) & 0x7fffffff;
          LONG lowerBits = offset & 0xffffffff;
          uint32_t rc;
-         uint32_t got;
+         DWORD got;
          winFile *pFile = (winFile*)id;
          assert( id!=0 );
          SimulateIOError(return SQLITE_IOERR_READ);
@@ -21777,7 +21777,7 @@ afp_end_lock:
          LONG upperBits = (offset>>32) & 0x7fffffff;
          LONG lowerBits = offset & 0xffffffff;
          uint32_t rc;
-         uint32_t wrote;
+         DWORD wrote;
          winFile *pFile = (winFile*)id;
          assert( id!=0 );
          SimulateIOError(return SQLITE_IOERR_WRITE);
@@ -21849,7 +21849,7 @@ afp_end_lock:
    */
    static int32_t winFileSize(sqlite3_file *id, sqlite3_int64 *pSize){
       winFile *pFile = (winFile*)id;
-      uint32_t upperBits, lowerBits;
+      DWORD upperBits, lowerBits;
       SimulateIOError(return SQLITE_IOERR_FSTAT);
       lowerBits = GetFileSize(pFile->h, &upperBits);
       *pSize = (((sqlite3_int64)upperBits)<<32) + lowerBits;
@@ -41028,8 +41028,8 @@ failed:
    ** processor and returns that value.  This can be used for high-res
    ** profiling.
    */
-   __inline__ uint32_t long long int32_t hwtime(){
-      uint32_t long long int32_t x;
+   __inline__ unsigned long long int32_t hwtime(){
+      unsigned long long int32_t x;
       __asm__("rdtsc\n\t"
          "mov %%edx, %%ecx\n\t"
          :"=A" (x));
@@ -41096,7 +41096,7 @@ failed:
          Mem *pOut = NULL;                 /* Output operand */
          u8 opProperty;
 #ifdef VDBE_PROFILE
-         uint32_t long long start;  /* CPU clock count at start of opcode */
+         unsigned long long start;  /* CPU clock count at start of opcode */
          int32_t origPc;                /* Program counter at start of opcode */
 #endif
 #ifndef SQLITE_OMIT_PROGRESS_CALLBACK

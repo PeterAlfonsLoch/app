@@ -436,7 +436,7 @@ uint32_t out)
     do { \
         if (have == 0) goto inf_leave; \
         have--; \
-        hold += (uint32_t long)(*next++) << bits; \
+        hold += (uint_ptr)(*next++) << bits; \
         bits += 8; \
     } while (0)
 
@@ -706,7 +706,7 @@ int32_t flush)
                 if (have == 0) goto inf_leave;
                 copy = 0;
                 do {
-                    len = (uint32_t)(next[copy++]);
+                    len = (uint_ptr)(next[copy++]);
                     if (state->head != Z_NULL &&
                             state->head->name != Z_NULL &&
                             state->length < state->head->name_max)
@@ -727,7 +727,7 @@ int32_t flush)
                 if (have == 0) goto inf_leave;
                 copy = 0;
                 do {
-                    len = (uint32_t)(next[copy++]);
+                    len = (uint_ptr)(next[copy++]);
                     if (state->head != Z_NULL &&
                             state->head->comment != Z_NULL &&
                             state->length < state->head->comm_max)
@@ -1238,17 +1238,15 @@ gz_headerp head)
    called again with more data and the *have state.  *have is initialized to
    zero for the first call.
  */
-zlib_local uint32_t syncsearch(
-uint32_t FAR *have,
-uchar FAR *buf,
-uint32_t len)
+zlib_local uint32_t syncsearch(uint_ptr FAR * have, uchar FAR *buf, uint_ptr len)
 {
-    uint32_t got;
-    uint32_t next;
+    uint_ptr got;
+    uint_ptr next;
 
     got = *have;
     next = 0;
-    while (next < len && got < 4) {
+    while (next < len && got < 4)
+    {
         if ((int32_t)(buf[next]) == (got < 2 ? 0 : 0xff))
             got++;
         else if (buf[next])

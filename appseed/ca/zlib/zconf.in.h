@@ -261,7 +261,7 @@
 typedef uchar  Byte;  /* 8 bits */
 #endif
 typedef uint32_t   uInt;  /* 16 bits or more */
-typedef uint32_t long  uint_ptr; /* 32 bits or more */
+typedef unsigned long  uint_ptr; /* 32 bits or more */
 
 #ifdef SMALL_MEDIUM
    /* Borland C/C++ and some old MSC versions ignore FAR inside typedef */

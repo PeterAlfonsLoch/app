@@ -177,7 +177,7 @@ namespace mysql
          return false;
       else
       {
-         uint32_t long * pul =  presult->fetch_lengths();
+         unsigned long * pul =  presult->fetch_lengths();
          memory.allocate(*pul);
          memcpy(memory.get_data(), row[0], memory.get_size());
          return true;
@@ -307,7 +307,7 @@ namespace mysql
       char * psz = str.GetBufferSetLength(iLen * 2 + 1);
       if(psz == NULL)
          throw memory_exception(get_app());
-      mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (uint32_t long) iLen);
+      mysql_real_escape_string((MYSQL *) m_pmysql, psz, (const char *) p, (unsigned long) iLen);
       str.ReleaseBuffer();
       return str;
    }

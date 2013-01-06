@@ -2245,14 +2245,14 @@ var var::operator - (uint32_t user) const
    return uint32() - user;
 }
 
-var var::operator - (long l) const
+var var::operator - (int64_t l) const
 {
-   return int32() - l;
+   return int64() - l;
 }
 
-var var::operator - (uint32_t long ul) const
+var var::operator - (uint64_t ul) const
 {
-   return (int32_t) (uint32() - ul);
+   return (int64_t) (uint64() - ul);
 }
 
 var var::operator - (double d) const
@@ -2270,14 +2270,14 @@ var CLASS_DECL_ca operator - (uint32_t user, const class var & var)
    return user - var.uint32();
 }
 
-var CLASS_DECL_ca operator - (long l, const class var & var)
+var CLASS_DECL_ca operator - (int64_t l, const class var & var)
 {
-   return l - var.int32();
+   return l - var.int64();
 }
 
-var CLASS_DECL_ca operator - (uint32_t long ul, const class var & var)
+var CLASS_DECL_ca operator - (uint64_t ul, const class var & var)
 {
-   return (int32_t) (ul - var.uint32());
+   return (int64_t) (ul - var.uint64());
 }
 
 var CLASS_DECL_ca operator - (double d, const class var & var)
@@ -2358,14 +2358,14 @@ var var::operator + (uint32_t user) const
    return uint32() + user;
 }
 
-var var::operator + (long l) const
+var var::operator + (int64_t l) const
 {
-   return int32() + l;
+   return int64() + l;
 }
 
-var var::operator + (uint32_t long ul) const
+var var::operator + (uint64_t ul) const
 {
-   return (uint32_t) (uint32() + ul);
+   return (uint32_t) (uint64() + ul);
 }
 
 var var::operator + (double d) const
@@ -2383,14 +2383,14 @@ var CLASS_DECL_ca operator + (uint32_t user, const class var & var)
    return user + var.uint32();
 }
 
-var CLASS_DECL_ca operator + (long l, const class var & var)
+var CLASS_DECL_ca operator + (int64_t l, const class var & var)
 {
-   return l + var.int32();
+   return l + var.int64();
 }
 
-var CLASS_DECL_ca operator + (uint32_t long ul, const class var & var)
+var CLASS_DECL_ca operator + (uint64_t ul, const class var & var)
 {
-   return (uint32_t) (ul + var.uint32());
+   return (uint32_t) (ul + var.uint64());
 }
 
 var CLASS_DECL_ca operator + (double d, const class var & var)
@@ -2514,12 +2514,12 @@ var var::operator / (uint32_t user) const
    return uint32() / user;
 }
 
-var var::operator / (long l) const
+var var::operator / (int64_t l) const
 {
-   return int32() / l;
+   return int64() / l;
 }
 
-var var::operator / (uint32_t long ul) const
+var var::operator / (uint64_t ul) const
 {
 
    switch(m_etype)
@@ -2565,12 +2565,12 @@ var CLASS_DECL_ca operator / (uint32_t user, const class var & var)
    return user / var.uint32();
 }
 
-var CLASS_DECL_ca operator / (long l, const class var & var)
+var CLASS_DECL_ca operator / (int64_t l, const class var & var)
 {
-   return l / var.int32();
+   return l / var.int64();
 }
 
-var CLASS_DECL_ca operator / (uint32_t long ul, const class var & var)
+var CLASS_DECL_ca operator / (uint64_t ul, const class var & var)
 {
    switch(var.m_etype)
    {
@@ -2676,12 +2676,12 @@ var var::operator * (uint32_t user) const
    return uint32() * user;
 }
 
-var var::operator * (long l) const
+var var::operator * (int64_t l) const
 {
-   return int32() * l;
+   return int64() * l;
 }
 
-var var::operator * (uint32_t long ul) const
+var var::operator * (uint64_t ul) const
 {
    switch(m_etype)
    {
@@ -2726,12 +2726,12 @@ var CLASS_DECL_ca operator * (uint32_t user, const class var & var)
    return user * var.uint32();
 }
 
-var CLASS_DECL_ca operator * (long l, const class var & var)
+var CLASS_DECL_ca operator * (int64_t l, const class var & var)
 {
-   return l * var.int32();
+   return l * var.int64();
 }
 
-var CLASS_DECL_ca operator * (uint32_t long ul, const class var & var)
+var CLASS_DECL_ca operator * (uint64_t ul, const class var & var)
 {
 
    switch(var.m_etype)
@@ -2889,13 +2889,13 @@ class var & var::operator -= (uint32_t user)
    return *this;
 }
 
-class var & var::operator -= (long i)
+class var & var::operator -= (int64_t i)
 {
    operator =(*this - i);
    return *this;
 }
 
-class var & var::operator -= (uint32_t long user)
+class var & var::operator -= (uint64_t user)
 {
    operator =(*this - user);
    return *this;
@@ -2948,13 +2948,13 @@ class var & var::operator += (uint32_t user)
    return *this;
 }
 
-class var & var::operator += (long i)
+class var & var::operator += (int64_t i)
 {
    operator =(*this + i);
    return *this;
 }
 
-class var & var::operator += (uint32_t long user)
+class var & var::operator += (uint64_t user)
 {
    operator =(*this + user);
    return *this;
@@ -3007,13 +3007,13 @@ class var & var::operator /= (uint32_t user)
    return *this;
 }
 
-class var & var::operator /= (long i)
+class var & var::operator /= (int64_t i)
 {
    operator =(*this / i);
    return *this;
 }
 
-class var & var::operator /= (uint32_t long user)
+class var & var::operator /= (uint64_t user)
 {
    operator =(*this / user);
    return *this;
@@ -3066,13 +3066,13 @@ class var & var::operator *= (uint32_t user)
    return *this;
 }
 
-class var & var::operator *= (long i)
+class var & var::operator *= (int64_t i)
 {
    operator =(*this * i);
    return *this;
 }
 
-class var & var::operator *= (uint32_t long user)
+class var & var::operator *= (uint64_t user)
 {
    operator =(*this * user);
    return *this;

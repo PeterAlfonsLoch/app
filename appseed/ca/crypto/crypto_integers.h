@@ -76,9 +76,9 @@
 /* Can we do 64 bit integers? */
 #ifndef HAVE_UINT64_T
 # if SIZEOF_UNSIGNED_LONG == 8
-typedef uint32_t long      uint64_t;
+typedef unsigned long      uint64_t;
 # elif SIZEOF_UNSIGNED_LONG_LONG == 8
-typedef uint32_t long long   uint64_t;
+typedef unsigned long long   uint64_t;
 # else
 #  define NO_64BIT_MATH 1
 # endif

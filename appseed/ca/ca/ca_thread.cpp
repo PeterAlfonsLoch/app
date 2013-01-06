@@ -323,10 +323,10 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   uint32_t thread::SuspendThread()
+   /*uint32_t thread::SuspendThread()
    {
       throw interface_only_exception(get_app());
-   }
+   }*/
 
    bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
    {

@@ -605,10 +605,10 @@ namespace sockets
                {
                   Parse pa(s,".");
                   char slask[100]; // u2ip temporary hex2string conversion
-                  uint32_t long b0 = static_cast<uint32_t long>(pa.getvalue());
-                  uint32_t long b1 = static_cast<uint32_t long>(pa.getvalue());
-                  uint32_t long b2 = static_cast<uint32_t long>(pa.getvalue());
-                  uint32_t long b3 = static_cast<uint32_t long>(pa.getvalue());
+                  unsigned long b0 = static_cast<unsigned long>(pa.getvalue());
+                  unsigned long b1 = static_cast<unsigned long>(pa.getvalue());
+                  unsigned long b2 = static_cast<unsigned long>(pa.getvalue());
+                  unsigned long b3 = static_cast<unsigned long>(pa.getvalue());
                   sprintf(slask,"%lx",b0 * 256 + b1);
                   vec.push_back(slask);
                   sprintf(slask,"%lx",b2 * 256 + b3);

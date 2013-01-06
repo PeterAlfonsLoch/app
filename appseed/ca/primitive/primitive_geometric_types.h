@@ -48,7 +48,7 @@ public:
 
 typedef uchar      byte;
 typedef uint16_t     uint16_t;
-//typedef uint32_t long      dword;
+//typedef unsigned long      dword;
 typedef uint64_t         qword;
 typedef uint32_t       uint;
 typedef uint_ptr          uint_ptr;

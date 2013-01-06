@@ -167,7 +167,7 @@ struct inflate_state FAR *state)
     do { \
         PULL(); \
         have--; \
-        hold += (uint32_t long)(*next++) << bits; \
+        hold += (uint32_t)(*next++) << bits; \
         bits += 8; \
     } while (0)
 

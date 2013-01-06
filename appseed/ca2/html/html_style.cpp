@@ -614,28 +614,28 @@ namespace html
       varCur            = var1;
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, (uint32_t &) crLeft);
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, (uint32_t &) crLeftW);
-      box.crLeft        = varCur;
+      box.crLeft        = (uint32_t) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, (uint32_t &) crTop);
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, (uint32_t &) crTopW);
-      box.crTop         = varCur;
+      box.crTop         = (uint32_t) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, (uint32_t &) crRight);
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, (uint32_t &) crRightW);
-      box.crRight       = varCur;
+      box.crRight       = (uint32_t) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, (uint32_t &) crBottom);
       pdata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, (uint32_t &) crBottomW);
-      box.crBottom      = varCur;
+      box.crBottom      = (uint32_t) varCur;
 
       return true;
 

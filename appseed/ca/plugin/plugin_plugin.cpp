@@ -264,7 +264,7 @@ namespace plugin
 
 #ifdef WINDOWSEX
 
-         ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->flush(Gdiplus::FlushIntentionSync);
+         ((Gdiplus::Graphics *) m_dib->get_graphics()->get_os_data())->Flush(Gdiplus::FlushIntentionSync);
 
          ::GdiFlush();
 

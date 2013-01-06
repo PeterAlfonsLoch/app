@@ -31,7 +31,7 @@ namespace radix
       virtual ::ca::e_thread_priority get_thread_priority();
       virtual bool set_thread_priority(::ca::e_thread_priority epriority);
 
-      virtual uint32_t SuspendThread();
+//      virtual uint32_t SuspendThread();
       virtual uint32_t ResumeThread();
       virtual bool post_thread_message(UINT message, WPARAM wParam, LPARAM lParam);
       virtual bool post_message(::user::interaction * pguie, UINT message, WPARAM wParam, LPARAM lParam);

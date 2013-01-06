@@ -125,10 +125,10 @@
 /* Define to the version of this package. */
 #define PACKAGE_VERSION ""
 
-/* The size of a `uint32_t long', as computed by sizeof. */
+/* The size of a `unsigned long', as computed by sizeof. */
 #define SIZEOF_UNSIGNED_LONG 4
 
-/* The size of a `uint32_t long long', as computed by sizeof. */
+/* The size of a `unsigned long long', as computed by sizeof. */
 #define SIZEOF_UNSIGNED_LONG_LONG 8
 
 /* Define to use GDOI. */

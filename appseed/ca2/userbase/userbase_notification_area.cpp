@@ -70,7 +70,7 @@ namespace userbase
          }
       }
 
-      uint32_t dwTrayPid = 0;
+      DWORD dwTrayPid = 0;
       if(!GetWindowThreadProcessId(m_oswindowTray, &dwTrayPid))
          return;
 
@@ -90,7 +90,7 @@ namespace userbase
          data.ReadData(&tb);
          data.ReadData<TRAYDATA>(&tray,(LPCVOID)tb.dwData);
 
-         uint32_t dwProcessId = 0;
+         DWORD dwProcessId = 0;
          GetWindowThreadProcessId(tray.m_oswindow,&dwProcessId);
 
          info.sProcessPath = GetFilenameFromPid(dwProcessId);

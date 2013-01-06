@@ -282,7 +282,7 @@ typedef uint64_t  uint_ptr; /* 32 bits or more */
 typedef uint32_t  uint_ptr; /* 32 bits or more */
 #endif
 #else
-typedef uint32_t long  uint_ptr; /* 32 bits or more */
+typedef unsigned long  uint_ptr; /* 32 bits or more */
 #endif
 
 #ifdef SMALL_MEDIUM
