@@ -84,20 +84,20 @@ static void oc_iir_filter_reinit(oc_iir_filter *_f,int32_t _delay){
   /*b2 is Q56; in practice, the integer ranges between -2 and 2.*/
   b2=(one48<<8)-(4*a<<24)-b1;
   /*All of the filter parameters are Q24.*/
-  _f->c[0]=(ogg_int32_t)(b1+((int64_t)1<<31)>>32);
-  _f->c[1]=(ogg_int32_t)(b2+((int64_t)1<<31)>>32);
-  _f->g=(ogg_int32_t)(a+128>>8);
+  _f->c[0]=(int32_t)(b1+((int64_t)1<<31)>>32);
+  _f->c[1]=(int32_t)(b2+((int64_t)1<<31)>>32);
+  _f->g=(int32_t)(a+128>>8);
 }
 
 /*Initialize a 2nd order low-pass Bessel filter with the corresponding delay
    and initial value.
   _value is Q24.*/
-static void oc_iir_filter_init(oc_iir_filter *_f,int32_t _delay,ogg_int32_t _value){
+static void oc_iir_filter_init(oc_iir_filter *_f,int32_t _delay,int32_t _value){
   oc_iir_filter_reinit(_f,_delay);
   _f->y[1]=_f->y[0]=_f->x[1]=_f->x[0]=_value;
 }
 
-static int64_t oc_iir_filter_update(oc_iir_filter *_f,ogg_int32_t _x){
+static int64_t oc_iir_filter_update(oc_iir_filter *_f,int32_t _x){
   int64_t c0;
   int64_t c1;
   int64_t g;
@@ -114,10 +114,10 @@ static int64_t oc_iir_filter_update(oc_iir_filter *_f,ogg_int32_t _x){
   y0=_f->y[0];
   y1=_f->y[1];
   ya=(_x+x0*2+x1)*g+y0*c0+y1*c1+(1<<23)>>24;
-  _f->x[1]=(ogg_int32_t)x0;
+  _f->x[1]=(int32_t)x0;
   _f->x[0]=_x;
-  _f->y[1]=(ogg_int32_t)y0;
-  _f->y[0]=(ogg_int32_t)ya;
+  _f->y[1]=(int32_t)y0;
+  _f->y[0]=(int32_t)ya;
   return ya;
 }
 
@@ -204,8 +204,8 @@ void oc_enc_calc_lambda(oc_enc_ctx *_enc,int32_t _qti){
   _log_scale: A binary logarithm in Q24 format.
   Return: The binary exponential in Q24 format, saturated to 2**47-1 if
    _log_scale was too large.*/
-static int64_t oc_bexp_q24(ogg_int32_t _log_scale){
-  if(_log_scale<(ogg_int32_t)23<<24){
+static int64_t oc_bexp_q24(int32_t _log_scale){
+  if(_log_scale<(int32_t)23<<24){
     int64_t ret;
     ret=oc_bexp64(((int64_t)_log_scale<<33)+OC_Q57(24));
     return ret<0x7FFFFFFFFFFFLL?ret:0x7FFFFFFFFFFFLL;
@@ -216,13 +216,13 @@ static int64_t oc_bexp_q24(ogg_int32_t _log_scale){
 /*Convenience function converts Q57 value to a clamped 32-bit Q24 value
   _in: input in Q57 format.
   Return: same number in Q24 */
-static ogg_int32_t oc_q57_to_q24(int64_t _in){
+static int32_t oc_q57_to_q24(int64_t _in){
   int64_t ret;
   ret=_in+((int64_t)1<<32)>>33;
   /*0x80000000 is automatically converted to uint32_t on 32-bit systems.
     -0x7FFFFFFF-1 is needed to avoid "promoting" the whole expression to
     uint32_t.*/
-  return (ogg_int32_t)OC_CLAMPI(-0x7FFFFFFF-1,ret,0x7FFFFFFF);
+  return (int32_t)OC_CLAMPI(-0x7FFFFFFF-1,ret,0x7FFFFFFF);
 }
 
 /*Binary exponential of _log_scale with 24-bit fractional precision and
@@ -230,11 +230,11 @@ static ogg_int32_t oc_q57_to_q24(int64_t _in){
   _log_scale: A binary logarithm in Q57 format.
   Return: The binary exponential in Q24 format, saturated to 2**31-1 if
    _log_scale was too large.*/
-static ogg_int32_t oc_bexp64_q24(int64_t _log_scale){
+static int32_t oc_bexp64_q24(int64_t _log_scale){
   if(_log_scale<OC_Q57(8)){
     int64_t ret;
     ret=oc_bexp64(_log_scale+OC_Q57(24));
-    return ret<0x7FFFFFFF?(ogg_int32_t)ret:0x7FFFFFFF;
+    return ret<0x7FFFFFFF?(int32_t)ret:0x7FFFFFFF;
   }
   return 0x7FFFFFFF;
 }
@@ -1045,12 +1045,12 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
          _buf,_bytes,consumed,OC_RC_2PASS_PACKET_SZ);
         if(_enc->rc.twopass_buffer_fill>=OC_RC_2PASS_PACKET_SZ){
           uint32_t dup_count;
-          ogg_int32_t  log_scale;
+          int32_t  log_scale;
           int32_t          qti;
           int32_t          arg;
           /*Read the metrics for the next frame.*/
           dup_count = (uint32_t) oc_rc_unbuffer_val(&_enc->rc,4);
-          log_scale = (ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
+          log_scale = (int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
           _enc->rc.cur_metrics.log_scale=log_scale;
           qti=(dup_count&0x80000000)>>31;
           _enc->rc.cur_metrics.dup_count=dup_count&0x7FFFFFFF;
@@ -1081,11 +1081,11 @@ int32_t oc_enc_rc_2pass_in(oc_enc_ctx *_enc,uchar *_buf,size_t _bytes){
             oc_frame_metrics *m;
             int32_t               fmi;
             uint32_t      dup_count;
-            ogg_int32_t       log_scale;
+            int32_t       log_scale;
             int32_t               qti;
             /*Read the metrics for the next frame.*/
-            dup_count=(ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
-            log_scale=(ogg_int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
+            dup_count=(int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
+            log_scale=(int32_t) oc_rc_unbuffer_val(&_enc->rc,4);
             /*Add the to the circular buffer.*/
             fmi=_enc->rc.frame_metrics_head+_enc->rc.nframe_metrics++;
             if(fmi>=_enc->rc.cframe_metrics)fmi-=_enc->rc.cframe_metrics;

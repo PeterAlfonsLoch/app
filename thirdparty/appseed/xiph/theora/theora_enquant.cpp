@@ -123,7 +123,7 @@ static void oc_iquant_init(oc_iquant *_this,uint16_t _d){
   _d<<=1;
   l=OC_ILOGNZ_32(_d)-1;
   t=1+((uint32_t)1<<16+l)/_d;
-  _this->m=(ogg_int16_t)(t-0x10000);
+  _this->m=(int16_t)(t-0x10000);
   _this->l=l;
 }
 

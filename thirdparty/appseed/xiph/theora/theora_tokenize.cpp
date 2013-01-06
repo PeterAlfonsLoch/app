@@ -200,7 +200,7 @@ typedef struct oc_quant_token oc_quant_token;
 struct oc_quant_token{
   uchar next;
   signed char   token;
-  ogg_int16_t   eb;
+  int16_t   eb;
   uint32_t  cost;
   int32_t           bits;
   int32_t           qc;
@@ -210,7 +210,7 @@ struct oc_quant_token{
    dequantizes and de-zig-zags the result.
   The DC coefficient is not preserved; it should be restored by the caller.*/
 int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
- ogg_int16_t *_qdct,const uint16_t *_dequant,const ogg_int16_t *_dct,
+ int16_t *_qdct,const uint16_t *_dequant,const int16_t *_dct,
  int32_t _zzi,oc_token_checkpoint **_stack,int32_t _acmin){
   oc_token_checkpoint *stack;
   int64_t          zflags;
@@ -239,7 +239,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
   d2_accum[0]=0;
   zzj=64;
   for(zzi=OC_MINI(_zzi,63);zzi>0;zzi--){
-    ogg_int32_t  lambda;
+    int32_t  lambda;
     uint32_t best_cost;
     //int32_t          best_bits=best_bits;
     //int32_t          best_next=best_next;
@@ -284,7 +284,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else{
         c=c+s^s;
-        d2=c*(ogg_int32_t)c;
+        d2=c*(int32_t)c;
       }
       eob=eob_run[zzi];
       nzeros=zzj-zzi;
@@ -337,7 +337,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
                 eb=(-val_s<<cat+2)+nzeros-6-(cat<<2);
               }
               e=(_dct[OC_FZIG_ZAG[zzj]]+val_s^val_s)-_dequant[zzj];
-              d2=e*(ogg_int32_t)e+sum_d2-d2_accum[zzj];
+              d2=e*(int32_t)e+sum_d2-d2_accum[zzj];
               bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
               cost=d2+lambda*bits+tokens[zzk][tk].cost;
               if(cost<=best_cost){
@@ -356,7 +356,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
               bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
               val=2+((val+val_s^val_s)>2);
               e=(_dct[OC_FZIG_ZAG[zzj]]+val_s^val_s)-_dequant[zzj]*val;
-              d2=e*(ogg_int32_t)e+sum_d2-d2_accum[zzj];
+              d2=e*(int32_t)e+sum_d2-d2_accum[zzj];
               cost=d2+lambda*bits+tokens[zzk][tk].cost;
               if(cost<=best_cost){
                 best_cost=cost;
@@ -405,7 +405,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       tokens[zzi][0].next=(uchar)best_next;
       tokens[zzi][0].token=(signed char)best_token;
-      tokens[zzi][0].eb=(ogg_int16_t)best_eb;
+      tokens[zzi][0].eb=(int16_t)best_eb;
       tokens[zzi][0].cost=best_cost;
       tokens[zzi][0].bits=best_bits;
       tokens[zzi][0].qc=best_qc;
@@ -414,7 +414,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
         dq=_dequant[zzi];
         if(zzi<_acmin)lambda=0;
         e=dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=OC_ONE_TOKEN-s;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         zzj=zzi+1&63;
@@ -441,12 +441,12 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       flush_bits=eob>0?oc_token_bits(_enc,huffi,zzi,oc_make_eob_token(eob)):0;
       if(qc<=2){
         e=2*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_TWO_TOKEN-s;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e-=dq;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=OC_ONE_TOKEN-s;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -460,13 +460,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else if(qc<=3){
         e=3*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT2;
         best_eb=-s;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e-=dq;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=OC_TWO_TOKEN-s;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -480,13 +480,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else if(qc<=6){
         e=qc*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT2+qc-3;
         best_eb=-s;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e-=dq;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=best_token-1;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -499,13 +499,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else if(qc<=8){
         e=qc*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT3;
         best_eb=(-s<<1)+qc-7;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e=6*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=OC_DCT_VAL_CAT2+3;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -519,13 +519,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else if(qc<=12){
         e=qc*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT4;
         best_eb=(-s<<2)+qc-9;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e=8*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=best_token-1;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -539,13 +539,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else if(qc<=20){
         e=qc*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT5;
         best_eb=(-s<<3)+qc-13;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e=12*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=best_token-1;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -559,13 +559,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else if(qc<=36){
         e=qc*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT6;
         best_eb=(-s<<4)+qc-21;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e=20*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=best_token-1;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -579,13 +579,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else if(qc<=68){
         e=qc*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT7;
         best_eb=(-s<<5)+qc-37;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e=36*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=best_token-1;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -599,13 +599,13 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
       }
       else{
         e=qc*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         best_token=OC_DCT_VAL_CAT8;
         best_eb=(-s<<9)+qc-69;
         best_bits=flush_bits+oc_token_bits(_enc,huffi,zzi,best_token);
         best_cost=d2+lambda*best_bits;
         e=68*dq-c;
-        d2=e*(ogg_int32_t)e;
+        d2=e*(int32_t)e;
         token=best_token-1;
         bits=flush_bits+oc_token_bits(_enc,huffi,zzi,token);
         cost=d2+lambda*bits;
@@ -666,7 +666,7 @@ int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
     zzj=(next>>1)-1&63;
     /*TODO: It may be worth saving the dequantized coefficient in the trellis
        above; we had to compute it to measure the error anyway.*/
-    _qdct[dct_fzig_zag[zzj]]=(ogg_int16_t)(qc*(int32_t)_dequant[zzj]);
+    _qdct[dct_fzig_zag[zzj]]=(int16_t)(qc*(int32_t)_dequant[zzj]);
     zzi=next>>1;
     ti=next&1;
   }
@@ -679,7 +679,7 @@ void oc_enc_pred_dc_frag_rows(oc_enc_ctx *_enc,
  int32_t _pli,int32_t _fragy0,int32_t _frag_yend){
   const oc_fragment_plane *fplane;
   const oc_fragment       *frags;
-  ogg_int16_t             *frag_dc;
+  int16_t             *frag_dc;
   ptrdiff_t                fragi;
   int32_t                     *pred_last;
   int32_t                      nhfrags;
@@ -699,7 +699,7 @@ void oc_enc_pred_dc_frag_rows(oc_enc_ctx *_enc,
         if(frags[fragi].coded){
           int32_t ref;
           ref=OC_FRAME_FOR_MODE(frags[fragi].mb_mode);
-          frag_dc[fragi]=(ogg_int16_t)(frags[fragi].dc-pred_last[ref]);
+          frag_dc[fragi]=(int16_t)(frags[fragi].dc-pred_last[ref]);
           pred_last[ref]=frags[fragi].dc;
         }
       }
@@ -765,7 +765,7 @@ void oc_enc_pred_dc_frag_rows(oc_enc_ctx *_enc,
               else if(abs(pred-p1)>128)pred=p1;
             }break;
           }
-          frag_dc[fragi]=(ogg_int16_t)(frags[fragi].dc-pred);
+          frag_dc[fragi]=(int16_t)(frags[fragi].dc-pred);
           pred_last[ref]=frags[fragi].dc;
           l_ref=ref;
         }
@@ -780,7 +780,7 @@ void oc_enc_pred_dc_frag_rows(oc_enc_ctx *_enc,
 void oc_enc_tokenize_dc_frag_list(oc_enc_ctx *_enc,int32_t _pli,
  const ptrdiff_t *_coded_fragis,ptrdiff_t _ncoded_fragis,
  int32_t _prev_ndct_tokens1,int32_t _prev_eob_run1){
-  const ogg_int16_t *frag_dc;
+  const int16_t *frag_dc;
   ptrdiff_t          fragii;
   uchar     *dct_tokens0;
   uchar     *dct_tokens1;

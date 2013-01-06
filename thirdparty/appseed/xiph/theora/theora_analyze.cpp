@@ -636,8 +636,8 @@ struct oc_rd_metric{
 static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
  oc_enc_pipeline_state *_pipe,int32_t _pli,ptrdiff_t _fragi,int32_t _overhead_bits,
  oc_rd_metric *_mo,oc_token_checkpoint **_stack){
-  OC_ALIGN16(ogg_int16_t  dct[64]);
-  OC_ALIGN16(ogg_int16_t  data[64]);
+  OC_ALIGN16(int16_t  dct[64]);
+  OC_ALIGN16(int16_t  data[64]);
   uint16_t            dc_dequant;
   const uint16_t     *dequant;
   const oc_iquant        *enquant;
@@ -740,7 +740,7 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
   val=v<<1;
   s=OC_SIGNMASK(val);
   val+=dc_dequant+s^s;
-  val=((enquant[0].m*(ogg_int32_t)val>>16)+val>>enquant[0].l)-s;
+  val=((enquant[0].m*(int32_t)val>>16)+val>>enquant[0].l)-s;
   dc=OC_CLAMPI(-580,val,580);
   nonzero=0;
   /*Quantize the AC coefficients:*/
@@ -759,7 +759,7 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
       val+=d+s^s;
       /*Note the arithmetic right shift is not guaranteed by ANSI C.
         Hopefully no one still uses ones-complement architectures.*/
-      val=((enquant[zzi].m*(ogg_int32_t)val>>16)+val>>enquant[zzi].l)-s;
+      val=((enquant[zzi].m*(int32_t)val>>16)+val>>enquant[zzi].l)-s;
       data[zzi]=OC_CLAMPI(-580,val,580);
       nonzero=zzi;
     }
@@ -772,11 +772,11 @@ static int32_t oc_enc_block_transform_quantize(oc_enc_ctx *_enc,
   /*Reconstruct.
     TODO: nonzero may need to be adjusted after tokenization.*/
   if(nonzero==0){
-    ogg_int16_t p;
+    int16_t p;
     int32_t         ci;
     /*We round this dequant product (and not any of the others) because there's
        no iDCT rounding.*/
-    p=(ogg_int16_t)(dc*(ogg_int32_t)dc_dequant+15>>5);
+    p=(int16_t)(dc*(int32_t)dc_dequant+15>>5);
     /*LOOP VECTORIZES.*/
     for(ci=0;ci<64;ci++)data[ci]=p;
   }
@@ -1488,7 +1488,7 @@ static void oc_analyze_mb_mode_chroma(oc_enc_ctx *_enc,
 
 static void oc_skip_cost(oc_enc_ctx *_enc,oc_enc_pipeline_state *_pipe,
  uint32_t _mbi,uint32_t _ssd[12]){
-  OC_ALIGN16(ogg_int16_t  buffer[64]);
+  OC_ALIGN16(int16_t  buffer[64]);
   const uchar    *src;
   const uchar    *ref;
   int32_t                     ystride;
@@ -2343,12 +2343,12 @@ static void oc_enc_mode_metrics_update(oc_enc_ctx *_enc,int32_t _qi){
           a=mrate-b*msatd;
           rate=ldexp(a+b*(bin<<OC_SAD_SHIFT),OC_BIT_SCALE);
           OC_MODE_RD[_qi][pli][qti][bin].rate=
-           (ogg_int16_t)OC_CLAMPI(-32768,(int32_t)(rate+0.5),32767);
+           (int16_t)OC_CLAMPI(-32768,(int32_t)(rate+0.5),32767);
           b=metrics.satdrmse/metrics.satd2;
           a=mrmse-b*msatd;
           rmse=ldexp(a+b*(bin<<OC_SAD_SHIFT),OC_RMSE_SCALE);
           OC_MODE_RD[_qi][pli][qti][bin].rmse=
-           (ogg_int16_t)OC_CLAMPI(-32768,(int32_t)(rmse+0.5),32767);
+           (int16_t)OC_CLAMPI(-32768,(int32_t)(rmse+0.5),32767);
         }
       }
     }
@@ -2653,8 +2653,8 @@ void oc_enc_mode_metrics_dump(oc_enc_ctx *_enc){
    "\n"
    "\n"
    "struct oc_mode_rd{\n"
-   "  ogg_int16_t rate;\n"
-   "  ogg_int16_t rmse;\n"
+   "  int16_t rate;\n"
+   "  int16_t rmse;\n"
    "};\n"
    "\n"
    "\n"

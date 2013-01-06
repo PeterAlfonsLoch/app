@@ -414,8 +414,7 @@ static void oc_sb_run_pack(oggpack_buffer *_opb,ptrdiff_t _run_count,
     if(_run_count<=0)return;
   }
   for(i=0;_run_count>=OC_SB_RUN_VAL_MIN[i+1];i++);
-  oggpackB_write(_opb, (uint32_t long) (OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i]),
-   OC_SB_RUN_CODE_NBITS[i]);
+  oggpackB_write(_opb, (uint_ptr) (OC_SB_RUN_CODE_PREFIX[i]+_run_count-OC_SB_RUN_VAL_MIN[i]), OC_SB_RUN_CODE_NBITS[i]);
 }
 
 
@@ -1051,7 +1050,7 @@ static int32_t oc_enc_init(oc_enc_ctx *_enc,const th_info *_info){
   ret=oc_state_init(&_enc->state,&info,4);
   if(ret<0)return ret;
   _enc->mb_info=(oc_mb_enc_info *) _ogg_calloc(_enc->state.nmbs,sizeof(*_enc->mb_info));
-  _enc->frag_dc=(ogg_int16_t *)_ogg_calloc(_enc->state.nfrags,sizeof(*_enc->frag_dc));
+  _enc->frag_dc=(int16_t *)_ogg_calloc(_enc->state.nfrags,sizeof(*_enc->frag_dc));
   _enc->coded_mbis=
    (uint32_t *)_ogg_malloc(_enc->state.nmbs*sizeof(*_enc->coded_mbis));
   hdec=!(_enc->state.info.pixel_fmt&1);
@@ -1393,8 +1392,8 @@ int32_t th_encode_flushheader(th_enc_ctx *_enc,th_comment *_tc,ogg_packet *_op){
 }
 
 static void oc_img_plane_copy_pad(th_img_plane *_dst,th_img_plane *_src,
- ogg_int32_t _pic_x,ogg_int32_t _pic_y,
- ogg_int32_t _pic_width,ogg_int32_t _pic_height){
+ int32_t _pic_x,int32_t _pic_y,
+ int32_t _pic_width,int32_t _pic_height){
   uchar *dst;
   int32_t            dstride;
   uint32_t   frame_width;

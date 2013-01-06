@@ -472,8 +472,8 @@ uint32_t oc_enc_frag_sad2_thresh_mmxext(const uchar *_src,
 
 static uint32_t oc_int_frag_satd_thresh_mmxext(const uchar *_src,
  int32_t _src_ystride,const uchar *_ref,int32_t _ref_ystride,uint32_t _thresh){
-  OC_ALIGN8(ogg_int16_t  buf[64]);
-  ogg_int16_t           *bufp;
+  OC_ALIGN8(int16_t  buf[64]);
+  int16_t           *bufp;
   uint32_t               diffRet1;
   //uint32_t               diffRet2;
   bufp=buf;
@@ -706,8 +706,8 @@ uint32_t oc_enc_frag_satd2_thresh_mmxext(const uchar *_src,
 
 uint32_t oc_enc_frag_intra_satd_mmxext(const uchar *_src,
  int32_t _ystride){
-  OC_ALIGN8(ogg_int16_t  buf[64]);
-  ogg_int16_t           *bufp;
+  OC_ALIGN8(int16_t  buf[64]);
+  int16_t           *bufp;
   uint32_t               ret1;
 //  uint32_t               ret2;
   bufp=buf;
@@ -797,7 +797,7 @@ uint32_t oc_enc_frag_intra_satd_mmxext(const uchar *_src,
   return ret1;
 }
 
-void oc_enc_frag_sub_mmx(ogg_int16_t _residue[64],
+void oc_enc_frag_sub_mmx(int16_t _residue[64],
  const uchar *_src, const uchar *_ref,int32_t _ystride){
   int32_t i;
   __asm  pxor mm7,mm7
@@ -856,7 +856,7 @@ void oc_enc_frag_sub_mmx(ogg_int16_t _residue[64],
   }
 }
 
-void oc_enc_frag_sub_128_mmx(ogg_int16_t _residue[64],
+void oc_enc_frag_sub_128_mmx(int16_t _residue[64],
  const uchar *_src,int32_t _ystride){
    __asm{
 #define YSTRIDE edx

@@ -103,11 +103,11 @@ void *_alloca(size_t size);
 
 /* we must set up the fpu before this works!! */
 
-typedef ogg_int16_t vorbis_fpu_control;
+typedef int16_t vorbis_fpu_control;
 
 static inline void vorbis_fpu_setround(vorbis_fpu_control *fpu){
-  ogg_int16_t ret;
-  ogg_int16_t temp;
+  int16_t ret;
+  int16_t temp;
   __asm__ __volatile__("fnstcw %0\n\t"
           "movw %0,%%dx\n\t"
           "andw $62463,%%dx\n\t"
@@ -136,7 +136,7 @@ static inline int32_t vorbis_ftoi(double f){  /* yes, double!  Otherwise,
 #if defined(_MSC_VER) && !defined(_WIN64) && !defined(_WIN32_WCE)
 #  define VORBIS_FPU_CONTROL
 
-typedef ogg_int16_t vorbis_fpu_control;
+typedef int16_t vorbis_fpu_control;
 
 static __inline int32_t vorbis_ftoi(double f){
         int32_t i;
@@ -164,7 +164,7 @@ static __inline void vorbis_fpu_restore(vorbis_fpu_control fpu)
 #if (defined(_MSC_VER) && defined(_WIN64)) || (defined(__GNUC__) && defined (__x86_64__))
 #  define VORBIS_FPU_CONTROL
 
-typedef ogg_int16_t vorbis_fpu_control;
+typedef int16_t vorbis_fpu_control;
 
 #include <emmintrin.h>
 static __inline int32_t vorbis_ftoi(double f){

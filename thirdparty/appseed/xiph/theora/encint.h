@@ -91,17 +91,17 @@ struct oc_enc_opt_vtable{
    const uchar *_ref1,const uchar *_ref2,int32_t _ystride,
    uint32_t _thresh);
   uint32_t (*frag_intra_satd)(const uchar *_src,int32_t _ystride);
-  void     (*frag_sub)(ogg_int16_t _diff[64],const uchar *_src,
+  void     (*frag_sub)(int16_t _diff[64],const uchar *_src,
    const uchar *_ref,int32_t _ystride);
-  void     (*frag_sub_128)(ogg_int16_t _diff[64],
+  void     (*frag_sub_128)(int16_t _diff[64],
    const uchar *_src,int32_t _ystride);
   void     (*frag_copy2)(uchar *_dst,
    const uchar *_src1,const uchar *_src2,int32_t _ystride);
   void     (*frag_recon_intra)(uchar *_dst,int32_t _ystride,
-   const ogg_int16_t _residue[64]);
+   const int16_t _residue[64]);
   void     (*frag_recon_inter)(uchar *_dst,
-   const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
-  void     (*fdct8x8)(ogg_int16_t _y[64],const ogg_int16_t _x[64]);
+   const uchar *_src,int32_t _ystride,const int16_t _residue[64]);
+  void     (*fdct8x8)(int16_t _y[64],const int16_t _x[64]);
 };
 
 
@@ -174,10 +174,10 @@ void oc_mode_scheme_chooser_init(oc_mode_scheme_chooser *_chooser);
   We use this for rate control because it has fast reaction time, but is
    critically damped.*/
 struct oc_iir_filter{
-  ogg_int32_t c[2];
+  int32_t c[2];
   int64_t g;
-  ogg_int32_t x[2];
-  ogg_int32_t y[2];
+  int32_t x[2];
+  int32_t y[2];
 };
 
 
@@ -185,7 +185,7 @@ struct oc_iir_filter{
 /*The 2-pass metrics associated with a single frame.*/
 struct oc_frame_metrics{
   /*The log base 2 of the scale factor for this frame in Q24 format.*/
-  ogg_int32_t   log_scale;
+  int32_t   log_scale;
   /*The number of application-requested duplicates of this frame.*/
   uint32_t      dup_count:31;
   /*The frame type from pass 1.*/
@@ -300,7 +300,7 @@ struct th_enc_ctx{
   /*Encoder-specific macroblock information.*/
   oc_mb_enc_info          *mb_info;
   /*DC coefficients after prediction.*/
-  ogg_int16_t             *frag_dc;
+  int16_t             *frag_dc;
   /*The list of coded macro blocks, in coded order.*/
   uint32_t                *coded_mbis;
   /*The number of coded macro blocks.*/
@@ -415,7 +415,7 @@ struct oc_token_checkpoint{
 
 void oc_enc_tokenize_start(oc_enc_ctx *_enc);
 int32_t oc_enc_tokenize_ac(oc_enc_ctx *_enc,int32_t _pli,ptrdiff_t _fragi,
- ogg_int16_t *_qdct,const uint16_t *_dequant,const ogg_int16_t *_dct,
+ int16_t *_qdct,const uint16_t *_dequant,const int16_t *_dct,
  int32_t _zzi,oc_token_checkpoint **_stack,int32_t _acmin);
 void oc_enc_tokenlog_rollback(oc_enc_ctx *_enc,
  const oc_token_checkpoint *_stack,int32_t _n);
@@ -437,9 +437,9 @@ int32_t oc_state_flushheader(oc_theora_state *_state,int32_t *_packet_state,
 
 
 /*Encoder-specific accelerated functions.*/
-void oc_enc_frag_sub(const oc_enc_ctx *_enc,ogg_int16_t _diff[64],
+void oc_enc_frag_sub(const oc_enc_ctx *_enc,int16_t _diff[64],
  const uchar *_src,const uchar *_ref,int32_t _ystride);
-void oc_enc_frag_sub_128(const oc_enc_ctx *_enc,ogg_int16_t _diff[64],
+void oc_enc_frag_sub_128(const oc_enc_ctx *_enc,int16_t _diff[64],
  const uchar *_src,int32_t _ystride);
 uint32_t oc_enc_frag_sad(const oc_enc_ctx *_enc,const uchar *_src,
  const uchar *_ref,int32_t _ystride);
@@ -460,18 +460,18 @@ uint32_t oc_enc_frag_intra_satd(const oc_enc_ctx *_enc,
 void oc_enc_frag_copy2(const oc_enc_ctx *_enc,uchar *_dst,
  const uchar *_src1,const uchar *_src2,int32_t _ystride);
 void oc_enc_frag_recon_intra(const oc_enc_ctx *_enc,
- uchar *_dst,int32_t _ystride,const ogg_int16_t _residue[64]);
+ uchar *_dst,int32_t _ystride,const int16_t _residue[64]);
 void oc_enc_frag_recon_inter(const oc_enc_ctx *_enc,uchar *_dst,
- const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
-void oc_enc_fdct8x8(const oc_enc_ctx *_enc,ogg_int16_t _y[64],
- const ogg_int16_t _x[64]);
+ const uchar *_src,int32_t _ystride,const int16_t _residue[64]);
+void oc_enc_fdct8x8(const oc_enc_ctx *_enc,int16_t _y[64],
+ const int16_t _x[64]);
 
 /*Default pure-C implementations.*/
 void oc_enc_vtable_init_c(oc_enc_ctx *_enc);
 
-void oc_enc_frag_sub_c(ogg_int16_t _diff[64],
+void oc_enc_frag_sub_c(int16_t _diff[64],
  const uchar *_src,const uchar *_ref,int32_t _ystride);
-void oc_enc_frag_sub_128_c(ogg_int16_t _diff[64],
+void oc_enc_frag_sub_128_c(int16_t _diff[64],
  const uchar *_src,int32_t _ystride);
 void oc_enc_frag_copy2_c(uchar *_dst,
  const uchar *_src1,const uchar *_src2,int32_t _ystride);
@@ -488,6 +488,6 @@ uint32_t oc_enc_frag_satd2_thresh_c(const uchar *_src,
  const uchar *_ref1,const uchar *_ref2,int32_t _ystride,
  uint32_t _thresh);
 uint32_t oc_enc_frag_intra_satd_c(const uchar *_src,int32_t _ystride);
-void oc_enc_fdct8x8_c(ogg_int16_t _y[64],const ogg_int16_t _x[64]);
+void oc_enc_fdct8x8_c(int16_t _y[64],const int16_t _x[64]);
 
 #endif

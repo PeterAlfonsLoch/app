@@ -1814,7 +1814,7 @@ vorbis_comment *ov_comment(OggVorbis_File *vf,int32_t link){
 }
 
 static int32_t host_is_big_endian() {
-  ogg_int32_t pattern = 0xfeedface; /* deadbeef */
+  int32_t pattern = 0xfeedface; /* deadbeef */
   uchar *bytewise = (uchar *)&pattern;
   if (bytewise[0] == 0xfe) return 1;
   return 0;

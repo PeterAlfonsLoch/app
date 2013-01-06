@@ -25,13 +25,13 @@
        block).
   _x: The input coefficients.
       The first 8 entries are used (e.g., from a row of an 8x8 block).*/
-static void idct8(ogg_int16_t *_y,const ogg_int16_t _x[8]){
-  ogg_int32_t t[8];
-  ogg_int32_t r;
+static void idct8(int16_t *_y,const int16_t _x[8]){
+  int32_t t[8];
+  int32_t r;
   /*Stage 1:*/
   /*0-1 butterfly.*/
-  t[0]=OC_C4S4*(ogg_int16_t)(_x[0]+_x[4])>>16;
-  t[1]=OC_C4S4*(ogg_int16_t)(_x[0]-_x[4])>>16;
+  t[0]=OC_C4S4*(int16_t)(_x[0]+_x[4])>>16;
+  t[1]=OC_C4S4*(int16_t)(_x[0]-_x[4])>>16;
   /*2-3 rotation by 6pi/16.*/
   t[2]=(OC_C6S2*_x[2]>>16)-(OC_C2S6*_x[6]>>16);
   t[3]=(OC_C2S6*_x[2]>>16)+(OC_C6S2*_x[6]>>16);
@@ -44,11 +44,11 @@ static void idct8(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   /*Stage 2:*/
   /*4-5 butterfly.*/
   r=t[4]+t[5];
-  t[5]=OC_C4S4*(ogg_int16_t)(t[4]-t[5])>>16;
+  t[5]=OC_C4S4*(int16_t)(t[4]-t[5])>>16;
   t[4]=r;
   /*7-6 butterfly.*/
   r=t[7]+t[6];
-  t[6]=OC_C4S4*(ogg_int16_t)(t[7]-t[6])>>16;
+  t[6]=OC_C4S4*(int16_t)(t[7]-t[6])>>16;
   t[7]=r;
   /*Stage 3:*/
   /*0-3 butterfly.*/
@@ -65,17 +65,17 @@ static void idct8(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   t[6]=r;
   /*Stage 4:*/
   /*0-7 butterfly.*/
-  _y[0<<3]=(ogg_int16_t)(t[0]+t[7]);
+  _y[0<<3]=(int16_t)(t[0]+t[7]);
   /*1-6 butterfly.*/
-  _y[1<<3]=(ogg_int16_t)(t[1]+t[6]);
+  _y[1<<3]=(int16_t)(t[1]+t[6]);
   /*2-5 butterfly.*/
-  _y[2<<3]=(ogg_int16_t)(t[2]+t[5]);
+  _y[2<<3]=(int16_t)(t[2]+t[5]);
   /*3-4 butterfly.*/
-  _y[3<<3]=(ogg_int16_t)(t[3]+t[4]);
-  _y[4<<3]=(ogg_int16_t)(t[3]-t[4]);
-  _y[5<<3]=(ogg_int16_t)(t[2]-t[5]);
-  _y[6<<3]=(ogg_int16_t)(t[1]-t[6]);
-  _y[7<<3]=(ogg_int16_t)(t[0]-t[7]);
+  _y[3<<3]=(int16_t)(t[3]+t[4]);
+  _y[4<<3]=(int16_t)(t[3]-t[4]);
+  _y[5<<3]=(int16_t)(t[2]-t[5]);
+  _y[6<<3]=(int16_t)(t[1]-t[6]);
+  _y[7<<3]=(int16_t)(t[0]-t[7]);
 }
 
 /*Performs an inverse 8 point Type-II DCT transform.
@@ -87,9 +87,9 @@ static void idct8(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   _x: The input coefficients.
       Only the first 4 entries are used.
       The other 4 are assumed to be 0.*/
-static void idct8_4(ogg_int16_t *_y,const ogg_int16_t _x[8]){
-  ogg_int32_t t[8];
-  ogg_int32_t r;
+static void idct8_4(int16_t *_y,const int16_t _x[8]){
+  int32_t t[8];
+  int32_t r;
   /*Stage 1:*/
   t[0]=OC_C4S4*_x[0]>>16;
   t[2]=OC_C6S2*_x[2]>>16;
@@ -100,10 +100,10 @@ static void idct8_4(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   t[7]=OC_C1S7*_x[1]>>16;
   /*Stage 2:*/
   r=t[4]+t[5];
-  t[5]=OC_C4S4*(ogg_int16_t)(t[4]-t[5])>>16;
+  t[5]=OC_C4S4*(int16_t)(t[4]-t[5])>>16;
   t[4]=r;
   r=t[7]+t[6];
-  t[6]=OC_C4S4*(ogg_int16_t)(t[7]-t[6])>>16;
+  t[6]=OC_C4S4*(int16_t)(t[7]-t[6])>>16;
   t[7]=r;
   /*Stage 3:*/
   t[1]=t[0]+t[2];
@@ -115,14 +115,14 @@ static void idct8_4(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   t[5]=t[6]-t[5];
   t[6]=r;
   /*Stage 4:*/
-  _y[0<<3]=(ogg_int16_t)(t[0]+t[7]);
-  _y[1<<3]=(ogg_int16_t)(t[1]+t[6]);
-  _y[2<<3]=(ogg_int16_t)(t[2]+t[5]);
-  _y[3<<3]=(ogg_int16_t)(t[3]+t[4]);
-  _y[4<<3]=(ogg_int16_t)(t[3]-t[4]);
-  _y[5<<3]=(ogg_int16_t)(t[2]-t[5]);
-  _y[6<<3]=(ogg_int16_t)(t[1]-t[6]);
-  _y[7<<3]=(ogg_int16_t)(t[0]-t[7]);
+  _y[0<<3]=(int16_t)(t[0]+t[7]);
+  _y[1<<3]=(int16_t)(t[1]+t[6]);
+  _y[2<<3]=(int16_t)(t[2]+t[5]);
+  _y[3<<3]=(int16_t)(t[3]+t[4]);
+  _y[4<<3]=(int16_t)(t[3]-t[4]);
+  _y[5<<3]=(int16_t)(t[2]-t[5]);
+  _y[6<<3]=(int16_t)(t[1]-t[6]);
+  _y[7<<3]=(int16_t)(t[0]-t[7]);
 }
 
 /*Performs an inverse 8 point Type-II DCT transform.
@@ -134,9 +134,9 @@ static void idct8_4(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   _x: The input coefficients.
       Only the first 3 entries are used.
       The other 5 are assumed to be 0.*/
-static void idct8_3(ogg_int16_t *_y,const ogg_int16_t _x[8]){
-  ogg_int32_t t[8];
-  ogg_int32_t r;
+static void idct8_3(int16_t *_y,const int16_t _x[8]){
+  int32_t t[8];
+  int32_t r;
   /*Stage 1:*/
   t[0]=OC_C4S4*_x[0]>>16;
   t[2]=OC_C6S2*_x[2]>>16;
@@ -156,14 +156,14 @@ static void idct8_3(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   t[5]=t[6]-t[5];
   t[6]=r;
   /*Stage 4:*/
-  _y[0<<3]=(ogg_int16_t)(t[0]+t[7]);
-  _y[1<<3]=(ogg_int16_t)(t[1]+t[6]);
-  _y[2<<3]=(ogg_int16_t)(t[2]+t[5]);
-  _y[3<<3]=(ogg_int16_t)(t[3]+t[4]);
-  _y[4<<3]=(ogg_int16_t)(t[3]-t[4]);
-  _y[5<<3]=(ogg_int16_t)(t[2]-t[5]);
-  _y[6<<3]=(ogg_int16_t)(t[1]-t[6]);
-  _y[7<<3]=(ogg_int16_t)(t[0]-t[7]);
+  _y[0<<3]=(int16_t)(t[0]+t[7]);
+  _y[1<<3]=(int16_t)(t[1]+t[6]);
+  _y[2<<3]=(int16_t)(t[2]+t[5]);
+  _y[3<<3]=(int16_t)(t[3]+t[4]);
+  _y[4<<3]=(int16_t)(t[3]-t[4]);
+  _y[5<<3]=(int16_t)(t[2]-t[5]);
+  _y[6<<3]=(int16_t)(t[1]-t[6]);
+  _y[7<<3]=(int16_t)(t[0]-t[7]);
 }
 
 /*Performs an inverse 8 point Type-II DCT transform.
@@ -175,9 +175,9 @@ static void idct8_3(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   _x: The input coefficients.
       Only the first 2 entries are used.
       The other 6 are assumed to be 0.*/
-static void idct8_2(ogg_int16_t *_y,const ogg_int16_t _x[8]){
-  ogg_int32_t t[8];
-  ogg_int32_t r;
+static void idct8_2(int16_t *_y,const int16_t _x[8]){
+  int32_t t[8];
+  int32_t r;
   /*Stage 1:*/
   t[0]=OC_C4S4*_x[0]>>16;
   t[4]=OC_C7S1*_x[1]>>16;
@@ -190,14 +190,14 @@ static void idct8_2(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   t[5]=t[6]-t[5];
   t[6]=r;
   /*Stage 4:*/
-  _y[0<<3]=(ogg_int16_t)(t[0]+t[7]);
-  _y[1<<3]=(ogg_int16_t)(t[0]+t[6]);
-  _y[2<<3]=(ogg_int16_t)(t[0]+t[5]);
-  _y[3<<3]=(ogg_int16_t)(t[0]+t[4]);
-  _y[4<<3]=(ogg_int16_t)(t[0]-t[4]);
-  _y[5<<3]=(ogg_int16_t)(t[0]-t[5]);
-  _y[6<<3]=(ogg_int16_t)(t[0]-t[6]);
-  _y[7<<3]=(ogg_int16_t)(t[0]-t[7]);
+  _y[0<<3]=(int16_t)(t[0]+t[7]);
+  _y[1<<3]=(int16_t)(t[0]+t[6]);
+  _y[2<<3]=(int16_t)(t[0]+t[5]);
+  _y[3<<3]=(int16_t)(t[0]+t[4]);
+  _y[4<<3]=(int16_t)(t[0]-t[4]);
+  _y[5<<3]=(int16_t)(t[0]-t[5]);
+  _y[6<<3]=(int16_t)(t[0]-t[6]);
+  _y[7<<3]=(int16_t)(t[0]-t[7]);
 }
 
 /*Performs an inverse 8 point Type-II DCT transform.
@@ -209,9 +209,9 @@ static void idct8_2(ogg_int16_t *_y,const ogg_int16_t _x[8]){
   _x: The input coefficients.
       Only the first entry is used.
       The other 7 are assumed to be 0.*/
-static void idct8_1(ogg_int16_t *_y,const ogg_int16_t _x[1]){
+static void idct8_1(int16_t *_y,const int16_t _x[1]){
   _y[0<<3]=_y[1<<3]=_y[2<<3]=_y[3<<3]=
-   _y[4<<3]=_y[5<<3]=_y[6<<3]=_y[7<<3]=(ogg_int16_t)(OC_C4S4*_x[0]>>16);
+   _y[4<<3]=_y[5<<3]=_y[6<<3]=_y[7<<3]=(int16_t)(OC_C4S4*_x[0]>>16);
 }
 
 /*Performs an inverse 8x8 Type-II DCT transform.
@@ -229,18 +229,18 @@ static void idct8_1(ogg_int16_t *_y,const ogg_int16_t _x[1]){
   _y: The buffer to store the result in.
       This may be the same as _x.
   _x: The input coefficients.*/
-static void oc_idct8x8_3(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
-  const ogg_int16_t *in;
-  ogg_int16_t       *end;
-  ogg_int16_t       *out;
-  ogg_int16_t        w[64];
+static void oc_idct8x8_3(int16_t _y[64],const int16_t _x[64]){
+  const int16_t *in;
+  int16_t       *end;
+  int16_t       *out;
+  int16_t        w[64];
   /*Transform rows of x into columns of w.*/
   idct8_2(w,_x);
   idct8_1(w+1,_x+8);
   /*Transform rows of w into columns of y.*/
   for(in=w,out=_y,end=out+8;out<end;in+=8,out++)idct8_2(out,in);
   /*Adjust for the scale factor.*/
-  for(out=_y,end=out+64;out<end;out++)*out=(ogg_int16_t)(*out+8>>4);
+  for(out=_y,end=out+64;out<end;out++)*out=(int16_t)(*out+8>>4);
 }
 
 /*Performs an inverse 8x8 Type-II DCT transform.
@@ -258,11 +258,11 @@ static void oc_idct8x8_3(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
   _y: The buffer to store the result in.
       This may be the same as _x.
   _x: The input coefficients.*/
-static void oc_idct8x8_10(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
-  const ogg_int16_t *in;
-  ogg_int16_t       *end;
-  ogg_int16_t       *out;
-  ogg_int16_t        w[64];
+static void oc_idct8x8_10(int16_t _y[64],const int16_t _x[64]){
+  const int16_t *in;
+  int16_t       *end;
+  int16_t       *out;
+  int16_t        w[64];
   /*Transform rows of x into columns of w.*/
   idct8_4(w,_x);
   idct8_3(w+1,_x+8);
@@ -271,7 +271,7 @@ static void oc_idct8x8_10(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
   /*Transform rows of w into columns of y.*/
   for(in=w,out=_y,end=out+8;out<end;in+=8,out++)idct8_4(out,in);
   /*Adjust for the scale factor.*/
-  for(out=_y,end=out+64;out<end;out++)*out=(ogg_int16_t)(*out+8>>4);
+  for(out=_y,end=out+64;out<end;out++)*out=(int16_t)(*out+8>>4);
 }
 
 /*Performs an inverse 8x8 Type-II DCT transform.
@@ -280,20 +280,20 @@ static void oc_idct8x8_10(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
   _y: The buffer to store the result in.
       This may be the same as _x.
   _x: The input coefficients.*/
-static void oc_idct8x8_slow(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
-  const ogg_int16_t *in;
-  ogg_int16_t       *end;
-  ogg_int16_t       *out;
-  ogg_int16_t        w[64];
+static void oc_idct8x8_slow(int16_t _y[64],const int16_t _x[64]){
+  const int16_t *in;
+  int16_t       *end;
+  int16_t       *out;
+  int16_t        w[64];
   /*Transform rows of x into columns of w.*/
   for(in=_x,out=w,end=out+8;out<end;in+=8,out++)idct8(out,in);
   /*Transform rows of w into columns of y.*/
   for(in=w,out=_y,end=out+8;out<end;in+=8,out++)idct8(out,in);
   /*Adjust for the scale factor.*/
-  for(out=_y,end=out+64;out<end;out++)*out=(ogg_int16_t)(*out+8>>4);
+  for(out=_y,end=out+64;out<end;out++)*out=(int16_t)(*out+8>>4);
 }
 
-void oc_idct8x8(const oc_theora_state *_state,ogg_int16_t _y[64],
+void oc_idct8x8(const oc_theora_state *_state,int16_t _y[64],
  int32_t _last_zzi){
   (*_state->opt_vtable.idct8x8)(_y,_last_zzi);
 }
@@ -301,7 +301,7 @@ void oc_idct8x8(const oc_theora_state *_state,ogg_int16_t _y[64],
 /*Performs an inverse 8x8 Type-II DCT transform.
   The input is assumed to be scaled by a factor of 4 relative to orthonormal
    version of the transform.*/
-void oc_idct8x8_c(ogg_int16_t _y[64],int32_t _last_zzi){
+void oc_idct8x8_c(int16_t _y[64],int32_t _last_zzi){
   /*_last_zzi is subtly different from an actual count of the number of
      coefficients we decoded for this block.
     It contains the value of zzi BEFORE the final token in the block was

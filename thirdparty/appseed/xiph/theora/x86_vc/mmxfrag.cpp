@@ -43,7 +43,7 @@ void oc_frag_copy_mmx(uchar *_dst,
 }
 
 void oc_frag_recon_intra_mmx(uchar *_dst,int32_t _ystride,
- const ogg_int16_t *_residue){
+ const int16_t *_residue){
   __asm{
 #define DST edx
 #define DST4 esi
@@ -166,7 +166,7 @@ void oc_frag_recon_intra_mmx(uchar *_dst,int32_t _ystride,
 }
 
 void oc_frag_recon_inter_mmx(uchar *_dst,const uchar *_src,
- int32_t _ystride,const ogg_int16_t *_residue){
+ int32_t _ystride,const int16_t *_residue){
   int32_t i;
   /*Zero mm0.*/
   __asm pxor mm0,mm0;
@@ -230,7 +230,7 @@ void oc_frag_recon_inter_mmx(uchar *_dst,const uchar *_src,
 }
 
 void oc_frag_recon_inter2_mmx(uchar *_dst,const uchar *_src1,
- const uchar *_src2,int32_t _ystride,const ogg_int16_t *_residue){
+ const uchar *_src2,int32_t _ystride,const int16_t *_residue){
   int32_t i;
   /*Zero mm7.*/
   __asm pxor mm7,mm7;

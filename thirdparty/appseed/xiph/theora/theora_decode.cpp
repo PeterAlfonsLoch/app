@@ -158,7 +158,7 @@ static const uchar OC_INTERNAL_DCT_TOKEN_EXTRA_BITS[15]={
 /*The code words for each internal token.
   See the notes at OC_DCT_TOKEN_MAP for the reasons why things are out of
    order.*/
-static const ogg_int32_t OC_DCT_CODE_WORD[92]={
+static const int32_t OC_DCT_CODE_WORD[92]={
   /*These tokens require additional extra bits for the EOB count.*/
   /*OC_DCT_REPEAT_RUN3_TOKEN (12 extra bits)*/
   OC_DCT_CW_FINISH,
@@ -1515,7 +1515,7 @@ static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
     /*This array is made one element larger because the zig-zag index array
        uses the final element as a dumping ground for out-of-range indices
        to protect us from buffer overflow.*/
-    OC_ALIGN8(ogg_int16_t dct_coeffs[65]);
+    OC_ALIGN8(int16_t dct_coeffs[65]);
     const uint16_t *ac_quant;
     ptrdiff_t           fragi;
     int32_t                 last_zzi;
@@ -1558,14 +1558,14 @@ static void oc_dec_frags_recon_mcu_plane(oc_dec_ctx *_dec,
         eob_runs[zzi]=eob;
         ti[zzi]=lti;
         zzi+=rlen;
-        dct_coeffs[dct_fzig_zag[zzi]]=(ogg_int16_t)(coeff*(int32_t)ac_quant[zzi]);
+        dct_coeffs[dct_fzig_zag[zzi]]=(int16_t)(coeff*(int32_t)ac_quant[zzi]);
         zzi+=!eob;
       }
     }
     /*TODO: zzi should be exactly 64 here.
       If it's not, we should report some kind of warning.*/
     zzi=OC_MINI(zzi,64);
-    dct_coeffs[0]=(ogg_int16_t)frags[fragi].dc;
+    dct_coeffs[0]=(int16_t)frags[fragi].dc;
     /*last_zzi is always initialized.
       If your compiler thinks otherwise, it is dumb.*/
     oc_state_frag_recon(&_dec->state,fragi,_pli,

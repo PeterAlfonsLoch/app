@@ -45,8 +45,8 @@ oc_mode_metrics OC_MODE_METRICS[64][3][2][OC_SAD_BINS];
 
 
 struct oc_mode_rd{
-  ogg_int16_t rate;
-  ogg_int16_t rmse;
+  int16_t rate;
+  int16_t rmse;
 };
 
 

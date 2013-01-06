@@ -25,7 +25,7 @@
       Data will be placed the first 8 entries (e.g., in a row of an 8x8 block).
   _x: The input coefficients.
       Every 8th entry is used (e.g., from a column of an 8x8 block).*/
-static void oc_fdct8(ogg_int16_t _y[8],const ogg_int16_t *_x){
+static void oc_fdct8(int16_t _y[8],const int16_t *_x){
   int32_t t0;
   int32_t t1;
   int32_t t2;
@@ -119,8 +119,8 @@ static void oc_fdct8(ogg_int16_t _y[8],const ogg_int16_t *_x){
   _y[7]=v;
 }
 
-void oc_enc_fdct8x8(const oc_enc_ctx *_enc,ogg_int16_t _y[64],
- const ogg_int16_t _x[64]){
+void oc_enc_fdct8x8(const oc_enc_ctx *_enc,int16_t _y[64],
+ const int16_t _x[64]){
   (*_enc->opt_vtable.fdct8x8)(_y,_x);
 }
 
@@ -130,11 +130,11 @@ void oc_enc_fdct8x8(const oc_enc_ctx *_enc,ogg_int16_t _y[64],
   _y: The buffer to store the result in.
       This may be the same as _x.
   _x: The input coefficients. */
-void oc_enc_fdct8x8_c(ogg_int16_t _y[64],const ogg_int16_t _x[64]){
-  const ogg_int16_t *in;
-  ogg_int16_t       *end;
-  ogg_int16_t       *out;
-  ogg_int16_t        w[64];
+void oc_enc_fdct8x8_c(int16_t _y[64],const int16_t _x[64]){
+  const int16_t *in;
+  int16_t       *end;
+  int16_t       *out;
+  int16_t        w[64];
   int32_t                i;
   /*Add two extra bits of working precision to improve accuracy; any more and
      we could overflow.*/
@@ -184,7 +184,7 @@ struct oc_extension_info{
   int16_t                     na;
   /*The extension matrix.
     This is (8-na)xna*/
-  const ogg_int16_t *const *ext;
+  const int16_t *const *ext;
   /*The pixel indices: na active pixels followed by 8-na padding pixels.*/
   uchar             pi[8];
   /*The coefficient indices: na unconstrained coefficients followed by 8-na
@@ -196,7 +196,7 @@ struct oc_extension_info{
 /*The number of shapes we need.*/
 #define OC_NSHAPES   (35)
 
-static const ogg_int16_t OC_EXT_COEFFS[229]={
+static const int16_t OC_EXT_COEFFS[229]={
   0x7FFF,0xE1F8,0x6903,0xAA79,0x5587,0x7FFF,0x1E08,0x7FFF,
   0x5587,0xAA79,0x6903,0xE1F8,0x7FFF,0x0000,0x0000,0x0000,
   0x7FFF,0x0000,0x0000,0x7FFF,0x8000,0x7FFF,0x0000,0x0000,
@@ -228,7 +228,7 @@ static const ogg_int16_t OC_EXT_COEFFS[229]={
   0x7FFF,0x2F3A,0x89BC,0x7FFF,0x89BC
 };
 
-static const ogg_int16_t *const OC_EXT_ROWS[96]={
+static const int16_t *const OC_EXT_ROWS[96]={
   OC_EXT_COEFFS+   0,OC_EXT_COEFFS+   0,OC_EXT_COEFFS+   0,OC_EXT_COEFFS+   0,
   OC_EXT_COEFFS+   0,OC_EXT_COEFFS+   0,OC_EXT_COEFFS+   0,OC_EXT_COEFFS+   6,
   OC_EXT_COEFFS+  27,OC_EXT_COEFFS+  38,OC_EXT_COEFFS+  43,OC_EXT_COEFFS+  32,
@@ -306,7 +306,7 @@ static const oc_extension_info OC_EXTENSION_INFO[OC_NSHAPES]={
   _x: The input coefficients.
       Every 8th entry is used (e.g., from a column of an 8x8 block).
   _e: The extension information for the shape.*/
-static void oc_fdct8_ext(ogg_int16_t _y[8],ogg_int16_t *_x,
+static void oc_fdct8_ext(int16_t _y[8],int16_t *_x,
  const oc_extension_info *_e){
   const uchar *pi;
   int32_t                  na;
@@ -317,11 +317,11 @@ static void oc_fdct8_ext(ogg_int16_t _y[8],ogg_int16_t *_x,
     /*While the branch below is still correct for shapes with na==1, we can
        perform the entire transform with just 1 multiply in this case instead
        of 23.*/
-    _y[0]=(ogg_int16_t)(OC_DIV2_16(OC_C4S4*(_x[pi[0]])));
+    _y[0]=(int16_t)(OC_DIV2_16(OC_C4S4*(_x[pi[0]])));
     for(ci=1;ci<8;ci++)_y[ci]=0;
   }
   else{
-    const ogg_int16_t *const *ext;
+    const int16_t *const *ext;
     int32_t                       zpi;
     int32_t                       api;
     int32_t                       nz;
@@ -329,12 +329,12 @@ static void oc_fdct8_ext(ogg_int16_t _y[8],ogg_int16_t *_x,
     nz=8-na;
     ext=_e->ext;
     for(zpi=0;zpi<nz;zpi++){
-      ogg_int32_t v;
+      int32_t v;
       v=0;
       for(api=0;api<na;api++){
-        v+=ext[zpi][api]*(ogg_int32_t)(_x[pi[api]<<3]<<1);
+        v+=ext[zpi][api]*(int32_t)(_x[pi[api]<<3]<<1);
       }
-      _x[pi[na+zpi]<<3]=(ogg_int16_t)(v+0x8000>>16)+1>>1;
+      _x[pi[na+zpi]<<3]=(int16_t)(v+0x8000>>16)+1>>1;
     }
     oc_fdct8(_y,_x);
   }
@@ -349,10 +349,10 @@ static void oc_fdct8_ext(ogg_int16_t _y[8],ogg_int16_t *_x,
   _x:      The input pixel values.
            Pixel values outside the border will be ignored.*/
 void oc_fdct8x8_border(const oc_border_info *_border,
- ogg_int16_t _y[64],const ogg_int16_t _x[64]){
-  ogg_int16_t             *in;
-  ogg_int16_t             *out;
-  ogg_int16_t              w[64];
+ int16_t _y[64],const int16_t _x[64]){
+  int16_t             *in;
+  int16_t             *out;
+  int16_t              w[64];
   int64_t              mask;
   const oc_extension_info *cext;
   const oc_extension_info *rext;

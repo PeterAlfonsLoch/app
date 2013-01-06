@@ -273,14 +273,14 @@ struct oc_base_opt_vtable{
   void (*frag_copy)(uchar *_dst,
    const uchar *_src,int32_t _ystride);
   void (*frag_recon_intra)(uchar *_dst,int32_t _ystride,
-   const ogg_int16_t _residue[64]);
+   const int16_t _residue[64]);
   void (*frag_recon_inter)(uchar *_dst,
-   const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+   const uchar *_src,int32_t _ystride,const int16_t _residue[64]);
   void (*frag_recon_inter2)(uchar *_dst,const uchar *_src1,
-   const uchar *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
-  void (*idct8x8)(ogg_int16_t _y[64],int32_t _last_zzi);
+   const uchar *_src2,int32_t _ystride,const int16_t _residue[64]);
+  void (*idct8x8)(int16_t _y[64],int32_t _last_zzi);
   void (*state_frag_recon)(const oc_theora_state *_state,ptrdiff_t _fragi,
-   int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
+   int32_t _pli,int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
   void (*state_frag_copy_list)(const oc_theora_state *_state,
    const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
    int32_t _dst_frame,int32_t _src_frame,int32_t _pli);
@@ -448,15 +448,15 @@ int32_t oc_state_dump_frame(const oc_theora_state *_state,int32_t _frame,
 void oc_frag_copy(const oc_theora_state *_state,uchar *_dst,
  const uchar *_src,int32_t _ystride);
 void oc_frag_recon_intra(const oc_theora_state *_state,
- uchar *_dst,int32_t _dst_ystride,const ogg_int16_t _residue[64]);
+ uchar *_dst,int32_t _dst_ystride,const int16_t _residue[64]);
 void oc_frag_recon_inter(const oc_theora_state *_state,uchar *_dst,
- const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+ const uchar *_src,int32_t _ystride,const int16_t _residue[64]);
 void oc_frag_recon_inter2(const oc_theora_state *_state,
  uchar *_dst,const uchar *_src1,const uchar *_src2,
- int32_t _ystride,const ogg_int16_t _residue[64]);
-void oc_idct8x8(const oc_theora_state *_state,ogg_int16_t _y[64],int32_t _last_zzi);
+ int32_t _ystride,const int16_t _residue[64]);
+void oc_idct8x8(const oc_theora_state *_state,int16_t _y[64],int32_t _last_zzi);
 void oc_state_frag_recon(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
+ int32_t _pli,int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
 void oc_state_frag_copy_list(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
  int32_t _dst_frame,int32_t _src_frame,int32_t _pli);
@@ -468,14 +468,14 @@ void oc_restore_fpu(const oc_theora_state *_state);
 void oc_frag_copy_c(uchar *_dst,
  const uchar *_src,int32_t _src_ystride);
 void oc_frag_recon_intra_c(uchar *_dst,int32_t _dst_ystride,
- const ogg_int16_t _residue[64]);
+ const int16_t _residue[64]);
 void oc_frag_recon_inter_c(uchar *_dst,
- const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]);
+ const uchar *_src,int32_t _ystride,const int16_t _residue[64]);
 void oc_frag_recon_inter2_c(uchar *_dst,const uchar *_src1,
- const uchar *_src2,int32_t _ystride,const ogg_int16_t _residue[64]);
-void oc_idct8x8_c(ogg_int16_t _y[64],int32_t _last_zzi);
+ const uchar *_src2,int32_t _ystride,const int16_t _residue[64]);
+void oc_idct8x8_c(int16_t _y[64],int32_t _last_zzi);
 void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
+ int32_t _pli,int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant);
 void oc_state_frag_copy_list_c(const oc_theora_state *_state,
  const ptrdiff_t *_fragis,ptrdiff_t _nfragis,
  int32_t _dst_frame,int32_t _src_frame,int32_t _pli);

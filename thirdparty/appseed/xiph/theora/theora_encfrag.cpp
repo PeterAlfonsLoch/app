@@ -17,33 +17,33 @@
 #include "framework.h"
 
 
-void oc_enc_frag_sub(const oc_enc_ctx *_enc,ogg_int16_t _diff[64],
+void oc_enc_frag_sub(const oc_enc_ctx *_enc,int16_t _diff[64],
  const uchar *_src,const uchar *_ref,int32_t _ystride){
   (*_enc->opt_vtable.frag_sub)(_diff,_src,_ref,_ystride);
 }
 
-void oc_enc_frag_sub_c(ogg_int16_t _diff[64],const uchar *_src,
+void oc_enc_frag_sub_c(int16_t _diff[64],const uchar *_src,
  const uchar *_ref,int32_t _ystride){
   int32_t i;
   for(i=0;i<8;i++){
     int32_t j;
-    for(j=0;j<8;j++)_diff[i*8+j]=(ogg_int16_t)(_src[j]-_ref[j]);
+    for(j=0;j<8;j++)_diff[i*8+j]=(int16_t)(_src[j]-_ref[j]);
     _src+=_ystride;
     _ref+=_ystride;
   }
 }
 
-void oc_enc_frag_sub_128(const oc_enc_ctx *_enc,ogg_int16_t _diff[64],
+void oc_enc_frag_sub_128(const oc_enc_ctx *_enc,int16_t _diff[64],
  const uchar *_src,int32_t _ystride){
   (*_enc->opt_vtable.frag_sub_128)(_diff,_src,_ystride);
 }
 
-void oc_enc_frag_sub_128_c(ogg_int16_t *_diff,
+void oc_enc_frag_sub_128_c(int16_t *_diff,
  const uchar *_src,int32_t _ystride){
   int32_t i;
   for(i=0;i<8;i++){
     int32_t j;
-    for(j=0;j<8;j++)_diff[i*8+j]=(ogg_int16_t)(_src[j]-128);
+    for(j=0;j<8;j++)_diff[i*8+j]=(int16_t)(_src[j]-128);
     _src+=_ystride;
   }
 }
@@ -112,7 +112,7 @@ uint32_t oc_enc_frag_sad2_thresh_c(const uchar *_src,
   return sad;
 }
 
-static void oc_diff_hadamard(ogg_int16_t _buf[64],const uchar *_src,
+static void oc_diff_hadamard(int16_t _buf[64],const uchar *_src,
  const uchar *_ref,int32_t _ystride){
   int32_t i;
   for(i=0;i<8;i++){
@@ -148,20 +148,20 @@ static void oc_diff_hadamard(ogg_int16_t _buf[64],const uchar *_src,
     t5+=t7;
     t7=r-t7;
     /*Hadamard stage 3:*/
-    _buf[0*8+i]=(ogg_int16_t)(t0+t1);
-    _buf[1*8+i]=(ogg_int16_t)(t0-t1);
-    _buf[2*8+i]=(ogg_int16_t)(t2+t3);
-    _buf[3*8+i]=(ogg_int16_t)(t2-t3);
-    _buf[4*8+i]=(ogg_int16_t)(t4+t5);
-    _buf[5*8+i]=(ogg_int16_t)(t4-t5);
-    _buf[6*8+i]=(ogg_int16_t)(t6+t7);
-    _buf[7*8+i]=(ogg_int16_t)(t6-t7);
+    _buf[0*8+i]=(int16_t)(t0+t1);
+    _buf[1*8+i]=(int16_t)(t0-t1);
+    _buf[2*8+i]=(int16_t)(t2+t3);
+    _buf[3*8+i]=(int16_t)(t2-t3);
+    _buf[4*8+i]=(int16_t)(t4+t5);
+    _buf[5*8+i]=(int16_t)(t4-t5);
+    _buf[6*8+i]=(int16_t)(t6+t7);
+    _buf[7*8+i]=(int16_t)(t6-t7);
     _src+=_ystride;
     _ref+=_ystride;
   }
 }
 
-static void oc_diff_hadamard2(ogg_int16_t _buf[64],const uchar *_src,
+static void oc_diff_hadamard2(int16_t _buf[64],const uchar *_src,
  const uchar *_ref1,const uchar *_ref2,int32_t _ystride){
   int32_t i;
   for(i=0;i<8;i++){
@@ -205,21 +205,21 @@ static void oc_diff_hadamard2(ogg_int16_t _buf[64],const uchar *_src,
     t5+=t7;
     t7=r-t7;
     /*Hadamard stage 3:*/
-    _buf[0*8+i]=(ogg_int16_t)(t0+t1);
-    _buf[1*8+i]=(ogg_int16_t)(t0-t1);
-    _buf[2*8+i]=(ogg_int16_t)(t2+t3);
-    _buf[3*8+i]=(ogg_int16_t)(t2-t3);
-    _buf[4*8+i]=(ogg_int16_t)(t4+t5);
-    _buf[5*8+i]=(ogg_int16_t)(t4-t5);
-    _buf[6*8+i]=(ogg_int16_t)(t6+t7);
-    _buf[7*8+i]=(ogg_int16_t)(t6-t7);
+    _buf[0*8+i]=(int16_t)(t0+t1);
+    _buf[1*8+i]=(int16_t)(t0-t1);
+    _buf[2*8+i]=(int16_t)(t2+t3);
+    _buf[3*8+i]=(int16_t)(t2-t3);
+    _buf[4*8+i]=(int16_t)(t4+t5);
+    _buf[5*8+i]=(int16_t)(t4-t5);
+    _buf[6*8+i]=(int16_t)(t6+t7);
+    _buf[7*8+i]=(int16_t)(t6-t7);
     _src+=_ystride;
     _ref1+=_ystride;
     _ref2+=_ystride;
   }
 }
 
-static void oc_intra_hadamard(ogg_int16_t _buf[64],const uchar *_src,
+static void oc_intra_hadamard(int16_t _buf[64],const uchar *_src,
  int32_t _ystride){
   int32_t i;
   for(i=0;i<8;i++){
@@ -255,19 +255,19 @@ static void oc_intra_hadamard(ogg_int16_t _buf[64],const uchar *_src,
     t5+=t7;
     t7=r-t7;
     /*Hadamard stage 3:*/
-    _buf[0*8+i]=(ogg_int16_t)(t0+t1);
-    _buf[1*8+i]=(ogg_int16_t)(t0-t1);
-    _buf[2*8+i]=(ogg_int16_t)(t2+t3);
-    _buf[3*8+i]=(ogg_int16_t)(t2-t3);
-    _buf[4*8+i]=(ogg_int16_t)(t4+t5);
-    _buf[5*8+i]=(ogg_int16_t)(t4-t5);
-    _buf[6*8+i]=(ogg_int16_t)(t6+t7);
-    _buf[7*8+i]=(ogg_int16_t)(t6-t7);
+    _buf[0*8+i]=(int16_t)(t0+t1);
+    _buf[1*8+i]=(int16_t)(t0-t1);
+    _buf[2*8+i]=(int16_t)(t2+t3);
+    _buf[3*8+i]=(int16_t)(t2-t3);
+    _buf[4*8+i]=(int16_t)(t4+t5);
+    _buf[5*8+i]=(int16_t)(t4-t5);
+    _buf[6*8+i]=(int16_t)(t6+t7);
+    _buf[7*8+i]=(int16_t)(t6-t7);
     _src+=_ystride;
   }
 }
 
-uint32_t oc_hadamard_sad_thresh(const ogg_int16_t _buf[64],uint32_t _thresh){
+uint32_t oc_hadamard_sad_thresh(const int16_t _buf[64],uint32_t _thresh){
   uint32_t    sad;
   int32_t         t0;
   int32_t         t1;
@@ -326,7 +326,7 @@ uint32_t oc_enc_frag_satd_thresh(const oc_enc_ctx *_enc,
 
 uint32_t oc_enc_frag_satd_thresh_c(const uchar *_src,
  const uchar *_ref,int32_t _ystride,uint32_t _thresh){
-  ogg_int16_t buf[64];
+  int16_t buf[64];
   oc_diff_hadamard(buf,_src,_ref,_ystride);
   return oc_hadamard_sad_thresh(buf,_thresh);
 }
@@ -341,7 +341,7 @@ uint32_t oc_enc_frag_satd2_thresh(const oc_enc_ctx *_enc,
 uint32_t oc_enc_frag_satd2_thresh_c(const uchar *_src,
  const uchar *_ref1,const uchar *_ref2,int32_t _ystride,
  uint32_t _thresh){
-  ogg_int16_t buf[64];
+  int16_t buf[64];
   oc_diff_hadamard2(buf,_src,_ref1,_ref2,_ystride);
   return oc_hadamard_sad_thresh(buf,_thresh);
 }
@@ -352,7 +352,7 @@ uint32_t oc_enc_frag_intra_satd(const oc_enc_ctx *_enc,
 }
 
 uint32_t oc_enc_frag_intra_satd_c(const uchar *_src,int32_t _ystride){
-  ogg_int16_t buf[64];
+  int16_t buf[64];
   oc_intra_hadamard(buf,_src,_ystride);
   return oc_hadamard_sad_thresh(buf,UINT_MAX)
    -abs(buf[0]+buf[1]+buf[2]+buf[3]+buf[4]+buf[5]+buf[6]+buf[7]);
@@ -376,11 +376,11 @@ void oc_enc_frag_copy2_c(uchar *_dst,
 }
 
 void oc_enc_frag_recon_intra(const oc_enc_ctx *_enc,
- uchar *_dst,int32_t _ystride,const ogg_int16_t _residue[64]){
+ uchar *_dst,int32_t _ystride,const int16_t _residue[64]){
   (*_enc->opt_vtable.frag_recon_intra)(_dst,_ystride,_residue);
 }
 
 void oc_enc_frag_recon_inter(const oc_enc_ctx *_enc,uchar *_dst,
- const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]){
+ const uchar *_src,int32_t _ystride,const int16_t _residue[64]){
   (*_enc->opt_vtable.frag_recon_inter)(_dst,_src,_ystride,_residue);
 }

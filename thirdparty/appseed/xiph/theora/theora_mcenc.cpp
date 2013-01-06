@@ -262,8 +262,8 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
   const uchar *ref;
   int32_t                  ystride;
   oc_mb_enc_info      *embs;
-  ogg_int32_t          hit_cache[31];
-  ogg_int32_t          hitbit;
+  int32_t          hit_cache[31];
+  int32_t          hitbit;
   uint32_t             best_block_err[4];
   uint32_t             block_err[4];
   uint32_t             best_err;
@@ -280,7 +280,7 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
   /*Start with the median predictor.*/
   candx=mcenc.candidates[0][0];
   candy=mcenc.candidates[0][1];
-  hit_cache[candy+15]|=(ogg_int32_t)1<<candx+15;
+  hit_cache[candy+15]|=(int32_t)1<<candx+15;
   frag_buf_offs=_enc->state.frag_buf_offs;
   fragis=_enc->state.mb_maps[_mbi][0];
   src=_enc->state.ref_frame_data[OC_FRAME_IO];
@@ -317,7 +317,7 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
       candy=mcenc.candidates[ci][1];
       /*If we've already examined this vector, then we would be using it if it
          was better than what we are using.*/
-      hitbit=(ogg_int32_t)1<<candx+15;
+      hitbit=(int32_t)1<<candx+15;
       if(hit_cache[candy+15]&hitbit)continue;
       hit_cache[candy+15]|=hitbit;
       err=oc_mcenc_ysad_check_mbcandidate_fullpel(_enc,
@@ -340,7 +340,7 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
       for(;ci<mcenc.ncandidates;ci++){
         candx=mcenc.candidates[ci][0];
         candy=mcenc.candidates[ci][1];
-        hitbit=(ogg_int32_t)1<<candx+15;
+        hitbit=(int32_t)1<<candx+15;
         if(hit_cache[candy+15]&hitbit)continue;
         hit_cache[candy+15]|=hitbit;
         err=oc_mcenc_ysad_check_mbcandidate_fullpel(_enc,
@@ -376,7 +376,7 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
             site=OC_SQUARE_SITES[b][sitei];
             candx=best_vec[0]+OC_SQUARE_DX[site];
             candy=best_vec[1]+OC_SQUARE_DY[site];
-            hitbit=(ogg_int32_t)1<<candx+15;
+            hitbit=(int32_t)1<<candx+15;
             if(hit_cache[candy+15]&hitbit)continue;
             hit_cache[candy+15]|=hitbit;
             err=oc_mcenc_ysad_check_mbcandidate_fullpel(_enc,
@@ -441,7 +441,7 @@ void oc_mcenc_search_frame(oc_enc_ctx *_enc,int32_t _accum[2],int32_t _mbi,int32
                   site=OC_SQUARE_SITES[b][sitei];
                   candx=bestx+OC_SQUARE_DX[site];
                   candy=besty+OC_SQUARE_DY[site];
-                  hitbit=(ogg_int32_t)1<<candx+15;
+                  hitbit=(int32_t)1<<candx+15;
                   if(hit_cache[candy+15]&hitbit)continue;
                   hit_cache[candy+15]|=hitbit;
                   err=oc_mcenc_ysad_check_mbcandidate_fullpel(_enc,

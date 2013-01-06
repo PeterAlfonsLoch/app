@@ -233,10 +233,10 @@ typedef struct {
   uint32_t  keyframe_frequency_force;  /* also used for decode init to
                                               get granpos shift correct */
   uint32_t  keyframe_data_target_bitrate;
-  ogg_int32_t   keyframe_auto_threshold;
+  int32_t   keyframe_auto_threshold;
   uint32_t  keyframe_mindistance;
-  ogg_int32_t   noise_sensitivity;
-  ogg_int32_t   sharpness;
+  int32_t   noise_sensitivity;
+  int32_t   sharpness;
 
   theora_pixelformat pixelformat;	/**< chroma subsampling mode to expect */
 

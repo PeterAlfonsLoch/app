@@ -20,8 +20,8 @@
 
 
 
-typedef uint32_t long      oc_pb_window;
-typedef struct oc_pack_buf oc_pack_buf;
+typedef uint_ptr              oc_pb_window;
+typedef struct oc_pack_buf    oc_pack_buf;
 
 
 

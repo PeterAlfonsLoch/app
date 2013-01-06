@@ -304,7 +304,7 @@ static const __declspec(align(16))uint16_t
 #define OC_C(_i)      OC_MID(OC_COSINE_OFFSET,_i-1)
 #define OC_8          OC_MID(OC_EIGHT_OFFSET,0)
 
-static void oc_idct8x8_slow(ogg_int16_t _y[64]){
+static void oc_idct8x8_slow(int16_t _y[64]){
   /*This routine accepts an 8x8 matrix, but in partially transposed form.
     Every 4x4 block is transposed.*/
   __asm{
@@ -498,7 +498,7 @@ static void oc_idct8x8_slow(ogg_int16_t _y[64]){
   __asm movq OC_I(0),mm0 \
 }
 
-static void oc_idct8x8_10(ogg_int16_t _y[64]){
+static void oc_idct8x8_10(int16_t _y[64]){
   __asm{
 #define CONSTS eax
 #define Y edx
@@ -530,7 +530,7 @@ static void oc_idct8x8_10(ogg_int16_t _y[64]){
 /*Performs an inverse 8x8 Type-II DCT transform.
   The input is assumed to be scaled by a factor of 4 relative to orthonormal
    version of the transform.*/
-void oc_idct8x8_mmx(ogg_int16_t _y[64],int32_t _last_zzi){
+void oc_idct8x8_mmx(int16_t _y[64],int32_t _last_zzi){
   /*_last_zzi is subtly different from an actual count of the number of
      coefficients we decoded for this block.
     It contains the value of zzi BEFORE the final token in the block was

@@ -10,8 +10,8 @@ typedef struct oc_iquant oc_iquant;
    (i.e., one 16x16->16 mul, 2 shifts, and 2 adds).
   This is not an approximation; for 16-bit x and d, it is exact.*/
 struct oc_iquant{
-  ogg_int16_t m;
-  ogg_int16_t l;
+  int16_t m;
+  int16_t l;
 };
 
 typedef oc_iquant        oc_iquant_table[64];

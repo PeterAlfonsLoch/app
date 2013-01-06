@@ -11,18 +11,18 @@
 #    define OC_CLZ32_OFFS ((int32_t)sizeof(uint32_t)*CHAR_BIT)
 #    define OC_CLZ32(_x) (__builtin_clz(_x))
 #   elif LONG_MAX>=2147483647L
-#    define OC_CLZ32_OFFS ((int32_t)sizeof(uint32_t long)*CHAR_BIT)
+#    define OC_CLZ32_OFFS ((int32_t)sizeof(uint_ptr)*CHAR_BIT)
 #    define OC_CLZ32(_x) (__builtin_clzl(_x))
 #   endif
 #   if INT_MAX>=9223372036854775807LL
 #    define OC_CLZ64_OFFS ((int32_t)sizeof(uint32_t)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clz(_x))
 #   elif LONG_MAX>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int32_t)sizeof(uint32_t long)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(uint_ptr)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clzl(_x))
 #   elif LLONG_MAX>=9223372036854775807LL|| \
      __LONG_LONG_MAX__>=9223372036854775807LL
-#    define OC_CLZ64_OFFS ((int32_t)sizeof(uint32_t long long)*CHAR_BIT)
+#    define OC_CLZ64_OFFS ((int32_t)sizeof(uint_ptr long)*CHAR_BIT)
 #    define OC_CLZ64(_x) (__builtin_clzll(_x))
 #   endif
 #  endif

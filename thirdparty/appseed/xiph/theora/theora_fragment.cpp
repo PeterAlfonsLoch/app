@@ -33,12 +33,12 @@ void oc_frag_copy_c(uchar *_dst,const uchar *_src,int32_t _ystride){
 }
 
 void oc_frag_recon_intra(const oc_theora_state *_state,uchar *_dst,
- int32_t _ystride,const ogg_int16_t _residue[64]){
+ int32_t _ystride,const int16_t _residue[64]){
   _state->opt_vtable.frag_recon_intra(_dst,_ystride,_residue);
 }
 
 void oc_frag_recon_intra_c(uchar *_dst,int32_t _ystride,
- const ogg_int16_t _residue[64]){
+ const int16_t _residue[64]){
   int32_t i;
   for(i=0;i<8;i++){
     int32_t j;
@@ -48,12 +48,12 @@ void oc_frag_recon_intra_c(uchar *_dst,int32_t _ystride,
 }
 
 void oc_frag_recon_inter(const oc_theora_state *_state,uchar *_dst,
- const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]){
+ const uchar *_src,int32_t _ystride,const int16_t _residue[64]){
   _state->opt_vtable.frag_recon_inter(_dst,_src,_ystride,_residue);
 }
 
 void oc_frag_recon_inter_c(uchar *_dst,
- const uchar *_src,int32_t _ystride,const ogg_int16_t _residue[64]){
+ const uchar *_src,int32_t _ystride,const int16_t _residue[64]){
   int32_t i;
   for(i=0;i<8;i++){
     int32_t j;
@@ -65,12 +65,12 @@ void oc_frag_recon_inter_c(uchar *_dst,
 
 void oc_frag_recon_inter2(const oc_theora_state *_state,uchar *_dst,
  const uchar *_src1,const uchar *_src2,int32_t _ystride,
- const ogg_int16_t _residue[64]){
+ const int16_t _residue[64]){
   _state->opt_vtable.frag_recon_inter2(_dst,_src1,_src2,_ystride,_residue);
 }
 
 void oc_frag_recon_inter2_c(uchar *_dst,const uchar *_src1,
- const uchar *_src2,int32_t _ystride,const ogg_int16_t _residue[64]){
+ const uchar *_src2,int32_t _ystride,const int16_t _residue[64]){
   int32_t i;
   for(i=0;i<8;i++){
     int32_t j;

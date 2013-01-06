@@ -854,13 +854,13 @@ int32_t oc_state_get_mv_offsets(const oc_theora_state *_state,int32_t _offsets[2
 }
 
 void oc_state_frag_recon(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant){
+ int32_t _pli,int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant){
   _state->opt_vtable.state_frag_recon(_state,_fragi,_pli,_dct_coeffs,
    _last_zzi,_dc_quant);
 }
 
 void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
- int32_t _pli,ogg_int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant){
+ int32_t _pli,int16_t _dct_coeffs[64],int32_t _last_zzi,uint16_t _dc_quant){
   uchar *dst;
   ptrdiff_t      frag_buf_off;
   int32_t            ystride;
@@ -868,17 +868,17 @@ void oc_state_frag_recon_c(const oc_theora_state *_state,ptrdiff_t _fragi,
   /*Apply the inverse transform.*/
   /*Special case only having a DC component.*/
   if(_last_zzi<2){
-    ogg_int16_t p;
+    int16_t p;
     int32_t         ci;
     /*We round this dequant product (and not any of the others) because there's
        no iDCT rounding.*/
-    p=(ogg_int16_t)(_dct_coeffs[0]*(ogg_int32_t)_dc_quant+15>>5);
+    p=(int16_t)(_dct_coeffs[0]*(int32_t)_dc_quant+15>>5);
     /*LOOP VECTORIZES.*/
     for(ci=0;ci<64;ci++)_dct_coeffs[ci]=p;
   }
   else{
     /*First, dequantize the DC coefficient.*/
-    _dct_coeffs[0]=(ogg_int16_t)(_dct_coeffs[0]*(int32_t)_dc_quant);
+    _dct_coeffs[0]=(int16_t)(_dct_coeffs[0]*(int32_t)_dc_quant);
     oc_idct8x8(_state,_dct_coeffs,_last_zzi);
   }
   /*Fill in the target buffer.*/
