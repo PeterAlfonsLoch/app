@@ -82,14 +82,14 @@ machine_event_data::fixed::fixed()
 
 void machine_event_data::read(HANDLE f)
 {
-   uint32_t dwRead;
+   DWORD dwRead;
    ::ReadFile(f, &m_fixed, sizeof(m_fixed), &dwRead, NULL);
    m_blobCommand.read(f);
 }
 
 void machine_event_data::write(HANDLE f)
 {
-   uint32_t dwWritten;
+   DWORD dwWritten;
    ::WriteFile(f, &m_fixed, sizeof(m_fixed), &dwWritten, NULL);
    m_blobCommand.write(f);
 }

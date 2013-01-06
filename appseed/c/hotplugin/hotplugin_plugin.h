@@ -44,7 +44,7 @@ namespace hotplugin
 
       void *                        m_pbitmap;
       void *                        m_pgraphics;
-      uint32_t *                       m_pcolorref;
+      COLORREF *                    m_pcolorref;
       SIZE                          m_sizeBitmap;
 
       vsstring                      m_strStatus;

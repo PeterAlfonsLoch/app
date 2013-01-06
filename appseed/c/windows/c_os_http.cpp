@@ -162,9 +162,9 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
 
 
-   uint32_t dwStatusCode = 0;
-   uint32_t dwBufferLen = sizeof(dwStatusCode);
-   uint32_t dwIndex = 0;
+   DWORD dwStatusCode = 0;
+   DWORD dwBufferLen = sizeof(dwStatusCode);
+   DWORD dwIndex = 0;
    if(bResults)
       bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    if(piStatus != NULL)
@@ -212,9 +212,9 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    if (bResults)
    {
 
-      uint32_t dwWritten;
+      DWORD dwWritten;
       uint32_t dwError;
-      uint32_t dwDownloaded;
+      DWORD dwDownloaded;
       vsstring strPath;
       strPath = pszFile;
       uint32_t dwLen = 0;
@@ -336,7 +336,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       strReq = strReq.substr(0, iFind) + strQ;
    }
    uint32_t dwSize = 0;
-   uint32_t dwDownloaded = 0;
+   DWORD dwDownloaded = 0;
    LPSTR pszOutBuffer;
    bool  bResults = FALSE;
    HINTERNET  hSession = NULL,
@@ -357,25 +357,10 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
 
    // Use WinHttpOpen to obtain a session handle.
-   hSession =
-      InternetOpen(
-      "ccvotagus_ca2_fontopus",
-      INTERNET_OPEN_TYPE_PRECONFIG,
-      NULL,
-      NULL,
-      0);
+   hSession = InternetOpen("ccvotagus_ca2_fontopus", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
 
    if(hSession)
-      hConnect =
-      InternetConnect(
-      hSession,
-      strHost,
-      iPort,
-      NULL,
-      NULL,
-      INTERNET_SERVICE_HTTP,
-      iPort == 443 ? INTERNET_FLAG_SECURE : 0,
-      1);
+      hConnect = InternetConnect(hSession, strHost, iPort, NULL, NULL, INTERNET_SERVICE_HTTP, iPort == 443 ? INTERNET_FLAG_SECURE : 0, 1);
 
    uint32_t dwFlags = 0;
 
@@ -392,16 +377,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    }
 
    if(hConnect)
-      hRequest =
-      HttpOpenRequest(
-      hConnect,
-      "GET",
-      strReq,
-      NULL,
-      "ca2 ccvotagus spa",
-      NULL, // accept types
-      dwFlags,
-      1); // dwContext
+      hRequest = HttpOpenRequest(hConnect, "GET", strReq, NULL, "ca2 ccvotagus spa", NULL,  dwFlags, 1); 
 
    if(hRequest)
       bResults =
@@ -415,9 +391,9 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
       }
    }
 
-   uint32_t dwStatusCode = 0;
-   uint32_t dwBufferLen = sizeof(dwStatusCode);
-   uint32_t dwIndex = 0;
+   DWORD dwStatusCode = 0;
+   DWORD dwBufferLen = sizeof(DWORD);
+   DWORD dwIndex = 0;
    if(bResults)
       bResults = HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE | HTTP_QUERY_FLAG_NUMBER, &dwStatusCode, &dwBufferLen, &dwIndex) != FALSE;
    dwBufferLen = 1024;
@@ -474,8 +450,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
             // Read the Data.
             memset_dup(pszOutBuffer, 0, dwSize + 1);
 
-            if (!InternetReadFile( hRequest, (LPVOID)pszOutBuffer,
-               dwSize, &dwDownloaded))
+            if(!InternetReadFile( hRequest, (LPVOID)pszOutBuffer, dwSize, &dwDownloaded))
             {
                //printf( "Error %u in WinHttpReadData.\n",
                //      GetLastError());

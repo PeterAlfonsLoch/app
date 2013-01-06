@@ -381,14 +381,7 @@ namespace hotplugin
       pstart->m_strCommandLine      = pszCommandLine;
 #ifdef WINDOWS
 
-      ::create_thread(
-         NULL,
-         0,
-         &::_ca2_starter_start,
-         pstart,
-         0,
-         pplugin == NULL ?
-NULL : &pplugin->m_nCa2StarterStartThreadID);
+      ::create_thread(NULL, 0, &::_ca2_starter_start, pstart, 0, pplugin == NULL ? NULL : &pplugin->m_nCa2StarterStartThreadID);
 
 #else
       pthread_t * threadId;

@@ -594,7 +594,7 @@ vsstring get_file_md5_by_read(const char * path)
 {
 
 
-   int64_t iSize;
+   uint64_t uiSize;
 #ifdef METROWIN
 
    uint32_t dwRead;
@@ -623,7 +623,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #elif defined(WINDOWS)
 
-   uint32_t dwRead;
+   DWORD dwRead;
 
    wstring wstr(path);
 
@@ -632,11 +632,7 @@ vsstring get_file_md5_by_read(const char * path)
    if(hfile == INVALID_HANDLE_VALUE)
       return "";
 
-   DWORD dwHigh;
-
-   iSize = ::GetFileSize(hfile, &dwHigh);
-
-   iSize |= (0x7fffffff & (uint64_t) dwHigh) << 32;
+   uiSize = fsize_dup(hfile);
 
 #else
 
@@ -651,11 +647,11 @@ vsstring get_file_md5_by_read(const char * path)
 
    }
 
-   iSize = ::get_file_size(fd);
+   uiSize = ::get_file_size(fd);
 
 #endif
 
-   int32_t iAlloc = min((int32_t) iSize, 1024 * 1024 * 8);
+   int32_t iAlloc = min((int32_t) uiSize, 1024 * 1024 * 8);
 
    char * psz = (char *) _ca_alloc(iAlloc);
 
@@ -668,7 +664,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #ifdef WINDOWS
 
-      if(!::ReadFile(hfile, psz, min((int32_t) iSize, iAlloc), &dwRead, NULL))
+      if(!::ReadFile(hfile, psz, min((int32_t) uiSize, iAlloc), &dwRead, NULL))
       {
          break;
       }
@@ -692,14 +688,14 @@ vsstring get_file_md5_by_read(const char * path)
 
       md5.update(psz, dwRead);
 
-      if(iSize <= 0)
+      if(uiSize <= 0)
          break;
 
-      iSize -= dwRead;
+      uiSize -= dwRead;
 
    }
 
-   if(iSize != 0)
+   if(uiSize != 0)
    {
 
       _ca_free(psz, 0);

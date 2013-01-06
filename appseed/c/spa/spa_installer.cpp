@@ -42,8 +42,8 @@ PPEB GetPebAddress(HANDLE handleProcess)
    _NtQueryInformationProcess NtQueryInformationProcess = (_NtQueryInformationProcess)GetProcAddress(GetModuleHandleA("ntdll.dll"), "NtQueryInformationProcess");
    PROCESS_BASIC_INFORMATION pbi;
    memset_dup(&pbi, 0, sizeof(pbi));
-   uint32_t dwInLen = sizeof(pbi);
-   uint32_t dwOutLen = 0xffffffff;
+   DWORD dwInLen = sizeof(pbi);
+   DWORD dwOutLen = 0xffffffff;
    uint32_t dwStatus = NtQueryInformationProcess(handleProcess, ProcessBasicInformation, &pbi, dwInLen, &dwOutLen);
    vsstring strError = get_display_error(dwStatus);
    if((dwStatus & 3) == 3)
@@ -629,7 +629,7 @@ RetryHost:
                   TerminateProcess(hProcess, -1);
 
                   int32_t iRetry = 49;
-                  uint32_t dwExitCode = (uint32_t) -1;
+                  DWORD dwExitCode = (uint32_t) -1;
                   while(::GetExitCodeProcess(hProcess, &dwExitCode) && dwExitCode == STILL_ACTIVE && iRetry > 0)
                   {
                      Sleep(184);

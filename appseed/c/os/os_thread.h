@@ -96,13 +96,13 @@ public:
 
 CLASS_DECL_c HANDLE start_thread(uint32_t (WINAPI *)(LPVOID), LPVOID pv, int32_t iPriority = 0);
 
-CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t (WINAPI *)(LPVOID), LPVOID pv, uint32_t f, LPDWORD lpdwId);
+CLASS_DECL_c HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t (WINAPI *)(LPVOID), LPVOID pv, uint32_t f, uint32_t * lpdwId);
 
 #else
 
 CLASS_DECL_c simple_event * start_thread(LPTHREAD_START_ROUTINE, LPVOID pv, int32_t iPriority = 0);
 
-CLASS_DECL_c simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, uint32_t f, LPDWORD lpdwId);
+CLASS_DECL_c simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, LPTHREAD_START_ROUTINE, LPVOID pv, uint32_t f, uint32_t * lpdwId);
 
 #endif
 

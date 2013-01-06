@@ -237,9 +237,6 @@ public:
    operator LONG() const;
 #endif
    operator uint32_t() const;
-#ifdef WINDOWS
-   operator uint32_t() const;
-#endif
    operator int64_t() const;
    operator uint64_t() const;
 
@@ -265,7 +262,6 @@ public:
    var & operator = (uint32_t ui);
    var & operator = (uint32_t * pui);
 #ifdef WINDOWS
-   var & operator = (uint32_t ui);
    var & operator = (LPDWORD pui);
 #endif
    var & operator = (int64_t i);
@@ -631,13 +627,6 @@ inline var::operator LONG () const
 {
 
 	return operator int32_t();
-
-}
-
-inline var::operator uint32_t () const
-{
-
-	return operator uint32_t();
 
 }
 

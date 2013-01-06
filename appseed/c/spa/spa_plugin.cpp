@@ -634,14 +634,20 @@ install:
 
    double plugin::extract_spa_progress_rate()
    {
-      uint32_t dwRead;
+
+      DWORD dwRead;
+
       HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       double dRate = 0.0;
+
       bool bRate = false;
+
       bool bStatus = false;
+
       if(hfile != INVALID_HANDLE_VALUE)
       {
+
          int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);
          iTell--;
          vsstring strLine;

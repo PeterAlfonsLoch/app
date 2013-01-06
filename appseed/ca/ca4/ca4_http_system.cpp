@@ -626,8 +626,8 @@ namespace ca4
                      e_status * pestatus)
       {
 
-         uint32_t long dw1;
-         uint32_t long dw2;
+         uint32_t dw1;
+         uint32_t dw2;
          bool bSeemsOk;
 
          int32_t iTry = 0;

@@ -316,16 +316,6 @@ namespace gen
       }
 
 
-#ifdef WINDOWS
-
-      property & operator =(uint32_t dw)
-      {
-         get_value() = dw;
-         return *this;
-      }
-
-#endif
-
       property & operator =(int64_t i)
       {
          get_value() = i;
@@ -422,15 +412,6 @@ namespace gen
       {
          return get_value().operator uint32_t();
       }
-
-#ifdef WINDOWS
-
-      operator uint32_t()
-      {
-         return get_value().operator uint32_t();
-      }
-
-#endif
 
       operator int64_t()
       {

@@ -81,10 +81,10 @@ HANDLE start_thread(uint32_t (WINAPI * pfn)(LPVOID), LPVOID pv, int32_t iPriorit
 
 }
 
-HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t (WINAPI * pfn)(LPVOID), LPVOID pv, uint32_t f, LPDWORD lpdwId)
+HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t (WINAPI * pfn)(LPVOID), LPVOID pv, uint32_t f, uint32_t * lpui)
 {
 
-   return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, lpdwId);
+   return ::CreateThread(lpsa, cbStack, (LPTHREAD_START_ROUTINE) &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, (LPDWORD) lpui);
 
 }
 

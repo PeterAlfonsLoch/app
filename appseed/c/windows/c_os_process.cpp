@@ -54,7 +54,7 @@ CLASS_DECL_c uint32_t call_sync(
 
    ::ShellExecuteExA(&infoa);
 
-   uint32_t dwExitCode;
+   DWORD dwExitCode;
    
    int32_t iTry = 0;
 
@@ -150,7 +150,7 @@ bool process_modules(stra_dup & stra, uint32_t processID)
    
    HANDLE hProcess;
    
-   uint32_t cbNeeded;
+   DWORD cbNeeded;
    
    uint32_t i;
 

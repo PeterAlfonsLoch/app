@@ -56,7 +56,7 @@ public:
 
    void start_login();
 
-   static DWORD WINAPI thread_proc_login(LPVOID lpParam);
+   static uint32_t WINAPI thread_proc_login(LPVOID lpParam);
 
    e_result login();
 

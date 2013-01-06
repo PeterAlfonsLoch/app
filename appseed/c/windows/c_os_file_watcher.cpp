@@ -46,7 +46,7 @@ namespace file_watcher
 	bool RefreshWatch(watch_struct* pWatch, bool _clear = false);
 
 	/// Unpacks events and passes them to a user defined callback.
-	void CALLBACK WatchCallback(uint32_t dwErrorCode, uint32_t dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
+	void CALLBACK WatchCallback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED lpOverlapped)
 	{
 		TCHAR szFile[MAX_PATH];
 		PFILE_NOTIFY_INFORMATION pNotify;

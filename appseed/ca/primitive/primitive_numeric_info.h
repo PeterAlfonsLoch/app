@@ -142,8 +142,6 @@ namespace numeric_info
       return 1;
    }
 
-   #ifdef WINDOWS
-
    template <>
    inline uint32_t get_maximum_value < uint32_t > ()
    {
@@ -164,17 +162,6 @@ namespace numeric_info
    {
       return 1;
    }
-
-   #endif
-
-   template <>
-   inline UINT get_maximum_value < UINT > ()
-   {
-      return static_cast < UINT > (0xffffffff);
-   }
-
-
-
 
    template <>
    inline uint64_t get_maximum_value < uint64_t > ()
@@ -203,25 +190,20 @@ namespace numeric_info
    template <>
    inline int64_t get_maximum_value < int64_t > ()
    {
-      return static_cast < int64_t > (0x7fffffffffffffff);
-   }
-   template <>
-   inline UINT get_minimum_value < UINT > ()
-   {
-      return (UINT) 0;
+      return static_cast < int64_t > (0x7ffffffffffffffful);
    }
    template <>
    inline int64_t get_minimum_value < int64_t > ()
    {
-      return static_cast < int64_t > (0x8000000000000000);
+      return static_cast < int64_t > (0x8000000000000000ul);
    }
    template <>
-   inline UINT get_null_value < UINT > ()
+   inline int64_t get_null_value < int64_t > ()
    {
       return 0;
    }
    template <>
-   inline UINT get_unitary_value < UINT >()
+   inline int64_t get_unitary_value < int64_t >()
    {
       return 1;
    }
