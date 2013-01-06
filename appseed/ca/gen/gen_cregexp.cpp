@@ -37,7 +37,7 @@ SRegInfo::~SRegInfo()
 //#ifdef NAMED_MATCHES_IN_HASH
     case ReNamedBrackets:
     case ReBkBrackName:
-      if(namedata) delete namedata;
+      //if(namedata) delete namedata;
 //#endif
     default:
       if((op > ReBlockOps && op < ReSymbolOps) || op == ReBrackets || op == ReNamedBrackets)
@@ -58,16 +58,25 @@ void cregexp::init()
   backRE = 0;
 #endif
   namedMatches = 0;
-};
+}
+
 cregexp::cregexp()
 {
+
   init();
-};
+
+}
+
 cregexp::cregexp(string text)
 {
+
   init();
-  if (text) setRE(text);
-};
+
+  if(text.has_char())
+     setRE(text);
+
+}
+
 cregexp::~cregexp()
 {
   if (tree_root) delete tree_root;
@@ -256,12 +265,12 @@ SRegInfo *next, *temp;
           if (!gen::str::get_curly_content(&((const char *)expr)[i+2], br_name)) return ESYNTAX;
           blen = br_name.get_length();
           if(br_name.get_length() && namedMatches && !namedMatches->getItem(br_name)){
-            delete br_name;
+//            delete br_name;
             return EBRACKETS;
           };
           next->param0 = 0;
           next->namedata = (br_name);
-          delete br_name;
+//          delete br_name;
           i += blen+2;
           break;
         default:

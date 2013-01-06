@@ -54,9 +54,9 @@ KeywordList::KeywordList(){
   firstChar = new gen::ch_class();
 };
 KeywordList::~KeywordList(){
-  for(int32_t idx = 0; idx < num; idx++) {
-    delete kwList[idx].keyword;
-  }
+//  for(int32_t idx = 0; idx < num; idx++) {
+//    delete kwList[idx].keyword;
+//  }
   delete[] kwList;
   delete   firstChar;
 };

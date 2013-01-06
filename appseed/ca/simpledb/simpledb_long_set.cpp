@@ -259,7 +259,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
 
          m_pqueue = new sync_queue(get_app());
          m_pqueue->m_pset = this;
-         m_pqueue->Begin();
+         m_pqueue->begin();
 
       }
 

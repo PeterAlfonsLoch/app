@@ -165,12 +165,12 @@ namespace file_watcher
 		m_watchmap.remove_all();
 	}
 
-	id os_file_watcher::add_watch(const char * directory, file_watch_listener* watcher)
+	id os_file_watcher::add_watch(const string & directory, file_watch_listener* watcher)
 	{
 		id watchid = ++m_idLast;
 
 		//watch_struct ^ pwatch = watch_struct::create_watch(m_str(directory), FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
-      watch_struct ^ pwatch = watch_struct::create_watch(rtstr(directory));
+      watch_struct ^ pwatch = watch_struct::create_watch(directory);
 
 		if(pwatch == nullptr)
 			throw file_not_found_exception(directory);
@@ -178,7 +178,7 @@ namespace file_watcher
       pwatch->m_id            = watchid;
 		pwatch->m_pwatcher      = (size_t) (int_ptr) (file_watcher_impl *) this;
 		pwatch->m_plistener     = (size_t) (int_ptr) (file_watch_listener *) watcher;
-		pwatch->m_strDirName    = rtstr(directory);
+		pwatch->m_strDirName    = directory;
       
 		m_watchmap.set_at(watchid, pwatch);
 

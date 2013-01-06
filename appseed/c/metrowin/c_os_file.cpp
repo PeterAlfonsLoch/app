@@ -159,7 +159,7 @@ CLASS_DECL_c bool close_handle(handle h)
 CLASS_DECL_c ::Windows::Storage::StorageFolder ^ get_os_folder(const char * lpcszDirName)
 {
 
-   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(lpcszDirName)));
+   return wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(vsstring(lpcszDirName)));
 
 }
 
@@ -208,7 +208,7 @@ CLASS_DECL_c ::Windows::Storage::StorageFile ^ get_os_file(const char * lpcszFil
    if(folder == nullptr)
       return nullptr;
 
-   ::Platform::String ^ strFileName = rtstr(file_title_dup(lpcszFileName));
+   ::Platform::String ^ strFileName = file_title_dup(lpcszFileName);
 
    if(dwCreationDisposition == CREATE_ALWAYS)
    {
@@ -294,7 +294,7 @@ CLASS_DECL_c bool get_file_time(::Windows::Storage::StorageFile ^ file, LPFILETI
 vsstring get_sys_temp_path()
 {
 
-   return vsstring(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin());
+   return ::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path;
 
 }
 
@@ -400,7 +400,7 @@ bool file_get_memory_dup(simple_memory & memory, const char * path)
 bool get_temp_file_name_template(char * szRet, ::count iBufferSize, const char * pszName, const char * pszExtension, const char * pszTemplate)
 {
 
-   vsstring str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path->Begin());
+   vsstring str(::Windows::Storage::ApplicationData::Current->TemporaryFolder->Path);
 
    char bufTime[30];
 

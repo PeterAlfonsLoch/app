@@ -14,7 +14,6 @@ verisimple_string::verisimple_string(const wchar_t * pwsz)
 
 }
 
-
 verisimple_string::verisimple_string(const char * psz)
 {
    if(psz == NULL)

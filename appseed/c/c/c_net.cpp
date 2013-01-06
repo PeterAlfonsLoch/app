@@ -563,7 +563,7 @@ CLASS_DECL_c vsstring c_gethostbyname(const char * hostname)
 
 #else
 
-   return vsstring((((ref new ::Windows::Networking::HostName(rtstr(hostname)))->DisplayName))->Begin());
+   return (ref new ::Windows::Networking::HostName(vsstring(hostname)))->DisplayName;
 
 #endif
 

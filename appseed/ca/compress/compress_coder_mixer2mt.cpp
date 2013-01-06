@@ -220,7 +220,7 @@ namespace compress
 
             for (i = 0; i < _coders.get_count(); i++)
                if (i != _progressCoderIndex)
-                  _coders[i].Begin();
+                  _coders[i].begin();
 
             _coders[_progressCoderIndex].Code(progress);
 

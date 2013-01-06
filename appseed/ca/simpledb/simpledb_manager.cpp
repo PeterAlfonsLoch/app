@@ -18,7 +18,7 @@ namespace simpledb
 
       m_iDatabaseWaitTimeOut = 1000 * 1000 * 60;
 
-      Begin();
+      begin();
 
    }
 

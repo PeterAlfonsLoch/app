@@ -20,7 +20,7 @@ namespace ca2
       process_thread thread(get_app());
       if(!thread.m_process.create_child_process(pszCmdLine, true))
          return false;
-      thread.Begin();
+      thread.begin();
       while(!thread.m_process.has_exited())
       {
          Sleep(100);

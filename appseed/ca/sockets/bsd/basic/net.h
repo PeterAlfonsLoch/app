@@ -166,7 +166,7 @@ namespace sockets
 
       bool u2service(const string & name, int32_t& service, int32_t ai_flags);
 
-      int32_t service_port(const char * psz, int32_t flags = 0);
+      int32_t service_port(const string & str, int32_t flags = 0);
 
       string  service_name(int32_t iPort, int32_t flags = 0);
 

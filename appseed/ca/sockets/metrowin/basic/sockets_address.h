@@ -30,8 +30,8 @@ namespace sockets
       ::Platform::String ^                   m_strService;
       
 
-      address(::ca::application * papp, const char * pszAddress = NULL, const char * pszServiceName = NULL);
-      address(::ca::application * papp, const char * pszAddress, int iPort);
+      address(::ca::application * papp, const string & strAddress = "", const string & pszServiceName = "");
+      address(::ca::application * papp, const string & strAddress, int iPort);
       address(const address & address);
       virtual ~address();
 

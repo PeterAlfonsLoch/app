@@ -189,9 +189,7 @@ namespace ca2
 
       stringa stra;
 
-      Platform::String ^ str = ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride;
-
-      stra.explode("-", ::str(str));
+      stra.explode("-", ::Windows::Globalization::ApplicationLanguages::PrimaryLanguageOverride);
 
       strLocale = stra[0];
 
@@ -874,7 +872,7 @@ namespace ca2
       {
          m_biasCalling = *pbias;
       }
-      Begin();
+      begin();
 
       if(bSynch)
       {

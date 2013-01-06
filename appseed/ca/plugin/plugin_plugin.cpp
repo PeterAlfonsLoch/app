@@ -212,7 +212,7 @@ namespace plugin
       if(bNew || !m_bAppStarted)
       {
          m_bAppStarted = true;
-         m_psystem->Begin();
+         m_psystem->begin();
       }
 
       m_bInitialized = true;

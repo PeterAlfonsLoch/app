@@ -492,7 +492,7 @@ namespace ca2
                   ptext = dynamic_cast < text_interface * > (pguie);
                   ptext->_001GetText(m_loginthread.m_strPassword);
                   m_loginthread.m_pcallback = this;
-                  m_loginthread.Begin();
+                  m_loginthread.begin();
                }
                else
                {
@@ -553,7 +553,7 @@ namespace ca2
             m_loginthread.m_strPassword.Empty();
             m_loginthread.m_strPasshash = strPasshash;
             m_loginthread.m_pcallback = this;
-            m_loginthread.Begin();
+            m_loginthread.begin();
 
             return true;
          }

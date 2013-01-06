@@ -484,7 +484,7 @@ void dir::ls(stra_dup & stra, const char *psz)
 
 #elif defined(METROWIN)
 
-   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(psz)));
+   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(vsstring(psz)));
 
    if(folder == nullptr)
       return;
@@ -551,7 +551,7 @@ void dir::ls_dir(stra_dup & stra, const char *psz)
 
 #elif defined(METROWIN)
 
-   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(psz)));
+   ::Windows::Storage::StorageFolder ^ folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(vsstring(psz)));
 
    ::Windows::Foundation::Collections::IVectorView < ::Windows::Storage::StorageFolder ^ > ^ a = wait(folder->GetFoldersAsync());
 
@@ -687,7 +687,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
 #elif defined(METROWIN)
 
-   str = ::Windows::Storage::KnownFolders::DocumentsLibrary->Path->Begin();
+   str = ::Windows::Storage::KnownFolders::DocumentsLibrary->Path;
 
 #else
 

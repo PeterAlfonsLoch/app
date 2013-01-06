@@ -22,7 +22,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool draw_dib::Begin ( ::ca::graphics * pdc, int32_t dxDest, int32_t dyDest,
+   bool draw_dib::begin ( ::ca::graphics * pdc, int32_t dxDest, int32_t dyDest,
       LPBITMAPINFOHEADER lpbi, int32_t dxSrc, int32_t dySrc, UINT wFlags )
    {
       UNREFERENCED_PARAMETER(pdc);

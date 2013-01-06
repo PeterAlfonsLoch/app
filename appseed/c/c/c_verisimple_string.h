@@ -13,12 +13,16 @@ public:
       npos = -1,
    };
 
+
    verisimple_string();
-   verisimple_string(const wchar_t * psz);
    verisimple_string(const char * psz);
+   verisimple_string(const wchar_t * psz);
    verisimple_string(char ch);
    verisimple_string(const char * psz, int_ptr count);
    verisimple_string(const verisimple_string & str);
+#ifdef METROWIN
+   inline verisimple_string(Platform::Object ^ str) { m_psz = NULL; operator = (str->ToString()->Begin()); }
+#endif
    ~verisimple_string();
 
    void trim_left();
@@ -35,6 +39,9 @@ public:
    verisimple_string & operator = (const char * psz);
    verisimple_string & operator = (const wchar_t * pwsz);
    verisimple_string & operator = (char ch);
+#ifdef METROWIN
+   inline verisimple_string &  operator = (Platform::Object ^ str) { m_psz = NULL; operator = (str->ToString()->Begin()); return *this; }
+#endif
 
    bool operator == (const char * psz) const;
    bool operator == (const verisimple_string &str) const;
@@ -61,6 +68,12 @@ public:
 
    inline operator char * () const { return m_psz; }
    inline operator char * () { return m_psz; }
+
+#ifdef METROWIN
+   inline operator Platform::String ^ () const;
+   inline operator Platform::String ^ ();
+#endif
+
 
    verisimple_string & operator += (const char * psz);
    verisimple_string & operator += (const verisimple_string & str);
@@ -101,9 +114,6 @@ public:
    int_ptr rfind(char ch, int_ptr iStart) const;
 
 
-#ifdef METROWIN
-   inline operator Platform::String ^ ();
-#endif
 
 
    void clear();
@@ -166,4 +176,5 @@ CLASS_DECL_c vsstring get_md5(const void * data, int_ptr c = -1);
 CLASS_DECL_c vsstring file_as_string_dup(const char * path);
 
 #define _unitext(text) (std_gen_international_unicode_to_utf8(L##text))
+
 

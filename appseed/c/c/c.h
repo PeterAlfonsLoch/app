@@ -206,7 +206,6 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 //#endif
 
 #ifndef WINDOWSEX
-CLASS_DECL_c COLORREF Session.get_default_color(DWORD dw);
 #ifndef LINUX
 CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow);
 #endif

@@ -4,7 +4,7 @@
  * Project:SQLiteDataset C++ Dynamic Library
  * Module: StringHelper class realisation file
  * Author: Leo Seib      E-Mail: lev@almaty.pointstrike.net
- * Begin: 5/04/2002
+ * begin: 5/04/2002
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

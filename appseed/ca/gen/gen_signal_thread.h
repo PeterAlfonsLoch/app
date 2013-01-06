@@ -58,7 +58,7 @@ namespace gen
       gen::signal_object * pobj)
    {
       signal_thread < DST, SRC > * pthread = new signal_thread < DST, SRC > (papp, psignalizableDst, pfnDst, psignalizableSrc, pfnSrc, pobj);
-      pthread->Begin();
+      pthread->begin();
    }
 
 } // namespace gen

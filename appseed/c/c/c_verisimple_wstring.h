@@ -140,6 +140,7 @@ public:
    inline operator wchar_t * () { return get_data()->m_iAllocation <= 0 ? NULL : m_pwsz; }
 
 #ifdef METROWIN
+   inline operator Platform::String ^ () const { return ref new Platform::String(operator const wchar_t *()); }
    inline operator Platform::String ^ () { return ref new Platform::String(operator const wchar_t *()); }
 #endif
 
@@ -281,8 +282,14 @@ public:
 
 
 #ifdef METROWIN
- inline verisimple_string::operator Platform::String ^()
- {
-    return ref new Platform::String(wstring(*this));
- }
+inline verisimple_string::operator Platform::String ^() const
+{
+   return ref new Platform::String(wstring(*this));
+}
+inline verisimple_string::operator Platform::String ^()
+{
+   return ref new Platform::String(wstring(*this));
+}
 #endif
+
+

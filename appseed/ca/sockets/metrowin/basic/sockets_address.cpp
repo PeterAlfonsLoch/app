@@ -5,28 +5,28 @@ namespace sockets
 {
 
 
-   address::address(::ca::application * papp, const char * pszAddress, const char * pszServiceName) :
+   address::address(::ca::application * papp, const string & strAddress, const string & strServiceName) :
       ca(papp)
    {
 
-      if(pszAddress == NULL)
-         m_hostname = nullptr;
+      if(strAddress.is_empty())
+         m_hostname  = nullptr;
       else
-         m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
+         m_hostname  = ref new ::Windows::Networking::HostName(strAddress);
 
-      m_strService   = rtstr(pszServiceName);
+      m_strService   = strServiceName;
 
    }
 
 
-   address::address(::ca::application * papp, const char * pszAddress, int iPort) :
+   address::address(::ca::application * papp, const string & strAddress, int iPort) :
       ca(papp)
    {
 
       try
       {
 
-         m_hostname     = ref new ::Windows::Networking::HostName(rtstr(pszAddress));
+         m_hostname     = ref new ::Windows::Networking::HostName(strAddress);
 
       }
       catch(...)
@@ -77,7 +77,7 @@ namespace sockets
    string address::get_display_number() const
    {
 
-      return gen::international::unicode_to_utf8(m_hostname->DisplayName->Begin());
+      return m_hostname->DisplayName;
 
    }
 
@@ -85,7 +85,7 @@ namespace sockets
    string address::get_canonical_name() const
    {
 
-      return gen::international::unicode_to_utf8(m_hostname->CanonicalName->Begin());
+      return m_hostname->CanonicalName;
 
    }
 
@@ -93,7 +93,7 @@ namespace sockets
    string address::get_service_name() const
    {
 
-      string strService = gen::international::unicode_to_utf8(m_strService->Begin());
+      string strService = m_strService;
 
       if(gen::str::is_simple_natural(strService))
          return service_number_to_name(gen::str::to_int(strService));
@@ -106,7 +106,7 @@ namespace sockets
    int address::get_service_number() const
    {
 
-      string strService = gen::international::unicode_to_utf8(m_strService->Begin());
+      string strService = m_strService;
 
       if(gen::str::is_simple_natural(strService))
          return gen::str::to_int(strService);

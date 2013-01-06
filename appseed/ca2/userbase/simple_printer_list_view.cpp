@@ -99,7 +99,7 @@ void simple_printer_list_view::_001OnClick(UINT nFlags, point point)
       ::user::print_job * pprintjob = new ::user::print_job(get_app());
       pprintjob->m_phprinter = Cube.get_printer(item.m_strText);
       m_pview->collaborate(pprintjob);
-      pprintjob->Begin();
+      pprintjob->begin();
    }
 }
 

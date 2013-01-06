@@ -162,7 +162,7 @@ namespace sockets
 
       bool reverse(string & number, const char * hostname, int flags = 0);
 
-      int service_port(const char * pszName, int ai_flags = 0);
+      int service_port(const string & strName, int ai_flags = 0);
 
       string service_name(int iPort, int ai_flags = 0);
 

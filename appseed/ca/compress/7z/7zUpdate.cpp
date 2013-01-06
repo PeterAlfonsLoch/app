@@ -1017,7 +1017,7 @@ namespace n7z
                threadDecoder.StartPos = db->GetFolderStreamPos(folderIndex, 0);
                threadDecoder.PackSizes = &db->PackSizes[db->FolderStartPackStreamIndex[folderIndex]];
 
-               threadDecoder.Begin();
+               threadDecoder.begin();
 
                count startPackIndex = newDatabase.PackSizes.get_count();
 

@@ -43,8 +43,8 @@ namespace colorertake5
             if (regionDefines[name] != NULL)
             {
                const TextRegion *rd = TextRegion::cast(regionDefines[name]);
-               delete rd->stext; delete rd->etext;
-               delete rd->sback; delete rd->eback;
+//               delete rd->stext; delete rd->etext;
+//               delete rd->sback; delete rd->eback;
                delete rd;
             }
             string stext;
@@ -104,8 +104,8 @@ namespace colorertake5
       RegionDefine *rd_old = regionDefines[name];
       if (rd_old != NULL){
          const TextRegion *rdef = TextRegion::cast(rd_old);
-         delete rdef->stext; delete rdef->etext;
-         delete rdef->sback; delete rdef->eback;
+//         delete rdef->stext; delete rdef->etext;
+  //       delete rdef->sback; delete rdef->eback;
          delete rdef;
       };
 

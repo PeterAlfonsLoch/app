@@ -807,7 +807,7 @@ namespace sockets
    port_t udp_socket::GetRemotePort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->Begin()));
+      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->begin()));
 
    }
    
@@ -815,7 +815,7 @@ namespace sockets
    address udp_socket::GetRemoteAddress()
    {
 
-      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemoteAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->Begin()));
+      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemoteAddress->CanonicalName->begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->begin()));
 
    }
 
@@ -823,7 +823,7 @@ namespace sockets
    port_t udp_socket::GetLocalPort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->Begin()));
+      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->begin()));
 
    }
      
@@ -831,7 +831,7 @@ namespace sockets
    address udp_socket::GetLocalAddress()
    {
 
-      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->Begin()));
+      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalAddress->CanonicalName->begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->begin()));
 
    }
 

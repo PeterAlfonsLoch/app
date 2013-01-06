@@ -157,7 +157,7 @@ namespace sockets
    port_t stream_socket::GetRemotePort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_streamsocket->Information->RemotePort->Begin()));
+      return System.net().service_port(m_streamsocket->Information->RemotePort);
 
    }
    
@@ -165,7 +165,7 @@ namespace sockets
    address stream_socket::GetRemoteAddress()
    {
 
-      return address(get_app(), gen::international::unicode_to_utf8(m_streamsocket->Information->RemoteAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_streamsocket->Information->RemotePort->Begin()));
+      return address(get_app(), m_streamsocket->Information->RemoteAddress->CanonicalName, m_streamsocket->Information->RemotePort);
 
    }
 
@@ -173,7 +173,7 @@ namespace sockets
    port_t stream_socket::GetLocalPort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->Begin()));
+      return System.net().service_port(gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->begin()));
 
    }
      
@@ -181,7 +181,7 @@ namespace sockets
    address stream_socket::GetLocalAddress()
    {
 
-      return address(get_app(), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalAddress->CanonicalName->Begin()), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->Begin()));
+      return address(get_app(), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalAddress->CanonicalName->begin()), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->begin()));
 
    }
 

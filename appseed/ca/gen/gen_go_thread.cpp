@@ -17,7 +17,7 @@ go_thread::~go_thread()
 void go_thread::start()
 {
    m_bRelease = false;
-   Begin();
+   begin();
    m_bRelease = m_bStartRelease;
 }
 

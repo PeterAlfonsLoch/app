@@ -606,6 +606,13 @@ public:
       return( m_pszData );
    }
 
+#ifdef METROWIN
+   inline operator Platform::String ^() const
+   {
+      return ref new Platform::String(wstring(*this));
+   }
+#endif
+
    void append(PCXSTR pszSrc )
    {
       append( pszSrc, StringLength( pszSrc ) );

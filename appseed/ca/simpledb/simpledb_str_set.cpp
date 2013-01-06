@@ -398,7 +398,7 @@ bool db_str_set::save(const char * lpKey, const char * lpcsz)
 
          m_pqueue = new sync_queue(get_app());
          m_pqueue->m_pset = this;
-         m_pqueue->Begin();
+         m_pqueue->begin();
 
       }
 

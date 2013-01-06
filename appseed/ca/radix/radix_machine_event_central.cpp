@@ -16,7 +16,7 @@ bool machine_event_central::initialize()
 {
    if(m_bInitialized)
       return true;
-   if(!Begin())
+   if(!begin())
       return false;
    m_bInitialized = true;
    return m_bInitialized;

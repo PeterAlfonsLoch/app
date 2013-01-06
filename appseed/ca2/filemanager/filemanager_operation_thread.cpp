@@ -127,7 +127,7 @@ void file_manager_operation_thread::kick()
    m_estate = filemanager::state_start;
    m_bStop = false;
    m_iOperation = 0;
-   Begin();
+   begin();
 }
 
 void file_manager_operation_thread::queue_copy(stringa & stra, const char * pszDstBase, const char * pszSrcBase, bool bExpand,

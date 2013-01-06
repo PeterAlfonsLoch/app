@@ -2,6 +2,7 @@
 #include <regex>
 
 
+/*
 CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
 {
    if(psz == NULL)
@@ -9,6 +10,7 @@ CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
    return ref new Platform::String(wstring(psz));
 
 }
+*/
 
 CLASS_DECL_c Platform::String ^ itort(int i)
 {

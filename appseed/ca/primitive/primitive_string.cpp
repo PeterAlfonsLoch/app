@@ -795,6 +795,19 @@ string::string(const wchar_t * pszSrc,string_manager * pstringmanager ) :
    //      }
 }
 
+#ifdef METROWIN
+
+string::string(Platform::Object ^ o) :
+   simple_string( string_trait::GetDefaultManager() )
+{
+   //      if( !CheckImplicitLoad( pszSrc ) )
+   //      {
+   *this = o->ToString()->Begin();
+   //      }
+}
+
+#endif
+
 string::string( const uchar* pszSrc ) :
    simple_string( string_trait::GetDefaultManager() )
 {

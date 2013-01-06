@@ -586,7 +586,7 @@ template < class THREAD_TYPE >
 THREAD_TYPE * __begin_thread (::ca::application * papp, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL)
 {
    THREAD_TYPE * pthread = new THREAD_TYPE(papp);
-   pthread->Begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
+   pthread->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
    return pthread;
 }
 

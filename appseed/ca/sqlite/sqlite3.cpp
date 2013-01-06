@@ -34,7 +34,7 @@ namespace sqlite
 #ifndef SQLITE_API
 # define SQLITE_API
 #endif
-   /************** Begin file sqliteInt.h ***************************************/
+   /************** begin file sqliteInt.h ***************************************/
    /*
    ** 2001 September 15
    **
@@ -58,7 +58,7 @@ namespace sqlite
    ** (otherwise we get an is_empty default).
    */
    /************** Include config.h in the middle of sqliteInt.h ****************/
-   /************** Begin file config.h ******************************************/
+   /************** begin file config.h ******************************************/
    /*
    ** 2008 March 6
    **
@@ -152,7 +152,7 @@ namespace sqlite
 
 
    /************** Include sqliteLimit.h in the middle of sqliteInt.h ***********/
-   /************** Begin file sqliteLimit.h *************************************/
+   /************** begin file sqliteLimit.h *************************************/
    /*
    ** 2007 May 7
    **
@@ -459,7 +459,7 @@ namespace sqlite
 #endif
 
    /************** Include sqlite3.h in the middle of sqliteInt.h ***************/
-   /************** Begin file sqlite3.h *****************************************/
+   /************** begin file sqlite3.h *****************************************/
    /*
    ** 2001 September 15
    **
@@ -5876,7 +5876,7 @@ namespace sqlite
    /************** End of sqlite3.h *********************************************/
    /************** Continuing where we left off in sqliteInt.h ******************/
    /************** Include hash.h in the middle of sqliteInt.h ******************/
-   /************** Begin file hash.h ********************************************/
+   /************** begin file hash.h ********************************************/
    /*
    ** 2001 September 22
    **
@@ -5991,7 +5991,7 @@ namespace sqlite
    /************** End of hash.h ************************************************/
    /************** Continuing where we left off in sqliteInt.h ******************/
    /************** Include parse.h in the middle of sqliteInt.h *****************/
-   /************** Begin file parse.h *******************************************/
+   /************** begin file parse.h *******************************************/
 #define TK_SEMI                            1
 #define TK_EXPLAIN                         2
 #define TK_QUERY                           3
@@ -6382,7 +6382,7 @@ namespace sqlite
    ** pointer types (i.e. FuncDef) defined above.
    */
    /************** Include btree.h in the middle of sqliteInt.h *****************/
-   /************** Begin file btree.h *******************************************/
+   /************** begin file btree.h *******************************************/
    /*
    ** 2001 September 15
    **
@@ -6590,7 +6590,7 @@ namespace sqlite
    /************** End of btree.h ***********************************************/
    /************** Continuing where we left off in sqliteInt.h ******************/
    /************** Include vdbe.h in the middle of sqliteInt.h ******************/
-   /************** Begin file vdbe.h ********************************************/
+   /************** begin file vdbe.h ********************************************/
    /*
    ** 2001 September 15
    **
@@ -6726,7 +6726,7 @@ namespace sqlite
    ** header file that defines a number for each opcode used by the VDBE.
    */
    /************** Include opcodes.h in the middle of vdbe.h ********************/
-   /************** Begin file opcodes.h *****************************************/
+   /************** begin file opcodes.h *****************************************/
    /* Automatically generated.  Do not edit */
    /* See the mkopcodeh.awk script for details */
 #define OP_VNext                                1
@@ -6958,7 +6958,7 @@ namespace sqlite
    /************** End of vdbe.h ************************************************/
    /************** Continuing where we left off in sqliteInt.h ******************/
    /************** Include pager.h in the middle of sqliteInt.h *****************/
-   /************** Begin file pager.h *******************************************/
+   /************** begin file pager.h *******************************************/
    /*
    ** 2001 September 15
    **
@@ -7089,7 +7089,7 @@ namespace sqlite
    /************** Continuing where we left off in sqliteInt.h ******************/
 
    /************** Include os.h in the middle of sqliteInt.h ********************/
-   /************** Begin file os.h **********************************************/
+   /************** begin file os.h **********************************************/
    /*
    ** 2001 September 16
    **
@@ -7369,7 +7369,7 @@ namespace sqlite
    /************** End of os.h **************************************************/
    /************** Continuing where we left off in sqliteInt.h ******************/
    /************** Include mutex.h in the middle of sqliteInt.h *****************/
-   /************** Begin file mutex.h *******************************************/
+   /************** begin file mutex.h *******************************************/
    /*
    ** 2007 August 28
    **
@@ -9181,7 +9181,7 @@ namespace sqlite
 #endif
 
    /************** End of sqliteInt.h *******************************************/
-   /************** Begin file date.c ********************************************/
+   /************** begin file date.c ********************************************/
    /*
    ** 2003 October 31
    **
@@ -10228,7 +10228,7 @@ zulu_time:
    }
 
    /************** End of date.c ************************************************/
-   /************** Begin file os.c **********************************************/
+   /************** begin file os.c **********************************************/
    /*
    ** 2005 November 29
    **
@@ -10497,7 +10497,7 @@ zulu_time:
    }
 
    /************** End of os.c **************************************************/
-   /************** Begin file fault.c *******************************************/
+   /************** begin file fault.c *******************************************/
    /*
    ** 2008 Jan 22
    **
@@ -10646,7 +10646,7 @@ zulu_time:
 #endif /* SQLITE_OMIT_FAULTINJECTOR */
 
    /************** End of fault.c ***********************************************/
-   /************** Begin file mem1.c ********************************************/
+   /************** begin file mem1.c ********************************************/
    /*
    ** 2007 August 14
    **
@@ -10875,7 +10875,7 @@ zulu_time:
 #endif /* SQLITE_SYSTEM_MALLOC */
 
    /************** End of mem1.c ************************************************/
-   /************** Begin file mem2.c ********************************************/
+   /************** begin file mem2.c ********************************************/
    /*
    ** 2007 August 15
    **
@@ -11334,7 +11334,7 @@ zulu_time:
 #endif /* SQLITE_MEMDEBUG */
 
    /************** End of mem2.c ************************************************/
-   /************** Begin file mem3.c ********************************************/
+   /************** begin file mem3.c ********************************************/
    /*
    ** 2007 October 14
    **
@@ -11989,7 +11989,7 @@ zulu_time:
 #endif /* !SQLITE_MEMORY_SIZE */
 
    /************** End of mem3.c ************************************************/
-   /************** Begin file mem5.c ********************************************/
+   /************** begin file mem5.c ********************************************/
    /*
    ** 2007 October 14
    **
@@ -12502,7 +12502,7 @@ zulu_time:
 #endif /* !SQLITE_POW2_MEMORY_SIZE */
 
    /************** End of mem5.c ************************************************/
-   /************** Begin file mutex.c *******************************************/
+   /************** begin file mutex.c *******************************************/
    /*
    ** 2007 August 14
    **
@@ -12630,7 +12630,7 @@ zulu_time:
 #endif /* SQLITE_MUTEX_NOOP_DEBUG */
 
    /************** End of mutex.c ***********************************************/
-   /************** Begin file mutex_os2.c ***************************************/
+   /************** begin file mutex_os2.c ***************************************/
    /*
    ** 2007 August 28
    **
@@ -12877,7 +12877,7 @@ zulu_time:
 #endif /* SQLITE_MUTEX_OS2 */
 
    /************** End of mutex_os2.c *******************************************/
-   /************** Begin file mutex_unix.c **************************************/
+   /************** begin file mutex_unix.c **************************************/
    /*
    ** 2007 August 28
    **
@@ -13181,7 +13181,7 @@ zulu_time:
 #endif /* SQLITE_MUTEX_PTHREAD */
 
    /************** End of mutex_unix.c ******************************************/
-   /************** Begin file mutex_w32.c ***************************************/
+   /************** begin file mutex_w32.c ***************************************/
    /*
    ** 2007 August 14
    **
@@ -13406,7 +13406,7 @@ zulu_time:
 #endif /* SQLITE_MUTEX_W32 */
 
    /************** End of mutex_w32.c *******************************************/
-   /************** Begin file ca2_alloc.c ******************************************/
+   /************** begin file ca2_alloc.c ******************************************/
    /*
    ** 2001 September 15
    **
@@ -13645,7 +13645,7 @@ zulu_time:
    }
 
    /************** End of ca2_alloc.c **********************************************/
-   /************** Begin file printf.c ******************************************/
+   /************** begin file printf.c ******************************************/
    /*
    ** The "printf" code that follows dates from the 1980's.  It is in
    ** the public domain.  The original comments are included here for
@@ -14551,7 +14551,7 @@ zulu_time:
 #endif
 
    /************** End of printf.c **********************************************/
-   /************** Begin file random.c ******************************************/
+   /************** begin file random.c ******************************************/
    /*
    ** 2001 September 15
    **
@@ -14674,7 +14674,7 @@ zulu_time:
 #endif /* SQLITE_TEST */
 
    /************** End of random.c **********************************************/
-   /************** Begin file utf.c *********************************************/
+   /************** begin file utf.c *********************************************/
    /*
    ** 2004 April 13
    **
@@ -14713,7 +14713,7 @@ zulu_time:
    **
    */
    /************** Include vdbeInt.h in the middle of utf.c *********************/
-   /************** Begin file vdbeInt.h *****************************************/
+   /************** begin file vdbeInt.h *****************************************/
    /*
    ** 2003 September 6
    **
@@ -15618,7 +15618,7 @@ translate_out:
 #endif /* SQLITE_OMIT_UTF16 */
 
    /************** End of utf.c *************************************************/
-   /************** Begin file util.c ********************************************/
+   /************** begin file util.c ********************************************/
    /*
    ** 2001 September 15
    **
@@ -16342,7 +16342,7 @@ translate_out:
    }
 
    /************** End of util.c ************************************************/
-   /************** Begin file hash.c ********************************************/
+   /************** begin file hash.c ********************************************/
    /*
    ** 2001 September 22
    **
@@ -16766,7 +16766,7 @@ translate_out:
    }
 
    /************** End of hash.c ************************************************/
-   /************** Begin file opcodes.c *****************************************/
+   /************** begin file opcodes.c *****************************************/
    /* Automatically generated.  Do not edit */
    /* See the mkopcodec.awk script for details. */
 #if !defined(SQLITE_OMIT_EXPLAIN) || !defined(NDEBUG) || defined(VDBE_PROFILE) || defined(SQLITE_DEBUG)
@@ -16920,7 +16920,7 @@ translate_out:
 #endif
 
    /************** End of opcodes.c *********************************************/
-   /************** Begin file os_os2.c ******************************************/
+   /************** begin file os_os2.c ******************************************/
    /*
    ** 2006 Feb 14
    **
@@ -16976,7 +16976,7 @@ translate_out:
    ** Include code that is common to all os_*.c files
    */
    /************** Include os_common.h in the middle of os_os2.c ****************/
-   /************** Begin file os_common.h ***************************************/
+   /************** begin file os_common.h ***************************************/
    /*
    ** 2004 May 22
    **
@@ -17162,7 +17162,7 @@ translate_out:
       sqlite3_file *id,               /* File to read from */
       void *pBuf,                     /* Write content into this buffer */
       int32_t amt,                        /* Number of bytes to read */
-      sqlite3_int64 offset            /* Begin reading at this offset */
+      sqlite3_int64 offset            /* begin reading at this offset */
       ){
          ULONG fileLocation = 0L;
          ULONG got;
@@ -18041,7 +18041,7 @@ translate_out:
 #endif /* OS_OS2 */
 
    /************** End of os_os2.c **********************************************/
-   /************** Begin file os_unix.c *****************************************/
+   /************** begin file os_unix.c *****************************************/
    /*
    ** 2004 May 22
    **
@@ -18146,7 +18146,7 @@ translate_out:
    ** Include code that is common to all os_*.c files
    */
    /************** Include os_common.h in the middle of os_unix.c ***************/
-   /************** Begin file os_common.h ***************************************/
+   /************** begin file os_common.h ***************************************/
    /*
    ** 2004 May 22
    **
@@ -20948,7 +20948,7 @@ afp_end_lock:
 #endif /* OS_UNIX */
 
    /************** End of os_unix.c *********************************************/
-   /************** Begin file os_win.c ******************************************/
+   /************** begin file os_win.c ******************************************/
    /*
    ** 2004 May 22
    **
@@ -21009,7 +21009,7 @@ afp_end_lock:
    ** Include code that is common to all os_*.c files
    */
    /************** Include os_common.h in the middle of os_win.c ****************/
-   /************** Begin file os_common.h ***************************************/
+   /************** begin file os_common.h ***************************************/
    /*
    ** 2004 May 22
    **
@@ -21729,7 +21729,7 @@ afp_end_lock:
       sqlite3_file *id,          /* File to read from */
       void *pBuf,                /* Write content into this buffer */
       int32_t amt,                   /* Number of bytes to read */
-      sqlite3_int64 offset       /* Begin reading at this offset */
+      sqlite3_int64 offset       /* begin reading at this offset */
       ){
          LONG upperBits = (offset>>32) & 0x7fffffff;
          LONG lowerBits = offset & 0xffffffff;
@@ -22669,7 +22669,7 @@ afp_end_lock:
 #endif /* OS_WIN */
 
    /************** End of os_win.c **********************************************/
-   /************** Begin file bitvec.c ******************************************/
+   /************** begin file bitvec.c ******************************************/
    /*
    ** 2008 February 16
    **
@@ -22882,7 +22882,7 @@ afp_end_lock:
    }
 
    /************** End of bitvec.c **********************************************/
-   /************** Begin file pager.c *******************************************/
+   /************** begin file pager.c *******************************************/
    /*
    ** 2001 September 15
    **
@@ -28055,7 +28055,7 @@ stmt_begin_failed:
 #endif /* SQLITE_OMIT_DISKIO */
 
    /************** End of pager.c ***********************************************/
-   /************** Begin file btmutex.c *****************************************/
+   /************** begin file btmutex.c *****************************************/
    /*
    ** 2007 August 27
    **
@@ -28076,7 +28076,7 @@ stmt_begin_failed:
    ** a good breakout.
    */
    /************** Include btreeInt.h in the middle of btmutex.c ****************/
-   /************** Begin file btreeInt.h ****************************************/
+   /************** begin file btreeInt.h ****************************************/
    /*
    ** 2004 April 6
    **
@@ -29028,7 +29028,7 @@ stmt_begin_failed:
 #endif  /* SQLITE_THREADSAFE && !SQLITE_OMIT_SHARED_CACHE */
 
    /************** End of btmutex.c *********************************************/
-   /************** Begin file btree.c *******************************************/
+   /************** begin file btree.c *******************************************/
    /*
    ** 2004 April 6
    **
@@ -32100,7 +32100,7 @@ create_cursor_exception:
    */
    static int32_t accessPayload(
       BtCursor *pCur,      /* Cursor pointing to entry to read from */
-      int32_t offset,          /* Begin reading this far into payload */
+      int32_t offset,          /* begin reading this far into payload */
       int32_t amt,             /* Read this many bytes */
       uchar *pBuf, /* Write the bytes into this buffer */
       int32_t skipKey,         /* offset begins at data if this is true */
@@ -35974,7 +35974,7 @@ cleardatabasepage_out:
 #endif
 
    /************** End of btree.c ***********************************************/
-   /************** Begin file vdbefifo.c ****************************************/
+   /************** begin file vdbefifo.c ****************************************/
    /*
    ** 2005 June 16
    **
@@ -36101,7 +36101,7 @@ cleardatabasepage_out:
    }
 
    /************** End of vdbefifo.c ********************************************/
-   /************** Begin file vdbemem.c *****************************************/
+   /************** begin file vdbemem.c *****************************************/
    /*
    ** 2004 May 26
    **
@@ -37166,7 +37166,7 @@ no_mem:
    }
 
    /************** End of vdbemem.c *********************************************/
-   /************** Begin file vdbeaux.c *****************************************/
+   /************** begin file vdbeaux.c *****************************************/
    /*
    ** 2003 September 6
    **
@@ -39512,7 +39512,7 @@ no_mem:
    }
 
    /************** End of vdbeaux.c *********************************************/
-   /************** Begin file vdbeapi.c *****************************************/
+   /************** begin file vdbeapi.c *****************************************/
    /*
    ** 2004 May 26
    **
@@ -40580,7 +40580,7 @@ failed:
    }
 
    /************** End of vdbeapi.c *********************************************/
-   /************** Begin file vdbe.c ********************************************/
+   /************** begin file vdbe.c ********************************************/
    /*
    ** 2001 September 15
    **
@@ -42762,7 +42762,7 @@ op_column_out:
 
                                    /* Opcode: Statement P1 * * * *
                                    **
-                                   ** Begin an individual statement transaction which is part of a larger
+                                   ** begin an individual statement transaction which is part of a larger
                                    ** BEGIN..COMMIT transaction.  This is needed so that the statement
                                    ** can be rolled back after an error without having to roll back the
                                    ** entire transaction.  The statement transaction will automatically
@@ -42847,7 +42847,7 @@ op_column_out:
 
                                    /* Opcode: Transaction P1 P2 * * *
                                    **
-                                   ** Begin a transaction.  The transaction ends when a Commit or Rollback
+                                   ** begin a transaction.  The transaction ends when a Commit or Rollback
                                    ** opcode is encountered.  Depending on the ON CONFLICT setting, the
                                    ** transaction might also be rolled back if an error is encountered.
                                    **
@@ -45396,7 +45396,7 @@ abort_due_to_interrupt:
    }
 
    /************** End of vdbe.c ************************************************/
-   /************** Begin file vdbeblob.c ****************************************/
+   /************** begin file vdbeblob.c ****************************************/
    /*
    ** 2007 May 1
    **
@@ -45734,7 +45734,7 @@ blob_open_out:
 #endif /* #ifndef SQLITE_OMIT_INCRBLOB */
 
    /************** End of vdbeblob.c ********************************************/
-   /************** Begin file journal.c *****************************************/
+   /************** begin file journal.c *****************************************/
    /*
    ** 2007 August 22
    **
@@ -45825,7 +45825,7 @@ blob_open_out:
       sqlite3_file *pJfd,    /* The journal file from which to read */
       void *zBuf,            /* Put the results here */
       int32_t iAmt,              /* Number of bytes to read */
-      sqlite_int64 iOfst     /* Begin reading at this offset */
+      sqlite_int64 iOfst     /* begin reading at this offset */
       ){
          int32_t rc = SQLITE_OK;
          JournalFile *p = (JournalFile *)pJfd;
@@ -45845,7 +45845,7 @@ blob_open_out:
       sqlite3_file *pJfd,    /* The journal file into which to write */
       const void *zBuf,      /* Take data to be written from here */
       int32_t iAmt,              /* Number of bytes to write */
-      sqlite_int64 iOfst     /* Begin writing at this offset into the file */
+      sqlite_int64 iOfst     /* begin writing at this offset into the file */
       ){
          int32_t rc = SQLITE_OK;
          JournalFile *p = (JournalFile *)pJfd;
@@ -45974,7 +45974,7 @@ blob_open_out:
 #endif
 
    /************** End of journal.c *********************************************/
-   /************** Begin file expr.c ********************************************/
+   /************** begin file expr.c ********************************************/
    /*
    ** 2001 September 15
    **
@@ -48958,7 +48958,7 @@ lookupname_end_2:
    }
 
    /************** End of expr.c ************************************************/
-   /************** Begin file alter.c *******************************************/
+   /************** begin file alter.c *******************************************/
    /*
    ** 2005 February 15
    **
@@ -49302,7 +49302,7 @@ lookupname_end_2:
          }
 #endif
 
-         /* Begin a transaction and code the VerifyCookie for database iDb.
+         /* begin a transaction and code the VerifyCookie for database iDb.
          ** Then modify the schema cookie (since the ALTER TABLE modifies the
          ** schema). open a statement transaction if the table is a virtual
          ** table.
@@ -49576,7 +49576,7 @@ exit_rename_table:
       pNew->addColOffset = pTab->addColOffset;
       pNew->nRef = 1;
 
-      /* Begin a transaction and increment the schema cookie.  */
+      /* begin a transaction and increment the schema cookie.  */
       sqlite3BeginWriteOperation(pParse, 0, iDb);
       v = sqlite3GetVdbe(pParse);
       if( !v ) goto exit_begin_add_column;
@@ -49589,7 +49589,7 @@ exit_begin_add_column:
 #endif  /* SQLITE_ALTER_TABLE */
 
    /************** End of alter.c ***********************************************/
-   /************** Begin file analyze.c *****************************************/
+   /************** begin file analyze.c *****************************************/
    /*
    ** 2005 July 8
    **
@@ -50016,7 +50016,7 @@ exit_begin_add_column:
 #endif /* SQLITE_OMIT_ANALYZE */
 
    /************** End of analyze.c *********************************************/
-   /************** Begin file attach.c ******************************************/
+   /************** begin file attach.c ******************************************/
    /*
    ** 2003 April 6
    **
@@ -50545,7 +50545,7 @@ attach_end:
 #endif
 
    /************** End of attach.c **********************************************/
-   /************** Begin file auth.c ********************************************/
+   /************** begin file auth.c ********************************************/
    /*
    ** 2003 January 11
    **
@@ -50781,7 +50781,7 @@ attach_end:
 #endif /* SQLITE_OMIT_AUTHORIZATION */
 
    /************** End of auth.c ************************************************/
-   /************** Begin file build.c *******************************************/
+   /************** begin file build.c *******************************************/
    /*
    ** 2001 September 15
    **
@@ -50928,7 +50928,7 @@ attach_end:
          }
       }
 
-      /* Begin by generating some termination code at the end of the
+      /* begin by generating some termination code at the end of the
       ** vdbe program
       */
       v = sqlite3GetVdbe(pParse);
@@ -51480,7 +51480,7 @@ attach_end:
    }
 
    /*
-   ** Begin constructing a new table representation in primitive::memory.  This is
+   ** begin constructing a new table representation in primitive::memory.  This is
    ** the first of several action routines that get called in response
    ** to a CREATE TABLE statement.  In particular, this routine is called
    ** after seeing tokens "CREATE" and "TABLE" and the table name. The isTemp
@@ -51619,7 +51619,7 @@ attach_end:
          }
 #endif
 
-         /* Begin generating the code that will insert the table record into
+         /* begin generating the code that will insert the table record into
          ** the SQLITE_MASTER table.  Note in particular that we must go ahead
          ** and allocate the record number for the table entry now.  Before any
          ** PRIMARY KEY or UNIQUE keywords are parsed.  Those keywords will cause
@@ -53920,7 +53920,7 @@ exit_drop_index:
    }
 
    /*
-   ** Begin a transaction
+   ** begin a transaction
    */
    SQLITE_PRIVATE void sqlite3BeginTransaction(Parse *pParse, int32_t type){
       sqlite3 *db;
@@ -54249,7 +54249,7 @@ exit_drop_index:
    }
 
    /************** End of build.c ***********************************************/
-   /************** Begin file callback.c ****************************************/
+   /************** begin file callback.c ****************************************/
    /*
    ** 2005 May 23
    **
@@ -54629,7 +54629,7 @@ exit_drop_index:
    }
 
    /************** End of callback.c ********************************************/
-   /************** Begin file delete.c ******************************************/
+   /************** begin file delete.c ******************************************/
    /*
    ** 2001 September 15
    **
@@ -54848,7 +54848,7 @@ exit_drop_index:
             sqlite3AuthContextPush(pParse, &sContext, pTab->zName);
          }
 
-         /* Begin generating code.
+         /* begin generating code.
          */
          v = sqlite3GetVdbe(pParse);
          if( v==0 ){
@@ -54933,7 +54933,7 @@ exit_drop_index:
          else{
             int32_t iRowid = ++pParse->nMem;    /* Used for storing rowid values. */
 
-            /* Begin the database scan
+            /* begin the database scan
             */
             pWInfo = sqlite3WhereBegin(pParse, pTabList, pWhere, 0, 0);
             if( pWInfo==0 ) goto delete_from_cleanup;
@@ -55170,7 +55170,7 @@ delete_from_cleanup:
    }
 
    /************** End of delete.c **********************************************/
-   /************** Begin file func.c ********************************************/
+   /************** begin file func.c ********************************************/
    /*
    ** 2002 February 23
    **
@@ -56741,7 +56741,7 @@ delete_from_cleanup:
    }
 
    /************** End of func.c ************************************************/
-   /************** Begin file insert.c ******************************************/
+   /************** begin file insert.c ******************************************/
    /*
    ** 2001 September 15
    **
@@ -58408,7 +58408,7 @@ insert_cleanup:
 #endif /* SQLITE_OMIT_XFER_OPT */
 
    /************** End of insert.c **********************************************/
-   /************** Begin file legacy.c ******************************************/
+   /************** begin file legacy.c ******************************************/
    /*
    ** 2001 September 15
    **
@@ -58551,7 +58551,7 @@ exec_out:
    }
 
    /************** End of legacy.c **********************************************/
-   /************** Begin file loadext.c *****************************************/
+   /************** begin file loadext.c *****************************************/
    /*
    ** 2006 June 7
    **
@@ -58572,7 +58572,7 @@ exec_out:
 #define SQLITE_CORE 1  /* Disable the API redefinition in sqlite3ext.h */
 #endif
    /************** Include sqlite3ext.h in the middle of loadext.c **************/
-   /************** Begin file sqlite3ext.h **************************************/
+   /************** begin file sqlite3ext.h **************************************/
    /*
    ** 2006 June 7
    **
@@ -59422,7 +59422,7 @@ exec_out:
 #endif /* SQLITE_OMIT_LOAD_EXTENSION */
 
    /************** End of loadext.c *********************************************/
-   /************** Begin file pragma.c ******************************************/
+   /************** begin file pragma.c ******************************************/
    /*
    ** 2003 April 6
    **
@@ -60300,7 +60300,7 @@ exec_out:
 
                                                                            /* Do an integrity check of the B-Tree
                                                                            **
-                                                                           ** Begin by filling registers 2, 3, ... with the root pages numbers
+                                                                           ** begin by filling registers 2, 3, ... with the root pages numbers
                                                                            ** for all tables and indices in the database.
                                                                            */
                                                                            pTbls = &db->aDb[i].pSchema->tblHash;
@@ -60651,7 +60651,7 @@ pragma_out:
 #endif /* SQLITE_OMIT_PRAGMA || SQLITE_OMIT_PARSER */
 
    /************** End of pragma.c **********************************************/
-   /************** Begin file prepare.c *****************************************/
+   /************** begin file prepare.c *****************************************/
    /*
    ** 2005 May 25
    **
@@ -61432,7 +61432,7 @@ error_out:
 #endif /* SQLITE_OMIT_UTF16 */
 
    /************** End of prepare.c *********************************************/
-   /************** Begin file select.c ******************************************/
+   /************** begin file select.c ******************************************/
    /*
    ** 2001 September 15
    **
@@ -63502,7 +63502,7 @@ error_out:
             int32_t r1;
 
             /* INTERSECT is different from the others since it requires
-            ** two temporary tables.  Hence it has its own case.  Begin
+            ** two temporary tables.  Hence it has its own case.  begin
             ** by allocating the tables we will need.
             */
             tab1 = pParse->nTab++;
@@ -64528,7 +64528,7 @@ multi_select_end:
             pOrderBy = 0;
          }
 
-         /* Begin generating code.
+         /* begin generating code.
          */
          v = sqlite3GetVdbe(pParse);
          if( v==0 ) goto select_end;
@@ -64649,7 +64649,7 @@ multi_select_end:
          /* Aggregate and non-aggregate queries are handled differently */
          if( !isAgg && pGroupBy==0 ){
             /* This case is for non-aggregate queries
-            ** Begin the database scan
+            ** begin the database scan
             */
             pWInfo = sqlite3WhereBegin(pParse, pTabList, pWhere, &pOrderBy, 0);
             if( pWInfo==0 ) goto select_end;
@@ -64789,7 +64789,7 @@ multi_select_end:
                resetAccumulator(pParse, &sAggInfo);
                sqlite3VdbeAddOp2(v, OP_Return, 0, 0);
 
-               /* Begin a loop that will extract all source rows in GROUP BY order.
+               /* begin a loop that will extract all source rows in GROUP BY order.
                ** This might involve two separate loops with an OP_Sort in between, or
                ** it might be a single loop that uses an index to extract information
                ** in the right order to begin with.
@@ -65128,7 +65128,7 @@ select_end:
 #endif /* defined(SQLITE_TEST) || defined(SQLITE_DEBUG) */
 
    /************** End of select.c **********************************************/
-   /************** Begin file table.c *******************************************/
+   /************** begin file table.c *******************************************/
    /*
    ** 2001 September 15
    **
@@ -65327,7 +65327,7 @@ malloc_failed:
 #endif /* SQLITE_OMIT_GET_TABLE */
 
    /************** End of table.c ***********************************************/
-   /************** Begin file trigger.c *****************************************/
+   /************** begin file trigger.c *****************************************/
    /*
    **
    ** The author disclaims copyright to this source code.  In place of
@@ -66180,7 +66180,7 @@ drop_trigger_cleanup:
 #endif /* !defined(SQLITE_OMIT_TRIGGER) */
 
    /************** End of trigger.c *********************************************/
-   /************** Begin file update.c ******************************************/
+   /************** begin file update.c ******************************************/
    /*
    ** 2001 September 15
    **
@@ -66453,7 +66453,7 @@ drop_trigger_cleanup:
          regData = regNewRowid+1;
 
 
-         /* Begin generating code.
+         /* begin generating code.
          */
          v = sqlite3GetVdbe(pParse);
          if( v==0 ) goto update_cleanup;
@@ -66521,7 +66521,7 @@ drop_trigger_cleanup:
             goto update_cleanup;
          }
 
-         /* Begin the database scan
+         /* begin the database scan
          */
          pWInfo = sqlite3WhereBegin(pParse, pTabList, pWhere, 0, 0);
          if( pWInfo==0 ) goto update_cleanup;
@@ -66845,7 +66845,7 @@ update_cleanup:
 #endif /* SQLITE_OMIT_VIRTUALTABLE */
 
    /************** End of update.c **********************************************/
-   /************** Begin file vacuum.c ******************************************/
+   /************** begin file vacuum.c ******************************************/
    /*
    ** 2003 April 6
    **
@@ -66975,7 +66975,7 @@ update_cleanup:
          sqlite3BtreeGetAutoVacuum(pMain));
 #endif
 
-      /* Begin a transaction */
+      /* begin a transaction */
       rc = execSql(db, "BEGIN EXCLUSIVE;");
       if( rc!=SQLITE_OK ) goto end_of_vacuum;
 
@@ -67109,7 +67109,7 @@ end_of_vacuum:
 #endif  /* SQLITE_OMIT_VACUUM && SQLITE_OMIT_ATTACH */
 
    /************** End of vacuum.c **********************************************/
-   /************** Begin file vtab.c ********************************************/
+   /************** begin file vtab.c ********************************************/
    /*
    ** 2006 June 10
    **
@@ -67909,7 +67909,7 @@ end_of_vacuum:
 #endif /* SQLITE_OMIT_VIRTUALTABLE */
 
    /************** End of vtab.c ************************************************/
-   /************** Begin file where.c *******************************************/
+   /************** begin file where.c *******************************************/
    /*
    ** 2001 September 15
    **
@@ -70780,7 +70780,7 @@ whereBeginNoMem:
    }
 
    /************** End of where.c ***********************************************/
-   /************** Begin file parse.c *******************************************/
+   /************** begin file parse.c *******************************************/
    /* Driver template for the LEMON parser generator.
    ** The author disclaims copyright to this source code.
    */
@@ -73798,13 +73798,13 @@ whereBeginNoMem:
                **
                **  * Call the %syntax_error function.
                **
-               **  * Begin popping the stack until we enter a state where
+               **  * begin popping the stack until we enter a state where
                **    it is legal to shift the error symbol, then shift
                **    the error symbol.
                **
                **  * Set the error count to three.
                **
-               **  * Begin accepting and shifting new tokens.  No new error
+               **  * begin accepting and shifting new tokens.  No new error
                **    processing will occur until three tokens have been
                **    shifted successfully.
                **
@@ -73870,7 +73870,7 @@ whereBeginNoMem:
    }
 
    /************** End of parse.c ***********************************************/
-   /************** Begin file tokenize.c ****************************************/
+   /************** begin file tokenize.c ****************************************/
    /*
    ** 2001 September 15
    **
@@ -73936,7 +73936,7 @@ whereBeginNoMem:
    ** the #include below.
    */
    /************** Include keywordhash.h in the middle of tokenize.c ************/
-   /************** Begin file keywordhash.h *************************************/
+   /************** begin file keywordhash.h *************************************/
    /***** This file contains automatically generated code ******
    **
    ** The code in this file has been automatically generated by
@@ -74489,7 +74489,7 @@ abort_parse:
    }
 
    /************** End of tokenize.c ********************************************/
-   /************** Begin file complete.c ****************************************/
+   /************** begin file complete.c ****************************************/
    /*
    ** 2001 September 15
    **
@@ -74762,7 +74762,7 @@ abort_parse:
 #endif /* SQLITE_OMIT_COMPLETE */
 
    /************** End of complete.c ********************************************/
-   /************** Begin file main.c ********************************************/
+   /************** begin file main.c ********************************************/
    /*
    ** 2001 September 15
    **
@@ -74783,7 +74783,7 @@ abort_parse:
    */
 #ifdef SQLITE_ENABLE_FTS3
    /************** Include fts3.h in the middle of main.c ***********************/
-   /************** Begin file fts3.h ********************************************/
+   /************** begin file fts3.h ********************************************/
    /*
    ** 2006 Oct 10
    **
@@ -76317,7 +76317,7 @@ error_out:
    }
 
    /************** End of main.c ************************************************/
-   /************** Begin file fts3.c ********************************************/
+   /************** begin file fts3.c ********************************************/
    /*
    ** 2006 Oct 10
    **
@@ -76600,7 +76600,7 @@ error_out:
 
 
    /************** Include fts3_hash.h in the middle of fts3.c ******************/
-   /************** Begin file fts3_hash.h ***************************************/
+   /************** begin file fts3_hash.h ***************************************/
    /*
    ** 2001 September 22
    **
@@ -76715,7 +76715,7 @@ error_out:
    /************** End of fts3_hash.h *******************************************/
    /************** Continuing where we left off in fts3.c ***********************/
    /************** Include fts3_tokenizer.h in the middle of fts3.c *************/
-   /************** Begin file fts3_tokenizer.h **********************************/
+   /************** begin file fts3_tokenizer.h **********************************/
    /*
    ** 2006 July 10
    **
@@ -82978,7 +82978,7 @@ err:
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
    /************** End of fts3.c ************************************************/
-   /************** Begin file fts3_hash.c ***************************************/
+   /************** begin file fts3_hash.c ***************************************/
    /*
    ** 2001 September 22
    **
@@ -83350,7 +83350,7 @@ err:
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
    /************** End of fts3_hash.c *******************************************/
-   /************** Begin file fts3_porter.c *************************************/
+   /************** begin file fts3_porter.c *************************************/
    /*
    ** 2006 September 30
    **
@@ -83989,7 +83989,7 @@ err:
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
    /************** End of fts3_porter.c *****************************************/
-   /************** Begin file fts3_tokenizer.c **********************************/
+   /************** begin file fts3_tokenizer.c **********************************/
    /*
    ** 2007 June 22
    **
@@ -84357,7 +84357,7 @@ finish:
 #endif /* !defined(SQLITE_CORE) || defined(SQLITE_ENABLE_FTS3) */
 
    /************** End of fts3_tokenizer.c **************************************/
-   /************** Begin file fts3_tokenizer1.c *********************************/
+   /************** begin file fts3_tokenizer1.c *********************************/
    /*
    ** 2006 Oct 10
    **

@@ -29,11 +29,11 @@ namespace gcom
 
          m_pthreadIdlePriority      = new thread(get_app());
          m_pthreadIdlePriority->SetMain(this);
-         m_pthreadIdlePriority->Begin();
+         m_pthreadIdlePriority->begin();
 
          m_pthreadHighestPriority   = new thread(get_app());
          m_pthreadHighestPriority->SetMain(this);
-         m_pthreadHighestPriority->Begin(::ca::thread_priority_highest);
+         m_pthreadHighestPriority->begin(::ca::thread_priority_highest);
 
          m_bPendingLayout = true;
 

@@ -34,8 +34,8 @@ namespace sockets
       address(::ca::application * papp, const in_addr & a, int32_t iPort = 0);
       address(::ca::application * papp, const in6_addr & a, int32_t iPort = 0);
       address(::ca::application * papp, const sockaddr & sa, int32_t sa_len);
-      address(::ca::application * papp, const char * pszAddress = NULL, const char * pszServiceName = NULL);
-      address(::ca::application * papp, const char * pszAddress, int32_t iPort);
+      address(::ca::application * papp, const string & strAddress = "", const string & strServiceName = "");
+      address(::ca::application * papp, const string & strAddress, int32_t iPort);
       address(const address & address);
       virtual ~address();
 

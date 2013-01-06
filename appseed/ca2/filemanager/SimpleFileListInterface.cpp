@@ -385,7 +385,7 @@ namespace filemanager
       {
          m_pcreateimagelistthread = new create_image_list_thread(get_app());
          m_pcreateimagelistthread->m_plist = this;
-         m_pcreateimagelistthread->Begin();
+         m_pcreateimagelistthread->begin();
       }
    }
 
