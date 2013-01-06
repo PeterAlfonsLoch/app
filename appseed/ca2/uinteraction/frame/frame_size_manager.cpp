@@ -350,7 +350,7 @@ namespace frame
 
    void SizeManager::MoveWindow(::user::interaction *pwnd, LPCRECT lpcrect)
    {
-      m_dwLastSizingTime = GetTickCount();
+      m_dwLastSizingTime = get_tick_count();
 
       rect rectWindow = lpcrect;
 
@@ -525,7 +525,7 @@ namespace frame
       {
          SCAST_PTR(gen::message::mouse, pmouse, pobj);
          if(pbase->m_uiMessage == WM_MOUSEMOVE &&
-            (m_dwLastSizingTime + m_dwPaintDelay) > GetTickCount()
+            (m_dwLastSizingTime + m_dwPaintDelay) > get_tick_count()
             && m_ehittestMode != HitTestNone)
          {
             pbase->m_bRet = true;

@@ -9,6 +9,6 @@ namespace mail
       m_pop3(papp)
    {
       m_dwCheckTime = 1000 * 60 * 2;
-      m_dwLastCheck = ::GetTickCount();
+      m_dwLastCheck = ::get_tick_count();
    }
 }

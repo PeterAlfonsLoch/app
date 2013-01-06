@@ -40,6 +40,37 @@ int32_t atoi_dup(const char *psz, const char ** pszEnd)
    return iResult;
 }
 
+uint32_t atoui_dup(const char * psz)
+{
+   uint32_t uiResult = 0;
+   while(true)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > '9')
+         break;
+      uiResult = uiResult * 10 + (ch - '0');
+      psz++;
+   }
+   return uiResult;
+}
+
+uint32_t atoui_dup(const char *psz, const char ** pszEnd)
+{
+   uint32_t uiResult = 0;
+   while(true)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > '9')
+         break;
+      uiResult = uiResult * 10 + (ch - '0');
+      psz++;
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = psz;
+   }
+   return uiResult;
+}
 
 /*int64_t atoi64_dup(const char *str)
 {
@@ -172,6 +203,74 @@ int32_t atoi_dup(const char * psz, const char ** pszEnd, int32_t iBase)
       return 0;
 }
 
+uint32_t _digit_atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+{
+   uint32_t uiResult = 0;
+   char chMax = '0' + iBase;
+   while(true)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > chMax)
+         break;
+      uiResult = uiResult * iBase + (ch - '0');
+      psz++;
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = psz;
+   }
+   return uiResult;
+}
+
+uint32_t _atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+{
+   uint32_t uiResult = 0;
+   char chMax = 'a' + iBase - 10;
+   while(true)
+   {
+
+      char ch = to_lower(*psz);
+
+      if(ch == '\0')
+      {
+         break;
+      }
+      else if(ch >= '0' && ch <= '9')
+      {
+         uiResult = uiResult * iBase + (ch - '0');
+      }
+      else if(ch >= 'a' && ch <= chMax)
+      {
+         uiResult = uiResult * iBase + (ch - 'a' + 10);
+      }
+      else
+      {
+         break;
+      }
+
+      psz++;
+
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = psz;
+   }
+   return uiResult;
+}
+
+uint32_t atoui_dup(const char * psz, const char ** pszEnd, int32_t iBase)
+{
+   if(iBase <= 0)
+      return 0;
+   else if(iBase == 10)
+      return atoui_dup(psz, pszEnd);
+   else if(iBase < 10)
+      return _digit_atoui_dup(psz, pszEnd, iBase);
+   else if(iBase < 36)
+      return _atoui_dup(psz, pszEnd, iBase);
+   else
+      return 0;
+}
 
 
 int32_t natoi_dup(const char * psz, size_t iLen)
@@ -462,6 +561,115 @@ int64_t atoi64_dup(const char * psz, char ** pszEnd, int32_t iBase)
       return _digit_atoi64_dup(psz, pszEnd, iBase);
    else if(iBase < 36)
       return _atoi64_dup(psz, pszEnd, iBase);
+   else
+      return 0;
+}
+
+uint64_t atoui64_dup(const char * psz)
+{
+   uint64_t uiResult = 0;
+   while(true)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > '9')
+         break;
+#ifdef WINDOWS
+      uiResult = uiResult * 10i64 + (ch - '0');
+#else
+      uiResult = uiResult * 10+ (ch - '0');
+#endif
+      psz++;
+   }
+   return uiResult;
+}
+
+uint64_t atoui64_dup(const char *psz, char ** pszEnd)
+{
+   uint64_t uiResult = 0;
+   while(true)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > '9')
+         break;
+#ifdef WINDOWS
+      uiResult = uiResult * 10i64 + (ch - '0');
+#else
+      uiResult = uiResult * 10+ (ch - '0');
+#endif
+      psz++;
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = const_cast < char * > (psz);
+   }
+   return uiResult;
+}
+
+uint64_t _digit_atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+{
+   uint64_t uiResult = 0;
+   char chMax = '0' + iBase;
+   while(true)
+   {
+      char ch = *psz;
+      if(ch == '\0' || ch < '0' || ch > chMax)
+         break;
+      uiResult = uiResult * iBase + (ch - '0');
+      psz++;
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = const_cast < char * > (psz);
+   }
+   return uiResult;
+}
+
+uint64_t _atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+{
+   uint64_t uiResult = 0;
+   char chMax = 'a' + iBase - 10;
+   while(true)
+   {
+
+      char ch = to_lower(*psz);
+
+      if(ch == '\0')
+      {
+         break;
+      }
+      else if(ch >= '0' && ch <= '9')
+      {
+         uiResult = uiResult * iBase + (ch - '0');
+      }
+      else if(ch >= 'a' && ch <= chMax)
+      {
+         uiResult = uiResult * iBase + (ch - 'a' + 10);
+      }
+      else
+      {
+         break;
+      }
+
+      psz++;
+
+   }
+   if(pszEnd != NULL)
+   {
+      *pszEnd = const_cast < char * > (psz);
+   }
+   return uiResult;
+}
+
+uint64_t atoui64_dup(const char * psz, char ** pszEnd, int32_t iBase)
+{
+   if(iBase <= 0)
+      return 0;
+   else if(iBase == 10)
+      return atoui64_dup(psz, pszEnd);
+   else if(iBase < 10)
+      return _digit_atoui64_dup(psz, pszEnd, iBase);
+   else if(iBase < 36)
+      return _atoui64_dup(psz, pszEnd, iBase);
    else
       return 0;
 }

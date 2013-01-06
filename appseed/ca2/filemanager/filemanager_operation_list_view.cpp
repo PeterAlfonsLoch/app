@@ -10,7 +10,7 @@ file_manager_operation_list_view::file_manager_operation_list_view(::ca::applica
    ::user::scroll_view(papp),
    ::user::list(papp)
 {
-   m_dwLast123Update = ::GetTickCount();
+   m_dwLast123Update = ::get_tick_count();
    m_pcache = &m_listcache;
    m_pheaderctrl     = &m_headerctrl;
    m_pheaderctrl->SetBaseListCtrlInterface(this);
@@ -86,9 +86,9 @@ void file_manager_operation_list_view::on_update(::view * pSender, LPARAM lHint,
    UNREFERENCED_PARAMETER(pHint);
    if(lHint == 123)
    {
-      /*if(::GetTickCount() - m_dwLast123Update > 500)
+      /*if(::get_tick_count() - m_dwLast123Update > 500)
       {
-         m_dwLast123Update = ::GetTickCount();
+         m_dwLast123Update = ::get_tick_count();
          _001OnUpdateItemCount();
          m_cache._001Invalidate();
       }*/
@@ -106,9 +106,9 @@ void file_manager_operation_list_view::_001OnTimer(gen::signal_object * pobj)
    SCAST_PTR(::gen::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
-       /*if(::GetTickCount() - m_dwLast123Update > 500)
+       /*if(::get_tick_count() - m_dwLast123Update > 500)
       {
-         m_dwLast123Update = ::GetTickCount();
+         m_dwLast123Update = ::get_tick_count();
          _001OnUpdateItemCount();
          m_cache._001Invalidate();
       }*/
@@ -118,9 +118,9 @@ void file_manager_operation_list_view::_001OnTimer(gen::signal_object * pobj)
 void file_manager_operation_list_view::OnFileOperationStep(int32_t iOperation, bool bFinal)
 {
    UNREFERENCED_PARAMETER(iOperation);
-   if(bFinal || ::GetTickCount() - m_dwLast123Update > 184)
+   if(bFinal || ::get_tick_count() - m_dwLast123Update > 184)
    {
-      m_dwLast123Update = ::GetTickCount();
+      m_dwLast123Update = ::get_tick_count();
       _001OnUpdateItemCount();
       m_listcache._001Invalidate();
       ::count iItem = 0;

@@ -264,7 +264,7 @@ namespace gen
 
       }
 
-      return true;
+      return bExited;
 
 #elif defined(METROWIN)
 

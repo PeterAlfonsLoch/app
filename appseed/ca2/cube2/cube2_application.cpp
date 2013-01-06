@@ -20,7 +20,7 @@ namespace cube2
    bool application::initialize()
    {
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(!cube1::application::initialize())
          return false;

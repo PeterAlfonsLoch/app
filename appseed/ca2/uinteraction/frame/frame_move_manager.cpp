@@ -22,7 +22,7 @@ namespace uinteraction
          m_dwLastMovingTime   = 0;
          SetSWPFlags(0);
          m_eborderMask        = BorderAll;
-         m_dwLastMoveTime     = GetTickCount();
+         m_dwLastMoveTime     = get_tick_count();
       }
 
       MoveManager::~MoveManager()
@@ -193,7 +193,7 @@ namespace uinteraction
 
          if(bMove && rectWindow.top_left() != pt)
          {
-            g_dwLastMove = ::GetTickCount();
+            g_dwLastMove = ::get_tick_count();
             class point ptMove = pt;
             if(GetMoveWindow()->get_parent() != NULL)
             {
@@ -256,7 +256,7 @@ namespace uinteraction
          pWndCapture->get_handle() != GetEventWindow()->get_handle())
          return false;
          if(lpMsg->message == WM_MOUSEMOVE &&
-         m_dwLastMovingTime + 10 > GetTickCount())
+         m_dwLastMovingTime + 10 > get_tick_count())
          return true;
          uint32_t fwKeys = lpMsg->wParam;        // key flags
          point ptCursor = lpMsg->pt;
@@ -367,7 +367,7 @@ namespace uinteraction
 
       void MoveManager::MoveWindow(void * oswindow, point pt)
       {
-         /*   if(GetTickCount() - m_dwLastMoveTime < s_dwMoveTime)
+         /*   if(get_tick_count() - m_dwLastMoveTime < s_dwMoveTime)
          {
          m_oswindowPendingMove = oswindow;
          m_ptPendingMove = pt;
@@ -379,7 +379,7 @@ namespace uinteraction
          return;
          }*/
          m_bPendingMove = false;
-         m_dwLastMoveTime = GetTickCount();
+         m_dwLastMoveTime = get_tick_count();
          ::user::interaction * pwnd = System.window_from_os_data(oswindow);
          //            if(base < CPlaylistInPlaceWnd >::bases(m_pWndMoving))
          //          {
@@ -422,7 +422,7 @@ namespace uinteraction
          pwnd->SetWindowPos(ZORDER_TOP, pt.x, pt.y, rectWindow.width(), rectWindow.height(), 0);
 
 
-         m_dwLastMovingTime = GetTickCount();
+         m_dwLastMovingTime = get_tick_count();
          m_pworkset->m_pframeschema->OnMove(GetMoveWindow());
 
       }
@@ -446,7 +446,7 @@ namespace uinteraction
       {
          SCAST_PTR(gen::message::base, pbase, pobj);
          if(m_bPendingMove
-            && GetTickCount() > m_dwLastMoveTime + s_dwMoveTime)
+            && get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
          {
             m_bPendingMove = false;
             MoveWindow(
@@ -489,7 +489,7 @@ namespace uinteraction
                return;
             }
             if(pbase->m_uiMessage == WM_MOUSEMOVE &&
-               m_dwLastMovingTime + 10 > GetTickCount())
+               m_dwLastMovingTime + 10 > get_tick_count())
             {
                pbase->m_bRet = true;
                return;

@@ -68,7 +68,7 @@ namespace cube8
       {
          try
          {
-            pradixapp->m_dwAlive = ::GetTickCount();
+            pradixapp->m_dwAlive = ::get_tick_count();
          }
          catch(...)
          {
@@ -85,7 +85,7 @@ namespace cube8
 
 
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       m_splicense(new class ::fontopus::license(this));
 

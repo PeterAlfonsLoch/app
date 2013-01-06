@@ -884,14 +884,14 @@ namespace platform
       else if(iHitArea < m_areaa.get_size())
       {
       SwitchArea(iHitArea);
-      m_dw3003Time = ::GetTickCount();
+      m_dw3003Time = ::get_tick_count();
       SetTimer(3003, 300, NULL);
 
       }
       else if(iHitArea >= m_iTaskOffset && iHitArea < (m_iTaskOffset + m_areaa[m_iArea].m_taska.get_size()))
       {
       m_iCurrentTask = iHitArea;
-      m_dwCurrentTaskChangeTime = ::GetTickCount();
+      m_dwCurrentTaskChangeTime = ::get_tick_count();
       oswindow oswindow = m_areaa[m_iArea].m_taska[iHitArea - m_iTaskOffset].m_oswindow;
       if(::IsIconic)
       {

@@ -65,7 +65,7 @@ namespace userbase
 
          CalcTension(pt);
          set_capture();
-         m_dwLastTime = ::GetTickCount();
+         m_dwLastTime = ::get_tick_count();
          m_daScalar.Set(0.0);
          m_iScalar = 0;
          m_bSlide = true;
@@ -125,7 +125,7 @@ namespace userbase
 
    double elastic_slider::CalcScalar()
    {
-      uint32_t dwTime = ::GetTickCount();
+      uint32_t dwTime = ::get_tick_count();
       if(dwTime - m_dwLastTime < 300)
          return m_daScalar.GetMean();
       CalcTension();

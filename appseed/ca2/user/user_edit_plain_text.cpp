@@ -54,7 +54,7 @@ namespace user
       m_iViewSize          = 1000;
       m_bMouseDown         = false;
       m_dwCaretTime        = 500;
-      m_dwLastCaret        = GetTickCount();
+      m_dwLastCaret        = get_tick_count();
       set_cursor(::visual::cursor_text_select);
    }
 
@@ -1677,7 +1677,7 @@ namespace user
       {
          m_iColumn = SelToColumn(m_iSelEnd);
       }
-      m_dwLastCaret = ::GetTickCount();
+      m_dwLastCaret = ::get_tick_count();
       m_bCaretOn = true;
       _001RedrawWindow();
 
@@ -1738,9 +1738,9 @@ namespace user
    {
       if(iTimer == 0)
       {
-         if(m_dwLastCaret + m_dwCaretTime < GetTickCount())
+         if(m_dwLastCaret + m_dwCaretTime < get_tick_count())
          {
-            m_dwLastCaret = GetTickCount();
+            m_dwLastCaret = get_tick_count();
             m_bCaretOn = !m_bCaretOn;
             //RedrawWindow();
             _001RedrawWindow();
@@ -2217,7 +2217,7 @@ namespace user
    bool edit_plain_text::keyboard_focus_OnSetFocus()
    {
       m_bCaretOn = true;
-      m_dwLastCaret = GetTickCount();
+      m_dwLastCaret = get_tick_count();
       SetTimer(100, 100, NULL);
       _001RedrawWindow();
       return true;

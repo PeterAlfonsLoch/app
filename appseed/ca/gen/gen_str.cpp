@@ -1240,6 +1240,82 @@ namespace gen
 
    }
 
+   bool str::to(const char * psz, uint64_t & ui)
+   {
+
+      char * pszEnd;
+
+      uint64_t uiConversion = ::atoi64_dup(psz, &pszEnd);
+
+      if(pszEnd == psz)
+         return false;
+
+      ui = uiConversion;
+
+      return true;
+
+   }
+
+   bool str::to(const char * psz, uint32_t & ui)
+   {
+
+      const char * pszEnd;
+
+      int64_t uiConversion = ::atoui_dup(psz, &pszEnd);
+
+      if(pszEnd == psz)
+         return false;
+
+      if(uiConversion > numeric_info::get_maximum_value < uint32_t > ())
+         return false;
+
+      ui = (uint32_t) uiConversion;
+
+      return true;
+
+   }
+
+
+   bool str::to(const char * psz, uint64_t & ui, int32_t iBase)
+   {
+
+      if(iBase < 0 || iBase == 1 || iBase > 36)
+         return false;
+
+      char * pszEnd;
+
+      uint64_t uiConversion = ::atoui64_dup(psz, &pszEnd, iBase);
+
+      if(pszEnd == psz)
+         return false;
+
+      ui = uiConversion;
+
+      return true;
+
+   }
+
+   bool str::to(const char * psz, uint32_t & ui, int32_t iBase)
+   {
+
+      if(iBase < 0 || iBase == 1 || iBase > 36)
+         return false;
+
+      const char * pszEnd;
+
+      uint32_t uiConversion = ::atoui_dup(psz, &pszEnd, iBase);
+
+      if(pszEnd == psz)
+         return false;
+
+      if(uiConversion > numeric_info::get_maximum_value < uint32_t > ())
+         return false;
+
+      ui = uiConversion;
+
+      return true;
+
+   }
 
    CLASS_DECL_ca  int_ptr str::to_int_ptr(const char * psz)
    {

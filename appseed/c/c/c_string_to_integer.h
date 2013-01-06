@@ -5,6 +5,9 @@ CLASS_DECL_c int32_t atoi_dup(const char * sz, const char ** pszEnd, int32_t iBa
 CLASS_DECL_c int32_t atoi_dup(const char * sz, const char ** pszEnd);
 CLASS_DECL_c int32_t atoi_dup(const char * sz);
 
+CLASS_DECL_c uint32_t atoui_dup(const char * sz, const char ** pszEnd, int32_t iBase);
+CLASS_DECL_c uint32_t atoui_dup(const char * sz, const char ** pszEnd);
+CLASS_DECL_c uint32_t atoui_dup(const char * sz);
 
 CLASS_DECL_c int32_t natoi_dup(const char * sz, const char ** pszEnd, int32_t iBase, size_t iLen);
 CLASS_DECL_c int32_t natoi_dup(const char * sz, const char ** pszEnd, size_t iLen);
@@ -21,6 +24,11 @@ CLASS_DECL_c int32_t nwtoi_dup(const wchar_t * sz, int32_t iCount);
 CLASS_DECL_c int64_t atoi64_dup(const char * sz, char ** pszEnd, int32_t iBase);
 CLASS_DECL_c int64_t atoi64_dup(const char * sz, char ** pszEnd);
 CLASS_DECL_c int64_t atoi64_dup(const char * sz);
+
+CLASS_DECL_c uint64_t atoui64_dup(const char * sz, char ** pszEnd, int32_t iBase);
+CLASS_DECL_c uint64_t atoui64_dup(const char * sz, char ** pszEnd);
+CLASS_DECL_c uint64_t atoui64_dup(const char * sz);
+
 
 CLASS_DECL_c int64_t natoi64_dup(const char * sz, char ** pszEnd, int32_t iBase, size_t iLen);
 CLASS_DECL_c int64_t natoi64_dup(const char * sz, char ** pszEnd, size_t iLen);

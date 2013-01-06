@@ -145,6 +145,10 @@ namespace gen
       CLASS_DECL_ca  bool           to(const char * psz, int64_t & i);
       CLASS_DECL_ca  bool           to(const char * psz, int32_t & i, int32_t iBase);
       CLASS_DECL_ca  bool           to(const char * psz, int64_t & i, int32_t iBase);
+      CLASS_DECL_ca  bool           to(const char * psz, uint32_t & i);
+      CLASS_DECL_ca  bool           to(const char * psz, uint64_t & i);
+      CLASS_DECL_ca  bool           to(const char * psz, uint32_t & i, int32_t iBase);
+      CLASS_DECL_ca  bool           to(const char * psz, uint64_t & i, int32_t iBase);
 
 
       CLASS_DECL_ca  int_ptr        to_int_ptr(const char * psz);

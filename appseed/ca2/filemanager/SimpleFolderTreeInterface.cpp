@@ -506,7 +506,7 @@ namespace filemanager
       uint32_t dwTimeIn;
       uint32_t dwTimeOut;
 
-      dwTimeIn = GetTickCount();
+      dwTimeIn = get_tick_count();
 
       int32_t iMaxSize;
       iMaxSize = 1000;
@@ -687,7 +687,7 @@ namespace filemanager
          pitemParent->m_dwState &= ~::ex1::tree_item_state_expandable;
       }
 
-      dwTimeOut = GetTickCount();
+      dwTimeOut = get_tick_count();
 
       TRACE("timeIn%d\n", dwTimeIn);
       TRACE("timeOut%d\n", dwTimeIn);

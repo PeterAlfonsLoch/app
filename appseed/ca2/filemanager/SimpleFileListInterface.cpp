@@ -131,7 +131,7 @@ namespace filemanager
       uint32_t dwTimeIn;
       uint32_t dwTimeOut;
 
-      dwTimeIn = GetTickCount();
+      dwTimeIn = get_tick_count();
 
       int32_t iMaxSize;
       iMaxSize = 1000;
@@ -184,7 +184,7 @@ namespace filemanager
 
       //iaDisplayToStrict
 
-      dwTimeOut = GetTickCount();
+      dwTimeOut = get_tick_count();
 
       TRACE("timeIn%d\n", dwTimeIn);
       TRACE("timeOut%d\n", dwTimeIn);
@@ -784,7 +784,7 @@ namespace filemanager
       {
       case MessageMainPostCreateImageListItemStepSetRedraw:
          {
-            uint32_t dwNow = GetTickCount();
+            uint32_t dwNow = get_tick_count();
             if(dwNow - m_dwLastRedraw > 284)
             {
                m_dwLastRedraw = dwNow;

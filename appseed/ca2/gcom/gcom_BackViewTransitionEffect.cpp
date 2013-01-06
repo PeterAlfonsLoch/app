@@ -24,11 +24,11 @@ namespace gcom
          m_tool001.m_iStep = 0;
          m_bTransitionStepRunActive = false;
          m_bTransitionStepPostActive = false;
-         m_dwTransitionStepLastRunTime = GetTickCount();
-         m_dwTransitionStepPostActive = GetTickCount();
-         m_dwLastTransitionTime = GetTickCount();
+         m_dwTransitionStepLastRunTime = get_tick_count();
+         m_dwTransitionStepPostActive = get_tick_count();
+         m_dwLastTransitionTime = get_tick_count();
 
-         m_dwLastTransitionTime = GetTickCount();
+         m_dwLastTransitionTime = get_tick_count();
 
          int32_t iStart  = (int32_t) TransitionEffectFirst;
          int32_t iEnd    = (int32_t) TransitionEffectLast;
@@ -315,8 +315,8 @@ namespace gcom
             Interface::BackViewWparamUpdateScreenBaseRectArray,
             (LPARAM) precta);*/
 
-         m_dwLastTransitionTime = GetTickCount();
-         m_dwTransitionStepLastRunTime = GetTickCount();
+         m_dwLastTransitionTime = get_tick_count();
+         m_dwTransitionStepLastRunTime = get_tick_count();
          m_bTransitionStepPostActive = false;
 
          if(TestEnd())
@@ -1771,7 +1771,7 @@ namespace gcom
 
          Main & main = HelperGetMain();
 
-         uint32_t dwTime = GetTickCount();
+         uint32_t dwTime = get_tick_count();
          if(dwTime - m_dwTransitionStepLastRunTime >= 5 + m_dwDelay
             && !m_bTransitionStepRunActive
             && (!m_bTransitionStepPostActive
@@ -1794,7 +1794,7 @@ namespace gcom
                TRACE("!m_bTransitionStepPostActive % d\n", dwTime - m_dwTransitionStepPostActive);
          }*/
             m_bTransitionStepPostActive = true;
-            m_dwTransitionStepPostActive = GetTickCount();
+            m_dwTransitionStepPostActive = get_tick_count();
             main.GetInterface().BackViewPostMessage(Interface::MessageBackViewDequeue, 18, 0);
          }
          else

@@ -146,7 +146,7 @@ namespace gcom
           pinterface->GetBackViewWndInterface().BackViewUpdateScreen();
          if(iUserData == 2)
          {
-            pinterface->BackViewGetMain().GetImageChange().m_dwBackgroundLastUpdateTime = GetTickCount();
+            pinterface->BackViewGetMain().GetImageChange().m_dwBackgroundLastUpdateTime = get_tick_count();
             pinterface->BackViewGetMain().SetState(backview::Main::CImageChange::StateTiming);
          ¨{
           }
@@ -155,7 +155,7 @@ namespace gcom
       }
          if(iUserData == 2)
          {
-            pinterface->BackViewGetMain().GetImageChange().m_dwBackgroundLastUpdateTime = GetTickCount();
+            pinterface->BackViewGetMain().GetImageChange().m_dwBackgroundLastUpdateTime = get_tick_count();
             pinterface->BackViewGetMain().SetState(backview::Main::CImageChange::StateTiming);
          }
       }

@@ -216,5 +216,6 @@ namespace numeric_info
    template < > class CLASS_DECL_ca offset < uint32_t > { public: typedef int32_t TYPE; };
    template < > class CLASS_DECL_ca offset < uint64_t > { public: typedef int64_t TYPE; };
 
+   template < typename T > class type { public: typedef T TYPE; };
 
 } // numeric_info

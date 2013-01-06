@@ -286,7 +286,7 @@ namespace bergedge
    {
       UNREFERENCED_PARAMETER(uiRedraw);
       m_rectaUpdate.add(recta);
-      uint32_t dwNow = GetTickCount();
+      uint32_t dwNow = get_tick_count();
       if(m_rectaUpdate.get_size() <= 0)
       {
          m_dwLastUpdate = dwNow;

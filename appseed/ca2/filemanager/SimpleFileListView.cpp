@@ -26,7 +26,7 @@ namespace filemanager
 
       m_bFileSize = false;
       m_bShow = false;
-      m_dwLastFileSize = ::GetTickCount();
+      m_dwLastFileSize = ::get_tick_count();
 
       m_pheaderctrl     = &m_headerctrl;
       m_pheaderctrl->SetBaseListCtrlInterface(this);
@@ -576,9 +576,9 @@ namespace filemanager
          {
             _001RedrawWindow();
          }
-         if(::GetTickCount() - m_dwLastFileSize > 840)
+         if(::get_tick_count() - m_dwLastFileSize > 840)
          {
-            m_dwLastFileSize = ::GetTickCount();
+            m_dwLastFileSize = ::get_tick_count();
             ::user::interaction* pwnd = GetParentFrame();
 //            bool b = pwnd->IsWindowVisible();
             if(pwnd->IsWindowVisible() && m_bFileSize)

@@ -21,6 +21,7 @@ BEGIN_EXTERN_C
 
 
    CLASS_DECL_c void * ca2_alloc(size_t size);
+   inline       void * ca2_calloc(size_t size, size_t bytes) { return ca2_alloc(size * bytes); }
    CLASS_DECL_c void * ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);
    CLASS_DECL_c void * ca2_realloc(void * pvoid, size_t nSize);
    CLASS_DECL_c void * ca2_realloc_dbg(void * pvoid, size_t nSize, int32_t nBlockUse, const char * szFileName, int32_t nLine);

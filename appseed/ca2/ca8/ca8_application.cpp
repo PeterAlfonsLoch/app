@@ -19,7 +19,7 @@ namespace ca8
    bool application::initialize1()
    {
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(!ca2::fs::application::initialize1())
          return false;
@@ -30,7 +30,7 @@ namespace ca8
    bool application::initialize()
    {
 
-      m_dwAlive = ::GetTickCount();
+      m_dwAlive = ::get_tick_count();
 
       if(is_system())
       {

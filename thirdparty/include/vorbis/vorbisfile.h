@@ -48,7 +48,7 @@ extern "C"
  */
 typedef struct {
   size_t (*read_func)  (void *ptr, size_t size, size_t nmemb, void *datasource);
-  int32_t    (*seek_func)  (void *datasource, ogg_int64_t offset, int32_t whence);
+  int32_t    (*seek_func)  (void *datasource, int64_t offset, int32_t whence);
   int32_t    (*close_func) (void *datasource);
   long   (*tell_func)  (void *datasource);
 } ov_callbacks;
@@ -60,7 +60,7 @@ typedef struct {
  * ov_open() to avoid problems with incompatible crt.o version linking
  * issues. */
 
-static int32_t _ov_header_fseek_wrap(FILE *f,ogg_int64_t off,int32_t whence){
+static int32_t _ov_header_fseek_wrap(FILE *f,int64_t off,int32_t whence){
   if(f==NULL)return(-1);
 
 #ifdef __MINGW32__
@@ -84,28 +84,28 @@ static int32_t _ov_header_fseek_wrap(FILE *f,ogg_int64_t off,int32_t whence){
 
 static ov_callbacks OV_CALLBACKS_DEFAULT = {
   (size_t (*)(void *, size_t, size_t, void *))  fread,
-  (int32_t (*)(void *, ogg_int64_t, int32_t))           _ov_header_fseek_wrap,
+  (int32_t (*)(void *, int64_t, int32_t))           _ov_header_fseek_wrap,
   (int32_t (*)(void *))                             fclose,
   (long (*)(void *))                            ftell
 };
 
 static ov_callbacks OV_CALLBACKS_NOCLOSE = {
   (size_t (*)(void *, size_t, size_t, void *))  fread,
-  (int32_t (*)(void *, ogg_int64_t, int32_t))           _ov_header_fseek_wrap,
+  (int32_t (*)(void *, int64_t, int32_t))           _ov_header_fseek_wrap,
   (int32_t (*)(void *))                             NULL,
   (long (*)(void *))                            ftell
 };
 
 static ov_callbacks OV_CALLBACKS_STREAMONLY = {
   (size_t (*)(void *, size_t, size_t, void *))  fread,
-  (int32_t (*)(void *, ogg_int64_t, int32_t))           NULL,
+  (int32_t (*)(void *, int64_t, int32_t))           NULL,
   (int32_t (*)(void *))                             fclose,
   (long (*)(void *))                            NULL
 };
 
 static ov_callbacks OV_CALLBACKS_STREAMONLY_NOCLOSE = {
   (size_t (*)(void *, size_t, size_t, void *))  fread,
-  (int32_t (*)(void *, ogg_int64_t, int32_t))           NULL,
+  (int32_t (*)(void *, int64_t, int32_t))           NULL,
   (int32_t (*)(void *))                             NULL,
   (long (*)(void *))                            NULL
 };
@@ -121,24 +121,24 @@ static ov_callbacks OV_CALLBACKS_STREAMONLY_NOCLOSE = {
 typedef struct OggVorbis_File {
   void            *datasource; /* Pointer to a FILE *, etc. */
   int32_t              seekable;
-  ogg_int64_t      offset;
-  ogg_int64_t      end;
+  int64_t      offset;
+  int64_t      end;
   ogg_sync_state   oy;
 
   /* If the FILE handle isn't seekable (eg, a pipe), only the current
      stream appears */
   int32_t              links;
-  ogg_int64_t     *offsets;
-  ogg_int64_t     *dataoffsets;
+  int64_t     *offsets;
+  int64_t     *dataoffsets;
   long            *serialnos;
-  ogg_int64_t     *pcmlengths; /* overloaded to maintain binary
+  int64_t     *pcmlengths; /* overloaded to maintain binary
                                   compatibility; x2 size, stores both
                                   beginning and end values */
   vorbis_info     *vi;
   vorbis_comment  *vc;
 
   /* Decoding working state local storage */
-  ogg_int64_t      pcm_offset;
+  int64_t      pcm_offset;
   int32_t              ready_state;
   long             current_serialno;
   int32_t              current_link;
@@ -173,24 +173,24 @@ extern long ov_streams(OggVorbis_File *vf);
 extern long ov_seekable(OggVorbis_File *vf);
 extern long ov_serialnumber(OggVorbis_File *vf,int32_t i);
 
-extern ogg_int64_t ov_raw_total(OggVorbis_File *vf,int32_t i);
-extern ogg_int64_t ov_pcm_total(OggVorbis_File *vf,int32_t i);
+extern int64_t ov_raw_total(OggVorbis_File *vf,int32_t i);
+extern int64_t ov_pcm_total(OggVorbis_File *vf,int32_t i);
 extern double ov_time_total(OggVorbis_File *vf,int32_t i);
 
-extern int32_t ov_raw_seek(OggVorbis_File *vf,ogg_int64_t pos);
-extern int32_t ov_pcm_seek(OggVorbis_File *vf,ogg_int64_t pos);
-extern int32_t ov_pcm_seek_page(OggVorbis_File *vf,ogg_int64_t pos);
+extern int32_t ov_raw_seek(OggVorbis_File *vf,int64_t pos);
+extern int32_t ov_pcm_seek(OggVorbis_File *vf,int64_t pos);
+extern int32_t ov_pcm_seek_page(OggVorbis_File *vf,int64_t pos);
 extern int32_t ov_time_seek(OggVorbis_File *vf,double pos);
 extern int32_t ov_time_seek_page(OggVorbis_File *vf,double pos);
 
-extern int32_t ov_raw_seek_lap(OggVorbis_File *vf,ogg_int64_t pos);
-extern int32_t ov_pcm_seek_lap(OggVorbis_File *vf,ogg_int64_t pos);
-extern int32_t ov_pcm_seek_page_lap(OggVorbis_File *vf,ogg_int64_t pos);
+extern int32_t ov_raw_seek_lap(OggVorbis_File *vf,int64_t pos);
+extern int32_t ov_pcm_seek_lap(OggVorbis_File *vf,int64_t pos);
+extern int32_t ov_pcm_seek_page_lap(OggVorbis_File *vf,int64_t pos);
 extern int32_t ov_time_seek_lap(OggVorbis_File *vf,double pos);
 extern int32_t ov_time_seek_page_lap(OggVorbis_File *vf,double pos);
 
-extern ogg_int64_t ov_raw_tell(OggVorbis_File *vf);
-extern ogg_int64_t ov_pcm_tell(OggVorbis_File *vf);
+extern int64_t ov_raw_tell(OggVorbis_File *vf);
+extern int64_t ov_pcm_tell(OggVorbis_File *vf);
 extern double ov_time_tell(OggVorbis_File *vf);
 
 extern vorbis_info *ov_info(OggVorbis_File *vf,int32_t link);

@@ -39,7 +39,7 @@ namespace ca8
          m_pdocument->get_html_data()->m_propertyset["wait_message_dialog_timeout"] = (int32_t) (m_dwDelay / 1000);
          m_pdocument->get_view()->SetTimer(5432175, 584, NULL);
       }
-      m_dwStartTime = ::GetTickCount();
+      m_dwStartTime = ::get_tick_count();
    }
 
 
@@ -59,7 +59,7 @@ namespace ca8
       {
          if(pevent->m_uiEvent == 5432175)
          {
-            uint32_t dwTimeout = ::GetTickCount() - m_dwStartTime;
+            uint32_t dwTimeout = ::get_tick_count() - m_dwStartTime;
             if(dwTimeout > m_dwDelay)
             {
                if(on_timeout())

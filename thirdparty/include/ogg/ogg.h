@@ -65,7 +65,7 @@ typedef struct {
 
 
   int32_t     *lacing_vals;      /* The values that will go to the segment table */
-  ogg_int64_t *granule_vals; /* granulepos values for headers. Not compact
+  int64_t *granule_vals; /* granulepos values for headers. Not compact
                                 this way, but it is simple coupled to the
                                 lacing fifo */
   long    lacing_storage;
@@ -82,12 +82,12 @@ typedef struct {
                              of a logical bitstream */
   long    serialno;
   long    pageno;
-  ogg_int64_t  packetno;  /* sequence number for decode; the framing
+  int64_t  packetno;  /* sequence number for decode; the framing
                              knows where there's a hole in the data,
                              but we need coupling so that the codec
                              (which is in a separate abstraction
                              layer) also knows about the gap */
-  ogg_int64_t   granulepos;
+  int64_t   granulepos;
 
 } ogg_stream_state;
 
@@ -100,9 +100,9 @@ typedef struct {
   long  b_o_s;
   long  e_o_s;
 
-  ogg_int64_t  granulepos;
+  int64_t  granulepos;
 
-  ogg_int64_t  packetno;     /* sequence number for decode; the framing
+  int64_t  packetno;     /* sequence number for decode; the framing
                                 knows where there's a hole in the data,
                                 but we need coupling so that the codec
                                 (which is in a separate abstraction
@@ -130,7 +130,7 @@ extern void  oggpack_writecopy(oggpack_buffer *b,void *source,long bits);
 extern void  oggpack_reset(oggpack_buffer *b);
 extern void  oggpack_writeclear(oggpack_buffer *b);
 extern void  oggpack_readinit(oggpack_buffer *b,uchar *buf,int32_t bytes);
-extern void  oggpack_write(oggpack_buffer *b,uint32_t long value,int32_t bits);
+extern void  oggpack_write(oggpack_buffer *b,uint_ptr value,int32_t bits);
 extern long  oggpack_look(oggpack_buffer *b,int32_t bits);
 extern long  oggpack_look1(oggpack_buffer *b);
 extern void  oggpack_adv(oggpack_buffer *b,int32_t bits);
@@ -149,7 +149,7 @@ extern void  oggpackB_writecopy(oggpack_buffer *b,void *source,long bits);
 extern void  oggpackB_reset(oggpack_buffer *b);
 extern void  oggpackB_writeclear(oggpack_buffer *b);
 extern void  oggpackB_readinit(oggpack_buffer *b,uchar *buf,int32_t bytes);
-extern void  oggpackB_write(oggpack_buffer *b,uint32_t long value,int32_t bits);
+extern void  oggpackB_write(oggpack_buffer *b,uint_ptr value,int32_t bits);
 extern long  oggpackB_look(oggpack_buffer *b,int32_t bits);
 extern long  oggpackB_look1(oggpack_buffer *b);
 extern void  oggpackB_adv(oggpack_buffer *b,int32_t bits);
@@ -164,7 +164,7 @@ extern uchar *oggpackB_get_buffer(oggpack_buffer *b);
 
 extern int32_t      ogg_stream_packetin(ogg_stream_state *os, ogg_packet *op);
 extern int32_t      ogg_stream_iovecin(ogg_stream_state *os, ogg_iovec_t *iov,
-                                   int32_t count, long e_o_s, ogg_int64_t granulepos);
+                                   int32_t count, long e_o_s, int64_t granulepos);
 extern int32_t      ogg_stream_pageout(ogg_stream_state *os, ogg_page *og);
 extern int32_t      ogg_stream_pageout_fill(ogg_stream_state *os, ogg_page *og, int32_t nfill);
 extern int32_t      ogg_stream_flush(ogg_stream_state *os, ogg_page *og);
@@ -202,7 +202,7 @@ extern int32_t      ogg_page_version(const ogg_page *og);
 extern int32_t      ogg_page_continued(const ogg_page *og);
 extern int32_t      ogg_page_bos(const ogg_page *og);
 extern int32_t      ogg_page_eos(const ogg_page *og);
-extern ogg_int64_t  ogg_page_granulepos(const ogg_page *og);
+extern int64_t  ogg_page_granulepos(const ogg_page *og);
 extern int32_t      ogg_page_serialno(const ogg_page *og);
 extern long     ogg_page_pageno(const ogg_page *og);
 extern int32_t      ogg_page_packets(const ogg_page *og);

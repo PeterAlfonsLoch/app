@@ -110,14 +110,14 @@ namespace platform
       else if(nIDEvent == 4033)
       {
          point pt;
-         if(m_bHoverMouse && GetTickCount() > m_dwLastHover + 300)
+         if(m_bHoverMouse && get_tick_count() > m_dwLastHover + 300)
          {
             OnHoverAction();
          }
          Bergedge.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x <= 0)
          {
-            m_dwLastHover = ::GetTickCount();
+            m_dwLastHover = ::get_tick_count();
             m_bHoverMouse = true;
 
          }
@@ -134,7 +134,7 @@ namespace platform
                m_bHideTimer = false;
                KillTimer(1001);
             }
-            else if(!m_bHideTimer && (::GetTickCount() - m_dwLastSuperDock) > 984)
+            else if(!m_bHideTimer && (::get_tick_count() - m_dwLastSuperDock) > 984)
             {
                m_bHideTimer = true;
                SetTimer(1001, 500, NULL);
@@ -252,7 +252,7 @@ namespace platform
       {
          return;
       }
-      m_dwLastSuperDock = ::GetTickCount();
+      m_dwLastSuperDock = ::get_tick_count();
       rect rectDesktop;
 
       ::user::interaction * puiParent = GetTypedParent < bergedge::view >();

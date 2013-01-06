@@ -225,7 +225,7 @@ namespace gcom
 
          thread * pbackviewthreadIdle = GetIdleThread();
 
-         uint32_t dwTime = GetTickCount();
+         uint32_t dwTime = get_tick_count();
 
          if(eevent == event_timer)
          {
@@ -296,7 +296,7 @@ namespace gcom
                   }
                   OnAfterImageLoaded();
                   SetState(StatePreTransition);
-                  GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
+                  GetImageChange().m_dwBackgroundPreTransitionStartTime = get_tick_count();
                   pbackviewthreadIdle->PreTransitionImageAsync(this);
                }
                break;
@@ -360,7 +360,7 @@ namespace gcom
             case EventPreTransitionFinished:
                {
                   SetState(StatePreTransition);
-                  GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
+                  GetImageChange().m_dwBackgroundPreTransitionStartTime = get_tick_count();
                   pbackviewthreadIdle->PreTransitionImageAsync(this);
                }
                break;
@@ -374,7 +374,7 @@ namespace gcom
                case EventResize:
                   {
                      SetState(StatePreTransition);
-                     GetImageChange().m_dwBackgroundPreTransitionStartTime = GetTickCount();
+                     GetImageChange().m_dwBackgroundPreTransitionStartTime = get_tick_count();
                      pbackviewthreadIdle->PreTransitionImageAsync(this);
                   }
                   break;
@@ -389,7 +389,7 @@ namespace gcom
                   }
                   break;
                case EventTransitionEffectFinished:
-                  GetImageChange().m_dwBackgroundLastUpdateTime = GetTickCount();
+                  GetImageChange().m_dwBackgroundLastUpdateTime = get_tick_count();
                   SetState(StateTiming);
                   break;
                case EventLoadNow:;

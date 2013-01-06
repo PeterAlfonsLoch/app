@@ -4390,7 +4390,7 @@ namespace user
 
    bool list::Filter1Step()
    {
-      uint32_t dwIn = GetTickCount();
+      uint32_t dwIn = get_tick_count();
       uint32_t dwOut;
       TRACE("list::Filter1Step\n");
       TRACE("dwIn = %d\n", dwIn);
@@ -4461,7 +4461,7 @@ namespace user
       RedrawWindow();
 
 
-      dwOut = GetTickCount();
+      dwOut = get_tick_count();
       TRACE("dwOut = %d\n", dwOut);
       TRACE("(delta) = %d\n", dwOut - dwIn);
 

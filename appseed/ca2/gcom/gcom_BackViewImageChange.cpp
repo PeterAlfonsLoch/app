@@ -16,7 +16,7 @@ namespace gcom
       {
 
          m_bLastLoadImageSynch = false;
-         uint32_t dwTime = GetTickCount();
+         uint32_t dwTime = get_tick_count();
          m_dwLoadStartTime = dwTime;
          m_dwBackgroundUpdateMillis = 1000;
 
@@ -65,7 +65,7 @@ namespace gcom
 
       bool ImageChange::LoadNextImage(bool bSynch)
       {
-         uint32_t dwTime = GetTickCount();
+         uint32_t dwTime = get_tick_count();
 
          if(m_dwLoadStartTime - dwTime < 1000)
             return false;

@@ -82,9 +82,9 @@ namespace gcom
             delete ((LPRECT) pbase->m_lparam);
             break;
          case BackViewWparamUpdateScreenBaseRectArray:
-            if(((::GetTickCount() - d_dwLastBackViewUpdate) > 23))
+            if(((::get_tick_count() - d_dwLastBackViewUpdate) > 23))
             {
-               d_dwLastBackViewUpdate = ::GetTickCount();
+               d_dwLastBackViewUpdate = ::get_tick_count();
 
                BackViewUpdateScreen(*((rect_array *) pbase->m_lparam), RDW_INVALIDATE);
             }

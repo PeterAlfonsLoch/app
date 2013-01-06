@@ -21,6 +21,11 @@ public:
       m_number = number;
    }
 
+   inline c_number(const string & str)
+   {
+      from(str);
+   }
+
    inline operator T &()
    {
       return m_number;
@@ -29,6 +34,12 @@ public:
    inline operator const T &() const
    {
       return m_number;
+   }
+
+   inline c_number < T > & from(const string & str)
+   {
+      gen::str::to(str, m_number);
+      return *this;
    }
 
 /*   bool operator == (const c_number & n) const;
@@ -57,6 +68,12 @@ public:
    {
       return ::numeric_info::get_allset_value < T > ();
    }
+
+   inline void set_maximum()
+   {
+      m_number = max_value();
+   }
+
 
 };
 
@@ -331,3 +348,11 @@ DEFINE_C_NUMBER(CLASS_DECL_ca, os_lock_duration, uint32_t)
 
 
 */
+
+namespace numeric_info
+{
+
+   template < typename T > class CLASS_DECL_ca offset < ::c_number < T > > { public: typedef typename ::numeric_info::offset < T >::TYPE TYPE; };
+   template < typename T > class CLASS_DECL_ca type   < ::c_number < T > > { public: typedef typename ::numeric_info::type   < T >::TYPE TYPE; };
+
+}

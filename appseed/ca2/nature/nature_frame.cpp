@@ -229,14 +229,14 @@ namespace nature
       else if(nIDEvent == 4033)
       {
          point pt;
-         if(m_bHoverMouse && GetTickCount() > m_dwLastHover + 300)
+         if(m_bHoverMouse && get_tick_count() > m_dwLastHover + 300)
          {
             OnHoverAction();
          }
          System.get_cursor_pos(&pt);
          if(!m_bHoverMouse && pt.x == 0 && pt.y == 0)
          {
-            m_dwLastHover = ::GetTickCount();
+            m_dwLastHover = ::get_tick_count();
             m_bHoverMouse = true;
             
          }

@@ -83,13 +83,13 @@ typedef struct vorbis_dsp_state{
   long nW;
   long centerW;
 
-  ogg_int64_t granulepos;
-  ogg_int64_t sequence;
+  int64_t granulepos;
+  int64_t sequence;
 
-  ogg_int64_t glue_bits;
-  ogg_int64_t time_bits;
-  ogg_int64_t floor_bits;
-  ogg_int64_t res_bits;
+  int64_t glue_bits;
+  int64_t time_bits;
+  int64_t floor_bits;
+  int64_t res_bits;
 
   private_state       *backend_state;
 } vorbis_dsp_state;
@@ -106,8 +106,8 @@ typedef struct vorbis_block{
   int32_t   mode;
 
   int32_t         eofflag;
-  ogg_int64_t granulepos;
-  ogg_int64_t sequence;
+  int64_t granulepos;
+  int64_t sequence;
   vorbis_dsp_state *vd; /* For read-only access of configuration */
 
   /* local storage to avoid remallocing; it's up to the mapping to
@@ -186,7 +186,7 @@ extern int32_t      vorbis_block_init(vorbis_dsp_state *v, vorbis_block *vb);
 extern int32_t      vorbis_block_clear(vorbis_block *vb);
 extern void     vorbis_dsp_clear(vorbis_dsp_state *v);
 extern double   vorbis_granule_time(vorbis_dsp_state *v,
-                                    ogg_int64_t granulepos);
+                                    int64_t granulepos);
 
 extern const char *vorbis_version_string();
 
