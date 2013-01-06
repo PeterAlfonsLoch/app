@@ -1331,7 +1331,7 @@ struct THREAD_PARAMS
 	bool bStatus;
 };
 
-uint32_t WINAPI ThreadProc( LPVOID lParam )
+uint32_t ThreadProc(void * lParam)
 {
 	THREAD_PARAMS* pThreadParam = (THREAD_PARAMS*)lParam;
 

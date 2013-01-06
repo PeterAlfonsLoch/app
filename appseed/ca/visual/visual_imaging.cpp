@@ -313,19 +313,17 @@ return hBitmapSource;
 *
 *****************************************************************************/
 void EmbossedTextOut(
-   HDC                     hDC,
-   int32_t                     x,
-   int32_t                     y,
+   ::ca::graphics *        pdc,
+   int32_t                 x,
+   int32_t                 y,
    const char *            lpcsz,
    size_t                  cb,
    COLORREF                crText,
    COLORREF                crShadow,
-   int32_t                     cx,
-   int32_t                     cy)
+   int32_t                 cx,
+   int32_t                 cy)
 {
 
-
-#ifdef WINDOWSEX
 
    /* If text length is -1, use lstrlen to get the length
     ** of the text.
@@ -343,15 +341,15 @@ void EmbossedTextOut(
    RECT                    rcText;
    
    if (crShadow == (COLORREF)-1)
-      crShadow = GetSysColor (COLOR_BTNSHADOW);
+      crShadow = Sess(pdc->m_papp).get_default_color (COLOR_BTNSHADOW);
    
    if (crText == (COLORREF)-1)
-      crText = GetSysColor (COLOR_BTNTEXT);
+      crText = Sess(pdc->m_papp).get_default_color (COLOR_BTNTEXT);
 
    /* setup the DC, saving off the old values
    */
-   uMode = SetBkMode(hDC, OPAQUE);
-   crOld = SetTextColor(hDC, crShadow);
+   uMode = pdc->SetBkMode(OPAQUE);
+   crOld = pdc->SetTextColor(crShadow);
 
    /* draw the text at the desired offset using the
    ** shadow color, then again at the normal position
@@ -359,33 +357,28 @@ void EmbossedTextOut(
    ** or 'drop shadowed' look depending on what shadow color
    ** and offset are used.
    */
-   GetTextExtentPoint32(hDC, lpcsz, (int) cb, &sizeText);
+   sizeText = pdc->GetTextExtent(string(lpcsz, cb));
    rcText.left   = x;    rcText.right  = x+cx+sizeText.cx;
    rcText.top    = y;    rcText.bottom = y+cy+sizeText.cy;
    //ExtTextOut(hDC, x+cx, y+cy, ETO_OPAQUE, &rcText, lpsz, cb, NULL);
-   SetBkMode(hDC, TRANSPARENT);
+   pdc->SetBkMode(TRANSPARENT);
    //ExtTextOut(hDC, x-cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
-   ExtTextOut(hDC, x+cx, y+cy, NULL, NULL, lpcsz, (int) cb, NULL);
-   SetBkMode(hDC, TRANSPARENT);
-   SetTextColor(hDC, crText);
-   if(!ExtTextOut(hDC, x, y, 0, NULL, lpcsz, (int) cb, NULL))
+   pdc->ExtTextOut(x+cx, y+cy, NULL, NULL, lpcsz, (int) cb, NULL);
+   pdc->SetBkMode(TRANSPARENT);
+   pdc->SetTextColor(crText);
+   if(!pdc->ExtTextOut(x, y, 0, NULL, lpcsz, (int) cb, NULL))
    {
       //      TRACE("Failed to ExtTextOut, GetLastError() -->%d\n", GetLastError());
    }
 
    /* restore the DC
    */
-   SetTextColor(hDC, crOld);
-   SetBkMode(hDC, uMode);
+   pdc->SetTextColor(crOld);
+   pdc->SetBkMode(uMode);
 
-#else
-
-   throw todo(::ca::get_thread_app());
-
-#endif
 
 }
 
@@ -919,11 +912,11 @@ bool imaging::GrayVRCP(
    COLORREF crAlpha)
 {
    UNREFERENCED_PARAMETER(crAlpha);
-   //COLORREF cr3dface = GetSysColor(COLOR_3DFACE);
+   //COLORREF cr3dface = Session.get_default_color(COLOR_3DFACE);
 
 #ifdef WINDOWSEX
 
-   COLORREF cr3dshadow = GetSysColor(COLOR_3DSHADOW);
+   COLORREF cr3dshadow = Session.get_default_color(COLOR_3DSHADOW);
 
 #else
 
@@ -941,7 +934,7 @@ bool imaging::GrayVRCP(
 
 #ifdef WINDOWSEX
 
-   COLORREF cr3dhighlight = GetSysColor(COLOR_3DHILIGHT);
+   COLORREF cr3dhighlight = Session.get_default_color(COLOR_3DHILIGHT);
 
 #else
 
@@ -1047,9 +1040,9 @@ bool imaging::GrayVRCP(
 
    BYTE br, bg, bb;
 
-   //   COLORREF crBtnFace = GetSysColor(COLOR_BTNFACE);
-   //   COLORREF crBtnShad = GetSysColor(COLOR_BTNSHADOW);
-   //   COLORREF crWndBack = GetSysColor(COLOR_WINDOW);
+   //   COLORREF crBtnFace = Session.get_default_color(COLOR_BTNFACE);
+   //   COLORREF crBtnShad = Session.get_default_color(COLOR_BTNSHADOW);
+   //   COLORREF crWndBack = Session.get_default_color(COLOR_WINDOW);
 
    //   BYTE bRBtnFace = rgba_get_r(crBtnFace);
    //   BYTE bGBtnFace = rgba_get_g(crBtnFace);
@@ -3270,7 +3263,7 @@ pColorTable[iColor] = RGB_TO_RGBQUAD(255, 255, 255);
 }
 else
 pColorTable[iColor] =
-CLR_TO_RGBQUAD(::GetSysColor(s_psyscolormap[i].iSysColorTo));
+CLR_TO_RGBQUAD(Session.get_default_color(s_psyscolormap[i].iSysColorTo));
 break;
 }
 }

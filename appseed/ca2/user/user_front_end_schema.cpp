@@ -1,18 +1,20 @@
 #include "framework.h"
 
 
-
 namespace user
 {
 
+
    front_end_schema::front_end_schema(::ca::application * papp) :
-     m_menu(papp),
-     m_sysmenu(papp),
-     m_button(papp),
-     m_buttonBaseWndMenuSysMenu(papp),
-     m_buttonBaseWndMenuItem(papp),
-     m_buttonBaseWndMenuItemPopup(papp)
+      ca(papp),
+      m_menu(papp),
+      m_sysmenu(papp),
+      m_button(papp),
+      m_buttonBaseWndMenuSysMenu(papp),
+      m_buttonBaseWndMenuItem(papp),
+      m_buttonBaseWndMenuItemPopup(papp)
    {
+
       ::ca::graphics_sp spgraphics(papp);
       spgraphics->CreateCompatibleDC(NULL);
 
@@ -20,7 +22,7 @@ namespace user
 
 
       color color;
-      color.set_rgb(::GetSysColor(COLOR_HIGHLIGHT));
+      color.set_rgb(Session.get_default_color(COLOR_HIGHLIGHT));
 
       class color colorHover(color);
       colorHover.hls_rate(0.0, 0.3, 0.0);
@@ -32,40 +34,40 @@ namespace user
       m_button.m_crTextNormal          = ARGB(255, 0, 0, 0);
       m_button.m_crTextHover           = color | (0xff << 24);
       m_button.m_crTextNormal          = ARGB(255, 0, 0, 0);
-      m_button.m_crBkNormal            = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
-      m_button.m_crBkPress             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
-      m_button.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
-      m_button.m_crBkHover             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_crBkNormal            = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_crBkPress             = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_crBkDisabled          = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
+      m_button.m_crBkHover             = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
 
-      
+
       m_buttonBaseWndMenuSysMenu.m_font->create_point_font("Marlett", 11.0);
 
 
       m_buttonBaseWndMenuSysMenu.m_crTextNormal          = ARGB(255, 0, 0, 0);
       m_buttonBaseWndMenuSysMenu.m_crTextHover           = color | (0xff << 24);
       m_buttonBaseWndMenuSysMenu.m_crTextNormal          = ARGB(255, 0, 0, 0);
-      m_buttonBaseWndMenuSysMenu.m_crBkNormal            = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crBkPress             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
-      m_buttonBaseWndMenuSysMenu.m_crBkHover             = ::GetSysColor(COLOR_3DFACE) | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crBkNormal            = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crBkPress             = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crBkDisabled          = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
+      m_buttonBaseWndMenuSysMenu.m_crBkHover             = Session.get_default_color(COLOR_3DFACE) | (0xff << 24);
 
-      
+
       m_buttonBaseWndMenuItem.m_font->create_point_font("Lucida Sans Unicode", 9.0);
 
       m_buttonBaseWndMenuItem.m_crTextNormal = ARGB(255, 0, 0, 0);
       m_buttonBaseWndMenuItem.m_crTextHover  = color | (0xff << 24);
       m_buttonBaseWndMenuItem.m_crTextNormal = ARGB(255, 0, 0, 0);
-   m_buttonBaseWndMenuSysMenu.m_crBkNormal    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
-   m_buttonBaseWndMenuSysMenu.m_crBkPress  = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);           
-   m_buttonBaseWndMenuSysMenu.m_crBkDisabled    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);      
-   m_buttonBaseWndMenuSysMenu.m_crBkHover     = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+      m_buttonBaseWndMenuSysMenu.m_crBkNormal    = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+      m_buttonBaseWndMenuSysMenu.m_crBkPress  = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);           
+      m_buttonBaseWndMenuSysMenu.m_crBkDisabled    = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);      
+      m_buttonBaseWndMenuSysMenu.m_crBkHover     = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
 
-      //m_buttonBaseWndMenuItem.m_crBk         = ::GetSysColor(COLOR_3DHIGHLIGHT);
+      //m_buttonBaseWndMenuItem.m_crBk         = Session.get_default_color(COLOR_3DHIGHLIGHT);
       m_buttonBaseWndMenuItem.m_crTextDisabled = RGB(127, 127, 127) | (0xff << 24);
       m_buttonBaseWndMenuItem.m_bBorder      = false;
 
 
-      
+
       m_menu.m_font->create_point_font("Lucida Sans Unicode", 9.0);
 
 
@@ -76,11 +78,11 @@ namespace user
       m_buttonBaseWndMenuItemPopup.m_crTextNormal = ARGB(255, 0, 0, 0);
       m_buttonBaseWndMenuItemPopup.m_crTextHover  = color | (0xff << 24);
       m_buttonBaseWndMenuItemPopup.m_crTextNormal = ARGB(255, 0, 0, 0);
-    m_buttonBaseWndMenuItemPopup.m_crBkNormal    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
-   m_buttonBaseWndMenuItemPopup.m_crBkPress  = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);           
-   m_buttonBaseWndMenuItemPopup.m_crBkDisabled    = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);      
-   m_buttonBaseWndMenuItemPopup.m_crBkHover     = ::GetSysColor(COLOR_3DHIGHLIGHT) | (0xff << 24);        
-     m_buttonBaseWndMenuItemPopup.m_crTextDisabled = ARGB(255, 127, 127, 127);
+      m_buttonBaseWndMenuItemPopup.m_crBkNormal    = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+      m_buttonBaseWndMenuItemPopup.m_crBkPress  = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);           
+      m_buttonBaseWndMenuItemPopup.m_crBkDisabled    = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);      
+      m_buttonBaseWndMenuItemPopup.m_crBkHover     = Session.get_default_color(COLOR_3DHIGHLIGHT) | (0xff << 24);        
+      m_buttonBaseWndMenuItemPopup.m_crTextDisabled = ARGB(255, 127, 127, 127);
       m_buttonBaseWndMenuItemPopup.m_bBorder      = false;
 
 
@@ -90,7 +92,7 @@ namespace user
       m_menu.m_pschemaPopupButton = &m_buttonBaseWndMenuItemPopup;
 
 
-      
+
 
    }
 
@@ -118,8 +120,8 @@ namespace user
    {
       //if(m_pschemaSysMenuButton != NULL)
       //{
-        // delete m_pschemaSysMenuButton;
-         //m_pschemaSysMenuButton = NULL;
+      // delete m_pschemaSysMenuButton;
+      //m_pschemaSysMenuButton = NULL;
       //}
    }
 
@@ -151,4 +153,8 @@ namespace user
       m_bBorder = true;
    }
 
+
 } // namespace ex1
+
+
+

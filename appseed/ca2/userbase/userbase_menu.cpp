@@ -239,7 +239,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-         pdc->FillSolidRect(rectClient, GetSysColor(COLOR_WINDOW));
+         pdc->FillSolidRect(rectClient, Session.get_default_color(COLOR_WINDOW));
 
 #else
 

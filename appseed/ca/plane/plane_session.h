@@ -145,6 +145,9 @@ namespace plane
       ::planebase::application * start_application(const char * pszType, const char * pszAppId, ::ca::create_context * pcreatecontext);
 
 
+      virtual COLORREF get_default_color(uint64_t ui);
+
+
    };
 
 

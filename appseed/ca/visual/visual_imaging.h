@@ -343,15 +343,15 @@ public:
 };
 
 void EmbossedTextOut(
-     HDC                   hDC,
-     int32_t                   x,
-     int32_t                   y,
-     const char *          lpcsz,
-     size_t                cb,
-     COLORREF              crText,
-     COLORREF              crShadow,
-     int32_t                   cx,
-     int32_t                   cy);
+   ::ca::graphics *        pdc,
+   int32_t                 x,
+   int32_t                 y,
+   const char *            lpcsz,
+   size_t                  cb,
+   COLORREF                crText,
+   COLORREF                crShadow,
+   int32_t                 cx,
+   int32_t                 cy);
 
 void GetMultiLineTextExtent(HDC hDC, stringa *pArray, LPSIZE lpSize);
 void DrawMultiLineText(HDC hDC, stringa *pArray);

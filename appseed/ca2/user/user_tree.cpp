@@ -111,14 +111,14 @@ namespace user
       {
          pdc->FillSolidRect(
             rectClipBox,
-            GetSysColor(COLOR_WINDOW));
+            Session.get_default_color(COLOR_WINDOW));
       }
       else
       {
          imaging.color_blend(
             pdc,
             rectClipBox,
-            GetSysColor(COLOR_WINDOW),
+            Session.get_default_color(COLOR_WINDOW),
             196);
       }
    }
@@ -202,7 +202,7 @@ namespace user
                imaging.color_blend(
                   pdc,
                   rectClipBox,
-                  GetSysColor(COLOR_WINDOW),
+                  Session.get_default_color(COLOR_WINDOW),
                   196);
             }*/
    /*         if(m_pgdibuffer != NULL)

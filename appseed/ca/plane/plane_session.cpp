@@ -1092,6 +1092,18 @@ namespace plane
    }
 
 
+   COLORREF session::get_default_color(uint64_t ui)
+   {
+
+#ifdef WINDOWSEX
+      return GetSysColor(ui);
+#else
+      return 0;
+#endif
+
+   }
+
+
 } // namespace plane
 
 

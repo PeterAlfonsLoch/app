@@ -283,7 +283,7 @@ void simple_toolbar::TransparentEraseNonClient(::ca::graphics * pdc)
    else
    {
 #ifdef WINDOWSEX
-      pdc->FillSolidRect(rectWindow, GetSysColor(COLOR_3DFACE));
+      pdc->FillSolidRect(rectWindow, Session.get_default_color(COLOR_3DFACE));
 #else
       pdc->FillSolidRect(rectWindow, ARGB(255, 184, 184, 177));
 #endif

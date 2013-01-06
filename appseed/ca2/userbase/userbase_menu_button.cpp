@@ -97,7 +97,7 @@ namespace userbase
          if(m_echeck == check::checked)
          {
             pdc->FillSolidRect(rectImageBorder, RGB(127, 127, 127));
-            pdc->Draw3dRect(rectImageBorder, GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DHILIGHT));
+            pdc->Draw3dRect(rectImageBorder, Session.get_default_color(COLOR_3DSHADOW), Session.get_default_color(COLOR_3DHILIGHT));
          }
          pimagelist->draw(
             pdc,
