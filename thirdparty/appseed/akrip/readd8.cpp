@@ -32,16 +32,16 @@ extern int32_t alErrCode;
 extern BYTE alAspiErr;
 extern int32_t *nextHandle;
 
-extern DWORD (*pfnSendASPI32Command)(LPSRB);
+extern uint32_t (*pfnSendASPI32Command)(LPSRB);
 
 
 
 /***************************************************************************
  * readCDAudioLBA_D8
  ***************************************************************************/
-DWORD readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t )
+uint32_t readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;

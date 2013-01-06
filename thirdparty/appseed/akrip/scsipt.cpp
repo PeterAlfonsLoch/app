@@ -7,8 +7,8 @@
  * compilation w/o having the DDK installed.
  *
  * Implements the following functions:
- *   DWORD SPTIGetASPI32SupportInfo();
- *   DWORD SPTISendASPI32Command(LPSRB);
+ *   uint32_t SPTIGetASPI32SupportInfo();
+ *   uint32_t SPTISendASPI32Command(LPSRB);
  * which are equivalents to their ASPI counterparts.  Additionally implements
  *   int32_t InitSCSIPT( void );
  *   int32_t DeinitSCSIPT( void );
@@ -55,9 +55,9 @@ typedef struct {
 void GetDriveInformation( BYTE i, DRIVE *pDrive );
 BYTE SPTIGetNumAdapters( void );
 BYTE SPTIGetDeviceIndex( BYTE ha, BYTE tgt, BYTE lun );
-DWORD SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb );
-DWORD SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb );
-DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore );
+uint32_t SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb );
+uint32_t SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb );
+uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore );
 HANDLE GetFileHandle( BYTE i );
 
 static bool bSCSIPTInit = FALSE;
@@ -76,7 +76,7 @@ int32_t InitSCSIPT( void )
 {
   BYTE i;
   char buf[4];
-  UINT uDriveType;
+  uint32_t uDriveType;
   int32_t retVal = 0;
 
   if ( bSCSIPTInit )
@@ -161,17 +161,17 @@ BYTE SPTIGetNumAdapters( void )
 /*
  * Replacement for GetASPI32SupportInfo from wnaspi32.dll
  */
-DWORD SPTIGetASPI32SupportInfo( void )
+uint32_t SPTIGetASPI32SupportInfo( void )
 {
-  DWORD retVal;
+  uint32_t retVal;
 
 #ifdef _DEBUG_SCSIPT
   dbprintf( "AKRip32: SPTIGetASPI32SupportInfo" );
 #endif
   if ( !sptiglobal.numAdapters )
-    retVal = (DWORD)(MAKEWORD(0,SS_NO_ADAPTERS));
+    retVal = (uint32_t)(MAKEWORD(0,SS_NO_ADAPTERS));
   else
-    retVal = (DWORD)(MAKEWORD(sptiglobal.numAdapters,SS_COMP));
+    retVal = (uint32_t)(MAKEWORD(sptiglobal.numAdapters,SS_COMP));
 
   return retVal;
 }
@@ -181,7 +181,7 @@ DWORD SPTIGetASPI32SupportInfo( void )
  * Valid types are SC_HA_INQUIRY, SC_GET_DEV_TYPE, SC_EXEC_SCSI_CMD,
  * and SC_RESET_DEV.
  */
-DWORD SPTISendASPI32Command( LPSRB lpsrb )
+uint32_t SPTISendASPI32Command( LPSRB lpsrb )
 {
   if ( !lpsrb )
     return SS_ERR;
@@ -219,7 +219,7 @@ HANDLE GetFileHandle( BYTE i )
   char buf[12];
   HANDLE fh;
   OSVERSIONINFO osver;
-  DWORD dwFlags;
+  uint32_t dwFlags;
 
   ZeroMemory( &osver, sizeof(osver) );
   osver.dwOSVersionInfoSize = sizeof(osver);
@@ -374,9 +374,9 @@ void GetDriveInformation( BYTE i, DRIVE *pDrive )
 
 
 
-DWORD SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb )
+uint32_t SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb )
 {
-  DWORD *pMTL;
+  uint32_t *pMTL;
 
   lpsrb->HA_Count    = sptiglobal.numAdapters;
   if ( lpsrb->SRB_HaID >= sptiglobal.numAdapters )
@@ -402,7 +402,7 @@ DWORD SPTIHandleHaInquiry( LPSRB_HAInquiry lpsrb )
  * Scans through the drive base_array and returns DTYPE_CDROM type for all items
  * found, and DTYPE_UNKNOWN for all others.
  */
-DWORD SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb )
+uint32_t SPTIGetDeviceType( LPSRB_GDEVBlock lpsrb )
 {
 #ifdef _DEBUG_SCSIPT
   dbprintf( "AKRip32: SPTIGetDeviceType( %d:%d:%d )",lpsrb->SRB_HaID, lpsrb->SRB_Target, lpsrb->SRB_Lun );
@@ -449,7 +449,7 @@ BYTE SPTIGetDeviceIndex( BYTE ha, BYTE tgt, BYTE lun )
 /*
  * Converts ASPI-style SRB to SCSI Pass Through IOCTL
  */
-DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore )
+uint32_t SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore )
 {
   BOOLEAN status;
   SCSI_PASS_THROUGH_DIRECT_WITH_BUFFER swb;
@@ -514,7 +514,7 @@ DWORD SPTIExecSCSICommand( LPSRB_ExecSCSICmd lpsrb, bool bBeenHereBefore )
     }
   else
     {
-      DWORD dwErrCode;
+      uint32_t dwErrCode;
 
       lpsrb->SRB_Status = SS_ERR;
       lpsrb->SRB_TargStat = 0x0004;

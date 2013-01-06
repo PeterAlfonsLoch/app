@@ -35,29 +35,29 @@ typedef struct {
   int32_t nextHandle;
 } AKSHAREDMEM, FAR *LPAKSHAREDMEM;
 
-DWORD deinitREAD10( HCDROM hCD );
-DWORD initREAD10( HCDROM hCD );
-DWORD readCDParameters( HCDROM hCD, bool bChangeMask );
-DWORD setCDSpeed( HCDROM hCD, DWORD speed );
-DWORD pauseResumeCD( HCDROM hCD, bool bPause );
-DWORD startStopUnit( HCDROM hCD, bool bLoEj, bool bStart );
+uint32_t deinitREAD10( HCDROM hCD );
+uint32_t initREAD10( HCDROM hCD );
+uint32_t readCDParameters( HCDROM hCD, bool bChangeMask );
+uint32_t setCDSpeed( HCDROM hCD, uint32_t speed );
+uint32_t pauseResumeCD( HCDROM hCD, bool bPause );
+uint32_t startStopUnit( HCDROM hCD, bool bLoEj, bool bStart );
 int32_t loadAspi( void );
 void unloadAspi( void );
 bool initMutexes( void );
 bool deinitMutexes( void );
-DWORD CDDBSum( DWORD n );
+uint32_t CDDBSum( uint32_t n );
 int32_t compBuf( BYTE *b1, BYTE *b2, int32_t n );
-DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t );
-DWORD dummyGetASPI32SupportInfo( void );
-DWORD dummySendASPI32Command( LPSRB lpsrb );
+uint32_t testReadCDAudio( HCDROM hCD, LPTRACKBUF t );
+uint32_t dummyGetASPI32SupportInfo( void );
+uint32_t dummySendASPI32Command( LPSRB lpsrb );
 bool dummyGetASPI32Buffer( PASPI32BUFF pbuf );
 bool dummyFreeASPI32Buffer( PASPI32BUFF pbuf );
 bool dummyTranslateASPI32Address( PDWORD p1, PDWORD p2 );
-DWORD dummyGetASPI32DLLVersion( void );
+uint32_t dummyGetASPI32DLLVersion( void );
 int32_t InitSCSIPT( void );
 int32_t DeinitSCSIPT( void );
-DWORD SPTIGetASPI32SupportInfo( void );
-DWORD SPTISendASPI32Command( LPSRB lpsrb );
+uint32_t SPTIGetASPI32SupportInfo( void );
+uint32_t SPTISendASPI32Command( LPSRB lpsrb );
 
 /*
  * static variables
@@ -94,17 +94,17 @@ int32_t *nextHandle = NULL;
 CRITICAL_SECTION getHandle;
 HANDLE hCacheMutex = NULL;
 CRITICAL_SECTION csCache;
-static DWORD dwAPI = APIC_NONE;
+static uint32_t dwAPI = APIC_NONE;
 
 //CRITICAL_SECTION useDbbuf;
 //char dbbuf[512];
 
-DWORD (*pfnGetASPI32SupportInfo)();
-DWORD (*pfnSendASPI32Command)(LPSRB);
+uint32_t (*pfnGetASPI32SupportInfo)();
+uint32_t (*pfnSendASPI32Command)(LPSRB);
 bool  (*pfnGetASPI32Buffer)(PASPI32BUFF);
 bool  (*pfnFreeASPI32Buffer)(PASPI32BUFF);
 bool  (*pfnTranslateASPI32Address)(PDWORD,PDWORD);
-DWORD (*pfnGetASPI32DLLVersion)();
+uint32_t (*pfnGetASPI32DLLVersion)();
 bool  aspiLoaded = FALSE;
 
 /*
@@ -118,7 +118,7 @@ static char *devType( int32_t i );
 /***************************************************************************
  * DllMain
  ***************************************************************************/
-bool WINAPI DllMain( HANDLE hModule, DWORD dwReason, LPVOID lpReserved )
+bool WINAPI DllMain( HANDLE hModule, uint32_t dwReason, LPVOID lpReserved )
 {
   bool fInit;
   static HANDLE hMapObject = NULL;
@@ -260,7 +260,7 @@ int32_t  getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
 		     LPBYTE pDevType, char * lpDevTypeStr, int32_t iDevTypeLen )
 {
   SRB_GDEVBlock s;
-  DWORD dwStatus;
+  uint32_t dwStatus;
 
   memset( &s, 0, sizeof(SRB_GDEVBlock) );
   s.SRB_Cmd = SC_GET_DEV_TYPE;
@@ -309,12 +309,12 @@ int32_t  getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
 }
 
 
-DWORD dummyGetASPI32SupportInfo( void )
+uint32_t dummyGetASPI32SupportInfo( void )
 {
   return SS_NO_ASPI;
 }
 
-DWORD dummySendASPI32Command( LPSRB lpsrb )
+uint32_t dummySendASPI32Command( LPSRB lpsrb )
 {
   lpsrb->SRB_Status = SS_NO_ASPI;
   return SS_NO_ASPI;
@@ -339,7 +339,7 @@ bool dummyTranslateASPI32Address( PDWORD p1, PDWORD p2 )
 }
 
 
-DWORD dummyGetASPI32DLLVersion( void )
+uint32_t dummyGetASPI32DLLVersion( void )
 {
   return 0;
 }
@@ -350,15 +350,15 @@ DWORD dummyGetASPI32DLLVersion( void )
  ***************************************************************************/
 int32_t loadAspi( void )
 {
-  DWORD dwErr;
+  uint32_t dwErr;
   hinstWNASPI32 = LoadLibrary( "WNASPI32.DLL" );
 
   if ( hinstWNASPI32 )
     {
       pfnGetASPI32SupportInfo =
-	(DWORD(*)())GetProcAddress( hinstWNASPI32, "GetASPI32SupportInfo" );
+	(uint32_t(*)())GetProcAddress( hinstWNASPI32, "GetASPI32SupportInfo" );
       pfnSendASPI32Command =
-	(DWORD(*)(LPSRB))GetProcAddress( hinstWNASPI32, "SendASPI32Command" );
+	(uint32_t(*)(LPSRB))GetProcAddress( hinstWNASPI32, "SendASPI32Command" );
       pfnGetASPI32Buffer =
 	(bool(*)(PASPI32BUFF))GetProcAddress( hinstWNASPI32, "GetASPI32Buffer" );
       pfnFreeASPI32Buffer =
@@ -366,7 +366,7 @@ int32_t loadAspi( void )
       pfnTranslateASPI32Address =
 	(bool(*)(PDWORD,PDWORD))GetProcAddress( hinstWNASPI32, "TranslateASPI32Address" );
       pfnGetASPI32DLLVersion =
-	(DWORD(*)())GetProcAddress( hinstWNASPI32, "GetASPI32DLLVersion" );
+	(uint32_t(*)())GetProcAddress( hinstWNASPI32, "GetASPI32DLLVersion" );
 
       if ( !pfnGetASPI32SupportInfo || !pfnSendASPI32Command )
 	{
@@ -440,7 +440,7 @@ void unloadAspi( void )
  ***************************************************************************/
 int32_t GetNumAdapters( void )
 {
-  DWORD d;
+  uint32_t d;
   BYTE bHACount;
   BYTE bASPIStatus;
 
@@ -464,9 +464,9 @@ int32_t GetNumAdapters( void )
 /***************************************************************************
  * GetDriveInfo
  ***************************************************************************/
-DWORD GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec )
+uint32_t GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   BYTE buf[100];
@@ -547,10 +547,10 @@ DWORD GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec )
  *
  * 
  ***************************************************************************/
-DWORD ReadTOC( HCDROM hCD, LPTOC toc )
+uint32_t ReadTOC( HCDROM hCD, LPTOC toc )
 {
-  DWORD dwStatus;
-  DWORD retVal = SS_COMP;
+  uint32_t dwStatus;
+  uint32_t retVal = SS_COMP;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;
@@ -630,7 +630,7 @@ DWORD ReadTOC( HCDROM hCD, LPTOC toc )
  ***************************************************************************/
 void resetSCSIBus( void )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_BusDeviceReset s;
 
@@ -742,10 +742,10 @@ int32_t GetCDList( LPCDLIST cd )
 }
 
 
-DWORD ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF t )
+uint32_t ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF t )
 {
   int32_t idx = (int32_t)hCD - 1;
-  DWORD retVal;
+  uint32_t retVal;
 
   if ( (idx<0) || (idx>=MAXCDHAND) )
     {
@@ -780,10 +780,10 @@ DWORD ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF t )
  * bytes.  This is because some read commands do not return an error, but
  * also don't read correct data or a full buffer.
  */
-DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
+uint32_t testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
 {
-  DWORD i;
-  DWORD dwStatus;
+  uint32_t i;
+  uint32_t dwStatus;
   BYTE *p;
   int32_t idx = (int32_t)hCD - 1;
   int32_t count;
@@ -800,7 +800,7 @@ DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
   p = &(t->buf[t->startOffset]);
   for( i = 0, count = 0; i < t->len; i += 4 )
     {
-      if ( *((DWORD *)p) == 0xAAAAAAAA )
+      if ( *((uint32_t *)p) == 0xAAAAAAAA )
 	count += 1;
       else
 	count = 0;
@@ -823,9 +823,9 @@ DWORD testReadCDAudio( HCDROM hCD, LPTRACKBUF t )
  * ATAPI2, ATAPI1, and then finally READ10
  *
  ***************************************************************************/
-DWORD readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t )
+uint32_t readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   int32_t idx = (int32_t)hCD - 1;
   int32_t i, j;
   int32_t ord[7] = { 2, 1, 8, 4, 5, 6, 7 };
@@ -872,24 +872,24 @@ DWORD readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t )
 }
 
 
-DWORD GetASPI32SupportInfo( void )
+uint32_t GetASPI32SupportInfo( void )
 {
   return pfnGetASPI32SupportInfo();
 }
 
 
-DWORD SendASPI32Command( LPSRB s )
+uint32_t SendASPI32Command( LPSRB s )
 {
   return pfnSendASPI32Command( s );
 }
 
 
 #define _GEN_CDPARMS 0
-DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
+uint32_t readCDParameters( HCDROM hCD, bool bChangeMask )
 {
   HANDLE h;
   SRB_ExecSCSICmd s;
-  DWORD d;
+  uint32_t d;
   BYTE b[256];
   int32_t lenData;
   BYTE *p;
@@ -998,7 +998,7 @@ DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
  * Generic function to query CD unit capabilities and parameters
  *
  * which:   specifies the parm we wish to query
- * pNum:    pointer to DWORD to return data
+ * pNum:    pointer to uint32_t to return data
  *
  * returns: If the parm is not available, returns FALSE.  Otherwise
  *          returns TRUE.
@@ -1006,10 +1006,10 @@ DWORD readCDParameters( HCDROM hCD, bool bChangeMask )
  * The data requested will either be returned as a bool, or copied
  * to pNum, depending on the parameter requested.
  ****************************************************************/
-bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
+bool QueryCDParms( HCDROM hCD, int32_t which, uint32_t *pNum )
 {
   bool retVal = FALSE;
-  DWORD dwTmp;
+  uint32_t dwTmp;
   int32_t idx = (int32_t)hCD - 1;
 
   if ( (idx<0) || (idx>=MAXCDHAND) || !cdHandles[idx].used )
@@ -1148,7 +1148,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.ccsmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = (DWORD)(cdHandles[idx].sm.ccsm[6] >> 5);
+	  *pNum = (uint32_t)(cdHandles[idx].sm.ccsm[6] >> 5);
 	}
       break;
 
@@ -1160,7 +1160,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.ccsmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = ((DWORD)cdHandles[idx].sm.ccsm[8] << 8) + (DWORD)cdHandles[idx].sm.ccsm[9];
+	  *pNum = ((uint32_t)cdHandles[idx].sm.ccsm[8] << 8) + (uint32_t)cdHandles[idx].sm.ccsm[9];
 	}
       break;
 
@@ -1168,7 +1168,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.ccsmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = ((DWORD)cdHandles[idx].sm.ccsm[10] << 8) + (DWORD)cdHandles[idx].sm.ccsm[11];
+	  *pNum = ((uint32_t)cdHandles[idx].sm.ccsm[10] << 8) + (uint32_t)cdHandles[idx].sm.ccsm[11];
 	}
       break;
 
@@ -1176,7 +1176,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.ccsmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = ((DWORD)cdHandles[idx].sm.ccsm[12] << 8) + (DWORD)cdHandles[idx].sm.ccsm[13];
+	  *pNum = ((uint32_t)cdHandles[idx].sm.ccsm[12] << 8) + (uint32_t)cdHandles[idx].sm.ccsm[13];
 	}
       break;
 
@@ -1184,7 +1184,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.ccsmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = ((DWORD)cdHandles[idx].sm.ccsm[14] << 8) + (DWORD)cdHandles[idx].sm.ccsm[15];
+	  *pNum = ((uint32_t)cdHandles[idx].sm.ccsm[14] << 8) + (uint32_t)cdHandles[idx].sm.ccsm[15];
 	}
       break;
 
@@ -1192,7 +1192,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.cpmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = ((DWORD)cdHandles[idx].sm.cpm[4] << 8) + (DWORD)cdHandles[idx].sm.cpm[5];
+	  *pNum = ((uint32_t)cdHandles[idx].sm.cpm[4] << 8) + (uint32_t)cdHandles[idx].sm.cpm[5];
 	}
       break;
 
@@ -1200,7 +1200,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.cpmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = ((DWORD)cdHandles[idx].sm.cpm[6] << 8) + (DWORD)cdHandles[idx].sm.cpm[7];
+	  *pNum = ((uint32_t)cdHandles[idx].sm.cpm[6] << 8) + (uint32_t)cdHandles[idx].sm.cpm[7];
 	}
       break;
 
@@ -1208,7 +1208,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
       if ( cdHandles[idx].sm.cpmAvail )
 	{
 	  retVal = TRUE;
-	  *pNum = (DWORD)(cdHandles[idx].sm.cpm[3] & 0x0F);
+	  *pNum = (uint32_t)(cdHandles[idx].sm.cpm[3] & 0x0F);
 	}
       break;
 
@@ -1218,17 +1218,17 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
 
     case CDP_JITTER:
       retVal = TRUE;
-      *pNum = (DWORD)(cdHandles[idx].numCheck);
+      *pNum = (uint32_t)(cdHandles[idx].numCheck);
       break;
 
     case CDP_OVERLAP:
       retVal = TRUE;
-      *pNum = (DWORD)(cdHandles[idx].numOverlap);
+      *pNum = (uint32_t)(cdHandles[idx].numOverlap);
       break;
 
     case CDP_READMODE:
       retVal = TRUE;
-      *pNum = (DWORD)(cdHandles[idx].readMode);
+      *pNum = (uint32_t)(cdHandles[idx].readMode);
       break;
 
     default:
@@ -1244,7 +1244,7 @@ bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum )
  * Complement to queryCDParms -- used to set values in the various control
  * pages on the CD drive.
  */
-bool ModifyCDParms( HCDROM hCD, int32_t which, DWORD val )
+bool ModifyCDParms( HCDROM hCD, int32_t which, uint32_t val )
 {
   //SENSEMASK smask;
   //bool smRead = FALSE;
@@ -1311,9 +1311,9 @@ bool ModifyCDParms( HCDROM hCD, int32_t which, DWORD val )
  * a speed higher than the allowed maximum speed should not cause an error,
  * but should set the speed at the highest allowed value.
  */
-DWORD setCDSpeed( HCDROM hCD, DWORD speed )
+uint32_t setCDSpeed( HCDROM hCD, uint32_t speed )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;
@@ -1360,9 +1360,9 @@ DWORD setCDSpeed( HCDROM hCD, DWORD speed )
 }
 
 
-DWORD pauseResumeCD( HCDROM hCD, bool bPause )
+uint32_t pauseResumeCD( HCDROM hCD, bool bPause )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;
@@ -1415,9 +1415,9 @@ DWORD pauseResumeCD( HCDROM hCD, bool bPause )
 }
 
 
-DWORD startStopUnit( HCDROM hCD, bool bLoEj, bool bStart )
+uint32_t startStopUnit( HCDROM hCD, bool bLoEj, bool bStart )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;
@@ -1516,7 +1516,7 @@ BYTE GetAspiLibAspiError( void )
  * hCD
  *
  ****************************************************************/
-DWORD  GetCDId( HCDROM hCD, char *buf, int32_t maxBuf )
+uint32_t  GetCDId( HCDROM hCD, char *buf, int32_t maxBuf )
 {
   int32_t idx = (int32_t)hCD - 1;
   CDREC cd;
@@ -1560,7 +1560,7 @@ DWORD  GetCDId( HCDROM hCD, char *buf, int32_t maxBuf )
 
 bool allZeros( LPTRACKBUF t )
 {
-  DWORD i;
+  uint32_t i;
   uchar *p = &t->buf[t->startOffset]; 
 
   for( i = 0; i < t->len; i++ )
@@ -1621,9 +1621,9 @@ int32_t jitterAdjust( LPTRACKBUF tbuf, LPTRACKBUF tover, int32_t checkFrames )
  * the current read, if possible.  After a successful read, numOverlap frames
  * are copied to tOver.
  */
-DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
+uint32_t ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
 {
-  DWORD retVal;
+  uint32_t retVal;
   int32_t idx = (int32_t)hCD - 1;
   int32_t j, o;
   uchar *pOverAddr;
@@ -1652,13 +1652,13 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
   j = cdHandles[idx].numCheck;
   o = cdHandles[idx].numOverlap;
 
-  bSaveJitter = ((tOver->maxLen / 2352) >= (DWORD)j);
+  bSaveJitter = ((tOver->maxLen / 2352) >= (uint32_t)j);
   bJitterCorr = bSaveJitter && !allZeros( tOver );
 
   // adjust the starting address of the read if necessary
   if ( bJitterCorr && tOver->startFrame && tOver->numFrames && tOver->len )
     {
-      DWORD numFrames;
+      uint32_t numFrames;
 
       numFrames = t->numFrames;
 
@@ -1667,7 +1667,7 @@ DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF t, LPTRACKBUF tOver )
 	{
 	  t->startFrame -= o;
 	  // detect situation when trying to read less than the overlap buffer
-	  if ( (numFrames <= (DWORD)o) && ((numFrames + o) <= (t->maxLen/2352)))
+	  if ( (numFrames <= (uint32_t)o) && ((numFrames + o) <= (t->maxLen/2352)))
 	    {
 	      t->numFrames += o;
 	    }
@@ -1758,11 +1758,11 @@ int32_t compBuf( BYTE *b1, BYTE *b2, int32_t n )
 
 
 
-DWORD GetAKRipDllVersion( void )
+uint32_t GetAKRipDllVersion( void )
 {
-  DWORD retVal;
+  uint32_t retVal;
 
-  retVal = (DWORD)( (((WORD)MAJVER)<<16) | (WORD)MINVER );
+  retVal = (uint32_t)( (((WORD)MAJVER)<<16) | (WORD)MINVER );
   return retVal;
 }
 
@@ -1781,7 +1781,7 @@ void dbprintf( char *fmt, ... )
 }
 
 
-DWORD GetInterfaceID( void )
+uint32_t GetInterfaceID( void )
 {
   return dwAPI;
 }

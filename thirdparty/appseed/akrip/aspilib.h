@@ -60,8 +60,8 @@ int32_t getSCSIDevType( BYTE bHostAdapter, BYTE bTarget, BYTE bLUN,
 		    LPBYTE pDevType, char * lpDevType, int32_t iDevTypeLen );
 
 
-typedef DWORD (*CDREADFN)( HCDROM hCD, LPTRACKBUF t );
-typedef DWORD (*CDDEINIT)( HCDROM hCD );
+typedef uint32_t (*CDREADFN)( HCDROM hCD, LPTRACKBUF t );
+typedef uint32_t (*CDDEINIT)( HCDROM hCD );
 
 typedef struct {
   bool bInit;
@@ -97,13 +97,13 @@ typedef struct {
 #define MAXCDHAND 16
 #define TIMEOUT    (10*1000)
 
-DWORD readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t );
-DWORD readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t );
-DWORD readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t );
-DWORD readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t );
-DWORD readCDAudioLBA_D4( HCDROM hCD, LPTRACKBUF t );
+uint32_t readCDAudioLBA_ANY( HCDROM hCD, LPTRACKBUF t );
+uint32_t readCDAudioLBA_ATAPI( HCDROM hCD, LPTRACKBUF t );
+uint32_t readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t );
+uint32_t readCDAudioLBA_D8( HCDROM hCD, LPTRACKBUF t );
+uint32_t readCDAudioLBA_D4( HCDROM hCD, LPTRACKBUF t );
 
-DWORD pauseResumeCD( HCDROM hCD, bool bPause );
+uint32_t pauseResumeCD( HCDROM hCD, bool bPause );
 
 void dbprintf( char *fmt, ... );
 #endif

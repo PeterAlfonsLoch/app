@@ -58,22 +58,22 @@ extern "C" {
  */
 typedef struct
 {
-  DWORD   startFrame;       /* 00: starting frame number          */
-  DWORD   numFrames;        /* 04: number of frames read          */
-  DWORD   maxLen;           /* 08: length of buffer itself        */
-  DWORD   len;              /* 0C: length of data actually in buf */
-  DWORD   status;           /* 10: status of last read operation  */
+  uint32_t   startFrame;       /* 00: starting frame number          */
+  uint32_t   numFrames;        /* 04: number of frames read          */
+  uint32_t   maxLen;           /* 08: length of buffer itself        */
+  uint32_t   len;              /* 0C: length of data actually in buf */
+  uint32_t   status;           /* 10: status of last read operation  */
   int32_t     startOffset;      /* 14: offset of valid data in buf    */
   BYTE    buf[1024*1024];     /* 18: the data itself                */
 } *PTRACKBUF, FAR *LPTRACKBUF;
 
 typedef struct
 {
-  DWORD   startFrame;       /* 00: starting frame number          */
-  DWORD   numFrames;        /* 04: number of frames read          */
-  DWORD   maxLen;           /* 08: length of buffer itself        */
-  DWORD   len;              /* 0C: length of data actually in buf */
-  DWORD   status;           /* 10: status of last read operation  */
+  uint32_t   startFrame;       /* 00: starting frame number          */
+  uint32_t   numFrames;        /* 04: number of frames read          */
+  uint32_t   maxLen;           /* 08: length of buffer itself        */
+  uint32_t   len;              /* 0C: length of data actually in buf */
+  uint32_t   status;           /* 10: status of last read operation  */
   int32_t     startOffset;      /* 14: offset of valid data in buf    */
 } TRACKBUFDUMMY;
 #define TRACKBUFEXTRA   sizeof(TRACKBUFDUMMY)
@@ -137,8 +137,8 @@ typedef struct
 typedef struct
 {
   int32_t   trackNo;
-  DWORD startLBA;
-  DWORD trackLen;
+  uint32_t startLBA;
+  uint32_t trackLen;
   BYTE  type;
   BYTE  pad[3];
   char  name[256];
@@ -300,16 +300,16 @@ int32_t GetCDList( LPCDLIST cd );
 int32_t GetAspiLibError();
 BYTE GetAspiLibAspiError();
 
-DWORD GetCDId( HCDROM hCD, char *buf, int32_t maxBuf );
-DWORD GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec );
-DWORD ReadTOC( HCDROM hCD, LPTOC lpToc );
-DWORD ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF );
-bool QueryCDParms( HCDROM hCD, int32_t which, DWORD *pNum );
-bool ModifyCDParms( HCDROM hCD, int32_t which, DWORD val );
+uint32_t GetCDId( HCDROM hCD, char *buf, int32_t maxBuf );
+uint32_t GetDriveInfo( BYTE ha, BYTE tgt, BYTE lun, LPCDREC cdrec );
+uint32_t ReadTOC( HCDROM hCD, LPTOC lpToc );
+uint32_t ReadCDAudioLBA( HCDROM hCD, LPTRACKBUF );
+bool QueryCDParms( HCDROM hCD, int32_t which, uint32_t *pNum );
+bool ModifyCDParms( HCDROM hCD, int32_t which, uint32_t val );
 HCDROM GetCDHandle( LPGETCDHAND lpcd );
 bool CloseCDHandle( HCDROM );
-DWORD ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF, LPTRACKBUF );
-DWORD GetAKRipDllVersion();
+uint32_t ReadCDAudioLBAEx( HCDROM hCD, LPTRACKBUF, LPTRACKBUF );
+uint32_t GetAKRipDllVersion();
 
 /*
  * CDDB support
@@ -346,12 +346,12 @@ typedef struct {
 } CDDBSITELIST, FAR *LPCDDBSITELIST;
 
 
-DWORD GetCDDBDiskID( HCDROM hCD, DWORD *pID, int32_t numEntries );
-DWORD CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq );
-DWORD CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen );
+uint32_t GetCDDBDiskID( HCDROM hCD, uint32_t *pID, int32_t numEntries );
+uint32_t CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq );
+uint32_t CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen );
 void CDDBSetOption( int32_t what, char *szVal, int32_t iVal );
-DWORD CDDBGetServerList( LPCDDBSITELIST lpSiteList );
-DWORD CDDBSubmit( DWORD dwDiscID, bool bTest, char *szEmail, char *szCategory,
+uint32_t CDDBGetServerList( LPCDDBSITELIST lpSiteList );
+uint32_t CDDBSubmit( uint32_t dwDiscID, bool bTest, char *szEmail, char *szCategory,
 		  char *szEntry );
 
 #ifdef __cplusplus

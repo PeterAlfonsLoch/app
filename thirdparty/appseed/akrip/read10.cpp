@@ -32,17 +32,17 @@ extern int32_t alErrCode;
 extern BYTE alAspiErr;
 extern int32_t *nextHandle;
 
-extern DWORD (*pfnSendASPI32Command)(LPSRB);
+extern uint32_t (*pfnSendASPI32Command)(LPSRB);
 
-DWORD deinitREAD10( HCDROM hCD );
+uint32_t deinitREAD10( HCDROM hCD );
 
 
 /***************************************************************************
  * initREAD10
  ***************************************************************************/
-DWORD initREAD10_2( HCDROM hCD )
+uint32_t initREAD10_2( HCDROM hCD )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;
@@ -121,9 +121,9 @@ DWORD initREAD10_2( HCDROM hCD )
  * initREAD10
  * -- try a shorter version of the mode select ...
  ***************************************************************************/
-DWORD initREAD10( HCDROM hCD )
+uint32_t initREAD10( HCDROM hCD )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;
@@ -194,9 +194,9 @@ DWORD initREAD10( HCDROM hCD )
 /***************************************************************************
  * deinitREAD10
  ***************************************************************************/
-DWORD deinitREAD10( HCDROM hCD )
+uint32_t deinitREAD10( HCDROM hCD )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;
@@ -247,9 +247,9 @@ DWORD deinitREAD10( HCDROM hCD )
 /***************************************************************************
  * readCDAudioLBA_READ10
  ***************************************************************************/
-DWORD readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t )
+uint32_t readCDAudioLBA_READ10( HCDROM hCD, LPTRACKBUF t )
 {
-  DWORD dwStatus;
+  uint32_t dwStatus;
   HANDLE heventSRB;
   SRB_ExecSCSICmd s;
   int32_t idx = (int32_t)hCD - 1;

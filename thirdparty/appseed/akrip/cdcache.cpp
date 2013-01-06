@@ -36,8 +36,8 @@
 #include <winsock.h>
 
 
-DWORD CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders, char *retBuf, int32_t retLen );
-DWORD CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders, char *retBuf, int32_t retLen );
+uint32_t CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders, char *retBuf, int32_t retLen );
+uint32_t CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders, char *retBuf, int32_t retLen );
 void urlEncodeString( char *s );
 void GetLineFromBuf( char **src, char *tgt, int32_t len );
 void processCDDBQuery( char *buf, LPCDDBQUERY lpq );
@@ -46,20 +46,20 @@ int32_t extractCDDBQueryInfo( LPCDDBQUERYITEM lpq, char *linebuf );
 void processSites( char *buf, LPCDDBSITELIST lps );
 int32_t extractCDDBSiteInfo( LPCDDBSITE s, char *buf );
 void getWord( char **inBuf, char *outBuf, int32_t len );
-DWORD genCDPlayerIniIndex( HCDROM hCD );
-void MSB2DWORD( DWORD *d, BYTE *b );
-DWORD getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen );
+uint32_t genCDPlayerIniIndex( HCDROM hCD );
+void MSB2DWORD( uint32_t *d, BYTE *b );
+uint32_t getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen );
 bool isCDinCDPlayerIni( char *s );
-void addCDPlayerCDDBIndex( DWORD cdpIdx, DWORD cddbId, DWORD numTracks, DWORD offsets[100] );
+void addCDPlayerCDDBIndex( uint32_t cdpIdx, uint32_t cddbId, uint32_t numTracks, uint32_t offsets[100] );
 void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry );
 char *base64Encode( char *tgt, BYTE *src );
 
 
 typedef struct {
-  DWORD cdPlayerIniId;
-  DWORD cddbId;
-  DWORD numTracks;
-  DWORD trackOfs[100];
+  uint32_t cdPlayerIniId;
+  uint32_t cddbId;
+  uint32_t numTracks;
+  uint32_t trackOfs[100];
 } CDDB2CDPLAYER, *PCDDB2CDPLAYER;
 
 
@@ -73,7 +73,7 @@ extern CRITICAL_SECTION getHandle;
 extern int32_t alErrCode;
 extern BYTE alAspiErr;
 
-extern DWORD (*pfnSendASPI32Command)(LPSRB);
+extern uint32_t (*pfnSendASPI32Command)(LPSRB);
 
 //static bool bCacheInitMutex = FALSE;
 static bool bCacheInit = FALSE;
@@ -95,15 +95,15 @@ static char szCddbCGI[81] = "/~cddb/cddb.cgi";
 static char szSubmitCGI[81] = "/~cddb/submit.cgi";
 static int32_t  iHTTPPort = 80;
 static bool bUseCDPlayerIni = TRUE;
-//static DWORD dwCDDB2CDPlayer[20][3];
+//static uint32_t dwCDDB2CDPlayer[20][3];
 static CDDB2CDPLAYER cddb2cdplayer[20];
 static int32_t iNextIndex = -1;
 static bool bUseHTTP1_0 = TRUE;
 static int32_t protoLevel = 5;
 
-DWORD CDDBSum( DWORD n )
+uint32_t CDDBSum( uint32_t n )
 {
-  DWORD retVal = 0;
+  uint32_t retVal = 0;
 
   while( n > 0 )
     {
@@ -126,13 +126,13 @@ DWORD CDDBSum( DWORD n )
  * of tracks on the CD.  102 should always be enough.  Note that the lead-out
  * track is included.
  */
-DWORD GetCDDBDiskID( HCDROM hCD, DWORD *pID, int32_t numEntries )
+uint32_t GetCDDBDiskID( HCDROM hCD, uint32_t *pID, int32_t numEntries )
 {
   TOC toc;
   TOCTRACK *t1, *t2;
   int32_t idx = (int32_t)hCD - 1;
-  DWORD t;
-  DWORD n;
+  uint32_t t;
+  uint32_t n;
   int32_t i;
   int32_t j;
   bool bMSF;
@@ -213,7 +213,7 @@ bool InitCache( const char * lpszDir )
  * retBuf.  Before returning, it should strip the HTTP header from the info
  * if present.
  */
-DWORD CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders,
+uint32_t CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders,
 			char *retBuf, int32_t retLen )
 {
   WSADATA wsaData;
@@ -222,7 +222,7 @@ DWORD CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders,
   struct sockaddr_in sin;
   int32_t i;
   char *postcmd, *p;
-  DWORD retVal = 0;
+  uint32_t retVal = 0;
 
   p = retBuf;
   ZeroMemory( p, retLen );
@@ -282,7 +282,7 @@ DWORD CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders,
       i = recv( s, p, 128, 0 );
       p += i;
       retLen -= i;
-      retVal += (DWORD)i;
+      retVal += (uint32_t)i;
       if ( i < 0 )
 	i = 0;
     }
@@ -300,7 +300,7 @@ DWORD CDDBPostCmdProxy( char *szCGI, char *cmd, char *szExtraHeaders,
  * Sends an HTTP POST command and waits for a response.  The response is
  * copied to retBuf.  Returns the number of bytes copied to retBuf.
  */
-DWORD CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
+uint32_t CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
 		   char *retBuf, int32_t retLen )
 {
   WSADATA wsaData;
@@ -309,7 +309,7 @@ DWORD CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
   struct sockaddr_in sin;
   int32_t i;
   char *postcmd, *p;
-  DWORD retVal = 0;
+  uint32_t retVal = 0;
 
   p = retBuf;
   ZeroMemory( p, retLen );
@@ -360,7 +360,7 @@ DWORD CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
       i = recv( s, p, 128, 0 );
       p += i;
       retLen -= i;
-      retVal += (DWORD)i;
+      retVal += (uint32_t)i;
       if ( i < 0 )
 	i = 0;
     }
@@ -384,7 +384,7 @@ DWORD CDDBPostCmd( char *szCGI, char *cmd, char *szExtraHeaders,
  * returns one item with category "cdplayerini" and the index stored in
  * cddbId;
  */
-DWORD CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq )
+uint32_t CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq )
 {
   //int32_t numRead = 0;
   LPDWORD pdwId;
@@ -396,7 +396,7 @@ DWORD CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq )
       return SS_ERR;
     }
 
-  pdwId = (LPDWORD) GlobalAlloc( GPTR, 103 * sizeof(DWORD) );
+  pdwId = (LPDWORD) GlobalAlloc( GPTR, 103 * sizeof(uint32_t) );
   cmd = (char *) GlobalAlloc( GPTR, 1024 );
   retBuf = (char *) GlobalAlloc( GPTR, 2048 );
   if ( !cmd || !pdwId || !retBuf )
@@ -450,10 +450,10 @@ DWORD CDDBQuery( HCDROM hCD, LPCDDBQUERY lpq )
       // associate all of the cddbId values with the cdPlayer.ini index
       else if ( (lpq->num >= 1) && bUseCDPlayerIni )
 	{
-          DWORD pTmp = genCDPlayerIniIndex( hCD );
+          uint32_t pTmp = genCDPlayerIniIndex( hCD );
 	  for( i = 0; i < lpq->num; i++ )
 	    {
-	      pdwId[0] = (DWORD)strtoul( lpq->q[i].cddbId, NULL, 16 );
+	      pdwId[0] = (uint32_t)strtoul( lpq->q[i].cddbId, NULL, 16 );
 	      addCDPlayerCDDBIndex( pTmp, pdwId[0], pdwId[1], pdwId+2 );
 	    }
 	}
@@ -776,11 +776,11 @@ void SkipHTTPHeaders( char **buf )
  * is "cdplayerini", then an attempt is made to read the information from
  * CDPLAYER.INI.
  */
-DWORD CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen )
+uint32_t CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen )
 {
   char *cmd, *p;
   char *retBuf;
-  DWORD retVal = SS_ERR;
+  uint32_t retVal = SS_ERR;
 
   if ( !lpq || !szCDDBEntry )
     return retVal;
@@ -839,11 +839,11 @@ DWORD CDDBGetDiskInfo( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen )
 
 
 
-DWORD CDDBGetServerList( LPCDDBSITELIST lps )
+uint32_t CDDBGetServerList( LPCDDBSITELIST lps )
 {
   char *cmd, *p;
   char *retBuf;
-  DWORD retVal = SS_ERR;
+  uint32_t retVal = SS_ERR;
 
   if ( !lps || !lps->s )
     return retVal;
@@ -1011,14 +1011,14 @@ void getWord( char **inBuf, char *outBuf, int32_t len )
 }
 
 
-DWORD genCDPlayerIniIndex( HCDROM hCD )
+uint32_t genCDPlayerIniIndex( HCDROM hCD )
 {
-  DWORD retVal = 0;
+  uint32_t retVal = 0;
   bool bMSF;
   int32_t idx = (int32_t)hCD - 1;
   int32_t i;
   TOC toc;
-  DWORD dwAddr;
+  uint32_t dwAddr;
 
   bMSF = cdHandles[idx].bMSF;
   cdHandles[idx].bMSF = TRUE;
@@ -1039,14 +1039,14 @@ DWORD genCDPlayerIniIndex( HCDROM hCD )
 }
 
 
-void MSB2DWORD( DWORD *d, BYTE *b )
+void MSB2DWORD( uint32_t *d, BYTE *b )
 {
-  DWORD retVal;
+  uint32_t retVal;
 
-  retVal = (DWORD)b[0];
-  retVal = (retVal<<8) + (DWORD)b[1];
-  retVal = (retVal<<8) + (DWORD)b[2];
-  retVal = (retVal<<8) + (DWORD)b[3];
+  retVal = (uint32_t)b[0];
+  retVal = (retVal<<8) + (uint32_t)b[1];
+  retVal = (retVal<<8) + (uint32_t)b[2];
+  retVal = (retVal<<8) + (uint32_t)b[3];
 
   *d = retVal;
 }
@@ -1069,26 +1069,26 @@ void addString( char **pBuf, int32_t *maxLen, char *szInfo )
 }
 
 
-DWORD getCDPlayerIniOffset( DWORD cdPlayerIniId, int32_t trackNo )
+uint32_t getCDPlayerIniOffset( uint32_t cdPlayerIniId, int32_t trackNo )
 {
   return 0;
 }
 
 
-DWORD getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen )
+uint32_t getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t maxLen )
 {
-  UINT i, numRead;
+  uint32_t i, numRead;
   char buf[512];
   char idx[5];
   char defaultName[13];
   char *p;
-  DWORD cdPlayerIniId;
+  uint32_t cdPlayerIniId;
   int32_t cdPlayerIdx;
 
   if ( !lpq || !szCDDBEntry )
     return SS_ERR;
 
-  cdPlayerIniId = (DWORD)strtoul( lpq->cddbId, NULL, 16 );
+  cdPlayerIniId = (uint32_t)strtoul( lpq->cddbId, NULL, 16 );
   cdPlayerIdx = -1;
   for( i = 0; i < 20; i++ )
   {
@@ -1119,7 +1119,7 @@ DWORD getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t ma
       // write track offsets:
       for( i = 0; i < numRead; i++ )
       {
-        DWORD ofs;
+        uint32_t ofs;
         ofs = cddb2cdplayer[cdPlayerIdx].trackOfs[i];
         wsprintf( buf, "#\t%d\r\n", ofs );
         addString( &p, &maxLen, buf );
@@ -1161,7 +1161,7 @@ DWORD getDiskInfoCDPlayerIni( LPCDDBQUERYITEM lpq, char *szCDDBEntry, int32_t ma
 
 bool isCDinCDPlayerIni( char *s )
 {
-  UINT uiVal;
+  uint32_t uiVal;
 
   uiVal = GetPrivateProfileInt( s, "NUMTRACKS", 0, "cdplayer.ini" );
 
@@ -1174,9 +1174,9 @@ bool isCDinCDPlayerIni( char *s )
  * values so that a CDDB entry can be constructed from cdplayer.ini
  * if remote CDDB is not available.
  */
-void addCDPlayerCDDBIndex( DWORD cdpIdx, DWORD cddbId, DWORD numTracks, DWORD offsets[100] )
+void addCDPlayerCDDBIndex( uint32_t cdpIdx, uint32_t cddbId, uint32_t numTracks, uint32_t offsets[100] )
 {
-  DWORD i;
+  uint32_t i;
   if ( iNextIndex == -1 )
     ZeroMemory( cddb2cdplayer, sizeof(cddb2cdplayer) );
 
@@ -1186,7 +1186,7 @@ void addCDPlayerCDDBIndex( DWORD cdpIdx, DWORD cddbId, DWORD numTracks, DWORD of
   cddb2cdplayer[iNextIndex].cdPlayerIniId = cdpIdx;
   cddb2cdplayer[iNextIndex].cddbId = cddbId;
   cddb2cdplayer[iNextIndex].numTracks = numTracks;
-  ZeroMemory( cddb2cdplayer[iNextIndex].trackOfs, sizeof(DWORD[100]) );
+  ZeroMemory( cddb2cdplayer[iNextIndex].trackOfs, sizeof(uint32_t[100]) );
 
   // in some cases we won't be saving the info
   if ( offsets == NULL )
@@ -1203,10 +1203,10 @@ void addCDPlayerCDDBIndex( DWORD cdpIdx, DWORD cddbId, DWORD numTracks, DWORD of
  * This function returns the cdplayer.ini index and number of tracks
  * given a cddbid.
  */
-DWORD CDDBIndex2CDPlayerIni( char *szCDDBId, DWORD *dwRetVal, DWORD *numTracks )
+uint32_t CDDBIndex2CDPlayerIni( char *szCDDBId, uint32_t *dwRetVal, uint32_t *numTracks )
 {
   int32_t i;
-  DWORD dwIdx = (DWORD)strtoul( szCDDBId, NULL, 16 );
+  uint32_t dwIdx = (uint32_t)strtoul( szCDDBId, NULL, 16 );
 
   for( i = 0; i < 20; i++ )
     {
@@ -1229,7 +1229,7 @@ DWORD CDDBIndex2CDPlayerIni( char *szCDDBId, DWORD *dwRetVal, DWORD *numTracks )
  */
 void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry )
 {
-  DWORD dwCDPlayerIdx, dwNumTracks;
+  uint32_t dwCDPlayerIdx, dwNumTracks;
   char section[24];
   char buf[128];
   char *p1, *p2;
@@ -1268,10 +1268,10 @@ void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry )
 }
 
 
-DWORD CDDBSubmit( DWORD dwDiscID, bool bTest, char *szEmail, char *szCategory,
+uint32_t CDDBSubmit( uint32_t dwDiscID, bool bTest, char *szEmail, char *szCategory,
 		  char *szEntry )
 {
-  DWORD dwRetVal = SS_COMP;
+  uint32_t dwRetVal = SS_COMP;
   char buf[512];
   char *p = buf;
   char *retBuf;

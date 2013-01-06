@@ -132,7 +132,7 @@ typedef struct {
   BYTE     SRB_Status;        /* 01/001 ASPI command status byte           */
   BYTE     SRB_HaID;          /* 02/002 ASPI host adapter number           */
   BYTE     SRB_Flags;         /* 03/003 ASPI request flags                 */
-  DWORD    SRB_Hdr_Rsvd;      /* 04/004 Reserved, must = 0                 */
+  uint32_t    SRB_Hdr_Rsvd;      /* 04/004 Reserved, must = 0                 */
   BYTE     HA_Count;          /* 08/008 Number of host adapters present    */
   BYTE     HA_SCSI_ID;        /* 09/009 SCSI ID of host adapter            */
   BYTE     HA_ManagerId[16];  /* 0a/010 string describing the manager      */
@@ -152,7 +152,7 @@ typedef struct
   BYTE     SRB_Status;        /* 01/001 ASPI command status byte           */
   BYTE     SRB_HaID;          /* 02/002 ASPI host adapter number           */
   BYTE     SRB_Flags;         /* 03/003 Reserved, must = 0                 */
-  DWORD    SRB_Hdr_Rsvd;      /* 04/004 Reserved, must = 0                 */
+  uint32_t    SRB_Hdr_Rsvd;      /* 04/004 Reserved, must = 0                 */
   BYTE     SRB_Target;        /* 08/008 Target's SCSI ID                   */
   BYTE     SRB_Lun;           /* 09/009 Target's LUN number                */
   BYTE     SRB_DeviceType;    /* 0a/010 Target's peripheral device type    */
@@ -170,11 +170,11 @@ typedef struct
   BYTE     SRB_Status;        /* 01/001 ASPI command status byte           */
   BYTE     SRB_HaID;          /* 02/002 ASPI host adapter number           */
   BYTE     SRB_Flags;         /* 03/003 Reserved, must = 0                 */
-  DWORD    SRB_Hdr_Rsvd;      /* 04/004 Reserved, must = 0                 */
+  uint32_t    SRB_Hdr_Rsvd;      /* 04/004 Reserved, must = 0                 */
   BYTE     SRB_Target;        /* 08/008 Target's SCSI ID                   */
   BYTE     SRB_Lun;           /* 09/009 Target's LUN                       */
   WORD     SRB_Rsvd1;         /* 0a/010 Reserved for alignment             */
-  DWORD    SRB_BufLen;        /* 0c/012 Data Allocation Length             */
+  uint32_t    SRB_BufLen;        /* 0c/012 Data Allocation Length             */
   BYTE FAR *SRB_BufPointer;   /* 10/016 Data buffer Pointer                */
   BYTE     SRB_SenseLen;      /* 14/020 Sense Allocation Length            */
   BYTE     SRB_CDBLen;        /* 15/021 CDB Length                         */
@@ -196,7 +196,7 @@ typedef struct
   BYTE     SRB_Status;        /* 01/001 ASPI command status byte           */
   BYTE     SRB_HaId;          /* 02/002 ASPI host adapter number           */
   BYTE     SRB_Flags;         /* 03/003 Reserved, must = 0                 */
-  DWORD    SRB_Hdr_Rsvd;      /* 04/004 Reserved                           */
+  uint32_t    SRB_Hdr_Rsvd;      /* 04/004 Reserved                           */
   BYTE     SRB_Target;        /* 08/008 Target's SCSI ID                   */
   BYTE     SRB_Lun;           /* 09/009 Target's LUN number                */
   BYTE     SRB_Rsvd1[12];     /* 0A/010 Reserved for alignment             */
@@ -212,9 +212,9 @@ typedef struct
 typedef struct tag_ASPI32BUFF
 {
   PBYTE     AB_BufPointer;
-  DWORD     AB_BufLen;
-  DWORD     AB_ZeroFill;
-  DWORD     AB_Reserved;
+  uint32_t     AB_BufLen;
+  uint32_t     AB_ZeroFill;
+  uint32_t     AB_Reserved;
 } PACKED ASPI32BUFF, *PASPI32BUFF, FAR *LPASPI32BUFF;
 
 typedef struct 
@@ -223,7 +223,7 @@ typedef struct
   BYTE      SRB_Status;
   BYTE      SRB_HaId;
   BYTE      SRB_Flags;
-  DWORD     SRB_Hdr_Rsvd;
+  uint32_t     SRB_Hdr_Rsvd;
 } PACKED SRB, *PSRB, FAR *LPSRB;
 
 #ifndef __GNUC__
