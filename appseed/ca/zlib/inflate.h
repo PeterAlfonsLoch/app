@@ -82,7 +82,7 @@ struct inflate_state {
     int32_t flags;                  /* gzip header method and flags (0 if zlib) */
     uint32_t dmax;              /* zlib header max distance (INFLATE_STRICT) */
     uint32_t check;        /* protected copy of check value */
-    uint_ptr total;        /* protected copy of output count */
+    uint32_t total;        /* protected copy of output count */
     gz_headerp head;            /* where to save gzip header information */
         /* sliding window */
     uint32_t wbits;             /* log base 2 of requested window size */

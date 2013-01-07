@@ -55,12 +55,12 @@ namespace radix
       return m_p->get_os_int();
    }
 
-   bool thread::begin(::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::begin(::ca::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       return m_p->begin(epriority, nStackSize, dwCreateFlags, lpSecurityAttrs);
    }
 
-   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       return m_p->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs);
    }

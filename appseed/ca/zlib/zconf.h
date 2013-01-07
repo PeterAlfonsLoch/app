@@ -319,7 +319,7 @@ typedef uint_ptr FAR uLongf;
 #  define SEEK_END        2       /* Set file pointer to EOF plus "offset" */
 #endif
 #ifndef z_off_t
-#  define z_off_t long
+#  define z_off_t int32_t
 #endif
 
 #if defined(__OS400__)

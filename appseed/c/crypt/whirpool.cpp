@@ -1591,7 +1591,7 @@ void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstr
          * all remaining data fits on buffer[bufferPos],
          * and there still remains some space.
          */
-        bufferBits += sourceBits;
+        bufferBits += (int32_t) sourceBits;
     } else {
         /*
          * buffer[bufferPos] is full:

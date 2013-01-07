@@ -138,7 +138,7 @@ namespace ca
    }
 
 
-   bool thread::begin(::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::begin(::ca::e_thread_priority epriority, uint_ptr nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
 
       UNREFERENCED_PARAMETER(epriority);
@@ -151,7 +151,7 @@ namespace ca
    }
 
 
-   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, UINT nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+   bool thread::create_thread(::ca::e_thread_priority epriority, uint32_t dwCreateFlags, uint_ptr nStackSize, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
    {
       UNREFERENCED_PARAMETER(epriority);
       UNREFERENCED_PARAMETER(dwCreateFlags);

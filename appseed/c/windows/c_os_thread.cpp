@@ -81,7 +81,7 @@ HANDLE start_thread(uint32_t (* pfn)(void *), void * pv, int32_t iPriority)
 
 }
 
-HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint32_t cbStack, uint32_t (* pfn)(void *), void * pv, uint32_t f, uint32_t * lpui)
+HANDLE create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, uint32_t (* pfn)(void *), void * pv, uint32_t f, uint32_t * lpui)
 {
 
    return ::CreateThread(lpsa, cbStack, &thread_proc_create_thread, (LPVOID) new os_thread(pfn, pv), f, (LPDWORD) lpui);

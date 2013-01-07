@@ -1238,10 +1238,10 @@ gz_headerp head)
    called again with more data and the *have state.  *have is initialized to
    zero for the first call.
  */
-zlib_local uint32_t syncsearch(uint_ptr FAR * have, uchar FAR *buf, uint_ptr len)
+zlib_local uint32_t syncsearch(uint32_t FAR * have, uchar FAR *buf, uint32_t len)
 {
-    uint_ptr got;
-    uint_ptr next;
+    uint32_t got;
+    uint32_t next;
 
     got = *have;
     next = 0;

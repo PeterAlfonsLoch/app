@@ -97,7 +97,7 @@ typedef struct z_stream_s {
 
     int32_t     data_type;  /* best guess about the data type: binary or text */
     uint32_t   adler;      /* adler32 value of the uncompressed data */
-    uint_ptr   reserved;   /* reserved for future use */
+    uint32_t   reserved;   /* reserved for future use */
 } z_stream;
 
 typedef z_stream FAR *z_streamp;
