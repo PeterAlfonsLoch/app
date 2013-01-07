@@ -17,6 +17,8 @@ namespace html
 
             pdata->m_pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
+            pdata->m_imagea[m_iImage].m_spdib->defer_realize(pdata->m_pdc);
+
             pdata->m_pdc->BitBlt((int32_t) get_x(), (int32_t) get_y(), (int32_t) get_cx(), (int32_t) get_cy(), 
                                  pdata->m_imagea[m_iImage].m_spdib->get_graphics(), 0, 0, SRCCOPY);
 

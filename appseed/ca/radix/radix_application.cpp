@@ -2717,7 +2717,7 @@ namespace radix
    ::user::interaction * application::release_capture_uie()
    {
 
-#ifdef WINDOWSEX
+#ifdef WINDOWS
 
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)

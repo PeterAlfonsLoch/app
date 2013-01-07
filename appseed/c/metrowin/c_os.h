@@ -83,3 +83,4 @@ CLASS_DECL_c oswindow WINAPI SetFocus(oswindow oswindow);
 
 CLASS_DECL_c oswindow WINAPI GetCapture();
 CLASS_DECL_c oswindow WINAPI SetCapture(oswindow oswindow);
+CLASS_DECL_c oswindow WINAPI ReleaseCapture();

@@ -172,7 +172,7 @@ namespace html
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
-      else
+      else if(pelemental->get_tag() != NULL)
       {
          strClass = pelemental->get_tag()->get_attr_value("class");
       }
@@ -311,7 +311,7 @@ namespace html
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
-      else
+      else if(pelemental->get_tag() != NULL)
       {
          strClass = pelemental->get_tag()->get_attr_value("class");
       }
@@ -485,7 +485,7 @@ namespace html
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
-      else
+      else if(pelemental->get_tag() != NULL)
       {
          strClass = pelemental->get_tag()->get_attr_value("class");
       }
@@ -658,7 +658,7 @@ namespace html
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
-      else
+      else if(pelemental->get_tag() != NULL)
       {
          strClass = pelemental->get_tag()->get_attr_value("class");
       }
@@ -856,7 +856,7 @@ namespace html
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
-      else
+      else if(pelemental->get_tag() != NULL)
       {
          strClass = pelemental->get_tag()->get_attr_value("class");
       }
