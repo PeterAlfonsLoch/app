@@ -29,6 +29,23 @@ void mutex_lock::lock()
    m_bLock = true;
 }
 
+
+bool mutex_lock::lock(uint32_t uiTimeout)
+{
+
+   if(m_bLock)
+      return true;
+
+   if(m_pmutex == NULL)
+      return true;
+
+   m_bLock = m_pmutex->lock(uiTimeout);
+
+   return m_bLock;
+
+}
+
+
 void mutex_lock::unlock()
 {
    if(!m_bLock)

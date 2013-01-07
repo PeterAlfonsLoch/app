@@ -153,6 +153,42 @@ void simple_mutex::lock()
 #endif
 }
 
+
+bool simple_mutex::lock(uint32_t uiTimeout)
+{
+#ifdef WINDOWSEX
+   return WaitForSingleObject(m_hMutex, uiTimeout) == WAIT_OBJECT_0;
+#elif defined(METROWIN)
+   return WaitForSingleObjectEx(m_hMutex, uiTimeout, FALSE) == WAIT_OBJECT_0;
+#else
+   if(m_strName.is_empty())
+   {
+      pthread_mutex_timedlock(&m_mutex);
+   }
+   else
+   {
+
+      struct sembuf operation[1];
+
+      operation[0].sem_op     = 0;
+      operation[0].sem_num    = 0;
+      operation[0].sem_flg    = 0;
+
+      int32_t ret = semop(m_semid, operation,1);
+      if(ret < 0)
+      {
+         return false;
+      }
+      else
+      {
+         return true;
+      }
+
+   }
+#endif
+}
+
+
 void simple_mutex::unlock()
 {
 #ifdef WINDOWS

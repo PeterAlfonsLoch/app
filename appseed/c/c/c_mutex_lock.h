@@ -14,8 +14,8 @@ public:
 
 
    void lock();
+   bool lock(uint32_t uiLock);
    void unlock();
-
 
 };
 

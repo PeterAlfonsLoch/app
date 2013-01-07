@@ -5,17 +5,34 @@ namespace file_watcher
 {
 
 
-   id listener_thread::add_watch(const char * directory)
+   id listener_thread::add_file_watch(const char * directory, bool bRecursive)
    {
-      
-      return thread::add_watch(directory, this);
 
-   }
+      if(m_hthread == NULL)
+         begin();
 
-   id_array listener_thread::radd_watch(const char * directory)
-   {
+      op * pop = new op;
+
+      pop->m_str = directory;
+      pop->m_bRecursive = bRecursive;
+      pop->m_plistener = this;
+
+      uint32_t uiId = m_nId;
+
+      while(!m_bUpdating)
+      {
+         Sleep(84);
+      }
+
+      PostThreadMessage(m_nId, WM_USER + 123, 0, (LPARAM) pop);
+
+      pop->m_event.wait();
       
-      return thread::radd_watch(directory, this);
+      id id  = pop->m_id;
+
+      delete pop;
+
+      return id;
 
    }
 

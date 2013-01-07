@@ -93,26 +93,24 @@ namespace file_watcher
 		
       /// The implementation
 		file_watcher_impl       * m_pimpl;
-      
-      
+
 	public:
+
+      bool  m_bUpdating;
+
+
 
 		file_watcher();
 		virtual ~file_watcher();
 
 		/// Add a directory watch
 		/// @exception file_not_found_exception Thrown when the requested directory does not exist
-		id add_watch(const char * directory, file_watch_listener* pwatcher);
-
-		id_array radd_watch(const char * directory, file_watch_listener* pwatcher);
+		id add_watch(const char * directory, file_watch_listener * pwatcher, bool bRecursive);
 
 		/// Remove a directory watch. This is a brute force search O(nlogn).
 		void remove_watch(const char * directory);
 
-		/// Remove a directory watch. This is a map lookup O(logn).
-		void remove_watch(id watchid);
-
-		vsstring watch_path(id watchid);
+      void remove_watch(id id);
 
 		/// Updates the watcher. Must be called often.
 		void update();

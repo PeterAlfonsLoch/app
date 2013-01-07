@@ -34,6 +34,7 @@ public:
 
 
    void lock();
+   bool lock(uint32_t dwTimeout);
    void unlock();
 
 

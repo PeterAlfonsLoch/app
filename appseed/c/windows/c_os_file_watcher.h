@@ -51,7 +51,6 @@ namespace file_watcher
 		/// The last watchid
 		id m_idLast;
 
-
 	public:
 
 
@@ -61,13 +60,12 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception FileNotFoundException Thrown when the requested directory does not exist
-		id add_watch(const vsstring & directory, file_watch_listener* watcher);
+		id add_watch(const vsstring & directory, file_watch_listener * watcher, bool bRecursive);
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
 		void remove_watch(const vsstring & directory);
 
-		/// Remove a directory watch. This is a map lookup O(logn).
-		void remove_watch(id watchid);
+      void remove_watch(id id);
 
       vsstring watch_path(id watchid);
 

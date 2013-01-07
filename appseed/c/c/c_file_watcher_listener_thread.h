@@ -11,9 +11,23 @@ namespace file_watcher
    {
    public:
 
-      
-      id add_watch(const char * directory);
-      id_array radd_watch(const char * directory);
+     
+
+      struct op
+      {
+
+         vsstring m_str;
+         bool m_bRecursive;
+         file_watch_listener * m_plistener;
+         simple_event m_event;
+         id m_id;
+
+         op() : m_event(false, true) {}
+
+      };
+
+
+      id add_file_watch(const char * directory, bool bRecursive);
 
          
    };

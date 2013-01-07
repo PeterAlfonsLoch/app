@@ -150,16 +150,16 @@ void simple_event::wait()
 
 }
 
-void simple_event::wait(uint32_t dwTimeout)
+bool simple_event::wait(uint32_t dwTimeout)
 {
 
 #ifdef METROWIN
 
-   WaitForSingleObjectEx(m_hEvent, dwTimeout, FALSE);
+   return WaitForSingleObjectEx(m_hEvent, dwTimeout, FALSE) == WAIT_OBJECT_0;
 
 #elif defined WINDOWS
 
-   WaitForSingleObject(m_hEvent, INFINITE);
+   return WaitForSingleObject(m_hEvent, INFINITE);
 
 #else
 
@@ -191,6 +191,9 @@ void simple_event::wait(uint32_t dwTimeout)
       pthread_cond_timedwait(&m_cond, &m_mutex.m_mutex, &ts);
 
    }
+
+   return m_bSignaled;
+
 #endif
 }
 

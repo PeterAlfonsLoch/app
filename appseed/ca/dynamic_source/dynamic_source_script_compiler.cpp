@@ -17,8 +17,6 @@ namespace dynamic_source
    script_compiler::script_compiler(::ca::application * papp) :
       ca(papp),
       m_memfileLibError(papp),
-      m_folderwatch(papp),
-      m_folderwatchFribox(papp),
       m_mutexLibrary(papp)
    {
 
@@ -705,8 +703,7 @@ namespace dynamic_source
    }
 
 
-
-   void script_compiler::on_file_action(::ex2::folder_watch::e_action eaction, const char * pszFolder, const char * psz)
+   void script_compiler::handle_file_action(::file_watcher::id watchid, const char * pszFolder, const char * psz, ::file_watcher::e_action eaction)
    {
       UNREFERENCED_PARAMETER(eaction);
       string str = System.dir().path(pszFolder, psz, false);
@@ -746,10 +743,8 @@ namespace dynamic_source
    void script_compiler::folder_watch()
    {
 
-      m_folderwatch->m_pcallback = this;
-      m_folderwatch->watch(m_pmanager->m_strNetseedDsCa2Path);
-      m_folderwatchFribox->m_pcallback = this;
-      m_folderwatchFribox->watch("V:\\fribox\\ds\\");
+      m_filewatchid           = add_file_watch(m_pmanager->m_strNetseedDsCa2Path, true);
+      m_filewatchidFribox     = add_file_watch("Z:\\fribox\\ds\\", true);
 
    }
 

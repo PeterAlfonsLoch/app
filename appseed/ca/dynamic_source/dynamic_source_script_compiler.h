@@ -10,7 +10,7 @@ namespace dynamic_source
 
    class script_compiler :
       virtual public ::radix::object,
-      virtual public ::ex2::folder_watch::callback
+      virtual public ::file_watcher::listener_thread
    {
    public:
 
@@ -57,8 +57,10 @@ namespace dynamic_source
       string                  m_strSdk1;
       string                  m_strPlatform;
       string                  m_strLibPlatform;
-      ::ex2::folder_watch_sp  m_folderwatch;
-      ::ex2::folder_watch_sp  m_folderwatchFribox;
+      //::file_watcher::thread     m_folderwatch;
+      ::file_watcher::id      m_filewatchid;
+      ::file_watcher::id      m_filewatchidFribox;
+      
       string                  m_strPlat1;
       string                  m_strTime;
 
@@ -98,7 +100,7 @@ namespace dynamic_source
       void unload_library();
 
 
-      void on_file_action(::ex2::folder_watch::e_action eaction, const char * pszFolder, const char * psz);
+      virtual void handle_file_action(::file_watcher::id watchid, const char * dir, const char * filename, ::file_watcher::e_action action);
 
 
       void prepare1(const char * pszSource, const char * pszDest);

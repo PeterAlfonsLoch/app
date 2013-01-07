@@ -118,8 +118,8 @@ namespace dynamic_source
 
       {
          clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
-         pwatch->radd_watch(m_strNetseedDsCa2Path);
          pwatch->m_pmanager = this;
+         pwatch->add_file_watch( m_strNetseedDsCa2Path, true);
          pwatch->begin();
       }
 
@@ -133,8 +133,8 @@ namespace dynamic_source
          if(gen::str::begins_ci(straTitle[i], "net-"))
          {
             clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
-            pwatch->radd_watch(straPath[i]);
             pwatch->m_pmanager = this;
+            pwatch->add_file_watch(straPath[i], true);
             pwatch->begin();
          }
       }

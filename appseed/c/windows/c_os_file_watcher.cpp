@@ -38,6 +38,7 @@ namespace file_watcher
 		file_watch_listener* m_plistener;
 		vsstring m_strDirName;
 		id m_id;
+      bool m_bRecursive;
 	};
 
 #pragma region Internal Functions
@@ -92,7 +93,7 @@ namespace file_watcher
 	bool RefreshWatch(watch_struct* pWatch, bool _clear)
 	{
 		return ReadDirectoryChangesW(
-			pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), FALSE,
+         pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), pWatch->m_bRecursive ? TRUE : FALSE,
 			pWatch->m_dwNotify, NULL, &pWatch->m_overlapped, _clear ? 0 : WatchCallback) != 0;
 	}
 
@@ -119,20 +120,22 @@ namespace file_watcher
 	}
 
 	/// Starts monitoring a directory.
-	watch_struct* CreateWatch(LPCTSTR szDirectory, uint32_t m_dwNotify)
+	watch_struct* CreateWatch(LPCTSTR szDirectory, uint32_t m_dwNotify, bool bRecursive)
 	{
 		watch_struct* pWatch;
 		size_t ptrsize = sizeof(*pWatch);
 		pWatch = static_cast<watch_struct*>(HeapAlloc(GetProcessHeap(), HEAP_ZERO_MEMORY, ptrsize));
 
-		pWatch->m_hDirectory = CreateFile(szDirectory, FILE_LIST_DIRECTORY,
+		pWatch->m_hDirectory = CreateFileW(wstring(szDirectory), FILE_LIST_DIRECTORY,
 			FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, NULL, 
 			OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, NULL);
 
 		if (pWatch->m_hDirectory != INVALID_HANDLE_VALUE)
 		{
-			pWatch->m_overlapped.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
-			pWatch->m_dwNotify = m_dwNotify;
+			pWatch->m_overlapped.hEvent   = CreateEvent(NULL, TRUE, FALSE, NULL);
+			pWatch->m_dwNotify            = m_dwNotify;
+         pWatch->m_bRecursive          = bRecursive;
+
 
 			if (RefreshWatch(pWatch))
 			{
@@ -168,24 +171,30 @@ namespace file_watcher
 	}
 
 
-   id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener* watcher)
+   id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener* watcher, bool bRecursive)
 	{
 
-		id watchid = ++m_idLast;
+		id id = ++m_idLast;
 
-		watch_struct * pwatch = CreateWatch(directory, FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
+		watch_struct * pwatch = CreateWatch(directory, 
+         FILE_NOTIFY_CHANGE_CREATION
+       | FILE_NOTIFY_CHANGE_SIZE
+       | FILE_NOTIFY_CHANGE_FILE_NAME
+       | FILE_NOTIFY_CHANGE_LAST_WRITE
+       , bRecursive);
 
       if(pwatch == NULL)
 			throw file_not_found_exception(directory);
 
-		pwatch->m_id = watchid;
+		pwatch->m_id = id;
 		pwatch->m_pwatcher = this;
 		pwatch->m_plistener = watcher;
 		pwatch->m_strDirName = directory;
 
-		m_watchmap.set_at(watchid, pwatch);
+		m_watchmap.set_at(id, pwatch);
 
-		return watchid;
+      return id;
+
 	}
 
 
@@ -210,9 +219,9 @@ namespace file_watcher
 
 	}
 
-	void os_file_watcher::remove_watch(id watchid)
+	void os_file_watcher::remove_watch(id id)
 	{
-      watch_map::pair * ppair = m_watchmap.PLookup(watchid);
+      watch_map::pair * ppair = m_watchmap.PLookup(id);
 
 		if(ppair == NULL)
 			return;
@@ -230,7 +239,14 @@ namespace file_watcher
 
 	void os_file_watcher::update()
 	{
-      MsgWaitForMultipleObjectsEx(0, NULL, 0, QS_POSTMESSAGE, MWMO_ALERTABLE);
+
+      if(GetQueueStatus(QS_ALLINPUT) == 0)
+      {
+
+         MsgWaitForMultipleObjectsEx(0, NULL, INFINITE, QS_ALLINPUT, MWMO_ALERTABLE);
+
+      }
+
 	}
 
 
