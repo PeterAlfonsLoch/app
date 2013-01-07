@@ -676,10 +676,12 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
          string worddiv = tmpel->attr("worddiv");
 
          next->worddiv = NULL;
-         if (worddiv){
+         if(worddiv.has_char())
+         {
             string entWordDiv = useEntities(worddiv);
             next->worddiv = gen::ch_class::createCharClass(entWordDiv, 0, NULL);
-            if(next->worddiv == NULL){
+            if(next->worddiv == NULL)
+            {
                if (errorHandler != NULL) errorHandler->warning(string("fault compiling worddiv regexp '")+entWordDiv+"' in scheme '"+scheme->schemeName+"'");
             }
             //delete entWordDiv;

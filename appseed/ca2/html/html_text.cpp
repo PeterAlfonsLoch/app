@@ -702,7 +702,7 @@ namespace html
                   strTag = m_pelemental->m_propertyset["PropertyTag"];
                }
                string strClass;
-               if(m_pelemental->m_pparent->get_tag()->get_attr_value("class"))
+               if(m_pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
                {
                   strClass = m_pelemental->m_pparent->get_tag()->get_attr_value("class");
                }

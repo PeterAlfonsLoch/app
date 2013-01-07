@@ -117,7 +117,7 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
       string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class"))
+      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
@@ -168,7 +168,7 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
       string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class"))
+      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
@@ -307,7 +307,7 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
       string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class"))
+      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
@@ -481,7 +481,7 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
       string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class"))
+      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
@@ -654,7 +654,7 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
       string strClass;
-      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class"))
+      if(pelemental->m_pparent != NULL && pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }
@@ -852,7 +852,7 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
       string strClass;
-      if(pelemental->m_pparent->get_tag()->get_attr_value("class"))
+      if(pelemental->m_pparent->get_tag()->get_attr_value("class").has_char())
       {
          strClass = pelemental->m_pparent->get_tag()->get_attr_value("class");
       }

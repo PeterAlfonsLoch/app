@@ -369,7 +369,7 @@ namespace sockets
    bool net::convert(string & str, const in_addr & addr, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(to_string(&addr))), "0"));
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string(&addr)), "0"));
 
       if(data->Size <= 0)
          return false;
@@ -384,7 +384,7 @@ namespace sockets
    bool net::convert(string & str, const in6_addr & addr, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(to_string(&addr))), "0"));
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(to_string(&addr)), "0"));
 
       if(data->Size <= 0)
          return false;
