@@ -402,13 +402,12 @@ int32_t vorbis_book_init_decode(codebook *c,const static_codebook *s){
              In order to overflow gracefully (nothing breaks, efficiency
              just drops), encode as the difference from the extremes. */
           {
-            uint_ptr loval=lo;
-            uint_ptr hival=n-hi;
+            uint32_t loval=lo;
+            uint32_t hival=n-hi;
 
             if(loval>0x7fff)loval=0x7fff;
             if(hival>0x7fff)hival=0x7fff;
-            c->dec_firsttable[bitreverse(word)]=
-              0x80000000UL | (loval<<15) | hival;
+            c->dec_firsttable[bitreverse(word)] = 0x80000000U | (loval<<15) | hival;
           }
         }
       }
