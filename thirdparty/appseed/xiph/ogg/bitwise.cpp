@@ -260,8 +260,8 @@ void oggpackB_readinit(oggpack_buffer *b,uchar *buf,int32_t bytes){
 
 /* Read in bits without advancing the bitptr; bits <= 32 */
 long oggpack_look(oggpack_buffer *b,int32_t bits){
-  uint_ptr ret;
-  uint_ptr m;
+  uint32_t ret;
+  uint32_t m;
 
   if(bits<0 || bits>32) return -1;
   m=mask[bits];
