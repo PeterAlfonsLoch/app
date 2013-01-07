@@ -167,9 +167,10 @@ namespace file_watcher
 		m_watchmap.clear();
 	}
 
-	//--------
-	id os_file_watcher::add_watch(const char * directory, file_watch_listener* watcher)
+
+   id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener* watcher)
 	{
+
 		id watchid = ++m_idLast;
 
 		watch_struct * pwatch = CreateWatch(directory, FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
@@ -187,17 +188,26 @@ namespace file_watcher
 		return watchid;
 	}
 
-	void os_file_watcher::remove_watch(const char * directory)
+
+	void os_file_watcher::remove_watch(const vsstring & directory)
 	{
+
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
+
       for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
+
 			if(stricmp(directory, ppair->m_value->m_strDirName) == 0)
 			{
+
 				remove_watch(ppair->m_key);
+
 				return;
+
 			}
+
 		}
+
 	}
 
 	void os_file_watcher::remove_watch(id watchid)

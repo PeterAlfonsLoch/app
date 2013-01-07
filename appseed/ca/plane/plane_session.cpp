@@ -1096,7 +1096,7 @@ namespace plane
    {
 
 #ifdef WINDOWSEX
-      return GetSysColor(ui);
+      return GetSysColor((int) ui);
 #else
       return 0;
 #endif

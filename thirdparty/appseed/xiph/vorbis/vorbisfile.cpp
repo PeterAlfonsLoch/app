@@ -46,7 +46,7 @@
 /*************************************************************************
  * Many, many internal helpers.  The intention is not to be confusing;
  * rampant duplication and monolithic function implementation would be
- * harder to understand anyway.  The high level functions are last.  Begin
+ * harder to understand anyway.  The high level functions are last.  begin
  * grokking near the end of the file */
 
 /* read a little more data from the file/pipe into the ogg_sync framer

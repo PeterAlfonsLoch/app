@@ -57,7 +57,7 @@ namespace sockets
    }
 
 
-   address::address(::ca::application * papp, const char * pszAddress, const char * pszServiceName) :
+   address::address(::ca::application * papp, const string & strAddress, const string & strServiceName) :
       ca(papp)
    {
 
@@ -65,14 +65,14 @@ namespace sockets
       m_pipv4 = NULL;
       m_pipv6 = NULL;
 
-      m_strServiceName = pszServiceName;
+      m_strServiceName = strServiceName;
 
-      create_address(pszAddress);
+      create_address(strAddress);
 
    }
 
 
-   address::address(::ca::application * papp, const char * pszAddress, int32_t iPort) :
+   address::address(::ca::application * papp, const string & strAddress, int32_t iPort) :
       ca(papp)
    {
 
@@ -82,7 +82,7 @@ namespace sockets
 
       m_strServiceName = gen::str::from(iPort);
 
-      if(!create_address(pszAddress))
+      if(!create_address(strAddress))
          throw "failed to create socket address";
 
    }

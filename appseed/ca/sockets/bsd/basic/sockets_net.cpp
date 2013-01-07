@@ -700,7 +700,7 @@ namespace sockets
    */
 
 
-   bool net::reverse(string & number, const char * hostname, int32_t flags)
+   bool net::reverse(string & number, const string & hostname, int32_t flags)
    {
 
       ::sockets::address address(get_app(), hostname);
@@ -871,13 +871,11 @@ namespace sockets
    }
 
 
-   int32_t net::service_port(const char * psz, int32_t flags)
+   int32_t net::service_port(const string & str, int32_t flags)
    {
 
-      if(gen::str::is_simple_natural(psz))
-         return gen::str::to_int(psz);
-
-      string str(psz);
+      if(gen::str::is_simple_natural(str))
+         return gen::str::to_int(str);
 
       if(str.CompareNoCase("http"))
       {
@@ -892,7 +890,7 @@ namespace sockets
 
          int32_t service = 0;
 
-         if(!u2service(psz, service, 0))
+         if(!u2service(str, service, 0))
             return 0;
 
          return service;

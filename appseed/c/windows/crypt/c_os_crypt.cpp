@@ -22,7 +22,7 @@ bool crypt_decrypt(simple_memory & storageDecrypt, const simple_memory & storage
    wchar_t * lpwsz = NULL;
 
    //--------------------------------------------------------------------
-   //  Begin protect phase. Note that the encryption key is created
+   //  begin protect phase. Note that the encryption key is created
    //  by the function and is not passed.
 
    if(CryptUnprotectData(
@@ -72,7 +72,7 @@ bool crypt_encrypt(simple_memory & storageEncrypt, const simple_memory & storage
 //      wchar_t * lpwsz = NULL;
 
    //--------------------------------------------------------------------
-   //  Begin protect phase. Note that the encryption key is created
+   //  begin protect phase. Note that the encryption key is created
    //  by the function and is not passed.
 
    if(CryptProtectData(

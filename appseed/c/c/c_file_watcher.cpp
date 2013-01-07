@@ -39,36 +39,55 @@ namespace file_watcher
 
 	file_watcher::file_watcher()
 	{
+
 		m_pimpl = new os_file_watcher();
+
 	}
+
 
 	file_watcher::~file_watcher()
 	{
       
       if(m_pimpl != NULL)
       {
+
          delete m_pimpl;
+
          m_pimpl = NULL;
+
       }
       
 	}
 
+
 	id file_watcher::add_watch(const char * directory, file_watch_listener* pwatcher)
 	{
+
 		return m_pimpl->add_watch(directory, pwatcher);
+
 	}
+
 
 	id_array file_watcher::radd_watch(const char * directory, file_watch_listener* pwatcher)
 	{
+
       id_array ida;
+
       stra_dup stra;
+
       stra.add(directory);
+
       dir::rls_dir(stra, directory);
+
 		for(index i = 0; i < ida.get_count(); i++)
       {
+
          ida.add(m_pimpl->add_watch(directory, pwatcher));
+
       }
+
       return ida;
+
 	}
 
 

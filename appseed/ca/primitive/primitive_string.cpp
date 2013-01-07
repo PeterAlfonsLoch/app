@@ -802,7 +802,7 @@ string::string(Platform::Object ^ o) :
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
    //      {
-   *this = o->ToString()->Begin();
+   *this = o->ToString()->begin();
    //      }
 }
 
