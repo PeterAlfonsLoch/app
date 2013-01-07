@@ -241,6 +241,9 @@ public:
    string(const string_interface & str);
    string(const vsstring & str);
    string(const istring & istr);
+#ifdef METROWIN
+   string(Platform::Object ^ o);
+#endif
    string(const char * pszSrc,string_manager * pstringmanager );
    string(const wchar_t * pszSrc,string_manager * pstringmanager );
 
@@ -253,9 +256,9 @@ public:
    string(const XCHAR* pch, strsize nLength);
    string(const XCHAR* pch, strsize nLength, string_manager * pstringmanager );
    string(const YCHAR* pch, strsize nLength);
-   string(const YCHAR* pch, strsize nLength, string_manager * pstringmanager );
+   string(const YCHAR* pch, strsize nLength, string_manager * pstringmanager);
 #ifdef METROWIN
-   string(Platform::Object ^ o);
+   string(Platform::Object ^ o, string_manager * pstringmanager);
 #endif
    ~string() throw();
 

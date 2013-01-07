@@ -798,11 +798,20 @@ string::string(const wchar_t * pszSrc,string_manager * pstringmanager ) :
 #ifdef METROWIN
 
 string::string(Platform::Object ^ o) :
-   simple_string( string_trait::GetDefaultManager() )
+   simple_string(string_trait::GetDefaultManager())
 {
    //      if( !CheckImplicitLoad( pszSrc ) )
    //      {
-   *this = o->ToString()->begin();
+   *this = o->ToString()->Begin();
+   //      }
+}
+
+string::string(Platform::Object ^ o, string_manager * pstringmanager) :
+   simple_string(pstringmanager)
+{
+   //      if( !CheckImplicitLoad( pszSrc ) )
+   //      {
+   *this = o->ToString()->Begin();
    //      }
 }
 
