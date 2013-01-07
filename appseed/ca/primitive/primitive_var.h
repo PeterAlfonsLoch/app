@@ -511,14 +511,14 @@ public:
 #undef new
 #undef delete
 
-   void * PASCAL operator new(size_t nSize);
-   void * PASCAL operator new(size_t, void * p);
-   void PASCAL operator delete(void * p);
-   void PASCAL operator delete(void * p, void * pPlace);
+   void * operator new(size_t nSize);
+   void * operator new(size_t, void * p);
+   void operator delete(void * p);
+   void operator delete(void * p, void * pPlace);
 
    // for file name/line number tracking using DEBUG_NEW
-   void * PASCAL operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
-   void PASCAL operator delete(void *p, const char * lpszFileName, int32_t nLine);
+   void * operator new(size_t nSize, const char * lpszFileName, int32_t nLine);
+   void operator delete(void *p, const char * lpszFileName, int32_t nLine);
 
 #define new DEBUG_NEW
 

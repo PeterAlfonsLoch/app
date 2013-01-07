@@ -267,19 +267,19 @@ void __cdecl operator delete[](void * p);
 //void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
 
 
-inline void PASCAL ::radix::object::operator delete(void * p)
+inline void ::radix::object::operator delete(void * p)
 {
    ca2_free_dbg(p, ___CLIENT_BLOCK);
 }
 
-inline void PASCAL ::radix::object::operator delete(void * p, void *)
+inline void ::radix::object::operator delete(void * p, void *)
 {
    ca2_free_dbg(p, ___CLIENT_BLOCK);
 }
 
 #ifdef DEBUG
 
-inline void PASCAL ::radix::object::operator delete(void *pObject, const char *, int32_t)
+inline void ::radix::object::operator delete(void *pObject, const char *, int32_t)
 {
    ca2_free_dbg(pObject, ___CLIENT_BLOCK);
 }

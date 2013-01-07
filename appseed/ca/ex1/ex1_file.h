@@ -39,10 +39,10 @@ namespace ex1
    // Operations
       virtual bool open(const char * lpszFileName, UINT nOpenFlags);
 
-      //virtual void PASCAL Rename(const char * lpszOldName, const char * lpszNewName);
-      //virtual void PASCAL remove(const char * lpszFileName);
-      virtual bool PASCAL GetStatus(const char * lpszFileName, file_status& rStatus);
-      virtual void PASCAL SetStatus(const char * lpszFileName, const file_status& status);
+      //virtual void Rename(const char * lpszOldName, const char * lpszNewName);
+      //virtual void remove(const char * lpszFileName);
+      virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
+      virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
 
    // Overridables

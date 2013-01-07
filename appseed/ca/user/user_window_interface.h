@@ -101,8 +101,8 @@ namespace user
       uint32_t GetExStyle() const;
       bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
       bool ModifyStyleEx(uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyle(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
-      static bool PASCAL ModifyStyleEx(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
+      static bool ModifyStyle(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
+      static bool ModifyStyleEx(oswindow oswindow, uint32_t dwRemove, uint32_t dwAdd, UINT uiFlags);
 
       LRESULT SendMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
       bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);*/

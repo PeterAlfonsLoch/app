@@ -7,39 +7,39 @@
 
 static fixed_alloc g_fixedallocVar(ROUND4(sizeof(var) ), 1024);
 
-void * PASCAL var::operator new(size_t size, void * p)
+void * var::operator new(size_t size, void * p)
    { 
       UNREFERENCED_PARAMETER(size);
       return p; 
    }
 
-void * PASCAL var::operator new(size_t nSize)
+void * var::operator new(size_t nSize)
 {
    return g_fixedallocVar.Alloc();
 }
 
 #ifdef DEBUG
 
-void * PASCAL var::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
+void * var::operator new(size_t nSize, const char * lpszFileName, int32_t nLine)
 {
    return g_fixedallocVar.Alloc();
 }
 
 #endif
 
-inline void PASCAL var::operator delete(void * p)
+inline void var::operator delete(void * p)
 {
    g_fixedallocVar.Free(p);
 }
 
 #ifdef DEBUG
 
-inline void PASCAL var::operator delete(void * p, void *)
+inline void var::operator delete(void * p, void *)
 {
    g_fixedallocVar.Free(p);
 }
 
-inline void PASCAL var::operator delete(void *pvar, const char *, int32_t)
+inline void var::operator delete(void *pvar, const char *, int32_t)
 {
    g_fixedallocVar.Free(pvar);
 }

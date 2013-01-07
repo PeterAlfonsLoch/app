@@ -61,6 +61,6 @@ class CToolTipCtrl;
 class ::userbase::control_bar;
 
 
-CLASS_DECL_ca2 UINT PASCAL _gen::GetMouseScrollLines();
+CLASS_DECL_ca2 UINT _gen::GetMouseScrollLines();
 
 */

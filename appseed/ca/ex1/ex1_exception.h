@@ -15,8 +15,8 @@ namespace ex1
       exception(const exception & e);
 
 
-      void PASCAL operator delete(void * pbData);
-      void PASCAL operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
+      void operator delete(void * pbData);
+      void operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
 
 
    };

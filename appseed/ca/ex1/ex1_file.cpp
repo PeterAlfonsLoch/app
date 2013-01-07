@@ -109,13 +109,13 @@ namespace ex1
       return 0;
    }
 
-/*   void PASCAL file::Rename(const char * lpszOldName, const char * lpszNewName)
+/*   void file::Rename(const char * lpszOldName, const char * lpszNewName)
    {
       UNREFERENCED_PARAMETER(lpszOldName);
       UNREFERENCED_PARAMETER(lpszNewName);
    }
 
-   void PASCAL file::remove(const char * lpszFileName)
+   void file::remove(const char * lpszFileName)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
    }*/
@@ -276,7 +276,7 @@ namespace ex1
       return FALSE;
    }
 
-   bool PASCAL file::GetStatus(const char * lpszFileName, file_status & rStatus)
+   bool file::GetStatus(const char * lpszFileName, file_status & rStatus)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(rStatus);
@@ -284,7 +284,7 @@ namespace ex1
    }
 
 
-   void PASCAL file::SetStatus(const char * lpszFileName, const file_status & status)
+   void file::SetStatus(const char * lpszFileName, const file_status & status)
    {
       UNREFERENCED_PARAMETER(lpszFileName);
       UNREFERENCED_PARAMETER(status);

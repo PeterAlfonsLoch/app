@@ -45,7 +45,7 @@ namespace visual
    *  FUNCTION   : IntFromFixed
    *  RETURNS    : int32_t value approximating the FIXED value.
    ****************************************************************************/
-   int32_t PASCAL NEAR IntFromFixed(FIXED f)
+   int32_t NEAR IntFromFixed(FIXED f)
    {
       if (f.fract >= 0x8000)
          return(f.value + 1);
@@ -59,7 +59,7 @@ namespace visual
    *  FUNCTION   : fxDiv2
    *  RETURNS    : (val1 + val2)/2 for FIXED values
    ****************************************************************************/
-   FIXED PASCAL NEAR fxDiv2(FIXED fxVal1, FIXED fxVal2)
+   FIXED NEAR fxDiv2(FIXED fxVal1, FIXED fxVal2)
    {
       long l;
 

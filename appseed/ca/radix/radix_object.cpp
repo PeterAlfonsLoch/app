@@ -193,7 +193,7 @@ namespace radix
 
 
 #undef new
-   void * PASCAL object::operator new(size_t size, void * p)
+   void * object::operator new(size_t size, void * p)
    { 
       UNREFERENCED_PARAMETER(size);
       return p; 
@@ -201,13 +201,13 @@ namespace radix
 #define new DEBUG_NEW
 #ifndef DEBUG
 // DEBUG versions in afxmem.cpp
-//void PASCAL object::operator delete(void * p)
+//void object::operator delete(void * p)
   // { ::operator delete(p); }
 #if _MSC_VER >= 1200
-//void PASCAL object::operator delete(void * p, void *)
+//void object::operator delete(void * p, void *)
   // { ::operator delete(p); }
 #endif
-//void * PASCAL object::operator new(size_t nSize)
+//void * object::operator new(size_t nSize)
   // { return ::operator new(nSize); }
 // DEBUG versions in objcore.cpp
 //void ::radix::object::AssertValid() const

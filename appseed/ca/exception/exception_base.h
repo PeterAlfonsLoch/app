@@ -30,8 +30,8 @@ public:
    virtual int32_t ReportError(UINT nType = MB_OK, const char * pszMessageID = NULL);
 
 
-   void PASCAL operator delete(void * pbData);
-   void PASCAL operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
+   void operator delete(void * pbData);
+   void operator delete(void * pbData, const char * lpszFileName, int32_t nLine);
 
 
 };

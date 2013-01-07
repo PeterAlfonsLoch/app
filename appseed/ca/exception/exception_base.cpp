@@ -1,12 +1,12 @@
 #include "framework.h"
 
 
-void PASCAL base_exception::operator delete(void * pbData)
+void base_exception::operator delete(void * pbData)
 {
    ::radix::object::operator delete(pbData);
 }
 
-void PASCAL base_exception::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
+void base_exception::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)
 {
    operator delete(pbData);
 }

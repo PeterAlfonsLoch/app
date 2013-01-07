@@ -109,7 +109,7 @@ public:
    bool OnNcCreate(LPCREATESTRUCT lpcs);
 
 public:
-   static void PASCAL CalcBorders(LPRECT lpClientRect, uint32_t dwStyle = 0, uint32_t dwExStyle = 0);
+   static void CalcBorders(LPRECT lpClientRect, uint32_t dwStyle = 0, uint32_t dwExStyle = 0);
 
 protected:
    virtual bool pre_create_window(CREATESTRUCT& cs);
