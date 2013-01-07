@@ -172,7 +172,7 @@ namespace sockets
 
       m_event.ResetEvent();
 
-      ::Windows::Foundation::IAsyncAction ^ action = m_streamsocket->ConnectAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())));
+      ::Windows::Foundation::IAsyncAction ^ action = m_streamsocket->ConnectAsync(ad.m_hostname, gen::str::from(ad.get_service_number()));
 
 
       action->Completed = 
@@ -225,7 +225,7 @@ namespace sockets
 
       m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
       
-      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_hostname,  itort(bind_ad.get_service_number()), ad.m_hostname, itort(ad.get_service_number()));
+      ::Windows::Networking::EndpointPair ^ pair = ref new ::Windows::Networking::EndpointPair(bind_ad.m_hostname,  itoa_dup(bind_ad.get_service_number()), ad.m_hostname, itoa_dup(ad.get_service_number()));
 
       attach(m_streamsocket);
 

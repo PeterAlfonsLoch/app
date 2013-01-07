@@ -75,15 +75,15 @@ namespace ca2
 
       virtual void EnableShellOpen();
 
-      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
+      virtual bool open_link(const string & strLink, const string & pszTarget = "");
 
 
 
 
-      virtual void set_locale(const char * lpcsz, bool bUser);
-      virtual void set_schema(const char * lpcsz, bool bUser);
-      virtual void on_set_locale(const char * lpcsz, bool bUser);
-      virtual void on_set_schema(const char * lpcsz, bool bUser);
+      virtual void set_locale(const string & lpcsz, bool bUser);
+      virtual void set_schema(const string & lpcsz, bool bUser);
+      virtual void on_set_locale(const string & lpcsz, bool bUser);
+      virtual void on_set_schema(const string & lpcsz, bool bUser);
 
 
       virtual ::fontopus::user * create_current_user();
@@ -105,14 +105,14 @@ namespace ca2
       virtual string load_string(id id);
       virtual bool load_string(string & str, id id);
       bool load_cached_string(string & str, id id, bool bLoadStringTable);
-      bool load_cached_string_by_id(string & str, id id, const char * pszFallbackValue, bool bLoadStringTable);
-      void load_string_table(const char * pszApp, const char * pszId);
+      bool load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable);
+      void load_string_table(const string & pszApp, const string & pszId);
 
-      virtual bool get_auth(const char * pszForm, string & strUsername, string & strPassword);
+      virtual bool get_auth(const string & pszForm, string & strUsername, string & strPassword);
 
       virtual bool base_support();
 
-      virtual string message_box(const char * pszMatter, gen::property_set & propertyset);
+      virtual string message_box(const string & pszMatter, gen::property_set & propertyset);
 
 
       virtual void load_string_table();

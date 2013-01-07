@@ -149,7 +149,7 @@
 
             //SOCKET s;
             //m_iBindPort = ad.GetPort();
-            m_listener->BindEndpointAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())));
+            m_listener->BindEndpointAsync(ad.m_hostname, gen::str::from(ad.get_service_number()));
 /*            {
                return -1;
             }

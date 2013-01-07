@@ -12,14 +12,6 @@ CLASS_DECL_c Platform::String ^ rtstr(const char * psz)
 }
 */
 
-CLASS_DECL_c Platform::String ^ itort(int i)
-{
-   
-   return rtstr(itoa_dup(i));
-
-}
-
-
 CLASS_DECL_c int MessageBox(void * p, const char * pszMessage, const char * pszTitle, int iFlags)
 {
   

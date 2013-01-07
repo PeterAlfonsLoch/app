@@ -75,26 +75,26 @@ namespace ca2
       }
    }
 
-   void application::set_locale(const char * lpcsz, bool bUser)
+   void application::set_locale(const string & lpcsz, bool bUser)
    {
       m_strLocale = lpcsz;
       on_set_locale(lpcsz, bUser);
    }
 
-   void application::set_schema(const char * lpcsz, bool bUser)
+   void application::set_schema(const string & lpcsz, bool bUser)
    {
       m_strSchema = lpcsz;
       on_set_schema(lpcsz, bUser);
    }
 
-   void application::on_set_locale(const char * lpcsz, bool bUser)
+   void application::on_set_locale(const string & lpcsz, bool bUser)
    {
       UNREFERENCED_PARAMETER(bUser);
       UNREFERENCED_PARAMETER(lpcsz);
       //System.appa_load_string_table();
    }
 
-   void application::on_set_schema(const char * lpcsz, bool bUser)
+   void application::on_set_schema(const string & lpcsz, bool bUser)
    {
       UNREFERENCED_PARAMETER(bUser);
       UNREFERENCED_PARAMETER(lpcsz);
@@ -107,7 +107,7 @@ namespace ca2
       return true;
    };
 
-   string application::message_box(const char * pszMatter, gen::property_set & propertyset)
+   string application::message_box(const string & pszMatter, gen::property_set & propertyset)
    {
       UNREFERENCED_PARAMETER(propertyset);
       UNREFERENCED_PARAMETER(pszMatter);
@@ -126,7 +126,7 @@ namespace ca2
       load_string_table("", "");
    }
 
-   /*::fontopus::user * application::create_user(const char * pszLogin)
+   /*::fontopus::user * application::create_user(const string & pszLogin)
    {
       return NULL;
    }*/
@@ -144,7 +144,7 @@ namespace ca2
    }*/
 
 
-   bool application::get_auth(const char * pszForm, string & strUsername, string & strPassword)
+   bool application::get_auth(const string & pszForm, string & strUsername, string & strPassword)
    {
       UNREFERENCED_PARAMETER(pszForm);
       UNREFERENCED_PARAMETER(strUsername);
@@ -484,7 +484,7 @@ namespace ca2
       string str;
       if(!load_string(str, id))
       {
-         return (const char *) id;
+         return (const string &) id;
       }
       return str;
    }
@@ -505,7 +505,7 @@ namespace ca2
       {
          if(!doc.load(id))
          {
-            return load_cached_string_by_id(str, id, NULL, bLoadStringTable);
+            return load_cached_string_by_id(str, id, "", bLoadStringTable);
          }
       }
       ::xml::node * pnodeRoot = doc.get_root();
@@ -519,7 +519,7 @@ namespace ca2
       return true;
    }
 
-   bool application::load_cached_string_by_id(string & str, id id, const char * pszFallbackValue, bool bLoadStringTable)
+   bool application::load_cached_string_by_id(string & str, id id, const string & pszFallbackValue, bool bLoadStringTable)
    {
       string strId(*id.m_pstr);
       string strTable;
@@ -562,7 +562,7 @@ namespace ca2
       return true;
    }
 
-   void application::load_string_table(const char * pszApp, const char * pszId)
+   void application::load_string_table(const string & pszApp, const string & pszId)
    {
       string strApp(pszApp);
       string strMatter;
@@ -653,17 +653,17 @@ namespace ca2
       return ex2::application::run();
    }
 
-   bool application::open_link(const char * pszLink, const char * pszTarget)
+   bool application::open_link(const string & strLink, const string & pszTarget)
    {
       if(is_system())
       {
 #ifdef WINDOWSEX
-         ::ShellExecuteA(NULL, "open", pszLink, NULL, NULL, SW_SHOW);
+         ::ShellExecuteA(NULL, "open", strLink, NULL, NULL, SW_SHOW);
          return true;
 #elif defined METROWIN
 #pragma push_macro("System")
 #undef System
-         ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(rtstr(pszLink));
+         ::Windows::Foundation::Uri ^ uri = ref new ::Windows::Foundation::Uri(strLink);
          ::Windows::System::LauncherOptions ^ options = ref new ::Windows::System::LauncherOptions();
          options->TreatAsUntrusted = false;
          bool success = ::wait(::Windows::System::Launcher::LaunchUriAsync(uri, options));
@@ -674,7 +674,7 @@ namespace ca2
       }
       else
       {
-         return System.open_link(pszLink, pszTarget);
+         return System.open_link(strLink, pszTarget);
       }
 
       return false;

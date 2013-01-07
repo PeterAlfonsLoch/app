@@ -173,7 +173,7 @@ namespace sockets
    port_t stream_socket::GetLocalPort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->begin()));
+      return System.net().service_port(m_streamsocket->Information->LocalPort);
 
    }
      
@@ -181,7 +181,7 @@ namespace sockets
    address stream_socket::GetLocalAddress()
    {
 
-      return address(get_app(), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalAddress->CanonicalName->begin()), gen::international::unicode_to_utf8(m_streamsocket->Information->LocalPort->begin()));
+      return address(get_app(), m_streamsocket->Information->LocalAddress->CanonicalName, m_streamsocket->Information->LocalPort);
 
    }
 

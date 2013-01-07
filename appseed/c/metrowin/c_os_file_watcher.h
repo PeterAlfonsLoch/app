@@ -62,10 +62,10 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception file_not_found_exception Thrown when the requested directory does not exist
-		id add_watch(const char * directory, file_watch_listener * watcher);
+		id add_watch(const vsstring & directory, file_watch_listener * watcher);
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
-		void remove_watch(const char * directory);
+		void remove_watch(const vsstring & directory);
 
 		/// Remove a directory watch. This is a map lookup O(logn).
 		void remove_watch(id watchid);

@@ -48,10 +48,10 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception file_not_found_exception Thrown when the requested directory does not exist
-		virtual id add_watch(const char * directory, file_watch_listener* pwatcher) = 0;
+		virtual id add_watch(const vsstring & directory, file_watch_listener* pwatcher) = 0;
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
-		virtual void remove_watch(const char * directory) = 0;
+		virtual void remove_watch(const vsstring & directory) = 0;
 
 		/// Remove a directory watch. This is a map lookup O(logn).
 		virtual void remove_watch(id watchid) = 0;

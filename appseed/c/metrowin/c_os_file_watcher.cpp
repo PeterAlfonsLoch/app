@@ -165,7 +165,7 @@ namespace file_watcher
 		m_watchmap.remove_all();
 	}
 
-	id os_file_watcher::add_watch(const string & directory, file_watch_listener* watcher)
+	id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener* watcher)
 	{
 		id watchid = ++m_idLast;
 
@@ -187,10 +187,10 @@ namespace file_watcher
 	}
 
 
-	void os_file_watcher::remove_watch(const char * directory)
+	void os_file_watcher::remove_watch(const vsstring & directory)
 	{
       watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
-      Platform::String ^ strDir = rtstr(directory);
+      Platform::String ^ strDir = directory;
       for(; ppair != NULL; m_watchmap.PGetNextAssoc(ppair))
 		{
 			if(strDir == ppair->m_value->m_strDirName)

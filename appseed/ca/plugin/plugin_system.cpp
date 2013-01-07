@@ -24,7 +24,7 @@ namespace plugin
    }
 
 
-   bool system::open_link(const char * pszLink, const char * pszTarget)
+   bool system::open_link(const string & pszLink, const string & pszTarget)
    {
 
       UNREFERENCED_PARAMETER(pszTarget);
@@ -47,7 +47,7 @@ namespace plugin
    string system::get_host_location_url()
    {
       
-      return (const char *) m_pplugin->get_host_location_url();
+      return (const string &) m_pplugin->get_host_location_url();
 
    }
 

@@ -326,10 +326,10 @@ namespace sockets
    }
    */
 
-   bool net::convert(in_addr & addr, const char * host,int ai_flags)
+   bool net::convert(in_addr & addr, const string & host,int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(host)), "0"));
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(host), "0"));
 
       if(data->Size <= 0)
          return false;
@@ -346,10 +346,10 @@ namespace sockets
    }
 
 
-   bool net::convert(in6_addr & sa, const char * host, int ai_flags)
+   bool net::convert(in6_addr & sa, const string & host, int ai_flags)
    {
 
-      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(rtstr(host)), "0"));
+      ::Windows::Foundation::Collections::IVectorView < ::Windows::Networking::EndpointPair ^ > ^ data = ::wait(::Windows::Networking::Sockets::DatagramSocket::GetEndpointPairsAsync(ref new ::Windows::Networking::HostName(host), "0"));
 
       if(data->Size <= 0)
          return false;
@@ -396,7 +396,7 @@ namespace sockets
    }
 
 
-   bool net::reverse(string & number, const char * hostname, int flags)
+   bool net::reverse(string & number, const string & hostname, int flags)
    {
       
       ::sockets::address address(get_app(), hostname);
@@ -535,7 +535,7 @@ namespace sockets
          else
          {
             struct sockaddr_in *sa_in = (struct sockaddr_in *)sa;
-            struct hostent *h = gethostbyaddr( (const char *)&sa_in -> sin_addr, sizeof(sa_in -> sin_addr), AF_INET);
+            struct hostent *h = gethostbyaddr( (const string &)&sa_in -> sin_addr, sizeof(sa_in -> sin_addr), AF_INET);
             if (h)
             {
                hostname = h -> h_name;
@@ -583,7 +583,7 @@ namespace sockets
          {
             // %! TODO: ipv6 reverse lookup
             struct sockaddr_in6 *sa_in = (struct sockaddr_in6 *)sa;
-            struct hostent *h = gethostbyaddr( (const char *)&sa_in -> sin6_addr, sizeof(sa_in -> sin6_addr), AF_INET6);
+            struct hostent *h = gethostbyaddr( (const string &)&sa_in -> sin6_addr, sizeof(sa_in -> sin6_addr), AF_INET6);
             if (h)
             {
                hostname = h -> h_name;
@@ -669,7 +669,7 @@ namespace sockets
    */
 
 
-   int net::service_port(const char * psz, int flags)
+   int net::service_port(const string & psz, int flags)
    {
 
       if(gen::str::is_simple_natural(psz))

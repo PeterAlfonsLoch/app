@@ -425,7 +425,7 @@ namespace rar
                bool decryptionError;
                string errorMessageLoc;
                HRESULT result = archive.GetNextItem(item, getTextPassword, decryptionError, errorMessageLoc);
-               if (errorMessageLoc)
+               if (errorMessageLoc.has_char())
                   AddErrorMessage(errorMessageLoc);
                if (result == S_FALSE)
                {

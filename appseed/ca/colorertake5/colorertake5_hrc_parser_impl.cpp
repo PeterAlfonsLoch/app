@@ -484,7 +484,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 {
    gen::scoped_ptr < SchemeNode > next;
    for(xml::node *tmpel = elem; tmpel; tmpel = tmpel->get_next_sibling()){
-      if (!tmpel->get_name()) continue;
+      if (tmpel->get_name().is_empty()) continue;
 
       if (next == NULL){
          next = new SchemeNode();
@@ -587,7 +587,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 
          xml::node *eStart = NULL, *eEnd = NULL;
 
-         for(xml::node *blkn = tmpel->first_child(); blkn && !(eParam && sParam); blkn = blkn->get_next_sibling())
+         for(xml::node *blkn = tmpel->first_child(); blkn && !(eParam.has_char() && sParam.has_char()); blkn = blkn->get_next_sibling())
          {
             xml::node *blkel;
             if(blkn->get_type() == xml::node_element) blkel = blkn;
@@ -611,7 +611,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
 
          string startParam;
          string endParam;
-         if (!(startParam = useEntities(sParam)))
+         if ((startParam = useEntities(sParam)).is_empty())
          {
             if (errorHandler != NULL)
             {
@@ -619,7 +619,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
             }
             continue;
          };
-         if (!(endParam = useEntities(eParam)))
+         if ((endParam = useEntities(eParam)).is_empty())
          {
             if (errorHandler != NULL)
             {
@@ -709,7 +709,7 @@ void HRCParserImpl::addSchemeNodes(scheme_impl *scheme, xml::node *elem)
                continue;
             }
             string param;
-            if (!(param = (keywrd)->attr("name")) || !param.get_length()){
+            if ((param = (keywrd)->attr("name")).is_empty()){
                continue;
             }
 

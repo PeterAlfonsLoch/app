@@ -394,7 +394,7 @@ namespace plane
                return;
             }
 
-            if(strType)
+            if(strType.is_empty())
             {
                strType = "application";
             }

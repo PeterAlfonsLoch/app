@@ -36,7 +36,7 @@ namespace sockets
 
       }
 
-      m_strService   = itort(iPort);
+      m_strService   = itoa_dup(iPort);
 
    }
 

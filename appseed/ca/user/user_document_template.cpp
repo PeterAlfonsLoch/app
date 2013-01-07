@@ -18,7 +18,7 @@ document_template::document_template(::ca::application * papp, const char * pszM
 
 void document_template::load_template()
 {
-   if (m_strDocStrings.is_empty() && !System.matter_as_string(get_app(), m_strMatter, "full_string.txt"))
+   if (m_strDocStrings.is_empty() && System.matter_as_string(get_app(), m_strMatter, "full_string.txt").is_empty())
    {
       TRACE(::radix::trace::category_AppMsg, 0, "Warning: no ::user::document_interface names in string for template #%d.\n", m_strMatter);
    }

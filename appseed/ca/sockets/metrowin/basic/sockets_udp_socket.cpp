@@ -84,7 +84,7 @@ namespace sockets
 
       });
 
-      m_datagramsocket->BindServiceNameAsync(rtstr(gen::str::from(port)))->Completed = 
+      m_datagramsocket->BindServiceNameAsync(gen::str::from(port))->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
          ([this] (::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -122,7 +122,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->BindEndpointAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = 
+      m_datagramsocket->BindEndpointAsync(ad.m_hostname, gen::str::from(ad.get_service_number()))->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
             ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -173,7 +173,7 @@ namespace sockets
 
       SetNonblocking(true);
 
-      m_datagramsocket->ConnectAsync(ad.m_hostname, rtstr(gen::str::from(ad.get_service_number())))->Completed = 
+      m_datagramsocket->ConnectAsync(ad.m_hostname, gen::str::from(ad.get_service_number()))->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
             ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
@@ -807,7 +807,7 @@ namespace sockets
    port_t udp_socket::GetRemotePort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->begin()));
+      return System.net().service_port(m_datagramsocket->Information->RemotePort);
 
    }
    
@@ -815,7 +815,7 @@ namespace sockets
    address udp_socket::GetRemoteAddress()
    {
 
-      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemoteAddress->CanonicalName->begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->RemotePort->begin()));
+      return address(get_app(), m_datagramsocket->Information->RemoteAddress->CanonicalName, m_datagramsocket->Information->RemotePort);
 
    }
 
@@ -823,7 +823,7 @@ namespace sockets
    port_t udp_socket::GetLocalPort()
    {
 
-      return System.net().service_port(gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->begin()));
+      return System.net().service_port(m_datagramsocket->Information->LocalPort);
 
    }
      
@@ -831,7 +831,7 @@ namespace sockets
    address udp_socket::GetLocalAddress()
    {
 
-      return address(get_app(), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalAddress->CanonicalName->begin()), gen::international::unicode_to_utf8(m_datagramsocket->Information->LocalPort->begin()));
+      return address(get_app(), m_datagramsocket->Information->LocalAddress->CanonicalName, m_datagramsocket->Information->LocalPort);
 
    }
 

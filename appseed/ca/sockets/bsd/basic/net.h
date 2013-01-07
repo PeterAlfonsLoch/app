@@ -161,7 +161,7 @@ namespace sockets
 
       bool reverse(sockaddr * psa, socklen_t sa_len, string & hostname, string & service, int32_t flags = 0);
 
-      bool reverse(string & number, const char * hostname, int32_t flags);
+      bool reverse(string & number, const string & hostname, int32_t flags);
 
 
       bool u2service(const string & name, int32_t& service, int32_t ai_flags);

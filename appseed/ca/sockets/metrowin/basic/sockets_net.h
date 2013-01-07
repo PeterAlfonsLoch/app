@@ -133,9 +133,9 @@ namespace sockets
 
       bool isipv6(const string & str);
 
-      bool convert(in_addr & addr, const char * psz, int ai_flags = 0);
+      bool convert(in_addr & addr, const string & psz, int ai_flags = 0);
 
-      bool convert(in6_addr & addr, const char * psz, int ai_flags = 0);
+      bool convert(in6_addr & addr, const string & psz, int ai_flags = 0);
 
       bool convert(string & str, const in_addr & addr, int ai_flags = 0);
 
@@ -160,7 +160,7 @@ namespace sockets
 
       //::sockets::address CreateAddress(sockaddr * psa, socklen_t sa_len);
 
-      bool reverse(string & number, const char * hostname, int flags = 0);
+      bool reverse(string & number, const string & hostname, int flags = 0);
 
       int service_port(const string & strName, int ai_flags = 0);
 

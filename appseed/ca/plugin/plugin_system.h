@@ -20,7 +20,7 @@ namespace plugin
       system(::ca::application * papp);
 
 
-      virtual bool open_link(const char * pszLink, const char * pszTarget);
+      virtual bool open_link(const string & pszLink, const string & pszTarget);
       
       virtual bool os_native_bergedge_start();
 

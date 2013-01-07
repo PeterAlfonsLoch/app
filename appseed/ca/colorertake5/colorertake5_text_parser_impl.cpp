@@ -474,7 +474,7 @@ namespace colorertake5
                   parent = OldCacheP;
                };
             }else{
-               delete backLine;
+//               delete backLine;
             };
             if (ssubst != schemeNode->scheme){
                vtlist->popvirt();

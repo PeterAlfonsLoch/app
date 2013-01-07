@@ -827,7 +827,7 @@ namespace ca
             }
             else
             {
-               ::wait(file->RenameAsync(rtstr(strNameNew)));
+               ::wait(file->RenameAsync(strNameNew));
             }
          }
          else
@@ -839,7 +839,7 @@ namespace ca
             }
             else
             {
-               ::wait(file->MoveAsync(folder, rtstr(strNameNew)));
+               ::wait(file->MoveAsync(folder, strNameNew));
             }
          }
 

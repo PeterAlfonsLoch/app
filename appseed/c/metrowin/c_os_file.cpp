@@ -654,20 +654,20 @@ void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
 bool file_copy_dup(const char * pszNew, const char * pszSrc, bool bOverwrite)
 {
 
-    ::Windows::Storage::IStorageFolder ^ folderNew = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(dir::name(pszNew))));
+    ::Windows::Storage::IStorageFolder ^ folderNew = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(dir::name(pszNew)));
 
     auto optionNew = ::Windows::Storage::CreationCollisionOption::ReplaceExisting;
  
     // create target file 
-    ::Windows::Storage::IStorageFile ^ fileNew = wait(folderNew->CreateFileAsync(rtstr(file_title_dup(pszNew)), optionNew));
+    ::Windows::Storage::IStorageFile ^ fileNew = wait(folderNew->CreateFileAsync(file_title_dup(pszNew), optionNew));
 
     if(fileNew == nullptr)
        return false;
 
-    ::Windows::Storage::IStorageFolder ^ folderSrc = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(rtstr(dir::name(pszSrc))));
+    ::Windows::Storage::IStorageFolder ^ folderSrc = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(dir::name(pszSrc)));
 
     // create source file 
-    ::Windows::Storage::IStorageFile ^ fileSrc = wait(folderSrc->GetFileAsync(rtstr(file_title_dup(pszNew))));
+    ::Windows::Storage::IStorageFile ^ fileSrc = wait(folderSrc->GetFileAsync(file_title_dup(pszNew)));
 
     if(fileSrc == nullptr)
        return false;

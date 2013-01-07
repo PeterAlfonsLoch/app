@@ -793,7 +793,7 @@ const string pattern = global_pattern;
 #ifdef COLORERMODE
       case ReBkTrace:
         sv = re->param0;
-        if (!backStr || !backTrace || sv == -1) return false;
+        if(backStr.has_char() || !backTrace || sv == -1) return false;
         for (i = backTrace->s[sv]; i < backTrace->e[sv]; i++){
           if (toParse >= end || ((const char *)pattern)[toParse] != backStr[i]) return false;
           toParse++;
@@ -801,7 +801,7 @@ const string pattern = global_pattern;
         break;
       case ReBkTraceN:
         sv = re->param0;
-        if (!backStr || !backTrace || sv == -1) return false;
+        if (backStr.has_char() || !backTrace || sv == -1) return false;
         for (i = backTrace->s[sv]; i < backTrace->e[sv]; i++){
           if (toParse >= end || gen::ch::to_lower_case(&((const char *)pattern)[toParse]) != gen::ch::to_lower_case(&((const char *)backStr)[i])) return false;
           toParse++;
