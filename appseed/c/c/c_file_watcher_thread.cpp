@@ -7,13 +7,25 @@ namespace file_watcher
 
    int32_t thread::run()
    {
-
+      /*
 #ifndef METROWIN
       try
       {
+
+         MSG msg;
          
          while(true)
          {
+
+            msg.message = 0;
+
+            while(GetMessage(&msg, NULL, 0, 0, PM_REMOVE))
+            {
+
+               if(msg.message == WM_QUIT)
+                  goto quit;
+
+            }
             
             try
             {
@@ -27,6 +39,7 @@ namespace file_watcher
             }
             
          }
+quit:;
          
       }
       catch(...)
@@ -34,6 +47,7 @@ namespace file_watcher
          
       }
 #endif
+      */
       return 0;
 
    }
