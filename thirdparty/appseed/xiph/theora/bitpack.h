@@ -20,7 +20,7 @@
 
 
 
-typedef uint_ptr              oc_pb_window;
+typedef uint32_t              oc_pb_window;
 typedef struct oc_pack_buf    oc_pack_buf;
 
 
