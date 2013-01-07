@@ -3112,11 +3112,6 @@ restart:
    ::ca::window * interaction::get_wnd() const
 #endif
    {
-#ifdef METROWIN
-      if(get_parent() == NULL)
-         return m_pimpl;
-      return get_parent()->get_wnd();
-#else
       if(m_pimpl != NULL)
       {
          ::ca::window * pwnd = dynamic_cast < ::ca::window * > (m_pimpl);
@@ -3126,7 +3121,6 @@ restart:
       if(get_parent() == NULL)
          return NULL;
       return get_parent()->get_wnd();
-#endif
    }
 
    // returns -1 if not descendant
