@@ -217,3 +217,19 @@ CLASS_DECL_c oswindow WINAPI SetCapture(oswindow oswindow)
    return oswindowOldCapture;
 
 }
+
+
+CLASS_DECL_c oswindow WINAPI ReleaseCapture()
+{
+   
+   ::oswindow oswindowOldCapture = g_oswindowCapture;
+
+   g_oswindowCapture = ::ca::null();
+
+   // todo
+   //SendMessage(oswindow, WM_SETFOCUS, WPARAM, (LPARAM) (void *) oswindowOldFocus)
+   //SendMessage(oswindowOldFocus, WM_KILLFOCUS, WPARAM, (LPARAM) (void *) oswindow)
+
+   return oswindowOldCapture;
+
+}
