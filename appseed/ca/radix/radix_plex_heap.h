@@ -96,6 +96,8 @@ inline void plex_heap_alloc_sync::Free(void * p)
       // simply return the node to the free list
       node* pnode = (node*)p;
 
+#ifdef MEMDFREE // Free Debug - duplicate freeing ?
+
       node * pnodeFree = m_pnodeFree;
 
       while(pnodeFree != NULL)
@@ -120,6 +122,8 @@ inline void plex_heap_alloc_sync::Free(void * p)
          pnodeFree = pnodeFree->pNext;
 
       }
+
+#endif
 
 #if STORE_LAST_BLOCK
 
