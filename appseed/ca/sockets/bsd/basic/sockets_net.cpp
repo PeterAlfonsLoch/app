@@ -248,6 +248,7 @@ namespace sockets
          return false;
    #endif // NO_GETADDRINFO
       }
+      pitem->r = true;
       comparable_array < addrinfo * > vec;
       addrinfo *ai = res;
       while (ai)
@@ -274,6 +275,7 @@ namespace sockets
          (uint32_t)((byte*)&pitem->m_ipaddr)[3],
          (dwTimeTelmo2 - dwTimeTelmo1));
       l = pitem->m_ipaddr;
+      
       return pitem->r;
    }
 

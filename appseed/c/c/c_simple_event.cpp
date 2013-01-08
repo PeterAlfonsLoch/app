@@ -159,7 +159,7 @@ bool simple_event::wait(uint32_t dwTimeout)
 
 #elif defined WINDOWS
 
-   return WaitForSingleObject(m_hEvent, INFINITE);
+   return WaitForSingleObject(m_hEvent, INFINITE) == WAIT_OBJECT_0;
 
 #else
 
