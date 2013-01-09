@@ -1070,7 +1070,7 @@ RetryHost:
       vsstring dir;
       vsstring dir2;
       dir = dir::ca2();
-      if(dir.substr(dir.size() - 2, 1) != "\\")
+      if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
       }
@@ -1156,7 +1156,7 @@ RetryHost:
 
       dir = dir::ca2();
 
-      if(dir.substr(dir.size() - 2, 1) != "\\")
+      if(dir.substr(dir.size() - 1, 1) != "\\")
       {
 
          dir += "\\";
@@ -1515,7 +1515,7 @@ RetryHost:
       vsstring url;
       vsstring file;
       dir = dir::ca2();
-      if(dir.substr(dir.size() - 2, 1) != "\\")
+      if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
       }
@@ -1683,7 +1683,7 @@ RetryHost:
       vsstring url;
       vsstring file;
       dir = dir::ca2();
-      if(dir.substr(dir.size() - 2, 1) != "\\")
+      if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
       }

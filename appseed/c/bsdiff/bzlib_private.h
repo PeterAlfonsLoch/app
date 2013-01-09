@@ -354,7 +354,7 @@ typedef
       /* for doing the final run-length decoding */
       uchar    state_out_ch;
       int32_t    state_out_len;
-      bool     blockRandomised;
+      int     blockRandomised;
       BZ_RAND_DECLS;
 
       /* the buffer for bit stream reading */
