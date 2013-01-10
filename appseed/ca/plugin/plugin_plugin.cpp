@@ -229,6 +229,8 @@ namespace plugin
    void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprectOut)
    {
 
+
+
       UNREFERENCED_PARAMETER(lprectOut);
 
       LPCRECT lprect = &m_rect;
@@ -253,6 +255,17 @@ namespace plugin
 
          try
          {
+
+            /*
+            RECT rect;
+
+            rect.left = 100;
+            rect.right = 500;
+            rect.top = 100;
+            rect.bottom = 500;
+
+            m_dib->get_graphics()->FillSolidRect(&rect, ARGB(128, 255, 255, 127));
+            */
 
             m_puiHost->_000OnDraw(m_dib->get_graphics());
 
@@ -957,9 +970,13 @@ namespace plugin
          if(bIsWindow)
          {
 
-            LRESULT l = m_puiHost->send_message(uiMessage, wparam, lparam);
+            ::ca::smart_pointer < ::gen::message::base > spbase;
 
-            return l;
+            spbase(m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam));
+
+            m_puiHost->message_handler(spbase);
+
+            return spbase->get_lresult();
 
          }
          else

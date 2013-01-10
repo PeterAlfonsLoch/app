@@ -201,6 +201,7 @@ namespace hotplugin
          try
          {
 
+
             m_pplugin->on_paint(gWindow, lprect);
 
          }

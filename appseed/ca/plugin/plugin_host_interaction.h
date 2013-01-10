@@ -59,8 +59,15 @@ namespace plugin
       DECL_GEN_SIGNAL(on_ignore_message)
       DECL_GEN_SIGNAL(_001OnTimer)
 
+
+      virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, LPARAM lparam);
+
+
    };
 
+
 } // namespace npca2
+
+
 
 

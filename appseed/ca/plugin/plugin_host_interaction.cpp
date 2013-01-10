@@ -244,4 +244,27 @@ namespace plugin
       ::user::interaction::_000OnMouse(pmouse);
    }
 
+   LRESULT host_interaction::DefWindowProc(UINT uiMessage, WPARAM wparam, LPARAM lparam)
+   {
+
+      if(uiMessage == WM_NCCREATE
+      || uiMessage == WM_CREATE)
+/*      || uiMessage == WM_SIZE
+      || uiMessage == WM_MOVE
+      || uiMessage == WM_WINDOWPOSCHANGING
+      || uiMessage == WM_WINDOWPOSCHANGED)*/
+      {
+
+         return ::user::interaction::DefWindowProc(uiMessage, wparam, lparam);
+
+      }
+      else
+      {
+      
+         return 0;
+
+      }
+
+   }
+
 } // namespace plugin
