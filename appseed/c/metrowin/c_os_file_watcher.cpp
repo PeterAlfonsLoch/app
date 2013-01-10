@@ -47,8 +47,9 @@ namespace file_watcher
       property size_t                                                m_pwatcher;   // should be exactly file_watcher_impl *
       property size_t                                                m_plistener;  // should be exactly file_watch_listener *
       property uint64_t                                              m_id;
+      property bool                                                  m_bRecursive;
 
-      static watch_struct ^ create_watch(Platform::String ^ strDirectory);
+      static watch_struct ^ create_watch(Platform::String ^ strDirectory, bool bRecursive);
 
       void ContentsChanged(::Windows::Storage::Search::IStorageQueryResultBase ^ r, ::Platform::Object ^ o)
       {
@@ -123,14 +124,24 @@ namespace file_watcher
 		}
 	}
 	/// Starts monitoring a directory.
-	watch_struct ^ watch_struct::create_watch(Platform::String ^ strDirectory)
+	watch_struct ^ watch_struct::create_watch(Platform::String ^ strDirectory, bool bRecursive)
 	{
+
 		watch_struct ^ pwatch = ref new watch_struct;
 
 
       Windows::Storage::Search::QueryOptions ^ options = ref new Windows::Storage::Search::QueryOptions();
 
-      options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Shallow;
+      pwatch->m_bRecursive = bRecursive;
+
+      if(pwatch->m_bRecursive)
+      {
+         options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Deep;
+      }
+      else
+      {
+         options->FolderDepth = ::Windows::Storage::Search::FolderDepth::Shallow;
+      }
       options->IndexerOption = ::Windows::Storage::Search::IndexerOption::DoNotUseIndexer;
 
       pwatch->m_folder = wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(strDirectory));
@@ -165,12 +176,12 @@ namespace file_watcher
 		m_watchmap.remove_all();
 	}
 
-	id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener* watcher)
+	id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener * watcher, bool bRecursive)
 	{
 		id watchid = ++m_idLast;
 
 		//watch_struct ^ pwatch = watch_struct::create_watch(m_str(directory), FILE_NOTIFY_CHANGE_CREATION | FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_FILE_NAME);
-      watch_struct ^ pwatch = watch_struct::create_watch(directory);
+      watch_struct ^ pwatch = watch_struct::create_watch(directory, bRecursive);
 
 		if(pwatch == nullptr)
 			throw file_not_found_exception(directory);
