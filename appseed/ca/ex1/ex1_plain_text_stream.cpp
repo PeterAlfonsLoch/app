@@ -250,15 +250,15 @@ namespace ex1
          return raw_print("false");
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (int8_t i)
+   plain_text_output_stream & plain_text_output_stream::operator << (char ch)
    {
-      write(&i, sizeof(i)); // treat as char - character
+      write(&ch, sizeof(ch)); // treat as char - character
       return *this;
    }
 
-   plain_text_output_stream & plain_text_output_stream::operator << (uint8_t ui)
+   plain_text_output_stream & plain_text_output_stream::operator << (uchar uch)
    {
-      return operator << ((uint32_t) ui);
+      return operator << ((uint32_t) uch);
    }
 
    plain_text_output_stream & plain_text_output_stream::operator << (int16_t i)

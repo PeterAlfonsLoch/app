@@ -7,8 +7,6 @@
 #endif
 #define __USE_MISC
 #include <ctype.h>
-#include <sys/socket.h>
-#include <netdb.h>
 #endif
 
 
@@ -275,7 +273,7 @@ namespace sockets
          (uint32_t)((byte*)&pitem->m_ipaddr)[3],
          (dwTimeTelmo2 - dwTimeTelmo1));
       l = pitem->m_ipaddr;
-      
+
       return pitem->r;
    }
 

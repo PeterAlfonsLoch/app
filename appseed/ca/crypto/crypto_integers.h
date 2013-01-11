@@ -56,9 +56,6 @@
 
 #else /* SRTP_KERNEL */
 
-#ifdef HAVE_SYS_TYPES_H
-# include <sys/types.h>
-#endif
 #ifdef HAVE_SYS_INT_TYPES_H
 # include <sys/int_types.h>    /* this exists on Sun App */
 #endif

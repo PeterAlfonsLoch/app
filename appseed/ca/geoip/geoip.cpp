@@ -12,7 +12,6 @@ static geoipv6_t IPV6_NULL;
 #if defined(LINUX) || defined(MACOS)
 
 #include <sys/mman.h>
-#include <netdb.h>
 
 #endif
 
@@ -637,7 +636,7 @@ uint32_t _GeoIP_seek_record (GeoIP *gi, uint32_t ipnum) {
    }
 
    /* shouldn't reach here */
-   fprintf(stderr,"Error Traversing Database for ipnum = %lu - Perhaps database is corrupt?\n",ipnum);
+   fprintf(stderr,"Error Traversing Database for ipnum = %u - Perhaps database is corrupt?\n",ipnum);
    return 0;
 }
 

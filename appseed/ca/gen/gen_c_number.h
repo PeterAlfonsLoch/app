@@ -36,11 +36,7 @@ public:
       return m_number;
    }
 
-   inline c_number < T > & from(const string & str)
-   {
-      gen::str::to(str, m_number);
-      return *this;
-   }
+   inline c_number < T > & from(const string & str);
 
 /*   bool operator == (const c_number & n) const;
    bool operator > (const c_number & n) const;
@@ -250,17 +246,17 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       } \
       \
       c(uchar uch) : \
-         c_number < T > (throw_cast < T > (uchar)) \
+         c_number < T > (throw_cast < T > (uch)) \
       { \
       } \
       \
-      c(int16_t sh) : \
-         c_number < T > (throw_cast < T > (sh)) \
+      c(int16_t i) : \
+         c_number < T > (throw_cast < T > (i)) \
       { \
       } \
       \
-      c(uint16_t uint16_t) : \
-         c_number < T > (throw_cast < T > (uint16_t)) \
+      c(uint16_t ui) : \
+         c_number < T > (throw_cast < T > (ui)) \
       { \
       } \
       \
@@ -274,13 +270,13 @@ inline c_number<T> operator - (const c_number<T> & n1, const c_number<T> & n2)
       { \
       } \
       \
-      c(int64_t i64) : \
-         c_number < T > (throw_cast < T > (i64)) \
+      c(int64_t i) : \
+         c_number < T > (throw_cast < T > (i)) \
       { \
       } \
       \
-      c(uint64_t ui64) : \
-         c_number < T > (throw_cast < T > (ui64)) \
+      c(uint64_t ui) : \
+         c_number < T > (throw_cast < T > (ui)) \
       { \
       } \
       \

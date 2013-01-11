@@ -743,47 +743,6 @@ public:
    inline bool operator<=(YCHAR ch)                       const { return !operator >(ch);  }
    inline bool operator<=(int32_t i)                      const { return !operator >(i);  }
 
-   friend bool CLASS_DECL_ca operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
-   friend bool CLASS_DECL_ca operator==(PCXSTR  psz                     , const string & str )  { return str  == psz ; }
-   friend bool CLASS_DECL_ca operator==(PCYSTR  psz                     , const string & str )  { return str  == psz ; }
-   friend bool CLASS_DECL_ca operator==(XCHAR   ch                      , const string & str )  { return str  == ch  ; }
-   friend bool CLASS_DECL_ca operator==(YCHAR   ch                      , const string & str )  { return str  == ch  ; }
-   friend bool CLASS_DECL_ca operator==(int32_t i                       , const string & str )  { return str  == i   ; }
-
-   friend bool CLASS_DECL_ca operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
-   friend bool CLASS_DECL_ca operator>(PCXSTR psz                      , const string & str  )   { return str  < psz ; }
-   friend bool CLASS_DECL_ca operator>(PCYSTR psz                      , const string & str  )   { return str  < psz ; }
-   friend bool CLASS_DECL_ca operator>(XCHAR ch                        , const string & str  )   { return str  < ch  ; }
-   friend bool CLASS_DECL_ca operator>(YCHAR ch                        , const string & str  )   { return str  < ch  ; }
-   friend bool CLASS_DECL_ca operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
-
-   friend bool CLASS_DECL_ca operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
-   friend bool CLASS_DECL_ca operator<(PCXSTR psz                      , const string & str  )   { return str  > psz ; }
-   friend bool CLASS_DECL_ca operator<(PCYSTR psz                      , const string & str  )   { return str  > psz ; }
-   friend bool CLASS_DECL_ca operator<(XCHAR ch                        , const string & str  )   { return str  > ch  ; }
-   friend bool CLASS_DECL_ca operator<(YCHAR ch                        , const string & str  )   { return str  > ch  ; }
-   friend bool CLASS_DECL_ca operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
-
-   inline friend bool CLASS_DECL_ca operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
-   inline friend bool CLASS_DECL_ca operator!=(PCXSTR psz,const string & str)                      { return !::operator==(psz, str); }
-   inline friend bool CLASS_DECL_ca operator!=(PCYSTR psz,const string & str)                      { return !::operator==(psz, str); }
-   inline friend bool CLASS_DECL_ca operator!=(XCHAR ch,const string & str)                        { return !::operator==(ch, str); }
-   inline friend bool CLASS_DECL_ca operator!=(YCHAR ch,const string & str)                        { return !::operator==(ch, str); }
-   inline friend bool CLASS_DECL_ca operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
-   
-   inline friend bool CLASS_DECL_ca operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
-   inline friend bool CLASS_DECL_ca operator>=(PCXSTR psz,const string & str)                      { return !::operator<(psz, str); }
-   inline friend bool CLASS_DECL_ca operator>=(PCYSTR psz,const string & str)                      { return !::operator<(psz, str); }
-   inline friend bool CLASS_DECL_ca operator>=(XCHAR ch,const string & str)                        { return !::operator<(ch, str); }
-   inline friend bool CLASS_DECL_ca operator>=(YCHAR ch,const string & str)                        { return !::operator<(ch, str); }
-   inline friend bool CLASS_DECL_ca operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
-
-   inline friend bool CLASS_DECL_ca operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
-   inline friend bool CLASS_DECL_ca operator<=(PCXSTR psz,const string & str)                      { return !::operator>(psz, str); }
-   inline friend bool CLASS_DECL_ca operator<=(PCYSTR psz,const string & str)                      { return !::operator>(psz, str); }
-   inline friend bool CLASS_DECL_ca operator<=(XCHAR ch,const string & str)                        { return !::operator>(ch, str); }
-   inline friend bool CLASS_DECL_ca operator<=(YCHAR ch,const string & str)                        { return !::operator>(ch, str); }
-   inline friend bool CLASS_DECL_ca operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
 
    typedef strsize size_type;
 
@@ -1515,4 +1474,46 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
    return Delete(iIndex, nCount);
 }
 
+
+inline bool CLASS_DECL_ca operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
+inline bool CLASS_DECL_ca operator==(string::PCXSTR  psz                     , const string & str )  { return str  == psz ; }
+inline bool CLASS_DECL_ca operator==(string::PCYSTR  psz                     , const string & str )  { return str  == psz ; }
+inline bool CLASS_DECL_ca operator==(string::XCHAR   ch                      , const string & str )  { return str  == ch  ; }
+inline bool CLASS_DECL_ca operator==(string::YCHAR   ch                      , const string & str )  { return str  == ch  ; }
+inline bool CLASS_DECL_ca operator==(int32_t i                       , const string & str )  { return str  == i   ; }
+
+inline bool CLASS_DECL_ca operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
+inline bool CLASS_DECL_ca operator>(string::PCXSTR psz                      , const string & str  )   { return str  < psz ; }
+inline bool CLASS_DECL_ca operator>(string::PCYSTR psz                      , const string & str  )   { return str  < psz ; }
+inline bool CLASS_DECL_ca operator>(string::XCHAR ch                        , const string & str  )   { return str  < ch  ; }
+inline bool CLASS_DECL_ca operator>(string::YCHAR ch                        , const string & str  )   { return str  < ch  ; }
+inline bool CLASS_DECL_ca operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
+
+inline bool CLASS_DECL_ca operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
+inline bool CLASS_DECL_ca operator<(string::PCXSTR psz                      , const string & str  )   { return str  > psz ; }
+inline bool CLASS_DECL_ca operator<(string::PCYSTR psz                      , const string & str  )   { return str  > psz ; }
+inline bool CLASS_DECL_ca operator<(string::XCHAR ch                        , const string & str  )   { return str  > ch  ; }
+inline bool CLASS_DECL_ca operator<(string::YCHAR ch                        , const string & str  )   { return str  > ch  ; }
+inline bool CLASS_DECL_ca operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
+
+inline bool CLASS_DECL_ca operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
+inline bool CLASS_DECL_ca operator!=(string::PCXSTR psz,const string & str)                      { return !::operator==(psz, str); }
+inline bool CLASS_DECL_ca operator!=(string::PCYSTR psz,const string & str)                      { return !::operator==(psz, str); }
+inline bool CLASS_DECL_ca operator!=(string::XCHAR ch,const string & str)                        { return !::operator==(ch, str); }
+inline bool CLASS_DECL_ca operator!=(string::YCHAR ch,const string & str)                        { return !::operator==(ch, str); }
+inline bool CLASS_DECL_ca operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
+
+inline bool CLASS_DECL_ca operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
+inline bool CLASS_DECL_ca operator>=(string::PCXSTR psz,const string & str)                      { return !::operator<(psz, str); }
+inline bool CLASS_DECL_ca operator>=(string::PCYSTR psz,const string & str)                      { return !::operator<(psz, str); }
+inline bool CLASS_DECL_ca operator>=(string::XCHAR ch,const string & str)                        { return !::operator<(ch, str); }
+inline bool CLASS_DECL_ca operator>=(string::YCHAR ch,const string & str)                        { return !::operator<(ch, str); }
+inline bool CLASS_DECL_ca operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
+
+inline bool CLASS_DECL_ca operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
+inline bool CLASS_DECL_ca operator<=(string::PCXSTR psz,const string & str)                      { return !::operator>(psz, str); }
+inline bool CLASS_DECL_ca operator<=(string::PCYSTR psz,const string & str)                      { return !::operator>(psz, str); }
+inline bool CLASS_DECL_ca operator<=(string::XCHAR ch,const string & str)                        { return !::operator>(ch, str); }
+inline bool CLASS_DECL_ca operator<=(string::YCHAR ch,const string & str)                        { return !::operator>(ch, str); }
+inline bool CLASS_DECL_ca operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
 

@@ -1342,6 +1342,17 @@ namespace gen
 
    }
 
+
+   string & str::from(string & str, uint32_t ui)
+   {
+
+      str = ui64toa_dup(ui);
+
+      return str;
+
+   }
+
+
    string & str::from(string & str, int64_t i)
    {
 
@@ -1360,14 +1371,24 @@ namespace gen
 
    }
 
-   string & str::from(string & str, uint32_t ui)
+   string & str::from(string & str, float f)
    {
 
-      str = ui64toa_dup(ui);
+      str.Format("%f", f);
 
       return str;
 
    }
+
+   string & str::from(string & str, double d)
+   {
+
+      str.Format("%f", d);
+
+      return str;
+
+   }
+
 
    string str::uni_to_utf8(int64_t w)
    {
@@ -2318,36 +2339,6 @@ namespace gen
    }
 
 
-   string & str::from(string & str, double d)
-   {
-
-      str.Format("%f", d);
-
-      return str;
-
-   }
-
-   string & str::from(string & str, float f)
-   {
-
-      str.Format("%f", f);
-
-      return str;
-
-   }
-
-#if defined(LINUX)
-
-   string & str::from(string & str, long long ll)
-   {
-
-      str.Format("%ll", ll);
-
-      return str;
-
-   }
-
-#endif
 
    void str::increment_digit_letter(string & str)
    {

@@ -193,24 +193,38 @@ namespace gen
       { return compare_ignore_case(left,right,len) == 0; }
 
 
-      inline CLASS_DECL_ca  string  from(int32_t i)
+      inline CLASS_DECL_ca  string  from(char c)
+      {
+         string str;
+         from(str, c);
+         return str;
+      }
+
+      inline CLASS_DECL_ca  string  from(uchar uch)
+      {
+         string str;
+         from(str, uch);
+         return str;
+      }
+
+      inline CLASS_DECL_ca  string  from(int16_t i)
       {
          string str;
          from(str, i);
          return str;
       }
 
-      inline CLASS_DECL_ca  string  from(long l)
+      inline CLASS_DECL_ca  string  from(uint16_t ui)
       {
          string str;
-         from(str, (long long) l);
+         from(str, ui);
          return str;
       }
 
-      inline CLASS_DECL_ca  string  from(long long ll)
+      inline CLASS_DECL_ca  string  from(int32_t i)
       {
          string str;
-         from(str, ll);
+         from(str, i);
          return str;
       }
 
@@ -221,17 +235,17 @@ namespace gen
          return str;
       }
 
-      inline CLASS_DECL_ca string from(uint64_t ui)
+      inline CLASS_DECL_ca  string  from(int64_t i)
       {
          string str;
-         from(str, ui);
+         from(str, i);
          return str;
       }
 
-      inline CLASS_DECL_ca string from(double d)
+      inline CLASS_DECL_ca  string  from(uint64_t ui)
       {
          string str;
-         from(str, d);
+         from(str, ui);
          return str;
       }
 
@@ -239,6 +253,13 @@ namespace gen
       {
          string str;
          from(str, f);
+         return str;
+      }
+
+      inline CLASS_DECL_ca string from(double d)
+      {
+         string str;
+         from(str, d);
          return str;
       }
 

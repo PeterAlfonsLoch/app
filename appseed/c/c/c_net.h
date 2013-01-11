@@ -1,8 +1,5 @@
 #pragma once
 
-#if defined(MACOS) || defined(LINUX)
-#include <netinet/in.h>
-#endif
 
 
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string);

@@ -53,6 +53,7 @@
 		<Unit filename="ansios/ansios_cross_win_file.cpp" />
 		<Unit filename="ansios/ansios_file.cpp" />
 		<Unit filename="ansios/ansios_file.h" />
+		<Unit filename="ansios/ansios_file_std.cpp" />
 		<Unit filename="ansios/ansios_thread.cpp" />
 		<Unit filename="ansios/ansios_thread.h" />
 		<Unit filename="ansios/crypto/ansios_crypt.cpp" />

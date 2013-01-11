@@ -378,7 +378,14 @@ dump_context & dump_context::operator<<(HMENU h)
    return *this << (void *)h;
 }
 
+
 dump_context & dump_context::operator<<(HACCEL h)
+{
+   return *this << (void *)h;
+}
+
+
+dump_context & dump_context::operator<<(HFONT h)
 {
    return *this << (void *)h;
 }
@@ -386,11 +393,6 @@ dump_context & dump_context::operator<<(HACCEL h)
 
 #endif
 
-
-dump_context & dump_context::operator<<(HFONT h)
-{
-   return *this << (void *)h;
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // Formatted output

@@ -2,12 +2,10 @@
 
 
 #ifdef WINDOWS
-typedef void *HANDLE;
 #elif defined(MACOS)
 #include <sys/sem.h>
 #else
 typedef __key_t key_t;
-#include <pthread.h>
 #endif
 
 

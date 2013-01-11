@@ -94,7 +94,6 @@ in read operations - helps on ECOS */
 #ifdef _WIN32
 #else
 #ifdef SOLARIS
-# include <sys/types.h>
 #else
 # include <stdint.h>
 #endif
@@ -165,7 +164,6 @@ namespace sockets {
 #  if !defined(MESSAGE_NOSIGNAL)
 #   define MESSAGE_NOSIGNAL 0
 #  endif
-#  include <netinet/in.h>
 typedef   in_addr_t ipaddr_t;
 typedef   in_port_t port_t;
 #ifdef sockets
@@ -259,7 +257,7 @@ namespace sockets
 
 // ----------------------------------------
 // LINUX
-typedef unsigned long ipaddr_t;
+typedef uint32_t ipaddr_t;
 typedef uint16_t port_t;
 
 namespace sockets

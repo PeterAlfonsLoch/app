@@ -307,7 +307,6 @@ typedef uint_ptr FAR uLongf;
 #endif
 
 #if 0           /* HAVE_UNISTD_H -- this line is updated by ./configure */
-#  include <sys/types.h> /* for off_t */
 #  ifdef VMS
 #    include <unixio.h>   /* for off_t */
 #  endif

@@ -4,7 +4,6 @@
 #include <Shlobj.h>
 #include <Security.h>
 #else
-#include <sys/types.h>
 #include <dirent.h>
 #include <sys/stat.h>
 #endif

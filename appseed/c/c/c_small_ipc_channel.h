@@ -1,11 +1,9 @@
 #pragma once
 
 #ifdef MACOS
-#include <pthread.h>
 typedef int32_t key_t;
 #elif defined(LINUX)
 typedef __key_t key_t;
-#include <pthread.h>
 #else
 #include "c_simple_mutex.h"
 #endif

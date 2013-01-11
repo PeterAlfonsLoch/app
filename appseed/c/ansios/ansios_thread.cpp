@@ -172,7 +172,7 @@ static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, simple_eve
 
    os_thread * pthread = new os_thread(pfn, pv);
 
-   pthread->m_peventThread = completionEvent;
+   pthread->m_hthread = completionEvent;
 
    pthread_t thread;
 
@@ -200,7 +200,7 @@ static os_thread * StartThread(LPTHREAD_START_ROUTINE pfn, LPVOID pv, simple_eve
 }
 
 
-simple_event * WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, DWORD cbStack, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, DWORD dwCreationFlags, LPDWORD lpdwThreadId)
+simple_event * WINAPI CreateThread(LPSECURITY_ATTRIBUTES unusedThreadAttributes, uint_ptr cbStack, LPTHREAD_START_ROUTINE lpStartAddress, LPVOID lpParameter, uint32_t dwCreationFlags, uint32_t * lpdwThreadId)
 {
    // Validate parameters.
 //   assert(unusedThreadAttributes == nullptr);
@@ -606,7 +606,7 @@ void * WINAPI thread_proc_create_thread(LPVOID lpparameter)
 
    mutex_lock mlThreadHandle(threadHandleLock);
 
-   currentThread =  posthread->m_peventThread;
+   currentThread =  posthread->m_hthread;
 
    mlThreadHandle.unlock();
 
@@ -657,7 +657,7 @@ simple_event * start_thread(DWORD (WINAPI * pfn)(LPVOID), LPVOID pv, int32_t iPr
 
 }
 
-simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, DWORD cbStack, LPTHREAD_START_ROUTINE pfn, LPVOID pv, DWORD f, LPDWORD lpdwId)
+simple_event * create_thread(LPSECURITY_ATTRIBUTES lpsa, uint_ptr cbStack, LPTHREAD_START_ROUTINE pfn, LPVOID pv, uint32_t f, uint32_t * lpdwId)
 {
 
    return ::CreateThread(lpsa, cbStack, pfn, pv, f, lpdwId);
@@ -729,10 +729,6 @@ DWORD WINAPI thread_layer::proc(LPVOID lp)
 {
 
    thread_layer * player   = (thread_layer *) lp;
-
-   player->m_peventThread  = ::GetCurrentThread();
-
-   player->m_nId           = ::GetCurrentThreadId();
 
    return player->run();
 
@@ -965,7 +961,7 @@ void thread_layer::wait_thread(DWORD dwMillis)
    try
    {
 
-      m_peventThread->wait(dwMillis);
+      m_hthread->wait(dwMillis);
 
    }
    catch(...)
@@ -982,7 +978,7 @@ void thread_layer::wait_thread(DWORD dwMillis)
 thread_layer::~thread_layer()
 {
 
-   delete m_peventThread;
+   delete m_hthread;
 
 }
 

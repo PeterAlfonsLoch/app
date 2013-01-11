@@ -2,7 +2,6 @@
 
 
 #ifndef WINDOWS
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <ctype.h>
 #endif

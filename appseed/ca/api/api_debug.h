@@ -524,10 +524,6 @@ CLASS_DECL__ extern long _crtBreakAlloc;      /* Break on this allocation */
 
 CLASS_DECL__ long DECL_C _CrtSetBreakAlloc(long _BreakAlloc);
 
-/*
- * Prototypes for malloc, free, realloc, etc are in malloc.h
- */
-
 CLASS_DECL__ void * DECL_C _malloc_dbg(size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 CLASS_DECL__ void * DECL_C _calloc_dbg(size_t _Count, size_t _Size, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);
 CLASS_DECL__ void * DECL_C _realloc_dbg(void * _Memory, size_t _NewSize, int32_t _BlockType, const char * _Filename, int32_t _LineNumber);

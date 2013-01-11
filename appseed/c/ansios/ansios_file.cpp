@@ -1,6 +1,5 @@
 #include "framework.h"
 #include <sys/stat.h>
-#include <sys/types.h>
 //Copy file using mmap()
 #include <fcntl.h>
 #include <sys/mman.h>
@@ -85,7 +84,7 @@ bool file_put_contents_dup(const char * path, const char * contents, ::count len
 
 vsstring file_as_string_dup(const char * path)
 {
-   
+
    vsstring str;
 
 
@@ -329,7 +328,7 @@ void file_read_n_number_dup(FILE * hfile, ::md5::md5 * pctx, int32_t & iNumber)
    iNumber = atoi_dup(str);
 }
 
-void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
+void file_read_ex1_string_dup(FILE * hfile, ::md5::md5 * pctx, vsstring & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);
@@ -431,18 +430,18 @@ CLASS_DECL_c bool file_is_equal_path(const char * psz1, const char * psz2)
 {
    if(stricmp_dup(psz1, psz2) == 0)
       return true;
-   
+
    throw " // TODO: it should follow links ";
-   
+
    return false;
-   
+
 }
 
 
 CLASS_DECL_c vsstring file_get_mozilla_firefox_plugin_container_path()
 {
    throw " todo ";
-   
+
    return "";
 
 }

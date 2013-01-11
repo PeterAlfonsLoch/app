@@ -555,7 +555,7 @@ namespace ca2
          load_string_table(strTable, "");
          return load_cached_string_by_id(str, id, pszFallbackValue, false);
       }
-      if(pszFallbackValue == NULL)
+      if(pszFallbackValue.is_empty())
          str = strId;
       else
          str = pszFallbackValue;
@@ -588,7 +588,7 @@ namespace ca2
 
       string strTableId = strApp;
 
-      if(pszId != NULL && *pszId != '\0')
+      if(pszId.has_char() && *pszId != '\0')
       {
          strTableId += "\\";
          strTableId += pszId;

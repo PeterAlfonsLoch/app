@@ -79,15 +79,8 @@
 #include "c/c/c_verisimple_string.h"
 #include "c/c/c_simple_mutex.h"
 #include "c/c/c_mutex_lock.h"
-#include <time.h>
 
 
-#ifdef LINUX
-
-#define _USE_BSD
-#include <sys/time.h>
-
-#endif
 
 
 

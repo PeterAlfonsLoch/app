@@ -7,7 +7,6 @@
 #endif
 #include <wchar.h>
 #include <fcntl.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 #if !defined(LINUX) && !defined(MACOS)
 #include <share.h>

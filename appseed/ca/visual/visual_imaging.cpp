@@ -330,19 +330,19 @@ void EmbossedTextOut(
     */
    if (cb == -1)
       cb = strlen(lpcsz);
-   
+
    /* If the shadow or text color is -1, use the
     ** system color for that one.
     */
-   
+
    COLORREF                crOld;
    UINT                    uMode;
    SIZE                    sizeText;
    RECT                    rcText;
-   
+
    if (crShadow == (COLORREF)-1)
       crShadow = Sess(pdc->m_papp).get_default_color (COLOR_BTNSHADOW);
-   
+
    if (crText == (COLORREF)-1)
       crText = Sess(pdc->m_papp).get_default_color (COLOR_BTNTEXT);
 
@@ -366,7 +366,7 @@ void EmbossedTextOut(
    //ExtTextOut(hDC, x-cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y-cy, NULL, &rcText, lpsz, cb, NULL);
    //ExtTextOut(hDC, x+cx, y+cy, NULL, &rcText, lpsz, cb, NULL);
-   pdc->ExtTextOut(x+cx, y+cy, NULL, NULL, lpcsz, (int) cb, NULL);
+   pdc->ExtTextOut(x+cx, y+cy, 0, NULL, lpcsz, (int) cb, NULL);
    pdc->SetBkMode(TRANSPARENT);
    pdc->SetTextColor(crText);
    if(!pdc->ExtTextOut(x, y, 0, NULL, lpcsz, (int) cb, NULL))
@@ -2449,7 +2449,7 @@ FIBITMAP * imaging::HBITMAPtoFI(::ca::bitmap_sp pbitmap)
 #ifdef WINDOWSEX
 
    HBITMAP hbitmap = NULL;
-   
+
    Gdiplus::Color colorBk(0, 0, 0, 0);
 
    ((Gdiplus::Bitmap *) (pbitmap.m_p->get_os_data()))->GetHBITMAP(colorBk, &hbitmap);

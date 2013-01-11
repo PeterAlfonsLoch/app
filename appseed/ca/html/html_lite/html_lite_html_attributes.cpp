@@ -400,14 +400,6 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 }
 
 
-#ifndef WINDOWS
-COLORREF Session.get_default_color(COLORREF cr)
-{
-
-   return 0;
-
-}
-#endif
 
 COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {

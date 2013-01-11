@@ -296,6 +296,14 @@ namespace gen
 } // namespace gen
 
 
+template < typename T >
+inline c_number < T > & c_number < T >::from(const string & str)
+{
+   gen::str::to(str, m_number);
+   return *this;
+}
+
+
 
 #include "gen_strn.h"
 #include "gen_hex.h"

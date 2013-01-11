@@ -30,7 +30,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 #ifdef _WIN32
 #else
-#include <netdb.h>
 #include <fcntl.h>
 #endif
 //#include <ctype.h>

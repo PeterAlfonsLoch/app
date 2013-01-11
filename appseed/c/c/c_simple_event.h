@@ -1,11 +1,6 @@
 #pragma once
 
 
-#ifdef WINDOWS
-typedef void *HANDLE;
-#else
-#include <pthread.h>
-#endif
 
 class CLASS_DECL_c simple_event
 {

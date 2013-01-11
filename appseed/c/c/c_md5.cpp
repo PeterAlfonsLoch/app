@@ -677,7 +677,7 @@ vsstring get_file_md5_by_read(const char * path)
 
 #else
 
-      dwRead = ::read(fd, psz, min((int32_t) iSize, iAlloc));
+      dwRead = ::read(fd, psz, min((int32_t) uiSize, iAlloc));
 
       if(dwRead <= 0)
       {

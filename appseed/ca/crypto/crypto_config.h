@@ -25,9 +25,6 @@
 /* Define this to use ISMAcryp code. */
 /* #undef GENERIC_AESICM */
 
-/* Define to 1 if you have the <arpa/inet.h> header spfile-> */
-/* #undef HAVE_ARPA_INET_H */
-
 /* Define to 1 if you have the <byteswap.h> header spfile-> */
 /* #undef HAVE_BYTESWAP_H */
 
@@ -43,9 +40,6 @@
 /* Define to 1 if the system has the type `int8_t'. */
 #define HAVE_INT8_T 1
 
-/* Define to 1 if you have the <inttypes.h> header spfile-> */
-/* #undef HAVE_INTTYPES_H */
-
 /* Define to 1 if you have the `socket' library (-lsocket). */
 /* #undef HAVE_LIBSOCKET */
 
@@ -54,9 +48,6 @@
 
 /* Define to 1 if you have the <primitive::memory.h> header spfile-> */
 #define HAVE_MEMORY_H 1
-
-/* Define to 1 if you have the <netinet/in.h> header spfile-> */
-/* #undef HAVE_NETINET_IN_H */
 
 /* Define to 1 if you have the `socket' function. */
 /* #undef HAVE_SOCKET */
@@ -74,14 +65,8 @@
 /* Define to 1 if you have the <sys/int_types.h> header spfile-> */
 /* #undef HAVE_SYS_INT_TYPES_H */
 
-/* Define to 1 if you have the <sys/socket.h> header spfile-> */
-/* #undef HAVE_SYS_SOCKET_H */
-
 /* Define to 1 if you have the <sys/stat.h> header spfile-> */
 #define HAVE_SYS_STAT_H 1
-
-/* Define to 1 if you have the <sys/types.h> header spfile-> */
-#define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <sys/uio.h> header spfile-> */
 /* #undef HAVE_SYS_UIO_H */
@@ -161,9 +146,6 @@
 #undef inline
 #endif
 #define inline*/
-
-/* Define to `uint32_t' if <sys/types.h> does not define. */
-/* #undef size_t */
 
 #ifdef WINDOWS
 

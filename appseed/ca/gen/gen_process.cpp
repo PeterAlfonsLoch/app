@@ -71,10 +71,10 @@ namespace gen
       m_bPiped = bPiped;
 
 #ifdef WINDOWSEX
-      
-      
+
+
       bool bSuccess = FALSE;
-      
+
 
 // Set up members of the STARTUPINFO structure.
 // This structure specifies the STDIN and STDOUT handles for redirection.
@@ -241,7 +241,7 @@ namespace gen
       }
       else
       {
-         
+
          if(dwExitCode == STILL_ACTIVE)
          {
 
@@ -272,7 +272,7 @@ namespace gen
 
 #else
 
-      int32_t wpid = waitpid(m_iPid, (int32_t *) pdwExitCode, WNOHANG
+      int32_t wpid = waitpid(m_iPid, (int32_t *) puiExitCode, WNOHANG
               #ifdef WCONTINUED
               | WCONTINUED
               #endif
@@ -284,23 +284,23 @@ namespace gen
          return true;
       }
 
-      if(WIFEXITED(*pdwExitCode))
+      if(WIFEXITED(*puiExitCode))
       {
-         *pdwExitCode = WEXITSTATUS(*pdwExitCode);
+         *puiExitCode = WEXITSTATUS(*puiExitCode);
          return true;
       }
-      else if(WIFSIGNALED(*pdwExitCode))
+      else if(WIFSIGNALED(*puiExitCode))
       {
-         *pdwExitCode = WTERMSIG(*pdwExitCode);
+         *puiExitCode = WTERMSIG(*puiExitCode);
          return true;
       }
-      else if(WIFSTOPPED(*pdwExitCode))
+      else if(WIFSTOPPED(*puiExitCode))
       {
-         *pdwExitCode = WSTOPSIG(*pdwExitCode);
+         *puiExitCode = WSTOPSIG(*puiExitCode);
          return true;
       }
 #ifdef WIFCONTINUED
-      else if(WIFCONTINUED(*pdwExitCode))
+      else if(WIFCONTINUED(*puiExitCode))
       {
          return false;
       }

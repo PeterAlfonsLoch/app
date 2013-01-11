@@ -54,7 +54,6 @@
 
 #ifndef SRTP_KERNEL
 # if defined(LINUX) || defined(MACOS)
-#  include <netinet/in.h>
 # elif defined HAVE_WINSOCK2_H
 #  include <winsock2.h>
 # endif
@@ -399,7 +398,6 @@ static inline uint32_t be32_to_cpu(uint32_t v) {
 }
 # else /* HAVE_X86 */
 #  if defined(LINUX) || defined(MACOS)
-#   include <netinet/in.h>
 #  elif defined HAVE_WINSOCK2_H
 #   include <winsock2.h>
 #  endif

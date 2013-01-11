@@ -1,11 +1,6 @@
 #include "framework.h"
 
 
-#if defined(LINUX) || defined(MACOS)
-#include <netdb.h>
-#endif
-
-
 uint32_t c_inet_to_ui(const char * src)
 {
 

@@ -5,7 +5,6 @@
 
 
 #include <sys/ipc.h>
-#include <sys/types.h>
 #include <sys/sem.h>
 
 
@@ -163,7 +162,25 @@ bool simple_mutex::lock(uint32_t uiTimeout)
 #else
    if(m_strName.is_empty())
    {
-      pthread_mutex_timedlock(&m_mutex);
+
+      timespec spec;
+
+      spec.tv_sec = uiTimeout / 1000;
+
+      spec.tv_nsec = (uiTimeout % 1000) * 1000 * 1000;
+
+      int32_t ret = pthread_mutex_timedlock(&m_mutex, &spec);
+
+      if(ret < 0)
+      {
+         return false;
+      }
+      else
+      {
+         return true;
+      }
+
+
    }
    else
    {

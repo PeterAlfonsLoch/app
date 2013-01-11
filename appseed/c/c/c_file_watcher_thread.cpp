@@ -8,16 +8,19 @@ namespace file_watcher
    int32_t thread::run()
    {
 
+
 #ifndef METROWIN
+
+
       try
       {
 
-         MSG msg;
+         MESSAGE msg;
 
          while(true)
          {
 
-            if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+            if(PeekMessage(&msg, ::ca::null(), 0, 0, PM_REMOVE))
             {
                switch(msg.message)
                {
@@ -25,7 +28,7 @@ namespace file_watcher
                   goto quit;
                case WM_USER + 123:
                   {
-               
+
                      listener_thread::op * pop = (listener_thread::op *) msg.lParam;
 
                      try
@@ -70,13 +73,13 @@ namespace file_watcher
             {
 
                UINT ui = GetCurrentThreadId();
-         
+
                update();
-               
+
             }
             catch(::file_watcher::exception &)
             {
-         
+
             }
 
 
@@ -84,11 +87,11 @@ namespace file_watcher
 
          }
 quit:;
-         
+
       }
       catch(...)
       {
-         
+
       }
 #endif
 

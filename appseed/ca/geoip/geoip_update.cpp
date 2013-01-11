@@ -4,9 +4,6 @@
 #include <openssl/md5.h>
 #endif
 
-#if defined(LINUX) || defined(MACOS)
-#include <netdb.h>
-#endif
 
 int16_t parse_http_proxy(char **proxy_host, int32_t *port);
 #ifdef BSD_STYLE_SOCKETS
@@ -196,9 +193,9 @@ int16_t parse_http_proxy(char **proxy_host, int32_t *port) {
 
 /* get the GeoIP host or the current HTTP Proxy host. */
 #ifdef BSD_STYLE_SOCKETS
-struct hostent *GeoIP_get_host_or_proxy () 
+struct hostent *GeoIP_get_host_or_proxy ()
 #else
-string GeoIP_get_host_or_proxy () 
+string GeoIP_get_host_or_proxy ()
 #endif
 {
    char * hostname = (char *) GeoIPUpdateHost;
@@ -254,10 +251,10 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
    if ((cur_db_fh = fopen (GeoIPDBFileName[GEOIP_COUNTRY_EDITION], "rb")) == NULL) {
     GeoIP_printf(f,"%s%s",  NoCurrentDB, GeoIPDBFileName[GEOIP_COUNTRY_EDITION]);
    } else {
-      
+
       ::crypto::md5::context ctx(papp);
-      
-      
+
+
       //MD5_Init(&context);
       while ((len = fread (buffer, 1, 1024, cur_db_fh)) > 0)
         // MD5_Update (&context, buffer, (uint32_t) len);

@@ -12903,8 +12903,6 @@ zulu_time:
    */
 #ifdef SQLITE_MUTEX_PTHREADS
 
-#include <pthread.h>
-
 
    /*
    ** Each recursive mutex is an instance of the following structure.
@@ -18084,11 +18082,8 @@ translate_out:
    /*
    ** standard include files.
    */
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-//#include <sys/time.h>
-#include <errno.h>
 #ifdef SQLITE_ENABLE_LOCKING_STYLE
 #include <sys/ioctl.h>
 #include <sys/param.h>

@@ -338,15 +338,15 @@ namespace ex1
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (int8_t i)
+   byte_output_stream & byte_output_stream::operator << (char ch)
    {
-      write(&i, sizeof(i));
+      write(&ch, sizeof(ch));
       return *this;
    }
 
-   byte_output_stream & byte_output_stream::operator << (uint8_t ui)
+   byte_output_stream & byte_output_stream::operator << (uchar uch)
    {
-      write(&ui, sizeof(ui));
+      write(&uch, sizeof(uch));
       return *this;
    }
 
@@ -443,7 +443,7 @@ namespace ex1
       }
       else
       {
-         
+
          write_arbitrary((uint64_t) i);
 
       }

@@ -21,16 +21,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
-#ifndef _WIN32
-#include <netdb.h>
-#endif
 
 
 namespace sockets
 {
 
-   ipv4_address::ipv4_address(::ca::application *papp, port_t port) : 
-      ca(papp), 
+   ipv4_address::ipv4_address(::ca::application *papp, port_t port) :
+      ca(papp),
       m_bValid(true)
    {
       memset(&m_addr, 0, sizeof(m_addr));
@@ -221,7 +218,7 @@ namespace sockets
 
    bool ipv4_address::IsEqual(const ipv4_address &a ) const
    {
-      
+
       if(!m_bValid || !a.m_bValid)
          return false;
 

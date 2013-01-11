@@ -93,12 +93,6 @@ extern const char * const z_errmsg[10]; /* indexed by 2-zlib_error */
 #  define OS_CODE  0x05
 #endif
 
-#ifdef OS2
-#  define OS_CODE  0x06
-//#  ifdef M_I86
-//     #include <malloc.h>
-//#  endif
-#endif
 
 #if defined(MACOS) || defined(TARGET_OS_MAC)
 #  define OS_CODE  0x07
