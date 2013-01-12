@@ -777,7 +777,7 @@
 
 1357202448 /ca2/nodeapp/operational_system/cross/win/win_crtdefs.h
 
-1357180611 /ca2/nodeapp/operational_system/cross/win/win_nls.h
+1357942841 /ca2/nodeapp/operational_system/cross/win/win_nls.h
 	<macwin32.h>
 
 1345878529 /ca2/nodeapp/operational_system/cross/win/win_file.h
@@ -2136,7 +2136,7 @@
 
 1357180670 /ca2/app/appseed/ca/os/os_cross_windows_shared_memory.h
 
-1357342861 /ca2/app/appseed/ca/os/os_cross_windows_time.h
+1357931988 /ca2/app/appseed/ca/os/os_cross_windows_time.h
 
 1357180670 /ca2/app/appseed/ca/os/os_cross_windows_crt.h
 
@@ -5661,7 +5661,7 @@
 	"framework.h"
 	"plugin_instance.h"
 
-1357885159 source:/ca2/app/appseed/ca/os/os_cross_windows_time.cpp
+1357940643 source:/ca2/app/appseed/ca/os/os_cross_windows_time.cpp
 	"framework.h"
 	"nodeapp/operational_system/bare_operational_system.h"
 	"os_cross_windows_internals.h"
@@ -6556,4 +6556,10 @@
 	"framework.h"
 	<sys/ipc.h>
 	<sys/sem.h>
+
+1357938270 source:/ca2/app/appseed/ca/primitive/datetime/datetime_float_time.cpp
+	"framework.h"
+
+1357943110 source:/ca2/app/appseed/ca/os/os_cross_windows_locale.cpp
+	"framework.h"
 

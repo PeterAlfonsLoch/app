@@ -13,6 +13,10 @@ namespace datetime
 #define DATE_MAX 2958465
 
 
+#define TICKSPERSEC        10000000
+
+
+
 
 #define TIMEFLAG(i) ((dp.dwFlags[i] & DP_TIMESEP) << i)
 
@@ -666,7 +670,7 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
 
       /* Finally, convert the value to a VT_DATE */
       if (SUCCEEDED(hRet))
-        hRet = SystemTimeToVariantTime(&st, pdateOut) ? S_OK : DISP_E_TYPEMISMATCH;
+        hRet = SystemTimeToFloatTime(&st, pdateOut) ? S_OK : DISP_E_TYPEMISMATCH;
     }
   }
 
@@ -863,6 +867,110 @@ VARIANT_MakeDate_OK:
 
 #ifndef WINDOWS
 
+static inline int VARIANT_JulianFromDate(int dateIn);
+static inline void VARIANT_DMYFromJulian(int jd, USHORT *year, USHORT *month, USHORT *day);
+static HRESULT VARIANT_RollUdate(UDATE *lpUd);
+
+/* Convert a VT_DATE value to a Julian Date */
+static inline int VARIANT_JulianFromDate(int dateIn)
+{
+  int julianDays = dateIn;
+
+  julianDays -= DATE_MIN; /* Convert to + days from 1 Jan 100 AD */
+  julianDays += 1757585;  /* Convert to + days from 23 Nov 4713 BC (Julian) */
+  return julianDays;
+}
+
+
+
+
+/* Convert a Julian date to Day/Month/Year - from PostgreSQL */
+static inline void VARIANT_DMYFromJulian(int jd, USHORT *year, USHORT *month, USHORT *day)
+{
+  int j, i, l, n;
+
+  l = jd + 68569;
+  n = l * 4 / 146097;
+  l -= (n * 146097 + 3) / 4;
+  i = (4000 * (l + 1)) / 1461001;
+  l += 31 - (i * 1461) / 4;
+  j = (l * 80) / 2447;
+  *day = l - (j * 2447) / 80;
+  l = j / 11;
+  *month = (j + 2) - (12 * l);
+  *year = 100 * (n - 49) + i + l;
+}
+
+
+/* Roll a date forwards or backwards to correct it */
+static HRESULT VARIANT_RollUdate(UDATE *lpUd)
+{
+  static const BYTE days[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  short iYear, iMonth, iDay, iHour, iMinute, iSecond;
+
+  /* interpret values signed */
+  iYear   = lpUd->st.wYear;
+  iMonth  = lpUd->st.wMonth;
+  iDay    = lpUd->st.wDay;
+  iHour   = lpUd->st.wHour;
+  iMinute = lpUd->st.wMinute;
+  iSecond = lpUd->st.wSecond;
+
+//  TRACE("Raw date: %d/%d/%d %d:%d:%d\n", iDay, iMonth, iYear, iHour, iMinute, iSecond);
+
+  if (iYear > 9999 || iYear < -9999)
+    return E_INVALIDARG; /* Invalid value */
+  /* Years < 100 are treated as 1900 + year */
+  if (iYear > 0 && iYear < 100)
+    iYear += 1900;
+
+  iMinute += iSecond / 60;
+  iSecond  = iSecond % 60;
+  iHour   += iMinute / 60;
+  iMinute  = iMinute % 60;
+  iDay    += iHour / 24;
+  iHour    = iHour % 24;
+  iYear   += iMonth / 12;
+  iMonth   = iMonth % 12;
+  if (iMonth<=0) {iMonth+=12; iYear--;}
+  while (iDay > days[iMonth])
+  {
+    if (iMonth == 2 && IsLeapYear(iYear))
+      iDay -= 29;
+    else
+      iDay -= days[iMonth];
+    iMonth++;
+    iYear += iMonth / 12;
+    iMonth = iMonth % 12;
+  }
+  while (iDay <= 0)
+  {
+    iMonth--;
+    if (iMonth<=0) {iMonth+=12; iYear--;}
+    if (iMonth == 2 && IsLeapYear(iYear))
+      iDay += 29;
+    else
+      iDay += days[iMonth];
+  }
+
+  if (iSecond<0){iSecond+=60; iMinute--;}
+  if (iMinute<0){iMinute+=60; iHour--;}
+  if (iHour<0)  {iHour+=24; iDay--;}
+  if (iYear<=0)  iYear+=2000;
+
+  lpUd->st.wYear   = iYear;
+  lpUd->st.wMonth  = iMonth;
+  lpUd->st.wDay    = iDay;
+  lpUd->st.wHour   = iHour;
+  lpUd->st.wMinute = iMinute;
+  lpUd->st.wSecond = iSecond;
+
+//  TRACE("Rolled date: %d/%d/%d %d:%d:%d\n", lpUd->st.wDay, lpUd->st.wMonth, lpUd->st.wYear, lpUd->st.wHour, lpUd->st.wMinute, lpUd->st.wSecond);
+  return S_OK;
+}
+
+
+
 /***********************************************************************
 *              VarUdateFromDate [OLEAUT32.331]
 *
@@ -959,55 +1067,6 @@ HRESULT WINAPI VarUdateFromDate(DATE dateIn, ULONG dwFlags, UDATE *lpUdate)
   return S_OK;
 }
 
-
-/*********************************************************************
-*      FileTimeToLocalFileTime                         (KERNEL32.@)
-*/
-WINBOOL FileTimeToLocalFileTime( const FILETIME *utcft, LPFILETIME localft )
-{
-    NTSTATUS status;
-    LARGE_INTEGER local, utc;
-
-    utc.u.LowPart = utcft->dwLowDateTime;
-    utc.u.HighPart = utcft->dwHighDateTime;
-    if (!(status = RtlSystemTimeToLocalTime( &utc, &local )))
-    {
-        localft->dwLowDateTime = local.u.LowPart;
-        localft->dwHighDateTime = local.u.HighPart;
-    }
-    else SetLastError( RtlNtStatusToDosError(status) );
-
-    return !status;
-}
-
-
-
-
-
-/******************************************************************************
-*       RtlSystemTimeToLocalTime [NTDLL.@]
-*
-* Convert a system time into a local time.
-*
-* PARAMS
-*   SystemTime [I] System time to convert.
-*   LocalTime  [O] Destination for the converted time.
-*
-* RETURNS
-*   Success: STATUS_SUCCESS.
-*   Failure: An NTSTATUS error code indicating the problem.
-*/
-NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
-                                          PLARGE_INTEGER LocalTime )
-{
-    LONG bias;
-
-    TRACE("(%p, %p)\n", SystemTime, LocalTime);
-
-    bias = TIME_GetBias();
-    LocalTime->QuadPart = SystemTime->QuadPart - bias * (LONGLONG)TICKSPERSEC;
-    return STATUS_SUCCESS;
-}
 
 
 #else

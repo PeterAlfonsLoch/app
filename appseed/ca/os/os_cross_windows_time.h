@@ -27,3 +27,5 @@ void GetSystemTimeAsFileTime(LPFILETIME time); /* [out] Destination for the curr
 
 #endif
 
+
+VOID WINAPI GetSystemTime(LPSYSTEMTIME systime);

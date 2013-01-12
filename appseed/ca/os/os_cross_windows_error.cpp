@@ -19,7 +19,9 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
- #define NONAMELESSUNION
+#include "framework.h"
+/*
+#define NONAMELESSUNION
 #define NONAMELESSSTRUCT
 #define HAVE_SYS_TIME_H
 #define HAVE_UNISTD_H

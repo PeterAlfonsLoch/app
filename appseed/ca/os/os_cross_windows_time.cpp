@@ -37,7 +37,7 @@
 //#define __CA__DLL
 
 
-
+LONG TIME_GetBias(void);
 
 
 #ifdef _WIN32
@@ -296,7 +296,7 @@ WINBOOL WINAPI RtlTimeFieldsToTime(
  * RETURNS
  *   The bias for the current timezone.
  */
-static LONG TIME_GetBias(void)
+LONG TIME_GetBias(void)
 {
     static time_t last_utc;
     static LONG last_bias;
@@ -1169,3 +1169,35 @@ CLASS_DECL_ca void GetSystemTimeAsFileTime(
     time->dwHighDateTime = t.u.HighPart;
 }
 #endif
+
+
+
+
+/*********************************************************************
+ *      GetSystemTime                                   (KERNEL32.@)
+ *
+ * Get the current system time.
+ *
+ * PARAMS
+ *  systime [O] Destination for current time.
+ *
+ * RETURNS
+ *  Nothing.
+ */
+VOID WINAPI GetSystemTime(LPSYSTEMTIME systime)
+{
+    FILETIME ft;
+    LARGE_INTEGER t;
+
+    NtQuerySystemTime(&t);
+    ft.dwLowDateTime = t.u.LowPart;
+    ft.dwHighDateTime = t.u.HighPart;
+    FileTimeToSystemTime(&ft, systime);
+}
+
+
+
+
+
+
+

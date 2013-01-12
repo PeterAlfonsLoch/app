@@ -667,8 +667,8 @@
 	<File name="gen/gen_istring.h" open="0" top="0" tabpos="2">
 		<Cursor position="247" topLine="0" />
 	</File>
-	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="42">
-		<Cursor position="24" topLine="0" />
+	<File name="gen/gen_math.cpp" open="0" top="0" tabpos="13">
+		<Cursor position="6089" topLine="216" />
 	</File>
 	<File name="gen/gen_message.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="24686" topLine="886" />
@@ -685,8 +685,8 @@
 	<File name="gen/gen_muldiv32.h" open="0" top="0" tabpos="0">
 		<Cursor position="3983" topLine="59" />
 	</File>
-	<File name="gen/gen_process.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="6455" topLine="272" />
+	<File name="gen/gen_process.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="6455" topLine="252" />
 	</File>
 	<File name="gen/gen_process.h" open="0" top="0" tabpos="0">
 		<Cursor position="297" topLine="0" />
@@ -703,7 +703,7 @@
 	<File name="gen/gen_signal.h" open="0" top="0" tabpos="27">
 		<Cursor position="5547" topLine="143" />
 	</File>
-	<File name="gen/gen_str.cpp" open="1" top="0" tabpos="2">
+	<File name="gen/gen_str.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="28063" topLine="1312" />
 	</File>
 	<File name="gen/gen_str.h" open="0" top="0" tabpos="22">
@@ -718,8 +718,8 @@
 	<File name="gen/gen_trace.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="4253" topLine="109" />
 	</File>
-	<File name="geoip/geoip.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="25552" topLine="603" />
+	<File name="geoip/geoip.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="17422" topLine="373" />
 	</File>
 	<File name="geoip/geoip_update.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="112" topLine="0" />
@@ -730,7 +730,7 @@
 	<File name="html/html_file.h" open="0" top="0" tabpos="9">
 		<Cursor position="1027" topLine="0" />
 	</File>
-	<File name="html/html_lite/html_lite_html_attributes.cpp" open="1" top="0" tabpos="4">
+	<File name="html/html_lite/html_lite_html_attributes.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="10510" topLine="380" />
 	</File>
 	<File name="html/html_lite/html_lite_html_entity_resolver.cpp" open="0" top="0" tabpos="0">
@@ -907,6 +907,9 @@
 	<File name="os/os_cross_windows_internals.h" open="0" top="0" tabpos="26">
 		<Cursor position="99252" topLine="2301" />
 	</File>
+	<File name="os/os_cross_windows_locale.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="22973" topLine="694" />
+	</File>
 	<File name="os/os_cross_windows_shared_memory.cpp" open="0" top="0" tabpos="27">
 		<Cursor position="25" topLine="0" />
 	</File>
@@ -914,10 +917,10 @@
 		<Cursor position="109" topLine="0" />
 	</File>
 	<File name="os/os_cross_windows_time.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="2072" topLine="64" />
+		<Cursor position="35667" topLine="1157" />
 	</File>
 	<File name="os/os_cross_windows_time.h" open="0" top="0" tabpos="27">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="713" topLine="0" />
 	</File>
 	<File name="os/os_cross_windows_winnt.h" open="0" top="0" tabpos="3">
 		<Cursor position="439" topLine="0" />
@@ -943,7 +946,7 @@
 	<File name="plane/plane_system_allocate.h" open="0" top="0" tabpos="30">
 		<Cursor position="517" topLine="0" />
 	</File>
-	<File name="plane/plane_system_gen_str.cpp" open="1" top="0" tabpos="5">
+	<File name="plane/plane_system_gen_str.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="246" topLine="0" />
 	</File>
 	<File name="plane/plane_system_gen_str.h" open="0" top="0" tabpos="20">
@@ -1003,14 +1006,17 @@
 	<File name="primitive/datetime/datetime_duration.h" open="0" top="0" tabpos="11">
 		<Cursor position="4621" topLine="222" />
 	</File>
+	<File name="primitive/datetime/datetime_float_time.cpp" open="0" top="0" tabpos="16">
+		<Cursor position="12092" topLine="369" />
+	</File>
 	<File name="primitive/datetime/datetime_time.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="21636" topLine="916" />
 	</File>
 	<File name="primitive/datetime/datetime_time.h" open="0" top="0" tabpos="7">
 		<Cursor position="294" topLine="17" />
 	</File>
-	<File name="primitive/datetime/datetime_windows_file_time.cpp" open="0" top="0" tabpos="43">
-		<Cursor position="80" topLine="0" />
+	<File name="primitive/datetime/datetime_windows_file_time.cpp" open="0" top="0" tabpos="14">
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="primitive/datetime/datetime_windows_file_time.h" open="0" top="0" tabpos="13">
 		<Cursor position="187" topLine="0" />
@@ -1279,8 +1285,8 @@
 	<File name="sockets/sockets_http_file.h" open="0" top="0" tabpos="0">
 		<Cursor position="560" topLine="0" />
 	</File>
-	<File name="sqlite/sqlite3.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="760281" topLine="18061" />
+	<File name="sqlite/sqlite3.cpp" open="0" top="0" tabpos="15">
+		<Cursor position="913808" topLine="22592" />
 	</File>
 	<File name="sqlite/sqlite3.h" open="0" top="0" tabpos="14">
 		<Cursor position="1564" topLine="13" />
@@ -1459,7 +1465,7 @@
 	<File name="visual/visual_image_list.h" open="0" top="0" tabpos="0">
 		<Cursor position="671" topLine="9" />
 	</File>
-	<File name="visual/visual_imaging.cpp" open="1" top="0" tabpos="6">
+	<File name="visual/visual_imaging.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="9138" topLine="345" />
 	</File>
 	<File name="x/x_charcategory2.h" open="0" top="0" tabpos="42">
@@ -1504,7 +1510,7 @@
 	<File name="zlib/zlib_gzio.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="19896" topLine="587" />
 	</File>
-	<File name="zlib/zlib_trees.cpp" open="1" top="0" tabpos="7">
+	<File name="zlib/zlib_trees.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="38665" topLine="992" />
 	</File>
 	<File name="zlib/zlib_zutil.cpp" open="0" top="0" tabpos="0">

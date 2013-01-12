@@ -1244,6 +1244,7 @@
 		<Unit filename="os/os_cross_windows_crt.h" />
 		<Unit filename="os/os_cross_windows_guid_def.h" />
 		<Unit filename="os/os_cross_windows_internals.h" />
+		<Unit filename="os/os_cross_windows_locale.cpp" />
 		<Unit filename="os/os_cross_windows_shared_memory.cpp" />
 		<Unit filename="os/os_cross_windows_shared_memory.h" />
 		<Unit filename="os/os_cross_windows_time.cpp" />
@@ -1299,6 +1300,8 @@
 		<Unit filename="primitive/datetime/datetime_clock_interface.h" />
 		<Unit filename="primitive/datetime/datetime_duration.cpp" />
 		<Unit filename="primitive/datetime/datetime_duration.h" />
+		<Unit filename="primitive/datetime/datetime_float_time.cpp" />
+		<Unit filename="primitive/datetime/datetime_float_time.h" />
 		<Unit filename="primitive/datetime/datetime_time.cpp" />
 		<Unit filename="primitive/datetime/datetime_time.h" />
 		<Unit filename="primitive/datetime/datetime_value.cpp" />
