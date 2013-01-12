@@ -153,6 +153,51 @@ void simple_mutex::lock()
 }
 
 
+
+#ifdef MACOS
+
+
+int pthread_mutex_timedlock(pthread_mutex_t * mutex, const struct timespec * abs_timeout)
+{
+   
+   if(abs_timeout == NULL || (abs_timeout->tv_sec == 0 && abs_timeout->tv_nsec == 0))
+   {
+      
+      return pthread_mutex_lock(mutex);
+      
+   }
+   else
+   {
+      uint64_t uiTimeout = abs_timeout->tv_sec * 1000 + (abs_timeout->tv_nsec / (1000 * 1000));
+      uint64_t ui = get_tick_count();
+      int result;
+   do
+   {
+      result = pthread_mutex_trylock(mutex);
+      if(result == EBUSY)
+      {
+         timespec ts;
+         ts.tv_sec = 0;
+         ts.tv_sec = 10000000;
+         
+         /* Sleep for 10,000,000 nanoseconds before trying again. */
+         int status = -1;
+         while (status == -1)
+            status = nanosleep(&ts, &ts);
+      }
+      else
+         return result;
+   }
+   while(get_tick_count() - ui < uiTimeout);
+   
+      return ETIMEDOUT;
+   }
+}
+
+
+#endif
+
+
 bool simple_mutex::lock(uint32_t uiTimeout)
 {
 #ifdef WINDOWSEX

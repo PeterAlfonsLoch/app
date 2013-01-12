@@ -123,7 +123,7 @@ zlib_local int32_t base_dist[D_CODES];
 
 struct static_tree_desc_s {
     const ct_data *static_tree;  /* static tree or NULL */
-    const intf *extra_bits;      /* extra bits for each code or NULL */
+    const int32_t *extra_bits;      /* extra bits for each code or NULL */
     int32_t     extra_base;          /* base index for extra_bits */
     int32_t     elems;               /* max number of elements in the tree */
     int32_t     max_length;          /* max bit length for the codes */
@@ -159,7 +159,7 @@ zlib_local void set_data_type  OF((deflate_state *s));
 zlib_local uint32_t bi_reverse OF((uint32_t value, int32_t length));
 zlib_local void bi_windup      OF((deflate_state *s));
 zlib_local void bi_flush       OF((deflate_state *s));
-zlib_local void copy_block     OF((deflate_state *s, charf *buf, uint32_t len,
+zlib_local void copy_block     OF((deflate_state *s, char *buf, uint32_t len,
                               int32_t header));
 
 #ifdef GEN_TREES_H
@@ -494,7 +494,7 @@ zlib_local void gen_bitlen(
     ct_data *tree        = desc->dyn_tree;
     int32_t max_code         = desc->max_code;
     const ct_data *stree = desc->stat_desc->static_tree;
-    const intf *extra    = desc->stat_desc->extra_bits;
+    const int32_t *extra    = desc->stat_desc->extra_bits;
     int32_t base             = desc->stat_desc->extra_base;
     int32_t max_length       = desc->stat_desc->max_length;
     int32_t h;              /* heap index */
@@ -868,7 +868,7 @@ zlib_local void send_all_trees(
  */
 void _tr_stored_block(
     deflate_state *s,
-    charf *buf,       /* input block */
+    char *buf,       /* input block */
     uint32_t stored_len,   /* length of input block */
     int32_t eof)          /* true if this is the last block for a file */
 {
@@ -922,7 +922,7 @@ void _tr_align(
  */
 void _tr_flush_block(
     deflate_state *s,
-    charf *buf,       /* input block, or NULL if too old */
+    char *buf,       /* input block, or NULL if too old */
     uint32_t stored_len,   /* length of input block */
     int32_t eof)          /* true if this is the last block for a file */
 {
@@ -1110,7 +1110,7 @@ zlib_local void compress_block(
         } /* literal or match pair ? */
 
         /* Check that the overlay between pending_buf and d_buf+l_buf is ok: */
-        Assert((uInt)(s->pending) < s->lit_bufsize + 2*lx,
+        Assert((uint32_t)(s->pending) < s->lit_bufsize + 2*lx,
                "pendingBuf overflow");
 
     } while (lx < s->last_lit);
@@ -1198,7 +1198,7 @@ zlib_local void bi_windup(
  */
 zlib_local void copy_block(
     deflate_state *s,
-    charf    *buf,    /* the input data */
+    char    *buf,    /* the input data */
     uint32_t len,     /* its length */
     int32_t      header)  /* true if block header must be written */
 {

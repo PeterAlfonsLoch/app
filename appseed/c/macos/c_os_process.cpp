@@ -91,8 +91,8 @@ CLASS_DECL_c DWORD call_sync(
                              int iShow,
                              int iRetry, 
                              int iSleep, 
-                             int (* pfnOnRetry)(int iTry, dword_ptr dwParam),
-                             dword_ptr dwParam)
+                             int (* pfnOnRetry)(int iTry, uint_ptr dwParam),
+                             uint_ptr dwParam)
 {
 
    vsstring strCmdLine;

@@ -30,42 +30,42 @@ namespace datetime
    {
    }
 
-   time_span::time_span(LONG lDays, int32_t nHours, int32_t nMins, int32_t nSecs) throw()
+   time_span::time_span(int64_t lDays, int32_t nHours, int32_t nMins, int32_t nSecs) throw()
    {
       m_timeSpan = nSecs + 60* (nMins + 60* (nHours + int64_t(24) * lDays));
    }
 
-   LONGLONG time_span::GetDays() const throw()
+   int64_t time_span::GetDays() const throw()
    {
       return( m_timeSpan/(24*3600) );
    }
 
-   LONGLONG time_span::GetTotalHours() const throw()
+   int64_t time_span::GetTotalHours() const throw()
    {
       return( m_timeSpan/3600 );
    }
 
-   LONG time_span::GetHours() const throw()
+   int32_t time_span::GetHours() const throw()
    {
       return( LONG( GetTotalHours()-(GetDays()*24) ) );
    }
 
-   LONGLONG time_span::GetTotalMinutes() const throw()
+   int64_t time_span::GetTotalMinutes() const throw()
    {
       return( m_timeSpan/60 );
    }
 
-   LONG time_span::GetMinutes() const throw()
+   int32_t time_span::GetMinutes() const throw()
    {
       return( LONG( GetTotalMinutes()-(GetTotalHours()*60) ) );
    }
 
-   LONGLONG time_span::GetTotalSeconds() const throw()
+   int64_t time_span::GetTotalSeconds() const throw()
    {
       return( m_timeSpan );
    }
 
-   LONG time_span::GetSeconds() const throw()
+   int32_t time_span::GetSeconds() const throw()
    {
       return( LONG( GetTotalSeconds()-(GetTotalMinutes()*60) ) );
    }
@@ -957,7 +957,7 @@ dump_context & operator <<(dump_context & dumpcontext, ::datetime::time time)
 
    if ((err != 0) || (psz[0] == '\0') || (time.get_time() == 0))
    {
-      return dumpcontext << "::datetime::time(invalid #" << time.get_time() << ")";
+      return dumpcontext << "::datetime::time(invalid #" << (int_ptr) time.get_time() << ")";
    }
 
    // format it

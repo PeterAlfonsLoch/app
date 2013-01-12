@@ -7,9 +7,9 @@ namespace primitive
 #if defined(__LP64__)  // X64
 
    
-   typedef unsigned long  memory_size;
-   typedef unsigned long  memory_position;
-   typedef long   memory_offset;
+   typedef uint64_t  memory_size;
+   typedef uint64_t  memory_position;
+   typedef int64_t   memory_offset;
 
 #elif defined(_M_X64) // X64
 

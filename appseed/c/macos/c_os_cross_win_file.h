@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define INVALID_HANDLE_VALUE ((HANDLE)(long_ptr)-1)
+#define INVALID_HANDLE_VALUE ((HANDLE)(int_ptr)-1)
 #define INVALID_FILE_SIZE ((DWORD)0xFFFFFFFF)
 #define INVALID_SET_FILE_POINTER ((DWORD)-1)
 #define INVALID_FILE_ATTRIBUTES ((DWORD)-1)

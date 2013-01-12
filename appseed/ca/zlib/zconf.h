@@ -50,13 +50,8 @@
 #  define in_func               z_in_func
 #  define out_func              z_out_func
 #  define Byte                  z_Byte
-#  define uInt                  z_uInt
-#  define uint_ptr                 z_uLong
 #  define Bytef                 z_Bytef
 #  define charf                 z_charf
-#  define intf                  z_intf
-#  define uIntf                 z_uIntf
-#  define uLongf                z_uLongf
 #  define voidpf                z_voidpf
 #  define voidp                 z_voidp
 #endif
@@ -271,19 +266,6 @@
 #  define FAR
 #endif
 
-#if !defined(__MACTYPES__)
-typedef uchar  Byte;  /* 8 bits */
-#endif
-typedef uint32_t   uInt;  /* 16 bits or more */
-#ifdef WINDOWS
-#ifdef AMD64
-typedef uint64_t  uint_ptr; /* 32 bits or more */
-#else
-typedef uint32_t  uint_ptr; /* 32 bits or more */
-#endif
-#else
-typedef unsigned long  uint_ptr; /* 32 bits or more */
-#endif
 
 #ifdef SMALL_MEDIUM
    /* Borland C/C++ and some old MSC versions ignore FAR inside typedef */
@@ -291,10 +273,6 @@ typedef unsigned long  uint_ptr; /* 32 bits or more */
 #else
    typedef Byte  FAR Bytef;
 #endif
-typedef char  FAR charf;
-typedef int32_t   FAR intf;
-typedef uInt  FAR uIntf;
-typedef uint_ptr FAR uLongf;
 
 #ifdef STDC
    typedef void const *voidpc;
@@ -318,7 +296,7 @@ typedef uint_ptr FAR uLongf;
 #  define SEEK_END        2       /* Set file pointer to EOF plus "offset" */
 #endif
 #ifndef z_off_t
-#  define z_off_t int32_t
+#  define z_off_t int_ptr
 #endif
 
 #if defined(__OS400__)

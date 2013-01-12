@@ -41,14 +41,14 @@ gzip::~gzip()
    {
       m_crc = crc32(m_crc, (const Bytef *) buf, iSize);
       m_zstream.next_in       = (Bytef*)buf;
-      m_zstream.avail_in      = (uInt) iSize;
+      m_zstream.avail_in      = (uint32_t) iSize;
       while (m_zstream.avail_in != 0)
       {
          if(m_zstream.avail_out == 0)
          {
             m_zstream.next_out = m_memory.get_data();
             m_ostream.write(m_memory.get_data(), m_memory.get_size());
-            m_zstream.avail_out = (uInt) m_memory.get_size();
+            m_zstream.avail_out = (uint32_t) m_memory.get_size();
         }
         m_z_err = deflate(&(m_zstream), Z_NO_FLUSH);
         if(m_z_err != Z_OK)
@@ -81,7 +81,7 @@ gzip::~gzip()
       GZIP header[10]={0x1f,0x8b,Z_DEFLATED, 0 /*flags*/, 0,0,0,0 /*time*/, 0 /*xflags*/, OS_CODE};
       m_ostream.write(header,10);
       m_zstream.next_out      = m_memory.get_data();
-      m_zstream.avail_out     = (uInt) m_memory.get_size();
+      m_zstream.avail_out     = (uint32_t) m_memory.get_size();
    }
 
 
@@ -113,7 +113,7 @@ gzip::~gzip()
          {
             m_ostream.write(m_memory.get_data(), len);
             m_zstream.next_out   = m_memory.get_data();
-            m_zstream.avail_out  = (uInt) m_memory.get_size();
+            m_zstream.avail_out  = (uint32_t) m_memory.get_size();
          }
          if(done)
             break;

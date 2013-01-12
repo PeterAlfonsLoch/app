@@ -148,6 +148,7 @@ bool event::SetEvent()
       return semop((int32_t) m_object, &sb, 1) == 0;
    }
 
+   return true;
 
 #endif
 
@@ -210,6 +211,8 @@ bool event::ResetEvent()
 
    }
 
+   return true;
+   
 #endif
 
 }

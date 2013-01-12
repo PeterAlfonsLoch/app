@@ -24,7 +24,7 @@ CLASS_DECL__ bool UnionRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL__ bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 */
 
-//typedef unsigned long * ulong_ptr;
+//typedef unsigned long * uint_ptr;
 
 //typedef unsigned long HRESULT;
 //#define S_OK 0
@@ -37,7 +37,7 @@ CLASS_DECL__ bool SubtractRect(LPRECT prect, LPCRECT prect1, LPCRECT prect2);
 
 
 
-void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const ulong_ptr *lpArguments);
+void RaiseException(DWORD dwExceptionCode, DWORD dwExceptionFlags, DWORD nNumberOfArguments, const uint_ptr *lpArguments);
 //#define EXCEPTION_NONCONTINUABLE 1
 
 

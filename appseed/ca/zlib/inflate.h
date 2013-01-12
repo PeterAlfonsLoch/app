@@ -87,8 +87,8 @@ struct inflate_state {
         /* sliding window */
     uint32_t wbits;             /* log base 2 of requested window size */
     uint32_t wsize;             /* window size or zero if not using window */
-    uint32_t whave;             /* valid bytes in the window */
-    uint32_t write;             /* window write index */
+    uint_ptr whave;             /* valid bytes in the window */
+    uint_ptr write;             /* window write index */
     uchar FAR *window;  /* allocated sliding window, if needed */
         /* bit accumulator */
     uint32_t hold;         /* input bit accumulator */

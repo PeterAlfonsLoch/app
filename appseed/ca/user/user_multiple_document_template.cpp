@@ -169,7 +169,7 @@ void multiple_document_template::dump(dump_context & dumpcontext) const
    document_template::dump(dumpcontext);
 
    dumpcontext << "\nm_nUntitledCount = " << m_nUntitledCount;
-   dumpcontext << "\nwith " << LONGLONG(m_docptra.get_count()) << " open documents";
+   dumpcontext << "\nwith " << m_docptra.get_count() << " open documents";
    count count = get_document_count();
    for(index index = 0; index < count; index++)
    {

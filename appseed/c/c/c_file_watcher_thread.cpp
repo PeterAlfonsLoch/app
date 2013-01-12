@@ -72,7 +72,7 @@ namespace file_watcher
             try
             {
 
-               UINT ui = GetCurrentThreadId();
+//               UINT ui = GetCurrentThreadId();
 
                update();
 

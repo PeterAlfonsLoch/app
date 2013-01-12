@@ -122,13 +122,13 @@ namespace sockets
 
 
    // ---------------------------------------------------------------------------
-   void AjpBaseSocket::OnRawData(char *buf, size_t sz)
+   void AjpBaseSocket::OnRawData(char *buf, primitive::memory_size sz)
    {
    TRACE("OnRawData: %d bytes\n", sz);
-      size_t ptr = 0;
+      primitive::memory_size ptr = 0;
       while (true)
       {
-         size_t left = sz - ptr;
+         primitive::memory_size left = sz - ptr;
    TRACE(" left: %d bytes\n", left);
    TRACE(" state: %d\n", m_state);
          switch (m_state)

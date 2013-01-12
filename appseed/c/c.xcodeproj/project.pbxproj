@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		070791481646940E009D76F9 /* c_os_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070791471646940E009D76F9 /* c_os_window.cpp */; };
+		070AE86F16A04520003A3145 /* ansios_file_std.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070AE86E16A04520003A3145 /* ansios_file_std.cpp */; };
+		070AE87116A04641003A3145 /* ansios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070AE87016A04641003A3145 /* ansios_file.cpp */; };
 		0713C3FB1618A54B00719F96 /* c_os_graphics.h in Headers */ = {isa = PBXBuildFile; fileRef = 0713C3FA1618A54B00719F96 /* c_os_graphics.h */; };
 		071592821673470E00D7190F /* ansios_thread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071592801673470E00D7190F /* ansios_thread.cpp */; };
 		071592831673470E00D7190F /* ansios_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 071592811673470E00D7190F /* ansios_thread.h */; };
@@ -94,7 +96,6 @@
 		07A81D8B1633E09F00ADF7D6 /* c_md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D231633E09F00ADF7D6 /* c_md5.cpp */; };
 		07A81D8C1633E09F00ADF7D6 /* c_md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D241633E09F00ADF7D6 /* c_md5.h */; };
 		07A81D8D1633E09F00ADF7D6 /* c_mem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D251633E09F00ADF7D6 /* c_mem.cpp */; };
-		07A81D8E1633E09F00ADF7D6 /* c_mem.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D261633E09F00ADF7D6 /* c_mem.h */; };
 		07A81D8F1633E09F00ADF7D6 /* c_message_loop.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D271633E09F00ADF7D6 /* c_message_loop.h */; };
 		07A81D901633E09F00ADF7D6 /* c_mktime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D281633E09F00ADF7D6 /* c_mktime.cpp */; };
 		07A81D911633E09F00ADF7D6 /* c_mutex_lock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D291633E09F00ADF7D6 /* c_mutex_lock.cpp */; };
@@ -126,7 +127,6 @@
 		07A81DAB1633E09F00ADF7D6 /* c_sprintf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D431633E09F00ADF7D6 /* c_sprintf.cpp */; };
 		07A81DAC1633E09F00ADF7D6 /* c_sprintf.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D441633E09F00ADF7D6 /* c_sprintf.h */; };
 		07A81DAD1633E09F00ADF7D6 /* c_std_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D451633E09F00ADF7D6 /* c_std_file.cpp */; };
-		07A81DAE1633E09F00ADF7D6 /* c_std_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D461633E09F00ADF7D6 /* c_std_file.h */; };
 		07A81DAF1633E09F00ADF7D6 /* c_str.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D471633E09F00ADF7D6 /* c_str.cpp */; };
 		07A81DB01633E09F00ADF7D6 /* c_str.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A81D481633E09F00ADF7D6 /* c_str.h */; };
 		07A81DB11633E09F00ADF7D6 /* c_stra.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A81D491633E09F00ADF7D6 /* c_stra.cpp */; };
@@ -160,7 +160,6 @@
 		07AB204F16061A6000CD4EE2 /* os_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB204C16061A6000CD4EE2 /* os_thread.h */; };
 		07AB205816061B3600CD4EE2 /* c_os_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205316061B3600CD4EE2 /* c_os_file.h */; };
 		07AB205916061B3600CD4EE2 /* c_os_win_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */; };
-		07AB205E16061BB200CD4EE2 /* ansios_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AB205B16061BB200CD4EE2 /* ansios_file.cpp */; };
 		07AB205F16061BB200CD4EE2 /* ansios_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205C16061BB200CD4EE2 /* ansios_file.h */; };
 		07AB206016061BB200CD4EE2 /* ansios.h in Headers */ = {isa = PBXBuildFile; fileRef = 07AB205D16061BB200CD4EE2 /* ansios.h */; };
 		07AE38E915FBF6CD002E9436 /* c_os_process_pid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */; };
@@ -271,6 +270,8 @@
 
 /* Begin PBXFileReference section */
 		070791471646940E009D76F9 /* c_os_window.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_window.cpp; sourceTree = "<group>"; };
+		070AE86E16A04520003A3145 /* ansios_file_std.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_file_std.cpp; path = ansios/ansios_file_std.cpp; sourceTree = "<group>"; };
+		070AE87016A04641003A3145 /* ansios_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_file.cpp; path = ansios/ansios_file.cpp; sourceTree = "<group>"; };
 		0713C3FA1618A54B00719F96 /* c_os_graphics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_graphics.h; sourceTree = "<group>"; };
 		0713C3FD1618AF3200719F96 /* c_os_simple_brush.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_brush.h; sourceTree = "<group>"; };
 		0713C3FE1618B03800719F96 /* c_os_simple_graphics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = c_os_simple_graphics.h; sourceTree = "<group>"; };
@@ -365,7 +366,6 @@
 		07A81D231633E09F00ADF7D6 /* c_md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_md5.cpp; sourceTree = "<group>"; };
 		07A81D241633E09F00ADF7D6 /* c_md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_md5.h; sourceTree = "<group>"; };
 		07A81D251633E09F00ADF7D6 /* c_mem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_mem.cpp; sourceTree = "<group>"; };
-		07A81D261633E09F00ADF7D6 /* c_mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_mem.h; sourceTree = "<group>"; };
 		07A81D271633E09F00ADF7D6 /* c_message_loop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_message_loop.h; sourceTree = "<group>"; };
 		07A81D281633E09F00ADF7D6 /* c_mktime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_mktime.cpp; sourceTree = "<group>"; };
 		07A81D291633E09F00ADF7D6 /* c_mutex_lock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_mutex_lock.cpp; sourceTree = "<group>"; };
@@ -397,7 +397,6 @@
 		07A81D431633E09F00ADF7D6 /* c_sprintf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_sprintf.cpp; sourceTree = "<group>"; };
 		07A81D441633E09F00ADF7D6 /* c_sprintf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_sprintf.h; sourceTree = "<group>"; };
 		07A81D451633E09F00ADF7D6 /* c_std_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_std_file.cpp; sourceTree = "<group>"; };
-		07A81D461633E09F00ADF7D6 /* c_std_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_std_file.h; sourceTree = "<group>"; };
 		07A81D471633E09F00ADF7D6 /* c_str.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_str.cpp; sourceTree = "<group>"; };
 		07A81D481633E09F00ADF7D6 /* c_str.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_str.h; sourceTree = "<group>"; };
 		07A81D491633E09F00ADF7D6 /* c_stra.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_stra.cpp; sourceTree = "<group>"; };
@@ -432,7 +431,6 @@
 		07AB204C16061A6000CD4EE2 /* os_thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = os_thread.h; path = os/os_thread.h; sourceTree = "<group>"; };
 		07AB205316061B3600CD4EE2 /* c_os_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = c_os_file.h; sourceTree = "<group>"; };
 		07AB205416061B3600CD4EE2 /* c_os_win_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_win_base.cpp; sourceTree = "<group>"; };
-		07AB205B16061BB200CD4EE2 /* ansios_file.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ansios_file.cpp; path = ansios/ansios_file.cpp; sourceTree = "<group>"; };
 		07AB205C16061BB200CD4EE2 /* ansios_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios_file.h; path = ansios/ansios_file.h; sourceTree = "<group>"; };
 		07AB205D16061BB200CD4EE2 /* ansios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ansios.h; path = ansios/ansios.h; sourceTree = "<group>"; };
 		07AE38E815FBF6CD002E9436 /* c_os_process_pid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_process_pid.cpp; sourceTree = "<group>"; };
@@ -627,7 +625,6 @@
 				07A81D231633E09F00ADF7D6 /* c_md5.cpp */,
 				07A81D241633E09F00ADF7D6 /* c_md5.h */,
 				07A81D251633E09F00ADF7D6 /* c_mem.cpp */,
-				07A81D261633E09F00ADF7D6 /* c_mem.h */,
 				07A81D271633E09F00ADF7D6 /* c_message_loop.h */,
 				07A81D281633E09F00ADF7D6 /* c_mktime.cpp */,
 				07A81D291633E09F00ADF7D6 /* c_mutex_lock.cpp */,
@@ -661,7 +658,6 @@
 				07A81D431633E09F00ADF7D6 /* c_sprintf.cpp */,
 				07A81D441633E09F00ADF7D6 /* c_sprintf.h */,
 				07A81D451633E09F00ADF7D6 /* c_std_file.cpp */,
-				07A81D461633E09F00ADF7D6 /* c_std_file.h */,
 				07A81D471633E09F00ADF7D6 /* c_str.cpp */,
 				07A81D481633E09F00ADF7D6 /* c_str.h */,
 				07A81D491633E09F00ADF7D6 /* c_stra.cpp */,
@@ -748,7 +744,8 @@
 				9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */,
 				9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */,
 				07AB205C16061BB200CD4EE2 /* ansios_file.h */,
-				07AB205B16061BB200CD4EE2 /* ansios_file.cpp */,
+				070AE87016A04641003A3145 /* ansios_file.cpp */,
+				070AE86E16A04520003A3145 /* ansios_file_std.cpp */,
 				071592811673470E00D7190F /* ansios_thread.h */,
 				071592801673470E00D7190F /* ansios_thread.cpp */,
 			);
@@ -1031,7 +1028,6 @@
 				07A81D881633E09F00ADF7D6 /* c_logic.h in Headers */,
 				07A81D8A1633E09F00ADF7D6 /* c_math.h in Headers */,
 				07A81D8C1633E09F00ADF7D6 /* c_md5.h in Headers */,
-				07A81D8E1633E09F00ADF7D6 /* c_mem.h in Headers */,
 				07A81D8F1633E09F00ADF7D6 /* c_message_loop.h in Headers */,
 				07A81D921633E09F00ADF7D6 /* c_mutex_lock.h in Headers */,
 				07A81D931633E09F00ADF7D6 /* c_natural.h in Headers */,
@@ -1049,7 +1045,6 @@
 				07A81DA81633E09F00ADF7D6 /* c_simple_shell_launcher.h in Headers */,
 				07A81DAA1633E09F00ADF7D6 /* c_small_ipc_channel.h in Headers */,
 				07A81DAC1633E09F00ADF7D6 /* c_sprintf.h in Headers */,
-				07A81DAE1633E09F00ADF7D6 /* c_std_file.h in Headers */,
 				07A81DB01633E09F00ADF7D6 /* c_str.h in Headers */,
 				07A81DB21633E09F00ADF7D6 /* c_stra.h in Headers */,
 				07A81DB71633E09F00ADF7D6 /* c_template.h in Headers */,
@@ -1188,7 +1183,6 @@
 				07AB204D16061A6000CD4EE2 /* os_http.cpp in Sources */,
 				07AB204E16061A6000CD4EE2 /* os_thread.cpp in Sources */,
 				07AB205916061B3600CD4EE2 /* c_os_win_base.cpp in Sources */,
-				07AB205E16061BB200CD4EE2 /* ansios_file.cpp in Sources */,
 				077AE6CC1606201C0052CAC4 /* c_os_thread.cpp in Sources */,
 				07B0B0411620562100A60983 /* c_os_simple_bitmap.mm in Sources */,
 				07B0B0441620563F00A60983 /* c_os_simple_brush.cpp in Sources */,
@@ -1256,6 +1250,8 @@
 				07159299167353E700D7190F /* c_string_to_integer.cpp in Sources */,
 				9AC29ED0168CC84800DA3F3F /* ansios_cross_win_file.cpp in Sources */,
 				9AC29ED1168CC84800DA3F3F /* ansios_cross_win.cpp in Sources */,
+				070AE86F16A04520003A3145 /* ansios_file_std.cpp in Sources */,
+				070AE87116A04641003A3145 /* ansios_file.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

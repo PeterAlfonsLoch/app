@@ -97,18 +97,18 @@ typedef struct internal_state {
     Bytef *pending_buf;  /* output still pending */
     uint32_t   pending_buf_size; /* size of pending_buf */
     Bytef *pending_out;  /* next pending byte to output to the stream */
-    uInt   pending;      /* nb of bytes in the pending buffer */
+    uint32_t   pending;      /* nb of bytes in the pending buffer */
     int32_t   wrap;          /* bit 0 true for zlib, bit 1 true for gzip */
     gz_headerp  gzhead;  /* gzip header information to write */
-    uInt   gzindex;      /* where in extra, name, or comment */
+    uint32_t   gzindex;      /* where in extra, name, or comment */
     Byte  method;        /* STORED (for zip only) or DEFLATED */
     int32_t   last_flush;    /* value of flush param for previous deflate call */
 
                 /* used by deflate.c: */
 
-    uInt  w_size;        /* LZ77 window size (32K by default) */
-    uInt  w_bits;        /* log2(w_size)  (8..16) */
-    uInt  w_mask;        /* w_size - 1 */
+    uint32_t  w_size;        /* LZ77 window size (32K by default) */
+    uint32_t  w_bits;        /* log2(w_size)  (8..16) */
+    uint32_t  w_mask;        /* w_size - 1 */
 
     Bytef *window;
     /* Sliding window. Input bytes are read into the second half of the window,
@@ -133,12 +133,12 @@ typedef struct internal_state {
 
     Posf *head; /* Heads of the hash chains or NIL. */
 
-    uInt  ins_h;          /* hash index of string to be inserted */
-    uInt  hash_size;      /* number of elements in hash table */
-    uInt  hash_bits;      /* log2(hash_size) */
-    uInt  hash_mask;      /* hash_size-1 */
+    uint32_t  ins_h;          /* hash index of string to be inserted */
+    uint32_t  hash_size;      /* number of elements in hash table */
+    uint32_t  hash_bits;      /* log2(hash_size) */
+    uint32_t  hash_mask;      /* hash_size-1 */
 
-    uInt  hash_shift;
+    uint32_t  hash_shift;
     /* Number of bits by which ins_h must be shifted at each input
      * step. It must be such that after MIN_MATCH steps, the oldest
      * byte no longer takes part in the hash key, that is:
@@ -150,25 +150,25 @@ typedef struct internal_state {
      * negative when the window is moved backwards.
      */
 
-    uInt match_length;           /* length of best match */
+    uint32_t match_length;           /* length of best match */
     IPos prev_match;             /* previous match */
     int32_t match_available;         /* set if previous match exists */
-    uInt strstart;               /* start of string to insert */
-    uInt match_start;            /* start of matching string */
-    uInt lookahead;              /* number of valid bytes ahead in window */
+    uint32_t strstart;               /* start of string to insert */
+    uint32_t match_start;            /* start of matching string */
+    uint32_t lookahead;              /* number of valid bytes ahead in window */
 
-    uInt prev_length;
+    uint32_t prev_length;
     /* Length of the best match at previous step. Matches not greater than this
      * are discarded. This is used in the lazy match evaluation.
      */
 
-    uInt max_chain_length;
+    uint32_t max_chain_length;
     /* To speed up deflation, hash chains are never searched beyond this
      * length.  A higher limit improves compression ratio but degrades the
      * speed.
      */
 
-    uInt max_lazy_match;
+    uint32_t max_lazy_match;
     /* Attempt to find a better match only when the current match is strictly
      * smaller than this value. This mechanism is used only for compression
      * levels >= 4.
@@ -182,7 +182,7 @@ typedef struct internal_state {
     int32_t level;    /* compression level (1..9) */
     int32_t strategy; /* favor or force Huffman coding*/
 
-    uInt good_match;
+    uint32_t good_match;
     /* Use a faster search when the previous match is longer than this */
 
     int32_t nice_match; /* Stop searching when current match exceeds this */
@@ -213,7 +213,7 @@ typedef struct internal_state {
 
     uchar *l_buf;          /* buffer for literals or lengths */
 
-    uInt  lit_bufsize;
+    uint32_t  lit_bufsize;
     /* Size of match buffer for literals/lengths.  There are 4 reasons for
      * limiting lit_bufsize to 64K:
      *   - frequencies can be kept in 16 bit counters
@@ -233,7 +233,7 @@ typedef struct internal_state {
      *   - I can't count above 4
      */
 
-    uInt last_lit;      /* running index in l_buf */
+    uint32_t last_lit;      /* running index in l_buf */
 
     uint16_t *d_buf;
     /* buffer for distances. To simplify the code, d_buf and l_buf have
@@ -243,7 +243,7 @@ typedef struct internal_state {
 
     uint32_t opt_len;        /* bit length of current block with optimal trees */
     uint32_t static_len;     /* bit length of current block with static trees */
-    uInt matches;       /* number of string matches in current block */
+    uint32_t matches;       /* number of string matches in current block */
     int32_t last_eob_len;   /* bit length of EOB code for last block */
 
 #ifdef DEBUG
@@ -281,10 +281,10 @@ typedef struct internal_state {
         /* in trees.c */
 void _tr_init         OF((deflate_state *s));
 int32_t  _tr_tally        OF((deflate_state *s, uint32_t dist, uint32_t lc));
-void _tr_flush_block  OF((deflate_state *s, charf *buf, uint32_t stored_len,
+void _tr_flush_block  OF((deflate_state *s, char *buf, uint32_t stored_len,
                           int32_t eof));
 void _tr_align        OF((deflate_state *s));
-void _tr_stored_block OF((deflate_state *s, charf *buf, uint32_t stored_len,
+void _tr_stored_block OF((deflate_state *s, char *buf, uint32_t stored_len,
                           int32_t eof));
 
 #define d_code(dist) \

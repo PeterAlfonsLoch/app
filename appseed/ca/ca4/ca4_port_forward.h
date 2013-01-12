@@ -11,7 +11,7 @@ namespace ca4
 	   port_forward_change_callbacks();
 	   virtual ~port_forward_change_callbacks();
 	
-	   virtual HRESULT OnNewNumberOfEntries( long lNewNumberOfEntries );
+	   virtual HRESULT OnNewNumberOfEntries( int32_t lNewNumberOfEntries );
 	   virtual HRESULT OnNewExternalIPAddress(const char * psz );
 	
    };

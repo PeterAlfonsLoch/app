@@ -421,7 +421,8 @@ CLASS_DECL_ca HRESULT FloatTimeFromStr(const char * strIn, LCID lcid, ULONG dwFl
          uint32_t dwLen = -1;
 //xxx        if (dwLen && !strncmpiW(strIn, tokens[i], dwLen))
         //if (dwLen && !strnicmp_dup(strIn, tokens[i], dwLen))
-         if(dwLen && 0)
+//         if(dwLen && 0)
+         if(false)
         {
           if (i <= 25)
           {

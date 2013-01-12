@@ -8,4 +8,4 @@
    subject to change. Applications should only use zlib.h.
  */
 
-void inflate_fast OF((z_streamp strm, uint32_t start));
+void inflate_fast OF((z_streamp strm, uint_ptr start));

@@ -183,11 +183,8 @@ namespace gen
 
 
       inline CLASS_DECL_ca string  from(int32_t i);
-#ifdef MACOS
-      inline CLASS_DECL_ca string  from(long l);
-#endif
-      inline CLASS_DECL_ca string  from(int64_t i);
       inline CLASS_DECL_ca string  from(uint32_t ui);
+      inline CLASS_DECL_ca string  from(int64_t i);
       inline CLASS_DECL_ca string  from(uint64_t ui);
       inline CLASS_DECL_ca string  from(const var & var);
       inline CLASS_DECL_ca string  from(const id & id);

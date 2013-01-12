@@ -166,7 +166,6 @@
 		07BD561D16216065008E31F0 /* collection_bitset.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD55CC16216065008E31F0 /* collection_bitset.h */; };
 		07BD561E16216065008E31F0 /* collection_class_sort_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD55CD16216065008E31F0 /* collection_class_sort_array.cpp */; };
 		07BD561F16216065008E31F0 /* collection_class_sort_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD55CE16216065008E31F0 /* collection_class_sort_array.h */; };
-		07BD562016216065008E31F0 /* collection_collection_string_list.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD55CF16216065008E31F0 /* collection_collection_string_list.cpp */; };
 		07BD562116216065008E31F0 /* collection_comparable_array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD55D016216065008E31F0 /* collection_comparable_array.cpp */; };
 		07BD562216216065008E31F0 /* collection_comparable_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD55D116216065008E31F0 /* collection_comparable_array.h */; };
 		07BD562316216065008E31F0 /* collection_comparable_eq_array.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD55D216216065008E31F0 /* collection_comparable_eq_array.h */; };
@@ -1870,7 +1869,6 @@
 		07BD55CC16216065008E31F0 /* collection_bitset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection_bitset.h; sourceTree = "<group>"; };
 		07BD55CD16216065008E31F0 /* collection_class_sort_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collection_class_sort_array.cpp; sourceTree = "<group>"; };
 		07BD55CE16216065008E31F0 /* collection_class_sort_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection_class_sort_array.h; sourceTree = "<group>"; };
-		07BD55CF16216065008E31F0 /* collection_collection_string_list.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collection_collection_string_list.cpp; sourceTree = "<group>"; };
 		07BD55D016216065008E31F0 /* collection_comparable_array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = collection_comparable_array.cpp; sourceTree = "<group>"; };
 		07BD55D116216065008E31F0 /* collection_comparable_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection_comparable_array.h; sourceTree = "<group>"; };
 		07BD55D216216065008E31F0 /* collection_comparable_eq_array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collection_comparable_eq_array.h; sourceTree = "<group>"; };
@@ -3966,7 +3964,6 @@
 				07BD55CC16216065008E31F0 /* collection_bitset.h */,
 				07BD55CD16216065008E31F0 /* collection_class_sort_array.cpp */,
 				07BD55CE16216065008E31F0 /* collection_class_sort_array.h */,
-				07BD55CF16216065008E31F0 /* collection_collection_string_list.cpp */,
 				07BD55D016216065008E31F0 /* collection_comparable_array.cpp */,
 				07BD55D116216065008E31F0 /* collection_comparable_array.h */,
 				07BD55D216216065008E31F0 /* collection_comparable_eq_array.h */,
@@ -7188,7 +7185,6 @@
 				07BD561716216065008E31F0 /* collection_array.cpp in Sources */,
 				07BD561B16216065008E31F0 /* collection_bit_array.cpp in Sources */,
 				07BD561E16216065008E31F0 /* collection_class_sort_array.cpp in Sources */,
-				07BD562016216065008E31F0 /* collection_collection_string_list.cpp in Sources */,
 				07BD562116216065008E31F0 /* collection_comparable_array.cpp in Sources */,
 				07BD562D16216065008E31F0 /* collection_key_sort_array.cpp in Sources */,
 				07BD563116216065008E31F0 /* collection_map_misc.cpp in Sources */,

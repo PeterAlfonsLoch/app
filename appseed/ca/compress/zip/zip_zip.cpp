@@ -97,7 +97,7 @@ typedef struct
 {
     z_stream stream;            /* zLib stream structure for inflate */
     int32_t  stream_initialised;    /* 1 is stream is initialised */
-    uInt pos_in_buffered_data;  /* last written byte in buffered_data */
+    uint32_t pos_in_buffered_data;  /* last written byte in buffered_data */
 
     uint_ptr pos_local_header;     /* offset of the local header of the file
                                      currenty writing */
@@ -200,8 +200,8 @@ local int32_t add_data_in_datablock(
 
     while (len>0)
     {
-        uInt copy_this;
-        uInt i;
+        uint32_t copy_this;
+        uint32_t i;
         uchar* to_copy;
 
         if (ldi->avail_in_this_block==0)
@@ -214,9 +214,9 @@ local int32_t add_data_in_datablock(
         }
 
         if (ldi->avail_in_this_block < len)
-            copy_this = (uInt)ldi->avail_in_this_block;
+            copy_this = (uint32_t)ldi->avail_in_this_block;
         else
-            copy_this = (uInt)len;
+            copy_this = (uint32_t)len;
 
         to_copy = &(ldi->data[ldi->filled_in_this_block]);
 
@@ -635,9 +635,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     const char* filename,
     const zip_fileinfo* zipfi,
     const void * extrafield_local,
-    uInt size_extrafield_local,
+    uint32_t size_extrafield_local,
     const void * extrafield_global,
-    uInt size_extrafield_global,
+    uint32_t size_extrafield_global,
     const char* comment,
     int32_t method,
     int32_t level,
@@ -649,9 +649,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     uint32_t  crcForCrypting)
 {
     zip_internal* zi;
-    uInt size_filename;
-    uInt size_comment;
-    uInt i;
+    uint32_t size_filename;
+    uint32_t size_comment;
+    uint32_t i;
     int32_t err = ZIP_OK;
 
 #    ifdef NOCRYPT
@@ -680,9 +680,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     if (comment==NULL)
         size_comment = 0;
     else
-        size_comment = (uInt) strlen(comment);
+        size_comment = (uint32_t) strlen(comment);
 
-    size_filename = (uInt) strlen(filename);
+    size_filename = (uint32_t) strlen(filename);
 
     if (zipfi == NULL)
         zi->ci.dosDate = 0;
@@ -696,9 +696,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     zi->ci.flag = 0;
     if ((level==8) || (level==9))
       zi->ci.flag |= 2;
-    if ((level==2))
+    if (level==2)
       zi->ci.flag |= 4;
-    if ((level==1))
+    if (level==1)
       zi->ci.flag |= 6;
     if (password != NULL)
       zi->ci.flag |= 1;
@@ -712,7 +712,7 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
     zi->ci.pos_local_header = ZTELL(zi->z_filefunc,zi->filestream) ;
     zi->ci.size_centralheader = SIZECENTRALHEADER + size_filename +
                                       size_extrafield_global + size_comment;
-    zi->ci.central_header = (char*)ALLOC((uInt)zi->ci.size_centralheader);
+    zi->ci.central_header = (char*)ALLOC((uint32_t)zi->ci.size_centralheader);
 
     ziplocal_putValue_inmemory(zi->ci.central_header,(uint_ptr)CENTRALHEADERMAGIC,4);
     /* version info */
@@ -790,8 +790,8 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 (
                                                                            !=size_extrafield_local)
                 err = ZIP_ERRNO;
 
-    zi->ci.stream.avail_in = (uInt)0;
-    zi->ci.stream.avail_out = (uInt)Z_BUFSIZE;
+    zi->ci.stream.avail_in = (uint32_t)0;
+    zi->ci.stream.avail_out = (uint32_t)Z_BUFSIZE;
     zi->ci.stream.next_out = zi->ci.buffered_data;
     zi->ci.stream.total_in = 0;
     zi->ci.stream.total_out = 0;
@@ -839,9 +839,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip2(
     const char* filename,
     const zip_fileinfo* zipfi,
     const void * extrafield_local,
-    uInt size_extrafield_local,
+    uint32_t size_extrafield_local,
     const void * extrafield_global,
-    uInt size_extrafield_global,
+    uint32_t size_extrafield_global,
     const char* comment,
     int32_t method,
     int32_t level,
@@ -860,9 +860,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip (
     const char* filename,
     const zip_fileinfo* zipfi,
     const void * extrafield_local,
-    uInt size_extrafield_local,
+    uint32_t size_extrafield_local,
     const void * extrafield_global,
-    uInt size_extrafield_global,
+    uint32_t size_extrafield_global,
     const char* comment,
     int32_t method,
     int32_t level)
@@ -881,7 +881,7 @@ local int32_t zipFlushWriteBuffer(
     if (zi->ci.encrypt != 0)
     {
 #ifndef NOCRYPT
-        uInt i;
+        uint32_t i;
         int32_t t;
         for (i=0;i<zi->ci.pos_in_buffered_data;i++)
             zi->ci.buffered_data[i] = zencode(zi->ci.keys, zi->ci.pcrc_32_tab,
@@ -920,7 +920,7 @@ extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
         {
             if (zipFlushWriteBuffer(zi) == ZIP_ERRNO)
                 err = ZIP_ERRNO;
-            zi->ci.stream.avail_out = (uInt)Z_BUFSIZE;
+            zi->ci.stream.avail_out = (uint32_t)Z_BUFSIZE;
             zi->ci.stream.next_out = zi->ci.buffered_data;
         }
 
@@ -932,12 +932,12 @@ extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
         {
             uint_ptr uTotalOutBefore = zi->ci.stream.total_out;
             err=deflate(&zi->ci.stream,  Z_NO_FLUSH);
-            zi->ci.pos_in_buffered_data += (uInt)(zi->ci.stream.total_out - uTotalOutBefore) ;
+            zi->ci.pos_in_buffered_data += (uint32_t)(zi->ci.stream.total_out - uTotalOutBefore) ;
 
         }
         else
         {
-            uInt copy_this,i;
+            uint_ptr copy_this,i;
             if (zi->ci.stream.avail_in < zi->ci.stream.avail_out)
                 copy_this = zi->ci.stream.avail_in;
             else
@@ -985,12 +985,12 @@ extern int32_t CLASS_DECL_ca zipCloseFileInZipRaw (
         {
             if (zipFlushWriteBuffer(zi) == ZIP_ERRNO)
                 err = ZIP_ERRNO;
-            zi->ci.stream.avail_out = (uInt)Z_BUFSIZE;
+            zi->ci.stream.avail_out = (uint32_t)Z_BUFSIZE;
             zi->ci.stream.next_out = zi->ci.buffered_data;
         }
         uTotalOutBefore = zi->ci.stream.total_out;
         err=deflate(&zi->ci.stream,  Z_FINISH);
-        zi->ci.pos_in_buffered_data += (uInt)(zi->ci.stream.total_out - uTotalOutBefore) ;
+        zi->ci.pos_in_buffered_data += (uint32_t)(zi->ci.stream.total_out - uTotalOutBefore) ;
     }
 
     if (err==Z_STREAM_END)
@@ -1070,7 +1070,7 @@ extern int32_t CLASS_DECL_ca zipClose (
     int32_t err = 0;
     uint_ptr size_centraldir = 0;
     uint_ptr centraldir_pos_inzip ;
-    uInt size_global_comment;
+    uint32_t size_global_comment;
     if (file == NULL)
         return ZIP_PARAMERROR;
     zi = (zip_internal*)file;
@@ -1083,7 +1083,7 @@ extern int32_t CLASS_DECL_ca zipClose (
     if (global_comment==NULL)
         size_global_comment = 0;
     else
-        size_global_comment = (uInt) strlen(global_comment);
+        size_global_comment = (uint32_t) strlen(global_comment);
 
 
     centraldir_pos_inzip = ZTELL(zi->z_filefunc,zi->filestream);

@@ -48,13 +48,11 @@
 #  define in_func               z_in_func
 #  define out_func              z_out_func
 #  define Byte                  z_Byte
-#  define uInt                  z_uInt
-#  define uint_ptr                 z_uLong
+#  define uint32_t                  z_uInt
 #  define Bytef                 z_Bytef
 #  define charf                 z_charf
 #  define intf                  z_intf
 #  define uIntf                 z_uIntf
-#  define uLongf                z_uLongf
 #  define voidpf                z_voidpf
 #  define voidp                 z_voidp
 #endif
@@ -260,8 +258,7 @@
 #if !defined(__MACTYPES__)
 typedef uchar  Byte;  /* 8 bits */
 #endif
-typedef uint32_t   uInt;  /* 16 bits or more */
-typedef unsigned long  uint_ptr; /* 32 bits or more */
+typedef uint32_t   uint32_t;  /* 16 bits or more */
 
 #ifdef SMALL_MEDIUM
    /* Borland C/C++ and some old MSC versions ignore FAR inside typedef */
@@ -271,8 +268,7 @@ typedef unsigned long  uint_ptr; /* 32 bits or more */
 #endif
 typedef char  FAR charf;
 typedef int32_t   FAR intf;
-typedef uInt  FAR uIntf;
-typedef uint_ptr FAR uLongf;
+typedef uint32_t  FAR uIntf;
 
 #ifdef STDC
    typedef void const *voidpc;

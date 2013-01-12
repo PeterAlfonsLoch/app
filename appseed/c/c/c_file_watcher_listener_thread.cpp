@@ -17,7 +17,7 @@ namespace file_watcher
       pop->m_bRecursive = bRecursive;
       pop->m_plistener = this;
 
-      uint32_t uiId = m_nId;
+//      uint32_t uiId = m_nId;
 
       while(!m_bUpdating)
       {

@@ -189,7 +189,6 @@ typedef uint16_t port_t;
 #else
 #include <mach/port.h>
 #endif // __DARWIN_UNIX03
-typedef unsigned long ipaddr_t;
 #ifdef sockets
 namespace sockets {
 #endif

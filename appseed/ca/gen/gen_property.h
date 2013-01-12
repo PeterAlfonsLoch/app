@@ -328,16 +328,6 @@ namespace gen
          return *this;
       }
 
-#ifdef MACOS
-
-      property & operator =(int64_t i)
-      {
-         get_value() = l;
-         return *this;
-      }
-
-#endif
-
       property & operator =(bool b)
       {
          get_value() = b;

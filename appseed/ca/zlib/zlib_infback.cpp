@@ -251,11 +251,11 @@ void FAR *out_desc)
     struct inflate_state FAR *state;
     uchar FAR *next;    /* next input */
     uchar FAR *put;     /* next output */
-    uint32_t have;            /* available input and output */
-   uint32_t left;           /* available input and output */
+    uint_ptr have;            /* available input and output */
+   uint_ptr left;           /* available input and output */
     uint32_t hold;         /* bit buffer */
     uint32_t bits;              /* bits in bit buffer */
-    uint32_t copy;              /* number of stored or match bytes to copy */
+    uint_ptr copy;              /* number of stored or match bytes to copy */
     uchar FAR *from;    /* where to copy match bytes from */
     code codeThis;                  /* current decoding table entry */
     code last;                  /* parent table entry */

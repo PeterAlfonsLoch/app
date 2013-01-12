@@ -394,7 +394,7 @@ void object_list::dump(dump_context & dumpcontext) const
 {
    ::radix::object::dump(dumpcontext);
 
-   dumpcontext << "with " << LONGLONG(m_nCount) << " elements";
+   dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
    {
       POSITION pos = get_head_position();

@@ -71,14 +71,14 @@ public:
    tiny_http();
    ~tiny_http();
 
-   http_retcode t_put(const char * data, int length, int overwrite, void (*callback)(void *, int, dword_ptr) = NULL, void * callback_param = NULL);
-   http_retcode t_get(char ** pdata, int * plength, void (*callback)(void *, int, dword_ptr) = NULL, void * callback_param = NULL);
+   http_retcode t_put(const char * data, int length, int overwrite, void (*callback)(void *, int, uint_ptr) = NULL, void * callback_param = NULL);
+   http_retcode t_get(char ** pdata, int * plength, void (*callback)(void *, int, uint_ptr) = NULL, void * callback_param = NULL);
    http_retcode t_delete() ;
    http_retcode t_head(int *plength);
    http_retcode t_parse_url(const char *url);
 
    int t_read_line (int fd,char *buffer, int max) ;
-   int t_read_buffer (int fd,char *buffer, int max, void (*callback)(void *, int, dword_ptr) = NULL, void * callback_param = NULL) ;
+   int t_read_buffer (int fd,char *buffer, int max, void (*callback)(void *, int, uint_ptr) = NULL, void * callback_param = NULL) ;
 
    http_retcode t_query(const char *command, const char *url, const char *additional_header, querymode mode, char* data, int length, int *pfd);
 };

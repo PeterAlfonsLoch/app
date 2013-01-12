@@ -89,12 +89,12 @@ typedef voidp zipFile;
 /* tm_zip contain date/time info */
 typedef struct tm_zip_s
 {
-    uInt tm_sec;            /* seconds after the minute - [0,59] */
-    uInt tm_min;            /* minutes after the hour - [0,59] */
-    uInt tm_hour;           /* hours since midnight - [0,23] */
-    uInt tm_mday;           /* day of the month - [1,31] */
-    uInt tm_mon;            /* months since January - [0,11] */
-    uInt tm_year;           /* years - [1980..2044] */
+    uint32_t tm_sec;            /* seconds after the minute - [0,59] */
+    uint32_t tm_min;            /* minutes after the hour - [0,59] */
+    uint32_t tm_hour;           /* hours since midnight - [0,23] */
+    uint32_t tm_mday;           /* day of the month - [1,31] */
+    uint32_t tm_mon;            /* months since January - [0,11] */
+    uint32_t tm_year;           /* years - [1980..2044] */
 } tm_zip;
 
 typedef struct
@@ -143,9 +143,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip OF((zipFile file,
                        const char* filename,
                        const zip_fileinfo* zipfi,
                        const void * extrafield_local,
-                       uInt size_extrafield_local,
+                       uint32_t size_extrafield_local,
                        const void * extrafield_global,
-                       uInt size_extrafield_global,
+                       uint32_t size_extrafield_global,
                        const char* comment,
                        int32_t method,
                        int32_t level));
@@ -167,9 +167,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip2 OF((zipFile file,
                                             const char* filename,
                                             const zip_fileinfo* zipfi,
                                             const void * extrafield_local,
-                                            uInt size_extrafield_local,
+                                            uint32_t size_extrafield_local,
                                             const void * extrafield_global,
-                                            uInt size_extrafield_global,
+                                            uint32_t size_extrafield_global,
                                             const char* comment,
                                             int32_t method,
                                             int32_t level,
@@ -183,9 +183,9 @@ extern int32_t CLASS_DECL_ca zipOpenNewFileInZip3 OF((zipFile file,
                                             const char* filename,
                                             const zip_fileinfo* zipfi,
                                             const void * extrafield_local,
-                                            uInt size_extrafield_local,
+                                            uint32_t size_extrafield_local,
                                             const void * extrafield_global,
-                                            uInt size_extrafield_global,
+                                            uint32_t size_extrafield_global,
                                             const char* comment,
                                             int32_t method,
                                             int32_t level,

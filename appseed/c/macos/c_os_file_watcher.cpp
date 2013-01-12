@@ -344,7 +344,7 @@ namespace file_watcher
 	}
 
 	//--------
-	id os_file_watcher::add_watch(const char * directory, file_watch_listener* watcher)
+	id os_file_watcher::add_watch(const vsstring & directory, file_watch_listener * watcher, bool bRecursive)
 	{
 /*		int fd = open(directory.c_str(), O_RDONLY);
 		if(fd == -1)
@@ -362,7 +362,7 @@ namespace file_watcher
 	}
 
 	//--------
-	void os_file_watcher::remove_watch(const char * directory)
+	void os_file_watcher::remove_watch(const vsstring & directory)
 	{
 		watch_map::pair * ppair = m_watchmap.PGetFirstAssoc();
 		for(; ppair != NULL; ppair = m_watchmap.PGetNextAssoc(ppair))
@@ -378,7 +378,7 @@ namespace file_watcher
 	//--------
 	void os_file_watcher::remove_watch(id watchid)
 	{
-		watch_map::pair * ppair = m_watchmap.PLookup((unsigned long &)watchid);
+		watch_map::pair * ppair = m_watchmap.PLookup((id &)watchid);
 
 		if(ppair == NULL)
 			return;
@@ -401,7 +401,7 @@ namespace file_watcher
    
 	
 	//--------
-	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, unsigned long action)
+	void os_file_watcher::handle_action(watch_struct* watch, const char * filename, uint32_t action)
 	{
 	}
 

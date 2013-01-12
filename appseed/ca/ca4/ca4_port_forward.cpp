@@ -278,7 +278,7 @@ namespace ca4
 
 
    /*  virtual  */
-   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewNumberOfEntries( long lNewNumberOfEntries )
+   HRESULT /* STDMETHODCALLTYPE */ port_forward_change_callbacks::OnNewNumberOfEntries( int32_t lNewNumberOfEntries )
    {
 	   string tempStr;
 	   tempStr.Format( "UPnP has detected a change in the number of port mappings for your router \n"

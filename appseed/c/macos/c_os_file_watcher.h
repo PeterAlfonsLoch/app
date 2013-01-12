@@ -48,10 +48,10 @@ namespace file_watcher
 
 		/// Add a directory watch
 		/// @exception FileNotFoundException Thrown when the requested directory does not exist
-		id add_watch(const char * directory, file_watch_listener* watcher);
+		id add_watch(const vsstring & directory, file_watch_listener * watcher, bool bRecursive);
 
 		/// Remove a directory watch. This is a brute force lazy search O(nlogn).
-		void remove_watch(const char *  directory);
+		void remove_watch(const vsstring & directory);
 
 		/// Remove a directory watch. This is a map lookup O(logn).
 		void remove_watch(id watchid);
@@ -62,7 +62,7 @@ namespace file_watcher
 		void update();
 
 		/// Handles the action
-		void handle_action(watch_struct* watch, const char * filename, unsigned long ulOsAction);
+		void handle_action(watch_struct* watch, const char * filename, uint32_t ulOsAction);
 
 	private:
 		/// Map of id to watch_struct pointers

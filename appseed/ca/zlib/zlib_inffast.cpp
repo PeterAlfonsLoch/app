@@ -69,7 +69,7 @@
  */
 void inflate_fast(
 z_streamp strm,
-uint32_t start)         /* inflate()'s starting value for strm->avail_out */
+uint_ptr start)         /* inflate()'s starting value for strm->avail_out */
 {
     struct inflate_state FAR *state;
     uchar FAR *in;      /* zlib_local strm->next_in */
@@ -81,8 +81,8 @@ uint32_t start)         /* inflate()'s starting value for strm->avail_out */
     uint32_t dmax;              /* maximum distance from zlib header */
 #endif
     uint32_t wsize;             /* window size or zero if not using window */
-    uint32_t whave;             /* valid bytes in the window */
-    uint32_t write;             /* window write index */
+    uint_ptr whave;             /* valid bytes in the window */
+    uint_ptr write;             /* window write index */
     uchar FAR *window;  /* allocated sliding window, if wsize != 0 */
     uint32_t hold;         /* zlib_local strm->hold */
     uint32_t bits;              /* zlib_local strm->bits */
@@ -91,7 +91,7 @@ uint32_t start)         /* inflate()'s starting value for strm->avail_out */
     uint32_t lmask;             /* mask for first level of length codes */
     uint32_t dmask;             /* mask for first level of distance codes */
     code codeThis;                  /* retrieved table entry */
-    uint32_t op;                /* code bits, operation, extra bits, or */
+    uint_ptr op;                /* code bits, operation, extra bits, or */
                                 /*  window position, window bytes to copy */
     uint32_t len;               /* match length, unused bytes */
     uint32_t dist;              /* match distance */

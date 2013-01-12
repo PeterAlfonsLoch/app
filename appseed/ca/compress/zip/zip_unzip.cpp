@@ -94,7 +94,7 @@ typedef struct
     uint_ptr stream_initialised;   /* flag set if stream structure is initialised*/
 
     uint_ptr offset_local_extrafield;/* offset of the local extra field */
-    uInt  size_local_extrafield;/* size of the local extra field */
+    uint32_t  size_local_extrafield;/* size of the local extra field */
     uint_ptr pos_local_extrafield;   /* position in the local extra field in read*/
 
     uint32_t crc32;                /* crc32 of all data uncompressed */
@@ -305,6 +305,7 @@ extern int32_t CLASS_DECL_ca unzStringFileNameCompare (
 local uint_ptr unzlocal_SearchCentralDir OF((
     const zlib_filefunc_def* pzlib_filefunc_def,
     voidpf filestream));
+int32_t isEndOfCentralDir(uchar * buf);
 
 int32_t isEndOfCentralDir(uchar * buf)
 {
@@ -539,13 +540,13 @@ local void unzlocal_DosDateToTmuDate(
 {
     uint_ptr uDate;
     uDate = (uint_ptr)(ulDosDate>>16);
-    ptm->tm_mday = (uInt)(uDate&0x1f) ;
-    ptm->tm_mon =  (uInt)((((uDate)&0x1E0)/0x20)-1) ;
-    ptm->tm_year = (uInt)(((uDate&0x0FE00)/0x0200)+1980) ;
+    ptm->tm_mday = (uint32_t)(uDate&0x1f) ;
+    ptm->tm_mon =  (uint32_t)((((uDate)&0x1E0)/0x20)-1) ;
+    ptm->tm_year = (uint32_t)(((uDate&0x0FE00)/0x0200)+1980) ;
 
-    ptm->tm_hour = (uInt) ((ulDosDate &0xF800)/0x800);
-    ptm->tm_min =  (uInt) ((ulDosDate&0x7E0)/0x20) ;
-    ptm->tm_sec =  (uInt) (2*(ulDosDate&0x1f)) ;
+    ptm->tm_hour = (uint32_t) ((ulDosDate &0xF800)/0x800);
+    ptm->tm_min =  (uint32_t) ((ulDosDate&0x7E0)/0x20) ;
+    ptm->tm_sec =  (uint32_t) (2*(ulDosDate&0x1f)) ;
 }
 
 /*
@@ -591,11 +592,17 @@ local int32_t unzlocal_GetCurrentFileInfoInternal (
 
     /* we check the magic */
     if (err==UNZ_OK)
+    {
         if (unzlocal_getLong(&s->z_filefunc, s->filestream,&uMagic) != UNZ_OK)
+        {
             err=UNZ_ERRNO;
+        }
         else if (uMagic!=0x02014b50
            && uMagic != 0x2b5fa067)
+        {
             err=UNZ_BADZIPFILE;
+        }
+    }
 
     if (unzlocal_getShort(&s->z_filefunc, s->filestream,&file_info.version) != UNZ_OK)
         err=UNZ_ERRNO;
@@ -672,10 +679,16 @@ local int32_t unzlocal_GetCurrentFileInfoInternal (
             uSizeRead = extraFieldBufferSize;
 
         if (lSeek!=0)
+        {
             if (ZSEEK(s->z_filefunc, s->filestream,lSeek,ZLIB_FILEFUNC_SEEK_CUR)==0)
+            {
                 lSeek=0;
+            }
             else
+            {
                 err=UNZ_ERRNO;
+            }
+         }
         if ((file_info.size_file_extra>0) && (extraFieldBufferSize>0))
             if (ZREAD(s->z_filefunc, s->filestream,extraField,uSizeRead)!=uSizeRead)
                 err=UNZ_ERRNO;
@@ -697,10 +710,16 @@ local int32_t unzlocal_GetCurrentFileInfoInternal (
             uSizeRead = commentBufferSize;
 
         if (lSeek!=0)
+        {
             if (ZSEEK(s->z_filefunc, s->filestream,lSeek,ZLIB_FILEFUNC_SEEK_CUR)==0)
+            {
                 lSeek=0;
+            }
             else
+            {
                 err=UNZ_ERRNO;
+            }
+    }
         if ((file_info.size_file_comment>0) && (commentBufferSize>0))
             if (ZREAD(s->z_filefunc, s->filestream,szComment,uSizeRead)!=uSizeRead)
                 err=UNZ_ERRNO;
@@ -933,9 +952,9 @@ extern int32_t CLASS_DECL_ca unzGoToFilePos(
 */
 local int32_t unzlocal_CheckCurrentFileCoherencyHeader (
     unz_s* s,
-    uInt* piSizeVar,
+    uint32_t* piSizeVar,
     uint_ptr *poffset_local_extrafield,
-    uInt  *psize_local_extrafield)
+    uint32_t  *psize_local_extrafield)
 {
     uint_ptr uMagic,uData,uFlags;
     uint_ptr size_filename;
@@ -952,11 +971,17 @@ local int32_t unzlocal_CheckCurrentFileCoherencyHeader (
 
 
     if (err==UNZ_OK)
+    {
         if (unzlocal_getLong(&s->z_filefunc, s->filestream,&uMagic) != UNZ_OK)
+        {
             err=UNZ_ERRNO;
+        }
         else if (uMagic!=0x04034b50 &&
            uMagic != 0x30D60A87)
+        {
             err=UNZ_BADZIPFILE;
+        }
+    }
 
 
     if (unzlocal_getShort(&s->z_filefunc, s->filestream,&uData) != UNZ_OK)
@@ -1004,15 +1029,15 @@ local int32_t unzlocal_CheckCurrentFileCoherencyHeader (
     else if ((err==UNZ_OK) && (size_filename!=s->cur_file_info.size_filename))
         err=UNZ_BADZIPFILE;
 
-    *piSizeVar += (uInt)size_filename;
+    *piSizeVar += (uint32_t)size_filename;
 
     if (unzlocal_getShort(&s->z_filefunc, s->filestream,&size_extra_field) != UNZ_OK)
         err=UNZ_ERRNO;
     *poffset_local_extrafield= s->cur_file_info_internal.offset_curfile +
                                     SIZEZIPLOCALHEADER + size_filename;
-    *psize_local_extrafield = (uInt)size_extra_field;
+    *psize_local_extrafield = (uint32_t)size_extra_field;
 
-    *piSizeVar += (uInt)size_extra_field;
+    *piSizeVar += (uint32_t)size_extra_field;
 
     return err;
 }
@@ -1024,11 +1049,11 @@ local int32_t unzlocal_CheckCurrentFileCoherencyHeader (
 extern int32_t CLASS_DECL_ca unzOpenCurrentFile3 (unzFile file, int32_t * method, int32_t * level, int32_t raw, const char * password)
 {
     int32_t err=UNZ_OK;
-    uInt iSizeVar;
+    uint32_t iSizeVar;
     unz_s* s;
     file_in_zip_read_info_s* pfile_in_zip_read_info;
     uint_ptr offset_local_extrafield;  /* offset of the local extra field */
-    uInt  size_local_extrafield;    /* size of the local extra field */
+    uint32_t  size_local_extrafield;    /* size of the local extra field */
 #    ifndef NOUNCRYPT
     char source[12];
 #    else
@@ -1128,7 +1153,7 @@ extern int32_t CLASS_DECL_ca unzOpenCurrentFile3 (unzFile file, int32_t * method
             s->cur_file_info_internal.offset_curfile + SIZEZIPLOCALHEADER +
               iSizeVar;
 
-    pfile_in_zip_read_info->stream.avail_in = (uInt)0;
+    pfile_in_zip_read_info->stream.avail_in = (uint32_t)0;
 
     s->pfile_in_zip_read = pfile_in_zip_read_info;
 
@@ -1196,7 +1221,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
     uint32_t len)
 {
     int32_t err=UNZ_OK;
-    uInt iRead = 0;
+    uint32_t iRead = 0;
     unz_s* s;
     file_in_zip_read_info_s* pfile_in_zip_read_info;
     if (file==NULL)
@@ -1208,27 +1233,27 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
         return UNZ_PARAMERROR;
 
 
-    if ((pfile_in_zip_read_info->read_buffer == NULL))
+    if (pfile_in_zip_read_info->read_buffer == NULL)
         return UNZ_END_OF_LIST_OF_FILE;
     if (len==0)
         return 0;
 
     pfile_in_zip_read_info->stream.next_out = (Bytef*)buf;
 
-    pfile_in_zip_read_info->stream.avail_out = (uInt)len;
+    pfile_in_zip_read_info->stream.avail_out = (uint32_t)len;
 
     if (len>pfile_in_zip_read_info->rest_read_uncompressed)
         pfile_in_zip_read_info->stream.avail_out =
-          (uInt)pfile_in_zip_read_info->rest_read_uncompressed;
+          (uint32_t)pfile_in_zip_read_info->rest_read_uncompressed;
 
     while (pfile_in_zip_read_info->stream.avail_out>0)
     {
         if ((pfile_in_zip_read_info->stream.avail_in==0) &&
             (pfile_in_zip_read_info->rest_read_compressed>0))
         {
-            uInt uReadThis = UNZ_BUFSIZE;
+            uint32_t uReadThis = UNZ_BUFSIZE;
             if (pfile_in_zip_read_info->rest_read_compressed<uReadThis)
-                uReadThis = (uInt)pfile_in_zip_read_info->rest_read_compressed;
+                uReadThis = (uint32_t)pfile_in_zip_read_info->rest_read_compressed;
             if (uReadThis == 0)
                 return UNZ_EOF;
             if (ZSEEK(pfile_in_zip_read_info->z_filefunc,
@@ -1247,7 +1272,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
 #            ifndef NOUNCRYPT
             if(s->encrypted)
             {
-                uInt i;
+                uint32_t i;
                 for(i=0;i<uReadThis;i++)
                   pfile_in_zip_read_info->read_buffer[i] =
                       zdecode(s->keys,s->pcrc_32_tab,
@@ -1262,12 +1287,12 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
 
             pfile_in_zip_read_info->stream.next_in =
                 (Bytef*)pfile_in_zip_read_info->read_buffer;
-            pfile_in_zip_read_info->stream.avail_in = (uInt)uReadThis;
+            pfile_in_zip_read_info->stream.avail_in = (uint32_t)uReadThis;
         }
 
         if ((pfile_in_zip_read_info->compression_method==0) || (pfile_in_zip_read_info->raw))
         {
-            uInt uDoCopy,i ;
+            uint_ptr uDoCopy,i ;
 
             if ((pfile_in_zip_read_info->stream.avail_in == 0) &&
                 (pfile_in_zip_read_info->rest_read_compressed == 0))
@@ -1317,12 +1342,12 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
 
             pfile_in_zip_read_info->crc32 =
                 crc32(pfile_in_zip_read_info->crc32,bufBefore,
-                        (uInt)(uOutThis));
+                        (uint32_t)(uOutThis));
 
             pfile_in_zip_read_info->rest_read_uncompressed -=
                 uOutThis;
 
-            iRead += (uInt)(uTotalOutAfter - uTotalOutBefore);
+            iRead += (uint32_t)(uTotalOutAfter - uTotalOutBefore);
 
             if (err==Z_STREAM_END)
                 return (iRead==0) ? UNZ_EOF : iRead;
@@ -1400,7 +1425,7 @@ extern int32_t CLASS_DECL_ca unzGetLocalExtrafield (
 {
     unz_s* s;
     file_in_zip_read_info_s* pfile_in_zip_read_info;
-    uInt read_now;
+    uint32_t read_now;
     uint_ptr size_to_read;
 
     if (file==NULL)
@@ -1418,9 +1443,9 @@ extern int32_t CLASS_DECL_ca unzGetLocalExtrafield (
         return (int32_t)size_to_read;
 
     if (len>size_to_read)
-        read_now = (uInt)size_to_read;
+        read_now = (uint32_t)size_to_read;
     else
-        read_now = (uInt)len ;
+        read_now = (uint32_t)len ;
 
     if (read_now==0)
         return 0;
@@ -1492,7 +1517,7 @@ extern int32_t CLASS_DECL_ca unzGetGlobalComment (
     char *szComment,
     uint_ptr uSizeBuf)
 {
-    int32_t err=UNZ_OK;
+//    int32_t err=UNZ_OK;
     unz_s* s;
     uint_ptr uReadThis ;
     if (file==NULL)

@@ -78,7 +78,7 @@ namespace ca4
 
       z_stream strm;
       strm.next_in = (Bytef *)memoryfile.get_data();
-      strm.avail_in = (uInt)dataLength;
+      strm.avail_in = (uint32_t)dataLength;
       strm.total_out = 0;
       strm.zalloc = Z_NULL;
       strm.zfree = Z_NULL;

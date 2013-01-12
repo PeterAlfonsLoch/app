@@ -10,7 +10,7 @@ namespace sockets
       Ajp13Socket(socket_handler_base& h);
 
       void OnHeader( int16_t id, int16_t len );
-      void OnPacket( const char *buf, size_t sz );
+      void OnPacket( const char *buf, primitive::memory_size sz );
 
       virtual void Respond();
 
@@ -20,14 +20,14 @@ namespace sockets
       virtual void OnResponseComplete();
 
    private:
-      void ReceiveBody( const char *buf, size_t sz );
-      void ReceiveForwardRequest( const char *buf, size_t sz );
-      void ReceiveShutdown( const char *buf, size_t sz );
-      void ReceivePing( const char *buf, size_t sz );
-      void ReceiveCPing( const char *buf, size_t sz );
+      void ReceiveBody( const char *buf, primitive::memory_size sz );
+      void ReceiveForwardRequest( const char *buf, primitive::memory_size sz );
+      void ReceiveShutdown( const char *buf, primitive::memory_size sz );
+      void ReceivePing( const char *buf, primitive::memory_size sz );
+      void ReceiveCPing( const char *buf, primitive::memory_size sz );
       void Execute();
 
-      size_t m_body_size_left;
+      primitive::memory_size m_body_size_left;
       http::request m_request;
       http::response m_response;
    };

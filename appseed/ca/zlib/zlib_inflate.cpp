@@ -96,12 +96,11 @@
 
 /* function prototypes */
 zlib_local void fixedtables OF((struct inflate_state FAR *state));
-zlib_local int32_t updatewindow OF((z_streamp strm, uint32_t out));
+zlib_local int32_t updatewindow OF((z_streamp strm, uint_ptr out));
 #ifdef BUILDFIXED
    void makefixed OF(());
 #endif
-zlib_local uint32_t syncsearch OF((uint32_t FAR *have, uchar FAR *buf,
-                              uint32_t len));
+zlib_local uint32_t syncsearch OF((uint32_t FAR *have, uchar FAR *buf, uint_ptr len));
 
 int32_t ZEXPORT inflateReset(
 z_streamp strm)
@@ -324,10 +323,10 @@ void makefixed()
  */
 zlib_local int32_t updatewindow(
 z_streamp strm,
-uint32_t out)
+uint_ptr out)
 {
     struct inflate_state FAR *state;
-    uint32_t copy, dist;
+    uint_ptr copy, dist;
 
     state = (struct inflate_state FAR *)strm->state;
 
@@ -560,15 +559,15 @@ int32_t flush)
     struct inflate_state FAR *state;
     uchar FAR *next;    /* next input */
     uchar FAR *put;     /* next output */
-    uint32_t have, left;        /* available input and output */
+    uint_ptr have, left;        /* available input and output */
     uint32_t hold;         /* bit buffer */
     uint32_t bits;              /* bits in bit buffer */
-    uint32_t in, out;           /* save starting available input and output */
-    uint32_t copy;              /* number of stored or match bytes to copy */
+    uint_ptr in, out;           /* save starting available input and output */
+    uint_ptr copy;              /* number of stored or match bytes to copy */
     uchar FAR *from;    /* where to copy match bytes from */
     code codeThis;                  /* current decoding table entry */
     code last;                  /* parent table entry */
-    uint32_t len;               /* length to copy for repeats, bits to drop */
+    uint_ptr len;               /* length to copy for repeats, bits to drop */
     int32_t ret;                    /* return code */
 #ifdef GUNZIP
     uchar hbuf[4];      /* buffer for gzip header crc calculation */
@@ -1171,7 +1170,7 @@ z_streamp strm)
 int32_t ZEXPORT inflateSetDictionary(
 z_streamp strm,
 const Bytef *dictionary,
-uInt dictLength)
+uint32_t dictLength)
 {
     struct inflate_state FAR *state;
     uint32_t id;
@@ -1238,7 +1237,7 @@ gz_headerp head)
    called again with more data and the *have state.  *have is initialized to
    zero for the first call.
  */
-zlib_local uint32_t syncsearch(uint32_t FAR * have, uchar FAR *buf, uint32_t len)
+zlib_local uint32_t syncsearch(uint32_t FAR * have, uchar FAR *buf, uint_ptr len)
 {
     uint32_t got;
     uint32_t next;

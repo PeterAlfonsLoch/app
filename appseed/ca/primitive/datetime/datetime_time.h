@@ -19,15 +19,15 @@ namespace datetime
    public:
       time_span() NOTHROW;
       time_span( __time64_t time ) NOTHROW;
-      time_span( LONG lDays, int32_t nHours, int32_t nMins, int32_t nSecs ) NOTHROW;
+      time_span(int64_t lDays, int32_t nHours, int32_t nMins, int32_t nSecs ) NOTHROW;
 
-      LONGLONG GetDays() const NOTHROW;
-      LONGLONG GetTotalHours() const NOTHROW;
-      LONG GetHours() const NOTHROW;
-      LONGLONG GetTotalMinutes() const NOTHROW;
-      LONG GetMinutes() const NOTHROW;
-      LONGLONG GetTotalSeconds() const NOTHROW;
-      LONG GetSeconds() const NOTHROW;
+      int64_t GetDays() const NOTHROW;
+      int64_t GetTotalHours() const NOTHROW;
+      int32_t GetHours() const NOTHROW;
+      int64_t GetTotalMinutes() const NOTHROW;
+      int32_t GetMinutes() const NOTHROW;
+      int64_t GetTotalSeconds() const NOTHROW;
+      int32_t GetSeconds() const NOTHROW;
 
       __time64_t GetTimeSpan() const NOTHROW;
 

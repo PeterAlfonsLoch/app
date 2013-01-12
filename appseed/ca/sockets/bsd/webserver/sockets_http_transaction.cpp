@@ -86,12 +86,12 @@ namespace http
       return header("Content-Type");
    }
 
-   void transaction::SetContentLength(long value)
+   void transaction::SetContentLength(primitive::memory_size value)
    {
       header("Content-Length") = value;
    }
 
-   long transaction::ContentLength()
+   primitive::memory_size transaction::ContentLength()
    {
       return atol(header("Content-Length"));
    }

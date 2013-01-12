@@ -427,7 +427,7 @@ typedef struct tagMINMAXINFO {
  * lParam of WM_COPYDATA message points to...
  */
 typedef struct tagCOPYDATASTRUCT {
-    ulong_ptr dwData;
+    uint_ptr dwData;
     DWORD cbData;
     PVOID lpData;
 } COPYDATASTRUCT, *PCOPYDATASTRUCT;

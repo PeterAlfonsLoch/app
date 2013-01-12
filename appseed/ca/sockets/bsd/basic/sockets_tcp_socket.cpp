@@ -394,7 +394,6 @@ namespace sockets
 
    void tcp_socket::OnRead()
    {
-      uint32_t dw1, dw2;
       int32_t n = 0;
    #ifdef SOCKETS_DYNAMIC_TEMP
       char *buf = m_buf;
@@ -402,6 +401,7 @@ namespace sockets
       char buf[TCP_BUFSIZE_READ];
    #endif
    #ifdef HAVE_OPENSSL
+      uint32_t dw1, dw2;
       if (IsSSL())
       {
          if (!Ready())
@@ -466,7 +466,11 @@ namespace sockets
       else
    #endif // HAVE_OPENSSL
       {
+#ifdef MACOS
+         n = (int32_t) recv(GetSocket(), buf, TCP_BUFSIZE_READ, SO_NOSIGPIPE);
+#else
          n = recv(GetSocket(), buf, TCP_BUFSIZE_READ, MSG_NOSIGNAL);
+#endif
          if (n == -1)
          {
             Handler().LogError(this, "read", Errno, StrError(Errno), ::gen::log::level::fatal);
@@ -632,14 +636,14 @@ namespace sockets
 
    int32_t tcp_socket::TryWrite(const char *buf, size_t len)
    {
-      int32_t n = 0;
+      size_t n = 0;
    #ifdef HAVE_OPENSSL
       if (IsSSL())
       {
          n = SSL_write(m_ssl, buf, (int32_t)len);
          if (n == -1)
          {
-            int32_t errnr = SSL_get_error(m_ssl, n);
+            int32_t errnr = SSL_get_error(m_ssl, (int32_t) n);
             if ( errnr != SSL_ERROR_WANT_READ && errnr != SSL_ERROR_WANT_WRITE )
             {
                OnDisconnect();
@@ -658,7 +662,7 @@ namespace sockets
             SetCloseAndDelete(true);
             SetFlushBeforeClose(false);
             SetLost();
-            int32_t errnr = SSL_get_error(m_ssl, n);
+            int32_t errnr = SSL_get_error(m_ssl, (int32_t) n);
             const char *errbuf = ERR_error_string(errnr, NULL);
             TRACE("SSL_write() returns 0: %d : %s\n",errnr, errbuf);
          }
@@ -666,7 +670,11 @@ namespace sockets
       else
    #endif // HAVE_OPENSSL
       {
-         n = send(GetSocket(), buf, (int32_t)len, MSG_NOSIGNAL);
+#ifdef MACOS
+         n = send(GetSocket(), buf, len, SO_NOSIGPIPE);
+#else
+         n = send(GetSocket(), buf, len, MSG_NOSIGNAL);
+#endif
          if (n == -1)
          {
          // normal error codes:
@@ -695,7 +703,7 @@ namespace sockets
             GetTrafficMonitor() -> write(buf, n);
          }
       }
-      return n;
+      return (int32_t) n;
    }
 
 
@@ -1296,7 +1304,7 @@ namespace sockets
       }
       //
       char tmp[1000];
-      if (!Lost() && (n = recv(GetSocket(),tmp,1000,0)) >= 0)
+      if (!Lost() && (n = (int32_t) recv(GetSocket(),tmp,1000,0)) >= 0)
       {
          if (n)
          {

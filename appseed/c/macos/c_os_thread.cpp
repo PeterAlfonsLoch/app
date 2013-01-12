@@ -15,8 +15,8 @@ void * thread_proc_create_thread(LPVOID lpparameter)
 
 /*   Gdiplus::GdiplusStartupInput     * pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
    Gdiplus::GdiplusStartupOutput    * pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();
-   ulong_ptr gdiplusToken                                      = NULL;
-   ulong_ptr gdiplusHookToken                                  = NULL;
+   uint_ptr gdiplusToken                                      = NULL;
+   uint_ptr gdiplusHookToken                                  = NULL;
 
    //pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
 
@@ -64,7 +64,7 @@ void * thread_proc_create_thread(LPVOID lpparameter)
 
    delete posthread;
 
-   return (void *) (dword_ptr) dwRet;
+   return (void *) (uint_ptr) dwRet;
 
 }
 

@@ -74,18 +74,18 @@ extern "C" {
   crash even in case of corrupted input.
 */
 
-typedef voidpf (*alloc_func) OF((voidpf opaque, uInt items, uInt size));
+typedef voidpf (*alloc_func) OF((voidpf opaque, uint32_t items, uint32_t size));
 typedef void   (*free_func)  OF((voidpf opaque, voidpf address));
 
 struct internal_state;
 
 typedef struct z_stream_s {
     Bytef    *next_in;  /* next input byte */
-    uint32_t     avail_in;  /* number of bytes available at next_in */
+    uint_ptr     avail_in;  /* number of bytes available at next_in */
     uint32_t    total_in;  /* total nb of input bytes read so far */
 
     Bytef    *next_out; /* next output byte should be put there */
-    uint32_t     avail_out; /* remaining free space at next_out */
+    uint_ptr     avail_out; /* remaining free space at next_out */
     uint32_t    total_out; /* total nb of bytes output so far */
 
     char     *msg;      /* last error message, NULL if no error */
@@ -112,12 +112,12 @@ typedef struct gz_header_s {
     int32_t     xflags;     /* extra flags (not used when writing a gzip file) */
     int32_t     os;         /* operating system */
     Bytef   *extra;     /* pointer to extra field or Z_NULL if none */
-    uInt    extra_len;  /* extra field length (valid if extra != Z_NULL) */
-    uInt    extra_max;  /* space at extra (only when reading header) */
+    uint32_t    extra_len;  /* extra field length (valid if extra != Z_NULL) */
+    uint32_t    extra_max;  /* space at extra (only when reading header) */
     Bytef   *name;      /* pointer to zero-terminated file name or Z_NULL */
-    uInt    name_max;   /* space at name (only when reading header) */
+    uint32_t    name_max;   /* space at name (only when reading header) */
     Bytef   *comment;   /* pointer to zero-terminated comment or Z_NULL */
-    uInt    comm_max;   /* space at comment (only when reading header) */
+    uint32_t    comm_max;   /* space at comment (only when reading header) */
     int32_t     hcrc;       /* true if there was or will be a header crc */
     int32_t     done;       /* true when done reading gzip header (not used
                            when writing a gzip file) */
@@ -537,7 +537,7 @@ ZEXTERN int32_t ZEXPORT deflateInit2 OF((z_streamp strm,
 
 ZEXTERN int32_t ZEXPORT deflateSetDictionary OF((z_streamp strm,
                                              const Bytef *dictionary,
-                                             uInt  dictLength));
+                                             uint32_t  dictLength));
 /*
      Initializes the compression dictionary from the given byte sequence
    without producing any compressed output. This function must be called
@@ -735,7 +735,7 @@ ZEXTERN int32_t ZEXPORT inflateInit2 OF((z_streamp strm,
 
 ZEXTERN int32_t ZEXPORT inflateSetDictionary OF((z_streamp strm,
                                              const Bytef *dictionary,
-                                             uInt  dictLength));
+                                             uint32_t  dictLength));
 /*
      Initializes the decompression dictionary from the given uncompressed byte
    sequence. This function must be called immediately after a call of inflate,
@@ -875,7 +875,7 @@ ZEXTERN int32_t ZEXPORT inflateBackInit OF((z_streamp strm, int32_t windowBits,
 */
 
 typedef uint32_t (*in_func) OF((void FAR *, uchar FAR * FAR *));
-typedef int32_t (*out_func) OF((void FAR *, uchar FAR *, uint32_t));
+typedef int32_t (*out_func) OF((void FAR *, uchar FAR *, uint_ptr));
 
 ZEXTERN int32_t ZEXPORT inflateBack OF((z_streamp strm,
                                     in_func in, void FAR *in_desc,
@@ -958,7 +958,7 @@ ZEXTERN uint_ptr ZEXPORT zlibCompileFlags OF(());
 /* Return flags indicating compile-time options.
 
     Type sizes, two bits each, 00 = 16 bits, 01 = 32, 10 = 64, 11 = other:
-     1.0: size of uInt
+     1.0: size of uint32_t
      3.2: size of uint_ptr
      5.4: size of voidpf (pointer)
      7.6: size of z_off_t
@@ -1006,7 +1006,7 @@ ZEXTERN uint_ptr ZEXPORT zlibCompileFlags OF(());
    utility functions can easily be modified if you need special options.
 */
 
-ZEXTERN int32_t ZEXPORT zlib_compress OF((Bytef *dest,   uLongf *destLen,
+ZEXTERN int32_t ZEXPORT zlib_compress OF((Bytef *dest,   uint_ptr *destLen,
                                  const Bytef *source, uint_ptr sourceLen));
 /*
      Compresses the source buffer into the destination buffer.  sourceLen is
@@ -1021,7 +1021,7 @@ ZEXTERN int32_t ZEXPORT zlib_compress OF((Bytef *dest,   uLongf *destLen,
    buffer.
 */
 
-ZEXTERN int32_t ZEXPORT compress2 OF((Bytef *dest,   uLongf *destLen,
+ZEXTERN int32_t ZEXPORT compress2 OF((Bytef *dest,   uint_ptr *destLen,
                                   const Bytef *source, uint_ptr sourceLen,
                                   int32_t level));
 /*
@@ -1044,7 +1044,7 @@ ZEXTERN uint_ptr ZEXPORT compressBound OF((uint_ptr sourceLen));
    a compress() or compress2() call to allocate the destination buffer.
 */
 
-ZEXTERN int32_t ZEXPORT uncompress OF((Bytef *dest,   uLongf *destLen,
+ZEXTERN int32_t ZEXPORT uncompress OF((Bytef *dest,   uint_ptr *destLen,
                                    const Bytef *source, uint_ptr sourceLen));
 /*
      Decompresses the source buffer into the destination buffer.  sourceLen is
@@ -1257,7 +1257,7 @@ ZEXTERN void ZEXPORT gzclearerr OF((gzFile file));
    compression library.
 */
 
-ZEXTERN uint32_t ZEXPORT adler32 OF((uint32_t adler, const Bytef *buf, uInt len));
+ZEXTERN uint32_t ZEXPORT adler32 OF((uint32_t adler, const Bytef *buf, uint_ptr len));
 /*
      Update a running Adler-32 checksum with the bytes buf[0..len-1] and
    return the updated checksum. If buf is NULL, this function returns
@@ -1273,8 +1273,7 @@ ZEXTERN uint32_t ZEXPORT adler32 OF((uint32_t adler, const Bytef *buf, uInt len)
      if (adler != original_adler) error();
 */
 
-ZEXTERN uint32_t ZEXPORT adler32_combine OF((uint32_t adler1, uint32_t adler2,
-                                          z_off_t len2));
+ZEXTERN uint32_t ZEXPORT adler32_combine OF((uint32_t adler1, uint32_t adler2, z_off_t len2));
 /*
      Combine two Adler-32 checksums into one.  For two sequences of bytes, seq1
    and seq2 with lengths len1 and len2, Adler-32 checksums were calculated for

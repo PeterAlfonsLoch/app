@@ -1565,7 +1565,7 @@ fill_last:
       {
 
          LPBYTE lpbAlloc = (LPBYTE) malloc((iRadius * iRadius) + 4);
-         LPBYTE lpb = ((LPBYTE) NULL) +  (*((puint_ptr) &lpbAlloc[3]) & ~3);
+         LPBYTE lpb = ((LPBYTE) NULL) +  (*((uint_ptr *) &lpbAlloc[3]) & ~3);
 
 
          int32_t x, y;
@@ -1725,7 +1725,7 @@ fill_last:
       {
 
          LPBYTE lpbAlloc = (LPBYTE) malloc((iRadius * iRadius) + 4);
-         LPBYTE lpb = ((LPBYTE) NULL) +  (*((puint_ptr) &lpbAlloc[3]) & ~3);
+         LPBYTE lpb = ((LPBYTE) NULL) +  (*((uint_ptr *) &lpbAlloc[3]) & ~3);
 
 
          int32_t x, y;

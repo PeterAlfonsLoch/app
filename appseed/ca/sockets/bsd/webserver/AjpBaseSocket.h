@@ -46,10 +46,10 @@ namespace sockets
 
       AjpBaseSocket(socket_handler_base& h);
 
-      void OnRawData(char *buf, size_t sz);
+      void OnRawData(char *buf, primitive::memory_size sz);
 
       virtual void OnHeader( int16_t id, int16_t len ) = 0;
-      virtual void OnPacket( const char *buf, size_t sz ) = 0;
+      virtual void OnPacket( const char *buf, primitive::memory_size sz ) = 0;
 
    protected:
       uchar get_byte(const char *buf, int32_t& ptr);

@@ -80,15 +80,11 @@ extern "C"
 #include "c_printf.h"
 #include "c_sprintf.h"
 #include "c_str.h"
-#include "c_std_file.h"
-//#include "c_atol.h"
 #include "c_conv.h"
 
 
 
 #include "c_heap.h"
-#include "c_mem.h"
-
 #include "c_math.h"
 
 #include "c_geometric_types.h"

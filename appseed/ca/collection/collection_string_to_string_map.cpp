@@ -441,7 +441,7 @@ void base_string_to_string_map::dump(dump_context & dumpcontext) const
 {
    ::radix::object::dump(dumpcontext);
 
-   dumpcontext << "with " << LONGLONG(m_nCount) << " elements";
+   dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
    {
       // dump in format "[key] -> value"

@@ -19,7 +19,7 @@
 
          //primitive::memory    m_memoryData; ///< Ptr to buffer where to store response
          //size_t m_data_size; ///< Max size of data buffer
-         size_t m_content_length; ///< Content-length header received from remote
+         primitive::memory_size m_content_length; ///< Content-length header received from remote
          string m_content; ///< Received http headers
          //bool m_data_ptr_set; ///< buffer set from outside, do not delete
          size_t m_content_ptr; ///< Number of bytes received from body
