@@ -1,6 +1,11 @@
 #include "framework.h"
 
 
+DWORD MsgWaitForMultipleObjects(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, DWORD dwWakeMask)
+{
+   return WaitForMultipleObjects(dwSize, pwaitableptra, bWaitForAll, dwTimeout); 
+}
+
 DWORD WaitForMultipleObjectsEx(DWORD dwSize, waitable ** pwaitableptra, WINBOOL bWaitForAll, DWORD dwTimeout, WINBOOL UNUSED(bAlertable))
 {
 

@@ -7,7 +7,8 @@
 
 
 static LCID user_lcid, system_lcid;
-static LANGID user_ui_language, system_ui_language;
+//static LANGID user_ui_language, system_ui_language;
+static LANGID system_ui_language;
 
 UINT setup_unix_locales(void);
 WINBOOL is_genitive_name_supported( LCTYPE lctype );
@@ -67,7 +68,7 @@ int32_t WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, int32_t 
                 if (ret > 0)
                 {
                     const WCHAR *end;
-                    uint32_t number = wtoi64_dup(tmp, &end, 10 );
+                    uint32_t number = (uint32_t) wtoi64_dup(tmp, &end, 10 );
                     if (*end)  /* invalid number */
                     {
                         SetLastError( ERROR_INVALID_FLAGS );
@@ -142,7 +143,7 @@ int32_t WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, int32_t 
         if (!tmp) return 0;
         memcpy( tmp, p + 1, *p * sizeof(WCHAR) );
         tmp[*p] = 0;
-        number = wtoi64_dup( tmp, &end, 10 );
+        number = (uint32) wtoi64_dup( tmp, &end, 10 );
         if (!*end)
             memcpy( buffer, &number, sizeof(number) );
         else  /* invalid number */
@@ -210,7 +211,7 @@ WINBOOL is_genitive_name_supported( LCTYPE lctype )
 /* locale ids corresponding to the various Unix locale parameters */
 static LCID lcid_LC_COLLATE;
 static LCID lcid_LC_CTYPE;
-static LCID lcid_LC_MESSAGES;
+//static LCID lcid_LC_MESSAGES;
 static LCID lcid_LC_MONETARY;
 static LCID lcid_LC_NUMERIC;
 static LCID lcid_LC_TIME;

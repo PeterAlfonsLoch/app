@@ -37,6 +37,9 @@ it under the terms of the one of three licenses as you choose:
 #include <stdlib.h>
 
 
+#define NO_LCMS
+
+
 #include "libraw_datastream.h"
 #include "libraw_types.h"
 #include "libraw_const.h"

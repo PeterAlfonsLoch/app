@@ -16,3 +16,10 @@ CLASS_DECL_c void dll_processes(simple_uint_array & dwa, stra_dup & straProcesse
    
    
 }
+
+vsstring get_sys_temp_path()
+{
+   
+   return ::dir::path(getenv("HOME"), ".ca2", "time");
+   
+}

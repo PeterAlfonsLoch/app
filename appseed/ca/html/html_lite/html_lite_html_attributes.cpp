@@ -425,7 +425,7 @@ COLORREF LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
    else if (isHexColorValue())
    {
 
-      crTemp = ::strtoul(m_strValue.Mid(1), NULL, 16);
+      crTemp = (uint32_t) ::strtoul(m_strValue.Mid(1), NULL, 16);
 
    }
 

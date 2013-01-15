@@ -825,7 +825,7 @@ namespace gen
 } // namespace gen
 
 
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
 
 
 template < class T >

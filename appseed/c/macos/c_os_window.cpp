@@ -187,5 +187,31 @@ void oswindow::set_user_interaction(::user::interaction_base * pui)
 
 
 
+oswindow oswindow::get_parent()
+{
+   
+   if(m_pdata == NULL)
+      return ::ca::null();
+   
+   
+   return ::ca::null();
+   
+}
+
+oswindow oswindow::set_parent(oswindow oswindow)
+{
+   
+   if(m_pdata == NULL)
+      return ::ca::null();
+   
+   ::oswindow oswindowOldParent = get_parent();
+   
+   
+   return oswindowOldParent;
+   
+}
+
+
+
 
 

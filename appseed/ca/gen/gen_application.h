@@ -76,7 +76,7 @@ namespace gen
       static WPARAM WPARAM_LANGUAGE_UPDATE;
 #ifdef WINDOWS
       virtual bool OnMessageWindowMessage(LPMESSAGE lpmsg);
-#else
+#elif defined(LINUX)
       virtual bool OnMessageWindowMessage(XEvent * pev);
 #endif
 

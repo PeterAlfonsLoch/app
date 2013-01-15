@@ -1474,7 +1474,7 @@ CLASS_DECL_c int32_t WINAPI GetSystemMetrics(int32_t nIndex);
 
 CLASS_DECL_c bool CopyRect(LPRECT prectDest, LPCRECT pcrectSrc);
 CLASS_DECL_c bool PtInRect(LPCRECT prect, POINT point);
-CLASS_DECL_c bool SetRect(LPRECT prect, long x1, long y1, long x2, long y2);
+CLASS_DECL_c bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2);
 CLASS_DECL_c bool SetRectEmpty(LPRECT prect);
 CLASS_DECL_c bool EqualRect(LPCRECT prect1, LPCRECT prect2);
 CLASS_DECL_c bool InflateRect(LPRECT prect, int32_t x, int32_t y);

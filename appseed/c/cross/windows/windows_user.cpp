@@ -62,7 +62,7 @@ CLASS_DECL_c bool PtInRect(LPCRECT prect, POINT point)
 
 }
 
-CLASS_DECL_c bool SetRect(LPRECT prect, long x1, long y1, long x2, long y2)
+CLASS_DECL_c bool SetRect(LPRECT prect, int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 
    prect->left = x1;
@@ -181,20 +181,20 @@ MultiByteToWideChar(
    {
       if(cbMultiByte < 0)
       {
-         return wstr.get_length() + 1;
+         return (int32_t) (wstr.get_length() + 1);
       }
       else
       {
-         return wstr.get_length();
+         return (int32_t) wstr.get_length();
       }
    }
 
-   int32_t iLen = min(cchWideChar, wstr.get_length());
+   int32_t iLen = (int32_t) min(cchWideChar, wstr.get_length());
 
    if(lpWideCharStr != NULL)
    {
 
-      wcsncpy(lpWideCharStr, wstr, iLen);
+      wcsncpy_dup(lpWideCharStr, wstr, iLen);
 
       if(cchWideChar > 0 && cbMultiByte < 0)
       {
@@ -237,15 +237,15 @@ WideCharToMultiByte(
    {
       if(cchWideChar < 0)
       {
-         return str.get_length() + 1;
+         return (int32_t) str.get_length() + 1;
       }
       else
       {
-         return str.get_length();
+         return (int32_t) str.get_length();
       }
    }
 
-   int32_t iLen = min(cbMultiByte, str.get_length());
+   int32_t iLen = (int32_t) min(cbMultiByte, str.get_length());
 
    if(lpMultiByteStr != NULL)
    {

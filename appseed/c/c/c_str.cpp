@@ -20,6 +20,16 @@ void strcat_dup(char * dest, const char * cat)
 }
 
 
+#ifdef MACOS
+
+int32_t stricmp(const char * sz1, const char * sz2)
+{
+   return stricmp_dup(sz1, sz2);
+}
+
+#endif
+
+
 int32_t stricmp_dup(const char * sz1, const char * sz2)
 {
    if(sz1 == NULL)
