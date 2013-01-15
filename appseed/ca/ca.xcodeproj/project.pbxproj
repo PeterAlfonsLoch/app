@@ -394,7 +394,6 @@
 		9A1B495E16A48E0E00875A94 /* uinteraction_frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B495D16A48E0E00875A94 /* uinteraction_frame.cpp */; };
 		9A1B496116A48E2D00875A94 /* user_data_exchange.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B495F16A48E2D00875A94 /* user_data_exchange.cpp */; };
 		9A1B496216A48E2D00875A94 /* user_data_exchange.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B496016A48E2D00875A94 /* user_data_exchange.h */; };
-		9A58847216A20B280061C610 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847116A20B280061C610 /* libcrypto.a */; };
 		9A58847816A20D230061C610 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847716A20D230061C610 /* AppKit.framework */; };
 		9A58847A16A20D360061C610 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847916A20D360061C610 /* Foundation.framework */; };
 		9A58847C16A20D480061C610 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847B16A20D480061C610 /* Carbon.framework */; };
@@ -1320,7 +1319,7 @@
 		9A88B4EE14C2CA2F006B4023 /* zconf.in.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADD714C2CA2D006B4023 /* zconf.in.h */; };
 		9A88B4EF14C2CA2F006B4023 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADDB14C2CA2D006B4023 /* zlib.h */; };
 		9A88B4F114C2CA2F006B4023 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADE014C2CA2D006B4023 /* zutil.h */; };
-		9AD3D5E416A214FC000ACF85 /* libmysql.16.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AD3D5E316A214FC000ACF85 /* libmysql.16.0.0.dylib */; };
+		9ABBC6F416A59271009CA32E /* libmysql.16.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABBC6F316A59271009CA32E /* libmysql.16.0.0.dylib */; };
 		9ADA5C09168CF0ED00B160D8 /* 7z.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADA5B48168CF0ED00B160D8 /* 7z.h */; };
 		9ADA5C0A168CF0ED00B160D8 /* 7zCompressionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADA5B49168CF0ED00B160D8 /* 7zCompressionMode.h */; };
 		9ADA5C0B168CF0ED00B160D8 /* 7zDecode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA5B4A168CF0ED00B160D8 /* 7zDecode.cpp */; };
@@ -2157,7 +2156,7 @@
 		9A1B357D16A2D58A00875A94 /* bergedge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bergedge.h; path = bergedge/bergedge.h; sourceTree = "<group>"; };
 		9A1B38B916A2D82F00875A94 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.dylib; path = ../../thirdparty/appseed/freetype/build/Release/libfreetype.dylib; sourceTree = "<group>"; };
 		9A1B484116A454D200875A94 /* libopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopenssl.dylib; path = ../../../nodeapp/appseed/openssl/build/Release/libopenssl.dylib; sourceTree = "<group>"; };
-		9A1B494016A4821000875A94 /* liboptca.dylib */ = {isa = PBXFileReference; lastKnownFileType = file; name = liboptca.dylib; path = ../optca/build/Release/liboptca.dylib; sourceTree = "<group>"; };
+		9A1B494016A4821000875A94 /* liboptca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liboptca.dylib; path = ../optca/build/Release/liboptca.dylib; sourceTree = "<group>"; };
 		9A1B494C16A48C7A00875A94 /* multithreading_condition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = multithreading_condition.cpp; path = multithreading/multithreading_condition.cpp; sourceTree = SOURCE_ROOT; };
 		9A1B494D16A48C7B00875A94 /* multithreading_condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = multithreading_condition.h; path = multithreading/multithreading_condition.h; sourceTree = SOURCE_ROOT; };
 		9A1B495016A48D3E00875A94 /* sockets_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_application.cpp; sourceTree = "<group>"; };
@@ -2169,7 +2168,6 @@
 		9A1B495D16A48E0E00875A94 /* uinteraction_frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = uinteraction_frame.cpp; path = uinteraction/uinteraction_frame.cpp; sourceTree = "<group>"; };
 		9A1B495F16A48E2D00875A94 /* user_data_exchange.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = user_data_exchange.cpp; sourceTree = "<group>"; };
 		9A1B496016A48E2D00875A94 /* user_data_exchange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = user_data_exchange.h; sourceTree = "<group>"; };
-		9A58847116A20B280061C610 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../../../nodeapp/appseed/openssl/build/Release/libcrypto.a; sourceTree = "<group>"; };
 		9A58847716A20D230061C610 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9A58847916A20D360061C610 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9A58847B16A20D480061C610 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -3100,7 +3098,7 @@
 		9A88ADD714C2CA2D006B4023 /* zconf.in.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.in.h; sourceTree = "<group>"; };
 		9A88ADDB14C2CA2D006B4023 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		9A88ADE014C2CA2D006B4023 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
-		9AD3D5E316A214FC000ACF85 /* libmysql.16.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysql.16.0.0.dylib; path = ../../../../usr/local/lib/libmysql.16.0.0.dylib; sourceTree = "<group>"; };
+		9ABBC6F316A59271009CA32E /* libmysql.16.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysql.16.0.0.dylib; path = ../../../nodeapp/thirdparty/library/libmysql.16.0.0.dylib; sourceTree = "<group>"; };
 		9ADA5B48168CF0ED00B160D8 /* 7z.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7z.h; sourceTree = "<group>"; };
 		9ADA5B49168CF0ED00B160D8 /* 7zCompressionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7zCompressionMode.h; sourceTree = "<group>"; };
 		9ADA5B4A168CF0ED00B160D8 /* 7zDecode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 7zDecode.cpp; sourceTree = "<group>"; };
@@ -3567,16 +3565,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ABBC6F416A59271009CA32E /* libmysql.16.0.0.dylib in Frameworks */,
 				9A1B494116A4821000875A94 /* liboptca.dylib in Frameworks */,
 				9A1B484216A454D200875A94 /* libopenssl.dylib in Frameworks */,
 				9A1B38BA16A2D82F00875A94 /* libfreetype.dylib in Frameworks */,
 				9A1B34B816A2B09C00875A94 /* libFreeImage.dylib in Frameworks */,
-				9AD3D5E416A214FC000ACF85 /* libmysql.16.0.0.dylib in Frameworks */,
 				9A58847E16A20D5E0061C610 /* Security.framework in Frameworks */,
 				9A58847C16A20D480061C610 /* Carbon.framework in Frameworks */,
 				9A58847A16A20D360061C610 /* Foundation.framework in Frameworks */,
 				9A58847816A20D230061C610 /* AppKit.framework in Frameworks */,
-				9A58847216A20B280061C610 /* libcrypto.a in Frameworks */,
 				CE931719155F1C02005F90F6 /* c.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3916,18 +3913,16 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
-				9A1B495416A48DBD00875A94 /* uinteraction */,
+				9ABBC6F316A59271009CA32E /* libmysql.16.0.0.dylib */,
+				CE931718155F1C02005F90F6 /* c.dylib */,
 				9A1B494016A4821000875A94 /* liboptca.dylib */,
 				9A1B484116A454D200875A94 /* libopenssl.dylib */,
 				9A1B38B916A2D82F00875A94 /* libfreetype.dylib */,
 				9A1B34B716A2B09C00875A94 /* libFreeImage.dylib */,
-				9AD3D5E316A214FC000ACF85 /* libmysql.16.0.0.dylib */,
 				9A58847D16A20D5E0061C610 /* Security.framework */,
 				9A58847B16A20D480061C610 /* Carbon.framework */,
 				9A58847916A20D360061C610 /* Foundation.framework */,
 				9A58847716A20D230061C610 /* AppKit.framework */,
-				9A58847116A20B280061C610 /* libcrypto.a */,
-				CE931718155F1C02005F90F6 /* c.dylib */,
 				9A88A65D14C2CA2C006B4023 /* api */,
 				9A1B357A16A2D55800875A94 /* bergedge */,
 				9A88A66914C2CA2C006B4023 /* ca */,
@@ -3965,6 +3960,7 @@
 				9A88ABB514C2CA2D006B4023 /* simpledb */,
 				9A88ABF614C2CA2D006B4023 /* sockets */,
 				9A88AC7B14C2CA2D006B4023 /* sqlite */,
+				9A1B495416A48DBD00875A94 /* uinteraction */,
 				9A88ACAB14C2CA2D006B4023 /* user */,
 				9A88AD0914C2CA2D006B4023 /* userpresence */,
 				9A88AD1314C2CA2D006B4023 /* visual */,
@@ -7716,7 +7712,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -7742,7 +7741,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
@@ -7759,6 +7761,10 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../nodeapp/thirdparty/library\"",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7779,6 +7785,10 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../nodeapp/thirdparty/library\"",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -242,7 +242,7 @@ version 0.99b [February 4, 1998]
   Added type cast png_uint_32 on malloc function calls where needed.
   Changed type of num_hist from png_uint_32 to int (same as num_palette).
   Added checks for rowbytes overflow, in case png_size_t is less than 32 bits.
-  Renamed makefile.elf to makefile.lnx.
+  Renamed makefile.elf to makefile.MAC.
 version 0.99c [February 7, 1998]
   More type casting.  Removed erroneous overflow test in pngmem.c.
   Added png_buffered_memcpy() and png_buffered_memset(), apply them to rowbytes.
@@ -271,7 +271,7 @@ version 0.99f [March 5, 1998]
   Corrected a bug in pngpread() introduced in version 99c (Kevin Bracey)
   Moved makefiles into a "scripts" directory, and added INSTALL instruction file
   Added makefile.os2 and pngos2.def (A. Zabolotny) and makefile.s2x (W. Sebok)
-  Added pointers to "note on libpng versions" in makefile.lnx and README
+  Added pointers to "note on libpng versions" in makefile.MAC and README
   Added row callback feature when reading and writing nonprogressive rows
      and added a test of this feature in pngtest.c
   Added user transform callbacks, with test of the feature in pngtest.c
@@ -316,7 +316,7 @@ version 1.0.1 [March 14, 1998]
 version 1.0.1a [April 21, 1998]
   Optimized Paeth calculations by replacing abs() function calls with intrinsics
   plus other loop optimizations. Improves avg decoding speed by about 20%.
-  Commented out i386istic "align" compiler flags in makefile.lnx.
+  Commented out i386istic "align" compiler flags in makefile.MAC.
   Reduced the default warning level in some makefiles, to make them consistent.
   Removed references to IJG and JPEG in the ansi2knr.c copyright statement.
   Fixed a bug in png_do_strip_filler with XXRRGGBB => RRGGBB transformation.
@@ -402,7 +402,7 @@ version 1.0.2a [December 30, 1998]
   Added png_get_copyright() and png_get_header_version() functions.
   Revised comments on png_set_progressive_read_fn() in libpng.txt and example.c
   Added information about debugging in libpng.txt and libpng.3 .
-  Changed "ln -sf" to "ln -s -f" in makefile.s2x, makefile.lnx, and makefile.sco.
+  Changed "ln -sf" to "ln -s -f" in makefile.s2x, makefile.MAC, and makefile.sco.
   Removed lines after Dynamic Dependencies" in makefile.aco .
   Revised makefile.dec to make a shared library (Jeremie Petit).
   Removed trailing blanks from all files.

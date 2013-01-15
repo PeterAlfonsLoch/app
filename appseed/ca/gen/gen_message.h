@@ -816,10 +816,10 @@ namespace gen
    ;
 #endif
 #ifdef LINUX
-#define IGUI_LNX_MSG_LINK \
+#define IGUI_MAC_MSG_LINK \
    ::gen::message::os_connect
 #else
-#define IGUI_LNX_MSG_LINK(p1, p2, p3, p4) \
+#define IGUI_MAC_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 
