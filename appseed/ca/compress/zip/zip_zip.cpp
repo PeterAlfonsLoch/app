@@ -910,9 +910,9 @@ extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
     if (zi->in_opened_file_inzip == 0)
         return ZIP_PARAMERROR;
 
-    zi->ci.stream.next_in = (Bytef *)buf;
+    zi->ci.stream.next_in = (byte *)buf;
     zi->ci.stream.avail_in = len;
-    zi->ci.crc32 = crc32(zi->ci.crc32, (const Bytef *) buf,len);
+    zi->ci.crc32 = crc32(zi->ci.crc32, (const byte *) buf,len);
 
     while ((err==ZIP_OK) && (zi->ci.stream.avail_in>0))
     {

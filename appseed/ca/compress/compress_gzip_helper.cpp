@@ -39,8 +39,8 @@ gzip::~gzip()
 
    bool gzip::write(void * buf, ::primitive::memory_size iSize)
    {
-      m_crc = crc32(m_crc, (const Bytef *) buf, iSize);
-      m_zstream.next_in       = (Bytef*)buf;
+      m_crc = crc32(m_crc, (const byte *) buf, iSize);
+      m_zstream.next_in       = (byte*)buf;
       m_zstream.avail_in      = (uint32_t) iSize;
       while (m_zstream.avail_in != 0)
       {

@@ -49,8 +49,8 @@
 #  define free_func             z_free_func
 #  define in_func               z_in_func
 #  define out_func              z_out_func
-#  define Byte                  z_Byte
-#  define Bytef                 z_Bytef
+#  define byte                  z_Byte
+#  define byte                 z_Bytef
 #  define charf                 z_charf
 #  define voidpf                z_voidpf
 #  define voidp                 z_voidp
@@ -269,9 +269,9 @@
 
 #ifdef SMALL_MEDIUM
    /* Borland C/C++ and some old MSC versions ignore FAR inside typedef */
-#  define Bytef Byte FAR
+#  define byte byte FAR
 #else
-   typedef Byte  FAR Bytef;
+   typedef byte  FAR byte;
 #endif
 
 #ifdef STDC
@@ -279,9 +279,9 @@
    typedef void FAR   *voidpf;
    typedef void       *voidp;
 #else
-   typedef Byte const *voidpc;
-   typedef Byte FAR   *voidpf;
-   typedef Byte       *voidp;
+   typedef byte const *voidpc;
+   typedef byte FAR   *voidpf;
+   typedef byte       *voidp;
 #endif
 
 #if 0           /* HAVE_UNISTD_H -- this line is updated by ./configure */

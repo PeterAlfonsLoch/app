@@ -1127,7 +1127,7 @@ extern int32_t CLASS_DECL_ca unzOpenCurrentFile3 (unzFile file, int32_t * method
       pfile_in_zip_read_info->stream.zalloc = (alloc_func)0;
       pfile_in_zip_read_info->stream.zfree = (free_func)0;
       pfile_in_zip_read_info->stream.opaque = (voidpf)0;
-      pfile_in_zip_read_info->stream.next_in = (Bytef* )0;
+      pfile_in_zip_read_info->stream.next_in = (byte* )0;
       pfile_in_zip_read_info->stream.avail_in = 0;
 
       err=inflateInit2(&pfile_in_zip_read_info->stream, -MAX_WBITS);
@@ -1238,7 +1238,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
     if (len==0)
         return 0;
 
-    pfile_in_zip_read_info->stream.next_out = (Bytef*)buf;
+    pfile_in_zip_read_info->stream.next_out = (byte*)buf;
 
     pfile_in_zip_read_info->stream.avail_out = (uint32_t)len;
 
@@ -1286,7 +1286,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
             pfile_in_zip_read_info->rest_read_compressed-=uReadThis;
 
             pfile_in_zip_read_info->stream.next_in =
-                (Bytef*)pfile_in_zip_read_info->read_buffer;
+                (byte*)pfile_in_zip_read_info->read_buffer;
             pfile_in_zip_read_info->stream.avail_in = (uint32_t)uReadThis;
         }
 
@@ -1322,7 +1322,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
         else
         {
             uint_ptr uTotalOutBefore,uTotalOutAfter;
-            const Bytef *bufBefore;
+            const byte *bufBefore;
             uint_ptr uOutThis;
             int32_t flush=Z_SYNC_FLUSH;
 

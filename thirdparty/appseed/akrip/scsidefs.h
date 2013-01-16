@@ -73,15 +73,15 @@
 #define SCSI_SRCH_DAT_E 0x31    // Search Data Equal (O)
 #define SCSI_SRCH_DAT_H 0x30    // Search Data High (O)
 #define SCSI_SRCH_DAT_L 0x32    // Search Data Low (O)
-#define SCSI_SEEK6      0x0B    // Seek 6-Byte (O)
-#define SCSI_SEEK10     0x2B    // Seek 10-Byte (O)
+#define SCSI_SEEK6      0x0B    // Seek 6-byte (O)
+#define SCSI_SEEK10     0x2B    // Seek 10-byte (O)
 #define SCSI_SEND_DIAG  0x1D    // Send Diagnostics (MANDATORY)
 #define SCSI_SET_LIMIT  0x33    // Set Limits (O)
 #define SCSI_START_STP  0x1B    // Start/Stop Unit (O)
 #define SCSI_SYNC_CACHE 0x35    // Synchronize Cache (O)
 #define SCSI_VERIFY     0x2F    // Verify (O)
-#define SCSI_WRITE6     0x0A    // Write 6-Byte (MANDATORY)
-#define SCSI_WRITE10    0x2A    // Write 10-Byte (MANDATORY)
+#define SCSI_WRITE6     0x0A    // Write 6-byte (MANDATORY)
+#define SCSI_WRITE10    0x2A    // Write 10-byte (MANDATORY)
 #define SCSI_WRT_VERIFY 0x2E    // Write and Verify (O)
 #define SCSI_WRITE_LONG 0x3F    // Write Long (O)
 #define SCSI_WRITE_SAME 0x41    // Write Same (O)
@@ -120,29 +120,29 @@
 //              %%% Commands Unique to Write-Once Devices %%%
 //***************************************************************************
 #define SCSI_MEDIUM_SCN 0x38    // Medium Scan (O)
-#define SCSI_SRCHDATE10 0x31    // Search Data Equal 10-Byte (O)
-#define SCSI_SRCHDATE12 0xB1    // Search Data Equal 12-Byte (O)
-#define SCSI_SRCHDATH10 0x30    // Search Data High 10-Byte (O)
-#define SCSI_SRCHDATH12 0xB0    // Search Data High 12-Byte (O)
-#define SCSI_SRCHD10 0x32    // Search Data Low 10-Byte (O)
-#define SCSI_SRCHD12 0xB2    // Search Data Low 12-Byte (O)
-#define SCSI_SET_LIM_10 0x33    // Set Limits 10-Byte (O)
-#define SCSI_SET_LIM_12 0xB3    // Set Limits 10-Byte (O)
-#define SCSI_VERIFY10   0x2F    // Verify 10-Byte (O)
-#define SCSI_VERIFY12   0xAF    // Verify 12-Byte (O)
-#define SCSI_WRITE12    0xAA    // Write 12-Byte (O)
-#define SCSI_WRT_VER10  0x2E    // Write and Verify 10-Byte (O)
-#define SCSI_WRT_VER12  0xAE    // Write and Verify 12-Byte (O)
+#define SCSI_SRCHDATE10 0x31    // Search Data Equal 10-byte (O)
+#define SCSI_SRCHDATE12 0xB1    // Search Data Equal 12-byte (O)
+#define SCSI_SRCHDATH10 0x30    // Search Data High 10-byte (O)
+#define SCSI_SRCHDATH12 0xB0    // Search Data High 12-byte (O)
+#define SCSI_SRCHD10 0x32    // Search Data Low 10-byte (O)
+#define SCSI_SRCHD12 0xB2    // Search Data Low 12-byte (O)
+#define SCSI_SET_LIM_10 0x33    // Set Limits 10-byte (O)
+#define SCSI_SET_LIM_12 0xB3    // Set Limits 10-byte (O)
+#define SCSI_VERIFY10   0x2F    // Verify 10-byte (O)
+#define SCSI_VERIFY12   0xAF    // Verify 12-byte (O)
+#define SCSI_WRITE12    0xAA    // Write 12-byte (O)
+#define SCSI_WRT_VER10  0x2E    // Write and Verify 10-byte (O)
+#define SCSI_WRT_VER12  0xAE    // Write and Verify 12-byte (O)
 
 //***************************************************************************
 //                %%% Commands Unique to CD-ROM Devices %%%
 //***************************************************************************
-#define SCSI_PLAYAUD_10 0x45    // Play Audio 10-Byte (O)
-#define SCSI_PLAYAUD_12 0xA5    // Play Audio 12-Byte 12-Byte (O)
+#define SCSI_PLAYAUD_10 0x45    // Play Audio 10-byte (O)
+#define SCSI_PLAYAUD_12 0xA5    // Play Audio 12-byte 12-byte (O)
 #define SCSI_PLAYAUDMSF 0x47    // Play Audio MSF (O)
 #define SCSI_PLAYA_TKIN 0x48    // Play Audio Track/Index (O)
-#define SCSI_PLYTKREL10 0x49    // Play Track Relative 10-Byte (O)
-#define SCSI_PLYTKREL12 0xA9    // Play Track Relative 12-Byte (O)
+#define SCSI_PLYTKREL10 0x49    // Play Track Relative 10-byte (O)
+#define SCSI_PLYTKREL12 0xA9    // Play Track Relative 12-byte (O)
 #define SCSI_READCDCAP  0x25    // Read CD-ROM Capacity (MANDATORY)
 #define SCSI_READHEADER 0x44    // Read Header (O)
 #define SCSI_SUBCHANNEL 0x42    // Read Subchannel (O)
@@ -174,12 +174,12 @@
 //***************************************************************************
 //            %%% Commands Unique to Communication Devices %%%
 //***************************************************************************
-#define SCSI_GET_MSG_6  0x08    // Get Message 6-Byte (MANDATORY)
-#define SCSI_GET_MSG_10 0x28    // Get Message 10-Byte (O)
-#define SCSI_GET_MSG_12 0xA8    // Get Message 12-Byte (O)
-#define SCSI_SND_MSG_6  0x0A    // Send Message 6-Byte (MANDATORY)
-#define SCSI_SND_MSG_10 0x2A    // Send Message 10-Byte (O)
-#define SCSI_SND_MSG_12 0xAA    // Send Message 12-Byte (O)
+#define SCSI_GET_MSG_6  0x08    // Get Message 6-byte (MANDATORY)
+#define SCSI_GET_MSG_10 0x28    // Get Message 10-byte (O)
+#define SCSI_GET_MSG_12 0xA8    // Get Message 12-byte (O)
+#define SCSI_SND_MSG_6  0x0A    // Send Message 6-byte (MANDATORY)
+#define SCSI_SND_MSG_10 0x2A    // Send Message 10-byte (O)
+#define SCSI_SND_MSG_12 0xAA    // Send Message 12-byte (O)
 
 //\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 //
@@ -223,10 +223,10 @@ typedef struct {
 //***************************************************************************
 //                   %%% REQUEST SENSE BIT DEFINITIONS %%%
 //***************************************************************************
-#define SENSE_VALID     0x80    // Byte 0 Bit 7
-#define SENSE_FILEMRK   0x80    // Byte 2 Bit 7
-#define SENSE_EOM       0x40    // Byte 2 Bit 6
-#define SENSE_ILI       0x20    // Byte 2 Bit 5
+#define SENSE_VALID     0x80    // byte 0 Bit 7
+#define SENSE_FILEMRK   0x80    // byte 2 Bit 7
+#define SENSE_EOM       0x40    // byte 2 Bit 6
+#define SENSE_ILI       0x20    // byte 2 Bit 5
 
 //***************************************************************************
 //               %%% REQUEST SENSE SENSE KEY DEFINITIONS %%%

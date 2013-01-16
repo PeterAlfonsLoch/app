@@ -46,9 +46,9 @@ namespace ex1
       const uint32_t kBufferSize = (1 << 16);
       byte_buffer byteBuffer;
       byteBuffer.SetCapacity(kBufferSize);
-      Byte *buffer = byteBuffer;
+      byte *buffer = byteBuffer;
       primitive::memory_size numPrevBytes = signatureSize - 1;
-      memcpy(buffer, (const Byte *)byteBuffer2 + 1, numPrevBytes);
+      memcpy(buffer, (const byte *)byteBuffer2 + 1, numPrevBytes);
       resPos = 1;
       for (;;)
       {
@@ -68,7 +68,7 @@ namespace ex1
          uint32_t numTests = (uint32_t) (numPrevBytes - signatureSize + 1);
          for (uint32_t pos = 0; pos < numTests; pos++)
          {
-            Byte b = signature[0];
+            byte b = signature[0];
             for (; buffer[pos] != b && pos < numTests; pos++);
             if (pos == numTests)
                break;

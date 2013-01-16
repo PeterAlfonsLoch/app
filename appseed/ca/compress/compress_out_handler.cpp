@@ -151,7 +151,7 @@ namespace compress
             uint32_t value = srcProp.ulVal;
             if (value > 0xFF)
                return false;
-            destProp = (Byte)value;
+            destProp = (byte)value;
             return true;
          }
       }

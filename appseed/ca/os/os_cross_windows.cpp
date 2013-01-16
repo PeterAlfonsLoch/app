@@ -36,7 +36,7 @@ BSTR SysAllocStringByteLen(LPCSTR psz, UINT len)
   *(UINT *)p = len;
   BSTR bstr = (BSTR)((UINT *)p + 1);
   memmove(bstr, psz, len);
-  Byte *pb = ((Byte *)bstr) + len;
+  byte *pb = ((byte *)bstr) + len;
   for (int32_t i = 0; i < sizeof(OLECHAR) * 2; i++)
     pb[i] = 0;
   return bstr;

@@ -14691,7 +14691,7 @@ zulu_time:
    **
    ** Notes on UTF-8:
    **
-   **   Byte-0    Byte-1    Byte-2    Byte-3    Value
+   **   byte-0    byte-1    byte-2    byte-3    Value
    **  0xxxxxxx                                 00000000 00000000 0xxxxxxx
    **  110yyyyy  10xxxxxx                       00000000 00000yyy yyxxxxxx
    **  1110zzzz  10yyyyyy  10xxxxxx             00000000 zzzzyyyy yyxxxxxx
@@ -14705,7 +14705,7 @@ zulu_time:
    **  zzzzyyyy yyxxxxxx                        00000000 zzzzyyyy yyxxxxxx
    **
    **
-   ** BOM or Byte Order Mark:
+   ** BOM or byte Order Mark:
    **     0xff 0xfe   little-endian utf-16 follows
    **     0xfe 0xff   big-endian utf-16 follows
    **
@@ -23256,7 +23256,7 @@ afp_end_lock:
       PgHdr *pStmt;               /* List of pages in the statement subjournal */
       PgHdr *pDirty;              /* List of all dirty pages */
       i64 journalOff;             /* Current byte offset in the journal file */
-      i64 journalHdr;             /* Byte offset to previous journal header */
+      i64 journalHdr;             /* byte offset to previous journal header */
       i64 stmtHdrOff;             /* First journal header written this statement */
       i64 stmtCksum;              /* cksumInit when statement was started */
       i64 stmtJSize;              /* Size of journal at stmt_begin() */
@@ -28223,7 +28223,7 @@ stmt_begin_failed:
    ** in the page header at offset 7.
    **
    **    SIZE    DESCRIPTION
-   **      2     Byte offset of the next freeblock
+   **      2     byte offset of the next freeblock
    **      2     Bytes in this freeblock
    **
    ** Cells are of var length.  Cells are stored in the cell content area at
@@ -45419,7 +45419,7 @@ abort_due_to_interrupt:
    struct Incrblob {
       int32_t flags;              /* copy of "flags" passed to sqlite3_blob_open() */
       int32_t nByte;              /* Size of open blob, in bytes */
-      int32_t iOffset;            /* Byte offset of blob in cursor data */
+      int32_t iOffset;            /* byte offset of blob in cursor data */
       BtCursor *pCsr;         /* Cursor pointing at blob row */
       sqlite3_stmt *pStmt;    /* Statement holding cursor open */
       sqlite3 *db;            /* The associated database */
@@ -76838,8 +76838,8 @@ error_out:
       int32_t (*xNext)(
          sqlite3_tokenizer_cursor *pCursor,   /* Tokenizer cursor */
          const char **ppToken, int32_t *pnBytes,  /* OUT: Normalized text for token */
-         int32_t *piStartOffset,  /* OUT: Byte offset of token in input buffer */
-         int32_t *piEndOffset,    /* OUT: Byte offset of end of token in input buffer */
+         int32_t *piStartOffset,  /* OUT: byte offset of token in input buffer */
+         int32_t *piEndOffset,    /* OUT: byte offset of end of token in input buffer */
          int32_t *piPosition      /* OUT: Number of tokens returned before this one */
          );
    };

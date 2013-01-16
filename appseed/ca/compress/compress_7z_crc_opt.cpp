@@ -13,7 +13,7 @@ uint32_t CrcUpdateT8(uint32_t v, const void *data, ::primitive::memory_size size
 
 uint32_t CrcUpdateT4(uint32_t v, const void *data, ::primitive::memory_size size, const uint32_t *table)
 {
-  const Byte *p = (const Byte *)data;
+  const byte *p = (const byte *)data;
   for (; size > 0 && ((uint32_t)(ptrdiff_t)p & 3) != 0; size--, p++)
     v = CRC_UPDATE_BYTE_2(v, *p);
   for (; size >= 4; size -= 4, p += 4)

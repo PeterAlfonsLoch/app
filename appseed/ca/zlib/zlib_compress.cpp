@@ -23,16 +23,16 @@
    Z_STREAM_ERROR if the level parameter is invalid.
 */
 int32_t ZEXPORT compress2 (
-    Bytef *dest,
+    byte *dest,
     uint_ptr *destLen,
-    const Bytef *source,
+    const byte *source,
     uint_ptr sourceLen,
     int32_t level)
 {
     z_stream stream;
     int32_t err;
 
-    stream.next_in = (Bytef*)source;
+    stream.next_in = (byte*)source;
     stream.avail_in = (uint32_t)sourceLen;
 #ifdef MAXSEG_64K
     /* Check for source > 64K on 16-bit machine: */
@@ -63,9 +63,9 @@ int32_t ZEXPORT compress2 (
 /* ===========================================================================
  */
 int32_t ZEXPORT zlib_compress (
-    Bytef *dest,
+    byte *dest,
     uint_ptr *destLen,
-    const Bytef *source,
+    const byte *source,
     uint_ptr sourceLen)
 {
     return compress2(dest, destLen, source, sourceLen, Z_DEFAULT_COMPRESSION);

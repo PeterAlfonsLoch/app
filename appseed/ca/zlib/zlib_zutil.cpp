@@ -149,8 +149,8 @@ const char * ZEXPORT zError(
 #ifndef HAVE_MEMCPY
 
 void zmemcpy(dest, source, len)
-    Bytef* dest;
-    const Bytef* source;
+    byte* dest;
+    const byte* source;
     uint32_t  len;
 {
     if (len == 0) return;
@@ -160,8 +160,8 @@ void zmemcpy(dest, source, len)
 }
 
 int32_t zmemcmp(s1, s2, len)
-    const Bytef* s1;
-    const Bytef* s2;
+    const byte* s1;
+    const byte* s2;
     uint32_t  len;
 {
     uint32_t j;
@@ -173,7 +173,7 @@ int32_t zmemcmp(s1, s2, len)
 }
 
 void zmemzero(dest, len)
-    Bytef* dest;
+    byte* dest;
     uint32_t  len;
 {
     if (len == 0) return;

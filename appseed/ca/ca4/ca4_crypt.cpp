@@ -743,7 +743,7 @@ namespace ca4
 
    uint32_t crypt::crc32(uint32_t dwPrevious, const char * psz)
    {
-      return ::crc32(dwPrevious, (const Bytef *) psz, strlen(psz));
+      return ::crc32(dwPrevious, (const byte *) psz, strlen(psz));
    }
 
    void crypt::hmac(void * result, const primitive::memory & memMessage, const primitive::memory & memKey)

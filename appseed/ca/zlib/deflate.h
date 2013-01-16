@@ -94,14 +94,14 @@ typedef uint32_t IPos;
 typedef struct internal_state {
     z_streamp strm;      /* pointer back to this zlib stream */
     int32_t   status;        /* as the name implies */
-    Bytef *pending_buf;  /* output still pending */
+    byte *pending_buf;  /* output still pending */
     uint32_t   pending_buf_size; /* size of pending_buf */
-    Bytef *pending_out;  /* next pending byte to output to the stream */
+    byte *pending_out;  /* next pending byte to output to the stream */
     uint32_t   pending;      /* nb of bytes in the pending buffer */
     int32_t   wrap;          /* bit 0 true for zlib, bit 1 true for gzip */
     gz_headerp  gzhead;  /* gzip header information to write */
     uint32_t   gzindex;      /* where in extra, name, or comment */
-    Byte  method;        /* STORED (for zip only) or DEFLATED */
+    byte  method;        /* STORED (for zip only) or DEFLATED */
     int32_t   last_flush;    /* value of flush param for previous deflate call */
 
                 /* used by deflate.c: */
@@ -110,7 +110,7 @@ typedef struct internal_state {
     uint32_t  w_bits;        /* log2(w_size)  (8..16) */
     uint32_t  w_mask;        /* w_size - 1 */
 
-    Bytef *window;
+    byte *window;
     /* Sliding window. Input bytes are read into the second half of the window,
      * and move to the first half later to keep a dictionary of at least wSize
      * bytes. With this organization, matches are limited to a distance of

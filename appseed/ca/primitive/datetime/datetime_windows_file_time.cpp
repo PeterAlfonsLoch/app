@@ -62,7 +62,7 @@ bool FileTimeToDosTime(const FILETIME &ft, uint32_t &dosTime)
 
   uint32_t year, mon, day, hour, min, sec;
   uint64_t v64 = ft.dwLowDateTime | ((uint64_t)ft.dwHighDateTime << 32);
-  Byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
   uint32_t temp;
   uint32_t v;
   v64 += (kNumTimeQuantumsInSecond * 2 - 1);
@@ -154,7 +154,7 @@ bool GetSecondsSince1601(uint32_t year, uint32_t month, uint32_t day,
     return false;
   uint32_t numYears = year - kFileTimeStartYear;
   uint32_t numDays = numYears * 365 + numYears / 4 - numYears / 100 + numYears / 400;
-  Byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+  byte ms[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
   if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
     ms[1] = 29;
   month--;

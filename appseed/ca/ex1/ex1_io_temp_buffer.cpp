@@ -65,7 +65,7 @@ namespace ex1
          _crc = crc_update(_crc, data, cur);
          _bufPos += cur;
          size -= cur;
-         data = ((const Byte *)data) + cur;
+         data = ((const byte *)data) + cur;
          _size += cur;
       }
       return write_to_file(data, size);
