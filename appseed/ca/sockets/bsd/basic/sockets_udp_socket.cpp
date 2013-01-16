@@ -270,7 +270,7 @@ namespace sockets
 
 
    /** send to connected address */
-   void udp_socket::SendBuf(const char *data, size_t len, int32_t flags)
+   void udp_socket::SendBuf(const char *data, int32_t len, int32_t flags)
    {
       if (!IsConnected())
       {

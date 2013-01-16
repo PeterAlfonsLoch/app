@@ -97,7 +97,7 @@ typedef struct
 {
     z_stream stream;            /* zLib stream structure for inflate */
     int32_t  stream_initialised;    /* 1 is stream is initialised */
-    uint32_t pos_in_buffered_data;  /* last written byte in buffered_data */
+    uint_ptr pos_in_buffered_data;  /* last written byte in buffered_data */
 
     uint_ptr pos_local_header;     /* offset of the local header of the file
                                      currenty writing */

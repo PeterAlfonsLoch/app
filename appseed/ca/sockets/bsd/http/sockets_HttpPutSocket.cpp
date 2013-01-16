@@ -110,10 +110,10 @@ namespace sockets
 
       if(m_file.is_set())
       {
-         size_t n;
+         int32_t n;
          char buf[32768];
          m_file->seek_to_begin();
-         while ((n = m_file->read(buf, 32768)) > 0)
+         while ((n = (int32_t) m_file->read(buf, 32768)) > 0)
          {
             SendBuf(buf, n);
          }
@@ -123,9 +123,9 @@ namespace sockets
          FILE *fil = fopen(m_filename, "rb");
          if (fil)
          {
-            size_t n;
+            int32_t n;
             char buf[32768];
-            while ((n = fread(buf, 1, 32768, fil)) > 0)
+            while ((n = (int32_t) fread(buf, 1, 32768, fil)) > 0)
             {
                SendBuf(buf, n);
             }

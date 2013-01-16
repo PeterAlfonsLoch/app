@@ -254,7 +254,7 @@ void FAR *out_desc)
     uint_ptr have;            /* available input and output */
    uint_ptr left;           /* available input and output */
     uint32_t hold;         /* bit buffer */
-    uint32_t bits;              /* bits in bit buffer */
+    uint_ptr bits;              /* bits in bit buffer */
     uint_ptr copy;              /* number of stored or match bytes to copy */
     uchar FAR *from;    /* where to copy match bytes from */
     code codeThis;                  /* current decoding table entry */

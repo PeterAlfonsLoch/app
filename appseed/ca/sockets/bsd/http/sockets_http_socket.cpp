@@ -381,7 +381,7 @@ namespace sockets
          primitive::memory_size iSize = response().file().get_size();
          while(iSize > 0)
          {
-            primitive::memory_size iSend = min(iSize, 1024 * 16);
+            int32_t iSend = (int32_t) min(iSize, 1024 * 16);
             SendBuf(&((const char *) response().file().get_data())[response().file().get_size() - iSize], iSend);
             iSize -= iSend;
          }

@@ -390,7 +390,7 @@ int16_t GeoIP_update_database (::ca::application * papp, char * license_key, int
       return GEOIP_TEST_IO_ERR;
    }
    for (;;) {
-      int32_t amt;
+      int_ptr amt;
       amt = gzread(gz_fh, block, block_size);
       if (amt == -1) {
          free(file_path_test);
@@ -816,7 +816,7 @@ int16_t GeoIP_update_database_general (::ca::application * papp, char * user_id,
    offset = 0;
    gz_fh = gzopen(file_path_gz, "rb");
    for (;;) {
-      int32_t amt;
+      int_ptr amt;
       amt = gzread(gz_fh, block, block_size);
       if (amt == -1) {
          free(file_path_gz);

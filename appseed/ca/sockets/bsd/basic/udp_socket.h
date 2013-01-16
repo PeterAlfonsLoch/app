@@ -144,7 +144,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void SendTo(sockets::address& ad,const string &,int32_t flags = 0);
 
          /** Send to connected address */
-         void SendBuf(const char *data,size_t,int32_t flags = 0);
+         void SendBuf(const char *data, int32_t, int32_t flags = 0);
          /** Send string to connected address. */
          void Send(const string & ,int32_t flags = 0);
 

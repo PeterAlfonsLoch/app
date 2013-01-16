@@ -397,10 +397,10 @@ zlib_local int32_t destroy (
      Reads the given number of uncompressed bytes from the compressed spfile->
    gzread returns the number of bytes actually read (0 for end of file).
 */
-int32_t ZEXPORT gzread (
+int_ptr ZEXPORT gzread (
     gzFile file,
     voidp buf,
-    uint32_t len)
+    uint_ptr len)
 {
     gz_stream *s = (gz_stream*)file;
     byte *start = (byte*)buf; /* starting point for crc computation */
@@ -825,8 +825,7 @@ z_off_t ZEXPORT gzseek (
         s->back = EOF;
         s->stream.avail_in = 0;
         s->stream.next_in = s->inbuf;
-        if (fseek(s->file, offset, SEEK_SET) < 0) return -1L;
-
+        if (fseek(s->file, (long) offset, SEEK_SET) < 0) return -1L;
         s->in = s->out = offset;
         return offset;
     }
@@ -850,7 +849,7 @@ z_off_t ZEXPORT gzseek (
         if (s->last) s->z_err = Z_STREAM_END;
     }
     while (offset > 0)  {
-        int32_t size = Z_BUFSIZE;
+        int_ptr size = Z_BUFSIZE;
         if (offset < Z_BUFSIZE) size = (int32_t)offset;
 
         size = gzread(file, s->outbuf, (uint32_t)size);
@@ -863,7 +862,7 @@ z_off_t ZEXPORT gzseek (
 /* ===========================================================================
      Rewinds input spfile->
 */
-int32_t ZEXPORT gzrewind (
+int_ptr ZEXPORT gzrewind (
     gzFile file)
 {
     gz_stream *s = (gz_stream*)file;
@@ -879,7 +878,7 @@ int32_t ZEXPORT gzrewind (
     if (!s->transparent) (void)inflateReset(&s->stream);
     s->in = 0;
     s->out = 0;
-    return fseek(s->file, s->start, SEEK_SET);
+    return fseek(s->file, (long) s->start, SEEK_SET);
 }
 
 /* ===========================================================================

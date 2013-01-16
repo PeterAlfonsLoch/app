@@ -187,7 +187,7 @@ namespace sockets
 
    void http_post_socket::DoMultipartPost()
    {
-      long length = 0; // calculate content_length of our post body
+      uint_ptr length = 0; // calculate content_length of our post body
       string tmp;
 
       // fields
@@ -216,7 +216,7 @@ namespace sockets
             string name;
             string filename;
             m_mapFiles.get_next_assoc(pos, name, filename);
-            long content_length = m_mapContentLength[filename];
+            uint_ptr content_length = m_mapContentLength[filename];
             string content_type = m_mapContentType[filename];
             tmp = "--" + m_boundary + "\r\n"
                "content-disposition: form-data; name=\"" + name + "\"; filename=\"" + filename + "\"\r\n"
@@ -282,7 +282,7 @@ namespace sockets
                {
                   primitive::memory mem;
                   mem.FullLoad(file);
-                  SendBuf((const char *) mem.get_data(), mem.get_size());
+                  SendBuf((const char *) mem.get_data(), (int32_t) mem.get_size());
                }
             }
             Send("\r\n");

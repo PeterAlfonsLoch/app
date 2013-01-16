@@ -58,7 +58,7 @@ namespace ca4
       }
       class primitive::memory memory;
       memory.allocate(1024 * 256);
-      int32_t uncomprLen;
+      int_ptr uncomprLen;
       while((uncomprLen = gzread(file, memory, (uint32_t) memory.get_size())) > 0)
       {
          ostreamUncompressed.write(memory, uncomprLen);

@@ -1221,7 +1221,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
     uint32_t len)
 {
     int32_t err=UNZ_OK;
-    uint32_t iRead = 0;
+    uint_ptr iRead = 0;
     unz_s* s;
     file_in_zip_read_info_s* pfile_in_zip_read_info;
     if (file==NULL)
@@ -1296,7 +1296,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
 
             if ((pfile_in_zip_read_info->stream.avail_in == 0) &&
                 (pfile_in_zip_read_info->rest_read_compressed == 0))
-                return (iRead==0) ? UNZ_EOF : iRead;
+                return (iRead==0) ? UNZ_EOF : (int32_t) iRead;
 
             if (pfile_in_zip_read_info->stream.avail_out <
                             pfile_in_zip_read_info->stream.avail_in)
@@ -1350,14 +1350,14 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
             iRead += (uint32_t)(uTotalOutAfter - uTotalOutBefore);
 
             if (err==Z_STREAM_END)
-                return (iRead==0) ? UNZ_EOF : iRead;
+                return (iRead==0) ? UNZ_EOF : (int32_t) iRead;
             if (err!=Z_OK)
                 break;
         }
     }
 
     if (err==Z_OK)
-        return iRead;
+        return (int32_t) iRead;
     return err;
 }
 

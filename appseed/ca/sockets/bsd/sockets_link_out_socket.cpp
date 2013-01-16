@@ -48,7 +48,7 @@ namespace sockets
 
    void link_out_socket::link_write(void * p, size_t size)
    {
-      m_out->SendBuf((const char *) p, size);
+      m_out->SendBuf((const char *) p, (int32_t) size);
    }
 
 

@@ -89,7 +89,7 @@ namespace sockets
    //      m_response.header("Last-modified") = m_start;
          SendResponse();
 
-         SendBuf((char *)mem.get_data(), mem.get_size());
+         SendBuf((char *)mem.get_data(), (int32_t) mem.get_size());
       }
    }
 

@@ -253,10 +253,10 @@ namespace sockets
       address GetClientRemoteAddress();
 
       /** Common interface for SendBuf used by Tcp and Udp sockets. */
-      virtual void SendBuf(const char *,size_t,int32_t = 0);
+      virtual void SendBuf(const char *, int32_t, int32_t = 0);
 
       /** Common interface for Send used by Tcp and Udp sockets. */
-      virtual void Send(const string &,int32_t = 0);
+      virtual void Send(const string &, int32_t = 0);
 
       /** Outgoing traffic counter. */
       virtual uint64_t GetBytesSent(bool clear = false);

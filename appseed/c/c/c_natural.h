@@ -1,9 +1,8 @@
 #pragma once
 
+
 #define INT_TO_NATURAL(i) (i >= 0 ? (uint32_t) i : 0)
 
-
-#pragma once
 
 inline uint32_t natural(int32_t i)
 {
@@ -54,4 +53,10 @@ inline int32_t natural_min(int32_t i1, int32_t i2, int32_t iEscape = -1)
          return iEscape;
       }
    }
+}
+
+
+inline bool less_than(uint64_t ui, int32_t i)
+{
+   return i < 0 ? false : ui < (uint64_t) i;
 }

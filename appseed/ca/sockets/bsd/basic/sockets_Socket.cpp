@@ -483,7 +483,7 @@ namespace sockets
    }
 
 
-   void socket::SendBuf(const char *,size_t,int32_t)
+   void socket::SendBuf(const char *, int32_t, int32_t)
    {
    }
 

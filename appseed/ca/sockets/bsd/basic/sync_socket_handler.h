@@ -28,8 +28,8 @@
          void handle(socket * psocket);
 
          virtual void write(string & str);
-         virtual void write(void * pdata, ::primitive::memory_size len);
-         virtual ::primitive::memory_size read(void * pdata, ::primitive::memory_size len);
+         virtual void write(void * pdata, int32_t len);
+         virtual int32_t read(void * pdata, int32_t len);
          virtual string read_line();
          virtual string read_string();
 

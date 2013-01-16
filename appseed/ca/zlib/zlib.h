@@ -82,11 +82,11 @@ struct internal_state;
 typedef struct z_stream_s {
     byte    *next_in;  /* next input byte */
     uint_ptr     avail_in;  /* number of bytes available at next_in */
-    uint32_t    total_in;  /* total nb of input bytes read so far */
+    uint_ptr    total_in;  /* total nb of input bytes read so far */
 
     byte    *next_out; /* next output byte should be put there */
     uint_ptr     avail_out; /* remaining free space at next_out */
-    uint32_t    total_out; /* total nb of bytes output so far */
+    uint_ptr    total_out; /* total nb of bytes output so far */
 
     char     *msg;      /* last error message, NULL if no error */
     struct internal_state FAR *state; /* not visible by applications */
@@ -1103,7 +1103,7 @@ ZEXTERN int32_t ZEXPORT gzsetparams OF((gzFile file, int32_t level, int32_t stra
    opened for writing.
 */
 
-ZEXTERN int32_t ZEXPORT    gzread  OF((gzFile file, voidp buf, uint32_t len));
+ZEXTERN int_ptr ZEXPORT    gzread  OF((gzFile file, voidp buf, uint_ptr len));
 /*
      Reads the given number of uncompressed bytes from the compressed spfile->
    If the input file was not in gzip format, gzread copies the given number
@@ -1198,7 +1198,7 @@ ZEXTERN z_off_t ZEXPORT    gzseek OF((gzFile file,
    would be before the current position.
 */
 
-ZEXTERN int32_t ZEXPORT    gzrewind OF((gzFile file));
+ZEXTERN int_ptr ZEXPORT    gzrewind OF((gzFile file));
 /*
      Rewinds the given spfile-> This function is supported only for reading.
 

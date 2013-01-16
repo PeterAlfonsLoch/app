@@ -653,7 +653,7 @@ int32_t ZEXPORT deflate (
 #ifdef GZIP
     if (s->status == EXTRA_STATE) {
         if (s->gzhead->extra != NULL) {
-            uint32_t beg = s->pending;  /* start of bytes to update crc */
+            uint_ptr beg = s->pending;  /* start of bytes to update crc */
 
             while (s->gzindex < (s->gzhead->extra_len & 0xffff)) {
                 if (s->pending == s->pending_buf_size) {
@@ -681,7 +681,7 @@ int32_t ZEXPORT deflate (
     }
     if (s->status == NAME_STATE) {
         if (s->gzhead->name != NULL) {
-            uint32_t beg = s->pending;  /* start of bytes to update crc */
+            uint_ptr beg = s->pending;  /* start of bytes to update crc */
             int32_t val;
 
             do {
@@ -712,7 +712,7 @@ int32_t ZEXPORT deflate (
     }
     if (s->status == COMMENT_STATE) {
         if (s->gzhead->comment != NULL) {
-            uint32_t beg = s->pending;  /* start of bytes to update crc */
+            uint_ptr beg = s->pending;  /* start of bytes to update crc */
             int32_t val;
 
             do {

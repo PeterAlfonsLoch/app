@@ -39,18 +39,18 @@ namespace sockets
       m_psocket->Send(str);
    }
 
-   void sync_socket_handler::write(void * pdata, ::primitive::memory_size len)
+   void sync_socket_handler::write(void * pdata, int32_t len)
    {
       m_psocket->SendBuf((char *) pdata, len);
    }
 
-   ::primitive::memory_size sync_socket_handler::read(void * pdata, ::primitive::memory_size len)
+   int32_t sync_socket_handler::read(void * pdata, int32_t len)
    {
-      while(m_file.get_size() < len && m_handler.get_count() > 0)
+      while(less_than(m_file.get_size(), len) && m_handler.get_count() > 0)
       {
          m_handler.Select(8, 0);
       }
-      return m_file.remove_begin(pdata, len);
+      return (int32_t) m_file.remove_begin(pdata, len);
    }
 
    string sync_socket_handler::read_string()
@@ -92,17 +92,17 @@ namespace sockets
 
    void sync_socket_handler::read_payload_v1(string & xml_payload, int32_t iTimeout)
    {
-      UNREFERENCED_PARAMETER(xml_payload);
       if(iTimeout < 0)
          iTimeout = m_iDefaultTimeout;
-      ::primitive::memory_size uiLen = 0;
+      uint32_t uiLen = 0;
       if(read(&uiLen, 4) != 4)
          throw simple_exception(get_app());
       ntohl((u_long) uiLen);
       primitive::memory memory;
       memory.allocate(uiLen);
       if(read(memory, uiLen) != uiLen)
-         throw simple_exception(get_app());
+        throw simple_exception(get_app());
+      memory.to_string(xml_payload);
    }
 
    void sync_socket_handler::write_payload_v1(const char * xml_payload, int32_t iTimeout)
@@ -112,7 +112,7 @@ namespace sockets
       strsize uiLen = strlen(xml_payload);
       uint32_t wf_total_length = htonl((u_long) uiLen);
       write(&wf_total_length, 4);
-      write( (char *) xml_payload, uiLen);
+      write( (char *) xml_payload, (int32_t) uiLen);
    }
 
 } // namespace sockets

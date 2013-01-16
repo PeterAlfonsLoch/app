@@ -55,18 +55,18 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \ingroup internal */
          struct OUTPUT {
             OUTPUT() : _b(0), _t(0), _q(0) {}
-            OUTPUT(const char *buf, size_t len) : _b(0), _t(len), _q(len) {
+            OUTPUT(const char *buf, int32_t len) : _b(0), _t(len), _q(len) {
                memcpy(_buf, buf, len);
             }
-            size_t Space() {
+            int32_t Space() {
                return TCP_OUTPUT_CAPACITY - _t;
             }
-            void add(const char *buf, size_t len) {
+            void add(const char *buf, int32_t len) {
                memcpy(_buf + _t, buf, len);
                _t += len;
                _q += len;
             }
-            size_t remove(size_t len) {
+            int32_t remove(int32_t len) {
                _b += len;
                _q -= len;
                return _q;
@@ -74,12 +74,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             const char *Buf() {
                return _buf + _b;
             }
-            size_t Len() {
+            int32_t Len() {
                return _q;
             }
-            size_t _b;
-            size_t _t;
-            size_t _q;
+            int32_t _b;
+            int32_t _t;
+            int32_t _q;
             char _buf[TCP_OUTPUT_CAPACITY];
          };
          typedef ::collection::list<OUTPUT *> output_list;
@@ -173,7 +173,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param buf buffer pointer
          \param len Length of data
          \param f Dummy flags -- not used */
-         void SendBuf(const char *buf,size_t len,int32_t f = 0);
+         void SendBuf(const char *buf, int32_t len, int32_t f = 0);
          /** This callback is executed after a successful read from the socket.
          \param buf Pointer to the data
          \param len Length of the data */
@@ -292,9 +292,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          tcp_socket& operator=(const tcp_socket& ) { return *this; }
 
          /** the actual send() */
-         int32_t TryWrite(const char *buf, size_t len);
+         int32_t TryWrite(const char *buf, int32_t len);
          /** add data to output buffer top */
-         void buffer(const char *buf, size_t len);
+         void buffer(const char *buf, int32_t len);
 
 
       };

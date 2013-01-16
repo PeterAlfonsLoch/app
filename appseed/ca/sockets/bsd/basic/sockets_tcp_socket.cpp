@@ -634,7 +634,7 @@ namespace sockets
    }
 
 
-   int32_t tcp_socket::TryWrite(const char *buf, size_t len)
+   int32_t tcp_socket::TryWrite(const char *buf, int32_t len)
    {
       size_t n = 0;
    #ifdef HAVE_OPENSSL
@@ -707,18 +707,18 @@ namespace sockets
    }
 
 
-   void tcp_socket::buffer(const char *buf, size_t len)
+   void tcp_socket::buffer(const char *buf, int32_t len)
    {
-      size_t ptr = 0;
+      int32_t ptr = 0;
       m_output_length += len;
       while (ptr < len)
       {
          // buf/len => pbuf/sz
-         size_t space = 0;
+         int32_t space = 0;
          if (m_obuf_top && (space = m_obuf_top -> Space()) > 0)
          {
             const char *pbuf = buf + ptr;
-            size_t sz = len - ptr;
+            int32_t sz = len - ptr;
             if (space >= sz)
             {
                m_obuf_top -> add(pbuf, sz);
@@ -741,11 +741,11 @@ namespace sockets
 
    void tcp_socket::Send(const string &str,int32_t i)
    {
-      SendBuf(str,str.get_length(),i);
+      SendBuf(str,  (int32_t) str.get_length(), i);
    }
 
 
-   void tcp_socket::SendBuf(const char *buf,size_t len,int32_t)
+   void tcp_socket::SendBuf(const char *buf, int32_t len,int32_t)
    {
       if (!Ready() && !Connecting())
       {
@@ -845,7 +845,7 @@ namespace sockets
       }
       strcpy(request + 8, GetSocks4Userid());
       size_t length = GetSocks4Userid().get_length() + 8 + 1;
-      SendBuf(request, length);
+      SendBuf(request, (int32_t) length);
       m_socks4_state = 0;
    }
 

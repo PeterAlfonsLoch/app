@@ -105,7 +105,7 @@ namespace sockets
 
    void http_debug_socket::OnData(const char *p,size_t l)
    {
-      SendBuf(p,l);
+      SendBuf(p, (int32_t) l);
       m_read_ptr += (int32_t)l;
       if (m_read_ptr >= m_content_length && m_content_length && m_content_length != ((size_t)(-1)))
       {

@@ -82,7 +82,7 @@ struct inflate_state {
     int32_t flags;                  /* gzip header method and flags (0 if zlib) */
     uint32_t dmax;              /* zlib header max distance (INFLATE_STRICT) */
     uint32_t check;        /* protected copy of check value */
-    uint32_t total;        /* protected copy of output count */
+    uint_ptr total;        /* protected copy of output count */
     gz_headerp head;            /* where to save gzip header information */
         /* sliding window */
     uint32_t wbits;             /* log base 2 of requested window size */
@@ -92,9 +92,9 @@ struct inflate_state {
     uchar FAR *window;  /* allocated sliding window, if needed */
         /* bit accumulator */
     uint32_t hold;         /* input bit accumulator */
-    uint32_t bits;              /* number of bits in "in" */
+    uint_ptr bits;              /* number of bits in "in" */
         /* for string and stored block copying */
-    uint32_t length;            /* literal or length of data to copy */
+    uint_ptr length;            /* literal or length of data to copy */
     uint32_t offset;            /* distance back to copy string from */
         /* for table and code decoding */
     uint32_t extra;             /* extra bits needed */

@@ -561,7 +561,7 @@ int32_t flush)
     uchar FAR *put;     /* next output */
     uint_ptr have, left;        /* available input and output */
     uint32_t hold;         /* bit buffer */
-    uint32_t bits;              /* bits in bit buffer */
+    uint_ptr bits;              /* bits in bit buffer */
     uint_ptr in, out;           /* save starting available input and output */
     uint_ptr copy;              /* number of stored or match bytes to copy */
     uchar FAR *from;    /* where to copy match bytes from */
@@ -709,7 +709,7 @@ int32_t flush)
                     if (state->head != Z_NULL &&
                             state->head->name != Z_NULL &&
                             state->length < state->head->name_max)
-                        state->head->name[state->length++] = len;
+                        state->head->name[state->length++] = (uint8_t) len;
                 } while (len && copy < have);
                 if (state->flags & 0x0200)
                     state->check = crc32(state->check, next, copy);
@@ -730,7 +730,7 @@ int32_t flush)
                     if (state->head != Z_NULL &&
                             state->head->comment != Z_NULL &&
                             state->length < state->head->comm_max)
-                        state->head->comment[state->length++] = len;
+                        state->head->comment[state->length++] = (uint8_t) len;
                 } while (len && copy < have);
                 if (state->flags & 0x0200)
                     state->check = crc32(state->check, next, copy);
@@ -1146,8 +1146,8 @@ int32_t flush)
     if (state->wrap && out)
         strm->adler = state->check =
             UPDATE(state->check, strm->next_out - out, out);
-    strm->data_type = state->bits + (state->last ? 64 : 0) +
-                      (state->mode == TYPE ? 128 : 0);
+    strm->data_type = (state->bits + (state->last ? 64 : 0) +
+                      (state->mode == TYPE ? 128 : 0)) != 0;
     if (((in == 0 && out == 0) || flush == Z_FINISH) && ret == Z_OK)
         ret = Z_BUF_ERROR;
     return ret;
@@ -1262,7 +1262,7 @@ int32_t ZEXPORT inflateSync(
 z_streamp strm)
 {
     uint32_t len;               /* number of bytes to look at or looked at */
-    uint32_t in, out;      /* temporary to save total_in and total_out */
+    uint_ptr in, out;      /* temporary to save total_in and total_out */
     uchar buf[4];       /* to restore bit buffer to byte string */
     struct inflate_state FAR *state;
 

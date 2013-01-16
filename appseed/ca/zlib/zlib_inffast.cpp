@@ -85,7 +85,7 @@ uint_ptr start)         /* inflate()'s starting value for strm->avail_out */
     uint_ptr write;             /* window write index */
     uchar FAR *window;  /* allocated sliding window, if wsize != 0 */
     uint32_t hold;         /* zlib_local strm->hold */
-    uint32_t bits;              /* zlib_local strm->bits */
+    uint_ptr bits;              /* zlib_local strm->bits */
     code const FAR *lcode;      /* zlib_local strm->lencode */
     code const FAR *dcode;      /* zlib_local strm->distcode */
     uint32_t lmask;             /* mask for first level of length codes */
@@ -93,7 +93,7 @@ uint_ptr start)         /* inflate()'s starting value for strm->avail_out */
     code codeThis;                  /* retrieved table entry */
     uint_ptr op;                /* code bits, operation, extra bits, or */
                                 /*  window position, window bytes to copy */
-    uint32_t len;               /* match length, unused bytes */
+    uint_ptr len;               /* match length, unused bytes */
     uint32_t dist;              /* match distance */
     uchar FAR *from;    /* where to copy match from */
 

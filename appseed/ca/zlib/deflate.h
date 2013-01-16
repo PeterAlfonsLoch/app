@@ -97,7 +97,7 @@ typedef struct internal_state {
     byte *pending_buf;  /* output still pending */
     uint32_t   pending_buf_size; /* size of pending_buf */
     byte *pending_out;  /* next pending byte to output to the stream */
-    uint32_t   pending;      /* nb of bytes in the pending buffer */
+    uint_ptr   pending;      /* nb of bytes in the pending buffer */
     int32_t   wrap;          /* bit 0 true for zlib, bit 1 true for gzip */
     gz_headerp  gzhead;  /* gzip header information to write */
     uint32_t   gzindex;      /* where in extra, name, or comment */
