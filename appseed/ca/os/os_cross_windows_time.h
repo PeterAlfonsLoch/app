@@ -24,8 +24,8 @@ WINBOOL SystemTimeToFileTime(const SYSTEMTIME *syst, LPFILETIME ft);
 #ifndef METROWIN
 
 void GetSystemTimeAsFileTime(LPFILETIME time); /* [out] Destination for the current utc time */
+void GetSystemTime(LPSYSTEMTIME systime);
 
 #endif
 
 
-VOID WINAPI GetSystemTime(LPSYSTEMTIME systime);

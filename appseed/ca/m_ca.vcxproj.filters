@@ -2253,9 +2253,6 @@
     <ClCompile Include="uinteraction\uinteraction_interaction.cpp">
       <Filter>Source Files\uinteraction</Filter>
     </ClCompile>
-    <ClCompile Include="uinteraction_frame.cpp">
-      <Filter>Source Files\uinteraction</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_file.cpp">
       <Filter>Source Files\html</Filter>
     </ClCompile>
@@ -2543,6 +2540,9 @@
     </ClCompile>
     <ClCompile Include="collection\collection_stringl.cpp">
       <Filter>Source Files\collection</Filter>
+    </ClCompile>
+    <ClCompile Include="uinteraction\uinteraction_frame.cpp">
+      <Filter>Source Files\uinteraction</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

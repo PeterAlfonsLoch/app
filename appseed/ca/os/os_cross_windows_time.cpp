@@ -1097,10 +1097,14 @@ CLASS_DECL_ca WINBOOL WINAPI FileTimeToLocalFileTime( const FILETIME *utcft, LPF
     return !status;
 }
 
+
+#ifndef METROWIN
+
+
+
 /*********************************************************************
  *      FileTimeToSystemTime                            (KERNEL32.@)
  */
-#ifndef METROWIN
 WINBOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
 {
     TIME_FIELDS tf;
@@ -1120,12 +1124,11 @@ WINBOOL WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
     syst->wDayOfWeek = tf.Weekday;
     return TRUE;
 }
-#endif
+
 
 /*********************************************************************
  *      SystemTimeToFileTime                            (KERNEL32.@)
  */
-#ifndef METROWIN
 WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 {
     TIME_FIELDS tf;
@@ -1147,8 +1150,6 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
     ft->dwHighDateTime = t.u.HighPart;
     return TRUE;
 }
-#endif
-
 
 
 /***********************************************************************
@@ -1159,7 +1160,6 @@ WINBOOL WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
  *  RETURNS
  *   Nothing.
  */
-#ifndef METROWIN
 CLASS_DECL_ca void GetSystemTimeAsFileTime(
     LPFILETIME time) /* [out] Destination for the current utc time */
 {
@@ -1168,8 +1168,6 @@ CLASS_DECL_ca void GetSystemTimeAsFileTime(
     time->dwLowDateTime = t.u.LowPart;
     time->dwHighDateTime = t.u.HighPart;
 }
-#endif
-
 
 
 
@@ -1184,7 +1182,7 @@ CLASS_DECL_ca void GetSystemTimeAsFileTime(
  * RETURNS
  *  Nothing.
  */
-VOID WINAPI GetSystemTime(LPSYSTEMTIME systime)
+CLASS_DECL_ca void GetSystemTime(LPSYSTEMTIME systime)
 {
     FILETIME ft;
     LARGE_INTEGER t;
@@ -1196,7 +1194,7 @@ VOID WINAPI GetSystemTime(LPSYSTEMTIME systime)
 }
 
 
-
+#endif // !defined(METROWIN)
 
 
 

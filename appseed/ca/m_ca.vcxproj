@@ -1975,8 +1975,8 @@
     <ClCompile Include="sockets\sockets_http_batch_file.cpp" />
     <ClCompile Include="sockets\sockets_http_file.cpp" />
     <ClCompile Include="sqlite\sqlite3.cpp" />
+    <ClCompile Include="uinteraction\uinteraction_frame.cpp" />
     <ClCompile Include="uinteraction\uinteraction_interaction.cpp" />
-    <ClCompile Include="uinteraction_frame.cpp" />
     <ClCompile Include="userpresence\userpresence_application.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence.cpp" />
     <ClCompile Include="userpresence\userpresence_user_presence_central.cpp" />
