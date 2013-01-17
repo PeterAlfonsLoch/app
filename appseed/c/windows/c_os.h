@@ -18,7 +18,7 @@
 
 
 #define GetAValue(rgb)      (LOBYTE((rgb)>>24))
-#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((uint32_t)(BYTE)(b))<<16)|(((uint32_t)(BYTE)(a))<<24)))
+//#define ARGB(a, r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((uint32_t)(BYTE)(b))<<16)|(((uint32_t)(BYTE)(a))<<24)))
 
 
 CLASS_DECL_c bool os_initialize();
