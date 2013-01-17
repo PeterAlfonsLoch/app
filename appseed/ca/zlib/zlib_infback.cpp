@@ -327,9 +327,8 @@ void FAR *out_desc)
                 state->mode = BAD;
                 break;
             }
-            state->length = (uint32_t)hold & 0xffff;
-            Tracev((stderr, "inflate:       stored length %u\n",
-                    state->length));
+            state->length = (uint32_t)(hold & 0xffff);
+            Tracev((stderr, "inflate:       stored length %u\n", (uint32_t) state->length));
             INITBITS();
 
             /* copy stored block from input to output */
@@ -528,8 +527,11 @@ void FAR *out_desc)
                 state->length += BITS(state->extra);
                 DROPBITS(state->extra);
             }
+#ifdef LINUX
+            Tracevv((stderr, "inflate:         length %lu\n", state->length));
+#else
             Tracevv((stderr, "inflate:         length %u\n", state->length));
-
+#endif
             /* get distance code */
             for (;;) {
                 codeThis = state->distcode[BITS(state->distbits)];

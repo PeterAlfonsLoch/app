@@ -814,8 +814,13 @@ int32_t flush)
                 break;
             }
             state->length = (uint32_t)hold & 0xffff;
+#ifdef LINUX
+            Tracev((stderr, "inflate:       stored length %lu\n",
+                    state->length));
+#else
             Tracev((stderr, "inflate:       stored length %u\n",
                     state->length));
+#endif
             INITBITS();
             state->mode = COPY;
         case COPY:
@@ -997,7 +1002,11 @@ int32_t flush)
                 state->length += BITS(state->extra);
                 DROPBITS(state->extra);
             }
+#ifdef LINUX
+            Tracevv((stderr, "inflate:         length %lu\n", state->length));
+#else
             Tracevv((stderr, "inflate:         length %u\n", state->length));
+#endif
             state->mode = DIST;
         case DIST:
             for (;;) {

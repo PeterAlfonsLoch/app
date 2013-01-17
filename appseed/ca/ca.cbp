@@ -1602,10 +1602,10 @@
 		<Unit filename="sqlite/sqlite3.h" />
 		<Unit filename="sqlite/sqlite3ext.h" />
 		<Unit filename="uinteraction/uinteraction.h" />
+		<Unit filename="uinteraction/uinteraction_frame.cpp" />
 		<Unit filename="uinteraction/uinteraction_frame.h" />
 		<Unit filename="uinteraction/uinteraction_interaction.cpp" />
 		<Unit filename="uinteraction/uinteraction_interaction.h" />
-		<Unit filename="uinteraction_frame.cpp" />
 		<Unit filename="user/user.cpp" />
 		<Unit filename="user/user.h" />
 		<Unit filename="user/user1.h" />

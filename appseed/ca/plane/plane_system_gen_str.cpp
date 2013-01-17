@@ -115,11 +115,11 @@ namespace gen
 
 
 
-      void format(string_format * pformat, const vsstring const & str)
+      void format(string_format * pformat, vsstring const & str)
       {
-         
+
          pformat->append(str);
-         
+
       }
 
 

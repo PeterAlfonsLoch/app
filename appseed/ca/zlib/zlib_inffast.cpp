@@ -151,7 +151,11 @@ uint_ptr start)         /* inflate()'s starting value for strm->avail_out */
                 hold >>= op;
                 bits -= op;
             }
+#ifdef LINUX
+            Tracevv((stderr, "inflate:         length %lu\n", len));
+#else
             Tracevv((stderr, "inflate:         length %u\n", len));
+#endif
             if (bits < 15) {
                 hold += (uint32_t)(PUP(in)) << bits;
                 bits += 8;

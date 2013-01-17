@@ -143,7 +143,7 @@ int32_t WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, int32_t 
         if (!tmp) return 0;
         memcpy( tmp, p + 1, *p * sizeof(WCHAR) );
         tmp[*p] = 0;
-        number = (uint32) wtoi64_dup( tmp, &end, 10 );
+        number = (uint32_t) wtoi64_dup( tmp, &end, 10 );
         if (!*end)
             memcpy( buffer, &number, sizeof(number) );
         else  /* invalid number */

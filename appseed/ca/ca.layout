@@ -907,8 +907,8 @@
 	<File name="os/os_cross_windows_internals.h" open="0" top="0" tabpos="26">
 		<Cursor position="99252" topLine="2301" />
 	</File>
-	<File name="os/os_cross_windows_locale.cpp" open="1" top="1" tabpos="0">
-		<Cursor position="22973" topLine="694" />
+	<File name="os/os_cross_windows_locale.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="4435" topLine="127" />
 	</File>
 	<File name="os/os_cross_windows_shared_memory.cpp" open="0" top="0" tabpos="27">
 		<Cursor position="25" topLine="0" />
@@ -946,8 +946,8 @@
 	<File name="plane/plane_system_allocate.h" open="0" top="0" tabpos="30">
 		<Cursor position="517" topLine="0" />
 	</File>
-	<File name="plane/plane_system_gen_str.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="246" topLine="0" />
+	<File name="plane/plane_system_gen_str.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="2111" topLine="95" />
 	</File>
 	<File name="plane/plane_system_gen_str.h" open="0" top="0" tabpos="20">
 		<Cursor position="1674" topLine="55" />
@@ -1509,6 +1509,15 @@
 	</File>
 	<File name="zlib/zlib_gzio.cpp" open="0" top="0" tabpos="15">
 		<Cursor position="19896" topLine="587" />
+	</File>
+	<File name="zlib/zlib_infback.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="19754" topLine="512" />
+	</File>
+	<File name="zlib/zlib_inffast.cpp" open="1" top="1" tabpos="4">
+		<Cursor position="12" topLine="0" />
+	</File>
+	<File name="zlib/zlib_inflate.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="37854" topLine="987" />
 	</File>
 	<File name="zlib/zlib_trees.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="38665" topLine="992" />
