@@ -90,7 +90,10 @@ namespace ex2
          smart_pointer < application >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
          gen::add_ref(::ca::thread_sp::m_p);
       }
-      set_thread(dynamic_cast < ::radix::thread * > (this));
+      if(::ca::get_thread() == NULL)
+      {
+         set_thread(dynamic_cast < ::radix::thread * > (this));
+      }
       //m_pappDelete = this;
       //::ca::thread_sp::m_p->m_pappDelete = this;
 

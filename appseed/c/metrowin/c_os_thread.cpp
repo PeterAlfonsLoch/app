@@ -454,7 +454,7 @@ BOOL WINAPI TlsSetValue(HANDLE hthread, DWORD dwTlsIndex, LPVOID lpTlsValue)
 
          all_thread_data().set_at(hthread, threadData);
 
-         currentThreadData = threadData;
+         //currentThreadData = threadData;
       }
       catch (...)
       {
