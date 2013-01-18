@@ -45,20 +45,54 @@ bool os_simple_graphics::is_null()
 
 }
 
-bool os_simple_graphics::create(HDC hdc)
+
+bool os_simple_graphics::create(os_simple_graphics * pgraphics)
 {
 
    if(m_iType != 0)
       destroy();
 
-//   m_hdc = ::CreateCompatibleDC(hdc);
+   if(pgraphics == NULL)
+   {
 
-   //if(m_hdc == NULL)
-     // return false;
+      cairo_surface_t * psurface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
 
-  // ::ReleaseDC(NULL, hdc);
+      if(psurface == NULL)
+         return false;
 
-   m_iType = 1;
+      m_pdc = cairo_create(psurface);
+
+      cairo_surface_destroy(psurface);
+
+      m_iType = 1;
+
+      return m_pdc != NULL;
+
+   }
+   else
+   {
+
+      cairo_surface_t * psurface = cairo_get_target(pgraphics->m_pdc);
+
+      if(cairo_surface_status(psurface) != CAIRO_STATUS_SUCCESS)
+         return false;
+
+      cairo_surface_t * psurfaceNew = cairo_surface_create_similar(psurface, cairo_surface_get_content(psurface), 1, 1);
+
+      if(psurfaceNew == NULL)
+         return false;
+
+      m_pdc = cairo_create(psurfaceNew);
+
+      cairo_surface_destroy(psurfaceNew);
+
+      m_iType = 3;
+
+      return m_pdc != NULL;
+
+   }
+
+
 
    return true;
 

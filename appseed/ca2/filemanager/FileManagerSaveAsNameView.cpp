@@ -1,10 +1,10 @@
 #include "framework.h"
 
 
-FileManagerSaveAsView::FileManagerSaveAsView(::ca::application * papp) : 
+FileManagerSaveAsView::FileManagerSaveAsView(::ca::application * papp) :
    ca(papp),
    ::userbase::edit_plain_text_view(papp),
-   ::user::interaction(papp), 
+   ::user::interaction(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp)
 {
@@ -13,7 +13,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(::ca::application * papp) :
 
 }
 
-void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)
@@ -75,7 +75,7 @@ void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::radix::o
                   {
                      ptext->_001SetText(m_itema.get_item(range.ItemAt(0).GetLBound()).m_strName);
                   }
-               }  
+               }
             }
             file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
             if(pmanageruh != NULL)
@@ -106,9 +106,9 @@ void FileManagerSaveAsView::_017Synchronize()
 
 void FileManagerSaveAsView::_001OnAfterChangeText()
 {
-   
+
    string str;
-   
+
    _001GetText(str);
 
    if(Application.dir().is(str))
@@ -123,7 +123,7 @@ void FileManagerSaveAsView::_001OnAfterChangeText()
          strName = System.dir().name(strName);
          if(Application.dir().is(strName))
          {
-            if(System.file_system().cmp(GetFileManager()->get_item().m_strPath, strName) != 0)
+            if(!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
             {
                GetFileManager()->FileManagerBrowse(strName);
             }

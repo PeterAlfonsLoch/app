@@ -286,7 +286,7 @@ namespace plane
       m_spfilehandler(new ::filehandler::handler(this));
 
 
-      m_spfilesystem.create(this);
+      //m_spfilesystem.create(this);
       m_spos.create(this);
 
       m_spcrypt.create(this);

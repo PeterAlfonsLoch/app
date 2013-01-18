@@ -435,18 +435,23 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(cairo_surface_t * cs, const char * lpText)
+void message_box_paint(cairo_surface_t * cs, stra_dup & stra, simple_array < bool >  & baTab, simple_array < int >  & ya,SIZE * psize)
 {
 	cairo_t *c;
 
 	c=cairo_create(cs);
-	cairo_rectangle(c, 0.0, 0.0, SIZEX, SIZEY);
-	cairo_set_source_rgb(c, 0.0, 0.0, 0.5);
+	cairo_rectangle(c, 0.0, 0.0, psize->cx, psize->cy);
+	cairo_set_source_rgb(c, 0.84, 0.84, 0.77);
 	cairo_fill(c);
 
-	cairo_move_to(c, 10.0, 10.0);
-	cairo_set_source_rgb(c, 1.0, 1.0, 0.0);
-	cairo_show_text(c, lpText);
+	cairo_set_source_rgb(c, 0.0, 0.0, 0.0);
+
+	for(index i = 0; i < stra.get_count(); i++)
+	{
+      cairo_move_to(c, 10.0 + 50.0 + (baTab[i] ? 25.0 : 0), 10.0 + 50.0 + ya[i]);
+      cairo_show_text(c, stra[i]);
+	}
+
 
 	cairo_show_page(c);
 
@@ -470,19 +475,83 @@ void message_box_show_xlib(const char * lpText, const char * lpCaption)
 	scr=DefaultScreen(dpy);
 	rootwin=RootWindow(dpy, scr);
 
-	win=XCreateSimpleWindow(dpy, rootwin, 1, 1, SIZEX, SIZEY, 0,
-			BlackPixel(dpy, scr), BlackPixel(dpy, scr));
+
+	simple_graphics g;
+
+	g.create(NULL);
+
+	SIZE sz;
+
+	sz.cx = 0;
+	sz.cy = 0;
+
+
+	stra_dup stra;
+
+	stra.add_tokens(lpText, "\n");
+
+	simple_array < bool > baTab;
+
+	simple_array < int > ya;
+
+	for(index i = 0; i < stra.get_count(); i++)
+	{
+
+	   vsstring str = stra[i];
+
+	   bool bTab = str_begins_dup(str, "\t");
+
+	   str.trim();
+
+	   bool bEmpty = str.is_empty();
+
+	   if(bEmpty)
+         str = "L";
+
+	   SIZE sizeItem = g.get_text_extent(str);
+
+	   int x = bTab ? 25 : 0;
+
+	   if(sizeItem.cx + x > sz.cx)
+	   {
+
+	       sz.cx = sizeItem.cx + x;
+
+	   }
+
+	   baTab.add(bTab);
+
+	   ya.add( sz.cy);
+
+      sz.cy += sizeItem.cy;
+
+      if(bEmpty)
+      {
+         stra[i] = "";
+      }
+      else
+      {
+         stra[i] = str;
+      }
+
+	}
+
+	sz.cx += 100;
+	sz.cy += 100;
+
+
+	win=XCreateSimpleWindow(dpy, rootwin, 1, 1, sz.cx, sz.cy, 0, BlackPixel(dpy, scr), BlackPixel(dpy, scr));
 
 	XStoreName(dpy, win, lpCaption);
 	XSelectInput(dpy, win, ExposureMask|ButtonPressMask);
 	XMapWindow(dpy, win);
 
-	cs=cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), SIZEX, SIZEY);
+	cs=cairo_xlib_surface_create(dpy, win, DefaultVisual(dpy, 0), sz.cx, sz.cy);
 
 	while(1) {
 		XNextEvent(dpy, &e);
 		if(e.type==Expose && e.xexpose.count<1) {
-			message_box_paint(cs, lpText);
+			message_box_paint(cs, stra, baTab, ya, &sz);
 		} else if(e.type==ButtonPress) break;
 	}
 

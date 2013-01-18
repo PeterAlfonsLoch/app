@@ -75,7 +75,7 @@ public:
 
 
    // platform-specific
-   bool create(HDC hdc);
+   bool create(os_simple_graphics * pgraphics);
    bool from_entire_window(oswindow hwnd);
    bool from_window(oswindow hwnd);
    bool from_window_paint(oswindow hwnd, LPRECT lprectPaint = NULL);

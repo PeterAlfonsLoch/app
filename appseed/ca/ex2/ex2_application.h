@@ -43,7 +43,7 @@ namespace ex2
    public:
 
 
-      ex1::file_system_sp m_spfilesystem;
+//      ex1::file_system_sp m_spfilesystem;
 
 
       application();
@@ -71,7 +71,7 @@ namespace ex2
 
       virtual int32_t exit_instance();
 
-      virtual ::ex1::file_system & file_system();
+//      virtual ::ex1::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual ::user::document_interface * _001OpenDocumentFile(var varFile);

@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-FileManagerPathView::FileManagerPathView(::ca::application * papp) : 
+FileManagerPathView::FileManagerPathView(::ca::application * papp) :
    ca(papp),
-   ::user::interaction(papp), 
+   ::user::interaction(papp),
    ::userbase::view(papp),
    ::user::scroll_view(papp),
    ::userbase::edit_plain_text_view(papp)
@@ -14,7 +14,7 @@ FileManagerPathView::FileManagerPathView(::ca::application * papp) :
 
 }
 
-void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)
@@ -77,7 +77,7 @@ void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::radix::obj
                {
                   ptext->_001SetText(m_itema.get_item(range.ItemAt(0).GetLBound()).m_strName);
                }
-            }  
+            }
          }
          file_manager_form_update_hint * pmanageruh = dynamic_cast<file_manager_form_update_hint * > (phint);
          if(pmanageruh != NULL)
@@ -96,7 +96,7 @@ void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::radix::obj
 
 void FileManagerPathView::_017Synchronize()
 {
-   
+
    if(m_bVoidSync)
       return;
 
@@ -147,7 +147,7 @@ void FileManagerPathView::_001OnAfterChangeText()
          strName = System.dir().name(strName);
          if(GetFileManager()->get_fs_data()->is_dir(strName))
          {
-            if(System.file_system().cmp(GetFileManager()->get_item().m_strPath, strName) != 0)
+            if(!System.file().path().is_equal(GetFileManager()->get_item().m_strPath, strName))
             {
                keeper < bool > keepVoidSync(&m_bVoidSync, true, false, true);
                GetFileManager()->FileManagerBrowse(strName);

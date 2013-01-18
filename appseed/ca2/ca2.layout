@@ -115,6 +115,12 @@
 	<File name="filemanager/FileManagerInterface.h" open="0" top="0" tabpos="17">
 		<Cursor position="84" topLine="0" />
 	</File>
+	<File name="filemanager/FileManagerPathView.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4520" topLine="125" />
+	</File>
+	<File name="filemanager/FileManagerSaveAsNameView.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4443" topLine="97" />
+	</File>
 	<File name="filemanager/FileManagerTemplate.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="7282" topLine="143" />
 	</File>

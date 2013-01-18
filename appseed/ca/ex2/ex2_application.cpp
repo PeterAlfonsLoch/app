@@ -52,10 +52,10 @@ namespace ex2
       return ::ca::smart_pointer < application >::m_p->_001OnDDECommand(lpcsz);
    }
 
-   ::ex1::file_system & application::file_system()
-   {
-      return m_spfilesystem;
-   }
+//   ::ex1::file_system & application::file_system()
+  // {
+    //  return m_spfilesystem;
+   //}
 
    bool application::process_initialize()
    {
@@ -141,13 +141,13 @@ namespace ex2
    bool application::finalize()
    {
       bool bOk = true;
-      try
-      {
-         m_spfilesystem.destroy();
-      }
-      catch(...)
-      {
-      }
+//      try
+  //    {
+    //     m_spfilesystem.destroy();
+      //}
+//      catch(...)
+  //    {
+    //  }
       try
       {
          if(!gen::application::finalize())
@@ -167,16 +167,16 @@ namespace ex2
       if(is_system())
       {
 
-         try
-         {
-            if(m_spfilesystem.m_p != NULL)
-            {
-               gen::del(m_spfilesystem.m_p);
-            }
-         }
-         catch(...)
-         {
-         }
+//         try
+  //       {
+    //        if(m_spfilesystem.m_p != NULL)
+      //      {
+        //       gen::del(m_spfilesystem.m_p);
+          //  }
+//         }
+  //       catch(...)
+    //     {
+      //   }
       }
 
       try
