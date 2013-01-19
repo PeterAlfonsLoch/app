@@ -111,7 +111,7 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      int32_t iMargin = rectClient.height() / 8;
+//      int32_t iMargin = rectClient.height() / 8;
 
       rect rectDropDown;
 
@@ -179,17 +179,18 @@ namespace user
 
       ::ca::brush_sp br(get_app());
 
-      int32_t iMargin = rectClient.height() / 8;
-
       rect rectDropDown;
 
       get_element_rect(rectDropDown, element_drop_down);
 
-      rect r = rectDropDown;
-
-      int32_t i = 0;
 
 #ifdef WINDOWSEX
+
+      int32_t iMargin = rectClient.height() / 8;
+      
+      rect r = rectDropDown;
+      
+      int32_t i = 0;
 
       int32_t iColorRate;
 
@@ -544,14 +545,14 @@ namespace user
    void combo_box::_001OnLButtonUp(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+//      SCAST_PTR(gen::message::mouse, pmouse, pobj);
 
    }
 
    void combo_box::_001OnSetFocus(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::set_focus, pfocus, pobj);
+//      SCAST_PTR(gen::message::set_focus, pfocus, pobj);
 
    }
 

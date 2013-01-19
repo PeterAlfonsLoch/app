@@ -1,7 +1,7 @@
 #import "c_mm.h"
 
 
-WINBOOL IsWindowVisible(oswindow hwnd)
+bool oswindow::is_window_visible()
 {
    
    return 1;
@@ -9,13 +9,21 @@ WINBOOL IsWindowVisible(oswindow hwnd)
 }
 
 
-WINBOOL IsIconic(oswindow hwnd)
+bool oswindow::is_iconic()
 {
    
-   [hwnd.window() miniaturize : 0];
+   [window() miniaturize : 0];
    
    return 1;
    
+   
+}
+
+
+bool oswindow::show_window(int32_t nCmdShow)
+{
+
+   return 1;
    
 }
 

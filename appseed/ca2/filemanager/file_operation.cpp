@@ -157,6 +157,9 @@ bool file_operation::start()
             return false;
       }
       break;
+      default:
+         
+         break;
    }
    return true;
 }
@@ -238,6 +241,9 @@ bool file_operation::step()
          }
       }
       break;
+      default:
+         
+         break;
    }
    return true;
 }
@@ -260,6 +266,9 @@ bool file_operation::finish()
          free(m_pchBuffer);
       }
       break;
+      default:
+         
+         break;
    }
    if(m_oswindowCallback != NULL)
    {

@@ -137,7 +137,7 @@ namespace gcom
       try
       {
          
-        /*   RECT rect;
+           RECT rect;
          pinterface->GetWnd().GetClientRect(&rect);
           TRACE("CXfplayerThreadV1::OnImageStretched slGdi.lock\n");
 
@@ -351,7 +351,7 @@ namespace gcom
          if(cy <= 0)
             cy = 1;
          single_lock sl(&m_mutexBitmap, TRUE);
-      /*   if(m_bitmap.m_hObject == NULL)
+         if(m_bitmap.m_hObject == NULL)
              return;*/
          /*double horizRate, vertRate, rate;
           BITMAP bm;

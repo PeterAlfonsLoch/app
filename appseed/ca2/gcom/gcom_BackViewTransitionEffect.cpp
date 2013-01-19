@@ -396,7 +396,7 @@ namespace gcom
 
          Graphics & graphics = main.GetGraphics();
 
-         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
+//         ::ca::draw_dib & drawdib = graphics.GetDrawDib();
 
 //         ASSERT(graphics.GetBufferDC().get_os_data() != NULL);
 
@@ -435,7 +435,7 @@ namespace gcom
             return;
          }
 
-         class size  sizeBack2 = bitmapBuffer.get_size();
+//         class size  sizeBack2 = bitmapBuffer.get_size();
 
          rect rectUpdate;
          switch(m_etypea[m_iType])
@@ -445,7 +445,7 @@ namespace gcom
                if(m_tool001.m_iStep == m_tool001.m_iStepCount / 2)
                {
                   rectUpdate = rectClient;
-                  drawdib.draw(
+/*                  drawdib.draw(
                      &dcBack,
                      rectUpdate.left, rectUpdate.top,
                      rectUpdate.width(), rectUpdate.height(),
@@ -453,6 +453,7 @@ namespace gcom
                      rectUpdate.left, rectUpdate.top,
                      rectUpdate.width(), rectUpdate.height(),
                      SRCCOPY);
+ */
                   recta.add(rectUpdate);
                }
             }
@@ -1523,6 +1524,8 @@ namespace gcom
                         m_tool001.GetSliceRect(finalW, finalH, rectDest, gcom::backview::TransitionEffect::Tool001::AlignRight, dRateMinus, dRate);
                      }
                      break;
+                     default:
+                        break;
                   }
 
                   rectDest.offset(rectBound.top_left());
@@ -1686,6 +1689,8 @@ namespace gcom
                   rectUpdate.set(x1, y1, x2, y2);
                   recta.add(rectUpdate);
                }
+               break;
+            default:
                break;
 
          }
@@ -1859,7 +1864,7 @@ namespace gcom
          event.ResetEvent();
 
 //         MMRESULT mmr;
-         int32_t iResolution = 25;
+//         int32_t iResolution = 25;
          UINT uiRet = 0;
          try
          {

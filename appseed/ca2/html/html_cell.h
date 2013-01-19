@@ -14,7 +14,7 @@ namespace html
 
 
       class CLASS_DECL_ca2 cell : 
-         public text
+         public ::html::impl::text
       {
       public:
 

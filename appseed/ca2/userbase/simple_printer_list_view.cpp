@@ -44,8 +44,8 @@ void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
    pobj->previous();
 
    DWORD cbNeeded = 0;
-   DWORD cbReturned = 0;
 #ifdef WINDOWSEX
+   DWORD cbReturned = 0;
    ::EnumPrinters(PRINTER_ENUM_LOCAL | PRINTER_ENUM_CONNECTIONS, NULL, 1, NULL, 0, &cbNeeded, &cbReturned);
 #else
    throw todo(get_app());

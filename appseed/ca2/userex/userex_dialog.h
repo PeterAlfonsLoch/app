@@ -37,7 +37,7 @@ public:
    virtual void do_data_exchange(::user::data_exchange * pdx);
 
 
-   virtual BOOL on_init_dialog();
+   virtual WINBOOL on_init_dialog();
 
 
 

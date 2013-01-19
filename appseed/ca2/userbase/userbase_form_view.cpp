@@ -148,7 +148,7 @@ namespace userbase
          return dynamic_cast < html::document_container * > (System.alloc(System.type_info < html::document_container > ()));
    }
 
-   /*
+   
    bool form_view::open_document(const char * pszPath)
    {
       return open_document(pszPath);

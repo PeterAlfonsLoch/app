@@ -243,11 +243,11 @@ namespace user
          //rect rectClient;
 //         GetWindowRect(rectClient);
   //       rectClient.offset(rectClient.top_left());
-/*         if(rectClient.size() != m_dibBk->size())
+         if(rectClient.size() != m_dibBk->size())
          {
             m_dibBk->create(rectClient.size());
             m_dibBk->Fill(184, 184, 170);
-/*            HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
+            HMODULE hmodule = ::LoadLibrary("ca2performance.dll");
             ::visual::fastblur *( *pfnNew )(::ca::application *) = (::visual::fastblur *(*)(::ca::application *)) ::GetProcAddress(hmodule, "new_fastblur");*/
 /*            m_fastblur.create(get_app());
             m_fastblur.initialize(rectClient.size(), 2);
@@ -538,8 +538,8 @@ namespace user
 
    void edit_plain_text::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-      point point = pcontextmenu->GetPoint();
+//      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//      point point = pcontextmenu->GetPoint();
 
    }
 
@@ -549,7 +549,7 @@ namespace user
       //int32_t iItem;
       //HRESULT hr;
       class point point = pmouse->m_pt;
-      class point ptClient = point;
+//      class point ptClient = point;
       ClientToScreen(&point);
       //ScreenToClient(&ptClient);
    /*   ::userbase::menu menu;
@@ -1015,7 +1015,7 @@ namespace user
             m_scrollinfo.m_sizeTotal.cx = (int32_t) size.cx;
 
       }
-      m_scrollinfo.m_sizeTotal.cy = (long) (m_iaLineIndex.get_count() * iLineHeight);
+      m_scrollinfo.m_sizeTotal.cy = ((int32_t) m_iaLineIndex.get_count() * iLineHeight);
       rect rectClient;
       GetClientRect(rectClient);
       class size sizePage;

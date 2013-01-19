@@ -78,7 +78,7 @@ namespace userbase
       if(lpMsg->message == WM_LBUTTONDOWN)
       {
 
-         int32_t   fwKeys = (int32_t) lpMsg->wParam;        // key flags
+//         int32_t   fwKeys = (int32_t) lpMsg->wParam;        // key flags
          if(Session.is_mouse_button_pressed(::user::mouse_left_button))
          {
             ::userbase::split_bar & splitbar = m_splitbara.element_at(iIndex);

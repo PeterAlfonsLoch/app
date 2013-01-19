@@ -174,7 +174,7 @@ void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
       ::user::list * plist = dynamic_cast<::user::list *>(ptwi);
       if(plist != NULL)
       {
-/*         if(lpdi->mask & HDI_TEXT
+         if(lpdi->mask & HDI_TEXT
             && lpdi->iItem >= 0 &&
             lpdi->iItem < plist->_001GetColumnCount())
          {

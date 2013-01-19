@@ -71,22 +71,23 @@ namespace user
          return;
 
       SetTimer(1, 5000, NULL);
-      ::user::interaction * pwnd = m_pwnd;
 
       rect rect;
       ::ca::client_graphics pdc(this);
 
       GetToolRect(iTool, rect);
 
-      ::user::tool_tip_tool * ptool = GetTool(iTool);
-
-      bool bVRetry = false;
-      bool bHRetry = false;
 
       m_ealign = m_ealignDefault;
 
 
 #ifdef WINDOWSEX
+
+      ::user::interaction * pwnd = m_pwnd;
+      ::user::tool_tip_tool * ptool = GetTool(iTool);
+      
+      bool bVRetry = false;
+      bool bHRetry = false;
 
       while(true)
       {

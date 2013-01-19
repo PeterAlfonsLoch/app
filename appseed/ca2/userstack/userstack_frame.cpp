@@ -427,10 +427,10 @@ namespace userstack
    void frame::_001OnApp1(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::base, pbase, pobj);
-
 #ifdef WINDOWSEX
 
+      SCAST_PTR(gen::message::base, pbase, pobj);
+      
       MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam;
 
       pmsg->hwnd = get_safe_handle();

@@ -3816,7 +3816,7 @@ namespace user
 
    /*void list::InstallMessageHandling(MessageDispatch *pinterface)
    {
-   /*   m_lpfnOnSize = (_001_ON_SIZE) _001OnSize;
+      m_lpfnOnSize = (_001_ON_SIZE) _001OnSize;
    m_lpfnOnVScroll = (_001_ON_VSCROLL) _001OnVScroll;
    m_lpfnOnHScroll = (_001_ON_HSCROLL) _001OnHScroll;
    m_lpfnOnPaint = (_001_ON_PAINT) _001OnPaint;
@@ -5305,8 +5305,8 @@ namespace user
             class rect rectCache;
             rectCache.left = 2;
             rectCache.top = 2;
-            rectCache.right = rectCache.left + (index)m_rectText.width();
-            rectCache.bottom = rectCache.top + (index)m_rectText.height();
+            rectCache.right = rectCache.left + (int32_t)m_rectText.width();
+            rectCache.bottom = rectCache.top + (int32_t)m_rectText.height();
             dib->get_graphics()->SelectObject(m_pfont);
             m_plist->m_dcextension._DrawText(dib->get_graphics(), m_strText, rectCache, m_iDrawTextFlags);
 

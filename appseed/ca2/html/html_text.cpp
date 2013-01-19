@@ -33,7 +33,7 @@ namespace html
 
          ::ca::data::writing writing(pdata);
 
-         elemental::implement_phase1(pdata, pelemental);
+         ::html::impl::elemental::implement_phase1(pdata, pelemental);
          string strTag;
          if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
          {
@@ -160,7 +160,7 @@ namespace html
          {
             strTag = m_pelemental->m_propertyset["PropertyTag"];
          }
-         elemental::layout_phase3(pdata);
+         ::html::impl::elemental::layout_phase3(pdata);
          if(strTag.CompareNoCase("br") == 0)
          {
 //            int32_t iIndex = -1;
@@ -415,7 +415,7 @@ namespace html
          || m_pelemental->m_propertyset["PropertyBody"].is_empty())
             return;
          ::ca::graphics * pdc = pdata->m_pdc;
-         elemental::_001OnDraw(pdata);
+         ::html::impl::elemental::_001OnDraw(pdata);
 
 
          COLORREF cr;
@@ -612,7 +612,7 @@ namespace html
          }
          else
          {
-            return elemental::has_link();
+            return ::html::impl::elemental::has_link();
          }
       }
       string text::link()
@@ -623,7 +623,7 @@ namespace html
          }
          else
          {
-            return elemental::link();
+            return ::html::impl::elemental::link();
          }
       }
 
@@ -635,8 +635,8 @@ namespace html
         float cy = 0.f;
         float x1;
         float x2;
-        bool bTag = is_tag();
-        bool bValue = is_value();
+//        bool bTag = is_tag();
+  //      bool bValue = is_value();
         for(int32_t i = 0; i < m_straLines.get_size(); i++)
         {
            x1 = i == 0 ? x : m_bound.left;
@@ -662,7 +662,7 @@ namespace html
          }
          else
          {
-            elemental::OnLButtonDown(pobj);
+            ::html::impl::elemental::OnLButtonDown(pobj);
          }
       }
 
@@ -678,7 +678,7 @@ namespace html
          }
          else
          {
-            elemental::OnLButtonUp(pobj);
+            ::html::impl::elemental::OnLButtonUp(pobj);
          }
       }
 

@@ -211,7 +211,12 @@ oswindow oswindow::set_parent(oswindow oswindow)
    
 }
 
-
+int32_t oswindow::get_window_long(int32_t iIndex)
+{
+   
+   return 0;
+   
+}
 
 
 

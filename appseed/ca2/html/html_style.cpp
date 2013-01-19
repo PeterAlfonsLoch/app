@@ -1169,7 +1169,7 @@ namespace html
       strsize iFindRgb = str.find_ci("rgb");
       strsize iFindSharp = str.find_ci("#");
       strsize iFindColor = -1;
-      strsize iFindDigit = str.FindOneOf("0123456789");
+//      strsize iFindDigit = str.FindOneOf("0123456789");
       if(iFindRgb >= 0)
       {
          if(iFindSharp >= 0)

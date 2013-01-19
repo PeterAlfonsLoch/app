@@ -32,11 +32,11 @@ namespace user
          throw "a view should collaborate";
       }
 
-      ::ca::graphics * pgraphics = m_phprinter->create_graphics();
-
-
 #ifdef WINDOWSEX
 
+      ::ca::graphics * pgraphics = m_phprinter->create_graphics();
+      
+      
       DOCINFO docinfo;
       memset(&docinfo, 0, sizeof(docinfo));
       docinfo.cbSize = sizeof(docinfo);

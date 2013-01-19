@@ -406,6 +406,8 @@ namespace frame
           case ::uinteraction::frame::frame::button_notify_icon:
              pinterface->WfiNotifyIcon();
              return TRUE;
+             default:
+                break;
 
           }
       }
@@ -440,7 +442,8 @@ namespace frame
           case ::uinteraction::frame::frame::button_down:
              pinterface->WfiDown();
              return TRUE;
-
+          default:
+             break;
           }
       }
       return FALSE;
@@ -1142,7 +1145,7 @@ namespace frame
          return;
       }
       ASSERT(m_pframeschema != NULL);
-      point ptCursor = pmouse->m_pt;
+//      point ptCursor = pmouse->m_pt;
       m_pframeschema->_000OnMouseMove(pmouse);
       if(pmouse->m_bRet)
       {
@@ -1191,7 +1194,7 @@ namespace frame
          return;
       }
       ASSERT(m_pframeschema != NULL);
-      point pt(pmouse->m_pt);
+//      point pt(pmouse->m_pt);
 
       m_pframeschema->_000OnNcMouseMove(pmouse);
       if(pmouse->m_bRet)

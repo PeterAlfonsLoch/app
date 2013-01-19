@@ -146,7 +146,7 @@ namespace filemanager
 
    /*bool document::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
    {
-   /*if (nCode == CN_UPDATE_COMMAND_UI)
+   if (nCode == CN_UPDATE_COMMAND_UI)
    {
    cmd_ui * pcmdui = (cmd_ui *) pExtra;
    if(nID == get_filemanager_data()->m_ptemplate->m_uiLevelUp)

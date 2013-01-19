@@ -106,7 +106,7 @@ namespace userbase
       bool bResult = TRUE;
       //if (lpIDArray != NULL)
       //{
-         HFONT hFont = (HFONT)send_message(WM_GETFONT);
+//         HFONT hFont = (HFONT)send_message(WM_GETFONT);
          ::ca::graphics_sp spgraphicsScreen(get_app());
 
          throw todo(get_app());
@@ -176,7 +176,7 @@ namespace userbase
       //   return FALSE;
 
       // construct new elements
-   /*   pSBP = _GetPanePtr(0);
+      pSBP = _GetPanePtr(0);
       for (i = 0; i < m_panea.get_count(); i++)
       {
    #pragma push_macro("new")
@@ -582,8 +582,8 @@ namespace userbase
    //      return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
 
       ASSERT(pResult == NULL);
-      UNUSED(pResult); // unused in release builds
 #ifdef WINDOWSEX
+      UNUSED(pResult); // unused in release builds
       DrawItem((LPDRAWITEMSTRUCT)lParam);
 #endif
       return TRUE;

@@ -90,7 +90,7 @@ namespace user
       pane.m_uiId = uiIdTitle;
       pane.m_istrTitleEx = L"";
       pane.m_iId = iId == -1 ? get_data()->m_panea.get_size() : iId;
-   /*   if(!pane.m_wstrTitle.load_string(uiIdTitle))
+      if(!pane.m_wstrTitle.load_string(uiIdTitle))
       {
          return false;
       }*/
@@ -1821,6 +1821,8 @@ namespace user
             lprect->bottom = lprect->top + get_data()->m_rectTabClient.height() / 3;
          }
          break;
+         default:
+            break;
       }
    }
 

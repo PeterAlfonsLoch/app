@@ -681,30 +681,30 @@ namespace gcom
             {
                lprect->left = 0;
                lprect->right = lprect->left + cx;
-               lprect->top = (long) (dRate * cy);
-               lprect->bottom = (long) (dRateEx * cy);
+               lprect->top = (int32_t) (dRate * cy);
+               lprect->bottom = (int32_t) (dRateEx * cy);
             }
             break;
          case TransitionEffectWipeTop:
             {
                lprect->left = 0;
                lprect->right = lprect->left + cx;
-               lprect->top = (long) ((1.0 - dRateEx) * cy);
-               lprect->bottom = (long) (1.0 - dRate) * cy;
+               lprect->top = (int32_t) ((1.0 - dRateEx) * cy);
+               lprect->bottom = (int32_t) (1.0 - dRate) * cy;
             }
             break;
          case TransitionEffectWipeRight:
             {
-               lprect->left =  (long) (dRate * cx);
-               lprect->right =  (long) (dRateEx * cx);
+               lprect->left =  (int32_t) (dRate * cx);
+               lprect->right =  (int32_t) (dRateEx * cx);
                lprect->top = 0;
                lprect->bottom = lprect->top + cy;;
             }
             break;
          case TransitionEffectWipeLeft:
             {
-               lprect->left =  (long) ((1.0 - dRateEx) * cx);
-               lprect->right =  (long) ((1.0 - dRate) * cx);
+               lprect->left =  (int32_t) ((1.0 - dRateEx) * cx);
+               lprect->right =  (int32_t) ((1.0 - dRate) * cx);
                lprect->top = 0;
                lprect->bottom = lprect->top + cy;;
             }
@@ -859,7 +859,7 @@ namespace gcom
             {
                lprect->left = 0;
                lprect->right = lprect->left + cx;
-               lprect->top = (long) (dRate * cy);
+               lprect->top = (int32_t) (dRate * cy);
                lprect->bottom = cy;
             }
             break;
@@ -868,20 +868,20 @@ namespace gcom
                lprect->left = 0;
                lprect->right = lprect->left + cx;
                lprect->top = 0;
-               lprect->bottom = (long) (1.0 - dRate) * cy;
+               lprect->bottom = (int32_t) (1.0 - dRate) * cy;
             }
             break;
          case AlignLeft:
             {
                lprect->left =  0;
-               lprect->right =  (long) (dRate * cx);
+               lprect->right =  (int32_t) (dRate * cx);
                lprect->top = 0;
                lprect->bottom = lprect->top + cy;;
             }
             break;
          case AlignRight:
             {
-               lprect->left =  (long) ((1.0 - dRate) * cx);
+               lprect->left =  (int32_t) ((1.0 - dRate) * cx);
                lprect->right =  cx;
                lprect->top = 0;
                lprect->bottom = lprect->top + cy;;
@@ -890,51 +890,51 @@ namespace gcom
          case AlignTopRight:
             {
                lprect->left = 0;
-               lprect->right = (long) (dRate * cx);
+               lprect->right = (int32_t) (dRate * cx);
                lprect->top = 0;
-               lprect->bottom = (long) (dRate * cy);
+               lprect->bottom = (int32_t) (dRate * cy);
             }
             break;
          case AlignRightBottom:
             {
                lprect->left = 0;
-               lprect->right = (long) (dRate * cx);
-               lprect->top = (long) ((1.0 - dRate) * cy);
+               lprect->right = (int32_t) (dRate * cx);
+               lprect->top = (int32_t) ((1.0 - dRate) * cy);
                lprect->bottom = cy;
             }
             break;
          case AlignLeftTop:
             {
-               lprect->left = (long) ((1.0 - dRate) * cx);
+               lprect->left = (int32_t) ((1.0 - dRate) * cx);
                lprect->right =  cx;
                lprect->top = 0;
-               lprect->bottom = (long) (dRate * cy);
+               lprect->bottom = (int32_t) (dRate * cy);
             }
             break;
          case AlignBottomLeft:
             {
-               lprect->left =  (long) ((1.0 - dRate) * cx);
+               lprect->left =  (int32_t) ((1.0 - dRate) * cx);
                lprect->right =  cx;
-               lprect->top = (long) ((1.0 - dRate) * cy);
+               lprect->top = (int32_t) ((1.0 - dRate) * cy);
                lprect->bottom = cy;;
             }
             break;
          case AlignCenter:
             {
                double dHalfRate = dRate / 2.0;
-               lprect->left =  (long) ((0.5 - dHalfRate) * (cx));
-               lprect->right =  (long) (dHalfRate * cx);
-               lprect->top = (long) ((0.5 - dHalfRate) * (cy));
-               lprect->bottom = (long) (dHalfRate * cy);
+               lprect->left =  (int32_t) ((0.5 - dHalfRate) * (cx));
+               lprect->right =  (int32_t) (dHalfRate * cx);
+               lprect->top = (int32_t) ((0.5 - dHalfRate) * (cy));
+               lprect->bottom = (int32_t) (dHalfRate * cy);
             }
             break;
          case AlignCenterOut:
             {
                double dHalfRate = 0.5 - (dRate / 2.0);
-               lprect->left =  (long) ((0.5 - dHalfRate) * (cx));
-               lprect->right =  (long) (dHalfRate * cx);
-               lprect->top = (long) ((0.5 - dHalfRate) * (cy));
-               lprect->bottom = (long) (dHalfRate * cy);
+               lprect->left =  (int32_t) ((0.5 - dHalfRate) * (cx));
+               lprect->right =  (int32_t) (dHalfRate * cx);
+               lprect->top = (int32_t) ((0.5 - dHalfRate) * (cy));
+               lprect->bottom = (int32_t) (dHalfRate * cy);
             }
             break;
          default:
@@ -979,73 +979,73 @@ namespace gcom
             {
                lprect->left = 0;
                lprect->right = lprect->left + cx;
-               lprect->top = (long) (dRate * cy);
-               lprect->bottom = (long) (dRatePlus * cy);
+               lprect->top = (int32_t) (dRate * cy);
+               lprect->bottom = (int32_t) (dRatePlus * cy);
             }
             break;
          case AlignBottom:
             {
                lprect->left = 0;
                lprect->right = lprect->left + cx;
-               lprect->top = (long) ((1.0 - dRatePlus) * cy);
-               lprect->bottom = (long) ((1.0 - dRate) * cy);
+               lprect->top = (int32_t) ((1.0 - dRatePlus) * cy);
+               lprect->bottom = (int32_t) ((1.0 - dRate) * cy);
             }
             break;
          case AlignLeft:
             {
-               lprect->left =  (long) (dRate * cx);
-               lprect->right =  (long) (dRatePlus * cx);
+               lprect->left =  (int32_t) (dRate * cx);
+               lprect->right =  (int32_t) (dRatePlus * cx);
                lprect->top = 0;
                lprect->bottom = lprect->top + cy;;
             }
             break;
          case AlignRight:
             {
-               lprect->left =  (long) ((1.0 - dRatePlus) * cx);
-               lprect->right =  (long) ((1.0 - dRate) * cx);
+               lprect->left =  (int32_t) ((1.0 - dRatePlus) * cx);
+               lprect->right =  (int32_t) ((1.0 - dRate) * cx);
                lprect->top = 0;
                lprect->bottom = lprect->top + cy;;
             }
             break;
          case AlignTopRight:
             {
-               lprect->left = (long) (dRate * cx);
-               lprect->right = (long) (dRatePlus * cx);
-               lprect->top = (long) (dRate * cy);
-               lprect->bottom = (long) (dRatePlus * cy);
+               lprect->left = (int32_t) (dRate * cx);
+               lprect->right = (int32_t) (dRatePlus * cx);
+               lprect->top = (int32_t) (dRate * cy);
+               lprect->bottom = (int32_t) (dRatePlus * cy);
             }
             break;
          case AlignRightBottom:
             {
-               lprect->left = (long) (dRate * cx);;
-               lprect->right = (long) (dRatePlus * cx);
-               lprect->top = (long) ((1.0 - dRatePlus) * cy);
-               lprect->bottom = (long) ((1.0 - dRate) * cy);
+               lprect->left = (int32_t) (dRate * cx);;
+               lprect->right = (int32_t) (dRatePlus * cx);
+               lprect->top = (int32_t) ((1.0 - dRatePlus) * cy);
+               lprect->bottom = (int32_t) ((1.0 - dRate) * cy);
             }
             break;
          case AlignLeftTop:
             {
-               lprect->left = (long) ((1.0 - dRatePlus) * cx);
-               lprect->right =  (long) ((1.0 - dRate) * cx);
-               lprect->top = (long) (dRate * cy);
-               lprect->bottom = (long) (dRatePlus * cy);
+               lprect->left = (int32_t) ((1.0 - dRatePlus) * cx);
+               lprect->right =  (int32_t) ((1.0 - dRate) * cx);
+               lprect->top = (int32_t) (dRate * cy);
+               lprect->bottom = (int32_t) (dRatePlus * cy);
             }
             break;
          case AlignBottomLeft:
             {
-               lprect->left =  (long) ((1.0 - dRatePlus) * cx);
-               lprect->right =  (long) ((1.0 - dRate) * cx);
-               lprect->top = (long) ((1.0 - dRatePlus) * cy);
-               lprect->bottom = (long) ((1.0 - dRate) * cy);
+               lprect->left =  (int32_t) ((1.0 - dRatePlus) * cx);
+               lprect->right =  (int32_t) ((1.0 - dRate) * cx);
+               lprect->top = (int32_t) ((1.0 - dRatePlus) * cy);
+               lprect->bottom = (int32_t) ((1.0 - dRate) * cy);
             }
             break;
          case AlignCenter:
             {
                double dHalfRate = dRatePlus / 2.0;
-               lprect->left =  (long) ((0.5 - dHalfRate) * (cx));
-               lprect->right =  (long) (dHalfRate * cx);
-               lprect->top = (long) ((0.5 - dHalfRate) * (cy));
-               lprect->bottom = (long) (dHalfRate * cy);
+               lprect->left =  (int32_t) ((0.5 - dHalfRate) * (cx));
+               lprect->right =  (int32_t) (dHalfRate * cx);
+               lprect->top = (int32_t) ((0.5 - dHalfRate) * (cy));
+               lprect->bottom = (int32_t) (dHalfRate * cy);
             }
             break;
          default:
@@ -1100,10 +1100,10 @@ namespace gcom
          int32_t iTContrib = iRandY < 0 ? iRandY : 0;
          int32_t iBContrib = iRandY > 0 ? iRandY : 0;
 
-         lprectEllipse->left = (long) (rect.left + iLContrib   - dDiff);
-         lprectEllipse->top = (long) (rect.top + iTContrib - dDiff);
-         lprectEllipse->right = (long) (rect.right + iRContrib   + dDiff);
-         lprectEllipse->bottom = (long) (rect.bottom + iBContrib   + dDiff);
+         lprectEllipse->left = (int32_t) (rect.left + iLContrib   - dDiff);
+         lprectEllipse->top = (int32_t) (rect.top + iTContrib - dDiff);
+         lprectEllipse->right = (int32_t) (rect.right + iRContrib   + dDiff);
+         lprectEllipse->bottom = (int32_t) (rect.bottom + iBContrib   + dDiff);
 
          return 1;
       }
@@ -1132,10 +1132,10 @@ namespace gcom
          int32_t iTContrib = iRand < 0 ? iRand : 0;
          int32_t iBContrib = iRand > 0 ? iRand : 0;
 
-         lprectCircle->left = (long) (rect.left + iLContrib   - dDiff);
-         lprectCircle->top = (long) (rect.top + iTContrib - dDiff);
-         lprectCircle->right = (long) (rect.right + iRContrib   + dDiff);
-         lprectCircle->bottom = (long) (rect.bottom + iBContrib   + dDiff);
+         lprectCircle->left = (int32_t) (rect.left + iLContrib   - dDiff);
+         lprectCircle->top = (int32_t) (rect.top + iTContrib - dDiff);
+         lprectCircle->right = (int32_t) (rect.right + iRContrib   + dDiff);
+         lprectCircle->bottom = (int32_t) (rect.bottom + iBContrib   + dDiff);
 
          return 1;
       }
@@ -1151,14 +1151,14 @@ namespace gcom
       }
       void TransitionEffect::Tool001::GetRect(LPPOINT lppoint, LPCRECT lpcrect)
       {
-         lppoint[0].x = (long) lpcrect->left;
-         lppoint[0].y = (long) lpcrect->top;
-         lppoint[1].x = (long) lpcrect->right;
-         lppoint[1].y = (long) lpcrect->top;
-         lppoint[2].x = (long) lpcrect->right;
-         lppoint[2].y = (long) lpcrect->bottom;
-         lppoint[3].x = (long) lpcrect->left;
-         lppoint[3].y = (long) lpcrect->bottom;
+         lppoint[0].x = (int32_t) lpcrect->left;
+         lppoint[0].y = (int32_t) lpcrect->top;
+         lppoint[1].x = (int32_t) lpcrect->right;
+         lppoint[1].y = (int32_t) lpcrect->top;
+         lppoint[2].x = (int32_t) lpcrect->right;
+         lppoint[2].y = (int32_t) lpcrect->bottom;
+         lppoint[3].x = (int32_t) lpcrect->left;
+         lppoint[3].y = (int32_t) lpcrect->bottom;
       }
 
 
@@ -1272,10 +1272,10 @@ namespace gcom
          rect rect;
          dRight  = dLeft + iRadius * 2.05  + 1;
          dBottom = dTop + iRadius * sqrt(3.1) + 1;
-         rect.left = (long) dLeft;
-         rect.top = (long) dTop;
-         rect.right = (long) dRight;
-         rect.bottom = (long) dBottom;
+         rect.left = (int32_t) dLeft;
+         rect.top = (int32_t) dTop;
+         rect.right = (int32_t) dRight;
+         rect.bottom = (int32_t) dBottom;
 
          GetHorizontalHexagon(rect, lppoint);
          System.geometry().rotate((m_cx / 2), (m_cy / 2), lppoint, 6, phi);

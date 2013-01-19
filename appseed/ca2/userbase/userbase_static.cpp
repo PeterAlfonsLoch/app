@@ -46,8 +46,8 @@ namespace userbase
          // return ::user::interaction::OnChildNotify(message, wParam, lParam, pResult);
 
       ASSERT(pResult == NULL);       // no return value expected
-      UNUSED(pResult); // unused in release builds
 #ifdef WINDOWSEX
+      UNUSED(pResult); // unused in release builds
       DrawItem((LPDRAWITEMSTRUCT)lParam);
 #endif
       return TRUE;

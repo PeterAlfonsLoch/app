@@ -156,7 +156,7 @@ void dialog::do_data_exchange(::user::data_exchange * pdx)
 }
 
 
-BOOL dialog::on_init_dialog()
+WINBOOL dialog::on_init_dialog()
 {
 
    return TRUE;

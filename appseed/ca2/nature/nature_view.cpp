@@ -177,8 +177,8 @@ namespace nature
    }
    void view::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-         point point = pcontextmenu->GetPoint();
+//      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//         point point = pcontextmenu->GetPoint();
 
    }
 

@@ -53,7 +53,7 @@ namespace html
       void input_check_box::layout_phase3(data * pdata)
       {
          elemental::layout_phase3(pdata);
-         point pointBound = get_bound_point();
+//         point pointBound = get_bound_point();
          m_box.set_cxy(23, 23);
          m_box.offset_y(pdata->m_layoutstate.m_cy);
          pdata->m_layoutstate.m_y    = get_y();

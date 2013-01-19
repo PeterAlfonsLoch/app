@@ -48,7 +48,8 @@ namespace gcom
          cx = lprectSpace->right - lprectAlign->right;
          cy = lprectSpace->bottom - lprectAlign->bottom;
          break;
-
+         default:
+            break;
       }
       cx = (int32_t) (cx * dRate);
       cy = (int32_t) (cy * dRate);
@@ -94,6 +95,8 @@ namespace gcom
       case ::gcom::DirectionBottomLeft:
          dx = -dx;
          break;
+         default:
+            break;
       }
 
       lprectDeviate->left     += dx;
@@ -158,6 +161,8 @@ namespace gcom
          lprectSliced1->top      = lprectSlicing->top + (int32_t) (cy * dRate);
          lprectSliced1->bottom   = lprectSlicing->top + (int32_t) (cy * dRateEx);
          break;
+         default:
+            break;
       }
 
    }
@@ -223,6 +228,8 @@ namespace gcom
          lprectSliced3->top      = lprectSlicing->top;
          lprectSliced3->bottom   = lprectSliced1->top;
          break;
+         default:
+            break;
       }
 
    }

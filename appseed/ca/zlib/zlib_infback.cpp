@@ -527,8 +527,10 @@ void FAR *out_desc)
                 state->length += BITS(state->extra);
                 DROPBITS(state->extra);
             }
-#ifdef LINUX
-            Tracevv((stderr, "inflate:         length %lu\n", state->length));
+#if defined(MACOS)
+            Tracevv((stderr, "inflate:         length %llu\n", state->length));
+#elif defined(LINUX)       
+              Tracevv((stderr, "inflate:         length %lu\n", state->length));
 #else
             Tracevv((stderr, "inflate:         length %u\n", state->length));
 #endif

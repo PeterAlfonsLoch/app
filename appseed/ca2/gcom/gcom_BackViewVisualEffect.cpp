@@ -1,8 +1,9 @@
 #include "framework.h"
 
 
+#ifndef MACOS
 #define M_PI 3.14159265358979323846
-
+#endif
 
 namespace gcom
 {
@@ -196,9 +197,9 @@ namespace gcom
 
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+  //          rand() * 255 / RAND_MAX,
+    //        rand() * 255 / RAND_MAX);
 
 //         BYTE bA = 50;
 
@@ -329,9 +330,9 @@ namespace gcom
 
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+            //RGB(255, rand() * 255 / RAND_MAX,
+            //rand() * 255 / RAND_MAX,
+            //rand() * 255 / RAND_MAX);
 
          BYTE bA = 50;
 
@@ -470,9 +471,9 @@ namespace gcom
 
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
          BYTE bA = 50;
 
@@ -651,10 +652,10 @@ namespace gcom
          }
 
 
-
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
          BYTE bA = 50;
 
@@ -1203,9 +1204,9 @@ namespace gcom
 
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
          BYTE bA = 200;
 
@@ -1456,9 +1457,9 @@ namespace gcom
 
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
 //         BYTE bA = 200;
 
@@ -1842,11 +1843,11 @@ namespace gcom
             dS = 0.9;
             colorStrong8.set_hls(dH, dL, dS);
          }
-
-
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//
+//
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
          BYTE bA = 200;
 
@@ -2258,9 +2259,9 @@ namespace gcom
          }
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
          BYTE bA = 200;
 
@@ -3081,10 +3082,10 @@ namespace gcom
             colorStrong8.set_hls(dH, dL, dS);
          }
 
-
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
 //         BYTE bA = 200;
 
@@ -3745,9 +3746,9 @@ namespace gcom
 
       inline COLORREF PixelExplosion::GetShiftedColor(COLORREF color,int32_t shift)
       {
-         long R;
-         long G;
-         long B;
+         int32_t R;
+         int32_t G;
+         int32_t B;
          int32_t ir;
          int32_t ig;
          int32_t ib;
@@ -4265,9 +4266,9 @@ namespace gcom
          }
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
 //         BYTE bA = 200;
 
@@ -4726,9 +4727,9 @@ namespace gcom
          }
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
          BYTE bA = 200;
 
@@ -5449,9 +5450,9 @@ namespace gcom
          }
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
 //         BYTE bA = 200;
 
@@ -5998,9 +5999,9 @@ namespace gcom
          }
 
 
-            ARGB(255, rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX,
-            rand() * 255 / RAND_MAX);
+//            ARGB(255, rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX,
+//            rand() * 255 / RAND_MAX);
 
 //         BYTE bA = 200;
 

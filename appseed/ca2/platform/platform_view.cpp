@@ -293,8 +293,8 @@ namespace platform
    }
    void view::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-         point point = pcontextmenu->GetPoint();
+//      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//         point point = pcontextmenu->GetPoint();
 
    }
 
@@ -520,7 +520,7 @@ namespace platform
       //    return;
       //if(!m_bEnsureApps)
       // return;
-#if !defined(METROWIN) && !defined(LINUX)
+#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
       if(::IsWindow(m_oswindowWinactionarea) &&
          ::IsWindow(m_oswindowCommand) &&
          ::IsWindow(m_oswindowWinutil) &&
@@ -866,7 +866,7 @@ namespace platform
       else if(iHitArea >= 0)
       {
       {
-      /*      else if(iHitArea == m_iNotificationAreaButtonOffset)
+            else if(iHitArea == m_iNotificationAreaButtonOffset)
       {
       m_notificationareainfo.Refresh();
       m_bNotificationArea = true;

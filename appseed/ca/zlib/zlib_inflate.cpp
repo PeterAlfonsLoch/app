@@ -814,7 +814,10 @@ int32_t flush)
                 break;
             }
             state->length = (uint32_t)hold & 0xffff;
-#ifdef LINUX
+#if defined(MACOS)
+            Tracev((stderr, "inflate:       stored length %llu\n",
+                    state->length));
+#elif defined(LINUX)
             Tracev((stderr, "inflate:       stored length %lu\n",
                     state->length));
 #else
@@ -1002,7 +1005,9 @@ int32_t flush)
                 state->length += BITS(state->extra);
                 DROPBITS(state->extra);
             }
-#ifdef LINUX
+#if defined(MACOS)
+            Tracevv((stderr, "inflate:         length %llu\n", state->length));
+#elif defined(LINUX)
             Tracevv((stderr, "inflate:         length %lu\n", state->length));
 #else
             Tracevv((stderr, "inflate:         length %u\n", state->length));

@@ -151,7 +151,9 @@ uint_ptr start)         /* inflate()'s starting value for strm->avail_out */
                 hold >>= op;
                 bits -= op;
             }
-#ifdef LINUX
+#if defined(MACOS)
+            Tracevv((stderr, "inflate:         length %llu\n", len));
+#elif defined(LINUX)
             Tracevv((stderr, "inflate:         length %lu\n", len));
 #else
             Tracevv((stderr, "inflate:         length %u\n", len));

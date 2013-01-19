@@ -143,9 +143,9 @@ namespace user
 
 ///      ::ca::graphics * pDCBuffer = pdc;
 
-      point ptOriginalViewportOrg = pdc->GetViewportOrg();
-
-      rect rectClientOffset = rectClient;
+//      point ptOriginalViewportOrg = pdc->GetViewportOrg();
+//
+//      rect rectClientOffset = rectClient;
 
       /*rect rectClipBox;
       pdc->GetClipBox(rectClipBox);

@@ -401,7 +401,7 @@ namespace user
    void combo_list::_001OnMouseActivate(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::mouse_activate, pactivate, pobj);
+//      SCAST_PTR(gen::message::mouse_activate, pactivate, pobj);
 
 
    }
@@ -497,7 +497,7 @@ namespace user
    void combo_list::_001OnMouseMove(gen::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+//      SCAST_PTR(gen::message::mouse, pmouse, pobj);
 
       pobj->m_bRet = true;
 

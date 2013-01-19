@@ -189,7 +189,7 @@ namespace html
       void elemental::set_xy(data * pdata)
       {
          /*if(m_pelemental->m_style.m_edisplay == display_block &&
-            /*m_pelemental->m_pbase->get_type() == html::base::type_tag)
+            m_pelemental->m_pbase->get_type() == html::base::type_tag)
          {
             point pointBound = get_bound_point();
             set_xy(
@@ -546,7 +546,7 @@ namespace html
          if(m_pelemental->m_elementalptra.get_size() == 0)
          {
             //m_box.set_cxy(0, 0);
-            float fMaxRight = m_bound.right;
+//            float fMaxRight = m_bound.right;
             /*if(m_box.left > fMaxRight)
             {
                m_box.left = fMaxRight;
@@ -1436,7 +1436,7 @@ namespace html
       else if(m_pbase->get_type() == base::type_value)
       {
          ::html::value * pvalue = dynamic_cast < ::html::value * > (m_pbase);
-         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pparent->m_pbase);
+//         ::html::tag * ptag = dynamic_cast < ::html::tag * > (m_pparent->m_pbase);
          m_propertyset["PropertyBody"] = pvalue->get_value();
          if(m_pparent->m_propertyset["PropertyTag"] == "style")
          {

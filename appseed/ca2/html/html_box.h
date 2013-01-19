@@ -148,10 +148,10 @@ namespace html
 
    inline LPRECT box::get(LPRECT lprect) const
    {
-      lprect->left      = (long) left;
-      lprect->right     = (long) right;
-      lprect->top       = (long) top;
-      lprect->bottom    = (long) bottom;
+      lprect->left      = (int32_t) left;
+      lprect->right     = (int32_t) right;
+      lprect->top       = (int32_t) top;
+      lprect->bottom    = (int32_t) bottom;
       return lprect;
    }
 

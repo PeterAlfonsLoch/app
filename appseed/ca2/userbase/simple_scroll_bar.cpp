@@ -670,7 +670,7 @@ void simple_scroll_bar::pre_translate_message(gen::signal_object * pobj)
 
    SCAST_PTR(gen::message::base, pbase, pobj);
 
-   if(pbase->m_pwnd = this)
+   if(pbase->m_pwnd == this)
    {
       switch(pbase->m_uiMessage)
       {

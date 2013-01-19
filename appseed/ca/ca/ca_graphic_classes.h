@@ -23,7 +23,7 @@ namespace ca
 #include "ca_region.h"
 #include "ca_igui.h"
 #include "ca_dib.h"
-#include "ca_draw_dib.h"
+//#include "ca_draw_dib.h"
 #include "ca_graphics.h"
 #include "ca_graphics_path.h"
 

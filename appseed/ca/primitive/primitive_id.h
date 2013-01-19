@@ -116,7 +116,6 @@ public:
 
 
    inline operator int_ptr() const;
-   inline operator int_ptr();
 
 
    inline operator const char *() const;
@@ -297,13 +296,13 @@ inline id::operator int_ptr() const
       return 0;
 }
 
-inline id::operator int_ptr()
-{
-   if(is_number())
-      return m_i;
-   else
-      return 0;
-}
+//inline id::operator int_ptr()
+//{
+//   if(is_number())
+//      return m_i;
+//   else
+//      return 0;
+//}
 
 inline bool id::is_null() const
 {

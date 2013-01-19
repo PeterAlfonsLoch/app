@@ -167,7 +167,7 @@ namespace html
             return;
          }
 
-         elemental::implement_phase1(pdata, pelemental);
+         ::html::impl::elemental::implement_phase1(pdata, pelemental);
 
          if(!m_pelemental->m_propertyset.is_new_or_null("colspan"))
          {
@@ -302,7 +302,7 @@ namespace html
          if(prow == NULL)
             return;
 
-         elemental::implement_phase2(pdata);
+         ::html::impl::elemental::implement_phase2(pdata);
 
 
          if(ptable->m_iCellSpacing > 0)
@@ -365,7 +365,7 @@ namespace html
       size cell::get_content_size()
       {
          
-         class size size = elemental::get_content_size();
+         class size size = ::html::impl::elemental::get_content_size();
 
          size.cx -= get_table()->m_iCellSpacing;
 
@@ -397,7 +397,7 @@ namespace html
       point cell::get_content_xy()
       {
 
-         class point point = elemental::get_content_xy();
+         class point point = ::html::impl::elemental::get_content_xy();
 
          if(m_iColBeg == 0)
          {
@@ -516,7 +516,7 @@ namespace html
             return;
 
 
-         elemental::_001OnDraw(pdata);
+         ::html::impl::elemental::_001OnDraw(pdata);
 
 /*         if(get_table()->m_iBorder > 0)
          {
@@ -557,7 +557,7 @@ namespace html
 
          }
 
-         size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
+//         size size = m_pelemental->m_pparent->m_pimpl->get_bound_size();
 
          float iColumnWidth = 0;
 

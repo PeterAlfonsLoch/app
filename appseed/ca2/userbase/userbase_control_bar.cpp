@@ -274,11 +274,14 @@ namespace userbase
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(gen::message::base, pbase, pobj);
-      UINT message = pbase->m_uiMessage;
       ::user::interaction* pOwner = get_owner();
 
 #ifdef WINDOWSEX
+
+      SCAST_PTR(gen::message::base, pbase, pobj);
+
+      UINT message = pbase->m_uiMessage;
+      
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
          message == WM_LBUTTONDOWN || message == WM_LBUTTONUP) &&

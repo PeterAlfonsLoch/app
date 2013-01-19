@@ -198,7 +198,7 @@ namespace filemanager
                   }
                   else if(hr == S_FALSE)
                   {
-   /*               HICON hicon = ExtractIcon(
+                 HICON hicon = ExtractIcon(
                      System.m_hInstance,
                      szPath,
                      iIcon);*/

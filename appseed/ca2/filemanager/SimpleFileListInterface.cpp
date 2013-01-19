@@ -195,7 +195,7 @@ namespace filemanager
 
       if(m_eview == ViewIcon)
       {
-         /*   // primeiro, todos System arquivos que foram removidos
+            // primeiro, todos System arquivos que foram removidos
          // ou seja, que existem no array antigo,
          // mas não existe no novo.
          for(index strictOld = 0; strictOld < straStrictOrder.get_count(); strictOld++)
@@ -243,7 +243,7 @@ namespace filemanager
       _001RedrawWindow();
 
       file_size_add_request(true);
-   /*   for(int32_t i = 0; i < m_itema.get_item_count(); i++)
+      for(int32_t i = 0; i < m_itema.get_item_count(); i++)
       {
          pset->m_table.add_request(m_itema.get_item(i).m_strPath);
       }*/
@@ -280,7 +280,7 @@ namespace filemanager
 
       //spfile->open(szPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
 
-      /*base_array < gen::memory_file, gen::memory_file & > filea;
+      base_array < gen::memory_file, gen::memory_file & > filea;
       _vmszipFile zipfile;
 
       zipfile.m_pfile = &file;

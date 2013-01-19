@@ -164,14 +164,14 @@ namespace userbase
    bool view::IsSelected(const ::radix::object* pDocItem) const
    {
       ASSERT_VALID(pDocItem);
-      UNUSED(pDocItem);    // unused in release builds
+//      UNUSED(pDocItem);    // unused in release builds
 
       return FALSE;   // not implemented, so not selected
    }
 
    void view::OnActivateView(bool bActivate, ::view* pActivateView, ::view*)
    {
-      UNUSED(pActivateView);   // unused in release builds
+  //    UNUSED(pActivateView);   // unused in release builds
 
       if (bActivate)
       {
@@ -270,7 +270,7 @@ namespace userbase
 
    DROPEFFECT view::OnDragScroll(uint32_t /*dwKeyState*/, point /*point*/)
    {
-   #if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX)
+   #if !defined(___NO_OLE_SUPPORT) && !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
       return DROPEFFECT_SCROLL; // this means do the default
    #else
       return 0;
@@ -399,7 +399,7 @@ namespace userbase
 
       ::view * pview = dynamic_cast < ::view * > (pview);
       pview->_001OnInitialUpdate(NULL);
-   /*   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
+      if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
          // remove the 3d style from the frame, since the ::view is
          //  providing it.
@@ -435,7 +435,7 @@ namespace userbase
       }
 
       (dynamic_cast < ::view * > (pview))->_001OnInitialUpdate(NULL);
-   /*   if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
+      if (afxData.bWin4 && (pview->GetExStyle() & WS_EX_CLIENTEDGE))
       {
          // remove the 3d style from the frame, since the ::view is
          //  providing it.

@@ -545,7 +545,7 @@ namespace user
       //::UpdateWindow(GetHandle());
    }
 
-   inline void window_interface::Invalidate(bool bErase)
+   void window_interface::Invalidate(bool bErase)
    {
       UNREFERENCED_PARAMETER(bErase);
       //ASSERT(::IsWindow(GetHandle()));

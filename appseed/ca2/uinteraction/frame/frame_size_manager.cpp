@@ -85,6 +85,8 @@ namespace frame
          case HitTestSizingBottomLeft:
             nHitTest = HTBOTTOMLEFT;
             break;
+         default:
+            break;
          }
 
          if(pinterface->WfiOnBeginSizing(nHitTest, ptCursor))

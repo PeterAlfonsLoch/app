@@ -142,13 +142,13 @@ namespace bergedge
 
 
          gcom::backview::Main & main = gcom::backview::Interface::GetMain();
-         gcom::backview::Graphics & graphics = main.GetGraphics();
+//         gcom::backview::Graphics & graphics = main.GetGraphics();
 
          if(main.IsInitialized())
          {
 
             ::ca::region_sp rgn(get_app());
-            rect rect(graphics.m_rectFinalPlacement);
+//            rect rectFinal(graphics.m_rectFinalPlacement);
 /*            ClientToScreen(rect);
             rgn->create_rect(rect);
             pdc->SelectClipRgn(rgn);*/
@@ -219,8 +219,8 @@ namespace bergedge
 
    void view::_001OnContextMenu(gen::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-      point point = pcontextmenu->GetPoint();
+//      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//      point point = pcontextmenu->GetPoint();
 
    }
 
@@ -410,7 +410,7 @@ namespace bergedge
      //    return;
       //if(!m_bEnsureApps)
         // return;
-#if !defined(METROWIN) && !defined(LINUX)
+#if !defined(METROWIN) && !defined(LINUX) && !defined(MACOS)
       if(::IsWindow(m_oswindowWinactionarea) &&
          ::IsWindow(m_oswindowCommand) &&
          ::IsWindow(m_oswindowWinutil) &&

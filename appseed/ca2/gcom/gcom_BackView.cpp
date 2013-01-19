@@ -202,6 +202,8 @@ namespace gcom
                GetImageChange().m_evImageChangeFinish.SetEvent();
             }
             break;
+            default:
+               break;
          }
          return 1;
       }
@@ -320,6 +322,8 @@ namespace gcom
                   }
                   break;
                }
+               default:
+                  break;
             }
             break;
          case StatePreTransition:

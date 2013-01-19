@@ -26,7 +26,7 @@ namespace calculator
       value();
       ~value();
 
-      string to_string(e_mode mode = mode_rectangular);
+      string to_string(e_mode mode = mode_rectangular) const;
 
 
    };

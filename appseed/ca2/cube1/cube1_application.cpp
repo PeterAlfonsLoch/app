@@ -167,6 +167,10 @@ namespace cube1
 
       throw todo(get_app());
 
+#elif defined(MACOS)
+      
+      throw todo(get_app());
+      
 #else
       throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);
@@ -194,6 +198,8 @@ namespace cube1
 #elif defined(METROWIN)
       throw todo(get_app());
 #elif defined(LINUX)
+      throw todo(get_app());
+#elif defined(MACOS)
       throw todo(get_app());
 #else
       throw todo(get_app());

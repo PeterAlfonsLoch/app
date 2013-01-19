@@ -63,7 +63,7 @@ namespace calculator
       return ::sqrt(m_dR * m_dR + m_dI * m_dI);
    }
 
-   string value::to_string(e_mode emode)
+   string value::to_string(e_mode emode) const
    {
       string str;
       if(emode == mode_rectangular)

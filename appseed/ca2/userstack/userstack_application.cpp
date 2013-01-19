@@ -344,7 +344,7 @@ namespace userstack
       }
 
 
-/*      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
+      if(pui == NULL && m_puiInitialPlaceHolderContainer != NULL)
       {
          pui = m_puiInitialPlaceHolderContainer;
       }*/

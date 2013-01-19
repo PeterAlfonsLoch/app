@@ -166,7 +166,7 @@ namespace html
       void table_row::final_layout(data * pdata)
       {
 
-         table_row * prow = NULL;
+//         table_row * prow = NULL;
 
          /*if(m_pelemental->m_pbase->get_type() == ::html::base::type_tag)
          {

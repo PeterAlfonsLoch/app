@@ -73,13 +73,8 @@ protected:
    }
 
 public:
-   virtual ~ILiteHTMLReaderEvents() = 0
-#ifdef WINDOWS
-   {
-   }
-#else
-   ;
-#endif
+
+   virtual ~ILiteHTMLReaderEvents() { }
 
 };
 

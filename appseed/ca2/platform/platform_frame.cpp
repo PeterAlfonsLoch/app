@@ -281,6 +281,8 @@ namespace platform
       case position_right:
          SetWindowPos(ZORDER_TOPMOST, rectDesktop.width() - 400, 0, rectDesktop.width(), 400, SWP_SHOWWINDOW);
          break;
+         default:
+            break;
       }
    }
 

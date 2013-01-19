@@ -17,8 +17,8 @@ namespace gcom
          m_mutex3Source(main.get_app()),
          m_mutex4Transfer(main.get_app())
       {
-         m_spdrawdib.create(get_app());
-         m_spdrawdib->open();
+//         m_spdrawdib.create(get_app());
+//         m_spdrawdib->open();
          m_dcScreen.create(get_app());
       }
 
@@ -83,10 +83,10 @@ namespace gcom
          return *GetDib(_graphics::DibSource)->get_bitmap();
       }
 
-      ::ca::draw_dib & Graphics::GetDrawDib()
-      {
-         return m_spdrawdib;
-      }
+//      ::ca::draw_dib & Graphics::GetDrawDib()
+//      {
+//         return m_spdrawdib;
+//      }
 
       void Graphics::LayoutBackBitmap(
          BITMAP *   lpbmBack)
@@ -430,7 +430,7 @@ namespace gcom
 
       EImagePlacement Graphics::GetDefaultPlacement()
       {
-         ::ca::bitmap & bmpSource = GetSourceBitmap();
+//         ::ca::bitmap & bmpSource = GetSourceBitmap();
 
          EImagePlacement eplacement = ImagePlacementZoomAll;
 #ifdef WINDOWSEX

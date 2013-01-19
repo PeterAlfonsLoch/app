@@ -45,7 +45,7 @@ namespace ca2
 
       validate::~validate()
       {
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
          ((HTHREAD) m_loginthread.get_os_data())->wait();
 #else
          ::WaitForSingleObjectEx((HANDLE) m_loginthread.get_os_data(), INFINITE, FALSE);
@@ -199,9 +199,9 @@ namespace ca2
          {
             pframe->m_bblur_Background = true;
          }
+#ifdef WINDOWSEX
          int_ptr ui1 = GetCurrentThreadId();
          int_ptr ui2 = m_ptabview->GetTopLevelFrame()->m_pthread->m_pthread->get_os_int();
-#ifdef WINDOWSEX
          if(::AttachThreadInput((uint32_t) ui1, (uint32_t) ui2, TRUE))
          {
             TRACE("AttachedThreadInput");

@@ -325,8 +325,8 @@ void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT use
 
 void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
 {
-   SCAST_PTR(gen::message::base, pbase, pobj);
 #ifdef WINDOWSEX
+   SCAST_PTR(gen::message::base, pbase, pobj);
    MINMAXINFO FAR * lpMMI = (MINMAXINFO FAR*) pbase->m_lparam;
    if (IsFullScreen())
    {

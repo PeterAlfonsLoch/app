@@ -206,7 +206,7 @@ CLASS_DECL_c vsstring get_system_error_message(uint32_t dwError);
 //#endif
 
 #ifndef WINDOWSEX
-#ifndef LINUX
+#if !defined(LINUX) && !defined(MACOS)
 CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow);
 #endif
 #endif

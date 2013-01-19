@@ -130,3 +130,56 @@ CLASS_DECL_c DWORD call_sync(
 
 
 
+
+
+
+CLASS_DECL_c bool main_initialize()
+{
+   
+   initialize_primitive_heap();
+   
+   if(!os_initialize())
+      return false;
+   
+   return true;
+   
+}
+
+
+CLASS_DECL_c bool main_finalize()
+{
+   
+   bool bOk = true;
+   
+   if(!os_finalize())
+      bOk = false;
+   
+   finalize_primitive_trace();
+   
+   return bOk;
+   
+}
+
+
+
+
+bool os_initialize()
+{
+   
+   if(!initialize_primitive_trace())
+      return false;
+   
+   
+   return TRUE;
+   
+}
+
+
+bool os_finalize()
+{
+   
+   finalize_primitive_trace();
+   
+   return true;
+   
+}

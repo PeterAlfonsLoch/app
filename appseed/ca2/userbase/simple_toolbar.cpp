@@ -493,7 +493,7 @@ size simple_toolbar::CalcSize(int32_t nCount)
 /*bool simple_toolbar::CalcSize(size & size, bool bHorz)
 {
 
-/*  _001Layout();
+  _001Layout();
 rect rectItem;
 rect rectSize(0, 0, 0, 0);
 size.cx = 0;
@@ -570,19 +570,20 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
    rect rectItem;
    rect rectImage;
 
-   simple_toolbar_item & item = m_itema[iItem];
-
-   UINT nStyle = GetButtonStyle(iItem);
-
-   bool bHover = iItem == _001GetHoverItem();
-
-   BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-
-   UINT uiImage = pmenucentral->CommandToImage(item.m_id);
-
    pdc->SelectObject(System.font_central().GetMenuFont());
 
 #ifdef WINDOWSEX
+
+   simple_toolbar_item & item = m_itema[iItem];
+   
+   
+   UINT nStyle = GetButtonStyle(iItem);
+   
+   bool bHover = iItem == _001GetHoverItem();
+   
+   BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
+   
+   UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
    EElement eelement = ElementItem;
    EElement eelementImage = ElementImage;
@@ -937,16 +938,16 @@ bool simple_toolbar::_001GetItemRect(int32_t iItem, LPRECT lprect, EElement eele
       iItem >= m_itema.get_size())
       return false;
 
-   simple_toolbar_item & item = m_itema[iItem];
-
-   BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-
-   UINT uiImage = pmenucentral->CommandToImage(item.m_id);
-
    rect rect;
 
 #ifdef WINDOWSEX
 
+   simple_toolbar_item & item = m_itema[iItem];
+   
+   BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
+   
+   UINT uiImage = pmenucentral->CommandToImage(item.m_id);
+   
    if((item.m_fsStyle & TBSTYLE_SEP) != 0)
    {
       rect.left   = item.m_rect.left + ITEMCX;
@@ -1174,7 +1175,7 @@ m_hRsrcImageWell = hRsrcImageWell;
 
 _001DiscardImageList();
 
-/*   m_pimagelist = new image_list();
+   m_pimagelist = new image_list();
 m_bInternalImageList = true;
 
 m_pimagelist->create(
@@ -1196,8 +1197,6 @@ void simple_toolbar::layout()
 
    m_bDelayedButtonLayout = false;
 
-   BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
-
    bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
    //   if(m_bSimpleLayout)
    //      CalcSimpleLayout();
@@ -1210,7 +1209,6 @@ void simple_toolbar::layout()
 
    size size;
    int32_t ix = 0;
-   int32_t iy = 0;
    //   int32_t intrax = max(ITEMCX, max(ITEMHOVERCX, ITEMPRESSCX))
    //            - min(ITEMCX, min(ITEMHOVERCX, ITEMPRESSCX))
    //          + max(ITEMPADLEFT, ITEMPADRIGHT);
@@ -1236,7 +1234,6 @@ void simple_toolbar::layout()
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
       simple_toolbar_item & item = m_itema[iItem];
-      UINT uiImage = pmenucentral->CommandToImage(item.m_id);
       item.m_rect.left = ix;
       if(item.m_str.is_empty())
       {
@@ -1251,6 +1248,12 @@ void simple_toolbar::layout()
       }
 
 #ifdef WINDOWSEX
+      
+      BaseMenuCentral * pmenucentral = BaseMenuCentral::GetMenuCentral(get_app());
+      
+      int32_t iy = 0;
+
+      UINT uiImage = pmenucentral->CommandToImage(item.m_id);
 
       int32_t cx, cy;
 
