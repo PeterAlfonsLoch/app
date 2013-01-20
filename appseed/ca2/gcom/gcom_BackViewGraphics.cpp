@@ -430,22 +430,33 @@ namespace gcom
 
       EImagePlacement Graphics::GetDefaultPlacement()
       {
-//         ::ca::bitmap & bmpSource = GetSourceBitmap();
 
          EImagePlacement eplacement = ImagePlacementZoomAll;
+
 #ifdef WINDOWSEX
+
+         ::ca::bitmap & bmpSource = GetSourceBitmap();
+
          class size size = bmpSource.get_size();
+
          if(size.cx < (GetSystemMetrics(SM_CXSCREEN) / 2) &&
             size.cy < (GetSystemMetrics(SM_CYSCREEN) / 2))
          {
+
             eplacement = ImagePlacementTile;
+
          }
          else
          {
+
             eplacement = ImagePlacementZoomAll;
+
          }
+
 #endif
+
          return eplacement;
+
       }
 
       ::ca::dib * Graphics::GetDib(int32_t iIndex)
