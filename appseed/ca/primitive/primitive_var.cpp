@@ -66,11 +66,10 @@ var::var(int64_t i)
 
 var::var(uint64_t ui )
 {
-   m_etype = type_uint;
+   m_etype = type_uint64;
    m_pca2 = NULL;
-   operator = (ui);
+   m_ui64 = ui;
 }
-
 
 var::var(int32_t * pi)
 {
