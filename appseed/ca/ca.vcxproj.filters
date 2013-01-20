@@ -1286,9 +1286,6 @@
     <ClInclude Include="ca\ca_dir_system.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_draw_dib.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_font.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
