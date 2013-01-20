@@ -253,7 +253,7 @@ namespace plane
       if(m_pmachineeventcentral == NULL)
       {
 
-         m_pmachineeventcentral = new class machine_event_central(this);
+         m_pmachineeventcentral = new ::machine_event_central(this);
          if(!m_pmachineeventcentral->initialize())
             return false;
          if(m_pmachineeventcentral->is_close_application())
@@ -261,6 +261,7 @@ namespace plane
 
       }
 
+#ifndef MACOS
 
       if(m_pparserfactory == NULL)
       {
@@ -269,6 +270,7 @@ namespace plane
 
       }
 
+#endif
 
 
       if(!::plane::application::initialize())

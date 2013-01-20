@@ -467,7 +467,9 @@ namespace sockets
    #endif // HAVE_OPENSSL
       {
 #ifdef MACOS
-         n = (int32_t) recv(GetSocket(), buf, TCP_BUFSIZE_READ, SO_NOSIGPIPE);
+//         n = (int32_t) recv(GetSocket(), buf, TCP_BUFSIZE_READ, SO_NOSIGPIPE);
+         n = (int32_t) recv(GetSocket(), buf, TCP_BUFSIZE_READ, 0);
+
 #else
          n = recv(GetSocket(), buf, TCP_BUFSIZE_READ, MSG_NOSIGNAL);
 #endif

@@ -153,20 +153,32 @@ public:
 
    inline void append(const char * psz)
    {
-
-      strsize iLen = strlen(psz);
-
-      if((m_iLength + iLen + 1) > m_iSize)
+      
+      if(psz == NULL)
+         return;
+      
+      try
       {
 
-         allocate_add_up(1);
+         strsize iLen = strlen(psz);
+
+         if((m_iLength + iLen + 1) > m_iSize)
+         {
+
+            allocate_add_up(1);
+
+         }
+
+         strncpy(&m_pszBuffer[m_iLength], psz, iLen);
+
+         m_iLength += iLen;
 
       }
-
-      strncpy(&m_pszBuffer[m_iLength], psz, iLen);
-
-      m_iLength += iLen;
-
+      catch(...)
+      {
+      
+      }
+      
    }
 
    bool parse(const char * & s);

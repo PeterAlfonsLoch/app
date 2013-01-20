@@ -52,7 +52,7 @@ protected:
 
 
    string_data m_data;
-   string::XCHAR m_achData[t_nChars+1];
+   char m_achData[t_nChars+1];
 
 
 public:
@@ -60,9 +60,9 @@ public:
    explicit fixed_string(string_manager* pstringmanager ) throw();
    fixed_string(const fixed_string< t_nChars >& str );
    fixed_string(string str );
-   fixed_string(const string::XCHAR* psz);
-   fixed_string(const string::XCHAR* psz,int32_t nLength);
-   explicit fixed_string(const string::YCHAR* psz);
+   fixed_string(const char* psz);
+   fixed_string(const char* psz,int32_t nLength);
+   explicit fixed_string(const wchar_t* psz);
    explicit fixed_string(const uchar* psz);
    ~fixed_string() throw();
 
@@ -103,21 +103,21 @@ fixed_string< t_nChars >::fixed_string(string str ) :
 }
 
 template < int32_t t_nChars >
-fixed_string< t_nChars >::fixed_string(const string::XCHAR* psz ) :
+fixed_string< t_nChars >::fixed_string(const char* psz ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
 template < int32_t t_nChars >
-fixed_string< t_nChars >::fixed_string(const string::XCHAR* psz,int32_t nLength ) :
+fixed_string< t_nChars >::fixed_string(const char* psz,int32_t nLength ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, nLength, static_cast< fixed_string_manager* >( this ) )
 {
 }
 
 template < int32_t t_nChars >
-fixed_string< t_nChars >::fixed_string(const string::YCHAR* psz ) :
+fixed_string< t_nChars >::fixed_string(const wchar_t* psz ) :
    fixed_string_manager( &m_data, t_nChars, string_trait::GetDefaultManager() ),
    string( psz, static_cast< fixed_string_manager* >( this ) )
 {
@@ -198,7 +198,7 @@ template < int32_t t_nChars> struct const_fixed_string
 
 
    string_data m_data;
-   string::XCHAR m_achData[t_nChars];
+   char m_achData[t_nChars];
 
 
 };

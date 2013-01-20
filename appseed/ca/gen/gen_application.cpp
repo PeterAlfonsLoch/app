@@ -7,6 +7,7 @@
 #include <ctype.h>
 #elif defined(MACOS)
 #include <dlfcn.h>
+#include <mach-o/dyld.h>
 #endif
 
 
@@ -97,6 +98,45 @@ namespace gen
          m_strCa2ModuleFolder = "";
 
 #else
+
+#if defined(MACOS)
+         
+         string str;
+         
+         char * lpsz = str.GetBufferSetLength(1024);
+         
+         uint32_t size = 1024;
+         
+         if(_NSGetExecutablePath(lpsz, &size) == 0)
+         {
+         
+            str.ReleaseBuffer();
+         
+         }
+         else
+         {
+         
+            lpsz = str.GetBufferSetLength(size);
+            
+            if(_NSGetExecutablePath(lpsz, &size) == 0)
+            {
+               
+               str.ReleaseBuffer();
+               
+            }
+            else
+            {
+               
+               return false;
+               
+            }
+
+         }
+         
+         m_strModuleFolder = ::dir::name(str);
+         
+#else
+         
          {
 
             if(!br_init_lib(NULL))
@@ -112,7 +152,9 @@ namespace gen
             free(lpszModuleFolder);
 
          }
-
+         
+#endif
+         
 
 #ifdef LINUX
 
@@ -144,20 +186,20 @@ namespace gen
 
             free(pszCurDir);
 
-            if(App(this).file().exists(System.dir().path(strCurDir, "ca2.dylib")))
+            if(file_exists_dup(::dir::path(strCurDir, "libca2.dylib")))
             {
                m_strCa2ModuleFolder = strCurDir;
                goto finishedCa2ModuleFolder;
             }
 
 
-            if(App(this).file().exists(System.dir().path(m_strModuleFolder, "ca2.dylib")))
+            if(file_exists_dup(::dir::path(m_strModuleFolder, "libca2.dylib")))
             {
                m_strCa2ModuleFolder = m_strModuleFolder;
                goto finishedCa2ModuleFolder;
             }
 
-            m_strCa2ModuleFolder = System.dir().name(App(this).dir().pathfind(getenv("LD_LIBRARY_PATH"), "ca2.dylib", "rfs")); // readable - normal file - non zero sized
+            m_strCa2ModuleFolder = ::dir::name(::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libca2.dylib", "rfs")); // readable - normal file - non zero sized
 
          }
 

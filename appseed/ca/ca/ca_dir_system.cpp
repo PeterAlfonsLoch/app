@@ -1340,7 +1340,7 @@ namespace ca
 
       string system::appmatter_locator(::ca::application * papp)
       {
-#ifdef METROWIN
+#if defined(METROWIN) || defined(MACOS)
          string strRoot;
          string strDomain;
 

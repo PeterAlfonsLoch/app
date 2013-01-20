@@ -103,11 +103,11 @@ inline UINT _gen_GetConversionACP()
 //       strings, 'char Length' counts a lead-byte/trail-byte combination
 //       as one character.
 //    'Length' - When neither of the above terms is used, 'Length' refers to
-//       length in XCHARs, which is equal to 'byte Length'/sizeof(XCHAR).
+//       length in XCHARs, which is equal to 'byte Length'/sizeof(char).
 /////////////////////////////////////////////////////////////////////////////
 
 
-#define IMPLEMENT_CONST_STRING_PTR(stringype, value, name) const const_fixed_string<stringype, sizeof(value)/sizeof(stringype::XCHAR)> _init##name ={    {NULL,      sizeof(value)/sizeof(stringype::XCHAR)-1,    sizeof(value)/sizeof(stringype::XCHAR)-1,    -1},         value   };   const stringype::XCHAR* const _value##name = _init##name.m_achData;   extern const stringype* const name = CONST_STRING_PTR(stringype, name);
+#define IMPLEMENT_CONST_STRING_PTR(stringype, value, name) const const_fixed_string<stringype, sizeof(value)/sizeof(stringype::char)> _init##name ={    {NULL,      sizeof(value)/sizeof(stringype::char)-1,    sizeof(value)/sizeof(stringype::char)-1,    -1},         value   };   const stringype::char* const _value##name = _init##name.m_achData;   extern const stringype* const name = CONST_STRING_PTR(stringype, name);
 #define DECLARE_CONST_STRING_PTR(stringype, name) extern const stringype* const name;
 #define CONST_STRING_PTR(stringype, name) reinterpret_cast<const stringype* const>(&_value##name)
 
@@ -222,8 +222,8 @@ public:
 
    operator class string_composite ();
    operator class string_composite const () const;
-   operator PCXSTR() const throw();
-   PCXSTR c_str() const throw();
+   operator const char *() const throw();
+   const char * c_str() const throw();
    void construct() throw();
    inline string() throw();
    explicit string( string_manager * pstringmanager ) throw();
@@ -253,10 +253,10 @@ public:
    explicit string(char ch, strsize nLength = 1);
    string(strsize nLength, char ch);
    string(wchar_t ch, strsize nLength = 1 );
-   string(const XCHAR* pch, strsize nLength);
-   string(const XCHAR* pch, strsize nLength, string_manager * pstringmanager );
-   string(const YCHAR* pch, strsize nLength);
-   string(const YCHAR* pch, strsize nLength, string_manager * pstringmanager);
+   string(const char* pch, strsize nLength);
+   string(const char* pch, strsize nLength, string_manager * pstringmanager );
+   string(const wchar_t* pch, strsize nLength);
+   string(const wchar_t* pch, strsize nLength, string_manager * pstringmanager);
 #ifdef METROWIN
    string(Platform::Object ^ o, string_manager * pstringmanager);
 #endif
@@ -272,8 +272,8 @@ public:
    template <bool bMFCDLL>
    string& operator=(const simple_string& strSrc);
    string& operator=(const vsstring & strSrc);
-   string& operator=(PCXSTR pszSrc);
-   string& operator=(PCYSTR pszSrc);
+   string& operator=(const char * pszSrc);
+   string& operator=(const wchar_t * pszSrc);
    string& operator=(const uchar* pszSrc );
    string& operator=(char ch );
 #ifdef METROWIN
@@ -281,10 +281,10 @@ public:
 #endif
    string& operator=(wchar_t ch );
    string& operator+=(const simple_string& str );
-   string& operator+=(PCXSTR pszSrc );
+   string& operator+=(const char * pszSrc );
    template< strsize t_nSize >
    string& operator+=(const static_string<t_nSize >& strSrc );
-   string& operator+=(PCYSTR pszSrc );
+   string& operator+=(const wchar_t * pszSrc );
    string& operator+=(char ch );
    string& operator+=(uchar ch );
    string& operator+=(wchar_t ch );
@@ -306,28 +306,28 @@ public:
    string & assign (InputIterator first, InputIterator last);
 
    // Comparison
-   int32_t Compare(PCXSTR psz ) const;
-   int32_t CompareNoCase(PCXSTR psz) const RELEASENOTHROW;
+   int32_t Compare(const char * psz ) const;
+   int32_t CompareNoCase(const char * psz) const RELEASENOTHROW;
 
 
 
-   int32_t Collate(PCXSTR psz ) const RELEASENOTHROW;
-   int32_t CollateNoCase(PCXSTR psz ) const RELEASENOTHROW;
+   int32_t Collate(const char * psz ) const RELEASENOTHROW;
+   int32_t CollateNoCase(const char * psz ) const RELEASENOTHROW;
 
-   int32_t compare(PCXSTR psz ) const;
-   int32_t compare_no_case(PCXSTR psz ) const throw();
-   int32_t collate(PCXSTR psz ) const throw();
-   int32_t collate_no_case(PCXSTR psz ) const throw();
+   int32_t compare(const char * psz ) const;
+   int32_t compare_no_case(const char * psz ) const throw();
+   int32_t collate(const char * psz ) const throw();
+   int32_t collate_no_case(const char * psz ) const throw();
 
-   int32_t compare(strsize iStart, strsize iCount, PCXSTR psz ) const;
-   int32_t compare_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
-   int32_t collate(strsize iStart, strsize iCount, PCXSTR psz ) const;
-   int32_t collate_no_case(strsize iStart, strsize iCount, PCXSTR psz ) const;
+   int32_t compare(strsize iStart, strsize iCount, const char * psz ) const;
+   int32_t compare_no_case(strsize iStart, strsize iCount, const char * psz ) const;
+   int32_t collate(strsize iStart, strsize iCount, const char * psz ) const;
+   int32_t collate_no_case(strsize iStart, strsize iCount, const char * psz ) const;
 
-   int32_t compare(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
-   int32_t compare_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
-   int32_t collate(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
-   int32_t collate_no_case(strsize iStart, strsize iCount, PCXSTR psz, strsize iStart2, strsize iCount2) const;
+   int32_t compare(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
+   int32_t compare_no_case(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
+   int32_t collate(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
+   int32_t collate_no_case(strsize iStart, strsize iCount, const char * psz, strsize iStart2, strsize iCount2) const;
 
    bool contains(char ch, strsize start = 0, strsize count = -1);
    bool contains(wchar_t wch, strsize start = 0, strsize count = -1);
@@ -359,39 +359,39 @@ public:
 
 
    // Insert character 'ch' before index 'iIndex'
-   strsize Insert(strsize iIndex,XCHAR ch );
+   strsize Insert(strsize iIndex,char ch );
 
    // Insert string 'psz' before index 'iIndex'
-   strsize Insert(strsize iIndex,PCXSTR psz );
+   strsize Insert(strsize iIndex,const char * psz );
 
    // replace all occurrences of character 'chOld' with character 'chNew'
-   strsize replace(XCHAR chOld,XCHAR chNew, strsize iStart = 0);
+   strsize replace(char chOld,char chNew, strsize iStart = 0);
 
    // replace all occurrences of string 'pszOld' with string 'pszNew'
-   strsize replace(PCXSTR pszOld,PCXSTR pszNew, strsize iStart = 0);
+   strsize replace(const char * pszOld,const char * pszNew, strsize iStart = 0);
 
    string & replace(strsize iStart, strsize nCount, const char * psz);
 
    // remove all occurrences of character 'chRemove'
-   strsize remove(XCHAR chRemove );
+   strsize remove(char chRemove );
 
-   string Tokenize(PCXSTR pszTokens, strsize& iStart ) const;
+   string Tokenize(const char * pszTokens, strsize& iStart ) const;
    // find routines
 
    // find the first occurrence of character 'ch', starting at index 'iStart'
-   strsize find(XCHAR ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_ci(XCHAR ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find(char ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_ci(char ch, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    // look for a specific sub-string
 
    // find the first occurrence of string 'pszSub', starting at index 'iStart'
-   strsize find(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_w(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_ci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
-   strsize find_wci(PCXSTR pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_w(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_ci(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
+   strsize find_wci(const char * pszSub, strsize start = 0, strsize count = -1) const RELEASENOTHROW;
 
    // find the first occurrence of any of the characters in string 'pszCharSet'
-   strsize FindOneOf(PCXSTR pszCharSet, strsize iStart = 0, strsize n = -1 ) const RELEASENOTHROW;
+   strsize FindOneOf(const char * pszCharSet, strsize iStart = 0, strsize n = -1 ) const RELEASENOTHROW;
 
    strsize find_first_in(const string & str, strsize pos = 0) const RELEASENOTHROW;
    strsize find_first_in(const char * s, strsize pos, strsize n) const RELEASENOTHROW;
@@ -434,10 +434,10 @@ public:
    strsize find_last_of(char c, strsize pos = -1) const RELEASENOTHROW;
 
    // find the last occurrence of character 'ch'
-   strsize reverse_find(XCHAR ch, strsize iStart = -1 ) const RELEASENOTHROW;
+   strsize reverse_find(char ch, strsize iStart = -1 ) const RELEASENOTHROW;
 
    // find the last occurrence of character 'ch'
-   strsize reverse_find( PCXSTR ch, strsize iStart = -1 ) const RELEASENOTHROW;
+   strsize reverse_find( const char * ch, strsize iStart = -1 ) const RELEASENOTHROW;
 
 
    bool begins_ci(const char * s) const;
@@ -477,24 +477,24 @@ public:
    string& trim();
 
    // remove all leading and trailing occurrences of character 'chTarget'
-   string& trim(XCHAR chTarget );
+   string& trim(char chTarget );
 
    // remove all leading and trailing occurrences of any of the characters in the string 'pszTargets'
-   string& trim(PCXSTR pszTargets );
+   string& trim(const char * pszTargets );
 
    // trimming anything (either side)
 
    // remove all trailing occurrences of character 'chTarget'
-   string& trim_right(XCHAR chTarget );
+   string& trim_right(char chTarget );
 
    // remove all trailing occurrences of any of the characters in string 'pszTargets'
-   string& trim_right(PCXSTR pszTargets );
+   string& trim_right(const char * pszTargets );
 
    // remove all leading occurrences of character 'chTarget'
-   string& trim_left(XCHAR chTarget );
+   string& trim_left(char chTarget );
 
    // remove all leading occurrences of any of the characters in string 'pszTargets'
-   string& trim_left(PCXSTR pszTargets );
+   string& trim_left(const char * pszTargets );
 
 
    // remove all trailing whitespace
@@ -507,24 +507,24 @@ public:
    string trimmed() const;
 
    // remove all leading and trailing occurrences of character 'chTarget'
-   string trimmed(XCHAR chTarget) const;
+   string trimmed(char chTarget) const;
 
    // remove all leading and trailing occurrences of any of the characters in the string 'pszTargets'
-   string trimmed(PCXSTR pszTargets) const;
+   string trimmed(const char * pszTargets) const;
 
    // trimming anything (either side)
 
    // remove all trailing occurrences of character 'chTarget'
-   string right_trimmed(XCHAR chTarget) const;
+   string right_trimmed(char chTarget) const;
 
    // remove all trailing occurrences of any of the characters in string 'pszTargets'
-   string right_trimmed(PCXSTR pszTargets) const;
+   string right_trimmed(const char * pszTargets) const;
 
    // remove all leading occurrences of character 'chTarget'
-   string left_trimmed(XCHAR chTarget) const;
+   string left_trimmed(char chTarget) const;
 
    // remove all leading occurrences of any of the characters in string 'pszTargets'
-   string left_trimmed(PCXSTR pszTargets) const;
+   string left_trimmed(const char * pszTargets) const;
 
 
    // Convert the string to the OEM character set
@@ -564,15 +564,15 @@ public:
    string Left(strsize nCount ) const;
 
    // Return the substring consisting of the leftmost characters in the set 'pszCharSet'
-   string SpanIncluding(PCXSTR pszCharSet ) const;
+   string SpanIncluding(const char * pszCharSet ) const;
 
    // Return the substring consisting of the leftmost characters not in the set 'pszCharSet'
-   string SpanExcluding(PCXSTR pszCharSet ) const;
+   string SpanExcluding(const char * pszCharSet ) const;
 
    // Format data using format string 'pszFormat'
 #ifdef WINDOWS
 
-   void __cdecl Format(PCXSTR pszFormat, ... );
+   void __cdecl Format(const char * pszFormat, ... );
 
 #else
 
@@ -610,18 +610,18 @@ public:
 
 
    // append formatted data using format string 'pszFormat'
-   void __cdecl AppendFormat(PCXSTR pszFormat, ... );
+   void __cdecl AppendFormat(const char * pszFormat, ... );
 
-   void AppendFormatV(PCXSTR pszFormat, va_list args );
+   void AppendFormatV(const char * pszFormat, va_list args );
 
-   void FormatV(PCXSTR pszFormat, va_list args );
+   void FormatV(const char * pszFormat, va_list args );
 
-   void __cdecl FormatMessage(PCXSTR pszFormat, ... );
+   void __cdecl FormatMessage(const char * pszFormat, ... );
 
-   void __cdecl format_message(PCXSTR pszFormat, ... );
+   void __cdecl format_message(const char * pszFormat, ... );
 
    // Format a message using format string 'pszFormat' and va_list
-   void FormatMessageV(PCXSTR pszFormat, va_list* pArgList );
+   void FormatMessageV(const char * pszFormat, va_list* pArgList );
 
 #ifdef WINDOWS
 
@@ -635,10 +635,10 @@ public:
 #endif
 
    // Set the string to the value of environment var 'pszVar'
-   bool GetEnvironmentVariable(PCXSTR pszVar);
+   bool GetEnvironmentVariable(const char * pszVar);
 
    // Set the string to the value of environment var 'pszVar'
-   bool getenv(PCXSTR pszVar);
+   bool getenv(const char * pszVar);
 
    // Load the string from resource 'nID'
    bool load_string(::ca::application * papp, id id);
@@ -653,7 +653,7 @@ public:
    }
 
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
-   PXSTR pszBuffer = GetBuffer( nLength );
+   char * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
    ReleaseBufferSetLength( nLength );
 
@@ -670,7 +670,7 @@ public:
    }
 
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
-   PXSTR pszBuffer = GetBuffer( nLength );
+   char * pszBuffer = GetBuffer( nLength );
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
    ReleaseBufferSetLength( nLength );
 
@@ -678,8 +678,8 @@ public:
    }*/
 
    friend string CLASS_DECL_ca operator+(const string & str1,const string & str2 );
-   friend string CLASS_DECL_ca operator+(const string & str1,PCXSTR psz2 );
-   friend string CLASS_DECL_ca operator+(PCXSTR psz1,const string & str2 );
+   friend string CLASS_DECL_ca operator+(const string & str1,const char * psz2 );
+   friend string CLASS_DECL_ca operator+(const char * psz1,const string & str2 );
    friend string CLASS_DECL_ca operator+(const string & str1,wchar_t ch2 );
    friend string CLASS_DECL_ca operator+(wchar_t ch1,const string & str2 );
    friend string CLASS_DECL_ca operator+(const string & str1,char ch2 );
@@ -697,50 +697,50 @@ public:
 
    bool operator==(const string_interface & str) const;
    bool operator==(const string & str) const;
-   bool operator==(PCXSTR psz2) const;
-   bool operator==(PCYSTR psz2) const;
-   bool operator==(XCHAR psz2) const;
-   bool operator==(YCHAR psz2) const;
+   bool operator==(const char * psz2) const;
+   bool operator==(const wchar_t * psz2) const;
+   bool operator==(char psz2) const;
+   bool operator==(wchar_t psz2) const;
    bool operator==(int32_t i) const;
 
    bool operator>(const string_interface & str) const;
    bool operator>(const string & str) const;
-   bool operator>(PCXSTR psz2) const;
-   bool operator>(PCYSTR psz2) const;
-   bool operator>(XCHAR psz2) const;
-   bool operator>(YCHAR psz2) const;
+   bool operator>(const char * psz2) const;
+   bool operator>(const wchar_t * psz2) const;
+   bool operator>(char psz2) const;
+   bool operator>(wchar_t psz2) const;
    bool operator>(int32_t i) const;
 
    bool operator<(const string_interface & str) const;
    bool operator<(const string & str) const;
-   bool operator<(PCXSTR psz2) const;
-   bool operator<(PCYSTR psz2) const;
-   bool operator<(XCHAR psz2) const;
-   bool operator<(YCHAR psz2) const;
+   bool operator<(const char * psz2) const;
+   bool operator<(const wchar_t * psz2) const;
+   bool operator<(char psz2) const;
+   bool operator<(wchar_t psz2) const;
    bool operator<(int32_t i) const;
 
    inline bool operator!=(const string_interface & str)   const { return !operator ==(str); }
    inline bool operator!=(const string & str )            const { return !operator ==(str); }
-   inline bool operator!=(PCXSTR psz)                     const { return !operator ==(psz); }
-   inline bool operator!=(PCYSTR psz)                     const { return !operator ==(psz); }
-   inline bool operator!=(XCHAR ch)                       const { return !operator ==(ch);  }
-   inline bool operator!=(YCHAR ch)                       const { return !operator ==(ch);  }
+   inline bool operator!=(const char * psz)                     const { return !operator ==(psz); }
+   inline bool operator!=(const wchar_t * psz)                     const { return !operator ==(psz); }
+   inline bool operator!=(char ch)                       const { return !operator ==(ch);  }
+   inline bool operator!=(wchar_t ch)                       const { return !operator ==(ch);  }
    inline bool operator!=(int32_t i)                      const { return !operator ==(i);  }
 
    inline bool operator>=(const string_interface & str)   const { return !operator <(str); }
    inline bool operator>=(const string & str )            const { return !operator <(str); }
-   inline bool operator>=(PCXSTR psz)                     const { return !operator <(psz); }
-   inline bool operator>=(PCYSTR psz)                     const { return !operator <(psz); }
-   inline bool operator>=(XCHAR ch)                       const { return !operator <(ch);  }
-   inline bool operator>=(YCHAR ch)                       const { return !operator <(ch);  }
+   inline bool operator>=(const char * psz)                     const { return !operator <(psz); }
+   inline bool operator>=(const wchar_t * psz)                     const { return !operator <(psz); }
+   inline bool operator>=(char ch)                       const { return !operator <(ch);  }
+   inline bool operator>=(wchar_t ch)                       const { return !operator <(ch);  }
    inline bool operator>=(int32_t i)                      const { return !operator <(i);  }
 
    inline bool operator<=(const string_interface & str)   const { return !operator >(str); }
    inline bool operator<=(const string & str )            const { return !operator >(str); }
-   inline bool operator<=(PCXSTR psz)                     const { return !operator >(psz); }
-   inline bool operator<=(PCYSTR psz)                     const { return !operator >(psz); }
-   inline bool operator<=(XCHAR ch)                       const { return !operator >(ch);  }
-   inline bool operator<=(YCHAR ch)                       const { return !operator >(ch);  }
+   inline bool operator<=(const char * psz)                     const { return !operator >(psz); }
+   inline bool operator<=(const wchar_t * psz)                     const { return !operator >(psz); }
+   inline bool operator<=(char ch)                       const { return !operator >(ch);  }
+   inline bool operator<=(wchar_t ch)                       const { return !operator >(ch);  }
    inline bool operator<=(int32_t i)                      const { return !operator >(i);  }
 
 
@@ -1165,13 +1165,13 @@ inline int32_t __cdecl crt_char_traits::StringCompareIgnore(const char * pszA,co
 
 
 
-inline int32_t string::Compare(PCXSTR psz ) const
+inline int32_t string::Compare(const char * psz ) const
 {
    //ENSURE( __is_valid_string( psz ) );
    return( string_trait::StringCompare( GetString(), psz ) );
 }
 
-inline int32_t string::CompareNoCase(PCXSTR psz ) const RELEASENOTHROW
+inline int32_t string::CompareNoCase(const char * psz ) const RELEASENOTHROW
 {
    //ASSERT( __is_valid_string( psz ) );
    return( string_trait::StringCompareIgnore( GetString(), psz ) );
@@ -1187,7 +1187,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,const string & str2 
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(const string & str1,string::PCXSTR psz2 )
+inline   string CLASS_DECL_ca operator+(const string & str1,const char * psz2 )
 {
    string strResult( str1.GetManager() );
 
@@ -1196,7 +1196,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,string::PCXSTR psz2 
    return( strResult );
 }
 
-inline   string CLASS_DECL_ca operator+(string::PCXSTR psz1,const string & str2 )
+inline   string CLASS_DECL_ca operator+(const char * psz1,const string & str2 )
 {
    string strResult( str2.GetManager() );
 
@@ -1208,7 +1208,7 @@ inline   string CLASS_DECL_ca operator+(string::PCXSTR psz1,const string & str2 
 inline   string CLASS_DECL_ca operator+(const string & str1,wchar_t ch2 )
 {
    string strResult( str1.GetManager() );
-   string::XCHAR chTemp = string::XCHAR( ch2 );
+   char chTemp = char( ch2 );
 
    string::Concatenate( strResult, str1, str1.get_length(), &chTemp, 1 );
 
@@ -1218,7 +1218,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,wchar_t ch2 )
 inline   string CLASS_DECL_ca operator+(const string & str1,char ch2 )
 {
    string strResult( str1.GetManager() );
-   string::XCHAR chTemp = string::XCHAR( ch2 );
+   char chTemp = char( ch2 );
 
    string::Concatenate( strResult, str1, str1.get_length(), &chTemp, 1 );
 
@@ -1228,7 +1228,7 @@ inline   string CLASS_DECL_ca operator+(const string & str1,char ch2 )
 inline   string CLASS_DECL_ca operator+(wchar_t ch1,const string & str2 )
 {
    string strResult( str2.GetManager() );
-   string::XCHAR chTemp = string::XCHAR( ch1 );
+   char chTemp = char( ch1 );
 
    string::Concatenate( strResult, &chTemp, 1, str2, str2.get_length() );
 
@@ -1238,7 +1238,7 @@ inline   string CLASS_DECL_ca operator+(wchar_t ch1,const string & str2 )
 inline   string CLASS_DECL_ca operator+(char ch1,const string & str2 )
 {
    string strResult( str2.GetManager() );
-   string::XCHAR chTemp = string::XCHAR( ch1 );
+   char chTemp = char( ch1 );
 
    string::Concatenate( strResult, &chTemp, 1, str2, str2.get_length() );
 
@@ -1304,7 +1304,7 @@ inline bool string::operator==(const string_interface & str) const
 }
 
 
-inline bool string::operator==(string::PCXSTR psz) const
+inline bool string::operator==(const char * psz) const
 {
 
    return operator == (string(psz));
@@ -1312,7 +1312,7 @@ inline bool string::operator==(string::PCXSTR psz) const
 }
 
 
-inline bool string::operator==(string::PCYSTR psz) const
+inline bool string::operator==(const wchar_t * psz) const
 {
 
    return operator == (string(psz));
@@ -1320,7 +1320,7 @@ inline bool string::operator==(string::PCYSTR psz) const
 }
 
 
-inline bool string::operator==(string::XCHAR ch) const
+inline bool string::operator==(char ch) const
 {
 
    return get_length() == 1 && operator[](0) == ch;
@@ -1328,7 +1328,7 @@ inline bool string::operator==(string::XCHAR ch) const
 }
 
 
-inline bool string::operator==(string::YCHAR ch) const
+inline bool string::operator==(wchar_t ch) const
 {
 
    return operator==(string(ch));
@@ -1359,7 +1359,7 @@ inline bool string::operator<(const string_interface & str) const
 }
 
 
-inline bool string::operator<(string::PCXSTR psz) const
+inline bool string::operator<(const char * psz) const
 {
 
    return operator < (string(psz));
@@ -1367,7 +1367,7 @@ inline bool string::operator<(string::PCXSTR psz) const
 }
 
 
-inline bool string::operator<(string::PCYSTR psz) const
+inline bool string::operator<(const wchar_t * psz) const
 {
 
    return operator < (string(psz));
@@ -1375,7 +1375,7 @@ inline bool string::operator<(string::PCYSTR psz) const
 }
 
 
-inline bool string::operator<(string::XCHAR ch) const
+inline bool string::operator<(char ch) const
 {
 
    return operator < (string(ch)) ;
@@ -1383,7 +1383,7 @@ inline bool string::operator<(string::XCHAR ch) const
 }
 
 
-inline bool string::operator<(string::YCHAR ch) const
+inline bool string::operator<(wchar_t ch) const
 {
 
    return operator < (string(ch));
@@ -1415,7 +1415,7 @@ inline bool string::operator>(const string_interface & str) const
 }
 
 
-inline bool string::operator>(string::PCXSTR psz) const
+inline bool string::operator>(const char * psz) const
 {
 
    return operator > (string(psz));
@@ -1423,7 +1423,7 @@ inline bool string::operator>(string::PCXSTR psz) const
 }
 
 
-inline bool string::operator>(string::PCYSTR psz) const
+inline bool string::operator>(const wchar_t * psz) const
 {
 
    return operator > (string(psz));
@@ -1431,7 +1431,7 @@ inline bool string::operator>(string::PCYSTR psz) const
 }
 
 
-inline bool string::operator>(string::XCHAR ch) const
+inline bool string::operator>(char ch) const
 {
 
    return operator > (string(ch));
@@ -1439,7 +1439,7 @@ inline bool string::operator>(string::XCHAR ch) const
 }
 
 
-inline bool string::operator>(string::YCHAR ch) const
+inline bool string::operator>(wchar_t ch) const
 {
 
    return operator > (string(ch));
@@ -1458,15 +1458,15 @@ inline bool string::operator>(int32_t i) const
 
 
 
-inline string::operator PCXSTR() const throw()
+inline string::operator const char *() const throw()
 {
-   return simple_string::operator PCXSTR();
+   return simple_string::operator const char *();
 }
 
 
-inline string::PCXSTR string::c_str() const throw()
+inline const char * string::c_str() const throw()
 {
-   return simple_string::operator PCXSTR();
+   return simple_string::operator const char *();
 }
 
 inline strsize string::remove(strsize iIndex,strsize nCount)
@@ -1476,44 +1476,44 @@ inline strsize string::remove(strsize iIndex,strsize nCount)
 
 
 inline bool CLASS_DECL_ca operator==(const string_interface & str1   , const string & str2)  { return str2 == str1; }
-inline bool CLASS_DECL_ca operator==(string::PCXSTR  psz                     , const string & str )  { return str  == psz ; }
-inline bool CLASS_DECL_ca operator==(string::PCYSTR  psz                     , const string & str )  { return str  == psz ; }
-inline bool CLASS_DECL_ca operator==(string::XCHAR   ch                      , const string & str )  { return str  == ch  ; }
-inline bool CLASS_DECL_ca operator==(string::YCHAR   ch                      , const string & str )  { return str  == ch  ; }
+inline bool CLASS_DECL_ca operator==(const char *  psz                     , const string & str )  { return str  == psz ; }
+inline bool CLASS_DECL_ca operator==(const wchar_t *  psz                     , const string & str )  { return str  == psz ; }
+inline bool CLASS_DECL_ca operator==(char   ch                      , const string & str )  { return str  == ch  ; }
+inline bool CLASS_DECL_ca operator==(wchar_t   ch                      , const string & str )  { return str  == ch  ; }
 inline bool CLASS_DECL_ca operator==(int32_t i                       , const string & str )  { return str  == i   ; }
 
 inline bool CLASS_DECL_ca operator>(const string_interface & str1   , const string & str2 )   { return str2 < str1; }
-inline bool CLASS_DECL_ca operator>(string::PCXSTR psz                      , const string & str  )   { return str  < psz ; }
-inline bool CLASS_DECL_ca operator>(string::PCYSTR psz                      , const string & str  )   { return str  < psz ; }
-inline bool CLASS_DECL_ca operator>(string::XCHAR ch                        , const string & str  )   { return str  < ch  ; }
-inline bool CLASS_DECL_ca operator>(string::YCHAR ch                        , const string & str  )   { return str  < ch  ; }
+inline bool CLASS_DECL_ca operator>(const char * psz                      , const string & str  )   { return str  < psz ; }
+inline bool CLASS_DECL_ca operator>(const wchar_t * psz                      , const string & str  )   { return str  < psz ; }
+inline bool CLASS_DECL_ca operator>(char ch                        , const string & str  )   { return str  < ch  ; }
+inline bool CLASS_DECL_ca operator>(wchar_t ch                        , const string & str  )   { return str  < ch  ; }
 inline bool CLASS_DECL_ca operator>(int32_t i                       , const string & str  )   { return str  < i   ; }
 
 inline bool CLASS_DECL_ca operator<(const string_interface & str1   , const string & str2 )   { return str2 > str1; }
-inline bool CLASS_DECL_ca operator<(string::PCXSTR psz                      , const string & str  )   { return str  > psz ; }
-inline bool CLASS_DECL_ca operator<(string::PCYSTR psz                      , const string & str  )   { return str  > psz ; }
-inline bool CLASS_DECL_ca operator<(string::XCHAR ch                        , const string & str  )   { return str  > ch  ; }
-inline bool CLASS_DECL_ca operator<(string::YCHAR ch                        , const string & str  )   { return str  > ch  ; }
+inline bool CLASS_DECL_ca operator<(const char * psz                      , const string & str  )   { return str  > psz ; }
+inline bool CLASS_DECL_ca operator<(const wchar_t * psz                      , const string & str  )   { return str  > psz ; }
+inline bool CLASS_DECL_ca operator<(char ch                        , const string & str  )   { return str  > ch  ; }
+inline bool CLASS_DECL_ca operator<(wchar_t ch                        , const string & str  )   { return str  > ch  ; }
 inline bool CLASS_DECL_ca operator<(int32_t i                       , const string & str  )   { return str  > i   ; }
 
 inline bool CLASS_DECL_ca operator!=(const string_interface & str1,const string & str2)  { return !::operator==(str1, str2); }
-inline bool CLASS_DECL_ca operator!=(string::PCXSTR psz,const string & str)                      { return !::operator==(psz, str); }
-inline bool CLASS_DECL_ca operator!=(string::PCYSTR psz,const string & str)                      { return !::operator==(psz, str); }
-inline bool CLASS_DECL_ca operator!=(string::XCHAR ch,const string & str)                        { return !::operator==(ch, str); }
-inline bool CLASS_DECL_ca operator!=(string::YCHAR ch,const string & str)                        { return !::operator==(ch, str); }
+inline bool CLASS_DECL_ca operator!=(const char * psz,const string & str)                      { return !::operator==(psz, str); }
+inline bool CLASS_DECL_ca operator!=(const wchar_t * psz,const string & str)                      { return !::operator==(psz, str); }
+inline bool CLASS_DECL_ca operator!=(char ch,const string & str)                        { return !::operator==(ch, str); }
+inline bool CLASS_DECL_ca operator!=(wchar_t ch,const string & str)                        { return !::operator==(ch, str); }
 inline bool CLASS_DECL_ca operator!=(int32_t i, const string & str)                      { return !::operator==(i, str); }
 
 inline bool CLASS_DECL_ca operator>=(const string_interface & str1,const string & str2)  { return !::operator<(str1, str2); }
-inline bool CLASS_DECL_ca operator>=(string::PCXSTR psz,const string & str)                      { return !::operator<(psz, str); }
-inline bool CLASS_DECL_ca operator>=(string::PCYSTR psz,const string & str)                      { return !::operator<(psz, str); }
-inline bool CLASS_DECL_ca operator>=(string::XCHAR ch,const string & str)                        { return !::operator<(ch, str); }
-inline bool CLASS_DECL_ca operator>=(string::YCHAR ch,const string & str)                        { return !::operator<(ch, str); }
+inline bool CLASS_DECL_ca operator>=(const char * psz,const string & str)                      { return !::operator<(psz, str); }
+inline bool CLASS_DECL_ca operator>=(const wchar_t * psz,const string & str)                      { return !::operator<(psz, str); }
+inline bool CLASS_DECL_ca operator>=(char ch,const string & str)                        { return !::operator<(ch, str); }
+inline bool CLASS_DECL_ca operator>=(wchar_t ch,const string & str)                        { return !::operator<(ch, str); }
 inline bool CLASS_DECL_ca operator>=(int32_t i, const string & str)                      { return !::operator<(i, str); }
 
 inline bool CLASS_DECL_ca operator<=(const string_interface & str1,const string & str2)  { return !::operator>(str1, str2); }
-inline bool CLASS_DECL_ca operator<=(string::PCXSTR psz,const string & str)                      { return !::operator>(psz, str); }
-inline bool CLASS_DECL_ca operator<=(string::PCYSTR psz,const string & str)                      { return !::operator>(psz, str); }
-inline bool CLASS_DECL_ca operator<=(string::XCHAR ch,const string & str)                        { return !::operator>(ch, str); }
-inline bool CLASS_DECL_ca operator<=(string::YCHAR ch,const string & str)                        { return !::operator>(ch, str); }
+inline bool CLASS_DECL_ca operator<=(const char * psz,const string & str)                      { return !::operator>(psz, str); }
+inline bool CLASS_DECL_ca operator<=(const wchar_t * psz,const string & str)                      { return !::operator>(psz, str); }
+inline bool CLASS_DECL_ca operator<=(char ch,const string & str)                        { return !::operator>(ch, str); }
+inline bool CLASS_DECL_ca operator<=(wchar_t ch,const string & str)                        { return !::operator>(ch, str); }
 inline bool CLASS_DECL_ca operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
 

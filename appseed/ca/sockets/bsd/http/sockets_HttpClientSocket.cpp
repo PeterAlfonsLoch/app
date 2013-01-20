@@ -107,7 +107,7 @@ namespace sockets
       m_response.m_propertysetHeader[key] = value;
       if (key == __str(content_length))
       {
-         m_content_length = atoi(value);
+         m_content_length = gen::str::to_int_ptr(value);
       }
       else if (key == __str(content_type))
       {
@@ -133,6 +133,8 @@ namespace sockets
       }
 
       m_memoryfile.seek_to_begin();
+      
+      string str = gen::str::from(m_content_length);
 
       if(m_content_length == 0)
       {
@@ -162,6 +164,10 @@ namespace sockets
          return;
       }
       m_memoryfile.write(buf, len);
+      
+      string strLen = gen::str::from((uint64_t)len);
+      string strContentPtr = gen::str::from((uint64_t)m_content_ptr);
+      string strContentLength = gen::str::from(m_content_length);
 
       m_content_ptr += len;
       if (m_content_ptr == m_content_length && m_content_length && m_content_length != ((size_t) (-1)))

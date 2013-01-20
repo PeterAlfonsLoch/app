@@ -96,7 +96,7 @@ namespace ca
          get_ascendants_name(lpcsz, stra);
          string str;
          bool bUrl = System.url().is_url(lpcsz);
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
          bool bLinux = true;
          str += "/";
 #else

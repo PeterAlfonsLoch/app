@@ -57,7 +57,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 #else
       System.factory().creatable_large < ::ex1::file_exception > ();
 
-      void * pdl = ::dlopen("os.dylib", RTLD_LOCAL);
+      void * pdl = ::dlopen("libos.dylib", RTLD_LOCAL);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
 #endif

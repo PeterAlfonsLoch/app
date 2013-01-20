@@ -47,12 +47,14 @@ oswindow::data * oswindow::get(nswindow window)
 
 }
 
+
 oswindow::oswindow(const ::ca::null & null)
 {
 
    m_pdata = NULL;
 
 }
+
 
 oswindow::oswindow()
 {
@@ -61,12 +63,14 @@ oswindow::oswindow()
 
 }
 
+
 oswindow::oswindow(nswindow window)
 {
 
    m_pdata = get(window);
 
 }
+
 
 oswindow::oswindow(const oswindow & oswindow)
 {
@@ -75,6 +79,7 @@ oswindow::oswindow(const oswindow & oswindow)
 
 }
 
+
 oswindow::oswindow(const void * p)
 {
 
@@ -82,12 +87,14 @@ oswindow::oswindow(const void * p)
 
 }
 
+
 oswindow::oswindow(const LPARAM & lparam)
 {
 
    m_pdata = (data *) lparam;
 
 }
+
 
 oswindow::oswindow(const WPARAM & wparam)
 {
@@ -97,20 +104,19 @@ oswindow::oswindow(const WPARAM & wparam)
 }
 
 
-
-
-
 oswindow & oswindow::operator = (const oswindow & oswindow)
 {
 
-   m_pdata = oswindow.m_pdata;
+   if(&oswindow != this)
+   {
+   
+      m_pdata = oswindow.m_pdata;
+   
+   }
 
    return *this;
 
 }
-
-
-
 
 
 bool oswindow::remove(nswindow window)
@@ -128,24 +134,24 @@ bool oswindow::remove(nswindow window)
 }
 
 
-
-
 void oswindow::set_user_interaction(::user::interaction_base * pui)
 {
     
-    if(m_pdata == NULL)
-        throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
+   if(m_pdata == NULL)
+      throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
     
-    m_pdata->m_pui = pui;
-    
+   m_pdata->m_pui = pui;
+   
 }
+
+
 ::user::interaction_base * oswindow::get_user_interaction_base()
 {
     
-    if(m_pdata == NULL)
-        return NULL;
+   if(m_pdata == NULL)
+      return NULL;
     
-    return m_pdata->m_pui;
+   return m_pdata->m_pui;
     
 }
 
@@ -186,17 +192,16 @@ void oswindow::set_user_interaction(::user::interaction_base * pui)
 }
 
 
-
 oswindow oswindow::get_parent()
 {
    
    if(m_pdata == NULL)
       return ::ca::null();
    
-   
-   return ::ca::null();
+   return m_pdata->m_pui->get_parent();
    
 }
+
 
 oswindow oswindow::set_parent(oswindow oswindow)
 {
@@ -206,10 +211,25 @@ oswindow oswindow::set_parent(oswindow oswindow)
    
    ::oswindow oswindowOldParent = get_parent();
    
+   if(oswindow.m_pdata == NULL
+   || oswindow.m_pdata->m_pui == NULL
+   || oswindow.m_pdata->m_pui->m_pui == NULL)
+   {
+   
+      m_pdata->m_pui->set_parent(NULL);
+      
+   }
+   else
+   {
+      
+      m_pdata->m_pui->set_parent(oswindow.m_pdata->m_pui->m_pui);
+      
+   }
    
    return oswindowOldParent;
    
 }
+
 
 int32_t oswindow::get_window_long(int32_t iIndex)
 {

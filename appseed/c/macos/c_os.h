@@ -15,7 +15,7 @@
 
 
 
-
+//#define ENABLE_BINRELOC
 
 
 DWORD GetTickCount();

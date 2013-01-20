@@ -12,7 +12,25 @@ namespace gen
       void format(string_format * pformat, char const & ch)
       {
 
-         pformat->append(string((char) ch));
+         if(pformat->m_chLength == 'X')
+         {
+
+            string str = gen::hex::hi_from((void *) &ch, 1);
+            
+            while(pformat->m_iWidth > str.get_length())
+            {
+               str = "0" + str;
+            }
+            
+            pformat->append(str);
+            
+         }
+         else
+         {
+         
+            pformat->append(string((char) ch));
+            
+         }
 
       }
 

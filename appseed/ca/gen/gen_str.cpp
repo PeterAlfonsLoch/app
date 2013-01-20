@@ -1365,9 +1365,9 @@ namespace gen
    string & str::from(string & str, uint64_t ui)
    {
 
-      str.Format("%I64u", ui);
+//      str.Format("%I64u", ui);
 
-      return str;
+      return str = ui64toa_dup(ui, 10);
 
    }
 

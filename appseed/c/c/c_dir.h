@@ -35,5 +35,8 @@ public:
    static CLASS_DECL_c vsstring default_userdata(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
    static CLASS_DECL_c vsstring default_userfolder(const char * lpcszPrefix, const char * lpcszLogin, const char * pszRelativePath);
    static CLASS_DECL_c vsstring userfolder(const char * lpcsz, const char * lpcsz2 = NULL);
+   static CLASS_DECL_c vsstring pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode);
+
+   
 
 };

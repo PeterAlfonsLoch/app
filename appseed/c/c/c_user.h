@@ -57,6 +57,8 @@ namespace user
 
 
       virtual LRESULT message_handler(LPMESSAGE lpmessage) = 0;
+      virtual interaction * get_parent() const = 0;
+      virtual interaction * set_parent(interaction * pguieParent) = 0;
 
 
    };

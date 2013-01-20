@@ -374,7 +374,7 @@ vsstring dir::path(const char * path1, const char * path2, const char * path3, c
       }
       str += strAdd;
    }
-#ifdef LINUX
+#if defined(LINUX) || defined(MACOS)
    str.replace("\\", "/");
 #else
    str.replace("/", "\\");
@@ -733,4 +733,33 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
    {
    return path(AppUser(papp).m_strPath, lpcsz, lpcsz2);
    }*/
+}
+
+
+vsstring dir::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
+{
+   
+   stra_dup stra;
+   
+   stra.add_tokens(pszEnv, ":");
+   
+   vsstring strCandidate;
+   
+   for(int32_t i = 0; i < stra.get_count(); i++)
+   {
+      
+      if(stra[i].is_empty())
+         continue;
+      
+      strCandidate = path(stra[i], pszTopic);
+      
+      if(file_exists_dup(strCandidate))
+      {
+         return strCandidate;
+      }
+      
+   }
+   
+   return "";
+   
 }

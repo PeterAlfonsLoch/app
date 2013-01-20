@@ -10,7 +10,7 @@ struct CLASS_DECL_ca string_data
    strsize nDataLength;  // Length of currently used data in XCHARs (not including terminating null)
    strsize nAllocLength;  // Length of allocated data in XCHARs (not including terminating null)
    long nRefs;     // Reference count: negative == locked
-   // XCHAR data[nAllocLength+1]  // A string_data is always followed in primitive::memory by the actual base_array of character data
+   // char data[nAllocLength+1]  // A string_data is always followed in primitive::memory by the actual base_array of character data
 
    inline char * data() NOTHROW;
    inline void AddRef() RELEASENOTHROW;
@@ -370,12 +370,6 @@ static_string& operator=( const static_string& str ) NOTHROW;
 class CLASS_DECL_ca char_traits_base
 {
 public:
-   typedef char XCHAR;
-   typedef char * PXSTR;
-   typedef const char * PCXSTR;
-   typedef wchar_t YCHAR;
-   typedef wchar_t * PYSTR;
-   typedef const wchar_t * PCYSTR;
 };
 
 
@@ -412,15 +406,6 @@ class CLASS_DECL_ca simple_string
 public:
 
 
-   typedef strsize size_type;
-   typedef char_traits_base::XCHAR XCHAR;
-   typedef char_traits_base::PXSTR PXSTR;
-   typedef char_traits_base::PCXSTR PCXSTR;
-   typedef char_traits_base::YCHAR YCHAR;
-   typedef char_traits_base::PYSTR PYSTR;
-   typedef char_traits_base::PCYSTR PCYSTR;
-
-
    explicit simple_string(string_manager * pstringmanager )
    {
       construct(pstringmanager);
@@ -439,7 +424,7 @@ public:
       {
          ENSURE( pstringmanager != NULL );
 
-         string_data* pData = pstringmanager->allocate( 0, sizeof( XCHAR ) );
+         string_data* pData = pstringmanager->allocate( 0, sizeof( char ) );
          if( pData == NULL )
          {
             ThrowMemoryException();
@@ -453,12 +438,12 @@ public:
       attach( pNewData );
    }
 
-   simple_string(PCXSTR pszSrc,string_manager * pstringmanager )
+   simple_string(const char * pszSrc,string_manager * pstringmanager )
    {
       ENSURE( pstringmanager != NULL );
 
       strsize nLength = StringLength( pszSrc );
-      string_data* pData = pstringmanager->allocate( nLength, sizeof( XCHAR ) );
+      string_data* pData = pstringmanager->allocate( nLength, sizeof( char ) );
       if( pData == NULL )
       {
          ThrowMemoryException();
@@ -471,7 +456,7 @@ public:
       CopyChars( m_pszData, pszSrc, nLength );
 #endif
    }
-   simple_string(const XCHAR* pchSrc,strsize nLength,string_manager * pstringmanager )
+   simple_string(const char* pchSrc,strsize nLength,string_manager * pstringmanager )
    {
       ENSURE( pstringmanager != NULL );
 
@@ -481,7 +466,7 @@ public:
       if(nLength < 0)
          nLength = (strsize) strlen(pchSrc);
 
-      string_data * pData = pstringmanager->allocate( nLength, sizeof( XCHAR ) );
+      string_data * pData = pstringmanager->allocate( nLength, sizeof( char ) );
       if( pData == NULL )
       {
          ThrowMemoryException();
@@ -522,7 +507,7 @@ public:
    }
 
 
-   simple_string& operator=(PCXSTR pszSrc )
+   simple_string& operator=(const char * pszSrc )
    {
       SetString( pszSrc );
 
@@ -536,7 +521,7 @@ public:
       return( *this );
    }
 
-   simple_string& operator+=(PCXSTR pszSrc )
+   simple_string& operator+=(const char * pszSrc )
    {
       append( pszSrc );
 
@@ -545,7 +530,7 @@ public:
    template< strsize t_nSize >
       simple_string& operator+=(const static_string< t_nSize >& strSrc )
    {
-      append( static_cast<const XCHAR *>(strSrc), strSrc.get_length() );
+      append( static_cast<const char *>(strSrc), strSrc.get_length() );
 
       return( *this );
    }
@@ -558,19 +543,19 @@ public:
 
    simple_string& operator+=(uchar ch )
    {
-      AppendChar( XCHAR( ch ) );
+      AppendChar( char( ch ) );
 
       return( *this );
    }
 
    simple_string& operator+=(wchar_t ch )
    {
-      AppendChar( XCHAR( ch ) );
+      AppendChar( char( ch ) );
 
       return( *this );
    }
 
-   const XCHAR &  operator [](strsize iChar ) const
+   const char &  operator [](strsize iChar ) const
    {
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
@@ -580,7 +565,7 @@ public:
       return ( m_pszData[iChar] );
    }
 
-   XCHAR & operator [](strsize iChar )
+   char & operator [](strsize iChar )
    {
       //ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
 
@@ -591,7 +576,7 @@ public:
    }
 
    // non error at
-   XCHAR s_at(strsize iChar) const
+   char s_at(strsize iChar) const
    {
 
       if((iChar < 0) || (iChar > get_length()))
@@ -601,7 +586,7 @@ public:
 
    }
 
-   inline operator PCXSTR() const NOTHROW
+   inline operator const char *() const NOTHROW
    {
       return( m_pszData );
    }
@@ -613,11 +598,11 @@ public:
    }
 #endif
 
-   void append(PCXSTR pszSrc )
+   void append(const char * pszSrc )
    {
       append( pszSrc, StringLength( pszSrc ) );
    }
-   void append(PCXSTR pszSrc,strsize nLength )
+   void append(const char * pszSrc,strsize nLength )
    {
       // See comment in SetString() about why we do this
       uint_ptr nOffset = pszSrc-GetString();
@@ -629,7 +614,7 @@ public:
          nOldLength = 0;
       }
       strsize nNewLength = nOldLength+nLength;
-      PXSTR pszBuffer = GetBuffer( nNewLength );
+      char * pszBuffer = GetBuffer( nNewLength );
       if( nOffset <= (uint_ptr) nOldLength )
       {
          pszSrc = pszBuffer+nOffset;
@@ -644,14 +629,14 @@ public:
       ReleaseBufferSetLength( nNewLength );
    }
    
-   void AppendChar(XCHAR ch )
+   void AppendChar(char ch )
    {
 
       strsize nOldLength = get_length();
       
       strsize nNewLength = nOldLength+1;
       
-      PXSTR pszBuffer = GetBuffer( nNewLength );
+      char * pszBuffer = GetBuffer( nNewLength );
       
       pszBuffer[nOldLength] = ch;
       
@@ -703,7 +688,7 @@ public:
 
       if( !pOldData->IsLocked() )  // Don't reallocate a locked buffer that's shrinking
       {
-         string_data* pNewData = pstringmanager->allocate( nLength, sizeof( XCHAR ) );
+         string_data* pNewData = pstringmanager->allocate( nLength, sizeof( char ) );
          if( pNewData == NULL )
          {
             set_length( nLength );
@@ -711,10 +696,9 @@ public:
          }
 
 #if _SECURE_TEMPLATE
-         CopyChars( PXSTR( pNewData->data() ), nLength,
-            PCXSTR( pOldData->data() ), nLength );
+         CopyChars( char *( pNewData->data() ), nLength, const char *( pOldData->data() ), nLength );
 #else
-         CopyChars( PXSTR( pNewData->data() ), PCXSTR( pOldData->data() ), nLength );
+         CopyChars( (char *)( pNewData->data() ), (const char *)( pOldData->data() ), nLength );
 #endif
 
          pOldData->Release();
@@ -727,7 +711,7 @@ public:
    {
       return( get_data()->nAllocLength );
    }
-   XCHAR get_at(strsize iChar ) const
+   char get_at(strsize iChar ) const
    {
       ASSERT( (iChar >= 0) && (iChar <= get_length()) );  // Indexing the '\0' is OK
       if( (iChar < 0) || (iChar > get_length()) )
@@ -735,7 +719,7 @@ public:
 
       return( m_pszData[iChar] );
    }
-   PXSTR GetBuffer()
+   char * GetBuffer()
    {
       string_data* pData = get_data();
       if( pData->IsShared() )
@@ -745,13 +729,13 @@ public:
 
       return( m_pszData );
    }
-   PXSTR GetBuffer(strsize nMinBufferLength )
+   char * GetBuffer(strsize nMinBufferLength )
    {
       return( PrepareWrite( nMinBufferLength ) );
    }
-   PXSTR GetBufferSetLength(strsize nLength )
+   char * GetBufferSetLength(strsize nLength )
    {
-      PXSTR pszBuffer = GetBuffer( nLength );
+      char * pszBuffer = GetBuffer( nLength );
       set_length( nLength );
 
       return( pszBuffer );
@@ -778,7 +762,7 @@ public:
       return pstringmanager ? pstringmanager->Clone() : NULL;
    }
 
-   PCXSTR GetString() const NOTHROW
+   const char * GetString() const NOTHROW
    {
       return( m_pszData );
    }
@@ -793,7 +777,7 @@ public:
       return (get_length() > 0);
    }
 
-   PXSTR LockBuffer()
+   char * LockBuffer()
    {
       string_data* pData = get_data();
       if( pData->IsShared() )
@@ -833,7 +817,7 @@ public:
       GetBuffer( nNewLength );
       ReleaseBufferSetLength( nNewLength );
    }
-   void set_at(strsize iChar,XCHAR ch )
+   void set_at(strsize iChar,char ch )
    {
       ASSERT( (iChar >= 0) && (iChar < get_length()) );
 
@@ -841,7 +825,7 @@ public:
          throw invalid_argument_exception(::ca::get_thread_app());
 
       strsize nLength = get_length();
-      PXSTR pszBuffer = GetBuffer();
+      char * pszBuffer = GetBuffer();
       pszBuffer[iChar] = ch;
       ReleaseBufferSetLength( nLength );
 
@@ -855,11 +839,11 @@ public:
       pData = pstringmanager->GetNilString();
       attach( pData );
    }
-   void SetString(PCXSTR pszSrc )
+   void SetString(const char * pszSrc )
    {
       SetString( pszSrc, StringLength( pszSrc ) );
    }
-   void SetString(PCXSTR pszSrc,strsize nLength )
+   void SetString(const char * pszSrc,strsize nLength )
    {
       if( nLength == 0 )
       {
@@ -881,7 +865,7 @@ public:
          // If 0 <= nOffset <= nOldLength, then pszSrc points into our
          // buffer
 
-         PXSTR pszBuffer = GetBuffer( nLength );
+         char * pszBuffer = GetBuffer( nLength );
          if( nOffset <= nOldLength )
          {
 #if _SECURE_TEMPLATE
@@ -917,7 +901,7 @@ public:
 
    friend simple_string operator+(
       const simple_string& str1,
-      PCXSTR psz2 )
+      const char * psz2 )
    {
       simple_string s( str1.GetManager() );
 
@@ -927,7 +911,7 @@ public:
    }
 
    friend simple_string operator+(
-      PCXSTR psz1,
+      const char * psz1,
       const simple_string& str2 )
    {
       simple_string s( str2.GetManager() );
@@ -937,44 +921,44 @@ public:
       return( s );
    }
 
-   static void __cdecl CopyChars(XCHAR* pchDest,const XCHAR* pchSrc,strsize nChars ) NOTHROW
+   static void __cdecl CopyChars(char* pchDest,const char* pchSrc,strsize nChars ) NOTHROW
    {
-      memcpy(pchDest, pchSrc, nChars * sizeof(XCHAR));
+      memcpy(pchDest, pchSrc, nChars * sizeof(char));
    }
 
 #if _SECURE_TEMPLATE
-   static void __cdecl CopyChars(XCHAR* pchDest,size_t nDestLen,const XCHAR* pchSrc,strsize nChars ) NOTHROW
+   static void __cdecl CopyChars(char* pchDest,size_t nDestLen,const char* pchSrc,strsize nChars ) NOTHROW
    {
 #ifdef WINDOWS
-      memcpy_s(pchDest, nDestLen * sizeof(XCHAR), pchSrc, nChars * sizeof(XCHAR));
+      memcpy_s(pchDest, nDestLen * sizeof(char), pchSrc, nChars * sizeof(char));
 #else
-      memcpy(pchDest, pchSrc, nChars * sizeof(XCHAR));
+      memcpy(pchDest, pchSrc, nChars * sizeof(char));
 #endif
    }
 #endif
 
-   static void __cdecl CopyCharsOverlapped(XCHAR* pchDest,const XCHAR* pchSrc,strsize nChars ) NOTHROW
+   static void __cdecl CopyCharsOverlapped(char* pchDest,const char* pchSrc,strsize nChars ) NOTHROW
    {
-      memmove( pchDest, pchSrc, nChars*sizeof( XCHAR ) );
+      memmove( pchDest, pchSrc, nChars*sizeof( char ) );
    }
 
 #if _SECURE_TEMPLATE
-   static void __cdecl CopyCharsOverlapped(XCHAR* pchDest,size_t nDestLen,const XCHAR* pchSrc,strsize nChars ) NOTHROW
+   static void __cdecl CopyCharsOverlapped(char* pchDest,size_t nDestLen,const char* pchSrc,strsize nChars ) NOTHROW
    {
 #ifdef WINDOWS
-      memmove_s(pchDest, nDestLen * sizeof(XCHAR), pchSrc, nChars * sizeof(XCHAR));
+      memmove_s(pchDest, nDestLen * sizeof(char), pchSrc, nChars * sizeof(char));
 #else
-      memmove(pchDest, pchSrc, nChars * sizeof(XCHAR));
+      memmove(pchDest, pchSrc, nChars * sizeof(char));
 #endif
    }
 #endif
 
-   NOINLINE static strsize __cdecl StringLength(PCXSTR psz ) NOTHROW
+   NOINLINE static strsize __cdecl StringLength(const char * psz ) NOTHROW
    {
       strsize nLength = 0;
       if( psz != NULL )
       {
-         const XCHAR* pch = psz;
+         const char* pch = psz;
          while( *pch != 0 )
          {
             nLength++;
@@ -986,10 +970,10 @@ public:
    }
 
 protected:
-   static void __cdecl Concatenate(simple_string& strResult, PCXSTR psz1,strsize nLength1, PCXSTR psz2,strsize nLength2 )
+   static void __cdecl Concatenate(simple_string& strResult, const char * psz1,strsize nLength1, const char * psz2,strsize nLength2 )
    {
       strsize nNewLength = nLength1+nLength2;
-      PXSTR pszBuffer = strResult.GetBuffer( nNewLength );
+      char * pszBuffer = strResult.GetBuffer( nNewLength );
 #if _SECURE_TEMPLATE
       CopyChars( pszBuffer, nLength1, psz1, nLength1 );
       CopyChars( pszBuffer+nLength1, nLength2, psz2, nLength2 );
@@ -1009,23 +993,22 @@ protected:
 private:
    void attach(string_data * pData ) NOTHROW
    {
-      m_pszData = static_cast< PXSTR >( pData->data() );
+      m_pszData = static_cast< char * >( pData->data() );
    }
    NOINLINE void Fork(strsize nLength )
    {
       string_data* pOldData = get_data();
       strsize nOldLength = pOldData->nDataLength;
-      string_data* pNewData = pOldData->pstringmanager->Clone()->allocate( nLength, sizeof( XCHAR ) );
+      string_data* pNewData = pOldData->pstringmanager->Clone()->allocate( nLength, sizeof( char ) );
       if( pNewData == NULL )
       {
          ThrowMemoryException();
       }
       strsize nCharsToCopy = ((nOldLength < nLength) ? nOldLength : nLength)+1;  // copy '\0'
 #if _SECURE_TEMPLATE
-      CopyChars( PXSTR( pNewData->data() ), nCharsToCopy,
-         PCXSTR( pOldData->data() ), nCharsToCopy );
+      CopyChars( char *( pNewData->data() ), nCharsToCopy, const char *( pOldData->data() ), nCharsToCopy );
 #else
-      CopyChars( PXSTR( pNewData->data() ), PCXSTR( pOldData->data() ), nCharsToCopy );
+      CopyChars((char *) ( pNewData->data() ), (const char *) ( pOldData->data() ), nCharsToCopy );
 #endif
       pNewData->nDataLength = nOldLength;
       pOldData->Release();
@@ -1035,7 +1018,7 @@ private:
    {
       return( reinterpret_cast< string_data * >( m_pszData )-1 );
    }
-   PXSTR PrepareWrite(strsize nLength )
+   char * PrepareWrite(strsize nLength )
    {
       string_data * pOldData = get_data();
       long nShared = 1-pOldData->nRefs;  // nShared < 0 means true, >= 0 means false
@@ -1087,7 +1070,7 @@ private:
          ThrowMemoryException();
          return;
       }
-      string_data* pNewData = pstringmanager->Reallocate( pOldData, nLength, sizeof( XCHAR ) );
+      string_data* pNewData = pstringmanager->Reallocate( pOldData, nLength, sizeof( char ) );
       if( pNewData == NULL )
       {
          ThrowMemoryException();
@@ -1120,17 +1103,16 @@ private:
       }
       else
       {
-         pNewData = pNewStringMgr->allocate( pData->nDataLength, sizeof( XCHAR ) );
+         pNewData = pNewStringMgr->allocate( pData->nDataLength, sizeof( char ) );
          if( pNewData == NULL )
          {
             ThrowMemoryException();
          }
          pNewData->nDataLength = pData->nDataLength;
 #if _SECURE_TEMPLATE
-         CopyChars( PXSTR( pNewData->data() ), pData->nDataLength+1,
-            PCXSTR( pData->data() ), pData->nDataLength+1 );  // copy '\0'
+         CopyChars( char *( pNewData->data() ), pData->nDataLength+1, const char *( pData->data() ), pData->nDataLength+1 );  // copy '\0'
 #else
-         CopyChars( PXSTR( pNewData->data() ), PCXSTR( pData->data() ), pData->nDataLength+1 );  // copy '\0'
+         CopyChars((char *)( pNewData->data() ), (const char *)( pData->data() ), pData->nDataLength+1 );  // copy '\0'
 #endif
       }
 
@@ -1140,7 +1122,7 @@ private:
 public :
    typedef string_buffer CStrBuf;
 public:
-   PXSTR m_pszData;
+   char * m_pszData;
 
 };
 
@@ -1154,14 +1136,8 @@ public:
          SET_LENGTH = 0x02,  // Set the length of the string object at GetBuffer time
    };
 
-   typedef simple_string StringType;
-   typedef StringType::XCHAR XCHAR;
-   typedef StringType::PXSTR PXSTR;
-   typedef StringType::PCXSTR PCXSTR;
-
-
 public:
-   explicit string_buffer(StringType& str ) THROWS :
+   explicit string_buffer(simple_string& str ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
 #ifdef DEBUG
@@ -1172,7 +1148,7 @@ public:
       m_pszBuffer = m_str.GetBuffer();
    }
 
-   string_buffer(StringType& str,strsize nMinLength,uint32_t dwFlags = AUTO_LENGTH ) THROWS :
+   string_buffer(simple_string & str,strsize nMinLength,uint32_t dwFlags = AUTO_LENGTH ) THROWS :
    m_str( str ),
       m_pszBuffer( NULL ),
 #ifdef DEBUG
@@ -1195,11 +1171,11 @@ public:
       m_str.ReleaseBuffer( m_nLength );
    }
 
-   operator PXSTR() NOTHROW
+   operator char *() NOTHROW
    {
       return( m_pszBuffer );
    }
-   operator PCXSTR() const NOTHROW
+   operator const char *() const NOTHROW
    {
       return( m_pszBuffer );
    }
@@ -1217,8 +1193,8 @@ public:
 
    // Implementation
 private:
-   StringType& m_str;
-   PXSTR m_pszBuffer;
+   simple_string & m_str;
+   char * m_pszBuffer;
    strsize m_nLength;
 #ifdef DEBUG
    strsize m_nBufferLength;
