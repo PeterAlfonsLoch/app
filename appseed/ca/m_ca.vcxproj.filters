@@ -810,9 +810,6 @@
     <ClCompile Include="ca\ca_dir_system.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_draw_dib.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_exception.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>

@@ -1393,7 +1393,6 @@
     <ClCompile Include="ca\ca_dib.cpp" />
     <ClCompile Include="ca\ca_dir_application.cpp" />
     <ClCompile Include="ca\ca_dir_system.cpp" />
-    <ClCompile Include="ca\ca_draw_dib.cpp" />
     <ClCompile Include="ca\ca_edit.cpp" />
     <ClCompile Include="ca\ca_exception.cpp" />
     <ClCompile Include="ca\ca_file_application.cpp" />
