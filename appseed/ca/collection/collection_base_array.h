@@ -366,7 +366,7 @@ template<class TYPE, class ARG_TYPE>
 TYPE & base_array<TYPE, ARG_TYPE>::
 last_element()
 {
-    ASSERT(this->get_size() > 0);
+//    ASSERT(this->get_size() > 0);
     return this->element_at(this->get_size() - 1);
 }
 
@@ -374,7 +374,7 @@ template<class TYPE, class ARG_TYPE>
 const TYPE & base_array<TYPE, ARG_TYPE>::
 last_element() const
 {
-    ASSERT(this->get_size() > 0);
+    //ASSERT(this->get_size() > 0);
     return this->element_at(this->get_size() - 1);
 }
 
@@ -382,7 +382,7 @@ template<class TYPE, class ARG_TYPE>
 TYPE & base_array<TYPE, ARG_TYPE>::
 back()
 {
-    ASSERT(this->get_size() > 0);
+   // ASSERT(this->get_size() > 0);
     return this->element_at(this->get_size() - 1);
 }
 
@@ -390,7 +390,7 @@ template<class TYPE, class ARG_TYPE>
 const TYPE & base_array<TYPE, ARG_TYPE>::
 back() const
 {
-    ASSERT(this->get_size() > 0);
+   // ASSERT(this->get_size() > 0);
     return this->element_at(this->get_size() - 1);
 }
 
@@ -398,7 +398,7 @@ template<class TYPE, class ARG_TYPE>
 TYPE & base_array<TYPE, ARG_TYPE>::
 first_element()
 {
-    ASSERT(this->get_size() > 0);
+  //  ASSERT(this->get_size() > 0);
     return this->element_at(0);
 }
 
@@ -406,7 +406,7 @@ template<class TYPE, class ARG_TYPE>
 const TYPE & base_array<TYPE, ARG_TYPE>::
 first_element() const
 {
-    ASSERT(this->get_size() > 0);
+  //  ASSERT(this->get_size() > 0);
     return get_at(0);
 }
 
@@ -414,7 +414,7 @@ template<class TYPE, class ARG_TYPE>
 TYPE & base_array<TYPE, ARG_TYPE>::
 front()
 {
-    ASSERT(this->get_size() > 0);
+ //   ASSERT(this->get_size() > 0);
     return this->element_at(0);
 }
 
@@ -422,7 +422,7 @@ template<class TYPE, class ARG_TYPE>
 const TYPE & base_array<TYPE, ARG_TYPE>::
 front() const
 {
-    ASSERT(this->get_size() > 0);
+ //   ASSERT(this->get_size() > 0);
     return get_at(0);
 }
 
@@ -504,7 +504,7 @@ operator = (const base_array <TYPE, ARG_TYPE> & a)
 template <class TYPE, class ARG_TYPE>
 inline TYPE base_array <TYPE, ARG_TYPE>::pop()
 {
-   ASSERT(this->get_size() > 0);
+ //  ASSERT(this->get_size() > 0);
    TYPE t = last_element();
    remove_at(get_upper_bound());
    return t;
@@ -520,7 +520,7 @@ push(ARG_TYPE t)
 template <class TYPE, class ARG_TYPE>
 inline void base_array <TYPE, ARG_TYPE>::pop_back()
 {
-   ASSERT(this->get_size() > 0);
+//   ASSERT(this->get_size() > 0);
    remove_at(get_upper_bound());
 }
 
@@ -577,43 +577,46 @@ inline index base_array<TYPE, ARG_TYPE>::get_upper_bound() const
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
-   if(nIndex >= 0 && nIndex < m_nSize)
-      return m_pData[nIndex];
-   throw invalid_argument_exception(get_app());
+ //  ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   if(nIndex < 0 || nIndex >= m_nSize)
+      throw invalid_index_exception(get_app());
+   return m_pData[nIndex];
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::get_at(index nIndex) const
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
-   if(nIndex >= 0 && nIndex < m_nSize)
-      return m_pData[nIndex];
-   throw invalid_argument_exception(get_app());
+//   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   if(nIndex < 0 || nIndex >= m_nSize)
+      throw invalid_index_exception(get_app());
+   return m_pData[nIndex];
 }
 template<class TYPE, class ARG_TYPE>
 inline void base_array<TYPE, ARG_TYPE>::set_at(index nIndex, ARG_TYPE newElement)
 {
-   ASSERT(nIndex >= 0 && nIndex < m_nSize);
-   if(nIndex >= 0 && nIndex < m_nSize)
-      m_pData[nIndex] = newElement;
-   else
-      throw invalid_argument_exception(get_app());
+//   ASSERT(nIndex >= 0 && nIndex < m_nSize);
+   if(nIndex < 0 || nIndex >= m_nSize)
+      throw invalid_index_exception(get_app());
+   m_pData[nIndex] = newElement;
 }
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex) const
 {
    //ASSERT(nIndex >= 0 && nIndex < m_nSize);
-   if(nIndex >= 0 && nIndex < m_nSize)
+   if(nIndex < 0 || nIndex >= m_nSize)
+      throw invalid_index_exception(get_app());
+//   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   throw invalid_argument_exception(get_app());
+  // throw invalid_argument_exception(get_app());
 }
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::element_at(index nIndex)
 {
 //   ASSERT(nIndex >= 0 && nIndex < m_nSize);
-   if(nIndex >= 0 && nIndex < m_nSize)
+   if(nIndex < 0 || nIndex >= m_nSize)
+      throw invalid_index_exception(get_app());
+//   if(nIndex >= 0 && nIndex < m_nSize)
       return m_pData[nIndex];
-   throw invalid_argument_exception(get_app());
+  // throw invalid_argument_exception(get_app());
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -630,36 +633,55 @@ inline void base_array<TYPE, ARG_TYPE>::remove_last()
 
 template<class TYPE, class ARG_TYPE>
 inline TYPE* base_array<TYPE, ARG_TYPE>::get_data()
-   { return (TYPE*)m_pData; }
+{
+   return (TYPE*)m_pData;
+}
+
 template<class TYPE, class ARG_TYPE>
 inline index base_array<TYPE, ARG_TYPE>::add(ARG_TYPE newElement)
-   { index nIndex = m_nSize;
-      set_at_grow(nIndex, newElement);
-      return nIndex; }
+{ 
+   index nIndex = m_nSize;
+   set_at_grow(nIndex, newElement);
+   return nIndex; 
+}
+
 template<class TYPE, class ARG_TYPE>
 inline index base_array<TYPE, ARG_TYPE>::insert(ARG_TYPE newElement)
 {
    return add(newElement);
 }
+
 template<class TYPE, class ARG_TYPE>
 inline index base_array<TYPE, ARG_TYPE>::add_new(::count count)
-   { set_size(m_nSize + count);
-      return get_upper_bound(); }
+{
+   set_size(m_nSize + count);
+   return get_upper_bound(); 
+}
+
 template<class TYPE, class ARG_TYPE>
 inline TYPE & base_array<TYPE, ARG_TYPE>::add_new()
-   { set_size(m_nSize + 1);
-      return last_element(); }
+{
+   set_size(m_nSize + 1);
+   return last_element(); 
+}
+
 template<class TYPE, class ARG_TYPE>
 inline index base_array<TYPE, ARG_TYPE>::insert_new(::count count)
 {
    return add_new(count);
 }
+
 template<class TYPE, class ARG_TYPE>
 inline const TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex) const
-   { return get_at(nIndex); }
+{
+   return get_at(nIndex);
+}
+
 template<class TYPE, class ARG_TYPE>
 inline TYPE& base_array<TYPE, ARG_TYPE>::operator[](index nIndex)
-   { return element_at(nIndex); }
+{ 
+   return element_at(nIndex); 
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // base_array<TYPE, ARG_TYPE> out-of-line functions
