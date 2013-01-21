@@ -182,7 +182,6 @@
 		9A1B353316A2C4E300875A94 /* windows_ole_automation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B353016A2C4E300875A94 /* windows_ole_automation.h */; };
 		9A1B353416A2C4E300875A94 /* windows_types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B353116A2C4E300875A94 /* windows_types.h */; };
 		9A1B357916A2D0EC00875A94 /* windows_user.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07159397167396C800D7190F /* windows_user.cpp */; };
-		9A58847616A20CEF0061C610 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A58847516A20CEF0061C610 /* libcrypto.a */; };
 		9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8897A514C24736006B4023 /* Foundation.framework */; };
 		9A8897AA14C24901006B4023 /* c_os_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A8897A914C24901006B4023 /* c_os_file.cpp */; };
 		9A90D07D14A348E200226F1A /* c_os_cross_gdi.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */; };
@@ -460,10 +459,9 @@
 		9A1B352F16A2C4E300875A94 /* windows_gdi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_gdi.h; sourceTree = "<group>"; };
 		9A1B353016A2C4E300875A94 /* windows_ole_automation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_ole_automation.h; sourceTree = "<group>"; };
 		9A1B353116A2C4E300875A94 /* windows_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = windows_types.h; sourceTree = "<group>"; };
-		9A58847516A20CEF0061C610 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libcrypto.a"; sourceTree = "<group>"; };
 		9A8897A514C24736006B4023 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = ../../../../System/Library/Frameworks/Foundation.framework; sourceTree = "<group>"; };
 		9A8897A914C24901006B4023 /* c_os_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = c_os_file.cpp; sourceTree = "<group>"; };
-		9A88B4F514C2CBF8006B4023 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A88B4F514C2CBF8006B4023 /* libc.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libc.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A90D07C14A348E200226F1A /* c_os_cross_gdi.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = c_os_cross_gdi.mm; sourceTree = "<group>"; };
 		9AC29ECE168CC84800DA3F3F /* ansios_cross_win_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_cross_win_file.cpp; path = ansios/ansios_cross_win_file.cpp; sourceTree = "<group>"; };
 		9AC29ECF168CC84800DA3F3F /* ansios_cross_win.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ansios_cross_win.cpp; path = ansios/ansios_cross_win.cpp; sourceTree = "<group>"; };
@@ -559,7 +557,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A58847616A20CEF0061C610 /* libcrypto.a in Frameworks */,
 				07BD556D16210BD4008E31F0 /* AppKit.framework in Frameworks */,
 				9A8897A614C24736006B4023 /* Foundation.framework in Frameworks */,
 				CE931715155F1599005F90F6 /* Carbon.framework in Frameworks */,
@@ -738,6 +735,14 @@
 			path = simple_ui;
 			sourceTree = "<group>";
 		};
+		07740C7F16AD57A20065CE47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A88B4F514C2CBF8006B4023 /* libc.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		07A81CE31633A08500ADF7D6 /* simple_graphics */ = {
 			isa = PBXGroup;
 			children = (
@@ -798,7 +803,6 @@
 		CEA754B914411F2B007E04DE = {
 			isa = PBXGroup;
 			children = (
-				9A58847516A20CEF0061C610 /* libcrypto.a */,
 				073EDDE4164E96DA00818801 /* SecurityFoundation.framework */,
 				07BD556C16210BD4008E31F0 /* AppKit.framework */,
 				CE931714155F1599005F90F6 /* Carbon.framework */,
@@ -816,7 +820,7 @@
 				07A81CE31633A08500ADF7D6 /* simple_graphics */,
 				CEA7AA6C14412789007E04DE /* spa */,
 				07B0B051162079F200A60983 /* version */,
-				9A88B4F514C2CBF8006B4023 /* c.dylib */,
+				07740C7F16AD57A20065CE47 /* Products */,
 				CE4BB20D156B8B2600DD13ED /* framework.cpp */,
 				CE4BB20E156B8B2600DD13ED /* framework.h */,
 			);
@@ -1111,7 +1115,7 @@
 			);
 			name = c;
 			productName = c;
-			productReference = 9A88B4F514C2CBF8006B4023 /* c.dylib */;
+			productReference = 9A88B4F514C2CBF8006B4023 /* libc.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -1288,7 +1292,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = x86_64;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1308,7 +1314,6 @@
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
-				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -1321,7 +1326,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = x86_64;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1334,11 +1341,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
-				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -1351,7 +1356,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = x86_64;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1365,15 +1369,10 @@
 					_DEBIG,
 				);
 				"HEADER_SEARCH_PATHS[arch=*]" = "";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
-				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
-				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -1387,7 +1386,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = x86_64;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1399,15 +1397,10 @@
 					TARGET_CPU_X64,
 					MACOS_CLASSIC,
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
-				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
-				VALID_ARCHS = x86_64;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",

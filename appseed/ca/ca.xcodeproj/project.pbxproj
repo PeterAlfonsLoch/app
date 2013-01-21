@@ -126,6 +126,12 @@
 		071593921673672E00D7190F /* sockets_http_response.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715931B1673672E00D7190F /* sockets_http_response.cpp */; };
 		071593931673672E00D7190F /* sockets_http_transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715931C1673672E00D7190F /* sockets_http_transaction.cpp */; };
 		071593941673672E00D7190F /* sockets_httpd_socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0715931D1673672E00D7190F /* sockets_httpd_socket.cpp */; };
+		07740C9316AD5B970065CE47 /* libc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C9216AD5B970065CE47 /* libc.dylib */; };
+		07740C9516AD5B9C0065CE47 /* liboptca.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C9416AD5B9C0065CE47 /* liboptca.dylib */; };
+		07740C9A16AD5BCA0065CE47 /* libopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C9916AD5BCA0065CE47 /* libopenssl.dylib */; };
+		07740C9C16AD5BDD0065CE47 /* libfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C9B16AD5BDC0065CE47 /* libfreetype.dylib */; };
+		07740C9E16AD5BEB0065CE47 /* libFreeImage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C9D16AD5BEB0065CE47 /* libFreeImage.dylib */; };
+		07741ADD16AD5CF50065CE47 /* libmysql.16.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07741ADC16AD5CF50065CE47 /* libmysql.16.0.0.dylib */; };
 		07BD559816215FA2008E31F0 /* api_debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558916215FA2008E31F0 /* api_debug.h */; };
 		07BD559C16215FA2008E31F0 /* api_muldiv64.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558D16215FA2008E31F0 /* api_muldiv64.h */; };
 		07BD559D16215FA2008E31F0 /* api_rotate.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD558E16215FA2008E31F0 /* api_rotate.h */; };
@@ -328,7 +334,6 @@
 		07BD67FB1621666A008E31F0 /* xml_xml.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07BD67E31621666A008E31F0 /* xml_xml.cpp */; };
 		07BD67FC1621666A008E31F0 /* xml_xml.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD67E41621666A008E31F0 /* xml_xml.h */; };
 		07BD67FD1621666A008E31F0 /* xml_xmlite.h in Headers */ = {isa = PBXBuildFile; fileRef = 07BD67E51621666A008E31F0 /* xml_xmlite.h */; };
-		9A1B34B816A2B09C00875A94 /* libFreeImage.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1B34B716A2B09C00875A94 /* libFreeImage.dylib */; };
 		9A1B350716A2C11F00875A94 /* plane_system_gen_str.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B350616A2C11F00875A94 /* plane_system_gen_str.cpp */; };
 		9A1B351916A2C3AB00875A94 /* html_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B350916A2C3AB00875A94 /* html_file.cpp */; };
 		9A1B351A16A2C3AB00875A94 /* html_file.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B350A16A2C3AB00875A94 /* html_file.h */; };
@@ -380,9 +385,6 @@
 		9A1B357E16A2D58A00875A94 /* bergedge_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B357B16A2D58A00875A94 /* bergedge_interface.cpp */; };
 		9A1B357F16A2D58A00875A94 /* bergedge_interface.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B357C16A2D58A00875A94 /* bergedge_interface.h */; };
 		9A1B358016A2D58A00875A94 /* bergedge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B357D16A2D58A00875A94 /* bergedge.h */; };
-		9A1B38BA16A2D82F00875A94 /* libfreetype.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1B38B916A2D82F00875A94 /* libfreetype.dylib */; };
-		9A1B484216A454D200875A94 /* libopenssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1B484116A454D200875A94 /* libopenssl.dylib */; };
-		9A1B494116A4821000875A94 /* liboptca.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1B494016A4821000875A94 /* liboptca.dylib */; };
 		9A1B494E16A48C7B00875A94 /* multithreading_condition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B494C16A48C7A00875A94 /* multithreading_condition.cpp */; };
 		9A1B494F16A48C7B00875A94 /* multithreading_condition.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B494D16A48C7B00875A94 /* multithreading_condition.h */; };
 		9A1B495216A48D3E00875A94 /* sockets_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B495016A48D3E00875A94 /* sockets_application.cpp */; };
@@ -1319,7 +1321,6 @@
 		9A88B4EE14C2CA2F006B4023 /* zconf.in.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADD714C2CA2D006B4023 /* zconf.in.h */; };
 		9A88B4EF14C2CA2F006B4023 /* zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADDB14C2CA2D006B4023 /* zlib.h */; };
 		9A88B4F114C2CA2F006B4023 /* zutil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A88ADE014C2CA2D006B4023 /* zutil.h */; };
-		9ABBC6F416A59271009CA32E /* libmysql.16.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABBC6F316A59271009CA32E /* libmysql.16.0.0.dylib */; };
 		9ADA5C09168CF0ED00B160D8 /* 7z.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADA5B48168CF0ED00B160D8 /* 7z.h */; };
 		9ADA5C0A168CF0ED00B160D8 /* 7zCompressionMode.h in Headers */ = {isa = PBXBuildFile; fileRef = 9ADA5B49168CF0ED00B160D8 /* 7zCompressionMode.h */; };
 		9ADA5C0B168CF0ED00B160D8 /* 7zDecode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA5B4A168CF0ED00B160D8 /* 7zDecode.cpp */; };
@@ -1774,7 +1775,6 @@
 		CE92A6AE15707CA50016C580 /* fs_remote_native_file.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A6A415707CA50016C580 /* fs_remote_native_file.h */; };
 		CE92A6AF15707CA50016C580 /* fs_remote_native_fs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE92A6A515707CA50016C580 /* fs_remote_native_fs.cpp */; };
 		CE92A6B015707CA50016C580 /* fs_remote_native_fs.h in Headers */ = {isa = PBXBuildFile; fileRef = CE92A6A615707CA50016C580 /* fs_remote_native_fs.h */; };
-		CE931719155F1C02005F90F6 /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE931718155F1C02005F90F6 /* c.dylib */; };
 		CE980ABD156679A800CD7C45 /* framework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CE980ABB156679A800CD7C45 /* framework.cpp */; };
 		CE980ABE156679A800CD7C45 /* framework.h in Headers */ = {isa = PBXBuildFile; fileRef = CE980ABC156679A800CD7C45 /* framework.h */; };
 /* End PBXBuildFile section */
@@ -1900,6 +1900,12 @@
 		0715931B1673672E00D7190F /* sockets_http_response.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_http_response.cpp; sourceTree = "<group>"; };
 		0715931C1673672E00D7190F /* sockets_http_transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_http_transaction.cpp; sourceTree = "<group>"; };
 		0715931D1673672E00D7190F /* sockets_httpd_socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_httpd_socket.cpp; sourceTree = "<group>"; };
+		07740C9216AD5B970065CE47 /* libc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libc.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libc.dylib"; sourceTree = "<group>"; };
+		07740C9416AD5B9C0065CE47 /* liboptca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liboptca.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/liboptca.dylib"; sourceTree = "<group>"; };
+		07740C9916AD5BCA0065CE47 /* libopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopenssl.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libopenssl.dylib"; sourceTree = "<group>"; };
+		07740C9B16AD5BDC0065CE47 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libfreetype.dylib"; sourceTree = "<group>"; };
+		07740C9D16AD5BEB0065CE47 /* libFreeImage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libFreeImage.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libFreeImage.dylib"; sourceTree = "<group>"; };
+		07741ADC16AD5CF50065CE47 /* libmysql.16.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysql.16.0.0.dylib; path = ../../../nodeapp/thirdparty/library/libmysql.16.0.0.dylib; sourceTree = "<group>"; };
 		07BD558916215FA2008E31F0 /* api_debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_debug.h; sourceTree = "<group>"; };
 		07BD558D16215FA2008E31F0 /* api_muldiv64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_muldiv64.h; sourceTree = "<group>"; };
 		07BD558E16215FA2008E31F0 /* api_rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = api_rotate.h; sourceTree = "<group>"; };
@@ -2102,7 +2108,6 @@
 		07BD67E31621666A008E31F0 /* xml_xml.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = xml_xml.cpp; sourceTree = "<group>"; };
 		07BD67E41621666A008E31F0 /* xml_xml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml_xml.h; sourceTree = "<group>"; };
 		07BD67E51621666A008E31F0 /* xml_xmlite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xml_xmlite.h; sourceTree = "<group>"; };
-		9A1B34B716A2B09C00875A94 /* libFreeImage.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libFreeImage.dylib; path = ../../thirdparty/appseed/FreeImage/build/Release/libFreeImage.dylib; sourceTree = "<group>"; };
 		9A1B350616A2C11F00875A94 /* plane_system_gen_str.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plane_system_gen_str.cpp; sourceTree = "<group>"; };
 		9A1B350916A2C3AB00875A94 /* html_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = html_file.cpp; path = html/html_file.cpp; sourceTree = "<group>"; };
 		9A1B350A16A2C3AB00875A94 /* html_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = html_file.h; path = html/html_file.h; sourceTree = "<group>"; };
@@ -2154,9 +2159,6 @@
 		9A1B357B16A2D58A00875A94 /* bergedge_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bergedge_interface.cpp; path = bergedge/bergedge_interface.cpp; sourceTree = "<group>"; };
 		9A1B357C16A2D58A00875A94 /* bergedge_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bergedge_interface.h; path = bergedge/bergedge_interface.h; sourceTree = "<group>"; };
 		9A1B357D16A2D58A00875A94 /* bergedge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bergedge.h; path = bergedge/bergedge.h; sourceTree = "<group>"; };
-		9A1B38B916A2D82F00875A94 /* libfreetype.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.dylib; path = ../../thirdparty/appseed/freetype/build/Release/libfreetype.dylib; sourceTree = "<group>"; };
-		9A1B484116A454D200875A94 /* libopenssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopenssl.dylib; path = ../../../nodeapp/appseed/openssl/build/Release/libopenssl.dylib; sourceTree = "<group>"; };
-		9A1B494016A4821000875A94 /* liboptca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liboptca.dylib; path = ../optca/build/Release/liboptca.dylib; sourceTree = "<group>"; };
 		9A1B494C16A48C7A00875A94 /* multithreading_condition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = multithreading_condition.cpp; path = multithreading/multithreading_condition.cpp; sourceTree = SOURCE_ROOT; };
 		9A1B494D16A48C7B00875A94 /* multithreading_condition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = multithreading_condition.h; path = multithreading/multithreading_condition.h; sourceTree = SOURCE_ROOT; };
 		9A1B495016A48D3E00875A94 /* sockets_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sockets_application.cpp; sourceTree = "<group>"; };
@@ -2176,7 +2178,7 @@
 		9A5E0A0B14D448F300E91EC4 /* plane_system_radix_factory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = plane_system_radix_factory.h; sourceTree = "<group>"; };
 		9A5E0A0D14D44DA700E91EC4 /* exception_overflow_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = exception_overflow_error.h; sourceTree = "<group>"; };
 		9A5E0A0F14D44E4300E91EC4 /* exception_overflow_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = exception_overflow_error.cpp; sourceTree = "<group>"; };
-		9A8897B614C2C8DB006B4023 /* ca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = ca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A8897B614C2C8DB006B4023 /* libca.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A88A65E14C2CA2C006B4023 /* api_muldiv64.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = api_muldiv64.cpp; sourceTree = "<group>"; };
 		9A88A66A14C2CA2C006B4023 /* ca.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ca.h; sourceTree = "<group>"; };
 		9A88A66D14C2CA2C006B4023 /* ca_application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ca_application.cpp; sourceTree = "<group>"; };
@@ -3098,7 +3100,6 @@
 		9A88ADD714C2CA2D006B4023 /* zconf.in.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zconf.in.h; sourceTree = "<group>"; };
 		9A88ADDB14C2CA2D006B4023 /* zlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zlib.h; sourceTree = "<group>"; };
 		9A88ADE014C2CA2D006B4023 /* zutil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zutil.h; sourceTree = "<group>"; };
-		9ABBC6F316A59271009CA32E /* libmysql.16.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libmysql.16.0.0.dylib; path = ../../../nodeapp/thirdparty/library/libmysql.16.0.0.dylib; sourceTree = "<group>"; };
 		9ADA5B48168CF0ED00B160D8 /* 7z.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7z.h; sourceTree = "<group>"; };
 		9ADA5B49168CF0ED00B160D8 /* 7zCompressionMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = 7zCompressionMode.h; sourceTree = "<group>"; };
 		9ADA5B4A168CF0ED00B160D8 /* 7zDecode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = 7zDecode.cpp; sourceTree = "<group>"; };
@@ -3555,7 +3556,6 @@
 		CE92A6A415707CA50016C580 /* fs_remote_native_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_file.h; sourceTree = "<group>"; };
 		CE92A6A515707CA50016C580 /* fs_remote_native_fs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fs_remote_native_fs.cpp; sourceTree = "<group>"; };
 		CE92A6A615707CA50016C580 /* fs_remote_native_fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fs_remote_native_fs.h; sourceTree = "<group>"; };
-		CE931718155F1C02005F90F6 /* c.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = c.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE980ABB156679A800CD7C45 /* framework.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = framework.cpp; sourceTree = "<group>"; };
 		CE980ABC156679A800CD7C45 /* framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = framework.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -3565,16 +3565,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9ABBC6F416A59271009CA32E /* libmysql.16.0.0.dylib in Frameworks */,
-				9A1B494116A4821000875A94 /* liboptca.dylib in Frameworks */,
-				9A1B484216A454D200875A94 /* libopenssl.dylib in Frameworks */,
-				9A1B38BA16A2D82F00875A94 /* libfreetype.dylib in Frameworks */,
-				9A1B34B816A2B09C00875A94 /* libFreeImage.dylib in Frameworks */,
+				07741ADD16AD5CF50065CE47 /* libmysql.16.0.0.dylib in Frameworks */,
+				07740C9E16AD5BEB0065CE47 /* libFreeImage.dylib in Frameworks */,
+				07740C9C16AD5BDD0065CE47 /* libfreetype.dylib in Frameworks */,
+				07740C9A16AD5BCA0065CE47 /* libopenssl.dylib in Frameworks */,
+				07740C9516AD5B9C0065CE47 /* liboptca.dylib in Frameworks */,
+				07740C9316AD5B970065CE47 /* libc.dylib in Frameworks */,
 				9A58847E16A20D5E0061C610 /* Security.framework in Frameworks */,
 				9A58847C16A20D480061C610 /* Carbon.framework in Frameworks */,
 				9A58847A16A20D360061C610 /* Foundation.framework in Frameworks */,
 				9A58847816A20D230061C610 /* AppKit.framework in Frameworks */,
-				CE931719155F1C02005F90F6 /* c.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3913,12 +3913,12 @@
 		9A8897AB14C2C8DB006B4023 = {
 			isa = PBXGroup;
 			children = (
-				9ABBC6F316A59271009CA32E /* libmysql.16.0.0.dylib */,
-				CE931718155F1C02005F90F6 /* c.dylib */,
-				9A1B494016A4821000875A94 /* liboptca.dylib */,
-				9A1B484116A454D200875A94 /* libopenssl.dylib */,
-				9A1B38B916A2D82F00875A94 /* libfreetype.dylib */,
-				9A1B34B716A2B09C00875A94 /* libFreeImage.dylib */,
+				07741ADC16AD5CF50065CE47 /* libmysql.16.0.0.dylib */,
+				07740C9D16AD5BEB0065CE47 /* libFreeImage.dylib */,
+				07740C9B16AD5BDC0065CE47 /* libfreetype.dylib */,
+				07740C9916AD5BCA0065CE47 /* libopenssl.dylib */,
+				07740C9416AD5B9C0065CE47 /* liboptca.dylib */,
+				07740C9216AD5B970065CE47 /* libc.dylib */,
 				9A58847D16A20D5E0061C610 /* Security.framework */,
 				9A58847B16A20D480061C610 /* Carbon.framework */,
 				9A58847916A20D360061C610 /* Foundation.framework */,
@@ -3977,7 +3977,7 @@
 		9A8897B714C2C8DB006B4023 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9A8897B614C2C8DB006B4023 /* ca.dylib */,
+				9A8897B614C2C8DB006B4023 /* libca.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -6908,7 +6908,7 @@
 			);
 			name = ca;
 			productName = ca;
-			productReference = 9A8897B614C2C8DB006B4023 /* ca.dylib */;
+			productReference = 9A8897B614C2C8DB006B4023 /* libca.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -7693,9 +7693,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = x86_64;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -7716,11 +7718,10 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
-				VALID_ARCHS = x86_64;
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -7729,10 +7730,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = x86_64;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -7745,10 +7748,9 @@
 					"$(inherited)",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
-				VALID_ARCHS = x86_64;
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
@@ -7757,18 +7759,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 					"\"$(SRCROOT)/../../../nodeapp/thirdparty/library\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -7781,18 +7781,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				EXECUTABLE_PREFIX = "";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 					"\"$(SRCROOT)/../../../nodeapp/thirdparty/library\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",

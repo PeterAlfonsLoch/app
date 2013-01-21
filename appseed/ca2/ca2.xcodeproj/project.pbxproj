@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07740C8F16AD5B830065CE47 /* libc.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C8E16AD5B830065CE47 /* libc.dylib */; };
+		07740C9116AD5B870065CE47 /* libca.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07740C9016AD5B870065CE47 /* libca.dylib */; };
 		9A574FD516AAB9A1000CC4EF /* bergedge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574C3D16AAB99E000CC4EF /* bergedge.h */; };
 		9A574FD616AAB9A1000CC4EF /* bergedge_bergedge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574C3E16AAB99E000CC4EF /* bergedge_bergedge.cpp */; };
 		9A574FD716AAB9A1000CC4EF /* bergedge_bergedge.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574C3F16AAB99E000CC4EF /* bergedge_bergedge.h */; };
@@ -691,11 +693,11 @@
 		9A57529F16AAB9A1000CC4EF /* userstack_pane_view_update_hint.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574F7916AAB9A0000CC4EF /* userstack_pane_view_update_hint.h */; };
 		9A5752A016AAB9A1000CC4EF /* userstack_view.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A574F7A16AAB9A0000CC4EF /* userstack_view.cpp */; };
 		9A5752A116AAB9A1000CC4EF /* userstack_view.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A574F7B16AAB9A0000CC4EF /* userstack_view.h */; };
-		9A5752A416AAB9F2000CC4EF /* c.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5752A316AAB9F2000CC4EF /* c.dylib */; };
-		9A5752A616AAB9F6000CC4EF /* ca.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A5752A516AAB9F6000CC4EF /* ca.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07740C8E16AD5B830065CE47 /* libc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libc.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libc.dylib"; sourceTree = "<group>"; };
+		07740C9016AD5B870065CE47 /* libca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libca.dylib; path = "../../../../Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/libca.dylib"; sourceTree = "<group>"; };
 		9A574B9816AAB906000CC4EF /* libca2.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libca2.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A574C3D16AAB99E000CC4EF /* bergedge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bergedge.h; sourceTree = "<group>"; };
 		9A574C3E16AAB99E000CC4EF /* bergedge_bergedge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bergedge_bergedge.cpp; sourceTree = "<group>"; };
@@ -1383,8 +1385,6 @@
 		9A574F7916AAB9A0000CC4EF /* userstack_pane_view_update_hint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userstack_pane_view_update_hint.h; sourceTree = "<group>"; };
 		9A574F7A16AAB9A0000CC4EF /* userstack_view.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = userstack_view.cpp; sourceTree = "<group>"; };
 		9A574F7B16AAB9A0000CC4EF /* userstack_view.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userstack_view.h; sourceTree = "<group>"; };
-		9A5752A316AAB9F2000CC4EF /* c.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = c.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/c.dylib"; sourceTree = "<group>"; };
-		9A5752A516AAB9F6000CC4EF /* ca.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = ca.dylib; path = "../../../../Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug/ca.dylib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1392,8 +1392,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A5752A616AAB9F6000CC4EF /* ca.dylib in Frameworks */,
-				9A5752A416AAB9F2000CC4EF /* c.dylib in Frameworks */,
+				07740C9116AD5B870065CE47 /* libca.dylib in Frameworks */,
+				07740C8F16AD5B830065CE47 /* libc.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1403,8 +1403,8 @@
 		9A574B8D16AAB906000CC4EF = {
 			isa = PBXGroup;
 			children = (
-				9A5752A516AAB9F6000CC4EF /* ca.dylib */,
-				9A5752A316AAB9F2000CC4EF /* c.dylib */,
+				07740C9016AD5B870065CE47 /* libca.dylib */,
+				07740C8E16AD5B830065CE47 /* libc.dylib */,
 				9A574C3C16AAB99E000CC4EF /* bergedge */,
 				9A574C5816AAB99E000CC4EF /* ca8 */,
 				9A574C6716AAB99E000CC4EF /* calculator */,
@@ -3097,6 +3097,8 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3133,6 +3135,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3152,10 +3156,9 @@
 		9A574B9D16AAB906000CC4EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -3164,10 +3167,9 @@
 		9A574B9E16AAB906000CC4EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				EXECUTABLE_PREFIX = lib;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"/Users/camilo/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
+					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
