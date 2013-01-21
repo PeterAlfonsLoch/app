@@ -93,8 +93,6 @@
 		<Unit filename="ca/ca_dir_application.h" />
 		<Unit filename="ca/ca_dir_system.cpp" />
 		<Unit filename="ca/ca_dir_system.h" />
-		<Unit filename="ca/ca_draw_dib.cpp" />
-		<Unit filename="ca/ca_draw_dib.h" />
 		<Unit filename="ca/ca_edit.cpp" />
 		<Unit filename="ca/ca_edit.h" />
 		<Unit filename="ca/ca_enum.h" />
