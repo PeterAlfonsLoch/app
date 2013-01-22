@@ -156,7 +156,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-					"$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include",
 				);
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -191,7 +190,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
-					"$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include",
 				);
 				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
