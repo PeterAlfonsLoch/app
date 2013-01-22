@@ -7713,10 +7713,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -7743,10 +7742,9 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(WorkspaceDir)/../../../nodeapp/thirdparty/library",
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
@@ -7762,11 +7760,6 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
-					"\"$(SRCROOT)/../../../nodeapp/thirdparty/library\"",
-				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
@@ -7784,11 +7777,6 @@
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = framework.h;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
-					"\"$(SRCROOT)/../../../nodeapp/thirdparty/library\"",
-				);
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (

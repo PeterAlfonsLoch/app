@@ -1308,7 +1308,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1339,7 +1342,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
@@ -1368,11 +1374,9 @@
 					MACOS_CLASSIC,
 					_DEBIG,
 				);
-				"HEADER_SEARCH_PATHS[arch=*]" = "";
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
@@ -1400,7 +1404,6 @@
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../.. $(WorkspaceDir)/../..";
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",

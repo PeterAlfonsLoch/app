@@ -153,9 +153,15 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
+				WorkspaceDir = "$(SRCROOT)/../seed/metaseed";
 			};
 			name = Debug;
 		};
@@ -180,20 +186,21 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(WorkspaceDir)/../../../app/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
+				WorkspaceDir = "$(SRCROOT)/../seed/metaseed";
 			};
 			name = Release;
 		};
 		9A1B493B16A4815400875A94 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../appseed/ca $(WorkspaceDir)/../../appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Debug;
@@ -201,12 +208,7 @@
 		9A1B493C16A4815400875A94 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"/Users/carlos/Library/Developer/Xcode/DerivedData/all-dlckdugtwkhfjkdbgurajmehstei/Build/Products/Debug\"",
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../appseed/ca $(WorkspaceDir)/../../appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";
 				WorkspaceDir = "$(SRCROOT)/../../../nodeapp/seed/metaseed";
 			};
 			name = Release;
