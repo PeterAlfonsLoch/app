@@ -175,92 +175,6 @@
 		9A1B38B416A2D80900875A94 /* fnterrs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B374B16A2D80800875A94 /* fnterrs.h */; };
 		9A1B38B616A2D80900875A94 /* winfnt.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B374F16A2D80800875A94 /* winfnt.c */; };
 		9A1B38B716A2D80900875A94 /* winfnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B375016A2D80800875A94 /* winfnt.h */; };
-		9A1B391616A2E83000875A94 /* ftconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38BE16A2E83000875A94 /* ftconfig.h */; };
-		9A1B391716A2E83000875A94 /* ftheader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38BF16A2E83000875A94 /* ftheader.h */; };
-		9A1B391816A2E83000875A94 /* ftmodule.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C016A2E83000875A94 /* ftmodule.h */; };
-		9A1B391916A2E83000875A94 /* ftoption.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C116A2E83000875A94 /* ftoption.h */; };
-		9A1B391A16A2E83000875A94 /* ftstdlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C216A2E83000875A94 /* ftstdlib.h */; };
-		9A1B391B16A2E83000875A94 /* freetype.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C316A2E83000875A94 /* freetype.h */; };
-		9A1B391C16A2E83000875A94 /* ftadvanc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C416A2E83000875A94 /* ftadvanc.h */; };
-		9A1B391D16A2E83000875A94 /* ftautoh.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C516A2E83000875A94 /* ftautoh.h */; };
-		9A1B391E16A2E83000875A94 /* ftbbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C616A2E83000875A94 /* ftbbox.h */; };
-		9A1B391F16A2E83000875A94 /* ftbdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C716A2E83000875A94 /* ftbdf.h */; };
-		9A1B392016A2E83000875A94 /* ftbitmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C816A2E83000875A94 /* ftbitmap.h */; };
-		9A1B392116A2E83000875A94 /* ftbzip2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38C916A2E83000875A94 /* ftbzip2.h */; };
-		9A1B392216A2E83000875A94 /* ftcache.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38CA16A2E83000875A94 /* ftcache.h */; };
-		9A1B392316A2E83000875A94 /* ftchapters.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38CB16A2E83000875A94 /* ftchapters.h */; };
-		9A1B392416A2E83000875A94 /* ftcid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38CC16A2E83000875A94 /* ftcid.h */; };
-		9A1B392516A2E83000875A94 /* fterrdef.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38CD16A2E83000875A94 /* fterrdef.h */; };
-		9A1B392616A2E83000875A94 /* fterrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38CE16A2E83000875A94 /* fterrors.h */; };
-		9A1B392716A2E83000875A94 /* ftgasp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38CF16A2E83000875A94 /* ftgasp.h */; };
-		9A1B392816A2E83000875A94 /* ftglyph.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D016A2E83000875A94 /* ftglyph.h */; };
-		9A1B392916A2E83000875A94 /* ftgxval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D116A2E83000875A94 /* ftgxval.h */; };
-		9A1B392A16A2E83000875A94 /* ftgzip.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D216A2E83000875A94 /* ftgzip.h */; };
-		9A1B392B16A2E83000875A94 /* ftimage.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D316A2E83000875A94 /* ftimage.h */; };
-		9A1B392C16A2E83000875A94 /* ftincrem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D416A2E83000875A94 /* ftincrem.h */; };
-		9A1B392D16A2E83000875A94 /* ftlcdfil.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D516A2E83000875A94 /* ftlcdfil.h */; };
-		9A1B392E16A2E83000875A94 /* ftlist.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D616A2E83000875A94 /* ftlist.h */; };
-		9A1B392F16A2E83000875A94 /* ftlzw.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D716A2E83000875A94 /* ftlzw.h */; };
-		9A1B393016A2E83000875A94 /* ftmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D816A2E83000875A94 /* ftmac.h */; };
-		9A1B393116A2E83000875A94 /* ftmm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38D916A2E83000875A94 /* ftmm.h */; };
-		9A1B393216A2E83000875A94 /* ftmodapi.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38DA16A2E83000875A94 /* ftmodapi.h */; };
-		9A1B393316A2E83000875A94 /* ftmoderr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38DB16A2E83000875A94 /* ftmoderr.h */; };
-		9A1B393416A2E83000875A94 /* ftotval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38DC16A2E83000875A94 /* ftotval.h */; };
-		9A1B393516A2E83000875A94 /* ftoutln.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38DD16A2E83000875A94 /* ftoutln.h */; };
-		9A1B393616A2E83000875A94 /* ftpfr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38DE16A2E83000875A94 /* ftpfr.h */; };
-		9A1B393716A2E83000875A94 /* ftrender.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38DF16A2E83000875A94 /* ftrender.h */; };
-		9A1B393816A2E83000875A94 /* ftsizes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E016A2E83000875A94 /* ftsizes.h */; };
-		9A1B393916A2E83000875A94 /* ftsnames.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E116A2E83000875A94 /* ftsnames.h */; };
-		9A1B393A16A2E83000875A94 /* ftstroke.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E216A2E83000875A94 /* ftstroke.h */; };
-		9A1B393B16A2E83000875A94 /* ftsynth.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E316A2E83000875A94 /* ftsynth.h */; };
-		9A1B393C16A2E83000875A94 /* ftsystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E416A2E83000875A94 /* ftsystem.h */; };
-		9A1B393D16A2E83000875A94 /* fttrigon.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E516A2E83000875A94 /* fttrigon.h */; };
-		9A1B393E16A2E83000875A94 /* fttypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E616A2E83000875A94 /* fttypes.h */; };
-		9A1B393F16A2E83000875A94 /* ftwinfnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E716A2E83000875A94 /* ftwinfnt.h */; };
-		9A1B394016A2E83000875A94 /* ftxf86.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38E816A2E83000875A94 /* ftxf86.h */; };
-		9A1B394116A2E83000875A94 /* autohint.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38EA16A2E83000875A94 /* autohint.h */; };
-		9A1B394216A2E83000875A94 /* ftcalc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38EB16A2E83000875A94 /* ftcalc.h */; };
-		9A1B394316A2E83000875A94 /* ftdebug.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38EC16A2E83000875A94 /* ftdebug.h */; };
-		9A1B394416A2E83000875A94 /* ftdriver.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38ED16A2E83000875A94 /* ftdriver.h */; };
-		9A1B394516A2E83000875A94 /* ftgloadr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38EE16A2E83000875A94 /* ftgloadr.h */; };
-		9A1B394616A2E83000875A94 /* ftmemory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38EF16A2E83000875A94 /* ftmemory.h */; };
-		9A1B394716A2E83000875A94 /* ftobjs.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F016A2E83000875A94 /* ftobjs.h */; };
-		9A1B394816A2E83000875A94 /* ftpic.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F116A2E83000875A94 /* ftpic.h */; };
-		9A1B394916A2E83000875A94 /* ftrfork.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F216A2E83000875A94 /* ftrfork.h */; };
-		9A1B394A16A2E83000875A94 /* ftserv.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F316A2E83000875A94 /* ftserv.h */; };
-		9A1B394B16A2E83000875A94 /* ftstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F416A2E83000875A94 /* ftstream.h */; };
-		9A1B394C16A2E83000875A94 /* fttrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F516A2E83000875A94 /* fttrace.h */; };
-		9A1B394D16A2E83000875A94 /* ftvalid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F616A2E83000875A94 /* ftvalid.h */; };
-		9A1B394E16A2E83000875A94 /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F716A2E83000875A94 /* internal.h */; };
-		9A1B394F16A2E83000875A94 /* psaux.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F816A2E83000875A94 /* psaux.h */; };
-		9A1B395016A2E83000875A94 /* pshints.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38F916A2E83000875A94 /* pshints.h */; };
-		9A1B395116A2E83000875A94 /* svbdf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38FB16A2E83000875A94 /* svbdf.h */; };
-		9A1B395216A2E83000875A94 /* svcid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38FC16A2E83000875A94 /* svcid.h */; };
-		9A1B395316A2E83000875A94 /* svgldict.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38FD16A2E83000875A94 /* svgldict.h */; };
-		9A1B395416A2E83000875A94 /* svgxval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38FE16A2E83000875A94 /* svgxval.h */; };
-		9A1B395516A2E83000875A94 /* svkern.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B38FF16A2E83000875A94 /* svkern.h */; };
-		9A1B395616A2E83000875A94 /* svmm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390016A2E83000875A94 /* svmm.h */; };
-		9A1B395716A2E83000875A94 /* svotval.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390116A2E83000875A94 /* svotval.h */; };
-		9A1B395816A2E83000875A94 /* svpfr.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390216A2E83000875A94 /* svpfr.h */; };
-		9A1B395916A2E83000875A94 /* svpostnm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390316A2E83000875A94 /* svpostnm.h */; };
-		9A1B395A16A2E83000875A94 /* svprop.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390416A2E83000875A94 /* svprop.h */; };
-		9A1B395B16A2E83000875A94 /* svpscmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390516A2E83000875A94 /* svpscmap.h */; };
-		9A1B395C16A2E83000875A94 /* svpsinfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390616A2E83000875A94 /* svpsinfo.h */; };
-		9A1B395D16A2E83000875A94 /* svsfnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390716A2E83000875A94 /* svsfnt.h */; };
-		9A1B395E16A2E83000875A94 /* svttcmap.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390816A2E83000875A94 /* svttcmap.h */; };
-		9A1B395F16A2E83000875A94 /* svtteng.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390916A2E83000875A94 /* svtteng.h */; };
-		9A1B396016A2E83000875A94 /* svttglyf.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390A16A2E83000875A94 /* svttglyf.h */; };
-		9A1B396116A2E83000875A94 /* svwinfnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390B16A2E83000875A94 /* svwinfnt.h */; };
-		9A1B396216A2E83000875A94 /* svxf86nm.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390C16A2E83000875A94 /* svxf86nm.h */; };
-		9A1B396316A2E83000875A94 /* sfnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390D16A2E83000875A94 /* sfnt.h */; };
-		9A1B396416A2E83000875A94 /* t1types.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390E16A2E83000875A94 /* t1types.h */; };
-		9A1B396516A2E83000875A94 /* tttypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B390F16A2E83000875A94 /* tttypes.h */; };
-		9A1B396616A2E83000875A94 /* t1tables.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B391016A2E83000875A94 /* t1tables.h */; };
-		9A1B396716A2E83000875A94 /* ttnameid.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B391116A2E83000875A94 /* ttnameid.h */; };
-		9A1B396816A2E83000875A94 /* tttables.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B391216A2E83000875A94 /* tttables.h */; };
-		9A1B396916A2E83000875A94 /* tttags.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B391316A2E83000875A94 /* tttags.h */; };
-		9A1B396A16A2E83000875A94 /* ttunpat.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B391416A2E83000875A94 /* ttunpat.h */; };
-		9A1B396B16A2E83000875A94 /* ft2build.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A1B391516A2E83000875A94 /* ft2build.h */; };
 		9A1B396D16A2F49D00875A94 /* type42.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B396C16A2F49D00875A94 /* type42.c */; };
 		9A1B397716A2F77300875A94 /* ftbase.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B397616A2F77300875A94 /* ftbase.c */; };
 		9A1B397916A2F7E300875A94 /* ftinit.c in Sources */ = {isa = PBXBuildFile; fileRef = 9A1B397816A2F7E300875A94 /* ftinit.c */; };
@@ -440,92 +354,6 @@
 		9A1B374B16A2D80800875A94 /* fnterrs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fnterrs.h; sourceTree = "<group>"; };
 		9A1B374F16A2D80800875A94 /* winfnt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = winfnt.c; sourceTree = "<group>"; };
 		9A1B375016A2D80800875A94 /* winfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = winfnt.h; sourceTree = "<group>"; };
-		9A1B38BE16A2E83000875A94 /* ftconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftconfig.h; sourceTree = "<group>"; };
-		9A1B38BF16A2E83000875A94 /* ftheader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftheader.h; sourceTree = "<group>"; };
-		9A1B38C016A2E83000875A94 /* ftmodule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmodule.h; sourceTree = "<group>"; };
-		9A1B38C116A2E83000875A94 /* ftoption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftoption.h; sourceTree = "<group>"; };
-		9A1B38C216A2E83000875A94 /* ftstdlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftstdlib.h; sourceTree = "<group>"; };
-		9A1B38C316A2E83000875A94 /* freetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = freetype.h; sourceTree = "<group>"; };
-		9A1B38C416A2E83000875A94 /* ftadvanc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftadvanc.h; sourceTree = "<group>"; };
-		9A1B38C516A2E83000875A94 /* ftautoh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftautoh.h; sourceTree = "<group>"; };
-		9A1B38C616A2E83000875A94 /* ftbbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbbox.h; sourceTree = "<group>"; };
-		9A1B38C716A2E83000875A94 /* ftbdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbdf.h; sourceTree = "<group>"; };
-		9A1B38C816A2E83000875A94 /* ftbitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbitmap.h; sourceTree = "<group>"; };
-		9A1B38C916A2E83000875A94 /* ftbzip2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftbzip2.h; sourceTree = "<group>"; };
-		9A1B38CA16A2E83000875A94 /* ftcache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftcache.h; sourceTree = "<group>"; };
-		9A1B38CB16A2E83000875A94 /* ftchapters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftchapters.h; sourceTree = "<group>"; };
-		9A1B38CC16A2E83000875A94 /* ftcid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftcid.h; sourceTree = "<group>"; };
-		9A1B38CD16A2E83000875A94 /* fterrdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fterrdef.h; sourceTree = "<group>"; };
-		9A1B38CE16A2E83000875A94 /* fterrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fterrors.h; sourceTree = "<group>"; };
-		9A1B38CF16A2E83000875A94 /* ftgasp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftgasp.h; sourceTree = "<group>"; };
-		9A1B38D016A2E83000875A94 /* ftglyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftglyph.h; sourceTree = "<group>"; };
-		9A1B38D116A2E83000875A94 /* ftgxval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftgxval.h; sourceTree = "<group>"; };
-		9A1B38D216A2E83000875A94 /* ftgzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftgzip.h; sourceTree = "<group>"; };
-		9A1B38D316A2E83000875A94 /* ftimage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftimage.h; sourceTree = "<group>"; };
-		9A1B38D416A2E83000875A94 /* ftincrem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftincrem.h; sourceTree = "<group>"; };
-		9A1B38D516A2E83000875A94 /* ftlcdfil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftlcdfil.h; sourceTree = "<group>"; };
-		9A1B38D616A2E83000875A94 /* ftlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftlist.h; sourceTree = "<group>"; };
-		9A1B38D716A2E83000875A94 /* ftlzw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftlzw.h; sourceTree = "<group>"; };
-		9A1B38D816A2E83000875A94 /* ftmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmac.h; sourceTree = "<group>"; };
-		9A1B38D916A2E83000875A94 /* ftmm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmm.h; sourceTree = "<group>"; };
-		9A1B38DA16A2E83000875A94 /* ftmodapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmodapi.h; sourceTree = "<group>"; };
-		9A1B38DB16A2E83000875A94 /* ftmoderr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmoderr.h; sourceTree = "<group>"; };
-		9A1B38DC16A2E83000875A94 /* ftotval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftotval.h; sourceTree = "<group>"; };
-		9A1B38DD16A2E83000875A94 /* ftoutln.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftoutln.h; sourceTree = "<group>"; };
-		9A1B38DE16A2E83000875A94 /* ftpfr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftpfr.h; sourceTree = "<group>"; };
-		9A1B38DF16A2E83000875A94 /* ftrender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftrender.h; sourceTree = "<group>"; };
-		9A1B38E016A2E83000875A94 /* ftsizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsizes.h; sourceTree = "<group>"; };
-		9A1B38E116A2E83000875A94 /* ftsnames.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsnames.h; sourceTree = "<group>"; };
-		9A1B38E216A2E83000875A94 /* ftstroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftstroke.h; sourceTree = "<group>"; };
-		9A1B38E316A2E83000875A94 /* ftsynth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsynth.h; sourceTree = "<group>"; };
-		9A1B38E416A2E83000875A94 /* ftsystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftsystem.h; sourceTree = "<group>"; };
-		9A1B38E516A2E83000875A94 /* fttrigon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fttrigon.h; sourceTree = "<group>"; };
-		9A1B38E616A2E83000875A94 /* fttypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fttypes.h; sourceTree = "<group>"; };
-		9A1B38E716A2E83000875A94 /* ftwinfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftwinfnt.h; sourceTree = "<group>"; };
-		9A1B38E816A2E83000875A94 /* ftxf86.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftxf86.h; sourceTree = "<group>"; };
-		9A1B38EA16A2E83000875A94 /* autohint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = autohint.h; sourceTree = "<group>"; };
-		9A1B38EB16A2E83000875A94 /* ftcalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftcalc.h; sourceTree = "<group>"; };
-		9A1B38EC16A2E83000875A94 /* ftdebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftdebug.h; sourceTree = "<group>"; };
-		9A1B38ED16A2E83000875A94 /* ftdriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftdriver.h; sourceTree = "<group>"; };
-		9A1B38EE16A2E83000875A94 /* ftgloadr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftgloadr.h; sourceTree = "<group>"; };
-		9A1B38EF16A2E83000875A94 /* ftmemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftmemory.h; sourceTree = "<group>"; };
-		9A1B38F016A2E83000875A94 /* ftobjs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftobjs.h; sourceTree = "<group>"; };
-		9A1B38F116A2E83000875A94 /* ftpic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftpic.h; sourceTree = "<group>"; };
-		9A1B38F216A2E83000875A94 /* ftrfork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftrfork.h; sourceTree = "<group>"; };
-		9A1B38F316A2E83000875A94 /* ftserv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftserv.h; sourceTree = "<group>"; };
-		9A1B38F416A2E83000875A94 /* ftstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftstream.h; sourceTree = "<group>"; };
-		9A1B38F516A2E83000875A94 /* fttrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fttrace.h; sourceTree = "<group>"; };
-		9A1B38F616A2E83000875A94 /* ftvalid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftvalid.h; sourceTree = "<group>"; };
-		9A1B38F716A2E83000875A94 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
-		9A1B38F816A2E83000875A94 /* psaux.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = psaux.h; sourceTree = "<group>"; };
-		9A1B38F916A2E83000875A94 /* pshints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pshints.h; sourceTree = "<group>"; };
-		9A1B38FB16A2E83000875A94 /* svbdf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svbdf.h; sourceTree = "<group>"; };
-		9A1B38FC16A2E83000875A94 /* svcid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svcid.h; sourceTree = "<group>"; };
-		9A1B38FD16A2E83000875A94 /* svgldict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svgldict.h; sourceTree = "<group>"; };
-		9A1B38FE16A2E83000875A94 /* svgxval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svgxval.h; sourceTree = "<group>"; };
-		9A1B38FF16A2E83000875A94 /* svkern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svkern.h; sourceTree = "<group>"; };
-		9A1B390016A2E83000875A94 /* svmm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svmm.h; sourceTree = "<group>"; };
-		9A1B390116A2E83000875A94 /* svotval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svotval.h; sourceTree = "<group>"; };
-		9A1B390216A2E83000875A94 /* svpfr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svpfr.h; sourceTree = "<group>"; };
-		9A1B390316A2E83000875A94 /* svpostnm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svpostnm.h; sourceTree = "<group>"; };
-		9A1B390416A2E83000875A94 /* svprop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svprop.h; sourceTree = "<group>"; };
-		9A1B390516A2E83000875A94 /* svpscmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svpscmap.h; sourceTree = "<group>"; };
-		9A1B390616A2E83000875A94 /* svpsinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svpsinfo.h; sourceTree = "<group>"; };
-		9A1B390716A2E83000875A94 /* svsfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svsfnt.h; sourceTree = "<group>"; };
-		9A1B390816A2E83000875A94 /* svttcmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svttcmap.h; sourceTree = "<group>"; };
-		9A1B390916A2E83000875A94 /* svtteng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svtteng.h; sourceTree = "<group>"; };
-		9A1B390A16A2E83000875A94 /* svttglyf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svttglyf.h; sourceTree = "<group>"; };
-		9A1B390B16A2E83000875A94 /* svwinfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svwinfnt.h; sourceTree = "<group>"; };
-		9A1B390C16A2E83000875A94 /* svxf86nm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = svxf86nm.h; sourceTree = "<group>"; };
-		9A1B390D16A2E83000875A94 /* sfnt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sfnt.h; sourceTree = "<group>"; };
-		9A1B390E16A2E83000875A94 /* t1types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = t1types.h; sourceTree = "<group>"; };
-		9A1B390F16A2E83000875A94 /* tttypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tttypes.h; sourceTree = "<group>"; };
-		9A1B391016A2E83000875A94 /* t1tables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = t1tables.h; sourceTree = "<group>"; };
-		9A1B391116A2E83000875A94 /* ttnameid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttnameid.h; sourceTree = "<group>"; };
-		9A1B391216A2E83000875A94 /* tttables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tttables.h; sourceTree = "<group>"; };
-		9A1B391316A2E83000875A94 /* tttags.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tttags.h; sourceTree = "<group>"; };
-		9A1B391416A2E83000875A94 /* ttunpat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ttunpat.h; sourceTree = "<group>"; };
-		9A1B391516A2E83000875A94 /* ft2build.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ft2build.h; sourceTree = "<group>"; };
 		9A1B396C16A2F49D00875A94 /* type42.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = type42.c; sourceTree = "<group>"; };
 		9A1B397616A2F77300875A94 /* ftbase.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftbase.c; sourceTree = "<group>"; };
 		9A1B397816A2F7E300875A94 /* ftinit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ftinit.c; sourceTree = "<group>"; };
@@ -549,7 +377,6 @@
 		9A1B358116A2D7A500875A94 = {
 			isa = PBXGroup;
 			children = (
-				9A1B38BB16A2E83000875A94 /* include */,
 				9A1B359916A2D80800875A94 /* autofit */,
 				9A1B35B816A2D80800875A94 /* base */,
 				9A1B35E216A2D80800875A94 /* bdf */,
@@ -944,131 +771,6 @@
 			path = src/winfonts;
 			sourceTree = "<group>";
 		};
-		9A1B38BB16A2E83000875A94 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				9A1B38BC16A2E83000875A94 /* freetype */,
-				9A1B391516A2E83000875A94 /* ft2build.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
-		9A1B38BC16A2E83000875A94 /* freetype */ = {
-			isa = PBXGroup;
-			children = (
-				9A1B38BD16A2E83000875A94 /* config */,
-				9A1B38C316A2E83000875A94 /* freetype.h */,
-				9A1B38C416A2E83000875A94 /* ftadvanc.h */,
-				9A1B38C516A2E83000875A94 /* ftautoh.h */,
-				9A1B38C616A2E83000875A94 /* ftbbox.h */,
-				9A1B38C716A2E83000875A94 /* ftbdf.h */,
-				9A1B38C816A2E83000875A94 /* ftbitmap.h */,
-				9A1B38C916A2E83000875A94 /* ftbzip2.h */,
-				9A1B38CA16A2E83000875A94 /* ftcache.h */,
-				9A1B38CB16A2E83000875A94 /* ftchapters.h */,
-				9A1B38CC16A2E83000875A94 /* ftcid.h */,
-				9A1B38CD16A2E83000875A94 /* fterrdef.h */,
-				9A1B38CE16A2E83000875A94 /* fterrors.h */,
-				9A1B38CF16A2E83000875A94 /* ftgasp.h */,
-				9A1B38D016A2E83000875A94 /* ftglyph.h */,
-				9A1B38D116A2E83000875A94 /* ftgxval.h */,
-				9A1B38D216A2E83000875A94 /* ftgzip.h */,
-				9A1B38D316A2E83000875A94 /* ftimage.h */,
-				9A1B38D416A2E83000875A94 /* ftincrem.h */,
-				9A1B38D516A2E83000875A94 /* ftlcdfil.h */,
-				9A1B38D616A2E83000875A94 /* ftlist.h */,
-				9A1B38D716A2E83000875A94 /* ftlzw.h */,
-				9A1B38D816A2E83000875A94 /* ftmac.h */,
-				9A1B38D916A2E83000875A94 /* ftmm.h */,
-				9A1B38DA16A2E83000875A94 /* ftmodapi.h */,
-				9A1B38DB16A2E83000875A94 /* ftmoderr.h */,
-				9A1B38DC16A2E83000875A94 /* ftotval.h */,
-				9A1B38DD16A2E83000875A94 /* ftoutln.h */,
-				9A1B38DE16A2E83000875A94 /* ftpfr.h */,
-				9A1B38DF16A2E83000875A94 /* ftrender.h */,
-				9A1B38E016A2E83000875A94 /* ftsizes.h */,
-				9A1B38E116A2E83000875A94 /* ftsnames.h */,
-				9A1B38E216A2E83000875A94 /* ftstroke.h */,
-				9A1B38E316A2E83000875A94 /* ftsynth.h */,
-				9A1B38E416A2E83000875A94 /* ftsystem.h */,
-				9A1B38E516A2E83000875A94 /* fttrigon.h */,
-				9A1B38E616A2E83000875A94 /* fttypes.h */,
-				9A1B38E716A2E83000875A94 /* ftwinfnt.h */,
-				9A1B38E816A2E83000875A94 /* ftxf86.h */,
-				9A1B38E916A2E83000875A94 /* internal */,
-				9A1B391016A2E83000875A94 /* t1tables.h */,
-				9A1B391116A2E83000875A94 /* ttnameid.h */,
-				9A1B391216A2E83000875A94 /* tttables.h */,
-				9A1B391316A2E83000875A94 /* tttags.h */,
-				9A1B391416A2E83000875A94 /* ttunpat.h */,
-			);
-			path = freetype;
-			sourceTree = "<group>";
-		};
-		9A1B38BD16A2E83000875A94 /* config */ = {
-			isa = PBXGroup;
-			children = (
-				9A1B38BE16A2E83000875A94 /* ftconfig.h */,
-				9A1B38BF16A2E83000875A94 /* ftheader.h */,
-				9A1B38C016A2E83000875A94 /* ftmodule.h */,
-				9A1B38C116A2E83000875A94 /* ftoption.h */,
-				9A1B38C216A2E83000875A94 /* ftstdlib.h */,
-			);
-			path = config;
-			sourceTree = "<group>";
-		};
-		9A1B38E916A2E83000875A94 /* internal */ = {
-			isa = PBXGroup;
-			children = (
-				9A1B38EA16A2E83000875A94 /* autohint.h */,
-				9A1B38EB16A2E83000875A94 /* ftcalc.h */,
-				9A1B38EC16A2E83000875A94 /* ftdebug.h */,
-				9A1B38ED16A2E83000875A94 /* ftdriver.h */,
-				9A1B38EE16A2E83000875A94 /* ftgloadr.h */,
-				9A1B38EF16A2E83000875A94 /* ftmemory.h */,
-				9A1B38F016A2E83000875A94 /* ftobjs.h */,
-				9A1B38F116A2E83000875A94 /* ftpic.h */,
-				9A1B38F216A2E83000875A94 /* ftrfork.h */,
-				9A1B38F316A2E83000875A94 /* ftserv.h */,
-				9A1B38F416A2E83000875A94 /* ftstream.h */,
-				9A1B38F516A2E83000875A94 /* fttrace.h */,
-				9A1B38F616A2E83000875A94 /* ftvalid.h */,
-				9A1B38F716A2E83000875A94 /* internal.h */,
-				9A1B38F816A2E83000875A94 /* psaux.h */,
-				9A1B38F916A2E83000875A94 /* pshints.h */,
-				9A1B38FA16A2E83000875A94 /* services */,
-				9A1B390D16A2E83000875A94 /* sfnt.h */,
-				9A1B390E16A2E83000875A94 /* t1types.h */,
-				9A1B390F16A2E83000875A94 /* tttypes.h */,
-			);
-			path = internal;
-			sourceTree = "<group>";
-		};
-		9A1B38FA16A2E83000875A94 /* services */ = {
-			isa = PBXGroup;
-			children = (
-				9A1B38FB16A2E83000875A94 /* svbdf.h */,
-				9A1B38FC16A2E83000875A94 /* svcid.h */,
-				9A1B38FD16A2E83000875A94 /* svgldict.h */,
-				9A1B38FE16A2E83000875A94 /* svgxval.h */,
-				9A1B38FF16A2E83000875A94 /* svkern.h */,
-				9A1B390016A2E83000875A94 /* svmm.h */,
-				9A1B390116A2E83000875A94 /* svotval.h */,
-				9A1B390216A2E83000875A94 /* svpfr.h */,
-				9A1B390316A2E83000875A94 /* svpostnm.h */,
-				9A1B390416A2E83000875A94 /* svprop.h */,
-				9A1B390516A2E83000875A94 /* svpscmap.h */,
-				9A1B390616A2E83000875A94 /* svpsinfo.h */,
-				9A1B390716A2E83000875A94 /* svsfnt.h */,
-				9A1B390816A2E83000875A94 /* svttcmap.h */,
-				9A1B390916A2E83000875A94 /* svtteng.h */,
-				9A1B390A16A2E83000875A94 /* svttglyf.h */,
-				9A1B390B16A2E83000875A94 /* svwinfnt.h */,
-				9A1B390C16A2E83000875A94 /* svxf86nm.h */,
-			);
-			path = services;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1215,92 +917,6 @@
 				9A1B38B216A2D80900875A94 /* t42types.h in Headers */,
 				9A1B38B416A2D80900875A94 /* fnterrs.h in Headers */,
 				9A1B38B716A2D80900875A94 /* winfnt.h in Headers */,
-				9A1B391616A2E83000875A94 /* ftconfig.h in Headers */,
-				9A1B391716A2E83000875A94 /* ftheader.h in Headers */,
-				9A1B391816A2E83000875A94 /* ftmodule.h in Headers */,
-				9A1B391916A2E83000875A94 /* ftoption.h in Headers */,
-				9A1B391A16A2E83000875A94 /* ftstdlib.h in Headers */,
-				9A1B391B16A2E83000875A94 /* freetype.h in Headers */,
-				9A1B391C16A2E83000875A94 /* ftadvanc.h in Headers */,
-				9A1B391D16A2E83000875A94 /* ftautoh.h in Headers */,
-				9A1B391E16A2E83000875A94 /* ftbbox.h in Headers */,
-				9A1B391F16A2E83000875A94 /* ftbdf.h in Headers */,
-				9A1B392016A2E83000875A94 /* ftbitmap.h in Headers */,
-				9A1B392116A2E83000875A94 /* ftbzip2.h in Headers */,
-				9A1B392216A2E83000875A94 /* ftcache.h in Headers */,
-				9A1B392316A2E83000875A94 /* ftchapters.h in Headers */,
-				9A1B392416A2E83000875A94 /* ftcid.h in Headers */,
-				9A1B392516A2E83000875A94 /* fterrdef.h in Headers */,
-				9A1B392616A2E83000875A94 /* fterrors.h in Headers */,
-				9A1B392716A2E83000875A94 /* ftgasp.h in Headers */,
-				9A1B392816A2E83000875A94 /* ftglyph.h in Headers */,
-				9A1B392916A2E83000875A94 /* ftgxval.h in Headers */,
-				9A1B392A16A2E83000875A94 /* ftgzip.h in Headers */,
-				9A1B392B16A2E83000875A94 /* ftimage.h in Headers */,
-				9A1B392C16A2E83000875A94 /* ftincrem.h in Headers */,
-				9A1B392D16A2E83000875A94 /* ftlcdfil.h in Headers */,
-				9A1B392E16A2E83000875A94 /* ftlist.h in Headers */,
-				9A1B392F16A2E83000875A94 /* ftlzw.h in Headers */,
-				9A1B393016A2E83000875A94 /* ftmac.h in Headers */,
-				9A1B393116A2E83000875A94 /* ftmm.h in Headers */,
-				9A1B393216A2E83000875A94 /* ftmodapi.h in Headers */,
-				9A1B393316A2E83000875A94 /* ftmoderr.h in Headers */,
-				9A1B393416A2E83000875A94 /* ftotval.h in Headers */,
-				9A1B393516A2E83000875A94 /* ftoutln.h in Headers */,
-				9A1B393616A2E83000875A94 /* ftpfr.h in Headers */,
-				9A1B393716A2E83000875A94 /* ftrender.h in Headers */,
-				9A1B393816A2E83000875A94 /* ftsizes.h in Headers */,
-				9A1B393916A2E83000875A94 /* ftsnames.h in Headers */,
-				9A1B393A16A2E83000875A94 /* ftstroke.h in Headers */,
-				9A1B393B16A2E83000875A94 /* ftsynth.h in Headers */,
-				9A1B393C16A2E83000875A94 /* ftsystem.h in Headers */,
-				9A1B393D16A2E83000875A94 /* fttrigon.h in Headers */,
-				9A1B393E16A2E83000875A94 /* fttypes.h in Headers */,
-				9A1B393F16A2E83000875A94 /* ftwinfnt.h in Headers */,
-				9A1B394016A2E83000875A94 /* ftxf86.h in Headers */,
-				9A1B394116A2E83000875A94 /* autohint.h in Headers */,
-				9A1B394216A2E83000875A94 /* ftcalc.h in Headers */,
-				9A1B394316A2E83000875A94 /* ftdebug.h in Headers */,
-				9A1B394416A2E83000875A94 /* ftdriver.h in Headers */,
-				9A1B394516A2E83000875A94 /* ftgloadr.h in Headers */,
-				9A1B394616A2E83000875A94 /* ftmemory.h in Headers */,
-				9A1B394716A2E83000875A94 /* ftobjs.h in Headers */,
-				9A1B394816A2E83000875A94 /* ftpic.h in Headers */,
-				9A1B394916A2E83000875A94 /* ftrfork.h in Headers */,
-				9A1B394A16A2E83000875A94 /* ftserv.h in Headers */,
-				9A1B394B16A2E83000875A94 /* ftstream.h in Headers */,
-				9A1B394C16A2E83000875A94 /* fttrace.h in Headers */,
-				9A1B394D16A2E83000875A94 /* ftvalid.h in Headers */,
-				9A1B394E16A2E83000875A94 /* internal.h in Headers */,
-				9A1B394F16A2E83000875A94 /* psaux.h in Headers */,
-				9A1B395016A2E83000875A94 /* pshints.h in Headers */,
-				9A1B395116A2E83000875A94 /* svbdf.h in Headers */,
-				9A1B395216A2E83000875A94 /* svcid.h in Headers */,
-				9A1B395316A2E83000875A94 /* svgldict.h in Headers */,
-				9A1B395416A2E83000875A94 /* svgxval.h in Headers */,
-				9A1B395516A2E83000875A94 /* svkern.h in Headers */,
-				9A1B395616A2E83000875A94 /* svmm.h in Headers */,
-				9A1B395716A2E83000875A94 /* svotval.h in Headers */,
-				9A1B395816A2E83000875A94 /* svpfr.h in Headers */,
-				9A1B395916A2E83000875A94 /* svpostnm.h in Headers */,
-				9A1B395A16A2E83000875A94 /* svprop.h in Headers */,
-				9A1B395B16A2E83000875A94 /* svpscmap.h in Headers */,
-				9A1B395C16A2E83000875A94 /* svpsinfo.h in Headers */,
-				9A1B395D16A2E83000875A94 /* svsfnt.h in Headers */,
-				9A1B395E16A2E83000875A94 /* svttcmap.h in Headers */,
-				9A1B395F16A2E83000875A94 /* svtteng.h in Headers */,
-				9A1B396016A2E83000875A94 /* svttglyf.h in Headers */,
-				9A1B396116A2E83000875A94 /* svwinfnt.h in Headers */,
-				9A1B396216A2E83000875A94 /* svxf86nm.h in Headers */,
-				9A1B396316A2E83000875A94 /* sfnt.h in Headers */,
-				9A1B396416A2E83000875A94 /* t1types.h in Headers */,
-				9A1B396516A2E83000875A94 /* tttypes.h in Headers */,
-				9A1B396616A2E83000875A94 /* t1tables.h in Headers */,
-				9A1B396716A2E83000875A94 /* ttnameid.h in Headers */,
-				9A1B396816A2E83000875A94 /* tttables.h in Headers */,
-				9A1B396916A2E83000875A94 /* tttags.h in Headers */,
-				9A1B396A16A2E83000875A94 /* ttunpat.h in Headers */,
-				9A1B396B16A2E83000875A94 /* ft2build.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,7 +1042,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include",
 				);
+				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1458,7 +1076,9 @@
 				HEADER_SEARCH_PATHS = (
 					"$(WorkspaceDir)/../../../app/thirdparty/include",
 					"$(WorkspaceDir)/../../../nodeapp/thirdparty/include",
+					"$(WorkspaceDir)/../../../nodeapp/appseed/openssl/include",
 				);
+				LIBRARY_SEARCH_PATHS = "$(WorkspaceDir)/../../../nodeapp/thirdparty/library";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = ". .. $(WorkspaceDir)/../../.. $(WorkspaceDir)/../../../app $(WorkspaceDir)/../../../app/appseed $(WorkspaceDir)/../../../app/appseed/ca $(WorkspaceDir)/../../../app/appseed/ca2 $(WorkspaceDir)/../.. $(WorkspaceDir)/../.. $(WorkspaceDir)/../../thirdparty/include $(WorkspaceDir)/../../../app/thirdparty/include $(WorkspaceDir)/../../appseed $(WorkspaceDir)/../../../app/thirdparty/appseed";

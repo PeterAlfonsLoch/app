@@ -19,7 +19,7 @@
 #ifndef __FTLZW_H__
 #define __FTLZW_H__
 
-#include "ft2build.h"
+#include <ft2build.h>
 #include FT_FREETYPE_H
 
 #ifdef FREETYPE_H
@@ -63,7 +63,7 @@ FT_BEGIN_HEADER
   *   source :: The source stream.
   *
   * @return:
-  *   FreeType error code.  0 means success.
+  *   FreeType error code.  0~means success.
   *
   * @note:
   *   The source stream must be opened _before_ calling this function.
