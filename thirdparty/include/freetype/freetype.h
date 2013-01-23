@@ -932,7 +932,7 @@ FT_BEGIN_HEADER
     FT_Int            num_charmaps;
     FT_CharMap*       charmaps;
 
-    FT_Generic        generic;
+    FT_Generic        m_generic;
 
     /*# The following member variables (down to `underline_thickness') */
     /*# are only relevant to scalable outlines; cf. @FT_Bitmap_Size    */
@@ -1399,7 +1399,7 @@ FT_BEGIN_HEADER
   typedef struct  FT_SizeRec_
   {
     FT_Face           face;      /* parent face object              */
-    FT_Generic        generic;   /* generic pointer for client uses */
+    FT_Generic        m_generic;   /* generic pointer for client uses */
     FT_Size_Metrics   metrics;   /* size metrics                    */
     FT_Size_Internal  internal;
 
@@ -1612,7 +1612,7 @@ FT_BEGIN_HEADER
     FT_Face           face;
     FT_GlyphSlot      next;
     FT_UInt           reserved;       /* retained for binary compatibility */
-    FT_Generic        generic;
+    FT_Generic        m_generic;
 
     FT_Glyph_Metrics  metrics;
     FT_Fixed          linearHoriAdvance;
