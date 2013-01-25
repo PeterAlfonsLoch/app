@@ -96,7 +96,14 @@ namespace ca
    {
       if(m_plibrary != NULL)
       {
-         bool bOk = ::FreeLibrary((HINSTANCE) m_plibrary) != FALSE;
+         bool bOk = false;
+         try
+         {
+            bOk = ::FreeLibrary((HINSTANCE) m_plibrary) != FALSE;
+         }
+         catch(...)
+         {
+         }
          m_plibrary = NULL;
          return bOk;
       }

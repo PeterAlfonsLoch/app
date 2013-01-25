@@ -54,7 +54,30 @@ bool is_installed(const char * pszVersion, const char * pszBuild, const char * p
       pszType = "application";
 
    if(pszVersion == NULL || *pszVersion == '\0')
-      return false;
+   {
+
+#if CA2_PLATFORM_VERSION == CA2_BASIS
+
+      pszVersion = "basis";
+
+#else
+
+      pszVersion = "stage";
+
+#endif
+
+   }
+
+   vsstring strLatestBuildNumber;
+
+   if(pszBuild == NULL || *pszBuild == '\0')
+   {
+
+      strLatestBuildNumber = get_latest_build_number(pszVersion);
+
+      pszBuild = strLatestBuildNumber;
+
+   }
 
    if(stricmp_dup(pszVersion, "basis") && stricmp_dup(pszVersion, "stage"))
       return false;
