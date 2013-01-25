@@ -1436,16 +1436,10 @@
     <ClInclude Include="ca4\ca4_ip_enum.h">
       <Filter>Header Files\ca4</Filter>
     </ClInclude>
-    <ClInclude Include="ca4\ca4_oauth.h">
-      <Filter>Header Files\ca4</Filter>
-    </ClInclude>
     <ClInclude Include="ca4\ca4_patch.h">
       <Filter>Header Files\ca4</Filter>
     </ClInclude>
     <ClInclude Include="ca4\ca4_port_forward.h">
-      <Filter>Header Files\ca4</Filter>
-    </ClInclude>
-    <ClInclude Include="ca4\ca4_twit.h">
       <Filter>Header Files\ca4</Filter>
     </ClInclude>
     <ClInclude Include="collection\collection_simple_template.h">
@@ -4030,16 +4024,10 @@
     <ClCompile Include="ca4\ca4_nessie.cpp">
       <Filter>Source Files\ca4</Filter>
     </ClCompile>
-    <ClCompile Include="ca4\ca4_oauth.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
     <ClCompile Include="ca4\ca4_patch.cpp">
       <Filter>Source Files\ca4</Filter>
     </ClCompile>
     <ClCompile Include="ca4\ca4_port_forward.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_twit.cpp">
       <Filter>Source Files\ca4</Filter>
     </ClCompile>
     <ClCompile Include="collection\collection_numeric_array.cpp">
