@@ -765,6 +765,14 @@ string::string(const var & var) :
 
 }
 
+string::string(const gen::property & prop) :
+   simple_string( string_trait::GetDefaultManager() )
+{
+
+   *this = prop.get_string();
+
+}
+
 
 string::string( const string_interface & str ) :
    simple_string( string_trait::GetDefaultManager() )
@@ -918,7 +926,6 @@ string& string::operator=(string strSrc )
 
    return( *this );
 }
-
 
 string& string::operator=(const char * pszSrc )
 {

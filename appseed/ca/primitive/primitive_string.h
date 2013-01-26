@@ -231,8 +231,9 @@ public:
 
    string(const id & id);
    string(const var & var);
-   string(const char * pszSrc);
+   string(const gen::property & prop);
    string(const string & strSrc);
+   string(const char * pszSrc);
    string(const uchar * pszSrc);
    //   string(char * pszSrc);
    string(uchar * pszSrc);
@@ -269,8 +270,8 @@ public:
    string& operator=(string strSrc );
    string& operator=(const id & id);
    string& operator=(const var & var);
-   template <bool bMFCDLL>
-   string& operator=(const simple_string& strSrc);
+   string& operator=(const gen::property & var);
+   string& operator=(const simple_string & strSrc);
    string& operator=(const vsstring & strSrc);
    string& operator=(const char * pszSrc);
    string& operator=(const wchar_t * pszSrc);
@@ -763,8 +764,7 @@ string& string::operator+=(const static_string<t_nSize >& strSrc )
    return( *this );
 }
 
-template <bool bMFCDLL>
-string& string::operator=(const simple_string& strSrc )
+inline string & string::operator=(const simple_string& strSrc )
 {
    simple_string::operator=( strSrc );
 

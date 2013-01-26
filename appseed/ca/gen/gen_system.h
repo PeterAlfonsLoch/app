@@ -30,7 +30,7 @@ namespace gen
 
    inline id system::id(const gen::property & prop)
    {
-      return ::id((const char *) (gen::property &) prop);
+      return ::id((const string &) (gen::property &) prop);
    }
 
 } // namespace gen

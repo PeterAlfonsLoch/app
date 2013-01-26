@@ -346,10 +346,33 @@ namespace gen
          return get_value().ca2 < T >();
       }
 
-      operator const char *()
+      operator const char *() const
       {
-         get_value().m_str = get_value().get_string();
-         return get_value().m_str;
+
+         ((gen::property *) this)->get_value().m_str = get_value().get_string();
+
+         return m_var.m_str;
+
+      }
+
+      operator string & ()
+      {
+         
+         if(get_value().get_type() == var::type_pstring)
+         {
+         
+            return *m_var.m_pstr;
+
+         }
+         else
+         {
+
+            get_value().m_str = get_value().get_string();
+
+            return m_var.m_str;
+
+         }
+
       }
 
       operator id()
@@ -679,5 +702,15 @@ namespace gen
 } // namespace gen
 
 
+
+
+inline string & string::operator = (const gen::property & prop)
+{
+
+   simple_string::operator=(prop.get_string());
+
+   return *this;
+
+}
 
 
