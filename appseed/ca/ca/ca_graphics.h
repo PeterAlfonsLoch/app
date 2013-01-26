@@ -84,6 +84,7 @@ namespace ca
 
       virtual void * get_os_data() const;
       virtual bool attach(void * pdata);
+      virtual bool attach(simple_graphics & g);
       virtual void * detach();
 
 

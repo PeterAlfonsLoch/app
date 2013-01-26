@@ -520,8 +520,6 @@ install:
 
 
 
-
-
 #ifdef WINDOWS
 
    LRESULT plugin::message_handler(UINT uiMessage, WPARAM wparam, LPARAM lparam)
@@ -581,9 +579,45 @@ install:
                m_login.on_mouse_move(x, y);
 
             }
+            else if(uiMessage == WM_KEYDOWN)
+            {
+               if(wparam == VK_SHIFT)
+               {
+                  m_bPluginShiftKey = true;
+               }
+            }
             else if(uiMessage == WM_KEYUP)
             {
-               m_login.on_char(static_cast<UINT>(wparam), key_to_char(wparam, lparam));
+               vsstring str;
+               wchar_t wsz[32];
+
+               BYTE baState[256];
+
+               ZERO(baState);
+               for(int i = 0; i < 256; i++)
+               {
+   //               baState[i] = (BYTE) GetAsyncKeyState(i);
+               }
+
+               baState[wparam & 0xff] = 0x80;
+
+/*               if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
+               {
+                  baState[VK_SHIFT] |= 0x80;
+               }
+*/
+               if(m_bPluginShiftKey)
+               {
+                  baState[VK_SHIFT] |= 0x80;
+               }
+
+               int32_t iRet = ToUnicodeEx((UINT) wparam, 0, baState, wsz, 32, 0, GetKeyboardLayout(GetCurrentThreadId()));
+               str = wsz;
+               m_login.on_char(static_cast<UINT>(wparam), str);
+               if(m_bPluginShiftKey && wparam == VK_SHIFT)
+               {
+                  m_bPluginShiftKey = false;
+               }
             }
 
          }

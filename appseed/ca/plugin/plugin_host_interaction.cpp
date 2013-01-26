@@ -110,22 +110,22 @@ namespace plugin
    void host_interaction::_000OnDraw(::ca::graphics * pdc)
    {
       
-      rect rectWindow;
-      m_pguie->GetWindowRect(rectWindow);
-      point ptPreviousViewportOrg = pdc->GetViewportOrg();
-      pdc->SetViewportOrg(rectWindow.top_left());
+      //rect rectWindow;
+      //m_pguie->GetWindowRect(rectWindow);
+      //point ptPreviousViewportOrg = pdc->GetViewportOrg();
+      //pdc->SetViewportOrg(rectWindow.top_left());
 
-      rect rectClient;
-      GetClientRect(rectClient);
+      //rect rectClient;
+      //GetClientRect(rectClient);
 
       _001DrawChildren(pdc);
 
-      pdc->SetViewportOrg(ptPreviousViewportOrg);
-      pdc->SelectClipRgn(NULL);
+      //pdc->SetViewportOrg(ptPreviousViewportOrg);
+      //pdc->SelectClipRgn(NULL);
       point ptCursor;
-      Application.get_cursor_pos(&ptCursor);
+      Session.get_cursor_pos(&ptCursor);
       ScreenToClient(&ptCursor);
-      ::visual::cursor * pcursor = Application.get_cursor();
+      ::visual::cursor * pcursor = Session.get_cursor();
       if(pcursor != NULL)
       {
          pcursor->to(pdc, ptCursor); 

@@ -138,7 +138,7 @@ CLASS_DECL_ca inline bool is32natural(double d)
 }
 CLASS_DECL_ca inline bool is32integer(int64_t i)
 {
-   return (i & 0xffffffff00000000 ) == 0;
+   return (i >= 0xffffffff80000000LL) && (i <= 0x000000007fffffffLL);
 }
 CLASS_DECL_ca inline bool is32natural(int64_t i)
 {

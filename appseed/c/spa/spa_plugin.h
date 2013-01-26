@@ -51,6 +51,8 @@ namespace spa
       bool           m_bPendingStream;
       uint32_t          m_dwLastOk;
 
+      bool              m_bPluginShiftKey;
+
 
 
 

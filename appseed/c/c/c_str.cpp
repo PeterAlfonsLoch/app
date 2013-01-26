@@ -165,7 +165,7 @@ char to_lower(int32_t ch)
 char * to_lower(char * pchParam)
 {
    char * pch = pchParam;
-   while(*pch == '\0')
+   while(*pch != '\0')
    {
       *pch = to_lower(*pch);
       pch++;

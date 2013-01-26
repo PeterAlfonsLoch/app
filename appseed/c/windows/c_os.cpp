@@ -159,13 +159,19 @@ bool main_finalize()
 
 vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 {
+
+
+
    wchar_t wsz[32];
 
    BYTE baState[256];
 
-   GetKeyboardState(baState);
+   for(int i = 0; i < 256; i++)
+   {
+      baState[i] = (BYTE) GetAsyncKeyState(i);
+   }
 
-   if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+   if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
    {
       baState[VK_SHIFT] |= 0x80;
    }
@@ -182,9 +188,9 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
 
       str.attach(utf16_to_8(wsz));
 
-      if((GetKeyState(VK_CAPITAL) & 0x0001) != 0)
+      if((GetAsyncKeyState(VK_CAPITAL) & 0x0001) != 0)
       {
-         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+         if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
          {
             to_lower(str.m_psz);
          }
@@ -195,7 +201,7 @@ vsstring key_to_char(WPARAM wparam, LPARAM lparam)
       }
       else
       {
-         if((GetKeyState(VK_SHIFT) & 0x80000000) != 0)
+         if((GetAsyncKeyState(VK_SHIFT) & 0x80000000) != 0)
          {
             to_upper(str.m_psz);
          }

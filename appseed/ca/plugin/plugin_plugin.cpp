@@ -189,9 +189,8 @@ namespace plugin
          m_puiHost->m_pimpl->m_rectParentClient = m_puiHost->m_rectParentClient;
          m_puiHost->SendMessageA(WM_SIZE);
          m_puiHost->SendMessageA(WM_MOVE);*/
-         class rect rect;
-         get_window_rect(rect);
-         set_window_rect(rect);
+//         class rect rect = m_phost->m_rect;
+  //       set_window_rect(rect);
       }
 
 ///      m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
@@ -224,12 +223,12 @@ namespace plugin
    }
 
 
-
-
    void plugin::on_paint(simple_graphics & gWindow, LPCRECT lprectOut)
    {
 
+      //class rect rect = m_phost->m_rect;
 
+      //set_window_rect(rect);
 
       UNREFERENCED_PARAMETER(lprectOut);
 
@@ -252,6 +251,12 @@ namespace plugin
          m_dib->create(lprect->right - lprect->left, lprect->bottom - lprect->top);
 
          m_dib->Fill(0, 0, 0, 0);
+
+//         ::ca::graphics_sp dc(get_app());
+         
+         //dc->CreateCompatibleDC(NULL);
+
+         //m_dib->defer_realize(dc);
 
          try
          {

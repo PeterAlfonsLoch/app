@@ -52,6 +52,11 @@ namespace ca
 
    */
 
+   bool graphics::attach(simple_graphics & g)
+   {
+      throw interface_only_exception(get_app());
+   }
+
    bool graphics::attach(void * pdata)
    {
       throw interface_only_exception(get_app());
