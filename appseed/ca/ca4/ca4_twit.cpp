@@ -1,9 +1,9 @@
 #include "framework.h"
-#include <time.h>
 
 
 namespace ca4
 {
+
 
    string prepare_basic_authentication(::ca::application * papp, const char * inParam1, const char * inParam2 );
 
@@ -174,7 +174,7 @@ namespace ca4
          post["status"] = newStatus;
 
          /* Perform POST */
-         retVal = performPost( "https://api.twitter.com/statuses/update.xml", post );
+         retVal = performPost( "https://api.twitter.com/1.1/statuses/update.json", post );
       }
       return retVal;
    }
