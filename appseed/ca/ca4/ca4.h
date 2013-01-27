@@ -41,6 +41,10 @@ namespace ca8
 #include "ca4_port_forward.h"
 
 
+#include "ca4_oauth.h"
+#include "ca4_twit.h"
+
+
 #include "ca4_application.h"
 
 

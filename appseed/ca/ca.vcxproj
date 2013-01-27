@@ -962,8 +962,10 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca4\ca4_http_get_socket.h" />
     <ClInclude Include="ca4\ca4_http_system.h" />
     <ClInclude Include="ca4\ca4_ip_enum.h" />
+    <ClInclude Include="ca4\ca4_oauth.h" />
     <ClInclude Include="ca4\ca4_patch.h" />
     <ClInclude Include="ca4\ca4_port_forward.h" />
+    <ClInclude Include="ca4\ca4_twit.h" />
     <ClInclude Include="calculator\calculator.h" />
     <ClInclude Include="calculator\calculator_class.h" />
     <ClInclude Include="calculator\calculator_application.h" />
@@ -1940,12 +1942,14 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca4\ca4_nessie.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ca4\ca4_oauth.cpp" />
     <ClCompile Include="ca4\ca4_patch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ca4\ca4_port_forward.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ca4\ca4_twit.cpp" />
     <ClCompile Include="calculator\calculator_application.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>

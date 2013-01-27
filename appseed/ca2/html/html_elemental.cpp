@@ -1702,7 +1702,7 @@ namespace html
                if(pelemental != NULL)
                   return pelemental;
             }
-            if(m_pimpl->is_value())
+            if(m_pimpl->is_value() || m_elementalptra.get_size() <= 0)
             {
                string strBody = m_propertyset["PropertyBody"];
                strBody.trim();
