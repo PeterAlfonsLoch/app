@@ -52,8 +52,11 @@ namespace ex1
 
    byte_input_stream & byte_input_stream::operator >> (int16_t & i)
    {
+      
       read_arbitrary(&i, sizeof(i));
+
       return *this;
+
    }
 
    byte_input_stream & byte_input_stream::operator >> (uint16_t & ui)
