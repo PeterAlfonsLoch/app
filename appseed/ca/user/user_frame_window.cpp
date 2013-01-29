@@ -1767,7 +1767,7 @@ void frame_window::BringToTop(int32_t nCmdShow)
          //uint32_t dwStyle = ::GetWindowLong(oswindow_LastPop, GWL_STYLE);
          if(oswindow_LastPop != (::oswindow) 1)
          {
-            if(::IsWindow(oswindow_LastPop))
+            if(::IsWindow(oswindow_LastPop) && oswindow != oswindow_LastPop)
             {
                ::BringWindowToTop(oswindow_LastPop);
             }

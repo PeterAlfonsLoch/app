@@ -193,11 +193,23 @@ namespace filehandler
       if(iItem >= 0)
       {
 
+         /*
          var varRequest;
 
          varRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
 
          Bergedge.request(varRequest);
+         */
+
+         ::ca::create_context_sp createcontext(&get_app()->cast_app < ::gen::application > ().command());
+
+         createcontext->m_spCommandLine->m_strApp                 = m_list[iItem].m_strApp;
+
+         createcontext->m_spCommandLine->m_varFile                = m_strName;
+
+         Bergedge.request(createcontext.detach());
+
+         //varFile = createcontext->m_spCommandLine->m_varFile;
 
       }
 

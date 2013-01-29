@@ -408,7 +408,13 @@ namespace ca2
          catch(...)
          {
          }
+         bergedge_interface * pbergedge = pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"].ca2 < bergedge_interface >();
+         if(pbergedge != NULL)
+         {
+            pbergedge->on_app_request_bergedge_callback(this);
+         }
          pcreatecontext->m_spCommandLine->m_eventReady.SetEvent();
+
       }
    }
 

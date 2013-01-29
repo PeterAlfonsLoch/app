@@ -50,21 +50,21 @@ namespace ex1
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (int16_t & sh)
+   byte_input_stream & byte_input_stream::operator >> (int16_t & i)
    {
-      read(&sh, sizeof(sh));
+      read_arbitrary(&i, sizeof(i));
       return *this;
    }
 
-   byte_input_stream & byte_input_stream::operator >> (uint16_t & uint16_t)
+   byte_input_stream & byte_input_stream::operator >> (uint16_t & ui)
    {
-      read(&uint16_t, sizeof(uint16_t));
+      read_arbitrary(&ui, sizeof(ui));
       return *this;
    }
 
    byte_input_stream & byte_input_stream::operator >> (wchar_t & wch)
    {
-      read(&wch, sizeof(wch));
+      read_arbitrary(&wch, sizeof(wch));
       return *this;
    }
 
@@ -76,31 +76,25 @@ namespace ex1
 
    byte_input_stream & byte_input_stream::operator >> (int32_t & i)
    {
-      uint64_t uiRead = read(&i, sizeof(i));
-      if(uiRead != sizeof(i))
-         throw "failed to read int32_t";
+      read_arbitrary(&i, sizeof(i));
       return *this;
    }
 
    byte_input_stream & byte_input_stream::operator >> (uint32_t & ui)
    {
-      uint64_t uiRead = read(&ui, sizeof(ui));
-      if(uiRead != sizeof(ui))
-         throw "failed to read uint32_t";
+      read_arbitrary(&ui, sizeof(ui));
       return *this;
    }
 
    byte_input_stream & byte_input_stream::operator >> (int64_t & i)
    {
-      if(sizeof(i) != read(&i, sizeof(i)))
-         throw "could not read int32_t";
+      read_arbitrary(&i, sizeof(i));
       return *this;
    }
 
    byte_input_stream & byte_input_stream::operator >> (uint64_t & ui)
    {
-      if(sizeof(ui) != read(&ui, sizeof(ui)))
-         throw "could not read int32_t";
+      read_arbitrary(&ui, sizeof(ui));
       return *this;
    }
 
@@ -352,43 +346,43 @@ namespace ex1
 
    byte_output_stream & byte_output_stream::operator << (int16_t i)
    {
-      write(&i, sizeof(i));
+      write_arbitrary(i);
       return *this;
    }
 
    byte_output_stream & byte_output_stream::operator << (uint16_t ui)
    {
-      write(&ui, sizeof(ui));
+      write_arbitrary(ui);
       return *this;
    }
 
    byte_output_stream & byte_output_stream::operator << (wchar_t wch)
    {
-      write(&wch, sizeof(wch));
+      write_arbitrary(wch);
       return *this;
    }
 
    byte_output_stream & byte_output_stream::operator << (int32_t i)
    {
-      write(&i, sizeof(i));
+      write_arbitrary(i);
       return *this;
    }
 
    byte_output_stream & byte_output_stream::operator << (uint32_t ui)
    {
-      write(&ui, sizeof(ui));
+      write_arbitrary(ui);
       return *this;
    }
 
    byte_output_stream & byte_output_stream::operator << (int64_t i)
    {
-      write(&i, sizeof(i));
+      write_arbitrary(i);
       return *this;
    }
 
    byte_output_stream & byte_output_stream::operator << (uint64_t ui)
    {
-      write(&ui, sizeof(ui));
+      write_arbitrary(ui);
       return *this;
    }
 

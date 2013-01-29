@@ -80,6 +80,8 @@ namespace bergedge
 
       virtual bool create_bergedge(::ca::create_context * pcreatecontext);
 
+      virtual void on_app_request_bergedge_callback(::ca2::application * papp);
+
 
       // semantics defined by application
       using platform::application::request;

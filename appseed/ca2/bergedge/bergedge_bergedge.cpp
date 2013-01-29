@@ -381,21 +381,32 @@ namespace bergedge
 
                uint32_t dw = WM_APP + 2043;
 
+               pcreatecontext->m_spCommandLine->m_varQuery["bergedge_callback"] = (bergedge_interface * ) this;
+
                papp->post_thread_message(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
-               pcreatecontext->m_spCommandLine->m_eventReady.wait();
+               //pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
-
-            }
-
-            if(&App(papp) != NULL)
-            {
-             
-               m_pappCurrent = papp;
 
             }
 
          }
+
+      }
+
+
+
+
+
+   }
+
+
+   void bergedge::on_app_request_bergedge_callback(::ca2::application * papp)
+   {
+      if(&App(papp) != NULL)
+      {
+             
+         m_pappCurrent = papp;
 
       }
 
@@ -442,9 +453,6 @@ namespace bergedge
          {
          }
       }
-
-
-
 
    }
 
@@ -552,6 +560,13 @@ alt1:
                   command().add_fork_uri(strCommand);
                }
                return;
+            }
+            else if(pcreatecontext->m_spCommandLine->m_strApp.has_char() 
+               && get_document() != NULL 
+               && get_document()->get_typed_view < ::bergedge::pane_view >() != NULL)
+            {
+               get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + pcreatecontext->m_spCommandLine->m_strApp);
+               App(m_pappCurrent).request(pcreatecontext);
             }
             else
             {
