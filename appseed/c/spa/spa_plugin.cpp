@@ -588,6 +588,15 @@ install:
             }
             else if(uiMessage == WM_KEYUP)
             {
+
+
+#ifdef METROWIN
+
+               throw "todo";
+
+
+#else
+
                vsstring str;
                wchar_t wsz[32];
 
@@ -618,6 +627,9 @@ install:
                {
                   m_bPluginShiftKey = false;
                }
+
+#endif
+
             }
 
          }
