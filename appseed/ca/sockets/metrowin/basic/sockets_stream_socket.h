@@ -108,6 +108,7 @@
          virtual port_t GetLocalPort();
          virtual address GetLocalAddress();
 
+         virtual bool is_connecting();
 
       };
 

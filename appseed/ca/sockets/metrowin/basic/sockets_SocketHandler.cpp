@@ -314,6 +314,12 @@ namespace sockets
          if(psocket != NULL)
          {
             psocket->m_event.wait(seconds(tsel->tv_sec));
+            if(psocket->is_connecting())
+            {
+               psocket->m_estatus = sockets::socket::status_connection_timed_out;
+               remove(psocket);
+               break;
+            }
             psocket->run();
             stream_socket * pstreamsocket = dynamic_cast < stream_socket * > (psocket);
             if(pstreamsocket != NULL)

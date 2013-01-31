@@ -223,6 +223,9 @@ namespace sockets
 
       virtual bool close_socket();
 
+
+      virtual bool is_connecting();
+
       /** add file descriptor to sockethandler fd_set's. */
       void Set(bool bRead,bool bWrite,bool bException = true);
 

@@ -185,5 +185,12 @@ namespace sockets
 
    }
 
+
+   bool stream_socket::is_connecting()
+   {
+      return m_bConnecting;
+   }
+
+
 } // namespace sockets
 

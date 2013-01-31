@@ -968,15 +968,105 @@ namespace ca
          return matter(papp, string(psz), str, bDir);
       }
 
+#if defined(METROWIN) || defined(MACOS)
+   
+#define MATTER_CACHE_FROM_HTTP_SERVER
+
+#endif
+
       string system::matter(::ca::application * papp, const string & str, const string & str2, bool bDir)
       {
 
          ::user::str_context * pcontext = App(papp).str_context();
 
+#ifdef MATTER_CACHE_FROM_HTTP_SERVER
+
+         {
+
+            string strFile = System.dir().appdata("cache/" + str + "/" + str2 + ".map_question");
+
+            string strPath = Application.file().as_string(strFile);
+
+            if(strPath.has_char())
+            {
+               // todo: keep cache timeout information;
+               return strPath;
+            }
+
+            stringa straPath;
+
+            string strLocale  = pcontext->m_plocaleschema->m_idLocale;
+            string strSchema  = pcontext->m_plocaleschema->m_idSchema;
+            string strLs      = locale_schema_matter(papp, strLocale, strSchema);
+            straPath.add(path(strLs, str, str2));
+         
+            for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+            {
+               strLocale         = pcontext->localeschema().m_idaLocale[i];
+               strSchema         = pcontext->localeschema().m_idaSchema[i];
+               strLs             = locale_schema_matter(papp, strLocale, strSchema);
+               straPath.add(path(strLs, str, str2));
+            }
+
+            if(papp->m_psession != NULL && papp->m_psession != papp &&
+               (::ca::application *) papp->m_psystem != (::ca::application *) papp)
+            {
+
+               ::user::str_context * pcontext = App(papp->m_psession).str_context();
+
+               for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+               {
+                  strLocale         = pcontext->localeschema().m_idaLocale[i];
+                  strSchema         = pcontext->localeschema().m_idaSchema[i];
+                  strLs             = locale_schema_matter(papp, strLocale, strSchema);
+                  straPath.add(path(strLs, str, str2));
+               }
+
+            }
+
+            if(papp->m_psystem != NULL && papp->m_psystem != papp &&
+               (::ca::application *) papp->m_psystem != (::ca::application *) papp->m_psession)
+            {
+               
+               ::user::str_context * pcontext = App(papp->m_psystem).str_context();
+
+               for(int32_t i = 0; i < pcontext->localeschema().m_idaLocale.get_count(); i++)
+               {
+                  strLocale         = pcontext->localeschema().m_idaLocale[i];
+                  strSchema         = pcontext->localeschema().m_idaSchema[i];
+                  strLs             = locale_schema_matter(papp, strLocale, strSchema);
+                  straPath.add(path(strLs, str, str2));
+               }
+
+            }
+
+            strLs             = locale_schema_matter(papp, "en", "en");
+            straPath.add(path(strLs, str, str2));
+
+            if(bDir)
+            {
+               strPath = System.http().get("http://api-matter.ca2.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+            }
+            else
+            {
+               strPath = System.http().get("http://api-matter.ca2.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+            }
+
+            if(strPath.is_empty())
+               return straPath.last_element();
+
+            Application.file().put_contents(strFile, strPath);
+
+            return strPath;
+
+         }
+
+#endif
+
          string strPath;
 
          string strLocale  = pcontext->m_plocaleschema->m_idLocale;
-         string strSchema   = pcontext->m_plocaleschema->m_idSchema;
+         string strSchema  = pcontext->m_plocaleschema->m_idSchema;
          string strLs      = locale_schema_matter(papp, strLocale, strSchema);
          strPath           = path(strLs, str, str2);
          if(bDir)

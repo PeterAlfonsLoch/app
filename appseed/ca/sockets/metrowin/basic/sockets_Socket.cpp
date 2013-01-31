@@ -184,6 +184,11 @@ namespace sockets
       return true;
    }
 
+   bool socket::is_connecting()
+   {
+      return false;
+   }
+
 /*   SOCKET socket::CreateSocket(int af,int iType, const string & strProtocol)
    {
       struct protoent *p = NULL;

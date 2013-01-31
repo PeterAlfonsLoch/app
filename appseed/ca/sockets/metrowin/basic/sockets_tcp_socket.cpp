@@ -166,21 +166,20 @@ namespace sockets
    bool tcp_socket::open(const sockets::address & ad, bool skip_socks)
    {
 
+      m_bConnecting = true;
+
       m_streamsocket = ref new ::Windows::Networking::Sockets::StreamSocket;
       
       attach(m_streamsocket);
 
       m_event.ResetEvent();
 
-      ::Windows::Foundation::IAsyncAction ^ action = m_streamsocket->ConnectAsync(ad.m_hostname, gen::str::from(ad.get_service_number()));
+      Platform::String ^ strService = gen::str::from(ad.get_service_number());
 
-
-      action->Completed = 
+      m_streamsocket->ConnectAsync(ad.m_hostname, strService)->Completed = 
          ref new ::Windows::Foundation::AsyncActionCompletedHandler
-         ([=](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
+         ([this](::Windows::Foundation::IAsyncAction ^ action, ::Windows::Foundation::AsyncStatus status)
       {
-
-         
 
          if(status == ::Windows::Foundation::AsyncStatus::Completed)
          {
@@ -196,6 +195,8 @@ namespace sockets
             SetCloseAndDelete();
 
          }
+
+         m_bConnecting = false;
 
          m_event.SetEvent();
 
@@ -1756,6 +1757,7 @@ namespace sockets
 
    }
    */
+
 
 } // namespace sockets
 
