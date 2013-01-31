@@ -1,6 +1,13 @@
 #pragma once
 
 
+#if defined(METROWIN) || defined(MACOS)
+   
+#define MATTER_CACHE_FROM_HTTP_SERVER
+
+#endif
+
+
 namespace zip
 {
 
@@ -74,7 +81,6 @@ namespace ca
          zip::Util *       m_pziputil;
          is_dir_map        m_isdirmap;
          mutex             m_mutex;
-         string_to_string_map m_strmapMatter;
 
 
          system(::ca::application * papp);
