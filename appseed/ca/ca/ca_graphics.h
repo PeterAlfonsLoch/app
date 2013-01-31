@@ -125,6 +125,7 @@ namespace ca
 
       virtual bool DeleteDC();
 
+
    // Device-Context Functions
       virtual int32_t SaveDC();
       virtual bool RestoreDC(int32_t nSavedDC);
