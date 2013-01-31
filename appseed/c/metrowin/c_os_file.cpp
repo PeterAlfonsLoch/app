@@ -320,8 +320,11 @@ bool file_exists_dup(const char * path1)
 bool file_put_contents_dup(const char * path, const char * contents, ::count len)
 {
 
+   dir::mk(dir::name(path));
 
    wstring wstr(path);
+
+   
 
    HANDLE hfile = ::create_file(path, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    if(hfile == INVALID_HANDLE_VALUE)

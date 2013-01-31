@@ -1,6 +1,16 @@
 #include "framework.h"
 
 
+#ifdef WINDOWS
+
+#define DIR_SEPARATOR "\\"
+
+#else
+
+#define DIR_SEPARATOR "/"
+
+#endif
+
 namespace ca
 {
 
@@ -866,6 +876,15 @@ namespace ca
 
             strFile = System.dir().appdata(path("cache", papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema), stra.implode(",") + ".map_question"));
 
+            strsize iFind = strFile.find(DIR_SEPARATOR);
+
+            if(iFind > 0)
+            {
+               
+               strFile.replace(":", "_", iFind + 1);
+
+            }
+
             strPath = Application.file().as_string(strFile);
 
             if(strPath.has_char())
@@ -1081,6 +1100,15 @@ ret:
             strLs      = locale_schema_matter(papp, strLocale, strSchema);
 
             strFile = System.dir().appdata(path("cache", papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema), str + gen::str::has_char(str2, ",") + ".map_question"));
+
+            strsize iFind = strFile.find(DIR_SEPARATOR);
+
+            if(iFind > 0)
+            {
+               
+               strFile.replace(":", "_", iFind + 1);
+
+            }
 
             strPath = Application.file().as_string(strFile);
 
