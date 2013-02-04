@@ -246,8 +246,14 @@ namespace gen
 
       string get_string() const
       {
-         return get_value().get_string();
+         return m_var.get_string();
       }
+
+      string to_string() const
+      {
+         return get_string();
+      }
+
 
       void set_string(const char * psz)
       {
@@ -685,13 +691,5 @@ namespace gen
 
 
 
-inline string & string::operator = (const gen::property & prop)
-{
-
-   simple_string::operator=(prop.get_string());
-
-   return *this;
-
-}
 
 

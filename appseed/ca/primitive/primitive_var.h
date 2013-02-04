@@ -172,6 +172,7 @@ public:
    string                           to_r_string() const;
    string                           get_string(const char * pszOnNull = NULL) const;
    string &                         get_ref_string(const char * pszOnNull = NULL);
+   string                           to_string() const;
    id                               get_id(const char * pszOnNull = NULL)   const;
    id &                             get_ref_id(const char * pszOnNull = NULL);
    class primitive::memory &        memory();
@@ -660,6 +661,10 @@ inline var & var::operator = (LPDWORD pui)
 #endif
 
 
+string var::to_string() const
+{
+   return get_string();
+}
 
 
 

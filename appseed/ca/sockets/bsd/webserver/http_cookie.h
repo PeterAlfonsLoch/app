@@ -53,6 +53,10 @@ namespace http
          return m_varValue;
       }
 
+      inline string to_string() const
+      {
+         return m_varValue.to_string();
+      }
 
    };
 

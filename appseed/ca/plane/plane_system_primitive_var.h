@@ -115,13 +115,6 @@ inline bool var::is_array() const
 
 
 
-inline string& string::operator=(const var & var)
-{
-   *this = var.get_string();
-   return *this;
-}
-
-
 inline bool CLASS_DECL_ca operator == (const string & str, const var & var)
 {
    return str == var.get_string();

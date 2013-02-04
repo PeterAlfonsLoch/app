@@ -120,6 +120,8 @@ public:
 
    inline operator const char *() const;
    inline operator string () const;
+   inline string to_string() const;
+
 
 
    inline bool is_null() const;

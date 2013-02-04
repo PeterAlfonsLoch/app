@@ -220,6 +220,10 @@ class CLASS_DECL_ca string :
 {
 public:
 
+   
+   template < typename T >
+   friend string to_string(T o);
+
    operator class string_composite ();
    operator class string_composite const () const;
    operator const char *() const throw();
@@ -239,9 +243,14 @@ public:
    string(const istring & istr);
    string(const string_interface & str);
 
-   explicit string(const id & id);
-   explicit string(const var & var);
-   explicit string(const gen::property & prop);
+
+   template < typename T >
+   inline explicit string(T o) :
+      simple_string(string_trait::GetDefaultManager())
+   {
+      *this = to_string(o);
+   }
+
 
 #ifdef METROWIN
    string(Platform::Object ^ o);
@@ -266,12 +275,9 @@ public:
 
 
 
-   // Assignment operators
+
    string& operator=(const string_interface & str );
    string& operator=(string strSrc );
-   string& operator=(const id & id);
-   string& operator=(const var & var);
-   string& operator=(const gen::property & var);
    string& operator=(const simple_string & strSrc);
    string& operator=(const vsstring & strSrc);
    string& operator=(const char * pszSrc);
@@ -282,6 +288,14 @@ public:
    string& operator=(const Platform::String ^ & str);
 #endif
    string& operator=(wchar_t ch );
+   
+   // Assignment operators
+   template < typename T >
+   inline string & operator =(T o)
+   {
+      return operator =(to_string(o));
+   }
+
    string& operator+=(const simple_string& str );
    string& operator+=(const char * pszSrc );
    template< strsize t_nSize >
@@ -997,6 +1011,11 @@ inline char string::last_char() const
 
 
 
+
+
+
+
+
 inline id::operator const char *() const
 {
    return m_pstr == NULL ? NULL : (const char *) *m_pstr;
@@ -1006,6 +1025,22 @@ inline id::operator string () const
 {
    return m_pstr == NULL ? "" : *m_pstr;
 }
+
+inline string id::to_string() const
+{
+   if(m_pstr == NULL)
+      throw "id string is null! Cannot convert to_string()";
+   return *m_pstr;
+}
+
+
+
+
+
+
+
+
+
 
 
 inline bool id::is_empty() const
@@ -1524,3 +1559,30 @@ inline bool CLASS_DECL_ca operator<=(char ch,const string & str)                
 inline bool CLASS_DECL_ca operator<=(wchar_t ch,const string & str)                        { return !::operator>(ch, str); }
 inline bool CLASS_DECL_ca operator<=(int32_t i, const string & str)                      { return !::operator>(i, str); }
 
+
+
+template < typename T >
+string to_string(T o)
+{
+
+   return o.to_string();
+
+}
+
+
+template < >
+string to_string(const char * psz)
+{
+
+   return string(psz);
+
+}
+
+
+template < >
+string to_string(char * psz)
+{
+
+   return string((const char *) psz);
+
+}
