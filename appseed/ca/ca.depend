@@ -1572,7 +1572,7 @@
 
 1359329710 /ca2/app/appseed/ca/primitive/primitive_fixed_string.h
 
-1360009760 /ca2/app/appseed/ca/primitive/primitive_string.h
+1360010225 /ca2/app/appseed/ca/primitive/primitive_string.h
 	<strings.h>
 	"ca/x/x_charcategory.h"
 	"ca/gen/gen_bit.h"
@@ -1777,7 +1777,7 @@
 
 1354886568 /ca2/app/appseed/ca/gen/gen_var_array.h
 
-1360009791 /ca2/app/appseed/ca/gen/gen_property.h
+1360010225 /ca2/app/appseed/ca/gen/gen_property.h
 
 1357180646 /ca2/app/appseed/ca/gen/gen_signal.h
 
@@ -4089,5 +4089,1140 @@
 	"framework.h"
 
 1359329710 source:/ca2/app/appseed/ca/ca4/ca4_port_forward.cpp
+	"framework.h"
+
+1357856324 source:/ca2/app/appseed/ca/ca4/ca4_http_system.cpp
+	"framework.h"
+
+1359329710 source:/ca2/app/appseed/ca/ca4/ca4_twit.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/calculator/calculator_application.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/calculator/calculator_class.cpp
+	"framework.h"
+
+1357180660 source:/ca2/app/appseed/ca/calculator/datetime_element.cpp
+	"framework.h"
+
+1357180660 source:/ca2/app/appseed/ca/calculator/datetime_parser.cpp
+	"framework.h"
+
+1357180660 source:/ca2/app/appseed/ca/calculator/datetime_scanner.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/calculator/datetime_token.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/calculator/numeric_element.cpp
+	"framework.h"
+
+1357180660 source:/ca2/app/appseed/ca/calculator/numeric_parser.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/calculator/numeric_scanner.cpp
+	"framework.h"
+
+1359329715 source:/ca2/app/appseed/ca/calculator/numeric_value.cpp
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_2d_array.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_array.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/collection/collection_array_app_copy.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/collection/collection_array_ptr.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_array_ptr_alloc.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/collection/collection_array_ptr_copy.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_bit_array.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/collection/collection_class_sort_array.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_comparable_array.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/collection/collection_key_sort_array.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/collection/collection_map_misc.cpp
+	"framework.h"
+
+1357856382 source:/ca2/app/appseed/ca/collection/collection_numeric_array.cpp
+	"framework.h"
+
+1359329717 source:/ca2/app/appseed/ca/collection/collection_object_list.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_point_array.cpp
+	"framework.h"
+
+1359329717 source:/ca2/app/appseed/ca/collection/collection_pointer_list.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_rect_array.cpp
+	"framework.h"
+
+1357856382 source:/ca2/app/appseed/ca/collection/collection_sort.cpp
+	"framework.h"
+
+1357856382 source:/ca2/app/appseed/ca/collection/collection_string_array.cpp
+	"framework.h"
+
+1359329717 source:/ca2/app/appseed/ca/collection/collection_string_list.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_string_sort_array.cpp
+	"framework.h"
+
+1359329717 source:/ca2/app/appseed/ca/collection/collection_string_to_string_map.cpp
+	"framework.h"
+
+1357856382 source:/ca2/app/appseed/ca/collection/collection_stringa.cpp
+	"framework.h"
+
+1357180686 source:/ca2/app/appseed/ca/collection/collection_stringl.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_application.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_base_editor.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_default_error_handler.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_error_handler_writer.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_exception.cpp
+	"framework.h"
+
+1357856380 source:/ca2/app/appseed/ca/colorertake5/colorertake5_hrc_parser_helpers.cpp
+	"framework.h"
+
+1357856380 source:/ca2/app/appseed/ca/colorertake5/colorertake5_hrc_parser_impl.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_line_regions_compact_support.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_line_regions_support.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_line_source.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_logging.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_outliner.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_parsed_line_writer.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_parser_factory.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_region_handler.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_region_mapper_impl.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_styled_hrd_mapper.cpp
+	"framework.h"
+
+1357856380 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_hrd_mapper.cpp
+	"framework.h"
+
+1357180663 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_lines.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_parser_helpers.cpp
+	"framework.h"
+
+1357856379 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_parser_impl.cpp
+	"framework.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zDecode.cpp
+	"framework.h"
+	"../../Common/LockedStream.h"
+	"../../Common/ProgressUtils.h"
+	"../../Common/StreamObjects.h"
+	"7zDecode.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zEncode.cpp
+	"framework.h"
+	"../../Common/FilterCoder.h"
+	"../../Common/LimitedStreams.h"
+	"../../Common/InOutTempBuffer.h"
+	"../../Common/ProgressUtils.h"
+	"../../Common/StreamObjects.h"
+	"7zEncode.h"
+	"7zSpecStream.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zExtract.cpp
+	"framework.h"
+	"../../Common/ProgressUtils.h"
+	"7zDecode.h"
+	"7zFolderOutStream.h"
+	"7zHandler.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zFolderInStream.cpp
+	"framework.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zFolderOutStream.cpp
+	"framework.h"
+
+1357856319 source:/ca2/app/appseed/ca/compress/7z/7zHandler.cpp
+	"framework.h"
+	"../../../Common/ComTry.h"
+	"../../../Common/IntToString.h"
+	"../../../Windows/System.h"
+	"../Common/ItemNameUtils.h"
+	"7zHandler.h"
+	"7zProperties.h"
+	"../Common/ParseProperties.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zHandlerOut.cpp
+	"framework.h"
+	"../../../Common/ComTry.h"
+	"../../../Common/StringToInt.h"
+	"../../ICoder.h"
+	"../Common/ItemNameUtils.h"
+	"../Common/ParseProperties.h"
+	"7zHandler.h"
+	"7zOut.h"
+	"7zUpdate.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/7z/7zHeader.cpp
+	"framework.h"
+	"7zHeader.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zIn.cpp
+	"framework.h"
+	"../../../../C/CpuArch.h"
+	"../../Common/StreamObjects.h"
+	"../../Common/StreamUtils.h"
+	"7zDecode.h"
+	"7zIn.h"
+
+1357856319 source:/ca2/app/appseed/ca/compress/7z/7zOut.cpp
+	"framework.h"
+	"../../../Common/AutoPtr.h"
+	"../../Common/StreamObjects.h"
+	"7zOut.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zProperties.cpp
+	"framework.h"
+	"7zProperties.h"
+	"7zHeader.h"
+	"7zHandler.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/7z/7zRegister.cpp
+	"framework.h"
+	"7zHandler.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/7z/7zSpecStream.cpp
+	"framework.h"
+
+1357856319 source:/ca2/app/appseed/ca/compress/7z/7zUpdate.cpp
+	"framework.h"
+	"../../Common/LimitedStreams.h"
+	"../../Common/ProgressUtils.h"
+	"../../Common/CreateCoder.h"
+	"../../Compress/CopyCoder.h"
+	"../Common/ItemNameUtils.h"
+	"../Common/OutStreamWithCRC.h"
+	"7zDecode.h"
+	"7zEncode.h"
+	"7zFolderInStream.h"
+	"7zHandler.h"
+	"7zOut.h"
+	"7zUpdate.h"
+
+1359329716 source:/ca2/app/appseed/ca/compress/compress_7z_crc_opt.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/compress_archive.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/compress_archive_item_name.cpp
+	"framework.h"
+	"ItemNameUtils.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_bzip_helper.cpp
+	"framework.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_coder_mixer.cpp
+	"framework.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_coder_mixer2.cpp
+	"framework.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_coder_mixer2mt.cpp
+	"framework.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_copy_coder.cpp
+	"framework.h"
+	"../Common/StreamUtils.h"
+	"CopyCoder.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_create_coder.cpp
+	"framework.h"
+	"../../Windows/PropVariant.h"
+	"CreateCoder.h"
+	"FilterCoder.h"
+	"RegisterCodec.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_filter_coder.cpp
+	"framework.h"
+	"../../Common/Defs.h"
+	"FilterCoder.h"
+	"StreamUtils.h"
+
+1359329716 source:/ca2/app/appseed/ca/compress/compress_gzip_helper.cpp
+	"framework.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_int_to_string.cpp
+	"framework.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_local_progress.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/compress_lz_out_window.cpp
+	"framework.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_method_id.cpp
+	"framework.h"
+	"../../Common/MyString.h"
+
+1357342863 source:/ca2/app/appseed/ca/compress/compress_method_properties.cpp
+	"framework.h"
+
+1359329716 source:/ca2/app/appseed/ca/compress/compress_out_handler.cpp
+	"framework.h"
+	"../../../Windows/PropVariant.h"
+	"../../../Windows/System.h"
+	"../../ICoder.h"
+	"../Common/ParseProperties.h"
+	"HandlerOut.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/compress_parse_properties.cpp
+	"framework.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_ppmd7.cpp
+	"framework.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_ppmd7_dec.cpp
+	"framework.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_ppmd7_enc.cpp
+	"framework.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_ppmd8.cpp
+	"framework.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/compress_prop_id.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/compress_reader_with_crc.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/compress_writer_with_crc.cpp
+	"framework.h"
+
+1357856319 source:/ca2/app/appseed/ca/compress/crypto/crypto_7z_crc.cpp
+	"framework.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/crypto/crypto_rar20.cpp
+	"framework.h"
+	"../../../C/CpuArch.h"
+	"../../../C/RotateDefs.h"
+	"Rar20Crypto.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/rar/rar1_decoder.cpp
+	"framework.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/rar/rar2_decoder.cpp
+	"framework.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/rar/rar3_decoder.cpp
+	"framework.h"
+	"../Common/StreamUtils.h"
+	"Rar3Decoder.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/rar/rar3_vm.cpp
+	"framework.h"
+	"../../../C/Alloc.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/rar/rar_aes.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/rar/rar_codecs_register.cpp
+	"framework.h"
+	"Rar2Decoder.h"
+	"Rar3Decoder.h"
+
+1357856320 source:/ca2/app/appseed/ca/compress/rar/rar_handler.cpp
+	"framework.h"
+	"Common/IntToString.h"
+	"Common/StringConvert.h"
+	"Windows/PropVariant.h"
+	"Windows/PropVariantUtils.h"
+	"Windows/Time.h"
+	"../../IPassword.h"
+	"../../Common/CreateCoder.h"
+	"../../Common/FilterCoder.h"
+	"../../Common/MethodId.h"
+	"../../Common/ProgressUtils.h"
+	"../../Compress/CopyCoder.h"
+	"../../Crypto/Rar20Crypto.h"
+	"../../Crypto/RarAes.h"
+	"../Common/ItemNameUtils.h"
+	"../Common/OutStreamWithCRC.h"
+	"RarHandler.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/rar/rar_header.cpp
+	"framework.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/rar/rar_input_file.cpp
+	"framework.h"
+	"../../../../C/CpuArch.h"
+	"Common/StringConvert.h"
+	"Common/UTFConvert.h"
+	"../../Common/LimitedStreams.h"
+	"../../Common/StreamUtils.h"
+	"../Common/FindSignature.h"
+	"RarIn.h"
+
+1357342862 source:/ca2/app/appseed/ca/compress/rar/rar_item.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/rar/rar_volume_input_stream.cpp
+	"framework.h"
+	"RarVolumeInStream.h"
+
+1354886570 source:/ca2/app/appseed/ca/compress/zip/zip_api.cpp
+	"framework.h"
+
+1357856318 source:/ca2/app/appseed/ca/compress/zip/zip_file.cpp
+	"framework.h"
+
+1357856318 source:/ca2/app/appseed/ca/compress/zip/zip_in_file.cpp
+	"framework.h"
+	"InFile.h"
+
+1357856318 source:/ca2/app/appseed/ca/compress/zip/zip_ioapi.cpp
+	"framework.h"
+	"c/c/c.h"
+	"ca/zlib/zlib.h"
+	"ioapi.h"
+
+1357856318 source:/ca2/app/appseed/ca/compress/zip/zip_memory_file.cpp
+	"framework.h"
+
+1359329716 source:/ca2/app/appseed/ca/compress/zip/zip_unzip.cpp
+	"framework.h"
+	"unzip.h"
+	"crypt.h"
+
+1357856318 /ca2/app/appseed/ca/compress/zip/crypt.h
+
+1357180676 source:/ca2/app/appseed/ca/compress/zip/zip_util.cpp
+	"framework.h"
+	"InFile.h"
+
+1359329716 source:/ca2/app/appseed/ca/compress/zip/zip_zip.cpp
+	"framework.h"
+	"zipImpl.h"
+	"crypt.h"
+
+1357856329 source:/ca2/app/appseed/ca/crypto/crypto_ae_xfm.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_cipher_aes.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_cipher_aes_cbc.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_cipher_aes_icm.cpp
+	"framework.h"
+
+1357856330 source:/ca2/app/appseed/ca/crypto/crypto_cipher_cipher.cpp
+	"framework.h"
+
+1357856329 source:/ca2/app/appseed/ca/crypto/crypto_cipher_null_cipher.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_gf2_8.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_hash_auth.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_hash_hmac.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_hash_null_auth.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_hash_sha1.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_hmac_sha1.cpp
+	"framework.h"
+
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_kernel_alloc.cpp
+	"framework.h"
+	<linux/interrupt.h>
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_kernel_crypto_kernel.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_kernel_err.cpp
+	"framework.h"
+	<syslog.h>
+
+1354886571 source:/ca2/app/appseed/ca/crypto/crypto_kernel_key.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_math.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_math_stat.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_md5.cpp
+	"framework.h"
+
+1357342864 source:/ca2/app/appseed/ca/crypto/crypto_my_aes.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_replay_rdb.cpp
+	"framework.h"
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_replay_rdbx.cpp
+	"framework.h"
+
+1357180720 source:/ca2/app/appseed/ca/crypto/crypto_replay_ut_sim.cpp
+	"framework.h"
+
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_rng_ctr_prng.cpp
+	"framework.h"
+
+1354997259 source:/ca2/app/appseed/ca/crypto/crypto_rng_prng.cpp
+	"framework.h"
+
+1357381074 source:/ca2/app/appseed/ca/crypto/crypto_rng_rand_source.cpp
+	"framework.h"
+	<fcntl.h>
+
+1357856331 source:/ca2/app/appseed/ca/crypto/crypto_sha1.cpp
+	"framework.h"
+
+1357180706 source:/ca2/app/appseed/ca/database/database_application.cpp
+	"framework.h"
+
+1357180706 source:/ca2/app/appseed/ca/database/database_base.cpp
+	"framework.h"
+
+1357882538 source:/ca2/app/appseed/ca/database/database_client.cpp
+	"framework.h"
+
+1357180706 source:/ca2/app/appseed/ca/database/database_definition.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/database/database_event_change.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/database/database_field_definition.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/database/database_id.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/database/database_key.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/database/database_selection.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/database/database_selection_item.cpp
+	"framework.h"
+
+1357180706 source:/ca2/app/appseed/ca/database/database_server.cpp
+	"framework.h"
+
+1357180706 source:/ca2/app/appseed/ca/database/database_set.cpp
+	"framework.h"
+
+1357856386 source:/ca2/app/appseed/ca/database/database_stringhelper.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/database/database_update_hint.cpp
+	"framework.h"
+
+1360008049 source:/ca2/app/appseed/ca/database/database_user_interaction.cpp
+	"framework.h"
+
+1357180722 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_exit_exception.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_httpd_socket.cpp
+	"framework.h"
+
+1357856391 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_library_class.cpp
+	"framework.h"
+
+1357856391 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script.cpp
+	"framework.h"
+	<dlfcn.h>
+
+1354886571 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_cache.cpp
+	"framework.h"
+
+1357856391 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
+	"framework.h"
+	<ctype.h>
+
+1354886571 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_instance.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_interface.cpp
+	"framework.h"
+
+1357856391 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
+	"framework.h"
+	<openssl/ssl.h>
+
+1357180689 source:/ca2/app/appseed/ca/ex1/ex1.cpp
+	"framework.h"
+	<cderr.h>
+	<winspool.h>
+
+1359329707 source:/ca2/app/appseed/ca/ex1/ex1_application.cpp
+	"framework.h"
+	<dlfcn.h>
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_buffered_file.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_byte_serializable.cpp
+	"framework.h"
+
+1360008048 source:/ca2/app/appseed/ca/ex1/ex1_byte_stream.cpp
+	"framework.h"
+	"FindSignature.h"
+	"../../Common/StreamUtils.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_circular_buffer.cpp
+	"framework.h"
+
+1357342864 source:/ca2/app/appseed/ca/ex1/ex1_clustered_input_stream.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_dynamic_buffered_writer.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_edit_file.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_exception.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_file.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_file_composite.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_file_exception.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_file_stream.cpp
+	"framework.h"
+
+1357180689 source:/ca2/app/appseed/ca/ex1/ex1_file_system.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_fs_interface.cpp
+	"framework.h"
+
+1357342864 source:/ca2/app/appseed/ca/ex1/ex1_in_buffer.cpp
+	"framework.h"
+	"InBuffer.h"
+
+1359329707 source:/ca2/app/appseed/ca/ex1/ex1_io_temp_buffer.cpp
+	"framework.h"
+	"InOutTempBuffer.h"
+	"StreamUtils.h"
+
+1357342864 source:/ca2/app/appseed/ca/ex1/ex1_limited_input_stream.cpp
+	"framework.h"
+
+1357342864 source:/ca2/app/appseed/ca/ex1/ex1_limited_reader.cpp
+	"framework.h"
+	"../../Common/Defs.h"
+
+1357342864 source:/ca2/app/appseed/ca/ex1/ex1_limited_writer.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_locked_in_stream.cpp
+	"framework.h"
+
+1357180689 source:/ca2/app/appseed/ca/ex1/ex1_match.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_out_buffer.cpp
+	"framework.h"
+	"OutBuffer.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_output_string_stream.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_plain_text_serializable.cpp
+	"framework.h"
+
+1357882727 source:/ca2/app/appseed/ca/ex1/ex1_plain_text_stream.cpp
+	"framework.h"
+
+1359329707 source:/ca2/app/appseed/ca/ex1/ex1_reader.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_request_interface.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_resource.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_seekable.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_simple_tree_data.cpp
+	"framework.h"
+
+1357180689 source:/ca2/app/appseed/ca/ex1/ex1_simple_tree_item_data.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_size_count_writer.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_str_stream.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_stream.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_stream2.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_stream_binder.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_text_file.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_timeout_file.cpp
+	"framework.h"
+
+1357180689 source:/ca2/app/appseed/ca/ex1/ex1_tree.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_tree_data.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_tree_item.cpp
+	"framework.h"
+
+1354886570 source:/ca2/app/appseed/ca/ex1/ex1_tree_item_data.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/ex1/ex1_writer.cpp
+	"framework.h"
+
+1359329717 source:/ca2/app/appseed/ca/ex2/ex2_application.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/ex2/ex2_file_set.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/ex2/ex2_folder_watch.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/ex2/ex2_transfer_file.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_VMSException.cpp
+	"framework.h"
+
+1357180691 source:/ca2/app/appseed/ca/exception/exception_archive.cpp
+	"framework.h"
+
+1357180691 source:/ca2/app/appseed/ca/exception/exception_archive_exception.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/exception/exception_base.cpp
+	"framework.h"
+
+1357180691 source:/ca2/app/appseed/ca/exception/exception_call_stack.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/exception/exception_debug.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_dump.cpp
+	"framework.h"
+
+1357882755 source:/ca2/app/appseed/ca/exception/exception_dump_context.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/exception/exception_dump_floating_point.cpp
+	"framework.h"
+	<float.h>
+
+1357380856 source:/ca2/app/appseed/ca/exception/exception_dump_output.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/exception/exception_engine.cpp
+	"framework.h"
+	<execinfo.h>
+	<cxxabi.h>
+	<execinfo.h>
+	<tlhelp32.h>
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_error.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_exit.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_hresult.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_installing.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_interface_only.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_invalid_argument.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_invalid_character.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_invalid_handle.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_invalid_index.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_last_error.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_memory.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_not_implemented.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_not_installed.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_not_licensed.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_not_supported.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_operation_canceled.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_os.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_overflow_error.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_range_error.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_resource.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_runtime_error.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_simple.cpp
+	"framework.h"
+
+1357856321 source:/ca2/app/appseed/ca/exception/exception_standard_translator.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_temporary.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_todo.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_user.cpp
+	"framework.h"
+
+1354886571 source:/ca2/app/appseed/ca/exception/exception_void_implementation.cpp
+	"framework.h"
+
+1357180667 source:/ca2/app/appseed/ca/filehandler/filehandler_handler.cpp
+	"framework.h"
+
+1354886569 source:/ca2/app/appseed/ca/filehandler/filehandler_library.cpp
+	"framework.h"
+
+1354886569 source:/ca2/app/appseed/ca/filehandler/filehandler_menu_library.cpp
+	"framework.h"
+
+1354886569 source:/ca2/app/appseed/ca/filehandler/filehandler_tree_data.cpp
+	"framework.h"
+
+1354886569 source:/ca2/app/appseed/ca/filehandler/filehandler_tree_interface.cpp
+	"framework.h"
+
+1354886569 source:/ca2/app/appseed/ca/filehandler/filehandler_tree_item.cpp
+	"framework.h"
+
+1357180729 source:/ca2/app/appseed/ca/fontopus/fontopus_application.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_contact_list.cpp
+	"framework.h"
+
+1354958620 source:/ca2/app/appseed/ca/fontopus/fontopus_license.cpp
+	"framework.h"
+
+1357180729 source:/ca2/app/appseed/ca/fontopus/fontopus_user.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_user_set.cpp
+	"framework.h"
+
+1354886573 source:/ca2/app/appseed/ca/fontopus/fontopus_usera.cpp
+	"framework.h"
+
+1357856391 source:/ca2/app/appseed/ca/fontopus/fontopus_validate.cpp
+	"framework.h"
+	<openssl/rsa.h>
+	<openssl/engine.h>
+	<openssl/err.h>
+
+1354886567 source:/ca2/app/appseed/ca/fs/fs_application.cpp
+	"framework.h"
+
+1357180642 source:/ca2/app/appseed/ca/fs/fs_data.cpp
+	"framework.h"
+
+1357856378 source:/ca2/app/appseed/ca/fs/fs_ifs.cpp
+	"framework.h"
+
+1357856378 source:/ca2/app/appseed/ca/fs/fs_ifs_file.cpp
+	"framework.h"
+
+1354886567 source:/ca2/app/appseed/ca/fs/fs_item.cpp
+	"framework.h"
+
+1354886567 source:/ca2/app/appseed/ca/fs/fs_item_array.cpp
+	"framework.h"
+
+1357180642 source:/ca2/app/appseed/ca/fs/fs_native_fs.cpp
+	"framework.h"
+
+1357856378 source:/ca2/app/appseed/ca/fs/fs_remote_native_file.cpp
+	"framework.h"
+
+1357856378 source:/ca2/app/appseed/ca/fs/fs_remote_native_fs.cpp
+	"framework.h"
+
+1357180642 source:/ca2/app/appseed/ca/fs/fs_set.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/base.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/base_enum.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_Debug.cpp
+	<mmsystem.h>
+	"framework.h"
+	"gen_debug.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_Timer.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_TimerCallback.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_TimerListener.cpp
+	"framework.h"
+
+1354977272 source:/ca2/app/appseed/ca/gen/gen_TimerWnd.cpp
+	"framework.h"
+
+1359329703 source:/ca2/app/appseed/ca/gen/gen_application.cpp
+	"framework.h"
+	<dlfcn.h>
+	<link.h>
+	<ctype.h>
+	<dlfcn.h>
+	<mach-o/dyld.h>
+
+1357180646 source:/ca2/app/appseed/ca/gen/gen_base.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_base64.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_bit.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_byte_stream_memory_file.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_ch.cpp
+	"framework.h"
+	"ca/x/x_charcategory_names.h"
+
+1354886571 /ca2/app/appseed/ca/x/x_charcategory_names.h
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_ch_class.cpp
+	"framework.h"
+	"x/x_charcategory2.h"
+	"x/x_charcategory_names.h"
+
+1357180723 /ca2/app/appseed/ca/x/x_charcategory2.h
+
+1357381756 source:/ca2/app/appseed/ca/gen/gen_checked.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_command.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_command_line.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_command_thread.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_cregexp.cpp
+	"framework.h"
+
+1357180646 source:/ca2/app/appseed/ca/gen/gen_cregexp_util.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_file_sssociation.cpp
+	"framework.h"
+
+1357180647 source:/ca2/app/appseed/ca/gen/gen_geometry.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_go_thread.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_hash.cpp
+	"framework.h"
+
+1357342861 source:/ca2/app/appseed/ca/gen/gen_hex.cpp
+	"framework.h"
+
+1357180647 source:/ca2/app/appseed/ca/gen/gen_international.cpp
+	"framework.h"
+	<winnls.h>
+
+1357180647 source:/ca2/app/appseed/ca/gen/gen_international_locale_schema.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_istring.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_keeper.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_logic.cpp
+	"framework.h"
+
+1359329703 source:/ca2/app/appseed/ca/gen/gen_math.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_math_rng.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_memory.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_message.cpp
+	"framework.h"
+	<X11/Xlib.h>
+	<X11/Xutil.h>
+
+1357345062 source:/ca2/app/appseed/ca/gen/gen_microtimer.cpp
+	"framework.h"
+
+1357856356 source:/ca2/app/appseed/ca/gen/gen_parse.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_pointer_holder.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_pointer_interface.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_pointer_keeper.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_pointer_listener.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_pointer_manager.cpp
+	"framework.h"
+
+1357886324 source:/ca2/app/appseed/ca/gen/gen_process.cpp
+	"framework.h"
+	<sys/wait.h>
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_request_signal.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_savings.cpp
+	"framework.h"
+
+1357180645 source:/ca2/app/appseed/ca/gen/gen_signal.cpp
+	"framework.h"
+	"signal.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_signal_thread.cpp
+	"framework.h"
+
+1354886568 source:/ca2/app/appseed/ca/gen/gen_simple_thread.cpp
+	"framework.h"
+
+1359329703 source:/ca2/app/appseed/ca/gen/gen_str.cpp
+	"framework.h"
+	<ctype.h>
+
+1357180647 source:/ca2/app/appseed/ca/gen/gen_string_tokenizer.cpp
 	"framework.h"
 

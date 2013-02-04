@@ -108,8 +108,7 @@ namespace gen
 
    class CLASS_DECL_ca property :
       public ::radix::object,
-      public ex1::byte_serializable,
-      public string_interface
+      public ex1::byte_serializable
    {
    protected:
 

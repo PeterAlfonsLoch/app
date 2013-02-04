@@ -235,14 +235,15 @@ public:
    string(uchar * pszSrc);
    string(wchar_t * pszSrc);
    string(const wchar_t * pszSrc);
-
-   explicit string(const string_interface & str);
-   string(const id & id);
-   string(const var & var);
-   explicit string(const gen::property & prop);
    string(const string & strSrc);
-   string(const vsstring & str);
-   string(const istring & istr);
+
+   string(const string_interface & str);
+
+   explicit string(const id & id);
+   explicit string(const var & var);
+   explicit string(const gen::property & prop);
+   explicit string(const vsstring & str);
+   explicit string(const istring & istr);
 
 #ifdef METROWIN
    string(Platform::Object ^ o);
