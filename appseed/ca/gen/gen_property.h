@@ -357,10 +357,10 @@ namespace gen
 
       operator string & ()
       {
-         
+
          if(get_value().get_type() == var::type_pstring)
          {
-         
+
             return *m_var.m_pstr;
 
          }
@@ -396,11 +396,6 @@ namespace gen
          get_value().m_id = get_value().get_id();
          return get_value().m_id;
       }*/
-
-      operator string()
-      {
-         return get_value().get_string();
-      }
 
       operator double()
       {

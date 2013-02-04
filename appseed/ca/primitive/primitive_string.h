@@ -229,19 +229,21 @@ public:
    explicit string( string_manager * pstringmanager ) throw();
    static void __cdecl Construct( string* pstring );
 
-   string(const id & id);
-   string(const var & var);
-   string(const gen::property & prop);
-   string(const string & strSrc);
    string(const char * pszSrc);
    string(const uchar * pszSrc);
    //   string(char * pszSrc);
    string(uchar * pszSrc);
    string(wchar_t * pszSrc);
    string(const wchar_t * pszSrc);
-   string(const string_interface & str);
+
+   explicit string(const string_interface & str);
+   string(const id & id);
+   string(const var & var);
+   explicit string(const gen::property & prop);
+   string(const string & strSrc);
    string(const vsstring & str);
    string(const istring & istr);
+
 #ifdef METROWIN
    string(Platform::Object ^ o);
 #endif
