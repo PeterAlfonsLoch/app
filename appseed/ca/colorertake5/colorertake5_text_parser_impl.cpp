@@ -131,7 +131,7 @@ namespace colorertake5
          if (parent != cache)
          {
             vtlist->restore(parent->vcache);
-            parent->clender->end->setBackTrace(*parent->backLine, &parent->matchstart);
+            parent->clender->end->setBackTrace(parent->backLine, &parent->matchstart);
             colorize(parent->clender->end, parent->clender->lowContentPriority);
             vtlist->clear();
          }

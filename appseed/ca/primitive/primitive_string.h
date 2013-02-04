@@ -251,7 +251,7 @@ public:
 
 
    template < typename T >
-   inline string(const T & o) :
+   inline explicit string(const T & o) :
       simple_string(string_trait::GetDefaultManager())
    {
 
