@@ -220,9 +220,15 @@ class CLASS_DECL_ca string :
 {
 public:
 
-   
+
    template < typename T >
-   friend string to_string(T & o);
+   friend inline string to_string(T o)
+   {
+
+      return o.to_string();
+
+   }
+
 
    operator class string_composite ();
    operator class string_composite const () const;
@@ -248,7 +254,9 @@ public:
    inline string(const T & o) :
       simple_string(string_trait::GetDefaultManager())
    {
+
       *this = to_string(o);
+
    }
 
 
@@ -288,10 +296,10 @@ public:
    string& operator=(const Platform::String ^ & str);
 #endif
    string& operator=(wchar_t ch );
-   
+
    // Assignment operators
    template < typename T >
-   inline string & operator =(T o)
+   inline string & operator =(const T & o)
    {
       return operator =(to_string(o));
    }
@@ -1561,17 +1569,9 @@ inline bool CLASS_DECL_ca operator<=(int32_t i, const string & str)             
 
 
 
-template < typename T >
-inline string to_string(T & o)
-{
-
-   return o.to_string();
-
-}
-
 
 template < >
-inline string to_string(const char * & psz)
+inline string to_string(const char * psz)
 {
 
    return string(psz);
@@ -1579,15 +1579,7 @@ inline string to_string(const char * & psz)
 }
 
 template < >
-inline string to_string(char * const & psz)
-{
-
-   return string(psz);
-
-}
-
-template < >
-inline string to_string(char * & psz)
+inline string to_string(char * psz)
 {
 
    return string((const char *) psz);
@@ -1595,7 +1587,15 @@ inline string to_string(char * & psz)
 }
 
 template < >
-inline string to_string(const wchar_t * & pwsz)
+inline string to_string(char ch)
+{
+
+   return string((char) ch);
+
+}
+
+template < >
+inline string to_string(const wchar_t * pwsz)
 {
 
    return string(pwsz);
@@ -1603,7 +1603,7 @@ inline string to_string(const wchar_t * & pwsz)
 }
 
 template < >
-inline string to_string(wchar_t * & pwsz)
+inline string to_string(wchar_t * pwsz)
 {
 
    return string((const wchar_t *) pwsz);
@@ -1611,9 +1611,9 @@ inline string to_string(wchar_t * & pwsz)
 }
 
 template < >
-inline string to_string(const string_composite & c)
+inline string to_string(string_composite c)
 {
-   
+
    string str;
 
    c.get_string(str.GetBufferSetLength(c.get_length()));
@@ -1624,19 +1624,11 @@ inline string to_string(const string_composite & c)
 
 }
 
-template < >
-inline string to_string(string_composite & c)
-{
-   
-   return to_string((const string_composite &) c);
-
-}
-
 
 template < >
-inline string to_string(verisimple_wstring & wstr)
+inline string to_string(verisimple_wstring wstr)
 {
-   
+
    return string((const wchar_t *) wstr);
 
 }
