@@ -145,7 +145,8 @@ namespace sockets
 
       //TRACE0("http_base_socket::Respond");
 
-      if(outheader(__str(content_type)).get_string().find("text") >= 0)
+      if(outheader(__str(content_type)).get_string().find("text") >= 0
+      || outheader(__str(content_type)).get_string().find("javascript") >= 0)
       {
       
          on_compress();
@@ -250,8 +251,10 @@ namespace sockets
        
       if(lowinheader("accept-encoding").get_string().find("gzip") >= 0)
       {
+         
+         string str = lowoutheader(__str(content_type)).get_string();
 
-         if(lowoutheader(__str(content_type)).get_string().find_ci("text") >= 0)
+         if(str.find_ci("text") >= 0 || str.find_ci("javascript") >= 0)
          {
        
             m_response.m_propertysetHeader.lowset(__str(content_encoding), "gzip");

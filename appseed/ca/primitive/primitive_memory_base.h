@@ -92,6 +92,7 @@ namespace primitive
       inline void from_string(const string & str);
       inline void from_string(const var & var);
       inline void to_string(string & str) const;
+      inline string to_string() const;
 
       void delete_begin(memory_size iSize);
       inline void eat_begin(void * pdata, memory_size iSize);
@@ -581,6 +582,17 @@ namespace primitive
       lpsz[this->get_size()] = '\0';
 
       str.ReleaseBuffer();
+
+   }
+
+   inline string memory_base::to_string() const
+   {
+
+      string str;
+
+      to_string(str);
+
+      return str;
 
    }
 

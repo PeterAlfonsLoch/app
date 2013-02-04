@@ -1077,17 +1077,17 @@ namespace ca2
 
       string strLocale(pszLocale);
 
-      if(strLocale == "cl"
-      || strLocale == "br"
-      || strLocale == "ar"
-      || strLocale == "ec"
-      || strLocale == "pe"
-      || strLocale == "ve"
+      if(strLocale == "ar"
       || strLocale == "bo"
+      || strLocale == "br"
+      || strLocale == "cl"
       || strLocale == "co"
+      || strLocale == "ec"
+      || strLocale == "gs"
+      || strLocale == "pe"
       || strLocale == "py"
       || strLocale == "uy"
-      || strLocale == "gs"
+      || strLocale == "ve"
       || strLocale == "amdesur")
       {
          return true;
