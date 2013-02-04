@@ -414,24 +414,24 @@ namespace ca
    }
 
 
-   bool graphics::Arc(int32_t x1, int32_t y1, int32_t x2, int32_t y2, double start, double extends)
+   bool graphics::Arc(int32_t x1, int32_t y1, int32_t w, int32_t h, double start, double extends)
    {
 
       point ptCenter;
 
-      ptCenter.x = (x2 + x1) / 2;
-      ptCenter.y = (y2 + y1) / 2;
+      ptCenter.x = (x1 + w) / 2;
+      ptCenter.y = (y1 + h) / 2;
 
-      double dx = max(2.0, (x2 - x1) / 2.0);
-      double dy = max(2.0, (y2 - y1) / 2.0);
+      double dx = max(2.0, (w) / 2.0);
+      double dy = max(2.0, (h) / 2.0);
 
-      int32_t startx = (int32_t) (cos(start) * dx) + ptCenter.x;
-      int32_t starty = (int32_t) (cos(start) * dy) + ptCenter.x;
+      double startx = (cos(start) * dx) + ptCenter.x;
+      double starty = (cos(start) * dy) + ptCenter.x;
 
-      int32_t endx = (int32_t) (cos(start + extends) * dx) + ptCenter.x;
-      int32_t endy = (int32_t) (cos(start + extends) * dy) + ptCenter.x;
+      double endx = (cos(start + extends) * dx) + ptCenter.x;
+      double endy = (cos(start + extends) * dy) + ptCenter.x;
 
-      return Arc(x1, y1, x2, y2, startx, starty, endx, endy);
+      return Arc(x1, y1, x1 + w, y1 + h, (int32_t) startx, (int32_t) starty, (int32_t) endx, (int32_t) endy);
 
    }
 
