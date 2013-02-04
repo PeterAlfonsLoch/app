@@ -1002,6 +1002,12 @@ inline id::operator const char *() const
    return m_pstr == NULL ? NULL : (const char *) *m_pstr;
 }
 
+inline id::operator string () const
+{
+   return m_pstr == NULL ? "" : *m_pstr;
+}
+
+
 inline bool id::is_empty() const
 {
    return is_null() || (is_text() && (m_pstr == NULL || m_pstr->is_empty()));

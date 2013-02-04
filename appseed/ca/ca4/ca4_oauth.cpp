@@ -826,7 +826,13 @@ namespace ca4
       memset( szRand, 0, oAuthLibDefaults::OAUTHLIB_BUFFSIZE );
       srand((UINT) time( NULL ) );
       sprintf( szRand, "%x", rand()%1000 );
+#ifdef WINDOWS
       sprintf( szTime, "%ld", (int32_t) time( NULL ) );
+#elif defined __LP64
+      sprintf( szTime, "%ld", (int64_t) time( NULL ) );
+#else
+      sprintf( szTime, "%d", (int32_t) time( NULL ) );
+#endif
 
       m_nonce = szTime;
       m_nonce += szRand;
