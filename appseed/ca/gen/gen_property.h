@@ -348,7 +348,7 @@ namespace gen
       operator const char *() const
       {
 
-         ((gen::property *) this)->get_value().m_str = get_value().get_string();
+         ((gen::property *) this)->m_var.m_str = get_value().get_string();
 
          return m_var.m_str;
 
@@ -357,26 +357,13 @@ namespace gen
       operator string & ()
       {
 
-         if(get_value().get_type() == var::type_pstring)
-         {
-
-            return *m_var.m_pstr;
-
-         }
-         else
-         {
-
-            get_value().m_str = get_value().get_string();
-
-            return m_var.m_str;
-
-         }
+         return m_var.operator string &();
 
       }
 
       operator id()
       {
-         return get_value().get_id();
+         return m_var.get_id();
       }
 
 /*      operator const id()

@@ -245,6 +245,26 @@ public:
    operator const char * () const;
    //operator ::file_time & ();
 
+   operator string & ()
+   {
+
+      if(m_etype == var::type_pstring)
+      {
+
+         return *m_pstr;
+
+      }
+      else if(m_etype != var::type_string)
+      {
+
+         m_str = get_string();
+
+      }
+
+      return m_str;
+
+   }
+
    operator ::datetime::file_time () const;
 
    operator ::datetime::time() const;
