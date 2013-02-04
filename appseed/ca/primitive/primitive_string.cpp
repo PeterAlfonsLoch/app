@@ -748,32 +748,6 @@ string::string(const vsstring & str ) :
 }
 
 
-string::string(const id & id ) :
-   simple_string( string_trait::GetDefaultManager() )
-{
-
-   *this = *id.m_pstr;
-
-}
-
-
-string::string(const var & var) :
-   simple_string( string_trait::GetDefaultManager() )
-{
-
-   *this = var.get_string();
-
-}
-
-string::string(const gen::property & prop) :
-   simple_string( string_trait::GetDefaultManager() )
-{
-
-   *this = prop.get_string();
-
-}
-
-
 string::string( const string_interface & str ) :
    simple_string( string_trait::GetDefaultManager() )
 {
@@ -939,15 +913,6 @@ string& string::operator=(const vsstring & str)
    simple_string::operator=( str.m_psz );
 
    return( *this );
-}
-
-string & string::operator = (const class id & id)
-{
-
-   simple_string::operator = (id.str());
-
-   return( *this );
-
 }
 
 string& string::operator=(const wchar_t * pszSrc )

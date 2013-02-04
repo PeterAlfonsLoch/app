@@ -661,7 +661,7 @@ inline var & var::operator = (LPDWORD pui)
 #endif
 
 
-string var::to_string() const
+inline string var::to_string() const
 {
    return get_string();
 }
