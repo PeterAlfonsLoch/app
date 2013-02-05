@@ -667,4 +667,18 @@ inline string var::to_string() const
 }
 
 
+inline string::string(const var & var) :
+   simple_string(string_trait::GetDefaultManager())
+{
 
+   operator = (var.to_string());
+
+}
+
+
+inline string & string::operator = (const var & var)
+{
+
+   return operator = (var.to_string());
+
+}

@@ -695,13 +695,23 @@ namespace gen
 } // namespace gen
 
 
-
-inline bool CLASS_DECL_ca operator == (const string & str, const gen::property & prop)
+inline bool operator == (const string & str, const gen::property & prop)
 {
    return str == prop.get_string();
 }
 
 
+inline string::string(const gen::property & prop) :
+   simple_string(string_trait::GetDefaultManager())
+{
 
+   operator = (prop.to_string());
 
+}
 
+inline string & string::operator = (const gen::property & prop)
+{
+
+   return operator = (prop.to_string());
+
+}

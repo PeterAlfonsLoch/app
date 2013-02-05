@@ -254,6 +254,10 @@ public:
    string(const istring & istr);
    string(const string_interface & str);
 
+   inline string(const id & id);
+   inline string(const var & var);
+   inline string(const gen::property & prop);
+
 
    template < typename T >
    inline explicit string(T o) :
@@ -289,22 +293,25 @@ public:
 
 
 
-   string& operator=(const string_interface & str );
-   string& operator=(string strSrc );
-   string& operator=(const simple_string & strSrc);
-   string& operator=(const vsstring & strSrc);
-   string& operator=(const char * pszSrc);
-   string& operator=(const wchar_t * pszSrc);
-   string& operator=(const uchar* pszSrc );
-   string& operator=(char ch );
+   string & operator = (const string_interface & str );
+   string & operator = (string strSrc);
+   string & operator = (const simple_string & strSrc);
+   string & operator = (const vsstring & strSrc);
+   string & operator = (const char * pszSrc);
+   string & operator = (const wchar_t * pszSrc);
+   string & operator = (const uchar* pszSrc);
+   string & operator = (char ch);
 #ifdef METROWIN
-   string& operator=(const Platform::String ^ & str);
+   string & operator = (const Platform::String ^ & str);
 #endif
-   string& operator=(wchar_t ch );
+   string & operator = (wchar_t ch);
+   string & operator = (const id & id);
+   string & operator = (const var & var);
+   string & operator = (const gen::property & prop);
 
    // Assignment operators
    template < typename T >
-   inline string & operator =(T o)
+   inline string & operator = (T o)
    {
       return operator =(to_string(o));
    }
@@ -1029,6 +1036,40 @@ inline char string::last_char() const
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+inline string::string(const id & id) :
+   simple_string(string_trait::GetDefaultManager())
+{
+
+   operator = (id.to_string());
+
+}
+
+inline string & string::operator = (const id & id)
+{
+
+   return operator = (id.to_string());
+
+}
+
 inline id::operator const char *() const
 {
    return m_pstr == NULL ? NULL : (const char *) *m_pstr;
@@ -1045,6 +1086,22 @@ inline string id::to_string() const
       throw "id string is null! Cannot convert to_string()";
    return *m_pstr;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
