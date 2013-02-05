@@ -1587,6 +1587,14 @@ inline string to_string(char * psz)
 }
 
 template < >
+inline string to_string(unsigned char * psz)
+{
+
+   return string(psz);
+
+}
+
+template < >
 inline string to_string(const char ch)
 {
 
