@@ -47,6 +47,9 @@ namespace http
       file & operator << (ex1::file & file);
 
 
+      inline file & operator << (ex1::filesp & filesp) { return operator << ((ex1::file &) *filesp.m_p); }
+
+
       inline void to_string(string & str)
       {
 

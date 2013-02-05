@@ -43,22 +43,6 @@ string_interface & string_interface::operator = (const char * psz)
 }
 
 
-void string_composite::set_string(const string * pstr) const
-{
-   string_composite * pThis = const_cast < string_composite * > (this);
-   pThis->m_pstring = const_cast < string *  > (pstr);
-   pThis->m_pinterface = NULL;
-}
-
-string_composite & string_composite::operator = (const string & str)
-{
-   *m_pstring = str;
-   m_pinterface = NULL;
-   return *this;
-}
-
-
-
 string::string(wchar_t ch,strsize nLength) :
    simple_string( string_trait::GetDefaultManager() )
 {
@@ -679,9 +663,9 @@ string::operator class string_composite ()
 
 string::operator class string_composite const () const
 {
-   class string_composite composite;
-   composite.set_string(this);
-   return composite;
+
+   return string_composite(*this);
+
 }
 
 

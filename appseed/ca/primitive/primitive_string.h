@@ -40,7 +40,16 @@ public:
 class CLASS_DECL_ca string_composite :
    public string_interface
 {
+private:
+
+
+   string * m_pstring;
+   string_interface * m_pinterface;
+
+
 public:
+
+
    inline string_composite() : m_pstring(NULL), m_pinterface(NULL) {}
    inline string_composite(const string_composite & str) : m_pstring(str.m_pstring), m_pinterface(str.m_pinterface) {}
    inline string_composite(string & str) : m_pstring(&str), m_pinterface(NULL) {}
@@ -48,17 +57,13 @@ public:
    inline string_composite(const string * pstr) : m_pstring(const_cast < string *  > (pstr)) , m_pinterface(NULL) {}
    inline string_composite(string_interface & strinterface) : m_pinterface(&strinterface), m_pstring(NULL) {}
    inline string_composite(const string_interface & strinterface) : m_pinterface(const_cast < string_interface * > (&strinterface)) , m_pstring(NULL) {}
+
+
    virtual strsize get_length() const;
    virtual void get_string(char * psz) const;
    virtual void set_string(const char * psz);
-   virtual void set_string(string & str) { m_pstring = &str; m_pinterface = NULL; }
-   virtual void set_string(const string & str) { m_pstring = (string *) &str; m_pinterface = NULL; }
-   virtual void set_string(const string * pstr) const;
-   string_composite & operator = (const string & str);
 
-private:
-   string * m_pstring;
-   string_interface * m_pinterface;
+
 };
 
 
@@ -251,7 +256,7 @@ public:
 
 
    template < typename T >
-   inline explicit string(const T & o) :
+   inline string(const T & o) :
       simple_string(string_trait::GetDefaultManager())
    {
 
@@ -1638,6 +1643,16 @@ inline string to_string(verisimple_wstring wstr)
 {
 
    return string((const wchar_t *) wstr);
+
+}
+
+
+
+template < >
+inline string to_string(int32_t i)
+{
+
+   return gen::str::from(i);
 
 }
 

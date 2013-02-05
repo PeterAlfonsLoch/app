@@ -280,9 +280,15 @@ namespace gen
          return *this;
       }
 
-      property & operator =(string str)
+      property & operator =(const string & str)
       {
          get_value() = str;
+         return *this;
+      }
+
+      property & operator =(const stringa & stra)
+      {
+         get_value() = stra;
          return *this;
       }
 
@@ -688,6 +694,12 @@ namespace gen
 
 } // namespace gen
 
+
+
+inline bool CLASS_DECL_ca operator == (const string & str, const gen::property & prop)
+{
+   return str == prop.get_string();
+}
 
 
 
