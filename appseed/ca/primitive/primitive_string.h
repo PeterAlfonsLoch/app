@@ -1603,6 +1603,14 @@ inline string to_string(const wchar_t * pwsz)
 }
 
 template < >
+inline string to_string(wchar_t * pwsz)
+{
+
+   return string(pwsz);
+
+}
+
+template < >
 inline string to_string(string_composite c)
 {
 
