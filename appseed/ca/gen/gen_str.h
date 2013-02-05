@@ -304,3 +304,6 @@ inline c_number < T > & c_number < T >::from(const string & str)
 
 #include "gen_strn.h"
 #include "gen_hex.h"
+
+
+
