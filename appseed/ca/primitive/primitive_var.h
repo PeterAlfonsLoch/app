@@ -647,7 +647,7 @@ inline var::operator uint64_t() const
 inline int_ptr var::intptr(int_ptr iDefault) const
 {
 
-#ifdef SYSBUS64
+#ifdef OS64BIT
 
    return int64(iDefault);
 
@@ -662,7 +662,7 @@ inline int_ptr var::intptr(int_ptr iDefault) const
 inline uint_ptr var::uintptr(uint_ptr uiDefault) const
 {
 
-#ifdef SYSBUS64
+#ifdef OS64BIT
 
    return uint64(uiDefault);
 

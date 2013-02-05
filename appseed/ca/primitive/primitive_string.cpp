@@ -688,18 +688,29 @@ void __cdecl string::Construct(class string * pstring)
 #define new DEBUG_NEW
 
 // copy constructor
-string::string(const string & strSrc ) :
+string::string(const string & strSrc) :
    simple_string( strSrc, string_trait::GetDefaultManager() )
 {
 }
 
-string::string(const char* pszSrc ) :
+string::string(const char * pszSrc) :
    simple_string( string_trait::GetDefaultManager() )
 {
-   //      if( !CheckImplicitLoad( pszSrc ) )
-   //      {
+   //if(!CheckImplicitLoad(pszSrc))
+   //{
    // nDestLength is in XCHARs
    *this = pszSrc;
+   //      }
+}
+
+
+string::string(char * pszSrc) :
+   simple_string( string_trait::GetDefaultManager() )
+{
+   //if(!CheckImplicitLoad(pszSrc))
+   //{
+   // nDestLength is in XCHARs
+   *this = (const char *) pszSrc;
    //      }
 }
 
@@ -712,6 +723,7 @@ string::string(const char * pszSrc,string_manager * pstringmanager ) :
    *this = pszSrc;
    //      }
 }
+
 
 string::string(const wchar_t* pszSrc ) :
    simple_string( string_trait::GetDefaultManager() )
