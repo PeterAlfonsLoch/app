@@ -256,7 +256,7 @@ public:
 
 
    template < typename T >
-   inline string(const T & o) :
+   inline explicit string(T o) :
       simple_string(string_trait::GetDefaultManager())
    {
 
@@ -304,7 +304,7 @@ public:
 
    // Assignment operators
    template < typename T >
-   inline string & operator =(const T & o)
+   inline string & operator =(T o)
    {
       return operator =(to_string(o));
    }
@@ -1647,12 +1647,4 @@ inline string to_string(verisimple_wstring wstr)
 }
 
 
-
-template < >
-inline string to_string(int32_t i)
-{
-
-   return gen::str::from(i);
-
-}
 
