@@ -176,6 +176,11 @@ namespace plane
 
          id_tw = "tw";
 
+         id_earth = "earth";
+         id_vg = "vg";
+         id_ae = "ae";
+         id_il = "il";
+
          str_http_host = "http_host";
          str_http_version = "http_version";
          str_http_status_code = "http_status_code";
