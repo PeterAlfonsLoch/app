@@ -167,6 +167,8 @@ public:
    uint32_t                         uint32(uint32_t uiDefault = 0)  const;
    int64_t                          int64(int64_t iDefault = 0)  const;
    uint64_t                         uint64(uint64_t uiDefault = 0)  const;
+   inline int_ptr                   intptr(int_ptr iDefault = 0)  const;
+   inline uint_ptr                  uintptr(uint_ptr uiDefault = 0)  const;
    float                            get_float(float fDefault = 0.f)   const;
    double                           get_double(double dDefault = 0.0)   const;
    string                           to_r_string() const;
@@ -639,6 +641,37 @@ inline var::operator int64_t() const
 inline var::operator uint64_t() const
 {
    return uint64();
+}
+
+
+inline int_ptr var::intptr(int_ptr iDefault) const
+{
+
+#ifdef SYSBUS64
+
+   return int64(iDefault);
+
+#else
+
+   return int32(iDefault);
+
+#endif
+
+}
+
+inline uint_ptr var::uintptr(uint_ptr uiDefault) const
+{
+
+#ifdef SYSBUS64
+
+   return uint64(uiDefault);
+
+#else
+
+   return uint32(uiDefault);
+
+#endif
+
 }
 
 

@@ -124,17 +124,29 @@ inline bool CLASS_DECL_ca operator == (const string & str, const var & var)
 
 inline id & id::operator = (const var & var)
 {
+
+   if(var.is_null())
+   {
+      m_chType = IDTYPE_TYPE_NULL;
+      return *this;
+   }
    if(var.is_integer())
    {
-      *this = var.int32();
+      return operator = (var.intptr());
    }
    else
    {
-      *this = var.get_string();
+      return operator = (var.get_string());
    }
-   return *this;
+   
 }
 
+inline id & id::operator = (const gen::property & prop)
+{
+
+   return operator = (prop.m_var);
+
+}
 
 
 

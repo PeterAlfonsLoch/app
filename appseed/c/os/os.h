@@ -43,6 +43,16 @@
 #endif
 
 
+#ifdef AMD64
+#define OS64BIT
+#elif defined(__LP64)
+#define OS64BIT
+#else
+#define OS32BIT
+#endif
+
+
+
 
 
 

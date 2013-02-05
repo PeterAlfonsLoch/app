@@ -109,10 +109,10 @@ public:
    inline bool operator <= (const string_interface & str) const;
    inline bool operator > (const string_interface & str) const;
    inline bool operator >= (const string_interface & str) const;
+   
    id & operator = (const string_interface & str);
-
-
    id & operator = (const var & var);
+   id & operator = (const gen::property & prop);
 
 
    inline operator int_ptr() const;
