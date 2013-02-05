@@ -102,3 +102,8 @@ namespace http
 
 
 
+template < >
+inline string to_string(http::cookie c)
+{
+   return c.to_string();
+}
