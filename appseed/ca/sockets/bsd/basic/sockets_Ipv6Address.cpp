@@ -281,7 +281,7 @@ namespace sockets
 
    string ipv6_address::get_display_number() const
    {
-      return ::to_string(&m_addr.sin6_addr);
+      return ::to_vsstring(&m_addr.sin6_addr);
    }
 
    string ipv6_address::get_canonical_name() const

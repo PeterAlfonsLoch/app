@@ -228,7 +228,7 @@ namespace sockets
 
    string ipv4_address::get_display_number() const
    {
-      return to_string(&m_addr.sin_addr);
+      return ::to_vsstring(&m_addr.sin_addr);
    }
 
    string ipv4_address::get_canonical_name() const

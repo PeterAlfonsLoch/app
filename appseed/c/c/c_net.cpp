@@ -178,7 +178,7 @@ static const char *basis_hex = "0123456789abcdef";
 * (Same as inet_ntop(AF_INET6, addr, buf, size), except that errno
 * is not set on failure.)
 */
-CLASS_DECL_c vsstring to_string(const in6_addr * addr)
+CLASS_DECL_c vsstring to_vsstring(const in6_addr * addr)
 {
 
    vsstring str;
@@ -339,7 +339,7 @@ CLASS_DECL_c bool from_string(in_addr * addrParam, const char * string)
 }
 
 
-CLASS_DECL_c vsstring to_string(const in_addr * addrParam)
+CLASS_DECL_c vsstring to_vsstring(const in_addr * addrParam)
 {
 
    c_in_addr * paddr = (c_in_addr *) addrParam;
@@ -414,7 +414,7 @@ CLASS_DECL_c vsstring c_inet_ntop(int32_t af, const void *src)
 
       in_addr * addr = (in_addr *) src;
 
-      str = to_string(addr);
+      str = to_vsstring(addr);
 
    }
    else if(af == AF_INET6)
@@ -422,7 +422,7 @@ CLASS_DECL_c vsstring c_inet_ntop(int32_t af, const void *src)
 
       in6_addr * addr = (in6_addr *) src;
 
-      str = to_string(addr);
+      str = to_vsstring(addr);
 
    }
 

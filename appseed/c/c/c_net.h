@@ -3,9 +3,9 @@
 
 
 CLASS_DECL_c bool from_string(in6_addr * addr, const char * string);
-CLASS_DECL_c vsstring to_string(const in6_addr *addr);
+CLASS_DECL_c vsstring to_vsstring(const in6_addr *addr);
 CLASS_DECL_c bool from_string(in_addr * addr, const char * string);
-CLASS_DECL_c vsstring to_string(const in_addr *addr);
+CLASS_DECL_c vsstring to_vsstring(const in_addr *addr);
 
 CLASS_DECL_c uint32_t c_inet_addr(const char *src);
 CLASS_DECL_c int32_t c_inet_pton(int32_t af, const char *src, void *dst);
