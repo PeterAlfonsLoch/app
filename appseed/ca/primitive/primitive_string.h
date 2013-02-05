@@ -251,7 +251,7 @@ public:
 
 
    template < typename T >
-   inline string(const T & o) :
+   inline explicit string(const T & o) :
       simple_string(string_trait::GetDefaultManager())
    {
 
@@ -1582,12 +1582,12 @@ template < >
 inline string to_string(char * psz)
 {
 
-   return string((const char *) psz);
+   return string(psz);
 
 }
 
 template < >
-inline string to_string(char ch)
+inline string to_string(const char ch)
 {
 
    return string((char) ch);
@@ -1599,14 +1599,6 @@ inline string to_string(const wchar_t * pwsz)
 {
 
    return string(pwsz);
-
-}
-
-template < >
-inline string to_string(wchar_t * pwsz)
-{
-
-   return string((const wchar_t *) pwsz);
 
 }
 
@@ -1633,9 +1625,3 @@ inline string to_string(verisimple_wstring wstr)
 
 }
 
-
-template < >
-inline string to_string(int32_t i)
-{
-   return gen::str::from(i);
-}
