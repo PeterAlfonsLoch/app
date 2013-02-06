@@ -82,7 +82,7 @@
 	<File name="ca/ca_dir_application.h" open="0" top="0" tabpos="0">
 		<Cursor position="2324" topLine="0" />
 	</File>
-	<File name="ca/ca_dir_system.cpp" open="1" top="0" tabpos="6">
+	<File name="ca/ca_dir_system.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="46178" topLine="1361" />
 	</File>
 	<File name="ca/ca_dir_system.h" open="0" top="0" tabpos="24">
@@ -214,13 +214,13 @@
 	<File name="ca4/ca4_file.h" open="0" top="0" tabpos="36">
 		<Cursor position="80" topLine="0" />
 	</File>
-	<File name="ca4/ca4_http_system.cpp" open="1" top="0" tabpos="1">
+	<File name="ca4/ca4_http_system.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="26429" topLine="875" />
 	</File>
 	<File name="ca4/ca4_ip_enum.h" open="0" top="0" tabpos="46">
 		<Cursor position="296" topLine="3" />
 	</File>
-	<File name="ca4/ca4_oauth.cpp" open="1" top="0" tabpos="8">
+	<File name="ca4/ca4_oauth.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="20517" topLine="805" />
 	</File>
 	<File name="ca4/ca4_port_forward.cpp" open="0" top="0" tabpos="0">
@@ -691,10 +691,10 @@
 	<File name="gen/gen_process.h" open="0" top="0" tabpos="0">
 		<Cursor position="297" topLine="0" />
 	</File>
-	<File name="gen/gen_property.cpp" open="1" top="0" tabpos="5">
+	<File name="gen/gen_property.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="5052" topLine="203" />
 	</File>
-	<File name="gen/gen_property.h" open="1" top="0" tabpos="3">
+	<File name="gen/gen_property.h" open="0" top="0" tabpos="3">
 		<Cursor position="4263" topLine="64" />
 	</File>
 	<File name="gen/gen_signal.cpp" open="0" top="0" tabpos="26">
@@ -1024,8 +1024,8 @@
 	<File name="primitive/datetime/datetime_windows_file_time.h" open="0" top="0" tabpos="13">
 		<Cursor position="187" topLine="0" />
 	</File>
-	<File name="primitive/primitive_id.h" open="1" top="0" tabpos="7">
-		<Cursor position="3242" topLine="75" />
+	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="7">
+		<Cursor position="3242" topLine="74" />
 	</File>
 	<File name="primitive/primitive_memory.h" open="0" top="0" tabpos="22">
 		<Cursor position="105" topLine="0" />
@@ -1045,8 +1045,8 @@
 	<File name="primitive/primitive_string.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="12859" topLine="414" />
 	</File>
-	<File name="primitive/primitive_string.h" open="1" top="0" tabpos="2">
-		<Cursor position="8870" topLine="181" />
+	<File name="primitive/primitive_string.h" open="0" top="0" tabpos="2">
+		<Cursor position="8870" topLine="197" />
 	</File>
 	<File name="primitive/primitive_string_core.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="194" topLine="0" />
@@ -1060,8 +1060,8 @@
 	<File name="primitive/primitive_var.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="6283" topLine="384" />
 	</File>
-	<File name="primitive/primitive_var.h" open="1" top="0" tabpos="4">
-		<Cursor position="5682" topLine="170" />
+	<File name="primitive/primitive_var.h" open="0" top="0" tabpos="4">
+		<Cursor position="5682" topLine="165" />
 	</File>
 	<File name="primitive/primitive_virtual_memory.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="3789" topLine="130" />
