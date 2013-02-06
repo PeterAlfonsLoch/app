@@ -979,8 +979,8 @@
 	<File name="planebase/planebase.h" open="0" top="0" tabpos="13">
 		<Cursor position="55" topLine="0" />
 	</File>
-	<File name="planebase/planebase_application.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2183" topLine="83" />
+	<File name="planebase/planebase_application.cpp" open="1" top="1" tabpos="0">
+		<Cursor position="1960" topLine="83" />
 	</File>
 	<File name="planebase/planebase_application.h" open="0" top="0" tabpos="32">
 		<Cursor position="1312" topLine="18" />
