@@ -390,7 +390,7 @@ void i64toa_dup(char * sz, int64_t i)
 
 void str_reverse(char * sz)
 {
-   
+
    mem_reverse(sz, strlen_dup(sz));
 
 }
@@ -1026,7 +1026,7 @@ bool matches_wildcard_criteria(const char * pszCriteria, const char * pszValue)
          pszStop = wildcard_next_stop(pszFind + 1);
 
          if(pszStop == NULL)
-            pszStop = pszFind + strlen_dup(pszFind);
+            return true;
 
          iLen = pszStop - (pszFind + 1);
 

@@ -26,7 +26,8 @@ namespace ca
       vsstring strPath(pszPath);
       if(strstr_dup(strPath, ".") == NULL)
          strPath += ".so";
-      m_plibrary = dlopen(strPath, RTLD_LOCAL | RTLD_LAZY);
+      m_plibrary = dlopen(strPath, RTLD_GLOBAL | RTLD_LAZY);
+      return m_plibrary != NULL;
    }
 
    bool library::close()

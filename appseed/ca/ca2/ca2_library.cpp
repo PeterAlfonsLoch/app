@@ -328,7 +328,11 @@ namespace ca2
 
          string strPrefix = get_root();
 
-#ifdef METROWIN
+#ifdef LINUX
+
+         gen::str::begins_eat(strAppId, "lib");
+
+#elif defined(METROWIN)
 
 //         strPrefix = "m_" + strPrefix;
 

@@ -15,10 +15,7 @@
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
 				<Compiler>
-					<Add option="-std=c++0x" />
 					<Add option="-g" />
-					<Add option="-fpermissive" />
-					<Add option="-Wno-conversion-null" />
 					<Add directory="." />
 					<Add directory="../ca" />
 					<Add directory="../../appseedcore" />
@@ -32,13 +29,20 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-std=c++0x" />
+			<Add option="-fPIC" />
 			<Add option="-fexceptions" />
 			<Add option="-fnon-call-exceptions" />
-			<Add option="-fPIC" />
+			<Add option="-fno-pie" />
+			<Add option="-fno-stack-protector" />
+			<Add option="-Wno-pointer-arith" />
+			<Add option="-Wno-attributes" />
+			<Add option="-Winvalid-pch" />
 			<Add directory="../../../app" />
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
+			<Add option="-Wl,-E" />
 			<Add option="-lca2c" />
 			<Add directory="../../../stage/x86" />
 		</Linker>

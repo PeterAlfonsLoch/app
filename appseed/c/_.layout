@@ -46,8 +46,8 @@
 	<File name="c/c_debug.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="150" topLine="0" />
 	</File>
-	<File name="c/c_dir.cpp" open="0" top="0" tabpos="38">
-		<Cursor position="115" topLine="0" />
+	<File name="c/c_dir.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="9860" topLine="447" />
 	</File>
 	<File name="c/c_file.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="841" topLine="20" />
@@ -124,8 +124,11 @@
 	<File name="c/c_std_file.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="90" topLine="0" />
 	</File>
-	<File name="c/c_str.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="15543" topLine="723" />
+	<File name="c/c_str.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="20177" topLine="989" />
+	</File>
+	<File name="c/c_str.h" open="0" top="0" tabpos="4">
+		<Cursor position="4417" topLine="73" />
 	</File>
 	<File name="c/c_strx.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="4911" topLine="148" />
@@ -226,8 +229,8 @@
 	<File name="linux/c_os_http_lib.h" open="0" top="0" tabpos="23">
 		<Cursor position="2746" topLine="40" />
 	</File>
-	<File name="linux/c_os_library.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="0" topLine="6" />
+	<File name="linux/c_os_library.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="471" topLine="1" />
 	</File>
 	<File name="linux/c_os_lock.cpp" open="0" top="0" tabpos="40">
 		<Cursor position="58" topLine="0" />
@@ -322,8 +325,8 @@
 	<File name="simple_graphics/simple_path.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="0" topLine="33" />
 	</File>
-	<File name="spa/spa_installer.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1655" topLine="36" />
+	<File name="spa/spa_installer.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="93914" topLine="3289" />
 	</File>
 	<File name="spa/spa_installer.h" open="0" top="0" tabpos="0">
 		<Cursor position="1286" topLine="21" />
