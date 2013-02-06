@@ -207,6 +207,17 @@ namespace ca2
 
       string strLibraryName(get_library_name());
 
+#ifdef LINUX
+
+      gen::str::begins_eat(strLibraryName, "lib");
+
+#elif defined(METROWIN)
+
+//      gen::str::begins_eat_ci(strLibraryName, "m_");
+
+#endif
+
+
       stringa straAppList;
 
       get_app_list(straAppList);
@@ -235,7 +246,11 @@ namespace ca2
 
       string strLibraryName(get_library_name());
 
-#ifdef METROWIN
+#ifdef LINUX
+
+      gen::str::begins_eat(strLibraryName, "lib");
+
+#elif defined(METROWIN)
 
 //      gen::str::begins_eat_ci(strLibraryName, "m_");
 

@@ -27,14 +27,14 @@ namespace cube
 
    void library::get_extension_list(stringa & stra)
    {
-      
+
       stra.add("*");
 
    }
 
    void library::get_extension_app(stringa & straApp, const char * pszExtension)
    {
-      
+
       string strExtension(pszExtension);
 
       strExtension.make_lower();
@@ -71,7 +71,7 @@ namespace cube
 } // namespace cube
 
 
-
+extern "C"
 ::ca2::library * get_new_library()
 {
    return new ::cube::library();

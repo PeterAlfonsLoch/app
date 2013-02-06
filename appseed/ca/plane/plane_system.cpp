@@ -464,6 +464,12 @@ namespace plane
 
       string strLibrary(pszLibrary);
 
+#ifdef LINUX
+
+      gen::str::begins_eat(strLibrary, "lib");
+
+#endif
+
       string strPrefix = strRoot;
 
       strPrefix.replace("-", "_");

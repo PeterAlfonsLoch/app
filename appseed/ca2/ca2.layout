@@ -70,6 +70,9 @@
 	<File name="cube/cube_cube.h" open="0" top="0" tabpos="52">
 		<Cursor position="1412" topLine="36" />
 	</File>
+	<File name="cube/cube_library.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="299" topLine="0" />
+	</File>
 	<File name="cube1/cube1.h" open="0" top="0" tabpos="61">
 		<Cursor position="37" topLine="0" />
 	</File>
@@ -79,8 +82,8 @@
 	<File name="cube2/cube2.h" open="0" top="0" tabpos="60">
 		<Cursor position="38" topLine="0" />
 	</File>
-	<File name="cube2/cube2_application.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="4767" topLine="153" />
+	<File name="cube2/cube2_application.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="3325" topLine="79" />
 	</File>
 	<File name="cube5/cube5.h" open="0" top="0" tabpos="62">
 		<Cursor position="49" topLine="0" />
@@ -88,11 +91,14 @@
 	<File name="cube8/cube8.h" open="0" top="0" tabpos="54">
 		<Cursor position="351" topLine="0" />
 	</File>
+	<File name="cube8/cube8_application.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="2122" topLine="82" />
+	</File>
 	<File name="cubebase/cubebase.h" open="0" top="0" tabpos="47">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="cubebase/cubebase_application.cpp" open="0" top="0" tabpos="20">
-		<Cursor position="912" topLine="20" />
+	<File name="cubebase/cubebase_application.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="3168" topLine="102" />
 	</File>
 	<File name="databaseuser/databaseuser.h" open="0" top="0" tabpos="75">
 		<Cursor position="40" topLine="0" />
@@ -388,6 +394,9 @@
 	<File name="userbase/userbase.h" open="0" top="0" tabpos="73">
 		<Cursor position="42" topLine="0" />
 	</File>
+	<File name="userbase/userbase_application.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="2000" topLine="28" />
+	</File>
 	<File name="userbase/userbase_base_bitmap_buttonex.cpp" open="0" top="0" tabpos="35">
 		<Cursor position="2262" topLine="55" />
 	</File>
@@ -496,8 +505,8 @@
 	<File name="userstack/userstack.h" open="0" top="0" tabpos="63">
 		<Cursor position="44" topLine="0" />
 	</File>
-	<File name="userstack/userstack_application.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="3288" topLine="112" />
+	<File name="userstack/userstack_application.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="13516" topLine="475" />
 	</File>
 	<File name="userstack/userstack_frame.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10790" topLine="393" />
