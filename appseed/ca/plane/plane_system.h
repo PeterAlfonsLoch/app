@@ -74,6 +74,7 @@ namespace plane
 
       id id_fr;
       id id_fr_ca;
+      id id_ca;
 
       id id_en;
       id id_en_us;
@@ -172,6 +173,7 @@ namespace plane
 
          id_fr = "fr";
          id_fr_ca = "fr-ca";
+         id_ca = "ca";
 
          id_en = "en";
          id_en_us = "en-us";
