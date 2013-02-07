@@ -574,7 +574,9 @@ retry_get_base:
                      {
                         //   m_iRef = -1;
                         //   break;
-                        _ASSERTE(0);
+//                        _ASSERTE(0);
+                           m_iRef = -1;
+                           break;
                      }
                   }
                }
