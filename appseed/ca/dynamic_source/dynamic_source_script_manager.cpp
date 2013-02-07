@@ -18,28 +18,28 @@ namespace dynamic_source
    {
    }
 
-      script_manager::plugin_map_item::plugin_map_item()
-      {
-      }
+   script_manager::plugin_map_item::plugin_map_item()
+   {
+   }
 
-      script_manager::plugin_map_item::plugin_map_item(const plugin_map_item & item)
-      {
+   script_manager::plugin_map_item::plugin_map_item(const plugin_map_item & item)
+   {
 
-         operator = (item);
+      operator = (item);
 
-      }
+   }
 
 
-      script_manager::plugin_map_item & script_manager::plugin_map_item::operator = (const plugin_map_item & item)
-      {
+   script_manager::plugin_map_item & script_manager::plugin_map_item::operator = (const plugin_map_item & item)
+   {
 
-         m_strHost         = item.m_strHost;
-         m_strScript       = item.m_strScript;
-         m_strPlugin       = item.m_strPlugin;
+      m_strHost         = item.m_strHost;
+      m_strScript       = item.m_strScript;
+      m_strPlugin       = item.m_strPlugin;
 
-         return *this;
+      return *this;
 
-      }
+   }
 
 
    script_manager::script_manager(::ca::application * papp) :
@@ -61,7 +61,8 @@ namespace dynamic_source
       m_mutexPersistentStr(papp),
       m_mutexUiRedir(papp),
       m_mutexTagId(papp),
-      m_mutexTagName(papp)
+      m_mutexTagName(papp),
+      m_mutexImageSize(papp)
    {
 
       m_pcache                   = new script_cache(papp);
@@ -345,7 +346,7 @@ namespace dynamic_source
       throw todo(get_app());
 
 #else
-//      LPCTSTR lpcsz = getenv("PATH");
+      //      LPCTSTR lpcsz = getenv("PATH");
 #endif
 
       on_load_env();
@@ -460,7 +461,7 @@ namespace dynamic_source
 
    bool script_manager::include_has_script(const string & strPath)
    {
-      
+
       if(strPath.is_empty())
          return false;
 
@@ -591,43 +592,43 @@ namespace dynamic_source
 
    void script_manager::calc_rsa_key()
    {
-      
+
 #ifdef MACOS
 
       CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-      
+
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
-      
+
       CFDictionaryAddValue(parameters, kSecAttrKeySizeInBits, (CFTypeRef) 1024);
-      
+
       SecKeyRef prsa = SecKeyGenerateSymmetric(parameters, NULL);
-      
+
       if(prsa == NULL)
          return;
-      
+
       CFRelease(parameters);
 
 #elif defined(BSD_STYLE_SOCKETS)
-      
+
       RSA * prsa = RSA_generate_key(1024, 65537, NULL, NULL);
 
 #else
 
       ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ provider = 
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
-            ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
+         ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
       ::Windows::Security::Cryptography::Core::CryptographicKey ^ prsa = provider->CreateKeyPair(1024);
 
 #endif
-     
+
       single_lock sl(&m_mutexRsa, TRUE);
       m_rsaptra.add(prsa);
       if(m_rsaptra.get_size() > 23)
       {
 
 #ifdef MACOS
-         
+
          CFRelease(m_rsaptra[0]);
 
 #elif defined(BSD_STYLE_SOCKETS)
@@ -705,9 +706,9 @@ namespace dynamic_source
             if(phttpdsocket != NULL)
             {
 
-	            pinsocket->m_in = phttpdsocket;
+               pinsocket->m_in = phttpdsocket;
 
-	            pinsocket->m_memfileInput.FullLoad(phttpdsocket->m_memfileInput);
+               pinsocket->m_memfileInput.FullLoad(phttpdsocket->m_memfileInput);
 
                pinsocket->server_to_link_in(phttpdsocket);
 
@@ -735,30 +736,30 @@ namespace dynamic_source
 
       single_lock sl2(&m_mutexInLink, TRUE);
 
-       ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
-          m_mapInLink.PLookup(poutsocket);
+      ::collection::map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
+         m_mapInLink.PLookup(poutsocket);
 
-       {
+      {
 
-          single_lock sl3(&m_mutexTunnel, TRUE);
+         single_lock sl3(&m_mutexTunnel, TRUE);
 
-          tunnel_map_item item;
+         tunnel_map_item item;
 
-          item.m_strServer    = pszServer;
-          item.m_dwLast       = get_tick_count();
+         item.m_strServer    = pszServer;
+         item.m_dwLast       = get_tick_count();
 
-          m_mapTunnel.set_at(pszServer, item);
+         m_mapTunnel.set_at(pszServer, item);
 
-       }
+      }
 
-       if(ppair == NULL)
-          return NULL;
+      if(ppair == NULL)
+         return NULL;
 
-       ::sockets::link_in_socket * pinsocket = ppair->m_value;
+      ::sockets::link_in_socket * pinsocket = ppair->m_value;
 
-       m_mapInLink.remove_key(poutsocket);
+      m_mapInLink.remove_key(poutsocket);
 
-       return pinsocket;
+      return pinsocket;
 
    }
 
@@ -788,7 +789,7 @@ namespace dynamic_source
 
       {
 
-		   single_lock sl(&m_mutexTunnel, TRUE);
+         single_lock sl(&m_mutexTunnel, TRUE);
 
          tunnel_map_item item;
 
@@ -797,19 +798,177 @@ namespace dynamic_source
 
          m_mapTunnel.set_at(pszServer, item);
 
-	   }
+      }
 
-	   {
+      {
 
-		   single_lock sl(&m_mutexOutLink, TRUE);
-		   m_mapOutLink.set_at(pszServer, psocket);
+         single_lock sl(&m_mutexOutLink, TRUE);
+         m_mapOutLink.set_at(pszServer, psocket);
 
-	   }
+      }
 
       return psocket;
 
    }
 
+   size script_manager::get_image_size(const string & strFile)
+   {
+
+      single_lock sl(&m_mutexImageSize, false);
+
+      sl.lock();
+
+      size size;
+
+      if(m_mapImageSize.Lookup(strFile, size))
+         return size;
+
+      sl.unlock();
+
+      size.cx = 49;
+
+      size.cy = 49;
+
+      if(extract_image_size(strFile, &size))
+      {
+
+         sl.lock();
+
+         m_mapImageSize.set_at(strFile, size);
+
+         sl.unlock();
+
+      }
+
+      return size;
+
+   }
+
+   bool script_manager::extract_image_size(const string & strFile, size * psize)
+   {
+
+      ex1::filesp f;
+
+      try
+      {
+         f = Application.get_file(strFile, ex1::file::type_binary | ex1::file::mode_read | ex1::file::shareDenyWrite);
+      }
+      catch(...)
+      {
+         return false;
+      }
+
+      // http://www.cplusplus.com/forum/beginner/45217/
+
+      ::file_size len = f->seek_to_end();
+
+      if(len < 24)
+      {
+         return false;
+      }
+
+      f->seek_to_begin();
+
+      // Strategy:
+      // reading GIF dimensions requires the first 10 bytes of the file
+      // reading PNG dimensions requires the first 24 bytes of the file
+      // reading JPEG dimensions requires scanning through jpeg chunks
+      // In all formats, the file is at least 24 bytes big, so we'll read that always
+      unsigned char buf[24]; 
+
+      if(f->read(buf, 24) < 24)
+      {
+         return false;
+      }
+
+      // http://www.64lines.com/jpeg-width-height
+      if (buf[0]==0xFF && buf[1]==0xD8 && buf[2]==0xFF && buf[3]==0xE0 && buf[6]=='J' && buf[7]=='F' && buf[8]=='I' && buf[9]=='F' && buf[9]=='10')
+      { 
+         unsigned short block_length = buf[4] * 256 + buf[5];
+         int i = 4;
+         while(i < len)
+         {
+            
+            i += block_length;               //Increase the file index to get to the next block
+
+            if(i >= len)
+               return false;   //Check to protect against segmentation faults
+
+            f->seek(i, ex1::seek_begin);
+
+            if(f->read(buf, 4) < 4)
+               return false;
+
+            if(buf[i] != 0xFF) 
+               return false;   //Check that we are truly at the start of another block
+
+            if(buf[i+1] == 0xC0)
+            {
+               //0xFFC0 is the "Start of frame" marker which contains the file size
+               //The structure of the 0xFFC0 block is quite simple [0xFFC0][ushort length][uchar precision][ushort x][ushort y]
+
+               if(f->read(buf, 5) < 5)
+                  return false;
+
+               psize->cy = buf[i+1]*256 + buf[i+2];
+               psize->cx = buf[i+3]*256 + buf[i+4];
+               return true;
+            }
+            else
+            {
+               block_length = buf[2] * 256 + buf[3];   //Go to the next block
+            }
+         }
+         return false;
+      }
+
+      // JPEG: (first two bytes of buf are first two bytes of the jpeg file; rest of buf is the DCT frame
+      if (buf[0]==0xFF && buf[1]==0xD8 && buf[2]==0xFF)
+      {
+
+         psize->cy = (buf[7]<<8) + buf[8];
+
+         psize->cx = (buf[9]<<8) + buf[10];
+
+         return true;
+
+      }
+
+      // GIF: first three bytes say "GIF", next three give version number. Then dimensions
+      if (buf[0]=='G' && buf[1]=='I' && buf[2]=='F')
+      { 
+
+         psize->cx = buf[6] + (buf[7]<<8);
+
+         psize->cy = buf[8] + (buf[9]<<8);
+
+         return true;
+
+      }
+
+      // PNG: the first frame is by definition an IHDR frame, which gives dimensions
+      if(buf[0]==0x89 && buf[1]=='P' && buf[2]=='N' && buf[3]=='G' && buf[4]==0x0D && buf[5]==0x0A && buf[6]==0x1A && buf[7]==0x0A
+         && buf[12]=='I' && buf[13]=='H' && buf[14]=='D' && buf[15]=='R')
+      { 
+
+         psize->cx = (buf[16]<<24) + (buf[17]<<16) + (buf[18]<<8) + (buf[19]<<0);
+
+         psize->cy = (buf[20]<<24) + (buf[21]<<16) + (buf[22]<<8) + (buf[23]<<0);
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+
+
 } // namespace dynamic_source
+
+
+
 
 

@@ -113,6 +113,9 @@ namespace dynamic_source
       ::collection::string_map < tunnel_map_item > 
                                                 m_mapTunnel;
 
+      mutex                                     m_mutexImageSize;
+      ::collection::string_map < size >         m_mapImageSize;
+
 
 
 
@@ -238,6 +241,8 @@ namespace dynamic_source
       ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
       bool is_online(const char * pszServer);
       ::sockets::link_out_socket * create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket);
+      size get_image_size(const string & strFile);
+      bool extract_image_size(const string & strFile, size * psize);
 
 
    };
