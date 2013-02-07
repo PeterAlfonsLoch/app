@@ -745,6 +745,40 @@ namespace ca
 
             bool bOutputFail = false;
             bool bInputFail = false;
+            bool bStatusFail = false;
+            ::ex1::file_status st;
+
+            try
+            {
+   
+               ifile->GetStatus(st);
+
+            }
+            catch(...)
+            {
+
+               bStatusFail = true;
+               TRACE("During copy, failed to get status from input file \"%s\" bFailIfExists=%d", psz, bFailIfExists);
+            }
+
+            if(!bStatusFail)
+            {
+               try
+               {
+   
+                  ifile->GetStatus(st);
+
+               }
+               catch(...)
+               {
+
+                  bStatusFail = true;
+                  TRACE("During copy, failed to set status to output file \"%s\" bFailIfExists=%d", pszNew, bFailIfExists);
+
+               }
+
+            }
+
             try
             {
                ofile->close();
@@ -754,12 +788,6 @@ namespace ca
                bOutputFail = true;
             }
 
-            ::ex1::file_status st;
-
-            ifile->GetStatus(st);
-
-            System.os().set_file_status(strNew, st);
-
             try
             {
                ifile->close();
@@ -768,6 +796,7 @@ namespace ca
             {
                bInputFail = true;
             }
+
             if(bInputFail)
             {
                if(bOutputFail)

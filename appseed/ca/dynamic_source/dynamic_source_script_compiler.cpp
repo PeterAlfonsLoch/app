@@ -170,6 +170,11 @@ namespace dynamic_source
       string strName(pscript->m_strName);
       pscript->on_start_build();
 
+
+#ifdef WINDOWS
+      strName.replace("/", "\\");
+#endif
+
       //strName.replace("/", "\\");
       //string strVotagusFolder;
       //strVotagusFolder = System.dir().votagus();
@@ -218,7 +223,7 @@ namespace dynamic_source
 
 
       pscript->m_strCppPath.Format(System.dir().path(m_strTime, "dynamic_source\\%s.cpp", false), strTransformName);
-      pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s.bat"), strTransformName);
+      pscript->m_strBuildBat.Format(System.dir().stage("front\\dynamic_source\\BuildBat\\%s\\%s.bat"), strTransformName, strTransformName);
    //#ifdef DEBUG
       strO.Format(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_script\\%s\\%s.obj", false), strTransformName, System.file().name_(strTransformName));
       strP.Format(System.dir().stage(m_strPlatform+"\\dynamic_source\\%s.pdb"), System.dir().path(System.dir().name(strTransformName), strScript, false));

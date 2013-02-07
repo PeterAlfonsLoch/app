@@ -36,9 +36,15 @@ namespace dynamic_source
    script * script_cache::get(const char * lpcszName)
    {
 
+      string strName(lpcszName);
+
+#ifdef WINDOWS
+      strName.replace("/", "\\");
+#endif
+
       single_lock sl(&m_cs, TRUE);
 
-      map_string_to_ptr::pair * ppair = m_map.PLookup(lpcszName);
+      map_string_to_ptr::pair * ppair = m_map.PLookup(strName);
 
       if(ppair != NULL)
          return (script *) ppair->m_value;
@@ -47,7 +53,7 @@ namespace dynamic_source
 
       pscript->m_pmanager = m_pmanager;
 
-      pscript->m_strName = lpcszName;
+      pscript->m_strName = strName;
 
       cache(pscript);
 
@@ -58,9 +64,15 @@ namespace dynamic_source
    script * script_cache::register_script(const char * lpcszName, script * pscript)
    {
 
+      string strName(lpcszName);
+
+#ifdef WINDOWS
+      strName.replace("/", "\\");
+#endif
+
       single_lock sl(&m_cs, TRUE);
 
-      map_string_to_ptr::pair * ppair = m_map.PLookup(lpcszName);
+      map_string_to_ptr::pair * ppair = m_map.PLookup(strName);
 
       if(ppair != NULL)
       {
@@ -80,7 +92,7 @@ namespace dynamic_source
 
       pscript->m_pmanager = m_pmanager;
 
-      pscript->m_strName = lpcszName;
+      pscript->m_strName = strName;
 
       cache(pscript);
 
