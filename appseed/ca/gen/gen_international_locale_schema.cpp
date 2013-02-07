@@ -376,6 +376,14 @@ namespace gen
                      defer_add_locale(__id(zh_cn), idSchema);
                      defer_add_locale(__id(zh_tw), idSchema);
                   }
+                  else if(ch2 == 'a')
+                  {
+                     // ca
+                     defer_add_locale(__id(en_ca), idSchema);
+                     defer_add_locale(__id(en), idSchema);
+                     defer_add_locale(__id(fr_ca), idSchema);
+                     defer_add_locale(__id(fr), idSchema);
+                  }
                }
                else if(ch1 == 'e')
                {
