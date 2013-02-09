@@ -82,12 +82,12 @@ ex1::HRes handler::GetPropertyInfo(uint32_t /* index */,
 
 stat_prop_stg kArcProps[] =
 {
-  { NULL, ::compress::kpidMethod, var::type_string},
-  { NULL, ::compress::kpidSolid, var::type_bool},
-  { NULL, ::compress::kpidNumBlocks, var::type_uint},
-  { NULL, ::compress::kpidPhySize, var::type_uint64},
-  { NULL, ::compress::kpidHeadersSize, var::type_uint64},
-  { NULL, ::compress::kpidOffset, var::type_uint64}
+  { NULL, ::libcompress::kpidMethod, var::type_string},
+  { NULL, ::libcompress::kpidSolid, var::type_bool},
+  { NULL, ::libcompress::kpidNumBlocks, var::type_uint},
+  { NULL, ::libcompress::kpidPhySize, var::type_uint64},
+  { NULL, ::libcompress::kpidHeadersSize, var::type_uint64},
+  { NULL, ::libcompress::kpidOffset, var::type_uint64}
 };
 
 ex1::HRes handler::GetArchiveProperty(int32_t propID, var *value)
@@ -95,7 +95,7 @@ ex1::HRes handler::GetArchiveProperty(int32_t propID, var *value)
   var prop;
   switch(propID)
   {
-  case ::compress::kpidMethod:
+  case ::libcompress::kpidMethod:
     {
       string resString;
       uint64_array ids;
@@ -122,11 +122,11 @@ ex1::HRes handler::GetArchiveProperty(int32_t propID, var *value)
       prop = resString;
       break;
     }
-    case ::compress::kpidSolid: prop = _db.IsSolid(); break;
-    case ::compress::kpidNumBlocks: prop = _db.Folders.get_count(); break;
-    case ::compress::kpidHeadersSize:  prop = _db.HeadersSize; break;
-    case ::compress::kpidPhySize:  prop = _db.PhySize; break;
-    case ::compress::kpidOffset: if (_db.ArchiveInfo.StartPosition != 0) prop = _db.ArchiveInfo.StartPosition; break;
+    case ::libcompress::kpidSolid: prop = _db.IsSolid(); break;
+    case ::libcompress::kpidNumBlocks: prop = _db.Folders.get_count(); break;
+    case ::libcompress::kpidHeadersSize:  prop = _db.HeadersSize; break;
+    case ::libcompress::kpidPhySize:  prop = _db.PhySize; break;
+    case ::libcompress::kpidOffset: if (_db.ArchiveInfo.StartPosition != 0) prop = _db.ArchiveInfo.StartPosition; break;
   }
   *value = prop;
   return S_OK;
@@ -221,21 +221,21 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 
   switch(propID)
   {
-  case ::compress::kpidPath:
+  case ::libcompress::kpidPath:
       if (!item.Name.is_empty())
       {
          throw "should implement following";
        // prop = NItemName::GetOSName(item.Name);
       }
       break;
-    case ::compress::kpidIsDir:  prop = item.IsDir; break;
-    case ::compress::kpidSize:
+    case ::libcompress::kpidIsDir:  prop = item.IsDir; break;
+    case ::libcompress::kpidSize:
     {
       prop = item.get_count;
       // prop = ref2.get_count;
       break;
     }
-    case ::compress::kpidPackSize:
+    case ::libcompress::kpidPackSize:
     {
       // prop = ref2.PackSize;
       {
@@ -254,16 +254,16 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
       }
       break;
     }
-    case ::compress::kpidPosition:  { uint64_t v; if (_db.StartPos.GetItem(index2, v)) prop = v; break; }
-    case ::compress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, index2, prop); break;
-    case ::compress::kpidATime:  SetPropFromUInt64Def(_db.ATime, index2, prop); break;
-    case ::compress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, index2, prop); break;
-    case ::compress::kpidAttrib:  if (item.AttribDefined) prop = (uint64_t) item.Attrib; break;
-    case ::compress::kpidCRC:  if (item.CrcDefined) prop = (uint64_t) item.Crc; break;
-    case ::compress::kpidEncrypted:  prop = IsEncrypted(index2); break;
-    case ::compress::kpidIsAnti:  prop = _db.IsItemAnti(index2); break;
+    case ::libcompress::kpidPosition:  { uint64_t v; if (_db.StartPos.GetItem(index2, v)) prop = v; break; }
+    case ::libcompress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, index2, prop); break;
+    case ::libcompress::kpidATime:  SetPropFromUInt64Def(_db.ATime, index2, prop); break;
+    case ::libcompress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, index2, prop); break;
+    case ::libcompress::kpidAttrib:  if (item.AttribDefined) prop = (uint64_t) item.Attrib; break;
+    case ::libcompress::kpidCRC:  if (item.CrcDefined) prop = (uint64_t) item.Crc; break;
+    case ::libcompress::kpidEncrypted:  prop = IsEncrypted(index2); break;
+    case ::libcompress::kpidIsAnti:  prop = _db.IsItemAnti(index2); break;
     #ifndef _SFX
-    case ::compress::kpidMethod:
+    case ::libcompress::kpidMethod:
       {
         CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
         if (folderIndex != kNumNoIndex)
@@ -354,7 +354,7 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
         }
       }
       break;
-    case ::compress::kpidBlock:
+    case ::libcompress::kpidBlock:
       {
         CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
         if (folderIndex != kNumNoIndex)
@@ -391,7 +391,7 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 
 ex1::HRes handler::Open(::ex1::byte_input_stream *stream,
     const file_position *maxCheckStartPosition,
-    ::compress::archive_open_callback_interface *openArchiveCallback)
+    ::libcompress::archive_open_callback_interface *openArchiveCallback)
 {
   Close();
   #ifndef _SFX
@@ -399,7 +399,7 @@ ex1::HRes handler::Open(::ex1::byte_input_stream *stream,
   #endif
   try
   {
-    ::ca::smart_pointer < ::compress::archive_open_callback_interface > openArchiveCallbackTemp = openArchiveCallback;
+    ::ca::smart_pointer < ::libcompress::archive_open_callback_interface > openArchiveCallbackTemp = openArchiveCallback;
 
     #ifndef _NO_CRYPTO
     ::ca::smart_pointer < ::crypto::get_text_password_interface > getTextPassword;
@@ -481,7 +481,7 @@ ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *value
 #endif
 
    // IMPL_ISetCompressCodecsInfo2(handler)
-   ex1::HRes handler::SetCompressCodecsInfo(::compress::codecs_info_interface * compressCodecsInfo)
+   ex1::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

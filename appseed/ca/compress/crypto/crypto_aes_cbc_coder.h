@@ -6,7 +6,7 @@ namespace crypto
 {
 
    class aes_cbc_coder:
-      public compress::filter_interface,
+      public ::libcompress::filter_interface,
       public crypto::properties_interface
    {
    public:
@@ -26,18 +26,18 @@ namespace crypto
       ex1::HRes SetInitVector(const byte *data, uint32_t size);
    };
 
-   struct aes_cbc_encoder : 
+   struct aes_cbc_encoder :
       public aes_cbc_coder
-   { 
+   {
       public:
-      aes_cbc_encoder(); 
+      aes_cbc_encoder();
    };
 
    struct aes_cbc_decoder :
       public aes_cbc_coder
    {
    public:
-      aes_cbc_decoder(); 
+      aes_cbc_decoder();
    };
 
 } // namespace crypto

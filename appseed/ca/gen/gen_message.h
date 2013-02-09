@@ -206,7 +206,6 @@ namespace gen
 
          virtual ::ca::application * calc_app();
 
-#ifdef WINDOWS
          virtual base * peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
          virtual base * get_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
          virtual base * peek_message(::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg);
@@ -215,7 +214,7 @@ namespace gen
          virtual base * get_base(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam);
          virtual base * get_base(LPMESSAGE lpmsg, ::user::interaction * pwnd = NULL);
 
-#else
+#ifdef LINUX
 
          virtual base * get_base(XEvent * pevent, ::user::interaction * pwnd = NULL);
 
@@ -808,7 +807,7 @@ namespace gen
 
 
 
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
 #define IGUI_WIN_MSG_LINK \
    ::gen::message::os_connect
 #else

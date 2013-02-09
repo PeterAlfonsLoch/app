@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "zlib/zutil.h"
 
 //#define ALLOC(size) malloc(size)
 //#define TRYFREE(p) {if (p) free(p);}

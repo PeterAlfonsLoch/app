@@ -7,7 +7,7 @@
 #include "../ICoder.h"
 #include "../IProgress.h"*/
 
-namespace compress
+namespace libcompress
 {
 
    class local_progress:
@@ -35,4 +35,4 @@ namespace compress
       ex1::HRes SetRatioInfo(const uint64 *inSize, const uint64 *outSize);
    };
 
-} // namespace compress
+} // namespace libcompress

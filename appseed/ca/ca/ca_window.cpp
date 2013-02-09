@@ -960,6 +960,16 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
+#ifdef LINUX
+
+   LRESULT window::send_message(XEvent * pevent)
+   {
+      UNREFERENCED_PARAMETER(pevent);
+      throw interface_only_exception(get_app());
+   }
+
+#endif
+
    bool window::PostMessage(UINT message, WPARAM wParam, LPARAM lParam)
    {
       UNREFERENCED_PARAMETER(message);

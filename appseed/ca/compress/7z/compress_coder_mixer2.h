@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace compress
+namespace libcompress
 {
    namespace coder_mixer
    {
@@ -125,7 +125,7 @@ namespace compress
       class CBindReverseConverter
       {
          uint32 _numSrcOutStreams;
-         ::compress::coder_mixer::CBindInfo _srcBindInfo;
+         ::libcompress::coder_mixer::CBindInfo _srcBindInfo;
          base_array<uint32> _srcInToDestOutMap;
          base_array<uint32> _srcOutToDestInMap;
          base_array<uint32> _destInToSrcOutMap;
@@ -133,14 +133,14 @@ namespace compress
          uint32 NumSrcInStreams;
          base_array<uint32> DestOutToSrcInMap;
 
-         CBindReverseConverter(const ::compress::coder_mixer::CBindInfo &srcBindInfo);
-         void CreateReverseBindInfo(::compress::coder_mixer::CBindInfo &destBindInfo);
+         CBindReverseConverter(const ::libcompress::coder_mixer::CBindInfo &srcBindInfo);
+         void CreateReverseBindInfo(::libcompress::coder_mixer::CBindInfo &destBindInfo);
       };
 
       struct CCoderInfo2
       {
-         sp(::compress::coder_interface) Coder;
-         sp(::compress::coder2_interface) Coder2;
+         sp(::libcompress::coder_interface) Coder;
+         sp(::libcompress::coder2_interface) Coder2;
          uint32 NumInStreams;
          uint32 NumOutStreams;
 
@@ -164,6 +164,6 @@ namespace compress
 
    } // namespace coder_mixer
 
-} // namespace compress
+} // namespace libcompress
 
 

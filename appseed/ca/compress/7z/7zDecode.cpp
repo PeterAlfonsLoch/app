@@ -21,7 +21,7 @@ namespace n7z
       int32_t i;
       for (i = 0; i < folder.BindPairs.get_count(); i++)
       {
-         ::compress::coder_mixer::CBindPair bindPair;
+         ::libcompress::coder_mixer::CBindPair bindPair;
          bindPair.InIndex = (uint32_t)folder.BindPairs[i].InIndex;
          bindPair.OutIndex = (uint32_t)folder.BindPairs[i].OutIndex;
          bindInfo.BindPairs.add(bindPair);
@@ -29,7 +29,7 @@ namespace n7z
       uint32_t outStreamIndex = 0;
       for (i = 0; i < folder.Coders.get_count(); i++)
       {
-         ::compress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
+         ::libcompress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
          const CCoderInfo &coderInfo = folder.Coders[i];
          coderStreamsInfo.NumInStreams = (uint32_t)coderInfo.NumInStreams;
          coderStreamsInfo.NumOutStreams = (uint32_t)coderInfo.NumOutStreams;
@@ -43,14 +43,14 @@ namespace n7z
          bindInfo.InStreams.add((uint32_t)folder.PackStreams[i]);
    }
 
-   static bool AreCodersEqual(const ::compress::coder_mixer::CCoderStreamsInfo &a1,
-      const ::compress::coder_mixer::CCoderStreamsInfo &a2)
+   static bool AreCodersEqual(const ::libcompress::coder_mixer::CCoderStreamsInfo &a1,
+      const ::libcompress::coder_mixer::CCoderStreamsInfo &a2)
    {
       return (a1.NumInStreams == a2.NumInStreams) &&
          (a1.NumOutStreams == a2.NumOutStreams);
    }
 
-   static bool AreBindPairsEqual(const ::compress::coder_mixer::CBindPair &a1, const ::compress::coder_mixer::CBindPair &a2)
+   static bool AreBindPairsEqual(const ::libcompress::coder_mixer::CBindPair &a1, const ::libcompress::coder_mixer::CBindPair &a2)
    {
       return (a1.InIndex == a2.InIndex) &&
          (a1.OutIndex == a2.OutIndex);
@@ -92,14 +92,14 @@ namespace n7z
    }
 
    HRESULT CDecoder::Decode(
-      ::compress::codecs_info_interface * codecsInfo,
-      const base_array < ::compress::codec_info_ex > * externalCodecs,
+      ::libcompress::codecs_info_interface * codecsInfo,
+      const base_array < ::libcompress::codec_info_ex > * externalCodecs,
       ::ex1::byte_input_stream *inStream,
       file_position startPos,
       const file_size * packSizes,
       const CFolder &folderInfo,
       ::ex1::writer *outStream,
-      ::compress::progress_info_interface *compressProgress,
+      ::libcompress::progress_info_interface *compressProgress,
       ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined,
       bool mtMode, uint32_t numThreads
       )
@@ -147,14 +147,14 @@ namespace n7z
 
          if (_multiThread)
          {
-            _mixerCoderMTSpec = new ::compress::coder_mixer::CCoderMixer2MT(get_app());
+            _mixerCoderMTSpec = new ::libcompress::coder_mixer::CCoderMixer2MT(get_app());
             _mixerCoder = _mixerCoderMTSpec;
             _mixerCoderCommon = _mixerCoderMTSpec;
          }
          else
          {
 #ifdef _ST_MODE
-            _mixerCoderSTSpec = new ::compress::coder_mixer::CCoderMixer2ST(get_app());
+            _mixerCoderSTSpec = new ::libcompress::coder_mixer::CCoderMixer2ST(get_app());
             _mixerCoder = _mixerCoderSTSpec;
             _mixerCoderCommon = _mixerCoderSTSpec;
 #endif
@@ -166,10 +166,10 @@ namespace n7z
             const CCoderInfo &coderInfo = folderInfo.Coders[i];
 
 
-            ::ca::smart_pointer < ::compress::coder_interface > decoder;
-            ::ca::smart_pointer < ::compress::coder2_interface > decoder2;
+            ::ca::smart_pointer < ::libcompress::coder_interface > decoder;
+            ::ca::smart_pointer < ::libcompress::coder2_interface > decoder2;
 
-            if(FAILED(hr = ::compress::CreateCoder(
+            if(FAILED(hr = ::libcompress::CreateCoder(
                codecsInfo, externalCodecs,
                coderInfo.MethodID, decoder, decoder2, false)))
             {
@@ -203,8 +203,8 @@ namespace n7z
 #endif
             }
             _decoders.add(decoderUnknown.m_p);
-            ::ca::smart_pointer < ::compress::set_codecs_info_interface > setCompressCodecsInfo;
-            setCompressCodecsInfo = dynamic_cast < ::compress::set_codecs_info_interface * > (setCompressCodecsInfo.m_p);
+            ::ca::smart_pointer < ::libcompress::set_codecs_info_interface > setCompressCodecsInfo;
+            setCompressCodecsInfo = dynamic_cast < ::libcompress::set_codecs_info_interface * > (setCompressCodecsInfo.m_p);
             if (setCompressCodecsInfo)
             {
                RINOK(setCompressCodecsInfo->SetCompressCodecsInfo(codecsInfo));
@@ -226,8 +226,8 @@ namespace n7z
 //         ::ca::smart_pointer<::ca::ca> &decoder = _decoders[coderIndex];
 
          {
-            ::ca::smart_pointer < ::compress::set_decoder_properties2_interface > setDecoderProperties;
-            setDecoderProperties = dynamic_cast < ::compress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
+            ::ca::smart_pointer < ::libcompress::set_decoder_properties2_interface > setDecoderProperties;
+            setDecoderProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
             if (setDecoderProperties)
             {
                const ::ex1::byte_buffer &props = coderInfo.Props;
@@ -243,8 +243,8 @@ namespace n7z
 
          if (mtMode)
          {
-            ::ca::smart_pointer < ::compress::set_coder_mt_interface > setCoderMt;
-            setCoderMt = dynamic_cast < ::compress::set_coder_mt_interface * > (setCoderMt.m_p);
+            ::ca::smart_pointer < ::libcompress::set_coder_mt_interface > setCoderMt;
+            setCoderMt = dynamic_cast < ::libcompress::set_coder_mt_interface * > (setCoderMt.m_p);
             if (setCoderMt)
             {
                RINOK(setCoderMt->SetNumberOfThreads(numThreads));

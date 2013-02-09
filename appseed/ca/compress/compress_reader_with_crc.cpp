@@ -5,7 +5,7 @@
 
 /*#include "InStreamWithCRC.h"*/
 
-namespace compress
+namespace libcompress
 {
 
 
@@ -40,4 +40,4 @@ file_position input_stream_with_crc::seek(file_offset offset, ex1::e_seek seekOr
   return _stream->seek(offset, seekOrigin);
 }
 
-} // namespace compress
+} // namespace libcompress

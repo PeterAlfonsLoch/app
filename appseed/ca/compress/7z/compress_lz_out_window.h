@@ -8,7 +8,7 @@
 #include "../Common/OutBuffer.h"*/
 
 
-namespace compress
+namespace libcompress
 {
 
    typedef ex1::out_buffer_exception lz_out_window_exception;
@@ -66,4 +66,4 @@ namespace compress
       }
    };
 
-} // namespace compress
+} // namespace libcompress

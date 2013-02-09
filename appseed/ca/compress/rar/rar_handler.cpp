@@ -66,36 +66,36 @@ namespace rar
 
    static const stat_prop_stg kProps[] =
    {
-      { NULL, ::compress::kpidPath, var::type_string},
-      { NULL, ::compress::kpidIsDir, var::type_bool},
-      { NULL, ::compress::kpidSize, var::type_uint64},
-      { NULL, ::compress::kpidPackSize, var::type_uint64},
-      { NULL, ::compress::kpidMTime, var::type_filetime},
-      { NULL, ::compress::kpidCTime, var::type_filetime},
-      { NULL, ::compress::kpidATime, var::type_filetime},
-      { NULL, ::compress::kpidAttrib, var::type_uint},
+      { NULL, ::libcompress::kpidPath, var::type_string},
+      { NULL, ::libcompress::kpidIsDir, var::type_bool},
+      { NULL, ::libcompress::kpidSize, var::type_uint64},
+      { NULL, ::libcompress::kpidPackSize, var::type_uint64},
+      { NULL, ::libcompress::kpidMTime, var::type_filetime},
+      { NULL, ::libcompress::kpidCTime, var::type_filetime},
+      { NULL, ::libcompress::kpidATime, var::type_filetime},
+      { NULL, ::libcompress::kpidAttrib, var::type_uint},
 
-      { NULL, ::compress::kpidEncrypted, var::type_bool},
-      { NULL, ::compress::kpidSolid, var::type_bool},
-      { NULL, ::compress::kpidCommented, var::type_bool},
-      { NULL, ::compress::kpidSplitBefore, var::type_bool},
-      { NULL, ::compress::kpidSplitAfter, var::type_bool},
-      { NULL, ::compress::kpidCRC, var::type_uint},
-      { NULL, ::compress::kpidHostOS, var::type_string},
-      { NULL, ::compress::kpidMethod, var::type_string},
-      { NULL, ::compress::kpidUnpackVer, var::type_byte}
+      { NULL, ::libcompress::kpidEncrypted, var::type_bool},
+      { NULL, ::libcompress::kpidSolid, var::type_bool},
+      { NULL, ::libcompress::kpidCommented, var::type_bool},
+      { NULL, ::libcompress::kpidSplitBefore, var::type_bool},
+      { NULL, ::libcompress::kpidSplitAfter, var::type_bool},
+      { NULL, ::libcompress::kpidCRC, var::type_uint},
+      { NULL, ::libcompress::kpidHostOS, var::type_string},
+      { NULL, ::libcompress::kpidMethod, var::type_string},
+      { NULL, ::libcompress::kpidUnpackVer, var::type_byte}
    };
 
    static const stat_prop_stg kArcProps[] =
    {
-      { NULL, ::compress::kpidCharacts, var::type_string},
-      { NULL, ::compress::kpidSolid, var::type_bool},
-      { NULL, ::compress::kpidNumBlocks, var::type_uint},
-      // { NULL, ::compress::kpidEncrypted, var::type_bool},
-      { NULL, ::compress::kpidIsVolume, var::type_bool},
-      { NULL, ::compress::kpidNumVolumes, var::type_uint},
-      { NULL, ::compress::kpidPhySize, var::type_uint64}
-      // { NULL, ::compress::kpidCommented, var::type_bool}
+      { NULL, ::libcompress::kpidCharacts, var::type_string},
+      { NULL, ::libcompress::kpidSolid, var::type_bool},
+      { NULL, ::libcompress::kpidNumBlocks, var::type_uint},
+      // { NULL, ::libcompress::kpidEncrypted, var::type_bool},
+      { NULL, ::libcompress::kpidIsVolume, var::type_bool},
+      { NULL, ::libcompress::kpidNumVolumes, var::type_uint},
+      { NULL, ::libcompress::kpidPhySize, var::type_uint64}
+      // { NULL, ::libcompress::kpidCommented, var::type_bool}
    };
 
    IMP_IInArchive_Props
@@ -115,14 +115,14 @@ namespace rar
       var var;
       switch(propID)
       {
-      case ::compress::kpidSolid: var = _archiveInfo.IsSolid(); break;
-      case ::compress::kpidCharacts: FLAGS_TO_PROP(k_Flags, _archiveInfo.Flags, &var); break;
-         // case ::compress::kpidEncrypted: prop = _archiveInfo.IsEncrypted(); break; // it's for encrypted names.
-      case ::compress::kpidIsVolume: var = _archiveInfo.IsVolume(); break;
-      case ::compress::kpidNumVolumes: var = (int32_t)_archives.get_size(); break;
-      case ::compress::kpidOffset: if (_archiveInfo.StartPosition != 0) var = _archiveInfo.StartPosition; break;
-         // case ::compress::kpidCommented: prop = _archiveInfo.IsCommented(); break;
-      case ::compress::kpidNumBlocks:
+      case ::libcompress::kpidSolid: var = _archiveInfo.IsSolid(); break;
+      case ::libcompress::kpidCharacts: FLAGS_TO_PROP(k_Flags, _archiveInfo.Flags, &var); break;
+         // case ::libcompress::kpidEncrypted: prop = _archiveInfo.IsEncrypted(); break; // it's for encrypted names.
+      case ::libcompress::kpidIsVolume: var = _archiveInfo.IsVolume(); break;
+      case ::libcompress::kpidNumVolumes: var = (int32_t)_archives.get_size(); break;
+      case ::libcompress::kpidOffset: if (_archiveInfo.StartPosition != 0) var = _archiveInfo.StartPosition; break;
+         // case ::libcompress::kpidCommented: prop = _archiveInfo.IsCommented(); break;
+      case ::libcompress::kpidNumBlocks:
          {
             uint32_t numBlocks = 0;
             for (int32_t i = 0; i < _refItems.get_size(); i++)
@@ -131,7 +131,7 @@ namespace rar
             var = (int32_t)numBlocks;
             break;
          }
-      case ::compress::kpidError: if (!_errorMessage.is_empty()) var = _errorMessage; break;
+      case ::libcompress::kpidError: if (!_errorMessage.is_empty()) var = _errorMessage; break;
       }
       *value = var;
       return S_OK;
@@ -183,31 +183,31 @@ namespace rar
       const CItemEx &item = _items[refItem.ItemIndex];
       switch(propID)
       {
-      case ::compress::kpidPath:
+      case ::libcompress::kpidPath:
          {
             prop = ::archive::item_name::WinNameToOSName(item.Name);
             break;
          }
-      case ::compress::kpidIsDir: prop = item.IsDir(); break;
-      case ::compress::kpidSize: prop = item.Size; break;
-      case ::compress::kpidPackSize: prop = GetPackSize(index); break;
-      case ::compress::kpidMTime: RarTimeToProp(get_app(), item.MTime, prop); break;
-      case ::compress::kpidCTime: if (item.CTimeDefined) RarTimeToProp(get_app(), item.CTime, prop); break;
-      case ::compress::kpidATime: if (item.ATimeDefined) RarTimeToProp(get_app(), item.ATime, prop); break;
-      case ::compress::kpidAttrib: prop = (int32_t) item.GetWinAttributes(); break;
-      case ::compress::kpidEncrypted: prop = item.IsEncrypted(); break;
-      case ::compress::kpidSolid: prop = IsSolid(index); break;
-      case ::compress::kpidCommented: prop = item.IsCommented(); break;
-      case ::compress::kpidSplitBefore: prop = item.IsSplitBefore(); break;
-      case ::compress::kpidSplitAfter: prop = _items[refItem.ItemIndex + refItem.NumItems - 1].IsSplitAfter(); break;
-      case ::compress::kpidCRC:
+      case ::libcompress::kpidIsDir: prop = item.IsDir(); break;
+      case ::libcompress::kpidSize: prop = item.Size; break;
+      case ::libcompress::kpidPackSize: prop = GetPackSize(index); break;
+      case ::libcompress::kpidMTime: RarTimeToProp(get_app(), item.MTime, prop); break;
+      case ::libcompress::kpidCTime: if (item.CTimeDefined) RarTimeToProp(get_app(), item.CTime, prop); break;
+      case ::libcompress::kpidATime: if (item.ATimeDefined) RarTimeToProp(get_app(), item.ATime, prop); break;
+      case ::libcompress::kpidAttrib: prop = (int32_t) item.GetWinAttributes(); break;
+      case ::libcompress::kpidEncrypted: prop = item.IsEncrypted(); break;
+      case ::libcompress::kpidSolid: prop = IsSolid(index); break;
+      case ::libcompress::kpidCommented: prop = item.IsCommented(); break;
+      case ::libcompress::kpidSplitBefore: prop = item.IsSplitBefore(); break;
+      case ::libcompress::kpidSplitAfter: prop = _items[refItem.ItemIndex + refItem.NumItems - 1].IsSplitAfter(); break;
+      case ::libcompress::kpidCRC:
          {
             const CItemEx &lastItem = _items[refItem.ItemIndex + refItem.NumItems - 1];
             prop = (int32_t) (((lastItem.IsSplitAfter()) ? item.FileCRC : lastItem.FileCRC));
             break;
          }
-      case ::compress::kpidUnpackVer: prop = item.UnPackVersion; break;
-      case ::compress::kpidMethod:
+      case ::libcompress::kpidUnpackVer: prop = item.UnPackVersion; break;
+      case ::libcompress::kpidMethod:
          {
             string method;
             if (item.Method >= byte('0') && item.Method <= byte('5'))
@@ -227,7 +227,7 @@ namespace rar
             prop = method;
             break;
          }
-      case ::compress::kpidHostOS: prop = (item.HostOS < kNumHostOSes) ? (kHostOS[item.HostOS]) : kUnknownOS; break;
+      case ::libcompress::kpidHostOS: prop = (item.HostOS < kNumHostOSes) ? (kHostOS[item.HostOS]) : kUnknownOS; break;
       }
       *value = prop;
       return S_OK;
@@ -346,12 +346,12 @@ namespace rar
    };
 
    //HRESULT handler::Open2(IInStream *stream,
-   HRESULT handler::Open2(ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::compress::archive_open_callback_interface *openCallback)
+   HRESULT handler::Open2(ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       {
-         ::compress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
+         ::libcompress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
          ::crypto::get_text_password_interface * getTextPassword = NULL;
-//         ::compress::archive_open_callback_interface * openArchiveCallbackWrap = openCallback;
+//         ::libcompress::archive_open_callback_interface * openArchiveCallbackWrap = openCallback;
 
          CVolumeName seqName;
 
@@ -360,7 +360,7 @@ namespace rar
 
          if (openCallback)
          {
-            openVolumeCallback   = dynamic_cast < ::compress::archive_open_volume_callback_interface * > (openCallback);
+            openVolumeCallback   = dynamic_cast < ::libcompress::archive_open_volume_callback_interface * > (openCallback);
             getTextPassword      = dynamic_cast < ::crypto::get_text_password_interface * > (openCallback);
          }
 
@@ -379,7 +379,7 @@ namespace rar
                   string baseName;
                   {
                      var prop;
-                     RINOK(openVolumeCallback->GetProperty(::compress::kpidName, &prop));
+                     RINOK(openVolumeCallback->GetProperty(::libcompress::kpidName, &prop));
                      if(prop.m_etype != var::type_string)
                         break;
                      baseName = prop;
@@ -470,7 +470,7 @@ namespace rar
       return S_OK;
    }
 
-   ex1::HRes handler::Open(ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::compress::archive_open_callback_interface *openCallback)
+   ex1::HRes handler::Open(ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       Close();
       try
@@ -503,11 +503,11 @@ namespace rar
    struct CMethodItem
    {
       byte RarUnPackVersion;
-      ::compress::coder_interface * Coder;
+      ::libcompress::coder_interface * Coder;
    };
 
 
-   ex1::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::compress::archive_extract_callback_interface *extractCallback)
+   ex1::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
    {
       ::crypto::get_text_password_interface * getTextPassword = NULL;
       file_size censoredTotalUnPacked = 0,
@@ -557,22 +557,22 @@ namespace rar
 
       base_array < CMethodItem > methodItems;
 
-      ::compress::copy_coder * copyCoderSpec = new ::compress::copy_coder;
-      ::compress::coder_interface * copyCoder = copyCoderSpec;
+      ::libcompress::copy_coder * copyCoderSpec = new ::libcompress::copy_coder;
+      ::libcompress::coder_interface * copyCoder = copyCoderSpec;
 
-      ::compress::filter_coder *filterStreamSpec = new ::compress::filter_coder;
+      ::libcompress::filter_coder *filterStreamSpec = new ::libcompress::filter_coder;
       ::ex1::reader * filterStream = filterStreamSpec;
 
       ::crypto::rar20::decoder *rar20CryptoDecoderSpec = NULL;
-      ::compress::filter_interface * rar20CryptoDecoder = NULL;
+      ::libcompress::filter_interface * rar20CryptoDecoder = NULL;
       ::crypto::rar29::decoder *rar29CryptoDecoderSpec = NULL;
-      ::compress::filter_interface * rar29CryptoDecoder = NULL;
+      ::libcompress::filter_interface * rar29CryptoDecoder = NULL;
 
       folder_reader * folderInStreamSpec = NULL;
       ::ex1::reader * folderInStream = NULL;
 
-      ::compress::local_progress *lps = new ::compress::local_progress;
-      ::compress::progress_info_interface * progress = lps;
+      ::libcompress::local_progress *lps = new ::libcompress::local_progress;
+      ::libcompress::progress_info_interface * progress = lps;
       lps->Init(extractCallback, false);
 
       bool solidStart = true;
@@ -585,9 +585,9 @@ namespace rar
 
          int32_t askMode;
          if (extractStatuses[i])
-            askMode = testMode ? ::compress::archive::extract::ask_mode_test : ::compress::archive::extract::ask_mode_extract;
+            askMode = testMode ? ::libcompress::archive::extract::ask_mode_test : ::libcompress::archive::extract::ask_mode_extract;
          else
-            askMode = ::compress::archive::extract::ask_mode_skip;
+            askMode = ::libcompress::archive::extract::ask_mode_skip;
 
          uint32_t index = importantIndexes[i];
 
@@ -608,7 +608,7 @@ namespace rar
          if (item.IsDir())
          {
             RINOK(extractCallback->PrepareOperation(askMode));
-            RINOK(extractCallback->SetOperationResult(::compress::archive::extract::operation_result_ok));
+            RINOK(extractCallback->SetOperationResult(::libcompress::archive::extract::operation_result_ok));
             continue;
          }
 
@@ -625,11 +625,11 @@ namespace rar
             continue;
 
          if (!realOutStream && !testMode)
-            askMode = ::compress::archive::extract::ask_mode_skip;
+            askMode = ::libcompress::archive::extract::ask_mode_skip;
 
          RINOK(extractCallback->PrepareOperation(askMode));
 
-         ::compress::writer_with_crc *outStreamSpec = new ::compress::writer_with_crc;
+         ::libcompress::writer_with_crc *outStreamSpec = new ::libcompress::writer_with_crc;
          ::ex1::writer * outStream(outStreamSpec);
          outStreamSpec->SetStream(realOutStream);
          outStreamSpec->Init();
@@ -674,8 +674,8 @@ namespace rar
                   // RINOK(rar29CryptoDecoder.CoCreateInstance(CLSID_CCryptoRar29Decoder));
                }
                rar29CryptoDecoderSpec->SetRar350Mode(item.UnPackVersion < 36);
-               ::compress::set_decoder_properties2_interface * cryptoProperties;
-               cryptoProperties = dynamic_cast < ::compress::set_decoder_properties2_interface * > (rar29CryptoDecoder);
+               ::libcompress::set_decoder_properties2_interface * cryptoProperties;
+               cryptoProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (rar29CryptoDecoder);
                RINOK(cryptoProperties->SetDecoderProperties2(item.Salt, item.HasSalt() ? sizeof(item.Salt) : 0));
                filterStreamSpec->Filter = rar29CryptoDecoder;
             }
@@ -692,7 +692,7 @@ namespace rar
             else
             {
                //outStream.Release();
-               RINOK(extractCallback->SetOperationResult(::compress::archive::extract::operation_result_UnSupportedMethod));
+               RINOK(extractCallback->SetOperationResult(::libcompress::archive::extract::operation_result_UnSupportedMethod));
                continue;
             }
             cryptoSetPassword = dynamic_cast < ::crypto::set_password_interface * > (filterStreamSpec);
@@ -738,7 +738,7 @@ namespace rar
          {
             inStream = folderInStream;
          }
-         ::compress::coder_interface * commonCoder;
+         ::libcompress::coder_interface * commonCoder;
          switch(item.Method)
          {
          case '0':
@@ -772,7 +772,7 @@ namespace rar
 //                  mi.Coder.Release();
                   if (item.UnPackVersion <= 30)
                   {
-                     ::compress::method_id methodID = 0x040300;
+                     ::libcompress::method_id methodID = 0x040300;
                      if (item.UnPackVersion < 20)
                         methodID += 1;
                      else if (item.UnPackVersion < 29)
@@ -785,16 +785,16 @@ namespace rar
                   if (mi.Coder == 0)
                   {
                      //outStream.Release();
-                     RINOK(extractCallback->SetOperationResult(::compress::archive::extract::operation_result_UnSupportedMethod));
+                     RINOK(extractCallback->SetOperationResult(::libcompress::archive::extract::operation_result_UnSupportedMethod));
                      continue;
                   }
 
                   m = methodItems.add(mi);
                }
-               ::compress::coder_interface * decoder = methodItems[m].Coder;
+               ::libcompress::coder_interface * decoder = methodItems[m].Coder;
 
-               ::compress::set_decoder_properties2_interface * compressSetDecoderProperties;
-               compressSetDecoderProperties = dynamic_cast < ::compress::set_decoder_properties2_interface * > (decoder);
+               ::libcompress::set_decoder_properties2_interface * compressSetDecoderProperties;
+               compressSetDecoderProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (decoder);
 
                byte isSolid = (byte)((IsSolid(index) || item.IsSplitBefore()) ? 1: 0);
                if (solidStart)
@@ -811,7 +811,7 @@ namespace rar
             }
          default:
             //outStream.Release();
-            RINOK(extractCallback->SetOperationResult(::compress::archive::extract::operation_result_UnSupportedMethod));
+            RINOK(extractCallback->SetOperationResult(::libcompress::archive::extract::operation_result_UnSupportedMethod));
             continue;
          }
          HRESULT result = commonCoder->Code(inStream, outStream, &packSize, &item.Size, progress);
@@ -820,7 +820,7 @@ namespace rar
          if (result == S_FALSE)
          {
             //outStream.Release();
-            RINOK(extractCallback->SetOperationResult(::compress::archive::extract::operation_result_DataError));
+            RINOK(extractCallback->SetOperationResult(::libcompress::archive::extract::operation_result_DataError));
             continue;
          }
          if (result != S_OK)
@@ -834,7 +834,7 @@ namespace rar
             const CItemEx &lastItem = _items[refItem.ItemIndex + refItem.NumItems - 1];
             bool crcOK = outStreamSpec->GetCRC() == lastItem.FileCRC;
             //outStream.Release();
-            RINOK(extractCallback->SetOperationResult(crcOK ? ::compress::archive::extract::operation_result_ok : ::compress::archive::extract::operation_result_CRCError));
+            RINOK(extractCallback->SetOperationResult(crcOK ? ::libcompress::archive::extract::operation_result_ok : ::libcompress::archive::extract::operation_result_CRCError));
          }
          /*
          else
@@ -859,7 +859,7 @@ namespace rar
    }
 
    // IMPL_ISetCompressCodecsInfo2(CHandler)
-   ex1::HRes handler::SetCompressCodecsInfo(::compress::codecs_info_interface * compressCodecsInfo)
+   ex1::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

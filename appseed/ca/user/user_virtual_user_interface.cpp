@@ -282,27 +282,11 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
 
-#ifdef WINDOWS
-
    send_message(WM_CREATE, 0, (LPARAM) &cs);
-
-#else
-
-   throw todo(get_app());
-
-#endif
 
    m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, 0);
 
-#ifdef WINDOWS
-
    send_message(WM_SIZE, 0, 0);
-
-#else
-
-   throw todo(get_app());
-
-#endif
 
    on_set_parent(pparent);
 
@@ -403,33 +387,21 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    m_pguie->pre_create_window(cs);
 
 
-#ifdef WINDOWS
-
    send_message(WM_CREATE, 0, (LPARAM) &cs);
-
-#else
-
-   throw todo(get_app());
-
-#endif
 
    if(rect.bottom != 0 && rect.left != 0 && rect.right != 0 && rect.top != 0)
    {
-      m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
 
-#ifdef WINDOWS
+      m_pguie->SetWindowPos(0, rect.left, rect.top, cs.cx, cs.cy, SWP_SHOWWINDOW);
 
       send_message(WM_SIZE, 0, 0);
 
-#else
-
-      throw todo(get_app());
-
-#endif
-
    }
+
    on_set_parent(pparent);
+
    return true;
+
 }
 
 
@@ -521,29 +493,11 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
    m_pguie->pre_create_window(cs);
 
-#ifdef WINDOWS
-
-
    send_message(WM_CREATE, 0, (LPARAM) &cs);
-
-#else
-
-   throw todo(get_app());
-
-#endif
 
    m_pguie->SetWindowPos(0, 0, 0, cs.cx, cs.cy, 0);
 
-
-#ifdef WINDOWS
-
    send_message(WM_SIZE, 0, 0);
-
-#else
-
-   throw todo(get_app());
-
-#endif
 
    on_set_parent(pparent);
 
@@ -635,8 +589,6 @@ void virtual_user_interface::CalcWindowRect(LPRECT lpClientRect, UINT nAdjustTyp
 }
 
 
-#ifdef WINDOWS
-
 LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPARAM lparam)
 {
 
@@ -681,7 +633,8 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
 
 }
 
-#else
+#ifdef LINUX
+
 
 LRESULT virtual_user_interface::send_message(XEvent * pevent)
 {

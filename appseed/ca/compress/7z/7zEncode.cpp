@@ -21,8 +21,8 @@ static const uint64_t k_BCJ2 = 0x0303011B;
 namespace n7z
 {
 
-   static void ConvertBindInfoToFolderItemInfo(const ::compress::coder_mixer::CBindInfo &bindInfo,
-      const base_array < ::compress::method_id > decompressionMethods,
+   static void ConvertBindInfoToFolderItemInfo(const ::libcompress::coder_mixer::CBindInfo &bindInfo,
+      const base_array < ::libcompress::method_id > decompressionMethods,
       CFolder &folder)
    {
       folder.Coders.remove_all();
@@ -41,7 +41,7 @@ namespace n7z
       for (i = 0; i < bindInfo.Coders.get_count(); i++)
       {
          CCoderInfo coderInfo;
-         const ::compress::coder_mixer::CCoderStreamsInfo &coderStreamsInfo = bindInfo.Coders[i];
+         const ::libcompress::coder_mixer::CCoderStreamsInfo &coderStreamsInfo = bindInfo.Coders[i];
          coderInfo.NumInStreams = coderStreamsInfo.NumInStreams;
          coderInfo.NumOutStreams = coderStreamsInfo.NumOutStreams;
          coderInfo.MethodID = decompressionMethods[i];
@@ -52,12 +52,12 @@ namespace n7z
    }
 
    HRESULT CEncoder::CreateMixerCoder(
-      ::compress::codecs_info_interface *codecsInfo,
-      const base_array < ::compress::codec_info_ex > *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo,
+      const base_array < ::libcompress::codec_info_ex > *externalCodecs,
       const file_size *inSizeForReduce)
    {
       ex1::HRes hr;
-      _mixerCoderSpec = new ::compress::coder_mixer::CCoderMixer2MT(get_app());
+      _mixerCoderSpec = new ::libcompress::coder_mixer::CCoderMixer2MT(get_app());
       _mixerCoder = _mixerCoderSpec;
       RINOK(_mixerCoderSpec->SetBindInfo(_bindInfo));
       for (int32_t i = 0; i < _options.Methods.get_count(); i++)
@@ -66,8 +66,8 @@ namespace n7z
          _codersInfo.add(CCoderInfo());
          CCoderInfo &encodingInfo = _codersInfo.last_element();
          encodingInfo.MethodID = methodFull.Id;
-         ::ca::smart_pointer < ::compress::coder_interface > encoder;
-         ::ca::smart_pointer < ::compress::coder2_interface > encoder2;
+         ::ca::smart_pointer < ::libcompress::coder_interface > encoder;
+         ::ca::smart_pointer < ::libcompress::coder2_interface > encoder2;
 
 
          if(FAILED(hr = CreateCoder(
@@ -83,8 +83,8 @@ namespace n7z
          ::ca::smart_pointer < ::radix::object > encoderCommon = encoder ? (::radix::object *)encoder : (::radix::object *)encoder2;
 
          {
-            ::ca::smart_pointer < ::compress::set_coder_mt_interface > setCoderMt;
-            setCoderMt =   dynamic_cast < ::compress::set_coder_mt_interface * > (encoderCommon.m_p);
+            ::ca::smart_pointer < ::libcompress::set_coder_mt_interface > setCoderMt;
+            setCoderMt =   dynamic_cast < ::libcompress::set_coder_mt_interface * > (encoderCommon.m_p);
             if (setCoderMt)
             {
                if(FAILED(hr = setCoderMt->SetNumberOfThreads(_options.NumThreads)))
@@ -141,14 +141,14 @@ namespace n7z
    }
 
    HRESULT CEncoder::Encode(
-      ::compress::codecs_info_interface *codecsInfo,
-      const base_array < ::compress::codec_info_ex > *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo,
+      const base_array < ::libcompress::codec_info_ex > *externalCodecs,
       ::ex1::reader *inStream,
       const file_size *inStreamSize, const file_size *inSizeForReduce,
       CFolder &folderItem,
       ::ex1::writer *outStream,
       base_array<file_size> &packSizes,
-      ::compress::progress_info_interface *compressProgress)
+      ::libcompress::progress_info_interface *compressProgress)
    {
       ex1::HRes hr;
       RINOK(EncoderConstr());
@@ -204,7 +204,7 @@ namespace n7z
       // uint64_t outStreamStartPos;
       // RINOK(stream->Seek(0, STREAM_SEEK_CUR, &outStreamStartPos));
 
-      ::compress::size_count_reader2 * inStreamSizeCountSpec = new ::compress::size_count_reader2;
+      ::libcompress::size_count_reader2 * inStreamSizeCountSpec = new ::libcompress::size_count_reader2;
       ::ca::smart_pointer < ::ex1::reader > inStreamSizeCount = inStreamSizeCountSpec;
       ::ex1::size_count_writer * outStreamSizeCountSpec = new ::ex1::size_count_writer;
       ::ca::smart_pointer < ::ex1::writer > outStreamSizeCount = outStreamSizeCountSpec;
@@ -231,8 +231,8 @@ namespace n7z
             resetInitVector->ResetInitVector();
          }
 
-         ::ca::smart_pointer < ::compress::write_coder_properties_interface >  writeCoderProperties;
-         writeCoderProperties = dynamic_cast < ::compress::write_coder_properties_interface * >(&_mixerCoderSpec->_coders[i]);
+         ::ca::smart_pointer < ::libcompress::write_coder_properties_interface >  writeCoderProperties;
+         writeCoderProperties = dynamic_cast < ::libcompress::write_coder_properties_interface * >(&_mixerCoderSpec->_coders[i]);
          if (writeCoderProperties != NULL)
          {
             ::ex1::dynamic_buffered_writer *outStreamSpec = new ::ex1::dynamic_buffered_writer;
@@ -307,7 +307,7 @@ namespace n7z
             throw 1;
          if (!_options.Binds.is_empty())
             throw 1;
-         ::compress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
+         ::libcompress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
          CMethodFull method;
 
          method.NumInStreams = 1;
@@ -330,14 +330,14 @@ namespace n7z
          for (i = 0; i < _options.Methods.get_count(); i++)
          {
             const CMethodFull &methodFull = _options.Methods[i];
-            ::compress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
+            ::libcompress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
             coderStreamsInfo.NumInStreams = methodFull.NumOutStreams;
             coderStreamsInfo.NumOutStreams = methodFull.NumInStreams;
             if (_options.Binds.is_empty())
             {
                if (i < _options.Methods.get_count() - 1)
                {
-                  ::compress::coder_mixer::CBindPair bindPair;
+                  ::libcompress::coder_mixer::CBindPair bindPair;
                   bindPair.InIndex = numInStreams + coderStreamsInfo.NumInStreams;
                   bindPair.OutIndex = numOutStreams;
                   _bindInfo.BindPairs.add(bindPair);
@@ -358,7 +358,7 @@ namespace n7z
          {
             for (i = 0; i < _options.Binds.get_count(); i++)
             {
-               ::compress::coder_mixer::CBindPair bindPair;
+               ::libcompress::coder_mixer::CBindPair bindPair;
                const CBind &bind = _options.Binds[i];
                bindPair.InIndex = _bindInfo.GetCoderInStreamIndex(bind.InCoder) + bind.InStream;
                bindPair.OutIndex = _bindInfo.GetCoderOutStreamIndex(bind.OutCoder) + bind.OutStream;
@@ -406,7 +406,7 @@ namespace n7z
 
             for (i = 0; i < numCryptoStreams; i++)
             {
-               ::compress::coder_mixer::CBindPair bindPair;
+               ::libcompress::coder_mixer::CBindPair bindPair;
                bindPair.InIndex = numInStreams + i;
                bindPair.OutIndex = _bindInfo.OutStreams[i];
                _bindInfo.BindPairs.add(bindPair);
@@ -420,7 +420,7 @@ namespace n7z
 
             for (i = 0; i < numCryptoStreams; i++)
             {
-               ::compress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
+               ::libcompress::coder_mixer::CCoderStreamsInfo coderStreamsInfo;
                CMethodFull method;
                method.NumInStreams = 1;
                method.NumOutStreams = 1;
@@ -442,7 +442,7 @@ namespace n7z
          _decompressionMethods.add(methodFull.Id);
       }
 
-      _bindReverseConverter = new ::compress::coder_mixer::CBindReverseConverter(_bindInfo);
+      _bindReverseConverter = new ::libcompress::coder_mixer::CBindReverseConverter(_bindInfo);
       _bindReverseConverter->CreateReverseBindInfo(_decompressBindInfo);
       _constructed = true;
       return S_OK;

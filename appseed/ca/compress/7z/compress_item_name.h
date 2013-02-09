@@ -15,4 +15,4 @@ namespace archive
 
    } // namespace item_name
 
-} // namespace compress
+} // namespace libcompress

@@ -5,10 +5,10 @@
 
 //#include "CoderMixer.h"
 
-namespace compress
+namespace libcompress
 {
 
-   namespace coder_mixer 
+   namespace coder_mixer
    {
 
       void coder_info::SetCoderInfo(const uint64_t *inSize, const uint64_t *outSize)
@@ -22,4 +22,4 @@ namespace compress
       }
 
    }
-} // namespace compress
+} // namespace libcompress

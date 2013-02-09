@@ -8,14 +8,14 @@
 #include "Rar2Decoder.h"
 #include "Rar3Decoder.h"*/
 
-namespace compress
+namespace libcompress
 {
 
 #define CREATE_CODEC(x)                                                                \
    static void *create_codec ## x()                                                    \
    {                                                                                   \
       return (void *)(coder_interface *)(new rar ## x::decoder);                       \
-   }                                                                                   
+   }
 
    CREATE_CODEC(1)
    CREATE_CODEC(2)
@@ -32,4 +32,4 @@ namespace compress
 
    REGISTER_CODECS(Rar)
 
-} // namespace compress
+} // namespace libcompress

@@ -11,9 +11,9 @@
 
 #define RARVM_STANDARD_FILTERS
 
-namespace compress
+namespace libcompress
 {
-   namespace rar3 
+   namespace rar3
    {
 
       class mem_bit_decoder
@@ -180,4 +180,4 @@ namespace compress
 
    } // namespace rar3
 
-} // namespace compress
+} // namespace libcompress

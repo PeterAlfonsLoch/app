@@ -18,7 +18,7 @@ to see if it sets flags right.
 
 //#include "Rar3Vm.h"
 
-namespace compress
+namespace libcompress
 {
    namespace rar3
    {
@@ -1109,4 +1109,4 @@ namespace compress
 
    } // namespace rar3
 
-} // namespace compress
+} // namespace libcompress

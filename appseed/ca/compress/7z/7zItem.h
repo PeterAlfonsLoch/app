@@ -15,7 +15,7 @@ namespace n7z
 
    struct CCoderInfo
    {
-      ::compress::method_id MethodID;
+      ::libcompress::method_id MethodID;
       ::ex1::byte_buffer Props;
       CNum NumInStreams;
       CNum NumOutStreams;
@@ -130,9 +130,9 @@ namespace n7z
          Values[index] = value;
       }
 
-      bool CheckSize(count size) const 
-      { 
-         return Defined.get_count() == size || Defined.get_count() == 0; 
+      bool CheckSize(count size) const
+      {
+         return Defined.get_count() == size || Defined.get_count() == 0;
       }
 
    };

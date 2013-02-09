@@ -42,6 +42,7 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 
 namespace ca4
 {
+
    bool compress::ungz(ex1::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
       int32_t fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
@@ -230,7 +231,7 @@ namespace ca4
    {
       memory.allocate(compressBound(ulSize) * 2);
       primitive::memory_size ulDestSize = memory.get_size();
-      int32_t i = ::zlib_compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, ulSize);
+      int32_t i = ::compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, ulSize);
       memory.allocate(ulDestSize);
       return i == Z_OK;
    }

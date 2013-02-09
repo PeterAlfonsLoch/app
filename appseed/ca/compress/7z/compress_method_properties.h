@@ -1,7 +1,7 @@
 // from 7-zip on dawn of 13/01/2001 - Thursday
 #pragma once
 
-namespace compress
+namespace libcompress
 {
 
    struct method
@@ -19,12 +19,12 @@ namespace compress
          : NumThreads(1)
      {
      }
-     bool is_empty() const 
+     bool is_empty() const
      {
-        return methods.is_empty() ; 
+        return methods.is_empty() ;
      }
    };
 
    HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca * coder);
 
-} // namespace compress
+} // namespace libcompress

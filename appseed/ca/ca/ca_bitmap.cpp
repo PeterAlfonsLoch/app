@@ -21,12 +21,13 @@ namespace ca
       throw not_implemented(get_app());
    }
 
-   bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, HANDLE hSection, uint32_t offset)
+   bool bitmap::CreateDIBSection(::ca::graphics * pdc, const BITMAPINFO * lpbmi, UINT usage, void **ppvBits, int * stride, HANDLE hSection, uint32_t offset)
    {
       UNREFERENCED_PARAMETER(pdc);
       UNREFERENCED_PARAMETER(lpbmi);
       UNREFERENCED_PARAMETER(usage);
       UNREFERENCED_PARAMETER(ppvBits);
+      UNREFERENCED_PARAMETER(stride);
       UNREFERENCED_PARAMETER(hSection);
       UNREFERENCED_PARAMETER(offset);
       throw not_implemented(get_app());

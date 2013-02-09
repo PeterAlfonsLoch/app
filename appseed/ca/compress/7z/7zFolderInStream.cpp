@@ -8,11 +8,11 @@ namespace n7z
 
    CFolderInStream::CFolderInStream()
    {
-      _inStreamWithHashSpec = new ::compress::reader_with_crc;
+      _inStreamWithHashSpec = new ::libcompress::reader_with_crc;
       _inStreamWithHash = _inStreamWithHashSpec;
    }
 
-   void CFolderInStream::Init(::compress::archive_update_callback_interface *updateCallback,
+   void CFolderInStream::Init(::libcompress::archive_update_callback_interface *updateCallback,
       const uint32_t *fileIndices, uint32_t numFiles)
    {
       _updateCallback = updateCallback;
@@ -50,7 +50,7 @@ namespace n7z
             }
             return S_OK;
          }
-         RINOK(_updateCallback->SetOperationResult(::compress::archive::NUpdate::NOperationResult::kOK));
+         RINOK(_updateCallback->SetOperationResult(::libcompress::archive::NUpdate::NOperationResult::kOK));
          Sizes.add(0);
          Processed.add(result == S_OK);
          AddDigest();
@@ -65,7 +65,7 @@ namespace n7z
 
    HRESULT CFolderInStream::CloseStream()
    {
-      RINOK(_updateCallback->SetOperationResult(::compress::archive::NUpdate::NOperationResult::kOK));
+      RINOK(_updateCallback->SetOperationResult(::libcompress::archive::NUpdate::NOperationResult::kOK));
       _inStreamWithHashSpec->ReleaseStream();
       _fileIsOpen = false;
       _currentSizeIsDefined = false;

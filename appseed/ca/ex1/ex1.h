@@ -172,9 +172,7 @@ namespace ex1
 
 
 
-#include "ca/zlib/zconf.h"
-#include "ca/zlib/zlib.h"
-#include "ca/zlib/zutil.h"
+#include "zlib/zlib.h"
 #include "ca/sqlite/sqlite.h"
 
 

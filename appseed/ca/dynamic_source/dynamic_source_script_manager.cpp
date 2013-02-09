@@ -614,7 +614,7 @@ namespace dynamic_source
 
 #else
 
-      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ provider = 
+      ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider ^ provider =
          ::Windows::Security::Cryptography::Core::AsymmetricKeyAlgorithmProvider::OpenAlgorithm(
          ::Windows::Security::Cryptography::Core::AsymmetricAlgorithmNames::RsaPkcs1);
 
@@ -874,7 +874,7 @@ namespace dynamic_source
       // reading PNG dimensions requires the first 24 bytes of the file
       // reading JPEG dimensions requires scanning through jpeg chunks
       // In all formats, the file is at least 24 bytes big, so we'll read that always
-      unsigned char buf[24]; 
+      unsigned char buf[24];
 
       if(f->read(buf, 24) < 24)
       {
@@ -882,13 +882,13 @@ namespace dynamic_source
       }
 
       // http://www.64lines.com/jpeg-width-height
-      if (buf[0]==0xFF && buf[1]==0xD8 && buf[2]==0xFF && buf[3]==0xE0 && buf[6]=='J' && buf[7]=='F' && buf[8]=='I' && buf[9]=='F' && buf[9]=='10')
-      { 
+      if (buf[0]==0xFF && buf[1]==0xD8 && buf[2]==0xFF && buf[3]==0xE0 && buf[6]=='J' && buf[7]=='F' && buf[8]=='I' && buf[9]=='F' && buf[10]=='\0')
+      {
          unsigned short block_length = buf[4] * 256 + buf[5];
          int i = 4;
          while(i < len)
          {
-            
+
             i += block_length;               //Increase the file index to get to the next block
 
             if(i >= len)
@@ -899,7 +899,7 @@ namespace dynamic_source
             if(f->read(buf, 4) < 4)
                return false;
 
-            if(buf[i] != 0xFF) 
+            if(buf[i] != 0xFF)
                return false;   //Check that we are truly at the start of another block
 
             if(buf[i+1] == 0xC0)
@@ -936,7 +936,7 @@ namespace dynamic_source
 
       // GIF: first three bytes say "GIF", next three give version number. Then dimensions
       if (buf[0]=='G' && buf[1]=='I' && buf[2]=='F')
-      { 
+      {
 
          psize->cx = buf[6] + (buf[7]<<8);
 
@@ -949,7 +949,7 @@ namespace dynamic_source
       // PNG: the first frame is by definition an IHDR frame, which gives dimensions
       if(buf[0]==0x89 && buf[1]=='P' && buf[2]=='N' && buf[3]=='G' && buf[4]==0x0D && buf[5]==0x0A && buf[6]==0x1A && buf[7]==0x0A
          && buf[12]=='I' && buf[13]=='H' && buf[14]=='D' && buf[15]=='R')
-      { 
+      {
 
          psize->cx = (buf[16]<<24) + (buf[17]<<16) + (buf[18]<<8) + (buf[19]<<0);
 

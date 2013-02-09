@@ -32,7 +32,7 @@ namespace n7z
    COutArchive::COutArchive(::ca::application * papp) :
       ca(papp)
    {
-     _outByte.create(1 << 16); 
+     _outByte.create(1 << 16);
    }
 
 
@@ -551,8 +551,8 @@ namespace n7z
    }
 
    HRESULT COutArchive::EncodeStream(
-      ::compress::codecs_info_interface * codecsInfo,
-      const base_array < ::compress::codec_info_ex > * externalCodecs,
+      ::libcompress::codecs_info_interface * codecsInfo,
+      const base_array < ::libcompress::codec_info_ex > * externalCodecs,
       CEncoder & encoder,
       const ::ex1::byte_buffer & data,
       base_array < file_size > & packSizes,
@@ -758,8 +758,8 @@ namespace n7z
    }
 
    HRESULT COutArchive::WriteDatabase(
-      ::compress::codecs_info_interface *codecsInfo,
-      const base_array < ::compress::codec_info_ex > *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo,
+      const base_array < ::libcompress::codec_info_ex > *externalCodecs,
       const CArchiveDatabase & db,
       const CCompressionMethodMode * options,
       const CHeaderOptions & headerOptions)

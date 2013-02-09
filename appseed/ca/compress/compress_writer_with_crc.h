@@ -9,7 +9,7 @@
 #include "../../IStream.h"
 */
 
-namespace compress
+namespace libcompress
 {
 
    class writer_with_crc:
@@ -39,4 +39,4 @@ namespace compress
       uint32_t GetCRC() const { return CRC_GET_DIGEST(_crc); }
    };
 
-} // namespace compress
+} // namespace libcompress

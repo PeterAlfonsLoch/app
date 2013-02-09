@@ -84,7 +84,7 @@ namespace n7z
 
    ex1::HRes handler::GetFileTimeType(uint32_t *type)
    {
-      *type = ::compress::NFileTimeType::kWindows;
+      *type = ::libcompress::NFileTimeType::kWindows;
       return S_OK;
    }
 
@@ -104,8 +104,8 @@ namespace n7z
       {
          // headerMethod.Methods.add(methodMode.Methods.Back());
 
-         array_ptr_alloc < ::compress::COneMethodInfo > headerMethodInfoVector;
-         ::compress::COneMethodInfo oneMethodInfo;
+         array_ptr_alloc < ::libcompress::COneMethodInfo > headerMethodInfoVector;
+         ::libcompress::COneMethodInfo oneMethodInfo;
          oneMethodInfo.MethodName = kLZMAMethodName;
          oneMethodInfo.Props[NCoderPropID::kMatchFinder] = kLzmaMatchFinderForHeaders;
          oneMethodInfo.Props[NCoderPropID::kAlgorithm] = (int32_t) kAlgorithmForHeaders;
@@ -124,7 +124,7 @@ namespace n7z
 
    ex1::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
-      array_ptr_alloc < ::compress::COneMethodInfo > &methodsInfo
+      array_ptr_alloc < ::libcompress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
       , uint32_t numThreads
 #endif
@@ -134,7 +134,7 @@ namespace n7z
 
       if (methodsInfo.is_empty())
       {
-         ::compress::COneMethodInfo oneMethodInfo;
+         ::libcompress::COneMethodInfo oneMethodInfo;
          oneMethodInfo.MethodName = ((level == 0) ? kCopyMethod : kDefaultMethodName);
          methodsInfo.add(oneMethodInfo);
       }
@@ -142,7 +142,7 @@ namespace n7z
       bool needSolid = false;
       for(int32_t i = 0; i < methodsInfo.get_count(); i++)
       {
-         ::compress::COneMethodInfo &oneMethodInfo = methodsInfo[i];
+         ::libcompress::COneMethodInfo &oneMethodInfo = methodsInfo[i];
          SetCompressionMethod2(oneMethodInfo
 #ifndef _7ZIP_ST
             , numThreads
@@ -190,7 +190,7 @@ namespace n7z
 
    #define PROPID int32_t
 
-   static ex1::HRes GetTime(::compress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64_t &ft, bool &ftDefined)
+   static ex1::HRes GetTime(::libcompress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64_t &ft, bool &ftDefined)
    {
       ft = 0;
       ftDefined = false;
@@ -209,7 +209,7 @@ namespace n7z
    }
 
    ex1::HRes handler::UpdateItems(::ex1::writer *outStream, uint32_t numItems,
-      ::compress::archive_update_callback_interface *updateCallback)
+      ::libcompress::archive_update_callback_interface *updateCallback)
    {
          const CArchiveDatabaseEx *db = 0;
 #ifdef _7Z_VOL
@@ -264,7 +264,7 @@ namespace n7z
             bool folderStatusIsDefined;
             {
                var prop;
-               RINOK(updateCallback->GetProperty(i, ::compress::kpidAttrib, &prop));
+               RINOK(updateCallback->GetProperty(i, ::libcompress::kpidAttrib, &prop));
                if (prop.is_empty())
                   ui.AttribDefined = false;
                else if (!prop.is_integer())
@@ -277,13 +277,13 @@ namespace n7z
             }
 
             // we need MTime to sort files.
-            RINOK(GetTime(updateCallback, i, WriteCTime, ::compress::kpidCTime, ui.CTime, ui.CTimeDefined));
-            RINOK(GetTime(updateCallback, i, WriteATime, ::compress::kpidATime, ui.ATime, ui.ATimeDefined));
-            RINOK(GetTime(updateCallback, i, true,       ::compress::kpidMTime, ui.MTime, ui.MTimeDefined));
+            RINOK(GetTime(updateCallback, i, WriteCTime, ::libcompress::kpidCTime, ui.CTime, ui.CTimeDefined));
+            RINOK(GetTime(updateCallback, i, WriteATime, ::libcompress::kpidATime, ui.ATime, ui.ATimeDefined));
+            RINOK(GetTime(updateCallback, i, true,       ::libcompress::kpidMTime, ui.MTime, ui.MTimeDefined));
 
             {
                var prop;
-               RINOK(updateCallback->GetProperty(i, ::compress::kpidPath, &prop));
+               RINOK(updateCallback->GetProperty(i, ::libcompress::kpidPath, &prop));
                if (prop.is_empty())
                   nameIsDefined = false;
                else if (prop.get_type() != var::type_string)
@@ -297,7 +297,7 @@ namespace n7z
             }
             {
                var prop;
-               RINOK(updateCallback->GetProperty(i, ::compress::kpidIsDir, &prop));
+               RINOK(updateCallback->GetProperty(i, ::libcompress::kpidIsDir, &prop));
                if (prop.is_empty())
                   folderStatusIsDefined = false;
                else if (prop.get_type() != var::type_bool)
@@ -311,7 +311,7 @@ namespace n7z
 
             {
                var prop;
-               RINOK(updateCallback->GetProperty(i, ::compress::kpidIsAnti, &prop));
+               RINOK(updateCallback->GetProperty(i, ::libcompress::kpidIsAnti, &prop));
                if (prop.is_empty())
                   ui.IsAnti = false;
                else if (prop.get_type() != var::type_bool)
@@ -338,7 +338,7 @@ namespace n7z
          if (ui.NewData)
          {
             var prop;
-            RINOK(updateCallback->GetProperty(i, ::compress::kpidSize, &prop));
+            RINOK(updateCallback->GetProperty(i, ::libcompress::kpidSize, &prop));
             if (prop.get_type() != var::type_int32) // todo: type_byte
                return E_INVALIDARG;
             ui.get_count = prop;

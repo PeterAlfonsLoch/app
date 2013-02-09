@@ -7,13 +7,13 @@ namespace n7z
 
    class CFolderOutStream:
       public ::ex1::writer,
-      public ::compress::get_sub_stream_size_interface
+      public ::libcompress::get_sub_stream_size_interface
    {
-      ::compress::writer_with_crc *_crcStreamSpec;
+      ::libcompress::writer_with_crc *_crcStreamSpec;
       ::ca::smart_pointer < ::ex1::writer > _crcStream;
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
-      ::ca::smart_pointer < ::compress::archive_extract_callback_interface > _extractCallback;
+      ::ca::smart_pointer < ::libcompress::archive_extract_callback_interface > _extractCallback;
       uint32_t _ref2Offset;
       uint32_t _startIndex;
       int32_t _currentIndex;
@@ -37,7 +37,7 @@ namespace n7z
          const CArchiveDatabaseEx *db,
          uint32_t ref2Offset, uint32_t startIndex,
          const bool_array *extractStatuses,
-         ::compress::archive_extract_callback_interface *extractCallback,
+         ::libcompress::archive_extract_callback_interface *extractCallback,
          bool testMode, bool checkCrc);
       ex1::HRes FlushCorrupted(int32_t resultEOperationResult);
       ex1::HRes WasWritingFinished() const

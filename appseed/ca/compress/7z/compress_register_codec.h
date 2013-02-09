@@ -3,7 +3,7 @@
 #pragma once
 
 
-namespace compress
+namespace libcompress
 {
 
    typedef void * (*pfn_create_codec)();
@@ -31,4 +31,4 @@ namespace compress
        RegisterCodec(&g_CodecsInfo[i]); }}; \
        static REGISTER_CODECS_NAME(x) g_RegisterCodecs;
 
-} // namespace compress
+} // namespace libcompress

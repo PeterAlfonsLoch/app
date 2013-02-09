@@ -1365,7 +1365,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
 /*
   Give the current position in uncompressed data
 */
-extern z_off_t CLASS_DECL_ca unztell (
+extern int_ptr CLASS_DECL_ca unztell (
     unzFile file)
 {
     unz_s* s;
@@ -1378,7 +1378,7 @@ extern z_off_t CLASS_DECL_ca unztell (
     if (pfile_in_zip_read_info==NULL)
         return UNZ_PARAMERROR;
 
-    return (z_off_t)pfile_in_zip_read_info->stream.total_out;
+    return (int_ptr)pfile_in_zip_read_info->stream.total_out;
 }
 
 

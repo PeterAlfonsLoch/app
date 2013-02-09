@@ -3,7 +3,7 @@
 #include "framework.h"
 
 
-namespace compress
+namespace libcompress
 {
 
    namespace coder_mixer
@@ -123,4 +123,4 @@ namespace compress
 
    } // namespace coder_mixer
 
-} // namespace compress
+} // namespace libcompress

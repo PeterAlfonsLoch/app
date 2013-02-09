@@ -6,7 +6,7 @@
 
 namespace crypto
 {
-   
+
    namespace rar29
    {
 
@@ -14,7 +14,7 @@ namespace crypto
 
       class decoder:
         public aes_cbc_decoder,
-        public compress::set_decoder_properties2_interface,
+        public ::libcompress::set_decoder_properties2_interface,
         public crypto::set_password_interface
       {
       public:

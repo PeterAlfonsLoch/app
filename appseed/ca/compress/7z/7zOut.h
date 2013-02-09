@@ -95,7 +95,7 @@ namespace n7z
       void WriteUInt64DefVector(const CUInt64DefVector &v, byte type);
 
       HRESULT EncodeStream(
-         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          CEncoder &encoder, const ::ex1::byte_buffer &data,
          base_array<file_size> &packSizes, array_ptr_alloc<CFolder> &folders);
       void WriteHeader(
@@ -124,7 +124,7 @@ namespace n7z
       void Close();
       HRESULT SkipPrefixArchiveHeader();
       HRESULT WriteDatabase(
-         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          const CArchiveDatabase &db,
          const CCompressionMethodMode *options,
          const CHeaderOptions &headerOptions);

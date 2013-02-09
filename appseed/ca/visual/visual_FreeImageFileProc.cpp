@@ -125,10 +125,15 @@ int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
       origin = ::ex1::seek_current;
    else if(origin == SEEK_END)
       origin = ::ex1::seek_end;
-   if(pfile->seek(offset, (::ex1::e_seek) origin) == 0xFFFFFFFF)
+   try
+   {
+      pfile->seek(offset, (::ex1::e_seek) origin);
+   }
+   catch(...)
+   {
       return -1;
-   else
-      return 0;
+   }
+   return 0;
 }
 long _stdcall __TellProc2 (fi_handle handle)
 {

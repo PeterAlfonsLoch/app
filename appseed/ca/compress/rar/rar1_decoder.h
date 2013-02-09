@@ -14,7 +14,7 @@
 #include "HuffmanDecoder.h"
 #include "LzOutWindow.h"*/
 
-namespace compress
+namespace libcompress
 {
    namespace rar1
    {
@@ -23,11 +23,11 @@ namespace compress
 
 
       class decoder :
-         public ::compress::coder_interface,
-         public ::compress::set_decoder_properties2_interface
+         public ::libcompress::coder_interface,
+         public ::libcompress::set_decoder_properties2_interface
       {
       public:
-         ::compress::lz_out_window        m_OutWindowStream;
+         ::libcompress::lz_out_window        m_OutWindowStream;
          ::ex1::bitm::in_buffer_decoder   m_InBitStream;
 
          uint32_t m_RepDists[kNumRepDists];
@@ -61,7 +61,7 @@ namespace compress
 
          void InitStructures();
 
-         HRESULT CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress);
+         HRESULT CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
       public:
          decoder();
@@ -74,7 +74,7 @@ namespace compress
             m_InBitStream.ReleaseStream();
          }
 
-         virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress);
+         virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
          virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
@@ -82,5 +82,5 @@ namespace compress
 
    } // namespace rar1
 
-} // namespace compress
+} // namespace libcompress
 

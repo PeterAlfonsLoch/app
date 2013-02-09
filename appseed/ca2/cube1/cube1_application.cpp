@@ -165,12 +165,23 @@ namespace cube1
 
 #elif defined(LINUX)
 
-      throw todo(get_app());
+      Display * d=XOpenDisplay(NULL);
+
+
+      //throw todo(get_app());
+      lprect->left = 0;
+      lprect->top = 0;
+      lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d));
+      lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d));
 
 #elif defined(MACOS)
-      
+
+
       throw todo(get_app());
-      
+
+
+
+
 #else
       throw todo(get_app());
       ::GetWindowRect(::GetDesktopWindow(), lprect);

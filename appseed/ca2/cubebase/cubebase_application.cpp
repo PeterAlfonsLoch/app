@@ -1,5 +1,10 @@
 #include "framework.h"
 
+#if defined(LINUX) || defined(MACOS)
+#include <dlfcn.h>
+#endif
+
+
 
 namespace cubebase
 {
@@ -34,6 +39,12 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
       HMODULE hmodule = ::LoadPackagedLibrary(L"os2.dll", 0);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(hmodule, "ca2_factory_exchange");
+      pfn_ca2_factory_exchange(this);
+
+#elif defined(LINUX)
+
+      void * pdl = ::dlopen("libca2os2.so", RTLD_NOW | RTLD_GLOBAL);
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
 
    #else

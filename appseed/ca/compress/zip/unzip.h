@@ -48,7 +48,7 @@ extern "C" {
 #endif
 
 #ifndef _ZLIB_H
-#include "ca/zlib/zlib.h"
+#include "zlib/zlib.h"
 #endif
 
 #ifndef _ZLIBIOAPI_H
@@ -313,7 +313,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile OF((unzFile file,
     (UNZ_ERRNO for IO error, or zLib error for uncompress error)
 */
 
-extern z_off_t CLASS_DECL_ca unztell OF((unzFile file));
+extern int_ptr CLASS_DECL_ca unztell OF((unzFile file));
 /*
   Give the current position in uncompressed data
 */

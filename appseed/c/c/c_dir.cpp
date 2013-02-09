@@ -9,6 +9,17 @@
 #endif
 
 
+#ifdef LINUX
+#include <dlfcn.h>
+#include <link.h>
+#include <ctype.h>
+#elif defined(MACOS)
+#include <dlfcn.h>
+#include <mach-o/dyld.h>
+#endif
+
+
+
 #ifdef WINDOWSEX
 
 
@@ -191,13 +202,77 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
 }
 
+bool eat_end_level_dup(vsstring & str, int32_t iLevelCount, const char * lpSeparator)
+{
+
+   strsize iLast = str.length() - 1;
+
+   if(iLast < 0)
+      return iLevelCount <= 0;
+
+   while(str[iLast] == '/' || str[iLast] == '\\')
+      iLast--;
+
+   for(int32_t i = 0; i < iLevelCount; i++)
+   {
+
+      strsize iFind1 = str.rfind('/', iLast);
+
+      strsize iFind2 = str.rfind('\\', iLast);
+
+      strsize iFind = max(iFind1, iFind2);
+
+      if(iFind >= iLast)
+         return false;
+
+      if(iFind < 0)
+         return false;
+
+      iLast = iFind;
+
+      while(str[iLast] == '/' || str[iLast] == '\\')
+         iLast--;
+
+   }
+
+   str = str.substr(0, iLast + 1);
+
+   return true;
+
+}
+
+
+vsstring ca2_module_folder_dup()
+{
+
+   void * handle = dlopen("libca2ca.so", RTLD_NOW);
+
+   if(handle == NULL)
+      return "";
+
+   link_map * plm;
+
+   dlinfo(handle, RTLD_DI_LINKMAP, &plm);
+
+   vsstring strCa2ModuleFolder = ::dir::name(plm->l_name);
+
+   dlclose(handle);
+
+   return strCa2ModuleFolder;
+
+
+}
 
 vsstring dir::ca2(const char * path1, const char * path2, const char * path3, const char * path4)
 {
+
+#ifdef WINDOWS
+
    if(path1 == NULL && path2 == NULL && path3 == NULL && path4 == NULL)
    {
+
       vsstring str;
-#ifdef WINDOWS
+
       char lpszModuleFilePath[MAX_PATH * 10];
       get_ca2_module_folder_dup(lpszModuleFilePath);
       str = lpszModuleFilePath;
@@ -225,11 +300,28 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
          str += stra[i];
          str += "\\";
       }
-#endif
+
       return str;
    }
    else
+   {
+
       return dir::path(ca2(), path1, path2, path3, path4);
+
+   }
+
+#else
+
+   vsstring strRelative = ca2_module_folder_dup();
+
+   eat_end_level_dup(strRelative, 2, "/");
+
+   vsstring str = path(getenv("HOME"), ".ca2/appdata");
+
+   return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
+
+#endif
+
 }
 
 bool dir::mk(const char * lpcsz)
@@ -738,28 +830,28 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 
 vsstring dir::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode)
 {
-   
+
    stra_dup stra;
-   
+
    stra.add_tokens(pszEnv, ":");
-   
+
    vsstring strCandidate;
-   
+
    for(int32_t i = 0; i < stra.get_count(); i++)
    {
-      
+
       if(stra[i].is_empty())
          continue;
-      
+
       strCandidate = path(stra[i], pszTopic);
-      
+
       if(file_exists_dup(strCandidate))
       {
          return strCandidate;
       }
-      
+
    }
-   
+
    return "";
-   
+
 }

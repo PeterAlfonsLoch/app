@@ -9,7 +9,7 @@
 	"linux/c_os_internal.h"
 	"windows/c_os_internal.h"
 
-1359329687 /ca2/app/appseed/c/c/c.h
+1360401127 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -78,6 +78,7 @@
 	"c_net.h"
 	"c_international.h"
 	"c_user.h"
+	"zlib/zlib.h"
 	"c_simple_app.h"
 
 1354886566 /ca2/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
@@ -830,12 +831,17 @@
 1357180588 source:/ca2/app/appseed/c/c/c_debug.cpp
 	"framework.h"
 
-1359329687 source:/ca2/app/appseed/c/c/c_dir.cpp
+1360399426 source:/ca2/app/appseed/c/c/c_dir.cpp
 	"framework.h"
 	<Shlobj.h>
 	<Security.h>
 	<dirent.h>
 	<sys/stat.h>
+	<dlfcn.h>
+	<link.h>
+	<ctype.h>
+	<dlfcn.h>
+	<mach-o/dyld.h>
 
 1354886566 source:/ca2/app/appseed/c/c/c_dir2.cpp
 	"framework.h"
@@ -894,7 +900,7 @@
 1357856314 source:/ca2/app/appseed/c/c/c_mutex_lock.cpp
 	"framework.h"
 
-1360044102 source:/ca2/app/appseed/c/c/c_net.cpp
+1360362330 source:/ca2/app/appseed/c/c/c_net.cpp
 	"framework.h"
 
 1357380817 source:/ca2/app/appseed/c/c/c_printf.cpp
@@ -1115,7 +1121,7 @@
 1357381162 source:/ca2/app/appseed/c/linux/c_os_win_base.cpp
 	"framework.h"
 
-1359329688 source:/ca2/app/appseed/c/linux/c_os_window.cpp
+1360412867 source:/ca2/app/appseed/c/linux/c_os_window.cpp
 	"framework.h"
 	<cairo/cairo.h>
 	<cairo/cairo-xlib.h>
@@ -1233,4 +1239,133 @@
 	<WinSvc.h>
 
 1354977258 source:/ca2/app/appseed/c/spa/windows/spa_windows_win.cpp
+
+1360401239 source:/ca2/app/appseed/c/zlib/adler32.cpp
+	"zutil.h"
+
+1360365804 /ca2/app/appseed/c/zlib/zutil.h
+	"zlib.h"
+	<stddef.h>
+	<string.h>
+	<stdlib.h>
+	<alloc.h>
+	<malloc.h>
+	<malloc.h>
+	<unix.h>
+	<stdio.h>
+
+1360365804 /ca2/app/appseed/c/zlib/zlib.h
+	"zconf.h"
+
+1360365804 /ca2/app/appseed/c/zlib/zconf.h
+	<windows.h>
+	<sys/types.h>
+	<unistd.h>
+	<unixio.h>
+
+1360401271 source:/ca2/app/appseed/c/zlib/compress.cpp
+	"zlib.h"
+
+1360401486 source:/ca2/app/appseed/c/zlib/crc32.cpp
+	<stdio.h>
+	"zutil.h"
+	<limits.h>
+	"crc32.h"
+
+1360365804 /ca2/app/appseed/c/zlib/crc32.h
+
+1360402139 source:/ca2/app/appseed/c/zlib/deflate.cpp
+	"deflate.h"
+
+1360365804 /ca2/app/appseed/c/zlib/deflate.h
+	"zutil.h"
+
+1360401692 source:/ca2/app/appseed/c/zlib/gzclose.cpp
+	"gzguts.h"
+
+1360365804 /ca2/app/appseed/c/zlib/gzguts.h
+	<stdio.h>
+	"zlib.h"
+	<string.h>
+	<stdlib.h>
+	<limits.h>
+	<fcntl.h>
+	<io.h>
+	<windows.h>
+	<errno.h>
+
+1360402105 source:/ca2/app/appseed/c/zlib/gzlib.cpp
+	"gzguts.h"
+
+1360363180 source:/ca2/app/appseed/c/zlib/gzread.cpp
+	"gzguts.h"
+
+1360363215 source:/ca2/app/appseed/c/zlib/gzwrite.cpp
+	"gzguts.h"
+	<stdarg.h>
+
+1360363327 source:/ca2/app/appseed/c/zlib/infback.cpp
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+
+1354886584 /ca2/app/appseed/c/zlib/inftrees.h
+
+1354886584 /ca2/app/appseed/c/zlib/inflate.h
+
+1354886583 /ca2/app/appseed/c/zlib/inffast.h
+
+1354886583 /ca2/app/appseed/c/zlib/inffixed.h
+
+1360363349 source:/ca2/app/appseed/c/zlib/inffast.cpp
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+
+1360363570 source:/ca2/app/appseed/c/zlib/inftrees.cpp
+	"zutil.h"
+	"inftrees.h"
+
+1360363604 source:/ca2/app/appseed/c/zlib/uncompr.cpp
+	"zlib.h"
+
+1360363975 source:/ca2/app/appseed/c/zlib/zutil.cpp
+	"zutil.h"
+
+1360364058 source:/ca2/app/appseed/c/zlib/inflate.cpp
+	"zutil.h"
+	"inftrees.h"
+	"inflate.h"
+	"inffast.h"
+	"inffixed.h"
+	<stdio.h>
+
+1360364161 source:/ca2/app/appseed/c/zlib/trees.cpp
+	"deflate.h"
+	<ctype.h>
+	"trees.h"
+	<stdio.h>
+
+1354886583 /ca2/app/appseed/c/zlib/trees.h
+
+1357180608 source:/ca2/app/appseed/c/framework.h
+	"c_mm.h"
+	"c/c.h"
+	"macos/c_os_internal.h"
+	"linux/c_os_internal.h"
+	"windows/c_os_internal.h"
+
+1336018355 /ca2/app/thirdparty/appseed/zlib/zlib.h
+	"zconf.h"
+
+1335741492 /ca2/app/thirdparty/appseed/zlib/zconf.h
+	<windows.h>
+	<limits.h>
+	<sys/types.h>
+	<stddef.h>
+	<unistd.h>
+	<unixio.h>
 

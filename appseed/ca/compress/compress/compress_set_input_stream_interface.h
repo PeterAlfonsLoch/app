@@ -1,7 +1,7 @@
 // from ICoder.h from 7-zip on 2010-12-20
-#pragma once 
+#pragma once
 
-namespace compress
+namespace libcompress
 {
 
    class CLASS_DECL_ca set_input_stream_interface :
@@ -12,4 +12,4 @@ namespace compress
       virtual ex1::HRes ReleaseInStream() = 0;
    };
 
-} // namespace compress
+} // namespace libcompress

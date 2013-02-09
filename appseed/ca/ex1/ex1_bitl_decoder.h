@@ -7,7 +7,7 @@
 namespace ex1
 {
 
-   namespace bitl 
+   namespace bitl
    {
 
       const uint32_t kNumBigValueBits = 8 * 4;
@@ -71,7 +71,7 @@ namespace ex1
       };
 
       template < class TInByte >
-      class decoder : 
+      class decoder :
          public base_decoder < TInByte >
       {
          uint32_t m_NormalValue;
@@ -144,4 +144,4 @@ namespace ex1
 
    } // namespace bitl
 
-} // namespace compress
+} // namespace libcompress

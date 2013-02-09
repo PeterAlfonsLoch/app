@@ -202,7 +202,8 @@ FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
    try
    {
       FREE_IMAGE_FORMAT format;
-      format = FreeImage_GetFileTypeFromHandle(&io, pfile ,16);
+      format = FreeImage_GetFileTypeFromHandle(&io, pfile , 16);
+      pfile->seek_to_begin();
       if(true)
       {
          lpVoid = FreeImage_LoadFromHandle(format, &io, pfile);

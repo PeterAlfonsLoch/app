@@ -2,7 +2,7 @@
 // from 7-zip on dawn of 13/01/2001 - Thursday
 #include "framework.h"
 
-namespace compress
+namespace libcompress
 {
 
    namespace coder_mixer
@@ -21,7 +21,7 @@ namespace compress
 
       int32_t CCoder2::run() { Code(NULL); return 0;}
 
-      void CCoder2::Code(::compress::progress_info_interface *progress)
+      void CCoder2::Code(::libcompress::progress_info_interface *progress)
       {
          InStreamPointers.remove_all();
          OutStreamPointers.remove_all();
@@ -104,13 +104,13 @@ namespace compress
          _coders.add(threadCoderInfo);
       }
 
-      void CCoderMixer2MT::AddCoder(::compress::coder_interface *coder)
+      void CCoderMixer2MT::AddCoder(::libcompress::coder_interface *coder)
       {
          AddCoderCommon();
          _coders.last_element().Coder = coder;
       }
 
-      void CCoderMixer2MT::AddCoder2(::compress::coder2_interface *coder)
+      void CCoderMixer2MT::AddCoder2(::libcompress::coder2_interface *coder)
       {
          AddCoderCommon();
          _coders.last_element().Coder2 = coder;
@@ -162,9 +162,9 @@ namespace compress
                &_coders[outCoderIndex].OutStreams[outCoderStreamIndex].m_p);
 
             throw "implement below";
-            /*::ca::smart_pointer<::compress::set_buffer_size_interface> inSetSize, outSetSize;
-            inSetSize = dynamic_cast < ::compress::set_buffer_size_interface * > (_coders[inCoderIndex].m_p);
-            outSetSize = dynamic_cast < ::compress::set_buffer_size_interface * > (_coders[outCoderIndex].m_p);
+            /*::ca::smart_pointer<::libcompress::set_buffer_size_interface> inSetSize, outSetSize;
+            inSetSize = dynamic_cast < ::libcompress::set_buffer_size_interface * > (_coders[inCoderIndex].m_p);
+            outSetSize = dynamic_cast < ::libcompress::set_buffer_size_interface * > (_coders[outCoderIndex].m_p);
             if (inSetSize && outSetSize)
             {
                const uint32_t kBufSize = 1 << 19;
@@ -203,7 +203,7 @@ namespace compress
          ::ex1::writer **outStreams,
          const file_size ** /* outSizes */,
          uint32_t numOutStreams,
-         ::compress::progress_info_interface *progress)
+         ::libcompress::progress_info_interface *progress)
       {
          if (numInStreams != (uint32_t)_bindInfo.InStreams.get_count() ||
             numOutStreams != (uint32_t)_bindInfo.OutStreams.get_count())
@@ -253,4 +253,4 @@ namespace compress
 
    } // namespace coder_mixer
 
-} // namespace compress
+} // namespace libcompress

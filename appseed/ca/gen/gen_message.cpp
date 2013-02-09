@@ -75,8 +75,6 @@ namespace gen
          return true;
       }
 
-#ifdef WINDOWS
-
       base * dispatch::peek_message(LPMESSAGE lpmsg, ::user::interaction * pwnd, UINT wMsgFilterMin, UINT wMsgFilterMax, UINT wRemoveMsg)
       {
          if(!::PeekMessage(lpmsg, pwnd->get_safe_handle(), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
@@ -174,7 +172,7 @@ namespace gen
                pbase = new set_focus(get_app());
             }
             break;
-#ifndef METROWIN
+#if !defined(METROWIN) && !defined(LINUX)
          case PrototypeWindowPos:
             {
                pbase = new window_pos(get_app());
@@ -246,7 +244,7 @@ namespace gen
       }
 
 
-#else
+#ifdef LINUX
 
       base * dispatch::get_base(XEvent * pevent, ::user::interaction * pwnd)
       {

@@ -34,7 +34,7 @@ namespace crypto
       };
 
       class CLASS_DECL_ca decoder:
-         public ::compress::filter_interface,
+         public ::libcompress::filter_interface,
          public set_password_interface
       {
       public:

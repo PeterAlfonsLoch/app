@@ -5,7 +5,7 @@
 //#include "../../Common/Types.h"
 
 
-namespace compress
+namespace libcompress
 {
 
    namespace huffman
@@ -89,5 +89,5 @@ namespace compress
 
    } // namespace huffman
 
-} // namespace compress
+} // namespace libcompress
 

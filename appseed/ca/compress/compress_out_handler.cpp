@@ -21,7 +21,7 @@ bool StringToBool(const string &s, bool &res);
 int32_t ParseStringToUInt32(const string &srcString, uint32_t &number);
 uint64_t ConvertStringToUInt64(const char *s, const char **end);
 
-namespace compress
+namespace libcompress
 {
 
 //   static const char *kCopyMethod = "Copy";
@@ -641,4 +641,4 @@ namespace compress
       return S_OK;
    }
 
-} // namespace compress
+} // namespace libcompress

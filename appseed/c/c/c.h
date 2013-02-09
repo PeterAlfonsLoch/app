@@ -214,6 +214,8 @@ CLASS_DECL_c WINBOOL IsWindow(oswindow oswindow);
 
 #include "c_user.h"
 
+#include "zlib/zlib.h"
+
 #include "c_simple_app.h"
 
 

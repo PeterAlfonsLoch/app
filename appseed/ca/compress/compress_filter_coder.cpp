@@ -9,7 +9,7 @@
 #include "FilterCoder.h"
 #include "StreamUtils.h"*/
 
-namespace compress
+namespace libcompress
 {
 
    static const uint32_t kBufferSize = 1 << 17;
@@ -239,4 +239,4 @@ namespace compress
       return _setDecoderProperties->SetDecoderProperties2(data, size);
    }
 
-} // namespace compress
+} // namespace libcompress

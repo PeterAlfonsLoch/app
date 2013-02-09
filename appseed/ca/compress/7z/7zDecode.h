@@ -6,9 +6,9 @@
 namespace n7z
 {
 
-   struct CBindInfoEx: public ::compress::coder_mixer::CBindInfo
+   struct CBindInfoEx: public ::libcompress::coder_mixer::CBindInfo
    {
-      base_array < ::compress::method_id > CoderMethodIDs;
+      base_array < ::libcompress::method_id > CoderMethodIDs;
       void remove_all()
       {
          CBindInfo::remove_all();
@@ -23,23 +23,23 @@ namespace n7z
       CBindInfoEx _bindInfoExPrev;
 
       bool _multiThread;
-      ::compress::coder_mixer::CCoderMixer2MT *_mixerCoderMTSpec;
-      ::compress::coder_mixer::CCoderMixer2 *_mixerCoderCommon;
+      ::libcompress::coder_mixer::CCoderMixer2MT *_mixerCoderMTSpec;
+      ::libcompress::coder_mixer::CCoderMixer2 *_mixerCoderCommon;
 
-      ::ca::smart_pointer < ::compress::coder2_interface > _mixerCoder;
+      ::ca::smart_pointer < ::libcompress::coder2_interface > _mixerCoder;
       base_array < ::ca::smart_pointer < ::ca::ca > > _decoders;
-      // array_ptr_alloc<::ca::smart_pointer<::compress::coder2_interface> > _decoders2;
+      // array_ptr_alloc<::ca::smart_pointer<::libcompress::coder2_interface> > _decoders2;
    public:
       CDecoder(::ca::application * papp,  bool multiThread);
       virtual ~CDecoder();
       HRESULT Decode(
-         ::compress::codecs_info_interface * codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface * codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          ex1::byte_input_stream *inStream,
          file_position startPos,
          const file_size * packSizes,
          const CFolder &folder,
          ::ex1::writer *outStream,
-         ::compress::progress_info_interface *compressProgress,
+         ::libcompress::progress_info_interface *compressProgress,
          ::crypto::get_text_password_interface *getTextPasswordSpec, bool &passwordIsDefined,
          bool mtMode, uint32_t numThreads
          );

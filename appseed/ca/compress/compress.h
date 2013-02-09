@@ -24,12 +24,12 @@
 
 
 
-namespace compress
+namespace libcompress
 {
 
    typedef uint64_t method_id;
 
-} // namespace compress
+} // namespace libcompress
 
 #include "compress_prop_id.h"
 #include "compress_method_properties.h"

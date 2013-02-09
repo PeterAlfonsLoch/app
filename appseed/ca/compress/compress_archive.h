@@ -17,7 +17,7 @@ struct stat_prop_stg
 };
 
 
-namespace compress
+namespace libcompress
 {
 
    namespace NFileTimeType
@@ -135,13 +135,13 @@ namespace compress
      testMode != 0 means "test files without writing to outStream"
    */
 
-     //virtual ex1::HRes Open(::ex1::byte_input_stream * stream, const uint64_t *maxCheckStartPosition, ::compress::archive_open_callback_interface *openArchiveCallback) specifier; \ // input stream should be seekable, so by the time using ex1::file interface
+     //virtual ex1::HRes Open(::ex1::byte_input_stream * stream, const uint64_t *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \ // input stream should be seekable, so by the time using ex1::file interface
    #define CA2_COMPRESS_INTERFACE_input_archive(specifier) \
-     virtual ex1::HRes Open(::ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::compress::archive_open_callback_interface *openArchiveCallback) specifier; \
+     virtual ex1::HRes Open(::ex1::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openArchiveCallback) specifier; \
      virtual ex1::HRes Close() specifier; \
      virtual ex1::HRes GetNumberOfItems(uint32_t *numItems) specifier; \
      virtual ex1::HRes GetProperty(uint32_t index, int32_t propID, var *value) specifier; \
-     virtual ex1::HRes Extract(const uint32_t* indices, uint32_t numItems, int32_t testMode, ::compress::archive_extract_callback_interface *extractCallback) specifier; \
+     virtual ex1::HRes Extract(const uint32_t* indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback) specifier; \
      virtual ex1::HRes GetArchiveProperty(int32_t propID, var *value) specifier; \
      virtual ex1::HRes GetNumberOfProperties(uint32_t *numProperties) specifier; \
      virtual ex1::HRes GetPropertyInfo(uint32_t index, string & name, int32_t *propID, var::e_type *varType) specifier; \
@@ -194,7 +194,7 @@ namespace compress
 
 
    #define CA2_COMPRESS_INTERFACE_IOutArchive(specifier) \
-     virtual ex1::HRes UpdateItems(ex1::writer *outStream, uint32_t numItems, ::compress::archive_update_callback_interface *updateCallback) specifier; \
+     virtual ex1::HRes UpdateItems(ex1::writer *outStream, uint32_t numItems, ::libcompress::archive_update_callback_interface *updateCallback) specifier; \
      virtual ex1::HRes GetFileTimeType(uint32_t *type) specifier;
 
    class CLASS_DECL_ca output_archive_interface
@@ -256,4 +256,4 @@ namespace compress
      ex1::HRes CHandler::GetArchiveProperty(PROPID, var *value) \
        { value->vt = VT_EMPTY; return S_OK; }
 
-} // namespace compress
+} // namespace libcompress

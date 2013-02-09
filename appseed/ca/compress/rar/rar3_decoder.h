@@ -20,10 +20,10 @@
 
 #include "rar3_vm.h"
 
-namespace compress 
+namespace libcompress
 {
 
-   namespace rar3 
+   namespace rar3
    {
 
       const uint32_t kWindowSize = 1 << 22;
@@ -153,8 +153,8 @@ namespace compress
       const int32_t kNumHuffmanBits = 15;
 
       class decoder:
-         public ::compress::coder_interface,
-         public ::compress::set_decoder_properties2_interface
+         public ::libcompress::coder_interface,
+         public ::libcompress::set_decoder_properties2_interface
       {
          CRangeDecoder m_InBitStream;
          byte *_window;
@@ -215,7 +215,7 @@ namespace compress
          HRESULT ReadTables(bool &keepDecompressing);
          HRESULT ReadEndOfBlock(bool &keepDecompressing);
          HRESULT DecodeLZ(bool &keepDecompressing);
-         HRESULT CodeReal(::compress::progress_info_interface *progress);
+         HRESULT CodeReal(::libcompress::progress_info_interface *progress);
       public:
          decoder();
          ~decoder();
@@ -229,7 +229,7 @@ namespace compress
          }
 
          virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream,
-            const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress);
+            const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
          virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
@@ -271,4 +271,4 @@ namespace compress
 
    } // namespace rar3
 
-} // namespace compress
+} // namespace libcompress

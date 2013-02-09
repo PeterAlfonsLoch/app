@@ -2,7 +2,7 @@
 // from 7-zip on dawn of 13/01/2001 - Thursday
 #include "framework.h"
 
-namespace compress
+namespace libcompress
 {
 
    ::primitive::memory_size size_count_reader2::read(void *data, ::primitive::memory_size size)

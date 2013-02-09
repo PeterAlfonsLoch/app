@@ -347,7 +347,7 @@
 	"gen_application.h"
 	"gen_istring.h"
 
-1357856321 /ca2/app/appseed/ca/ex1/ex1.h
+1360403052 /ca2/app/appseed/ca/ex1/ex1.h
 	"ca/radix/radix.h"
 	"ca/radix/radix_os_history.h"
 	"ca/collection/collection_sort_array.h"
@@ -392,9 +392,7 @@
 	"ca/primitive/primitive_memory_container.h"
 	"ca/primitive/primitive_memory_file.h"
 	"ca/primitive/primitive_shared_file.h"
-	"ca/zlib/zconf.h"
-	"ca/zlib/zlib.h"
-	"ca/zlib/zutil.h"
+	"zlib/zlib.h"
 	"ca/sqlite/sqlite.h"
 	"ca/libcharguess/libcharguess.h"
 	"ex1_definition.h"
@@ -549,7 +547,7 @@
 	"ca/primitive/count.h"
 	"ca/api/api.h"
 
-1359329687 /ca2/app/appseed/c/c/c.h
+1360401127 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -618,6 +616,7 @@
 	"c_net.h"
 	"c_international.h"
 	"c_user.h"
+	"zlib/zlib.h"
 	"c_simple_app.h"
 
 1354886566 /ca2/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
@@ -1928,7 +1927,7 @@
 
 1357856369 /ca2/app/appseed/ca/ca/ca_pen.h
 
-1357856369 /ca2/app/appseed/ca/ca/ca_bitmap.h
+1360409741 /ca2/app/appseed/ca/ca/ca_bitmap.h
 	"ca_graphics_object.h"
 
 1357180659 /ca2/app/appseed/ca/ca/ca_brush.h
@@ -1968,7 +1967,7 @@
 	"ca/user/user_create_context.h"
 	"ca/user/user_check_interface.h"
 
-1359329703 /ca2/app/appseed/ca/gen/gen_message.h
+1360422381 /ca2/app/appseed/ca/gen/gen_message.h
 	<agile.h>
 
 1355396973 /ca2/app/appseed/ca/user/user_create_context.h
@@ -2022,11 +2021,11 @@
 
 1354886573 /ca2/app/appseed/ca/user/user_window_id.h
 
-1357856393 /ca2/app/appseed/ca/user/user_interaction.h
+1360246777 /ca2/app/appseed/ca/user/user_interaction.h
 	"ca/gen/gen_holder.h"
 	"ca/user/user_window_interface.h"
 
-1357856393 /ca2/app/appseed/ca/user/user_virtual_user_interface.h
+1360249055 /ca2/app/appseed/ca/user/user_virtual_user_interface.h
 
 1357180706 /ca2/app/appseed/ca/database/database_id.h
 
@@ -2039,7 +2038,7 @@
 
 1354886571 /ca2/app/appseed/ca/database/database_update_hint.h
 
-1357856369 /ca2/app/appseed/ca/ca/ca_window.h
+1360246777 /ca2/app/appseed/ca/ca/ca_window.h
 	"ca/user/user_interaction.h"
 
 1354886568 /ca2/app/appseed/ca/ca/ca_message_window.h
@@ -2060,7 +2059,7 @@
 
 1354886568 /ca2/app/appseed/ca/ca/ca_live_signal.h
 
-1357856369 /ca2/app/appseed/ca/ca/ca_thread.h
+1360180445 /ca2/app/appseed/ca/ca/ca_thread.h
 
 1357856353 /ca2/app/appseed/ca/radix/radix_thread.h
 
@@ -2238,13 +2237,13 @@
 
 1357856321 /ca2/app/appseed/ca/ex1/ex1_circular_buffer.h
 
-1357856321 /ca2/app/appseed/ca/ex1/ex1_bitl_decoder.h
+1360403283 /ca2/app/appseed/ca/ex1/ex1_bitl_decoder.h
 
-1357856321 /ca2/app/appseed/ca/ex1/ex1_bitl_encoder.h
+1360403283 /ca2/app/appseed/ca/ex1/ex1_bitl_encoder.h
 
-1357856321 /ca2/app/appseed/ca/ex1/ex1_bitm_decoder.h
+1360403283 /ca2/app/appseed/ca/ex1/ex1_bitm_decoder.h
 
-1357856321 /ca2/app/appseed/ca/ex1/ex1_bitm_encoder.h
+1360403283 /ca2/app/appseed/ca/ex1/ex1_bitm_encoder.h
 
 1354886570 /ca2/app/appseed/ca/ex1/ex1_limited_reader.h
 	"../../Common/MyVector.h"
@@ -2777,7 +2776,7 @@
 
 1357180720 /ca2/app/appseed/ca/crypto/crypto_hmac_sha1.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress.h
+1360403279 /ca2/app/appseed/ca/compress/compress.h
 	"compress/compress.h"
 	"compress_int_to_string.h"
 	"compress_item_name.h"
@@ -2853,64 +2852,64 @@
 
 1357342862 /ca2/app/appseed/ca/compress/crypto/crypto_7z_crc.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_progress_info_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_progress_info_interface.h
 
-1354886570 /ca2/app/appseed/ca/compress/compress/compress_coder_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_coder_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_coder2_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_coder2_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_set_coder_properties_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_set_coder_properties_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_codecs_info_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_codecs_info_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_filter_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_filter_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_set_decoder_properties2_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_set_decoder_properties2_interface.h
 
-1354886570 /ca2/app/appseed/ca/compress/compress/compress_write_coder_properties_interface.h
+1360403280 /ca2/app/appseed/ca/compress/compress/compress_write_coder_properties_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_get_input_stream_processed_size_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_get_input_stream_processed_size_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_set_coder_mt_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_set_coder_mt_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/compress/compress_get_sub_stream_size_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_get_sub_stream_size_interface.h
 
-1354886570 /ca2/app/appseed/ca/compress/compress/compress_set_input_stream_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_set_input_stream_interface.h
 
-1354886570 /ca2/app/appseed/ca/compress/compress/compress_set_output_stream_interface.h
+1360403280 /ca2/app/appseed/ca/compress/compress/compress_set_output_stream_interface.h
 
-1354886570 /ca2/app/appseed/ca/compress/compress/compress_set_codecs_info_interface.h
+1360403279 /ca2/app/appseed/ca/compress/compress/compress_set_codecs_info_interface.h
 
-1357342862 /ca2/app/appseed/ca/compress/crypto/crypto_rar20.h
+1360403390 /ca2/app/appseed/ca/compress/crypto/crypto_rar20.h
 
-1357342862 /ca2/app/appseed/ca/compress/crypto/crypto_aes_cbc_coder.h
+1360403491 /ca2/app/appseed/ca/compress/crypto/crypto_aes_cbc_coder.h
 
 1357342863 /ca2/app/appseed/ca/compress/compress_int_to_string.h
 
-1354886570 /ca2/app/appseed/ca/compress/compress_item_name.h
+1360403281 /ca2/app/appseed/ca/compress/compress_item_name.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_archive.h
+1360403389 /ca2/app/appseed/ca/compress/compress_archive.h
 	"../IProgress.h"
 	"../IStream.h"
 	"../PropID.h"
 
-1357342863 /ca2/app/appseed/ca/compress/compress_local_progress.h
+1360403281 /ca2/app/appseed/ca/compress/compress_local_progress.h
 	"../ICoder.h"
 	"../IProgress.h"
 
-1357342863 /ca2/app/appseed/ca/compress/compress_reader_with_crc.h
+1360403282 /ca2/app/appseed/ca/compress/compress_reader_with_crc.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_input_stream_with_crc.h
+1360403281 /ca2/app/appseed/ca/compress/compress_input_stream_with_crc.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_writer_with_crc.h
+1360403282 /ca2/app/appseed/ca/compress/compress_writer_with_crc.h
 	"../../../Common/MyCom.h"
 	"../../IStream.h"
 
-1354886570 /ca2/app/appseed/ca/compress/compress_lz_out_window.h
+1360403281 /ca2/app/appseed/ca/compress/compress_lz_out_window.h
 	"../IStream.h"
 	"../Common/OutBuffer.h"
 
-1357856320 /ca2/app/appseed/ca/compress/compress_huffman_decoder.h
+1360403281 /ca2/app/appseed/ca/compress/compress_huffman_decoder.h
 
 1357856320 /ca2/app/appseed/ca/compress/compress_ppmd.h
 	"CpuArch.h"
@@ -2919,28 +2918,28 @@
 
 1357856320 /ca2/app/appseed/ca/compress/compress_ppmd8.h
 
-1357856320 /ca2/app/appseed/ca/compress/compress_prop_id.h
+1360403282 /ca2/app/appseed/ca/compress/compress_prop_id.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_method_properties.h
+1360403281 /ca2/app/appseed/ca/compress/compress_method_properties.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_out_handler.h
+1360403282 /ca2/app/appseed/ca/compress/compress_out_handler.h
 
 1354886570 /ca2/app/appseed/ca/compress/compress_coder.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_create_coder.h
+1360403688 /ca2/app/appseed/ca/compress/compress_create_coder.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_copy_coder.h
+1360403389 /ca2/app/appseed/ca/compress/compress_copy_coder.h
 	"../ICoder.h"
 
-1357856320 /ca2/app/appseed/ca/compress/compress_filter_coder.h
+1360403688 /ca2/app/appseed/ca/compress/compress_filter_coder.h
 	"../ICoder.h"
 	"../IPassword.h"
 
-1357342863 /ca2/app/appseed/ca/compress/compress_coder_mixer.h
+1360403687 /ca2/app/appseed/ca/compress/compress_coder_mixer.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_coder_mixer2.h
+1360403688 /ca2/app/appseed/ca/compress/compress_coder_mixer2.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_coder_mixer2mt.h
+1360403688 /ca2/app/appseed/ca/compress/compress_coder_mixer2mt.h
 
 1357856320 /ca2/app/appseed/ca/compress/compress_gzip_helper.h
 	"GZipHelper.h"
@@ -2962,32 +2961,32 @@
 
 1357342862 /ca2/app/appseed/ca/compress/7z/7zHeader.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zItem.h
+1360403388 /ca2/app/appseed/ca/compress/7z/7zItem.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zIn.h
+1360403388 /ca2/app/appseed/ca/compress/7z/7zIn.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zCompressionMode.h
+1360403386 /ca2/app/appseed/ca/compress/7z/7zCompressionMode.h
 
-1354886570 /ca2/app/appseed/ca/compress/7z/7zEncode.h
+1360403686 /ca2/app/appseed/ca/compress/7z/7zEncode.h
 
-1357856319 /ca2/app/appseed/ca/compress/7z/7zOut.h
+1360403388 /ca2/app/appseed/ca/compress/7z/7zOut.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zUpdate.h
+1360403388 /ca2/app/appseed/ca/compress/7z/7zUpdate.h
 	"7zIn.h"
 	"7zOut.h"
 	"../IArchive.h"
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zDecode.h
+1360403686 /ca2/app/appseed/ca/compress/7z/7zDecode.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zFolderInStream.h
+1360403687 /ca2/app/appseed/ca/compress/7z/7zFolderInStream.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zFolderOutStream.h
+1360403387 /ca2/app/appseed/ca/compress/7z/7zFolderOutStream.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zHandler.h
+1360403687 /ca2/app/appseed/ca/compress/7z/7zHandler.h
 
-1354886570 /ca2/app/appseed/ca/compress/7z/7zProperties.h
+1360403388 /ca2/app/appseed/ca/compress/7z/7zProperties.h
 
-1357342862 /ca2/app/appseed/ca/compress/7z/7zSpecStream.h
+1360403687 /ca2/app/appseed/ca/compress/7z/7zSpecStream.h
 
 1357856320 /ca2/app/appseed/ca/compress/compress_bzip_helper.h
 	"GZipHelper.h"
@@ -3003,21 +3002,21 @@
 	"folder_reader.h"
 	"handler.h"
 
-1357342862 /ca2/app/appseed/ca/compress/rar/rar1_decoder.h
+1360403390 /ca2/app/appseed/ca/compress/rar/rar1_decoder.h
 	"../ICoder.h"
 	"../Common/InBuffer.h"
 	"BitmDecoder.h"
 	"HuffmanDecoder.h"
 	"LzOutWindow.h"
 
-1357342862 /ca2/app/appseed/ca/compress/rar/rar2_decoder.h
+1360403390 /ca2/app/appseed/ca/compress/rar/rar2_decoder.h
 	"../ICoder.h"
 	"../Common/InBuffer.h"
 	"BitmDecoder.h"
 	"HuffmanDecoder.h"
 	"LzOutWindow.h"
 
-1357856320 /ca2/app/appseed/ca/compress/rar/rar3_decoder.h
+1360403688 /ca2/app/appseed/ca/compress/rar/rar3_decoder.h
 	"../../Common/MyCom.h"
 	"../ICoder.h"
 	"../Common/InBuffer.h"
@@ -3026,7 +3025,7 @@
 	"Rar3Vm.h"
 	"rar3_vm.h"
 
-1357342862 /ca2/app/appseed/ca/compress/rar/rar3_vm.h
+1360403283 /ca2/app/appseed/ca/compress/rar/rar3_vm.h
 	"Common/MyVector.h"
 	"Common/Types.h"
 
@@ -3034,9 +3033,9 @@
 
 1357856320 /ca2/app/appseed/ca/compress/rar/item.h
 
-1357342862 /ca2/app/appseed/ca/compress/rar/aes.h
+1360403491 /ca2/app/appseed/ca/compress/rar/aes.h
 
-1357342862 /ca2/app/appseed/ca/compress/rar/input_file.h
+1360403491 /ca2/app/appseed/ca/compress/rar/input_file.h
 	"Common/DynamicBuffer.h"
 	"Common/MyCom.h"
 	"../../ICoder.h"
@@ -3049,7 +3048,7 @@
 1357342862 /ca2/app/appseed/ca/compress/rar/folder_reader.h
 	"RarIn.h"
 
-1357342862 /ca2/app/appseed/ca/compress/rar/handler.h
+1360403688 /ca2/app/appseed/ca/compress/rar/handler.h
 	"../../Common/CreateCoder.h"
 	"RarIn.h"
 	"RarVolumeInStream.h"
@@ -3078,8 +3077,8 @@
 	"ioapi.h"
 	"unzip.h"
 
-1359329716 /ca2/app/appseed/ca/compress/zip/unzip.h
-	"ca/zlib/zlib.h"
+1360402841 /ca2/app/appseed/ca/compress/zip/unzip.h
+	"zlib/zlib.h"
 	"ioapi.h"
 	"ca/ca_c.h"
 
@@ -3091,7 +3090,7 @@
 
 1357856318 /ca2/app/appseed/ca/compress/zip/InFile.h
 
-1357342863 /ca2/app/appseed/ca/compress/compress_register_codec.h
+1360403282 /ca2/app/appseed/ca/compress/compress_register_codec.h
 
 1357856350 /ca2/app/appseed/ca/sockets/sockets.h
 	"http_file.h"
@@ -3778,7 +3777,7 @@
 
 1357180722 /ca2/app/appseed/ca/dynamic_source/dynamic_source_httpd_socket.h
 
-1357856391 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.h
+1360365695 /ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.h
 
 1354886567 /ca2/app/appseed/ca/plane/plane_library.h
 
@@ -3791,7 +3790,7 @@
 
 1357856374 /ca2/app/appseed/ca/plane/plane_session.h
 
-1360114931 /ca2/app/appseed/ca/plane/plane_system.h
+1360365695 /ca2/app/appseed/ca/plane/plane_system.h
 	<agile.h>
 	"ca/collection/collection_gen_lemon_array.h"
 
@@ -3896,7 +3895,7 @@
 1354886568 source:/ca2/app/appseed/ca/ca/ca_application_interface.cpp
 	"framework.h"
 
-1357856369 source:/ca2/app/appseed/ca/ca/ca_bitmap.cpp
+1360409770 source:/ca2/app/appseed/ca/ca/ca_bitmap.cpp
 	"framework.h"
 
 1357180658 source:/ca2/app/appseed/ca/ca/ca_brush.cpp
@@ -3914,14 +3913,14 @@
 1357180653 source:/ca2/app/appseed/ca/ca/ca_data_container.cpp
 	"framework.h"
 
-1357180657 source:/ca2/app/appseed/ca/ca/ca_data_listener.cpp
+1360229849 source:/ca2/app/appseed/ca/ca/ca_data_listener.cpp
 	"framework.h"
 
 1359329705 source:/ca2/app/appseed/ca/ca/ca_dib.cpp
 	"framework.h"
 	<math.h>
 
-1355830883 source:/ca2/app/appseed/ca/ca/ca_dir_application.cpp
+1360403713 source:/ca2/app/appseed/ca/ca/ca_dir_application.cpp
 	"framework.h"
 
 1360008048 source:/ca2/app/appseed/ca/ca/ca_dir_system.cpp
@@ -3936,7 +3935,7 @@
 1357856369 source:/ca2/app/appseed/ca/ca/ca_file_application.cpp
 	"framework.h"
 
-1359329705 source:/ca2/app/appseed/ca/ca/ca_file_system.cpp
+1360365695 source:/ca2/app/appseed/ca/ca/ca_file_system.cpp
 	"framework.h"
 	<sys/stat.h>
 	<ctype.h>
@@ -4008,13 +4007,13 @@
 1357180659 source:/ca2/app/appseed/ca/ca/ca_system.cpp
 	"framework.h"
 
-1357856369 source:/ca2/app/appseed/ca/ca/ca_thread.cpp
+1360426579 source:/ca2/app/appseed/ca/ca/ca_thread.cpp
 	"framework.h"
 
 1354886568 source:/ca2/app/appseed/ca/ca/ca_type_info.cpp
 	"framework.h"
 
-1357856369 source:/ca2/app/appseed/ca/ca/ca_window.cpp
+1360246777 source:/ca2/app/appseed/ca/ca/ca_window.cpp
 	"framework.h"
 
 1357856369 source:/ca2/app/appseed/ca/ca/ca_window_draw.cpp
@@ -4042,7 +4041,7 @@
 1357180717 source:/ca2/app/appseed/ca/ca4/ca4_application.cpp
 	"framework.h"
 
-1359329710 source:/ca2/app/appseed/ca/ca4/ca4_compress.cpp
+1360403786 source:/ca2/app/appseed/ca/ca4/ca4_compress.cpp
 	"framework.h"
 	<io.h>
 	<wchar.h>
@@ -4258,14 +4257,14 @@
 1360020169 source:/ca2/app/appseed/ca/colorertake5/colorertake5_text_parser_impl.cpp
 	"framework.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zDecode.cpp
+1360403387 source:/ca2/app/appseed/ca/compress/7z/7zDecode.cpp
 	"framework.h"
 	"../../Common/LockedStream.h"
 	"../../Common/ProgressUtils.h"
 	"../../Common/StreamObjects.h"
 	"7zDecode.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zEncode.cpp
+1360403387 source:/ca2/app/appseed/ca/compress/7z/7zEncode.cpp
 	"framework.h"
 	"../../Common/FilterCoder.h"
 	"../../Common/LimitedStreams.h"
@@ -4275,20 +4274,20 @@
 	"7zEncode.h"
 	"7zSpecStream.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zExtract.cpp
+1360403686 source:/ca2/app/appseed/ca/compress/7z/7zExtract.cpp
 	"framework.h"
 	"../../Common/ProgressUtils.h"
 	"7zDecode.h"
 	"7zFolderOutStream.h"
 	"7zHandler.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zFolderInStream.cpp
+1360403687 source:/ca2/app/appseed/ca/compress/7z/7zFolderInStream.cpp
 	"framework.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zFolderOutStream.cpp
+1360403387 source:/ca2/app/appseed/ca/compress/7z/7zFolderOutStream.cpp
 	"framework.h"
 
-1357856319 source:/ca2/app/appseed/ca/compress/7z/7zHandler.cpp
+1360403687 source:/ca2/app/appseed/ca/compress/7z/7zHandler.cpp
 	"framework.h"
 	"../../../Common/ComTry.h"
 	"../../../Common/IntToString.h"
@@ -4298,7 +4297,7 @@
 	"7zProperties.h"
 	"../Common/ParseProperties.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zHandlerOut.cpp
+1360403687 source:/ca2/app/appseed/ca/compress/7z/7zHandlerOut.cpp
 	"framework.h"
 	"../../../Common/ComTry.h"
 	"../../../Common/StringToInt.h"
@@ -4313,7 +4312,7 @@
 	"framework.h"
 	"7zHeader.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zIn.cpp
+1360403388 source:/ca2/app/appseed/ca/compress/7z/7zIn.cpp
 	"framework.h"
 	"../../../../C/CpuArch.h"
 	"../../Common/StreamObjects.h"
@@ -4321,26 +4320,26 @@
 	"7zDecode.h"
 	"7zIn.h"
 
-1357856319 source:/ca2/app/appseed/ca/compress/7z/7zOut.cpp
+1360403388 source:/ca2/app/appseed/ca/compress/7z/7zOut.cpp
 	"framework.h"
 	"../../../Common/AutoPtr.h"
 	"../../Common/StreamObjects.h"
 	"7zOut.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zProperties.cpp
+1360403687 source:/ca2/app/appseed/ca/compress/7z/7zProperties.cpp
 	"framework.h"
 	"7zProperties.h"
 	"7zHeader.h"
 	"7zHandler.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/7z/7zRegister.cpp
+1360403388 source:/ca2/app/appseed/ca/compress/7z/7zRegister.cpp
 	"framework.h"
 	"7zHandler.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/7z/7zSpecStream.cpp
+1360403277 source:/ca2/app/appseed/ca/compress/7z/7zSpecStream.cpp
 	"framework.h"
 
-1357856319 source:/ca2/app/appseed/ca/compress/7z/7zUpdate.cpp
+1360403388 source:/ca2/app/appseed/ca/compress/7z/7zUpdate.cpp
 	"framework.h"
 	"../../Common/LimitedStreams.h"
 	"../../Common/ProgressUtils.h"
@@ -4368,53 +4367,54 @@
 1357856320 source:/ca2/app/appseed/ca/compress/compress_bzip_helper.cpp
 	"framework.h"
 
-1357342863 source:/ca2/app/appseed/ca/compress/compress_coder_mixer.cpp
+1360403280 source:/ca2/app/appseed/ca/compress/compress_coder_mixer.cpp
 	"framework.h"
 
-1357342863 source:/ca2/app/appseed/ca/compress/compress_coder_mixer2.cpp
+1360403280 source:/ca2/app/appseed/ca/compress/compress_coder_mixer2.cpp
 	"framework.h"
 
-1357856320 source:/ca2/app/appseed/ca/compress/compress_coder_mixer2mt.cpp
+1360403688 source:/ca2/app/appseed/ca/compress/compress_coder_mixer2mt.cpp
 	"framework.h"
 
-1357342863 source:/ca2/app/appseed/ca/compress/compress_copy_coder.cpp
+1360403280 source:/ca2/app/appseed/ca/compress/compress_copy_coder.cpp
 	"framework.h"
 	"../Common/StreamUtils.h"
 	"CopyCoder.h"
 
-1357342863 source:/ca2/app/appseed/ca/compress/compress_create_coder.cpp
+1360403688 source:/ca2/app/appseed/ca/compress/compress_create_coder.cpp
 	"framework.h"
 	"../../Windows/PropVariant.h"
 	"CreateCoder.h"
 	"FilterCoder.h"
 	"RegisterCodec.h"
 
-1357856320 source:/ca2/app/appseed/ca/compress/compress_filter_coder.cpp
+1360403281 source:/ca2/app/appseed/ca/compress/compress_filter_coder.cpp
 	"framework.h"
 	"../../Common/Defs.h"
 	"FilterCoder.h"
 	"StreamUtils.h"
 
-1359329716 source:/ca2/app/appseed/ca/compress/compress_gzip_helper.cpp
+1360403884 source:/ca2/app/appseed/ca/compress/compress_gzip_helper.cpp
 	"framework.h"
+	"zlib/zutil.h"
 
 1357342863 source:/ca2/app/appseed/ca/compress/compress_int_to_string.cpp
 	"framework.h"
 
-1357342863 source:/ca2/app/appseed/ca/compress/compress_local_progress.cpp
+1360403390 source:/ca2/app/appseed/ca/compress/compress_local_progress.cpp
 	"framework.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/compress_lz_out_window.cpp
+1360403281 source:/ca2/app/appseed/ca/compress/compress_lz_out_window.cpp
 	"framework.h"
 
 1357342863 source:/ca2/app/appseed/ca/compress/compress_method_id.cpp
 	"framework.h"
 	"../../Common/MyString.h"
 
-1357342863 source:/ca2/app/appseed/ca/compress/compress_method_properties.cpp
+1360403688 source:/ca2/app/appseed/ca/compress/compress_method_properties.cpp
 	"framework.h"
 
-1359329716 source:/ca2/app/appseed/ca/compress/compress_out_handler.cpp
+1360403282 source:/ca2/app/appseed/ca/compress/compress_out_handler.cpp
 	"framework.h"
 	"../../../Windows/PropVariant.h"
 	"../../../Windows/System.h"
@@ -4440,10 +4440,10 @@
 1357856320 source:/ca2/app/appseed/ca/compress/compress_prop_id.cpp
 	"framework.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/compress_reader_with_crc.cpp
+1360403282 source:/ca2/app/appseed/ca/compress/compress_reader_with_crc.cpp
 	"framework.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/compress_writer_with_crc.cpp
+1360403282 source:/ca2/app/appseed/ca/compress/compress_writer_with_crc.cpp
 	"framework.h"
 
 1357856319 source:/ca2/app/appseed/ca/compress/crypto/crypto_7z_crc.cpp
@@ -4455,30 +4455,30 @@
 	"../../../C/RotateDefs.h"
 	"Rar20Crypto.h"
 
-1357856320 source:/ca2/app/appseed/ca/compress/rar/rar1_decoder.cpp
+1360403390 source:/ca2/app/appseed/ca/compress/rar/rar1_decoder.cpp
 	"framework.h"
 
-1357856320 source:/ca2/app/appseed/ca/compress/rar/rar2_decoder.cpp
+1360403390 source:/ca2/app/appseed/ca/compress/rar/rar2_decoder.cpp
 	"framework.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/rar/rar3_decoder.cpp
+1360403688 source:/ca2/app/appseed/ca/compress/rar/rar3_decoder.cpp
 	"framework.h"
 	"../Common/StreamUtils.h"
 	"Rar3Decoder.h"
 
-1357342862 source:/ca2/app/appseed/ca/compress/rar/rar3_vm.cpp
+1360403283 source:/ca2/app/appseed/ca/compress/rar/rar3_vm.cpp
 	"framework.h"
 	"../../../C/Alloc.h"
 
 1357856320 source:/ca2/app/appseed/ca/compress/rar/rar_aes.cpp
 	"framework.h"
 
-1354886570 source:/ca2/app/appseed/ca/compress/rar/rar_codecs_register.cpp
+1360403283 source:/ca2/app/appseed/ca/compress/rar/rar_codecs_register.cpp
 	"framework.h"
 	"Rar2Decoder.h"
 	"Rar3Decoder.h"
 
-1357856320 source:/ca2/app/appseed/ca/compress/rar/rar_handler.cpp
+1360403688 source:/ca2/app/appseed/ca/compress/rar/rar_handler.cpp
 	"framework.h"
 	"Common/IntToString.h"
 	"Common/StringConvert.h"
@@ -4527,16 +4527,16 @@
 	"framework.h"
 	"InFile.h"
 
-1357856318 source:/ca2/app/appseed/ca/compress/zip/zip_ioapi.cpp
+1360403897 source:/ca2/app/appseed/ca/compress/zip/zip_ioapi.cpp
 	"framework.h"
 	"c/c/c.h"
-	"ca/zlib/zlib.h"
+	"zlib/zlib.h"
 	"ioapi.h"
 
 1357856318 source:/ca2/app/appseed/ca/compress/zip/zip_memory_file.cpp
 	"framework.h"
 
-1359329716 source:/ca2/app/appseed/ca/compress/zip/zip_unzip.cpp
+1360367541 source:/ca2/app/appseed/ca/compress/zip/zip_unzip.cpp
 	"framework.h"
 	"unzip.h"
 	"crypt.h"
@@ -4694,10 +4694,10 @@
 	"framework.h"
 	<dlfcn.h>
 
-1354886571 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_cache.cpp
+1360365695 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_cache.cpp
 	"framework.h"
 
-1357856391 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
+1360365695 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_compiler.cpp
 	"framework.h"
 	<ctype.h>
 
@@ -4707,7 +4707,7 @@
 1354886571 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_interface.cpp
 	"framework.h"
 
-1357856391 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
+1360368229 source:/ca2/app/appseed/ca/dynamic_source/dynamic_source_script_manager.cpp
 	"framework.h"
 	<openssl/ssl.h>
 
@@ -4856,7 +4856,7 @@
 1357856321 source:/ca2/app/appseed/ca/ex1/ex1_writer.cpp
 	"framework.h"
 
-1359329717 source:/ca2/app/appseed/ca/ex2/ex2_application.cpp
+1360229849 source:/ca2/app/appseed/ca/ex2/ex2_application.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/ex2/ex2_file_set.cpp
@@ -4899,7 +4899,7 @@
 1357380856 source:/ca2/app/appseed/ca/exception/exception_dump_output.cpp
 	"framework.h"
 
-1357856321 source:/ca2/app/appseed/ca/exception/exception_engine.cpp
+1360365695 source:/ca2/app/appseed/ca/exception/exception_engine.cpp
 	"framework.h"
 	<execinfo.h>
 	<cxxabi.h>
@@ -5152,7 +5152,7 @@
 	"framework.h"
 	<winnls.h>
 
-1357180647 source:/ca2/app/appseed/ca/gen/gen_international_locale_schema.cpp
+1360365695 source:/ca2/app/appseed/ca/gen/gen_international_locale_schema.cpp
 	"framework.h"
 
 1354886568 source:/ca2/app/appseed/ca/gen/gen_istring.cpp
@@ -5173,7 +5173,7 @@
 1354886568 source:/ca2/app/appseed/ca/gen/gen_memory.cpp
 	"framework.h"
 
-1357856356 source:/ca2/app/appseed/ca/gen/gen_message.cpp
+1360250060 source:/ca2/app/appseed/ca/gen/gen_message.cpp
 	"framework.h"
 	<X11/Xlib.h>
 	<X11/Xutil.h>
@@ -5549,7 +5549,7 @@
 1354886570 source:/ca2/app/appseed/ca/multithreading/multithreading_core.cpp
 	"framework.h"
 
-1354959699 source:/ca2/app/appseed/ca/multithreading/multithreading_critical_section.cpp
+1360400428 source:/ca2/app/appseed/ca/multithreading/multithreading_critical_section.cpp
 	"framework.h"
 
 1359329716 source:/ca2/app/appseed/ca/multithreading/multithreading_event.cpp
@@ -5572,7 +5572,7 @@
 1357856318 source:/ca2/app/appseed/ca/multithreading/multithreading_multi_lock.cpp
 	"framework.h"
 
-1357856318 source:/ca2/app/appseed/ca/multithreading/multithreading_mutex.cpp
+1360399926 source:/ca2/app/appseed/ca/multithreading/multithreading_mutex.cpp
 	"framework.h"
 	<sys/ipc.h>
 	<sys/sem.h>
@@ -5651,7 +5651,7 @@
 1359329712 source:/ca2/app/appseed/ca/plane/plane_system_gen_str.cpp
 	"framework.h"
 
-1357856372 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
+1360403991 source:/ca2/app/appseed/ca/planebase/planebase_application.cpp
 	"framework.h"
 
 1354886571 source:/ca2/app/appseed/ca/plugin/plugin_history.cpp
@@ -6255,7 +6255,7 @@
 1357856393 source:/ca2/app/appseed/ca/user/user_frame_window_interface.cpp
 	"framework.h"
 
-1357856393 source:/ca2/app/appseed/ca/user/user_interaction.cpp
+1360247761 source:/ca2/app/appseed/ca/user/user_interaction.cpp
 	"framework.h"
 
 1354886573 source:/ca2/app/appseed/ca/user/user_job.cpp
@@ -6314,7 +6314,7 @@
 1354886573 source:/ca2/app/appseed/ca/user/user_view_creator.cpp
 	"framework.h"
 
-1357856393 source:/ca2/app/appseed/ca/user/user_virtual_user_interface.cpp
+1360247762 source:/ca2/app/appseed/ca/user/user_virtual_user_interface.cpp
 	"framework.h"
 
 1357856393 source:/ca2/app/appseed/ca/user/user_wait_message_dialog.cpp
@@ -6341,15 +6341,15 @@
 1354886569 source:/ca2/app/appseed/ca/userpresence/userpresence_user_presence_central_container.cpp
 	"framework.h"
 
-1357856385 source:/ca2/app/appseed/ca/visual/visual_FreeImageFileProc.cpp
+1360348670 source:/ca2/app/appseed/ca/visual/visual_FreeImageFileProc.cpp
 	"framework.h"
 	"include/freeimage.h"
 	"visual_FreeImageFileProc.h"
 
-1354886573 /ca2/app/appseed/include/freeimage.h
-	"thirdparty/include/FreeImage/FreeImage.h"
+1360406846 /ca2/app/appseed/include/freeimage.h
+	"FreeImage/FreeImage.h"
 
-1354886599 /ca2/app/thirdparty/include/FreeImage/FreeImage.h
+1360365933 /ca2/app/thirdparty/include/FreeImage/FreeImage.h
 	<wchar.h>
 	<inttypes.h>
 
@@ -6396,7 +6396,7 @@
 	"framework.h"
 	"include/freeimage.h"
 
-1357887169 source:/ca2/app/appseed/ca/visual/visual_imaging.cpp
+1360357842 source:/ca2/app/appseed/ca/visual/visual_imaging.cpp
 	"framework.h"
 	"include/freeimage.h"
 	"visual_FreeImageFileProc.h"
@@ -6549,4 +6549,30 @@
 
 1360114931 source:/ca2/app/appseed/ca/primitive/primitive_string.cpp
 	"framework.h"
+
+1336018355 /ca2/app/thirdparty/appseed/zlib/zlib.h
+	"zconf.h"
+
+1335741492 /ca2/app/thirdparty/appseed/zlib/zconf.h
+	<windows.h>
+	<limits.h>
+	<sys/types.h>
+	<stddef.h>
+	<unistd.h>
+	<unixio.h>
+
+1330762800 /ca2/app/thirdparty/appseed/zlib/zutil.h
+	"zlib.h"
+	<stddef.h>
+	<string.h>
+	<stdlib.h>
+	<alloc.h>
+	<malloc.h>
+	<malloc.h>
+	<unix.h>
+	<stdio.h>
+
+1360365933 /ca2/app/thirdparty/appseed/FreeImage/FreeImage.h
+	<wchar.h>
+	<inttypes.h>
 

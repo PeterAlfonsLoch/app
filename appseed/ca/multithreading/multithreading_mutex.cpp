@@ -75,7 +75,13 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
       m_semid = -1;
 
-      pthread_mutex_init(&m_mutex, NULL);
+      pthread_mutexattr_t attr;
+
+      pthread_mutexattr_init(&attr);
+
+      pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE);
+
+      pthread_mutex_init(&m_mutex, &attr);
 
    }
 

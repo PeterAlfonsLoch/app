@@ -4,7 +4,7 @@
 
 //#include "LzOutWindow.h"
 
-namespace compress
+namespace libcompress
 {
 
    void lz_out_window::Init(bool solid)
@@ -14,4 +14,4 @@ namespace compress
      ErrorCode = S_OK;
    }
 
-} // namespace compress
+} // namespace libcompress

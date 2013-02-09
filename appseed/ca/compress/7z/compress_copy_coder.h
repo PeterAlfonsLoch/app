@@ -6,7 +6,7 @@
 
 #include "../ICoder.h"*/
 
-namespace compress 
+namespace libcompress
 {
 
    class copy_coder:
@@ -27,6 +27,6 @@ namespace compress
       virtual ex1::HRes GetInStreamProcessedSize(uint64 *value);
    };
 
-   HRESULT CopyStream(::ex1::reader * inStream, ::ex1::writer * outStream, ::compress::progress_info_interface * progress);
+   HRESULT CopyStream(::ex1::reader * inStream, ::ex1::writer * outStream, ::libcompress::progress_info_interface * progress);
 
-} // namespace compress
+} // namespace libcompress

@@ -297,6 +297,13 @@ namespace user
       virtual LRESULT send_message(::gen::message::base * pbase);
       virtual bool PostMessage(::gen::message::base * pbase);
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
+
+#ifdef LINUX
+
+      virtual LRESULT send_message(XEvent * pevent);
+
+#endif
+
       virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
 
       virtual bool ModifyStyle(uint32_t dwRemove, uint32_t dwAdd, UINT nFlags = 0);

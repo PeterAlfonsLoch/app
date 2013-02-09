@@ -26,28 +26,28 @@
 
 namespace n7z
 {
-   
+
    wchar_t MyCharUpper(wchar_t c);
    wchar_t MyCharLower(wchar_t c);
    int32_t MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2);
    int32_t MyStringCompareNoCase(const char *s1, const char *s2);
    int32_t GetExtIndex(const char *ext);
-   
-   
+
+
    template <class T> inline int32_t MyCompare(T a, T b)
    {  return a < b ? -1 : (a == b ? 0 : 1); }
-   
+
    wchar_t MyCharUpper(wchar_t c)
    {
       return gen::ch::to_upper_case(c);
    }
-   
+
    wchar_t MyCharLower(wchar_t c)
    {
       return gen::ch::to_lower_case(c);
    }
-   
-   
+
+
    int32_t MyStringCompareNoCase(const wchar_t *s1, const wchar_t *s2)
    {
       for (;;)
@@ -64,7 +64,7 @@ namespace n7z
          if (c1 == 0) return 0;
       }
    }
-   
+
    int32_t MyStringCompareNoCase(const char *s1, const char *s2)
    {
       string str1(s1);
@@ -87,7 +87,7 @@ namespace n7z
 #endif
 
    static HRESULT WriteRange(::ex1::byte_input_stream *inStream, ::ex1::writer *outStream,
-      uint64_t position, uint64_t size, ::compress::progress_info_interface *progress)
+      uint64_t position, uint64_t size, ::libcompress::progress_info_interface *progress)
    {
       inStream->seek(position, ::ex1::seek_begin);
       ::ex1::limited_reader *streamSpec = new ::ex1::limited_reader;
@@ -95,8 +95,8 @@ namespace n7z
       streamSpec->SetStream(inStream);
       streamSpec->Init(size);
 
-      ::compress::copy_coder *copyCoderSpec = new ::compress::copy_coder;
-      ::ca::smart_pointer < ::compress::coder_interface > copyCoder = copyCoderSpec;
+      ::libcompress::copy_coder *copyCoderSpec = new ::libcompress::copy_coder;
+      ::ca::smart_pointer < ::libcompress::coder_interface > copyCoder = copyCoderSpec;
       RINOK(copyCoder->Code(inStreamLimited, outStream, NULL, NULL, progress));
       return (copyCoderSpec->TotalSize == size ? S_OK : E_FAIL);
    }
@@ -487,7 +487,7 @@ namespace n7z
    class CFolderOutStream2:
       public ::ex1::writer
    {
-      ::compress::writer_with_crc *_crcStreamSpec;
+      ::libcompress::writer_with_crc *_crcStreamSpec;
       ::ca::smart_pointer < ::ex1::writer > _crcStream;
       const CArchiveDatabaseEx *_db;
       const bool_array *_extractStatuses;
@@ -506,7 +506,7 @@ namespace n7z
 
          CFolderOutStream2()
       {
-         _crcStreamSpec = new ::compress::writer_with_crc;
+         _crcStreamSpec = new ::libcompress::writer_with_crc;
          _crcStream = _crcStreamSpec;
       }
 
@@ -626,8 +626,8 @@ namespace n7z
 #endif
 
       ///DECL_EXTERNAL_CODECS_VARS
-      ::compress::codecs_info_interface * _codecsInfo;
-      base_array < ::compress::codec_info_ex > _externalCodecs;
+      ::libcompress::codecs_info_interface * _codecsInfo;
+      base_array < ::libcompress::codec_info_ex > _externalCodecs;
          CDecoder Decoder;
 
 #ifndef _7ZIP_ST
@@ -687,7 +687,7 @@ namespace n7z
    {
       for (int32_t i = 0; i < f.Coders.get_count(); i++)
       {
-         ::compress::method_id m = f.Coders[i].MethodID;
+         ::libcompress::method_id m = f.Coders[i].MethodID;
          if (m == k_BCJ || m == k_BCJ2)
             return true;
       }
@@ -724,15 +724,15 @@ namespace n7z
    { return (encrypted ? 2 : 0) + (bcjFiltered ? 1 : 0); }
 
    HRESULT Update(
-      ::compress::codecs_info_interface * codecsInfo,
-      const base_array < ::compress::codec_info_ex > * externalCodecs,
+      ::libcompress::codecs_info_interface * codecsInfo,
+      const base_array < ::libcompress::codec_info_ex > * externalCodecs,
       ::ex1::byte_input_stream * inStream,
       const CArchiveDatabaseEx * db,
       const array_ptr_alloc < CUpdateItem > & updateItems,
       COutArchive & archive,
       CArchiveDatabase & newDatabase,
       ::ex1::writer * seqOutStream,
-      ::compress::archive_update_callback_interface * updateCallback,
+      ::libcompress::archive_update_callback_interface * updateCallback,
       const CUpdateOptions & options
 #ifndef _NO_CRYPTO
       , ::crypto::get_text_password_interface * getDecoderPassword
@@ -844,8 +844,8 @@ namespace n7z
 
       RINOK(updateCallback->SetTotal(complexity));
 
-      ::compress::local_progress *lps = new ::compress::local_progress;
-      ::ca::smart_pointer < ::compress::progress_info_interface > progress = lps;
+      ::libcompress::local_progress *lps = new ::libcompress::local_progress;
+      ::ca::smart_pointer < ::libcompress::progress_info_interface > progress = lps;
       lps->Init(updateCallback, true);
 
       CThreadDecoder threadDecoder(inStream->get_app());

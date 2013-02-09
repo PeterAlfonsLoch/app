@@ -20,11 +20,11 @@ namespace n7z
 
 
    class handler:
-      virtual public ::compress::out_handler,
-      virtual public ::compress::input_archive_interface,
-      virtual public ::compress::set_properties_interface,
-      virtual public ::compress::output_archive_interface,
-      virtual public ::compress::set_codecs_info_interface
+      virtual public ::libcompress::out_handler,
+      virtual public ::libcompress::input_archive_interface,
+      virtual public ::libcompress::set_properties_interface,
+      virtual public ::libcompress::output_archive_interface,
+      virtual public ::libcompress::set_codecs_info_interface
    {
    public:
       //MY_QUERYINTERFACE_BEGIN2(IInArchive)
@@ -54,7 +54,7 @@ namespace n7z
 
       handler();
 
-      virtual ex1::HRes SetCompressCodecsInfo(::compress::codecs_info_interface *compressCodecsInfo) = 0;
+      virtual ex1::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo) = 0;
       virtual ex1::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
 
    private:
@@ -79,7 +79,7 @@ namespace n7z
       base_array<CBind> _binds;
 
       ::ex1::HRes SetCompressionMethod(CCompressionMethodMode &method,
-         array_ptr_alloc < ::compress::COneMethodInfo > &methodsInfo
+         array_ptr_alloc < ::libcompress::COneMethodInfo > &methodsInfo
          , uint32_t numThreads
          );
 
@@ -98,8 +98,8 @@ namespace n7z
 //#endif
 
       ///DECL_EXTERNAL_CODECS_VARS
-      ::compress::codecs_info_interface * _codecsInfo;
-      base_array < ::compress::codec_info_ex > _externalCodecs;
+      ::libcompress::codecs_info_interface * _codecsInfo;
+      base_array < ::libcompress::codec_info_ex > _externalCodecs;
    };
 
 } // namespace n7z

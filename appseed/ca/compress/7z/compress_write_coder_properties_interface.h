@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace compress
+namespace libcompress
 {
 
    class CLASS_DECL_ca write_coder_properties_interface :
@@ -12,5 +12,5 @@ namespace compress
       virtual ex1::HRes WriteCoderProperties(::ex1::writer * outStream) = 0;
    };
 
-} // namespace compress
+} // namespace libcompress
 

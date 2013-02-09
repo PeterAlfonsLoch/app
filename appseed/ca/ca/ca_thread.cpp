@@ -453,6 +453,7 @@ namespace ca
 
    bool thread::is_alive()
    {
+      return true;
       if(!m_bRun)
          return false;
       if((::get_tick_count() - m_dwAlive) > ((1984 + 1977) * 91))

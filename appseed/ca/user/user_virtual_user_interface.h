@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 class CLASS_DECL_ca virtual_user_interface :
    virtual public ::user::interaction
 {
@@ -63,15 +61,9 @@ public:
    virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
    virtual ::ca::font* GetFont();
 
-#ifdef WINDOWS
+   virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
 
-   LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
-
-#else
-
-   LRESULT send_message(XEvent * pevent);
-
-#endif
+   virtual LRESULT send_message(XEvent * pevent);
 
    // as hosting ::ca::window
    virtual void install_message_handling(::gen::message::dispatch * pinterface);

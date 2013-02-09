@@ -1,7 +1,7 @@
 // InStreamWithCRC.h
 // from 7-zip on dawn of 13/01/2001 - Thursday
 
-namespace compress
+namespace libcompress
 {
 
    class input_stream_with_crc:
@@ -28,4 +28,4 @@ namespace compress
       // bool WasFinished() const { return _wasFinished; }
    };
 
-} // namespace compress
+} // namespace libcompress

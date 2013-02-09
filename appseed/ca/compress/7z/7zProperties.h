@@ -8,7 +8,7 @@ namespace n7z
 
    enum
    {
-      kpidPackedSize0 = ::compress::kpidUserDefined,
+      kpidPackedSize0 = ::libcompress::kpidUserDefined,
       kpidPackedSize1,
       kpidPackedSize2,
       kpidPackedSize3,

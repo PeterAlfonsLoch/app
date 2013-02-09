@@ -1,6 +1,6 @@
 #pragma once
 
-namespace compress
+namespace libcompress
 {
 
    class CLASS_DECL_ca coder_interface :
@@ -11,4 +11,4 @@ namespace compress
    };
 
 
-} // namespace compress
+} // namespace libcompress

@@ -6,9 +6,9 @@
 /*#include "../../Common/RegisterArc.h"
 
 #include "7zHandler.h"*/
-/*static ::compress::input_archive_interface *CreateArc() { return new n7z::CHandler; }
+/*static ::libcompress::input_archive_interface *CreateArc() { return new n7z::CHandler; }
 #ifndef EXTRACT_ONLY
-static ::compress::output_archive_interface *CreateArcOut() { return new n7z::CHandler; }
+static ::libcompress::output_archive_interface *CreateArcOut() { return new n7z::CHandler; }
 #else
 #define CreateArcOut 0
 #endif

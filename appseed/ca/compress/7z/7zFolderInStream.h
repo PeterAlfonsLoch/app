@@ -8,11 +8,11 @@ namespace n7z
 
    class CFolderInStream:
       public ::ex1::reader,
-      public ::compress::get_sub_stream_size_interface
+      public ::libcompress::get_sub_stream_size_interface
    {
-      ::compress::reader_with_crc *_inStreamWithHashSpec;
+      ::libcompress::reader_with_crc *_inStreamWithHashSpec;
       ::ca::smart_pointer < ::ex1::reader > _inStreamWithHash;
-      ::ca::smart_pointer < ::compress::archive_update_callback_interface > _updateCallback;
+      ::ca::smart_pointer < ::libcompress::archive_update_callback_interface > _updateCallback;
 
       bool _currentSizeIsDefined;
       bool _fileIsOpen;
@@ -35,7 +35,7 @@ namespace n7z
       virtual ex1::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
 
       CFolderInStream();
-      void Init(::compress::archive_update_callback_interface *updateCallback, const uint32_t *fileIndices, uint32_t numFiles);
+      void Init(::libcompress::archive_update_callback_interface *updateCallback, const uint32_t *fileIndices, uint32_t numFiles);
       uint64_t GetFullSize() const
       {
          uint64_t size = 0;

@@ -87,8 +87,8 @@ namespace ex2
          smart_pointer < application >::m_p->construct();
          smart_pointer < application >::m_p->smart_pointer < application >::m_p = this;
          gen::add_ref(this);
-         smart_pointer < application >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
-         gen::add_ref(::ca::thread_sp::m_p);
+         //smart_pointer < application >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
+         //gen::add_ref(::ca::thread_sp::m_p);
       }
       if(::ca::get_thread() == NULL)
       {

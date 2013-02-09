@@ -60,7 +60,7 @@ namespace ca
       virtual void set_owner(::user::interaction * pOwnerWnd);
 
 
-      
+
       virtual window * from_os_data(void * pdata);
       virtual void * get_os_data() const;
 
@@ -135,6 +135,14 @@ namespace ca
    #endif   // WINVER >= 0x0500
 
       virtual LRESULT send_message(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
+
+#ifdef LINUX
+
+      virtual LRESULT send_message(XEvent * pevent);
+
+#endif
+
+
       virtual bool PostMessage(UINT message, WPARAM wParam = 0, LPARAM lParam = 0);
 
       virtual bool SendNotifyMessage(UINT message, WPARAM wParam, LPARAM lParam);

@@ -34,7 +34,9 @@ namespace userbase
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &control_bar::_001OnTimer);
+#ifdef WINDOWS
       IGUI_WIN_MSG_LINK(WM_CTLCOLOR          , pinterface, this, &control_bar::_001OnCtlColor);
+#endif
       IGUI_WIN_MSG_LINK(WM_IDLEUPDATECMDUI   , pinterface, this, &control_bar::_001OnIdleUpdateCmdUI);
       IGUI_WIN_MSG_LINK(WM_SIZEPARENT        , pinterface, this, &control_bar::_001OnSizeParent);
       IGUI_WIN_MSG_LINK(WM_WINDOWPOSCHANGING , pinterface, this, &control_bar::_001OnWindowPosChanging);
@@ -281,7 +283,7 @@ namespace userbase
       SCAST_PTR(gen::message::base, pbase, pobj);
 
       UINT message = pbase->m_uiMessage;
-      
+
       // handle CBRS_FLYBY style (status bar flyby help)
       if (((m_dwStyle & CBRS_FLYBY) ||
          message == WM_LBUTTONDOWN || message == WM_LBUTTONUP) &&

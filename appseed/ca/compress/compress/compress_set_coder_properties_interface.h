@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace compress
+namespace libcompress
 {
 
    namespace coder
@@ -52,4 +52,4 @@ namespace compress
       virtual ex1::HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32_t numProps) = 0;
    };
 
-} // namespace compress
+} // namespace libcompress

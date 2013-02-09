@@ -56,7 +56,7 @@ public:
    primitive::memory                  m_memory;
    z_stream                m_zstream;
    int32_t                     m_z_err;   /* error code for last stream operation */
-   uLong                   m_crc;     /* crc32 of uncompressed data */
+   uint_ptr                   m_crc;     /* crc32 of uncompressed data */
 
 
    gzip(ex1::file * pfileDest);
@@ -71,6 +71,6 @@ protected:
    void construct();
    int32_t _finish();
    int32_t destroy();
-   void putLong (uLong x);
+   void putLong (uint_ptr x);
 };
 

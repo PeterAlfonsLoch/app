@@ -2,7 +2,7 @@
 #pragma once
 
 
-namespace compress
+namespace libcompress
 {
 
 
@@ -19,10 +19,10 @@ namespace compress
 
    struct method_mode
    {
-      
-      
+
+
       array_ptr_alloc < method > methods;
-      
+
       uint32_t NumThreads;
 
 
@@ -32,9 +32,9 @@ namespace compress
       }
 
 
-      bool is_empty() const 
+      bool is_empty() const
       {
-         return methods.is_empty() ; 
+         return methods.is_empty() ;
       }
 
 
@@ -44,7 +44,7 @@ namespace compress
    CLASS_DECL_ca HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca * coder);
 
 
-} // namespace compress
+} // namespace libcompress
 
 
 

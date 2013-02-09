@@ -25,7 +25,7 @@ namespace rar
       virtual public simple_exception
    {
    public:
-      
+
       enum CCauseType
       {
          kUnexpectedEndOfArchive = 0,
@@ -33,7 +33,7 @@ namespace rar
          kFileHeaderCRCError,
          kIncorrectArchive
       } Cause;
-      
+
       input_file_exception(::ca::application * papp, CCauseType cause) :
          ca(papp),
          ::call_stack(papp),
@@ -41,7 +41,7 @@ namespace rar
          simple_exception(papp),
          Cause(cause)
       {
-      
+
       }
 
    };
@@ -66,8 +66,8 @@ namespace rar
       public ex1::file
    {
    public:
-      
-      
+
+
       sp(ex1::byte_input_stream)                      m_Stream;
 
       file_position                                   m_StreamStartPosition;
@@ -83,7 +83,7 @@ namespace rar
       header::NBlock::CBlock                          m_BlockHeader;
 
       crypto::rar29::decoder *                        m_RarAESSpec;
-      sp(compress::filter_interface)                  m_RarAES;
+      sp(::libcompress::filter_interface)                  m_RarAES;
 
 
       byte *                                          m_CurData; // it must point to start of Rar::Block

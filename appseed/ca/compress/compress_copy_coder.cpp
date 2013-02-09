@@ -8,7 +8,7 @@
 
 #include "CopyCoder.h"*/
 
-namespace compress 
+namespace libcompress
 {
 
    static const uint32_t kBufferSize = 1 << 17;
@@ -17,7 +17,7 @@ namespace compress
       TotalSize(0),
       _buffer(0)
    {
-         
+
    }
 
 
@@ -71,4 +71,4 @@ namespace compress
       return copyCoder->Code(inStream, outStream, NULL, NULL, progress);
    }
 
-} // namespace compress
+} // namespace libcompress

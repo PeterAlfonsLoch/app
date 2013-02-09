@@ -2,7 +2,7 @@
 // from 7-zip
 #pragma once
 
-namespace compress
+namespace libcompress
 {
 
    class CLASS_DECL_ca filter_interface :

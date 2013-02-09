@@ -9,7 +9,7 @@ struct CUInt32PCharPair
 };
 
 
-namespace compress
+namespace libcompress
 {
 
    enum
@@ -84,7 +84,7 @@ namespace compress
 
 
 
-} // namespace compress
+} // namespace libcompress
 
    void FlagsToProp(const CUInt32PCharPair *pairs, uint32_t num, uint32_t flags, var  * value);
 

@@ -3,17 +3,17 @@
 
 #pragma once
 
-namespace compress
+namespace libcompress
 {
    namespace coder_mixer
    {
 
       struct coder_info
       {
-        sp(::compress::coder_interface) Coder;
+        sp(::libcompress::coder_interface) Coder;
         sp(::ex1::reader) InStream;
         sp(::ex1::writer) OutStream;
-        sp(::compress::progress_info_interface) Progress;
+        sp(::libcompress::progress_info_interface) Progress;
 
         uint64 InSizeValue;
         uint64 OutSizeValue;
@@ -30,4 +30,4 @@ namespace compress
 
    } // namespace coder_mixer
 
-} // namespace compress
+} // namespace libcompress

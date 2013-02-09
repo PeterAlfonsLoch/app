@@ -10,7 +10,7 @@ namespace n7z
 
    CFolderOutStream::CFolderOutStream()
    {
-      _crcStreamSpec = new ::compress::writer_with_crc;
+      _crcStreamSpec = new ::libcompress::writer_with_crc;
       _crcStream = _crcStreamSpec;
    }
 
@@ -18,7 +18,7 @@ namespace n7z
       const CArchiveDatabaseEx *db,
       uint32_t ref2Offset, uint32_t startIndex,
       const bool_array *extractStatuses,
-      ::compress::archive_extract_callback_interface *extractCallback,
+      ::libcompress::archive_extract_callback_interface *extractCallback,
       bool testMode, bool checkCrc)
    {
       _db = db;
@@ -38,9 +38,9 @@ namespace n7z
    ex1::HRes CFolderOutStream::OpenFile()
    {
       int32_t askMode = ((*_extractStatuses)[_currentIndex]) ? (_testMode ?
-         ::compress::archive::extract::ask_mode_test :
-      ::compress::archive::extract::ask_mode_extract) :
-      ::compress::archive::extract::ask_mode_skip;
+         ::libcompress::archive::extract::ask_mode_test :
+      ::libcompress::archive::extract::ask_mode_extract) :
+      ::libcompress::archive::extract::ask_mode_skip;
       ::ca::smart_pointer < ::ex1::writer > realOutStream;
       uint32_t index = _startIndex + _currentIndex;
       RINOK(_extractCallback->GetStream(_ref2Offset + index, &realOutStream.m_p, askMode));
@@ -49,9 +49,9 @@ namespace n7z
       _fileIsOpen = true;
       const CFileItem &fi = _db->Files[index];
       _rem = fi.get_count;
-      if (askMode == ::compress::archive::extract::ask_mode_extract && !realOutStream &&
+      if (askMode == ::libcompress::archive::extract::ask_mode_extract && !realOutStream &&
          !_db->IsItemAnti(index) && !fi.IsDir)
-         askMode = ::compress::archive::extract::ask_mode_skip;
+         askMode = ::libcompress::archive::extract::ask_mode_skip;
       return _extractCallback->PrepareOperation(askMode);
    }
 
@@ -68,8 +68,8 @@ namespace n7z
       const CFileItem &fi = _db->Files[_startIndex + _currentIndex];
       return CloseFileAndSetResult(
          (fi.IsDir || !fi.CrcDefined || !_checkCrc || fi.Crc == _crcStreamSpec->GetCRC()) ?
-         ::compress::archive::extract::operation_result_ok :
-      ::compress::archive::extract::operation_result_CRCError);
+         ::libcompress::archive::extract::operation_result_ok :
+      ::libcompress::archive::extract::operation_result_CRCError);
    }
 
    ex1::HRes CFolderOutStream::ProcessEmptyFiles()

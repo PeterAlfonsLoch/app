@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace compress
+namespace libcompress
 {
    namespace coder_mixer
    {
@@ -38,7 +38,7 @@ namespace compress
       */
 
       class CCoderMixer2MT:
-         virtual public ::compress::coder2_interface,
+         virtual public ::libcompress::coder2_interface,
          virtual public CCoderMixer2
       {
          CBindInfo _bindInfo;
@@ -63,8 +63,8 @@ namespace compress
             progress_info_interface *progress);
 
          ex1::HRes SetBindInfo(const CBindInfo &bindInfo);
-         void AddCoder(::compress::coder_interface *coder);
-         void AddCoder2(::compress::coder2_interface *coder);
+         void AddCoder(::libcompress::coder_interface *coder);
+         void AddCoder2(::libcompress::coder2_interface *coder);
          void SetProgressCoderIndex(int32_t coderIndex) {  _progressCoderIndex = coderIndex; }
 
          void ReInit();
@@ -76,6 +76,6 @@ namespace compress
 
    } // namespace coder_mixer
 
-} // namespace compress
+} // namespace libcompress
 
 

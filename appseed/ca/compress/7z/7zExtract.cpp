@@ -45,10 +45,10 @@ namespace n7z
    };
 
    ex1::HRes handler::Extract(const uint32_t *indices, uint32_t numItems,
-       int32_t testModeSpec, ::compress::archive_extract_callback_interface *extractCallbackSpec)
+       int32_t testModeSpec, ::libcompress::archive_extract_callback_interface *extractCallbackSpec)
    {
      bool testMode = (testModeSpec != 0);
-     ::ca::smart_pointer < ::compress::archive_extract_callback_interface > extractCallback = extractCallbackSpec;
+     ::ca::smart_pointer < ::libcompress::archive_extract_callback_interface > extractCallback = extractCallbackSpec;
      uint64_t importantTotalUnpacked = 0;
 
      bool allFilesMode = (numItems == (uint32_t)-1);
@@ -152,8 +152,8 @@ namespace n7z
      uint64_t totalUnpacked = 0;
      uint64_t curPacked, curUnpacked;
 
-     ::compress::local_progress *lps = new ::compress::local_progress;
-     ::ca::smart_pointer < ::compress::progress_info_interface > progress = lps;
+     ::libcompress::local_progress *lps = new ::libcompress::local_progress;
+     ::ca::smart_pointer < ::libcompress::progress_info_interface > progress = lps;
      lps->Init(extractCallback, false);
 
      for (int32_t i = 0;; i++, totalUnpacked += curUnpacked, totalPacked += curPacked)
@@ -240,24 +240,24 @@ namespace n7z
 
          if (result == S_FALSE)
          {
-            RINOK(folderOutStream->FlushCorrupted(::compress::archive::extract::operation_result_DataError));
+            RINOK(folderOutStream->FlushCorrupted(::libcompress::archive::extract::operation_result_DataError));
            continue;
          }
          if (result == E_NOTIMPL)
          {
-            RINOK(folderOutStream->FlushCorrupted(::compress::archive::extract::operation_result_UnSupportedMethod));
+            RINOK(folderOutStream->FlushCorrupted(::libcompress::archive::extract::operation_result_UnSupportedMethod));
          }
          if (result != S_OK)
            return result;
          if (folderOutStream->WasWritingFinished() != S_OK)
          {
-           RINOK(folderOutStream->FlushCorrupted(::compress::archive::extract::operation_result_DataError));
+           RINOK(folderOutStream->FlushCorrupted(::libcompress::archive::extract::operation_result_DataError));
            continue;
          }
        }
        catch(...)
        {
-         RINOK(folderOutStream->FlushCorrupted(::compress::archive::extract::operation_result_DataError));
+         RINOK(folderOutStream->FlushCorrupted(::libcompress::archive::extract::operation_result_DataError));
          continue;
        }
      }

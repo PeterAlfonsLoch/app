@@ -13,6 +13,6 @@
 #endif
 
 
-#include "thirdparty/include/FreeImage/FreeImage.h"
+#include "FreeImage/FreeImage.h"
 
 #pragma comment(lib, "FreeImage.lib")

@@ -4,7 +4,7 @@
 
 //#include "ProgressUtils.h"
 
-namespace compress
+namespace libcompress
 {
 
    local_progress::local_progress()
@@ -17,7 +17,7 @@ namespace compress
    {
      _ratioProgress = NULL;
      _progress = progress;
-     _ratioProgress = dynamic_cast < ::compress::progress_info_interface * > (progress);
+     _ratioProgress = dynamic_cast < ::libcompress::progress_info_interface * > (progress);
      _inSizeIsMain = inSizeIsMain;
    }
 
@@ -44,4 +44,4 @@ namespace compress
      return SetRatioInfo(NULL, NULL);
    }
 
-} // namespace compress
+} // namespace libcompress

@@ -2,7 +2,7 @@
 // from 7-zip on dawn of 13/01/2001 - Thursday
 #include "framework.h"
 
-namespace compress
+namespace libcompress
 {
 
    static const uint64_t k_LZMA = 0x030101;
@@ -38,8 +38,8 @@ namespace compress
 
       {
          count numProps = method.Props.get_count();
-         ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
-         setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface * > (coder);
+         ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
+         setCoderProperties = dynamic_cast < ::libcompress::set_coder_properties_interface * > (coder);
          if (setCoderProperties == NULL)
          {
             if (numProps != 0)
@@ -65,8 +65,8 @@ namespace compress
                            if (reducedDictionarySize < value.uint32())
                               value = (uint64_t) reducedDictionarySize;
                }
-               ::ca::smart_pointer < ::compress::set_coder_properties_interface > setCoderProperties;
-               setCoderProperties = dynamic_cast < ::compress::set_coder_properties_interface *> (coder);
+               ::ca::smart_pointer < ::libcompress::set_coder_properties_interface > setCoderProperties;
+               setCoderProperties = dynamic_cast < ::libcompress::set_coder_properties_interface *> (coder);
                res = setCoderProperties->SetCoderProperties(&propIDs.first_element(), values, (uint32_t) numProps);
             }
             catch(...)
@@ -80,7 +80,7 @@ namespace compress
       }
 
       /*
-      ::ca::smart_pointer<::compress::write_coder_properties_interface> writeCoderProperties;
+      ::ca::smart_pointer<::libcompress::write_coder_properties_interface> writeCoderProperties;
       coder->QueryInterface(IID_ICompressWriteCoderProperties, (void **)&writeCoderProperties);
       if (writeCoderProperties != NULL)
       {
@@ -97,4 +97,4 @@ namespace compress
    }
 
 
-} // namespace compress
+} // namespace libcompress

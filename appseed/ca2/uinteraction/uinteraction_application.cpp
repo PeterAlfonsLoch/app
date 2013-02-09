@@ -22,7 +22,7 @@ namespace uinteraction
 
       if(strBuildNumber.is_empty())
       {
-         
+
          strBuildNumber = "latest";
 
       }
@@ -47,12 +47,17 @@ namespace uinteraction
 
       strLibrary.replace("/", "_");
 
-#ifdef METROWIN
+#ifdef LINUX
+
+      strLibrary = "lib" + strLibrary;
+
+#elif defined(METROWIN)
+
 
 //      strLibrary = "m_" + strLibrary;
 
 #endif
-      
+
       if(!library.open(get_app(), strLibrary, false))
          return NULL;
 
@@ -85,7 +90,7 @@ namespace uinteraction
          System.create_twf();
 
       }
-      
+
       ::uinteraction::interaction * pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
 
       if(Bergedge.m_mapUinteraction[pszUinteraction] == NULL)

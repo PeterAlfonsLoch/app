@@ -10,7 +10,7 @@
 #include "FilterCoder.h"
 #include "RegisterCodec.h"*/
 
-namespace compress
+namespace libcompress
 {
 
    static const uint32_t kNumCodecsMax = 64;
@@ -22,7 +22,7 @@ namespace compress
          g_Codecs[g_NumCodecs++] = codecInfo;
    }
 
-   static HRESULT ReadNumberOfStreams(::compress::codecs_info_interface * codecsInfo, uint32_t index, int32_t propID, uint32_t & res)
+   static HRESULT ReadNumberOfStreams(::libcompress::codecs_info_interface * codecsInfo, uint32_t index, int32_t propID, uint32_t & res)
    {
       var prop;
       RINOK(codecsInfo->GetProperty(index, propID, &prop));
@@ -37,7 +37,7 @@ namespace compress
 
    #define PROPID int32_t
 
-   static HRESULT ReadIsAssignedProp(::compress::codecs_info_interface  * codecsInfo, uint32_t index, PROPID propID, bool &res)
+   static HRESULT ReadIsAssignedProp(::libcompress::codecs_info_interface  * codecsInfo, uint32_t index, PROPID propID, bool &res)
    {
       var prop;
       RINOK(codecsInfo->GetProperty(index, propID, &prop));
@@ -50,7 +50,7 @@ namespace compress
       return S_OK;
    }
 
-   HRESULT LoadExternalCodecs(::compress::codecs_info_interface  * codecsInfo, base_array<codec_info_ex> &externalCodecs)
+   HRESULT LoadExternalCodecs(::libcompress::codecs_info_interface  * codecsInfo, base_array<codec_info_ex> &externalCodecs)
    {
       uint32_t num;
       RINOK(codecsInfo->GetNumberOfMethods(&num));
@@ -88,7 +88,7 @@ namespace compress
 
 
    bool FindMethod(
-      ::compress::codecs_info_interface * /*codecsInfo*/, const base_array<codec_info_ex> *externalCodecs,
+      ::libcompress::codecs_info_interface * /*codecsInfo*/, const base_array<codec_info_ex> *externalCodecs,
       const string &name,
       method_id &methodId, uint32_t &numInStreams, uint32_t &numOutStreams)
    {
@@ -123,7 +123,7 @@ namespace compress
    }
 
    bool FindMethod(
-      ::compress::codecs_info_interface * /*codecsInfo*/, const base_array<codec_info_ex> *externalCodecs,
+      ::libcompress::codecs_info_interface * /*codecsInfo*/, const base_array<codec_info_ex> *externalCodecs,
       method_id methodId, string &name)
    {
       UNREFERENCED_PARAMETER(externalCodecs);
@@ -153,11 +153,11 @@ namespace compress
    }
 
    HRESULT CreateCoder(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
       method_id methodId,
-      ::compress::filter_interface * &filter,
-      ::compress::coder_interface * &coder,
-      ::compress::coder2_interface * &coder2,
+      ::libcompress::filter_interface * &filter,
+      ::libcompress::coder_interface * &coder,
+      ::libcompress::coder2_interface * &coder2,
       bool encode, bool onlyCoder)
    {
       bool created = false;
@@ -172,9 +172,9 @@ namespace compress
                if (codec.m_pfnCreateEncoder)
                {
                   void *p = codec.m_pfnCreateEncoder();
-                  if (codec.IsFilter) filter = (::compress::filter_interface *)p;
-                  else if (codec.NumInStreams == 1) coder = (::compress::coder_interface *)p;
-                  else coder2 = (::compress::coder2_interface *)p;
+                  if (codec.IsFilter) filter = (::libcompress::filter_interface *)p;
+                  else if (codec.NumInStreams == 1) coder = (::libcompress::coder_interface *)p;
+                  else coder2 = (::libcompress::coder2_interface *)p;
                   created = (p != 0);
                   break;
                }
@@ -183,9 +183,9 @@ namespace compress
                if (codec.m_pfnCreateDecoder)
                {
                   void *p = codec.m_pfnCreateDecoder();
-                  if (codec.IsFilter) filter = (::compress::filter_interface *)p;
-                  else if (codec.NumInStreams == 1) coder = (::compress::coder_interface *)p;
-                  else coder2 = (::compress::coder2_interface *)p;
+                  if (codec.IsFilter) filter = (::libcompress::filter_interface *)p;
+                  else if (codec.NumInStreams == 1) coder = (::libcompress::coder_interface *)p;
+                  else coder2 = (::libcompress::coder2_interface *)p;
                   created = (p != 0);
                   break;
                }
@@ -251,13 +251,13 @@ namespace compress
    }
 
    HRESULT CreateCoder(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
       method_id methodId,
-      ::compress::coder_interface * &coder,
-      ::compress::coder2_interface * &coder2,
+      ::libcompress::coder_interface * &coder,
+      ::libcompress::coder2_interface * &coder2,
       bool encode)
    {
-      ::compress::filter_interface * filter = NULL;
+      ::libcompress::filter_interface * filter = NULL;
       return CreateCoder(
          codecsInfo, externalCodecs,
          methodId,
@@ -265,12 +265,12 @@ namespace compress
    }
 
    HRESULT CreateCoder(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
       method_id methodId,
-      ::compress::coder_interface * &coder, bool encode)
+      ::libcompress::coder_interface * &coder, bool encode)
    {
-//      ::compress::filter_interface * filter = NULL;
-      ::compress::coder2_interface * coder2 = NULL;
+//      ::libcompress::filter_interface * filter = NULL;
+      ::libcompress::coder2_interface * coder2 = NULL;
       return CreateCoder(
          codecsInfo, externalCodecs,
          methodId,
@@ -278,13 +278,13 @@ namespace compress
    }
 
    HRESULT CreateFilter(
-      ::compress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
+      ::libcompress::codecs_info_interface *codecsInfo, const base_array<codec_info_ex> *externalCodecs,
       method_id methodId,
-      ::compress::filter_interface * &filter,
+      ::libcompress::filter_interface * &filter,
       bool encode)
    {
-      ::compress::coder_interface * coder = NULL;
-      ::compress::coder2_interface * coder2 = NULL;
+      ::libcompress::coder_interface * coder = NULL;
+      ::libcompress::coder2_interface * coder2 = NULL;
       return CreateCoder(
          codecsInfo, externalCodecs,
          methodId,
@@ -292,4 +292,4 @@ namespace compress
    }
 
 
-} // namespace compress
+} // namespace libcompress

@@ -305,11 +305,32 @@ LONG oswindow::get_window_long(int32_t nIndex)
    LONG * pl = NULL;
    LONG l;
 
-   XGetWindowProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), 0, 1, False, m_pdata->m_osdisplay.atom_long_type(), &type, &format, &itemcount, &remaining, (unsigned char **) &pl);
+   if(XGetWindowProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), 0, 1, False, m_pdata->m_osdisplay.atom_long_type(), &type, &format, &itemcount, &remaining, (unsigned char **) &pl) == Success)
+   {
 
-   l = *pl;
+      if(pl != NULL)
+      {
 
-   XFree(pl);
+         l = *pl;
+
+         XFree(pl);
+
+      }
+      else
+      {
+
+         l = 0;
+
+      }
+
+   }
+   else
+   {
+
+      l = 0;
+
+   }
+
 
    return l;
 

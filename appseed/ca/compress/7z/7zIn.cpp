@@ -782,8 +782,8 @@ void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer 
 }
 
 HRESULT CInArchive::ReadAndDecodePackedStreams(
-    ::compress::codecs_info_interface *codecsInfo,
-    const base_array < ::compress::codec_info_ex > *externalCodecs,
+    ::libcompress::codecs_info_interface *codecsInfo,
+    const base_array < ::libcompress::codec_info_ex > *externalCodecs,
     file_position baseOffset,
     file_position & dataOffset,
     array_ptr_alloc < ::ex1::byte_buffer > &dataVector
@@ -873,8 +873,8 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
 }
 
 HRESULT CInArchive::ReadHeader(
-    ::compress::codecs_info_interface *codecsInfo,
-    const base_array < ::compress::codec_info_ex > *externalCodecs,
+    ::libcompress::codecs_info_interface *codecsInfo,
+    const base_array < ::libcompress::codec_info_ex > *externalCodecs,
     CArchiveDatabaseEx &db
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
@@ -1147,8 +1147,8 @@ void CArchiveDatabaseEx::FillFolderStartFileIndex()
 }
 
 HRESULT CInArchive::ReadDatabase2(
-    ::compress::codecs_info_interface *codecsInfo,
-    const base_array < ::compress::codec_info_ex > *externalCodecs,
+    ::libcompress::codecs_info_interface *codecsInfo,
+    const base_array < ::libcompress::codec_info_ex > *externalCodecs,
     CArchiveDatabaseEx &db
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
@@ -1268,8 +1268,8 @@ HRESULT CInArchive::ReadDatabase2(
 }
 
 HRESULT CInArchive::ReadDatabase(
-    ::compress::codecs_info_interface *codecsInfo,
-    const base_array < ::compress::codec_info_ex > *externalCodecs,
+    ::libcompress::codecs_info_interface *codecsInfo,
+    const base_array < ::libcompress::codec_info_ex > *externalCodecs,
     CArchiveDatabaseEx &db
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined

@@ -5,10 +5,10 @@
 //#include "../../Common/Types.h"
 
 
-namespace compress
+namespace libcompress
 {
 
-   namespace huffman 
+   namespace huffman
    {
 
       const int32_t kNumTableBits = 9;
@@ -89,5 +89,5 @@ namespace compress
 
    } // namespace huffman
 
-} // namespace compress
+} // namespace libcompress
 

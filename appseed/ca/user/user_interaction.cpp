@@ -994,6 +994,19 @@ namespace user
          return m_pimpl->send_message(uiMessage, wparam, lparam);
    }
 
+#ifdef LINUX
+
+   LRESULT interaction::send_message(XEvent * pevent)
+   {
+      if(m_pimpl == NULL)
+         return FALSE;
+      else
+         return m_pimpl->send_message(pevent);
+   }
+
+#endif
+
+
    bool interaction::IsWindowVisible()
    {
       if(m_pimpl == NULL)

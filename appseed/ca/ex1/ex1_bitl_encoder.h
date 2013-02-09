@@ -64,4 +64,4 @@ namespace ex1
 
    } // namespace bitl
 
-} // namespace compress
+} // namespace libcompress

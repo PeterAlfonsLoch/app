@@ -10,7 +10,7 @@
 { if (!sub) RINOK(sub0->QueryInterface(IID_ ## i, (void **)&sub)) \
    *outObject = (void *(i *)this; AddRef(); return S_OK; }
 
-namespace compress
+namespace libcompress
 {
 
    class CLASS_DECL_ca filter_coder:
@@ -20,11 +20,11 @@ namespace compress
       public ::ex1::byte_stream,
       public ::ex1::output_stream_flush_interface,
       public ::crypto::set_password_interface,
-      public ::compress::set_coder_properties_interface,
-      public ::compress::write_coder_properties_interface,
+      public ::libcompress::set_coder_properties_interface,
+      public ::libcompress::write_coder_properties_interface,
       // public ICryptoResetSalt,
       public ::crypto::reset_init_vector_interface,
-      public ::compress::set_decoder_properties2_interface
+      public ::libcompress::set_decoder_properties2_interface
    {
    public:
 
@@ -48,19 +48,19 @@ namespace compress
       }
 
       ::crypto::set_password_interface *              _setPassword;
-      ::compress::set_coder_properties_interface *    _SetCoderProperties;
-      ::compress::write_coder_properties_interface *  _writeCoderProperties;
+      ::libcompress::set_coder_properties_interface *    _SetCoderProperties;
+      ::libcompress::write_coder_properties_interface *  _writeCoderProperties;
       // CMyComPtr<ICryptoResetSalt> _CryptoResetSalt;
       ::crypto::reset_init_vector_interface *         _CryptoResetInitVector;
-      ::compress::set_decoder_properties2_interface * _setDecoderProperties;
-      ::compress::filter_interface *                  Filter;
+      ::libcompress::set_decoder_properties2_interface * _setDecoderProperties;
+      ::libcompress::filter_interface *                  Filter;
 
       filter_coder();
       ~filter_coder();
-      
+
       HRESULT WriteWithLimit(::ex1::writer *outStream, uint32_t size);
 
-      /*      MY_QUERYINTERFACE_BEGIN2(::compress::coder_interface)
+      /*      MY_QUERYINTERFACE_BEGIN2(::libcompress::coder_interface)
       MY_QUERYINTERFACE_ENTRY(ICompressSetInStream)
       MY_QUERYINTERFACE_ENTRY(::ex1::byte_input_stream)
       MY_QUERYINTERFACE_ENTRY(ICompressSetOutStream)
@@ -73,7 +73,7 @@ namespace compress
 
       #ifndef EXTRACT_ONLY
       MY_QUERYINTERFACE_ENTRY_AG(ICompressSetCoderProperties, Filter, _SetCoderProperties)
-      MY_QUERYINTERFACE_ENTRY_AG(::compress::write_coder_properties_interface, Filter, _writeCoderProperties)
+      MY_QUERYINTERFACE_ENTRY_AG(::libcompress::write_coder_properties_interface, Filter, _writeCoderProperties)
       // MY_QUERYINTERFACE_ENTRY_AG(ICryptoResetSalt, Filter, _CryptoResetSalt)
       MY_QUERYINTERFACE_ENTRY_AG(::crypto::reset_init_vector_interface, Filter, _CryptoResetInitVector)
       #endif
@@ -88,7 +88,7 @@ namespace compress
       ex1::HRes SetOutStream(::ex1::writer *outStream);
       ex1::HRes ReleaseInStream();
       ex1::HRes ReleaseOutStream();
-      ::primitive::memory_size read(void *data, ::primitive::memory_size size); 
+      ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
       void flush();
 
@@ -116,4 +116,4 @@ namespace compress
       ~output_stream_releaser() { if (FilterCoder) FilterCoder->ReleaseOutStream(); }
    };
 
-} // namespace compress
+} // namespace libcompress

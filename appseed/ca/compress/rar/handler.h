@@ -15,11 +15,11 @@ namespace rar
 
    class handler:
       public input_file,
-      public compress::set_codecs_info_interface
+      public ::libcompress::set_codecs_info_interface
    {
    public:
-      
-      
+
+
       base_array<CRefItem>    _refItems;
       base_array<CItemEx>     _items;
       base_array<input_file>  _archives;
@@ -28,8 +28,8 @@ namespace rar
 
 
       ///DECL_EXTERNAL_CODECS_VARS
-      ::compress::codecs_info_interface * _codecsInfo; 
-      base_array < ::compress::codec_info_ex > _externalCodecs;
+      ::libcompress::codecs_info_interface * _codecsInfo;
+      base_array < ::libcompress::codec_info_ex > _externalCodecs;
 
 
 
@@ -40,7 +40,7 @@ namespace rar
       void AddErrorMessage(const string &s);
 
       //HRESULT Open2(ex1::byte_input_stream *stream, // seekable input stream
-      HRESULT Open2(ex1::byte_input_stream * stream, const file_position * maxCheckStartPosition,  compress::archive_open_callback_interface *openCallback);
+      HRESULT Open2(ex1::byte_input_stream * stream, const file_position * maxCheckStartPosition,  ::libcompress::archive_open_callback_interface *openCallback);
 
    /*public:
       MY_QUERYINTERFACE_BEGIN2(IInArchive)
@@ -50,7 +50,7 @@ namespace rar
 
          CA2_COMPRESS_INTERFACE_input_archive(;)
 
-         ex1::HRes SetCompressCodecsInfo(::compress::codecs_info_interface *compressCodecsInfo);
+         ex1::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo);
    };
 
 } // namespace rar

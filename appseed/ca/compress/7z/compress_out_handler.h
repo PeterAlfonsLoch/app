@@ -3,7 +3,7 @@
 
 #pragma once
 
-namespace compress
+namespace libcompress
 {
 
    struct COneMethodInfo
@@ -74,4 +74,4 @@ namespace compress
       uint32 mainDicMethodIndex;
    };
 
-} // namespace compress
+} // namespace libcompress

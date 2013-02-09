@@ -4,7 +4,7 @@
 
 //#include "OutStreamWithCRC.h"
 
-namespace compress
+namespace libcompress
 {
 
    void writer_with_crc::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize)
@@ -19,4 +19,4 @@ namespace compress
    }
 
 
-} // namespace compress
+} // namespace libcompress

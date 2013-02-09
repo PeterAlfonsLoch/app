@@ -1,6 +1,6 @@
 #pragma once
 
-namespace compress
+namespace libcompress
 {
 
 
@@ -11,4 +11,4 @@ namespace compress
       virtual ex1::HRes SetNumberOfThreads(uint32_t numThreads) = 0;
    };
 
-} // namespace compress
+} // namespace libcompress

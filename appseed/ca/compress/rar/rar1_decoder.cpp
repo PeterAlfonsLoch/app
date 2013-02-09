@@ -6,7 +6,7 @@
 
 //#include "Rar1Decoder.h"
 
-namespace compress {
+namespace libcompress {
    namespace rar1 {
 
       static uint32_t PosL1[]={0,0,0,2,3,5,7,11,16,20,24,32,32, 256};
@@ -381,7 +381,7 @@ namespace compress {
       }
 
       HRESULT decoder::CodeReal(::ex1::reader *inStream, ::ex1::writer *outStream,
-         const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface * /* progress */)
+         const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface * /* progress */)
       {
          if (inSize == NULL || outSize == NULL)
             return E_INVALIDARG;
@@ -468,11 +468,11 @@ namespace compress {
          return m_OutWindowStream.flush();
       }
 
-      ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size * inSize, const file_size *outSize, ::compress::progress_info_interface *progress)
+      ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream, const file_size * inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
          try { return CodeReal(inStream, outStream, inSize, outSize, progress); }
          catch(const ::ex1::in_buffer_exception &e) { return e.ErrorCode; }
-         catch(const ::compress::lz_out_window_exception &e) { return e.ErrorCode; }
+         catch(const ::libcompress::lz_out_window_exception &e) { return e.ErrorCode; }
          catch(...) { return S_FALSE; }
       }
 
@@ -486,4 +486,4 @@ namespace compress {
 
    } // namespace rar1
 
-} // namespace compress
+} // namespace libcompress

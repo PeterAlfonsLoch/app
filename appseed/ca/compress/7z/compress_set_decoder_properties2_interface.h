@@ -2,7 +2,7 @@
 // from 7-zip
 #pragma once
 
-namespace compress
+namespace libcompress
 {
 
    class CLASS_DECL_ca set_decoder_properties2_interface :
@@ -13,4 +13,4 @@ namespace compress
    };
 
 
-} // namespace compress
+} // namespace libcompress

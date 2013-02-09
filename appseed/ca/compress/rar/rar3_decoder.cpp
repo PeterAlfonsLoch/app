@@ -12,7 +12,7 @@
 
 #include "Rar3Decoder.h"*/
 
-namespace compress
+namespace libcompress
 {
 
    namespace rar3
@@ -798,7 +798,7 @@ namespace compress
          return S_OK;
       }
 
-      HRESULT decoder::CodeReal(::compress::progress_info_interface *progress)
+      HRESULT decoder::CodeReal(::libcompress::progress_info_interface *progress)
       {
          _writtenFileSize = 0;
          if (!m_IsSolid)
@@ -848,7 +848,7 @@ namespace compress
       }
 
       ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream,
-         const file_size *inSize, const file_size *outSize, ::compress::progress_info_interface *progress)
+         const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
          try
          {
@@ -899,4 +899,4 @@ namespace compress
 
    } // namespace rar3
 
-} // namespace compress
+} // namespace libcompress

@@ -5,7 +5,7 @@
 1357856421 /ca2/app/appseed/optca/optca.h
 	"c/c/c.h"
 
-1359329687 /ca2/app/appseed/c/c/c.h
+1360401127 /ca2/app/appseed/c/c/c.h
 	"c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h"
 	"nodeapp/operational_system/_.h"
 	"c/vms/vms.h"
@@ -74,6 +74,7 @@
 	"c_net.h"
 	"c_international.h"
 	"c_user.h"
+	"zlib/zlib.h"
 	"c_simple_app.h"
 
 1354886566 /ca2/app/appseed/c/_/CarlosGustavoCecynLundgrenVidaEternaDeCamiloSasukeTsumanuma.h
@@ -731,4 +732,15 @@
 
 1355520006 /ca2/app/appseed/optca/framework.h
 	"optca.h"
+
+1336018355 /ca2/app/thirdparty/appseed/zlib/zlib.h
+	"zconf.h"
+
+1335741492 /ca2/app/thirdparty/appseed/zlib/zconf.h
+	<windows.h>
+	<limits.h>
+	<sys/types.h>
+	<stddef.h>
+	<unistd.h>
+	<unixio.h>
 

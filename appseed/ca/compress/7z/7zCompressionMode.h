@@ -4,10 +4,10 @@
 #pragma once
 
 
-namespace n7z 
+namespace n7z
 {
 
-   struct CMethodFull: public ::compress::method
+   struct CMethodFull: public ::libcompress::method
    {
       uint32_t NumInStreams;
       uint32_t NumOutStreams;

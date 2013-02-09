@@ -45,7 +45,7 @@
 			<Add option="-Wl,-rpath,\\$$ORIGIN" />
 			<Add option="-Wl,-E" />
 			<Add option="-lca2c" />
-			<Add option="-lfreeimage" />
+			<Add option="-lFreeImage" />
 			<Add option="-lca2optca" />
 			<Add directory="../../../stage/x86" />
 		</Linker>
@@ -1802,29 +1802,12 @@
 		<Unit filename="xml/xml_xml.h" />
 		<Unit filename="xml/xml_xmlite.cpp" />
 		<Unit filename="xml/xml_xmlite.h" />
-		<Unit filename="zlib/crc32.h" />
-		<Unit filename="zlib/deflate.h" />
-		<Unit filename="zlib/inffast.h" />
-		<Unit filename="zlib/inffixed.h" />
-		<Unit filename="zlib/inflate.h" />
-		<Unit filename="zlib/inftrees.h" />
-		<Unit filename="zlib/trees.h" />
-		<Unit filename="zlib/zconf.h" />
-		<Unit filename="zlib/zconf.in.h" />
-		<Unit filename="zlib/zlib.h" />
-		<Unit filename="zlib/zlib_adler32.cpp" />
-		<Unit filename="zlib/zlib_compress.cpp" />
-		<Unit filename="zlib/zlib_crc32.cpp" />
-		<Unit filename="zlib/zlib_deflate.cpp" />
-		<Unit filename="zlib/zlib_gzio.cpp" />
-		<Unit filename="zlib/zlib_infback.cpp" />
-		<Unit filename="zlib/zlib_inffast.cpp" />
-		<Unit filename="zlib/zlib_inflate.cpp" />
-		<Unit filename="zlib/zlib_inftrees.cpp" />
-		<Unit filename="zlib/zlib_trees.cpp" />
-		<Unit filename="zlib/zlib_uncompr.cpp" />
-		<Unit filename="zlib/zlib_zutil.cpp" />
-		<Unit filename="zlib/zutil.h" />
+		<Unit filename="zlib/zlib.cbp" />
+		<Unit filename="zlib/zlib.def" />
+		<Unit filename="zlib/zlib.depend" />
+		<Unit filename="zlib/zlib.layout" />
+		<Unit filename="zlib/zlib.vcxproj" />
+		<Unit filename="zlib/zlib.vcxproj.filters" />
 		<Extensions>
 			<code_completion />
 			<debugger />

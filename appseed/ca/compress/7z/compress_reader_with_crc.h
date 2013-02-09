@@ -4,7 +4,7 @@
 #pragma once
 
 
-namespace compress
+namespace libcompress
 {
 
    class reader_with_crc:
@@ -30,4 +30,4 @@ namespace compress
       bool WasFinished() const { return _wasFinished; }
    };
 
-} // namespace compress
+} // namespace libcompress

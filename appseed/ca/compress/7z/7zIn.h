@@ -195,18 +195,18 @@ namespace n7z
       void ReadBoolVector2(int32_t numItems, bool_array &v);
       void ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer > &dataVector, CUInt64DefVector &v, int32_t numFiles);
       HRESULT ReadAndDecodePackedStreams(
-         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          file_position baseOffset, file_position &dataOffset,
          array_ptr_alloc < ::ex1::byte_buffer > &dataVector,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadHeader(
-         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          CArchiveDatabaseEx &db,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
       HRESULT ReadDatabase2(
-         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          CArchiveDatabaseEx &db,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
@@ -219,7 +219,7 @@ namespace n7z
       void Close();
 
       HRESULT ReadDatabase(
-         ::compress::codecs_info_interface *codecsInfo, const base_array < ::compress::codec_info_ex > *externalCodecs,
+         ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
          CArchiveDatabaseEx &db,
          ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
          );
