@@ -4,8 +4,8 @@
 	<File name="bergedge/bergedge.h" open="0" top="0" tabpos="55">
 		<Cursor position="18" topLine="0" />
 	</File>
-	<File name="bergedge/bergedge_bergedge.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="26250" topLine="878" />
+	<File name="bergedge/bergedge_bergedge.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="26250" topLine="872" />
 	</File>
 	<File name="bergedge/bergedge_frame.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10684" topLine="414" />
@@ -190,8 +190,11 @@
 	<File name="fontopus/fontopus.h" open="0" top="0" tabpos="59">
 		<Cursor position="39" topLine="0" />
 	</File>
-	<File name="fontopus/fontopus_validate.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="2884" topLine="71" />
+	<File name="fontopus/fontopus_application.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="1814" topLine="32" />
+	</File>
+	<File name="fontopus/fontopus_validate.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1401" topLine="2" />
 	</File>
 	<File name="framework.h" open="0" top="0" tabpos="50">
 		<Cursor position="54" topLine="0" />
@@ -310,8 +313,8 @@
 	<File name="uinteraction/uinteraction.h" open="0" top="0" tabpos="74">
 		<Cursor position="42" topLine="0" />
 	</File>
-	<File name="uinteraction/uinteraction_application.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="594" topLine="16" />
+	<File name="uinteraction/uinteraction_application.cpp" open="0" top="0" tabpos="13">
+		<Cursor position="579" topLine="0" />
 	</File>
 	<File name="user/_user_timer_array.h" open="0" top="0" tabpos="4">
 		<Cursor position="788" topLine="0" />
@@ -364,6 +367,9 @@
 	<File name="user/user_tab.h" open="0" top="0" tabpos="4">
 		<Cursor position="64" topLine="0" />
 	</File>
+	<File name="user/user_template.h" open="0" top="0" tabpos="9">
+		<Cursor position="836" topLine="0" />
+	</File>
 	<File name="user/user_tree.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="16628" topLine="579" />
 	</File>
@@ -379,8 +385,8 @@
 	<File name="userbase/simple_form_list_edit.h" open="0" top="0" tabpos="11">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="userbase/simple_frame_window.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="4814" topLine="114" />
+	<File name="userbase/simple_frame_window.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="3651" topLine="80" />
 	</File>
 	<File name="userbase/simple_frame_window.h" open="0" top="0" tabpos="18">
 		<Cursor position="555" topLine="19" />
@@ -523,8 +529,8 @@
 	<File name="userstack/userstack.h" open="0" top="0" tabpos="63">
 		<Cursor position="44" topLine="0" />
 	</File>
-	<File name="userstack/userstack_application.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="13855" topLine="502" />
+	<File name="userstack/userstack_application.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="13855" topLine="501" />
 	</File>
 	<File name="userstack/userstack_frame.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="10790" topLine="393" />
