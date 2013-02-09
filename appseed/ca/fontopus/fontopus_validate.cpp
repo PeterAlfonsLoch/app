@@ -61,7 +61,7 @@ namespace fontopus
 
    validate::~validate()
    {
-       m_loginthread.wait();
+       //m_loginthread.wait();
    }
 
    ::fontopus::user * validate::get_user(const char * pszRequestingParty, const char * pszSessId)
@@ -1054,145 +1054,145 @@ namespace fontopus
       {
          strPass = m_strPasshash;
       }
-      
+
 #ifdef MACOS
 
       CFMutableDictionaryRef parameters = CFDictionaryCreateMutable(NULL, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-      
+
       CFDictionaryAddValue(parameters, kSecAttrKeyType, kSecAttrKeyTypeRSA);
-      
+
       // not needed, defaults to true    CFDictionaryAddValue(parameters, kSecAttrCanEncrypt, kCFBooleanTrue);
-      
+
       primitive::memory memKeyData;
-      
+
       memKeyData.from_hex(strPass);
-      
+
       CFDataRef keyData = memKeyData.get_os_cf_data();
-      
+
       CFErrorRef error = NULL;
-      
+
       SecKeyRef key = SecKeyCreateFromData(parameters, keyData, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(error);
-         
+
          return "";
-         
+
       }
-      
+
       SecTransformRef transform = SecEncryptTransformCreate(key, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return "";
-         
+
       }
-      
+
       SecTransformSetAttribute(transform, kSecPaddingKey, kSecPaddingPKCS1Key, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(transform);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return "";
-         
+
       }
-      
+
       primitive::memory memDataIn;
-      
+
       memDataIn.from_hex(strRsaModulus);
-      
+
       CFDataRef dataIn = memDataIn.get_os_cf_data();
-      
+
       SecTransformSetAttribute(transform, kSecTransformInputAttributeName, dataIn, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(dataIn);
-         
+
          CFRelease(transform);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return "";
-         
+
       }
-      
+
       /* Encrypt the data. */
-      
+
       CFDataRef data = (CFDataRef) SecTransformExecute(transform, &error);
-      
+
       if(error != NULL)
       {
-         
+
          CFRelease(dataIn);
-         
+
          CFRelease(transform);
-         
+
          CFRelease(parameters);
-         
+
          CFRelease(keyData);
-         
+
          CFRelease(key);
-         
+
          CFRelease(error);
-         
+
          return "";
-         
+
       }
-      
-      
+
+
       string strHex;
-      
+
       primitive::memory memory;
-      
+
       memory.set_os_cf_data(data);
-      
+
       memory.to_hex(strHex);
-      
+
       CFRelease(data);
-      
+
       CFRelease(dataIn);
-      
+
       CFRelease(transform);
-      
+
       CFRelease(keyData);
-      
+
       CFRelease(parameters);
-      
+
       CFRelease(key);
-      
+
 #elif defined(METROWIN)
 
 
@@ -1230,7 +1230,7 @@ namespace fontopus
 
       //memMod.reverse();
 
-      
+
 
       //memMod.prefix_der_uint();
 
@@ -1282,7 +1282,7 @@ namespace fontopus
       Application.memory_to_hex(strHex, memory);
 
 #else
-      
+
       RSA * rsa = RSA_new();
 
       BN_hex2bn(&rsa->n, strRsaModulus);
@@ -1308,7 +1308,7 @@ namespace fontopus
       Application.memory_to_hex(strHex, memory);
 
       RSA_free(rsa);
-      
+
 #endif
 
       m_puser->m_strLogin = m_strUsername;

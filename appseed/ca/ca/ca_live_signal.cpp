@@ -19,7 +19,7 @@ namespace ca
 
    void live_signal::keep(live_object * pliveobject)
    {
-      
+
       if(pliveobject != NULL)
       {
 
@@ -31,10 +31,10 @@ namespace ca
 
    void live_signal::unkeep(live_object * pliveobject)
    {
-      
+
       if(pliveobject != NULL)
       {
-       
+
          remove(pliveobject);
 
       }
@@ -64,6 +64,8 @@ namespace ca
 
    bool live_signal::is_alive()
    {
+
+      return true;
 
       for(int32_t i = 0; i < this->get_count(); i++)
       {

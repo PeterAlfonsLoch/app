@@ -46,7 +46,7 @@ namespace ca2
       validate::~validate()
       {
 #if defined(LINUX) || defined(MACOS)
-         ((HTHREAD) m_loginthread.get_os_data())->wait();
+         //((HTHREAD) m_loginthread.get_os_data())->wait();
 #else
          ::WaitForSingleObjectEx((HANDLE) m_loginthread.get_os_data(), INFINITE, FALSE);
 #endif
