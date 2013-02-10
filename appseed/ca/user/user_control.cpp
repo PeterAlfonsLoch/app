@@ -195,7 +195,7 @@ namespace user
 
 #else
 
-      throw not_implemented(get_app());
+      //throw not_implemented(get_app());
 
 #endif
 
@@ -716,7 +716,7 @@ namespace user
 #ifdef WINDOWS
 
          UINT uiMessage = ((wParam >> 16) & 0xffff);
-         
+
 
          if(uiMessage == BN_CLICKED)
          {

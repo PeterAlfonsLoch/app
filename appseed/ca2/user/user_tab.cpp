@@ -244,6 +244,7 @@ namespace user
    void tab::_001OnDraw(::ca::graphics * pdc)
    {
 
+
       get_data()->m_pen->create_solid(pdc, 1, RGB(32, 32, 32));
 
 
@@ -749,9 +750,9 @@ namespace user
 
                   br->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
 
-                  pdc->SelectObject(br);
+                 pdc->SelectObject(br);
 
-                  pdc->fill_path(path);
+                 pdc->fill_path(path);
 
                   pdc->set_color(ARGB(200, 100, 100, 100));
                   pdc->set_solid_pen(1.0);
@@ -790,6 +791,7 @@ namespace user
          }
          if(get_element_rect(iVisiblePane, rectText, element_text))
          {
+            pdc->set_color(ARGB(0xff, 0, 0, 0));
             get_data()->m_dcextension._DrawText(pdc, pane.get_title(), rectText, DT_LEFT | DT_BOTTOM);
          }
          if(get_element_rect(iVisiblePane, rectClose, element_close_tab_button))

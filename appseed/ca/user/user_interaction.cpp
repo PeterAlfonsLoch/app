@@ -446,6 +446,19 @@ namespace user
       UNREFERENCED_PARAMETER(pobj);
    }
 
+   void interaction::set_view_port_org(::ca::graphics * pgraphics)
+   {
+      if(m_pimpl == NULL)
+         return;
+
+      m_pimpl->set_view_port_org(pgraphics);
+/*      rect64 rectWindow;
+      GetWindowRect(rectWindow);
+      get_wnd()->ScreenToClient(rectWindow);
+      pgraphics->SetViewportOrg(point(rectWindow.top_left()));
+      pgraphics->SelectClipRgn(NULL);
+*/
+   }
 
    void interaction::_001DrawThis(::ca::graphics * pgraphics)
    {
@@ -453,11 +466,7 @@ namespace user
       {
          try
          {
-            rect64 rectWindow;
-            GetWindowRect(rectWindow);
-            get_wnd()->ScreenToClient(rectWindow);
-            pgraphics->SetViewportOrg(point(rectWindow.top_left()));
-            pgraphics->SelectClipRgn(NULL);
+            set_view_port_org(pgraphics);
             m_pguie->_001OnDraw(pgraphics);
          }
          catch(...)

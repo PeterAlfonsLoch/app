@@ -57,7 +57,7 @@ WINBOOL GetClientRect(oswindow hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd.window(), &attrs) == 0)
+   if(XGetWindowAttributes(hwnd.display(), hwnd.window(), &attrs) == 0)
    {
       return false;
    }
@@ -72,7 +72,7 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(XOpenDisplay(NULL), hwnd.window(), &attrs) == 0)
+   if(XGetWindowAttributes(hwnd.display(), hwnd.window(), &attrs) == 0)
    {
       return false;
    }

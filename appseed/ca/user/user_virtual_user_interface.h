@@ -119,5 +119,7 @@ public:
 
    virtual bool PostMessage(UINT uiMessage, WPARAM wparam, LPARAM lparam);
 
+   virtual void set_view_port_org(::ca::graphics * pgraphics);
+
 
 };

@@ -163,23 +163,42 @@ namespace ca2
       if(!::xml::application::initialize1())
          return false;
 
-      string strSystem = Application.file().as_string(System.dir().appdata("langstyle_settings.xml"));
-
-      ::xml::document docSystem(get_app());
 
       string strLocaleSystem;
+
       string strSchemaSystem;
-      if(docSystem.load(strSystem))
+
+      string strPath = System.dir().appdata("langstyle_settings.xml");
+
+      if(Application.file().exists(strPath))
       {
-         if(docSystem.get_child("lang") != NULL)
+
+         string strSystem = Application.file().as_string(strPath);
+
+         ::xml::document docSystem(get_app());
+
+         if(docSystem.load(strSystem))
          {
-            strLocaleSystem = docSystem.get_child("lang")->get_value();
+
+            if(docSystem.get_child("lang") != NULL)
+            {
+
+               strLocaleSystem = docSystem.get_child("lang")->get_value();
+
+            }
+
+            if(docSystem.get_child("style") != NULL)
+            {
+
+               strSchemaSystem = docSystem.get_child("style")->get_value();
+
+            }
+
          }
-         if(docSystem.get_child("style") != NULL)
-         {
-            strSchemaSystem = docSystem.get_child("style")->get_value();
-         }
+
       }
+
+
 
       string strLocale;
 

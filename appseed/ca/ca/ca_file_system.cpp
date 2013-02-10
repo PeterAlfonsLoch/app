@@ -335,6 +335,8 @@ namespace ca
          else
          {
             string strFilePath(varFile);
+            if(!exists(strFilePath, papp))
+               return "";
             if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strFilePath) >= 0))
             {
                gen::memory_file memfile(papp, &storage);
@@ -750,7 +752,7 @@ namespace ca
 
             try
             {
-   
+
                ifile->GetStatus(st);
 
             }
@@ -765,7 +767,7 @@ namespace ca
             {
                try
                {
-   
+
                   ifile->GetStatus(st);
 
                }

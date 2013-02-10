@@ -90,7 +90,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
    //if(rectOld.size() != m_rectParentClient.size())
    {
 
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
 
       send_message(WM_SIZE, 0, MAKELONG(max(0, m_rectParentClient.width()), max(0, m_rectParentClient.height())));
 
@@ -105,7 +105,7 @@ bool virtual_user_interface::SetWindowPos(int32_t z, int32_t x, int32_t y, int32
    //if(rectOld.top_left() != m_rectParentClient.top_left())
    {
 
-#ifdef WINDOWS
+#if defined(WINDOWS) || defined(LINUX)
 
       send_message(WM_MOVE);
 
@@ -485,7 +485,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
 
 #else
 
-   throw todo(get_app());
+//   throw todo(get_app());
 
 #endif
 
@@ -1483,3 +1483,18 @@ bool virtual_user_interface::PostMessage(UINT uiMessage, WPARAM wparam, LPARAM l
       return FALSE;
    }
 }
+
+
+   void virtual_user_interface::set_view_port_org(::ca::graphics * pgraphics)
+   {
+      // graphics will be already set its view port to the window for linux - cairo with xlib
+
+
+      rect64 rectWindow;
+      GetWindowRect(rectWindow);
+      get_wnd()->ScreenToClient(rectWindow);
+      pgraphics->SetViewportOrg(point(rectWindow.top_left()));
+      pgraphics->SelectClipRgn(NULL);
+
+   }
+

@@ -157,6 +157,8 @@ wait_result mutex::wait(const duration & duration)
 
    int32_t irc;
 
+   bool bFirst = true;
+
    uint32_t start = ::get_tick_count();
 
    if(m_semid >= 0)
@@ -166,8 +168,10 @@ wait_result mutex::wait(const duration & duration)
       struct sembuf operation[1] ;
 
 
-      while(dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout)
+      while((dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout) || bFirst)
       {
+
+         bFirst = false;
 
          //Call Wait for Zero with IPC_NOWAIT option,so it will be
          // non blocking
@@ -201,9 +205,10 @@ wait_result mutex::wait(const duration & duration)
    else
    {
 
-      while(dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout)
+      while((dwTimeout == (uint32_t) INFINITE && ::get_tick_count() - start < dwTimeout) || bFirst)
       {
 
+         bFirst = false;
 
          // Tries to acquire the mutex and access the shared resource,
          // if success, access the shared resource,

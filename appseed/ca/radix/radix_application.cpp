@@ -2938,7 +2938,10 @@ namespace radix
          System.get_window_rect(m_rectScreen);
       }
 #elif defined(LINUX)
-
+      if(m_bSessionSynchronizedScreen)
+      {
+         System.get_monitor_rect(0, m_rectScreen);
+      }
 #elif defined(MACOS)
 
 #else

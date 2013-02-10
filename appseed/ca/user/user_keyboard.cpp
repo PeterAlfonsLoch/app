@@ -91,7 +91,7 @@ namespace user
    {
       keyboard_layout_ida layoutida;
       stringa straPath;
-      Application.dir().matter_ls("keyboard layout", straPath);
+      Application.dir().matter_ls_file("keyboard layout", straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          keyboard_layout_id layoutid;
@@ -148,6 +148,9 @@ namespace user
 
    bool keyboard::initialize(keyboard_layout_id * playoutid, const char * pszPath)
    {
+
+      if(!Application.file().exists(pszPath))
+         return false;
 
       string str = Application.file().as_string(pszPath);
 

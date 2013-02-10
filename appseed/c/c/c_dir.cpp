@@ -631,6 +631,16 @@ void dir::ls_dir(stra_dup & stra, const char *psz)
 
    while ((dp = readdir(dirp)) != NULL)
    {
+      if(dp->d_name[0] == '.')
+      {
+         if(dp->d_name[1] == '\0')
+            continue;
+         if(dp->d_name[1] == '.')
+         {
+            if(dp->d_name[2] == '\0')
+               continue;
+         }
+      }
       if(is(dp->d_name))
       {
          stra.add(dp->d_name);

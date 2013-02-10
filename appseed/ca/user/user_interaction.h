@@ -278,6 +278,10 @@ namespace user
 #endif
 
 
+   virtual void set_view_port_org(::ca::graphics * pgraphics);
+
+
+
       virtual void UpdateWindow();
       virtual void SetRedraw(bool bRedraw = TRUE);
       virtual bool GetUpdateRect(LPRECT lpRect, bool bErase = FALSE);

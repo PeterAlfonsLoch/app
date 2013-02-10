@@ -843,7 +843,11 @@ bool imaging::Createcolor_blend_ImageList(
 
       ::ca::graphics_sp spgraphics(get_app());
 
-#ifdef WINDOWS
+#ifdef LINUX
+
+      spgraphics->CreateCompatibleDC(NULL);
+
+#elif defined(WINDOWS)
 
       spgraphics->CreateCompatibleDC(NULL);
       spgraphics->SetMapMode(MM_TEXT);

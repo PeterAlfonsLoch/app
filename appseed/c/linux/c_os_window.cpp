@@ -1,5 +1,18 @@
 #include "framework.h"
 
+#include <X11/Xatom.h>
+
+
+oswindow::data::data()
+{
+   m_plongmap = new simple_map < int, LONG >();
+}
+
+oswindow::data::~data()
+{
+   delete m_plongmap;
+}
+
 
 class oswindow_dataptra :
    public simple_array < oswindow::data * >
@@ -65,10 +78,15 @@ oswindow::oswindow()
 
 }
 
-oswindow::oswindow(Display * pdisplay, Window window)
+oswindow::oswindow(Display * pdisplay, Window window, Visual * pvisual)
 {
 
    m_pdata = get(pdisplay, window);
+   if(pvisual != NULL)
+   {
+      m_pdata->m_pvisual = pvisual;
+   }
+
 
 }
 
@@ -247,6 +265,8 @@ oswindow oswindow::get_parent()
    if(m_pdata == NULL)
       return ::ca::null();
 
+   return ::ca::null();
+
    Window root = 0;
    Window parent = 0;
    Window * pchildren = NULL;
@@ -298,7 +318,9 @@ bool oswindow::show_window(int32_t nCmdShow)
 LONG oswindow::get_window_long(int32_t nIndex)
 {
 
-   Atom type = 0;
+   return m_pdata->m_plongmap->operator[](nIndex);
+
+/*   Atom type = 0;
    int32_t format = 0;
    unsigned long itemcount = 0;
    unsigned long remaining = 0;
@@ -332,7 +354,7 @@ LONG oswindow::get_window_long(int32_t nIndex)
    }
 
 
-   return l;
+   return l;*/
 
 }
 
@@ -340,9 +362,12 @@ LONG oswindow::get_window_long(int32_t nIndex)
 LONG oswindow::set_window_long(int32_t nIndex, LONG l)
 {
 
-   LONG lOld = get_window_long(nIndex);
+   LONG lOld = m_pdata->m_plongmap->operator[](nIndex);
 
-   XChangeProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), m_pdata->m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);
+   m_pdata->m_plongmap->operator[](nIndex) = l;
+/*   LONG lOld = get_window_long(nIndex);
+
+   XChangeProperty(display(), window(), m_pdata->m_osdisplay.get_window_long_atom(nIndex), m_pdata->m_osdisplay.atom_long_type(), 32, PropModeReplace, (unsigned char *) &l, 1);*/
 
    return lOld;
 
@@ -372,26 +397,29 @@ Atom get_window_long_atom(int32_t nIndex);
 long oswindow::get_state()
 {
 
+
   static const long WM_STATE_ELEMENTS = 2L;
 
-  unsigned long nitems;
-  unsigned long leftover;
-  Atom xa_WM_STATE, actual_type;
-  int32_t actual_format;
-  int32_t status;
+  unsigned long nitems = 0;
+  unsigned long leftover = 0;
+  Atom xa_WM_STATE = 0;
+  Atom actual_type = 0;
+  int32_t actual_format = 0;
+  int32_t status = 0;
   unsigned char* p = NULL;
 
   xa_WM_STATE = XInternAtom(display(), "WM_STATE", false);
 
-  status = XGetWindowProperty(display(), window(),
-                xa_WM_STATE, 0L, WM_STATE_ELEMENTS,
-                false, xa_WM_STATE, &actual_type, &actual_format,
-                &nitems, &leftover, &p);
+  status = XGetWindowProperty(display(), window(), xa_WM_STATE, 0L, WM_STATE_ELEMENTS, False, xa_WM_STATE, &actual_type, &actual_format, &nitems, &leftover, &p);
+
 
   if(status == 0)
   {
+     long lStatus = -1;
+     if(p!= NULL)
+      lStatus = (long)*p;
       XFree(p);
-      return (p != NULL) ? (long)*p : -1;
+      return lStatus;
   }
 
   return -1;

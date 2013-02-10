@@ -237,10 +237,12 @@ namespace planebase
 
       m_dwAlive = ::get_tick_count();
       // Perform specific initializations
+#ifndef DEBUG
       try
       {
          try
          {
+#endif
             if(!process_initialize())
             {
                if (GetMainWnd() != NULL)
@@ -250,6 +252,7 @@ namespace planebase
                }
                goto InitFailure;
             }
+#ifndef DEBUG
          }
          catch(::exit_exception & e)
          {
@@ -266,9 +269,12 @@ namespace planebase
             }
             goto InitFailure;
          }
+#endif
          m_dwAlive = ::get_tick_count();
+#ifndef DEBUG
          try
          {
+#endif
             if(!initialize_instance())
             {
                if (GetMainWnd() != NULL)
@@ -277,16 +283,21 @@ namespace planebase
                   GetMainWnd()->DestroyWindow();
                }
 
+#ifndef DEBUG
                try
                {
+#endif
                   exit();
+#ifndef DEBUG
                }
                catch(...)
                {
                }
+#endif
                m_iReturnCode = -1;
                goto InitFailure;
             }
+#ifndef DEBUG
          }
          catch(::exit_exception & e)
          {
@@ -417,6 +428,7 @@ namespace planebase
          // - ...
 
       }
+#endif
 InitFailure:
       run:
       return m_iReturnCode;
@@ -437,21 +449,28 @@ InitFailure:
       }
 
       install_message_handling(System.GetThread()->::ca::smart_pointer < ::ca::thread > ::m_p);
+#ifndef DEBUG
       try
       {
          try
          {
+#endif
             m_bReady = true;
             if(m_peventReady != NULL)
                m_peventReady->SetEvent();
+#ifndef DEBUG
          }
          catch(...)
          {
          }
+#endif
          run:
+#ifndef DEBUG
          try
          {
+#endif
             m_iReturnCode = run();
+#ifndef DEBUG
          }
          catch(::exit_exception & e)
          {
@@ -580,6 +599,7 @@ InitFailure:
          // - ...
 
       }
+#endif
 InitFailure:
       try
       {

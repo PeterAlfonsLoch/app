@@ -109,6 +109,7 @@ namespace ex1
       void write_arbitrary(uint32_t ui);
       void write_arbitrary(int64_t i);
       void write_arbitrary(uint64_t ui);
+      void write_arbitrary(uint64_t ui, int signal);
       byte_output_stream & operator << (float f);
       byte_output_stream & operator << (double d);
       byte_output_stream & operator << (LPCRECT lpcrect);

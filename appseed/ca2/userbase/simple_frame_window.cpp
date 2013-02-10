@@ -858,14 +858,18 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
 {
    if(!m_bVisible)
       return;
+#ifndef LINUX
    if(m_bblur_Background)
    {
       _001DrawThis(pdc);
       _001DrawChildren(pdc);
    }
-   else if(!Session.savings().is_trying_to_save(gen::resource_processing)
+   else
+#endif
+   if(!Session.savings().is_trying_to_save(gen::resource_processing)
    && !Session.savings().is_trying_to_save(gen::resource_display_bandwidth)
    && !Session.savings().is_trying_to_save(gen::resource_memory))
+   //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
       userbase::frame_window::_000OnDraw(pdc);
    }
@@ -879,6 +883,7 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
 
 void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
 {
+   #ifndef LINUX
    if(m_bblur_Background)
    {
       class imaging & imaging = System.imaging();
@@ -924,6 +929,7 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
       }
       pdc->SelectClipRgn(NULL);
    }
+   #endif
    userbase::frame_window::_001OnDraw(pdc);
 }
 

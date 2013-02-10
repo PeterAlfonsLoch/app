@@ -174,6 +174,9 @@ namespace cube1
       lprect->right = WidthOfScreen(DefaultScreenOfDisplay(d));
       lprect->bottom= HeightOfScreen(DefaultScreenOfDisplay(d));
 
+
+      XCloseDisplay(d);
+
 #elif defined(MACOS)
 
 
