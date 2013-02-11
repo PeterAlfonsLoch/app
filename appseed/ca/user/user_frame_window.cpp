@@ -319,7 +319,7 @@ void frame_window::BeginModalState()
       oswindow = oswindow->GetWindow( GW_HWNDNEXT);
 
    }
-   
+
 }
 
 void frame_window::EndModalState()
@@ -1746,6 +1746,9 @@ void frame_window::ActivateFrame(int32_t nCmdShow)
       // and finally, bring to top after showing
       BringToTop(nCmdShow);
    }
+
+
+
 }
 
 void frame_window::BringToTop(int32_t nCmdShow)

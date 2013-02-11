@@ -225,11 +225,18 @@ void simple_frame_window::_001OnCreate(gen::signal_object * pobj)
          return;
       }
 
+#ifdef LINUX
+
+   m_workset.SetActiveFlag(TRUE);
+
+#endif
 
 
    }
 
    defer_synch_layered();
+
+
 
    pcreate->m_bRet = false;
 

@@ -404,9 +404,7 @@ namespace gen
             mouse(::ca::application * papp);
             virtual ~mouse();
 
-#ifdef WIN32
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-#endif
             static mouse * cast(gen::signal_object * pobj) { return (mouse *) pobj; }
          };
 

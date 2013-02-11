@@ -663,8 +663,6 @@ namespace gen
          }
       }
 
-#ifdef WINDOWS
-
       void mouse::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
@@ -672,8 +670,6 @@ namespace gen
          m_pt        = point(lparam);
          m_bTranslated = false;
       }
-
-#endif
 
       void mouse_wheel::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
       {

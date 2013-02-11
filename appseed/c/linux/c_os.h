@@ -66,3 +66,8 @@ CLASS_DECL_c DWORD SetLastError(DWORD dw);
 
 
 CLASS_DECL_c bool _istlead(int32_t ch);
+
+
+oswindow GetCapture();
+oswindow SetCapture(oswindow window);
+WINBOOL ReleaseCapture();

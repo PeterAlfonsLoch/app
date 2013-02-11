@@ -2717,7 +2717,14 @@ namespace radix
    ::user::interaction * application::release_capture_uie()
    {
 
-#ifdef WINDOWS
+#if defined(LINUX)
+
+      oswindow oswindowCapture = ::GetCapture();
+      if(oswindowCapture == ::ca::null())
+         return NULL;
+      return oswindowCapture.get_user_interaction()->release_capture();
+
+#elif defined(WINDOWS)
 
       oswindow oswindowCapture = ::GetCapture();
       if(oswindowCapture == NULL)
@@ -2726,8 +2733,7 @@ namespace radix
 
 #else
 
-      throw not_implemented(get_app());
-
+//      throw not_implemented(get_app());
 #endif
 
    }
@@ -2748,9 +2754,9 @@ namespace radix
 
 #else
 
-      throw not_implemented(get_app());
+//      throw not_implemented(get_app());
 
-      return NULL;
+      return ::GetCapture().get_user_interaction();
 
 #endif
 

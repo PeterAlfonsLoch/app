@@ -438,8 +438,10 @@ bool oswindow::is_iconic()
 
 bool oswindow::is_window_visible()
 {
-
-   return get_state() == IconicState || get_state() == NormalState;
+   XWindowAttributes attr;
+   if(!XGetWindowAttributes(display(), window(), &attr))
+      return false;
+   return attr.map_state == IsViewable;
 
 }
 
@@ -620,3 +622,37 @@ int32_t WINAPI MessageBoxA(oswindow hWnd, const char * lpText, const char * lpCa
 }
 
 
+static oswindow g_oswindowCapture;
+
+
+oswindow GetCapture()
+{
+      return g_oswindowCapture;
+}
+
+oswindow SetCapture(oswindow window)
+{
+   oswindow windowOld(g_oswindowCapture);
+
+   if(XGrabPointer(window.display(), window.window(), True, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime))
+   {
+      g_oswindowCapture = window;
+      return windowOld;
+   }
+   return ::ca::null();
+}
+
+
+WINBOOL ReleaseCapture()
+{
+   if(GetCapture() == ::ca::null())
+      return FALSE;
+
+   if(GetCapture().display() == NULL)
+      return false;
+
+   if(GetCapture().window() == None)
+      return false;
+
+   return XUngrabPointer(g_oswindowCapture.display(), CurrentTime) != FALSE;
+}

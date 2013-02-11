@@ -72,14 +72,22 @@ WINBOOL GetWindowRect(oswindow hwnd, LPRECT lprect)
 {
    XWindowAttributes attrs;
    /* Fill attribute structure with information about root window */
-   if(XGetWindowAttributes(hwnd.display(), hwnd.window(), &attrs) == 0)
+   if(!XGetWindowAttributes(hwnd.display(), hwnd.window(), &attrs))
    {
       return false;
    }
-   lprect->left      = attrs.x;
-   lprect->top       = attrs.y;
-   lprect->right     = lprect->left    + attrs.width;
-   lprect->bottom    = lprect->top     + attrs.height;
+   int x;
+   int y;
+   Window child;
+   if(!XTranslateCoordinates(hwnd.display(), hwnd.window(), DefaultRootWindow(hwnd.display()), 0, 0, &x, &y, &child))
+   {
+
+   }
+   lprect->left      = x;
+   lprect->top       = y;
+   lprect->right     = x    + attrs.width;
+   lprect->bottom    = y    + attrs.height;
+   return TRUE;
 }
 
 
