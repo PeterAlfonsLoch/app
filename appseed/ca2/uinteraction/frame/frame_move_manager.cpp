@@ -89,6 +89,10 @@ namespace uinteraction
          ::user::interaction * puieCapture = System.get_capture_uie();
          if(puieCapture == NULL)
          {
+#ifdef LINUX
+            // for safety in Linux
+            ::ReleaseCapture();
+#endif
             m_bMoving = false;
             return false;
          }
