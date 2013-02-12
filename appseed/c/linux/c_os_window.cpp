@@ -632,14 +632,26 @@ oswindow GetCapture()
 
 oswindow SetCapture(oswindow window)
 {
+
    oswindow windowOld(g_oswindowCapture);
+
+   if(window.display() == NULL)
+      return ::ca::null();
+
+   if(window.window() == NULL)
+      return ::ca::null();
 
    if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
    {
+
       g_oswindowCapture = window;
+
       return windowOld;
+
    }
+
    return ::ca::null();
+
 }
 
 

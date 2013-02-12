@@ -1121,7 +1121,7 @@
 1360438660 source:/ca2/app/appseed/c/linux/c_os_win_base.cpp
 	"framework.h"
 
-1360656432 source:/ca2/app/appseed/c/linux/c_os_window.cpp
+1360683634 source:/ca2/app/appseed/c/linux/c_os_window.cpp
 	"framework.h"
 	<X11/Xatom.h>
 	<cairo/cairo.h>
