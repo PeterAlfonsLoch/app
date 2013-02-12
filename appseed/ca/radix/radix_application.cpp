@@ -2756,6 +2756,10 @@ namespace radix
 
 //      throw not_implemented(get_app());
 
+      oswindow oswindowCapture = ::GetCapture();
+      if(oswindowCapture == NULL)
+         return NULL;
+
       return dynamic_cast < ::ca::window * > (::GetCapture().get_user_interaction()->m_pimpl)->get_capture();
 
 #endif

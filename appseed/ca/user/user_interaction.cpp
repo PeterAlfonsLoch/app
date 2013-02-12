@@ -323,10 +323,17 @@ namespace user
 
    void interaction::GetClientRect(__rect64 * lprect)
    {
-      lprect->left      = 0;
-      lprect->top       = 0;
-      lprect->right     = m_rectParentClient.width();
-      lprect->bottom    = m_rectParentClient.height();
+      if(m_pimpl == NULL)
+      {
+         lprect->left      = 0;
+         lprect->top       = 0;
+         lprect->right     = m_rectParentClient.width();
+         lprect->bottom    = m_rectParentClient.height();
+      }
+      else
+      {
+         m_pimpl->GetClientRect(lprect);
+      }
    }
 
    rect interaction::GetWindowRect()
@@ -345,10 +352,17 @@ namespace user
 
    void interaction::GetWindowRect(__rect64 * lprect)
    {
-      *lprect = m_rectParentClient;
-      if(get_parent() != NULL)
+      if(m_pimpl == NULL)
       {
-         get_parent()->ClientToScreen(lprect);
+         *lprect = m_rectParentClient;
+         if(get_parent() != NULL)
+         {
+            get_parent()->ClientToScreen(lprect);
+         }
+      }
+      else
+      {
+         m_pimpl->GetWindowRect(lprect);
       }
    }
 

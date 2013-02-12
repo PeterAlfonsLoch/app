@@ -55,7 +55,10 @@ public:
    rect operator+(LPCRECT lpRect) const throw();
    rect operator-(LPCRECT lpRect) const throw();
 
-   LPARAM _001GetLparam();
+   uint32_t ui32() const throw();
+   uint64_t ui64() const throw();
+   LPARAM   lparam() const throw();
+
 };
 
 
@@ -113,7 +116,10 @@ public:
    rect64 operator+(const __rect64 * lpRect) const throw();
    rect64 operator-(const __rect64 * lpRect) const throw();
 
-   uint64_t _001GetLparam();
+   uint32_t ui32() const throw();
+   uint64_t ui64() const throw();
+   LPARAM   lparam() const throw();
+
 };
 
 
@@ -176,7 +182,10 @@ public:
    rectd operator+(LPCRECTD lpRect) const throw();
    rectd operator-(LPCRECTD lpRect) const throw();
 
-   LPARAM _001GetLparam();
+   uint32_t ui32() const throw();
+   uint64_t ui64() const throw();
+   LPARAM   lparam() const throw();
+
 };
 
 

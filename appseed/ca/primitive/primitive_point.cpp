@@ -57,12 +57,20 @@ rect point::operator+(LPCRECT lpRect) const throw()
 rect point::operator-(LPCRECT lpRect) const throw()
    { return rect(lpRect) - *this; }
 
-LPARAM point::_001GetLparam()
+uint32_t point::ui32() const throw()
+{
+   return MAKELONG(x, y);
+}
+
+uint64_t point::ui64() const throw()
+{
+   return MAKELONG64(x, y);
+}
+
+LPARAM point::lparam() const throw()
 {
    return MAKELPARAM(x, y);
 }
-
-
 
 
 
@@ -131,12 +139,20 @@ rect64 point64::operator+(const __rect64 * lpRect) const throw()
 rect64 point64::operator-(const __rect64 * lpRect) const throw()
    { return rect64(lpRect) - *this; }
 
-uint64_t point64::_001GetLparam()
+uint32_t point64::ui32() const throw()
+{
+   return MAKELONG(x, y);
+}
+
+uint64_t point64::ui64() const throw()
 {
    return MAKELONG64(x, y);
 }
 
-
+LPARAM point64::lparam() const throw()
+{
+   return MAKELPARAM(x, y);
+}
 
 
 
@@ -224,7 +240,17 @@ rectd pointd::operator+(LPCRECTD lpRect) const throw()
 rectd pointd::operator-(LPCRECTD lpRect) const throw()
    { return rectd(lpRect) - *this; }
 
-LPARAM pointd::_001GetLparam()
+uint32_t pointd::ui32() const throw()
+{
+   return MAKELONG((int32_t) x, (int32_t) y);
+}
+
+uint64_t pointd::ui64() const throw()
+{
+   return MAKELONG64((int32_t) x, (int32_t) y);
+}
+
+LPARAM pointd::lparam() const throw()
 {
    return MAKELPARAM((int32_t) x, (int32_t) y);
 }

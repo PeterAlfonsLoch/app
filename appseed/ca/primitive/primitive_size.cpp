@@ -98,9 +98,26 @@ rect size::operator-(LPCRECT lpRect) const throw()
 int64_t size::area()
    { return cx * cy; }
 
+uint32_t  size::  ui32() const throw()
+{
 
+   return MAKELONG((int32_t) cx, (int32_t) cy);
 
+}
 
+uint64_t  size::  ui64() const throw()
+{
+
+   return MAKELONG64((int32_t) cx, (int32_t) cy);
+
+}
+
+LPARAM    size::lparam() const throw()
+{
+
+   return MAKELPARAM((int32_t) cx, (int32_t) cy);
+
+}
 
 
 
@@ -188,12 +205,32 @@ rect64 size64::operator+(const __rect64 * lpRect) const throw()
 rect64 size64::operator-(const __rect64 * lpRect) const throw()
    { return rect64(lpRect) - *this; }
 
-int64_t size64::area()
+int64_t size64::area() const throw()
    { return cx * cy; }
 
 
 
 
+uint32_t  size64::  ui32() const throw()
+{
+
+   return MAKELONG((int32_t) cx, (int32_t) cy);
+
+}
+
+uint64_t  size64::  ui64() const throw()
+{
+
+   return MAKELONG64((int32_t) cx, (int32_t) cy);
+
+}
+
+LPARAM    size64::lparam() const throw()
+{
+
+   return MAKELPARAM((int32_t) cx, (int32_t) cy);
+
+}
 
 
 
@@ -324,3 +361,25 @@ rectd sized::operator-(LPCRECTD lpRect) const throw()
 
 double sized::area()
    { return cx * cy; }
+
+
+uint32_t  sized::  ui32() const throw()
+{
+
+   return MAKELONG((int32_t) cx, (int32_t) cy);
+
+}
+
+uint64_t  sized::  ui64() const throw()
+{
+
+   return MAKELONG64((int32_t) cx, (int32_t) cy);
+
+}
+
+LPARAM    sized::lparam() const throw()
+{
+
+   return MAKELPARAM((int32_t) cx, (int32_t) cy);
+
+}

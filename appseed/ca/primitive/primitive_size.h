@@ -48,6 +48,11 @@ public:
 
    int64_t area();
    inline bool is_empty() const throw();
+
+   uint32_t    ui32() const throw();
+   uint64_t    ui64() const throw();
+   LPARAM    lparam() const throw();
+
 };
 
 
@@ -100,8 +105,13 @@ public:
    rect64 operator+(const __rect64 * lpRect) const throw();
    rect64 operator-(const __rect64 * lpRect) const throw();
 
-   int64_t area();
+   int64_t area() const throw();
    inline bool is_empty() const throw();
+
+   uint32_t    ui32() const throw();
+   uint64_t    ui64() const throw();
+   LPARAM    lparam() const throw();
+
 };
 
 
@@ -109,8 +119,6 @@ inline bool size64::is_empty() const throw()
 {
    return cx <= 0 || cy <= 0;
 }
-
-
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -160,6 +168,11 @@ public:
 
    double area();
    inline bool is_empty() const throw();
+
+   uint32_t    ui32() const throw();
+   uint64_t    ui64() const throw();
+   LPARAM    lparam() const throw();
+
 };
 
 
