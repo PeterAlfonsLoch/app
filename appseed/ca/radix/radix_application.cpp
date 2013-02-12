@@ -2720,7 +2720,7 @@ namespace radix
 #if defined(LINUX)
 
       oswindow oswindowCapture = ::GetCapture();
-      if(oswindowCapture == ::ca::null())
+      if(oswindowCapture == NULL)
          return NULL;
       return oswindowCapture.get_user_interaction()->release_capture();
 
@@ -2756,7 +2756,7 @@ namespace radix
 
 //      throw not_implemented(get_app());
 
-      return ::GetCapture().get_user_interaction();
+      return dynamic_cast < ::ca::window * > (::GetCapture().get_user_interaction()->m_pimpl)->get_capture();
 
 #endif
 

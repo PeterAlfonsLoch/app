@@ -126,6 +126,8 @@ namespace uinteraction
          bool bMove = true;
          //      ::user::interaction * pWndParent = m_pworkset->GetWndDraw()->get_parent();
 
+         //::ReleaseCapture();
+         //::ShowWindow(m_pworkset->GetWndDraw()->get_wnd()->get_os_data(), SW_HIDE);
          rect rectEvent = rectWindow;
          rectEvent.move_to(pt);
 

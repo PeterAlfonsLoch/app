@@ -634,7 +634,7 @@ oswindow SetCapture(oswindow window)
 {
    oswindow windowOld(g_oswindowCapture);
 
-   if(XGrabPointer(window.display(), window.window(), True, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == Success)
+   if(XGrabPointer(window.display(), window.window(), False, ButtonPressMask | ButtonReleaseMask | PointerMotionMask, GrabModeAsync, GrabModeAsync, None, None, CurrentTime) == GrabSuccess)
    {
       g_oswindowCapture = window;
       return windowOld;
@@ -646,11 +646,13 @@ oswindow SetCapture(oswindow window)
 WINBOOL ReleaseCapture()
 {
 
-   Display * d = XOpenDisplay(NULL);
+   if(GetCapture().display() == NULL)
+      return FALSE;
 
-   WINBOOL bRet = XUngrabPointer(d, CurrentTime) != FALSE;
+   WINBOOL bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
 
-   XCloseDisplay(d);
+   if(bRet)
+      g_oswindowCapture = ::ca::null();
 
    return bRet;
 

@@ -668,7 +668,13 @@ namespace gen
          base::set(pwnd, uiMessage, wparam, lparam, lresult);
          m_nFlags    = wparam;
          m_pt        = point(lparam);
-         m_bTranslated = false;
+#ifdef LINUX
+         m_bTranslated = true;  // in root coordinates
+#elif defined(WINDOWS)
+         m_bTranslated = false; // not in root coordinates
+#else
+         m_bTranslated = false; // not in root coordinates
+#endif
       }
 
       void mouse_wheel::set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult)

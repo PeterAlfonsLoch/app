@@ -119,7 +119,7 @@ CLASS_DECL_c bool x_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 CLASS_DECL_c bool y_intersect_rect(LPRECT prect, LPCRECT prect1, LPCRECT prect2)
 {
    prect->top = max(prect1->top, prect2->top);
-   prect->right = min(prect1->bottom, prect2->bottom);
+   prect->bottom = min(prect1->bottom, prect2->bottom);
    return prect->bottom >= prect->top;
 }
 
