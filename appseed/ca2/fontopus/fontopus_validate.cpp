@@ -222,7 +222,7 @@ namespace ca2
             rectOpen.left, rectOpen.top,
             rectOpen.width(), rectOpen.height(),
             SWP_SHOWWINDOW);
-         if(m_ptabview->GetTopLevelFrame()->get_parent() != NULL)
+/*         if(m_ptabview->GetTopLevelFrame()->get_parent() != NULL)
          {
             try
             {
@@ -234,7 +234,7 @@ namespace ca2
          }
          else
          {
-         }
+         }*/
          if(m_ptabview->GetTopLevelFrame()->SetForegroundWindow())
          {
             TRACE("fontopus_validate tab_view top_level_frame set_foreground_window OK");
@@ -247,7 +247,7 @@ namespace ca2
          m_ptabview->GetTopLevelFrame()->ActivateFrame();
          m_ptabview->GetTopLevelFrame()->SetFocus();
 
-         m_ptabview->GetTopLevelFrame()->layout();
+//         m_ptabview->GetTopLevelFrame()->layout();
 
 
 

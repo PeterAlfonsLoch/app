@@ -10,7 +10,7 @@ html_form::html_form(::ca::application * papp) :
    ::user::form(papp),
    ::userbase::form_view(papp)
 {
-   
+
    m_sphtmldata(new html::data(papp));
 
 }
@@ -27,9 +27,8 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
    ::user::interaction::_001OnDraw(pdc);
 
 
-
    sp(::html::data) sphtmldata;
-   
+
    try
    {
 
@@ -40,7 +39,7 @@ void html_form::_001OnDraw(::ca::graphics * pdc)
    {
    }
 
-   if(sphtmldata.is_set())
+   if(sphtmldata.is_set() && !sphtmldata->is_in_use())
    {
       sphtmldata->_001OnDraw(pdc);
    }
@@ -101,19 +100,22 @@ void html_form::_001OnImageLoaded(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data() != NULL)
    {
-      
+
       rect rectClient;
-      
+
       GetClientRect(rectClient);
 
-      get_html_data()->m_box = rectClient;
-
-      if(get_html_data()->m_box.get_cx() > 0 && get_html_data()->m_box.get_cy() > 0)
+      if(rectClient.area() > 0)
       {
+
+         get_html_data()->m_box = rectClient;
+
+         ::ca::data::writing writing(get_html_data());
+
          ::ca::client_graphics pdc(this);
          get_html_data()->delete_implementation();
          get_html_data()->layout(pdc);
-         
+
          _001RedrawWindow();
       }
    }
@@ -177,7 +179,7 @@ void html_form::layout()
       return;
 
    get_html_data()->implement_and_layout(this);
-   
+
 }
 
 
@@ -327,7 +329,7 @@ void html_form::_001GetText(string & str)
 
 void html_form::_001SetText(const char * psz)
 {
-   
+
    bool bFocus = Application.get_keyboard_focus() == this || is_descendant(dynamic_cast < ::user::interaction * > (Application.get_keyboard_focus()));
 
    sp(::html::data) sphtmldata;
@@ -390,14 +392,14 @@ void html_form::defer_implement()
    get_html_data()->m_pguie = this;
    get_html_data()->m_pform = this;
    get_html_data()->implement(pdc);
-         
+
 
 }
 
 
 void html_form::defer_layout()
 {
- 
+
    if(get_html_data() == NULL)
       return;
 
@@ -411,7 +413,7 @@ void html_form::defer_layout()
    get_html_data()->m_pguie = this;
    get_html_data()->m_pform = this;
    get_html_data()->layout(pdc);
-         
+
    _001RedrawWindow();
 
 }
