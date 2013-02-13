@@ -1037,7 +1037,7 @@
 
 1360438660 source:/ca2/app/appseed/c/linux/c_os_cross_win_file.cpp
 
-1360613538 source:/ca2/app/appseed/c/linux/c_os_cross_win_gdi.cpp
+1360704985 source:/ca2/app/appseed/c/linux/c_os_cross_win_gdi.cpp
 	"framework.h"
 	"c_os_cross_win_gdi_internal.h"
 

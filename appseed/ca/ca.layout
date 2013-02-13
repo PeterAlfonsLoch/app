@@ -88,8 +88,8 @@
 	<File name="ca/ca_dir_system.h" open="0" top="0" tabpos="24">
 		<Cursor position="1425" topLine="60" />
 	</File>
-	<File name="ca/ca_exception.cpp" open="0" top="0" tabpos="18">
-		<Cursor position="82" topLine="0" />
+	<File name="ca/ca_exception.cpp" open="1" top="0" tabpos="21">
+		<Cursor position="80" topLine="0" />
 	</File>
 	<File name="ca/ca_exception.h" open="0" top="0" tabpos="59">
 		<Cursor position="36" topLine="0" />
@@ -184,8 +184,8 @@
 	<File name="ca/ca_type_info.h" open="0" top="0" tabpos="0">
 		<Cursor position="1639" topLine="27" />
 	</File>
-	<File name="ca/ca_window.cpp" open="0" top="0" tabpos="21">
-		<Cursor position="25773" topLine="874" />
+	<File name="ca/ca_window.cpp" open="1" top="0" tabpos="17">
+		<Cursor position="61490" topLine="2298" />
 	</File>
 	<File name="ca/ca_window.h" open="0" top="0" tabpos="23">
 		<Cursor position="10102" topLine="254" />
@@ -832,8 +832,8 @@
 	<File name="dynamic_source/dynamic_source_script_manager.h" open="0" top="0" tabpos="0">
 		<Cursor position="2932" topLine="72" />
 	</File>
-	<File name="ex1/ex1.h" open="0" top="0" tabpos="4">
-		<Cursor position="3778" topLine="152" />
+	<File name="ex1/ex1.h" open="1" top="0" tabpos="20">
+		<Cursor position="10891" topLine="320" />
 	</File>
 	<File name="ex1/ex1_application.cpp" open="0" top="0" tabpos="39">
 		<Cursor position="92" topLine="0" />
@@ -1441,11 +1441,11 @@
 	<File name="primitive/primitive_geometric_types.h" open="0" top="0" tabpos="20">
 		<Cursor position="1010" topLine="0" />
 	</File>
-	<File name="primitive/primitive_id.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="170" topLine="0" />
+	<File name="primitive/primitive_id.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="59" topLine="0" />
 	</File>
-	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="7">
-		<Cursor position="4274" topLine="153" />
+	<File name="primitive/primitive_id.h" open="0" top="0" tabpos="19">
+		<Cursor position="4228" topLine="153" />
 	</File>
 	<File name="primitive/primitive_id_space.cpp" open="0" top="0" tabpos="44">
 		<Cursor position="1475" topLine="84" />
@@ -1468,8 +1468,8 @@
 	<File name="primitive/primitive_point.h" open="1" top="0" tabpos="14">
 		<Cursor position="5700" topLine="146" />
 	</File>
-	<File name="primitive/primitive_rectangle.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="14960" topLine="521" />
+	<File name="primitive/primitive_rectangle.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="12483" topLine="471" />
 	</File>
 	<File name="primitive/primitive_rectangle.h" open="0" top="0" tabpos="7">
 		<Cursor position="12750" topLine="286" />
@@ -1808,7 +1808,7 @@
 		<Cursor position="25396" topLine="916" />
 	</File>
 	<File name="user/user_frame_window.cpp" open="1" top="0" tabpos="9">
-		<Cursor position="22222" topLine="693" />
+		<Cursor position="46481" topLine="1580" />
 	</File>
 	<File name="user/user_frame_window.h" open="0" top="0" tabpos="5">
 		<Cursor position="8322" topLine="187" />
@@ -1823,10 +1823,10 @@
 		<Cursor position="530" topLine="0" />
 	</File>
 	<File name="user/user_interaction.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="9552" topLine="296" />
+		<Cursor position="10332" topLine="331" />
 	</File>
-	<File name="user/user_interaction.h" open="0" top="0" tabpos="6">
-		<Cursor position="8894" topLine="255" />
+	<File name="user/user_interaction.h" open="1" top="0" tabpos="19">
+		<Cursor position="664" topLine="88" />
 	</File>
 	<File name="user/user_keyboard.cpp" open="0" top="0" tabpos="39">
 		<Cursor position="3529" topLine="114" />
@@ -1874,7 +1874,7 @@
 		<Cursor position="1927" topLine="56" />
 	</File>
 	<File name="user/user_virtual_user_interface.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="35450" topLine="1453" />
+		<Cursor position="18449" topLine="727" />
 	</File>
 	<File name="user/user_virtual_user_interface.h" open="0" top="0" tabpos="8">
 		<Cursor position="4075" topLine="79" />

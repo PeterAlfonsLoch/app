@@ -112,7 +112,7 @@
 	<File name="c/c_simple_array.h" open="0" top="0" tabpos="7">
 		<Cursor position="4170" topLine="129" />
 	</File>
-	<File name="c/c_simple_event.cpp" open="0" top="0" tabpos="4">
+	<File name="c/c_simple_event.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="1699" topLine="93" />
 	</File>
 	<File name="c/c_simple_event.h" open="0" top="0" tabpos="5">
@@ -199,7 +199,7 @@
 	<File name="hotplugin/hotplugin_plugin.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="125" topLine="0" />
 	</File>
-	<File name="linux/c_os.cpp" open="0" top="0" tabpos="3">
+	<File name="linux/c_os.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="581" topLine="2" />
 	</File>
 	<File name="linux/c_os.h" open="0" top="0" tabpos="5">
@@ -212,7 +212,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="1034" topLine="33" />
+		<Cursor position="870" topLine="39" />
 	</File>
 	<File name="linux/c_os_cross_win_gdi.h" open="0" top="0" tabpos="13">
 		<Cursor position="1270" topLine="0" />
@@ -314,7 +314,7 @@
 		<Cursor position="23" topLine="0" />
 	</File>
 	<File name="linux/c_os_window.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="10852" topLine="619" />
+		<Cursor position="1660" topLine="102" />
 	</File>
 	<File name="linux/linux_internal.h" open="0" top="0" tabpos="6">
 		<Cursor position="66" topLine="0" />

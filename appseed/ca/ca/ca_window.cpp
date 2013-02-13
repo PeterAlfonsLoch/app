@@ -2324,8 +2324,8 @@ void __reposition_window(__SIZEPARENTPARAMS* lpLayout,
    ::user::interaction * oswindow_Parent = oswindow->get_parent();
    ASSERT(oswindow_Parent != NULL);
 
-   if (lpLayout != NULL && lpLayout->hDWP == NULL)
-      return;
+   //if (lpLayout != NULL && lpLayout->hDWP == NULL)
+     // return;
 
    // first check if the new rectangle is the same as the current
    rect rectOld;
