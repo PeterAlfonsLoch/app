@@ -166,12 +166,12 @@ ConvertCMYKtoRGBA(FIBITMAP* dib) {
 	BYTE *line_start = FreeImage_GetScanLine(dib, 0);
 	const unsigned pitch = FreeImage_GetPitch(dib);
 	
-	unsigned samplesperpixel = FreeImage_GetLine(dib) / width / channelSize;
+	size_t samplesperpixel = FreeImage_GetLine(dib) / width / channelSize;
 
 	if(channelSize == sizeof(WORD)) {
-		_convertCMYKtoRGBA<WORD>(width, height, line_start, pitch, samplesperpixel);
+		_convertCMYKtoRGBA<WORD>(width, height, line_start, pitch, (unsigned int) samplesperpixel);
 	} else {
-		_convertCMYKtoRGBA<BYTE>(width, height, line_start, pitch, samplesperpixel);
+		_convertCMYKtoRGBA<BYTE>(width, height, line_start, pitch, (unsigned int) samplesperpixel);
 	}
 
 	return TRUE;	
@@ -315,13 +315,13 @@ ConvertLABtoRGB(FIBITMAP* dib) {
 	BYTE *line_start = FreeImage_GetScanLine(dib, 0);
 	const unsigned pitch = FreeImage_GetPitch(dib);
 	
-	unsigned samplesperpixel = FreeImage_GetLine(dib) / width / channelSize;
+	size_t samplesperpixel = FreeImage_GetLine(dib) / width / channelSize;
 			
 	if(channelSize == 1) {
-		_convertLABtoRGB<BYTE>(width, height, line_start, pitch, samplesperpixel);
+		_convertLABtoRGB<BYTE>(width, height, line_start, pitch, (unsigned int) samplesperpixel);
 	}
 	else {
-		_convertLABtoRGB<WORD>(width, height, line_start, pitch, samplesperpixel);
+		_convertLABtoRGB<WORD>(width, height, line_start, pitch, (unsigned int) samplesperpixel);
 	}
 
 	return TRUE;	

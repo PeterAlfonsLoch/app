@@ -362,11 +362,11 @@ hufBuildEncTable
 	// frq, and remove the smallest frq value from fHeap.
 	//
 
-	int mm = fHeap[0] - frq;
+	int mm = (int) (fHeap[0] - frq);
 	pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 	--nf;
 
-	int m = fHeap[0] - frq;
+	int m = (int) (fHeap[0] - frq);
 	pop_heap (&fHeap[0], &fHeap[nf], FHeapCompare());
 
 	frq[m ] += frq[mm];
@@ -785,7 +785,7 @@ hufEncode				// return: output size (in bits)
     if (lc)
 	*out = (c << (8 - lc)) & 0xff;
 
-    return (out - outStart) * 8 + lc;
+    return (int) ((out - outStart) * 8 + lc);
 }
 
 
@@ -1011,7 +1011,7 @@ hufCompress (const unsigned short raw[],
     char *tableStart = compressed + 20;
     char *tableEnd   = tableStart;
     hufPackEncTable (freq, im, iM, &tableEnd);
-    int tableLength = tableEnd - tableStart;
+    int tableLength = (int) (tableEnd - tableStart);
 
     char *dataStart = tableEnd;
     int nBits = hufEncode (freq, raw, nRaw, iM, dataStart);
@@ -1023,7 +1023,7 @@ hufCompress (const unsigned short raw[],
     writeUInt (compressed + 12, nBits);
     writeUInt (compressed + 16, 0);	// room for future extensions
 
-    return dataStart + dataLength - compressed;
+    return (int) (dataStart + dataLength - compressed);
 }
 
 
@@ -1056,7 +1056,7 @@ hufUncompress (const char compressed[],
 
     hufClearDecTable (hdec);
 
-    hufUnpackEncTable (&ptr, nCompressed - (ptr - compressed), im, iM, freq);
+    hufUnpackEncTable (&ptr, (int) (nCompressed - (ptr - compressed)), im, iM, freq);
 
     try
     {

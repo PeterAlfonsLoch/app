@@ -171,8 +171,8 @@ Pxr24Compressor::Pxr24Compressor (const Header &hdr,
 				  size_t numScanLines)
 :
     Compressor (hdr),
-    _maxScanLineSize (maxScanLineSize),
-    _numScanLines (numScanLines),
+    _maxScanLineSize ((int) maxScanLineSize),
+    _numScanLines ((int) numScanLines),
     _tmpBuffer (0),
     _outBuffer (0),
     _channels (hdr.channels())
@@ -389,7 +389,7 @@ Pxr24Compressor::compress (const char *inPtr,
     if (Z_OK != ::compress ((Bytef *) _outBuffer,
 			    &outSize,
 			    (const Bytef *) _tmpBuffer,
-			    tmpBufferEnd - _tmpBuffer))
+			    (uLong) (tmpBufferEnd - _tmpBuffer)))
     {
 	throw Iex::BaseExc ("Data compression (zlib) failed.");
     }
@@ -534,7 +534,7 @@ Pxr24Compressor::uncompress (const char *inPtr,
 	tooMuchData();
 
     outPtr = _outBuffer;
-    return writePtr - _outBuffer;
+    return (int) (writePtr - _outBuffer);
 }
 
 } // namespace Imf

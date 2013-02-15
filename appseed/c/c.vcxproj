@@ -814,7 +814,6 @@ copy "$(SolutionDir)..\..\..\app\thirdparty\binary\libFLAC_dynamic.dll" "$(OutDi
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcp110d.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\x64\msvcr110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\FreeImage.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libeay32.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\libmysql.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\x64\ssleay32.dll" "$(OutDir)"

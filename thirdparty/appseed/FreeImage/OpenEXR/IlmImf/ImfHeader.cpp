@@ -903,7 +903,7 @@ Header::writeTo (OStream &os, bool isTiled) const
 	if (&i.attribute() == preview)
 	    previewPosition = os.tellp();
 
-	os.write (s.data(), s.length());
+	os.write (s.data(), (int) s.length());
     }
 
     //

@@ -38,7 +38,7 @@ _TIFFCheckRealloc(TIFF* tif, tdata_t buffer,
 		  size_t nmemb, size_t elem_size, const char* what)
 {
 	tdata_t cp = NULL;
-	tsize_t	bytes = nmemb * elem_size;
+	tsize_t	bytes = (tsize_t) (nmemb * elem_size);
 
 	/*
 	 * XXX: Check for integer overflow.

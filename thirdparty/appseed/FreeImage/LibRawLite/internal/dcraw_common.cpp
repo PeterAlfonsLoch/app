@@ -4817,7 +4817,7 @@ void CLASS parse_makernote (int base, int uptag)
     if (tag == 0xd && type == 7 && get2() == 0xaaaa) {
       fread (buf97, 1, sizeof buf97, ifp);
       char *pp = (char*)memmem ((char*)buf97, sizeof buf97,(char*)"\xbb\xbb",2);
-      i = ((uchar*)pp  - buf97) + 10;
+      i = (unsigned int) (((uchar*)pp  - buf97) + 10);
       if (i < 70 && buf97[i] < 3)
 	flip = "065"[buf97[i]]-'0';
     }
@@ -7324,7 +7324,7 @@ void CLASS identify()
   flen = fsize = (int) ftell(ifp);
   if ((cp = (char *) memmem (head, 32, (char*)"MMMM", 4)) ||
       (cp = (char *) memmem (head, 32, (char*)"IIII", 4))) {
-    parse_phase_one (cp-head);
+    parse_phase_one ((unsigned int) (cp-head));
     if (cp-head && parse_tiff(0)) apply_tiff();
   } else if (order == 0x4949 || order == 0x4d4d) {
     if (!memcmp (head+6,"HEAPCCDR",8)) {
@@ -7445,7 +7445,7 @@ void CLASS identify()
   while (*--cp == ' ') *cp = 0;
   cp = model + strlen(model);
   while (*--cp == ' ') *cp = 0;
-  i = strlen(make);			/* Remove make from model */
+  i = (int) strlen(make);			/* Remove make from model */
 #ifdef _WIN32
   if (!_strnicmp (model, make, i) && model[i++] == ' ')
 #else
@@ -8989,7 +8989,7 @@ void CLASS convert_to_rgb()
       oprof[0] += (pbody[i*3+3] + 3) & -4;
     }
     memcpy (oprof+32, pbody, sizeof pbody);
-    oprof[pbody[5]/4+2] = strlen(name[output_color-1]) + 1;
+    oprof[pbody[5]/4+2] = (unsigned int) strlen(name[output_color-1]) + 1;
     memcpy ((char *)oprof+pbody[8]+8, pwhite, sizeof pwhite);
     pcurve[3] = (short)(256/gamm[5]+0.5) << 16;
     for (i=4; i < 7; i++)
@@ -9177,14 +9177,14 @@ void CLASS tiff_head (struct tiff_hdr *th, int full)
     tiff_set (&th->ntag, 257, 4, 1, height);
     tiff_set (&th->ntag, 258, 3, colors, output_bps);
     if (colors > 2)
-      th->tag[th->ntag-1].val.i = TOFF(th->bps);
+      th->tag[th->ntag-1].val.i = (int) TOFF(th->bps);
     FORC4 th->bps[c] = output_bps;
     tiff_set (&th->ntag, 259, 3, 1, 1);
     tiff_set (&th->ntag, 262, 3, 1, 1 + (colors > 1));
   }
-  tiff_set (&th->ntag, 270, 2, 512, TOFF(th->t_desc));
-  tiff_set (&th->ntag, 271, 2, 64, TOFF(th->t_make));
-  tiff_set (&th->ntag, 272, 2, 64, TOFF(th->t_model));
+  tiff_set (&th->ntag, 270, 2, 512, (int) TOFF(th->t_desc));
+  tiff_set (&th->ntag, 271, 2, 64, (int) TOFF(th->t_make));
+  tiff_set (&th->ntag, 272, 2, 64, (int) TOFF(th->t_model));
   if (full) {
     if (oprof) psize = ntohl(oprof[0]);
     tiff_set (&th->ntag, 273, 4, 1, sizeof *th + psize);
@@ -9193,31 +9193,31 @@ void CLASS tiff_head (struct tiff_hdr *th, int full)
     tiff_set (&th->ntag, 279, 4, 1, height*width*colors*output_bps/8);
   } else
     tiff_set (&th->ntag, 274, 3, 1, "12435867"[flip]-'0');
-  tiff_set (&th->ntag, 282, 5, 1, TOFF(th->rat[0]));
-  tiff_set (&th->ntag, 283, 5, 1, TOFF(th->rat[2]));
+  tiff_set (&th->ntag, 282, 5, 1, (int) TOFF(th->rat[0]));
+  tiff_set (&th->ntag, 283, 5, 1, (int) TOFF(th->rat[2]));
   tiff_set (&th->ntag, 284, 3, 1, 1);
   tiff_set (&th->ntag, 296, 3, 1, 2);
-  tiff_set (&th->ntag, 305, 2, 32, TOFF(th->soft));
-  tiff_set (&th->ntag, 306, 2, 20, TOFF(th->date));
-  tiff_set (&th->ntag, 315, 2, 64, TOFF(th->t_artist));
-  tiff_set (&th->ntag, 34665, 4, 1, TOFF(th->nexif));
+  tiff_set (&th->ntag, 305, 2, 32, (int) TOFF(th->soft));
+  tiff_set (&th->ntag, 306, 2, 20, (int) TOFF(th->date));
+  tiff_set (&th->ntag, 315, 2, 64, (int) TOFF(th->t_artist));
+  tiff_set (&th->ntag, 34665, 4, 1, (int) TOFF(th->nexif));
   if (psize) tiff_set (&th->ntag, 34675, 7, psize, sizeof *th);
-  tiff_set (&th->nexif, 33434, 5, 1, TOFF(th->rat[4]));
-  tiff_set (&th->nexif, 33437, 5, 1, TOFF(th->rat[6]));
+  tiff_set (&th->nexif, 33434, 5, 1, (int) TOFF(th->rat[4]));
+  tiff_set (&th->nexif, 33437, 5, 1, (int) TOFF(th->rat[6]));
   tiff_set (&th->nexif, 34855, 3, 1, (int) iso_speed);
-  tiff_set (&th->nexif, 37386, 5, 1, TOFF(th->rat[8]));
+  tiff_set (&th->nexif, 37386, 5, 1, (int) TOFF(th->rat[8]));
   if (gpsdata[1]) {
-    tiff_set (&th->ntag, 34853, 4, 1, TOFF(th->ngps));
+    tiff_set (&th->ntag, 34853, 4, 1, (int) TOFF(th->ngps));
     tiff_set (&th->ngps,  0, 1,  4, 0x202);
     tiff_set (&th->ngps,  1, 2,  2, gpsdata[29]);
-    tiff_set (&th->ngps,  2, 5,  3, TOFF(th->gps[0]));
+    tiff_set (&th->ngps,  2, 5,  3, (int) TOFF(th->gps[0]));
     tiff_set (&th->ngps,  3, 2,  2, gpsdata[30]);
-    tiff_set (&th->ngps,  4, 5,  3, TOFF(th->gps[6]));
+    tiff_set (&th->ngps,  4, 5,  3, (int) TOFF(th->gps[6]));
     tiff_set (&th->ngps,  5, 1,  1, gpsdata[31]);
-    tiff_set (&th->ngps,  6, 5,  1, TOFF(th->gps[18]));
-    tiff_set (&th->ngps,  7, 5,  3, TOFF(th->gps[12]));
-    tiff_set (&th->ngps, 18, 2, 12, TOFF(th->gps[20]));
-    tiff_set (&th->ngps, 29, 2, 12, TOFF(th->gps[23]));
+    tiff_set (&th->ngps,  6, 5,  1, (int) TOFF(th->gps[18]));
+    tiff_set (&th->ngps,  7, 5,  3, (int) TOFF(th->gps[12]));
+    tiff_set (&th->ngps, 18, 2, 12, (int) TOFF(th->gps[20]));
+    tiff_set (&th->ngps, 29, 2, 12, (int) TOFF(th->gps[23]));
     memcpy (th->gps, gpsdata, sizeof th->gps);
   }
   th->rat[0] = th->rat[2] = 300;

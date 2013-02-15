@@ -346,19 +346,19 @@ MNG_LOCAL mng_field_descriptor mng_fields_sbit [] =
     {MNG_NULL,
      MNG_FIELD_INT | MNG_FIELD_IFIMGTYPES,
      0, 0xFF, 1, 1,
-     offsetof(mng_sbit, aBits[0]), MNG_NULL, MNG_NULL},
+     (mng_uint16) offsetof(mng_sbit, aBits[0]), MNG_NULL, MNG_NULL},
     {MNG_NULL,
      MNG_FIELD_INT | MNG_FIELD_IFIMGTYPE2 | MNG_FIELD_IFIMGTYPE3 | MNG_FIELD_IFIMGTYPE4 | MNG_FIELD_IFIMGTYPE6,
      0, 0xFF, 1, 1,
-     offsetof(mng_sbit, aBits[1]), MNG_NULL, MNG_NULL},
+     (mng_uint16) offsetof(mng_sbit, aBits[1]), MNG_NULL, MNG_NULL},
     {MNG_NULL,
      MNG_FIELD_INT | MNG_FIELD_IFIMGTYPE2 | MNG_FIELD_IFIMGTYPE3 | MNG_FIELD_IFIMGTYPE6,
      0, 0xFF, 1, 1,
-     offsetof(mng_sbit, aBits[2]), MNG_NULL, MNG_NULL},
+     (mng_uint16) offsetof(mng_sbit, aBits[2]), MNG_NULL, MNG_NULL},
     {MNG_NULL,
      MNG_FIELD_INT | MNG_FIELD_IFIMGTYPE6,
      0, 0xFF, 1, 1,
-     offsetof(mng_sbit, aBits[3]), MNG_NULL, MNG_NULL}
+     (mng_uint16) offsetof(mng_sbit, aBits[3]), MNG_NULL, MNG_NULL}
   };
 #endif
 
@@ -4192,7 +4192,7 @@ MNG_F_SPECIALFUNC (mng_save_entries)
       }
       else
       {
-        iNamesize = pNull - pTemp; /* should be another entry */
+        iNamesize = (mng_uint32) (pNull - pTemp); /* should be another entry */
         iLen     -= iNamesize;
 
         if (!iLen)                 /* must not end with a null ! */

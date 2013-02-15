@@ -440,7 +440,7 @@ TileBufferTask::execute ()
         int numPixelsInTile = numPixelsPerScanLine *
                             (tileRange.max.y - tileRange.min.y + 1);
     
-        int sizeOfTile = _ifd->bytesPerPixel * numPixelsInTile;
+        int sizeOfTile = (int) (_ifd->bytesPerPixel * numPixelsInTile);
     
     
         //

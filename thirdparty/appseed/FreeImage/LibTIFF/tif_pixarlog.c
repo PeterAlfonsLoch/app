@@ -633,7 +633,7 @@ PixarLogGuessDataFmt(TIFFDirectory *td)
 static uint32
 multiply(size_t m1, size_t m2)
 {
-	uint32	bytes = m1 * m2;
+	uint32	bytes = (uint32) (m1 * m2);
 
 	if (m1 && bytes / m1 != m2)
 		bytes = 0;

@@ -159,9 +159,9 @@ PizCompressor::PizCompressor
      size_t numScanLines)
 :
     Compressor (hdr),
-    _maxScanLineSize (maxScanLineSize),
+    _maxScanLineSize ((int) maxScanLineSize),
     _format (XDR),
-    _numScanLines (numScanLines),
+    _numScanLines ((int) numScanLines),
     _tmpBuffer (0),
     _outBuffer (0),
     _numChans (0),
@@ -411,13 +411,13 @@ PizCompressor::compress (const char *inPtr,
     unsigned short maxNonZero;
 
     bitmapFromData (_tmpBuffer,
-		    tmpBufferEnd - _tmpBuffer,
+		    (int) (tmpBufferEnd - _tmpBuffer),
 		    bitmap,
 		    minNonZero, maxNonZero);
 
     AutoArray <unsigned short, USHORT_RANGE> lut;
     unsigned short maxValue = forwardLutFromBitmap (bitmap, lut);
-    applyLut (lut, _tmpBuffer, tmpBufferEnd - _tmpBuffer);
+    applyLut (lut, _tmpBuffer, (int) (tmpBufferEnd - _tmpBuffer));
 
     //
     // Store range compression info in _outBuffer
@@ -458,11 +458,11 @@ PizCompressor::compress (const char *inPtr,
     char *lengthPtr = buf;
     Xdr::write <CharPtrIO> (buf, int(0));
 
-    int length = hufCompress (_tmpBuffer, tmpBufferEnd - _tmpBuffer, buf);
+    int length = hufCompress (_tmpBuffer, (int) (tmpBufferEnd - _tmpBuffer), buf);
     Xdr::write <CharPtrIO> (lengthPtr, length);
 
     outPtr = _outBuffer;
-    return buf - _outBuffer + length;
+    return (int) (buf - _outBuffer + length);
 }
 
 
@@ -558,7 +558,7 @@ PizCompressor::uncompress (const char *inPtr,
     int length;
     Xdr::read <CharPtrIO> (inPtr, length);
 
-    hufUncompress (inPtr, length, _tmpBuffer, tmpBufferEnd - _tmpBuffer);
+    hufUncompress (inPtr, length, _tmpBuffer, (int) (tmpBufferEnd - _tmpBuffer));
 
     //
     // Wavelet decoding
@@ -581,7 +581,7 @@ PizCompressor::uncompress (const char *inPtr,
     // Expand the pixel data to their original range
     //
 
-    applyLut (lut, _tmpBuffer, tmpBufferEnd - _tmpBuffer);
+    applyLut (lut, _tmpBuffer, (int) (tmpBufferEnd - _tmpBuffer));
     
     //
     // Rearrange the pixel data into the format expected by the caller.
@@ -645,7 +645,7 @@ PizCompressor::uncompress (const char *inPtr,
     #endif
 
     outPtr = _outBuffer;
-    return outEnd - _outBuffer;
+    return (int) (outEnd - _outBuffer);
 }
 
 

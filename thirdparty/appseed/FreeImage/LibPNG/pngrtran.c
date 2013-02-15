@@ -1700,7 +1700,7 @@ png_do_unshift(png_row_infop row_info, png_bytep row, png_color_8p sig_bits)
          {
             png_bytep bp;
             png_uint_32 i;
-            png_uint_32 istop = row_info->rowbytes;
+            png_uint_32 istop = (png_uint_32) row_info->rowbytes;
 
             for (bp = row, i = 0; i < istop; i++)
             {
@@ -1714,7 +1714,7 @@ png_do_unshift(png_row_infop row_info, png_bytep row, png_color_8p sig_bits)
          {
             png_bytep bp = row;
             png_uint_32 i;
-            png_uint_32 istop = row_info->rowbytes;
+            png_uint_32 istop = (png_uint_32) row_info->rowbytes;
             png_byte mask = (png_byte)((((int)0xf0 >> shift[0]) & (int)0xf0) |
                (png_byte)((int)0xf >> shift[0]));
 

@@ -228,11 +228,11 @@ areCounterparts (const string &channel1,
     //
 
     StringVector chan1 = parseString (channel1);
-    unsigned int size1 = chan1.size();	// number of SECTIONS in string
+    unsigned int size1 = (unsigned int) chan1.size();	// number of SECTIONS in string
     					// name (not string length)
 
     StringVector chan2 = parseString (channel2);
-    unsigned int size2 = chan2.size();
+    unsigned int size2 = (unsigned int) chan2.size();
 
     if (size1 == 0 || size2 == 0)
 	return false;

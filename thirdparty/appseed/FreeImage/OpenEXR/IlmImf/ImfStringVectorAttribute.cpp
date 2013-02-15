@@ -57,11 +57,11 @@ template <>
 void
 StringVectorAttribute::writeValueTo (OStream &os, int version) const
 {
-    int size = _value.size();
+    int size = (int) _value.size();
 
     for (int i = 0; i < size; i++)
     {
-        int strSize = _value[i].size();
+        int strSize = (int) _value[i].size();
         Xdr::write <StreamIO> (os, strSize);
 	Xdr::write <StreamIO> (os, &_value[i][0], strSize);
     }

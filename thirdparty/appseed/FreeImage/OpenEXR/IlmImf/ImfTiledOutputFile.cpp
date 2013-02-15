@@ -754,7 +754,7 @@ TileBufferTask::execute ()
         // and store the compressed data in the output file.
         //
     
-        _tileBuffer->dataSize = writePtr - _tileBuffer->buffer;
+        _tileBuffer->dataSize = (int) (writePtr - _tileBuffer->buffer);
         _tileBuffer->dataPtr = _tileBuffer->buffer;
     
         if (_tileBuffer->compressor)
@@ -921,7 +921,7 @@ TiledOutputFile::initialize (const Header &header)
 						   _data->tileDesc.ySize,
 						   _data->header));
 
-        _data->tileBuffers[i]->buffer.resizeErase(_data->tileBufferSize);
+        _data->tileBuffers[i]->buffer.resizeErase((long) (_data->tileBufferSize));
     }
 
     _data->format = defaultFormat (_data->tileBuffers[0]->compressor);
@@ -1357,7 +1357,7 @@ TiledOutputFile::copyPixels (TiledInputFile &in)
       case MIPMAP_LEVELS:
 
         for (size_t i_l = 0; i_l < (size_t) numLevels (); ++i_l)
-            numAllTiles += numXTiles (i_l) * numYTiles (i_l);
+            numAllTiles += numXTiles ((int) i_l) * numYTiles ((int) i_l);
 
         break;
 
@@ -1365,7 +1365,7 @@ TiledOutputFile::copyPixels (TiledInputFile &in)
 
         for (size_t i_ly = 0; i_ly < (size_t) numYLevels (); ++i_ly)
             for (size_t i_lx = 0; i_lx < (size_t) numXLevels (); ++i_lx)
-                numAllTiles += numXTiles (i_lx) * numYTiles (i_ly);
+                numAllTiles += numXTiles ((int) i_lx) * numYTiles ((int) i_ly);
 
         break;
 

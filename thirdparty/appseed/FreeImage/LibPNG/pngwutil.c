@@ -213,7 +213,7 @@ png_text_compress(png_structp png_ptr,
    if (compression == PNG_TEXT_COMPRESSION_NONE)
    {
        comp->input = text;
-       comp->input_len = text_len;
+       comp->input_len = (int) text_len;
        return((int)text_len);
    }
 
@@ -248,7 +248,7 @@ png_text_compress(png_structp png_ptr,
    png_ptr->zstream.avail_in = (uInt)text_len;
    /* NOTE: assume zlib doesn't overwrite the input */
    png_ptr->zstream.next_in = (Bytef *)text;
-   png_ptr->zstream.avail_out = png_ptr->zbuf_size;
+   png_ptr->zstream.avail_out = (uInt) png_ptr->zbuf_size;
    png_ptr->zstream.next_out = png_ptr->zbuf;
 
    /* This is the same compression loop as in png_write_row() */
@@ -2103,7 +2103,7 @@ png_write_find_filter(png_structp png_ptr, png_row_infop row_info)
    png_bytep prev_row, row_buf;
    png_uint_32 mins, bpp;
    png_byte filter_to_do = png_ptr->do_filter;
-   png_uint_32 row_bytes = row_info->rowbytes;
+   png_uint_32 row_bytes = (png_uint_32) row_info->rowbytes;
 #ifdef PNG_WRITE_WEIGHTED_FILTER_SUPPORTED
    int num_p_filters = (int)png_ptr->num_prev_filters;
 #endif

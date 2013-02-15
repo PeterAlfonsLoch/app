@@ -77,8 +77,8 @@ rleCompress (int inLength, const char in[], signed char out[])
 	    // Compressable run
 	    //
 
-	    *outWrite++ = (runEnd - runStart) - 1;
-	    *outWrite++ = *(signed char *) runStart;
+	    *outWrite++ = (signed char) ((runEnd - runStart) - 1);
+	    *outWrite++ = (signed char) (*(signed char *) runStart);
 	    runStart = runEnd;
 	}
 	else
@@ -97,7 +97,7 @@ rleCompress (int inLength, const char in[], signed char out[])
 		++runEnd;
 	    }
 
-	    *outWrite++ = runStart - runEnd;
+	    *outWrite++ = (signed char) (runStart - runEnd);
 
 	    while (runStart < runEnd)
 	    {
@@ -108,7 +108,7 @@ rleCompress (int inLength, const char in[], signed char out[])
 	++runEnd;
     }
 
-    return outWrite - out;
+    return (int) (outWrite - out);
 }
 
 
@@ -151,7 +151,7 @@ rleUncompress (int inLength, int maxLength, const signed char in[], char out[])
 	}
     }
 
-    return out - outStart;
+    return (int) (out - outStart);
 }
 
 } // namespace
@@ -159,7 +159,7 @@ rleUncompress (int inLength, int maxLength, const signed char in[], char out[])
 
 RleCompressor::RleCompressor (const Header &hdr, size_t maxScanLineSize):
     Compressor (hdr),
-    _maxScanLineSize (maxScanLineSize),
+    _maxScanLineSize ((int) maxScanLineSize),
     _tmpBuffer (0),
     _outBuffer (0)
 {

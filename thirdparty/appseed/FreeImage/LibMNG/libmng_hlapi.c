@@ -576,10 +576,10 @@ MNG_LOCAL mng_retcode make_pushbuffer (mng_datap       pData,
     MNG_COPY (pTemp->pData, pPushdata, iLength);
   }
 
-  pTemp->iLength    = iLength;
+  pTemp->iLength    = (mng_uint32) iLength;
   pTemp->bOwned     = bTakeownership;
   pTemp->pDatanext  = pTemp->pData;
-  pTemp->iRemaining = iLength;
+  pTemp->iRemaining = (mng_uint32) iLength;
 
   *pPush            = pTemp;           /* return it */
 

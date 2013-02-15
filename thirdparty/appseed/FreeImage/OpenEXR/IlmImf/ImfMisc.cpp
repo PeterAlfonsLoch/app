@@ -526,17 +526,17 @@ skipChannel (const char *& readPtr,
     {
       case UINT:
         
-        Xdr::skip <CharPtrIO> (readPtr, Xdr::size <unsigned int> () * xSize);
+        Xdr::skip <CharPtrIO> (readPtr, (int) (Xdr::size <unsigned int> () * xSize));
         break;
 
       case HALF:
 
-        Xdr::skip <CharPtrIO> (readPtr, Xdr::size <half> () * xSize);
+        Xdr::skip <CharPtrIO> (readPtr, (int) (Xdr::size <half> () * xSize));
         break;
 
       case FLOAT:
 
-        Xdr::skip <CharPtrIO> (readPtr, Xdr::size <float> () * xSize);
+        Xdr::skip <CharPtrIO> (readPtr, (int) (Xdr::size <float> () * xSize));
         break;
 
       default:

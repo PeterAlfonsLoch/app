@@ -73,7 +73,7 @@ class LibRaw_byte_buffer
         // find next 0xff
         unsigned char *p = (unsigned char*) memchr(buf+offt,0xff,size-offt);
         if(p)
-            next_ff = p-buf;
+            next_ff = (unsigned int) (p - buf);
         else
             next_ff = size;
         return ret;

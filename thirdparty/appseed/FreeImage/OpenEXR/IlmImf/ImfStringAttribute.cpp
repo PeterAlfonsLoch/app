@@ -58,7 +58,7 @@ template <>
 void
 StringAttribute::writeValueTo (OStream &os, int version) const
 {
-    int size = _value.size();
+    int size = (int) _value.size();
 
     for (int i = 0; i < size; i++)
 	Xdr::write <StreamIO> (os, _value[i]);

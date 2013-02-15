@@ -258,7 +258,7 @@ png_inflate(png_structp png_ptr, const png_byte *data, png_size_t size,
    png_size_t count = 0;
 
    png_ptr->zstream.next_in = (png_bytep)data; /* const_cast: VALID */
-   png_ptr->zstream.avail_in = size;
+   png_ptr->zstream.avail_in = (uInt) size;
 
    while (1)
    {
@@ -268,10 +268,10 @@ png_inflate(png_structp png_ptr, const png_byte *data, png_size_t size,
        * after every inflate call.
        */
       png_ptr->zstream.next_out = png_ptr->zbuf;
-      png_ptr->zstream.avail_out = png_ptr->zbuf_size;
+      png_ptr->zstream.avail_out = (uInt) png_ptr->zbuf_size;
 
       ret = inflate(&png_ptr->zstream, Z_NO_FLUSH);
-      avail = png_ptr->zbuf_size - png_ptr->zstream.avail_out;
+      avail = (int) (png_ptr->zbuf_size - png_ptr->zstream.avail_out);
 
       /* First copy/count any new output - but only if we didn't
        * get an error code.
@@ -280,7 +280,7 @@ png_inflate(png_structp png_ptr, const png_byte *data, png_size_t size,
       {
          if (output != 0 && output_size > count)
          {
-            int copy = output_size - count;
+            int copy = (int) (output_size - count);
             if (avail < copy) copy = avail;
             png_memcpy(output + count, png_ptr->zbuf, copy);
          }
@@ -1160,7 +1160,7 @@ png_handle_iCCP(png_structp png_ptr, png_infop info_ptr, png_uint_32 length)
    png_decompress_chunk(png_ptr, compression_type,
      slength, prefix_length, &data_length);
 
-   profile_length = data_length - prefix_length;
+   profile_length = (png_uint_32) (data_length - prefix_length);
 
    if ( prefix_length > data_length || profile_length < 4)
    {
@@ -1289,7 +1289,7 @@ png_handle_sPLT(png_structp png_ptr, png_infop info_ptr, png_uint_32 length)
 
    new_palette.depth = *entry_start++;
    entry_size = (new_palette.depth == 8 ? 6 : 10);
-   data_length = (slength - (entry_start - (png_bytep)png_ptr->chunkdata));
+   data_length = (int) (slength - (entry_start - (png_bytep)png_ptr->chunkdata));
 
    /* Integrity-check the data length */
    if (data_length % entry_size)
@@ -2977,7 +2977,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep row,
       case PNG_FILTER_VALUE_SUB:
       {
          png_uint_32 i;
-         png_uint_32 istop = row_info->rowbytes;
+         png_uint_32 istop = (png_uint_32) row_info->rowbytes;
          png_uint_32 bpp = (row_info->pixel_depth + 7) >> 3;
          png_bytep rp = row + bpp;
          png_bytep lp = row;
@@ -2992,7 +2992,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep row,
       case PNG_FILTER_VALUE_UP:
       {
          png_uint_32 i;
-         png_uint_32 istop = row_info->rowbytes;
+         png_uint_32 istop = (png_uint_32) row_info->rowbytes;
          png_bytep rp = row;
          png_bytep pp = prev_row;
 
@@ -3010,7 +3010,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep row,
          png_bytep pp = prev_row;
          png_bytep lp = row;
          png_uint_32 bpp = (row_info->pixel_depth + 7) >> 3;
-         png_uint_32 istop = row_info->rowbytes - bpp;
+         png_uint_32 istop = (png_uint_32) (row_info->rowbytes - bpp);
 
          for (i = 0; i < bpp; i++)
          {
@@ -3035,7 +3035,7 @@ png_read_filter_row(png_structp png_ptr, png_row_infop row_info, png_bytep row,
          png_bytep lp = row;
          png_bytep cp = prev_row;
          png_uint_32 bpp = (row_info->pixel_depth + 7) >> 3;
-         png_uint_32 istop=row_info->rowbytes - bpp;
+         png_uint_32 istop=(png_uint_32) (row_info->rowbytes - bpp);
 
          for (i = 0; i < bpp; i++)
          {
@@ -3377,7 +3377,7 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
      else
         png_ptr->big_row_buf = (png_bytep)png_malloc(png_ptr,
             row_bytes + 48);
-     png_ptr->old_big_row_buf_size = row_bytes + 48;
+     png_ptr->old_big_row_buf_size = (png_uint_32) row_bytes + 48;
 
 #ifdef PNG_ALIGNED_MEMORY_SUPPORTED
      /* Use 16-byte aligned memory for row_buf with at least 16 bytes
@@ -3385,12 +3385,12 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
       */
      png_ptr->row_buf = png_ptr->big_row_buf + 32
          - (((png_alloc_size_t)&(png_ptr->big_row_buf[0]) + 15) % 16);
-     png_ptr->old_big_row_buf_size = row_bytes + 48;
+     png_ptr->old_big_row_buf_size = (png_uint_32) row_bytes + 48;
 #else
      /* Use 32 bytes of padding before and 16 bytes after row_buf. */
      png_ptr->row_buf = png_ptr->big_row_buf + 32;
 #endif
-     png_ptr->old_big_row_buf_size = row_bytes + 48;
+     png_ptr->old_big_row_buf_size = (png_uint_32) row_bytes + 48;
    }
 
 #ifdef PNG_MAX_MALLOC_64K
@@ -3405,7 +3405,7 @@ defined(PNG_USER_TRANSFORM_PTR_SUPPORTED)
       png_free(png_ptr, png_ptr->prev_row);
       png_ptr->prev_row = (png_bytep)png_malloc(png_ptr, (png_uint_32)(
         png_ptr->rowbytes + 1));
-      png_ptr->old_prev_row_size = png_ptr->rowbytes + 1;
+      png_ptr->old_prev_row_size = (png_uint_32) png_ptr->rowbytes + 1;
    }
 
    png_memset(png_ptr->prev_row, 0, png_ptr->rowbytes + 1);

@@ -52,8 +52,8 @@ ZipCompressor::ZipCompressor
      size_t numScanLines)
 :
     Compressor (hdr),
-    _maxScanLineSize (maxScanLineSize),
-    _numScanLines (numScanLines),
+    _maxScanLineSize ((int) maxScanLineSize),
+    _numScanLines ((int) numScanLines),
     _tmpBuffer (0),
     _outBuffer (0)
 {

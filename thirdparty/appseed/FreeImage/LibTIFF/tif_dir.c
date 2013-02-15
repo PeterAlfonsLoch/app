@@ -46,7 +46,7 @@ setByteArray(void** vpp, void* vp, size_t nmemb, size_t elem_size)
 	if (*vpp)
 		_TIFFfree(*vpp), *vpp = 0;
 	if (vp) {
-		tsize_t	bytes = nmemb * elem_size;
+		tsize_t	bytes = (tsize_t) (nmemb * elem_size);
 		if (elem_size && bytes / elem_size == nmemb)
 			*vpp = (void*) _TIFFmalloc(bytes);
 		if (*vpp)
@@ -122,7 +122,7 @@ checkInkNamesString(TIFF* tif, uint32 slen, const char* s)
 					goto bad;
 			cp++;				/* skip \0 */
 		}
-		return (cp-s);
+		return (uint32) (cp-s);
 	}
 bad:
 	TIFFErrorExt(tif->tif_clientdata, "TIFFSetField",

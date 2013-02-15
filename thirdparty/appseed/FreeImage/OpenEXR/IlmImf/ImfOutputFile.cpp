@@ -568,8 +568,7 @@ LineBufferTask::execute ()
     
         _lineBuffer->dataPtr = _lineBuffer->buffer;
 
-        _lineBuffer->dataSize = _lineBuffer->endOfLineBufferData -
-                                _lineBuffer->buffer;
+        _lineBuffer->dataSize = (int) (_lineBuffer->endOfLineBufferData - _lineBuffer->buffer);
     
 	//
         // Compress the data
@@ -719,7 +718,7 @@ OutputFile::initialize (const Header &header)
     _data->lineBufferSize = maxBytesPerLine * _data->linesInBuffer;
 
     for (size_t i = 0; i < _data->lineBuffers.size(); i++)
-        _data->lineBuffers[i]->buffer.resizeErase(_data->lineBufferSize);
+        _data->lineBuffers[i]->buffer.resizeErase((long) _data->lineBufferSize);
 
     int lineOffsetSize = (dataWindow.max.y - dataWindow.min.y +
 			  _data->linesInBuffer) / _data->linesInBuffer;

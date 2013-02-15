@@ -205,7 +205,7 @@ png_do_invert(png_row_infop row_info, png_bytep row)
    {
       png_bytep rp = row;
       png_uint_32 i;
-      png_uint_32 istop = row_info->rowbytes;
+      png_uint_32 istop = (png_uint_32) row_info->rowbytes;
 
       for (i = 0; i < istop; i++)
       {
@@ -218,7 +218,7 @@ png_do_invert(png_row_infop row_info, png_bytep row)
    {
       png_bytep rp = row;
       png_uint_32 i;
-      png_uint_32 istop = row_info->rowbytes;
+      png_uint_32 istop = (png_uint_32) row_info->rowbytes;
 
       for (i = 0; i < istop; i+=2)
       {
@@ -231,7 +231,7 @@ png_do_invert(png_row_infop row_info, png_bytep row)
    {
       png_bytep rp = row;
       png_uint_32 i;
-      png_uint_32 istop = row_info->rowbytes;
+      png_uint_32 istop = (png_uint_32) row_info->rowbytes;
 
       for (i = 0; i < istop; i+=4)
       {

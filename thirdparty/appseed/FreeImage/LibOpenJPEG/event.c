@@ -106,7 +106,7 @@ bool opj_event_msg(opj_common_ptr cinfo, int event_type, const char *fmt, ...) {
 		/* initialize the optional parameter list */
 		va_start(arg, fmt);
 		/* check the length of the format string */
-		str_length = (strlen(fmt) > MSG_SIZE) ? MSG_SIZE : strlen(fmt);
+		str_length = (int) ((strlen(fmt) > MSG_SIZE) ? MSG_SIZE : strlen(fmt));
 		/* parse the format string and put the result in 'message' */
 		vsprintf(message, fmt, arg); /* UniPG */
 		/* deinitialize the optional parameter list */

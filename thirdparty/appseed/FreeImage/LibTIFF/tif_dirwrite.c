@@ -177,7 +177,7 @@ _TIFFWriteDirectory(TIFF* tif, int done)
 		nfields--;
 		dirsize -= sizeof (TIFFDirEntry);
 	}								/*XXX*/
-	for (fi = 0, nfi = tif->tif_nfields; nfi > 0; nfi--, fi++) {
+	for (fi = 0, nfi = (int) tif->tif_nfields; nfi > 0; nfi--, fi++) {
 		const TIFFFieldInfo* fip = tif->tif_fieldinfo[fi];
 
 		/*
@@ -488,7 +488,7 @@ _TIFFWriteCustomDirectory(TIFF* tif, toff_t *pdiroff)
 	 */
 	_TIFFmemcpy(fields, td->td_fieldsset, sizeof (fields));
 
-	for (fi = 0, nfi = tif->tif_nfields; nfi > 0; nfi--, fi++) {
+	for (fi = 0, nfi = (int) tif->tif_nfields; nfi > 0; nfi--, fi++) {
 		const TIFFFieldInfo* fip = tif->tif_fieldinfo[fi];
 
 		/*
@@ -1186,7 +1186,7 @@ static int
 TIFFWriteTransferFunction(TIFF* tif, TIFFDirEntry* dir)
 {
 	TIFFDirectory* td = &tif->tif_dir;
-	tsize_t n = (1L<<td->td_bitspersample) * sizeof (uint16);
+	tsize_t n = (((size_t) 1)<<td->td_bitspersample) * sizeof (uint16);
 	uint16** tf = td->td_transferfunction;
 	int ncols;
 

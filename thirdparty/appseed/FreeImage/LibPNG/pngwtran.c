@@ -255,7 +255,7 @@ png_do_shift(png_row_infop row_info, png_bytep row, png_color_8p bit_depth)
          png_bytep bp = row;
          png_uint_32 i;
          png_byte mask;
-         png_uint_32 row_bytes = row_info->rowbytes;
+         png_uint_32 row_bytes = (png_uint_32) row_info->rowbytes;
 
          if (bit_depth->gray == 1 && row_info->bit_depth == 2)
             mask = 0x55;

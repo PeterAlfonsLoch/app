@@ -545,7 +545,7 @@ _TIFFSetupFieldInfo(TIFF* tif, const TIFFFieldInfo info[], size_t n)
 		_TIFFfree(tif->tif_fieldinfo);
 		tif->tif_nfields = 0;
 	}
-	if (!_TIFFMergeFieldInfo(tif, info, n))
+	if (!_TIFFMergeFieldInfo(tif, info, (int) n))
 	{
 		TIFFErrorExt(tif->tif_clientdata, "_TIFFSetupFieldInfo",
 			     "Setting up field info failed");
@@ -777,6 +777,7 @@ _TIFFFindFieldInfoByName(TIFF* tif, const char *field_name, TIFFDataType dt)
         TIFFFieldInfo key = {0, 0, 0, TIFF_NOTYPE, 0, 0, 0, 0};
 	TIFFFieldInfo* pkey = &key;
 	const TIFFFieldInfo **ret;
+   unsigned int uiFieldCount;
 
 	if (tif->tif_foundfield
 	    && streq(tif->tif_foundfield->field_name, field_name)
@@ -793,11 +794,13 @@ _TIFFFindFieldInfoByName(TIFF* tif, const char *field_name, TIFFDataType dt)
         key.field_type = dt;
 
 #ifdef _WIN32
+        uiFieldCount = 0;
         ret = (const TIFFFieldInfo **) _lfind(&pkey,
 					     tif->tif_fieldinfo,
-					     &tif->tif_nfields,
+					     &uiFieldCount,
 					     sizeof(TIFFFieldInfo *),
 					     tagNameCompare);
+        tif->tif_nfields = uiFieldCount;
 #else
         ret = (const TIFFFieldInfo **) lfind(&pkey,
 					     tif->tif_fieldinfo,
