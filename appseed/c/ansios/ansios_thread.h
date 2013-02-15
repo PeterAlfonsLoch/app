@@ -10,9 +10,13 @@ class CLASS_DECL_c mq
 {
 public:
 
+
    simple_mutex               m_mutex;
    message_array              ma;
    simple_event               m_eventNewMessage;
+   HTHREAD                    m_hthread;
+   uint32_t                   m_uiId;
+
 
    mq() : m_eventNewMessage(false, true) {}
 

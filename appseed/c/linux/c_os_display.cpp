@@ -1,13 +1,6 @@
 #include "framework.h"
 
 
-class osdisplay_dataptra :
-   public simple_array < osdisplay::data * >
-{
-public:
-
-
-};
 
 #define CA2_CCVOTAGUS_WINDOW_LONG "ca2_ccvotagus_window_long"
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_window_long_style"

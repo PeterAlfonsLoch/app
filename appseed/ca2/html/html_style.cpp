@@ -196,14 +196,14 @@ namespace html
       index iRight;
       index iBottom;
       string strName(pszName);
-      
+
       if(m_propertyset.has_property(strName))
          pstyle = this;
       else
          pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
       if(pstyle != NULL)
          i = pstyle->m_propertyset.find_index(strName);
-      
+
       if(m_propertyset.has_property(strName + "-left"))
          pstyleLeft = this;
       else
@@ -323,7 +323,7 @@ namespace html
       {
          strTag = pelemental->m_propertyset["PropertyTag"];
       }
-      
+
       style * pstyle          = NULL;
       style * pstyleLeft      = NULL;
       style * pstyleTop       = NULL;
@@ -355,7 +355,7 @@ namespace html
       float fRightW        = 0.f;
       float fBottomW       = 0.f;
       string strName(pszName);
-      
+
       if(m_propertyset.has_property(strName) && parse_border_width(m_propertyset[strName], f))
          pstyle = this;
       else
@@ -528,7 +528,7 @@ namespace html
       COLORREF crRightW        = 0;
       COLORREF crBottomW       = 0;
       string strName(pszName);
-      
+
       if(m_propertyset.has_property(strName) && parse_border_color(m_propertyset[strName], cr))
          pstyle = this;
       else
@@ -704,7 +704,7 @@ namespace html
          strTag = pelemental->m_propertyset["PropertyTag"];
          strClass = pelemental->get_tag()->get_attr_value("class");
       }
-      
+
       if(m_propertyset.is_new_or_null(pszName))
       {
          style * pstyle = pdata->m_stylesheeta.rfind(strTag, strClass, pszSubClass, pszName);
@@ -841,7 +841,7 @@ namespace html
 
    bool style::get_alpha(const char * pszSubClass, data * pdata, elemental * pelemental, double & d)
    {
-      const char* pszName = "alpha";
+      const char* pszName = "opacity";
       string strTag;
       if(pelemental->m_propertyset.is_new_or_null("PropertyTag"))
       {
@@ -867,7 +867,7 @@ namespace html
             return false;
          return pstyle->get_alpha(pszSubClass, pdata, pelemental, d);
       }
-      d = m_propertyset["alpha"];
+      d = m_propertyset["opacity"];
       return true;
    }
 
@@ -975,7 +975,7 @@ namespace html
 
    float style::parse_dimension(const char * psz)
    {
-      
+
       string str(psz);
 
       str.trim();
@@ -998,7 +998,7 @@ namespace html
 
    bool style::parse_border_width(const char * psz, float & f)
    {
-      
+
       if(psz == NULL)
          return false;
 
@@ -1009,7 +1009,7 @@ namespace html
       if(str.is_empty())
          return false;
 
-      // todo gen::str::find_cssci would find thick between spaces but not concatenated 
+      // todo gen::str::find_cssci would find thick between spaces but not concatenated
       if(str.find_ci("thick") >= 0)
       {
          f = 5.0;
@@ -1146,7 +1146,7 @@ namespace html
 
       if(pszParam == NULL)
          return false;
-      
+
       string str(pszParam);
 
       str.trim();
@@ -1154,7 +1154,7 @@ namespace html
       if(str.is_empty())
          return false;
 
-      // todo gen::str::find_cssci would find red between spaces but not concatenated 
+      // todo gen::str::find_cssci would find red between spaces but not concatenated
       if(str.find_ci("magenta") >= 0)
       {
          cr = ARGB(255, 255, 0, 255);

@@ -327,6 +327,11 @@ namespace user
       strsize iSelEnd;
       strsize lim = 0;
 
+      ::ca::pen_sp penCaret(get_app());
+
+
+      penCaret->create_solid(pdc, 1.0, ARGB(255, 0, 0, 0));
+
 
    /*   rectClient.top = m_pt.y;
       rectClient.left = m_pt.x;
@@ -468,11 +473,13 @@ namespace user
             //maxcy = max(maxcy, size3.cy);
             if(m_bFocus && m_bCaretOn && i3 == str1.get_length())
             {
+               pdc->SelectObject(penCaret);
                pdc->MoveTo(left + size1.cx, y);
                pdc->LineTo(left + size1.cx, y + iLineHeight);
             }
             else if(m_bFocus && m_bCaretOn && i3 == (str1.get_length() + str2.get_length()))
             {
+               pdc->SelectObject(penCaret);
                pdc->MoveTo(left + size2.cx + size1.cx, y);
                pdc->LineTo(left + size2.cx + size1.cx, y + iLineHeight);
             }

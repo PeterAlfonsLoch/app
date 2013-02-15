@@ -509,6 +509,8 @@ namespace gen
             return PrototypeWindowPos;
          case WM_NCCALCSIZE:
             return PrototypeNcCalcSize;
+         case WM_PAINT:
+            return PrototypeNone;
          default:
             return PrototypeNone;
          }

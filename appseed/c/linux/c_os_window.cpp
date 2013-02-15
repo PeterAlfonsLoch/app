@@ -5,22 +5,23 @@
 
 oswindow::data::data()
 {
-   m_plongmap = new simple_map < int, LONG >();
+
+   m_plongmap   = new simple_map < int, LONG >();
+
+   m_hthread    = NULL;
+
+   m_window     = None;
+
 }
 
 oswindow::data::~data()
 {
+
    delete m_plongmap;
+
 }
 
 
-class oswindow_dataptra :
-   public simple_array < oswindow::data * >
-{
-public:
-
-
-};
 
 #define CA2_CCVOTAGUS_WINDOW_LONG "ca2_ccvotagus_fontopu_window_long"
 #define CA2_CCVOTAGUS_WINDOW_LONG_STYLE "ca2_ccvotagus_fontopu_window_long_style"
@@ -36,6 +37,21 @@ int32_t oswindow::find(Display * pdisplay, Window window)
    {
       if(s_pdataptra->element_at(i)->m_osdisplay == pdisplay
       && s_pdataptra->element_at(i)->m_window == window)
+      {
+         return i;
+      }
+   }
+
+   return -1;
+
+}
+
+int32_t oswindow::find(Window window)
+{
+
+   for(int32_t i = 0; i < s_pdataptra->get_count(); i++)
+   {
+      if(s_pdataptra->element_at(i)->m_window == window)
       {
          return i;
       }
@@ -63,6 +79,19 @@ oswindow::data * oswindow::get(Display * pdisplay, Window window)
    return pdata;
 
 }
+
+oswindow::data * oswindow::get(Window window)
+{
+
+   int_ptr iFind = find(window);
+
+   if(iFind < 0)
+      return NULL;
+
+   return s_pdataptra->element_at(iFind);
+
+}
+
 
 oswindow::oswindow(const ::ca::null & null)
 {
@@ -115,6 +144,14 @@ oswindow::oswindow(const WPARAM & wparam)
 {
 
    m_pdata = (data *) wparam;
+
+}
+
+
+oswindow oswindow::defer_get(Window window)
+{
+
+   return oswindow(get(window));
 
 }
 
@@ -196,6 +233,9 @@ void oswindow::set_user_interaction(::user::interaction_base * pui)
       throw "error, m_pdata cannot be NULL to ::oswindow::set_user_interaction";
 
    m_pdata->m_pui = pui;
+
+   m_pdata->m_hthread = pui->m_pthread->get_os_handle();
+
 
 }
 ::user::interaction_base * oswindow::get_user_interaction_base()
@@ -667,5 +707,44 @@ WINBOOL ReleaseCapture()
       g_oswindowCapture = ::ca::null();
 
    return bRet;
+
+}
+
+
+oswindow SetFocus(oswindow window)
+{
+
+   if(!IsWindow(window))
+      return ::ca::null();
+
+   oswindow windowOld = ::GetFocus();
+
+   if(!XSetInputFocus(window.display(), window.window(), RevertToNone, CurrentTime))
+      return ::ca::null();
+
+   return windowOld;
+
+}
+
+oswindow GetFocus()
+{
+
+   Display * pdisplay = XOpenDisplay(NULL);
+
+   Window window = None;
+
+   int revert_to = 0;
+
+   bool bOk = XGetInputFocus(pdisplay, &window, &revert_to) != 0;
+
+   XCloseDisplay(pdisplay);
+
+   if(!bOk)
+      return ::ca::null();
+
+   if(window == None || window == PointerRoot)
+      return ::ca::null();
+
+   return oswindow::defer_get(window);
 
 }

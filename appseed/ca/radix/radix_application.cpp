@@ -1916,7 +1916,7 @@ namespace radix
 
       return GetFocus().window();
 
-#elif defined(WINDOWSEX)
+#elif defined(WINDOWSEX) || defined(LINUX)
 
       ::ca::window * pwnd = System.window_from_os_data_permanent(::GetFocus());
       if(pwnd != NULL)

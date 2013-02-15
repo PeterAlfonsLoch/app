@@ -71,3 +71,26 @@ CLASS_DECL_c bool _istlead(int32_t ch);
 oswindow GetCapture();
 oswindow SetCapture(oswindow window);
 WINBOOL ReleaseCapture();
+oswindow SetFocus(oswindow window);
+oswindow GetFocus();
+
+
+
+class osdisplay_dataptra :
+   public simple_array < osdisplay::data * >
+{
+public:
+
+
+};
+
+
+class oswindow_dataptra :
+   public simple_array < oswindow::data * >
+{
+public:
+
+
+};
+
+
