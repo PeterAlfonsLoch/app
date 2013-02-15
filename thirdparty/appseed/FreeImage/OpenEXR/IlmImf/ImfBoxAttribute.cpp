@@ -41,8 +41,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfBoxAttribute.h>
-
+#include "ImfFramework.h"
 
 namespace Imf {
 

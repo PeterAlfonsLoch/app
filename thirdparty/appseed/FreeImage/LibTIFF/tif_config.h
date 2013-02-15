@@ -188,7 +188,9 @@
 #define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <unistd.h> header file. */
+#ifndef _WIN32
 #define HAVE_UNISTD_H 1
+#endif
 
 /* Define to 1 if you have the <windows.h> header file. */
 /* #undef HAVE_WINDOWS_H */
@@ -248,7 +250,7 @@
 #endif // __cplusplus
 
 #ifdef _MSC_VER 
-#define lfind _lfind
+//#define lfind _lfind
 /* Define to 1 if you have the <search.h> header file. */
 #define HAVE_SEARCH_H 1
 #endif // _MSC_VER

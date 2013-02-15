@@ -39,8 +39,8 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfTileDescriptionAttribute.h>
 
+#include "ImfFramework.h"
 
 namespace Imf {
 

@@ -39,11 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfEnvmap.h>
-#include "ImathFun.h"
-#include <algorithm>
-#include <math.h>
-
+#include "ImfFramework.h"
 using namespace std;
 using namespace Imath;
 
@@ -72,9 +68,9 @@ latLong (const Box2i &dataWindow, const V2f &pixelPosition)
 
     if (dataWindow.max.y > dataWindow.min.y)
     {
-	latitude = -M_PI *
+	latitude = (float) ( -M_PI *
 		  ((pixelPosition.y  - dataWindow.min.y) /
-		   (dataWindow.max.y - dataWindow.min.y) - 0.5f);
+		   (dataWindow.max.y - dataWindow.min.y) - 0.5f));
     }
     else
     {
@@ -83,9 +79,9 @@ latLong (const Box2i &dataWindow, const V2f &pixelPosition)
 
     if (dataWindow.max.x > dataWindow.min.x)
     {
-	longitude = -2 * M_PI *
+	longitude = (float) (-2 * M_PI *
 		   ((pixelPosition.x  - dataWindow.min.x) /
-		    (dataWindow.max.x - dataWindow.min.x) - 0.5f);
+		    (dataWindow.max.x - dataWindow.min.x) - 0.5f));
     }
     else
     {
@@ -99,8 +95,8 @@ latLong (const Box2i &dataWindow, const V2f &pixelPosition)
 V2f
 pixelPosition (const Box2i &dataWindow, const V2f &latLong)
 {
-    float x = latLong.y / (-2 * M_PI) + 0.5f;
-    float y = latLong.x / -M_PI + 0.5f;
+    float x = (float) (latLong.y / (-2 * M_PI) + 0.5f);
+    float y = (float) (latLong.x / -M_PI + 0.5f);
 
     return V2f (x * (dataWindow.max.x - dataWindow.min.x) + dataWindow.min.x,
 		y * (dataWindow.max.y - dataWindow.min.y) + dataWindow.min.y);

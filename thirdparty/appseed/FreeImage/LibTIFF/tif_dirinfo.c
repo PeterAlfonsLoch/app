@@ -792,11 +792,19 @@ _TIFFFindFieldInfoByName(TIFF* tif, const char *field_name, TIFFDataType dt)
         key.field_name = (char *)field_name;
         key.field_type = dt;
 
-        ret = (const TIFFFieldInfo **) lfind(&pkey,
+#ifdef _WIN32
+        ret = (const TIFFFieldInfo **) _lfind(&pkey,
 					     tif->tif_fieldinfo,
 					     &tif->tif_nfields,
 					     sizeof(TIFFFieldInfo *),
 					     tagNameCompare);
+#else
+        ret = (const TIFFFieldInfo **) lfind(&pkey,
+					     tif->tif_fieldinfo,
+					     &tif->tif_nfields,
+					     sizeof(TIFFFieldInfo *),
+                    tagNameCompare);
+#endif
 	return tif->tif_foundfield = (ret ? *ret : NULL);
 }
 

@@ -98,7 +98,7 @@ const double LibRaw_constants::xyz_rgb[3][3] =
     { 0.019334, 0.119193, 0.950227 } 
 };
 
-const float LibRaw_constants::d65_white[3] =  { 0.950456, 1, 1.088754 };
+const float LibRaw_constants::d65_white[3] =  { 0.950456f, 1, 1.088754f };
 
 #define P1 imgdata.idata
 #define S imgdata.sizes
@@ -154,7 +154,7 @@ void LibRaw::derror()
                 {
                     if(callbacks.data_cb)(*callbacks.data_cb)(callbacks.datacb_data,
                                                               libraw_internal_data.internal_data.input->fname(),
-                                                              libraw_internal_data.internal_data.input->tell());
+                                                              (int) libraw_internal_data.internal_data.input->tell());
                     throw LIBRAW_EXCEPTION_IO_CORRUPT;
                 }
         }
@@ -200,7 +200,7 @@ LibRaw:: LibRaw(unsigned int flags)
     imgdata.params.output_bps=8;
     imgdata.params.use_fuji_rotate=1;
     imgdata.params.exp_shift = 1.0;
-    imgdata.params.auto_bright_thr = LIBRAW_DEFAULT_AUTO_BRIGHTNESS_THRESHOLD;
+    imgdata.params.auto_bright_thr = (float) LIBRAW_DEFAULT_AUTO_BRIGHTNESS_THRESHOLD;
     imgdata.params.adjust_maximum_thr= LIBRAW_DEFAULT_ADJUST_MAXIMUM_THRESHOLD;
     imgdata.params.green_matching = 0;
     imgdata.parent_class = this;
@@ -670,7 +670,7 @@ int LibRaw::open_datastream(LibRaw_abstract_datastream *stream)
             }
         else if (S.pixel_aspect < 0.95 || S.pixel_aspect > 1.05)
             {
-                S.width*=S.pixel_aspect;
+                S.width = (ushort) (S.width  * S.pixel_aspect);
             }
 
         if(S.raw_width>S.width + S.left_margin)
@@ -1020,7 +1020,7 @@ libraw_processed_image_t *LibRaw::dcraw_make_mem_image(int *errcode)
         {
             int perc, val, total, t_white=0x2000,c;
 
-            perc = S.width * S.height * 0.01;		/* 99th percentile white level */
+            perc = (int) (S.width * S.height * 0.01);		/* 99th percentile white level */
             if (IO.fuji_width) perc /= 2;
             if (!((O.highlight & ~2) || O.no_auto_bright))
                 for (t_white=c=0; c < P1.colors; c++) {
@@ -1028,7 +1028,7 @@ libraw_processed_image_t *LibRaw::dcraw_make_mem_image(int *errcode)
                         if ((total += libraw_internal_data.output_data.histogram[c][val]) > perc) break;
                     if (t_white < val) t_white = val;
                 }
-            gamma_curve (O.gamm[0], O.gamm[1], 2, (t_white << 3)/O.bright);
+            gamma_curve (O.gamm[0], O.gamm[1], 2, (int) ((t_white << 3)/O.bright));
         }
 
     unsigned ds = S.height * S.width * (O.output_bps/8) * P1.colors;
@@ -1176,7 +1176,7 @@ void LibRaw::kodak_thumb_loader()
                     dmax = C.pre_mul[c];
 
         for( c=0; c< 3; c++)
-                scale_mul[c] = (C.pre_mul[c] / dmax) * 65535.0 / C.maximum;
+                scale_mul[c] = (float) ((C.pre_mul[c] / dmax) * 65535.0 / C.maximum);
         scale_mul[3] = scale_mul[1];
 
         size_t size = S.height * S.width;
@@ -1184,8 +1184,8 @@ void LibRaw::kodak_thumb_loader()
             {
                 val = imgdata.image[0][i];
                 if(!val) continue;
-                val *= scale_mul[i & 3];
-                imgdata.image[0][i] = CLIP(val);
+                val = (int) (val * scale_mul[i & 3]);
+                imgdata.image[0][i] =  CLIP(val);
             }
     }
 
@@ -1199,9 +1199,9 @@ void LibRaw::kodak_thumb_loader()
     float out[3], 
         out_cam[3][4] = 
         {
-            {2.81761312, -1.98369181, 0.166078627, 0}, 
-            {-0.111855984, 1.73688626, -0.625030339, 0}, 
-            {-0.0379119813, -0.891268849, 1.92918086, 0}
+            {2.81761312f, -1.98369181f, 0.166078627f, 0}, 
+            {-0.111855984f, 1.73688626f, -0.625030339f, 0}, 
+            {-0.0379119813f, -0.891268849f, 1.92918086f, 0}
         };
 
     for (img=imgdata.image[0], row=0; row < S.height; row++)
@@ -1234,7 +1234,7 @@ void LibRaw::kodak_thumb_loader()
         {
             int perc, val, total, t_white=0x2000,c;
 
-            perc = S.width * S.height * 0.01;		/* 99th percentile white level */
+            perc = (int) (S.width * S.height * 0.01);		/* 99th percentile white level */
             if (IO.fuji_width) perc /= 2;
             if (!((O.highlight & ~2) || O.no_auto_bright))
                 for (t_white=c=0; c < P1.colors; c++) {
@@ -1242,7 +1242,7 @@ void LibRaw::kodak_thumb_loader()
                         if ((total += libraw_internal_data.output_data.histogram[c][val]) > perc) break;
                     if (t_white < val) t_white = val;
                 }
-            gamma_curve (O.gamm[0], O.gamm[1], 2, (t_white << 3)/O.bright);
+            gamma_curve (O.gamm[0], O.gamm[1], 2, (int) ((t_white << 3)/O.bright));
         }
     
     libraw_internal_data.output_data.histogram = save_hist;
@@ -1532,7 +1532,7 @@ void LibRaw::subtract_black()
                     {
                         cc=FC(row,col);
                         val = BAYERC(row,col,cc);
-                        if(C.channel_maximum[cc] > val) C.channel_maximum[cc] = val;
+                        if(C.channel_maximum[cc] > (unsigned) val) C.channel_maximum[cc] = val;
                     }
             // clear P1 black level data
             imgdata.color.phase_one_data.t_black = 0;
@@ -1560,7 +1560,7 @@ void LibRaw::subtract_black()
                             val -= cblk[cc];
                         else
                             val = 0;
-                        if(C.channel_maximum[cc] < val) C.channel_maximum[cc] = val;
+                        if(C.channel_maximum[cc] < (unsigned) val) C.channel_maximum[cc] = val;
                         BAYERC(row,col,cc) = val;
                     }
             C.maximum -= C.black;

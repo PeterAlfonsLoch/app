@@ -40,8 +40,8 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfCompressionAttribute.h>
 
+#include "ImfFramework.h"
 
 namespace Imf {
 

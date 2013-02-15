@@ -39,7 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfTimeCodeAttribute.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 

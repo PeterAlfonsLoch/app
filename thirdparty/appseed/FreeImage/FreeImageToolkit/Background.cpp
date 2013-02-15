@@ -19,8 +19,8 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
-#include "Utilities.h"
+#include "FreeImageFramework.h"
+
 
 /** @brief Determines, whether a palletized image is visually greyscale or not.
  

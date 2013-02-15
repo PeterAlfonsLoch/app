@@ -430,7 +430,9 @@ namespace planebase
       }
 #endif
 InitFailure:
-      run:
+#ifndef DEBUG
+run:
+#endif
       return m_iReturnCode;
    }
 
@@ -464,7 +466,9 @@ InitFailure:
          {
          }
 #endif
-         run:
+#ifndef DEBUG
+run:
+#endif
 #ifndef DEBUG
          try
          {
@@ -600,7 +604,9 @@ InitFailure:
 
       }
 #endif
+#ifndef DEBUG
 InitFailure:
+#endif
       try
       {
          if(m_peventReady != NULL)

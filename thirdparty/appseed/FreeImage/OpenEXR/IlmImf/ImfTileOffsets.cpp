@@ -39,10 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfTileOffsets.h>
-#include <ImfXdr.h>
-#include <ImfIO.h>
-#include "Iex.h"
+#include "ImfFramework.h"
 
 namespace Imf {
 
@@ -77,9 +74,9 @@ TileOffsets::TileOffsets (LevelMode mode,
 
         _offsets.resize (_numXLevels * _numYLevels);
 
-        for (unsigned int ly = 0; ly < _numYLevels; ++ly)
+        for (unsigned int ly = 0; ly < (unsigned) _numYLevels; ++ly)
         {
-            for (unsigned int lx = 0; lx < _numXLevels; ++lx)
+            for (unsigned int lx = 0; lx < (unsigned) _numXLevels; ++lx)
             {
                 int l = ly * _numXLevels + lx;
                 _offsets[l].resize (numYTiles[ly]);
@@ -259,8 +256,8 @@ TileOffsets::isValidTile (int dx, int dy, int lx, int ly) const
         if (lx == 0 &&
 	    ly == 0 &&
 	    _offsets.size() > 0 &&
-            _offsets[0].size() > dy &&
-            _offsets[0][dy].size() > dx)
+            _offsets[0].size() > (unsigned) dy &&
+            _offsets[0][dy].size() > (unsigned) dx)
 	{
             return true;
 	}
@@ -271,9 +268,9 @@ TileOffsets::isValidTile (int dx, int dy, int lx, int ly) const
 
         if (lx < _numXLevels &&
 	    ly < _numYLevels &&
-            _offsets.size() > lx &&
-            _offsets[lx].size() > dy &&
-            _offsets[lx][dy].size() > dx)
+            _offsets.size() > (unsigned) lx &&
+            _offsets[lx].size() > (unsigned) dy &&
+            _offsets[lx][dy].size() > (unsigned) dx)
 	{
             return true;
 	}
@@ -284,9 +281,9 @@ TileOffsets::isValidTile (int dx, int dy, int lx, int ly) const
 
         if (lx < _numXLevels &&
 	    ly < _numYLevels &&
-            _offsets.size() > lx + ly * _numXLevels &&
-            _offsets[lx + ly * _numXLevels].size() > dy &&
-            _offsets[lx + ly * _numXLevels][dy].size() > dx)
+            _offsets.size() > (unsigned) (lx + ly * _numXLevels) &&
+            _offsets[lx + ly * _numXLevels].size() > (unsigned) dy &&
+            _offsets[lx + ly * _numXLevels][dy].size() > (unsigned) dx)
 	{
             return true;
 	}

@@ -71,7 +71,9 @@ namespace cube
 } // namespace cube
 
 
+#ifndef _WIN32
 extern "C"
+#endif
 ::ca2::library * get_new_library()
 {
    return new ::cube::library();

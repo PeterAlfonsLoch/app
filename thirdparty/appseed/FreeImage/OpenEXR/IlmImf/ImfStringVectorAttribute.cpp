@@ -39,7 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfStringVectorAttribute.h>
+#include "ImfFramework.h"
 
 
 namespace Imf {

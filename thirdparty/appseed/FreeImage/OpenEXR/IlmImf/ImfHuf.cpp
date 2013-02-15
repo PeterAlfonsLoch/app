@@ -44,14 +44,7 @@
 //	by Christian Rouet for his PIZ image file format.
 //
 //-----------------------------------------------------------------------------
-
-#include <ImfHuf.h>
-#include <ImfInt64.h>
-#include <ImfAutoArray.h>
-#include "Iex.h"
-#include <string.h>
-#include <assert.h>
-#include <algorithm>
+#include "ImfFramework.h"
 
 
 using namespace std;
@@ -165,7 +158,7 @@ outputBits (int nBits, Int64 bits, Int64 &c, int &lc, char *&out)
     c |= bits;
 
     while (lc >= 8)
-	*out++ = (c >> (lc -= 8));
+	*out++ = (char) (c >> (lc -= 8));
 }
 
 
@@ -244,7 +237,7 @@ hufCanonicalCodeTable (Int64 hcode[HUF_ENCSIZE])
 
     for (int i = 0; i < HUF_ENCSIZE; ++i)
     {
-	int l = hcode[i];
+	int l = (int) hcode[i];
 
 	if (l > 0)
 	    hcode[i] = l | (n[l]++ << 6);
@@ -475,7 +468,7 @@ hufPackEncTable
 
     for (; im <= iM; im++)
     {
-	int l = hufLength (hcode[im]);
+	int l = (int) hufLength (hcode[im]);
 
 	if (l == 0)
 	{
@@ -544,7 +537,7 @@ hufUnpackEncTable
 	    if (p - *pcode > ni)
 		unexpectedEndOfTable();
 
-	    int zerun = getBits (8, c, lc, p) + SHORTEST_LONG_RUN;
+	    int zerun = (int) (getBits (8, c, lc, p) + SHORTEST_LONG_RUN);
 
 	    if (im + zerun > iM + 1)
 		tableTooLong();
@@ -556,7 +549,7 @@ hufUnpackEncTable
 	}
 	else if (l >= (Int64) SHORT_ZEROCODE_RUN)
 	{
-	    int zerun = l - SHORT_ZEROCODE_RUN + 2;
+	    int zerun = (int) (l - SHORT_ZEROCODE_RUN + 2);
 
 	    if (im + zerun > iM + 1)
 		tableTooLong();
@@ -615,7 +608,7 @@ hufBuildDecTable
     for (; im <= iM; im++)
     {
 	Int64 c = hufCode (hcode[im]);
-	int l = hufLength (hcode[im]);
+	int l = (int) (hufLength (hcode[im]));
 
 	if (c >> l)
 	{
@@ -718,7 +711,7 @@ hufFreeDecTable (HufDec *hdecod)	// io: Decoding table
 inline void
 outputCode (Int64 code, Int64 &c, int &lc, char *&out)
 {
-    outputBits (hufLength (code), hufCode (code), c, lc, out);
+    outputBits ((int) hufLength (code), hufCode (code), c, lc, out);
 }
 
 
@@ -822,7 +815,7 @@ hufEncode				// return: output size (in bits)
 						\
 	lc -= 8;				\
 						\
-	unsigned char cs = (c >> lc);		\
+	unsigned char cs = (unsigned char) (c >> lc);		\
 						\
 	if (out + cs > oe)			\
 	    tooMuchData();			\
@@ -901,7 +894,7 @@ hufDecode
 
 		for (j = 0; j < pl.lit; j++)
 		{
-		    int	l = hufLength (hcode[pl.p[j]]);
+		    int	l = (int) hufLength (hcode[pl.p[j]]);
 
 		    while (lc < l && in < ie)	// get more bits
 			getChar (c, lc, in);

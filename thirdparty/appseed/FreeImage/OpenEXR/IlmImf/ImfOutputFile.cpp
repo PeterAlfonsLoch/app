@@ -39,25 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfOutputFile.h>
-#include <ImfInputFile.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfStdIO.h>
-#include <ImfCompressor.h>
-#include "ImathBox.h"
-#include "ImathFun.h"
-#include <ImfArray.h>
-#include <ImfXdr.h>
-#include <ImfPreviewImageAttribute.h>
-#include "IlmThreadPool.h"
-#include "IlmThreadSemaphore.h"
-#include "IlmThreadMutex.h"
-#include "Iex.h"
-#include <string>
-#include <vector>
-#include <fstream>
-#include <assert.h>
+#include "ImfFramework.h"
 
 
 namespace Imf {
@@ -1104,7 +1086,7 @@ OutputFile::writePixels (int numScanLines)
 
 	const string *exception = 0;
 
-        for (int i = 0; i < _data->lineBuffers.size(); ++i)
+        for (int i = 0; (unsigned) i < _data->lineBuffers.size(); ++i)
 	{
             LineBuffer *lineBuffer = _data->lineBuffers[i];
 

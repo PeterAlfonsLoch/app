@@ -48,7 +48,7 @@ void CLASS dcb_ver(float (*image3)[3])
 	for (row=2; row < height-2; row++)
 		for (col=2+(FC(row,2)&1),indx=row*width+col; col < u-2; col+=2,indx+=2) {
 	
-			image3[indx][1] = CLIP((image[indx+u][1] + image[indx-u][1])/2.0);
+			image3[indx][1] = (float) CLIP((image[indx+u][1] + image[indx-u][1])/2.0);
 
 	}	
 }
@@ -62,7 +62,7 @@ void CLASS dcb_hor(float (*image2)[3])
 	for (row=2; row < height-2; row++)
 		for (col=2+(FC(row,2)&1),indx=row*width+col; col < u-2; col+=2,indx+=2) {
 			
-			image2[indx][1] = CLIP((image[indx+1][1] + image[indx-1][1])/2.0);
+			image2[indx][1] = (float) CLIP((image[indx+1][1] + image[indx-1][1])/2.0);
 
 	}	
 }
@@ -79,17 +79,17 @@ void CLASS dcb_color()
 		for (col=1+(FC(row,1) & 1), indx=row*width+col, c=2-FC(row,col); col < u-1; col+=2, indx+=2) {
 
 			
-			image[indx][c] = CLIP(( 
+			image[indx][c] = (ushort) (CLIP(( 
 			4*image[indx][1] 
 			- image[indx+u+1][1] - image[indx+u-1][1] - image[indx-u+1][1] - image[indx-u-1][1] 
-			+ image[indx+u+1][c] + image[indx+u-1][c] + image[indx-u+1][c] + image[indx-u-1][c] )/4.0);
+			+ image[indx+u+1][c] + image[indx+u-1][c] + image[indx-u+1][c] + image[indx-u-1][c] )/4.0));
 		}
 
 	for (row=1; row<height-1; row++)
 		for (col=1+(FC(row,2) & 1), indx=row*width+col,c=FC(row,col+1),d=2-c; col<width-1; col+=2, indx+=2) {
 			
-			image[indx][c] = CLIP((2*image[indx][1] - image[indx+1][1] - image[indx-1][1] + image[indx+1][c] + image[indx-1][c])/2.0);
-			image[indx][d] = CLIP((2*image[indx][1] - image[indx+u][1] - image[indx-u][1] + image[indx+u][d] + image[indx-u][d])/2.0);
+			image[indx][c] = (ushort) (CLIP((2*image[indx][1] - image[indx+1][1] - image[indx-1][1] + image[indx+1][c] + image[indx-1][c])/2.0));
+			image[indx][d] = (ushort) (CLIP((2*image[indx][1] - image[indx+u][1] - image[indx-u][1] + image[indx+u][d] + image[indx-u][d])/2.0));
 		}	
 }
 
@@ -104,17 +104,17 @@ void CLASS dcb_color2(float (*image2)[3])
 		for (col=1+(FC(row,1) & 1), indx=row*width+col, c=2-FC(row,col); col < u-1; col+=2, indx+=2) {
 
 			
-			image2[indx][c] = CLIP(( 
+			image2[indx][c] = (float) (CLIP(( 
 			4*image2[indx][1] 
 			- image2[indx+u+1][1] - image2[indx+u-1][1] - image2[indx-u+1][1] - image2[indx-u-1][1] 
-			+ image[indx+u+1][c] + image[indx+u-1][c] + image[indx-u+1][c] + image[indx-u-1][c] )/4.0);
+			+ image[indx+u+1][c] + image[indx+u-1][c] + image[indx-u+1][c] + image[indx-u-1][c] )/4.0));
 		}
 
 	for (row=1; row<height-1; row++)
 		for (col=1+(FC(row,2) & 1), indx=row*width+col,c=FC(row,col+1),d=2-c; col<width-1; col+=2, indx+=2) {
 			
-			image2[indx][c] = CLIP((image[indx+1][c] + image[indx-1][c])/2.0);
-			image2[indx][d] = CLIP((2*image2[indx][1] - image2[indx+u][1] - image2[indx-u][1] + image[indx+u][d] + image[indx-u][d])/2.0);
+			image2[indx][c] = (float) CLIP((image[indx+1][c] + image[indx-1][c])/2.0);
+			image2[indx][d] = (float) CLIP((2*image2[indx][1] - image2[indx+u][1] - image2[indx-u][1] + image[indx+u][d] + image[indx-u][d])/2.0);
 		}	
 }
 
@@ -129,7 +129,7 @@ void CLASS dcb_color3(float (*image3)[3])
 		for (col=1+(FC(row,1) & 1), indx=row*width+col, c=2-FC(row,col); col < u-1; col+=2, indx+=2) {
 
 			
-			image3[indx][c] = CLIP(( 
+			image3[indx][c] = (float) CLIP(( 
 			4*image3[indx][1] 
 			- image3[indx+u+1][1] - image3[indx+u-1][1] - image3[indx-u+1][1] - image3[indx-u-1][1] 
 			+ image[indx+u+1][c] + image[indx+u-1][c] + image[indx-u+1][c] + image[indx-u-1][c] )/4.0);
@@ -138,8 +138,8 @@ void CLASS dcb_color3(float (*image3)[3])
 	for (row=1; row<height-1; row++)
 		for (col=1+(FC(row,2) & 1), indx=row*width+col,c=FC(row,col+1),d=2-c; col<width-1; col+=2, indx+=2) {
 			
-			image3[indx][c] = CLIP((2*image3[indx][1] - image3[indx+1][1] - image3[indx-1][1] + image[indx+1][c] + image[indx-1][c])/2.0);
-			image3[indx][d] = CLIP((image[indx+u][d] + image[indx-u][d])/2.0);
+			image3[indx][c] = (float) CLIP((2*image3[indx][1] - image3[indx+1][1] - image3[indx-1][1] + image[indx+1][c] + image[indx-1][c])/2.0);
+			image3[indx][d] = (float) CLIP((image[indx+u][d] + image[indx-u][d])/2.0);
 		}	
 }
 
@@ -155,26 +155,26 @@ void CLASS dcb_decide(float (*image2)[3], float (*image3)[3])
 	
 		d=ABS(c-2);
 
-   current = MAX(image[indx+v][c], MAX(image[indx-v][c], MAX(image[indx-2][c], image[indx+2][c]))) -
+   current = (float) (MAX(image[indx+v][c], MAX(image[indx-v][c], MAX(image[indx-2][c], image[indx+2][c]))) -
 			 MIN(image[indx+v][c], MIN(image[indx-v][c], MIN(image[indx-2][c], image[indx+2][c]))) +
 			 MAX(image[indx+1+u][d], MAX(image[indx+1-u][d], MAX(image[indx-1+u][d], image[indx-1-u][d]))) -
-			 MIN(image[indx+1+u][d], MIN(image[indx+1-u][d], MIN(image[indx-1+u][d], image[indx-1-u][d])));
+			 MIN(image[indx+1+u][d], MIN(image[indx+1-u][d], MIN(image[indx-1+u][d], image[indx-1-u][d]))));
 		
-  current2 = MAX(image2[indx+v][d], MAX(image2[indx-v][d], MAX(image2[indx-2][d], image2[indx+2][d]))) -
+  current2 = (float) (MAX(image2[indx+v][d], MAX(image2[indx-v][d], MAX(image2[indx-2][d], image2[indx+2][d]))) -
 			 MIN(image2[indx+v][d], MIN(image2[indx-v][d], MIN(image2[indx-2][d], image2[indx+2][d]))) +
 			 MAX(image2[indx+1+u][c], MAX(image2[indx+1-u][c], MAX(image2[indx-1+u][c], image2[indx-1-u][c]))) -
-			 MIN(image2[indx+1+u][c], MIN(image2[indx+1-u][c], MIN(image2[indx-1+u][c], image2[indx-1-u][c])));
+			 MIN(image2[indx+1+u][c], MIN(image2[indx+1-u][c], MIN(image2[indx-1+u][c], image2[indx-1-u][c]))));
 			  
-  current3 = MAX(image3[indx+v][d], MAX(image3[indx-v][d], MAX(image3[indx-2][d], image3[indx+2][d]))) -
+  current3 = (float) (MAX(image3[indx+v][d], MAX(image3[indx-v][d], MAX(image3[indx-2][d], image3[indx+2][d]))) -
 			 MIN(image3[indx+v][d], MIN(image3[indx-v][d], MIN(image3[indx-2][d], image3[indx+2][d]))) +
 			 MAX(image3[indx+1+u][c], MAX(image3[indx+1-u][c], MAX(image3[indx-1+u][c], image3[indx-1-u][c]))) -
-			 MIN(image3[indx+1+u][c], MIN(image3[indx+1-u][c], MIN(image3[indx-1+u][c], image3[indx-1-u][c])));
+			 MIN(image3[indx+1+u][c], MIN(image3[indx+1-u][c], MIN(image3[indx-1+u][c], image3[indx-1-u][c]))));
 
 		
 			if (ABS(current-current2) < ABS(current-current3))
-				image[indx][1] = image2[indx][1];
+				image[indx][1] = (ushort) image2[indx][1];
 			else
-				image[indx][1] = image3[indx][1];				
+				image[indx][1] = (ushort) image3[indx][1];				
 			
 		
 	}
@@ -200,8 +200,8 @@ void CLASS dcb_restore_from_buffer(float (*image2)[3])
 	int indx;
 
 	for (indx=0; indx < height*width; indx++) {
-		image[indx][0]=image2[indx][0]; //R
-		image[indx][2]=image2[indx][2]; //B
+		image[indx][0]=(ushort) (image2[indx][0]); //R
+		image[indx][2]=(ushort) (image2[indx][2]); //B
 	}
 }
 
@@ -215,9 +215,9 @@ void CLASS dcb_pp()
 	for (row=2; row < height-2; row++) 
 	for (col=2, indx=row*u+col; col < width-2; col++, indx++) { 
 
-		r1 = ( image[indx-1][0] + image[indx+1][0] + image[indx-u][0] + image[indx+u][0] + image[indx-u-1][0] + image[indx+u+1][0] + image[indx-u+1][0] + image[indx+u-1][0])/8.0;
-		g1 = ( image[indx-1][1] + image[indx+1][1] + image[indx-u][1] + image[indx+u][1] + image[indx-u-1][1] + image[indx+u+1][1] + image[indx-u+1][1] + image[indx+u-1][1])/8.0;
-		b1 = ( image[indx-1][2] + image[indx+1][2] + image[indx-u][2] + image[indx+u][2] + image[indx-u-1][2] + image[indx+u+1][2] + image[indx-u+1][2] + image[indx+u-1][2])/8.0;
+		r1 = (int) (( image[indx-1][0] + image[indx+1][0] + image[indx-u][0] + image[indx+u][0] + image[indx-u-1][0] + image[indx+u+1][0] + image[indx-u+1][0] + image[indx+u-1][0])/8.0);
+		g1 = (int) (( image[indx-1][1] + image[indx+1][1] + image[indx-u][1] + image[indx+u][1] + image[indx-u-1][1] + image[indx+u+1][1] + image[indx-u+1][1] + image[indx+u-1][1])/8.0);
+		b1 = (int) (( image[indx-1][2] + image[indx+1][2] + image[indx-u][2] + image[indx+u][2] + image[indx-u-1][2] + image[indx+u+1][2] + image[indx-u+1][2] + image[indx+u-1][2])/8.0);
 		 
 		image[indx][0] = CLIP(r1 + ( image[indx][1] - g1 ));
 		image[indx][2] = CLIP(b1 + ( image[indx][1] - g1 ));
@@ -236,7 +236,7 @@ void CLASS dcb_nyquist()
 	for (row=2; row < height-2; row++)
 		for (col=2+(FC(row,2)&1),indx=row*width+col, c=FC(row,col); col < u-2; col+=2,indx+=2) {
 
-			image[indx][1] = CLIP((image[indx+v][1] + image[indx-v][1] + image[indx-2][1] + image[indx+2][1])/4.0 + 
+			image[indx][1] = (ushort) CLIP((image[indx+v][1] + image[indx-v][1] + image[indx-2][1] + image[indx+2][1])/4.0 + 
 							  image[indx][c] - ( image[indx+v][c] + image[indx-v][c] + image[indx-2][c] + image[indx+2][c])/4.0);
 	
 	}	
@@ -250,47 +250,47 @@ void CLASS dcb_nyquist()
 // missing colors are interpolated using high quality algorithm by Luis Sanz Rodríguez
 void CLASS dcb_color_full()
 {
-	int row,col,c,d,i,j,u=width,v=2*u,w=3*u,indx, g1, g2;
+	int row,col,c,d,u=width,v=2*u,w=3*u,indx, g1, g2;
 	float f[4],g[4],(*chroma)[2];
 
 	chroma = (float (*)[2]) calloc(width*height,sizeof *chroma); merror (chroma, "dcb_color_full()");
 
 	for (row=1; row < height-1; row++)
 		for (col=1+(FC(row,1)&1),indx=row*width+col,c=FC(row,col),d=c/2; col < u-1; col+=2,indx+=2)
-			chroma[indx][d]=image[indx][c]-image[indx][1];
+			chroma[indx][d]=(float) image[indx][c]-image[indx][1];
 
 	for (row=3; row<height-3; row++)
 		for (col=3+(FC(row,1)&1),indx=row*width+col,c=1-FC(row,col)/2,d=1-c; col<u-3; col+=2,indx+=2) {
-			f[0]=1.0/(float)(1.0+fabs(chroma[indx-u-1][c]-chroma[indx+u+1][c])+fabs(chroma[indx-u-1][c]-chroma[indx-w-3][c])+fabs(chroma[indx+u+1][c]-chroma[indx-w-3][c]));
-			f[1]=1.0/(float)(1.0+fabs(chroma[indx-u+1][c]-chroma[indx+u-1][c])+fabs(chroma[indx-u+1][c]-chroma[indx-w+3][c])+fabs(chroma[indx+u-1][c]-chroma[indx-w+3][c]));
-			f[2]=1.0/(float)(1.0+fabs(chroma[indx+u-1][c]-chroma[indx-u+1][c])+fabs(chroma[indx+u-1][c]-chroma[indx+w+3][c])+fabs(chroma[indx-u+1][c]-chroma[indx+w-3][c]));
-			f[3]=1.0/(float)(1.0+fabs(chroma[indx+u+1][c]-chroma[indx-u-1][c])+fabs(chroma[indx+u+1][c]-chroma[indx+w-3][c])+fabs(chroma[indx-u-1][c]-chroma[indx+w+3][c]));
-			g[0]=1.325*chroma[indx-u-1][c]-0.175*chroma[indx-w-3][c]-0.075*chroma[indx-w-1][c]-0.075*chroma[indx-u-3][c];
-			g[1]=1.325*chroma[indx-u+1][c]-0.175*chroma[indx-w+3][c]-0.075*chroma[indx-w+1][c]-0.075*chroma[indx-u+3][c];
-			g[2]=1.325*chroma[indx+u-1][c]-0.175*chroma[indx+w-3][c]-0.075*chroma[indx+w-1][c]-0.075*chroma[indx+u-3][c];
-			g[3]=1.325*chroma[indx+u+1][c]-0.175*chroma[indx+w+3][c]-0.075*chroma[indx+w+1][c]-0.075*chroma[indx+u+3][c];
+			f[0]=1.0f/(float)(1.0f+fabs(chroma[indx-u-1][c]-chroma[indx+u+1][c])+fabs(chroma[indx-u-1][c]-chroma[indx-w-3][c])+fabs(chroma[indx+u+1][c]-chroma[indx-w-3][c]));
+			f[1]=1.0f/(float)(1.0f+fabs(chroma[indx-u+1][c]-chroma[indx+u-1][c])+fabs(chroma[indx-u+1][c]-chroma[indx-w+3][c])+fabs(chroma[indx+u-1][c]-chroma[indx-w+3][c]));
+			f[2]=1.0f/(float)(1.0f+fabs(chroma[indx+u-1][c]-chroma[indx-u+1][c])+fabs(chroma[indx+u-1][c]-chroma[indx+w+3][c])+fabs(chroma[indx-u+1][c]-chroma[indx+w-3][c]));
+			f[3]=1.0f/(float)(1.0f+fabs(chroma[indx+u+1][c]-chroma[indx-u-1][c])+fabs(chroma[indx+u+1][c]-chroma[indx+w-3][c])+fabs(chroma[indx-u-1][c]-chroma[indx+w+3][c]));
+			g[0]=1.325f*chroma[indx-u-1][c]-0.175f*chroma[indx-w-3][c]-0.075f*chroma[indx-w-1][c]-0.075f*chroma[indx-u-3][c];
+			g[1]=1.325f*chroma[indx-u+1][c]-0.175f*chroma[indx-w+3][c]-0.075f*chroma[indx-w+1][c]-0.075f*chroma[indx-u+3][c];
+			g[2]=1.325f*chroma[indx+u-1][c]-0.175f*chroma[indx+w-3][c]-0.075f*chroma[indx+w-1][c]-0.075f*chroma[indx+u-3][c];
+			g[3]=1.325f*chroma[indx+u+1][c]-0.175f*chroma[indx+w+3][c]-0.075f*chroma[indx+w+1][c]-0.075f*chroma[indx+u+3][c];
 			chroma[indx][c]=(f[0]*g[0]+f[1]*g[1]+f[2]*g[2]+f[3]*g[3])/(f[0]+f[1]+f[2]+f[3]);
 		}
 	for (row=3; row<height-3; row++)
 		for (col=3+(FC(row,2)&1),indx=row*width+col,c=FC(row,col+1)/2; col<u-3; col+=2,indx+=2)
 			for(d=0;d<=1;c=1-c,d++){
-				f[0]=1.0/(float)(1.0+fabs(chroma[indx-u][c]-chroma[indx+u][c])+fabs(chroma[indx-u][c]-chroma[indx-w][c])+fabs(chroma[indx+u][c]-chroma[indx-w][c]));
-				f[1]=1.0/(float)(1.0+fabs(chroma[indx+1][c]-chroma[indx-1][c])+fabs(chroma[indx+1][c]-chroma[indx+3][c])+fabs(chroma[indx-1][c]-chroma[indx+3][c]));
-				f[2]=1.0/(float)(1.0+fabs(chroma[indx-1][c]-chroma[indx+1][c])+fabs(chroma[indx-1][c]-chroma[indx-3][c])+fabs(chroma[indx+1][c]-chroma[indx-3][c]));
-				f[3]=1.0/(float)(1.0+fabs(chroma[indx+u][c]-chroma[indx-u][c])+fabs(chroma[indx+u][c]-chroma[indx+w][c])+fabs(chroma[indx-u][c]-chroma[indx+w][c]));
+				f[0]=1.0f/(float)(1.0f+fabs(chroma[indx-u][c]-chroma[indx+u][c])+fabs(chroma[indx-u][c]-chroma[indx-w][c])+fabs(chroma[indx+u][c]-chroma[indx-w][c]));
+				f[1]=1.0f/(float)(1.0f+fabs(chroma[indx+1][c]-chroma[indx-1][c])+fabs(chroma[indx+1][c]-chroma[indx+3][c])+fabs(chroma[indx-1][c]-chroma[indx+3][c]));
+				f[2]=1.0f/(float)(1.0f+fabs(chroma[indx-1][c]-chroma[indx+1][c])+fabs(chroma[indx-1][c]-chroma[indx-3][c])+fabs(chroma[indx+1][c]-chroma[indx-3][c]));
+				f[3]=1.0f/(float)(1.0f+fabs(chroma[indx+u][c]-chroma[indx-u][c])+fabs(chroma[indx+u][c]-chroma[indx+w][c])+fabs(chroma[indx-u][c]-chroma[indx+w][c]));
 			
-				g[0]=0.875*chroma[indx-u][c]+0.125*chroma[indx-w][c];
-				g[1]=0.875*chroma[indx+1][c]+0.125*chroma[indx+3][c];
-				g[2]=0.875*chroma[indx-1][c]+0.125*chroma[indx-3][c];
-				g[3]=0.875*chroma[indx+u][c]+0.125*chroma[indx+w][c];				
+				g[0]=0.875f*chroma[indx-u][c]+0.125f*chroma[indx-w][c];
+				g[1]=0.875f*chroma[indx+1][c]+0.125f*chroma[indx+3][c];
+				g[2]=0.875f*chroma[indx-1][c]+0.125f*chroma[indx-3][c];
+				g[3]=0.875f*chroma[indx+u][c]+0.125f*chroma[indx+w][c];				
 
 				chroma[indx][c]=(f[0]*g[0]+f[1]*g[1]+f[2]*g[2]+f[3]*g[3])/(f[0]+f[1]+f[2]+f[3]);
 			}
 
 	for(row=3; row<height-3; row++)
 		for(col=3,indx=row*width+col; col<width-3; col++,indx++){
-			image[indx][0]=CLIP(chroma[indx][0]+image[indx][1]);
-			image[indx][2]=CLIP(chroma[indx][1]+image[indx][1]);
+			image[indx][0]=(ushort) CLIP(chroma[indx][0]+image[indx][1]);
+			image[indx][2]=(ushort) CLIP(chroma[indx][1]+image[indx][1]);
 			
 	g1 = MIN(image[indx+1+u][0], MIN(image[indx+1-u][0], MIN(image[indx-1+u][0], MIN(image[indx-1-u][0], MIN(image[indx-1][0], MIN(image[indx+1][0], MIN(image[indx-u][0], image[indx+u][0])))))));
 
@@ -322,7 +322,7 @@ void CLASS dcb_color_full()
 // 0 = horizontal
 void CLASS dcb_map()
 {	
-	int current, row, col, c, u=width, v=2*u, indx;
+	int row, col, u=width, v=2*u, indx;
 
 	for (row=1; row < height-1; row++) {
 	for (col=1, indx=row*width+col; col < width-1; col++, indx++) { 
@@ -350,7 +350,7 @@ void CLASS dcb_correction()
 				      2*(image[indx+u][3] + image[indx-u][3] + image[indx+1][3] + image[indx-1][3]) + 
 					    image[indx+v][3] + image[indx-v][3] + image[indx+2][3] + image[indx-2][3];
 						
-			image[indx][1] = ((16-current)*(image[indx-1][1] + image[indx+1][1])/2.0 + current*(image[indx-u][1] + image[indx+u][1])/2.0)/16.0;
+			image[indx][1] = (ushort) (((16-current)*(image[indx-1][1] + image[indx+1][1])/2.0 + current*(image[indx-u][1] + image[indx+u][1])/2.0)/16.0);
 
 	}
 
@@ -362,7 +362,7 @@ void CLASS dcb_correction()
 void CLASS dcb_correction2()
 {
 	int current, row, col, c, u=width, v=2*u, indx;
-	ushort (*pix)[4];
+//	ushort (*pix)[4];
 
 	for (row=4; row < height-4; row++)
 		for (col=4+(FC(row,2)&1),indx=row*width+col, c=FC(row,col); col < u-4; col+=2,indx+=2) {
@@ -371,7 +371,7 @@ void CLASS dcb_correction2()
 				      2*(image[indx+u][3] + image[indx-u][3] + image[indx+1][3] + image[indx-1][3]) + 
 					    image[indx+v][3] + image[indx-v][3] + image[indx+2][3] + image[indx-2][3];
 						
-			image[indx][1] = CLIP(((16-current)*((image[indx-1][1] + image[indx+1][1])/2.0 + image[indx][c] - (image[indx+2][c] + image[indx-2][c])/2.0) + current*((image[indx-u][1] + image[indx+u][1])/2.0 + image[indx][c] - (image[indx+v][c] + image[indx-v][c])/2.0))/16.0);			   
+			image[indx][1] = (ushort) (CLIP(((16-current)*((image[indx-1][1] + image[indx+1][1])/2.0 + image[indx][c] - (image[indx+2][c] + image[indx-2][c])/2.0) + current*((image[indx-u][1] + image[indx+u][1])/2.0 + image[indx][c] - (image[indx+v][c] + image[indx-v][c])/2.0))/16.0));
 		
 	}
 
@@ -381,7 +381,7 @@ void CLASS dcb_correction2()
 void CLASS dcb_refinement()
 {
 	int row, col, c, u=width, v=2*u, w=3*u, indx, current;
-	float f[5], g1, g2, tmp, tmp2=0, tmp3=0;
+	float f[5], g1, g2, tmp2=0, tmp3=0;
 	
 	for (row=4; row < height-4; row++)
 		for (col=4+(FC(row,2)&1),indx=row*width+col, c=FC(row,col); col < u-4; col+=2,indx+=2) {
@@ -416,7 +416,7 @@ f[4] = (float)(image[indx+u][1] + image[indx+w][1])/(2*image[indx+v][c]);
 else
 f[4] = f[0];
 
-g1 = (5*f[0] + 3*f[1] + f[2] + 3*f[3] + f[4])/13.0;
+g1 = (5*f[0] + 3*f[1] + f[2] + 3*f[3] + f[4])/13.0f;
 
 
 
@@ -442,10 +442,10 @@ f[4] = (float)(image[indx+1][1] + image[indx+3][1])/(2*image[indx+2][c]);
 else
 f[4] = f[0];
 
-g2 = (5*f[0] + 3*f[1] + f[2] + 3*f[3] + f[4])/13.0;
+g2 = (5*f[0] + 3*f[1] + f[2] + 3*f[3] + f[4])/13.0f;
 
 
-image[indx][1] = CLIP((image[indx][c])*(current*g1 + (16-current)*g2)/16.0);
+image[indx][1] = (ushort) (CLIP((image[indx][c])*(current*g1 + (16-current)*g2)/16.0f));
 }
 else
 image[indx][1] = image[indx][c];
@@ -456,7 +456,7 @@ image[indx][1] = image[indx][c];
 
 	g2 = MAX(image[indx+1+u][1], MAX(image[indx+1-u][1], MAX(image[indx-1+u][1], MAX(image[indx-1-u][1], MAX(image[indx-1][1], MAX(image[indx+1][1], MAX(image[indx-u][1], image[indx+u][1])))))));
 
-	image[indx][1] =  ULIM(image[indx][1], g2, g1);
+	image[indx][1] =  (ushort) ULIM(image[indx][1], g2, g1);
 	
 	}	
 
@@ -482,9 +482,9 @@ void CLASS lch_to_rgb(double (*image2)[3])
 	int indx;
 	for (indx=0; indx < height*width; indx++) {
 
-            image[indx][0] = CLIP(image2[indx][0] / 3.0 - image2[indx][2] / 6.0 + image2[indx][1] / 3.464101615);
-            image[indx][1] = CLIP(image2[indx][0] / 3.0 - image2[indx][2] / 6.0 - image2[indx][1] / 3.464101615);
-            image[indx][2] = CLIP(image2[indx][0] / 3.0 + image2[indx][2] / 3.0);
+            image[indx][0] = (ushort) CLIP(image2[indx][0] / 3.0 - image2[indx][2] / 6.0 + image2[indx][1] / 3.464101615);
+            image[indx][1] = (ushort) CLIP(image2[indx][0] / 3.0 - image2[indx][2] / 6.0 - image2[indx][1] / 3.464101615);
+            image[indx][2] = (ushort) CLIP(image2[indx][0] / 3.0 + image2[indx][2] / 3.0);
 	}
 }
 
@@ -495,7 +495,6 @@ void CLASS lch_to_rgb(double (*image2)[3])
 void CLASS fbdd_correction()
 {
 	int row, col, c, u=width, indx;
-	ushort (*pix)[4];
 
 	for (row=2; row < height-2; row++) {
 	for (col=2, indx=row*width+col; col < width-2; col++, indx++) { 	
@@ -542,24 +541,24 @@ if (ratio < 0.85){
 // Cubic Spline Interpolation by Li and Randhawa, modified by Jacek Gozdz and Luis Sanz Rodríguez
 void CLASS fbdd_green()
 {
-	int row, col, c, u=width, v=2*u, w=3*u, x=4*u, y=5*u, indx, min, max, current;
+	int row, col, c, u=width, v=2*u, w=3*u, x=4*u, y=5*u, indx, min, max;
 	float f[4], g[4];
 
 	for (row=5; row < height-5; row++)
 		for (col=5+(FC(row,1)&1),indx=row*width+col,c=FC(row,col); col < u-5; col+=2,indx+=2) {
 			
 		
-f[0]=1.0/(1.0+abs(image[indx-u][1]-image[indx-w][1])+abs(image[indx-w][1]-image[indx+y][1]));
-f[1]=1.0/(1.0+abs(image[indx+1][1]-image[indx+3][1])+abs(image[indx+3][1]-image[indx-5][1]));
-f[2]=1.0/(1.0+abs(image[indx-1][1]-image[indx-3][1])+abs(image[indx-3][1]-image[indx+5][1]));
-f[3]=1.0/(1.0+abs(image[indx+u][1]-image[indx+w][1])+abs(image[indx+w][1]-image[indx-y][1]));
+f[0]=1.0f/(1.0f+abs(image[indx-u][1]-image[indx-w][1])+abs(image[indx-w][1]-image[indx+y][1]));
+f[1]=1.0f/(1.0f+abs(image[indx+1][1]-image[indx+3][1])+abs(image[indx+3][1]-image[indx-5][1]));
+f[2]=1.0f/(1.0f+abs(image[indx-1][1]-image[indx-3][1])+abs(image[indx-3][1]-image[indx+5][1]));
+f[3]=1.0f/(1.0f+abs(image[indx+u][1]-image[indx+w][1])+abs(image[indx+w][1]-image[indx-y][1]));
 
-g[0]=CLIP((23*image[indx-u][1]+23*image[indx-w][1]+2*image[indx-y][1]+8*(image[indx-v][c]-image[indx-x][c])+40*(image[indx][c]-image[indx-v][c]))/48.0);
-g[1]=CLIP((23*image[indx+1][1]+23*image[indx+3][1]+2*image[indx+5][1]+8*(image[indx+2][c]-image[indx+4][c])+40*(image[indx][c]-image[indx+2][c]))/48.0);
-g[2]=CLIP((23*image[indx-1][1]+23*image[indx-3][1]+2*image[indx-5][1]+8*(image[indx-2][c]-image[indx-4][c])+40*(image[indx][c]-image[indx-2][c]))/48.0);
-g[3]=CLIP((23*image[indx+u][1]+23*image[indx+w][1]+2*image[indx+y][1]+8*(image[indx+v][c]-image[indx+x][c])+40*(image[indx][c]-image[indx+v][c]))/48.0);
+g[0]=CLIP((23*image[indx-u][1]+23*image[indx-w][1]+2*image[indx-y][1]+8*(image[indx-v][c]-image[indx-x][c])+40*(image[indx][c]-image[indx-v][c]))/48.0f);
+g[1]=CLIP((23*image[indx+1][1]+23*image[indx+3][1]+2*image[indx+5][1]+8*(image[indx+2][c]-image[indx+4][c])+40*(image[indx][c]-image[indx+2][c]))/48.0f);
+g[2]=CLIP((23*image[indx-1][1]+23*image[indx-3][1]+2*image[indx-5][1]+8*(image[indx-2][c]-image[indx-4][c])+40*(image[indx][c]-image[indx-2][c]))/48.0f);
+g[3]=CLIP((23*image[indx+u][1]+23*image[indx+w][1]+2*image[indx+y][1]+8*(image[indx+v][c]-image[indx+x][c])+40*(image[indx][c]-image[indx+v][c]))/48.0f);
 
-	image[indx][1]=CLIP((f[0]*g[0]+f[1]*g[1]+f[2]*g[2]+f[3]*g[3])/(f[0]+f[1]+f[2]+f[3]));
+	image[indx][1]=(ushort) CLIP((f[0]*g[0]+f[1]*g[1]+f[2]*g[2]+f[3]*g[3])/(f[0]+f[1]+f[2]+f[3]));
 	
 	min = MIN(image[indx+1+u][1], MIN(image[indx+1-u][1], MIN(image[indx-1+u][1], MIN(image[indx-1-u][1], MIN(image[indx-1][1], MIN(image[indx+1][1], MIN(image[indx-u][1], image[indx+u][1])))))));
 

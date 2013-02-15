@@ -230,15 +230,16 @@ namespace ca4
    bool compress::_compress(class primitive::memory & memory, void * pdata, ::primitive::memory_size ulSize)
    {
       memory.allocate(compressBound(ulSize) * 2);
-      primitive::memory_size ulDestSize = memory.get_size();
+      uLongf ulDestSize = memory.get_size();
       int32_t i = ::compress(memory.get_data(), &ulDestSize, (BYTE *) pdata, ulSize);
       memory.allocate(ulDestSize);
       return i == Z_OK;
    }
 
-   bool compress::_uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size ulSizeUncompressed)
+   bool compress::_uncompress(primitive::memory & memoryUncompressed, primitive::memory & memoryCompressed, ::primitive::memory_size sizeUncompressed)
    {
-      memoryUncompressed.allocate(ulSizeUncompressed);
+      memoryUncompressed.allocate(sizeUncompressed);
+      uLongf ulSizeUncompressed = sizeUncompressed;
       int32_t i = ::uncompress(memoryUncompressed.get_data(), &ulSizeUncompressed, memoryCompressed.get_data(), (uint_ptr) memoryCompressed.get_size());
       return i == Z_OK;
    }

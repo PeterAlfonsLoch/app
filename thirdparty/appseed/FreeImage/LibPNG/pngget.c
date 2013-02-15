@@ -12,10 +12,8 @@
  *
  */
 
-#define PNG_NO_PEDANTIC_WARNINGS
-#include "png.h"
+#include "png_framework.h"
 #if defined(PNG_READ_SUPPORTED) || defined(PNG_WRITE_SUPPORTED)
-#include "pngpriv.h"
 
 png_uint_32 PNGAPI
 png_get_valid(png_structp png_ptr, png_infop info_ptr, png_uint_32 flag)

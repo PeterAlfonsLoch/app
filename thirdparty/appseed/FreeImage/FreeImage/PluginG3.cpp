@@ -20,10 +20,9 @@
 // Use at your own risk!
 // ==========================================================
 
+#include "FreeImageFramework.h"
 #include "../LibTIFF/tiffiop.h"
 
-#include "FreeImage.h"
-#include "Utilities.h"
 
 // ==========================================================
 // Plugin Interface

@@ -42,9 +42,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfRgbaYca.h>
-#include <assert.h>
-#include <algorithm>
+#include "ImfFramework.h"
 
 using namespace Imath;
 using namespace std;

@@ -54,7 +54,7 @@ static const uchar index_hex[256] = {
 #define pr_s6_addr __in6_u.__u6_addr8
 #else
 #define pr_s6_addr16 u.Word
-#define pr_s6_addr u.byte
+#define pr_s6_addr u.Byte
 #endif
 
 /*

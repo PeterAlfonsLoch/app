@@ -40,9 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfOpaqueAttribute.h>
-#include "Iex.h"
-#include <string.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 

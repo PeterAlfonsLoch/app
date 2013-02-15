@@ -41,10 +41,7 @@
 //-----------------------------------------------------------------------------
 
 
-#include <ImfTestFile.h>
-#include <ImfStdIO.h>
-#include <ImfXdr.h>
-#include <ImfVersion.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 

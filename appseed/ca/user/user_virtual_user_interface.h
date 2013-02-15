@@ -63,7 +63,11 @@ public:
 
    virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
 
+#ifdef LINUX
+
    virtual LRESULT send_message(XEvent * pevent);
+
+#endif
 
    // as hosting ::ca::window
    virtual void install_message_handling(::gen::message::dispatch * pinterface);

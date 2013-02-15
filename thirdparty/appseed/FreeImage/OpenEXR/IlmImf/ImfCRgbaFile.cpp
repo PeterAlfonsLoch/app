@@ -40,20 +40,7 @@
 //-----------------------------------------------------------------------------
 
 
-#include <ImfCRgbaFile.h>
-#include <ImfRgbaFile.h>
-#include <ImfTiledRgbaFile.h>
-#include <ImfIntAttribute.h>
-#include <ImfFloatAttribute.h>
-#include <ImfDoubleAttribute.h>
-#include <ImfStringAttribute.h>
-#include <ImfBoxAttribute.h>
-#include <ImfVecAttribute.h>
-#include <ImfMatrixAttribute.h>
-#include <ImfChannelList.h>
-#include <ImfLut.h>
-#include "half.h"
-#include <string.h>
+#include "ImfFramework.h"
 
 using Imath::Box2i;
 using Imath::Box2f;
@@ -289,8 +276,8 @@ void
 ImfHeaderScreenWindowCenter (const ImfHeader *hdr, float *x, float *y)
 {
     const V2i &swc = header(hdr)->screenWindowCenter();
-    *x = swc.x;
-    *y = swc.y;
+    *x = (float) swc.x;
+    *y = (float) swc.y;
 }
 
 

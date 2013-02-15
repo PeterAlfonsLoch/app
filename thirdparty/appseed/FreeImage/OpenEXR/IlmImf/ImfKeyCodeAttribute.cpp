@@ -39,7 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfKeyCodeAttribute.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 

@@ -22,7 +22,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
+#include "FreeImageFramework.h"
 #include "Utilities.h"
 #include "Quantizers.h"
 
@@ -102,6 +102,8 @@ CMY to RGB [0-1]: (1 - C,M,Y)
 mapped to [0-MAX_VAL]: 
 (MAX_VAL - C,M,Y) * (MAX_VAL - K) / MAX_VAL
 */
+#undef max
+
 template <class T>
 static inline void 
 CMYKToRGB(T C, T M, T Y, T K, T* out) {

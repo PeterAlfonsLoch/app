@@ -39,23 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfScanLineInputFile.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfStdIO.h>
-#include <ImfCompressor.h>
-#include "ImathBox.h"
-#include "ImathFun.h"
-#include <ImfXdr.h>
-#include <ImfConvert.h>
-#include <ImfThreading.h>
-#include "IlmThreadPool.h"
-#include "IlmThreadSemaphore.h"
-#include "IlmThreadMutex.h"
-#include "Iex.h"
-#include <string>
-#include <vector>
-#include <assert.h>
+#include "ImfFramework.h"
 
 
 namespace Imf {
@@ -958,7 +942,7 @@ ScanLineInputFile::readPixels (int scanLine1, int scanLine2)
 
 	const string *exception = 0;
 
-        for (int i = 0; i < _data->lineBuffers.size(); ++i)
+        for (int i = 0; (unsigned) i < _data->lineBuffers.size(); ++i)
 	{
             LineBuffer *lineBuffer = _data->lineBuffers[i];
 

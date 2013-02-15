@@ -40,13 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfCompressor.h>
-#include <ImfRleCompressor.h>
-#include <ImfZipCompressor.h>
-#include <ImfPizCompressor.h>
-#include <ImfPxr24Compressor.h>
-#include <ImfB44Compressor.h>
-#include <ImfCheckedArithmetic.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 

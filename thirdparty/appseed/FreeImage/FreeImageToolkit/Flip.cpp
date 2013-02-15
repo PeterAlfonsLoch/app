@@ -21,8 +21,7 @@
 // Use at your own risk!
 // ==========================================================
 
-#include "FreeImage.h"
-#include "Utilities.h"
+#include "FreeImageFramework.h"
 
 /**
 Flip the image horizontally along the vertical axis.

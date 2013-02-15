@@ -11,10 +11,8 @@
  * and license in png.h
  */
 
-#define PNG_NO_EXTERN
-#define PNG_NO_PEDANTIC_WARNINGS
-#include "png.h"
-#include "pngpriv.h"
+#include "png_framework.h"
+
 
 /* Generate a compiler error if there is an old png.h in the search path. */
 typedef version_1_4_5 Your_png_h_is_not_version_1_4_5;

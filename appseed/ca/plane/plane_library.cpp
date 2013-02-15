@@ -1,6 +1,8 @@
 #include "framework.h"
 
+#ifndef _WIN32
 extern "C"
+#endif
 ::ca2::library * get_new_library();
 
 namespace plane
@@ -57,7 +59,9 @@ namespace plane
 
 
 
+#ifndef _WIN32
 extern "C"
+#endif
 ::ca2::library * get_new_library()
 {
    return new ::plane::library();

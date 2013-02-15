@@ -156,7 +156,7 @@ struct ph1 {
 
 #define CLASS
 
-#define FORC(cnt) for (c=0; c < cnt; c++)
+#define FORC(cnt) for (c=0; ((unsigned) c) < ((unsigned) cnt); c++)
 #define FORC3 FORC(3)
 #define FORC4 FORC(4)
 #define FORCC FORC(colors)

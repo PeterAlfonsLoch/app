@@ -18,10 +18,8 @@
  * them at run time with png_set_write_fn(...).
  */
 
-#define PNG_NO_PEDANTIC_WARNINGS
-#include "png.h"
+#include "png_framework.h"
 #ifdef PNG_WRITE_SUPPORTED
-#include "pngpriv.h"
 
 /* Write the data to whatever output you are using.  The default routine
  * writes to a file pointer.  Note that this routine sometimes gets called

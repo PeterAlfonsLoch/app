@@ -64,17 +64,7 @@
 //-----------------------------------------------------------------------------
 //#define ZLIB_WINAPI 
 
-#include <ImfPxr24Compressor.h>
-#include <ImfHeader.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfCheckedArithmetic.h>
-#include <ImathFun.h>
-#include <Iex.h>
-#include <half.h>
-#include <zlib.h>
-#include <assert.h>
-#include <algorithm>
+#include "ImfFramework.h"
 
 using namespace std;
 using namespace Imath;
@@ -465,7 +455,7 @@ Pxr24Compressor::uncompress (const char *inPtr,
 		ptr[3] = ptr[2] + n;
 		tmpBufferEnd = ptr[3] + n;
 
-		if (tmpBufferEnd - _tmpBuffer > tmpSize)
+		if ((uLongf) (tmpBufferEnd - _tmpBuffer) > tmpSize)
 		    notEnoughData();
 
 		for (int j = 0; j < n; ++j)
@@ -491,7 +481,7 @@ Pxr24Compressor::uncompress (const char *inPtr,
 		ptr[1] = ptr[0] + n;
 		tmpBufferEnd = ptr[1] + n;
 
-		if (tmpBufferEnd - _tmpBuffer > tmpSize)
+		if ((uLongf) (tmpBufferEnd - _tmpBuffer) > tmpSize)
 		    notEnoughData();
 
 		for (int j = 0; j < n; ++j)
@@ -515,7 +505,7 @@ Pxr24Compressor::uncompress (const char *inPtr,
 		ptr[2] = ptr[1] + n;
 		tmpBufferEnd = ptr[2] + n;
 
-		if (tmpBufferEnd - _tmpBuffer > tmpSize)
+		if ((uLongf) (tmpBufferEnd - _tmpBuffer) > tmpSize)
 		    notEnoughData();
 
 		for (int j = 0; j < n; ++j)
@@ -540,7 +530,7 @@ Pxr24Compressor::uncompress (const char *inPtr,
 	}
     }
 
-    if (tmpBufferEnd - _tmpBuffer < tmpSize)
+    if ((uLongf) (tmpBufferEnd - _tmpBuffer) < tmpSize)
 	tooMuchData();
 
     outPtr = _outBuffer;

@@ -648,7 +648,7 @@ OJPEGPreDecode(TIFF* tif, tsample_t s)
 	}
 	if (sp->writeheader_done==0)
 	{
-		sp->plane_sample_offset=s;
+		sp->plane_sample_offset=(uint8) s;
 		sp->write_cursample=s;
 		sp->write_curstrile=s*tif->tif_dir.td_stripsperimage;
 		if ((sp->in_buffer_file_pos_log==0) ||
@@ -1006,7 +1006,7 @@ OJPEGReadHeaderInfo(TIFF* tif)
 		sp->strile_length=tif->tif_dir.td_rowsperstrip;
 		sp->strile_length_total=sp->image_length;
 	}
-	sp->samples_per_pixel=tif->tif_dir.td_samplesperpixel;
+	sp->samples_per_pixel=(uint8) tif->tif_dir.td_samplesperpixel;
 	if (sp->samples_per_pixel==1)
 	{
 		sp->plane_sample_offset=0;

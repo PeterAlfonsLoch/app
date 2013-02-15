@@ -39,8 +39,7 @@
 // 	
 //-----------------------------------------------------------------------------
 
-#include <ImfTimeCode.h>
-#include "Iex.h"
+#include "ImfFramework.h"
 
 namespace Imf {
 
@@ -233,7 +232,7 @@ TimeCode::setFrame (int value)
 bool
 TimeCode::dropFrame () const
 {
-    return bool (bitField (_time, 6, 6));
+    return bool (bitField (_time, 6, 6) != 0);
 }
 
 
@@ -247,7 +246,7 @@ TimeCode::setDropFrame (bool value)
 bool
 TimeCode::colorFrame () const
 {
-    return bool (bitField (_time, 7, 7));
+    return bool (bitField (_time, 7, 7) != 0);
 }
 
 
@@ -261,7 +260,7 @@ TimeCode::setColorFrame (bool value)
 bool
 TimeCode::fieldPhase () const
 {
-    return bool (bitField (_time, 15, 15));
+    return bool (bitField (_time, 15, 15) != 0);
 }
 
 
@@ -275,7 +274,7 @@ TimeCode::setFieldPhase (bool value)
 bool
 TimeCode::bgf0 () const
 {
-    return bool (bitField (_time, 23, 23));
+    return bool (bitField (_time, 23, 23) != 0);
 }
 
 
@@ -289,7 +288,7 @@ TimeCode::setBgf0 (bool value)
 bool
 TimeCode::bgf1 () const
 {
-    return bool (bitField (_time, 30, 30));
+    return bool (bitField (_time, 30, 30) != 0);
 }
 
 
@@ -303,7 +302,7 @@ TimeCode::setBgf1 (bool value)
 bool
 TimeCode::bgf2 () const
 {
-    return bool (bitField (_time, 31, 31));
+    return bool (bitField (_time, 31, 31) != 0);
 }
 
 

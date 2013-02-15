@@ -19,6 +19,7 @@
 // Use at your own risk!
 // ==========================================================
 
+#include "FreeImageFramework.h"
 #include "Resize.h"
 
 FIBITMAP * DLL_CALLCONV

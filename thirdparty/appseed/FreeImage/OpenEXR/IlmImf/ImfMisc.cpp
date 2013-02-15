@@ -40,15 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfMisc.h>
-#include <ImfHeader.h>
-#include <ImfCompressor.h>
-#include <ImfChannelList.h>
-#include <ImfXdr.h>
-#include <ImathFun.h>
-#include <Iex.h>
-#include <ImfStdIO.h>
-#include <ImfConvert.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 
@@ -138,7 +130,7 @@ offsetInLineBufferTable (const vector<size_t> &bytesPerLine,
 
     size_t offset = 0;
 
-    for (int i = 0; i < bytesPerLine.size(); ++i)
+    for (unsigned int i = 0; i < bytesPerLine.size(); ++i)
     {
 	if (i % linesInLineBuffer == 0)
 	    offset = 0;
@@ -218,7 +210,7 @@ copyIntoFrameBuffer (const char *& readPtr,
           case HALF:
 
             {
-                half fillVal = half (fillValue);
+                half fillVal = half ((float) fillValue);
 
                 while (writePtr <= endPtr)
                 {
@@ -564,7 +556,7 @@ convertInPlace (char *& writePtr,
     {
       case UINT:
     
-        for (int j = 0; j < numPixels; ++j)
+        for (unsigned int j = 0; j < numPixels; ++j)
         {
             Xdr::write <CharPtrIO> (writePtr, *(const unsigned int *) readPtr);
             readPtr += sizeof(unsigned int);
@@ -573,7 +565,7 @@ convertInPlace (char *& writePtr,
     
       case HALF:
     
-        for (int j = 0; j < numPixels; ++j)
+        for (unsigned int j = 0; j < numPixels; ++j)
         {               
             Xdr::write <CharPtrIO> (writePtr, *(const half *) readPtr);
             readPtr += sizeof(half);
@@ -582,7 +574,7 @@ convertInPlace (char *& writePtr,
     
       case FLOAT:
     
-        for (int j = 0; j < numPixels; ++j)
+        for (unsigned int j = 0; j < numPixels; ++j)
         {
             Xdr::write <CharPtrIO> (writePtr, *(const float *) readPtr);
             readPtr += sizeof(float);
@@ -714,21 +706,21 @@ fillChannelWithZeroes (char *& writePtr,
         {
           case UINT:
 
-            for (int j = 0; j < xSize; ++j)
+            for (unsigned int j = 0; j < xSize; ++j)
                 Xdr::write <CharPtrIO> (writePtr, (unsigned int) 0);
 
             break;
 
           case HALF:
 
-            for (int j = 0; j < xSize; ++j)
+            for (unsigned int j = 0; j < xSize; ++j)
                 Xdr::write <CharPtrIO> (writePtr, (half) 0);
 
             break;
 
           case FLOAT:
 
-            for (int j = 0; j < xSize; ++j)
+            for (unsigned int j = 0; j < xSize; ++j)
                 Xdr::write <CharPtrIO> (writePtr, (float) 0);
 
             break;
@@ -748,7 +740,7 @@ fillChannelWithZeroes (char *& writePtr,
         {
           case UINT:
 
-            for (int j = 0; j < xSize; ++j)
+            for (unsigned int j = 0; j < xSize; ++j)
             {
                 static const unsigned int ui = 0;
 
@@ -759,7 +751,7 @@ fillChannelWithZeroes (char *& writePtr,
 
           case HALF:
 
-            for (int j = 0; j < xSize; ++j)
+            for (unsigned int j = 0; j < xSize; ++j)
             {
                 *(half *) writePtr = half (0);
                 writePtr += sizeof (half);
@@ -768,7 +760,7 @@ fillChannelWithZeroes (char *& writePtr,
 
           case FLOAT:
 
-            for (int j = 0; j < xSize; ++j)
+            for (unsigned int j = 0; j < xSize; ++j)
             {
                 static const float f = 0;
 

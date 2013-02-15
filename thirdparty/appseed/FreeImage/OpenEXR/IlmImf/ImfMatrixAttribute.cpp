@@ -43,7 +43,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfMatrixAttribute.h>
+#include "ImfFramework.h"
 
 
 namespace Imf {

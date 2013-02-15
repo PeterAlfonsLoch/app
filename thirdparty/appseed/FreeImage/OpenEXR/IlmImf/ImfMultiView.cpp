@@ -38,7 +38,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfMultiView.h>
+#include "ImfFramework.h"
 
 using namespace std;
 
@@ -101,7 +101,7 @@ viewNum (const string &view, const StringVector &multiView)
     // otherwise, it's some other (valid) view
     //
 
-    for (int i = 0; i < multiView.size(); ++i)
+    for (unsigned int i = 0; i < multiView.size(); ++i)
     {
 	if (multiView[i] == view)
 	    return i;
@@ -288,7 +288,7 @@ areCounterparts (const string &channel1,
     if (size1 != size2)
 	return false;
 
-    for(int i = 0; i < size1; ++i)
+    for(unsigned int i = 0; i < size1; ++i)
     {
 	if (i != size1 - 2 && chan1[i] != chan2[i])
 	    return false;
@@ -381,7 +381,7 @@ insertViewName (const string &channel,
 
     string newName;
 
-    for (int j = 0; j < s.size(); ++j)
+    for (unsigned int j = 0; j < s.size(); ++j)
     {
 	if (j < s.size() - 1)
 	    newName += s[j] + ".";

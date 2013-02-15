@@ -20,6 +20,8 @@
 // Use at your own risk!
 // ==========================================================
 
+#include "FreeImageFramework.h"
+
 extern "C" {
 #define XMD_H
 #undef FAR
@@ -31,8 +33,7 @@ extern "C" {
 #include "../LibJPEG/transupp.h"
 }
 
-#include "FreeImage.h"
-#include "Utilities.h"
+
 
 // ----------------------------------------------------------
 //   IO filename handling

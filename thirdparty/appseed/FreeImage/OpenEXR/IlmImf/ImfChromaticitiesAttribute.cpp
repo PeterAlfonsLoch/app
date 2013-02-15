@@ -39,7 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfChromaticitiesAttribute.h>
+#include "ImfFramework.h"
 
 
 namespace Imf {

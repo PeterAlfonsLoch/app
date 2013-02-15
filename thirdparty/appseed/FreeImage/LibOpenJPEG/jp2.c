@@ -626,7 +626,7 @@ bool jp2_read_jp2h(opj_jp2_t *jp2, opj_cio_t *cio, opj_jp2_color_t *color)
    }
 	jp2_read_boxhdr(cinfo, cio, &box);
 
-	while(cio_tell(cio) < jp2h_end)
+	while((unsigned) cio_tell(cio) < jp2h_end)
    {
 	if(box.type == JP2_COLR)
   {

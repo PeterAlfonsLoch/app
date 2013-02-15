@@ -42,10 +42,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfLut.h>
-#include <math.h>
-#include <assert.h>
-
+#include "ImfFramework.h"
 namespace Imf {
 
 
@@ -152,7 +149,7 @@ RgbaLut::apply (Rgba *base,
 half
 round12log (half x)
 {
-    const float middleval = pow (2.0, -2.5);
+    const float middleval = (const float) pow (2.0, -2.5);
     int int12log;
 
     if (x <= 0)
@@ -170,7 +167,7 @@ round12log (half x)
 	    int12log = 1;
     }
 
-    return middleval * pow (2.0, (int12log - 2000.0) / 200.0);
+    return (float) (middleval * pow (2.0, (int12log - 2000.0) / 200.0));
 }
 
 } // namespace Imf

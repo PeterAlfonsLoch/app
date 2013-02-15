@@ -245,6 +245,17 @@ bool eat_end_level_dup(vsstring & str, int32_t iLevelCount, const char * lpSepar
 vsstring ca2_module_folder_dup()
 {
 
+#ifdef WINDOWSEX
+
+   char lpszModuleFilePath[MAX_PATH + 1];
+   GetModuleFileName(::GetModuleHandleA("ca.dll"), lpszModuleFilePath, MAX_PATH + 1);
+   char lpszModuleFolder[MAX_PATH + 1];
+   LPTSTR lpszModuleFileName;
+   GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
+   return vsstring(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
+
+#else
+
    void * handle = dlopen("libca2ca.so", RTLD_NOW);
 
    if(handle == NULL)
@@ -259,6 +270,8 @@ vsstring ca2_module_folder_dup()
    dlclose(handle);
 
    return strCa2ModuleFolder;
+
+#endif
 
 
 }

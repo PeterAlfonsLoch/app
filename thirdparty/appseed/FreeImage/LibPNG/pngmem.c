@@ -17,10 +17,8 @@
  * identify the replacement functions.
  */
 
-#define PNG_NO_PEDANTIC_WARNINGS
-#include "png.h"
+#include "png_framework.h"
 #if defined(PNG_READ_SUPPORTED) || defined(PNG_WRITE_SUPPORTED)
-#include "pngpriv.h"
 
 /* Borland DOS special memory handler */
 #if defined(__TURBOC__) && !defined(_Windows) && !defined(__FLAT__)

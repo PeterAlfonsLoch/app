@@ -31,7 +31,7 @@
 
 #include "../LibTIFF/tiffiop.h"
 
-#include "FreeImage.h"
+#include "FreeImageFramework.h"
 #include "Utilities.h"
 #include "FreeImageTag.h"
 #include "FIRational.h"

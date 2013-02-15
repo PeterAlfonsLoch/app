@@ -16,10 +16,8 @@
  * in pngtrans.c.
  */
 
-#define PNG_NO_PEDANTIC_WARNINGS
-#include "png.h"
+#include "png_framework.h"
 #ifdef PNG_READ_SUPPORTED
-#include "pngpriv.h"
 
 /* Set the action on getting a CRC error for an ancillary or critical chunk. */
 void PNGAPI

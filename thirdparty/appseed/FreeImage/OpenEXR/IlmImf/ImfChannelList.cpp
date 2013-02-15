@@ -41,9 +41,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfChannelList.h>
-#include <Iex.h>
-
+#include "ImfFramework.h"
 
 using std::string;
 using std::set;

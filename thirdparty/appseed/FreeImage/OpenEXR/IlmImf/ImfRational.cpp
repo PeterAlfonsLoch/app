@@ -41,9 +41,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfRational.h>
-#include <cmath>
-
+#include "ImfFramework.h"
 using namespace std;
 
 namespace Imf {

@@ -78,7 +78,7 @@ it under the terms of the one of three licenses as you choose:
 #ifndef LONG_BIT
 #define LONG_BIT (8 * sizeof (long))
 #endif
-#define FORC(cnt) for (c=0; c < cnt; c++)
+#define FORC(cnt) for (c=0; ((unsigned)c) < ((unsigned)cnt); c++)
 #define FORC3 FORC(3)
 #define FORC4 FORC(4)
 #define FORCC FORC(colors)

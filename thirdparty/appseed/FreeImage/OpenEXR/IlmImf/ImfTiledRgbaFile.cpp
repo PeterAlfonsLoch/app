@@ -39,17 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfTiledRgbaFile.h>
-#include <ImfRgbaFile.h>
-#include <ImfTiledOutputFile.h>
-#include <ImfTiledInputFile.h>
-#include <ImfChannelList.h>
-#include <ImfTileDescriptionAttribute.h>
-#include <ImfStandardAttributes.h>
-#include <ImfRgbaYca.h>
-#include <ImfArray.h>
-#include "IlmThreadMutex.h"
-#include "Iex.h"
+#include "ImfFramework.h"
 
 
 namespace Imf {

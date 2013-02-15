@@ -16,10 +16,8 @@
  * at each function.
  */
 
-#define PNG_NO_PEDANTIC_WARNINGS
-#include "png.h"
+#include "png_framework.h"
 #if defined(PNG_READ_SUPPORTED) || defined(PNG_WRITE_SUPPORTED)
-#include "pngpriv.h"
 
 static void /* PRIVATE */
 png_default_error PNGARG((png_structp png_ptr,

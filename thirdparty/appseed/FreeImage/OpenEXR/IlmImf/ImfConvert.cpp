@@ -40,8 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfConvert.h>
-#include <limits.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 namespace {
@@ -116,7 +115,7 @@ uintToHalf (unsigned int ui)
     if (ui >  HALF_MAX)
 	return half::posInf();
 
-    return half (ui);
+    return half ((float) ui);
 }
 
 

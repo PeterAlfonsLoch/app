@@ -39,8 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfIO.h>
-#include "Iex.h"
+#include "ImfFramework.h"
 
 namespace Imf {
 

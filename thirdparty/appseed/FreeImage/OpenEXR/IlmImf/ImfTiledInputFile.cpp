@@ -38,28 +38,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfTiledInputFile.h>
-#include <ImfTileDescriptionAttribute.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfTiledMisc.h>
-#include <ImfStdIO.h>
-#include <ImfCompressor.h>
-#include "ImathBox.h"
-#include <ImfXdr.h>
-#include <ImfConvert.h>
-#include <ImfVersion.h>
-#include <ImfTileOffsets.h>
-#include <ImfThreading.h>
-#include "IlmThreadPool.h"
-#include "IlmThreadSemaphore.h"
-#include "IlmThreadMutex.h"
-#include "ImathVec.h"
-#include "Iex.h"
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <assert.h>
+#include "ImfFramework.h"
 
 
 namespace Imf {
@@ -1026,7 +1005,7 @@ TiledInputFile::readTiles (int dx1, int dx2, int dy1, int dy2, int lx, int ly)
 
 	const string *exception = 0;
 
-        for (int i = 0; i < _data->tileBuffers.size(); ++i)
+        for (int i = 0; (unsigned) i < _data->tileBuffers.size(); ++i)
 	{
             TileBuffer *tileBuffer = _data->tileBuffers[i];
 

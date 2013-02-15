@@ -364,7 +364,6 @@
     <PreBuildEvent>
       <Command>copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcp110d.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\stage\matter\msvc++\msvcr110d.dll" "$(OutDir)"
-copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\FreeImage.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\freetype2.3.5-1.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\libeay32.dll" "$(OutDir)"
 copy "$(SolutionDir)..\..\..\nodeapp\thirdparty\binary\libmysql.dll" "$(OutDir)"

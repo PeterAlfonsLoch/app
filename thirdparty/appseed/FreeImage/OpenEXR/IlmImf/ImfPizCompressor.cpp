@@ -39,21 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfPizCompressor.h>
-#include <ImfHeader.h>
-#include <ImfChannelList.h>
-#include <ImfHuf.h>
-#include <ImfWav.h>
-#include <ImfMisc.h>
-#include <ImfCheckedArithmetic.h>
-#include <ImathFun.h>
-#include <ImathBox.h>
-#include <Iex.h>
-#include <ImfIO.h>
-#include <ImfXdr.h>
-#include <ImfAutoArray.h>
-#include <string.h>
-#include <assert.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 

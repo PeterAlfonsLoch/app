@@ -51,7 +51,7 @@ template <bool b> struct StaticAssertionFailed;
 template <> struct StaticAssertionFailed <true> {};
 
 #define IMF_STATIC_ASSERT(x) \
-    do {StaticAssertionFailed <x> staticAssertionFailed;} while (false)
+    {StaticAssertionFailed <x> ();}
 
 
 template <class T>

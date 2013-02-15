@@ -19,9 +19,8 @@
 // Use at your own risk!
 // ==========================================================
 
+#include "FreeImageFramework.h"
 #include "zlib/zlib.h"
-#include "FreeImage.h"
-#include "Utilities.h"
 #include "zlib/zutil.h"	/* must be the last header because of error C3163 in VS2008 (_vsnprintf defined in stdio.h) */
 
 /**

@@ -11,10 +11,8 @@
  * and license in png.h
  */
 
-#define PNG_NO_PEDANTIC_WARNINGS
-#include "png.h"
+#include "png_framework.h"
 #ifdef PNG_WRITE_SUPPORTED
-#include "pngpriv.h"
 
 /* Place a 32-bit number into a buffer in PNG byte order.  We work
  * with unsigned numbers for convenience, although one supported

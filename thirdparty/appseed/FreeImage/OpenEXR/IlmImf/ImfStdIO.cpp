@@ -40,9 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfStdIO.h>
-#include "Iex.h"
-#include <errno.h>
+#include "ImfFramework.h"
 
 using namespace std;
 

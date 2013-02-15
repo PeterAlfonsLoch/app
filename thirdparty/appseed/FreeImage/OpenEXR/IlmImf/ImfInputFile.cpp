@@ -38,19 +38,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfInputFile.h>
-#include <ImfScanLineInputFile.h>
-#include <ImfTiledInputFile.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfStdIO.h>
-#include <ImfVersion.h>
-#include "ImathFun.h"
-#include "IlmThreadMutex.h"
-#include "Iex.h"
-#include "half.h"
-#include <fstream>
-#include <algorithm>
+#include "ImfFramework.h"
 
 
 namespace Imf {
@@ -293,7 +281,7 @@ bufferedReadPixels (InputFile::Data* ifd, int scanLine1, int scanLine2)
 		     x <= levelRange.max.x;
 		     x += toSlice.xSampling)
                 {
-		    for (size_t i = 0; i < size; ++i)
+		    for (size_t i = 0; i < (unsigned) size; ++i)
 			toPtr[i] = fromPtr[i];
 
 		    fromPtr += fromSlice.xStride * toSlice.xSampling;

@@ -97,19 +97,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfB44Compressor.h>
-#include <ImfHeader.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfCheckedArithmetic.h>
-#include <ImathFun.h>
-#include <ImathBox.h>
-#include <Iex.h>
-#include <ImfIO.h>
-#include <ImfXdr.h>
-#include <string.h>
-#include <assert.h>
-#include <algorithm>
+#include "ImfFramework.h"
 
 namespace Imf {
 
@@ -319,8 +307,8 @@ pack (const unsigned short s[16],
 	// which cannot occur in the 14-byte encoding.
 	//
 
-	b[0] = (t[0] >> 8);
-	b[1] =  t[0];
+	b[0] = (unsigned char) ((t[0] >> 8));
+	b[1] = (unsigned char) (t[0]);
 	b[2] = 0xfc;
 
 	return 3;
@@ -341,7 +329,7 @@ pack (const unsigned short s[16],
     //
 
     b[ 0] = (t[0] >> 8);
-    b[ 1] =  t[0];
+    b[ 1] = (unsigned char) t[0];
 
     b[ 2] = (unsigned char) ((shift << 2) | (r[ 0] >> 4));
     b[ 3] = (unsigned char) ((r[ 0] << 4) | (r[ 1] >> 2));

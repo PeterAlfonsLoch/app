@@ -39,9 +39,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfPreviewImage.h>
-#include <ImfCheckedArithmetic.h>
-#include "Iex.h"
+#include "ImfFramework.h"
 
 namespace Imf {
 

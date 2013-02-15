@@ -155,7 +155,7 @@ namespace ex1
 
       if(b & 0x40)
       {
-         int64_t i = -uiRead;
+         int64_t i = - ((int64_t) uiRead);
          memcpy(p, &i, nMax);
       }
       else
@@ -397,19 +397,19 @@ namespace ex1
       {
          return 3;
       }
-      else if(ui < (1UL << 32))
+      else if(ui < (1ULL << 32))
       {
          return 4;
       }
-      else if(ui < (1UL << 40))
+      else if(ui < (1ULL << 40))
       {
          return 5;
       }
-      else if(ui < (1UL << 48))
+      else if(ui < (1ULL << 48))
       {
          return 6;
       }
-      else if(ui < (1UL << 56))
+      else if(ui < (1ULL << 56))
       {
          return 7;
       }

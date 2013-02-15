@@ -38,8 +38,8 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfRationalAttribute.h>
 
+#include "ImfFramework.h"
 
 namespace Imf {
 

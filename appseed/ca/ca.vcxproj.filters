@@ -21,17 +21,11 @@
     <Filter Include="Header Files\libcharguess">
       <UniqueIdentifier>{78719ab4-bf73-405b-97e7-3580f50b20c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\zlib">
-      <UniqueIdentifier>{84bfed40-3dba-4c52-9236-c6f2e7256157}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\sqlite">
       <UniqueIdentifier>{394e5bd0-2fd5-4c28-a5bb-7a8199a45834}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\libcharguess">
       <UniqueIdentifier>{cffd6f11-bff6-44c5-8421-a7e9540ef339}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\zlib">
-      <UniqueIdentifier>{9d83f1da-de76-48fd-91e8-ab6ab15f78e3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{334331c0-04cd-439d-a30a-a63f1684de72}</UniqueIdentifier>
@@ -433,39 +427,6 @@
     </ClInclude>
     <ClInclude Include="libcharguess\UTF8Prober.h">
       <Filter>Header Files\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\crc32.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\deflate.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inffast.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inffixed.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inflate.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inftrees.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\trees.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zconf.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zconf.in.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zlib.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zutil.h">
-      <Filter>Header Files\zlib</Filter>
     </ClInclude>
     <ClInclude Include="sqlite\sqlite.h">
       <Filter>Header Files\sqlite</Filter>
@@ -4770,42 +4731,6 @@
     </ClCompile>
     <ClCompile Include="fs\fs_remote_native_file.cpp">
       <Filter>Source Files\fs</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_zutil.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_uncompr.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_trees.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_inftrees.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_inflate.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_inffast.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_infback.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_gzio.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_deflate.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_crc32.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_compress.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_adler32.cpp">
-      <Filter>Source Files\zlib</Filter>
     </ClCompile>
     <ClCompile Include="compress\zip\zip_unzip.cpp">
       <Filter>Source Files\compress\zip</Filter>

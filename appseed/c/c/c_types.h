@@ -1,8 +1,9 @@
 #pragma once
 
 
-#define byte            uint8_t
-#define uchar           unsigned char
+typedef uint8_t            byte;
+typedef unsigned char      uchar;
+typedef uint32_t           dword;
 
 
 #ifdef __cplusplus
@@ -14,6 +15,6 @@ TARGET throw_cast(SOURCE src)
 #endif
 
 
-typedef uint32_t dword;
+
 
 

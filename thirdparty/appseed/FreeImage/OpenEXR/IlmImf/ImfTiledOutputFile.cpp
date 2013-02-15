@@ -38,31 +38,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfTiledOutputFile.h>
-#include <ImfTiledInputFile.h>
-#include <ImfInputFile.h>
-#include <ImfTileDescriptionAttribute.h>
-#include <ImfPreviewImageAttribute.h>
-#include <ImfChannelList.h>
-#include <ImfMisc.h>
-#include <ImfTiledMisc.h>
-#include <ImfStdIO.h>
-#include <ImfCompressor.h>
-#include "ImathBox.h"
-#include <ImfArray.h>
-#include <ImfXdr.h>
-#include <ImfVersion.h>
-#include <ImfTileOffsets.h>
-#include <ImfThreading.h>
-#include "IlmThreadPool.h"
-#include "IlmThreadSemaphore.h"
-#include "IlmThreadMutex.h"
-#include "Iex.h"
-#include <string>
-#include <vector>
-#include <fstream>
-#include <assert.h>
-#include <map>
+#include "ImfFramework.h"
 
 
 namespace Imf {
@@ -1264,7 +1240,7 @@ TiledOutputFile::writeTiles (int dx1, int dx2, int dy1, int dy2,
 
 	const string *exception = 0;
 
-        for (int i = 0; i < _data->tileBuffers.size(); ++i)
+        for (int i = 0; (unsigned) i < _data->tileBuffers.size(); ++i)
 	{
             TileBuffer *tileBuffer = _data->tileBuffers[i];
 
@@ -1380,15 +1356,15 @@ TiledOutputFile::copyPixels (TiledInputFile &in)
       case ONE_LEVEL:
       case MIPMAP_LEVELS:
 
-        for (size_t i_l = 0; i_l < numLevels (); ++i_l)
+        for (size_t i_l = 0; i_l < (size_t) numLevels (); ++i_l)
             numAllTiles += numXTiles (i_l) * numYTiles (i_l);
 
         break;
 
       case RIPMAP_LEVELS:
 
-        for (size_t i_ly = 0; i_ly < numYLevels (); ++i_ly)
-            for (size_t i_lx = 0; i_lx < numXLevels (); ++i_lx)
+        for (size_t i_ly = 0; i_ly < (size_t) numYLevels (); ++i_ly)
+            for (size_t i_lx = 0; i_lx < (size_t) numXLevels (); ++i_lx)
                 numAllTiles += numXTiles (i_lx) * numYTiles (i_ly);
 
         break;

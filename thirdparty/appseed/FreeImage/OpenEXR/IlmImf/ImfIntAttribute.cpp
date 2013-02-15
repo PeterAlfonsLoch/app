@@ -40,7 +40,7 @@
 //
 //-----------------------------------------------------------------------------
 
-#include <ImfIntAttribute.h>
+#include "ImfFramework.h"
 
 
 namespace Imf {

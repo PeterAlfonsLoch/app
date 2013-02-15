@@ -953,7 +953,7 @@ namespace plugin
 
             //pt.y -= m_rect.top;
 
-            lparam = pt._001GetLparam();
+            lparam = pt.lparam();
 
          }
 

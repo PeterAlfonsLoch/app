@@ -39,8 +39,7 @@
 //	RGB tiples and CIE XYZ tristimulus values.
 //
 //-----------------------------------------------------------------------------
-
-#include <ImfChromaticities.h>
+#include "ImfFramework.h"
 
 namespace Imf {
 
