@@ -40,7 +40,7 @@ gzip::~gzip()
 
    bool gzip::write(void * buf, ::primitive::memory_size iSize)
    {
-      m_crc = crc32(m_crc, (const byte *) buf, iSize);
+      m_crc = (uint32_t) crc32(m_crc, (const byte *) buf, (uInt) iSize);
       m_zstream.next_in       = (byte*)buf;
       m_zstream.avail_in      = (uint32_t) iSize;
       while (m_zstream.avail_in != 0)
@@ -72,7 +72,7 @@ gzip::~gzip()
       m_zstream.avail_in = 0;
       m_zstream.avail_out = 0;
       m_z_err = Z_OK;
-      m_crc = crc32(0L, Z_NULL, 0);
+      m_crc = (uint32_t) crc32(0L, Z_NULL, 0);
       int32_t err = deflateInit2(&(m_zstream), iLevel,Z_DEFLATED, -MAX_WBITS, DEF_MEM_LEVEL, iStrategy);
       if (err != Z_OK || m_memory.get_data() == Z_NULL)
       {

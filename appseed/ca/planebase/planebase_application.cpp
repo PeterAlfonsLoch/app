@@ -237,7 +237,7 @@ namespace planebase
 
       m_dwAlive = ::get_tick_count();
       // Perform specific initializations
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
       try
       {
          try
@@ -252,7 +252,7 @@ namespace planebase
                }
                goto InitFailure;
             }
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(::exit_exception & e)
          {
@@ -271,7 +271,7 @@ namespace planebase
          }
 #endif
          m_dwAlive = ::get_tick_count();
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
          try
          {
 #endif
@@ -283,12 +283,12 @@ namespace planebase
                   GetMainWnd()->DestroyWindow();
                }
 
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
                try
                {
 #endif
                   exit();
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
                }
                catch(...)
                {
@@ -297,7 +297,7 @@ namespace planebase
                m_iReturnCode = -1;
                goto InitFailure;
             }
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(::exit_exception & e)
          {
@@ -430,7 +430,7 @@ namespace planebase
       }
 #endif
 InitFailure:
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
 run:
 #endif
       return m_iReturnCode;
@@ -451,7 +451,7 @@ run:
       }
 
       install_message_handling(System.GetThread()->::ca::smart_pointer < ::ca::thread > ::m_p);
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
       try
       {
          try
@@ -460,21 +460,21 @@ run:
             m_bReady = true;
             if(m_peventReady != NULL)
                m_peventReady->SetEvent();
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(...)
          {
          }
 #endif
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
 run:
 #endif
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
          try
          {
 #endif
             m_iReturnCode = run();
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
          }
          catch(::exit_exception & e)
          {
@@ -604,7 +604,7 @@ run:
 
       }
 #endif
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
 InitFailure:
 #endif
       try

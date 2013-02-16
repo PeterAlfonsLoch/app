@@ -319,12 +319,12 @@ namespace plane
       if(!::planebase::application::initialize1())
          return false;
 
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
       try
       {
 #endif
          find_applications_from_cache();
-#ifndef DEBUG
+#if !defined(DEBUG) || defined(WINDOWS)
       }
       catch(...)
       {

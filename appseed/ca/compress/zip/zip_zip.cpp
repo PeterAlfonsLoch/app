@@ -912,7 +912,7 @@ extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
 
     zi->ci.stream.next_in = (byte *)buf;
     zi->ci.stream.avail_in = len;
-    zi->ci.crc32 = crc32(zi->ci.crc32, (const byte *) buf,len);
+    zi->ci.crc32 = (uint32_t) crc32(zi->ci.crc32, (const byte *) buf,len);
 
     while ((err==ZIP_OK) && (zi->ci.stream.avail_in>0))
     {
@@ -946,8 +946,8 @@ extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
                 *(((char*)zi->ci.stream.next_out)+i) =
                     *(((const char*)zi->ci.stream.next_in)+i);
             {
-                zi->ci.stream.avail_in -= copy_this;
-                zi->ci.stream.avail_out-= copy_this;
+                zi->ci.stream.avail_in -= (uInt) copy_this;
+                zi->ci.stream.avail_out-= (uInt) copy_this;
                 zi->ci.stream.next_in+= copy_this;
                 zi->ci.stream.next_out+= copy_this;
                 zi->ci.stream.total_in+= copy_this;

@@ -84,12 +84,12 @@ namespace gen
    //         else
             {
    //            m_evFree.ResetEvent();
-   #ifndef DEBUG
+   #if !defined(DEBUG) || defined(WINDOWS)
                try
                {
    #endif
                m_pTimerCallback->TimerProc(nIDEvent);
-   #ifndef DEBUG
+   #if !defined(DEBUG) || defined(WINDOWS)
                }
                catch(...)
                {
@@ -177,12 +177,12 @@ namespace gen
       // ASSERT(m_pTimerCallback->WishesQueueModel());
       // END processor saving remark but should not be a remark
 
-   #ifndef DEBUG
+   #if !defined(DEBUG) || defined(WINDOWS)
                try
                {
    #endif
                m_pTimerCallback->TimerProc(wparam); // ASSERT(wparam == nIDEvent)
-   #ifndef DEBUG
+   #if !defined(DEBUG) || defined(WINDOWS)
                }
                catch(...)
                {

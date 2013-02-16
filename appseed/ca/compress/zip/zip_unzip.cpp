@@ -1308,12 +1308,12 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
                 *(pfile_in_zip_read_info->stream.next_out+i) =
                         *(pfile_in_zip_read_info->stream.next_in+i);
 
-            pfile_in_zip_read_info->crc32 = crc32(pfile_in_zip_read_info->crc32,
+            pfile_in_zip_read_info->crc32 = (uint32_t) crc32(pfile_in_zip_read_info->crc32,
                                 pfile_in_zip_read_info->stream.next_out,
-                                uDoCopy);
+                                (uint32_t) uDoCopy);
             pfile_in_zip_read_info->rest_read_uncompressed-=uDoCopy;
-            pfile_in_zip_read_info->stream.avail_in -= uDoCopy;
-            pfile_in_zip_read_info->stream.avail_out -= uDoCopy;
+            pfile_in_zip_read_info->stream.avail_in -= (uInt) uDoCopy;
+            pfile_in_zip_read_info->stream.avail_out -= (uInt) uDoCopy;
             pfile_in_zip_read_info->stream.next_out += uDoCopy;
             pfile_in_zip_read_info->stream.next_in += uDoCopy;
             pfile_in_zip_read_info->stream.total_out += uDoCopy;
@@ -1340,7 +1340,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
             uTotalOutAfter = pfile_in_zip_read_info->stream.total_out;
             uOutThis = uTotalOutAfter-uTotalOutBefore;
 
-            pfile_in_zip_read_info->crc32 =
+            pfile_in_zip_read_info->crc32 = (uint32_t)
                 crc32(pfile_in_zip_read_info->crc32,bufBefore,
                         (uint32_t)(uOutThis));
 
