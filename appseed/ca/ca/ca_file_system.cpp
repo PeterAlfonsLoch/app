@@ -335,10 +335,10 @@ namespace ca
          else
          {
             string strFilePath(varFile);
-            if(!exists(strFilePath, papp))
-               return "";
             if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strFilePath) >= 0))
             {
+               if(!exists(strFilePath, papp))
+                  return "";
                gen::memory_file memfile(papp, &storage);
                zip::InFile infile(get_app());
                if(!infile.unzip_open(strFilePath, 0))
@@ -348,15 +348,21 @@ namespace ca
             }
             else if(gen::str::begins_eat_ci(strFilePath, "file:///"))
             {
+               if(!exists(strFilePath, papp))
+                  return "";
                as_memory(strFilePath, storage, papp);
             }
             else if(gen::str::begins_eat_ci(strFilePath, "file:\\\\\\"))
             {
+               if(!exists(strFilePath, papp))
+                  return "";
                as_memory(strFilePath, storage, papp);
             }
             else if(gen::str::begins_ci(strFilePath, "http://")
             || gen::str::begins_ci(strFilePath, "https://"))
             {
+               if(!exists(strFilePath, papp))
+                  return "";
                gen::property_set post;
                gen::property_set headers;
                if(varQuery.has_property("post"))
