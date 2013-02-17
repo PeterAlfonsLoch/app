@@ -1316,7 +1316,7 @@ extern int32_t CLASS_DECL_ca unzReadCurrentFile  (
             pfile_in_zip_read_info->stream.avail_out -= (uInt) uDoCopy;
             pfile_in_zip_read_info->stream.next_out += uDoCopy;
             pfile_in_zip_read_info->stream.next_in += uDoCopy;
-            pfile_in_zip_read_info->stream.total_out += uDoCopy;
+            pfile_in_zip_read_info->stream.total_out += (uLong) uDoCopy;
             iRead += uDoCopy;
         }
         else

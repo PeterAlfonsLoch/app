@@ -950,8 +950,8 @@ extern int32_t CLASS_DECL_ca zipWriteInFileInZip (
                 zi->ci.stream.avail_out-= (uInt) copy_this;
                 zi->ci.stream.next_in+= copy_this;
                 zi->ci.stream.next_out+= copy_this;
-                zi->ci.stream.total_in+= copy_this;
-                zi->ci.stream.total_out+= copy_this;
+                zi->ci.stream.total_in+= (uLong) copy_this;
+                zi->ci.stream.total_out+= (uLong) copy_this;
                 zi->ci.pos_in_buffered_data += copy_this;
             }
         }
