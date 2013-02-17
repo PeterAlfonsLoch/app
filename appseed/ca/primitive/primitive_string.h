@@ -1711,3 +1711,21 @@ inline string to_string(verisimple_wstring wstr)
 
 
 
+template < >
+inline string to_string(const in_addr * addr)
+{
+
+   return to_vsstring(addr);
+
+}
+
+
+template < >
+inline string to_string(const in6_addr * addr)
+{
+
+   return to_vsstring(addr);
+
+}
+
+

@@ -978,59 +978,73 @@ exit_application:
          strFile.replace(":", "_");
          strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
 
-         spfile.create(this);
 
-         try
+         if(Application.file().exists(strFile))
          {
 
-            if(spfile->open(strFile, nOpenFlags))
-            {
-               TRACE("from_exist_cache:\"" + strPath + "\"");
-               return spfile;
-
-            }
-         }
-         catch(...)
-         {
-
-         }
-
-         try
-         {
-
-            spfile.destroy();
-
-         }
-         catch(...)
-         {
-         }
-
-         spfile(new sockets::http::file(get_app()));
-
-         if(!spfile->open(strPath, nOpenFlags))
-         {
-
-            spfile.destroy();
-
-         }
-         else
-         {
+            spfile.create(this);
 
             try
             {
 
-               System.file().output(this, strFile, &System.compress(), &::ca4::compress::null, *spfile.m_p);
+               if(spfile->open(strFile, nOpenFlags))
+               {
+                  TRACE("from_exist_cache:\"" + strPath + "\"");
+                  return spfile;
+
+               }
+            }
+            catch(...)
+            {
+
+            }
+
+            try
+            {
+
+               spfile.destroy();
 
             }
             catch(...)
             {
             }
 
-
-            spfile->seek_to_begin();
-
          }
 
+         var varQuery;
+
+         varQuery["disable_ca2_sessid"] = true;
+
+         if(Application.file().exists(strFile))
+         {
+
+            spfile(new sockets::http::file(get_app()));
+
+            if(!spfile->open(strPath, nOpenFlags))
+            {
+
+               spfile.destroy();
+
+            }
+            else
+            {
+
+               try
+               {
+
+                  System.file().output(this, strFile, &System.compress(), &::ca4::compress::null, *spfile.m_p);
+
+               }
+               catch(...)
+               {
+               }
+
+
+               spfile->seek_to_begin();
+
+            }
+         
+         }
 
 
       }

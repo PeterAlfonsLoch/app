@@ -13,9 +13,6 @@
     <Filter Include="Header Files\libcharguess">
       <UniqueIdentifier>{7e86385e-1ffa-4038-8016-3fe6e8e464f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\zlib">
-      <UniqueIdentifier>{3478ed41-f5d1-42a4-bb3c-04120d30dfa4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{1ddc7784-8c95-4150-8482-d982e1479956}</UniqueIdentifier>
     </Filter>
@@ -225,9 +222,6 @@
     </Filter>
     <Filter Include="Source Files\libcharguess">
       <UniqueIdentifier>{82671502-19a2-4148-8a00-e4ed70beadf0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\zlib">
-      <UniqueIdentifier>{584eddb5-6b85-4bae-b74a-cd34f7fb7238}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\gen">
       <UniqueIdentifier>{7a40bbef-7790-4d4d-b21f-d763501e1175}</UniqueIdentifier>
@@ -452,42 +446,6 @@
     </ClCompile>
     <ClCompile Include="libcharguess\libcharguess_UTF8Prober.cpp">
       <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_adler32.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_compress.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_crc32.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_deflate.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_gzio.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_infback.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_inffast.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_inflate.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_inftrees.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_trees.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_uncompr.cpp">
-      <Filter>Source Files\zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="zlib\zlib_zutil.cpp">
-      <Filter>Source Files\zlib</Filter>
     </ClCompile>
     <ClCompile Include="gen\base.cpp">
       <Filter>Source Files\gen</Filter>
@@ -2635,39 +2593,6 @@
     </ClInclude>
     <ClInclude Include="libcharguess\UTF8Prober.h">
       <Filter>Header Files\libcharguess</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\crc32.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\deflate.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inffast.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inffixed.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inflate.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\inftrees.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\trees.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zconf.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zconf.in.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zlib.h">
-      <Filter>Header Files\zlib</Filter>
-    </ClInclude>
-    <ClInclude Include="zlib\zutil.h">
-      <Filter>Header Files\zlib</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive_align.h">
       <Filter>Header Files\primitive</Filter>

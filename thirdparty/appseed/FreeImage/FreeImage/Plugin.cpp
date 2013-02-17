@@ -245,7 +245,7 @@ FreeImage_Initialise(BOOL load_local_plugins_only) {
 
 			// external plugin initialization
 
-#ifdef _WIN32
+#ifdef WINDOWSEX
 			if (!load_local_plugins_only) {
 				int count = 0;
 				char buffer[MAX_PATH + 200];
@@ -489,11 +489,12 @@ FreeImage_RegisterLocalPlugin(FI_InitProc proc_address, const char *format, cons
 	return s_plugins->AddNode(proc_address, NULL, format, description, extension, regexpr);
 }
 
-#ifdef _WIN32
+#ifdef WINDOWSEX
 FREE_IMAGE_FORMAT DLL_CALLCONV
 FreeImage_RegisterExternalPlugin(const char *path, const char *format, const char *description, const char *extension, const char *regexpr) {
 	if (path != NULL) {
 		HINSTANCE instance = LoadLibrary(path);
+
 
 		if (instance != NULL) {
 			FARPROC proc_address = GetProcAddress(instance, "_Init@8");

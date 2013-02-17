@@ -361,7 +361,7 @@ namespace ca
             else if(gen::str::begins_ci(strFilePath, "http://")
             || gen::str::begins_ci(strFilePath, "https://"))
             {
-               if(!exists(strFilePath, papp))
+               if(!exists(strFilePath, &varQuery, papp))
                   return "";
                gen::property_set post;
                gen::property_set headers;
@@ -961,13 +961,21 @@ namespace ca
       bool system::exists(const char * pszPath, ::ca::application * papp)
       {
 
+         return exists(pszPath, NULL, papp);
+
+      }
+
+
+      bool system::exists(const char * pszPath, var * pvarQuery, ::ca::application * papp)
+      {
+
          if(gen::str::begins_ci_iws(pszPath, "uifs://"))
          {
             return AppUser(papp).m_pifs->file_exists(pszPath);
          }
          else if(gen::str::begins_ci_iws(pszPath, "http://") || gen::str::begins_ci_iws(pszPath, "https://"))
          {
-            return App(papp).http().exists(pszPath);
+            return App(papp).http().exists(pszPath, pvarQuery, papp->get_safe_user());
          }
 
          if(papp->m_bZipIsDir)
@@ -1009,6 +1017,14 @@ namespace ca
       bool system::exists(const string & strPath, ::ca::application * papp)
       {
 
+         return exists(strPath, NULL, papp);
+
+      }
+
+
+      bool system::exists(const string & strPath, var * pvarQuery, ::ca::application * papp)
+      {
+
          if(gen::str::begins_ci_iws(strPath, "uifs://"))
          {
             return AppUser(papp).m_pifs->file_exists(strPath);
@@ -1017,7 +1033,7 @@ namespace ca
          if(gen::str::begins_ci_iws(strPath, "http://")
          || gen::str::begins_ci_iws(strPath, "https://"))
          {
-            return App(papp).http().exists(strPath);
+            return App(papp).http().exists(strPath, pvarQuery, papp->get_safe_user());
          }
 
 

@@ -254,7 +254,7 @@ vsstring ca2_module_folder_dup()
    GetFullPathName(lpszModuleFilePath, MAX_PATH + 1, lpszModuleFolder, &lpszModuleFileName);
    return vsstring(lpszModuleFolder, lpszModuleFileName - lpszModuleFolder);
 
-#else
+#elif defined(LINUX)
 
    void * handle = dlopen("libca2ca.so", RTLD_NOW);
 
@@ -270,6 +270,10 @@ vsstring ca2_module_folder_dup()
    dlclose(handle);
 
    return strCa2ModuleFolder;
+
+#elif defined(METROWIN)
+
+   return "";
 
 #endif
 

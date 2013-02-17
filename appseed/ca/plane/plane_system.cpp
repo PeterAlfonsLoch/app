@@ -1124,7 +1124,9 @@ namespace plane
 
    string system::matter_as_string(::ca::application * papp, const char * pszMatter, const char * pszMatter2)
    {
-      return file().as_string(dir_matter(papp, pszMatter, pszMatter2), papp);
+      var varQuery;
+      varQuery["disable_ca2_sessid"] = true;
+      return file().as_string(dir_matter(papp, pszMatter, pszMatter2), varQuery, papp);
    }
 
    string system::dir_matter(::ca::application * papp, const char * pszMatter, const char * pszMatter2)

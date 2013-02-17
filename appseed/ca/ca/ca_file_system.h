@@ -54,6 +54,9 @@ namespace ca
          virtual bool exists(const char * path, ::ca::application * papp);
          virtual bool exists(const string & path, ::ca::application * papp);
 
+         virtual bool exists(const char * path, var * pvarQuery, ::ca::application * papp);
+         virtual bool exists(const string & path, var * pvarQuery, ::ca::application * papp);
+
          void  get_ascendants_path(const char * lpcsz, stringa & stra);
          void  get_ascendants_name(const char * lpcsz, stringa & stra);
 

@@ -255,7 +255,7 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
-      <AdditionalDependencies>FreeImage.lib;m_freetype.lib;kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>m_freetype.lib;kernel32.lib;OleAut32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)../../../time/library/x86/$(ConfigurationName);$(SolutionDir)../../../nodeapp/thirdparty/library;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ModuleDefinitionFile>$(TargetName).def</ModuleDefinitionFile>
     </Link>
@@ -1332,17 +1332,6 @@
     <ClInclude Include="xml\xml_tree_schema.h" />
     <ClInclude Include="xml\xml_var_exchange.h" />
     <ClInclude Include="xml\xml_xml.h" />
-    <ClInclude Include="zlib\crc32.h" />
-    <ClInclude Include="zlib\deflate.h" />
-    <ClInclude Include="zlib\inffast.h" />
-    <ClInclude Include="zlib\inffixed.h" />
-    <ClInclude Include="zlib\inflate.h" />
-    <ClInclude Include="zlib\inftrees.h" />
-    <ClInclude Include="zlib\trees.h" />
-    <ClInclude Include="zlib\zconf.h" />
-    <ClInclude Include="zlib\zconf.in.h" />
-    <ClInclude Include="zlib\zlib.h" />
-    <ClInclude Include="zlib\zutil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="api\api_muldiv64.cpp" />
@@ -2065,23 +2054,17 @@
     <ClCompile Include="xml\xml_var_exchange.cpp" />
     <ClCompile Include="xml\xml_xml.cpp" />
     <ClCompile Include="xml\xml_XMLite.cpp" />
-    <ClCompile Include="zlib\zlib_adler32.cpp" />
-    <ClCompile Include="zlib\zlib_compress.cpp" />
-    <ClCompile Include="zlib\zlib_crc32.cpp" />
-    <ClCompile Include="zlib\zlib_deflate.cpp" />
-    <ClCompile Include="zlib\zlib_gzio.cpp" />
-    <ClCompile Include="zlib\zlib_infback.cpp" />
-    <ClCompile Include="zlib\zlib_inffast.cpp" />
-    <ClCompile Include="zlib\zlib_inflate.cpp" />
-    <ClCompile Include="zlib\zlib_inftrees.cpp" />
-    <ClCompile Include="zlib\zlib_trees.cpp" />
-    <ClCompile Include="zlib\zlib_uncompr.cpp" />
-    <ClCompile Include="zlib\zlib_zutil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\thirdparty\appseed\FreeImage\m_FreeImage.vcxproj">
+      <Project>{fced5042-9a2d-4e71-8022-129e8e5da36e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\thirdparty\appseed\zlib\_m_ca2zlib.vcxproj">
+      <Project>{84fbad70-591c-44fa-93c4-ee232b3a4b87}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\c\m_c.vcxproj">
       <Project>{5487686f-8a2f-401a-a38e-fda8900ebb72}</Project>
     </ProjectReference>

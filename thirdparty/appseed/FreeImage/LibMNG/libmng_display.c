@@ -6612,7 +6612,7 @@ mng_retcode mng_process_display_past (mng_datap  pData)
     mng_int32      iTargetsamples;
     mng_bool       bTargetRGBA16 = MNG_FALSE;
     mng_int32      iTemprowsize;
-    mng_imagedatap pBuf;
+    mng_imagedatap pBuf = NULL;
 #ifndef MNG_SKIPCHUNK_MAGN
                                        /* needs magnification ? */
     if ((pTargetimg->iMAGN_MethodX) || (pTargetimg->iMAGN_MethodY))

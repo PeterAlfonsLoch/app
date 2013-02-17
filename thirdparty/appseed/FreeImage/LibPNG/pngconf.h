@@ -1428,7 +1428,7 @@ typedef char            FAR * FAR * FAR * png_charppp;
 
 /* memory model/platform independent fns */
 #ifndef PNG_ABORT
-#  if (defined(_Windows) || defined(_WINDOWS) || defined(_WINDOWS_))
+#  if (defined(_Windows) || defined(_WINDOWS) || defined(_WINDOWS_)) && defined(WINDOWSEX)
 #     define PNG_ABORT() ExitProcess(0)
 #  else
 #     define PNG_ABORT() abort()
@@ -1449,7 +1449,7 @@ typedef char            FAR * FAR * FAR * png_charppp;
 #  define png_memset  _fmemset
 #  define png_sprintf sprintf
 #else
-#  if (defined(_Windows) || defined(_WINDOWS) || defined(_WINDOWS_))
+#  if (defined(_Windows) || defined(_WINDOWS) || defined(_WINDOWS_)) && defined(WINDOWSEX)
 #    /* Favor Windows over C runtime fns */
 #    define CVT_PTR(ptr)         (ptr)
 #    define CVT_PTR_NOCHECK(ptr) (ptr)

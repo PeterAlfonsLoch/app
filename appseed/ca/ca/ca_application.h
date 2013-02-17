@@ -52,6 +52,17 @@ namespace plane
 
 }
 
+
+namespace fontopus
+{
+
+
+   class user;
+
+
+} // namespace fontopus
+
+
 namespace ca
 {
 
@@ -139,6 +150,9 @@ namespace ca
 
 
       virtual void pre_translate_message(::gen::signal_object * pobj) = 0;
+
+
+      virtual ::fontopus::user * get_safe_user();
 
 
       template < class APP >

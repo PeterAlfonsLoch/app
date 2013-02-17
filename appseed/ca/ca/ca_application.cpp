@@ -130,32 +130,60 @@ namespace ca
 
    bool application::process_initialize()
    {
+
       return true;
+
    }
+
 
    bool application::initialize1()
    {
+
       return true;
+
    }
+
 
    bool application::initialize2()
    {
+
       return true;
+
    }
+
 
    bool application::initialize3()
    {
+
       return true;
+
    }
+
 
    bool application::initialize()
    {
+
       return true;
+
    }
+
 
    bool application::finalize()
    {
+
       return true;
+
+   }
+
+
+   ::fontopus::user * application::get_safe_user()
+   {
+      
+      if(m_psession == NULL)
+         return NULL;
+
+      return m_psession->m_puser;
+
    }
 
 

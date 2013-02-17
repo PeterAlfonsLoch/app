@@ -132,8 +132,15 @@ namespace ca4
          return System.http().get(pszUrl, puser);
       }
 
-
       bool application::exists(const char * pszUrl, ::fontopus::user * puser)
+      {
+
+         return exists(pszUrl, NULL, puser);
+
+      }
+
+
+      bool application::exists(const char * pszUrl, var * pvarQuery, ::fontopus::user * puser)
       {
 //         e_status estatus;
          string strFile(pszUrl);
@@ -155,7 +162,8 @@ namespace ca4
          }
 
          if(puser == NULL && !get_app()->is_system() 
-         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_puser != NULL) ) // && !(bool)set["disable_ca2_sessid"] && !(bool)set["optional_ca2_sessid"])
+         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_puser != NULL) 
+         && (pvarQuery == NULL || (!(bool)pvarQuery->operator[]("disable_ca2_sessid") && !(bool)pvarQuery->operator[]("optional_ca2_sessid")))) 
          {
             puser = &ApplicationUser;
          }
