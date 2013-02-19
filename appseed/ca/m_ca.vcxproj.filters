@@ -181,9 +181,6 @@
     <Filter Include="Header Files\sockets\metrowin\aaa_internal_want_to_remove">
       <UniqueIdentifier>{1a35e00d-3e30-49c8-89c1-4ff47a8cf321}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ca\NewFilter1">
-      <UniqueIdentifier>{4acf6cf6-6fcd-4d64-b7e7-c5456c041b35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{30bc5955-b95e-40c1-93ae-eb51cd67b2d2}</UniqueIdentifier>
     </Filter>
@@ -2496,6 +2493,9 @@
     <ClCompile Include="userpresence\userpresence_userpresence.cpp">
       <Filter>Source Files\userpresence</Filter>
     </ClCompile>
+    <ClCompile Include="ca\ca_section.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ca.h">
@@ -2940,9 +2940,6 @@
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca2_keep_alive.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_graphic_classes.h">
@@ -5329,6 +5326,9 @@
     </ClInclude>
     <ClInclude Include="database\database_database.h">
       <Filter>Header Files\database</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_section.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

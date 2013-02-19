@@ -443,11 +443,11 @@ namespace bergedge
          }
       }
 
-      if(m_pappCurrent != NULL && dynamic_cast < ::fontopus::application * > (m_pappCurrent)->m_puser != NULL)
+      if(m_pappCurrent != NULL && dynamic_cast < ::fontopus::application * > (m_pappCurrent)->fontopus().m_puser != NULL)
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowText(dynamic_cast < ::fontopus::application * > (m_pappCurrent)->m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(dynamic_cast < ::fontopus::application * > (m_pappCurrent)->fontopus().m_puser->m_strLogin);
          }
          catch(...)
          {

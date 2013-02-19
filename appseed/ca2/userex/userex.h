@@ -40,7 +40,9 @@ namespace userex
 #include "userex_property_sheet.h"
 
 
-#include "userex_application.h"
+
+#include "userex_userex.h"
+
 
 
 

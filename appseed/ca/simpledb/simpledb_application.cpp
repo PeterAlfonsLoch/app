@@ -3,21 +3,23 @@
 #include "mysql/mysql.h"
 #endif
 
+
 namespace simpledb
 {
 
 
-   application::application()
+   simpledb::simpledb()
    {
+
       m_pserver      = NULL;
+
    }
 
 
-
-   bool application::InitializeDataCentral()
+   bool simpledb::InitializeDataCentral()
    {
 
-      if(is_system())
+      if(m_papp->is_system())
       {
 #ifndef METROWIN
          /* initialize client library */
@@ -29,39 +31,39 @@ namespace simpledb
 #endif
       }
 
-      m_pserver = new db_server(this);
+      m_pserver = new db_server(m_papp);
 
 
       m_pserver->add_client(this);
 
       if(!m_pserver->initialize())
       {
-         simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
+         Application.m_puser->simple_message_box(NULL, "Could not initialize simpledb.", MB_OK);
          return false;
       }
 
       return true;
    }
 
-   void application::on_set_locale(const char * lpcsz, bool bUser)
+   void simpledb::on_set_locale(const char * lpcsz, bool bUser)
    {
       if(bUser)
       {
          data_set("locale", lpcsz);
       }
-      ::database::application::on_set_locale(lpcsz, bUser);
+      m_papp->m_pappThis->on_set_locale(lpcsz, bUser);
    }
 
-   void application::on_set_schema(const char * lpcsz, bool bUser)
+   void simpledb::on_set_schema(const char * lpcsz, bool bUser)
    {
       if(bUser)
       {
          data_set("schema", lpcsz);
       }
-      ::database::application::on_set_schema(lpcsz, bUser);
+      m_papp->m_pappThis->on_set_schema(lpcsz, bUser);
    }
 
-   bool application::FinalizeDataCentral()
+   bool simpledb::FinalizeDataCentral()
    {
 
       try
@@ -80,7 +82,7 @@ namespace simpledb
       {
       }
 
-      if(is_system())
+      if(m_papp->is_system())
       {
 
          m_pserver = NULL;
@@ -98,22 +100,19 @@ namespace simpledb
       return true;
    }
 
-   bool application::initialize2()
+   bool simpledb::initialize2()
    {
 
-      if(!database::application::initialize2())
-         return false;
-
-      if(command().m_varTopicQuery["locale"].get_string().has_char())
+      if(m_papp->m_pappThis->command().m_varTopicQuery["locale"].get_string().has_char())
       {
-         string str = command().m_varTopicQuery["locale"];
-         set_locale(str, false);
+         string str = m_papp->m_pappThis->command().m_varTopicQuery["locale"];
+         m_papp->m_pappThis->set_locale(str, false);
       }
 
-      if(command().m_varTopicQuery["schema"].get_string().has_char())
+      if(m_papp->m_pappThis->command().m_varTopicQuery["schema"].get_string().has_char())
       {
-         string str = command().m_varTopicQuery["schema"];
-         set_schema(str, false);
+         string str = m_papp->m_pappThis->command().m_varTopicQuery["schema"];
+         m_papp->m_pappThis->set_schema(str, false);
       }
 
 //      if(&AppUser(this) == NULL)
@@ -121,18 +120,19 @@ namespace simpledb
 
       if(!InitializeDataCentral())  
       {
-         simple_message_box(NULL, "Could not initialize data central"); 
+         m_papp->m_pappThis->simple_message_box(NULL, "Could not initialize data central"); 
          return false; 
       }
-      ::database::client::initialize(this);
+
+      ::database::client::initialize(m_pserver);
 
 //      ::ca2::application_request * prequest = System.get_application_request();
 
 
-      App(this).fill_locale_schema(*str_context()->m_plocaleschema);
+      m_papp->m_pappThis->fill_locale_schema(*m_papp->m_pappThis->str_context()->m_plocaleschema);
 
 
-      if(!is_installing() && !is_uninstalling())
+      if(!m_papp->m_pappThis->is_installing() && !m_papp->m_pappThis->is_uninstalling())
       {
 
          set_keyboard_layout(NULL, false);
@@ -147,12 +147,12 @@ namespace simpledb
 
 
 
-   bool application::initialize()
+   bool simpledb::initialize()
    {
 
    
       
-      if(!database::application::initialize())
+      if(!::database::database::initialize())
          return false;
 
 
@@ -163,12 +163,12 @@ namespace simpledb
    }
 
 
-   bool application::finalize()
+   bool simpledb::finalize()
    {
 
       try
       {
-         database::application::finalize();
+       //  ::database::database::finalize();
       }
       catch(...)
       {
@@ -188,30 +188,30 @@ namespace simpledb
 
    }
 
-   ::database::server * application::get_data_server()
+   ::database::server * simpledb::get_data_server()
    {
       return m_pserver;
    }
 
-   db_server & application::db()
+   db_server & simpledb::db()
    {
       return *m_pserver;
    }
 
-   bool application::set_keyboard_layout(const char * pszPath, bool bUser)
+   bool simpledb::set_keyboard_layout(const char * pszPath, bool bUser)
    {
       UNREFERENCED_PARAMETER(pszPath);
       UNREFERENCED_PARAMETER(bUser);
       return false;
    }
 
-   void application::on_set_keyboard_layout(const char * pszPath, bool bUser)
+   void simpledb::on_set_keyboard_layout(const char * pszPath, bool bUser)
    {
       
       if(bUser)
       {
       
-         if(Application.m_puser != NULL)
+         if(App(m_papp).get_safe_user() != NULL)
          {
             
             data_set("keyboard_layout", pszPath);
@@ -223,4 +223,7 @@ namespace simpledb
    }
 
 
-} // namespace application
+} // namespace simpledb
+
+
+

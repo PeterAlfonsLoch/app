@@ -5,7 +5,7 @@ namespace user
 {
 
 
-   user::view_creator()
+   user::user()
    {
       m_pkeyboardfocus  = NULL;
       m_pshellimageset  = NULL;
@@ -20,30 +20,26 @@ namespace user
    bool user::initialize1()
    {
 
-      m_dwAlive = ::get_tick_count();
-
-      if(is_system())
+      if(m_papp->is_system())
       {
          m_pwindowmap = new class ::user::window_map();
       }
       else
       {
-         m_pwindowmap = System.m_pwindowmap;
+         m_pwindowmap = System.m_puser->m_pwindowmap;
       }
 
-      m_pkeyboard = new ::user::keyboard(this);
+      m_pkeyboard = new ::user::keyboard(m_papp);
 
 
-      m_dwAlive = ::get_tick_count();
-
-      if(is_system())
+      if(m_papp->is_system())
       {
          System.factory().creatable_small < keyboard_layout > ();
       }
 
-      m_pshellimageset = new filemanager::_shell::ImageSet(this);
+      m_pshellimageset = new filemanager::_shell::ImageSet(m_papp);
 
-      if(!visual::user::initialize1())
+      if(!::ca::section::initialize1())
          return false;
 
       return true;
@@ -56,14 +52,17 @@ namespace user
 
 
 
-      if(!visual::application::initialize())
+      if(!::ca::section::initialize())
          return false;
+
+
+      Application.simpledb().get_data_server()->add_client(this);
 
 
       TRACE("::user::application::initialize");
 
-      xml::document docUser(this);
-      string strUser = App(this).file().as_string(App(this).dir().userappdata("langstyle_settings.xml"));
+      xml::document docUser(get_app());
+      string strUser = Application.file().as_string(Application.dir().userappdata("langstyle_settings.xml"));
       string strLangUser;
       string strStyleUser;
       if(docUser.load(strUser))
@@ -79,11 +78,11 @@ namespace user
       }
 
       if(strLangUser.has_char())
-         set_locale(strLangUser, false);
+         Application.set_locale(strLangUser, false);
       if(strStyleUser.has_char())
-         set_schema(strStyleUser, false);
+         Application.set_schema(strStyleUser, false);
 
-      string strLicense = get_license_id();
+      string strLicense = Application.get_license_id();
 
 
       var & varTopicQuey = System.directrix().m_varTopicQuery;
@@ -93,11 +92,11 @@ namespace user
       bool bHasUninstall = varTopicQuey.has_property("uninstall");
 
       if(!(bHasInstall || bHasUninstall)
-      && m_bLicense
+      && Application.m_bLicense
       && strLicense.has_char())
       {
 
-         if(&AppUser(this) == NULL)
+         if(&ApplicationUser == NULL)
          {
             return false;
          }
@@ -114,10 +113,10 @@ retry_license:
 
          iRetry--;
 
-         if(!App(this).is_licensed(strLicense))
+         if(!Application.is_licensed(strLicense))
          {
 
-            App(this).license().m_mapInfo.remove_key(strLicense);
+            Application.license().m_mapInfo.remove_key(strLicense);
 
             if(iRetry > 0)
                goto retry_license;
@@ -148,14 +147,12 @@ retry_license:
    int32_t user::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
-      if(m_psession != NULL && m_psession->m_pbergedgeInterface != NULL)
+      if(m_papp->m_psession != NULL && m_papp->m_psession->m_pbergedgeInterface != NULL)
       {
-         return m_psession->m_pbergedgeInterface->simple_message_box(pwndOwner, pszMessage, fuStyle);
+         return m_papp->m_psession->m_pbergedgeInterface->simple_message_box(pwndOwner, pszMessage, fuStyle);
       }
 
-
-
-      class message_box box(this);
+      class message_box box(get_app());
 
       gen::property_set propertyset;
       propertyset["message"] = pszMessage;
@@ -182,7 +179,7 @@ retry_license:
       {
          string strMessage = pszMessage;
          strMessage.replace("<br>", "\r\n");
-         return MessageBox(pwndOwner == NULL ? ::ca::null() : pwndOwner->get_handle(), strMessage, m_strAppName, fuStyle);
+         return MessageBox(pwndOwner == NULL ? ::ca::null() : pwndOwner->get_handle(), strMessage, Application.m_strAppName, fuStyle);
       }
       if(box.m_strResponse == "ok")
       {
@@ -212,9 +209,10 @@ retry_license:
 
    int32_t user::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
    {
+
       UNREFERENCED_PARAMETER(puiOwner);
 
-      class message_box box(this);
+      class message_box box(get_app());
 
       gen::property_set propertyset;
       propertyset["message"] = pszMessage;
@@ -306,7 +304,7 @@ retry_license:
 
    bool user::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
-      db_server * pcentral = dynamic_cast < db_server * > (&System.db());
+      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)
          return false;
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
@@ -314,13 +312,12 @@ retry_license:
 
    void user::data_on_after_change(gen::signal_object * pobj)
    {
-      visual::user::data_on_after_change(pobj);
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2_fontopus_votagus")
       {
          if(pchange->m_key.m_idIndex  == "savings")
          {
-            pchange->data_get(savings().m_eresourceflagsShouldSave);
+            pchange->data_get(Application.savings().m_eresourceflagsShouldSave);
          }
       }
    }
@@ -328,9 +325,9 @@ retry_license:
 
       ::user::keyboard_focus * user::get_keyboard_focus()
       {
-         if(is_session() || is_bergedge())
+         if(Application.is_session() || Application.is_bergedge())
          {
-            ::user::interaction * puieFocus = get_focus_guie();
+            ::user::interaction * puieFocus = Application.get_focus_guie();
             if(m_pkeyboardfocus != NULL && puieFocus != NULL)
             {
                if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
@@ -342,17 +339,17 @@ retry_license:
                return NULL;
             }
          }
-         else if(is_system() || is_cube())
+         else if(Application.is_system() || Application.is_cube())
          {
             return m_pkeyboardfocus;
          }
-         else if(m_psession != NULL)
+         else if(Application.m_psession != NULL)
          {
-            return Sess(this).get_keyboard_focus();
+            return Sess(get_app()).user().get_keyboard_focus();
          }
-         else if(m_psystem != NULL)
+         else if(Application.m_psystem != NULL)
          {
-            return Sys(this).get_keyboard_focus();
+            return Sys(get_app()).user().get_keyboard_focus();
          }
          else
          {
@@ -362,31 +359,31 @@ retry_license:
 
       void user::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
       {
-         if(is_session() || is_bergedge())
+         if(Application.is_session() || Application.is_bergedge())
          {
             if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
             {
                m_pkeyboardfocus = pkeyboardfocus;
             }
-            if(m_psystem != NULL)
+            if(Application.m_psystem != NULL)
             {
-               return Sys(this).set_keyboard_focus(pkeyboardfocus);
+               return Sys(get_app()).user().set_keyboard_focus(pkeyboardfocus);
             }
          }
-         else if(is_system() || is_cube())
+         else if(Application.is_system() || Application.is_cube())
          {
             if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
             {
                m_pkeyboardfocus = pkeyboardfocus;
             }
          }
-         else if(m_psession != NULL)
+         else if(Application.m_psession != NULL)
          {
-            return Sess(this).set_keyboard_focus(pkeyboardfocus);
+            return Sess(get_app()).user().set_keyboard_focus(pkeyboardfocus);
          }
-         else if(m_psystem != NULL)
+         else if(Application.m_psystem != NULL)
          {
-            return Sys(this).set_keyboard_focus(pkeyboardfocus);
+            return Sys(get_app()).user().set_keyboard_focus(pkeyboardfocus);
          }
       }
 
@@ -420,8 +417,8 @@ retry_license:
          if(&keyboard().layout() != NULL)
          {
 
-            if(Application.m_puser != NULL
-            && Application.m_puser->m_strFontopusServerSessId.has_char())
+            if(Application.fontopus().m_puser != NULL
+            && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
             {
 
                data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -437,8 +434,8 @@ retry_license:
          if(!set_keyboard_layout(keyboard().get_current_system_layout(), false))
             return false;
 
-         if(Application.m_puser != NULL
-         && Application.m_puser->m_strFontopusServerSessId.has_char())
+         if(Application.fontopus().m_puser != NULL
+         && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
          {
 
             data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -448,10 +445,10 @@ retry_license:
          return true;
       }
 
-      if(!System.keyboard().load_layout(pszPath, bUser))
+      if(!System.user().keyboard().load_layout(pszPath, bUser))
          return false;
 
-      on_set_keyboard_layout(pszPath, bUser);
+      Application.simpledb().on_set_keyboard_layout(pszPath, bUser);
 
       return true;
    }
@@ -459,10 +456,9 @@ retry_license:
 
    ::user::keyboard & user::keyboard()
    {
-      if(this != &System)
+      if(!Application.is_system())
       {
-         application * papp = dynamic_cast < application * > (&System);
-         return papp->keyboard();
+         return System.user().keyboard();
       }
       return *m_pkeyboard;
    }
@@ -474,7 +470,7 @@ retry_license:
    }
 
 
-   ca::type_info user::controltype_to_typeinfo(user::control::e_type e_type)
+   ::ca::type_info user::controltype_to_typeinfo(::user::control::e_type e_type)
    {
 
       return ::ca::type_info();

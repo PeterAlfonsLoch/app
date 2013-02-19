@@ -59,6 +59,10 @@ namespace cubebase
       virtual ::ex1::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
+      virtual ::fontopus::fontopus * create_fontopus();
+      virtual ::user::user * create_user();
+      virtual ::fs::fs * create_fs();
+
 
    };
 

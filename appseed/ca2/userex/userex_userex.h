@@ -5,8 +5,8 @@ namespace userex
 {
 
 
-   class CLASS_DECL_ca2 application :
-      virtual public ::html::application
+   class CLASS_DECL_ca2 userex :
+      virtual public ::ca::section
    {
    public:
 
@@ -16,8 +16,8 @@ namespace userex
       ::userbase::multiple_document_template *     m_ptemplatePlaceHolder;
 
 
-      application();
-      virtual ~application();
+      userex();
+      virtual ~userex();
 
       form_document *   create_form(::user::form_callback * pcallback, ::user::interaction * pwndParent, var var = ::var(::var::type_empty_argument));
       form_document *   create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var = ::var(::var::type_empty_argument));

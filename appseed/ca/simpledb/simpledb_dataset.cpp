@@ -315,10 +315,10 @@ namespace simpledb
          string strTable = straTable[0];
          if(gen::str::begins_eat_ci(strTable, "table:"))
          {
-            simpledb::table table(dynamic_cast < simpledb::base * > (db), strTable);
-            simpledb::record_row recrow;
+            ::simpledb::table table(dynamic_cast < ::simpledb::base * > (db), strTable);
+            ::simpledb::record_row recrow;
             recrow.m_ptable = &table;
-            file_position posEnd = (file_position)table.m_spfileFixed->get_length();
+            file_position posEnd = (file_position) table.m_spfileFixed->get_length();
             table.m_spfileFixed->seek_to_begin();
             ex1::byte_stream stream(table.m_spfileFixed);
             while(true)
@@ -397,8 +397,8 @@ namespace simpledb
             return false;
 
 
-         simpledb::table table(dynamic_cast < simpledb::base * > (db), strTable);
-         simpledb::record_row rec;
+         ::simpledb::table table(dynamic_cast < ::simpledb::base * > (db), strTable);
+         ::simpledb::record_row rec;
          rec.m_ptable = &table;
          rec.m_var = straValue;
          table.m_spfileFixed->seek_to_end();

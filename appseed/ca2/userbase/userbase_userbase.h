@@ -12,7 +12,7 @@ namespace userbase
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::uinteraction::application,
+      virtual public ::ca::section,
       virtual public BaseMenuCentralContainer
    {
    public:

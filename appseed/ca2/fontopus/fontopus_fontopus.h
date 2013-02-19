@@ -9,18 +9,17 @@ namespace ca2
    {
 
 
-      class CLASS_DECL_ca2 application :
+      class CLASS_DECL_ca2 fontopus :
          virtual public ::fontopus::fontopus
       {
       public:
 
 
-         application();
-         virtual ~application();
+         fontopus();
+         virtual ~fontopus();
 
 
-         using ::cube2::application::construct;
-         virtual void construct();
+         virtual void construct(::ca::application * papp);
 
 
          virtual ::fontopus::user * login(gen::property_set & set);

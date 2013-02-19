@@ -12,8 +12,8 @@ namespace ca2
       class keyboard;
 
 
-      class CLASS_DECL_ca2 application :
-         virtual public cubebase::application
+      class CLASS_DECL_ca2 user :
+         virtual public ::ca::section
       {
       public:
 
@@ -26,8 +26,8 @@ namespace ca2
 
 
 
-         application();
-         virtual ~application();
+         user();
+         virtual ~user();
 
          int32_t GetVisibleFrameCount();
          int32_t GetVisibleFrameCountExcept(::user::interaction * pwndExcept);
@@ -53,7 +53,7 @@ namespace ca2
          string message_box(const char * pszMatter, gen::property_set & propertyset);
 
 
-      // Running Operations - to be done on a running application
+      // Running Operations - to be done on a running user
          // Dealing with document templates
          void add_document_template(document_template * ptemplate);
          count get_template_count() const;
@@ -67,11 +67,11 @@ namespace ca2
 
 
          // Pointer to document_manager used to manage document templates
-         // for this application instance.
+         // for this user instance.
    //      ::userbase::document_manager* m_pdocmanager;
 
 
-   // Running Operations - to be done on a running application
+   // Running Operations - to be done on a running user
       // Dealing with document templates
    /*   void add_document_template(document_template * ptemplate);
       POSITION get_template_count() const;

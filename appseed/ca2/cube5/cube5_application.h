@@ -6,12 +6,15 @@ namespace cube5
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::userstack::application
+      virtual public ::cubebase::application
    {
    public:
 
 
-      ::filemanager::filemanager          m_filemanager;
+      ::uinteraction::uinteraction      * m_puinteraction;
+      ::userbase::userbase              * m_puserbase;
+      ::userex::userex                  * m_puserex;
+      ::html::html                      * m_phtml;
 
 
       application();

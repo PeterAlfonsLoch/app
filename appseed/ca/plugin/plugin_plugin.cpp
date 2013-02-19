@@ -382,7 +382,7 @@ namespace plugin
 
       while(puser == NULL)
       {
-         puser = Application.login(setLogin);
+         puser = Application.m_pfontopus->login(setLogin);
       }
 
       if(strSessId == puser->m_strFontopusServerSessId || puser->m_strFontopusServerSessId.get_length() < 16)
@@ -407,7 +407,7 @@ namespace plugin
    void plugin::ca2_logout()
    {
 
-      m_psystem->logout();
+      m_psystem->m_pfontopus->logout();
 
       gen::property_set set(m_psystem);
 

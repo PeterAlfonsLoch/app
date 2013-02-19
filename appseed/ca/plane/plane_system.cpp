@@ -147,7 +147,6 @@ namespace plane
       m_puserstr                 = NULL;
 
       m_pcube                    = NULL;
-      m_pwindowmap               = NULL;
 
       m_pparserfactory           = NULL;
 
@@ -296,9 +295,8 @@ namespace plane
       if(!m_spcrypt.is_set())
          return false;
 
-      m_puser                 = new ::fontopus::user(this);
-      m_puser->m_strLogin     = "system";
-      create_user(m_puser);
+      if(fontopus().create_system_user("system") == NULL)
+         return false;
 
       System.factory().cloneable_large < ::ca::font_sp >();
       System.factory().cloneable_large < ::ca::brush_sp >();
@@ -609,7 +607,7 @@ namespace plane
       int32_t iRet = 0;
       try
       {
-         iRet = ::fontopus::application::exit_instance();
+         iRet = ::planebase::application::exit_instance();
       }
       catch(...)
       {

@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_ca fs :
-      virtual public ::radix::object
+      virtual public ::ca::section
    {
    public:
 

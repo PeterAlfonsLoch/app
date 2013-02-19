@@ -439,13 +439,13 @@ namespace user
       }
 
 
-      raw_array < user::interaction  * > uiptra;
+      raw_array < ::user::interaction  * > uiptra;
       single_lock sl(m_pthread == NULL ? NULL : &m_pthread->m_pthread->m_mutex, TRUE);
       m_uiptraChild.get_array(uiptra);
       sl.unlock();
       for(int32_t i = 0; i < uiptra.get_count(); i++)
       {
-         user::interaction  * pui = uiptra[i];
+         ::user::interaction  * pui = uiptra[i];
          pui->DestroyWindow();
       }
    }
@@ -504,7 +504,7 @@ namespace user
       {
          bool bVisible;
          bool bFatalError;
-         user::interaction * puiBefore = NULL;
+         ::user::interaction * puiBefore = NULL;
          ::user::interaction * pui = get_bottom_child();
          while(pui != NULL)
          {
@@ -573,7 +573,7 @@ namespace user
          point ptCursor;
          Session.get_cursor_pos(&ptCursor);
          ScreenToClient(&ptCursor);
-         ::visual::cursor * pcursor = Session.get_cursor();
+         ::visual::cursor * pcursor = Session.visual().get_cursor();
          if(pcursor != NULL)
          {
             pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
@@ -664,7 +664,7 @@ namespace user
       }
       // these try catchs are needed for multi threading : multi threaded windows: the hell
       // Now I understand why Microsoft (TM) Windows (R) windows are single threaded.
-      user::interaction * pui = get_top_child();
+      ::user::interaction * pui = get_top_child();
 //      int32_t iSize;
       try
       {
@@ -826,28 +826,28 @@ namespace user
 
    void interaction::_001OnKeyDown(gen::signal_object * pobj)
    {
-      if(Application.get_keyboard_focus() != this
-      && Application.get_keyboard_focus() != NULL)
+      if(Application.user().get_keyboard_focus() != this
+      && Application.user().get_keyboard_focus() != NULL)
       {
-         Application.get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
+         Application.user().get_keyboard_focus()->keyboard_focus_OnKeyDown(pobj);
       }
    }
 
    void interaction::_001OnKeyUp(gen::signal_object * pobj)
    {
-      if(Application.get_keyboard_focus() != this
-      && Application.get_keyboard_focus() != NULL)
+      if(Application.user().get_keyboard_focus() != this
+      && Application.user().get_keyboard_focus() != NULL)
       {
-         Application.get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
+         Application.user().get_keyboard_focus()->keyboard_focus_OnKeyUp(pobj);
       }
    }
 
    void interaction::_001OnChar(gen::signal_object * pobj)
    {
-      if(Application.get_keyboard_focus() != this
-      && Application.get_keyboard_focus() != NULL)
+      if(Application.user().get_keyboard_focus() != this
+      && Application.user().get_keyboard_focus() != NULL)
       {
-         Application.get_keyboard_focus()->keyboard_focus_OnChar(pobj);
+         Application.user().get_keyboard_focus()->keyboard_focus_OnChar(pobj);
       }
    }
 

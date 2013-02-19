@@ -17,7 +17,7 @@ namespace uinteraction
 #include "ca2/uinteraction/frame/frame.h"
 
 
-#include "uinteraction_application.h"
+#include "uinteraction_uinteraction.h"
 
 
 

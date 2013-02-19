@@ -55,9 +55,16 @@ namespace filemanager
 
 #include "SimplePreviewInterface.h"
 #include "SimplePreview.h"
-#include "filemanager_application.h"
+
 
 #include "filemanager_form_document.h"
 #include "filemanager_form_child_frame.h"
 #include "filemanager_form_view.h"
 #include "filemanager_form_update_hint.h"
+
+
+
+#include "filemanager_filemanager.h"
+
+
+

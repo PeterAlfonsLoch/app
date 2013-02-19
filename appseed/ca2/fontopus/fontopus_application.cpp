@@ -9,37 +9,37 @@ namespace ca2
    {
 
 
-      application::application()
+      fontopus::fontopus()
       {
          m_puser              = NULL;
          m_bIsCreatingUser    = false;
       }
 
-      void application::construct()
+      void fontopus::construct()
       {
          m_strAppName         = "fontopus";
          m_strBaseSupportId   = "votagus_ca2_fontopus";
          m_strInstallToken    = "fontopus";    
       }
 
-      application::~application()
+      fontopus::~fontopus()
       {
       }
 
-      bool application::initialize_instance()
+      bool fontopus::initialize_instance()
       {
 
-         if(!cube2::application::initialize_instance())
+         if(!cube2::fontopus::initialize_instance())
             return false;
 
          return TRUE;
       }
 
-      int32_t application::exit_instance()
+      int32_t fontopus::exit_instance()
       {
          try
          {
-            ::cube2::application::exit_instance();
+            ::cube2::fontopus::exit_instance();
          }
          catch(...)
          {
@@ -47,16 +47,16 @@ namespace ca2
          return 0;
       }
 
-      bool application::bergedge_start()
+      bool fontopus::bergedge_start()
       {
          return false;
       }
 
 
 
-      ::fontopus::user * application::login(gen::property_set & set)
+      ::fontopus::user * fontopus::login(gen::property_set & set)
       {
-         /*::ca::application * papp;
+         /*::ca::fontopus * papp;
          if(m_puiInitialPlaceHolderContainer != NULL)
          {
             papp = m_puiInitialPlaceHolderContainer->m_papp;
@@ -79,9 +79,9 @@ namespace ca2
             return authuser.get_user();
       }
 
-      bool application::get_auth(const char * psz, string & strUsername, string & strPassword)
+      bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
       {
-         /*::ca::application * papp;
+         /*::ca::fontopus * papp;
          if(m_puiInitialPlaceHolderContainer != NULL)
          {
             papp = m_puiInitialPlaceHolderContainer->m_papp;
@@ -108,17 +108,17 @@ namespace ca2
          }
       }
 
-      bool application::check_license(const char * pszId, bool bInteractive)
+      bool fontopus::check_license(const char * pszId, bool bInteractive)
       {
 
-         ::ca::application * papp = get_app();
+         ::ca::fontopus * papp = get_app();
          class validate authuser(papp, "err\\user\\authentication\\not_licensed.xhtml", true, bInteractive);
          return authuser.get_license(pszId);
 
       }
 
 
-      void application::on_request(::ca::create_context * pcreatecontext)
+      void fontopus::on_request(::ca::create_context * pcreatecontext)
       {
 
          if(pcreatecontext->m_spCommandLine.is_set()

@@ -199,11 +199,11 @@ namespace html
 
       if(pkey->m_nChar == VK_TAB)
       {
-         user::keyboard_focus * pfocus = Application.get_keyboard_focus();
+         user::keyboard_focus * pfocus = Application.user().get_keyboard_focus();
          if(pfocus != NULL)
             pfocus = pfocus->keyboard_get_next_focusable();
          if(pfocus != NULL)
-            Application.set_keyboard_focus(pfocus);
+            Application.user().set_keyboard_focus(pfocus);
          pkey->m_bRet = true;
          return;
       }

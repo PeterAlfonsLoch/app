@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_ca fontopus :
-      virtual public ::radix::object
+      virtual public ::ca::section
    {
    public:
 
@@ -20,6 +20,7 @@ namespace fontopus
 
 
       virtual user * create_user(::fontopus::user * puser);
+      virtual user * create_system_user(const string & strSystemUserName);
       virtual user * allocate_user();
       virtual user * create_current_user();
       virtual user * login(gen::property_set & set);

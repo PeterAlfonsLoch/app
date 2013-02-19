@@ -7,7 +7,7 @@ namespace filemanager
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::ca8::application,
+      virtual public ::ca::section,
       virtual public FileManagerCallbackInterface,
       virtual public FileManagerFileListCallback
    {

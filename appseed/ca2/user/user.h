@@ -1,7 +1,6 @@
 #pragma once
 
 
-#include "ca2/cubebase/cubebase.h"
 
 
 namespace user
@@ -92,8 +91,6 @@ namespace user
 
 
 
-
-
-#include "user_application.h"
+#include "user_user.h"
 
 

@@ -39,7 +39,7 @@ namespace user
          {
             gen::del(m_playout);
             m_playout = playout;
-            System.on_set_keyboard_layout(playout->m_strPath, bUser);
+            System.simpledb().on_set_keyboard_layout(playout->m_strPath, bUser);
             TRACE("successfully set keyboard layout to %s (path=%s)", playout->m_strName, playout->m_strPath);
             return true;
          }

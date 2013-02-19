@@ -76,9 +76,6 @@
     <Filter Include="Header Files\fontopus">
       <UniqueIdentifier>{6db797d7-62ae-4667-a675-7649794e30fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ca8">
-      <UniqueIdentifier>{07f5a7dc-81ca-402a-b93b-ed7fe3fd8b86}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\cube8">
       <UniqueIdentifier>{7d69465c-7a82-4d6c-9c0d-3ac6c83759b3}</UniqueIdentifier>
     </Filter>
@@ -156,12 +153,6 @@
     </Filter>
     <Filter Include="Source Files\ca8">
       <UniqueIdentifier>{d889439d-1a67-4369-b8c3-5e3db6454388}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cube1">
-      <UniqueIdentifier>{042b9065-e27f-4bc3-8214-4e59aece5dcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cube2">
-      <UniqueIdentifier>{3bd2029d-eb46-43ef-85b4-4afe211dd7d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\cube8">
       <UniqueIdentifier>{ffc8e119-d470-417d-9d6b-3dffde6404d7}</UniqueIdentifier>
@@ -250,9 +241,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_xfplayer_view_line_selection.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_application.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_button.cpp">
@@ -870,12 +858,6 @@
     <ClCompile Include="ca8\ca8_wait_message_dialog.cpp">
       <Filter>Source Files\ca8</Filter>
     </ClCompile>
-    <ClCompile Include="cube1\cube1_application.cpp">
-      <Filter>Source Files\cube1</Filter>
-    </ClCompile>
-    <ClCompile Include="cube2\cube2_application.cpp">
-      <Filter>Source Files\cube2</Filter>
-    </ClCompile>
     <ClCompile Include="cube8\cube8_application.cpp">
       <Filter>Source Files\cube8</Filter>
     </ClCompile>
@@ -1146,6 +1128,21 @@
     <ClCompile Include="filemanager\filemanager_filemanager.cpp">
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
+    <ClCompile Include="user\user_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="cube5\cube5_keyboard_layout.cpp">
+      <Filter>Source Files\cube5</Filter>
+    </ClCompile>
+    <ClCompile Include="cube5\cube5_message_box.cpp">
+      <Filter>Source Files\cube5</Filter>
+    </ClCompile>
+    <ClCompile Include="cube5\cube5_network_configuration.cpp">
+      <Filter>Source Files\cube5</Filter>
+    </ClCompile>
+    <ClCompile Include="cube5\cube5_wait_message_dialog.cpp">
+      <Filter>Source Files\cube5</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ca2.h">
@@ -1157,19 +1154,7 @@
     <ClInclude Include="framework.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="calculator\frame.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\application.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="calculator\calculator.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\document.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\view.h">
       <Filter>Header Files\calculator</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\FileManagerSaveAsNameView.h">
@@ -1403,9 +1388,6 @@
     <ClInclude Include="userbase\userbase.h">
       <Filter>Header Files\userbase</Filter>
     </ClInclude>
-    <ClInclude Include="userbase\userbase_application.h">
-      <Filter>Header Files\userbase</Filter>
-    </ClInclude>
     <ClInclude Include="userbase\userbase_bitmap_button.h">
       <Filter>Header Files\userbase</Filter>
     </ClInclude>
@@ -1559,12 +1541,6 @@
     <ClInclude Include="userbase\userbase_window_map.h">
       <Filter>Header Files\userbase</Filter>
     </ClInclude>
-    <ClInclude Include="userex\mini_dock_frame_window.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\application.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
     <ClInclude Include="userex\userex_hour_list_view.h">
       <Filter>Header Files\userex</Filter>
     </ClInclude>
@@ -1572,45 +1548,6 @@
       <Filter>Header Files\userex</Filter>
     </ClInclude>
     <ClInclude Include="userex\userex_second_list_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\dialog.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_child_frame.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_document.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_frame.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_update_hint.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\form_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\menu_document.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\menu_frame.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\menu_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\pane_split_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\pane_tab_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\pane_view.h">
-      <Filter>Header Files\userex</Filter>
-    </ClInclude>
-    <ClInclude Include="userex\split_view.h">
       <Filter>Header Files\userex</Filter>
     </ClInclude>
     <ClInclude Include="userex\userex.h">
@@ -1755,9 +1692,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_xfplayer_view_line_selection.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_application.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_buffer.h">
@@ -2162,21 +2096,6 @@
     <ClInclude Include="fontopus\fontopus.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="ca8\ca8_application.h">
-      <Filter>Header Files\ca8</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8\ca8_keyboard_layout.h">
-      <Filter>Header Files\ca8</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8\ca8_message_box.h">
-      <Filter>Header Files\ca8</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8\ca8_network_configuration.h">
-      <Filter>Header Files\ca8</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8\ca8_wait_message_dialog.h">
-      <Filter>Header Files\ca8</Filter>
-    </ClInclude>
     <ClInclude Include="cube8\cube8.h">
       <Filter>Header Files\cube8</Filter>
     </ClInclude>
@@ -2333,9 +2252,6 @@
     <ClInclude Include="uinteraction\uinteraction.h">
       <Filter>Header Files\uinteraction</Filter>
     </ClInclude>
-    <ClInclude Include="uinteraction\uinteraction_application.h">
-      <Filter>Header Files\uinteraction</Filter>
-    </ClInclude>
     <ClInclude Include="uinteraction\frame\frame.h">
       <Filter>Header Files\uinteraction\frame</Filter>
     </ClInclude>
@@ -2427,9 +2343,6 @@
       <Filter>Header Files\userhtml</Filter>
     </ClInclude>
     <ClInclude Include="html\html.h">
-      <Filter>Header Files\html</Filter>
-    </ClInclude>
-    <ClInclude Include="html\html_application.h">
       <Filter>Header Files\html</Filter>
     </ClInclude>
     <ClInclude Include="html\html_attribute.h">
@@ -2524,6 +2437,93 @@
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_filemanager.h">
       <Filter>Header Files\filemanager</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="cube5\cube5_message_box.h">
+      <Filter>Header Files\cube5</Filter>
+    </ClInclude>
+    <ClInclude Include="cube5\cube5_network_configuration.h">
+      <Filter>Header Files\cube5</Filter>
+    </ClInclude>
+    <ClInclude Include="cube5\cube5_wait_message_dialog.h">
+      <Filter>Header Files\cube5</Filter>
+    </ClInclude>
+    <ClInclude Include="cube5\cube5_keyboard_layout.h">
+      <Filter>Header Files\cube5</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_dialog.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_child_frame.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_document.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_frame.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_update_hint.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_form_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_menu_document.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_menu_frame.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_menu_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_mini_dock_frame_window.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_pane_split_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_pane_tab_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_pane_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_property_page.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_property_sheet.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_split_view.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="userex\userex_userex.h">
+      <Filter>Header Files\userex</Filter>
+    </ClInclude>
+    <ClInclude Include="html\html_html.h">
+      <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="userbase\userbase_userbase.h">
+      <Filter>Header Files\userbase</Filter>
+    </ClInclude>
+    <ClInclude Include="uinteraction\uinteraction_uinteraction.h">
+      <Filter>Header Files\uinteraction</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_application.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_document.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_frame.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_view.h">
+      <Filter>Header Files\calculator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

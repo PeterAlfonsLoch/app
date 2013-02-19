@@ -639,7 +639,7 @@ namespace fs
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::gen::message::show_window, pshow, pobj)
 
-      db_server * pcentral = dynamic_cast < db_server * > (&System.db());
+      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)
          return;
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;

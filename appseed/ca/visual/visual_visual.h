@@ -31,7 +31,7 @@ namespace visual
 
 
    class CLASS_DECL_ca visual  :
-      virtual public ::radix::object
+      virtual public ::ca::section
    {
    public:
 

@@ -902,7 +902,7 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
-   command_target_interface * pcommandtargetinterface= dynamic_cast < command_target_interface * > (Application.get_keyboard_focus());
+   command_target_interface * pcommandtargetinterface= dynamic_cast < command_target_interface * > (Application.user().get_keyboard_focus());
 
    if(pcommandtargetinterface != NULL)
    {

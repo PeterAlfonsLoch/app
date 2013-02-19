@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::userbase::application
+      virtual public ::ca::section
    {
    public:
 

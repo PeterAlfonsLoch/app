@@ -314,7 +314,7 @@ namespace user
 
    //   pdc->SelectClipRgn(&rgn);
 
-      if(Application.get_keyboard_focus() == this)
+      if(Application.user().get_keyboard_focus() == this)
       {
          m_bFocus = keyboard_focus_is_focusable();
       }
@@ -608,7 +608,7 @@ namespace user
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
-         if(this == Application.get_keyboard_focus())
+         if(this == Application.user().get_keyboard_focus())
          {
             _001OnKeyboardFocusTimer(ptimer->m_nIDEvent - 100);
          }
@@ -906,7 +906,7 @@ namespace user
       m_iSelEnd = m_iSelStart;
 
       _001RedrawWindow();
-      Application.set_keyboard_focus(this);
+      Application.user().set_keyboard_focus(this);
       Application.set_mouse_focus_LButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
@@ -939,7 +939,7 @@ namespace user
       m_iSelEnd = m_iSelStart;
 
       _001RedrawWindow();
-      Application.set_keyboard_focus(this);
+      Application.user().set_keyboard_focus(this);
       Application.set_mouse_focus_RButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);

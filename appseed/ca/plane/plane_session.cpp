@@ -122,6 +122,40 @@ namespace plane
       return true;
    }
 
+
+   bool session::finalize()
+   {
+
+      bool bOk = true;
+
+      try
+      {
+      
+         bOk = m_userpresence.finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
+      try
+      {
+      
+         bOk = ::planebase::application::finalize();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+      }
+
+      return bOk;
+
+   }
+
    int32_t session::exit_instance()
    {
       try
@@ -160,8 +194,8 @@ namespace plane
 
    void session::load_string_table()
    {
-      fontopus::application::load_string_table();
-      fontopus::application::load_string_table("plane", "");
+      ::ca4::application::load_string_table();
+      ::ca4::application::load_string_table("plane", "");
    }
 
 /*   bool session::file_manager_open_file(

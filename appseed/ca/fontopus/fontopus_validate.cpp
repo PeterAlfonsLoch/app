@@ -75,7 +75,7 @@ namespace fontopus
       //|| command_thread().property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
       || command_thread().property("app") == "app-core/tesseract/netnodecfg")
       {
-         m_puser = allocate_user();
+         m_puser = Application.m_pfontopus->allocate_user();
          m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
@@ -84,7 +84,7 @@ namespace fontopus
            || command_thread().has_property("install")
            || command_thread().has_property("uninstall"))
       {
-         m_puser = allocate_user();
+         m_puser = Application.m_pfontopus->allocate_user();
          m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
@@ -97,7 +97,7 @@ namespace fontopus
       else if(command_thread().property("app") == "backup"
            || command_thread().property("app") == "winservice_filesystemsize")
       {
-         m_puser = Application.allocate_user();
+         m_puser = Application.m_pfontopus->allocate_user();
          m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = camilosasuketsumanuma;
          return m_puser;
@@ -137,7 +137,7 @@ namespace fontopus
       if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
          && Application.command_thread().m_varTopicQuery["sessid"].get_string().get_length() > 16)
       {
-         m_loginthread.m_puser = Application.allocate_user();
+         m_loginthread.m_puser = Application.m_pfontopus->allocate_user();
          m_loginthread.m_puser->m_sessionidmap[Application.command_thread().m_varTopicQuery["fontopus"].get_string()] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_sessionidmap[strHost] = Application.command_thread().m_varTopicQuery["sessid"].get_string();
          m_loginthread.m_puser->m_strFontopusServerSessId = Application.command_thread().m_varTopicQuery["sessid"].get_string();
@@ -161,7 +161,7 @@ namespace fontopus
          }
       }
 
-      m_loginthread.m_puser = Application.allocate_user();
+      m_loginthread.m_puser = Application.m_pfontopus->allocate_user();
 
       if(pszSessId != NULL && string(pszSessId).get_length() > 16)
       {
@@ -404,11 +404,11 @@ namespace fontopus
 //      text_interface * ptext = dynamic_cast < text_interface * > (pguie);
 //      ptext->_001SetText(m_loginthread.m_strUsername);
 //      if(m_loginthread.m_strUsername.is_empty())
-  //       Application.set_keyboard_focus(pguie);
+  //       Application.user().set_keyboard_focus(pguie);
     //  else
       //{
         // pguie = m_pviewAuth->get_child_by_name("password");
-         //Application.set_keyboard_focus(pguie);
+         //Application.user().set_keyboard_focus(pguie);
       //}
    }
 

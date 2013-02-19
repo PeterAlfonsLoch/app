@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/uinteraction/uinteraction.h"
+
 
 
 struct __SIZEPARENTPARAMS;
@@ -67,7 +67,7 @@ namespace userbase
 #include "userbase_tab_view_update_hint.h"
 
 #include "userbase_document_manager.h"
-#include "userbase_application.h"
+
 
 #include "userbase_notification_area.h"
 #include "userbase_notify_icon.h"
@@ -97,4 +97,8 @@ namespace userbase
 #include "userbase_tree_window.h"
 
 #include "userbase_image_manager.h"
+
+
+
+#include "userbase_userbase.h"
 

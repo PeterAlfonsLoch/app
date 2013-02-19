@@ -16,15 +16,15 @@ namespace ca2
       public:
 
 
-         int32_t                                       m_iView;
+         int32_t                                   m_iView;
          ::userbase::single_document_template *    m_ptemplatePane;
          form_document *                           m_pdoc;
          ::userex::pane_tab_view *                 m_ptabview;
          form_document *                           m_pdocAuth;
          form_document *                           m_pdocMessage;
          form_view *                               m_pviewAuth;
-         ::ca8::network_configuration              m_netcfg;
-         ::ca8::keyboard_layout *                  m_pkeyboardlayout;
+         ::cube5::network_configuration            m_netcfg;
+         ::cube5::keyboard_layout *                m_pkeyboardlayout;
          void *                                    m_pvOldWindow;
          
 
@@ -67,7 +67,7 @@ namespace ca2
       };
 
 
-   } // namespace ca8
+   } // namespace cube5 // ca8 + cube5
 
 
 } // namespace ca2

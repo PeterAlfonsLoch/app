@@ -89,13 +89,6 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return fontopus::application::construct();
-         }
-      }
    }
 
 
@@ -107,13 +100,6 @@ namespace plane
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return fontopus::application::initialize_instance();
-         }
-      }
       return planebase::application::initialize_instance();
    }
 
@@ -124,13 +110,6 @@ namespace plane
       if(strId.get_length() > 0)
       {
          chFirst = strId[0];
-      }
-      if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return fontopus::application::exit_instance();
-         }
       }
       return planebase::application::exit_instance();
    }
@@ -154,13 +133,6 @@ namespace plane
       if(strId.get_length() > 0)
       {
          chFirst = strId[0];
-      }
-      if(chFirst == 'f')
-      {
-         if(strId == "i2com")
-         {
-            return fontopus::application::bergedge_start();
-         }
       }
       return planebase::application::bergedge_start();
    }

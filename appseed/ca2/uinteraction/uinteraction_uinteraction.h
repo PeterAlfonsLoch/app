@@ -5,14 +5,14 @@ namespace uinteraction
 {
 
 
-   class CLASS_DECL_ca2 application :
-      virtual public ::ca2::user::application
+   class CLASS_DECL_ca2 uinteraction :
+      virtual public ::ca::section
    {
    public:
 
 
-      application();
-      virtual ~application();
+      uinteraction();
+      virtual ~uinteraction();
 
 
       virtual ::uinteraction::interaction * get_new_uinteraction(const char * pszUinteractionLibrary);

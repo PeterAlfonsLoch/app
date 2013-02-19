@@ -600,10 +600,10 @@ namespace plane
       //
       ::document * hold(::user::interaction * pui);
 
-      virtual count get_monitor_count();
+      virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
       virtual index get_best_intersection_monitor(LPRECT lprect);
-      virtual count get_desk_monitor_count();
+      virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
       virtual FileManagerTemplate * GetStdFileManagerTemplate();
 

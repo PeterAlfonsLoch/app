@@ -19,12 +19,14 @@ namespace planebase
       m_dir.set_app(this);
       m_file.set_app(this);
       m_http.set_app(this);
-      m_user.set_app(this);
 
       m_bIfs                     = true;
       m_bUpdateMatterOnInstall   = true;
 
       m_pservice                 = NULL;
+
+      m_pfontopus                = NULL;
+
    }
 
    application::~application()
@@ -662,66 +664,57 @@ InitFailure:
 
    }
 
+
    bool application::initial_check_directrix()
    {
+
       if(directrix().m_varTopicQuery.has_property("install"))
       {
-         if(::fontopus::application::on_install())
+
+         if(!on_install())
+            return false;
+
+         string strId = m_strAppId;
+
+         xxdebug_box("on_install1", strId, 0);
+
+         if(strId.is_empty())
+            strId = m_strAppName;
+
+         if(strId.has_char() && command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
          {
-            if(on_install())
-            {
 
-               string strId = m_strAppId;
+            system_add_app_install(strId);
 
-               xxdebug_box("on_install1", strId, 0);
-
-               if(strId.is_empty())
-                  strId = m_strAppName;
-
-               if(strId.has_char() && command().m_varTopicQuery.has_property("app") && strId == command().m_varTopicQuery["app"])
-               {
-
-                  system_add_app_install(strId);
-
-               }
-               else if(strId.has_char() && command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
-               {
-
-                  system_add_app_install(strId);
-
-               }
-               else if(m_strInstallToken.has_char())
-               {
-
-                  system_add_app_install(m_strInstallToken);
-
-               }
-
-            }
-            else
-            {
-               return false;
-            }
          }
-         return true;
+         else if(strId.has_char() && command().m_varTopicQuery.has_property("session_start") && strId == command().m_varTopicQuery["session_start"])
+         {
+
+            system_add_app_install(strId);
+
+         }
+         else if(m_strInstallToken.has_char())
+         {
+
+            system_add_app_install(m_strInstallToken);
+
+         }
+
       }
       else if(directrix().m_varTopicQuery.has_property("uninstall"))
       {
-         if(::fontopus::application::on_uninstall())
-         {
-            if(on_uninstall())
-            {
-               System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
-            }
-            else
-            {
-               return false;
-            }
-         }
-         return true;
+
+         if(!on_uninstall())
+            return false;
+         
+         System.install().remove_spa_start(m_strInstallType, m_strInstallToken);
+
       }
+
       return true;
+
    }
+
 
    bool application::main_start()
    {
@@ -895,37 +888,49 @@ exit_application:
       try
       {
 
-         m_iReturnCode = 0;
+         m_iReturnCode = ::ca4::application::exit_instance();
 
-
-         m_iReturnCode = ::fontopus::application::exit_instance();
       }
       catch(...)
       {
+
+         m_iReturnCode = -1;
+
       }
 
       try
       {
+
          System.unregister_bergedge_application(this);
+
       }
       catch(...)
       {
+
+         m_iReturnCode = -1;
+
       }
 
       try
       {
+
          if(System.appptra().get_count() <= 1)
          {
+
             System.post_thread_message(WM_QUIT, 0, 0);
+
          }
+
       }
       catch(...)
       {
+
+         m_iReturnCode = -1;
+
       }
 
-
-
       return m_iReturnCode;
+
    }
 
    bool application::is_licensed(const char * pszId, bool bInteractive)
@@ -990,7 +995,7 @@ exit_application:
          return false;
 
 
-      if(!m_fs.initialize())
+      if(!m_pfs->initialize())
          return false;
 
 
@@ -1000,7 +1005,7 @@ exit_application:
       if(!m_visual.initialize())
          return false;
 
-      if(!m_user.initialize())
+      if(!m_puser->initialize())
          return false;
 
 
@@ -1096,11 +1101,11 @@ exit_application:
          // keyboard layout
          if(data_get("keyboard_layout", str) && str.has_char())
          {
-            set_keyboard_layout(str, false);
+            user().set_keyboard_layout(str, false);
          }
          else
          {
-            set_keyboard_layout(NULL, false);
+            user().set_keyboard_layout(NULL, false);
          }
 
          data_pulse_change("ca2_fontopus_votagus", "savings", NULL);
@@ -1118,8 +1123,39 @@ exit_application:
 
    }
 
+   bool application::process_initialize()
+   {
+
+      m_pfontopus = create_fontopus();
+
+      if(m_pfontopus == NULL)
+         return false;
+
+      m_pfontopus->construct(this);
+
+      m_puser = create_user();
+
+      if(m_puser == NULL)
+         return false;
+
+      m_puser->construct(this);
+
+      m_pfs = create_fs();
+
+      if(m_pfs == NULL)
+         return false;
+
+      m_pfs->construct(this);
+
+      return true;
+
+   }
+
    bool application::initialize1()
    {
+
+      
+
 
       if(!is_system() && !is_bergedge())
       {
@@ -1132,13 +1168,14 @@ exit_application:
       }
 
 
-      if(m_puser == NULL &&
+      if(fontopus().m_puser == NULL &&
         (Application.directrix().m_varTopicQuery.has_property("install")
       || Application.directrix().m_varTopicQuery.has_property("uninstall")))
       {
-         m_puser                 = new ::fontopus::user(this);
-         m_puser->m_strLogin     = "system";
-         create_user(m_puser);
+         
+         if(fontopus().create_system_user("system") == NULL)
+            return false;
+         
       }
 
       if(!ca4::application::initialize1())
@@ -1148,7 +1185,7 @@ exit_application:
       if(!m_visual.initialize1())
          return false;
 
-      if(!m_user.initialize1())
+      if(!m_puser->initialize1())
          return false;
 
       return true;
@@ -1175,7 +1212,7 @@ exit_application:
       if(!ca4::application::initialize_instance())
          return false;
 
-      if(!m_fontopus.initiallize_instance())
+      if(!m_pfontopus->initialize_instance())
          return false;
       
 
@@ -1344,19 +1381,19 @@ exit_application:
          {
             create_new_service();
             m_pservice->Start(0);
-            return fontopus::application::run();
+            return ca4::application::run();
          }
          else
          {
-            return fontopus::application::run();
+            return ca4::application::run();
          }
       }
       else
       {
-         return fontopus::application::run();
+         return ca4::application::run();
       }
 
-      return TRUE;
+      return 0;
 
    }
 
@@ -1367,7 +1404,7 @@ exit_application:
          stop_service();
          remove_service();
       }
-      return ::fontopus::application::on_uninstall();
+      return ::ca4::application::on_uninstall();
    }
 
 
@@ -1784,13 +1821,52 @@ exit_application:
    ::fontopus::user * application::get_user()
    {
 
-      return m_fontopus.get_user();
+      return m_pfontopus->get_user();
+
+   }
+
+   ::fontopus::fontopus * application::create_fontopus()
+   {
+
+      return new ::fontopus::fontopus();
+
+   }
+
+   ::user::user * application::create_user()
+   {
+
+      return new ::user::user();
+
+   }
+
+   ::fs::fs * application::create_fs()
+   {
+
+      return new ::fs::fs();
+
+   }
+
+   void application::assert_valid() const
+   {
+
+      ::ca4::application::assert_valid();
+      //::database::server::assert_valid();
 
    }
 
 
+   void application::dump(dump_context & context) const
+   {
+
+      ::ca4::application::dump(context);
+      //::database::server::dump(context);
+
+   }
 
 
 } //namespace planebase
+
+
+
 
 

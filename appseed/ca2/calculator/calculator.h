@@ -1,14 +1,14 @@
 #pragma once
 
 
-#include "ca2/fontopus/fontopus.h"
+#include "ca2/cube8/cube8.h"
 
 
-#include "document.h"
-#include "view.h"
-#include "frame.h"
+#include "calculator_document.h"
+#include "calculator_view.h"
+#include "calculator_frame.h"
 
 
-#include "application.h"
+#include "calculator_application.h"
 
 

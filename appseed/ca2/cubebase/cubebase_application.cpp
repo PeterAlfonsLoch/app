@@ -191,6 +191,30 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    }
 
 
+   ::fontopus::fontopus * application::create_fontopus()
+   {
+
+      return new ::ca2::fontopus::fontopus();
+
+   }
+
+
+   ::user::user * application::create_user()
+   {
+
+      return new ::ca2::user::user();
+
+   }
+
+
+   ::fs::fs * application::create_fs()
+   {
+
+      return new ::ca2::fs::fs();
+
+   }
+
+
 } //namespace cube
 
 

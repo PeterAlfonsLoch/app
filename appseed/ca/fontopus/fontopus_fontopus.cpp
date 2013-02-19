@@ -196,6 +196,30 @@ namespace fontopus
    }
 
 
+   user * fontopus::create_system_user(const string & strSystemUserName)
+   {
+      
+      m_puser                 = new ::fontopus::user(get_app());
+      
+      m_puser->m_strLogin     = strSystemUserName;
+      
+      user * puserNew = create_user(m_puser);
+
+      if(puserNew == NULL)
+      {
+         
+         delete m_puser;
+
+         m_puser = NULL;
+
+      }
+
+      return m_puser;
+
+   }
+
+
+
    user * fontopus::get_user()
    {
       if(m_papp->m_pappThis->is_session())

@@ -63,7 +63,7 @@ namespace simpledb
 
    ::simpledb::set * base::create_dataset() const
    {
-      return new ::simpledb::set(const_cast < simpledb::base * > (this));
+      return new ::simpledb::set(const_cast < ::simpledb::base * > (this));
    }
 
 

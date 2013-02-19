@@ -29,9 +29,9 @@ namespace simpledb
       m_pmanager = new ::simpledb::manager(pcaapp);
 
 
-      /*App(pcaapp).m_strFontopusServer		= System.db().data_load("fontopus_server", ::database::id(), ::database::id());
-      App(pcaapp).m_strDatabaseServerHost	= System.db().data_load("database_server", ::database::id(), ::database::id());
-      App(pcaapp).m_iDatabaseServerPort	= System.db().data_load("database_port", ::database::id(), ::database::id());
+      /*App(pcaapp).m_strFontopusServer		= System.m_simpledb.db().data_load("fontopus_server", ::database::id(), ::database::id());
+      App(pcaapp).m_strDatabaseServerHost	= System.m_simpledb.db().data_load("database_server", ::database::id(), ::database::id());
+      App(pcaapp).m_iDatabaseServerPort	= System.m_simpledb.db().data_load("database_port", ::database::id(), ::database::id());
       if(App(pcaapp).m_strDatabaseServerHost.is_empty())
       {
          App(pcaapp).m_strDatabaseServerHost = "localhost";
@@ -43,7 +43,7 @@ namespace simpledb
 
 
       stringa stra;
-      stra = System.db().data_load(NULL, "simpledb", ::database::id(), ::database::id());
+      stra = System.m_simpledb.db().data_load(NULL, "simpledb", ::database::id(), ::database::id());
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          m_threadptra.add(__begin_thread < socket_thread > (get_app()));

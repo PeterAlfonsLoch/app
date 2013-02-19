@@ -67,10 +67,15 @@ namespace plane
 
       session();
       virtual ~session();
+
+
       virtual void construct();
+
 
       virtual bool initialize();
       virtual bool initialize_instance();
+
+      virtual bool finalize();
       virtual int32_t exit_instance();
 
       bool InitializeLocalDataCentral();

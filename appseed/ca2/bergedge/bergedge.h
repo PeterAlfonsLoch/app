@@ -2,8 +2,8 @@
 
 
 
-#include "app/appseed/ca2/platform/platform.h"
-#include "app/appseed/ca2/gcom/gcom.h"
+#include "ca2/platform/platform.h"
+#include "ca2/gcom/gcom.h"
 
 
 #include "bergedge_view.h"

@@ -657,7 +657,7 @@ namespace gen
          {
             if(m_ecursor != ::visual::cursor_unmodified && m_papp != NULL && m_papp->m_psession != NULL)
             {
-               Application.set_cursor(m_ecursor);
+               Application.m_visual.set_cursor(m_ecursor);
             }
          }
          catch(...)

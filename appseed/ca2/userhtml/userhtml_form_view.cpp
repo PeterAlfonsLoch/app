@@ -1,5 +1,6 @@
 #include "framework.h"
 
+
 html_form_view::html_form_view(::ca::application * papp) :
    ca(papp),
    html_form(papp),
@@ -10,14 +11,19 @@ html_form_view::html_form_view(::ca::application * papp) :
    ::user::form(papp),
    ::userbase::form_view(papp)
 {
+
 }
+
 
 html_form_view::~html_form_view()
 {
+
 }
+
 
 void html_form_view::install_message_handling(::gen::message::dispatch * pinterface)
 {
+
    html_form::install_message_handling(pinterface);
 
    IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &html_form_view::_001OnDestroy);
@@ -169,7 +175,7 @@ void html_form_view::_001OnSetFocus(gen::signal_object * pobj)
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data()->m_focusptra.get_size() > 0)
    {
-      Application.set_keyboard_focus(get_html_data()->m_focusptra[0]);
+      Application.user().set_keyboard_focus(get_html_data()->m_focusptra[0]);
    }
 }
 

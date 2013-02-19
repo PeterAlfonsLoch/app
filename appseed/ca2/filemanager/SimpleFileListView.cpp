@@ -138,7 +138,7 @@ namespace filemanager
             if(puh->is_type_of(FileManagerViewUpdateHint::TypeInitialize))
             {
                m_papp = get_app()->m_pappThis;
-               db_server * pcentral = dynamic_cast < db_server * > (&System.db());
+               db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
                if(pcentral == NULL)
                   return;
                //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
@@ -485,7 +485,7 @@ namespace filemanager
          return;
       m_bFileSize = true;
 
-      db_server * pcentral = dynamic_cast < db_server * > (&System.db());
+      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)
          return;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;

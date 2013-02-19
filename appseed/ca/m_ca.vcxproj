@@ -445,7 +445,6 @@
     <ClInclude Include="calculator\numeric_token.h" />
     <ClInclude Include="calculator\numeric_value.h" />
     <ClInclude Include="ca\ca.h" />
-    <ClInclude Include="ca\ca2_keep_alive.h" />
     <ClInclude Include="ca\ca_application.h" />
     <ClInclude Include="ca\ca_application_bias.h" />
     <ClInclude Include="ca\ca_application_interface.h" />
@@ -489,6 +488,7 @@
     <ClInclude Include="ca\ca_print_job.h" />
     <ClInclude Include="ca\ca_profiler.h" />
     <ClInclude Include="ca\ca_region.h" />
+    <ClInclude Include="ca\ca_section.h" />
     <ClInclude Include="ca\ca_session.h" />
     <ClInclude Include="ca\ca_se_translator.h" />
     <ClInclude Include="ca\ca_se_translator.want_to_remove.h" />
@@ -1402,6 +1402,7 @@
     <ClCompile Include="ca\ca_print_job.cpp" />
     <ClCompile Include="ca\ca_profiler.cpp" />
     <ClCompile Include="ca\ca_region.cpp" />
+    <ClCompile Include="ca\ca_section.cpp" />
     <ClCompile Include="ca\ca_session.cpp" />
     <ClCompile Include="ca\ca_smart_pointer.cpp" />
     <ClCompile Include="ca\ca_system.cpp" />

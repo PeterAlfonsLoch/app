@@ -2370,7 +2370,7 @@ namespace user
       {
          SetFocus();
       }
-      Application.set_keyboard_focus(this);
+      Application.user().set_keyboard_focus(this);
       System.set_mouse_focus_LButtonDown(this);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);

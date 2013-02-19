@@ -147,7 +147,7 @@ namespace user
       virtual void on_updata_data(::ca::data * pdata, int32_t iHint);
 
 
-      virtual bool create_control(class user::control::descriptor * pdescriptor);
+      virtual bool create_control(class ::user::control::descriptor * pdescriptor);
 
       virtual strsize char_hit_test(::ca::graphics * pdc, int32_t x, int32_t y);
 
@@ -165,7 +165,7 @@ namespace user
       bool should_load_full_file();
 
       void _001OnCalcLayout(::ca::graphics * pdc);
-      void _001OnCalcLayoutProc(user::elemental * pview, ::ca::graphics * pdc);
+      void _001OnCalcLayoutProc(::user::elemental * pview, ::ca::graphics * pdc);
 
       void FileSave();
       void OnFileUpdate();

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "app/appseed/ca2/cube5/cube5.h"
+#include "ca2/cube5/cube5.h"
 
 
 namespace cube8
@@ -18,7 +18,7 @@ namespace cube8
 
 
 
-#include "app/appseed/ca2/bergedge/bergedge.h"
+#include "ca2/bergedge/bergedge.h"
 
 
 

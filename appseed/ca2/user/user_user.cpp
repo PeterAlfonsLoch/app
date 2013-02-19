@@ -9,27 +9,27 @@ namespace ca2
    {
 
 
-      application::application()
+      user::user()
       {
 
-         //gen::application * papp = dynamic_cast <gen::application *>(System.GetThread()->m_pAppThread);
-         //gen::connect(papp->m_signalAppLanguageChange, this, &application::VmsGuiiOnAppLanguage);
+         //gen::user * papp = dynamic_cast <gen::user *>(System.GetThread()->m_pAppThread);
+         //gen::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
          m_pkeyboard = NULL;
          m_pwindowmap = NULL;
 
       }
 
-      application::~application()
+      user::~user()
       {
       }
 
 
 
-      bool application::initialize1()
+      bool user::initialize1()
       {
 
-         if(!::cubebase::application::initialize1())
+         if(!::cubebase::user::initialize1())
             return false;
 
          return true;
@@ -37,7 +37,7 @@ namespace ca2
       }
 
 
-      bool application::initialize()
+      bool user::initialize()
       {
 
 
@@ -50,13 +50,13 @@ namespace ca2
             System.factory().creatable_small < ::user::place_holder_container > ();
          }
 
-         if(!::cubebase::application::initialize())
+         if(!::cubebase::user::initialize())
             return false;
 
          return true;
       }
 
-      int32_t application::exit_instance()
+      int32_t user::exit_instance()
       {
          if(is_cube())
          {
@@ -68,21 +68,21 @@ namespace ca2
          }
          try
          {
-            ::visual::application::exit_instance();
+            ::visual::user::exit_instance();
          }
          catch(...)
          {
          }
          try
          {
-            ::database::application::exit_instance();
+            ::database::user::exit_instance();
          }
          catch(...)
          {
          }
          try
          {
-            ::ca4::application::exit_instance();
+            ::ca4::user::exit_instance();
          }
          catch(...)
          {
@@ -91,7 +91,7 @@ namespace ca2
       }
 
 
-      void application::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
+      void user::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
       {
          ::user::interaction_ptr_array wnda = frames();
          for(int32_t i = 0; i < wnda.get_size(); i++)
@@ -106,7 +106,7 @@ namespace ca2
       }
 
 
-      int32_t application::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)
+      int32_t user::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)
       {
          ::user::interaction_ptr_array wnda = frames();
          int32_t iCount = 0;
@@ -123,7 +123,7 @@ namespace ca2
           return iCount;
       }
 
-      int32_t application::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
+      int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
       {
          ::user::interaction_ptr_array wnda = frames();
          int32_t iCount = 0;
@@ -142,7 +142,7 @@ namespace ca2
          return iCount;
       }
 
-      int32_t application::GetVisibleFrameCount()
+      int32_t user::GetVisibleFrameCount()
       {
          ::user::interaction_ptr_array wnda = frames();
          int32_t iCount = 0;
@@ -159,12 +159,12 @@ namespace ca2
          return iCount;
       }
 
-      void application::VmsGuiiOnAppLanguage(gen::signal_object * pobject)
+      void user::VmsGuiiOnAppLanguage(gen::signal_object * pobject)
       {
-         SendMessageToWindows(gen::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
+         SendMessageToWindows(gen::user::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
 
-      string application::message_box(const char * pszMatter, gen::property_set & propertyset)
+      string user::message_box(const char * pszMatter, gen::property_set & propertyset)
       {
 
          class ::ca8::message_box box(this);

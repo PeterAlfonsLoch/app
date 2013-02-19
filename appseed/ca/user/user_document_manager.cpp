@@ -669,7 +669,7 @@ void document_manager::on_file_open()
    if (!do_prompt_file_name(createcontext->m_spCommandLine->m_varFile, 0 /*__IDS_OPENFILE */, 0 /*OFN_HIDEREADONLY | OFN_FILEMUSTEXIST*/, TRUE, NULL, NULL))
       return; // open cancelled
 
-   System.open_document_file(createcontext);
+   System.user().open_document_file(createcontext);
       // if returns NULL, the ::fontopus::user has already been alerted
 }
 

@@ -1142,7 +1142,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::gen::message::show_window, pshow, pobj)
 
-      db_server * pcentral = dynamic_cast < db_server * > (&System.db());
+      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)
          return;
       //DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
@@ -1165,7 +1165,7 @@ namespace filemanager
    void SimpleFileListInterface::file_size_add_request(bool bClear)
    {
       UNREFERENCED_PARAMETER(bClear);
-      db_server * pcentral = dynamic_cast < db_server * > (&System.db());
+      db_server * pcentral = dynamic_cast < db_server * > (&System.m_simpledb.db());
       if(pcentral == NULL)
          return;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;

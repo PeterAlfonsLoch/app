@@ -161,11 +161,11 @@ namespace ca2
             {
                ptext->_001SetText(m_loginthread.m_strUsername);
                if(m_loginthread.m_strUsername.is_empty())
-                  Application.set_keyboard_focus(pguie);
+                  Application.user().set_keyboard_focus(pguie);
                else
                {
                   pguie = m_pviewAuth->get_child_by_name("password");
-                  Application.set_keyboard_focus(pguie);
+                  Application.user().set_keyboard_focus(pguie);
                }
             }
 

@@ -5,74 +5,74 @@ namespace userpresence
 {
 
 
-   application::application()
+   userpresence::userpresence()
    {
       //m_strMainStringTable = "main_string_table.xml";
    }
 
-   application::~application()
+   userpresence::~userpresence()
    {
    }
 
-   bool application::initialize()
+   bool userpresence::initialize()
    {
 
-      m_dwAlive = ::get_tick_count();
+      //m_dwAlive = ::get_tick_count();
       
-      if(!::simpledb::application::initialize())
-         return false;
+      //if(!::simpledb::userpresence::initialize())
+        // return false;
 
 
       return true;
 
    }
 
-   bool application::finalize()
+   bool userpresence::finalize()
    {
 
-      if(!is_system())
+      if(!m_papp->is_system())
       {
          defer_finalize_user_presence();
       }
 
-      
+/*      
       try
       {
-         ::simpledb::application::finalize();
+         ::simpledb::userpresence::finalize();
       }
       catch(...)
       {
       }
-
+*/
 
       return true;
 
    }
 
-   void application::defer_initialize_user_presence()
+   void userpresence::defer_initialize_user_presence()
    {
 
       if(presence_central_container::is_initialized())
          return;
 
-      if(command().m_varTopicQuery.has_property("install")
-      || command().m_varTopicQuery.has_property("uninstall"))
+      if(Application.command().m_varTopicQuery.has_property("install")
+      || Application.command().m_varTopicQuery.has_property("uninstall"))
          return;
 
-      if(command().m_varTopicQuery["app"] == "simpledbcfg"
-      || command().m_varTopicQuery["app"] == "core_netnodelite"
-      || command().m_varTopicQuery["app"] == "netshareclient")
+      if(Application.command().m_varTopicQuery["app"] == "simpledbcfg"
+      || Application.command().m_varTopicQuery["app"] == "core_netnodelite"
+      || Application.command().m_varTopicQuery["app"] == "netshareclient")
          return;
 
-      if(command().m_varTopicQuery["app"] == "mydns")
+      if(Application.command().m_varTopicQuery["app"] == "mydns")
          return;
 
-      if(command().m_varTopicQuery["app"] == "app-core/tesseract/netnodecfg")
+      if(Application.command().m_varTopicQuery["app"] == "app-core/tesseract/netnodecfg")
          return;
 
       // it may not be initialized, due
       // licensing for example
-      if(presence_central_container::initialize_central_container(this))
+      if(presence_central_container::initialize_central_container(m_papp))
       {
          TRACE("user presence enabled");
       }
@@ -83,18 +83,18 @@ namespace userpresence
 
    }
 
-   void application::defer_finalize_user_presence()
+   void userpresence::defer_finalize_user_presence()
    {
 
       if(!presence_central_container::is_initialized())
          return;
 
-      if(command().m_varTopicQuery.has_property("install")
-      || command().m_varTopicQuery.has_property("uninstall"))
+      if(Application.command().m_varTopicQuery.has_property("install")
+      || Application.command().m_varTopicQuery.has_property("uninstall"))
          return;
 
-      if(command().m_varTopicQuery["app"] == "simpledbcfg"
-      || command().m_varTopicQuery["app"] == "core_netnodelite")
+      if(Application.command().m_varTopicQuery["app"] == "simpledbcfg"
+      || Application.command().m_varTopicQuery["app"] == "core_netnodelite")
          return;
 
       // it may not be initialized, due

@@ -29,10 +29,12 @@ namespace visual
 
 */
 
+
 namespace visual
 {
 
-   application::application()
+
+   visual::visual()
    {
       m_pimaging        = NULL;
       m_pfontcentral    = NULL;
@@ -40,7 +42,7 @@ namespace visual
       m_ecursor         = cursor_default;
    }
 
-   application::~application()
+   visual::~visual()
    {
       if(m_pimaging != NULL)
       {
@@ -48,37 +50,43 @@ namespace visual
       }
    }
 
-   imaging & application::imaging()
+
+   imaging & visual::imaging()
    {
+
       return *m_pimaging;
+
    }
 
-   bool application::initialize1()
+
+   bool visual::initialize1()
    {
 
-      if(!::userpresence::application::initialize1())
+      if(!::ca::section::initialize1())
          return false;
 
-      m_pfontcentral = new class font_central(this);
+      m_pfontcentral = new class font_central(get_app());
+
       if(m_pfontcentral == NULL)
          return false;
 
       if(!m_pfontcentral->Initialize())
          return false;
 
-      m_pimaging = new class imaging(this);
-      if(m_pimaging == NULL)
-         throw memory_exception(this);
+      m_pimaging = new class imaging(get_app());
 
+      if(m_pimaging == NULL)
+         throw memory_exception(get_app());
       
       return true;
 
    }
 
-   bool application::initialize()
+
+   bool visual::initialize()
    {
 
-      if(!::userpresence::application::initialize())
+      if(!::ca::section::initialize())
          return false;
 
       set_cursor_set_from_matter("cursor/antialiased-classic");
@@ -87,12 +95,12 @@ namespace visual
 
    }
 
-   class font_central & application::font_central()
+   class font_central & visual::font_central()
    {
       return *m_pfontcentral;
    }
 
-   cursor * application::set_cursor_file(e_cursor ecursor, const char * psz)
+   cursor * visual::set_cursor_file(e_cursor ecursor, const char * psz)
    {
       cursor * pcursor = get_cursor(ecursor);
       if(pcursor->load_from_file(psz))
@@ -105,7 +113,7 @@ namespace visual
       }
    }
 
-   cursor * application::set_cursor_matter(e_cursor ecursor, const char * pszMatter)
+   cursor * visual::set_cursor_matter(e_cursor ecursor, const char * pszMatter)
    {
       cursor * pcursor = get_cursor(ecursor);
       if(pcursor->load_from_matter(pszMatter))
@@ -118,23 +126,35 @@ namespace visual
       }
    }
 
-   cursor * application::get_cursor(e_cursor ecursor)
+
+   cursor * visual::get_cursor(e_cursor ecursor)
    {
+
       cursor * pcursor = NULL;
+
       if(m_cursormap.Lookup(ecursor, pcursor))
       {
+
          return pcursor;
+
       }
       else
       {
-         pcursor = new cursor(this);
+
+         pcursor = new cursor(get_app());
+
          pcursor->m_ecursor = ecursor;
+
          m_cursormap.set_at(ecursor, pcursor);
+
          return pcursor;
+
       }
+
    }
 
-   cursor * application::get_cursor()
+
+   cursor * visual::get_cursor()
    {
       if(m_ecursor == cursor_none)
          return NULL;
@@ -144,14 +164,14 @@ namespace visual
          return get_cursor(m_ecursor);
    }
 
-   void application::set_cursor(e_cursor ecursor)
+   void visual::set_cursor(e_cursor ecursor)
    {
       m_ecursor = ecursor;
       try
       {
-         if(m_psession != NULL)
+         if(m_papp->m_psession != NULL)
          {
-            m_psession->m_ecursor = ecursor;
+            m_papp->m_psession->visual().m_ecursor = ecursor;
          }
       }
       catch(...)
@@ -159,12 +179,12 @@ namespace visual
       }
    }
 
-   cursor * application::get_default_cursor()
+   cursor * visual::get_default_cursor()
    {
       return get_cursor(m_ecursorDefault);
    }
 
-   void application::set_default_cursor(e_cursor ecursor)
+   void visual::set_default_cursor(e_cursor ecursor)
    {
       if(ecursor == cursor_default)
       {
@@ -176,7 +196,7 @@ namespace visual
       }
    }
 
-   count application::set_cursor_set_from_matter(const char * pszMatter)
+   count visual::set_cursor_set_from_matter(const char * pszMatter)
    {
       return set_cursor_set_from_dir(
          System.dir().name(
@@ -184,7 +204,7 @@ namespace visual
                System.dir().path(pszMatter, "arrow.png"))));
    }
 
-   count application::set_cursor_set_from_dir(const char * pszDir)
+   count visual::set_cursor_set_from_dir(const char * pszDir)
    {
       count count = 0;
       if(set_cursor_file(::visual::cursor_arrow, System.dir().path(pszDir, "arrow.png")))
@@ -295,8 +315,8 @@ namespace visual
       return count;
    }
 
-   // should not call base class implementation because visual::application is inside a n-furcation of user::application
-   int32_t application::exit_instance()
+   // should not call base class implementation because visual::visual is inside a n-furcation of user::visual
+   int32_t visual::exit_instance()
    {
 
       int32_t iExitCode = 0;
@@ -304,7 +324,7 @@ namespace visual
       try
       {
 
-         iExitCode = ::userpresence::application::exit_instance();
+         iExitCode = ::ca::section::exit_instance();
 
       }
       catch(...)

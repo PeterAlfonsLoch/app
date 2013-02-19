@@ -1,8 +1,7 @@
 #pragma once
 
 
-#include "fontopus/fontopus.h"
-#include "cube8/cube8_application.h"
+#include "ca2/cube8/cube8.h"
 
 
 #include "nature_database.h"

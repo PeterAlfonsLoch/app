@@ -1030,10 +1030,10 @@ namespace user
    {
       if(pevent->m_eevent == ::user::event_tab_key)
       {
-         user::keyboard_focus * pfocus = pevent->m_puie->keyboard_get_next_focusable();
+         ::user::keyboard_focus * pfocus = pevent->m_puie->keyboard_get_next_focusable();
          if(pfocus != NULL)
          {
-            Application.set_keyboard_focus(pfocus);
+            Application.user().set_keyboard_focus(pfocus);
          }
       }
       else if(pevent->m_eevent == ::user::event_button_clicked)
@@ -1141,7 +1141,7 @@ namespace user
 
 
 
-   bool form::normalize_control_descriptor_typeinfo(class user::control::descriptor * pdescriptor)
+   bool form::normalize_control_descriptor_typeinfo(class ::user::control::descriptor * pdescriptor)
    {
 
       if(pdescriptor->m_typeinfo)
@@ -1151,7 +1151,7 @@ namespace user
 
       }
 
-      pdescriptor->m_typeinfo = System.controltype_to_typeinfo(pdescriptor->get_type());
+      pdescriptor->m_typeinfo = System.user().controltype_to_typeinfo(pdescriptor->get_type());
 
       if(pdescriptor->m_typeinfo)
       {

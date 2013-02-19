@@ -6,7 +6,8 @@ namespace planebase
 
 
    class CLASS_DECL_ca application :
-      virtual public ca4::application
+      virtual public ca4::application,
+      virtual public ::database::client
    {
    public:
 
@@ -21,9 +22,9 @@ namespace planebase
 
       bool                                m_bIfs;
       bool                                m_bUpdateMatterOnInstall;
-      ::user::user                        m_user;
-      ::fs::fs                            m_fs;
-      ::fontopus::fontopus                m_fontopus;
+      ::user::user                      * m_puser;
+      ::fs::fs                          * m_pfs;
+      ::fontopus::fontopus              * m_pfontopus;
       ::simpledb::simpledb                m_simpledb;
       ::visual::visual                    m_visual;
 
@@ -64,12 +65,18 @@ namespace planebase
       virtual int32_t exit_instance();
 
 
-      inline class ::ca::dir::application       & dir()        { return m_dir       ; }
-      inline class ::ca::file::application      & file()       { return m_file      ; }
-      inline class ::ca4::http::application     & http()       { return m_http      ; }
-      inline class ::fontopus::license          & license()    { return m_splicense ; }
-      inline class ::fs::data                   * fs()         { return m_spfsdata  ; }
+      inline class ::ca::dir::application       & dir()        { return m_dir          ; }
+      inline class ::ca::file::application      & file()       { return m_file         ; }
+      inline class ::ca4::http::application     & http()       { return m_http         ; }
+      inline class ::fontopus::license          & license()    { return m_splicense    ; }
+      inline class ::fs::data                   * fs()         { return m_spfsdata     ; }
+      inline class ::user::user                 & user()       { return *m_puser       ; }
+      inline class ::fontopus::fontopus         & fontopus()   { return *m_pfontopus   ; }
+      inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
+      inline class ::visual::visual             & visual()     { return m_visual       ; }
 
+      
+      virtual bool process_initialize();
 
       
       virtual bool initialize();
@@ -114,9 +121,9 @@ namespace planebase
       //
       ::document * hold(::user::interaction * pui);
 
-      virtual count get_monitor_count();
+      virtual ::count get_monitor_count();
       virtual bool  get_monitor_rect(index i, LPRECT lprect);
-      virtual count get_desk_monitor_count();
+      virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
 
@@ -140,6 +147,15 @@ namespace planebase
       virtual bool system_add_app_install(const char * pszId);
 
       virtual ::fontopus::user * get_user();
+
+
+      virtual ::fontopus::fontopus * create_fontopus();
+      virtual ::user::user * create_user();
+      virtual ::fs::fs * create_fs();
+
+
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & context) const;
 
    };
 

@@ -918,7 +918,7 @@ namespace ca2
             ::user::keyboard_focus * pfocus = pevent->m_puie->keyboard_get_next_focusable();
             if(pfocus != NULL)
             {
-               Application.set_keyboard_focus(pfocus);
+               Application.user().set_keyboard_focus(pfocus);
             }
          }
          else if(pevent->m_eevent == ::user::event_button_clicked)
