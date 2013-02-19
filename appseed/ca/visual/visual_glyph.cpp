@@ -518,7 +518,7 @@ namespace visual
       UNREFERENCED_PARAMETER(dRateX);
       UNREFERENCED_PARAMETER(lppointOffset);
 
-      //System.visual()->DrawAndFillBeziers(pdc, &m_pointsets, dRateX, lppointOffset);
+      //System.visual().api().DrawAndFillBeziers(pdc, &m_pointsets, dRateX, lppointOffset);
 
    }
 

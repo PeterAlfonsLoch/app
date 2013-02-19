@@ -1436,9 +1436,6 @@
     <ClInclude Include="visual\visual.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
-    <ClInclude Include="visual\visual_application.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
     <ClInclude Include="visual\visual_cursor.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
@@ -3242,6 +3239,9 @@
     <ClInclude Include="ca4\ca4_twit.h">
       <Filter>Header Files\ca4</Filter>
     </ClInclude>
+    <ClInclude Include="ca\ca_section.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -3432,9 +3432,6 @@
     </ClCompile>
     <ClCompile Include="xml\xml_XMLite.cpp">
       <Filter>Source Files\xml</Filter>
-    </ClCompile>
-    <ClCompile Include="fontopus\fontopus_application.cpp">
-      <Filter>Source Files\fontopus</Filter>
     </ClCompile>
     <ClCompile Include="fontopus\fontopus_contact_list.cpp">
       <Filter>Source Files\fontopus</Filter>
@@ -3736,9 +3733,6 @@
     <ClCompile Include="compress\rar\rar3_vm.cpp">
       <Filter>Source Files\compress\rar</Filter>
     </ClCompile>
-    <ClCompile Include="fs\fs_application.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_data.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
@@ -4009,9 +4003,6 @@
     <ClCompile Include="visual\visual_api.cpp">
       <Filter>Source Files\visual</Filter>
     </ClCompile>
-    <ClCompile Include="visual\visual_application.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
     <ClCompile Include="visual\visual_buffered_graphics.cpp">
       <Filter>Source Files\visual</Filter>
     </ClCompile>
@@ -4062,9 +4053,6 @@
     </ClCompile>
     <ClCompile Include="visual\visual_water_routine.cpp">
       <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_application.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_draw_context.cpp">
       <Filter>Source Files\user</Filter>
@@ -4269,9 +4257,6 @@
     </ClCompile>
     <ClCompile Include="colorertake5\colorertake5_exception.cpp">
       <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="userpresence\userpresence_application.cpp">
-      <Filter>Source Files\userpresence</Filter>
     </ClCompile>
     <ClCompile Include="userpresence\userpresence_user_presence.cpp">
       <Filter>Source Files\userpresence</Filter>
@@ -5403,6 +5388,21 @@
     </ClCompile>
     <ClCompile Include="ca4\ca4_oauth.cpp">
       <Filter>Source Files\ca4</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_fontopus.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_fs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="userpresence\userpresence_userpresence.cpp">
+      <Filter>Source Files\userpresence</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_section.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

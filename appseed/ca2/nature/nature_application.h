@@ -1,12 +1,15 @@
 #pragma once
 
+
 namespace nature
 {
 
+
    class database;
 
+
    class CLASS_DECL_ca2 application :
-      virtual public ::cube8::application
+      virtual public ::cube::application
    {
    public:
 

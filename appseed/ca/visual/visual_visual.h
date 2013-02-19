@@ -40,15 +40,29 @@ namespace visual
       ::collection::map < e_cursor, e_cursor, cursor *, cursor * > m_cursormap;
       e_cursor m_ecursor;
       e_cursor m_ecursorDefault;
+            class ::visual::api *                        m_pvisualapi;
+
 
 
       visual();
       virtual ~visual();
 
 
-      virtual class imaging & imaging();
+      virtual void construct(::ca::application * papp);
+
+      virtual bool process_initialize();
+      
       virtual bool initialize();
       virtual bool initialize1();
+
+      virtual bool finalize();
+
+
+      virtual class api & api();
+      virtual class imaging & imaging();
+            
+
+
       class font_central & font_central();
       class font_central * m_pfontcentral;
       cursor * set_cursor_file(e_cursor ecursor, const char * psz);

@@ -32,7 +32,7 @@ namespace user
 //      using pha(::user::interaction)::find_first;
       ::user::interaction * find_first(::ca::type_info info);
       ::user::interaction * find_first(oswindow oswindow);
-      void get_wnda(user::oswindow_array & oswindowa);
+      void get_wnda(::user::oswindow_array & oswindowa);
       void send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
       void send_message_to_descendants(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
    };

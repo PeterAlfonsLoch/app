@@ -15,6 +15,7 @@ namespace cube5
       ::userbase::userbase              * m_puserbase;
       ::userex::userex                  * m_puserex;
       ::html::html                      * m_phtml;
+      filemanager::_shell::ImageSet     * m_pshellimageset;
 
 
       application();
@@ -48,18 +49,13 @@ namespace cube5
 #endif
 
 
-      filemanager::_shell::ImageSet * m_pshellimageset;
 
 
-      application();
-      virtual ~application();
 
       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
 
       filemanager::_shell::ImageSet & shellimageset();
 
-      virtual bool initialize1();
-      virtual bool initialize();
       
       string message_box(const char * pszMatter, gen::property_set & propertyset);
       using ::radix::application::simple_message_box;

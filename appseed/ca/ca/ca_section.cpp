@@ -25,6 +25,14 @@ namespace ca
    }
 
 
+   bool section::process_initialize()
+   {
+
+      return true;
+
+   }
+
+
    bool section::initialize()
    {
 

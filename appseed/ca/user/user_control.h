@@ -230,7 +230,7 @@ namespace user
       virtual void GetWindowRect(LPRECT lprect);
 
 
-      bool operator == (const class user::control::descriptor & descriptor) const;
+      bool operator == (const class ::user::control::descriptor & descriptor) const;
       bool operator == (const class control & control) const;
 
 

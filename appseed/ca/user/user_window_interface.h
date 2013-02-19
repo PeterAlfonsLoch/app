@@ -197,21 +197,21 @@ namespace user
       //   HRGN hrgn);
 
       void Optimize008(
-         user::oswindow_tree::Array & oswindowtreea,
+         ::user::oswindow_tree::Array & oswindowtreea,
          LPCRECT lpcrect);
 
       EOptimize Optimize008(
-         user::oswindow_tree::Array & oswindowtreea,
+         ::user::oswindow_tree::Array & oswindowtreea,
          HRGN hrgn);
 
       EOptimize Optimize008(
-         user::oswindow_tree & oswindowtree,
+         ::user::oswindow_tree & oswindowtree,
          HRGN hrgn);
 
 
 
-      void TwfGetWndArray(user::interaction_ptr_array & wndpa);
-      void TwfGetWndArray(user::oswindow_array & oswindowa);
+      void TwfGetWndArray(::user::interaction_ptr_array & wndpa);
+      void TwfGetWndArray(::user::oswindow_array & oswindowa);
 
       virtual bool Redraw(rect_array & recta);
       virtual bool Redraw(LPCRECT lprect = NULL, ::ca::region * prgn = NULL);

@@ -18,11 +18,6 @@ namespace cube8
 
 
 
-#include "ca2/bergedge/bergedge.h"
-
-
-
-
 #include "cube8_application.h"
 
 

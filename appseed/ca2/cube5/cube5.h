@@ -29,7 +29,6 @@ namespace cube5
 
 #include "ca2/fs/fs.h"
 #include "ca2/filemanager/filemanager.h"
-#include "ca2/calculator/calculator.h"
 #include "ca2/fontopus/fontopus.h"
 
 

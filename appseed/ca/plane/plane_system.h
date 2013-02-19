@@ -293,7 +293,6 @@ namespace plane
       class factory *                              m_pfactory;
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
-      class ::visual::api *                        m_pvisualapi;
       //      ::sockets::net                               m_net;
       //      sp(::ca2::filehandler::handler)  m_spfilehandler;
 
@@ -414,7 +413,6 @@ namespace plane
       class ::ca::log                  & log();
 
       ::ca::window_draw                * get_twf();
-      ::visual::api                    * visual();
 
       FT_Library                       & ftlibrary();
 

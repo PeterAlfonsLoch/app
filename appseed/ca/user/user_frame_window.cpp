@@ -1075,8 +1075,8 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
    SetActiveWindow();      // activate us first !
    UINT nFiles = ::DragQueryFile(hDropInfo, (UINT)-1, NULL, 0);
 
-   ::user::application* pApp = &System;
-   ASSERT(pApp != NULL);
+   ::user::user* puser = &System.user();
+   ASSERT(puser != NULL);
    for (UINT iFile = 0; iFile < nFiles; iFile++)
    {
       char szFileName[_MAX_PATH];
@@ -1085,7 +1085,7 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
       ::ca::create_context_sp createcontext(get_app());
       createcontext->m_spCommandLine->m_varFile = szFileName;
 
-      pApp->open_document_file(createcontext);
+      puser->open_document_file(createcontext);
    }
    ::DragFinish(hDropInfo);
 

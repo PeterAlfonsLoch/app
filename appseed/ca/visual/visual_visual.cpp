@@ -40,6 +40,7 @@ namespace visual
       m_pfontcentral    = NULL;
       m_ecursorDefault  = cursor_arrow;
       m_ecursor         = cursor_default;
+      m_pvisualapi      = NULL;
    }
 
    visual::~visual()
@@ -48,8 +49,30 @@ namespace visual
       {
          delete m_pimaging;
       }
+
+      if(m_pvisualapi != NULL)
+      {
+         delete m_pvisualapi;
+      }
+
    }
 
+
+   void visual::construct(::ca::application * papp)
+   {
+
+      ::ca::section::construct(papp);
+
+      m_pvisualapi               = new ::visual::api(papp);
+
+   }
+
+   api & visual::api()
+   {
+
+      return *m_pvisualapi;
+
+   }
 
    imaging & visual::imaging()
    {
@@ -83,6 +106,20 @@ namespace visual
    }
 
 
+   bool visual::process_initialize()
+   {
+
+      if(!::ca::section::process_initialize())
+         return false;
+
+      if(!m_pvisualapi->open())
+         return false;
+
+      return true;
+
+   }
+
+
    bool visual::initialize()
    {
 
@@ -94,6 +131,30 @@ namespace visual
       return true;
 
    }
+
+
+   bool visual::finalize()
+   {
+
+      bool bOk = true;
+
+      try
+      {
+
+         bOk = m_pvisualapi->close();
+
+      }
+      catch(...)
+      {
+
+         bOk = false;
+
+      }
+
+      return bOk;
+      
+   }
+
 
    class font_central & visual::font_central()
    {

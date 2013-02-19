@@ -696,7 +696,7 @@ public:
 namespace user
 {
 
-   class application;
+   class user;
 
 
 } // namespace user

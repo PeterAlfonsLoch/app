@@ -86,7 +86,7 @@ namespace user
 
 
       virtual bool create_control(class control::descriptor * pdescriptor);
-      virtual bool normalize_control_descriptor_typeinfo(class user::control::descriptor * pdescriptor);
+      virtual bool normalize_control_descriptor_typeinfo(class ::user::control::descriptor * pdescriptor);
 
       bool operator == (const control & control) const;
 

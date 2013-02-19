@@ -18,6 +18,9 @@ namespace ca
       virtual void construct(::ca::application * papp);
 
 
+      virtual bool process_initialize();
+
+
       virtual bool initialize();
       virtual bool initialize1();
       virtual bool initialize2();

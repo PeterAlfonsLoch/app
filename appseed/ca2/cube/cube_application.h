@@ -6,7 +6,7 @@ namespace cube
 
 
    class CLASS_DECL_ca2 application : 
-      public ::userstack::application
+      public ::cube8::application
    {
    public:
       

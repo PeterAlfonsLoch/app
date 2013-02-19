@@ -30,6 +30,9 @@ namespace ca
       m_psystem            = NULL;
 
 
+      m_pappCube           = NULL;
+
+
    }
 
 

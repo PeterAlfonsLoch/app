@@ -8,7 +8,9 @@ namespace cube
    application::application()
    {
 
-      m_bLicense = false;
+      m_bLicense     = false;
+
+      m_pappCube     = this;
 
    }
 

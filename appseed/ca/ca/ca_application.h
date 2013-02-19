@@ -63,6 +63,14 @@ namespace fontopus
 } // namespace fontopus
 
 
+namespace cube
+{
+
+   class application;
+
+}
+
+
 namespace ca
 {
 
@@ -99,6 +107,7 @@ namespace ca
       main_init_data *              m_pinitmaindata;
       bool                          m_bService;
       ::plane::application *        m_pappThis;
+      ::cube::application *         m_pappCube;
       bool                          m_bZipIsDir;
       ::plane::system *             m_psystem;
       ::plane::session *            m_psession;

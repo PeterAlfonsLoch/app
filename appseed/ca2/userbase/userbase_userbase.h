@@ -11,7 +11,7 @@ namespace userbase
    class document;
 
 
-   class CLASS_DECL_ca2 application :
+   class CLASS_DECL_ca2 userbase :
       virtual public ::ca::section,
       virtual public BaseMenuCentralContainer
    {
@@ -22,8 +22,8 @@ namespace userbase
       ::user::front_end *           m_pufe;
 
 
-      application();
-      virtual ~application();
+      userbase();
+      virtual ~userbase();
 
 
       virtual void AddToRecentFileList(const char * lpszPathName);
