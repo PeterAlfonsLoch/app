@@ -124,7 +124,7 @@ namespace simpledb
          return false; 
       }
 
-      ::database::client::initialize(m_pserver);
+      ::database::client::initialize_data_client(m_pserver);
 
 //      ::ca2::application_request * prequest = System.get_application_request();
 

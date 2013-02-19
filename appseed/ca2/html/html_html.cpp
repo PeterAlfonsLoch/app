@@ -1,36 +1,51 @@
 #include "framework.h"
 
-namespace html
+
+namespace ca2
 {
 
-   application::application()
-   {
-   }
 
-   application::~application()
-   {
-   }
-
-   bool application::initialize()
+   namespace html
    {
 
-      if(is_cube())
+
+      html::html()
       {
-         System.factory().creatable_small < html_document > ();
-         System.factory().creatable_small < html_child_frame > ();
-         System.factory().creatable_small < html_frame > ();
-         System.factory().creatable_small < html_view > ();
-         System.factory().creatable_small < ::html::data::image > ();
-         System.factory().creatable_small < ::html::data > ();
+
       }
 
-      if(!::userbase::application::initialize())
-         return false;
+
+      html::~html()
+      {
+
+      }
+
+
+      bool html::initialize()
+      {
+
+         if(Application.is_cube())
+         {
+            System.factory().creatable_small < html_document > ();
+            System.factory().creatable_small < html_child_frame > ();
+            System.factory().creatable_small < html_frame > ();
+            System.factory().creatable_small < html_view > ();
+            System.factory().creatable_small < ::html::data::image > ();
+            System.factory().creatable_small < ::html::data > ();
+         }
+
+         if(!::html::html::initialize())
+            return false;
+
+         return true;
+
+      }
+
+
+   } // namespace html
+
+
+} // namespace ca2
 
 
 
-      return true;
-   }
-
-
-} // namespace html

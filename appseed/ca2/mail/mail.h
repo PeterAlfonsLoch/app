@@ -1,19 +1,15 @@
 #pragma once
  
 
-#include "ca2/filehandler/filehandler.h"
-
-
-
 namespace mail
 {
    
-   class application;
+   class mail;
 
 } // namespace mail
 
 
-#include "db_pop3.h"
+#include "mail_db_pop3.h"
 
 
 #include "mail_account.h"
@@ -24,6 +20,6 @@ namespace mail
 #include "mail_list_interface.h"
 
 
-#include "application.h"
+#include "mail_mail.h"
 
 

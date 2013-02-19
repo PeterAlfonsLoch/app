@@ -7,12 +7,13 @@ namespace cube5 // cube5 + ca8
 
    application::application()
    {
-      m_pkeyboardfocus  = NULL;
-      m_pshellimageset  = NULL;
+
    }
+
 
    application::~application()
    {
+
    }
 
 
@@ -21,10 +22,50 @@ namespace cube5 // cube5 + ca8
 
       m_dwAlive = ::get_tick_count();
 
-      if(!ca2::fs::application::initialize1())
+      if(!cubebase::application::initialize1())
          return false;
 
+      m_dwAlive = ::get_tick_count();
+
+      enum_display_monitors();
+
+
+      rect rect;
+      get_monitor_rect(0, &rect);
+      for(int32_t i = 1; i < get_monitor_count(); i++)
+      {
+         class rect rectMonitor;
+         get_monitor_rect(i, &rectMonitor);
+         rect.unite(rect, &rectMonitor);
+      }
+
+#ifdef WINDOWSEX
+
+      m_monitorinfoaDesk = m_monitorinfoa;
+
+#else
+
+      //throw todo(get_app());
+
+#endif
+
+      /*if(m_monitorinfoa.get_size() == 1)
+      {
+         MONITORINFO mi = m_monitorinfoaDesk.last_element();
+         m_monitorinfoaDesk[0].rcMonitor.right = mi.rcMonitor.right /2;
+         m_monitorinfoaDesk.add(mi);
+         m_monitorinfoaDesk.last_element().rcMonitor.left = mi.rcMonitor.right / 2;
+
+      }*/
+
+      /*if(get_twf() != NULL)
+      {
+         get_twf()->Update(rect);
+      }*/
+
+
       return true;
+
    }
 
    bool application::initialize()
@@ -37,25 +78,50 @@ namespace cube5 // cube5 + ca8
          System.factory().creatable_small < keyboard_layout > ();
       }
 
-      m_pshellimageset = new filemanager::_shell::ImageSet(this);
-
-
-      m_puserex = new ::userex::userex();
+      if(!::cubebase::application::initialize())
+         return false;
 
       m_phtml = new ::html::html();
 
+      m_phtml->construct(this);
 
-      if(!::ca2::fs::application::initialize())
+      if(!m_phtml->initialize())
          return false;
 
+      m_puserbase = new ::userbase::userbase();
+
+      m_puserbase->construct(this);
+
+      if(!m_puserbase->initialize())
+         return false;
+
+      m_puserex = new ::userex::userex();
+
+      m_puserex->construct(this);
+
+      if(!m_puserex->initialize())
+         return false;
+
+      m_pfilemanager = new ::filemanager::filemanager();
+
+      ::radix::application::m_pfilemanager = m_pfilemanager;
+
+      m_pfilemanager->construct(this);
+
+      if(!m_pfilemanager->initialize())
+         return false;
+
+      m_pmail = new ::mail::mail();
+
+      m_pmail->construct(this);
+
+      if(!m_pmail->initialize())
+         return false;
+
+      m_dwAlive = ::get_tick_count();
 
       return true;
 
-   }
-
-   filemanager::_shell::ImageSet & application::shellimageset()
-   {
-      return *m_pshellimageset;
    }
 
    string application::message_box(const char * pszMatter, gen::property_set & propertyset)
@@ -178,7 +244,7 @@ namespace cube5 // cube5 + ca8
 
    bool application::set_keyboard_layout(const char * pszPath, bool bUser)
    {
-      return keyboard().load_layout(pszPath, bUser);
+      return user().keyboard().load_layout(pszPath, bUser);
    }
 
 
@@ -230,8 +296,6 @@ namespace cube5 // cube5 + ca8
 
    void application::data_on_after_change(gen::signal_object * pobj)
    {
-      simpledb::application::data_on_after_change(pobj);
-      userbase::application::data_on_after_change(pobj);
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2_fontopus_votagus")
       {
@@ -243,79 +307,6 @@ namespace cube5 // cube5 + ca8
    }
 
 
-   application::application()
-   {
-      m_pkeyboardfocus = NULL;
-
-   }
-
-   application::~application()
-   {
-   }
-
-   bool application::initialize1()
-   {
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!ca8::application::initialize1())
-         return true;
-
-
-      enum_display_monitors();
-
-
-      rect rect;
-      get_monitor_rect(0, &rect);
-      for(int32_t i = 1; i < get_monitor_count(); i++)
-      {
-         class rect rectMonitor;
-         get_monitor_rect(i, &rectMonitor);
-         rect.unite(rect, &rectMonitor);
-      }
-
-#ifdef WINDOWSEX
-
-      m_monitorinfoaDesk = m_monitorinfoa;
-
-#else
-
-      //throw todo(get_app());
-
-#endif
-
-      /*if(m_monitorinfoa.get_size() == 1)
-      {
-         MONITORINFO mi = m_monitorinfoaDesk.last_element();
-         m_monitorinfoaDesk[0].rcMonitor.right = mi.rcMonitor.right /2;
-         m_monitorinfoaDesk.add(mi);
-         m_monitorinfoaDesk.last_element().rcMonitor.left = mi.rcMonitor.right / 2;
-
-      }*/
-
-      /*if(get_twf() != NULL)
-      {
-         get_twf()->Update(rect);
-      }*/
-      return true;
-   }
-
-   bool application::initialize()
-   {
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!ca8::application::initialize())
-         return false;
-      if(!filemanager::application::initialize())
-         return false;
-      if(!calculator::application::initialize())
-         return false;
-
-      return true;
-   }
-
-
    bool application::final_handle_exception(::ca::exception & e)
    {
       base_exception * pbe = dynamic_cast < standard_exception * > (&e);
@@ -323,7 +314,7 @@ namespace cube5 // cube5 + ca8
       {
          TRACE(pbe->stack_trace());
       }
-      return ca8::application::final_handle_exception(e);
+      return cube5::application::final_handle_exception(e);
    }
 
 // 23 = Carlinhos Gustavinho Cecynzinho Lundgrenzinho
@@ -336,8 +327,7 @@ namespace cube5 // cube5 + ca8
 
       m_monitorinfoa.remove_all();
 
-      ::EnumDisplayMonitors(NULL, NULL, &application::monitor_enum_proc,
-         (LPARAM) ( dynamic_cast < cube1::application * > (this)));
+      ::EnumDisplayMonitors(NULL, NULL, &application::monitor_enum_proc, (LPARAM) ( dynamic_cast < ::cube5::application * > (this)));
 
 #else
 
@@ -356,7 +346,7 @@ namespace cube5 // cube5 + ca8
      LPRECT lprcMonitor,
      LPARAM dwData)
    {
-      cube1::application * papp = (cube1::application *) dwData;
+      cube5::application * papp = (cube5::application *) dwData;
       papp->monitor_enum(hmonitor, hdcMonitor, lprcMonitor);
       return TRUE; // to enumerate all
    }

@@ -1369,10 +1369,10 @@ void XfplayerViewLine::EmbossedTextOut(
    m_dc1.SetTextColor(RGB(255, 255, 255));
    ::TextOutW(m_dc1.get_os_data(), 0, 0, lpcsz, iLen);
 
-   Application.m_visual.imaging().channel_gray_blur(&m_dc1,0, 0, size.cx, size.cy,
+   Application.visual().imaging().channel_gray_blur(&m_dc1,0, 0, size.cx, size.cy,
       &m_dc1, 0, 0, 0, 2);
 
-   Application.m_visual.imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy,
+   Application.visual().imaging().clip_color_blend(pdc, iLeft, iTop, size.cx, size.cy,
       crOutline, &m_dc1, 0, 0);
 
 
@@ -1467,9 +1467,9 @@ void XfplayerViewLine::EmbossedTextOut(
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
-      Application.m_visual.imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), ::size(m_dibMain->cx, m_dibMain->cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
+      Application.visual().imaging().color_blend(pdc, point(iLeft - 1, iTop - 1), ::size(m_dibMain->cx, m_dibMain->cy), m_dibMain->get_graphics(), point(iLeft, 0), dBlend);
 
-      Application.m_visual.imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int32_t) iLen, cr, dBlend);
+      Application.visual().imaging().AlphaTextOut(pdc, iLeft, iTop, lpcsz, (int32_t) iLen, cr, dBlend);
 
    }
 
@@ -1526,17 +1526,17 @@ void XfplayerViewLine::CacheEmboss(::ca::application * papp, ::ca::graphics * pd
 
    m_dcextension.TextOut(pdcCache, (int32_t) (long) (max(2.0, m_floatRateX * 8.0)) / 2, (int32_t) 1 * long (max(2.0, m_floatRateX * 8.0)) / 2, lpcsz, iLen);
 
-   Application.m_visual.imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
+   Application.visual().imaging().channel_spread_set_color(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 2.0)), ARGB(23, 23, 23, 23));
 
    pdcCache->set_alpha_mode(::ca::alpha_mode_blend);
-   Application.m_visual.imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 3.0)));
-   Application.m_visual.imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 3.0)));
+   Application.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 3.0)));
+   Application.visual().imaging().channel_alpha_gray_blur(pdcCache, null_point(), size, pdcCache, null_point(), 0, int32_t (max(1.0, m_floatRateX * 3.0)));
 
    /*pdibCache->fill_channel(92, ::visual::rgba::channel_blue);
    pdibCache->fill_channel(92, ::visual::rgba::channel_green);
    pdibCache->fill_channel(92, ::visual::rgba::channel_red);*/
 
-   //Application.m_visual.imaging().pre_color_blend(pdcCache, pdcCache, ARGB(92, 92, 92, 92));
+   //Application.visual().imaging().pre_color_blend(pdcCache, pdcCache, ARGB(92, 92, 92, 92));
 
    pdibCache->set(0, 0, 0);
 

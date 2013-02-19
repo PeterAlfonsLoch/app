@@ -140,8 +140,7 @@ namespace user
 
          pta.offset(lpcrect->left, lpcrect->top);
 
-         visual::visual visual(pdc);
-         visual.Polygon(pta);
+         pdc->Polygon(pta);
 
       }
 

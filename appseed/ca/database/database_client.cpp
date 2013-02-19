@@ -11,12 +11,12 @@ namespace database
    }
 
 
-   void client::initialize(server * pserver)
+   void client::initialize_data_client(server * pserver)
    {
-      set_server(pserver);
+      set_data_server(pserver);
    }
 
-   bool client::set_server(server * pserver)
+   bool client::set_data_server(server * pserver)
    {
       if(pserver != NULL)
       {

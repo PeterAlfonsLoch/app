@@ -12,14 +12,18 @@ namespace mail
       virtual public pop3
    {
    public:
-      sqlite::base *       m_pdatabase;
-      sqlite::set *        m_pdataset;
+      
+      
+      ::sqlite::base        * m_pdatabase;
+      ::sqlite::set         * m_pdataset;
 
-      mail::account *      m_paccount;
-      critical_section     m_csDataset;
-      string               m_strTransaction;
+      ::mail::account       * m_paccount;
+      critical_section        m_csDataset;
+      string                  m_strTransaction;
+
 
       db_pop3(::ca::application * papp);
+
 
       virtual string get_user();
       virtual string get_pass();

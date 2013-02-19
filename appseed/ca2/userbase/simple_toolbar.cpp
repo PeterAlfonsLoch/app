@@ -224,7 +224,7 @@ void simple_toolbar::_001OnDraw(::ca::graphics *pdc)
    get_handle(), (bWin4 ? WM_PRINT : WM_PAINT),
    (WPARAM)(pdc->get_handle1()),
    (LPARAM)(bWin4 ? PRF_CHILDREN | PRF_CLIENT : 0));*/
-   pdc->SelectObject(System.font_central().GetMenuFont());
+   pdc->SelectObject(System.visual().font_central().GetMenuFont());
    pdc->SetBkMode(TRANSPARENT);
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
@@ -352,7 +352,7 @@ void simple_toolbar::_001OnCreate(gen::signal_object * pobj)
 }
 
 
-void simple_toolbar::OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler)
+void simple_toolbar::OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler)
 {
 
    SimpleToolCmdUI state(get_app());
@@ -570,7 +570,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
    rect rectItem;
    rect rectImage;
 
-   pdc->SelectObject(System.font_central().GetMenuFont());
+   pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
 #ifdef WINDOWSEX
 
@@ -656,7 +656,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
             _001GetItemRect(iItem, rectImage, ElementImage);
             if((m_dwCtrlStyle & TBSTYLE_FLAT) == TBSTYLE_FLAT)
             {
-               Application.m_visual.imaging().color_blend(
+               Application.visual().imaging().color_blend(
                   pdc,
                   rectItem.left,
                   rectItem.top,
@@ -710,7 +710,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
             {
                rect rect;
                _001GetItemRect(iItem, rect, ElementImageHover);
-               Application.m_visual.imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
+               Application.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.84);
             }
             else if(uiImage != 0xffffffffu)
             {
@@ -747,7 +747,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
          {
             rect rect;
             _001GetItemRect(iItem, rect, ElementImagePress);
-            Application.m_visual.imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
+            Application.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 1.0);
          }
          else if(uiImage != 0xffffffff)
          {
@@ -766,7 +766,7 @@ void simple_toolbar::_001DrawItem(::ca::graphics * pdc, int32_t iItem)
          {
             rect rect;
             _001GetItemRect(iItem, rect, ElementImage);
-            Application.m_visual.imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
+            Application.visual().imaging().color_blend(pdc, rect.top_left(), rect.size(), item.m_spdib->get_graphics(), null_point(), 0.23);
          }
          else if(uiImage != 0xffffffff)
          {
@@ -1230,7 +1230,7 @@ void simple_toolbar::layout()
    class size sizeText;
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
-   spgraphics->SelectObject(System.font_central().GetMenuFont());
+   spgraphics->SelectObject(System.visual().font_central().GetMenuFont());
    for(int32_t iItem = 0; iItem < m_itema.get_size(); iItem++)
    {
       simple_toolbar_item & item = m_itema[iItem];
@@ -1533,7 +1533,7 @@ void simple_toolbar::_001OnImageListAttrib()
    }
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateDC("DISPLAY", NULL, NULL, NULL);
-   Application.m_visual.imaging().CreateHueImageList(
+   Application.visual().imaging().CreateHueImageList(
    &spgraphics,
    m_pimagelistHue,
    m_pimagelist,
@@ -1544,7 +1544,7 @@ void simple_toolbar::_001OnImageListAttrib()
    {
    m_pimagelistBlend = new image_list();
    }
-   Application.m_visual.imaging().Createcolor_blend_ImageList(
+   Application.visual().imaging().Createcolor_blend_ImageList(
    m_pimagelistBlend,
    m_pimagelist,
    RGB(255, 255, 240),
@@ -1554,7 +1554,7 @@ void simple_toolbar::_001OnImageListAttrib()
    {
    m_pimagelistHueLight = new image_list();
    }
-   Application.m_visual.imaging().CreateHueImageList(
+   Application.visual().imaging().CreateHueImageList(
    &spgraphics,
    m_pimagelistHueLight,
    m_pimagelist,

@@ -89,7 +89,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::ca::application * papp)
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
 
-   Application.m_visual.imaging().CreateHueImageList(
+   Application.visual().imaging().CreateHueImageList(
       &spgraphics,
       MenuV033GetImageListHueLight(),
       MenuV033GetImageList(),

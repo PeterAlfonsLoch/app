@@ -275,20 +275,20 @@ namespace platform
 
 
 
-      //pfi = Application.m_visual.imaging().LoadImageFile(
+      //pfi = Application.visual().imaging().LoadImageFile(
       // System.dir().standard_square_matter());
       m_dibV.load_from_matter("votagus_mountains_and_valleys-123.png");
 
-      //pfi = Application.m_visual.imaging().LoadImageFile(
+      //pfi = Application.visual().imaging().LoadImageFile(
       //System.dir().standard_square_matter());
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
 
-      //pfi = Application.m_visual.imaging().LoadImageFile(
+      //pfi = Application.visual().imaging().LoadImageFile(
       // System.dir().standard_square_matter());
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 
 
-      Application.m_visual.imaging().color_blend(m_dibBk->get_graphics(), 0, 0, 1280, 1024, ARGB(255, 235, 245, 255), 31);
+      Application.visual().imaging().color_blend(m_dibBk->get_graphics(), 0, 0, 1280, 1024, ARGB(255, 235, 245, 255), 31);
 
    }
    void view::_001OnContextMenu(gen::signal_object * pobj)
@@ -506,7 +506,7 @@ namespace platform
    {
       try
       {
-         Bergedge.open_document_file(pcreatecontext);
+         Bergedge.user().open_document_file(pcreatecontext);
       }
       catch(...)
       {

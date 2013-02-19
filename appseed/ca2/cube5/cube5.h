@@ -30,6 +30,7 @@ namespace cube5
 #include "ca2/fs/fs.h"
 #include "ca2/filemanager/filemanager.h"
 #include "ca2/fontopus/fontopus.h"
+#include "ca2/mail/mail.h"
 
 
 

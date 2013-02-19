@@ -13,7 +13,7 @@ html_document::html_document(::ca::application * papp) :
 bool html_document::on_new_document()
 {
 
-   ::database::client::initialize(get_app());
+   ::database::client::initialize_data_client(Application.simpledb().get_data_server());
 
    if (!::userbase::document::on_new_document())
       return FALSE;

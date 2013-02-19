@@ -28,7 +28,7 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-// // BEGIN_MESSAGE_MAP(simple_frame_window, userbase::frame_window)
+// // BEGIN_MESSAGE_MAP(simple_frame_window, ::userbase::frame_window)
    //{{__MSG_MAP(simple_frame_window)
 /* xxx   ON_WM_DESTROY()
    ON_WM_SIZE()
@@ -48,7 +48,7 @@ simple_frame_window::~simple_frame_window()
 
 void simple_frame_window::install_message_handling(::gen::message::dispatch * pinterface)
 {
-   userbase::frame_window::install_message_handling(pinterface);
+   ::userbase::frame_window::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE         , pinterface, this, &simple_frame_window::_001OnCreate);
    IGUI_WIN_MSG_LINK(WM_NCACTIVATE     , pinterface, this, &simple_frame_window::_001OnNcActivate);
 #ifdef WINDOWSEX
@@ -124,7 +124,7 @@ void simple_frame_window::_001OnDestroy(gen::signal_object * pobj)
 ::uinteraction::frame::frame * simple_frame_window::create_frame_schema()
 {
 
-   ::uinteraction::frame::frame * pschema = Application.get_frame_schema("app-core/uinteraction", "005");
+   ::uinteraction::frame::frame * pschema = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
 
    pschema->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
 
@@ -279,7 +279,7 @@ void simple_frame_window::_001OnMove(gen::signal_object * pobj)
 bool simple_frame_window::OnCreateClient(LPCREATESTRUCT lpcs, ::ca::create_context* pContext)
 {
 // trans   HICON hicon = GetIcon(false);
-   return userbase::frame_window::OnCreateClient(lpcs, pContext);
+   return ::userbase::frame_window::OnCreateClient(lpcs, pContext);
 }
 
 bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
@@ -292,7 +292,7 @@ bool simple_frame_window::pre_create_window(CREATESTRUCT& cs)
    }
 #endif
 
-   if(!userbase::frame_window::pre_create_window(cs))
+   if(!::userbase::frame_window::pre_create_window(cs))
       return FALSE;
 
 #ifdef WINDOWSEX
@@ -317,7 +317,7 @@ void simple_frame_window::layout()
    }
    else
    {
-      userbase::frame_window::layout();
+      ::userbase::frame_window::layout();
    }
 }
 
@@ -327,7 +327,7 @@ void simple_frame_window::ViewOnActivateFrame(::userbase::view * pview, UINT use
    UNREFERENCED_PARAMETER(user);
    UNREFERENCED_PARAMETER(pframe);
 //   if(pview != NULL)
-//      pview->OnActivateFrame(WA_INACTIVE, (userbase::frame_window *) pframe);
+//      pview->OnActivateFrame(WA_INACTIVE, (::userbase::frame_window *) pframe);
 }
 
 void simple_frame_window::_001OnGetMinMaxInfo(gen::signal_object * pobj)
@@ -526,7 +526,7 @@ void simple_frame_window::_001OnUpdateToggleCustomFrame(gen::signal_object * pob
 void simple_frame_window::ActivateFrame(int32_t nCmdShow)
 {
 
-   userbase::frame_window::ActivateFrame(nCmdShow);
+   ::userbase::frame_window::ActivateFrame(nCmdShow);
 }
 
 void simple_frame_window::GetBorderRect(LPRECT lprect)
@@ -620,7 +620,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
       }
 
    }
-   else if(papp->GetVisibleTopLevelFrameCountExcept(this) <= 0)
+   else if(papp->user().GetVisibleTopLevelFrameCountExcept(this) <= 0)
    {
 
       if(!papp->_001CloseApplicationByUser(this))
@@ -645,7 +645,7 @@ void simple_frame_window::OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS F
    }
    else
    {
-// trans      userbase::frame_window::OnNcCalcSize(bCalcValidRects, lpncsp);
+// trans      ::userbase::frame_window::OnNcCalcSize(bCalcValidRects, lpncsp);
    }
 
 }
@@ -744,7 +744,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
       HINSTANCE hInst = gen::FindResourceHandle(lpszMenuName, RT_MENU);
       if ((hMenu = ::LoadMenu(hInst, lpszMenuName)) == NULL)
       {
-         TRACE0("Warning: failed to load menu for userbase::frame_window.\n");
+         TRACE0("Warning: failed to load menu for ::userbase::frame_window.\n");
          PostNcDestroy();            // perhaps delete the C++ object
          return FALSE;
       }
@@ -756,7 +756,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, uint32_t dwDefaultSt
       rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top,
       pParentWnd->GetSafeoswindow_(), hMenu, (LPVOID)pContext))
    {
-      TRACE0("Warning: failed to create userbase::frame_window.\n");
+      TRACE0("Warning: failed to create ::userbase::frame_window.\n");
       if (hMenu != NULL)
          DestroyMenu(hMenu);
       return FALSE;
@@ -822,7 +822,7 @@ void simple_frame_window::pre_translate_message(gen::signal_object * pobj)
 #else
    //throw todo(get_app());
 #endif
-   return userbase::frame_window::pre_translate_message(pobj);
+   return ::userbase::frame_window::pre_translate_message(pobj);
 }
 
 
@@ -838,7 +838,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
       WindowDataLoadWindowRect(bForceRestore);
       WindowDataEnableSaveWindowRect(true);
    }
-   userbase::frame_window::InitialFramePosition(bForceRestore);
+   ::userbase::frame_window::InitialFramePosition(bForceRestore);
    if(m_workset.GetAppearance() != NULL && m_workset.GetAppearanceMode() == ::uinteraction::frame::AppearanceModeIconic)
    {
       WfiRestore();
@@ -857,7 +857,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::ca::graphics
    else
    {
 
-      userbase::frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
+      ::userbase::frame_window::_001OnDeferPaintLayeredWindowBackground(pdc);
    }
 }
 
@@ -878,7 +878,7 @@ void simple_frame_window::_000OnDraw(::ca::graphics * pdc)
    && !Session.savings().is_trying_to_save(gen::resource_memory))
    //&& (get_parent() != NULL || (this->GetExStyle() & WS_EX_LAYERED) != 0))
    {
-      userbase::frame_window::_000OnDraw(pdc);
+      ::userbase::frame_window::_000OnDraw(pdc);
    }
    else
    {
@@ -937,13 +937,13 @@ void simple_frame_window::_001OnDraw(::ca::graphics * pdc)
       pdc->SelectClipRgn(NULL);
    }
    #endif
-   userbase::frame_window::_001OnDraw(pdc);
+   ::userbase::frame_window::_001OnDraw(pdc);
 }
 
 
 void simple_frame_window::on_set_parent(::user::interaction* pguieParent)
 {
-   userbase::frame_window::on_set_parent(pguieParent);
+   ::userbase::frame_window::on_set_parent(pguieParent);
    if(m_pupdowntarget != NULL && m_pupdowntarget->is_up_down_target())
    {
       // an updowntarget always show the frame for upping/downing
@@ -983,7 +983,7 @@ void simple_frame_window::GetClientRect(LPRECT lprect)
    }
    else
    {
-      userbase::frame_window::GetClientRect(lprect);
+      ::userbase::frame_window::GetClientRect(lprect);
    }
 }
 

@@ -1902,7 +1902,7 @@ namespace user
          {
          }
       }
-      user::interaction * pui = get_top_child();
+      ::user::interaction * pui = get_top_child();
 //      int32_t iSize;
       try
       {

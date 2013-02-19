@@ -1022,7 +1022,7 @@ namespace ca2
          {
             return true;
          }
-         pdescriptor->m_typeinfo = System.controltype_to_typeinfo(pdescriptor->get_type());
+         pdescriptor->m_typeinfo = System.user().controltype_to_typeinfo(pdescriptor->get_type());
          if(pdescriptor->m_typeinfo)
          {
             return true;

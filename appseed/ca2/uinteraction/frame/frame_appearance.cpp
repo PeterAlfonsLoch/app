@@ -370,7 +370,7 @@ namespace uinteraction
          pdc->SelectObject(m_ppen);
          point pt(0, 0);
 
-         Sys(pdc->get_app()).visual()->DrawAndFillBeziers(
+         Sys(pdc->get_app()).visual().api().DrawAndFillBeziers(
             pdc,
             m_pointset.get_data(),
             (int32_t) m_pointset.get_size(),

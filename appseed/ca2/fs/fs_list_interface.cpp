@@ -606,7 +606,7 @@ namespace fs
    {
       if(i == 0)
       {
-         return System.shellimageset().GetImageList16();
+         return System.user().shellimageset().GetImageList16();
       }
       return NULL;
    }
@@ -841,7 +841,7 @@ namespace fs
          Item & item = m_itema.get_item((int32_t) m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
-         item.m_iImage = System.shellimageset().GetImage(
+         item.m_iImage = System.user().shellimageset().GetImage(
             _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
             gen::international::utf8_to_unicode(item.m_strExtra),

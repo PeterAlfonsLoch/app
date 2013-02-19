@@ -25,7 +25,7 @@ namespace nature
       System.factory().creatable_small < nature::frame > ();
       System.factory().creatable_small < nature::appearance_view > ();
 
-      if(!cube2::application::initialize_instance())
+      if(!cube::application::initialize_instance())
          return false;
 
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
@@ -40,7 +40,7 @@ namespace nature
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame ::ca::window
          System.type_info < pane_view > ());
-      userbase::application::add_document_template(pDocTemplate);
+      userbase().add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
 

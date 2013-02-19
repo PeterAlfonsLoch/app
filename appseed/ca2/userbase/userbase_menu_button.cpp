@@ -110,7 +110,7 @@ namespace userbase
       }
       else
       {
-         userbase::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pdc);
+         ::userbase::GetUfeSchema(get_app())->DrawCheck(m_echeck, m_rectCheckBox, pdc);
       }
    }
 

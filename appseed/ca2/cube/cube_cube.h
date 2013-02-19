@@ -6,7 +6,7 @@ namespace cube
 
 
    class CLASS_DECL_ca2 cube :
-      virtual public ::userstack::application
+      virtual public ::cube::application
    {
    public:
 
@@ -49,7 +49,7 @@ namespace cube
       DECL_GEN_SIGNAL(on_application_signal);
 
 
-      using ::userstack::application::process;
+      using ::cube::application::process;
       bool set_history(::ca::history * phistory);
 
 

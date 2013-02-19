@@ -24,10 +24,10 @@ namespace database
       virtual ~client();
 
 
-      virtual bool set_server(server * pserver);
+      virtual bool set_data_server(server * pserver);
 
 
-      void initialize(server * pserver);
+      void initialize_data_client(server * pserver);
 
       DECL_GEN_VSIGNAL(data_on_before_change)
       DECL_GEN_VSIGNAL(data_on_after_change)

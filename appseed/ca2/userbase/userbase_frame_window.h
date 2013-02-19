@@ -109,7 +109,7 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnSetFocus)
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnQueryEndSession)
-      friend class application;
+      friend class userbase;
 
       mini_dock_frame_window* CreateFloatingFrame(uint32_t dwStyle);
       uint32_t CanDock(rect rect, uint32_t dwDockStyle, BaseDockBar** ppDockBar = NULL); // called by CDockContext

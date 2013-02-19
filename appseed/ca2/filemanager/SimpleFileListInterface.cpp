@@ -447,7 +447,7 @@ namespace filemanager
          ::fs::list_item & item = get_fs_list_data()->m_itema.get_item((int32_t) m_iCreateImageListStep);
 
          ///IShellFolder * lpsf = m_pshellfolder;
-         item.m_iImage = System.shellimageset().GetImage(
+         item.m_iImage = System.user().shellimageset().GetImage(
             _GetWnd()->GetTopLevelParent()->get_handle(),
             item.m_strPath,
             NULL,
@@ -519,11 +519,11 @@ namespace filemanager
          column.m_bEditOnSecondClick   = false;
          if(GetFileManager()->get_filemanager_data()->m_iIconSize >= 48)
          {
-            column.m_pil                  = System.shellimageset().GetImageList48();
+            column.m_pil                  = System.user().shellimageset().GetImageList48();
          }
          else
          {
-            column.m_pil                  = System.shellimageset().GetImageList16();
+            column.m_pil                  = System.user().shellimageset().GetImageList16();
          }
          _001AddColumn(column);
          m_iSelectionSubItem = i;
@@ -569,12 +569,12 @@ namespace filemanager
       column.m_bEditOnSecondClick   = true;
       if(GetFileManager()->get_filemanager_data()->m_iIconSize >= 48)
       {
-         column.m_pilHover             = System.shellimageset().GetImageList48Hover();
-         column.m_pil                  = System.shellimageset().GetImageList48();
+         column.m_pilHover             = System.user().shellimageset().GetImageList48Hover();
+         column.m_pil                  = System.user().shellimageset().GetImageList48();
       }
       else
       {
-         column.m_pil                  = System.shellimageset().GetImageList16();
+         column.m_pil                  = System.user().shellimageset().GetImageList16();
       }
       _001AddColumn(column);
 
@@ -1109,7 +1109,7 @@ namespace filemanager
    {
       if(i == 0)
       {
-         return System.shellimageset().GetImageList16();
+         return System.user().shellimageset().GetImageList16();
       }
       return NULL;
    }

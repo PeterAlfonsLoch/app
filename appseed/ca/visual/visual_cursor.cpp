@@ -40,7 +40,7 @@ namespace visual
 
       pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
 
-      return Application.m_visual.imaging().color_blend(
+      return Application.visual().imaging().color_blend(
          pgraphics,
          point(x - m_ptHotspot.x, y - m_ptHotspot.y),
          m_dib->size(),

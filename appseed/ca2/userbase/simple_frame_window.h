@@ -26,7 +26,7 @@ class BaseReBar;
 class BaseMiniDockFrameWnd;
 
 class CLASS_DECL_ca2 simple_frame_window :
-   virtual public userbase::frame_window,
+   virtual public ::userbase::frame_window,
    virtual public ::uinteraction::frame::CWorkSetDownUpInterface
 {
 public:
@@ -52,7 +52,7 @@ public:
    virtual ~simple_frame_window();
 
 
-   using userbase::frame_window::create;
+   using ::userbase::frame_window::create;
    virtual bool create(const char * lpszClassName,
             const char * lpszWindowName,
             uint32_t dwStyle = WS_OVERLAPPEDWINDOW,

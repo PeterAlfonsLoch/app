@@ -277,7 +277,7 @@ namespace ca2
          {
          case 1:
             {
-               m_pdocAuth = Cube.create_child_form(this, pcreatordata->m_pholder);
+               m_pdocAuth = Cube.userex().create_child_form(this, pcreatordata->m_pholder);
                if(m_pdocAuth != NULL)
                {
                   m_pviewAuth = m_pdocAuth->get_typed_view < form_view > ();
@@ -300,7 +300,7 @@ namespace ca2
          case 3:
             {
 
-               m_pkeyboardlayout = m_ptabview->create_view < ::ca8::keyboard_layout > ();
+               m_pkeyboardlayout = m_ptabview->create_view < ::cube5::keyboard_layout > ();
                m_pkeyboardlayout->CreateViews();
                pcreatordata->m_pdoc = m_pkeyboardlayout->m_pdoc;
                pcreatordata->m_pwnd = m_pkeyboardlayout;

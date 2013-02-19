@@ -304,7 +304,7 @@ namespace userbase
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
-      userbase::frame_window* pFrameWnd = dynamic_cast < userbase::frame_window * > (GetTopLevelFrame());
+      ::userbase::frame_window* pFrameWnd = dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame());
       if (pFrameWnd != NULL && pFrameWnd->m_bHelpMode)
          return;
 
@@ -435,7 +435,7 @@ namespace userbase
       if(pobj->previous())
          return;
 
-      userbase::frame_window *pFrameWnd = dynamic_cast < userbase::frame_window * > (get_parent());
+      ::userbase::frame_window *pFrameWnd = dynamic_cast < ::userbase::frame_window * > (get_parent());
       if (pFrameWnd->IsFrameWnd())
       {
          m_pDockSite = pFrameWnd;
@@ -642,9 +642,9 @@ namespace userbase
       // the dockbar style must also be visible
       if ((GetStyle() & WS_VISIBLE))
       {
-         userbase::frame_window* pTarget = dynamic_cast < userbase::frame_window * > (get_owner());
+         ::userbase::frame_window* pTarget = dynamic_cast < ::userbase::frame_window * > (get_owner());
          if (pTarget == NULL || !pTarget->IsFrameWnd())
-            pTarget = dynamic_cast < userbase::frame_window * > (GetParentFrame());
+            pTarget = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
          if (pTarget != NULL)
             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
       }
@@ -1070,15 +1070,15 @@ namespace userbase
 
    #endif
 
-   userbase::frame_window* control_bar::GetDockingFrame()
+   ::userbase::frame_window* control_bar::GetDockingFrame()
    {
-      userbase::frame_window* pFrameWnd = dynamic_cast<userbase::frame_window *>(GetParentFrame());
+      ::userbase::frame_window* pFrameWnd = dynamic_cast<::userbase::frame_window *>(GetParentFrame());
       if (pFrameWnd == NULL)
          pFrameWnd = m_pDockSite;
 
       ASSERT(pFrameWnd != NULL);
-      ASSERT_KINDOF(userbase::frame_window, pFrameWnd);
-      return (userbase::frame_window*) pFrameWnd;
+      ASSERT_KINDOF(::userbase::frame_window, pFrameWnd);
+      return (::userbase::frame_window*) pFrameWnd;
    }
 
    bool control_bar::IsFloating()

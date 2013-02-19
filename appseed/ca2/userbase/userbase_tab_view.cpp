@@ -352,7 +352,7 @@ namespace userbase
          m_pviewdata->m_pwnd->SetFocus();
       }
 
-      (dynamic_cast < userbase::frame_window * > (GetParentFrame()))->_001RedrawWindow();
+      (dynamic_cast < ::userbase::frame_window * > (GetParentFrame()))->_001RedrawWindow();
 
       GetParentFrame()->SetActiveView(this);
 

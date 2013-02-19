@@ -771,7 +771,7 @@ namespace userbase
    }
 
 
-   void status_bar::OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler)
+   void status_bar::OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler)
    {
       CStatusCmdUI state(get_app());
       state.m_pOther = this;

@@ -2590,7 +2590,7 @@ namespace gcom
          if(transitioneffect.m_tool001.m_iStep >= iReturnPoint * 2)
          {
 
-            Application.m_visual.imaging().bitmap_blend(
+            Application.visual().imaging().bitmap_blend(
                pdib4->get_graphics(),
                null_point(), pdib1->size(),
                pdib3->get_graphics(),
@@ -3858,7 +3858,7 @@ namespace gcom
 
          //pdib2->channel_multiply(::visual::rgba::channel_alpha, 50.0 / 255.0);
 
-         Application.m_visual.imaging().bitmap_blend(
+         Application.visual().imaging().bitmap_blend(
             pdib1->get_graphics(),
             null_point(), size(cx1, cy1),
             pdib3->get_graphics(),
@@ -3910,7 +3910,7 @@ namespace gcom
 
          pdib4->get_graphics()->from(pdib1->size(), pdib3->get_graphics(), SRCCOPY);
 
-         Application.m_visual.imaging().bitmap_blend(
+         Application.visual().imaging().bitmap_blend(
             pdib4->get_graphics(),
             null_point(), pdib1->size(),
             pdib1->get_graphics(),
@@ -4019,7 +4019,7 @@ namespace gcom
          GdiFlush();
 #endif
 
-         /*Application.m_visual.imaging().bitmap_blend(
+         /*Application.visual().imaging().bitmap_blend(
             pdib4->get_graphics(),
             0, 0, cx1, cy1,
             pdib1->get_graphics(),

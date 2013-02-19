@@ -29,7 +29,7 @@ namespace ca2
       bool user::initialize1()
       {
 
-         if(!::cubebase::user::initialize1())
+         if(!::user::user::initialize1())
             return false;
 
          return true;
@@ -41,7 +41,7 @@ namespace ca2
       {
 
 
-         if(is_cube())
+         if(Application.is_cube())
          {
             System.factory().cloneable_small < int_biunique > ();
             System.factory().creatable_small < ::user::edit_plain_text > ();
@@ -50,7 +50,7 @@ namespace ca2
             System.factory().creatable_small < ::user::place_holder_container > ();
          }
 
-         if(!::cubebase::user::initialize())
+         if(!::user::user::initialize())
             return false;
 
          return true;
@@ -58,7 +58,7 @@ namespace ca2
 
       int32_t user::exit_instance()
       {
-         if(is_cube())
+         if(Application.is_cube())
          {
             if(m_pwindowmap != NULL)
             {
@@ -66,34 +66,13 @@ namespace ca2
                m_pwindowmap = NULL;
             }
          }
-         try
-         {
-            ::visual::user::exit_instance();
-         }
-         catch(...)
-         {
-         }
-         try
-         {
-            ::database::user::exit_instance();
-         }
-         catch(...)
-         {
-         }
-         try
-         {
-            ::ca4::user::exit_instance();
-         }
-         catch(...)
-         {
-         }
          return 0;
       }
 
 
       void user::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
       {
-         ::user::interaction_ptr_array wnda = frames();
+         ::user::interaction_ptr_array wnda = Application.frames();
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
             ::user::interaction * pwnd = wnda.element_at(i);
@@ -108,7 +87,7 @@ namespace ca2
 
       int32_t user::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)
       {
-         ::user::interaction_ptr_array wnda = frames();
+         ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
@@ -125,7 +104,7 @@ namespace ca2
 
       int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
       {
-         ::user::interaction_ptr_array wnda = frames();
+         ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
@@ -144,7 +123,7 @@ namespace ca2
 
       int32_t user::GetVisibleFrameCount()
       {
-         ::user::interaction_ptr_array wnda = frames();
+         ::user::interaction_ptr_array wnda = Application.frames();
          int32_t iCount = 0;
          for(int32_t i = 0; i < wnda.get_size(); i++)
          {
@@ -161,13 +140,13 @@ namespace ca2
 
       void user::VmsGuiiOnAppLanguage(gen::signal_object * pobject)
       {
-         SendMessageToWindows(gen::user::APPM_LANGUAGE, 0, (LPARAM) pobject);
+         SendMessageToWindows(::gen::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
 
       string user::message_box(const char * pszMatter, gen::property_set & propertyset)
       {
 
-         class ::ca8::message_box box(this);
+         class ::cube5::message_box box(get_app());
 
          box.show(pszMatter, &propertyset);
 

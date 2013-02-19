@@ -1,21 +1,27 @@
 #include "framework.h"
 
+
 namespace userex
 {
 
-   application::application()
+
+   userex::userex()
    {
+
       m_ptemplateForm = NULL;
       //m_ptemplateChildForm = NULL;
       m_ptemplatePlaceHolder = NULL;
+
    }
 
-   application::~application()
+
+   userex::~userex()
    {
+
    }
 
 
-   bool application::initialize1()
+   bool userex::initialize1()
    {
 
       // menu
@@ -36,36 +42,36 @@ namespace userex
 
 
 
-      if(!html::application::initialize1())
+      if(!::ca::section::initialize1())
          return false;
 
       return true;
    }
 
 
-   bool application::initialize2()
+   bool userex::initialize2()
    {
 
 
-      if(!html::application::initialize2())
+      if(!::ca::section::initialize2())
          return false;
 
       m_ptemplateForm = new ::userbase::multiple_document_template(
-         this,
+         get_app(),
          "system/form",
          System.type_info < form_document > (),
          System.type_info < form_frame > (),
          System.type_info < form_view > ());
 
       m_ptemplateChildForm = new ::userbase::multiple_document_template(
-         this,
+         get_app(),
          "system/form",
          System.type_info < form_document > (),
          System.type_info < form_child_frame > (),
          System.type_info < form_view > ());
 
       m_ptemplatePlaceHolder = new ::userbase::multiple_document_template(
-         this,
+         get_app(),
          "system/form",
          System.type_info < simple_document > (),
          System.type_info < simple_frame_window > (),
@@ -79,7 +85,7 @@ namespace userex
 
 
 
-   form_document * application::create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
+   form_document * userex::create_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
    {
       form_document * pdoc;
       if(m_ptemplateForm == NULL)
@@ -101,11 +107,11 @@ namespace userex
       return pdoc;
    }
 
-   form_document * application::create_form(::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
+   form_document * userex::create_form(::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
    {
-      if(pwndParent != NULL && pwndParent->m_papp != this)
+      if(pwndParent != NULL && pwndParent->m_papp != get_app())
       {
-         return App(pwndParent->m_papp).create_form(pcallback, pwndParent, var);
+         return App(pwndParent->m_papp).userex().create_form(pcallback, pwndParent, var);
       }
       form_document * pdoc;
       if(m_ptemplateForm == NULL)
@@ -126,7 +132,7 @@ namespace userex
    }
 
 
-   form_document * application::create_child_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
+   form_document * userex::create_child_form(form_view * pview, ::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
    {
       form_document * pdoc;
       if(m_ptemplateChildForm == NULL)
@@ -148,11 +154,11 @@ namespace userex
       return pdoc;
    }
 
-   form_document * application::create_child_form(::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
+   form_document * userex::create_child_form(::user::form_callback * pcallback, ::user::interaction * pwndParent, var var)
    {
-      if(pwndParent != NULL && pwndParent->m_papp != this)
+      if(pwndParent != NULL && pwndParent->m_papp != get_app())
       {
-         return App(pwndParent->m_papp).create_child_form(pcallback, pwndParent, var);
+         return App(pwndParent->m_papp).userex().create_child_form(pcallback, pwndParent, var);
       }
       if(m_ptemplateChildForm == NULL)
          return NULL;
@@ -168,7 +174,7 @@ namespace userex
    }
 
 
-   ::document * application::hold(::user::interaction * pui)
+   ::document * userex::hold(::user::interaction * pui)
    {
 
       ::ca::create_context_sp createcontext(get_app());

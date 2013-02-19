@@ -1,41 +1,47 @@
 #include "framework.h"
 
+
 namespace userbase
 {
 
-   application::application()
+
+   userbase::userbase()
    {
+
       m_pufeschema      = NULL;
       m_pufe            = NULL;
-      m_pdocmanager     = NULL;
+
    }
 
-   application::~application()
+   userbase::~userbase()
    {
    }
 
 
 
-   bool application::initialize()
+   bool userbase::initialize()
    {
       
-      m_pufeschema      = new ::user::front_end_schema(this);
+      set_data_server(Application.simpledb().get_data_server());
+
+
+      m_pufeschema      = new ::user::front_end_schema(get_app());
       m_pufe            = new ::user::front_end();
 
-      if(is_cube())
+      if(Application.is_cube())
       {
-         System.factory().cloneable_small < userbase::split_layout > ();
-         System.factory().cloneable_small < userbase::split_bar >();
+         System.factory().cloneable_small < ::userbase::split_layout > ();
+         System.factory().cloneable_small < ::userbase::split_bar >();
          System.factory().cloneable_small < simple_frame_window >();
          System.factory().creatable_small < MetaButton >();
          System.factory().creatable_small < BaseButtonControl >();
-         System.factory().creatable_small < userbase::menu_list_view >();
+         System.factory().creatable_small < ::userbase::menu_list_view >();
          System.factory().cloneable_small < simple_child_frame >();
          System.factory().cloneable_small < simple_main_frame >();
          System.factory().creatable_small < simple_button >();
-         System.factory().cloneable_small < userbase::document >();
-         System.factory().cloneable_small < userbase::split_view >();
-         System.factory().cloneable_small < userbase::edit_plain_text_view >();
+         System.factory().cloneable_small < ::userbase::document >();
+         System.factory().cloneable_small < ::userbase::split_view >();
+         System.factory().cloneable_small < ::userbase::edit_plain_text_view >();
          System.factory().creatable_small < simple_list_view >();
          System.factory().creatable_small < simple_document > ();
          System.factory().creatable_small < simple_printer_list_view > ();
@@ -46,24 +52,25 @@ namespace userbase
       }
 
 
-      if (m_pdocmanager != NULL)
-         m_pdocmanager->add_document_template(NULL);
+      if(Application.m_pdocmanager != NULL)
+         Application.m_pdocmanager->add_document_template(NULL);
 
-      if(!BaseMenuCentralContainer::initialize_central_container(this))
+      if(!BaseMenuCentralContainer::initialize_central_container(get_app()))
          return false;
 
 
-      if(!::ca2::user::application::initialize())
+      if(!::ca::section::initialize())
          return false;
 
-      return TRUE;
+      return true;
+
    }
 
-   bool application::finalize()
+   bool userbase::finalize()
    {
       try
       {
-         simpledb::application::finalize();
+         ::ca::section::finalize();
       }
       catch(...)
       {
@@ -108,23 +115,23 @@ namespace userbase
    }
 
 
-   void application::add_document_template(::userbase::document_template * ptemplate)
+   void userbase::add_document_template(::userbase::document_template * ptemplate)
    {
-      if (m_pdocmanager == NULL)
-         m_pdocmanager = new ::userbase::document_manager(this);
-      m_pdocmanager->add_document_template(ptemplate);
+      if(Application.m_pdocmanager == NULL)
+         Application.m_pdocmanager = new ::userbase::document_manager(get_app());
+      Application.m_pdocmanager->add_document_template(ptemplate);
    }
 
-   ::userbase::document* application::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
+   ::userbase::document* userbase::_vmsguserbaseOpenDocumentFile(const char * lpszFileName)
    {
-      ASSERT(m_pdocmanager != NULL);
+      ASSERT(Application.m_pdocmanager != NULL);
       ::ca::create_context_sp cc(get_app());
       cc->m_spCommandLine->m_varFile = lpszFileName;
-      return dynamic_cast < ::userbase::document * > (m_pdocmanager->open_document_file(cc));
+      return dynamic_cast < ::userbase::document * > (Application.m_pdocmanager->open_document_file(cc));
    }
 
 
-   bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
+   bool userbase::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)  
    {
       UNREFERENCED_PARAMETER(pcmdmsg);
       return false;
@@ -134,42 +141,42 @@ namespace userbase
 
 
 
-   void  application::AddToRecentFileList(const char * lpszPathName)
+   void  userbase::AddToRecentFileList(const char * lpszPathName)
    {
       UNREFERENCED_PARAMETER(lpszPathName);
    }
 
-   void  application::_001CloseAllDocuments(bool bEndSession)
+   void  userbase::_001CloseAllDocuments(bool bEndSession)
    {
-      if(m_pdocmanager != NULL)
+      if(Application.m_pdocmanager != NULL)
       {
-         m_pdocmanager->close_all_documents(bEndSession);
+         Application.m_pdocmanager->close_all_documents(bEndSession);
       }
    }
 
 
    ::user::front_end_schema * GetUfeSchema(::ca::application * papp)
    {
-      return App(papp).GetUfeSchema();
+      return App(papp).userbase().GetUfeSchema();
    }
 
    ::user::front_end * GetUfe(::ca::application * papp)
    {
-      return App(papp).GetUfe();
+      return App(papp).userbase().GetUfe();
    }
 
 
-   void application::_001OnFileNew()
+   void userbase::_001OnFileNew()
    {
-      m_pdocmanager->_001OnFileNew();
+      Application.m_pdocmanager->_001OnFileNew();
    }
 
-   ::user::front_end_schema * application::GetUfeSchema()
+   ::user::front_end_schema * userbase::GetUfeSchema()
    {
       return m_pufeschema;
    }
 
-   ::user::front_end * application::GetUfe()
+   ::user::front_end * userbase::GetUfe()
    {
       return m_pufe;
    }

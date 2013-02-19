@@ -93,7 +93,7 @@ namespace bergedge
             pane_view_update_hint * puh = (pane_view_update_hint * ) pHint;
             if(puh->is_type_of(pane_view_update_hint::TypeOnShowKaraoke))
             {
-               (dynamic_cast < userbase::frame_window * > (GetTopLevelFrame()))->SetActiveView(this);
+               (dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame()))->SetActiveView(this);
             }
             else if(puh->is_type_of(pane_view_update_hint::TypeOnShowView))
             {
@@ -232,7 +232,7 @@ namespace bergedge
          else if(strId == "::bergedge::pane_view_application")
          {
             pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, this);
+            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true, this);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -263,7 +263,7 @@ namespace bergedge
                pdoc->FileManagerBrowse(strDir);
                if(pview != NULL)
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                  ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -295,7 +295,7 @@ namespace bergedge
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
                FileManagerTemplate * ptemplate = papp->GetStdFileManagerTemplate();
-               ::filemanager::document * pdoc = ptemplate->OpenChildList(papp, false, true, pcreatordata->m_pholder);
+               ::filemanager::document * pdoc = ptemplate->OpenChildList(&Application.filemanager(), false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -319,7 +319,7 @@ namespace bergedge
                   pdoc->FileManagerBrowse(strDir);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata->m_pdoc = pdoc;
@@ -330,13 +330,13 @@ namespace bergedge
             break;
          case PaneViewThreeActionLaunch:
             {
-               ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true, pcreatordata->m_pholder);
+               ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
                   pdoc->get_filemanager_data()->m_bListText = true;
                   pdoc->get_filemanager_data()->m_bListSelection = false;
-                  pdoc->get_filemanager_data()->m_pcallback = &Bergedge;
+                  pdoc->get_filemanager_data()->m_pcallback = &Bergedge.filemanager();
                   pdoc->get_filemanager_data()->m_bIconView = true;
                   pdoc->get_filemanager_data()->m_strDISection = "winactionarea_3-action-launch";
                   pdoc->Initialize(true);
@@ -349,7 +349,7 @@ namespace bergedge
                   pdoc->FileManagerBrowse(strDir);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata->m_pdoc = pdoc;
@@ -360,7 +360,7 @@ namespace bergedge
             break;
          case PaneViewConfiguration:
          {
-            form_document * pdoc = Cube.create_form(this, this);
+            form_document * pdoc = Cube.userex().create_form(this, this);
             if(pdoc == NULL)
                return;
             m_pformOptions = pdoc->get_typed_view < form_view > ();
@@ -592,7 +592,7 @@ namespace bergedge
 
          ::ca::client_graphics pdc(this);
 
-         pfi = Application.m_visual.imaging().LoadImageFile(strWallpaper);
+         pfi = Application.visual().imaging().LoadImageFile(strWallpaper);
 
          m_dibBk.From((HDC)pdc->get_os_data(), pfi, true);
 

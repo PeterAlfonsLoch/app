@@ -107,7 +107,6 @@ namespace plane
       m_file.set_app(this);
       m_stra.set_app(this);
       m_url.set_app(this);
-      m_phtml = new ::html::html(this);
       m_pxml = new ::xml::xml(this);
       m_userset.set_app(this);
       m_service.set_app(this);
@@ -805,11 +804,6 @@ namespace plane
    ::ca2::stra & system::stra()
    {
       return m_stra;
-   }
-
-   ::html::html & system::html()
-   {
-      return *m_phtml;
    }
 
    ::xml::xml & system::xml()

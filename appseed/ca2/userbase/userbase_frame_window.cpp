@@ -177,10 +177,9 @@ namespace userbase
    void frame_window::_001OnQueryEndSession(gen::signal_object * pobj)
    {
       SCAST_PTR(::gen::message::base, pbase, pobj);
-      application* pApp = dynamic_cast < ::userbase::application * > (&System);
-      if (pApp != NULL && pApp->GetMainWnd() == this)
+      if (&Cube != NULL && Cube.GetMainWnd() == this)
       {
-         pbase->set_lresult(pApp->save_all_modified());
+         pbase->set_lresult(Cube.save_all_modified());
          pbase->m_bRet = true;
          return;
       }

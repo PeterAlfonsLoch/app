@@ -290,7 +290,7 @@ namespace platform
    ::uinteraction::frame::frame * frame::create_frame_schema()
    {
 
-      ::uinteraction::frame::frame * pframe = Application.get_frame_schema("app-core/uinteraction", "005");
+      ::uinteraction::frame::frame * pframe = Application.uinteraction().get_frame_schema("app-core/uinteraction", "005");
       pframe->m_typeinfoControlBoxButton = System.type_info < MetaButton > ();
       pframe->set_style("StyleTranslucidWarmGray");
       return pframe;

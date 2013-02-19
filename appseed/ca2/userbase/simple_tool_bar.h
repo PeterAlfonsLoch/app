@@ -156,7 +156,7 @@ public:
 //   bool SetButtons(const UINT* lpIDArray, int32_t nIDCount);
    void SetSizes(SIZE sizeButton, SIZE sizeImage);
 
-   void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
+   void OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler);
 
 
    void TransparentEraseNonClient(::ca::graphics * pdc);

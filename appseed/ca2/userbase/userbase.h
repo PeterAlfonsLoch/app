@@ -11,7 +11,7 @@ namespace userbase
 {
 
 
-   class application;
+   class userbase;
 
 
 } // namespace userbase

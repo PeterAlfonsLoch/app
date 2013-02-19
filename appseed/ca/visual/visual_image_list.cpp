@@ -112,7 +112,7 @@ bool image_list::draw(::ca::graphics *pdc, int32_t iImage, point pt, int32_t iFl
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   return Application.m_visual.imaging().true_blend(pdc, pt, m_size, m_spdib->get_graphics(), point(iImage * m_size.cx, 0), m_spdibWork, m_spdibWork2, m_spdibWork3);
+   return Application.visual().imaging().true_blend(pdc, pt, m_size, m_spdib->get_graphics(), point(iImage * m_size.cx, 0), m_spdibWork, m_spdibWork2, m_spdibWork3);
 
 }
 
@@ -127,7 +127,7 @@ bool image_list::draw(::ca::graphics * pdc, int32_t iImage, point pt, size sz, p
    ptOffset.x = min(m_size.cx, ptOffset.x);
    ptOffset.y = min(m_size.cy, ptOffset.y);
 
-   return Application.m_visual.imaging().true_blend(pdc, pt, sz, m_spdib->get_graphics(),  point(iImage * m_size.cx + ptOffset.x, ptOffset.y), m_spdibWork, m_spdibWork2, m_spdibWork3);
+   return Application.visual().imaging().true_blend(pdc, pt, sz, m_spdib->get_graphics(),  point(iImage * m_size.cx + ptOffset.x, ptOffset.y), m_spdibWork, m_spdibWork2, m_spdibWork3);
 
 }
 

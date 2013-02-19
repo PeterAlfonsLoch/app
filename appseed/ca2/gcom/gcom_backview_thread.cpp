@@ -418,7 +418,7 @@ namespace gcom
          load_image * lploadimage = (load_image *) lpParameter;
 
 
-         if(!App(lploadimage->GetThread()->get_app()).imaging().LoadImageSync(lploadimage->m_pdib, lploadimage->m_strImagePath, lploadimage->GetThread()->get_app()))
+         if(!App(lploadimage->GetThread()->get_app()).visual().imaging().LoadImageSync(lploadimage->m_pdib, lploadimage->m_strImagePath, lploadimage->GetThread()->get_app()))
             lploadimage->m_pdib = NULL;
 
          lploadimage->OnImageLoaded();

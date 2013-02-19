@@ -25,6 +25,7 @@ namespace planebase
       ::user::user                      * m_puser;
       ::fs::fs                          * m_pfs;
       ::fontopus::fontopus              * m_pfontopus;
+      ::html::html                      * m_phtml;
       ::simpledb::simpledb                m_simpledb;
       ::visual::visual                    m_visual;
 
@@ -72,6 +73,7 @@ namespace planebase
       inline class ::fs::data                   * fs()         { return m_spfsdata     ; }
       inline class ::user::user                 & user()       { return *m_puser       ; }
       inline class ::fontopus::fontopus         & fontopus()   { return *m_pfontopus   ; }
+      inline class ::html::html                 & html()       { return *m_phtml       ; }
       inline class ::simpledb::simpledb         & simpledb()   { return m_simpledb     ; }
       inline class ::visual::visual             & visual()     { return m_visual       ; }
 
@@ -152,6 +154,7 @@ namespace planebase
       virtual ::fontopus::fontopus * create_fontopus();
       virtual ::user::user * create_user();
       virtual ::fs::fs * create_fs();
+      virtual ::html::html * create_html();
 
 
       virtual void assert_valid() const;

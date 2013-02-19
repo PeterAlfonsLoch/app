@@ -8,6 +8,10 @@
 #include "cube_application.h"
 
 
+#include "app/appseed/ca2/bergedge/bergedge.h"
+
+
+
 #include "cube_library.h"
 
 

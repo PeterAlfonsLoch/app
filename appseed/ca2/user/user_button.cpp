@@ -305,7 +305,7 @@ namespace user
          }
          if(pframewindow->m_workset.m_pframeschema == NULL)
          {
-            m_pschema = &Application.GetUfeSchema()->m_button;
+            m_pschema = &Application.userbase().GetUfeSchema()->m_button;
          }
          else
          {

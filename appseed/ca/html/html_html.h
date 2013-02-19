@@ -12,7 +12,7 @@ namespace html
 
 
    class CLASS_DECL_ca html :
-      public ::radix::object
+      public ::ca::section
    {
    public:
 
@@ -20,14 +20,16 @@ namespace html
       
 
 
-      const COLORREF             m_clrInvalid;   // an invalid color
-      const uint16_t       m_percentMax;   // maximum allowable percentage value
+      COLORREF                   m_clrInvalid;   // an invalid color
+      uint16_t                   m_percentMax;   // maximum allowable percentage value
       CNamedColors               m_namedColors;   // collection of named colors
       LiteHTMLEntityResolver     m_entityresolver;
 
 
-      html(::ca::application * papp);
+      html();
       virtual ~html();
+
+      virtual void construct(::ca::application * papp);
 
       string special_chars(const char * psz);
       string entities(const char * psz);

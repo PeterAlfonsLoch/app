@@ -61,7 +61,7 @@ void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::radix::object
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypePop))
             {
-               OnActivateFrame(WA_INACTIVE, dynamic_cast < userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
+               OnActivateFrame(WA_INACTIVE, dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();
@@ -320,7 +320,7 @@ void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::radix::object*
             }
             else if(puh->is_type_of(FileManagerViewUpdateHint::TypePop))
             {
-               OnActivateFrame(WA_INACTIVE, dynamic_cast < userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
+               OnActivateFrame(WA_INACTIVE, dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
                GetParentFrame()->ActivateFrame(SW_SHOW);
                OnActivateView(TRUE, this, this);
                RedrawWindow();

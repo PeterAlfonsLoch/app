@@ -29,9 +29,6 @@ namespace ca2
          virtual bool initialize_instance();
          virtual int32_t exit_instance();
 
-         virtual bool bergedge_start();
-
-
          virtual bool check_license(const char * pszId, bool bInteractive);
 
          virtual void on_request(::ca::create_context * pcreatecontext);

@@ -80,14 +80,14 @@ namespace userbase
       friend class ::userbase::document;
       friend class ::userbase::document_template;
       friend class BasePreviewView;
-      friend class userbase::frame_window;
+      friend class ::userbase::frame_window;
       friend class mdi_frame_window;
       friend class mdi_child_window;
       friend class CSplitterWnd;
       friend class OleServerDoc;
       friend class DocObjectServer;
 
-      friend class userbase::frame_window_interface;
+      friend class ::userbase::frame_window_interface;
 
       DECL_GEN_SIGNAL(_001OnMouseActivate)
       DECL_GEN_SIGNAL(_001OnUpdateSplitCmd)

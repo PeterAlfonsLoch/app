@@ -508,7 +508,7 @@ namespace userbase
    {
       UNREFERENCED_PARAMETER(pobj);
 //      SCAST_PTR(::gen::message::create, pcreate, pobj);
-      m_pschema            = &userbase::GetUfeSchema(get_app())->m_menu;
+      m_pschema            = &::userbase::GetUfeSchema(get_app())->m_menu;
       return;
    }
 

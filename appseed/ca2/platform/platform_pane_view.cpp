@@ -97,7 +97,7 @@ namespace platform
 
    void pane_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      application * papp = dynamic_cast < application * > ((dynamic_cast < userbase::frame_window * > (GetParentFrame()))->get_app());
+      application * papp = dynamic_cast < application * > ((dynamic_cast < ::userbase::frame_window * > (GetParentFrame()))->get_app());
       switch(pcreatordata->m_id)
       {
       case platform::PaneViewContextMenu:
@@ -145,13 +145,13 @@ namespace platform
          break;
       case platform::PaneViewFileManager:
          {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChild(papp, false, true);
+            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChild(&Application.filemanager(), false, true);
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();
                if(pview != NULL)
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                  ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -180,7 +180,7 @@ namespace platform
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata->m_eview = eview;
@@ -205,7 +205,7 @@ namespace platform
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata = new ViewData();
@@ -231,7 +231,7 @@ namespace platform
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata->m_eview = eview;
@@ -256,7 +256,7 @@ namespace platform
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata->m_eview = eview;

@@ -24,7 +24,7 @@ namespace cube5 // ca8 + cube5
    bool keyboard_layout::CreateViews()
    {
 
-      m_pdoc = Cube.create_form(this, this);
+      m_pdoc = Cube.userex().create_form(this, this);
 
       SetPaneCount(2);
 
@@ -52,19 +52,19 @@ namespace cube5 // ca8 + cube5
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_id layoutid;
-         if(System.keyboard().initialize(&layoutid, straPath[i]))
+         if(System.user().keyboard().initialize(&layoutid, straPath[i]))
          {
             m_layoutida.add(layoutid);
          }
       }
 
       m_layoutida.QuickSort(true);
-      if(&System.keyboard().layout() != NULL)
+      if(&System.user().keyboard().layout() != NULL)
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
-            if(m_layoutida[i].m_strPath.CompareNoCase(System.keyboard().layout().m_strPath) == 0)
+            if(m_layoutida[i].m_strPath.CompareNoCase(System.user().keyboard().layout().m_strPath) == 0)
             {
                iFind = i;
                break;
@@ -135,7 +135,7 @@ namespace cube5 // ca8 + cube5
                index iItem = range.ItemAt(0).GetLBound();
                if(iItem >= 0 && iItem < m_layoutida.get_count())
                {
-                  System.set_keyboard_layout(m_layoutida[iItem].m_strPath, true);
+                  System.user().set_keyboard_layout(m_layoutida[iItem].m_strPath, true);
                }
             }
          }

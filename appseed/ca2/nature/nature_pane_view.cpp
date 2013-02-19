@@ -129,7 +129,7 @@ namespace nature
                ::view * pview = pdoc->get_view();
                if(pview != NULL)
                {
-                  userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                  ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                   if(pframe != NULL)
                   {
                      pcreatordata->m_pdoc = pdoc;
@@ -157,7 +157,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pcreatordata = new ViewData();
@@ -183,7 +183,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pframe->set_parent(this);
@@ -210,7 +210,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pframe->set_parent(this);
@@ -237,7 +237,7 @@ namespace nature
                   ::view * pview = pdoc->get_view(pos);
                   if(pview != NULL)
                   {
-                     userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (pview->GetParentFrame());
+                     ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (pview->GetParentFrame());
                      if(pframe != NULL)
                      {
                         pframe->set_parent(this);
@@ -254,7 +254,7 @@ namespace nature
 
       case PaneViewKeyboardLayout:
          {
-            m_pkeyboardlayout = create_view < ::ca8::keyboard_layout > ();
+            m_pkeyboardlayout = create_view < ::cube5::keyboard_layout > ();
             m_pkeyboardlayout->CreateViews();
             pcreatordata->m_pdoc = m_pkeyboardlayout->m_pdoc;
             pcreatordata->m_pwnd = m_pkeyboardlayout;

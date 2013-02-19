@@ -14,12 +14,12 @@ namespace mail
 
    ::ex1::tree_item_data * tree_data::on_allocate_item()
    {
-      return new mail::tree_item();
+      return new ::mail::tree_item();
    }
 
    void tree_data::on_delete_item(::ex1::tree_item_data * pitem)
    {
-      delete (mail::tree_item *) pitem;
+      delete (::mail::tree_item *) pitem;
    }
 
 

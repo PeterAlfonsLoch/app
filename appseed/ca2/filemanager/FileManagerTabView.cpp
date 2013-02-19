@@ -69,7 +69,7 @@ void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::radix::obje
          }
          else if(puh->is_type_of(FileManagerViewUpdateHint::TypePop))
          {
-            OnActivateFrame(WA_INACTIVE, dynamic_cast < userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
+            OnActivateFrame(WA_INACTIVE, dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame())));
             if(GetTypedParent < FileManagerMainFrame > () != NULL)
             {
                GetTypedParent < FileManagerMainFrame >()->InitialUpdateFrame(NULL, TRUE);
@@ -111,7 +111,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
          ::ca::create_context_sp createcontext(get_app());
          createcontext->m_bMakeVisible = false;
          createcontext->m_puiParent = pcreatordata->m_pholder;
-         file_manager_form_document * pdoc = dynamic_cast < file_manager_form_document * > (Application.m_ptemplateForm->open_document_file(createcontext));
+         file_manager_form_document * pdoc = dynamic_cast < file_manager_form_document * > (Application.filemanager().m_ptemplateForm->open_document_file(createcontext));
          if(pdoc == NULL)
             return;
          file_manager_form_view * pformview = pdoc->get_typed_view < file_manager_form_view > ();
@@ -149,7 +149,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       createcontext->m_bMakeVisible = false;
       createcontext->m_puiParent = this;
       //throw not_implemented(get_app());
-      file_manager_operation_document * pdoc = dynamic_cast < file_manager_operation_document * > (Application.m_ptemplateOperation->open_document_file(createcontext));
+      file_manager_operation_document * pdoc = dynamic_cast < file_manager_operation_document * > (Application.filemanager().m_ptemplateOperation->open_document_file(createcontext));
       if(pdoc == NULL)
          return;
       ::view * pview = pdoc->get_view(0);

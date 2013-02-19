@@ -105,7 +105,7 @@ namespace nature
 
    void appearance_view::on_create_view(::user::view_creator_data * pcreatordata)
    {
-      filemanager::application & filemanagerapp = dynamic_cast < filemanager::application & > (System);
+      filemanager::filemanager & filemanager = Cube.filemanager();
       folder_selection_list_view * pview;
       pview = dynamic_cast < folder_selection_list_view * > (::view::create_view(
          System.type_info < folder_selection_list_view > (),
@@ -115,7 +115,7 @@ namespace nature
       switch(pcreatordata->m_id)
       {
       case view_image_folder:
-         pview->Initialize(filemanagerapp.GetStdFileManagerTemplate(), "Image", "ca2_fontopus_votagus.nature.ImageDirectorySet", true);
+         pview->Initialize(filemanager.GetStdFileManagerTemplate(), "Image", "ca2_fontopus_votagus.nature.ImageDirectorySet", true);
          break;
       }
       pview->connect_command("edit_add", &folder_selection_list_view::_001OnAdd);

@@ -62,9 +62,9 @@ namespace user
       control * pcontrol = _001GetControlBySubItem(iSubItem);
       if(pcontrol != NULL)
       {
-         if(pcontrol->descriptor().has_function(user::control::function_action))
+         if(pcontrol->descriptor().has_function(::user::control::function_action))
          {
-            if(pcontrol->descriptor().get_type() == user::control::type_button)
+            if(pcontrol->descriptor().get_type() == ::user::control::type_button)
             {
 
 
@@ -465,8 +465,8 @@ namespace user
          }
       }*/
       control_keep controlkeep(this, pt);
-      user::interaction * pui = get_top_child();
-      user::interaction * puiBefore = NULL;
+      ::user::interaction * pui = get_top_child();
+      ::user::interaction * puiBefore = NULL;
       bool bError;
       try
       {

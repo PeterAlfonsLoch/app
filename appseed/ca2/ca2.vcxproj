@@ -966,8 +966,8 @@
     <ClInclude Include="filemanager\filemanager_fs_simple_tree_view.h" />
     <ClInclude Include="filemanager\filemanager_fs_simple_view.h" />
     <ClInclude Include="filemanager\filemanager_iconoverlayer.h" />
+    <ClInclude Include="fontopus\fontopus_fontopus.h" />
     <ClInclude Include="fontopus\fontopus_validate.h" />
-    <ClInclude Include="fontopus\fontopus_application.h" />
     <ClInclude Include="fontopus\fontopus.h" />
     <ClInclude Include="fs\fs.h" />
     <ClInclude Include="fs\fs_data.h" />
@@ -999,6 +999,14 @@
     <ClInclude Include="html\html_point.h" />
     <ClInclude Include="html\html_size.h" />
     <ClInclude Include=".\nature\nature_appearance_view.h" />
+    <ClInclude Include="mail\mail_mail.h" />
+    <ClInclude Include="mail\mail_db_pop3.h" />
+    <ClInclude Include="mail\mail.h" />
+    <ClInclude Include="mail\mail_account.h" />
+    <ClInclude Include="mail\mail_frame.h" />
+    <ClInclude Include="mail\mail_list_interface.h" />
+    <ClInclude Include="mail\mail_tree_data.h" />
+    <ClInclude Include="mail\mail_tree_interface.h" />
     <ClInclude Include="nature\nature_application.h" />
     <ClInclude Include=".\nature\nature_database.h" />
     <ClInclude Include=".\nature\nature_document.h" />
@@ -1307,6 +1315,7 @@
     <ClCompile Include="cube\cube_library.cpp" />
     <ClCompile Include="filemanager\FileManagerSaveAsNameView.cpp" />
     <ClCompile Include="filemanager\filemanager_ContextMenu.cpp" />
+    <ClCompile Include="filemanager\filemanager_filemanager.cpp" />
     <ClCompile Include="filemanager\filemanager_folder_list_data.cpp" />
     <ClCompile Include="filemanager\filemanager_fs_simple_list_view.cpp" />
     <ClCompile Include="filemanager\filemanager_fs_simple_tree_view.cpp" />
@@ -1328,6 +1337,13 @@
     <ClCompile Include="fs\fs_tree_item.cpp" />
     <ClCompile Include="hi5\net\hi5_net_twitter_authorization.cpp" />
     <ClCompile Include="html\html_html.cpp" />
+    <ClCompile Include="mail\mail_account.cpp" />
+    <ClCompile Include="mail\mail_mail.cpp" />
+    <ClCompile Include="mail\mail_db_pop3.cpp" />
+    <ClCompile Include="mail\mail_list_interface.cpp" />
+    <ClCompile Include="mail\mail_tree_data.cpp" />
+    <ClCompile Include="mail\mail_tree_interface.cpp" />
+    <ClCompile Include="mail\mail_tree_item.cpp" />
     <ClCompile Include="nature\nature_appearance_view.cpp" />
     <ClCompile Include="nature\nature_application.cpp" />
     <ClCompile Include="nature\nature_database.cpp" />
@@ -1526,7 +1542,6 @@
     <ClCompile Include="userbase\userbase_util.cpp" />
     <ClCompile Include="userbase\userbase_view.cpp" />
     <ClCompile Include="filemanager\file_operation.cpp" />
-    <ClCompile Include="filemanager\filemanager_application.cpp" />
     <ClCompile Include="filemanager\filemanager_folder_list_view.cpp" />
     <ClCompile Include="filemanager\filemanager_folder_selection_list_view.cpp" />
     <ClCompile Include="filemanager\filemanager_form_child_frame.cpp" />

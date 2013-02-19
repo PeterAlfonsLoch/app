@@ -77,7 +77,7 @@ namespace userbase
    {
 
       ::document::on_alloc(papp);
-      ::database::client::initialize(papp);
+      ::database::client::initialize_data_client(App(papp).simpledb().get_data_server());
 
    }
 

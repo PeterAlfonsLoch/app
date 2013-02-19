@@ -35,7 +35,7 @@ namespace userbase
       FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
       if(pfiu != NULL)
       {
-         userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (this);
+         ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (this);
          // if the frame does not have an active ::view, set to first pane
          ::view * pview = NULL;
          if (pframe->GetActiveView() == NULL)

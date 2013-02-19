@@ -200,7 +200,7 @@ namespace userbase
          pmouseactivate->m_bRet = true;
       }
 
-      userbase::frame_window* pParentFrame = dynamic_cast < userbase::frame_window * > (GetParentFrame());
+      ::userbase::frame_window* pParentFrame = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
       if (pParentFrame != NULL)
       {
          // eat it if this will cause activation
@@ -228,7 +228,7 @@ namespace userbase
 
    void view::on_select()
    {
-      userbase::frame_window* pParentFrame = dynamic_cast < userbase::frame_window * > (GetParentFrame());
+      ::userbase::frame_window* pParentFrame = dynamic_cast < ::userbase::frame_window * > (GetParentFrame());
       if (pParentFrame != NULL)
       {
          // eat it if this will cause activation

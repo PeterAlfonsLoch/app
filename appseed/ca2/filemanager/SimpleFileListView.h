@@ -16,7 +16,7 @@ namespace filemanager
 
    class CLASS_DECL_ca2 SimpleFileListView :
       virtual public ::userbase::view,
-      virtual public filemanager::SimpleFileListInterface
+      virtual public ::filemanager::SimpleFileListInterface
    {
    public:
 

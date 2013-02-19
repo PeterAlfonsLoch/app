@@ -141,7 +141,7 @@ namespace userbase
    void button::_001OnCreate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pschema   = &userbase::GetUfeSchema(get_app())->m_button;
+      m_pschema   = &::userbase::GetUfeSchema(get_app())->m_button;
    }
 
    void button::ResizeToFit()

@@ -525,7 +525,7 @@ namespace user
       ::ca::font * pfont;
       if(pdrawitem->m_bListItemHover)
       {
-         Application.m_visual.imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
+         Application.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, RGB(255, 255, 255), 128);
          pfont = _001GetFontHover();
       }
       else
@@ -553,7 +553,7 @@ namespace user
          else
          {
             COLORREF crTranslucid = RGB(0, 0, 0);
-            Application.m_visual.imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, crTranslucid, 127);
+            Application.visual().imaging().color_blend(pdrawitem->m_pgraphics, pdrawitem->m_rectItem, crTranslucid, 127);
          }
       }
 
@@ -2371,7 +2371,7 @@ namespace user
          SetFocus();
       }
       Application.user().set_keyboard_focus(this);
-      System.set_mouse_focus_LButtonDown(this);
+      System.user().set_mouse_focus_LButtonDown(this);
       pobj->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -3446,8 +3446,8 @@ namespace user
          pobj->previous();
 
 
-      m_font->operator=(*System.font_central().GetListCtrlFont());
-      m_fontHover->operator=(*System.font_central().GetListCtrlFont());
+      m_font->operator=(*System.visual().font_central().GetListCtrlFont());
+      m_fontHover->operator=(*System.visual().font_central().GetListCtrlFont());
 
       m_fontHover->set_underline();
       //m_fontHover->set_bold();
@@ -5310,15 +5310,15 @@ namespace user
             dib->get_graphics()->SelectObject(m_pfont);
             m_plist->m_dcextension._DrawText(dib->get_graphics(), m_strText, rectCache, m_iDrawTextFlags);
 
-            Sys(m_plist->get_app()).imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2, ARGB(184, 184, 184, 184));
+            Sys(m_plist->get_app()).visual().imaging().channel_spread_set_color(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 2, ARGB(184, 184, 184, 184));
             dib->Fill(0, 0, 0, 0);
-            Sys(m_plist->get_app()).imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 1);
+            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib->get_graphics(), null_point(), size, dib2->get_graphics(), null_point(), 0, 1);
             dib2->Fill(0, 0, 0, 0);
-            Sys(m_plist->get_app()).imaging().channel_alpha_gray_blur(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 1);
+            Sys(m_plist->get_app()).visual().imaging().channel_alpha_gray_blur(dib2->get_graphics(), null_point(), size, dib->get_graphics(), null_point(), 0, 1);
             dib2->set(0, 0, 0);
 
 
-            Sys(m_plist->get_app()).imaging().color_blend(m_pgraphics, m_rectText, dib2->get_graphics(), point(1, 1), 0.50);
+            Sys(m_plist->get_app()).visual().imaging().color_blend(m_pgraphics, m_rectText, dib2->get_graphics(), point(1, 1), 0.50);
 
 
             m_pgraphics->SetTextColor(ARGB(255, 255, 255, 255));

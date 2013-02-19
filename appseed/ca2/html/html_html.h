@@ -1,22 +1,28 @@
 #pragma once
 
-
-namespace html
+namespace ca2
 {
 
-
-   class CLASS_DECL_ca2 application :
-      virtual public ::ca::section
+   namespace html
    {
-   public:
+
+
+      class CLASS_DECL_ca2 html :
+         virtual public ::html::html
+      {
+      public:
 
 
       
-      application();
-      virtual ~application();
+         html();
+         virtual ~html();
 
-      virtual bool initialize();
+         virtual bool initialize();
 
-   };
+      };
 
-} // namespace html
+   } // namespace html
+
+
+
+} // namespace ca2

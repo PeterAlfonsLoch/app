@@ -13,7 +13,7 @@ namespace ca2
 
 
       class CLASS_DECL_ca2 user :
-         virtual public ::ca::section
+         virtual public ::user::user
       {
       public:
 
@@ -28,6 +28,7 @@ namespace ca2
 
          user();
          virtual ~user();
+
 
          int32_t GetVisibleFrameCount();
          int32_t GetVisibleFrameCountExcept(::user::interaction * pwndExcept);

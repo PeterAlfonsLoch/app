@@ -382,7 +382,7 @@ namespace gcom
 
                /*            else if(m_lineSongLabel.GetVisible() && ! m_bCompactMode)
                {
-               Application.m_visual.imaging().color_blend(&dcBuffer, 0, m_lineSongLabel.m_iTop, cx, m_lineSongLabel.m_iBottom - m_lineSongLabel.m_iTop, RGB(255, 255, 255), 127);
+               Application.visual().imaging().color_blend(&dcBuffer, 0, m_lineSongLabel.m_iTop, cx, m_lineSongLabel.m_iBottom - m_lineSongLabel.m_iTop, RGB(255, 255, 255), 127);
                }*/
             }
          }

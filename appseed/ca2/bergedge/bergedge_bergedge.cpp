@@ -74,7 +74,7 @@ namespace bergedge
    bool bergedge::initialize_instance()
    {
 
-      if(!cube2::application::initialize_instance())
+      if(!cube::application::initialize_instance())
          return false;
 
       initialize_bergedge_application_interface();
@@ -137,7 +137,7 @@ namespace bergedge
 
    void bergedge::_001OnFileNew()
    {
-      userbase::application::m_pdocmanager->_001OnFileNew();
+      m_pdocmanager->_001OnFileNew();
    }
 
 
@@ -162,8 +162,10 @@ namespace bergedge
 
    void bergedge::load_string_table()
    {
-      cube1::application::load_string_table();
-      cube1::application::load_string_table("platform", "");
+      
+      cube::application::load_string_table();
+      cube::application::load_string_table("platform", "");
+
    }
 
    bool bergedge::file_manager_open_file(
@@ -443,11 +445,11 @@ namespace bergedge
          }
       }
 
-      if(m_pappCurrent != NULL && dynamic_cast < ::fontopus::application * > (m_pappCurrent)->fontopus().m_puser != NULL)
+      if(m_pappCurrent != NULL && m_pappCurrent->m_pappThis->fontopus().m_puser != NULL)
       {
          try
          {
-            get_view()->GetParentFrame()->SetWindowText(dynamic_cast < ::fontopus::application * > (m_pappCurrent)->fontopus().m_puser->m_strLogin);
+            get_view()->GetParentFrame()->SetWindowText(m_pappCurrent->m_pappThis->fontopus().m_puser->m_strLogin);
          }
          catch(...)
          {
@@ -894,7 +896,6 @@ alt1:
 
    bool bergedge::initialize()
    {
-
 
       if(!::platform::application::initialize())
          return false;

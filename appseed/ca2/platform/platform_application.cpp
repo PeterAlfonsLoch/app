@@ -18,7 +18,7 @@ namespace platform
    bool application::initialize_instance()
    {
 
-      if(!cube2::application::initialize_instance())
+      if(!cube::application::initialize_instance())
          return false;
 
       GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
@@ -30,7 +30,7 @@ namespace platform
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame ::ca::window
          System.type_info < pane_view > ());
-      userbase::application::add_document_template(pDocTemplate);
+      userbase().add_document_template(pDocTemplate);
       m_ptemplate_html = pDocTemplate;
 
       return true;
@@ -48,11 +48,16 @@ namespace platform
       return 0;
    }
 
+
    bool application::bergedge_start()
    {
-      userbase::application::m_pdocmanager->_001OnFileNew();
+      
+      m_pdocmanager->_001OnFileNew();
+
       return true;
+
    }
+
 
    void application::_001OnFileNew()
    {

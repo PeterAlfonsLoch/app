@@ -15,21 +15,22 @@ namespace ca2
          m_bIsCreatingUser    = false;
       }
 
-      void fontopus::construct()
+
+      void fontopus::construct(::ca::application * papp)
       {
-         m_strAppName         = "fontopus";
-         m_strBaseSupportId   = "votagus_ca2_fontopus";
-         m_strInstallToken    = "fontopus";    
+
       }
+
 
       fontopus::~fontopus()
       {
       }
 
+
       bool fontopus::initialize_instance()
       {
 
-         if(!cube2::fontopus::initialize_instance())
+         if(!::ca::section::initialize_instance())
             return false;
 
          return TRUE;
@@ -39,19 +40,13 @@ namespace ca2
       {
          try
          {
-            ::cube2::fontopus::exit_instance();
+            ::ca::section::exit_instance();
          }
          catch(...)
          {
          }
          return 0;
       }
-
-      bool fontopus::bergedge_start()
-      {
-         return false;
-      }
-
 
 
       ::fontopus::user * fontopus::login(gen::property_set & set)
@@ -70,7 +65,7 @@ namespace ca2
             papp = this;
          }*/
          //class validate authuser(papp, "system\\user\\authenticate.xhtml", true);
-         class validate authuser(this, "system\\user\\authenticate.xhtml", true);
+         class validate authuser(get_app(), "system\\user\\authenticate.xhtml", true);
          authuser.m_bDeferRegistration = true;
          authuser.propset().merge(set);
          if(set.has_property("ruri"))
@@ -78,6 +73,7 @@ namespace ca2
          else
             return authuser.get_user();
       }
+
 
       bool fontopus::get_auth(const char * psz, string & strUsername, string & strPassword)
       {
@@ -95,7 +91,7 @@ namespace ca2
             papp = this;
          }*/
          //class validate authuser(papp, psz);
-         class validate authuser(this, psz);
+         class validate authuser(get_app(), psz);
          validate::auth * pauth = authuser.get_auth();
          if(pauth == NULL)
             return false;
@@ -111,8 +107,7 @@ namespace ca2
       bool fontopus::check_license(const char * pszId, bool bInteractive)
       {
 
-         ::ca::fontopus * papp = get_app();
-         class validate authuser(papp, "err\\user\\authentication\\not_licensed.xhtml", true, bInteractive);
+         class validate authuser(get_app(), "err\\user\\authentication\\not_licensed.xhtml", true, bInteractive);
          return authuser.get_license(pszId);
 
       }

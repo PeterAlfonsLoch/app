@@ -18,7 +18,7 @@ namespace cube5 // ca8 + cube5
 
    bool network_configuration::initialize(::user::interaction * puiParent)
    {
-      m_pdoc = Cube.create_form(this, puiParent);
+      m_pdoc = Cube.userex().create_form(this, puiParent);
       if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();
@@ -30,7 +30,7 @@ namespace cube5 // ca8 + cube5
 
    bool network_configuration::initialize_child(::user::interaction * puiParent)
    {
-      m_pdoc = Cube.create_child_form(this, puiParent);
+      m_pdoc = Cube.userex().create_child_form(this, puiParent);
       if(m_pdoc != NULL)
       {
          m_pview = m_pdoc->get_typed_view < form_view > ();

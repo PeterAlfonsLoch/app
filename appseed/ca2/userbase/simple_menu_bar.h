@@ -82,7 +82,7 @@ public:
    //bool _001GetItemRect(int32_t iItem, LPRECT lprect, EElement eelement);
    //virtual void _001OnDraw(::ca::graphics * pdc);
    bool ReloadMenuBar();
-   virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
+   virtual void OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler);
    void RemoveAllButtons();
 
    bool Initialize(

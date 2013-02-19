@@ -507,7 +507,7 @@ namespace user
       }
       else
       {
-         set_plain_text_data(new user::plain_text_data(get_app()), true);
+         set_plain_text_data(new ::user::plain_text_data(get_app()), true);
       }
 
       ::ca::data * pdataParentLock = oprop("parent_lock_data").ca2 < ::ca::data > ();
@@ -581,7 +581,7 @@ namespace user
       {
          //::userbase::menu* pPopup = (::userbase::menu_item *) menu.GetSubMenu(0);
          //ASSERT(pPopup != NULL);
-         userbase::frame_window * pframe = (userbase::frame_window *) (::ca::window *) GetParentFrame();
+         ::userbase::frame_window * pframe = (::userbase::frame_window *) (::ca::window *) GetParentFrame();
          //pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
            // point.x, point.y,
             //(::ca::window *) pframe);
@@ -907,7 +907,7 @@ namespace user
 
       _001RedrawWindow();
       Application.user().set_keyboard_focus(this);
-      Application.set_mouse_focus_LButtonDown(this);
+      Application.user().set_mouse_focus_LButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -940,7 +940,7 @@ namespace user
 
       _001RedrawWindow();
       Application.user().set_keyboard_focus(this);
-      Application.set_mouse_focus_RButtonDown(this);
+      Application.user().set_mouse_focus_RButtonDown(this);
       pmouse->m_bRet = true;
       pmouse->set_lresult(1);
    }
@@ -966,7 +966,7 @@ namespace user
       pmouse->m_bRet = true;
    }
 
-   void edit_plain_text::_001OnCalcLayoutProc(user::elemental * pview, ::ca::graphics * pdc)
+   void edit_plain_text::_001OnCalcLayoutProc(::user::elemental * pview, ::ca::graphics * pdc)
    {
       ::ca::data::writing writing(m_pdata);
 
@@ -1663,7 +1663,7 @@ namespace user
                iCode |= 0x80000000;
             }
             string strMap;
-            str = Application.keyboard().process_key(iCode, iChar, 0);
+            str = Application.user().keyboard().process_key(iCode, iChar, 0);
             m_iSelEnd += str.get_length();
             m_iSelStart = m_iSelEnd;
            m_pdata-> m_editfile.Insert(str, str.get_length());

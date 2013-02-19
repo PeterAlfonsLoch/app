@@ -33,7 +33,7 @@ namespace cube
    bool cube::InitApplication()
    {
 
-      if(!::cube2::application::InitApplication())
+      if(!::cube::application::InitApplication())
          return FALSE;
 
       return TRUE;
@@ -44,7 +44,7 @@ namespace cube
    bool cube::process_initialize()
    {
 
-      if(!::cube2::application::process_initialize())
+      if(!::cube::application::process_initialize())
          return false;
 
       return true;
@@ -56,7 +56,7 @@ namespace cube
    {
 
 
-      if(!::cube2::application::initialize())
+      if(!::cube::application::initialize())
          return false;
 
       return true;
@@ -68,7 +68,7 @@ namespace cube
    bool cube::initialize1()
    {
 
-      if(!::cube2::application::initialize1())
+      if(!::cube::application::initialize1())
          return false;
 
       return true;
@@ -80,7 +80,7 @@ namespace cube
    bool cube::initialize3()
    {
 
-      if(!::cube2::application::initialize3())
+      if(!::cube::application::initialize3())
          return false;
 
       return true;
@@ -90,7 +90,7 @@ namespace cube
    bool cube::initialize_instance()
    {
 
-      if(!::cube2::application::initialize_instance())
+      if(!::cube::application::initialize_instance())
          return false;
 
       return true;
@@ -101,7 +101,7 @@ namespace cube
    bool cube::bergedge_start()
    {
 
-      if(!::cube2::application::bergedge_start())
+      if(!::cube::application::bergedge_start())
          return false;
 
       return true;
@@ -115,7 +115,7 @@ namespace cube
 
       try
       {
-         iRet = ::cube2::application::exit_instance();
+         iRet = ::cube::application::exit_instance();
       }
       catch(...)
       {
@@ -277,7 +277,7 @@ namespace cube
 
       if(pdata == NULL)
       {
-         if(!::cube2::application::set_main_init_data(pdata))
+         if(!::cube::application::set_main_init_data(pdata))
             return false;
          return true;
       }
@@ -315,7 +315,7 @@ namespace cube
          command().add_line(strCommandLine);
       }
 
-      if(!::cube2::application::set_main_init_data(pdata))
+      if(!::cube::application::set_main_init_data(pdata))
          return false;
 
       return true;

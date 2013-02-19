@@ -91,7 +91,7 @@ namespace userbase
       virtual void dump(dump_context & dumpcontext) const;
       void EnableDocking(uint32_t dwDockStyle);
    #endif
-      virtual void OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler);
+      virtual void OnUpdateCmdUI(::userbase::frame_window * pTarget, bool bDisableIfNoHndler);
 
 
       __STATUSPANE* _GetPanePtr(int32_t nIndex);

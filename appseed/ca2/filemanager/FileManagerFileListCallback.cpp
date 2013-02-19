@@ -27,14 +27,14 @@ bool FileManagerFileListCallback::initialize()
 
    m_pimagelistSubItemHover->add_matter("filemanager/execute_16.png");
 
-   Application.m_visual.imaging().CreateHueImageList(
+   Application.visual().imaging().CreateHueImageList(
       spgraphics,
       m_pimagelistNormal,
       m_pimagelistSubItemHover,
       RGB(220, 220, 215),
       0.50);
 
-   Application.m_visual.imaging().Createcolor_blend_ImageList(
+   Application.visual().imaging().Createcolor_blend_ImageList(
       m_pimagelistItemHover,
       m_pimagelistSubItemHover,
       RGB(220, 220, 215),
@@ -97,7 +97,7 @@ image_list * FileManagerFileListCallback::GetActionButtonImageList(id i)
    UNREFERENCED_PARAMETER(i);
    //if(i == 0)
    {
-      //return System.shellimageset().GetImageList16();
+      //return System.user().shellimageset().GetImageList16();
    }
    return NULL;
 }

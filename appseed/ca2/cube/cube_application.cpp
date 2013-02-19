@@ -38,30 +38,6 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::construct();
-         }
-      }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::construct();
-         }
-      }
-
-      else if(chFirst == 'u')
-      {
-         if(strId == "userstack")
-         {
-            return ::userstack::application::construct();
-         }
-      }
-
-
    }
 
 
@@ -73,30 +49,6 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::initialize_instance();
-         }
-      }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::initialize_instance();
-         }
-      }
-      else if(chFirst == 'u')
-      {
-         if(strId == "userstack")
-         {
-            return ::userstack::application::initialize_instance();
-         }
-      }
-
-
-
       return cubebase::application::initialize_instance();
    }
 
@@ -108,30 +60,6 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::exit_instance();
-         }
-      }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::exit_instance();
-         }
-
-      }
-      else if(chFirst == 'u')
-      {
-         if(strId == "userstack")
-         {
-            return ::userstack::application::exit_instance();
-         }
-      }
-
-
       return cubebase::application::exit_instance();
    }
 
@@ -143,7 +71,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      cube2::application::_001OnFileNew();
+      cube8::application::_001OnFileNew();
    }
 
 
@@ -155,29 +83,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::bergedge_start();
-         }
-      }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::bergedge_start();
-         }
-      }
-      else if(chFirst == 'u')
-      {
-         if(strId == "userstack")
-         {
-            return ::userstack::application::bergedge_start();
-         }
-      }
-
-      return cube2::application::bergedge_start();
+      return cube8::application::bergedge_start();
    }
 
    bool application::on_install()
@@ -188,29 +94,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::on_install();
-         }
-      }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::on_install();
-         }
-      }
-      else if(chFirst == 'u')
-      {
-         if(strId == "userstack")
-         {
-            return ::userstack::application::on_install();
-         }
-      }
-
-      return cubebase::application::on_install();
+      return cube8::application::on_install();
    }
 
    bool application::on_uninstall()
@@ -221,29 +105,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::on_uninstall();
-         }
-      }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::on_uninstall();
-         }
-      }
-      else if(chFirst == 'u')
-      {
-         if(strId == "userstack")
-         {
-            return ::userstack::application::on_uninstall();
-         }
-      }
-
-      return cubebase::application::on_uninstall();
+      return cube8::application::on_uninstall();
    }
 
 
@@ -255,28 +117,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::on_request(pcreatecontext);
-         }
-      }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::on_request(pcreatecontext);
-         }
-      }
-      else if(chFirst == 'u')
-      {
-         if(strId == "userstack")
-         {
-            return ::userstack::application::on_request(pcreatecontext);
-         }
-      }
-      return cube2::application::on_request(pcreatecontext);
+      return cube8::application::on_request(pcreatecontext);
 
 
    }
@@ -296,19 +137,7 @@ namespace cube
 
       }
 
-      if(chFirst == 'd')
-      {
-
-         if(strId == "default_file_handler")
-         {
-
-            return ::filehandler::application::is_serviceable();
-
-         }
-
-      }
-      
-      return cube2::application::is_serviceable();
+      return cube8::application::is_serviceable();
 
    }
 
@@ -320,15 +149,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::allocate_new_service();
-         }
-      }
-      
-      return cube2::application::allocate_new_service();
+      return cube8::application::allocate_new_service();
    }
 
 
@@ -340,18 +161,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      if(chFirst == 'd')
-      {
-         if(strId == "default_file_handler")
-         {
-            return ::filehandler::application::_001OpenDocumentFile(varFile);
-         }
-      }
-      else if(chFirst == 'r')
-      {
-      }
-
-      return ::cube2::application::_001OpenDocumentFile(varFile);
+      return ::cube8::application::_001OpenDocumentFile(varFile);
 
    }
 
@@ -359,7 +169,7 @@ namespace cube
    int32_t application::run()
    {
 
-      return ::cube2::application::run();
+      return ::cube8::application::run();
 
    }
 

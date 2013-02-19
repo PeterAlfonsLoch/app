@@ -5,14 +5,14 @@ namespace mail
 {
 
 
-   class CLASS_DECL_ca2 application : 
-      virtual public ::filehandler::application
+   class CLASS_DECL_ca2 mail : 
+      virtual public ::ca::section
    {
    public:
       
 
-      application();
-      virtual ~application();
+      mail();
+      virtual ~mail();
 
 
       bool initialize_instance();

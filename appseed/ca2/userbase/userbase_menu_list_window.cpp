@@ -54,7 +54,7 @@ namespace userbase
    void menu_list_window::_001OnCreate(gen::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      m_pschema            = &userbase::GetUfeSchema(get_app())->m_menu;
+      m_pschema            = &::userbase::GetUfeSchema(get_app())->m_menu;
    }
 
    void menu_list_window::_001OnDestroy(gen::signal_object * pobj)

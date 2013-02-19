@@ -13,7 +13,7 @@ namespace filemanager
    filemanager::filemanager()
    {
       m_ptemplateStd       = NULL;
-      m_pfilemanager       = this;
+      
    }
 
    filemanager::~filemanager()
@@ -23,16 +23,15 @@ namespace filemanager
    bool filemanager::initialize()
    {
 
-      if(!::fs::filemanager::initialize())
-         return false;
+      set_data_server(Application.simpledb().get_data_server());
 
-      if(!file_manager_interface::initialize(this))
+      if(!file_manager_interface::initialize(get_app()))
          return false;
 
       if(!FileManagerFileListCallback::initialize())
          return false;
 
-      filemanager::filemanager::InitializeFileManager("filemanager/filemanager");
+      ::filemanager::filemanager::InitializeFileManager("filemanager/filemanager");
       GetStdFileManagerTemplate()->m_strLevelUp.Empty();
       GetStdFileManagerTemplate()->m_strToolBar = "filemanager_toolbar.xml";
       GetStdFileManagerTemplate()->m_dataidStatic = "FileManagerFavoritesList";
@@ -46,7 +45,7 @@ namespace filemanager
       GetStdFileManagerTemplate()->m_idCollapseBox = 0;
       GetStdFileManagerTemplate()->m_pfilelistcallback = this;
       //GetStdFileManagerTemplate()->m_pfilelistcallback->set_app(this);
-      GetStdFileManagerTemplate()->m_strDISection = m_strAppName;
+      GetStdFileManagerTemplate()->m_strDISection = Application.m_strAppName;
 
 
 
@@ -63,19 +62,16 @@ namespace filemanager
       GetFsManagerTemplate()->m_idCollapseBox = 0;
       GetFsManagerTemplate()->m_pfilelistcallback = this;
       //GetFsManagerTemplate()->m_pfilelistcallback->set_app(this);
-      GetFsManagerTemplate()->m_strDISection = "fs." + m_strAppName;
+      GetFsManagerTemplate()->m_strDISection = "fs." + Application.m_strAppName;
 
 
-      m_idFileManager = m_strAppName;
+      m_idFileManager = Application.m_strAppName;
 
       return true;
+
    }
 
 
-   void filemanager::on_request(::ca::create_context * pcreatecontext)
-   {
-      FileManagerCallbackInterface::on_request(pcreatecontext);
-   }
 
    FileManagerTemplate * filemanager::GetStdFileManagerTemplate()
    {
@@ -89,7 +85,8 @@ namespace filemanager
 
    void filemanager::InitializeFileManager(const char * pszMatter)
    {
-      if(is_cube())
+
+      if(Application.is_cube())
       {
          System.factory().creatable_small < ::filemanager::document > ();
          System.factory().creatable_small < FileManagerChildFrame > ();
@@ -99,9 +96,9 @@ namespace filemanager
          System.factory().creatable_small < FileManagerLeftView > ();
          System.factory().creatable_small < FileManagerView > ();
          System.factory().creatable_small < ::filemanager::document > ();
-         System.factory().creatable_small < filemanager::SimpleFileListView > ();
-         System.factory().creatable_small < filemanager::SimpleFolderTreeView > ();
-         System.factory().creatable_small < filemanager::SimplePreview > ();
+         System.factory().creatable_small < ::filemanager::SimpleFileListView > ();
+         System.factory().creatable_small < ::filemanager::SimpleFolderTreeView > ();
+         System.factory().creatable_small < ::filemanager::SimplePreview > ();
          System.factory().creatable_small < FileManagerMainFrame > ();
          System.factory().creatable_small < FileManagerTabView > ();
          System.factory().creatable_small < file_manager_form_document > ();
@@ -122,22 +119,22 @@ namespace filemanager
       }
 
 
-      m_ptemplateStd = new FileManagerTemplate(this);
-      shellimageset().initialize();
-      m_ptemplateStd->Initialize(this, 0, pszMatter);
+      m_ptemplateStd = new FileManagerTemplate(get_app());
+      Application.user().shellimageset().initialize();
+      m_ptemplateStd->Initialize(get_app(), 0, pszMatter);
 
-      m_ptemplateFs = new FileManagerTemplate(this);
-      m_ptemplateFs->Initialize(this, 0, string("fs.") + string(pszMatter));
+      m_ptemplateFs = new FileManagerTemplate(get_app());
+      m_ptemplateFs->Initialize(get_app(), 0, string("fs.") + string(pszMatter));
 
       m_ptemplateForm = new ::userbase::multiple_document_template(
-         this,
+         get_app(),
          pszMatter,
          System.type_info < file_manager_form_document > (),
          System.type_info < file_manager_form_child_frame > (),
          System.type_info < file_manager_form_view > ());
 
       m_ptemplateOperation = new ::userbase::single_document_template(
-         this,
+         get_app(),
          pszMatter,
          System.type_info < file_manager_operation_document > (),
          System.type_info < file_manager_operation_child_frame > (),
@@ -210,7 +207,7 @@ namespace filemanager
 
    }
 
-   string filemanager::get_file_manager_initial_browse_path(const char * pszDefault)
+   string filemanager::get_initial_browse_path(const char * pszDefault)
    {
 
       string strId;
@@ -224,9 +221,9 @@ namespace filemanager
       if(data_get(dataid, "InitialBrowsePath", ::radix::system::idEmpty, strPath))
       {
 
-         App(this).dir().mk(strPath);
+         App(get_app()).dir().mk(strPath);
 
-         if(App(this).dir().is(strPath))
+         if(App(get_app()).dir().is(strPath))
          {
 
             return strPath;
@@ -258,6 +255,15 @@ namespace filemanager
       return "";
 
    }
+
+
+   void filemanager::on_request(::ca::create_context * pcreatecontext)
+   {
+      FileManagerCallbackInterface::on_request(pcreatecontext);
+   }
+
+
+
 } // namespace filemanager
 
 

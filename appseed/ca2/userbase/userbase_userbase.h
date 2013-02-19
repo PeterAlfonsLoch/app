@@ -13,7 +13,8 @@ namespace userbase
 
    class CLASS_DECL_ca2 userbase :
       virtual public ::ca::section,
-      virtual public BaseMenuCentralContainer
+      virtual public BaseMenuCentralContainer,
+      virtual public ::database::client
    {
    public:
 

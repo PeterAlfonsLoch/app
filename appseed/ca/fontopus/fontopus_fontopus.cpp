@@ -103,7 +103,7 @@ namespace fontopus
       if(m_papp->m_pappThis->m_psession != NULL && m_papp->m_pappThis->m_psession->m_pbergedge != NULL)
       {
        
-         puser = m_papp->m_pappThis->m_psession->m_pbergedgeInterface->login(set);
+         puser = m_papp->m_pappThis->m_psession->m_pbergedgeInterface->m_pfontopus->login(set);
 
       }
       else

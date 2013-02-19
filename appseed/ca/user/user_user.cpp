@@ -477,5 +477,12 @@ retry_license:
 
    }
 
+   int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
+   {
+      
+      throw interface_only_exception(get_app());
+
+   }
+
 
 } //namespace user

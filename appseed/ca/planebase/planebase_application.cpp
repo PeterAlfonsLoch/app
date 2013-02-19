@@ -1147,6 +1147,13 @@ exit_application:
 
       m_pfs->construct(this);
 
+      m_phtml = create_html();
+
+      if(m_phtml == NULL)
+         return false;
+
+      m_phtml->construct(this);
+
       return true;
 
    }
@@ -1863,6 +1870,13 @@ exit_application:
 
    }
 
+
+   ::html::html * application::create_html()
+   {
+
+      return new ::html::html();
+
+   }
 
 } //namespace planebase
 

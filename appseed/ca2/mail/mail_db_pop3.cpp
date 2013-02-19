@@ -433,7 +433,8 @@ ret:
    void db_pop3::update_lists()
    {
 
-      Application.update_pop3_mail_lists();
+      Application.mail().update_pop3_mail_lists();
+
    }
 
 

@@ -135,6 +135,12 @@
     <Filter Include="Source Files\userhtml">
       <UniqueIdentifier>{76ae9756-5dc9-422c-a935-0cbaaaf98f17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\mail">
+      <UniqueIdentifier>{3ef22bb2-bb78-42de-8b86-2b8534214ffc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mail">
+      <UniqueIdentifier>{b278f759-e3c2-4dfc-92b9-ff7d9a2a2add}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filemanager\ContextMenu.h">
@@ -758,9 +764,6 @@
     <ClInclude Include="bergedge\bergedge_pane_view_update_hint.h">
       <Filter>Header Files\bergedge</Filter>
     </ClInclude>
-    <ClInclude Include="fontopus\fontopus_application.h">
-      <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="ca2_res.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1169,6 +1172,33 @@
     <ClInclude Include="filemanager\filemanager_filemanager.h">
       <Filter>Header Files\filemanager</Filter>
     </ClInclude>
+    <ClInclude Include="fontopus\fontopus_fontopus.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_account.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_frame.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_list_interface.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_tree_data.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_tree_interface.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_mail.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_db_pop3.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">
@@ -1519,9 +1549,6 @@
       <Filter>Source Files\userbase</Filter>
     </ClCompile>
     <ClCompile Include="filemanager\file_operation.cpp">
-      <Filter>Source Files\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filemanager\filemanager_application.cpp">
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filemanager\filemanager_folder_list_view.cpp">
@@ -2009,6 +2036,30 @@
     </ClCompile>
     <ClCompile Include="fs\fs_fs.cpp">
       <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="filemanager\filemanager_filemanager.cpp">
+      <Filter>Source Files\filemanager</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_account.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_db_pop3.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_list_interface.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_tree_data.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_tree_interface.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_tree_item.cpp">
+      <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_mail.cpp">
+      <Filter>Source Files\mail</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

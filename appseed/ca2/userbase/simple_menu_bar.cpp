@@ -204,9 +204,9 @@ void simple_menu_bar::_001OnCreate(gen::signal_object * pobj)
    ASSERT(lpmfmh != NULL);
    lpmfmh->MessageFilterHook(this);*/
 
-   //m_menuhook.Install((userbase::frame_window *) (::user::interaction*)this);
+   //m_menuhook.Install((::userbase::frame_window *) (::user::interaction*)this);
 
-   SetFont(System.font_central().GetMenuFont());
+   SetFont(System.visual().font_central().GetMenuFont());
 
    UpdateWindow();
 }
@@ -348,7 +348,7 @@ void simple_menu_bar::_001OnMenuChar(gen::signal_object * pobj)
    pobj->previous();
 }
 
-void simple_menu_bar::OnUpdateCmdUI(userbase::frame_window *pTarget, bool bDisableIfNoHndler)
+void simple_menu_bar::OnUpdateCmdUI(::userbase::frame_window *pTarget, bool bDisableIfNoHndler)
 {
    UNREFERENCED_PARAMETER(pTarget);
    UNREFERENCED_PARAMETER(bDisableIfNoHndler);
@@ -434,7 +434,7 @@ bool simple_menu_bar::ReloadMenuBar()
          56);
    }
 
-   pdc->SelectObject(System.font_central().GetMenuFont());
+   pdc->SelectObject(System.visual().font_central().GetMenuFont());
    pdc->SetBkMode(TRANSPARENT);
    for(int32_t iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
@@ -508,7 +508,7 @@ int32_t simple_menu_bar::_001HitTest(const POINT *lppoint)
 /*void simple_menu_bar::_001Layout()
 {
    ::ca::client_graphics pdc(this);;
-   pdc->SelectObject(System.font_central().GetMenuFont());
+   pdc->SelectObject(System.visual().font_central().GetMenuFont());
 
    size size;
    int32_t ix = ITEMCHECKEDPADLEFT;

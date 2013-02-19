@@ -4,16 +4,20 @@
 namespace uinteraction
 {
 
-   application::application()
+
+   uinteraction::uinteraction()
    {
+
    }
 
-   application::~application()
+
+   uinteraction::~uinteraction()
    {
+
    }
 
 
-   ::uinteraction::interaction * application::get_new_uinteraction(const char * pszUinteractionLibrary)
+   ::uinteraction::interaction * uinteraction::get_new_uinteraction(const char * pszUinteractionLibrary)
    {
 
       string strId(pszUinteractionLibrary);
@@ -30,10 +34,10 @@ namespace uinteraction
 #ifndef METROWIN
       if(!System.directrix().m_varTopicQuery.has_property("install")
       && !System.directrix().m_varTopicQuery.has_property("uninstall")
-      && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema))
+      && !System.install().is(NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema))
       {
 
-         throw not_installed(get_app(), NULL, strBuildNumber, "uinteraction", strId, m_strLocale, m_strSchema);
+         throw not_installed(get_app(), NULL, strBuildNumber, "uinteraction", strId, Application.m_strLocale, Application.m_strSchema);
 
       }
 
@@ -65,7 +69,7 @@ namespace uinteraction
 
       library.get_app_list(stra);
 
-      if(stra.get_size() != 1) // a uinteraction OSLibrary should have one application
+      if(stra.get_size() != 1) // a uinteraction OSLibrary should have one uinteraction
          return NULL;
 
       string strAppId(stra[0]);
@@ -81,7 +85,7 @@ namespace uinteraction
 
    }
 
-   ::uinteraction::interaction * application::get_uinteraction(const char * pszUinteraction)
+   ::uinteraction::interaction * uinteraction::get_uinteraction(const char * pszUinteraction)
    {
 
       if(System.get_twf() == NULL)
@@ -96,7 +100,7 @@ namespace uinteraction
       if(Bergedge.m_mapUinteraction[pszUinteraction] == NULL)
       {
 
-         Bergedge.m_mapUinteraction[pszUinteraction] = Bergedge.get_new_uinteraction(pszUinteraction);
+         Bergedge.m_mapUinteraction[pszUinteraction] = Bergedge.uinteraction().get_new_uinteraction(pszUinteraction);
 
          pinteraction = Bergedge.m_mapUinteraction[pszUinteraction];
 
@@ -108,7 +112,7 @@ namespace uinteraction
    }
 
 
-   ::uinteraction::frame::frame * application::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
+   ::uinteraction::frame::frame * uinteraction::get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName)
    {
 
       ::uinteraction::interaction * pinteraction = get_uinteraction(pszLibrary);
@@ -121,4 +125,9 @@ namespace uinteraction
 
    }
 
+
 } // namespace uinteraction
+
+
+
+

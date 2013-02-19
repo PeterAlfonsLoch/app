@@ -234,7 +234,7 @@ namespace user
 
    //   BaseTreeItemData itemdata;
 /*      ex1::tree_path itempath;*/
-      user::tree_draw_item drawitemdata;
+      ::user::tree_draw_item drawitemdata;
       drawitemdata.m_pdc = pdc;
       drawitemdata.m_iIndentation = _001GetIndentation();
    //   drawitemdata.m_pdata = &itemdata;
@@ -414,7 +414,7 @@ namespace user
       if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
       {
          ::ca::font_sp font(get_app());
-         font->operator=(*System.font_central().GetListCtrlFont());
+         font->operator=(*System.visual().font_central().GetListCtrlFont());
          font->set_bold();
          data.m_pdc->set_font(font);
          m_dcextension._DrawText(data.m_pdc, strItem, &rect, DT_LEFT | DT_BOTTOM);

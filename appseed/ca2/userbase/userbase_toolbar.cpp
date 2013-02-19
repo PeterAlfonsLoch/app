@@ -1375,7 +1375,7 @@ throw todo(get_app());
    }
 
    /*
-   void tool_bar::OnUpdateCmdUI(userbase::frame_window* pTarget, bool bDisableIfNoHndler)
+   void tool_bar::OnUpdateCmdUI(::userbase::frame_window* pTarget, bool bDisableIfNoHndler)
    {
       tool_cmd_ui state;
       state.m_pOther = this;

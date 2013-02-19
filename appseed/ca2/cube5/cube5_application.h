@@ -14,17 +14,17 @@ namespace cube5
       ::uinteraction::uinteraction      * m_puinteraction;
       ::userbase::userbase              * m_puserbase;
       ::userex::userex                  * m_puserex;
-      ::html::html                      * m_phtml;
-      filemanager::_shell::ImageSet     * m_pshellimageset;
+      ::filemanager::filemanager        * m_pfilemanager;
+      ::mail::mail                      * m_pmail;
+#ifdef WINDOWSEX
+      base_array < MONITORINFO >          m_monitorinfoa;
+      base_array < MONITORINFO >          m_monitorinfoaDesk;
+#endif
 
 
       application();
       virtual ~application();
 
-#ifdef WINDOWSEX
-      base_array < MONITORINFO > m_monitorinfoa;
-      base_array < MONITORINFO > m_monitorinfoaDesk;
-#endif
 
       
       virtual count get_monitor_count();
@@ -54,8 +54,12 @@ namespace cube5
 
       virtual bool set_keyboard_layout(const char * pszPath, bool bUser);
 
-      filemanager::_shell::ImageSet & shellimageset();
-
+      
+      inline ::uinteraction::uinteraction          & uinteraction () { return *m_puinteraction  ; }
+      inline ::userbase::userbase                  & userbase     () { return *m_puserbase      ; }
+      inline ::userex::userex                      & userex       () { return *m_puserex        ; }
+      inline ::filemanager::filemanager            & filemanager  () { return *m_pfilemanager   ; }
+      inline ::mail::mail                          & mail         () { return *m_pmail          ; }
       
       string message_box(const char * pszMatter, gen::property_set & propertyset);
       using ::radix::application::simple_message_box;
@@ -67,6 +71,8 @@ namespace cube5
       virtual bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
    
       virtual void data_on_after_change(gen::signal_object * pobj);
+
+
 
 
    };

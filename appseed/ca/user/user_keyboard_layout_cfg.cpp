@@ -23,7 +23,7 @@ namespace user
    bool keyboard_layout_cfg::CreateViews()
    {
 
-      /*m_pdoc = Cube.create_form(this, this);
+      /*m_pdoc = Cube.userex().create_form(this, this);
 
       SetPaneCount(2);
 
@@ -51,19 +51,19 @@ namespace user
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_cfg_id layoutid;
-         if(System.keyboard().initialize(&layoutid, straPath[i]))
+         if(System.user().keyboard().initialize(&layoutid, straPath[i]))
          {
             m_layoutida.add(layoutid);
          }
       }
 
       m_layoutida.QuickSort(true);
-      if(&System.keyboard().layout() != NULL)
+      if(&System.user().keyboard().layout() != NULL)
       {
          int32_t iFind = -1;
          for(int32_t i = 0; i < m_layoutida.get_count(); i++)
          {
-            if(m_layoutida[i].m_strPath.CompareNoCase(System.keyboard().layout().m_strPath) == 0)
+            if(m_layoutida[i].m_strPath.CompareNoCase(System.user().keyboard().layout().m_strPath) == 0)
             {
                iFind = i;
                break;

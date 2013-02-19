@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace cube8
+namespace cube8 // cube8 + cube2
 {
 
 
@@ -34,7 +34,7 @@ namespace cube8
 
       try
       {
-         m_iReturnCode = ::ca2::fontopus::application::exit_instance();
+         m_iReturnCode = ::cube5::application::exit_instance();
       }
       catch(...)
       {
@@ -54,33 +54,33 @@ namespace cube8
 
    /*bool application::is_licensed(const char * pszId, bool bInteractive)
    {
-      return license().has(pszId, bInteractive);
+   return license().has(pszId, bInteractive);
    }
 
    class ::fontopus::license & application::license()
    {
-      return m_splicense;
+   return m_splicense;
    }*/
 
    /*
-      ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
-      if(pradixapp != NULL)
-      {
-         try
-         {
-            pradixapp->m_dwAlive = ::get_tick_count();
-         }
-         catch(...)
-         {
-         }
-      }
+   ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
+   if(pradixapp != NULL)
+   {
+   try
+   {
+   pradixapp->m_dwAlive = ::get_tick_count();
+   }
+   catch(...)
+   {
+   }
+   }
    */
 
    bool application::initialize()
    {
 
 
-      if(!::ca2::fontopus::application::initialize())
+      if(!::cube5::application::initialize())
          return false;
 
 
@@ -96,7 +96,9 @@ namespace cube8
       }
 
 
+      m_dwAlive = ::get_tick_count();
 
+      ensure_app_interest();
 
       return true;
 
@@ -106,12 +108,13 @@ namespace cube8
    {
 
       if(fontopus().m_puser == NULL &&
-        (App(this).directrix().m_varTopicQuery.has_property("install")
-      || App(this).directrix().m_varTopicQuery.has_property("uninstall")))
+         (App(this).directrix().m_varTopicQuery.has_property("install")
+         || App(this).directrix().m_varTopicQuery.has_property("uninstall")))
       {
-         fontopus().m_puser                 = new ::fontopus::user(this);
-         fontopus().m_puser->m_strLogin     = "system";
-         create_user(fontopus().m_puser);
+
+         if(!fontopus().create_system_user("system"))
+            return false;
+
       }
 
       if(!::cube5::application::initialize1())
@@ -125,7 +128,7 @@ namespace cube8
 
    /*class ::fs::data * application::fs()
    {
-      return m_spfsdata;
+   return m_spfsdata;
    }*/
 
 
@@ -139,22 +142,22 @@ namespace cube8
 
    /*bool application::on_install()
    {
-      return ::ca2::fontopus::application::on_install();
+   return ::ca2::fontopus::application::on_install();
    }
 
    bool application::on_uninstall()
    {
-      return ::ca2::fontopus::application::on_uninstall();
+   return ::ca2::fontopus::application::on_uninstall();
    }
 
    bool application::is_serviceable()
    {
-      return ::ca2::fontopus::application::is_serviceable();
+   return ::ca2::fontopus::application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
    {
-      return ::ca2::fontopus::application::allocate_new_service();
+   return ::ca2::fontopus::application::allocate_new_service();
    }*/
 
    bool application::_001CloseApplicationByUser(::user::interaction * pwndExcept)
@@ -171,14 +174,14 @@ namespace cube8
       close_all_documents(FALSE);
 
 
-      _001CloseAllDocuments(FALSE);
+      userbase()._001CloseAllDocuments(FALSE);
 
 
       // there are cases where destroying the documents may destroy the
       //  main ::ca::window of the application.
       //bool bgen::ContextIsDll = afxContextIsDLL;
       //if (!bgen::ContextIsDll && papp->GetVisibleFrameCount() <= 0)
-      if(GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
+      if(user().GetVisibleTopLevelFrameCountExcept(pwndExcept) <= 0)
       {
 
          post_thread_message(WM_QUIT, 0, 0);
@@ -187,38 +190,6 @@ namespace cube8
 
       return true;
 
-   }
-
-#include "framework.h"
-
-
-namespace cube2
-{
-
-
-   application::application()
-   {
-
-
-   }
-
-   application::~application()
-   {
-
-
-   }
-
-   bool application::initialize()
-   {
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!cube1::application::initialize())
-         return false;
-
-      ensure_app_interest();
-
-      return true;
    }
 
 
@@ -323,21 +294,30 @@ namespace cube2
 
    }
 
+
    oswindow application::get_ca2_app_wnd(const char * psz)
    {
+
       return m_mapAppInterest[psz];
+
    }
+
 
    bool application::initialize_instance()
    {
 
-      if(!::cube1::application::initialize_instance())
+      if(!::cube5::application::initialize_instance())
          return false;
+
       if(m_psession != NULL && m_psession->m_pbergedge != NULL)
       {
+
          Session.m_pappCurrent = this;
+
       }
+
       return true;
+
    }
 
 
@@ -392,14 +372,11 @@ namespace cube2
 
    void application::request(::ca::create_context * pcreatecontext)
    {
-      ::cube1::application::request(pcreatecontext);
+      ::cube5::application::request(pcreatecontext);
    }
 
 
-} //namespace cube2
 
-
-
-} //namespace cube8
+} //namespace cube8 + cube2
 
 

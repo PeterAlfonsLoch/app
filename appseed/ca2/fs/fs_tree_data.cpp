@@ -14,12 +14,12 @@ namespace fs
 
    ::ex1::tree_item_data * tree_data::on_allocate_item()
    {
-      return new fs::tree_item();
+      return new ::fs::tree_item();
    }
 
    void tree_data::on_delete_item(::ex1::tree_item_data * pitem)
    {
-      delete (fs::tree_item *) pitem;
+      delete (::fs::tree_item *) pitem;
    }
 
 

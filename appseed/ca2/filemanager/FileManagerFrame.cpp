@@ -59,7 +59,7 @@ bool FileManagerFrame::CreateBars()
      // BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
       //BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
       //NULL,
-      //System.font_central().GetMenuFont());
+      //System.visual().font_central().GetMenuFont());
 
    //m_menuhook.Install(this);
 
@@ -77,7 +77,7 @@ bool FileManagerFrame::CreateBars()
       BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
       BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListHueLight(),
       NULL,
-      System.font_central().GetMenuFont()) ||
+      System.visual().font_central().GetMenuFont()) ||
       VMS_FAILED(m_menubar.LoadMenuBar(uiMenuBar)))
    {
       TRACE0("Failed to create toolbar\n");

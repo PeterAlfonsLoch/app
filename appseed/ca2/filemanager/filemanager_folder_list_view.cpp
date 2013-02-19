@@ -30,14 +30,14 @@ void folder_list_view::Initialize(::database::id  datakey, bool bRecursive)
       SetDataInterface(new filemanager::folder_list_data(get_app()));
       filemanager::folder_list_data * pdata = dynamic_cast < filemanager::folder_list_data * > (m_pdata);
       pdata->m_dataid = datakey;
-      pdata->initialize(get_app());
+      pdata->initialize_data_client(Application.simpledb().get_data_server());
    }
    else
    {
       SetDataInterface(new databaseuser::data_key_list_data(get_app()));
       databaseuser::data_key_list_data* pdata = dynamic_cast < databaseuser::data_key_list_data * > (m_pdata);
       pdata->m_dataid = datakey;
-      pdata->initialize(get_app());
+      pdata->initialize_data_client(Application.simpledb().get_data_server());
    }
 }
 

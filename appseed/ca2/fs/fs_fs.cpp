@@ -9,18 +9,18 @@ namespace ca2
    {
 
 
-      application::application()
+      fs::fs()
       {
       }
 
-      application::~application()
+      fs::~fs()
       {
       }
 
-      bool application::initialize()
+      bool fs::initialize()
       {
 
-         if(is_system())
+         if(Application.is_system())
          {
             System.factory().creatable_small < ::fs::main_view > ();
             System.factory().creatable_small < ::fs::tree > ();
@@ -28,7 +28,7 @@ namespace ca2
          }
 
 
-         if(!::userex::application::initialize())
+         if(!::fs::fs::initialize())
             return false;
 
 

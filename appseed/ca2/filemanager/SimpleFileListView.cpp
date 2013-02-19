@@ -344,7 +344,7 @@ namespace filemanager
                ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
                //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
                //ASSERT(pPopup != NULL);
-               userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame()));
+               ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > ( dynamic_cast < ::ca::window * > (GetParentFrame()));
                pframe->SetActiveView(this);
                menuPopup.set_app(get_app());
                menuPopup.TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
@@ -357,7 +357,7 @@ namespace filemanager
             ::userbase::menu menuPopup(get_app(), menu.GetSubMenu(0));
             //SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             //ASSERT(pPopup != NULL);
-            userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (GetTopLevelFrame());
+            ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame());
 
             pframe->SetActiveView(this);
 
@@ -431,7 +431,7 @@ namespace filemanager
             }*/
 
 
-            userbase::frame_window * pframe = dynamic_cast < userbase::frame_window * > (GetTopLevelFrame());
+            ::userbase::frame_window * pframe = dynamic_cast < ::userbase::frame_window * > (GetTopLevelFrame());
 
             pframe->SetActiveView(this);
 
@@ -459,7 +459,7 @@ namespace filemanager
    UINT c_cdecl SimpleFileListView::ThreadProcFileSize(LPVOID lpparam)
    {
       file_size * psize = (file_size *) lpparam;
-      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_papp).db());
+      db_server * pcentral = dynamic_cast < db_server * > (&App(psize->m_pview->m_papp).simpledb().db());
       if(pcentral == NULL)
          return 0;
       DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;

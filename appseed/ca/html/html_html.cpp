@@ -5,11 +5,25 @@ namespace html
 {
 
 
-   html::html(::ca::application * papp) :
-      ca(papp),
-      m_clrInvalid(0xffffffff),
-      m_percentMax(USHRT_MAX)
+   html::html()
    {
+   
+   }
+
+
+   html::~html()
+   {
+
+   }
+
+
+   void html::construct(::ca::application * papp)
+   {
+
+      ::ca::section::construct(papp);
+
+      m_clrInvalid = 0xffffffff;
+      m_percentMax = USHRT_MAX;
 
       /** 28 system colors */
       m_namedColors["activeborder"]      = (COLORREF)0x8000000A;
@@ -185,9 +199,6 @@ namespace html
 
    }
 
-   html::~html()
-   {
-   }
 
 
    string html::special_chars(const char * psz)
