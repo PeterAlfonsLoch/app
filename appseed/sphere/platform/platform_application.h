@@ -1,0 +1,35 @@
+#pragma once
+
+namespace platform
+{
+
+   class CLASS_DECL_ca2 application :
+      virtual public ::nature::application
+   {
+   public:
+
+
+      ::userbase::single_document_template * m_ptemplate_html;
+
+
+      application();
+      virtual ~application();
+
+      virtual bool initialize_instance();
+      virtual int32_t exit_instance();
+
+      virtual bool bergedge_start();
+
+      virtual void _001OnFileNew();
+
+      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+         
+
+      virtual ::ca::application * get_app() const;
+      void OnFileManagerOpenFile(
+         ::filemanager::data * pdata, 
+         ::fs::item_array & itema);
+
+   };
+
+} // namespace platform
