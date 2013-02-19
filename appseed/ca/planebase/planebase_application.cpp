@@ -19,6 +19,7 @@ namespace planebase
       m_dir.set_app(this);
       m_file.set_app(this);
       m_http.set_app(this);
+      m_user.set_app(this);
 
       m_bIfs                     = true;
       m_bUpdateMatterOnInstall   = true;
@@ -887,285 +888,6 @@ exit_application:
       return true;
    }
 
-   ex1::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
-   {
-      try
-      {
-         return get_file(varFile, nOpenFlags);
-      }
-      catch(...)
-      {
-         return ::ca::null();
-      }
-   }
-
-   ex1::filesp application::get_file(var varFile, UINT nOpenFlags)
-   {
-
-      ex1::filesp spfile;
-
-      string strPath;
-
-      if(varFile.get_type() == var::type_string)
-      {
-
-         strPath = varFile;
-
-         strPath.trim("\"'");
-
-      }
-      else if(varFile.get_type() == var::type_propset)
-      {
-
-         if(varFile.has_property("url"))
-         {
-
-            strPath = varFile["url"];
-
-            strPath.trim("\"'");
-
-         }
-
-      }
-
-      if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
-      {
-
-         spfile(varFile.propset()["file"].ca2 < ::ex1::file >());
-
-      }
-      else if(gen::str::find_ci(".zip:", strPath) >= 0)
-      {
-
-         zip::InFile * pinfile = new zip::InFile(get_app());
-
-         if(pinfile != NULL)
-         {
-
-            if(!pinfile->unzip_open(strPath, 0))
-            {
-
-               delete pinfile;
-
-               pinfile = NULL;
-
-            }
-
-         }
-
-         spfile(pinfile);
-
-      }
-      else if(gen::str::begins(strPath, "http://matter.ca2.cc/") || gen::str::begins(strPath, "https://matter.ca2.cc/"))
-      {
-
-         string strFile(strPath);
-         if(gen::str::ends(strPath, "en_us_international.xml"))
-         {
-            TRACE("Debug Here");
-         }
-
-         if(gen::str::ends(strPath, "text_select.xml"))
-         {
-            TRACE("Debug Here");
-         }
-
-         if(gen::str::ends(strPath, "arialuni.ttf"))
-         {
-            TRACE("Debug Here : arialuni.ttf");
-         }
-
-         strFile.replace(":", "_");
-         strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
-
-
-         if(Application.file().exists(strFile))
-         {
-
-            spfile.create(this);
-
-            try
-            {
-
-               if(spfile->open(strFile, nOpenFlags))
-               {
-                  TRACE("from_exist_cache:\"" + strPath + "\"");
-                  return spfile;
-
-               }
-            }
-            catch(...)
-            {
-
-            }
-
-            try
-            {
-
-               spfile.destroy();
-
-            }
-            catch(...)
-            {
-            }
-
-         }
-
-         var varQuery;
-
-         varQuery["disable_ca2_sessid"] = true;
-
-         if(Application.file().exists(strFile))
-         {
-
-            spfile(new sockets::http::file(get_app()));
-
-            if(!spfile->open(strPath, nOpenFlags))
-            {
-
-               spfile.destroy();
-
-            }
-            else
-            {
-
-               try
-               {
-
-                  System.file().output(this, strFile, &System.compress(), &::ca4::compress::null, *spfile.m_p);
-
-               }
-               catch(...)
-               {
-               }
-
-
-               spfile->seek_to_begin();
-
-            }
-         
-         }
-
-
-      }
-      else if(gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://"))
-      {
-
-         spfile(new sockets::http::file(get_app()));
-
-         if(!spfile->open(strPath, nOpenFlags))
-         {
-
-            spfile.destroy();
-
-         }
-
-      }
-      else if(gen::str::begins(strPath, "ifs://") || gen::str::begins(strPath, "uifs://"))
-      {
-
-         if(&AppUser(this) == NULL)
-         {
-
-            spfile = ::ca::null();
-
-         }
-         else
-         {
-
-            spfile = AppUser(this).m_pifs->get_file(varFile, nOpenFlags);
-
-         }
-
-      }
-      else if(gen::str::begins(strPath, "fs://"))
-      {
-
-         if(&Session == NULL)
-         {
-
-            spfile = ::ca::null();
-
-         }
-         else
-         {
-
-            spfile = Session.m_prfs->get_file(varFile, nOpenFlags);
-
-         }
-
-      }
-      else if(gen::str::begins_eat_ci(strPath, "matter://"))
-      {
-
-         ::ca::application * papp = NULL;
-
-         if(System.url().get_server("matter://" + strPath) ==m_strAppName)
-         {
-
-            strPath = System.url().get_object("matter://" + strPath).Mid(1);
-
-            spfile.create(this);
-
-            if(!spfile->open(dir().matter(strPath), nOpenFlags))
-            {
-
-               spfile.destroy();
-
-            }
-
-         }
-         else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(this).m_strAppName.has_char())
-         {
-
-            spfile = App(papp).get_file("matter://" + strPath, nOpenFlags);
-
-         }
-         else
-         {
-
-            spfile = get_file(dir().matter(strPath), nOpenFlags);
-
-         }
-
-      }
-      else
-      {
-
-         if(strPath.is_empty())
-         {
-            TRACE("planebase::application::get_file file with empty name!!");
-            return spfile;
-         }
-
-         spfile.create(this);
-
-         if(!spfile->open(strPath, nOpenFlags))
-         {
-
-            spfile.destroy();
-
-         }
-
-      }
-
-      if(spfile.is_null())
-      {
-
-         throw ex1::file_exception(this, ::ex1::file_exception::none, -1, strPath);
-
-      }
-
-      return spfile;
-
-   }
-
-   ::ex1::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
-   {
-
-      return ::ex1::byte_stream(get_file(varFile, nOpenFlags));
-
-   }
 
    int32_t application::exit_instance()
    {
@@ -1236,6 +958,9 @@ exit_application:
    bool application::initialize()
    {
 
+
+
+
       if(m_bIfs)
       {
          if(&Session != NULL)
@@ -1261,9 +986,24 @@ exit_application:
       }
 
 
-
-      if(!fontopus::application::initialize())
+      if(!ca4::application::initialize())
          return false;
+
+
+      if(!m_fs.initialize())
+         return false;
+
+
+      if(!m_simpledb.initialize())
+         return false;
+
+      if(!m_visual.initialize())
+         return false;
+
+      if(!m_user.initialize())
+         return false;
+
+
 
       if(!is_system() && !is_session() && !is_bergedge() && !is_cube() && !is_installing() && !is_uninstalling())
       {
@@ -1401,11 +1141,46 @@ exit_application:
          create_user(m_puser);
       }
 
-      if(!fontopus::application::initialize1())
+      if(!ca4::application::initialize1())
          return false;
 
 
+      if(!m_visual.initialize1())
+         return false;
+
+      if(!m_user.initialize1())
+         return false;
+
       return true;
+
+   }
+
+   bool application::initialize2()
+   {
+
+      if(!ca4::application::initialize2())
+         return false;
+
+      if(!m_simpledb.initialize2())
+         return false;
+
+      return true;
+
+   }
+
+
+   bool application::initialize_instance()
+   {
+
+      if(!ca4::application::initialize_instance())
+         return false;
+
+      if(!m_fontopus.initiallize_instance())
+         return false;
+      
+
+      return true;
+
 
    }
 
@@ -2005,6 +1780,13 @@ exit_application:
 
    }
 
+
+   ::fontopus::user * application::get_user()
+   {
+
+      return m_fontopus.get_user();
+
+   }
 
 
 

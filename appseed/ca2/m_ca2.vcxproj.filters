@@ -79,12 +79,6 @@
     <Filter Include="Header Files\ca8">
       <UniqueIdentifier>{07f5a7dc-81ca-402a-b93b-ed7fe3fd8b86}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\cube1">
-      <UniqueIdentifier>{1b0d230c-3a1e-4b78-a935-8a2a03df9578}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\cube2">
-      <UniqueIdentifier>{95dc1fac-18da-4d98-a28b-b112a6e4cdb7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\cube8">
       <UniqueIdentifier>{7d69465c-7a82-4d6c-9c0d-3ac6c83759b3}</UniqueIdentifier>
     </Filter>
@@ -613,9 +607,6 @@
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filemanager\file_operation.cpp">
-      <Filter>Source Files\filemanager</Filter>
-    </ClCompile>
-    <ClCompile Include="filemanager\filemanager_application.cpp">
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
     <ClCompile Include="filemanager\filemanager_folder_list_view.cpp">
@@ -1152,6 +1143,9 @@
     <ClCompile Include="hi5\net\hi5_net_twitter_authorization.cpp">
       <Filter>Source Files\hi5\net</Filter>
     </ClCompile>
+    <ClCompile Include="filemanager\filemanager_filemanager.cpp">
+      <Filter>Source Files\filemanager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ca2.h">
@@ -1206,9 +1200,6 @@
       <Filter>Header Files\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\filemanager.h">
-      <Filter>Header Files\filemanager</Filter>
-    </ClInclude>
-    <ClInclude Include="filemanager\filemanager_application.h">
       <Filter>Header Files\filemanager</Filter>
     </ClInclude>
     <ClInclude Include="filemanager\filemanager_folder_list_view.h">
@@ -2168,14 +2159,8 @@
     <ClInclude Include="fontopus\fontopus_validate.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="fontopus\fontopus_application.h">
-      <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="fontopus\fontopus.h">
       <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="ca8\ca8.h">
-      <Filter>Header Files\ca8</Filter>
     </ClInclude>
     <ClInclude Include="ca8\ca8_application.h">
       <Filter>Header Files\ca8</Filter>
@@ -2191,18 +2176,6 @@
     </ClInclude>
     <ClInclude Include="ca8\ca8_wait_message_dialog.h">
       <Filter>Header Files\ca8</Filter>
-    </ClInclude>
-    <ClInclude Include="cube1\cube1.h">
-      <Filter>Header Files\cube1</Filter>
-    </ClInclude>
-    <ClInclude Include="cube1\cube1_application.h">
-      <Filter>Header Files\cube1</Filter>
-    </ClInclude>
-    <ClInclude Include="cube2\cube2.h">
-      <Filter>Header Files\cube2</Filter>
-    </ClInclude>
-    <ClInclude Include="cube2\cube2_application.h">
-      <Filter>Header Files\cube2</Filter>
     </ClInclude>
     <ClInclude Include="cube8\cube8.h">
       <Filter>Header Files\cube8</Filter>
@@ -2545,6 +2518,12 @@
     </ClInclude>
     <ClInclude Include="html\text.h">
       <Filter>Header Files\html</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_fontopus.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="filemanager\filemanager_filemanager.h">
+      <Filter>Header Files\filemanager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

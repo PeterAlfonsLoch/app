@@ -56,7 +56,7 @@ namespace userbase
 
       if(::user::button::_001IsTranslucent())
       {
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = Application.m_visual.imaging();
          imaging.color_blend(
             pdc,
             rectClient,

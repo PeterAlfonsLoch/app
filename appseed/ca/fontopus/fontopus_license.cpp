@@ -36,11 +36,11 @@ namespace fontopus
 
       if(m_papp != NULL && m_papp->m_psession != NULL && m_papp->m_psession->m_pbergedge != NULL)
       {
-         bLicensed = App(m_papp->m_psession->m_pbergedgeInterface).check_license(pszId, bInteractive);
+         bLicensed = App(m_papp->m_psession->m_pbergedgeInterface).m_fontopus.check_license(pszId, bInteractive);
       }
       else
       {
-         bLicensed = Application.check_license(pszId, bInteractive);   
+         bLicensed = Application.m_fontopus.check_license(pszId, bInteractive);   
       }
       
       info.m_bLicensed = bLicensed;

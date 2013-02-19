@@ -26,6 +26,9 @@ namespace plane
       m_pifs                     = new ifs(this, "");
       m_prfs                     = new ::fs::remote_native(this, "");
 
+
+      m_userpresence.set_app(this);
+
    }
 
    session::~session()
@@ -77,6 +80,20 @@ namespace plane
       m_eexclusiveinstance = ::radix::ExclusiveInstanceNone;
 
    }
+
+   bool session::initialize()
+   {
+
+      if(!::planebase::application::initialize())
+         return false;
+
+      if(!m_userpresence.initialize())
+         return false;
+
+      return true;
+
+   }
+
 
    bool session::initialize_instance()
    {

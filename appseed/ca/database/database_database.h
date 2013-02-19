@@ -5,15 +5,14 @@ namespace database
 {
 
 
-   class CLASS_DECL_ca application :
-      virtual public ca4::application,
+   class CLASS_DECL_ca database :
       virtual public ::database::client
    {
    public:
 
 
-      application();
-      virtual ~application();
+      database();
+      virtual ~database();
 
       
       virtual bool initialize();

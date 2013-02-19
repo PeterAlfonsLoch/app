@@ -31,7 +31,7 @@ namespace database
          if(pobj->previous())
             return;
 
-         set_server(Application.get_data_server());
+         set_server(Application.m_simpledb.get_data_server());
          if(m_dataidWindow.is_null())
          {
             string strKey;

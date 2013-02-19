@@ -14,6 +14,9 @@ public:
 
    virtual void on_app_request_bergedge_callback(::ca2::application * papp);
 
+
+   virtual ::fontopus::user * login(gen::property_set & set) = 0;
+
 };
 
 

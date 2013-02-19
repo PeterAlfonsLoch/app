@@ -583,7 +583,7 @@ namespace user
       try
       {
 
-         spfile = Application.get_byte_stream(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary);
+         spfile = Application.file().get_byte_stream(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary);
 
          /*if(gen::str::begins_ci(varFile, "uifs://"))
          {
@@ -637,7 +637,7 @@ namespace user
       try
       {
 
-         spfile = Application.get_byte_stream(varFile, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive);
+         spfile = Application.file().get_byte_stream(varFile, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive);
 
       }
       catch(base_exception & e)

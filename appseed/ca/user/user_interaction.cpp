@@ -620,7 +620,7 @@ namespace user
       }
       else if(_001IsTranslucent())
       {
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = Application.m_visual.imaging();
          imaging.color_blend(pdc, rectClient, get_background_color() & 0xffffff, (get_background_color() >> 24) & 0xff);
       }
       else

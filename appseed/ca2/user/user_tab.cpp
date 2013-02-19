@@ -313,7 +313,7 @@ namespace user
 
       //HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
 
-//      class imaging & imaging = System.imaging();
+//      class imaging & imaging = Application.m_visual.imaging();
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
 
@@ -529,7 +529,7 @@ namespace user
 
       //HGDIOBJ hOldPen = pdc->SelectObject(get_data()->m_pen);
 
-//      class imaging & imaging = System.imaging();
+//      class imaging & imaging = Application.m_visual.imaging();
 
       pdc->set_alpha_mode(::ca::alpha_mode_blend);
 

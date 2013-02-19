@@ -55,6 +55,13 @@ namespace ca
          
          string sys_temp(const char * pszName, const char * pszExtension);
 
+
+         virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags);
+         virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+
+         // get a file and if there are exceptions, should show end user friendly messages
+         virtual ::ex1::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+
       };
 
 

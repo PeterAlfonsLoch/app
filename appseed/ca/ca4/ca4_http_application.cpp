@@ -162,7 +162,7 @@ namespace ca4
          }
 
          if(puser == NULL && !get_app()->is_system() 
-         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_puser != NULL) 
+         && (!get_app()->is_session() || dynamic_cast < ::plane::session * > (get_app())->m_fontopus.m_puser != NULL) 
          && (pvarQuery == NULL || (!(bool)pvarQuery->operator[]("disable_ca2_sessid") && !(bool)pvarQuery->operator[]("optional_ca2_sessid")))) 
          {
             puser = &ApplicationUser;

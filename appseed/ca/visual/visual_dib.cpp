@@ -40,7 +40,7 @@ namespace visual
          {
             try
             {
-               ex1::byte_stream stream = Application.get_byte_stream(strFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary);
+               ex1::byte_stream stream = Application.file().get_byte_stream(strFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -54,7 +54,7 @@ namespace visual
       try
       {
 
-         if(!read_from_file(Application.get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary)))
+         if(!read_from_file(Application.file().get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary)))
             return false;
 
       }
@@ -71,7 +71,7 @@ namespace visual
       {
          try
          {
-            ex1::byte_stream stream = Application.get_byte_stream(strFile, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::type_binary | ::ex1::file::defer_create_directory);
+            ex1::byte_stream stream = Application.file().get_byte_stream(strFile, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::type_binary | ::ex1::file::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -88,7 +88,7 @@ namespace visual
 
    bool dib_sp::read_from_file(::ex1::file * pfile)
    {
-      FIBITMAP * pfi = System.imaging().LoadImageFile(pfile);
+      FIBITMAP * pfi = Application.m_visual.imaging().LoadImageFile(pfile);
       if(pfi == NULL)
          return false;
       ::ca::graphics_sp spgraphics(get_app());
@@ -101,7 +101,7 @@ namespace visual
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
       ::ex1::filesp spfile;
-      spfile = Application.get_file(varFile, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::type_binary);
+      spfile = Application.file().get_file(varFile, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::type_binary);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);
@@ -146,7 +146,7 @@ namespace visual
 
 
       FIMEMORY * pfm1 = FreeImage_OpenMemory();
-      FIBITMAP * pfi7 = System.imaging().HBITMAPtoFI(m_p->get_bitmap());
+      FIBITMAP * pfi7 = Application.m_visual.imaging().HBITMAPtoFI(m_p->get_bitmap());
       FIBITMAP * pfi8 = NULL;
       bool bConv;
       if(b8)

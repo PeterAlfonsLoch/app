@@ -978,9 +978,6 @@
     <ClCompile Include="xml\xml_XMLite.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
-    <ClCompile Include="fontopus\fontopus_application.cpp">
-      <Filter>Source Files\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="fontopus\fontopus_contact_list.cpp">
       <Filter>Source Files\fontopus</Filter>
     </ClCompile>
@@ -1323,9 +1320,6 @@
     <ClCompile Include="compress\crypto\crypto_rar20.cpp">
       <Filter>Source Files\compress\crypto</Filter>
     </ClCompile>
-    <ClCompile Include="fs\fs_application.cpp">
-      <Filter>Source Files\fs</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_data.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
@@ -1427,9 +1421,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_wait_result.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user_application.cpp">
-      <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\user_buffer.cpp">
       <Filter>Source Files\user</Filter>
@@ -1657,9 +1648,6 @@
       <Filter>Source Files\collection</Filter>
     </ClCompile>
     <ClCompile Include="visual\visual_api.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_application.cpp">
       <Filter>Source Files\visual</Filter>
     </ClCompile>
     <ClCompile Include="visual\visual_buffered_graphics.cpp">
@@ -1940,9 +1928,6 @@
     </ClCompile>
     <ClCompile Include="colorertake5\colorertake5_text_parser_impl.cpp">
       <Filter>Source Files\colorertake5</Filter>
-    </ClCompile>
-    <ClCompile Include="userpresence\userpresence_application.cpp">
-      <Filter>Source Files\userpresence</Filter>
     </ClCompile>
     <ClCompile Include="userpresence\userpresence_user_presence.cpp">
       <Filter>Source Files\userpresence</Filter>
@@ -2498,6 +2483,18 @@
     </ClCompile>
     <ClCompile Include="uinteraction\uinteraction_frame.cpp">
       <Filter>Source Files\uinteraction</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user_user.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="fs\fs_fs.cpp">
+      <Filter>Source Files\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_fontopus.cpp">
+      <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="userpresence\userpresence_userpresence.cpp">
+      <Filter>Source Files\userpresence</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3272,9 +3269,6 @@
     <ClInclude Include="fontopus\fontopus.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
-    <ClInclude Include="fontopus\fontopus_application.h">
-      <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
     <ClInclude Include="fontopus\fontopus_authentication_map.h">
       <Filter>Header Files\fontopus</Filter>
     </ClInclude>
@@ -3794,9 +3788,6 @@
     <ClInclude Include="fs\fs.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
-    <ClInclude Include="fs\fs_application.h">
-      <Filter>Header Files\fs</Filter>
-    </ClInclude>
     <ClInclude Include="fs\fs_data.h">
       <Filter>Header Files\fs</Filter>
     </ClInclude>
@@ -3827,9 +3818,6 @@
     <ClInclude Include="userpresence\userpresence.h">
       <Filter>Header Files\userpresence</Filter>
     </ClInclude>
-    <ClInclude Include="userpresence\userpresence_application.h">
-      <Filter>Header Files\userpresence</Filter>
-    </ClInclude>
     <ClInclude Include="userpresence\userpresence_user_presence.h">
       <Filter>Header Files\userpresence</Filter>
     </ClInclude>
@@ -3838,9 +3826,6 @@
     </ClInclude>
     <ClInclude Include="userpresence\userpresence_user_presence_central_container.h">
       <Filter>Header Files\userpresence</Filter>
-    </ClInclude>
-    <ClInclude Include="simpledb\application.h">
-      <Filter>Header Files\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="simpledb\DBFileSystemSize.h">
       <Filter>Header Files\simpledb</Filter>
@@ -3912,12 +3897,6 @@
       <Filter>Header Files\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\database.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database1.h">
-      <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="database\database_application.h">
       <Filter>Header Files\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database_base.h">
@@ -4089,9 +4068,6 @@
       <Filter>Header Files\multithreading</Filter>
     </ClInclude>
     <ClInclude Include="user\user.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\user_application.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\user_buffer.h">
@@ -4569,9 +4545,6 @@
       <Filter>Header Files\visual</Filter>
     </ClInclude>
     <ClInclude Include="visual\visual_const.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="visual\visual_application.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
     <ClInclude Include="visual\visual_cursor.h">
@@ -5338,6 +5311,24 @@
     </ClInclude>
     <ClInclude Include="ca\ca_graphics_path.h">
       <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user_user.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="fs\fs_fs.h">
+      <Filter>Header Files\fs</Filter>
+    </ClInclude>
+    <ClInclude Include="fontopus\fontopus_fontopus.h">
+      <Filter>Header Files\fontopus</Filter>
+    </ClInclude>
+    <ClInclude Include="userpresence\userpresence_userpresence.h">
+      <Filter>Header Files\userpresence</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_simpledb.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="database\database_database.h">
+      <Filter>Header Files\database</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

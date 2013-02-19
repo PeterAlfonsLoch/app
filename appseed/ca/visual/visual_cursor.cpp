@@ -35,12 +35,12 @@ namespace visual
 
    bool cursor::to(::ca::graphics * pgraphics, int32_t x, int32_t y)
    {
-      if(&System.imaging() == NULL)
+      if(&Application.m_visual.imaging() == NULL)
          return false;
 
       pgraphics->set_alpha_mode(::ca::alpha_mode_blend);
 
-      return System.imaging().color_blend(
+      return Application.m_visual.imaging().color_blend(
          pgraphics,
          point(x - m_ptHotspot.x, y - m_ptHotspot.y),
          m_dib->size(),

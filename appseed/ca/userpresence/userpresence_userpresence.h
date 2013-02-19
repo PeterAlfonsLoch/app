@@ -5,15 +5,14 @@ namespace userpresence
 {
 
 
-   class CLASS_DECL_ca application :
-      virtual public ::simpledb::application,
+   class CLASS_DECL_ca userpresence :
       virtual public ::userpresence::presence_central_container
    {
    public:
 
    
-      application();
-      virtual ~application();
+      userpresence();
+      virtual ~userpresence();
 
       
       virtual bool initialize();

@@ -6,7 +6,7 @@ namespace planebase
 
 
    class CLASS_DECL_ca application :
-      virtual public ::fontopus::application
+      virtual public ca4::application
    {
    public:
 
@@ -21,8 +21,11 @@ namespace planebase
 
       bool                                m_bIfs;
       bool                                m_bUpdateMatterOnInstall;
-
-
+      ::user::user                        m_user;
+      ::fs::fs                            m_fs;
+      ::fontopus::fontopus                m_fontopus;
+      ::simpledb::simpledb                m_simpledb;
+      ::visual::visual                    m_visual;
 
       application();
       virtual ~application();
@@ -71,6 +74,8 @@ namespace planebase
       
       virtual bool initialize();
       virtual bool initialize1();
+      virtual bool initialize2();
+      virtual bool initialize_instance();
 
       virtual void defer_initialize_twf();
 
@@ -86,11 +91,6 @@ namespace planebase
       virtual ::ca::application * instantiate_application(const char * pszType, const char * pszId, ::ca::application_bias * pbias);
       virtual ::ca::application * create_application(const char * pszType, const char * pszId, bool bSynch, ::ca::application_bias * pbias);
 
-      virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags);
-      virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
-
-      // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::ex1::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
       virtual bool is_licensed(const char * pszId, bool bInteractive = true);
 
@@ -138,6 +138,8 @@ namespace planebase
       virtual bool add_library(::ca2::library * plibrary);
 
       virtual bool system_add_app_install(const char * pszId);
+
+      virtual ::fontopus::user * get_user();
 
    };
 

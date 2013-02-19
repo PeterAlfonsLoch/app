@@ -34,7 +34,7 @@ namespace fontopus
       if(&Session == NULL)
          return true;
 
-      Session.defer_initialize_user_presence();
+      Session.m_userpresence.defer_initialize_user_presence();
 
       return true;
 
@@ -72,7 +72,7 @@ restart:
       if(iRestart >= 10)
          return;
       string strPath;
-      var rec = Application.db().veiev_post().last();
+      var rec = Application.m_simpledb.db().veiev_post().last();
       rec.propset().set_app(get_app());
       rec.propset().remove_by_name("message");
       strPath = "http://europe001.veiev.api.server.ca2.cc/get?" + rec.propset().get_http_post();
@@ -108,7 +108,7 @@ restart:
                   {
                      strBody = pnodeBody->get_value();
                      pnodeBody->attrs()["message"] = strBody;
-                     Application.db().veiev_post().write(pnodeBody->attrs());
+                     Application.m_simpledb.db().veiev_post().write(pnodeBody->attrs());
                   }
                }
             }

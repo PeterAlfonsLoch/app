@@ -75,7 +75,7 @@ namespace fontopus
       //|| command_thread().property("app") == "veriwell_mplite"      // churrasco 2011 m_strLicense
       || command_thread().property("app") == "app-core/tesseract/netnodecfg")
       {
-         m_puser = Application.allocate_user();
+         m_puser = allocate_user();
          m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
@@ -84,7 +84,7 @@ namespace fontopus
            || command_thread().has_property("install")
            || command_thread().has_property("uninstall"))
       {
-         m_puser = Application.allocate_user();
+         m_puser = allocate_user();
          m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;

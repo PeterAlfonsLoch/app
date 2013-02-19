@@ -10,20 +10,20 @@ namespace filemanager
 {
 
 
-   application::application()
+   filemanager::filemanager()
    {
       m_ptemplateStd       = NULL;
       m_pfilemanager       = this;
    }
 
-   application::~application()
+   filemanager::~filemanager()
    {
    }
 
-   bool application::initialize()
+   bool filemanager::initialize()
    {
 
-      if(!::fs::application::initialize())
+      if(!::fs::filemanager::initialize())
          return false;
 
       if(!file_manager_interface::initialize(this))
@@ -32,7 +32,7 @@ namespace filemanager
       if(!FileManagerFileListCallback::initialize())
          return false;
 
-      filemanager::application::InitializeFileManager("filemanager/filemanager");
+      filemanager::filemanager::InitializeFileManager("filemanager/filemanager");
       GetStdFileManagerTemplate()->m_strLevelUp.Empty();
       GetStdFileManagerTemplate()->m_strToolBar = "filemanager_toolbar.xml";
       GetStdFileManagerTemplate()->m_dataidStatic = "FileManagerFavoritesList";
@@ -72,22 +72,22 @@ namespace filemanager
    }
 
 
-   void application::on_request(::ca::create_context * pcreatecontext)
+   void filemanager::on_request(::ca::create_context * pcreatecontext)
    {
       FileManagerCallbackInterface::on_request(pcreatecontext);
    }
 
-   FileManagerTemplate * application::GetStdFileManagerTemplate()
+   FileManagerTemplate * filemanager::GetStdFileManagerTemplate()
    {
       return m_ptemplateStd;
    }
 
-   FileManagerTemplate * application::GetFsManagerTemplate()
+   FileManagerTemplate * filemanager::GetFsManagerTemplate()
    {
       return m_ptemplateFs;
    }
 
-   void application::InitializeFileManager(const char * pszMatter)
+   void filemanager::InitializeFileManager(const char * pszMatter)
    {
       if(is_cube())
       {
@@ -146,7 +146,7 @@ namespace filemanager
 
 
 
-   void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
+   void filemanager::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
    {
 
       item_action * pitemaction = dynamic_cast < item_action * > (this);
@@ -165,7 +165,7 @@ namespace filemanager
 
 
 
-   bool application::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
+   bool filemanager::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
    {
 
       ::userex::pane_tab_view * ppanetabview = NULL;
@@ -210,7 +210,7 @@ namespace filemanager
 
    }
 
-   string application::get_file_manager_initial_browse_path(const char * pszDefault)
+   string filemanager::get_file_manager_initial_browse_path(const char * pszDefault)
    {
 
       string strId;

@@ -90,7 +90,7 @@ namespace ca4
    void file::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::ca::application * papp)
    {
 
-      ex1::filesp spfile = App(papp).get_file(pszFile, ::ex1::file::mode_create | ::ex1::file::mode_write  | ::ex1::file::type_binary);
+      ex1::filesp spfile = App(papp).file().get_file(pszFile, ::ex1::file::mode_create | ::ex1::file::mode_write  | ::ex1::file::type_binary);
 
       if(spfile.is_null())
          throw "failed";
@@ -149,7 +149,7 @@ namespace ca4
    void file::ftd(const char * pszDir, const char * pszFile, ::ca::application * papp)
    {
       string strVersion;
-      ex1::filesp spfile = App(papp).get_file(pszFile, ::ex1::file::mode_read  | ::ex1::file::type_binary);
+      ex1::filesp spfile = App(papp).file().get_file(pszFile, ::ex1::file::mode_read  | ::ex1::file::type_binary);
       if(spfile.is_null())
          throw "failed";
       read_ex1_string(spfile, NULL, strVersion);

@@ -195,7 +195,7 @@ namespace ca4
 
    bool compress::bz(ex1::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
-      ::ex1::filesp file = System.get_file(lpcszUncompressed, ex1::file::mode_read | ex1::file::type_binary);
+      ::ex1::filesp file = Application.file().get_file(lpcszUncompressed, ex1::file::mode_read | ex1::file::type_binary);
       if(file.is_null())
       {
          return false;

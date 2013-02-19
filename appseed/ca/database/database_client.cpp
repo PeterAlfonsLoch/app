@@ -11,12 +11,6 @@ namespace database
    }
 
 
-   void client::initialize(::ca::application * papp)
-   {
-      set_server(dynamic_cast < database::application * > (papp)->get_data_server());
-   }
-
-
    void client::initialize(server * pserver)
    {
       set_server(pserver);

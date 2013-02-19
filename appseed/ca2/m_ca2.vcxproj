@@ -401,7 +401,6 @@
     <ClInclude Include="bergedge\bergedge_view.h" />
     <ClInclude Include="ca2.h" />
     <ClInclude Include="ca2_res.h" />
-    <ClInclude Include="ca8\ca8.h" />
     <ClInclude Include="ca8\ca8_application.h" />
     <ClInclude Include="ca8\ca8_keyboard_layout.h" />
     <ClInclude Include="ca8\ca8_message_box.h" />
@@ -421,10 +420,6 @@
     <ClInclude Include="command\command_pane_view_update_hint.h" />
     <ClInclude Include="command\command_primary_view.h" />
     <ClInclude Include="command\command_view.h" />
-    <ClInclude Include="cube1\cube1.h" />
-    <ClInclude Include="cube1\cube1_application.h" />
-    <ClInclude Include="cube2\cube2.h" />
-    <ClInclude Include="cube2\cube2_application.h" />
     <ClInclude Include="cube5\cube5.h" />
     <ClInclude Include="cube5\cube5_application.h" />
     <ClInclude Include="cube8\cube8.h" />
@@ -461,7 +456,7 @@
     <ClInclude Include="filemanager\FileManagerView.h" />
     <ClInclude Include="filemanager\FileManagerViewInterface.h" />
     <ClInclude Include="filemanager\FileManagerViewUpdateHint.h" />
-    <ClInclude Include="filemanager\filemanager_application.h" />
+    <ClInclude Include="filemanager\filemanager_filemanager.h" />
     <ClInclude Include="filemanager\filemanager_const.h" />
     <ClInclude Include="filemanager\filemanager_data.h" />
     <ClInclude Include="filemanager\filemanager_document.h" />
@@ -495,7 +490,7 @@
     <ClInclude Include="filemanager\SimplePreview.h" />
     <ClInclude Include="filemanager\SimplePreviewInterface.h" />
     <ClInclude Include="fontopus\fontopus.h" />
-    <ClInclude Include="fontopus\fontopus_application.h" />
+    <ClInclude Include="fontopus\fontopus_fontopus.h" />
     <ClInclude Include="fontopus\fontopus_validate.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="fs\fs.h" />
@@ -911,7 +906,7 @@
     <ClCompile Include="filemanager\FileManagerView.cpp" />
     <ClCompile Include="filemanager\FileManagerViewInterface.cpp" />
     <ClCompile Include="filemanager\FileManagerViewUpdateHint.cpp" />
-    <ClCompile Include="filemanager\filemanager_application.cpp" />
+    <ClCompile Include="filemanager\filemanager_filemanager.cpp" />
     <ClCompile Include="filemanager\filemanager_ContextMenu.cpp" />
     <ClCompile Include="filemanager\filemanager_data.cpp" />
     <ClCompile Include="filemanager\filemanager_document.cpp" />

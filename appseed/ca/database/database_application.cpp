@@ -1,52 +1,41 @@
 #include "framework.h"
 
+
 namespace database
 {
 
-   application::application()
+
+   database::database()
    {
    }
 
-   application::~application()
+   database::~database()
    {
    }
 
-   bool application::initialize()
+   bool database::initialize()
    {
       
       
-      if(is_system())
+      if(m_papp->is_system())
       {
          System.factory().creatable_large < ::database::result_set > ();
       }
 
-      if(!::ca4::application::initialize())
-         return false;
 
       return true;
 
 
    }
 
-   ::database::server * application::get_data_server()
+   ::database::server * database::get_data_server()
    {
       return NULL;
    }
 
-   // should not call base class implementation because database::application is inside a n-furcation of user::application
-   int32_t application::exit_instance()
+   // should not call base class implementation because database::database is inside a n-furcation of user::database
+   int32_t database::exit_instance()
    {
-
-      try
-      {
-
-         ::ca4::application::exit_instance();
-
-      }
-      catch(...)
-      {
-
-      }
 
       return 0;
 

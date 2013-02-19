@@ -152,7 +152,7 @@ void SimplePushButton::_001OnDraw(::ca::graphics *pdc)
       colorExt1BR.hls_rate(0.0, - 0.5 , 0.0);
    }
 
-   class imaging & imaging = System.imaging();
+   class imaging & imaging = Application.m_visual.imaging();
 
    rect rect = rectClient;
    imaging.color_blend_3dRect(pdc, rect, colorExt1TL, 215, colorExt1BR, 215);

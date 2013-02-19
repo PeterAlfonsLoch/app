@@ -540,7 +540,7 @@ namespace userbase
       //pdc->IntersectClipRect(rectWindow);
       //SendMessage(WM_ERASEBKGND, (WPARAM)spgraphics->get_handle1());
       pdc->SelectClipRgn(NULL);
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = Application.m_visual.imaging();
       imaging.color_blend(
          pdc,
          0,

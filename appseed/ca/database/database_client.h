@@ -27,7 +27,6 @@ namespace database
       virtual bool set_server(server * pserver);
 
 
-      void initialize(::ca::application * papp);
       void initialize(server * pserver);
 
       DECL_GEN_VSIGNAL(data_on_before_change)

@@ -410,7 +410,7 @@ bool simple_menu_bar::ReloadMenuBar()
 {
    rect rectClient;
    GetClientRect(rectClient);
-   class imaging & imaging = System.imaging();
+   class imaging & imaging = Application.m_visual.imaging();
    if(m_iHover >= -1)
    {
       imaging.color_blend(

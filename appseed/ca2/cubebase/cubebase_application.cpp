@@ -174,7 +174,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
       try
       {
 
-         return get_file(varFile, nOpenFlags);
+         return m_file.get_file(varFile, nOpenFlags);
 
       }
       catch(::ex1::file_exception & e)

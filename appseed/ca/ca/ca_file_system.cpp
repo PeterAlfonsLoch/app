@@ -385,7 +385,7 @@ namespace ca
                {
                   try
                   {
-                     storage.FullLoad(App(papp).get_file(strFilePath, ::ex1::file::type_binary | ::ex1::file::mode_read));
+                     storage.FullLoad(App(papp).file().get_file(strFilePath, ::ex1::file::type_binary | ::ex1::file::mode_read));
                   }
                   catch(...)
                   {
@@ -461,7 +461,7 @@ namespace ca
          try
          {
 
-            spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
+            spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
 
             mem.FullLoad(spfile);
 
@@ -503,7 +503,7 @@ namespace ca
 
          ex1::filesp spfile;
 
-         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
 
          if(spfile.is_null())
             return false;
@@ -529,7 +529,7 @@ namespace ca
       bool system::put_contents(var varFile, ex1::file & file, ::ca::application * papp)
       {
          ex1::filesp spfile;
-         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
          if(spfile.is_null())
             return false;
          primitive::memory mem;
@@ -550,7 +550,7 @@ namespace ca
       bool system::put_contents_utf8(var varFile, const char * lpcszContents, ::ca::application * papp)
       {
          ex1::filesp spfile;
-         spfile = App(papp).get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
          if(spfile.is_null())
             return false;
          ::ex1::byte_output_stream(spfile) << "\xef\xbb\xbf";
@@ -730,7 +730,7 @@ namespace ca
             }
 
             ::ex1::filesp ofile;
-            ofile = App(papp).get_file(strNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory | ::ex1::file::shareDenyWrite);
+            ofile = App(papp).file().get_file(strNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory | ::ex1::file::shareDenyWrite);
             if(ofile.is_null())
             {
                string strError;
@@ -739,7 +739,7 @@ namespace ca
             }
 
             ::ex1::filesp ifile;
-            ifile = App(papp).get_file(psz, ::ex1::file::mode_read | ::ex1::file::type_binary | ::ex1::file::shareDenyNone);
+            ifile = App(papp).file().get_file(psz, ::ex1::file::mode_read | ::ex1::file::type_binary | ::ex1::file::shareDenyNone);
             if(ifile.is_null())
             {
                string strError;
@@ -1244,7 +1244,7 @@ namespace ca
 
          System.dir().mk(System.dir().name(name), papp);
 
-         ex1::filesp fileOut = App(papp).get_file(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write);
+         ex1::filesp fileOut = App(papp).file().get_file(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write);
 
          if(fileOut.is_null())
             throw ex1::file_exception(papp, -1, ::ex1::file_exception::none, name);

@@ -182,7 +182,7 @@ namespace ca
       if(m_psession == NULL)
          return NULL;
 
-      return m_psession->m_puser;
+      return m_psession->m_fontopus.m_puser;
 
    }
 

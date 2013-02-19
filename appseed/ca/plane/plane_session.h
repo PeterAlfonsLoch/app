@@ -62,12 +62,15 @@ namespace plane
       ifs *                                                 m_pifs;
       fs::remote_native *                                   m_prfs;
 
+      ::userpresence::userpresence                          m_userpresence;
+
 
       session();
       virtual ~session();
       virtual void construct();
 
-      bool initialize_instance();
+      virtual bool initialize();
+      virtual bool initialize_instance();
       virtual int32_t exit_instance();
 
       bool InitializeLocalDataCentral();

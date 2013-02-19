@@ -615,7 +615,7 @@ namespace zip
 
       ::ex1::filesp file;
 
-      file = Application.get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
+      file = Application.file().get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
 
       if(file.is_null())
          throw "failed to open file for compressing";

@@ -18,8 +18,8 @@ namespace simpledb
 {
 
 
-   class CLASS_DECL_ca application :
-      virtual public ::database::application
+   class CLASS_DECL_ca simpledb :
+      virtual public ::database::database
    {
    public:
 
@@ -27,7 +27,7 @@ namespace simpledb
       db_server   *  m_pserver;
 
 
-      application();
+      simpledb();
 
       virtual bool initialize2();
       virtual bool initialize();

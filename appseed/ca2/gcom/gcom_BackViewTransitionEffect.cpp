@@ -392,7 +392,7 @@ namespace gcom
          int32_t cx = rectClient.width();
          int32_t cy = rectClient.height();
 
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = Application.m_visual.imaging();
 
          Graphics & graphics = main.GetGraphics();
 

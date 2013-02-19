@@ -44,5 +44,5 @@ CLASS_DECL_ca int32_t  DrawTextU(HDC hdc, const char * lpchText, int32_t cchText
 
 #include "visual_visual.h"
 
-#include "visual_application.h"
+#include "visual_visual.h"
 

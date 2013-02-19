@@ -283,7 +283,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
 
           strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
 
-          ex1::byte_stream spfile(Application.get_byte_stream(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary));
+          ex1::byte_stream spfile(Application.file().get_byte_stream(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary));
 
           if(spfile.is_reader_set())
           {
@@ -325,7 +325,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
     {
        try
        {
-          ex1::byte_stream stream(Application.get_byte_stream(hrdLocV->element_at(idx), ::ex1::file::mode_read |::ex1::file::type_binary));
+          ex1::byte_stream stream(Application.file().get_byte_stream(hrdLocV->element_at(idx), ::ex1::file::mode_read |::ex1::file::type_binary));
           if(stream.is_reader_set())
           {
                mapper->loadRegionMappings(stream);

@@ -5,19 +5,19 @@ namespace user
 {
 
 
-   application::application()
+   user::view_creator()
    {
       m_pkeyboardfocus  = NULL;
       m_pshellimageset  = NULL;
       m_pkeyboard       = NULL;
    }
 
-   application::~application()
+   user::~user()
    {
    }
 
 
-   bool application::initialize1()
+   bool user::initialize1()
    {
 
       m_dwAlive = ::get_tick_count();
@@ -43,14 +43,14 @@ namespace user
 
       m_pshellimageset = new filemanager::_shell::ImageSet(this);
 
-      if(!visual::application::initialize1())
+      if(!visual::user::initialize1())
          return false;
 
       return true;
 
    }
 
-   bool application::initialize()
+   bool user::initialize()
    {
 
 
@@ -132,12 +132,12 @@ retry_license:
 
    }
 
-   filemanager::_shell::ImageSet & application::shellimageset()
+   filemanager::_shell::ImageSet & user::shellimageset()
    {
       return *m_pshellimageset;
    }
 
-   string application::message_box(const char * pszMatter, gen::property_set & propertyset)
+   string user::message_box(const char * pszMatter, gen::property_set & propertyset)
    {      throw not_implemented(get_app());
 /*      class message_box box(this);
       box.show(pszMatter, propertyset);
@@ -145,7 +145,7 @@ retry_license:
       return "";
    }
 
-   int32_t application::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
+   int32_t user::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
    {
 
       if(m_psession != NULL && m_psession->m_pbergedgeInterface != NULL)
@@ -210,7 +210,7 @@ retry_license:
       }
    }
 
-   int32_t application::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
+   int32_t user::simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle)
    {
       UNREFERENCED_PARAMETER(puiOwner);
 
@@ -257,7 +257,7 @@ retry_license:
       }
    }
 
-   int32_t application::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
+   int32_t user::track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie)
    {
       UNREFERENCED_PARAMETER(pszMatter);
       UNREFERENCED_PARAMETER(pt);
@@ -266,7 +266,7 @@ retry_license:
    }
 
 
-   bool application::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
+   bool user::get_fs_size(string & strSize, const char * pszPath, bool & bPending)
    {
       int64_t i64Size;
       if(!get_fs_size(i64Size, pszPath, bPending))
@@ -304,7 +304,7 @@ retry_license:
       return true;
    }
 
-   bool application::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
+   bool user::get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending)
    {
       db_server * pcentral = dynamic_cast < db_server * > (&System.db());
       if(pcentral == NULL)
@@ -312,9 +312,9 @@ retry_license:
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
 
-   void application::data_on_after_change(gen::signal_object * pobj)
+   void user::data_on_after_change(gen::signal_object * pobj)
    {
-      visual::application::data_on_after_change(pobj);
+      visual::user::data_on_after_change(pobj);
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2_fontopus_votagus")
       {
@@ -326,7 +326,7 @@ retry_license:
    }
 
 
-      ::user::keyboard_focus * application::get_keyboard_focus()
+      ::user::keyboard_focus * user::get_keyboard_focus()
       {
          if(is_session() || is_bergedge())
          {
@@ -360,7 +360,7 @@ retry_license:
          }
       }
 
-      void application::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
+      void user::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
       {
          if(is_session() || is_bergedge())
          {
@@ -390,28 +390,28 @@ retry_license:
          }
       }
 
-      ::user::mouse_focus * application::get_mouse_focus_LButtonDown()
+      ::user::mouse_focus * user::get_mouse_focus_LButtonDown()
       {
          return m_pmousefocusLButtonDown;
       }
 
-      void application::set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus)
+      void user::set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus)
       {
          m_pmousefocusLButtonDown = pmousefocus;
       }
 
-      ::user::mouse_focus * application::get_mouse_focus_RButtonDown()
+      ::user::mouse_focus * user::get_mouse_focus_RButtonDown()
       {
          return m_pmousefocusRButtonDown;
       }
 
-      void application::set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus)
+      void user::set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus)
       {
          m_pmousefocusRButtonDown = pmousefocus;
       }
 
 
-   bool application::set_keyboard_layout(const char * pszPath, bool bUser)
+   bool user::set_keyboard_layout(const char * pszPath, bool bUser)
    {
 
       if(pszPath == NULL)
@@ -457,7 +457,7 @@ retry_license:
    }
 
 
-   ::user::keyboard & application::keyboard()
+   ::user::keyboard & user::keyboard()
    {
       if(this != &System)
       {
@@ -468,13 +468,13 @@ retry_license:
    }
 
 
-   class window_map & application::window_map()
+   class window_map & user::window_map()
    {
       return *m_pwindowmap;
    }
 
 
-   ca::type_info application::controltype_to_typeinfo(user::control::e_type e_type)
+   ca::type_info user::controltype_to_typeinfo(user::control::e_type e_type)
    {
 
       return ::ca::type_info();

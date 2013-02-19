@@ -89,7 +89,7 @@ BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::ca::application * papp)
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
 
-   System.imaging().CreateHueImageList(
+   Application.m_visual.imaging().CreateHueImageList(
       &spgraphics,
       MenuV033GetImageListHueLight(),
       MenuV033GetImageList(),
@@ -133,7 +133,7 @@ bool BaseMenuCentral::MenuV033AddImageMap(xml::node * lpnode)
    ::ca::graphics_sp spgraphics(get_app());
    spgraphics->CreateCompatibleDC(NULL);
 
-   class imaging & imaging = System.imaging();
+   class imaging & imaging = Application.m_visual.imaging();
 
    imaging.CreateHueImageList(
       spgraphics,

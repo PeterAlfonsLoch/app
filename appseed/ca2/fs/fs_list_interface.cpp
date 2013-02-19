@@ -322,7 +322,7 @@ namespace fs
          // Animation Drawing
          rect rectClipBox;
          pdc->GetClipBox(rectClipBox);
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = Application.m_visual.imaging();
    //      ::user::list::_001DrawBackground(pdc, rectClipBox);
          imaging.color_blend(
             pdc,

@@ -105,7 +105,7 @@ namespace user
          rectClipBox.intersect(rectClipBox, rectClientOffset);
       }
 
-      class imaging & imaging = System.imaging();
+      class imaging & imaging = Application.m_visual.imaging();
 
       if(System.savings().is_trying_to_save(gen::resource_processing))
       {
@@ -158,11 +158,11 @@ namespace user
          rectClipBox.intersect(rectClipBox, rectClientOffset);
       }*/
 
-//       class imaging & imaging = System.imaging();
+//       class imaging & imaging = Application.m_visual.imaging();
 
       if(_001IsTranslucent())
       {
-         class imaging & imaging = System.imaging();
+         class imaging & imaging = Application.m_visual.imaging();
          //_001DrawBackground(pdc, rectClipBox);
          imaging.color_blend(
             pdc,
@@ -363,7 +363,7 @@ namespace user
                data,
                tree_element_text);
             rectUnion.unite(rect, rectUnion);
-            class imaging & imaging = System.imaging();
+            class imaging & imaging = Application.m_visual.imaging();
             COLORREF crTranslucid = RGB(0, 0, 0);
             imaging.color_blend(
                    data.m_pdc,

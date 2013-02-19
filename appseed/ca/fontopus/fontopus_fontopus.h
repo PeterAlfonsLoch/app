@@ -5,8 +5,8 @@ namespace fontopus
 {
 
 
-   class CLASS_DECL_ca application :
-      virtual public ::fs::application
+   class CLASS_DECL_ca fontopus :
+      virtual public ::radix::object
    {
    public:
 
@@ -15,13 +15,9 @@ namespace fontopus
       user *         m_puser;
 
       
-      application();
-      virtual ~application();
+      fontopus();
+      virtual ~fontopus();
 
-      using ::ca::thread::construct;
-      using ::ca::application::construct;
-
-      virtual void construct();
 
       virtual user * create_user(::fontopus::user * puser);
       virtual user * allocate_user();
@@ -39,9 +35,6 @@ namespace fontopus
 
       virtual bool initialize_instance();
       virtual int32_t exit_instance();
-
-      virtual bool bergedge_start();
-
 
       virtual bool check_license(const char * pszId, bool bInteractive);
 

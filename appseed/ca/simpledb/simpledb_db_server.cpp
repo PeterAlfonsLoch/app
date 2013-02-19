@@ -110,8 +110,8 @@ bool db_server::initialize()
    m_pdatabaseImpl->setDatabase(str);
    m_pdatabaseImpl->connect();
 
-   m_pLongsSet = new db_long_set(&Application.db());
-   m_pStringSet = new db_str_set(&Application.db());
+   m_pLongsSet = new db_long_set(&Application.m_simpledb.db());
+   m_pStringSet = new db_str_set(&Application.m_simpledb.db());
 
    int32_t iBufferSize = 128 * 1024;
    gen::command_thread & commandthread = System.command();

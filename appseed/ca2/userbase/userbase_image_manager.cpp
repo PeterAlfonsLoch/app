@@ -44,7 +44,7 @@ namespace userbase
          user++;
       }
 
-      System.imaging().CreateGrayVRCPImageList(
+      Application.m_visual.imaging().CreateGrayVRCPImageList(
          NULL,
          &GetImageListDisable(),
          &GetImageList());*/

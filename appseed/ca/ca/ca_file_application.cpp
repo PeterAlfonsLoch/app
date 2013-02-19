@@ -149,6 +149,287 @@ namespace ca
       }
 
 
+      ex1::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+      {
+         try
+         {
+            return get_file(varFile, nOpenFlags);
+         }
+         catch(...)
+         {
+            return ::ca::null();
+         }
+      }
+
+      ex1::filesp application::get_file(var varFile, UINT nOpenFlags)
+      {
+
+         ex1::filesp spfile;
+
+         string strPath;
+
+         if(varFile.get_type() == var::type_string)
+         {
+
+            strPath = varFile;
+
+            strPath.trim("\"'");
+
+         }
+         else if(varFile.get_type() == var::type_propset)
+         {
+
+            if(varFile.has_property("url"))
+            {
+
+               strPath = varFile["url"];
+
+               strPath.trim("\"'");
+
+            }
+
+         }
+
+         if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
+         {
+
+            spfile(varFile.propset()["file"].ca2 < ::ex1::file >());
+
+         }
+         else if(gen::str::find_ci(".zip:", strPath) >= 0)
+         {
+
+            zip::InFile * pinfile = new zip::InFile(get_app());
+
+            if(pinfile != NULL)
+            {
+
+               if(!pinfile->unzip_open(strPath, 0))
+               {
+
+                  delete pinfile;
+
+                  pinfile = NULL;
+
+               }
+
+            }
+
+            spfile(pinfile);
+
+         }
+         else if(gen::str::begins(strPath, "http://matter.ca2.cc/") || gen::str::begins(strPath, "https://matter.ca2.cc/"))
+         {
+
+            string strFile(strPath);
+            if(gen::str::ends(strPath, "en_us_international.xml"))
+            {
+               TRACE("Debug Here");
+            }
+
+            if(gen::str::ends(strPath, "text_select.xml"))
+            {
+               TRACE("Debug Here");
+            }
+
+            if(gen::str::ends(strPath, "arialuni.ttf"))
+            {
+               TRACE("Debug Here : arialuni.ttf");
+            }
+
+            strFile.replace("://", "_\\");
+            strFile = System.dir().appdata("cache/" + strFile + ".local_copy");
+
+
+            if(m_papp->m_pappThis->m_file.exists(strFile))
+            {
+
+               spfile.create(m_papp);
+
+               try
+               {
+
+                  if(spfile->open(strFile, nOpenFlags))
+                  {
+                     TRACE("from_exist_cache:\"" + strPath + "\"");
+                     return spfile;
+
+                  }
+               }
+               catch(...)
+               {
+
+               }
+
+               try
+               {
+
+                  spfile.destroy();
+
+               }
+               catch(...)
+               {
+               }
+
+            }
+
+            var varQuery;
+
+            varQuery["disable_ca2_sessid"] = true;
+
+            if(m_papp->m_pappThis->m_http.exists(strPath, &varQuery))
+            {
+
+               spfile(new sockets::http::file(get_app()));
+
+               if(!spfile->open(strPath, nOpenFlags))
+               {
+
+                  spfile.destroy();
+
+               }
+               else
+               {
+
+                  try
+                  {
+
+                     System.file().output(m_papp, strFile, &System.compress(), &::ca4::compress::null, *spfile.m_p);
+
+                  }
+                  catch(...)
+                  {
+                  }
+
+
+                  spfile->seek_to_begin();
+
+               }
+
+            }
+
+
+         }
+         else if(gen::str::begins(strPath, "http://") || gen::str::begins(strPath, "https://"))
+         {
+
+            spfile(new sockets::http::file(get_app()));
+
+            if(!spfile->open(strPath, nOpenFlags))
+            {
+
+               spfile.destroy();
+
+            }
+
+         }
+         else if(gen::str::begins(strPath, "ifs://") || gen::str::begins(strPath, "uifs://"))
+         {
+
+            if(&AppUser(m_papp) == NULL)
+            {
+
+               spfile = ::ca::null();
+
+            }
+            else
+            {
+
+               spfile = AppUser(m_papp).m_pifs->get_file(varFile, nOpenFlags);
+
+            }
+
+         }
+         else if(gen::str::begins(strPath, "fs://"))
+         {
+
+            if(&Session == NULL)
+            {
+
+               spfile = ::ca::null();
+
+            }
+            else
+            {
+
+               spfile = Session.m_prfs->get_file(varFile, nOpenFlags);
+
+            }
+
+         }
+         else if(gen::str::begins_eat_ci(strPath, "matter://"))
+         {
+
+            ::ca::application * papp = NULL;
+
+            if(System.url().get_server("matter://" + strPath) == m_papp->m_pappThis->m_strAppName)
+            {
+
+               strPath = System.url().get_object("matter://" + strPath).Mid(1);
+
+               spfile.create(m_papp);
+
+               if(!spfile->open(App(m_papp).dir().matter(strPath), nOpenFlags))
+               {
+
+                  spfile.destroy();
+
+               }
+
+            }
+            else if(&Session != NULL && Session.m_mapApplication.Lookup(System.url().get_server("matter://" + strPath), papp) && App(m_papp).m_strAppName.has_char())
+            {
+
+               spfile = App(papp).file().get_file("matter://" + strPath, nOpenFlags);
+
+            }
+            else
+            {
+
+               spfile = get_file(App(m_papp).dir().matter(strPath), nOpenFlags);
+
+            }
+
+         }
+         else
+         {
+
+            if(strPath.is_empty())
+            {
+               TRACE("planebase::application::get_file file with empty name!!");
+               return spfile;
+            }
+
+            spfile.create(m_papp);
+
+            if(!spfile->open(strPath, nOpenFlags))
+            {
+
+               spfile.destroy();
+
+            }
+
+         }
+
+         if(spfile.is_null())
+         {
+
+            throw ex1::file_exception(m_papp, ::ex1::file_exception::none, -1, strPath);
+
+         }
+
+         return spfile;
+
+      }
+
+      ::ex1::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
+      {
+
+         return ::ex1::byte_stream(get_file(varFile, nOpenFlags));
+
+      }
+
+
    } // namespace file
 
 

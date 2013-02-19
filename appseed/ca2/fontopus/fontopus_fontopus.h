@@ -10,7 +10,7 @@ namespace ca2
 
 
       class CLASS_DECL_ca2 application :
-         virtual public ::cube2::application
+         virtual public ::fontopus::fontopus
       {
       public:
 

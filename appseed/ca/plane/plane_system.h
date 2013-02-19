@@ -849,7 +849,7 @@ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+   ex1::filesp fileOut = App(papp).file().get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -865,12 +865,12 @@ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ex1::filesp fileOut = App(papp).get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+   ex1::filesp fileOut = App(papp).file().get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   ex1::filesp fileIn = App(papp).get_file(lpszInput, ex1::file::type_binary | ex1::file::mode_read);
+   ex1::filesp fileIn = App(papp).file().get_file(lpszInput, ex1::file::type_binary | ex1::file::mode_read);
 
    if(fileIn.is_null())
       return false;

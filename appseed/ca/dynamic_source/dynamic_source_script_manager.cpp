@@ -851,7 +851,7 @@ namespace dynamic_source
 
       try
       {
-         f = Application.get_file(strFile, ex1::file::type_binary | ex1::file::mode_read | ex1::file::shareDenyWrite);
+         f = Application.file().get_file(strFile, ex1::file::type_binary | ex1::file::mode_read | ex1::file::shareDenyWrite);
       }
       catch(...)
       {
