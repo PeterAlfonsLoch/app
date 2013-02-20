@@ -36,11 +36,11 @@ namespace sockets
 
          ca4::http::signal * psignal = new ca4::http::signal;
 
-         (*psignal)()["file"]       = (::ca::ca *) m_pmemoryfileIn;
-         (*psignal)()["file_out"]   = (::ca::ca *) m_ptimeoutfile;
+         psignal->m_set["file"]       = (::ca::ca *) m_pmemoryfileIn;
+         psignal->m_set["file_out"]   = (::ca::ca *) m_ptimeoutfile;
 
          psignal->m_strUrl = lpszFileName; 
-         psignal->m_set["optional_ca2_login"] = true;
+         //psignal->m_set["optional_ca2_login"] = true;
          psignal->m_set["noclose"] = false;
 
          if((nOpenFlags & ::ex1::file::hint_unknown_length_supported) != 0)

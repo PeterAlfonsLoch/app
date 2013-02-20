@@ -847,6 +847,14 @@ retry:
                iIteration++;
             }
 
+            if(set["file_out"].ca2 < ::ex1::timeout_file >() != NULL)
+            {
+               if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+               {
+                  set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+               }
+            }
+
             keeplive.keep_alive();
 
             oprop("dw") = ::get_tick_count();

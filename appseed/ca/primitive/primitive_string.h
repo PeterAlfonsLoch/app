@@ -1088,9 +1088,24 @@ inline id::operator string () const
 
 inline string id::to_string() const
 {
-   if(m_pstr == NULL)
-      throw "id string is null! Cannot convert to_string()";
-   return *m_pstr;
+   if(m_chType == IDTYPE_TYPE_NULL)
+   {
+      return "";
+   }
+   else if(m_chType == IDTYPE_TYPE_NUMBER)
+   {
+      return gen::str::from(m_i);
+   }
+   else if(m_chType == IDTYPE_TYPE_TEXT)
+   {
+      if(m_pstr == NULL)
+         throw "id string is null! Cannot convert to_string()";
+      return *m_pstr;
+   }
+   else
+   {
+      throw "unknow type or corrupt id";
+   }
 }
 
 
