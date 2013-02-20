@@ -8,7 +8,7 @@ namespace userstack
    class view;
 
 
-   class CLASS_DECL_ca2 application :
+   class CLASS_DECL_sphere application :
       virtual public ::command::application
    {
    public:

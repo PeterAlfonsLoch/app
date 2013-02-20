@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/calculator/calculator.h"
+#include "app/appseed/sphere/calculator/calculator.h"
 
 
 #include "filehandler_document.h"

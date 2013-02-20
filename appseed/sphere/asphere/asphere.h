@@ -2,30 +2,34 @@
 
 
 
-#include "app/appseed/ca/ca.h"
+#include "app/appseed/ca2/ca2.h"
 
 
 
 #ifdef WINDOWS
-#ifdef __CA2__DLL
-   #define CLASS_DECL_ca2  _declspec(dllexport)
+#ifdef __SPHERE__DLL
+   #define CLASS_DECL_sphere  _declspec(dllexport)
 #else
-   #define CLASS_DECL_ca2  _declspec(dllimport)
+   #define CLASS_DECL_sphere  _declspec(dllimport)
 #endif
 #else
-   #define CLASS_DECL_ca2
+   #define CLASS_DECL_sphere
 #endif
 
 
 
-namespace cube8
+namespace sphere
 {
 
 
-   class system;
+   class application;
 
 
-} // namespace cube8
+} // namespace sphere
+
+
+#undef App
+#define App(pcaapp) (pcaapp->cast_app < ::sphere::application > ())
 
 
 namespace bergedge
@@ -40,6 +44,6 @@ namespace bergedge
 
 
 
-#include "cubebase_application.h"
+#include "asphere_application.h"
 
 

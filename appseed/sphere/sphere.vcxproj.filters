@@ -12,9 +12,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Source Files\mail">
-      <UniqueIdentifier>{9c7e3c65-77db-4c2a-a35b-dec4ef182dc6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\calculator">
       <UniqueIdentifier>{08f7307d-f433-41de-b05c-7695518e7f82}</UniqueIdentifier>
     </Filter>
@@ -137,9 +134,6 @@
     <ClInclude Include="sphere\sphere_library.h">
       <Filter>Header Files\sphere</Filter>
     </ClInclude>
-    <ClInclude Include="sphere\sphere_sphere.h">
-      <Filter>Header Files\sphere</Filter>
-    </ClInclude>
     <ClInclude Include="asphere\asphere.h">
       <Filter>Header Files\asphere</Filter>
     </ClInclude>
@@ -163,18 +157,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="mail\mail_account.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_application.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_db_pop3.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_list_interface.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
     <ClCompile Include="calculator\calculator_application.cpp">
       <Filter>Source Files\calculator</Filter>
     </ClCompile>
@@ -186,15 +168,6 @@
     </ClCompile>
     <ClCompile Include="calculator\calculator_view.cpp">
       <Filter>Source Files\calculator</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_tree_item.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_tree_data.cpp">
-      <Filter>Source Files\mail</Filter>
-    </ClCompile>
-    <ClCompile Include="mail\mail_tree_interface.cpp">
-      <Filter>Source Files\mail</Filter>
     </ClCompile>
     <ClCompile Include="command\command_application.cpp">
       <Filter>Source Files\command</Filter>
@@ -263,9 +236,6 @@
       <Filter>Source Files\userstack</Filter>
     </ClCompile>
     <ClCompile Include="sphere\sphere_application.cpp">
-      <Filter>Source Files\sphere</Filter>
-    </ClCompile>
-    <ClCompile Include="sphere\sphere_sphere.cpp">
       <Filter>Source Files\sphere</Filter>
     </ClCompile>
     <ClCompile Include="sphere\sphere_library.cpp">

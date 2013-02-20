@@ -1,7 +1,9 @@
 #include "framework.h"
 
+
 namespace command
 {
+
 
    pane_view::pane_view(::ca::application * papp) :
       ca(papp),
@@ -139,7 +141,7 @@ namespace command
       {
       case PaneViewContextMenu:
          {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true);
+            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 16;
@@ -180,7 +182,7 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChild(papp, false, true);
+            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChild(&Application.filemanager(), false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
@@ -206,7 +208,7 @@ namespace command
          break;
       case PaneViewThreeActionLaunch:
          {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChildList(papp, false, true);
+            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -237,7 +239,7 @@ namespace command
          break;
       case PaneViewConfiguration:
       {
-         form_document * pdoc = Application.create_form(this, this);
+         form_document * pdoc = Cube.userex().create_form(this, this);
          if(pdoc == NULL)
             return;
          ::user::view_creator_data * pcreatordata = new ::user::view_creator_data;
@@ -330,13 +332,23 @@ namespace command
 #endif
 
          string str;
+
          str.Format("%d", i);
+
          //Application.simple_message_box(str);
+
          if(i == ERROR_FILE_NOT_FOUND)
          {
+
          }
+
       }
+
       GetParentFrame()->ShowWindow(SW_HIDE);
+
    }
 
+
 } // namespace command
+
+

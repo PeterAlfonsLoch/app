@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   class CLASS_DECL_ca2 application :
+   class CLASS_DECL_sphere application :
       virtual public ::filehandler::application
    {
    public:
@@ -18,7 +18,6 @@ namespace command
       virtual ~application();
 
 
-      using ::mail::application::construct;
       void construct();
 
 

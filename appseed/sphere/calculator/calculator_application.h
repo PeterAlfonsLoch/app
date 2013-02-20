@@ -1,37 +1,33 @@
 #pragma once
 
 
-namespace ca2
+namespace calculator
 {
 
 
-   namespace calculator
+   class CLASS_DECL_sphere application :
+      virtual public ::asphere::application
    {
+   public:
 
 
-      class CLASS_DECL_ca2 application :
-         virtual public ::asphere::application
-      {
-      public:
+      application();
 
 
-         application();
+      virtual ~application();
 
 
-         virtual ~application();
-
-
-         bool initialize();
+      bool initialize();
 
 
 
-      };
+   };
 
 
-   } // namespace calculator
+} // namespace calculator
 
 
-} // namespace ca2
+
 
 
 

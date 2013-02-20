@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace cube
+namespace sphere
 {
 
 
@@ -17,10 +17,9 @@ namespace cube
    void library::get_app_list(stringa & stra)
    {
 
-      stra.add("cube");
-      stra.add("fontopus");
+      stra.add("calculator");
+      stra.add("command");
       stra.add("default_file_handler");
-      stra.add("bergedge");
       stra.add("userstack");
 
    }
@@ -51,24 +50,33 @@ namespace cube
 
    }
 
-   ::ca::application * library::get_new_app(const char * pszAppId)
+
+/*   ::ca::application * library::get_new_app(const char * pszAppId)
    {
 
-      if(gen::str::equals_ci(pszAppId, "bergedge"))
+      if(gen::str::equals_ci(pszAppId, "calculator"))
       {
-         return new ::bergedge::bergedge();
+         return new ::calculator::application();
       }
-      else if(gen::str::equals_ci(pszAppId, "cube"))
+      else if(gen::str::equals_ci(pszAppId, "command"))
       {
-         return new ::cube::cube();
+         return new ::command::application();
+      }
+      else if(gen::str::equals_ci(pszAppId, "userstack"))
+      {
+         return new ::userstack::application();
+      }
+      else if(gen::str::equals_ci(pszAppId, "default_file_handler"))
+      {
+         return new ::filehandler::application();
       }
 
       return ::ca2::single_application_library < application >::get_new_app(pszAppId);
 
-   }
+   }*/
 
 
-} // namespace cube
+} // namespace sphere
 
 
 #ifndef _WIN32
@@ -76,5 +84,5 @@ extern "C"
 #endif
 ::ca2::library * get_new_library()
 {
-   return new ::cube::library();
+   return new ::sphere::library();
 }

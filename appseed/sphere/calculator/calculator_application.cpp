@@ -1,39 +1,32 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace calculator
 {
 
+   application::application()
+   {
+   }
 
-   namespace calculator
+   application::~application()
+   {
+   }
+
+   bool application::initialize()
    {
 
-      application::application()
-      {
-      }
 
-      application::~application()
-      {
-      }
-
-      bool application::initialize()
-      {
+      if(!::asphere::application::initialize())
+         return false;
 
 
-         if(!::cube2::application::initialize())
-            return false;
+      return true;
 
 
-         return true;
-
-
-      }
+   }
 
 
 
-   } // namespace calculator
-
-
-} // namespace ca2
+} // namespace calculator
 
 

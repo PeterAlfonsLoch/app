@@ -174,8 +174,8 @@ namespace userstack
    void frame::_000OnMouse(::gen::message::mouse * pmouse)
    {
       Session.m_ptCursor = pmouse->m_pt;
-//      ::cube8::application * pappParent = &App(Application.m_papp);
-//      ::cube8::application * papp = &Application;
+//      ::asphere::application * pappParent = &App(Application.m_papp);
+//      ::asphere::application * papp = &Application;
 /*      if(pmouse->m_uiMessage == WM_MOUSEMOVE
       && m_pdocument != NULL
       && m_pdocument->m_pplatformdocument != NULL

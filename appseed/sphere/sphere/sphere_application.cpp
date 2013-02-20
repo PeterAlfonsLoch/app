@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace cube
+namespace sphere
 {
 
 
@@ -43,14 +43,6 @@ namespace cube
             return ::filehandler::application::construct();
          }
       }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::construct();
-         }
-      }
-
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
@@ -78,13 +70,6 @@ namespace cube
             return ::filehandler::application::initialize_instance();
          }
       }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::initialize_instance();
-         }
-      }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
@@ -95,7 +80,7 @@ namespace cube
 
 
 
-      return cubebase::application::initialize_instance();
+      return asphere::application::initialize_instance();
    }
 
    int32_t application::exit_instance()
@@ -113,14 +98,6 @@ namespace cube
             return ::filehandler::application::exit_instance();
          }
       }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::exit_instance();
-         }
-
-      }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
@@ -130,7 +107,7 @@ namespace cube
       }
 
 
-      return cubebase::application::exit_instance();
+      return asphere::application::exit_instance();
    }
 
    void application::_001OnFileNew()
@@ -141,7 +118,7 @@ namespace cube
       {
          chFirst = strId[0];
       }
-      cube2::application::_001OnFileNew();
+      ::asphere::application::_001OnFileNew();
    }
 
 
@@ -160,13 +137,6 @@ namespace cube
             return ::filehandler::application::bergedge_start();
          }
       }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::bergedge_start();
-         }
-      }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
@@ -175,7 +145,7 @@ namespace cube
          }
       }
 
-      return cube2::application::bergedge_start();
+      return ::asphere::application::bergedge_start();
    }
 
    bool application::on_install()
@@ -193,13 +163,6 @@ namespace cube
             return ::filehandler::application::on_install();
          }
       }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::on_install();
-         }
-      }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
@@ -208,7 +171,7 @@ namespace cube
          }
       }
 
-      return cubebase::application::on_install();
+      return asphere::application::on_install();
    }
 
    bool application::on_uninstall()
@@ -226,13 +189,6 @@ namespace cube
             return ::filehandler::application::on_uninstall();
          }
       }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::on_uninstall();
-         }
-      }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
@@ -241,7 +197,7 @@ namespace cube
          }
       }
 
-      return cubebase::application::on_uninstall();
+      return asphere::application::on_uninstall();
    }
 
 
@@ -260,13 +216,6 @@ namespace cube
             return ::filehandler::application::on_request(pcreatecontext);
          }
       }
-      else if(chFirst == 'f')
-      {
-         if(strId == "fontopus")
-         {
-            return ::ca2::fontopus::application::on_request(pcreatecontext);
-         }
-      }
       else if(chFirst == 'u')
       {
          if(strId == "userstack")
@@ -274,7 +223,7 @@ namespace cube
             return ::userstack::application::on_request(pcreatecontext);
          }
       }
-      return cube2::application::on_request(pcreatecontext);
+      return ::asphere::application::on_request(pcreatecontext);
 
 
    }
@@ -306,7 +255,7 @@ namespace cube
 
       }
       
-      return cube2::application::is_serviceable();
+      return ::asphere::application::is_serviceable();
 
    }
 
@@ -326,7 +275,7 @@ namespace cube
          }
       }
       
-      return cube2::application::allocate_new_service();
+      return ::asphere::application::allocate_new_service();
    }
 
 
@@ -349,7 +298,7 @@ namespace cube
       {
       }
 
-      return ::cube2::application::_001OpenDocumentFile(varFile);
+      return ::asphere::application::_001OpenDocumentFile(varFile);
 
    }
 
@@ -357,12 +306,12 @@ namespace cube
    int32_t application::run()
    {
 
-      return ::cube2::application::run();
+      return ::asphere::application::run();
 
    }
 
 
-} //namespace cube
+} //namespace sphere
 
 
 

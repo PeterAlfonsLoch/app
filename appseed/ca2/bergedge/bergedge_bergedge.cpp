@@ -387,6 +387,10 @@ namespace bergedge
 
                papp->post_thread_message(dw, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
+               m_pappCurrent = papp;
+
+               Session.m_pappCurrent = papp;
+
                //pcreatecontext->m_spCommandLine->m_eventReady.wait();
 
 

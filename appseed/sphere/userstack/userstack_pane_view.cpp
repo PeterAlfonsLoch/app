@@ -65,7 +65,7 @@ namespace userstack
 
          string strId = Application.directrix().m_varTopicQuery["app"].stra()[i];
 
-         if(i == 0 && strId == "app/ca2/userstack")
+         if(i == 0 && strId == "app/sphere/userstack")
             continue;
 
          add_tab(strId, "app:" + strId);

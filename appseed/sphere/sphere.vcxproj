@@ -258,7 +258,7 @@
       <AdditionalOptions>-Zm384 /bigobj </AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__CA2__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__SPHERE__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -609,7 +609,7 @@
       <AdditionalOptions>-Zm384 /bigobj</AdditionalOptions>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>.;$(SolutionDir)../../../;$(SolutionDir)../../../app;$(SolutionDir)../../../app/thirdparty/include;$(SolutionDir)../../../app/thirdparty/appseed;$(SolutionDir)../../../app/appseed;$(SolutionDir)../../../app/appseed/ca2;$(SolutionDir)../../../nodeapp/thirdparty/appseed;$(SolutionDir)../../;$(ProjectDir)../../appseed;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>__CA2__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>__SPHERE__DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>false</MinimalRebuild>
       <ExceptionHandling>Async</ExceptionHandling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -966,7 +966,6 @@
     <ClInclude Include="sphere\sphere.h" />
     <ClInclude Include="sphere\sphere_application.h" />
     <ClInclude Include="sphere\sphere_library.h" />
-    <ClInclude Include="sphere\sphere_sphere.h" />
     <ClInclude Include="userstack\userstack.h" />
     <ClInclude Include="userstack\userstack_document.h" />
     <ClInclude Include="userstack\userstack_form_callback.h" />
@@ -993,8 +992,6 @@
     <ClCompile Include="filehandler\filehandler_pane_view.cpp" />
     <ClCompile Include="filehandler\filehandler_pane_view_update_hint.cpp" />
     <ClCompile Include="filehandler\filehandler_view.cpp" />
-    <ClCompile Include="mail\mail_tree_data.cpp" />
-    <ClCompile Include="mail\mail_tree_item.cpp" />
     <ClCompile Include="framework.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='memdleak|Win32'">Create</PrecompiledHeader>
@@ -1014,7 +1011,6 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">framework.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="sphere\sphere_application.cpp" />
-    <ClCompile Include="sphere\sphere_sphere.cpp" />
     <ClCompile Include="sphere\sphere_library.cpp" />
     <ClCompile Include="userstack\userstack_document.cpp" />
     <ClCompile Include="userstack\userstack_form_callback.cpp" />
@@ -1023,17 +1019,15 @@
     <ClCompile Include="userstack\userstack_pane_view_update_hint.cpp" />
     <ClCompile Include=".\userstack\userstack_application.cpp" />
     <ClCompile Include="userstack\userstack_view.cpp" />
-    <ClCompile Include="mail\mail_account.cpp" />
-    <ClCompile Include="mail\mail_application.cpp" />
-    <ClCompile Include="mail\mail_db_pop3.cpp" />
-    <ClCompile Include="mail\mail_tree_interface.cpp" />
-    <ClCompile Include="mail\mail_list_interface.cpp" />
     <ClCompile Include="calculator\calculator_application.cpp" />
     <ClCompile Include="calculator\calculator_document.cpp" />
     <ClCompile Include="calculator\calculator_frame.cpp" />
     <ClCompile Include="calculator\calculator_view.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ca2\ca2.vcxproj">
+      <Project>{afc48570-75e4-46bd-b8ab-4590b257e1c8}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\ca\ca.vcxproj">
       <Project>{acb3ff4b-0b61-45a7-881d-e102e0f85808}</Project>
     </ProjectReference>

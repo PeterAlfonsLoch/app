@@ -324,17 +324,17 @@ namespace plane
 
 
       if(pcreatecontext->m_spCommandLine->m_varQuery["app"].array_get_count() > 1
-      && pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0] == "app/ca2/userstack")
+      && pcreatecontext->m_spCommandLine->m_varQuery["app"].stra()[0] == "app/sphere/userstack")
       {
-         start_application("application", "app/ca2/userstack", pcreatecontext);
+         start_application("application", "app/sphere/userstack", pcreatecontext);
          return;
       }
 
       string strApp = pcreatecontext->m_spCommandLine->m_strApp;
 
-      if(strApp == "app/ca2/userstack")
+      if(strApp == "app/sphere/userstack")
       {
-         start_application("application", "app/ca2/userstack", pcreatecontext);
+         start_application("application", "app/sphere/userstack", pcreatecontext);
          return;
       }
 

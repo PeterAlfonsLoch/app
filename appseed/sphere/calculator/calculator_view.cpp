@@ -1,23 +1,28 @@
 ﻿#include "framework.h"
-#include "view.h"
-#include "document.h"
+
 
 namespace calculator
 {
+
 
    view::view(::ca::application * papp) :
       ca(papp),
       ::user::interaction(papp),
       ::userbase::view(papp)
    {
+
    }
+
 
    view::~view()
    {
+
    }
+
 
    void view::install_message_handling(::gen::message::dispatch * pinterface)
    {
+
       ::userbase::view::install_message_handling(pinterface);
 
       IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &view::_001OnDestroy);
@@ -207,11 +212,20 @@ namespace calculator
       throw todo(get_app());
 #endif
       pobj->previous();
+
    }
+
 
    document * view::get_document()
    {
+
       return dynamic_cast < document * > (::userbase::view::get_document());
+
    }
 
+
 } // namespace calculator
+
+
+
+

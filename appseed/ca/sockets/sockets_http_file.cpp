@@ -41,6 +41,7 @@ namespace sockets
 
          psignal->m_strUrl = lpszFileName; 
          psignal->m_set["optional_ca2_login"] = true;
+         psignal->m_set["noclose"] = false;
 
          if((nOpenFlags & ::ex1::file::hint_unknown_length_supported) != 0)
          {

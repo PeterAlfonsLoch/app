@@ -5,7 +5,7 @@ namespace command
 
    class document;
 
-   class CLASS_DECL_ca2 view :
+   class CLASS_DECL_sphere view :
       virtual public ::userbase::view,
       virtual public ::user::interaction
    {

@@ -5,13 +5,13 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_ca2 view :
+   class CLASS_DECL_sphere view :
       public form_view
    {
    public:
 
 
-      class CLASS_DECL_ca2 item
+      class CLASS_DECL_sphere item
       {
       public:
          
@@ -25,7 +25,7 @@ namespace filehandler
 
       };
 
-      class CLASS_DECL_ca2 list :
+      class CLASS_DECL_sphere list :
          public array_ptr_alloc < item >
       {
       public:
@@ -36,7 +36,7 @@ namespace filehandler
 
       };
 
-      class CLASS_DECL_ca2 draw_item
+      class CLASS_DECL_sphere draw_item
       {
       public:
 
@@ -48,7 +48,7 @@ namespace filehandler
 
       };
 
-      class CLASS_DECL_ca2 draw_list :
+      class CLASS_DECL_sphere draw_list :
          public array_ptr_alloc < draw_item >
       {
       public:

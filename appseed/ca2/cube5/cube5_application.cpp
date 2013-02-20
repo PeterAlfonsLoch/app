@@ -10,6 +10,8 @@ namespace cube5 // cube5 + ca8
 
       m_phtml = NULL;
 
+      m_puserex = NULL;
+
    }
 
 

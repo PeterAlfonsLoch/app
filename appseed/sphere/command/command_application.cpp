@@ -27,10 +27,10 @@ namespace command
       System.factory().creatable_small < command::pane_view >();
       System.factory().creatable_small < command::primary_view >();
 
-      if(!cube2::application::initialize_instance())
+      if(!::asphere::application::initialize_instance())
          return false;
 
-      GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
+      filemanager().GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
       if(m_strId == "command")
       {
@@ -42,7 +42,7 @@ namespace command
 		      System.type_info < command::document > (),
 		      System.type_info < command::frame > (),
 		      System.type_info < command::pane_view > ());
-         userbase::application::add_document_template(pDocTemplate);
+         userbase().add_document_template(pDocTemplate);
          m_ptemplateCommandMain = pDocTemplate;
 
 

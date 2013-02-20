@@ -98,7 +98,7 @@ namespace filehandler
          && !Sys(papp).savings().is_trying_to_save(gen::resource_display_bandwidth)
          && !Sys(papp).savings().is_trying_to_save(gen::resource_memory))
       {
-         class imaging & imaging = Sys(papp).imaging();
+         class imaging & imaging = Sys(papp).visual().imaging();
          imaging.color_blend(pdc, m_rectItem, cr, 127);
       }
       else

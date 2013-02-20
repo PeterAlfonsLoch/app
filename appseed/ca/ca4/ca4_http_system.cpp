@@ -1385,7 +1385,7 @@ retry:
             return;
          }
          ::sockets::socket_handler handler(get_app());
-         ::sockets::http_client_socket * psocket = get(handler, psignal->m_strUrl, psignal->m_setPost, psignal->m_setHeaders, psignal->operator()(), psignal->m_pcookies, psignal->m_puser, psignal->m_strVersion, &psignal->m_estatusRet);
+         ::sockets::http_client_socket * psocket = get(handler, psignal->m_strUrl, psignal->m_setPost, psignal->m_setHeaders, psignal->m_set, psignal->m_pcookies, psignal->m_puser, psignal->m_strVersion, &psignal->m_estatusRet);
          if(psocket == NULL)
          {
             psignal->m_bRet = false;

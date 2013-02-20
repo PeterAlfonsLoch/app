@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace cube
+namespace sphere
 {
 
 
-   class CLASS_DECL_ca2 application : 
+   class CLASS_DECL_sphere application : 
       public ::userstack::application
    {
    public:
@@ -18,7 +18,7 @@ namespace cube
       virtual ~application();
 
 
-      using ::cubebase::application::construct;
+      using ::asphere::application::construct;
       virtual void construct();
       
       virtual bool initialize_instance();
@@ -46,7 +46,7 @@ namespace cube
    };
 
    
-} // namespace cube
+} // namespace sphere
 
 
 

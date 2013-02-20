@@ -36,7 +36,7 @@ namespace filehandler
       System.factory().creatable_small < frame >();
       System.factory().creatable_small < view >();
 
-      if(!cube2::application::initialize_instance())
+      if(!::asphere::application::initialize_instance())
          return false;
 
 
@@ -47,7 +47,7 @@ namespace filehandler
          System.type_info < document > (),
          System.type_info < frame > (),       // main SDI frame ::ca::window
          System.type_info < pane_view > ());
-      userbase::application::add_document_template(pdoctemplate);
+      userbase().add_document_template(pdoctemplate);
       m_ptemplateMenu = pdoctemplate;
 
 
@@ -62,7 +62,7 @@ namespace filehandler
       try
       {
 
-         iExitCode = ::cubebase::application::exit_instance();
+         iExitCode = ::asphere::application::exit_instance();
 
       }
       catch(...)

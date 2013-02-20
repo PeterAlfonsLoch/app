@@ -5,8 +5,8 @@ namespace filehandler
 {
 
 
-   class CLASS_DECL_ca2 application :
-      virtual public ::ca2::calculator::application
+   class CLASS_DECL_sphere application :
+      virtual public ::calculator::application
    {
    public:
 
@@ -18,7 +18,6 @@ namespace filehandler
       application();
       virtual ~application();
 
-      using ::ca2::calculator::application::construct;
       virtual void construct();
 
       virtual bool initialize_instance();

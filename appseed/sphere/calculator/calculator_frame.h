@@ -1,18 +1,21 @@
 #pragma once
 
+
 namespace calculator
 {
 
-   class CLASS_DECL_ca2 frame : 
+
+   class CLASS_DECL_sphere frame : 
       public simple_frame_window
    {
-   
    public: 
+
 
       string                     m_strAnimatedStatusBarText;
       int32_t                        m_iAnimateStep;
       image_list *               m_pimagelist;
       bool                       m_bTimerOn;
+
 
       frame(::ca::application * papp);
       virtual ~frame();
@@ -30,6 +33,11 @@ namespace calculator
 
       int32_t OnCreate(LPCREATESTRUCT lpCreateStruct);
       void OnTimer(UINT nIDEvent);
+
    };
 
 } // namespace calculator
+
+
+
+

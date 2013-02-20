@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/command/command.h"
+#include "app/appseed/sphere/command/command.h"
 
 
 #include "userstack_view.h"

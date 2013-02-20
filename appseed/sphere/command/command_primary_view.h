@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   class CLASS_DECL_ca2 primary_view :
+   class CLASS_DECL_sphere primary_view :
       public ::userbase::edit_plain_text_view
    {
    public:

@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace cube
+namespace sphere
 {
 
 
-   class CLASS_DECL_ca2 library :
+   class CLASS_DECL_sphere library :
       virtual public ::ca2::single_application_library < application >,
       virtual public ::filehandler::menu_library
    {
@@ -21,13 +21,13 @@ namespace cube
 
       virtual void get_extension_app(stringa & straApp, const char * pszExtension);
 
-      virtual ::ca::application * get_new_app(const char * pszAppId);
+//      virtual ::ca::application * get_new_app(const char * pszAppId);
 
 
    };
 
 
-} // namespace cube
+} // namespace sphere
 
 
 

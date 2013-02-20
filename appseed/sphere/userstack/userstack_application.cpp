@@ -56,13 +56,13 @@ namespace userstack
    bool application::initialize_instance()
    {
 
-      if(!cube2::application::initialize_instance())
+      if(!::asphere::application::initialize_instance())
          return false;
 
       initialize_bergedge_application_interface();
 
 
-      GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
+      filemanager().GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");
@@ -77,7 +77,7 @@ namespace userstack
    {
       try
       {
-         ::cubebase::application::exit_instance();
+         ::asphere::application::exit_instance();
       }
       catch(...)
       {
@@ -94,7 +94,9 @@ namespace userstack
 
    void application::_001OnFileNew()
    {
-      userbase::application::m_pdocmanager->_001OnFileNew();
+
+      m_pdocmanager->_001OnFileNew();
+
    }
 
 
@@ -106,7 +108,7 @@ namespace userstack
 
    ::ca::application * application::get_app() const
    {
-      return ::cubebase::application::get_app();
+      return ::asphere::application::get_app();
    }
 
    void application::OnFileManagerOpenFile(
@@ -118,8 +120,8 @@ namespace userstack
 
    void application::load_string_table()
    {
-      cube1::application::load_string_table();
-      cube1::application::load_string_table("platform", "");
+      ::asphere::application::load_string_table();
+      ::asphere::application::load_string_table("platform", "");
    }
 
    bool application::file_manager_open_file(
@@ -373,7 +375,7 @@ namespace userstack
 
 
 
-      cube8::application & app = App(pinteraction->get_app());
+      sphere8::application & app = App(pinteraction->get_app());
 
       string strAppName = app.m_strAppName;
 
@@ -414,7 +416,7 @@ namespace userstack
       ::user::place_holder_ptra holderptra;
 
 
-      cube8::application & app = App(pmainframe->get_app());
+      sphere8::application & app = App(pmainframe->get_app());
 
       string strAppName = app.m_strAppName;
 
@@ -471,7 +473,7 @@ namespace userstack
 
       System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
 
-      return ::cubebase::application::on_install();
+      return ::asphere::application::on_install();
    }
 
 
@@ -512,7 +514,7 @@ namespace userstack
    {
 
 
-      if(!::cubebase::application::initialize1())
+      if(!::asphere::application::initialize1())
          return false;
 
 
@@ -525,7 +527,7 @@ namespace userstack
    {
 
 
-      if(!::cubebase::application::initialize())
+      if(!::asphere::application::initialize())
          return false;
 
 
@@ -537,7 +539,7 @@ namespace userstack
    bool application::os_native_bergedge_start()
    {
 
-      return ::cubebase::application::os_native_bergedge_start();
+      return ::asphere::application::os_native_bergedge_start();
 
    }
 
@@ -545,7 +547,7 @@ namespace userstack
    {
 
 
-      return ::cubebase::application::main();
+      return ::asphere::application::main();
 
 
    }
@@ -558,7 +560,7 @@ namespace userstack
 
       try
       {
-         bOk1 = ::cubebase::application::on_uninstall();
+         bOk1 = ::asphere::application::on_uninstall();
       }
       catch(...)
       {

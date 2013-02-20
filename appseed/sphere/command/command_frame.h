@@ -5,7 +5,7 @@ namespace command
 {
 
 
-   class CLASS_DECL_ca2 frame : 
+   class CLASS_DECL_sphere frame : 
       public simple_frame_window,
       public ca::message_window_simple_callback
    {

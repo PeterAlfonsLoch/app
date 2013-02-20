@@ -9,7 +9,7 @@ namespace userstack
    class pane_view;
 
 
-   class CLASS_DECL_ca2 view :
+   class CLASS_DECL_sphere view :
       virtual public ::userbase::scroll_view
    {
    public:
