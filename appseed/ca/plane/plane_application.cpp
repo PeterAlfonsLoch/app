@@ -219,30 +219,6 @@ namespace plane
    }
 
 
-   void application::on_user_login(::fontopus::user * puser)
-   {
-
-
-#ifndef METROWIN
-
-      if(!System.directrix().m_varTopicQuery.has_property("install")
-      && !System.directrix().m_varTopicQuery.has_property("uninstall"))
-      {
-
-         ::ca::create_context_sp spcreatecontext(get_app());
-
-         ::ca::application * papp = Session.start_application("application", "app-core/deepfish", spcreatecontext);
-
-         if(papp == NULL)
-         {
-            simple_message_box(NULL, "deepfish subsystem - responsible for running background applications - could not be started");
-         }
-
-      }
-
-#endif
-
-   }
 
 
    ::planebase::application * application::assert_running(const char * pszAppId)

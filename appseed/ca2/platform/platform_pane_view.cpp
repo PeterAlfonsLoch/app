@@ -145,7 +145,7 @@ namespace platform
          break;
       case platform::PaneViewFileManager:
          {
-            ::filemanager::document * pdoc = papp->GetStdFileManagerTemplate()->OpenChild(&Application.filemanager(), false, true);
+            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChild(&Application.filemanager(), false, true);
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();

@@ -19,6 +19,7 @@ namespace simpledb
 
 
    class CLASS_DECL_ca simpledb :
+      virtual public ::ca::section,
       virtual public ::database::database
    {
    public:

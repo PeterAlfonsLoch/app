@@ -1776,9 +1776,6 @@
     <ClCompile Include="nature\nature_view.cpp">
       <Filter>Source Files\nature</Filter>
     </ClCompile>
-    <ClCompile Include="fontopus\fontopus_application.cpp">
-      <Filter>Source Files\fontopus</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_xfplayer_view_line.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -2060,6 +2057,9 @@
     </ClCompile>
     <ClCompile Include="mail\mail_mail.cpp">
       <Filter>Source Files\mail</Filter>
+    </ClCompile>
+    <ClCompile Include="fontopus\fontopus_fontopus.cpp">
+      <Filter>Source Files\fontopus</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

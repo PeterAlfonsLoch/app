@@ -30,8 +30,6 @@ namespace bergedge
 
 
 
-class FileManagerTemplate;
-
 
 #include "planebase_application.h"
 

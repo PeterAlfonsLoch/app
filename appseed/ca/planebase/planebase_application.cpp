@@ -1008,7 +1008,8 @@ exit_application:
       if(!m_puser->initialize())
          return false;
 
-
+      if(!m_phtml->initialize())
+         return false;
 
       if(!is_system() && !is_session() && !is_bergedge() && !is_cube() && !is_installing() && !is_uninstalling())
       {
@@ -1126,6 +1127,9 @@ exit_application:
    bool application::process_initialize()
    {
 
+      if(!::ca4::application::process_initialize())
+         return false;
+
       m_pfontopus = create_fontopus();
 
       if(m_pfontopus == NULL)
@@ -1188,6 +1192,7 @@ exit_application:
       if(!ca4::application::initialize1())
          return false;
 
+      m_visual.construct(this);
 
       if(!m_visual.initialize1())
          return false;
@@ -1204,6 +1209,8 @@ exit_application:
 
       if(!ca4::application::initialize2())
          return false;
+
+      m_simpledb.construct(this);
 
       if(!m_simpledb.initialize2())
          return false;
@@ -1237,11 +1244,6 @@ exit_application:
    }
 
 
-
-   FileManagerTemplate * application::GetStdFileManagerTemplate()
-   {
-      return NULL;
-   }
 
 
 

@@ -114,8 +114,7 @@ namespace planebase
       virtual void set_title(const char * pszTitle);
 
 
-      virtual FileManagerTemplate * GetStdFileManagerTemplate();
-
+      
 
 
       //////////////////////////////////////////////////////////////////////////////////////////////////

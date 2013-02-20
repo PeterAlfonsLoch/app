@@ -68,7 +68,7 @@ BaseMenuCentral::~BaseMenuCentral()
 
 BaseMenuCentral * BaseMenuCentral::GetMenuCentral(::ca::application * papp)
 {
-   return dynamic_cast < BaseMenuCentralContainer * > (papp)->get_menucentral();
+   return App(papp).userbase().get_menucentral();
 }
 
 /*bool BaseMenuCentral::MenuV033CreateImageMap(UINT uiaMenuV003Map [][2])

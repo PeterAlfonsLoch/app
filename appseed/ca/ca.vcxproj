@@ -3130,7 +3130,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="sockets\bsd\webserver\sockets_http_transaction.cpp" />
     <ClCompile Include="sockets\http_file.cpp" />
     <ClCompile Include="sockets\http_memory_file.cpp" />
-    <ClCompile Include="sockets\sockets_application.cpp" />
     <ClCompile Include="sockets\sockets_http_batch_file.cpp" />
     <ClCompile Include="sockets\sockets_http_file.cpp" />
     <ClCompile Include="uinteraction\uinteraction_frame.cpp" />

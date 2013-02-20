@@ -154,7 +154,7 @@ namespace sockets
             dynamic_cast < ::sockets::application_interface  * >
                (get_app());
          psocketsapp->http_config_proxy(get_url(), this);*/
-         System.http_config_proxy(get_url(), this);
+         System.http().config_proxy(get_url(), this);
       }
       else
       {

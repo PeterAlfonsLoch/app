@@ -37,6 +37,7 @@ namespace cube5
       virtual bool final_handle_exception(::ca::exception & e);
       virtual bool initialize();
       virtual bool initialize1();
+      virtual bool initialize2();
 
       void enum_display_monitors();
 
@@ -60,6 +61,7 @@ namespace cube5
       inline ::userex::userex                      & userex       () { return *m_puserex        ; }
       inline ::filemanager::filemanager            & filemanager  () { return *m_pfilemanager   ; }
       inline ::mail::mail                          & mail         () { return *m_pmail          ; }
+
       
       string message_box(const char * pszMatter, gen::property_set & propertyset);
       using ::radix::application::simple_message_box;

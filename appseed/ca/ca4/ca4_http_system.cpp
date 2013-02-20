@@ -305,6 +305,12 @@ namespace ca4
       void system::config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket)
       {
 
+#ifdef METROWIN
+
+         psocket->m_bDirect = true;
+
+#else
+
          ::ca4::http::system::proxy * pproxy = get_proxy(pszUrl);
 
          if(pproxy == NULL)
@@ -321,6 +327,7 @@ namespace ca4
             psocket->m_iProxyPort   = pproxy->m_iPort;
          }
 
+#endif
 
       }
 

@@ -5323,9 +5323,6 @@
     <ClCompile Include="sockets\bsd\webserver\sockets_httpd_socket.cpp">
       <Filter>Source Files\sockets\bsd\webserver</Filter>
     </ClCompile>
-    <ClCompile Include="sockets\sockets_application.cpp">
-      <Filter>Source Files\sockets</Filter>
-    </ClCompile>
     <ClCompile Include="sockets\bsd\basic\sockets_net.cpp">
       <Filter>Source Files\sockets\bsd\basic</Filter>
     </ClCompile>

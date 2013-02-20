@@ -141,7 +141,6 @@ namespace plane
       //
       virtual ::bergedge::view * get_view();
       virtual ::bergedge::document * get_document();
-      virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
 
       virtual bool is_mouse_button_pressed(::user::e_mouse emouse);

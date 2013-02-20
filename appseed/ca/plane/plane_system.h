@@ -462,8 +462,6 @@ namespace plane
 
       DECL_GEN_SIGNAL(on_application_signal);
 
-      virtual void http_config_proxy(const char * pszUrl, ::sockets::http_tunnel * psocket);
-
       bool set_history(::ca::history * phistory);
 
 
@@ -601,7 +599,6 @@ namespace plane
       virtual index get_best_intersection_monitor(LPRECT lprect);
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
-      virtual FileManagerTemplate * GetStdFileManagerTemplate();
 
       virtual ::gen::command_thread & command_thread();
 

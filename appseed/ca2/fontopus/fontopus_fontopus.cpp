@@ -19,6 +19,8 @@ namespace ca2
       void fontopus::construct(::ca::application * papp)
       {
 
+         ::fontopus::fontopus::construct(papp);
+
       }
 
 
@@ -30,7 +32,7 @@ namespace ca2
       bool fontopus::initialize_instance()
       {
 
-         if(!::ca::section::initialize_instance())
+         if(!::fontopus::fontopus::initialize_instance())
             return false;
 
          return TRUE;
@@ -40,7 +42,7 @@ namespace ca2
       {
          try
          {
-            ::ca::section::exit_instance();
+            ::fontopus::fontopus::exit_instance();
          }
          catch(...)
          {

@@ -21,7 +21,7 @@ namespace platform
       if(!cube::application::initialize_instance())
          return false;
 
-      GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
+      filemanager().GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
       ::userbase::single_document_template* pDocTemplate;
       pDocTemplate = new ::userbase::single_document_template(

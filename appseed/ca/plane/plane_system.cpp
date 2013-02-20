@@ -214,13 +214,23 @@ namespace plane
 
 //      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
 
-      if(!::planebase::application::process_initialize())
+      if(!::plane::application::process_initialize())
       {
          return false;
       }
 
       m_spfile.create(this);
       m_spdir.create(this);
+
+      m_pxml = new ::xml::xml();
+
+      m_pxml->construct(this);
+
+      if(!m_pxml->initialize1())
+         return false;
+
+      if(!m_pxml->initialize())
+         return false;
 
       if(!m_spdir->initialize())
          return false;
@@ -237,11 +247,6 @@ namespace plane
 
    bool system::initialize()
    {
-
-      m_pxml->construct(this);
-
-      if(!m_pxml->initialize())
-         return false;
 
 
       int32_t error = FT_Init_FreeType( &m_ftlibrary );
@@ -285,12 +290,6 @@ namespace plane
    bool system::initialize1()
    {
 
-      m_pxml = new ::xml::xml();
-
-      m_pxml->construct(this);
-
-      if(!m_pxml->initialize1())
-         return false;
 
       m_spfilehandler(new ::filehandler::handler(this));
 
@@ -1468,10 +1467,6 @@ namespace plane
       return m_spcopydesk;
    }
 
-   void system::http_config_proxy(const char * pszUrl, ::sockets::http_tunnel * ptunnel)
-   {
-   }
-
    bool system::base_support()
    {
       return true;
@@ -1761,18 +1756,6 @@ namespace plane
 
 
       return false;
-
-   }
-
-   FileManagerTemplate * system::GetStdFileManagerTemplate()
-   {
-
-      if(m_pcubeInterface != NULL)
-      {
-         return m_pcubeInterface->GetStdFileManagerTemplate();
-      }
-
-      return NULL;
 
    }
 

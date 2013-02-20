@@ -62,6 +62,7 @@ namespace cubebase
       virtual ::fontopus::fontopus * create_fontopus();
       virtual ::user::user * create_user();
       virtual ::fs::fs * create_fs();
+      virtual ::html::html * create_html();
 
 
    };

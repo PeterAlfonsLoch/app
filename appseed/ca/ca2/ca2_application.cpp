@@ -163,6 +163,12 @@ namespace ca2
    bool application::initialize1()
    {
 
+      if(!::ex2::application::initialize1())
+         return false;
+
+      m_psockets = new ::sockets::sockets();
+
+      m_psockets->construct(this);
 
       if(!m_psockets->initialize1())
          return false;
@@ -358,10 +364,6 @@ namespace ca2
 
       if(!m_pcolorertake5->initialize())
          return false;
-
-      m_psockets = new ::sockets::sockets();
-
-      m_psockets->construct(this);
 
       if(!m_psockets->initialize())
          return false;

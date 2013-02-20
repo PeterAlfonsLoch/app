@@ -215,6 +215,14 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    }
 
 
+   ::html::html * application::create_html()
+   {
+
+      return new ::ca2::html::html();
+
+   }
+
+
 } //namespace cube
 
 

@@ -80,7 +80,7 @@ namespace bergedge
       initialize_bergedge_application_interface();
 
 
-      GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
+      filemanager().GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
       //SetRegistryKey("ca2core");

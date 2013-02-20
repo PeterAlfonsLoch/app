@@ -31,9 +31,6 @@
 
          bool finalize();
          
-         virtual void http_config_proxy(const char * pszUrl, http_tunnel * psocket);
-
-
       };
 
 

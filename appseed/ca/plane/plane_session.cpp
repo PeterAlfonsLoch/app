@@ -104,7 +104,7 @@ namespace plane
       initialize_bergedge_application_interface();
 
 
-      //GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
+      //filemanager().GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");
@@ -1069,19 +1069,6 @@ namespace plane
       return NULL;
 
    }
-
-   FileManagerTemplate * session::GetStdFileManagerTemplate()
-   {
-
-      if(m_pbergedgeInterface != NULL)
-      {
-         return m_pbergedgeInterface->GetStdFileManagerTemplate();
-      }
-
-      return NULL;
-
-   }
-
 
    bool session::is_remote_session()
    {

@@ -57,21 +57,6 @@ namespace sockets
    }
 
 
-   void sockets::http_config_proxy(const char * pszUrl, http_tunnel * ptunnel)
-   {
-
-#ifdef METROWIN
-
-      ptunnel->m_bDirect = true;
-
-#else
-
-      System.http().config_proxy(pszUrl, ptunnel);
-
-#endif
-
-   }
-
 
 } // namespace kar
 

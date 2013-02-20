@@ -67,9 +67,6 @@ namespace ca2
 
 
 
-         // Pointer to document_manager used to manage document templates
-         // for this user instance.
-   //      ::userbase::document_manager* m_pdocmanager;
 
 
    // Running Operations - to be done on a running user

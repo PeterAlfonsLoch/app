@@ -218,6 +218,8 @@ namespace radix
       m_bSessionSynchronizedCursor  = true;
       m_bSessionSynchronizedScreen  = true;
 
+      m_pdocmanager                 = NULL;
+
       m_nCmdShow                    = -1;
 
       m_strInstallType              = "application";

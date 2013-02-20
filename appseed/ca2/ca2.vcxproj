@@ -1322,7 +1322,7 @@
     <ClCompile Include="filemanager\filemanager_fs_simple_view.cpp" />
     <ClCompile Include="filemanager\filemanager_iconoverlayer.cpp" />
     <ClCompile Include="fontopus\fontopus_validate.cpp" />
-    <ClCompile Include="fontopus\fontopus_application.cpp" />
+    <ClCompile Include="fontopus\fontopus_fontopus.cpp" />
     <ClCompile Include="fs\fs_document.cpp" />
     <ClCompile Include="fs\fs_fs.cpp" />
     <ClCompile Include="fs\fs_list.cpp" />

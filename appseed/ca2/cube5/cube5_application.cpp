@@ -8,6 +8,8 @@ namespace cube5 // cube5 + ca8
    application::application()
    {
 
+      m_phtml = NULL;
+
    }
 
 
@@ -19,6 +21,13 @@ namespace cube5 // cube5 + ca8
 
    bool application::initialize1()
    {
+
+      m_puserex = new ::userex::userex();
+
+      m_puserex->construct(this);
+
+      if(!m_puserex->initialize1())
+         return false;
 
       m_dwAlive = ::get_tick_count();
 
@@ -68,6 +77,19 @@ namespace cube5 // cube5 + ca8
 
    }
 
+   bool application::initialize2()
+   {
+
+      if(!::cubebase::application::initialize2())
+         return false;
+
+      if(!m_puserex->initialize2())
+         return false;
+
+      return true;
+
+   }
+
    bool application::initialize()
    {
 
@@ -81,11 +103,11 @@ namespace cube5 // cube5 + ca8
       if(!::cubebase::application::initialize())
          return false;
 
-      m_phtml = new ::html::html();
+      m_puinteraction = new ::uinteraction::uinteraction();
 
-      m_phtml->construct(this);
+      m_puinteraction->construct(this);
 
-      if(!m_phtml->initialize())
+      if(!m_puinteraction->initialize())
          return false;
 
       m_puserbase = new ::userbase::userbase();
@@ -93,13 +115,6 @@ namespace cube5 // cube5 + ca8
       m_puserbase->construct(this);
 
       if(!m_puserbase->initialize())
-         return false;
-
-      m_puserex = new ::userex::userex();
-
-      m_puserex->construct(this);
-
-      if(!m_puserex->initialize())
          return false;
 
       m_pfilemanager = new ::filemanager::filemanager();
@@ -314,7 +329,7 @@ namespace cube5 // cube5 + ca8
       {
          TRACE(pbe->stack_trace());
       }
-      return cube5::application::final_handle_exception(e);
+      return cubebase::application::final_handle_exception(e);
    }
 
 // 23 = Carlinhos Gustavinho Cecynzinho Lundgrenzinho

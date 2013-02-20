@@ -37,11 +37,9 @@ void FileManagerCallbackInterface::OnFileManagerOpenContextMenu(::filemanager::d
 
 void FileManagerCallbackInterface::on_request(::ca::create_context * pcreatecontext)
 {
-   ::ca::ca * pca = dynamic_cast < ::ca::ca * > (this);
-   if(pca != NULL)
-   {
-      Bergedge.request(pcreatecontext);
-   }
+
+   Application.request(pcreatecontext);
+
 }
 
 void FileManagerCallbackInterface::OnFileManagerOpenFolder(::filemanager::data * pdata, const ::fs::item & item)
