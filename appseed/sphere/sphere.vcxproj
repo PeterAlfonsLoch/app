@@ -938,7 +938,13 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="calculator\frame.h" />
+    <ClInclude Include="asphere\asphere.h" />
+    <ClInclude Include="asphere\asphere_application.h" />
+    <ClInclude Include="calculator\calculator.h" />
+    <ClInclude Include="calculator\calculator_application.h" />
+    <ClInclude Include="calculator\calculator_document.h" />
+    <ClInclude Include="calculator\calculator_frame.h" />
+    <ClInclude Include="calculator\calculator_view.h" />
     <ClInclude Include="command\command.h" />
     <ClInclude Include="command\command_application.h" />
     <ClInclude Include="command\command_document.h" />
@@ -955,11 +961,12 @@
     <ClInclude Include="filehandler\filehandler_pane_view.h" />
     <ClInclude Include="filehandler\filehandler_pane_view_update_hint.h" />
     <ClInclude Include="filehandler\filehandler_view.h" />
-    <ClInclude Include="mail\mail_list_interface.h" />
-    <ClInclude Include="mail\mail_tree_data.h" />
-    <ClInclude Include="mail\mail_tree_item.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="sphere.h" />
+    <ClInclude Include="sphere\sphere.h" />
+    <ClInclude Include="sphere\sphere_application.h" />
+    <ClInclude Include="sphere\sphere_library.h" />
+    <ClInclude Include="sphere\sphere_sphere.h" />
     <ClInclude Include="userstack\userstack.h" />
     <ClInclude Include="userstack\userstack_document.h" />
     <ClInclude Include="userstack\userstack_form_callback.h" />
@@ -968,22 +975,10 @@
     <ClInclude Include="userstack\userstack_pane_view_update_hint.h" />
     <ClInclude Include=".\userstack\userstack_application.h" />
     <ClInclude Include="userstack\userstack_view.h" />
-    <ClInclude Include="calculator\application.h" />
-    <ClInclude Include="calculator\calculator.h" />
-    <ClInclude Include="calculator\document.h" />
-    <ClInclude Include="calculator\view.h" />
-    <ClInclude Include="mail\application.h" />
-    <ClInclude Include="mail\application_interface.h" />
-    <ClInclude Include="mail\configuration.h" />
-    <ClInclude Include="mail\db_pop3.h" />
-    <ClInclude Include="mail\mail_tree_interface.h" />
-    <ClInclude Include="mail\mail.h" />
-    <ClInclude Include="mail\mail_account.h" />
-    <ClInclude Include="mail\pop3.h" />
-    <ClInclude Include="mail\pop3_socket.h" />
-    <ClInclude Include="mail\simple_pop3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="asphere\asphere_application.cpp" />
+    <ClCompile Include="asphere\asphere_asphere.cpp" />
     <ClCompile Include="command\command_application.cpp" />
     <ClCompile Include="command\command_document.cpp" />
     <ClCompile Include="command\command_form_callback.cpp" />
@@ -1018,8 +1013,6 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='profiler|x64'">framework.h</PrecompiledHeaderFile>
     </ClCompile>
-    <ClCompile Include="spherebase\asphere_application.cpp" />
-    <ClCompile Include="spherebase\asphere_cubebase.cpp" />
     <ClCompile Include="sphere\sphere_application.cpp" />
     <ClCompile Include="sphere\sphere_sphere.cpp" />
     <ClCompile Include="sphere\sphere_library.cpp" />

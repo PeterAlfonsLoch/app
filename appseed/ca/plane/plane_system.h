@@ -1100,3 +1100,20 @@ DOCUMENT * view::get_typed_document()
       return NULL;
    return dynamic_cast < DOCUMENT * > (m_spdocument.m_p);
 }
+
+
+
+namespace xml
+{
+
+   inline disp_option::disp_option(::ca::application * papp)
+   {
+      newline = true; 
+      reference_value = true; 
+      m_pentities = &papp->m_psystem->m_pxml->m_entities; 
+      tab_base = 0; 
+      value_quotation_mark = '"'; 
+   }
+
+
+} // namespace xml

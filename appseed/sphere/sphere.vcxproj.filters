@@ -8,9 +8,6 @@
     <Filter Include="Header Files\calculator">
       <UniqueIdentifier>{1eac44b2-ca79-4002-b590-6637893c070b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\mail">
-      <UniqueIdentifier>{0add094b-935b-4492-81e5-817d6583325c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -45,62 +42,14 @@
     <Filter Include="Source Files\asphere">
       <UniqueIdentifier>{b00fd0cd-81ae-4457-8d42-0e937b9ccc92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\asphere">
+      <UniqueIdentifier>{ae277c1d-82e9-4de2-b235-46bb22b8f537}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\sphere">
+      <UniqueIdentifier>{666e0916-0160-4438-a992-5d6286a5a8df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="calculator\application.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\calculator.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\document.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\view.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\application.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\application_interface.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\configuration.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\db_pop3.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_account.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\pop3.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\pop3_socket.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\simple_pop3.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="calculator\frame.h">
-      <Filter>Header Files\calculator</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_list_interface.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_tree_interface.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_tree_data.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
-    <ClInclude Include="mail\mail_tree_item.h">
-      <Filter>Header Files\mail</Filter>
-    </ClInclude>
     <ClInclude Include="command\command.h">
       <Filter>Header Files\command</Filter>
     </ClInclude>
@@ -178,6 +127,39 @@
     </ClInclude>
     <ClInclude Include="sphere.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_application.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_library.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere\sphere_sphere.h">
+      <Filter>Header Files\sphere</Filter>
+    </ClInclude>
+    <ClInclude Include="asphere\asphere.h">
+      <Filter>Header Files\asphere</Filter>
+    </ClInclude>
+    <ClInclude Include="asphere\asphere_application.h">
+      <Filter>Header Files\asphere</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_application.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_document.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_frame.h">
+      <Filter>Header Files\calculator</Filter>
+    </ClInclude>
+    <ClInclude Include="calculator\calculator_view.h">
+      <Filter>Header Files\calculator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -289,10 +271,10 @@
     <ClCompile Include="sphere\sphere_library.cpp">
       <Filter>Source Files\sphere</Filter>
     </ClCompile>
-    <ClCompile Include="spherebase\asphere_application.cpp">
+    <ClCompile Include="asphere\asphere_application.cpp">
       <Filter>Source Files\asphere</Filter>
     </ClCompile>
-    <ClCompile Include="spherebase\asphere_cubebase.cpp">
+    <ClCompile Include="asphere\asphere_asphere.cpp">
       <Filter>Source Files\asphere</Filter>
     </ClCompile>
   </ItemGroup>

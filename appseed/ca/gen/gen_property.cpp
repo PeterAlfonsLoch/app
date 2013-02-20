@@ -2240,7 +2240,7 @@ namespace gen
 
       if(opt == ((::xml::disp_option *) 1))
       {
-         opt = System.m_poptionDefault;
+         opt = System.xml().m_poptionDefault;
       }
 
       string str;

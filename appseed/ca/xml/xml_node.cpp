@@ -231,7 +231,7 @@ namespace xml
    char * node::LoadDocType( const char * pszXml, parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
       if(pszXml[0] != '<' || pszXml[1] != '!')
          return (char *) pszXml;
 
@@ -327,7 +327,7 @@ namespace xml
    char * node::LoadAttributes( const char * pszAttrs , parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
 
       char * xml = (char *)pszAttrs;
 
@@ -437,7 +437,7 @@ namespace xml
    char * node::LoadProcessingInstruction( const char * pszXml, parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of pparseinfo
       char * end = _tcsenistr( pszXml, szXMLPIClose, sizeof(szXMLPIClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -490,7 +490,7 @@ namespace xml
    char * node::LoadAttributes( const char * pszAttrs, const char * pszEnd, parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
 
       char * xml = (char *)pszAttrs;
 
@@ -584,7 +584,7 @@ namespace xml
    char * node::LoadComment( const char * pszXml, parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of comment
       char * end = _tcsenistr( pszXml, szXMLCommentClose, sizeof(szXMLCommentClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -629,7 +629,7 @@ namespace xml
    char * node::LoadCDATA( const char * pszXml, parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
 
       // find the end of CDATA
       char * end = _tcsenistr( pszXml, szXMLCDATAClose, sizeof(szXMLCDATAClose)-1, pparseinfo ? pparseinfo->m_chEscapeValue : 0 );
@@ -676,7 +676,7 @@ namespace xml
    char * node::LoadOtherNodes(bool* pbRet, const char * pszXml, parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
 
       char * xml = (char *)pszXml;
       bool do_other_type = true;
@@ -786,7 +786,7 @@ namespace xml
    char * node::load( const char * pszXml, parse_info * pparseinfo)
    {
       if(pparseinfo == NULL)
-         pparseinfo = get_app()->cast_app < ::xml::application > ().m_pparseinfoDefault;
+         pparseinfo = System.xml().m_pparseinfoDefault;
 
       // close it
       close();
@@ -1035,7 +1035,7 @@ namespace xml
 
       if(opt == NULL)
       {
-         opt = System.m_poptionDefault;
+         opt = System.xml().m_poptionDefault;
       }
 
       // tab

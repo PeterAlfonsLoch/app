@@ -236,7 +236,7 @@ namespace sockets
    }
 
 
-/*   bool ipv6_address::operator==(sockets::address& a)
+/*   bool ipv6_address::operator==(::sockets::address & a)
    {
       if (a.GetFamily() != GetFamily())
          return false;

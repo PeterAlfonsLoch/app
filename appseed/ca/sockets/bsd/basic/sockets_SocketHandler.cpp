@@ -778,7 +778,7 @@ namespace sockets
                      tcp -> SetRetryClientConnect(false);
                      //TRACE("close() before retry client connect\n");
                      p -> close(); // removes from m_fds_retry
-                     sockets::address ad = p -> GetClientRemoteAddress();
+                     ::sockets::address ad = p -> GetClientRemoteAddress();
                      if(ad.is_valid())
                      {
                         tcp -> open(ad);
@@ -900,7 +900,7 @@ namespace sockets
          SOCKET socket = m_fds_erase.remove_head();
          m_fds_detach.remove(socket);
          m_fds.remove(socket);
-         sockets::socket * psocket = NULL;
+         ::sockets::socket * psocket = NULL;
          if(m_sockets.Lookup(socket, psocket))
          {
             if(m_slave)
@@ -1161,7 +1161,7 @@ namespace sockets
       return m_resolver_port;
    }
 
-   socket_handler_base::PoolSocket *socket_handler::FindConnection(int32_t type,const string & protocol,sockets::address& ad)
+   socket_handler_base::PoolSocket *socket_handler::FindConnection(int32_t type,const string & protocol,::sockets::address & ad)
    {
       socket_map::pair * ppair = m_sockets.PGetFirstAssoc();
       while(ppair != NULL)

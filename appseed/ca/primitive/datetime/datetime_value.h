@@ -1,7 +1,9 @@
 #pragma once
 
+
 namespace datetime
 {
+
 
    class CLASS_DECL_ca value
    {
@@ -36,8 +38,10 @@ namespace datetime
 
    };
 
+
    CLASS_DECL_ca value span_strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz);
    CLASS_DECL_ca value strtotime(::ca::application * pcaapp, ::user::str_context * pcontext, const char * psz, int32_t & iPath, int32_t & iPathCount);
+
 
 } // namespace datetime
 
@@ -46,3 +50,6 @@ CLASS_DECL_ca datetime::value operator + (const datetime::value & val1, const da
 CLASS_DECL_ca datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
 CLASS_DECL_ca datetime::value operator * (const datetime::value & val1, double d);
 CLASS_DECL_ca datetime::value operator / (const datetime::value & val1, double d);
+
+
+

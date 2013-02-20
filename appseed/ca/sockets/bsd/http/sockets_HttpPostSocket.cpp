@@ -60,17 +60,17 @@ namespace sockets
       m_fields(h.get_app()),
       m_bMultipart(false)
    {
-      single_lock lock(&System.m_mutexHttpPostBoundary, true);
+      single_lock lock(&System.sockets().m_mutexHttpPostBoundary, true);
 
       m_boundary = "----";
       for (int32_t i = 0; i < 12; i++)
       {
-         char c = System.m_countHttpPostBoundary++ % 128;
+         char c = System.sockets().m_countHttpPostBoundary++ % 128;
          while (!isalnum(c))
-            c = System.m_countHttpPostBoundary++ % 128;
+            c = System.sockets().m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + gen::str::from(System.m_countHttpPostBoundary++);
+      m_boundary += "__" + gen::str::from(System.sockets().m_countHttpPostBoundary++);
    }
 
 

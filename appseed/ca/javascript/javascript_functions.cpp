@@ -82,9 +82,9 @@ void scIsInNet(CScriptVar *c, void *data)
       return;
    }*/
 
-   sockets::address ad_host(tinyJS->get_app(), host, 0);
-   sockets::address ad_addr(tinyJS->get_app(), addr, 0);
-   sockets::address ad_mask(tinyJS->get_app(), mask, 0);
+   ::sockets::address ad_host(tinyJS->get_app(), host, 0);
+   ::sockets::address ad_addr(tinyJS->get_app(), addr, 0);
+   ::sockets::address ad_mask(tinyJS->get_app(), mask, 0);
 
 
 	c->getReturnVar()->setInt(ad_host.is_in_net(ad_addr, ad_mask));

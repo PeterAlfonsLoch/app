@@ -6,7 +6,7 @@ namespace ca4
 
 
    class CLASS_DECL_ca application :
-      virtual public ::sockets::application
+      virtual public ::ca2::application
    {
    public:
 

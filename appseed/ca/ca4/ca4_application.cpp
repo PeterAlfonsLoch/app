@@ -130,9 +130,6 @@ namespace ca4
       if(!ca2::application::initialize())
          return false;
 
-      if(!colorertake5::application::initialize())
-         return false;
-
       if(is_system())
       {
 

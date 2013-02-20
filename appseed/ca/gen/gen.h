@@ -125,3 +125,5 @@ CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & o
 #include "gen_istring.h"
 
 
+#include "gen_cregexp.h"
+#include "gen_cregexp_util.h"

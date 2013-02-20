@@ -34,9 +34,14 @@ namespace ca2
 
 
    class CLASS_DECL_ca application :
-      virtual public ::xml::application
+      virtual public ::ex2::application
    {
    public:
+
+
+      ::calculator::calculator                                                                * m_pcalculator;
+      ::sockets::sockets                                                                      * m_psockets;
+      ::colorertake5::colorertake5                                                            * m_pcolorertake5;
 
 
       ::collection::string_map < string_to_string_map *, string_to_string_map * >               m_stringtablemap;
@@ -44,10 +49,10 @@ namespace ca2
       manual_reset_event *                                                                      m_peventReady;
 
 
-      //string                                                                                    m_strLicense;
+      //string                                                                                  m_strLicense;
       bool                                                                                      m_bLicense;
       string                                                                                    m_strBaseSupportId;
-      collection::map < int32_t, int32_t, bool, bool > *                                                m_pmapKeyPressed;
+      collection::map < int32_t, int32_t, bool, bool > *                                        m_pmapKeyPressed;
 
 
       string                                                                                    m_strRoot;
@@ -98,6 +103,11 @@ namespace ca2
 
 
       virtual bool start_application(bool bSynch, ::ca::application_bias * pbias);
+
+
+      inline ::calculator::calculator           & calculator      () { return *m_pcalculator    ; }
+      inline ::sockets::sockets                 & sockets         () { return *m_psockets       ; }
+      inline ::colorertake5::colorertake5       & colorertake5    () { return *m_pcolorertake5  ; }
 
 
       //virtual string get_current_user_login();

@@ -99,7 +99,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
          // Connection pool
          /** find available open connection (used by connection pool). */
-         socket_handler_base::PoolSocket *FindConnection(int32_t type,const string & protocol,sockets::address&);
+         socket_handler_base::PoolSocket *FindConnection(int32_t type,const string & protocol,::sockets::address &);
          /** Enable connection pool (by default disabled). */
          void EnablePool(bool x = true);
          /** Check pool status.

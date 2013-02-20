@@ -266,7 +266,7 @@ namespace ca4
          {
             return false;
          }*/
-         sockets::address ad(get_app(), strHost, port);
+         ::sockets::address ad(get_app(), strHost, port);
          
          strHost = ad.get_display_number();
 
@@ -824,7 +824,7 @@ retry:
                dw1 = ::get_tick_count();
                handler.Select(240, 0);
                keeplive.keep_alive();
-               if(psession->m_estatus == sockets::socket::status_connection_timed_out)
+               if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
                {
                   break;
                }
@@ -856,7 +856,7 @@ retry:
                strSessId = psession->m_response.m_cookies["sessid"];
                if(strSessId.has_char())
                {
-                  System.m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
+                  System.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psession->m_spsslclientcontext;
                }
             }
 
@@ -890,7 +890,7 @@ retry:
                {
                   *pestatus = status_ok;
                }
-               else if(psession->m_estatus == sockets::socket::status_connection_timed_out)
+               else if(psession->m_estatus == ::sockets::socket::status_connection_timed_out)
                {
                   *pestatus = status_connection_timed_out;
                }
@@ -1271,7 +1271,7 @@ retry:
             dw1 = ::get_tick_count();
             handler.Select(iTimeout, 0);
             keeplive.keep_alive();
-            if(psocket->m_estatus == sockets::socket::status_connection_timed_out)
+            if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
             {
                break;
             }
@@ -1296,7 +1296,7 @@ retry:
             strSessId = psocket->m_response.m_cookies["sessid"];
             if(strSessId.has_char())
             {
-               System.m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
+               System.sockets().m_clientcontextmap[System.url().get_server(strUrl) + "?sessid=" + strSessId] = psocket->m_spsslclientcontext;
             }
          }
 #endif
@@ -1320,7 +1320,7 @@ retry:
             {
                *pestatus = status_ok;
             }
-            else if(psocket->m_estatus == sockets::socket::status_connection_timed_out)
+            else if(psocket->m_estatus == ::sockets::socket::status_connection_timed_out)
             {
                *pestatus = status_connection_timed_out;
             }

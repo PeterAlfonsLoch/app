@@ -165,18 +165,18 @@ namespace sockets
    }
 
 
-   bool tcp_socket::open(sockets::address& ad,bool skip_socks)
+   bool tcp_socket::open(::sockets::address & ad,bool skip_socks)
    {
       address bind_ad(get_app(), "0.0.0.0", 0);
       return open(ad, bind_ad, skip_socks);
    }
 
 
-   bool tcp_socket::open(sockets::address& ad,sockets::address& bind_ad,bool skip_socks)
+   bool tcp_socket::open(::sockets::address & ad,::sockets::address & bind_ad,bool skip_socks)
    {
       if (!ad.is_valid())
       {
-         Handler().LogError(this, "open", 0, "Invalid sockets::address", ::gen::log::level::fatal);
+         Handler().LogError(this, "open", 0, "Invalid ::sockets::address", ::gen::log::level::fatal);
          SetCloseAndDelete();
          return false;
       }
@@ -1176,7 +1176,7 @@ namespace sockets
       /* create our context*/
       if(m_spsslclientcontext.is_null())
       {
-         ::collection::string_map < sp(ssl_client_context) > & clientcontextmap = System.m_clientcontextmap;
+         ::collection::string_map < sp(ssl_client_context) > & clientcontextmap = System.sockets().m_clientcontextmap;
          if(clientcontextmap.PLookup(context) == NULL)
          {
             m_spsslclientcontext(new ssl_client_context(get_app(), pmethod));

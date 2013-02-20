@@ -60,7 +60,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::Bind(sockets::address& ad)
+   int32_t SctpSocket::Bind(::sockets::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -103,7 +103,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::AddAddress(sockets::address& ad)
+   int32_t SctpSocket::AddAddress(::sockets::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -140,7 +140,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::RemoveAddress(sockets::address& ad)
+   int32_t SctpSocket::RemoveAddress(::sockets::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -177,7 +177,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::open(sockets::address& ad)
+   int32_t SctpSocket::open(::sockets::address & ad)
    {
       if (!ad.IsValid())
       {
@@ -235,7 +235,7 @@ namespace sockets
    }
 
 
-   int32_t SctpSocket::AddConnection(sockets::address& ad)
+   int32_t SctpSocket::AddConnection(::sockets::address & ad)
    {
       if (!ad.IsValid())
       {

@@ -39,6 +39,9 @@ namespace plane
       }
 
 
+      m_pxml = NULL;
+
+
 //      ::plane::system * psystemParent             = oprop("parent_system").ca2 < ::plane::system > ();
 
       ::plane::application::m_file.set_app(this);
@@ -107,7 +110,6 @@ namespace plane
       m_file.set_app(this);
       m_stra.set_app(this);
       m_url.set_app(this);
-      m_pxml = new ::xml::xml(this);
       m_userset.set_app(this);
       m_service.set_app(this);
       m_install.set_app(this);
@@ -236,6 +238,12 @@ namespace plane
    bool system::initialize()
    {
 
+      m_pxml->construct(this);
+
+      if(!m_pxml->initialize())
+         return false;
+
+
       int32_t error = FT_Init_FreeType( &m_ftlibrary );
       if ( error )
       {
@@ -277,6 +285,12 @@ namespace plane
    bool system::initialize1()
    {
 
+      m_pxml = new ::xml::xml();
+
+      m_pxml->construct(this);
+
+      if(!m_pxml->initialize1())
+         return false;
 
       m_spfilehandler(new ::filehandler::handler(this));
 
@@ -1456,11 +1470,6 @@ namespace plane
 
    void system::http_config_proxy(const char * pszUrl, ::sockets::http_tunnel * ptunnel)
    {
-#ifdef METROWIN
-      ptunnel->m_bDirect = true;
-#else
-      http().config_proxy(pszUrl, ptunnel);
-#endif
    }
 
    bool system::base_support()

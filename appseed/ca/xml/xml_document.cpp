@@ -12,7 +12,7 @@ namespace xml
    {
 
       m_pdoc         = this;
-      m_pparseinfo   = pparseinfo != NULL ? pparseinfo : System.m_pparseinfoDefault;
+      m_pparseinfo   = pparseinfo != NULL ? pparseinfo : System.xml().m_pparseinfoDefault;
       m_pedit        = NULL;
 
       entitiesHash.set_at("lt", "<");

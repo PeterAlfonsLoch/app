@@ -6,12 +6,21 @@ namespace xml
 
 
    class CLASS_DECL_ca xml :
-      public ::radix::object
+      public ::ca::section
    {
    public:
 
+      entities       m_entities;
+      disp_option *  m_poptionDefault;
+      parse_info *   m_pparseinfoDefault;
 
-      xml(::ca::application * papp);
+      xml();
+      virtual ~xml();
+
+      virtual bool initialize1();
+
+      virtual bool initialize();
+
 
 
       string special_chars(const char * psz);

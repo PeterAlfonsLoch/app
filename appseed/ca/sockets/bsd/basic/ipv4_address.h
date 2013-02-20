@@ -61,7 +61,7 @@ namespace sockets
       ipv4_address(const ipv4_address & addr);
       ~ipv4_address();
 
-      // sockets::address implementation
+      // ::sockets::address implementation
 
       //operator struct sockaddr *();
       //operator socklen_t();

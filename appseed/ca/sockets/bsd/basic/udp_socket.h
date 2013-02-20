@@ -103,7 +103,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          \param ad socket address
          \param range Port range
          \return 0 if bind succeeded */
-         int32_t Bind(sockets::address & addr, int32_t range = 1);
+         int32_t Bind(::sockets::address & addr, int32_t range = 1);
 
          /** Define remote host.
          \param l Address of remote host
@@ -123,7 +123,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Define remote host.
          \param ad socket address
          \return true if successful */
-         bool open(sockets::address& ad);
+         bool open(::sockets::address & ad);
 
          /** Send to specified host */
          void SendToBuf(const string & ,port_t,const char *data,int32_t len,int32_t flags = 0);
@@ -132,7 +132,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Send to specified ipv6 address */
          void SendToBuf(const in6_addr & a,port_t,const char *data,int32_t len,int32_t flags = 0);
          /** Send to specified socket address */
-         void SendToBuf(const sockets::address & ad,const char *data,int32_t len,int32_t flags = 0);
+         void SendToBuf(const ::sockets::address & ad,const char *data,int32_t len,int32_t flags = 0);
 
          /** Send string to specified host */
          void SendTo(const string &,port_t,const string &,int32_t flags = 0);
@@ -141,7 +141,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          /** Send string to specified ipv6 address */
          void SendTo(in6_addr,port_t,const string &,int32_t flags = 0);
          /** Send string to specified socket address */
-         void SendTo(sockets::address& ad,const string &,int32_t flags = 0);
+         void SendTo(::sockets::address & ad,const string &,int32_t flags = 0);
 
          /** Send to connected address */
          void SendBuf(const char *data, int32_t, int32_t flags = 0);

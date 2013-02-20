@@ -118,11 +118,11 @@ namespace sockets
    TRACE(" *** resolv_socket server; query=%s, data=%s\n", m_query, m_data);
          // %! check cache
          {
-            single_lock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
             string result;
-            if(System.m_resolvcache[m_query].Lookup(m_data, result))
+            if(System.sockets().m_resolvcache[m_query].Lookup(m_data, result))
             {
-               if (time(NULL) - System.m_resolvtimeout[m_query][m_data] < 3600) // ttl
+               if (time(NULL) - System.sockets().m_resolvtimeout[m_query][m_data] < 3600) // ttl
                {
    TRACE(" *** Returning cache for [%s][%s] = '%s'\n", m_query, m_data, result);
                   Send("Cached\n");
@@ -178,10 +178,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.m_resolvcache[m_query][m_data] = value;
-            System.m_resolvtimeout[m_query][m_data] = time(NULL);
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -195,10 +195,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.m_resolvcache[m_query][m_data] = value;
-            System.m_resolvtimeout[m_query][m_data] = time(NULL);
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -214,10 +214,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.m_resolvcache[m_query][m_data] = value;
-            System.m_resolvtimeout[m_query][m_data] = time(NULL);
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL; // always use first ip in case there are several
       }
@@ -232,10 +232,10 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.m_resolvcache[m_query][m_data] = value;
-            System.m_resolvtimeout[m_query][m_data] = time(NULL);
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }
@@ -373,11 +373,11 @@ namespace sockets
          // update cache
          if (!m_cached)
          {
-            single_lock lock(&System.m_mutexResolvCache, true);
+            single_lock lock(&System.sockets().m_mutexResolvCache, true);
             string value;
    TRACE(" *** Update cache for [%s][%s] = '%s'\n", m_query, m_data, value);
-            System.m_resolvcache[m_query][m_data] = value;
-            System.m_resolvtimeout[m_query][m_data] = time(NULL);
+            System.sockets().m_resolvcache[m_query][m_data] = value;
+            System.sockets().m_resolvtimeout[m_query][m_data] = time(NULL);
          }
          m_parent = NULL;
       }

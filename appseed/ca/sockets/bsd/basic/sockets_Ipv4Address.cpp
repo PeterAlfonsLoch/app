@@ -175,7 +175,7 @@ namespace sockets
    }
 
 
-/*   bool ipv4_address::operator==(sockets::address& a)
+/*   bool ipv4_address::operator==(::sockets::address & a)
    {
       if (a.GetFamily() != GetFamily())
          return false;

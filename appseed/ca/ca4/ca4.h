@@ -1,13 +1,10 @@
 #pragma once
 
 
-#include "ca/colorertake5/colorertake5.h"
-
+#include "ca/ca2/ca2.h"
 
 #include "ca/crypto/crypto.h"
 #include "ca/compress/compress.h"
-#include "ca/colorertake5/colorertake5.h"
-#include "ca/sockets/sockets.h"
 #include "ca/javascript/javascript.h"
 
 

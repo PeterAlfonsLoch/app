@@ -250,13 +250,13 @@ namespace sockets
    }
 
 
-   void socket::SetRemoteHostname(const sockets::address & ad) //struct sockaddr* sa, socklen_t l)
+   void socket::SetRemoteHostname(const ::sockets::address & ad) //struct sockaddr* sa, socklen_t l)
    {
       m_addressRemote = ad;
    }
 
 
-   sockets::address socket::GetRemoteHostname()
+   ::sockets::address socket::GetRemoteHostname()
    {
       return m_addressRemote;
    }
@@ -540,7 +540,7 @@ namespace sockets
    }
 
 
-   void socket::SetClientRemoteAddress(const sockets::address& ad)
+   void socket::SetClientRemoteAddress(const ::sockets::address & ad)
    {
       if (!ad.is_valid())
       {

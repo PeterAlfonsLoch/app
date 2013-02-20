@@ -197,7 +197,7 @@ namespace ca2
 
       }
 
-      ::xml::disp_option opt = *System.m_poptionDefault;
+      ::xml::disp_option opt = *System.xml().m_poptionDefault;
 
       opt.newline = true;
 

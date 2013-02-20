@@ -4,8 +4,6 @@
 #include "ca/ex2/ex2.h"
 
 
-#include "xml_xml.h"
-
 #include "xml_enum.h"
 
 #include "xml_xmlite.h"
@@ -30,5 +28,5 @@
 #include "xml_edit.h"
 
 
-#include "xml_application.h"
+#include "xml_xml.h"
 

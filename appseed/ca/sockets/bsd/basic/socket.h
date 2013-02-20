@@ -247,7 +247,7 @@ namespace sockets
       time_t Uptime();
 
       /** Set address/port of last connect() call. */
-      void SetClientRemoteAddress(const sockets::address&);
+      void SetClientRemoteAddress(const ::sockets::address &);
 
       /** get address/port of last connect() call. */
       address GetClientRemoteAddress();
@@ -273,7 +273,7 @@ namespace sockets
       bool Timeout(time_t tnow);
 
       /** Used by listen_socket. ipv4 and ipv6 */
-      void SetRemoteHostname(const sockets::address & );
+      void SetRemoteHostname(const ::sockets::address & );
 
       /** \name Event callbacks */
       //@{

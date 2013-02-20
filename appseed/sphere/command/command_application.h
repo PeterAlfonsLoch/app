@@ -6,7 +6,7 @@ namespace command
 
 
    class CLASS_DECL_ca2 application :
-      virtual public ::mail::application
+      virtual public ::filehandler::application
    {
    public:
 

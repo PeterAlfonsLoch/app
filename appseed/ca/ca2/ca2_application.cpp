@@ -17,6 +17,11 @@ namespace ca2
       m_strLocale                = "_std";
       m_strSchema                = "_std";
 
+      m_pcalculator              = NULL;
+      m_pcolorertake5            = NULL;
+      m_psockets                 = NULL;
+
+
    }
 
    application::~application()
@@ -158,10 +163,13 @@ namespace ca2
    bool application::initialize1()
    {
 
+
+      if(!m_psockets->initialize1())
+         return false;
+
+
       m_dwAlive = ::get_tick_count();
 
-      if(!::xml::application::initialize1())
-         return false;
 
 
       string strLocaleSystem;
@@ -336,6 +344,30 @@ namespace ca2
    bool application::initialize()
    {
 
+      m_pcalculator = new ::calculator::calculator();
+
+      m_pcalculator->construct(this);
+
+      if(!m_pcalculator->initialize())
+         return false;
+
+
+      m_pcolorertake5 = new ::colorertake5::colorertake5();
+
+      m_pcolorertake5->construct(this);
+
+      if(!m_pcolorertake5->initialize())
+         return false;
+
+      m_psockets = new ::sockets::sockets();
+
+      m_psockets->construct(this);
+
+      if(!m_psockets->initialize())
+         return false;
+
+
+
       m_dwAlive = ::get_tick_count();
 
       if(is_system())
@@ -391,8 +423,6 @@ namespace ca2
 #endif
       }
 
-      if(!::xml::application::initialize())
-         return false;
 
       return true;
    }

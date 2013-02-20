@@ -5,14 +5,14 @@ namespace colorertake5
 {
 
 
-   class CLASS_DECL_ca application :
-      virtual public ::calculator::application
+   class CLASS_DECL_ca colorertake5 :
+      virtual public ::ca::section
    {
    public:
 
 
-      application();
-      virtual ~application();
+      colorertake5();
+      virtual ~colorertake5();
 
 
       virtual bool initialize();

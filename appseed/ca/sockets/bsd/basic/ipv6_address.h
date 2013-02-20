@@ -56,7 +56,7 @@ namespace sockets
       ipv6_address(const ipv6_address & addr);
       ~ipv6_address();
 
-      // sockets::address implementation
+      // ::sockets::address implementation
 
       //operator struct sockaddr *();
       //operator socklen_t();

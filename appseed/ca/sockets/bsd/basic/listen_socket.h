@@ -77,7 +77,7 @@ namespace sockets
          }
       }
 
-      int32_t Bind(sockets::address& ad,int32_t depth) {
+      int32_t Bind(::sockets::address & ad,int32_t depth) {
 #ifdef USE_SCTP
          if (dynamic_cast<SctpSocket *>(m_creator))
          {
@@ -186,7 +186,7 @@ namespace sockets
       \param ad Interface address
       \param protocol Network protocol
       \param depth Listen queue depth */
-      int32_t Bind(sockets::address& ad,const string & protocol,int32_t depth)
+      int32_t Bind(::sockets::address & ad,const string & protocol,int32_t depth)
       {
 
          SOCKET s;

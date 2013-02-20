@@ -3,8 +3,11 @@
 
 #include "ca/ex2/ex2.h"
 
-
+#include "ca/calculator/calculator.h"
 #include "ca/xml/xml.h"
+#include "ca/sockets/sockets.h"
+#include "ca/colorertake5/colorertake5.h"
+
 #include "app/appseed/ca/html/html.h"
 
 
@@ -48,11 +51,6 @@ namespace ca2
 #include "ca/gen/gen_process.h"
 
 
-#include "ca/gen/gen_cregexp.h"
-#include "ca/gen/gen_cregexp_util.h"
-
-
-#include "ca/primitive/datetime/datetime_value.h"
 
 
 #include "ca2_datetime.h"

@@ -102,7 +102,7 @@ namespace sockets
    }
 
 
-   int32_t udp_socket::Bind(sockets::address& ad, int32_t range)
+   int32_t udp_socket::Bind(::sockets::address & ad, int32_t range)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -157,7 +157,7 @@ namespace sockets
    }
 
 
-   bool udp_socket::open(sockets::address& ad)
+   bool udp_socket::open(::sockets::address & ad)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -228,7 +228,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SendToBuf(const sockets::address & ad, const char *data, int32_t len, int32_t flags)
+   void udp_socket::SendToBuf(const ::sockets::address & ad, const char *data, int32_t len, int32_t flags)
    {
       if (GetSocket() == INVALID_SOCKET)
       {
@@ -263,7 +263,7 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(sockets::address& ad, const string & str, int32_t flags)
+   void udp_socket::SendTo(::sockets::address & ad, const string & str, int32_t flags)
    {
       SendToBuf(ad, str, (int32_t)str.get_length(), flags);
    }
