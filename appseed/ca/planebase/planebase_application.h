@@ -29,6 +29,7 @@ namespace planebase
       ::simpledb::simpledb                m_simpledb;
       ::visual::visual                    m_visual;
 
+
       application();
       virtual ~application();
 

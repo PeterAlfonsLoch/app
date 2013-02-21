@@ -6,6 +6,7 @@ namespace userpresence
 
 
    class CLASS_DECL_ca userpresence :
+      virtual public ::ca::section,
       virtual public ::userpresence::presence_central_container
    {
    public:

@@ -6,7 +6,7 @@ namespace ca
 
 
    class CLASS_DECL_ca section :
-      virtual public ::gen::object
+      virtual public gen::signalizable
    {
    public:
 
@@ -16,6 +16,7 @@ namespace ca
 
 
       virtual void construct(::ca::application * papp);
+      virtual void connect_to_application_signal();
 
 
       virtual bool process_initialize();
@@ -30,6 +31,8 @@ namespace ca
       virtual bool finalize();
       virtual int32_t exit_instance();
 
+
+      void on_signal(gen::signal_object * pobj);
 
    };
 

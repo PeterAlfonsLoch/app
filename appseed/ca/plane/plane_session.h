@@ -61,8 +61,8 @@ namespace plane
 
       ifs *                                                 m_pifs;
       fs::remote_native *                                   m_prfs;
-
-      ::userpresence::userpresence                          m_userpresence;
+      ::userpresence::userpresence *                        m_puserpresence;
+      
 
 
       session();
@@ -81,6 +81,9 @@ namespace plane
       bool InitializeLocalDataCentral();
 
       virtual bool bergedge_start();
+
+
+      inline ::userpresence::userpresence & userpresence() { return *m_puserpresence; }
 
       void _001OnFileNew();
 

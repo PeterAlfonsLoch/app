@@ -32,20 +32,20 @@ namespace filemanager
          return false;
 
       ::filemanager::filemanager::InitializeFileManager("filemanager/filemanager");
-      GetStdFileManagerTemplate()->m_strLevelUp.Empty();
-      GetStdFileManagerTemplate()->m_strToolBar = "filemanager_toolbar.xml";
-      GetStdFileManagerTemplate()->m_dataidStatic = "FileManagerFavoritesList";
-      //GetStdFileManagerTemplate()->m_uiDialogBar = 0;
-      //GetStdFileManagerTemplate()->m_uiMenuBar = 0;
-      GetStdFileManagerTemplate()->m_strFilePopup = "filemanager\\file_popup.xml";
-      //GetStdFileManagerTemplate()->m_strFilePopupSubstId = 0;
-      GetStdFileManagerTemplate()->m_strFolderPopup = "filemanager\\folder_popup.xml";
-      GetStdFileManagerTemplate()->m_strPopup = "filemanager\\popup.xml";
-      GetStdFileManagerTemplate()->m_idExpandBox = 0;
-      GetStdFileManagerTemplate()->m_idCollapseBox = 0;
-      GetStdFileManagerTemplate()->m_pfilelistcallback = this;
-      //GetStdFileManagerTemplate()->m_pfilelistcallback->set_app(this);
-      GetStdFileManagerTemplate()->m_strDISection = Application.m_strAppName;
+      filemanager().GetStdFileManagerTemplate()->m_strLevelUp.Empty();
+      filemanager().GetStdFileManagerTemplate()->m_strToolBar = "filemanager_toolbar.xml";
+      filemanager().GetStdFileManagerTemplate()->m_dataidStatic = "FileManagerFavoritesList";
+      //filemanager().GetStdFileManagerTemplate()->m_uiDialogBar = 0;
+      //filemanager().GetStdFileManagerTemplate()->m_uiMenuBar = 0;
+      filemanager().GetStdFileManagerTemplate()->m_strFilePopup = "filemanager\\file_popup.xml";
+      //filemanager().GetStdFileManagerTemplate()->m_strFilePopupSubstId = 0;
+      filemanager().GetStdFileManagerTemplate()->m_strFolderPopup = "filemanager\\folder_popup.xml";
+      filemanager().GetStdFileManagerTemplate()->m_strPopup = "filemanager\\popup.xml";
+      filemanager().GetStdFileManagerTemplate()->m_idExpandBox = 0;
+      filemanager().GetStdFileManagerTemplate()->m_idCollapseBox = 0;
+      filemanager().GetStdFileManagerTemplate()->m_pfilelistcallback = this;
+      //filemanager().GetStdFileManagerTemplate()->m_pfilelistcallback->set_app(this);
+      filemanager().GetStdFileManagerTemplate()->m_strDISection = Application.m_strAppName;
 
 
 
@@ -212,7 +212,7 @@ namespace filemanager
 
       string strId;
 
-      strId.Format("::filemanager::document(%s)", GetStdFileManagerTemplate()->m_strDISection);
+      strId.Format("::filemanager::document(%s)", filemanager().GetStdFileManagerTemplate()->m_strDISection);
 
       database::id dataid = strId;
 

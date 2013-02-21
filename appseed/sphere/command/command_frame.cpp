@@ -50,7 +50,7 @@ namespace command
         // BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
          //BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
          //NULL,
-         //Application.font_central().GetMenuFont());
+         //Application.visual().font_central().GetMenuFont());
 
       //m_menuhook.Install(this);
 
@@ -68,7 +68,7 @@ namespace command
          BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
          BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
          NULL,
-         Application.font_central().GetMenuFont()) ||
+         Application.visual().font_central().GetMenuFont()) ||
 		   VMS_FAILED(m_menubar.LoadMenuBar(IDR_MAINFRAME)))
 	   {
 		   TRACE0("Failed to create toolbar\n");

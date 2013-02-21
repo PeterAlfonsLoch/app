@@ -26,8 +26,10 @@ namespace plane
       m_pifs                     = new ifs(this, "");
       m_prfs                     = new ::fs::remote_native(this, "");
 
+      m_puserpresence            = new ::userpresence::userpresence();
 
-      m_userpresence.set_app(this);
+
+      
 
    }
 
@@ -78,6 +80,7 @@ namespace plane
       m_strInstallToken    = "session";
       m_bLicense           = false;
       m_eexclusiveinstance = ::gen::ExclusiveInstanceNone;
+      m_puserpresence->construct(this);
 
    }
 
@@ -87,7 +90,7 @@ namespace plane
       if(!::planebase::application::initialize())
          return false;
 
-      if(!m_userpresence.initialize())
+      if(!m_puserpresence->initialize())
          return false;
 
       return true;
@@ -131,7 +134,7 @@ namespace plane
       try
       {
       
-         bOk = m_userpresence.finalize();
+         bOk = m_puserpresence->finalize();
 
       }
       catch(...)
@@ -177,7 +180,7 @@ namespace plane
 
    void session::_001OnFileNew()
    {
-      //userbase::application::m_pdocmanager->_001OnFileNew();
+      //m_pdocmanager->_001OnFileNew();
    }
 
 

@@ -34,7 +34,7 @@ namespace fontopus
       if(&Session == NULL)
          return true;
 
-      Session.m_userpresence.defer_initialize_user_presence();
+      Session.userpresence().defer_initialize_user_presence();
 
       return true;
 

@@ -7,11 +7,15 @@ namespace ca
 
    section::section()
    {
+
    }
+
 
    section::~section()
    {
+
    }
+
 
    // designed to be in constructors, so should
    // not contain advanced initialization as the
@@ -21,6 +25,14 @@ namespace ca
    {
 
       set_app(papp);
+
+   }
+
+   
+   void section::connect_to_application_signal()
+   {
+
+      m_papp->m_psignal->connect(this, &::ca::section::on_signal);
 
    }
 
@@ -87,6 +99,53 @@ namespace ca
       return 0;
 
    }
+
+   void section::on_signal(gen::signal_object * pobj)
+   {
+
+      SCAST_PTR(::gen::application_signal_object, papplicationsignal, pobj);
+
+      try
+      {
+         if(papplicationsignal->m_esignal = ::ca::application_signal_process_initialize)
+         {
+            papplicationsignal->m_bOk = process_initialize();
+         }
+         else if(papplicationsignal->m_esignal = ::ca::application_signal_initialize)
+         {
+            papplicationsignal->m_bOk = initialize();
+         }
+         else if(papplicationsignal->m_esignal = ::ca::application_signal_initialize1)
+         {
+            papplicationsignal->m_bOk = initialize1();
+         }
+         else if(papplicationsignal->m_esignal = ::ca::application_signal_initialize2)
+         {
+            papplicationsignal->m_bOk = initialize2();
+         }
+         else if(papplicationsignal->m_esignal = ::ca::application_signal_initialize3)
+         {
+            papplicationsignal->m_bOk = initialize3();
+         }
+//         else if(papplicationsignal->m_esignal = ::ca::application_signal_initialize_instance)
+  //       {
+    //        papplicationsignal->m_bOk = initialize();
+      //   }
+         else if(papplicationsignal->m_esignal = ::ca::application_signal_finalize)
+         {
+            papplicationsignal->m_bOk = finalize();
+         }
+      }
+      catch(...)
+      {
+         papplicationsignal->m_bOk = false;
+      }
+
+   }
+
+
+
+
 
 
 } // namespace ca
