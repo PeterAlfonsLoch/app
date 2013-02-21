@@ -5,47 +5,6 @@ namespace gen
 {
 
    class CLASS_DECL_ca system :
-      public ::gen::system
-   {
-   public:
-
-
-
-
-      system();
-      virtual ~system();
-
-
-      using ::gen::system::id;
-      inline class id id(const var & var);
-      inline class id id(const gen::property & prop);
-
-
-   };
-
-   inline id system::id(const class var & var)
-   {
-      return ::id((const char *) (class var &) var);
-   }
-
-   inline id system::id(const gen::property & prop)
-   {
-      return ::id((const string &) (gen::property &) prop);
-   }
-
-} // namespace gen
-
-
-
-#pragma once
-
-
-
-namespace gen
-{
-
-
-   class CLASS_DECL_ca system :
       virtual public ::ca::system,
       virtual public ::gen::object
    {
@@ -75,6 +34,8 @@ namespace gen
       static inline class id id(const string & str);
       static inline class id id(int64_t i);
       static inline class id_space & id();
+      inline class id id(const var & var);
+      inline class id id(const gen::property & prop);
 
       friend class application;
 
@@ -85,6 +46,16 @@ namespace gen
 
 
    };
+
+   inline id system::id(const class var & var)
+   {
+      return ::id((const char *) (class var &) var);
+   }
+
+   inline id system::id(const gen::property & prop)
+   {
+      return ::id((const string &) (gen::property &) prop);
+   }
 
 
    inline id system::id(const std_type_info & info)

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "_flags.h"
+//#include "_flags.h"
 
 
 // the two functions below are deprecated.  Use a constructor/destructor instead.
@@ -195,13 +195,5 @@ bool CompareElements(const TYPE* pElement1, const ARG_TYPE* pElement2)
 
 
 
-
-
-template<>
-inline UINT HashKey(::ca::type_info key)
-{
-	// default identity hash - works for most primitive values
-	return HashKey(key.name());
-}
 
 

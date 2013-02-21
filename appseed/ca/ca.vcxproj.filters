@@ -132,9 +132,6 @@
     <Filter Include="Source Files\dynamic_source">
       <UniqueIdentifier>{30cb9173-9abd-434e-a22b-cf6712f5c90d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\ca4">
-      <UniqueIdentifier>{a84ff390-ce33-458a-8840-0664c8fbe8f8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\collection">
       <UniqueIdentifier>{87a9afa3-c917-4fcd-8a4c-8073497b4102}</UniqueIdentifier>
     </Filter>
@@ -981,9 +978,6 @@
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_application_bias.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_application_interface.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_base.h">
@@ -3212,13 +3206,25 @@
     <ClInclude Include="gen\gen0_1.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
+    <ClInclude Include="sockets\http_file.h">
+      <Filter>Header Files\sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_simpledb.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="simpledb\simpledb_record.h">
+      <Filter>Header Files\simpledb</Filter>
+    </ClInclude>
+    <ClInclude Include="plane\plane_system_gen_factory.h">
+      <Filter>Header Files\plane</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_manager_interface.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
       <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\base_enum.cpp">
-      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen_application.cpp">
       <Filter>Source Files\gen</Filter>
@@ -3652,9 +3658,6 @@
     <ClCompile Include="ca\ca_application_bias.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca\ca_application_interface.cpp">
-      <Filter>Source Files\ca</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_bitmap.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -3771,45 +3774,6 @@
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_script_manager.cpp">
       <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_application.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_compress.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_copydesk.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_crypt.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_email.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_file.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http_application.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http_get_socket.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http_system.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_nessie.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_patch.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_port_forward.cpp">
-      <Filter>Source Files\ca4</Filter>
     </ClCompile>
     <ClCompile Include="collection\collection_numeric_array.cpp">
       <Filter>Source Files\collection</Filter>
@@ -4372,9 +4336,6 @@
     <ClCompile Include="windows\os_utils.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
-    <ClCompile Include="ca4\ca4_ip_enum.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_os.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
@@ -4596,9 +4557,6 @@
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_sync_objec.cpp">
       <Filter>Source Files\multithreading</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\base.cpp">
-      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen_trace.cpp">
       <Filter>Source Files\gen</Filter>
@@ -5113,12 +5071,6 @@
     <ClCompile Include="uinteraction\uinteraction_frame.cpp">
       <Filter>Source Files\uinteraction</Filter>
     </ClCompile>
-    <ClCompile Include="ca4\ca4_twit.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_oauth.cpp">
-      <Filter>Source Files\ca4</Filter>
-    </ClCompile>
     <ClCompile Include="fontopus\fontopus_fontopus.cpp">
       <Filter>Source Files\fontopus</Filter>
     </ClCompile>
@@ -5192,9 +5144,6 @@
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_afxcrit.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen_allocation_base_ca2.cpp">
@@ -5402,6 +5351,9 @@
       <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="gen\gen_writer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file_manager_interface.cpp">
       <Filter>Source Files\gen</Filter>
     </ClCompile>
   </ItemGroup>

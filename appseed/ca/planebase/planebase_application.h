@@ -6,7 +6,7 @@ namespace planebase
 
 
    class CLASS_DECL_ca application :
-      virtual public ca4::application,
+      virtual public ::ca2::application,
       virtual public ::database::client
    {
    public:

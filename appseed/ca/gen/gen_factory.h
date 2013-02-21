@@ -8,14 +8,6 @@ class strid_array;
 class mutex;
 
 
-template<>
-inline UINT HashKey(::ca::type_info key)
-{
-   // default identity hash - works for most primitive values
-   return HashKey(key.name());
-}
-
-
 class CLASS_DECL_ca factory_allocator
 {
 public:

@@ -201,8 +201,23 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
 
    bool application::base_support()
    {
+    
+      if(!ca2::application::base_support())
+         return false;
+
+      if(m_strBaseSupportId.is_empty())
+      {
+
+         gen::property_set propertyset;
+
+         message_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
+
+         return false;
+
+      }
+
       return true;
-   };
+   }
 
    string application::message_box(const string & pszMatter, gen::property_set & propertyset)
    {
@@ -517,6 +532,30 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
 #endif
       }
 
+
+      m_dwAlive = ::get_tick_count();
+
+      if(!ca2::application::initialize())
+         return false;
+
+      if(is_system())
+      {
+
+
+
+
+         System.m_spcopydesk.create(this);
+
+         if(!System.m_spcopydesk->initialize())
+            return false;
+
+      }
+
+      if(is_system()
+         && command_thread().m_varTopicQuery["app"] != "core_netnodelite")
+      {
+         System.http().defer_auto_initialize_proxy_configuration();
+      }
 
       return true;
    }
@@ -1071,53 +1110,6 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
       return is_alive();
    }
 
-
-   bool application::base_support()
-   {
-
-      if(!ca2::application::base_support())
-         return false;
-
-      if(m_strBaseSupportId.is_empty())
-      {
-         gen::property_set propertyset;
-         message_box("err\\developer\\base_support\\support_id_not_specified.xml", propertyset);
-         return false;
-      }
-
-      return true;
-
-   }
-
-   bool application::initialize()
-   {
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!ca2::application::initialize())
-         return false;
-
-      if(is_system())
-      {
-
-
-
-
-         System.m_spcopydesk.create(this);
-
-         if(!System.m_spcopydesk->initialize())
-            return false;
-
-      }
-
-      if(is_system()
-         && command_thread().m_varTopicQuery["app"] != "core_netnodelite")
-      {
-         System.http().defer_auto_initialize_proxy_configuration();
-      }
-
-      return true;
-   }
 
 
 

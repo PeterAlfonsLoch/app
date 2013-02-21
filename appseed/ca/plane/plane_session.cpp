@@ -194,8 +194,8 @@ namespace plane
 
    void session::load_string_table()
    {
-      ::ca4::application::load_string_table();
-      ::ca4::application::load_string_table("plane", "");
+      ::ca2::application::load_string_table();
+      ::ca2::application::load_string_table("plane", "");
    }
 
 /*   bool session::file_manager_open_file(

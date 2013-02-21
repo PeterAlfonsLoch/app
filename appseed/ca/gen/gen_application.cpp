@@ -11,27 +11,117 @@
 #endif
 
 
-#include "framework.h"
 
-#if defined(LINUX) || defined(MACOS)
-#include <dlfcn.h>
-#endif
+typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
+
 
 
 namespace gen
 {
 
+
+   int32_t nibble_to_low_hex(byte nibble);
+
+
+   UINT application::APPM_LANGUAGE = WM_APP + 117;
+   WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
+
    HMODULE g_hmoduleOs = NULL;
 
-   application::application()
+   const char application::gen_FileSection[] = "Recent File List";
+   const char application::gen_FileEntry[] = "File%d";
+   const char application::gen_PreviewSection[] = "Settings";
+   const char application::gen_PreviewEntry[] = "PreviewPages";
+
+
+   application::application() :
+      m_mutex(this),
+      ::gen::thread(NULL),
+      m_mutexMatterLocator(this)
    {
+
+      m_plemonarray              = new lemon::array(this);
+         m_base64.set_app(this);
+         m_pmath                    = new math::math(this);
+         m_pgeometry                = new geometry::geometry(this);
+         //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
+         m_iResourceId              = 8001;
+         m_psavings                 = new class savings(this);
+         m_pcommandthread           = new ::gen::command_thread(this);
+
+      ::ca::profiler::initialize();
+
+      m_pszRegistryKey              = NULL;
+      m_pszHelpFilePath             = NULL;
+      m_pszProfileName              = NULL;
+      m_pframea                     = NULL;
+
+
+      m_pmutexGlobal                = NULL;
+      m_pmutexGlobalId              = NULL;
+
+      m_pmutexLocal                 = NULL;
+      m_pmutexLocalId               = NULL;
+
+      m_nSafetyPoolSize             = 512;        // default size
+
+      m_pwndMain                    = NULL;
+      m_puserstrcontext             = NULL;
+      m_bShouldInitializeGTwf       = true;
+      m_bSessionSynchronizedCursor  = true;
+      m_bSessionSynchronizedScreen  = true;
+
+      m_pdocmanager                 = NULL;
+
+      m_nCmdShow                    = -1;
+
+      m_strInstallType              = "application";
+
+      m_pinitmaindata = NULL;
    }
 
    application::~application()
    {
+      // free doc manager
+//      if (m_pdocmanager != NULL)
+  //       delete m_pdocmanager;
+
+
+
+      // free printer info
+   /*   if (m_hDevMode != NULL)
+         __global_free(m_hDevMode);
+      if (m_hDevNames != NULL)
+         __global_free(m_hDevNames);*/
+
+      // free atoms if used
+
+#ifdef WINDOWSEX
+
+      if (m_atomApp != NULL)
+         ::GlobalDeleteAtom(m_atomApp);
+      if (m_atomSystemTopic != NULL)
+         ::GlobalDeleteAtom(m_atomSystemTopic);
+
+#endif
+
+      // free cached commandline
+   //   if (m_pCmdInfo != NULL)
+      //   delete m_pCmdInfo;
+
+      // free various strings allocated with _tcsdup
+      if(m_pszRegistryKey != NULL)
+         free((void *)m_pszRegistryKey);
+      if(m_pszHelpFilePath != NULL)
+         free((void *)m_pszHelpFilePath);
+      if(m_pszProfileName != NULL)
+         free((void *)m_pszProfileName);
+
+      ::ca::smart_pointer < application >::m_p = NULL;
+
    }
 
-typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
+
 
    void application::Ex1OnFactoryExchange()
    {
@@ -79,64 +169,51 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
    void application::on_request(::ca::create_context * pcreatecontext)
    {
-      ::gen::application::on_request(pcreatecontext);
+
+      ::gen::request_interface::on_request(pcreatecontext);
+
    }
 
 
-} // namespace gen
 
-
-
-namespace gen
-{
-
-   int32_t nibble_to_low_hex(byte nibble);
-
-
-   UINT application::APPM_LANGUAGE = WM_APP + 117;
-   WPARAM application::WPARAM_LANGUAGE_UPDATE = 1;
-
-
-   application::application() :
-      m_mutex(this)
-   {
-         m_plemonarray              = new lemon::array(this);
-         m_base64.set_app(this);
-         m_pmath                    = new math::math(this);
-         m_pgeometry                = new geometry::geometry(this);
-         //m_pidspace = new id_space("veribell-{E856818A-2447-4a4e-B9CC-4400C803EE7A}", NULL);
-         m_iResourceId              = 8001;
-         m_psavings                 = new class savings(this);
-         m_pcommandthread           = new ::gen::command_thread(this);
-   }
-
-   application::~application()
-   {
-   }
 
    math::math & application::math()
    {
       return *m_pmath;
    }
 
+
    geometry::geometry & application::geometry()
    {
+
       return *m_pgeometry;
+
    }
 
-   savings & application::savings()
+
+   ::gen::savings & application::savings()
    {
+
       return *m_psavings;
+
    }
-   lemon::array & application::lemon_array()
+   
+
+   ::gen::lemon::array & application::lemon_array()
    {
+
       return *m_plemonarray;
+
    }
 
-   class base64 & application::base64()
+
+   class ::gen::base64 & application::base64()
    {
+
       return m_base64;
+
    }
+
 
    bool application::process_initialize()
    {
@@ -293,7 +370,7 @@ finishedCa2ModuleFolder:;
          m_strModuleFolder = System.m_strModuleFolder;
       }
 
-      if(!::gen::application::process_initialize())
+      if(!::ca::application::process_initialize())
          return false;
 
       if(is_system())
@@ -301,17 +378,131 @@ finishedCa2ModuleFolder:;
          System.factory().cloneable_large < stringa > ();
          System.factory().cloneable_large < ::primitive::memory > ();
       }
+
+      m_pframea = new ::user::interaction_ptr_array;
+
+      if(!ca_process_initialize())
+         return false;
+
+      if(is_system())
+      {
+         System.factory().cloneable_large < int_array > ();
+         System.factory().cloneable_large < raw_pointer > ();
+      }
+
+            if(!::ca::application::process_initialize())
+         return false;
+
+      if(is_system())
+      {
+         Ex1OnFactoryExchange();
+      }
+
+      ::gen::thread::s_bAllocReady = true;
+      if(::ca::thread_sp::m_p == NULL)
+      {
+         ::ca::thread_sp::create(this);
+         ::ca::smart_pointer < application >::create(this);
+         smart_pointer < application >::m_p->construct();
+         smart_pointer < application >::m_p->smart_pointer < application >::m_p = this;
+         gen::add_ref(this);
+         ::ca::thread_sp::m_p = smart_pointer < application >::m_p->::ca::thread_sp::m_p;
+         gen::add_ref(smart_pointer < application >::m_p->::ca::thread_sp::m_p);
+         ::ca::thread_sp::m_p->set_p(this);
+         gen::add_ref(this);
+      }
+      else
+      {
+         ::ca::smart_pointer < application >::create(this);
+         smart_pointer < application >::m_p->construct();
+         smart_pointer < application >::m_p->smart_pointer < application >::m_p = this;
+         gen::add_ref(this);
+         //smart_pointer < application >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
+         //gen::add_ref(::ca::thread_sp::m_p);
+      }
+      if(::ca::get_thread() == NULL)
+      {
+         set_thread(dynamic_cast < ::gen::thread * > (this));
+      }
+      //m_pappDelete = this;
+      //::ca::thread_sp::m_p->m_pappDelete = this;
+
+      if(!smart_pointer < application >::m_p->process_initialize())
+            return false;
+
       return true;
+
    }
 
    bool application::initialize_instance()
    {
 
-      if(!gen::application::initialize_instance())
-        return FALSE;
+//      if(!::ca::application::initialize_instance())
+  //      return FALSE;
 
 
-      return TRUE;
+      if(!is_system() && !is_bergedge())
+      {
+         if(!check_exclusive())
+            return false;
+      }
+
+//      InitLibId();
+
+
+      m_dwAlive = ::get_tick_count();
+
+
+      if(!initialize1())
+         return false;
+
+      string strWindow;
+      if(m_strAppName.has_char())
+         strWindow = m_strAppName;
+      else
+         strWindow = typeid(*this).name();
+
+#ifndef METROWIN
+
+      if(!initialize_message_window(this, strWindow))
+      {
+         TRACE("Fatal error: could not initialize application message window (name=\"%s\").", strWindow);
+         return false;
+      }
+
+#endif
+
+      m_dwAlive = ::get_tick_count();
+
+      if(!initialize2())
+         return false;
+
+      m_dwAlive = ::get_tick_count();
+
+      if(!initialize3())
+         return false;
+
+      m_dwAlive = ::get_tick_count();
+
+      try
+      {
+         if(!initialize())
+            return false;
+      }
+      catch(const char * psz)
+      {
+         if(!strcmp(psz, "You have not logged in! Exiting!"))
+         {
+            return false;
+         }
+         return false;
+      }
+
+      if(!smart_pointer < application >::m_p->initialize2())
+         return false;
+
+      return ::ca::application::initialize2();
+
    }
 
 
@@ -387,7 +578,98 @@ finishedCa2ModuleFolder:;
       m_pcommandthread = NULL;
 
 
-      return gen::application::exit_instance();
+      release_exclusive();
+
+      if(!finalize_message_window())
+      {
+         TRACE("Could not finalize message window");
+      }
+
+      ::gen::application_signal_object signal(this, m_psignal, ::ca::application_signal_exit_instance);
+      try
+      {
+         m_psignal->emit(&signal);
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+         if(!is_system())
+         {
+            System.unregister_bergedge_application(this);
+         }
+      }
+      catch(...)
+      {
+      }
+
+      /*try
+      {
+         gen::release(smart_pointer <::ca::thread>::m_p);
+      }
+      catch(...)
+      {
+      }*/
+
+
+      if(is_system())
+      {
+
+//         try
+  //       {
+    //        if(m_spfilesystem.m_p != NULL)
+      //      {
+        //       gen::del(m_spfilesystem.m_p);
+          //  }
+//         }
+  //       catch(...)
+    //     {
+      //   }
+      }
+
+      try
+      {
+         // avoid calling CloseHandle() on our own thread handle
+         // during the thread destructor
+         // avoid thread object data auto deletion on thread termination,
+         // letting thread function terminate
+         ::ca::thread_sp::m_p->m_bAutoDelete = false;
+
+         ::ca::thread_sp::m_p->set_os_data(NULL);
+
+         ::ca::thread_sp::m_p->set_run(false);
+         ::ca::smart_pointer < ::gen::application >::m_p->::ca::thread_sp::m_p->set_run(false);
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+         ::ca::smart_pointer < ::gen::application >::m_p->exit_instance();
+      }
+      catch(...)
+      {
+      }
+
+      try
+      {
+         ::ca::application::exit_instance();
+      }
+      catch(...)
+      {
+      }
+
+      return 0;
+/*      int32_t nReturnValue=0;
+      if(__get_current_message())
+      {
+         nReturnValue=static_cast<int32_t>(__get_current_message()->wParam);
+      }*/
+//      return nReturnValue; // returns the value from PostQuitMessage
+
    }
 
    LRESULT application::GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam)
@@ -830,30 +1112,87 @@ finishedCa2ModuleFolder:;
 
 
 
-   void application::assert_valid() const
-   {
-      gen::application::assert_valid();
-   }
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-      gen::application::dump(dumpcontext);
-   }
 
 
+   // Main running routine until application exits
    int32_t application::run()
    {
-      return gen::application::run();
+   /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca::window
+      {
+         // Not launched /Embedding or /Automation, but has no main ::ca::window!
+         TRACE(::gen::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
+         __post_quit_message(0);
+      }*/
+//      return ::ca::application::run();
+      return 0;
    }
 
+
+   /////////////////////////////////////////////////////////////////////////////
+   // application idle processing
    bool application::on_idle(LONG lCount)
    {
-      return gen::application::on_idle(lCount);
+/*      if (lCount <= 0)
+      {
+         thread::on_idle(lCount);
+
+         // call doc-template idle hook
+         count count = 0;
+         if (m_pdocmanager != NULL)
+            count = m_pdocmanager->get_template_count();
+
+         for(index index = 0; index < count; index++)
+         {
+            document_template * ptemplate = m_pdocmanager->get_template(index);
+            ASSERT_KINDOF(document_template, ptemplate);
+            ptemplate->on_idle();
+         }
+      }
+      else if (lCount == 1)
+      {
+         VERIFY(!thread::on_idle(lCount));
+      }
+      return lCount < 1;  // more to do if lCount < 1*/
+      return 0;
    }
+
+   /////////////////////////////////////////////////////////////////////////////
+   // Special exception handling
 
    void application::ProcessWndProcException(base_exception* e, gen::signal_object * pobj)
    {
-      return gen::application::ProcessWndProcException(e, pobj);
+      ENSURE_ARG(e != NULL);
+      ENSURE_ARG(pobj != NULL);
+      SCAST_PTR(::gen::message::base, pbase, pobj);
+      // handle certain messages in thread
+      switch (pbase->m_uiMessage)
+      {
+      case WM_CREATE:
+      case WM_PAINT:
+         return thread::ProcessWndProcException(e, pobj);
+      }
+
+      // handle all the rest
+      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
+      const char * nIDP = "Internal Failure";
+      pbase->set_lresult(0);        // sensible default
+      if (pbase->m_uiMessage == WM_COMMAND)
+      {
+         if (pbase->m_lparam == 0)
+            //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
+            nIDP = "Command Failure";
+         pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
+      }
+      if (base < memory_exception >::bases(e))
+      {
+         e->ReportError(MB_ICONEXCLAMATION|MB_SYSTEMMODAL, nIDP);
+      }
+      else if (base < user_exception >::bases(e))
+      {
+         // ::fontopus::user has not been alerted yet of this catastrophic problem
+         e->ReportError(MB_ICONSTOP, nIDP);
+      }
+      //return lResult; // sensible default return from most WndProc functions
    }
 
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
@@ -861,12 +1200,7 @@ finishedCa2ModuleFolder:;
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
-      return gen::application::_001OnCmdMsg(pcmdmsg);
-   }
-
-   ::ca::application * application::get_app() const
-   {
-      return gen::application::get_app();
+      return 0;
    }
 
    string application::get_module_title()
@@ -1196,47 +1530,6 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 namespace gen
 {
 
-   const char application::gen_FileSection[] = "Recent File List";
-   const char application::gen_FileEntry[] = "File%d";
-   const char application::gen_PreviewSection[] = "Settings";
-   const char application::gen_PreviewEntry[] = "PreviewPages";
-
-   application::application() :
-      ::gen::thread(NULL),
-      m_mutexMatterLocator(this)
-   {
-
-      ::ca::profiler::initialize();
-
-      m_pszRegistryKey              = NULL;
-      m_pszHelpFilePath             = NULL;
-      m_pszProfileName              = NULL;
-      m_pframea                     = NULL;
-
-
-      m_pmutexGlobal                = NULL;
-      m_pmutexGlobalId              = NULL;
-
-      m_pmutexLocal                 = NULL;
-      m_pmutexLocalId               = NULL;
-
-      m_nSafetyPoolSize             = 512;        // default size
-
-      m_pwndMain                    = NULL;
-      m_puserstrcontext             = NULL;
-      m_bShouldInitializeGTwf       = true;
-      m_bSessionSynchronizedCursor  = true;
-      m_bSessionSynchronizedScreen  = true;
-
-      m_pdocmanager                 = NULL;
-
-      m_nCmdShow                    = -1;
-
-      m_strInstallType              = "application";
-
-
-   }
-
    bool application::LoadSysPolicies()
    {
       return _LoadSysPolicies();
@@ -1454,68 +1747,6 @@ namespace gen
 
    }
 
-   bool application::initialize_instance()
-   {
-
-      if(!is_system() && !is_bergedge())
-      {
-         if(!check_exclusive())
-            return false;
-      }
-
-//      InitLibId();
-
-
-      m_dwAlive = ::get_tick_count();
-
-
-      if(!initialize1())
-         return false;
-
-      string strWindow;
-      if(m_strAppName.has_char())
-         strWindow = m_strAppName;
-      else
-         strWindow = typeid(*this).name();
-
-#ifndef METROWIN
-
-      if(!initialize_message_window(this, strWindow))
-      {
-         TRACE("Fatal error: could not initialize application message window (name=\"%s\").", strWindow);
-         return false;
-      }
-
-#endif
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize2())
-         return false;
-
-      m_dwAlive = ::get_tick_count();
-
-      if(!initialize3())
-         return false;
-
-      m_dwAlive = ::get_tick_count();
-
-      try
-      {
-         if(!initialize())
-            return false;
-      }
-      catch(const char * psz)
-      {
-         if(!strcmp(psz, "You have not logged in! Exiting!"))
-         {
-            return false;
-         }
-         return false;
-      }
-
-      return true;
-   }
 
 
 /*   void application::LoadStdProfileSettings(UINT nMaxMRU)
@@ -1658,45 +1889,6 @@ namespace gen
    /////////////////////////////////////////////////////////////////////////////
    // App termination
 
-   application::~application()
-   {
-      // free doc manager
-//      if (m_pdocmanager != NULL)
-  //       delete m_pdocmanager;
-
-
-
-      // free printer info
-   /*   if (m_hDevMode != NULL)
-         __global_free(m_hDevMode);
-      if (m_hDevNames != NULL)
-         __global_free(m_hDevNames);*/
-
-      // free atoms if used
-
-#ifdef WINDOWSEX
-
-      if (m_atomApp != NULL)
-         ::GlobalDeleteAtom(m_atomApp);
-      if (m_atomSystemTopic != NULL)
-         ::GlobalDeleteAtom(m_atomSystemTopic);
-
-#endif
-
-      // free cached commandline
-   //   if (m_pCmdInfo != NULL)
-      //   delete m_pCmdInfo;
-
-      // free various strings allocated with _tcsdup
-      if(m_pszRegistryKey != NULL)
-         free((void *)m_pszRegistryKey);
-      if(m_pszHelpFilePath != NULL)
-         free((void *)m_pszHelpFilePath);
-      if(m_pszProfileName != NULL)
-         free((void *)m_pszProfileName);
-
-   }
-
    void application::SaveStdProfileSettings()
    {
       ASSERT_VALID(this);
@@ -1709,17 +1901,6 @@ namespace gen
 
 
 
-   // Main running routine until application exits
-   int32_t application::run()
-   {
-   /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca::window
-      {
-         // Not launched /Embedding or /Automation, but has no main ::ca::window!
-         TRACE(::gen::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
-         __post_quit_message(0);
-      }*/
-      return thread::run();
-   }
 
 
 #ifdef WINDOWSEX
@@ -1779,73 +1960,7 @@ namespace gen
 
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Special exception handling
 
-   void application::ProcessWndProcException(base_exception* e, gen::signal_object * pobj)
-   {
-      ENSURE_ARG(e != NULL);
-      ENSURE_ARG(pobj != NULL);
-      SCAST_PTR(::gen::message::base, pbase, pobj);
-      // handle certain messages in thread
-      switch (pbase->m_uiMessage)
-      {
-      case WM_CREATE:
-      case WM_PAINT:
-         return thread::ProcessWndProcException(e, pobj);
-      }
-
-      // handle all the rest
-      //linux UINT nIDP = __IDP_INTERNAL_FAILURE;   // generic message string
-      const char * nIDP = "Internal Failure";
-      pbase->set_lresult(0);        // sensible default
-      if (pbase->m_uiMessage == WM_COMMAND)
-      {
-         if (pbase->m_lparam == 0)
-            //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
-            nIDP = "Command Failure";
-         pbase->set_lresult((LRESULT)TRUE);        // pretend the command was handled
-      }
-      if (base < memory_exception >::bases(e))
-      {
-         e->ReportError(MB_ICONEXCLAMATION|MB_SYSTEMMODAL, nIDP);
-      }
-      else if (base < user_exception >::bases(e))
-      {
-         // ::fontopus::user has not been alerted yet of this catastrophic problem
-         e->ReportError(MB_ICONSTOP, nIDP);
-      }
-      //return lResult; // sensible default return from most WndProc functions
-   }
-
-   /////////////////////////////////////////////////////////////////////////////
-   // application idle processing
-
-   bool application::on_idle(LONG lCount)
-   {
-/*      if (lCount <= 0)
-      {
-         thread::on_idle(lCount);
-
-         // call doc-template idle hook
-         count count = 0;
-         if (m_pdocmanager != NULL)
-            count = m_pdocmanager->get_template_count();
-
-         for(index index = 0; index < count; index++)
-         {
-            document_template * ptemplate = m_pdocmanager->get_template(index);
-            ASSERT_KINDOF(document_template, ptemplate);
-            ptemplate->on_idle();
-         }
-      }
-      else if (lCount == 1)
-      {
-         VERIFY(!thread::on_idle(lCount));
-      }
-      return lCount < 1;  // more to do if lCount < 1*/
-      return 0;
-   }
 
    /////////////////////////////////////////////////////////////////////////////
    // application idle processing
@@ -1861,76 +1976,6 @@ namespace gen
          #endif
 
    }
-
-   ///////////////////////////////////////////////////////////////////////////
-   // application diagnostics
-
-   void application::assert_valid() const
-   {
-      thread::assert_valid();
-
-
-      if (System.GetThread() != (thread*)this)
-         return;     // only do subset if called from different thread
-
-      ASSERT(System.GetThread() == this);
-      //ASSERT(afxCurrentInstanceHandle == m_hInstance);
-
-/*      if (m_pdocmanager != NULL)
-         ASSERT_VALID(m_pdocmanager);*/
-   }
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-
-      thread::dump(dumpcontext);
-
-#ifdef WINDOWS
-      dumpcontext << "m_hInstance = " << (void *)m_hInstance;
-#endif
-
-      dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
-      dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
-      dumpcontext << "\nm_pszAppName = " << m_strAppName;
-      dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
-      dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
-      dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
-
-#ifdef WINDOWS
-      dumpcontext << "\nm_hDevMode = " << (void *)m_hDevMode;
-      dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
-#endif
-
-      dumpcontext << "\nm_dwPromptContext = " << (UINT) m_dwPromptContext;
-//      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
-
-
-/*      if (m_pdocmanager != NULL)
-         m_pdocmanager->dump(dumpcontext);*/
-
-      dumpcontext << "\nm_nWaitCursorCount = " << m_nWaitCursorCount;
-      dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
-      dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
-
-   /*   ___THREAD_STATE* pState = __get_thread_state();
-      dumpcontext << "\nm_msgCur = {";
-      dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.oswindow;
-      dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
-      dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
-      dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
-      dumpcontext << "\n\ttime = " << pState->m_msgCur.time;
-      dumpcontext << "\n\tpt = " << point(pState->m_msgCur.pt);
-      dumpcontext << "\n}";
-   */
-      dumpcontext << "\n";
-   }
-
-   ::ca::application * application::get_app() const
-   {
-      return ::ca::application::get_app();
-   }
-
-
 
 
    string application::load_string(id id)
@@ -2036,7 +2081,14 @@ namespace gen
    {
       application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize3);
       m_psignal->emit(&signal);
-      return signal.m_bOk;
+      if(!signal.m_bOk)
+         return false;
+
+      if(!smart_pointer < application >::m_p->initialize3())
+         return false;
+
+      return true;
+
    }
 
    bool application::initialize()
@@ -2078,23 +2130,6 @@ namespace gen
       UNREFERENCED_PARAMETER(pszLink);
       UNREFERENCED_PARAMETER(pszTarget);
       return false;
-   }
-
-   bool application::process_initialize()
-   {
-
-      m_pframea = new ::user::interaction_ptr_array;
-
-      if(!ca_process_initialize())
-         return false;
-
-      if(is_system())
-      {
-         System.factory().cloneable_large < int_array > ();
-         System.factory().cloneable_large < raw_pointer > ();
-      }
-
-      return true;
    }
 
 
@@ -2656,11 +2691,6 @@ namespace gen
 /*      if (m_pdocmanager != NULL)
          return m_pdocmanager->save_all_modified();*/
       return TRUE;
-   }
-
-   void application::on_request(::ca::create_context * pcreatecontext)
-   {
-      //m_pdocmanager->request(pcreatecontext);
    }
 
    void application::close_all_documents(bool bEndSession)
@@ -3800,6 +3830,12 @@ namespace gen
             return false;
 
 
+      if(!smart_pointer < application >::m_p->initialize1())
+         return false;
+
+      if(!::ca::application::initialize1())
+         return false;
+
       return true;
 
 
@@ -4009,64 +4045,16 @@ namespace gen
       return iExit;
    }
 
-   int32_t application::exit_instance()
-   {
-
-      release_exclusive();
-
-      if(!finalize_message_window())
-      {
-         TRACE("Could not finalize message window");
-      }
-
-      ::gen::application_signal_object signal(this, m_psignal, ::ca::application_signal_exit_instance);
-      try
-      {
-         m_psignal->emit(&signal);
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         if(!is_system())
-         {
-            System.unregister_bergedge_application(this);
-         }
-      }
-      catch(...)
-      {
-      }
-
-      /*try
-      {
-         gen::release(smart_pointer <::ca::thread>::m_p);
-      }
-      catch(...)
-      {
-      }*/
-
-
-      return 0;
-/*      int32_t nReturnValue=0;
-      if(__get_current_message())
-      {
-         nReturnValue=static_cast<int32_t>(__get_current_message()->wParam);
-      }*/
-//      return nReturnValue; // returns the value from PostQuitMessage
-   }
-
 
    // Temporary ::collection::map management (locks temp ::collection::map on current thread)
    void application::LockTempMaps()
    {
+      ::ca::smart_pointer < ::gen::application >::m_p->LockTempMaps();
    }
 
-   bool application::UnlockTempMaps(bool bDeleteTemps)
+   bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      UNREFERENCED_PARAMETER(bDeleteTemps);
-      return TRUE;
+      return ::ca::smart_pointer < ::gen::application >::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    void application::TermThread(HINSTANCE hInstTerm)
@@ -4083,42 +4071,34 @@ namespace gen
 #ifdef METROWIN
    ::user::interaction * application::window_from_os_data(void * pdata)
    {
-      UNREFERENCED_PARAMETER(pdata);
-      return NULL;
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data(pdata);
    }
 
    ::user::interaction * application::window_from_os_data_permanent(void * pdata)
    {
-      UNREFERENCED_PARAMETER(pdata);
-      return NULL;
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data_permanent(pdata);
    }
 #else
    ::ca::window * application::window_from_os_data(void * pdata)
    {
-      UNREFERENCED_PARAMETER(pdata);
-      return NULL;
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data(pdata);
    }
 
    ::ca::window * application::window_from_os_data_permanent(void * pdata)
    {
-      UNREFERENCED_PARAMETER(pdata);
-      return NULL;
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
+
+
    ::ca::window * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      UNREFERENCED_PARAMETER(lpszClassName);
-      UNREFERENCED_PARAMETER(lpszWindowName);
-      throw not_implemented(get_app());
+      return ::ca::smart_pointer < ::gen::application >::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
    ::ca::window * application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      UNREFERENCED_PARAMETER(oswindowParent);
-      UNREFERENCED_PARAMETER(oswindowChildAfter);
-      UNREFERENCED_PARAMETER(lpszClass);
-      UNREFERENCED_PARAMETER(lpszWindow);
-      throw not_implemented(get_app());
+      return ::ca::smart_pointer < ::gen::application >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
    string application::get_local_mutex_name(const char * pszAppName)
@@ -4231,6 +4211,27 @@ namespace gen
          bFinalize = false;
       }
 
+//      try
+  //    {
+    //     m_spfilesystem.destroy();
+      //}
+//      catch(...)
+  //    {
+    //  }
+      try
+      {
+         if(!::ca::application::finalize())
+         {
+            TRACE("There occurred errors while finalizing ::ca::application virtual member function");
+            bFinalize = false;
+         }
+      }
+      catch(...)
+      {
+         bFinalize = false;
+
+      }
+
       return bFinalize;
    }
 
@@ -4317,71 +4318,9 @@ namespace gen
 
    }
 
-} // namespace gen
 
 
 
-file_manager_interface::file_manager_interface()
-{
-}
-
-file_manager_interface::~file_manager_interface()
-{
-}
-
-bool file_manager_interface::do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument)
-{
-   UNREFERENCED_PARAMETER(varFile);
-   UNREFERENCED_PARAMETER(nIDSTitle);
-   UNREFERENCED_PARAMETER(lFlags);
-   UNREFERENCED_PARAMETER(bOpenFileDialog);
-   UNREFERENCED_PARAMETER(ptemplate);
-   return FALSE;
-}
-
-bool file_manager_interface::initialize(::ca::application * papp)
-{
-   UNREFERENCED_PARAMETER(papp);
-   //set_app(papp);
-   return true;
-}
-
-
-void __post_quit_message(int32_t nExitCode)
-{
-
-#ifdef WINDOWSEX
-
-   ::PostQuitMessage(nExitCode);
-
-#else
-
-   throw not_implemented(::ca::get_thread_app());
-
-#endif
-
-}
-
-
-
-
-
-
-
-#include "framework.h"
-
-namespace gen
-{
-
-   application::application()
-   {
-      m_pinitmaindata = NULL;
-   }
-
-   application::~application()
-   {
-      ::ca::smart_pointer < application >::m_p = NULL;
-   }
 
    void application::construct()
    {
@@ -4427,178 +4366,8 @@ namespace gen
     //  return m_spfilesystem;
    //}
 
-   bool application::process_initialize()
-   {
 
-      if(!::gen::application::process_initialize())
-         return false;
 
-      if(is_system())
-      {
-         Ex1OnFactoryExchange();
-      }
-
-      ::gen::thread::s_bAllocReady = true;
-      if(::ca::thread_sp::m_p == NULL)
-      {
-         ::ca::thread_sp::create(this);
-         ::ca::smart_pointer < application >::create(this);
-         smart_pointer < application >::m_p->construct();
-         smart_pointer < application >::m_p->smart_pointer < application >::m_p = this;
-         gen::add_ref(this);
-         ::ca::thread_sp::m_p = smart_pointer < application >::m_p->::ca::thread_sp::m_p;
-         gen::add_ref(smart_pointer < application >::m_p->::ca::thread_sp::m_p);
-         ::ca::thread_sp::m_p->set_p(this);
-         gen::add_ref(this);
-      }
-      else
-      {
-         ::ca::smart_pointer < application >::create(this);
-         smart_pointer < application >::m_p->construct();
-         smart_pointer < application >::m_p->smart_pointer < application >::m_p = this;
-         gen::add_ref(this);
-         //smart_pointer < application >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
-         //gen::add_ref(::ca::thread_sp::m_p);
-      }
-      if(::ca::get_thread() == NULL)
-      {
-         set_thread(dynamic_cast < ::gen::thread * > (this));
-      }
-      //m_pappDelete = this;
-      //::ca::thread_sp::m_p->m_pappDelete = this;
-
-      if(!smart_pointer < application >::m_p->process_initialize())
-            return false;
-
-      return true;
-
-   }
-
-   bool application::initialize1()
-   {
-
-      if(!smart_pointer < application >::m_p->initialize1())
-         return false;
-
-      if(!gen::application::initialize1())
-         return false;
-
-      return true;
-   }
-
-   bool application::initialize2()
-   {
-      if(!smart_pointer < application >::m_p->initialize2())
-         return false;
-      return gen::application::initialize2();
-   }
-
-   bool application::initialize3()
-   {
-      if(!smart_pointer < application >::m_p->initialize3())
-         return false;
-      return gen::application::initialize3();
-   }
-
-   bool application::initialize()
-   {
-      //m_spfilesystem.create(this);
-      if(!gen::application::initialize())
-         return false;
-      return true;
-   }
-
-   bool application::finalize()
-   {
-      bool bOk = true;
-//      try
-  //    {
-    //     m_spfilesystem.destroy();
-      //}
-//      catch(...)
-  //    {
-    //  }
-      try
-      {
-         if(!gen::application::finalize())
-         {
-            TRACE("There occurred errors while finalizing gen::application virtual member function");
-            bOk = false;
-         }
-      }
-      catch(...)
-      {
-      }
-      return bOk;
-   }
-
-   int32_t application::exit_instance()
-   {
-      if(is_system())
-      {
-
-//         try
-  //       {
-    //        if(m_spfilesystem.m_p != NULL)
-      //      {
-        //       gen::del(m_spfilesystem.m_p);
-          //  }
-//         }
-  //       catch(...)
-    //     {
-      //   }
-      }
-
-      try
-      {
-         // avoid calling CloseHandle() on our own thread handle
-         // during the thread destructor
-         // avoid thread object data auto deletion on thread termination,
-         // letting thread function terminate
-         ::ca::thread_sp::m_p->m_bAutoDelete = false;
-
-         ::ca::thread_sp::m_p->set_os_data(NULL);
-
-         ::ca::thread_sp::m_p->set_run(false);
-         ::ca::smart_pointer < ::gen::application >::m_p->::ca::thread_sp::m_p->set_run(false);
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         ::ca::smart_pointer < ::gen::application >::m_p->exit_instance();
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         ::gen::application::exit_instance();
-      }
-      catch(...)
-      {
-      }
-
-      return 0;
-   }
-
-   ::ca::application * application::get_app() const
-   {
-      return gen::application::get_app();
-   }
-
-   void application::assert_valid() const
-   {
-      gen::application::assert_valid();
-   }
-
-   void application::dump(dump_context & dumpcontext) const
-   {
-      gen::application::dump(dumpcontext);
-   }
 
 
    string application::get_version()
@@ -4621,15 +4390,6 @@ namespace gen
    bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
    {
       return ::ca::smart_pointer < ::gen::application >::m_p->DeferRegisterClass(fToRegister, ppszClass);
-   }
-
-   void application::LockTempMaps()
-   {
-      ::ca::smart_pointer < ::gen::application >::m_p->LockTempMaps();
-   }
-   bool application::UnlockTempMaps(bool bDeleteTemp)
-   {
-      return ::ca::smart_pointer < ::gen::application >::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
@@ -4665,27 +4425,6 @@ namespace gen
    }*/
 
 
-#ifdef METROWIN
-   ::user::interaction * application::window_from_os_data(void * pdata)
-   {
-      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data(pdata);
-   }
-
-   ::user::interaction * application::window_from_os_data_permanent(void * pdata)
-   {
-      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data_permanent(pdata);
-   }
-#else
-   ::ca::window * application::window_from_os_data(void * pdata)
-   {
-      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data(pdata);
-   }
-
-   ::ca::window * application::window_from_os_data_permanent(void * pdata)
-   {
-      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data_permanent(pdata);
-   }
-#endif
 
    ::ca::window * application::get_desktop_window()
    {
@@ -4701,15 +4440,6 @@ namespace gen
       ::ca::smart_pointer < ::gen::application >::m_p->SetCurrentHandles();
    }
 
-   ::ca::window * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
-   {
-      return ::ca::smart_pointer < ::gen::application >::m_p->FindWindow(lpszClassName, lpszWindowName);
-   }
-
-   ::ca::window * application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
-   {
-      return ::ca::smart_pointer < ::gen::application >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
-   }
 
 #ifndef METROWIN
 
@@ -4736,4 +4466,87 @@ namespace gen
    }
 
 
+   ///////////////////////////////////////////////////////////////////////////
+   // application diagnostics
+
+   void application::assert_valid() const
+   {
+      thread::assert_valid();
+
+
+      if (System.GetThread() != (thread*)this)
+         return;     // only do subset if called from different thread
+
+      ASSERT(System.GetThread() == this);
+      //ASSERT(afxCurrentInstanceHandle == m_hInstance);
+
+/*      if (m_pdocmanager != NULL)
+         ASSERT_VALID(m_pdocmanager);*/
+   }
+
+   void application::dump(dump_context & dumpcontext) const
+   {
+
+      thread::dump(dumpcontext);
+
+#ifdef WINDOWS
+      dumpcontext << "m_hInstance = " << (void *)m_hInstance;
+#endif
+
+      dumpcontext << "\nm_lpCmdLine = " << m_strCmdLine;
+      dumpcontext << "\nm_nCmdShow = " << m_nCmdShow;
+      dumpcontext << "\nm_pszAppName = " << m_strAppName;
+      dumpcontext << "\nm_bHelpMode = " << m_bHelpMode;
+      dumpcontext << "\nm_pszHelpFilePath = " << m_pszHelpFilePath;
+      dumpcontext << "\nm_pszProfileName = " << m_pszProfileName;
+
+#ifdef WINDOWS
+      dumpcontext << "\nm_hDevMode = " << (void *)m_hDevMode;
+      dumpcontext << "\nm_hDevNames = " << (void *)m_hDevNames;
+#endif
+
+      dumpcontext << "\nm_dwPromptContext = " << (UINT) m_dwPromptContext;
+//      dumpcontext << "\nm_eHelpType = " << m_eHelpType;
+
+
+/*      if (m_pdocmanager != NULL)
+         m_pdocmanager->dump(dumpcontext);*/
+
+      dumpcontext << "\nm_nWaitCursorCount = " << m_nWaitCursorCount;
+      dumpcontext << "\nm_hcurWaitCursorRestore = " << (void *)m_hcurWaitCursorRestore;
+      dumpcontext << "\nm_nNumPreviewPages = " << m_nNumPreviewPages;
+
+   /*   ___THREAD_STATE* pState = __get_thread_state();
+      dumpcontext << "\nm_msgCur = {";
+      dumpcontext << "\n\toswindow = " << (void *)pState->m_msgCur.oswindow;
+      dumpcontext << "\n\tmessage = " << (UINT)pState->m_msgCur.message;
+      dumpcontext << "\n\twParam = " << (UINT)pState->m_msgCur.wParam;
+      dumpcontext << "\n\tlParam = " << (void *)pState->m_msgCur.lParam;
+      dumpcontext << "\n\ttime = " << pState->m_msgCur.time;
+      dumpcontext << "\n\tpt = " << point(pState->m_msgCur.pt);
+      dumpcontext << "\n}";
+   */
+      dumpcontext << "\n";
+   }
+
 } // namespace gen
+
+
+
+
+
+
+void __post_quit_message(int32_t nExitCode)
+{
+
+#ifdef WINDOWSEX
+
+   ::PostQuitMessage(nExitCode);
+
+#else
+
+   throw not_implemented(::ca::get_thread_app());
+
+#endif
+
+}

@@ -144,31 +144,31 @@ class dump_context;
 
 
 #include "ca/primitive/primitive_numeric_info.h"
-#include "ca/gen/gen_c_number.h"
+#include "gen_c_number.h"
 
 #include "ca/multithreading/multithreading_wait_result.h"
 #include "ca/primitive/datetime/datetime_duration.h"
-#include "ca/gen/gen_request_interface.h"
+#include "gen_request_interface.h"
 #include "ca/multithreading/multithreading_waitable.h"
 #include "ca/primitive/primitive.h"
 
 
-#include "ca/gen/gen_object.h"
+#include "gen_object.h"
 
 
-#include "ca/gen/gen_definition.h"
-#include "ca/gen/gen_common.h"
-#include "ca/gen/gen_core.h"
+#include "gen_definition.h"
+#include "gen_common.h"
+#include "gen_core.h"
 
 
-#include "ca/gen/gen_heap.h"
-#include "ca/gen/gen_plex_heap.h"
-#include "ca/gen/gen_fixed_alloc.h"
+#include "gen_heap.h"
+#include "gen_plex_heap.h"
+#include "gen_fixed_alloc.h"
 
 #include "ca/primitive/primitive_simple_string.h"
 
-#include "ca/gen/gen_ch.h"
-#include "ca/gen/gen_str.h"
+#include "gen_ch.h"
+#include "gen_str.h"
 
 #include "ca/primitive/primitive_id.h"
 #include "ca/primitive/primitive_string_format.h"
@@ -179,16 +179,16 @@ class dump_context;
 
 #include "ca/primitive/primitive.h"
 
-#include "ca/gen/gen_object.h"
+#include "gen_object.h"
 
-#include "ca/gen/gen_hash.h"
-#include "ca/gen/gen_equals.h"
-#include "ca/gen/gen_compare.h"
-#include "ca/gen/gen_less.h"
-#include "ca/gen/gen.h"
+#include "gen_hash.h"
+#include "gen_equals.h"
+#include "gen_compare.h"
+#include "gen_less.h"
+#include "gen.h"
 
 
-#include "ca/gen/gen_template.h"
+#include "gen_template.h"
 
 
 #include "ca/collection/collection_base_array.h"
@@ -214,7 +214,7 @@ class dump_context;
 
 
 
-#include "ca/gen/gen.inl"
+#include "gen.inl"
 
 
 #undef __DATA
@@ -227,18 +227,18 @@ class dump_context;
 
 
 
-#include "ca/gen/gen_allocate.h"
-#include "ca/gen/gen_plex.h"
+#include "gen_allocate.h"
+#include "gen_plex.h"
 
 #include "ca/collection/collection.h"
 
 
-#include "ca/gen/gen_plex_heap.h"
+#include "gen_plex_heap.h"
 
 
 
-#include "ca/gen/gen_holder.h"
-#include "ca/gen/gen_base.h"
+#include "gen_holder.h"
+#include "gen_base.h"
 
 
 #include "ca/ca/ca_interlocked_long.h"
@@ -366,7 +366,7 @@ typedef struct tag_TimerCallbackCreateTimer
 #define WM_VIEW (WM_USER + 1023)
 
 
-#include "ca/gen/gen_base.h"
+#include "gen_base.h"
 #include "gen_constraint.h"
 
 #ifdef WINDOWS
@@ -419,26 +419,6 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 #pragma warning( push )
 #pragma warning( disable: 4121 )
 
-namespace gen
-{
-   namespace trace
-   {
-      enum e_category
-      {
-         category_AppMsg = 500,        // main message pump trace (includes DDE)
-         category_WinMsg ,        // Windows message tracing
-         category_CmdRouting ,    // Windows command routing trace
-         category_Ole ,          // special OLE callback trace
-         category_Database ,     // special database trace
-         category_Internet ,     // special Internet client trace
-         category_dumpContext ,   // traces from dump_context
-         category_Memory ,      // generic non-kernel primitive::memory traces
-         category_Html ,         // Html traces
-         category_Socket ,      // socket traces
-      };
-
-   }
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
@@ -560,11 +540,11 @@ CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphi
 
 
 #include "gen_fixed_alloc.h"
-#include "ca/gen/gen_request_signal.h"
+#include "gen_request_signal.h"
 
 #include "ca/visual/visual_const.h"
 
-#include "ca/gen/gen_var_array.h"
+#include "gen_var_array.h"
 
 
 
@@ -678,18 +658,7 @@ struct __system_policies
    __system_policy_data *pData;
 };
 
-class CLASS_DECL_ca file_manager_interface :
-   virtual public ::gen::object
-{
-public:
-   file_manager_interface();
-   virtual ~file_manager_interface();
-   virtual bool do_prompt_file_name(var & varFile, UINT nIDSTitle, uint32_t lFlags, bool bOpenFileDialog, document_template * ptemplate, ::user::document_interface * pdocument);
-
-   bool initialize(::ca::application * papp);
-
-};
-
+#include "gen_file_manager_interface.h"
 
 
 
@@ -747,10 +716,10 @@ namespace user
 
 #include "ca/ca/ca_window_draw.h"
 
-#include "ca/gen/gen_timer.h"
-#include "ca/gen/gen_timer_callback.h"
-#include "ca/gen/gen_timer_window.h"
-#include "ca/gen/gen_timer_listener.h"
+#include "gen_timer.h"
+#include "gen_timer_callback.h"
+#include "gen_timer_window.h"
+#include "gen_timer_listener.h"
 
 
 
@@ -759,7 +728,7 @@ namespace user
 #include "ca/ca/ca_thread.h"
 
 
-#include "ca/gen/gen_thread.h"
+#include "gen_thread.h"
 
 
 #include "ca/ca/ca_history.h"
@@ -772,10 +741,6 @@ namespace user
 
 
 
-#include "gen_application.h"
-
-
-#include "ca/ca/ca_application_interface.h"
 #include "ca/ca/ca_section.h"
 
 
@@ -783,10 +748,10 @@ namespace user
 
 // former gen
 
-#include "ca/gen/gen.h"
+#include "gen.h"
 
 
-#include "ca/gen/gen_os_history.h"
+#include "gen_os_history.h"
 
 
 namespace windows
@@ -807,13 +772,13 @@ namespace windows
 #include "ca/primitive/primitive_id_space.h"
 
 
-#include "ca/gen/gen_international_locale_schema.h"
+#include "gen_international_locale_schema.h"
 
 
-#include "ca/gen/gen_system.h"
+#include "gen_system.h"
 
 
-#include "ca/gen/gen_wait_cursor.h"
+#include "gen_wait_cursor.h"
 
 
 
@@ -857,7 +822,7 @@ namespace gen
 
 
 
-#include "ca/gen/gen_os.h"
+#include "gen_os.h"
 
 
 
@@ -869,8 +834,8 @@ namespace gen
 #endif
 
 
-#include "ca/gen/gen_fixed_alloc.h"
-#include "ca/gen/gen_process_data.h"
+#include "gen_fixed_alloc.h"
+#include "gen_process_data.h"
 
 
 #include "ca/ca/ca_system.h"
@@ -900,7 +865,7 @@ namespace gen
 #include "gen_byte_stream.h"
 #include "gen_plain_text_serializable.h"
 
-#include "ca/gen/gen_base_enum.h"
+#include "gen_base_enum.h"
 
 
 
@@ -1349,7 +1314,6 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 #include "gen_text_file.h"
 #include "gen_file_system.h"
 #include "gen_resource.h"
-#include "gen_application.h"
 
 #include "gen_simple_tree_item_data.h"
 #include "gen_simple_tree_data.h"
@@ -1415,14 +1379,14 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 #include "gen_raw_pointer.h"
 #include "gen_full_pointer.h"
 #include "gen_time.h"
-#include "ca/gen/gen_byte_serializable.h"
+#include "gen_byte_serializable.h"
 #include "ca/collection/collection_stringa.h"
 #include "gen_var.h"
 #include "gen_var_array.h"
 
 #include "gen_pointer_manager.h"
 
-#include "ca/gen/gen_pipe.h"
+#include "gen_pipe.h"
 #include "gen_process.h"
 
 
@@ -1474,8 +1438,6 @@ CLASS_DECL_ca gen::byte_output_stream &  operator <<(gen::byte_output_stream & o
 
 #include "gen_timer.h"
 
-#include "gen_application.h"
-
 #include "gen_istring.h"
 
 
@@ -1491,7 +1453,7 @@ CLASS_DECL_ca gen::byte_output_stream &  operator <<(gen::byte_output_stream & o
 #pragma once
 
 
-//#include "ca/gen/gen.h"
+//#include "gen.h"
 
 
 #include "gen_file_set.h"

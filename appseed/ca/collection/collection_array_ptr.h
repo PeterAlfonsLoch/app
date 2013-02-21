@@ -87,7 +87,7 @@ public:
    const TYPE* last_ptr() const;
    TYPE* last_ptr();
 
-   void swap(index iIndgen, index iIndgen);
+   void swap(index iIndex1, index iIndex2);
 
    template < class A >
    void ptr_copy(A & a)
@@ -341,11 +341,11 @@ last_ptr()
 
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline void array_ptr < TYPE, ARG_TYPE, BASE_PTRA >::
-swap(index iIndgen, index iIndgen)
+swap(index iIndex1, index iIndex2)
 {
-   TYPE * pt = m_ptra[iIndgen];
-   m_ptra.set_at(iIndgen, m_ptra[iIndgen]);
-   m_ptra.set_at(iIndgen, pt);
+   TYPE * pt = m_ptra[iIndex1];
+   m_ptra.set_at(iIndex1, m_ptra[iIndex2]);
+   m_ptra.set_at(iIndex2, pt);
 }
 
 

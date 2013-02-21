@@ -983,7 +983,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca\ca_graphic_classes.h" />
     <ClInclude Include="ca\ca_application.h" />
     <ClInclude Include="ca\ca_application_bias.h" />
-    <ClInclude Include="ca\ca_application_interface.h" />
     <ClInclude Include="ca\ca_base.h" />
     <ClInclude Include="ca\ca_edit.h" />
     <ClInclude Include="ca\ca_enum.h" />
@@ -1407,6 +1406,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_file.h" />
     <ClInclude Include="gen\gen_file_composite.h" />
     <ClInclude Include="gen\gen_file_exception.h" />
+    <ClInclude Include="gen\gen_file_manager_interface.h" />
     <ClInclude Include="gen\gen_file_set.h" />
     <ClInclude Include="gen\gen_file_status.h" />
     <ClInclude Include="gen\gen_file_stream.h" />
@@ -1631,6 +1631,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="plane\plane_system_allocate.h" />
     <ClInclude Include="plane\plane_system_ca_template.h" />
     <ClInclude Include="plane\plane_system_gen_str.h" />
+    <ClInclude Include="plane\plane_system_gen_factory.h" />
     <ClInclude Include="plane\plane_system_template_trace.h" />
     <ClInclude Include="plugin\plugin.h" />
     <ClInclude Include="plugin\plugin_gen.h" />
@@ -1694,10 +1695,12 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="simpledb\simpledb.h" />
     <ClInclude Include="simpledb\simpledb_base.h" />
     <ClInclude Include="simpledb\simpledb_manager.h" />
+    <ClInclude Include="simpledb\simpledb_record.h" />
     <ClInclude Include="simpledb\simpledb_server.h" />
     <ClInclude Include="simpledb\simpledb_service.h" />
     <ClInclude Include="simpledb\simpledb_session.h" />
     <ClInclude Include="simpledb\simpledb_set.h" />
+    <ClInclude Include="simpledb\simpledb_simpledb.h" />
     <ClInclude Include="simpledb\simpledb_socket.h" />
     <ClInclude Include="simpledb\simpledb_socket_thread.h" />
     <ClInclude Include="simpledb\simpledb_table.h" />
@@ -1767,6 +1770,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="sockets\bsd\webserver\http_request.h" />
     <ClInclude Include="sockets\bsd\webserver\http_response.h" />
     <ClInclude Include="sockets\bsd\webserver\http_transaction.h" />
+    <ClInclude Include="sockets\http_file.h" />
     <ClInclude Include="sockets\http_memory_file.h" />
     <ClInclude Include="sockets\sockets.h" />
     <ClInclude Include="sockets\sockets_http_batch_file.h" />
@@ -1907,50 +1911,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="ca2\ca2_twit.cpp" />
     <ClCompile Include="ca2\ca2_url.cpp" />
     <ClCompile Include="ca2\ca2_url_domain.cpp" />
-    <ClCompile Include="ca4\ca4_application.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_compress.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_copydesk.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_crypt.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_email.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_ip_enum.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_file.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http_application.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http_get_socket.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_http_system.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_nessie.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_oauth.cpp" />
-    <ClCompile Include="ca4\ca4_patch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_port_forward.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca4\ca4_twit.cpp" />
     <ClCompile Include="calculator\calculator_calculator.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
@@ -1982,9 +1942,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ca\ca_application_bias.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="ca\ca_application_interface.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='codeanalysis|x64'">Use</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="ca\ca_edit.cpp">
@@ -2525,10 +2482,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="fs\fs_ifs.cpp" />
     <ClCompile Include="fs\fs_ifs_file.cpp" />
     <ClCompile Include="fs\fs_native_fs.cpp" />
-    <ClCompile Include="gen\base.cpp" />
-    <ClCompile Include="gen\base_enum.cpp" />
     <ClCompile Include="gen\gen.cpp" />
-    <ClCompile Include="gen\gen_afxcrit.cpp" />
     <ClCompile Include="gen\gen_allocation_base_ca2.cpp" />
     <ClCompile Include="gen\gen_allocation_ca2_heap.cpp" />
     <ClCompile Include="gen\gen_allocation_mid_big.cpp" />
@@ -2564,6 +2518,7 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="gen\gen_file.cpp" />
     <ClCompile Include="gen\gen_file_composite.cpp" />
     <ClCompile Include="gen\gen_file_exception.cpp" />
+    <ClCompile Include="gen\gen_file_manager_interface.cpp" />
     <ClCompile Include="gen\gen_file_set.cpp" />
     <ClCompile Include="gen\gen_file_sssociation.cpp" />
     <ClCompile Include="gen\gen_file_stream.cpp" />

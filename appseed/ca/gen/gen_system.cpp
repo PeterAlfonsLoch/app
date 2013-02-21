@@ -1,41 +1,33 @@
 #include "framework.h"
 
-namespace gen
-{
-
-   system::system()
-   {
-   }
-
-   system::~system()
-   {
-   }
-
-} // namespace gen
-
-
-#include "framework.h"
-
-
 
 namespace gen
 {
+
 
    class ::id system::idEmpty;
    class ::id_space system::s_idspace;
 
+
    system::system()
    {
+
    }
+
 
    system::~system()
    {
+
    }
+
 
    bool system::initialize()
    {
+
       idEmpty = "";
+
       return true;
+
    }
 
 

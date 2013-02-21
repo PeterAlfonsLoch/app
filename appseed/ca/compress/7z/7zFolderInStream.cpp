@@ -103,12 +103,12 @@ namespace n7z
    gen::HRes CFolderInStream::GetSubStreamSize(uint64_t subStream, uint64_t *value)
    {
       *value = 0;
-      index indgen = (index)subStream;
-      if (indgen < 0 || (count) subStream > Sizes.get_count())
+      index index1 = (index)subStream;
+      if (index1 < 0 || (count) subStream > Sizes.get_count())
          return E_FAIL;
-      if (indgen < Sizes.get_count())
+      if (index1 < Sizes.get_count())
       {
-         *value = Sizes[indgen];
+         *value = Sizes[index1];
          return S_OK;
       }
       if (!_currentSizeIsDefined)

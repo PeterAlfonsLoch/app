@@ -57,6 +57,16 @@ namespace gen
          category_User2,
          category_User3,
          category_User4,
+         category_AppMsg = 500,        // main message pump trace (includes DDE)
+         category_WinMsg ,        // Windows message tracing
+         category_CmdRouting ,    // Windows command routing trace
+         category_Ole ,          // special OLE callback trace
+         category_Database ,     // special database trace
+         category_Internet ,     // special Internet client trace
+         category_dumpContext ,   // traces from dump_context
+         category_Memory ,      // generic non-kernel primitive::memory traces
+         category_Html ,         // Html traces
+         category_Socket ,      // socket traces
       };
 
       class trace;

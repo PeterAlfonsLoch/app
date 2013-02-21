@@ -15,7 +15,7 @@
 
 
 
-namespace radix
+namespace gen
 {
 
    class thread;
@@ -30,7 +30,7 @@ namespace ca
    public:
 
 
-      ::radix::thread      * m_pthread;
+      ::gen::thread      * m_pthread;
 
 
       virtual HTHREAD get_os_handle() const = 0;

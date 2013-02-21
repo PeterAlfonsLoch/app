@@ -65,3 +65,11 @@ CLASS_DECL_ca bool operator == (const std_type_info & info1, const ::ca::type_in
 CLASS_DECL_ca bool operator != (const std_type_info & info1, const ::ca::type_info & info2);
 
 
+template<>
+inline UINT HashKey(::ca::type_info key)
+{
+	// default identity hash - works for most primitive values
+	return HashKey(key.name());
+}
+
+

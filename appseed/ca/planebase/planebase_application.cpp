@@ -888,7 +888,7 @@ exit_application:
       try
       {
 
-         m_iReturnCode = ::ca4::application::exit_instance();
+         m_iReturnCode = ::ca2::application::exit_instance();
 
       }
       catch(...)
@@ -991,7 +991,7 @@ exit_application:
       }
 
 
-      if(!ca4::application::initialize())
+      if(!ca2::application::initialize())
          return false;
 
 
@@ -1127,7 +1127,7 @@ exit_application:
    bool application::process_initialize()
    {
 
-      if(!::ca4::application::process_initialize())
+      if(!::ca2::application::process_initialize())
          return false;
 
       m_pfontopus = create_fontopus();
@@ -1189,7 +1189,7 @@ exit_application:
          
       }
 
-      if(!ca4::application::initialize1())
+      if(!ca2::application::initialize1())
          return false;
 
       m_visual.construct(this);
@@ -1207,7 +1207,7 @@ exit_application:
    bool application::initialize2()
    {
 
-      if(!ca4::application::initialize2())
+      if(!ca2::application::initialize2())
          return false;
 
       m_simpledb.construct(this);
@@ -1223,7 +1223,7 @@ exit_application:
    bool application::initialize_instance()
    {
 
-      if(!ca4::application::initialize_instance())
+      if(!ca2::application::initialize_instance())
          return false;
 
       if(!m_pfontopus->initialize_instance())
@@ -1390,16 +1390,16 @@ exit_application:
          {
             create_new_service();
             m_pservice->Start(0);
-            return ca4::application::run();
+            return ca2::application::run();
          }
          else
          {
-            return ca4::application::run();
+            return ca2::application::run();
          }
       }
       else
       {
-         return ca4::application::run();
+         return ca2::application::run();
       }
 
       return 0;
@@ -1413,7 +1413,7 @@ exit_application:
          stop_service();
          remove_service();
       }
-      return ::ca4::application::on_uninstall();
+      return ::ca2::application::on_uninstall();
    }
 
 
@@ -1858,7 +1858,7 @@ exit_application:
    void application::assert_valid() const
    {
 
-      ::ca4::application::assert_valid();
+      ::ca2::application::assert_valid();
       //::database::server::assert_valid();
 
    }
@@ -1867,7 +1867,7 @@ exit_application:
    void application::dump(dump_context & context) const
    {
 
-      ::ca4::application::dump(context);
+      ::ca2::application::dump(context);
       //::database::server::dump(context);
 
    }

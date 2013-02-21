@@ -1285,8 +1285,8 @@ namespace fontopus
 
       RSA * rsa = RSA_new();
 
-      BN_hgenbn(&rsa->n, strRsaModulus);
-      BN_hgenbn(&rsa->e, "10001");
+      BN_hex2bn(&rsa->n, strRsaModulus);
+      BN_hex2bn(&rsa->e, "10001");
 
 
       primitive::memory memory;

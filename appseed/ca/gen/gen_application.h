@@ -1,180 +1,47 @@
 #pragma once
 
-
-#pragma once
-
-
-namespace gen
-{
-
-
-   class CLASS_DECL_ca application :
-      virtual public ::gen::application,
-      virtual public request_interface
-   {
-   public:
-      application();
-      virtual ~application();
-
-      virtual void Ex1OnFactoryExchange();
-
-      virtual void on_request(::ca::create_context * pline);
-
-   };
-
-
-} // namespace gen
-
-
-
+typedef ::ca::application * (* LP_GET_NEW_APP) ();
 
 
 namespace gen
 {
 
 
-   namespace lemon
-   {
-
-
-      class array;
-
-
-   } // namespace lemon
-
-
-   class CLASS_DECL_ca application :
-      virtual public gen::application,
-      virtual public command_target_interface
-   {
-   public:
-
-
-      class base64                        m_base64;
-      signal                              m_signalAppLanguageChange;
-      math::math *                        m_pmath;
-      geometry::geometry *                m_pgeometry;
-      class savings *                     m_psavings;
-      string                              m_strCa2ModulePath;
-      string                              m_strCa2ModuleFolder;
-      string                              m_strModulePath;
-      string                              m_strModuleFolder;
-      string                              m_strHelpFilePath;
-      ::gen::command_thread *             m_pcommandthread;
-      mutex                               m_mutex;
-
-
-      application();
-      virtual ~application();
-
-
-
-      math::math & math();
-      geometry::geometry & geometry();
-      class savings & savings();
-
-      lemon::array * m_plemonarray;
-
-      lemon::array & lemon_array();
-
-
-      virtual ::ca::application * get_app() const;
-
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
-
-      virtual int32_t run();
-      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
-
-
-      void EnableModelessEx(bool bEnable);
-#ifdef WINDOWS
-      HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
-#endif
-      bool GetResourceData(UINT nID, const char * lcszType, primitive::memory & storage);
-      virtual string get_ca2_module_folder();
-      virtual string get_ca2_module_file_path();
-      virtual string get_module_folder();
-      virtual string get_module_file_path();
-      virtual string get_module_title();
-      virtual string get_module_name();
-
-      static UINT   APPM_LANGUAGE;
-      static WPARAM WPARAM_LANGUAGE_UPDATE;
-#ifdef WINDOWS
-      virtual bool OnMessageWindowMessage(LPMESSAGE lpmsg);
-#elif defined(LINUX)
-      virtual bool OnMessageWindowMessage(XEvent * pev);
-#endif
-
-      bool CreateFileFromRawResource(UINT nID, const char * lcszType, const char * lpcszFilePath);
-      virtual LRESULT GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam);
-
-      virtual bool process_initialize();
-
-      virtual bool initialize_instance();
-      virtual int32_t exit_instance();
-
-      virtual bool verb();
-
-      void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
-
-      virtual DECL_GEN_SIGNAL(OnAppLanguage)
-      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-
-
-      class base64 & base64();
-
-      virtual string get_local_mutex_id();
-      virtual string get_global_mutex_id();
-
-      virtual bool hex_to_memory(primitive::memory & memory, const char * pszHex);
-      virtual void memory_to_hex(string & strHex, primitive::memory & memory);
-
-      // Wall-eeeeee aliases
-      ::gen::command_thread & command_central();
-      ::gen::command_thread & command();
-      ::gen::command_thread & guideline();
-      ::gen::command_thread & directrix();
-      ::gen::command_thread & axiom();
-      ::gen::command_thread & creation();
-
-
-   };
-
+   class command_line;
 
 
 } // namespace gen
 
-
-/*CLASS_DECL_ca void __cdecl wparse_cmdline (
-    WCHAR *cmdstart,
-    WCHAR **argv,
-    WCHAR *args,
-    int32_t *numargs,
-    int32_t *numchars
-    );
-*/
-
-
-
-
-#pragma once
-
-
-
-namespace user
+namespace visual
 {
 
 
-   class document_interface;
+   class icon;
 
 
-} // namespace user
+} // namespace visual
 
 
-class document_template;
+
+namespace math
+{
+
+
+   class math;
+
+
+} // namespace math
+
+
+namespace geometry
+{
+
+
+   class geometry;
+
+
+} // namespace geometry
+
 
 namespace userbase
 {
@@ -186,12 +53,49 @@ namespace userbase
 } // namespace userbase
 
 
-class file_manager_interface;
-class document_manager;
+
+#if defined(LINUX) || defined(MACOS)
+
+typedef ::visual::icon * HICON;
+
+#endif
+
+
+
+
+#pragma once
+
+
+class file_system;
+typedef ca::smart_pointer < file_system > file_system_sp;
+class Ex1FactoryImpl;
 
 
 namespace gen
 {
+
+
+
+   class document_interface;
+
+
+   namespace lemon
+   {
+
+
+      class array;
+
+
+   } // namespace lemon
+
+   class main_frame;
+
+
+
+   class file_manager_interface;
+   class document_manager;
+
+
 
    enum EExclusiveInstance
    {
@@ -211,7 +115,7 @@ namespace gen
 
 
       ::ca::e_application_signal       m_esignal;
-      int32_t                              m_iRet;
+      int32_t                          m_iRet;
       bool                             m_bOk;
 
 
@@ -220,15 +124,29 @@ namespace gen
 
    };
 
-
    class CLASS_DECL_ca application :
       virtual public ::ca::application,
+      virtual public command_target_interface,
+      virtual public request_interface,
       virtual public ::ca::message_window_simple_callback,
-      virtual public ::gen::thread
+      virtual public ::gen::thread,
+      virtual public ::ca::smart_pointer < ::gen::application >
    {
    public:
 
 
+      class ::gen::base64                 m_base64;
+      signal                              m_signalAppLanguageChange;
+      math::math *                        m_pmath;
+      geometry::geometry *                m_pgeometry;
+      class savings *                     m_psavings;
+      string                              m_strCa2ModulePath;
+      string                              m_strCa2ModuleFolder;
+      string                              m_strModulePath;
+      string                              m_strModuleFolder;
+      string                              m_strHelpFilePath;
+      ::gen::command_thread *             m_pcommandthread;
+      mutex                               m_mutex;
 
       string                        m_strInstallType;
       string                        m_strInstallToken;
@@ -347,19 +265,81 @@ namespace gen
    //   id_space                   m_idspace;
 
 
-
-
       application();
       virtual ~application();
 
 
+      virtual void Ex1OnFactoryExchange();
+
+      // open named file, trying to match a regsitered
+      // document template to it.
+      virtual void on_request(::ca::create_context * pline);
+
+      math::math & math();
+      geometry::geometry & geometry();
+      class savings & savings();
+
+      lemon::array * m_plemonarray;
+
+      lemon::array & lemon_array();
+
+
+      // overrides for implementation
+      virtual int32_t run();
+      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
+      virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
+
+
+      void EnableModelessEx(bool bEnable);
+#ifdef WINDOWS
+      HENHMETAFILE LoadEnhMetaFile(UINT uiResource);
+#endif
+      bool GetResourceData(UINT nID, const char * lcszType, primitive::memory & storage);
+      virtual string get_ca2_module_folder();
+      virtual string get_ca2_module_file_path();
+      virtual string get_module_folder();
+      virtual string get_module_file_path();
+      virtual string get_module_title();
+      virtual string get_module_name();
+
+      static UINT   APPM_LANGUAGE;
+      static WPARAM WPARAM_LANGUAGE_UPDATE;
+#ifdef WINDOWS
+      virtual bool OnMessageWindowMessage(LPMESSAGE lpmsg);
+#elif defined(LINUX)
+      virtual bool OnMessageWindowMessage(XEvent * pev);
+#endif
+
+      bool CreateFileFromRawResource(UINT nID, const char * lcszType, const char * lpcszFilePath);
+      virtual LRESULT GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam);
+
+
+      virtual bool verb();
+
+      void OnUpdateRecentFileMenu(cmd_ui * pcmdui) ;
+
+      virtual DECL_GEN_SIGNAL(OnAppLanguage)
+      virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
+
+
+      class ::gen::base64 & base64();
+
+      virtual string get_local_mutex_id();
+      virtual string get_global_mutex_id();
+
+      virtual bool hex_to_memory(primitive::memory & memory, const char * pszHex);
+      virtual void memory_to_hex(string & strHex, primitive::memory & memory);
+
+      // Wall-eeeeee aliases
+      ::gen::command_thread & command_central();
+      ::gen::command_thread & command();
+      ::gen::command_thread & guideline();
+      ::gen::command_thread & directrix();
+      ::gen::command_thread & axiom();
+      ::gen::command_thread & creation();
 
       //virtual void on_allocation_error(const ::ca::type_info & info);
       //virtual ::ca::ca * on_alloc(const ::ca::type_info & info);
-
-
-      virtual bool process_initialize();
-
 
 
       virtual bool check_exclusive();
@@ -408,7 +388,6 @@ namespace gen
       // call after all doc templates are registered
       void UnregisterShellFileTypes();
 
-   public:
       // Loads a cursor resource.
       HCURSOR LoadCursor(const char * lpszResourceName) const;
       HCURSOR LoadCursor(UINT nIDResource) const;
@@ -469,11 +448,6 @@ namespace gen
 #endif
 
 
-      // open named file, trying to match a regsitered
-      // document template to it.
-      virtual void on_request(::ca::create_context * pcreatecontext);
-
-
       // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
       void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
 
@@ -497,11 +471,6 @@ namespace gen
 
    // Overridables
 
-      // Hooks for your initialization code
-      virtual bool InitApplication();
-
-      virtual int32_t    exit();
-      virtual bool   finalize();
 
       // exiting
       virtual bool save_all_modified(); // save before exit
@@ -523,7 +492,6 @@ namespace gen
 #endif
 
    // Command Handlers
-   protected:
       // ::collection::map to the following for file new/open
       void _001OnFileNew();
       void on_file_open();
@@ -539,7 +507,6 @@ namespace gen
       void OnHelpUsing();     // ID_HELP_USING
 
    // Implementation
-   public:
 
       void UpdatePrinterSelection(bool bForceDefaults);
       void SaveStdProfileSettings();  // save options to .INI file
@@ -547,7 +514,7 @@ namespace gen
 
 
       void DevModeChange(LPTSTR lpDeviceName);
-      virtual void SetCurrentHandles() = 0;
+      virtual void SetCurrentHandles();
 
       // Finds number of opened document items owned by templates
       // registered with the doc manager.
@@ -558,19 +525,10 @@ namespace gen
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
-      // overrides for implementation
-      virtual bool initialize_instance();
-      virtual int32_t exit_instance(); // return cast exit code
-      virtual int32_t run();
-      virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
 
        // Helper for message boxes; can work when no application can be found
       static int32_t ShowAppMessageBox(application *pApp, const char * lpszPrompt, UINT nType, UINT nIDPrompt);
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
-
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
 
 #ifdef WINDOWSEX
       // helpers for registration
@@ -579,19 +537,15 @@ namespace gen
 #endif
 
       void OnAppExit();
-   public :
       // System Policy Settings
       virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
       bool GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue); // returns the policy's setting in the out parameter
-   protected :
       bool _LoadSysPolicies() throw(); // Implementation helper
-   public:
       static const char gen_FileSection[];
       static const char gen_FileEntry[];
       static const char gen_PreviewSection[];
       static const char gen_PreviewEntry[];
 
-      virtual ::ca::application * get_app() const;
       virtual string get_mutex_name_gen();
 
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
@@ -657,7 +611,25 @@ namespace gen
       virtual bool does_launch_window_on_startup();
       virtual bool activate_app();
 
-      virtual bool initialize1();
+      // Hooks for your initialization code
+      virtual bool InitApplication();
+
+      virtual int32_t    exit();
+
+      virtual bool process_initialize();
+
+      virtual bool initialize_instance();
+
+
+      virtual bool initialize1(); // cgcl // first initialization
+      virtual bool initialize2(); // cst  // second initialization
+      virtual bool initialize3(); // third initialization and so on...
+
+      virtual bool initialize(); // last initialization
+
+      virtual bool finalize();
+
+      virtual int32_t exit_instance();
 
       ::user::str_context * str_context();
 
@@ -670,6 +642,7 @@ namespace gen
       virtual void LockTempMaps();
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual void TermThread(HINSTANCE hInstTerm);
+      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
       //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
 
@@ -694,8 +667,6 @@ namespace gen
       virtual string get_global_mutex_name();
       virtual string get_global_id_mutex_name();
 
-      virtual string get_local_mutex_id() = 0;
-      virtual string get_global_mutex_id() = 0;
 
       virtual bool final_handle_exception(::ca::exception & e);
 
@@ -703,9 +674,6 @@ namespace gen
       virtual bool is_bergedge();
       bool ca_process_initialize();
       bool ca_initialize1();
-      bool initialize2();
-      bool initialize3();
-      bool initialize();
 
       bool ca_finalize();
 
@@ -718,96 +686,14 @@ namespace gen
 
       virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
       virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
-
-
-   };
-
-
-} // namespace gen
-
-
-
-
-
-
-
-typedef ::ca::application * (* LP_GET_NEW_APP) ();
-
-
-
-
-#pragma once
-
-
-class file_system;
-typedef ca::smart_pointer < file_system > file_system_sp;
-class Ex1FactoryImpl;
-
-
-namespace gen
-{
-
-
-   class command_line;
-
-
-} // namespace gen
-
-namespace visual
-{
-
-
-   class icon;
-
-
-} // namespace visual
-
-
-#if defined(LINUX) || defined(MACOS)
-
-typedef ::visual::icon * HICON;
-
-#endif
-
-
-namespace gen
-{
-
-
-   class CLASS_DECL_ca application :
-      public gen::application,
-      virtual public ca::smart_pointer < gen::application >
-   {
-   public:
-
-
 //      gen::file_system_sp m_spfilesystem;
-
-
-      application();
-      virtual ~application();
 
 
       virtual void construct();
       virtual void construct(const char * pszId);
 
-      virtual void SetCurrentHandles();
-
-
-
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
-      virtual bool process_initialize();
-
-      virtual bool initialize1(); // cgcl // first initialization
-      virtual bool initialize2(); // cst  // second initialization
-      virtual bool initialize3(); // third initialization and so on...
-
-      virtual bool initialize(); // last initialization
-
-      virtual bool finalize();
-
-      virtual int32_t exit_instance();
 
 //      virtual ::gen::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
@@ -816,41 +702,21 @@ namespace gen
       DECL_GEN_SIGNAL(_001OnFileNew);
 
 
-      virtual ::ca::application * get_app() const;
-
       virtual string get_version();
-
-      virtual void assert_valid() const;
-      virtual void dump(dump_context & dumpcontext) const;
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
       virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
 
-      // Temporary ::collection::map management (locks temp ::collection::map on current thread)
-      virtual void LockTempMaps();
-      virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
-      virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
       virtual ::gen::thread * GetThread();
       virtual void set_thread(::gen::thread * pthread);
       virtual ::user::interaction * GetMainWnd();
 
-      //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
-
-#ifdef METROWIN
-      virtual ::user::interaction * window_from_os_data(void * pdata);
-      virtual ::user::interaction * window_from_os_data_permanent(void * pdata);
-#else
-      virtual ::ca::window * window_from_os_data(void * pdata);
-      virtual ::ca::window * window_from_os_data_permanent(void * pdata);
-#endif
 
       virtual ::ca::window * get_desktop_window();
 
-      virtual ::ca::window * FindWindow(const char * lpszClassName, const char * lpszWindowName);
-      virtual ::ca::window * FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow);
 
 #ifndef METROWIN
       virtual void get_time(timeval *p);
@@ -858,8 +724,22 @@ namespace gen
       virtual void set_env_var(const string & var,const string & value);
       virtual uint32_t get_thread_id();
 
+
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & dumpcontext) const;
+
+
    };
 
+
 } // namespace gen
+
+
+
+
+
+
+
+
 
 

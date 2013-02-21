@@ -197,9 +197,9 @@ static inline void AddHexToString(string &res, byte value)
 
 #endif
 
-bool handler::IsEncrypted(uint32_t indgen) const
+bool handler::IsEncrypted(uint32_t index1) const
 {
-  CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
+  CNum folderIndex = _db.FileIndexToFolderIndexMap[index1];
   if (folderIndex != kNumNoIndex)
     return _db.Folders[folderIndex].IsEncrypted();
   return false;
@@ -217,7 +217,7 @@ gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
   */
 
   const CFileItem &item = _db.Files[index];
-  uint32_t indgen = index;
+  uint32_t index1 = index;
 
   switch(propID)
   {
@@ -239,10 +239,10 @@ gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
     {
       // prop = ref2.PackSize;
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[index1];
         if (folderIndex != kNumNoIndex)
         {
-          if (_db.FolderStartFileIndex[folderIndex] == (CNum)indgen)
+          if (_db.FolderStartFileIndex[folderIndex] == (CNum)index1)
             prop = _db.GetFolderFullPackSize(folderIndex);
           /*
           else
@@ -254,18 +254,18 @@ gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
       }
       break;
     }
-    case ::libcompress::kpidPosition:  { uint64_t v; if (_db.StartPos.GetItem(indgen, v)) prop = v; break; }
-    case ::libcompress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, indgen, prop); break;
-    case ::libcompress::kpidATime:  SetPropFromUInt64Def(_db.ATime, indgen, prop); break;
-    case ::libcompress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, indgen, prop); break;
+    case ::libcompress::kpidPosition:  { uint64_t v; if (_db.StartPos.GetItem(index1, v)) prop = v; break; }
+    case ::libcompress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, index1, prop); break;
+    case ::libcompress::kpidATime:  SetPropFromUInt64Def(_db.ATime, index1, prop); break;
+    case ::libcompress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, index1, prop); break;
     case ::libcompress::kpidAttrib:  if (item.AttribDefined) prop = (uint64_t) item.Attrib; break;
     case ::libcompress::kpidCRC:  if (item.CrcDefined) prop = (uint64_t) item.Crc; break;
-    case ::libcompress::kpidEncrypted:  prop = IsEncrypted(indgen); break;
-    case ::libcompress::kpidIsAnti:  prop = _db.IsItemAnti(indgen); break;
+    case ::libcompress::kpidEncrypted:  prop = IsEncrypted(index1); break;
+    case ::libcompress::kpidIsAnti:  prop = _db.IsItemAnti(index1); break;
     #ifndef _SFX
     case ::libcompress::kpidMethod:
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[index1];
         if (folderIndex != kNumNoIndex)
         {
           const CFolder &folderInfo = _db.Folders[folderIndex];
@@ -356,7 +356,7 @@ gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
       break;
     case ::libcompress::kpidBlock:
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[index1];
         if (folderIndex != kNumNoIndex)
           prop = (uint64_t) folderIndex;
       }
@@ -367,11 +367,11 @@ gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
     case kpidPackedSize3:
     case kpidPackedSize4:
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[index1];
         if (folderIndex != kNumNoIndex)
         {
           const CFolder &folderInfo = _db.Folders[folderIndex];
-          if (_db.FolderStartFileIndex[folderIndex] == (CNum)indgen &&
+          if (_db.FolderStartFileIndex[folderIndex] == (CNum)index1 &&
               folderInfo.PackStreams.get_count() > (int32_t)(propID - kpidPackedSize0))
           {
             prop = _db.GetFolderPackStreamSize(folderIndex, propID - kpidPackedSize0);

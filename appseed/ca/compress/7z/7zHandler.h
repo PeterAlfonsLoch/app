@@ -89,7 +89,7 @@ namespace n7z
 
 #endif
 
-      bool IsEncrypted(uint32_t indgen) const;
+      bool IsEncrypted(uint32_t index1) const;
 //#ifndef _SFX
 
       base_array<uint64_t> _fileInfoPopIDs;

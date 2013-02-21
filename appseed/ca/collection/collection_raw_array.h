@@ -187,7 +187,7 @@ public:
    index remove_at(index nIndex, count nCount = 1);
    void insert_at(index nStartIndex, raw_array* pNewArray);
    TYPE pop(index index = 0);
-   void swap(index indgen, index indgen);
+   void swap(index index1, index index2);
 
    raw_array & operator = (const raw_array & src);
 
@@ -397,11 +397,11 @@ inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index index)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::swap(index indgen, index indgen)
+inline void raw_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
 {
-   TYPE t = m_pData[indgen];
-   m_pData[indgen] = m_pData[indgen];
-   m_pData[indgen] = t;
+   TYPE t = m_pData[index1];
+   m_pData[index1] = m_pData[index2];
+   m_pData[index2] = t;
 }
 
 template<class TYPE, class ARG_TYPE>
