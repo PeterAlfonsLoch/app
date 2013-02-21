@@ -372,13 +372,13 @@ namespace gen
       return this->element_at(iIndex);
    }
 
-   void property::write(ex1::byte_output_stream & ostream)
+   void property::write(gen::byte_output_stream & ostream)
    {
       ostream << m_strName;
       ostream << get_value();
    }
 
-   void property::read(ex1::byte_input_stream & istream)
+   void property::read(gen::byte_input_stream & istream)
    {
       istream >> m_strName;
       istream >> get_value();
@@ -2270,7 +2270,7 @@ namespace gen
 
 
 
-   void property_set::replace_ex1(string & str)
+   void property_set::replace_gen(string & str)
    {
 
       strsize iPos;
@@ -2299,7 +2299,7 @@ namespace gen
                //error
                break;
             }
-            string strEval = ex2_eval(str.Mid(iPos + 1, iEnd - iPos - 1));
+            string strEval = gen_eval(str.Mid(iPos + 1, iEnd - iPos - 1));
             str = str.Left(iPos) + strEval + str.Mid(iEnd + 1);
             iPos += strEval.get_length() - 1;
          }
@@ -2320,7 +2320,7 @@ namespace gen
                   break;
                }
             }
-            string strEval = ex2_eval(str.Mid(iStart, iEnd - iStart));
+            string strEval = gen_eval(str.Mid(iStart, iEnd - iStart));
             str = str.Left(iPos) + strEval + str.Mid(iEnd);
             iPos += strEval.get_length() - 1;
          }
@@ -2330,19 +2330,19 @@ namespace gen
    string property_set::eval(const char * psz)
    {
       string str = psz;
-      replace_ex1(str);
+      replace_gen(str);
       return str;
    }
 
 
-   string property_set::ex2_eval(const char * psz)
+   string property_set::gen_eval(const char * psz)
    {
       string str;
       ASSERT(psz != NULL);
       ASSERT(psz[0] == '$'); // until now accepts only one var
       ASSERT(strlen(psz) >= 2);
       str = operator [](&psz[1]);
-      replace_ex1(str);
+      replace_gen(str);
       return str;
    }
 
@@ -2352,7 +2352,7 @@ namespace gen
       m_map.remove_all();
    }
 
-   void property_set::write(ex1::byte_output_stream & ostream)
+   void property_set::write(gen::byte_output_stream & ostream)
    {
       ostream << m_bAutoAdd;
       ostream << m_bMultiValue;
@@ -2360,7 +2360,7 @@ namespace gen
       ostream << m_propertya;
    }
 
-   void property_set::read(ex1::byte_input_stream & istream)
+   void property_set::read(gen::byte_input_stream & istream)
    {
       istream >> m_bAutoAdd;
       istream >> m_bMultiValue;

@@ -41,7 +41,7 @@ namespace userbase
    }
 
 
-   void tab_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
+   void tab_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
    {
 
       if(m_pviewcreator != NULL)
@@ -396,7 +396,7 @@ namespace userbase
    id tab_view::get_view_id()
    {
       if(m_pviewdata == NULL)
-         return ::radix::system::idEmpty;
+         return ::gen::system::idEmpty;
       return m_pviewdata->m_id;
    }
 

@@ -78,7 +78,7 @@ namespace filemanager
    }
    #endif //DEBUG
 
-   void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
+   void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
 
@@ -90,7 +90,7 @@ namespace filemanager
          /*
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
 
          string strPath = GetFileManager()->get_item().m_strPath;
 
@@ -101,7 +101,7 @@ namespace filemanager
 
             stra.add_unique(strPath);
 
-            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
 
             _017UpdateList();
 
@@ -180,7 +180,7 @@ namespace filemanager
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
-               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::radix::system::idEmpty, str))
+               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::gen::system::idEmpty, str))
                {
                   stringa stra;
                   stra.add_tokens(str, ";", true);

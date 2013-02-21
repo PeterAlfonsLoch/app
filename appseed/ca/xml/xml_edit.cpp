@@ -43,7 +43,7 @@ namespace xml
 
    }
 
-   void edit_item::write(::ex1::byte_output_stream & ostream)
+   void edit_item::write(::gen::byte_output_stream & ostream)
    {
 
       ostream << (int32_t) m_eaction;
@@ -53,7 +53,7 @@ namespace xml
 
    }
 
-   void edit_item::read(::ex1::byte_input_stream & istream)
+   void edit_item::read(::gen::byte_input_stream & istream)
    {
 
       istream >> (int32_t &) m_eaction;

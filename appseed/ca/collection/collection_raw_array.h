@@ -34,7 +34,7 @@
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
 class raw_array :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 
@@ -187,7 +187,7 @@ public:
    index remove_at(index nIndex, count nCount = 1);
    void insert_at(index nStartIndex, raw_array* pNewArray);
    TYPE pop(index index = 0);
-   void swap(index index1, index index2);
+   void swap(index indgen, index indgen);
 
    raw_array & operator = (const raw_array & src);
 
@@ -397,11 +397,11 @@ inline TYPE raw_array<TYPE, ARG_TYPE>::pop(index index)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void raw_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
+inline void raw_array<TYPE, ARG_TYPE>::swap(index indgen, index indgen)
 {
-   TYPE t = m_pData[index2];
-   m_pData[index2] = m_pData[index1];
-   m_pData[index1] = t;
+   TYPE t = m_pData[indgen];
+   m_pData[indgen] = m_pData[indgen];
+   m_pData[indgen] = t;
 }
 
 template<class TYPE, class ARG_TYPE>
@@ -695,7 +695,7 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array* pNewArra
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::gen::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -710,7 +710,7 @@ void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::assert_valid() const
 {
-   ::radix::object::assert_valid();
+   ::gen::object::assert_valid();
 
    if (m_pData == NULL)
    {

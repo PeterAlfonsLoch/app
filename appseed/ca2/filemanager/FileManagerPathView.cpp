@@ -14,7 +14,7 @@ FileManagerPathView::FileManagerPathView(::ca::application * papp) :
 
 }
 
-void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
+void FileManagerPathView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)

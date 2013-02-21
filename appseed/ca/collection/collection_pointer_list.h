@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca pointer_list :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 	struct node

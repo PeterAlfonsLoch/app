@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -44,10 +44,10 @@ namespace ex1
          _size += addSize; 
       }
 
-      using ::ex1::writer::write;
+      using ::gen::writer::write;
       void write(const void *data, uint_ptr size, uint_ptr *processedSize);
 
 
    };
 
-} // namespace ex1
+} // namespace gen

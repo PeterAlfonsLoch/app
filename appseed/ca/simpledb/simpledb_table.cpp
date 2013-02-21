@@ -22,7 +22,7 @@ namespace simpledb
 
       strMetaPath = System.dir().ca2("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "meta.xml");
 
-      if(!m_spfileMeta->open(strMetaPath, ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareExclusive))
+      if(!m_spfileMeta->open(strMetaPath, ::gen::file::type_binary | ::gen::file::mode_read_write | ::gen::file::shareExclusive))
          throw 0;
 
       if(!m_xmldocumentMeta.load(m_spfileMeta))
@@ -44,8 +44,8 @@ namespace simpledb
       if(strFixedPath.is_empty())
          strFixedPath = strMetaPath = System.dir().ca2("database/" + m_pdatabase->getDatabase() + "/" + m_strName, "fixed.txt");
 
-      if(!m_spfileFixed->open(strMetaPath, ::ex1::file::mode_create | ::ex1::file::modeNoTruncate | ::ex1::file::type_binary | ::ex1::file::mode_read_write | ::ex1::file::shareExclusive |
-         ::ex1::file::defer_create_directory))
+      if(!m_spfileFixed->open(strMetaPath, ::gen::file::mode_create | ::gen::file::modeNoTruncate | ::gen::file::type_binary | ::gen::file::mode_read_write | ::gen::file::shareExclusive |
+         ::gen::file::defer_create_directory))
          throw 0;
 
    }

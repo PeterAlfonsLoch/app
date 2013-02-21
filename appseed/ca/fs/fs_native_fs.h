@@ -33,7 +33,7 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::gen::filesp get_file(var varFile, UINT nOpenFlags);
 
    };
 

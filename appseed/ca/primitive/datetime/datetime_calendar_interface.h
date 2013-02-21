@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca calendar_interface :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 

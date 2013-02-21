@@ -59,7 +59,7 @@ void HRCParserImpl::loadFileType(file_type *filetype)
    {
       loadSource(thisType->m_strSourceLocation, thisType->m_strSource);
    }
-   catch(ex1::file_exception &e)
+   catch(gen::file_exception &e)
    {
       if (errorHandler != NULL)
       {

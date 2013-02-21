@@ -121,7 +121,7 @@ namespace cube5 // cube5 + ca8
 
       m_pfilemanager = new ::filemanager::filemanager();
 
-      ::radix::application::m_pfilemanager = m_pfilemanager;
+      ::gen::application::m_pfilemanager = m_pfilemanager;
 
       m_pfilemanager->construct(this);
 

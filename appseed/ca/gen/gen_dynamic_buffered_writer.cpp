@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    byte *dynamic_buffered_writer::GetBufPtrForWriting(size_t addSize)
@@ -33,4 +33,4 @@ namespace ex1
          *processedSize = size;
    }
 
-} // namespace ex1
+} // namespace gen

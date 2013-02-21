@@ -267,7 +267,7 @@ namespace filemanager
             return dynamic_cast < MediaLibraryDoc * > (::view::get_document());
          }*/
 
-         void list_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
+         void list_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);

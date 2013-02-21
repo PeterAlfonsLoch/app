@@ -12,7 +12,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca script :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

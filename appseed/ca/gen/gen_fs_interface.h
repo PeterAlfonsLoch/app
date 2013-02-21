@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
    class CLASS_DECL_ca fs_interface
@@ -14,4 +14,4 @@ namespace ex1
       virtual bool get_info(const char * pszPath, const char * pszInfo, var & varInfo);
    };
 
-} // namespace ex1
+} // namespace gen

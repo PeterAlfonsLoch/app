@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
    namespace match
@@ -92,5 +92,5 @@ namespace ex1
    } // namespace match
 
 
-} // namespace ex1
+} // namespace gen
 

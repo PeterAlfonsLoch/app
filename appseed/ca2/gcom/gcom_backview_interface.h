@@ -51,7 +51,7 @@ namespace gcom
          uint32_t                m_dwTimerStep;
 
 
-         ex2::file_set_sp     m_spfilesetBackgroundImage;
+         gen::file_set_sp     m_spfilesetBackgroundImage;
 
 
 

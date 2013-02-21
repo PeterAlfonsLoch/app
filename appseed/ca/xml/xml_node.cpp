@@ -2099,7 +2099,7 @@ namespace xml
 
    }
 
-   void node::write(ex1::byte_output_stream & ostream)
+   void node::write(gen::byte_output_stream & ostream)
    {
 
       string str = get_xml();
@@ -2107,7 +2107,7 @@ namespace xml
 
    }
 
-   void node::read(ex1::byte_input_stream & istream)
+   void node::read(gen::byte_input_stream & istream)
    {
 
       close();

@@ -8,16 +8,16 @@ namespace libcompress
 {
 
    class reader_with_crc:
-      public ::ex1::reader
+      public ::gen::reader
    {
    public:
-      sp(::ex1::reader) _stream;
+      sp(::gen::reader) _stream;
       uint64_t _size;
       uint32_t _crc;
       bool _wasFinished;
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
-      void SetStream(::ex1::reader *stream) { _stream = stream;  }
+      void SetStream(::gen::reader *stream) { _stream = stream;  }
       void Init()
       {
          _size = 0;

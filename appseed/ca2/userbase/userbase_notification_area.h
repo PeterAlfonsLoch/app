@@ -33,7 +33,7 @@ namespace userbase
 
 
    class CLASS_DECL_ca2 notification_area :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

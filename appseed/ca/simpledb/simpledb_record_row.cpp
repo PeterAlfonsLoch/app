@@ -9,7 +9,7 @@ namespace simpledb
   //    stringa     m_straFields;
     //  var         m_var;
 
-      void record_row::write(::ex1::byte_output_stream & ostream)
+      void record_row::write(::gen::byte_output_stream & ostream)
       {
          if(m_straFields.get_size() <= 0)
          {
@@ -44,7 +44,7 @@ namespace simpledb
          }
       }
 
-      void record_row::read(::ex1::byte_input_stream & istream)
+      void record_row::read(::gen::byte_input_stream & istream)
       {
 
          if(m_straFields.get_size() <= 0 || (m_straFields.get_size() == 1 && m_straFields[0] == "*"))

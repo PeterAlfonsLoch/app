@@ -10,7 +10,7 @@ namespace ca
 
 
       class CLASS_DECL_ca application :
-         public ::radix::object
+         public ::gen::object
       {
       public:
 
@@ -37,8 +37,8 @@ namespace ca
          string time_log(const char * pszId);
 
 
-         virtual ex1::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-         virtual ex1::filesp get(const char * name);
+         virtual gen::filesp time_square_file(const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         virtual gen::filesp get(const char * name);
 
 
          virtual string as_string(var varFile);
@@ -48,7 +48,7 @@ namespace ca
 
          virtual bool put_contents(var varFile, const void * pvoidContents, count count);
          virtual bool put_contents(var varFile, const char * lpcszContents);
-         virtual bool put_contents(var varFile, ex1::file & file);
+         virtual bool put_contents(var varFile, gen::file & file);
          virtual bool put_contents(var varFile, primitive::memory & mem);
          virtual bool put_contents_utf8(var varFile, const char * lpcszContents);
 
@@ -56,11 +56,11 @@ namespace ca
          string sys_temp(const char * pszName, const char * pszExtension);
 
 
-         virtual ::ex1::filesp get_file(var varFile, UINT nOpenFlags);
-         virtual ::ex1::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+         virtual ::gen::filesp get_file(var varFile, UINT nOpenFlags);
+         virtual ::gen::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
          // get a file and if there are exceptions, should show end user friendly messages
-         virtual ::ex1::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+         virtual ::gen::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
       };
 

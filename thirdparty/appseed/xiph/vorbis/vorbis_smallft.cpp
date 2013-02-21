@@ -16,7 +16,7 @@
  ********************************************************************/
 
 /* FFT implementation from OggSquish, minus cosine transforms,
- * minus all but radix 2/4 case.  In Vorbis we only need this
+ * minus all but gen 2/4 case.  In Vorbis we only need this
  * cut-down version.
  *
  * To do more than just power-of-two sized vectors, see the full
@@ -1196,7 +1196,7 @@ static void drftb1(int32_t n, float *c, float *ch, float *wa, int32_t *ifac){
     goto L115;
 
   L109:
-/*    The radix five case can be translated later..... */
+/*    The gen five case can be translated later..... */
 /*    if(ip!=5)goto L112;
 
     ix2=iw+ido;

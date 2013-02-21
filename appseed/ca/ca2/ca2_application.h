@@ -34,7 +34,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca application :
-      virtual public ::ex2::application
+      virtual public ::gen::application
    {
    public:
 

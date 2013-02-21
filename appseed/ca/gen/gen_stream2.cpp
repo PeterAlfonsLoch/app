@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
    output_stream2::output_stream2()
    {

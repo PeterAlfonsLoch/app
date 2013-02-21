@@ -8,7 +8,7 @@ namespace ca
 {
 
    class CLASS_DECL_ca window_callback :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       virtual void message_window_message_handler(gen::signal_object * pobj) = 0;

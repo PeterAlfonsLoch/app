@@ -43,7 +43,7 @@ namespace ca2
 
    class CLASS_DECL_ca library :
       virtual public ::ca::library,
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

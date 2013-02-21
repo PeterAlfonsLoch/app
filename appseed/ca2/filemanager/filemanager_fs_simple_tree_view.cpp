@@ -23,7 +23,7 @@ namespace filemanager
             m_etranslucency = TranslucencyPresent;
 
 
-            ::ca::data_container::m_spdata = new ex1::simple_tree_data(get_app());
+            ::ca::data_container::m_spdata = new gen::simple_tree_data(get_app());
             if(!::ca::data_container::m_spdata->initialize_data())
                throw simple_exception(papp);
          }
@@ -64,8 +64,8 @@ namespace filemanager
 
             m_iParentFolder = doc.get_root()->attr("id");
 
-            ::ex1::tree_item * pdataitemParent;
-            ::ex1::tree_item * pdataitemChild;
+            ::gen::tree_item * pdataitemParent;
+            ::gen::tree_item * pdataitemChild;
 
             pdataitemParent = FindTreeItem(m_iParentFolder);
             if(pdataitemParent == NULL)
@@ -136,15 +136,15 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = create_item(pdataitemParent, ex1::RelativeLastChild);
+                  pdataitemChild = create_item(pdataitemParent, gen::RelativeLastChild);
                }
 
                if(pdataitemChild->m_pitemdata == NULL)
                {
-                  pdataitemChild->m_pitemdata = new ex1::simple_tree_item_data();
+                  pdataitemChild->m_pitemdata = new gen::simple_tree_item_data();
                }
 
-               ((ex1::simple_tree_item_data *) pdataitemChild->m_pitemdata)->m_str = folder.m_strName;
+               ((gen::simple_tree_item_data *) pdataitemChild->m_pitemdata)->m_str = folder.m_strName;
                pdataitemChild->m_dwUser = iNewItem;
 
          //      else
@@ -162,7 +162,7 @@ namespace filemanager
          }
 
 
-         ::ex1::tree_item * tree_view::FindTreeItem(int64_t iFolder)
+         ::gen::tree_item * tree_view::FindTreeItem(int64_t iFolder)
          {
             int32_t iUser;
 
@@ -190,7 +190,7 @@ namespace filemanager
 
 
          index tree_view::_001GetItemImage(
-            ::ex1::tree_item * pitem,
+            ::gen::tree_item * pitem,
             bool bSelected
             )
          {
@@ -204,7 +204,7 @@ namespace filemanager
             }
          }
 
-         void tree_view::_001OnItemExpand(::ex1::tree_item *pitem)
+         void tree_view::_001OnItemExpand(::gen::tree_item *pitem)
          {
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }

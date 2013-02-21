@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    text_file::text_file()
@@ -35,4 +35,4 @@ namespace ex1
       return uiTotal;
    }
 
-} // namespace ex1
+} // namespace gen

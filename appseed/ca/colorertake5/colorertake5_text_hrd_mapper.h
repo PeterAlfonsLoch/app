@@ -15,7 +15,7 @@ namespace colorertake5
    */
    class TextHRDMapper : 
       public RegionMapperImpl,
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
    
@@ -27,7 +27,7 @@ namespace colorertake5
       /**
       * Loads region defines from @c is input_source
       */
-      void  loadRegionMappings(ex1::byte_input_stream & istream);
+      void  loadRegionMappings(gen::byte_input_stream & istream);
 
       /**
       * Saves all loaded region defines into @c writer.
@@ -35,7 +35,7 @@ namespace colorertake5
       * to input one, because there could be multiple input
       * documents.
       */
-      void  saveRegionMappings(ex1::byte_output_stream & ostream) const;
+      void  saveRegionMappings(gen::byte_output_stream & ostream) const;
 
       /**
       * Changes specified region definition to @c rdnew

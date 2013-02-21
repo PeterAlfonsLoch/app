@@ -42,7 +42,7 @@ public:
 
 
 class CLASS_DECL_ca2 XfplayerViewLineSelection :
-   virtual ::radix::object
+   virtual ::gen::object
 {
 public:
    enum e_state

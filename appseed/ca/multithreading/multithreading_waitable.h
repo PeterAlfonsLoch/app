@@ -24,7 +24,7 @@ Thank you Thomas Hoefer!!
 /// This class represents an item which can be waited for. Items can be threads, events, sockets,
 /// files, semaphores and so on.
 class CLASS_DECL_ca waitable :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 	///  \brief		destructor
@@ -41,7 +41,7 @@ public:
 */
 
 class CLASS_DECL_ca waitable :
-   virtual public ::ex1::request_interface
+   virtual public ::gen::request_interface
 {
 public:
 

@@ -5,7 +5,7 @@
 #include <winspool.h>
 #endif
 
-namespace ex1
+namespace gen
 {
 
 
@@ -58,7 +58,7 @@ namespace ex1
             pchSrc += 2;
             if (i >= nString)
             {
-               //               TRACE(::radix::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
+               //               TRACE(::gen::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
                *pchDest++ = '?';
                nTotalLen--;
             }
@@ -112,7 +112,7 @@ namespace ex1
    }
 
 
-} // namespace ex1
+} // namespace gen
 
 
 

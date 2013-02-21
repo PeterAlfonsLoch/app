@@ -13,7 +13,7 @@ namespace sockets
    /** socket base class.
    \ingroup basic */
    class CLASS_DECL_ca socket :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -28,7 +28,7 @@ namespace sockets
       /** Detached socket run thread.
       \ingroup internal */
       class CLASS_DECL_ca socket_thread :
-         virtual public ::radix::thread
+         virtual public ::gen::thread
       {
       public:
          socket_thread(socket * psocket);
@@ -82,7 +82,7 @@ namespace sockets
       bool                    m_bClose; ///< close and delete flag
       socket *                m_psocketParent; ///< Pointer to listen_socket class, valid for incoming sockets
       address                 m_addressRemoteClient; ///< Address of last connect()
-      ex1::file *             m_pfileTrafficMonitor;
+      gen::file *             m_pfileTrafficMonitor;
       time_t                  m_timeTimeoutStart; ///< Set by SetTimeout
       time_t                  m_timeTimeoutLimit; ///< Defined by SetTimeout
       bool                    m_bNonBlocking;
@@ -177,7 +177,7 @@ namespace sockets
       * needs to be used for the socket class. Note: the socket class still needs
       * the "default" constructor with one socket_handler_base& as input parameter.
       */
-      using ::ex1::request_interface::create;
+      using ::gen::request_interface::create;
       virtual socket *create() { return NULL; }
 
       /** Returns reference to sockethandler that owns the socket.
@@ -682,9 +682,9 @@ namespace sockets
       //@}
 
       /** write traffic to an IFile. socket will not delete this object. */
-      void SetTrafficMonitor(ex1::file *p) { m_pfileTrafficMonitor = p; }
+      void SetTrafficMonitor(gen::file *p) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      ex1::file *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
+      gen::file *GetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

@@ -5,7 +5,7 @@ namespace gen
 {
 
    class CLASS_DECL_ca system :
-      public ::radix::system
+      public ::gen::system
    {
    public:
 
@@ -16,7 +16,7 @@ namespace gen
       virtual ~system();
 
 
-      using ::radix::system::id;
+      using ::gen::system::id;
       inline class id id(const var & var);
       inline class id id(const gen::property & prop);
 
@@ -41,13 +41,13 @@ namespace gen
 
 
 
-namespace radix
+namespace gen
 {
 
 
    class CLASS_DECL_ca system :
       virtual public ::ca::system,
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -117,6 +117,6 @@ namespace radix
    }
 
 
-} // namespace radix
+} // namespace gen
 
 

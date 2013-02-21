@@ -23,7 +23,7 @@ namespace ca
 
 
    class CLASS_DECL_ca path :
-      virtual public ::radix::object
+      virtual public ::gen::object
 
    {
    public:
@@ -36,7 +36,7 @@ namespace ca
 
 
       class CLASS_DECL_ca system :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
 

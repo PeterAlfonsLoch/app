@@ -10,7 +10,7 @@
 **/
 
 class sync_object :
-   public ::radix::object
+   public ::gen::object
 {
 public:
 
@@ -27,10 +27,10 @@ public:
 
    operator HANDLE() const;
 
-   using ::radix::object::lock;
+   using ::gen::object::lock;
    virtual bool lock(const duration & durationTimeout);
 
-   using ::radix::object::wait;
+   using ::gen::object::wait;
    virtual wait_result wait(const duration & durationTimeout);
 
    virtual bool unlock() = 0;

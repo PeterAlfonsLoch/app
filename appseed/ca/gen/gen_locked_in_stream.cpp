@@ -2,13 +2,13 @@
 // at sector8J on afternoon of 13/01/2011 - Thursday
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    ::primitive::memory_size locked_in_stream::read(file_position startPos, void *data, ::primitive::memory_size size)
    {
       single_lock sl(&_criticalSection, TRUE);
-      _stream->seek((file_offset) startPos, ::ex1::seek_begin);
+      _stream->seek((file_offset) startPos, ::gen::seek_begin);
       return _stream->read(data, size);
    }
 

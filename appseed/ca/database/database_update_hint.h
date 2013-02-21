@@ -7,7 +7,7 @@ namespace database
    class server;
 
    class CLASS_DECL_ca update_hint  :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

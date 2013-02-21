@@ -7,7 +7,7 @@
 
 
 
-namespace ex1
+namespace gen
 {
 
    class file_exception;
@@ -15,8 +15,8 @@ namespace ex1
 
 
    class CLASS_DECL_ca file :
-      virtual public ::ex1::stream,
-      virtual public ::ex1::output_stream_flush_interface
+      virtual public ::gen::stream,
+      virtual public ::gen::output_stream_flush_interface
    {
    public:
 
@@ -48,7 +48,7 @@ namespace ex1
    // Overridables
       virtual file* Duplicate() const;
 
-      virtual file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -89,13 +89,13 @@ namespace ex1
 
 
 
-      using ::ex1::reader::write;
-      using ::ex1::writer::write;
+      using ::gen::reader::write;
+      using ::gen::writer::write;
       void write(byte_output_stream & ostream);
 
 
-      using ::ex1::writer::read;
-      using ::ex1::reader::read;
+      using ::gen::writer::read;
+      using ::gen::reader::read;
       void read(byte_input_stream & istream);
 
 
@@ -104,7 +104,7 @@ namespace ex1
 
    typedef ca::smart_pointer < file > filesp;
 
-   // ex1::filesp
+   // gen::filesp
    inline file::operator HFILE() const
       { return NULL; }
    inline void file::SetFilePath(const char * lpszNewName)
@@ -114,7 +114,7 @@ namespace ex1
 
 
 
-} // namespace ex1
+} // namespace gen
 
 
 

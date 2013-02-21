@@ -5,7 +5,7 @@ namespace user
 {
 
    class CLASS_DECL_ca document_request_interface :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

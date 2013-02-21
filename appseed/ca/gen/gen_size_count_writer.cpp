@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    void size_count_writer::write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize)
@@ -12,4 +12,4 @@ namespace ex1
          *processedSize = realProcessedSize;
    }
 
-} // namespace ex1
+} // namespace gen

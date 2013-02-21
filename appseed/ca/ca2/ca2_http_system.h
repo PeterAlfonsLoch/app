@@ -28,7 +28,7 @@ namespace ca4
 
 
          class CLASS_DECL_ca pac :
-            virtual public ::radix::object
+            virtual public ::gen::object
          {
          public:
 
@@ -46,7 +46,7 @@ namespace ca4
 
 
          class CLASS_DECL_ca proxy :
-            virtual public ::radix::object
+            virtual public ::gen::object
          {
          public:
 
@@ -108,7 +108,7 @@ namespace ca4
 
          string get(const char * pszUrl, ::fontopus::user * puser = NULL);
 
-         using ::radix::object::request;
+         using ::gen::object::request;
          bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
          bool request(const char * pszRequest, const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
@@ -123,10 +123,10 @@ namespace ca4
 
 
          bool put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool put(const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
+         bool put(const char * pszUrl, gen::file * pfile, ::fontopus::user * puser = NULL);
 
          bool put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool put(string & strResponse, const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser = NULL);
+         bool put(string & strResponse, const char * pszUrl, gen::file * pfile, ::fontopus::user * puser = NULL);
 
 
          void defer_auto_initialize_proxy_configuration();

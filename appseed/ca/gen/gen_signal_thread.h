@@ -5,7 +5,7 @@ namespace gen
 
    template < class DST, class SRC >
    class signal_thread :
-      public ::radix::thread
+      public ::gen::thread
    {
    public:
 

@@ -122,7 +122,7 @@ namespace fs
       /*if(m_bStatic)
       {
          stringa stra;
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
             item.m_flags.unsignalize_all();

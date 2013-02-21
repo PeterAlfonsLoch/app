@@ -16,7 +16,7 @@ namespace colorertake5
       @param lineRegions Linked list of LineRegion structures.
       Only region references are used there.
       */
-      void ParsedLineWriter::tokenWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map * docLinkHash, const char  *line, LineRegion *lineRegions)
+      void ParsedLineWriter::tokenWrite(gen::byte_output_stream & markupWriter, gen::byte_output_stream & textWriter, string_to_string_map * docLinkHash, const char  *line, LineRegion *lineRegions)
       {
          UNREFERENCED_PARAMETER(docLinkHash);
          index pos = 0;
@@ -64,7 +64,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      void ParsedLineWriter::markupWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
+      void ParsedLineWriter::markupWrite(gen::byte_output_stream & markupWriter, gen::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
       {
          UNREFERENCED_PARAMETER(docLinkHash);
 
@@ -124,7 +124,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      void ParsedLineWriter::htmlRGBWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
+      void ParsedLineWriter::htmlRGBWrite(gen::byte_output_stream & markupWriter, gen::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions)
       {
 
          index pos = 0;
@@ -165,7 +165,7 @@ namespace colorertake5
 
       /** Puts into stream style attributes from RegionDefine object.
       */
-      void ParsedLineWriter::writeStyle(ex1::byte_output_stream & writer, const StyledRegion *lr){
+      void ParsedLineWriter::writeStyle(gen::byte_output_stream & writer, const StyledRegion *lr){
          static char span[256];
          int32_t cp = 0;
          if (lr->bfore) cp += sprintf(span, "color:#%.6x; ", lr->fore);
@@ -179,7 +179,7 @@ namespace colorertake5
 
       /** Puts into stream starting HTML \<span> tag with requested style specification
       */
-      void ParsedLineWriter::writeStart(ex1::byte_output_stream & writer, const StyledRegion *lr){
+      void ParsedLineWriter::writeStart(gen::byte_output_stream & writer, const StyledRegion *lr){
          if (!lr->bfore && !lr->bback) return;
          writer << "<span style='";
          writeStyle(writer, lr);
@@ -188,12 +188,12 @@ namespace colorertake5
 
       /** Puts into stream ending HTML \</span> tag
       */
-      void ParsedLineWriter::writeEnd(ex1::byte_output_stream & writer, const StyledRegion *lr){
+      void ParsedLineWriter::writeEnd(gen::byte_output_stream & writer, const StyledRegion *lr){
          if (!lr->bfore && !lr->bback) return;
          writer << "</span>";
       }
 
-      void ParsedLineWriter::writeHref(ex1::byte_output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start){
+      void ParsedLineWriter::writeHref(gen::byte_output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start){
          string url;
          if (scheme != NULL){
             url = docLinkHash->operator [](token + "--" + scheme->getName());

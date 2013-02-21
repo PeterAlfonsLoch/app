@@ -17,7 +17,7 @@ namespace ca
 
    template < class T >
    class smart_pointer :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

@@ -45,7 +45,7 @@ namespace user
 
 
    class CLASS_DECL_ca keyboard_layout :
-      virtual public ::radix::object,
+      virtual public ::gen::object,
       virtual public keyboard_layout_id
    {
    public:

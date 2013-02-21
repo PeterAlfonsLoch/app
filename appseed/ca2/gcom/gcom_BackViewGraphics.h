@@ -39,8 +39,8 @@ namespace gcom
          ::collection::map < int32_t, int32_t, ::ca::dib *, ::ca::dib * > m_mapDib;
 //         ::ca::draw_dib_sp         m_spdrawdib;
 
-         mutex   m_mutex1Back;
-         mutex   m_mutex2Buffer;
+         mutex   m_mutgenBack;
+         mutex   m_mutgenBuffer;
          mutex   m_mutex3Source;
          mutex   m_mutex4Transfer;
 

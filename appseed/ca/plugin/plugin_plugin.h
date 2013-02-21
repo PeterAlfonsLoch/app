@@ -12,7 +12,7 @@ namespace primitive
 }
 
 
-namespace ex1
+namespace gen
 {
    class file;
 }
@@ -33,7 +33,7 @@ namespace plugin
 
    class CLASS_DECL_ca plugin :
       virtual public hotplugin::plugin,
-      virtual public radix::object
+      virtual public gen::object
    {
    public:
 

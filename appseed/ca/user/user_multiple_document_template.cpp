@@ -24,7 +24,7 @@ multiple_document_template::~multiple_document_template()
 {
 #ifdef DEBUG
    if (!m_docptra.is_empty())
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
 #endif
 }
 
@@ -68,7 +68,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    user::document_interface * pdocument = create_new_document();
    if (pdocument == NULL)
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "failed to create user::document_interface");
       return;
@@ -99,7 +99,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_new_document())
       {
          // ::fontopus::user has be alerted to what failed in on_new_document
-         TRACE(::radix::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
          pFrame->DestroyWindow();
          return;
       }
@@ -116,7 +116,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
          // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
          // prepare ca2 for async operations and also async failures
          // ::fontopus::user has be alerted to what failed in on_open_document
-         TRACE(::radix::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
          pFrame->DestroyWindow();
          return;
       }

@@ -11,7 +11,7 @@ namespace database
 
 
    class CLASS_DECL_ca client :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -48,11 +48,11 @@ namespace database
       virtual bool data_set(class id, class id idIndex, int64_t i, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(class id, class id idIndex, const wchar_t * lpsz, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ex1::readable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ex1::byte_serializable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ex1::byte_input_stream & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ex1::plain_text_serializable & obj, update_hint * puh = NULL);
-      virtual bool data_set(class id, class id idIndex, ex1::plain_text_input_stream & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, gen::readable & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, gen::byte_serializable & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, gen::byte_input_stream & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, gen::plain_text_serializable & obj, update_hint * puh = NULL);
+      virtual bool data_set(class id, class id idIndex, gen::plain_text_input_stream & obj, update_hint * puh = NULL);
       virtual bool data_set(selection & selection, const char * lpsz, update_hint * puh = NULL);
       virtual bool data_set(selection & selection, var & var, update_hint * puh = NULL);
 
@@ -63,11 +63,11 @@ namespace database
       virtual bool data_get(class id, class id idIndex, int32_t & i);
       virtual bool data_get(class id, class id idIndex, int64_t & i);
       virtual bool data_get(class id, class id idIndex, string & str);
-      virtual bool data_get(class id, class id idIndex, ex1::writable & obj);
-      virtual bool data_get(class id, class id idIndex, ex1::byte_serializable & obj);
-      virtual bool data_get(class id, class id idIndex, ex1::byte_output_stream & obj);
-      virtual bool data_get(class id, class id idIndex, ex1::plain_text_serializable & obj);
-      virtual bool data_get(class id, class id idIndex, ex1::plain_text_output_stream & obj);
+      virtual bool data_get(class id, class id idIndex, gen::writable & obj);
+      virtual bool data_get(class id, class id idIndex, gen::byte_serializable & obj);
+      virtual bool data_get(class id, class id idIndex, gen::byte_output_stream & obj);
+      virtual bool data_get(class id, class id idIndex, gen::plain_text_serializable & obj);
+      virtual bool data_get(class id, class id idIndex, gen::plain_text_output_stream & obj);
       virtual bool data_get(class id dataid, class id, class id idIndex, string & str);
 
       virtual bool data_pulse_change(class id, class id idIndex, update_hint * puh);

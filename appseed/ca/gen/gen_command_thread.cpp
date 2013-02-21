@@ -99,7 +99,7 @@ namespace gen
    {
       try
       {
-         ::ex2::application * papp = dynamic_cast < ::ex2::application * > (get_app());
+         ::gen::application * papp = dynamic_cast < ::gen::application * > (get_app());
          if(papp != NULL)
          {
             papp->request(pline);

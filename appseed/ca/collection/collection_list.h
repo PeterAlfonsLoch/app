@@ -5,7 +5,7 @@ namespace collection
 
    template<class TYPE, class ARG_TYPE = const TYPE&>
    class list :
-      public ::radix::object
+      public ::gen::object
    {
    public:
       class node
@@ -951,7 +951,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      ::radix::object::Serialize(ar);
+      ::gen::object::Serialize(ar);
 
       if (ar.IsStoring())
       {
@@ -983,7 +983,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    {
-      ::radix::object::dump(dumpcontext);
+      ::gen::object::dump(dumpcontext);
 
       dumpcontext << "with " << m_nCount << " elements";
       if (dumpcontext.GetDepth() > 0)
@@ -1004,7 +1004,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::assert_valid() const
    {
-      ::radix::object::assert_valid();
+      ::gen::object::assert_valid();
 
       if (m_nCount == 0)
       {

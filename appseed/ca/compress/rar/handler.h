@@ -39,8 +39,8 @@ namespace rar
       bool IsSolid(int32_t refIndex);
       void AddErrorMessage(const string &s);
 
-      //HRESULT Open2(ex1::byte_input_stream *stream, // seekable input stream
-      HRESULT Open2(ex1::byte_input_stream * stream, const file_position * maxCheckStartPosition,  ::libcompress::archive_open_callback_interface *openCallback);
+      //HRESULT Open2(gen::byte_input_stream *stream, // seekable input stream
+      HRESULT Open2(gen::byte_input_stream * stream, const file_position * maxCheckStartPosition,  ::libcompress::archive_open_callback_interface *openCallback);
 
    /*public:
       MY_QUERYINTERFACE_BEGIN2(IInArchive)
@@ -50,7 +50,7 @@ namespace rar
 
          CA2_COMPRESS_INTERFACE_input_archive(;)
 
-         ex1::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo);
+         gen::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo);
    };
 
 } // namespace rar

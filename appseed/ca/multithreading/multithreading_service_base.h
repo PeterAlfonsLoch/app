@@ -12,7 +12,7 @@
 #pragma once
 
 class CLASS_DECL_ca service_base :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace radix
+namespace gen
 {
 
 
@@ -109,4 +109,4 @@ namespace radix
    CLASS_DECL_ca void thread_alloc_ready(bool bReady);
 
 
-} // namespace radix
+} // namespace gen

@@ -162,7 +162,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 list_item :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -354,7 +354,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 list_layout :
-         virtual public ex1::byte_serializable
+         virtual public gen::byte_serializable
       {
       public:
          list_layout();
@@ -363,12 +363,12 @@ namespace user
          index_array   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::ex1::byte_output_stream & ostream);
-         virtual void read(::ex1::byte_input_stream & istream);
+         virtual void write(::gen::byte_output_stream & ostream);
+         virtual void read(::gen::byte_input_stream & istream);
       };
 
       class CLASS_DECL_ca2 icon_layout :
-         virtual public ex1::byte_serializable
+         virtual public gen::byte_serializable
       {
       public:
          icon_layout();
@@ -377,8 +377,8 @@ namespace user
          index_biunique   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::ex1::byte_output_stream & ostream);
-         virtual void read(::ex1::byte_input_stream & istream);
+         virtual void write(::gen::byte_output_stream & ostream);
+         virtual void read(::gen::byte_input_stream & istream);
       };
 
    public:

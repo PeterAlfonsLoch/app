@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    tree::tree(::ca::application * papp) :
@@ -28,7 +28,7 @@ namespace ex1
          return NULL;
       if(pitemdata->get_tree_data() != get_data())
          return NULL;
-      ::ex1::tree_item * pitem = m_pitem;
+      ::gen::tree_item * pitem = m_pitem;
       for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem->m_pitemdata == pitemdata)
@@ -48,7 +48,7 @@ namespace ex1
 
    bool tree::contains(tree_item * pitemParam)
    {
-      ::ex1::tree_item * pitem = m_pitem;
+      ::gen::tree_item * pitem = m_pitem;
       for(; pitem != NULL; pitem = pitem->get_item(TreeNavigationExpandedForward))
       {
          if(pitem == pitemParam)
@@ -201,10 +201,10 @@ namespace ex1
       return true;
    }
 
-   ::ex1::tree_item * tree::get_proper_item(index iIndex, index * piLevel)
+   ::gen::tree_item * tree::get_proper_item(index iIndex, index * piLevel)
    {
       if(*piLevel) *piLevel = 0;
-      ::ex1::tree_item * pitem = get_base_item();
+      ::gen::tree_item * pitem = get_base_item();
       while(pitem != NULL && iIndex >= 0)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
@@ -214,11 +214,11 @@ namespace ex1
 
    }
 
-   index tree::get_proper_item_index(::ex1::tree_item * pitemParam, index * piLevel)
+   index tree::get_proper_item_index(::gen::tree_item * pitemParam, index * piLevel)
    {
       int32_t iIndex = 0;
       if(piLevel != NULL) *piLevel = 0;
-      ::ex1::tree_item * pitem = get_base_item();
+      ::gen::tree_item * pitem = get_base_item();
       while(pitem != NULL)
       {
          pitem = pitem->get_item(TreeNavigationProperForward, piLevel);
@@ -243,9 +243,9 @@ namespace ex1
       m_pitem = allocate_item();
       if(m_pitem == NULL)
          return false;
-      m_pitem->m_dwState |= ::ex1::tree_item_state_expandable;
-      m_pitem->m_dwState |= ::ex1::tree_item_state_expanded;
-      ex1::simple_tree_item_data * pitemdata = new ex1::simple_tree_item_data();
+      m_pitem->m_dwState |= ::gen::tree_item_state_expandable;
+      m_pitem->m_dwState |= ::gen::tree_item_state_expanded;
+      gen::simple_tree_item_data * pitemdata = new gen::simple_tree_item_data();
       m_pitem->m_pitemdata = pitemdata;
       pitemdata->m_str = "tree";
       return true;
@@ -262,16 +262,16 @@ namespace ex1
    }
 
 
-   ::ex1::tree_item * tree::get_base_item()
+   ::gen::tree_item * tree::get_base_item()
    {
       return m_pitem;
    }
 
-   ::ex1::tree_item * tree::insert_item(::ex1::tree_item_data * pitemdataNew, ERelative erelativeNewItem, ::ex1::tree_item * pitemRelative)
+   ::gen::tree_item * tree::insert_item(::gen::tree_item_data * pitemdataNew, ERelative erelativeNewItem, ::gen::tree_item * pitemRelative)
    {
       if(erelativeNewItem == RelativeReplace)
          return NULL;
-      ::ex1::tree_item * pitemNew = allocate_item();
+      ::gen::tree_item * pitemNew = allocate_item();
       if(pitemNew == NULL)
          return NULL;
       if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))
@@ -283,11 +283,11 @@ namespace ex1
       return pitemNew;
    }
 
-   ::ex1::tree_item * tree::create_item(::ex1::tree_item * pitemRelative, ERelative erelativeNewItem)
+   ::gen::tree_item * tree::create_item(::gen::tree_item * pitemRelative, ERelative erelativeNewItem)
    {
       if(erelativeNewItem == RelativeReplace)
          return NULL;
-      ::ex1::tree_item * pitemNew = allocate_item();
+      ::gen::tree_item * pitemNew = allocate_item();
       if(pitemNew == NULL)
          return NULL;
       if(!insert_item(pitemNew, erelativeNewItem, pitemRelative))
@@ -303,7 +303,7 @@ namespace ex1
    }
 
 
-   bool tree::insert_item(::ex1::tree_item * pitemNew, ERelative erelativeNewItem, ::ex1::tree_item * pitemRelative)
+   bool tree::insert_item(::gen::tree_item * pitemNew, ERelative erelativeNewItem, ::gen::tree_item * pitemRelative)
    {
       if(pitemNew == NULL)
          return false;
@@ -332,7 +332,7 @@ namespace ex1
             }
             else
             {
-               ::ex1::tree_item * pitemOldFirstChild = pitemRelative->m_pchild;
+               ::gen::tree_item * pitemOldFirstChild = pitemRelative->m_pchild;
 
                pitemRelative->m_pchild                  = pitemNew;
 
@@ -353,7 +353,7 @@ namespace ex1
             }
             else
             {
-               ::ex1::tree_item * pitemOldLastChild = pitemRelative->get_item(RelativeLastChild);
+               ::gen::tree_item * pitemOldLastChild = pitemRelative->get_item(RelativeLastChild);
 
                pitemNew->m_pparent     = pitemRelative;
                pitemNew->m_pprevious   = pitemOldLastChild;
@@ -437,14 +437,14 @@ namespace ex1
       return true;
    }
 
-   ex1::tree_item * tree::allocate_item()
+   gen::tree_item * tree::allocate_item()
    {
-      ex1::tree_item * pitemNew = new tree_item;
+      gen::tree_item * pitemNew = new tree_item;
       pitemNew->m_ptree = this;
       return pitemNew;
    }
 
-   void tree::delete_item(ex1::tree_item * pitem)
+   void tree::delete_item(gen::tree_item * pitem)
    {
       delete pitem;
    }
@@ -454,7 +454,7 @@ namespace ex1
       delete_item(get_base_item()->m_pchild);
    }
 
-   void tree::sort(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ex1::tree_data *))
+   void tree::sort(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::gen::tree_data *))
    {
       tree_item * pitem = get_base_item();
       while(pitem != NULL)
@@ -471,4 +471,4 @@ namespace ex1
       return NULL;
    }
 
-} // namespace ex1
+} // namespace gen

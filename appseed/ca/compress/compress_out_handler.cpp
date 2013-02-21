@@ -337,7 +337,7 @@ namespace libcompress
       name = param;
    }
 
-   ex1::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
+   gen::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
    {
       gen::property prop;
       int32_t index = FindPropIdExact(name);
@@ -387,7 +387,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ex1::HRes out_handler::SetParams(COneMethodInfo &oneMethodInfo, const string &srcString)
+   gen::HRes out_handler::SetParams(COneMethodInfo &oneMethodInfo, const string &srcString)
    {
       stringa params;
       SplitParams(srcString, params);
@@ -403,7 +403,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ex1::HRes out_handler::SetSolidSettings(const string &s)
+   gen::HRes out_handler::SetSolidSettings(const string &s)
    {
       string s2 = s;
       s2.make_upper();
@@ -453,7 +453,7 @@ namespace libcompress
       return S_OK;
    }
 
-   ex1::HRes out_handler::SetSolidSettings(var value)
+   gen::HRes out_handler::SetSolidSettings(var value)
    {
       bool isSolid;
       switch(value.get_type())
@@ -515,7 +515,7 @@ namespace libcompress
       _crcSize = 4;
    }
 
-   ex1::HRes out_handler::SetProperty(const char *nameSpec, var value)
+   gen::HRes out_handler::SetProperty(const char *nameSpec, var value)
    {
       string name = nameSpec;
       name.make_upper();

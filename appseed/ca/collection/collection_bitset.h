@@ -1,7 +1,7 @@
 // bitset standard header
 #pragma once
 
-/*namespace ex1
+/*namespace gen
 {
    class input_stream;
    class output_stream;
@@ -27,7 +27,7 @@ template<size_t _Bits>
 			: _Bits <= 16 ? 2
 			: _Bits <= 32 ? 4
 			: 8>,
-virtual public ::radix::object
+virtual public ::gen::object
 {	// store fixed-length sequence of Boolean elements
 public:
 
@@ -494,9 +494,9 @@ template<size_t _Bits> inline
 		return (_Ans ^= _Right);
 		}
 
-   /*inline ::ex1::output_stream & operator << (::ex1::output_stream2 & _Ostr, const bitset<_Bits>& _Right);
+   /*inline ::gen::output_stream & operator << (::gen::output_stream2 & _Ostr, const bitset<_Bits>& _Right);
 
-	inline ::ex1::input_stream & operator>>(::ex1::input_stream  _Istr, bitset<_Bits>& _Right);
+	inline ::gen::input_stream & operator>>(::gen::input_stream  _Istr, bitset<_Bits>& _Right);
 
 #if _HAS_CPP0X
 template<class _Kty>

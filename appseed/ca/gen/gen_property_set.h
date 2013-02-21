@@ -6,8 +6,8 @@ namespace gen
 
 
    class CLASS_DECL_ca property_set :
-      public ::radix::object,
-      public ex1::byte_serializable
+      public ::gen::object,
+      public gen::byte_serializable
    {
    public:
 
@@ -151,10 +151,10 @@ namespace gen
 
       void clear();
 
-      void replace_ex1(string & str);
+      void replace_gen(string & str);
       string eval(const char * psz);
 
-      string ex2_eval(const char * psz);
+      string gen_eval(const char * psz);
 
       void parse_json(const char * & pszJson);
       void parse_json(const char * & pszJson, const char * pszEnd);
@@ -163,8 +163,8 @@ namespace gen
       void parse_http_headers(const char * pszHeaders);
       string get_http_post();
 
-      virtual void write(ex1::byte_output_stream & ostream);
-      virtual void read(ex1::byte_input_stream & ostream);
+      virtual void write(gen::byte_output_stream & ostream);
+      virtual void read(gen::byte_input_stream & ostream);
 
       virtual string implode(const char * pszGlue) const;
       count get_count() const;

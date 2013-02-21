@@ -9,7 +9,7 @@ namespace fontopus
 
 
    class CLASS_DECL_ca user :
-      public ::radix::object
+      public ::gen::object
    {
    public:
 

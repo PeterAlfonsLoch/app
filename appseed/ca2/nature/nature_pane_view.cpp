@@ -289,7 +289,7 @@ namespace nature
       }
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
+   void pane_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

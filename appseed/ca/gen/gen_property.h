@@ -107,8 +107,8 @@ namespace gen
 
 
    class CLASS_DECL_ca property :
-      public ::radix::object,
-      public ex1::byte_serializable
+      public ::gen::object,
+      public gen::byte_serializable
    {
    protected:
 
@@ -521,8 +521,8 @@ namespace gen
       bool operator > (int32_t i) const;
       bool operator > (bool b) const;
 
-      void write(ex1::byte_output_stream & ostream);
-      void read(ex1::byte_input_stream & ostream);
+      void write(gen::byte_output_stream & ostream);
+      void read(gen::byte_input_stream & ostream);
 
 
       string operator + (const char * psz) const;
@@ -657,7 +657,7 @@ namespace gen
 
 
    class CLASS_DECL_ca property_array :
-      public ex1::byte_serializable_array < base_array < property > >
+      public gen::byte_serializable_array < base_array < property > >
    {
    public:
 

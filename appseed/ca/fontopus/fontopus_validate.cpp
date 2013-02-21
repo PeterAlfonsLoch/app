@@ -44,12 +44,12 @@ namespace fontopus
       m_bVotagusAuth    = bVotagusAuth;
       m_strForm         = pszForm;
       m_puser           = NULL;
-      ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
-      if(pradixapp != NULL)
+      ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+      if(pgenapp != NULL)
       {
          try
          {
-            pradixapp->keep_alive();
+            pgenapp->keep_alive();
          }
          catch(...)
          {
@@ -597,7 +597,7 @@ namespace fontopus
          return;
       }
       string strModule;
-      ex1::file_system_sp fs(get_app());
+      gen::file_system_sp fs(get_app());
       string strModuleFolder(System.get_ca2_module_folder());
       fs->FullPath(strModuleFolder, strModuleFolder);
       for(uint32_t dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
@@ -1285,8 +1285,8 @@ namespace fontopus
 
       RSA * rsa = RSA_new();
 
-      BN_hex2bn(&rsa->n, strRsaModulus);
-      BN_hex2bn(&rsa->e, "10001");
+      BN_hgenbn(&rsa->n, strRsaModulus);
+      BN_hgenbn(&rsa->e, "10001");
 
 
       primitive::memory memory;

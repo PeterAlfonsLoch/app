@@ -8,7 +8,7 @@
 // is derived from pointer template.
 /*template < class T > 
 class full_pointer : 
-   virtual public ::radix::object,
+   virtual public ::gen::object,
    virtual public pointer_array < T >
 {
 public:

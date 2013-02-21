@@ -25,7 +25,7 @@ namespace gen
 
 template < typename TYPE >
 class numeric_array :
-   virtual public ex1::byte_serializable_array < comparable_primitive_array < TYPE > >
+   virtual public gen::byte_serializable_array < comparable_primitive_array < TYPE > >
 {
 public:
    numeric_array();

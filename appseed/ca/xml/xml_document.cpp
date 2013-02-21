@@ -47,7 +47,7 @@ namespace xml
 
    }
 
-   bool document::load(::ex1::file * pfile)
+   bool document::load(::gen::file * pfile)
    {
 
       primitive::memory memory;

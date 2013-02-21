@@ -5,7 +5,7 @@
 // is destroyed, raw_pointer just hold the pointer.
 
 class CLASS_DECL_ca raw_pointer : 
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 

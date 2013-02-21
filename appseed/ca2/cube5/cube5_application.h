@@ -64,7 +64,7 @@ namespace cube5
 
       
       string message_box(const char * pszMatter, gen::property_set & propertyset);
-      using ::radix::application::simple_message_box;
+      using ::gen::application::simple_message_box;
       virtual int32_t simple_message_box_timeout(::user::interaction * puiOwner, const char * pszMessage, int32_t iTimeout, UINT fuStyle = MB_OK);
       virtual int32_t simple_message_box(::user::interaction * puiOwner, const char * pszMessage, UINT fuStyle = MB_OK);
       virtual int32_t track_popup_menu(const char * pszMatter, point pt, ::user::interaction * puie);

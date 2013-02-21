@@ -2,12 +2,12 @@
 // transposed 2011-04-08
 // originally from C++ sockets library tcp_socket::circular_buffer
 
-namespace ex1
+namespace gen
 {
 /** buffer class containing one read/write circular buffer. 
          \ingroup internal */
       class circular_buffer :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       protected:
 
@@ -51,4 +51,4 @@ namespace ex1
 
       };
 
-} // namespace ex1
+} // namespace gen

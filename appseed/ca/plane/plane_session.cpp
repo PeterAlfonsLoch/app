@@ -77,7 +77,7 @@ namespace plane
       m_strBaseSupportId   = "votagus_ca2_bergedge";
       m_strInstallToken    = "session";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::radix::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::gen::ExclusiveInstanceNone;
 
    }
 
@@ -628,7 +628,7 @@ namespace plane
       if(papp == NULL)
          return false;
 
-      papp->::ex1::request_interface::create(pcreatecontext);
+      papp->::gen::request_interface::create(pcreatecontext);
 
       return true;
 
@@ -661,10 +661,10 @@ namespace plane
       m_puiParent = NULL;
    }
 
-   void session::on_exclusive_instance_conflict(::radix::EExclusiveInstance eexclusive)
+   void session::on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive)
    {
 
-      if(eexclusive == ::radix::ExclusiveInstanceLocalId)
+      if(eexclusive == ::gen::ExclusiveInstanceLocalId)
       {
          /*
          gen::memory_file file(get_app());

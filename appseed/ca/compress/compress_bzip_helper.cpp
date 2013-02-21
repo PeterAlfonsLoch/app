@@ -20,20 +20,20 @@ static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 typedef void *(*bzalloc)(void *,int32_t,int32_t);
 typedef void (*bzfree)(void *,void *);
 
-bzip::bzip(ex1::file * pfileDest) :
+bzip::bzip(gen::file * pfileDest) :
    m_ostream(pfileDest)
 {
    construct();
 }
 
-bzip::bzip(ex1::writer & writer) :
+bzip::bzip(gen::writer & writer) :
    m_ostream(&writer)
 {
    construct();
 }
 
 
-bzip::bzip(ex1::byte_output_stream & ostream) :
+bzip::bzip(gen::byte_output_stream & ostream) :
    m_ostream(ostream)
 {
    construct();

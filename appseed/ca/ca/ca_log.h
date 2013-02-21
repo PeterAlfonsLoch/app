@@ -27,7 +27,7 @@ namespace gen
    }
 }
 
-namespace ex1
+namespace gen
 {
    class file;
 }

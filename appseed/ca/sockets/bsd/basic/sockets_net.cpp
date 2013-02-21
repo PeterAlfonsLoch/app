@@ -604,7 +604,7 @@ namespace sockets
                if (strstr(s,".")) // x.x.x.x
                {
                   Parse pa(s,".");
-                  char slask[100]; // u2ip temporary hex2string conversion
+                  char slask[100]; // u2ip temporary hgenstring conversion
                   unsigned long b0 = static_cast<unsigned long>(pa.getvalue());
                   unsigned long b1 = static_cast<unsigned long>(pa.getvalue());
                   unsigned long b2 = static_cast<unsigned long>(pa.getvalue());
@@ -630,7 +630,7 @@ namespace sockets
             string bytepair = *it;
             if (bytepair.get_length())
             {
-               addr16[i++] = htons(net::hex2unsigned(bytepair));
+               addr16[i++] = htons(net::hgenunsigned(bytepair));
             }
             else
             {

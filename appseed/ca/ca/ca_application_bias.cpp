@@ -14,11 +14,11 @@ namespace ca
 
    void application_bias::callback::on_call_signal(gen::signal_object * pobj)
    {
-      SCAST_PTR(::radix::application_signal_object, papplicationsignal, pobj);
+      SCAST_PTR(::gen::application_signal_object, papplicationsignal, pobj);
       on_application_bias_callback_signal(papplicationsignal);
    }
 
-   void application_bias::callback::on_application_bias_callback_signal(::radix::application_signal_object * papplicationsignal)
+   void application_bias::callback::on_application_bias_callback_signal(::gen::application_signal_object * papplicationsignal)
    {
       UNREFERENCED_PARAMETER(papplicationsignal);
    }

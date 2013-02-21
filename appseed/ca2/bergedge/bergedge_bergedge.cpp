@@ -67,7 +67,7 @@ namespace bergedge
       m_strBaseSupportId   = "votagus_ca2_bergedge";
       m_strInstallToken    = "bergedge";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::radix::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::gen::ExclusiveInstanceNone;
 
    }
 
@@ -507,9 +507,9 @@ namespace bergedge
 
    }
 
-   void bergedge::on_exclusive_instance_conflict(::radix::EExclusiveInstance eexclusive)
+   void bergedge::on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::radix::ExclusiveInstanceLocalId)
+      if(eexclusive == ::gen::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          gen::memory_file file(get_app());

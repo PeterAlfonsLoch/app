@@ -109,7 +109,7 @@ namespace user
 
 
    class CLASS_DECL_ca str_context :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       

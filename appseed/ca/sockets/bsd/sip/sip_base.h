@@ -5,7 +5,7 @@
 namespace sockets
 {
    class CLASS_DECL_ca sip_base :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

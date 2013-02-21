@@ -29,8 +29,8 @@ namespace primitive
 
 
    class CLASS_DECL_ca memory_base :
-      public ::radix::object,
-      public ex1::byte_serializable
+      public ::gen::object,
+      public gen::byte_serializable
    {
    public:
 
@@ -62,12 +62,12 @@ namespace primitive
 
       virtual void remove_offset();
 
-      virtual void FullLoad(ex1::file &file);
+      virtual void FullLoad(gen::file &file);
 
-      inline ::primitive::memory_size read(ex1::file & file);
+      inline ::primitive::memory_size read(gen::file & file);
 
-      void write(ex1::byte_output_stream & ostream);
-      void read(ex1::byte_input_stream & ostream);
+      void write(gen::byte_output_stream & ostream);
+      void read(gen::byte_input_stream & ostream);
 
       inline  void allocate_add_up(memory_size dwAddUp);
 

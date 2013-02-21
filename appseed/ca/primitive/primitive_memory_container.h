@@ -6,7 +6,7 @@ namespace primitive
 
 
    class CLASS_DECL_ca memory_container :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    protected:
 
@@ -41,7 +41,7 @@ namespace primitive
       void to_string(string & str);
 
       void FullLoad(memory_base *pmemorystorage);
-      void FullLoad(ex1::file & file);
+      void FullLoad(gen::file & file);
 
       void keep_pointer(void **ppvoid);
       void offset_kept_pointers(memory_offset iOffset);

@@ -16,7 +16,7 @@ namespace html
 
 
       class CLASS_DECL_ca2 image :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
          index      m_iIndex;

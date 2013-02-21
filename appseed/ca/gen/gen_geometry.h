@@ -21,7 +21,7 @@ namespace gen
       };
 
       class CLASS_DECL_ca geometry  :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
          double rotate_y(double x, double y, double phi);

@@ -48,7 +48,7 @@ handler::handler()
   #endif
 }
 
-ex1::HRes handler::GetNumberOfItems(uint32_t *numItems)
+gen::HRes handler::GetNumberOfItems(uint32_t *numItems)
 {
   *numItems = (uint32_t) _db.Files.get_count();
   return S_OK;
@@ -58,12 +58,12 @@ ex1::HRes handler::GetNumberOfItems(uint32_t *numItems)
 
 IMP_IInArchive_ArcProps_NO
 
-ex1::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
+gen::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
 {
   return E_NOTIMPL;
 }
 
-ex1::HRes handler::GetPropertyInfo(uint32_t /* index */,
+gen::HRes handler::GetPropertyInfo(uint32_t /* index */,
       BSTR * /* name */, PROPID * /* propID */, VARTYPE * /* varType */)
 {
   return E_NOTIMPL;
@@ -90,7 +90,7 @@ stat_prop_stg kArcProps[] =
   { NULL, ::libcompress::kpidOffset, var::type_uint64}
 };
 
-ex1::HRes handler::GetArchiveProperty(int32_t propID, var *value)
+gen::HRes handler::GetArchiveProperty(int32_t propID, var *value)
 {
   var prop;
   switch(propID)
@@ -197,15 +197,15 @@ static inline void AddHexToString(string &res, byte value)
 
 #endif
 
-bool handler::IsEncrypted(uint32_t index2) const
+bool handler::IsEncrypted(uint32_t indgen) const
 {
-  CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
+  CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
   if (folderIndex != kNumNoIndex)
     return _db.Folders[folderIndex].IsEncrypted();
   return false;
 }
 
-ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
+gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 {
   var prop;
 
@@ -217,7 +217,7 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
   */
 
   const CFileItem &item = _db.Files[index];
-  uint32_t index2 = index;
+  uint32_t indgen = index;
 
   switch(propID)
   {
@@ -239,10 +239,10 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
     {
       // prop = ref2.PackSize;
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
         if (folderIndex != kNumNoIndex)
         {
-          if (_db.FolderStartFileIndex[folderIndex] == (CNum)index2)
+          if (_db.FolderStartFileIndex[folderIndex] == (CNum)indgen)
             prop = _db.GetFolderFullPackSize(folderIndex);
           /*
           else
@@ -254,18 +254,18 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
       }
       break;
     }
-    case ::libcompress::kpidPosition:  { uint64_t v; if (_db.StartPos.GetItem(index2, v)) prop = v; break; }
-    case ::libcompress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, index2, prop); break;
-    case ::libcompress::kpidATime:  SetPropFromUInt64Def(_db.ATime, index2, prop); break;
-    case ::libcompress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, index2, prop); break;
+    case ::libcompress::kpidPosition:  { uint64_t v; if (_db.StartPos.GetItem(indgen, v)) prop = v; break; }
+    case ::libcompress::kpidCTime:  SetPropFromUInt64Def(_db.CTime, indgen, prop); break;
+    case ::libcompress::kpidATime:  SetPropFromUInt64Def(_db.ATime, indgen, prop); break;
+    case ::libcompress::kpidMTime:  SetPropFromUInt64Def(_db.MTime, indgen, prop); break;
     case ::libcompress::kpidAttrib:  if (item.AttribDefined) prop = (uint64_t) item.Attrib; break;
     case ::libcompress::kpidCRC:  if (item.CrcDefined) prop = (uint64_t) item.Crc; break;
-    case ::libcompress::kpidEncrypted:  prop = IsEncrypted(index2); break;
-    case ::libcompress::kpidIsAnti:  prop = _db.IsItemAnti(index2); break;
+    case ::libcompress::kpidEncrypted:  prop = IsEncrypted(indgen); break;
+    case ::libcompress::kpidIsAnti:  prop = _db.IsItemAnti(indgen); break;
     #ifndef _SFX
     case ::libcompress::kpidMethod:
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
         if (folderIndex != kNumNoIndex)
         {
           const CFolder &folderInfo = _db.Folders[folderIndex];
@@ -356,7 +356,7 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
       break;
     case ::libcompress::kpidBlock:
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
         if (folderIndex != kNumNoIndex)
           prop = (uint64_t) folderIndex;
       }
@@ -367,11 +367,11 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
     case kpidPackedSize3:
     case kpidPackedSize4:
       {
-        CNum folderIndex = _db.FileIndexToFolderIndexMap[index2];
+        CNum folderIndex = _db.FileIndexToFolderIndexMap[indgen];
         if (folderIndex != kNumNoIndex)
         {
           const CFolder &folderInfo = _db.Folders[folderIndex];
-          if (_db.FolderStartFileIndex[folderIndex] == (CNum)index2 &&
+          if (_db.FolderStartFileIndex[folderIndex] == (CNum)indgen &&
               folderInfo.PackStreams.get_count() > (int32_t)(propID - kpidPackedSize0))
           {
             prop = _db.GetFolderPackStreamSize(folderIndex, propID - kpidPackedSize0);
@@ -389,7 +389,7 @@ ex1::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
   return S_OK;
 }
 
-ex1::HRes handler::Open(::ex1::byte_input_stream *stream,
+gen::HRes handler::Open(::gen::byte_input_stream *stream,
     const file_position *maxCheckStartPosition,
     ::libcompress::archive_open_callback_interface *openArchiveCallback)
 {
@@ -437,7 +437,7 @@ ex1::HRes handler::Open(::ex1::byte_input_stream *stream,
   return S_OK;
 }
 
-ex1::HRes handler::Close()
+gen::HRes handler::Close()
 {
 gen::release(_inStream.m_p);
   _db.clear();
@@ -447,7 +447,7 @@ gen::release(_inStream.m_p);
 #ifdef __7Z_SET_PROPERTIES
 #ifdef EXTRACT_ONLY
 
-ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
+gen::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
 {
   COM_TRY_BEGIN
   const uint32_t numProcessors = NSystem::GetNumberOfProcessors();
@@ -481,7 +481,7 @@ ex1::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *value
 #endif
 
    // IMPL_ISetCompressCodecsInfo2(handler)
-   ex1::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
+   gen::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

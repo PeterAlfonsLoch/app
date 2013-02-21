@@ -168,7 +168,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    }
 
 
-   ex1::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   gen::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
       try
@@ -177,7 +177,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
          return m_file.get_file(varFile, nOpenFlags);
 
       }
-      catch(::ex1::file_exception & e)
+      catch(::gen::file_exception & e)
       {
 
          string strMessage = e.get_message();

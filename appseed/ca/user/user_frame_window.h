@@ -253,7 +253,7 @@ public:
    LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam);
    LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
 
-   friend class ::radix::application;
+   friend class ::gen::application;
 
 
 };

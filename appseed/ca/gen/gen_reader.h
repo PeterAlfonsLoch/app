@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "ex1_seekable.h"
+#include "gen_seekable.h"
 
 
-namespace ex1
+namespace gen
 {
 
    class writer;
@@ -20,7 +20,7 @@ namespace ex1
    public:
 
 
-      ::ex1::reader_sp       m_spreader;
+      ::gen::reader_sp       m_spreader;
 
 
       reader();
@@ -48,6 +48,6 @@ namespace ex1
 
    typedef reader readable;
 
-} // namespace ex1
+} // namespace gen
 
 

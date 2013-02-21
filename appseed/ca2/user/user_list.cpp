@@ -1058,7 +1058,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::radix::system::idEmpty, bVisible))
+         if(data_get(str, ::gen::system::idEmpty, bVisible))
          {
             if(!bVisible)
             {
@@ -1071,7 +1071,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetNonVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::radix::system::idEmpty, bVisible))
+         if(data_get(str, ::gen::system::idEmpty, bVisible))
          {
             if(bVisible)
             {
@@ -2785,7 +2785,7 @@ namespace user
          width = m_columna.element_at(i).m_iWidth;
          data_set(
             str,
-            ::radix::system::idEmpty,
+            ::gen::system::idEmpty,
             width);
       }
 
@@ -2815,7 +2815,7 @@ namespace user
       str.Format("SubItem[%d].Visible", iSubItem);
       data_set(
          str,
-         ::radix::system::idEmpty,
+         ::gen::system::idEmpty,
          bShow ? 1 : 0);
       m_columna.ShowSubItem(iSubItem, bShow);
       _001OnColumnChange();
@@ -3251,13 +3251,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_set(
             str,
-            ::radix::system::idEmpty,
+            ::gen::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_set(
          str,
-         ::radix::system::idEmpty,
+         ::gen::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
 
@@ -3273,13 +3273,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_get(
             str,
-            ::radix::system::idEmpty,
+            ::gen::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_get(
          str,
-         ::radix::system::idEmpty,
+         ::gen::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
       GlobalToVisibleOrder();
@@ -5006,13 +5006,13 @@ namespace user
    {
    }
 
-   void list::list_layout::write(::ex1::byte_output_stream & ostream)
+   void list::list_layout::write(::gen::byte_output_stream & ostream)
    {
       //ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::list_layout::read(::ex1::byte_input_stream & istream)
+   void list::list_layout::read(::gen::byte_input_stream & istream)
    {
       //istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;
@@ -5026,13 +5026,13 @@ namespace user
    {
    }
 
-   void list::icon_layout::write(::ex1::byte_output_stream & ostream)
+   void list::icon_layout::write(::gen::byte_output_stream & ostream)
    {
       ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::icon_layout::read(::ex1::byte_input_stream & istream)
+   void list::icon_layout::read(::gen::byte_input_stream & istream)
    {
       istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;

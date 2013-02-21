@@ -6,7 +6,7 @@ namespace ca
    class data;
 
    class CLASS_DECL_ca data_listener :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

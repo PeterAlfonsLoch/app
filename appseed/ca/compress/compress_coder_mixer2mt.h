@@ -7,13 +7,13 @@ namespace libcompress
 {
    namespace coder_mixer
    {
-      struct CCoder2: public CCoderInfo2, public ::radix::thread
+      struct CCoder2: public CCoderInfo2, public ::gen::thread
       {
          HRESULT Result;
-         base_array < sp(::ex1::reader) > InStreams;
-         base_array < sp(::ex1::writer) > OutStreams;
-         base_array < ::ex1::reader * > InStreamPointers;
-         base_array < ::ex1::writer * > OutStreamPointers;
+         base_array < sp(::gen::reader) > InStreams;
+         base_array < sp(::gen::writer) > OutStreams;
+         base_array < ::gen::reader * > InStreamPointers;
+         base_array < ::gen::writer * > OutStreamPointers;
 
          CCoder2(::ca::application * papp, uint32_t numInStreams, uint32_t numOutStreams);
          void SetCoderInfo(const file_size **inSizes, const file_size **outSizes);
@@ -42,11 +42,11 @@ namespace libcompress
          virtual public CCoderMixer2
       {
          CBindInfo _bindInfo;
-         array_app_alloc < ::ex1::stream_binder > _streamBinders;
+         array_app_alloc < ::gen::stream_binder > _streamBinders;
          int32_t _progressCoderIndex;
 
          void AddCoderCommon();
-         HRESULT Init(::ex1::reader **inStreams, ::ex1::writer **outStreams);
+         HRESULT Init(::gen::reader **inStreams, ::gen::writer **outStreams);
          HRESULT ReturnIfError(HRESULT code);
       public:
          array_app_alloc<CCoder2> _coders;
@@ -54,15 +54,15 @@ namespace libcompress
 
          CCoderMixer2MT(::ca::application * papp);
 
-         ex1::HRes Code(::ex1::reader **inStreams,
+         gen::HRes Code(::gen::reader **inStreams,
             const file_size **inSizes,
             uint32_t numInStreams,
-            ::ex1::writer **outStreams,
+            ::gen::writer **outStreams,
             const file_size **outSizes,
             uint32_t numOutStreams,
             progress_info_interface *progress);
 
-         ex1::HRes SetBindInfo(const CBindInfo &bindInfo);
+         gen::HRes SetBindInfo(const CBindInfo &bindInfo);
          void AddCoder(::libcompress::coder_interface *coder);
          void AddCoder2(::libcompress::coder2_interface *coder);
          void SetProgressCoderIndex(int32_t coderIndex) {  _progressCoderIndex = coderIndex; }

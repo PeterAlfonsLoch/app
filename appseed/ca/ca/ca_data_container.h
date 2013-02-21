@@ -6,7 +6,7 @@ namespace ca
 
 
    class CLASS_DECL_ca data_container :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -28,7 +28,7 @@ namespace ca
    };
 
    class CLASS_DECL_ca data_container_base :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

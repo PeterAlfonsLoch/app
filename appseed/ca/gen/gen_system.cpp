@@ -18,7 +18,7 @@ namespace gen
 
 
 
-namespace radix
+namespace gen
 {
 
    class ::id system::idEmpty;
@@ -90,4 +90,4 @@ namespace radix
       UNREFERENCED_PARAMETER(pca);
    }
 
-} // namespace radix
+} // namespace gen

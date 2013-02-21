@@ -67,7 +67,7 @@ namespace ca2
 
          virtual void install_message_handling(::gen::message::dispatch *pinterface);
          virtual void _001InitializeFormPreData();
-         virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::radix::object* phint);
+         virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::gen::object* phint);
          virtual void _001Update(control * pcontrol);
          virtual void _001UpdateCheckBox(control * pcontrol);
          virtual void _001UpdateComboBox(control * pcontrol);

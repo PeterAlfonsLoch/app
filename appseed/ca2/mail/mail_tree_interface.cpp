@@ -9,21 +9,21 @@ namespace mail
       ca(papp),
       ::user::scroll_view(papp),
       ::user::tree(papp),
-      ex1::tree_data(papp),
+      gen::tree_data(papp),
       ::mail::tree_data(papp)
    {
       m_dataid = "mail::tree_interface";
 
       ::ca::data_container::m_spdata = this;
 
-      if(!ex1::tree_data::initialize_data())
+      if(!gen::tree_data::initialize_data())
          throw simple_exception(papp);
    
    }
 
    bool tree_interface::initialize()
    {
-      if(!::ex1::tree::initialize())
+      if(!::gen::tree::initialize())
          return false;
       ::ca::data_container::m_spdata = this;
       return true;

@@ -93,7 +93,7 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
       Application.dir().mk(System.dir().name(pszDst));
       return false;
    }
-   if(!m_fileSrc->open(pszSrc, ::ex1::file::mode_read | ::ex1::file::type_binary | ::ex1::file::shareDenyWrite))
+   if(!m_fileSrc->open(pszSrc, ::gen::file::mode_read | ::gen::file::type_binary | ::gen::file::shareDenyWrite))
    {
       TRACE("\n Could not open source file(%d)=%s", m_iFile, pszSrc);
       return false;
@@ -110,7 +110,7 @@ bool file_operation::open_src_dst(const char * pszSrc, const char * pszDst)
       }*/
    }
    Application.dir().mk(System.dir().name(pszDst));
-   if(!m_fileDst->open(pszDst, ::ex1::file::mode_write | ::ex1::file::type_binary | ::ex1::file::mode_create))
+   if(!m_fileDst->open(pszDst, ::gen::file::mode_write | ::gen::file::type_binary | ::gen::file::mode_create))
    {
       TRACE("\n Could not open dest file(%d)=%s", m_iFile, pszDst);
       gen::property_set propertyset;
@@ -184,7 +184,7 @@ bool file_operation::step()
             {
                string strDestPath = m_fileDst->GetFilePath();
                m_fileDst->close();
-               ::ex1::file_status st;
+               ::gen::file_status st;
                m_fileSrc->GetStatus(st);
                System.os().set_file_status(strDestPath, st);
                m_fileSrc->close();

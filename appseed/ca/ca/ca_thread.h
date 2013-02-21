@@ -46,14 +46,14 @@
 class event;
 
 
-namespace radix
+namespace gen
 {
 
 
    class thread;
 
 
-} // namespace radix
+} // namespace gen
 
 
 namespace ca
@@ -277,7 +277,7 @@ namespace ca
       virtual HTHREAD get_os_handle() const;
 
 
-      virtual void set_p(::radix::thread * p);
+      virtual void set_p(::gen::thread * p);
 
 
       virtual void set_os_data(void * pvoidOsData);

@@ -2,7 +2,7 @@
 
 
 // return string length or -1 if UNICODE string is found in the archive
-__STATIC UINT __read_string_length(ex1::byte_input_stream & ar);
+__STATIC UINT __read_string_length(gen::byte_input_stream & ar);
 
 
 stringa::stringa(::ca::application * papp) :
@@ -585,7 +585,7 @@ return -1;
 */
 
 
-void stringa::write(ex1::byte_output_stream & ostream)
+void stringa::write(gen::byte_output_stream & ostream)
 {
    ostream.write_arbitrary(m_nSize);
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -594,7 +594,7 @@ void stringa::write(ex1::byte_output_stream & ostream)
    }
 }
 
-void stringa::read(ex1::byte_input_stream & istream)
+void stringa::read(gen::byte_input_stream & istream)
 {
    count iSize;
    istream.read_arbitrary(iSize);
@@ -608,7 +608,7 @@ void stringa::read(ex1::byte_input_stream & istream)
 
 
 
-ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string)
+gen::byte_input_stream & operator>>(gen::byte_input_stream & ar, string & string)
 {
    int32_t nConvert = 0;   // if we get UNICODE, convert
 
@@ -657,7 +657,7 @@ ex1::byte_input_stream & operator>>(ex1::byte_input_stream & ar, string & string
 //      if >= 0xff characters: 0xff, len:WORD, char chars
 //      if >= 0xfffe characters: 0xff, 0xffff, len:uint32_t, TCHARs
 
-ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string & string)
+gen::byte_output_stream & operator<<(gen::byte_output_stream & ar, const string & string)
 {
    if (string.get_length() < 255)
    {
@@ -680,7 +680,7 @@ ex1::byte_output_stream & operator<<(ex1::byte_output_stream & ar, const string 
 }
 
 // return string length or -1 if UNICODE string is found in the archive
-__STATIC UINT __read_string_length(ex1::byte_input_stream & ar)
+__STATIC UINT __read_string_length(gen::byte_input_stream & ar)
 {
    uint32_t nNewLen;
 

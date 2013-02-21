@@ -15,7 +15,7 @@ namespace gcom
 
 
       class CLASS_DECL_ca2 thread : 
-         virtual public ::radix::thread
+         virtual public ::gen::thread
       {
       public:
 

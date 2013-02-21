@@ -10,7 +10,7 @@ namespace simpledb
 
 
    class CLASS_DECL_ca socket_thread : 
-      public ::radix::thread,
+      public ::gen::thread,
       public ::sockets::socket_handler
    {
    public:

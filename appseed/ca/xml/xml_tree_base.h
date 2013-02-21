@@ -4,7 +4,7 @@ namespace xml
 {
 
    class CLASS_DECL_ca tree_base :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    protected:
 

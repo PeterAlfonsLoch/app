@@ -6,7 +6,7 @@ namespace ca4
 
 
    class CLASS_DECL_ca copydesk : 
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

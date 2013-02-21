@@ -6,7 +6,7 @@ namespace uinteraction
 
 
    class CLASS_DECL_ca interaction :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

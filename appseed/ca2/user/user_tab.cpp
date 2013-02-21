@@ -2042,7 +2042,7 @@ namespace user
 
    void tab::get_restore_tab(var_array & vara)
    {
-      ::ex1::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::gen::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return;
       var varId;
@@ -2059,7 +2059,7 @@ namespace user
 
    bool tab::has_restore_tab()
    {
-      ::ex1::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::gen::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return false;
       var varId;
@@ -2097,6 +2097,6 @@ namespace user
       remove_tab_by_id(get_id_by_tab(iTab));
    }
 
-} // namespace ex1
+} // namespace gen
 
 

@@ -44,7 +44,7 @@
 #include "ImathFun.h"
 
 inline void glVertex    ( const Imath::V3f &v ) { glVertex3f(v.x,v.y,v.z);   }
-inline void glVertex    ( const Imath::V2f &v ) { glVertex2f(v.x,v.y);       }
+inline void glVertex    ( const Imath::V2f &v ) { glVertgenf(v.x,v.y);       }
 inline void glNormal    ( const Imath::V3f &n ) { glNormal3f(n.x,n.y,n.z);   }
 inline void glColor     ( const Imath::V3f &c ) { glColor3f(c.x,c.y,c.z);    }
 inline void glTranslate ( const Imath::V3f &t ) { glTranslatef(t.x,t.y,t.z); }

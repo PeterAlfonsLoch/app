@@ -14,7 +14,7 @@ namespace gen
 
 
       class CLASS_DECL_ca math :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       private:
          double         dPi;

@@ -53,7 +53,7 @@ public:
    gen::property_set       m_set;
    bool                    m_bAutoDelete;
    // back pointer to OLE or other server (NULL if none or disabled)
-   ::radix::object *       m_pAttachedFactory;
+   ::gen::object *       m_pAttachedFactory;
 
    // menu & accelerator resources for in-place container
    //HMENU                 m_hMenuInPlace;
@@ -96,7 +96,7 @@ public:
    //frame_window* CreateOleFrame(::ca::window* pParentWnd, ::user::document_interface * pDoc,
    //   bool bCreateView);
 
-   void update_all_views(::view * pviewSender, LPARAM lhint, ::radix::object * puh);
+   void update_all_views(::view * pviewSender, LPARAM lhint, ::gen::object * puh);
 
    virtual Confidence MatchDocType(const char * lpszPathName, ::user::document_interface *& rpDocMatch);
    virtual ::user::document_interface * create_new_document();

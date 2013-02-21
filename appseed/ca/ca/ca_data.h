@@ -10,7 +10,7 @@ namespace ca
 
 
    class CLASS_DECL_ca data :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

@@ -35,7 +35,7 @@ public:
 
    virtual void install_message_handling(::gen::message::dispatch * pinterface);
 
-   virtual bool IsSelected(const ::radix::object* pDocItem) const; // support for OLE
+   virtual bool IsSelected(const ::gen::object* pDocItem) const; // support for OLE
 
    // OLE scrolling support (used for drag/drop as well)
    virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
@@ -65,7 +65,7 @@ public:
    virtual void OnActivateFrame(UINT nState, frame_window* pFrameWnd);
 
    // General drawing/updating
-   virtual void on_update(view * pSender, LPARAM lHint, ::radix::object* pHint);
+   virtual void on_update(view * pSender, LPARAM lHint, ::gen::object* pHint);
    virtual void OnDraw(::ca::graphics * pgraphics);
    virtual void OnViewUpdateHint(view * pSender, LPARAM lHint, view_update_hint * pHint);
 
@@ -149,7 +149,7 @@ public:
 };
 
 class view_update_hint :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
    enum etype

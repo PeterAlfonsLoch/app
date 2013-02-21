@@ -6,8 +6,8 @@ namespace filehandler
 
 
    class CLASS_DECL_ca handler :
-      virtual public ::radix::object,
-      virtual public ::ex1::byte_serializable
+      virtual public ::gen::object,
+      virtual public ::gen::byte_serializable
    {
    public:
       
@@ -24,16 +24,16 @@ namespace filehandler
       void add_menu_library(menu_library * plibrary);
 
 
-      ::ex1::tree_item * get_extension_tree_item(const char * pszExtension, bool bCreate);
-      ::ex1::tree_item * get_mime_type_tree_item(const char * pszMimeType, bool bCreate);
+      ::gen::tree_item * get_extension_tree_item(const char * pszExtension, bool bCreate);
+      ::gen::tree_item * get_mime_type_tree_item(const char * pszMimeType, bool bCreate);
 
 
       virtual void get_extension_app(stringa & straAppId, const char * pszExtension);
       virtual void get_mime_type_app(stringa & straAppId, const char * pszMimeType);
 
 
-      void write(::ex1::byte_output_stream & ostream);
-      void read(::ex1::byte_input_stream & istream);
+      void write(::gen::byte_output_stream & ostream);
+      void read(::gen::byte_input_stream & istream);
 
 
    };

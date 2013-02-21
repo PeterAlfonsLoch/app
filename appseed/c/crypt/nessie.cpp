@@ -20,13 +20,13 @@ vsstring crypt_nessie(const char * psz)
    /*
    string file::nessie(const char * psz)
    {
-      ex1::filesp spfile(get_app());
+      gen::filesp spfile(get_app());
       try
       {
-         if(!spfile->open(psz, ::ex1::file::type_binary | ::ex1::file::mode_read))
+         if(!spfile->open(psz, ::gen::file::type_binary | ::gen::file::mode_read))
             return "";
       }
-      catch(ex1::file_exception * pe)
+      catch(gen::file_exception * pe)
       {
          gen::del(pe);
          return "";
@@ -34,7 +34,7 @@ vsstring crypt_nessie(const char * psz)
       return nessie(spfile);
    }
 
-   string file::nessie(ex1:: file * pfile)
+   string file::nessie(gen:: file * pfile)
    {
       int32_t iBufSize = 1024 * 256;
       uchar * buf = new uchar[iBufSize];

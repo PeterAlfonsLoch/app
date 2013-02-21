@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace ex2
+namespace gen
 {
 
 
    class CLASS_DECL_ca transfer_file : 
-      virtual public ::ex1::file
+      virtual public ::gen::file
    {
    public:
 
          
-      ::ex1::timeout_file *         m_ptimeoutfile;
+      ::gen::timeout_file *         m_ptimeoutfile;
       sp(::primitive::memory_base)  m_pmemory;
       sp(::gen::memory_file)        m_pmemoryfileIn;
       sp(::gen::memory_file)        m_pmemoryfileOut;
@@ -23,14 +23,14 @@ namespace ex2
       virtual ~transfer_file();
 
 
-      virtual file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
       virtual file_size get_length() const;
 
 
    };
 
 
-} // namespace ex2
+} // namespace gen
 
 
 

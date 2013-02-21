@@ -8,7 +8,7 @@ namespace http
    /** Parse/store a http query_string/form-data body. 
       \ingroup webserver */
    class CLASS_DECL_ca form :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       form(::ca::application * papp);
@@ -33,7 +33,7 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
-      using ::radix::object::request;
+      using ::gen::object::request;
       gen::relation_set & get();
       gen::relation_set & post();
       gen::relation_set & request();

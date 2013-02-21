@@ -47,9 +47,9 @@ namespace libcompress
          uint32_t m_Value;
          uint32_t m_BitPos;
       public:
-         ::ex1::in_buffer m_Stream;
+         ::gen::in_buffer m_Stream;
          bool Create(uint32_t bufferSize) { return m_Stream.Create(bufferSize); }
-         void SetStream(::ex1::reader *inStream) { m_Stream.SetStream(inStream);}
+         void SetStream(::gen::reader *inStream) { m_Stream.SetStream(inStream);}
          void ReleaseStream()
          {
             m_Stream.ReleaseStream();
@@ -104,7 +104,7 @@ namespace libcompress
          uint32_t Code;
          uint32_t Low;
          bit_decoder bitDecoder;
-         ::ex1::SRes Res;
+         ::gen::SRes Res;
 
       public:
          void InitRangeCoder()
@@ -163,7 +163,7 @@ namespace libcompress
          uint64_t _lzSize;
          uint64_t _unpackSize;
          uint64_t _writtenFileSize; // if it's > _unpackSize, then _unpackSize only written
-         ::ex1::writer * _outStream;
+         ::gen::writer * _outStream;
          huffman::decoder<kNumHuffmanBits, kMainTableSize> m_MainDecoder;
          huffman::decoder<kNumHuffmanBits, kDistTableSize> m_DistDecoder;
          huffman::decoder<kNumHuffmanBits, kAlignTableSize> m_AlignDecoder;
@@ -228,10 +228,10 @@ namespace libcompress
             m_InBitStream.bitDecoder.ReleaseStream();
          }
 
-         virtual ex1::HRes Code(::ex1::reader *inStream, ::ex1::writer *outStream,
+         virtual gen::HRes Code(::gen::reader *inStream, ::gen::writer *outStream,
             const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
-         virtual ex1::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+         virtual gen::HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
          void CopyBlock(uint32_t distance, uint32_t len)
          {

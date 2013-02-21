@@ -20,5 +20,5 @@ public:
    virtual FileManagerInterface * GetFileManager();
    virtual ::filemanager::document * GetFileManagerDoc();
 
-   void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
+   void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
 };

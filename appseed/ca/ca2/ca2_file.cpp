@@ -43,14 +43,14 @@ namespace ca4
    string file::md5(const char * psz)
    {
 
-      ex1::filesp spfile(get_app());
+      gen::filesp spfile(get_app());
 
       try
       {
-         if(!spfile->open(psz, ::ex1::file::type_binary | ::ex1::file::mode_read))
+         if(!spfile->open(psz, ::gen::file::type_binary | ::gen::file::mode_read))
             return "";
       }
-      catch(ex1::file_exception * pe)
+      catch(gen::file_exception * pe)
       {
          gen::del(pe);
          return "";
@@ -90,7 +90,7 @@ namespace ca4
    void file::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::ca::application * papp)
    {
 
-      ex1::filesp spfile = App(papp).file().get_file(pszFile, ::ex1::file::mode_create | ::ex1::file::mode_write  | ::ex1::file::type_binary);
+      gen::filesp spfile = App(papp).file().get_file(pszFile, ::gen::file::mode_create | ::gen::file::mode_write  | ::gen::file::type_binary);
 
       if(spfile.is_null())
          throw "failed";
@@ -101,9 +101,9 @@ namespace ca4
 
       ::crypto::md5::context ctx(get_app());
 
-      write_ex1_string(spfile, NULL, strVersion);
+      write_gen_string(spfile, NULL, strVersion);
 
-      ex1::filesp file2(get_app());
+      gen::filesp file2(get_app());
 
       ::primitive::memory_size iBufSize = 1024 * 1024;
 
@@ -126,10 +126,10 @@ namespace ca4
             continue;
          write_n_number(spfile, NULL, 1);
          iPos = spfile->get_position();
-         write_ex1_string(spfile, NULL, strMd5);
+         write_gen_string(spfile, NULL, strMd5);
          ctx.reset();
-         write_ex1_string(spfile, &ctx, straRelative[i]);
-         if(!file2->open(stra[i], ::ex1::file::mode_read | ::ex1::file::type_binary))
+         write_gen_string(spfile, &ctx, straRelative[i]);
+         if(!file2->open(stra[i], ::gen::file::mode_read | ::gen::file::type_binary))
             throw "failed";
          write_n_number(spfile, &ctx, (int32_t) file2->get_length());
          while((uiRead = file2->read(buf, iBufSize)) > 0)
@@ -137,9 +137,9 @@ namespace ca4
             spfile->write(buf, uiRead);
             ctx.update(buf, uiRead);
          }
-         spfile->seek(iPos, ::ex1::seek_begin);
+         spfile->seek(iPos, ::gen::seek_begin);
          strMd5 = ctx.to_hex();
-         write_ex1_string(spfile, NULL, strMd5);
+         write_gen_string(spfile, NULL, strMd5);
          spfile->seek_to_end();
 
       }
@@ -149,10 +149,10 @@ namespace ca4
    void file::ftd(const char * pszDir, const char * pszFile, ::ca::application * papp)
    {
       string strVersion;
-      ex1::filesp spfile = App(papp).file().get_file(pszFile, ::ex1::file::mode_read  | ::ex1::file::type_binary);
+      gen::filesp spfile = App(papp).file().get_file(pszFile, ::gen::file::mode_read  | ::gen::file::type_binary);
       if(spfile.is_null())
          throw "failed";
-      read_ex1_string(spfile, NULL, strVersion);
+      read_gen_string(spfile, NULL, strVersion);
       int64_t n;
       string strRelative;
       string strMd5;
@@ -162,7 +162,7 @@ namespace ca4
       buf.allocate(iBufSize);
       int64_t iLen;
       ::crypto::md5::context ctx(get_app());
-      ex1::filesp file2(get_app());
+      gen::filesp file2(get_app());
       ::primitive::memory_size uiRead;
       if(strVersion == "fileset v1")
       {
@@ -171,12 +171,12 @@ namespace ca4
             read_n_number(spfile, NULL, n);
             if(n == 2)
                break;
-            read_ex1_string(spfile, NULL, strMd5);
+            read_gen_string(spfile, NULL, strMd5);
             ctx.reset();
-            read_ex1_string(spfile, &ctx, strRelative);
+            read_gen_string(spfile, &ctx, strRelative);
             string strPath = System.dir().path(pszDir, strRelative);
             App(papp).dir().mk(System.dir().name(strPath));
-            if(!file2->open(strPath, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write))
+            if(!file2->open(strPath, ::gen::file::mode_create | ::gen::file::type_binary | ::gen::file::mode_write))
                throw "failed";
             read_n_number(spfile, &ctx, iLen);
             while(iLen > 0)
@@ -196,7 +196,7 @@ namespace ca4
       }
    }
 
-   void file::write_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber)
+   void file::write_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber)
    {
 
       string str;
@@ -214,7 +214,7 @@ namespace ca4
 
    }
 
-   void file::read_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
+   void file::read_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
    {
       
       uint64_t uiRead;
@@ -250,7 +250,7 @@ namespace ca4
 
    }
 
-   void file::write_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str)
+   void file::write_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str)
    {
       count iLen = str.get_length();
       write_n_number(pfile, pctx, iLen);
@@ -261,7 +261,7 @@ namespace ca4
       }
    }
 
-   void file::read_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str)
+   void file::read_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str)
    {
       int64_t iLen;
       read_n_number(pfile, pctx, iLen);

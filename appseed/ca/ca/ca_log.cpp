@@ -71,16 +71,16 @@ namespace ca
       set_trace_category(gen::trace::category_User4, "category_User4", 0);
 
 
-      set_trace_category(radix::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
-      set_trace_category(radix::trace::category_WinMsg , "category_WinMsg", 0);        // Windows message tracing
-      set_trace_category(radix::trace::category_CmdRouting , "category_CmdRouting", 0);    // Windows command routing trace
-      set_trace_category(radix::trace::category_Ole , "category_Ole", 0);          // special OLE callback trace
-      set_trace_category(radix::trace::category_Database , "category_Database", 0);     // special database trace
-      set_trace_category(radix::trace::category_Internet , "category_Internet", 0);     // special Internet client trace
-      set_trace_category(radix::trace::category_dumpContext , "category_dumpContext", 0);   // traces from dump_context
-      set_trace_category(radix::trace::category_Memory , "category_Memory", 0);      // generic non-kernel primitive::memory traces
-      set_trace_category(radix::trace::category_Html , "category_Html", 0);         // Html traces
-      set_trace_category(radix::trace::category_Socket , "category_Socket", 0);      // socket traces
+      set_trace_category(gen::trace::category_AppMsg, "AppMsg", 0);        // main message pump trace (includes DDE)
+      set_trace_category(gen::trace::category_WinMsg , "category_WinMsg", 0);        // Windows message tracing
+      set_trace_category(gen::trace::category_CmdRouting , "category_CmdRouting", 0);    // Windows command routing trace
+      set_trace_category(gen::trace::category_Ole , "category_Ole", 0);          // special OLE callback trace
+      set_trace_category(gen::trace::category_Database , "category_Database", 0);     // special database trace
+      set_trace_category(gen::trace::category_Internet , "category_Internet", 0);     // special Internet client trace
+      set_trace_category(gen::trace::category_dumpContext , "category_dumpContext", 0);   // traces from dump_context
+      set_trace_category(gen::trace::category_Memory , "category_Memory", 0);      // generic non-kernel primitive::memory traces
+      set_trace_category(gen::trace::category_Html , "category_Html", 0);         // Html traces
+      set_trace_category(gen::trace::category_Socket , "category_Socket", 0);      // socket traces
 
    }
 
@@ -400,10 +400,10 @@ namespace ca
 
          try
          {
-            if(!plog->m_spfile->open(m_strLogPath, ::ex1::file::type_text
-               | ::ex1::file::mode_write
-               | ::ex1::file::shareDenyWrite | ::ex1::file::mode_create | ::ex1::file::modeNoTruncate
-               | ::ex1::file::defer_create_directory))
+            if(!plog->m_spfile->open(m_strLogPath, ::gen::file::type_text
+               | ::gen::file::mode_write
+               | ::gen::file::shareDenyWrite | ::gen::file::mode_create | ::gen::file::modeNoTruncate
+               | ::gen::file::defer_create_directory))
             {
                if(plog->m_spfile->IsOpened())
                {

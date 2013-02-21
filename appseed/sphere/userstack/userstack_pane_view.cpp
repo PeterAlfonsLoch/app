@@ -26,7 +26,7 @@ namespace userstack
       m_ppropform       = NULL;
       m_dataid          = "ca2_fontopus_votagus::bergedge::pane_view";
 
-      get_data()->m_matchanyRestore.add(new ::ex1::match::prefix("app:"));
+      get_data()->m_matchanyRestore.add(new ::gen::match::prefix("app:"));
 
    }
 
@@ -77,7 +77,7 @@ namespace userstack
 
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
+   void pane_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
    {
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)

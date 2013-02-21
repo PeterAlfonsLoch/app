@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "radix_bstr.h"
+#include "gen_bstr.h"
 
 #ifdef WINDOWS
 

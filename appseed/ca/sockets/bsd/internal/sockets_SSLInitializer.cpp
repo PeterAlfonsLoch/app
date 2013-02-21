@@ -159,9 +159,9 @@ namespace sockets
    //TRACE("SSLInitializer: no random file generated\n");
    //   }
 
-      ex1::filesp spfile(get_app());
+      gen::filesp spfile(get_app());
 
-      spfile->open(m_rand_file, ::ex1::file::type_binary | ::ex1::file::mode_read);
+      spfile->open(m_rand_file, ::gen::file::type_binary | ::gen::file::mode_read);
 
 
       //memstorage.FullLoad(spfile);

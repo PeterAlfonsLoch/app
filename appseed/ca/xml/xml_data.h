@@ -16,8 +16,8 @@ namespace ca2
       virtual ~xml_data();
 
 
-      virtual void write(ex1::byte_output_stream & ostream);
-      virtual void read(ex1::byte_input_stream & istream);
+      virtual void write(gen::byte_output_stream & ostream);
+      virtual void read(gen::byte_input_stream & istream);
 
 
    };

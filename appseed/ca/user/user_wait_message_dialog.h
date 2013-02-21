@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca wait_message_dialog :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
    uint32_t       m_dwStartTime;

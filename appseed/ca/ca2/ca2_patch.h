@@ -6,7 +6,7 @@ namespace ca4
 
 
    class CLASS_DECL_ca patch :
-      public ::radix::object
+      public ::gen::object
    {
    public:
       // 0 for success

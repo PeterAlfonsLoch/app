@@ -12,8 +12,8 @@ namespace gcom
       Graphics::Graphics(Main & main) :
          ::ca::ca(main.get_app()),
          Helper(main),
-         m_mutex1Back(main.get_app()),
-         m_mutex2Buffer(main.get_app()),
+         m_mutgenBack(main.get_app()),
+         m_mutgenBuffer(main.get_app()),
          m_mutex3Source(main.get_app()),
          m_mutex4Transfer(main.get_app())
       {
@@ -99,7 +99,7 @@ namespace gcom
          int32_t cx = rectClient.width();
          int32_t cy = rectClient.height();
 
-         single_lock sl1Back(&m_mutex1Back, TRUE);
+         single_lock sl1Back(&m_mutgenBack, TRUE);
          ::ca::graphics & dcBack = GetBackDC();
          GetDib(_graphics::DibBack)->create(cx, cy);
          dcBack.FillSolidRect(0, 0, cx, cy, ARGB(0, 0, 0, 0));
@@ -134,8 +134,8 @@ namespace gcom
       void Graphics::OnDestroy()
       {
 
-         single_lock sl1Back(&m_mutex1Back, TRUE);
-         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
+         single_lock sl1Back(&m_mutgenBack, TRUE);
+         single_lock sl2Buffer(&m_mutgenBuffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
       }
@@ -162,7 +162,7 @@ namespace gcom
          //         const int32_t ciBufferBitmapInfoNotAvailable = 5;
          //         const int32_t ciScaledBitmapInfoNotAvailable = 6;
 
-         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
+         single_lock sl2Buffer(&m_mutgenBuffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
          //HelperGetMain().DeferCheckLayout();
@@ -401,8 +401,8 @@ namespace gcom
          int32_t cx = rectClient.width();
          int32_t cy = rectClient.height();
 
-         single_lock sl1Back(&m_mutex1Back, TRUE);
-         single_lock sl2Buffer(&m_mutex2Buffer, TRUE);
+         single_lock sl1Back(&m_mutgenBack, TRUE);
+         single_lock sl2Buffer(&m_mutgenBuffer, TRUE);
          single_lock sl3Source(&m_mutex3Source, TRUE);
 
 
@@ -478,8 +478,8 @@ namespace gcom
 
       void Graphics::BufferToBack()
       {
-         single_lock sl1Back(&m_mutex1Back, FALSE);
-         single_lock sl2Buffer(&m_mutex2Buffer, FALSE);
+         single_lock sl1Back(&m_mutgenBack, FALSE);
+         single_lock sl2Buffer(&m_mutgenBuffer, FALSE);
          if(!sl1Back.lock(millis(25)))
             return;
          if(!sl2Buffer.lock(millis(25)))
@@ -490,7 +490,7 @@ namespace gcom
       void Graphics::BackToTransfer()
       {
 
-         single_lock sl1Back(&m_mutex1Back, FALSE);
+         single_lock sl1Back(&m_mutgenBack, FALSE);
 
          if(!sl1Back.lock(millis(25)))
             return;

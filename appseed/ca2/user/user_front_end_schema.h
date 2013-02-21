@@ -6,7 +6,7 @@ namespace user
    class button;
 
    class CLASS_DECL_ca2 front_end_schema :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

@@ -194,7 +194,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
       return FALSE;
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
-   m_pthread = dynamic_cast < ::radix::application * > (get_app());
+   m_pthread = dynamic_cast < ::gen::application * > (get_app());
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -305,7 +305,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    m_bCreate = true;
    if(!create_message_window())
       return FALSE;
-   m_pthread = dynamic_cast < ::radix::application * > (get_app());
+   m_pthread = dynamic_cast < ::gen::application * > (get_app());
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -414,7 +414,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    m_bCreate = true;
    if(!create_message_window())
       return false;
-   m_pthread = dynamic_cast < ::radix::application * > (get_app());
+   m_pthread = dynamic_cast < ::gen::application * > (get_app());
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -847,7 +847,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 #ifdef WINDOWSEX
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
 
 #endif
 
@@ -934,7 +934,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
 
 }
 

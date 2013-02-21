@@ -45,7 +45,7 @@ void folder_selection_list_view::Initialize(FileManagerTemplate * ptemplate, con
 
    m_plistview->_001UpdateColumns();
 
-   if(data_get("InitialBrowsePath", ::radix::system::idEmpty, str))
+   if(data_get("InitialBrowsePath", ::gen::system::idEmpty, str))
    {
       FileManagerBrowse(str);
    }

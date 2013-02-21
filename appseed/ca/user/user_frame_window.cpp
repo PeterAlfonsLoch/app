@@ -462,7 +462,7 @@ bool frame_window::create(const char * lpszClassName, const char * lpszWindowNam
    if(!::user::interaction::CreateEx(dwExStyle, lpszClassName, lpszWindowName, dwStyle, rect, pParentWnd, id(), pContext))
    {
 
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: failed to create frame_window.\n");
 
       return FALSE;
 
@@ -484,7 +484,7 @@ bool frame_window::create(const char * lpszClassName, const char * lpszWindowNam
    ::user::interaction * pview = dynamic_cast < ::user::interaction * > (System.alloc(pContext->m_typeinfoNewView));
    if (pview == NULL)
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: Dynamic create of ::view type %hs failed.\n",
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: Dynamic create of ::view type %hs failed.\n",
          pContext->m_typeinfoNewView.name());
       return NULL;
    }
@@ -494,7 +494,7 @@ bool frame_window::create(const char * lpszClassName, const char * lpszWindowNam
    if (!pview->create(NULL, NULL, __WS_DEFAULT_VIEW,
       rect(0,0,0,0), this, nID, pContext))
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: could not create ::view for frame.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: could not create ::view for frame.\n");
       return NULL;        // can't continue without a ::view
    }
 
@@ -551,7 +551,7 @@ int32_t frame_window::OnCreateHelper(LPCREATESTRUCT lpcs, ::ca::create_context* 
    // create special children first
    if (!OnCreateClient(lpcs, pContext))
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Failed to create client pane/::view for frame.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "Failed to create client pane/::view for frame.\n");
       return -1;
    }
 
@@ -695,7 +695,7 @@ void frame_window::InitialUpdateFrame(::user::document_interface * pDoc, bool bM
       // finally, activate the frame
       // (send the default show command unless the main desktop ::ca::window)
       int32_t nCmdShow = -1;      // default
-      ::radix::application* pApp = &System;
+      ::gen::application* pApp = &System;
       if (pApp != NULL && pApp->GetMainWnd() == this)
       {
          nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
@@ -898,7 +898,7 @@ bool frame_window::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
       return TRUE;
 
    // last but not least, pump through cast
-   ::radix::application* pApp = dynamic_cast < ::radix::application * > (get_app());
+   ::gen::application* pApp = dynamic_cast < ::gen::application * > (get_app());
    if (pApp != NULL && pApp->_001OnCmdMsg(pcmdmsg))
       return TRUE;
 
@@ -948,7 +948,7 @@ LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
 
 
    // deactivate current active ::view
-   ::radix::thread *pThread = System.GetThread();
+   ::gen::thread *pThread = System.GetThread();
    ASSERT(pThread);
    if (pThread->GetMainWnd() == this)
    {
@@ -1097,7 +1097,7 @@ void frame_window::OnDropFiles(HDROP hDropInfo)
 // query end session for main frame will attempt to close it all down
 bool frame_window::OnQueryEndSession()
 {
-   ::radix::application* pApp = &System;
+   ::gen::application* pApp = &System;
    if (pApp != NULL && pApp->GetMainWnd() == this)
       return pApp->save_all_modified();
 
@@ -1110,7 +1110,7 @@ void frame_window::OnEndSession(bool bEnding)
    if (!bEnding)
       return;
 
-   ::radix::application* pApp = &System;
+   ::gen::application* pApp = &System;
    if (pApp != NULL && pApp->GetMainWnd() == this)
    {
       pApp->close_all_documents(TRUE);
@@ -1129,7 +1129,7 @@ LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
 
 #ifdef WINDOWSEX
 
-   ::radix::application* pApp = &System;
+   ::gen::application* pApp = &System;
    if (pApp != NULL &&
       LOWORD(lParam) != 0 && HIWORD(lParam) != 0 &&
       (ATOM)LOWORD(lParam) == pApp->m_atomApp &&
@@ -1196,7 +1196,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // don't execute the command when the ::ca::window is disabled
    if (!IsWindowEnabled())
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::ca::window is disabled.\n",
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: DDE command '%s' ignored because ::ca::window is disabled.\n",
          strCommand.GetString());
       return 0;
    }
@@ -1204,7 +1204,7 @@ LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // execute the command
    LPTSTR lpszCommand = strCommand.GetBuffer();
    if (!System.OnDDECommand(lpszCommand))
-      TRACE(::radix::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
+      TRACE(::gen::trace::category_AppMsg, 0, "Error: failed to execute DDE command '%s'.\n", lpszCommand);
    strCommand.ReleaseBuffer();
 
 #else
@@ -1329,7 +1329,7 @@ void frame_window::GetMessageString(UINT nID, string & rMessage) const
    else
    {
       // not found
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: no message line prompt for ID 0x%04X.\n", nID);
    }
    rMessage.ReleaseBuffer();*/
 }

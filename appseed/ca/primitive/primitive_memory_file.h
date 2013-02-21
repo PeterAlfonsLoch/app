@@ -4,7 +4,7 @@ namespace primitive
 {
 
    class CLASS_DECL_ca memory_file :
-      virtual public ex1::file,
+      virtual public gen::file,
       virtual public primitive::memory_container
    {
    protected:
@@ -26,9 +26,9 @@ namespace primitive
       virtual bool IsValid() const;
       memory_size remove_begin(void * lpBuf, ::primitive::memory_size uiCount);
       void load_string(string & str);
-      using ::ex1::request_interface::create;
+      using ::gen::request_interface::create;
       void create(::primitive::memory_size iSize = -1);
-      file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+      file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
       file_position get_position() const;
 
       virtual string GetFilePath() const;

@@ -20,7 +20,7 @@ void CLASS_DECL_ca __cdecl _ca2_purecall_()
     throw simple_exception(::ca::get_thread_app());
 }
 
-namespace ex1
+namespace gen
 {
 
    extern HMODULE g_hmoduleOs;
@@ -871,7 +871,7 @@ namespace plugin
       try
       {
 
-         ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
+         ::gen::thread * pthread = dynamic_cast < ::gen::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
 
          if(pthread->m_bRun)
          {
@@ -916,7 +916,7 @@ namespace plugin
       {
          try
          {
-            if(!::FreeLibrary(ex1::g_hmoduleOs))
+            if(!::FreeLibrary(gen::g_hmoduleOs))
             {
                break;
             }

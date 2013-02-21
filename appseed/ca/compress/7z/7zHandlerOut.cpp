@@ -82,17 +82,17 @@ namespace n7z
    static inline bool IsCopyMethod(const string &methodName)
    { return (methodName.CompareNoCase(kCopyMethod) == 0); }
 
-   ex1::HRes handler::GetFileTimeType(uint32_t *type)
+   gen::HRes handler::GetFileTimeType(uint32_t *type)
    {
       *type = ::libcompress::NFileTimeType::kWindows;
       return S_OK;
    }
 
-   ex1::HRes handler::SetCompressionMethod(
+   gen::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
       CCompressionMethodMode &headerMethod)
    {
-      ex1::HRes res = SetCompressionMethod(methodMode, _methods
+      gen::HRes res = SetCompressionMethod(methodMode, _methods
 #ifndef _7ZIP_ST
          , _numThreads
 #endif
@@ -112,7 +112,7 @@ namespace n7z
          oneMethodInfo.Props[NCoderPropID::kNumFastBytes] = (int32_t) kAlgorithmForHeaders;
          oneMethodInfo.Props[NCoderPropID::kDictionarySize] = (int32_t) kDictionaryForHeaders;
          headerMethodInfoVector.add(oneMethodInfo);
-         ex1::HRes res = SetCompressionMethod(headerMethod, headerMethodInfoVector
+         gen::HRes res = SetCompressionMethod(headerMethod, headerMethodInfoVector
 #ifndef _7ZIP_ST
             , 1
 #endif
@@ -122,7 +122,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes handler::SetCompressionMethod(
+   gen::HRes handler::SetCompressionMethod(
       CCompressionMethodMode &methodMode,
       array_ptr_alloc < ::libcompress::COneMethodInfo > &methodsInfo
 #ifndef _7ZIP_ST
@@ -190,7 +190,7 @@ namespace n7z
 
    #define PROPID int32_t
 
-   static ex1::HRes GetTime(::libcompress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64_t &ft, bool &ftDefined)
+   static gen::HRes GetTime(::libcompress::archive_update_callback_interface *updateCallback, int32_t index, bool writeTime, PROPID propID, uint64_t &ft, bool &ftDefined)
    {
       ft = 0;
       ftDefined = false;
@@ -208,7 +208,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes handler::UpdateItems(::ex1::writer *outStream, uint32_t numItems,
+   gen::HRes handler::UpdateItems(::gen::writer *outStream, uint32_t numItems,
       ::libcompress::archive_update_callback_interface *updateCallback)
    {
          const CArchiveDatabaseEx *db = 0;
@@ -416,7 +416,7 @@ namespace n7z
       ::ca::smart_pointer < ::crypto::get_text_password_interface > getPassword;
       getPassword = dynamic_cast < ::crypto::get_text_password_interface * > (updateCallback);
 
-      ex1::HRes res = Update(
+      gen::HRes res = Update(
          _codecsInfo, &_externalCodecs,
 #ifdef _7Z_VOL
          volume ? volume->Stream: 0,
@@ -439,7 +439,7 @@ namespace n7z
       return archive.WriteDatabase(_codecsInfo, &_externalCodecs, newDatabase, options.HeaderMethod, options.HeaderOptions);
    }
 
-   static ex1::HRes GetBindInfoPart(string &srcString, uint32_t &coder, uint32_t &stream)
+   static gen::HRes GetBindInfoPart(string &srcString, uint32_t &coder, uint32_t &stream)
    {
       stream = 0;
       int32_t index = ParseStringToUInt32(srcString, coder);
@@ -457,7 +457,7 @@ namespace n7z
       return S_OK;
    }
 
-   static ex1::HRes GetBindInfo(string &srcString, CBind &bind)
+   static gen::HRes GetBindInfo(string &srcString, CBind &bind)
    {
       RINOK(GetBindInfoPart(srcString, bind.OutCoder, bind.OutStream));
       if (srcString[0] != ':')
@@ -469,7 +469,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes handler::SetProperties(const char **names, const var *values, int32_t numProperties)
+   gen::HRes handler::SetProperties(const char **names, const var *values, int32_t numProperties)
    {
       _binds.remove_all();
       BeforeSetProperty();

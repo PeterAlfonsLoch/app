@@ -15,7 +15,7 @@ single_document_template::~single_document_template()
 {
 #ifdef DEBUG
    if (m_pdocument != NULL)
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
 #endif
 }
 
@@ -125,7 +125,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_new_document())
       {
          // user has been alerted to what failed in on_new_document
-         TRACE(::radix::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
          if (bCreated)
             pFrame->DestroyWindow();    // will destroy ::user::document_interface
          return;
@@ -142,7 +142,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
       {
          // user has been alerted to what failed in on_open_document
-         TRACE(::radix::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
          if (bCreated)
          {
             pFrame->DestroyWindow();    // will destroy ::user::document_interface
@@ -159,7 +159,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
 
             if (!pdocument->on_new_document())
             {
-               TRACE(::radix::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
+               TRACE(::gen::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
                   "to open a ::user::document_interface - trying to continue.\n");
                // assume we can continue
             }
@@ -169,7 +169,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
    }
 
-   ::radix::thread* pThread = System.GetThread();
+   ::gen::thread* pThread = System.GetThread();
    ASSERT(pThread);
    if(bCreated)
    {

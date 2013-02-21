@@ -6,7 +6,7 @@
 
 // from 7-zip
 
-namespace ex1
+namespace gen
 {
 
    template <class T> inline T MyMin(T a, T b)

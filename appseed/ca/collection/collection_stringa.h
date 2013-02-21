@@ -5,7 +5,7 @@
 
 class CLASS_DECL_ca stringa :
    virtual public string_array,
-   virtual public ex1::byte_serializable
+   virtual public gen::byte_serializable
 {
 public:
 
@@ -120,8 +120,8 @@ public:
 
    void replace(const char * lpszSearch, const char * lpszReplace);
 
-   void write(ex1::byte_output_stream & ostream);
-   void read(ex1::byte_input_stream & istream);
+   void write(gen::byte_output_stream & ostream);
+   void read(gen::byte_input_stream & istream);
 
 
    void get_format_string(string & str, const char * lpcszSeparator) const;

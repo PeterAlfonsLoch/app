@@ -128,7 +128,7 @@ void html_document::soft_reload()
    string str = get_html_data()->m_strSource;
    //if(m_propset["bReplaceEx1"])
    {
-      get_html_data()->m_propertyset.replace_ex1(str);
+      get_html_data()->m_propertyset.replace_gen(str);
    }
    TRACE0(str);
    get_html_data()->load(str);

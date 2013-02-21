@@ -3,7 +3,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -64,5 +64,5 @@ namespace ex1
       return newVirtPos;
    }
 
-} // namespace ex1
+} // namespace gen
 

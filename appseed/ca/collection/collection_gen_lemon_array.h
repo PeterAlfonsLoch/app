@@ -7,7 +7,7 @@ namespace gen
 
    namespace lemon
    {
-      class CLASS_DECL_ca array  : virtual public ::radix::object
+      class CLASS_DECL_ca array  : virtual public ::gen::object
       {
       public:
          array(::ca::application * papp);

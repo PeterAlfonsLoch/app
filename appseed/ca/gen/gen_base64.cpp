@@ -137,7 +137,7 @@ namespace gen
 
    }
 
-   void base64::encode(ex1::plain_text_output_stream & ostream, ex1::byte_input_stream & istream)
+   void base64::encode(gen::plain_text_output_stream & ostream, gen::byte_input_stream & istream)
    {
       int32_t i,hiteof= FALSE;
       byte igroup[3],ogroup[4];
@@ -179,7 +179,7 @@ namespace gen
    }
 
 
-   void base64::decode(ex1::byte_output_stream & ostream, ex1::plain_text_input_stream & istream)
+   void base64::decode(gen::byte_output_stream & ostream, gen::plain_text_input_stream & istream)
    {
       int32_t i;
       byte a[4],b[4],o[3];
@@ -291,7 +291,7 @@ namespace gen
 
    }
 
-   string base64::serialize(ex1::byte_serializable & serializable)
+   string base64::serialize(gen::byte_serializable & serializable)
    {
       
       gen::byte_stream_memory_file file(&System);
@@ -308,7 +308,7 @@ namespace gen
 
    }
 
-   void base64::unserialize(ex1::byte_serializable & serializable, const char * pszBase64)
+   void base64::unserialize(gen::byte_serializable & serializable, const char * pszBase64)
    {
       
       gen::byte_stream_memory_file file(&System);

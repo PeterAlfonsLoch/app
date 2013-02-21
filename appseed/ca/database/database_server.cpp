@@ -5,7 +5,7 @@ namespace database
 {
 
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::ex1::writable & writable, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ::gen::writable & writable, update_hint * puh)
    {
       return var_load(pclient, idSection, id, idIndex, writable, puh);
    }
@@ -27,17 +27,17 @@ namespace database
       return true;
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ex1::byte_output_stream & ostream, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, gen::byte_output_stream & ostream, update_hint * puh)
    {
-      return data_server_load(pclient, idSection, id, idIndex, (ex1::writable &) ostream, puh);
+      return data_server_load(pclient, idSection, id, idIndex, (gen::writable &) ostream, puh);
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ex1::plain_text_output_stream & ostream, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, gen::plain_text_output_stream & ostream, update_hint * puh)
    {
-      return data_server_load(pclient, idSection, id, idIndex, (ex1::writable &) ostream, puh);
+      return data_server_load(pclient, idSection, id, idIndex, (gen::writable &) ostream, puh);
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ex1::byte_serializable & obj, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, gen::byte_serializable & obj, update_hint * puh)
    {
       ::gen::byte_stream_memory_file memfile(get_app());
       if(!data_server_load(pclient, idSection, id, idIndex, memfile, puh))
@@ -54,7 +54,7 @@ namespace database
       return memfile.get_position() == memfile.get_length();
    }
 
-   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, ex1::plain_text_serializable & obj, update_hint * puh)
+   bool server::data_server_load(client * pclient, class id idSection, class id id, class id idIndex, gen::plain_text_serializable & obj, update_hint * puh)
    {
       _template_std_stringstream strstream;
       if(!data_server_load(pclient, idSection, id, idIndex, strstream, puh))
@@ -71,7 +71,7 @@ namespace database
       return true;
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::ex1::readable & readable, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ::gen::readable & readable, update_hint * puh)
    {
       return var_save(pclient, idSection, id, idIndex, readable, puh);
    }
@@ -86,17 +86,17 @@ namespace database
       return true;
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ex1::byte_input_stream & istream, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, gen::byte_input_stream & istream, update_hint * puh)
    {
-      return data_server_save(pclient, idSection, id, idIndex, (ex1::readable &) istream, puh);
+      return data_server_save(pclient, idSection, id, idIndex, (gen::readable &) istream, puh);
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ex1::plain_text_input_stream & istream, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, gen::plain_text_input_stream & istream, update_hint * puh)
    {
-      return data_server_save(pclient, idSection, id, idIndex, (ex1::readable &) istream, puh);
+      return data_server_save(pclient, idSection, id, idIndex, (gen::readable &) istream, puh);
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ex1::byte_serializable & obj, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, gen::byte_serializable & obj, update_hint * puh)
    {
       ::gen::byte_stream_memory_file memfile(get_app());
       obj.write(memfile);
@@ -106,7 +106,7 @@ namespace database
       return true;
    }
 
-   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, ex1::plain_text_serializable & obj, update_hint * puh)
+   bool server::data_server_save(client * pclient, class id idSection, class id id, class id idIndex, gen::plain_text_serializable & obj, update_hint * puh)
    {
       _template_std_stringstream strstream;
       obj.write(strstream);
@@ -170,20 +170,20 @@ namespace database
       return data_server_save(pclient, idSection, id, idIndex, var, phint);
    }
 
-   bool server::var_load(client * pclient, class id idSection, class id id, class id idIndex, ex1::writable & writable, update_hint * puh)
+   bool server::var_load(client * pclient, class id idSection, class id id, class id idIndex, gen::writable & writable, update_hint * puh)
    {
       var var;
       if(!data_server_load(pclient, idSection, id, idIndex, var, puh))
          return false;
-      ::ex1::byte_output_stream ostream(&writable);
+      ::gen::byte_output_stream ostream(&writable);
       var.write(ostream);
       return true;
    }
 
-   bool server::var_save(client * pclient, class id idSection, class id id, class id idIndex, ex1::readable & readable, update_hint * puh)
+   bool server::var_save(client * pclient, class id idSection, class id id, class id idIndex, gen::readable & readable, update_hint * puh)
    {
       var var;
-      ::ex1::byte_input_stream istream(&readable);
+      ::gen::byte_input_stream istream(&readable);
       var.read(istream);
       if(!data_server_save(pclient, idSection, id, idIndex, var, puh))
          return false;

@@ -4,7 +4,7 @@ class SimpleMenu;
 class image_list;
 
 class CLASS_DECL_ca2 BaseMenuCentral :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
    static BaseMenuCentral * GetMenuCentral(::ca::application * papp);

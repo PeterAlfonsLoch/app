@@ -4,18 +4,18 @@
 #ifdef LINUX
 
 
-namespace ex1
+namespace gen
 {
 
 
     class file;
 
 
-} // namespace ex1
+} // namespace gen
 
 
 
-typedef ::ex1::file * HFILE;
+typedef ::gen::file * HFILE;
 
 
 #endif
@@ -27,7 +27,7 @@ namespace zip
    class File;
 
    class CLASS_DECL_ca InFile :
-      public ex1::file
+      public gen::file
    {
    public:
 
@@ -62,7 +62,7 @@ namespace zip
       virtual bool zip_open(const char *,UINT);
       virtual bool zip_open(File * pzfile, const char * lpcszFileName);
 
-      virtual bool unzip_open(::ex1::file * pfile);
+      virtual bool unzip_open(::gen::file * pfile);
       virtual bool unzip_open(const char *,UINT);
       virtual bool unzip_open(File * pzfile, const char * lpcszFileName);
 
@@ -70,14 +70,14 @@ namespace zip
 
       virtual void add_file(const char * pszDir, const char * pszRelative);
 
-      bool dump(ex1::file * pfile);
+      bool dump(gen::file * pfile);
 
-      virtual ex1::file * Duplicate() const;
+      virtual gen::file * Duplicate() const;
 
       File * get_zip_file();
       const File * get_zip_file() const;
 
-      virtual file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -101,7 +101,7 @@ namespace zip
 
 
    private:
-      using ::ex1::file::open;
+      using ::gen::file::open;
 
    };
 

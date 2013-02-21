@@ -19,7 +19,7 @@ public:
    void FileManagerBrowse(const char * lpcwstr);
 
 
-   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
+   virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
    virtual ~FileManagerLeftView();
 #ifdef DEBUG
    virtual void assert_valid() const;

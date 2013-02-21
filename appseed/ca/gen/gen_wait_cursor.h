@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca wait_cursor :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
    wait_cursor(::ca::application * papp);

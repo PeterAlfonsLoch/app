@@ -316,11 +316,11 @@ void memory_state::dumpAllObjectsSince() const
 __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext)
 {
    ___ENUM_CONTEXT* p = (___ENUM_CONTEXT*)pContext;
-   (*p->m_pfn)((::radix::object*)pObject, p->m_pContext);
+   (*p->m_pfn)((::gen::object*)pObject, p->m_pContext);
 }
 
 void _API
-__do_for_all_objects(void (c_cdecl *pfn)(::radix::object*, void *), void * pContext)
+__do_for_all_objects(void (c_cdecl *pfn)(::gen::object*, void *), void * pContext)
 {
    if (pfn == NULL)
    {

@@ -1,11 +1,11 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    // uiExpectedSize = (uint64_t) -1 - initially unknown size
    // uiExpectedSize = (uint64_t) -2 - permanent or until end unknown size
-   timeout_file::timeout_file(::ca::application * papp, ex1::file * pfile, uint64_t uiExpectedSize) :
+   timeout_file::timeout_file(::ca::application * papp, gen::file * pfile, uint64_t uiExpectedSize) :
       ca(papp)
    {
       UNREFERENCED_PARAMETER(uiExpectedSize);
@@ -32,22 +32,22 @@ namespace ex1
       return m_pfile != NULL;
    }
 
-   file_position timeout_file::seek(file_offset lOff, ::ex1::e_seek nFrom)
+   file_position timeout_file::seek(file_offset lOff, ::gen::e_seek nFrom)
    {
       single_lock sl(m_spmutex, TRUE);
       uint64_t dwFuture;
       switch(nFrom)
       {
-      case ::ex1::seek_begin:
+      case ::gen::seek_begin:
          dwFuture = lOff;
          break;
-      case ::ex1::seek_current:
+      case ::gen::seek_current:
          {
             uint64_t dwCurrent = m_pfile->get_position();
             dwFuture = dwCurrent + lOff;
          }
          break;
-      case ::ex1::seek_end:
+      case ::gen::seek_end:
          {
             uint64_t dwCurrent = get_length(&sl);
             if(dwCurrent == ((uint64_t)-1))
@@ -68,7 +68,7 @@ namespace ex1
       {
          if(dwFuture == m_pfile->get_position())
             break;
-         m_pfile->seek(dwFuture, ::ex1::seek_begin);
+         m_pfile->seek(dwFuture, ::gen::seek_begin);
          if(dwFuture == m_pfile->get_position())
             break;
          Sleep(max(11, m_dwSleep));
@@ -178,4 +178,4 @@ namespace ex1
       m_uiExpectedSize = dwNewLen;
    }
 
-} // namespace ex1
+} // namespace gen

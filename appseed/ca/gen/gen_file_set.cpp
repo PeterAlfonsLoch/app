@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex2
+namespace gen
 {
 
    file_set::file_set()
@@ -87,4 +87,4 @@ namespace ex2
    }
 
 
-} // namespace ex2
+} // namespace gen

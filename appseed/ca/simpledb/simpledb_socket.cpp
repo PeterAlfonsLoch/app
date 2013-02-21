@@ -229,8 +229,8 @@ namespace simpledb
       {
          outheader("Content-Type") = "application/x-jar";
       }
-      ex1::filesp spfile(get_app());
-      if(!spfile->open(lpcsz, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
+      gen::filesp spfile(get_app());
+      if(!spfile->open(lpcsz, ::gen::file::type_binary | ::gen::file::mode_read | ::gen::file::shareDenyNone))
       {
          return false;
       }
@@ -253,7 +253,7 @@ namespace simpledb
                if(iStart >= natural(iLen))
                   continue;
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ex1::seek_begin);
+               spfile->seek(iStart, gen::seek_begin);
                primitive::memory_size uiRead;
                gen::memory_file memfile(get_app());
                primitive::memory_position iPos = iStart;
@@ -306,7 +306,7 @@ namespace simpledb
             if(iStart < natural(iLen))
             {
                // iEnd > iLen is not verified because file may be growing
-               spfile->seek(iStart, ex1::seek_begin);
+               spfile->seek(iStart, gen::seek_begin);
                primitive::memory_size uiRead;
                gen::memory_file memfile(get_app());
                primitive::memory_position iPos = iStart;

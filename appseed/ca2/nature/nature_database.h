@@ -7,7 +7,7 @@ namespace nature
 
 
    class CLASS_DECL_ca2 database :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       database(::ca::application * papp);

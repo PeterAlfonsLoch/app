@@ -100,7 +100,7 @@ public:
         there is only one.
  */
 class CLASS_DECL_ca lite_html_reader :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 

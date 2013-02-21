@@ -52,16 +52,16 @@ class CLASS_DECL_ca gzip
 public:
 
 
-   ex1::byte_output_stream       m_ostream;
+   gen::byte_output_stream       m_ostream;
    primitive::memory             m_memory;
    z_stream                      m_zstream;
    int32_t                           m_z_err;   /* error code for last stream operation */
    uint32_t                      m_crc;     /* crc32 of uncompressed data */
 
 
-   gzip(ex1::file * pfileDest);
-   gzip(ex1::writer & ostreamDest);
-   gzip(ex1::byte_output_stream & ostreamDest);
+   gzip(gen::file * pfileDest);
+   gzip(gen::writer & ostreamDest);
+   gzip(gen::byte_output_stream & ostreamDest);
    virtual ~gzip();
 
    bool write(void * buf, ::primitive::memory_size iSize);

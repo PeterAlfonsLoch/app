@@ -4,7 +4,7 @@
 
 //#include "../IStream.h"
 
-namespace ex1
+namespace gen
 {
 
    namespace bitm

@@ -400,8 +400,8 @@ public:
    bool operator > (int32_t i) const;
    bool operator > (bool b) const;
 
-   void write(ex1::byte_output_stream & ostream);
-   void read(ex1::byte_input_stream & ostream);
+   void write(gen::byte_output_stream & ostream);
+   void read(gen::byte_input_stream & ostream);
 
    string implode(const char * pszGlue) const;
    var explode(const char * pszGlue, bool bAddEmpty = true) const;

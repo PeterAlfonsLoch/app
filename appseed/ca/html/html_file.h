@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_ca file :
-      virtual public ::radix::object
+      virtual public ::gen::object
 #if defined(LINUX) || defined(MACOS)
       , public string_format_printer
 #endif

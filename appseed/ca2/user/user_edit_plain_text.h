@@ -13,7 +13,7 @@ namespace user
       virtual public scroll_view,
       public colorertake5::base_editor,
       public ca::data_listener,
-      public ex1::tree
+      public gen::tree
    {
    public:
 
@@ -200,8 +200,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
 
-      virtual ex1::tree_item_data * on_allocate_item();
-      virtual void on_delete_item(ex1::tree_item_data * pitem);
+      virtual gen::tree_item_data * on_allocate_item();
+      virtual void on_delete_item(gen::tree_item_data * pitem);
 
 
    };

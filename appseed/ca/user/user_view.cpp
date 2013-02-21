@@ -97,7 +97,7 @@ void view::_001OnCreate(::gen::signal_object * pobj)
    }
    else
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
    }
 
    pcreate->set_lresult(0);
@@ -208,7 +208,7 @@ void view::_001OnInitialUpdate(gen::signal_object * pobj)
    on_update(NULL, 0, NULL);        // initial update
 }
 
-void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
+void view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
 {
    if(pHint != NULL)
    {
@@ -241,7 +241,7 @@ void view::OnDraw(::ca::graphics * pgraphics)
 /////////////////////////////////////////////////////////////////////////////
 // ::view selection support
 
-bool view::IsSelected(const ::radix::object* pDocItem) const
+bool view::IsSelected(const ::gen::object* pDocItem) const
 {
    ASSERT_VALID(pDocItem);
    UNUSED(pDocItem);    // unused in release builds

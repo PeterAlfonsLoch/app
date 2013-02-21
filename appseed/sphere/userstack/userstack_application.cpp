@@ -49,7 +49,7 @@ namespace userstack
       m_strBaseSupportId   = "votagus_ca2_userstack";
       m_strInstallToken    = "userstack";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::radix::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::gen::ExclusiveInstanceNone;
 
    }
 
@@ -176,9 +176,9 @@ namespace userstack
    }
 
 
-   void application::on_exclusive_instance_conflict(::radix::EExclusiveInstance eexclusive)
+   void application::on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::radix::ExclusiveInstanceLocalId)
+      if(eexclusive == ::gen::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          gen::memory_file file(get_app());

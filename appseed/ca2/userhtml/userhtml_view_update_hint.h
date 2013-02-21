@@ -1,7 +1,7 @@
 #pragma once
 
 
-class CLASS_DECL_ca2 html_view_update_hint : public ::radix::object
+class CLASS_DECL_ca2 html_view_update_hint : public ::gen::object
 {
    
 public:

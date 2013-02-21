@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -10,7 +10,7 @@ namespace ex1
 
 
    class CLASS_DECL_ca plain_text_serializable :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -22,8 +22,8 @@ namespace ex1
       virtual void write(plain_text_output_stream & ostream) = 0;
       virtual void read(plain_text_input_stream & istream) = 0;
 
-      virtual void write(ex1::writer & writer);
-      virtual void read(ex1::reader & reader);
+      virtual void write(gen::writer & writer);
+      virtual void read(gen::reader & reader);
 
    };
 
@@ -45,7 +45,7 @@ namespace ex1
    }
 
 
-} // namespace ex1
+} // namespace gen
 
 
 

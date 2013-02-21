@@ -7,15 +7,15 @@ namespace simpledb
    class base;
 
    class CLASS_DECL_ca table : 
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       
       
       base *                        m_pdatabase;
-      ::ex1::filesp                 m_spfileMeta;
+      ::gen::filesp                 m_spfileMeta;
       ::xml::document               m_xmldocumentMeta;
-      ::ex1::filesp                 m_spfileFixed;
+      ::gen::filesp                 m_spfileFixed;
       primitive::memory             m_memoryFixed;
       string                        m_strName;
       database::field_definition    m_fielddefinition;

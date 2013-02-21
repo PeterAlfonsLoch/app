@@ -52,7 +52,7 @@ void dump_context::output_string(const char * lpsz)
    if (m_pfile == NULL)
    {
       ::OutputDebugStringW(gen::international::utf8_to_unicode(lpsz));
-      //     TRACE(::radix::trace::category_dumpContext, 0, "%s", lpsz);
+      //     TRACE(::gen::trace::category_dumpContext, 0, "%s", lpsz);
       return;
    }
 
@@ -67,7 +67,7 @@ void dump_context::output_string(const char * lpsz)
 #endif
 }
 
-dump_context::dump_context(ex1::file * pFile)
+dump_context::dump_context(gen::file * pFile)
 {
    if (pFile)
       ASSERT_VALID(pFile);
@@ -326,7 +326,7 @@ dump_context & dump_context::hex_dump(uint64_t ui)
 
 }
 
-dump_context & dump_context::operator<<(const ::radix::object* pOb)
+dump_context & dump_context::operator<<(const ::gen::object* pOb)
 {
 
    if (pOb == NULL)
@@ -338,7 +338,7 @@ dump_context & dump_context::operator<<(const ::radix::object* pOb)
 
 }
 
-dump_context & dump_context::operator<<(const ::radix::object& ob)
+dump_context & dump_context::operator<<(const ::gen::object& ob)
 {
 
    return *this << &ob;

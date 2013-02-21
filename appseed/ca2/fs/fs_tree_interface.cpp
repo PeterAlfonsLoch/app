@@ -28,9 +28,9 @@ namespace fs
 
    bool tree_interface::initialize()
    {
-      if(!::ex1::tree::initialize())
+      if(!::gen::tree::initialize())
          return false;
-      if(::ex1::tree::get_data() == NULL)
+      if(::gen::tree::get_data() == NULL)
       {
          set_data(new ::fs::tree_data(get_app()));
       }
@@ -43,7 +43,7 @@ namespace fs
 
 
 
-   void tree_interface::_017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateList(const char * lpcsz, gen::tree_item * pitemParent, int32_t iLevel)
    {
       if(lpcsz == NULL)
          lpcsz = "";
@@ -76,8 +76,8 @@ namespace fs
 
 
       ::fs::tree_item * pitemChild;
-      ex1::tree_item * pitem;
-      ex1::tree_item_ptr_array ptraRemove;
+      gen::tree_item * pitem;
+      gen::tree_item_ptr_array ptraRemove;
 
       if(pitemFolder != NULL && pitemFolder->m_flags.is_signalized(FlagHasSubFolderUnknown))
       {
@@ -120,7 +120,7 @@ namespace fs
 
          pitemChild = new ::fs::tree_item;
 
-         pitemChild->m_pdata = ::ex1::tree::get_data();
+         pitemChild->m_pdata = ::gen::tree::get_data();
 
          pitemChild->m_strPath = straPath[i];
 
@@ -143,16 +143,16 @@ namespace fs
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != NULL)
                {
-                  pitem = insert_item(pitemChild, ex1::RelativeReplace, pitem);
+                  pitem = insert_item(pitemChild, gen::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item(pitemChild, ex1::RelativeLastChild, pitemParent);
+                  pitem = insert_item(pitemChild, gen::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
                {
-                  pitem->m_dwState |= ::ex1::tree_item_state_expandable;
+                  pitem->m_dwState |= ::gen::tree_item_state_expandable;
                }
 
                if(iLevel > 1)
@@ -179,19 +179,19 @@ namespace fs
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            pitem = insert_item(pitemChild, ex1::RelativeReplace, pitem);
+            pitem = insert_item(pitemChild, gen::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(FlagHasSubFolderUnknown);
          }
          else
          {
-               pitem = insert_item(pitemChild, ex1::RelativeLastChild, pitemParent);
+               pitem = insert_item(pitemChild, gen::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(FlagHasSubFolder))
          {
-            pitem->m_dwState |= ::ex1::tree_item_state_expandable;
+            pitem->m_dwState |= ::gen::tree_item_state_expandable;
          }
 
          if(iLevel > 1)
@@ -209,7 +209,7 @@ namespace fs
 
       if(iChildCount == 0)
       {
-         pitemParent->m_dwState &= ~::ex1::tree_item_state_expandable;
+         pitemParent->m_dwState &= ~::gen::tree_item_state_expandable;
       }
 
 
@@ -231,7 +231,7 @@ namespace fs
       for(index i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
-         ex1::tree_item * pitem = find_item(strAscendant);
+         gen::tree_item * pitem = find_item(strAscendant);
          if(pitem == NULL)
          {
             string str;
@@ -243,7 +243,7 @@ namespace fs
          if(pitem == NULL)
             break;
 
-         if(!(pitem->m_dwState & ::ex1::tree_item_state_expanded))
+         if(!(pitem->m_dwState & ::gen::tree_item_state_expanded))
          {
             _001ExpandItem(pitem, true, false, false);
          }
@@ -257,7 +257,7 @@ namespace fs
 
       _StartDelayedListUpdate();
 
-      ex1::tree_item * pitem = find_item(lpcsz);
+      gen::tree_item * pitem = find_item(lpcsz);
 
       if(pitem != NULL)
       {
@@ -280,7 +280,7 @@ namespace fs
       _001RedrawWindow();
    }
 
-   ex1::tree_item * tree_interface::find_item(const char * lpcsz)
+   gen::tree_item * tree_interface::find_item(const char * lpcsz)
    {
       return find_absolute(lpcsz);
    }
@@ -289,7 +289,7 @@ namespace fs
    {
       if(!bForceUpdate)
       {
-         ex1::tree_item * pitem = find_item(lpcsz);
+         gen::tree_item * pitem = find_item(lpcsz);
          if(pitem != NULL)
          {
             if(is_selected(pitem))
@@ -318,7 +318,7 @@ namespace fs
 
    }
 
-   void tree_interface::_017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel)
+   void tree_interface::_017UpdateZipList(const char * lpcsz, gen::tree_item * pitemParent, int32_t iLevel)
    {
       index i;
 
@@ -330,9 +330,9 @@ namespace fs
       string wstrItemExtra;
 
       index iFind;
-      ex1::filesp spfile(get_app());
+      gen::filesp spfile(get_app());
 
-      //spfile->open(szPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
+      //spfile->open(szPath, ::gen::file::mode_read | ::gen::file::type_binary);
 
       /*base_array < gen::memory_file, gen::memory_file & > filea;
       _vmszipFile zipfile;
@@ -365,7 +365,7 @@ namespace fs
       string wstrFolder;
       stringa wstraFolder;
       string wstrItem;
-      ex1::tree_item_ptr_array ptraRemove;
+      gen::tree_item_ptr_array ptraRemove;
       pitemParent->get_children(ptraRemove);
 
       for(int32_t i = 0; i < wstraItem.get_size(); i++)
@@ -419,20 +419,20 @@ namespace fs
             pitemNew->m_iImage         = m_iDefaultImage;
             pitemNew->m_iImageSelected = m_iDefaultImageSelected;
             //         item.m_flags.signalize(FlagInZip);
-            ex1::tree_item  * pitem    = find_item(pitemNew->m_strPath);
+            gen::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == NULL)
             {
-               pitem = insert_item(pitemNew, ex1::RelativeLastChild, pitemParent);
+               pitem = insert_item(pitemNew, gen::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item(pitemNew, ex1::RelativeReplace, pitem);
+               pitem = insert_item(pitemNew, gen::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
             if(zip::Util().HasSubFolder(get_app(), str))
             {
-               pitem->m_dwState |= ::ex1::tree_item_state_expandable;
+               pitem->m_dwState |= ::gen::tree_item_state_expandable;
             }
             if(iLevel > 1)
             {
@@ -447,7 +447,7 @@ namespace fs
    }
 
 
-   void tree_interface::_001UpdateImageList(ex1::tree_item * pitem)
+   void tree_interface::_001UpdateImageList(gen::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
 //         Item & item = m_itema.get_item(pitem->m_dwUser);
@@ -606,7 +606,7 @@ namespace fs
    }
    */
 
-   void tree_interface::_001OnItemExpand(::ex1::tree_item * pitem)
+   void tree_interface::_001OnItemExpand(::gen::tree_item * pitem)
    {
       if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
       {
@@ -618,7 +618,7 @@ namespace fs
       }
    }
 
-   void tree_interface::_001OnItemCollapse(::ex1::tree_item * pitem)
+   void tree_interface::_001OnItemCollapse(::gen::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
    }
@@ -628,7 +628,7 @@ namespace fs
       return true;
    }
 
-   void tree_interface::_001OnOpenItem(::ex1::tree_item * pitem)
+   void tree_interface::_001OnOpenItem(::gen::tree_item * pitem)
    {
       ::fs::item item;
       item.m_strPath         = ((::fs::tree_item *) pitem->m_pitemdata)->m_strPath;
@@ -644,7 +644,7 @@ namespace fs
 
    void tree_interface::_StartCreateImageList()
    {
-      m_pdataitemCreateImageListStep = (ex1::tree_item *) get_base_item()->m_pchild;
+      m_pdataitemCreateImageListStep = (gen::tree_item *) get_base_item()->m_pchild;
 //         SetTimer(TimerCreateImageList, 80, NULL);
    }
 
@@ -663,7 +663,7 @@ namespace fs
 
       _001UpdateImageList(m_pdataitemCreateImageListStep);
 
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(ex1::TreeNavigationProperForward);
+      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(gen::TreeNavigationProperForward);
 
 
    }
@@ -711,7 +711,7 @@ namespace fs
       m_bDelayedListUpdate = true;
 
 
-      ex1::tree_item * pitem = find_item(m_straMissingUpdate[0]);
+      gen::tree_item * pitem = find_item(m_straMissingUpdate[0]);
       if(pitem != NULL)
       {
 
@@ -739,9 +739,9 @@ namespace fs
       }
    }
 
-   ex1::tree_item * tree_interface::find_absolute(const char * lpcszPath)
+   gen::tree_item * tree_interface::find_absolute(const char * lpcszPath)
    {
-      ex1::tree_item * pitem = get_base_item();
+      gen::tree_item * pitem = get_base_item();
       if(lpcszPath == NULL || strlen(lpcszPath) == 0)
          return pitem;
       string strPath(lpcszPath);
@@ -778,7 +778,7 @@ namespace fs
 
    ::fs::tree_data * tree_interface::get_fs_tree_data()
    {
-      return dynamic_cast < ::fs::tree_data * > (::ex1::tree::get_data());
+      return dynamic_cast < ::fs::tree_data * > (::gen::tree::get_data());
    }
 
 

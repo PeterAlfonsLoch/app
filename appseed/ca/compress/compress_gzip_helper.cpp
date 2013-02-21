@@ -17,18 +17,18 @@ typedef  GZIP* LPGZIP;
 static const int32_t gz_magic[2] = {0x1f, 0x8b}; /* gzip magic header */
 
 
-gzip::gzip(ex1::file * pfileDest) :
+gzip::gzip(gen::file * pfileDest) :
    m_ostream(pfileDest)
 {
    construct();
 }
-gzip::gzip(ex1::writer & writer) :
+gzip::gzip(gen::writer & writer) :
    m_ostream(&writer)
 {
    construct();
 }
 
-gzip::gzip(ex1::byte_output_stream & ostreamDest) :
+gzip::gzip(gen::byte_output_stream & ostreamDest) :
    m_ostream(&ostreamDest)
 {
    construct();

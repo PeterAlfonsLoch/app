@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_ca tree_interface :
-      virtual public ::ex1::tree
+      virtual public ::gen::tree
    {
    public:
       

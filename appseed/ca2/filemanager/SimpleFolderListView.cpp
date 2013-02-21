@@ -65,7 +65,7 @@ void SimpleFolderListView::dump(dump_context & dumpcontext) const
 }
 #endif //DEBUG
 
-void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::radix::object * phint) 
+void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::gen::object * phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);  
    if(phint != NULL)

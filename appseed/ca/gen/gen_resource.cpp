@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    resource::resource()
@@ -11,7 +11,7 @@ namespace ex1
    {
    }
 
-   bool resource::ReadResource(ex1::file & file, UINT nID, const char * lpcszType)
+   bool resource::ReadResource(gen::file & file, UINT nID, const char * lpcszType)
    {
       UNREFERENCED_PARAMETER(file);
       UNREFERENCED_PARAMETER(nID);
@@ -19,7 +19,7 @@ namespace ex1
       return false;
    }
 
-   bool resource::ReadResource(HINSTANCE hinst, ex1::file & file, UINT nID, const char * lpcszType)
+   bool resource::ReadResource(HINSTANCE hinst, gen::file & file, UINT nID, const char * lpcszType)
    {
       UNREFERENCED_PARAMETER(hinst);
       UNREFERENCED_PARAMETER(file);
@@ -28,4 +28,4 @@ namespace ex1
       return false;
    }
 
-} // namespace ex1
+} // namespace gen

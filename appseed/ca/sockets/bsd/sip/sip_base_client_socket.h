@@ -104,7 +104,7 @@ namespace sockets
       gen::property & outheader(const char * pszName);
       gen::property_set & outheaders();
 
-      using ::radix::object::request;
+      using ::gen::object::request;
       sip::request & request();
       sip::response & response();
 

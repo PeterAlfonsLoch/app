@@ -236,8 +236,8 @@ CLASS_DECL_c vsstring spa_login_crypt(const char * psz, const char * pszRsa)
 
    RSA * rsa = RSA_new();
 
-   BN_hex2bn(&rsa->n, pszRsa);
-   BN_hex2bn(&rsa->e, "10001");
+   BN_hgenbn(&rsa->n, pszRsa);
+   BN_hgenbn(&rsa->e, "10001");
 
 
    simple_memory memory;

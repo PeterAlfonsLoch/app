@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca language_string :
-   public ::radix::object
+   public ::gen::object
 {
 public:
    language_string();

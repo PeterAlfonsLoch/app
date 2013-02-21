@@ -28,7 +28,7 @@ namespace database
       change_event(var & var);
 
 
-      bool data_get(ex1::byte_serializable & obj);
+      bool data_get(gen::byte_serializable & obj);
 
 
    };

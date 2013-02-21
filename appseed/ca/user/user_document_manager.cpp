@@ -79,7 +79,7 @@ __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszVal
       if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
            lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
       {
-//         TRACE(::radix::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
+//         TRACE(::gen::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
   //          lpszKey);
          return FALSE;
       }
@@ -97,7 +97,7 @@ __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszVal
          if(::RegCloseKey(hKey) == ERROR_SUCCESS && lResult == ERROR_SUCCESS)
             return TRUE;
       }
-      //TRACE(::radix::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
+      //TRACE(::gen::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
       return FALSE;
    }
 }
@@ -636,7 +636,7 @@ void document_manager::_001OnFileNew()
 {
    if (m_templateptra.is_empty())
    {
-      TRACE(::radix::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
+      TRACE(::gen::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "Failed to create document");
       return;
@@ -676,7 +676,7 @@ void document_manager::on_file_open()
 
 void document_manager::assert_valid() const
 {
-   ::radix::object::assert_valid();
+   ::gen::object::assert_valid();
 
    count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
@@ -688,7 +688,7 @@ void document_manager::assert_valid() const
 
 void document_manager::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::gen::object::dump(dumpcontext);
 
    if (dumpcontext.GetDepth() != 0)
    {
@@ -769,7 +769,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
          frame_window* pFrame = pview->GetParentFrame();
 
          if (pFrame == NULL)
-            TRACE(::radix::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
+            TRACE(::gen::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
          else
          {
             pFrame->ActivateFrame();
@@ -786,7 +786,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
          }
       }
       else
-         TRACE(::radix::trace::category_AppMsg, 0, "Error: Can not find a ::view for document to activate.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "Error: Can not find a ::view for document to activate.\n");
 
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
    }

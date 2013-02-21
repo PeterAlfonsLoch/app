@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -91,7 +91,7 @@ namespace ex1
 
    }
 
-   file_position file_composite::seek(file_offset lOff, ::ex1::e_seek  nFrom)
+   file_position file_composite::seek(file_offset lOff, ::gen::e_seek  nFrom)
    {
 
       return m_spfile->seek(lOff, nFrom);
@@ -276,5 +276,5 @@ namespace ex1
 
 
 
-} // namespace ex1
+} // namespace gen
 

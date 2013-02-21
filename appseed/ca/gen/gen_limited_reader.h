@@ -8,7 +8,7 @@
 #include "../IStream.h"*/
 
 
-namespace ex1
+namespace gen
 {
 
    class limited_reader:
@@ -36,4 +36,4 @@ namespace ex1
       bool WasFinished() const { return _wasFinished; }
    };
 
-} // namespace ex1
+} // namespace gen

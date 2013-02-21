@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
    file_system::file_system()
@@ -83,4 +83,4 @@ namespace ex1
    }
 
 
-} // namespace ex1
+} // namespace gen

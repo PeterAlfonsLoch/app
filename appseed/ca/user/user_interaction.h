@@ -241,7 +241,7 @@ namespace user
          const RECT& rect,
          interaction* pParentWnd, id id,
          ::ca::create_context* pContext = NULL);
-      using ::ex1::request_interface::create;
+      using ::gen::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,

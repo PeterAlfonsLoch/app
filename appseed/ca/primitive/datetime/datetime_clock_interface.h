@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca clock_interface :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 protected:
 

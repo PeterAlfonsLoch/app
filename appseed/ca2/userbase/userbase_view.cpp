@@ -153,7 +153,7 @@ namespace userbase
       on_update(NULL, 0, NULL);        // initial update
    }*/
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object * pHint)
+   void view::on_update(::view * pSender, LPARAM lHint, ::gen::object * pHint)
    {
       ::view::on_update(pSender, lHint, pHint);
    }
@@ -161,7 +161,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view selection support
 
-   bool view::IsSelected(const ::radix::object* pDocItem) const
+   bool view::IsSelected(const ::gen::object* pDocItem) const
    {
       ASSERT_VALID(pDocItem);
 //      UNUSED(pDocItem);    // unused in release builds

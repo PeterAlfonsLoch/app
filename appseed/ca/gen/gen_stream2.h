@@ -1,8 +1,8 @@
 #pragma once
 
-#include "ex1_byte_stream.h"
+#include "gen_byte_stream.h"
 
-namespace ex1
+namespace gen
 {
 
    class CLASS_DECL_ca output_stream2 :

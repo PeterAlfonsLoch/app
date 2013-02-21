@@ -771,7 +771,7 @@ retry:
             }
             if(set.has_property("file"))
             {
-               psession->m_pfile = set["file"].ca2 < ::ex1::file >();
+               psession->m_pfile = set["file"].ca2 < ::gen::file >();
             }
             if(pcookies != NULL && pcookies->get_size() > 0)
             {
@@ -788,12 +788,12 @@ retry:
 
             bool bPost;
             bool bPut;
-            if(set["put"].ca2 < ::ex1::file >() != NULL || set["http_request"] == "PUT")
+            if(set["put"].ca2 < ::gen::file >() != NULL || set["http_request"] == "PUT")
             {
                bPost = false;
                bPut = true;
                psession->request("PUT", strRequest);
-               dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].ca2 < ::ex1::file >();
+               dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].ca2 < ::gen::file >();
             }
             else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
             {
@@ -835,11 +835,11 @@ retry:
                {
                   break;
                }
-               if(set["file_out"].ca2 < ::ex1::timeout_file >() != NULL)
+               if(set["file_out"].ca2 < ::gen::timeout_file >() != NULL)
                {
-                  if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+                  if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
                   {
-                     set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+                     set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
                   }
                }
                dw2 = ::get_tick_count();
@@ -847,11 +847,11 @@ retry:
                iIteration++;
             }
 
-            if(set["file_out"].ca2 < ::ex1::timeout_file >() != NULL)
+            if(set["file_out"].ca2 < ::gen::timeout_file >() != NULL)
             {
-               if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+               if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
                {
-                  set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+                  set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
                }
             }
 
@@ -1172,12 +1172,12 @@ retry:
 
          bool bPost;
          bool bPut;
-         if(set["put"].ca2 < ::ex1::file >() != NULL || set["http_request"] == "PUT")
+         if(set["put"].ca2 < ::gen::file >() != NULL || set["http_request"] == "PUT")
          {
             bPost = false;
             bPut = true;
             psocket = new ::sockets::http_put_socket(handler, strUrl);
-            dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].ca2 < ::ex1::file >();
+            dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].ca2 < ::gen::file >();
          }
          else if(post.get_count() > 0 || set["http_request"] == "POST")
          {
@@ -1207,7 +1207,7 @@ retry:
          }
          if(set.has_property("file"))
          {
-            psocket->m_pfile = set["file"].ca2 < ::ex1::file >();
+            psocket->m_pfile = set["file"].ca2 < ::gen::file >();
          }
          if(pcookies != NULL && pcookies->get_size() > 0)
          {
@@ -1290,11 +1290,11 @@ retry:
             {
                break;
             }
-            if(set["file_out"].ca2 < ::ex1::timeout_file >() != NULL)
+            if(set["file_out"].ca2 < ::gen::timeout_file >() != NULL)
             {
-               if(psocket->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize != psocket->m_content_length)
+               if(psocket->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize != psocket->m_content_length)
                {
-                  set["file_out"].ca2 < ::ex1::timeout_file >()->m_uiExpectedSize = psocket->m_content_length;
+                  set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize = psocket->m_content_length;
                }
             }
             dw2 = ::get_tick_count();
@@ -1429,9 +1429,9 @@ retry:
          if(psocket == NULL)
             return false;
 
-         ex1::filesp spfile(get_app());
-         if(!spfile->open(pszFile, ::ex1::file::type_binary | ::ex1::file::mode_create | ::ex1::file::mode_read_write
-            | ::ex1::file::defer_create_directory))
+         gen::filesp spfile(get_app());
+         if(!spfile->open(pszFile, ::gen::file::type_binary | ::gen::file::mode_create | ::gen::file::mode_read_write
+            | ::gen::file::defer_create_directory))
          {
             gen::del(psocket);
             return false;
@@ -1705,7 +1705,7 @@ retry:
          return put(pszUrl, &file, puser);
       }
 
-      bool system::put(const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser)
+      bool system::put(const char * pszUrl, gen::file * pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -1730,7 +1730,7 @@ retry:
       }
 
 
-      bool system::put(string & strResponse, const char * pszUrl, ex1::file * pfile, ::fontopus::user * puser)
+      bool system::put(string & strResponse, const char * pszUrl, gen::file * pfile, ::fontopus::user * puser)
       {
 
          if(puser == NULL)

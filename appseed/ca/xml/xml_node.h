@@ -9,8 +9,8 @@ namespace xml
 
 
    class CLASS_DECL_ca node :
-      virtual public ::radix::object,
-      virtual public ex1::byte_serializable
+      virtual public ::gen::object,
+      virtual public gen::byte_serializable
    {
    public:
 
@@ -206,8 +206,8 @@ namespace xml
       void close();
 
 
-      virtual void write(ex1::byte_output_stream & ostream);
-      virtual void read(ex1::byte_input_stream & istream);
+      virtual void write(gen::byte_output_stream & ostream);
+      virtual void read(gen::byte_input_stream & istream);
 
 
    };

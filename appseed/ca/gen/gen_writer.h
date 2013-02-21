@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
    class writer;
 
    class CLASS_DECL_ca out_stream_flush :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       virtual void flush() = 0;
@@ -54,6 +54,6 @@ namespace ex1
 
    typedef writer writable;
 
-} // namespace ex1
+} // namespace gen
 
 

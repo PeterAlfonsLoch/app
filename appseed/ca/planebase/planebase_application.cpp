@@ -101,23 +101,23 @@ namespace planebase
             m_psystem->m_psession = m_psession;
          }
 
-         ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (pcaapp);
+         ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (pcaapp);
 
-         if(pradixapp != NULL)
+         if(pgenapp != NULL)
          {
 
             if(strId == "bergedge"
             || strId == "cube")
             {
 
-               pradixapp->m_strAppId = strId;
+               pgenapp->m_strAppId = strId;
 
             }
 
-            if(pradixapp->m_strInstallToken.is_empty())
+            if(pgenapp->m_strInstallToken.is_empty())
             {
 
-               pradixapp->m_strInstallToken = pradixapp->m_strAppId;
+               pgenapp->m_strInstallToken = pgenapp->m_strAppId;
 
             }
 
@@ -250,7 +250,7 @@ namespace planebase
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
                goto InitFailure;
@@ -282,7 +282,7 @@ namespace planebase
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
 
@@ -314,7 +314,7 @@ namespace planebase
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -334,7 +334,7 @@ namespace planebase
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -446,7 +446,7 @@ run:
 
       try
       {
-         ::radix::application_signal_object signal(this, m_psignal, ::ca::application_signal_start);
+         ::gen::application_signal_object signal(this, m_psignal, ::ca::application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -491,7 +491,7 @@ run:
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -505,7 +505,7 @@ run:
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -620,7 +620,7 @@ InitFailure:
       }
       try
       {
-         ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
+         ::gen::thread * pthread = dynamic_cast < ::gen::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
          if(pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -631,7 +631,7 @@ InitFailure:
       }
       /*try
       {
-         ::radix::thread * pthread = dynamic_cast < ::radix::thread * > (this);
+         ::gen::thread * pthread = dynamic_cast < ::gen::thread * > (this);
          ::SetEvent((HANDLE) pthread->m_peventReady);
       }
       catch(...)
@@ -947,12 +947,12 @@ exit_application:
    }
 
    /*
-      ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
-      if(pradixapp != NULL)
+      ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+      if(pgenapp != NULL)
       {
          try
          {
-            pradixapp->m_dwAlive = ::get_tick_count();
+            pgenapp->m_dwAlive = ::get_tick_count();
          }
          catch(...)
          {

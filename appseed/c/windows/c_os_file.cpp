@@ -370,7 +370,7 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
    vsstring strVersion;
 
 
-   file_read_ex1_string_dup(hfile1, NULL, strVersion);
+   file_read_gen_string_dup(hfile1, NULL, strVersion);
    
    int32_t n;
    
@@ -395,9 +395,9 @@ bool file_ftd_dup(const char * pszDir, const char * pszFile)
          file_read_n_number_dup(hfile1, NULL, n);
          if(n == 2)
             break;
-         file_read_ex1_string_dup(hfile1, NULL, strMd5);
+         file_read_gen_string_dup(hfile1, NULL, strMd5);
          ctx.initialize();
-         file_read_ex1_string_dup(hfile1, &ctx, strRelative);
+         file_read_gen_string_dup(hfile1, &ctx, strRelative);
          vsstring strPath = dir::path(pszDir, strRelative);
          dir::mk(dir::name(strPath));
          hfile2 = ::create_file(strPath, GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
@@ -461,7 +461,7 @@ void file_read_n_number_dup(HANDLE hfile, ::md5::md5 * pctx, int32_t & iNumber)
    iNumber = atoi_dup(str);
 }
 
-void file_read_ex1_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
+void file_read_gen_string_dup(HANDLE hfile, ::md5::md5 * pctx, vsstring & str)
 {
    int32_t iLen;
    file_read_n_number_dup(hfile, pctx, iLen);

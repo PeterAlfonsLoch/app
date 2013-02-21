@@ -10,7 +10,7 @@ namespace collection
 
    template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = gen::compare < KEY > >
    class sort_map :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -708,7 +708,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
    void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::dump(dump_context & dumpcontext) const
    {
-      ::radix::object::dump(dumpcontext);
+      ::gen::object::dump(dumpcontext);
 
       dumpcontext << "with " << m_ptra.get_count() << " elements";
       if (dumpcontext.GetDepth() > 0)
@@ -733,7 +733,7 @@ namespace collection
    void sort_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::assert_valid() const
    {
 
-      ::radix::object::assert_valid();
+      ::gen::object::assert_valid();
 
    }
 

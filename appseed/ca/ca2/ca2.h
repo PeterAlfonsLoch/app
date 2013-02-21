@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ex2/ex2.h"
+#include "ca/gen/gen.h"
 
 #include "ca/calculator/calculator.h"
 #include "ca/xml/xml.h"
@@ -33,14 +33,14 @@ namespace ca2
 #include "ca/ca/ca_file_system.h"
 #include "ca/ca/ca_dir_application.h"
 #include "ca/ca/ca_dir_system.h"
-#include "ca/ex1/ex1_edit_file.h"
+#include "ca/gen/gen_edit_file.h"
 #include "ca2_stra.h"
 #include "ca2_url_domain.h"
 #include "ca2_url.h"
 
 
-#include "ca/radix/radix_service.h"
-#include "ca/radix/radix_machine_event_central.h"
+#include "ca/gen/gen_service.h"
+#include "ca/gen/gen_machine_event_central.h"
 
 
 #include "ca/install/install.h"

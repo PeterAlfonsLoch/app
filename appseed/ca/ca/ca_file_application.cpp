@@ -88,12 +88,12 @@ namespace ca
          return m_papp->m_psystem->m_spfile->time_log(m_papp, pszId);
       }
 
-      ex1::filesp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
+      gen::filesp application::time_square_file(const char * pszPrefix, const char * pszSuffix)
       {
          return m_papp->m_psystem->m_spfile->time_square_file(m_papp, pszPrefix, pszSuffix);
       }
 
-      ::ex1::filesp application::get(const char * name)
+      ::gen::filesp application::get(const char * name)
       {
          return m_papp->m_psystem->m_spfile->get(name, m_papp);
       }
@@ -128,7 +128,7 @@ namespace ca
          return m_papp->m_psystem->m_spfile->put_contents(varFile, lpcszContents, m_papp);
       }
 
-      bool application::put_contents(var varFile, ex1::file & file)
+      bool application::put_contents(var varFile, gen::file & file)
       {
          return m_papp->m_psystem->m_spfile->put_contents(varFile, file, m_papp);
       }
@@ -149,7 +149,7 @@ namespace ca
       }
 
 
-      ex1::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+      gen::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
       {
          try
          {
@@ -161,10 +161,10 @@ namespace ca
          }
       }
 
-      ex1::filesp application::get_file(var varFile, UINT nOpenFlags)
+      gen::filesp application::get_file(var varFile, UINT nOpenFlags)
       {
 
-         ex1::filesp spfile;
+         gen::filesp spfile;
 
          string strPath;
 
@@ -190,10 +190,10 @@ namespace ca
 
          }
 
-         if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca2 < ::ex1::file >() != NULL)
+         if(varFile.get_type() == var::type_propset && varFile.propset()["file"].ca2 < ::gen::file >() != NULL)
          {
 
-            spfile(varFile.propset()["file"].ca2 < ::ex1::file >());
+            spfile(varFile.propset()["file"].ca2 < ::gen::file >());
 
          }
          else if(gen::str::find_ci(".zip:", strPath) >= 0)
@@ -414,7 +414,7 @@ namespace ca
          if(spfile.is_null())
          {
 
-            throw ex1::file_exception(m_papp, ::ex1::file_exception::none, -1, strPath);
+            throw gen::file_exception(m_papp, ::gen::file_exception::none, -1, strPath);
 
          }
 
@@ -422,10 +422,10 @@ namespace ca
 
       }
 
-      ::ex1::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
+      ::gen::byte_stream application::get_byte_stream(var varFile, UINT nOpenFlags)
       {
 
-         return ::ex1::byte_stream(get_file(varFile, nOpenFlags));
+         return ::gen::byte_stream(get_file(varFile, nOpenFlags));
 
       }
 

@@ -31,7 +31,7 @@ namespace fs
 
    file_size remote_native_file::get_length() const
    {
-      if((m_nOpenFlags & ::ex1::file::mode_read) != 0)
+      if((m_nOpenFlags & ::gen::file::mode_read) != 0)
       {
          return m_httpfile->get_length();
       }
@@ -41,9 +41,9 @@ namespace fs
       }
    }
 
-   file_position remote_native_file::seek(file_offset lOff, ::ex1::e_seek nFrom)
+   file_position remote_native_file::seek(file_offset lOff, ::gen::e_seek nFrom)
    {
-      if((m_nOpenFlags & ::ex1::file::mode_read) != 0)
+      if((m_nOpenFlags & ::gen::file::mode_read) != 0)
       {
          return m_httpfile->seek(lOff, nFrom);
       }
@@ -56,7 +56,7 @@ namespace fs
 
    void remote_native_file::get_file_data()
    {
-      /*if(m_nOpenFlags & ::ex1::file::mode_write)
+      /*if(m_nOpenFlags & ::gen::file::mode_write)
       {
       throw "Cannot open remote_native_file for reading and writing simultaneously due the characteristic of possibility of extreme delayed streaming. The way it is implemented would also not work.\n It is build with this premisse.";
       return;
@@ -74,7 +74,7 @@ namespace fs
          dwAdd |= hint_unknown_length_supported;
       }
 
-      m_httpfile->open(strUrl, ::ex1::file::type_binary | ::ex1::file::mode_read | dwAdd);
+      m_httpfile->open(strUrl, ::gen::file::type_binary | ::gen::file::mode_read | dwAdd);
    }
 
    void remote_native_file::set_file_data()

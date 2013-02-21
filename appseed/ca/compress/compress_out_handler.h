@@ -15,16 +15,16 @@ namespace libcompress
    };
 
    class CLASS_DECL_ca out_handler :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
       out_handler(::ca::application * papp);
 
-      ex1::HRes SetProperty(const char *name, var value);
+      gen::HRes SetProperty(const char *name, var value);
 
-      ex1::HRes SetSolidSettings(const string &s);
-      ex1::HRes SetSolidSettings(var value);
+      gen::HRes SetSolidSettings(const string &s);
+      gen::HRes SetSolidSettings(var value);
 
       uint32_t _numThreads;
 
@@ -51,8 +51,8 @@ namespace libcompress
 
       bool _volumeMode;
 
-      ex1::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
-      ex1::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
+      gen::HRes SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value);
+      gen::HRes SetParams(COneMethodInfo &oneMethodInfo, const string &srcString);
 
       void SetCompressionMethod2(COneMethodInfo &oneMethodInfo, uint32_t numThreads);
 

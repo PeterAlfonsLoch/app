@@ -6,7 +6,7 @@ namespace ca4
 
    /* twitCurl class */
    class CLASS_DECL_ca twit :
-      virtual public radix::object
+      virtual public gen::object
    {
    public:
 

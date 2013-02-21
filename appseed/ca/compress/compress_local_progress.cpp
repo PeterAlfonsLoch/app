@@ -13,7 +13,7 @@ namespace libcompress
      SendRatio = SendProgress = true;
    }
 
-   void local_progress::Init(::ex1::progress_interface *progress, bool inSizeIsMain)
+   void local_progress::Init(::gen::progress_interface *progress, bool inSizeIsMain)
    {
      _ratioProgress = NULL;
      _progress = progress;
@@ -21,7 +21,7 @@ namespace libcompress
      _inSizeIsMain = inSizeIsMain;
    }
 
-   ex1::HRes local_progress::SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize)
+   gen::HRes local_progress::SetRatioInfo(const uint64_t *inSize, const uint64_t *outSize)
    {
      uint64_t inSizeNew = InSize, outSizeNew = OutSize;
      if (inSize)

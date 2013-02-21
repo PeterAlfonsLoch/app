@@ -400,7 +400,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
 {
    ASSERT_VALID(this);
 
-   ::radix::object::Serialize(ar);
+   ::gen::object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -439,7 +439,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
 
 void base_string_to_string_map::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::gen::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -461,7 +461,7 @@ void base_string_to_string_map::dump(dump_context & dumpcontext) const
 
 void base_string_to_string_map::assert_valid() const
 {
-   ::radix::object::assert_valid();
+   ::gen::object::assert_valid();
 
    ASSERT(m_nHashTableSize > 0);
    ASSERT(m_nCount == 0 || m_pHashTable != NULL);

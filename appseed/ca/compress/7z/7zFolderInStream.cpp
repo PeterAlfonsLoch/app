@@ -31,7 +31,7 @@ namespace n7z
       _filePos = 0;
       while (_fileIndex < _numFiles)
       {
-         ::ca::smart_pointer < ::ex1::byte_input_stream > stream;
+         ::ca::smart_pointer < ::gen::byte_input_stream > stream;
          HRESULT result = _updateCallback->GetStream(_fileIndices[_fileIndex], &stream.m_p);
          if (result != S_OK && result != S_FALSE)
             return result;
@@ -41,8 +41,8 @@ namespace n7z
          if (stream)
          {
             _fileIsOpen = true;
-            ::ca::smart_pointer < ::ex1::stream_get_size > streamGetSize;
-            streamGetSize = dynamic_cast < ::ex1::stream_get_size * > (stream.m_p);
+            ::ca::smart_pointer < ::gen::stream_get_size > streamGetSize;
+            streamGetSize = dynamic_cast < ::gen::stream_get_size * > (stream.m_p);
             if (streamGetSize)
             {
                RINOK(streamGetSize->GetSize(&_currentSize));
@@ -100,15 +100,15 @@ namespace n7z
       return processedSize;
    }
 
-   ex1::HRes CFolderInStream::GetSubStreamSize(uint64_t subStream, uint64_t *value)
+   gen::HRes CFolderInStream::GetSubStreamSize(uint64_t subStream, uint64_t *value)
    {
       *value = 0;
-      index index2 = (index)subStream;
-      if (index2 < 0 || (count) subStream > Sizes.get_count())
+      index indgen = (index)subStream;
+      if (indgen < 0 || (count) subStream > Sizes.get_count())
          return E_FAIL;
-      if (index2 < Sizes.get_count())
+      if (indgen < Sizes.get_count())
       {
-         *value = Sizes[index2];
+         *value = Sizes[indgen];
          return S_OK;
       }
       if (!_currentSizeIsDefined)

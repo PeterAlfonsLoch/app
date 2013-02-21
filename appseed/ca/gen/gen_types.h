@@ -3,7 +3,7 @@
 
 // Common/Types.h
 // from 7-zip
-namespace ex1
+namespace gen
 {
    
    //#include "../../C/Types.h"
@@ -195,5 +195,5 @@ namespace ex1
 
 
 
-} // namespace ex1
+} // namespace gen
 

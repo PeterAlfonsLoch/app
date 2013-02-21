@@ -9,7 +9,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca url :
-      public ::radix::object
+      public ::gen::object
    {
    public:
       // Example: http://veriwell.com.br:443/page?id=1

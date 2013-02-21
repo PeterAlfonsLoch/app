@@ -14,7 +14,7 @@ namespace gen
    };
 
    class CLASS_DECL_ca savings :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       savings(::ca::application * papp);

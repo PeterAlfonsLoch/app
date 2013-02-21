@@ -142,8 +142,8 @@ public:
   ~CStreamSwitch() { Remove(); }
   void Remove();
   void Set(CInArchive *archive, const byte *data, size_t size);
-  void Set(CInArchive *archive, const ::ex1::byte_buffer &byteBuffer);
-  void Set(CInArchive *archive, const array_ptr_alloc < ::ex1::byte_buffer > *dataVector);
+  void Set(CInArchive *archive, const ::gen::byte_buffer &byteBuffer);
+  void Set(CInArchive *archive, const array_ptr_alloc < ::gen::byte_buffer > *dataVector);
 };
 
 void CStreamSwitch::Remove()
@@ -163,12 +163,12 @@ void CStreamSwitch::Set(CInArchive *archive, const byte *data, size_t size)
   _needRemove = true;
 }
 
-void CStreamSwitch::Set(CInArchive *archive, const ::ex1::byte_buffer &byteBuffer)
+void CStreamSwitch::Set(CInArchive *archive, const ::gen::byte_buffer &byteBuffer)
 {
   Set(archive, byteBuffer, byteBuffer.GetCapacity());
 }
 
-void CStreamSwitch::Set(CInArchive *archive, const array_ptr_alloc < ::ex1::byte_buffer > *dataVector)
+void CStreamSwitch::Set(CInArchive *archive, const array_ptr_alloc < ::gen::byte_buffer > *dataVector)
 {
   Remove();
   byte external = archive->ReadByte();
@@ -303,14 +303,14 @@ static inline bool TestSignature2(const byte *p)
 #define TestSignature2(p) TestSignature(p)
 #endif
 
-HRESULT CInArchive::FindAndReadSignature(::ex1::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::FindAndReadSignature(::gen::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
   RINOK(ReadStream_FALSE(stream, _header, kHeaderSize));
 
   if (TestSignature2(_header))
     return S_OK;
 
-  ::ex1::byte_buffer byteBuffer;
+  ::gen::byte_buffer byteBuffer;
   const uint32_t kBufferSize = (1 << 16);
   byteBuffer.SetCapacity(kBufferSize);
   byte *buffer = byteBuffer;
@@ -343,7 +343,7 @@ HRESULT CInArchive::FindAndReadSignature(::ex1::byte_input_stream *stream, const
         memcpy(_header, buffer + pos, kHeaderSize);
         curTestPos += pos;
         _arhiveBeginStreamPosition = curTestPos;
-        stream->seek(curTestPos + kHeaderSize, ex1::seek_begin);
+        stream->seek(curTestPos + kHeaderSize, gen::seek_begin);
         return S_OK;
       }
     }
@@ -363,11 +363,11 @@ HRESULT CInArchive::FindAndReadSignature(::ex1::byte_input_stream *stream, const
       }
 
 // S_FALSE means that file is not archive
-HRESULT CInArchive::Open(::ex1::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
+HRESULT CInArchive::Open(::gen::byte_input_stream *stream, const file_position *searchHeaderSizeLimit)
 {
   HeadersSize = 0;
   Close();
-  _arhiveBeginStreamPosition = stream->seek(0, ex1::seek_current);
+  _arhiveBeginStreamPosition = stream->seek(0, gen::seek_current);
   RINOK(FindAndReadSignature(stream, searchHeaderSizeLimit));
   _stream = stream;
   return S_OK;
@@ -535,7 +535,7 @@ void CInArchive::ReadPackInfo(
 }
 
 void CInArchive::ReadUnpackInfo(
-    const array_ptr_alloc < ::ex1::byte_buffer > *dataVector,
+    const array_ptr_alloc < ::gen::byte_buffer > *dataVector,
     array_ptr_alloc < CFolder > &folders)
 {
   WaitAttribute(NID::kFolder);
@@ -690,7 +690,7 @@ void CInArchive::ReadSubStreamsInfo(
 }
 
 void CInArchive::ReadStreamsInfo(
-    const array_ptr_alloc < ::ex1::byte_buffer > * dataVector,
+    const array_ptr_alloc < ::gen::byte_buffer > * dataVector,
     file_position & dataOffset,
     base_array < file_size > & packSizes,
     bool_array & packCRCsDefined,
@@ -764,7 +764,7 @@ void CInArchive::ReadBoolVector2(int32_t numItems, bool_array &v)
     v.add(true);
 }
 
-void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::ex1::byte_buffer > & dataVector, CUInt64DefVector & v, int32_t numFiles)
+void CInArchive::ReadUInt64DefVector(const array_ptr_alloc < ::gen::byte_buffer > & dataVector, CUInt64DefVector & v, int32_t numFiles)
 {
   ReadBoolVector2(numFiles, v.Defined);
 
@@ -786,7 +786,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
     const base_array < ::libcompress::codec_info_ex > *externalCodecs,
     file_position baseOffset,
     file_position & dataOffset,
-    array_ptr_alloc < ::ex1::byte_buffer > &dataVector
+    array_ptr_alloc < ::gen::byte_buffer > &dataVector
     #ifndef _NO_CRYPTO
     , ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined
     #endif
@@ -833,8 +833,8 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
   for (int32_t i = 0; i < folders.get_count(); i++)
   {
     const CFolder &folder = folders[i];
-    dataVector.add(::ex1::byte_buffer());
-    ::ex1::byte_buffer &data = dataVector.last_element();
+    dataVector.add(::gen::byte_buffer());
+    ::gen::byte_buffer &data = dataVector.last_element();
     uint64_t unpackSize64 = folder.GetUnpackSize();
     size_t unpackSize = (size_t)unpackSize64;
     if (unpackSize != unpackSize64)
@@ -843,7 +843,7 @@ HRESULT CInArchive::ReadAndDecodePackedStreams(
 
     throw "should implement below";
     /*CBufPtrSeqOutStream *outStreamSpec = new CBufPtrSeqOutStream;
-    ::ca::smart_pointer<::ex1::writer> outStream = outStreamSpec;
+    ::ca::smart_pointer<::gen::writer> outStream = outStreamSpec;
     outStreamSpec->Init(data, unpackSize);
 
     HRESULT result = decoder.Decode(
@@ -889,7 +889,7 @@ HRESULT CInArchive::ReadHeader(
     type = ReadID();
   }
 
-  array_ptr_alloc < ::ex1::byte_buffer > dataVector;
+  array_ptr_alloc < ::gen::byte_buffer > dataVector;
 
   if (type == NID::kAdditionalStreamsInfo)
   {
@@ -1174,14 +1174,14 @@ HRESULT CInArchive::ReadDatabase2(
   if (crcFromArchive == 0 && nextHeaderOffset == 0 && nextHeaderSize == 0 && nextHeaderCRC == 0)
   {
     uint64_t cur, cur2;
-    cur = _stream->seek(0, ex1::seek_current);
+    cur = _stream->seek(0, gen::seek_current);
     const int32_t kCheckSize = 500;
     byte buf[kCheckSize];
-    cur2 = _stream->seek(0, ex1::seek_end);
+    cur2 = _stream->seek(0, gen::seek_end);
     int32_t checkSize = kCheckSize;
     if (cur2 - cur < kCheckSize)
       checkSize = (int32_t)(cur2 - cur);
-    cur2 = _stream->seek(-checkSize, ex1::seek_end);
+    cur2 = _stream->seek(-checkSize, gen::seek_end);
 
     RINOK(ReadStream_FALSE(_stream, buf, (size_t)checkSize));
 
@@ -1194,7 +1194,7 @@ HRESULT CInArchive::ReadDatabase2(
     nextHeaderSize = checkSize - i;
     nextHeaderOffset = cur2 - cur + i;
     nextHeaderCRC = crc_calc(buf + i, (size_t)nextHeaderSize);
-    _stream->seek(cur,ex1::seek_current);
+    _stream->seek(cur,gen::seek_current);
   }
   else
   #endif
@@ -1214,9 +1214,9 @@ HRESULT CInArchive::ReadDatabase2(
   if ((int64_t)nextHeaderOffset < 0)
     return S_FALSE;
 
-  _stream->seek(nextHeaderOffset, ex1::seek_current); // RINOK
+  _stream->seek(nextHeaderOffset, gen::seek_current); // RINOK
 
-  ::ex1::byte_buffer buffer2;
+  ::gen::byte_buffer buffer2;
   buffer2.SetCapacity((size_t)nextHeaderSize);
 
   RINOK(ReadStream_FALSE(_stream, buffer2, (size_t)nextHeaderSize));
@@ -1229,7 +1229,7 @@ HRESULT CInArchive::ReadDatabase2(
   CStreamSwitch streamSwitch;
   streamSwitch.Set(this, buffer2);
 
-  array_ptr_alloc < ::ex1::byte_buffer > dataVector;
+  array_ptr_alloc < ::gen::byte_buffer > dataVector;
 
   uint64_t type = ReadID();
   if (type != NID::kHeader)

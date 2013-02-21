@@ -18,7 +18,7 @@
 #endif
 
 
-namespace ex1
+namespace gen
 {
 
    HMODULE g_hmoduleOs = NULL;
@@ -38,7 +38,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
 #ifdef WINDOWS
 
-      System.factory().creatable_large < ::ex1::file_exception > ();
+      System.factory().creatable_large < ::gen::file_exception > ();
 
       if(g_hmoduleOs == NULL)
       {
@@ -62,13 +62,13 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
       }
 
 #elif defined(LINUX)
-      System.factory().creatable_large < ::ex1::file_exception > ();
+      System.factory().creatable_large < ::gen::file_exception > ();
 
       void * pdl = ::dlopen("libca2os.so", RTLD_NOW | RTLD_GLOBAL);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
 #else
-      System.factory().creatable_large < ::ex1::file_exception > ();
+      System.factory().creatable_large < ::gen::file_exception > ();
 
       void * pdl = ::dlopen("libos.dylib", RTLD_LOCAL);
       PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
@@ -79,11 +79,11 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
 
    void application::on_request(::ca::create_context * pcreatecontext)
    {
-      ::radix::application::on_request(pcreatecontext);
+      ::gen::application::on_request(pcreatecontext);
    }
 
 
-} // namespace ex1
+} // namespace gen
 
 
 
@@ -293,7 +293,7 @@ finishedCa2ModuleFolder:;
          m_strModuleFolder = System.m_strModuleFolder;
       }
 
-      if(!::ex1::application::process_initialize())
+      if(!::gen::application::process_initialize())
          return false;
 
       if(is_system())
@@ -307,7 +307,7 @@ finishedCa2ModuleFolder:;
    bool application::initialize_instance()
    {
 
-      if(!ex1::application::initialize_instance())
+      if(!gen::application::initialize_instance())
         return FALSE;
 
 
@@ -387,7 +387,7 @@ finishedCa2ModuleFolder:;
       m_pcommandthread = NULL;
 
 
-      return ex1::application::exit_instance();
+      return gen::application::exit_instance();
    }
 
    LRESULT application::GetPaintMsgProc(int32_t nCode, WPARAM wParam, LPARAM lParam)
@@ -427,9 +427,9 @@ finishedCa2ModuleFolder:;
            try
            {
               // create the .mdb file
-              ex1::filesp f(get_app());
+              gen::filesp f(get_app());
 
-              if(f->open(lpcszFilePath, ::ex1::file::mode_create | ::ex1::file::mode_write ))
+              if(f->open(lpcszFilePath, ::gen::file::mode_create | ::gen::file::mode_write ))
               {
                  // write the ::fontopus::user-defined resource to the .mdb file
                  f->write(lpnRes, dwResSize);
@@ -442,7 +442,7 @@ finishedCa2ModuleFolder:;
                #endif
               }
            }
-           catch(ex1::file_exception_sp * pe)
+           catch(gen::file_exception_sp * pe)
            {
          #ifdef DEBUG
    //         g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -753,7 +753,7 @@ finishedCa2ModuleFolder:;
          {
             storage.set_data(lpnRes, dwResSize);
          }
-         catch(ex1::file_exception_sp * pe)
+         catch(gen::file_exception_sp * pe)
          {
             #ifdef DEBUG
    //            g_dumpcontext << "File could not be opened " << pe->m_cause << "\n";
@@ -832,28 +832,28 @@ finishedCa2ModuleFolder:;
 
    void application::assert_valid() const
    {
-      ex1::application::assert_valid();
+      gen::application::assert_valid();
    }
 
    void application::dump(dump_context & dumpcontext) const
    {
-      ex1::application::dump(dumpcontext);
+      gen::application::dump(dumpcontext);
    }
 
 
    int32_t application::run()
    {
-      return ex1::application::run();
+      return gen::application::run();
    }
 
    bool application::on_idle(LONG lCount)
    {
-      return ex1::application::on_idle(lCount);
+      return gen::application::on_idle(lCount);
    }
 
    void application::ProcessWndProcException(base_exception* e, gen::signal_object * pobj)
    {
-      return ex1::application::ProcessWndProcException(e, pobj);
+      return gen::application::ProcessWndProcException(e, pobj);
    }
 
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
@@ -861,12 +861,12 @@ finishedCa2ModuleFolder:;
    {
       if(command_target_interface::_001OnCmdMsg(pcmdmsg))
          return TRUE;
-      return ex1::application::_001OnCmdMsg(pcmdmsg);
+      return gen::application::_001OnCmdMsg(pcmdmsg);
    }
 
    ::ca::application * application::get_app() const
    {
-      return ex1::application::get_app();
+      return gen::application::get_app();
    }
 
    string application::get_module_title()
@@ -1193,7 +1193,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 
 */
 
-namespace radix
+namespace gen
 {
 
    const char application::gen_FileSection[] = "Recent File List";
@@ -1202,7 +1202,7 @@ namespace radix
    const char application::gen_PreviewEntry[] = "PreviewPages";
 
    application::application() :
-      ::radix::thread(NULL),
+      ::gen::thread(NULL),
       m_mutexMatterLocator(this)
    {
 
@@ -1375,7 +1375,7 @@ namespace radix
                {
                   if (pThread->GetMainWnd() != NULL)
                   {
-                     TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                     TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                      pThread->GetMainWnd()->DestroyWindow();
                   }
                   goto InitFailure;
@@ -1396,7 +1396,7 @@ namespace radix
                {
                   if (pThread->GetMainWnd() != NULL)
                   {
-                     TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                     TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                      pThread->GetMainWnd()->DestroyWindow();
                   }
                   pThread->exit_instance();
@@ -1409,7 +1409,7 @@ namespace radix
                   goto run;
                if (pThread->GetMainWnd() != NULL)
                {
-                  TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   try
                   {
                      pThread->GetMainWnd()->DestroyWindow();
@@ -1423,7 +1423,7 @@ namespace radix
                   goto run;
                if (pThread->GetMainWnd() != NULL)
                {
-                  TRACE(::radix::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   try
                   {
                      pThread->GetMainWnd()->DestroyWindow();
@@ -1715,7 +1715,7 @@ namespace radix
    /*   if (GetMainWnd() == NULL) // may be a service or console application ::ca::window
       {
          // Not launched /Embedding or /Automation, but has no main ::ca::window!
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "Warning: GetMainWnd() is NULL in application::run - quitting application.\n");
          __post_quit_message(0);
       }*/
       return thread::run();
@@ -1990,7 +1990,7 @@ namespace radix
    void application::pre_translate_message(::gen::signal_object * pobj)
    {
 
-      ::radix::thread::pre_translate_message(pobj);
+      ::gen::thread::pre_translate_message(pobj);
 
    }
 
@@ -2290,7 +2290,7 @@ namespace radix
       return true;
    }
 
-   string application::get_mutex_name_radix()
+   string application::get_mutex_name_gen()
    {
       return m_strAppName;
    }
@@ -2821,7 +2821,7 @@ namespace radix
 
    #ifdef DEBUG
   //    if ((nType & MB_ICONMASK) == 0)
-//         TRACE(::radix::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
+//         TRACE(::gen::trace::category_AppMsg, 0, "Warning: no icon specified for message box.\n");
    #endif
 
       char szAppName[_MAX_PATH];
@@ -2888,7 +2888,7 @@ namespace radix
       string string;
       if (!string.load_string(nIDPrompt))
       {
-         TRACE(::radix::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
+         TRACE(::gen::trace::category_AppMsg, 0, "Error: failed to load message box prompt string 0x%04x.\n",
             nIDPrompt);
          ASSERT(FALSE);
       }
@@ -3564,13 +3564,13 @@ namespace radix
 
 
 
-/*   gen::property_set & application::propset(::radix::object * pobject)
+/*   gen::property_set & application::propset(::gen::object * pobject)
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       return m_mapObjectSet[pobject];
    }
 
-   gen::property_set * application::existing_propset(::radix::object * pobject)
+   gen::property_set * application::existing_propset(::gen::object * pobject)
    {
       single_lock sl(&m_mapObjectSet, TRUE);
       auto p = m_mapObjectSet.PLookup(pobject);
@@ -3889,7 +3889,7 @@ namespace radix
       return pmutex->unlock() != FALSE;
    }*/
 
-   /*event * application::get_event(::radix::object * pobject, int32_t iEvent)
+   /*event * application::get_event(::gen::object * pobject, int32_t iEvent)
    {
       single_lock sl(&m_mutexObjectEvent, TRUE);
       ::collection::map < int32_t, int32_t, event *, event * > * peventmap;
@@ -3907,7 +3907,7 @@ namespace radix
       return pevent;
    }
 
-   bool application::event_lock(::radix::object * pobject, int32_t iEvent, duration duration)
+   bool application::event_lock(::gen::object * pobject, int32_t iEvent, duration duration)
    {
       event * pevent = get_event(pobject, iEvent);
       if(pevent == NULL)
@@ -3915,7 +3915,7 @@ namespace radix
       return pevent->wait(duration).signaled();
    }
 
-   bool application::event_unlock(::radix::object * pobject, int32_t iEvent)
+   bool application::event_unlock(::gen::object * pobject, int32_t iEvent)
    {
       event * pevent = get_event(pobject, iEvent);
       if(pevent == NULL)
@@ -4000,7 +4000,7 @@ namespace radix
 
       try
       {
-         ::radix::thread::exit();
+         ::gen::thread::exit();
       }
       catch(...)
       {
@@ -4019,7 +4019,7 @@ namespace radix
          TRACE("Could not finalize message window");
       }
 
-      ::radix::application_signal_object signal(this, m_psignal, ::ca::application_signal_exit_instance);
+      ::gen::application_signal_object signal(this, m_psignal, ::ca::application_signal_exit_instance);
       try
       {
          m_psignal->emit(&signal);
@@ -4153,22 +4153,22 @@ namespace radix
 
    string application::get_local_mutex_name()
    {
-      return get_local_mutex_name(get_mutex_name_radix());
+      return get_local_mutex_name(get_mutex_name_gen());
    }
 
    string application::get_local_id_mutex_name()
    {
-      return get_local_id_mutex_name(get_mutex_name_radix(), get_local_mutex_id());
+      return get_local_id_mutex_name(get_mutex_name_gen(), get_local_mutex_id());
    }
 
    string application::get_global_mutex_name()
    {
-      return get_global_mutex_name(get_mutex_name_radix());
+      return get_global_mutex_name(get_mutex_name_gen());
    }
 
    string application::get_global_id_mutex_name()
    {
-      return get_global_id_mutex_name(get_mutex_name_radix(), get_global_mutex_id());
+      return get_global_id_mutex_name(get_mutex_name_gen(), get_global_mutex_id());
    }
 
 
@@ -4224,7 +4224,7 @@ namespace radix
 
       try
       {
-         ::radix::thread::finalize();
+         ::gen::thread::finalize();
       }
       catch(...)
       {
@@ -4317,7 +4317,7 @@ namespace radix
 
    }
 
-} // namespace radix
+} // namespace gen
 
 
 
@@ -4370,7 +4370,7 @@ void __post_quit_message(int32_t nExitCode)
 
 #include "framework.h"
 
-namespace ex2
+namespace gen
 {
 
    application::application()
@@ -4422,7 +4422,7 @@ namespace ex2
       return ::ca::smart_pointer < application >::m_p->_001OnDDECommand(lpcsz);
    }
 
-//   ::ex1::file_system & application::file_system()
+//   ::gen::file_system & application::file_system()
   // {
     //  return m_spfilesystem;
    //}
@@ -4438,7 +4438,7 @@ namespace ex2
          Ex1OnFactoryExchange();
       }
 
-      ::radix::thread::s_bAllocReady = true;
+      ::gen::thread::s_bAllocReady = true;
       if(::ca::thread_sp::m_p == NULL)
       {
          ::ca::thread_sp::create(this);
@@ -4462,7 +4462,7 @@ namespace ex2
       }
       if(::ca::get_thread() == NULL)
       {
-         set_thread(dynamic_cast < ::radix::thread * > (this));
+         set_thread(dynamic_cast < ::gen::thread * > (this));
       }
       //m_pappDelete = this;
       //::ca::thread_sp::m_p->m_pappDelete = this;
@@ -4560,7 +4560,7 @@ namespace ex2
          ::ca::thread_sp::m_p->set_os_data(NULL);
 
          ::ca::thread_sp::m_p->set_run(false);
-         ::ca::smart_pointer < ::ex2::application >::m_p->::ca::thread_sp::m_p->set_run(false);
+         ::ca::smart_pointer < ::gen::application >::m_p->::ca::thread_sp::m_p->set_run(false);
       }
       catch(...)
       {
@@ -4568,7 +4568,7 @@ namespace ex2
 
       try
       {
-         ::ca::smart_pointer < ::ex2::application >::m_p->exit_instance();
+         ::ca::smart_pointer < ::gen::application >::m_p->exit_instance();
       }
       catch(...)
       {
@@ -4620,16 +4620,16 @@ namespace ex2
 
    bool application::DeferRegisterClass(LONG fToRegister, const char ** ppszClass)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->DeferRegisterClass(fToRegister, ppszClass);
+      return ::ca::smart_pointer < ::gen::application >::m_p->DeferRegisterClass(fToRegister, ppszClass);
    }
 
    void application::LockTempMaps()
    {
-      ::ca::smart_pointer < ::ex2::application >::m_p->LockTempMaps();
+      ::ca::smart_pointer < ::gen::application >::m_p->LockTempMaps();
    }
    bool application::UnlockTempMaps(bool bDeleteTemp)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->UnlockTempMaps(bDeleteTemp);
+      return ::ca::smart_pointer < ::gen::application >::m_p->UnlockTempMaps(bDeleteTemp);
    }
 
    const char * application::RegisterWndClass(UINT nClassStyle, HCURSOR hCursor, HBRUSH hbrBackground, HICON hIcon)
@@ -4637,19 +4637,19 @@ namespace ex2
 #ifdef METROWIN
       return NULL;
 #endif
-      return ::ca::smart_pointer < ::ex2::application >::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
+      return ::ca::smart_pointer < ::gen::application >::m_p->RegisterWndClass(nClassStyle, hCursor, hbrBackground, hIcon);
    }
 
-   ::radix::thread * application::GetThread()
+   ::gen::thread * application::GetThread()
    {
-      if(::ca::smart_pointer < ::ex2::application >::m_p == NULL)
+      if(::ca::smart_pointer < ::gen::application >::m_p == NULL)
          return NULL;
-      return ::ca::smart_pointer < ::ex2::application >::m_p->GetThread();
+      return ::ca::smart_pointer < ::gen::application >::m_p->GetThread();
    }
 
-   void application::set_thread(::radix::thread * pthread)
+   void application::set_thread(::gen::thread * pthread)
    {
-      ::ca::smart_pointer < ::ex2::application >::m_p->set_thread(pthread);
+      ::ca::smart_pointer < ::gen::application >::m_p->set_thread(pthread);
    }
 
    ::user::interaction * application::GetMainWnd()
@@ -4661,29 +4661,29 @@ namespace ex2
 
 /*   ::ca::graphics * application::graphics_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->graphics_from_os_data(pdata);
+      return ::ca::smart_pointer < ::gen::application >::m_p->graphics_from_os_data(pdata);
    }*/
 
 
 #ifdef METROWIN
    ::user::interaction * application::window_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data(pdata);
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data(pdata);
    }
 
    ::user::interaction * application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data_permanent(pdata);
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data_permanent(pdata);
    }
 #else
    ::ca::window * application::window_from_os_data(void * pdata)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data(pdata);
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data(pdata);
    }
 
    ::ca::window * application::window_from_os_data_permanent(void * pdata)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->window_from_os_data_permanent(pdata);
+      return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data_permanent(pdata);
    }
 #endif
 
@@ -4698,42 +4698,42 @@ namespace ex2
 
    void application::SetCurrentHandles()
    {
-      ::ca::smart_pointer < ::ex2::application >::m_p->SetCurrentHandles();
+      ::ca::smart_pointer < ::gen::application >::m_p->SetCurrentHandles();
    }
 
    ::ca::window * application::FindWindow(const char * lpszClassName, const char * lpszWindowName)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindow(lpszClassName, lpszWindowName);
+      return ::ca::smart_pointer < ::gen::application >::m_p->FindWindow(lpszClassName, lpszWindowName);
    }
 
    ::ca::window * application::FindWindowEx(oswindow oswindowParent, oswindow oswindowChildAfter, const char * lpszClass, const char * lpszWindow)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
+      return ::ca::smart_pointer < ::gen::application >::m_p->FindWindowEx(oswindowParent, oswindowChildAfter, lpszClass, lpszWindow);
    }
 
 #ifndef METROWIN
 
    void application::get_time(timeval *p)
    {
-      ::ca::smart_pointer < ::ex2::application >::m_p->get_time(p);
+      ::ca::smart_pointer < ::gen::application >::m_p->get_time(p);
    }
 
 #endif
 
    void application::set_env_var(const string & var,const string & value)
    {
-      ::ca::smart_pointer < ::ex2::application >::m_p->set_env_var(var, value);
+      ::ca::smart_pointer < ::gen::application >::m_p->set_env_var(var, value);
    }
 
    uint32_t application::get_thread_id()
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->get_thread_id();
+      return ::ca::smart_pointer < ::gen::application >::m_p->get_thread_id();
    }
 
    bool application::set_main_init_data(::ca::main_init_data * pdata)
    {
-      return ::ca::smart_pointer < ::ex2::application >::m_p->set_main_init_data(pdata);
+      return ::ca::smart_pointer < ::gen::application >::m_p->set_main_init_data(pdata);
    }
 
 
-} // namespace ex2
+} // namespace gen

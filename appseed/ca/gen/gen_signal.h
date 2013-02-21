@@ -12,7 +12,7 @@ namespace gen
 
 
    class CLASS_DECL_ca signal_object :
-      public ::radix::object
+      public ::gen::object
    {
    public:
 
@@ -43,7 +43,7 @@ namespace gen
 
 
    class CLASS_DECL_ca signalizable :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -244,7 +244,7 @@ namespace gen
          };
 
          class CLASS_DECL_ca signal :
-            virtual public ::radix::object
+            virtual public ::gen::object
          {
          public:
             signalid *        m_pid;

@@ -27,7 +27,7 @@ namespace user
       colorertake5::base_editor(papp),
       m_fastblur(papp),
       m_dibBk(papp),
-      ex1::tree(papp),
+      gen::tree(papp),
       ::ca::data_listener(papp)
    {
 
@@ -494,7 +494,7 @@ namespace user
    {
       SCAST_PTR(::gen::message::create, pcreate, pobj);
 
-      if(!ex1::tree::initialize())
+      if(!gen::tree::initialize())
          throw simple_exception(get_app());
 
 
@@ -567,7 +567,7 @@ namespace user
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
 
-      if(!spfile->open(ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::ex1::file::type_text | ::ex1::file::mode_read))
+      if(!spfile->open(ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::gen::file::type_text | ::gen::file::mode_read))
          return;
 
       string str;
@@ -823,7 +823,7 @@ namespace user
          return;
       file_size iSize = m_pdata->m_editfile.get_length();
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
-      m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
       m_pdata->m_editfile.read(psz, (::primitive::memory_size) iSize);
       psz[(::primitive::memory_position) iSize] = '\0';
       str.ReleaseBuffer();
@@ -869,7 +869,7 @@ namespace user
       }
       file_position iSize = iEnd - iStart;
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
-      m_pdata->m_editfile.seek((file_offset) iStart, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek((file_offset) iStart, ::gen::seek_begin);
       m_pdata->m_editfile.read(psz, (::primitive::memory_size) (iSize));
       psz[(::primitive::memory_position)iSize] = '\0';
       str.ReleaseBuffer();
@@ -878,9 +878,9 @@ namespace user
 
    void edit_plain_text::_001SetSelText(const char * psz)
    {
-      m_pdata->m_editfile.seek(m_iSelStart, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(m_iSelStart, ::gen::seek_begin);
       m_pdata->m_editfile.Delete((file_size) (m_iSelEnd - m_iSelStart));
-      m_pdata->m_editfile.seek(m_iSelStart, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(m_iSelStart, ::gen::seek_begin);
       m_pdata->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate();
       _001RedrawWindow();
@@ -985,7 +985,7 @@ namespace user
       //char buf[4096 + 1];
       //UINT uiRead;
       //LPTSTR lpsz;
-      m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
       y = (int32_t) (m_iLineHeight * m_iaLineIndex.get_size());
       if(y <= 0)
          y = 200;
@@ -1349,7 +1349,7 @@ namespace user
       char * lpsz;
       m_iaLineIndex.remove_all();
       m_iaLineEndIndex.remove_all();
-      m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
       if(m_scrollinfo.m_sizeTotal.cx <= 0)
          m_scrollinfo.m_sizeTotal.cx = 200;
       int32_t iLineSize = 0;
@@ -1465,7 +1465,7 @@ namespace user
                psetsel->m_iPreviousSelStart = m_iSelStart;
                psetsel->m_iPreviousSelEnd = m_iSelEnd;
                ::sort::sort(i1, i2);
-               m_pdata->m_editfile.seek(i1, ::ex1::seek_begin);
+               m_pdata->m_editfile.seek(i1, ::gen::seek_begin);
                m_pdata->m_editfile.Delete((file_size)(i2 - i1));
                IndexRegisterDelete(i1, i2 - i1);
                m_iSelEnd = i1;
@@ -1488,12 +1488,12 @@ namespace user
                memset(buf, 0, sizeof(buf));
                strsize iBegin = max(0, m_iSelEnd - 256);
                strsize iCur = m_iSelEnd - iBegin;
-               m_pdata->m_editfile.seek(iBegin, ::ex1::seek_begin);
+               m_pdata->m_editfile.seek(iBegin, ::gen::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
                const char * psz = gen::str::utf8_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_iSelEnd -= iMultiByteUtf8DeleteCount;
-               m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
+               m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
                m_pdata->m_editfile.Delete((file_size) iMultiByteUtf8DeleteCount);
                IndexRegisterDelete(m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_iSelStart = m_iSelEnd;
@@ -1545,7 +1545,7 @@ namespace user
          else if(natural(m_iSelEnd) < m_pdata->m_editfile.get_length())
          {
             char buf[32];
-            m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
+            m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
             primitive::memory_size uiRead = m_pdata->m_editfile.read(buf, 32);
             if(uiRead == 2 &&
                buf[0] == '\r' &&
@@ -1580,7 +1580,7 @@ namespace user
             {
                char buf[64];
                char * psz;
-               m_pdata->m_editfile.seek(max(0, m_iSelEnd - 32), ::ex1::seek_begin);
+               m_pdata->m_editfile.seek(max(0, m_iSelEnd - 32), ::gen::seek_begin);
                psz = &buf[min(32, m_iSelEnd)];
                primitive::memory_size uiRead = m_pdata->m_editfile.read(buf, 64);
                if(uiRead == 2 &&
@@ -1641,11 +1641,11 @@ namespace user
             strsize i1 = m_iSelStart;
             strsize i2 = m_iSelEnd;
             ::sort::sort(i1, i2);
-            m_pdata->m_editfile.seek(i1, ::ex1::seek_begin);
+            m_pdata->m_editfile.seek(i1, ::gen::seek_begin);
             m_pdata->m_editfile.Delete((file_size) (i2 - i1));
             IndexRegisterDelete(i1, i2 - i1);
             m_iSelEnd = i1;
-            m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
+            m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
             string str;
             char ch = (char) pkey->m_nChar;
             if(ch == '\r')
@@ -1716,7 +1716,7 @@ namespace user
             if(i1 != i2)
             {
                ::sort::sort(i1, i2);
-               m_pdata->m_editfile.seek(i1, ::ex1::seek_begin);
+               m_pdata->m_editfile.seek(i1, ::gen::seek_begin);
                m_pdata->m_editfile.Delete((file_size) (i2 - i1));
                m_iSelEnd = i1;
                m_iSelStart = m_iSelEnd;
@@ -1727,11 +1727,11 @@ namespace user
                memset(buf, 0, sizeof(buf));
                strsize iBegin = max(0, m_iSelEnd - 256);
                strsize iCur = m_iSelEnd - iBegin;
-               m_pdata->m_editfile.seek(iBegin, ::ex1::seek_begin);
+               m_pdata->m_editfile.seek(iBegin, ::gen::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
                const char * psz = gen::str::utf8_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
-               m_pdata->m_editfile.seek(m_iSelEnd, ::ex1::seek_begin);
+               m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
                m_pdata->m_editfile.Delete((file_size) (iMultiByteUtf8DeleteCount));
                IndexRegisterDelete(m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_iSelStart = m_iSelEnd;
@@ -1829,10 +1829,10 @@ namespace user
 
       if(iLineEnd > iLineStart)
       {
-         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::ex1::seek_begin);
+         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::gen::seek_begin);
          m_editfileLineIndex.Delete(5 * (iLineEnd - iLineStart));
       }
-      m_editfileLineIndex.seek(5 * iLineStart, ::ex1::seek_begin);
+      m_editfileLineIndex.seek(5 * iLineStart, ::gen::seek_begin);
       iLineSize = iLineStartRemain + iLineEndRemain;
       m_editfileLineIndex.write(&iLineSize, 4);
       m_editfileLineIndex.write(&flag, 1);
@@ -1929,7 +1929,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != NULL)
       {
-         ex1::tree_item * pitemNew = insert_item(pcommand, ::ex1::RelativeFirstChild, m_pdata->m_ptreeitem);
+         gen::tree_item * pitemNew = insert_item(pcommand, ::gen::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1937,7 +1937,7 @@ namespace user
       }
       else
       {
-         ex1::tree_item * pitemNew = insert_item(pcommand, ::ex1::RelativeLastSibling, m_pdata->m_ptreeitem);
+         gen::tree_item * pitemNew = insert_item(pcommand, ::gen::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1975,7 +1975,7 @@ namespace user
          return false;
       }
       plain_text_data::Command * pcommand = NULL;
-      ::ex1::tree_item * ptreeitem;
+      ::gen::tree_item * ptreeitem;
       if(m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count())
       {
          ptreeitem = m_pdata->m_ptreeitem->get_expandable_child(m_pdata->m_iBranch);
@@ -2019,9 +2019,9 @@ namespace user
    void edit_plain_text::_001SetText(const char * psz)
    {
       ::ca::data::writing writing(m_pdata);
-      m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
       m_pdata->m_editfile.Delete((::primitive::memory_size)m_pdata->m_editfile.get_length());
-      m_pdata->m_editfile.seek(0, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
       m_pdata->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate();
       _001OnSetText();
@@ -2122,7 +2122,7 @@ namespace user
       }
       m_lines.lines.set_size(0, 100);
       string str;
-      m_pdata->m_editfile.seek(m_iViewOffset, ::ex1::seek_begin);
+      m_pdata->m_editfile.seek(m_iViewOffset, ::gen::seek_begin);
       iLine = m_iLineOffset;
       i = 0;
       ::index iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
@@ -2232,12 +2232,12 @@ namespace user
 
 
 
-   ex1::tree_item_data * edit_plain_text::on_allocate_item()
+   gen::tree_item_data * edit_plain_text::on_allocate_item()
    {
       return new plain_text_data::Command;
    }
 
-   void edit_plain_text::on_delete_item(ex1::tree_item_data * pitem)
+   void edit_plain_text::on_delete_item(gen::tree_item_data * pitem)
    {
       delete pitem;
    }
@@ -2295,6 +2295,6 @@ namespace user
    }
 
 
-} // namespace ex1
+} // namespace gen
 
 

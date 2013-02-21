@@ -66,7 +66,7 @@ namespace database
 
 
    class CLASS_DECL_ca field_properties :
-      virtual public ::ex1::byte_serializable
+      virtual public ::gen::byte_serializable
    {
    public:
 
@@ -87,8 +87,8 @@ namespace database
       field_properties & operator = (const field_properties & field_properties);
 
 
-      virtual void write(::ex1::byte_output_stream & ostream);
-      virtual void read(::ex1::byte_input_stream & istream);
+      virtual void write(::gen::byte_output_stream & ostream);
+      virtual void read(::gen::byte_input_stream & istream);
 
    };
 
@@ -125,16 +125,16 @@ namespace database
    };
 
    class CLASS_DECL_ca query_data :
-      public ::ex1::byte_serializable_array < base_array < record, record & > >
+      public ::gen::byte_serializable_array < base_array < record, record & > >
    {
    };
 
    typedef base_array <field, field &> CFields;
-   typedef ::ex1::byte_serializable_array < base_array < field_properties, field_properties & > > record_properties;
+   typedef ::gen::byte_serializable_array < base_array < field_properties, field_properties & > > record_properties;
 
    class CLASS_DECL_ca result_set :
-      public ::radix::object,
-      public ::ex1::byte_serializable
+      public ::gen::object,
+      public ::gen::byte_serializable
    {
    public:
 
@@ -148,8 +148,8 @@ namespace database
       result_set(const result_set & set);
 
 
-      virtual void write(::ex1::byte_output_stream & ostream);
-      virtual void read(::ex1::byte_input_stream & istream);
+      virtual void write(::gen::byte_output_stream & ostream);
+      virtual void read(::gen::byte_input_stream & istream);
 
 
       result_set & operator = (const result_set & set);

@@ -85,4 +85,4 @@ namespace user
       return 0;
    }
 
-} // namespace ex1
+} // namespace gen

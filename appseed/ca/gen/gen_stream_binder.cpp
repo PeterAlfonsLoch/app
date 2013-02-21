@@ -3,11 +3,11 @@
 
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    class reader_for_binder:
-      public ex1::reader
+      public gen::reader
    {
    public:
 
@@ -29,7 +29,7 @@ namespace ex1
    }
 
    class writer_for_binder:
-      public ex1::writer
+      public gen::writer
    {
    public:
 
@@ -81,16 +81,16 @@ namespace ex1
    }
 
 
-   void stream_binder::CreateStreams(ex1::reader **inStream, ex1::writer **outStream)
+   void stream_binder::CreateStreams(gen::reader **inStream, gen::writer **outStream)
    {
       reader_for_binder * inStreamSpec = new reader_for_binder;
-      sp(ex1::reader) inStreamLoc(inStreamSpec);
+      sp(gen::reader) inStreamLoc(inStreamSpec);
       inStreamSpec->set_binder(this);
       *inStream = inStreamLoc.detach();
 
       writer_for_binder *outStreamSpec = new
          writer_for_binder;
-      sp(ex1::writer) outStreamLoc(outStreamSpec);
+      sp(gen::writer) outStreamLoc(outStreamSpec);
       outStreamSpec->set_binder(this);
       *outStream = outStreamLoc.detach();
 
@@ -155,4 +155,4 @@ namespace ex1
    }
 
 
-} // namespace ex1
+} // namespace gen

@@ -11,8 +11,8 @@ namespace libcompress
       struct coder_info
       {
         sp(::libcompress::coder_interface) Coder;
-        sp(::ex1::reader) InStream;
-        sp(::ex1::writer) OutStream;
+        sp(::gen::reader) InStream;
+        sp(::gen::writer) OutStream;
         sp(::libcompress::progress_info_interface) Progress;
 
         uint64_t InSizeValue;

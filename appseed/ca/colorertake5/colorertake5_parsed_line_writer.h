@@ -19,7 +19,7 @@ namespace colorertake5
       @param lineRegions Linked list of LineRegion structures.
       Only region references are used there.
       */
-      static void tokenWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map * docLinkHash, const char  *line, LineRegion *lineRegions);
+      static void tokenWrite(gen::byte_output_stream & markupWriter, gen::byte_output_stream & textWriter, string_to_string_map * docLinkHash, const char  *line, LineRegion *lineRegions);
 
       /** write specified line of text using list of LineRegion's.
       This method uses text fields of LineRegion class to enwrap each line
@@ -32,7 +32,7 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void markupWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void markupWrite(gen::byte_output_stream & markupWriter, gen::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
 
 
       /** write specified line of text using list of LineRegion's.
@@ -44,19 +44,19 @@ namespace colorertake5
       @param line Line of text
       @param lineRegions Linked list of LineRegion structures
       */
-      static void htmlRGBWrite(ex1::byte_output_stream & markupWriter, ex1::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
+      static void htmlRGBWrite(gen::byte_output_stream & markupWriter, gen::byte_output_stream & textWriter, string_to_string_map *docLinkHash, const char *line, LineRegion *lineRegions);
 
-      static void writeStyle(ex1::byte_output_stream & writer, const StyledRegion *lr);
+      static void writeStyle(gen::byte_output_stream & writer, const StyledRegion *lr);
 
       /** Puts into stream starting HTML \<span> tag with requested style specification
       */
-      static void writeStart(ex1::byte_output_stream & writer, const StyledRegion *lr);
+      static void writeStart(gen::byte_output_stream & writer, const StyledRegion *lr);
 
       /** Puts into stream ending HTML \</span> tag
       */
-      static void writeEnd(ex1::byte_output_stream & writer, const StyledRegion *lr);
+      static void writeEnd(gen::byte_output_stream & writer, const StyledRegion *lr);
 
-      static void writeHref(ex1::byte_output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start);
+      static void writeHref(gen::byte_output_stream & writer, string_to_string_map *docLinkHash, const class scheme *scheme, const string &token, bool start);
 
    };
 

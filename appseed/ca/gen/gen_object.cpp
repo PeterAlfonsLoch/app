@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace radix
+namespace gen
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -210,9 +210,9 @@ namespace radix
 //void * object::operator new(size_t nSize)
   // { return ::operator new(nSize); }
 // DEBUG versions in objcore.cpp
-//void ::radix::object::AssertValid() const
+//void ::gen::object::AssertValid() const
 //   { /* no asserts in release builds */ }
-//void ::radix::object::Dump(dump_context &) const
+//void ::gen::object::Dump(dump_context &) const
 //   { /* no dumping in release builds */ }
 #endif //!DEBUG
 
@@ -223,25 +223,25 @@ namespace radix
    }
 
 
-} //  namespace radix
+} //  namespace gen
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostic Support
 
 //#ifdef DEBUG
-void assert_valid_object(const ::radix::object * pOb, const char * lpszFileName, int32_t nLine)
+void assert_valid_object(const ::gen::object * pOb, const char * lpszFileName, int32_t nLine)
 {
    if (pOb == NULL)
    {
-//      TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
+//      TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
    }
-   if (!__is_valid_address(pOb, sizeof(::radix::object)))
+   if (!__is_valid_address(pOb, sizeof(::gen::object)))
    {
-      ///TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+      ///TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -252,7 +252,7 @@ void assert_valid_object(const ::radix::object * pOb, const char * lpszFileName,
    //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    {
-//      TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
+//      TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -260,7 +260,7 @@ void assert_valid_object(const ::radix::object * pOb, const char * lpszFileName,
 
    /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
    {
-   TRACE(::radix::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+   TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
    if (__assert_failed_line(lpszFileName, nLine))
    __debug_break();
    return;     // quick escape

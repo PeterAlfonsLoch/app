@@ -33,7 +33,7 @@ public:
 
    
 
-   void on_update(::view * pSender, LPARAM lHint, ::radix::object * pHint);
+   void on_update(::view * pSender, LPARAM lHint, ::gen::object * pHint);
    file_manager_operation_document * get_document();
 };
       

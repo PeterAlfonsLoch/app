@@ -73,7 +73,7 @@ namespace user
          catch(...)
          {
          }
-         ::radix::object * pobjTwf = NULL;
+         ::gen::object * pobjTwf = NULL;
          if(m_papp != NULL && &System != NULL)
          {
             pobjTwf = System.get_twf();
@@ -2244,8 +2244,8 @@ namespace user
       //bool bAttach = AttachThreadInput(get_wnd()->m_pthread->get_os_int(), ::GetCurrentThreadId(), TRUE);
 
       m_iaModalThread.add(::ca::get_thread()->get_os_int());
-      ::radix::application * pappThis1 = dynamic_cast < ::radix::application * > (m_pthread->m_pthread->m_p);
-      ::radix::application * pappThis2 = dynamic_cast < ::radix::application * > (m_pthread->m_pthread);
+      ::gen::application * pappThis1 = dynamic_cast < ::gen::application * > (m_pthread->m_pthread->m_p);
+      ::gen::application * pappThis2 = dynamic_cast < ::gen::application * > (m_pthread->m_pthread);
       // acquire and dispatch messages until the modal state is done
       MESSAGE msg;
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ex2/ex2.h"
+#include "ca/gen/gen.h"
 
 
 #include "xml_enum.h"

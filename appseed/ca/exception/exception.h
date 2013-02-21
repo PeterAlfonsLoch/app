@@ -135,7 +135,7 @@ CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 #include "exception_memory_state.h"
 
 // Enumerate allocated objects or runtime classes
-/*void __do_for_all_objects(void (c_cdecl *pfn)(::radix::object* pObject, void * pContext),
+/*void __do_for_all_objects(void (c_cdecl *pfn)(::gen::object* pObject, void * pContext),
    void * pContext);
 void gen::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
    void * pContext), void * pContext);*/
@@ -197,14 +197,14 @@ extern CLASS_DECL_ca bool g_bTraceEnabled;
 
 
 
-namespace radix
+namespace gen
 {
 
 
    class object;
 
 
-} // namespace radix
+} // namespace gen
 
 
 #ifdef DEBUG
@@ -227,9 +227,9 @@ CLASS_DECL_ca bool __assert_failed_line(const char * lpszFileName, int32_t nLine
 
 CLASS_DECL_ca void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
-CLASS_DECL_ca void assert_valid_object(const ::radix::object* pOb,
+CLASS_DECL_ca void assert_valid_object(const ::gen::object* pOb,
             const char * lpszFileName, int32_t nLine);
-CLASS_DECL_ca void __dump(const ::radix::object* pOb); // dump an object from CodeView
+CLASS_DECL_ca void __dump(const ::gen::object* pOb); // dump an object from CodeView
 
 
 // extern gen::CTrace TRACE;
@@ -333,9 +333,9 @@ inline void c_cdecl __trace(...) { }
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(::radix::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         TRACE(::gen::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(::radix::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         TRACE(::gen::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(FALSE); \
    } while (0)
 #else

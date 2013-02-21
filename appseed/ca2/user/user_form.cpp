@@ -345,7 +345,7 @@ namespace ca2
       }
 
 
-      void form::_001OnUpdate(::view * pviewSender, LPARAM lhint, ::radix::object* phint)
+      void form::_001OnUpdate(::view * pviewSender, LPARAM lhint, ::gen::object* phint)
       {
          UNREFERENCED_PARAMETER(pviewSender);
          UNREFERENCED_PARAMETER(lhint);
@@ -422,7 +422,7 @@ namespace ca2
             pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection,
             pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
             pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex,
-            dynamic_cast < ::ex1::byte_serializable & > (ia)))
+            dynamic_cast < ::gen::byte_serializable & > (ia)))
          {
             ::user::check_box * pcheck = dynamic_cast < ::user::check_box * > (pcontrol);
             if(pcheck != NULL)
@@ -448,7 +448,7 @@ namespace ca2
             return;
          ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
          int32_t i;
-         if(data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i))
+         if(data_get(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, i))
          {
       /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
             pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -546,7 +546,7 @@ namespace ca2
          {
             ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
             stringa stra;
-            data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, stra);
+            data_get(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, stra);
             ASSERT(plist != NULL);
             pdata->set_data(plist, stra);
          }
@@ -585,7 +585,7 @@ namespace ca2
             return false;
 
          int32_t i;
-         if(!data_get(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i))
+         if(!data_get(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, i))
             return false;
 
          bData = (i != 0) ? 1 : 0;
@@ -601,7 +601,7 @@ namespace ca2
             return false;
 
          int32_t i = bData ? 1 : 0;
-         data_set(pcontrol->descriptor().m_dataid, ::radix::system::idEmpty, i);
+         data_set(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, i);
          return true;
 
       }
@@ -651,7 +651,7 @@ namespace ca2
       void form::_001GetSelection(
          ::database::id & id, ::database::selection &selection)
       {
-         selection.add_item(id, ::radix::system::idEmpty);
+         selection.add_item(id, ::gen::system::idEmpty);
       }
 
       bool form::_001OnCommand(id id)
@@ -953,7 +953,7 @@ namespace ca2
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-                  dynamic_cast < ::ex1::byte_serializable & > (ia));
+                  dynamic_cast < ::gen::byte_serializable & > (ia));
                check_interface * pcheck = dynamic_cast < check_interface * > (pevent->m_puie);
                if(pcheck->_001GetCheck() == check::checked)
                {
@@ -976,7 +976,7 @@ namespace ca2
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-                  dynamic_cast < ::ex1::byte_serializable & > (ia));
+                  dynamic_cast < ::gen::byte_serializable & > (ia));
             }
          }
          return false;

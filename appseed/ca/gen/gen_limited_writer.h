@@ -3,7 +3,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
    class limited_writer:
@@ -30,4 +30,4 @@ namespace ex1
       uint64_t GetRem() const { return _size; }
    };
 
-} // namespace ex1
+} // namespace gen

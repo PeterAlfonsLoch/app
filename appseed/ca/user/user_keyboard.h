@@ -7,7 +7,7 @@ namespace user
    class keyboard_layout;
 
    class CLASS_DECL_ca keyboard :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

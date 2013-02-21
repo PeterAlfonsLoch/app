@@ -115,7 +115,7 @@ void object_list::FreeNode(object_list::node* pNode)
 
 /////////////////////////////////////////////////////////////////////////////
 
-POSITION object_list::add_head(::radix::object* newElement)
+POSITION object_list::add_head(::gen::object* newElement)
 {
 
    ASSERT_VALID(this);
@@ -133,7 +133,7 @@ POSITION object_list::add_head(::radix::object* newElement)
 
 
 
-POSITION object_list::add_tail(::radix::object* newElement)
+POSITION object_list::add_tail(::gen::object* newElement)
 {
 
    ASSERT_VALID(this);
@@ -183,7 +183,7 @@ void object_list::add_tail(object_list* pNewList)
       add_tail(pNewList->get_next(pos));
 }
 
-::radix::object* object_list::remove_head()
+::gen::object* object_list::remove_head()
 {
    ENSURE_VALID(this);
    ENSURE(m_pnodeHead != NULL);  // throws if called on is_empty list
@@ -191,7 +191,7 @@ void object_list::add_tail(object_list* pNewList)
    ASSERT(__is_valid_address(m_pnodeHead, sizeof(node)));
 
    node* pOldNode = m_pnodeHead;
-   ::radix::object* returnValue = pOldNode->m_pdata;
+   ::gen::object* returnValue = pOldNode->m_pdata;
 
    m_pnodeHead = pOldNode->m_pnext;
    if (m_pnodeHead != NULL)
@@ -202,14 +202,14 @@ void object_list::add_tail(object_list* pNewList)
    return returnValue;
 }
 
-::radix::object* object_list::remove_tail()
+::gen::object* object_list::remove_tail()
 {
    ASSERT_VALID(this);
    ASSERT(m_pnodeTail != NULL);  // don't call on is_empty list !!!
    ASSERT(__is_valid_address(m_pnodeTail, sizeof(node)));
 
    node* pOldNode = m_pnodeTail;
-   ::radix::object* returnValue = pOldNode->m_pdata;
+   ::gen::object* returnValue = pOldNode->m_pdata;
 
    m_pnodeTail = pOldNode->m_pprevious;
    if (m_pnodeTail != NULL)
@@ -220,7 +220,7 @@ void object_list::add_tail(object_list* pNewList)
    return returnValue;
 }
 
-POSITION object_list::insert_before(POSITION position, ::radix::object* newElement)
+POSITION object_list::insert_before(POSITION position, ::gen::object* newElement)
 {
 
    ASSERT_VALID(this);
@@ -250,7 +250,7 @@ POSITION object_list::insert_before(POSITION position, ::radix::object* newEleme
 
 
 
-POSITION object_list::insert_after(POSITION position, ::radix::object* newElement)
+POSITION object_list::insert_after(POSITION position, ::gen::object* newElement)
 {
 
    ASSERT_VALID(this);
@@ -335,7 +335,7 @@ POSITION object_list::find_index(int_ptr nIndex) const
    return (POSITION) pNode;
 }
 
-POSITION object_list::find(::radix::object* searchValue, POSITION startAfter) const
+POSITION object_list::find(::gen::object* searchValue, POSITION startAfter) const
 {
    ASSERT_VALID(this);
 
@@ -364,7 +364,7 @@ void object_list::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
-   ::radix::object::Serialize(ar);
+   ::gen::object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -378,7 +378,7 @@ void object_list::Serialize(CArchive& ar)
    else
    {
       uint_ptr nNewCount = ar.ReadCount();
-      ::radix::object* newData;
+      ::gen::object* newData;
       while (nNewCount--)
       {
          ar >> newData;
@@ -392,7 +392,7 @@ void object_list::Serialize(CArchive& ar)
 
 void object_list::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::gen::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -407,7 +407,7 @@ void object_list::dump(dump_context & dumpcontext) const
 
 void object_list::assert_valid() const
 {
-   ::radix::object::assert_valid();
+   ::gen::object::assert_valid();
 
    if (m_nCount == 0)
    {

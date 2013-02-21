@@ -1,12 +1,12 @@
 #pragma once
 
 
-#include "ex1_reader.h"
-#include "ex1_writer.h"
-#include "ex1_stream.h"
+#include "gen_reader.h"
+#include "gen_writer.h"
+#include "gen_stream.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -15,10 +15,10 @@ namespace ex1
    typedef ca::smart_pointer < file > filesp;
 
 
-} // namespace ex1
+} // namespace gen
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -154,7 +154,7 @@ namespace ex1
    CLASS_DECL_ca HRESULT ReadStream_FAIL(reader * stream, void * data, ::primitive::memory_size size);
    CLASS_DECL_ca HRESULT WriteStream(writer * stream, const void * data, ::primitive::memory_size size);
 
-} // namespace ex1
+} // namespace gen
 
 
 

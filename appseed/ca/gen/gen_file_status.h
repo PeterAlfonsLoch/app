@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
    struct file_status
@@ -10,7 +10,7 @@ namespace ex1
       ::datetime::time  m_mtime;         // last modification date/time of file
       ::datetime::time  m_atime;         // last access date/time of file
       file_size     m_size;          // logical size of file in bytes
-      BYTE        m_attribute;     // logical OR of ex1::filesp::Attribute enum values
+      BYTE        m_attribute;     // logical OR of gen::filesp::Attribute enum values
       BYTE        m_padding;       // pad the structure to a WORD
       string      m_strFullName;   // absolute path name
 
@@ -19,7 +19,7 @@ namespace ex1
    };
 
 
-} // namespace ex1
+} // namespace gen
 
 
 

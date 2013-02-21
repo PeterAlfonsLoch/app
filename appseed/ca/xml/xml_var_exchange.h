@@ -6,7 +6,7 @@ namespace xml
    class var_exchange :
       public exportable,
       public importable,
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
    

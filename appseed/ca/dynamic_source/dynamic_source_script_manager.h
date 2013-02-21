@@ -25,7 +25,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca script_manager :
-      virtual public ::radix::thread,
+      virtual public ::gen::thread,
       virtual public ::ca::message_window_simple_callback
    {
    public:
@@ -48,7 +48,7 @@ namespace dynamic_source
 
       
       class CLASS_DECL_ca session :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
 
@@ -190,7 +190,7 @@ namespace dynamic_source
 
 
       script_instance * get(const string & strName);
-      using ::radix::thread::handle;
+      using ::gen::thread::handle;
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       script_instance * get_output_internal(::dynamic_source::script_instance * pinstanceParent, const string & strName);
       using thread::run;

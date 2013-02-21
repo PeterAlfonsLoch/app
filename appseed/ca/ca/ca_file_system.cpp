@@ -304,12 +304,12 @@ namespace ca
       // fail if exists, create if not exists
       bool system::mk_time(const char * lpcszCandidate)
       {
-         ex1::filesp spfile(get_app());
+         gen::filesp spfile(get_app());
          if(System.file().exists(lpcszCandidate, get_app()))
             return false;
          try
          {
-            if(!spfile->open(lpcszCandidate, ::ex1::file::mode_create | ::ex1::file::type_binary))
+            if(!spfile->open(lpcszCandidate, ::gen::file::mode_create | ::gen::file::type_binary))
                return false;
          }
          catch(...)
@@ -328,9 +328,9 @@ namespace ca
       string system::as_string(var varFile, var & varQuery, ::ca::application * papp)
       {
          primitive::memory storage;
-         if(varFile.ca2 < ::ex1::file > () != NULL)
+         if(varFile.ca2 < ::gen::file > () != NULL)
          {
-            storage.FullLoad(*varFile.ca2 < ::ex1::file >());
+            storage.FullLoad(*varFile.ca2 < ::gen::file >());
          }
          else
          {
@@ -385,7 +385,7 @@ namespace ca
                {
                   try
                   {
-                     storage.FullLoad(App(papp).file().get_file(strFilePath, ::ex1::file::type_binary | ::ex1::file::mode_read));
+                     storage.FullLoad(App(papp).file().get_file(strFilePath, ::gen::file::type_binary | ::gen::file::mode_read));
                   }
                   catch(...)
                   {
@@ -456,12 +456,12 @@ namespace ca
 
          }
 
-         ex1::filesp spfile;
+         gen::filesp spfile;
 
          try
          {
 
-            spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone);
+            spfile = App(papp).file().get_file(varFile, ::gen::file::type_binary | ::gen::file::mode_read | ::gen::file::shareDenyNone);
 
             mem.FullLoad(spfile);
 
@@ -477,11 +477,11 @@ namespace ca
       void system::lines(stringa & stra, var varFile, ::ca::application * papp)
       {
          UNREFERENCED_PARAMETER(papp);
-         ex1::text_file_sp spfile(get_app());
+         gen::text_file_sp spfile(get_app());
 
          try
          {
-            if(!spfile->open(varFile, ::ex1::file::type_text | ::ex1::file::mode_read))
+            if(!spfile->open(varFile, ::gen::file::type_text | ::gen::file::mode_read))
             {
                return;
             }
@@ -501,9 +501,9 @@ namespace ca
       bool system::put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp)
       {
 
-         ex1::filesp spfile;
+         gen::filesp spfile;
 
-         spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         spfile = App(papp).file().get_file(varFile, ::gen::file::type_binary | ::gen::file::mode_write | ::gen::file::mode_create | ::gen::file::shareDenyNone | ::gen::file::defer_create_directory);
 
          if(spfile.is_null())
             return false;
@@ -526,10 +526,10 @@ namespace ca
          }
       }
 
-      bool system::put_contents(var varFile, ex1::file & file, ::ca::application * papp)
+      bool system::put_contents(var varFile, gen::file & file, ::ca::application * papp)
       {
-         ex1::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         gen::filesp spfile;
+         spfile = App(papp).file().get_file(varFile, ::gen::file::type_binary | ::gen::file::mode_write | ::gen::file::mode_create | ::gen::file::shareDenyNone | ::gen::file::defer_create_directory);
          if(spfile.is_null())
             return false;
          primitive::memory mem;
@@ -549,11 +549,11 @@ namespace ca
 
       bool system::put_contents_utf8(var varFile, const char * lpcszContents, ::ca::application * papp)
       {
-         ex1::filesp spfile;
-         spfile = App(papp).file().get_file(varFile, ::ex1::file::type_binary | ::ex1::file::mode_write | ::ex1::file::mode_create | ::ex1::file::shareDenyNone | ::ex1::file::defer_create_directory);
+         gen::filesp spfile;
+         spfile = App(papp).file().get_file(varFile, ::gen::file::type_binary | ::gen::file::mode_write | ::gen::file::mode_create | ::gen::file::shareDenyNone | ::gen::file::defer_create_directory);
          if(spfile.is_null())
             return false;
-         ::ex1::byte_output_stream(spfile) << "\xef\xbb\xbf";
+         ::gen::byte_output_stream(spfile) << "\xef\xbb\xbf";
          spfile->write(lpcszContents, strlen(lpcszContents));
          return true;
       }
@@ -729,8 +729,8 @@ namespace ca
                strNew = pszNew;
             }
 
-            ::ex1::filesp ofile;
-            ofile = App(papp).file().get_file(strNew, ex1::file::mode_write | ex1::file::type_binary | ex1::file::mode_create | ex1::file::defer_create_directory | ::ex1::file::shareDenyWrite);
+            ::gen::filesp ofile;
+            ofile = App(papp).file().get_file(strNew, gen::file::mode_write | gen::file::type_binary | gen::file::mode_create | gen::file::defer_create_directory | ::gen::file::shareDenyWrite);
             if(ofile.is_null())
             {
                string strError;
@@ -738,8 +738,8 @@ namespace ca
                throw strError;
             }
 
-            ::ex1::filesp ifile;
-            ifile = App(papp).file().get_file(psz, ::ex1::file::mode_read | ::ex1::file::type_binary | ::ex1::file::shareDenyNone);
+            ::gen::filesp ifile;
+            ifile = App(papp).file().get_file(psz, ::gen::file::mode_read | ::gen::file::type_binary | ::gen::file::shareDenyNone);
             if(ifile.is_null())
             {
                string strError;
@@ -754,7 +754,7 @@ namespace ca
             bool bOutputFail = false;
             bool bInputFail = false;
             bool bStatusFail = false;
-            ::ex1::file_status st;
+            ::gen::file_status st;
 
             try
             {
@@ -1232,22 +1232,22 @@ namespace ca
 
       }
 
-      ex1::filesp system::time_square_file(::ca::application * papp, const char * pszPrefix, const char * pszSuffix)
+      gen::filesp system::time_square_file(::ca::application * papp, const char * pszPrefix, const char * pszSuffix)
       {
 
          return get(time_square(papp, pszPrefix, pszSuffix), papp);
 
       }
 
-      ex1::filesp system::get(const char * name, ::ca::application * papp)
+      gen::filesp system::get(const char * name, ::ca::application * papp)
       {
 
          System.dir().mk(System.dir().name(name), papp);
 
-         ex1::filesp fileOut = App(papp).file().get_file(name, ::ex1::file::mode_create | ::ex1::file::type_binary | ::ex1::file::mode_write);
+         gen::filesp fileOut = App(papp).file().get_file(name, ::gen::file::mode_create | ::gen::file::type_binary | ::gen::file::mode_write);
 
          if(fileOut.is_null())
-            throw ex1::file_exception(papp, -1, ::ex1::file_exception::none, name);
+            throw gen::file_exception(papp, -1, ::gen::file_exception::none, name);
 
          return fileOut;
 

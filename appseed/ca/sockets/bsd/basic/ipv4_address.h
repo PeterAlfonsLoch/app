@@ -31,7 +31,7 @@ namespace sockets
    /* Ipv4 address implementation.
    \ingroup basic */
    class CLASS_DECL_ca ipv4_address :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

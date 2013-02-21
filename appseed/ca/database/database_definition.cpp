@@ -149,19 +149,19 @@ namespace database
 
    }
 
-   void result_set::write(::ex1::byte_output_stream & ostream)
+   void result_set::write(::gen::byte_output_stream & ostream)
    {
       record_header.write(ostream);
       records.write(ostream);
    }
 
-   void result_set::read(::ex1::byte_input_stream & istream)
+   void result_set::read(::gen::byte_input_stream & istream)
    {
       record_header.read(istream);
       records.read(istream);
    }
 
-   void field_properties::write(::ex1::byte_output_stream & ostream)
+   void field_properties::write(::gen::byte_output_stream & ostream)
    {
       ostream << name;
       ostream << display_name;
@@ -173,7 +173,7 @@ namespace database
       ostream << idx;
    }
 
-   void field_properties::read(::ex1::byte_input_stream & istream)
+   void field_properties::read(::gen::byte_input_stream & istream)
    {
       istream >> name;
       istream >> display_name;

@@ -303,11 +303,11 @@ namespace ca2
             if(papp == NULL)
                return NULL;
 
-            ::radix::application  * pradixapp = dynamic_cast < ::radix::application * > (papp);
+            ::gen::application  * pgenapp = dynamic_cast < ::gen::application * > (papp);
 
-            if(pradixapp != NULL)
+            if(pgenapp != NULL)
             {
-               pradixapp->m_strLibraryName   = m_strCa2Name;
+               pgenapp->m_strLibraryName   = m_strCa2Name;
             }
 
             return papp;

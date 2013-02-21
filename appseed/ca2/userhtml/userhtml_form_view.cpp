@@ -98,7 +98,7 @@ void html_form_view::_001OnInitialUpdate(gen::signal_object * pobj)
 }
 
 
-void html_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
+void html_form_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);

@@ -18,7 +18,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 pane :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
 
@@ -89,7 +89,7 @@ namespace user
          ::index                          m_iDragTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
-         ::ex1::match::any                m_matchanyRestore;
+         ::gen::match::any                m_matchanyRestore;
          bool                             m_bEnableCloseAll;
 
 

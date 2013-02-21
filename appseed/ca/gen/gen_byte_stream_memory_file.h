@@ -7,7 +7,7 @@ namespace gen
 
    class CLASS_DECL_ca byte_stream_memory_file :
       virtual public gen::memory_file,
-      virtual public ex1::byte_stream
+      virtual public gen::byte_stream
    {
    public:
    
@@ -19,7 +19,7 @@ namespace gen
       byte_stream_memory_file(const byte_stream_memory_file & file);
       virtual ~byte_stream_memory_file();
 
-      file_position seek(file_offset offset, ::ex1::e_seek seekOrigin);
+      file_position seek(file_offset offset, ::gen::e_seek seekOrigin);
 
    };
 

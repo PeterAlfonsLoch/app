@@ -1,22 +1,22 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
    class CLASS_DECL_ca file_composite :
-      virtual public ::ex1::file
+      virtual public ::gen::file
    {
    public:
 
 
 
-      ::ex1::filesp     m_spfile;
+      ::gen::filesp     m_spfile;
 
 
       file_composite();
-      file_composite(::ex1::file * pfile);
+      file_composite(::gen::file * pfile);
       virtual ~file_composite();
 
       operator HFILE() const;
@@ -39,7 +39,7 @@ namespace ex1
 
       virtual file* Duplicate() const;
 
-      virtual file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -76,13 +76,13 @@ namespace ex1
 
 
 
-      using ::ex1::reader::write;
-      using ::ex1::writer::write;
+      using ::gen::reader::write;
+      using ::gen::writer::write;
       void write(byte_output_stream & ostream);
 
 
-      using ::ex1::writer::read;
-      using ::ex1::reader::read;
+      using ::gen::writer::read;
+      using ::gen::reader::read;
       void read(byte_input_stream & istream);
 
 
@@ -90,6 +90,6 @@ namespace ex1
    };
 
 
-} // namespace ex1
+} // namespace gen
 
 

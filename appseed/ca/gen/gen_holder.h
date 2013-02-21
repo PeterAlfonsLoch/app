@@ -19,7 +19,7 @@ namespace gen
 
    template < class T >
    class holder :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    protected:
       friend class holder_array < T >;
@@ -119,7 +119,7 @@ namespace gen
 
    template < class T >
    class holder_array :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -323,7 +323,7 @@ namespace gen
 
    template < class KEY, class ARG_KEY, class T >
    class holder_map :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

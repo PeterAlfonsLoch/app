@@ -20,7 +20,7 @@ namespace ca4
    typedef gen::property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_ca oauth :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
        oauth(::ca::application * papp);

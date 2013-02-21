@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
    void request_interface::create(::ca::create_context * pcreatecontext)
@@ -112,5 +112,5 @@ namespace ex1
    }
 
 
-} // namespace ex1
+} // namespace gen
 

@@ -105,13 +105,13 @@ namespace crypto
          UpdateKeys(encrypt ? buf : inBuf);
       }
 
-      ex1::HRes decoder::CryptoSetPassword(const byte *data, uint32_t size)
+      gen::HRes decoder::CryptoSetPassword(const byte *data, uint32_t size)
       {
          _cipher.SetPassword(data, size);
          return S_OK;
       }
 
-      ex1::HRes decoder::Init()
+      gen::HRes decoder::Init()
       {
          return S_OK;
       }

@@ -4,7 +4,7 @@ namespace database
 {
 
    class CLASS_DECL_ca field_definition_item : 
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

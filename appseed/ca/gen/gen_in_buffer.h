@@ -6,7 +6,7 @@
 #include "../../Common/MyCom.h"
 #include "../../Common/MyException.h"*/
 
-namespace ex1
+namespace gen
 {
 
    class CLASS_DECL_ca in_buffer_exception : 
@@ -24,7 +24,7 @@ namespace ex1
    };
 
    class CLASS_DECL_ca in_buffer :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
      byte *_buffer;
      byte *_bufferLimit;
@@ -89,4 +89,4 @@ namespace ex1
      bool WasFinished() const { return _wasFinished; }
    };
 
-} // namespace ex1
+} // namespace gen

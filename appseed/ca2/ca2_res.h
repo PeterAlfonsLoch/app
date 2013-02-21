@@ -342,7 +342,7 @@ commenttest
 #define __IDP_PARSE_TIME              0xF11B
 #define __IDP_PARSE_DATE              0xF11C
 
-// ex1::filesp/CArchive error strings for ::user::profile failure
+// gen::filesp/CArchive error strings for ::user::profile failure
 #define __IDP_FAILED_INVALID_FORMAT   0xF120
 #define __IDP_FAILED_INVALID_PATH     0xF121
 #define __IDP_FAILED_DISK_FULL        0xF122

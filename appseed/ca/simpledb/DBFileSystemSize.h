@@ -6,13 +6,13 @@ class FileSystemSizeWnd;
 
 
 class CLASS_DECL_ca file_size_table :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 
 
    class get_fs_size :
-      public ex1::byte_serializable
+      public gen::byte_serializable
    {
    public:
 
@@ -31,8 +31,8 @@ public:
       get_fs_size & operator = (const get_fs_size & getfssize);
 
 
-      virtual void write(ex1::byte_output_stream & ostream);
-      virtual void read(ex1::byte_input_stream & istream);
+      virtual void write(gen::byte_output_stream & ostream);
+      virtual void read(gen::byte_input_stream & istream);
 
 
    };
@@ -94,7 +94,7 @@ public:
 
 
 class CLASS_DECL_ca DBFileSystemSizeSet :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 
@@ -122,7 +122,7 @@ public:
 
 
 class CLASS_DECL_ca FileSystemSizeServerThread :
-   virtual public ::radix::thread
+   virtual public ::gen::thread
 {
 public:
 

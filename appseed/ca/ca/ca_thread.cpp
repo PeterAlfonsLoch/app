@@ -54,7 +54,7 @@ namespace ca
       return g_pfn_get_thread_state();
    }
 
-   void thread::set_p(::radix::thread * p)
+   void thread::set_p(::gen::thread * p)
    {
       UNREFERENCED_PARAMETER(p);
       throw interface_only_exception(get_app());

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -397,7 +397,7 @@ namespace ex1
    }
 
    plain_text_stream::plain_text_stream(const plain_text_stream & stream) :
-      ::ex1::stream(stream),
+      ::gen::stream(stream),
       plain_text_input_stream(stream),
       plain_text_output_stream(stream)
    {
@@ -482,5 +482,5 @@ namespace ex1
    }
 
    */
-} // namespace ex1
+} // namespace gen
 

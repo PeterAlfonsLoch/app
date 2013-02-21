@@ -3,7 +3,7 @@
 
 void base_exception::operator delete(void * pbData)
 {
-   ::radix::object::operator delete(pbData);
+   ::gen::object::operator delete(pbData);
 }
 
 void base_exception::operator delete(void * pbData,   const char * /* lpszFileName */, int32_t /* nLine */)

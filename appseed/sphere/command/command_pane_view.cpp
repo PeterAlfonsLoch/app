@@ -56,7 +56,7 @@ namespace command
 
    }
 
-   void pane_view::on_update(::view* pSender, LPARAM lHint, ::radix::object* pHint)
+   void pane_view::on_update(::view* pSender, LPARAM lHint, ::gen::object* pHint)
    {
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)

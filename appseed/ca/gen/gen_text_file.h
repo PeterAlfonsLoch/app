@@ -1,10 +1,10 @@
 #pragma once
 
-namespace ex1
+namespace gen
 {
 
    class CLASS_DECL_ca text_file : 
-      virtual public ex1::file
+      virtual public gen::file
    {
    public:
       text_file();
@@ -23,4 +23,4 @@ namespace ex1
 
    typedef ca::smart_pointer < text_file > text_file_sp;
 
-} // namespace ex1
+} // namespace gen

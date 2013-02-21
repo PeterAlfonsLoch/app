@@ -68,7 +68,7 @@ class numeric_limits <half>
     static const bool is_signed = true;
     static const bool is_integer = false;
     static const bool is_exact = false;
-    static const int radix = HALF_RADIX;
+    static const int gen = HALF_RADIX;
     static half epsilon () throw () {return HALF_EPSILON;}
     static half round_error () throw () {return HALF_EPSILON / 2;}
 

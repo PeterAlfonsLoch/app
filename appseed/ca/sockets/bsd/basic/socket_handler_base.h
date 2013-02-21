@@ -50,7 +50,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
       /** socket container class, event generator.
       \ingroup basic */
-      class socket_handler_base : virtual public ::radix::object
+      class socket_handler_base : virtual public ::gen::object
       {
          friend class socket;
 

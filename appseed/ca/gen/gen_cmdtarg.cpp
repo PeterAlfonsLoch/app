@@ -532,7 +532,7 @@ __STATIC void __load_dot_bitmap()
          (LPVOID)rgbBitmap);
    if (afxData.hbmMenuDot == NULL)
    {
-//      TRACE(::radix::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
+//      TRACE(::gen::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
       #define OBM_MNARROW         32739
       afxData.hbmMenuDot = ::LoadBitmap(NULL, MAKEINTRESOURCE(OBM_MNARROW));
    }

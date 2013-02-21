@@ -92,7 +92,7 @@ long __TellProc (fi_handle handle)
 uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    primitive::memory_size dwRead;
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    if((dwRead = pfile->read(buffer, count * size)) > 0)
    {
       return count;
@@ -105,7 +105,7 @@ uint32_t _stdcall  __ReadProc2 (void *buffer, uint32_t size, uint32_t count, fi_
 }
 uint32_t _stdcall __WriteProc2 (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    try
    {
       pfile->write(buffer, count * size);
@@ -118,16 +118,16 @@ uint32_t _stdcall __WriteProc2 (void *buffer, uint32_t size, uint32_t count, fi_
 }
 int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
 {
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    if(origin == SEEK_SET)
-      origin = ::ex1::seek_begin;
+      origin = ::gen::seek_begin;
    else if(origin == SEEK_CUR)
-      origin = ::ex1::seek_current;
+      origin = ::gen::seek_current;
    else if(origin == SEEK_END)
-      origin = ::ex1::seek_end;
+      origin = ::gen::seek_end;
    try
    {
-      pfile->seek(offset, (::ex1::e_seek) origin);
+      pfile->seek(offset, (::gen::e_seek) origin);
    }
    catch(...)
    {
@@ -137,7 +137,7 @@ int32_t _stdcall __SeekProc2 (fi_handle handle, long offset, int32_t origin)
 }
 long _stdcall __TellProc2 (fi_handle handle)
 {
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    return (long) pfile->get_position();
 }
 
@@ -149,7 +149,7 @@ long _stdcall __TellProc2 (fi_handle handle)
 uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
    primitive::memory_size dwRead;
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    if((dwRead = pfile->read(buffer, count * size)))
    {
       return count;
@@ -163,7 +163,7 @@ uint32_t _stdcall  ___Ex1File__ReadProc (void *buffer, uint32_t size, uint32_t c
 
 uint32_t _stdcall ___Ex1File__WriteProc(void *buffer, uint32_t size, uint32_t count, fi_handle handle)
 {
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    try
    {
       pfile->write(buffer, count * size);
@@ -177,14 +177,14 @@ uint32_t _stdcall ___Ex1File__WriteProc(void *buffer, uint32_t size, uint32_t co
 
 int32_t _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int32_t origin)
 {
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    if(origin == SEEK_SET)
-      origin = ::ex1::seek_begin;
+      origin = ::gen::seek_begin;
    else if(origin == SEEK_CUR)
-      origin = ::ex1::seek_current;
+      origin = ::gen::seek_current;
    else if(origin == SEEK_END)
-      origin = ::ex1::seek_end;
-   if(pfile->seek(offset, (::ex1::e_seek) origin) == 0xFFFFFFFF)
+      origin = ::gen::seek_end;
+   if(pfile->seek(offset, (::gen::e_seek) origin) == 0xFFFFFFFF)
       return -1;
    else
       return 0;
@@ -192,7 +192,7 @@ int32_t _stdcall ___Ex1File__SeekProc(fi_handle handle, long offset, int32_t ori
 
 long _stdcall ___Ex1File__TellProc(fi_handle handle)
 {
-   ex1::file * pfile = (ex1::file *) handle;
+   gen::file * pfile = (gen::file *) handle;
    return (long) pfile->get_position();
 }
 

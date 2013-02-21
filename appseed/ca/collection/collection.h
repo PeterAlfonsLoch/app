@@ -7,7 +7,7 @@
 #include "collection_comparable_raw_array.h"
 #include "collection_comparable_primitive_array.h"
 
-#include "ca/ex1/ex1_byte_serializable.h"
+#include "ca/gen/gen_byte_serializable.h"
 
 #include "collection_primitive_array.h"
 #include "collection_numeric_array.h"
@@ -47,21 +47,21 @@
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
 
-//::radix::object
+//::gen::object
    // Arrays
    class byte_array;           // base_array of BYTE
    class uint16_array;           // base_array of WORD
    class uint32_array;          // base_array of uint32_t
    class CUIntArray;           // base_array of UINT
    class CPtrArray;            // base_array of void *
-   class CObArray;             // base_array of ::radix::object*
+   class CObArray;             // base_array of ::gen::object*
 
    // Lists
    class pointer_list;             // list of void *
-   class object_list;              // list of ::radix::object*
+   class object_list;              // list of ::gen::object*
 
    // Maps (aka Dictionaries)
-   class CMapWordToOb;         // ::collection::map from WORD to ::radix::object*
+   class CMapWordToOb;         // ::collection::map from WORD to ::gen::object*
    class CMapWordToPtr;        // ::collection::map from WORD to void *
    class CMapPtrToWord;        // ::collection::map from void * to WORD
    class map_ptr_to_ptr;         // ::collection::map from void * to void *
@@ -69,7 +69,7 @@
    // Special string variants
    class string_list;          // list of Strings
    class CMapStringToPtr;      // ::collection::map from string to void *
-   class CMapStringToOb;       // ::collection::map from string to ::radix::object*
+   class CMapStringToOb;       // ::collection::map from string to ::gen::object*
    class string_to_string_map;   // ::collection::map from string to string
 
 
@@ -108,7 +108,7 @@ public:
 };
 
 class CLASS_DECL_ca map_word_to_ob :
-   virtual public ::collection::map < WORD, WORD, ::radix::object *, ::radix::object * >
+   virtual public ::collection::map < WORD, WORD, ::gen::object *, ::gen::object * >
 {
 public:
    map_word_to_ob(::count nBlockSize = 10);
@@ -123,7 +123,7 @@ public:
 };
 
 class CLASS_DECL_ca map_string_to_ob :
-   virtual public ::collection::map < string, const string &, ::radix::object *, ::radix::object * >
+   virtual public ::collection::map < string, const string &, ::gen::object *, ::gen::object * >
 {
 public:
    map_string_to_ob(::count nBlockSize = 10);

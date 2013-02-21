@@ -4,12 +4,12 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
    class CLASS_DECL_ca application :
-      virtual public ::radix::application,
+      virtual public ::gen::application,
       virtual public request_interface
    {
    public:
@@ -23,7 +23,7 @@ namespace ex1
    };
 
 
-} // namespace ex1
+} // namespace gen
 
 
 
@@ -44,7 +44,7 @@ namespace gen
 
 
    class CLASS_DECL_ca application :
-      virtual public ex1::application,
+      virtual public gen::application,
       virtual public command_target_interface
    {
    public:
@@ -190,7 +190,7 @@ class file_manager_interface;
 class document_manager;
 
 
-namespace radix
+namespace gen
 {
 
    enum EExclusiveInstance
@@ -224,7 +224,7 @@ namespace radix
    class CLASS_DECL_ca application :
       virtual public ::ca::application,
       virtual public ::ca::message_window_simple_callback,
-      virtual public ::radix::thread
+      virtual public ::gen::thread
    {
    public:
 
@@ -324,9 +324,9 @@ namespace radix
       //::collection::map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
 
       //mutex                            m_mutexObjectEvent;
-      //::collection::map < ::radix::object *, ::radix::object *, ::collection::map < int32_t, int32_t, event *, event * > *, ::collection::map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
+      //::collection::map < ::gen::object *, ::gen::object *, ::collection::map < int32_t, int32_t, event *, event * > *, ::collection::map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
 
-      //typedef ::collection::map < ::radix::object *, ::radix::object *, gen::property_set, gen::property_set > oset;
+      //typedef ::collection::map < ::gen::object *, ::gen::object *, gen::property_set, gen::property_set > oset;
       //oset                             m_mapObjectSet;
 
       class ::user::str_context *      m_puserstrcontext;
@@ -592,7 +592,7 @@ namespace radix
       static const char gen_PreviewEntry[];
 
       virtual ::ca::application * get_app() const;
-      virtual string get_mutex_name_radix();
+      virtual string get_mutex_name_gen();
 
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
       virtual void on_exclusive_instance_local_conflict();
@@ -601,9 +601,9 @@ namespace radix
 
       virtual void delete_temp();
 
-      //using ::radix::thread::propset;
-      //gen::property_set & propset(::radix::object * pobject);
-      //gen::property_set * existing_propset(::radix::object * pobject);
+      //using ::gen::thread::propset;
+      //gen::property_set & propset(::gen::object * pobject);
+      //gen::property_set * existing_propset(::gen::object * pobject);
 
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
@@ -622,12 +622,12 @@ namespace radix
 
 
       //mutex * get_mutex(::waitable * pobject);
-      //using ::radix::thread::lock;
+      //using ::gen::thread::lock;
       //void wait(::waitable * pobject);
       //wait_result wait(::waitable * pobject, duration dwTimeout);
       //void lock(::waitable * pobject);
       //bool lock(::waitable * pobject, duration dwTimeout);
-      //using ::radix::thread::unlock;
+      //using ::gen::thread::unlock;
       //bool unlock(::waitable * pobject);
 
 //      event * get_event(::waitable * pobject, int32_t iEvent = 0);
@@ -723,7 +723,7 @@ namespace radix
    };
 
 
-} // namespace radix
+} // namespace gen
 
 
 
@@ -770,18 +770,18 @@ typedef ::visual::icon * HICON;
 #endif
 
 
-namespace ex2
+namespace gen
 {
 
 
    class CLASS_DECL_ca application :
       public gen::application,
-      virtual public ca::smart_pointer < ex2::application >
+      virtual public ca::smart_pointer < gen::application >
    {
    public:
 
 
-//      ex1::file_system_sp m_spfilesystem;
+//      gen::file_system_sp m_spfilesystem;
 
 
       application();
@@ -809,7 +809,7 @@ namespace ex2
 
       virtual int32_t exit_instance();
 
-//      virtual ::ex1::file_system & file_system();
+//      virtual ::gen::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual ::user::document_interface * _001OpenDocumentFile(var varFile);
@@ -833,8 +833,8 @@ namespace ex2
       virtual bool UnlockTempMaps(bool bDeleteTemps = TRUE);
       virtual const char * RegisterWndClass(UINT nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
 
-      virtual ::radix::thread * GetThread();
-      virtual void set_thread(::radix::thread * pthread);
+      virtual ::gen::thread * GetThread();
+      virtual void set_thread(::gen::thread * pthread);
       virtual ::user::interaction * GetMainWnd();
 
       //virtual ::ca::graphics * graphics_from_os_data(void * pdata);
@@ -860,6 +860,6 @@ namespace ex2
 
    };
 
-} // namespace ex2
+} // namespace gen
 
 

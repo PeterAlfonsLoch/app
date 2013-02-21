@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
    class CLASS_DECL_ca file_system :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       
@@ -31,7 +31,7 @@ namespace ex1
    typedef ca::smart_pointer < file_system > file_system_sp;
 
 
-} // namespace ex1
+} // namespace gen
 
 
 

@@ -39,7 +39,7 @@ namespace userbase
       // each view can display one or more documents but has only one document interface
       //::userbase::document* get_document() const;
 
-      virtual bool IsSelected(const ::radix::object* pDocItem) const; // support for OLE
+      virtual bool IsSelected(const ::gen::object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
       virtual bool OnScroll(UINT nScrollCode, UINT nPos, bool bDoScroll = TRUE);
@@ -62,7 +62,7 @@ namespace userbase
       virtual void OnActivateView(bool bActivate, ::view* pActivateView, ::view* pDeactiveView);
       virtual void OnActivateFrame(UINT nState, ::frame_window* pFrameWnd);
 
-      virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
+      virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
 
       virtual ~view();
 #ifdef DEBUG

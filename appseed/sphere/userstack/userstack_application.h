@@ -76,7 +76,7 @@ namespace userstack
 
       virtual void check_topic_file_change();
 
-      void on_exclusive_instance_conflict(::radix::EExclusiveInstance eexclusive);
+      void on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive);
       
       void launch_app(const char * psz);
       void install_app(const char * psz);

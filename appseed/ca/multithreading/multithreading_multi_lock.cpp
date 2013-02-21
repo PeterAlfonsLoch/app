@@ -14,7 +14,7 @@ multi_lock::multi_lock(sync_object_ptra syncobjectptra, bool bInitialLock)
    // get list of handles from base_array of objects passed
    for (index i = 0; i < m_syncobjectptra.get_count(); i++)
    {
-      //ASSERT_VALID(dynamic_cast < ::ex1::request_interface * > (m_syncobjectptra[i]));
+      //ASSERT_VALID(dynamic_cast < ::gen::request_interface * > (m_syncobjectptra[i]));
       if(m_syncobjectptra[i] == NULL)
          throw invalid_argument_exception(get_app());
 

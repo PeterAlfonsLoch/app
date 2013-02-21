@@ -8,7 +8,7 @@ namespace libcompress
    static const uint64_t k_LZMA = 0x030101;
    static const uint64_t k_LZMA2 = 0x21;
 
-   #define IUnknown ::radix::object
+   #define IUnknown ::gen::object
 
    HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca *coder)
    {

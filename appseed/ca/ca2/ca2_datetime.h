@@ -19,11 +19,11 @@ namespace ca2
 
    
    class CLASS_DECL_ca datetime :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       class CLASS_DECL_ca international :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
          international(::ca::application * papp);
@@ -35,7 +35,7 @@ namespace ca2
       };
 
       class CLASS_DECL_ca str :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
          str(::ca::application * papp);

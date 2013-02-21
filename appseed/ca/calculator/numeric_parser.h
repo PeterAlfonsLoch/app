@@ -4,7 +4,7 @@ namespace calculator
 {
 
    class CLASS_DECL_ca parser :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       parser(::ca::application * papp);

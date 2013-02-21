@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
    
 
@@ -141,5 +141,5 @@ namespace ex1
    } // namespace match
 
 
-} // namespace ex1
+} // namespace gen
 

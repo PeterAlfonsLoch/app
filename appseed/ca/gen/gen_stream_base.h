@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
    class CLASS_DECL_ca stream_base :
-      virtual public radix::object
+      virtual public gen::object
    {
    public:
 
@@ -36,4 +36,4 @@ namespace ex1
    };
 
 
-} // namespace ex1
+} // namespace gen

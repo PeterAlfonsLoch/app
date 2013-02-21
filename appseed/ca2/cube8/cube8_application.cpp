@@ -63,12 +63,12 @@ namespace cube8 // cube8 + cube2
    }*/
 
    /*
-   ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
-   if(pradixapp != NULL)
+   ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+   if(pgenapp != NULL)
    {
    try
    {
-   pradixapp->m_dwAlive = ::get_tick_count();
+   pgenapp->m_dwAlive = ::get_tick_count();
    }
    catch(...)
    {

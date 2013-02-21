@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    __STATIC inline bool IsDirSep(WCHAR ch)
@@ -16,24 +16,24 @@ namespace ex1
 
    ::primitive::memory_size file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
-      return ::ex1::reader::read(lpBuf, nCount);
+      return ::gen::reader::read(lpBuf, nCount);
    }
 
    void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
-      ::ex1::writer::write(lpBuf, nCount);
+      ::gen::writer::write(lpBuf, nCount);
    }
 
 
    void file::write(byte_output_stream & ostream)
    {
       seek_to_begin();
-      ex1::reader::write(ostream);
+      gen::reader::write(ostream);
    }
 
    void file::read(byte_input_stream & istream)
    {
-      ex1::writer::read(istream);
+      gen::writer::read(istream);
       seek_to_begin();
    }
 
@@ -53,7 +53,7 @@ namespace ex1
       return FALSE;
    }
 
-   file_position file::seek(file_offset lOff, ::ex1::e_seek nFrom)
+   file_position file::seek(file_offset lOff, ::gen::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
@@ -122,14 +122,14 @@ namespace ex1
 
    void file::assert_valid() const
    {
-   //   ::radix::object::assert_valid();
+   //   ::gen::object::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
    void file::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-   //   ::radix::object::dump(dumpcontext);
+   //   ::gen::object::dump(dumpcontext);
 
    //   dumpcontext << "with handle " << (UINT)m_hFile;
    //   dumpcontext << " and name \"" << m_wstrFileName << "\"";
@@ -330,7 +330,7 @@ namespace ex1
    {
       if(read(pch, 1) == 1)
       {
-         seek(-1, ::ex1::seek_current);
+         seek(-1, ::gen::seek_current);
          return true;
       }
       else
@@ -343,7 +343,7 @@ namespace ex1
    {
       if(read(puch, 1) == 1)
       {
-         seek(-1, ::ex1::seek_current);
+         seek(-1, ::gen::seek_current);
          return true;
       }
       else
@@ -374,7 +374,7 @@ namespace ex1
    }
 
 
-} // namespace ex1
+} // namespace gen
 
 
 

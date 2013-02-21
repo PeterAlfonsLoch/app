@@ -12,7 +12,7 @@ namespace gen
 
 
 class CLASS_DECL_ca string_array :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
    string_array();

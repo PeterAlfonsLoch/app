@@ -1,10 +1,10 @@
 #pragma once
 
-namespace ex2
+namespace gen
 {
 
    class CLASS_DECL_ca folder_watch :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -25,7 +25,7 @@ namespace ex1
    typedef ::ca::smart_pointer < exception > exception_sp;
 
 
-} // namespace ex1
+} // namespace gen
 
 
 

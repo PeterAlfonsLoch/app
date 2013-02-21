@@ -7,7 +7,7 @@ namespace userbase
    class menu_item_ptra;
 
    class CLASS_DECL_ca2 menu_item :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

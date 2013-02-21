@@ -8,7 +8,7 @@
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class base_array :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
 
@@ -1041,7 +1041,7 @@ void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
-   ::radix::object::Serialize(ar);
+   ::gen::object::Serialize(ar);
    if (ar.IsStoring())
    {
       ar.WriteCount(m_nSize);
@@ -1058,7 +1058,7 @@ void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::assert_valid() const
 {
-   ::radix::object::assert_valid();
+   ::gen::object::assert_valid();
 
    if (m_pData == NULL)
    {
@@ -1111,7 +1111,7 @@ void base_array<TYPE, ARG_TYPE>::copy(const base_array& src)
 template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
-   ::radix::object::dump(dumpcontext);
+   ::gen::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)

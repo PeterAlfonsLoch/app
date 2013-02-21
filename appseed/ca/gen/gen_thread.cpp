@@ -1,13 +1,13 @@
 #include "framework.h"
 
-namespace radix
+namespace gen
 {
 
    bool thread::s_bAllocReady = false;
 
    CLASS_DECL_ca void thread_alloc_ready(bool bReady)
    {
-      ::radix::thread::s_bAllocReady = bReady;
+      ::gen::thread::s_bAllocReady = bReady;
    }
 
    thread::thread() :
@@ -323,7 +323,7 @@ namespace radix
    {
 /*      try
       {
-         ::radix::thread * pthreadApp = dynamic_cast < ::radix::thread * > (System.GetThread());
+         ::gen::thread * pthreadApp = dynamic_cast < ::gen::thread * > (System.GetThread());
          if(pthreadApp != NULL && m_p != pthreadApp)
          {
             pthreadApp->step_timer();
@@ -387,17 +387,17 @@ namespace radix
 
 
 
-} // namespace radix
+} // namespace gen
 
 
 
 
-::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::gen::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);
 
-   ::radix::thread* pThread = new ::radix::thread(papp, pfnThreadProc, pParam);
+   ::gen::thread* pThread = new ::gen::thread(papp, pfnThreadProc, pParam);
    ASSERT_VALID(pThread);
 
    if (!pThread->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs))

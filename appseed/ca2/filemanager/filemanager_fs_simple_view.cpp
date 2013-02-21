@@ -127,7 +127,7 @@ namespace filemanager
 
          }
 
-         void view::set_request_interface(::ex1::request_interface * prequestinterface)
+         void view::set_request_interface(::gen::request_interface * prequestinterface)
          {
             m_prequestinterface = prequestinterface;
          }

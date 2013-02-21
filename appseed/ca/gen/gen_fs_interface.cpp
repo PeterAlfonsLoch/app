@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
    void fs_interface::ls_dir(const char * pszPath, stringa & straName)
@@ -34,4 +34,4 @@ namespace ex1
       return false;
    }
 
-} // namespace ex1
+} // namespace gen

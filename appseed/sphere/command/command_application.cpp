@@ -15,7 +15,7 @@ namespace command
    {
       m_strAppName            = _strdup("command");
       m_strBaseSupportId      = "votagus_ca2_command";
-      m_eexclusiveinstance    = ::radix::ExclusiveInstanceLocal;
+      m_eexclusiveinstance    = ::gen::ExclusiveInstanceLocal;
    }
 
    bool application::initialize_instance()

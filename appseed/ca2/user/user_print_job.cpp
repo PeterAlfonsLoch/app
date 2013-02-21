@@ -8,7 +8,7 @@ namespace user
       ca(papp),
       ::ca::print_job(papp),
       ::ca::job(papp),
-      ::radix::thread(papp),
+      ::gen::thread(papp),
       ::user::job(papp)
    {
    }

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -16,8 +16,8 @@ namespace ex1
    }
 
    stream::stream(const reader & reader, const writer & writer) :
-      ::ex1::reader(reader),
-      ::ex1::writer(writer)
+      ::gen::reader(reader),
+      ::gen::writer(writer)
    {
    }
 
@@ -54,6 +54,6 @@ namespace ex1
       writer::close();
    }
 
-} // namespace ex1
+} // namespace gen
 
 

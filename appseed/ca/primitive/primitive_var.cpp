@@ -831,7 +831,7 @@ bool var::is_new_or_null() const
    return is_new() || is_null();
 }
 
-void var::read(ex1::byte_input_stream & is)
+void var::read(gen::byte_input_stream & is)
 {
    int32_t i;
    is >> i;
@@ -901,14 +901,14 @@ void var::read(ex1::byte_input_stream & is)
          {
             throw "object allocation is not implemented";
          }
-         ::ex1::byte_serializable * pserializable = dynamic_cast < ::ex1::byte_serializable * > (m_pca2);
+         ::gen::byte_serializable * pserializable = dynamic_cast < ::gen::byte_serializable * > (m_pca2);
          if(pserializable != NULL)
          {
             pserializable->read(is);
          }
          else
          {
-            ::ex1::plain_text_serializable * pserializable = dynamic_cast < ::ex1::plain_text_serializable * > (m_pca2);
+            ::gen::plain_text_serializable * pserializable = dynamic_cast < ::gen::plain_text_serializable * > (m_pca2);
             if(pserializable != NULL)
             {
                pserializable->read(is.m_spreader);
@@ -925,7 +925,7 @@ void var::read(ex1::byte_input_stream & is)
    }
 }
 
-void var::write(ex1::byte_output_stream & ostream)
+void var::write(gen::byte_output_stream & ostream)
 {
    int32_t i = get_type();
    ostream << i;
@@ -973,14 +973,14 @@ void var::write(ex1::byte_output_stream & ostream)
       {
          ::ca::type_info info(typeid(*m_pca2));
          ostream << info;
-         ::ex1::byte_serializable * pserializable = dynamic_cast < ::ex1::byte_serializable * >(m_pca2);
+         ::gen::byte_serializable * pserializable = dynamic_cast < ::gen::byte_serializable * >(m_pca2);
          if(pserializable != NULL)
          {
             pserializable->write(ostream);
          }
          else
          {
-            ::ex1::plain_text_serializable * pserializable = dynamic_cast < ::ex1::plain_text_serializable * >(m_pca2);
+            ::gen::plain_text_serializable * pserializable = dynamic_cast < ::gen::plain_text_serializable * >(m_pca2);
             if(pserializable != NULL)
             {
                pserializable->write(ostream.m_spwriter);

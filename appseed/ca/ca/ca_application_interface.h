@@ -29,9 +29,9 @@ namespace ca
 
       void on_signal(gen::signal_object * pobj)
       {
-         SCAST_PTR(::radix::application_signal_object, papplicationsignal, pobj);
+         SCAST_PTR(::gen::application_signal_object, papplicationsignal, pobj);
          // should implement the following function in IFACE, even if is_empty
-         // void on_application_signal(::radix::application_signal_object * papplicationsignal);
+         // void on_application_signal(::gen::application_signal_object * papplicationsignal);
          IFACE::on_application_signal(papplicationsignal);
       }
 

@@ -11,7 +11,7 @@ namespace simpledb
    {
    public:
 
-      ::ex1::filesp                 m_spfileMeta;
+      ::gen::filesp                 m_spfileMeta;
       ::xml::document               m_xmldocumentMeta;
       ::collection::string_map < table *, table * > m_mapTable;
       int32_t                           m_iErrorCode;

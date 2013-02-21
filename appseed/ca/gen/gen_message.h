@@ -140,7 +140,7 @@ namespace gen
       };
 
       class CLASS_DECL_ca dispatch :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
 

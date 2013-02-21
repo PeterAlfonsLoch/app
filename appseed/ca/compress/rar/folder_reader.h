@@ -16,7 +16,7 @@ namespace rar
    };
 
    class folder_reader :
-      public ex1::reader
+      public gen::reader
    {
    public:
 
@@ -27,7 +27,7 @@ namespace rar
      int32_t _curIndex;
      uint32_t _crc;
      bool _fileIsOpen;
-     ex1::reader * _stream;
+     gen::reader * _stream;
      uint_array CRCs;
 
      ::primitive::memory_size read(void * data, ::primitive::memory_size size);

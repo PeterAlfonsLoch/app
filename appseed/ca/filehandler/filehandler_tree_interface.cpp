@@ -7,7 +7,7 @@ namespace filehandler
 
    tree_interface::tree_interface(::ca::application * papp) :
       ca(papp),
-      ex1::tree(papp)
+      gen::tree(papp)
    {
          
          
@@ -15,7 +15,7 @@ namespace filehandler
 
    bool tree_interface::initialize()
    {
-      if(!::ex1::tree::initialize())
+      if(!::gen::tree::initialize())
          return false;
       ::ca::data_container::m_spdata(new tree_data(get_app()));
       return true;

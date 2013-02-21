@@ -39,7 +39,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
+   void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != NULL)
@@ -289,7 +289,7 @@ namespace filemanager
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if(!ex1::tree::initialize())
+      if(!gen::tree::initialize())
          throw simple_exception(get_app());
 
       m_pimagelist = System.user().shellimageset().GetImageList16();

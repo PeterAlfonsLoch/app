@@ -41,7 +41,7 @@ namespace uinteraction
 
       class CLASS_DECL_ca frame : 
          virtual public gen::signalizable,
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
 

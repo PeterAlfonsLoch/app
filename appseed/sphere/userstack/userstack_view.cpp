@@ -97,7 +97,7 @@ namespace userstack
 
    }
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
+   void view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);

@@ -24,7 +24,7 @@ namespace user
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
 #endif
 
       // there should be no views left!
@@ -207,7 +207,7 @@ namespace user
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.ca2 < ::ex1::file > () != NULL)
+      else if(varFile.ca2 < ::gen::file > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document_template()->m_set["default_extension"];
       }
@@ -222,7 +222,7 @@ namespace user
       //   ASSERT(FALSE);
       // ca2 API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //   gen::ThrowFileException(::ex1::file_exception::badPath);
+      //   gen::ThrowFileException(::gen::file_exception::badPath);
       //}
 
       //   if( gen::FullPath(szFullPath, lpszPathName) == FALSE )
@@ -230,7 +230,7 @@ namespace user
       //      ASSERT(FALSE);
       // ca2 API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //      gen::ThrowFileException(::ex1::file_exception::badPath);
+      //      gen::ThrowFileException(::gen::file_exception::badPath);
       //   }
 
       // store the path fully qualified
@@ -295,7 +295,7 @@ namespace user
       if(!do_save(var(var::type_empty)))
       {
 
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
 
       }
 
@@ -313,7 +313,7 @@ namespace user
          if(!do_save(var(var::type_empty)))
          {
 
-            TRACE(::radix::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
+            TRACE(::gen::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
 
             return FALSE;
 
@@ -326,7 +326,7 @@ namespace user
          if(!do_save(m_strPathName))
          {
 
-            TRACE(::radix::trace::category_AppMsg, 0, "Warning: File save failed.\n");
+            TRACE(::gen::trace::category_AppMsg, 0, "Warning: File save failed.\n");
 
             return FALSE;
 
@@ -392,7 +392,7 @@ namespace user
             }
             catch(base_exception * pe)
             {
-               TRACE(::radix::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
+               TRACE(::gen::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
                pe->Delete();
             }
 
@@ -494,11 +494,11 @@ namespace user
             break;
             }
             }
-            else*/ if (base < ex1::file_exception >::bases(e))
+            else*/ if (base < gen::file_exception >::bases(e))
             {
-               ::ex1::file_exception * pfe = dynamic_cast < ::ex1::file_exception * > (e);
+               ::gen::file_exception * pfe = dynamic_cast < ::gen::file_exception * > (e);
                // throw not_implemented(get_app());
-               TRACE(::radix::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+               TRACE(::gen::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
                   pfe->m_lOsError);
 
 
@@ -507,26 +507,26 @@ namespace user
 
                if (!pfe->get_error_message(prompt))
                {
-                  /*               switch (((ex1::file_exception_sp*)e)->m_cause)
+                  /*               switch (((gen::file_exception_sp*)e)->m_cause)
                   {
-                  case ::ex1::file_exception::fileNotFound:
-                  case ::ex1::file_exception::badPath:
+                  case ::gen::file_exception::fileNotFound:
+                  case ::gen::file_exception::badPath:
                   nIDP = __IDP_FAILED_INVALID_PATH;
                   break;
-                  case ::ex1::file_exception::diskFull:
+                  case ::gen::file_exception::diskFull:
                   nIDP = __IDP_FAILED_DISK_FULL;
                   break;
-                  case ::ex1::file_exception::accessDenied:
+                  case ::gen::file_exception::accessDenied:
                   nIDP = bSaving ? __IDP_FAILED_ACCESS_WRITE :
                   __IDP_FAILED_ACCESS_READ;
                   break;
 
-                  case ::ex1::file_exception::badSeek:
-                  case ::ex1::file_exception::generic:
-                  case ::ex1::file_exception::tooManyOpenFiles:
-                  case ::ex1::file_exception::invalidFile:
-                  case ::ex1::file_exception::hardIO:
-                  case ::ex1::file_exception::directoryFull:
+                  case ::gen::file_exception::badSeek:
+                  case ::gen::file_exception::generic:
+                  case ::gen::file_exception::tooManyOpenFiles:
+                  case ::gen::file_exception::invalidFile:
+                  case ::gen::file_exception::hardIO:
+                  case ::gen::file_exception::directoryFull:
                   break;
 
                   default:
@@ -561,7 +561,7 @@ namespace user
    {
 #ifdef DEBUG
       if(is_modified())
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
 #endif
 
       delete_contents();
@@ -575,23 +575,23 @@ namespace user
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::radix::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
+         TRACE(::gen::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
-      ::ex1::byte_stream spfile;
+      ::gen::byte_stream spfile;
 
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary);
+         spfile = Application.file().get_byte_stream(varFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary);
 
          /*if(gen::str::begins_ci(varFile, "uifs://"))
          {
-         spfile = ifs(get_app(), "").get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
+         spfile = ifs(get_app(), "").get_file(varFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary, &fe);
          }
          else
          {
-         spfile = System.fs()->get_file(varFile, ::ex1::file::mode_read | ::ex1::file::shareDenyWrite | ::ex1::file::type_binary, &fe);
+         spfile = System.fs()->get_file(varFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary, &fe);
          }*/
       }
       catch(base_exception & e)
@@ -632,12 +632,12 @@ namespace user
    bool document_interface::on_save_document(var varFile)
    {
 
-      ::ex1::byte_stream spfile;
+      ::gen::byte_stream spfile;
 
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::ex1::file::defer_create_directory | ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::shareExclusive);
+         spfile = Application.file().get_byte_stream(varFile, ::gen::file::defer_create_directory | ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::shareExclusive);
 
       }
       catch(base_exception & e)
@@ -759,7 +759,7 @@ namespace user
       return pview;
    }
 
-   void document_interface::update_all_views(::view * pSender, LPARAM lHint, ::radix::object* pHint)
+   void document_interface::update_all_views(::view * pSender, LPARAM lHint, ::gen::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -775,7 +775,7 @@ namespace user
       }
    }
 
-   void document_interface::send_update(::view * pSender, LPARAM lHint, ::radix::object* pHint)
+   void document_interface::send_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -828,7 +828,7 @@ namespace user
 
    void document_interface::dump(dump_context & dumpcontext) const
    {
-      ::radix::object::dump(dumpcontext);
+      ::gen::object::dump(dumpcontext);
 
       dumpcontext << "m_strTitle = " << m_strTitle;
       dumpcontext << "\nm_strPathName = " << m_strPathName;
@@ -850,7 +850,7 @@ namespace user
 
    void document_interface::assert_valid() const
    {
-      ::radix::object::assert_valid();
+      ::gen::object::assert_valid();
 
       count count = get_view_count();
       for(index index = 0; index < count; index++)
@@ -866,12 +866,12 @@ namespace user
       return m_bNew;
    }
 
-   void document_interface::write(ex1::byte_output_stream & ostream)
+   void document_interface::write(gen::byte_output_stream & ostream)
    {
       UNREFERENCED_PARAMETER(ostream);
    }
 
-   void document_interface::read(ex1::byte_input_stream & istream)
+   void document_interface::read(gen::byte_input_stream & istream)
    {
       UNREFERENCED_PARAMETER(istream);
    }

@@ -39,7 +39,7 @@ namespace userbase
    #ifdef DEBUG
    void document::dump(dump_context & dumpcontext) const
    {
-      ::radix::object::dump(dumpcontext);
+      ::gen::object::dump(dumpcontext);
 
       dumpcontext << "m_wstrTitle = " << m_strTitle;
       dumpcontext << "\nm_wstrPathName = " << m_strPathName;
@@ -61,7 +61,7 @@ namespace userbase
 
    void document::assert_valid() const
    {
-      ::radix::object::assert_valid();
+      ::gen::object::assert_valid();
 
       count count = get_view_count();
       for(index index = 0; index < count; index++)

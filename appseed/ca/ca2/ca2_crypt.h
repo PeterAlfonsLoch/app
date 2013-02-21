@@ -9,7 +9,7 @@ namespace ca4
 
 
    class CLASS_DECL_ca crypt :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

@@ -571,8 +571,8 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
   register JSAMPROW input_ptr;
   register JSAMPROW output_ptr;
   JSAMPROW colorindex0 = cquantize->colorindex[0];
-  JSAMPROW colorindex1 = cquantize->colorindex[1];
-  JSAMPROW colorindex2 = cquantize->colorindex[2];
+  JSAMPROW colorindgen = cquantize->colorindex[1];
+  JSAMPROW colorindgen = cquantize->colorindex[2];
   int * dither0;		/* points to active row of dither matrix */
   int * dither1;
   int * dither2;
@@ -593,9 +593,9 @@ quantize3_ord_dither (j_decompress_ptr cinfo, JSAMPARRAY input_buf,
     for (col = width; col > 0; col--) {
       pixcode  = GETJSAMPLE(colorindex0[GETJSAMPLE(*input_ptr++) +
 					dither0[col_index]]);
-      pixcode += GETJSAMPLE(colorindex1[GETJSAMPLE(*input_ptr++) +
+      pixcode += GETJSAMPLE(colorindgen[GETJSAMPLE(*input_ptr++) +
 					dither1[col_index]]);
-      pixcode += GETJSAMPLE(colorindex2[GETJSAMPLE(*input_ptr++) +
+      pixcode += GETJSAMPLE(colorindgen[GETJSAMPLE(*input_ptr++) +
 					dither2[col_index]]);
       *output_ptr++ = (JSAMPLE) pixcode;
       col_index = (col_index + 1) & ODITHER_MASK;

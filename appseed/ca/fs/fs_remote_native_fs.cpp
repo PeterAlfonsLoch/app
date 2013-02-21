@@ -269,16 +269,16 @@ namespace fs
    }
 
 
-   ex1::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
+   gen::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ex1::filesp spfile;
+      gen::filesp spfile;
 
       spfile(new remote_native_file(get_app(), varFile));
 
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
-         throw ex1::file_exception(get_app(), ::ex1::file_exception::none, -1, varFile.get_string());
+         throw gen::file_exception(get_app(), ::gen::file_exception::none, -1, varFile.get_string());
       }
 
       return spfile;

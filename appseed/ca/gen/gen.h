@@ -4,7 +4,7 @@
 #include "app/appseed/ca/ca/ca.h"
 
 
-// former radix
+// former gen
 
 // Since ca2 API itself is built with wchar_t as a native type, it will not have
 // the correct type info for types built with wchar_t typedef'd to uint32_t
@@ -35,7 +35,7 @@
 
 /////////////////////////////////////////////////////////
 // Forward declations
-namespace radix
+namespace gen
 {
    class object;
 }
@@ -44,7 +44,7 @@ class simple_exception;
 class memory_exception;
 class not_supported_exception;
 class invalid_argument_exception;
-namespace ex1
+namespace gen
 {
    class file_exception;
    class file;
@@ -54,7 +54,7 @@ namespace primitive
 {
    class memory_file;
 }
-namespace ex1
+namespace gen
 {
    struct file_status;
 }
@@ -148,12 +148,12 @@ class dump_context;
 
 #include "ca/multithreading/multithreading_wait_result.h"
 #include "ca/primitive/datetime/datetime_duration.h"
-#include "ca/ex1/ex1_request_interface.h"
+#include "ca/gen/gen_request_interface.h"
 #include "ca/multithreading/multithreading_waitable.h"
 #include "ca/primitive/primitive.h"
 
 
-#include "ca/radix/radix_object.h"
+#include "ca/gen/gen_object.h"
 
 
 #include "ca/gen/gen_definition.h"
@@ -161,9 +161,9 @@ class dump_context;
 #include "ca/gen/gen_core.h"
 
 
-#include "ca/radix/radix_heap.h"
-#include "ca/radix/radix_plex_heap.h"
-#include "ca/radix/radix_fixed_alloc.h"
+#include "ca/gen/gen_heap.h"
+#include "ca/gen/gen_plex_heap.h"
+#include "ca/gen/gen_fixed_alloc.h"
 
 #include "ca/primitive/primitive_simple_string.h"
 
@@ -179,7 +179,7 @@ class dump_context;
 
 #include "ca/primitive/primitive.h"
 
-#include "ca/radix/radix_object.h"
+#include "ca/gen/gen_object.h"
 
 #include "ca/gen/gen_hash.h"
 #include "ca/gen/gen_equals.h"
@@ -214,7 +214,7 @@ class dump_context;
 
 
 
-#include "ca/radix/radix.inl"
+#include "ca/gen/gen.inl"
 
 
 #undef __DATA
@@ -227,18 +227,18 @@ class dump_context;
 
 
 
-#include "ca/radix/radix_allocate.h"
-#include "ca/radix/radix_plex.h"
+#include "ca/gen/gen_allocate.h"
+#include "ca/gen/gen_plex.h"
 
 #include "ca/collection/collection.h"
 
 
-#include "ca/radix/radix_plex_heap.h"
+#include "ca/gen/gen_plex_heap.h"
 
 
 
 #include "ca/gen/gen_holder.h"
-#include "ca/radix/radix_base.h"
+#include "ca/gen/gen_base.h"
 
 
 #include "ca/ca/ca_interlocked_long.h"
@@ -253,7 +253,7 @@ class dump_context;
 #include "ca/ca/ca_edit.h"
 
 #include "ca/ca/ca_type_info.h"
-#include "radix_factory.h"
+#include "gen_factory.h"
 
 
 #include "ca/user/user_str.h"
@@ -367,7 +367,7 @@ typedef struct tag_TimerCallbackCreateTimer
 
 
 #include "ca/gen/gen_base.h"
-#include "radix_constraint.h"
+#include "gen_constraint.h"
 
 #ifdef WINDOWS
 #ifndef _INC_SHELLAPI
@@ -419,7 +419,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 #pragma warning( push )
 #pragma warning( disable: 4121 )
 
-namespace radix
+namespace gen
 {
    namespace trace
    {
@@ -443,7 +443,7 @@ namespace radix
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
 
-//::radix::object
+//::gen::object
    //base_exception
       //simple_exception
          class resource_exception;// Win resource failure exception
@@ -501,11 +501,11 @@ namespace radix
          class view;            // a ::view on a document
             class CScrollView;  // a scrolling ::view
 
-            namespace radix
+            namespace gen
             {
                class thread;           // thread base class
                class application;          // application base class
-            } // namespace radix
+            } // namespace gen
 
       class document_template;         // template for document creation
          class single_document_template;// SDI support
@@ -559,7 +559,7 @@ CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphi
 
 
 
-#include "radix_fixed_alloc.h"
+#include "gen_fixed_alloc.h"
 #include "ca/gen/gen_request_signal.h"
 
 #include "ca/visual/visual_const.h"
@@ -568,8 +568,8 @@ CLASS_DECL_ca void __draw_dithered_bitmap(::ca::application * papp, ::ca::graphi
 
 
 
-#include "radix_command.h"
-#include "radix_command_target.h"
+#include "gen_command.h"
+#include "gen_command_target.h"
 
 
 typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
@@ -577,7 +577,7 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca ::radix::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca ::gen::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca thread* __begin_thread(::ca::type_info pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
@@ -599,7 +599,7 @@ CLASS_DECL_ca void __post_quit_message(int32_t nExitCode);
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_ca CCommandLineInfo : public ::radix::object
+/*class CLASS_DECL_ca CCommandLineInfo : public ::gen::object
 {
 public:
    // Sets default values
@@ -679,7 +679,7 @@ struct __system_policies
 };
 
 class CLASS_DECL_ca file_manager_interface :
-   virtual public ::radix::object
+   virtual public ::gen::object
 {
 public:
    file_manager_interface();
@@ -759,7 +759,7 @@ namespace user
 #include "ca/ca/ca_thread.h"
 
 
-#include "ca/radix/radix_thread.h"
+#include "ca/gen/gen_thread.h"
 
 
 #include "ca/ca/ca_history.h"
@@ -772,7 +772,7 @@ namespace user
 
 
 
-#include "radix_application.h"
+#include "gen_application.h"
 
 
 #include "ca/ca/ca_application_interface.h"
@@ -781,12 +781,12 @@ namespace user
 
 #pragma once
 
-// former ex1
+// former gen
 
-#include "ca/radix/radix.h"
+#include "ca/gen/gen.h"
 
 
-#include "ca/radix/radix_os_history.h"
+#include "ca/gen/gen_os_history.h"
 
 
 namespace windows
@@ -810,10 +810,10 @@ namespace windows
 #include "ca/gen/gen_international_locale_schema.h"
 
 
-#include "ca/radix/radix_system.h"
+#include "ca/gen/gen_system.h"
 
 
-#include "ca/radix/radix_wait_cursor.h"
+#include "ca/gen/gen_wait_cursor.h"
 
 
 
@@ -847,7 +847,7 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 // Implementation string helpers
 //CLASS_DECL_ca void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int32_t nString);
-namespace ex1
+namespace gen
 {
 
    CLASS_DECL_ca void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
@@ -857,7 +857,7 @@ namespace ex1
 
 
 
-#include "ca/radix/radix_os.h"
+#include "ca/gen/gen_os.h"
 
 
 
@@ -869,45 +869,45 @@ namespace ex1
 #endif
 
 
-#include "ca/radix/radix_fixed_alloc.h"
-#include "ca/radix/radix_process_data.h"
+#include "ca/gen/gen_fixed_alloc.h"
+#include "ca/gen/gen_process_data.h"
 
 
 #include "ca/ca/ca_system.h"
 
 
 
-#include "ex1_exception.h"
+#include "gen_exception.h"
 
-#include "ex1_request_interface.h"
+#include "gen_request_interface.h"
 
-#include "ex1_tree_item_data.h"
-#include "ex1_tree_item.h"
-#include "ex1_tree_data.h"
-#include "ex1_tree.h"
+#include "gen_tree_item_data.h"
+#include "gen_tree_item.h"
+#include "gen_tree_data.h"
+#include "gen_tree.h"
 
-#include "ex1_fs_interface.h"
+#include "gen_fs_interface.h"
 
-#include "ex1_stream_base.h"
+#include "gen_stream_base.h"
 
-#include "ex1_seekable.h"
+#include "gen_seekable.h"
 
-#include "ex1_reader.h"
-#include "ex1_writer.h"
-#include "ex1_stream.h"
+#include "gen_reader.h"
+#include "gen_writer.h"
+#include "gen_stream.h"
 
-#include "ex1_byte_serializable.h"
-#include "ex1_byte_stream.h"
-#include "ex1_plain_text_serializable.h"
+#include "gen_byte_serializable.h"
+#include "gen_byte_stream.h"
+#include "gen_plain_text_serializable.h"
 
 #include "ca/gen/gen_base_enum.h"
 
 
 
 
-#include "ex1_plain_text_stream.h"
-#include "ex1_output_stream_flush_interface.h"
-#include "ex1_stream2.h"
+#include "gen_plain_text_stream.h"
+#include "gen_output_stream_flush_interface.h"
+#include "gen_stream2.h"
 
 
 namespace primitive
@@ -920,7 +920,7 @@ namespace primitive
 } // namespace primitive
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -928,19 +928,19 @@ namespace ex1
    struct file_status;
 
 
-} // namespace ex1
+} // namespace gen
 
 
-#include "ex1_file.h"
-#include "ex1_file_composite.h"
-#include "ex1_file_exception.h"
-#include "ex1_file_status.h"
+#include "gen_file.h"
+#include "gen_file_composite.h"
+#include "gen_file_exception.h"
+#include "gen_file_status.h"
 
 
 
-#include "ex1_plain_text_string_stream.h"
+#include "gen_plain_text_string_stream.h"
 
-#include "ex1_file_stream.h"
+#include "gen_file_stream.h"
 
 
 // memory primitives
@@ -1274,20 +1274,20 @@ public:
 
    STDMETHOD_(ULONG, AddRef)();
    STDMETHOD_(ULONG, Release)();
-   ex1::HRes QueryInterface)(REFIID, LPVOID*);
+   gen::HRes QueryInterface)(REFIID, LPVOID*);
 
-   ex1::HRes read)(void *, ULONG, ULONG*);
-   ex1::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
-   ex1::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
-   ex1::HRes set_size)(ULARGE_INTEGER);
-   ex1::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
+   gen::HRes read)(void *, ULONG, ULONG*);
+   gen::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
+   gen::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
+   gen::HRes set_size)(ULARGE_INTEGER);
+   gen::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
       ULARGE_INTEGER*);
-   ex1::HRes Commit)(uint32_t);
-   ex1::HRes Revert)();
-   ex1::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
-   ex1::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
-   ex1::HRes Stat)(STATSTG*, uint32_t);
-   ex1::HRes Clone)(LPSTREAM*);
+   gen::HRes Commit)(uint32_t);
+   gen::HRes Revert)();
+   gen::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
+   gen::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
+   gen::HRes Stat)(STATSTG*, uint32_t);
+   gen::HRes Clone)(LPSTREAM*);
 };
 */
 /////////////////////////////////////////////////////////////////////////////
@@ -1311,52 +1311,52 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 
 
 
-#include "ex1_definition.h"
-#include "ex1_types.h"
+#include "gen_definition.h"
+#include "gen_types.h"
 
-#include "ex1_match.h"
+#include "gen_match.h"
 
 // interfaces
-#include "ex1_progress_interface.h"
+#include "gen_progress_interface.h"
 
 
 // from 7-zip
-#include "ex1_system_exception.h"
-#include "ex1_buffer.h"
-#include "ex1_dynamic_buffer.h"
-#include "ex1_in_buffer.h"
-#include "ex1_out_buffer.h"
-#include "ex1_circular_buffer.h"
-#include "ex1_bitl_decoder.h"
-#include "ex1_bitl_encoder.h"
-#include "ex1_bitm_decoder.h"
-#include "ex1_bitm_encoder.h"
-#include "ex1_limited_reader.h"
-#include "ex1_limited_input_stream.h"
-#include "ex1_clustered_input_stream.h"
-#include "ex1_limited_writer.h"
+#include "gen_system_exception.h"
+#include "gen_buffer.h"
+#include "gen_dynamic_buffer.h"
+#include "gen_in_buffer.h"
+#include "gen_out_buffer.h"
+#include "gen_circular_buffer.h"
+#include "gen_bitl_decoder.h"
+#include "gen_bitl_encoder.h"
+#include "gen_bitm_decoder.h"
+#include "gen_bitm_encoder.h"
+#include "gen_limited_reader.h"
+#include "gen_limited_input_stream.h"
+#include "gen_clustered_input_stream.h"
+#include "gen_limited_writer.h"
 
-#include "ex1_stream_binder.h"
-#include "ex1_locked_in_stream.h"
-#include "ex1_io_temp_buffer.h"
-#include "ex1_size_count_writer.h"
-#include "ex1_dynamic_buffered_writer.h"
-
-
-#include "ex1_buffered_file.h"
-#include "ex1_timeout_file.h"
-#include "ex1_edit_file.h"
-#include "ex1_text_file.h"
-#include "ex1_file_system.h"
-#include "ex1_resource.h"
-#include "ex1_application.h"
-
-#include "ex1_simple_tree_item_data.h"
-#include "ex1_simple_tree_data.h"
+#include "gen_stream_binder.h"
+#include "gen_locked_in_stream.h"
+#include "gen_io_temp_buffer.h"
+#include "gen_size_count_writer.h"
+#include "gen_dynamic_buffered_writer.h"
 
 
+#include "gen_buffered_file.h"
+#include "gen_timeout_file.h"
+#include "gen_edit_file.h"
+#include "gen_text_file.h"
+#include "gen_file_system.h"
+#include "gen_resource.h"
+#include "gen_application.h"
 
-// former gen start - former before concatenation of ex1 + gen + ex2 + radix
+#include "gen_simple_tree_item_data.h"
+#include "gen_simple_tree_data.h"
+
+
+
+// former gen start - former before concatenation of gen + gen + gen + gen
 
 #include "gen_debug.h"
 
@@ -1415,14 +1415,14 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 #include "gen_raw_pointer.h"
 #include "gen_full_pointer.h"
 #include "gen_time.h"
-#include "ca/ex1/ex1_byte_serializable.h"
+#include "ca/gen/gen_byte_serializable.h"
 #include "ca/collection/collection_stringa.h"
 #include "gen_var.h"
 #include "gen_var_array.h"
 
 #include "gen_pointer_manager.h"
 
-#include "ca/radix/radix_pipe.h"
+#include "ca/gen/gen_pipe.h"
 #include "gen_process.h"
 
 
@@ -1460,8 +1460,8 @@ inline bool IsRefNull(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca ex1::byte_input_stream &  operator >>(ex1::byte_input_stream & istream, string & string);
-CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & ostream, const string & string);
+CLASS_DECL_ca gen::byte_input_stream &  operator >>(gen::byte_input_stream & istream, string & string);
+CLASS_DECL_ca gen::byte_output_stream &  operator <<(gen::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
 #include "gen_file_association.h"
@@ -1484,7 +1484,7 @@ CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & o
 
 
 
-// former ex2 
+// former gen 
 
 
 
@@ -1494,10 +1494,10 @@ CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & o
 //#include "ca/gen/gen.h"
 
 
-#include "ex2_file_set.h"
+#include "gen_file_set.h"
 
-#include "ex2_folder_watch.h"
+#include "gen_folder_watch.h"
 
-#include "ex2_transfer_file.h"
+#include "gen_transfer_file.h"
 
-#include "ex2_application.h"
+#include "gen_application.h"

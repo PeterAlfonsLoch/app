@@ -11,7 +11,7 @@ namespace user
    class CLASS_DECL_ca document_interface :
       virtual public command_target,
       virtual public ::ca::data_container_base,
-      virtual public ex1::byte_serializable
+      virtual public gen::byte_serializable
    {
    public:
 
@@ -98,15 +98,15 @@ namespace user
       public:
          ::view *         m_pSender;
          LPARAM         m_lHint;
-         ::radix::object *  m_pHint;
+         ::gen::object *  m_pHint;
       };
 
       // Update Views (simple update - DAG only)
       void update_all_views(::view * pSender, LPARAM lHint = 0L,
-         ::radix::object* pHint = NULL);
+         ::gen::object* pHint = NULL);
 
       void send_update(::view * pSender, LPARAM lHint = 0L,
-         ::radix::object* pHint = NULL);
+         ::gen::object* pHint = NULL);
 
    // Overridables
       // Special notifications
@@ -146,8 +146,8 @@ namespace user
 
       friend class document_template;
 
-      virtual void write(ex1::byte_output_stream & ostream);
-      virtual void read(ex1::byte_input_stream & istream);
+      virtual void write(gen::byte_output_stream & ostream);
+      virtual void read(gen::byte_input_stream & istream);
 
 
    protected:

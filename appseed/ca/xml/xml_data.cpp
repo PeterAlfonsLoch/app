@@ -22,7 +22,7 @@ namespace ca2
    }
    
 
-   void xml_data::write(ex1::byte_output_stream & ostream)
+   void xml_data::write(gen::byte_output_stream & ostream)
    {
 
       ostream << (::xml::document &) *this;
@@ -30,7 +30,7 @@ namespace ca2
    }
    
 
-   void xml_data::read(ex1::byte_input_stream & istream)
+   void xml_data::read(gen::byte_input_stream & istream)
    {
 
       istream >> (::xml::document &) *this;

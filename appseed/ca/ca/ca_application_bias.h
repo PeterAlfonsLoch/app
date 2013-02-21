@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace radix
+namespace gen
 {
    class application;
    class application_signal_object;
@@ -17,7 +17,7 @@ namespace ca
    // passed as application_bias to bergedge that can later pass or use this information as application_bias
    // for further actions.
    class CLASS_DECL_ca application_bias :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -32,7 +32,7 @@ namespace ca
 
          void on_call_signal(gen::signal_object * pobj);
 
-         virtual void on_application_bias_callback_signal(::radix::application_signal_object * pobj);
+         virtual void on_application_bias_callback_signal(::gen::application_signal_object * pobj);
 
       };
 

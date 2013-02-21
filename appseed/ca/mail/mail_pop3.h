@@ -8,7 +8,7 @@ namespace mail
    class pop3_socket;
 
    class CLASS_DECL_ca pop3 :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

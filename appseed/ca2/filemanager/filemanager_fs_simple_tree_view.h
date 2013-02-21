@@ -55,13 +55,13 @@ namespace filemanager
 
 
 
-            void _001OnItemExpand(::ex1::tree_item *pitem);
+            void _001OnItemExpand(::gen::tree_item *pitem);
 
 
             void parse(const char * lpszSource);
 
-            ::ex1::tree_item * FindTreeItem(int64_t iFolder);
-            index _001GetItemImage(::ex1::tree_item * pitem, bool bSelected);
+            ::gen::tree_item * FindTreeItem(int64_t iFolder);
+            index _001GetItemImage(::gen::tree_item * pitem, bool bSelected);
 
 
             virtual ~tree_view();

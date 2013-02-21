@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "ex1_stream_base.h"
+#include "gen_stream_base.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -37,6 +37,6 @@ namespace ex1
    };
 
 
-} // namespace ex1
+} // namespace gen
 
 

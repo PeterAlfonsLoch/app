@@ -56,7 +56,7 @@ namespace n7z
       const base_array < ::libcompress::codec_info_ex > *externalCodecs,
       const file_size *inSizeForReduce)
    {
-      ex1::HRes hr;
+      gen::HRes hr;
       _mixerCoderSpec = new ::libcompress::coder_mixer::CCoderMixer2MT(get_app());
       _mixerCoder = _mixerCoderSpec;
       RINOK(_mixerCoderSpec->SetBindInfo(_bindInfo));
@@ -80,7 +80,7 @@ namespace n7z
          if (!encoder && !encoder2)
             return E_FAIL;
 
-         ::ca::smart_pointer < ::radix::object > encoderCommon = encoder ? (::radix::object *)encoder : (::radix::object *)encoder2;
+         ::ca::smart_pointer < ::gen::object > encoderCommon = encoder ? (::gen::object *)encoder : (::gen::object *)encoder2;
 
          {
             ::ca::smart_pointer < ::libcompress::set_coder_mt_interface > setCoderMt;
@@ -119,7 +119,7 @@ namespace n7z
 
          if (cryptoSetPassword)
          {
-            ::ex1::byte_buffer buffer;
+            ::gen::byte_buffer buffer;
             wstring password = gen::international::utf8_to_unicode(_options.Password);
             const uint32_t sizeInBytes = (const uint32_t) (password.get_length() * 2);
             buffer.SetCapacity(sizeInBytes);
@@ -143,14 +143,14 @@ namespace n7z
    HRESULT CEncoder::Encode(
       ::libcompress::codecs_info_interface *codecsInfo,
       const base_array < ::libcompress::codec_info_ex > *externalCodecs,
-      ::ex1::reader *inStream,
+      ::gen::reader *inStream,
       const file_size *inStreamSize, const file_size *inSizeForReduce,
       CFolder &folderItem,
-      ::ex1::writer *outStream,
+      ::gen::writer *outStream,
       base_array<file_size> &packSizes,
       ::libcompress::progress_info_interface *compressProgress)
    {
-      ex1::HRes hr;
+      gen::HRes hr;
       RINOK(EncoderConstr());
 
       if (_mixerCoderSpec == NULL)
@@ -161,21 +161,21 @@ namespace n7z
       _mixerCoderSpec->ReInit();
       // _mixerCoderSpec->SetCoderInfo(0, NULL, NULL, progress);
 
-      array_ptr_alloc < ::ex1::temp_io_buffer > inOutTempBuffers;
-      array_ptr_alloc < ::ex1::temp_io_writer * > tempBufferSpecs;
-      array_ptr_alloc < ::ca::smart_pointer < ::ex1::writer > > tempBuffers;
+      array_ptr_alloc < ::gen::temp_io_buffer > inOutTempBuffers;
+      array_ptr_alloc < ::gen::temp_io_writer * > tempBufferSpecs;
+      array_ptr_alloc < ::ca::smart_pointer < ::gen::writer > > tempBuffers;
       count numMethods = _bindInfo.Coders.get_count();
       index i;
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         inOutTempBuffers.add(::ex1::temp_io_buffer());
+         inOutTempBuffers.add(::gen::temp_io_buffer());
          inOutTempBuffers.last_element().create();
          inOutTempBuffers.last_element().InitWriting();
       }
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         ex1::temp_io_writer *tempBufferSpec = new ex1::temp_io_writer;
-         ::ca::smart_pointer < ::ex1::writer > tempBuffer = tempBufferSpec;
+         gen::temp_io_writer *tempBufferSpec = new gen::temp_io_writer;
+         ::ca::smart_pointer < ::gen::writer > tempBuffer = tempBufferSpec;
          tempBufferSpec->Init(&inOutTempBuffers[i - 1]);
          tempBuffers.add(tempBuffer);
          tempBufferSpecs.add(tempBufferSpec);
@@ -205,16 +205,16 @@ namespace n7z
       // RINOK(stream->Seek(0, STREAM_SEEK_CUR, &outStreamStartPos));
 
       ::libcompress::size_count_reader2 * inStreamSizeCountSpec = new ::libcompress::size_count_reader2;
-      ::ca::smart_pointer < ::ex1::reader > inStreamSizeCount = inStreamSizeCountSpec;
-      ::ex1::size_count_writer * outStreamSizeCountSpec = new ::ex1::size_count_writer;
-      ::ca::smart_pointer < ::ex1::writer > outStreamSizeCount = outStreamSizeCountSpec;
+      ::ca::smart_pointer < ::gen::reader > inStreamSizeCount = inStreamSizeCountSpec;
+      ::gen::size_count_writer * outStreamSizeCountSpec = new ::gen::size_count_writer;
+      ::ca::smart_pointer < ::gen::writer > outStreamSizeCount = outStreamSizeCountSpec;
 
       inStreamSizeCountSpec->Init(inStream);
       outStreamSizeCountSpec->SetStream(outStream);
       outStreamSizeCountSpec->Init();
 
-      base_array < ::ex1::reader * > inStreamPointers;
-      base_array < ::ex1::writer * > outStreamPointers;
+      base_array < ::gen::reader * > inStreamPointers;
+      base_array < ::gen::writer * > outStreamPointers;
       inStreamPointers.add(inStreamSizeCount);
       outStreamPointers.add(outStreamSizeCount);
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
@@ -235,8 +235,8 @@ namespace n7z
          writeCoderProperties = dynamic_cast < ::libcompress::write_coder_properties_interface * >(&_mixerCoderSpec->_coders[i]);
          if (writeCoderProperties != NULL)
          {
-            ::ex1::dynamic_buffered_writer *outStreamSpec = new ::ex1::dynamic_buffered_writer;
-            ::ca::smart_pointer < ::ex1::writer > outStream(outStreamSpec);
+            ::gen::dynamic_buffered_writer *outStreamSpec = new ::gen::dynamic_buffered_writer;
+            ::ca::smart_pointer < ::gen::writer > outStream(outStreamSpec);
             outStreamSpec->Init();
             writeCoderProperties->WriteCoderProperties(outStream);
             outStreamSpec->CopyToBuffer(encodingInfo.Props);
@@ -262,7 +262,7 @@ namespace n7z
 
       for (i = 1; i < _bindInfo.OutStreams.get_count(); i++)
       {
-         ex1::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
+         gen::temp_io_buffer &inOutTempBuffer = inOutTempBuffers[i - 1];
          RINOK(inOutTempBuffer.write_to_stream(outStream));
          packSizes.add((file_size) inOutTempBuffer.GetDataSize());
       }

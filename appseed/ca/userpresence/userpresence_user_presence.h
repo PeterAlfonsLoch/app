@@ -4,7 +4,7 @@ namespace userpresence
 {
 
       class CLASS_DECL_ca presence :
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
 

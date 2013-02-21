@@ -94,35 +94,35 @@ namespace n7z
    HRESULT CDecoder::Decode(
       ::libcompress::codecs_info_interface * codecsInfo,
       const base_array < ::libcompress::codec_info_ex > * externalCodecs,
-      ::ex1::byte_input_stream *inStream,
+      ::gen::byte_input_stream *inStream,
       file_position startPos,
       const file_size * packSizes,
       const CFolder &folderInfo,
-      ::ex1::writer *outStream,
+      ::gen::writer *outStream,
       ::libcompress::progress_info_interface *compressProgress,
       ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined,
       bool mtMode, uint32_t numThreads
       )
    {
-      ex1::HRes hr;
+      gen::HRes hr;
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;
-      array_ptr_alloc < ::ca::smart_pointer < ::ex1::reader > > inStreams;
+      array_ptr_alloc < ::ca::smart_pointer < ::gen::reader > > inStreams;
 
-      ::ex1::locked_in_stream lockedInStream;
+      ::gen::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
 
       for (int32_t j = 0; j < folderInfo.PackStreams.get_count(); j++)
       {
-         ::ex1::locked_reader *lockedStreamImpSpec = new ::ex1::locked_reader;
-         ::ca::smart_pointer < ::ex1::reader > lockedStreamImp = lockedStreamImpSpec;
+         ::gen::locked_reader *lockedStreamImpSpec = new ::gen::locked_reader;
+         ::ca::smart_pointer < ::gen::reader > lockedStreamImp = lockedStreamImpSpec;
          lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
-         ::ex1::limited_reader *streamSpec = new
-            ::ex1::limited_reader;
-         ::ca::smart_pointer < ::ex1::reader > inStream = streamSpec;
+         ::gen::limited_reader *streamSpec = new
+            ::gen::limited_reader;
+         ::ca::smart_pointer < ::gen::reader > inStream = streamSpec;
          streamSpec->SetStream(lockedStreamImp);
          streamSpec->Init(packSizes[j]);
          inStreams.add(inStream);
@@ -175,13 +175,13 @@ namespace n7z
             {
                return  hr;
             }
-            ::ca::smart_pointer < ::radix::object > decoderUnknown;
+            ::ca::smart_pointer < ::gen::object > decoderUnknown;
             if (coderInfo.IsSimpleCoder())
             {
                if (decoder == 0)
                   return E_NOTIMPL;
 
-               decoderUnknown = (::radix::object *)decoder;
+               decoderUnknown = (::gen::object *)decoder;
 
                if (_multiThread)
                   _mixerCoderMTSpec->AddCoder(decoder);
@@ -194,7 +194,7 @@ namespace n7z
             {
                if (decoder2 == 0)
                   return E_NOTIMPL;
-               decoderUnknown = (::radix::object *)decoder2;
+               decoderUnknown = (::gen::object *)decoder2;
                if (_multiThread)
                   _mixerCoderMTSpec->AddCoder2(decoder2);
 #ifdef _ST_MODE
@@ -230,7 +230,7 @@ namespace n7z
             setDecoderProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
             if (setDecoderProperties)
             {
-               const ::ex1::byte_buffer &props = coderInfo.Props;
+               const ::gen::byte_buffer &props = coderInfo.Props;
                size_t size = props.GetCapacity();
                if (size > 0xFFFFFFFF)
                   return E_NOTIMPL;
@@ -263,7 +263,7 @@ namespace n7z
                {
                   return hr;
                }
-               ::ex1::byte_buffer buffer;
+               ::gen::byte_buffer buffer;
                passwordIsDefined = true;
                wstring password(gen::international::utf8_to_unicode(passwordBSTR));
                const uint32_t sizeInBytes = (const uint32_t ) (password.get_length() * 2);
@@ -321,11 +321,11 @@ namespace n7z
 
       if (numCoders == 0)
          return 0;
-      base_array < ::ex1::reader * > inStreamPointers;
+      base_array < ::gen::reader * > inStreamPointers;
       inStreamPointers.set_size(0, inStreams.get_count());
       for (i = 0; i < inStreams.get_count(); i++)
          inStreamPointers.add(inStreams[i]);
-      ::ex1::writer *outStreamPointer = outStream;
+      ::gen::writer *outStreamPointer = outStream;
       return _mixerCoder->Code(&inStreamPointers.first_element(), NULL, (const uint32_t) inStreams.get_count(), &outStreamPointer, NULL, 1, compressProgress);
    }
 

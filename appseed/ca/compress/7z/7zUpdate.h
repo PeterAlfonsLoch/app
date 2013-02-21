@@ -71,12 +71,12 @@ namespace n7z
 
    HRESULT Update(
       ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
-      ::ex1::byte_input_stream *inStream,
+      ::gen::byte_input_stream *inStream,
       const CArchiveDatabaseEx *db,
       const array_ptr_alloc<CUpdateItem> &updateItems,
       COutArchive &archive,
       CArchiveDatabase &newDatabase,
-      ::ex1::writer *seqOutStream,
+      ::gen::writer *seqOutStream,
       ::libcompress::archive_update_callback_interface *updateCallback,
       const CUpdateOptions &options,
       ::crypto::get_text_password_interface *getDecoderPassword

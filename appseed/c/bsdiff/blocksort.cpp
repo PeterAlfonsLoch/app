@@ -223,7 +223,7 @@ void fallbackSort ( uint32_t* fmap,
    uchar* eclass8 = (uchar*)eclass;
 
    /*--
-      Initial 1-char radix sort to generate
+      Initial 1-char gen sort to generate
       initial fmap and initial BH bits.
    --*/
    if (verb >= 4)
@@ -246,7 +246,7 @@ void fallbackSort ( uint32_t* fmap,
 
    /*--
       Inductively refine the buckets.  Kind-of an
-      "exponential radix sort" (!), inspired by the
+      "exponential gen sort" (!), inspired by the
       Manber-Myers suffix array construction algorithm.
    --*/
 
@@ -799,7 +799,7 @@ void mainSort ( uint32_t* ptr,
 
    if (verb >= 4) VPrintf0 ( "        bucket sorting ...\n" );
 
-   /*-- Complete the initial radix sort --*/
+   /*-- Complete the initial gen sort --*/
    for (i = 1; i <= 65536; i++) ftab[i] += ftab[i-1];
 
    s = block[0] << 8;
@@ -959,7 +959,7 @@ void mainSort ( uint32_t* ptr,
          make subsequent comparisons in fullGtU() complete
          faster.  For repetitive blocks this makes a big
          difference (but not big enough to be able to avoid
-         the fallback sorting mechanism, exponential radix sort).
+         the fallback sorting mechanism, exponential gen sort).
 
          The precise meaning is: at all times:
 

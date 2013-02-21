@@ -22,7 +22,7 @@ public:
       write(memfile.GetAllocation(), memfile.get_length());
       return *this;
    }
-   inline Ex17MemoryFile & operator << (ex1::filesp & file)
+   inline Ex17MemoryFile & operator << (gen::filesp & file)
    {
       int32_t nRead;
       char buf[1024];

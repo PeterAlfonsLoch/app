@@ -309,7 +309,7 @@ bool html_form::open_document(var varFile)
    {
       strPathName = varFile.propset()["url"];
    }
-   else if(varFile.ca2 < ::ex1::file > () != NULL)
+   else if(varFile.ca2 < ::gen::file > () != NULL)
    {
       strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->m_set["default_extension"];
    }

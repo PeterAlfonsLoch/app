@@ -6,7 +6,7 @@ namespace ca
 
 
    class CLASS_DECL_ca section :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

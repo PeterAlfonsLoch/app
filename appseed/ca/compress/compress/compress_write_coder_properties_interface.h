@@ -6,10 +6,10 @@ namespace libcompress
 {
 
    class CLASS_DECL_ca write_coder_properties_interface :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
-      virtual ex1::HRes WriteCoderProperties(::ex1::writer * outStream) = 0;
+      virtual gen::HRes WriteCoderProperties(::gen::writer * outStream) = 0;
    };
 
 } // namespace libcompress

@@ -6,7 +6,7 @@
 
 #include "InBuffer.h"*/
 
-namespace ex1
+namespace gen
 {
 
    in_buffer::in_buffer():
@@ -87,4 +87,4 @@ namespace ex1
       return *_buffer++;
    }
 
-} // namespace ex1
+} // namespace gen

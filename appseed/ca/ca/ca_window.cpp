@@ -2146,7 +2146,7 @@ namespace ca
       _001OnCommand(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
       if (!state.m_bEnabled)
       {
-      TRACE(::radix::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
+      TRACE(::gen::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
       return TRUE;
       }
 
@@ -2172,7 +2172,7 @@ namespace ca
 
       #ifdef DEBUG
       if (nCode < 0 && nCode != (int32_t)0x8000)
-      TRACE(::radix::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
+      TRACE(::gen::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
       nCode);
       #endif
 

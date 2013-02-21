@@ -6,7 +6,7 @@ namespace xml
    class CLASS_DECL_ca property_set_exchange :
       virtual public exportable,
       virtual public importable,
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

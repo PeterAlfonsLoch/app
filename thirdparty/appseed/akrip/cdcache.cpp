@@ -1203,7 +1203,7 @@ void addCDPlayerCDDBIndex( uint32_t cdpIdx, uint32_t cddbId, uint32_t numTracks,
  * This function returns the cdplayer.ini index and number of tracks
  * given a cddbid.
  */
-uint32_t CDDBIndex2CDPlayerIni( char *szCDDBId, uint32_t *dwRetVal, uint32_t *numTracks )
+uint32_t CDDBIndgenCDPlayerIni( char *szCDDBId, uint32_t *dwRetVal, uint32_t *numTracks )
 {
   int32_t i;
   uint32_t dwIdx = (uint32_t)strtoul( szCDDBId, NULL, 16 );
@@ -1234,7 +1234,7 @@ void writeCDPlayerIniEntry( LPCDDBQUERYITEM lpq, char *szCDDBEntry )
   char buf[128];
   char *p1, *p2;
 
-  CDDBIndex2CDPlayerIni( lpq->cddbId, &dwCDPlayerIdx, &dwNumTracks );
+  CDDBIndgenCDPlayerIni( lpq->cddbId, &dwCDPlayerIdx, &dwNumTracks );
   if ( !dwCDPlayerIdx )
     {
       return;

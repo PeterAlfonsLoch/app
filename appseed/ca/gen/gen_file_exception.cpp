@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
    file_exception::file_exception(::ca::application * papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       ca(papp),
       ::call_stack(papp),
-      ::ex1::exception(papp)
+      ::gen::exception(papp)
    {
       Construct(cause, lOsError, lpszArchiveName);
    }
@@ -210,7 +210,7 @@ namespace ex1
    void file_exception::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      //::radix::object::dump(dumpcontext);
+      //::gen::object::dump(dumpcontext);
 
    /*   dumpcontext << "m_cause = ";
       if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))
@@ -224,4 +224,4 @@ namespace ex1
 
 
 
-} // namespace ex1
+} // namespace gen

@@ -15,7 +15,7 @@ namespace gen
 
    template < class TYPE >
    class simple_chain :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       

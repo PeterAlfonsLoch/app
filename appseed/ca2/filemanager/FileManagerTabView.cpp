@@ -44,7 +44,7 @@ void FileManagerTabView::install_message_handling(::gen::message::dispatch * pin
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerTabView::_001OnCreate);
 }
 
-void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint)
+void FileManagerTabView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    ::userbase::tab_view::on_update(pSender, lHint, phint);

@@ -19,7 +19,7 @@ namespace gen
 
 
    class CLASS_DECL_ca command_line :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

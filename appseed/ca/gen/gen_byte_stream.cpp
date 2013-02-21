@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -579,7 +579,7 @@ namespace ex1
    }
 
    byte_stream::byte_stream(const byte_stream & stream) :
-      ::ex1::stream(stream),
+      ::gen::stream(stream),
       byte_input_stream(stream),
       byte_output_stream(stream)
    {
@@ -606,7 +606,7 @@ namespace ex1
 
    static const ::primitive::memory_size kBlockSize = ((uint32_t)1 << 31);
 
-   HRESULT ReadStream(::ex1::reader * stream, void * data, ::primitive::memory_size * processedSize)
+   HRESULT ReadStream(::gen::reader * stream, void * data, ::primitive::memory_size * processedSize)
    {
       ::primitive::memory_size size = *processedSize;
       *processedSize = 0;
@@ -666,4 +666,4 @@ namespace ex1
 
 
 
-} // namespace ex1
+} // namespace gen

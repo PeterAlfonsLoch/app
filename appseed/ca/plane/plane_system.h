@@ -837,12 +837,12 @@ namespace gen
 
 
 template < class T >
-bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, const char *), const char * lpszSource)
+bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::gen::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ex1::filesp fileOut = App(papp).file().get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+   gen::filesp fileOut = App(papp).file().get_file(pszOutput, gen::file::mode_create | gen::file::type_binary | gen::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -853,17 +853,17 @@ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput
 
 
 template < class T >
-bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ex1::writer &, ::ex1::reader &), const char * lpszInput)
+bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::gen::writer &, ::gen::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   ex1::filesp fileOut = App(papp).file().get_file(pszOutput, ex1::file::mode_create | ex1::file::type_binary | ex1::file::mode_write);
+   gen::filesp fileOut = App(papp).file().get_file(pszOutput, gen::file::mode_create | gen::file::type_binary | gen::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   ex1::filesp fileIn = App(papp).file().get_file(lpszInput, ex1::file::type_binary | ex1::file::mode_read);
+   gen::filesp fileIn = App(papp).file().get_file(lpszInput, gen::file::type_binary | gen::file::mode_read);
 
    if(fileIn.is_null())
       return false;

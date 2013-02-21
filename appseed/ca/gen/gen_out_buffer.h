@@ -7,7 +7,7 @@
 #include "../../Common/MyCom.h"
 #include "../../Common/MyException.h"*/
 
-namespace ex1
+namespace gen
 {
 
    class CLASS_DECL_ca out_buffer_exception: 
@@ -25,7 +25,7 @@ namespace ex1
    };
 
    class CLASS_DECL_ca out_buffer :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       ::primitive::virtual_memory      m_memory;
@@ -42,7 +42,7 @@ namespace ex1
       out_buffer();
       ~out_buffer();
 
-      using ::ex1::request_interface::create;
+      using ::gen::request_interface::create;
       bool create(::primitive::memory_size bufferSize);
       void free();
 
@@ -63,6 +63,6 @@ namespace ex1
    };
 
 
-} // namespace ex1
+} // namespace gen
 
 

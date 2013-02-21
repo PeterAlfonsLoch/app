@@ -3,7 +3,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
    class limited_input_stream:
@@ -42,4 +42,4 @@ namespace ex1
 
    reader * create_limited_input_stream(byte_input_stream *inStream, uint64_t pos, uint64_t size);
 
-} // namespace ex1
+} // namespace gen

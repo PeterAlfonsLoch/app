@@ -279,7 +279,7 @@ protected:
 };
 
 class tinyjs :
-   virtual public ::radix::object{
+   virtual public ::gen::object{
 public:
     tinyjs(::ca::application * papp);
     ~tinyjs();

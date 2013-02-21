@@ -87,7 +87,7 @@ namespace filemanager
 
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
 
          get_fs_list_data()->m_itema.SetItemCount(stra.get_size());
 
@@ -276,9 +276,9 @@ namespace filemanager
       string wstrItemExtra;
 
       int32_t iFind;
-      ex1::filesp spfile(get_app());
+      gen::filesp spfile(get_app());
 
-      //spfile->open(szPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
+      //spfile->open(szPath, ::gen::file::mode_read | ::gen::file::type_binary);
 
       base_array < gen::memory_file, gen::memory_file & > filea;
       _vmszipFile zipfile;

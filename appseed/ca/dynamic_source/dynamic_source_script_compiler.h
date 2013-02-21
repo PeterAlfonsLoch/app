@@ -9,7 +9,7 @@ namespace dynamic_source
    class script_instance;
 
    class script_compiler :
-      virtual public ::radix::object,
+      virtual public ::gen::object,
       virtual public ::file_watcher::listener_thread
    {
    public:

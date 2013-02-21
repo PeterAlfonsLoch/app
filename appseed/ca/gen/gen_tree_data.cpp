@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace ex1
+namespace gen
 {
 
    tree_data::tree_data(::ca::application * papp) :
@@ -47,15 +47,15 @@ namespace ex1
       return true;
    }
 
-   ex1::tree_item_data * tree_data::on_allocate_item()
+   gen::tree_item_data * tree_data::on_allocate_item()
    {
       return new tree_item_data;
    }
 
-   void tree_data::on_delete_item(ex1::tree_item_data * pitem)
+   void tree_data::on_delete_item(gen::tree_item_data * pitem)
    {
       delete pitem;
    }
 
 
-} // namespace ex1
+} // namespace gen

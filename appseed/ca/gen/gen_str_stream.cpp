@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
    str_stream_base_impl::str_stream_base_impl()
@@ -30,6 +30,6 @@ namespace ex1
    }
 
 
-} // namespace ex1
+} // namespace gen
 
 

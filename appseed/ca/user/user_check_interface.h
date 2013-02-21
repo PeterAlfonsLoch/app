@@ -20,7 +20,7 @@ namespace user
 
 
    class CLASS_DECL_ca check_interface :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

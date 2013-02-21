@@ -5,7 +5,7 @@ namespace ca4
 
 
    class CLASS_DECL_ca email :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
       email();

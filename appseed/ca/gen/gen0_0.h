@@ -1,40 +1,40 @@
 #pragma once
 
 
-#include "radix/radix_5.h"
+#include "gen/gen_5.h"
 
 
-#include "ex1_exception.h"
+#include "gen_exception.h"
 
-#include "ex1_request_interface.h"
+#include "gen_request_interface.h"
 
-#include "ex1_tree_item_data.h"
-#include "ex1_tree_item.h"
-#include "ex1_tree_data.h"
-#include "ex1_tree.h"
+#include "gen_tree_item_data.h"
+#include "gen_tree_item.h"
+#include "gen_tree_data.h"
+#include "gen_tree.h"
 
-#include "ex1_fs_interface.h"
+#include "gen_fs_interface.h"
 
-#include "ex1_stream_base.h"
+#include "gen_stream_base.h"
 
-#include "ex1_seekable.h"
+#include "gen_seekable.h"
 
-#include "ex1_reader.h"
-#include "ex1_writer.h"
-#include "ex1_stream.h"
+#include "gen_reader.h"
+#include "gen_writer.h"
+#include "gen_stream.h"
 
-#include "ex1_byte_serializable.h"
-#include "ex1_byte_stream.h"
-#include "ex1_plain_text_serializable.h"
-#include "ex1_plain_text_stream.h"
-#include "ex1_output_stream_flush_interface.h"
-#include "ex1_file.h"
-#include "ex1_file_composite.h"
-#include "ex1_file_exception.h"
-#include "ex1_file_status.h"
+#include "gen_byte_serializable.h"
+#include "gen_byte_stream.h"
+#include "gen_plain_text_serializable.h"
+#include "gen_plain_text_stream.h"
+#include "gen_output_stream_flush_interface.h"
+#include "gen_file.h"
+#include "gen_file_composite.h"
+#include "gen_file_exception.h"
+#include "gen_file_status.h"
 
 
 
-#include "ex1_plain_text_string_stream.h"
+#include "gen_plain_text_string_stream.h"
 
-#include "ex1_file_stream.h"
+#include "gen_file_stream.h"

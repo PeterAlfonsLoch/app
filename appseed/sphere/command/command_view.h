@@ -44,7 +44,7 @@ namespace command
       DECL_GEN_SIGNAL(_001OnLButtonUp)
       DECL_GEN_SIGNAL(_001OnTimer)
       DECL_GEN_SIGNAL(_001OnRButtonUp)
-	   virtual void on_update(::view * pSender, LPARAM lHint, ::radix::object* pHint);
+	   virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
 
       document * get_document();
 

@@ -100,7 +100,7 @@ namespace filemanager
          update_all_views(NULL, 0, &uh);
       }
 
-      data_set("InitialBrowsePath", ::radix::system::idEmpty, m_item.m_strPath);
+      data_set("InitialBrowsePath", ::gen::system::idEmpty, m_item.m_strPath);
 
       FileManagerInterface::OnFileManagerBrowse();
 
@@ -275,7 +275,7 @@ namespace filemanager
 
       uh.m_pmanager = this;
 
-      if(data_get("InitialBrowsePath", ::radix::system::idEmpty, str))
+      if(data_get("InitialBrowsePath", ::gen::system::idEmpty, str))
       {
          FileManagerBrowse(str);
       }

@@ -4,7 +4,7 @@
 
 //#include "../Common/OutBuffer.h"
 
-namespace ex1
+namespace gen
 {
 
    namespace bitl

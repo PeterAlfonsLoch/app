@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_ca icon :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 

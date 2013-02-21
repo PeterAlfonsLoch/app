@@ -18,7 +18,7 @@ public:
    virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
    virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
 
-   file_position seek(file_offset lOff, ::ex1::e_seek  nFrom);
+   file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
 
    virtual file_size get_length() const;
 

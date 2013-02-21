@@ -11,10 +11,10 @@
 namespace libcompress
 {
 
-   typedef ex1::out_buffer_exception lz_out_window_exception;
+   typedef gen::out_buffer_exception lz_out_window_exception;
 
    class lz_out_window :
-      public ::ex1::out_buffer
+      public ::gen::out_buffer
    {
    public:
       void Init(bool solid = false);

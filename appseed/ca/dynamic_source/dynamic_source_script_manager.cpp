@@ -847,11 +847,11 @@ namespace dynamic_source
    bool script_manager::extract_image_size(const string & strFile, size * psize)
    {
 
-      ex1::filesp f;
+      gen::filesp f;
 
       try
       {
-         f = Application.file().get_file(strFile, ex1::file::type_binary | ex1::file::mode_read | ex1::file::shareDenyWrite);
+         f = Application.file().get_file(strFile, gen::file::type_binary | gen::file::mode_read | gen::file::shareDenyWrite);
       }
       catch(...)
       {
@@ -894,7 +894,7 @@ namespace dynamic_source
             if(i >= len)
                return false;   //Check to protect against segmentation faults
 
-            f->seek(i, ex1::seek_begin);
+            f->seek(i, gen::seek_begin);
 
             if(f->read(buf, 4) < 4)
                return false;

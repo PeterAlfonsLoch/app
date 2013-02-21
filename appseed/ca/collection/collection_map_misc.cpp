@@ -12,7 +12,7 @@ map_ptr_to_word::map_ptr_to_word(int_ptr nBlockSize) :
 
 
 map_string_to_ob::map_string_to_ob(int_ptr nBlockSize) :
-   ::collection::map < string, const string &, ::radix::object *, ::radix::object * >(nBlockSize)
+   ::collection::map < string, const string &, ::gen::object *, ::gen::object * >(nBlockSize)
 {
 }
 
@@ -22,7 +22,7 @@ map_string_to_ptr::map_string_to_ptr(int_ptr nBlockSize) :
 }
 
 map_word_to_ob::map_word_to_ob(int_ptr nBlockSize) :
-   ::collection::map < WORD, WORD, ::radix::object *, ::radix::object * >(nBlockSize)
+   ::collection::map < WORD, WORD, ::gen::object *, ::gen::object * >(nBlockSize)
 {
 }
 

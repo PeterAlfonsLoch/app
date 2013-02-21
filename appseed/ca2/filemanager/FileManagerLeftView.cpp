@@ -33,7 +33,7 @@ void FileManagerLeftView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void FileManagerLeftView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)

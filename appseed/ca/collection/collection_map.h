@@ -10,7 +10,7 @@ namespace collection
 
    template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = gen::hash < ARG_KEY > , class EQUALS = gen::equals_type_arg_type < KEY, ARG_KEY > >
    class map :
-      virtual public ::radix::object
+      virtual public ::gen::object
    {
    public:
 
@@ -854,7 +854,7 @@ namespace collection
    {
       ASSERT_VALID(this);
 
-      ::radix::object::Serialize(ar);
+      ::gen::object::Serialize(ar);
 
       if (ar.IsStoring())
       {
@@ -901,7 +901,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & dumpcontext) const
    {
-      ::radix::object::dump(dumpcontext);
+      ::gen::object::dump(dumpcontext);
 
       dumpcontext << "with " << m_nCount << " elements";
       if (dumpcontext.GetDepth() > 0)
@@ -925,7 +925,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assert_valid() const
    {
-      ::radix::object::assert_valid();
+      ::gen::object::assert_valid();
 
       ASSERT(m_nHashTableSize > 0);
       ASSERT(m_nCount == 0 || m_pHashTable != NULL);

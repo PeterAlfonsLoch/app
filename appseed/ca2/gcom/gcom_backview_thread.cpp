@@ -11,7 +11,7 @@ namespace gcom
 
       thread::thread(::ca::application * papp) :
          ca(papp),
-         ::radix::thread(papp),
+         ::gen::thread(papp),
          m_evInitialized(papp, FALSE, TRUE),
          m_mutexBitmap(papp)
       {
@@ -32,7 +32,7 @@ namespace gcom
       {
          m_evInitialized.SetEvent();
          m_pbackviewinterface->Release();
-         return ::radix::thread::exit_instance();
+         return ::gen::thread::exit_instance();
       }
 
       void thread::install_message_handling(::gen::message::dispatch * pinterface)

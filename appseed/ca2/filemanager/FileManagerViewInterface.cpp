@@ -24,7 +24,7 @@ FileManagerInterface * FileManagerViewInterface::GetFileManager()
    return dynamic_cast < ::filemanager::document * > (m_pfilemanagerinterface);
 }
 
-void FileManagerViewInterface::on_update(::view * psender, LPARAM lhint, ::radix::object * phint)
+void FileManagerViewInterface::on_update(::view * psender, LPARAM lhint, ::gen::object * phint)
 { 
    UNREFERENCED_PARAMETER(psender);
    UNREFERENCED_PARAMETER(lhint);

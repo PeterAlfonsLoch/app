@@ -1,10 +1,10 @@
 #pragma once
 
 
-#include "ex1_byte_stream.h"
+#include "gen_byte_stream.h"
 
 
-namespace ex1
+namespace gen
 {
 
 

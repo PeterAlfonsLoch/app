@@ -69,7 +69,7 @@ namespace filemanager
 #ifdef WINDOWSEX
       ::collection::map < EFolder, EFolder, IShellFolder *, IShellFolder *> m_mapFolder;
 #endif
-      ex1::tree_item *        m_pdataitemCreateImageListStep;
+      gen::tree_item *        m_pdataitemCreateImageListStep;
       string                  m_strPath;
 
 
@@ -79,7 +79,7 @@ namespace filemanager
 
       virtual void _001InsertColumns();
       //virtual void _001CreateImageList(CColumn & column);
-      virtual void _001UpdateImageList(ex1::tree_item * pitem);
+      virtual void _001UpdateImageList(gen::tree_item * pitem);
 
       DECL_GEN_VSIGNAL(_001OnTimer)
 
@@ -95,9 +95,9 @@ namespace filemanager
       void _CreateImageListStep();
 
       // user::tree
-      virtual void _001OnOpenItem(::ex1::tree_item * pitem);
-      virtual void _001OnItemExpand(::ex1::tree_item * pitem);
-      virtual void _001OnItemCollapse(::ex1::tree_item * pitem);
+      virtual void _001OnOpenItem(::gen::tree_item * pitem);
+      virtual void _001OnItemExpand(::gen::tree_item * pitem);
+      virtual void _001OnItemCollapse(::gen::tree_item * pitem);
 
 
       virtual void _017OpenFolder(const ::fs::item & item);
@@ -123,11 +123,11 @@ namespace filemanager
 
       void _017Browse(const char * lpcsz, bool bForceUpdate = false);
       void _017UpdateList();
-      void _017UpdateList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel);
-      void _017UpdateZipList(const char * lpcsz, ex1::tree_item * pitemParent, int32_t iLevel);
+      void _017UpdateList(const char * lpcsz, gen::tree_item * pitemParent, int32_t iLevel);
+      void _017UpdateZipList(const char * lpcsz, gen::tree_item * pitemParent, int32_t iLevel);
       void _017EnsureVisible(const char * lpcsz);
 
-      ex1::tree_item * find_item(const char * lpcsz);
+      gen::tree_item * find_item(const char * lpcsz);
 
 
 

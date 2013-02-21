@@ -60,14 +60,14 @@ namespace userbase
             // finally, activate the frame
             // (send the default show command unless the main desktop ::ca::window)
             int32_t nCmdShow = -1;      // default
-            ::radix::application* pApp = &System;
+            ::gen::application* pApp = &System;
             if (pApp != NULL && pApp->GetMainWnd() == pframe)
             {
                nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
                pApp->m_nCmdShow = -1; // set to default after first time
             }
             bool bFullScreen;
-            data_get("FullScreen", ::radix::system::idEmpty, bFullScreen);
+            data_get("FullScreen", ::gen::system::idEmpty, bFullScreen);
             if(bFullScreen)
             {
                WfiFullScreen(bFullScreen, false);

@@ -43,7 +43,7 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 namespace ca4
 {
 
-   bool compress::ungz(ex1::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
+   bool compress::ungz(gen::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
    {
       int32_t fileUn = my_open(lpcszGzFileCompressed, _O_BINARY | _O_RDONLY);
       if (fileUn == -1)
@@ -128,7 +128,7 @@ namespace ca4
    }
 
 
-   bool compress::gz(ex1::writer & ostreamCompressed, const char * lpcszUncompressed)
+   bool compress::gz(gen::writer & ostreamCompressed, const char * lpcszUncompressed)
    {
       string str(lpcszUncompressed);
       FILE * fileUn = my_fopen(lpcszUncompressed, "rb");
@@ -152,7 +152,7 @@ namespace ca4
       return true;
    }
 
-   bool compress::null(ex1::writer & ostream, ex1::reader & istream)
+   bool compress::null(gen::writer & ostream, gen::reader & istream)
    {
       class primitive::memory memory;
       memory.allocate(1024 * 256);
@@ -174,7 +174,7 @@ namespace ca4
       return System.file().output(papp, lpcszGzFileCompressed, this, &compress::gz, lpcszUncompressed);
    }
 
-   bool compress::unbz(::ex1::writer & ostreamUncompressed, const char * lpcszBzFileCompressed)
+   bool compress::unbz(::gen::writer & ostreamUncompressed, const char * lpcszBzFileCompressed)
    {
       BZFILE * file = BZ2_bzopen(lpcszBzFileCompressed, "rb");
       if (file == NULL)
@@ -193,9 +193,9 @@ namespace ca4
       return true;
    }
 
-   bool compress::bz(ex1::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
+   bool compress::bz(gen::writer & ostreamBzFileCompressed, const char * lpcszUncompressed)
    {
-      ::ex1::filesp file = Application.file().get_file(lpcszUncompressed, ex1::file::mode_read | ex1::file::type_binary);
+      ::gen::filesp file = Application.file().get_file(lpcszUncompressed, gen::file::mode_read | gen::file::type_binary);
       if(file.is_null())
       {
          return false;
@@ -203,7 +203,7 @@ namespace ca4
       return bz_stream(ostreamBzFileCompressed, file);
    }
 
-   bool compress::bz_stream(ex1::writer & ostreamBzFileCompressed, ex1::reader & istreamFileUncompressed)
+   bool compress::bz_stream(gen::writer & ostreamBzFileCompressed, gen::reader & istreamFileUncompressed)
    {
       bzip bz(ostreamBzFileCompressed);
       class primitive::memory memory;
@@ -267,7 +267,7 @@ namespace ca4
          stringa straPath;
          stringa straRelative;
          string strPath;
-         ::ex1::filesp file;
+         ::gen::filesp file;
          System.dir().rls(papp, psz, &straPath, NULL, &straRelative);
          for(int32_t i = 0; i < straPath.get_size(); i++)
          {

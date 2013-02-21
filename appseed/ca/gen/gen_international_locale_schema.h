@@ -10,7 +10,7 @@ namespace gen
 
 
       class CLASS_DECL_ca locale_schema : 
-         virtual public ::radix::object
+         virtual public ::gen::object
       {
       public:
 

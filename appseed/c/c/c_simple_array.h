@@ -160,11 +160,11 @@ inline TYPE& simple_array<TYPE, ARG_TYPE>::operator[](index nIndex)
 }
 
 template<class TYPE, class ARG_TYPE>
-inline void simple_array<TYPE, ARG_TYPE>::swap(index index1, index index2)
+inline void simple_array<TYPE, ARG_TYPE>::swap(index index1, index indgen2)
 {
-   TYPE t = m_pData[index2];
-   m_pData[index2] = m_pData[index1];
-   m_pData[index1] = t;
+   TYPE t = m_pData[index1];
+   m_pData[index1] = m_pData[index2];
+   m_pData[index2] = t;
 }
 
 template<class TYPE, class ARG_TYPE>

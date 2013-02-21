@@ -6,8 +6,8 @@ namespace gen
 
 
    class CLASS_DECL_ca command :
-      virtual public ::radix::object,
-      virtual public ::ex1::request_interface
+      virtual public ::gen::object,
+      virtual public ::gen::request_interface
    {
    public:
 
@@ -78,7 +78,7 @@ public:
 
 
 class CLASS_DECL_ca BaseCmdMsg :
-   public ::radix::object
+   public ::gen::object
 {
 public:
 

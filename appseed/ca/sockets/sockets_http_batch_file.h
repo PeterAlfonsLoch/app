@@ -10,7 +10,7 @@ namespace sockets
 
 
       class CLASS_DECL_ca batch_file : 
-         virtual public ::ex1::file
+         virtual public ::gen::file
       {
       public:
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ex1/ex1_1.h"
+#include "gen/gen_1.h"
 
 
 

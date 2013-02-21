@@ -190,7 +190,7 @@ return LoadImageFile(ar.GetFile());
 }
 */
 
-FIBITMAP * imaging::LoadImageFile(ex1::file * pfile)
+FIBITMAP * imaging::LoadImageFile(gen::file * pfile)
 {
 
    FreeImageIO io;
@@ -233,7 +233,7 @@ return false;
 
 file.seek_to_begin();
 
-ex1::file * pfile = &file;
+gen::file * pfile = &file;
 
 FreeImageIO io;
 io.read_proc   = ___Ex1File__ReadProc;

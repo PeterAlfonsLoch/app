@@ -3,7 +3,7 @@
 #include "framework.h"
 
 
-namespace ex1
+namespace gen
 {
 
    ::primitive::memory_size limited_input_stream::read(void *data, ::primitive::memory_size size)
@@ -55,4 +55,4 @@ namespace ex1
       return streamSpec;
    }
 
-} // namespace ex1
+} // namespace gen

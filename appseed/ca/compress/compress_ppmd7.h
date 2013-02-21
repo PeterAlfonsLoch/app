@@ -56,8 +56,8 @@ typedef struct
 } CPpmd7;
 
 void Ppmd7_Construct(CPpmd7 *p);
-bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ex1::ISzAlloc *alloc);
-void Ppmd7_Free(CPpmd7 *p, ::ex1::ISzAlloc *alloc);
+bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::gen::ISzAlloc *alloc);
+void Ppmd7_Free(CPpmd7 *p, ::gen::ISzAlloc *alloc);
 void Ppmd7_Init(CPpmd7 *p, uint32_t maxOrder);
 #define Ppmd7_WasAllocated(p) ((p)->Base != NULL)
 
@@ -105,7 +105,7 @@ typedef struct
   IPpmd7_RangeDec p;
   uint32_t Range;
   uint32_t Code;
-  ::ex1::IByteIn *Stream;
+  ::gen::IByteIn *Stream;
 } CPpmd7z_RangeDec;
 
 void Ppmd7z_RangeDec_CreateVTable(CPpmd7z_RangeDec *p);
@@ -123,7 +123,7 @@ typedef struct
   uint32_t Range;
   byte Cache;
   uint64_t CacheSize;
-  ::ex1::IByteOut *Stream;
+  ::gen::IByteOut *Stream;
 } CPpmd7z_RangeEnc;
 
 void Ppmd7z_RangeEnc_Init(CPpmd7z_RangeEnc *p);

@@ -20,7 +20,7 @@ namespace libcompress
 
       static void *SzBigAlloc(void *, size_t size) { return BigAlloc(size); }
       static void SzBigFree(void *, void *address) { BigFree(address); }
-      static ::ex1::ISzAlloc g_BigAlloc = { SzBigAlloc, SzBigFree };
+      static ::gen::ISzAlloc g_BigAlloc = { SzBigAlloc, SzBigFree };
 
       static const uint32_t kNumAlignReps = 15;
 
@@ -847,7 +847,7 @@ namespace libcompress
          return S_OK;
       }
 
-      ex1::HRes decoder::Code(::ex1::reader *inStream, ::ex1::writer *outStream,
+      gen::HRes decoder::Code(::gen::reader *inStream, ::gen::writer *outStream,
          const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
          try
@@ -883,13 +883,13 @@ namespace libcompress
             _unpackSize = *outSize;
             return CodeReal(progress);
          }
-         catch(const ex1::in_buffer_exception &e)  { return e.ErrorCode; }
+         catch(const gen::in_buffer_exception &e)  { return e.ErrorCode; }
          catch(...) { return S_FALSE; }
          // CNewException is possible here. But probably CNewException is caused
          // by error in data stream.
       }
 
-      ex1::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
+      gen::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

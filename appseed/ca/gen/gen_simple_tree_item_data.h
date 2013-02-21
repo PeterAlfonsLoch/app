@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ex1
+namespace gen
 {
 
 
@@ -19,8 +19,8 @@ namespace ex1
       simple_tree_item_data();
       virtual ~simple_tree_item_data();
 
-      virtual string get_text(::ex1::tree * ptree);
-      virtual index get_image(::ex1::tree * ptree);
+      virtual string get_text(::gen::tree * ptree);
+      virtual index get_image(::gen::tree * ptree);
 
       /*#undef new
       void * operator new(size_t i, const char * lpszFileName, int32_t iLine);
@@ -33,6 +33,6 @@ namespace ex1
    };
 
 
-} // namespace ex1
+} // namespace gen
 
 

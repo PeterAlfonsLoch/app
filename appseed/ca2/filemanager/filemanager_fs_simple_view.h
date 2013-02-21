@@ -19,7 +19,7 @@ namespace filemanager
          public:
             tree_view * m_ptree;
             list_view * m_plist;
-            ::ex1::request_interface * m_prequestinterface;
+            ::gen::request_interface * m_prequestinterface;
 
             view(::ca::application * papp);
 
@@ -31,7 +31,7 @@ namespace filemanager
             void start_root();
             void CreateViews();
 
-            void set_request_interface(::ex1::request_interface * prequestinterface);
+            void set_request_interface(::gen::request_interface * prequestinterface);
 
             virtual ~view();
          #ifdef DEBUG

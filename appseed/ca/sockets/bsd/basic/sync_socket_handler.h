@@ -7,7 +7,7 @@
    {
 
       class CLASS_DECL_ca sync_socket_handler : 
-         virtual public ::radix::object,
+         virtual public ::gen::object,
          public socket::callback
       {
       public:

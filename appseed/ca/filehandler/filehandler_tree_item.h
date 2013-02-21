@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_ca tree_item :
-      public ex1::tree_item_data
+      public gen::tree_item_data
    {
    public:
 
@@ -26,8 +26,8 @@ namespace filehandler
       stringa        m_straApp;
 
 
-      string get_text(ex1::tree * ptree);
-      index get_image(ex1::tree * ptree);
+      string get_text(gen::tree * ptree);
+      index get_image(gen::tree * ptree);
 
 
 

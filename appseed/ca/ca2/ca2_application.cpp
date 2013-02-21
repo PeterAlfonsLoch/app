@@ -100,7 +100,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
 
       m_psignal->connect(this, &::ca2::application::on_application_signal);
 
-      m_eexclusiveinstance       = ::radix::ExclusiveInstanceNone;
+      m_eexclusiveinstance       = ::gen::ExclusiveInstanceNone;
       m_pmutexLocal              = NULL;
       m_pmutexGlobal             = NULL;
       m_peventReady              = NULL;
@@ -122,7 +122,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
 
    void application::install_message_handling(::gen::message::dispatch * pdispatch)
    {
-      ::ex2::application::install_message_handling(pdispatch);
+      ::gen::application::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_APP + 2043, pdispatch, this, &::ca2::application::_001OnApplicationRequest);
    }
 
@@ -255,7 +255,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
    bool application::initialize1()
    {
 
-      if(!::ex2::application::initialize1())
+      if(!::gen::application::initialize1())
          return false;
 
       m_psockets = new ::sockets::sockets();
@@ -398,7 +398,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
    {
       try
       {
-         ex2::application::finalize();
+         gen::application::finalize();
       }
       catch(...)
       {
@@ -482,13 +482,13 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
 
       if(directrix().m_varTopicQuery.propset().has_property("install"))
       {
-         // ex2 level app install
+         // gen level app install
          if(!Ex2OnAppInstall())
             return false;
       }
       else if(directrix().m_varTopicQuery.propset().has_property("uninstall"))
       {
-         // ex2 level app uninstall
+         // gen level app uninstall
          if(!Ex2OnAppUninstall())
             return false;
       }
@@ -582,7 +582,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
    ::ca::application * application::get_app() const
    {
 
-      return ex2::application::get_app();
+      return gen::application::get_app();
 
    }
 
@@ -799,7 +799,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
       {
          on_run_uninstall();
       }*/
-      return ex2::application::run();
+      return gen::application::run();
    }
 
    bool application::open_link(const string & strLink, const string & pszTarget)
@@ -850,19 +850,19 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
 
    void application::get_time(struct timeval *p)
    {
-      ::ex2::application::get_time(p);
+      ::gen::application::get_time(p);
    }
 
 #endif
 
    void application::set_env_var(const string & var,const string & value)
    {
-      ::ex2::application::set_env_var(var, value);
+      ::gen::application::set_env_var(var, value);
    }
 
    uint32_t application::get_thread_id()
    {
-      return ::ex2::application::get_thread_id();
+      return ::gen::application::get_thread_id();
    }
 
    void application::message_window_message_handler(gen::signal_object * pobj)
@@ -1015,8 +1015,8 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
       }
 
       ::ca::thread_sp::create(this);
-      //dynamic_cast < ::radix::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
-      dynamic_cast < ::radix::thread * > (::ca::thread_sp::m_p)->m_p = this;
+      //dynamic_cast < ::gen::thread * > (papp->::ca::thread_sp::m_p)->m_p = papp->::ca::thread_sp::m_p;
+      dynamic_cast < ::gen::thread * > (::ca::thread_sp::m_p)->m_p = this;
       if(pbias != NULL)
       {
          m_biasCalling = *pbias;

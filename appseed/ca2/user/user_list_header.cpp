@@ -310,7 +310,7 @@ namespace user
          if(item.m_bOk)
          {
             iWidth = item.m_iColumnWidth;
-            if(data_get(str, ::radix::system::idEmpty, iOldWidth))
+            if(data_get(str, ::gen::system::idEmpty, iOldWidth))
             {
                if(iOldWidth == iWidth)
                   bSave = false;
@@ -318,7 +318,7 @@ namespace user
          }
          if(bSave)
          {
-            if(!data_set(str, ::radix::system::idEmpty, iWidth))
+            if(!data_set(str, ::gen::system::idEmpty, iWidth))
                return false;
          }
       }
@@ -326,7 +326,7 @@ namespace user
       {
          if(data_get(
             str,
-            ::radix::system::idEmpty,
+            ::gen::system::idEmpty,
             iWidth))
          {
             constraint::constraint_min(iWidth, 50);

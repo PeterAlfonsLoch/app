@@ -274,7 +274,7 @@ void db_server::close()
 }
 
 
-bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ex1::writable & writable, ::database::update_hint * phint)
+bool db_server::data_server_load(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, gen::writable & writable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
 //   single_lock sl(&m_csImplDatabase, TRUE);
@@ -283,7 +283,7 @@ bool db_server::data_server_load(::database::client * pclient, ::database::id id
    return true;
 }
 
-bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, ex1::readable & readable, ::database::update_hint * phint)
+bool db_server::data_server_save(::database::client * pclient, ::database::id idSection, ::database::id id, ::database::id idIndex, gen::readable & readable, ::database::update_hint * phint)
 {
    UNREFERENCED_PARAMETER(phint);
    single_lock sl(&m_csImplDatabase, TRUE);
@@ -334,7 +334,7 @@ bool db_server::load(const char * lpcszKey, string & str)
 
 
 
-bool db_server::load(const char * lpKey, ::ex1::writable &  writable)
+bool db_server::load(const char * lpKey, ::gen::writable &  writable)
 {
 //   single_lock sl(&m_csImplDatabase, TRUE);
    string str;
@@ -355,7 +355,7 @@ bool db_server::save(const char * lpcszKey, const char * lpcsz)
 }
 
 
-bool db_server::save(const char * lpKey, ex1::readable & readable)
+bool db_server::save(const char * lpKey, gen::readable & readable)
 {
    single_lock sl(&m_csImplDatabase, TRUE);
    string str;

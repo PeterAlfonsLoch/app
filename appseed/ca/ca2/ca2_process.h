@@ -9,7 +9,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca process :
-      public ::radix::object
+      public ::gen::object
    {
    public:
 

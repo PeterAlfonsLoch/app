@@ -26,7 +26,7 @@ namespace filemanager
 
 
       class create_image_list_thread :
-         public ::radix::thread
+         public ::gen::thread
       {
       public:
 

@@ -123,7 +123,7 @@ namespace primitive
    }
 
    
-   void memory_base::FullLoad(ex1::file & file)
+   void memory_base::FullLoad(gen::file & file)
    {
 
       if(!is_enabled())
@@ -141,9 +141,9 @@ namespace primitive
          dwTemp = file.read(get_data(), cbStorage);
       }
 #ifdef DEBUG
-      catch(ex1::file_exception & e)
+      catch(gen::file_exception & e)
 #else
-      catch(ex1::file_exception & )
+      catch(gen::file_exception & )
 #endif
       {
          throw "smfOpenFile: read error on image!";
@@ -159,7 +159,7 @@ namespace primitive
    }
  
 
-   void memory_base::read(ex1::byte_input_stream & istream)
+   void memory_base::read(gen::byte_input_stream & istream)
    {
 
       memory_size uiRead;
@@ -190,7 +190,7 @@ namespace primitive
    }
 
    
-   void memory_base::write(ex1::byte_output_stream & ostream)
+   void memory_base::write(gen::byte_output_stream & ostream)
    {
 
       ostream.write(get_data(), this->get_size());
@@ -198,7 +198,7 @@ namespace primitive
    }
 
    
-   ::primitive::memory_size memory_base::read(ex1::file & file)
+   ::primitive::memory_size memory_base::read(gen::file & file)
    {
 
       file_size dwEnd = file.get_length();

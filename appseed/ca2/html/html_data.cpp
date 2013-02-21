@@ -386,7 +386,7 @@ restart:
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.ca2 < ::ex1::file > () != NULL)
+      else if(varFile.ca2 < ::gen::file > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + ".html";
       }
@@ -499,7 +499,7 @@ restart:
       m_strSource = str;
       //if(m_propset["bReplaceEx1"])
       {
-        m_propertyset.replace_ex1(str);
+        m_propertyset.replace_gen(str);
       }
       TRACE0(str);
       if(str.has_char())

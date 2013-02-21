@@ -41,14 +41,14 @@ void simple_tree_view::_001OnCreate(gen::signal_object * pobj)
    SCAST_PTR(gen::message::create, pcreate, pobj);
    pcreate->previous();
 
-/*   if(!ex1::tree_data::initialize())
+/*   if(!gen::tree_data::initialize())
    {
       pcreate->set_lresult(0);
       pcreate->m_bRet = true;
       return;
    }*/
 
-   if(!ex1::tree::initialize())
+   if(!gen::tree::initialize())
    {
       pcreate->set_lresult(0);
       pcreate->m_bRet = true;

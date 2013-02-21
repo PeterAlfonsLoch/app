@@ -2,7 +2,7 @@
 
 #undef new
 
-namespace radix
+namespace gen
 {
 
    inline void * object::operator new(size_t nSize)
@@ -43,7 +43,7 @@ namespace radix
 #endif
 
 
-} // namespace radix
+} // namespace gen
 
 
 #define new DEBUG_NEW

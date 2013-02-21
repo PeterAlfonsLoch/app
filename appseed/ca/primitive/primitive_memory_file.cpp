@@ -149,26 +149,26 @@ namespace primitive
    }
 
 
-   file_position memory_file::seek(file_offset lOff, ::ex1::e_seek nFrom)
+   file_position memory_file::seek(file_offset lOff, ::gen::e_seek nFrom)
    {
 
       single_lock sl(get_memory()->m_spmutex, TRUE);
 
       ASSERT(IsValid());
-      ASSERT(nFrom == ::ex1::seek_begin || nFrom == ::ex1::seek_end || nFrom == ::ex1::seek_current);
-      //ASSERT(::ex1::seek_begin == FILE_BEGIN && ::ex1::seek_end == FILE_END && ::ex1::seek_current == FILE_CURRENT);
+      ASSERT(nFrom == ::gen::seek_begin || nFrom == ::gen::seek_end || nFrom == ::gen::seek_current);
+      //ASSERT(::gen::seek_begin == FILE_BEGIN && ::gen::seek_end == FILE_END && ::gen::seek_current == FILE_CURRENT);
 
       ::primitive::memory_position dwNew = (::primitive::memory_position) -1;
 
       switch(nFrom)
       {
-      case ::ex1::seek_begin:
+      case ::gen::seek_begin:
          dwNew = (::primitive::memory_position) lOff;
          break;
-      case ::ex1::seek_end:
+      case ::gen::seek_end:
          dwNew = (::primitive::memory_position) (get_length() - lOff);
          break;
-      case ::ex1::seek_current:
+      case ::gen::seek_current:
          if(lOff < 0)
          {
             dwNew = (::primitive::memory_position) (m_dwPosition + lOff);
@@ -308,8 +308,8 @@ namespace primitive
 
       primitive::memory storage;
       storage.allocate(1024 * 1024 * 8);
-      ex1::filesp spfile(get_app());
-      if(!spfile->open(psz, ::ex1::file::type_binary | ::ex1::file::mode_read | ::ex1::file::shareDenyNone))
+      gen::filesp spfile(get_app());
+      if(!spfile->open(psz, ::gen::file::type_binary | ::gen::file::mode_read | ::gen::file::shareDenyNone))
          return;
       else
       {

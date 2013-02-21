@@ -82,14 +82,14 @@ void Ppmd8_Construct(CPpmd8 *p)
   }
 }
 
-void Ppmd8_Free(CPpmd8 *p, ::ex1::ISzAlloc *alloc)
+void Ppmd8_Free(CPpmd8 *p, ::gen::ISzAlloc *alloc)
 {
   alloc->Free(alloc, p->Base);
   p->Size = 0;
   p->Base = 0;
 }
 
-bool Ppmd8_Alloc(CPpmd8 *p, uint32_t size, ::ex1::ISzAlloc *alloc)
+bool Ppmd8_Alloc(CPpmd8 *p, uint32_t size, ::gen::ISzAlloc *alloc)
 {
   if (p->Base == 0 || p->Size != size)
   {

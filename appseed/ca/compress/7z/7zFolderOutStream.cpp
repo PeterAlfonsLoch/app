@@ -14,7 +14,7 @@ namespace n7z
       _crcStream = _crcStreamSpec;
    }
 
-   ex1::HRes CFolderOutStream::Init(
+   gen::HRes CFolderOutStream::Init(
       const CArchiveDatabaseEx *db,
       uint32_t ref2Offset, uint32_t startIndex,
       const bool_array *extractStatuses,
@@ -35,13 +35,13 @@ namespace n7z
       return ProcessEmptyFiles();
    }
 
-   ex1::HRes CFolderOutStream::OpenFile()
+   gen::HRes CFolderOutStream::OpenFile()
    {
       int32_t askMode = ((*_extractStatuses)[_currentIndex]) ? (_testMode ?
          ::libcompress::archive::extract::ask_mode_test :
       ::libcompress::archive::extract::ask_mode_extract) :
       ::libcompress::archive::extract::ask_mode_skip;
-      ::ca::smart_pointer < ::ex1::writer > realOutStream;
+      ::ca::smart_pointer < ::gen::writer > realOutStream;
       uint32_t index = _startIndex + _currentIndex;
       RINOK(_extractCallback->GetStream(_ref2Offset + index, &realOutStream.m_p, askMode));
       _crcStreamSpec->SetStream(realOutStream);
@@ -55,7 +55,7 @@ namespace n7z
       return _extractCallback->PrepareOperation(askMode);
    }
 
-   ex1::HRes CFolderOutStream::CloseFileAndSetResult(int32_t res)
+   gen::HRes CFolderOutStream::CloseFileAndSetResult(int32_t res)
    {
       _crcStreamSpec->ReleaseStream();
       _fileIsOpen = false;
@@ -63,7 +63,7 @@ namespace n7z
       return _extractCallback->SetOperationResult(res);
    }
 
-   ex1::HRes CFolderOutStream::CloseFileAndSetResult()
+   gen::HRes CFolderOutStream::CloseFileAndSetResult()
    {
       const CFileItem &fi = _db->Files[_startIndex + _currentIndex];
       return CloseFileAndSetResult(
@@ -72,7 +72,7 @@ namespace n7z
       ::libcompress::archive::extract::operation_result_CRCError);
    }
 
-   ex1::HRes CFolderOutStream::ProcessEmptyFiles()
+   gen::HRes CFolderOutStream::ProcessEmptyFiles()
    {
       while (_currentIndex < _extractStatuses->get_count() && _db->Files[_startIndex + _currentIndex].get_count == 0)
       {
@@ -121,7 +121,7 @@ namespace n7z
       }
    }
 
-   ex1::HRes CFolderOutStream::GetSubStreamSize(uint64_t subStream, uint64_t * value)
+   gen::HRes CFolderOutStream::GetSubStreamSize(uint64_t subStream, uint64_t * value)
    {
       *value = 0;
       if ((int32_t)subStream >= _extractStatuses->get_count())
@@ -130,7 +130,7 @@ namespace n7z
       return S_OK;
    }
 
-   ex1::HRes CFolderOutStream::FlushCorrupted(int32_t resultEOperationResult)
+   gen::HRes CFolderOutStream::FlushCorrupted(int32_t resultEOperationResult)
    {
       while (_currentIndex < _extractStatuses->get_count())
       {

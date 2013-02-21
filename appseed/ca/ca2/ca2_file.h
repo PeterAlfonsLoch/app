@@ -9,12 +9,12 @@ namespace ca4
 
 
    class CLASS_DECL_ca file :
-      public ::radix::object
+      public ::gen::object
    {
    public:
 
       class CLASS_DECL_ca path :
-         public ::radix::object
+         public ::gen::object
       {
       public:
          bool rename(const char * pszNew, const char * psz, ::ca::application * papp);
@@ -30,7 +30,7 @@ namespace ca4
       string md5(const char * psz);
       string nessie(const char * psz);
 
-      string nessie(ex1::file * pfile);
+      string nessie(gen::file * pfile);
 
       path & path36();
    
@@ -41,11 +41,11 @@ namespace ca4
       void is_valid_fileset(const char * pszFile, ::ca::application * papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber);
-      static void read_n_number(ex1::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
+      static void write_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber);
+      static void read_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
 
-      static void write_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str);
-      static void read_ex1_string(ex1::file * pfile, ::crypto::md5::context * pctx, string & str);
+      static void write_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str);
+      static void read_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str);
 
 
    };

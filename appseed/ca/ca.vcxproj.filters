@@ -48,12 +48,6 @@
     <Filter Include="Header Files\api">
       <UniqueIdentifier>{f4d62481-a2f3-4b08-8f5c-d756a42385e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\radix">
-      <UniqueIdentifier>{0d875852-0627-40e0-ad74-12c582b88e0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\radix">
-      <UniqueIdentifier>{e21c5bc7-7c9f-40ba-843b-1244a8448f62}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\api">
       <UniqueIdentifier>{a8cff7bb-d987-4eca-92d1-4fd397166faf}</UniqueIdentifier>
     </Filter>
@@ -68,18 +62,6 @@
     </Filter>
     <Filter Include="Source Files\fontopus">
       <UniqueIdentifier>{1944684f-b88f-4ff7-949a-f686c2878008}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ex2">
-      <UniqueIdentifier>{21770c5a-572a-44bb-a427-98bbc2f48380}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\ex1">
-      <UniqueIdentifier>{d3605bb3-f6e5-44be-b971-503ee05914f1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ex1">
-      <UniqueIdentifier>{0ea52e94-4c5b-4226-8717-5c37e76f7e50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ex2">
-      <UniqueIdentifier>{842cadba-ccd7-47e8-b06b-631c80fd335d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\compress">
       <UniqueIdentifier>{d8559929-e173-4228-989d-58f584272e64}</UniqueIdentifier>
@@ -563,27 +545,6 @@
     <ClInclude Include="primitive\primitive.h">
       <Filter>Header Files\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="radix\radix.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_application.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_object.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_os_history.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_system.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_template.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_thread.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="xml\xml.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
@@ -622,189 +583,6 @@
     </ClInclude>
     <ClInclude Include="fontopus\fontopus_validate.h">
       <Filter>Header Files\fontopus</Filter>
-    </ClInclude>
-    <ClInclude Include="ex2\ex2.h">
-      <Filter>Header Files\ex2</Filter>
-    </ClInclude>
-    <ClInclude Include="ex2\ex2_application.h">
-      <Filter>Header Files\ex2</Filter>
-    </ClInclude>
-    <ClInclude Include="ex2\ex2_file_set.h">
-      <Filter>Header Files\ex2</Filter>
-    </ClInclude>
-    <ClInclude Include="ex2\ex2_folder_watch.h">
-      <Filter>Header Files\ex2</Filter>
-    </ClInclude>
-    <ClInclude Include="ex2\ex2_transfer_file.h">
-      <Filter>Header Files\ex2</Filter>
-    </ClInclude>
-    <ClInclude Include="ex2\ex17_memory_file.h">
-      <Filter>Header Files\ex2</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_application.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_bitl_decoder.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_bitl_encoder.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_bitm_decoder.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_bitm_encoder.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_buffer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_buffered_file.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_circular_buffer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_clustered_input_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_definition.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_dynamic_buffer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_dynamic_buffered_writer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_edit_file.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_exception.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_file.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_file_exception.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_file_status.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_file_system.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_fs_interface.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_in_buffer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_io_temp_buffer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_limited_input_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_limited_reader.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_limited_writer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_locked_in_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_match.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_out_buffer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_output_stream_flush_interface.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_plain_text_serializable.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_plain_text_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_plain_text_string_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_plain_text_writable.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_plain_text_writer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_progress_interface.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_reader.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_request_interface.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_resource.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_seekable.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_simple_tree_data.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_simple_tree_item_data.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_size_count_writer.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_str_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_stream_binder.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_stream2.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_system_exception.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_text_file.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_timeout_file.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_tree.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_tree_data.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_tree_item.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_tree_item_data.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_types.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_writer.h">
-      <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="compress\compress.h">
       <Filter>Header Files\compress</Filter>
@@ -1361,12 +1139,6 @@
     <ClInclude Include="collection\collection_template.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include="ex1\ex1_byte_serializable.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_byte_stream.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
     <ClInclude Include="collection\collection.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
@@ -1670,17 +1442,8 @@
     <ClInclude Include="javascript\javascript_tinyjs.h">
       <Filter>Header Files\javascript</Filter>
     </ClInclude>
-    <ClInclude Include="ex1\ex1_file_composite.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_data_exchange.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_stream_base.h">
-      <Filter>Header Files\ex1</Filter>
-    </ClInclude>
-    <ClInclude Include="ex1\ex1_file_stream.h">
-      <Filter>Header Files\ex1</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_retry_single_lock.h">
       <Filter>Header Files\multithreading</Filter>
@@ -1709,23 +1472,11 @@
     <ClInclude Include="gen\gen_property_set.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="radix\radix_allocator.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_factory.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_fixed_alloc.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_flags.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="windows\os_library.h">
       <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_os.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="windows\os.h">
       <Filter>Header Files\windows</Filter>
@@ -1784,29 +1535,11 @@
     <ClInclude Include="xml\xml_edit.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
-    <ClInclude Include="radix\radix_allocate.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_base.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
     <ClInclude Include="gen\gen_cregexp_util.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="gen\gen_cregexp.h">
       <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_command.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_command_target.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_constraint.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_heap.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="ca2\ca2_html_file.h">
       <Filter>Header Files\ca2</Filter>
@@ -1828,12 +1561,6 @@
     </ClInclude>
     <ClInclude Include="gen\gen_international_locale_schema.h">
       <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_plex.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_plex_heap.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="ca2\ca2_filehandler_handler.h">
       <Filter>Header Files\ca2</Filter>
@@ -2092,24 +1819,6 @@
     </ClInclude>
     <ClInclude Include="ca\ca_graphic_classes.h">
       <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_wait_cursor.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_service.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_pipe.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_process_data.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_machine_event_central.h">
-      <Filter>Header Files\radix</Filter>
-    </ClInclude>
-    <ClInclude Include="radix\radix_bstr.h">
-      <Filter>Header Files\radix</Filter>
     </ClInclude>
     <ClInclude Include="visual\visual_api.h">
       <Filter>Header Files\visual</Filter>
@@ -3230,6 +2939,279 @@
     <ClInclude Include="ca2\ca2_twit.h">
       <Filter>Header Files\ca2</Filter>
     </ClInclude>
+    <ClInclude Include="gen\aaa_inline_want_to_remove.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_kbase_want_to_remove.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_keep_ptr_want_to_remove.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_language_string_want_to_remove.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\aaa_want_to_remove_ex17_memory_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_0.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_1.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_allocate.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_allocator.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_bitl_decoder.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_bitl_encoder.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_bitm_decoder.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_bitm_encoder.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_bstr.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_buffer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_buffered_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_byte_serializable.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_byte_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_circular_buffer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_clustered_input_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_command_target.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_constraint.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_dynamic_buffer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_dynamic_buffered_writer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_edit_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_exception.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_factory.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_composite.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_exception.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_set.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_status.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_file_system.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_fixed_alloc.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_folder_watch.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_fs_interface.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_heap.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_in_buffer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_io_temp_buffer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_limited_input_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_limited_reader.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_limited_writer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_locked_in_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_machine_event_central.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_match.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_object.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_os.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_os_history.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_out_buffer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_output_stream_flush_interface.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_pipe.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_plain_text_serializable.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_plain_text_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_plain_text_string_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_plain_text_writable.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_plain_text_writer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_plex.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_plex_heap.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_process_data.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_progress_interface.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_reader.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_request_interface.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_seekable.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_service.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_simple_list.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_simple_tree_data.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_simple_tree_item_data.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_size_count_writer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_sockets.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_specialty.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_str_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_stream.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_stream_base.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_stream_binder.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_stream2.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_system_exception.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_text_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_thread.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_timeout_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_transfer_file.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_tree.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_tree_data.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_tree_item.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_tree_item_data.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_types.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_util.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_wait_cursor.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen_writer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen0_0.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="gen\gen0_1.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
@@ -3358,18 +3340,6 @@
     <ClCompile Include="primitive\primitive_scalar.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_application.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_object.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_os_history.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_system.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="xml\xml_attr.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
@@ -3435,141 +3405,6 @@
     </ClCompile>
     <ClCompile Include="fontopus\fontopus_validate.cpp">
       <Filter>Source Files\fontopus</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_application.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_buffered_file.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_byte_serializable.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_byte_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_circular_buffer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_clustered_input_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_dynamic_buffered_writer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_edit_file.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_exception.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_file.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_file_system.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_fs_interface.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_in_buffer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_io_temp_buffer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_limited_input_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_limited_reader.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_limited_writer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_locked_in_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_match.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_out_buffer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_output_string_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_plain_text_serializable.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_plain_text_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_reader.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_request_interface.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_resource.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_seekable.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_simple_tree_data.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_simple_tree_item_data.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_size_count_writer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_str_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_stream_binder.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_stream2.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_text_file.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_timeout_file.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_tree.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_tree_data.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_tree_item.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_tree_item_data.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_writer.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
-    <ClCompile Include="ex2\ex2_application.cpp">
-      <Filter>Source Files\ex2</Filter>
-    </ClCompile>
-    <ClCompile Include="ex2\ex2_file_set.cpp">
-      <Filter>Source Files\ex2</Filter>
-    </ClCompile>
-    <ClCompile Include="ex2\ex2_folder_watch.cpp">
-      <Filter>Source Files\ex2</Filter>
-    </ClCompile>
-    <ClCompile Include="ex2\ex2_transfer_file.cpp">
-      <Filter>Source Files\ex2</Filter>
     </ClCompile>
     <ClCompile Include="compress\compress_archive.cpp">
       <Filter>Source Files\compress</Filter>
@@ -4321,48 +4156,6 @@
     <ClCompile Include="api\api_muldiv64.cpp">
       <Filter>Source Files\api</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_assert.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_cmdtarg.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_command_target.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_composite.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_constraint.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_factory.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_fixed_alloc.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_flags.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_pipe.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_plex.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_plex_heap.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_service.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_thread.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_wait_cursor.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="plugin\plugin_history.cpp">
       <Filter>Source Files\plugin</Filter>
     </ClCompile>
@@ -4528,29 +4321,14 @@
     <ClCompile Include="primitive\primitive_id_space.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_allocation_base_ca2.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_allocation_mid_big.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_file_composite.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_data_exchange.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_file_stream.cpp">
-      <Filter>Source Files\ex1</Filter>
     </ClCompile>
     <ClCompile Include="multithreading\multithreading_retry_single_lock.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_string.cpp">
       <Filter>Source Files\primitive</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_allocation_ca2_heap.cpp">
-      <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="exception\exception_overflow_error.cpp">
       <Filter>Source Files\exception</Filter>
@@ -4575,9 +4353,6 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_bstr.cpp">
-      <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_httpd_socket.cpp">
       <Filter>Source Files\dynamic_source</Filter>
@@ -4837,9 +4612,6 @@
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="radix\radix_machine_event_central.cpp">
-      <Filter>Source Files\radix</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception_standard_translator.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -4857,9 +4629,6 @@
     </ClCompile>
     <ClCompile Include="gen\gen_go_thread.cpp">
       <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="radix\radix_allocation_system_heap.cpp">
-      <Filter>Source Files\radix</Filter>
     </ClCompile>
     <ClCompile Include="compress\crypto\crypto_7z_crc.cpp">
       <Filter>Source Files\compress\crypto</Filter>
@@ -4890,9 +4659,6 @@
     </ClCompile>
     <ClCompile Include=".\uinteraction\uinteraction_interaction.cpp">
       <Filter>Source Files\uinteraction</Filter>
-    </ClCompile>
-    <ClCompile Include="ex1\ex1_file_exception.cpp">
-      <Filter>Source Files\ex1</Filter>
     </ClCompile>
     <ClCompile Include="javascript\javascript_tinyjs_functions.cpp">
       <Filter>Source Files\javascript</Filter>
@@ -5341,9 +5107,6 @@
     <ClCompile Include="multithreading\multithreading_condition.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="ex1\ex1.cpp">
-      <Filter>Source Files\ex1</Filter>
-    </ClCompile>
     <ClCompile Include="collection\collection_string_list.cpp">
       <Filter>Source Files\collection</Filter>
     </ClCompile>
@@ -5428,12 +5191,228 @@
     <ClCompile Include="ca2\ca2_twit.cpp">
       <Filter>Source Files\ca2</Filter>
     </ClCompile>
+    <ClCompile Include="gen\gen.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_afxcrit.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_allocation_base_ca2.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_allocation_ca2_heap.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_allocation_mid_big.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_allocation_system_heap.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_assert.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_base_enum_static_debug.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_bstr.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_buffered_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_byte_serializable.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_byte_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_circular_buffer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_clustered_input_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_cmdtarg.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_command_target.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_composite.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_constraint.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_dynamic_buffered_writer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_edit_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_exception.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_factory.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file_composite.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file_exception.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file_set.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_file_system.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_fixed_alloc.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_flags.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_folder_watch.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_fs_interface.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_in_buffer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_io_temp_buffer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_limited_input_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_limited_reader.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_limited_writer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_locked_in_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_machine_event_central.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_match.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_object.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_os_history.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_out_buffer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_output_string_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_pipe.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_plain_text_serializable.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_plain_text_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_plex.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_plex_heap.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_reader.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_request_interface.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_resource.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_seekable.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_service.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_simple_tree_data.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_simple_tree_item_data.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_size_count_writer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_str_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_stream.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_stream_binder.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_stream2.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_text_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_thread.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_timeout_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_transfer_file.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_tree.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_tree_data.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_tree_item.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_tree_item_data.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_wait_cursor.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="gen\gen_writer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">
       <Filter>Source Files</Filter>
     </None>
     <None Include="gen\gen_str2.h">
+      <Filter>Header Files\gen</Filter>
+    </None>
+    <None Include="gen\gen.inl">
       <Filter>Header Files\gen</Filter>
     </None>
   </ItemGroup>

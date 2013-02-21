@@ -82,7 +82,7 @@ namespace sockets
             }
             else
             {
-               m_file.seek(-1, ::ex1::seek_current);
+               m_file.seek(-1, ::gen::seek_current);
                return str;
             }
          }

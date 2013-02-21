@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca base_sort_serializable_int_ptr_array :
-   virtual public ex1::byte_serializable_array < sort_array < int_ptr, int_ptr > >
+   virtual public gen::byte_serializable_array < sort_array < int_ptr, int_ptr > >
 {
 
 

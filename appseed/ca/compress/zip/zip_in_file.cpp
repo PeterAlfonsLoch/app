@@ -17,7 +17,7 @@ namespace zip
    }
 
 
-   ex1::file * InFile::Duplicate() const
+   gen::file * InFile::Duplicate() const
    {
    //   ASSERT_VALID(this);
       ASSERT(get_zip_file() != NULL);
@@ -35,7 +35,7 @@ namespace zip
       ASSERT(pFile->m_hFile != (UINT)hFileNull);
       pFile->m_bCloseOnDelete = m_bCloseOnDelete;*/
       return NULL;
-      //return new ex1::filesp(this);
+      //return new gen::filesp(this);
    }
 
 
@@ -99,7 +99,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::unzip_open(ex1::file * pfile)
+   bool InFile::unzip_open(gen::file * pfile)
    {
 
       m_filea.remove_all();
@@ -230,7 +230,7 @@ namespace zip
       return TRUE;
    }
 
-   bool InFile::dump(ex1::file * pfile)
+   bool InFile::dump(gen::file * pfile)
    {
       if(m_strFileName.is_empty())
          return false;
@@ -271,12 +271,12 @@ namespace zip
       ASSERT(FALSE);
    }
 
-   file_position InFile::seek(file_offset lOff, ::ex1::e_seek nFrom)
+   file_position InFile::seek(file_offset lOff, ::gen::e_seek nFrom)
    {
    //   ASSERT_VALID(this);
       //ASSERT(get_zip_file() != NULL);
-      //ASSERT(nFrom == ::ex1::seek_begin || nFrom == ::ex1::seek_end || nFrom == ::ex1::seek_current);
-      //ASSERT(::ex1::seek_begin == FILE_BEGIN && ::ex1::seek_end == FILE_END && ::ex1::seek_current == FILE_CURRENT);
+      //ASSERT(nFrom == ::gen::seek_begin || nFrom == ::gen::seek_end || nFrom == ::gen::seek_current);
+      //ASSERT(::gen::seek_begin == FILE_BEGIN && ::gen::seek_end == FILE_END && ::gen::seek_current == FILE_CURRENT);
    /*typedef struct unz_file_pos_s
    {
        uint_ptr pos_in_zip_directory;   /* offset in zip file directory */
@@ -285,15 +285,15 @@ namespace zip
 
 
       uint64_t iNewPos;
-      if(nFrom == ::ex1::seek_begin)
+      if(nFrom == ::gen::seek_begin)
       {
          iNewPos = lOff;
       }
-      else if(nFrom == ::ex1::seek_end)
+      else if(nFrom == ::gen::seek_end)
       {
          iNewPos = m_fi.uncompressed_size - lOff;
       }
-      else if(nFrom == ::ex1::seek_current)
+      else if(nFrom == ::gen::seek_current)
       {
          iNewPos = m_iPosition + lOff;
       }
@@ -468,13 +468,13 @@ namespace zip
 
    void InFile::assert_valid() const
    {
-      //::radix::object::assert_valid();
+      //::gen::object::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
    void InFile::dump(dump_context & dumpcontext) const
    {
-   //   ::radix::object::dump(dumpcontext);
+   //   ::gen::object::dump(dumpcontext);
 
       dumpcontext << "with handle " << (uint_ptr)get_zip_file();
       dumpcontext << " and name \"" << m_strFileName << "\"";
@@ -482,7 +482,7 @@ namespace zip
    }
 
 
-   // IMPLEMENT_DYNAMIC(InFile, ::radix::object)
+   // IMPLEMENT_DYNAMIC(InFile, ::gen::object)
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -613,14 +613,14 @@ namespace zip
 
       string strPath(System.dir().path(pszDir, pszRelative));
 
-      ::ex1::filesp file;
+      ::gen::filesp file;
 
-      file = Application.file().get_file(strPath, ::ex1::file::mode_read | ::ex1::file::type_binary);
+      file = Application.file().get_file(strPath, ::gen::file::mode_read | ::gen::file::type_binary);
 
       if(file.is_null())
          throw "failed to open file for compressing";
 
-      ex1::file_status status;
+      gen::file_status status;
 
       file->GetStatus(status);
 

@@ -54,11 +54,11 @@ namespace n7z
 
       handler();
 
-      virtual ex1::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo) = 0;
-      virtual ex1::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
+      virtual gen::HRes SetCompressCodecsInfo(::libcompress::codecs_info_interface *compressCodecsInfo) = 0;
+      virtual gen::HRes SetProperties(const char **names, const var *values, int32_t numProperties);
 
    private:
-      ::ca::smart_pointer < ::ex1::byte_input_stream > _inStream;
+      ::ca::smart_pointer < ::gen::byte_input_stream > _inStream;
       n7z::CArchiveDatabaseEx _db;
       //#ifndef _NO_CRYPTO
       bool _passwordIsDefined;
@@ -78,18 +78,18 @@ namespace n7z
 
       base_array<CBind> _binds;
 
-      ::ex1::HRes SetCompressionMethod(CCompressionMethodMode &method,
+      ::gen::HRes SetCompressionMethod(CCompressionMethodMode &method,
          array_ptr_alloc < ::libcompress::COneMethodInfo > &methodsInfo
          , uint32_t numThreads
          );
 
-      ::ex1::HRes SetCompressionMethod(
+      ::gen::HRes SetCompressionMethod(
          CCompressionMethodMode &method,
          CCompressionMethodMode &headerMethod);
 
 #endif
 
-      bool IsEncrypted(uint32_t index2) const;
+      bool IsEncrypted(uint32_t indgen) const;
 //#ifndef _SFX
 
       base_array<uint64_t> _fileInfoPopIDs;

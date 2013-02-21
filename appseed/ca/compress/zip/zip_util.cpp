@@ -289,7 +289,7 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      ex1::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::defer_create_directory);
+      gen::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::defer_create_directory);
 
       if(spfile.is_set())
       {
@@ -302,7 +302,7 @@ namespace zip
 
    }
 
-   bool Util::extract_all(const char * pszDir, ::ex1::file * pfile)
+   bool Util::extract_all(const char * pszDir, ::gen::file * pfile)
    {
 
       InFile infile(pfile->get_app());
@@ -342,9 +342,9 @@ namespace zip
             else if(infile.locate(strTitle))
             {
 
-               ex1::filesp spfile = App(pfile->get_app()).file().get_file(
+               gen::filesp spfile = App(pfile->get_app()).file().get_file(
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
-                  ::ex1::file::mode_create | ::ex1::file::mode_write | ::ex1::file::defer_create_directory);
+                  ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::defer_create_directory);
 
 
                if(spfile.is_set())

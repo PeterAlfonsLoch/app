@@ -349,12 +349,12 @@ namespace plane
       if(directrix().m_varTopicQuery.has_property("install"))
          return true;
 
-      ex1::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ex1::file::type_binary | ex1::file::mode_read);
+      gen::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), gen::file::type_binary | gen::file::mode_read);
 
       if(file.is_null())
          return false;
 
-      ex1::byte_input_stream is(file);
+      gen::byte_input_stream is(file);
 
       is >> m_mapAppLibrary;
 
@@ -418,12 +418,12 @@ namespace plane
 
       }
 
-      ex1::filesp file;
+      gen::filesp file;
 
       try
       {
 
-         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ex1::file::defer_create_directory | ::ex1::file::type_binary | ex1::file::mode_create  | ::ex1::file::mode_write);
+         file = m_file.get_file(System.dir().appdata("applibcache.bin"), gen::file::defer_create_directory | ::gen::file::type_binary | gen::file::mode_create  | ::gen::file::mode_write);
 
       }
       catch(base_exception &)
@@ -433,7 +433,7 @@ namespace plane
 
       }
 
-      ex1::byte_output_stream os(file);
+      gen::byte_output_stream os(file);
 
       os << m_mapAppLibrary;
 
@@ -1582,9 +1582,9 @@ namespace plane
       if(papp == NULL)
          return NULL;
 
-      ::radix::application * pradixapp = dynamic_cast < ::radix::application * > (papp);
+      ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
 
-      pradixapp->m_strAppId = pszAppId;
+      pgenapp->m_strAppId = pszAppId;
 
       return papp;
 

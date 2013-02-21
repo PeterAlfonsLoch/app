@@ -14,7 +14,7 @@ file_manager_form_view::file_manager_form_view(::ca::application * papp) :
 {
 }
 
-void file_manager_form_view::on_update(::view * pSender, LPARAM lHint, ::radix::object* phint) 
+void file_manager_form_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (GetFileManager());
@@ -52,13 +52,13 @@ bool file_manager_form_view::BaseOnControlEvent(::user::control_event * pevent)
          if(m_strPath == "filemanager_add_location_lfs.xhtml")
          {
             stringa stra;
-            GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+            GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
             ::user::interaction* pguie = get_child_by_name("lfs");
             text_interface * ptext = dynamic_cast < text_interface * > (pguie);
             string str;
             ptext->_001GetText(str);
             stra.add_unique(str);
-            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::radix::system::idEmpty, stra);
+            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
 
          }
          else if(m_strPath == "filemanager_add_location_ftp.xhtml")

@@ -44,7 +44,7 @@ namespace n7z
      };
    };
 
-   ex1::HRes handler::Extract(const uint32_t *indices, uint32_t numItems,
+   gen::HRes handler::Extract(const uint32_t *indices, uint32_t numItems,
        int32_t testModeSpec, ::libcompress::archive_extract_callback_interface *extractCallbackSpec)
    {
      bool testMode = (testModeSpec != 0);
@@ -170,7 +170,7 @@ namespace n7z
        curPacked = 0;
 
        CFolderOutStream *folderOutStream = new CFolderOutStream;
-       ::ca::smart_pointer < ::ex1::writer > outStream(folderOutStream);
+       ::ca::smart_pointer < ::gen::writer > outStream(folderOutStream);
 
        #ifdef _7Z_VOL
        const CVolume &volume = _volumes[efi.VolumeIndex];

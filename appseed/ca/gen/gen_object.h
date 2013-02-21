@@ -32,7 +32,7 @@ namespace gen
 // a bit of the eternal jealousy/envy : javas capability of locking/synching on any object
 
 
-namespace radix
+namespace gen
 {
 
 
@@ -97,7 +97,7 @@ namespace radix
 
 
 
-} // namespace radix
+} // namespace gen
 
 
 

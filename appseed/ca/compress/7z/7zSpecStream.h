@@ -6,16 +6,16 @@ namespace libcompress
 {
 
    class size_count_reader2:
-      public ::ex1::reader,
+      public ::gen::reader,
       public ::libcompress::get_sub_stream_size_interface
    {
    public:
 
-      ::ca::smart_pointer < ::ex1::reader > _stream;
+      ::ca::smart_pointer < ::gen::reader > _stream;
       ::ca::smart_pointer < ::libcompress::get_sub_stream_size_interface > _getSubStreamSize;
       uint64_t _size;
 
-      void Init(::ex1::reader *stream)
+      void Init(::gen::reader *stream)
       {
          _stream = stream;
          _getSubStreamSize = dynamic_cast < ::libcompress::get_sub_stream_size_interface * > (_stream.m_p);
@@ -27,7 +27,7 @@ namespace libcompress
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
 
-      ex1::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
+      gen::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
    };
 
 } // namespace libcompress
