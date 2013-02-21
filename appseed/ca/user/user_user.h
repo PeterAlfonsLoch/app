@@ -60,7 +60,7 @@ namespace user
       virtual ::ca::type_info controltype_to_typeinfo(::user::control::e_type type);
 
 
-      int32_t GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
+      virtual int32_t GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
 
 
       virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);

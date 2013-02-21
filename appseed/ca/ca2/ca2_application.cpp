@@ -202,8 +202,8 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
    bool application::base_support()
    {
     
-      if(!ca2::application::base_support())
-         return false;
+      //if(!::gen::application::base_support())
+        // return false;
 
       if(m_strBaseSupportId.is_empty())
       {
@@ -535,7 +535,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
 
       m_dwAlive = ::get_tick_count();
 
-      if(!ca2::application::initialize())
+      if(!::gen::application::initialize())
          return false;
 
       if(is_system())
@@ -1147,7 +1147,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
       }
       try
       {
-         ::ca2::application::exit_instance();
+         ::gen::application::exit_instance();
       }
       catch(...)
       {

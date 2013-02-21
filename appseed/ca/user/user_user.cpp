@@ -480,7 +480,14 @@ retry_license:
    int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
    {
 
-      throw interface_only_exception(get_app());
+      if(m_papp->m_psession->m_pbergedgeInterface->m_puser == this)
+      {
+
+         throw not_implemented(get_app());
+
+      }
+
+      return m_papp->m_psession->m_pbergedgeInterface->m_puser->GetVisibleTopLevelFrameCountExcept(pwndExcept);
 
    }
 

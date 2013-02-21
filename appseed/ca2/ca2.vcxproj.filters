@@ -1199,6 +1199,9 @@
     <ClInclude Include="mail\mail_db_pop3.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
+    <ClInclude Include="mail\mail_tree_item.h">
+      <Filter>Header Files\mail</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca2.def">

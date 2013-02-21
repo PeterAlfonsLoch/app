@@ -1007,6 +1007,7 @@
     <ClInclude Include="mail\mail_list_interface.h" />
     <ClInclude Include="mail\mail_tree_data.h" />
     <ClInclude Include="mail\mail_tree_interface.h" />
+    <ClInclude Include="mail\mail_tree_item.h" />
     <ClInclude Include="nature\nature_application.h" />
     <ClInclude Include=".\nature\nature_database.h" />
     <ClInclude Include=".\nature\nature_document.h" />

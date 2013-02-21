@@ -50,6 +50,7 @@ namespace plane
       m_bDoNotExitIfNoApplications              = false;
       m_plog                     = NULL;
 
+      m_phistory = NULL;
 
       string strId;
       //strId = m_strAppName;

@@ -1124,7 +1124,7 @@ finishedCa2ModuleFolder:;
          __post_quit_message(0);
       }*/
 //      return ::ca::application::run();
-      return 0;
+      return ::gen::thread::run();
    }
 
 
@@ -2072,6 +2072,9 @@ namespace gen
 
    bool application::initialize2()
    {
+      if(!smart_pointer < application >::m_p->initialize2())
+         return false;
+
       application_signal_object signal(this, m_psignal, ::ca::application_signal_initialize2);
       m_psignal->emit(&signal);
       return signal.m_bOk;

@@ -15,8 +15,8 @@ namespace filemanager
 
 
 class CLASS_DECL_ca2 FileManagerCallbackInterface :
-   virtual public file_manager_interface,
-   virtual public gen::request_interface
+   virtual public ::gen::file_manager_interface,
+   virtual public ::gen::request_interface
 {
 public:
 

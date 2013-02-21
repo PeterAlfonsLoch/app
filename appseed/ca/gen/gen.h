@@ -1462,4 +1462,106 @@ CLASS_DECL_ca gen::byte_output_stream &  operator <<(gen::byte_output_stream & o
 
 #include "gen_transfer_file.h"
 
+
+class document_interface;
+
+
+class document_manager;
+
+
+class main_frame;
+
+
+typedef ::ca::application * (* LP_GET_NEW_APP) ();
+
+
+namespace gen
+{
+
+
+   class command_line;
+
+
+} // namespace gen
+
+namespace visual
+{
+
+
+   class icon;
+
+
+} // namespace visual
+
+
+
+namespace math
+{
+
+
+   class math;
+
+
+} // namespace math
+
+
+namespace geometry
+{
+
+
+   class geometry;
+
+
+} // namespace geometry
+
+
+namespace userbase
+{
+
+
+   class main_frame;
+
+
+} // namespace userbase
+
+
+
+#if defined(LINUX) || defined(MACOS)
+
+typedef ::visual::icon * HICON;
+
+#endif
+
+
+
+
+#pragma once
+
+
+class file_system;
+typedef ca::smart_pointer < file_system > file_system_sp;
+class Ex1FactoryImpl;
+
+
+
+namespace gen
+{
+
+
+
+   namespace lemon
+   {
+
+
+      class array;
+
+
+   } // namespace lemon
+
+
+   class file_manager_interface;
+
+
+} // namespace gen
+
 #include "gen_application.h"
