@@ -11,3 +11,26 @@
 #define _SERVICE_OPEN_ERROR            (_STRING_BASE + 12)
 #define _SERVICE_DELETE_ERROR         (_STRING_BASE + 13)
 #define _SERVICE_STOP_ERROR            (_STRING_BASE + 14)
+
+
+#pragma once
+
+namespace ex1
+{
+
+   class CLASS_DECL_ca resource :
+      virtual public ::radix::object
+   {
+   public:
+      resource();
+      virtual ~resource();
+
+      virtual bool ReadResource(ex1::file & file, UINT nID, const char * lpcszType);
+      virtual bool ReadResource(HINSTANCE hinst, ex1::file & file, UINT nID, const char * lpcszType);
+
+   };
+
+   typedef ca::smart_pointer < resource > resource_sp;
+
+} // namespace ex1
+

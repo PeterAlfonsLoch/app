@@ -1487,3 +1487,17 @@ CLASS_DECL_ca ex1::byte_output_stream &  operator <<(ex1::byte_output_stream & o
 // former ex2 
 
 
+
+#pragma once
+
+
+//#include "ca/gen/gen.h"
+
+
+#include "ex2_file_set.h"
+
+#include "ex2_folder_watch.h"
+
+#include "ex2_transfer_file.h"
+
+#include "ex2_application.h"
