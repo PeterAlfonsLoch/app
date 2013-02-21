@@ -67,6 +67,50 @@ namespace ca2
 #include "ca/filehandler/filehandler.h"
 
 
+
+
+
+
+
+#include "ca/crypto/crypto.h"
+#include "ca/compress/compress.h"
+#include "ca/javascript/javascript.h"
+
+// former ca4 - changed to ca2 on 2013-02-21
+////////////////////////////////////////////////////////////////
+// ca2api
+// Layer level 5
+// Project named ca2api002_00002
+// Namespace ca8
+
+
+namespace cube5 // ca8 + cube5
+{
+
+   class application;
+
+
+} // namespace cube5 // ca8 + cube5
+
+
+#include "ca2_compress.h"
+#include "ca2_patch.h"
+#include "ca2_copydesk.h"
+#include "ca2_crypt.h"
+#include "ca2_email.h"
+#include "ca2_file.h"
+#include "ca2_http.h"
+#include "ca2_http_application.h"
+#include "ca2_http_system.h"
+#include "ca2_http_get_socket.h"
+#include "ca2_ip_enum.h"
+#include "ca2_port_forward.h"
+          
+          
+#include "ca2_oauth.h"
+#include "ca2_twit.h"
+          
+          
 #include "ca2_application.h"
 
 
