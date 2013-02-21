@@ -470,5 +470,4 @@ namespace cube5 // cube5 + ca8
    }
 
 
-
 } //namespace cube5 + ca8

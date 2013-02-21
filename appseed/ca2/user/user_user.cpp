@@ -70,19 +70,6 @@ namespace ca2
       }
 
 
-      void user::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
-      {
-         ::user::interaction_ptr_array wnda = Application.frames();
-         for(int32_t i = 0; i < wnda.get_size(); i++)
-         {
-            ::user::interaction * pwnd = wnda.element_at(i);
-            if(pwnd != NULL && pwnd->IsWindow())
-            {
-               pwnd->send_message(message, wparam, lparam);
-               pwnd->SendMessageToDescendants(message, wparam, lparam);
-            }
-         }
-      }
 
 
       int32_t user::GetVisibleFrameCountExcept(::user::interaction * pwndExcept)

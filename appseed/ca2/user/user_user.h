@@ -34,7 +34,7 @@ namespace ca2
          int32_t GetVisibleFrameCountExcept(::user::interaction * pwndExcept);
          int32_t GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
 
-         virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
+         
 
          DECL_GEN_SIGNAL(VmsGuiiOnAppLanguage)
 

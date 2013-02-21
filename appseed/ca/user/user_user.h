@@ -62,6 +62,9 @@ namespace user
 
       int32_t GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept);
 
+
+      virtual void SendMessageToWindows(UINT message, WPARAM wParam, LPARAM lParam);
+
    };
 
 

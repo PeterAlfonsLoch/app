@@ -92,8 +92,8 @@ namespace user
       bool bHasUninstall = varTopicQuey.has_property("uninstall");
 
       if(!(bHasInstall || bHasUninstall)
-      && Application.m_bLicense
-      && strLicense.has_char())
+         && Application.m_bLicense
+         && strLicense.has_char())
       {
 
          if(&ApplicationUser == NULL)
@@ -138,10 +138,10 @@ retry_license:
 
    string user::message_box(const char * pszMatter, gen::property_set & propertyset)
    {      throw not_implemented(get_app());
-/*      class message_box box(this);
-      box.show(pszMatter, propertyset);
-      return box.m_strResponse;*/
-      return "";
+   /*      class message_box box(this);
+   box.show(pszMatter, propertyset);
+   return box.m_strResponse;*/
+   return "";
    }
 
    int32_t user::simple_message_box(::user::interaction * pwndOwner, const char * pszMessage, UINT fuStyle)
@@ -160,7 +160,7 @@ retry_license:
       string strMatter;
       if(fuStyle & MB_YESNOCANCEL)
       {
-        strMatter = "system\\user\\simple_message_box\\yesnocancel.xhtml";
+         strMatter = "system\\user\\simple_message_box\\yesnocancel.xhtml";
       }
       else
       {
@@ -168,11 +168,11 @@ retry_license:
       }
       try
       {
-/*         if(!box.show(strMatter, propertyset))
+         /*         if(!box.show(strMatter, propertyset))
          {
-            string strMessage = pszMessage;
-            strMessage.replace("<br>", "\r\n");
-            return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
+         string strMessage = pszMessage;
+         strMessage.replace("<br>", "\r\n");
+         return MessageBox(pwndOwner == NULL ? NULL : pwndOwner->get_wnd()->get_os_data(), strMessage, m_strAppName, fuStyle);
          }*/
       }
       catch(...)
@@ -221,14 +221,14 @@ retry_license:
       string strMatter;
       if(fuStyle & MB_YESNOCANCEL)
       {
-        strMatter = "system\\user\\simple_message_box\\yesnocancel.xhtml";
+         strMatter = "system\\user\\simple_message_box\\yesnocancel.xhtml";
       }
       else
       {
          strMatter = "system\\user\\simple_message_box\\ok.xhtml";
       }
       throw not_implemented(get_app());
-//      box.show(strMatter, propertyset);
+      //      box.show(strMatter, propertyset);
       if(box.m_strResponse == "ok")
       {
          return IDOK;
@@ -323,89 +323,89 @@ retry_license:
    }
 
 
-      ::user::keyboard_focus * user::get_keyboard_focus()
+   ::user::keyboard_focus * user::get_keyboard_focus()
+   {
+      if(Application.is_session() || Application.is_bergedge())
       {
-         if(Application.is_session() || Application.is_bergedge())
+         ::user::interaction * puieFocus = Application.get_focus_guie();
+         if(m_pkeyboardfocus != NULL && puieFocus != NULL)
          {
-            ::user::interaction * puieFocus = Application.get_focus_guie();
-            if(m_pkeyboardfocus != NULL && puieFocus != NULL)
-            {
-               if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
-                  return NULL;
-               return m_pkeyboardfocus;
-            }
-            else
-            {
+            if((bool)oprop("NativeWindowFocus") && puieFocus != m_pkeyboardfocus->get_wnd())
                return NULL;
-            }
-         }
-         else if(Application.is_system() || Application.is_cube())
-         {
             return m_pkeyboardfocus;
-         }
-         else if(Application.m_psession != NULL)
-         {
-            return Sess(get_app()).user().get_keyboard_focus();
-         }
-         else if(Application.m_psystem != NULL)
-         {
-            return Sys(get_app()).user().get_keyboard_focus();
          }
          else
          {
             return NULL;
          }
       }
-
-      void user::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
+      else if(Application.is_system() || Application.is_cube())
       {
-         if(Application.is_session() || Application.is_bergedge())
+         return m_pkeyboardfocus;
+      }
+      else if(Application.m_psession != NULL)
+      {
+         return Sess(get_app()).user().get_keyboard_focus();
+      }
+      else if(Application.m_psystem != NULL)
+      {
+         return Sys(get_app()).user().get_keyboard_focus();
+      }
+      else
+      {
+         return NULL;
+      }
+   }
+
+   void user::set_keyboard_focus(::user::keyboard_focus * pkeyboardfocus)
+   {
+      if(Application.is_session() || Application.is_bergedge())
+      {
+         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
          {
-            if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-            {
-               m_pkeyboardfocus = pkeyboardfocus;
-            }
-            if(Application.m_psystem != NULL)
-            {
-               return Sys(get_app()).user().set_keyboard_focus(pkeyboardfocus);
-            }
+            m_pkeyboardfocus = pkeyboardfocus;
          }
-         else if(Application.is_system() || Application.is_cube())
-         {
-            if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
-            {
-               m_pkeyboardfocus = pkeyboardfocus;
-            }
-         }
-         else if(Application.m_psession != NULL)
-         {
-            return Sess(get_app()).user().set_keyboard_focus(pkeyboardfocus);
-         }
-         else if(Application.m_psystem != NULL)
+         if(Application.m_psystem != NULL)
          {
             return Sys(get_app()).user().set_keyboard_focus(pkeyboardfocus);
          }
       }
-
-      ::user::mouse_focus * user::get_mouse_focus_LButtonDown()
+      else if(Application.is_system() || Application.is_cube())
       {
-         return m_pmousefocusLButtonDown;
+         if(pkeyboardfocus == NULL || pkeyboardfocus->keyboard_focus_OnSetFocus())
+         {
+            m_pkeyboardfocus = pkeyboardfocus;
+         }
       }
-
-      void user::set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus)
+      else if(Application.m_psession != NULL)
       {
-         m_pmousefocusLButtonDown = pmousefocus;
+         return Sess(get_app()).user().set_keyboard_focus(pkeyboardfocus);
       }
-
-      ::user::mouse_focus * user::get_mouse_focus_RButtonDown()
+      else if(Application.m_psystem != NULL)
       {
-         return m_pmousefocusRButtonDown;
+         return Sys(get_app()).user().set_keyboard_focus(pkeyboardfocus);
       }
+   }
 
-      void user::set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus)
-      {
-         m_pmousefocusRButtonDown = pmousefocus;
-      }
+   ::user::mouse_focus * user::get_mouse_focus_LButtonDown()
+   {
+      return m_pmousefocusLButtonDown;
+   }
+
+   void user::set_mouse_focus_LButtonDown(::user::mouse_focus * pmousefocus)
+   {
+      m_pmousefocusLButtonDown = pmousefocus;
+   }
+
+   ::user::mouse_focus * user::get_mouse_focus_RButtonDown()
+   {
+      return m_pmousefocusRButtonDown;
+   }
+
+   void user::set_mouse_focus_RButtonDown(::user::mouse_focus * pmousefocus)
+   {
+      m_pmousefocusRButtonDown = pmousefocus;
+   }
 
 
    bool user::set_keyboard_layout(const char * pszPath, bool bUser)
@@ -418,7 +418,7 @@ retry_license:
          {
 
             if(Application.fontopus().m_puser != NULL
-            && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
+               && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
             {
 
                data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -435,7 +435,7 @@ retry_license:
             return false;
 
          if(Application.fontopus().m_puser != NULL
-         && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
+            && Application.fontopus().m_puser->m_strFontopusServerSessId.has_char())
          {
 
             data_set("keyboard_layout", keyboard().layout().m_strPath);
@@ -479,10 +479,27 @@ retry_license:
 
    int32_t user::GetVisibleTopLevelFrameCountExcept(::user::interaction * pwndExcept)
    {
-      
+
       throw interface_only_exception(get_app());
 
    }
 
+   void user::SendMessageToWindows(UINT message, WPARAM wparam, LPARAM lparam)
+   {
+      ::user::interaction_ptr_array wnda = Application.frames();
+      for(int32_t i = 0; i < wnda.get_size(); i++)
+      {
+         ::user::interaction * pwnd = wnda.element_at(i);
+         if(pwnd != NULL && pwnd->IsWindow())
+         {
+            pwnd->send_message(message, wparam, lparam);
+            pwnd->SendMessageToDescendants(message, wparam, lparam);
+         }
+      }
+   }
+
 
 } //namespace user
+
+
+
