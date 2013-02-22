@@ -394,7 +394,7 @@ namespace planebase
          //      - uint16_t - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
          //           - not directly related but use date and title to name document;
          //      - save forms after every key press in .undo.redo.form file parallel to appmatter / form/undo.redo.file parity;
-         //      - last karaoke song and scoring, a little less motivated at time of writing;
+         //      - last ::ikaraoke::karaoke song and scoring, a little less motivated at time of writing;
          //
          // - ex-new-revolut-dynamic-news-self-healing
          //      - pre-history, antecendentes
@@ -405,7 +405,7 @@ namespace planebase
          //           - if the document is corrupted, try to open the most of it
          //           - if can only detect that the document cannot be opened or damaged, should creatively workarounds as it comes, as could it be
          //              done, for example search in the web for a proper solution?
-         //           - karaoke file does not open? can open next? do it... may animate with a temporary icon...
+         //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
          //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
@@ -569,7 +569,7 @@ run:
          //      - uint16_t - html document to simplify here - with all history of undo and redos per document optimized by cvs, svn, syllomatter;
          //           - not directly related but use date and title to name document;
          //      - save forms after every key press in .undo.redo.form file parallel to appmatter / form/undo.redo.file parity;
-         //      - last karaoke song and scoring, a little less motivated at time of writing;
+         //      - last ::ikaraoke::karaoke song and scoring, a little less motivated at time of writing;
          //
          // - ex-new-revolut-dynamic-news-self-healing
          //      - pre-history, antecendentes
@@ -580,7 +580,7 @@ run:
          //           - if the document is corrupted, try to open the most of it
          //           - if can only detect that the document cannot be opened or damaged, should creatively workarounds as it comes, as could it be
          //              done, for example search in the web for a proper solution?
-         //           - karaoke file does not open? can open next? do it... may animate with a temporary icon...
+         //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
          //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
