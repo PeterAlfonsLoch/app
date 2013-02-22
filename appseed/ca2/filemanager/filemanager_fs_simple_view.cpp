@@ -75,7 +75,7 @@ namespace filemanager
          {
 
             Application.http().get("http://file.veriwell.net/");
-            open_folder(1000); // user music folder
+            open_folder(1000); // user ::music folder
 
          }
 

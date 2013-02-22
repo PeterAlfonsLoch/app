@@ -92,7 +92,7 @@ typedef DWORD IFF_ID;
 #define ID_ANNO     MAKE_ID('A', 'N', 'N', 'O')     /* EA IFF 85 Generic Annotation chunk */
 #define ID_AUTH     MAKE_ID('A', 'U', 'T', 'H')     /* EA IFF 85 Generic Author chunk */
 #define ID_CHRS     MAKE_ID('C', 'H', 'R', 'S')     /* EA IFF 85 Generic character string chunk */
-#define ID_NAME     MAKE_ID('N', 'A', 'M', 'E')     /* EA IFF 85 Generic Name of art, music, etc. chunk */
+#define ID_NAME     MAKE_ID('N', 'A', 'M', 'E')     /* EA IFF 85 Generic Name of art, ::music, etc. chunk */
 #define ID_TEXT     MAKE_ID('T', 'E', 'X', 'T')     /* EA IFF 85 Generic unformatted ASCII text chunk */
 #define ID_copy     MAKE_ID('(', 'c', ')', ' ')     /* EA IFF 85 Generic Copyright text chunk */
 /* ILBM chunks */
