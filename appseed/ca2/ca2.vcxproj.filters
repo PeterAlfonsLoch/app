@@ -75,18 +75,6 @@
     <Filter Include="Header Files\fontopus">
       <UniqueIdentifier>{0836bdeb-25d4-4e88-843c-7c56a933cb71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\cube8">
-      <UniqueIdentifier>{16714bfb-665f-4160-9213-06229da61d5a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cube8">
-      <UniqueIdentifier>{6595ec7c-2ef0-42b0-8063-ea9962d7750f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\cube5">
-      <UniqueIdentifier>{762f3891-0dab-4cb6-a6ae-2f313e719234}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\cube5">
-      <UniqueIdentifier>{ef6bff8f-4bd8-4700-a6b8-4f74e8475f33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\cube">
       <UniqueIdentifier>{1dc943eb-290c-401d-911c-fa18555112ef}</UniqueIdentifier>
     </Filter>
@@ -785,12 +773,6 @@
     <ClInclude Include="filemanager\filemanager_fs_simple_list_view.h">
       <Filter>Header Files\filemanager</Filter>
     </ClInclude>
-    <ClInclude Include="cube8\cube8.h">
-      <Filter>Header Files\cube8</Filter>
-    </ClInclude>
-    <ClInclude Include="cube8\cube8_application.h">
-      <Filter>Header Files\cube8</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_printer.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -805,12 +787,6 @@
     </ClInclude>
     <ClInclude Include="user\user_view_container.h">
       <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="cube5\cube5.h">
-      <Filter>Header Files\cube5</Filter>
-    </ClInclude>
-    <ClInclude Include="cube5\cube5_application.h">
-      <Filter>Header Files\cube5</Filter>
     </ClInclude>
     <ClInclude Include="userbase\userbase_main_frame.h">
       <Filter>Header Files\userbase</Filter>
@@ -1201,6 +1177,18 @@
     </ClInclude>
     <ClInclude Include="mail\mail_tree_item.h">
       <Filter>Header Files\mail</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube_keyboard_layout.h">
+      <Filter>Header Files\cube</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube_message_box.h">
+      <Filter>Header Files\cube</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube_network_configuration.h">
+      <Filter>Header Files\cube</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube_wait_message_dialog.h">
+      <Filter>Header Files\cube</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1845,9 +1833,6 @@
     <ClCompile Include="filemanager\filemanager_fs_simple_list_view.cpp">
       <Filter>Source Files\filemanager</Filter>
     </ClCompile>
-    <ClCompile Include="cube8\cube8_application.cpp">
-      <Filter>Source Files\cube8</Filter>
-    </ClCompile>
     <ClCompile Include="user\user_printer.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
@@ -1856,9 +1841,6 @@
     </ClCompile>
     <ClCompile Include="userbase\simple_printer_list_view.cpp">
       <Filter>Source Files\userbase</Filter>
-    </ClCompile>
-    <ClCompile Include="cube5\cube5_application.cpp">
-      <Filter>Source Files\cube5</Filter>
     </ClCompile>
     <ClCompile Include="userbase\simple_scroll_bar.cpp">
       <Filter>Source Files\userbase</Filter>
@@ -2007,18 +1989,6 @@
     <ClCompile Include="userhtml\userhtml_view_update_hint.cpp">
       <Filter>Source Files\userhtml</Filter>
     </ClCompile>
-    <ClCompile Include="cube5\cube5_keyboard_layout.cpp">
-      <Filter>Source Files\cube5</Filter>
-    </ClCompile>
-    <ClCompile Include="cube5\cube5_message_box.cpp">
-      <Filter>Source Files\cube5</Filter>
-    </ClCompile>
-    <ClCompile Include="cube5\cube5_network_configuration.cpp">
-      <Filter>Source Files\cube5</Filter>
-    </ClCompile>
-    <ClCompile Include="cube5\cube5_wait_message_dialog.cpp">
-      <Filter>Source Files\cube5</Filter>
-    </ClCompile>
     <ClCompile Include="userbase\userbase_userbase.cpp">
       <Filter>Source Files\userbase</Filter>
     </ClCompile>
@@ -2063,6 +2033,18 @@
     </ClCompile>
     <ClCompile Include="fontopus\fontopus_fontopus.cpp">
       <Filter>Source Files\fontopus</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\cube_keyboard_layout.cpp">
+      <Filter>Source Files\cube</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\cube_message_box.cpp">
+      <Filter>Source Files\cube</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\cube_network_configuration.cpp">
+      <Filter>Source Files\cube</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\cube_wait_message_dialog.cpp">
+      <Filter>Source Files\cube</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

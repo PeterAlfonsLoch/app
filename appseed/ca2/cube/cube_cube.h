@@ -73,6 +73,6 @@ namespace cube
    };
 
 
-} // namespace cube8
+} // namespace cube
 
 

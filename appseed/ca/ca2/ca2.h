@@ -84,13 +84,13 @@ namespace ca2
 // Namespace ca8
 
 
-namespace cube5 // ca8 + cube5
+namespace cube // ca8 + cube
 {
 
    class application;
 
 
-} // namespace cube5 // ca8 + cube5
+} // namespace cube // ca8 + cube
 
 
 #include "ca2_compress.h"

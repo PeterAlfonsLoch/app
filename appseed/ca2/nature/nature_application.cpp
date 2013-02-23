@@ -57,7 +57,7 @@ namespace nature
    {
       try
       {
-         ::cube8::application::exit_instance();
+         ::cube::application::exit_instance();
       }
       catch(...)
       {

@@ -18,7 +18,7 @@ namespace platform
    bool application::initialize_instance()
    {
 
-      if(!cube::application::initialize_instance())
+      if(!::cube::application::initialize_instance())
          return false;
 
       filemanager().std().m_strLevelUp = "levelup";
@@ -34,6 +34,8 @@ namespace platform
       m_ptemplate_html = pDocTemplate;
 
       return true;
+
+
    }
 
    int32_t application::exit_instance()

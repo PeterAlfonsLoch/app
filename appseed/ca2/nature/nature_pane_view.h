@@ -12,7 +12,7 @@ namespace nature
 
       
       ::userbase::single_document_template * m_pdoctemplateAppearance;
-      ::cube5::keyboard_layout *             m_pkeyboardlayout;
+      ::cube::keyboard_layout *             m_pkeyboardlayout;
 
 
       pane_view(::ca::application * papp);

@@ -623,7 +623,7 @@ namespace plane
    //CLASS_DECL_ca void set_heap_itema(class heap_item_array * pitema);
 
 
-} // namespace cube8
+} // namespace cube
 
 
 namespace gen

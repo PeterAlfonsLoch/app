@@ -18,14 +18,14 @@
 
 
 
-namespace cube8
+namespace cube
 {
 
 
    class system;
 
 
-} // namespace cube8
+} // namespace cube
 
 
 namespace bergedge

@@ -504,7 +504,7 @@ namespace bergedge
       {
          while(pui != NULL)
          {
-            ::cube8::application * papp = NULL;
+            ::cube::application * papp = NULL;
             try
             {
                papp = &App(pui->get_app());

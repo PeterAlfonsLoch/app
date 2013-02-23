@@ -601,7 +601,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
       return;
    }
 
-   ::cube8::application * papp = &Application;
+   ::cube::application * papp = &Application;
 
    if(papp->is_cube() || papp->is_bergedge() || papp->is_session() || papp->is_system())
    {
@@ -612,7 +612,7 @@ void simple_frame_window::_001OnClose(gen::signal_object * pobj)
       for(int32_t i = 0; Sys(papp).m_appptra.get_count(); i++)
       {
 
-         ::cube8::application * pappChild = &App(Sys(papp).m_appptra[i]);
+         ::cube::application * pappChild = &App(Sys(papp).m_appptra[i]);
 
          if(!pappChild->_001CloseApplicationByUser(this))
             return;

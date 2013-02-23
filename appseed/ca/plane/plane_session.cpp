@@ -920,7 +920,7 @@ namespace plane
 
 
 
-/*      cube8::application & app = App(pinteraction->get_app());
+/*      cube::application & app = App(pinteraction->get_app());
 
       string strAppName = app.m_strAppName;
 
@@ -961,7 +961,7 @@ namespace plane
       ::user::place_holder_ptra holderptra;
 
 
-      cube8::application & app = App(pmainframe->get_app());
+      cube::application & app = App(pmainframe->get_app());
 
       string strAppName = app.m_strAppName;
 

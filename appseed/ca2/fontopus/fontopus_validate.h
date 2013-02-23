@@ -23,8 +23,8 @@ namespace ca2
          form_document *                           m_pdocAuth;
          form_document *                           m_pdocMessage;
          form_view *                               m_pviewAuth;
-         ::cube5::network_configuration            m_netcfg;
-         ::cube5::keyboard_layout *                m_pkeyboardlayout;
+         ::cube::network_configuration            m_netcfg;
+         ::cube::keyboard_layout *                m_pkeyboardlayout;
          void *                                    m_pvOldWindow;
          
 
@@ -67,7 +67,7 @@ namespace ca2
       };
 
 
-   } // namespace cube5 // ca8 + cube5
+   } // namespace cube // ca8 + cube
 
 
 } // namespace ca2

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace cube5 // ca8 + cube5
+namespace cube // ca8 + cube
 {
 
 
@@ -99,6 +99,6 @@ namespace cube5 // ca8 + cube5
    }
 
 
-} // namespace cube5 // ca8 + cube5
+} // namespace cube // ca8 + cube
 
 

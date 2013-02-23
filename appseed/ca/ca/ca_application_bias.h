@@ -13,7 +13,7 @@ namespace ca
 
 
    // application_bias contains information inherited mainly and by-designly from calling party/application/system
-   // for example, the OS command line can call a cube8::system that takes a command line parameter that is
+   // for example, the OS command line can call a cube::system that takes a command line parameter that is
    // passed as application_bias to bergedge that can later pass or use this information as application_bias
    // for further actions.
    class CLASS_DECL_ca application_bias :
