@@ -517,7 +517,8 @@ namespace plane
          while(m_bRun)
          {
             
-            pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(1984));
+            if(pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(84)).signaled())
+               break;
 
          }
 
