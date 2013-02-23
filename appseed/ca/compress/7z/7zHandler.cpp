@@ -84,7 +84,7 @@ stat_prop_stg kArcProps[] =
 {
   { NULL, ::libcompress::kpidMethod, var::type_string},
   { NULL, ::libcompress::kpidSolid, var::type_bool},
-  { NULL, ::libcompress::kpidNumBlocks, var::type_uint},
+  { NULL, ::libcompress::kpidNumBlocks, var::type_uint32},
   { NULL, ::libcompress::kpidPhySize, var::type_uint64},
   { NULL, ::libcompress::kpidHeadersSize, var::type_uint64},
   { NULL, ::libcompress::kpidOffset, var::type_uint64}

@@ -73,14 +73,14 @@ namespace rar
       { NULL, ::libcompress::kpidMTime, var::type_filetime},
       { NULL, ::libcompress::kpidCTime, var::type_filetime},
       { NULL, ::libcompress::kpidATime, var::type_filetime},
-      { NULL, ::libcompress::kpidAttrib, var::type_uint},
+      { NULL, ::libcompress::kpidAttrib, var::type_uint32},
 
       { NULL, ::libcompress::kpidEncrypted, var::type_bool},
       { NULL, ::libcompress::kpidSolid, var::type_bool},
       { NULL, ::libcompress::kpidCommented, var::type_bool},
       { NULL, ::libcompress::kpidSplitBefore, var::type_bool},
       { NULL, ::libcompress::kpidSplitAfter, var::type_bool},
-      { NULL, ::libcompress::kpidCRC, var::type_uint},
+      { NULL, ::libcompress::kpidCRC, var::type_uint32},
       { NULL, ::libcompress::kpidHostOS, var::type_string},
       { NULL, ::libcompress::kpidMethod, var::type_string},
       { NULL, ::libcompress::kpidUnpackVer, var::type_byte}
@@ -90,10 +90,10 @@ namespace rar
    {
       { NULL, ::libcompress::kpidCharacts, var::type_string},
       { NULL, ::libcompress::kpidSolid, var::type_bool},
-      { NULL, ::libcompress::kpidNumBlocks, var::type_uint},
+      { NULL, ::libcompress::kpidNumBlocks, var::type_uint32},
       // { NULL, ::libcompress::kpidEncrypted, var::type_bool},
       { NULL, ::libcompress::kpidIsVolume, var::type_bool},
-      { NULL, ::libcompress::kpidNumVolumes, var::type_uint},
+      { NULL, ::libcompress::kpidNumVolumes, var::type_uint32},
       { NULL, ::libcompress::kpidPhySize, var::type_uint64}
       // { NULL, ::libcompress::kpidCommented, var::type_bool}
    };

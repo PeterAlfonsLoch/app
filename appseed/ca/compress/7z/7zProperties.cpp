@@ -37,10 +37,10 @@ namespace n7z
    { NID::kCTime, { NULL, ::libcompress::kpidCTime, var::type_filetime } },
    { NID::kMTime, { NULL, ::libcompress::kpidMTime, var::type_filetime } },
    { NID::kATime, { NULL, ::libcompress::kpidATime, var::type_filetime } },
-   { NID::kWinAttributes, { NULL, ::libcompress::kpidAttrib, var::type_uint } },
-   { NID::kStartPos, { NULL, ::libcompress::kpidPosition, var::type_uint } },
+   { NID::kWinAttributes, { NULL, ::libcompress::kpidAttrib, var::type_uint32 } },
+   { NID::kStartPos, { NULL, ::libcompress::kpidPosition, var::type_uint32 } },
 
-   { NID::kCRC, { NULL, ::libcompress::kpidCRC, var::type_uint } },
+   { NID::kCRC, { NULL, ::libcompress::kpidCRC, var::type_uint32 } },
 
    { NID::kAnti, { NULL, ::libcompress::kpidIsAnti, var::type_bool } }
 
@@ -48,7 +48,7 @@ namespace n7z
    ,
    { 97, { NULL,::libcompress::kpidEncrypted, var::type_bool } },
    { 98, { NULL,::libcompress::kpidMethod, var::type_string } },
-   { 99, { NULL,::libcompress::kpidBlock, var::type_uint } }
+   { 99, { NULL,::libcompress::kpidBlock, var::type_uint32 } }
    #endif
    };
 

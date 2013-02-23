@@ -52,7 +52,7 @@ var::var(int32_t i)
 
 var::var(uint32_t ui )
 {
-   m_etype = type_uint;
+   m_etype = type_uint32;
    m_pca2 = NULL;
    operator = (ui);
 }
@@ -485,7 +485,7 @@ class var & var::operator = (uint64_t ul)
 
 class var & var::operator = (uint32_t ui)
 {
-   set_type(type_uint, false);
+   set_type(type_uint32, false);
    m_ui32 = ui;
    return *this;
 }
@@ -582,7 +582,7 @@ class var & var::operator = (const class var & var)
       case type_int32:
          m_i32      = var.m_i32;
          break;
-      case type_uint:
+      case type_uint32:
          m_ui32      = var.m_ui32;
          break;
       case type_int64:
@@ -590,9 +590,6 @@ class var & var::operator = (const class var & var)
          break;
       case type_uint64:
          m_ui64    = var.m_ui64;
-         break;
-      case type_uint32:
-         m_ui32     = var.m_ui32;
          break;
       case type_float:
          m_f      = var.m_f;
@@ -1447,7 +1444,7 @@ string var::get_string(const char * pszOnNull) const
       {
          str.Format("%I32d", m_i32);
       }
-      else if(m_etype == var::type_uint)
+      else if(m_etype == var::type_uint32)
       {
          str.Format("%I32u", m_ui32);
       }
@@ -1603,12 +1600,12 @@ int32_t var::int32(int32_t iDefault) const
       return atoi(m_str);
    case type_int32:
       return m_i32;
+   case type_uint32:
+      return (int32_t)m_ui32;
    case type_int64:
       return (int32_t) m_i64;
    case type_uint64:
       return (int32_t) m_ui64;
-   case type_uint32:
-      return (int32_t)m_ui32;
    case type_ca2:
       return iDefault;
    case type_pvar:
@@ -3680,9 +3677,6 @@ bool var::is_numeric() const
       case type_time:
       case type_filetime:
          return false;
-
-      case type_uint:
-         return true;
 
       case type_id:
          return m_id.is_number();

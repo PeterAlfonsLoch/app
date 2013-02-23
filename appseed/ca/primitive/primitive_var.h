@@ -68,7 +68,6 @@ public:
       type_memory,
       type_time,
       type_filetime,
-      type_uint,
       type_id,
       type_pid,
       type_int64a,
