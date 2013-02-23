@@ -236,6 +236,7 @@ namespace plane
    public:
 
 
+      mutex                                        m_mutex;
 #ifdef METROWIN
       ::user::interaction *                        m_pui;
       ::ca::system_window ^                        m_pwindow;

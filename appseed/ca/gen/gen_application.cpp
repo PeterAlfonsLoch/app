@@ -629,37 +629,78 @@ finishedCa2ModuleFolder:;
       //   }
       }
 
+      
+
       try
       {
-         // avoid calling CloseHandle() on our own thread handle
-         // during the thread destructor
-         // avoid thread object data auto deletion on thread termination,
-         // letting thread function terminate
-         ::ca::thread_sp::m_p->m_bAutoDelete = false;
 
-         ::ca::thread_sp::m_p->set_os_data(NULL);
+         ::ca::thread         * pthread      = ::ca::thread_sp::detach();
 
-         ::ca::thread_sp::m_p->set_run(false);
-         ::ca::smart_pointer < ::gen::application >::m_p->::ca::thread_sp::m_p->set_run(false);
+         if(pthread != NULL)
+         {
+
+            try
+            {
+               // avoid calling CloseHandle() on our own thread handle
+               // during the thread destructor
+               // avoid thread object data auto deletion on thread termination,
+               // letting thread function terminate
+               pthread->m_bAutoDelete = false;
+
+               pthread->set_os_data(NULL);
+
+               pthread->set_run(false);
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
       }
       catch(...)
       {
+
       }
 
       try
       {
-         ::ca::smart_pointer < ::gen::application >::m_p->exit_instance();
+
+         ::gen::application   * papp         = ::ca::smart_pointer < ::gen::application >::detach();
+
+         if(papp != NULL)
+         {
+
+            try
+            {
+
+               papp->exit_instance();
+
+            }
+            catch(...)
+            {
+
+            }
+
+         }
+
       }
       catch(...)
       {
+
       }
 
       try
       {
+
          ::ca::application::exit_instance();
+
       }
       catch(...)
       {
+
       }
 
       return 0;
@@ -4084,7 +4125,12 @@ namespace gen
 #else
    ::ca::window * application::window_from_os_data(void * pdata)
    {
+      
+      if(::ca::smart_pointer < ::gen::application >::m_p == NULL)
+         return NULL;
+
       return ::ca::smart_pointer < ::gen::application >::m_p->window_from_os_data(pdata);
+
    }
 
    ::ca::window * application::window_from_os_data_permanent(void * pdata)

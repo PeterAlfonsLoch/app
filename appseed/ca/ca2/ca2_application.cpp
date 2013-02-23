@@ -587,6 +587,16 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
          {
             on_request(pcreatecontext);
          }
+         catch(not_installed & e)
+         {
+            
+            throw e;
+
+         }
+         catch(exit_exception & e)
+         {
+            throw e;
+         }
          catch(...)
          {
          }
@@ -1139,7 +1149,7 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube5 // ca8 + c
                System.m_spcopydesk->finalize();
                System.m_spcopydesk.destroy();
             }
-            System.m_splicense.detach()->release();
+            System.m_splicense.release();
          }
       }
       catch(...)

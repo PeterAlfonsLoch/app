@@ -13,7 +13,8 @@ namespace plane
    system::system(::ca::application * papp) :
       m_mutexDelete(this),
       m_http(this),
-      m_net(this)
+      m_net(this),
+      m_mutex(this)
    {
 
 #ifdef METROWIN
@@ -871,39 +872,59 @@ namespace plane
 
    void system::register_bergedge_application(::ca::application * papp)
    {
+      
+      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+
       appptra().add_unique(papp);
+
    }
 
    void system::unregister_bergedge_application(::ca::application * papp)
    {
+
+      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+      
       appptra().remove(papp);
+
    }
 
    void system::appa_load_string_table()
    {
+
+      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+      
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
          papp->load_string_table();
       }
+
    }
 
    void system::appa_set_locale(const char * pszLocale, bool bUser)
    {
+
+      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+      
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
          papp->set_locale(pszLocale, bUser);
       }
+
    }
 
    void system::appa_set_schema(const char * pszStyle, bool bUser)
    {
+      
+      retry_single_lock rsl(&m_mutex, millis(84), millis(84));
+      
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
          ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
          papp->set_schema(pszStyle, bUser);
       }
+
    }
 
 
@@ -1097,6 +1118,25 @@ namespace plane
       {
 
       }
+
+
+      try
+      {
+
+         if(m_spfile.is_set())
+         {
+
+            m_spfile.release();
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+
 
 
       return true;

@@ -89,7 +89,12 @@ namespace gen
 
    bool thread::post_thread_message(UINT message, WPARAM wParam, LPARAM lParam)
    {
+      
+      if(m_p == NULL)
+         return false;
+
       return m_p->post_thread_message(message, wParam, lParam);
+
    }
 
    void thread::ProcessMessageFilter(int32_t code, gen::signal_object * pobj)

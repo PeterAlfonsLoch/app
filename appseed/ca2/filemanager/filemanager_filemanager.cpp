@@ -31,38 +31,39 @@ namespace filemanager
       if(!FileManagerFileListCallback::initialize())
          return false;
 
-      ::filemanager::filemanager::InitializeFileManager("filemanager/filemanager");
-      filemanager().std().m_strLevelUp.Empty();
-      filemanager().std().m_strToolBar = "filemanager_toolbar.xml";
-      filemanager().std().m_dataidStatic = "FileManagerFavoritesList";
-      //filemanager().std().m_uiDialogBar = 0;
-      //filemanager().std().m_uiMenuBar = 0;
-      filemanager().std().m_strFilePopup = "filemanager\\file_popup.xml";
-      //filemanager().std().m_strFilePopupSubstId = 0;
-      filemanager().std().m_strFolderPopup = "filemanager\\folder_popup.xml";
-      filemanager().std().m_strPopup = "filemanager\\popup.xml";
-      filemanager().std().m_idExpandBox = 0;
-      filemanager().std().m_idCollapseBox = 0;
-      filemanager().std().m_pfilelistcallback = this;
-      //filemanager().std().m_pfilelistcallback->set_app(this);
-      filemanager().std().m_strDISection = Application.m_strAppName;
+      InitializeFileManager("filemanager/filemanager");
+
+      m_ptemplateStd->m_strLevelUp.Empty();
+      m_ptemplateStd->m_strToolBar = "filemanager_toolbar.xml";
+      m_ptemplateStd->m_dataidStatic = "FileManagerFavoritesList";
+      //m_ptemplateStd->m_uiDialogBar = 0;
+      //m_ptemplateStd->m_uiMenuBar = 0;
+      m_ptemplateStd->m_strFilePopup = "filemanager\\file_popup.xml";
+      //m_ptemplateStd->m_strFilePopupSubstId = 0;
+      m_ptemplateStd->m_strFolderPopup = "filemanager\\folder_popup.xml";
+      m_ptemplateStd->m_strPopup = "filemanager\\popup.xml";
+      m_ptemplateStd->m_idExpandBox = 0;
+      m_ptemplateStd->m_idCollapseBox = 0;
+      m_ptemplateStd->m_pfilelistcallback = this;
+      //m_ptemplateStd->m_pfilelistcallback->set_app(this);
+      m_ptemplateStd->m_strDISection = Application.m_strAppName;
 
 
 
-      fs().m_strLevelUp.Empty();
-      fs().m_strToolBar = "filemanager_toolbar.xml";
-      fs().m_dataidStatic = "FileManagerFavoritesList";
-      //fs().m_uiDialogBar = 0;
-      //fs().m_uiMenuBar = 0;
-      fs().m_strFilePopup = "filemanager\\file_popup.xml";
-      //fs().m_strFilePopupSubstId = 0;
-      fs().m_strFolderPopup = "filemanager\\folder_popup.xml";
-      fs().m_strPopup = "filemanager\\popup.xml";
-      fs().m_idExpandBox = 0;
-      fs().m_idCollapseBox = 0;
-      fs().m_pfilelistcallback = this;
-      //fs().m_pfilelistcallback->set_app(this);
-      fs().m_strDISection = "fs." + Application.m_strAppName;
+      m_ptemplateFs->m_strLevelUp.Empty();
+      m_ptemplateFs->m_strToolBar = "filemanager_toolbar.xml";
+      m_ptemplateFs->m_dataidStatic = "FileManagerFavoritesList";
+      //m_ptemplateFs->m_uiDialogBar = 0;
+      //m_ptemplateFs->m_uiMenuBar = 0;
+      m_ptemplateFs->m_strFilePopup = "filemanager\\file_popup.xml";
+      //m_ptemplateFs->m_strFilePopupSubstId = 0;
+      m_ptemplateFs->m_strFolderPopup = "filemanager\\folder_popup.xml";
+      m_ptemplateFs->m_strPopup = "filemanager\\popup.xml";
+      m_ptemplateFs->m_idExpandBox = 0;
+      m_ptemplateFs->m_idCollapseBox = 0;
+      m_ptemplateFs->m_pfilelistcallback = this;
+      //m_ptemplateFs->m_pfilelistcallback->set_app(this);
+      m_ptemplateFs->m_strDISection = "fs." + Application.m_strAppName;
 
 
       m_idFileManager = Application.m_strAppName;
@@ -202,7 +203,7 @@ namespace filemanager
 
       string strId;
 
-      strId.Format("::filemanager::document(%s)", filemanager().std().m_strDISection);
+      strId.Format("::filemanager::document(%s)", m_ptemplateStd->m_strDISection);
 
       database::id dataid = strId;
 

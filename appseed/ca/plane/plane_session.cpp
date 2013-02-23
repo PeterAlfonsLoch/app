@@ -514,8 +514,24 @@ namespace plane
 
          papp->post_thread_message(uiMessage, 2, (LPARAM) (::ca::create_context *) pcreatecontext);
 
-         pcreatecontext->m_spCommandLine->m_eventReady.wait();
+         while(m_bRun)
+         {
+            
+            pcreatecontext->m_spCommandLine->m_eventReady.wait(millis(1984));
 
+         }
+
+         if(!m_bRun)
+         {
+            try
+            {
+               delete papp;
+            }
+            catch(...)
+            {
+            }
+            return NULL;
+         }
 
       }
 

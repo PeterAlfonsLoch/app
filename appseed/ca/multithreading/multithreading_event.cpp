@@ -223,6 +223,7 @@ void event::wait ()
 
 #ifdef WINDOWS
 
+
 	if ( ::WaitForSingleObjectEx(item(), INFINITE, FALSE) != WAIT_OBJECT_0 )
 		throw runtime_error(get_app(), "gen::pal::Event::wait: failure");
 

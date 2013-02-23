@@ -89,6 +89,11 @@ void factory::discard(::ca::ca * pobject)
    pallocator->discard(pobject);
 }
 
+bool is_safe_set(void * p)
+{
+   return ((int_ptr) p) >= 32768;
+
+}
 
 void factory::enable_simple_factory_request(bool bEnable)
 {
@@ -97,13 +102,26 @@ void factory::enable_simple_factory_request(bool bEnable)
    {
       for(int32_t i = 0; i < m_typeinfoptraSimpleFactoryRequest.get_count(); i++)
       {
-         try
+         
+         factory_item_base * pitem = m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem;
+
+
+         if(is_safe_set(pitem))
          {
-            m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem->m_pallocator = NULL;
+
+            try
+            {
+
+               pitem->m_pallocator = NULL;
+
+            }
+            catch(...)
+            {
+
+            }
+
          }
-         catch(...)
-         {
-         }
+
          try
          {
             m_typeinfoptraSimpleFactoryRequest[i]->m_pfactoryitem = NULL;

@@ -238,9 +238,14 @@ namespace gen
                   pwnd = NULL;
                }
             }
+
+            if(pwnd == NULL)
+               return NULL;
+
          }
 
          return get_base(pwnd, lpmsg->message, lpmsg->wParam, lpmsg->lParam);
+
       }
 
 
