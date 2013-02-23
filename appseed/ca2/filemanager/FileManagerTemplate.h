@@ -9,6 +9,7 @@ namespace filemanager
 
 
    class document;
+   class filemanager;
 
 
 } // namespace filemanager
@@ -35,6 +36,8 @@ class CLASS_DECL_ca2 FileManagerTemplate :
 {
 public:
 
+
+   ::filemanager::filemanager * m_pfilemanager;
 
    int32_t         m_iTemplate;
    int32_t         m_iNextDocument;
@@ -69,18 +72,18 @@ public:
    SimpleDialogBar *    m_pdialogbar;
 
 
-   ::filemanager::document * open(FileManagerCallbackInterface * pinterface, ::ca::create_context * pcreatecontext = NULL, ::fs::data * pdata = NULL, ::filemanager::data * pfilemanagerdata = NULL);
-   ::filemanager::document * OpenChild(FileManagerCallbackInterface * pinterface, bool bMakeVisible = true, bool bTransparentBackground = false, ::user::interaction * pwndParent = NULL, ::filemanager::data * pfilemanagerdata = NULL);
-   ::filemanager::document * OpenChildList(FileManagerCallbackInterface * pinterface, bool bMakeVisible = true, bool bTransparentBackground = false, ::user::interaction * pwndParent = NULL, ::filemanager::data * pfilemanagerdata = NULL);
+   ::filemanager::document * open(::ca::create_context * pcreatecontext = NULL, ::fs::data * pdata = NULL, ::filemanager::data * pfilemanagerdata = NULL);
+   ::filemanager::document * OpenChild(bool bMakeVisible = true, bool bTransparentBackground = false, ::user::interaction * pwndParent = NULL, ::filemanager::data * pfilemanagerdata = NULL);
+   ::filemanager::document * open_child_list(bool bMakeVisible = true, bool bTransparentBackground = false, ::user::interaction * pwndParent = NULL, ::filemanager::data * pfilemanagerdata = NULL);
 
    ::filemanager::document * create_new_document(FileManagerCallbackInterface * pinterface);
 
 
-   FileManagerTemplate(::ca::application * papp);
+   FileManagerTemplate(::filemanager::filemanager * pfilemanager);
    virtual ~FileManagerTemplate();
 
 
-   virtual void Initialize(::ca::application * papp, int32_t iTemplate, const char * pszMatter);
+   virtual void Initialize( int32_t iTemplate, const char * pszMatter);
 
 
 };

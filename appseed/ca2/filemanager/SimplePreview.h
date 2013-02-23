@@ -4,8 +4,9 @@
 namespace filemanager
 {
 
+
    class CLASS_DECL_ca2 SimplePreview :
-      virtual public filemanager::SimplePreviewInterface
+      virtual public ::filemanager::SimplePreviewInterface
    {
    public:
       SimplePreview(::ca::application * papp);
@@ -17,3 +18,6 @@ namespace filemanager
 
 
 } // namespace filemanager
+
+
+

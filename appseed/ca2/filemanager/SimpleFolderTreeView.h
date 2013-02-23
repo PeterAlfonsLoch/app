@@ -4,16 +4,22 @@
 namespace filemanager
 {
 
+   
    class document;
 
+
    class CLASS_DECL_ca2 SimpleFolderTreeView :
-      virtual public filemanager::SimpleFolderTreeInterface
+      virtual public ::filemanager::SimpleFolderTreeInterface
    {
    public:
-      SimpleFolderTreeView(::ca::application * papp);
+
 
       ContextMenu                   m_contextmenu;
       simple_list_header_control    m_headerctrl;
+
+
+      SimpleFolderTreeView(::ca::application * papp);
+      virtual ~SimpleFolderTreeView();
 
 
 
@@ -27,7 +33,6 @@ namespace filemanager
       virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
     
-      virtual ~SimpleFolderTreeView();
    #ifdef DEBUG
       virtual void assert_valid() const;
       virtual void dump(dump_context & dumpcontext) const;

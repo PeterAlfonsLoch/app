@@ -32,37 +32,37 @@ namespace filemanager
          return false;
 
       ::filemanager::filemanager::InitializeFileManager("filemanager/filemanager");
-      filemanager().GetStdFileManagerTemplate()->m_strLevelUp.Empty();
-      filemanager().GetStdFileManagerTemplate()->m_strToolBar = "filemanager_toolbar.xml";
-      filemanager().GetStdFileManagerTemplate()->m_dataidStatic = "FileManagerFavoritesList";
-      //filemanager().GetStdFileManagerTemplate()->m_uiDialogBar = 0;
-      //filemanager().GetStdFileManagerTemplate()->m_uiMenuBar = 0;
-      filemanager().GetStdFileManagerTemplate()->m_strFilePopup = "filemanager\\file_popup.xml";
-      //filemanager().GetStdFileManagerTemplate()->m_strFilePopupSubstId = 0;
-      filemanager().GetStdFileManagerTemplate()->m_strFolderPopup = "filemanager\\folder_popup.xml";
-      filemanager().GetStdFileManagerTemplate()->m_strPopup = "filemanager\\popup.xml";
-      filemanager().GetStdFileManagerTemplate()->m_idExpandBox = 0;
-      filemanager().GetStdFileManagerTemplate()->m_idCollapseBox = 0;
-      filemanager().GetStdFileManagerTemplate()->m_pfilelistcallback = this;
-      //filemanager().GetStdFileManagerTemplate()->m_pfilelistcallback->set_app(this);
-      filemanager().GetStdFileManagerTemplate()->m_strDISection = Application.m_strAppName;
+      filemanager().std().m_strLevelUp.Empty();
+      filemanager().std().m_strToolBar = "filemanager_toolbar.xml";
+      filemanager().std().m_dataidStatic = "FileManagerFavoritesList";
+      //filemanager().std().m_uiDialogBar = 0;
+      //filemanager().std().m_uiMenuBar = 0;
+      filemanager().std().m_strFilePopup = "filemanager\\file_popup.xml";
+      //filemanager().std().m_strFilePopupSubstId = 0;
+      filemanager().std().m_strFolderPopup = "filemanager\\folder_popup.xml";
+      filemanager().std().m_strPopup = "filemanager\\popup.xml";
+      filemanager().std().m_idExpandBox = 0;
+      filemanager().std().m_idCollapseBox = 0;
+      filemanager().std().m_pfilelistcallback = this;
+      //filemanager().std().m_pfilelistcallback->set_app(this);
+      filemanager().std().m_strDISection = Application.m_strAppName;
 
 
 
-      GetFsManagerTemplate()->m_strLevelUp.Empty();
-      GetFsManagerTemplate()->m_strToolBar = "filemanager_toolbar.xml";
-      GetFsManagerTemplate()->m_dataidStatic = "FileManagerFavoritesList";
-      //GetFsManagerTemplate()->m_uiDialogBar = 0;
-      //GetFsManagerTemplate()->m_uiMenuBar = 0;
-      GetFsManagerTemplate()->m_strFilePopup = "filemanager\\file_popup.xml";
-      //GetFsManagerTemplate()->m_strFilePopupSubstId = 0;
-      GetFsManagerTemplate()->m_strFolderPopup = "filemanager\\folder_popup.xml";
-      GetFsManagerTemplate()->m_strPopup = "filemanager\\popup.xml";
-      GetFsManagerTemplate()->m_idExpandBox = 0;
-      GetFsManagerTemplate()->m_idCollapseBox = 0;
-      GetFsManagerTemplate()->m_pfilelistcallback = this;
-      //GetFsManagerTemplate()->m_pfilelistcallback->set_app(this);
-      GetFsManagerTemplate()->m_strDISection = "fs." + Application.m_strAppName;
+      fs().m_strLevelUp.Empty();
+      fs().m_strToolBar = "filemanager_toolbar.xml";
+      fs().m_dataidStatic = "FileManagerFavoritesList";
+      //fs().m_uiDialogBar = 0;
+      //fs().m_uiMenuBar = 0;
+      fs().m_strFilePopup = "filemanager\\file_popup.xml";
+      //fs().m_strFilePopupSubstId = 0;
+      fs().m_strFolderPopup = "filemanager\\folder_popup.xml";
+      fs().m_strPopup = "filemanager\\popup.xml";
+      fs().m_idExpandBox = 0;
+      fs().m_idCollapseBox = 0;
+      fs().m_pfilelistcallback = this;
+      //fs().m_pfilelistcallback->set_app(this);
+      fs().m_strDISection = "fs." + Application.m_strAppName;
 
 
       m_idFileManager = Application.m_strAppName;
@@ -72,16 +72,6 @@ namespace filemanager
    }
 
 
-
-   FileManagerTemplate * filemanager::GetStdFileManagerTemplate()
-   {
-      return m_ptemplateStd;
-   }
-
-   FileManagerTemplate * filemanager::GetFsManagerTemplate()
-   {
-      return m_ptemplateFs;
-   }
 
    void filemanager::InitializeFileManager(const char * pszMatter)
    {
@@ -119,12 +109,12 @@ namespace filemanager
       }
 
 
-      m_ptemplateStd = new FileManagerTemplate(get_app());
+      m_ptemplateStd = new FileManagerTemplate(this);
       Application.user().shellimageset().initialize();
-      m_ptemplateStd->Initialize(get_app(), 0, pszMatter);
+      m_ptemplateStd->Initialize(0, pszMatter);
 
-      m_ptemplateFs = new FileManagerTemplate(get_app());
-      m_ptemplateFs->Initialize(get_app(), 0, string("fs.") + string(pszMatter));
+      m_ptemplateFs = new FileManagerTemplate(this);
+      m_ptemplateFs->Initialize(0, string("fs.") + string(pszMatter));
 
       m_ptemplateForm = new ::userbase::multiple_document_template(
          get_app(),
@@ -183,7 +173,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(lFlags);
       UNREFERENCED_PARAMETER(ptemplate);
       ASSERT(bOpenFileDialog == FALSE);
-      ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_ptemplateStd->open(this));
+      ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_ptemplateStd->open());
       FileManagerTabView * pview = pdoc->get_typed_view < FileManagerTabView >();
 
 #ifdef WINDOWSEX
@@ -212,7 +202,7 @@ namespace filemanager
 
       string strId;
 
-      strId.Format("::filemanager::document(%s)", filemanager().GetStdFileManagerTemplate()->m_strDISection);
+      strId.Format("::filemanager::document(%s)", filemanager().std().m_strDISection);
 
       database::id dataid = strId;
 

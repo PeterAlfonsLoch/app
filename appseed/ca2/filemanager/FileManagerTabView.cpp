@@ -164,7 +164,7 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
       ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = true;
       createcontext->m_puiParent = pcreatordata->m_pholder;
-      ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (Application.filemanager().GetStdFileManagerTemplate()->m_pdoctemplateChild->open_document_file(createcontext));
+      ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (Application.filemanager().std().m_pdoctemplateChild->open_document_file(createcontext));
       simple_frame_window * pwndTopLevel = NULL;
       if(pdoc != NULL)
          //if(false)
@@ -184,9 +184,9 @@ void FileManagerTabView::on_create_view(::user::view_creator_data * pcreatordata
          pdoc->get_filemanager_data()->m_pcallback = GetFileManager()->get_filemanager_data()->m_pcallback;
          pdoc->get_filemanager_data()->m_pmanager  = pdoc;
          pdoc->get_filemanager_data()->m_pmanagerMain  = GetFileManager();
-         pdoc->get_filemanager_data()->m_ptemplate = Cube.filemanager().GetStdFileManagerTemplate();
-         pdoc->get_filemanager_data()->m_iTemplate = Cube.filemanager().GetStdFileManagerTemplate()->m_iTemplate;
-         pdoc->get_filemanager_data()->m_iDocument = Cube.filemanager().GetStdFileManagerTemplate()->m_iNextDocument++;
+         pdoc->get_filemanager_data()->m_ptemplate = &Cube.filemanager().std();
+         pdoc->get_filemanager_data()->m_iTemplate = Cube.filemanager().std().m_iTemplate;
+         pdoc->get_filemanager_data()->m_iDocument = Cube.filemanager().std().m_iNextDocument++;
          pdoc->get_filemanager_data()->m_bTransparentBackground = GetFileManager()->get_filemanager_data()->m_bTransparentBackground;
          pdoc->get_filemanager_data()->m_ptemplate->m_strDISection.Format("filemanager(%d)", pdoc->get_filemanager_data()->m_iDocument);
          pdoc->get_filemanager_data()->m_bFileSize = true;

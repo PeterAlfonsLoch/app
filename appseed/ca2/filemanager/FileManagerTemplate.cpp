@@ -1,12 +1,13 @@
 #include "framework.h"
-#include "FileManagerFrame.h"
-#include "FileManagerViewUpdateHint.h"
-#include "SimpleFileListView.h"
 
 
-FileManagerTemplate::FileManagerTemplate(::ca::application * papp) :
-   ca(papp)
+
+FileManagerTemplate::FileManagerTemplate(::filemanager::filemanager * pfilemanager) :
+   ca(pfilemanager->get_app())
 {
+
+   m_pfilemanager = pfilemanager;
+
    m_iTemplate = -1;
 
    m_pdialogbar = NULL;
@@ -29,10 +30,8 @@ FileManagerTemplate::~FileManagerTemplate()
    }
 }
 
-::filemanager::document * FileManagerTemplate::open(FileManagerCallbackInterface * pcallback, ::ca::create_context * pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
+::filemanager::document * FileManagerTemplate::open(::ca::create_context * pcreatecontext, ::fs::data * pdata, ::filemanager::data * pfilemanagerdata)
 {
-   UNREFERENCED_PARAMETER(pcallback);
-   UNREFERENCED_PARAMETER(pdata);
    ::filemanager::document * pdoc = dynamic_cast < ::filemanager::document * > (m_pdoctemplateMain->open_document_file(pcreatecontext));
    if(pdoc != NULL)
    {
@@ -41,7 +40,7 @@ FileManagerTemplate::~FileManagerTemplate()
          pfilemanagerdata = new filemanager::data(get_app());
       }
       pdoc->set_filemanager_data(pfilemanagerdata);
-      pdoc->get_filemanager_data()->m_pcallback = pcallback;
+      pdoc->get_filemanager_data()->m_pcallback = m_pfilemanager;
       pdoc->get_filemanager_data()->m_pmanager  = pdoc;
       pdoc->get_filemanager_data()->m_pmanagerMain  = pdoc;
       pdoc->get_filemanager_data()->m_ptemplate = this;
@@ -79,12 +78,7 @@ FileManagerTemplate::~FileManagerTemplate()
 }
 
 
-::filemanager::document * FileManagerTemplate::OpenChild(
-   FileManagerCallbackInterface * pcallback,
-   bool bMakeVisible,
-   bool bTransparentBackground,
-   ::user::interaction * pwndParent,
-   filemanager::data * pfilemanagerdata)
+::filemanager::document * FileManagerTemplate::OpenChild(bool bMakeVisible, bool bTransparentBackground, ::user::interaction * pwndParent, filemanager::data * pfilemanagerdata)
 {
    ::ca::create_context_sp createcontext(get_app());
    createcontext->m_bMakeVisible = false;
@@ -97,8 +91,8 @@ FileManagerTemplate::~FileManagerTemplate()
          pfilemanagerdata = new ::filemanager::data(get_app());
       }
       pdoc->set_filemanager_data(pfilemanagerdata);
-      pdoc->get_filemanager_data()->m_pcallback                = pcallback;
-      pdoc->get_filemanager_data()->m_pfilemanager             = pcallback;
+      pdoc->get_filemanager_data()->m_pcallback                = m_pfilemanager;
+      pdoc->get_filemanager_data()->m_pfilemanager             = m_pfilemanager;
       pdoc->get_filemanager_data()->m_pmanager                 = pdoc;
       pdoc->get_filemanager_data()->m_pmanagerMain             = pdoc;
       pdoc->get_filemanager_data()->m_ptemplate                = this;
@@ -115,12 +109,7 @@ FileManagerTemplate::~FileManagerTemplate()
 }
 
 
-::filemanager::document * FileManagerTemplate::OpenChildList(
-   FileManagerCallbackInterface * pcallback,
-   bool bMakeVisible,
-   bool bTransparentBackground,
-   ::user::interaction * pwndParent,
-   ::filemanager::data * pfilemanagerdata)
+::filemanager::document * FileManagerTemplate::open_child_list(bool bMakeVisible, bool bTransparentBackground, ::user::interaction * pwndParent, ::filemanager::data * pfilemanagerdata)
 {
    UNREFERENCED_PARAMETER(bMakeVisible);
    ::ca::create_context_sp createcontext(get_app());
@@ -136,8 +125,8 @@ FileManagerTemplate::~FileManagerTemplate()
          pfilemanagerdata = new filemanager::data(get_app());
       }
       pdoc->set_filemanager_data(pfilemanagerdata);
-      pdoc->get_filemanager_data()->m_pcallback = pcallback;
-      pdoc->get_filemanager_data()->m_pfilemanager = pcallback;
+      pdoc->get_filemanager_data()->m_pcallback = m_pfilemanager;
+      pdoc->get_filemanager_data()->m_pfilemanager = m_pfilemanager;
       pdoc->get_filemanager_data()->m_pmanager  = pdoc;
       pdoc->get_filemanager_data()->m_pmanagerMain  = pdoc;
       pdoc->get_filemanager_data()->m_ptemplate = this;
@@ -152,32 +141,32 @@ FileManagerTemplate::~FileManagerTemplate()
    return NULL;
 }
 
-void FileManagerTemplate::Initialize(::ca::application * papp, int32_t iTemplate, const char * pszMatter)
+void FileManagerTemplate::Initialize(int32_t iTemplate, const char * pszMatter)
 {
    m_iTemplate       = iTemplate;
    m_pdoctemplateMain = new ::userbase::multiple_document_template(
-      papp,
+      get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
       System.type_info < FileManagerMainFrame > (),       // main SDI frame ::ca::window
       System.type_info < FileManagerTabView > ());
 
    m_pdoctemplate = new ::userbase::multiple_document_template(
-      papp,
+      get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
       System.type_info < FileManagerFrame > (),
       System.type_info < FileManagerAView > ());
 
    m_pdoctemplateChild = new ::userbase::multiple_document_template(
-      papp,
+      get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
       System.type_info < FileManagerChildFrame > (),
       System.type_info < FileManagerAView > ());
 
    m_pdoctemplateChildList = new ::userbase::multiple_document_template(
-      papp,
+      get_app(),
       pszMatter,
       System.type_info < ::filemanager::document > (),
       System.type_info < FileManagerChildFrame > (),

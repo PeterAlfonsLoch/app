@@ -28,7 +28,7 @@ namespace nature
       if(!cube::application::initialize_instance())
          return false;
 
-      filemanager().GetStdFileManagerTemplate()->m_strLevelUp = "levelup";
+      filemanager().std().m_strLevelUp = "levelup";
 
 
       SetRegistryKey("ca2core");

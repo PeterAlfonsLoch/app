@@ -232,7 +232,7 @@ namespace bergedge
          else if(strId == "::bergedge::pane_view_application")
          {
             pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true, this);
+            ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true, this);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -294,8 +294,8 @@ namespace bergedge
          case PaneViewWinActionArea:
             {
                pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
-               FileManagerTemplate * ptemplate = papp->filemanager().GetStdFileManagerTemplate();
-               ::filemanager::document * pdoc = ptemplate->OpenChildList(&Application.filemanager(), false, true, pcreatordata->m_pholder);
+               FileManagerTemplate * ptemplate = &papp->filemanager().std();
+               ::filemanager::document * pdoc = ptemplate->open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;
@@ -330,7 +330,7 @@ namespace bergedge
             break;
          case PaneViewThreeActionLaunch:
             {
-               ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true, pcreatordata->m_pholder);
+               ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true, pcreatordata->m_pholder);
                if(pdoc != NULL)
                {
                   pdoc->get_filemanager_data()->m_iIconSize = 48;

@@ -41,7 +41,7 @@ namespace calculator
         // BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
          //BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
          //NULL,
-         //System.font_central().GetMenuFont());
+         //System.visual().font_central().GetMenuFont());
 
       //m_menuhook.Install(this);
 
@@ -59,7 +59,7 @@ namespace calculator
          BaseMenuCentral::GetMenuCentral()->MenuV033GetImageList(),
          BaseMenuCentral::GetMenuCentral()->MenuV033GetImageListDisabled(),
          NULL,
-         System.font_central().GetMenuFont()) ||
+         System.visual().font_central().GetMenuFont()) ||
          VMS_FAILED(m_menubar.LoadMenuBar(IDR_MAINFRAME)))
       {
          TRACE0("Failed to create toolbar\n");

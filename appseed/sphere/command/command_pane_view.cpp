@@ -141,7 +141,7 @@ namespace command
       {
       case PaneViewContextMenu:
          {
-            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true);
+            ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 16;
@@ -182,7 +182,7 @@ namespace command
          break;
       case PaneViewFileManager:
          {
-            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChild(&Application.filemanager(), false, true);
+            ::filemanager::document * pdoc = papp->filemanager().std().OpenChild(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_strDISection = "winactionarea_filemanager";
@@ -208,7 +208,7 @@ namespace command
          break;
       case PaneViewThreeActionLaunch:
          {
-            ::filemanager::document * pdoc = papp->filemanager().GetStdFileManagerTemplate()->OpenChildList(&Application.filemanager(), false, true);
+            ::filemanager::document * pdoc = papp->filemanager().std().open_child_list(false, true);
             if(pdoc != NULL)
             {
                pdoc->get_filemanager_data()->m_iIconSize = 48;

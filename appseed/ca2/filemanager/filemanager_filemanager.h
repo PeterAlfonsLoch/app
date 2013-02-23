@@ -31,8 +31,10 @@ namespace filemanager
 
 
       virtual void InitializeFileManager(const char * pszMatter);
-      virtual FileManagerTemplate * GetStdFileManagerTemplate();
-      virtual FileManagerTemplate * GetFsManagerTemplate();
+      
+      
+      inline FileManagerTemplate & std()     { return *m_ptemplateStd   ; }
+      inline FileManagerTemplate & fs()      { return *m_ptemplateFs    ; }
 
 
       void OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema);

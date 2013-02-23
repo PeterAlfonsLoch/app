@@ -177,7 +177,7 @@ namespace userex
             else
                pfilemanagerdata->m_strToolBarSave = "file_manager_toolbar_save.xml";
 
-            ::filemanager::document * pdoc = Application.filemanager().GetStdFileManagerTemplate()->OpenChild(&Application.filemanager(), true, true, pcreatordata->m_pholder, pfilemanagerdata);
+            ::filemanager::document * pdoc = Application.filemanager().std().OpenChild(true, true, pcreatordata->m_pholder, pfilemanagerdata);
             if(pdoc != NULL)
             {
                ::view * pview = pdoc->get_view();
@@ -199,7 +199,7 @@ namespace userex
             cc->m_bMakeVisible               = true;
             cc->m_puiParent                  = pcreatordata->m_pholder;
 
-            ::filemanager::document * pdoc = Application.filemanager().GetStdFileManagerTemplate()->open(&Application.filemanager(), cc);
+            ::filemanager::document * pdoc = Application.filemanager().std().open(cc);
 
             if(pdoc != NULL)
             {

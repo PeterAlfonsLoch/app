@@ -34,6 +34,7 @@ namespace filemanager
 #include "FileManagerFileListCallback.h"
 #include "FileManagerTemplate.h"
 #include "filemanager_document.h"
+#include "FileManagerFrame.h"
 #include "FileManagerMainFrame.h"
 #include "FileManagerPathView.h"
 #include "FileManagerSaveAsNameView.h"
@@ -41,6 +42,7 @@ namespace filemanager
 #include "FileManagerLeftView.h"
 #include "FileManagerView.h"
 #include "FileManagerChildFrame.h"
+
 
 #include "filemanager_fs_simple_list_view.h"
 #include "filemanager_fs_simple_tree_view.h"
@@ -55,6 +57,7 @@ namespace filemanager
 
 #include "SimplePreviewInterface.h"
 #include "SimplePreview.h"
+#include "SimpleFileListView.h"
 
 
 #include "filemanager_form_document.h"
