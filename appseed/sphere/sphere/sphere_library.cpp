@@ -42,7 +42,7 @@ namespace sphere
       {
          straApp.add_unique("default_file_handler");
       }
-      if(strExtension == "mid" || strExtension == "kar" || strExtension == "st3")
+      if(strExtension == "mid" || strExtension == "karaoke" || strExtension == "st3")
       {
          straApp.add_unique("mplite");
          straApp.add_unique("vmsp");

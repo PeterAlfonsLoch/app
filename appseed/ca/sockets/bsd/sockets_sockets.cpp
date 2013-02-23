@@ -58,6 +58,6 @@ namespace sockets
 
 
 
-} // namespace kar
+} // namespace karaoke
 
 

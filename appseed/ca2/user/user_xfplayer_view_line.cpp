@@ -1681,9 +1681,9 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
       }
    }
    /*
-   LyricViewLineSelection & selection = GetSelection();
+   lyric_view_line_selection & selection = GetSelection();
 
-   if(selection.GetState() == LyricViewLineSelection::StateTracking)
+   if(selection.GetState() == lyric_view_line_selection::StateTracking)
    {
 
       bool bInside;

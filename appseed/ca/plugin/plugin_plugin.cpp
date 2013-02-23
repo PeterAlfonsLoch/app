@@ -558,7 +558,7 @@ namespace plugin
          // ALSO: this case only happens if all file has been downloaded before the plugin has initialized
          if(gen::str::ends_ci(strPluginScript, ".mp3")
          || gen::str::ends_ci(strPluginScript, ".mid")
-         || gen::str::ends_ci(strPluginScript, ".kar")
+         || gen::str::ends_ci(strPluginScript, ".karaoke")
          || gen::str::ends_ci(strPluginScript, ".st3"))
          {
             //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
