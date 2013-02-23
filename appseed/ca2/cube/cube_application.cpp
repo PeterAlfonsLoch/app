@@ -64,7 +64,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
       m_dwAlive = ::get_tick_count();
 
-      if(!cubebase::application::initialize1())
+      if(!::cubebase::application::initialize1())
          return false;
 
       m_dwAlive = ::get_tick_count();
@@ -119,7 +119,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
       }
 
-      if(!::cube::application::initialize1())
+      if(!::cubebase::application::initialize1())
          return false;
 
 
@@ -221,24 +221,41 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
    bool application::initialize_instance()
    {
-      string strId = m_strId;
-      char chFirst = '\0';
-      if(strId.get_length() > 0)
+      if(!::cubebase::application::initialize_instance())
+         return false;
+
+      if(m_psession != NULL && m_psession->m_pbergedge != NULL)
       {
-         chFirst = strId[0];
+
+         Session.m_pappCurrent = this;
+
       }
-      return cubebase::application::initialize_instance();
+
+      return true;
    }
 
    int32_t application::exit_instance()
    {
-      string strId = m_strId;
-      char chFirst = '\0';
-      if(strId.get_length() > 0)
+      m_iReturnCode = 0;
+
+      try
       {
-         chFirst = strId[0];
+         m_iReturnCode = ::cubebase::application::exit_instance();
       }
-      return cubebase::application::exit_instance();
+      catch(...)
+      {
+      }
+
+      try
+      {
+         System.unregister_bergedge_application(this);
+      }
+      catch(...)
+      {
+      }
+
+      return m_iReturnCode;
+
    }
 
    void application::_001OnFileNew()
@@ -249,7 +266,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          chFirst = strId[0];
       }
-      cube::application::_001OnFileNew();
+      ::cubebase::application::_001OnFileNew();
    }
 
 
@@ -261,7 +278,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          chFirst = strId[0];
       }
-      return cube::application::bergedge_start();
+      return ::cubebase::application::bergedge_start();
    }
 
    bool application::on_install()
@@ -272,7 +289,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          chFirst = strId[0];
       }
-      return cube::application::on_install();
+      return ::cubebase::application::on_install();
    }
 
    bool application::on_uninstall()
@@ -283,7 +300,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          chFirst = strId[0];
       }
-      return cube::application::on_uninstall();
+      return ::cubebase::application::on_uninstall();
    }
 
 
@@ -295,7 +312,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          chFirst = strId[0];
       }
-      return cube::application::on_request(pcreatecontext);
+      return ::cubebase::application::on_request(pcreatecontext);
 
 
    }
@@ -315,7 +332,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
       }
 
-      return cube::application::is_serviceable();
+      return ::cubebase::application::is_serviceable();
 
    }
 
@@ -327,7 +344,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          chFirst = strId[0];
       }
-      return cube::application::allocate_new_service();
+      return ::cubebase::application::allocate_new_service();
    }
 
 
@@ -339,7 +356,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          chFirst = strId[0];
       }
-      return ::cube::application::_001OpenDocumentFile(varFile);
+      return ::cubebase::application::_001OpenDocumentFile(varFile);
 
    }
 
@@ -347,7 +364,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
    int32_t application::run()
    {
 
-      return ::cube::application::run();
+      return ::cubebase::application::run();
 
    }
 
@@ -541,7 +558,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       {
          TRACE(pbe->stack_trace());
       }
-      return cubebase::application::final_handle_exception(e);
+      return ::cubebase::application::final_handle_exception(e);
    }
 
 // 23 = Carlinhos Gustavinho Cecynzinho Lundgrenzinho
@@ -679,30 +696,6 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       return true;
    }
 
-   int32_t application::exit_instance()
-   {
-
-      m_iReturnCode = 0;
-
-      try
-      {
-         m_iReturnCode = ::cube::application::exit_instance();
-      }
-      catch(...)
-      {
-      }
-
-      try
-      {
-         System.unregister_bergedge_application(this);
-      }
-      catch(...)
-      {
-      }
-
-      return m_iReturnCode;
-
-   }
 
    /*bool application::is_licensed(const char * pszId, bool bInteractive)
    {
@@ -908,22 +901,6 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
    }
 
 
-   bool application::initialize_instance()
-   {
-
-      if(!::cube::application::initialize_instance())
-         return false;
-
-      if(m_psession != NULL && m_psession->m_pbergedge != NULL)
-      {
-
-         Session.m_pappCurrent = this;
-
-      }
-
-      return true;
-
-   }
 
 
 
@@ -977,7 +954,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
    void application::request(::ca::create_context * pcreatecontext)
    {
-      ::cube::application::request(pcreatecontext);
+      ::cubebase::application::request(pcreatecontext);
    }
 
 
