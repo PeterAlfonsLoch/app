@@ -18,7 +18,7 @@ namespace user
 
    id view_container::get_view_id()
    {
-      return ::gen::system::idEmpty;
+      return ::ca::system::idEmpty;
    }
 
    ::user::document_interface * view_container::get_view_document()

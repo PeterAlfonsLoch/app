@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -20,9 +20,9 @@ namespace ca2
       ::sockets::http_client_socket * application::get(
          ::sockets::socket_handler & handler, 
          const char * pszUrl, 
-         gen::property_set & post, 
-         gen::property_set & headers, 
-         gen::property_set & set, 
+         ca::property_set & post, 
+         ca::property_set & headers, 
+         ca::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion, 
@@ -36,10 +36,10 @@ namespace ca2
          return System.http().get(handler, pszUrl, post, headers, set, pcookies, puser, pszVersion, pestatus);
       }
 
-      void application::get(gen::signal_object * pobj)
+      void application::get(ca::signal_object * pobj)
       {
          SCAST_PTR(signal, psignal, pobj);
-         if(psignal->m_strUrl.contains("/matter.ca2.cc/") || psignal->m_strUrl.contains("-matter.ca2.cc/"))
+         if(psignal->m_strUrl.contains("/matter.ca.cc/") || psignal->m_strUrl.contains("-matter.ca.cc/"))
          {
             if(!exists(psignal->m_strUrl))
             {
@@ -69,9 +69,9 @@ namespace ca2
       bool application::get(
          const char * pszUrl,
          string & str, 
-         gen::property_set & post, 
-         gen::property_set & headers,
-         gen::property_set & set, 
+         ca::property_set & post, 
+         ca::property_set & headers,
+         ca::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion,
@@ -89,9 +89,9 @@ namespace ca2
       bool application::get(
          const char * pszUrl,
          primitive::memory_base & memory, 
-         gen::property_set & post, 
-         gen::property_set & headers,
-         gen::property_set & set, 
+         ca::property_set & post, 
+         ca::property_set & headers,
+         ca::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion,
@@ -117,7 +117,7 @@ namespace ca2
 
       string application::get(const char * pszUrl, ::fontopus::user * puser)
       {
-         if(puser == NULL && gen::str::find_ci("/matter.ca2.cc/", pszUrl) < 0 && gen::str::find_ci("-matter.ca2.cc/", pszUrl) < 0)
+         if(puser == NULL && ca::str::find_ci("/matter.ca.cc/", pszUrl) < 0 && ca::str::find_ci("-matter.ca.cc/", pszUrl) < 0)
          {
             if(::ca::get_thread() != NULL)
             {
@@ -184,9 +184,9 @@ namespace ca2
          const char * pszRequest,
          const char * pszUrl,
          string & str, 
-         gen::property_set & post, 
-         gen::property_set & headers,
-         gen::property_set & set, 
+         ca::property_set & post, 
+         ca::property_set & headers,
+         ca::property_set & set, 
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion,
@@ -231,9 +231,9 @@ namespace ca2
       bool application::download(
          const char * pszUrl,
          const char * pszFile, 
-         gen::property_set & post, 
-         gen::property_set & headers, 
-         gen::property_set & set,
+         ca::property_set & post, 
+         ca::property_set & headers, 
+         ca::property_set & set,
          ::http::cookies * pcookies, 
          ::fontopus::user * puser, 
          const char * pszVersion)
@@ -249,7 +249,7 @@ namespace ca2
          const char * pszUrl,
          const char * pszFile, 
          const char * pszPost, 
-         gen::property_set & headers,
+         ca::property_set & headers,
          ::http::cookies * pcookies,
          ::fontopus::user * puser,
          const char * pszVersion)
@@ -280,7 +280,7 @@ namespace ca2
          return System.http().put(pszUrl, memory, puser);
       }
 
-      bool application::put(const char * pszUrl, gen::file * pfile, ::fontopus::user * puser)
+      bool application::put(const char * pszUrl, ca::file * pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -299,7 +299,7 @@ namespace ca2
          return System.http().put(strResponse, pszUrl, memory, puser);
       }
 
-      bool application::put(string & strResponse, const char * pszUrl, gen::file * pfile, ::fontopus::user * puser)
+      bool application::put(string & strResponse, const char * pszUrl, ca::file * pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
@@ -313,5 +313,5 @@ namespace ca2
    } // namespace http
 
 
-} // namespace ca2
+} // namespace ca
 

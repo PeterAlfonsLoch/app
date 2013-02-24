@@ -168,7 +168,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    }
 
 
-   gen::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
+   ca::filesp application::friendly_get_file(var varFile, UINT nOpenFlags)
    {
 
       try
@@ -177,7 +177,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
          return m_file.get_file(varFile, nOpenFlags);
 
       }
-      catch(::gen::file_exception & e)
+      catch(::ca::file_exception & e)
       {
 
          string strMessage = e.get_message();
@@ -194,7 +194,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    ::fontopus::fontopus * application::create_fontopus()
    {
 
-      return new ::ca2::fontopus::fontopus();
+      return new ::ca::fontopus::fontopus();
 
    }
 
@@ -202,7 +202,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    ::user::user * application::create_user()
    {
 
-      return new ::ca2::user::user();
+      return new ::ca::user::user();
 
    }
 
@@ -210,7 +210,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    ::fs::fs * application::create_fs()
    {
 
-      return new ::ca2::fs::fs();
+      return new ::ca::fs::fs();
 
    }
 
@@ -218,7 +218,7 @@ typedef  void (* PFN_ca2_factory_exchange)(::ca::application * papp);
    ::html::html * application::create_html()
    {
 
-      return new ::ca2::html::html();
+      return new ::ca::html::html();
 
    }
 

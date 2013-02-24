@@ -5,7 +5,7 @@ namespace user
 {
 
    class CLASS_DECL_ca network_configuration :
-      virtual public ::gen::object
+      virtual public ::ca::object
 //      public ::user::form_callback,
   //    public ::user::view_creator
    {

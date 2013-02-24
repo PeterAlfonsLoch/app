@@ -51,7 +51,7 @@ namespace userbase
             pitemNewChild->m_button._001SetButtonText(strCommandTitle);
          }
          add_item(pitemNewChild);
-         gen::release(pitemNewChild);
+         ca::release(pitemNewChild);
       }
 
       return iItemCount > 0;
@@ -102,7 +102,7 @@ namespace userbase
             }
          }
          add_item(pitemNewChild);
-         gen::release(pitemNewChild);
+         ca::release(pitemNewChild);
       }
 
       return true;

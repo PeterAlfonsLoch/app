@@ -95,9 +95,9 @@ namespace plane
 
 
 
-// former gen
+// former ca
 
-// Since ca2 API itself is built with wchar_t as a native type, it will not have
+// Since ca API itself is built with wchar_t as a native type, it will not have
 // the correct type info for types built with wchar_t typedef'd to uint32_t
 // int16_t.  Make sure that the ::fontopus::user's cast builds this type info in this case.
 #ifndef _NATIVE_WCHAR_T_DEFINED
@@ -106,7 +106,7 @@ namespace plane
 
 
 #ifdef __DBGMEM_H__
-#error <atldbgmem.h> cannot be used in ca2 API projects. See __enable_memory_tracking
+#error <atldbgmem.h> cannot be used in ca API projects. See __enable_memory_tracking
 #endif
 
 #if defined(_MFC_DLL_BLD) && defined(DEBUG)
@@ -126,7 +126,7 @@ namespace plane
 
 /////////////////////////////////////////////////////////
 // Forward declations
-namespace gen
+namespace ca
 {
    class object;
 }
@@ -135,7 +135,7 @@ class simple_exception;
 class memory_exception;
 class not_supported_exception;
 class invalid_argument_exception;
-namespace gen
+namespace ca
 {
    class file_exception;
    class file;
@@ -145,7 +145,7 @@ namespace primitive
 {
    class memory_file;
 }
-namespace gen
+namespace ca
 {
    struct file_status;
 }
@@ -190,7 +190,7 @@ class dump_context;
 #pragma warning( push )
 #endif
 
-// warnings generated with common ca2 API/Windows code
+// warnings generated with common ca API/Windows code
 #pragma warning(disable: 4134)  // message ::collection::map member fxn casts
 #pragma warning(disable: 4201)  // nameless unions are part of C++
 #pragma warning(disable: 4320)  // structs with uuid handled as interfaces
@@ -276,7 +276,7 @@ class dump_context;
 #include "gen_equals.h"
 #include "gen_compare.h"
 #include "gen_less.h"
-#include "gen.h"
+#include "ca.h"
 
 
 #include "gen_template.h"
@@ -291,8 +291,8 @@ class dump_context;
 #define ASSERT_KINDOF(class_name, object) ASSERT(base < class_name > ::bases(object))
 #define DYNAMIC_DOWNCAST(class_name, object) (dynamic_cast < class_name * > (object))
 #define STATIC_DOWNCAST(class_name, object) (dynamic_cast<class_name*>(object))
-#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(gen::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
-#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(gen::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
+#define STATIC_DOWNCAST_T(class_name, T1, object) (static_cast<class_name<T1>*>(ca::StaticDownCast(RUNTIME_CLASS_T(class_name, T1), object)))
+#define STATIC_DOWNCAST_T2(class_name, T1, T2, object) (static_cast<class_name<T1, T2>*>(ca::StaticDownCast(RUNTIME_CLASS_T2(class_name, T1, T2), object)))
 
 // optional bit for schema number that enables object versioning
 #define VERSIONABLE_SCHEMA  (0x80000000)
@@ -305,7 +305,7 @@ class dump_context;
 
 
 
-#include "gen.inl"
+#include "ca.inl"
 
 
 #undef __DATA
@@ -514,7 +514,7 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
 /////////////////////////////////////////////////////////////////////////////
 // Classes declared in this file
 
-//::gen::object
+//::ca::object
    //base_exception
       //simple_exception
          class resource_exception;// Win resource failure exception
@@ -572,11 +572,11 @@ inline int16_t APIENTRY GetFileTitle(const char * lpszFile, LPTSTR lpszTitle, WO
          class view;            // a ::view on a document
             class CScrollView;  // a scrolling ::view
 
-            namespace gen
+            namespace ca
             {
                class thread;           // thread base class
                class application;          // application base class
-            } // namespace gen
+            } // namespace ca
 
       class document_template;         // template for document creation
          class single_document_template;// SDI support
@@ -648,7 +648,7 @@ typedef UINT (c_cdecl *__THREADPROC)(LPVOID);
 
 
 
-CLASS_DECL_ca ::gen::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
+CLASS_DECL_ca ::ca::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority = ::ca::thread_priority_normal, UINT nStackSize = 0, uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL);
 /* xxx CLASS_DECL_ca thread* __begin_thread(::ca::type_info pThreadClass,
    int32_t nPriority = THREAD_PRIORITY_NORMAL, UINT nStackSize = 0,
    uint32_t dwCreateFlags = 0, LPSECURITY_ATTRIBUTES lpSecurityAttrs = NULL); xxxx */
@@ -670,7 +670,7 @@ CLASS_DECL_ca void __post_quit_message(int32_t nExitCode);
 class CRecentFileList;          // forward reference (see afxadv.h)
 
 
-/*class CLASS_DECL_ca CCommandLineInfo : public ::gen::object
+/*class CLASS_DECL_ca CCommandLineInfo : public ::ca::object
 {
 public:
    // Sets default values
@@ -837,9 +837,9 @@ namespace user
 
 #pragma once
 
-// former gen
+// former ca
 
-#include "gen.h"
+#include "ca.h"
 
 
 #include "gen_os_history.h"
@@ -883,7 +883,7 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 #endif // DEBUG
 
 #ifdef DEBUG
-#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca ::gen::trace::category name;
+#define DECLARE___TRACE_CATEGORY( name ) extern CLASS_DECL_ca ::ca::trace::category name;
 #else
 #define DECLARE___TRACE_CATEGORY( name ) const uint_ptr name = 0;
 #endif
@@ -892,8 +892,8 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 //////////////////////////////////////////////////////////////////////////////
 // MessageBox helpers
 
-//CLASS_DECL_ca void gen::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
-//CLASS_DECL_ca void gen::FormatString2(string & rString, UINT nIDS,
+//CLASS_DECL_ca void ca::FormatString1(string & rString, UINT nIDS, const char * lpsz1);
+//CLASS_DECL_ca void ca::FormatString2(string & rString, UINT nIDS,
 //            const char * lpsz1, const char * lpsz2);
 /*CLASS_DECL_ca int32_t System.simple_message_box(const char * lpszText, UINT nType = MB_OK,
             UINT nIDHelp = 0);*/
@@ -903,7 +903,7 @@ extern CLASS_DECL_ca UINT g_uiTraceFlags;
 // Implementation string helpers
 //CLASS_DECL_ca void __format_strings(string & rString, UINT nIDS,
 //            const char * const* rglpsz, int32_t nString);
-namespace gen
+namespace ca
 {
 
    CLASS_DECL_ca void format_strings(string & rString, const char * lpszFormat, const char * const* rglpsz, int32_t nString);
@@ -976,7 +976,7 @@ namespace primitive
 } // namespace primitive
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -984,7 +984,7 @@ namespace gen
    struct file_status;
 
 
-} // namespace gen
+} // namespace ca
 
 
 #include "gen_file.h"
@@ -1075,7 +1075,7 @@ class CDockContext;                     // for dragging control bars
 
 /////////////////////////////////////////////////////////////////////////////
 // Internal _ Windows messages (see Technical note TN024 for more details)
-// (0x0360 - 0x037F are reserved for ca2 API)
+// (0x0360 - 0x037F are reserved for ca API)
 
 #define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by __window_procedure
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
@@ -1109,13 +1109,13 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)
 
 // Note: Messages 0x0370, 0x0371, and 0x372 were incorrectly used by
-//  some versions of Windows.  To remain compatible, ca2 API does not
+//  some versions of Windows.  To remain compatible, ca API does not
 //  use messages in that range.
 #define WM_RESERVED_0370    0x0370
 #define WM_RESERVED_0371    0x0371
 #define WM_RESERVED_0372    0x0372
 
-// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca2 API's
+// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca API's
 // Windows sockets implementation.  For more information, see sockcore.cpp
 #define WM_SOCKET_NOTIFY    0x0373
 #define WM_SOCKET_DEAD      0x0374
@@ -1141,12 +1141,12 @@ class CDockContext;                     // for dragging control bars
 // Marker used while rearranging the message queue
 #define WM_QUEUE_SENTINEL   0x0379
 
-// Note: Messages 0x037C - 0x37E reserved for future ca2 API use.
+// Note: Messages 0x037C - 0x37E reserved for future ca API use.
 #define WM_RESERVED_037C    0x037C
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by gen to forward a message to another ::ca::window for processing
+// WM_FORWARDMSG - used by ca to forward a message to another ::ca::window for processing
 //   WPARAM - uint32_t dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -1154,7 +1154,7 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, gen::Sig_vv, \
+   { message, 0, 0, 0, ca::Sig_vv, \
       (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)())&memberFxn },
 
 #if defined(LINUX) || defined(MACOS) || defined(METROWIN)
@@ -1222,9 +1222,9 @@ class COleControlLock;
 
 // Functions declared in this file
 
-// gen::BSTR2ABTSR
-// gen::TaskStringA2W
-// gen::TaskStringW2A
+// ca::BSTR2ABTSR
+// ca::TaskStringA2W
+// ca::TaskStringW2A
 
 #endif
 
@@ -1330,31 +1330,31 @@ public:
 
    STDMETHOD_(ULONG, AddRef)();
    STDMETHOD_(ULONG, Release)();
-   gen::HRes QueryInterface)(REFIID, LPVOID*);
+   ca::HRes QueryInterface)(REFIID, LPVOID*);
 
-   gen::HRes read)(void *, ULONG, ULONG*);
-   gen::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
-   gen::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
-   gen::HRes set_size)(ULARGE_INTEGER);
-   gen::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
+   ca::HRes read)(void *, ULONG, ULONG*);
+   ca::HRes write)(const void *, ::primitive::memory_size cb, ::primitive::memory_size*);
+   ca::HRes seek)(LARGE_INTEGER, uint32_t, ULARGE_INTEGER*);
+   ca::HRes set_size)(ULARGE_INTEGER);
+   ca::HRes CopyTo)(LPSTREAM, ULARGE_INTEGER, ULARGE_INTEGER*,
       ULARGE_INTEGER*);
-   gen::HRes Commit)(uint32_t);
-   gen::HRes Revert)();
-   gen::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
-   gen::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
-   gen::HRes Stat)(STATSTG*, uint32_t);
-   gen::HRes Clone)(LPSTREAM*);
+   ca::HRes Commit)(uint32_t);
+   ca::HRes Revert)();
+   ca::HRes LockRegion)(ULARGE_INTEGER, ULARGE_INTEGER,uint32_t);
+   ca::HRes UnlockRegion)(ULARGE_INTEGER, ULARGE_INTEGER, uint32_t);
+   ca::HRes Stat)(STATSTG*, uint32_t);
+   ca::HRes Clone)(LPSTREAM*);
 };
 */
 /////////////////////////////////////////////////////////////////////////////
 // Global UNICODE<>ANSI translation helpers
 
-CLASS_DECL_ca void gen::BSTR2String(string* pStr, BSTR bstr);
+CLASS_DECL_ca void ca::BSTR2String(string* pStr, BSTR bstr);
 
 #if !defined(_UNICODE)
-CLASS_DECL_ca BSTR gen::BSTR2ABSTR(BSTR bstrW);
-CLASS_DECL_ca wchar_t * gen::TaskStringA2W(const char * lpa);
-CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
+CLASS_DECL_ca BSTR ca::BSTR2ABSTR(BSTR bstrW);
+CLASS_DECL_ca wchar_t * ca::TaskStringA2W(const char * lpa);
+CLASS_DECL_ca char * ca::TaskStringW2A(const wchar_t * lpw);
 #endif
 
 #endif // __AFXPRIV2_H__DISP__
@@ -1411,7 +1411,7 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 
 
 
-// former gen start - former before concatenation of gen + gen + gen + gen
+// former ca start - former before concatenation of ca + ca + ca + ca
 
 #include "gen_debug.h"
 
@@ -1515,8 +1515,8 @@ inline bool IsRefNull(const TYPE & ref)
 #define NULL_REF(class) (*((class *) NULL))
 
 
-CLASS_DECL_ca gen::byte_input_stream &  operator >>(gen::byte_input_stream & istream, string & string);
-CLASS_DECL_ca gen::byte_output_stream &  operator <<(gen::byte_output_stream & ostream, const string & string);
+CLASS_DECL_ca ca::byte_input_stream &  operator >>(ca::byte_input_stream & istream, string & string);
+CLASS_DECL_ca ca::byte_output_stream &  operator <<(ca::byte_output_stream & ostream, const string & string);
 
 #ifdef WIN32
 #include "gen_file_association.h"
@@ -1537,14 +1537,14 @@ CLASS_DECL_ca gen::byte_output_stream &  operator <<(gen::byte_output_stream & o
 
 
 
-// former gen 
+// former ca 
 
 
 
 #pragma once
 
 
-//#include "gen.h"
+//#include "ca.h"
 
 
 #include "gen_file_set.h"
@@ -1566,14 +1566,14 @@ class main_frame;
 typedef ::ca::application * (* LP_GET_NEW_APP) ();
 
 
-namespace gen
+namespace ca
 {
 
 
    class command_line;
 
 
-} // namespace gen
+} // namespace ca
 
 namespace visual
 {
@@ -1635,7 +1635,7 @@ class Ex1FactoryImpl;
 
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -1653,7 +1653,7 @@ namespace gen
    class file_manager_interface;
 
 
-} // namespace gen
+} // namespace ca
 
 #include "gen_application.h"
 
@@ -1670,36 +1670,36 @@ namespace gen
 #include "app/appseed/ca/html/html.h"
 
 
-#include "ca/gen/gen_definition.h"
-#include "ca/gen/gen_debug.h"
+#include "ca/ca/gen_definition.h"
+#include "ca/ca/gen_debug.h"
 
 #include "ca/ca/ca_log.h"
 
-#include "ca/gen/gen_trace.h"
+#include "ca/ca/gen_trace.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
    class application;
 
 
-} // namespace ca2
+} // namespace ca
 
 
 #include "ca/ca/ca_file_application.h"
 #include "ca/ca/ca_file_system.h"
 #include "ca/ca/ca_dir_application.h"
 #include "ca/ca/ca_dir_system.h"
-#include "ca/gen/gen_edit_file.h"
+#include "ca/ca/gen_edit_file.h"
 #include "ca2_stra.h"
 #include "ca2_url_domain.h"
 #include "ca2_url.h"
 
 
-#include "ca/gen/gen_service.h"
-#include "ca/gen/gen_machine_event_central.h"
+#include "ca/ca/gen_service.h"
+#include "ca/ca/gen_machine_event_central.h"
 
 
 #include "ca/install/install.h"
@@ -1707,7 +1707,7 @@ namespace ca2
 
 #include "ca/ca/ca_os.h"
 
-#include "ca/gen/gen_process.h"
+#include "ca/ca/gen_process.h"
 
 
 
@@ -1735,7 +1735,7 @@ namespace ca2
 #include "ca/compress/compress.h"
 #include "ca/javascript/javascript.h"
 
-// former ca2 - changed to ca2 on 2013-02-21
+// former ca - changed to ca on 2013-02-21
 ////////////////////////////////////////////////////////////////
 // ca2api
 // Layer level 5

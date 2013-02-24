@@ -97,7 +97,7 @@ string_data * fixed_string_manager::Reallocate( string_data * pData, strsize nCh
          }
 
          // copy the string data
-               ::gen::memcpy_s( pNewData->data(), nChars*nCharSize,
+               ::ca::memcpy_s( pNewData->data(), nChars*nCharSize,
             pData->data(), (pData->nAllocLength+1)*nCharSize );
          pNewData->nRefs = pData->nRefs;  // Locked
          pNewData->pstringmanager = this;

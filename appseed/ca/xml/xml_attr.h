@@ -6,11 +6,11 @@ namespace xml
    class node;
 
 
-   typedef ::gen::property attr;
+   typedef ::ca::property attr;
 
 
    class CLASS_DECL_ca attr_array :
-      public gen::property_set
+      public ca::property_set
    {
    protected:
 

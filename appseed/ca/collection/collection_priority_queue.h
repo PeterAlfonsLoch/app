@@ -4,7 +4,7 @@
 // consult cpluplus.com
 
 
-template < class TYPE, class ARG_TYPE = const TYPE &, class CONTAINER = base_array < TYPE, ARG_TYPE >, class FIRST = gen::less < TYPE > > 
+template < class TYPE, class ARG_TYPE = const TYPE &, class CONTAINER = base_array < TYPE, ARG_TYPE >, class FIRST = ca::less < TYPE > > 
 class priority_queue
 {
 public:

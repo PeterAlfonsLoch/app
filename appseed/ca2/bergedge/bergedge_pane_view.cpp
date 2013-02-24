@@ -25,7 +25,7 @@ namespace bergedge
       m_ppropform       = NULL;
       m_dataid          = "ca2_fontopus_votagus::bergedge::pane_view";
 
-      get_data()->m_matchanyRestore.add(new ::gen::match::prefix("app:"));
+      get_data()->m_matchanyRestore.add(new ::ca::match::prefix("app:"));
 
    }
 
@@ -45,7 +45,7 @@ namespace bergedge
    }
 #endif //DEBUG
 
-   void pane_view::_001OnCreate(gen::signal_object * pobj)
+   void pane_view::_001OnCreate(ca::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -65,7 +65,7 @@ namespace bergedge
 
    }
 
-   void pane_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
+   void pane_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
    {
       ::userbase::tab_view::on_update(pSender, lHint, pHint);
       if(lHint == 543218)
@@ -109,7 +109,7 @@ namespace bergedge
       if(get_view_id().is_text())
       {
          string strId = get_view_id();
-         if(gen::str::begins_eat(strId, "app:"))
+         if(ca::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
             if(Bergedge.m_mapApplication.Lookup("application:" + strId, pappTab))
@@ -147,7 +147,7 @@ namespace bergedge
       {
    /*      ::user::interaction * pui = m_pformOptions->ve_display_bandwidth");
          check_interface * pcheck = dynamic_cast < check_interface * > (puie);
-         if(System.savings().save().is_signalized(gen::save_display_bandwidth))
+         if(System.savings().save().is_signalized(ca::save_display_bandwidth))
          {
             pcheck->_001SetCheck(check::checked, false);
          }
@@ -196,7 +196,7 @@ namespace bergedge
       {
          string strId = pcreatordata->m_id;
 
-         if(gen::str::begins_eat(strId, "app:"))
+         if(ca::str::begins_eat(strId, "app:"))
          {
             ::ca::application * pappTab;
             if(!Session.m_mapApplication.Lookup("application:" + strId, pappTab))
@@ -210,7 +210,7 @@ namespace bergedge
                createcontext->m_spCommandLine->_001ParseCommandFork(strId);
 
                string str;
-               str = gen::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
+               str = ca::str::from((int_ptr) createcontext->m_spApplicationBias->m_puiParent);
                //MessageBox(NULL, str, str, MB_ICONEXCLAMATION);
                Bergedge.request(createcontext);
 
@@ -255,9 +255,9 @@ namespace bergedge
                while(pos != NULL)
                {
                   System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
-                  if(gen::str::begins_eat(strApp, "application:"))
+                  if(ca::str::begins_eat(strApp, "application:"))
                   {
-                     Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\n" + strApp);
+                     Application.file().put_contents(System.dir().path(strDir, strApp + ".ca"), "ca2prompt\n" + strApp);
                   }
                }
                pdoc->FileManagerBrowse(strDir);
@@ -404,13 +404,13 @@ namespace bergedge
 
 
 
-   void pane_view::_001OnMenuMessage(gen::signal_object * pobj)
+   void pane_view::_001OnMenuMessage(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       set_cur_tab_by_id(m_pviewdataOld->m_id);
    }
 
-   void pane_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);
@@ -432,9 +432,9 @@ namespace bergedge
          int32_t i = (int32_t) ::ShellExecuteW(
             GetTopLevelParent()->get_handle(),
             NULL,
-            L"\"" + gen::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
+            L"\"" + ca::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
             NULL,
-            L"\"" + gen::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
+            L"\"" + ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)) + L"\"",
             SW_SHOWNORMAL);
          string str;
          str.Format("%d", i);
@@ -489,13 +489,13 @@ namespace bergedge
       while(pos != NULL)
       {
          System.m_mapAppLibrary.get_next_assoc(pos, strApp, strLibrary);
-         if(gen::str::begins_eat(strApp, "application:"))
+         if(ca::str::begins_eat(strApp, "application:"))
          {
-            Application.file().put_contents(System.dir().path(strDir, strApp + ".ca2"), "ca2prompt\r\n"+ strApp);
+            Application.file().put_contents(System.dir().path(strDir, strApp + ".ca"), "ca2prompt\r\n"+ strApp);
          }
       }
 
-      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca2"), "ca2prompt\r\nmplite");
+      //Application.file().put_contents(System.dir().path(strDir, "veriwell Musical Player.ca"), "ca2prompt\r\nmplite");
 /*      stringa straPath;
       stringa straRelative;
       straPath.remove_all();
@@ -611,10 +611,10 @@ namespace bergedge
       m_iDisplay = iDisplay;
    }
 
-   void pane_view::_001OnRButtonUp(gen::signal_object * pobj)
+   void pane_view::_001OnRButtonUp(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       /*if(get_view_id() == ::bergedge::PaneViewWinActionArea)
       {
          ::userbase::menu menu(get_app());
@@ -656,7 +656,7 @@ namespace bergedge
 
 
 
-   void pane_view::_001OnProperties(gen::signal_object * pobj)
+   void pane_view::_001OnProperties(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(get_view_id() == ::bergedge::PaneViewWinActionArea)
@@ -685,7 +685,7 @@ namespace bergedge
             "",
             "ca2_fontopus_votagus",
             "savings",
-            gen::resource_display_bandwidth);
+            ca::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -696,7 +696,7 @@ namespace bergedge
             "",
             "ca2_fontopus_votagus",
             "savings",
-            gen::resource_processing);
+            ca::resource_processing);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 
@@ -707,7 +707,7 @@ namespace bergedge
             "",
             "ca2_fontopus_votagus",
             "savings",
-            gen::resource_memory);
+            ca::resource_memory);
    //   control.add_function(user::control::function_static);
       pform->_001AddControl(control);
 

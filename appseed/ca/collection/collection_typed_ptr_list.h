@@ -140,9 +140,9 @@ public:
 
 	// add before head or after tail
 	POSITION add_head(object_list* newElement)
-		{ return _typed_ptr_list < object_list *,  object_list >::add_head((::gen::object*)newElement); }
+		{ return _typed_ptr_list < object_list *,  object_list >::add_head((::ca::object*)newElement); }
 	POSITION add_tail(object_list* newElement)
-		{ return _typed_ptr_list < object_list *,  object_list >::add_tail((::gen::object*)newElement); }
+		{ return _typed_ptr_list < object_list *,  object_list >::add_tail((::ca::object*)newElement); }
 
 	// add another list of elements before head or after tail
 	void add_head(typed_ptr_list < object_list *, object_list > * pNewList)

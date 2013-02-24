@@ -18,7 +18,7 @@
 
 template < typename T >
 class simple_signal :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 

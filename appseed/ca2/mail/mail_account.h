@@ -4,7 +4,7 @@ namespace mail
 {
 
    class CLASS_DECL_ca2 account :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       account(::ca::application * papp);

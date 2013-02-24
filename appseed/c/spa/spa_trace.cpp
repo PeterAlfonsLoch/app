@@ -19,7 +19,7 @@ void on_trace(vsstring & str, vsstring & str2);
 
 void ensure_trace_file()
 {
-   dir::mk(dir::ca2());
+   dir::mk(dir::ca());
    if(g_ftrace != INVALID_HANDLE_VALUE)
    {
       // best really determination that g_ftrace is valid, if it is valid, it is not necessary to create or open it
@@ -31,7 +31,7 @@ void ensure_trace_file()
          return;
       }
    }
-   g_ftrace = ::create_file(dir::ca2("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+   g_ftrace = ::create_file(dir::ca("install.log"), GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
    ::SetFilePointer(g_ftrace, 0, NULL, FILE_END);
 }
 

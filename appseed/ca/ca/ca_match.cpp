@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
    namespace match
@@ -40,7 +40,7 @@ namespace gen
 
       bool prefix::matches(const var & var) const
       {
-         return gen::str::begins(var.get_string(), m_str);
+         return ca::str::begins(var.get_string(), m_str);
       }
 
       ci_prefix::ci_prefix(const char * psz) :
@@ -50,7 +50,7 @@ namespace gen
 
       bool ci_prefix::matches(const var & var) const
       {
-         return gen::str::begins_ci(var.get_string(), m_str);
+         return ca::str::begins_ci(var.get_string(), m_str);
       }
 
       suffix::suffix(const char * psz) :
@@ -60,7 +60,7 @@ namespace gen
 
       bool suffix::matches(const var & var) const
       {
-         return gen::str::ends(var.get_string(), m_str);
+         return ca::str::ends(var.get_string(), m_str);
       }
 
       ci_suffix::ci_suffix(const char * psz) :
@@ -70,7 +70,7 @@ namespace gen
 
       bool ci_suffix::matches(const var & var) const
       {
-         return gen::str::ends_ci(var.get_string(), m_str);
+         return ca::str::ends_ci(var.get_string(), m_str);
       }
 
       bool any::matches(const var & var) const
@@ -92,5 +92,5 @@ namespace gen
    } // namespace match
 
 
-} // namespace gen
+} // namespace ca
 

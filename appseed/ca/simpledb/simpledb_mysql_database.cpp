@@ -194,9 +194,9 @@ namespace mysql
       while((row = (MYSQL_ROW) presult->fetch_row()) != NULL)
       {
          if(row[0] == NULL)
-            a.propset().add(gen::str::from(i), ::var(::var::type_null));
+            a.propset().add(ca::str::from(i), ::var(::var::type_null));
          else
-            a.propset().add(gen::str::from(i), var(row[0]));
+            a.propset().add(ca::str::from(i), var(row[0]));
          i++;
       }
       return a;
@@ -214,9 +214,9 @@ namespace mysql
       for(int32_t j = 0; j < iNumFields; j++)
       {
          if(row[j] == NULL)
-            a.propset().add(gen::str::from(j), ::var(::var::type_null));
+            a.propset().add(ca::str::from(j), ::var(::var::type_null));
          else
-            a.propset().add(gen::str::from(j), var(row[j]));
+            a.propset().add(ca::str::from(j), var(row[j]));
       }
       return a;
    }
@@ -286,7 +286,7 @@ namespace mysql
          }
          else
          {
-            gen::str::increment_digit_letter(strId);
+            ca::str::increment_digit_letter(strId);
          }
          strSql = "INSERT INTO " + strTable + "(`id`, `value`) VALUES('" + strId + "', '" + strAgent + "')";
          if(!query(strSql))

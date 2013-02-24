@@ -1,4 +1,4 @@
-// This is ca2 API library.
+// This is ca API library.
 //
 //
 //
@@ -24,7 +24,7 @@ view::~view()
       m_spdocument->remove_view(this);
 }
 
-void view::install_message_handling(::gen::message::dispatch * pinterface)
+void view::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_VIEW, pinterface, this, &view::_001OnView);
@@ -78,9 +78,9 @@ bool view::pre_create_window(CREATESTRUCT & cs)
    return TRUE;
 }
 
-void view::_001OnCreate(::gen::signal_object * pobj)
+void view::_001OnCreate(::ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::create, pcreate, pobj);
+   SCAST_PTR(::ca::message::create, pcreate, pobj);
 
    if(pcreate->previous())
       return;
@@ -97,13 +97,13 @@ void view::_001OnCreate(::gen::signal_object * pobj)
    }
    else
    {
-      TRACE(::gen::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
+      TRACE(::ca::trace::category_AppMsg, 0, "Warning: Creating a pane with no ::user::document_interface.\n");
    }
 
    pcreate->set_lresult(0);
 }
 
-void view::_001OnDestroy(gen::signal_object * pobj)
+void view::_001OnDestroy(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    frame_window* pFrame = GetParentFrame();
@@ -202,13 +202,13 @@ void view::OnPaint()
    return pview->get_document();
 }
 
-void view::_001OnInitialUpdate(gen::signal_object * pobj)
+void view::_001OnInitialUpdate(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    on_update(NULL, 0, NULL);        // initial update
 }
 
-void view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
+void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
 {
    if(pHint != NULL)
    {
@@ -241,7 +241,7 @@ void view::OnDraw(::ca::graphics * pgraphics)
 /////////////////////////////////////////////////////////////////////////////
 // ::view selection support
 
-bool view::IsSelected(const ::gen::object* pDocItem) const
+bool view::IsSelected(const ::ca::object* pDocItem) const
 {
    ASSERT_VALID(pDocItem);
    UNUSED(pDocItem);    // unused in release builds
@@ -449,9 +449,9 @@ void view::assert_valid() const
 
 
 
-void view::_001OnView(gen::signal_object * pobj)
+void view::_001OnView(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::base, pbase, pobj)
+   SCAST_PTR(::ca::message::base, pbase, pobj)
    if(pbase->m_wparam == 0)
    {
       ::user::document_interface::update * pupdate = (::user::document_interface::update *) pbase->m_lparam;
@@ -598,10 +598,10 @@ void view::_001OnView(gen::signal_object * pobj)
 }
 
 
-void view::_001OnLButtonDown(gen::signal_object * pobj)
+void view::_001OnLButtonDown(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+//   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
    if(GetParentFrame() != NULL)
    {
@@ -612,16 +612,16 @@ void view::_001OnLButtonDown(gen::signal_object * pobj)
 
 }
 
-void view::_001OnLButtonUp(gen::signal_object * pobj)
+void view::_001OnLButtonUp(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-   //SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+   //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 }
 
-void view::_001OnMouseMove(gen::signal_object * pobj)
+void view::_001OnMouseMove(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
-//   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+//   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 }
 
 

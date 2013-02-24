@@ -30,7 +30,7 @@ public:
 
    virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-   virtual ::gen::filesp get_file(var varFile, UINT nOpenFlags);
+   virtual ::ca::filesp get_file(var varFile, UINT nOpenFlags);
 
    virtual bool file_exists(const char * pszPath);
 

@@ -30,7 +30,7 @@ namespace userbase
       m_nMRUWidth = 32767;
    }
 
-   void control_bar::install_message_handling(::gen::message::dispatch * pinterface)
+   void control_bar::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_TIMER             , pinterface, this, &control_bar::_001OnTimer);
@@ -218,7 +218,7 @@ namespace userbase
       VERIFY(SetTimer(nEvent, nTime, NULL));
    }
 
-   void control_bar::_001OnTimer(gen::signal_object * pobj)
+   void control_bar::_001OnTimer(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 //      UINT nIDEvent = ptimer->m_nIDEvent;
@@ -266,7 +266,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // Default control bar processing
 
-   void control_bar::pre_translate_message(gen::signal_object * pobj)
+   void control_bar::pre_translate_message(ca::signal_object * pobj)
    {
       ASSERT_VALID(this);
    //trans   ASSERT(get_handle() != NULL);
@@ -280,7 +280,7 @@ namespace userbase
 
 #ifdef WINDOWSEX
 
-      SCAST_PTR(gen::message::base, pbase, pobj);
+      SCAST_PTR(ca::message::base, pbase, pobj);
 
       UINT message = pbase->m_uiMessage;
 
@@ -325,14 +325,14 @@ namespace userbase
       // pbase->m_bRet = false;
    }
 
-   void control_bar::message_handler(gen::signal_object * pobj)
+   void control_bar::message_handler(ca::signal_object * pobj)
    {
 
       (this->*m_pfnDispatchWindowProc)(pobj);
       if(pobj->m_bRet)
          return;
 
-      SCAST_PTR(gen::message::base, pbase, pobj);
+      SCAST_PTR(ca::message::base, pbase, pobj);
 
       ASSERT_VALID(this);
 
@@ -383,15 +383,15 @@ namespace userbase
       ::user::interaction::message_handler(pobj);
    }
 
-   void control_bar::_001OnHelpHitTest(gen::signal_object * pobj)
+   void control_bar::_001OnHelpHitTest(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::base, pbase, pobj)
+//      SCAST_PTR(::ca::message::base, pbase, pobj)
       ASSERT_VALID(this);
 
    }
 
-   void control_bar::_001OnWindowPosChanging(gen::signal_object * pobj)
+   void control_bar::_001OnWindowPosChanging(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       Default();
@@ -430,7 +430,7 @@ namespace userbase
       }*/
    }
 
-   void control_bar::_001OnCreate(gen::signal_object * pobj)
+   void control_bar::_001OnCreate(ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -444,7 +444,7 @@ namespace userbase
       UpdateWindow();
    }
 
-   void control_bar::_001OnDestroy(gen::signal_object * pobj)
+   void control_bar::_001OnDestroy(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   ___THREAD_STATE* pModuleThreadState = __get_thread_state();
@@ -466,9 +466,9 @@ namespace userbase
          return ::user::interaction::DestroyWindow();
    }
 
-   void control_bar::_001OnMouseActivate(gen::signal_object * pobj)
+   void control_bar::_001OnMouseActivate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse_activate, pmouseactivate, pobj)
+      SCAST_PTR(::ca::message::mouse_activate, pmouseactivate, pobj)
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -555,9 +555,9 @@ namespace userbase
       DrawGripper(pdc, rectWindow);
    }
 
-   void control_bar::_001OnCtlColor(gen::signal_object * pobj)
+   void control_bar::_001OnCtlColor(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::ctl_color, pctlcolor, pobj)
+      SCAST_PTR(::ca::message::ctl_color, pctlcolor, pobj)
       LRESULT lResult;
       if (pctlcolor->m_pwnd->SendChildNotifyLastMsg(&lResult))
       {
@@ -578,9 +578,9 @@ namespace userbase
       pctlcolor->m_bRet = true;
    }
 
-   void control_bar::_001OnLButtonDown(gen::signal_object * pobj)
+   void control_bar::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       // only start dragging if clicked in "void" space
       if (m_pDockBar != NULL )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_pt, NULL) == -1)
@@ -596,9 +596,9 @@ namespace userbase
       }
    }
 
-   void control_bar::_001OnLButtonUp(gen::signal_object * pobj)
+   void control_bar::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_pt);
@@ -606,9 +606,9 @@ namespace userbase
       pmouse->previous();
    }
 
-   void control_bar::_001OnMouseMove(gen::signal_object * pobj)
+   void control_bar::_001OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(m_bDockTrack)
       {
    //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_pt);
@@ -616,15 +616,15 @@ namespace userbase
       pmouse->previous();
    }
 
-   void control_bar::_001OnLButtonDblClk(gen::signal_object * pobj)
+   void control_bar::_001OnLButtonDblClk(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       pmouse->previous();
    }
 
-   void control_bar::_001OnIdleUpdateCmdUI(gen::signal_object * pobj)
+   void control_bar::_001OnIdleUpdateCmdUI(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
       // handle delay hide/show
       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
       UINT swpFlags = 0;
@@ -651,11 +651,11 @@ namespace userbase
       pbase->set_lresult(0L);
    }
 
-   void control_bar::_001OnInitialUpdate(gen::signal_object * pobj)
+   void control_bar::_001OnInitialUpdate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // update the indicators before becoming visible
-      ::gen::message::base base(get_app());
+      ::ca::message::base base(get_app());
       LRESULT lresult;
       base.set(this, WM_IDLEUPDATECMDUI, TRUE, 0L, lresult);
       _001OnIdleUpdateCmdUI(&base);
@@ -703,9 +703,9 @@ namespace userbase
       return dwStyle; // return new style
    }
 
-   void control_bar::_001OnSizeParent(gen::signal_object * pobj)
+   void control_bar::_001OnSizeParent(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
       __SIZEPARENTPARAMS* lpLayout = (__SIZEPARENTPARAMS*)pbase->m_lparam;
       uint32_t dwStyle = RecalcDelayShow(lpLayout);
 

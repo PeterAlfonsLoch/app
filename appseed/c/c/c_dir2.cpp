@@ -6,7 +6,7 @@
 
 vsstring dir::afterca2()
 {
-   return ca2();
+   return ca();
 }
 
 vsstring dir::appdata(const char * lpcsz)
@@ -21,7 +21,7 @@ vsstring dir::appdata(const char * lpcsz)
 
    buf = "C:\\ProgramData";
    
-   str = path(buf, "ca2");
+   str = path(buf, "ca");
    
    //_ca_free(buf, 0);
 
@@ -37,13 +37,13 @@ vsstring dir::appdata(const char * lpcsz)
       CSIDL_COMMON_APPDATA,
       FALSE);
    
-   str = path(buf, "ca2");
+   str = path(buf, "ca");
    
    _ca_free(buf, 0);
 
 #endif
    
-   vsstring strCa2 = dir::ca2();
+   vsstring strCa2 = dir::ca();
    
    index iFind = strCa2.find(':');
    
@@ -84,7 +84,7 @@ vsstring dir::userappdata(const char * lpcsz)
 
    char * psz = utf16_to_8(buf);
 
-   str = path(psz, "ca2");
+   str = path(psz, "ca");
 
    ca2_free(psz);
    
@@ -96,7 +96,7 @@ vsstring dir::userappdata(const char * lpcsz)
 
 #endif
    
-   vsstring strCa2 = dir::ca2();
+   vsstring strCa2 = dir::ca();
    
    index iFind = strCa2.find(':');
    

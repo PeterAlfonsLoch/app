@@ -10,7 +10,7 @@ namespace simpledb
 
 
    class CLASS_DECL_ca socket_thread : 
-      public ::gen::thread,
+      public ::ca::thread,
       public ::sockets::socket_handler
    {
    public:
@@ -49,7 +49,7 @@ namespace simpledb
       virtual bool initialize_instance();
 
 
-      void install_message_handling(::gen::message::dispatch * pinterface);
+      void install_message_handling(::ca::message::dispatch * pinterface);
 
 
       DECL_GEN_SIGNAL(OnApp)

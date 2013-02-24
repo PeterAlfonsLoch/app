@@ -6,7 +6,7 @@
 
 // from 7-zip
 
-namespace gen
+namespace ca
 {
 
    template <class T> inline T MyMin(T a, T b)
@@ -40,11 +40,11 @@ namespace gen
 #ifndef RC_INVOKED
 
 #ifndef __cplusplus
-   #error gen requires C++ compilation (use a .cpp suffix)
+   #error ca requires C++ compilation (use a .cpp suffix)
 #endif
 
 #ifdef UNDER_CE
-   #error This version of gen is not currently supported for CE. Look for the CE specific version.
+   #error This version of ca is not currently supported for CE. Look for the CE specific version.
 #endif
 
 
@@ -56,7 +56,7 @@ namespace gen
 
 #ifdef UNICODE
 #ifndef _UNICODE
-#define _UNICODE        // _UNICODE is used by C-runtime/ca2 API headers
+#define _UNICODE        // _UNICODE is used by C-runtime/ca API headers
 #endif
 #endif
 
@@ -99,12 +99,12 @@ char (*__countof_helper(UNALIGNED _CountofType (&_Array)[_SizeOfArray]))[_SizeOf
 /*
 Why does ASSUME exist?
 
-gen 8 has two existing validation models
+ca 8 has two existing validation models
 
 ASSERT/VERIFY - These are used to make sure a debug build reports a problem with the expression/invariant
 ENSURE - Debug is the same as VERIFY, retail throws a C++ exception
 
-We added ENSURE because there were too many unreported error paths in gen and we wanted to bail out of more
+We added ENSURE because there were too many unreported error paths in ca and we wanted to bail out of more
 error conditions rather than just trying to continue in retail.
 
 There might be a case for changing 'lots' of ASSERT to ENSURE, but we chose an incremental approach and only
@@ -136,7 +136,7 @@ We could try something more severe
 This would ensure good reporting (because VC8 terminate generates a Windows Error Report and crash dump), but hardly seems a big win
 over the previous crash.
 
-ENSURE might seem slightly better. It is debuggable and consistent with gen in general. In fact, many parts of gen do just this.
+ENSURE might seem slightly better. It is debuggable and consistent with ca in general. In fact, many parts of ca do just this.
 But in this specific context, it doesn't look like a great choice. COM methods should not in general be emitting native C++ exceptions
 as an error reporting strategy.
 
@@ -215,7 +215,7 @@ do {                                           \
 // destructor (if provided by the ::fontopus::user) should not call anything that may cause
 // a virtual function call to occur back on the object.
 ///////////////////////////////////////////////////////////////////////////////
-// By default, the wizards will generate new gen object classes with this
+// By default, the wizards will generate new ca object classes with this
 // attribute (through the NO_VTABLE macro).  This is normally safe as long
 // the restriction mentioned above is followed.  It is always safe to remove
 // this macro from your class, so if in doubt, remove it.
@@ -250,7 +250,7 @@ do {                                           \
 #ifdef _DLL
 #undef _STATIC_REGISTRY
 #else
-// If not linking to 80.DLL, use the static registrar and not building gen.dll
+// If not linking to 80.DLL, use the static registrar and not building ca.dll
 #ifndef _DLL_IMPL
 #ifndef _STATIC_REGISTRY
 #define _STATIC_REGISTRY
@@ -281,7 +281,7 @@ do {                                           \
 
 #ifdef _NO_EXCEPTIONS
    #ifdef _AFX
-   #error ca2 API projects cannot define _NO_EXCEPTIONS
+   #error ca API projects cannot define _NO_EXCEPTIONS
    #endif
 #else
    #ifndef _CPPUNWIND
@@ -325,7 +325,7 @@ do {                                           \
 
 /*
 COM functions should not throw. Which means we should protect their callers from C++ exceptions leaking out. These macros
-can help with that, though they have not yet been applied to the whole of gen, which uses a variety of patterns to achieve
+can help with that, though they have not yet been applied to the whole of ca, which uses a variety of patterns to achieve
 this end
 */
 
@@ -337,7 +337,7 @@ this end
 #endif
 
 #ifdef _AFX
-/* Nice to do something more complex here in future to translate an ca2 API exception to a better HR */
+/* Nice to do something more complex here in future to translate an ca API exception to a better HR */
 #define ___COM_END_PART \
    catch(base_exception *e) \
    { \
@@ -460,7 +460,7 @@ that we consider it dangerous to even throw an exception
 #define _FATAL_SHUTDOWN do { ::TerminateProcess(::GetCurrentProcess(), 0); } while(0);
 #endif
 
-//gen/ca2 API code should use standard pointer to member standard syntax &MyClass::MyMethod, instead
+//ca/ca API code should use standard pointer to member standard syntax &MyClass::MyMethod, instead
 //of the legacy non-standard syntax - MyMethod.
 #ifdef _ENABLE_PTM_WARNING
 #define PTM_WARNING_DISABLE

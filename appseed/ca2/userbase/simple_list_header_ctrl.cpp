@@ -16,7 +16,7 @@ simple_list_header_control::~simple_list_header_control()
 
 
 
-void simple_list_header_control::install_message_handling(::gen::message::dispatch * pinterface)
+void simple_list_header_control::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    ::user::list_header::install_message_handling(pinterface);
@@ -49,10 +49,10 @@ void simple_list_header_control::install_message_handling(::gen::message::dispat
 
 }*/
 
-void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
+void simple_list_header_control::_001OnEndTrack(ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::gen::message::notify, pnotify, pobj)
+   SCAST_PTR(::ca::message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -76,10 +76,10 @@ void simple_list_header_control::_001OnEndTrack(gen::signal_object * pobj)
 #endif
 }
 
-void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
+void simple_list_header_control::_001OnTrack(ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::gen::message::notify, pnotify, pobj)
+   SCAST_PTR(::ca::message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -105,9 +105,9 @@ void simple_list_header_control::_001OnTrack(gen::signal_object * pobj)
 }
 
 
-void simple_list_header_control::_001OnCreate(gen::signal_object * pobj) 
+void simple_list_header_control::_001OnCreate(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::create, pcreate, pobj)
+   SCAST_PTR(::ca::message::create, pcreate, pobj)
 //   LOGFONT lf;
 
    ::user::list_header::m_font->operator = (*System.visual().font_central().GetListCtrlFont());
@@ -116,10 +116,10 @@ void simple_list_header_control::_001OnCreate(gen::signal_object * pobj)
 }
 
 
-void simple_list_header_control::_001OnEndDrag(gen::signal_object * pobj)
+void simple_list_header_control::_001OnEndDrag(ca::signal_object * pobj)
 {
 #ifdef WINDOWSEX
-   SCAST_PTR(::gen::message::notify, pnotify, pobj)
+   SCAST_PTR(::ca::message::notify, pnotify, pobj)
 #else
    throw todo(get_app());
 #endif
@@ -214,9 +214,9 @@ bool simple_list_header_control::create(UINT nStyle, LPCRECT lpcrect, ::user::in
 }
 
 
-void simple_list_header_control::_001OnMove(gen::signal_object * pobj) 
+void simple_list_header_control::_001OnMove(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::move, pmove, pobj)
+   SCAST_PTR(::ca::message::move, pmove, pobj)
    point point(pmove->m_pt.x, pmove->m_pt.y);
    pmove->m_bRet = false;
 }

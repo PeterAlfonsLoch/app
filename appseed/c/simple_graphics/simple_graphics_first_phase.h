@@ -5,7 +5,7 @@
 namespace ca
 {
 
-   // backlink from ca2.dll on 2012-10-14 11:04 Alameda Princesa Izabel, 3000 - CWB-PR-Brasil
+   // backlink from ca.dll on 2012-10-14 11:04 Alameda Princesa Izabel, 3000 - CWB-PR-Brasil
 
    enum e_alpha_mode
    {

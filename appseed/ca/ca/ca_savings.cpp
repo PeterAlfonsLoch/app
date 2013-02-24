@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    savings::savings(::ca::application * papp) :
@@ -59,4 +59,4 @@ namespace gen
       return m_eresourceflagsWarning.is_signalized(eresource);
    }
 
-} // namespace gen
+} // namespace ca

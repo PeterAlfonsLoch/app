@@ -26,7 +26,7 @@ namespace gcom
 
 
       class CLASS_DECL_ca2 Interface :
-         virtual public gen::signalizable
+         virtual public ca::signalizable
       {
       public:
 
@@ -51,7 +51,7 @@ namespace gcom
          uint32_t                m_dwTimerStep;
 
 
-         gen::file_set_sp     m_spfilesetBackgroundImage;
+         ca::file_set_sp     m_spfilesetBackgroundImage;
 
 
 
@@ -60,7 +60,7 @@ namespace gcom
 
          void Shutdown();
 
-         void install_message_handling(::gen::message::dispatch * pinterface);
+         void install_message_handling(::ca::message::dispatch * pinterface);
 
          virtual COLORREF GetBackgroundColor();
          void BackViewRender(::ca::graphics * pdc, int32_t x, int32_t y, int32_t w, int32_t h);

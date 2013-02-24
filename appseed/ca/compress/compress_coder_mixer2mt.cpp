@@ -29,13 +29,13 @@ namespace libcompress
          {
             if (InSizePointers[i] != NULL)
                InSizePointers[i] = &InSizes[i];
-            InStreamPointers.add((::gen::reader *)InStreams[i]);
+            InStreamPointers.add((::ca::reader *)InStreams[i]);
          }
          for(uint32_t i = 0; i < NumOutStreams; i++)
          {
             if (OutSizePointers[i] != NULL)
                OutSizePointers[i] = &OutSizes[i];
-            OutStreamPointers.add((::gen::writer *)OutStreams[i]);
+            OutStreamPointers.add((::ca::writer *)OutStreams[i]);
          }
          if (Coder)
             Result = Coder->Code(InStreamPointers[0], OutStreamPointers[0],
@@ -46,11 +46,11 @@ namespace libcompress
          {
             for(int32_t i = 0; i < InStreams.get_count(); i++)
             {
-               gen::release(InStreams[i].m_p);
+               ca::release(InStreams[i].m_p);
             }
             for(int32_t i = 0; i < OutStreams.get_count(); i++)
             {
-               gen::release(OutStreams[i].m_p);
+               ca::release(OutStreams[i].m_p);
             }
          }
       }
@@ -85,7 +85,7 @@ namespace libcompress
       //////////////////////////////////////
       // CCoderMixer2MT
 
-      gen::HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
+      ca::HRes CCoderMixer2MT::SetBindInfo(const CBindInfo &bindInfo)
       {
          _bindInfo = bindInfo;
          _streamBinders.remove_all();
@@ -129,7 +129,7 @@ namespace libcompress
       {
       }
 
-      HRESULT CCoderMixer2MT::Init(::gen::reader **inStreams, gen::writer **outStreams)
+      HRESULT CCoderMixer2MT::Init(::ca::reader **inStreams, ca::writer **outStreams)
       {
          /*
          if (_coders.get_count() != _bindInfo.Coders.get_count())
@@ -197,10 +197,10 @@ namespace libcompress
          return S_OK;
       }
 
-      gen::HRes CCoderMixer2MT::Code(::gen::reader **inStreams,
+      ca::HRes CCoderMixer2MT::Code(::ca::reader **inStreams,
          const file_size ** /* inSizes */,
          uint32_t numInStreams,
-         ::gen::writer **outStreams,
+         ::ca::writer **outStreams,
          const file_size ** /* outSizes */,
          uint32_t numOutStreams,
          ::libcompress::progress_info_interface *progress)

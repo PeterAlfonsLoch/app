@@ -134,7 +134,7 @@ namespace userbase
    // Implementation
    public:
       virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void message_handler(gen::signal_object * pobj);
+      virtual void message_handler(ca::signal_object * pobj);
       virtual ~control_bar();
    #ifdef DEBUG
       virtual void assert_valid() const;
@@ -172,7 +172,7 @@ namespace userbase
       BaseDockContext* m_pDockContext;   // used during dragging
       uint32_t m_dwCtrlStyle;
 
-      virtual void pre_translate_message(gen::signal_object * pobj);
+      virtual void pre_translate_message(ca::signal_object * pobj);
       virtual bool pre_create_window(CREATESTRUCT& cs);
       virtual void PostNcDestroy();
 
@@ -211,7 +211,7 @@ namespace userbase
    //   DECL_GEN_SIGNAL(_001OnPaint)
    //   virtual void _001OnDraw(::ca::graphics * pdc);
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       friend class ::userbase::frame_window;
       friend class BaseDockBar;

@@ -61,14 +61,14 @@ namespace ca
       string system::path(const char * pszFolder, strsize iLenFolder, const char * pszRelative, strsize iLenRelative, const char * psz2, strsize iLen2)
       {
 
-         return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::ca2::is_url(pszFolder));
+         return path(pszFolder, iLenFolder, pszRelative, iLenRelative, psz2, iLen2, ::ca::is_url(pszFolder));
 
       }
 
       string system::path(const string & strFolder, const string & strRelative)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::ca2::is_url(strFolder));
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), NULL, 0, ::ca::is_url(strFolder));
 
       }
 
@@ -76,7 +76,7 @@ namespace ca
       string system::path(const string & strFolder, const string & strRelative, const string & str2)
       {
 
-         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), ::ca2::is_url(strFolder));
+         return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), str2, str2.get_length(), ::ca::is_url(strFolder));
 
       }
 
@@ -84,11 +84,11 @@ namespace ca
       {
          if(psz2 == NULL)
          {
-            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, 0, ::ca2::is_url(strFolder));
+            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, 0, ::ca::is_url(strFolder));
          }
          else
          {
-            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, strlen(psz2), ::ca2::is_url(strFolder));
+            return path(strFolder, strFolder.get_length(), strRelative, strRelative.get_length(), psz2, strlen(psz2), ::ca::is_url(strFolder));
          }
 
       }
@@ -148,8 +148,8 @@ namespace ca
             while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
                iFolderEnd--;
             //better than following 2 together
-            //gen::str::ends_eat(strFolder, "\\");
-            //gen::str::ends_eat(strFolder, "/");
+            //ca::str::ends_eat(strFolder, "\\");
+            //ca::str::ends_eat(strFolder, "/");
             while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
                iFolderEnd--;
          }
@@ -168,8 +168,8 @@ namespace ca
             while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
                iFolderEnd--;
             //better than following 2 together
-            //gen::str::ends_eat(strFolder, "\\");
-            //gen::str::ends_eat(strFolder, "/");
+            //ca::str::ends_eat(strFolder, "\\");
+            //ca::str::ends_eat(strFolder, "/");
             while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
                iRelativeBeg++;
          }
@@ -246,8 +246,8 @@ namespace ca
             while(iFolderBeg <= iFolderEnd && myspace(strFolder[iFolderEnd]))
                iFolderEnd--;
             //better than following 2 together
-            //gen::str::ends_eat(strFolder, "\\");
-            //gen::str::ends_eat(strFolder, "/");
+            //ca::str::ends_eat(strFolder, "\\");
+            //ca::str::ends_eat(strFolder, "/");
             while(iFolderBeg <= iFolderEnd && (strFolder[iFolderEnd] == '/' || strFolder[iFolderEnd] == '\\'))
                iFolderEnd--;
          }
@@ -266,8 +266,8 @@ namespace ca
             while(iRelativeBeg <= iRelativeEnd && myspace(strRelative[iRelativeEnd]))
                iFolderEnd--;
             //better than following 2 together
-            //gen::str::ends_eat(strFolder, "\\");
-            //gen::str::ends_eat(strFolder, "/");
+            //ca::str::ends_eat(strFolder, "\\");
+            //ca::str::ends_eat(strFolder, "/");
             while(iRelativeBeg <= iRelativeEnd && (strRelative[iRelativeBeg] == '/' || strRelative[iRelativeBeg] == '\\'))
                iRelativeBeg++;
          }
@@ -287,8 +287,8 @@ namespace ca
             while(iBeg2 <= iEnd2 && myspace(str2.m_pszData[iEnd2]))
                iEnd2--;
             //better than following 2 together
-            //gen::str::ends_eat(strFolder, "\\");
-            //gen::str::ends_eat(strFolder, "/");
+            //ca::str::ends_eat(strFolder, "\\");
+            //ca::str::ends_eat(strFolder, "/");
             while(iBeg2 <= iEnd2 && (str2[iBeg2] == '/' || str2[iBeg2] == '\\'))
                iBeg2++;
          }
@@ -379,7 +379,7 @@ namespace ca
       {
          UNREFERENCED_PARAMETER(pstraRelative);
          UNREFERENCED_PARAMETER(pszPattern);
-         if(eextract != extract_none && papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && papp->m_bZipIsDir && (ca::str::ends_ci(lpcsz, ".zip") || ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
             throw "should implement recursive zip";
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize, eextract == extract_all ? extract_all : extract_none);
@@ -393,7 +393,7 @@ namespace ca
       void system::ls_pattern(::ca::application * papp, const char * lpcsz, const char * pszPattern, stringa * pstraPath, stringa * pstraTitle, base_array < bool, bool > * pbaIsDir, base_array < int64_t, int64_t > * piaSize)
       {
          UNREFERENCED_PARAMETER(pszPattern);
-         if(gen::str::begins_ci(lpcsz, "http://") || gen::str::begins_ci(lpcsz, "https://"))
+         if(ca::str::begins_ci(lpcsz, "http://") || ca::str::begins_ci(lpcsz, "https://"))
          {
             string str = App(papp).http().get(lpcsz);
             if(pstraPath != NULL)
@@ -402,7 +402,7 @@ namespace ca
             }
             return;
          }
-         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
+         if(papp->m_bZipIsDir && (ca::str::ends_ci(lpcsz, ".zip") || ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, NULL, pbaIsDir, piaSize);
             return;
@@ -423,7 +423,7 @@ namespace ca
 
       void system::rls(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle, stringa * pstraRelative, e_extract eextract)
       {
-         if(eextract != extract_none && papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
+         if(eextract != extract_none && papp->m_bZipIsDir && (ca::str::ends_ci(lpcsz, ".zip") || ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls(papp, lpcsz, false, pstraPath, pstraTitle, pstraRelative, NULL, NULL, eextract == extract_all ? extract_all : extract_none);
             return;
@@ -445,7 +445,7 @@ namespace ca
 
       void system::ls_dir(::ca::application * papp, const char * lpcsz, stringa * pstraPath, stringa * pstraTitle)
       {
-         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcsz, ".zip") || gen::str::find_ci(".zip:", lpcsz) >= 0))
+         if(papp->m_bZipIsDir && (ca::str::ends_ci(lpcsz, ".zip") || ca::str::find_ci(".zip:", lpcsz) >= 0))
          {
             m_pziputil->ls_dir(papp, lpcsz, pstraPath, pstraTitle);
             return;
@@ -472,13 +472,13 @@ namespace ca
 
       bool system::is(const char * lpcszPath, ::ca::application * papp)
       {
-         if(gen::str::begins_ci(lpcszPath, "http://") || gen::str::begins_ci(lpcszPath, "https://"))
+         if(ca::str::begins_ci(lpcszPath, "http://") || ca::str::begins_ci(lpcszPath, "https://"))
          {
             return App(papp).http().exists(lpcszPath);
          }
-         if(papp->m_bZipIsDir && (gen::str::ends_ci(lpcszPath, ".zip")))
+         if(papp->m_bZipIsDir && (ca::str::ends_ci(lpcszPath, ".zip")))
             return true;
-         if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", lpcszPath) >= 0))
+         if(papp->m_bZipIsDir && (ca::str::find_ci(".zip:", lpcszPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -493,17 +493,17 @@ namespace ca
 
       bool system::is(const string & strPath, ::ca::application * papp)
       {
-         if(gen::str::begins_ci(strPath, "http://") || gen::str::begins_ci(strPath, "https://"))
+         if(ca::str::begins_ci(strPath, "http://") || ca::str::begins_ci(strPath, "https://"))
          {
             return App(papp).http().exists(strPath);
          }
 
-         if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
+         if(papp->m_bZipIsDir && (ca::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
+         if(papp->m_bZipIsDir && (ca::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -529,12 +529,12 @@ namespace ca
       bool system::name_is(const string & strPath, ::ca::application * papp)
       {
          //OutputDebugString(strPath);
-         if(papp->m_bZipIsDir && (gen::str::ends_ci(strPath, ".zip")))
+         if(papp->m_bZipIsDir && (ca::str::ends_ci(strPath, ".zip")))
          {
             m_isdirmap.set(strPath, true, 0);
             return true;
          }
-         if(papp->m_bZipIsDir && (gen::str::find_ci(".zip:", strPath) >= 0))
+         if(papp->m_bZipIsDir && (ca::str::find_ci(".zip:", strPath) >= 0))
          {
             bool bHasSubFolder;
             uint32_t dwLastError;
@@ -650,7 +650,7 @@ namespace ca
          isdir.m_dwError = dwLastError;
          isdir.m_dwLastCheck = ::get_tick_count();
          string strPath(pszPath);
-         if(!gen::str::ends(strPath, strSep))
+         if(!ca::str::ends(strPath, strSep))
             strPath += strSep;
          single_lock sl(&m_mutex, TRUE);
          set_at(strPath, isdir);
@@ -667,7 +667,7 @@ namespace ca
          isdir.m_bIsDir = bIsDir;
          isdir.m_dwError = dwLastError;
          isdir.m_dwLastCheck = ::get_tick_count();
-         if(gen::str::ends(strPath, strSep))
+         if(ca::str::ends(strPath, strSep))
          {
             single_lock sl(&m_mutex, TRUE);
             set_at(strPath, isdir);
@@ -716,41 +716,41 @@ namespace ca
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca2(const char * lpcsz, const char * lpcsz2)
+      string system::ca(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca2(const string & str, const char * lpcsz2)
+      string system::ca(const string & str, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(str);
          UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca2(const char * lpcsz, const string & str2)
+      string system::ca(const char * lpcsz, const string & str2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(str2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca2(const string & str, const string & str2)
+      string system::ca(const string & str, const string & str2)
       {
          UNREFERENCED_PARAMETER(str);
          UNREFERENCED_PARAMETER(str2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca2(const string & str)
+      string system::ca(const string & str)
       {
          UNREFERENCED_PARAMETER(str);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca2()
+      string system::ca()
       {
          throw interface_only_exception(get_app(), "this is an interface");
       }
@@ -921,11 +921,11 @@ namespace ca
 
             if(bDir)
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1099,7 +1099,7 @@ ret:
             strSchema  = pcontext->m_plocaleschema->m_idSchema;
             strLs      = locale_schema_matter(papp, strLocale, strSchema);
 
-            strFile = System.dir().appdata(path("cache", papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema), str + gen::str::has_char(str2, ",") + ".map_question"));
+            strFile = System.dir().appdata(path("cache", papp->m_pappThis->get_locale_schema_dir(strLocale, strSchema), str + ca::str::has_char(str2, ",") + ".map_question"));
 
             strsize iFind = strFile.find(DIR_SEPARATOR);
 
@@ -1135,11 +1135,11 @@ ret:
             
             if(bDir)
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca.cc/query_dir?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
             else
             {
-               strPath = System.http().get("http://api-matter.ca2.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
+               strPath = System.http().get("http://api-matter.ca.cc/query_file?candidate=" + System.url().url_encode(straPath.implode("|")));
             }
 
             if(strPath.has_char())
@@ -1467,7 +1467,7 @@ ret:
          /*string strLibraryRoot;
          string strLibraryName;
          if(strLibraryNameParam.has_char() && strLibraryNameParam != "app_" + strAppNameParam
-            && gen::str::begins_ci(strLibraryNameParam, "app_") && strLibraryNameParam.find("_", strlen("app_")) > 4)
+            && ca::str::begins_ci(strLibraryNameParam, "app_") && strLibraryNameParam.find("_", strlen("app_")) > 4)
          {
             stringa stra2;
             stra2.add_tokens(strLibraryNameParam, "_", FALSE);
@@ -1538,14 +1538,14 @@ ret:
 
          appmatter_locators(strRoot, strDomain, papp);
 
-         return path("http://matter.ca2.cc/", path(strRoot, "appmatter", strDomain));
+         return path("http://matter.ca.cc/", path(strRoot, "appmatter", strDomain));
 #else
          string strRoot;
          string strDomain;
 
          appmatter_locators(strRoot, strDomain, papp);
 
-         return ca2(simple_path(strRoot, "appmatter", strDomain));
+         return ca(simple_path(strRoot, "appmatter", strDomain));
 #endif
 
       }
@@ -1558,7 +1558,7 @@ ret:
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return ca2(simple_path(strRoot, "appmatter", strDomain));
+         return ca(simple_path(strRoot, "appmatter", strDomain));
 
       }
 
@@ -1570,7 +1570,7 @@ ret:
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
-         return ca2(simple_path(strRoot, "appmatter", strDomain));
+         return ca(simple_path(strRoot, "appmatter", strDomain));
 
       }
 
@@ -1728,7 +1728,7 @@ ret:
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
-         return path(ca2("ccvotagus"), lpcsz, lpcsz2);
+         return path(ca("ccvotagus"), lpcsz, lpcsz2);
       }
 
       string system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::ca::application * papp)

@@ -1,9 +1,9 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
-} // namespace gen
+} // namespace ca
 
 
 // * pobj should be allocated with new

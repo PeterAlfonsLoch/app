@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca request_signal : 
-      public gen::signal_object
+      public ca::signal_object
    {
    public:
 
@@ -15,14 +15,14 @@ namespace gen
       var         m_varQuery;
 
 
-      request_signal(::ca::application * papp, gen::signal * psignal = NULL);
+      request_signal(::ca::application * papp, ca::signal * psignal = NULL);
 
 
    }; 
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 

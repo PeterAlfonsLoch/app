@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
    byte_stream_memory_file::byte_stream_memory_file(::ca::application * papp, ::primitive::memory_size iSize) :
@@ -44,9 +44,9 @@ namespace gen
    }
 
 
-   file_position byte_stream_memory_file::seek(file_offset offset, ::gen::e_seek seekOrigin)
+   file_position byte_stream_memory_file::seek(file_offset offset, ::ca::e_seek seekOrigin)
    {
       return ::primitive::memory_file::seek(offset, seekOrigin);
    }
 
-} // namespace gen
+} // namespace ca

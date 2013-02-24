@@ -27,7 +27,7 @@ namespace user
       colorertake5::base_editor(papp),
       m_fastblur(papp),
       m_dibBk(papp),
-      gen::tree(papp),
+      ca::tree(papp),
       ::ca::data_listener(papp)
    {
 
@@ -67,7 +67,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::install_message_handling(::gen::message::dispatch * pinterface)
+   void edit_plain_text::install_message_handling(::ca::message::dispatch * pinterface)
    {
       scroll_view::install_message_handling(pinterface);
    /*   IGUI_WIN_MSG_LINK(WM_DESTROY, pinterface, this, &edit_plain_text::_001OnDestroy);
@@ -112,7 +112,7 @@ namespace user
 
    /////////////////////////////////////////////////////////////////////////////
 
-   void edit_plain_text::_001OnInitialUpdate(gen::signal_object * pobj)
+   void edit_plain_text::_001OnInitialUpdate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       _001OnUpdate();
@@ -127,7 +127,7 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnDestroy(gen::signal_object * pobj)
+   void edit_plain_text::_001OnDestroy(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -168,7 +168,7 @@ namespace user
       LayoutKaraokeBouncingBall();*/
    }
 
-   void edit_plain_text::_001OnPaint(gen::signal_object * pobj)
+   void edit_plain_text::_001OnPaint(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //CPaintDC spgraphics(this); // device context for painting
@@ -234,8 +234,8 @@ namespace user
       {
          pdc->FillSolidRect(rectClient, get_background_color());
       }
-      /*else if(!System.savings().is_trying_to_save(gen::resource_processing)
-      && !System.savings().is_trying_to_save(gen::resource_blur_background))
+      /*else if(!System.savings().is_trying_to_save(ca::resource_processing)
+      && !System.savings().is_trying_to_save(ca::resource_blur_background))
       {
 
          pdc->blur(true, 4, rectClient);
@@ -490,11 +490,11 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnCreate(gen::signal_object * pobj)
+   void edit_plain_text::_001OnCreate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::create, pcreate, pobj);
+      SCAST_PTR(::ca::message::create, pcreate, pobj);
 
-      if(!gen::tree::initialize())
+      if(!ca::tree::initialize())
          throw simple_exception(get_app());
 
 
@@ -510,7 +510,7 @@ namespace user
          set_plain_text_data(new ::user::plain_text_data(get_app()), true);
       }
 
-      ::ca::data * pdataParentLock = oprop("parent_lock_data").ca2 < ::ca::data > ();
+      ::ca::data * pdataParentLock = oprop("parent_lock_data").ca < ::ca::data > ();
       if(pdataParentLock != NULL)
       {
          m_pdata->m_spdataParentLock = pdataParentLock;
@@ -543,16 +543,16 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnContextMenu(gen::signal_object * pobj)
+   void edit_plain_text::_001OnContextMenu(ca::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
    }
 
-   void edit_plain_text::_001OnRButtonUp(gen::signal_object * pobj)
+   void edit_plain_text::_001OnRButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       //int32_t iItem;
       //HRESULT hr;
       class point point = pmouse->m_pt;
@@ -562,12 +562,12 @@ namespace user
    /*   ::userbase::menu menu;
       Ex1TextFile file;
 
-      gen::application * papp = gen::get_app();
+      ca::application * papp = ca::get_app();
 
       string strModuleFolder;
       strModuleFolder = papp->get_module_folder();
 
-      if(!spfile->open(ca2::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::gen::file::type_text | ::gen::file::mode_read))
+      if(!spfile->open(ca::dir().path(strModuleFolder, "devedge_contextmenu.xml"), ::ca::file::type_text | ::ca::file::mode_read))
          return;
 
       string str;
@@ -595,16 +595,16 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnSetCursor(gen::signal_object * pobj)
+   void edit_plain_text::_001OnSetCursor(ca::signal_object * pobj)
    {
       //::SetCursor(::LoadCursor(NULL, IDC_ARROW));
 
       pobj->previous();
    }
 
-   void edit_plain_text::_002OnTimer(gen::signal_object * pobj)
+   void edit_plain_text::_002OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent >= 100
          && ptimer->m_nIDEvent <= 200)
       {
@@ -625,9 +625,9 @@ namespace user
 
    }
 
-   void edit_plain_text::_002OnKeyDown(gen::signal_object * pobj)
+   void edit_plain_text::_002OnKeyDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
          if(Application.is_key_pressed(VK_CONTROL) && Application.is_key_pressed(VK_MENU))
@@ -697,9 +697,9 @@ namespace user
       pkey->m_bRet      = true;
    }
 
-   void edit_plain_text::_002OnKeyUp(gen::signal_object * pobj)
+   void edit_plain_text::_002OnKeyUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_RETURN)
       {
          if(Application.is_key_pressed(VK_CONTROL)
@@ -716,10 +716,10 @@ namespace user
       m_bKeyPressed = false;
    }
 
-   void edit_plain_text::_002OnChar(gen::signal_object * pobj)
+   void edit_plain_text::_002OnChar(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::key, pkey, pobj)
+//      SCAST_PTR(::ca::message::key, pkey, pobj)
          if(m_bKeyPressed)
          {
                //key_to_char(m_dwLastKeyWparam, m_dwLastKeyLparam);
@@ -730,7 +730,7 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnHScroll(gen::signal_object * pobj)
+   void edit_plain_text::_001OnHScroll(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if(should_load_full_file())
@@ -743,9 +743,9 @@ namespace user
       }
    }
 
-   void edit_plain_text::pre_translate_message(gen::signal_object * pobj)
+   void edit_plain_text::pre_translate_message(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_KEYDOWN)
       {
          pbase->m_bRet = true;
@@ -764,7 +764,7 @@ namespace user
    }
    void edit_plain_text::key_to_char(WPARAM wparam, LPARAM lparam)
    {
-      ::gen::message::key key(get_app());
+      ::ca::message::key key(get_app());
       key.m_nChar = wparam;
       key.m_nFlags = HIWORD(lparam);
       if(wparam == VK_LSHIFT || wparam == VK_RSHIFT
@@ -823,7 +823,7 @@ namespace user
          return;
       file_size iSize = m_pdata->m_editfile.get_length();
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
-      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(0, ::ca::seek_begin);
       m_pdata->m_editfile.read(psz, (::primitive::memory_size) iSize);
       psz[(::primitive::memory_position) iSize] = '\0';
       str.ReleaseBuffer();
@@ -869,7 +869,7 @@ namespace user
       }
       file_position iSize = iEnd - iStart;
       char * psz = str.GetBufferSetLength((strsize)(iSize + 1));
-      m_pdata->m_editfile.seek((file_offset) iStart, ::gen::seek_begin);
+      m_pdata->m_editfile.seek((file_offset) iStart, ::ca::seek_begin);
       m_pdata->m_editfile.read(psz, (::primitive::memory_size) (iSize));
       psz[(::primitive::memory_position)iSize] = '\0';
       str.ReleaseBuffer();
@@ -878,9 +878,9 @@ namespace user
 
    void edit_plain_text::_001SetSelText(const char * psz)
    {
-      m_pdata->m_editfile.seek(m_iSelStart, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(m_iSelStart, ::ca::seek_begin);
       m_pdata->m_editfile.Delete((file_size) (m_iSelEnd - m_iSelStart));
-      m_pdata->m_editfile.seek(m_iSelStart, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(m_iSelStart, ::ca::seek_begin);
       m_pdata->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate();
       _001RedrawWindow();
@@ -893,9 +893,9 @@ namespace user
       _001RedrawWindow();
    }
 
-   void edit_plain_text::_002OnLButtonDown(gen::signal_object * pobj)
+   void edit_plain_text::_002OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -912,9 +912,9 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void edit_plain_text::_002OnLButtonUp(gen::signal_object * pobj)
+   void edit_plain_text::_002OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::ca::client_graphics pdc(this);
@@ -928,9 +928,9 @@ namespace user
       //System.simple_message_box(m_strText);
    }
 
-   void edit_plain_text::_002OnRButtonDown(gen::signal_object * pobj)
+   void edit_plain_text::_002OnRButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       m_bMouseDown = true;
@@ -945,9 +945,9 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void edit_plain_text::_002OnRButtonUp(gen::signal_object * pobj)
+   void edit_plain_text::_002OnRButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
       ::ca::client_graphics pdc(this);
@@ -985,7 +985,7 @@ namespace user
       //char buf[4096 + 1];
       //UINT uiRead;
       //LPTSTR lpsz;
-      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(0, ::ca::seek_begin);
       y = (int32_t) (m_iLineHeight * m_iaLineIndex.get_size());
       if(y <= 0)
          y = 200;
@@ -1266,7 +1266,7 @@ namespace user
       for(;; )
       {
          pszPrevious = pszEnd;
-         pszEnd = gen::str::utf8_inc(pszEnd);
+         pszEnd = ca::str::utf8_inc(pszEnd);
          lim1 = lim2;
          strExtent = string(psz, pszEnd - psz);
          strExtent.replace("\t", "   ");
@@ -1292,9 +1292,9 @@ namespace user
       return (strsize) min((strsize)(iOffset + strLine.get_length() + m_iViewOffset), (strsize)m_pdata->m_editfile.get_length());
    }
 
-   void edit_plain_text::_002OnMouseMove(gen::signal_object * pobj)
+   void edit_plain_text::_002OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       //::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -1349,7 +1349,7 @@ namespace user
       char * lpsz;
       m_iaLineIndex.remove_all();
       m_iaLineEndIndex.remove_all();
-      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(0, ::ca::seek_begin);
       if(m_scrollinfo.m_sizeTotal.cx <= 0)
          m_scrollinfo.m_sizeTotal.cx = 200;
       int32_t iLineSize = 0;
@@ -1414,14 +1414,14 @@ namespace user
       }
    }
 
-   void edit_plain_text::_001OnChar(gen::signal_object * pobj)
+   void edit_plain_text::_001OnChar(ca::signal_object * pobj)
    {
       ::ca::data::writing writing(m_pdata);
 #ifdef WINDOWS
       _009OnChar(pobj);
       if(pobj->m_bRet)
          return;
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
 
       string strChar;
 
@@ -1465,7 +1465,7 @@ namespace user
                psetsel->m_iPreviousSelStart = m_iSelStart;
                psetsel->m_iPreviousSelEnd = m_iSelEnd;
                ::sort::sort(i1, i2);
-               m_pdata->m_editfile.seek(i1, ::gen::seek_begin);
+               m_pdata->m_editfile.seek(i1, ::ca::seek_begin);
                m_pdata->m_editfile.Delete((file_size)(i2 - i1));
                IndexRegisterDelete(i1, i2 - i1);
                m_iSelEnd = i1;
@@ -1488,12 +1488,12 @@ namespace user
                memset(buf, 0, sizeof(buf));
                strsize iBegin = max(0, m_iSelEnd - 256);
                strsize iCur = m_iSelEnd - iBegin;
-               m_pdata->m_editfile.seek(iBegin, ::gen::seek_begin);
+               m_pdata->m_editfile.seek(iBegin, ::ca::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
-               const char * psz = gen::str::utf8_dec(buf, &buf[iCur]);
+               const char * psz = ca::str::utf8_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
                m_iSelEnd -= iMultiByteUtf8DeleteCount;
-               m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
+               m_pdata->m_editfile.seek(m_iSelEnd, ::ca::seek_begin);
                m_pdata->m_editfile.Delete((file_size) iMultiByteUtf8DeleteCount);
                IndexRegisterDelete(m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_iSelStart = m_iSelEnd;
@@ -1545,7 +1545,7 @@ namespace user
          else if(natural(m_iSelEnd) < m_pdata->m_editfile.get_length())
          {
             char buf[32];
-            m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
+            m_pdata->m_editfile.seek(m_iSelEnd, ::ca::seek_begin);
             primitive::memory_size uiRead = m_pdata->m_editfile.read(buf, 32);
             if(uiRead == 2 &&
                buf[0] == '\r' &&
@@ -1555,7 +1555,7 @@ namespace user
             }
             else
             {
-               m_iSelEnd += gen::str::utf8_inc(buf) - buf;
+               m_iSelEnd += ca::str::utf8_inc(buf) - buf;
             }
             if(!bShift)
             {
@@ -1580,7 +1580,7 @@ namespace user
             {
                char buf[64];
                char * psz;
-               m_pdata->m_editfile.seek(max(0, m_iSelEnd - 32), ::gen::seek_begin);
+               m_pdata->m_editfile.seek(max(0, m_iSelEnd - 32), ::ca::seek_begin);
                psz = &buf[min(32, m_iSelEnd)];
                primitive::memory_size uiRead = m_pdata->m_editfile.read(buf, 64);
                if(uiRead == 2 &&
@@ -1591,7 +1591,7 @@ namespace user
                }
                else
                {
-                  m_iSelEnd -= psz - gen::str::utf8_dec(buf, psz);
+                  m_iSelEnd -= psz - ca::str::utf8_dec(buf, psz);
                }
             }
             else
@@ -1641,11 +1641,11 @@ namespace user
             strsize i1 = m_iSelStart;
             strsize i2 = m_iSelEnd;
             ::sort::sort(i1, i2);
-            m_pdata->m_editfile.seek(i1, ::gen::seek_begin);
+            m_pdata->m_editfile.seek(i1, ::ca::seek_begin);
             m_pdata->m_editfile.Delete((file_size) (i2 - i1));
             IndexRegisterDelete(i1, i2 - i1);
             m_iSelEnd = i1;
-            m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
+            m_pdata->m_editfile.seek(m_iSelEnd, ::ca::seek_begin);
             string str;
             char ch = (char) pkey->m_nChar;
             if(ch == '\r')
@@ -1703,10 +1703,10 @@ namespace user
 
 
 
-   void edit_plain_text::_001OnSysChar(gen::signal_object * pobj)
+   void edit_plain_text::_001OnSysChar(ca::signal_object * pobj)
    {
       ::ca::data::writing writing(m_pdata);
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_DELETE)
       {
          if(!m_bReadOnly)
@@ -1716,7 +1716,7 @@ namespace user
             if(i1 != i2)
             {
                ::sort::sort(i1, i2);
-               m_pdata->m_editfile.seek(i1, ::gen::seek_begin);
+               m_pdata->m_editfile.seek(i1, ::ca::seek_begin);
                m_pdata->m_editfile.Delete((file_size) (i2 - i1));
                m_iSelEnd = i1;
                m_iSelStart = m_iSelEnd;
@@ -1727,11 +1727,11 @@ namespace user
                memset(buf, 0, sizeof(buf));
                strsize iBegin = max(0, m_iSelEnd - 256);
                strsize iCur = m_iSelEnd - iBegin;
-               m_pdata->m_editfile.seek(iBegin, ::gen::seek_begin);
+               m_pdata->m_editfile.seek(iBegin, ::ca::seek_begin);
                m_pdata->m_editfile.read(buf, sizeof(buf));
-               const char * psz = gen::str::utf8_dec(buf, &buf[iCur]);
+               const char * psz = ca::str::utf8_dec(buf, &buf[iCur]);
                strsize iMultiByteUtf8DeleteCount = &buf[iCur] - psz;
-               m_pdata->m_editfile.seek(m_iSelEnd, ::gen::seek_begin);
+               m_pdata->m_editfile.seek(m_iSelEnd, ::ca::seek_begin);
                m_pdata->m_editfile.Delete((file_size) (iMultiByteUtf8DeleteCount));
                IndexRegisterDelete(m_iSelEnd, iMultiByteUtf8DeleteCount);
                m_iSelStart = m_iSelEnd;
@@ -1829,10 +1829,10 @@ namespace user
 
       if(iLineEnd > iLineStart)
       {
-         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::gen::seek_begin);
+         m_editfileLineIndex.seek(5 * (iLineStart + 1), ::ca::seek_begin);
          m_editfileLineIndex.Delete(5 * (iLineEnd - iLineStart));
       }
-      m_editfileLineIndex.seek(5 * iLineStart, ::gen::seek_begin);
+      m_editfileLineIndex.seek(5 * iLineStart, ::ca::seek_begin);
       iLineSize = iLineStartRemain + iLineEndRemain;
       m_editfileLineIndex.write(&iLineSize, 4);
       m_editfileLineIndex.write(&flag, 1);
@@ -1929,7 +1929,7 @@ namespace user
       }
       if(m_pdata->m_ptreeitem->m_pnext != NULL)
       {
-         gen::tree_item * pitemNew = insert_item(pcommand, ::gen::RelativeFirstChild, m_pdata->m_ptreeitem);
+         ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeFirstChild, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1937,7 +1937,7 @@ namespace user
       }
       else
       {
-         gen::tree_item * pitemNew = insert_item(pcommand, ::gen::RelativeLastSibling, m_pdata->m_ptreeitem);
+         ca::tree_item * pitemNew = insert_item(pcommand, ::ca::RelativeLastSibling, m_pdata->m_ptreeitem);
          if(pitemNew != NULL)
          {
             m_pdata->m_ptreeitem = pitemNew;
@@ -1975,7 +1975,7 @@ namespace user
          return false;
       }
       plain_text_data::Command * pcommand = NULL;
-      ::gen::tree_item * ptreeitem;
+      ::ca::tree_item * ptreeitem;
       if(m_pdata->m_iBranch < m_pdata->m_ptreeitem->get_expandable_children_count())
       {
          ptreeitem = m_pdata->m_ptreeitem->get_expandable_child(m_pdata->m_iBranch);
@@ -2019,9 +2019,9 @@ namespace user
    void edit_plain_text::_001SetText(const char * psz)
    {
       ::ca::data::writing writing(m_pdata);
-      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(0, ::ca::seek_begin);
       m_pdata->m_editfile.Delete((::primitive::memory_size)m_pdata->m_editfile.get_length());
-      m_pdata->m_editfile.seek(0, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(0, ::ca::seek_begin);
       m_pdata->m_editfile.Insert(psz, strlen(psz));
       _001OnUpdate();
       _001OnSetText();
@@ -2029,17 +2029,17 @@ namespace user
    }
 
 
-   void edit_plain_text::keyboard_focus_OnKeyDown(gen::signal_object * pobj)
+   void edit_plain_text::keyboard_focus_OnKeyDown(ca::signal_object * pobj)
    {
       _002OnKeyDown(pobj);
    }
 
-   void edit_plain_text::keyboard_focus_OnKeyUp(gen::signal_object * pobj)
+   void edit_plain_text::keyboard_focus_OnKeyUp(ca::signal_object * pobj)
    {
       _002OnKeyUp(pobj);
    }
 
-   void edit_plain_text::keyboard_focus_OnChar(gen::signal_object * pobj)
+   void edit_plain_text::keyboard_focus_OnChar(ca::signal_object * pobj)
    {
       _002OnChar(pobj);
    }
@@ -2122,7 +2122,7 @@ namespace user
       }
       m_lines.lines.set_size(0, 100);
       string str;
-      m_pdata->m_editfile.seek(m_iViewOffset, ::gen::seek_begin);
+      m_pdata->m_editfile.seek(m_iViewOffset, ::ca::seek_begin);
       iLine = m_iLineOffset;
       i = 0;
       ::index iLineStart = should_load_full_file() ? 0 : m_iLineOffset;
@@ -2197,7 +2197,7 @@ namespace user
   return type;
 }
 
-   void edit_plain_text::_009OnChar(gen::signal_object * pobj)
+   void edit_plain_text::_009OnChar(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -2232,12 +2232,12 @@ namespace user
 
 
 
-   gen::tree_item_data * edit_plain_text::on_allocate_item()
+   ca::tree_item_data * edit_plain_text::on_allocate_item()
    {
       return new plain_text_data::Command;
    }
 
-   void edit_plain_text::on_delete_item(gen::tree_item_data * pitem)
+   void edit_plain_text::on_delete_item(ca::tree_item_data * pitem)
    {
       delete pitem;
    }
@@ -2258,7 +2258,7 @@ namespace user
       }
    }
 
-   void edit_plain_text::_001OnUpdateEditFocusCopy(gen::signal_object * pobj)
+   void edit_plain_text::_001OnUpdateEditFocusCopy(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
       string str;
@@ -2266,7 +2266,7 @@ namespace user
       pupdatecmdui->m_pcmdui->Enable(str.has_char());
    }
 
-   void edit_plain_text::_001OnEditFocusCopy(gen::signal_object * pobj)
+   void edit_plain_text::_001OnEditFocusCopy(ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -2277,13 +2277,13 @@ namespace user
 
    }
 
-   void edit_plain_text::_001OnUpdateEditFocusPaste(gen::signal_object * pobj)
+   void edit_plain_text::_001OnUpdateEditFocusPaste(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pupdatecmdui, pobj)
       pupdatecmdui->m_pcmdui->Enable(System.copydesk().get_plain_text().has_char());
    }
 
-   void edit_plain_text::_001OnEditFocusPaste(gen::signal_object * pobj)
+   void edit_plain_text::_001OnEditFocusPaste(ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -2295,6 +2295,6 @@ namespace user
    }
 
 
-} // namespace gen
+} // namespace ca
 
 

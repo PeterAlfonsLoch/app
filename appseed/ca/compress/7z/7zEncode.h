@@ -8,7 +8,7 @@ namespace n7z
 {
 
    class CEncoder :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
       ::libcompress::coder_mixer::CCoderMixer2MT *                 _mixerCoderSpec;
       ::ca::smart_pointer < ::libcompress::coder2_interface >      _mixerCoder;
@@ -30,10 +30,10 @@ namespace n7z
       HRESULT EncoderConstr();
       HRESULT Encode(
          ::libcompress::codecs_info_interface *codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
-         ::gen::reader *inStream,
+         ::ca::reader *inStream,
          const file_size *inStreamSize, const file_size *inSizeForReduce,
          CFolder &folderItem,
-         ::gen::writer *outStream,
+         ::ca::writer *outStream,
          base_array < file_size > &packSizes,
          ::libcompress::progress_info_interface *compressProgress);
    };

@@ -7,7 +7,7 @@ namespace user
    class keyboard_layout;
 
    class CLASS_DECL_ca keyboard :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -25,7 +25,7 @@ namespace user
 
       string process_escape(const char * pszChar);
 
-      void process_escape(::xml::node * pnode, gen::property_set & set);
+      void process_escape(::xml::node * pnode, ca::property_set & set);
 
       string get_current_system_layout();
 

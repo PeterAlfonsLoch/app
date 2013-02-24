@@ -27,7 +27,7 @@ namespace filehandler
 
    }
 
-   void view::install_message_handling(::gen::message::dispatch * pinterface)
+   void view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       form_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &view::_001OnCreate);
@@ -41,16 +41,16 @@ namespace filehandler
       layout();
    }
 
-   void view::_001OnTimer(gen::signal_object * pobj)
+   void view::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(gen::message::timer, ptimer, pobj);
+      SCAST_PTR(ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1984)
       {
          refresh();
       }
    }
 
-   void view::_001OnCreate(gen::signal_object * pobj)
+   void view::_001OnCreate(ca::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -94,9 +94,9 @@ namespace filehandler
       ::ca::application * papp = pview->get_app();
       bool bHover = pview->m_iHover == pitem->m_iIndex;
       cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
-      if(!Sys(papp).savings().is_trying_to_save(gen::resource_processing)
-         && !Sys(papp).savings().is_trying_to_save(gen::resource_display_bandwidth)
-         && !Sys(papp).savings().is_trying_to_save(gen::resource_memory))
+      if(!Sys(papp).savings().is_trying_to_save(ca::resource_processing)
+         && !Sys(papp).savings().is_trying_to_save(ca::resource_display_bandwidth)
+         && !Sys(papp).savings().is_trying_to_save(ca::resource_memory))
       {
          class imaging & imaging = Sys(papp).visual().imaging();
          imaging.color_blend(pdc, m_rectItem, cr, 127);
@@ -181,10 +181,10 @@ namespace filehandler
 
    }
 
-   void view::_001OnLButtonUp(gen::signal_object * pobj)
+   void view::_001OnLButtonUp(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(ca::message::mouse, pmouse, pobj);
 
       e_element eelement;
 
@@ -201,7 +201,7 @@ namespace filehandler
          Bergedge.request(varRequest);
          */
 
-         ::ca::create_context_sp createcontext(&get_app()->cast_app < ::gen::application > ().command());
+         ::ca::create_context_sp createcontext(&get_app()->cast_app < ::ca::application > ().command());
 
          createcontext->m_spCommandLine->m_strApp                 = m_list[iItem].m_strApp;
 

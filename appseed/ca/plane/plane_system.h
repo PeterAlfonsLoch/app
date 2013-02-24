@@ -231,7 +231,7 @@ namespace plane
 
    class CLASS_DECL_ca system :
       virtual public ::plane::application,
-      virtual public ::gen::system
+      virtual public ::ca::system
    {
    public:
 
@@ -257,26 +257,26 @@ namespace plane
       ::ca::application_ptra                       m_appptra;
       ::ca::file::system_sp                        m_spfile;
       ::ca::dir::system_sp                         m_spdir;
-      class ::ca2::stra                            m_stra;
-      class ::ca2::url                             m_url;
+      class ::ca::stra                            m_stra;
+      class ::ca::url                             m_url;
       class ::xml::xml *                           m_pxml;
-      class ::ca2::service                         m_service;
-      class ::ca2::install                         m_install;
+      class ::ca::service                         m_service;
+      class ::ca::install                         m_install;
       ::ca::os_sp                                  m_spos;
 #ifndef METROWIN
-      class ::ca2::process                         m_process;
+      class ::ca::process                         m_process;
 #endif
-      class ::ca2::datetime *                      m_pdatetime;
+      class ::ca::datetime *                      m_pdatetime;
       class ::sockets::net                             m_net;
 
-      class ::ca2::compress                        m_compress;
-      class ::ca2::patch                           m_patch;
-      ::ca2::crypt_sp                              m_spcrypt;
-      class ::ca2::http::system                    m_http;
-      class ::ca2::email                           m_email;
-      class ::ca2::file                            m_file4;
-      ::ca2::copydesk_sp                           m_spcopydesk;
-      ::ca2::port_forward_sp                       m_spportforward;
+      class ::ca::compress                        m_compress;
+      class ::ca::patch                           m_patch;
+      ::ca::crypt_sp                              m_spcrypt;
+      class ::ca::http::system                    m_http;
+      class ::ca::email                           m_email;
+      class ::ca::file                            m_file4;
+      ::ca::copydesk_sp                           m_spcopydesk;
+      ::ca::port_forward_sp                       m_spportforward;
       ::string_to_string_map                       m_mapAppLibrary;
       colorertake5::ParserFactory *                m_pparserfactory;
 
@@ -294,7 +294,7 @@ namespace plane
       class ::ca::history *                        m_phistory;
       class ::ca::window_draw *                    m_ptwf;
       //      ::sockets::net                               m_net;
-      //      sp(::ca2::filehandler::handler)  m_spfilehandler;
+      //      sp(::ca::filehandler::handler)  m_spfilehandler;
 
 
       fontopus::authentication_map                 m_authmap;
@@ -326,9 +326,9 @@ namespace plane
 
       bool                                          m_bDoNotExitIfNoApplications;
 
-      ::collection::strid_map < ::ca2::library * >  m_idmapCreateViewLibrary;
+      ::collection::strid_map < ::ca::library * >  m_idmapCreateViewLibrary;
 
-      comparable_array < ::ca2::library * >         m_libraryptra;
+      comparable_array < ::ca::library * >         m_libraryptra;
 
 #ifdef METROWIN
       Platform::Agile < Windows::UI::Core::CoreWindow > m_window;
@@ -417,32 +417,32 @@ namespace plane
       FT_Library                       & ftlibrary();
 
       ::ca::application_ptra           & appptra();
-      ::ca2::datetime                  & datetime();
+      ::ca::datetime                  & datetime();
 
       inline ::ca::file::system        & file()    { return m_spfile; }
       inline ::ca::dir::system         & dir()     { return m_spdir; }
-      ::ca2::stra                      & stra();
-      inline ::ca2::url                & url()     { return m_url; }
+      ::ca::stra                      & stra();
+      inline ::ca::url                & url()     { return m_url; }
       ::xml::xml                       & xml();
-      ::ca2::install                   & install();
-      ::ca2::service                   & service();
+      ::ca::install                   & install();
+      ::ca::service                   & service();
       class ::machine_event_central    & machine_event_central();
       class ::ca::os                   & os();
       using ::plane::application::process;
 #ifndef METROWIN
-      ::ca2::process                   & process();
+      ::ca::process                   & process();
 #endif
       class ::sockets::net             & net();
 
       ::ca::history                    & hist();
 
-      class ::ca2::compress            & compress();
-      class ::ca2::patch               & patch();
-      class ::ca2::crypt               & crypt();
-      class ::ca2::http::system        & http();
-      class ::ca2::email               & email();
-      class ::ca2::file                & file36();
-      class ::ca2::copydesk            & copydesk();
+      class ::ca::compress            & compress();
+      class ::ca::patch               & patch();
+      class ::ca::crypt               & crypt();
+      class ::ca::http::system        & http();
+      class ::ca::email               & email();
+      class ::ca::file                & file36();
+      class ::ca::copydesk            & copydesk();
 
       ::fontopus::user_set             & userset();
 
@@ -601,7 +601,7 @@ namespace plane
       virtual ::count get_desk_monitor_count();
       virtual bool  get_desk_monitor_rect(index i, LPRECT lprect);
 
-      virtual ::gen::command_thread & command_thread();
+      virtual ::ca::command_thread & command_thread();
 
 
       virtual bool on_install();
@@ -610,7 +610,7 @@ namespace plane
 
       virtual string get_host_location_url();
 
-      virtual bool add_library(::ca2::library * plibrary);
+      virtual bool add_library(::ca::library * plibrary);
 
       virtual void get_cursor_pos(LPPOINT lppoint);
 
@@ -626,7 +626,7 @@ namespace plane
 } // namespace cube
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -831,19 +831,19 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 #if defined(LINUX) || defined(MACOS)
 
 
 template < class T >
-bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::gen::writer &, const char *), const char * lpszSource)
+bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   gen::filesp fileOut = App(papp).file().get_file(pszOutput, gen::file::mode_create | gen::file::type_binary | gen::file::mode_write);
+   ca::filesp fileOut = App(papp).file().get_file(pszOutput, ca::file::mode_create | ca::file::type_binary | ca::file::mode_write);
 
    if(fileOut.is_null())
       return false;
@@ -854,17 +854,17 @@ bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput
 
 
 template < class T >
-bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::gen::writer &, ::gen::reader &), const char * lpszInput)
+bool ::ca::file::system::output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
 {
 
    App(papp).dir().mk(System.dir().name(pszOutput));
 
-   gen::filesp fileOut = App(papp).file().get_file(pszOutput, gen::file::mode_create | gen::file::type_binary | gen::file::mode_write);
+   ca::filesp fileOut = App(papp).file().get_file(pszOutput, ca::file::mode_create | ca::file::type_binary | ca::file::mode_write);
 
    if(fileOut.is_null())
       return false;
 
-   gen::filesp fileIn = App(papp).file().get_file(lpszInput, gen::file::type_binary | gen::file::mode_read);
+   ca::filesp fileIn = App(papp).file().get_file(lpszInput, ca::file::type_binary | ca::file::mode_read);
 
    if(fileIn.is_null())
       return false;

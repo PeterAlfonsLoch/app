@@ -97,7 +97,7 @@ typedef err_status_t (*cipher_dealloc_func_t)(cipher_pointer_t cp);
 typedef err_status_t (*cipher_set_segment_func_t)
      (void *state, xtd_seq_num_t idx);
 
-/* by ca2 camilost */
+/* by ca camilost */
 typedef err_status_t (*cipher_crypt_func_t)
      (void *state, uint8_t *buffer, uint32_t *octets_to_encrypt);
 

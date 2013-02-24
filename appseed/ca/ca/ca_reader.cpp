@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -137,7 +137,7 @@ namespace gen
       if(m_spreader.is_set())
       {
          m_spreader->close();
-         gen::release(m_spreader.m_p);
+         ca::release(m_spreader.m_p);
       }
    }
 
@@ -166,7 +166,7 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 

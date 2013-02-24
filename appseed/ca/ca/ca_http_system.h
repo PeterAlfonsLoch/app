@@ -14,7 +14,7 @@ namespace fontopus
 } // namespace fontopus
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -22,13 +22,13 @@ namespace ca2
    {
 
       class CLASS_DECL_ca system :
-         virtual public gen::signalizable
+         virtual public ca::signalizable
       {
       public:
 
 
          class CLASS_DECL_ca pac :
-            virtual public ::gen::object
+            virtual public ::ca::object
          {
          public:
 
@@ -46,7 +46,7 @@ namespace ca2
 
 
          class CLASS_DECL_ca proxy :
-            virtual public ::gen::object
+            virtual public ::ca::object
          {
          public:
 
@@ -81,18 +81,18 @@ namespace ca2
                      ::sockets::socket_handler & handler, 
                      const char * pszHost,
                      const char * pszProtocol,
-                     gen::property_set & set,
+                     ca::property_set & set,
                      ::fontopus::user * puser,
                      const char * pszVersion);
 
-         ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         ::sockets::http_session * request(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, ca::property_set & post, ca::property_set & headers, ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
 
          ::sockets::http_session * get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
 
 
 
 
-         ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         ::sockets::http_client_socket * get(::sockets::socket_handler & handler, const char * pszUrl, ca::property_set & post, ca::property_set & headers, ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
 
 
 
@@ -100,33 +100,33 @@ namespace ca2
 
 
          bool get(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool get(const char * pszUrl, primitive::memory_base & memory, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         bool get(const char * pszUrl, primitive::memory_base & memory, ca::property_set & post, ca::property_set & headers, ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool get(const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
-         bool get(const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         bool get(const char * pszUrl, string & str, ca::property_set & post, ca::property_set & headers, ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
 
          bool exists(const char * pszUrl, ::fontopus::user * puser = NULL);
 
          string get(const char * pszUrl, ::fontopus::user * puser = NULL);
 
-         using ::gen::object::request;
+         using ::ca::object::request;
          bool request(const char * pszRequest, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool request(const char * pszRequest, const char * pszUrl, string & str, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
+         bool request(const char * pszRequest, const char * pszUrl, string & str, ca::property_set & post, ca::property_set & headers, ca::property_set & set, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = NULL, e_status * pestatus = NULL);
          bool request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser = NULL);
 
 
          string request(const char * pszRequest, const char * pszUrl, ::fontopus::user * puser = NULL);
 
 
-         bool download(const char * pszUrl, const char * pszFile, gen::property_set & post, gen::property_set & headers, gen::property_set & set, ::http::cookies * pcookies = NULL,  ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
-         bool download(const char * pszUrl, const char * pszFile, const char * pszPost, gen::property_set & headers, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
+         bool download(const char * pszUrl, const char * pszFile, ca::property_set & post, ca::property_set & headers, ca::property_set & set, ::http::cookies * pcookies = NULL,  ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
+         bool download(const char * pszUrl, const char * pszFile, const char * pszPost, ca::property_set & headers, ::http::cookies * pcookies = NULL, ::fontopus::user * puser = NULL, const char * pszVersion = "HTTP/1.1");
          bool download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser = NULL);
 
 
          bool put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool put(const char * pszUrl, gen::file * pfile, ::fontopus::user * puser = NULL);
+         bool put(const char * pszUrl, ca::file * pfile, ::fontopus::user * puser = NULL);
 
          bool put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser = NULL);
-         bool put(string & strResponse, const char * pszUrl, gen::file * pfile, ::fontopus::user * puser = NULL);
+         bool put(string & strResponse, const char * pszUrl, ca::file * pfile, ::fontopus::user * puser = NULL);
 
 
          void defer_auto_initialize_proxy_configuration();
@@ -147,5 +147,5 @@ namespace ca2
    } // namespace http
 
 
-} // namespace ca2
+} // namespace ca
 

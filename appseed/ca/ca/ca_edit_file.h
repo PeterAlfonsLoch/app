@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca edit_file : 
-      public gen::filesp,
-      public gen::tree,
-      public gen::tree_data
+      public ca::filesp,
+      public ca::tree,
+      public ca::tree_data
    {
    public:
 
@@ -161,14 +161,14 @@ namespace gen
 
       //ItemPtrArray         m_itemptra;
       //tree_data            m_tree;
-      ::gen::tree_item *   m_ptreeitem;
-      ::gen::tree_item *   m_ptreeitemFlush;
+      ::ca::tree_item *   m_ptreeitem;
+      ::ca::tree_item *   m_ptreeitemFlush;
       ::primitive::memory_offset              m_iBranch;
-      gen::file *          m_pfile;
+      ca::file *          m_pfile;
       GroupItem *          m_pgroupitem;
       bool                 m_bRootDirection;
 
-      void SetFile(gen::file * pfile);
+      void SetFile(ca::file * pfile);
 
       void FillFilePosition(Item * pitem);
 
@@ -179,7 +179,7 @@ namespace gen
       //void load_string(string & str);
       //void create(::primitive::memory_offset iSize = -1);
       //void seek_to_begin();
-      file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
+      file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
       file_position get_position() const;
 
       //virtual string GetFilePath() const;
@@ -195,9 +195,9 @@ namespace gen
 
 
       void flush();
-      bool SaveTo(gen::byte_output_stream & file);
-      bool Save(gen::file & file);
-      bool Save_N_to_CRLF(gen::file & file);
+      bool SaveTo(ca::byte_output_stream & file);
+      bool Save(ca::file & file);
+      bool Save_N_to_CRLF(ca::file & file);
 
 
       void Insert(DeleteItem * pitem);
@@ -212,8 +212,8 @@ namespace gen
       void MacroEnd();
 
 
-      ::gen::tree_item * get_previous(::gen::tree_item * pitem);
-      ::gen::tree_item * get_next(::gen::tree_item * pitem, bool bChild = true);
+      ::ca::tree_item * get_previous(::ca::tree_item * pitem);
+      ::ca::tree_item * get_next(::ca::tree_item * pitem, bool bChild = true);
 
       virtual tree_item_data * on_allocate_item();
       virtual void on_delete_item(tree_item_data * pitem);
@@ -230,8 +230,8 @@ namespace gen
 
 
       edit_file(const edit_file & ) :
-         ::gen::tree(NULL),
-         ::gen::tree_data(NULL)
+         ::ca::tree(NULL),
+         ::ca::tree_data(NULL)
       {
       }
 
@@ -239,6 +239,6 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca
 
 

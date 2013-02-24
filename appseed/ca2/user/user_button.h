@@ -45,7 +45,7 @@ namespace user
       virtual bool create_control(class control::descriptor * pdescriptor);
 
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool _001IsWindowEnabled();
       virtual void _001EnableWindow(bool bEnable = true);
       virtual void _001SetCheck(check::e_check check, bool bUser);

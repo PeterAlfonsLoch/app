@@ -16,7 +16,7 @@ namespace user
 
       request(pcreatecontext);
 
-      return pcreatecontext->m_spCommandLine->m_varQuery["document"].ca2 < ::user::document_interface > ();
+      return pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > ();
 
    }
 

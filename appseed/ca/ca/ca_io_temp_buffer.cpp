@@ -11,7 +11,7 @@ using namespace NWindows;
 using namespace NFile;
 using namespace NDirectory;*/
 
-namespace gen
+namespace ca
 {
 
    static const uint32_t kTempBufSize = (1 << 20);
@@ -87,8 +87,8 @@ namespace gen
       }
       if (_tempFileCreated)
       {
-         ::gen::filesp inFile(get_app());
-         if (!inFile->open(_tempFileName, gen::file::mode_read | gen::file::type_binary))
+         ::ca::filesp inFile(get_app());
+         if (!inFile->open(_tempFileName, ca::file::mode_read | ca::file::type_binary))
             return E_FAIL;
          while (size < _size)
          {
@@ -118,4 +118,4 @@ namespace gen
          *processed = size;
    }
 
-} // namespace gen
+} // namespace ca

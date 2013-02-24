@@ -8,9 +8,9 @@ namespace collection
 {
 
 
-   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = gen::compare < KEY > >
+   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE = ca::compare < KEY > >
    class fifo_map :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -766,7 +766,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
    void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::dump(dump_context & dumpcontext) const
    {
-      ::gen::object::dump(dumpcontext);
+      ::ca::object::dump(dumpcontext);
 
       dumpcontext << "with " << m_ptra.get_count() << " elements";
       if (dumpcontext.GetDepth() > 0)
@@ -791,7 +791,7 @@ namespace collection
    void fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::assert_valid() const
    {
 
-      ::gen::object::assert_valid();
+      ::ca::object::assert_valid();
 
    }
 
@@ -883,7 +883,7 @@ namespace collection
    }
 
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = gen::compare < string > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ca::compare < string > >
    class fifo_string_map :
       virtual public fifo_attrib_map < fifo_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >
    {
@@ -926,7 +926,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = gen::strid_compare  >
+   template < class VALUE, class ARG_VALUE = const VALUE & , class COMPARE = ca::strid_compare  >
    class fifo_strid_map :
       virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE, COMPARE > >
    {
@@ -968,7 +968,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = gen::compare < int32_t > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ca::compare < int32_t > >
    class fifo_int_map :
       virtual public fifo_attrib_map < fifo_map < int32_t, int32_t, VALUE, ARG_VALUE, COMPARE > >
    {

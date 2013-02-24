@@ -26,11 +26,11 @@ namespace filemanager
       virtual void _017OpenFolder(const ::fs::item & item);
       void StartAnimation();
       void RenameFile(int32_t iLine, string & str);
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
-      virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
+      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
     
    #ifdef DEBUG

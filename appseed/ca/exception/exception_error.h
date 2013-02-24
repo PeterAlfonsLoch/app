@@ -4,7 +4,7 @@
 class CLASS_DECL_ca error_exception : 
    virtual public base_exception
 {
-   // base class for resource-critical ca2 API exceptions
+   // base class for resource-critical ca API exceptions
    // handles ownership and initialization of an error message
 public:
    

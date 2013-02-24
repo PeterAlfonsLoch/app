@@ -39,7 +39,7 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
 
    }
 
-   m_object = ::CreateEventEx(lpsaAttribute, gen::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
+   m_object = ::CreateEventEx(lpsaAttribute, ca::international::utf8_to_unicode(pstrName), dwFlags, DELETE | EVENT_MODIFY_STATE | SYNCHRONIZE);
 
    if(m_object == NULL)
       throw resource_exception(papp);
@@ -64,7 +64,7 @@ event::event(::ca::application * papp, bool bInitiallyOwn, bool bManualReset, co
       if(pstrName != NULL && *pstrName != '\0')
       {
 
-         string strPath = "/ca2/time/ftok/event/" + string(pstrName);
+         string strPath = "/ca/time/ftok/event/" + string(pstrName);
 
          m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 
@@ -225,7 +225,7 @@ void event::wait ()
 
 
 	if ( ::WaitForSingleObjectEx(item(), INFINITE, FALSE) != WAIT_OBJECT_0 )
-		throw runtime_error(get_app(), "gen::pal::Event::wait: failure");
+		throw runtime_error(get_app(), "ca::pal::Event::wait: failure");
 
 #else
 

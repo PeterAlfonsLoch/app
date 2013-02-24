@@ -51,8 +51,8 @@ void dump_context::output_string(const char * lpsz)
    // use C-runtime/OutputDebugString when m_pfile is NULL
    if (m_pfile == NULL)
    {
-      ::OutputDebugStringW(gen::international::utf8_to_unicode(lpsz));
-      //     TRACE(::gen::trace::category_dumpContext, 0, "%s", lpsz);
+      ::OutputDebugStringW(ca::international::utf8_to_unicode(lpsz));
+      //     TRACE(::ca::trace::category_dumpContext, 0, "%s", lpsz);
       return;
    }
 
@@ -67,7 +67,7 @@ void dump_context::output_string(const char * lpsz)
 #endif
 }
 
-dump_context::dump_context(gen::file * pFile)
+dump_context::dump_context(ca::file * pFile)
 {
    if (pFile)
       ASSERT_VALID(pFile);
@@ -326,7 +326,7 @@ dump_context & dump_context::hex_dump(uint64_t ui)
 
 }
 
-dump_context & dump_context::operator<<(const ::gen::object* pOb)
+dump_context & dump_context::operator<<(const ::ca::object* pOb)
 {
 
    if (pOb == NULL)
@@ -338,7 +338,7 @@ dump_context & dump_context::operator<<(const ::gen::object* pOb)
 
 }
 
-dump_context & dump_context::operator<<(const ::gen::object& ob)
+dump_context & dump_context::operator<<(const ::ca::object& ob)
 {
 
    return *this << &ob;
@@ -452,6 +452,6 @@ dump_context & dump_context::operator<<(const wchar_t * lpsz)
       return *this;
    }
 
-   return *this << gen::international::unicode_to_utf8(lpsz);
+   return *this << ca::international::unicode_to_utf8(lpsz);
 
 }

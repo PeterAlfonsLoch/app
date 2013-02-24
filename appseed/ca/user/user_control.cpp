@@ -24,7 +24,7 @@ namespace user
          {
             m_pcontrol->unsubclass_window();
          }
-         gen::del(m_pcontrol);
+         ca::del(m_pcontrol);
       }
    }
 
@@ -183,7 +183,7 @@ namespace user
 
    }
 
-   void control::install_message_handling(::gen::message::dispatch * pdispatch)
+   void control::install_message_handling(::ca::message::dispatch * pdispatch)
    {
 
       ::view::install_message_handling(pdispatch);
@@ -225,12 +225,12 @@ namespace user
    {
       m_pwndCustomWindowProc = pwnd;
       keeper <bool> keepOnCustomMessage(&m_bCustomWindowProc, true, false, true);
-      gen::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
+      ca::message::base base(get_app(), pwnd, message, wparam, lparam, lresult);
       _003CustomWindowProc(&base);
       return base.m_bRet;
    }
 
-   void control::_003CustomWindowProc(gen::signal_object * pobj)
+   void control::_003CustomWindowProc(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -489,9 +489,9 @@ namespace user
       return dynamic_cast < ::user::interaction * > (this);
    }
 
-   void control::BaseControlExWndProcBefore(gen::signal_object * pobj)
+   void control::BaseControlExWndProcBefore(ca::signal_object * pobj)
    {
-      SCAST_PTR(gen::message::base, pbase, pobj);
+      SCAST_PTR(ca::message::base, pbase, pobj);
 #ifdef WINDOWSEX
       if(pbase->m_uiMessage == g_uiMessage)
       {
@@ -516,9 +516,9 @@ namespace user
       }
    }
 
-   void control::BaseControlExWndProcAfter(gen::signal_object * pobj)
+   void control::BaseControlExWndProcAfter(ca::signal_object * pobj)
    {
-      SCAST_PTR(gen::message::base, pbase, pobj);
+      SCAST_PTR(ca::message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_KILLFOCUS:
@@ -767,9 +767,9 @@ namespace user
    }
 
 
-   void control::_001OnMouseMove(gen::signal_object * pobj)
+   void control::_001OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
       index iHover = hit_test(pmouse->m_pt, m_eelementHover);
 
@@ -788,7 +788,7 @@ namespace user
    }
 
 
-   void control::_001OnMouseLeave(gen::signal_object * pobj)
+   void control::_001OnMouseLeave(ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -829,7 +829,7 @@ namespace user
    }
 
 
-   control_cmd_ui::control_cmd_ui(gen::signal * psignal) :
+   control_cmd_ui::control_cmd_ui(ca::signal * psignal) :
       base_cmd_ui(psignal)
    {
    }
@@ -842,4 +842,4 @@ namespace user
 
 
 
-} // namespace gen
+} // namespace ca

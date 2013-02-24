@@ -19,7 +19,7 @@ namespace user
    }
 
 
-   void combo_list::install_message_handling(::gen::message::dispatch * pdispatch)
+   void combo_list::install_message_handling(::ca::message::dispatch * pdispatch)
    {
 
       ::user::control::install_message_handling(pdispatch);
@@ -346,17 +346,17 @@ namespace user
       return TRUE;
    }
 
-   void combo_list::_001OnKillFocus(gen::signal_object * pobj)
+   void combo_list::_001OnKillFocus(ca::signal_object * pobj)
    {
 
 
 
    }
 
-   void combo_list::_001OnActivate(gen::signal_object * pobj)
+   void combo_list::_001OnActivate(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::activate, pactivate, pobj);
+      SCAST_PTR(ca::message::activate, pactivate, pobj);
 
       ::user::interaction* pActive = (pactivate->m_nState == WA_INACTIVE ? pactivate->m_pWndOther : this);
 
@@ -377,12 +377,12 @@ namespace user
          }
 
 
-         ::user::interaction * pframe = oprop("deactivate_together").ca2 < ::user::interaction >();
+         ::user::interaction * pframe = oprop("deactivate_together").ca < ::user::interaction >();
 
          if(pActive != pframe)
          {
 
-            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").ca2 < ::uinteraction::frame::WorkSet > ();
+            ::uinteraction::frame::WorkSet * pset = oprop("deactivate_together_set").ca < ::uinteraction::frame::WorkSet > ();
 
             pset->SetActiveFlag(FALSE);
 
@@ -398,18 +398,18 @@ namespace user
 
    }
 
-   void combo_list::_001OnMouseActivate(gen::signal_object * pobj)
+   void combo_list::_001OnMouseActivate(ca::signal_object * pobj)
    {
 
-//      SCAST_PTR(gen::message::mouse_activate, pactivate, pobj);
+//      SCAST_PTR(ca::message::mouse_activate, pactivate, pobj);
 
 
    }
 
-   void combo_list::_001OnLButtonDown(gen::signal_object * pobj)
+   void combo_list::_001OnLButtonDown(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(ca::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -441,10 +441,10 @@ namespace user
 
    }
 
-   void combo_list::_001OnMButtonDown(gen::signal_object * pobj)
+   void combo_list::_001OnMButtonDown(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(ca::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -467,10 +467,10 @@ namespace user
 
    }
 
-   void combo_list::_001OnRButtonDown(gen::signal_object * pobj)
+   void combo_list::_001OnRButtonDown(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(ca::message::mouse, pmouse, pobj);
 
       point pt = pmouse->m_pt;
 
@@ -494,10 +494,10 @@ namespace user
    }
 
 
-   void combo_list::_001OnMouseMove(gen::signal_object * pobj)
+   void combo_list::_001OnMouseMove(ca::signal_object * pobj)
    {
 
-//      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+//      SCAST_PTR(ca::message::mouse, pmouse, pobj);
 
       pobj->m_bRet = true;
 
@@ -505,7 +505,7 @@ namespace user
    }
 
 
-   void combo_list::_001OnClose(gen::signal_object * pobj)
+   void combo_list::_001OnClose(ca::signal_object * pobj)
    {
       
       PostMessage(WM_DESTROY, 0, 0);

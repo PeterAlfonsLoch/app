@@ -209,12 +209,12 @@ CLASS_DECL_ca bool __enable_memory_tracking(bool bTrack);
 
 struct CLASS_DECL_ca ___ENUM_CONTEXT
 {
-   void (*m_pfn)(::gen::object*,void *);
+   void (*m_pfn)(::ca::object*,void *);
    void * m_pContext;
 };
 
 CLASS_DECL_ca __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext);
-CLASS_DECL_ca void __do_for_all_objects(void (c_cdecl *pfn)(::gen::object*, void *), void * pContext);
+CLASS_DECL_ca void __do_for_all_objects(void (c_cdecl *pfn)(::ca::object*, void *), void * pContext);
 
 /////////////////////////////////////////////////////////////////////////////
 // Automatic debug primitive::memory diagnostics
@@ -267,19 +267,19 @@ void __cdecl operator delete[](void * p);
 //void * __cdecl operator new[](size_t nSize, int32_t nType, const char * lpszFileName, int32_t nLine);
 
 
-inline void ::gen::object::operator delete(void * p)
+inline void ::ca::object::operator delete(void * p)
 {
    ca2_free_dbg(p, ___CLIENT_BLOCK);
 }
 
-inline void ::gen::object::operator delete(void * p, void *)
+inline void ::ca::object::operator delete(void * p, void *)
 {
    ca2_free_dbg(p, ___CLIENT_BLOCK);
 }
 
 #ifdef DEBUG
 
-inline void ::gen::object::operator delete(void *pObject, const char *, int32_t)
+inline void ::ca::object::operator delete(void *pObject, const char *, int32_t)
 {
    ca2_free_dbg(pObject, ___CLIENT_BLOCK);
 }

@@ -6,10 +6,10 @@ namespace libcompress
 {
 
    class CLASS_DECL_ca filter_interface :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
-     virtual gen::HRes Init() = 0;
+     virtual ca::HRes Init() = 0;
      virtual uint32_t Filter(byte *data, uint32_t size) = 0;
      // Filter converts as most as possible bytes
      // Filter return outSize (uint32_t)

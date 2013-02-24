@@ -73,7 +73,7 @@ namespace filemanager
 
 
       class CLASS_DECL_ca ImageSet :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       protected:
 

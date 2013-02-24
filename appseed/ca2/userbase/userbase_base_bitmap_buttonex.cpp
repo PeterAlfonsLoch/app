@@ -16,7 +16,7 @@ namespace userbase
    {
    }
 
-   void bitmap_button::install_message_handling(::gen::message::dispatch * pinterface)
+   void bitmap_button::install_message_handling(::ca::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &bitmap_button::_001OnMouseMove);
    }
@@ -77,7 +77,7 @@ namespace userbase
 
    }
 
-   void bitmap_button::_001OnMouseMove(gen::signal_object * pobj)
+   void bitmap_button::_001OnMouseMove(ca::signal_object * pobj)
    {
       UpdateHover();
       pobj->previous();
@@ -171,7 +171,7 @@ namespace userbase
 
    }
 
-   void bitmap_button::pre_translate_message(gen::signal_object * pobj)
+   void bitmap_button::pre_translate_message(ca::signal_object * pobj)
    {
       // Relay events from this button to the tool tip tool handler
       BaseToolTipRelayEvent(pobj);
@@ -192,7 +192,7 @@ namespace userbase
    }
 
 
-   void bitmap_button::message_handler(gen::signal_object * pobj)
+   void bitmap_button::message_handler(ca::signal_object * pobj)
    {
       BaseControlExWndProcBefore(pobj);
       if(pobj->m_bRet)

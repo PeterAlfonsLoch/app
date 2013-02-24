@@ -20,13 +20,13 @@ namespace zip
       string strZip;
       string strRemain;
       string strLastZip;
-      if(gen::str::ends_ci(lpszFileName, ".zip"))
+      if(ca::str::ends_ci(lpszFileName, ".zip"))
       {
          strZip = lpszFileName;
          strLastZip = strZip;
          strZip += ":";
       }
-      else if(gen::str::find_ci(".zip:", lpszFileName) >= 0)
+      else if(ca::str::find_ci(".zip:", lpszFileName) >= 0)
       {
          strZip = lpszFileName;
          strRemain = strZip.Mid(strZip.reverse_find(".zip:") + strlen(".zip:"));
@@ -48,10 +48,10 @@ namespace zip
       stringa wstraFolder;
 
       strRemain.replace("\\", "/");
-      gen::str::begins_eat(strRemain, "/");
+      ca::str::begins_eat(strRemain, "/");
       if(strRemain.has_char())
       {
-         if(!gen::str::ends(strRemain, "/"))
+         if(!ca::str::ends(strRemain, "/"))
             strRemain += "/";
       }
 
@@ -78,7 +78,7 @@ namespace zip
             string strTitle(szTitle);
             if(strRemain != strTitle && ((strRemain.is_empty() &&
                (strTitle.find("/") < 0  || strTitle.find("/") == (strTitle.get_length() - 1)))
-            || (strRemain.has_char() && gen::str::begins_eat_ci(strTitle, strRemain))))
+            || (strRemain.has_char() && ca::str::begins_eat_ci(strTitle, strRemain))))
             {
                if(bRecursive || strTitle.find("/") < 0 || strTitle.find("/") == (strTitle.get_length() - 1))
                {
@@ -96,9 +96,9 @@ namespace zip
                   }
                   if(pbaIsDir != NULL)
                   {
-                     pbaIsDir->add(gen::str::ends(szTitle, "/")
-                                || gen::str::ends(szTitle, "\\")
-                                || gen::str::ends(szTitle, ".zip"));
+                     pbaIsDir->add(ca::str::ends(szTitle, "/")
+                                || ca::str::ends(szTitle, "\\")
+                                || ca::str::ends(szTitle, ".zip"));
                   }
                   if(piaSize != NULL)
                   {
@@ -151,12 +151,12 @@ namespace zip
    bool Util::HasSubFolder(::ca::application * papp, const char * lpszFileName)
    {
       string strZip;
-      if(gen::str::ends_ci(lpszFileName, ".zip"))
+      if(ca::str::ends_ci(lpszFileName, ".zip"))
       {
          strZip = lpszFileName;
          strZip += ":";
       }
-      else if(gen::str::find_ci(".zip:", lpszFileName) > 0)
+      else if(ca::str::find_ci(".zip:", lpszFileName) > 0)
       {
          strZip = lpszFileName;
       }
@@ -166,7 +166,7 @@ namespace zip
       InFile infile(papp);
 
       strZip.replace("\\", "/");
-      if(!gen::str::ends_ci(strZip, "/"))
+      if(!ca::str::ends_ci(strZip, "/"))
       {
          strZip += "/";
       }
@@ -289,7 +289,7 @@ namespace zip
       if(lpszExtractFileName == NULL)
          return true;
 
-      gen::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::defer_create_directory);
+      ca::filesp spfile = App(papp).file().get_file(lpszExtractFileName, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::defer_create_directory);
 
       if(spfile.is_set())
       {
@@ -302,7 +302,7 @@ namespace zip
 
    }
 
-   bool Util::extract_all(const char * pszDir, ::gen::file * pfile)
+   bool Util::extract_all(const char * pszDir, ::ca::file * pfile)
    {
 
       InFile infile(pfile->get_app());
@@ -336,15 +336,15 @@ namespace zip
                NULL, // comment
                0);
             string strTitle(szTitle);
-            if(gen::str::ends(szTitle, "/") || gen::str::ends(szTitle, "\\"))
+            if(ca::str::ends(szTitle, "/") || ca::str::ends(szTitle, "\\"))
             {
             }
             else if(infile.locate(strTitle))
             {
 
-               gen::filesp spfile = App(pfile->get_app()).file().get_file(
+               ca::filesp spfile = App(pfile->get_app()).file().get_file(
                   Sys(pfile->get_app()).dir().path(pszDir, strTitle),
-                  ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::defer_create_directory);
+                  ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::defer_create_directory);
 
 
                if(spfile.is_set())

@@ -13,7 +13,7 @@ simple_thread::~simple_thread()
 {
    if(::ca::thread_sp::m_p != NULL)
    {
-      dynamic_cast < ::gen::thread * >(::ca::thread_sp::m_p)->m_p = NULL;
+      dynamic_cast < ::ca::thread * >(::ca::thread_sp::m_p)->m_p = NULL;
    }
    m_p->set_run(false);
    m_p->get_finish_event().wait(millis(m_dwFinishTimeout));

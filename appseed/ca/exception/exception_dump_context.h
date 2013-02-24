@@ -5,7 +5,7 @@ class CLASS_DECL_ca dump_context :
    virtual public ::ca::ca
 {
 public:
-   dump_context(gen::file * pFile = NULL);
+   dump_context(ca::file * pFile = NULL);
 
 // Attributes
    int32_t GetDepth() const;      // 0 => this object, 1 => children objects
@@ -16,8 +16,8 @@ public:
    dump_context & operator<<(const wchar_t * lpsz); // automatically thinned
    dump_context & operator<<(const string & str);
    dump_context & operator<<(const void * lp);
-   dump_context & operator<<(const ::gen::object* pOb);
-   dump_context & operator<<(const ::gen::object& ob);
+   dump_context & operator<<(const ::ca::object* pOb);
+   dump_context & operator<<(const ::ca::object& ob);
    dump_context & operator<<(int8_t i);
    dump_context & operator<<(uint8_t ui);
    dump_context & operator<<(int16_t i);
@@ -58,6 +58,6 @@ protected:
    int32_t m_nDepth;
 
 public:
-   gen::file * m_pfile;
+   ca::file * m_pfile;
 };
 

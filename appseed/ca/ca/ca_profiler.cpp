@@ -66,7 +66,7 @@ namespace ca
    } // namespace profiler
 
 
-} // namespace gen
+} // namespace ca
 
 
 

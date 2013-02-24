@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "framework.h"
 
 
-namespace gen {
+namespace ca {
 
 
 /* implementation of class parse */
@@ -308,6 +308,6 @@ namespace gen {
       s = pa_ord;
    }
 
-} // namespace gen
+} // namespace ca
 
 

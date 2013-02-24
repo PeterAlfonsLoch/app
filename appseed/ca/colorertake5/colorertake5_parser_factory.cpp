@@ -25,7 +25,7 @@ void ParserFactory::init()
    {
       throw ParserFactoryException(get_app(), e.getMessage());
    }
-   catch(gen::exception * pe)
+   catch(ca::exception * pe)
    {
       string str;
       pe->get_error_message(str);
@@ -178,9 +178,9 @@ HRCParser* ParserFactory::getHRCParser()
          {
             path = System.dir().path(System.dir().name(catalogPath), relPath);
             string path2del = path;
-            gen::str::begins_eat(path, "file://");
-            gen::str::begins_eat(path, "file:/");
-            gen::str::begins_eat(path, "file:");
+            ca::str::begins_eat(path, "file://");
+            ca::str::begins_eat(path, "file:/");
+            ca::str::begins_eat(path, "file:");
          }
          else
          {
@@ -194,7 +194,7 @@ HRCParser* ParserFactory::getHRCParser()
             }
             stringa straPath;
             System.dir().rls(get_app(), path, &straPath);
-            gen::filesp spfile(get_app());
+            ca::filesp spfile(get_app());
             for(int32_t i = 0; i < straPath.get_count(); i++)
             {
                if(!Application.dir().is(straPath[i]))
@@ -283,7 +283,7 @@ StyledHRDMapper *ParserFactory::createStyledMapper(string classID, string nameID
 
           strPath = System.dir().path(strDir, hrdLocV->element_at(idx));
 
-          gen::byte_stream spfile(Application.file().get_byte_stream(strPath, ::gen::file::mode_read | ::gen::file::type_binary));
+          ca::byte_stream spfile(Application.file().get_byte_stream(strPath, ::ca::file::mode_read | ::ca::file::type_binary));
 
           if(spfile.is_reader_set())
           {
@@ -325,7 +325,7 @@ TextHRDMapper *ParserFactory::createTextMapper(string nameID){
     {
        try
        {
-          gen::byte_stream stream(Application.file().get_byte_stream(hrdLocV->element_at(idx), ::gen::file::mode_read |::gen::file::type_binary));
+          ca::byte_stream stream(Application.file().get_byte_stream(hrdLocV->element_at(idx), ::ca::file::mode_read |::ca::file::type_binary));
           if(stream.is_reader_set())
           {
                mapper->loadRegionMappings(stream);

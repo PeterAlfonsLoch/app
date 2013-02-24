@@ -102,7 +102,7 @@ namespace user
    }
 
 
-   void list::install_message_handling(::gen::message::dispatch * pinterface)
+   void list::install_message_handling(::ca::message::dispatch * pinterface)
    {
 
       ::user::scroll_view::install_message_handling(pinterface);
@@ -546,7 +546,7 @@ namespace user
 
       if(pdrawitem->m_bListItemSelected)
       {
-         if(System.savings().is_trying_to_save(gen::resource_processing))
+         if(System.savings().is_trying_to_save(ca::resource_processing))
          {
             pdrawitem->m_pgraphics->FillSolidRect(pdrawitem->m_rectItem, ARGB(255, 96,96,96));
          }
@@ -708,9 +708,9 @@ namespace user
    layout();
    }*/
 
-   void list::_001OnSize(gen::signal_object * pobj)
+   void list::_001OnSize(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::size, psize, pobj);
+      SCAST_PTR(::ca::message::size, psize, pobj);
       layout();
       psize->m_bRet = false;
    }
@@ -1058,7 +1058,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::gen::system::idEmpty, bVisible))
+         if(data_get(str, ::ca::system::idEmpty, bVisible))
          {
             if(!bVisible)
             {
@@ -1071,7 +1071,7 @@ namespace user
       {
          list_column * pcolumn = m_columna._001GetNonVisible(iColumn);
          str.Format("SubItem[%d].Visible", pcolumn->m_iSubItem);
-         if(data_get(str, ::gen::system::idEmpty, bVisible))
+         if(data_get(str, ::ca::system::idEmpty, bVisible))
          {
             if(bVisible)
             {
@@ -2233,9 +2233,9 @@ namespace user
       }
    }
 
-   void list::_001OnKeyDown(gen::signal_object * pobj)
+   void list::_001OnKeyDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
          if(pkey->previous()) // give chance to child
             return;
       if(pkey->m_nChar == VK_DOWN || pkey->m_nChar == VK_UP ||
@@ -2314,9 +2314,9 @@ namespace user
       pobj->m_bRet = false;
    }
 
-   void list::_001OnLButtonDown(gen::signal_object * pobj)
+   void list::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       pmouse->previous(); // give chance to child control and to base views
       int_ptr iItem;
       point pt = pmouse->m_pt;
@@ -2376,9 +2376,9 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void list::_001OnLButtonUp(gen::signal_object * pobj)
+   void list::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          point pt = pmouse->m_pt;
       ScreenToClient(&pt);
 
@@ -2419,9 +2419,9 @@ namespace user
       pmouse->set_lresult(1);
    }
 
-   void list::_001OnRButtonDown(gen::signal_object * pobj)
+   void list::_001OnRButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 
       pmouse->previous();
       point pt = pmouse->m_pt;
@@ -2477,12 +2477,12 @@ namespace user
       else if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::gen::message_event, 0, (LPARAM) &ev);
+            ::ca::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::gen::message_event, 0, (LPARAM) &ev);
+            ::ca::message_event, 0, (LPARAM) &ev);
       }
 
    }
@@ -2665,9 +2665,9 @@ namespace user
       return -1;
    }
 
-   void list::_001OnLButtonDblClk(gen::signal_object * pobj)
+   void list::_001OnLButtonDblClk(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          m_iClick = 2;
 
       //   _001OnClick(nFlags, point);
@@ -2785,7 +2785,7 @@ namespace user
          width = m_columna.element_at(i).m_iWidth;
          data_set(
             str,
-            ::gen::system::idEmpty,
+            ::ca::system::idEmpty,
             width);
       }
 
@@ -2815,7 +2815,7 @@ namespace user
       str.Format("SubItem[%d].Visible", iSubItem);
       data_set(
          str,
-         ::gen::system::idEmpty,
+         ::ca::system::idEmpty,
          bShow ? 1 : 0);
       m_columna.ShowSubItem(iSubItem, bShow);
       _001OnColumnChange();
@@ -3251,13 +3251,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_set(
             str,
-            ::gen::system::idEmpty,
+            ::ca::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_set(
          str,
-         ::gen::system::idEmpty,
+         ::ca::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
 
@@ -3273,13 +3273,13 @@ namespace user
          str.Format("list_column[%d].Next", iKey);
          m_plist->data_get(
             str,
-            ::gen::system::idEmpty,
+            ::ca::system::idEmpty,
             column->m_iNextGlobalOrderKey);
       }
       str.Format("list_column[-1].Next");
       m_plist->data_get(
          str,
-         ::gen::system::idEmpty,
+         ::ca::system::idEmpty,
          m_iFirstGlobalOrderKey);
 
       GlobalToVisibleOrder();
@@ -3438,9 +3438,9 @@ namespace user
       }
    }
 
-   void list::_001OnCreate(gen::signal_object * pobj)
+   void list::_001OnCreate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::create, pcreate, pobj)
+      SCAST_PTR(::ca::message::create, pcreate, pobj)
 
 
          pobj->previous();
@@ -3514,10 +3514,10 @@ namespace user
    }
 
 
-   void list::_001OnTimer(gen::signal_object * pobj)
+   void list::_001OnTimer(ca::signal_object * pobj)
    {
 //      return; //xxxtimer
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 12345679) // left click
       {
          KillTimer(12345679);
@@ -4709,7 +4709,7 @@ namespace user
       return m_fontHover;
    }
 
-   void list::_001OnMouseLeave(gen::signal_object * pobj)
+   void list::_001OnMouseLeave(ca::signal_object * pobj)
    {
       m_iItemHover = -1;
       m_iSubItemHover = -1;
@@ -4718,9 +4718,9 @@ namespace user
    }
 
 
-   void list::_001OnMouseMove(gen::signal_object * pobj)
+   void list::_001OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -4887,17 +4887,17 @@ namespace user
    }
 
 
-   void list::_001OnVScroll(gen::signal_object * pobj)
+   void list::_001OnVScroll(ca::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+//      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
 
       pobj->previous();
 
    }
 
-   void list::_001OnHScroll(gen::signal_object * pobj)
+   void list::_001OnHScroll(ca::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+//      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
 
       pobj->previous();
 
@@ -5006,13 +5006,13 @@ namespace user
    {
    }
 
-   void list::list_layout::write(::gen::byte_output_stream & ostream)
+   void list::list_layout::write(::ca::byte_output_stream & ostream)
    {
       //ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::list_layout::read(::gen::byte_input_stream & istream)
+   void list::list_layout::read(::ca::byte_input_stream & istream)
    {
       //istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;
@@ -5026,13 +5026,13 @@ namespace user
    {
    }
 
-   void list::icon_layout::write(::gen::byte_output_stream & ostream)
+   void list::icon_layout::write(::ca::byte_output_stream & ostream)
    {
       ostream << m_iaDisplayToStrict;
       ostream << m_iWidth;
    }
 
-   void list::icon_layout::read(::gen::byte_input_stream & istream)
+   void list::icon_layout::read(::ca::byte_input_stream & istream)
    {
       istream >> m_iaDisplayToStrict;
       istream >> m_iWidth;
@@ -5084,13 +5084,13 @@ namespace user
       return m_flags.is_signalized(flag_auto_arrange);
    }
 
-   void list::_001OnListViewAutoArrange(gen::signal_object * pobj)
+   void list::_001OnListViewAutoArrange(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       auto_arrange(!get_auto_arrange());
    }
 
-   void list::_001OnUpdateListViewAutoArrange(gen::signal_object * pobj)
+   void list::_001OnUpdateListViewAutoArrange(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->_001SetCheck(get_auto_arrange());

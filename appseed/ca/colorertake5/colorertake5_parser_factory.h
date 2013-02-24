@@ -33,7 +33,7 @@ namespace colorertake5
  * @ingroup colorer
  */
    class CLASS_DECL_ca ParserFactory :
-      virtual public ::gen::object
+      virtual public ::ca::object
 {
 public:
 
@@ -115,7 +115,7 @@ private:
   string searchPath();
 
   string catalogPath;
-  gen::byte_input_stream * catalogFIS;
+  ca::byte_input_stream * catalogFIS;
   ErrorHandler *fileErrorHandler;
   stringa hrcLocations;
   ::collection::string_map < ::collection::string_map < stringa >, const ::collection::string_map < stringa > & > hrdLocations;

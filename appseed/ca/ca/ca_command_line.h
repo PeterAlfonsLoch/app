@@ -11,7 +11,7 @@ namespace fs
 } // namespace fs
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -19,7 +19,7 @@ namespace gen
 
 
    class CLASS_DECL_ca command_line :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -89,5 +89,5 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 

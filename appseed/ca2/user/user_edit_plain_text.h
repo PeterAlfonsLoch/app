@@ -13,7 +13,7 @@ namespace user
       virtual public scroll_view,
       public colorertake5::base_editor,
       public ca::data_listener,
-      public gen::tree
+      public ca::tree
    {
    public:
 
@@ -119,11 +119,11 @@ namespace user
 
 
 
-      virtual void pre_translate_message(gen::signal_object * pobj);
+      virtual void pre_translate_message(ca::signal_object * pobj);
 
       void key_to_char(WPARAM wparam, LPARAM lparam);
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual void OnDraw(::ca::graphics * pgraphics);      // overridden to draw this ::view
       DECL_GEN_SIGNAL(_001OnInitialUpdate)
 
@@ -200,8 +200,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetCursor)
 
 
-      virtual gen::tree_item_data * on_allocate_item();
-      virtual void on_delete_item(gen::tree_item_data * pitem);
+      virtual ca::tree_item_data * on_allocate_item();
+      virtual void on_delete_item(ca::tree_item_data * pitem);
 
 
    };

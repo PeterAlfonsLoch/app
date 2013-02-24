@@ -13,7 +13,7 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
 
 #ifdef _WIN32
 
-   m_object = ::CreateMutexExW(lpsaAttribute, pstrName == NULL ? NULL : (const wchar_t *) gen::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
+   m_object = ::CreateMutexExW(lpsaAttribute, pstrName == NULL ? NULL : (const wchar_t *) ca::international::utf8_to_unicode(pstrName), bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, DELETE | SYNCHRONIZE);
 
    if(m_object == NULL)
    {
@@ -27,7 +27,7 @@ mutex::mutex(::ca::application * papp, bool bInitiallyOwn, const char * pstrName
       else
       {
 
-         m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, gen::international::utf8_to_unicode(pstrName));
+         m_object = ::OpenMutexW(SYNCHRONIZE, TRUE, ca::international::utf8_to_unicode(pstrName));
 
          if(m_object == NULL)
          {
@@ -310,7 +310,7 @@ mutex * mutex::open_mutex(::ca::application * papp,  const char * pstrName)
 
 #ifdef WINDOWS
 
-   HANDLE h = ::OpenMutexW(SYNCHRONIZE, FALSE, gen::international::utf8_to_unicode(pstrName));
+   HANDLE h = ::OpenMutexW(SYNCHRONIZE, FALSE, ca::international::utf8_to_unicode(pstrName));
 
    if(h == NULL || h == INVALID_HANDLE_VALUE)
       return NULL;

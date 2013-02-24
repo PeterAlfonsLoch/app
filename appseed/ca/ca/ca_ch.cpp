@@ -4,7 +4,7 @@
 #include "ca/x/x_charcategory_names.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -320,7 +320,7 @@ error:
 
    } // namespace ch
 
-} // namespace gen
+} // namespace ca
 
 
 /* ***** BEGIN LICENSE BLOCK *****

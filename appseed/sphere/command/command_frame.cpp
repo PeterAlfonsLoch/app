@@ -13,7 +13,7 @@ namespace command
    {
       m_pimagelist = NULL;
       m_iFrameData = 10;
-      m_dataid = "ca2::command::frame";
+      m_dataid = "ca::command::frame";
       m_iAnimateStep = 0;
       m_bTimerHide = false;
 
@@ -174,9 +174,9 @@ namespace command
    #endif //DEBUG
 
 
-   void frame::_001OnTimer(gen::signal_object * pobj)
+   void frame::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       UINT nIDEvent = ptimer->m_nIDEvent;
       static float theta;
       if(nIDEvent == 3)
@@ -344,14 +344,14 @@ namespace command
    }
 
 
-   void frame::_001OnClose(gen::signal_object * pobj)
+   void frame::_001OnClose(ca::signal_object * pobj)
    {
       pobj->m_bRet = true;
       ShowWindow(SW_HIDE);
    }
 
 
-   void frame::install_message_handling(::gen::message::dispatch * pinterface)
+   void frame::install_message_handling(::ca::message::dispatch * pinterface)
    {
       simple_frame_window::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &frame::_001OnCreate);
@@ -362,13 +362,13 @@ namespace command
       IGUI_WIN_MSG_LINK(WM_APP + 2000  , pinterface, this, &frame::_001OnApp2000);
    }
 
-   void frame::_001OnCreate(gen::signal_object * pobj)
+   void frame::_001OnCreate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::create, pcreate, pobj);
+      SCAST_PTR(::ca::message::create, pcreate, pobj);
       pobj->previous();
       if(pobj->m_bRet)
          return;
-      if(!initialize_message_window("ca2::fontopus::message_wnd::command"))
+      if(!initialize_message_window("ca::fontopus::message_wnd::command"))
       {
          pcreate->set_lresult(-1);
          pcreate->m_bRet = true;
@@ -376,7 +376,7 @@ namespace command
       }
    }
 
-   void frame::_001OnMove(gen::signal_object * pobj)
+   void frame::_001OnMove(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       /*if(m_workset.GetMovingManager()->IsMoving())
@@ -430,9 +430,9 @@ namespace command
       }*/
    }
 
-   void frame::_001OnShowWindow(gen::signal_object * pobj)
+   void frame::_001OnShowWindow(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
+      SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
 
       if(!pshowwindow->m_bShow)
       {
@@ -467,9 +467,9 @@ namespace command
          SWP_SHOWWINDOW);
    }
 
-   void frame::message_window_message_handler(gen::signal_object * pobj)
+   void frame::message_window_message_handler(ca::signal_object * pobj)
    {
-      SCAST_PTR(gen::message::base, pbase, pobj);
+      SCAST_PTR(ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -477,9 +477,9 @@ namespace command
       }
    }
 
-   void frame::_001OnApp2000(gen::signal_object * pobj)
+   void frame::_001OnApp2000(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
 
 
       if(pbase->m_wparam == 0)

@@ -120,7 +120,7 @@ namespace libcompress
          public ::libcompress::set_decoder_properties2_interface
       {
          ::libcompress::lz_out_window m_OutWindowStream;
-         ::gen::bitm::in_buffer_decoder m_InBitStream;
+         ::ca::bitm::in_buffer_decoder m_InBitStream;
          huffman::decoder<kNumHuffmanBits, kMainTableSize> m_MainDecoder;
          huffman::decoder<kNumHuffmanBits, kDistTableSize> m_DistDecoder;
          huffman::decoder<kNumHuffmanBits, kLenTableSize> m_LenDecoder;
@@ -150,7 +150,7 @@ namespace libcompress
          bool DecodeMm(uint32_t pos);
          bool DecodeLz(int32_t pos);
 
-         HRESULT CodeReal(::gen::reader *inStream, ::gen::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
+         HRESULT CodeReal(::ca::reader *inStream, ::ca::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
       public:
          decoder();
@@ -163,9 +163,9 @@ namespace libcompress
             m_InBitStream.ReleaseStream();
          }
 
-         virtual gen::HRes Code(::gen::reader *inStream, ::gen::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
+         virtual ca::HRes Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress);
 
-         virtual gen::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+         virtual ca::HRes SetDecoderProperties2(const byte *data, uint32_t size);
 
       };
 

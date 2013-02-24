@@ -5,7 +5,7 @@ namespace ca
 
    // Carlos Gustavo Cecyn Lundgren is my history
    class CLASS_DECL_ca history :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

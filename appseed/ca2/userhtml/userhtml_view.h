@@ -30,10 +30,10 @@ public:
    virtual void on_document_complete(const char * pszUrl);
 
 
-   virtual void install_message_handling(::gen::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca::message::dispatch * pinterface);
    virtual bool pre_create_window(CREATESTRUCT& cs);
    DECL_GEN_SIGNAL(_001OnInitialUpdate)
-   virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
+   virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 
    html_document * get_document();
 

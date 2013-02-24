@@ -175,7 +175,7 @@ namespace user
       {
          return m_pviewcontainer->get_view_id();
       }
-      return ::gen::system::idEmpty;
+      return ::ca::system::idEmpty;
    }
 
    void view_creator::hide_all_except(id id)
@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   void view_creator::on_update(::user::document_interface * pdocument, ::view * pSender, LPARAM lHint, ::gen::object* pHint)
+   void view_creator::on_update(::user::document_interface * pdocument, ::view * pSender, LPARAM lHint, ::ca::object* pHint)
    {
       
       POSITION pos = m_viewmap.get_start_position();

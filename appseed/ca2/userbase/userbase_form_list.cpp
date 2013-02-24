@@ -9,7 +9,7 @@ namespace userbase
       ca(papp),
       ::user::interaction(papp), 
       ::user::form(papp),
-      ::ca2::user::form(papp),
+      ::ca::user::form(papp),
       ::user::form_list(papp),
       ::user::scroll_view(papp),
       ::userbase::view(papp),
@@ -24,7 +24,7 @@ namespace userbase
    }
 
 
-   void form_list::install_message_handling(gen::message::dispatch * pdispatch)
+   void form_list::install_message_handling(ca::message::dispatch * pdispatch)
    {
       
       ::user::form_list::install_message_handling(pdispatch);

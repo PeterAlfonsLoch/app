@@ -45,7 +45,7 @@ namespace user
 
 
    class CLASS_DECL_ca keyboard_layout :
-      virtual public ::gen::object,
+      virtual public ::ca::object,
       virtual public keyboard_layout_id
    {
    public:
@@ -56,7 +56,7 @@ namespace user
       ::collection::int_to_string         m_mapCode;
 
       string                              m_strEscape;
-      gen::property_set                   m_setEscape;
+      ca::property_set                   m_setEscape;
 
 
       keyboard_layout(::ca::application * papp);
@@ -69,7 +69,7 @@ namespace user
 
       string process_escape(const char * pszChar);
 
-      void process_escape(::xml::node * pnode, gen::property_set & set);
+      void process_escape(::xml::node * pnode, ca::property_set & set);
 
       string get_current_system_layout();
 

@@ -46,14 +46,14 @@
 class event;
 
 
-namespace gen
+namespace ca
 {
 
 
    class thread;
 
 
-} // namespace gen
+} // namespace ca
 
 
 namespace ca
@@ -260,7 +260,7 @@ namespace ca
       ph(::user::interaction)             m_puiMain;           // main window (usually same System.GetMainWnd())
       ph(::user::interaction)             m_puiActive;         // active main window (may not be GetMainWnd())
       bool *                              m_pbReady;
-      gen::property_set                   m_set;
+      ca::property_set                   m_set;
       string                              m_strWorkUrl;
 
 
@@ -277,7 +277,7 @@ namespace ca
       virtual HTHREAD get_os_handle() const;
 
 
-      virtual void set_p(::gen::thread * p);
+      virtual void set_p(::ca::thread * p);
 
 
       virtual void set_os_data(void * pvoidOsData);
@@ -319,23 +319,23 @@ namespace ca
 
       virtual int32_t exit();
 
-      virtual ::gen::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      virtual ::ca::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
       virtual int32_t run();
-      virtual void pre_translate_message(gen::signal_object * pobj);
+      virtual void pre_translate_message(ca::signal_object * pobj);
       virtual bool pump_message();     // low level message pump
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual bool is_idle_message(gen::signal_object * pobj);  // checks for special messages
+      virtual bool is_idle_message(ca::signal_object * pobj);  // checks for special messages
 
       // thread termination
       virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual void ProcessWndProcException(base_exception * e, gen::signal_object * pobj);
+      virtual void ProcessWndProcException(base_exception * e, ca::signal_object * pobj);
 
       // Advanced: handling messages sent to message filter hook
-      virtual void ProcessMessageFilter(int32_t code, gen::signal_object * pobj);
+      virtual void ProcessMessageFilter(int32_t code, ca::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
       virtual ::user::interaction * GetMainWnd();
@@ -371,7 +371,7 @@ namespace ca
       virtual void Delete();
          // 'delete this' only if m_bAutoDelete == TRUE
 
-      virtual void DispatchThreadMessageEx(gen::signal_object * pobj);  // helper
+      virtual void DispatchThreadMessageEx(ca::signal_object * pobj);  // helper
 
       virtual void on_keep_alive();
       virtual bool is_alive();
@@ -480,7 +480,7 @@ namespace ca
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -525,23 +525,23 @@ namespace gen
       // thread initialization
       virtual bool initialize_instance();
 
-      virtual ::gen::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
+      virtual ::ca::message::e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
       // running and idle processing
       virtual int32_t run();
-      virtual void pre_translate_message(gen::signal_object * pobj);
+      virtual void pre_translate_message(ca::signal_object * pobj);
       virtual bool pump_message();     // low level message pump
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual bool is_idle_message(gen::signal_object * pobj);  // checks for special messages
+      virtual bool is_idle_message(ca::signal_object * pobj);  // checks for special messages
 
       // thread termination
       virtual int32_t exit_instance(); // default will 'delete this'
 
       // Advanced: exception handling
-      virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
+      virtual void ProcessWndProcException(base_exception* e, ca::signal_object * pobj);
 
       // Advanced: handling messages sent to message filter hook
-      virtual void ProcessMessageFilter(int32_t code, gen::signal_object * pobj);
+      virtual void ProcessMessageFilter(int32_t code, ca::signal_object * pobj);
 
       // Advanced: virtual access to GetMainWnd()
       virtual ::user::interaction* GetMainWnd();
@@ -569,7 +569,7 @@ namespace gen
       virtual void Delete();
       // 'delete this' only if m_bAutoDelete == TRUE
 
-      virtual void DispatchThreadMessageEx(gen::signal_object * pobj);  // helper
+      virtual void DispatchThreadMessageEx(ca::signal_object * pobj);  // helper
 
       virtual int32_t main();
 
@@ -588,4 +588,4 @@ namespace gen
    CLASS_DECL_ca void thread_alloc_ready(bool bReady);
 
 
-} // namespace gen
+} // namespace ca

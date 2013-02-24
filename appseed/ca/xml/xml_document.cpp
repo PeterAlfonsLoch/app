@@ -47,7 +47,7 @@ namespace xml
 
    }
 
-   bool document::load(::gen::file * pfile)
+   bool document::load(::ca::file * pfile)
    {
 
       primitive::memory memory;
@@ -135,12 +135,12 @@ namespace xml
 
    string document::consume_entity_ref(const char * & pszXml, string & strName, bool useExtEnt, bool & bExt)
    {
-      gen::str::consume(pszXml, "&");
+      ca::str::consume(pszXml, "&");
       strName.Empty();
       while(*pszXml != ';')
       {
          strName += *pszXml;
-         pszXml = gen::str::utf8_inc(pszXml);
+         pszXml = ca::str::utf8_inc(pszXml);
       }
       pszXml++;
       string ent = entitiesHash[strName];

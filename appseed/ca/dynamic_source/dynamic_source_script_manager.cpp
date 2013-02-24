@@ -85,7 +85,7 @@ namespace dynamic_source
       m_strNamespace             = "netnodelite"; // default namespace is linked to outer project app_core_netnodelite
       m_strNetnodePath           = "C:\\netnodenet\\";
       m_strNetseedPath           = "C:\\netnodenet\\net\\netseed\\";
-      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca2\\";
+      m_strNetseedDsCa2Path      = "C:\\netnodenet\\net\\netseed\\ds\\ca\\";
 
 
       m_iTunnelPluginCount       = 0;
@@ -114,7 +114,7 @@ namespace dynamic_source
    bool script_manager::initialize_instance()
    {
 
-      initialize_message_window("ca2::fontopus::ccvotagus::netnode::cgclcst");
+      initialize_message_window("ca::fontopus::ccvotagus::netnode::cgclcst");
       m_pcompiler->initialize();
 
       {
@@ -131,7 +131,7 @@ namespace dynamic_source
 
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
-         if(gen::str::begins_ci(straTitle[i], "net-"))
+         if(ca::str::begins_ci(straTitle[i], "net-"))
          {
             clear_include_matches_folder_watch * pwatch = new clear_include_matches_folder_watch();
             pwatch->m_pmanager = this;
@@ -235,7 +235,7 @@ namespace dynamic_source
 
    script_instance * script_manager::get_output_internal(::dynamic_source::script_instance * pinstanceParent, const string & strNameParam)
    {
-      string strName = gen::str::get_word(strNameParam, "?");
+      string strName = ca::str::get_word(strNameParam, "?");
       if(strName.is_empty())
       {
          if(pinstanceParent != NULL)
@@ -382,9 +382,9 @@ namespace dynamic_source
       return strBuildLog;
    }
 
-   void script_manager::message_window_message_handler(gen::signal_object * pobj)
+   void script_manager::message_window_message_handler(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
       {
          //if(wparam == 0)
@@ -847,11 +847,11 @@ namespace dynamic_source
    bool script_manager::extract_image_size(const string & strFile, size * psize)
    {
 
-      gen::filesp f;
+      ca::filesp f;
 
       try
       {
-         f = Application.file().get_file(strFile, gen::file::type_binary | gen::file::mode_read | gen::file::shareDenyWrite);
+         f = Application.file().get_file(strFile, ca::file::type_binary | ca::file::mode_read | ca::file::shareDenyWrite);
       }
       catch(...)
       {
@@ -894,7 +894,7 @@ namespace dynamic_source
             if(i >= len)
                return false;   //Check to protect against segmentation faults
 
-            f->seek(i, gen::seek_begin);
+            f->seek(i, ca::seek_begin);
 
             if(f->read(buf, 4) < 4)
                return false;

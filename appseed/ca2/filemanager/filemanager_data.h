@@ -33,7 +33,7 @@ namespace filemanager
 
 
       ::user::document_interface *     m_pdocumentSave;
-      ::gen::file_manager_interface *  m_pfilemanager;
+      ::ca::file_manager_interface *  m_pfilemanager;
       FileManagerInterface *           m_pmanager;
       FileManagerInterface *           m_pmanagerMain;
       FileManagerCallbackInterface *   m_pcallback;

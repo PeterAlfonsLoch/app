@@ -380,7 +380,7 @@ namespace libcompress {
          CorrHuff(ChSetB, NToPlB);
       }
 
-      HRESULT decoder::CodeReal(::gen::reader *inStream, ::gen::writer *outStream,
+      HRESULT decoder::CodeReal(::ca::reader *inStream, ::ca::writer *outStream,
          const file_size *inSize, const file_size *outSize, ::libcompress::progress_info_interface * /* progress */)
       {
          if (inSize == NULL || outSize == NULL)
@@ -468,15 +468,15 @@ namespace libcompress {
          return m_OutWindowStream.flush();
       }
 
-      gen::HRes decoder::Code(::gen::reader *inStream, ::gen::writer *outStream, const file_size * inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
+      ca::HRes decoder::Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size * inSize, const file_size *outSize, ::libcompress::progress_info_interface *progress)
       {
          try { return CodeReal(inStream, outStream, inSize, outSize, progress); }
-         catch(const ::gen::in_buffer_exception &e) { return e.ErrorCode; }
+         catch(const ::ca::in_buffer_exception &e) { return e.ErrorCode; }
          catch(const ::libcompress::lz_out_window_exception &e) { return e.ErrorCode; }
          catch(...) { return S_FALSE; }
       }
 
-      gen::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
+      ca::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
       {
          if (size < 1)
             return E_INVALIDARG;

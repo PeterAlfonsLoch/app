@@ -13,7 +13,7 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
 
    UNREFERENCED_PARAMETER(pdata);
    string strUrl(varFile);
-   if(gen::str::begins_eat(strUrl, "ext://"))
+   if(ca::str::begins_eat(strUrl, "ext://"))
    {
       Application.open_link(strUrl, lpszTargetFrameName);
 /*         simple_shell_launcher launcher(NULL, "open", strUrl, "", "", SW_SHOWNORMAL);
@@ -22,7 +22,7 @@ void form_document::OnBeforeNavigate2(html::data * pdata, var & varFile, uint32_
       *pbCancel = true;
       return;
    }
-   if(gen::str::begins_eat(strUrl, "hist://"))
+   if(ca::str::begins_eat(strUrl, "hist://"))
    {
       System.hist().hist(strUrl);
       *pbCancel = true;

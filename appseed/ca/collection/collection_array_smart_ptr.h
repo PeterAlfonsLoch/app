@@ -68,7 +68,7 @@ set_size(count iSize)
 template < class TYPE, class ARG_TYPE, class BASE_PTRA >
 inline index array_smart_ptr < TYPE, ARG_TYPE, BASE_PTRA >::add(TYPE * pt)
 {
-   gen::add_ref(pt);
+   ca::add_ref(pt);
    return array_release_ptr < TYPE, ARG_TYPE >::add(pt);
 }
 

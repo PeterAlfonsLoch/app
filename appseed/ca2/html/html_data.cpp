@@ -193,9 +193,9 @@ namespace html
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, m_pguie, this, &data::_001OnKeyDown);
       m_bImplemented = true;
    }
-   void data::_001OnKeyDown(gen::signal_object * pobj)
+   void data::_001OnKeyDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
 
       if(pkey->m_nChar == VK_TAB)
       {
@@ -272,8 +272,8 @@ namespace html
       else if(strUrl[0] == '\\')
       {
       }
-      else if(gen::str::begins(m_strPathName, "http://") ||
-         gen::str::begins(m_strPathName, "https://"))
+      else if(ca::str::begins(m_strPathName, "http://") ||
+         ca::str::begins(m_strPathName, "https://"))
       {
          strUrl = System.url().path(m_strPathName, strUrl);
       }
@@ -386,7 +386,7 @@ restart:
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.ca2 < ::gen::file > () != NULL)
+      else if(varFile.ca < ::ca::file > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + ".html";
       }
@@ -414,9 +414,9 @@ restart:
          ::fontopus::user * puser = m_puser != NULL ? m_puser : &ApplicationUser;
          ASSERT(puser != NULL);
          string data;
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set = m_propset["http_propset"].propset();
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set = m_propset["http_propset"].propset();
 
          post["entered_login"] = m_strUser;
          post["entered_password"] = m_strPassword;
@@ -430,7 +430,7 @@ restart:
          string filename;
          filename = System.file().time_square(get_app());
          System.http().download(
-            "https://api.ca2.cc/auth",
+            "https://api.ca.cc/auth",
             filename,
             post,
             headers,

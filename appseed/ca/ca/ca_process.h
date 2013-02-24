@@ -4,12 +4,12 @@
 #ifndef METROWIN
 
 
-namespace ca2
+namespace ca
 {
 
 
    class CLASS_DECL_ca process :
-      public ::gen::object
+      public ::ca::object
    {
    public:
 
@@ -19,7 +19,7 @@ namespace ca2
       public:
 
 
-         ::gen::process       m_process;
+         ::ca::process       m_process;
          string               m_strRead;
          manual_reset_event   m_evReady;
 
@@ -60,7 +60,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace ca
 
 
 #endif
@@ -73,7 +73,7 @@ namespace ca2
 
 #ifndef METROWIN
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca process
@@ -109,7 +109,7 @@ namespace gen
       string read(bool bUntilExit = false);
    };
 
-} // namespace gen
+} // namespace ca
 
 
 

@@ -6,7 +6,7 @@ namespace fontopus
 
    
    class CLASS_DECL_ca user_authentication :
-      public ::gen::object
+      public ::ca::object
    {
    public:
 

@@ -22,7 +22,7 @@ namespace filemanager
 } // namespace filemanager
 
 class file_operation :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
    file_operation(::ca::application * papp);
@@ -63,8 +63,8 @@ public:
    string            m_strBase;
    double            m_dSize;
    double            m_dRead;
-   gen::filesp           m_fileSrc;
-   gen::filesp           m_fileDst;
+   ca::filesp           m_fileSrc;
+   ca::filesp           m_fileDst;
    int32_t               m_iFile;
    bool              m_bReplaceAll;
    char *            m_pchBuffer;

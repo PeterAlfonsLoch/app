@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class command_line;
 
 
-} // namespace gen
+} // namespace ca
 
 
 class db_server;

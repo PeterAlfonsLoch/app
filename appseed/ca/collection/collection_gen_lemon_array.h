@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    namespace lemon
    {
-      class CLASS_DECL_ca array  : virtual public ::gen::object
+      class CLASS_DECL_ca array  : virtual public ::ca::object
       {
       public:
          array(::ca::application * papp);
@@ -121,7 +121,7 @@ namespace gen
 		   comb.add(blindprefixa);
 		   for(::index i = idx; i < a.get_count(); i++)
 		   {
-			   array_makecombination(comb, a, blindprefixa + ::gen::array < A > (a[i]), i + 1);
+			   array_makecombination(comb, a, blindprefixa + ::ca::array < A > (a[i]), i + 1);
 		   }
 	   }
 
@@ -246,4 +246,4 @@ namespace gen
       }   // namespace lemon
 
 
-} // namespace gen
+} // namespace ca

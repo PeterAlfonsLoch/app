@@ -19,22 +19,22 @@ namespace user
       UNREFERENCED_PARAMETER(iTimer);
    }
 
-   void keyboard_focus::keyboard_focus_OnChar(gen::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnChar(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void keyboard_focus::keyboard_focus_OnSysChar(gen::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnSysChar(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void keyboard_focus::keyboard_focus_OnKeyDown(gen::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnKeyDown(ca::signal_object * pobj)
    {
 
 #ifdef WINDOWS
 
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
 
       if(pkey->m_nChar == VK_TAB)
       {
@@ -50,7 +50,7 @@ namespace user
 
    }
 
-   void keyboard_focus::keyboard_focus_OnKeyUp(gen::signal_object * pobj)
+   void keyboard_focus::keyboard_focus_OnKeyUp(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }

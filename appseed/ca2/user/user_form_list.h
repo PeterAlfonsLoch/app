@@ -4,7 +4,7 @@ namespace user
 {
 
    class CLASS_DECL_ca2 form_list :
-      virtual public ::ca2::user::form,
+      virtual public ::ca::user::form,
       virtual public ::user::list
    {
    protected:
@@ -53,7 +53,7 @@ namespace user
 
       virtual void _001DrawSubItem(draw_list_item * pdrawitem);
 
-      void _000OnMouse(::gen::message::mouse * pmouse);
+      void _000OnMouse(::ca::message::mouse * pmouse);
 
       void control_get_client_rect(control * pcontrol, LPRECT lprect);
       void control_get_window_rect(control * pcontrol, LPRECT lprect);
@@ -90,7 +90,7 @@ namespace user
       virtual bool _001OnMouseActivate(::ca::window* pDesktopWnd, UINT nHitTest, UINT message, LRESULT & iResult);
 
 
-      virtual void install_message_handling( ::gen::message::dispatch *pinterface);
+      virtual void install_message_handling( ::ca::message::dispatch *pinterface);
 
       bool BaseOnControlEvent(::user::control_event * pevent);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -15,7 +15,7 @@ namespace gen
    } // namespace international
 
 
-} // namespace gen
+} // namespace ca
 
 
 
@@ -109,7 +109,7 @@ namespace user
 
 
    class CLASS_DECL_ca str_context :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       
@@ -117,7 +117,7 @@ namespace user
       str *                                  m_pstr;
 
       
-      gen::international::locale_schema *    m_plocaleschema;
+      ca::international::locale_schema *    m_plocaleschema;
 
       str_locale *                           m_plocale;
       
@@ -147,7 +147,7 @@ namespace user
       
       void prepare();
 
-      inline gen::international::locale_schema & localeschema()
+      inline ca::international::locale_schema & localeschema()
       {
          return *m_plocaleschema;
       }

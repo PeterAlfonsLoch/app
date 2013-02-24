@@ -82,7 +82,7 @@ namespace user
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
       virtual void on_show_view();
 
-      virtual void on_update(::user::document_interface * pdocument, ::view * pSender, LPARAM lHint, ::gen::object* pHint);
+      virtual void on_update(::user::document_interface * pdocument, ::view * pSender, LPARAM lHint, ::ca::object* pHint);
 
       virtual ::user::interaction * get_view();
 
@@ -92,7 +92,7 @@ namespace user
 
       virtual ::user::view_creator_data * allocate(id id);
 
-      using ::gen::request_interface::create;
+      using ::ca::request_interface::create;
       virtual ::user::view_creator_data * create(id id);
 
       virtual ::user::view_creator_data * ensure(id id);

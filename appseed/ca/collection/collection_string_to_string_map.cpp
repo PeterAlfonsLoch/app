@@ -139,7 +139,7 @@ base_string_to_string_map::assoc*
 base_string_to_string_map::GetAssocAt(const string & key, UINT& nHashBucket, UINT& nHashValue) const
 // find association (or return NULL)
 {
-   nHashValue = gen::hash < BASE_ARG_KEY >::HashKey(key);
+   nHashValue = ca::hash < BASE_ARG_KEY >::HashKey(key);
    nHashBucket = nHashValue % m_nHashTableSize;
 
    if (m_pHashTable == NULL)
@@ -235,7 +235,7 @@ bool base_string_to_string_map::RemoveKey(const string & key)
 
    assoc** ppAssocPrev;
    UINT nHashValue;
-   nHashValue = gen::hash < BASE_ARG_KEY >::HashKey(key);
+   nHashValue = ca::hash < BASE_ARG_KEY >::HashKey(key);
    ppAssocPrev = &m_pHashTable[nHashValue%m_nHashTableSize];
 
    assoc* pAssoc;
@@ -400,7 +400,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
 {
    ASSERT_VALID(this);
 
-   ::gen::object::Serialize(ar);
+   ::ca::object::Serialize(ar);
 
    if (ar.IsStoring())
    {
@@ -439,7 +439,7 @@ base_string_to_string_map::pair *base_string_to_string_map::PGetNextAssoc(const 
 
 void base_string_to_string_map::dump(dump_context & dumpcontext) const
 {
-   ::gen::object::dump(dumpcontext);
+   ::ca::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -461,7 +461,7 @@ void base_string_to_string_map::dump(dump_context & dumpcontext) const
 
 void base_string_to_string_map::assert_valid() const
 {
-   ::gen::object::assert_valid();
+   ::ca::object::assert_valid();
 
    ASSERT(m_nHashTableSize > 0);
    ASSERT(m_nCount == 0 || m_pHashTable != NULL);

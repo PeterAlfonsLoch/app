@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -222,7 +222,7 @@ namespace gen
          else
          {
 
-            gen::microtimer timer;
+            ca::microtimer timer;
 
             double d1 = timer.getTimeInMicroSec();
 
@@ -240,8 +240,8 @@ namespace gen
     //        GetSystemTimes(&fta[0], &fta[1], &fta[2]);
       //      int64_t v1 = tick.QuadPart;
         //    int64_t v2 = time(NULL);
-          //  int64_t v3 = ca2::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
-            //int64_t v4 = ca2::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
+          //  int64_t v3 = ca::crypt::crc32(tick.QuadPart % 0xffffffff, &pi, sizeof(pi));
+            //int64_t v4 = ca::crypt::crc32(tick.QuadPart % 0xffffffff, fta, sizeof(fta));
 
             int32_t v1 = (int32_t) timer.getTimeInMicroSec();
 
@@ -431,11 +431,11 @@ namespace gen
    } // namespace math
 
 
-} // namespace gen
+} // namespace ca
 
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -471,6 +471,6 @@ namespace gen
    } // lemon
 
 
-} // gen
+} // ca
 
 

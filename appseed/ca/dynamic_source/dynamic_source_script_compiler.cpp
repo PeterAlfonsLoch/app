@@ -65,7 +65,7 @@ namespace dynamic_source
       m_strEnv = ".\\vc10vars64.bat";
 
 
-      m_strTime = System.dir().ca2("time");
+      m_strTime = System.dir().ca("time");
 
       //m_strEnv = "C:\\Program Files\\Microsoft SDKs\\Windows\\v7.1\\Bin\\SetEnv.cmd";
 
@@ -84,7 +84,7 @@ namespace dynamic_source
       m_strLibPlatform = "";
    #endif
 
-      //System.file().lines(m_straSync, "C:\\ca2\\database\\text\\dynamic_source\\syncer.txt", get_app());
+      //System.file().lines(m_straSync, "C:\\ca\\database\\text\\dynamic_source\\syncer.txt", get_app());
 
       prepare1(m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat",
                m_strDynamicSourceConfiguration  + "_cl" + m_strPlat1 + ".bat");
@@ -99,8 +99,8 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars64.bat");
-      vars2batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
+      vars1batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars64.bat");
+      vars2batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
       vars1batDst = System.dir().votagus("stage/front", "vc10vars64.bat");
       vars2batDst = System.dir().votagus("stage/front", "vc10vars_query_registry.bat");
       try
@@ -131,10 +131,10 @@ namespace dynamic_source
       string str;
       string strItem;
 
-      strItem = System.dir().ca2("stage\\" + m_strPlatform);
+      strItem = System.dir().ca("stage\\" + m_strPlatform);
       str = str + strItem + ";";
 
-      strItem = System.dir().ca2("stage\\" + m_strPlatform + "\\dynamic_source\\library");
+      strItem = System.dir().ca("stage\\" + m_strPlatform + "\\dynamic_source\\library");
       str = str + strItem + ";";
 #ifdef WINDOWSEX
       uint32_t dwSize = GetEnvironmentVariable("PATH", NULL, 0);
@@ -194,7 +194,7 @@ namespace dynamic_source
       /*string strScript(strName);
       strScript.replace("\\", ",");
       strScript.replace("/", ",");
-      strScript = "ca2" + m_pmanager->m_strNamespace + "_script." + strScript;*/
+      strScript = "ca" + m_pmanager->m_strNamespace + "_script." + strScript;*/
       string strScript;
       strScript = System.file().title_(strName);
       string strTransformName = strName;
@@ -205,7 +205,7 @@ namespace dynamic_source
       }
       else
       {
-         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\ca2\\%s", false), strName);
+         pscript->m_strSourcePath.Format(System.dir().path(m_pmanager->m_strNetnodePath, "net\\netseed\\ds\\ca\\%s", false), strName);
       }
       pscript->m_strSourceDir = System.dir().name(pscript->m_strSourcePath);
 
@@ -355,8 +355,8 @@ namespace dynamic_source
       string vars2batSrc;
       string vars1batDst;
       string vars2batDst;
-      vars1batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars64.bat");
-      vars2batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
+      vars1batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars64.bat");
+      vars2batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
       vars1batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars64.bat", false);
       vars2batDst = System.dir().path(System.dir().name(pscript->m_strBuildBat), "vc10vars_query_registry.bat", false);
       try
@@ -382,7 +382,7 @@ namespace dynamic_source
 
       string strV(System.dir().votagus());
       strV.replace("\\", "/");
-      if(!gen::str::ends(strV, "/") && !gen::str::ends(strV, "\\"))
+      if(!ca::str::ends(strV, "/") && !ca::str::ends(strV, "\\"))
          strV += "/";
 
       string strN = m_pmanager->m_strNetnodePath;
@@ -406,7 +406,7 @@ namespace dynamic_source
       str.replace("%LIBPLATFORM%", m_strLibPlatform);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetPath = pscript->m_strScriptPath;
-      gen::str::ends_eat_ci(strTargetPath, ".dll");
+      ca::str::ends_eat_ci(strTargetPath, ".dll");
       str.replace("%TARGET_PATH%", strTargetPath);
       strBuildCmd = pscript->m_strBuildBat;
       Application.file().put_contents(strBuildCmd, str);
@@ -417,7 +417,7 @@ namespace dynamic_source
 
 #ifndef METROWIN
 
-      gen::process process;
+      ca::process process;
 
       process.create_child_process(strBuildCmd, false, System.dir().name(pscript->m_strBuildBat));
 
@@ -571,8 +571,8 @@ namespace dynamic_source
 
    void script_compiler::cppize1(ds_script * pscript)
    {
-      /*gen::filesp spfile(get_app());
-      if(!spfile->open(pscript->m_strSourcePath, ::gen::file::type_binary | ::gen::file::mode_read | ::gen::file::shareDenyNone))
+      /*ca::filesp spfile(get_app());
+      if(!spfile->open(pscript->m_strSourcePath, ::ca::file::type_binary | ::ca::file::mode_read | ::ca::file::shareDenyNone))
       return;
 
       primitive::memory memstorage;
@@ -590,7 +590,7 @@ namespace dynamic_source
       {
          string str;
          str = m_straLibIncludeRelPath[i];
-         gen::str::ends_eat_ci(str, ".ds");
+         ca::str::ends_eat_ci(str, ".ds");
          strDest += "#include \""+str+".h\"\r\n";
       }
       strsize iStart = 0;
@@ -657,7 +657,7 @@ namespace dynamic_source
       string strId;
       for(int32_t i = 0; i < straId.get_size(); i++)
       {
-         strId += "static class id lscript_id" + gen::str::from(i) + "(\"" + straId[i] + "\");\r\n";
+         strId += "static class id lscript_id" + ca::str::from(i) + "(\"" + straId[i] + "\");\r\n";
       }
 
       strDest = strDest.Left(iPosId) + strId + strDest.Mid(iPosId);
@@ -671,7 +671,7 @@ namespace dynamic_source
    {
       string strVotagusFolder;
       strVotagusFolder = System.dir().votagus();
-      if(!gen::str::ends(strVotagusFolder, "/") && !gen::str::ends(strVotagusFolder, "\\"))
+      if(!ca::str::ends(strVotagusFolder, "/") && !ca::str::ends(strVotagusFolder, "\\"))
          strVotagusFolder += "/";
       string strTemplate;
       string strSource = "nodeapp\\stage\\dynamic_source\\";
@@ -682,7 +682,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       strTemplate = System.dir().path(strVotagusFolder, strSource, false );
    //#else
-     // strTemplate = System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
+     // strTemplate = System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
    //#endif
       string str;
       str = Application.file().as_string(strTemplate);
@@ -700,7 +700,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       strCmd = System.dir().path(strVotagusFolder, strDest, false);
    //#else
-     // strCmd = System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
+     // strCmd = System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
    //#endif
       Application.dir().mk(System.dir().name(strCmd));
       Application.file().put_contents(strCmd, str);
@@ -715,7 +715,7 @@ namespace dynamic_source
       string strTransfer = str;
 
       // does not transfer
-      if(gen::str::find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
+      if(ca::str::find_ci("netnode_persistent_ui_str", strTransfer) >= 0)
          return;
 
       if(m_straSync.get_count() > 1)
@@ -730,12 +730,12 @@ namespace dynamic_source
       {
          i++;
       }
-      if(gen::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false)))
+      if(ca::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\include", false)))
       {
          compile_library();
          m_pmanager->m_pcache->set_all_out_of_date();
       }
-      else if(gen::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false)))
+      else if(ca::str::begins(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false)))
       {
          compile_library();
       }
@@ -760,7 +760,7 @@ namespace dynamic_source
       unload_library();
       string strName = "library";
 
-      m_strLibsLibs = System.dir().ca2("time/library/" + m_strPlatform + "/library/library.lib");
+      m_strLibsLibs = System.dir().ca("time/library/" + m_strPlatform + "/library/library.lib");
 
       m_memfileLibError.Truncate(0);
       string strVotagusFolder;
@@ -784,7 +784,7 @@ namespace dynamic_source
       for(int32_t i = 0; i < m_straLibSourcePath.get_size(); i++ )
       {
          string str = m_straLibSourceRelPath[i];
-         gen::str::ends_eat_ci(str, ".ds");
+         ca::str::ends_eat_ci(str, ".ds");
          str.replace(":", "");
          m_straLibCppPath.add(System.dir().path(System.dir().path(m_strTime, "dynamic_source\\library\\source", false), str + ".cpp"));
       }
@@ -794,7 +794,7 @@ namespace dynamic_source
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); )
       {
          if(System.file().extension(m_straLibIncludePath[i]) != "ds"
-            || gen::str::find_ci(m_straLibIncludePath[i], "\\.svn\\") >= 0
+            || ca::str::find_ci(m_straLibIncludePath[i], "\\.svn\\") >= 0
             || Application.dir().is(m_straLibIncludePath[i]))
          {
             m_straLibIncludePath.remove_at(i);
@@ -809,7 +809,7 @@ namespace dynamic_source
       for(int32_t i = 0; i < m_straLibIncludePath.get_size(); i++ )
       {
          string str = m_straLibIncludeRelPath[i];
-         gen::str::ends_eat_ci(str, ".ds");
+         ca::str::ends_eat_ci(str, ".ds");
          str.replace(":", "");
          m_straLibHppPath.add(System.dir().path(System.dir().path(m_strTime, "dynamic_source\\library\\include", false), str + ".h"));
       }
@@ -820,7 +820,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
    //#else
-     // plib->m_strLibraryPath.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
+     // plib->m_strLibraryPath.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
    //#endif
 
       Application.dir().mk(System.dir().name(m_strLibraryPath));
@@ -838,15 +838,15 @@ namespace dynamic_source
       {
          cppize(m_straLibSourcePath[i], m_straLibCppPath[i], cpptype_source);
          string strRel = m_straLibSourceRelPath[i];
-         gen::str::ends_eat_ci(strRel, ".ds");
+         ca::str::ends_eat_ci(strRel, ".ds");
          strRel.replace("\\", "/");
          string str1;
          str1 = "library/source/" + strRel;
          string strCmd;
    //#ifdef DEBUG
-         strCmd = System.dir().ca2("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
+         strCmd = System.dir().ca("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
    //#else
-     //    strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
+     //    strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
    //#endif
          string str = Application.file().as_string(strCmd);
          str.replace("%ITEM_NAME%", str1);
@@ -858,14 +858,14 @@ namespace dynamic_source
          str.replace("%SDK1%", m_strSdk1);
          Application.dir().mk(System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\" + System.dir().name(str1)));
          Application.dir().mk(System.dir().path(m_strTime, "library\\" + m_strPlatform + "\\" + System.dir().name(str1), false));
-         strCmd = System.dir().ca2("stage\\front\\libc1.bat");
+         strCmd = System.dir().ca("stage\\front\\libc1.bat");
 
          string vars1batSrc;
          string vars2batSrc;
          string vars1batDst;
          string vars2batDst;
-         vars1batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars64.bat");
-         vars2batSrc = System.dir().ca2("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
+         vars1batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars64.bat");
+         vars2batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
          vars1batDst = System.dir().stage("stage\\front", "vc10vars64.bat");
          vars2batDst = System.dir().stage("stage\\front", "vc10vars_query_registry.bat");
          try
@@ -886,9 +886,9 @@ namespace dynamic_source
          Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
-         gen::process process;
+         ca::process process;
 
-         process.create_child_process(strCmd, false, System.dir().ca2("stage\\front"));
+         process.create_child_process(strCmd, false, System.dir().ca("stage\\front"));
 
 
          uint32_t dwExitCode;
@@ -917,7 +917,7 @@ namespace dynamic_source
       {
          strObjs += " ";
          string strRel = m_straLibSourceRelPath[i];
-         gen::str::ends_eat_ci(strRel, ".ds");
+         ca::str::ends_eat_ci(strRel, ".ds");
          strObjs += System.dir().path(
             System.dir().path(m_strTime, "intermediate\\" + m_strPlatform + "\\" + m_pmanager->m_strNamespace + "_library\\library\\source", false),
             strRel + ".obj", false);
@@ -927,7 +927,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
    //#else
-     // strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca2\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
+     // strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
    //#endif
       string str = Application.file().as_string(strCmd);
       str.replace("%ITEM_NAME%", "library\\" + strName);
@@ -939,15 +939,15 @@ namespace dynamic_source
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
       str.replace("%SDK1%", m_strSdk1);
       string strTargetName = m_strLibraryPath;
-      gen::str::ends_eat_ci(strTargetName, ".dll");
+      ca::str::ends_eat_ci(strTargetName, ".dll");
       str.replace("%TARGET_NAME%", strTargetName);
-      Application.dir().mk(System.dir().ca2("stage\\" + m_strPlatform + "\\library"));
-      strCmd = System.dir().ca2("stage\\front\\libl1.bat");
+      Application.dir().mk(System.dir().ca("stage\\" + m_strPlatform + "\\library"));
+      strCmd = System.dir().ca("stage\\front\\libl1.bat");
       Application.file().put_contents(strCmd, str);
 
 #ifndef METROWIN
 
-      gen::process process;
+      ca::process process;
 
 
       process.create_child_process(strCmd, false, System.dir().name(strCmd));
@@ -964,7 +964,7 @@ namespace dynamic_source
 
 
       str.Format(System.dir().path(m_strTime, "dynamic_source\\library\\%s-link-log.txt"), strName, false);
-      //str.Format("V:\\time\\ca2\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
+      //str.Format("V:\\time\\ca\\fontopus\\net\\dynamic_source\\%s-build-log.txt", lpcszName);
       str = Application.file().as_string(str);
       str.replace("\r\n", "</pre><pre>");
       m_memfileLibError << str;
@@ -998,7 +998,7 @@ namespace dynamic_source
          {
             string str;
             str = m_straLibIncludeRelPath[i];
-            gen::str::ends_eat_ci(str, ".ds");
+            ca::str::ends_eat_ci(str, ".ds");
             strDest += "#include \""+str+".h\"\r\n";
          }
       }
@@ -1073,7 +1073,7 @@ namespace dynamic_source
          bInserted = false;
          ch = str[i];
          chNext = str[i + 1];
-         if(gen::str::begins(str.Mid(i), "bk_filter_active1"))
+         if(ca::str::begins(str.Mid(i), "bk_filter_active1"))
          {
             //__debug_break();
          }
@@ -1194,7 +1194,7 @@ namespace dynamic_source
                      straId.add(strResult.Mid(iArroba));
                      iFind = straId.get_upper_bound();
                   }
-                  strResult = strResult.Left(iArroba) + " lscript_id" + gen::str::from(iFind);
+                  strResult = strResult.Left(iArroba) + " lscript_id" + ca::str::from(iFind);
                   iArroba = -1;
                }
                else
@@ -1307,17 +1307,17 @@ namespace dynamic_source
                         }
                         if(ch == ')')
                         {
-                           strResult += "\").ca2 < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\" ";
+                           strResult += "\").ca < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\" ";
                         }
                         else
                         {
-                           strResult += "\").ca2 < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\", ";
+                           strResult += "\").ca < " + m_pmanager->m_strNamespace + "::object_base >()->call(\""+ strToken + "\", ";
                            continue;
                         }
                      }
                      else
                      {
-                        strResult += "\").ca2 < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\""+ strToken + "\"]";
+                        strResult += "\").ca < " + m_pmanager->m_strNamespace + "::object_base >()->m_propertyset[\""+ strToken + "\"]";
                      }
                   }
                   else
@@ -1600,7 +1600,7 @@ namespace dynamic_source
             return true;
          }
       }
-      if(gen::str::begins(psz, pszId)
+      if(ca::str::begins(psz, pszId)
          && !isdigit(psz[iIdLen]) && !isalpha(psz[iIdLen]) && psz[iIdLen] != '_')
       {
          iIdLenRet = iIdLen;
@@ -1620,12 +1620,12 @@ namespace dynamic_source
 
    void script_compiler::run_persistent()
    {
-      string strPath = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false);
+      string strPath = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false);
       stringa stra;
       Application.dir().rls(strPath, &stra);
 
       string strCat;
-      strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\netnode_persistent_ui_str.ds", false);
+      strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\netnode_persistent_ui_str.ds", false);
       string strBody;
       strBody = "<?\r\n";
       strBody += "// ATTENTION!\r\n";
@@ -1638,8 +1638,8 @@ namespace dynamic_source
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string str = stra[i];
-         if(gen::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false))
-            && gen::str::ends_ci(str, ".ds"))
+         if(ca::str::begins_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
+            && ca::str::ends_ci(str, ".ds"))
          {
             strBody += Application.file().as_string(str);
          }
@@ -1648,8 +1648,8 @@ namespace dynamic_source
       Application.file().put_contents(strCat, strBody);
       string strInclude = strCat;
       //   defer_run_persistent(str);
-      gen::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
-      gen::str::ends_eat_ci(strInclude, ".ds");
+      ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+      ca::str::ends_eat_ci(strInclude, ".ds");
       script_instance * pinstance = m_pmanager->get(strInclude);
       if(pinstance != NULL)
       {
@@ -1684,13 +1684,13 @@ namespace dynamic_source
    {
       string str(psz);
 
-      if(gen::str::find_ci("pstr_set", psz) && gen::str::ends_ci(psz, ".txt"))
+      if(ca::str::find_ci("pstr_set", psz) && ca::str::ends_ci(psz, ".txt"))
       {
          string strCat;
-         strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\netnode_persistent_ui_str.ds", false);
+         strCat = System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\netnode_persistent_ui_str.ds", false);
          string strInclude = strCat;
-         gen::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
-         gen::str::ends_eat_ci(strInclude, ".ds");
+         ca::str::begins_eat_ci(strInclude, m_pmanager->m_strNetseedDsCa2Path);
+         ca::str::ends_eat_ci(strInclude, ".ds");
          script_instance * pinstance = m_pmanager->get(strInclude);
          if(pinstance != NULL)
          {
@@ -1713,8 +1713,8 @@ namespace dynamic_source
             pinstance->destroy();
          }
       }
-      else if(gen::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca2\\persistent", false))
-         && gen::str::ends_eat_ci(str, ".ds")
+      else if(ca::str::begins_eat_ci(str, System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "ca\\persistent", false))
+         && ca::str::ends_eat_ci(str, ".ds")
          && str.CompareNoCase("netnode_persistent_ui_str") != 0)
       {
          run_persistent();

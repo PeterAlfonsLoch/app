@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
    class CLASS_DECL_ca copydesk : 
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -37,7 +37,7 @@ namespace ca2
    typedef ::ca::smart_pointer < copydesk > copydesk_sp;
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

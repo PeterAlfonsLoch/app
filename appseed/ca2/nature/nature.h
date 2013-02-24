@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/cube/cube.h"
+#include "ca/cube/cube.h"
 
 
 #include "nature_database.h"

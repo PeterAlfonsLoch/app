@@ -14,7 +14,7 @@ namespace user
       m_pbasetooltiphdl    = NULL;
    }
 
-   void tool_tip_tool::BaseToolTipRelayEvent(gen::signal_object * pobj)
+   void tool_tip_tool::BaseToolTipRelayEvent(ca::signal_object * pobj)
    {
 
       if(m_pbasetooltiphdl != NULL)

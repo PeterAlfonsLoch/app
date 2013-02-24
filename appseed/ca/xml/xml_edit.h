@@ -16,7 +16,7 @@ namespace xml
 
 
    class CLASS_DECL_ca edit_item :
-      public gen::byte_serializable
+      public ca::byte_serializable
    {
    public:
 
@@ -33,15 +33,15 @@ namespace xml
       void add_attr(const ::xml::node * pnode, const attr * pattr);
 
 
-      virtual void write(::gen::byte_output_stream & ostream);
-      virtual void read(::gen::byte_input_stream & istream);
+      virtual void write(::ca::byte_output_stream & ostream);
+      virtual void read(::ca::byte_input_stream & istream);
 
       
    };
 
    class CLASS_DECL_ca edit :
       public ::ca::edit < ::xml::document >,
-      public ::gen::byte_serializable_array < array_ptr_alloc < edit_item > >
+      public ::ca::byte_serializable_array < array_ptr_alloc < edit_item > >
    {
    public:
 

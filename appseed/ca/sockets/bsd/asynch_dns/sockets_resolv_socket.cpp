@@ -110,7 +110,7 @@ namespace sockets
 
    void resolv_socket::OnLine(const string & line)
    {
-      ::gen::parse pa(line, ":");
+      ::ca::parse pa(line, ":");
       if (m_bServer)
       {
          m_query = pa.getword();

@@ -21,13 +21,13 @@ public:
    virtual ~BaseButtonControl();
 
 
-   virtual void _003CustomWindowProc(gen::signal_object * pobj);
+   virtual void _003CustomWindowProc(ca::signal_object * pobj);
 
 
    virtual bool pre_create_window(CREATESTRUCT& cs);
    
 
-   virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+   virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
    void UpdateDrawingObjects();
    void UpdateWndRgn();

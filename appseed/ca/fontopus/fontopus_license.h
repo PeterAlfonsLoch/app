@@ -6,7 +6,7 @@ namespace fontopus
 
 
    class CLASS_DECL_ca license :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

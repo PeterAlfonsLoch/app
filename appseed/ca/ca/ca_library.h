@@ -34,7 +34,7 @@ namespace uinteraction
 
 
 
-namespace ca2
+namespace ca
 {
 
    
@@ -43,7 +43,7 @@ namespace ca2
 
    class CLASS_DECL_ca library :
       virtual public ::ca::library,
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -105,7 +105,7 @@ namespace ca2
    {
    public:
 
-      single_application_library(const char * pszRoot) : ::ca2::library(pszRoot) {}
+      single_application_library(const char * pszRoot) : ::ca::library(pszRoot) {}
 
       // impl
       virtual ::ca::application * get_new_app(const char * pszAppId)
@@ -144,6 +144,6 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace ca
 
 

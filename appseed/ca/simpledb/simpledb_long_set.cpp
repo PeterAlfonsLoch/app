@@ -93,20 +93,20 @@ repeat:;
           }
 
 
-          gen::property_set post(get_app());
-          gen::property_set headers(get_app());
-          gen::property_set set(get_app());
+          ca::property_set post(get_app());
+          ca::property_set headers(get_app());
+          ca::property_set set(get_app());
 
-          ca2::http::e_status estatus;
+          ca::http::e_status estatus;
 
           string strUrl;
 
           set["interactive_user"] = true;
 
-          strUrl = "https://api.ca2.cc/account/long_set_save?key=";
+          strUrl = "https://api.ca.cc/account/long_set_save?key=";
           strUrl += System.url().url_encode(m_itema[0].m_strKey);
           strUrl += "&value=";
-          strUrl += gen::str::from(m_itema[0].m_l);
+          strUrl += ca::str::from(m_itema[0].m_l);
 
           m_itema.remove_at(0);
 
@@ -115,7 +115,7 @@ repeat:;
 
           m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-          if(m_phttpsession == NULL || estatus != ca2::http::status_ok)
+          if(m_phttpsession == NULL || estatus != ca::http::status_ok)
           {
              Sleep(1984);
              goto repeat;
@@ -161,27 +161,27 @@ bool db_long_set::load(const char * lpKey, int64_t * plValue)
 
 
 
-      gen::property_set post(get_app());
-      gen::property_set headers(get_app());
-      gen::property_set set(get_app());
+      ca::property_set post(get_app());
+      ca::property_set headers(get_app());
+      ca::property_set set(get_app());
 
-      ca2::http::e_status estatus;
+      ca::http::e_status estatus;
 
       string strUrl;
 
       set["interactive_user"] = true;
 
-      strUrl = "https://api.ca2.cc/account/long_set_load?key=";
+      strUrl = "https://api.ca.cc/account/long_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ca2::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ca::http::status_ok)
       {
          return false;
       }
 
-      *plValue = gen::str::to_int64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(), m_phttpsession->m_memoryfile.get_memory()->get_size()));
+      *plValue = ca::str::to_int64(string((const char *) m_phttpsession->m_memoryfile.get_memory()->get_data(), m_phttpsession->m_memoryfile.get_memory()->get_size()));
 
       longitem.m_dwTimeout = get_tick_count() + 23 * (1984 + 1977);
       longitem.m_l = *plValue;
@@ -279,7 +279,7 @@ bool db_long_set::save(const char * lpKey, int64_t lValue)
    else if(m_pmysqldbUser != NULL)
    {
 
-      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + gen::str::from(lValue) + ")";
+      string strSql = "REPLACE INTO fun_user_long_set VALUE('" + m_strUser + "', '" + m_pmysqldbUser->real_escape_string(lpKey) + "', " + ca::str::from(lValue) + ")";
 
       TRACE(strSql);
 

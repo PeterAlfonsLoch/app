@@ -3,7 +3,7 @@
 
 class CLASS_DECL_ca2 XfplayerViewLines :
    virtual public array_app_alloc<XfplayerViewLine, XfplayerViewLine &>,
-   virtual public gen::signalizable
+   virtual public ca::signalizable
 {
 public:
 
@@ -31,7 +31,7 @@ public:
 
    user::e_line_hit hit_test(POINT &ptCursor, strsize &iLine, strsize &iChar);
 
-   void InstallMessageHandling(::gen::message::dispatch *pinterface);
+   void InstallMessageHandling(::ca::message::dispatch *pinterface);
 
    virtual ~XfplayerViewLines();
 

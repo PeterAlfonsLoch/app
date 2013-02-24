@@ -13,7 +13,7 @@ namespace filemanager
       ca(papp),
       ::user::interaction(papp),
       ::user::form(papp),
-      ::ca2::user::form(papp),
+      ::ca::user::form(papp),
       ::user::form_list(papp),
       SimpleFileListInterface(papp),
       ::userbase::view(papp),
@@ -51,7 +51,7 @@ namespace filemanager
    {
    }
 
-   void SimpleFileListView::install_message_handling(::gen::message::dispatch * pinterface)
+   void SimpleFileListView::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::userbase::view::install_message_handling(pinterface);
       SimpleFileListInterface::install_message_handling(pinterface);
@@ -78,7 +78,7 @@ namespace filemanager
    }
    #endif //DEBUG
 
-   void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+   void SimpleFileListView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
 
@@ -90,7 +90,7 @@ namespace filemanager
          /*
          stringa stra;
 
-         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
+         GetFileManager()->data_get(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
 
          string strPath = GetFileManager()->get_item().m_strPath;
 
@@ -101,7 +101,7 @@ namespace filemanager
 
             stra.add_unique(strPath);
 
-            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::gen::system::idEmpty, stra);
+            GetFileManager()->data_set(GetFileManager()->get_filemanager_data()->m_ptemplate->m_dataidStatic, ::ca::system::idEmpty, stra);
 
             _017UpdateList();
 
@@ -180,7 +180,7 @@ namespace filemanager
                data_get_DisplayToStrict();
                _001OnUpdateItemCount();
                /*string str;
-               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::gen::system::idEmpty, str))
+               if(data_get("sort-" + GetFileManager()->get_item().m_strPath, ::ca::system::idEmpty, str))
                {
                   stringa stra;
                   stra.add_tokens(str, ";", true);
@@ -324,10 +324,10 @@ namespace filemanager
 
    }
 
-   void SimpleFileListView::_001OnContextMenu(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnContextMenu(ca::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
-      SCAST_PTR(::gen::message::mouse, pcontextmenu, pobj)
+      //SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::ca::message::mouse, pcontextmenu, pobj)
       index iItem;
 //      HRESULT hr;
       point point = pcontextmenu->m_pt;
@@ -521,9 +521,9 @@ namespace filemanager
    }
 
 
-   void SimpleFileListView::_001OnTimer(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 198477)
       {
          if(GetFileManager()->get_filemanager_data()->m_bSetBergedgeTopicFile)
@@ -607,13 +607,13 @@ namespace filemanager
       return ::userbase::view::_001OnCmdMsg(pcmdmsg);
    }
 
-   void SimpleFileListView::_001OnShellCommand(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnShellCommand(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::command, pcommand, pobj)
+      SCAST_PTR(::ca::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
-   void SimpleFileListView::_001OnFileManagerItemCommand(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnFileManagerItemCommand(ca::signal_object * pobj)
    {
       SCAST_PTR(BaseCommand, pcommand, pobj)
       ::fs::item_array itema;
@@ -635,9 +635,9 @@ namespace filemanager
          itema);
    }
 
-   void SimpleFileListView::_001OnFileManagerItemUpdate(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnFileManagerItemUpdate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::update_cmd_ui, pupdatecmdui, pobj)
+      SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
       ::fs::item_array itema;
       index iItemRange, iItem;
       Range range;
@@ -700,12 +700,12 @@ namespace filemanager
       GetFileManager()->get_filemanager_data()->OnFileManagerOpenFile(itema);
    }
 
-   void SimpleFileListView::_001OnFileRename(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnFileRename(ca::signal_object * pobj)
    {
       SimpleFileListInterface::_001OnFileRename(pobj);
    }
 
-   void SimpleFileListView::_001OnUpdateFileRename(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnUpdateFileRename(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(_001GetSelectedItemCount() == 1);
@@ -713,7 +713,7 @@ namespace filemanager
    }
 
 
-   void SimpleFileListView::_001OnUpdateEditCopy(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnUpdateEditCopy(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       Range range;
@@ -722,7 +722,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListView::_001OnEditCopy(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnEditCopy(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       ::fs::item_array itema;
@@ -751,7 +751,7 @@ namespace filemanager
 
    }
 
-   void SimpleFileListView::_001OnUpdateEditPaste(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnUpdateEditPaste(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(System.copydesk().get_file_count() > 0);
@@ -759,7 +759,7 @@ namespace filemanager
    }
 
 
-   void SimpleFileListView::_001OnEditPaste(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnEditPaste(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       stringa stra;
@@ -775,13 +775,13 @@ namespace filemanager
      /* for(int32_t i = 0; i < stra.get_size(); i++)
       {
          ::CopyFileW(
-            L"\\\\?\\" + gen::international::utf8_to_unicode(stra[i]),
-            L"\\\\?\\" + gen::international::utf8_to_unicode(System.dir().path(strDir, System.file().title(stra[i]))), TRUE);
+            L"\\\\?\\" + ca::international::utf8_to_unicode(stra[i]),
+            L"\\\\?\\" + ca::international::utf8_to_unicode(System.dir().path(strDir, System.file().title(stra[i]))), TRUE);
       }*/
       //get_document()->update_all_views(NULL, 123);
    }
 
-   void SimpleFileListView::_001OnUpdateTrashThatIsNotTrash(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnUpdateTrashThatIsNotTrash(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       Range range;
@@ -790,7 +790,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListView::_001OnTrashThatIsNotTrash(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnTrashThatIsNotTrash(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       ::fs::item_array itema;
@@ -804,7 +804,7 @@ namespace filemanager
       _017UpdateList();
    }
 
-   void SimpleFileListView::_001OnUpdateOpenWith(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnUpdateOpenWith(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
 
@@ -925,7 +925,7 @@ namespace filemanager
 
    }
 
-   void SimpleFileListView::_001OnUpdateSpafy(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnUpdateSpafy(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       Range range;
@@ -934,7 +934,7 @@ namespace filemanager
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListView::_001OnSpafy(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnSpafy(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       ::fs::item_array itema;
@@ -990,14 +990,14 @@ namespace filemanager
 
    }
 
-   void SimpleFileListView::_001OnUpdateSpafy2(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnUpdateSpafy2(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
       pobj->m_bRet = true;
    }
 
-   void SimpleFileListView::_001OnSpafy2(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnSpafy2(ca::signal_object * pobj)
    {
       ::fs::list_data * pdata = get_fs_list_data();
       UNREFERENCED_PARAMETER(pobj);
@@ -1078,9 +1078,9 @@ namespace filemanager
       //__begin_thread(ThreadProc4, psize, THREAD_PRIORITY_IDLE);
    }
 
-   void SimpleFileListView::_001OnShowWindow(gen::signal_object * pobj)
+   void SimpleFileListView::_001OnShowWindow(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::show_window, pshowwindow, pobj);
+      SCAST_PTR(::ca::message::show_window, pshowwindow, pobj);
 
       if(!pshowwindow->m_bShow)
       {

@@ -39,7 +39,7 @@ namespace filemanager
    #endif //DEBUG
 
 
-   void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+   void SimpleFolderTreeView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != NULL)
@@ -95,7 +95,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001OnLButtonDblClk(gen::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnLButtonDblClk(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int32_t iItem;
@@ -169,9 +169,9 @@ namespace filemanager
 
    }*/
 
-   void SimpleFolderTreeView::_001OnContextMenu(gen::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnContextMenu(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
    //   int32_t iItem;
    //   HRESULT hr;
       point ptClient = pcontextmenu->GetPoint();
@@ -239,9 +239,9 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::_001OnTimer(gen::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;
@@ -273,9 +273,9 @@ namespace filemanager
       return SimpleFolderTreeInterface::_001OnCmdMsg(pcmdmsg);
    }
 
-   void SimpleFolderTreeView::_001OnShellCommand(gen::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnShellCommand(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::command, pcommand, pobj)
+      SCAST_PTR(::ca::message::command, pcommand, pobj)
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
@@ -285,11 +285,11 @@ namespace filemanager
 
    }
 
-   void SimpleFolderTreeView::_001OnCreate(gen::signal_object * pobj)
+   void SimpleFolderTreeView::_001OnCreate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
-      if(!gen::tree::initialize())
+      if(!ca::tree::initialize())
          throw simple_exception(get_app());
 
       m_pimagelist = System.user().shellimageset().GetImageList16();
@@ -305,7 +305,7 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeView::install_message_handling(::gen::message::dispatch * pinterface)
+   void SimpleFolderTreeView::install_message_handling(::ca::message::dispatch * pinterface)
    {
       SimpleFolderTreeInterface::install_message_handling(pinterface);
 

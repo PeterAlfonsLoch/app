@@ -65,7 +65,7 @@ namespace plane
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
+         ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
 
          papp->post_thread_message(WM_QUIT, 0, 0);
       }
@@ -79,7 +79,7 @@ namespace plane
       m_strBaseSupportId   = "votagus_ca2_bergedge";
       m_strInstallToken    = "session";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::gen::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;
       m_puserpresence->construct(this);
 
    }
@@ -187,7 +187,7 @@ namespace plane
    bool session::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return gen::application::_001OnCmdMsg(pcmdmsg);
+      return ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
    ::ca::application * session::get_app() const
@@ -197,8 +197,8 @@ namespace plane
 
    void session::load_string_table()
    {
-      ::ca2::application::load_string_table();
-      ::ca2::application::load_string_table("plane", "");
+      ::ca::application::load_string_table();
+      ::ca::application::load_string_table("plane", "");
    }
 
 /*   bool session::file_manager_open_file(
@@ -406,7 +406,7 @@ namespace plane
          }
          else if (pcreatecontext->m_spCommandLine->m_varQuery["app"].stra().get_count() > 1)
          {
-            start_application("application", "app/ca2/bergedge", pcreatecontext);
+            start_application("application", "app/ca/bergedge", pcreatecontext);
             return;
          }
 
@@ -604,7 +604,7 @@ namespace plane
 
       }
 
-      if(gen::str::ends_ci(strPathName, ".cgcl"))
+      if(ca::str::ends_ci(strPathName, ".cgcl"))
       {
 
       }
@@ -618,7 +618,7 @@ namespace plane
 
          string str = System.url().get_object(strPathName);
 
-         gen::str::begins_eat(str, "/");
+         ca::str::begins_eat(str, "/");
 
          pcreatecontext->m_spCommandLine->m_varFile = str;
 
@@ -638,7 +638,7 @@ namespace plane
          }
          else
          {
-            strId = "app/ca2/default_file_handler";
+            strId = "app/ca/default_file_handler";
          }
 
       }
@@ -648,7 +648,7 @@ namespace plane
       if(papp == NULL)
          return false;
 
-      papp->::gen::request_interface::create(pcreatecontext);
+      papp->::ca::request_interface::create(pcreatecontext);
 
       return true;
 
@@ -681,10 +681,10 @@ namespace plane
       m_puiParent = NULL;
    }
 
-   void session::on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive)
+   void session::on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive)
    {
 
-      if(eexclusive == ::gen::ExclusiveInstanceLocalId)
+      if(eexclusive == ::ca::ExclusiveInstanceLocalId)
       {
          /*
          ::primitive::memory_file file(get_app());
@@ -693,7 +693,7 @@ namespace plane
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::session::");
+         oswindow oswindow = ::FindWindowA(NULL, "ca::fontopus::message_wnd::session::");
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);*/
 
@@ -701,7 +701,7 @@ namespace plane
 
          small_ipc_tx_channel channel;
 
-         if(channel.open("ca2::fontopus::message_wnd::session::"))
+         if(channel.open("ca::fontopus::message_wnd::session::"))
          {
             channel.send(command().m_varTopicFile, false);
             channel.close();
@@ -732,11 +732,11 @@ namespace plane
 
       if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
       {
-         if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+         if(ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
          {
             string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-            if(gen::str::begins_eat(strCommand, "ca2prompt\r")
-            || gen::str::begins_eat(strCommand, "ca2prompt\n"))
+            if(ca::str::begins_eat(strCommand, "ca2prompt\r")
+            || ca::str::begins_eat(strCommand, "ca2prompt\n"))
             {
                strCommand.trim();
                command().add_fork_uri(strCommand);
@@ -780,7 +780,7 @@ namespace plane
    /*void session::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
    {
 
-      ::ca2::application_request request;
+      ::ca::application_request request;
 
       request.m_iEdge         = m_iEdge;
       request.m_strApp        = pszId;
@@ -873,8 +873,8 @@ namespace plane
 
       ::user::interaction * puiParent = NULL;
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >();
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
+         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
 
       if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
       {
@@ -1017,9 +1017,9 @@ namespace plane
 
       string strSentinelPath;
 
-      strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
+      strSentinelPath = System.dir().ca("stage/x86/app-sentinel.exe");
 
-      System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("ca app-sentinel", "\"" + strSentinelPath + "\"");
 
 
       System.os().defer_register_ca2_plugin_for_mozilla();

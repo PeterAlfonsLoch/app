@@ -5,7 +5,7 @@
 // is destroyed, raw_pointer just hold the pointer.
 
 class CLASS_DECL_ca raw_pointer : 
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
@@ -14,13 +14,13 @@ public:
    raw_pointer(::ca::ca * pboject);
 
    template < class T >
-   T * ca2 ()
+   T * ca ()
    {
       return dynamic_cast < T * > (m_pca);
    }
 
    template < class T >
-   T * const ca2 () const
+   T * const ca () const
    {
       return dynamic_cast < T * const > (m_pca);
    }

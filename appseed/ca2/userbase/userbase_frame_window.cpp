@@ -52,7 +52,7 @@ namespace userbase
    }
 
 
-   void frame_window::install_message_handling(::gen::message::dispatch * pinterface)
+   void frame_window::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       ::frame_window::install_message_handling(pinterface);
@@ -140,7 +140,7 @@ namespace userbase
 
 
 
-   void frame_window::_001OnCreate(gen::signal_object * pobj)
+   void frame_window::_001OnCreate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 
@@ -174,9 +174,9 @@ namespace userbase
 
 
    // query end session for main frame will attempt to close it all down
-   void frame_window::_001OnQueryEndSession(gen::signal_object * pobj)
+   void frame_window::_001OnQueryEndSession(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if (&Cube != NULL && Cube.GetMainWnd() == this)
       {
          pbase->set_lresult(Cube.save_all_modified());
@@ -191,7 +191,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // Special ::view swapping/activation
 
-   void frame_window::_001OnSetFocus(gen::signal_object * pobj)
+   void frame_window::_001OnSetFocus(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       if (m_pViewActive != NULL)
@@ -231,7 +231,7 @@ namespace userbase
       m_nIdleFlags |= idleMenu;
    }
 
-   void frame_window::_001OnIdleUpdateCmdUI(gen::signal_object * pobj)
+   void frame_window::_001OnIdleUpdateCmdUI(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // update menu if necessary
@@ -260,9 +260,9 @@ namespace userbase
 
 
 
-   void frame_window::_001OnSize(gen::signal_object * pobj)
+   void frame_window::_001OnSize(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::size, psize, pobj)
+      SCAST_PTR(::ca::message::size, psize, pobj)
    //   ::user::interaction::OnSize(nType, cx, cy);    // important for MDI Children
       if (psize->m_nType != SIZE_MINIMIZED)
          layout();

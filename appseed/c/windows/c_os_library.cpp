@@ -50,7 +50,7 @@ namespace ca
       }
       else if(stricmp_dup(pszPath, "app_ca2") == 0)
       {
-         pszPath = "ca2";
+         pszPath = "ca";
       }
 
       vsstring strPath(pszPath);
@@ -71,9 +71,9 @@ namespace ca
          strPath += ".dll";
 
 #ifdef _M_X64
-      ::SetDllDirectory(dir::ca2("stage\\x64") + "\\");
+      ::SetDllDirectory(dir::ca("stage\\x64") + "\\");
 #else
-      ::SetDllDirectory(dir::ca2("stage\\x86") + "\\");
+      ::SetDllDirectory(dir::ca("stage\\x86") + "\\");
 #endif
 
 
@@ -133,7 +133,7 @@ namespace ca
 
    bool ca2_library::open(const char * pszPath)
    {
-      m_plibrary = ::ca2::open_ca2_library(pszPath);
+      m_plibrary = ::ca::open_ca2_library(pszPath);
       return m_plibrary != NULL;
    }
 
@@ -143,7 +143,7 @@ namespace ca
 } // namespace ca
 
 
-namespace ca2
+namespace ca
 {
 
    void * open_ca2_library(const char * psz)
@@ -160,9 +160,9 @@ namespace ca2
       if(str[0] == '/')
          return FALSE;
    #ifdef _M_X64
-      ::SetDllDirectory(dir::ca2("stage\\x64") + "\\");
+      ::SetDllDirectory(dir::ca("stage\\x64") + "\\");
    #else
-      ::SetDllDirectory(dir::ca2("stage\\x86") + "\\");
+      ::SetDllDirectory(dir::ca("stage\\x86") + "\\");
    #endif*/
       return LoadLibrary(psz);
    }

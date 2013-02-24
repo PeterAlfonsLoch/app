@@ -98,7 +98,7 @@ bool simple_list_control::RemoveItem(Range & range)
 }
 
 
-void simple_list_control::install_message_handling(::gen::message::dispatch * pinterface)
+void simple_list_control::install_message_handling(::ca::message::dispatch * pinterface)
 {
    UNREFERENCED_PARAMETER(pinterface);
 }

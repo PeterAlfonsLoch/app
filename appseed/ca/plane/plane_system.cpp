@@ -43,7 +43,7 @@ namespace plane
       m_pxml = NULL;
 
 
-//      ::plane::system * psystemParent             = oprop("parent_system").ca2 < ::plane::system > ();
+//      ::plane::system * psystemParent             = oprop("parent_system").ca < ::plane::system > ();
 
       ::plane::application::m_file.set_app(this);
       ::plane::application::m_dir.set_app(this);
@@ -55,8 +55,8 @@ namespace plane
 
       string strId;
       //strId = m_strAppName;
-      //strId += gen::str::has_char(m_strAppId, ".");
-      //strId += gen::str::has_char(m_strBaseSupportId, ".");
+      //strId += ca::str::has_char(m_strAppId, ".");
+      //strId += ca::str::has_char(m_strBaseSupportId, ".");
 
 
       strId = "ca2log";
@@ -102,7 +102,7 @@ namespace plane
 
       m_pfactory->cloneable_large < ::ca::create_context > ();
       m_pfactory->cloneable_large < ::ca::application_bias > ();
-      m_pfactory->cloneable_large < ::gen::command_line > ();
+      m_pfactory->cloneable_large < ::ca::command_line > ();
       m_pfactory->cloneable_large < ::manual_reset_event > ();
       m_pfactory->cloneable_large < ::mutex > ();
       m_pfactory->cloneable_large < ::event > ();
@@ -118,7 +118,7 @@ namespace plane
 #ifndef METROWIN
       m_process.set_app(this);
 #endif
-      m_pdatetime = new class ::ca2::datetime(this);
+      m_pdatetime = new class ::ca::datetime(this);
       m_email.set_app(this);
       m_http.set_app(this);
       m_compress.set_app(this);
@@ -173,7 +173,7 @@ namespace plane
       {
          if(m_pfactory != NULL)
          {
-            gen::del(m_pfactory);
+            ca::del(m_pfactory);
          }
       }
       catch(...)
@@ -207,14 +207,14 @@ namespace plane
       m_bProcessInitialize          = true;
 
 
-      if(!gen::system::initialize())
+      if(!ca::system::initialize())
          return false;
 
 
       ::ca::profiler::initialize();
 
 
-//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
+//      System.factory().creatable < ::ca::log >(System.type_info < ::ca::log > (), 1);
 
       if(!::plane::application::process_initialize())
       {
@@ -314,7 +314,7 @@ namespace plane
       System.factory().cloneable_large < ::ca::palette_sp >();
       System.factory().cloneable_large < ::ca::region_sp >();
       //      System.factory().cloneable_large < var >();
-//      System.factory().creatable < ::ca2::log >(System.type_info < ::ca::log > (), 1);
+//      System.factory().creatable < ::ca::log >(System.type_info < ::ca::log > (), 1);
 
       m_puserstr = new ::user::str(this);
       if(m_puserstr == NULL)
@@ -351,12 +351,12 @@ namespace plane
       if(directrix().m_varTopicQuery.has_property("install"))
          return true;
 
-      gen::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), gen::file::type_binary | gen::file::mode_read);
+      ca::filesp file = m_file.get_file(System.dir().appdata("applibcache.bin"), ca::file::type_binary | ca::file::mode_read);
 
       if(file.is_null())
          return false;
 
-      gen::byte_input_stream is(file);
+      ca::byte_input_stream is(file);
 
       is >> m_mapAppLibrary;
 
@@ -395,7 +395,7 @@ namespace plane
    bool system::find_applications_to_cache()
    {
 
-      /*      m_spfilehandler(new ::ca2::filehandler::handler(this));*/
+      /*      m_spfilehandler(new ::ca::filehandler::handler(this));*/
 
       m_mapAppLibrary.remove_all();
 
@@ -409,9 +409,9 @@ namespace plane
 
          strLibraryId = straTitle[i];
 
-         if(gen::str::ends_eat_ci(strLibraryId, ".dll")
-            || gen::str::ends_eat_ci(strLibraryId, ".so")
-            || gen::str::ends_eat_ci(strLibraryId, ".dylib"))
+         if(ca::str::ends_eat_ci(strLibraryId, ".dll")
+            || ca::str::ends_eat_ci(strLibraryId, ".so")
+            || ca::str::ends_eat_ci(strLibraryId, ".dylib"))
          {
 
             map_application_library(strLibraryId);
@@ -420,12 +420,12 @@ namespace plane
 
       }
 
-      gen::filesp file;
+      ca::filesp file;
 
       try
       {
 
-         file = m_file.get_file(System.dir().appdata("applibcache.bin"), gen::file::defer_create_directory | ::gen::file::type_binary | gen::file::mode_create  | ::gen::file::mode_write);
+         file = m_file.get_file(System.dir().appdata("applibcache.bin"), ca::file::defer_create_directory | ::ca::file::type_binary | ca::file::mode_create  | ::ca::file::mode_write);
 
       }
       catch(base_exception &)
@@ -435,7 +435,7 @@ namespace plane
 
       }
 
-      gen::byte_output_stream os(file);
+      ca::byte_output_stream os(file);
 
       os << m_mapAppLibrary;
 
@@ -448,7 +448,7 @@ namespace plane
    bool system::map_application_library(const char * pszLibrary)
    {
 
-      ::ca2::library library(NULL);
+      ::ca::library library(NULL);
 
       if(!library.open(this, pszLibrary))
          return false;
@@ -477,7 +477,7 @@ namespace plane
 
 #ifdef LINUX
 
-      gen::str::begins_eat(strLibrary, "lib");
+      ca::str::begins_eat(strLibrary, "lib");
 
 #endif
 
@@ -487,7 +487,7 @@ namespace plane
 
       strPrefix.replace("/", "_");
 
-      gen::str::begins_eat_ci(strLibrary, strPrefix);
+      ca::str::begins_eat_ci(strLibrary, strPrefix);
 
       strRoot += strLibrary;
 
@@ -530,7 +530,7 @@ namespace plane
       set_enum_name(var::type_string    , "string");
       set_enum_name(var::type_int32   , "integer");
       set_enum_name(var::type_uint32     , "ulong");
-      set_enum_name(var::type_ca2       , "ca2");
+      set_enum_name(var::type_ca2       , "ca");
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
@@ -636,7 +636,7 @@ namespace plane
          if(m_ptwf != NULL)
          {
             m_ptwf->stop();
-            gen::del(m_ptwf);
+            ca::del(m_ptwf);
             m_ptwf = NULL;
          }
       }
@@ -657,7 +657,7 @@ namespace plane
       {
          if(m_spdir.m_p != NULL)
          {
-            gen::del(m_spdir.m_p);
+            ca::del(m_spdir.m_p);
          }
       }
       catch(...)
@@ -700,7 +700,7 @@ namespace plane
 
       try
       {
-         gen::del(m_plog);
+         ca::del(m_plog);
       }
       catch(...)
       {
@@ -816,7 +816,7 @@ namespace plane
       return m_net;
    }
 
-   ::ca2::stra & system::stra()
+   ::ca::stra & system::stra()
    {
       return m_stra;
    }
@@ -831,12 +831,12 @@ namespace plane
       return m_userset;
    }
 
-   ::ca2::service & system::service()
+   ::ca::service & system::service()
    {
       return m_service;
    }
 
-   ::ca2::install & system::install()
+   ::ca::install & system::install()
    {
       return m_install;
    }
@@ -848,14 +848,14 @@ namespace plane
 
 #ifndef METROWIN
 
-   ::ca2::process & system::process()
+   ::ca::process & system::process()
    {
       return m_process;
    }
 
 #endif
 
-   ::ca2::datetime & system::datetime()
+   ::ca::datetime & system::datetime()
    {
       return *m_pdatetime;
    }
@@ -865,7 +865,7 @@ namespace plane
       return *m_puserstr;
    }
 
-   /*   ::ca2::filehandler::handler & system::filehandler()
+   /*   ::ca::filehandler::handler & system::filehandler()
    {
    return *m_spfilehandler;
    }*/
@@ -895,7 +895,7 @@ namespace plane
       
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
+         ca::application * papp = dynamic_cast < ca::application * > (appptra()[i]);
          papp->load_string_table();
       }
 
@@ -908,7 +908,7 @@ namespace plane
       
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
+         ca::application * papp = dynamic_cast < ca::application * > (appptra()[i]);
          papp->set_locale(pszLocale, bUser);
       }
 
@@ -921,7 +921,7 @@ namespace plane
       
       for(int32_t i = 0; i < appptra().get_size(); i++)
       {
-         ca2::application * papp = dynamic_cast < ca2::application * > (appptra()[i]);
+         ca::application * papp = dynamic_cast < ca::application * > (appptra()[i]);
          papp->set_schema(pszStyle, bUser);
       }
 
@@ -1080,10 +1080,10 @@ namespace plane
       m_plog->set_app(this);
       if(!m_plog->initialize(pszId))
       {
-         gen::del(m_plog);
+         ca::del(m_plog);
          return false;
       }
-      //      gen::trace_v = &gen::system_log_trace_v;
+      //      ca::trace_v = &ca::system_log_trace_v;
       return true;
    }
 
@@ -1271,7 +1271,7 @@ namespace plane
       if(iReportType == _CRT_ASSERT && is_debugger_attached())
       {
 #ifdef DEBUG
-         gen::property_set propertyset;
+         ca::property_set propertyset;
          propertyset["filepath"] = pszFileName;
          propertyset["linenumber"] = iLineNumber;
          message_box("system\\debug\\assert.xhtml", propertyset);
@@ -1369,20 +1369,20 @@ namespace plane
 
    ::ca::ca * system::alloc(::ca::application * papp, ::ca::type_info & info)
    {
-      return ::gen::system::alloc(papp, info);
+      return ::ca::system::alloc(papp, info);
    }
 
    ::ca::ca * system::alloc(::ca::application * papp, const class id & idType)
    {
-      return ::gen::system::alloc(papp, get_type_info(idType));
+      return ::ca::system::alloc(papp, get_type_info(idType));
    }
 
    bool system::sync_load_url(string & str, const char * lpszUrl, ::fontopus::user * puser, ::http::cookies * pcookies)
    {
       string filename = System.file().time_square(get_app());
-      gen::property_set headers;
-      gen::property_set post;
-      gen::property_set set;
+      ca::property_set headers;
+      ca::property_set post;
+      ca::property_set set;
       if(!http().download(lpszUrl, filename, post, headers, set, pcookies, puser))
          return false;
       if(headers["Location"].get_string().has_char())
@@ -1473,37 +1473,37 @@ namespace plane
       return bOk;*/
    }
 
-   ::ca2::compress & system::compress()
+   ::ca::compress & system::compress()
    {
       return m_compress;
    }
 
-   ::ca2::patch & system::patch()
+   ::ca::patch & system::patch()
    {
       return m_patch;
    }
 
-   class ::ca2::crypt & system::crypt()
+   class ::ca::crypt & system::crypt()
    {
       return m_spcrypt;
    }
 
-   class ::ca2::email & system::email()
+   class ::ca::email & system::email()
    {
       return m_email;
    }
 
-   class ::ca2::http::system & system::http()
+   class ::ca::http::system & system::http()
    {
       return m_http;
    }
 
-   ::ca2::file & system::file36()
+   ::ca::file & system::file36()
    {
       return m_file4;
    }
 
-   ::ca2::copydesk & system::copydesk()
+   ::ca::copydesk & system::copydesk()
    {
       return m_spcopydesk;
    }
@@ -1565,13 +1565,13 @@ namespace plane
 
       string strApplicationId;
 
-      if(strId == "app/ca2/bergedge")
+      if(strId == "app/ca/bergedge")
       {
 
          strApplicationId = "bergedge";
 
       }
-      else if(strId == "app/ca2/cube")
+      else if(strId == "app/ca/cube")
       {
 
          strApplicationId = "cube";
@@ -1609,7 +1609,7 @@ namespace plane
 
 #endif
 
-      ca2::library library(NULL);
+      ca::library library(NULL);
 
       string strLibrary = m_mapAppLibrary[pszAppId];
 
@@ -1623,7 +1623,7 @@ namespace plane
       if(papp == NULL)
          return NULL;
 
-      ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+      ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
 
       pgenapp->m_strAppId = pszAppId;
 
@@ -1642,7 +1642,7 @@ namespace plane
          return true;
       }
 
-      gen::property_set set(this);
+      ca::property_set set(this);
 
       var varFile;
       string strApp;
@@ -1800,7 +1800,7 @@ namespace plane
 
    }
 
-   ::gen::command_thread & system::command_thread()
+   ::ca::command_thread & system::command_thread()
    {
       return *m_pcommandthread;
    }
@@ -1862,9 +1862,9 @@ retry:
       string strGetFontopus("http://" + System.url().get_server(pszUrl) + "/get_fontopus");
       try
       {
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set;
          set["disable_ca2_sessid"] = true;
          set["app"] = papp;
          Application.http().get(strGetFontopus, strFontopusServer, post, headers, set, NULL, NULL, NULL, NULL);
@@ -1905,7 +1905,7 @@ retry:
    }
 
 
-   bool system::add_library(::ca2::library * plibrary)
+   bool system::add_library(::ca::library * plibrary)
    {
 
       m_libraryptra.add(plibrary);

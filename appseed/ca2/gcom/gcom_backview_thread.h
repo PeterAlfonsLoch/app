@@ -15,7 +15,7 @@ namespace gcom
 
 
       class CLASS_DECL_ca2 thread : 
-         virtual public ::gen::thread
+         virtual public ::ca::thread
       {
       public:
 
@@ -89,7 +89,7 @@ namespace gcom
 
          void SetMain(backview::Main * pmain);
 
-         void install_message_handling(::gen::message::dispatch * pinterface);
+         void install_message_handling(::ca::message::dispatch * pinterface);
 
          static uint32_t ThreadProcStretchImage(void * lpParameter);
          static uint32_t ThreadProcLoadImage(void * lpParameter);
@@ -139,7 +139,7 @@ namespace gcom
 
          string                  m_strImagePath;
          backview::Main *        m_pbackviewinterface;
-         gen::signal             m_signalImageLoaded;
+         ca::signal             m_signalImageLoaded;
          ::ca::dib *             m_pdib;
 
 

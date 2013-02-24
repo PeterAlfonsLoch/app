@@ -79,7 +79,7 @@ __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszVal
       if (::RegSetValue(HKEY_CLASSES_ROOT, lpszKey, REG_SZ,
            lpszValue, lstrlen(lpszValue) * sizeof(char)) != ERROR_SUCCESS)
       {
-//         TRACE(::gen::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
+//         TRACE(::ca::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n",
   //          lpszKey);
          return FALSE;
       }
@@ -97,7 +97,7 @@ __set_reg_key(const char * lpszKey, const char * lpszValue, const char * lpszVal
          if(::RegCloseKey(hKey) == ERROR_SUCCESS && lResult == ERROR_SUCCESS)
             return TRUE;
       }
-      //TRACE(::gen::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
+      //TRACE(::ca::trace::category_AppMsg, 0, "Warning: registration database update failed for key '%s'.\n", lpszKey);
       return FALSE;
    }
 }
@@ -484,22 +484,22 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    // open format is "[open("%s")]" - no whitespace allowed, one per line
    // print format is "[print("%s")]" - no whitespace allowed, one per line
    // print to format is "[printto("%s","%s","%s","%s")]" - no whitespace allowed, one per line
-   gen::command & cmdInfo = System.command();
-   command.m_nShellCommand = gen::command_line::FileDDE;
+   ca::command & cmdInfo = System.command();
+   command.m_nShellCommand = ca::command_line::FileDDE;
 
    if (strCommand.Left(7) == _T("[open(\""))
    {
-      cmdInfo.m_nShellCommand = gen::command_line::FileOpen;
+      cmdInfo.m_nShellCommand = ca::command_line::FileOpen;
       strCommand = strCommand.Right(strCommand.get_length() - 7);
    }
    else if (strCommand.Left(8) == _T("[print(\""))
    {
-      cmdInfo.m_nShellCommand = gen::command_line::FilePrint;
+      cmdInfo.m_nShellCommand = ca::command_line::FilePrint;
       strCommand = strCommand.Right(strCommand.get_length() - 8);
    }
    else if (strCommand.Left(10) == _T("[printto(\""))
    {
-      cmdInfo.m_nShellCommand = gen::command_line::FilePrintTo;\
+      cmdInfo.m_nShellCommand = ca::command_line::FilePrintTo;\
       strCommand = strCommand.Right(strCommand.get_length() - 10);
    }
    else
@@ -512,13 +512,13 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
    cmdInfo.m_varFile = strCommand.Left(i);
    strCommand = strCommand.Right(strCommand.get_length() - i);
 
-   //gen::command_line* pOldInfo = NULL;
+   //ca::command_line* pOldInfo = NULL;
    bool bRetVal = TRUE;
 
    // // If we were started up for DDE retrieve the Show state
 //   System.command_line() = cmdInfo;
 
-   if (cmdInfo.m_nShellCommand == gen::command_line::FileOpen)
+   if (cmdInfo.m_nShellCommand == ca::command_line::FileOpen)
    {
       // show the application ::ca::window
       ::user::interaction* pMainWnd = System.GetMainWnd();
@@ -543,7 +543,7 @@ bool document_manager::OnDDECommand(LPTSTR lpszCommand)
       goto RestoreAndReturn;
    }
 
-   if (cmdInfo.m_nShellCommand == gen::command_line::FilePrintTo)
+   if (cmdInfo.m_nShellCommand == ca::command_line::FilePrintTo)
    {
       if (strCommand.Left(3) != _T("\",\""))
       {
@@ -636,7 +636,7 @@ void document_manager::_001OnFileNew()
 {
    if (m_templateptra.is_empty())
    {
-      TRACE(::gen::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
+      TRACE(::ca::trace::category_AppMsg, 0, "Error: no document templates registered with application.\n");
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "Failed to create document");
       return;
@@ -676,7 +676,7 @@ void document_manager::on_file_open()
 
 void document_manager::assert_valid() const
 {
-   ::gen::object::assert_valid();
+   ::ca::object::assert_valid();
 
    count count = m_templateptra.get_count();
    for(index index = 0; index < count; index++)
@@ -688,7 +688,7 @@ void document_manager::assert_valid() const
 
 void document_manager::dump(dump_context & dumpcontext) const
 {
-   ::gen::object::dump(dumpcontext);
+   ::ca::object::dump(dumpcontext);
 
    if (dumpcontext.GetDepth() != 0)
    {
@@ -726,21 +726,21 @@ void document_manager::request(::ca::create_context * pcreatecontext)
    char szTemp[_MAX_PATH];
    if (lpszFileName[0] == '\"')
       ++lpszFileName;
-   ::gen::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
+   ::ca::tcsncpy_s(szTemp, _countof(szTemp), varFileName, _TRUNCATE);
    LPTSTR lpszLast = _tcsrchr(szTemp, '\"');
    if (lpszLast != NULL)
       *lpszLast = 0;*/
 
-   //if( gen::FullPath(szPath, szTemp) == FALSE )
+   //if( ca::FullPath(szPath, szTemp) == FALSE )
    //{
    //   ASSERT(FALSE);
-   //   return NULL; // We won't open the file. ca2 API requires paths with
+   //   return NULL; // We won't open the file. ca API requires paths with
                    // length < _MAX_PATH
    //}
 
 /*   char szLinkName[_MAX_PATH];
-   if (gen::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
-      ::gen::tcscpy_s(szPath, _countof(szPath), szLinkName);
+   if (ca::ResolveShortcut(System.GetMainWnd(), szPath, szLinkName, _MAX_PATH))
+      ::ca::tcscpy_s(szPath, _countof(szPath), szLinkName);
 */
 
    for(index index = 0; index < count; index++)
@@ -769,7 +769,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
          frame_window* pFrame = pview->GetParentFrame();
 
          if (pFrame == NULL)
-            TRACE(::gen::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
+            TRACE(::ca::trace::category_AppMsg, 0, "Error: Can not find a frame for document to activate.\n");
          else
          {
             pFrame->ActivateFrame();
@@ -786,7 +786,7 @@ void document_manager::request(::ca::create_context * pcreatecontext)
          }
       }
       else
-         TRACE(::gen::trace::category_AppMsg, 0, "Error: Can not find a ::view for document to activate.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "Error: Can not find a ::view for document to activate.\n");
 
       pcreatecontext->m_spCommandLine->m_varQuery["document"] = pOpenDocument;
    }

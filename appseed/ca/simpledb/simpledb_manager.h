@@ -4,7 +4,7 @@ namespace simpledb
 {
 
    class CLASS_DECL_ca manager :
-      virtual public ::gen::thread,
+      virtual public ::ca::thread,
       virtual public ::ca::message_window_simple_callback
    {
    public:
@@ -41,11 +41,11 @@ namespace simpledb
       session * & get_session(const char * pszId);
 
 
-      using ::gen::thread::handle;
+      using ::ca::thread::handle;
       bool handle(socket * psocket);
       bool get_output_internal(const char * lpcszGet, primitive::memory & memeory);
 
-      virtual void message_window_message_handler(gen::signal_object * pobj);
+      virtual void message_window_message_handler(ca::signal_object * pobj);
 
    };
 

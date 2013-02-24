@@ -142,21 +142,21 @@ void MetaButton::_001OnDraw(::ca::graphics * pdc)
 
 }
 
-void MetaButton::_001OnShowWindow(gen::signal_object * pobj)
+void MetaButton::_001OnShowWindow(ca::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void MetaButton::_001OnLButtonDown(gen::signal_object * pobj)
+void MetaButton::_001OnLButtonDown(ca::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void MetaButton::_001OnLButtonUp(gen::signal_object * pobj)
+void MetaButton::_001OnLButtonUp(ca::signal_object * pobj)
 {
 
    UNREFERENCED_PARAMETER(pobj);
@@ -195,9 +195,9 @@ void MetaButton::layout()
 }
 
 
-void MetaButton::_001OnTimer(gen::signal_object * pobj)
+void MetaButton::_001OnTimer(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::timer, ptimer, pobj)
+   SCAST_PTR(::ca::message::timer, ptimer, pobj)
       // TODO: add your message handler code here and/or call default
       if(ptimer->m_nIDEvent == TimerCheckFocus)
       {
@@ -246,7 +246,7 @@ void MetaButton::UpdateWndRgn()
 
 }
 
-void MetaButton::install_message_handling(::gen::message::dispatch *pinterface)
+void MetaButton::install_message_handling(::ca::message::dispatch *pinterface)
 {
    ::userbase::button::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &MetaButton::_001OnShowWindow);

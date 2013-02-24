@@ -6,7 +6,7 @@
 
 #include "InBuffer.h"*/
 
-namespace gen
+namespace ca
 {
 
    in_buffer::in_buffer():
@@ -87,4 +87,4 @@ namespace gen
       return *_buffer++;
    }
 
-} // namespace gen
+} // namespace ca

@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca output_file_stream :
-      virtual public ::gen::file_composite
+      virtual public ::ca::file_composite
    {
    public:
 
@@ -19,7 +19,7 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 

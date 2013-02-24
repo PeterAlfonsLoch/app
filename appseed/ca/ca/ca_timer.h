@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-namespace gen
+namespace ca
 {
 
    class TimerCallback;
@@ -30,5 +30,5 @@ public:
    virtual ~Timer();
    static const UINT ID_HOVER;
 };
-} // namespace gen
+} // namespace ca
 #endif // !defined(___VMSGENTIMER_H__1CB5622E_03B6_4227_BF09_C336375C28B7__INCLUDED_)

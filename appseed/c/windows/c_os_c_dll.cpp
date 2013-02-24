@@ -13,13 +13,13 @@ int32_t c_dll_main(HINSTANCE hinstance, uint32_t dwReason, LPVOID lpReserved)
       if(!os_initialize())
          return FALSE;
 
-      ::OutputDebugString("::ca2:: c.dll :: initializing!\n");
+      ::OutputDebugString("::ca:: c.dll :: initializing!\n");
 
 	}
 	else if (dwReason == DLL_PROCESS_DETACH)
 	{
       
-      ::OutputDebugString("::ca2:: c.dll :: terminating!\n");
+      ::OutputDebugString("::ca:: c.dll :: terminating!\n");
 
       os_finalize();
 

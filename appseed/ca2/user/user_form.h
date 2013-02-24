@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -65,9 +65,9 @@ namespace ca2
          DECL_GEN_VSIGNAL(_000OnPosCreate)
          DECL_GEN_SIGNAL(_001OnCreate)
 
-         virtual void install_message_handling(::gen::message::dispatch *pinterface);
+         virtual void install_message_handling(::ca::message::dispatch *pinterface);
          virtual void _001InitializeFormPreData();
-         virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::gen::object* phint);
+         virtual void _001OnUpdate(::view * pviewSender, LPARAM lhint, ::ca::object* phint);
          virtual void _001Update(control * pcontrol);
          virtual void _001UpdateCheckBox(control * pcontrol);
          virtual void _001UpdateComboBox(control * pcontrol);
@@ -107,7 +107,7 @@ namespace ca2
    } // namespace user
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

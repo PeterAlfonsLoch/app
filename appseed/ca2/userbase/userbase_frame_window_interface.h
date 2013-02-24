@@ -49,7 +49,7 @@ namespace userbase
 
       virtual void _000OnDraw(::ca::graphics * pdc);
       virtual void _001OnDraw(::ca::graphics * pdc);
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
       DECL_GEN_VSIGNAL(_guserbaseOnInitialUpdate);
 
       virtual bool WfiOnMove(bool bTracking);
@@ -75,7 +75,7 @@ namespace userbase
 
       virtual void on_delete(::ca::ca * pca);
 
-      void data_on_after_change(gen::signal_object * pobj);
+      void data_on_after_change(ca::signal_object * pobj);
 
 
    };

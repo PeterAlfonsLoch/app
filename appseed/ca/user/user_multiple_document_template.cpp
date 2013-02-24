@@ -24,7 +24,7 @@ multiple_document_template::~multiple_document_template()
 {
 #ifdef DEBUG
    if (!m_docptra.is_empty())
-      TRACE(::gen::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
+      TRACE(::ca::trace::category_AppMsg, 0, "Warning: destroying multiple_document_template with %d documents alive.\n", m_docptra.get_count());
 #endif
 }
 
@@ -63,12 +63,12 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
 
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
    bool bMakeVisible = pcreatecontext->m_bMakeVisible;
-//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
-//   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
+//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
+//   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
    user::document_interface * pdocument = create_new_document();
    if (pdocument == NULL)
    {
-      TRACE(::gen::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
+      TRACE(::ca::trace::category_AppMsg, 0, "document_template::create_new_document returned NULL.\n");
       // linux System.simple_message_box(__IDP_FAILED_TO_CREATE_DOC);
       System.simple_message_box(NULL, "failed to create user::document_interface");
       return;
@@ -99,7 +99,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_new_document())
       {
          // ::fontopus::user has be alerted to what failed in on_new_document
-         TRACE(::gen::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "user::document_interface::on_new_document returned FALSE.\n");
          pFrame->DestroyWindow();
          return;
       }
@@ -114,9 +114,9 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
       {
          // failed to open or just failed to queue to open
          // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
-         // prepare ca2 for async operations and also async failures
+         // prepare ca for async operations and also async failures
          // ::fontopus::user has be alerted to what failed in on_open_document
-         TRACE(::gen::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "user::document_interface::on_open_document returned FALSE.\n");
          pFrame->DestroyWindow();
          return;
       }
@@ -134,7 +134,7 @@ void multiple_document_template::request(::ca::create_context * pcreatecontext)
    uh.m_etype = view_update_hint::TypeOpenDocument;
    pdocument->update_all_views(NULL, 0, &uh);
 
-   gen::add_ref(pdocument);
+   ca::add_ref(pdocument);
 
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 }

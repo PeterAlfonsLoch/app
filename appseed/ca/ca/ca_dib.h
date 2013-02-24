@@ -16,8 +16,8 @@ namespace ca
 
 
    class CLASS_DECL_ca dib :
-      virtual public ::gen::object,
-      virtual public ::gen::byte_serializable
+      virtual public ::ca::object,
+      virtual public ::ca::byte_serializable
    {
    public:
 
@@ -182,8 +182,8 @@ namespace ca
       virtual double pi();
       inline class size size() { return ::size(cx, cy); }
 
-      virtual void write(::gen::byte_output_stream & ostream);
-      virtual void read(::gen::byte_input_stream & istream);
+      virtual void write(::ca::byte_output_stream & ostream);
+      virtual void read(::ca::byte_input_stream & istream);
 
 
    };

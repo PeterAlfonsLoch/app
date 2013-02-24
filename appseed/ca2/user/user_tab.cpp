@@ -1030,9 +1030,9 @@ namespace user
 
    }
 
-   void tab::_001OnLButtonDown(gen::signal_object * pobj)
+   void tab::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
 
@@ -1059,9 +1059,9 @@ namespace user
    }
 
 
-   void tab::_001OnLButtonUp(gen::signal_object * pobj)
+   void tab::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
 
@@ -1089,9 +1089,9 @@ namespace user
       }
    }
 
-   void tab::_001OnMouseMove(gen::signal_object * pobj)
+   void tab::_001OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       class point point = pmouse->m_pt;
       ScreenToClient(&point);
       if(get_data()->m_iDragTab >= 0)
@@ -1117,9 +1117,9 @@ namespace user
    }
 
 
-   void tab::_001OnMouseLeave(gen::signal_object * pobj)
+   void tab::_001OnMouseLeave(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       m_iHover = -1;
       //get_parent()->_001RedrawWindow();
       pbase->set_lresult(0);
@@ -1331,9 +1331,9 @@ namespace user
    }
    */
 
-   void tab::_001OnCreate(gen::signal_object * pobj)
+   void tab::_001OnCreate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pobj->previous())
          return;
    //  m_pimagelist = new image_list(get_app());
@@ -1342,10 +1342,10 @@ namespace user
       PostMessage(WM_USER + 1342);
    }
 
-   void tab::_011OnCreate(gen::signal_object * pobj)
+   void tab::_011OnCreate(ca::signal_object * pobj)
    {
   UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::base, pbase, pobj);
+//      SCAST_PTR(::ca::message::base, pbase, pobj);
 
       keeper < bool > keepRestoringTabs(&m_bRestoringTabs, true, false, true);
       if(get_data()->m_matchanyRestore.get_count() > 0)
@@ -1359,7 +1359,7 @@ namespace user
 
    }
 
-   void tab::install_message_handling(::gen::message::dispatch *pinterface)
+   void tab::install_message_handling(::ca::message::dispatch *pinterface)
    {
       ::user::window_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN , pinterface, this, &tab::_001OnLButtonDown);
@@ -1368,7 +1368,7 @@ namespace user
       IGUI_WIN_MSG_LINK(WM_MOUSELEAVE  , pinterface, this, &tab::_001OnMouseLeave);
       IGUI_WIN_MSG_LINK(WM_CREATE      , pinterface, this, &tab::_001OnCreate);
       IGUI_WIN_MSG_LINK(WM_USER + 1342 , pinterface, this, &tab::_011OnCreate);
-      IGUI_WIN_MSG_LINK(gen::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(ca::application::APPM_LANGUAGE, pinterface, this, &tab::_001OnAppLanguage);
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &tab::_001OnTimer);
    }
 
@@ -1477,7 +1477,7 @@ namespace user
       return count;
    }
 
-   void tab::_001OnAppLanguage(gen::signal_object * pobj)
+   void tab::_001OnAppLanguage(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       layout();
@@ -1672,7 +1672,7 @@ namespace user
       }
    }
 
-   void tab::_001ConnectParent(::gen::message::dispatch * pinterface)
+   void tab::_001ConnectParent(::ca::message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
    }
@@ -1850,9 +1850,9 @@ namespace user
       return get_cur_tab_id();
    }
 
-   void tab::_001OnTimer(gen::signal_object * pobj)
+   void tab::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 5432187)
       {
          get_data()->m_bDrag = true;
@@ -1864,7 +1864,7 @@ namespace user
       }
    }
 
-   void tab::_000OnMouse(::gen::message::mouse * pmouse)
+   void tab::_000OnMouse(::ca::message::mouse * pmouse)
    {
       if(m_bShowTabs)
       {
@@ -1873,7 +1873,7 @@ namespace user
          // to debug, enable catch exceptions in debugger
          try
          {
-            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < gen::signal_object * > (pmouse));
+            (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ca::signal_object * > (pmouse));
             if(pmouse->get_lresult() != 0)
                return;
          }
@@ -1996,9 +1996,9 @@ namespace user
          if(pane.m_id.is_text())
          {
             strPath = pane.m_id;
-            if(strPrefix.is_empty() || gen::str::begins_ci(strPath, strPrefix))
+            if(strPrefix.is_empty() || ca::str::begins_ci(strPath, strPrefix))
             {
-               if(strSuffix.is_empty() || gen::str::ends_ci(strPath, strSuffix))
+               if(strSuffix.is_empty() || ca::str::ends_ci(strPath, strSuffix))
                {
                   stra.add(strPath);
                }
@@ -2029,9 +2029,9 @@ namespace user
          if(pane.m_id.is_text())
          {
             strPath = pane.m_id;
-            if(strPrefix.is_empty() || gen::str::begins_ci(strPath, strPrefix))
+            if(strPrefix.is_empty() || ca::str::begins_ci(strPath, strPrefix))
             {
-               if(strSuffix.is_empty() || gen::str::ends_ci(strPath, strSuffix))
+               if(strSuffix.is_empty() || ca::str::ends_ci(strPath, strSuffix))
                {
                   stra.add(strPath);
                }
@@ -2042,7 +2042,7 @@ namespace user
 
    void tab::get_restore_tab(var_array & vara)
    {
-      ::gen::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::ca::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return;
       var varId;
@@ -2059,7 +2059,7 @@ namespace user
 
    bool tab::has_restore_tab()
    {
-      ::gen::match::any  & matchany = get_data()->m_matchanyRestore;
+      ::ca::match::any  & matchany = get_data()->m_matchanyRestore;
       if(matchany.get_count() == 0)
          return false;
       var varId;
@@ -2097,6 +2097,6 @@ namespace user
       remove_tab_by_id(get_id_by_tab(iTab));
    }
 
-} // namespace gen
+} // namespace ca
 
 

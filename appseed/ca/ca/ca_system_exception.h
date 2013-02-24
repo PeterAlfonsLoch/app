@@ -2,7 +2,7 @@
 // from 7-zip on 2012-12-23, dawn
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca system_exception :
@@ -20,4 +20,4 @@ namespace gen
       }
    };
 
-} // namespace gen
+} // namespace ca

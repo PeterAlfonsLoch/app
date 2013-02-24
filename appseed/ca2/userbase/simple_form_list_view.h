@@ -17,7 +17,7 @@ public:
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
 
-   virtual void install_message_handling(::gen::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
 
 #ifdef DEBUG

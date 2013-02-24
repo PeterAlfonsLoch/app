@@ -26,7 +26,7 @@ namespace plane
          ::ca::application *     m_papp;
          bool                    m_bMakeVisible;
          ::user::interaction *   m_puiParent;
-         gen::property_set       m_setParameters;
+         ca::property_set       m_setParameters;
       };
 
 
@@ -115,7 +115,7 @@ namespace plane
 
       virtual void check_topic_file_change();
 
-      void on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive);
+      void on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive);
 
       void launch_app(const char * psz);
       void install_app(const char * psz);

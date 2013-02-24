@@ -23,7 +23,7 @@ namespace ca
 
 
    class CLASS_DECL_ca path :
-      virtual public ::gen::object
+      virtual public ::ca::object
 
    {
    public:
@@ -36,7 +36,7 @@ namespace ca
 
 
       class CLASS_DECL_ca system :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
 
@@ -138,12 +138,12 @@ namespace ca
          virtual string netseed(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
          // stage in ccvotagus spalib
-         virtual string ca2(const char * lpcsz, const char * lpcsz2 = NULL);
-         virtual string ca2();
-         virtual string ca2(const string & str);
-         virtual string ca2(const string & str, const string & str2);
-         virtual string ca2(const char * lpcsz, const string & str2);
-         virtual string ca2(const string & str, const char * lpcsz2);
+         virtual string ca(const char * lpcsz, const char * lpcsz2 = NULL);
+         virtual string ca();
+         virtual string ca(const string & str);
+         virtual string ca(const string & str, const string & str2);
+         virtual string ca(const char * lpcsz, const string & str2);
+         virtual string ca(const string & str, const char * lpcsz2);
 
          virtual string sensitive_ccvotagus(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);

@@ -3,7 +3,7 @@
 //  ca
 //
 //  Created by Camilo Sasuke Tsumanuma on 1/28/12.
-//  Copyright (c) 2012 ca2 Desenvolvimento de Sofware Ltda. All rights reserved.
+//  Copyright (c) 2012 ca Desenvolvimento de Sofware Ltda. All rights reserved.
 //
 
 #pragma once
@@ -12,7 +12,7 @@
 class CLASS_DECL_ca overflow_error :
    virtual public error_exception
 {
-   // base class for resource-critical ca2 API exceptions
+   // base class for resource-critical ca API exceptions
    // handles ownership and initialization of an error message
 public:
 

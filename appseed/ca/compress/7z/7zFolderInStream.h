@@ -7,11 +7,11 @@ namespace n7z
 {
 
    class CFolderInStream:
-      public ::gen::reader,
+      public ::ca::reader,
       public ::libcompress::get_sub_stream_size_interface
    {
       ::libcompress::reader_with_crc *_inStreamWithHashSpec;
-      ::ca::smart_pointer < ::gen::reader > _inStreamWithHash;
+      ::ca::smart_pointer < ::ca::reader > _inStreamWithHash;
       ::ca::smart_pointer < ::libcompress::archive_update_callback_interface > _updateCallback;
 
       bool _currentSizeIsDefined;
@@ -32,7 +32,7 @@ namespace n7z
       base_array<uint64_t> Sizes;
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
-      virtual gen::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
+      virtual ca::HRes GetSubStreamSize(uint64_t subStream, uint64_t *value);
 
       CFolderInStream();
       void Init(::libcompress::archive_update_callback_interface *updateCallback, const uint32_t *fileIndices, uint32_t numFiles);

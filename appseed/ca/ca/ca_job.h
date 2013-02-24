@@ -6,7 +6,7 @@ namespace ca
 
 
    class CLASS_DECL_ca job :
-      virtual public ::gen::thread
+      virtual public ::ca::thread
    {
    public:
 

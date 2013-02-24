@@ -24,13 +24,13 @@ namespace colorertake5
       
       /** Loads region defines from @c is input_source
       */
-      void loadRegionMappings(gen::byte_input_stream & istream);
+      void loadRegionMappings(ca::byte_input_stream & istream);
       /** Saves all loaded region defines into @c writer.
       Note, that result document would not be equal
       to input one, because there could be multiple input
       documents.
       */
-      void saveRegionMappings(gen::byte_output_stream & ostream) const;
+      void saveRegionMappings(ca::byte_output_stream & ostream) const;
       /** Changes specified region definition to @c rdnew
       @param region region full qualified name.
       @param rdnew  New region definition to replace old one

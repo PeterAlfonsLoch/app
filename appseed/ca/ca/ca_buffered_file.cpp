@@ -1,9 +1,9 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
-   buffered_file::buffered_file(::ca::application * papp, gen::filesp pfile, ::primitive::memory_size iBufferSize) :
+   buffered_file::buffered_file(::ca::application * papp, ca::filesp pfile, ::primitive::memory_size iBufferSize) :
       ca(papp)
    {
       m_storage.allocate(iBufferSize);
@@ -61,20 +61,20 @@ namespace gen
    {
    }*/
 
-   file_position buffered_file::seek(file_offset lOff, ::gen::e_seek nFrom)
+   file_position buffered_file::seek(file_offset lOff, ::ca::e_seek nFrom)
    {
       uint64_t uiBegBufPosition = m_uiBufLPos;
       uint64_t uiEndBufPosition = m_uiBufUPos;
       uint64_t uiNewPos;
-      if(nFrom == ::gen::seek_begin)
+      if(nFrom == ::ca::seek_begin)
       {
          uiNewPos = lOff;
       }
-      else if(nFrom == ::gen::seek_end)
+      else if(nFrom == ::ca::seek_end)
       {
          uiNewPos = m_pfile->get_length() + lOff;
       }
-      else if(nFrom == ::gen::seek_current)
+      else if(nFrom == ::ca::seek_current)
       {
          uiNewPos = m_uiPosition + lOff;
       }
@@ -218,4 +218,4 @@ namespace gen
       m_pfile->set_length(dwNewLen);
    }
 
-} // namespace gen
+} // namespace ca

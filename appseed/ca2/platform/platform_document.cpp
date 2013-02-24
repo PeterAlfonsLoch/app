@@ -33,7 +33,7 @@ namespace platform
       str += "<h2>Assinado Camilo Sasuke Tsumanuma.</h2>\n";
       str += "<span>htmlapp dedicado ao Carlos Gustavo Cecyn Lundgren!!</span>";
       str += "<br />";
-      str += unitext("<span>Você conhece o ca2?</span>");
+      str += unitext("<span>Você conhece o ca?</span>");
       str += "<br />";
       str += "<span>Se positivo, entre com seu nome abaixo e clique em enviar!</span>";
       str += "<br />";
@@ -78,7 +78,7 @@ namespace platform
    }
    */
 
-   void document::data_on_after_change(gen::signal_object * pobj)
+   void document::data_on_after_change(ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);

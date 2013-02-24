@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/nature/nature.h"
+#include "ca/nature/nature.h"
 
 
 #include "platform_document.h"

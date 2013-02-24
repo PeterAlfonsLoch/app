@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -12,8 +12,8 @@ namespace ca2
       user::user()
       {
 
-         //gen::user * papp = dynamic_cast <gen::user *>(System.GetThread()->m_pAppThread);
-         //gen::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
+         //ca::user * papp = dynamic_cast <ca::user *>(System.GetThread()->m_pAppThread);
+         //ca::connect(papp->m_signalAppLanguageChange, this, &user::VmsGuiiOnAppLanguage);
 
          m_pkeyboard = NULL;
          m_pwindowmap = NULL;
@@ -125,12 +125,12 @@ namespace ca2
          return iCount;
       }
 
-      void user::VmsGuiiOnAppLanguage(gen::signal_object * pobject)
+      void user::VmsGuiiOnAppLanguage(ca::signal_object * pobject)
       {
-         SendMessageToWindows(::gen::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
+         SendMessageToWindows(::ca::application::APPM_LANGUAGE, 0, (LPARAM) pobject);
       }
 
-      string user::message_box(const char * pszMatter, gen::property_set & propertyset)
+      string user::message_box(const char * pszMatter, ca::property_set & propertyset)
       {
 
          class ::cube::message_box box(get_app());
@@ -146,4 +146,4 @@ namespace ca2
    } // namespace user
 
 
-} // namespace ca2
+} // namespace ca

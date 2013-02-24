@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/gen/gen_holder.h"
+#include "ca/ca/gen_holder.h"
 #include "ca/user/user_window_interface.h"
 
 
@@ -241,7 +241,7 @@ namespace user
          const RECT& rect,
          interaction* pParentWnd, id id,
          ::ca::create_context* pContext = NULL);
-      using ::gen::request_interface::create;
+      using ::ca::request_interface::create;
       virtual bool create(const char * lpszClassName,
          const char * lpszWindowName, uint32_t dwStyle,
          const RECT& rect,
@@ -298,8 +298,8 @@ namespace user
       virtual uint32_t GetExStyle();
       virtual LRESULT Default();
 
-      virtual LRESULT send_message(::gen::message::base * pbase);
-      virtual bool PostMessage(::gen::message::base * pbase);
+      virtual LRESULT send_message(::ca::message::base * pbase);
+      virtual bool PostMessage(::ca::message::base * pbase);
       virtual LRESULT send_message(UINT uiMessage, WPARAM wparam = 0, LPARAM lparam = 0);
 
 #ifdef LINUX
@@ -350,8 +350,8 @@ namespace user
       virtual interaction * GetActiveWindow();
       virtual interaction * SetActiveWindow();
 
-      virtual void WalkPreTranslateTree(gen::signal_object * pobj);
-      virtual void WalkPreTranslateTree(::user::interaction * puiStop, gen::signal_object * pobj);
+      virtual void WalkPreTranslateTree(ca::signal_object * pobj);
+      virtual void WalkPreTranslateTree(::user::interaction * puiStop, ca::signal_object * pobj);
 
       virtual interaction * GetDescendantWindow(id id);
 
@@ -362,11 +362,11 @@ namespace user
       virtual void SetFont(::ca::font* pFont, bool bRedraw = TRUE);
       virtual ::ca::font* GetFont();
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
       virtual bool IsWindowVisible();
 
-      virtual void _000OnMouse(::gen::message::mouse * pmouse);
-      virtual void _000OnKey(::gen::message::key * pkey);
+      virtual void _000OnMouse(::ca::message::mouse * pmouse);
+      virtual void _000OnKey(::ca::message::key * pkey);
       DECL_GEN_SIGNAL(_001OnMouseMove)
       DECL_GEN_SIGNAL(_001OnMouseEnter)
       DECL_GEN_SIGNAL(_001OnMouseLeave)
@@ -417,7 +417,7 @@ namespace user
       virtual interaction* EnsureTopLevelParent();
       virtual ::frame_window * GetTopLevelFrame();
       virtual void SendMessageToDescendants(UINT message, WPARAM wParam = 0, LPARAM lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE);
-      virtual void pre_translate_message(gen::signal_object * pobj);
+      virtual void pre_translate_message(ca::signal_object * pobj);
 
 
       virtual int32_t get_descendant_level(::user::interaction * pui);
@@ -470,9 +470,9 @@ namespace user
       virtual void PostNcDestroy();
 
       virtual LRESULT DefWindowProc(UINT uiMessage, WPARAM wparam, LPARAM lparam);
-      virtual void message_handler(gen::signal_object * pobj);
+      virtual void message_handler(ca::signal_object * pobj);
       virtual LRESULT message_handler(LPMESSAGE lpmessage);
-      virtual void GuieProc(gen::signal_object * pobj);
+      virtual void GuieProc(ca::signal_object * pobj);
 
       virtual void _001DeferPaintLayeredWindowBackground(::ca::graphics * pdc);
 

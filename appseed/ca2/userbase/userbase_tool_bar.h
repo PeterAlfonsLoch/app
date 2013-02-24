@@ -119,7 +119,7 @@ namespace userbase
       DECL_GEN_SIGNAL(_001OnNcCreate)
       LRESULT OnSetSizeHelper(size& size, LPARAM lParam);
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
 
    };

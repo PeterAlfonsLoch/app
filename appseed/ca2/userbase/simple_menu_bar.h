@@ -65,7 +65,7 @@ public:
         );
 
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
-   virtual void pre_translate_message(gen::signal_object * pobj);
+   virtual void pre_translate_message(ca::signal_object * pobj);
    protected:
    virtual bool pre_create_window(CREATESTRUCT& cs);
 
@@ -116,7 +116,7 @@ public:
 
    DECL_GEN_SIGNAL(_001OnAppLanguage)
 
-   virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+   virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
 
 };

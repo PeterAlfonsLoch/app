@@ -1,7 +1,7 @@
 #pragma once
 
 class simple_object_array :
-   virtual public gen::serializable
+   virtual public ca::serializable
 {
 public:
 
@@ -19,36 +19,36 @@ public:
 	void remove_all();
 
 	// Accessing elements
-	::gen::object* GetAt(int32_t nIndex) const;
-	void SetAt(int32_t nIndex, ::gen::object* newElement);
+	::ca::object* GetAt(int32_t nIndex) const;
+	void SetAt(int32_t nIndex, ::ca::object* newElement);
 
-	::gen::object*& ElementAt(int32_t nIndex);
+	::ca::object*& ElementAt(int32_t nIndex);
 
 	// Direct Access to the element data (may return NULL)
-	const ::gen::object** GetData() const;
-	::gen::object** GetData();
+	const ::ca::object** GetData() const;
+	::ca::object** GetData();
 
 	// Potentially growing the array
-	void SetAtGrow(int32_t nIndex, ::gen::object* newElement);
+	void SetAtGrow(int32_t nIndex, ::ca::object* newElement);
 
-	int32_t add(::gen::object* newElement);
+	int32_t add(::ca::object* newElement);
 
 	int32_t Append(const simple_object_array& src);
 	void Copy(const simple_object_array& src);
 
 	// overloaded operator helpers
-	::gen::object* operator[](int32_t nIndex) const;
-	::gen::object*& operator[](int32_t nIndex);
+	::ca::object* operator[](int32_t nIndex) const;
+	::ca::object*& operator[](int32_t nIndex);
 
 	// Operations that move elements around
-	void InsertAt(int32_t nIndex, ::gen::object* newElement, int32_t nCount = 1);
+	void InsertAt(int32_t nIndex, ::ca::object* newElement, int32_t nCount = 1);
 
 	void RemoveAt(int32_t nIndex, int32_t nCount = 1);
 	void InsertAt(int32_t nStartIndex, simple_object_array* pNewArray);
 
 // Implementation
 protected:
-	::gen::object** m_pData;   // the actual array of data
+	::ca::object** m_pData;   // the actual array of data
 	int32_t m_nSize;     // # of elements (upperBound - 1)
 	int32_t m_nMaxSize;  // max allocated
 	int32_t m_nGrowBy;   // grow amount
@@ -65,7 +65,7 @@ public:
 
 protected:
 	// local typedefs for class templates
-	typedef ::gen::object* BASE_TYPE;
-	typedef ::gen::object* BASE_ARG_TYPE;
+	typedef ::ca::object* BASE_TYPE;
+	typedef ::ca::object* BASE_ARG_TYPE;
 };
 

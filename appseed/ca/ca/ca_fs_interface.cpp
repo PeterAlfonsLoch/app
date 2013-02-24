@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
    void fs_interface::ls_dir(const char * pszPath, stringa & straName)
@@ -34,4 +34,4 @@ namespace gen
       return false;
    }
 
-} // namespace gen
+} // namespace ca

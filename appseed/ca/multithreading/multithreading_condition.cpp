@@ -28,7 +28,7 @@ condition::condition(::ca::application * papp) :
    if(pstrName != NULL && *pstrName != '\0')
    {
 
-      string strPath = "/ca2/time/ftok/condition/" + string(pstrName);
+      string strPath = "/ca/time/ftok/condition/" + string(pstrName);
 
       m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 

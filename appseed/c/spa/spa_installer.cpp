@@ -180,8 +180,8 @@ namespace spa
       // Make the security attributes point
       // to the security descriptor
       MutexAttributes.lpSecurityDescriptor = &SD;*/
-      //g_hmutexInstall = ::CreateMutex(&MutexAttributes, FALSE, "Global\\ca2::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-      /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\ca2::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      //g_hmutexInstall = ::CreateMutex(&MutexAttributes, FALSE, "Global\\ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
       trace("another instance of spa is already running");
@@ -218,11 +218,11 @@ namespace spa
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+      m_strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca.cc";
 
 #else
 
-      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+      m_strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca.cc";
 
 #endif
 
@@ -262,9 +262,9 @@ RetryHost:
          m_strInstallGz = m_strInstall;
          trace(strSpaHost);
 
-         dir::mk("C:\\ca2");
-         dir::mk("C:\\ca2\\time");
-         dir::mk("C:\\ca2\\time\\ca2");
+         dir::mk("C:\\ca");
+         dir::mk("C:\\ca\\time");
+         dir::mk("C:\\ca\\time\\ca");
 
          set_progress(0.3);
 
@@ -314,7 +314,7 @@ RetryHost:
                      (const BYTE *) (const char *) strFile,
                      (uint32_t) strFile.length());
                   vsstring strDisplayName;
-                  strDisplayName = "ca2 fontopus votagus - ";
+                  strDisplayName = "ca fontopus votagus - ";
                   strKey = "install_filter_title_" + strId;
                   strDisplayName += load_string(strKey, strId);
                   ::RegSetValueEx(
@@ -540,17 +540,17 @@ RetryHost:
          simple_uint_array dwa;
 #ifndef METROWIN
 #ifdef X86
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\c.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\ca.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\ca2.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\npca2.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x86\\iexca2.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\c.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\ca.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\npca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x86\\iexca2.dll"));
 #else
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\c.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\ca.dll"));
-         dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\ca2.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\npca2.dll"));
-         //dll_processes(dwa, m_straTerminateProcesses, dir::ca2("stage\\x64\\iexca2.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\c.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\ca.dll"));
+         dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\ca.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\npca2.dll"));
+         //dll_processes(dwa, m_straTerminateProcesses, dir::ca("stage\\x64\\iexca2.dll"));
 #endif
          // TODO: simular virtualmente a cópia dos arquivos também, se tiver aquivo travado, também retornar
 #endif
@@ -577,7 +577,7 @@ RetryHost:
                bAsk = true;
                bRestart = true;
                vsstring strPath = m_straTerminateProcesses.element_at(i);
-               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca2\\") != NULL)
+               if(str_ends_ci_dup(strPath, "\\app-install.exe") && stristr_dup(strPath, "\\ca\\") != NULL)
                {
                   bAsk = false;
                   bRestart = false;
@@ -597,7 +597,7 @@ RetryHost:
                bRestart = false;
 
                vsstring str;
-               str = "Should ca2 Terminate and try to restart process \"";
+               str = "Should ca Terminate and try to restart process \"";
                str += strPath;
                str += "\"?";
                strCommand += str;
@@ -652,13 +652,13 @@ RetryHost:
                }
 
             }
-            //file_put_contents_dup("C:\\ca2\\machine\\on_after_spaadmin.txt", strCommand);
+            //file_put_contents_dup("C:\\ca\\machine\\on_after_spaadmin.txt", strCommand);
          }
 
          if(m_straRestartCommandLine.get_count() > 0)
          {
 
-            oswindow oswindowSpaBoot = ::FindWindow(NULL, "ca2::fontopus::ccvotagus::spaboot:callback_window");
+            oswindow oswindowSpaBoot = ::FindWindow(NULL, "ca::fontopus::ccvotagus::spaboot:callback_window");
 
             if(oswindowSpaBoot != NULL)
             {
@@ -1069,7 +1069,7 @@ RetryHost:
       vsstring file2;
       vsstring dir;
       vsstring dir2;
-      dir = dir::ca2();
+      dir = dir::ca();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
@@ -1154,7 +1154,7 @@ RetryHost:
 
       vsstring dir3;
 
-      dir = dir::ca2();
+      dir = dir::ca();
 
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
@@ -1296,7 +1296,7 @@ RetryHost:
 
             vsstring strUrl;
 
-            strUrl = "http://spa.api.server.ca2.cc/bspatch?file=";
+            strUrl = "http://spa.api.server.ca.cc/bspatch?file=";
 
             strUrl += url_encode_dup(file2);
 
@@ -1514,7 +1514,7 @@ RetryHost:
       vsstring dir;
       vsstring url;
       vsstring file;
-      dir = dir::ca2();
+      dir = dir::ca();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
@@ -1682,7 +1682,7 @@ RetryHost:
       vsstring dir;
       vsstring url;
       vsstring file;
-      dir = dir::ca2();
+      dir = dir::ca();
       if(dir.substr(dir.size() - 1, 1) != "\\")
       {
          dir += "\\";
@@ -2303,7 +2303,7 @@ RetryHost:
       if(strExec.substr(0, 15) == "install_service")
       {
          vsstring strStage;
-         strStage = dir::path(dir::ca2(),strExec.substr(16));
+         strStage = dir::path(dir::ca(),strExec.substr(16));
 
 #ifdef METROWIN
 
@@ -2328,7 +2328,7 @@ RetryHost:
          vsstring str2 = strExec.substr(11);
          index iPos = str2.find(" ");
          vsstring str3 = str2.substr(iPos + 1);
-         strStage = dir::ca2();
+         strStage = dir::ca();
          strStage = dir::path(strStage, str3);
 
 #ifdef METROWIN
@@ -2359,7 +2359,7 @@ RetryHost:
 
       small_ipc_tx_channel txchannel;
 
-      if(!txchannel.open("ca2/fontopus/ccvotagus/spaboot_install_callback"))
+      if(!txchannel.open("ca/fontopus/ccvotagus/spaboot_install_callback"))
          return;
 
 #endif
@@ -2650,7 +2650,7 @@ RetryHost:
 
       m_strInstall               = "http://ccvotagus.net/stage/";
 
-      m_strInstallStatusTemplate = defer_ls_get("http://account.ca2.cc/defer_ls_get?id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
+      m_strInstallStatusTemplate = defer_ls_get("http://account.ca.cc/defer_ls_get?id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
       m_bForceUpdatedBuild       = true;
 
@@ -2664,7 +2664,7 @@ RetryHost:
    int32_t installer::application_name()
    {
       vsstring strUrl;
-      trace(("get application name from server http://spaignition.api.server.ca2.cc/ using application id \"" + m_strApplicationId + "\" "));
+      trace(("get application name from server http://spaignition.api.server.ca.cc/ using application id \"" + m_strApplicationId + "\" "));
       strUrl = m_strSpaIgnitionBaseUrl + "/query?node=install_application&id=";
       strUrl += m_strApplicationId;
       strUrl += "&key=name";
@@ -2936,13 +2936,13 @@ RetryHost:
 
       m_hinstance = hinstance; // Store instance handle in our global variable
 
-      m_strInstallGz = dir::module_folder("ca2\\bz\\stage\\");
-      m_strInstall = dir::module_folder("ca2\\stage\\");
+      m_strInstallGz = dir::module_folder("ca\\bz\\stage\\");
+      m_strInstall = dir::module_folder("ca\\stage\\");
 
       m_strIndexGz = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa.bz"));
       m_strIndex = dir::path(m_strInstallGz, ("app\\stage\\metastage\\" + m_strApplicationId + ".spa"));
 
-      bool bOfflineInstall1 = dir::is(dir::module_folder("ca2\\bz"));
+      bool bOfflineInstall1 = dir::is(dir::module_folder("ca\\bz"));
       //bool bOfflineInstall2 = file_exists_dup(g_strIndexGz);
       //m_bOfflineInstall = bOfflineInstall1 && bOfflineInstall2;
       m_bOfflineInstall = bOfflineInstall1;
@@ -3430,9 +3430,9 @@ RetryHost:
                break;
             vsstring strUrl;
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-            strUrl = "http://warehouse.ca2.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://warehouse.ca.cc/spa?download=app-install.exe&authnone";
 #else
-            strUrl = "http://store.ca2.cc/spa?download=app-install.exe&authnone";
+            strUrl = "http://store.ca.cc/spa?download=app-install.exe&authnone";
 #endif
             if(ms_download_dup(strUrl, m_strPath, false))
             {
@@ -3504,18 +3504,18 @@ RetryHost:
       vsstring strPlatform = spa_get_platform();
 
 #ifdef WINDOWS
-      ::SetDllDirectory(dir::path(dir::ca2(), "stage\\" + strPlatform));
+      ::SetDllDirectory(dir::path(dir::ca(), "stage\\" + strPlatform));
 #endif
 
       ::ca::library libraryOs;
 
-      libraryOs.open(dir::path(dir::ca2(), "stage\\" + strPlatform + "\\os"));
+      libraryOs.open(dir::path(dir::ca(), "stage\\" + strPlatform + "\\os"));
 
       CA2MAIN pfn_ca2_main = (CA2MAIN) libraryOs.raw_get("ca2_main");
 
       vsstring strFullCommandLine;
 
-      strFullCommandLine = dir::path(dir::ca2(), ("stage\\" + strPlatform + "\\app.exe"));
+      strFullCommandLine = dir::path(dir::ca(), ("stage\\" + strPlatform + "\\app.exe"));
 
       strFullCommandLine = "\"" + strFullCommandLine + "\" ";
 

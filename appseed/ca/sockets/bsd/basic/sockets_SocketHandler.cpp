@@ -161,7 +161,7 @@ namespace sockets
    }
 
 
-   void socket_handler::LogError(socket *p,const string & user_text,int32_t err,const string & sys_err,::gen::log::level::e_level t)
+   void socket_handler::LogError(socket *p,const string & user_text,int32_t err,const string & sys_err,::ca::log::level::e_level t)
    {
       if (m_stdlog)
       {
@@ -174,7 +174,7 @@ namespace sockets
    {
       if (p -> GetSocket() == INVALID_SOCKET)
       {
-         LogError(p, "add", -1, "Invalid socket", ::gen::log::level::warning);
+         LogError(p, "add", -1, "Invalid socket", ::ca::log::level::warning);
          if (p -> CloseAndDelete())
          {
             m_delete.add_tail(p);
@@ -184,7 +184,7 @@ namespace sockets
       socket * plookup;
       if (m_add.Lookup(p -> GetSocket(), plookup))
       {
-         LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::gen::log::level::fatal);
+         LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in add queue", ::ca::log::level::fatal);
          m_delete.add_tail(p);
          return;
       }
@@ -282,7 +282,7 @@ namespace sockets
       {
          if (m_sockets.get_size() >= FD_SETSIZE)
          {
-            LogError(NULL, "Select", (int32_t)m_sockets.get_size(), "FD_SETSIZE reached", ::gen::log::level::warning);
+            LogError(NULL, "Select", (int32_t)m_sockets.get_size(), "FD_SETSIZE reached", ::ca::log::level::warning);
             break;
          }
          POSITION pos = m_add.get_start_position();
@@ -294,7 +294,7 @@ namespace sockets
          socket *plookup;
          if (m_sockets.Lookup(p -> GetSocket(), plookup))
          {
-            LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::gen::log::level::fatal);
+            LogError(p, "add", (int32_t)p -> GetSocket(), "Attempt to add socket already in controlled queue", ::ca::log::level::fatal);
             // %! it's a dup, don't add to delete queue, just ignore it
             m_delete.add_tail(p);
             m_add.remove_key(s);
@@ -325,7 +325,7 @@ namespace sockets
          }
          else
          {
-            LogError(p, "add", (int32_t)p -> GetSocket(), "Trying to add socket with SetCloseAndDelete() true", ::gen::log::level::warning);
+            LogError(p, "add", (int32_t)p -> GetSocket(), "Trying to add socket with SetCloseAndDelete() true", ::ca::log::level::warning);
          }
          // only add to m_fds (process fd_set events) if
          //  slave handler and detached/detaching socket
@@ -577,7 +577,7 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/1", (int32_t) socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+                  LogError(NULL, "GetSocket/handler/1", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
                }
                n--;
             }
@@ -598,7 +598,7 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/2", (int32_t) socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+                  LogError(NULL, "GetSocket/handler/2", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
                }
                n--;
             }
@@ -624,7 +624,7 @@ namespace sockets
                }
                else
                {
-                  LogError(NULL, "GetSocket/handler/3", (int32_t) socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+                  LogError(NULL, "GetSocket/handler/3", (int32_t) socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
                }
                n--;
             }
@@ -643,7 +643,7 @@ namespace sockets
             class socket * psocket = NULL;
             if(!m_sockets.Lookup(socket, psocket)) // not found
             {
-               LogError(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+               LogError(NULL, "GetSocket/handler/4", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
             }
             if(psocket != NULL)
             {
@@ -672,7 +672,7 @@ namespace sockets
                            psocket -> OnReconnect();
                         else
                         {
-                           LogError(tcp, "Calling OnConnect", 0, "Because CallOnConnect", ::gen::log::level::info);
+                           LogError(tcp, "Calling OnConnect", 0, "Because CallOnConnect", ::ca::log::level::info);
                            psocket -> OnConnect();
                         }
                      }
@@ -695,7 +695,7 @@ namespace sockets
             SOCKET socket = m_fds_detach.get_next(pos);
             if(!m_sockets.Lookup(socket, p)) // found
             {
-               LogError(NULL, "GetSocket/handler/5", (int32_t)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+               LogError(NULL, "GetSocket/handler/5", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
             }
             if (p)
             {
@@ -734,7 +734,7 @@ namespace sockets
                {
                   if(!m_add.Lookup(socket, p))
                   {
-                     LogError(NULL, "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+                     LogError(NULL, "GetSocket/handler/6", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
                   }
                }
                if (p)
@@ -764,7 +764,7 @@ namespace sockets
             class socket *p = NULL;
             if(m_sockets.Lookup(socket, p))
             {
-               LogError(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+               LogError(NULL, "GetSocket/handler/7", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
             }
             if (p)
             {
@@ -785,7 +785,7 @@ namespace sockets
                      }
                      else
                      {
-                        LogError(p, "RetryClientConnect", 0, "no address", ::gen::log::level::error);
+                        LogError(p, "RetryClientConnect", 0, "no address", ::ca::log::level::error);
                      }
                      add(p);
                      m_fds_erase.add_tail(nn);
@@ -808,7 +808,7 @@ namespace sockets
             {
                if(!m_add.Lookup(socket, p))
                {
-                     LogError(NULL, "GetSocket/handler/8", (int32_t)socket, "Did not find expected socket using file descriptor", ::gen::log::level::warning);
+                     LogError(NULL, "GetSocket/handler/8", (int32_t)socket, "Did not find expected socket using file descriptor", ::ca::log::level::warning);
                }
             }
             if (p)
@@ -824,14 +824,14 @@ namespace sockets
    //TRACE(" close(1)\n");
                      if (tcp -> GetOutputLength())
                      {
-                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Sending all data before closing", ::gen::log::level::info);
+                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Sending all data before closing", ::ca::log::level::info);
                      }
                      else // shutdown write when output buffer is is_empty
                      if (!(tcp -> GetShutdown() & SHUT_WR))
                      {
                         if (socket != INVALID_SOCKET && shutdown(socket, SHUT_WR) == -1)
                         {
-                           LogError(p, "graceful shutdown", Errno, StrError(Errno), ::gen::log::level::error);
+                           LogError(p, "graceful shutdown", Errno, StrError(Errno), ::ca::log::level::error);
                         }
                         tcp -> SetShutdown(SHUT_WR);
                      }
@@ -854,7 +854,7 @@ namespace sockets
                      }
                      else
                      {
-                        LogError(p, "Reconnect", 0, "no address", ::gen::log::level::error);
+                        LogError(p, "Reconnect", 0, "no address", ::ca::log::level::error);
                      }
                      tcp -> ResetConnectionRetries();
                      add(p);
@@ -865,7 +865,7 @@ namespace sockets
                      //TRACE(" close(3) fd %d GetSocket() %d\n", socket, p -> GetSocket());
                      if (tcp && p -> IsConnected() && tcp -> GetOutputLength())
                      {
-                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Closing socket while data still left to send", ::gen::log::level::warning);
+                        LogError(p, "Closing", (int32_t)tcp -> GetOutputLength(), "Closing socket while data still left to send", ::ca::log::level::warning);
                      }
                      if (p -> Retain() && !p -> Lost())
                      {
@@ -1043,7 +1043,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level::fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1062,7 +1062,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level::fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1080,7 +1080,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level::fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1098,7 +1098,7 @@ namespace sockets
       System.net().convert(local, "127.0.0.1");
       if (!resolv -> open(local, m_resolver_port))
       {
-         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::gen::log::level::fatal);
+         LogError(resolv, "Resolve", -1, "Can't connect to local resolve server", ::ca::log::level::fatal);
       }
       add(resolv);
       m_resolve_q[p] = true;
@@ -1211,7 +1211,7 @@ namespace sockets
       {
          if(ppair->m_value == p)
          {
-            LogError(p, "remove", -1, "socket destructor called while still in use", ::gen::log::level::warning);
+            LogError(p, "remove", -1, "socket destructor called while still in use", ::ca::log::level::warning);
             m_sockets.remove_key(ppair->m_key);
             return;
          }
@@ -1222,7 +1222,7 @@ namespace sockets
       {
          if (ppair2->m_value == p)
          {
-            LogError(p, "remove", -2, "socket destructor called while still in use", ::gen::log::level::warning);
+            LogError(p, "remove", -2, "socket destructor called while still in use", ::ca::log::level::warning);
             m_add.remove_key(ppair2->m_key);
             return;
          }
@@ -1230,7 +1230,7 @@ namespace sockets
       }
       if(m_delete.remove(p) > 0)
       {
-         LogError(p, "remove", -3, "socket destructor called while still in use", ::gen::log::level::warning);
+         LogError(p, "remove", -3, "socket destructor called while still in use", ::ca::log::level::warning);
          return;
       }
    }
@@ -1327,10 +1327,10 @@ namespace sockets
             m_trigger_dst[id][dst] = true;
             return true;
          }
-         LogError(dst, "Subscribe", id, "Already subscribed", ::gen::log::level::info);
+         LogError(dst, "Subscribe", id, "Already subscribed", ::ca::log::level::info);
          return false;
       }
-      LogError(dst, "Subscribe", id, "Trigger id not found", ::gen::log::level::info);
+      LogError(dst, "Subscribe", id, "Trigger id not found", ::ca::log::level::info);
       return false;
    }
 
@@ -1344,10 +1344,10 @@ namespace sockets
             m_trigger_dst[id].remove_key(dst);
             return true;
          }
-         LogError(dst, "Unsubscribe", id, "Not subscribed", ::gen::log::level::info);
+         LogError(dst, "Unsubscribe", id, "Not subscribed", ::ca::log::level::info);
          return false;
       }
-      LogError(dst, "Unsubscribe", id, "Trigger id not found", ::gen::log::level::info);
+      LogError(dst, "Unsubscribe", id, "Trigger id not found", ::ca::log::level::info);
       return false;
    }
 
@@ -1375,7 +1375,7 @@ namespace sockets
       }
       else
       {
-         LogError(NULL, "Trigger", id, "Trigger id not found", ::gen::log::level::info);
+         LogError(NULL, "Trigger", id, "Trigger id not found", ::ca::log::level::info);
       }
    }
 

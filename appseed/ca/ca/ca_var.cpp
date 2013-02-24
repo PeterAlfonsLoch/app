@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    bool ok(para_return eret)
@@ -29,4 +29,4 @@ namespace gen
 
    }
 
-} // namespace gen
+} // namespace ca

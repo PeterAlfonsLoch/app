@@ -77,9 +77,9 @@ namespace sockets
                   if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
-                     ::gen::parse pa(m_chunk_line, ";");
+                     ::ca::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
-                     m_chunk_size = gen::hex::to_uint(size_str);
+                     m_chunk_size = ca::hex::to_uint(size_str);
                      if (!m_chunk_size)
                      {
                         m_chunk_state = 4;
@@ -189,9 +189,9 @@ namespace sockets
 
 
          }
-         ::gen::parse pa(line);
+         ::ca::parse pa(line);
          string str = pa.getword();
-         if (str.get_length() > 4 &&  gen::str::begins_ci(str, "http/")) // response
+         if (str.get_length() > 4 &&  ca::str::begins_ci(str, "http/")) // response
          {
             m_request.attr("http_version") = str;
             m_request.attr("http_status_code") = pa.getword();
@@ -213,7 +213,7 @@ namespace sockets
             m_request.attr("http_method") = str;
             m_request.attr("request_uri") = pa.getword();
             m_request.attr("http_version") = pa.getword();
-            m_b_http_1_1 = gen::str::ends(m_request.attr("http_version"), "/1.1");
+            m_b_http_1_1 = ca::str::ends(m_request.attr("http_version"), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest = true;
          }
@@ -235,21 +235,21 @@ namespace sockets
          }
          return;
       }
-      ::gen::parse pa(line,":");
+      ::ca::parse pa(line,":");
       string key = pa.getword();
       string value = pa.getrest();
       string lowvalue = value;
       lowvalue.make_lower();
       OnHeader(key, value, lowvalue);
-      if(gen::str::equals_ci(key, "content-length"))
+      if(ca::str::equals_ci(key, "content-length"))
       {
          m_body_size_left = atol(value);
       }
-      if(gen::str::equals_ci(key, "connection"))
+      if(ca::str::equals_ci(key, "connection"))
       {
          if (m_b_http_1_1)
          {
-            if(gen::str::equals_ci(value, "close"))
+            if(ca::str::equals_ci(value, "close"))
             {
                m_b_keepalive = false;
             }
@@ -260,7 +260,7 @@ namespace sockets
          }
          else
          {
-            if(gen::str::equals_ci(value, "keep-alive"))
+            if(ca::str::equals_ci(value, "keep-alive"))
             {
                m_b_keepalive = true;
             }
@@ -270,7 +270,7 @@ namespace sockets
             }
          }
       }
-      if (gen::str::equals_ci(key, "transfer-encoding") && gen::str::ends_ci(value, "chunked"))
+      if (ca::str::equals_ci(key, "transfer-encoding") && ca::str::ends_ci(value, "chunked"))
       {
          m_b_chunked = true;
       }
@@ -372,14 +372,14 @@ namespace sockets
 
    void sip_base_client_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
    {
-      ::gen::parse pa(url_in,"/");
+      ::ca::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       if (!strcasecmp(protocol, "https:"))
       {
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::gen::log::level::warning);
+         Handler().LogError(this, "url_this", -1, "SSL not available", ::ca::log::level::warning);
    #endif
          port = 443;
       }
@@ -390,13 +390,13 @@ namespace sockets
       host = pa.getword();
       if (strstr(host,":"))
       {
-         ::gen::parse pa(host,":");
+         ::ca::parse pa(host,":");
          pa.getword(host);
          port = static_cast<port_t>(pa.getvalue());
       }
       url = "/" + pa.getrest();
       {
-         ::gen::parse pa(url,"/");
+         ::ca::parse pa(url,"/");
          string tmp = pa.getword();
          while (tmp.get_length())
          {
@@ -417,42 +417,42 @@ namespace sockets
       return m_response;
    }
 
-   gen::property & sip_base_client_socket::inattr(const char * pszName)
+   ca::property & sip_base_client_socket::inattr(const char * pszName)
    {
       return m_request.attr(pszName);
    }
 
-   gen::property_set & sip_base_client_socket::inattrs()
+   ca::property_set & sip_base_client_socket::inattrs()
    {
       return m_request.attrs();
    }
 
-   gen::property & sip_base_client_socket::outattr(const char * pszName)
+   ca::property & sip_base_client_socket::outattr(const char * pszName)
    {
       return m_response.attr(pszName);
    }
 
-   gen::property_set & sip_base_client_socket::outattrs()
+   ca::property_set & sip_base_client_socket::outattrs()
    {
       return m_response.attrs();
    }
 
-   gen::property & sip_base_client_socket::inheader(const char * pszName)
+   ca::property & sip_base_client_socket::inheader(const char * pszName)
    {
       return m_request.header(pszName);
    }
 
-   gen::property_set & sip_base_client_socket::inheaders()
+   ca::property_set & sip_base_client_socket::inheaders()
    {
       return m_request.headers();
    }
 
-   gen::property & sip_base_client_socket::outheader(const char * pszName)
+   ca::property & sip_base_client_socket::outheader(const char * pszName)
    {
       return m_response.header(pszName);
    }
 
-   gen::property_set & sip_base_client_socket::outheaders()
+   ca::property_set & sip_base_client_socket::outheaders()
    {
       return m_response.headers();
    }

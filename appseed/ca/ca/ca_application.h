@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -9,7 +9,7 @@ namespace gen
    class signal;
 
 
-} // namespace gen
+} // namespace ca
 
 
 namespace user
@@ -101,7 +101,7 @@ namespace ca
    public:
 
 
-      gen::signal                 * m_psignal;
+      ca::signal                 * m_psignal;
 
       bool                          m_bInitializeProDevianMode;
       main_init_data *              m_pinitmaindata;
@@ -158,7 +158,7 @@ namespace ca
       virtual void app_map_set(const char * psz, void *) = 0;
 
 
-      virtual void pre_translate_message(::gen::signal_object * pobj) = 0;
+      virtual void pre_translate_message(::ca::signal_object * pobj) = 0;
 
 
       virtual ::fontopus::user * get_safe_user();
@@ -202,7 +202,7 @@ namespace ca
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -218,7 +218,7 @@ namespace gen
 
 
    class CLASS_DECL_ca application_signal_object :
-         public gen::signal_object
+         public ca::signal_object
    {
    public:
 
@@ -228,7 +228,7 @@ namespace gen
       bool                             m_bOk;
 
 
-      application_signal_object(::ca::application * papp, ::gen::signal * psignal, ::ca::e_application_signal esignal);
+      application_signal_object(::ca::application * papp, ::ca::signal * psignal, ::ca::e_application_signal esignal);
 
 
    };
@@ -238,13 +238,13 @@ namespace gen
       virtual public command_target_interface,
       virtual public request_interface,
       virtual public ::ca::message_window_simple_callback,
-      virtual public ::gen::thread,
-      virtual public ::ca::smart_pointer < ::gen::application >
+      virtual public ::ca::thread,
+      virtual public ::ca::smart_pointer < ::ca::application >
    {
    public:
 
 
-      class ::gen::base64                 m_base64;
+      class ::ca::base64                 m_base64;
       signal                              m_signalAppLanguageChange;
       math::math *                        m_pmath;
       geometry::geometry *                m_pgeometry;
@@ -254,7 +254,7 @@ namespace gen
       string                              m_strModulePath;
       string                              m_strModuleFolder;
       string                              m_strHelpFilePath;
-      ::gen::command_thread *             m_pcommandthread;
+      ::ca::command_thread *             m_pcommandthread;
       mutex                               m_mutex;
 
       string                        m_strInstallType;
@@ -351,9 +351,9 @@ namespace gen
       //::collection::map < ::waitable *, ::waitable *, mutex *, mutex * > m_mapObjectMutex;
 
       //mutex                            m_mutexObjectEvent;
-      //::collection::map < ::gen::object *, ::gen::object *, ::collection::map < int32_t, int32_t, event *, event * > *, ::collection::map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
+      //::collection::map < ::ca::object *, ::ca::object *, ::collection::map < int32_t, int32_t, event *, event * > *, ::collection::map < int32_t, int32_t, event *, event * >  * > m_mapObjectEvent;
 
-      //typedef ::collection::map < ::gen::object *, ::gen::object *, gen::property_set, gen::property_set > oset;
+      //typedef ::collection::map < ::ca::object *, ::ca::object *, ca::property_set, ca::property_set > oset;
       //oset                             m_mapObjectSet;
 
       class ::user::str_context *      m_puserstrcontext;
@@ -396,7 +396,7 @@ namespace gen
       // overrides for implementation
       virtual int32_t run();
       virtual bool on_idle(LONG lCount); // return TRUE if more idle processing
-      virtual void ProcessWndProcException(base_exception* e, gen::signal_object * pobj);
+      virtual void ProcessWndProcException(base_exception* e, ca::signal_object * pobj);
 
 
       void EnableModelessEx(bool bEnable);
@@ -431,7 +431,7 @@ namespace gen
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
 
 
-      class ::gen::base64 & base64();
+      class ::ca::base64 & base64();
 
       virtual string get_local_mutex_id();
       virtual string get_global_mutex_id();
@@ -440,12 +440,12 @@ namespace gen
       virtual void memory_to_hex(string & strHex, primitive::memory & memory);
 
       // Wall-eeeeee aliases
-      ::gen::command_thread & command_central();
-      ::gen::command_thread & command();
-      ::gen::command_thread & guideline();
-      ::gen::command_thread & directrix();
-      ::gen::command_thread & axiom();
-      ::gen::command_thread & creation();
+      ::ca::command_thread & command_central();
+      ::ca::command_thread & command();
+      ::ca::command_thread & guideline();
+      ::ca::command_thread & directrix();
+      ::ca::command_thread & axiom();
+      ::ca::command_thread & creation();
 
       //virtual void on_allocation_error(const ::ca::type_info & info);
       //virtual ::ca::ca * on_alloc(const ::ca::type_info & info);
@@ -484,7 +484,7 @@ namespace gen
 
       virtual bool on_run_exception(::ca::exception & e);
 
-      virtual void pre_translate_message(::gen::signal_object * pobj);
+      virtual void pre_translate_message(::ca::signal_object * pobj);
 
       // Set regsitry key name to be used by application's
       // profile member functions; prevents writing to an INI spfile->
@@ -647,7 +647,7 @@ namespace gen
 
       void OnAppExit();
       // System Policy Settings
-      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca2 API loads.
+      virtual bool LoadSysPolicies(); // Override to load policies other than the system policies that ca API loads.
       bool GetSysPolicyValue(uint32_t dwPolicyID, bool *pbValue); // returns the policy's setting in the out parameter
       bool _LoadSysPolicies() throw(); // Implementation helper
       static const char gen_FileSection[];
@@ -660,13 +660,13 @@ namespace gen
       virtual void on_exclusive_instance_conflict(EExclusiveInstance eexclusive);
       virtual void on_exclusive_instance_local_conflict();
 
-      virtual void message_window_message_handler(gen::signal_object * pobj);
+      virtual void message_window_message_handler(ca::signal_object * pobj);
 
       virtual void delete_temp();
 
-      //using ::gen::thread::propset;
-      //gen::property_set & propset(::gen::object * pobject);
-      //gen::property_set * existing_propset(::gen::object * pobject);
+      //using ::ca::thread::propset;
+      //ca::property_set & propset(::ca::object * pobject);
+      //ca::property_set * existing_propset(::ca::object * pobject);
 
       virtual oswindow get_ca2_app_wnd(const char * psz);
 
@@ -685,12 +685,12 @@ namespace gen
 
 
       //mutex * get_mutex(::waitable * pobject);
-      //using ::gen::thread::lock;
+      //using ::ca::thread::lock;
       //void wait(::waitable * pobject);
       //wait_result wait(::waitable * pobject, duration dwTimeout);
       //void lock(::waitable * pobject);
       //bool lock(::waitable * pobject, duration dwTimeout);
-      //using ::gen::thread::unlock;
+      //using ::ca::thread::unlock;
       //bool unlock(::waitable * pobject);
 
 //      event * get_event(::waitable * pobject, int32_t iEvent = 0);
@@ -795,7 +795,7 @@ namespace gen
 
       virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::ca::create_context * pcontext);
       virtual ::user::interaction * get_request_parent_ui(::userbase::main_frame * pmainframe, ::ca::create_context * pcontext);
-//      gen::file_system_sp m_spfilesystem;
+//      ca::file_system_sp m_spfilesystem;
 
 
       virtual void construct();
@@ -804,7 +804,7 @@ namespace gen
       virtual bool set_main_init_data(::ca::main_init_data * pdata);
 
 
-//      virtual ::gen::file_system & file_system();
+//      virtual ::ca::file_system & file_system();
       virtual bool _001OnDDECommand(const char * lpcsz);
       virtual void _001EnableShellOpen();
       virtual ::user::document_interface * _001OpenDocumentFile(var varFile);
@@ -819,8 +819,8 @@ namespace gen
       virtual bool DeferRegisterClass(LONG fToRegister, const char ** ppszClass);
 
 
-      virtual ::gen::thread * GetThread();
-      virtual void set_thread(::gen::thread * pthread);
+      virtual ::ca::thread * GetThread();
+      virtual void set_thread(::ca::thread * pthread);
       virtual ::user::interaction * GetMainWnd();
 
 
@@ -841,7 +841,7 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca
 
 
 
@@ -884,12 +884,12 @@ namespace fontopus
 } // namespace fontopus
 
 
-namespace ca2
+namespace ca
 {
 
 
    class CLASS_DECL_ca application :
-      virtual public ::gen::application
+      virtual public ::ca::application
    {
    public:
 
@@ -1011,7 +1011,7 @@ namespace ca2
       virtual ~application();
 
 
-      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
       virtual int32_t run();
 
@@ -1065,7 +1065,7 @@ namespace ca2
 
       virtual bool base_support();
 
-      virtual string message_box(const string & pszMatter, gen::property_set & propertyset);
+      virtual string message_box(const string & pszMatter, ca::property_set & propertyset);
 
 
       virtual void load_string_table();
@@ -1076,7 +1076,7 @@ namespace ca2
 
       void process(machine_event_data * pdata);
 
-      virtual void pre_translate_message(gen::signal_object * pobj);
+      virtual void pre_translate_message(ca::signal_object * pobj);
 
       ::mutex * get_local_mutex();
       ::mutex * get_global_mutex();
@@ -1091,7 +1091,7 @@ namespace ca2
       virtual void set_env_var(const string & var,const string & value);
       virtual uint32_t get_thread_id();
 
-      virtual void message_window_message_handler(gen::signal_object * pobj);
+      virtual void message_window_message_handler(ca::signal_object * pobj);
 
       virtual bool on_install();
       virtual bool on_uninstall();

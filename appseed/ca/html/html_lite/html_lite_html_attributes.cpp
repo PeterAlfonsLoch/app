@@ -132,7 +132,7 @@ uint_ptr LiteHTMLElemAttr::parseFromStr(::lite_html_reader * preader, const char
          // was used at the starting of the attribute value.
          // Anything within these quotes is considered valid!
          // NOTE that the entity references are resolved later.
-         while (*lpszEnd != '\0' && !gen::str::begins_ci(lpszEnd, strChar));
+         while (*lpszEnd != '\0' && !ca::str::begins_ci(lpszEnd, strChar));
       }
 
       // open attribute value i.e. not wrapped in quotes?

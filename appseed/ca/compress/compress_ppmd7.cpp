@@ -84,14 +84,14 @@ void Ppmd7_Construct(CPpmd7 *p)
   memset(p->HB2Flag + 0x40, 8, 0x100 - 0x40);
 }
 
-void Ppmd7_Free(CPpmd7 *p, ::gen::ISzAlloc *alloc)
+void Ppmd7_Free(CPpmd7 *p, ::ca::ISzAlloc *alloc)
 {
   alloc->Free(alloc, p->Base);
   p->Size = 0;
   p->Base = 0;
 }
 
-bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::gen::ISzAlloc *alloc)
+bool Ppmd7_Alloc(CPpmd7 *p, uint32_t size, ::ca::ISzAlloc *alloc)
 {
   if (p->Base == 0 || p->Size != size)
   {

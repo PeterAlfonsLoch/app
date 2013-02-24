@@ -180,7 +180,7 @@ public:
    virtual void on_update_frame_title(bool bAddToTitle);
    virtual void OnUpdateFrameMenu(HMENU hMenuAlt);
    virtual HACCEL GetDefaultAccelerator();
-   virtual void pre_translate_message(gen::signal_object * pobj);
+   virtual void pre_translate_message(ca::signal_object * pobj);
 
    // idle update of frame ::fontopus::user interface
    enum IdleFlags
@@ -215,7 +215,7 @@ public:
    friend class ::ca::window;  // for access to m_bModalDisable
    friend class CReBar; // for access to m_bInRecalcLayout
 
-   virtual void install_message_handling(::gen::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnDestroy);
@@ -253,7 +253,7 @@ public:
    LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam);
    LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
 
-   friend class ::gen::application;
+   friend class ::ca::application;
 
 
 };

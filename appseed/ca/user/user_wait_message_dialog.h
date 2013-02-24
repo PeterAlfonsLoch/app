@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca wait_message_dialog :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
    uint32_t       m_dwStartTime;
@@ -12,7 +12,7 @@ public:
    wait_message_dialog(::ca::application * papp);
    virtual ~wait_message_dialog();
 
-   virtual void on_show(const char * pszMatter, gen::property_set & propertyset);
+   virtual void on_show(const char * pszMatter, ca::property_set & propertyset);
 
 //   virtual bool BaseOnControlEvent(::user::form * pview, ::user::control_event * pevent);
 

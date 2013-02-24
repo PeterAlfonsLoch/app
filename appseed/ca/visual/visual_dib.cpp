@@ -40,7 +40,7 @@ namespace visual
          {
             try
             {
-               gen::byte_stream stream = Application.file().get_byte_stream(strFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary);
+               ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
                m_p->read(stream);
                return true;
             }
@@ -54,7 +54,7 @@ namespace visual
       try
       {
 
-         if(!read_from_file(Application.file().get_file(varFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary)))
+         if(!read_from_file(Application.file().get_file(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary)))
             return false;
 
       }
@@ -71,7 +71,7 @@ namespace visual
       {
          try
          {
-            gen::byte_stream stream = Application.file().get_byte_stream(strFile, ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::type_binary | ::gen::file::defer_create_directory);
+            ca::byte_stream stream = Application.file().get_byte_stream(strFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary | ::ca::file::defer_create_directory);
             m_p->write(stream);
          }
          catch(...)
@@ -86,7 +86,7 @@ namespace visual
       return load_from_file(Application.dir().matter(pszMatter));
    }
 
-   bool dib_sp::read_from_file(::gen::file * pfile)
+   bool dib_sp::read_from_file(::ca::file * pfile)
    {
       FIBITMAP * pfi = Application.visual().imaging().LoadImageFile(pfile);
       if(pfi == NULL)
@@ -100,14 +100,14 @@ namespace visual
 
    bool dib_sp::save_to_file(var varFile, save_image * psaveimage)
    {
-      ::gen::filesp spfile;
-      spfile = Application.file().get_file(varFile, ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::type_binary);
+      ::ca::filesp spfile;
+      spfile = Application.file().get_file(varFile, ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::type_binary);
       if(spfile.is_null())
          return false;
       return write_to_file(spfile, psaveimage);
    }
 
-   bool dib_sp::write_to_file(::gen::file * pfile, save_image * psaveimage)
+   bool dib_sp::write_to_file(::ca::file * pfile, save_image * psaveimage)
    {
       save_image saveimageDefault;
       if(psaveimage == NULL)

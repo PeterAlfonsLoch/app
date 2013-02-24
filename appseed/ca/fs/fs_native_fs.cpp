@@ -109,16 +109,16 @@ namespace fs
    }
 
 
-   ::gen::filesp native::get_file(var varFile, UINT nOpenFlags)
+   ::ca::filesp native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      ::gen::filesp spfile(get_app());
+      ::ca::filesp spfile(get_app());
 
-      // ::gen::file::mode_read | ::gen::file::shareDenyNone | ::gen::file::type_binary
+      // ::ca::file::mode_read | ::ca::file::shareDenyNone | ::ca::file::type_binary
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
 
-         throw new gen::file_exception(get_app(), ::gen::file_exception::none, 01, varFile.get_string());
+         throw new ca::file_exception(get_app(), ::ca::file_exception::none, 01, varFile.get_string());
 
       }
 

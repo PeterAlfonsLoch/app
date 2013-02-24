@@ -11,7 +11,7 @@ namespace gcom
 
       thread::thread(::ca::application * papp) :
          ca(papp),
-         ::gen::thread(papp),
+         ::ca::thread(papp),
          m_evInitialized(papp, FALSE, TRUE),
          m_mutexBitmap(papp)
       {
@@ -32,10 +32,10 @@ namespace gcom
       {
          m_evInitialized.SetEvent();
          m_pbackviewinterface->Release();
-         return ::gen::thread::exit_instance();
+         return ::ca::thread::exit_instance();
       }
 
-      void thread::install_message_handling(::gen::message::dispatch * pinterface)
+      void thread::install_message_handling(::ca::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(WM_USER, pinterface, this, &thread::OnUserMessage);
          IGUI_WIN_MSG_LINK(MESSAGE_BACKVIEW, pinterface, this, &thread::OnBackViewMessage);
@@ -189,9 +189,9 @@ namespace gcom
       /////////////////////////////////////////////////////////////////////////////
       // thread message handlers
 
-      void thread::OnBackViewMessage(gen::signal_object * pobj)
+      void thread::OnBackViewMessage(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj);
+         SCAST_PTR(::ca::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case WPARAM_BACKVIEW_IMAGELOADED:
@@ -209,9 +209,9 @@ namespace gcom
             break;
          }
       }
-      void thread::OnUserMessage(gen::signal_object * pobj)
+      void thread::OnUserMessage(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj);
+         SCAST_PTR(::ca::message::base, pbase, pobj);
           ASSERT(GetMainWnd() == NULL);
          if(pbase->m_wparam == 1) //&& m_pImageLoader != NULL)
          {
@@ -311,9 +311,9 @@ namespace gcom
 
       }
 
-      void thread::OnCommandMessage(gen::signal_object * pobj)
+      void thread::OnCommandMessage(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj);
+         SCAST_PTR(::ca::message::base, pbase, pobj);
          switch(pbase->m_wparam)
          {
          case CommandLoadImage:
@@ -386,7 +386,7 @@ namespace gcom
       void thread::LoadImageAsync(const load_image & loadimage)
       {
          load_image * lploadimage = new load_image(loadimage);
-         gen::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
+         ca::connect(lploadimage->m_signalImageLoaded,  m_pbackviewinterface, &backview::Main::_001OnImageLoaded);
 
          post_thread_message(
             MessageCommand,
@@ -491,7 +491,7 @@ namespace gcom
 
       void load_image::OnImageLoaded()
       {
-         gen::signal_object obj(&m_signalImageLoaded);
+         ca::signal_object obj(&m_signalImageLoaded);
          obj()["dib"] = m_pdib;
          m_signalImageLoaded.emit(&obj);
       }

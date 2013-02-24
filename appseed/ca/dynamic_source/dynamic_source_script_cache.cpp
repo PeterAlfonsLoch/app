@@ -103,7 +103,7 @@ namespace dynamic_source
    script_instance * script_cache::create_instance(const char * lpcszName)
    {
 
-      if(gen::str::begins(lpcszName, "netnode://"))
+      if(ca::str::begins(lpcszName, "netnode://"))
       {
          single_lock sl(&m_cs, TRUE);
          script * pscript  = get(lpcszName);

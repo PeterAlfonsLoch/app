@@ -279,8 +279,8 @@ namespace dynamic_source
          //::file_copy_dup(strStagePath, m_strScriptPath, false);
          string str1 = m_strScriptPath;
          string str2 = strStagePath;
-         gen::str::ends_eat_ci(str1, ".dll");
-         gen::str::ends_eat_ci(str2, ".dll");
+         ca::str::ends_eat_ci(str1, ".dll");
+         ca::str::ends_eat_ci(str2, ".dll");
          str1 += ".pdb";
          str2 += ".pdb";
          ::file_copy_dup(strStagePath, m_strScriptPath, true);
@@ -346,8 +346,8 @@ namespace dynamic_source
 
 #ifdef WINDOWSEX
 
-         HMODULE hmodule = ::GetModuleHandleW(gen::international::utf8_to_unicode("\\\\?\\" + strStagePath));
-         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
+         HMODULE hmodule = ::GetModuleHandleW(ca::international::utf8_to_unicode("\\\\?\\" + strStagePath));
+         bool b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ca::international::utf8_to_unicode("\\\\?\\" + strStagePath), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             uint32_t dwError = ::GetLastError();
@@ -355,9 +355,9 @@ namespace dynamic_source
          }
          string strPdb;
          strPdb = strStagePath;
-         gen::str::ends_eat_ci(strPdb, ".dll");
+         ca::str::ends_eat_ci(strPdb, ".dll");
          strPdb += ".pdb";
-         b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, gen::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
+         b = ::GetModuleHandleExW(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, ca::international::utf8_to_unicode("\\\\?\\" + strPdb), &hmodule) != FALSE;
          if(hmodule != NULL && !::FreeLibrary(hmodule))
          {
             uint32_t dwError = ::GetLastError();

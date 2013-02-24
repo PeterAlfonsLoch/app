@@ -71,7 +71,7 @@ namespace filemanager
             list_view(::ca::application * papp);
             ::filemanager::fs::simple::view * m_pserver;
 
-            void install_message_handling(::gen::message::dispatch * pinterface);
+            void install_message_handling(::ca::message::dispatch * pinterface);
        
             ::user::list_cache        m_cache;
             bool                 m_bKickActive;
@@ -125,7 +125,7 @@ namespace filemanager
             virtual count _001GetItemCount();
             virtual void _001SearchGetItemText(::user::list_item * pitem);
 
-            virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
+            virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
 
             virtual void _001OnClick(UINT nFlags, point point);
 

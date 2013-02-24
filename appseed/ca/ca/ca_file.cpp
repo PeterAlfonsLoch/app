@@ -4,7 +4,7 @@
 
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    __STATIC inline bool IsDirSep(WCHAR ch)
@@ -20,24 +20,24 @@ namespace gen
 
    ::primitive::memory_size file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
-      return ::gen::reader::read(lpBuf, nCount);
+      return ::ca::reader::read(lpBuf, nCount);
    }
 
    void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
-      ::gen::writer::write(lpBuf, nCount);
+      ::ca::writer::write(lpBuf, nCount);
    }
 
 
    void file::write(byte_output_stream & ostream)
    {
       seek_to_begin();
-      gen::reader::write(ostream);
+      ca::reader::write(ostream);
    }
 
    void file::read(byte_input_stream & istream)
    {
-      gen::writer::read(istream);
+      ca::writer::read(istream);
       seek_to_begin();
    }
 
@@ -57,7 +57,7 @@ namespace gen
       return FALSE;
    }
 
-   file_position file::seek(file_offset lOff, ::gen::e_seek nFrom)
+   file_position file::seek(file_offset lOff, ::ca::e_seek nFrom)
    {
       UNREFERENCED_PARAMETER(lOff);
       UNREFERENCED_PARAMETER(nFrom);
@@ -126,14 +126,14 @@ namespace gen
 
    void file::assert_valid() const
    {
-   //   ::gen::object::assert_valid();
+   //   ::ca::object::assert_valid();
       // we permit the descriptor m_hFile to be any value for derived classes
    }
 
    void file::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-   //   ::gen::object::dump(dumpcontext);
+   //   ::ca::object::dump(dumpcontext);
 
    //   dumpcontext << "with handle " << (UINT)m_hFile;
    //   dumpcontext << " and name \"" << m_wstrFileName << "\"";
@@ -334,7 +334,7 @@ namespace gen
    {
       if(read(pch, 1) == 1)
       {
-         seek(-1, ::gen::seek_current);
+         seek(-1, ::ca::seek_current);
          return true;
       }
       else
@@ -347,7 +347,7 @@ namespace gen
    {
       if(read(puch, 1) == 1)
       {
-         seek(-1, ::gen::seek_current);
+         seek(-1, ::ca::seek_current);
          return true;
       }
       else
@@ -378,7 +378,7 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 
 
 

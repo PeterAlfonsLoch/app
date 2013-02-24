@@ -3,7 +3,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -32,4 +32,4 @@ namespace gen
       return;
    }
 
-} // namespace gen
+} // namespace ca

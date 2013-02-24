@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
    class CLASS_DECL_ca install :
-      public ::gen::object
+      public ::ca::object
    {
    public:
 
@@ -34,7 +34,7 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

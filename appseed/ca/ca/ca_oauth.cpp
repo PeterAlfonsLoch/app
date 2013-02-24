@@ -538,7 +538,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
 //}
 //
 
-namespace ca2
+namespace ca
 {
 
  namespace oAuthLibDefaults
@@ -1020,12 +1020,12 @@ namespace ca2
    bool oauth::getOAuthHeader(
       const eOAuthHttpRequestType eType,
       const string & rawUrl,
-      gen::property_set & rawData,
-      gen::property_set & headers,
+      ca::property_set & rawData,
+      ca::property_set & headers,
       const bool includeOAuthVerifierPin)
    {
-      gen::property_set setHeader;
-      gen::property_set setSignature;
+      ca::property_set setHeader;
+      ca::property_set setSignature;
       string rawParams( "" );
       string oauthSignature( "" );
       string paramsSeperator( "" );
@@ -1042,7 +1042,7 @@ namespace ca2
          /* Get only key=value data part */
          string dataPart = rawUrl.Mid( nPos + 1 );
 
-         gen::property_set setUrl(get_app());
+         ca::property_set setUrl(get_app());
          setUrl.parse_url_query(dataPart);
 
          setSignature.merge(setUrl);
@@ -1062,7 +1062,7 @@ namespace ca2
       /* Get url encoded base64 signature using request type, url and parameters */
       getSignature(eType, pureUrl, setSignature, oauthSignature);
 
-      ca2::oAuthKeyValuePairs pairs(get_app());
+      ca::oAuthKeyValuePairs pairs(get_app());
       /* Now, again build key-value pairs with signature this time */
       buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, pairs, oauthSignature, setHeader);
 
@@ -1204,5 +1204,5 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace ca
 

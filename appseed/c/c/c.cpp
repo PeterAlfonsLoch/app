@@ -5,7 +5,7 @@
 CLASS_DECL_c int32_t ___()
 {
 
-   MessageBox(::ca::null(), "___ library of ca2", "___ library of ca2", MB_ICONINFORMATION | MB_OK);
+   MessageBox(::ca::null(), "___ library of ca", "___ library of ca", MB_ICONINFORMATION | MB_OK);
 
    return 0;
 

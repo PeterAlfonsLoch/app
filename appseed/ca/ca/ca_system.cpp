@@ -52,7 +52,7 @@ namespace ca
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -86,7 +86,7 @@ namespace gen
    {
 /*      if(info == System.type_info < class ::ca::log > ())
       {
-         return new class ::ca2::log(this); // NULL log implementation
+         return new class ::ca::log(this); // NULL log implementation
       }*/
       /*string str;
       str.Format("Could not alloc %s", info.name());
@@ -133,7 +133,7 @@ namespace gen
       UNREFERENCED_PARAMETER(pca);
    }
 
-} // namespace gen
+} // namespace ca
 
 
 

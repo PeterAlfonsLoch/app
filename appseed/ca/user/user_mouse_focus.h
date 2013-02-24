@@ -11,7 +11,7 @@ namespace user
       mouse_focus();
       virtual ~mouse_focus();
 
-      virtual void mouse_focus_OnLButtonUp(gen::signal_object * pobj);
+      virtual void mouse_focus_OnLButtonUp(ca::signal_object * pobj);
    };
 
 

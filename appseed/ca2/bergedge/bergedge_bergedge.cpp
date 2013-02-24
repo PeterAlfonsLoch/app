@@ -53,7 +53,7 @@ namespace bergedge
 
          m_mapApplication.get_next_assoc(pos, strId, pcaapp);
 
-         ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
+         ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
 
          papp->post_thread_message(WM_QUIT, 0, 0);
       }
@@ -67,7 +67,7 @@ namespace bergedge
       m_strBaseSupportId   = "votagus_ca2_bergedge";
       m_strInstallToken    = "bergedge";
       m_bLicense           = false;
-      m_eexclusiveinstance = ::gen::ExclusiveInstanceNone;
+      m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;
 
    }
 
@@ -94,10 +94,10 @@ namespace bergedge
 
       if(Session.is_remote_session())
       {
-         /*Session.savings().save(gen::resource_display_bandwidth);
-         Session.savings().save(gen::resource_blur_background);
-         Session.savings().save(gen::resource_blurred_text_embossing);
-         Session.savings().save(gen::resource_translucent_background);*/
+         /*Session.savings().save(ca::resource_display_bandwidth);
+         Session.savings().save(ca::resource_blur_background);
+         Session.savings().save(ca::resource_blurred_text_embossing);
+         Session.savings().save(ca::resource_translucent_background);*/
       }
 
       /*      if(System.directrix().m_varTopicQuery.has_property("install")
@@ -144,7 +144,7 @@ namespace bergedge
    bool bergedge::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return gen::application::_001OnCmdMsg(pcmdmsg);
+      return ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
    ::ca::application * bergedge::get_app() const
@@ -363,7 +363,7 @@ namespace bergedge
             if(strType.is_empty())
                strType = "application";
 
-            ::ca2::application * papp = dynamic_cast < ::ca2::application * > (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
+            ::ca::application * papp = dynamic_cast < ::ca::application * > (application_get(strType, strApp, true, true, pcreatecontext->m_spCommandLine->m_pbiasCreate));
             if(papp == NULL)
                return;
 
@@ -407,7 +407,7 @@ namespace bergedge
    }
 
 
-   void bergedge::on_app_request_bergedge_callback(::ca2::application * papp)
+   void bergedge::on_app_request_bergedge_callback(::ca::application * papp)
    {
       if(&App(papp) != NULL)
       {
@@ -507,9 +507,9 @@ namespace bergedge
 
    }
 
-   void bergedge::on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive)
+   void bergedge::on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive)
    {
-      if(eexclusive == ::gen::ExclusiveInstanceLocalId)
+      if(eexclusive == ::ca::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
          ::primitive::memory_file file(get_app());
@@ -518,7 +518,7 @@ namespace bergedge
          data.dwData = 1984;
          data.cbData = (uint32_t) file.get_length();
          data.lpData = file.get_data();
-         ::oswindow oswindow = ::FindWindowA(NULL, "ca2::fontopus::message_wnd::bergedge::");
+         ::oswindow oswindow = ::FindWindowA(NULL, "ca::fontopus::message_wnd::bergedge::");
 
 
          ::SendMessage(oswindow, WM_COPYDATA, NULL, (LPARAM) &data);
@@ -545,7 +545,7 @@ namespace bergedge
             get_document()->get_typed_view < ::bergedge::pane_view >()->set_cur_tab_by_id("app:" + App(m_pappCurrent).m_strAppName);
          }
          App(m_pappCurrent).request(pcreatecontext);
-         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca2 < ::user::document_interface > () == NULL)
+         if(pcreatecontext->m_spCommandLine->m_varQuery["document"].ca < ::user::document_interface > () == NULL)
          {
             goto alt1;
          }
@@ -556,11 +556,11 @@ namespace bergedge
 alt1:
          if(pcreatecontext->m_spCommandLine->m_varFile.get_type() == var::type_string)
          {
-            if(gen::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca2"))
+            if(ca::str::ends_ci(pcreatecontext->m_spCommandLine->m_varFile, ".ca"))
             {
                string strCommand = Application.file().as_string(pcreatecontext->m_spCommandLine->m_varFile);
-               if(gen::str::begins_eat(strCommand, "ca2prompt\r")
-                  || gen::str::begins_eat(strCommand, "ca2prompt\n"))
+               if(ca::str::begins_eat(strCommand, "ca2prompt\r")
+                  || ca::str::begins_eat(strCommand, "ca2prompt\n"))
                {
                   strCommand.trim();
                   command().add_fork_uri(strCommand);
@@ -608,7 +608,7 @@ alt1:
    /*void bergedge::request_application(const char * pszId, var varFile, var varQuery, ::ca::application_bias * pbiasCreate)
    {
 
-   ::ca2::application_request request;
+   ::ca::application_request request;
 
    request.m_iEdge         = m_iEdge;
    request.m_strApp        = pszId;
@@ -704,8 +704,8 @@ alt1:
 
       ::user::interaction * puiParent = NULL;
 
-      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >() != NULL)
-         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca2 < ::user::interaction >();
+      if(pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >() != NULL)
+         puiParent = pcreatecontext->m_spCommandLine->m_varQuery["uicontainer"].ca < ::user::interaction >();
 
       if(puiParent == NULL && pcreatecontext->m_puiParent != NULL)
       {
@@ -844,9 +844,9 @@ alt1:
 
       string strSentinelPath;
 
-      strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
+      strSentinelPath = System.dir().ca("stage/x86/app-sentinel.exe");
 
-      System.os().local_machine_set_run("ca2 app-sentinel", "\"" + strSentinelPath + "\"");
+      System.os().local_machine_set_run("ca app-sentinel", "\"" + strSentinelPath + "\"");
 
       return platform::application::on_install();
    }

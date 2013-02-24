@@ -12,7 +12,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // BaseDockState - used for docking serialization
 
-class CLASS_DECL_ca2 BaseDockState : public ::gen::object
+class CLASS_DECL_ca2 BaseDockState : public ::ca::object
 {
    // DECLARE_SERIAL(BaseDockState)
    BaseDockState();

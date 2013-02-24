@@ -9,12 +9,12 @@ namespace datetime
    bool check_end_expression(const char * input, const char * & scanner)
    {
       scanner = input;
-      while(gen::ch::is_space_char(scanner) && *scanner != '\0')
+      while(ca::ch::is_space_char(scanner) && *scanner != '\0')
          scanner++;
       if(*scanner == '\0')
          return true;
-      if(!gen::ch::is_digit(scanner) &&
-         !gen::ch::is_letter(scanner))
+      if(!ca::ch::is_digit(scanner) &&
+         !ca::ch::is_letter(scanner))
          return true;
       return false;
    }
@@ -22,13 +22,13 @@ namespace datetime
    bool check_expression_separator(const char * input, const char * & scanner)
    {
       scanner = input;
-      while(gen::ch::is_space_char(scanner) && *scanner != '\0')
-         scanner  =gen::str::utf8_inc(scanner);
+      while(ca::ch::is_space_char(scanner) && *scanner != '\0')
+         scanner  =ca::str::utf8_inc(scanner);
       if(*scanner == '\0')
          return true;
       if(scanner == input)
       {
-         if(gen::ch::is_letter(scanner))
+         if(ca::ch::is_letter(scanner))
             return true;
          else
             return false;
@@ -41,16 +41,16 @@ namespace datetime
    {
       static id idCalendarDays("calendar:days");
       scanner = input;
-      while(gen::ch::is_space_char(scanner) && *scanner != '\0')
-         scanner = gen::str::utf8_inc(scanner);
+      while(ca::ch::is_space_char(scanner) && *scanner != '\0')
+         scanner = ca::str::utf8_inc(scanner);
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
       string strCandidate;
-      if(gen::ch::is_letter(scanner))
+      if(ca::ch::is_letter(scanner))
       {
-         while(gen::ch::is_letter(scanner))
-            scanner = gen::str::utf8_inc(scanner);
+         while(ca::ch::is_letter(scanner))
+            scanner = ca::str::utf8_inc(scanner);
          strCandidate = string(start, scanner - start + 1);
          strCandidate.make_lower();
          if(pcontext->matches(idCalendarDays, strCandidate))
@@ -263,13 +263,13 @@ namespace datetime
    string check_lang_date(const char * input, const char * & scanner)
    {
       scanner = input;
-      while(gen::ch::is_whitespace(scanner) && *scanner != '\0')
-         scanner = gen::str::utf8_inc(scanner);
+      while(ca::ch::is_whitespace(scanner) && *scanner != '\0')
+         scanner = ca::str::utf8_inc(scanner);
       if(*scanner == '\0')
          return "";
       const char * start = scanner;
-      while(gen::ch::is_letter(scanner))
-         scanner = gen::str::utf8_inc(scanner);
+      while(ca::ch::is_letter(scanner))
+         scanner = ca::str::utf8_inc(scanner);
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "today")
@@ -304,13 +304,13 @@ namespace datetime
       scanner = input;
       if(*scanner == '\0')
          return "";
-      if(!gen::ch::is_digit(scanner))
+      if(!ca::ch::is_digit(scanner))
          return "";
       const char * start = scanner;
-      scanner = gen::str::utf8_inc(scanner);
-      while(gen::ch::is_digit(scanner))
+      scanner = ca::str::utf8_inc(scanner);
+      while(ca::ch::is_digit(scanner))
       {
-         scanner = gen::str::utf8_inc(scanner);
+         scanner = ca::str::utf8_inc(scanner);
       }
       return string(start, scanner - start);
    }
@@ -321,8 +321,8 @@ namespace datetime
       if(check_end_expression(input, scanner))
          return "";
       const char * start = input;
-      while(!gen::ch::is_space_char(scanner) && *scanner != '\0')
-         scanner = gen::str::utf8_inc(scanner);
+      while(!ca::ch::is_space_char(scanner) && *scanner != '\0')
+         scanner = ca::str::utf8_inc(scanner);
       string strCandidate = string(input, scanner - start);
       strCandidate.make_lower();
       if(strCandidate == "ago")
@@ -696,8 +696,8 @@ namespace datetime
       else
       {
          token->m_str = consume_date_expression(m_pstrcontext, input);
-         while(gen::ch::is_space_char(input))
-            input = gen::str::utf8_inc(input);
+         while(ca::ch::is_space_char(input))
+            input = ca::str::utf8_inc(input);
          if(*input == '(')
          {
             token->value = token::function;

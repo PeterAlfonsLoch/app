@@ -31,7 +31,7 @@ namespace fs
 #endif //DEBUG
 
 
-   void tree::install_message_handling(::gen::message::dispatch * pinterface)
+   void tree::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::fs::tree_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &tree::_001OnCreate);
@@ -40,7 +40,7 @@ namespace fs
       IGUI_WIN_MSG_LINK(WM_CONTEXTMENU, pinterface, this, &tree::_001OnContextMenu);
    }
 
-   void tree::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+   void tree::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -99,7 +99,7 @@ namespace fs
    }
 
 
-   void tree::_001OnLButtonDblClk(gen::signal_object * pobj)
+   void tree::_001OnLButtonDblClk(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //   int32_t iItem;
@@ -173,9 +173,9 @@ namespace fs
 
    }*/
 
-   void tree::_001OnContextMenu(gen::signal_object * pobj)
+   void tree::_001OnContextMenu(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
    //   int32_t iItem;
    //   HRESULT hr;
       point ptClient = pcontextmenu->GetPoint();
@@ -243,9 +243,9 @@ namespace fs
    }
 
 
-   void tree::_001OnTimer(gen::signal_object * pobj)
+   void tree::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca::message::timer, ptimer, pobj)
       if(ptimer->m_nIDEvent == 1234567)
       {
          m_iAnimate += 2;
@@ -275,9 +275,9 @@ namespace fs
       return ::fs::tree_interface::_001OnCmdMsg(pcmdmsg);
    }
 
-   void tree::_001OnShellCommand(gen::signal_object * pobj)
+   void tree::_001OnShellCommand(ca::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::command, pcommand, pobj)
+      //SCAST_PTR(::ca::message::command, pcommand, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 
@@ -286,7 +286,7 @@ namespace fs
       get_document()->file_manager_browse(item.m_strPath);
    }
 
-   void tree::_001OnCreate(gen::signal_object * pobj)
+   void tree::_001OnCreate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
 

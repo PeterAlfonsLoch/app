@@ -1,11 +1,11 @@
 #include "framework.h"
 
-base_cmd_ui::base_cmd_ui(gen::signal * psignal) :
+base_cmd_ui::base_cmd_ui(ca::signal * psignal) :
    signal_object(psignal)
 {
 }
 
-BaseCommand::BaseCommand(gen::signal * psignal) :
+BaseCommand::BaseCommand(ca::signal * psignal) :
    signal_object(psignal)
 {
 }
@@ -122,7 +122,7 @@ command_target_interface::command_target_interface(::ca::application * papp)
 
 bool command_target_interface::_001OnCommand(id id)
 {
-   gen::dispatch::signal_ptr_array signalptra;
+   ca::dispatch::signal_ptr_array signalptra;
    get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
@@ -139,7 +139,7 @@ bool command_target_interface::_001OnCommand(id id)
 bool command_target_interface::_001HasCommandHandler(id id)
 {
 
-   gen::dispatch::signal_ptr_array signalptra;
+   ca::dispatch::signal_ptr_array signalptra;
 
    get_command_signal_array(BaseCmdMsg::type_command, signalptra, id);
 
@@ -150,7 +150,7 @@ bool command_target_interface::_001HasCommandHandler(id id)
 
 bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
 {
-   gen::dispatch::signal_ptr_array signalptra;
+   ca::dispatch::signal_ptr_array signalptra;
    get_command_signal_array(BaseCmdMsg::type_cmdui, signalptra, pcmdui->m_id);
    bool bOk = false;
    for(int32_t i = 0; i < signalptra.get_size(); i++)
@@ -166,14 +166,14 @@ bool command_target_interface::_001OnUpdateCmdUi(cmd_ui * pcmdui)
 
 void command_target_interface::get_command_signal_array(
    BaseCmdMsg::e_type etype,
-   gen::dispatch::signal_ptr_array & signalptra, id id)
+   ca::dispatch::signal_ptr_array & signalptra, id id)
 {
    command_signalid signalid;
    signalid.m_id = id;
    // collect all signals with the specified command id (pszId)
    for(int32_t i = 0; i < m_signalidaCommand.get_size(); i++)
    {
-      class ::gen::signalid * pid = m_signalidaCommand[i];
+      class ::ca::signalid * pid = m_signalidaCommand[i];
       if(pid->matches(&signalid))
       {
          if(etype == BaseCmdMsg::type_command)

@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
    file_exception::file_exception(::ca::application * papp, int32_t cause , LONG lOsError, const char * lpszArchiveName) :
       ca(papp),
       ::call_stack(papp),
-      ::gen::exception(papp)
+      ::ca::exception(papp)
    {
       Construct(cause, lOsError, lpszArchiveName);
    }
@@ -60,7 +60,7 @@ namespace gen
    void file_exception::OnFileFound(OF_INFO_t OpenedFileInfo )
    {
 
-	   if(System.file().name_(gen::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
+	   if(System.file().name_(ca::international::unicode_to_utf8(OpenedFileInfo.lpFile)).CompareNoCase(System.file().name_(m_strFileName)) == 0)
       {
 
 	      PROCESS_INFO_t stInfo;
@@ -147,7 +147,7 @@ namespace gen
 
          wstring wstr;
 
-         wstr = gen::international::utf8_to_unicode(System.dir().name(m_strFileName));
+         wstr = ca::international::utf8_to_unicode(System.dir().name(m_strFileName));
 
 #ifdef WINDOWSEX
          GetOpenedFiles(wstr, ALL_TYPES, &file_exception::CallBackFunc, (uint_ptr)this);
@@ -210,7 +210,7 @@ namespace gen
    void file_exception::dump(dump_context & dumpcontext) const
    {
       UNREFERENCED_PARAMETER(dumpcontext);
-      //::gen::object::dump(dumpcontext);
+      //::ca::object::dump(dumpcontext);
 
    /*   dumpcontext << "m_cause = ";
       if (m_cause >= 0 && m_cause < _countof(rgszFileExceptionCause))
@@ -224,4 +224,4 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca

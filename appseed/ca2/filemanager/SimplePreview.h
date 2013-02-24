@@ -12,8 +12,8 @@ namespace filemanager
       SimplePreview(::ca::application * papp);
       virtual ~SimplePreview();
 
-      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
-      virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
+      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
    };
 
 

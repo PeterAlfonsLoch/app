@@ -3,7 +3,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
    class locked_in_stream
@@ -25,7 +25,7 @@ namespace gen
    };
 
    class locked_reader :
-      virtual public gen::reader
+      virtual public ca::reader
    {
    public:
 
@@ -44,4 +44,4 @@ namespace gen
 
    };
 
-} // namespace gen
+} // namespace ca

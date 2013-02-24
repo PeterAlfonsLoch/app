@@ -231,7 +231,7 @@ string ifs::file_name(const char * pszPath)
 
    string strPath(pszPath);
 
-   if(!gen::str::begins_eat_ci(strPath, "ifs://") && !gen::str::begins_eat_ci(strPath, "uifs://"))
+   if(!ca::str::begins_eat_ci(strPath, "ifs://") && !ca::str::begins_eat_ci(strPath, "uifs://"))
    {
       return "";
    }
@@ -253,10 +253,10 @@ bool ifs::file_move(const char * pszDst, const char * pszSrc)
 }
 
 
-gen::filesp ifs::get_file(var varFile, UINT nOpenFlags)
+ca::filesp ifs::get_file(var varFile, UINT nOpenFlags)
 {
    
-   gen::filesp spfile;
+   ca::filesp spfile;
 
    spfile(new ifs_file(get_app(), varFile));
 
@@ -280,7 +280,7 @@ gen::filesp ifs::get_file(var varFile, UINT nOpenFlags)
 
    if(!spfile->open(strUrl, nOpenFlags))
    {
-      throw new gen::file_exception(get_app(), ::gen::file_exception::none, 01, varFile.get_string());
+      throw new ca::file_exception(get_app(), ::ca::file_exception::none, 01, varFile.get_string());
    }
 
    return spfile;

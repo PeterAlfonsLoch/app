@@ -15,7 +15,7 @@ form_view::form_view(::ca::application * papp) :
 }
 
 
-void form_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+void form_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
 
    html_form_view::on_update(pSender, lHint, phint);
@@ -93,7 +93,7 @@ bool form_view::BaseOnControlEvent(::user::control_event * pevent)
    return false;
 }
 
-void form_view::install_message_handling(::gen::message::dispatch * pinterface)
+void form_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
    html_form_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form_view::_001OnCreate);
@@ -103,15 +103,15 @@ void form_view::install_message_handling(::gen::message::dispatch * pinterface)
 }
 
 
-void form_view::_001OnCreate(gen::signal_object * pobj)
+void form_view::_001OnCreate(ca::signal_object * pobj)
 {
    pobj->previous();
 }
 
 
-void form_view::_001OnTimer(gen::signal_object * pobj)
+void form_view::_001OnTimer(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::timer, ptimer, pobj);
+   SCAST_PTR(::ca::message::timer, ptimer, pobj);
    if(m_pcallback != NULL)
    {
       ::user::control_event ev;
@@ -126,9 +126,9 @@ void form_view::_001OnTimer(gen::signal_object * pobj)
    }
 }
 
-void form_view::_001OnUser123(gen::signal_object * pobj)
+void form_view::_001OnUser123(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::base, pbase, pobj);
+   SCAST_PTR(::ca::message::base, pbase, pobj);
    if(pbase->m_wparam == 0x80000001)
    {
       if(GetTopLevelParent() != NULL)

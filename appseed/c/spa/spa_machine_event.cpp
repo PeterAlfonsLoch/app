@@ -5,7 +5,7 @@
 /*void get_ca2_module_folder_dup(char * lpszModuleFolder)
 {
    char lpszModuleFilePath[MAX_PATH * 8];
-   HMODULE hmodule = ::GetModuleHandleA("ca2.dll");
+   HMODULE hmodule = ::GetModuleHandleA("ca.dll");
    if(hmodule == NULL)
       hmodule = ::GetModuleHandleA("spalib.dll");
    GetModuleFileName(hmodule, lpszModuleFilePath, sizeof(lpszModuleFilePath));
@@ -38,7 +38,7 @@ vsstring dir_beforeca2()
    psz = strrchr(lpszModuleFolder, '\\');
    if(psz == NULL)
       return lpszModuleFolder;
-   *psz = '\0'; // strip ca2
+   *psz = '\0'; // strip ca
    // now, lpszModuleFolder should be beforeca2
    return lpszModuleFolder;
 }
@@ -62,7 +62,7 @@ vsstring dir_path(const char * path1, const char * path2)
 vsstring dir_ca2(const char * path = NULL)
 {
    if(path == NULL)
-      return dir_path(dir_beforeca2(), "ca2");
+      return dir_path(dir_beforeca2(), "ca");
    else
       return dir_path(dir_ca2(), path);
 }
@@ -71,7 +71,7 @@ vsstring dir_appdata(const char * path = NULL)
 {
    char sz[MAX_PATH * 8];
    ::SHGetSpecialFolderPathA(NULL, sz, CSIDL_COMMON_APPDATA, TRUE);
-   vsstring str = dir_path(sz, "ca2");
+   vsstring str = dir_path(sz, "ca");
    return dir_path(str, path);
 }
 
@@ -113,9 +113,9 @@ bool machine_event::read(machine_event_data * pdata)
 
 bool machine_event::write(machine_event_data * pdata)
 {
-   if(!dir::mk(dir::ca2("machine\\event\\")))
+   if(!dir::mk(dir::ca("machine\\event\\")))
       return false;
-   HANDLE hfile = ::create_file(dir::ca2("machine\\event\\machine_event.bin"), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);   
+   HANDLE hfile = ::create_file(dir::ca("machine\\event\\machine_event.bin"), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);   
    if(hfile != INVALID_HANDLE_VALUE)
    {
       pdata->write(hfile);

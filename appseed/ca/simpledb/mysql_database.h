@@ -13,7 +13,7 @@ namespace mysql
 
 
    class CLASS_DECL_ca database :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
 
 
@@ -76,7 +76,7 @@ namespace mysql
             }
             else
             {
-               a1.add(gen::str::from_string < TYPE1 > (row[0]));
+               a1.add(ca::str::from_string < TYPE1 > (row[0]));
             }
 
             if(row[1] == NULL)
@@ -85,7 +85,7 @@ namespace mysql
             }
             else
             {
-               a2.add(gen::str::from_string < TYPE2 > (row[1]));
+               a2.add(ca::str::from_string < TYPE2 > (row[1]));
             }
 
             if(row[2] == NULL)
@@ -94,7 +94,7 @@ namespace mysql
             }
             else
             {
-               a3.add(gen::str::from_string < TYPE3 > (row[2]));
+               a3.add(ca::str::from_string < TYPE3 > (row[2]));
             }
 
             c++;

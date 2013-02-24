@@ -23,7 +23,7 @@ namespace command
 
    }
 
-   void primary_view::on_update(::view* pSender, LPARAM lHint, ::gen::object* phint)
+   void primary_view::on_update(::view* pSender, LPARAM lHint, ::ca::object* phint)
    {
 
       UNREFERENCED_PARAMETER(pSender);
@@ -32,7 +32,7 @@ namespace command
 
    }
 
-   void primary_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void primary_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
 
       ::userbase::edit_plain_text_view::install_message_handling(pinterface);
@@ -120,7 +120,7 @@ namespace command
                         _001SetText(strNewText);
                         str = strNewText;
                         m_iCompromised = m_iSelStart = m_iSelEnd = strNewText.get_length();
-                        Application.send_simple_command("winactionareaview::show_calendar(\""+ gen::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
+                        Application.send_simple_command("winactionareaview::show_calendar(\""+ ca::str::from((int32_t) pelement->get_value().mod()) +"\")", (void *) get_wnd()->get_os_data());
                         bOk = true;
                      }
                   }
@@ -139,7 +139,7 @@ namespace command
                   if(::ShellExecuteW(
                      NULL,
                      NULL,
-                     gen::international::utf8_to_unicode(strLine),
+                     ca::international::utf8_to_unicode(strLine),
                      NULL,
                      NULL,
                      SW_SHOW))
@@ -164,35 +164,35 @@ namespace command
       }
    }
 
-   void primary_view::_001OnUpdateEditCopy(gen::signal_object * pobj)
+   void primary_view::_001OnUpdateEditCopy(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
-   void primary_view::_001OnEditCopy(gen::signal_object * pobj)
+   void primary_view::_001OnEditCopy(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       clipboard_copy();
    }
 
-   void primary_view::_001OnUpdateEditPaste(gen::signal_object * pobj)
+   void primary_view::_001OnUpdateEditPaste(ca::signal_object * pobj)
    {
       SCAST_PTR(base_cmd_ui, pcmdui, pobj)
       pcmdui->m_pcmdui->Enable(TRUE);
    }
 
 
-   void primary_view::_001OnEditPaste(gen::signal_object * pobj)
+   void primary_view::_001OnEditPaste(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       clipboard_paste();
    }
 
 
-   void primary_view::_001OnContextMenu(gen::signal_object * pobj)
+   void primary_view::_001OnContextMenu(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
       point point = pcontextmenu->GetPoint();
 
       ::userbase::menu menu(get_app());

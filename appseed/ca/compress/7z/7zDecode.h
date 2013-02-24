@@ -17,7 +17,7 @@ namespace n7z
    };
 
    class CDecoder :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
       bool _bindInfoExPrevIsDefined;
       CBindInfoEx _bindInfoExPrev;
@@ -34,11 +34,11 @@ namespace n7z
       virtual ~CDecoder();
       HRESULT Decode(
          ::libcompress::codecs_info_interface * codecsInfo, const base_array < ::libcompress::codec_info_ex > *externalCodecs,
-         gen::byte_input_stream *inStream,
+         ca::byte_input_stream *inStream,
          file_position startPos,
          const file_size * packSizes,
          const CFolder &folder,
-         ::gen::writer *outStream,
+         ::ca::writer *outStream,
          ::libcompress::progress_info_interface *compressProgress,
          ::crypto::get_text_password_interface *getTextPasswordSpec, bool &passwordIsDefined,
          bool mtMode, uint32_t numThreads

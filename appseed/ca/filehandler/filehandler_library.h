@@ -6,7 +6,7 @@ namespace filehandler
 
 
    class CLASS_DECL_ca library :
-      virtual public ::ca2::library
+      virtual public ::ca::library
    {
    public:
 

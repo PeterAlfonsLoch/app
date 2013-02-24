@@ -21,7 +21,7 @@ category traceSocket("socket");
 //extern CLASS_DECL_ca fixed_alloc_array * g_pfixedallocaWstring;
 
 
-namespace gen
+namespace ca
 {
 
    namespace trace
@@ -33,8 +33,8 @@ namespace gen
       /*   category::category( const char * pszCategoryName, UINT nStartingLevel ) throw() :
       m_dwCategory( 0 )
       {
-      m_dwCategory = gen::CTrace::s_trace.RegisterCategory( pszCategoryName );
-      gen::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
+      m_dwCategory = ca::CTrace::s_trace.RegisterCategory( pszCategoryName );
+      ca::CTrace::s_trace.ChangeCategory( m_dwCategory, nStartingLevel, TRACESTATUS_INHERIT);
       }*/
 
       void trace::TraceV(const char *pszFileName, int32_t nLine, uint_ptr dwCategory, UINT nLevel, const char * pszFormat, va_list args) const
@@ -50,7 +50,7 @@ namespace gen
          category & category = ((trace *) this)->m_map[(uint32_t ) dwCategory];
 
          //if(ShouldTraceOutput(dwModule, dwCategory, nLevel, &pCategory, &pmodule))
-         if(category.m_estatus == gen::trace::status_disabled || nLevel > category.m_uiLevel)
+         if(category.m_estatus == ca::trace::status_disabled || nLevel > category.m_uiLevel)
             return;
          /*      if (nLen >= 0 && nLen < nCount)
          {
@@ -85,7 +85,7 @@ namespace gen
 
          str.FormatV(pszFormat, args);
 
-         ::OutputDebugStringW(gen::international::utf8_to_unicode(str));
+         ::OutputDebugStringW(ca::international::utf8_to_unicode(str));
 
          /*if(pmodule != NULL)
          pmodule->DebugReport(_CRT_WARN, NULL, 0, NULL, pszFormat, ptr);
@@ -141,7 +141,7 @@ namespace gen
 
          string str;
          str.FormatV(pszFmt, args);
-         ::OutputDebugStringW(gen::international::utf8_to_unicode(str));
+         ::OutputDebugStringW(ca::international::utf8_to_unicode(str));
       }
 
       /*CLASS_DECL_ca void system_log_trace_v(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args)
@@ -152,4 +152,4 @@ namespace gen
 
    } // namespace trace
 
-}  // namespace gen
+}  // namespace ca

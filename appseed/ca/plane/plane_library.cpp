@@ -3,16 +3,16 @@
 #ifndef _WIN32
 extern "C"
 #endif
-::ca2::library * get_new_library();
+::ca::library * get_new_library();
 
 namespace plane
 {
 
 
    library::library() :
-      ::ca2::single_application_library < application > ("app")//,
-//      ::ca2::filehandler::menu_library()
-      ,::ca2::library("app")
+      ::ca::single_application_library < application > ("app")//,
+//      ::ca::filehandler::menu_library()
+      ,::ca::library("app")
    {
    }
 
@@ -62,7 +62,7 @@ namespace plane
 #ifndef _WIN32
 extern "C"
 #endif
-::ca2::library * get_new_library()
+::ca::library * get_new_library()
 {
    return new ::plane::library();
 }

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -345,7 +345,7 @@ namespace ca2
       }
 
 
-      void form::_001OnUpdate(::view * pviewSender, LPARAM lhint, ::gen::object* phint)
+      void form::_001OnUpdate(::view * pviewSender, LPARAM lhint, ::ca::object* phint)
       {
          UNREFERENCED_PARAMETER(pviewSender);
          UNREFERENCED_PARAMETER(lhint);
@@ -422,7 +422,7 @@ namespace ca2
             pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idSection,
             pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idKey,
             pcontrol->descriptor().m_ddx.m_pdbflags->m_key.m_idIndex,
-            dynamic_cast < ::gen::byte_serializable & > (ia)))
+            dynamic_cast < ::ca::byte_serializable & > (ia)))
          {
             ::user::check_box * pcheck = dynamic_cast < ::user::check_box * > (pcontrol);
             if(pcheck != NULL)
@@ -448,7 +448,7 @@ namespace ca2
             return;
          ASSERT(pcontrol->descriptor().get_type() == control::type_check_box);
          int32_t i;
-         if(data_get(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, i))
+         if(data_get(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, i))
          {
       /* linux      simple_button * pbutton = (simple_button *) get_child_by_id(pcontrol->m_id);
             pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -546,16 +546,16 @@ namespace ca2
          {
             ::user::simple_list_data * pdata = dynamic_cast < ::user::simple_list_data * > (plist->GetDataInterface());
             stringa stra;
-            data_get(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, stra);
+            data_get(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, stra);
             ASSERT(plist != NULL);
             pdata->set_data(plist, stra);
          }
       }
 
-      void form::_000OnPosCreate(gen::signal_object * pobj)
+      void form::_000OnPosCreate(ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
-   //      SCAST_PTR(::gen::message::base, pbase, pobj)
+   //      SCAST_PTR(::ca::message::base, pbase, pobj)
       }
 
       void form::_001InitializeFormPreData()
@@ -585,7 +585,7 @@ namespace ca2
             return false;
 
          int32_t i;
-         if(!data_get(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, i))
+         if(!data_get(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, i))
             return false;
 
          bData = (i != 0) ? 1 : 0;
@@ -601,7 +601,7 @@ namespace ca2
             return false;
 
          int32_t i = bData ? 1 : 0;
-         data_set(pcontrol->descriptor().m_dataid, ::gen::system::idEmpty, i);
+         data_set(pcontrol->descriptor().m_dataid, ::ca::system::idEmpty, i);
          return true;
 
       }
@@ -624,7 +624,7 @@ namespace ca2
          }
       }
 
-      void form::install_message_handling( ::gen::message::dispatch *pinterface)
+      void form::install_message_handling( ::ca::message::dispatch *pinterface)
       {
       /*   InstallOnDrawInterface(pinterface);
          VMSGEN_WINDOW_ON_SIZE_CONDITIONAL(pinterface, this, _001OnSize);
@@ -636,11 +636,11 @@ namespace ca2
          VMSGEN_WINDOW_ON_LBUTTONDBLCLK_CONDITIONAL(pinterface, this, _001OnLButtonDblClk);
          VMSGEN_WINDOW_ON_TIMER_CONDITIONAL(pinterface, this, _001OnTimer);*/
          IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &form::_001OnCreate);
-         IGUI_MSG_LINK(::gen::message_pos_create, pinterface, this, &form::_000OnPosCreate);
+         IGUI_MSG_LINK(::ca::message_pos_create, pinterface, this, &form::_000OnPosCreate);
    //      IGUI_WIN_MSG_LINK(WM_COMMAND, pinterface, this, &form::_001OnCommand);
      //    IGUI_WIN_MSG_LINK(WM_NOTIFY, pinterface, this, &form::_001OnNotify);
          // revamp IGUI_WIN_MSG_LINK(user::MessageNotify, pinterface, this, &form::_001OnMessageNotify);
-         IGUI_WIN_MSG_LINK(gen::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
+         IGUI_WIN_MSG_LINK(ca::application::APPM_LANGUAGE, pinterface, this, &form::_001OnAppLanguage);
 
       //   IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &::user::interaction::_001OnLButtonDown);
       //   IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &::user::interaction::_001OnLButtonUp);
@@ -651,7 +651,7 @@ namespace ca2
       void form::_001GetSelection(
          ::database::id & id, ::database::selection &selection)
       {
-         selection.add_item(id, ::gen::system::idEmpty);
+         selection.add_item(id, ::ca::system::idEmpty);
       }
 
       bool form::_001OnCommand(id id)
@@ -660,19 +660,19 @@ namespace ca2
       }
 
 
-      void form::_001OnNotify(gen::signal_object * pobj)
+      void form::_001OnNotify(ca::signal_object * pobj)
       {
 #ifdef WINDOWSEX
-         SCAST_PTR(::gen::message::notify, pnotify, pobj)
+         SCAST_PTR(::ca::message::notify, pnotify, pobj)
          pnotify->m_bRet = false;
 #else
          throw todo(get_app());
 #endif
       }
 
-      void form::_001OnMessageNotify(gen::signal_object * pobj)
+      void form::_001OnMessageNotify(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj)
+         SCAST_PTR(::ca::message::base, pbase, pobj)
          // revamp pbase->set_lresult(user::NotifyRetContinue);
          pbase->m_bRet = false;
       }
@@ -697,7 +697,7 @@ namespace ca2
          return true;
       }
 
-      void form::data_on_after_change(gen::signal_object * pobj)
+      void form::data_on_after_change(ca::signal_object * pobj)
       {
          SCAST_PTR(::database::change_event, pchange, pobj);
          if(pchange->m_puh != NULL)
@@ -768,9 +768,9 @@ namespace ca2
       }
 
 
-      void form::_001OnAppLanguage(gen::signal_object * pobj)
+      void form::_001OnAppLanguage(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj)
+         SCAST_PTR(::ca::message::base, pbase, pobj)
          keeper < bool > keepOnLanguageChange(&m_bOnLanguageChange, true, false, true);
 
          _017OnAppLanguage();
@@ -778,13 +778,13 @@ namespace ca2
          pbase->m_bRet = false;
       }
 
-      void form::_001OnCreate(gen::signal_object * pobj)
+      void form::_001OnCreate(ca::signal_object * pobj)
       {
-   //      SCAST_PTR(::gen::message::create, pcreate, pobj)
+   //      SCAST_PTR(::ca::message::create, pcreate, pobj)
          if(pobj->previous())
             return;
 
-         //PostMessage(::gen::message::message_pos_create);
+         //PostMessage(::ca::message::message_pos_create);
 
       }
 
@@ -953,7 +953,7 @@ namespace ca2
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-                  dynamic_cast < ::gen::byte_serializable & > (ia));
+                  dynamic_cast < ::ca::byte_serializable & > (ia));
                check_interface * pcheck = dynamic_cast < check_interface * > (pevent->m_puie);
                if(pcheck->_001GetCheck() == check::checked)
                {
@@ -976,7 +976,7 @@ namespace ca2
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idSection,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idKey,
                   pdescriptor->m_ddx.m_pdbflags->m_key.m_idIndex,
-                  dynamic_cast < ::gen::byte_serializable & > (ia));
+                  dynamic_cast < ::ca::byte_serializable & > (ia));
             }
          }
          return false;
@@ -1054,7 +1054,7 @@ namespace ca2
    } // namespace user
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

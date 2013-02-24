@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 printer :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

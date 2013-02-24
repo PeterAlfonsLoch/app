@@ -14,7 +14,7 @@ file_manager_operation_view::~file_manager_operation_view()
 }
 
 
-void file_manager_operation_view::_001OnCreate(gen::signal_object * pobj)
+void file_manager_operation_view::_001OnCreate(ca::signal_object * pobj)
 {
    pobj->previous();
 
@@ -45,7 +45,7 @@ void file_manager_operation_view::_001OnCreate(gen::signal_object * pobj)
 
 }
 
-void file_manager_operation_view::install_message_handling(::gen::message::dispatch * pinterface)
+void file_manager_operation_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::split_view::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &file_manager_operation_view::_001OnCreate);
@@ -58,9 +58,9 @@ file_manager_operation_document * file_manager_operation_view::get_document()
    return dynamic_cast < file_manager_operation_document * > (::view::get_document());
 }
 
-void file_manager_operation_view::_001OnMainPostMessage(gen::signal_object * pobj)
+void file_manager_operation_view::_001OnMainPostMessage(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::base, pbase, pobj)
+   SCAST_PTR(::ca::message::base, pbase, pobj)
    if(pbase->m_wparam == MessageMainPostFileOperation)
    {
       m_pinfoview->OnFileOperationStep((int32_t) pbase->m_lparam, false);
@@ -73,7 +73,7 @@ void file_manager_operation_view::_001OnMainPostMessage(gen::signal_object * pob
    }
 }
 
-void file_manager_operation_view::_001OnDestroy(gen::signal_object *pobj)
+void file_manager_operation_view::_001OnDestroy(ca::signal_object *pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }

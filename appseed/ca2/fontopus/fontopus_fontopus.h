@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -22,7 +22,7 @@ namespace ca2
          virtual void construct(::ca::application * papp);
 
 
-         virtual ::fontopus::user * login(gen::property_set & set);
+         virtual ::fontopus::user * login(ca::property_set & set);
          virtual bool get_auth(const char * psz, string & strUsername, string & strPassword);
 
 
@@ -40,7 +40,7 @@ namespace ca2
    } // namespace fontopus
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

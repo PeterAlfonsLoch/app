@@ -3,7 +3,7 @@
 
 template <class TYPE, class ARG_TYPE = const TYPE &, class BASE_PTRA = typed_ptr_array < TYPE * > >
 class array_ptr :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 

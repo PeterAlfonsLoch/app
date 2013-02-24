@@ -20,12 +20,12 @@ const char * get_starter_version()
 
 const char * get_version()
 {
-   return file_as_string_dup(dir::ca2("appdata", spa_get_platform(), "build.txt"));
+   return file_as_string_dup(dir::ca("appdata", spa_get_platform(), "build.txt"));
 }
 
 const char * get_ca2_version()
 {
-   return file_as_string_dup(dir::ca2("appdata", spa_get_platform(), "ca2_build.txt"));
+   return file_as_string_dup(dir::ca("appdata", spa_get_platform(), "ca2_build.txt"));
 }
 
 void update_ca2_installed(bool bUnloadIfNotInstalled)
@@ -40,7 +40,7 @@ void update_ca2_installed(bool bUnloadIfNotInstalled)
    }
 
 
-   vsstring strStage(dir::ca2("stage", spa_get_platform()));
+   vsstring strStage(dir::ca("stage", spa_get_platform()));
 
 #ifdef WINDOWSEX
    ::SetDllDirectoryA(strStage);
@@ -80,7 +80,7 @@ void update_ca2_updated()
    g_bCa2Updated = !strcmp_dup(get_starter_version(), get_ca2_version());
 }
 
-// ca2 files in store updated only in store but may not be yet transferred to the stage
+// ca files in store updated only in store but may not be yet transferred to the stage
 bool is_ca2_updated()
 {
    return g_bCa2Updated;
@@ -96,7 +96,7 @@ void set_installing_ca2(bool bSet)
    g_bInstallingCa2 = bSet;
 }
 
-// ca2 files in store updated and transferred to the stage
+// ca files in store updated and transferred to the stage
 void update_updated()
 {
    g_bUpdated = !strcmp_dup(get_starter_version(), get_version());
@@ -141,7 +141,7 @@ void update_ca2_build()
 {
    if(g_pszCa2Build != NULL)
       _ca_free(g_pszCa2Build, 0);
-   g_pszCa2Build = (char *) strdup_dup(ms_get_dup("http://spaignition.api.server.ca2.cc/ca2_get_build?authnone"));
+   g_pszCa2Build = (char *) strdup_dup(ms_get_dup("http://spaignition.api.server.ca.cc/ca2_get_build?authnone"));
 }
 
 
@@ -237,7 +237,7 @@ UINT spa_starter_start::start()
 
    /*vsstring strPlatform = spa_get_platform();
 
-   vsstring strSentinelPath = dir::path(dir::beforeca2(), ("ca2\\stage\\" + strPlatform + "\\app-sentinel.exe"));
+   vsstring strSentinelPath = dir::path(dir::beforeca2(), ("ca\\stage\\" + strPlatform + "\\app-sentinel.exe"));
 
    call_sync(strSentinelPath, "");*/
 
@@ -271,13 +271,13 @@ uint32_t _ca2_starter_start(void * pvoid)
 
 void set_ca2_updated(const char * pszBuild)
 {
-   dir::mk(dir::ca2() + "\\appdata\\" + spa_get_platform());
-   file_put_contents_dup(dir::ca2() + "\\appdata\\" + spa_get_platform() + "\\ca2_build.txt", pszBuild);
+   dir::mk(dir::ca() + "\\appdata\\" + spa_get_platform());
+   file_put_contents_dup(dir::ca() + "\\appdata\\" + spa_get_platform() + "\\ca2_build.txt", pszBuild);
 }
 
 
 void set_updated(const char * pszBuild)
 {
-   dir::mk(dir::ca2() + "\\appdata\\" + spa_get_platform());
-   file_put_contents_dup(dir::ca2() + "\\appdata\\" + spa_get_platform() + "\\build.txt", pszBuild);
+   dir::mk(dir::ca() + "\\appdata\\" + spa_get_platform());
+   file_put_contents_dup(dir::ca() + "\\appdata\\" + spa_get_platform() + "\\build.txt", pszBuild);
 }

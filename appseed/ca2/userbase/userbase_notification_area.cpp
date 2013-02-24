@@ -115,7 +115,7 @@ namespace userbase
          else
             wcscpy(sTip,L"[Hidden icon]");
 
-         info.sTip = gen::international::unicode_to_utf8(sTip);
+         info.sTip = ca::international::unicode_to_utf8(sTip);
 
          info.m_oswindow = tray.m_oswindow;
          info.uCallbackMessage = tray.uCallbackMessage;

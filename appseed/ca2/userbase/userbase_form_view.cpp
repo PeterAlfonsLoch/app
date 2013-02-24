@@ -17,7 +17,7 @@ namespace userbase
    {
    }
 
-   void form_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void form_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::userbase::scroll_view::install_message_handling(pinterface);
       ::user::form::install_message_handling(pinterface);
@@ -84,16 +84,16 @@ namespace userbase
    }
    */
 
-      void form_view::_001OnCreate(gen::signal_object * pobj)
+      void form_view::_001OnCreate(ca::signal_object * pobj)
       {
          pobj->previous();
      }
 
 
    /*
-     void form_view::_001OnLButtonDown(gen::signal_object * pobj)
+     void form_view::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       point pt;
       pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -107,9 +107,9 @@ namespace userbase
       }
    }
 
-   void form_view::_001OnMouseMove(gen::signal_object * pobj)
+   void form_view::_001OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       point pt;
       pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -123,9 +123,9 @@ namespace userbase
       }
    }
 
-   void form_view::_001OnLButtonUp(gen::signal_object * pobj)
+   void form_view::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       point pt;
       pt = pmouse->m_pt;
       ScreenToClient(&pt);

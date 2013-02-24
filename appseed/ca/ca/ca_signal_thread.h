@@ -1,26 +1,26 @@
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    template < class DST, class SRC >
    class signal_thread :
-      public ::gen::thread
+      public ::ca::thread
    {
    public:
 
 
       DST * m_psignalizableDst;
-      void (DST::* m_pfnDst)(gen::signal_object *);
+      void (DST::* m_pfnDst)(ca::signal_object *);
       SRC * m_psignalizableSrc;
-      void (SRC::* m_pfnSrc)(gen::signal_object *);
-      gen::signal_object * m_pobj;
+      void (SRC::* m_pfnSrc)(ca::signal_object *);
+      ca::signal_object * m_pobj;
       
       
       signal_thread(::ca::application * papp,
-         DST * psignalizableDst, void (DST::* pfnDst)(gen::signal_object *), 
-         SRC * psignalizableSrc, void (SRC::* pfnSrc)(gen::signal_object *), 
-         gen::signal_object * pobj) :
+         DST * psignalizableDst, void (DST::* pfnDst)(ca::signal_object *), 
+         SRC * psignalizableSrc, void (SRC::* pfnSrc)(ca::signal_object *), 
+         ca::signal_object * pobj) :
          ca(papp),
          thread(papp)
       {
@@ -53,12 +53,12 @@ namespace gen
 
    template < class DST, class SRC >
    void emit(::ca::application * papp,
-      DST * psignalizableDst, void (DST::* pfnDst)(gen::signal_object *), 
-      SRC * psignalizableSrc, void (SRC::* pfnSrc)(gen::signal_object *), 
-      gen::signal_object * pobj)
+      DST * psignalizableDst, void (DST::* pfnDst)(ca::signal_object *), 
+      SRC * psignalizableSrc, void (SRC::* pfnSrc)(ca::signal_object *), 
+      ca::signal_object * pobj)
    {
       signal_thread < DST, SRC > * pthread = new signal_thread < DST, SRC > (papp, psignalizableDst, pfnDst, psignalizableSrc, pfnSrc, pobj);
       pthread->begin();
    }
 
-} // namespace gen
+} // namespace ca

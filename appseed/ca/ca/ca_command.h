@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca command :
-      virtual public ::gen::object,
-      virtual public ::gen::request_interface
+      virtual public ::ca::object,
+      virtual public ::ca::request_interface
    {
    public:
 
@@ -48,7 +48,7 @@ class command_target;
 
 
 class CLASS_DECL_ca base_cmd_ui :
-   public gen::signal_object
+   public ca::signal_object
 {
 public:
 
@@ -56,14 +56,14 @@ public:
    cmd_ui * m_pcmdui;
 
 
-   base_cmd_ui(gen::signal * psignal);
+   base_cmd_ui(ca::signal * psignal);
 
 
 };
 
 
 class CLASS_DECL_ca BaseCommand :
-   public gen::signal_object
+   public ca::signal_object
 {
 public:
 
@@ -71,14 +71,14 @@ public:
    id   m_id;
 
 
-   BaseCommand(gen::signal * psignal);
+   BaseCommand(ca::signal * psignal);
 
 
 };
 
 
 class CLASS_DECL_ca BaseCmdMsg :
-   public ::gen::object
+   public ::ca::object
 {
 public:
 

@@ -194,26 +194,26 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::install_message_handling(::gen::message::dispatch * pinterface)
+   void window::install_message_handling(::ca::message::dispatch * pinterface)
    {
       UNREFERENCED_PARAMETER(pinterface);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnDestroy(gen::signal_object * pobj)
+   void window::_001OnDestroy(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnCaptureChanged(gen::signal_object * pobj)
+   void window::_001OnCaptureChanged(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
    // WM_NCDESTROY is the absolute LAST message sent.
-   void window::_001OnNcDestroy(gen::signal_object * pobj)
+   void window::_001OnNcDestroy(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -268,7 +268,7 @@ namespace ca
 #endif
 
 
-   void window::pre_translate_message(gen::signal_object * pobj)
+   void window::pre_translate_message(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -386,7 +386,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::_002OnDraw(gen::signal_object * pobj)
+   void window::_002OnDraw(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -395,7 +395,7 @@ namespace ca
    /////////////////////////////////////////////////////////////////////////////
    // main message_handler implementation
 
-   void window::message_handler(gen::signal_object * pobj)
+   void window::message_handler(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -567,7 +567,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::WalkPreTranslateTree(::user::interaction * puiStop, gen::signal_object * pobj)
+   void window::WalkPreTranslateTree(::user::interaction * puiStop, ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(puiStop);
       UNREFERENCED_PARAMETER(pobj);
@@ -680,13 +680,13 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnPaint(gen::signal_object * pobj)
+   void window::_001OnPaint(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void window::_001OnPrint(gen::signal_object * pobj)
+   void window::_001OnPrint(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -2146,7 +2146,7 @@ namespace ca
       _001OnCommand(nID, CN_UPDATE_COMMAND_UI, &state, NULL);
       if (!state.m_bEnabled)
       {
-      TRACE(::gen::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
+      TRACE(::ca::trace::category_AppMsg, 0, "Warning: not executing disabled command %d\n", nID);
       return TRUE;
       }
 
@@ -2172,7 +2172,7 @@ namespace ca
 
       #ifdef DEBUG
       if (nCode < 0 && nCode != (int32_t)0x8000)
-      TRACE(::gen::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
+      TRACE(::ca::trace::category_AppMsg, 0, "Implementation Warning: control notification = $%X.\n",
       nCode);
       #endif
 
@@ -2195,7 +2195,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   void window::WalkPreTranslateTree(gen::signal_object * pobj)
+   void window::WalkPreTranslateTree(ca::signal_object * pobj)
    {
       return WalkPreTranslateTree(m_pguie, pobj);
    }
@@ -2303,7 +2303,7 @@ ca(papp)
    m_pguieForward = NULL;
 }
 
-void guie_message_wnd::message_handler(gen::signal_object * pobj)
+void guie_message_wnd::message_handler(ca::signal_object * pobj)
 {
    if(m_pguieForward != NULL)
    {

@@ -13,7 +13,7 @@ void _123abc_debug_gen_array_randomize(::ca::application * papp)
    App(papp).lemon_array().randomize(a);
 }
 
-namespace gen
+namespace ca
 {
    namespace lemon
    {
@@ -22,7 +22,7 @@ namespace gen
       {
       }
    } // namespace lemon
-} // namespace gen
+} // namespace ca
 
 
 
@@ -31,7 +31,7 @@ namespace gen
 void ___arrayStdSortTest()
 {
    base_array<int32_t, int32_t> ia;
-   /*gen::_sort::QuickSort(
+   /*ca::_sort::QuickSort(
       ia,
       sort::CompareAscending < int32_t >);*/
 
@@ -43,7 +43,7 @@ void ___arrayStdSortTest()
 
 
 
-namespace gen
+namespace ca
 {
 
    namespace lemon
@@ -75,5 +75,5 @@ namespace gen
    } // namespace lemon
 
 
-} // namespace gen
+} // namespace ca
 

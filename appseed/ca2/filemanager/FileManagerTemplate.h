@@ -32,7 +32,7 @@ class SimpleDialogBar;
 
 
 class CLASS_DECL_ca2 FileManagerTemplate :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 

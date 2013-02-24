@@ -6,8 +6,8 @@ namespace plane
 
 
    class CLASS_DECL_ca library :
-      virtual public ::ca2::single_application_library < application >//,
-      //virtual public ::ca2::filehandler::menu_library
+      virtual public ::ca::single_application_library < application >//,
+      //virtual public ::ca::filehandler::menu_library
    {
    public:
 

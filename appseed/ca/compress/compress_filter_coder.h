@@ -17,8 +17,8 @@ namespace libcompress
       public coder_interface,
       public set_input_stream_interface,
       public set_output_stream_interface,
-      public ::gen::byte_stream,
-      public ::gen::output_stream_flush_interface,
+      public ::ca::byte_stream,
+      public ::ca::output_stream_flush_interface,
       public ::crypto::set_password_interface,
       public ::libcompress::set_coder_properties_interface,
       public ::libcompress::write_coder_properties_interface,
@@ -30,8 +30,8 @@ namespace libcompress
 
 
       byte *                  _buffer;
-      ::gen::reader *         _inStream;
-      ::gen::writer *         _outStream;
+      ::ca::reader *         _inStream;
+      ::ca::writer *         _outStream;
       uint32_t                  _bufferPos;
       uint32_t                  _convertedPosBegin;
       uint32_t                  _convertedPosEnd;
@@ -58,13 +58,13 @@ namespace libcompress
       filter_coder();
       ~filter_coder();
 
-      HRESULT WriteWithLimit(::gen::writer *outStream, uint32_t size);
+      HRESULT WriteWithLimit(::ca::writer *outStream, uint32_t size);
 
       /*      MY_QUERYINTERFACE_BEGIN2(::libcompress::coder_interface)
       MY_QUERYINTERFACE_ENTRY(ICompressSetInStream)
-      MY_QUERYINTERFACE_ENTRY(::gen::byte_input_stream)
+      MY_QUERYINTERFACE_ENTRY(::ca::byte_input_stream)
       MY_QUERYINTERFACE_ENTRY(ICompressSetOutStream)
-      MY_QUERYINTERFACE_ENTRY(::gen::byte_output_stream)
+      MY_QUERYINTERFACE_ENTRY(::ca::byte_output_stream)
       MY_QUERYINTERFACE_ENTRY(IOutStreamFlush)
 
       #ifndef _NO_CRYPTO
@@ -83,21 +83,21 @@ namespace libcompress
       MY_ADDREF_RELEASE*/
 
 
-      gen::HRes Code(::gen::reader *inStream, ::gen::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
-      gen::HRes SetInStream(::gen::reader *inStream);
-      gen::HRes SetOutStream(::gen::writer *outStream);
-      gen::HRes ReleaseInStream();
-      gen::HRes ReleaseOutStream();
+      ca::HRes Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
+      ca::HRes SetInStream(::ca::reader *inStream);
+      ca::HRes SetOutStream(::ca::writer *outStream);
+      ca::HRes ReleaseInStream();
+      ca::HRes ReleaseOutStream();
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size *processedSize);
       void flush();
 
-      gen::HRes CryptoSetPassword(const byte *data, uint32_t size);
-      gen::HRes SetCoderProperties(const int32_t *propIDs, const var *properties, uint32_t numProperties);
-      gen::HRes WriteCoderProperties(::gen::writer *outStream);
-      // gen::HRes ResetSalt();
-      gen::HRes ResetInitVector();
-      gen::HRes SetDecoderProperties2(const byte *data, uint32_t size);
+      ca::HRes CryptoSetPassword(const byte *data, uint32_t size);
+      ca::HRes SetCoderProperties(const int32_t *propIDs, const var *properties, uint32_t numProperties);
+      ca::HRes WriteCoderProperties(::ca::writer *outStream);
+      // ca::HRes ResetSalt();
+      ca::HRes ResetInitVector();
+      ca::HRes SetDecoderProperties2(const byte *data, uint32_t size);
    };
 
    class input_stream_releaser

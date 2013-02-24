@@ -54,7 +54,7 @@ namespace ca
       return g_pfn_get_thread_state();
    }
 
-   void thread::set_p(::gen::thread * p)
+   void thread::set_p(::ca::thread * p)
    {
       UNREFERENCED_PARAMETER(p);
       throw interface_only_exception(get_app());
@@ -163,7 +163,7 @@ namespace ca
    void thread::Delete()
    {
       thread * pthread = this;
-      gen::del(pthread);
+      ca::del(pthread);
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -210,7 +210,7 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   bool thread::is_idle_message(gen::signal_object * pobj)
+   bool thread::is_idle_message(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
@@ -227,32 +227,32 @@ namespace ca
       throw interface_only_exception(get_app());
    }
 
-   ::gen::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::ca::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       UNREFERENCED_PARAMETER(uiMessage);
       UNREFERENCED_PARAMETER(uiCode);
       throw interface_only_exception(get_app());
    }
 
-   void thread::DispatchThreadMessageEx(gen::signal_object * pobj)
+   void thread::DispatchThreadMessageEx(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void thread::pre_translate_message(gen::signal_object * pobj)
+   void thread::pre_translate_message(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void thread::ProcessWndProcException(base_exception* e, gen::signal_object * pobj)
+   void thread::ProcessWndProcException(base_exception* e, ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(e);
       UNREFERENCED_PARAMETER(pobj);
       throw interface_only_exception(get_app());
    }
 
-   void thread::ProcessMessageFilter(int32_t code, gen::signal_object * pobj)
+   void thread::ProcessMessageFilter(int32_t code, ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(code);
       UNREFERENCED_PARAMETER(pobj);
@@ -547,14 +547,14 @@ namespace user
 
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    bool thread::s_bAllocReady = false;
 
    CLASS_DECL_ca void thread_alloc_ready(bool bReady)
    {
-      ::gen::thread::s_bAllocReady = bReady;
+      ::ca::thread::s_bAllocReady = bReady;
    }
 
    thread::thread() :
@@ -644,7 +644,7 @@ namespace gen
 
    }
 
-   void thread::ProcessMessageFilter(int32_t code, gen::signal_object * pobj)
+   void thread::ProcessMessageFilter(int32_t code, ca::signal_object * pobj)
    {
       return  m_p->ProcessMessageFilter(code, pobj);
    }
@@ -680,7 +680,7 @@ namespace gen
       return m_p->initialize_instance();
    }
 
-   ::gen::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
+   ::ca::message::e_prototype thread::GetMessagePrototype(UINT uiMessage, UINT uiCode)
    {
       return m_p->GetMessagePrototype(uiMessage, uiCode);
    }
@@ -691,7 +691,7 @@ namespace gen
       return m_p->run();
    }
 
-   void thread::pre_translate_message(gen::signal_object * pobj)
+   void thread::pre_translate_message(ca::signal_object * pobj)
    {
       if(m_p == NULL)
          return;
@@ -708,7 +708,7 @@ namespace gen
       return m_p->on_idle(lCount);
    }
 
-   bool thread::is_idle_message(gen::signal_object * pobj)  // checks for special messages
+   bool thread::is_idle_message(ca::signal_object * pobj)  // checks for special messages
    {
       return m_p->is_idle_message(pobj);
    }
@@ -722,7 +722,7 @@ namespace gen
    }
 
    // Advanced: exception handling
-   void thread::ProcessWndProcException(base_exception* e, gen::signal_object * pobj)
+   void thread::ProcessWndProcException(base_exception* e, ca::signal_object * pobj)
    {
       return m_p->ProcessWndProcException(e, pobj);
    }
@@ -875,7 +875,7 @@ namespace gen
    {
 /*      try
       {
-         ::gen::thread * pthreadApp = dynamic_cast < ::gen::thread * > (System.GetThread());
+         ::ca::thread * pthreadApp = dynamic_cast < ::ca::thread * > (System.GetThread());
          if(pthreadApp != NULL && m_p != pthreadApp)
          {
             pthreadApp->step_timer();
@@ -910,7 +910,7 @@ namespace gen
       m_p->Delete();
    }
 
-   void thread::DispatchThreadMessageEx(gen::signal_object * pobj)  // helper
+   void thread::DispatchThreadMessageEx(ca::signal_object * pobj)  // helper
    {
       return m_p->DispatchThreadMessageEx(pobj);
    }
@@ -939,17 +939,17 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 
 
-::gen::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
+::ca::thread* __begin_thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam, ::ca::e_thread_priority epriority, UINT nStackSize, uint32_t dwCreateFlags, LPSECURITY_ATTRIBUTES lpSecurityAttrs)
 {
 
    ASSERT(pfnThreadProc != NULL);
 
-   ::gen::thread* pThread = new ::gen::thread(papp, pfnThreadProc, pParam);
+   ::ca::thread* pThread = new ::ca::thread(papp, pfnThreadProc, pParam);
    ASSERT_VALID(pThread);
 
    if (!pThread->create_thread(epriority, dwCreateFlags, nStackSize, lpSecurityAttrs))

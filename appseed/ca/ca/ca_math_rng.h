@@ -1,6 +1,6 @@
 #pragma once
 
-namespace gen
+namespace ca
 {
    namespace math
    {
@@ -38,4 +38,4 @@ namespace gen
       // }
 
    } //namespace math
-} //namespace gen
+} //namespace ca

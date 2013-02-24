@@ -64,7 +64,7 @@ void html_document::dump(dump_context & dumpcontext) const
 }
 */
 
-void html_document::data_on_after_change(gen::signal_object * pobj)
+void html_document::data_on_after_change(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }
@@ -166,7 +166,7 @@ bool html_document::_001OnCommand(id id)
    if(id == "viewindefaultbrowser")
    {
 
-      gen::property_set propertyset;
+      ca::property_set propertyset;
 
       System.message_box("html_reader\\going_to_open_in_default_browser.xml", propertyset);
 

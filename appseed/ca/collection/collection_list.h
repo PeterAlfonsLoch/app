@@ -5,7 +5,7 @@ namespace collection
 
    template<class TYPE, class ARG_TYPE = const TYPE&>
    class list :
-      public ::gen::object
+      public ::ca::object
    {
    public:
       class node
@@ -940,7 +940,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
       }
 
       for (; pNode != NULL; pNode = pNode->pNext)
-         if (gen::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
+         if (ca::equals_type_arg_type < TYPE, ARG_TYPE > ::CompareElements(&pNode->data, searchValue))
             return (POSITION)pNode;
       return NULL;
    }
@@ -951,7 +951,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    {
       ASSERT_VALID(this);
 
-      ::gen::object::Serialize(ar);
+      ::ca::object::Serialize(ar);
 
       if (ar.IsStoring())
       {
@@ -983,7 +983,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
    {
-      ::gen::object::dump(dumpcontext);
+      ::ca::object::dump(dumpcontext);
 
       dumpcontext << "with " << m_nCount << " elements";
       if (dumpcontext.GetDepth() > 0)
@@ -1004,7 +1004,7 @@ inline void list < TYPE, ARG_TYPE >::pop_front()
    template<class TYPE, class ARG_TYPE>
    void list<TYPE, ARG_TYPE>::assert_valid() const
    {
-      ::gen::object::assert_valid();
+      ::ca::object::assert_valid();
 
       if (m_nCount == 0)
       {

@@ -8,7 +8,7 @@ namespace userbase
    class tool_bar;
 
    class CLASS_DECL_ca2 image_manager :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       //void LoadToolbar(tool_bar & toolbar, UINT * user);

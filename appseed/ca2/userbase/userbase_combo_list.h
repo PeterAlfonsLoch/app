@@ -18,7 +18,7 @@ namespace userbase
       virtual ~combo_list();
 
 
-      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
 
       virtual void _001OnDraw(::ca::graphics * pdc);

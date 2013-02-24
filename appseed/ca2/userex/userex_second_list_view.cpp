@@ -16,7 +16,7 @@ namespace userex
       userbase::view(papp),
       user::scroll_view(papp),
       user::form(papp),
-      ::ca2::user::form(papp),
+      ::ca::user::form(papp),
       user::list(papp),
       user::form_list(papp),
       userbase::form_list(papp),
@@ -49,7 +49,7 @@ namespace userex
 #endif //DEBUG
 
 
-   void second_list_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void second_list_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       simple_list_view::install_message_handling(pinterface);
       USER_MESSAGE_LINK(message_create, pinterface, this, &second_list_view::_001OnCreate);
@@ -76,7 +76,7 @@ namespace userex
 
    }
 
-   void second_list_view::_001OnCreate(gen::signal_object * pobj)
+   void second_list_view::_001OnCreate(ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)

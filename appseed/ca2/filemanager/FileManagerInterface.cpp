@@ -79,7 +79,7 @@ critical_section * FileManagerInterface::GetItemIdListCriticalSection()
 
 void FileManagerInterface::OnFileManagerBrowse()
 {
-   data_set("InitialBrowsePath", ::gen::system::idEmpty, get_item().m_strPath);
+   data_set("InitialBrowsePath", ::ca::system::idEmpty, get_item().m_strPath);
    //get_filemanager_data()->OnFileManagerOpenFolder(get_item());
 }
 

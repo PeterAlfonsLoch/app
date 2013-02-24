@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/gen/gen_flags.h"
+#include "ca/ca/gen_flags.h"
 
 
 
@@ -20,7 +20,7 @@ namespace user
 
 
    class CLASS_DECL_ca check_interface :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

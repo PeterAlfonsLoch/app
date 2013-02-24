@@ -26,7 +26,7 @@ void text_interface::get_string(char * psz)
 {
    string str;
    _001GetText(str);
-   gen::str::copy(psz, str);
+   ca::str::copy(psz, str);
 }
 
 void text_interface::set_string(const char * psz)

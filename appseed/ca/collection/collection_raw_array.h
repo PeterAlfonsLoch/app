@@ -34,7 +34,7 @@
 
 template<class TYPE, class ARG_TYPE = const TYPE &>
 class raw_array :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
@@ -528,7 +528,7 @@ count raw_array<TYPE, ARG_TYPE>::set_size(count nNewSize, count nGrowBy)
       TYPE* pNewData = (TYPE*) new BYTE[(size_t)nNewMax * sizeof(TYPE)];
 
       // copy new data from old
-      ::gen::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::ca::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -588,7 +588,7 @@ void raw_array<TYPE, ARG_TYPE>::free_extra()
       {
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
          // copy new data from old
-         ::gen::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::ca::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -635,7 +635,7 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, cou
       set_size(m_nSize + nCount, -1);  // grow it to new size
       // destroy intial data before copying over it
       // shift old data up to fill gap
-      ::gen::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::ca::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -667,7 +667,7 @@ inline index raw_array<TYPE, ARG_TYPE>::remove_at(index nIndex, count nCount)
    count nMoveCount = m_nSize - (nUpperBound);
    if (nMoveCount)
    {
-      ::gen::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::ca::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;
@@ -695,7 +695,7 @@ void raw_array<TYPE, ARG_TYPE>::insert_at(index nStartIndex, raw_array* pNewArra
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
-   ::gen::object::dump(dumpcontext);
+   ::ca::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -710,7 +710,7 @@ void raw_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 template<class TYPE, class ARG_TYPE>
 void raw_array<TYPE, ARG_TYPE>::assert_valid() const
 {
-   ::gen::object::assert_valid();
+   ::ca::object::assert_valid();
 
    if (m_pData == NULL)
    {

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    TimerCallback::TimerCallback()
@@ -65,7 +65,7 @@ namespace gen
       return m_bQueueModel;
    }
 
-} // namespace gen
+} // namespace ca
 
 
 

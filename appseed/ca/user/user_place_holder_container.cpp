@@ -14,7 +14,7 @@ namespace user
    {
    }
 
-   void place_holder_container::install_message_handling(::gen::message::dispatch * pdispatch)
+   void place_holder_container::install_message_handling(::ca::message::dispatch * pdispatch)
    {
       ::user::control::install_message_handling(pdispatch);
    }

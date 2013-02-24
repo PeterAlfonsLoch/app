@@ -6,9 +6,9 @@ namespace cube
 
 
    library::library() :
-      ::ca2::single_application_library < application > ("app"),
+      ::ca::single_application_library < application > ("app"),
       ::filehandler::menu_library(),
-      ::ca2::library("app")
+      ::ca::library("app")
    {
    }
 
@@ -54,16 +54,16 @@ namespace cube
    ::ca::application * library::get_new_app(const char * pszAppId)
    {
 
-      if(gen::str::equals_ci(pszAppId, "bergedge"))
+      if(ca::str::equals_ci(pszAppId, "bergedge"))
       {
          return new ::bergedge::bergedge();
       }
-      else if(gen::str::equals_ci(pszAppId, "cube"))
+      else if(ca::str::equals_ci(pszAppId, "cube"))
       {
          return new ::cube::cube();
       }
 
-      return ::ca2::single_application_library < application >::get_new_app(pszAppId);
+      return ::ca::single_application_library < application >::get_new_app(pszAppId);
 
    }
 
@@ -74,7 +74,7 @@ namespace cube
 #ifndef _WIN32
 extern "C"
 #endif
-::ca2::library * get_new_library()
+::ca::library * get_new_library()
 {
    return new ::cube::library();
 }

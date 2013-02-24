@@ -20,7 +20,7 @@ public:
    virtual_user_interface(::ca::application * papp);
    virtual ~virtual_user_interface();
 
-   virtual void message_handler(gen::signal_object * pobj);
+   virtual void message_handler(ca::signal_object * pobj);
    virtual ::ca::graphics * GetDC();
    ::user::interaction * set_parent(::user::interaction * pguieParent);
    bool ShowWindow(int32_t nCmdShow);
@@ -70,9 +70,9 @@ public:
 #endif
 
    // as hosting ::ca::window
-   virtual void install_message_handling(::gen::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca::message::dispatch * pinterface);
    // as virtual ::ca::window
-   virtual void _002InstallMessageHandling(::gen::message::dispatch * pinterface);
+   virtual void _002InstallMessageHandling(::ca::message::dispatch * pinterface);
 
 
    bool create_message_window();

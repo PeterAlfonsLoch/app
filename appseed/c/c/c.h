@@ -5,7 +5,7 @@
 
 
 #ifndef __cplusplus
-   #error ca2 API requires C++ compilation (use a .cpp suffix)
+   #error ca API requires C++ compilation (use a .cpp suffix)
 #endif
 
 

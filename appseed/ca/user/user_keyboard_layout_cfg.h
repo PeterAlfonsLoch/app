@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_ca keyboard_layout_cfg :
-      virtual public ::gen::object
+      virtual public ::ca::object
 /*      virtual public ::userbase::split_view,
       virtual public ::user::form_callback,
       virtual public ::user::list_data*/

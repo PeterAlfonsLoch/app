@@ -66,7 +66,7 @@ namespace userbase
    }
 
 
-   void split_bar::install_message_handling(::gen::message::dispatch * pinterface)
+   void split_bar::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       //IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &split_bar::_001OnCreate);
@@ -76,9 +76,9 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &split_bar::_001OnMouseMove);
    }
 
-   void split_bar::_001OnLButtonDown(gen::signal_object * pobj)
+   void split_bar::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
       m_pparent->m_iIndex = m_iIndex;
       if(m_iIndex >= 0 && m_iIndex < m_pparent->m_splitbara.get_count()
@@ -91,9 +91,9 @@ namespace userbase
       }
    }
 
-   void split_bar::_001OnLButtonUp(gen::signal_object * pobj)
+   void split_bar::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       single_lock sl(&m_pparent->m_mutex, TRUE);
       if(m_pparent->m_iIndex == m_iIndex)
       {
@@ -104,10 +104,10 @@ namespace userbase
       }
    }
 
-   void split_bar::_001OnMouseMove(gen::signal_object * pobj)
+   void split_bar::_001OnMouseMove(ca::signal_object * pobj)
    {
       
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       
       single_lock sl(&m_pparent->m_mutex, TRUE);
       

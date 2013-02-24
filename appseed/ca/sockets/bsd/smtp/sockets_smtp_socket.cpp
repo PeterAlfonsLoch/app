@@ -18,7 +18,7 @@ namespace sockets
    void smtp_socket::OnLine(const string & line)
    {
       SetNonblocking(false);
-      ::gen::parse pa(line);
+      ::ca::parse pa(line);
       string code = pa.getword();
 
       code.make_upper();
@@ -28,7 +28,7 @@ namespace sockets
          {
             m_estate = state_hello;
             //Send("HELO localhost\r\n");
-            Send("EHLO account.ca2.cc\r\n");
+            Send("EHLO account.ca.cc\r\n");
          }
       }
       else if(m_estate == state_hello)
@@ -60,12 +60,12 @@ namespace sockets
             string strWord = pa.getword();
             string strRequest = System.base64().decode(strWord);
             string strResponse;
-            if(gen::str::find_ci("username", strRequest) >= 0)
+            if(ca::str::find_ci("username", strRequest) >= 0)
             {
                strResponse = System.base64().encode("2.25anos@carloscecyn.com");
                Send(strResponse + "\r\n");
             }
-            else if(gen::str::find_ci("password", strRequest) >= 0)
+            else if(ca::str::find_ci("password", strRequest) >= 0)
             {
                strResponse = System.base64().encode("anos514Lund");
                Send(strResponse + "\r\n");

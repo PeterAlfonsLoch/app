@@ -6,7 +6,7 @@ namespace http
 
 
    class CLASS_DECL_ca transaction :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       transaction(::ca::application * papp);
@@ -48,52 +48,52 @@ namespace http
       void SetUserAgent(const string & value);
       string UserAgent();
 
-      gen::property_set & headers();
-      gen::property & header(const char * pszKey);
-      gen::property & lowheader(const string & strLowKey);
+      ca::property_set & headers();
+      ca::property & header(const char * pszKey);
+      ca::property & lowheader(const string & strLowKey);
       
-      gen::property_set & attrs();
-      gen::property & attr(const char * psz);
-      gen::property & lowattr(const string & strLowName);
+      ca::property_set & attrs();
+      ca::property & attr(const char * psz);
+      ca::property & lowattr(const string & strLowName);
 
 
       http::cookies & cookies();
 
       virtual void clear();
 
-      gen::property_set m_propertysetHeader;
-      gen::property_set m_propertysetAttribute;
+      ca::property_set m_propertysetHeader;
+      ca::property_set m_propertysetAttribute;
       http::cookies m_cookies;
       string m_null;
 
    }; // end of class
 
-   inline gen::property_set & transaction::attrs()
+   inline ca::property_set & transaction::attrs()
    {
       return m_propertysetAttribute;
    }
 
-   inline gen::property & transaction::attr(const char * psz)
+   inline ca::property & transaction::attr(const char * psz)
    {
       return m_propertysetAttribute[psz];
    }
 
-   inline gen::property & transaction::lowattr(const string & strLowName)
+   inline ca::property & transaction::lowattr(const string & strLowName)
    {
       return m_propertysetAttribute.lowprop(strLowName);
    }
 
-   inline gen::property_set & transaction::headers()
+   inline ca::property_set & transaction::headers()
    {
       return m_propertysetHeader;
    }
 
-   inline gen::property & transaction::header(const char * psz)
+   inline ca::property & transaction::header(const char * psz)
    {
       return m_propertysetHeader[psz];
    }
 
-   inline gen::property & transaction::lowheader(const string & strLowKey)
+   inline ca::property & transaction::lowheader(const string & strLowKey)
    {
       return m_propertysetHeader.lowprop(strLowKey);
    }

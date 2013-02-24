@@ -48,7 +48,7 @@ handler::handler()
   #endif
 }
 
-gen::HRes handler::GetNumberOfItems(uint32_t *numItems)
+ca::HRes handler::GetNumberOfItems(uint32_t *numItems)
 {
   *numItems = (uint32_t) _db.Files.get_count();
   return S_OK;
@@ -58,12 +58,12 @@ gen::HRes handler::GetNumberOfItems(uint32_t *numItems)
 
 IMP_IInArchive_ArcProps_NO
 
-gen::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
+ca::HRes handler::GetNumberOfProperties(uint32_t * /* numProperties */)
 {
   return E_NOTIMPL;
 }
 
-gen::HRes handler::GetPropertyInfo(uint32_t /* index */,
+ca::HRes handler::GetPropertyInfo(uint32_t /* index */,
       BSTR * /* name */, PROPID * /* propID */, VARTYPE * /* varType */)
 {
   return E_NOTIMPL;
@@ -90,7 +90,7 @@ stat_prop_stg kArcProps[] =
   { NULL, ::libcompress::kpidOffset, var::type_uint64}
 };
 
-gen::HRes handler::GetArchiveProperty(int32_t propID, var *value)
+ca::HRes handler::GetArchiveProperty(int32_t propID, var *value)
 {
   var prop;
   switch(propID)
@@ -205,7 +205,7 @@ bool handler::IsEncrypted(uint32_t index1) const
   return false;
 }
 
-gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
+ca::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
 {
   var prop;
 
@@ -389,7 +389,7 @@ gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
   return S_OK;
 }
 
-gen::HRes handler::Open(::gen::byte_input_stream *stream,
+ca::HRes handler::Open(::ca::byte_input_stream *stream,
     const file_position *maxCheckStartPosition,
     ::libcompress::archive_open_callback_interface *openArchiveCallback)
 {
@@ -437,9 +437,9 @@ gen::HRes handler::Open(::gen::byte_input_stream *stream,
   return S_OK;
 }
 
-gen::HRes handler::Close()
+ca::HRes handler::Close()
 {
-gen::release(_inStream.m_p);
+ca::release(_inStream.m_p);
   _db.clear();
   return S_OK;
 }
@@ -447,7 +447,7 @@ gen::release(_inStream.m_p);
 #ifdef __7Z_SET_PROPERTIES
 #ifdef EXTRACT_ONLY
 
-gen::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
+ca::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *values, Int32 numProperties)
 {
   COM_TRY_BEGIN
   const uint32_t numProcessors = NSystem::GetNumberOfProcessors();
@@ -481,7 +481,7 @@ gen::HRes handler::SetProperties(const wchar_t **names, const PROPVARIANT *value
 #endif
 
    // IMPL_ISetCompressCodecsInfo2(handler)
-   gen::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
+   ca::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

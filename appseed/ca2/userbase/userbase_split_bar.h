@@ -26,7 +26,7 @@ namespace userbase
       virtual ~split_bar();
 
 
-      void install_message_handling(::gen::message::dispatch * pinterface);
+      void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual void _001OnDraw(::ca::graphics * pdc);
 

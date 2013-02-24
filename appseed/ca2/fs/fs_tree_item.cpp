@@ -11,7 +11,7 @@ namespace fs
    }
 
 
-   int32_t tree_item::CompareArrangeByName( gen::tree_item * pitem1, gen::tree_item * pitem2, ::gen::tree_data * ptreedata)
+   int32_t tree_item::CompareArrangeByName( ca::tree_item * pitem1, ca::tree_item * pitem2, ::ca::tree_data * ptreedata)
    {
       
       if(typeid(*pitem1) == typeid(*pitem2) && typeid(*pitem1) == Sys(ptreedata->get_app()->m_psystem).type_info < tree_item > ())
@@ -37,13 +37,13 @@ namespace fs
 
 
 
-   string tree_item::get_text(gen::tree * ptree)
+   string tree_item::get_text(ca::tree * ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
 		return m_strName;
    }
 
-   index tree_item::get_image(gen::tree * ptree)
+   index tree_item::get_image(ca::tree * ptree)
    {
       if(ptree->is_selected(this))
       {

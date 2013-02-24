@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -99,7 +99,7 @@ namespace gen
    {
       try
       {
-         ::gen::application * papp = dynamic_cast < ::gen::application * > (get_app());
+         ::ca::application * papp = dynamic_cast < ::ca::application * > (get_app());
          if(papp != NULL)
          {
             papp->request(pline);
@@ -139,7 +139,7 @@ namespace gen
       m_varTopicQuery.propset().merge(pcreatecontext->m_spCommandLine->m_varQuery.propset());
    }
 
-   void command_thread::consolidate(gen::command_thread * pthread)
+   void command_thread::consolidate(ca::command_thread * pthread)
    {
 
       if(pthread == NULL || pthread == this)

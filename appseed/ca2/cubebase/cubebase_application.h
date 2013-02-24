@@ -56,7 +56,7 @@ namespace cubebase
       }
 
       // get a file and if there are exceptions, should show end user friendly messages
-      virtual ::gen::filesp friendly_get_file(var varFile, UINT nOpenFlags);
+      virtual ::ca::filesp friendly_get_file(var varFile, UINT nOpenFlags);
 
 
       virtual ::fontopus::fontopus * create_fontopus();

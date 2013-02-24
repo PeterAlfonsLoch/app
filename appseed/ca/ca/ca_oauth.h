@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
    CLASS_DECL_ca string char2hex( char dec );
@@ -17,10 +17,10 @@ namespace ca2
    } eOAuthHttpRequestType;
 
    typedef stringa oAuthKeyValueList;
-   typedef gen::property_set oAuthKeyValuePairs;
+   typedef ca::property_set oAuthKeyValuePairs;
 
    class CLASS_DECL_ca oauth :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
        oauth(::ca::application * papp);
@@ -47,8 +47,8 @@ namespace ca2
 
        bool getOAuthHeader(const eOAuthHttpRequestType eType, /* in */
                            const string& rawUrl, /* in */
-                           gen::property_set & rawData, /* in */
-                           gen::property_set & headers, /* out */
+                           ca::property_set & rawData, /* in */
+                           ca::property_set & headers, /* out */
                            const bool includeOAuthVerifierPin = false /* in */ );
 
        bool extractOAuthTokenKeySecret( const string& requestTokenResponse /* in */ );
@@ -83,4 +83,4 @@ namespace ca2
        void generateNonceTimeStamp();
    };
 
-} // namespace ca2
+} // namespace ca

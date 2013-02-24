@@ -2,7 +2,7 @@
 // from 7-zip
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    template <class T> class buffer
@@ -74,4 +74,4 @@ namespace gen
    typedef CLASS_DECL_ca buffer < wchar_t >  wchar_buffer;
    typedef CLASS_DECL_ca buffer < byte >      byte_buffer;
 
-} // namespace gen
+} // namespace ca

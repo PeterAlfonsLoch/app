@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca object_list :
-   public ::gen::object
+   public ::ca::object
 {
 public:
 
@@ -11,7 +11,7 @@ public:
 
 		node *               m_pnext;
 		node *               m_pprevious;
-		::gen::object *    m_pdata;
+		::ca::object *    m_pdata;
 
 
 	};
@@ -27,19 +27,19 @@ public:
 	bool is_empty() const;
 
 	// peek at head or tail
-	::gen::object*& get_head();
-	const ::gen::object* get_head() const;
-	::gen::object*& get_tail();
-	const ::gen::object* get_tail() const;
+	::ca::object*& get_head();
+	const ::ca::object* get_head() const;
+	::ca::object*& get_tail();
+	const ::ca::object* get_tail() const;
 
 // Operations
 	// get head or tail (and remove it) - don't call on is_empty list!
-	::gen::object* remove_head();
-	::gen::object* remove_tail();
+	::ca::object* remove_head();
+	::ca::object* remove_tail();
 
 	// add before head or after tail
-	POSITION add_head(::gen::object* newElement);
-	POSITION add_tail(::gen::object* newElement);
+	POSITION add_head(::ca::object* newElement);
+	POSITION add_tail(::ca::object* newElement);
 
 
 	// add another list of elements before head or after tail
@@ -52,25 +52,25 @@ public:
 	// iteration
 	POSITION get_head_position() const;
 	POSITION get_tail_position() const;
-	::gen::object*& get_next(POSITION& rPosition); // return *position++
-	const ::gen::object* get_next(POSITION& rPosition) const; // return *position++
-	::gen::object*& get_previous(POSITION& rPosition); // return *position--
-	const ::gen::object* get_previous(POSITION& rPosition) const; // return *position--
+	::ca::object*& get_next(POSITION& rPosition); // return *position++
+	const ::ca::object* get_next(POSITION& rPosition) const; // return *position++
+	::ca::object*& get_previous(POSITION& rPosition); // return *position--
+	const ::ca::object* get_previous(POSITION& rPosition) const; // return *position--
 
 	// getting/modifying an element at a given position
-	::gen::object*& get_at(POSITION position);
-	const ::gen::object* get_at(POSITION position) const;
-	void set_at(POSITION pos, ::gen::object* newElement);
+	::ca::object*& get_at(POSITION position);
+	const ::ca::object* get_at(POSITION position) const;
+	void set_at(POSITION pos, ::ca::object* newElement);
 
 	void remove_at(POSITION position);
 
 	// inserting before or after a given position
-	POSITION insert_before(POSITION position, ::gen::object* newElement);
-	POSITION insert_after(POSITION position, ::gen::object* newElement);
+	POSITION insert_before(POSITION position, ::ca::object* newElement);
+	POSITION insert_after(POSITION position, ::ca::object* newElement);
 
 
 	// helper functions (note: O(n) speed)
-	POSITION find(::gen::object* searchValue, POSITION startAfter = NULL) const;
+	POSITION find(::ca::object* searchValue, POSITION startAfter = NULL) const;
 						// defaults to starting at the HEAD
 						// return NULL if not found
 	POSITION find_index(index nIndex) const;
@@ -95,8 +95,8 @@ protected:
 	void dump(dump_context &) const;
 	void assert_valid() const;
 	// local typedefs for class templates
-	typedef ::gen::object* BASE_TYPE;
-	typedef ::gen::object* BASE_ARG_TYPE;
+	typedef ::ca::object* BASE_TYPE;
+	typedef ::ca::object* BASE_ARG_TYPE;
 };
 
 
@@ -108,63 +108,63 @@ inline ::count object_list::get_size() const
    { return m_nCount; }
 inline bool object_list::is_empty() const
    { return m_nCount == 0; }
-inline ::gen::object*& object_list::get_head()
+inline ::ca::object*& object_list::get_head()
    { ASSERT(m_pnodeHead != NULL);
       return m_pnodeHead->m_pdata; }
-inline const ::gen::object* object_list::get_head() const
+inline const ::ca::object* object_list::get_head() const
    { ASSERT(m_pnodeHead != NULL);
       return m_pnodeHead->m_pdata; }
-inline ::gen::object*& object_list::get_tail()
+inline ::ca::object*& object_list::get_tail()
    { ASSERT(m_pnodeTail != NULL);
       return m_pnodeTail->m_pdata; }
-inline const ::gen::object* object_list::get_tail() const
+inline const ::ca::object* object_list::get_tail() const
    { ASSERT(m_pnodeTail != NULL);
       return m_pnodeTail->m_pdata; }
 inline POSITION object_list::get_head_position() const
    { return (POSITION) m_pnodeHead; }
 inline POSITION object_list::get_tail_position() const
    { return (POSITION) m_pnodeTail; }
-inline ::gen::object*& object_list::get_next(POSITION& rPosition) // return *position++
+inline ::ca::object*& object_list::get_next(POSITION& rPosition) // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnext;
       return pNode->m_pdata; }
-inline const ::gen::object* object_list::get_next(POSITION& rPosition) const // return *position++
+inline const ::ca::object* object_list::get_next(POSITION& rPosition) const // return *position++
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pnext;
       return pNode->m_pdata; }
-inline ::gen::object*& object_list::get_previous(POSITION& rPosition) // return *position--
+inline ::ca::object*& object_list::get_previous(POSITION& rPosition) // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pprevious;
       return pNode->m_pdata; }
-inline const ::gen::object* object_list::get_previous(POSITION& rPosition) const // return *position--
+inline const ::ca::object* object_list::get_previous(POSITION& rPosition) const // return *position--
    { node* pNode = (node*) rPosition;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       rPosition = (POSITION) pNode->m_pprevious;
       return pNode->m_pdata; }
-inline ::gen::object*& object_list::get_at(POSITION position)
+inline ::ca::object*& object_list::get_at(POSITION position)
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       return pNode->m_pdata; }
-inline const ::gen::object* object_list::get_at(POSITION position) const
+inline const ::ca::object* object_list::get_at(POSITION position) const
    { node* pNode = (node*) position;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )
          throw invalid_argument_exception(get_app());
       return pNode->m_pdata; }
-inline void object_list::set_at(POSITION pos, ::gen::object* newElement)
+inline void object_list::set_at(POSITION pos, ::ca::object* newElement)
    { node* pNode = (node*) pos;
       ASSERT(__is_valid_address(pNode, sizeof(node)));
       if( pNode == NULL )

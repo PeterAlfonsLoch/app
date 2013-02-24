@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca2
+namespace ca
 {
 
    class CLASS_DECL_ca contact_list :
@@ -11,4 +11,4 @@ namespace ca2
       virtual ~contact_list();
    };
 
-} // namespace ca2
+} // namespace ca

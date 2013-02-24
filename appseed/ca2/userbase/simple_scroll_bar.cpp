@@ -23,7 +23,7 @@ simple_scroll_bar::~simple_scroll_bar()
 }
 
 
-void simple_scroll_bar::install_message_handling(::gen::message::dispatch * pinterface)
+void simple_scroll_bar::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::user::interaction::install_message_handling(pinterface);
    IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pinterface, this, &simple_scroll_bar::_001OnMouseMove);
@@ -49,9 +49,9 @@ bool simple_scroll_bar::create(e_orientation eorientation, uint32_t dwStyle, rec
    return TRUE;
 }
 
-void simple_scroll_bar::_001OnMouseMove(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnMouseMove(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(m_bTracking)
       {
          point pt = pmouse->m_pt;
@@ -68,9 +68,9 @@ void simple_scroll_bar::_001OnMouseMove(gen::signal_object * pobj)
       }
 }
 
-void simple_scroll_bar::_001OnLButtonDown(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnLButtonDown(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    rect rectTrack;
@@ -133,9 +133,9 @@ void simple_scroll_bar::_001OnLButtonDown(gen::signal_object * pobj)
    }
 }
 
-void simple_scroll_bar::_001OnLButtonUp(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnLButtonUp(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       point pt = pmouse->m_pt;
    ScreenToClient(&pt);
    simple_scroll_bar * pcandidate = 
@@ -384,9 +384,9 @@ int32_t simple_scroll_bar::SetTrackingPos(point point)
    return TRUE;
 }
 
-void simple_scroll_bar::_001OnHScroll(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnHScroll(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::scroll, pscroll, pobj)
+   SCAST_PTR(::ca::message::scroll, pscroll, pobj)
       pscroll->m_bRet = false;
 }
 
@@ -398,10 +398,10 @@ int32_t simple_scroll_bar::_001GetScrollPos()
       return m_scrollinfo.nPos;
 }
 
-void simple_scroll_bar::_001OnSize(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnSize(ca::signal_object * pobj) 
 {
 
-   //SCAST_PTR(::gen::message::size, psize, pobj)
+   //SCAST_PTR(::ca::message::size, psize, pobj)
       pobj->previous();
    // trans   ::user::interaction::OnSize(psize->m_wparam, size.cx, size.cy);
 
@@ -462,10 +462,10 @@ void simple_scroll_bar::_001OnSize(gen::signal_object * pobj)
 //   psize->m_bRet = false;
 }
 
-void simple_scroll_bar::_001OnTimer(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnTimer(ca::signal_object * pobj) 
 {
 //   return; //xxxtimer
-   SCAST_PTR(::gen::message::timer, ptimer, pobj)
+   SCAST_PTR(::ca::message::timer, ptimer, pobj)
 
       point point;
    rect rect;
@@ -645,9 +645,9 @@ pParentWnd->SendMessage(WM_VSCROLL, MAKEWPARAM(SB_LINEDOWN, m_scrollinfo.nPos), 
 
 //}
 
-void simple_scroll_bar::_001OnCreate(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnCreate(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::create, pcreate, pobj)
+   SCAST_PTR(::ca::message::create, pcreate, pobj)
       /* trans   if (::user::interaction::OnCreate(pcreate->m_lpcreatestruct) == -1)
       {
       pcreate->set_lresult(-1);
@@ -665,10 +665,10 @@ void simple_scroll_bar::OnDisplayChange(int32_t iBitsPerPixel, size sizeScreen)
    UNREFERENCED_PARAMETER(sizeScreen);
 }
 
-void simple_scroll_bar::pre_translate_message(gen::signal_object * pobj) 
+void simple_scroll_bar::pre_translate_message(ca::signal_object * pobj) 
 {
 
-   SCAST_PTR(gen::message::base, pbase, pobj);
+   SCAST_PTR(ca::message::base, pbase, pobj);
 
    if(pbase->m_pwnd == this)
    {
@@ -781,7 +781,7 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
    rect rectClient;
    GetClientRect(rectClient);
 
-   if(System.savings().is_trying_to_save(gen::resource_processing))
+   if(System.savings().is_trying_to_save(ca::resource_processing))
    {
       pdc->FillSolidRect(rectClient, RGB(255,255,255));
    }
@@ -815,15 +815,15 @@ void simple_scroll_bar::_001OnDraw(::ca::graphics * pdc)
 
 }
 
-void simple_scroll_bar::_001OnShowWindow(gen::signal_object * pobj) 
+void simple_scroll_bar::_001OnShowWindow(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
+   SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
       pshowwindow->m_bRet = false;
 
    // xxx   TwiOnShowWindow(bShow, nStatus);
 }
 
-void simple_scroll_bar::_001OnDestroy(gen::signal_object * pobj)
+void simple_scroll_bar::_001OnDestroy(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }

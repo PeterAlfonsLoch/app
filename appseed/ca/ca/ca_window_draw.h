@@ -16,7 +16,7 @@ namespace ca
 {
 
    class CLASS_DECL_ca window_draw :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

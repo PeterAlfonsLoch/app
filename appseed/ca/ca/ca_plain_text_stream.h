@@ -4,7 +4,7 @@
 
 //std::iostate
 
-namespace gen
+namespace ca
 {
 
 	enum e_iostate
@@ -215,7 +215,7 @@ namespace gen
       on_after_read();
    }
 
-} // namespace gen
+} // namespace ca
 
 
 

@@ -11,7 +11,7 @@ namespace frame
    class WorkSet;
 
    class CLASS_DECL_ca2 SizeManager :
-      virtual public ::gen::signalizable   
+      virtual public ::ca::signalizable   
    {
       friend class WorkSet;
    protected:
@@ -35,11 +35,11 @@ namespace frame
       EHitTest hit_test(point ptCursor);
       //void _000InstallEventHandling(iguimessage::MessageDispatch * pdispatch);
 
-      bool _000OnLButtonDown(::gen::message::mouse * pmouse);
-      bool _000OnMouseMove(::gen::message::mouse * pmouse);
-      bool _000OnLButtonUp(::gen::message::mouse * pmouse);
+      bool _000OnLButtonDown(::ca::message::mouse * pmouse);
+      bool _000OnMouseMove(::ca::message::mouse * pmouse);
+      bool _000OnLButtonUp(::ca::message::mouse * pmouse);
 
-      bool Relay(::gen::message::mouse * pmouse);
+      bool Relay(::ca::message::mouse * pmouse);
 
       void NotifyFramework(EHitTest emode);
       EGrip EModeToEGrip(EHitTest emode);
@@ -58,7 +58,7 @@ namespace frame
       void SizeWindow(::user::interaction * pwnd, point pt, bool bTracking);
       void MoveWindow(::user::interaction * pwnd, LPCRECT lpcrect);
 
-      void message_handler(::user::interaction * pwnd, gen::signal_object * pobj);
+      void message_handler(::user::interaction * pwnd, ca::signal_object * pobj);
    };
 
 } // namespace frame

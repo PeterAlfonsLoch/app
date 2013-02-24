@@ -4,12 +4,12 @@
 CLASS_DECL_ca bool crypt_file_get(const char * pszFile, string & str, const char * pszSalt);
 
 
-namespace ca2
+namespace ca
 {
 
 
    class CLASS_DECL_ca crypt :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -77,7 +77,7 @@ namespace ca2
    typedef ::ca::smart_pointer < crypt > crypt_sp;
 
 
-} //   namespace ca2
+} //   namespace ca
 
 
 

@@ -4,7 +4,7 @@
 #include "gen_seekable.h"
 
 
-namespace gen
+namespace ca
 {
 
    class writer;
@@ -20,7 +20,7 @@ namespace gen
    public:
 
 
-      ::gen::reader_sp       m_spreader;
+      ::ca::reader_sp       m_spreader;
 
 
       reader();
@@ -48,6 +48,6 @@ namespace gen
 
    typedef reader readable;
 
-} // namespace gen
+} // namespace ca
 
 

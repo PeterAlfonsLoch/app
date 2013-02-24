@@ -9,7 +9,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-namespace gen
+namespace ca
 {
 
 class TimerListener  
@@ -22,7 +22,7 @@ public:
 
 };
 
-} // namespace gen
+} // namespace ca
 
 
 #endif // !defined(__TIMERLISTENER_H__8CB04176_6FFE_4A0A_9930_B475FDF15624__INCLUDED_)

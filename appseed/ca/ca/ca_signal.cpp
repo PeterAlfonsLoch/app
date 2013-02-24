@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "signal.h"
 
-namespace gen
+namespace ca
 {
 
    signal_object::signal_object(::ca::application * papp) :
@@ -33,11 +33,11 @@ namespace gen
    }
 
 
-   gen::property_set & signal_object::operator()()
+   ca::property_set & signal_object::operator()()
    {
       if(m_pset == NULL)
       {
-         m_pset = new gen::property_set(get_app());
+         m_pset = new ca::property_set(get_app());
       }
       return *m_pset;
    }
@@ -93,7 +93,7 @@ namespace gen
       }
    }
 
-   void signalizable::unregister_target(gen::signalizable * psignalizable)
+   void signalizable::unregister_target(ca::signalizable * psignalizable)
    {
       for(int32_t i = 0; i < m_signalptra.get_size();)
       {
@@ -109,7 +109,7 @@ namespace gen
       }
    }
 
-   void signalizable::filter_target(gen::signalizable * psignalizable)
+   void signalizable::filter_target(ca::signalizable * psignalizable)
    {
       for(int32_t i = 0; i < m_signalptra.get_size();)
       {
@@ -276,4 +276,4 @@ namespace gen
       }
 
 
-} // namespace gen
+} // namespace ca

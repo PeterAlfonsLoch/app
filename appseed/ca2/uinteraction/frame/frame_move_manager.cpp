@@ -31,7 +31,7 @@ namespace uinteraction
       }
 
 
-      bool MoveManager::_000OnLButtonDown(::gen::message::mouse * pmouse)
+      bool MoveManager::_000OnLButtonDown(::ca::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -57,7 +57,7 @@ namespace uinteraction
          return true;
       }
 
-      bool MoveManager::_000OnMouseMove(::gen::message::mouse * pmouse)
+      bool MoveManager::_000OnMouseMove(::ca::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -66,7 +66,7 @@ namespace uinteraction
          return Relay(pmouse);
       }
 
-      bool MoveManager::_000OnLButtonUp(::gen::message::mouse * pmouse)
+      bool MoveManager::_000OnLButtonUp(::ca::message::mouse * pmouse)
       {
          if(!m_pworkset->IsMovingEnabled()
             || m_pworkset->m_bSizingCapture)
@@ -77,7 +77,7 @@ namespace uinteraction
 
       uint32_t g_dwLastMove;
       // process only WM_MOUSEMOVE and WM_LBUTTONUP messages
-      bool MoveManager::Relay(::gen::message::mouse * pmouse)
+      bool MoveManager::Relay(::ca::message::mouse * pmouse)
       {
          ASSERT(pmouse->m_uiMessage == WM_MOUSEMOVE
             || pmouse->m_uiMessage == WM_LBUTTONUP
@@ -448,9 +448,9 @@ namespace uinteraction
          m_eborderMask = emask;
       }
 
-      void MoveManager::message_handler(::user::interaction * pwnd, gen::signal_object * pobj)
+      void MoveManager::message_handler(::user::interaction * pwnd, ca::signal_object * pobj)
       {
-         SCAST_PTR(gen::message::base, pbase, pobj);
+         SCAST_PTR(ca::message::base, pbase, pobj);
          if(m_bPendingMove
             && get_tick_count() > m_dwLastMoveTime + s_dwMoveTime)
          {

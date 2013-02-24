@@ -17,7 +17,7 @@ namespace filemanager
             ::user::form(papp),
             ::user::form_list(papp),
             ::userbase::view(papp),
-            ::ca2::user::form(papp),
+            ::ca::user::form(papp),
             ::userbase::form_list(papp),
             simple_list_view(papp)
          {
@@ -46,7 +46,7 @@ namespace filemanager
          {
          }
 
-         void list_view::install_message_handling(::gen::message::dispatch * pinterface)
+         void list_view::install_message_handling(::ca::message::dispatch * pinterface)
          {
             simple_list_view::install_message_handling(pinterface);
             IGUI_WIN_MSG_LINK(WM_LBUTTONDBLCLK, pinterface, this, &list_view::_001OnLButtonDblClk);
@@ -267,7 +267,7 @@ namespace filemanager
             return dynamic_cast < MediaLibraryDoc * > (::view::get_document());
          }*/
 
-         void list_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+         void list_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
          {
             UNREFERENCED_PARAMETER(pSender);
             UNREFERENCED_PARAMETER(lHint);
@@ -301,9 +301,9 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnLButtonDblClk(gen::signal_object * pobj)
+         void list_view::_001OnLButtonDblClk(ca::signal_object * pobj)
          {
-            SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+            SCAST_PTR(::ca::message::mouse, pmouse, pobj)
                index iItem;
 
             if(_001HitTest_(pmouse->m_pt, iItem))
@@ -457,9 +457,9 @@ namespace filemanager
             return 0;
          }
 
-         void list_view::_001OnTimer(gen::signal_object * pobj)
+         void list_view::_001OnTimer(ca::signal_object * pobj)
          {
-            SCAST_PTR(::gen::message::timer, ptimer, pobj)
+            SCAST_PTR(::ca::message::timer, ptimer, pobj)
                if(ptimer->m_nIDEvent == 123654)
                {
                   KillTimer(123654);
@@ -601,7 +601,7 @@ namespace filemanager
             m_iDisplayItemCount  = -1;
          }
 
-         void list_view::_001OnSize(gen::signal_object * pobj)
+         void list_view::_001OnSize(ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             //m_buildhelper.m_iDisplayItemCount = _001GetDisplayItemCount();
@@ -628,9 +628,9 @@ namespace filemanager
          {
          }*/
 
-         void list_view::_001OnFillTaskResponse(gen::signal_object * pobj)
+         void list_view::_001OnFillTaskResponse(ca::signal_object * pobj)
          {
-            SCAST_PTR(::gen::message::base, pbase, pobj)
+            SCAST_PTR(::ca::message::base, pbase, pobj)
                m_bKickActive = true;
             if(pbase->m_wparam == 0)
             {
@@ -705,10 +705,10 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnContextMenu(gen::signal_object * pobj)
+         void list_view::_001OnContextMenu(ca::signal_object * pobj)
          {
 
-            SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+            SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
                //int32_t iItem;
                point point = pcontextmenu->GetPoint();
             class point ptClient = point;
@@ -741,7 +741,7 @@ namespace filemanager
             }*/
          }
 
-         /*void list_view::_001OnAlbumExecutePlay(gen::signal_object * pobj)
+         /*void list_view::_001OnAlbumExecutePlay(ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
             Range range;
@@ -768,31 +768,31 @@ namespace filemanager
 
          }
 
-         void list_view::_001OnUpdateAlbumExecutePlay(gen::signal_object * pobj)
+         void list_view::_001OnUpdateAlbumExecutePlay(ca::signal_object * pobj)
          {
-            SCAST_PTR(::gen::message::update_cmd_ui, pupdatecmdui, pobj)
+            SCAST_PTR(::ca::message::update_cmd_ui, pupdatecmdui, pobj)
                Range range;
             _001GetSelection(range);
             pupdatecmdui->m_pcmdui->Enable(range.get_item_count() > 0);
             pupdatecmdui->m_bRet = true;
          }*/
 
-         void list_view::_001OnExecutePrevious(gen::signal_object * pobj)
+         void list_view::_001OnExecutePrevious(ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnUpdateExecutePrevious(gen::signal_object * pobj)
+         void list_view::_001OnUpdateExecutePrevious(ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnExecuteNext(gen::signal_object * pobj)
+         void list_view::_001OnExecuteNext(ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
 
-         void list_view::_001OnUpdateExecuteNext(gen::signal_object * pobj)
+         void list_view::_001OnUpdateExecuteNext(ca::signal_object * pobj)
          {
             UNREFERENCED_PARAMETER(pobj);
          }
@@ -917,9 +917,9 @@ namespace filemanager
                m_etype == ItemTypeArtist;
          }
 
-         void list_view::_001OnEraseBkgnd(gen::signal_object * pobj)
+         void list_view::_001OnEraseBkgnd(ca::signal_object * pobj)
          {
-            SCAST_PTR(::gen::message::erase_bkgnd, perasebkgnd, pobj)
+            SCAST_PTR(::ca::message::erase_bkgnd, perasebkgnd, pobj)
                perasebkgnd->m_bRet = true;
             perasebkgnd->set_result(TRUE);
          }

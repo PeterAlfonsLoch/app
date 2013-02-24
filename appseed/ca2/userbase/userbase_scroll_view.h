@@ -11,7 +11,7 @@ namespace userbase
       scroll_view(::ca::application * papp);
       virtual ~scroll_view();
 
-      void install_message_handling(::gen::message::dispatch * pinterface);
+      void install_message_handling(::ca::message::dispatch * pinterface);
 
    };
 

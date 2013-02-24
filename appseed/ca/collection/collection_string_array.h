@@ -1,18 +1,18 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class property;
 
 
-} // namespace gen
+} // namespace ca
 
 
 class CLASS_DECL_ca string_array :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
    string_array();
@@ -67,7 +67,7 @@ public:
 
    void add(const var & var);
 
-   void add(const gen::property & prop);
+   void add(const ca::property & prop);
 
    void add(const id & id);
 

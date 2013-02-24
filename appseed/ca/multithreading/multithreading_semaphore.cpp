@@ -17,7 +17,7 @@ semaphore::semaphore(::ca::application * papp, LONG lInitialCount, LONG lMaxCoun
 
 #ifdef WINDOWS
 
-   m_object = ::CreateSemaphoreExW(lpsaAttributes, lInitialCount, lMaxCount, gen::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   m_object = ::CreateSemaphoreExW(lpsaAttributes, lInitialCount, lMaxCount, ca::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
    if (m_object == NULL)
       throw resource_exception(papp);
 #else
@@ -28,7 +28,7 @@ semaphore::semaphore(::ca::application * papp, LONG lInitialCount, LONG lMaxCoun
    if(pstrName != NULL && *pstrName != '\0')
    {
 
-      string strPath = "/ca2/time/ftok/event/" + string(pstrName);
+      string strPath = "/ca/time/ftok/event/" + string(pstrName);
 
       m_object = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 

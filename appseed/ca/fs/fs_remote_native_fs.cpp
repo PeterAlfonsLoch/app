@@ -247,7 +247,7 @@ namespace fs
 
       string strPath(pszPath);
 
-      if(!gen::str::begins_eat_ci(strPath, "fs://"))
+      if(!ca::str::begins_eat_ci(strPath, "fs://"))
       {
          return "";
       }
@@ -269,16 +269,16 @@ namespace fs
    }
 
 
-   gen::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
+   ca::filesp remote_native::get_file(var varFile, UINT nOpenFlags)
    {
 
-      gen::filesp spfile;
+      ca::filesp spfile;
 
       spfile(new remote_native_file(get_app(), varFile));
 
       if(!spfile->open(varFile.get_string(), nOpenFlags))
       {
-         throw gen::file_exception(get_app(), ::gen::file_exception::none, -1, varFile.get_string());
+         throw ca::file_exception(get_app(), ::ca::file_exception::none, -1, varFile.get_string());
       }
 
       return spfile;

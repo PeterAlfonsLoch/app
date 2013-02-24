@@ -89,7 +89,7 @@ on_final_release()
 
 
 
-namespace gen
+namespace ca
 {
 
    template <class DERIVED >
@@ -110,7 +110,7 @@ namespace gen
          pref = NULL;
       }
    }
-} // namespace gen
+} // namespace ca
 
 
 

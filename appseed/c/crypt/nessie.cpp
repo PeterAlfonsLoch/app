@@ -20,21 +20,21 @@ vsstring crypt_nessie(const char * psz)
    /*
    string file::nessie(const char * psz)
    {
-      gen::filesp spfile(get_app());
+      ca::filesp spfile(get_app());
       try
       {
-         if(!spfile->open(psz, ::gen::file::type_binary | ::gen::file::mode_read))
+         if(!spfile->open(psz, ::ca::file::type_binary | ::ca::file::mode_read))
             return "";
       }
-      catch(gen::file_exception * pe)
+      catch(ca::file_exception * pe)
       {
-         gen::del(pe);
+         ca::del(pe);
          return "";
       }
       return nessie(spfile);
    }
 
-   string file::nessie(gen:: file * pfile)
+   string file::nessie(ca:: file * pfile)
    {
       int32_t iBufSize = 1024 * 256;
       uchar * buf = new uchar[iBufSize];

@@ -15,7 +15,7 @@ namespace userbase
       
       edit_plain_text_view(::ca::application * papp);
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual void _001OnSetText();
       virtual void _001OnUpdate();

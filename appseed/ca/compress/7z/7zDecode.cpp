@@ -94,35 +94,35 @@ namespace n7z
    HRESULT CDecoder::Decode(
       ::libcompress::codecs_info_interface * codecsInfo,
       const base_array < ::libcompress::codec_info_ex > * externalCodecs,
-      ::gen::byte_input_stream *inStream,
+      ::ca::byte_input_stream *inStream,
       file_position startPos,
       const file_size * packSizes,
       const CFolder &folderInfo,
-      ::gen::writer *outStream,
+      ::ca::writer *outStream,
       ::libcompress::progress_info_interface *compressProgress,
       ::crypto::get_text_password_interface *getTextPassword, bool &passwordIsDefined,
       bool mtMode, uint32_t numThreads
       )
    {
-      gen::HRes hr;
+      ca::HRes hr;
       if (!folderInfo.CheckStructure())
          return E_NOTIMPL;
       passwordIsDefined = false;
-      array_ptr_alloc < ::ca::smart_pointer < ::gen::reader > > inStreams;
+      array_ptr_alloc < ::ca::smart_pointer < ::ca::reader > > inStreams;
 
-      ::gen::locked_in_stream lockedInStream;
+      ::ca::locked_in_stream lockedInStream;
       lockedInStream.Init(inStream);
 
       for (int32_t j = 0; j < folderInfo.PackStreams.get_count(); j++)
       {
-         ::gen::locked_reader *lockedStreamImpSpec = new ::gen::locked_reader;
-         ::ca::smart_pointer < ::gen::reader > lockedStreamImp = lockedStreamImpSpec;
+         ::ca::locked_reader *lockedStreamImpSpec = new ::ca::locked_reader;
+         ::ca::smart_pointer < ::ca::reader > lockedStreamImp = lockedStreamImpSpec;
          lockedStreamImpSpec->Init(&lockedInStream, (file_size) startPos);
          startPos += packSizes[j];
 
-         ::gen::limited_reader *streamSpec = new
-            ::gen::limited_reader;
-         ::ca::smart_pointer < ::gen::reader > inStream = streamSpec;
+         ::ca::limited_reader *streamSpec = new
+            ::ca::limited_reader;
+         ::ca::smart_pointer < ::ca::reader > inStream = streamSpec;
          streamSpec->SetStream(lockedStreamImp);
          streamSpec->Init(packSizes[j]);
          inStreams.add(inStream);
@@ -143,7 +143,7 @@ namespace n7z
          _decoders.remove_all();
          // _decoders2.clear();
 
-         gen::release(_mixerCoder.m_p);
+         ca::release(_mixerCoder.m_p);
 
          if (_multiThread)
          {
@@ -175,13 +175,13 @@ namespace n7z
             {
                return  hr;
             }
-            ::ca::smart_pointer < ::gen::object > decoderUnknown;
+            ::ca::smart_pointer < ::ca::object > decoderUnknown;
             if (coderInfo.IsSimpleCoder())
             {
                if (decoder == 0)
                   return E_NOTIMPL;
 
-               decoderUnknown = (::gen::object *)decoder;
+               decoderUnknown = (::ca::object *)decoder;
 
                if (_multiThread)
                   _mixerCoderMTSpec->AddCoder(decoder);
@@ -194,7 +194,7 @@ namespace n7z
             {
                if (decoder2 == 0)
                   return E_NOTIMPL;
-               decoderUnknown = (::gen::object *)decoder2;
+               decoderUnknown = (::ca::object *)decoder2;
                if (_multiThread)
                   _mixerCoderMTSpec->AddCoder2(decoder2);
 #ifdef _ST_MODE
@@ -230,7 +230,7 @@ namespace n7z
             setDecoderProperties = dynamic_cast < ::libcompress::set_decoder_properties2_interface * > (setDecoderProperties.m_p);
             if (setDecoderProperties)
             {
-               const ::gen::byte_buffer &props = coderInfo.Props;
+               const ::ca::byte_buffer &props = coderInfo.Props;
                size_t size = props.GetCapacity();
                if (size > 0xFFFFFFFF)
                   return E_NOTIMPL;
@@ -263,9 +263,9 @@ namespace n7z
                {
                   return hr;
                }
-               ::gen::byte_buffer buffer;
+               ::ca::byte_buffer buffer;
                passwordIsDefined = true;
-               wstring password(gen::international::utf8_to_unicode(passwordBSTR));
+               wstring password(ca::international::utf8_to_unicode(passwordBSTR));
                const uint32_t sizeInBytes = (const uint32_t ) (password.get_length() * 2);
                buffer.SetCapacity(sizeInBytes);
                for (int32_t i = 0; i < password.get_length(); i++)
@@ -321,11 +321,11 @@ namespace n7z
 
       if (numCoders == 0)
          return 0;
-      base_array < ::gen::reader * > inStreamPointers;
+      base_array < ::ca::reader * > inStreamPointers;
       inStreamPointers.set_size(0, inStreams.get_count());
       for (i = 0; i < inStreams.get_count(); i++)
          inStreamPointers.add(inStreams[i]);
-      ::gen::writer *outStreamPointer = outStream;
+      ::ca::writer *outStreamPointer = outStream;
       return _mixerCoder->Code(&inStreamPointers.first_element(), NULL, (const uint32_t) inStreams.get_count(), &outStreamPointer, NULL, 1, compressProgress);
    }
 

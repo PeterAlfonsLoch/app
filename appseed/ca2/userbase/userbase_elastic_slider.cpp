@@ -20,7 +20,7 @@ namespace userbase
    }
 
 
-   void elastic_slider::install_message_handling(::gen::message::dispatch * pdispatch)
+   void elastic_slider::install_message_handling(::ca::message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &elastic_slider::_001OnCreate);
@@ -30,16 +30,16 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &elastic_slider::_001OnMouseMove);
    }
 
-   void elastic_slider::_001OnCreate(gen::signal_object * pobj)
+   void elastic_slider::_001OnCreate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       SetTimer(1, 50, NULL);
    }
 
-   void elastic_slider::_001OnTimer(gen::signal_object * pobj)
+   void elastic_slider::_001OnTimer(ca::signal_object * pobj)
    {
 //      return; // xxxtimer
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
          if(m_bSlide || CalcScalar() > 0.0)
@@ -53,9 +53,9 @@ namespace userbase
       }
    }
 
-   void elastic_slider::_001OnLButtonDown(gen::signal_object * pobj)
+   void elastic_slider::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       rect rect;
       GetSliderRect(rect);
       point pt(pmouse->m_pt);
@@ -74,9 +74,9 @@ namespace userbase
       }
    }
 
-   void elastic_slider::_001OnLButtonUp(gen::signal_object * pobj)
+   void elastic_slider::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       if(m_bSlide)
       {
 
@@ -87,10 +87,10 @@ namespace userbase
       }
    }
 
-   void elastic_slider::_001OnMouseMove(gen::signal_object * pobj)
+   void elastic_slider::_001OnMouseMove(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    }
 
    void elastic_slider::Slide()

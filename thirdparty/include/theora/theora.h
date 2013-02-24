@@ -615,7 +615,7 @@ extern int32_t theora_packet_isheader(ogg_packet *op);
 extern int32_t theora_packet_iskeyframe(ogg_packet *op);
 
 /**
- * Report the granulepos shift gen
+ * Report the granulepos shift ca
  *
  * When embedded in Ogg, Theora uses a two-part granulepos, 
  * splitting the 64-bit field into two pieces. The more-significant

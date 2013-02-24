@@ -24,7 +24,7 @@ namespace fs
 
 
 class CLASS_DECL_ca2 FileManagerFileListCallback :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 

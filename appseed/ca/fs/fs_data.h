@@ -34,8 +34,8 @@ namespace fs
 
       virtual bool file_move(const char * pszDst, const char * pszSrc);
 
-      virtual ::gen::filesp get_file(var varFile, UINT nOpenFlags);
-      virtual ::gen::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
+      virtual ::ca::filesp get_file(var varFile, UINT nOpenFlags);
+      virtual ::ca::byte_stream get_byte_stream(var varFile, UINT nOpenFlags);
 
    };
 

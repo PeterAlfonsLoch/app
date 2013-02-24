@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "gen/gen_1.h"
+#include "ca/gen_1.h"
 
 
 
@@ -63,9 +63,9 @@ class CDockContext;                     // for dragging control bars
 
 /////////////////////////////////////////////////////////////////////////////
 // Internal _ Windows messages (see Technical note TN024 for more details)
-// (0x0360 - 0x037F are reserved for ca2 API)
+// (0x0360 - 0x037F are reserved for ca API)
 
-#define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by gen::WndProc
+#define WM_QUERYAFXWNDPROC  0x0360  // lResult = 1 if processed by ca::WndProc
 #define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
                            // lParam = lpszOther (or NULL)
@@ -97,13 +97,13 @@ class CDockContext;                     // for dragging control bars
 #define WM_RESERVED_036F   0x036F  // was WM_QUERY3DCONTROLS (now not used)
 
 // Note: Messages 0x0370, 0x0371, and 0x372 were incorrectly used by
-//  some versions of Windows.  To remain compatible, ca2 API does not
+//  some versions of Windows.  To remain compatible, ca API does not
 //  use messages in that range.
 #define WM_RESERVED_0370    0x0370
 #define WM_RESERVED_0371    0x0371
 #define WM_RESERVED_0372    0x0372
 
-// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca2 API's
+// WM_SOCKET_NOTIFY and WM_SOCKET_DEAD are used internally by ca API's
 // Windows sockets implementation.  For more information, see sockcore.cpp
 #define WM_SOCKET_NOTIFY    0x0373
 #define WM_SOCKET_DEAD      0x0374
@@ -129,12 +129,12 @@ class CDockContext;                     // for dragging control bars
 // Marker used while rearranging the message queue
 #define WM_QUEUE_SENTINEL   0x0379
 
-// Note: Messages 0x037C - 0x37E reserved for future ca2 API use.
+// Note: Messages 0x037C - 0x37E reserved for future ca API use.
 #define WM_RESERVED_037C    0x037C
 #define WM_RESERVED_037D    0x037D
 #define WM_RESERVED_037E    0x037E
 
-// WM_FORWARDMSG - used by gen to forward a message to another ::ca::window for processing
+// WM_FORWARDMSG - used by ca to forward a message to another ::ca::window for processing
 //   WPARAM - DWORD dwUserData - defined by ::fontopus::user
 //   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
@@ -142,7 +142,7 @@ class CDockContext;                     // for dragging control bars
 
 // like ON_MESSAGE but no return value
 #define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, gen::Sig_vv, \
+   { message, 0, 0, 0, ca::Sig_vv, \
       (__PMSG)(__PMSGW)(void (__MSG_CALL ::ca::window::*)(void))&memberFxn },
 
 #if defined(LINUX) || defined(MACOS)
@@ -167,7 +167,7 @@ enum {  FS_SHOW = 0x01, FS_HIDE = 0x02,
       FS_ENABLE = 0x10, FS_DISABLE = 0x20,
       FS_SYNCACTIVE = 0x40 };
 
-CLASS_DECL_ca void gen::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
+CLASS_DECL_ca void ca::RepositionWindow(__SIZEPARENTPARAMS* lpLayout,
    ::user::interaction * hWnd, LPCRECT lpRect);
 
 #ifndef LAYOUT_LTR

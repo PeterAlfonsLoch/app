@@ -287,7 +287,7 @@ namespace userbase
 
 
 
-   void menu::_001OnDestroy(gen::signal_object * pobj)
+   void menu::_001OnDestroy(ca::signal_object * pobj)
    {
       System.remove_frame(this);
       if(m_pmenuParent != NULL)
@@ -313,7 +313,7 @@ namespace userbase
          delete_this();
    }
 
-   void menu::_001OnLButtonDown(gen::signal_object * pobj)
+   void menu::_001OnLButtonDown(ca::signal_object * pobj)
    {
       pobj->previous();
    }
@@ -338,7 +338,7 @@ namespace userbase
    }
    */
 
-   void menu::OnMessageDestroyWindow(gen::signal_object * pobj)
+   void menu::OnMessageDestroyWindow(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       DestroyWindow();
@@ -363,7 +363,7 @@ namespace userbase
             menu_item * pitem = m_pitem->m_spitema->find(pevent->m_puie->m_id);
             if(pitem != NULL && !pitem->m_bPopup)
             {
-               if(gen::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
+               if(ca::str::begins((const char *) pevent->m_puie->m_id, "syscommand::"))
                {
                   m_oswindowParent->_001SendCommand(pevent->m_puie->m_id);
                }
@@ -436,9 +436,9 @@ namespace userbase
       return true;
    }
 
-   void menu::_001OnTimer(gen::signal_object * pobj)
+   void menu::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == BaseWndMenuTimer)
       {
          KillTimer(BaseWndMenuTimer);
@@ -490,7 +490,7 @@ namespace userbase
       pobj->m_bRet = false;
    }
 
-   void menu::install_message_handling(::gen::message::dispatch * pinterface)
+   void menu::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageDestroyWindow, pinterface, this, &menu::OnMessageDestroyWindow);
@@ -504,20 +504,20 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_SHOWWINDOW       , pinterface, this, &menu::_001OnShowWindow);
    }
 
-   void menu::_001OnCreate(gen::signal_object * pobj)
+   void menu::_001OnCreate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::create, pcreate, pobj);
+//      SCAST_PTR(::ca::message::create, pcreate, pobj);
       m_pschema            = &::userbase::GetUfeSchema(get_app())->m_menu;
       return;
    }
 
 
 
-   void menu::_001OnIdleUpdateCmdUI(gen::signal_object * pobj)
+   void menu::_001OnIdleUpdateCmdUI(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::base, pbase, pobj)
+//      SCAST_PTR(::ca::message::base, pbase, pobj)
       if(m_pitem->m_spitema != NULL)
       {
          menu_button_cmd_ui cmdui(get_app());
@@ -548,23 +548,23 @@ namespace userbase
    }
 
 
-   void menu::_001OnEnable(gen::signal_object * pobj)
+   void menu::_001OnEnable(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::enable, penable, pobj);
+//      SCAST_PTR(::ca::message::enable, penable, pobj);
    }
 
 
-   void menu::_001OnNcActivate(gen::signal_object * pobj)
+   void menu::_001OnNcActivate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       pbase->m_bRet = true;
       pbase->set_lresult(DefWindowProc(WM_NCACTIVATE, pbase->m_wparam, -1));
    }
 
-   void menu::_001OnNcCalcSize(gen::signal_object * pobj)
+   void menu::_001OnNcCalcSize(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
 
       if(pbase->m_wparam == TRUE)
       {
@@ -609,9 +609,9 @@ namespace userbase
    }
 
 
-   void menu::_001OnShowWindow(gen::signal_object * pobj)
+   void menu::_001OnShowWindow(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::show_window, pshow, pobj)
+      SCAST_PTR(::ca::message::show_window, pshow, pobj)
       TRACE("menu::_001OnShowWindow bShow = %d", pshow->m_bShow);
    }
 

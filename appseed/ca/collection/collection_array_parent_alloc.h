@@ -60,7 +60,7 @@ inline array_parent_alloc <TYPE, ARG_TYPE> & array_parent_alloc < TYPE, ARG_TYPE
    }
    for(; i < a.ptra().get_size(); i++)
    {
-      this->ptra().add(gen::alloc<TYPE>(*a.ptra()[i]));
+      this->ptra().add(ca::alloc<TYPE>(*a.ptra()[i]));
    }
    this->ptra().set_size(a.ptra().get_size());
    return *this;
@@ -99,8 +99,8 @@ void array_parent_alloc<TYPE, ARG_TYPE>::set_at_grow(index iIndex, ARG_TYPE t)
       index i;
       for(i = iIndex; i < iEmptySize; i++)
       {
-         this->ptra().element_at(i) = gen::alloc<TYPE>();
+         this->ptra().element_at(i) = ca::alloc<TYPE>();
       }
-      this->ptra().element_at(i) = gen::alloc<TYPE>(t);
+      this->ptra().element_at(i) = ca::alloc<TYPE>(t);
    }
 }

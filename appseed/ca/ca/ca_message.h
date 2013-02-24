@@ -75,7 +75,7 @@ class BaseCommand;
 #define WM_USER                         0x0400
 #endif
 
-namespace gen
+namespace ca
 {
 
    enum e_message
@@ -129,7 +129,7 @@ namespace gen
          PrototypeOnDraw,
       };
 
-      gen::signal * CreateSignal();
+      ca::signal * CreateSignal();
 
       class CLASS_DECL_ca Handler
       {
@@ -140,7 +140,7 @@ namespace gen
       };
 
       class CLASS_DECL_ca dispatch :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
 
@@ -148,7 +148,7 @@ namespace gen
          {
          public:
             virtual ~HandlerItemBase();
-            virtual gen::signalizable * get_signalizable() = 0;
+            virtual ca::signalizable * get_signalizable() = 0;
          };
 
          template < class T >
@@ -160,7 +160,7 @@ namespace gen
             // prototype.
             // This is a cached value and not the
             // storage holder of the object.
-            virtual gen::signalizable * get_signalizable() { return m_psignalizable; }
+            virtual ca::signalizable * get_signalizable() { return m_psignalizable; }
          };
 
          class CLASS_DECL_ca HandlerItemArray :
@@ -168,7 +168,7 @@ namespace gen
          {
          public:
             virtual ~HandlerItemArray();
-            bool HasSignalizable(gen::signalizable * psignalizable);
+            bool HasSignalizable(ca::signalizable * psignalizable);
          };
 
          class CLASS_DECL_ca Signal
@@ -179,7 +179,7 @@ namespace gen
             UINT                 m_uiCode;
             UINT                 m_uiIdStart;
             UINT                 m_uiIdEnd;
-            gen::signal *        m_psignal;
+            ca::signal *        m_psignal;
 
             HandlerItemArray     m_handlera;
 
@@ -220,7 +220,7 @@ namespace gen
 
 #endif
 
-         void RemoveMessageHandler(gen::signalizable * psignalizable);
+         void RemoveMessageHandler(ca::signalizable * psignalizable);
          ::ca::window * _GetWnd();
          // Prototype_bool_WPARAM_LPARAM;
 
@@ -231,7 +231,7 @@ namespace gen
             UINT uiIdStart,
             UINT uiIdEnd,
             T * psignalizable,
-            void (T::*pfn)(gen::signal_object *),
+            void (T::*pfn)(ca::signal_object *),
             bool bAddUnique = true)
          {
             Signal * psignal = m_signala.GetSignalByMessage(message, uiCode, uiIdStart, uiIdEnd);
@@ -244,7 +244,7 @@ namespace gen
                psignal->m_uiIdStart       = uiIdStart;
                psignal->m_uiIdEnd         = uiIdEnd;
                psignal->m_eprototype      = GetMessagePrototype(message, 0);
-               psignal->m_psignal         = new gen::signal();
+               psignal->m_psignal         = new ca::signal();
                psignal->m_psignal->connect(psignalizable, pfn);
                HandlerItem <T> * pitem    = new HandlerItem<T>;
                pitem->m_psignalizable     = psignalizable;
@@ -269,21 +269,21 @@ namespace gen
 
          virtual e_prototype GetMessagePrototype(UINT uiMessage, UINT uiCode);
 
-         virtual void install_message_handling(::gen::message::dispatch * pinterface);
+         virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
          virtual void _001ClearMessageHandling();
 
          int32_t                  m_iHandling;
          SignalArray          m_signala;
-         gen::signal          m_signalInstallMessageHandling;
+         ca::signal          m_signalInstallMessageHandling;
          manual_reset_event   m_evOk;
          mutex                m_mutex;
 
-         virtual void _start_user_message_handler(gen::signal_object * pobj);
+         virtual void _start_user_message_handler(ca::signal_object * pobj);
 
-         void (dispatch::*m_pfnDispatchWindowProc)(gen::signal_object * pobj);
+         void (dispatch::*m_pfnDispatchWindowProc)(ca::signal_object * pobj);
 
-         virtual void _user_message_handler(gen::signal_object * pobj);
+         virtual void _user_message_handler(ca::signal_object * pobj);
          //bool _iguimessageDispatchCommandMessage(BaseCommand * pcommand, bool & b);
          // return TRUE to stop routing
 #ifdef WINDOWS
@@ -295,7 +295,7 @@ namespace gen
 #undef new
 
       class CLASS_DECL_ca base :
-            public gen::signal_object
+            public ca::signal_object
          {
          public:
 
@@ -306,7 +306,7 @@ namespace gen
             LPARAM                  m_lparam;
             bool                    m_bConditional;
 
-            base(::ca::application * papp, gen::signal * psignal = NULL);
+            base(::ca::application * papp, ca::signal * psignal = NULL);
             base(::ca::application * papp, ::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
 
 
@@ -324,7 +324,7 @@ namespace gen
          {
          public:
 
-            create(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            create(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             LPCREATESTRUCT m_lpcreatestruct;
 
             virtual void set_lresult(LRESULT lresult);
@@ -337,7 +337,7 @@ namespace gen
          public:
 
 
-            timer(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            timer(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
             UINT m_nIDEvent;
          };
@@ -362,7 +362,7 @@ namespace gen
          public:
 
 
-            move(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            move(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             point m_pt;
          };
 
@@ -371,7 +371,7 @@ namespace gen
          public:
 
 
-            size(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            size(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             UINT     m_nType;
             ::size   m_size;
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -383,7 +383,7 @@ namespace gen
          public:
 
 
-            scroll(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            scroll(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             UINT              m_nSBCode;
             int32_t           m_nPos;
             ::user::interaction *  m_pScrollBar;
@@ -405,7 +405,7 @@ namespace gen
             virtual ~mouse();
 
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
-            static mouse * cast(gen::signal_object * pobj) { return (mouse *) pobj; }
+            static mouse * cast(ca::signal_object * pobj) { return (mouse *) pobj; }
          };
 
          class CLASS_DECL_ca mouse_wheel : public mouse
@@ -427,7 +427,7 @@ namespace gen
          public:
 
 
-            mouse_activate(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            mouse_activate(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             ::user::interaction * GetDesktopWindow();
             UINT GetHitTest();
             UINT GetMessage();
@@ -438,7 +438,7 @@ namespace gen
          public:
 
 
-            context_menu(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            context_menu(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             ::ca::window * GetWindow();
             point GetPoint();
          };
@@ -449,7 +449,7 @@ namespace gen
          public:
 
 
-            set_cursor(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            set_cursor(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             ::ca::window* m_pWnd;
             UINT m_nHitTest;
             UINT m_message;
@@ -460,7 +460,7 @@ namespace gen
          public:
 
 
-            show_window(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            show_window(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             bool m_bShow;
             UINT  m_nStatus;
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -471,7 +471,7 @@ namespace gen
          public:
 
 
-            on_draw(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            on_draw(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             ::ca::graphics * m_pdc;
          };
 
@@ -497,7 +497,7 @@ namespace gen
          public:
 
 
-            nchittest(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            nchittest(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             point m_pt;
          };
 
@@ -543,7 +543,7 @@ namespace gen
          public:
 
 
-            notify(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            notify(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             LPNMHDR get_lpnmhdr();
             int32_t get_ctrl_id();
          };
@@ -555,7 +555,7 @@ namespace gen
          public:
 
 
-            update_cmd_ui(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            update_cmd_ui(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             cmd_ui *    m_pcmdui;
          };
 
@@ -564,7 +564,7 @@ namespace gen
          public:
 
 
-            command(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            command(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             UINT GetNotifyCode();
             UINT GetId();
             oswindow get_oswindow();
@@ -575,7 +575,7 @@ namespace gen
          public:
 
 
-            ctl_color(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            ctl_color(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             HBRUSH      m_hbrush;
             ::ca::graphics *       m_pdc;
             ::ca::window *      m_pwnd;
@@ -587,7 +587,7 @@ namespace gen
          public:
 
 
-            set_focus(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            set_focus(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
 
@@ -599,7 +599,7 @@ namespace gen
          {
          public:
 
-            window_pos(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            window_pos(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             WINDOWPOS * m_pwindowpos;
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
          };
@@ -616,7 +616,7 @@ namespace gen
          public:
 
 
-            measure_item(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            measure_item(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             int32_t m_i;
             LPMEASUREITEMSTRUCT m_lpmis;
          };
@@ -626,7 +626,7 @@ namespace gen
          public:
 
 
-            nc_calc_size(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            nc_calc_size(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             NCCALCSIZE_PARAMS * m_pparams;
             bool GetCalcValidRects();
             virtual void set(::user::interaction * pwnd, UINT uiMessage, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -641,7 +641,7 @@ namespace gen
          public:
 
 
-            enable(::ca::application * papp) : ca(papp), ::gen::message::base(papp) {}
+            enable(::ca::application * papp) : ca(papp), ::ca::message::base(papp) {}
             bool get_enable();
          };
 
@@ -720,7 +720,7 @@ namespace gen
          UINT                              message,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(gen::signal_object *))
+         void (T2::*                      pfn)(ca::signal_object *))
       {
          pdispatch->AddMessageHandler(
             message,
@@ -736,7 +736,7 @@ namespace gen
          UINT                              message,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(gen::signal_object *))
+         void (T2::*                      pfn)(ca::signal_object *))
       {
 
          UINT uiOsMessage = translate_to_os_message(message);
@@ -753,7 +753,7 @@ namespace gen
          UINT                              uiIdEnd,
          dispatch *   pdispatch,
          T1 *                              psignalizable,
-         void (T2::*                      pfn)(gen::signal_object *))
+         void (T2::*                      pfn)(ca::signal_object *))
       {
          pdispatch->AddMessageHandler(
             uiMessage,
@@ -801,35 +801,35 @@ namespace gen
    } // namespace message
 
 
-} // namespace gen
+} // namespace ca
 
 
 
 #if defined(WINDOWS) || defined(LINUX)
 #define IGUI_WIN_MSG_LINK \
-   ::gen::message::os_connect
+   ::ca::message::os_connect
 #else
 #define IGUI_WIN_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 #ifdef LINUX
 #define IGUI_MAC_MSG_LINK \
-   ::gen::message::os_connect
+   ::ca::message::os_connect
 #else
 #define IGUI_MAC_MSG_LINK(p1, p2, p3, p4) \
    ;
 #endif
 
 #define IGUI_MSG_LINK(param1, param2, param3, param4) \
-   ::gen::message::_connect(param1, param2, param3, param4)
+   ::ca::message::_connect(param1, param2, param3, param4)
 
 #define USER_MESSAGE_LINK(param1, param2, param3, param4) \
-   IGUI_MSG_LINK(::gen::param1, param2, param3, param4)
+   IGUI_MSG_LINK(::ca::param1, param2, param3, param4)
 
 
 
 #define IGUI_WIN_CMD_LINK \
-   ::gen::message::cmd_connect
+   ::ca::message::cmd_connect
 
 #define IGUI_WIN_NOTIFY_REFLECT(wNotifyCode, pinterface, phandler, pfunction) \
    IGUI_WIN_CMD_LINK(WM_COMMAND, (UINT) wNotifyCode + WM_REFLECT_BASE, 0, 0xffffffff, pinterface, phandler, pfunction)
@@ -840,6 +840,6 @@ namespace gen
 #define IGUI_WIN_ON_NOTIFY(id, n, pdispatch, phandler, poperation) \
    IGUI_WIN_CMD_LINK(WM_NOTIFY, n, id, id, pdispatch, phandler, poperation)
 
-#define IGUI_WIN_CAST(tcast, pcasted) ::gen::message::tcast * pcasted = (::gen::message::tcast *) pobj;
-#define IGUI_WIN_CST(tcast) ::gen::message::tcast * p##tcast = (::gen::message::tcast *) pobj;
+#define IGUI_WIN_CAST(tcast, pcasted) ::ca::message::tcast * pcasted = (::ca::message::tcast *) pobj;
+#define IGUI_WIN_CST(tcast) ::ca::message::tcast * p##tcast = (::ca::message::tcast *) pobj;
 

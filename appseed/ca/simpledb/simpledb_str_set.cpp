@@ -136,11 +136,11 @@ repeat:;
           {
 
 
-             gen::property_set post(get_app());
-             gen::property_set headers(get_app());
-             gen::property_set set(get_app());
+             ca::property_set post(get_app());
+             ca::property_set headers(get_app());
+             ca::property_set set(get_app());
 
-             ca2::http::e_status estatus;
+             ca::http::e_status estatus;
 
              string strUrl;
 
@@ -169,7 +169,7 @@ repeat:;
 
              m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-             if(m_phttpsession == NULL || estatus != ca2::http::status_ok)
+             if(m_phttpsession == NULL || estatus != ca::http::status_ok)
              {
                 Sleep(1984);
                 strApiServer = "";
@@ -236,22 +236,22 @@ bool db_str_set::load(const char * lpKey, string & strValue)
       }
 
 
-      gen::property_set post(get_app());
-      gen::property_set headers(get_app());
-      gen::property_set set(get_app());
+      ca::property_set post(get_app());
+      ca::property_set headers(get_app());
+      ca::property_set set(get_app());
 
-      ca2::http::e_status estatus;
+      ca::http::e_status estatus;
 
       set["interactive_user"] = true;
 
       string strUrl;
 
-      strUrl = "https://api.ca2.cc/account/str_set_load?key=";
+      strUrl = "https://api.ca.cc/account/str_set_load?key=";
       strUrl += System.url().url_encode(lpKey);
 
       m_phttpsession = System.http().request(m_handler, m_phttpsession, strUrl, post, headers, set, NULL, &ApplicationUser, NULL, &estatus);
 
-      if(m_phttpsession == NULL || estatus != ca2::http::status_ok)
+      if(m_phttpsession == NULL || estatus != ca::http::status_ok)
       {
          return false;
       }

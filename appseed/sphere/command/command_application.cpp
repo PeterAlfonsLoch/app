@@ -15,7 +15,7 @@ namespace command
    {
       m_strAppName            = _strdup("command");
       m_strBaseSupportId      = "votagus_ca2_command";
-      m_eexclusiveinstance    = ::gen::ExclusiveInstanceLocal;
+      m_eexclusiveinstance    = ::ca::ExclusiveInstanceLocal;
    }
 
    bool application::initialize_instance()
@@ -60,7 +60,7 @@ namespace command
    bool application::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
 
    {
-      return gen::application::_001OnCmdMsg(pcmdmsg);
+      return ca::application::_001OnCmdMsg(pcmdmsg);
    }
 
    void application::OnFileManagerOpenFile(::filemanager::data * pdata, ::fs::item_array & itema)
@@ -74,9 +74,9 @@ namespace command
          ::ShellExecuteW(
             NULL,
             L"open",
-            gen::international::utf8_to_unicode(itema[0].m_strPath),
+            ca::international::utf8_to_unicode(itema[0].m_strPath),
             NULL,
-            gen::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
+            ca::international::utf8_to_unicode(System.dir().name(itema[0].m_strPath)),
             SW_SHOW);
 
 #else

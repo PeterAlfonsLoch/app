@@ -13,7 +13,7 @@ namespace user
    }
 
 
-   void mouse_focus::mouse_focus_OnLButtonUp(gen::signal_object * pobj)
+   void mouse_focus::mouse_focus_OnLButtonUp(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }

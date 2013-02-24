@@ -95,7 +95,7 @@ void html_form::_001DrawChildren(::ca::graphics *pdc)
 }
 
 
-void html_form::_001OnImageLoaded(gen::signal_object * pobj)
+void html_form::_001OnImageLoaded(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if(get_html_data() != NULL)
@@ -122,7 +122,7 @@ void html_form::_001OnImageLoaded(gen::signal_object * pobj)
 }
 
 
-void html_form::install_message_handling(::gen::message::dispatch * pinterface)
+void html_form::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::form_view::install_message_handling(pinterface);
 
@@ -183,9 +183,9 @@ void html_form::layout()
 }
 
 
-void html_form::_001OnCreate(gen::signal_object * pobj)
+void html_form::_001OnCreate(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::create, pcreate, pobj)
+   SCAST_PTR(::ca::message::create, pcreate, pobj)
    if(pobj->previous())
       return;
    get_html_data()->m_pform = this;
@@ -207,9 +207,9 @@ void html_form::_001OnCreate(gen::signal_object * pobj)
 
 
 
-void html_form::_001OnLButtonDown(gen::signal_object * pobj)
+void html_form::_001OnLButtonDown(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -224,9 +224,9 @@ void html_form::_001OnLButtonDown(gen::signal_object * pobj)
    pmouse->m_bRet = true;
    pmouse->set_lresult(1);
 }
-   /*void html_form::_001OnMouseMove(gen::signal_object * pobj)
+   /*void html_form::_001OnMouseMove(ca::signal_object * pobj)
 {
-SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt;
    pt = pmouse->m_pt;
    ScreenToClient(&pt);
@@ -239,9 +239,9 @@ SCAST_PTR(::gen::message::mouse, pmouse, pobj);
       pelemental->OnMouseMove(&signal);
    }*/
 
-void html_form::_001OnMouseMove(gen::signal_object * pobj)
+void html_form::_001OnMouseMove(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -277,9 +277,9 @@ void html_form::_001OnMouseMove(gen::signal_object * pobj)
 
 }
 
-void html_form::_001OnLButtonUp(gen::signal_object * pobj)
+void html_form::_001OnLButtonUp(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj);
    point pt(pmouse->m_pt);
    ScreenToClient(&pt);
    html::elemental * pelemental = get_html_data()->m_elemental.hit_test(get_html_data(), pt);
@@ -309,7 +309,7 @@ bool html_form::open_document(var varFile)
    {
       strPathName = varFile.propset()["url"];
    }
-   else if(varFile.ca2 < ::gen::file > () != NULL)
+   else if(varFile.ca < ::ca::file > () != NULL)
    {
       strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document()->get_document_template()->m_set["default_extension"];
    }
@@ -365,9 +365,9 @@ const ::html::data * html_form::get_html_data() const
    return m_sphtmldata;
 }
 
-void html_form::_001OnKeyDown(gen::signal_object * pobj)
+void html_form::_001OnKeyDown(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::key, pkey, pobj);
+   SCAST_PTR(::ca::message::key, pkey, pobj);
    if(pkey->m_nChar == '\t')
    {
       pkey->m_bRet = true;

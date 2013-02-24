@@ -17,14 +17,14 @@ namespace filemanager
    {
    }
 
-   void SimplePreview::install_message_handling(::gen::message::dispatch * pdispatch)
+   void SimplePreview::install_message_handling(::ca::message::dispatch * pdispatch)
    {
       ::userbase::view::install_message_handling(pdispatch);
       SimplePreviewInterface::install_message_handling(pdispatch);
    }
 
 
-   void SimplePreview::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint) 
+   void SimplePreview::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
    {
       FileManagerViewInterface::on_update(pSender, lHint, phint);
       if(phint != NULL)

@@ -123,7 +123,7 @@ uint32_t *_make_words(long *l,long n,long sparsecount){
      rejected. The only exception is the one-node pseudo-nil tree,
      which appears to be underpopulated because the tree doesn't
      really exist; there's only one possible 'codeword' or zero bits,
-     but the above tree-gen code doesn't mark that. */
+     but the above tree-ca code doesn't mark that. */
   if(sparsecount != 1){
     for(i=1;i<33;i++)
       if(marker[i] & (0xffffffffUL>>(32-i))){

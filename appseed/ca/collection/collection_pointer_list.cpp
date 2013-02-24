@@ -342,7 +342,7 @@ POSITION pointer_list::find(void * searchValue, POSITION startAfter) const
 
 void pointer_list::dump(dump_context & dumpcontext) const
 {
-   ::gen::object::dump(dumpcontext);
+   ::ca::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nCount << " elements";
    if (dumpcontext.GetDepth() > 0)
@@ -357,7 +357,7 @@ void pointer_list::dump(dump_context & dumpcontext) const
 
 void pointer_list::assert_valid() const
 {
-   ::gen::object::assert_valid();
+   ::ca::object::assert_valid();
 
    if (m_nCount == 0)
    {

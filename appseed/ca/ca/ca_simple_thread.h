@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca simple_thread :
-   virtual public ::gen::thread
+   virtual public ::ca::thread
 {
 public:
 

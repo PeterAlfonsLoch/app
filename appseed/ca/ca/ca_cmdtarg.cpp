@@ -54,34 +54,34 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       return 0;
       break;
 
-   case gen::SigCmd_v:
+   case ca::SigCmd_v:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfnCmd_v_v)();
       break;
 
-   case gen::SigCmd_b:
+   case ca::SigCmd_b:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfnCmd_b_v)();
       break;
 
-   case gen::SigCmd_RANGE:
+   case ca::SigCmd_RANGE:
       // normal command or control notification in a range
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfnCmd_v_u)(nID);
       break;
 
-   case gen::SigCmd_EX:
+   case ca::SigCmd_EX:
       // extended command (passed ID, returns bContinue)
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfnCmd_b_u)(nID);
       break;
 
-   case gen::SigNotify_v:
+   case ca::SigNotify_v:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -91,7 +91,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       }
       break;
 
-   case gen::SigNotify_b:
+   case ca::SigNotify_b:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -101,7 +101,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       }
       break;
 
-   case gen::SigNotify_RANGE:
+   case ca::SigNotify_RANGE:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -112,7 +112,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       }
       break;
 
-   case gen::SigNotify_EX:
+   case ca::SigNotify_EX:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -123,7 +123,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       }
       break;
 
-   case gen::SigCmdUI:
+   case ca::SigCmdUI:
       {
          // ON_UPDATE_COMMAND_UI or ON_UPDATE_COMMAND_UI_REFLECT case
          ASSERT(CN_UPDATE_COMMAND_UI == (UINT)-1);
@@ -137,7 +137,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       }
       break;
 
-   case gen::SigCmdUI_RANGE:
+   case ca::SigCmdUI_RANGE:
       {
          // ON_UPDATE_COMMAND_UI case
          ASSERT(nCode == CN_UPDATE_COMMAND_UI);
@@ -152,41 +152,41 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       break;
 
    // general extensibility hooks
-   case gen::SigCmd_v_pv:
+   case ca::SigCmd_v_pv:
       (pTarget->*mmf.pfnCmd_v_pv)(pExtra);
       break;
-   case gen::SigCmd_b_pv:
+   case ca::SigCmd_b_pv:
       bResult = (pTarget->*mmf.pfnCmd_b_pv)(pExtra);
       break;
    /*
-   case gen::Sig_vv:
+   case ca::Sig_vv:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfn_COMMAND)();
       break;
 
-   case gen::Sig_bv:
+   case ca::Sig_bv:
       // normal command or control notification
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfn_bCOMMAND)();
       break;
 
-   case gen::Sig_vw:
+   case ca::Sig_vw:
       // normal command or control notification in a range
       ASSERT(CN_COMMAND == 0);        // CN_COMMAND same as BN_CLICKED
       ASSERT(pExtra == NULL);
       (pTarget->*mmf.pfn_COMMAND_RANGE)(nID);
       break;
 
-   case gen::Sig_bw:
+   case ca::Sig_bw:
       // extended command (passed ID, returns bContinue)
       ASSERT(pExtra == NULL);
       bResult = (pTarget->*mmf.pfn_COMMAND_EX)(nID);
       break;
 
-   case gen::Sig_vNMHDRpl:
+   case ca::Sig_vNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -195,7 +195,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
          (pTarget->*mmf.pfn_NOTIFY)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
-   case gen::Sig_bNMHDRpl:
+   case ca::Sig_bNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -204,7 +204,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
          bResult = (pTarget->*mmf.pfn_bNOTIFY)(pNotify->pNMHDR, pNotify->pResult);
       }
       break;
-   case gen::Sig_vwNMHDRpl:
+   case ca::Sig_vwNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -214,7 +214,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
             pNotify->pResult);
       }
       break;
-   case gen::Sig_bwNMHDRpl:
+   case ca::Sig_bwNMHDRpl:
       {
          __NOTIFY* pNotify = (__NOTIFY*)pExtra;
          ENSURE(pNotify != NULL);
@@ -224,7 +224,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
             pNotify->pResult);
       }
       break;
-   case gen::Sig_cmdui:
+   case ca::Sig_cmdui:
       {
          // ON_UPDATE_COMMAND_UI or ON_UPDATE_COMMAND_UI_REFLECT case
          ASSERT(CN_UPDATE_COMMAND_UI == (UINT)-1);
@@ -238,7 +238,7 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       }
       break;
 
-   case gen::Sig_cmduiw:
+   case ca::Sig_cmduiw:
       {
          // ON_UPDATE_COMMAND_UI case
          ASSERT(nCode == CN_UPDATE_COMMAND_UI);
@@ -253,10 +253,10 @@ __STATIC bool _gen::DispatchCmdMsg(command_target* pTarget, UINT nID, int32_t nC
       break;
 
    // general extensibility hooks
-   case gen::Sig_vpv:
+   case ca::Sig_vpv:
       (pTarget->*mmf.pfn_OTHER)(pExtra);
       break;
-   case gen::Sig_bpv:
+   case ca::Sig_bpv:
       bResult = (pTarget->*mmf.pfn_OTHER_EX)(pExtra);
       break;
    */
@@ -302,7 +302,7 @@ bool command_target::_001OnCmdMsg(BaseCmdMsg * pcmdmsg)
    {
       // Note: catches  // BEGIN_MESSAGE_MAP(CMyClass, CMyClass)!
       ASSERT(pMessageMap != (*pMessageMap->pfnGetBaseMap)());
-      lpEntry = gen::FindMessageEntry(pMessageMap->lpEntries, nMsg, nCode, nID);
+      lpEntry = ca::FindMessageEntry(pMessageMap->lpEntries, nMsg, nCode, nID);
       if (lpEntry != NULL)
       {
          // found it
@@ -346,7 +346,7 @@ const __MSGMAP* command_target::GetThisMessageMap()
 {
    static const __MSGMAP_ENTRY _messageEntries[] =
    {
-      { 0, 0, gen::Sig_end, 0 }     // nothing here
+      { 0, 0, ca::Sig_end, 0 }     // nothing here
    };
    static const __MSGMAP messageMap =
    {
@@ -532,7 +532,7 @@ __STATIC void __load_dot_bitmap()
          (LPVOID)rgbBitmap);
    if (afxData.hbmMenuDot == NULL)
    {
-//      TRACE(::gen::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
+//      TRACE(::ca::trace::category_AppMsg, 0, "Warning: using system arrow bitmap instead of dot.\n");
       #define OBM_MNARROW         32739
       afxData.hbmMenuDot = ::LoadBitmap(NULL, MAKEINTRESOURCE(OBM_MNARROW));
    }

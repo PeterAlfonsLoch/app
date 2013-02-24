@@ -5,7 +5,7 @@
 #include <winspool.h>
 #endif
 
-namespace gen
+namespace ca
 {
 
 
@@ -37,7 +37,7 @@ namespace gen
          }
          else
          {
-            pchSrc = gen::str::utf8_inc_slide(&nTotalLen, pchSrc);
+            pchSrc = ca::str::utf8_inc_slide(&nTotalLen, pchSrc);
          }
       }
 
@@ -58,14 +58,14 @@ namespace gen
             pchSrc += 2;
             if (i >= nString)
             {
-               //               TRACE(::gen::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
+               //               TRACE(::ca::trace::category_AppMsg, 0, "Error: illegal string index requested %d.\n", i);
                *pchDest++ = '?';
                nTotalLen--;
             }
             else if (rglpsz[i] != NULL)
             {
                size_t nLen = strlen(rglpsz[i]);
-               ::gen::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
+               ::ca::strcpy_s(pchDest, nTotalLen + 1, rglpsz[i]);
                nTotalLen -= nLen;
                pchDest += nLen;
             }
@@ -73,7 +73,7 @@ namespace gen
          else
          {
 
-            gen::str::utf8_inc_copy_slide_back(&nTotalLen, pchDest, pchSrc);
+            ca::str::utf8_inc_copy_slide_back(&nTotalLen, pchDest, pchSrc);
 
          }
 
@@ -104,7 +104,7 @@ namespace gen
 
       ASSERT(nLen >= 0);
 
-      ::gen::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
+      ::ca::memcpy_s(rString.GetBufferSetLength(nLen), nLen*sizeof(char), lpszFullString, nLen*sizeof(char));
 
       rString.ReleaseBuffer();   // Need to call ReleaseBuffer after calling GetBufferSetLength
 
@@ -112,7 +112,7 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 
 
 

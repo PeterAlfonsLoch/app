@@ -37,12 +37,12 @@ namespace user
       if(get_form() != NULL)
       {
          get_form()->send_message(
-            ::gen::message_event, 0, (LPARAM) &ev);
+            ::ca::message_event, 0, (LPARAM) &ev);
       }
       else
       {
          get_parent()->send_message(
-            ::gen::message_event, 0, (LPARAM) &ev);
+            ::ca::message_event, 0, (LPARAM) &ev);
       }
    }
 
@@ -84,21 +84,21 @@ namespace user
    }
 
 
-   void check_box::_001OnTimer(gen::signal_object * pobj)
+   void check_box::_001OnTimer(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::gen::message::timer, ptimer, pobj)
+      //SCAST_PTR(::ca::message::timer, ptimer, pobj)
    }
 
-   void check_box::_001OnKeyDown(gen::signal_object * pobj)
+   void check_box::_001OnKeyDown(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::key, pkey, pobj)
+//      SCAST_PTR(::ca::message::key, pkey, pobj)
    }
 
-   void check_box::_001OnKeyUp(gen::signal_object * pobj)
+   void check_box::_001OnKeyUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
       if(pkey->m_nChar == VK_SPACE)
       {
          _001ToggleCheck(true);
@@ -106,17 +106,17 @@ namespace user
    }
 
 
-   void check_box::_001OnLButtonDown(gen::signal_object * pobj)
+   void check_box::_001OnLButtonDown(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       m_bMouseDown = true;
 
    }
-   void check_box::_001OnLButtonUp(gen::signal_object * pobj)
+   void check_box::_001OnLButtonUp(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       if(m_bMouseDown)
       {
          _001ToggleCheck(true);
@@ -128,10 +128,10 @@ namespace user
    }
 
 
-   void check_box::_001OnMouseMove(gen::signal_object * pobj)
+   void check_box::_001OnMouseMove(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 #ifdef WINDOWSEX
       ::SetCursor(::LoadCursor(NULL, IDC_IBEAM));
 #else
@@ -139,7 +139,7 @@ namespace user
 #endif
    }
 
-   void check_box::install_message_handling(::gen::message::dispatch * pinterface)
+   void check_box::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONDOWN, pinterface, this, &check_box::_001OnLButtonDown);

@@ -90,7 +90,7 @@ public:
 
 
 class CLASS_DECL_ca factory_item_base :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
@@ -155,7 +155,7 @@ public:
 };
 
 class CLASS_DECL_ca factory :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 

@@ -18,7 +18,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 pane :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
 
@@ -89,7 +89,7 @@ namespace user
          ::index                          m_iDragTab;
          bool                             m_bDrag;
          bool                             m_bVertical;
-         ::gen::match::any                m_matchanyRestore;
+         ::ca::match::any                m_matchanyRestore;
          bool                             m_bEnableCloseAll;
 
 
@@ -143,7 +143,7 @@ namespace user
       virtual ::user::interaction * get_tab_window(::index iTab, bool bVisible = true);
       virtual ::user::place_holder * get_tab_holder(::index iTab, bool bVisible = true);
 
-      void _000OnMouse(::gen::message::mouse * pmouse);
+      void _000OnMouse(::ca::message::mouse * pmouse);
 
       virtual ::user::interaction * get_view_uie();
 
@@ -207,8 +207,8 @@ namespace user
       virtual void get_ends_ci_eat_id(stringa & stra, const char * pszSuffix);
       virtual void get_begins_ends_ci_eat_id(stringa & stra, const char * pszPrefix, const char * pszSuffixed);
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
-      virtual void _001ConnectParent(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
+      virtual void _001ConnectParent(::ca::message::dispatch * pinterface);
 
 
       virtual bool has_restore_tab();

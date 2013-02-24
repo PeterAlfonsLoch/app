@@ -7,7 +7,7 @@
 
 // like ON_MESSAGE but no return value
 /*#define ON_MESSAGE_VOID(message, memberFxn) \
-   { message, 0, 0, 0, gen::Sig_vv, \
+   { message, 0, 0, 0, ca::Sig_vv, \
       (__PMSG)(__PMSGW)(void (__MSG_CALL ::user::interaction::*)())&memberFxn },*/
 // IMPLEMENT_DYNAMIC(::view, ::user::interaction)
 
@@ -48,7 +48,7 @@ namespace userbase
    {
    }
 
-   void view::install_message_handling(::gen::message::dispatch * pinterface)
+   void view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       database::user::interaction::install_message_handling(pinterface);
       ::view::install_message_handling(pinterface);
@@ -148,12 +148,12 @@ namespace userbase
    // ::view drawing support
 
 
-   /*void view::_001OnInitialUpdate(gen::signal_object * pobj)
+   /*void view::_001OnInitialUpdate(ca::signal_object * pobj)
    {
       on_update(NULL, 0, NULL);        // initial update
    }*/
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::gen::object * pHint)
+   void view::on_update(::view * pSender, LPARAM lHint, ::ca::object * pHint)
    {
       ::view::on_update(pSender, lHint, pHint);
    }
@@ -161,7 +161,7 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view selection support
 
-   bool view::IsSelected(const ::gen::object* pDocItem) const
+   bool view::IsSelected(const ::ca::object* pDocItem) const
    {
       ASSERT_VALID(pDocItem);
 //      UNUSED(pDocItem);    // unused in release builds
@@ -187,9 +187,9 @@ namespace userbase
    {
    }
 
-   void view::_001OnMouseActivate(gen::signal_object * pobj)
+   void view::_001OnMouseActivate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse_activate, pmouseactivate, pobj);
+      SCAST_PTR(::ca::message::mouse_activate, pmouseactivate, pobj);
       pobj->previous();
       //int32_t nResult = pmouseactivate->get_lresult();
 
@@ -307,22 +307,22 @@ namespace userbase
 
 
 
-   void view::_001OnUpdateSplitCmd(gen::signal_object * pobj)
+   void view::_001OnUpdateSplitCmd(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnSplitCmd(gen::signal_object * pobj)
+   void view::_001OnSplitCmd(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnUpdateNextPaneMenu(gen::signal_object * pobj)
+   void view::_001OnUpdateNextPaneMenu(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void view::_001OnNextPaneCmd(gen::signal_object * pobj)
+   void view::_001OnNextPaneCmd(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -359,13 +359,13 @@ namespace userbase
    /////////////////////////////////////////////////////////////////////////////
    // ::view's OnPrintPreview.  Here to force linkage
 
-   void view::_001OnFilePrintPreview(gen::signal_object * pobj)
+   void view::_001OnFilePrintPreview(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view::_001OnFilePrint(gen::signal_object * pobj)
+   void view::_001OnFilePrint(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -446,26 +446,26 @@ namespace userbase
    //}
 
 
-   void view::_001OnRButtonDown(gen::signal_object * pobj)
+   void view::_001OnRButtonDown(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }
 
-   void view::_001OnLButtonDown(gen::signal_object * pobj)
+   void view::_001OnLButtonDown(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      //SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }
 
-   void view::_001OnMButtonDown(gen::signal_object * pobj)
+   void view::_001OnMButtonDown(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
 
       GetParentFrame()->SetActiveView(dynamic_cast < ::view * > (this));
    }

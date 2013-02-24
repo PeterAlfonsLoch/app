@@ -10,7 +10,7 @@
 **/
 
 class sync_object :
-   public ::gen::object
+   public ::ca::object
 {
 public:
 
@@ -27,10 +27,10 @@ public:
 
    operator HANDLE() const;
 
-   using ::gen::object::lock;
+   using ::ca::object::lock;
    virtual bool lock(const duration & durationTimeout);
 
-   using ::gen::object::wait;
+   using ::ca::object::wait;
    virtual wait_result wait(const duration & durationTimeout);
 
    virtual bool unlock() = 0;

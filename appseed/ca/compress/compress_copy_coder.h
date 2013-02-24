@@ -23,10 +23,10 @@ namespace libcompress
       copy_coder();
       ~copy_coder();
 
-      virtual gen::HRes Code(::gen::reader *inStream, ::gen::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
-      virtual gen::HRes GetInStreamProcessedSize(uint64_t *value);
+      virtual ca::HRes Code(::ca::reader *inStream, ::ca::writer *outStream, const file_size *inSize, const file_size *outSize, progress_info_interface *progress);
+      virtual ca::HRes GetInStreamProcessedSize(uint64_t *value);
    };
 
-   HRESULT CopyStream(::gen::reader * inStream, ::gen::writer * outStream, ::libcompress::progress_info_interface * progress);
+   HRESULT CopyStream(::ca::reader * inStream, ::ca::writer * outStream, ::libcompress::progress_info_interface * progress);
 
 } // namespace libcompress

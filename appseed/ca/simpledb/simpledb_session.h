@@ -7,7 +7,7 @@ namespace simpledb
    class server;
 
    class CLASS_DECL_ca session :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

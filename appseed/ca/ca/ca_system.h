@@ -35,12 +35,12 @@ namespace ca
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca system :
       virtual public ::ca::system,
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -69,7 +69,7 @@ namespace gen
       static inline class id id(int64_t i);
       static inline class id_space & id();
       inline class id id(const var & var);
-      inline class id id(const gen::property & prop);
+      inline class id id(const ca::property & prop);
 
       friend class application;
 
@@ -86,9 +86,9 @@ namespace gen
       return ::id((const char *) (class var &) var);
    }
 
-   inline id system::id(const gen::property & prop)
+   inline id system::id(const ca::property & prop)
    {
-      return ::id((const string &) (gen::property &) prop);
+      return ::id((const string &) (ca::property &) prop);
    }
 
 
@@ -122,6 +122,6 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 
 

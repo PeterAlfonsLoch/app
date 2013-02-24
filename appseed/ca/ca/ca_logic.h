@@ -1,6 +1,6 @@
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    namespace logic
@@ -11,5 +11,5 @@ namespace gen
 
    } // namespace logic
 
-} // namespace gen
+} // namespace ca
 

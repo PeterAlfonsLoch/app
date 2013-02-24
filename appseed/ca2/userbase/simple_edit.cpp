@@ -26,7 +26,7 @@ void simple_edit::pre_subclass_window()
    PreSubClassWindow();   
 }
 
-void simple_edit::install_message_handling(::gen::message::dispatch * pinterface)
+void simple_edit::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::edit_plain_text::install_message_handling(pinterface);
 }

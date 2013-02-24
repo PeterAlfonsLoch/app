@@ -235,7 +235,7 @@ __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnNewHook)
 }
 
 // This can be set to TRUE to override all __enable_memory_tracking calls,
-// allowing all allocations, even ca2 API internal allocations to be tracked.
+// allowing all allocations, even ca API internal allocations to be tracked.
 bool gen_MemoryLeakOverride = FALSE;
 
 bool __enable_memory_leak_override(bool bEnable)
@@ -316,11 +316,11 @@ void memory_state::dumpAllObjectsSince() const
 __STATIC void __do_for_all_objects_proxy(void * pObject, void * pContext)
 {
    ___ENUM_CONTEXT* p = (___ENUM_CONTEXT*)pContext;
-   (*p->m_pfn)((::gen::object*)pObject, p->m_pContext);
+   (*p->m_pfn)((::ca::object*)pObject, p->m_pContext);
 }
 
 void _API
-__do_for_all_objects(void (c_cdecl *pfn)(::gen::object*, void *), void * pContext)
+__do_for_all_objects(void (c_cdecl *pfn)(::ca::object*, void *), void * pContext)
 {
    if (pfn == NULL)
    {

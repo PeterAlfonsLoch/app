@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ namespace gen
          if(m_pset == NULL)
          {
             
-            m_pset = new gen::property_set(get_app());
+            m_pset = new ca::property_set(get_app());
 
          }
 
@@ -146,20 +146,20 @@ namespace gen
       if(bBigIcon)
       {
 
-         return const_cast < object * > (this)->oprop("big_icon").ca2 < ::visual::icon >();
+         return const_cast < object * > (this)->oprop("big_icon").ca < ::visual::icon >();
 
       }
       else
       {
 
-         return const_cast < object * > (this)->oprop("small_icon").ca2 < ::visual::icon >();
+         return const_cast < object * > (this)->oprop("small_icon").ca < ::visual::icon >();
 
       }
 
    }
 
 
-   gen::property & object::oprop(const char * psz)
+   ca::property & object::oprop(const char * psz)
    {
 
       return propset()[psz];
@@ -167,7 +167,7 @@ namespace gen
    }
 
 
-   gen::property & object::oprop(const char * psz) const 
+   ca::property & object::oprop(const char * psz) const 
    {
 
       return const_cast < object * > (this)->propset()[psz];
@@ -175,13 +175,13 @@ namespace gen
    }
 
 
-   gen::property_set & object::propset()
+   ca::property_set & object::propset()
    {
 
       if(m_pset == NULL)
       {
 
-         m_pset = new gen::property_set(get_app());
+         m_pset = new ca::property_set(get_app());
 
       }
 
@@ -210,38 +210,38 @@ namespace gen
 //void * object::operator new(size_t nSize)
   // { return ::operator new(nSize); }
 // DEBUG versions in objcore.cpp
-//void ::gen::object::AssertValid() const
+//void ::ca::object::AssertValid() const
 //   { /* no asserts in release builds */ }
-//void ::gen::object::Dump(dump_context &) const
+//void ::ca::object::Dump(dump_context &) const
 //   { /* no dumping in release builds */ }
 #endif //!DEBUG
 
 
-   ::gen::command_thread & object::command_thread()
+   ::ca::command_thread & object::command_thread()
    {
       return Application.command();
    }
 
 
-} //  namespace gen
+} //  namespace ca
 
 
 /////////////////////////////////////////////////////////////////////////////
 // Diagnostic Support
 
 //#ifdef DEBUG
-void assert_valid_object(const ::gen::object * pOb, const char * lpszFileName, int32_t nLine)
+void assert_valid_object(const ::ca::object * pOb, const char * lpszFileName, int32_t nLine)
 {
    if (pOb == NULL)
    {
-//      TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
+//      TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with NULL pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
    }
-   if (!__is_valid_address(pOb, sizeof(::gen::object)))
+   if (!__is_valid_address(pOb, sizeof(::ca::object)))
    {
-      ///TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+      ///TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -252,7 +252,7 @@ void assert_valid_object(const ::gen::object * pOb, const char * lpszFileName, i
    //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
    {
-//      TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
+//      TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
       if (__assert_failed_line(lpszFileName, nLine))
          __debug_break();
       return;     // quick escape
@@ -260,7 +260,7 @@ void assert_valid_object(const ::gen::object * pOb, const char * lpszFileName, i
 
    /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
    {
-   TRACE(::gen::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
+   TRACE(::ca::trace::category_AppMsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
    if (__assert_failed_line(lpszFileName, nLine))
    __debug_break();
    return;     // quick escape

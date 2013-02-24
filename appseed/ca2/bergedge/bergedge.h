@@ -2,8 +2,8 @@
 
 
 
-#include "ca2/platform/platform.h"
-#include "ca2/gcom/gcom.h"
+#include "ca/platform/platform.h"
+#include "ca/gcom/gcom.h"
 
 
 #include "bergedge_view.h"

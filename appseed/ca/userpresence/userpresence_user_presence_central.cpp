@@ -63,12 +63,12 @@ namespace userpresence
 
    }
 
-   void presence_central::message_window_message_handler(gen::signal_object * pobj)
+   void presence_central::message_window_message_handler(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_TIMER)
       {
-         SCAST_PTR(::gen::message::timer, ptimer, pobj);
+         SCAST_PTR(::ca::message::timer, ptimer, pobj);
          if(&ApplicationUser != NULL)
          {
             presence * ppresence = ApplicationUser.m_ppresence;

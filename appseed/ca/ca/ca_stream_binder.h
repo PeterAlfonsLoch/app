@@ -3,11 +3,11 @@
 
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca stream_binder :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       
@@ -23,7 +23,7 @@ namespace gen
       stream_binder(::ca::application * papp);
       HRes CreateEvents();
 
-      virtual void CreateStreams(gen::reader **inStream, gen::writer **outStream);
+      virtual void CreateStreams(ca::reader **inStream, ca::writer **outStream);
 
       virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
       virtual void CloseRead();
@@ -34,5 +34,5 @@ namespace gen
       virtual void ReInit();
    };
 
-} // namespace gen
+} // namespace ca
 

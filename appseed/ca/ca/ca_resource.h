@@ -15,22 +15,22 @@
 
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca resource :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       resource();
       virtual ~resource();
 
-      virtual bool ReadResource(gen::file & file, UINT nID, const char * lpcszType);
-      virtual bool ReadResource(HINSTANCE hinst, gen::file & file, UINT nID, const char * lpcszType);
+      virtual bool ReadResource(ca::file & file, UINT nID, const char * lpcszType);
+      virtual bool ReadResource(HINSTANCE hinst, ca::file & file, UINT nID, const char * lpcszType);
 
    };
 
    typedef ca::smart_pointer < resource > resource_sp;
 
-} // namespace gen
+} // namespace ca
 

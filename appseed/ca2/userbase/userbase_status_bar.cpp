@@ -29,7 +29,7 @@ namespace userbase
    //   AllocElements(0, 0);    // destroys existing elements
    }
 
-   void status_bar::install_message_handling(::gen::message::dispatch * pinterface)
+   void status_bar::install_message_handling(::ca::message::dispatch * pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_NCHITTEST         , pinterface, this, &status_bar::_001OnNcHitTest);
       IGUI_WIN_MSG_LINK(WM_NCCALCSIZE        , pinterface, this, &status_bar::_001OnNcCalcSize);
@@ -52,10 +52,10 @@ namespace userbase
    {
       ASSERT_VALID(pParentWnd);   // must have a parent
 
-      // save the style (some of these style bits are ca2 API specific)
+      // save the style (some of these style bits are ca API specific)
       m_dwStyle = (dwStyle & CBRS_ALL);
 
-      // translate ca2 API style bits to windows style bits
+      // translate ca API style bits to windows style bits
       dwStyle &= ~CBRS_ALL;
 #ifdef WINDOWSEX
       dwStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
@@ -123,7 +123,7 @@ namespace userbase
             {
    /* xxx            if (!pSBP->strText.load_string(pSBP->strId))
                {
-                  TRACE(::gen::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
+                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                      pSBP->strId);
                   bResult = FALSE;
                   break;
@@ -513,9 +513,9 @@ namespace userbase
    }
 
 
-   void status_bar::_001OnNcHitTest(gen::signal_object * pobj)
+   void status_bar::_001OnNcHitTest(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::nchittest, pnchittest, pobj)
+      SCAST_PTR(::ca::message::nchittest, pnchittest, pobj)
       UINT nResult = (UINT)Default();
       if (nResult == HTBOTTOMRIGHT)
       {
@@ -527,10 +527,10 @@ namespace userbase
       }
    }
 
-   void status_bar::_001OnNcCalcSize(gen::signal_object * pobj)
+   void status_bar::_001OnNcCalcSize(ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::gen::message::nc_calc_size, pnccalcsize, pobj)
+      SCAST_PTR(::ca::message::nc_calc_size, pnccalcsize, pobj)
       // calculate border space (will add to top/bottom, subtract from right/bottom)
       class rect rect;
       rect.null();
@@ -607,7 +607,7 @@ namespace userbase
    }
 
 
-   void status_bar::_001OnSize(gen::signal_object * pobj)
+   void status_bar::_001OnSize(ca::signal_object * pobj)
    {
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -618,10 +618,10 @@ namespace userbase
       UpdateAllPanes(TRUE, FALSE);
    }
 
-   void status_bar::_001OnWindowPosChanging(gen::signal_object * pobj)
+   void status_bar::_001OnWindowPosChanging(ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
-      SCAST_PTR(::gen::message::window_pos, pwindowpos, pobj)
+      SCAST_PTR(::ca::message::window_pos, pwindowpos, pobj)
       // not necessary to invalidate the borders
       uint32_t dwStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -633,9 +633,9 @@ namespace userbase
 #endif
    }
 
-   void status_bar::_001OnSetText(gen::signal_object * pobj)
+   void status_bar::_001OnSetText(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -650,9 +650,9 @@ namespace userbase
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnGetText(gen::signal_object * pobj)
+   void status_bar::_001OnGetText(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
       ASSERT_VALID(this);
       ASSERT(IsWindow());
 
@@ -681,9 +681,9 @@ namespace userbase
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnGetTextLength(gen::signal_object * pobj)
+   void status_bar::_001OnGetTextLength(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
 
       ASSERT_VALID(this);
       ASSERT(IsWindow());
@@ -699,9 +699,9 @@ namespace userbase
       pbase->m_bRet = true;
    }
 
-   void status_bar::_001OnSetMinHeight(gen::signal_object * pobj)
+   void status_bar::_001OnSetMinHeight(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
       LRESULT lResult = Default();
       m_nMinHeight = (int32_t)pbase->m_wparam;
       pbase->set_lresult(lResult);

@@ -30,7 +30,7 @@ namespace sockets
    /** Ipv6 address implementation.
    \ingroup basic */
    class CLASS_DECL_ca ipv6_address : 
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

@@ -30,7 +30,7 @@ namespace fs
       void add_item(const char * pszPath, const char * pszTitle);
       //virtual void schedule_file_size(const char * psz) = 0;
       virtual void _017Synchronize();
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       image_list * GetActionButtonImageList(index i);
 

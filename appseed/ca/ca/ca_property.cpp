@@ -12,7 +12,7 @@ void prop_id_debug(::ca::application * papp);
 
 
 
-namespace gen
+namespace ca
 {
 
    pair_set_interface::pair_set_interface()
@@ -280,11 +280,11 @@ namespace gen
 
    void property::parse_json(const char * & pszJson, const char * pszEnd)
    {
-      gen::str::consume_spaces(pszJson, 0, pszEnd);
-      m_strName = gen::str::consume_quoted_value(pszJson, pszEnd);
+      ca::str::consume_spaces(pszJson, 0, pszEnd);
+      m_strName = ca::str::consume_quoted_value(pszJson, pszEnd);
       m_strNameLow = m_strName;
       m_strNameLow.make_lower();
-      gen::str::consume(pszJson, ":", 1, pszEnd);
+      ca::str::consume(pszJson, ":", 1, pszEnd);
       get_value().parse_json(pszJson, pszEnd);
    }
 
@@ -372,13 +372,13 @@ namespace gen
       return this->element_at(iIndex);
    }
 
-   void property::write(gen::byte_output_stream & ostream)
+   void property::write(ca::byte_output_stream & ostream)
    {
       ostream << m_strName;
       ostream << get_value();
    }
 
-   void property::read(gen::byte_input_stream & istream)
+   void property::read(ca::byte_input_stream & istream)
    {
       istream >> m_strName;
       istream >> get_value();
@@ -1373,7 +1373,7 @@ namespace gen
       {
          index iMax = -1;
          index idx;
-         ::gen::property_pair pair(*this);
+         ::ca::property_pair pair(*this);
          while(pair())
          {
             if(pair->name() == "0")
@@ -1443,7 +1443,7 @@ namespace gen
       {
          index iMax = -1;
          index idx;
-         ::gen::property_pair pair(*this);
+         ::ca::property_pair pair(*this);
          while(pair())
          {
             if(pair->name() == "0")
@@ -1704,7 +1704,7 @@ namespace gen
       {
          string strName(pszName);
          strName.make_lower();
-         gen::property_map::pair * ppair = m_map.PLookup(strName);
+         ca::property_map::pair * ppair = m_map.PLookup(strName);
          if(ppair == NULL)
             return 0;
          m_propertya.remove_at(ppair->m_value);
@@ -1713,7 +1713,7 @@ namespace gen
       }
       else
       {
-         gen::property_map::pair * ppair = m_map.PLookup(pszName);
+         ca::property_map::pair * ppair = m_map.PLookup(pszName);
          if(ppair == NULL)
             return 0;
          m_propertya.remove_at(ppair->m_value);
@@ -1728,14 +1728,14 @@ namespace gen
       {
          string strName(pszName);
          strName.make_lower();
-         gen::property_map::pair * ppair = m_map.PLookup(strName);
+         ca::property_map::pair * ppair = m_map.PLookup(strName);
          if(ppair == NULL)
             return -1;
          return ppair->m_value;
       }
       else
       {
-         gen::property_map::pair * ppair = m_map.PLookup(pszName);
+         ca::property_map::pair * ppair = m_map.PLookup(pszName);
          if(ppair == NULL)
             return -1;
          return ppair->m_value;
@@ -1894,7 +1894,7 @@ namespace gen
 
       straKey.explode(".", pszKey);
 
-      gen::property_set * pset = this;
+      ca::property_set * pset = this;
 
       int32_t i = 0;
 
@@ -1938,9 +1938,9 @@ namespace gen
       while(bRun)
       {
          bRun = bRun && *pszCmdLine != '\0';
-         if(!bStarted && !bQuote && *pszCmdLine != '\0' && gen::ch::is_space_char(pszCmdLine))
+         if(!bStarted && !bQuote && *pszCmdLine != '\0' && ca::ch::is_space_char(pszCmdLine))
          {
-            pszStart = gen::str::utf8_inc(pszCmdLine);
+            pszStart = ca::str::utf8_inc(pszCmdLine);
             bStarted = true;
          }
          if(pszStart <= pszCmdLine && (((bApp || bFile) && ((!bQuote && isspace(*pszCmdLine)) || (bQuote && *pszCmdLine == '\"' && (*(pszCmdLine - 1)) != '\\') || !bRun)) || (!bTwoDots && !bQuote && *pszCmdLine == ':')))
@@ -2083,15 +2083,15 @@ namespace gen
 
    void property_set::parse_json(const char * & pszJson, const char * pszEnd)
    {
-      gen::str::consume_spaces(pszJson, 0, pszEnd);
-      gen::str::consume(pszJson, "{", 1, pszEnd);
-      gen::str::consume_spaces(pszJson, 0, pszEnd);
+      ca::str::consume_spaces(pszJson, 0, pszEnd);
+      ca::str::consume(pszJson, "{", 1, pszEnd);
+      ca::str::consume_spaces(pszJson, 0, pszEnd);
       while(true)
       {
          m_propertya.set_size(m_propertya.get_size() + 1);
          m_propertya.last_element().parse_json(pszJson, pszEnd);
          m_map.set_at(m_propertya.last_element().lowname(), m_propertya.get_upper_bound());
-         gen::str::consume_spaces(pszJson, 0, pszEnd);
+         ca::str::consume_spaces(pszJson, 0, pszEnd);
          if(*pszJson == ',')
          {
             pszJson++;
@@ -2352,7 +2352,7 @@ namespace gen
       m_map.remove_all();
    }
 
-   void property_set::write(gen::byte_output_stream & ostream)
+   void property_set::write(ca::byte_output_stream & ostream)
    {
       ostream << m_bAutoAdd;
       ostream << m_bMultiValue;
@@ -2360,7 +2360,7 @@ namespace gen
       ostream << m_propertya;
    }
 
-   void property_set::read(gen::byte_input_stream & istream)
+   void property_set::read(ca::byte_input_stream & istream)
    {
       istream >> m_bAutoAdd;
       istream >> m_bMultiValue;
@@ -2601,12 +2601,12 @@ namespace gen
 
    property & property_set::operator[](index iIndex)
    {
-      return operator[](gen::str::from(iIndex));
+      return operator[](ca::str::from(iIndex));
    }
 
    property property_set::operator[](index iIndex) const
    {
-      return operator[](gen::str::from(iIndex));
+      return operator[](ca::str::from(iIndex));
    }
 
    property & property_set::operator[](const var & var)
@@ -2689,7 +2689,7 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 
 
 
@@ -2698,7 +2698,7 @@ void prop_id_debug(::ca::application * papp)
 
    comparable_array < ::id > idaSchema;
 
-   gen::property_set set(papp);
+   ca::property_set set(papp);
 
    idaSchema.add(set["prop1"]);
 
@@ -2720,13 +2720,13 @@ void prop_id_debug(::ca::application * papp)
 
 
 
-string CLASS_DECL_ca operator + (const char * psz, const gen::property & prop)
+string CLASS_DECL_ca operator + (const char * psz, const ca::property & prop)
 {
    return psz + prop.get_value();
 }
 
 
-string CLASS_DECL_ca operator + (const string & str, const gen::property & prop)
+string CLASS_DECL_ca operator + (const string & str, const ca::property & prop)
 {
    return str + prop.get_value();
 }
@@ -2746,43 +2746,43 @@ string CLASS_DECL_ca operator + (const string & str, const gen::property & prop)
 
 
 
-var CLASS_DECL_ca operator - (int32_t i, const gen::property & prop)
+var CLASS_DECL_ca operator - (int32_t i, const ca::property & prop)
 {
    return i - prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator - (uint32_t user, const gen::property & prop)
+var CLASS_DECL_ca operator - (uint32_t user, const ca::property & prop)
 {
    return user - prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator - (int64_t l, const gen::property & prop)
+var CLASS_DECL_ca operator - (int64_t l, const ca::property & prop)
 {
    return l - prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator - (uint64_t ul, const gen::property & prop)
+var CLASS_DECL_ca operator - (uint64_t ul, const ca::property & prop)
 {
    return ul - prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator - (double d, const gen::property & prop)
+var CLASS_DECL_ca operator - (double d, const ca::property & prop)
 {
    return d - prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator - (const var & var, const gen::property & prop)
+var CLASS_DECL_ca operator - (const var & var, const ca::property & prop)
 {
    return var - prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator - (const gen::property & prop1, const gen::property & prop2)
+var CLASS_DECL_ca operator - (const ca::property & prop1, const ca::property & prop2)
 {
    return prop1.get_value() - prop2.get_value();
 }
@@ -2802,43 +2802,43 @@ var CLASS_DECL_ca operator - (const gen::property & prop1, const gen::property &
 
 
 
-var CLASS_DECL_ca operator + (int32_t i, const gen::property & prop)
+var CLASS_DECL_ca operator + (int32_t i, const ca::property & prop)
 {
    return i + prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (uint32_t user, const gen::property & prop)
+var CLASS_DECL_ca operator + (uint32_t user, const ca::property & prop)
 {
    return user + prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (int64_t l, const gen::property & prop)
+var CLASS_DECL_ca operator + (int64_t l, const ca::property & prop)
 {
    return l + prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (uint64_t ul, const gen::property & prop)
+var CLASS_DECL_ca operator + (uint64_t ul, const ca::property & prop)
 {
    return ul + prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (double d, const gen::property & prop)
+var CLASS_DECL_ca operator + (double d, const ca::property & prop)
 {
    return d + prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (const var & var, const gen::property & prop)
+var CLASS_DECL_ca operator + (const var & var, const ca::property & prop)
 {
    return var + prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property & prop2)
+var CLASS_DECL_ca operator + (const ca::property & prop1, const ca::property & prop2)
 {
    return prop1.get_value() + prop2.get_value();
 }
@@ -2858,43 +2858,43 @@ var CLASS_DECL_ca operator + (const gen::property & prop1, const gen::property &
 
 
 
-var CLASS_DECL_ca operator / (int32_t i, const gen::property & prop)
+var CLASS_DECL_ca operator / (int32_t i, const ca::property & prop)
 {
    return i / prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator / (uint32_t user, const gen::property & prop)
+var CLASS_DECL_ca operator / (uint32_t user, const ca::property & prop)
 {
    return user / prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator / (int64_t l, const gen::property & prop)
+var CLASS_DECL_ca operator / (int64_t l, const ca::property & prop)
 {
    return l / prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator / (uint64_t ul, const gen::property & prop)
+var CLASS_DECL_ca operator / (uint64_t ul, const ca::property & prop)
 {
    return ul / prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator / (double d, const gen::property & prop)
+var CLASS_DECL_ca operator / (double d, const ca::property & prop)
 {
    return d / prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator / (const var & var, const gen::property & prop)
+var CLASS_DECL_ca operator / (const var & var, const ca::property & prop)
 {
    return var / prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator / (const gen::property & prop1, const gen::property & prop2)
+var CLASS_DECL_ca operator / (const ca::property & prop1, const ca::property & prop2)
 {
    return prop1.get_value() / prop2.get_value();
 }
@@ -2914,43 +2914,43 @@ var CLASS_DECL_ca operator / (const gen::property & prop1, const gen::property &
 
 
 
-var CLASS_DECL_ca operator * (int32_t i, const gen::property & prop)
+var CLASS_DECL_ca operator * (int32_t i, const ca::property & prop)
 {
    return i * prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator * (uint32_t user, const gen::property & prop)
+var CLASS_DECL_ca operator * (uint32_t user, const ca::property & prop)
 {
    return user * prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator * (int64_t l, const gen::property & prop)
+var CLASS_DECL_ca operator * (int64_t l, const ca::property & prop)
 {
    return l * prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator * (uint64_t ul, const gen::property & prop)
+var CLASS_DECL_ca operator * (uint64_t ul, const ca::property & prop)
 {
    return ul * prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator * (double d, const gen::property & prop)
+var CLASS_DECL_ca operator * (double d, const ca::property & prop)
 {
    return d * prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator * (const var & var, const gen::property & prop)
+var CLASS_DECL_ca operator * (const var & var, const ca::property & prop)
 {
    return var * prop.get_value();
 }
 
 
-var CLASS_DECL_ca operator * (const gen::property & prop1, const gen::property & prop2)
+var CLASS_DECL_ca operator * (const ca::property & prop1, const ca::property & prop2)
 {
    return prop1.get_value() * prop2.get_value();
 }

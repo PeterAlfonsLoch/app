@@ -17,7 +17,7 @@ namespace crypto
 
 
       class CLASS_DECL_ca context :
-         public ::gen::object
+         public ::ca::object
       {
       public:
 

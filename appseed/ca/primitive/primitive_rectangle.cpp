@@ -83,28 +83,28 @@ void rect::Align(int32_t align, LPCRECT lpcrect)
 
    point pt(0, 0);
 
-   if((align & gen::AlignH) == gen::AlignHorizontalCenter)
+   if((align & ca::AlignH) == ca::AlignHorizontalCenter)
    {
       pt.x = lpcrect->left + (lpcrect->right - lpcrect->left) / 2 - width() / 2 - left;
    }
-   else if((align & gen::AlignH) == gen::AlignLeft)
+   else if((align & ca::AlignH) == ca::AlignLeft)
    {
       pt.x = lpcrect->left - left;
    }
-   else if((align & gen::AlignH) == gen::AlignRight)
+   else if((align & ca::AlignH) == ca::AlignRight)
    {
       pt.x = lpcrect->right - right;
    }
 
-   if((align & gen::AlignV) ==  gen::AlignVerticalCenter)
+   if((align & ca::AlignV) ==  ca::AlignVerticalCenter)
    {
       pt.y = lpcrect->top + (lpcrect->bottom - lpcrect->top) / 2 - height() / 2 - top;
    }
-   else if((align & gen::AlignV) == gen::AlignTop)
+   else if((align & ca::AlignV) == ca::AlignTop)
    {
       pt.y = lpcrect->top - top;
    }
-   else if((align & gen::AlignV) == gen::AlignBottom)
+   else if((align & ca::AlignV) == ca::AlignBottom)
    {
       pt.y = lpcrect->bottom - bottom;
    }
@@ -304,28 +304,28 @@ void rect64::Align(int64_t align, const __rect64 *  lpcrect)
 
    point64 pt(0, 0);
 
-   if((align & gen::AlignH) == gen::AlignHorizontalCenter)
+   if((align & ca::AlignH) == ca::AlignHorizontalCenter)
    {
       pt.x = lpcrect->left + (lpcrect->right - lpcrect->left) / 2 - width() / 2 - left;
    }
-   else if((align & gen::AlignH) == gen::AlignLeft)
+   else if((align & ca::AlignH) == ca::AlignLeft)
    {
       pt.x = lpcrect->left - left;
    }
-   else if((align & gen::AlignH) == gen::AlignRight)
+   else if((align & ca::AlignH) == ca::AlignRight)
    {
       pt.x = lpcrect->right - right;
    }
 
-   if((align & gen::AlignV) ==  gen::AlignVerticalCenter)
+   if((align & ca::AlignV) ==  ca::AlignVerticalCenter)
    {
       pt.y = lpcrect->top + (lpcrect->bottom - lpcrect->top) / 2 - height() / 2 - top;
    }
-   else if((align & gen::AlignV) == gen::AlignTop)
+   else if((align & ca::AlignV) == ca::AlignTop)
    {
       pt.y = lpcrect->top - top;
    }
-   else if((align & gen::AlignV) == gen::AlignBottom)
+   else if((align & ca::AlignV) == ca::AlignBottom)
    {
       pt.y = lpcrect->bottom - bottom;
    }

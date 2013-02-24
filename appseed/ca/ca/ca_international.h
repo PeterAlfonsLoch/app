@@ -4,7 +4,7 @@
 class var;
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -142,7 +142,7 @@ namespace gen
    } // namespace international
 
 
-} // namespace gen
+} // namespace ca
 
 
-#define unitext(text) (::gen::international::unicode_to_utf8(L##text))
+#define unitext(text) (::ca::international::unicode_to_utf8(L##text))

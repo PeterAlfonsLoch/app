@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca image_list :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
@@ -35,7 +35,7 @@ protected:
 public:
 
 
-   using ::gen::request_interface::create;
+   using ::ca::request_interface::create;
    bool create(int32_t cx, int32_t cy, UINT nFlags, int32_t nInitial, int32_t nGrow);
    bool realize(::ca::graphics * pdc);
     //bool create(const char * lpszBitmapID, int32_t cx, int32_t nGrow, COLORREF crMask);

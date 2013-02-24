@@ -42,7 +42,7 @@ namespace simpledb
    bool session::query(const char * pszQuery, var & var)
    {
       stringa stra;
-      gen::property_set set(get_app());
+      ca::property_set set(get_app());
       set.parse_url_query(pszQuery);
       if(set["command"] == "open")
       {

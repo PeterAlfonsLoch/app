@@ -59,7 +59,7 @@ namespace zip
    {
       UNREFERENCED_PARAMETER(stream);
       memory_file * pfile = (memory_file *) opaque;
-      if(pfile->seek(offset, (::gen::e_seek) origin) == 0xffffffff)
+      if(pfile->seek(offset, (::ca::e_seek) origin) == 0xffffffff)
          return -1;
       else
          return 0;

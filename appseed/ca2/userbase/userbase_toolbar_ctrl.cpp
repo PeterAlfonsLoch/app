@@ -107,7 +107,7 @@ namespace userbase
    ASSERT(lpszResourceName != NULL);
 
    // determine location of the bitmap in resource fork
-   HINSTANCE hInst = gen::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
+   HINSTANCE hInst = ca::FindResourceHandle(lpszResourceName, RT_TOOLBAR);
    HRSRC hRsrc = ::FindResource(hInst, lpszResourceName, RT_TOOLBAR);
    if (hRsrc == NULL)
    return FALSE;

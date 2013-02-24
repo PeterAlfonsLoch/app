@@ -30,7 +30,7 @@ public:
 
    file_manager_operation_document * get_document();
 
-   virtual void install_message_handling(::gen::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca::message::dispatch * pinterface);
    
    DECL_GEN_SIGNAL(_001OnCreate)
    DECL_GEN_SIGNAL(_001OnMainPostMessage)

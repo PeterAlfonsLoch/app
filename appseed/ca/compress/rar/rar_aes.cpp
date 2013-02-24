@@ -17,7 +17,7 @@ namespace crypto
          _salt[i] = 0;
    }
 
-   gen::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
+   ca::HRes decoder::SetDecoderProperties2(const byte *data, uint32_t size)
    {
       bool thereIsSaltPrev = _thereIsSalt;
       _thereIsSalt = false;
@@ -49,7 +49,7 @@ namespace crypto
 
    static const uint32_t kMaxPasswordLength = 127 * 2;
 
-   gen::HRes decoder::CryptoSetPassword(const byte *data, uint32_t size)
+   ca::HRes decoder::CryptoSetPassword(const byte *data, uint32_t size)
    {
       if (size > kMaxPasswordLength)
          size = kMaxPasswordLength;
@@ -71,7 +71,7 @@ namespace crypto
       return S_OK;
    }
 
-   gen::HRes decoder::Init()
+   ca::HRes decoder::Init()
    {
       Calculate();
 //      aes_cbc_init(&m_ctx, aeskey, kRarAesKeySize);

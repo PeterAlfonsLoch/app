@@ -8,7 +8,7 @@ inline bool EqualsCompareElements(const TYPE * pElement1, const ARG_TYPE element
 }
 
 
-namespace gen
+namespace ca
 {
 
    template < class TYPE, class ARG_TYPE >
@@ -64,7 +64,7 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca
 
 
 

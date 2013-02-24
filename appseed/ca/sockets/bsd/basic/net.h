@@ -86,7 +86,7 @@ namespace sockets
 
 
    class CLASS_DECL_ca net :
-      public ::gen::object
+      public ::ca::object
    {
    private:
 

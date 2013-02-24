@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    namespace logic
@@ -18,5 +18,5 @@ namespace gen
 
    } // namespace logic
 
-} // namespace gen
+} // namespace ca
 

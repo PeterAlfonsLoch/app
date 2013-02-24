@@ -3,7 +3,7 @@
 
 
 class CLASS_DECL_ca multi_lock :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 

@@ -182,7 +182,7 @@ namespace visual
    //      VERIFY(::SelectObject(pdc->m_hDC, pfont->m_hObject));
 
          string str;
-         str = gen::international::utf8_to_unicode(psz);
+         str = ca::international::utf8_to_unicode(psz);
 
 #ifdef WINDOWSEX
          ::SetTextColor((HDC)pdc->get_os_data(), crOutline);
@@ -231,7 +231,7 @@ namespace visual
       return;
 
       string str;
-      str = gen::international::utf8_to_unicode(psz);
+      str = ca::international::utf8_to_unicode(psz);
       ::TextOutU((HDC)pdc->get_os_data(), lpcrect->left, lpcrect->top, str, (int32_t) str.get_length());
    }
 

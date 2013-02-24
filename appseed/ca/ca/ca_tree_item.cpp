@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
 /*   #define ROUND(x,y) (((x)+(y-1))&~(y-1))
@@ -65,7 +65,7 @@ namespace gen
       return m_ptree;
    }
 
-   void tree_item::sort_children(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::gen::tree_data *), gen::tree_data * ptreedata)
+   void tree_item::sort_children(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ca::tree_data *), ca::tree_data * ptreedata)
    {
 
       tree_item * pitemParent = this;
@@ -291,7 +291,7 @@ namespace gen
       case TreeNavigationExpandedForward:
          return get_next(true, true, pindexLevel);
       case TreeNavigationProperForward:
-         return get_next((m_dwState & ::gen::tree_item_state_expanded) != 0, true, pindexLevel);
+         return get_next((m_dwState & ::ca::tree_item_state_expanded) != 0, true, pindexLevel);
       default:
          // Not Expected
          ASSERT(FALSE);
@@ -480,4 +480,4 @@ namespace gen
       return iCount;
    }
 
-} // namespace gen
+} // namespace ca

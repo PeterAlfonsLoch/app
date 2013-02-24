@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
    class application;
    class application_signal_object;
@@ -17,29 +17,29 @@ namespace ca
    // passed as application_bias to bergedge that can later pass or use this information as application_bias
    // for further actions.
    class CLASS_DECL_ca application_bias :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
 
       class CLASS_DECL_ca callback :
-         virtual public ::gen::signalizable
+         virtual public ::ca::signalizable
       {
       public:
 
 
          void connect_to(::ca::application * papp);
 
-         void on_call_signal(gen::signal_object * pobj);
+         void on_call_signal(ca::signal_object * pobj);
 
-         virtual void on_application_bias_callback_signal(::gen::application_signal_object * pobj);
+         virtual void on_application_bias_callback_signal(::ca::application_signal_object * pobj);
 
       };
 
       
       ::user::interaction *      m_puiParent;
       callback *                 m_pcallback;
-      gen::property_set          m_set;
+      ca::property_set          m_set;
 
       
       application_bias();

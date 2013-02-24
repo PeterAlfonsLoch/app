@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca property_set :
-      public ::gen::object,
-      public gen::byte_serializable
+      public ::ca::object,
+      public ca::byte_serializable
    {
    public:
 
@@ -163,8 +163,8 @@ namespace gen
       void parse_http_headers(const char * pszHeaders);
       string get_http_post();
 
-      virtual void write(gen::byte_output_stream & ostream);
-      virtual void read(gen::byte_input_stream & ostream);
+      virtual void write(ca::byte_output_stream & ostream);
+      virtual void read(ca::byte_input_stream & ostream);
 
       virtual string implode(const char * pszGlue) const;
       count get_count() const;
@@ -254,12 +254,12 @@ namespace gen
          m_ppair = NULL;
       }
 
-      gen::property * operator ->()
+      ca::property * operator ->()
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
 
-      const gen::property * operator ->() const
+      const ca::property * operator ->() const
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
@@ -299,12 +299,12 @@ namespace gen
          m_ppair = NULL;
       }
 
-      const gen::property * operator ->()
+      const ca::property * operator ->()
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
 
-      const gen::property * operator ->() const
+      const ca::property * operator ->() const
       {
          return &m_set.m_propertya[m_ppair->m_value];
       }
@@ -356,7 +356,7 @@ namespace gen
 
    inline property * property_set::lowfind(const string & strName)
    {
-      gen::property_map::pair * ppair = m_map.PLookup(strName);
+      ca::property_map::pair * ppair = m_map.PLookup(strName);
       if(ppair == NULL)
          return NULL;
       return &m_propertya[ppair->m_value];
@@ -404,7 +404,7 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 

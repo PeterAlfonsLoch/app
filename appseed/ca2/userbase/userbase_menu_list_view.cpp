@@ -15,7 +15,7 @@ namespace userbase
       m_bAutoClose         = false;
    }
 
-   void menu_list_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void menu_list_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       menu_list_window::install_message_handling(pinterface);
    }
@@ -39,9 +39,9 @@ namespace userbase
 
 #endif //DEBUG
 
-   void menu_list_view::GuieProc(gen::signal_object * pobj)
+   void menu_list_view::GuieProc(ca::signal_object * pobj)
    {
-      SCAST_PTR(gen::message::base, pbase, pobj);
+      SCAST_PTR(ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == m_uiMessage)
       {
          if(base < ::user::place_holder >::bases(get_parent()))

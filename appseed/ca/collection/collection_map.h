@@ -8,9 +8,9 @@ namespace collection
 {
 
 
-   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = gen::hash < ARG_KEY > , class EQUALS = gen::equals_type_arg_type < KEY, ARG_KEY > >
+   template <class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH = ca::hash < ARG_KEY > , class EQUALS = ca::equals_type_arg_type < KEY, ARG_KEY > >
    class map :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -854,7 +854,7 @@ namespace collection
    {
       ASSERT_VALID(this);
 
-      ::gen::object::Serialize(ar);
+      ::ca::object::Serialize(ar);
 
       if (ar.IsStoring())
       {
@@ -901,7 +901,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::dump(dump_context & dumpcontext) const
    {
-      ::gen::object::dump(dumpcontext);
+      ::ca::object::dump(dumpcontext);
 
       dumpcontext << "with " << m_nCount << " elements";
       if (dumpcontext.GetDepth() > 0)
@@ -925,7 +925,7 @@ namespace collection
    template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class HASH, class EQUALS >
    void map < KEY, ARG_KEY, VALUE, ARG_VALUE, HASH, EQUALS>::assert_valid() const
    {
-      ::gen::object::assert_valid();
+      ::ca::object::assert_valid();
 
       ASSERT(m_nHashTableSize > 0);
       ASSERT(m_nCount == 0 || m_pHashTable != NULL);
@@ -983,7 +983,7 @@ namespace collection
    }
 
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::hash < const string & > , class EQUALS = gen::equals_type_arg_type < string, const string & > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ca::hash < const string & > , class EQUALS = ca::equals_type_arg_type < string, const string & > >
    class string_map :
       virtual public attrib_map < map < string, const string &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
@@ -1024,7 +1024,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::strid_hash, class EQUALS = gen::strid_equals  >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ca::strid_hash, class EQUALS = ca::strid_equals  >
    class strid_map :
       virtual public attrib_map < map < id, const id &, VALUE, ARG_VALUE, HASH, EQUALS > >
    {
@@ -1066,7 +1066,7 @@ namespace collection
 
    }
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = gen::hash < int32_t > , class EQUALS = gen::equals_type_arg_type < int32_t, int32_t > >
+   template < class VALUE, class ARG_VALUE = const VALUE &, class HASH = ca::hash < int32_t > , class EQUALS = ca::equals_type_arg_type < int32_t, int32_t > >
    class int_map :
       virtual public attrib_map < map < int32_t, int32_t, VALUE, ARG_VALUE, HASH, EQUALS > >
    {

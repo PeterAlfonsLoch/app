@@ -42,7 +42,7 @@ public:
 
 
 class CLASS_DECL_ca2 XfplayerViewLineSelection :
-   virtual ::gen::object
+   virtual ::ca::object
 {
 public:
    enum e_state
@@ -85,7 +85,7 @@ public:
    virtual ~XfplayerViewLineSelection();
 
 
-   virtual void relay_event(XfplayerViewLine & viewline, gen::signal_object * pobj);
+   virtual void relay_event(XfplayerViewLine & viewline, ca::signal_object * pobj);
    virtual void OnSelEvent(XfplayerViewLine & viewline, e_event eselevent);
    bool SetSelBefore(XfplayerViewLine & viewline);
    bool SetSelAfter(XfplayerViewLine & viewline);

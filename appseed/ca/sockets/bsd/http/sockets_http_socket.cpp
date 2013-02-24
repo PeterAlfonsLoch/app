@@ -77,9 +77,9 @@ namespace sockets
                   if (m_chunk_line.get_length() > 1 && m_chunk_line.Mid(m_chunk_line.get_length() - 2) == "\r\n")
                   {
                      m_chunk_line = m_chunk_line.Left(m_chunk_line.get_length() - 2);
-                     ::gen::parse pa(m_chunk_line, ";");
+                     ::ca::parse pa(m_chunk_line, ";");
                      string size_str = pa.getword();
-                     m_chunk_size = gen::hex::to_uint(size_str);
+                     m_chunk_size = ca::hex::to_uint(size_str);
                      if (!m_chunk_size)
                      {
                         m_chunk_state = 4;
@@ -188,9 +188,9 @@ namespace sockets
 #endif
 
          }
-         ::gen::parse pa(line);
+         ::ca::parse pa(line);
          string str = pa.getword();
-         if (str.get_length() > 4 &&  gen::str::begins_ci(str, "http/")) // response
+         if (str.get_length() > 4 &&  ca::str::begins_ci(str, "http/")) // response
          {
             m_response.lowattr(__str(http_version)) = str;
             m_response.lowattr(__str(http_status_code)) = pa.getword();
@@ -215,10 +215,10 @@ namespace sockets
             string strRequestUri = pa.getword();
             string strScript = System.url().get_script(strRequestUri);
             string strQuery = System.url().object_get_query(strRequestUri);
-            m_request.m_strRequestUri = System.url().url_decode(strScript) + gen::str::has_char(strQuery, "?");
+            m_request.m_strRequestUri = System.url().url_decode(strScript) + ca::str::has_char(strQuery, "?");
             m_request.lowattr(__str(request_uri)) = m_request.m_strRequestUri;
             m_request.lowattr(__str(http_version)) = pa.getword();
-            m_b_http_1_1 = gen::str::ends(m_request.lowattr(__str(http_version)), "/1.1");
+            m_b_http_1_1 = ca::str::ends(m_request.lowattr(__str(http_version)), "/1.1");
             m_b_keepalive = m_b_http_1_1;
             m_bRequest     = true;
             m_bResponse    = false;
@@ -293,7 +293,7 @@ namespace sockets
          }
          else
          {
-            if(gen::str::equals_ci(value, "keep-alive"))
+            if(ca::str::equals_ci(value, "keep-alive"))
             {
                m_b_keepalive = true;
             }
@@ -303,7 +303,7 @@ namespace sockets
             }
          }
       }
-      if (gen::str::equals_ci(key, "transfer-encoding") && gen::str::ends_ci(value, "chunked"))
+      if (ca::str::equals_ci(key, "transfer-encoding") && ca::str::ends_ci(value, "chunked"))
       {
          m_b_chunked = true;
       }
@@ -448,7 +448,7 @@ namespace sockets
 
    void http_socket::url_this(const string & url_in,string & protocol,string & host,port_t& port,string & url,string & file)
    {
-      ::gen::parse pa(url_in,"/");
+      ::ca::parse pa(url_in,"/");
       protocol = pa.getword(); // http
       protocol.trim(":");
       if (!strcasecmp(protocol, "https"))
@@ -456,7 +456,7 @@ namespace sockets
    #ifdef HAVE_OPENSSL
          EnableSSL();
    #else
-         Handler().LogError(this, "url_this", -1, "SSL not available", ::gen::log::level::warning);
+         Handler().LogError(this, "url_this", -1, "SSL not available", ::ca::log::level::warning);
    #endif
          port = 443;
       }
@@ -467,13 +467,13 @@ namespace sockets
       host = pa.getword();
       if (strstr(host,":"))
       {
-         ::gen::parse pa(host,":");
+         ::ca::parse pa(host,":");
          pa.getword(host);
          port = static_cast<port_t>(pa.getvalue());
       }
       url = "/" + pa.getrest();
       {
-         ::gen::parse pa(url,"/");
+         ::ca::parse pa(url,"/");
 /*         index iEnd = url.find("?");
          bool bHasQuery = iEnd > 0;
          if(!bHasQuery)

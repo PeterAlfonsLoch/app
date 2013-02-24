@@ -8,7 +8,7 @@ namespace libcompress
    static const uint64_t k_LZMA = 0x030101;
    static const uint64_t k_LZMA2 = 0x21;
 
-   #define IUnknown ::gen::object
+   #define IUnknown ::ca::object
 
    HRESULT SetMethodProperties(const method &method, const file_size *inSizeForReduce, ::ca::ca *coder)
    {
@@ -54,7 +54,7 @@ namespace libcompress
             {
                for (int32_t i = 0; i < numProps; i++)
                {
-                  const gen::property &prop = method.Props[i];
+                  const ca::property &prop = method.Props[i];
                   propIDs.add(atoi(prop.name()));
                   var &value = values[i];
                   value = prop.get_value();

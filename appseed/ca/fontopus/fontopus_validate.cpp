@@ -44,7 +44,7 @@ namespace fontopus
       m_bVotagusAuth    = bVotagusAuth;
       m_strForm         = pszForm;
       m_puser           = NULL;
-      ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+      ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
       if(pgenapp != NULL)
       {
          try
@@ -76,7 +76,7 @@ namespace fontopus
       || command_thread().property("app") == "app-core/tesseract/netnodecfg")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
       }
@@ -85,7 +85,7 @@ namespace fontopus
            || command_thread().has_property("uninstall"))
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = carlosgustavocecynlundgren;
          return m_puser;
       }
@@ -98,7 +98,7 @@ namespace fontopus
            || command_thread().property("app") == "winservice_filesystemsize")
       {
          m_puser = Application.m_pfontopus->allocate_user();
-         m_puser->m_strPathPrefix = "system" + gen::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
+         m_puser->m_strPathPrefix = "system" + ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
          m_puser->m_strLogin = camilosasuketsumanuma;
          return m_puser;
       }
@@ -111,9 +111,9 @@ namespace fontopus
       string strHost(pszRequestingParty);
 
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("eu-account.ca2.cc");
-      straRequestingServer.add("asia-account.ca2.cc");
+      straRequestingServer.add("account.ca.cc");
+      straRequestingServer.add("eu-account.ca.cc");
+      straRequestingServer.add("asia-account.ca.cc");
       if(strHost.is_empty())
       {
          if(::ca::get_thread() != NULL && ::ca::get_thread()->m_strWorkUrl.has_char())
@@ -125,7 +125,7 @@ namespace fontopus
             strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
             if(!straRequestingServer.contains_ci(strHost))
             {
-               strHost = "https://account.ca2.cc/";
+               strHost = "https://account.ca.cc/";
             }
          }
       }
@@ -210,7 +210,7 @@ namespace fontopus
          return;*/
       ::ca::create_context_sp createcontext(get_app());
       createcontext->m_bMakeVisible = false;
-      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
+      createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
       createcontext->m_bOuterPopupAlertLike = true;
       //m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
       //userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
@@ -278,12 +278,12 @@ namespace fontopus
       m_loginthread.m_strLicense = m_strLicense;
       string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
       stringa straRequestingServer;
-      straRequestingServer.add("account.ca2.cc");
-      straRequestingServer.add("eu-account.ca2.cc");
-      straRequestingServer.add("asia-account.ca2.cc");
+      straRequestingServer.add("account.ca.cc");
+      straRequestingServer.add("eu-account.ca.cc");
+      straRequestingServer.add("asia-account.ca.cc");
       if(!straRequestingServer.contains_ci(strHost))
       {
-         strHost = "account.ca2.cc";
+         strHost = "account.ca.cc";
       }
 
       if(straRequestingServer.contains(Application.command_thread().m_varTopicQuery["fontopus"].get_string())
@@ -300,9 +300,9 @@ namespace fontopus
 
       strAuthUrl = "https://" + strApiHost + "/account/auth";
 
-      gen::property_set post;
-      gen::property_set headers;
-      gen::property_set set;
+      ca::property_set post;
+      ca::property_set headers;
+      ca::property_set set;
 
       string strAuth;
       post["entered_license"] = m_strLicense;
@@ -373,7 +373,7 @@ namespace fontopus
    {
 //      m_pdocAuth->get_html_data()->m_puser = m_loginthread.m_puser;
       //string strUrl;
-      //strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
+      //strUrl = "http://spaignition.api.server.ca.cc/query?node=install_application&id=";
       //string strAppName;
       //if(System.m_strAppName == "winactionarea")
       //{
@@ -484,7 +484,7 @@ namespace fontopus
       //m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
    }
 
-   void validate::pageMessage(const stringa & straMatter, gen::property_set & set)
+   void validate::pageMessage(const stringa & straMatter, ca::property_set & set)
    {
       ensure_main_document();
 /*      m_pdocAuth->get_html_data()->m_propertyset = set;
@@ -597,7 +597,7 @@ namespace fontopus
          return;
       }
       string strModule;
-      gen::file_system_sp fs(get_app());
+      ca::file_system_sp fs(get_app());
       string strModuleFolder(System.get_ca2_module_folder());
       fs->FullPath(strModuleFolder, strModuleFolder);
       for(uint32_t dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
@@ -606,7 +606,7 @@ namespace fontopus
          GetModuleFileName(pmodulea[dw], strModule.GetBufferSetLength(4096), 4096);
          strModule.ReleaseBuffer();
          fs->FullPath(strModule, strModule);
-         if(gen::str::begins_ci(strModule, strModuleFolder))
+         if(ca::str::begins_ci(strModule, strModuleFolder))
          {
             straSource.add(strModule);
             straHash.add(System.file36().md5(strModule));
@@ -671,10 +671,10 @@ namespace fontopus
    // return hash and check if hash is valid
    bool validate::check_ca2_hash()
    {
-      string strUrl("https://api.ca2.cc/account/check_hash");
-      gen::property_set post;
-      gen::property_set headers;
-      gen::property_set set;
+      string strUrl("https://api.ca.cc/account/check_hash");
+      ca::property_set post;
+      ca::property_set headers;
+      ca::property_set set;
       string strResponse;
       stringa straHash;
       stringa straSource;
@@ -730,7 +730,7 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
-      ca2::http::e_status estatus;
+      ca::http::e_status estatus;
       string strResponse = Login(&estatus);
       e_result iAuth = result_fail;
       xml::document doc(get_app());
@@ -811,7 +811,7 @@ namespace fontopus
 
          delete m_puser;
 
-         if(estatus == ca2::http::status_connection_timed_out)
+         if(estatus == ca::http::status_connection_timed_out)
          {
 
             iAuth = result_time_out;
@@ -831,14 +831,14 @@ namespace fontopus
       return TRUE;
    }
 
-   string login_thread::Login(ca2::http::e_status * pestatus)
+   string login_thread::Login(ca::http::e_status * pestatus)
    {
       if(m_straRequestingServer.get_count() <= 0)
       {
          stringa straRequestingServer;
-         straRequestingServer.add("account.ca2.cc");
-         straRequestingServer.add("eu-account.ca2.cc");
-         straRequestingServer.add("asia-account.ca2.cc");
+         straRequestingServer.add("account.ca.cc");
+         straRequestingServer.add("eu-account.ca.cc");
+         straRequestingServer.add("asia-account.ca.cc");
          if(straRequestingServer.contains_ci(m_strRequestingServer))
          {
             m_bFontopusServer = true;
@@ -930,7 +930,7 @@ namespace fontopus
    }
 
 
-   string login_thread::NetLogin(ca2::http::e_status * pestatus)
+   string login_thread::NetLogin(ca::http::e_status * pestatus)
    {
 
       if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)
@@ -950,7 +950,7 @@ namespace fontopus
 
       domainFontopus.create(m_strFontopusServer);
 
-      if(domainFontopus.m_strRadix != "ca2")
+      if(domainFontopus.m_strRadix != "ca")
          return "";
 
       if(System.m_authmap[m_strUsername].m_mapFontopus[m_strFontopusServer].get_length() > 32)
@@ -989,9 +989,9 @@ namespace fontopus
          {
 
 
-            gen::property_set post;
-            gen::property_set headers;
-            gen::property_set set;
+            ca::property_set post;
+            ca::property_set headers;
+            ca::property_set set;
 
             //Sleep(15 * 1000);
 
@@ -1320,9 +1320,9 @@ namespace fontopus
          string strAuthUrl("https://" + strApiServer + "/account/auth?" + m_pcallback->oprop("defer_registration").get_string()
             +"&ruri=" + System.url().url_encode((m_pcallback->oprop("ruri").get_string())));
 
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set;
 
          if(m_strPasshash.is_empty())
          {
@@ -1346,7 +1346,7 @@ namespace fontopus
          Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
          uint32_t dwTimeTelmo2 = get_tick_count();
 
-         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
       }
 
@@ -1357,7 +1357,7 @@ namespace fontopus
    {
       string strFilename;
       string strResponse;
-      gen::property_set set;
+      ca::property_set set;
       for(int32_t i = 0; i < m_httpexecutea.get_size(); i++)
       {
          strFilename = System.file().time_square(get_app());
@@ -1452,7 +1452,7 @@ namespace fontopus
    void validate::authentication_failed(e_result iAuth, const char * pszResponse)
    {
       UNREFERENCED_PARAMETER(pszResponse);
-      gen::property_set propertyset;
+      ca::property_set propertyset;
       string strUsername = m_loginthread.m_strUsername;
       m_bLicense = false;
       m_puser = NULL;
@@ -1465,7 +1465,7 @@ namespace fontopus
          if(m_bInteractive)
          {
             string strUrl;
-            strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
+            strUrl = "http://spaignition.api.server.ca.cc/query?node=install_application&id=";
             strUrl += m_strLicense;
             strUrl += "&key=launch_name";
             string strName = Application.http().get(strUrl);
@@ -1503,7 +1503,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca2.cc";
+            propertyset["server"] = "account.ca.cc";
             pageMessage("err\\user\\network\\connection_timed_out.xhtml", propertyset);
          }
       }
@@ -1511,7 +1511,7 @@ namespace fontopus
       {
          if(m_bInteractive)
          {
-            propertyset["server"] = "account.ca2.cc";
+            propertyset["server"] = "account.ca.cc";
             propertyset["email"] = strUsername;
             pageMessage("err\\user\\authentication\\registration_deferred.xhtml", propertyset);
          }

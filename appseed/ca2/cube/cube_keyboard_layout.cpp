@@ -48,7 +48,7 @@ namespace cube // ca8 + cube
 
 
       stringa straPath;
-      Application.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
+      Application.dir().ls(System.dir().ca("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_id layoutid;
@@ -117,7 +117,7 @@ namespace cube // ca8 + cube
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
          ptext = dynamic_cast < text_interface * > (pguie);
-         ptext->_001SetText(gen::str::from(iProxyPort));
+         ptext->_001SetText(ca::str::from(iProxyPort));
       }*/
    }
 

@@ -12,13 +12,13 @@ namespace ca
       (dynamic_cast < ::ca::application * > (m_papp))->m_psignal->connect(this, &callback::on_call_signal);
    }
 
-   void application_bias::callback::on_call_signal(gen::signal_object * pobj)
+   void application_bias::callback::on_call_signal(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::application_signal_object, papplicationsignal, pobj);
+      SCAST_PTR(::ca::application_signal_object, papplicationsignal, pobj);
       on_application_bias_callback_signal(papplicationsignal);
    }
 
-   void application_bias::callback::on_application_bias_callback_signal(::gen::application_signal_object * papplicationsignal)
+   void application_bias::callback::on_application_bias_callback_signal(::ca::application_signal_object * papplicationsignal)
    {
       UNREFERENCED_PARAMETER(papplicationsignal);
    }

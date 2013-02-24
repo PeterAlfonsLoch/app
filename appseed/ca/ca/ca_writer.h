@@ -1,14 +1,14 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class writer;
 
    class CLASS_DECL_ca out_stream_flush :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       virtual void flush() = 0;
@@ -54,6 +54,6 @@ namespace gen
 
    typedef writer writable;
 
-} // namespace gen
+} // namespace ca
 
 

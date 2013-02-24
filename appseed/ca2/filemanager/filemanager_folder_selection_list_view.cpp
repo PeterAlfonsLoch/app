@@ -19,7 +19,7 @@ folder_selection_list_view::~folder_selection_list_view()
 {
 }
 
-void folder_selection_list_view::install_message_handling(::gen::message::dispatch * pinterface)
+void folder_selection_list_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::split_view::install_message_handling(pinterface);
 }
@@ -45,7 +45,7 @@ void folder_selection_list_view::Initialize(FileManagerTemplate * ptemplate, con
 
    m_plistview->_001UpdateColumns();
 
-   if(data_get("InitialBrowsePath", ::gen::system::idEmpty, str))
+   if(data_get("InitialBrowsePath", ::ca::system::idEmpty, str))
    {
       FileManagerBrowse(str);
    }
@@ -127,13 +127,13 @@ void folder_selection_list_view::FolderRemove()
 }
 
 
-void folder_selection_list_view::_001OnAdd(gen::signal_object * pobj)
+void folder_selection_list_view::_001OnAdd(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    FolderAdd();
 }
 
-void folder_selection_list_view::_001OnRemove(gen::signal_object * pobj)
+void folder_selection_list_view::_001OnRemove(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    FolderRemove();

@@ -11,7 +11,7 @@ namespace platform
 
       virtual void on_create_view(::user::view_creator_data * pcreatordata);
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual ~pane_view();
    #ifdef DEBUG

@@ -25,7 +25,7 @@ namespace command
 	   frame(::ca::application * papp);
       virtual ~frame();
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
 	   void ShowControlBars(bool bShow);
 	   void AnimateStatusBar();
@@ -58,7 +58,7 @@ namespace command
       DECL_GEN_SIGNAL(_001OnApp2000)
 
 
-      virtual void message_window_message_handler(gen::signal_object * pobj);
+      virtual void message_window_message_handler(ca::signal_object * pobj);
    };
 
 

@@ -6,7 +6,7 @@ namespace mail
 
 
    class CLASS_DECL_ca2 tree_item :
-      public ::gen::tree_item_data
+      public ::ca::tree_item_data
    {
    public:
       
@@ -16,8 +16,8 @@ namespace mail
       account      * m_paccount;
       string         m_strFolder;
 
-      string get_text(::gen::tree * ptree);
-      index get_image(::gen::tree * ptree);
+      string get_text(::ca::tree * ptree);
+      index get_image(::ca::tree * ptree);
 
 
 

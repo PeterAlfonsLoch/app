@@ -2,7 +2,7 @@
 
 class image_list;
 
-namespace gen
+namespace ca
 {
 
    class tree_data;
@@ -58,7 +58,7 @@ namespace gen
       virtual bool   is_hover(tree_item * pitem);
       virtual bool   is_hover(tree_item_data * pitem);
 
-      void sort(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::gen::tree_data *));
+      void sort(int32_t ( * lpfnCompare )(tree_item *, tree_item *, ::ca::tree_data *));
 
       virtual tree_item * get_proper_item(index iIndex, index * piLevel);
       virtual index get_proper_item_index(tree_item * pitemParam, index * piLevel);
@@ -82,4 +82,4 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca

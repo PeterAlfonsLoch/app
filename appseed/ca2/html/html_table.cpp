@@ -45,17 +45,17 @@ namespace html
 
             if(ptag->get_attr_value("border").has_char())
             {
-               m_iBorder         = (float) gen::str::to_uint(ptag->get_attr_value("border"));
+               m_iBorder         = (float) ca::str::to_uint(ptag->get_attr_value("border"));
             }
 
             if(ptag->get_attr_value("cellspacing").has_char())
             {
-               m_iCellSpacing    = (float) gen::str::to_uint(ptag->get_attr_value("cellspacing"));
+               m_iCellSpacing    = (float) ca::str::to_uint(ptag->get_attr_value("cellspacing"));
             }
 
             if(ptag->get_attr_value("cellpadding").has_char())
             {
-               m_iCellPadding    = (float) gen::str::to_uint(ptag->get_attr_value("cellpadding"));
+               m_iCellPadding    = (float) ca::str::to_uint(ptag->get_attr_value("cellpadding"));
             }
 
          }

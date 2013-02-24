@@ -41,7 +41,7 @@ namespace hi5
             void ensure_main_document();
             void display_main_frame();
             void page1();
-            void pageMessage(const char * pszMatter, gen::property_set & set);
+            void pageMessage(const char * pszMatter, ca::property_set & set);
 
             string get_pin();
 

@@ -235,55 +235,55 @@ namespace xml
       if(pszXml[0] != '<' || pszXml[1] != '!')
          return (char *) pszXml;
 
-      gen::str::consume(pszXml, "<!DOCTYPE");
-      gen::str::consume_spaces(pszXml);
-      gen::str::consume_nc_name(pszXml);
+      ca::str::consume(pszXml, "<!DOCTYPE");
+      ca::str::consume_spaces(pszXml);
+      ca::str::consume_nc_name(pszXml);
 
-      gen::str::consume_spaces(pszXml, 0);
-      if(gen::str::begins_consume(pszXml, "SYSTEM"))
+      ca::str::consume_spaces(pszXml, 0);
+      if(ca::str::begins_consume(pszXml, "SYSTEM"))
       {
-         gen::str::consume_spaces(pszXml);
-         gen::str::consume_quoted_value(pszXml);
+         ca::str::consume_spaces(pszXml);
+         ca::str::consume_quoted_value(pszXml);
       }
-      else if(gen::str::begins_consume(pszXml, "PUBLIC"))
+      else if(ca::str::begins_consume(pszXml, "PUBLIC"))
       {
-         gen::str::consume_spaces(pszXml);
-         gen::str::consume_quoted_value(pszXml);
-         gen::str::consume_spaces(pszXml);
-         gen::str::consume_quoted_value(pszXml);
+         ca::str::consume_spaces(pszXml);
+         ca::str::consume_quoted_value(pszXml);
+         ca::str::consume_spaces(pszXml);
+         ca::str::consume_quoted_value(pszXml);
       }
 
-      gen::str::consume_spaces(pszXml, 0);
+      ca::str::consume_spaces(pszXml, 0);
 
       //markup decl
       if(*pszXml == '[')
       {
-         gen::str::consume(pszXml, "[");
+         ca::str::consume(pszXml, "[");
 
          while(*pszXml != ']')
          {
-            if(gen::str::begins_consume(pszXml, "<!ENTITY"))
+            if(ca::str::begins_consume(pszXml, "<!ENTITY"))
             {
-               gen::str::consume_spaces(pszXml);
-               string entity_name = gen::str::consume_nc_name(pszXml);
-               gen::str::consume_spaces(pszXml);
+               ca::str::consume_spaces(pszXml);
+               string entity_name = ca::str::consume_nc_name(pszXml);
+               ca::str::consume_spaces(pszXml);
                string entity_value;
                string ext_entity_value;
-               if(gen::str::begins_consume(pszXml, "SYSTEM"))
+               if(ca::str::begins_consume(pszXml, "SYSTEM"))
                {
-                  gen::str::consume_spaces(pszXml);
-                  ext_entity_value = gen::str::consume_quoted_value(pszXml);
+                  ca::str::consume_spaces(pszXml);
+                  ext_entity_value = ca::str::consume_quoted_value(pszXml);
                }
-               else if (gen::str::begins_consume(pszXml, "PUBLIC"))
+               else if (ca::str::begins_consume(pszXml, "PUBLIC"))
                {
-                  gen::str::consume_spaces(pszXml);
-                  gen::str::consume_quoted_value(pszXml);
-                  gen::str::consume_spaces(pszXml);
-                  ext_entity_value = gen::str::consume_quoted_value(pszXml);
+                  ca::str::consume_spaces(pszXml);
+                  ca::str::consume_quoted_value(pszXml);
+                  ca::str::consume_spaces(pszXml);
+                  ext_entity_value = ca::str::consume_quoted_value(pszXml);
                }
                else
                {
-                  entity_value = gen::str::consume_quoted_value(pszXml);
+                  entity_value = ca::str::consume_quoted_value(pszXml);
                }
                if(entity_value.has_char())
                {
@@ -294,18 +294,18 @@ namespace xml
                   m_pdoc->extEntitiesHash.set_at(entity_name, ext_entity_value);
                }
             }
-            else if(gen::str::xml_is_comment(pszXml))
+            else if(ca::str::xml_is_comment(pszXml))
             {
-               gen::str::xml_consume_comment(pszXml);
+               ca::str::xml_consume_comment(pszXml);
             }
             pszXml++;
          }
-         gen::str::consume(pszXml, "]");
-         gen::str::consume_spaces(pszXml, 0);
+         ca::str::consume(pszXml, "]");
+         ca::str::consume_spaces(pszXml, 0);
       }
 
 
-      gen::str::consume(pszXml, ">");
+      ca::str::consume(pszXml, ">");
 
 
       return (char *) pszXml;
@@ -707,7 +707,7 @@ namespace xml
          if(m_pnodeParent != NULL && m_pnodeParent->m_etype == node_document)
          {
             // is DOCTYPE
-            if(gen::str::begins(xml, szXMLDOCTYPEOpen))
+            if(ca::str::begins(xml, szXMLDOCTYPEOpen))
             {
                // processing instrunction parse
                // return pointer is next node of pparseinfo
@@ -845,7 +845,7 @@ namespace xml
          {
             // if text m_strValue is not exist, then assign m_strValue
             //if( this->m_strValue.is_empty() || this->m_strValue == "" )
-            if(gen::str::trimmed_is_empty(m_strValue))
+            if(ca::str::trimmed_is_empty(m_strValue))
             {
                // Text Value
                CHAR* pEnd = _tcsechr( ++xml, chXMLTagOpen, chXMLEscape );
@@ -874,7 +874,7 @@ namespace xml
                   }
                   else
                   {
-                     pEnd = (char *) gen::str::utf8_inc(pEnd);
+                     pEnd = (char *) ca::str::utf8_inc(pEnd);
                   }
                }
                _SetString( xml, pEnd, &m_strValue, trim, escape );
@@ -897,7 +897,7 @@ namespace xml
                if(pnode->m_strName.has_char())
                {
                   m_nodea.add(pnode);
-//                  gen::release(pnode);
+//                  ca::release(pnode);
                }
                else
                {
@@ -962,7 +962,7 @@ namespace xml
                {
 
                   //if( xml && this->m_strValue.is_empty() && *xml !=chXMLTagOpen )
-                  if( xml && gen::str::trimmed_is_empty(m_strValue) && *xml !=chXMLTagOpen )
+                  if( xml && ca::str::trimmed_is_empty(m_strValue) && *xml !=chXMLTagOpen )
                   {
                      // Text Value
                      CHAR* pEnd = _tcsechr( xml, chXMLTagOpen, chXMLEscape );
@@ -991,7 +991,7 @@ namespace xml
                   }
                   else
                   {
-                     pEnd = (char *) gen::str::utf8_inc(pEnd);
+                     pEnd = (char *) ca::str::utf8_inc(pEnd);
                   }
                }
                _SetString( xml, pEnd, &m_strValue, trim, escape );
@@ -1411,7 +1411,7 @@ namespace xml
       string str;
       while(pnode != NULL && pnode != this)
       {
-         str = pnode->attr(pszAttr).get_string() + gen::str::has_char(str, "/");
+         str = pnode->attr(pszAttr).get_string() + ca::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent;
       }
       if(pnode == NULL)
@@ -1473,7 +1473,7 @@ namespace xml
       string str;
       while(pnode != NULL && pnode != this)
       {
-         str = pnode->m_strName + gen::str::has_char(str, "/");
+         str = pnode->m_strName + ca::str::has_char(str, "/");
          pnode = pnode->m_pnodeParent;
       }
       if(pnode == NULL)
@@ -1750,7 +1750,7 @@ namespace xml
    //========================================================
 /*   attr  node::detach_attr(::xml::attr * attr )
    {
-      attr = m_attra.m_propertymap[attr]find_first((gen::property *) attr);
+      attr = m_attra.m_propertymap[attr]find_first((ca::property *) attr);
       if(find >= 0)
       {
          a
@@ -2099,7 +2099,7 @@ namespace xml
 
    }
 
-   void node::write(gen::byte_output_stream & ostream)
+   void node::write(ca::byte_output_stream & ostream)
    {
 
       string str = get_xml();
@@ -2107,7 +2107,7 @@ namespace xml
 
    }
 
-   void node::read(gen::byte_input_stream & istream)
+   void node::read(ca::byte_input_stream & istream)
    {
 
       close();

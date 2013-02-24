@@ -337,14 +337,14 @@ namespace libcompress
       name = param;
    }
 
-   gen::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
+   ca::HRes out_handler::SetParam(COneMethodInfo &oneMethodInfo, const string &name, const string &value)
    {
-      gen::property prop;
+      ca::property prop;
       int32_t index = FindPropIdExact(name);
       if (index < 0)
          return E_INVALIDARG;
       const CNameToPropID &nameToPropID = g_NameToPropID[index];
-      prop.set_name(gen::str::from(nameToPropID.PropID));
+      prop.set_name(ca::str::from(nameToPropID.PropID));
 
       if (atoi(prop.name()) == NCoderPropID::kBlockSize ||
          atoi(prop.name()) == NCoderPropID::kDictionarySize ||
@@ -387,7 +387,7 @@ namespace libcompress
       return S_OK;
    }
 
-   gen::HRes out_handler::SetParams(COneMethodInfo &oneMethodInfo, const string &srcString)
+   ca::HRes out_handler::SetParams(COneMethodInfo &oneMethodInfo, const string &srcString)
    {
       stringa params;
       SplitParams(srcString, params);
@@ -403,7 +403,7 @@ namespace libcompress
       return S_OK;
    }
 
-   gen::HRes out_handler::SetSolidSettings(const string &s)
+   ca::HRes out_handler::SetSolidSettings(const string &s)
    {
       string s2 = s;
       s2.make_upper();
@@ -453,7 +453,7 @@ namespace libcompress
       return S_OK;
    }
 
-   gen::HRes out_handler::SetSolidSettings(var value)
+   ca::HRes out_handler::SetSolidSettings(var value)
    {
       bool isSolid;
       switch(value.get_type())
@@ -515,7 +515,7 @@ namespace libcompress
       _crcSize = 4;
    }
 
-   gen::HRes out_handler::SetProperty(const char *nameSpec, var value)
+   ca::HRes out_handler::SetProperty(const char *nameSpec, var value)
    {
       string name = nameSpec;
       name.make_upper();
@@ -611,8 +611,8 @@ namespace libcompress
          if (index < 0)
             return E_INVALIDARG;
          const CNameToPropID &nameToPropID = g_NameToPropID[index];
-         gen::property prop;
-         prop.set_name(gen::str::from(nameToPropID.PropID));
+         ca::property prop;
+         prop.set_name(ca::str::from(nameToPropID.PropID));
 
          if (atoi(prop.name()) == NCoderPropID::kBlockSize ||
             atoi(prop.name()) == NCoderPropID::kDictionarySize ||
@@ -631,7 +631,7 @@ namespace libcompress
             if (index < 0)
                return E_INVALIDARG;
             const CNameToPropID &nameToPropID = g_NameToPropID[index];
-            prop.set_name(gen::str::from(nameToPropID.PropID));
+            prop.set_name(ca::str::from(nameToPropID.PropID));
             throw not_implemented(get_app());
             //if (!ConvertProperty(value, nameToPropID.VarType, prop.get_value()))
               // return E_INVALIDARG;

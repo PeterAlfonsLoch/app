@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -18,6 +18,6 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 

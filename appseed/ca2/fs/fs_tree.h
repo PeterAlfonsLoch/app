@@ -17,7 +17,7 @@ namespace fs
       tree(::ca::application * papp);
       virtual ~tree();
 
-      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
       virtual void _017OpenFolder(const item & item);
       void StartAnimation();
@@ -25,7 +25,7 @@ namespace fs
 
       virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg); 
 
-      virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
+      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
     
       DECL_GEN_SIGNAL(_001OnLButtonDblClk)

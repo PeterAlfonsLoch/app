@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -353,13 +353,13 @@ namespace ca2
       if(pszVersion != NULL && !strcmp(pszVersion, "basis"))
       {
 
-          strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+          strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca.cc";
 
       }
       else if(pszVersion != NULL && !strcmp(pszVersion, "stage"))
       {
 
-          strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+          strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca.cc";
 
       }
       else 
@@ -367,11 +367,11 @@ namespace ca2
 
    #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca2.cc";
+         strSpaIgnitionBaseUrl = "http://basis.spaignition.api.server.ca.cc";
 
    #else
          
-         strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca2.cc";
+         strSpaIgnitionBaseUrl = "http://stage.spaignition.api.server.ca.cc";
 
    #endif
 
@@ -412,7 +412,7 @@ RetryBuildNumber:
    }
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

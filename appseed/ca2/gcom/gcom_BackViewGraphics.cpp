@@ -114,7 +114,7 @@ namespace gcom
 
          Main & main = HelperGetMain();
 
-         //         gen::savings & savings = System.savings();
+         //         ca::savings & savings = System.savings();
 
          bool bOk = false;
          // 2004-08-24
@@ -471,7 +471,7 @@ namespace gcom
             ::ca::dib_sp spdib(get_app());
             OnCreateDib(spdib, iIndex);
             m_mapDib.set_at(iIndex, spdib);
-            gen::add_ref(spdib.m_p);
+            ca::add_ref(spdib.m_p);
             return spdib;
          }
       }

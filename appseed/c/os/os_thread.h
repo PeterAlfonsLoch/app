@@ -22,7 +22,7 @@ namespace ca
 {
 
 
-//namespace gen { namespace pal {
+//namespace ca { namespace pal {
 
 
 	/// An enum representing thread priorities.

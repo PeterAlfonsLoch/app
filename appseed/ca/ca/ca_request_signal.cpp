@@ -1,14 +1,14 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
-   request_signal::request_signal(::ca::application * papp, gen::signal * psignal) :
+   request_signal::request_signal(::ca::application * papp, ca::signal * psignal) :
       ca(papp),
       signal_object(psignal)
    {
    }
 
 
-} // namespace gen
+} // namespace ca

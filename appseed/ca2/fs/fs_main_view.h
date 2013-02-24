@@ -12,7 +12,7 @@ namespace fs
    public:
          
       main_view(::ca::application * papp);
-      void install_message_handling(::gen::message::dispatch * pinterface);
+      void install_message_handling(::ca::message::dispatch * pinterface);
       DECL_GEN_SIGNAL(_001OnCreate)
       DECL_GEN_SIGNAL(_001OnTimer)
 

@@ -23,8 +23,8 @@ namespace fontopus
 
    void user::start_veiev_synch()
    {
-      gen::signal_object * psignal = new gen::signal_object();
-      gen::emit(get_app(), this, &user::on_end_veiev_synch, this, &user::veiev_synch, psignal);
+      ca::signal_object * psignal = new ca::signal_object();
+      ca::emit(get_app(), this, &user::on_end_veiev_synch, this, &user::veiev_synch, psignal);
    }
 
 
@@ -64,7 +64,7 @@ namespace fontopus
 
    }
 
-   void user::veiev_synch(gen::signal_object * pobj)
+   void user::veiev_synch(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       int32_t iRestart = 0;
@@ -75,10 +75,10 @@ restart:
       var rec = Application.m_simpledb.db().veiev_post().last();
       rec.propset().set_app(get_app());
       rec.propset().remove_by_name("message");
-      strPath = "http://europe001.veiev.api.server.ca2.cc/get?" + rec.propset().get_http_post();
-      gen::property_set post(get_app());
-      gen::property_set headers(get_app());
-      gen::property_set set(get_app());
+      strPath = "http://europe001.veiev.api.server.ca.cc/get?" + rec.propset().get_http_post();
+      ca::property_set post(get_app());
+      ca::property_set headers(get_app());
+      ca::property_set set(get_app());
       set["interactive_user"] = true;
       string str;
       Application.http().get(strPath, str, post, headers, set);
@@ -120,7 +120,7 @@ restart:
 
    }
 
-   void user::on_end_veiev_synch(gen::signal_object * pobj)
+   void user::on_end_veiev_synch(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -129,12 +129,12 @@ restart:
    {
       if(pszText == NULL)
       {
-         pszText = "https://account.ca2.cc/";
+         pszText = "https://account.ca.cc/";
       }
       string strText(pszText);
       if(strText.is_empty())
       {
-         strText = "https://account.ca2.cc/";
+         strText = "https://account.ca.cc/";
       }
       strText = System.url().get_server(strText);
       if(strText.is_empty())
@@ -163,12 +163,12 @@ restart:
    {
       if(pszText == NULL)
       {
-         pszText = "https://account.ca2.cc/";
+         pszText = "https://account.ca.cc/";
       }
       string strText(pszText);
       if(strText.is_empty())
       {
-         strText = "https://account.ca2.cc/";
+         strText = "https://account.ca.cc/";
       }
       strText = System.url().get_server(strText);
       m_sessionidmap[strText] = pszSessid;
@@ -179,7 +179,7 @@ restart:
    {
 
       string strPrefix(pszPrefix);
-      string strDomain(".ca2.cc");
+      string strDomain(".ca.cc");
 
       stringa straServer;
 

@@ -20,7 +20,7 @@ namespace cube // ca8 + cube
    {
    }
 
-   void message_box::on_show(const char * pszMatter, gen::property_set & propertyset)
+   void message_box::on_show(const char * pszMatter, ca::property_set & propertyset)
    {
       if(!propertyset.has_property("application_name"))
          propertyset["application_name"] = System.m_strAppName;

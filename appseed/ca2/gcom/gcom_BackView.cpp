@@ -84,7 +84,7 @@ namespace gcom
 
       void Main::UpdateDrawingObjects()
       {
-         //gen::savings & savings = System.savings();
+         //ca::savings & savings = System.savings();
          Graphics & graphics = GetGraphics();
 
          graphics.UpdateObjects();
@@ -113,9 +113,9 @@ namespace gcom
       {
          return GetImageChange().LoadNextImage(bSynch);
       }
-      void Main::_001OnImageLoaded(gen::signal_object * pobj)
+      void Main::_001OnImageLoaded(ca::signal_object * pobj)
       {
-         OnImageLoaded((*pobj)()["dib"].ca2 < ::ca::dib > ());
+         OnImageLoaded((*pobj)()["dib"].ca < ::ca::dib > ());
       }
 
       void Main::OnImageLoaded(::ca::dib * pdib)
@@ -143,7 +143,7 @@ namespace gcom
          ImageChange & imagechange = GetImageChange();
          Graphics & graphics = GetGraphics();
          EImagePlacement eplacement;
-         //gen::savings & savings = System.savings();
+         //ca::savings & savings = System.savings();
 
          TRACE("\nCXfplayerView::OnAfterImageLoaded\n");
 
@@ -173,7 +173,7 @@ namespace gcom
 
          ASSERT(papp != NULL);
 
-         //         gen::savings & savings = System.savings();
+         //         ca::savings & savings = System.savings();
 
          Graphics & graphics = GetGraphics();
 

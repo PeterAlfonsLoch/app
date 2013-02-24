@@ -6,13 +6,13 @@ class FileSystemSizeWnd;
 
 
 class CLASS_DECL_ca file_size_table :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
 
    class get_fs_size :
-      public gen::byte_serializable
+      public ca::byte_serializable
    {
    public:
 
@@ -31,8 +31,8 @@ public:
       get_fs_size & operator = (const get_fs_size & getfssize);
 
 
-      virtual void write(gen::byte_output_stream & ostream);
-      virtual void read(gen::byte_input_stream & istream);
+      virtual void write(ca::byte_output_stream & ostream);
+      virtual void read(ca::byte_input_stream & istream);
 
 
    };
@@ -94,7 +94,7 @@ public:
 
 
 class CLASS_DECL_ca DBFileSystemSizeSet :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
@@ -122,7 +122,7 @@ public:
 
 
 class CLASS_DECL_ca FileSystemSizeServerThread :
-   virtual public ::gen::thread
+   virtual public ::ca::thread
 {
 public:
 
@@ -137,7 +137,7 @@ public:
 
 class CLASS_DECL_ca FileSystemSizeWnd :
    public ::ca::window_sp,
-   public gen::signalizable
+   public ca::signalizable
 {
 public:
 
@@ -169,7 +169,7 @@ public:
    void ClientStartServer();
    bool get_fs_size(int64_t & i64Size, const char * pszPath, bool & bPending);
 
-   void install_message_handling(::gen::message::dispatch * pinterface);
+   void install_message_handling(::ca::message::dispatch * pinterface);
 
    DECL_GEN_SIGNAL(_001OnCopyData)
    DECL_GEN_SIGNAL(_001OnTimer)

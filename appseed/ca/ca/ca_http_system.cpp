@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -38,7 +38,7 @@ namespace ca2
             string str = System.file_as_string(&System, System.dir().appdata("machine/proxy.xml"));
             if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
             {
-               Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().ca2("proxy.xml"), false);
+               Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().ca("proxy.xml"), false);
             }
             if(Application.file().exists(System.dir().appdata("proxy.xml")))
             {
@@ -101,12 +101,12 @@ namespace ca2
 
          string strHost = Application.file().as_string(System.dir().appdata("database\\text\\last_good_known_fontopus_com.txt"));
          stringa straRequestingServer;
-         straRequestingServer.add("account.ca2.cc");
-         straRequestingServer.add("eu-account.ca2.cc");
-         straRequestingServer.add("asia-account.ca2.cc");
+         straRequestingServer.add("account.ca.cc");
+         straRequestingServer.add("eu-account.ca.cc");
+         straRequestingServer.add("asia-account.ca.cc");
          if(!straRequestingServer.contains_ci(strHost))
          {
-            strHost = "account.ca2.cc";
+            strHost = "account.ca.cc";
          }
 
          straRequestingServer.remove(strHost);
@@ -202,12 +202,12 @@ namespace ca2
 
 
 
-      ::ca2::http::system::proxy * system::get_proxy(const char * pszUrl)
+      ::ca::http::system::proxy * system::get_proxy(const char * pszUrl)
       {
 
          single_lock sl(&m_mutexProxy, true);
 
-         ::collection::string_map < ::ca2::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
+         ::collection::string_map < ::ca::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
          if(ppair == NULL || (::get_tick_count() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
          {
@@ -217,7 +217,7 @@ namespace ca2
                m_mapPac.remove_key(pszUrl);
             }
 
-            class ::ca2::http::system::proxy * pproxy = new class ::ca2::http::system::proxy(get_app());
+            class ::ca::http::system::proxy * pproxy = new class ::ca::http::system::proxy(get_app());
 
             pproxy->m_dwLastChecked = get_tick_count();
 
@@ -245,7 +245,7 @@ namespace ca2
 
          string strUrl(pszScriptUrl);
 
-         if(gen::str::begins(pszUrl, strUrl))
+         if(ca::str::begins(pszUrl, strUrl))
          {
             pproxy->m_bDirect = true;
             return true;
@@ -284,7 +284,7 @@ namespace ca2
          {
             pproxy->m_bDirect = true;
          }
-         else if(gen::str::begins_eat_ci(var, "PROXY"))
+         else if(ca::str::begins_eat_ci(var, "PROXY"))
          {
             var.trim();
             stringa stra;
@@ -311,7 +311,7 @@ namespace ca2
 
 #else
 
-         ::ca2::http::system::proxy * pproxy = get_proxy(pszUrl);
+         ::ca::http::system::proxy * pproxy = get_proxy(pszUrl);
 
          if(pproxy == NULL)
             return;
@@ -332,7 +332,7 @@ namespace ca2
       }
 
 
-      void system::config_proxy(const char * pszUrl, ::ca2::http::system::proxy * pproxy)
+      void system::config_proxy(const char * pszUrl, ::ca::http::system::proxy * pproxy)
       {
 
          xml::document doc(get_app());
@@ -449,7 +449,7 @@ namespace ca2
                      ::sockets::socket_handler & handler,
                      const char * pszHost,
                      const char * pszProtocol,
-                     gen::property_set & set,
+                     ca::property_set & set,
                      ::fontopus::user * puser,
                      const char * pszVersion)
       {
@@ -459,7 +459,7 @@ namespace ca2
          UNREFERENCED_PARAMETER(pszVersion);
          string strServer = pszHost;
          string strProtocol = pszProtocol;
-         ::ca::application * papp = set["app"].ca2 < ::ca::application >();
+         ::ca::application * papp = set["app"].ca < ::ca::application >();
          int32_t iPort;
          if(strProtocol == "https")
          {
@@ -485,7 +485,7 @@ namespace ca2
             strUrl = System.url().set_script(strUrl, strScript);
          }
 
-         gen::property_set setQuery(get_app());
+         ca::property_set setQuery(get_app());
 
          setQuery.parse_url_query(System.url().get_query(strUrl));
 
@@ -507,7 +507,7 @@ namespace ca2
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca2")
+                  if(domainFontopus.m_strRadix == "ca")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -542,7 +542,7 @@ namespace ca2
          if(strProtocol == "https")
          {
 #ifndef METROWIN
-            ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca2 < ::sockets::ssl_client_context > ();
+            ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca < ::sockets::ssl_client_context > ();
             if(pcontext != NULL)
             {
                psession->m_spsslclientcontext = pcontext;
@@ -567,7 +567,7 @@ namespace ca2
             }*/
             delete psession;
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -624,9 +624,9 @@ namespace ca2
                      ::sockets::socket_handler & handler,
                      ::sockets::http_session * psession,
                      const char * pszRequest,
-                     gen::property_set & post,
-                     gen::property_set & headers,
-                     gen::property_set & set,
+                     ca::property_set & post,
+                     ca::property_set & headers,
+                     ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -707,7 +707,7 @@ retry:
 
 
 
-         gen::property_set setQuery(get_app());
+         ca::property_set setQuery(get_app());
 
          setQuery.parse_url_query(System.url().get_query(strUrl));
 
@@ -729,7 +729,7 @@ retry:
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca2")
+                  if(domainFontopus.m_strRadix == "ca")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -771,7 +771,7 @@ retry:
             }
             if(set.has_property("file"))
             {
-               psession->m_pfile = set["file"].ca2 < ::gen::file >();
+               psession->m_pfile = set["file"].ca < ::ca::file >();
             }
             if(pcookies != NULL && pcookies->get_size() > 0)
             {
@@ -788,12 +788,12 @@ retry:
 
             bool bPost;
             bool bPut;
-            if(set["put"].ca2 < ::gen::file >() != NULL || set["http_request"] == "PUT")
+            if(set["put"].ca < ::ca::file >() != NULL || set["http_request"] == "PUT")
             {
                bPost = false;
                bPut = true;
                psession->request("PUT", strRequest);
-               dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].ca2 < ::gen::file >();
+               dynamic_cast < ::sockets::http_put_socket * > (psession)->m_file = set["put"].ca < ::ca::file >();
             }
             else if(post.m_propertya.get_count() > 0 || set["http_request"] == "POST")
             {
@@ -835,11 +835,11 @@ retry:
                {
                   break;
                }
-               if(set["file_out"].ca2 < ::gen::timeout_file >() != NULL)
+               if(set["file_out"].ca < ::ca::timeout_file >() != NULL)
                {
-                  if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+                  if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
                   {
-                     set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+                     set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
                   }
                }
                dw2 = ::get_tick_count();
@@ -847,11 +847,11 @@ retry:
                iIteration++;
             }
 
-            if(set["file_out"].ca2 < ::gen::timeout_file >() != NULL)
+            if(set["file_out"].ca < ::ca::timeout_file >() != NULL)
             {
-               if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
+               if(psession->m_content_length != ((size_t) -1) && set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize != psession->m_content_length)
                {
-                  set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
+                  set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize = psession->m_content_length;
                }
             }
 
@@ -912,10 +912,10 @@ retry:
                else if(iStatusCode >= 300 && iStatusCode <= 399)
                {
                   string strCa2Realm = psession->outheader("ca2realm-x");
-                  if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
+                  if(ca::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
                      uint32_t dwTimeTelmo2 = get_tick_count();
-                     TRACE0("Not Licensed Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                     TRACE0("Not Licensed Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -929,7 +929,7 @@ retry:
             }
 
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          }
          catch(...)
@@ -951,11 +951,11 @@ retry:
       ::sockets::http_session * system::get(::sockets::socket_handler & handler, ::sockets::http_session * psession, const char * pszRequest, primitive::memory_base & memory, ::fontopus::user * puser)
       {
 
-         gen::property_set post(get_app());
+         ca::property_set post(get_app());
 
-         gen::property_set headers(get_app());
+         ca::property_set headers(get_app());
 
-         gen::property_set set(get_app());
+         ca::property_set set(get_app());
 
          psession = request(handler, psession, pszRequest, post, headers, set, NULL, puser, NULL, NULL);
 
@@ -1075,9 +1075,9 @@ retry:
       ::sockets::http_client_socket * system::get(
                      ::sockets::socket_handler & handler,
                      const char * pszUrl,
-                     gen::property_set & post,
-                     gen::property_set & headers,
-                     gen::property_set & set,
+                     ca::property_set & post,
+                     ca::property_set & headers,
+                     ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1093,7 +1093,7 @@ retry:
          string strServer = System.url().get_root(pszUrl);
          string strProtocol = System.url().get_protocol(pszUrl);
          string strObject = System.url().get_object(pszUrl);
-         ::ca::application * papp = set["app"].ca2 < ::ca::application >();
+         ::ca::application * papp = set["app"].ca < ::ca::application >();
          int32_t iPort;
          if(strProtocol == "https")
          {
@@ -1119,7 +1119,7 @@ retry:
             strUrl = System.url().set_script(strUrl, strScript);
          }
 
-         gen::property_set setQuery(get_app());
+         ca::property_set setQuery(get_app());
 
          setQuery.parse_url_query(System.url().get_query(strUrl));
 
@@ -1141,7 +1141,7 @@ retry:
 
                   domainFontopus.create(strFontopusServer);
 
-                  if(domainFontopus.m_strRadix == "ca2")
+                  if(domainFontopus.m_strRadix == "ca")
                   {
                      puser = &AppUser(papp);
                      if(puser != NULL && (strSessId = puser->get_sessid(strUrl, !set["interactive_user"].is_new() && (bool)set["interactive_user"])).has_char() &&
@@ -1172,12 +1172,12 @@ retry:
 
          bool bPost;
          bool bPut;
-         if(set["put"].ca2 < ::gen::file >() != NULL || set["http_request"] == "PUT")
+         if(set["put"].ca < ::ca::file >() != NULL || set["http_request"] == "PUT")
          {
             bPost = false;
             bPut = true;
             psocket = new ::sockets::http_put_socket(handler, strUrl);
-            dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].ca2 < ::gen::file >();
+            dynamic_cast < ::sockets::http_put_socket * > (psocket)->m_file = set["put"].ca < ::ca::file >();
          }
          else if(post.get_count() > 0 || set["http_request"] == "POST")
          {
@@ -1207,7 +1207,7 @@ retry:
          }
          if(set.has_property("file"))
          {
-            psocket->m_pfile = set["file"].ca2 < ::gen::file >();
+            psocket->m_pfile = set["file"].ca < ::ca::file >();
          }
          if(pcookies != NULL && pcookies->get_size() > 0)
          {
@@ -1228,7 +1228,7 @@ retry:
          if(strProtocol == "https")
          {
 #ifdef BSD_STYLE_SOCKETS
-            ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca2 < ::sockets::ssl_client_context > ();
+            ::sockets::ssl_client_context * pcontext = set["ssl_client_context"].ca < ::sockets::ssl_client_context > ();
             if(pcontext != NULL)
             {
                psocket->m_spsslclientcontext = pcontext;
@@ -1262,7 +1262,7 @@ retry:
             }
             delete psocket;
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -1290,11 +1290,11 @@ retry:
             {
                break;
             }
-            if(set["file_out"].ca2 < ::gen::timeout_file >() != NULL)
+            if(set["file_out"].ca < ::ca::timeout_file >() != NULL)
             {
-               if(psocket->m_content_length != ((size_t) -1) && set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize != psocket->m_content_length)
+               if(psocket->m_content_length != ((size_t) -1) && set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize != psocket->m_content_length)
                {
-                  set["file_out"].ca2 < ::gen::timeout_file >()->m_uiExpectedSize = psocket->m_content_length;
+                  set["file_out"].ca < ::ca::timeout_file >()->m_uiExpectedSize = psocket->m_content_length;
                }
             }
             dw2 = ::get_tick_count();
@@ -1342,10 +1342,10 @@ retry:
             else if(iStatusCode >= 300 && iStatusCode <= 399)
             {
                string strCa2Realm = psocket->outheader("ca2realm-x");
-               if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
+               if(ca::str::begins_ci(strCa2Realm, "not licensed: "))
                {
                   uint32_t dwTimeTelmo2 = get_tick_count();
-                  TRACE0("Not Licensed Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                  TRACE0("Not Licensed Result Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -1359,7 +1359,7 @@ retry:
          }
 
          uint32_t dwTimeTelmo2 = get_tick_count();
-         TRACE0("Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("Total time ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          return psocket;
 
@@ -1385,7 +1385,7 @@ retry:
 
 
 
-      void system::get(gen::signal_object * pobj)
+      void system::get(ca::signal_object * pobj)
       {
          SCAST_PTR(signal, psignal, pobj);
          if(psignal == NULL)
@@ -1408,7 +1408,7 @@ retry:
             psignal->m_memoryRet.allocate(0);
          }
          psignal->m_setHeaders = psocket->outheaders();
-         gen::del(psocket);
+         ca::del(psocket);
          psignal->m_bRet = true;
          return;
       }
@@ -1417,9 +1417,9 @@ retry:
       bool system::download(
                      const char * pszUrl,
                      const char * pszFile,
-                     gen::property_set & post,
-                     gen::property_set & headers,
-                     gen::property_set & set,
+                     ca::property_set & post,
+                     ca::property_set & headers,
+                     ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion)
@@ -1429,16 +1429,16 @@ retry:
          if(psocket == NULL)
             return false;
 
-         gen::filesp spfile(get_app());
-         if(!spfile->open(pszFile, ::gen::file::type_binary | ::gen::file::mode_create | ::gen::file::mode_read_write
-            | ::gen::file::defer_create_directory))
+         ca::filesp spfile(get_app());
+         if(!spfile->open(pszFile, ::ca::file::type_binary | ::ca::file::mode_create | ::ca::file::mode_read_write
+            | ::ca::file::defer_create_directory))
          {
-            gen::del(psocket);
+            ca::del(psocket);
             return false;
          }
          spfile->write(psocket->GetDataPtr(), psocket->GetContentLength());
          headers = psocket->outheaders();
-         gen::del(psocket);
+         ca::del(psocket);
          return true;
       }
 
@@ -1446,14 +1446,14 @@ retry:
                      const char * pszUrl,
                      const char * pszFile,
                      const char * pszPost,
-                     gen::property_set & headers,
+                     ca::property_set & headers,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion)
       {
-         gen::property_set post;
+         ca::property_set post;
          post.parse_url_query(pszPost);
-         gen::property_set set;
+         ca::property_set set;
          if(!download(pszUrl, pszFile, post, headers, set, pcookies, puser, pszVersion))
             return false;
          return true;
@@ -1461,9 +1461,9 @@ retry:
 
       bool system::download(const char * pszUrl, const char * pszFile, ::fontopus::user * puser)
       {
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set;
 
          if(puser == NULL)
          {
@@ -1481,9 +1481,9 @@ retry:
       bool system::get(
                      const char * pszUrl,
                      primitive::memory_base & memory,
-                     gen::property_set & post,
-                     gen::property_set & headers,
-                     gen::property_set & set,
+                     ca::property_set & post,
+                     ca::property_set & headers,
+                     ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1496,16 +1496,16 @@ retry:
          memory.allocate(psocket->GetContentLength());
          memcpy(memory.get_data(), psocket->GetDataPtr(), memory.get_size());
          headers = psocket->outheaders();
-         gen::del(psocket);
+         ca::del(psocket);
          return true;
       }
 
       bool system::get(
                      const char * pszUrl,
                      string & str,
-                     gen::property_set & post,
-                     gen::property_set & headers,
-                     gen::property_set & set,
+                     ca::property_set & post,
+                     ca::property_set & headers,
+                     ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1517,7 +1517,7 @@ retry:
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetDataLength());
          headers = psocket->outheaders();
-         gen::del(psocket);
+         ca::del(psocket);
          return true;
       }
 
@@ -1534,9 +1534,9 @@ retry:
 
       bool system::get(const char * pszUrl, string & str, ::fontopus::user * puser)
       {
-         gen::property_set setPost;
-         gen::property_set setHeaders;
-         gen::property_set set;
+         ca::property_set setPost;
+         ca::property_set setHeaders;
+         ca::property_set set;
          return get(pszUrl, str, setPost, setHeaders, set, NULL, puser);
       }
 
@@ -1551,9 +1551,9 @@ retry:
       bool system::exists(const char * pszUrl, ::fontopus::user * puser)
       {
          ::sockets::socket_handler handler(get_app());
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set;
          set["only_headers"] = true;
          ::sockets::http_client_socket * psocket = get(handler, pszUrl, post, headers, set, NULL, puser);
          if(psocket == NULL)
@@ -1561,7 +1561,7 @@ retry:
          int32_t iStatusCode = psocket->outattr("http_status_code");
          try
          {
-            gen::del(psocket);
+            ca::del(psocket);
          }
          catch(...)
          {
@@ -1574,9 +1574,9 @@ retry:
                      const char * pszRequest,
                      const char * pszUrl,
                      string & str,
-                     gen::property_set & post,
-                     gen::property_set & headers,
-                     gen::property_set & set,
+                     ca::property_set & post,
+                     ca::property_set & headers,
+                     ca::property_set & set,
                      ::http::cookies * pcookies,
                      ::fontopus::user * puser,
                      const char * pszVersion,
@@ -1589,7 +1589,7 @@ retry:
             return false;
          str = string((const char *) psocket->GetDataPtr(), psocket->GetContentLength());
          headers = psocket->outheaders();
-         gen::del(psocket);
+         ca::del(psocket);
          return true;
       }
 
@@ -1607,9 +1607,9 @@ retry:
 
       bool system::request(const char * pszRequest, const char * pszUrl, string & str, ::fontopus::user * puser)
       {
-         gen::property_set setPost;
-         gen::property_set setHeaders;
-         gen::property_set set;
+         ca::property_set setPost;
+         ca::property_set setHeaders;
+         ca::property_set set;
          return request(pszRequest, pszUrl, str, setPost, setHeaders, set, NULL, puser);
       }
 
@@ -1705,16 +1705,16 @@ retry:
          return put(pszUrl, &file, puser);
       }
 
-      bool system::put(const char * pszUrl, gen::file * pfile, ::fontopus::user * puser)
+      bool system::put(const char * pszUrl, ca::file * pfile, ::fontopus::user * puser)
       {
          if(puser == NULL)
          {
             puser = &ApplicationUser;
          }
          string str;
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set;
          set["put"] = pfile;
          return System.http().get(pszUrl, str, post, headers, set, NULL, puser);
       }
@@ -1730,7 +1730,7 @@ retry:
       }
 
 
-      bool system::put(string & strResponse, const char * pszUrl, gen::file * pfile, ::fontopus::user * puser)
+      bool system::put(string & strResponse, const char * pszUrl, ca::file * pfile, ::fontopus::user * puser)
       {
 
          if(puser == NULL)
@@ -1738,9 +1738,9 @@ retry:
             puser = &ApplicationUser;
          }
 
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set;
          set["put"] = pfile;
 
          return get(pszUrl, strResponse, post, headers, set, NULL, puser);
@@ -1750,5 +1750,5 @@ retry:
    } // namespace system
 
 
-} // namespace ca2
+} // namespace ca
 

@@ -1,10 +1,10 @@
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca folder_watch :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

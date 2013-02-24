@@ -6,7 +6,7 @@ namespace visual
 
 
    class CLASS_DECL_ca graphics_extension :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       

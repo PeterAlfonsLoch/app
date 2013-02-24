@@ -1,6 +1,6 @@
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    /////////////////////////////////////////////////////////////////////////////
@@ -45,5 +45,5 @@ namespace gen
       LRESULT OnUserMessage(WPARAM wparam, LPARAM lparam);
    };
 
-} // namespace gen
+} // namespace ca
 

@@ -25,7 +25,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca library_class :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 

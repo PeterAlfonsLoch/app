@@ -6,7 +6,7 @@ class stringa;
 class string;
 class id;
 
-namespace gen
+namespace ca
 {
    namespace log
    {
@@ -27,7 +27,7 @@ namespace gen
    }
 }
 
-namespace gen
+namespace ca
 {
    class file;
 }
@@ -67,7 +67,7 @@ namespace ca
 
 
       bool                    m_bTrace;
-      gen::trace::trace *     m_ptrace;
+      ca::trace::trace *     m_ptrace;
       critical_section *      m_pcsTrace;
       stringa *               m_pstraSeparator;
       FILE *                  m_pfile;

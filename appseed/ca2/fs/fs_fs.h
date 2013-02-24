@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -29,7 +29,7 @@ namespace ca2
    } // namespace fs
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

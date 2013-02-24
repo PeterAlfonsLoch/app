@@ -147,7 +147,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    HINTERNET hRequest = NULL;
    if (g_hConnect != NULL)
       hRequest = HttpOpenRequest( g_hConnect, "GET", strReq,
-      NULL, "ca2 ccvotagus spa",
+      NULL, "ca ccvotagus spa",
       NULL,
       INTERNET_FLAG_EXISTING_CONNECT
       | INTERNET_FLAG_KEEP_CONNECTION,
@@ -377,7 +377,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    }
 
    if(hConnect)
-      hRequest = HttpOpenRequest(hConnect, "GET", strReq, NULL, "ca2 ccvotagus spa", NULL,  dwFlags, 1); 
+      hRequest = HttpOpenRequest(hConnect, "GET", strReq, NULL, "ca ccvotagus spa", NULL,  dwFlags, 1); 
 
    if(hRequest)
       bResults =

@@ -110,7 +110,7 @@ namespace rar
       return totalPackSize;
    }
 
-   gen::HRes handler::GetArchiveProperty(int32_t propID, var *value)
+   ca::HRes handler::GetArchiveProperty(int32_t propID, var *value)
    {
       var var;
       switch(propID)
@@ -137,7 +137,7 @@ namespace rar
       return S_OK;
    }
 
-   gen::HRes handler::GetNumberOfItems(uint32_t * numItems)
+   ca::HRes handler::GetNumberOfItems(uint32_t * numItems)
    {
 
       *numItems = (uint32_t) _refItems.get_size();
@@ -176,7 +176,7 @@ namespace rar
       prop = utcFileTime;
    }
 
-   gen::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
+   ca::HRes handler::GetProperty(uint32_t index, int32_t propID,  var *value)
    {
       var prop;
       const CRefItem &refItem = _refItems[index];
@@ -346,7 +346,7 @@ namespace rar
    };
 
    //HRESULT handler::Open2(IInStream *stream,
-   HRESULT handler::Open2(gen::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   HRESULT handler::Open2(ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       {
          ::libcompress::archive_open_volume_callback_interface  * openVolumeCallback = NULL;
@@ -366,7 +366,7 @@ namespace rar
 
          for (;;)
          {
-            ::gen::byte_input_stream * inStream;
+            ::ca::byte_input_stream * inStream;
             if (!_archives.is_empty())
             {
                if (!openVolumeCallback)
@@ -400,8 +400,8 @@ namespace rar
                inStream = stream;
 
             uint64_t endPos = 0;
-            endPos = stream->seek(0, ::gen::seek_end);
-            stream->seek(0, ::gen::seek_begin);
+            endPos = stream->seek(0, ::ca::seek_end);
+            stream->seek(0, ::ca::seek_begin);
             if (openCallback)
             {
                totalBytes += endPos;
@@ -470,7 +470,7 @@ namespace rar
       return S_OK;
    }
 
-   gen::HRes handler::Open(gen::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
+   ca::HRes handler::Open(ca::byte_input_stream * stream, const file_position *maxCheckStartPosition, ::libcompress::archive_open_callback_interface *openCallback)
    {
       Close();
       try
@@ -491,7 +491,7 @@ namespace rar
       }
    }
 
-   gen::HRes handler::Close()
+   ca::HRes handler::Close()
    {
       _errorMessage.Empty();
       _refItems.remove_all();
@@ -507,7 +507,7 @@ namespace rar
    };
 
 
-   gen::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
+   ca::HRes handler::Extract(const uint32_t *indices, uint32_t numItems, int32_t testMode, ::libcompress::archive_extract_callback_interface *extractCallback)
    {
       ::crypto::get_text_password_interface * getTextPassword = NULL;
       file_size censoredTotalUnPacked = 0,
@@ -561,7 +561,7 @@ namespace rar
       ::libcompress::coder_interface * copyCoder = copyCoderSpec;
 
       ::libcompress::filter_coder *filterStreamSpec = new ::libcompress::filter_coder;
-      ::gen::reader * filterStream = filterStreamSpec;
+      ::ca::reader * filterStream = filterStreamSpec;
 
       ::crypto::rar20::decoder *rar20CryptoDecoderSpec = NULL;
       ::libcompress::filter_interface * rar20CryptoDecoder = NULL;
@@ -569,7 +569,7 @@ namespace rar
       ::libcompress::filter_interface * rar29CryptoDecoder = NULL;
 
       folder_reader * folderInStreamSpec = NULL;
-      ::gen::reader * folderInStream = NULL;
+      ::ca::reader * folderInStream = NULL;
 
       ::libcompress::local_progress *lps = new ::libcompress::local_progress;
       ::libcompress::progress_info_interface * progress = lps;
@@ -581,7 +581,7 @@ namespace rar
          lps->InSize = currentImportantTotalPacked;
          lps->OutSize = currentImportantTotalUnPacked;
          RINOK(lps->SetCur());
-         ::gen::writer * realOutStream;
+         ::ca::writer * realOutStream;
 
          int32_t askMode;
          if (extractStatuses[i])
@@ -630,7 +630,7 @@ namespace rar
          RINOK(extractCallback->PrepareOperation(askMode));
 
          ::libcompress::writer_with_crc *outStreamSpec = new ::libcompress::writer_with_crc;
-         ::gen::writer * outStream(outStreamSpec);
+         ::ca::writer * outStream(outStreamSpec);
          outStreamSpec->SetStream(realOutStream);
          outStreamSpec->Init();
          //realOutStream.Release();
@@ -638,7 +638,7 @@ namespace rar
          /*
          for (int32_t partIndex = 0; partIndex < 1; partIndex++)
          {
-         CMyComPtr<::gen::reader> inStream;
+         CMyComPtr<::ca::reader> inStream;
 
          // item redefinition
          const CItemEx &item = _items[refItem.ItemIndex + partIndex];
@@ -661,7 +661,7 @@ namespace rar
          // packedPos += item.PackSize;
          // unpackedPos += 0;
 
-         gen::reader * inStream;
+         ca::reader * inStream;
          if (item.IsEncrypted())
          {
             ::crypto::set_password_interface * cryptoSetPassword;
@@ -707,8 +707,8 @@ namespace rar
                RINOK(getTextPassword->CryptoGetTextPassword(password));
                if (item.UnPackVersion >= 29)
                {
-                  ::gen::byte_buffer buffer;
-                  wstring unicodePassword = gen::international::utf8_to_unicode(password);
+                  ::ca::byte_buffer buffer;
+                  wstring unicodePassword = ca::international::utf8_to_unicode(password);
                   const uint32_t sizeInBytes = (const uint32_t) (unicodePassword.get_length() * 2);
                   buffer.SetCapacity(sizeInBytes);
                   for (int32_t i = 0; i < unicodePassword.get_length(); i++)
@@ -723,7 +723,7 @@ namespace rar
                else
                {
                   string oemPassword;
-                  gen::international::utf8_to_multibyte(CP_OEMCP, oemPassword, password);
+                  ca::international::utf8_to_multibyte(CP_OEMCP, oemPassword, password);
                   RINOK(cryptoSetPassword->CryptoSetPassword((const byte *)(const char *)oemPassword, (uint32_t) oemPassword.get_length()));
                }
             }
@@ -859,7 +859,7 @@ namespace rar
    }
 
    // IMPL_ISetCompressCodecsInfo2(CHandler)
-   gen::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
+   ca::HRes handler::SetCompressCodecsInfo(::libcompress::codecs_info_interface * compressCodecsInfo)
    {
       _codecsInfo = compressCodecsInfo;
       return LoadExternalCodecs(_codecsInfo, _externalCodecs);

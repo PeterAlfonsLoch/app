@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/ca2/ca2.h"
+#include "ca/ca/ca.h"
 
 
 #include "geoip/geoip.h"

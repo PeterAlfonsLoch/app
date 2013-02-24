@@ -1810,7 +1810,7 @@ namespace gcom
       }
 
 
-      ::gen::thread * TransitionEffect::CreateRunStepThread()
+      ::ca::thread * TransitionEffect::CreateRunStepThread()
       {
 
          return __begin_thread(get_app(), ThreadProcRunStep, this, ::ca::thread_priority_normal, 0, 0, NULL);

@@ -17,7 +17,7 @@ namespace cube // ca8 + cube
       wait_message_dialog(::ca::application * papp);
       virtual ~wait_message_dialog();
 
-      virtual void on_show(const char * pszMatter, gen::property_set & propertyset);
+      virtual void on_show(const char * pszMatter, ca::property_set & propertyset);
 
       virtual bool BaseOnControlEvent(::user::control_event * pevent);
 

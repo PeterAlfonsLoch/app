@@ -14,20 +14,20 @@ CLASS_DECL_ca int32_t DOW(int32_t y, int32_t m, int32_t d);
 CLASS_DECL_ca int32_t getDayOfWeek(int32_t month, int32_t day, int32_t year, int32_t CalendarSystem);
 
 
-namespace ca2
+namespace ca
 {
 
    
    class CLASS_DECL_ca datetime :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       class CLASS_DECL_ca international :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
          international(::ca::application * papp);
-         void parse_str(const char * psz, gen::property_set & set);
+         void parse_str(const char * psz, ca::property_set & set);
          string get_gmt_date_time(const ::datetime::time & time);
          string get_gmt_date_time();
          string get_local_date_time(const ::datetime::time & time);
@@ -35,7 +35,7 @@ namespace ca2
       };
 
       class CLASS_DECL_ca str :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
          str(::ca::application * papp);
@@ -44,8 +44,8 @@ namespace ca2
       };
 
 
-      class ca2::datetime::international m_international;
-      class ca2::datetime::str m_str;
+      class ca::datetime::international m_international;
+      class ca::datetime::str m_str;
 
 
       datetime(::ca::application * papp);
@@ -87,4 +87,4 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace ca

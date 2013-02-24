@@ -222,7 +222,7 @@ namespace html
       string strChar;
       while(*psz != '\0')
       {
-         int32_t iChar = (int32_t) gen::ch::uni_index(psz);
+         int32_t iChar = (int32_t) ca::ch::uni_index(psz);
          if(iChar == '&')
          {
             str += "&amp;";
@@ -252,7 +252,7 @@ namespace html
             strChar.Format("&#%d;", iChar);
             str += strChar;
          }
-         psz = gen::str::utf8_inc(psz);
+         psz = ca::str::utf8_inc(psz);
       }
       return str;
    }

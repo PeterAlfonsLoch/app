@@ -7895,12 +7895,12 @@ namespace sqlite
    ** key.  The "to" table is the table that is named in the REFERENCES clause.
    ** Consider this example:
    **
-   **     CREATE TABLE gen(
+   **     CREATE TABLE ca(
    **       a INTEGER PRIMARY KEY,
-   **       b INTEGER CONSTRAINT fk1 REFERENCES gen(x)
+   **       b INTEGER CONSTRAINT fk1 REFERENCES ca(x)
    **     );
    **
-   ** For foreign key "fk1", the from-table is "gen" and the to-table is "gen".
+   ** For foreign key "fk1", the from-table is "ca" and the to-table is "ca".
    **
    ** Each REFERENCES clause generates an instance of the following structure
    ** which is attached to the from-table.  The to-table need not exist when
@@ -13733,7 +13733,7 @@ zulu_time:
    */
    typedef struct et_info {   /* Information about each format field */
       char fmttype;            /* The format field code letter */
-      etByte base;             /* The base for gen conversion */
+      etByte base;             /* The base for ca conversion */
       etByte flags;            /* One or more of FLAG_ constants below */
       etByte type;             /* Conversion paradigm */
       etByte charset;          /* Offset into aDigits[] of the digits string */

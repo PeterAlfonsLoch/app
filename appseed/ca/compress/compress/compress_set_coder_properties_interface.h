@@ -46,10 +46,10 @@ namespace libcompress
 
 
    class CLASS_DECL_ca set_coder_properties_interface :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
-      virtual gen::HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32_t numProps) = 0;
+      virtual ca::HRes SetCoderProperties(const int32_t * propIDs, const var * props, uint32_t numProps) = 0;
    };
 
 } // namespace libcompress

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -21,7 +21,7 @@ namespace gen
       };
 
       class CLASS_DECL_ca geometry  :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
          double rotate_y(double x, double y, double phi);
@@ -43,4 +43,4 @@ namespace gen
    } // namespace geometry
 
 
-} // namespace gen
+} // namespace ca

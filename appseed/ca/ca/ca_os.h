@@ -16,7 +16,7 @@ namespace ca
 
 
    class CLASS_DECL_ca os :
-      public ::gen::object
+      public ::ca::object
    {
    public:
 
@@ -81,7 +81,7 @@ namespace ca
       virtual void post_to_all_threads(UINT message, WPARAM wparam, LPARAM lparam);
 
 
-      virtual void set_file_status(const char * lpszFileName, const ::gen::file_status& status);
+      virtual void set_file_status(const char * lpszFileName, const ::ca::file_status& status);
 
    };
 

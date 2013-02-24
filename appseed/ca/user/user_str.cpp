@@ -10,7 +10,7 @@ namespace user
    {
       
 
-      m_plocaleschema = new gen::international::locale_schema(papp);
+      m_plocaleschema = new ca::international::locale_schema(papp);
 
 
       m_pstr = NULL;
@@ -204,9 +204,9 @@ namespace user
             for(int32_t iPath = 0; iPath < straPath.get_count(); iPath++)
             {
                string strPath = straPath[iPath];
-               if(gen::str::ends_ci(strPath, "\\.svn"))
+               if(ca::str::ends_ci(strPath, "\\.svn"))
                   continue;
-               if(gen::str::find_ci("\\.svn\\", strPath) >= 0)
+               if(ca::str::find_ci("\\.svn\\", strPath) >= 0)
                   continue;
                if(Application.dir().is(strPath))
                   continue;
@@ -247,7 +247,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-//      gen::international::locale_schema * plocaleschema = NULL;
+//      ca::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -344,7 +344,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-//      gen::international::locale_schema * plocaleschema = NULL;
+//      ca::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -444,7 +444,7 @@ namespace user
             const char * psz = str;
             while(isspace(*psz))
                psz++;
-            string strRoot = gen::str::consume_quoted_value(psz);
+            string strRoot = ca::str::consume_quoted_value(psz);
             while(isspace(*psz))
                psz++;
             if(*psz != '=')
@@ -452,7 +452,7 @@ namespace user
             psz++;
             while(isspace(*psz))
                psz++;
-            string strBody = gen::str::consume_quoted_value(psz);
+            string strBody = ca::str::consume_quoted_value(psz);
             set(
                strRoot,
                pszLang,
@@ -482,7 +482,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-//      gen::international::locale_schema * plocaleschema = NULL;
+//      ca::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -552,7 +552,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-//      gen::international::locale_schema * plocaleschema = NULL;
+//      ca::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -564,7 +564,7 @@ namespace user
          {
             
             str = (*pcontext->m_pschema)[id];
-            if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+            if(str.has_char() && ca::str::begins_ci(pszTopic, str))
                return true;
 
          }
@@ -572,7 +572,7 @@ namespace user
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
-            if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+            if(str.has_char() && ca::str::begins_ci(pszTopic, str))
                return true;
          }
 
@@ -580,7 +580,7 @@ namespace user
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
-            if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+            if(str.has_char() && ca::str::begins_ci(pszTopic, str))
                return true;
 
          }
@@ -591,20 +591,20 @@ namespace user
       {
 
          str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
-         if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+         if(str.has_char() && ca::str::begins_ci(pszTopic, str))
             return true;
 
       }
 
       str = (*m_pschemaEn)[id]; // lang=en style=en
-      if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+      if(str.has_char() && ca::str::begins_ci(pszTopic, str))
          return true;
 
       if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
       {
 
          str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
-         if(str.has_char() && gen::str::begins_ci(pszTopic, str))
+         if(str.has_char() && ca::str::begins_ci(pszTopic, str))
             return true;
 
       }
@@ -622,7 +622,7 @@ namespace user
       static ::id idEn("en");
       static ::id idStd("_std");
 
-//      gen::international::locale_schema * plocaleschema = NULL;
+//      ca::international::locale_schema * plocaleschema = NULL;
 
       string str;
       if(pcontext != NULL)
@@ -634,7 +634,7 @@ namespace user
          {
             
             str = (*pcontext->m_pschema)[id];
-            if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ca::str::begins_eat_ci(strTopic, str))
                return true;
 
          }
@@ -642,7 +642,7 @@ namespace user
          if(pcontext->m_pschemaLocale != NULL)
          {
             str = (*pcontext->m_pschemaLocale)[id];
-            if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ca::str::begins_eat_ci(strTopic, str))
                return true;
          }
 
@@ -650,7 +650,7 @@ namespace user
          {
             
             str = (*pcontext->m_schemaptra[i])[id];
-            if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ca::str::begins_eat_ci(strTopic, str))
                return true;
 
          }
@@ -661,20 +661,20 @@ namespace user
       {
 
          str = (*pcontext->m_pschemaSchemaEn)[id];// lang=pszStyle style=en
-            if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+            if(str.has_char() && ca::str::begins_eat_ci(strTopic, str))
                return true;
 
       }
 
       str = (*m_pschemaEn)[id]; // lang=en style=en
-      if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+      if(str.has_char() && ca::str::begins_eat_ci(strTopic, str))
          return true;
 
       if(pcontext != NULL && pcontext->m_pschemaSchemaStd != NULL)
       {
 
          str = (*pcontext->m_pschemaSchemaStd)[id];// lang=pszStyle style=en
-         if(str.has_char() && gen::str::begins_eat_ci(strTopic, str))
+         if(str.has_char() && ca::str::begins_eat_ci(strTopic, str))
             return true;
 
       }

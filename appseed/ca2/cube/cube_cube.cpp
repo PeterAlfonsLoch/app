@@ -282,7 +282,7 @@ namespace cube
          return true;
       }
 
-      gen::property_set set(this);
+      ca::property_set set(this);
 
       var varFile;
       string strApp;
@@ -323,7 +323,7 @@ namespace cube
    }
 
 
-   ::gen::command_thread & cube::command_thread()
+   ::ca::command_thread & cube::command_thread()
    {
 	   return *m_pcommandthread;
    }

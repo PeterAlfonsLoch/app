@@ -51,17 +51,17 @@ namespace filemanager
 
             tree_view(::ca::application * papp);
 
-            virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+            virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
 
 
-            void _001OnItemExpand(::gen::tree_item *pitem);
+            void _001OnItemExpand(::ca::tree_item *pitem);
 
 
             void parse(const char * lpszSource);
 
-            ::gen::tree_item * FindTreeItem(int64_t iFolder);
-            index _001GetItemImage(::gen::tree_item * pitem, bool bSelected);
+            ::ca::tree_item * FindTreeItem(int64_t iFolder);
+            index _001GetItemImage(::ca::tree_item * pitem, bool bSelected);
 
 
             virtual ~tree_view();

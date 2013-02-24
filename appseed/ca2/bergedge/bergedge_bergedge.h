@@ -80,7 +80,7 @@ namespace bergedge
 
       virtual bool create_bergedge(::ca::create_context * pcreatecontext);
 
-      virtual void on_app_request_bergedge_callback(::ca2::application * papp);
+      virtual void on_app_request_bergedge_callback(::ca::application * papp);
 
 
       // semantics defined by application
@@ -104,7 +104,7 @@ namespace bergedge
 
       virtual void check_topic_file_change();
 
-      void on_exclusive_instance_conflict(::gen::EExclusiveInstance eexclusive);
+      void on_exclusive_instance_conflict(::ca::EExclusiveInstance eexclusive);
 
       void launch_app(const char * psz);
       void install_app(const char * psz);

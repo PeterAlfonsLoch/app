@@ -8,7 +8,7 @@
 
 template < class TYPE, class ARG_TYPE = const TYPE & >
 class base_array :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
@@ -800,7 +800,7 @@ template<class TYPE, class ARG_TYPE>
 #define new DEBUG_NEW
 
       // copy new data from old
-      ::gen::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
+      ::ca::memcpy_s(pNewData, (size_t)nNewMax * sizeof(TYPE),
          m_pData, (size_t)m_nSize * sizeof(TYPE));
 
       // construct remaining elements
@@ -845,7 +845,7 @@ void base_array<TYPE, ARG_TYPE>::free_extra()
          pNewData = (TYPE*) new BYTE[m_nSize * sizeof(TYPE)];
 #define new DEBUG_NEW
          // copy new data from old
-         ::gen::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
+         ::ca::memcpy_s(pNewData, m_nSize * sizeof(TYPE),
             m_pData, m_nSize * sizeof(TYPE));
       }
 
@@ -916,7 +916,7 @@ void base_array<TYPE, ARG_TYPE>::insert_at(index nIndex, ARG_TYPE newElement, ::
       for(i = 0; i < nCount; i++ )
          (m_pData + nOldSize + i)->~TYPE();
       // shift old data up to fill gap
-      ::gen::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
+      ::ca::memmove_s(m_pData + nIndex + nCount, (nOldSize-nIndex) * sizeof(TYPE),
          m_pData + nIndex, (nOldSize-nIndex) * sizeof(TYPE));
 
       // re-init slots we copied from
@@ -953,7 +953,7 @@ void base_array<TYPE, ARG_TYPE>::remove_at(index nIndex, ::count nCount)
       (m_pData + nIndex + i)->~TYPE();
    if (nMoveCount)
    {
-      ::gen::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
+      ::ca::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE),
          m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
    }
    m_nSize -= nCount;
@@ -1041,7 +1041,7 @@ void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 {
    ASSERT_VALID(this);
 
-   ::gen::object::Serialize(ar);
+   ::ca::object::Serialize(ar);
    if (ar.IsStoring())
    {
       ar.WriteCount(m_nSize);
@@ -1058,7 +1058,7 @@ void base_array<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
 template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::assert_valid() const
 {
-   ::gen::object::assert_valid();
+   ::ca::object::assert_valid();
 
    if (m_pData == NULL)
    {
@@ -1111,7 +1111,7 @@ void base_array<TYPE, ARG_TYPE>::copy(const base_array& src)
 template<class TYPE, class ARG_TYPE>
 void base_array<TYPE, ARG_TYPE>::dump(dump_context & dumpcontext) const
 {
-   ::gen::object::dump(dumpcontext);
+   ::ca::object::dump(dumpcontext);
 
    dumpcontext << "with " << m_nSize << " elements";
    if (dumpcontext.GetDepth() > 0)

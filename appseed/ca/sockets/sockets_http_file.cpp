@@ -34,7 +34,7 @@ namespace sockets
 //         if(!Application.file().exists(lpszFileName))
   //          return false;
 
-         ca2::http::signal * psignal = new ca2::http::signal;
+         ca::http::signal * psignal = new ca::http::signal;
 
          psignal->m_set["file"]       = (::ca::ca *) m_pmemoryfileIn;
          psignal->m_set["file_out"]   = (::ca::ca *) m_ptimeoutfile;
@@ -43,7 +43,7 @@ namespace sockets
          //psignal->m_set["optional_ca2_login"] = true;
          psignal->m_set["noclose"] = false;
 
-         if((nOpenFlags & ::gen::file::hint_unknown_length_supported) != 0)
+         if((nOpenFlags & ::ca::file::hint_unknown_length_supported) != 0)
          {
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -2;
          }
@@ -52,11 +52,11 @@ namespace sockets
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
          }
 
-         gen::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &ca2::http::application::get, psignal);
+         ca::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &ca::http::application::get, psignal);
          return TRUE;
       }
 
-      void file::on_http_request_response(gen::signal_object * pobj)
+      void file::on_http_request_response(ca::signal_object * pobj)
       {
          UNREFERENCED_PARAMETER(pobj);
       }

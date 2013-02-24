@@ -8,7 +8,7 @@
 #endif
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -290,7 +290,7 @@ namespace gen
       return true;
    }
 
-} // namespace gen
+} // namespace ca
 
 
 #endif

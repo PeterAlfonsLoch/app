@@ -35,7 +35,7 @@ namespace user
       list::_001GetSelection(key, selection);
    }
 
-   void form_list::install_message_handling( ::gen::message::dispatch *pinterface)
+   void form_list::install_message_handling( ::ca::message::dispatch *pinterface)
    {
       IGUI_WIN_MSG_LINK(WM_KEYDOWN, pinterface, this, &form_list::_001OnKeyDown);
 
@@ -76,7 +76,7 @@ namespace user
 
                m_iControlItem             = iItem;
 
-               send_message(::gen::message_event, 0, (LPARAM) &ev);
+               send_message(::ca::message_event, 0, (LPARAM) &ev);
 
             }
          }
@@ -165,9 +165,9 @@ namespace user
       return m_pcontrolEdit;
    }
 
-   void form_list::_001OnVScroll(gen::signal_object * pobj)
+   void form_list::_001OnVScroll(ca::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+      //SCAST_PTR(::ca::message::scroll, pscroll, pobj);
       pobj->previous();
 
 
@@ -179,7 +179,7 @@ namespace user
       }
    }
 
-   void form_list::_001OnHScroll(gen::signal_object * pobj)
+   void form_list::_001OnHScroll(ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -203,17 +203,17 @@ namespace user
       return false;
    }
 
-   void form_list::_001OnNotify(gen::signal_object * pobj)
+   void form_list::_001OnNotify(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
 
-   void form_list::_001OnTimer(gen::signal_object * pobj)
+   void form_list::_001OnTimer(ca::signal_object * pobj)
    {
       list::_001OnTimer(pobj);
    }
 
-   void form_list::_001OnMessageNotify(gen::signal_object * pobj)
+   void form_list::_001OnMessageNotify(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       // linux na verdade revamp
@@ -311,9 +311,9 @@ namespace user
    }
 
 
-   void form_list::_001OnKeyDown(gen::signal_object * pobj)
+   void form_list::_001OnKeyDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::key, pkey, pobj)
+      SCAST_PTR(::ca::message::key, pkey, pobj)
 
       if(pkey->m_nChar == VK_RETURN)
       {
@@ -420,7 +420,7 @@ namespace user
       }
    }
 
-   void form_list::_000OnMouse(::gen::message::mouse * pmouse)
+   void form_list::_000OnMouse(::ca::message::mouse * pmouse)
    {
 
       point pt = pmouse->m_pt;
@@ -502,7 +502,7 @@ namespace user
       }
       try
       {
-         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < gen::signal_object * > (pmouse));
+         (m_pimpl->*m_pimpl->m_pfnDispatchWindowProc)(dynamic_cast < ca::signal_object * > (pmouse));
          if(pmouse->get_lresult() != 0)
             return;
       }

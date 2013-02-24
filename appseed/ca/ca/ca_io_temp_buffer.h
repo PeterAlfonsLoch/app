@@ -10,18 +10,18 @@
 
 #include "../IStream.h"*/
 
-namespace gen
+namespace ca
 {
 
    class temp_io_buffer : 
-      virtual public ::gen::object
+      virtual public ::ca::object
 
    {
    public:
       //NWindows::NFile::NDirectory::CTempFile _tempFile;
       //NWindows::NFile::NIO::COutFile _outFile;
-      gen::filesp                      _tempFile;
-      gen::filesp                      _outFile;
+      ca::filesp                      _tempFile;
+      ca::filesp                      _outFile;
       string                           _tempFileName;
       bool                             _tempFileCreated;
       uint32_t                           _crc;
@@ -34,7 +34,7 @@ namespace gen
       virtual ~temp_io_buffer();
 
       bool write_to_file(const void * data, ::primitive::memory_size size);
-      using ::gen::request_interface::create;
+      using ::ca::request_interface::create;
       void create();
 
       void InitWriting();
@@ -59,4 +59,4 @@ namespace gen
       void write(const void *data, ::primitive::memory_size size, ::primitive::memory_size * processedSize);
    };
 
-} // namespace gen
+} // namespace ca

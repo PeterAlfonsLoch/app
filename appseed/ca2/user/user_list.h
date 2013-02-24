@@ -162,7 +162,7 @@ namespace user
 
 
    class CLASS_DECL_ca2 list_item :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -354,7 +354,7 @@ namespace user
 
 
       class CLASS_DECL_ca2 list_layout :
-         virtual public gen::byte_serializable
+         virtual public ca::byte_serializable
       {
       public:
          list_layout();
@@ -363,12 +363,12 @@ namespace user
          index_array   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::gen::byte_output_stream & ostream);
-         virtual void read(::gen::byte_input_stream & istream);
+         virtual void write(::ca::byte_output_stream & ostream);
+         virtual void read(::ca::byte_input_stream & istream);
       };
 
       class CLASS_DECL_ca2 icon_layout :
-         virtual public gen::byte_serializable
+         virtual public ca::byte_serializable
       {
       public:
          icon_layout();
@@ -377,8 +377,8 @@ namespace user
          index_biunique   m_iaDisplayToStrict;
          int32_t            m_iWidth;
 
-         virtual void write(::gen::byte_output_stream & ostream);
-         virtual void read(::gen::byte_input_stream & istream);
+         virtual void write(::ca::byte_output_stream & ostream);
+         virtual void read(::ca::byte_input_stream & istream);
       };
 
    public:
@@ -536,7 +536,7 @@ namespace user
 
 
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       list_data * GetDataInterface();
       void UpdateHover();
@@ -602,7 +602,7 @@ namespace user
       void SetDataInterface(list_data * pinterface);
       void CacheHint();
       void SetCacheInterface(list_cache_interface * pinterface);
-      //void AddMessageHandling(::gen::message::dispatch * pinterface);
+      //void AddMessageHandling(::ca::message::dispatch * pinterface);
       void _001ShowTopText(bool bShow = true);
       void _001LayoutTopText();
       void _001SetTopText(const wchar_t * lpcwsz);

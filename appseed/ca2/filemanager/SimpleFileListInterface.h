@@ -26,7 +26,7 @@ namespace filemanager
 
 
       class create_image_list_thread :
-         public ::gen::thread
+         public ::ca::thread
       {
       public:
 
@@ -163,7 +163,7 @@ namespace filemanager
       //virtual void schedule_file_size(const char * psz) = 0;
    // Attributes
       virtual void _017Synchronize();
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       image_list * GetActionButtonImageList(index i);
 

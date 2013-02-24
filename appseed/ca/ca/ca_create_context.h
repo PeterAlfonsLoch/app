@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/gen/gen_command.h"
+#include "ca/ca/gen_command.h"
 #include "ca/user/user_create_context.h"
 
 
@@ -56,7 +56,7 @@ public:
 
 
 
-namespace gen
+namespace ca
 {
 
    class command_line;
@@ -81,7 +81,7 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca
 
 
 namespace ca
@@ -89,7 +89,7 @@ namespace ca
 
 
    class CLASS_DECL_ca create_context :
-      virtual public ::gen::command
+      virtual public ::ca::command
    {
    public:
 
@@ -102,15 +102,15 @@ namespace ca
       ::user::interaction *               m_puiParent;
       ::view *                            m_pviewAlloc;
       application_bias_sp                 m_spApplicationBias;
-      ::gen::command_line_sp              m_spCommandLine;
+      ::ca::command_line_sp              m_spCommandLine;
       stack < ::user::create_context >    m_user;
-      gen::command_thread *               m_pthreadParent;
+      ca::command_thread *               m_pthreadParent;
 
 
 
       create_context(::ca::application * papp);
-      create_context(gen::command_thread * pthreadParent);
-      create_context(gen::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+      create_context(ca::command_thread * pthreadParent);
+      create_context(ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
       create_context(const create_context & createcontext);
       virtual ~create_context();
 
@@ -128,8 +128,8 @@ namespace ca
 
       create_context_sp();
       create_context_sp(::ca::application * papp);
-      create_context_sp(gen::command_thread * pthreadParent);
-      create_context_sp(gen::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
+      create_context_sp(ca::command_thread * pthreadParent);
+      create_context_sp(ca::command_thread * pthreadParent, var varFile, bool bMakeVisible = true, ::user::interaction * puiParent = NULL);
       virtual ~create_context_sp();
 
 

@@ -179,7 +179,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
       m_pfilemanager = new ::filemanager::filemanager();
 
-      ::gen::application::m_pfilemanager = m_pfilemanager;
+      ::ca::application::m_pfilemanager = m_pfilemanager;
 
       m_pfilemanager->construct(this);
 
@@ -368,7 +368,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
    }
 
-   string application::message_box(const char * pszMatter, gen::property_set & propertyset)
+   string application::message_box(const char * pszMatter, ca::property_set & propertyset)
    {
       class message_box box(this);
       box.show(pszMatter, &propertyset);
@@ -379,7 +379,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
    {
       class message_box box(this);
 
-      gen::property_set propertyset;
+      ca::property_set propertyset;
       propertyset["message"] = pszMessage;
 
       string strMatter;
@@ -438,7 +438,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
       class message_box box(this);
 
-      gen::property_set propertyset;
+      ca::property_set propertyset;
       propertyset["message"] = pszMessage;
       propertyset["simple_message_box_timeout_ms"] = iTimeout;
 
@@ -538,7 +538,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       return pcentral->m_pfilesystemsizeset->get_cache_fs_size(i64Size, pszPath, bPending);
    }
 
-   void application::data_on_after_change(gen::signal_object * pobj)
+   void application::data_on_after_change(ca::signal_object * pobj)
    {
       SCAST_PTR(::database::change_event, pchange, pobj);
       if(pchange->m_key.m_idKey == "ca2_fontopus_votagus")
@@ -708,7 +708,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
    }*/
 
    /*
-   ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+   ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
    if(pgenapp != NULL)
    {
    try
@@ -740,22 +740,22 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
 
    /*bool application::on_install()
    {
-   return ::ca2::fontopus::application::on_install();
+   return ::ca::fontopus::application::on_install();
    }
 
    bool application::on_uninstall()
    {
-   return ::ca2::fontopus::application::on_uninstall();
+   return ::ca::fontopus::application::on_uninstall();
    }
 
    bool application::is_serviceable()
    {
-   return ::ca2::fontopus::application::is_serviceable();
+   return ::ca::fontopus::application::is_serviceable();
    }
 
    service_base * application::allocate_new_service()
    {
-   return ::ca2::fontopus::application::allocate_new_service();
+   return ::ca::fontopus::application::allocate_new_service();
    }*/
 
    bool application::_001CloseApplicationByUser(::user::interaction * pwndExcept)

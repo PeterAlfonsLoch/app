@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include "ca/gen/gen_definition.h"
-#include "ca/gen/gen_core.h"
+#include "ca/ca/gen_definition.h"
+#include "ca/ca/gen_core.h"
 
 #define _TYPELIB_INDEX_LENGTH 10
 #define _QUOTES_SPACE 2
@@ -27,7 +27,7 @@ extern "C" const IID IID_IAxWinAmbientDispatchEx;
 
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -92,7 +92,7 @@ struct _OBJMAP_ENTRY20
          p->Release();
       return hRes;
    }
-// Added in gen 3.0
+// Added in ca 3.0
    void (WINAPI *pfnObjectMain)(bool bStarting);
 };
 
@@ -238,7 +238,7 @@ typedef CComMultiThreadModel CComGlobalsThreadModel;
 */
 
 
-// Used by COM related code in gen
+// Used by COM related code in ca
 /*struct _COM_MODULE70
 {
    UINT cbSize;
@@ -250,7 +250,7 @@ typedef CComMultiThreadModel CComGlobalsThreadModel;
 typedef _COM_MODULE70 _COM_MODULE;*/
 
 
-// Used by Windowing code in gen
+// Used by Windowing code in ca
 /*struct _WIN_MODULE70
 {
    UINT cbSize;
@@ -273,7 +273,7 @@ typedef _MODULE70 _MODULE;*/
 
 /////////////////////////////////////////////////////////////////////////////
 //This define makes debugging asserts easier.
-/*#define _SIMPLEMAPENTRY ((gen::_CREATORARGFUNC*)1)
+/*#define _SIMPLEMAPENTRY ((ca::_CREATORARGFUNC*)1)
 
 struct _INTMAP_ENTRY
 {
@@ -345,7 +345,7 @@ API_() gen_WinModuleAddCreateWndData(_WIN_MODULE* pWinModule, _AtlCreateWndData*
 API_(void *) gen_WinModuleExtractCreateWndData(_WIN_MODULE* pWinModule);
 */
 /////////////////////////////////////////////////////////////////////////////
-// get Registrar object from gen DLL.
+// get Registrar object from ca DLL.
 
 //extern "C" CLASS_DECL_ca HRESULT __stdcall gen_CreateRegistrar(IRegistrar** ppReg);
 
@@ -417,7 +417,7 @@ const char * gen_DebugGetClassName(T*)
       return i1 * i2;
    }
 
-}   // namespace gen
+}   // namespace ca
 
 
 
@@ -442,7 +442,7 @@ public:
 
 
    template < class T2 >
-   inline static bool bases(const ::gen::holder < T2 > & holder) 
+   inline static bool bases(const ::ca::holder < T2 > & holder) 
    { 
       return dynamic_cast < T * > ((T2 *) holder) != NULL; 
    }

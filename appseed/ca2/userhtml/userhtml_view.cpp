@@ -37,7 +37,7 @@ html_view::~html_view()
 {
 }
 
-void html_view::install_message_handling(::gen::message::dispatch * pinterface)
+void html_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
 
@@ -92,14 +92,14 @@ bool html_view::pre_create_window(CREATESTRUCT& cs)
    cs.style &= ~WS_EX_CLIENTEDGE;
    return ::userbase::view::pre_create_window(cs);
 }
-void html_view::_001OnInitialUpdate(gen::signal_object * pobj) 
+void html_view::_001OnInitialUpdate(ca::signal_object * pobj) 
 {
 
    ::userbase::view::_001OnInitialUpdate(pobj);
 
 }
 
-void html_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint) 
+void html_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint) 
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(lHint);
@@ -125,7 +125,7 @@ void html_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
    
 }
 
-void html_view::_001OnDestroy(gen::signal_object * pobj) 
+void html_view::_001OnDestroy(ca::signal_object * pobj) 
 {
    ::userbase::view::_001OnDestroy(pobj);
 
@@ -135,7 +135,7 @@ void html_view::_001OnDestroy(gen::signal_object * pobj)
 
 
 
-void html_view::_001OnCreate(gen::signal_object * pobj) 
+void html_view::_001OnCreate(ca::signal_object * pobj) 
 {
    if(pobj->previous())
       return;
@@ -146,16 +146,16 @@ void html_view::_001OnCreate(gen::signal_object * pobj)
 
 
 }
-void html_view::_001OnContextMenu(gen::signal_object * pobj) 
+void html_view::_001OnContextMenu(ca::signal_object * pobj) 
 {
-//   SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//   SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //   point point = pcontextmenu->GetPoint();
    
 }
 
 
 
-void html_view::_001OnSetCursor(gen::signal_object * pobj) 
+void html_view::_001OnSetCursor(ca::signal_object * pobj) 
 {
 
 #ifdef WINDOWSEX

@@ -5,7 +5,7 @@ namespace filemanager
 {
 
    class CLASS_DECL_ca2 iconoverlayer :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       iconoverlayer(::ca::application * papp);

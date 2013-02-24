@@ -4,7 +4,7 @@
 class var_array;
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -29,7 +29,7 @@ namespace gen
    } // namespace str
 
 
-} // namespace gen
+} // namespace ca
 
 
 

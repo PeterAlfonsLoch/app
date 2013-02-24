@@ -7,7 +7,7 @@ namespace gcom
       class Main;
 
       class CLASS_DECL_ca2 Helper : 
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       private:
          Main & m_main;

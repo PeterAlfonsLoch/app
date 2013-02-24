@@ -19,7 +19,7 @@ namespace uinteraction
    {
 
 
-      // implemented in ca2
+      // implemented in ca
       class WorkSet;
 
       enum EHitTest
@@ -40,8 +40,8 @@ namespace uinteraction
 
 
       class CLASS_DECL_ca frame : 
-         virtual public gen::signalizable,
-         virtual public ::gen::object
+         virtual public ca::signalizable,
+         virtual public ::ca::object
       {
       public:
 
@@ -109,12 +109,12 @@ namespace uinteraction
          virtual COLORREF get_border_main_body_color();
 
          virtual EHitTest _000HitTest(point pt) = 0;
-         virtual bool _000OnLButtonDown(::gen::message::mouse * pmouse);
-         virtual bool _000OnLButtonUp(::gen::message::mouse * pmouse);
-         virtual bool _000OnMouseMove(::gen::message::mouse * pmouse);
-         virtual bool _000OnNcLButtonDown(::gen::message::mouse * pmouse);
-         virtual bool _000OnNcLButtonUp(::gen::message::mouse * pmouse);
-         virtual bool _000OnNcMouseMove(::gen::message::mouse * pmouse);
+         virtual bool _000OnLButtonDown(::ca::message::mouse * pmouse);
+         virtual bool _000OnLButtonUp(::ca::message::mouse * pmouse);
+         virtual bool _000OnMouseMove(::ca::message::mouse * pmouse);
+         virtual bool _000OnNcLButtonDown(::ca::message::mouse * pmouse);
+         virtual bool _000OnNcLButtonUp(::ca::message::mouse * pmouse);
+         virtual bool _000OnNcMouseMove(::ca::message::mouse * pmouse);
          virtual bool _000OnNcHitTest(point pt, LRESULT & nHitTest);
          virtual bool _000OnTimer(UINT nIDEvent);
          virtual bool _000OnSize(UINT nType, int32_t cx, int32_t cy);

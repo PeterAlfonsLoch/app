@@ -1,17 +1,17 @@
 #pragma once
 
 
-#include "ca/gen/gen_message.h"
+#include "ca/ca/gen_message.h"
 #include "ca/user/user_create_context.h"
 
 
 class CLASS_DECL_ca command_target_interface :
-   virtual public gen::signalizable,
-   virtual public gen::message::dispatch
+   virtual public ca::signalizable,
+   virtual public ca::message::dispatch
 {
 public:
 
-   class CLASS_DECL_ca command_signalid : public gen::signalid
+   class CLASS_DECL_ca command_signalid : public ca::signalid
    {
    public:
 
@@ -23,7 +23,7 @@ public:
 
       id m_id;
 
-      virtual bool is_equal(gen::signalid * pidParam)
+      virtual bool is_equal(ca::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -31,7 +31,7 @@ public:
          return pid->m_id == m_id;
       };
 
-      virtual bool matches(gen::signalid * pidParam)
+      virtual bool matches(ca::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -39,7 +39,7 @@ public:
          return pid->m_id == m_id;
       };
 
-      virtual gen::signalid * copy()
+      virtual ca::signalid * copy()
       {
          command_signalid * pid = new command_signalid();
          pid->m_id = m_id;
@@ -47,7 +47,7 @@ public:
       }
    };
 
-   class CLASS_DECL_ca command_signalrange : public gen::signalid
+   class CLASS_DECL_ca command_signalrange : public ca::signalid
    {
    public:
 
@@ -60,7 +60,7 @@ public:
       index m_iStart;
       index m_iEnd;
 
-      virtual bool is_equal(gen::signalid * pidParam)
+      virtual bool is_equal(ca::signalid * pidParam)
       {
          command_signalrange * prange = dynamic_cast < command_signalrange * > (pidParam);
          if(prange == NULL)
@@ -68,7 +68,7 @@ public:
          return prange->m_iStart == m_iStart && prange->m_iEnd == m_iEnd;
       };
 
-      virtual bool matches(gen::signalid * pidParam)
+      virtual bool matches(ca::signalid * pidParam)
       {
          command_signalid * pid = dynamic_cast < command_signalid * > (pidParam);
          if(pid == NULL)
@@ -78,7 +78,7 @@ public:
              && pid->m_id <= m_iEnd;
       };
 
-      virtual gen::signalid * copy()
+      virtual ca::signalid * copy()
       {
          command_signalrange * pid = new command_signalrange();
          pid->m_iStart = m_iStart;
@@ -87,58 +87,58 @@ public:
       }
    };
 
-   gen::signalid_array m_signalidaCommand;
+   ca::signalid_array m_signalidaCommand;
 
-   gen::dispatch  m_dispatchUpdateCmdUi;
-   gen::dispatch  m_dispatchCommand;
+   ca::dispatch  m_dispatchUpdateCmdUi;
+   ca::dispatch  m_dispatchCommand;
 
    command_target_interface();
    command_target_interface(::ca::application * papp);
 
 
    template < class T >
-   bool connect_update_cmd_ui(const char * pszId, void (T::*pfn)(gen::signal_object *))
+   bool connect_update_cmd_ui(const char * pszId, void (T::*pfn)(ca::signal_object *))
    {
       return connect_update_cmd_ui(id(pszId), pfn);
    }
    template < class T >
-   bool connect_command(const char * pszId, void (T::*pfn)(gen::signal_object *))
+   bool connect_command(const char * pszId, void (T::*pfn)(ca::signal_object *))
    {
       return connect_command(id(pszId), pfn);
    }
    template < class T >
-   bool connect_update_cmd_ui(id id, void (T::*pfn)(gen::signal_object *))
+   bool connect_update_cmd_ui(id id, void (T::*pfn)(ca::signal_object *))
    {
       command_signalid signalid;
-      gen::signalid * pid;
+      ca::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_command(id id, void (T::*pfn)(gen::signal_object *))
+   bool connect_command(id id, void (T::*pfn)(ca::signal_object *))
    {
       command_signalid signalid;
-      gen::signalid * pid;
+      ca::signalid * pid;
       signalid.m_id = id;
       pid = m_signalidaCommand.get(&signalid);
       return m_dispatchCommand.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_update_cmd_range_ui(int32_t iStart, int32_t iEnd, void (T::*pfn)(gen::signal_object *))
+   bool connect_update_cmd_range_ui(int32_t iStart, int32_t iEnd, void (T::*pfn)(ca::signal_object *))
    {
       command_signalrange signalrange;
-      gen::signalid * pid;
+      ca::signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
       return m_dispatchUpdateCmdUi.AddMessageHandler(pid, dynamic_cast < T *> (this), pfn, true);
    }
    template < class T >
-   bool connect_command_range(int32_t iStart, int32_t iEnd, void (T::*pfn)(gen::signal_object *))
+   bool connect_command_range(int32_t iStart, int32_t iEnd, void (T::*pfn)(ca::signal_object *))
    {
       command_signalrange signalrange;
-      gen::signalid * pid;
+      ca::signalid * pid;
       signalrange.m_iStart = iStart;
       signalrange.m_iEnd = iEnd;
       pid = m_signalidaCommand.get(&signalrange);
@@ -156,13 +156,13 @@ public:
    virtual bool _001OnCmdMsg(BaseCmdMsg * pcmdmsg);
    //virtual bool _001HasCommandHandler(const char * pszId);
 
-   void get_command_signal_array(BaseCmdMsg::e_type etype, gen::dispatch::signal_ptr_array & signalptra, id id);
+   void get_command_signal_array(BaseCmdMsg::e_type etype, ca::dispatch::signal_ptr_array & signalptra, id id);
 };
 
 
 
 class CLASS_DECL_ca command_target :
-   virtual public gen::signalizable,
+   virtual public ca::signalizable,
    virtual public command_target_interface
 {
 public:
@@ -317,7 +317,7 @@ struct CLASS_DECL_ca __EVENTSINKMAP_ENTRY
    UINT nCtrlIDLast;
 };
 
-// DSC Sink state/reason codes passed to ca2 API ::fontopus::user event handlers
+// DSC Sink state/reason codes passed to ca API ::fontopus::user event handlers
 enum DSCSTATE
 {
    dscNoState = 0,
@@ -380,6 +380,6 @@ struct CPrintInfo;          // print preview customization info
 #define MLF_NOKICKIDLE      0x0002  // don't send WM_KICKIDLE messages
 #define MLF_SHOWONIDLE      0x0004  // show ::ca::window if not visible at idle time
 
-// extra ca2 API defined TTF_ flags for TOOLINFO::uFlags
+// extra ca API defined TTF_ flags for TOOLINFO::uFlags
 #define TTF_NOTBUTTON       0x80000000L // no status help on buttondown
 #define TTF_ALWAYSTIP       0x40000000L // always show the tip even if not active

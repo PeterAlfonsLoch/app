@@ -27,7 +27,7 @@ namespace primitive
 
 
    memory_container ::memory_container(const memory_container & container) :
-      ::gen::object(container)
+      ::ca::object(container)
    {
       operator = (container);
    }
@@ -138,7 +138,7 @@ namespace primitive
    }
 
 
-   void memory_container ::FullLoad(gen::file & file)
+   void memory_container ::FullLoad(ca::file & file)
    {
       if(m_spmemory.is_null())
       {

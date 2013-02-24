@@ -15,7 +15,7 @@ namespace userbase
    }
 
 
-   void combo_list::install_message_handling(::gen::message::dispatch * pdispatch)
+   void combo_list::install_message_handling(::ca::message::dispatch * pdispatch)
    {
 
       ::user::combo_list::install_message_handling(pdispatch);

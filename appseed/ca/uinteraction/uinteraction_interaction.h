@@ -6,12 +6,12 @@ namespace uinteraction
 
 
    class CLASS_DECL_ca interaction :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
 
-      gen::property_set       m_set;
+      ca::property_set       m_set;
 
 
       interaction(::ca::application * papp);

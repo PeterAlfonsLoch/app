@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
    void request_interface::create(::ca::create_context * pcreatecontext)
@@ -16,7 +16,7 @@ namespace gen
 
    void request_interface::add_line(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
    {
-      gen::command_thread & commandcentral = get_app()->cast_app < ::gen::application > ().command_central();
+      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLine(pszCommandLine);
@@ -27,7 +27,7 @@ namespace gen
 
    void request_interface::add_line_uri(const char * pszCommandLine, ::ca::application_bias * pbiasCreate)
    {
-      gen::command_thread & commandcentral = get_app()->cast_app < ::gen::application > ().command_central();
+      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandLineUri(pszCommandLine);
@@ -38,7 +38,7 @@ namespace gen
 
    void request_interface::add_fork(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
-      gen::command_thread & commandcentral = get_app()->cast_app < ::gen::application > ().command_central();
+      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandFork(pszCommandFork);
@@ -49,7 +49,7 @@ namespace gen
 
    void request_interface::add_fork_uri(const char * pszCommandFork, ::ca::application_bias * pbiasCreate)
    {
-      gen::command_thread & commandcentral = get_app()->cast_app < ::gen::application > ().command_central();
+      ca::command_thread & commandcentral = get_app()->cast_app < ::ca::application > ().command_central();
       ::ca::create_context_sp createcontext(&commandcentral);
       createcontext->m_spApplicationBias = pbiasCreate;
       createcontext->m_spCommandLine->_001ParseCommandForkUri(pszCommandFork);
@@ -61,7 +61,7 @@ namespace gen
    void request_interface::request(var & varFile)
    {
 
-      ::ca::create_context_sp createcontext(&get_app()->cast_app < ::gen::application > ().command());
+      ::ca::create_context_sp createcontext(&get_app()->cast_app < ::ca::application > ().command());
 
       createcontext->m_spCommandLine->m_varFile              = varFile;
 
@@ -74,13 +74,13 @@ namespace gen
    void request_interface::request(var & varFile, var & varQuery)
    {
 
-      ::ca::create_context_sp createcontext(&get_app()->cast_app < ::gen::application > ().command());
+      ::ca::create_context_sp createcontext(&get_app()->cast_app < ::ca::application > ().command());
 
       createcontext->m_spCommandLine->m_varFile              = varFile;
       createcontext->m_spCommandLine->m_varQuery             = varQuery;
       if(!varFile.is_empty())
       {
-         createcontext->m_spCommandLine->m_ecommand = ::gen::command_line::command_file_open;
+         createcontext->m_spCommandLine->m_ecommand = ::ca::command_line::command_file_open;
       }
 
       request(createcontext);
@@ -90,7 +90,7 @@ namespace gen
 
    }
 
-   void request_interface::request(gen::command_line * pcommandline)
+   void request_interface::request(ca::command_line * pcommandline)
    {
 
       ::ca::create_context_sp createcontext(get_app());
@@ -112,5 +112,5 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 

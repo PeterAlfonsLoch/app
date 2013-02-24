@@ -17,7 +17,7 @@ namespace ca
 
 
       class CLASS_DECL_ca system :
-         public ::gen::object
+         public ::ca::object
       {
       public:
 
@@ -61,13 +61,13 @@ namespace ca
          void  get_ascendants_name(const char * lpcsz, stringa & stra);
 
          template < class T >
-         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::gen::writer &, const char *), const char * lpszSource)
+         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, const char *), const char * lpszSource)
          #if defined(LINUX) || defined(MACOS)
          ;
          #else
          {
             System.dir().mk(System.dir().name(pszOutput), papp);
-            gen::filesp fileOut = App(papp).file().get_file(pszOutput, gen::file::mode_create | gen::file::type_binary | gen::file::mode_write);
+            ca::filesp fileOut = App(papp).file().get_file(pszOutput, ca::file::mode_create | ca::file::type_binary | ca::file::mode_write);
             if(fileOut.is_null())
                return false;
             return (p->*lpfnOuput)(fileOut, lpszSource);
@@ -75,7 +75,7 @@ namespace ca
          #endif
 
          template < class T >
-         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::gen::writer &, ::gen::reader &), const char * lpszInput)
+         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), const char * lpszInput)
          #if defined(LINUX) || defined(MACOS)
          ;
          #else
@@ -83,12 +83,12 @@ namespace ca
 
             App(papp).dir().mk(System.dir().name(pszOutput));
 
-            gen::filesp fileOut = App(papp).file().get_file(pszOutput, gen::file::mode_create | gen::file::type_binary | gen::file::mode_write);
+            ca::filesp fileOut = App(papp).file().get_file(pszOutput, ca::file::mode_create | ca::file::type_binary | ca::file::mode_write);
 
             if(fileOut.is_null())
                 return false;
 
-            gen::filesp fileIn = App(papp).file().get_file(lpszInput, gen::file::type_binary | gen::file::mode_read);
+            ca::filesp fileIn = App(papp).file().get_file(lpszInput, ca::file::type_binary | ca::file::mode_read);
 
             if(fileIn.is_null())
                return false;
@@ -99,7 +99,7 @@ namespace ca
          #endif
 
          template < class T >
-         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::gen::writer &, ::gen::reader &), ::gen::reader & istream)
+         bool output(::ca::application * papp, const char * pszOutput, T * p, bool (T::*lpfnOuput)(::ca::writer &, ::ca::reader &), ::ca::reader & istream)
          {
             return (p->*lpfnOuput)(get(pszOutput, papp), istream);
          }
@@ -108,11 +108,11 @@ namespace ca
          string time_square(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
          string time_log(::ca::application * papp, const char * pszId);
 
-         virtual gen::filesp time_square_file(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
-         virtual gen::filesp get(const char * name, ::ca::application * papp);
+         virtual ca::filesp time_square_file(::ca::application * papp, const char * pszPrefix = NULL, const char * pszSuffix = NULL);
+         virtual ca::filesp get(const char * name, ::ca::application * papp);
 
          template < class T >
-         string time_square(::ca::application * papp, T * p, bool (T::*lpfnOutput)(::gen::writer &, const char *), const char * lpszSource)
+         string time_square(::ca::application * papp, T * p, bool (T::*lpfnOutput)(::ca::writer &, const char *), const char * lpszSource)
          {
             string strTime = time_square(papp);
             if(strTime.has_char())
@@ -131,7 +131,7 @@ namespace ca
 
          bool put_contents(var varFile, const void * pvoidContents, count count, ::ca::application * papp);
          bool put_contents(var varFile, const char * lpcszContents, ::ca::application * papp);
-         bool put_contents(var varFile, gen::file & file, ::ca::application * papp);
+         bool put_contents(var varFile, ca::file & file, ::ca::application * papp);
          bool put_contents(var varFile, primitive::memory & mem, ::ca::application * papp);
          bool put_contents_utf8(var varFile, const char * lpcszContents, ::ca::application * papp);
 
@@ -169,17 +169,17 @@ namespace ca
 typedef struct MD5state_st MD5_CTX;
 
 
-namespace ca2
+namespace ca
 {
 
 
    class CLASS_DECL_ca file :
-      public ::gen::object
+      public ::ca::object
    {
    public:
 
       class CLASS_DECL_ca path :
-         public ::gen::object
+         public ::ca::object
       {
       public:
          bool rename(const char * pszNew, const char * psz, ::ca::application * papp);
@@ -195,7 +195,7 @@ namespace ca2
       string md5(const char * psz);
       string nessie(const char * psz);
 
-      string nessie(gen::file * pfile);
+      string nessie(ca::file * pfile);
 
       path & path36();
    
@@ -206,17 +206,17 @@ namespace ca2
       void is_valid_fileset(const char * pszFile, ::ca::application * papp);
 
       // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber);
-      static void read_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
+      static void write_n_number(ca::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber);
+      static void read_n_number(ca::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
 
-      static void write_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str);
-      static void read_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str);
+      static void write_gen_string(ca::file * pfile, ::crypto::md5::context * pctx, string & str);
+      static void read_gen_string(ca::file * pfile, ::crypto::md5::context * pctx, string & str);
 
 
    };
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

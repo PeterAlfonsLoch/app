@@ -4,7 +4,7 @@
 
 
 
-namespace ca2
+namespace ca
 {
 
    const char * psz_empty_app_id = "";
@@ -132,7 +132,7 @@ namespace ca2
 
          strPrefix += "_";
 
-         gen::str::begins_eat_ci(strName, strPrefix);
+         ca::str::begins_eat_ci(strName, strPrefix);
 
          return strName;
 
@@ -209,11 +209,11 @@ namespace ca2
 
 #ifdef LINUX
 
-      gen::str::begins_eat(strLibraryName, "lib");
+      ca::str::begins_eat(strLibraryName, "lib");
 
 #elif defined(METROWIN)
 
-//      gen::str::begins_eat_ci(strLibraryName, "m_");
+//      ca::str::begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -248,11 +248,11 @@ namespace ca2
 
 #ifdef LINUX
 
-      gen::str::begins_eat(strLibraryName, "lib");
+      ca::str::begins_eat(strLibraryName, "lib");
 
 #elif defined(METROWIN)
 
-//      gen::str::begins_eat_ci(strLibraryName, "m_");
+//      ca::str::begins_eat_ci(strLibraryName, "m_");
 
 #endif
 
@@ -262,7 +262,7 @@ namespace ca2
 
       strPrefix += "/";
 
-      gen::str::begins_eat(strAppName, strPrefix);
+      ca::str::begins_eat(strAppName, strPrefix);
 
       if(!contains_app(strAppName))
       {
@@ -273,7 +273,7 @@ namespace ca2
 
          strPrefix += "/";
 
-         gen::str::begins_eat(strAppName, strPrefix);
+         ca::str::begins_eat(strAppName, strPrefix);
 
          if(!contains_app(strAppName))
             return "";
@@ -303,7 +303,7 @@ namespace ca2
             if(papp == NULL)
                return NULL;
 
-            ::gen::application  * pgenapp = dynamic_cast < ::gen::application * > (papp);
+            ::ca::application  * pgenapp = dynamic_cast < ::ca::application * > (papp);
 
             if(pgenapp != NULL)
             {
@@ -345,7 +345,7 @@ namespace ca2
 
 #ifdef LINUX
 
-         gen::str::begins_eat(strAppId, "lib");
+         ca::str::begins_eat(strAppId, "lib");
 
 #elif defined(METROWIN)
 
@@ -357,7 +357,7 @@ namespace ca2
 
          strPrefix += "_";
 
-         if(gen::str::begins_eat_ci(strAppId, strPrefix))
+         if(ca::str::begins_eat_ci(strAppId, strPrefix))
          {
 
             stra.add(strAppId);
@@ -518,6 +518,6 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace ca
 
 

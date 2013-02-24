@@ -26,7 +26,7 @@ public:
    //virtual void layout(::html::data * phtmldata);
    virtual void layout();
 
-   virtual void install_message_handling(::gen::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
    virtual string get_path();
 

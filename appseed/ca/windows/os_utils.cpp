@@ -85,10 +85,10 @@ HANDLE ExtractAndInstallDrv()
 		File.Close();*/
 		
 
-        HMODULE hModule = GetModuleHandle(_T("ca2.dll"));
+        HMODULE hModule = GetModuleHandle(_T("ca.dll"));
         if( !hModule )
         {
-            OutputDebugStringW( L"GetModuleHandle(_T(\"ca2.dll\")); failed" );
+            OutputDebugStringW( L"GetModuleHandle(_T(\"ca.dll\")); failed" );
             return 0;
         }
         string csFilePath;

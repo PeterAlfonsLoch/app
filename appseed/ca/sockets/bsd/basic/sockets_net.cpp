@@ -127,7 +127,7 @@ namespace sockets
       {
          return false;
       }
-      ::gen::parse pa(str,":.");
+      ::ca::parse pa(str,":.");
       string tmp = pa.getword();
       while (tmp.get_length())
       {
@@ -179,7 +179,7 @@ namespace sockets
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::gen::parse pa((const char *)host, ".");
+         ::ca::parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;
@@ -448,14 +448,14 @@ namespace sockets
          struct sockaddr_in6 *sa6 = (struct sockaddr_in6 *)sa;
          string tmp;
          convert(tmp, sa6 -> sin6_addr);
-         return tmp + ":" + gen::str::from(ntohs(sa6 -> sin6_port));
+         return tmp + ":" + ca::str::from(ntohs(sa6 -> sin6_port));
       }
       if (sa -> sa_family == AF_INET)
       {
          struct sockaddr_in *sa4 = (struct sockaddr_in *)sa;
          string tmp;
          convert(tmp, sa4 -> sin_addr);
-         return tmp + ":" + gen::str::from(ntohs(sa4 -> sin_port));
+         return tmp + ":" + ca::str::from(ntohs(sa4 -> sin_port));
       }
       return "";
    }
@@ -498,7 +498,7 @@ namespace sockets
 #ifdef NO_GETADDRINFO
       if ((ai_flags & AI_NUMERICHOST) != 0 || isipv4(host))
       {
-         ::gen::parse pa((const char *)host, ".");
+         ::ca::parse pa((const char *)host, ".");
          union {
             struct {
                uchar b1;
@@ -874,8 +874,8 @@ namespace sockets
    int32_t net::service_port(const string & str, int32_t flags)
    {
 
-      if(gen::str::is_simple_natural(str))
-         return gen::str::to_int(str);
+      if(ca::str::is_simple_natural(str))
+         return ca::str::to_int(str);
 
       if(str.CompareNoCase("http"))
       {

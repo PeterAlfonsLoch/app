@@ -31,7 +31,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    // Splits a string whatever way you want.
@@ -84,4 +84,4 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca

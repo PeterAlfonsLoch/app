@@ -20,9 +20,9 @@ namespace hotplugin
 
 
       bool                          m_bCa2InstallationReady;
-      // this flag is only set if spaadmin is installing ca2 files while npca2 is *started*
+      // this flag is only set if spaadmin is installing ca files while npca2 is *started*
       // it isn't set when npca2 is already running and spaadmin starts, may be only in the case above, when npca2 *restarts*.
-      // this enables spaadmin to install ca2 files to ca2 folder, because npca2 would not use any ca2 shared libraries.
+      // this enables spaadmin to install ca files to ca folder, because npca2 would not use any ca shared libraries.
       bool                          m_bRunningSpaAdmin;
 
 

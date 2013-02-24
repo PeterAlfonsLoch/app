@@ -22,7 +22,7 @@ SimpleFolderListView::~SimpleFolderListView()
 {
 }
 
-void SimpleFolderListView::install_message_handling(::gen::message::dispatch * pinterface)
+void SimpleFolderListView::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    SimpleFolderListInterface::install_message_handling(pinterface);
@@ -65,7 +65,7 @@ void SimpleFolderListView::dump(dump_context & dumpcontext) const
 }
 #endif //DEBUG
 
-void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::gen::object * phint) 
+void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::ca::object * phint) 
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);  
    if(phint != NULL)
@@ -96,9 +96,9 @@ void SimpleFolderListView::on_update(::view * pSender, LPARAM lHint, ::gen::obje
    }
 }
 
-void SimpleFolderListView::_001OnLButtonDblClk(gen::signal_object * pobj) 
+void SimpleFolderListView::_001OnLButtonDblClk(ca::signal_object * pobj) 
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
    index iItem;
    if(_001HitTest_(pmouse->m_pt, iItem))
    {
@@ -108,7 +108,7 @@ void SimpleFolderListView::_001OnLButtonDblClk(gen::signal_object * pobj)
    }
 }
 
-void SimpleFolderListView::_001OnCancelMode(gen::signal_object * pobj) 
+void SimpleFolderListView::_001OnCancelMode(ca::signal_object * pobj) 
 {
    UNREFERENCED_PARAMETER(pobj);
 // trans   ::userbase::view::OnCancelMode();

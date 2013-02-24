@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    edit_file::Item::Item()
@@ -325,17 +325,17 @@ namespace gen
 
    edit_file::edit_file(::ca::application * papp) :
       ca(papp),
-      gen::tree_data(papp),
-      gen::filesp(papp),
-      gen::tree(papp)
+      ca::tree_data(papp),
+      ca::filesp(papp),
+      ca::tree(papp)
    {
       m_iBranch = 0;
       m_pgroupitem = NULL;
 
-      if(!gen::tree_data::initialize_data())
+      if(!ca::tree_data::initialize_data())
          throw simple_exception(get_app());
 
-      if(!gen::tree::initialize())
+      if(!ca::tree::initialize())
          throw simple_exception(get_app());
 
       m_ptreeitem = get_base_item();
@@ -347,11 +347,11 @@ namespace gen
 
    }
 
-   void edit_file::SetFile(gen::file * pfile)
+   void edit_file::SetFile(ca::file * pfile)
    {
       m_pfile = pfile;
       m_dwFileLength = pfile->get_length();
-      m_pfile->seek(0, ::gen::seek_begin);
+      m_pfile->seek(0, ::ca::seek_begin);
       m_dwPosition = 0;
    }
 
@@ -368,7 +368,7 @@ namespace gen
 //      uint32_t dwMaxCount = m_dwFileLength;
 //      uint32_t dwUpperLimit = m_dwFileLength;
 //      int32_t iOffset =0;
-      ::gen::tree_item * ptreeitem;
+      ::ca::tree_item * ptreeitem;
 //      GroupItem * pitemgroup = NULL;
       int_array ia;
 
@@ -398,7 +398,7 @@ l1:
          }
          if(nCount > 0 && m_dwPosition < m_dwFileLength)
          {
-            m_pfile->seek((file_offset) m_dwPosition, ::gen::seek_begin);
+            m_pfile->seek((file_offset) m_dwPosition, ::ca::seek_begin);
             if(!m_pfile->read(&uiReadItem, 1))
                break;
             buf[uiRead] = (byte) uiReadItem;
@@ -423,7 +423,7 @@ l1:
          m_pgroupitem->add(pitem);
          return;
       }
-      gen::tree_item * pitemNew = NULL;
+      ca::tree_item * pitemNew = NULL;
       if(m_ptreeitem != NULL && m_ptreeitem->m_pnext != NULL)
       {
          pitemNew = insert_item(pitem, RelativeFirstChild, m_ptreeitem);
@@ -477,7 +477,7 @@ l1:
       pdelete = new DeleteItem;
       pdelete->m_dwPosition = m_dwPosition;
       pdelete->m_memstorage.allocate(uiCount);
-      seek((file_offset) m_dwPosition, ::gen::seek_begin);
+      seek((file_offset) m_dwPosition, ::ca::seek_begin);
       read(pdelete->m_memstorage.get_data(), uiCount);
       TreeInsert(pdelete);
       m_dwFileLength -= uiCount;
@@ -495,23 +495,23 @@ l1:
       return true;
    }
 
-   file_position edit_file::seek(file_offset lOff, ::gen::e_seek nFrom)
+   file_position edit_file::seek(file_offset lOff, ::ca::e_seek nFrom)
    {
       ASSERT(IsValid());
-      ASSERT(nFrom == ::gen::seek_begin || nFrom == ::gen::seek_end || nFrom == ::gen::seek_current);
-      ASSERT(::gen::seek_begin == FILE_BEGIN && ::gen::seek_end == FILE_END && ::gen::seek_current == FILE_CURRENT);
+      ASSERT(nFrom == ::ca::seek_begin || nFrom == ::ca::seek_end || nFrom == ::ca::seek_current);
+      ASSERT(::ca::seek_begin == FILE_BEGIN && ::ca::seek_end == FILE_END && ::ca::seek_current == FILE_CURRENT);
 
       file_position dwNew = (uint32_t) -1;
 
       switch(nFrom)
       {
-      case ::gen::seek_begin:
+      case ::ca::seek_begin:
          dwNew = (file_position) lOff;
          break;
-      case ::gen::seek_end:
+      case ::ca::seek_end:
          dwNew = get_length() - lOff;
          break;
-      case ::gen::seek_current:
+      case ::ca::seek_current:
          if(lOff < 0)
          {
             dwNew = m_dwPosition + lOff;
@@ -545,11 +545,11 @@ l1:
 
       strTimeFile = System.file().time_square(get_app());
 
-      gen::filesp spfile = Application.file().get_file(strTimeFile, ::gen::file::type_binary | ::gen::file::mode_read_write | ::gen::file::mode_create | ::gen::file::defer_create_directory);
+      ca::filesp spfile = Application.file().get_file(strTimeFile, ::ca::file::type_binary | ::ca::file::mode_read_write | ::ca::file::mode_create | ::ca::file::defer_create_directory);
 
       if(spfile.is_null())
       {
-         throw ::gen::file_exception(get_app(), ::gen::file_exception::none, -1, strTimeFile);
+         throw ::ca::file_exception(get_app(), ::ca::file_exception::none, -1, strTimeFile);
          return;
       }
 
@@ -558,7 +558,7 @@ l1:
       char buf[4096];
       primitive::memory_size uiRead;
       m_pfile->set_length(0);
-      spfile->seek(0, ::gen::seek_begin);
+      spfile->seek(0, ::ca::seek_begin);
       while((uiRead = spfile->read(buf, sizeof(buf))) > 0)
       {
          m_pfile->write(buf, uiRead);
@@ -568,11 +568,11 @@ l1:
       m_ptreeitemFlush = m_ptreeitem;
    }
 
-   bool edit_file::SaveTo(gen::byte_output_stream & ostream)
+   bool edit_file::SaveTo(ca::byte_output_stream & ostream)
    {
       char buf[4096];
       primitive::memory_size uiRead;
-      seek(0, ::gen::seek_begin);
+      seek(0, ::ca::seek_begin);
       while((uiRead = read(buf, sizeof(buf))) > 0)
       {
          ostream.write(buf, uiRead);
@@ -582,12 +582,12 @@ l1:
       return true;
    }
 
-   bool edit_file::Save(gen::file & file)
+   bool edit_file::Save(ca::file & file)
    {
       char buf[4096];
       primitive::memory_size uiRead;
       file.set_length(0);
-      seek(0, ::gen::seek_begin);
+      seek(0, ::ca::seek_begin);
       while((uiRead = read(buf, sizeof(buf))) > 0)
       {
          file.write(buf, uiRead);
@@ -597,13 +597,13 @@ l1:
       return true;
    }
 
-   bool edit_file::Save_N_to_CRLF(gen::file & file)
+   bool edit_file::Save_N_to_CRLF(ca::file & file)
    {
       char buf[4096];
       string str;
       primitive::memory_size uiRead;
       file.set_length(0);
-      seek(0, ::gen::seek_begin);
+      seek(0, ::ca::seek_begin);
       while((uiRead = read(buf, sizeof(buf))) > 0)
       {
          buf[uiRead] = '\0';
@@ -656,7 +656,7 @@ l1:
          return false;
       }
 //      Item * pitem = NULL;
-      ::gen::tree_item * ptreeitem;
+      ::ca::tree_item * ptreeitem;
       if(m_iBranch < m_ptreeitem->get_expandable_children_count())
       {
          ptreeitem = m_ptreeitem->get_expandable_child(m_iBranch);
@@ -695,7 +695,7 @@ l1:
 
    bool edit_file::calc_root_direction()
    {
-      ::gen::tree_item * ptreeitem;
+      ::ca::tree_item * ptreeitem;
       if(m_ptreeitem == m_ptreeitemFlush)
          return false;
       for(ptreeitem  = m_ptreeitem;
@@ -707,7 +707,7 @@ l1:
    }
 
 
-   ::gen::tree_item * edit_file::get_previous(::gen::tree_item * pitem)
+   ::ca::tree_item * edit_file::get_previous(::ca::tree_item * pitem)
    {
       if(pitem->m_pprevious != NULL)
          return pitem->m_pprevious;
@@ -715,7 +715,7 @@ l1:
          return pitem->m_pparent;
    }
 
-   ::gen::tree_item * edit_file::get_next(::gen::tree_item * pitem, bool bChild)
+   ::ca::tree_item * edit_file::get_next(::ca::tree_item * pitem, bool bChild)
    {
       if(bChild && pitem->m_pchild != NULL)
          return pitem->m_pchild;
@@ -740,4 +740,4 @@ l1:
    }
 
 
-} // namespace gen
+} // namespace ca

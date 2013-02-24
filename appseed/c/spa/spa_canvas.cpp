@@ -197,7 +197,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
             rect.top = cy * j / jCount + 8 - iInflate;
             rect.bottom = cy * (j + 1) / jCount - 8 + iInflate;
 
-            // ca2 colors: green and yellow and black and white
+            // ca colors: green and yellow and black and white
             ::FillSolidRect_dup(hdc, &rect, RGB(iR, iG, iB));
          }
       }
@@ -212,7 +212,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
       size_t iRefresh = 884;
       size_t iEat = 8;
-      const char * psz = "development message so international english file \"C:\\ca2\\install.log\" excerpt  ::::::::";
+      const char * psz = "development message so international english file \"C:\\ca\\install.log\" excerpt  ::::::::";
       g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       DWORD dwRead;
 //      int32_t iLineMin = 5;
@@ -220,7 +220,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       if(rect.bottom - rect.top >= size.cy)
       {
 
-         HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
 
          if(hfile != INVALID_HANDLE_VALUE)
@@ -299,7 +299,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
 
       size_t iRefresh = 884;
       size_t iEat = 8;
-      const char * psz = "development message so international english last lines of file \"C:\\ca2\\install.log\" ::::::::";
+      const char * psz = "development message so international english last lines of file \"C:\\ca\\install.log\" ::::::::";
       g.text_out(10, 10 + size.cy * 2, psz, (int32_t) (strlen_dup(psz) - iEat + 1 + ((::get_tick_count() / (iRefresh - 277) % iEat))));
       g.select(fontBold);
       g.text_out( 10, 10 + size.cy * 3, s_strLastStatus);
@@ -308,7 +308,7 @@ void canvas::on_paint(simple_graphics & g, LPCRECT lpcrect)
       int32_t iLine = ((rect.bottom - 10) / size.cy) - 1;
       if(rect.bottom - rect.top >= size.cy)
       {
-         HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+         HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
          if(hfile != INVALID_HANDLE_VALUE)
          {
             int32_t iTell = ::SetFilePointer(hfile, 0, NULL, SEEK_END);

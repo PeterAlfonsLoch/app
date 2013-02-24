@@ -17,7 +17,7 @@ namespace user
       virtual void _001ReleaseDC(::ca::graphics * pdc);
       virtual void _001RedrawWindow();
 
-      virtual void pre_translate_message(gen::signal_object * pobj);
+      virtual void pre_translate_message(ca::signal_object * pobj);
    };
 
 } // namespace user

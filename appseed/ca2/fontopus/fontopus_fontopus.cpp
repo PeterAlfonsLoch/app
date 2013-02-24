@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -51,7 +51,7 @@ namespace ca2
       }
 
 
-      ::fontopus::user * fontopus::login(gen::property_set & set)
+      ::fontopus::user * fontopus::login(ca::property_set & set)
       {
          /*::ca::fontopus * papp;
          if(m_puiInitialPlaceHolderContainer != NULL)
@@ -122,7 +122,7 @@ namespace ca2
           && pcreatecontext->m_spCommandLine->m_varFile == "ca2login")
          {
             //Sleep(15 * 1000);
-            gen::property_set setLogin(get_app());
+            ca::property_set setLogin(get_app());
             if(pcreatecontext->m_spCommandLine->m_varQuery["ruri"].is_set())
             {
                setLogin["ruri"] = pcreatecontext->m_spCommandLine->m_varQuery["ruri"];
@@ -148,6 +148,6 @@ namespace ca2
    } // namespace fontopus
 
 
-} // namespace ca2
+} // namespace ca
 
 

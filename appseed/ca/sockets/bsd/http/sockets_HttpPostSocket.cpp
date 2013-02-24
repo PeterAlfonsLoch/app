@@ -70,7 +70,7 @@ namespace sockets
             c = System.sockets().m_countHttpPostBoundary++ % 128;
          m_boundary += c;
       }
-      m_boundary += "__" + gen::str::from(System.sockets().m_countHttpPostBoundary++);
+      m_boundary += "__" + ca::str::from(System.sockets().m_countHttpPostBoundary++);
    }
 
 
@@ -102,7 +102,7 @@ namespace sockets
       }
       else
       {
-         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::gen::log::level::fatal);
+         Handler().LogError(this, "AddFile", Errno, StrError(Errno), ::ca::log::level::fatal);
          SetCloseAndDelete();
       }
    }
@@ -121,7 +121,7 @@ namespace sockets
 
          if(m_fields.has_property("xml") && m_fields["xml"].get_value().get_type() == var::type_ca2)
          {
-            ::xml::node * pnode = m_fields["xml"].ca2 < ::xml::node >();
+            ::xml::node * pnode = m_fields["xml"].ca < ::xml::node >();
             body = pnode->get_xml();
             body.trim();
             if(inheader("Content-type").get_string().find_ci("application/xml") < 0)
@@ -277,8 +277,8 @@ namespace sockets
                "\r\n";
             Send( tmp );
             {
-               ::gen::filesp file(get_app());
-               if(file->open(filename, ::gen::file::type_binary | ::gen::file::mode_read))
+               ::ca::filesp file(get_app());
+               if(file->open(filename, ::ca::file::type_binary | ::ca::file::mode_read))
                {
                   primitive::memory mem;
                   mem.FullLoad(file);

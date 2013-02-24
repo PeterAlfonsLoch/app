@@ -119,8 +119,8 @@ extern CLASS_DECL_ca AUX_DATA afxData;*/
 #define __WNDCOMMCTLSNEW_REG                  0x7C000 // INTERNET|COOL|USEREX|DATE
 
 
-// ca2 API has its own version of the TOOLINFO structure containing the
-// the Win95 base version of the structure. Since ca2 API targets Win95 base,
+// ca API has its own version of the TOOLINFO structure containing the
+// the Win95 base version of the structure. Since ca API targets Win95 base,
 // we need this structure so calls into that old library don't fail.
 
 typedef struct tag__OLDTOOLINFO {
@@ -136,7 +136,7 @@ typedef struct tag__OLDTOOLINFO {
 // special _ ::ca::window class name mangling
 
 
-#define __WNDCLASS(s)    "ca2" _T(s)
+#define __WNDCLASS(s)    "ca" _T(s)
 #define __WND             __WNDCLASS("Wnd")
 #define __WNDCONTROLBAR   __WNDCLASS("ControlBar")
 #define __WNDMDIFRAME     __WNDCLASS("MDIFrame")

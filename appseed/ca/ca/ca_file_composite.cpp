@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -91,7 +91,7 @@ namespace gen
 
    }
 
-   file_position file_composite::seek(file_offset lOff, ::gen::e_seek  nFrom)
+   file_position file_composite::seek(file_offset lOff, ::ca::e_seek  nFrom)
    {
 
       return m_spfile->seek(lOff, nFrom);
@@ -276,5 +276,5 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 

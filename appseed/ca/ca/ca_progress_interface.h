@@ -9,20 +9,20 @@
 #include "IDecl.h"*/
 
 #define CA2_EX1_progress_interface(x) \
-  virtual gen::HRes SetTotal(uint64_t total) x; \
-  virtual gen::HRes SetCompleted(const uint64_t *completeValue) x; \
+  virtual ca::HRes SetTotal(uint64_t total) x; \
+  virtual ca::HRes SetCompleted(const uint64_t *completeValue) x; \
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca progress_interface :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       CA2_EX1_progress_interface(= 0)
    };
 
-} // namespace gen
+} // namespace ca
 
 /*
 // {23170F69-40C1-278A-0000-000000050002}
@@ -32,7 +32,7 @@ MIDL_INTERFACE("23170F69-40C1-278A-0000-000000050002")
 IProgress2: public IUnknown
 {
 public:
-  gen::HRes SetTotal)(const uint64_t *total) PURE;
-  gen::HRes SetCompleted)(const uint64_t *completeValue) PURE;
+  ca::HRes SetTotal)(const uint64_t *total) PURE;
+  ca::HRes SetCompleted)(const uint64_t *completeValue) PURE;
 };
 */

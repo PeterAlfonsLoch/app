@@ -2,7 +2,7 @@
 
 #include "gen_byte_stream.h"
 
-namespace gen
+namespace ca
 {
 
    class CLASS_DECL_ca output_stream2 :

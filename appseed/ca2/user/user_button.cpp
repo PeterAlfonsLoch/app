@@ -22,7 +22,7 @@ namespace user
    }
 
 
-   void button::install_message_handling(::gen::message::dispatch * pinterface)
+   void button::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::user::window_interface::install_message_handling(pinterface);
 
@@ -105,9 +105,9 @@ namespace user
 
    }
 
-   void button::_001OnLButtonDown(gen::signal_object * pobj)
+   void button::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -124,9 +124,9 @@ namespace user
       return g_pwndLastLButtonDown == this;
    }
 
-   void button::_001OnLButtonUp(gen::signal_object * pobj)
+   void button::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 
          e_element eelement;
 
@@ -139,12 +139,12 @@ namespace user
          if(get_form() != NULL)
          {
             get_form()->send_message(
-               ::gen::message_event, 0, (LPARAM) &ev);
+               ::ca::message_event, 0, (LPARAM) &ev);
          }
          else
          {
             get_parent()->send_message(
-               ::gen::message_event, 0, (LPARAM) &ev);
+               ::ca::message_event, 0, (LPARAM) &ev);
          }
          pobj->m_bRet = true;
          pmouse->set_lresult(1);
@@ -152,9 +152,9 @@ namespace user
 
    }
 
-   void button::_001OnMouseMove(gen::signal_object * pobj)
+   void button::_001OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          if(get_form() == NULL)
          {
 
@@ -172,7 +172,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_enter;
                   get_parent()->send_message(
-                     ::gen::message_event, 0, (LPARAM) &ev);
+                     ::ca::message_event, 0, (LPARAM) &ev);
                }
                else if(iHover == -1)
                {
@@ -180,7 +180,7 @@ namespace user
                   ev.m_puie = this;
                   ev.m_eevent = ::user::event_mouse_leave;
                   get_parent()->send_message(
-                     ::gen::message_event, 0, (LPARAM) &ev);
+                     ::ca::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_hover();
             }
@@ -188,9 +188,9 @@ namespace user
          }
    }
 
-   void button::_001OnMouseLeave(gen::signal_object * pobj)
+   void button::_001OnMouseLeave(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
          if(get_form() == NULL)
          {
             index iOldHover = m_iHover;
@@ -203,7 +203,7 @@ namespace user
                ev.m_eevent = ::user::event_mouse_leave;
                if(get_parent() != NULL)
                {
-                  get_parent()->send_message(::gen::message_event, 0, (LPARAM) &ev);
+                  get_parent()->send_message(::ca::message_event, 0, (LPARAM) &ev);
                }
                track_mouse_leave();
             }
@@ -280,17 +280,17 @@ namespace user
       return m_state;
    }
 
-   void button::_001OnSize(gen::signal_object * pobj)
+   void button::_001OnSize(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
          _001Layout();
       pbase->m_bRet = false;
    }
 
-   void button::on_create(gen::signal_object * pobj)
+   void button::on_create(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //SCAST_PTR(::gen::message::create, pcreate, pobj)
+      //SCAST_PTR(::ca::message::create, pcreate, pobj)
 
       ::simple_frame_window * pframewindow = GetTypedParent < ::simple_frame_window > ();
       if(pframewindow != NULL)

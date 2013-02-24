@@ -198,7 +198,7 @@ namespace spa
 
                ::hotplugin::container_launcher launcher(str);
 
-               vsstring strChannel = "\\ca2\\ca2plugin-container-";
+               vsstring strChannel = "\\ca\\ca2plugin-container-";
 
                strChannel += str;
 
@@ -299,7 +299,7 @@ namespace spa
 
             m_phost->m_bInstalling = true;
 
-            // shouldn't do advanced operations using ca2
+            // shouldn't do advanced operations using ca
             // starter_start will only kick a default app-install.exe if one isn't already running, cleaning file lock if any
 
          }
@@ -478,7 +478,7 @@ install:
          rect.right     = cy;
          ::FillSolidRect_dup(hdc, &rect, RGB(255, 255, 255));
          ::SetTextColor(hdc, RGB(255, 0, 255));
-         const char * psz = "ca2 is not installed! You may try to install using low level spaboot_install.exe.";
+         const char * psz = "ca is not installed! You may try to install using low level spaboot_install.exe.";
          ::TextOutU_dup(hdc, 10, 10, psz, strlen_dup(psz));*/
       }
       else
@@ -683,7 +683,7 @@ install:
 
       DWORD dwRead;
 
-      HANDLE hfile = ::create_file(dir::ca2("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+      HANDLE hfile = ::create_file(dir::ca("install.log"), GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
 
       double dRate = 0.0;
 
@@ -764,12 +764,12 @@ install:
 
       ::hotplugin::plugin::deferred_prodevian_redraw();
 
-      // this flag is only set if spaadmin is installing ca2 files while npca2 is started
+      // this flag is only set if spaadmin is installing ca files while npca2 is started
       // it isn't set when npca2 is already running and spaadmin starts, may be only in the case above, when npca2 restarts.
-      // this enables spaadmin to install ca2 files to ca2 folder, because npca2 would not use any ca2 shared libraries.
+      // this enables spaadmin to install ca files to ca folder, because npca2 would not use any ca shared libraries.
       if(m_phost->m_bRunningSpaAdmin)
       {
-         if(!_c_lock_is_active("Global\\ca2::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"))
+         if(!_c_lock_is_active("Global\\ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"))
          {
             m_phost->m_bRunningSpaAdmin = false;
             m_phost->start_plugin();

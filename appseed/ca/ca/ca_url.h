@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -9,7 +9,7 @@ namespace ca2
 
 
    class CLASS_DECL_ca url :
-      public ::gen::object
+      public ::ca::object
    {
    public:
       // Example: http://veriwell.com.br:443/page?id=1
@@ -25,14 +25,14 @@ namespace ca2
       void set_param(string & strUrl, const char * pszUrl, const char * pszKey, const string & strParam);
       string set(string & strUrl, const char * pszKey, var var);
       var & set(var & varUrl, const char * pszKey, var var);
-      gen::property & set(gen::property & propUrl, const char * pszKey, var var);
+      ca::property & set(ca::property & propUrl, const char * pszKey, var var);
       string set_script(const char * pszUrl, const char * pszScript);
       string override_if_empty(const char * pszDest, const char * pszSrc, bool bOverrideQuery = false);
       string override_if_set_at_source(const char * pszDest, const char * pszSrc);
       string remove_key(const char * pszUrl, const char * pszKey);
       string remove(string & strUrl, const char * pszKey);
       var & remove(var & varUrl, const char * pszKey);
-      gen::property & remove(gen::property & propUrl, const char * pszKey);
+      ca::property & remove(ca::property & propUrl, const char * pszKey);
       // Example: page?id=1
       string object_get_script(const char *); // page
       string object_get_query(const char *); // id=1
@@ -76,6 +76,6 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace ca
 
 

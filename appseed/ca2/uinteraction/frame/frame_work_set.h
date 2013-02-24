@@ -19,7 +19,7 @@ namespace frame
 
    class CLASS_DECL_ca2 WorkSet :
       virtual public ::database::client,
-      virtual public gen::signalizable
+      virtual public ca::signalizable
    {
    public:
       friend class appearance;
@@ -79,7 +79,7 @@ namespace frame
 
 
       void AttachFrameSchema(::uinteraction::frame::frame * pframeschema);
-      void _001InstallEventHandling(::gen::message::dispatch * pdispatch);
+      void _001InstallEventHandling(::ca::message::dispatch * pdispatch);
 
       DECL_GEN_SIGNAL(_001OnLButtonDown)
          DECL_GEN_SIGNAL(_001OnMouseMove)
@@ -104,8 +104,8 @@ namespace frame
       void UpdateApperanceMode(bool bFullScreen);
       //void UpdateControlBox();
       void SetDownUpInterface(CWorkSetDownUpInterface *pinterface);
-      void WindowProcBefore(::user::interaction * pwnd, gen::signal_object * pobj);
-      void WindowProcHover(::user::interaction * pwnd, gen::signal_object * pobj);
+      void WindowProcBefore(::user::interaction * pwnd, ca::signal_object * pobj);
+      void WindowProcHover(::user::interaction * pwnd, ca::signal_object * pobj);
       DECL_GEN_SIGNAL(_001OnActivate)
          DECL_GEN_SIGNAL(_001OnCommand)
          DECL_GEN_SIGNAL(_001OnNcActivate)
@@ -123,7 +123,7 @@ namespace frame
       void EnableDock(bool bEnable = true);
       void layout();
       bool Hover(bool bHoverActive);
-      void hover_relay_event(gen::signal_object * pobj);
+      void hover_relay_event(ca::signal_object * pobj);
       void ChildWnd(::user::interaction * pwnd, ::user::interaction * pwndParent);
       void FrameWnd(::user::interaction * pwnd);
       bool Start();
@@ -151,8 +151,8 @@ namespace frame
       void GetRegionClientRect(LPRECT lprect);
       void GetDrawClientRect(LPRECT lprect);
       //void SetWindow(::user::interaction * pwnd);
-      void relay_event(gen::signal_object * pobj);
-      void message_handler(gen::signal_object * pobj);
+      void relay_event(ca::signal_object * pobj);
+      void message_handler(ca::signal_object * pobj);
 
       void _001OnDraw(::ca::graphics * pdc);
 

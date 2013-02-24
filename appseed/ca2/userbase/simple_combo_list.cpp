@@ -12,7 +12,7 @@ simple_combo_list::~simple_combo_list()
 }
 
 
-void simple_combo_list::install_message_handling(::gen::message::dispatch * pdispatch)
+void simple_combo_list::install_message_handling(::ca::message::dispatch * pdispatch)
 {
 
    ::userbase::combo_list::install_message_handling(pdispatch);

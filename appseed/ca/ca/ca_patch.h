@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
    class CLASS_DECL_ca patch :
-      public ::gen::object
+      public ::ca::object
    {
    public:
       // 0 for success
@@ -19,5 +19,5 @@ namespace ca2
    };
 
 
-} // namespace ca2
+} // namespace ca
 

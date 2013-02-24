@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    text_file::text_file()
@@ -35,4 +35,4 @@ namespace gen
       return uiTotal;
    }
 
-} // namespace gen
+} // namespace ca

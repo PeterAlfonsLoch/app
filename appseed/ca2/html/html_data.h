@@ -9,14 +9,14 @@ namespace html
 
 
    class CLASS_DECL_ca2 data :
-      virtual public gen::signalizable,
+      virtual public ca::signalizable,
       public ca::data
    {
    public:
 
 
       class CLASS_DECL_ca2 image :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
          index      m_iIndex;
@@ -97,8 +97,8 @@ namespace html
       string                     m_strPassword;
       string                     m_strLicense;
 
-      gen::property_set          m_propertyset;
-      gen::property_set          m_propset;
+      ca::property_set          m_propertyset;
+      ca::property_set          m_propset;
       string                     m_strSource;
 
       ::html_form *              m_pform;

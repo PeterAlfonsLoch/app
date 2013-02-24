@@ -32,7 +32,7 @@ namespace plugin
       host_interaction(::ca::application * papp);
       virtual ~host_interaction();
 
-      void install_message_handling(::gen::message::dispatch * pmessage);
+      void install_message_handling(::ca::message::dispatch * pmessage);
 
       virtual void _000OnDraw(::ca::graphics * pgraphics);
 
@@ -52,9 +52,9 @@ namespace plugin
       ::user::interaction * get_os_focus_uie();
 
       void _on_start_user_message_handler();
-      void _user_message_handler(gen::signal_object * pobj);
+      void _user_message_handler(ca::signal_object * pobj);
 
-      virtual void _000OnMouse(::gen::message::mouse * pmouse);
+      virtual void _000OnMouse(::ca::message::mouse * pmouse);
 
       DECL_GEN_SIGNAL(on_ignore_message)
       DECL_GEN_SIGNAL(_001OnTimer)

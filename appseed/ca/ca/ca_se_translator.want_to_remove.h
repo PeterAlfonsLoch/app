@@ -29,7 +29,7 @@
 
 class translator :
    public aux_thunk < translator >,
-   virtual public ::gen::object
+   virtual public ::ca::object
 {      
  public:
    translator();

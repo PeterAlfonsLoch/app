@@ -93,7 +93,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+      strcat_dup(lpszModuleFilePath, "\\ca\\");
 #ifdef X86
       strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
@@ -156,7 +156,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
       {
          lpszModuleFilePath[strlen_dup(lpszModuleFilePath) - 1] = '\0';
       }
-      strcat_dup(lpszModuleFilePath, "\\ca2\\");
+      strcat_dup(lpszModuleFilePath, "\\ca\\");
 #ifdef X86
       strcat_dup(lpszModuleFilePath, "stage\\x86\\");
 #else
@@ -192,7 +192,7 @@ bool dir::get_ca2_module_folder_dup(char * lpszModuleFolder)
 
 #else
 
-   strcpy_dup(lpszModuleFolder, "/ca2/");
+   strcpy_dup(lpszModuleFolder, "/ca/");
 
 
 
@@ -280,7 +280,7 @@ vsstring ca2_module_folder_dup()
 
 }
 
-vsstring dir::ca2(const char * path1, const char * path2, const char * path3, const char * path4)
+vsstring dir::ca(const char * path1, const char * path2, const char * path3, const char * path4)
 {
 
 #ifdef WINDOWS
@@ -323,7 +323,7 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
    else
    {
 
-      return dir::path(ca2(), path1, path2, path3, path4);
+      return dir::path(ca(), path1, path2, path3, path4);
 
    }
 
@@ -333,9 +333,9 @@ vsstring dir::ca2(const char * path1, const char * path2, const char * path3, co
 
    eat_end_level_dup(strRelative, 2, "/");
 
-   vsstring str = path(getenv("HOME"), ".ca2/appdata");
+   vsstring str = path(getenv("HOME"), ".ca/appdata");
 
-   return path(path(str, "ca2", strRelative), path1, path2, path3, path4);
+   return path(path(str, "ca", strRelative), path1, path2, path3, path4);
 
 #endif
 
@@ -434,7 +434,7 @@ vsstring dir::module_folder(const char * path1)
 
 #else
 
-   return dir::path("/ca2/stage", path1);
+   return dir::path("/ca/stage", path1);
 
 #endif
 
@@ -814,7 +814,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
 #endif
 
    vsstring strRelative;
-   strRelative = ca2();
+   strRelative = ca();
    index iFind = strRelative.find(':');
    if(iFind >= 0)
    {
@@ -835,9 +835,9 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
       strUserFolderShift = strRelative;
    }
 
-   return path(path(str, "ca2", strUserFolderShift), lpcsz, lpcsz2);
+   return path(path(str, "ca", strUserFolderShift), lpcsz, lpcsz2);
 
-   //      return path(path(str, "ca2"), lpcsz);
+   //      return path(path(str, "ca"), lpcsz);
    /*      if(&AppUser(papp) == NULL)
    {
    string str;
@@ -846,7 +846,7 @@ vsstring dir::userfolder(const char * lpcsz, const char * lpcsz2)
    str,
    CSIDL_PROFILE,
    FALSE);
-   return path(path(str, "ca2\\_____default"), lpcsz);
+   return path(path(str, "ca\\_____default"), lpcsz);
    }
    else
    {

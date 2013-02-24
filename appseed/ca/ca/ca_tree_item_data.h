@@ -4,7 +4,7 @@
 class image_list;
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -43,6 +43,6 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca
 
 

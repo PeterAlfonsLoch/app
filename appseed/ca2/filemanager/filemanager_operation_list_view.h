@@ -10,7 +10,7 @@ public:
 
    file_manager_operation_list_view(::ca::application * papp);
 
-   virtual void install_message_handling(::gen::message::dispatch * pinterface);
+   virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
    void _001InsertColumns();
 
@@ -33,7 +33,7 @@ public:
 
    
 
-   void on_update(::view * pSender, LPARAM lHint, ::gen::object * pHint);
+   void on_update(::view * pSender, LPARAM lHint, ::ca::object * pHint);
    file_manager_operation_document * get_document();
 };
       

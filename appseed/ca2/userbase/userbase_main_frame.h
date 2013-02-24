@@ -17,7 +17,7 @@ namespace userbase
       main_frame(::ca::application * papp);
       virtual ~main_frame();
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
 
    #ifdef DEBUG

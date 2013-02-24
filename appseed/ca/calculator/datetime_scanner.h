@@ -35,7 +35,7 @@ namespace datetime
 
 
    class CLASS_DECL_ca scanner :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       

@@ -23,7 +23,7 @@ namespace filemanager
             m_etranslucency = TranslucencyPresent;
 
 
-            ::ca::data_container::m_spdata = new gen::simple_tree_data(get_app());
+            ::ca::data_container::m_spdata = new ca::simple_tree_data(get_app());
             if(!::ca::data_container::m_spdata->initialize_data())
                throw simple_exception(papp);
          }
@@ -64,8 +64,8 @@ namespace filemanager
 
             m_iParentFolder = doc.get_root()->attr("id");
 
-            ::gen::tree_item * pdataitemParent;
-            ::gen::tree_item * pdataitemChild;
+            ::ca::tree_item * pdataitemParent;
+            ::ca::tree_item * pdataitemChild;
 
             pdataitemParent = FindTreeItem(m_iParentFolder);
             if(pdataitemParent == NULL)
@@ -136,15 +136,15 @@ namespace filemanager
 
                if(pdataitemChild == NULL)
                {
-                  pdataitemChild = create_item(pdataitemParent, gen::RelativeLastChild);
+                  pdataitemChild = create_item(pdataitemParent, ca::RelativeLastChild);
                }
 
                if(pdataitemChild->m_pitemdata == NULL)
                {
-                  pdataitemChild->m_pitemdata = new gen::simple_tree_item_data();
+                  pdataitemChild->m_pitemdata = new ca::simple_tree_item_data();
                }
 
-               ((gen::simple_tree_item_data *) pdataitemChild->m_pitemdata)->m_str = folder.m_strName;
+               ((ca::simple_tree_item_data *) pdataitemChild->m_pitemdata)->m_str = folder.m_strName;
                pdataitemChild->m_dwUser = iNewItem;
 
          //      else
@@ -162,7 +162,7 @@ namespace filemanager
          }
 
 
-         ::gen::tree_item * tree_view::FindTreeItem(int64_t iFolder)
+         ::ca::tree_item * tree_view::FindTreeItem(int64_t iFolder)
          {
             int32_t iUser;
 
@@ -190,7 +190,7 @@ namespace filemanager
 
 
          index tree_view::_001GetItemImage(
-            ::gen::tree_item * pitem,
+            ::ca::tree_item * pitem,
             bool bSelected
             )
          {
@@ -204,19 +204,19 @@ namespace filemanager
             }
          }
 
-         void tree_view::_001OnItemExpand(::gen::tree_item *pitem)
+         void tree_view::_001OnItemExpand(::ca::tree_item *pitem)
          {
             m_pserver->open_folder(m_foldera[pitem->m_dwUser].m_iFolder);
          }
 
-         void tree_view::install_message_handling(::gen::message::dispatch * pdispatch)
+         void tree_view::install_message_handling(::ca::message::dispatch * pdispatch)
          {
             ::userbase::view::install_message_handling(pdispatch);
             ::user::tree::install_message_handling(pdispatch);
          }
 
 
-         void tree_view::_001OnCreate(gen::signal_object * pobj)
+         void tree_view::_001OnCreate(ca::signal_object * pobj)
          {
             pobj->previous();
             m_iIconFolderNormal = m_pimagelist->add_matter_icon("mplite/vmskarlib_folder_normal.ico");

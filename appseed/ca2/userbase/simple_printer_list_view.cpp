@@ -9,7 +9,7 @@ simple_printer_list_view::simple_printer_list_view(::ca::application * papp) :
    userbase::view(papp),
    user::scroll_view(papp),
    user::form(papp),
-   ::ca2::user::form(papp),
+   ::ca::user::form(papp),
    user::list(papp),
    user::form_list(papp),
    userbase::form_list(papp),
@@ -28,7 +28,7 @@ simple_printer_list_view::~simple_printer_list_view()
 }
 
 
-void simple_printer_list_view::install_message_handling(::gen::message::dispatch * pdispatch)
+void simple_printer_list_view::install_message_handling(::ca::message::dispatch * pdispatch)
 {
 
    simple_list_view::install_message_handling(pdispatch);
@@ -37,9 +37,9 @@ void simple_printer_list_view::install_message_handling(::gen::message::dispatch
 }
 
 
-void simple_printer_list_view::_001OnCreate(gen::signal_object * pobj)
+void simple_printer_list_view::_001OnCreate(ca::signal_object * pobj)
 {
-//   SCAST_PTR(gen::message::create, pcreate, pobj);
+//   SCAST_PTR(ca::message::create, pcreate, pobj);
 
    pobj->previous();
 

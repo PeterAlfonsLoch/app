@@ -33,7 +33,7 @@ namespace bergedge
       void on_create_view(::user::view_creator_data * pcreatordata);
       void on_show_view();
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       void check_3click_dir(const char * psz);
       void check_menu_dir(const char * psz);
@@ -52,7 +52,7 @@ namespace bergedge
 
       virtual void set_display(int32_t iDisplay);
 
-      virtual void on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint);
+      virtual void on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint);
       virtual bool pre_create_window(CREATESTRUCT& cs);
 
    #ifdef DEBUG

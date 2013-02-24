@@ -12,7 +12,7 @@ namespace database
 
    ******************************************************************/
    class CLASS_DECL_ca base :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       bool     active;
@@ -65,7 +65,7 @@ namespace database
          const char *newLogin=NULL, const char *newPasswd=NULL,const char *newPort=NULL);
       virtual void disconnect() { active = false; }
       virtual int32_t reset() { return DB_COMMAND_OK; }
-      using ::gen::request_interface::create;
+      using ::ca::request_interface::create;
       virtual int32_t create() { return DB_COMMAND_OK; }
       virtual int32_t drop() { return DB_COMMAND_OK; }
       virtual long nextid(const char* seq_name)=0;

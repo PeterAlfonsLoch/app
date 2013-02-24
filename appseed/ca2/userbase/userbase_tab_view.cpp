@@ -33,15 +33,15 @@ namespace userbase
    #endif //DEBUG
 
 
-   void tab_view::_001OnCreate(gen::signal_object * pobj)
+   void tab_view::_001OnCreate(ca::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::create, pcreate, pobj)
+//      SCAST_PTR(::ca::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
    }
 
 
-   void tab_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
+   void tab_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
    {
 
       if(m_pviewcreator != NULL)
@@ -55,7 +55,7 @@ namespace userbase
 
    }
 
-   void tab_view::_001OnSetFocus(gen::signal_object * pobj)
+   void tab_view::_001OnSetFocus(ca::signal_object * pobj)
    {
 
       UNREFERENCED_PARAMETER(pobj);
@@ -93,16 +93,16 @@ namespace userbase
 
    }
 
-   void tab_view::_001OnMenuMessage(gen::signal_object * pobj)
+   void tab_view::_001OnMenuMessage(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
       if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
       {
          set_cur_tab_by_id(m_pviewdataOld->m_id);
       }
    }
 
-   void tab_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void tab_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       ::user::tab::install_message_handling(pinterface);
@@ -396,7 +396,7 @@ namespace userbase
    id tab_view::get_view_id()
    {
       if(m_pviewdata == NULL)
-         return ::gen::system::idEmpty;
+         return ::ca::system::idEmpty;
       return m_pviewdata->m_id;
    }
 
@@ -470,7 +470,7 @@ namespace userbase
    {
    }
 
-   void tab_drop_target_window::install_message_handling(::gen::message::dispatch * pinterface)
+   void tab_drop_target_window::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::user::interaction::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &tab_drop_target_window::_001OnLButtonUp);
@@ -565,9 +565,9 @@ namespace userbase
 
    }
 
-   void tab_drop_target_window::_001OnLButtonUp(gen::signal_object * pobj)
+   void tab_drop_target_window::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(ca::message::mouse, pmouse, pobj);
 
       e_position eposition = m_ptab->DragHitTest(pmouse->m_pt);
 

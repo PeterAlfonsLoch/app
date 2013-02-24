@@ -46,7 +46,7 @@ namespace dynamic_source
 
 
 
-      virtual gen::property     & get(const char * pszKey);
+      virtual ca::property     & get(const char * pszKey);
 
 
       virtual bool main_initialize();

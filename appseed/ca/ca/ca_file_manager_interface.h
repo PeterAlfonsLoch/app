@@ -1,12 +1,12 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca file_manager_interface :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -24,7 +24,7 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 

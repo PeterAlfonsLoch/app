@@ -4,7 +4,7 @@
 #ifndef METROWIN
 
 
-namespace ca2
+namespace ca
 {
 
    process::process()
@@ -132,7 +132,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace ca
 
 
 
@@ -152,7 +152,7 @@ namespace ca2
 #endif
 
 
-namespace gen
+namespace ca
 {
 
    process::process() :
@@ -456,7 +456,7 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 
 
 

@@ -1,13 +1,13 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca byte_stream_memory_file :
       virtual public ::primitive::memory_file,
-      virtual public gen::byte_stream
+      virtual public ca::byte_stream
    {
    public:
    
@@ -19,11 +19,11 @@ namespace gen
       byte_stream_memory_file(const byte_stream_memory_file & file);
       virtual ~byte_stream_memory_file();
 
-      file_position seek(file_offset offset, ::gen::e_seek seekOrigin);
+      file_position seek(file_offset offset, ::ca::e_seek seekOrigin);
 
    };
 
 
-} // namespace gen
+} // namespace ca
 
 

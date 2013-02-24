@@ -34,7 +34,7 @@ void FileManagerAView::dump(dump_context & dumpcontext) const
 #endif //DEBUG
 
 
-void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+void FileManagerAView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)
@@ -284,7 +284,7 @@ void FileManagerView::dump(dump_context & dumpcontext) const
 
 
 
-void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+void FileManagerView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)

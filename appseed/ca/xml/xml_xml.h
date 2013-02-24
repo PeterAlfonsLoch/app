@@ -29,6 +29,6 @@ namespace xml
    };
 
 
-} // namespace ca2
+} // namespace ca
 
 

@@ -2,7 +2,7 @@
 
 
 // return string length or -1 if UNICODE string is found in the archive
-__STATIC UINT __read_string_length(gen::byte_input_stream & ar);
+__STATIC UINT __read_string_length(ca::byte_input_stream & ar);
 
 
 stringa::stringa(::ca::application * papp) :
@@ -211,7 +211,7 @@ index stringa::find_first_begins_ci(const char * lpcsz, index find, index last) 
       last += this->get_count();
    for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins_ci(this->element_at(find), lpcsz))
+      if(ca::str::begins_ci(this->element_at(find), lpcsz))
          return find;
    }
    return -1;
@@ -225,7 +225,7 @@ index stringa::find_first_begins(const char * lpcsz, index find, index last) con
       last += this->get_count();
    for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins(this->element_at(find), lpcsz))
+      if(ca::str::begins(this->element_at(find), lpcsz))
          return find;
    }
    return -1;
@@ -239,7 +239,7 @@ index stringa::str_find_first_begins_ci(const char * lpcsz, index find, index la
       last += this->get_count();
    for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins_ci(lpcsz, this->element_at(find)))
+      if(ca::str::begins_ci(lpcsz, this->element_at(find)))
          return find;
    }
    return -1;
@@ -253,7 +253,7 @@ index stringa::str_find_first_begins(const char * lpcsz, index find, index last)
       last += this->get_count();
    for(; find < this->get_count(); find++)
    {
-      if(gen::str::begins(lpcsz, this->element_at(find)))
+      if(ca::str::begins(lpcsz, this->element_at(find)))
          return find;
    }
    return -1;
@@ -585,7 +585,7 @@ return -1;
 */
 
 
-void stringa::write(gen::byte_output_stream & ostream)
+void stringa::write(ca::byte_output_stream & ostream)
 {
    ostream.write_arbitrary(m_nSize);
    for(int32_t i = 0; i < this->get_size(); i++)
@@ -594,7 +594,7 @@ void stringa::write(gen::byte_output_stream & ostream)
    }
 }
 
-void stringa::read(gen::byte_input_stream & istream)
+void stringa::read(ca::byte_input_stream & istream)
 {
    count iSize;
    istream.read_arbitrary(iSize);
@@ -608,7 +608,7 @@ void stringa::read(gen::byte_input_stream & istream)
 
 
 
-gen::byte_input_stream & operator>>(gen::byte_input_stream & ar, string & string)
+ca::byte_input_stream & operator>>(ca::byte_input_stream & ar, string & string)
 {
    int32_t nConvert = 0;   // if we get UNICODE, convert
 
@@ -637,7 +637,7 @@ gen::byte_input_stream & operator>>(gen::byte_input_stream & ar, string & string
       // read new data
       if (ar.read(lpBuf, nByteLen) != nByteLen)
       {
-         //   gen::ThrowArchiveException(CArchiveException::endOfFile);
+         //   ca::ThrowArchiveException(CArchiveException::endOfFile);
       }
 
       // convert the data if as necessary
@@ -657,7 +657,7 @@ gen::byte_input_stream & operator>>(gen::byte_input_stream & ar, string & string
 //      if >= 0xff characters: 0xff, len:WORD, char chars
 //      if >= 0xfffe characters: 0xff, 0xffff, len:uint32_t, TCHARs
 
-gen::byte_output_stream & operator<<(gen::byte_output_stream & ar, const string & string)
+ca::byte_output_stream & operator<<(ca::byte_output_stream & ar, const string & string)
 {
    if (string.get_length() < 255)
    {
@@ -680,7 +680,7 @@ gen::byte_output_stream & operator<<(gen::byte_output_stream & ar, const string 
 }
 
 // return string length or -1 if UNICODE string is found in the archive
-__STATIC UINT __read_string_length(gen::byte_input_stream & ar)
+__STATIC UINT __read_string_length(ca::byte_input_stream & ar)
 {
    uint32_t nNewLen;
 
@@ -809,12 +809,12 @@ stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
       switch(status)
       {
       case 1:
-         if(istring[i] == sep && !gen::str::simple_escaped(istring, i))
+         if(istring[i] == sep && !ca::str::simple_escaped(istring, i))
          {
             ++num;
             add("");
          }
-         else if((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !gen::str::simple_escaped(istring,i))
+         else if((istring[i] == '"' || istring[i] == '\'' || istring[i] == '(') && !ca::str::simple_escaped(istring,i))
          {
             status = 2;
             to = (istring[i] == '(') ? ')' : istring[i];
@@ -827,7 +827,7 @@ stringa & stringa::csstidy_explode_ws(char sep, const char * psz)
          break;
 
       case 2:
-         if(istring[i] == to && !gen::str::simple_escaped(istring,i))
+         if(istring[i] == to && !ca::str::simple_escaped(istring,i))
          {
             status = 1;
          }

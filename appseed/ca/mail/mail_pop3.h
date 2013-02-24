@@ -8,7 +8,7 @@ namespace mail
    class pop3_socket;
 
    class CLASS_DECL_ca pop3 :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -34,7 +34,7 @@ namespace mail
       string                        m_id;
       string                        m_strHeaders;
       string                        m_strBody;
-      gen::property_set             m_setHeaders;
+      ca::property_set             m_setHeaders;
 
       int32_t                           m_iHeaderLine;
 

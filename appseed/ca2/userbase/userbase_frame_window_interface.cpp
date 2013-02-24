@@ -29,9 +29,9 @@ namespace userbase
       return 0;
    }*/
 
-   void frame_window_interface::_guserbaseOnInitialUpdate(gen::signal_object * pobj)
+   void frame_window_interface::_guserbaseOnInitialUpdate(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
       FrameInitialUpdate * pfiu = (FrameInitialUpdate *) pbase->m_lparam;
       if(pfiu != NULL)
       {
@@ -60,14 +60,14 @@ namespace userbase
             // finally, activate the frame
             // (send the default show command unless the main desktop ::ca::window)
             int32_t nCmdShow = -1;      // default
-            ::gen::application* pApp = &System;
+            ::ca::application* pApp = &System;
             if (pApp != NULL && pApp->GetMainWnd() == pframe)
             {
                nCmdShow = pApp->m_nCmdShow; // use the parameter from WinMain
                pApp->m_nCmdShow = -1; // set to default after first time
             }
             bool bFullScreen;
-            data_get("FullScreen", ::gen::system::idEmpty, bFullScreen);
+            data_get("FullScreen", ::ca::system::idEmpty, bFullScreen);
             if(bFullScreen)
             {
                WfiFullScreen(bFullScreen, false);
@@ -92,11 +92,11 @@ namespace userbase
       pbase->set_lresult(0);
    }
 
-   void frame_window_interface::install_message_handling(::gen::message::dispatch *pinterface)
+   void frame_window_interface::install_message_handling(::ca::message::dispatch *pinterface)
    {
       ::user::frame_window_interface::install_message_handling(pinterface);
       database::user::interaction::install_message_handling(pinterface);
-      IGUI_MSG_LINK(::gen::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
+      IGUI_MSG_LINK(::ca::message_frame_initial_update, pinterface, this, &frame_window_interface::_guserbaseOnInitialUpdate);
    }
 
    void frame_window_interface::_000OnDraw(::ca::graphics * pdc)
@@ -146,7 +146,7 @@ namespace userbase
       if((m_bWindowFrame 
       || m_etranslucency == TranslucencyTotal
       || m_etranslucency == TranslucencyPresent) &&
-      !Session.savings().is_trying_to_save(gen::resource_display_bandwidth))
+      !Session.savings().is_trying_to_save(ca::resource_display_bandwidth))
       {
          ::uinteraction::frame::WorkSetClientInterface::_001OnDraw(pdc);
       }
@@ -356,8 +356,8 @@ namespace userbase
    {
       if(m_bLayered)
       {
-         return !Session.savings().is_trying_to_save(gen::resource_processing) 
-            && !Session.savings().is_trying_to_save(gen::resource_display_bandwidth);
+         return !Session.savings().is_trying_to_save(ca::resource_processing) 
+            && !Session.savings().is_trying_to_save(ca::resource_display_bandwidth);
       }
       else 
       {
@@ -366,7 +366,7 @@ namespace userbase
    }
 
 
-   void frame_window_interface::data_on_after_change(gen::signal_object * pobj)
+   void frame_window_interface::data_on_after_change(ca::signal_object * pobj)
    {
       database::user::interaction::data_on_after_change(pobj);
       SCAST_PTR(database::change_event, phint, pobj);

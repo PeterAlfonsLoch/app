@@ -17,7 +17,7 @@ BaseButtonControl::~BaseButtonControl()
 {
 }
 
-void BaseButtonControl::install_message_handling(::gen::message::dispatch * pdispatch)
+void BaseButtonControl::install_message_handling(::ca::message::dispatch * pdispatch)
 {
    button::install_message_handling(pdispatch);
 }
@@ -40,7 +40,7 @@ void BaseButtonControl::_001OnDraw(::ca::graphics * pdc)
    bool bItemHover;
    bool bSubItemHover;
 
-   ::user::draw_context * pdrawcontext = pdc->::gen::simple_chain < ::user::draw_context >::get_last();
+   ::user::draw_context * pdrawcontext = pdc->::ca::simple_chain < ::user::draw_context >::get_last();
 
    if(pdrawcontext != NULL)
    {
@@ -162,7 +162,7 @@ void BaseButtonControl::UpdateDrawingObjects()
 
 
 
-void BaseButtonControl::_003CustomWindowProc(gen::signal_object * pobj)
+void BaseButtonControl::_003CustomWindowProc(ca::signal_object * pobj)
 {
   return _user_message_handler(pobj);
 }

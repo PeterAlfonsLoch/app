@@ -9,7 +9,7 @@ extern "C" IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
-namespace gen
+namespace ca
 {
 
    //typedef void ( * PFN_trace_v)(const char *pszFileName, int32_t nLine, uint32_t dwCategory, uint32_t nLevel, const char * pszFmt, va_list args);
@@ -182,7 +182,7 @@ namespace gen
 
 #endif
 
-#define DECLARE_NOUIASSERT() gen::CNoUIAssertHook _g_NoUIAssertHook;
+#define DECLARE_NOUIASSERT() ca::CNoUIAssertHook _g_NoUIAssertHook;
 
 #endif  // _NO_DEBUG_CRT
 
@@ -191,9 +191,9 @@ namespace gen
       CLASS_DECL_ca void __cdecl __trace(const wchar_t * pszFormat, ...);
       CLASS_DECL_ca void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const char * pszFormat, ...);
       CLASS_DECL_ca void __cdecl __trace(uint_ptr dwCategory, UINT nLevel, const wchar_t * pszFormat, ...);
-#define TRACENOTIMPL(funcname)  do { TRACE(gen::atlTraceNotImpl, 0, "gen: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
+#define TRACENOTIMPL(funcname)  do { TRACE(ca::atlTraceNotImpl, 0, "ca: %s not implemented.\n", funcname); return E_NOTIMPL; } while(0)
    } // namespace trace
     
 
-};  // namespace gen
+};  // namespace ca
 

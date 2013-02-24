@@ -115,7 +115,7 @@ namespace sockets
          {
             return Bind(ad, depth);
          }
-         Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
+         Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::ca::log::level::fatal);
          return -1;
       }
 
@@ -130,7 +130,7 @@ namespace sockets
          {
                return Bind(ad, protocol, depth);
          }
-         Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::gen::log::level::fatal);
+         Handler().LogError(this, "Bind", 0, "name resolution of interface name failed", ::ca::log::level::fatal);
          return -1;
       }
 
@@ -197,15 +197,15 @@ namespace sockets
          }
          if (bind(s, ad.sa(), ad.sa_len()) == -1)
          {
-            Handler().LogError(this, "bind() failed for port " + gen::str::from(ad.get_service_number()), Errno, StrError(Errno), ::gen::log::level::fatal);
+            Handler().LogError(this, "bind() failed for port " + ca::str::from(ad.get_service_number()), Errno, StrError(Errno), ::ca::log::level::fatal);
             ::closesocket(s);
             return -1;
          }
          if (listen(s, depth) == -1)
          {
-            Handler().LogError(this, "listen", Errno, StrError(Errno), ::gen::log::level::fatal);
+            Handler().LogError(this, "listen", Errno, StrError(Errno), ::ca::log::level::fatal);
             ::closesocket(s);
-            throw simple_exception(get_app(), "listen() failed for port " + gen::str::from(ad.get_service_number()) + ": " + StrError(Errno));
+            throw simple_exception(get_app(), "listen() failed for port " + ca::str::from(ad.get_service_number()) + ": " + StrError(Errno));
             return -1;
          }
          m_depth = depth;
@@ -235,18 +235,18 @@ namespace sockets
 
          if (a_s == INVALID_SOCKET)
          {
-            Handler().LogError(this, "accept", Errno, StrError(Errno), ::gen::log::level::error);
+            Handler().LogError(this, "accept", Errno, StrError(Errno), ::ca::log::level::error);
             return;
          }
          if (!Handler().OkToAccept(this))
          {
-            Handler().LogError(this, "accept", -1, "Not OK to accept", ::gen::log::level::warning);
+            Handler().LogError(this, "accept", -1, "Not OK to accept", ::ca::log::level::warning);
             ::closesocket(a_s);
             return;
          }
          if (Handler().get_count() >= FD_SETSIZE)
          {
-            Handler().LogError(this, "accept", (int32_t)Handler().get_count(), "socket_handler_base fd_set limit reached", ::gen::log::level::fatal);
+            Handler().LogError(this, "accept", (int32_t)Handler().get_count(), "socket_handler_base fd_set limit reached", ::ca::log::level::fatal);
             ::closesocket(a_s);
             return;
          }

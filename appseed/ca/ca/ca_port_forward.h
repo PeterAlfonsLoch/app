@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -17,7 +17,7 @@ namespace ca2
    };
 
    class CLASS_DECL_ca port_forward   :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -107,5 +107,5 @@ namespace ca2
    typedef ::ca::smart_pointer < port_forward > port_forward_sp;
 
 
-} // namespace ca2
+} // namespace ca
 

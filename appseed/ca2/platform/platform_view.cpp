@@ -91,7 +91,7 @@ namespace platform
    {
    }
 
-   void view::install_message_handling(::gen::message::dispatch * pinterface)
+   void view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       form_view::install_message_handling(pinterface);
 
@@ -107,7 +107,7 @@ namespace platform
 
       IGUI_WIN_MSG_LINK(WM_TIMER, pinterface, this, &view::_001OnTimer);
       IGUI_WIN_MSG_LINK(WM_LBUTTONUP, pinterface, this, &view::_001OnLButtonUp);
-      IGUI_WIN_MSG_LINK(gen::application::APPM_LANGUAGE, pinterface, this, &view::_001OnAppLanguage);
+      IGUI_WIN_MSG_LINK(ca::application::APPM_LANGUAGE, pinterface, this, &view::_001OnAppLanguage);
 
    }
 
@@ -147,7 +147,7 @@ namespace platform
    /////////////////////////////////////////////////////////////////////////////
    // ::view printing
 
-   void view::_001OnInitialUpdate(gen::signal_object * pobj)
+   void view::_001OnInitialUpdate(ca::signal_object * pobj)
    {
       form_view::_001OnInitialUpdate(pobj);
       load_links();
@@ -168,7 +168,7 @@ namespace platform
       return this;
    }
 
-   void view::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+   void view::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -182,7 +182,7 @@ namespace platform
    {
       return this;
    }
-   void view::_001OnDestroy(gen::signal_object * pobj)
+   void view::_001OnDestroy(ca::signal_object * pobj)
    {
       form_view::_001OnDestroy(pobj);
 
@@ -191,7 +191,7 @@ namespace platform
 
 
 
-   void view::_001OnPaint(gen::signal_object * pobj)
+   void view::_001OnPaint(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
       //CPaintDC spgraphics(this); // device context for platforming
@@ -223,7 +223,7 @@ namespace platform
    //pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");
    }*/
 
-   void view::_001OnCreate(gen::signal_object * pobj)
+   void view::_001OnCreate(ca::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -239,7 +239,7 @@ namespace platform
       m_dibBkImage.load_from_matter("casweden1.png");
 
       m_dibBk->create(1280, 1024);
-      //gen::savings & savings = System.savings();
+      //ca::savings & savings = System.savings();
       //if(
 
       const char * pszSessionName = NULL;
@@ -291,9 +291,9 @@ namespace platform
       Application.visual().imaging().color_blend(m_dibBk->get_graphics(), 0, 0, 1280, 1024, ARGB(255, 235, 245, 255), 31);
 
    }
-   void view::_001OnContextMenu(gen::signal_object * pobj)
+   void view::_001OnContextMenu(ca::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //         point point = pcontextmenu->GetPoint();
 
    }
@@ -330,7 +330,7 @@ namespace platform
             {
                SetScreen(1);
                string strApp = m_linka[i].m_strSrc;
-               gen::str::ends_eat_ci(strApp, ".dll");
+               ca::str::ends_eat_ci(strApp, ".dll");
 
                ::ca::create_context_sp cc(&Application.command_central());
 
@@ -385,7 +385,7 @@ namespace platform
       rectDesktop.top = 0;
       rectDesktop.bottom = ::GetSystemMetrics(SM_CYSCREEN);
       }*/
-      if(System.savings().is_trying_to_save(gen::resource_processing))
+      if(System.savings().is_trying_to_save(ca::resource_processing))
       {
          pdc->FillRect(&rectClient, m_brushBk);
       }
@@ -436,7 +436,7 @@ namespace platform
       /*      pdc->SetBkMode(TRANSPARENT);
       pdc->SelectObject(m_font1);
       pdc->SetTextColor(ARGB(255, 108, 0, 108));
-      LPTSTR lpsz8 = "ccvotagus ca2";
+      LPTSTR lpsz8 = "ccvotagus ca";
       pdc->TextOut(10, 10, lpsz8, strlen(lpsz8));
       pdc->SetTextColor(ARGB(255, 0, 0, 0));
       LPTSTR lpsz = "dedicated to Carlos Gustavo Cecyn Lundgren";
@@ -528,11 +528,11 @@ namespace platform
       {
          return;
       }
-      m_oswindowWinservice1       =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winservice_1");
-      m_oswindowWinactionarea     =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winactionarea");
-      m_oswindowCommand           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::command");
-      m_oswindowWinutil           =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::winutil");
-      m_oswindowBergedge          =  ::FindWindow(NULL, "ca2::fontopus::message_wnd::bergedge");
+      m_oswindowWinservice1       =  ::FindWindow(NULL, "ca::fontopus::message_wnd::winservice_1");
+      m_oswindowWinactionarea     =  ::FindWindow(NULL, "ca::fontopus::message_wnd::winactionarea");
+      m_oswindowCommand           =  ::FindWindow(NULL, "ca::fontopus::message_wnd::command");
+      m_oswindowWinutil           =  ::FindWindow(NULL, "ca::fontopus::message_wnd::winutil");
+      m_oswindowBergedge          =  ::FindWindow(NULL, "ca::fontopus::message_wnd::bergedge");
 #endif
    }
 
@@ -572,10 +572,10 @@ namespace platform
       return 0;
    }
 
-   void view::_001OnAppLanguage(::gen::signal_object * pobj)
+   void view::_001OnAppLanguage(::ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-      //      SCAST_PTR(::gen::message::base, pbase, pobj);
+      //      SCAST_PTR(::ca::message::base, pbase, pobj);
       load_links();
    }
 
@@ -615,10 +615,10 @@ namespace platform
       m_iShow  = iShow;
    }
 
-   void view::_001OnTimer(gen::signal_object * pobj)
+   void view::_001OnTimer(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(::gen::message::timer, ptimer, pobj)
+      SCAST_PTR(::ca::message::timer, ptimer, pobj)
 
          if(ptimer->m_nIDEvent == 21977)
          {
@@ -654,9 +654,9 @@ namespace platform
       }
    }
 
-   void view::_001OnLButtonUp(gen::signal_object * pobj)
+   void view::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       KillTimer(5432180);
       point pt = pmouse->m_pt;
@@ -819,9 +819,9 @@ namespace platform
       simple_shell_launcher launcher(
       NULL,
       NULL,
-      System.dir().ca2("ccvotagus/spaadmin.exe"),
+      System.dir().ca("ccvotagus/spaadmin.exe"),
       " uninstall _set_windesk",
-      System.dir().ca2("ccvotagus"),
+      System.dir().ca("ccvotagus"),
       SW_HIDE);
       launcher.execute();
 
@@ -917,9 +917,9 @@ namespace platform
       */
    }
 
-   void view::_001OnMouseMove(gen::signal_object * pobj)
+   void view::_001OnMouseMove(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
          pmouse->set_lresult(1);
       point pt = pmouse->m_pt;
       ScreenToClient(&pt);
@@ -970,7 +970,7 @@ namespace platform
 
             string strAttr             = doc.get_root()->child_at(i)->attr("icon");
 
-            if(gen::str::begins_eat(strAttr, "matter://"))
+            if(ca::str::begins_eat(strAttr, "matter://"))
             {
                plink->m_button.m_dib.load_from_matter(strAttr);
             }

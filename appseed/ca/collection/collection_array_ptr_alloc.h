@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca/gen/gen_composite.h"
+#include "ca/ca/gen_composite.h"
 
 
 #undef new
@@ -49,7 +49,7 @@ array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::~array_ptr_alloc()
 template <class TYPE, class ARG_TYPE, class BASE_PTRA>
 inline TYPE * array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::add_new()
 {
-   TYPE * p = gen::alloc<TYPE>();
+   TYPE * p = ca::alloc<TYPE>();
    this->add(p);
    return p;
 }
@@ -66,7 +66,7 @@ inline array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA > & array_ptr_alloc < TYPE, A
    }
    for(; i < a.get_size(); i++)
    {
-      this->ptra().add(gen::alloc<TYPE>(a[i]));
+      this->ptra().add(ca::alloc<TYPE>(a[i]));
    }
    this->ptra().set_size(a.get_size());
    return *this;
@@ -102,9 +102,9 @@ void array_ptr_alloc < TYPE, ARG_TYPE, BASE_PTRA >::set_at_grow(index iIndex, AR
    {
       for(index i = this->get_size(); i < iIndex; i++)
       {
-         this->ptra().add(gen::alloc<TYPE>());
+         this->ptra().add(ca::alloc<TYPE>());
       }
-      this->ptra().add(gen::alloc<TYPE>(t));
+      this->ptra().add(ca::alloc<TYPE>(t));
    }
 }
 

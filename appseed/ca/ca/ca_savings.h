@@ -1,6 +1,6 @@
 #pragma once
 
-namespace gen
+namespace ca
 {
 
    enum e_resource
@@ -14,7 +14,7 @@ namespace gen
    };
 
    class CLASS_DECL_ca savings :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       savings(::ca::application * papp);
@@ -40,4 +40,4 @@ namespace gen
 
    };
 
-} // namespace gen
+} // namespace ca

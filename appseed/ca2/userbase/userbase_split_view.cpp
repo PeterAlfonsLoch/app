@@ -15,7 +15,7 @@ namespace userbase
    {
    }
 
-   void split_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void split_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_SIZE, pinterface, this, &split_view::_001OnSize);
@@ -40,9 +40,9 @@ namespace userbase
    #endif //DEBUG
 
 
-   void split_view::_001OnSize(gen::signal_object * pobj) 
+   void split_view::_001OnSize(ca::signal_object * pobj) 
    {
-      SCAST_PTR(::gen::message::size, psize, pobj)
+      SCAST_PTR(::ca::message::size, psize, pobj)
       psize->previous();
       //layout();
    }
@@ -103,9 +103,9 @@ namespace userbase
    }
 
 
-   void split_view::_001OnShowWindow(gen::signal_object * pobj) 
+   void split_view::_001OnShowWindow(ca::signal_object * pobj) 
    {
-      SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
+      SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
       pshowwindow->previous();
       layout();
    }

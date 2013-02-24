@@ -73,9 +73,9 @@ namespace platform
    /////////////////////////////////////////////////////////////////////////////
    // pane_view message handlers
 
-   void pane_view::_001OnCreate(gen::signal_object * pobj)
+   void pane_view::_001OnCreate(ca::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::create, pcreate, pobj)
+//      SCAST_PTR(::ca::message::create, pcreate, pobj)
       if(pobj->previous())
          return;
 
@@ -274,7 +274,7 @@ namespace platform
       }
    }
 
-   void pane_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void pane_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &pane_view::_001OnCreate);

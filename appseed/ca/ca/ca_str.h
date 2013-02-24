@@ -17,7 +17,7 @@ namespace calculator
 } // namespace calculator
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -81,9 +81,9 @@ namespace gen
       bool CLASS_DECL_ca begins_eat(var & var, const char * lpcszPrefix);
       bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix); // case insensitive
       bool CLASS_DECL_ca begins_eat_ci(var & var, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
-      bool CLASS_DECL_ca begins_eat(gen::property & property, const char * lpcszPrefix);
-      bool CLASS_DECL_ca begins_eat_ci(gen::property & property, const char * lpcszPrefix); // case insensitive
-      bool CLASS_DECL_ca begins_eat_ci(gen::property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
+      bool CLASS_DECL_ca begins_eat(ca::property & property, const char * lpcszPrefix);
+      bool CLASS_DECL_ca begins_eat_ci(ca::property & property, const char * lpcszPrefix); // case insensitive
+      bool CLASS_DECL_ca begins_eat_ci(ca::property & property, const char * lpcszPrefix, const char * pszSeparator); // case insensitive
       bool CLASS_DECL_ca while_begins_with_chars_eat(string & str, const char * lpcszChars);
       bool CLASS_DECL_ca while_begins_with_chars_eat_ci(string & str, const char * lpcszChars); // case insensitive
       bool CLASS_DECL_ca ends(const char * lpcsz, const char * lpcszSuffix);
@@ -137,8 +137,8 @@ namespace gen
       CLASS_DECL_ca  string         utf8_previous_char(const char * pszBeg, const char *psz, strsize i = 0);
       CLASS_DECL_ca  string         uni_to_utf8(int64_t ch);
 
-      CLASS_DECL_ca  const char *   utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz);
-      CLASS_DECL_ca  int32_t            utf8_char(::gen::utf8_char * pchar, const char *psz);
+      CLASS_DECL_ca  const char *   utf8_dec(::ca::utf8_char * pchar, const char * pszBeg, const char * psz);
+      CLASS_DECL_ca  int32_t            utf8_char(::ca::utf8_char * pchar, const char *psz);
 
 
       CLASS_DECL_ca  bool           to(const char * psz, int32_t & i);
@@ -290,13 +290,13 @@ namespace gen
    } // namespace str
 
 
-} // namespace gen
+} // namespace ca
 
 
 template < typename T >
 inline c_number < T > & c_number < T >::from(const string & str)
 {
-   gen::str::to(str, m_number);
+   ca::str::to(str, m_number);
    return *this;
 }
 

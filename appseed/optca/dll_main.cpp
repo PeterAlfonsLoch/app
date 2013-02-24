@@ -17,7 +17,7 @@ DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID lpReserved)
    {
 
 
-      ::OutputDebugStringW(L"::ca2:: optca.dll :: initializing!\n");
+      ::OutputDebugStringW(L"::ca:: optca.dll :: initializing!\n");
       
 
    }
@@ -25,7 +25,7 @@ DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID lpReserved)
    {
    
 
-      ::OutputDebugStringW(L"::ca2:: optca.dll :: terminating!\n");
+      ::OutputDebugStringW(L"::ca:: optca.dll :: terminating!\n");
 
 
    }
@@ -50,7 +50,7 @@ DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID lpReserved)
    {
 
 
-      ::OutputDebugStringW(L"::ca2:: optca.dll :: initializing!\n");
+      ::OutputDebugStringW(L"::ca:: optca.dll :: initializing!\n");
       
 
    }
@@ -58,7 +58,7 @@ DllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID lpReserved)
    {
    
 
-      ::OutputDebugStringW(L"::ca2:: optca.dll :: terminating!\n");
+      ::OutputDebugStringW(L"::ca:: optca.dll :: terminating!\n");
 
 
    }

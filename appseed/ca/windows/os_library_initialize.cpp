@@ -36,7 +36,7 @@ bool WINAPI RawDllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID)
 #endif
 
          // cause early initialization of gen_CriticalSection
-//         if (!gen::CriticalInit())
+//         if (!ca::CriticalInit())
   //          return FALSE;
 
       }
@@ -44,7 +44,7 @@ bool WINAPI RawDllMain(HINSTANCE hInstance, uint32_t dwReason, LPVOID)
       {
 
          // free up the gen_CriticalSection
-//         gen::CriticalTerm();
+//         ca::CriticalTerm();
 
          // remove reference from thread local data
 //         __tls_release();

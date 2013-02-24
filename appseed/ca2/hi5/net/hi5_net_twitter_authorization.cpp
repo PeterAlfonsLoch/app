@@ -54,7 +54,7 @@ namespace hi5
                return;
             ::ca::create_context_sp createcontext(get_app());
             createcontext->m_bMakeVisible = false;
-            createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
+            createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
             createcontext->m_bOuterPopupAlertLike = true;
             m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
             userex::pane_tab_view * pview = m_pdoc->get_typed_view < userex::pane_tab_view >();
@@ -68,7 +68,7 @@ namespace hi5
          void authorization::page1()
          {
             string strUrl;
-            strUrl = "http://spaignition.api.server.ca2.cc/query?node=install_application&id=";
+            strUrl = "http://spaignition.api.server.ca.cc/query?node=install_application&id=";
             string strAppName;
             if(System.m_strAppName == "winactionarea")
             {
@@ -140,7 +140,7 @@ namespace hi5
             m_pviewAuth->GetTopLevelParent()->BringWindowToTop();
          }
 
-         void authorization::pageMessage(const char * pszMatter, gen::property_set & set)
+         void authorization::pageMessage(const char * pszMatter, ca::property_set & set)
          {
             ensure_main_document();
             m_pdocAuth->get_html_data()->m_propertyset = set;

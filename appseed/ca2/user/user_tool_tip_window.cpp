@@ -18,11 +18,11 @@ namespace user
    {
    }
 
-   void tool_tip_window::relay_event(::user::tool_tip_tool * ptool, gen::signal_object * pobj)
+   void tool_tip_window::relay_event(::user::tool_tip_tool * ptool, ca::signal_object * pobj)
    {
       if(IsWindow())
          return;
-      SCAST_PTR(gen::message::base, pbase, pobj);
+      SCAST_PTR(ca::message::base, pbase, pobj);
       switch(pbase->m_uiMessage)
       {
       case WM_MOUSEMOVE:
@@ -214,7 +214,7 @@ namespace user
    // WM_PAINT message handler.
    //
    // Output:
-   // See ca2 API documentation.
+   // See ca API documentation.
    //
    // Author:
    // Camilo S. Tsumanuma

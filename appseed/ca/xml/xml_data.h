@@ -2,7 +2,7 @@
 
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -16,13 +16,13 @@ namespace ca2
       virtual ~xml_data();
 
 
-      virtual void write(gen::byte_output_stream & ostream);
-      virtual void read(gen::byte_input_stream & istream);
+      virtual void write(ca::byte_output_stream & ostream);
+      virtual void read(ca::byte_input_stream & istream);
 
 
    };
 
 
-} // namespace ca2
+} // namespace ca
 
 

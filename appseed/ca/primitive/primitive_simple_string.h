@@ -230,18 +230,18 @@ inline string_data * string_manager::GetNilString()
 
 
 
-namespace gen
+namespace ca
 {
    namespace str
    {
       CLASS_DECL_ca inline void copy(char * pszDest, const char * pszSrc) { strcpy(pszDest, pszSrc); }
       CLASS_DECL_ca inline void copy(wchar_t * pszDest, const wchar_t * pszSrc) { wcscpy_dup(pszDest, pszSrc); }
    } // namespace str
-} // namespace gen
+} // namespace ca
 
 
 
-/*namespace gen
+/*namespace ca
 {
 
    namespace international
@@ -362,9 +362,9 @@ static_string& operator=( const static_string& str ) NOTHROW;
 
 
 
-#define _ST( psz ) gen::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
-#define _SA( psz ) gen::static_string< char, sizeof( psz ) >( psz )
-#define _SW( psz ) gen::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
+#define _ST( psz ) ca::static_string< char, sizeof( _T( psz ) ) >( _T( psz ) )
+#define _SA( psz ) ca::static_string< char, sizeof( psz ) >( psz )
+#define _SW( psz ) ca::static_string< wchar_t, sizeof( L##psz ) >( L##psz )
 #define _SO( psz ) _SW( psz )
 
 class CLASS_DECL_ca char_traits_base
@@ -750,7 +750,7 @@ public:
    }
    void get_string(char * psz) const NOTHROW
    {
-      gen::str::copy(psz, (const char *) *this);
+      ca::str::copy(psz, (const char *) *this);
    }
    void set_string(const char * psz) NOTHROW
    {

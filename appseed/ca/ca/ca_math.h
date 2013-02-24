@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -14,7 +14,7 @@ namespace gen
 
 
       class CLASS_DECL_ca math :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       private:
          double         dPi;
@@ -92,6 +92,6 @@ namespace gen
    } // namespace math
 
 
-} // namespace gen
+} // namespace ca
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
    
    namespace geometry
@@ -104,4 +104,4 @@ namespace gen
 
    } // namespace geometry
 
-} // namespace gen
+} // namespace ca

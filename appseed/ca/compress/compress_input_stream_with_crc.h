@@ -5,24 +5,24 @@ namespace libcompress
 {
 
    class input_stream_with_crc:
-      public ::gen::byte_input_stream
+      public ::ca::byte_input_stream
    {
    public:
 
-      sp(::gen::byte_input_stream)  _stream;
+      sp(::ca::byte_input_stream)  _stream;
       uint64_t         _size;
       uint32_t         _crc;
 
       ::primitive::memory_size read(void *data, ::primitive::memory_size size);
-      file_position seek(file_offset offset, ::gen::e_seek seekOrigin);
-      void SetStream(::gen::byte_input_stream *stream) { _stream = stream;  }
+      file_position seek(file_offset offset, ::ca::e_seek seekOrigin);
+      void SetStream(::ca::byte_input_stream *stream) { _stream = stream;  }
       void Init()
       {
          _size = 0;
          // _wasFinished = false;
          _crc = CRC_INIT_VAL;
       }
-      void ReleaseStream() { gen::release(_stream.m_p); }
+      void ReleaseStream() { ca::release(_stream.m_p); }
       uint32_t GetCRC() const { return CRC_GET_DIGEST(_crc); }
       uint64_t GetSize() const { return _size; }
       // bool WasFinished() const { return _wasFinished; }

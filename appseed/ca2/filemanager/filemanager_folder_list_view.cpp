@@ -8,7 +8,7 @@ folder_list_view::folder_list_view(::ca::application * papp) :
    ::user::scroll_view(papp),
    ::user::list(papp),
    ::user::form(papp),
-   ::ca2::user::form(papp),
+   ::ca::user::form(papp),
    ::user::form_list(papp),
    ::userbase::form_list(papp),
    simple_list_view(papp)

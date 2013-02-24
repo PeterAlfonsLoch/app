@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
    template < class A, class T >
@@ -12,4 +12,4 @@ namespace gen
       return a;
    }
 
-} // namespace gen
+} // namespace ca

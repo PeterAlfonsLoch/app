@@ -573,7 +573,7 @@ namespace sqlite
                //else
                //{
                // string str;
-               //gen::international::utf8_to_unicode(str, reslt[i]);
+               //ca::international::utf8_to_unicode(str, reslt[i]);
                v = reslt[i];
                //}
             }

@@ -6,10 +6,10 @@ namespace libcompress
 {
 
    class CLASS_DECL_ca set_decoder_properties2_interface :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
-      virtual gen::HRes SetDecoderProperties2(const byte *data, uint32_t size) = 0;
+      virtual ca::HRes SetDecoderProperties2(const byte *data, uint32_t size) = 0;
    };
 
 

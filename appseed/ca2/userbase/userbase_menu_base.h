@@ -6,7 +6,7 @@ namespace userbase
    class menu_item;
 
    class CLASS_DECL_ca2 menu_base :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       

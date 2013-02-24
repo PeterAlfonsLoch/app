@@ -30,12 +30,6 @@
     <Filter Include="Header Files\primitive">
       <UniqueIdentifier>{334331c0-04cd-439d-a30a-a63f1684de72}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gen">
-      <UniqueIdentifier>{4992a76c-218e-42ab-86d0-960e704d4980}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gen">
-      <UniqueIdentifier>{5b63e2cc-1450-42e4-9ff7-5299cf496143}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\primitive">
       <UniqueIdentifier>{e90ae53c-46db-4d99-b5f7-280640cb0a22}</UniqueIdentifier>
     </Filter>
@@ -104,9 +98,6 @@
     </Filter>
     <Filter Include="Header Files\ca2">
       <UniqueIdentifier>{320f6ee5-5897-44bb-b4de-b5a7496d7cb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ca2">
-      <UniqueIdentifier>{92866596-ce96-4170-b6ed-020eafb3f876}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\multithreading">
       <UniqueIdentifier>{9c411a7b-cf2c-4d36-84c3-e57efc53baa9}</UniqueIdentifier>
@@ -336,33 +327,6 @@
     <Filter Include="Source Files\sockets\bsd\webserver">
       <UniqueIdentifier>{1afe9b5e-037c-49fe-8f23-ba4de6ae3bd6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\gen\file">
-      <UniqueIdentifier>{33ca219f-a263-4e99-a437-00031fcc4b26}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gen\stream">
-      <UniqueIdentifier>{c82980bb-3e26-4f01-85ec-7957a05589c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gen\buffer">
-      <UniqueIdentifier>{bb35e545-31dc-4758-8336-f1020c1021d0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gen\iterator">
-      <UniqueIdentifier>{4d36664b-e488-46ad-871b-9ec9bbbb066e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gen\tree">
-      <UniqueIdentifier>{96e06f15-410d-46a1-9ecc-e2b871ae99c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gen\stream">
-      <UniqueIdentifier>{d9eaf40c-5184-4633-bb02-2663fae14a38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gen\file">
-      <UniqueIdentifier>{74202845-bab9-476e-a49f-a79383989df5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gen\tree">
-      <UniqueIdentifier>{3da1b43b-0bfb-4c94-9543-b6478aa3728f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gen\buffer">
-      <UniqueIdentifier>{762f374a-4868-4fc1-8a68-8dfd0110f52b}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="libcharguess\big5Prober.h">
@@ -436,123 +400,6 @@
     </ClInclude>
     <ClInclude Include="sqlite\sqlite3.h">
       <Filter>Header Files\sqlite</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_application.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_base_enum.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_base64.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_bit.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_ch.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_ch_class.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_command.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_command_line.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_command_thread.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_debug.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_geometry.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_holder.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_international.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_international2.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_keeper.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_logic.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_math.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_math_rng.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_parse.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_pointer_manager.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_process.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_property.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_raw_pointer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_request_signal.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_savings.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_signal.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_signal_thread.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_str.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_string_tokenizer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_system.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_timer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_timer_callback.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_timer_listener.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_timer_window.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_util1.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_var.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_var_array.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_variable_strict_compare.h">
-      <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive.h">
       <Filter>Header Files\primitive</Filter>
@@ -865,33 +712,6 @@
     </ClInclude>
     <ClInclude Include="database\database_user_interaction.h">
       <Filter>Header Files\database</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_application.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_datetime.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_inline.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_library.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_main.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_process.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_stra.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_user.h">
-      <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_critical_section.h">
       <Filter>Header Files\multithreading</Filter>
@@ -1436,12 +1256,6 @@
     <ClInclude Include="ca\ca_file_system.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_message.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_istring.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="javascript\javascript.h">
       <Filter>Header Files\javascript</Filter>
     </ClInclude>
@@ -1474,12 +1288,6 @@
     </ClInclude>
     <ClInclude Include="plane\plane_system_gen_str.h">
       <Filter>Header Files\plane</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_property_set.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_flags.h">
-      <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="windows\os_library.h">
       <Filter>Header Files\windows</Filter>
@@ -1541,29 +1349,14 @@
     <ClInclude Include="xml\xml_edit.h">
       <Filter>Header Files\xml</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_cregexp_util.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_cregexp.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_composite.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_value.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_scoped_ptr.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="ca2\os_implementation.h">
       <Filter>Header Files\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_international_locale_schema.h">
-      <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_source\dynamic_source_httpd_socket.h">
       <Filter>Header Files\dynamic_source</Filter>
@@ -1579,12 +1372,6 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive_var.h">
       <Filter>Header Files\primitive</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_url.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_url_domain.h">
-      <Filter>Header Files\ca2</Filter>
     </ClInclude>
     <ClInclude Include="windows\os_utils.h">
       <Filter>Header Files\windows</Filter>
@@ -1624,9 +1411,6 @@
     </ClInclude>
     <ClInclude Include="fs\fs_remote_native_file.h">
       <Filter>Header Files\fs</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_microtimer.h">
-      <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="math\_double.h">
       <Filter>Header Files\math</Filter>
@@ -1751,36 +1535,6 @@
     <ClInclude Include="exception\exception_last_error.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_base.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_c_number.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_compare.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_core.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_definition.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_equals.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_hash.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_std_pair.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_trace.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_common.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="visual\visual_const.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
@@ -1834,24 +1588,6 @@
     </ClInclude>
     <ClInclude Include="visual\visual_water_routine.h">
       <Filter>Header Files\visual</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_muldiv32.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_reference.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_resource.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_simple_thread.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_go_thread.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_template.h">
-      <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="compress\compress_get_input_stream_processed_size_interface.h">
       <Filter>Header Files\compress</Filter>
@@ -2357,9 +2093,6 @@
     <ClInclude Include="collection\collection_priority_queue.h">
       <Filter>Header Files\collection</Filter>
     </ClInclude>
-    <ClInclude Include=".\gen\gen_less.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception_invalid_handle.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -2383,12 +2116,6 @@
     </ClInclude>
     <ClInclude Include="multithreading\multithreading_retry_multi_lock.h">
       <Filter>Header Files\multithreading</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_strn.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_hex.h">
-      <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="primitive\datetime\datetime_float_time.h">
       <Filter>Header Files\primitive\datetime</Filter>
@@ -2849,165 +2576,6 @@
     <ClInclude Include="colorertake5\colorertake5_xmldom.h">
       <Filter>Header Files\colorertake5</Filter>
     </ClInclude>
-    <ClInclude Include="ca2\ca2_2.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_compress.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_contact_list.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_copydesk.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_crypt.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_email.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_file.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_http.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_http_application.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_http_get_socket.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_http_system.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_ip_enum.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_oauth.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_patch.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_port_forward.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_sockets_address.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="ca2\ca2_twit.h">
-      <Filter>Header Files\ca2</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_0.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_1.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_allocate.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_allocator.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_bitl_decoder.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_bitl_encoder.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_bitm_decoder.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_bitm_encoder.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_bstr.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_command_target.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_constraint.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_exception.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_factory.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_fixed_alloc.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_folder_watch.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_fs_interface.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_heap.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_machine_event_central.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_match.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_object.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_os_history.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_pipe.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_plex.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_plex_heap.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_process_data.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_progress_interface.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_reader.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_request_interface.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_seekable.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_service.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_size_count_writer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_system_exception.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_thread.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_types.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_util.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="gen\gen_wait_cursor.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
     <ClInclude Include="sockets\http_file.h">
       <Filter>Header Files\sockets</Filter>
     </ClInclude>
@@ -3020,271 +2588,532 @@
     <ClInclude Include="plane\plane_system_gen_factory.h">
       <Filter>Header Files\plane</Filter>
     </ClInclude>
-    <ClInclude Include="gen\_gen0_0.h">
-      <Filter>Header Files\gen</Filter>
+    <ClInclude Include="ca\_ca_2.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\_gen0_1.h">
-      <Filter>Header Files\gen</Filter>
+    <ClInclude Include="ca\ca_0.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_1.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file_association.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_2.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file_composite.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_allocate.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file_exception.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_allocator.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file_manager_interface.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_application_interface.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file_set.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_back_insert_iterator.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file_status.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_base_enum.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_file_stream.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_base64.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_edit_file.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_bit.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_str_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_bitl_decoder.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_bitl_encoder.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_stream2.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_bitm_decoder.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_stream_base.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_bitm_encoder.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_stream_binder.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_bstr.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_byte_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_buffer.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_byte_serializable.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_buffered_file.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_byte_stream_memory_file.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_byte_serializable.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_limited_input_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_byte_stream.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_limited_reader.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_byte_stream_memory_file.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_limited_writer.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_c_number.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_locked_in_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_ch.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_clustered_input_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_ch_class.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_back_insert_iterator.h">
-      <Filter>Header Files\gen\iterator</Filter>
+    <ClInclude Include="ca\ca_circular_buffer.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_dynamic_buffered_writer.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_clustered_input_stream.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_buffered_file.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_command.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_circular_buffer.h">
-      <Filter>Header Files\gen\buffer</Filter>
+    <ClInclude Include="ca\ca_command_line.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_buffer.h">
-      <Filter>Header Files\gen\buffer</Filter>
+    <ClInclude Include="ca\ca_command_target.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_dynamic_buffer.h">
-      <Filter>Header Files\gen\buffer</Filter>
+    <ClInclude Include="ca\ca_command_thread.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_out_buffer.h">
-      <Filter>Header Files\gen\buffer</Filter>
+    <ClInclude Include="ca\ca_common.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_output_stream_flush_interface.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_compare.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_in_buffer.h">
-      <Filter>Header Files\gen\buffer</Filter>
+    <ClInclude Include="ca\ca_composite.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_writer.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_compress.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_insert_iterator.h">
-      <Filter>Header Files\gen\iterator</Filter>
+    <ClInclude Include="ca\ca_constraint.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_iterator.h">
-      <Filter>Header Files\gen\iterator</Filter>
+    <ClInclude Include="ca\ca_contact_list.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_io_temp_buffer.h">
-      <Filter>Header Files\gen\buffer</Filter>
+    <ClInclude Include="ca\ca_copydesk.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_plain_text_string_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_core.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_plain_text_serializable.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_cregexp.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_plain_text_stream.h">
-      <Filter>Header Files\gen\stream</Filter>
+    <ClInclude Include="ca\ca_cregexp_util.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_text_file.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_crypt.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_timeout_file.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_datetime.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_transfer_file.h">
-      <Filter>Header Files\gen\file</Filter>
+    <ClInclude Include="ca\ca_debug.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_simple_tree_data.h">
-      <Filter>Header Files\gen\tree</Filter>
+    <ClInclude Include="ca\ca_definition.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_simple_tree_item_data.h">
-      <Filter>Header Files\gen\tree</Filter>
+    <ClInclude Include="ca\ca_dynamic_buffer.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_tree_item_data.h">
-      <Filter>Header Files\gen\tree</Filter>
+    <ClInclude Include="ca\ca_dynamic_buffered_writer.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_tree.h">
-      <Filter>Header Files\gen\tree</Filter>
+    <ClInclude Include="ca\ca_edit_file.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_tree_data.h">
-      <Filter>Header Files\gen\tree</Filter>
+    <ClInclude Include="ca\ca_email.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="gen\gen_tree_item.h">
-      <Filter>Header Files\gen\tree</Filter>
+    <ClInclude Include="ca\ca_equals.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_factory.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_association.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_composite.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_exception.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_manager_interface.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_set.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_status.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_file_stream.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_fixed_alloc.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_flags.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_folder_watch.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_fs_interface.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_geometry.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_go_thread.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_hash.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_heap.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_hex.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_holder.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_http.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_http_application.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_http_get_socket.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_http_system.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_in_buffer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_inline.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_insert_iterator.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_international.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_international_locale_schema.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_international2.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_io_temp_buffer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_ip_enum.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_istring.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_iterator.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_keep_alive.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_keeper.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_less.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_library.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_limited_input_stream.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_limited_reader.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_limited_writer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_locked_in_stream.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_logic.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_machine_event_central.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_main.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_match.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_math.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_math_rng.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_message.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_microtimer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_muldiv32.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_oauth.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_object.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_opened_files.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_os_history.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_os_implementation.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_out_buffer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_output_stream_flush_interface.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_parse.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_patch.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_pipe.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_plain_text_serializable.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_plain_text_stream.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_plain_text_string_stream.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_plex.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_plex_heap.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_pointer_manager.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_port_forward.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_process.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_process_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_progress_interface.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_property.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_property_set.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_raw_pointer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_reader.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_reference.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_request_interface.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_request_signal.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_resource.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_savings.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_scoped_ptr.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_seekable.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_service.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_signal.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_signal_thread.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_simple_thread.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_simple_tree_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_simple_tree_item_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_size_count_writer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_sockets_address.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_std_pair.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_str.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_str_stream.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_str2.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_stra.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_stream.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_stream_base.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_stream_binder.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_stream2.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_string_tokenizer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_strn.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_system_exception.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_text_file.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_timeout_file.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_timer.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_timer_callback.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_timer_listener.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_timer_window.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_trace.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_transfer_file.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_tree.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_tree_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_tree_item.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_tree_item_data.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_twit.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_types.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_url.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_url_domain.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_user.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_util.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_util1.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_var.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_var_array.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_variable_strict_compare.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_wait_cursor.h">
+      <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_writer.h">
+      <Filter>Header Files\ca</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libcharguess\libcharguess.cpp">
       <Filter>Source Files\libcharguess</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_application.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_base64.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_bit.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_ch.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_ch_class.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_command.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_command_line.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_command_thread.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_Debug.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_file_sssociation.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_geometry.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_international.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_keeper.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_logic.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_math.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_math_rng.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_parse.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_pointer_holder.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_pointer_interface.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_pointer_keeper.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_pointer_listener.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_pointer_manager.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_process.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_property.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_request_signal.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_savings.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_signal.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_signal_thread.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_str.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_string_tokenizer.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_system.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_Timer.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_TimerCallback.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_TimerListener.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_TimerWnd.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_var.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_var_array.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_variable_strict_compare.cpp">
-      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_scalar.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -3994,9 +3823,6 @@
     <ClCompile Include="install\install_install.cpp">
       <Filter>Source Files\install</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_message.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
     <ClCompile Include="database\database_application.cpp">
       <Filter>Source Files\database</Filter>
     </ClCompile>
@@ -4213,17 +4039,11 @@
     <ClCompile Include="primitive\primitive_var.cpp">
       <Filter>Source Files\primitive</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_var_property_allocation.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
     <ClCompile Include="ca\ca_file_application.cpp">
       <Filter>Source Files\ca</Filter>
     </ClCompile>
     <ClCompile Include="ca\ca_file_system.cpp">
       <Filter>Source Files\ca</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_istring.cpp">
-      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive_id_space.cpp">
       <Filter>Source Files\primitive</Filter>
@@ -4249,12 +4069,6 @@
     <ClCompile Include="xml\xml_edit.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_cregexp_util.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_cregexp.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
@@ -4272,9 +4086,6 @@
     </ClCompile>
     <ClCompile Include="dynamic_source\dynamic_source_exit_exception.cpp">
       <Filter>Source Files\dynamic_source</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_international_locale_schema.cpp">
-      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="windows\os_utils.cpp">
       <Filter>Source Files\windows</Filter>
@@ -4450,9 +4261,6 @@
     <ClCompile Include="libcharguess\libcharguess_UTF8Prober.cpp">
       <Filter>Source Files\libcharguess</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_microtimer.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
     <ClCompile Include="math\_double.cpp">
       <Filter>Source Files\math</Filter>
     </ClCompile>
@@ -4501,15 +4309,6 @@
     <ClCompile Include="multithreading\multithreading_sync_objec.cpp">
       <Filter>Source Files\multithreading</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_trace.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_memory.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_hash.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -4518,18 +4317,6 @@
     </ClCompile>
     <ClCompile Include="exception\exception_engine.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_checked.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_base.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_simple_thread.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_go_thread.cpp">
-      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="compress\crypto\crypto_7z_crc.cpp">
       <Filter>Source Files\compress\crypto</Filter>
@@ -4587,24 +4374,6 @@
     </ClCompile>
     <ClCompile Include="exception\exception_call_stack.cpp">
       <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_application.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_datetime.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_library.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_process.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_url.cpp">
-      <Filter>Source Files\ca2</Filter>
-    </ClCompile>
-    <ClCompile Include="ca2\ca2_url_domain.cpp">
-      <Filter>Source Files\ca2</Filter>
     </ClCompile>
     <ClCompile Include=".\sqlite\sqlite3.cpp">
       <Filter>Source Files\sqlite</Filter>
@@ -4728,12 +4497,6 @@
     </ClCompile>
     <ClCompile Include="collection\collection_2d_array.cpp">
       <Filter>Source Files\collection</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_hex.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="gen\gen_strn.cpp">
-      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\datetime_float_time.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
@@ -5041,274 +4804,433 @@
     <ClCompile Include="xml\xml_xml.cpp">
       <Filter>Source Files\xml</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_compress.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_copydesk.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_2.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_crypt.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_allocation_base_ca.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_email.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_allocation_ca_heap.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_file.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_allocation_mid_big.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_http.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_allocation_system_heap.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_http_application.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_application_interface.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_http_get_socket.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_assert.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_http_system.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_base_enum_static_debug.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_ip_enum.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_base64.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_nessie.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_bit.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_oauth.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_bstr.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_patch.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_buffered_file.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_port_forward.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_byte_serializable.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="ca2\ca2_twit.cpp">
-      <Filter>Source Files\ca2</Filter>
+    <ClCompile Include="ca\ca_byte_stream.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_byte_stream_memory_file.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_allocation_base_ca2.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_ch.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_allocation_ca2_heap.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_ch_class.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_allocation_mid_big.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_checked.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_allocation_system_heap.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_circular_buffer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_assert.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_clustered_input_stream.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_base_enum_static_debug.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_cmdtarg.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_bstr.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_command.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_circular_buffer.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_command_line.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_clustered_input_stream.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_command_target.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_cmdtarg.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_command_thread.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_command_target.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_composite.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_composite.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_compress.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_constraint.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_constraint.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_exception.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_copydesk.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_factory.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_cregexp.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_file.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_cregexp_util.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_file_composite.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_crypt.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_file_exception.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_datetime.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_file_set.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_Debug.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_fixed_alloc.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_dynamic_buffered_writer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_flags.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_edit_file.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_folder_watch.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_email.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_fs_interface.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_factory.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_in_buffer.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_file.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_machine_event_central.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_file_composite.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_match.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_file_exception.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_object.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_file_manager_interface.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_os_history.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_file_set.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_out_buffer.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_file_sssociation.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_output_string_stream.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_file_stream.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_pipe.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_fixed_alloc.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_plex.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_flags.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_plex_heap.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_folder_watch.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_reader.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_fs_interface.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_request_interface.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_geometry.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_resource.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_go_thread.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_seekable.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_hash.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_service.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_hex.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_size_count_writer.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_http.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_thread.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_http_application.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_wait_cursor.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_http_get_socket.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_file_manager_interface.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="ca\ca_http_system.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_byte_stream_memory_file.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_in_buffer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_byte_serializable.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_international.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_byte_stream.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_international_locale_schema.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_buffered_file.cpp">
-      <Filter>Source Files\gen\file</Filter>
+    <ClCompile Include="ca\ca_io_temp_buffer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_edit_file.cpp">
-      <Filter>Source Files\gen\file</Filter>
+    <ClCompile Include="ca\ca_ip_enum.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_dynamic_buffered_writer.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_istring.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_plain_text_serializable.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_keeper.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_plain_text_stream.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_library.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_tree_item_data.cpp">
-      <Filter>Source Files\gen\tree</Filter>
+    <ClCompile Include="ca\ca_limited_input_stream.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_tree.cpp">
-      <Filter>Source Files\gen\tree</Filter>
+    <ClCompile Include="ca\ca_limited_reader.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_tree_data.cpp">
-      <Filter>Source Files\gen\tree</Filter>
+    <ClCompile Include="ca\ca_limited_writer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_tree_item.cpp">
-      <Filter>Source Files\gen\tree</Filter>
+    <ClCompile Include="ca\ca_locked_in_stream.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_simple_tree_data.cpp">
-      <Filter>Source Files\gen\tree</Filter>
+    <ClCompile Include="ca\ca_logic.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_simple_tree_item_data.cpp">
-      <Filter>Source Files\gen\tree</Filter>
+    <ClCompile Include="ca\ca_machine_event_central.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_str_stream.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_match.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_stream.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_math.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_stream2.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_math_rng.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_stream_binder.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_memory.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_writer.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_message.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_text_file.cpp">
-      <Filter>Source Files\gen\file</Filter>
+    <ClCompile Include="ca\ca_microtimer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_timeout_file.cpp">
-      <Filter>Source Files\gen\file</Filter>
+    <ClCompile Include="ca\ca_nessie.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_transfer_file.cpp">
-      <Filter>Source Files\gen\file</Filter>
+    <ClCompile Include="ca\ca_oauth.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_limited_input_stream.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_object.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_limited_reader.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_os_history.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_limited_writer.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_out_buffer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_locked_in_stream.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_output_string_stream.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_io_temp_buffer.cpp">
-      <Filter>Source Files\gen\buffer</Filter>
+    <ClCompile Include="ca\ca_parse.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
-    <ClCompile Include="gen\gen_file_stream.cpp">
-      <Filter>Source Files\gen\stream</Filter>
+    <ClCompile Include="ca\ca_patch.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pipe.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_plain_text_serializable.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_plain_text_stream.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_plex.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_plex_heap.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pointer_holder.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pointer_interface.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pointer_keeper.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pointer_listener.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_pointer_manager.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_port_forward.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_process.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_property.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_reader.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_request_interface.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_request_signal.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_resource.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_savings.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_seekable.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_service.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_signal.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_signal_thread.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_simple_thread.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_simple_tree_data.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_simple_tree_item_data.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_size_count_writer.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_str.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_str_stream.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_stream.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_stream_binder.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_stream2.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_string_tokenizer.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_strn.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_text_file.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_timeout_file.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_Timer.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_TimerCallback.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_TimerListener.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_TimerWnd.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_trace.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_transfer_file.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_tree.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_tree_data.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_tree_item.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_tree_item_data.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_twit.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_url.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_url_domain.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_var.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_var_array.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_var_property_allocation.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_variable_strict_compare.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_wait_cursor.cpp">
+      <Filter>Source Files\ca</Filter>
+    </ClCompile>
+    <ClCompile Include="ca\ca_writer.cpp">
+      <Filter>Source Files\ca</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="ca.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="gen\gen_str2.h">
-      <Filter>Header Files\gen</Filter>
-    </None>
-    <None Include="gen\gen.inl">
-      <Filter>Header Files\gen</Filter>
+    <None Include="ca\ca.inl">
+      <Filter>Header Files\ca</Filter>
     </None>
   </ItemGroup>
 </Project>

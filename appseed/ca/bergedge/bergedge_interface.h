@@ -12,10 +12,10 @@ public:
    //virtual ::uinteraction::frame::frame * get_frame_schema(const char * pszLibrary, const char * pszFrameSchemaName);
 
 
-   virtual void on_app_request_bergedge_callback(::ca2::application * papp);
+   virtual void on_app_request_bergedge_callback(::ca::application * papp);
 
 
-//   virtual ::fontopus::user * login(gen::property_set & set) = 0;
+//   virtual ::fontopus::user * login(ca::property_set & set) = 0;
 
 };
 

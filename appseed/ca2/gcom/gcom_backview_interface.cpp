@@ -26,7 +26,7 @@ namespace gcom
       }
 
 
-      void Interface::install_message_handling(::gen::message::dispatch * pinterface)
+      void Interface::install_message_handling(::ca::message::dispatch * pinterface)
       {
          IGUI_WIN_MSG_LINK(MessageBackView, pinterface, this, &Interface::OnBackViewMessage);
          IGUI_WIN_MSG_LINK(MessageBackViewDequeue, pinterface, this, &Interface::OnDequeueMessage);
@@ -69,9 +69,9 @@ namespace gcom
 
       uint32_t d_dwLastBackViewUpdate;
 
-      void Interface::OnBackViewMessage(gen::signal_object * pobj)
+      void Interface::OnBackViewMessage(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj)
+         SCAST_PTR(::ca::message::base, pbase, pobj)
          switch(pbase->m_wparam)
          {
          case BackViewWparamImageChangeEvent:
@@ -94,23 +94,23 @@ namespace gcom
          pbase->set_lresult(0);
       }
 
-      void Interface::OnDequeueMessage(gen::signal_object * pobj)
+      void Interface::OnDequeueMessage(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj)
+         SCAST_PTR(::ca::message::base, pbase, pobj)
          GetMain().OnDequeueMessage(pbase->m_wparam, pbase->m_lparam);
          pbase->set_lresult(0);
       }
 
-      void Interface::OnWndSize(gen::signal_object * pobj)
+      void Interface::OnWndSize(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::base, pbase, pobj)
+         SCAST_PTR(::ca::message::base, pbase, pobj)
          GetMain().m_bPendingLayout = true;
          pbase->m_bRet = false;
       }
 
-      void Interface::OnWndTimer(gen::signal_object * pobj)
+      void Interface::OnWndTimer(ca::signal_object * pobj)
       {
-         SCAST_PTR(::gen::message::timer, ptimer, pobj)
+         SCAST_PTR(::ca::message::timer, ptimer, pobj)
          if(m_dwTimerStep > 0 && m_dwTimerStep == ptimer->m_nIDEvent)
          {
             ImageChangePostEvent(gcom::backview::event_timer);
@@ -126,9 +126,9 @@ namespace gcom
       }
 
 
-      void Interface::OnWndCreate(gen::signal_object * pobj)
+      void Interface::OnWndCreate(ca::signal_object * pobj)
       {
-//         SCAST_PTR(::gen::message::create, pcreate, pobj)
+//         SCAST_PTR(::ca::message::create, pcreate, pobj)
          if(pobj->previous())
             return;
          initialize_user_interaction();

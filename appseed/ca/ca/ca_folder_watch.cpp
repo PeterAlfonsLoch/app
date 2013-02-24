@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    void folder_watch::callback::on_file_action(e_action eaction, const char * pszFolder, const char * psz)

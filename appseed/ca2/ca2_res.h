@@ -20,7 +20,7 @@
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// ca2 API resource types (see Technical note TN024 for implementation details)
+// ca API resource types (see Technical note TN024 for implementation details)
 
 #ifndef RC_INVOKED
 #define RT_DLGINIT  MAKEINTRESOURCE(240)
@@ -257,7 +257,7 @@ commenttest
 #define __IDS_UNNAMED_FILE            0xF006
 #define __IDS_HIDE                    0xF011
 
-// ca2 API Standard Exception Error messages
+// ca API Standard Exception Error messages
 #define __IDP_NO_ERROR_AVAILABLE      0xF020
 #define __IDS_NOT_SUPPORTED_EXCEPTION 0xF021
 #define __IDS_RESOURCE_EXCEPTION      0xF022
@@ -342,7 +342,7 @@ commenttest
 #define __IDP_PARSE_TIME              0xF11B
 #define __IDP_PARSE_DATE              0xF11C
 
-// gen::filesp/CArchive error strings for ::user::profile failure
+// ca::filesp/CArchive error strings for ::user::profile failure
 #define __IDP_FAILED_INVALID_FORMAT   0xF120
 #define __IDP_FAILED_INVALID_PATH     0xF121
 #define __IDP_FAILED_DISK_FULL        0xF122
@@ -459,7 +459,7 @@ commenttest
 
 // ICDAORecordset::GetRows Errors
 //  These are not placed in DAO Errors collection
-//  and must be handled directly by ca2 API.
+//  and must be handled directly by ca API.
 #define __IDP_DAO_ROWTOOSHORT                 0xF2B3
 #define __IDP_DAO_BADBINDINFO                 0xF2B4
 #define __IDP_DAO_COLUMNUNAVAILABLE           0xF2B5
@@ -583,7 +583,7 @@ commenttest
 // AFX standard accelerator resources
 #define __IDR_PREVIEW_ACCEL           30997
 
-// AFX standard ICON IDs (for ca2 API V1 apps) (0x7A01->)
+// AFX standard ICON IDs (for ca API V1 apps) (0x7A01->)
 #define __IDI_STD_MDIFRAME            31233
 #define __IDI_STD_FRAME               31234
 

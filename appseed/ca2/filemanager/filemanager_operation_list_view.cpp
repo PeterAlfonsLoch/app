@@ -16,7 +16,7 @@ file_manager_operation_list_view::file_manager_operation_list_view(::ca::applica
    m_pheaderctrl->SetBaseListCtrlInterface(this);
 }
 
-void file_manager_operation_list_view::install_message_handling(::gen::message::dispatch * pinterface)
+void file_manager_operation_list_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);
@@ -72,7 +72,7 @@ void file_manager_operation_list_view::_001InsertColumns()
    _001AddColumn(column);
 
 }
-void file_manager_operation_list_view::_001OnInitialUpdate(gen::signal_object * pobj)
+void file_manager_operation_list_view::_001OnInitialUpdate(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    m_dataid = "file_manager_operation_list_view";
@@ -80,7 +80,7 @@ void file_manager_operation_list_view::_001OnInitialUpdate(gen::signal_object * 
 }
 
 
-void file_manager_operation_list_view::on_update(::view * pSender, LPARAM lHint, ::gen::object * pHint)
+void file_manager_operation_list_view::on_update(::view * pSender, LPARAM lHint, ::ca::object * pHint)
 {
    UNREFERENCED_PARAMETER(pSender);
    UNREFERENCED_PARAMETER(pHint);
@@ -96,14 +96,14 @@ void file_manager_operation_list_view::on_update(::view * pSender, LPARAM lHint,
    }
 }
 
-void file_manager_operation_list_view::_001OnCreate(gen::signal_object * pobj)
+void file_manager_operation_list_view::_001OnCreate(ca::signal_object * pobj)
 {
    pobj->previous();
    SetTimer(123, 500, NULL);
 }
-void file_manager_operation_list_view::_001OnTimer(gen::signal_object * pobj)
+void file_manager_operation_list_view::_001OnTimer(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::timer, ptimer, pobj);
+   SCAST_PTR(::ca::message::timer, ptimer, pobj);
    if(ptimer->m_nIDEvent == 123)
    {
        /*if(::get_tick_count() - m_dwLast123Update > 500)

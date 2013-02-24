@@ -135,9 +135,9 @@ CLASS_DECL_ca __ALLOC_HOOK __set_alloc_hook(__ALLOC_HOOK pfnAllocHook);
 #include "exception_memory_state.h"
 
 // Enumerate allocated objects or runtime classes
-/*void __do_for_all_objects(void (c_cdecl *pfn)(::gen::object* pObject, void * pContext),
+/*void __do_for_all_objects(void (c_cdecl *pfn)(::ca::object* pObject, void * pContext),
    void * pContext);
-void gen::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
+void ca::DoForAllClasses(void (c_cdecl *pfn)(::ca::type_info pClass,
    void * pContext), void * pContext);*/
 
 #define new DEBUG_NEW
@@ -197,14 +197,14 @@ extern CLASS_DECL_ca bool g_bTraceEnabled;
 
 
 
-namespace gen
+namespace ca
 {
 
 
    class object;
 
 
-} // namespace gen
+} // namespace ca
 
 
 #ifdef DEBUG
@@ -227,16 +227,16 @@ CLASS_DECL_ca bool __assert_failed_line(const char * lpszFileName, int32_t nLine
 
 CLASS_DECL_ca void c_cdecl __trace(const char * lpszFormat, ...);
 // Note: file names are still ANSI strings (filenames rarely need UNICODE)
-CLASS_DECL_ca void assert_valid_object(const ::gen::object* pOb,
+CLASS_DECL_ca void assert_valid_object(const ::ca::object* pOb,
             const char * lpszFileName, int32_t nLine);
-CLASS_DECL_ca void __dump(const ::gen::object* pOb); // dump an object from CodeView
+CLASS_DECL_ca void __dump(const ::ca::object* pOb); // dump an object from CodeView
 
 
-// extern gen::CTrace TRACE;
+// extern ca::CTrace TRACE;
 #ifdef DEBUG
 #ifndef TRACE
-#define TRACE ::gen::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
-#define APPTRACE(papp) ::gen::trace_add_file_and_line(papp, __FILE__, __LINE__)
+#define TRACE ::ca::trace_add_file_and_line(m_papp, __FILE__, __LINE__)
+#define APPTRACE(papp) ::ca::trace_add_file_and_line(papp, __FILE__, __LINE__)
 //#define TRACE2 TRACE
 #endif
 #define THIS_FILE          __FILE__
@@ -283,7 +283,7 @@ inline void c_cdecl __trace(...) { }
 
 //#define ASSERT(f)          DEBUG_ONLY(() ((f) || !::__assert_failed_line(THIS_FILE, __LINE__) || (__debug_break(), 0)))
 #define ASSERT(f)          ((void) ((f) || (is_debugger_attached() && (!::__assert_failed_line(__FILE__, __LINE__) || (__debug_break(), 0))) || (!is_debugger_attached() && (throw assert_exception(::ca::get_thread_app(), __FILE__, __LINE__), 0))))
-/* see gen headers for commentary on this */
+/* see ca headers for commentary on this */
 /* We use the name _ASSUME to avoid name clashes */
 #define _ASSUME(cond)       do { bool _gen__condVal=!!(cond); ASSERT(_gen__condVal); __analysis_assume(_gen__condVal); } while(0)
 //#define ASSERT_VALID(pOb)  DEBUG_ONLY((::assert_valid_object(pOb, THIS_FILE, __LINE__)))
@@ -333,9 +333,9 @@ inline void c_cdecl __trace(...) { }
    do { \
       string str; \
       if (pException->get_error_message(str, 0)) \
-         TRACE(::gen::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
+         TRACE(::ca::trace::category_AppMsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
-         TRACE(::gen::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
+         TRACE(::ca::trace::category_AppMsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
       ASSERT(FALSE); \
    } while (0)
 #else

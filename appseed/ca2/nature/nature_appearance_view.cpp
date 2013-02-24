@@ -20,7 +20,7 @@ namespace nature
    {
    }
 
-   void appearance_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void appearance_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::userex::pane_tab_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &appearance_view::_001OnCreate);
@@ -41,7 +41,7 @@ namespace nature
    }
 #endif //DEBUG
 
-   void appearance_view::_001OnCreate(gen::signal_object * pobj)
+   void appearance_view::_001OnCreate(ca::signal_object * pobj)
    {
 
       if(pobj->previous())
@@ -54,7 +54,7 @@ namespace nature
    }
 
 
-   void appearance_view::on_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
+   void appearance_view::on_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -72,7 +72,7 @@ namespace nature
    }
 
 
-   void appearance_view::_001OnSize(gen::signal_object * pobj)
+   void appearance_view::_001OnSize(ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -125,14 +125,14 @@ namespace nature
       pcreatordata->m_eflag.signalize(::user::view_creator_data::flag_hide_all_others_on_show);
    }
 
-   void appearance_view::_001OnEditAdd(gen::signal_object * pobj)
+   void appearance_view::_001OnEditAdd(ca::signal_object * pobj)
    {
       folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie());
       pview->FolderAdd();
       pobj->m_bRet = true;
    }
 
-   void appearance_view::_001OnEditRemove(gen::signal_object * pobj)
+   void appearance_view::_001OnEditRemove(ca::signal_object * pobj)
    {
       folder_selection_list_view * pview = dynamic_cast < folder_selection_list_view * > (get_view_uie());
       pview->FolderRemove();

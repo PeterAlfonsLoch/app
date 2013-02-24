@@ -16,11 +16,11 @@ namespace simpledb
    {
       string strMetaPath;
 
-      strMetaPath = System.dir().ca2("database/" + db, "meta.xml");
+      strMetaPath = System.dir().ca("database/" + db, "meta.xml");
 
       try
       {
-         if(!m_spfileMeta->open(strMetaPath, ::gen::file::type_binary | ::gen::file::mode_read_write | ::gen::file::shareExclusive))
+         if(!m_spfileMeta->open(strMetaPath, ::ca::file::type_binary | ::ca::file::mode_read_write | ::ca::file::shareExclusive))
             return DB_ERROR;
       }
       catch(...)
@@ -28,7 +28,7 @@ namespace simpledb
          strMetaPath = System.dir().appdata("database/" + db, "meta.xml");
          try
          {
-            if(!m_spfileMeta->open(strMetaPath, ::gen::file::type_binary | ::gen::file::mode_read_write | ::gen::file::shareExclusive))
+            if(!m_spfileMeta->open(strMetaPath, ::ca::file::type_binary | ::ca::file::mode_read_write | ::ca::file::shareExclusive))
                return DB_ERROR;
          }
          catch(...)

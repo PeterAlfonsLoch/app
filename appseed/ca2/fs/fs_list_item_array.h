@@ -6,7 +6,7 @@ namespace fs
 
 
    class CLASS_DECL_ca2 list_item_array :
-      virtual ::gen::object
+      virtual ::ca::object
    {
    protected:
 

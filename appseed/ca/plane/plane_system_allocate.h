@@ -2,7 +2,7 @@
 
 #undef new
 
-namespace gen
+namespace ca
 {
 
    inline void * object::operator new(size_t nSize)
@@ -43,7 +43,7 @@ namespace gen
 #endif
 
 
-} // namespace gen
+} // namespace ca
 
 
 #define new DEBUG_NEW

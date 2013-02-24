@@ -19,7 +19,7 @@ enum EPaneView
 
 
 class CLASS_DECL_ca2 pane_view_update_hint :
-   public ::gen::object  
+   public ::ca::object  
 {
 public:
    enum e_type

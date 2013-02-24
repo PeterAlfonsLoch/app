@@ -18,7 +18,7 @@ namespace userbase
 
       virtual ::ca::font * _001GetFont();
 
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       virtual void _001OnDraw(::ca::graphics * pdc);
 

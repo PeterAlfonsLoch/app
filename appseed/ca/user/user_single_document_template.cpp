@@ -15,7 +15,7 @@ single_document_template::~single_document_template()
 {
 #ifdef DEBUG
    if (m_pdocument != NULL)
-      TRACE(::gen::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
+      TRACE(::ca::trace::category_AppMsg, 0, "Warning: destroying single_document_template with live ::user::document_interface.\n");
 #endif
 }
 
@@ -58,8 +58,8 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
 {
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = (::ca::ca *) NULL;
    bool bMakeVisible = pcreatecontext->m_spCommandLine->m_varQuery["make_visible_boolean"] || pcreatecontext->m_bMakeVisible;
-//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca2 < ::user::interaction > ();
-//   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca2 < ::view > ();
+//   ::user::interaction * pwndParent = pcreatecontext->m_spCommandLine->m_varQuery["parent_user_interaction"].ca < ::user::interaction > ();
+//   ::view * pviewAlloc = pcreatecontext->m_spCommandLine->m_varQuery["allocation_view"].ca < ::view > ();
 
    ::user::document_interface * pdocument = NULL;
    frame_window* pFrame = NULL;
@@ -125,7 +125,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_new_document())
       {
          // user has been alerted to what failed in on_new_document
-         TRACE(::gen::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "::user::document_interface::on_new_document returned FALSE.\n");
          if (bCreated)
             pFrame->DestroyWindow();    // will destroy ::user::document_interface
          return;
@@ -142,7 +142,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       if (!pdocument->on_open_document(pcreatecontext->m_spCommandLine->m_varFile))
       {
          // user has been alerted to what failed in on_open_document
-         TRACE(::gen::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "::user::document_interface::on_open_document returned FALSE.\n");
          if (bCreated)
          {
             pFrame->DestroyWindow();    // will destroy ::user::document_interface
@@ -159,7 +159,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
 
             if (!pdocument->on_new_document())
             {
-               TRACE(::gen::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
+               TRACE(::ca::trace::category_AppMsg, 0, "Error: on_new_document failed after trying "
                   "to open a ::user::document_interface - trying to continue.\n");
                // assume we can continue
             }
@@ -169,7 +169,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
       pdocument->set_path_name(pcreatecontext->m_spCommandLine->m_varFile);
    }
 
-   ::gen::thread* pThread = System.GetThread();
+   ::ca::thread* pThread = System.GetThread();
    ASSERT(pThread);
    if(bCreated)
    {
@@ -195,7 +195,7 @@ void single_document_template::request(::ca::create_context * pcreatecontext)
    uh.m_etype = view_update_hint::TypeOpenDocument;
    pdocument->update_all_views(NULL, 0, &uh);
    
-   gen::add_ref(pdocument);
+   ca::add_ref(pdocument);
 
    pcreatecontext->m_spCommandLine->m_varQuery["document"] = pdocument;
 }

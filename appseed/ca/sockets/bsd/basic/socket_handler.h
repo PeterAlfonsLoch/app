@@ -64,7 +64,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
          void RegStdLog(StdLog *log);
 
          /** Log error to log class for print out / storage. */
-         void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::gen::log::level::e_level elevel = ::gen::log::level::warning);
+         void LogError(socket *p,const string & user_text,int32_t err,const string & sys_err, ::ca::log::level::e_level elevel = ::ca::log::level::warning);
 
          /** add socket instance to socket ::collection::map. Removal is always automatic. */
          void add(socket *);

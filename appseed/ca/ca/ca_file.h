@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
    class file_exception;
@@ -9,8 +9,8 @@ namespace gen
 
 
    class CLASS_DECL_ca file :
-      virtual public ::gen::stream,
-      virtual public ::gen::output_stream_flush_interface
+      virtual public ::ca::stream,
+      virtual public ::ca::output_stream_flush_interface
    {
    public:
 
@@ -42,7 +42,7 @@ namespace gen
    // Overridables
       virtual file* Duplicate() const;
 
-      virtual file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
+      virtual file_position seek(file_offset lOff, ::ca::e_seek  nFrom);
       virtual void set_length(file_size dwNewLen);
       virtual file_size get_length() const;
 
@@ -83,13 +83,13 @@ namespace gen
 
 
 
-      using ::gen::reader::write;
-      using ::gen::writer::write;
+      using ::ca::reader::write;
+      using ::ca::writer::write;
       void write(byte_output_stream & ostream);
 
 
-      using ::gen::writer::read;
-      using ::gen::reader::read;
+      using ::ca::writer::read;
+      using ::ca::reader::read;
       void read(byte_input_stream & istream);
 
 
@@ -98,7 +98,7 @@ namespace gen
 
    typedef ca::smart_pointer < file > filesp;
 
-   // gen::filesp
+   // ca::filesp
    inline file::operator HFILE() const
       { return NULL; }
    inline void file::SetFilePath(const char * lpszNewName)
@@ -108,7 +108,7 @@ namespace gen
 
 
 
-} // namespace gen
+} // namespace ca
 
 
 

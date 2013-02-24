@@ -11,7 +11,7 @@ CLASS_DECL_ca string FormatMessageFromSystem(uint32_t dwError);
 
 
 
-// This is ca2 API library.
+// This is ca API library.
 // 
 // 
 //
@@ -29,7 +29,7 @@ CLASS_DECL_ca string FormatMessageFromSystem(uint32_t dwError);
 
 #ifdef __cplusplus
 
-namespace gen
+namespace ca
 {
 extern "C" {
 #endif
@@ -135,7 +135,7 @@ void __stdcall gen_TraceGetCategoryInfo(uint_ptr dwProcess, uint_ptr dwModule, i
 #ifdef __cplusplus
 };
 
-};  // namespace gen
+};  // namespace ca
 #endif
 
 #endif  // __DEBUGAPI_H__

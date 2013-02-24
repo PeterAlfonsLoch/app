@@ -5,7 +5,7 @@
 /*#include "LimitedStreams.h"
 #include "../../Common/Defs.h"*/
 
-namespace gen
+namespace ca
 {
 
    ::primitive::memory_size limited_reader::read(void *data, ::primitive::memory_size size)

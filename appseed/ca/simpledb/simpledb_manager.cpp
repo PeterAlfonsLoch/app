@@ -30,7 +30,7 @@ namespace simpledb
 
    bool manager::initialize_instance()
    {
-      initialize_message_window("ca2::fontopus::ccvotagus::netnode::cgclcst");
+      initialize_message_window("ca::fontopus::ccvotagus::netnode::cgclcst");
 
       return true;
    }
@@ -47,7 +47,7 @@ namespace simpledb
          return false;
       }
       psocket->response().file().write(memory.get_data(), memory.get_size());
-      psocket->outheader("Content-Type") = "application/x-ca2-var";
+      psocket->outheader("Content-Type") = "application/x-ca-var";
       return true;
    }
 
@@ -60,9 +60,9 @@ namespace simpledb
 
 
 
-   void manager::message_window_message_handler(gen::signal_object * pobj)
+   void manager::message_window_message_handler(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_uiMessage == WM_APP + 13)
       {
          //if(wparam == 0)

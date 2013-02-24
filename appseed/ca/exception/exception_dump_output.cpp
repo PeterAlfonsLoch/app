@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // Helper routines that can be called from debugger
 
-void __dump(const ::gen::object* pOb)
+void __dump(const ::ca::object* pOb)
 {
    g_dumpcontext << pOb;
 }

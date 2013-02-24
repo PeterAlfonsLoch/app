@@ -19,7 +19,7 @@ namespace filehandler
    {
    }
 
-   void handler::defer_add_library(::ca2::library * plibrary)
+   void handler::defer_add_library(::ca::library * plibrary)
    {
 
       menu_library * pmenulibrary = dynamic_cast < menu_library * > (plibrary);
@@ -47,7 +47,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
-         ::gen::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
+         ::ca::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
          if(pitem == NULL)
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
@@ -60,7 +60,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
-         ::gen::tree_item * pitem = get_extension_tree_item(straMimeType[i], true);
+         ::ca::tree_item * pitem = get_extension_tree_item(straMimeType[i], true);
          if(pitem == NULL)
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straHandlerLibrary.add(plibrary->m_strCa2Name);
@@ -78,7 +78,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straExtension.get_count(); i++)
       {
-         ::gen::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
+         ::ca::tree_item * pitem = get_extension_tree_item(straExtension[i], true);
          if(pitem == NULL)
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straMenuLibrary.add(plibrary->m_strCa2Name);
@@ -91,7 +91,7 @@ namespace filehandler
 
       for(int32_t i = 0; i < straMimeType.get_count(); i++)
       {
-         ::gen::tree_item * pitem = get_mime_type_tree_item(straMimeType[i], true);
+         ::ca::tree_item * pitem = get_mime_type_tree_item(straMimeType[i], true);
          if(pitem == NULL)
             continue;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straMenuLibrary.add(plibrary->m_strCa2Name);
@@ -100,10 +100,10 @@ namespace filehandler
 
    }
 
-   ::gen::tree_item * handler::get_extension_tree_item(const char * pszExtension, bool bCreate)
+   ::ca::tree_item * handler::get_extension_tree_item(const char * pszExtension, bool bCreate)
    {
 
-      gen::tree_item * pitem = m_sptree->get_base_item()->get_next();
+      ca::tree_item * pitem = m_sptree->get_base_item()->get_next();
 
       if(strcmp(pszExtension, "*") == 0)
       {
@@ -118,7 +118,7 @@ namespace filehandler
          if(!bCreate)
             return NULL;
 
-         pitem = m_sptree->create_item(m_sptree->get_base_item(), gen::RelativeLastChild);
+         pitem = m_sptree->create_item(m_sptree->get_base_item(), ca::RelativeLastChild);
 
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype      = tree_item::topic_type_root;
 
@@ -137,7 +137,7 @@ namespace filehandler
          if(!bCreate)
             return NULL;
 
-         pitem = m_sptree->create_item(m_sptree->get_base_item(), gen::RelativeLastChild);
+         pitem = m_sptree->create_item(m_sptree->get_base_item(), ca::RelativeLastChild);
 
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype      = tree_item::topic_type_extension;
          dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic        = pszExtension;
@@ -149,10 +149,10 @@ namespace filehandler
    }
 
 
-   ::gen::tree_item * handler::get_mime_type_tree_item(const char * pszMimeType, bool bCreate)
+   ::ca::tree_item * handler::get_mime_type_tree_item(const char * pszMimeType, bool bCreate)
    {
 
-      gen::tree_item * pitem = m_sptree->get_base_item()->get_next();
+      ca::tree_item * pitem = m_sptree->get_base_item()->get_next();
 
       while(pitem != NULL)
       {
@@ -165,7 +165,7 @@ namespace filehandler
       if(!bCreate)
          return NULL;
 
-      pitem = m_sptree->create_item(m_sptree->get_base_item(), gen::RelativeLastChild);
+      pitem = m_sptree->create_item(m_sptree->get_base_item(), ca::RelativeLastChild);
 
       dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype      = tree_item::topic_type_mime_type;
       dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_strTopic        = pszMimeType;
@@ -178,7 +178,7 @@ namespace filehandler
    void handler::get_extension_app(stringa & straAppId, const char * pszExtension)
    {
 
-      ::gen::tree_item * pitem = get_extension_tree_item(pszExtension, false);
+      ::ca::tree_item * pitem = get_extension_tree_item(pszExtension, false);
       if(pitem == NULL)
          return;
       straAppId.add(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp);
@@ -188,16 +188,16 @@ namespace filehandler
    void handler::get_mime_type_app(stringa & straAppId, const char * pszMimeType)
    {
 
-      ::gen::tree_item * pitem = get_mime_type_tree_item(pszMimeType, false);
+      ::ca::tree_item * pitem = get_mime_type_tree_item(pszMimeType, false);
       if(pitem == NULL)
          return;
       straAppId.add(dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_straApp);
 
    }
 
-   void handler::write(::gen::byte_output_stream & ostream)
+   void handler::write(::ca::byte_output_stream & ostream)
    {
-      ::gen::tree_item * pitem = m_sptree->get_base_item();
+      ::ca::tree_item * pitem = m_sptree->get_base_item();
 
       index iLevel = 0;
 
@@ -216,10 +216,10 @@ namespace filehandler
 
    }
 
-   void handler::read(::gen::byte_input_stream & istream)
+   void handler::read(::ca::byte_input_stream & istream)
    {
 
-      ::gen::tree_item * pitem = m_sptree->get_base_item();
+      ::ca::tree_item * pitem = m_sptree->get_base_item();
 
       int32_t iPreviousLevel = 0;
       int32_t iLevel = 0;
@@ -231,9 +231,9 @@ namespace filehandler
          if(iLevel < 0)
             break;
          if(iLevel == iPreviousLevel)
-            pitem = m_sptree->create_item(pitem, gen::RelativeLastSibling);
+            pitem = m_sptree->create_item(pitem, ca::RelativeLastSibling);
          else if(iLevel > iPreviousLevel)
-            pitem = m_sptree->create_item(pitem, gen::RelativeFirstChild);
+            pitem = m_sptree->create_item(pitem, ca::RelativeFirstChild);
          else
          {
             while(iLevel < iPreviousLevel)
@@ -241,7 +241,7 @@ namespace filehandler
                pitem = pitem->m_pparent;
                iPreviousLevel--;
             }
-            pitem = m_sptree->create_item(pitem, gen::RelativeLastSibling);
+            pitem = m_sptree->create_item(pitem, ca::RelativeLastSibling);
          }
 
          istream >> (int32_t &) dynamic_cast < tree_item * > (pitem->m_pitemdata)->m_etopictype;

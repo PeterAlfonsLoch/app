@@ -8,7 +8,7 @@ namespace http
    /** Parse/store a http query_string/form-data body. 
       \ingroup webserver */
    class CLASS_DECL_ca form :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
       form(::ca::application * papp);
@@ -33,10 +33,10 @@ namespace http
       void strcpyval(string &,const char *) const;
 
       /* get value */
-      using ::gen::object::request;
-      gen::relation_set & get();
-      gen::relation_set & post();
-      gen::relation_set & request();
+      using ::ca::object::request;
+      ca::relation_set & get();
+      ca::relation_set & post();
+      ca::relation_set & request();
 
       string & boundary();
 
@@ -45,25 +45,25 @@ namespace http
       form(const form& ) {}
       form& operator=(const form& ) { return *this; }
    protected:
-      gen::relation_set m_setGet;
-      gen::relation_set m_setPost;
-      gen::relation_set m_setRequest;
+      ca::relation_set m_setGet;
+      ca::relation_set m_setPost;
+      ca::relation_set m_setRequest;
       string m_strBoundary;
       bool m_bRaw;
    };
 
 
-   inline gen::relation_set & form::get()
+   inline ca::relation_set & form::get()
    {
       return m_setGet;
    }
 
-   inline gen::relation_set & form::post()
+   inline ca::relation_set & form::post()
    {
       return m_setPost;
    }
 
-   inline gen::relation_set & form::request()
+   inline ca::relation_set & form::request()
    {
       return m_setRequest;
    }

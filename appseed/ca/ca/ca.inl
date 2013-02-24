@@ -31,20 +31,20 @@ _AFX_INLINE invalid_argument_exception::~invalid_argument_exception(get_app())
 
 _AFX_INLINE CArchiveException::~CArchiveException()
    { }*/
-/*_AFX_INLINE gen::file_exception_sp::gen::file_exception_sp(int32_t cause, LONG lOsError,
+/*_AFX_INLINE ca::file_exception_sp::ca::file_exception_sp(int32_t cause, LONG lOsError,
    LPCTSTR pstrFileName /* = NULL *///)
    /*{ m_cause = cause; m_lOsError = lOsError; m_strFileName = pstrFileName; }
-_AFX_INLINE gen::file_exception_sp::~gen::file_exception_sp()
+_AFX_INLINE ca::file_exception_sp::~ca::file_exception_sp()
    { }
 
-// ::gen::filesp
-_AFX_INLINE ::gen::filesp::operator HANDLE() const
+// ::ca::filesp
+_AFX_INLINE ::ca::filesp::operator HANDLE() const
    { return m_hFile; }
-_AFX_INLINE ULONGLONG ::gen::filesp::SeekToEnd()
-   { return seek(0, ::gen::filesp::end); }
-_AFX_INLINE void ::gen::filesp::seek_to_begin()
-   { seek(0, ::gen::filesp::begin); }
-_AFX_INLINE void ::gen::filesp::SetFilePath(LPCTSTR lpszNewName)
+_AFX_INLINE ULONGLONG ::ca::filesp::SeekToEnd()
+   { return seek(0, ::ca::filesp::end); }
+_AFX_INLINE void ::ca::filesp::seek_to_begin()
+   { seek(0, ::ca::filesp::begin); }
+_AFX_INLINE void ::ca::filesp::SetFilePath(LPCTSTR lpszNewName)
 {
    ASSERT_VALID(this);
    ASSERT(AfxIsValidString(lpszNewName));
@@ -83,7 +83,7 @@ _AFX_INLINE WINBOOL CArchive::IsByteSwapping() const
    { return FALSE; }
 _AFX_INLINE WINBOOL CArchive::IsBufferEmpty() const
    { return m_lpBufCur == m_lpBufMax; }
-_AFX_INLINE ::gen::file * CArchive::GetFile() const
+_AFX_INLINE ::ca::file * CArchive::GetFile() const
    { return m_pFile; }
 _AFX_INLINE void CArchive::SetObjectSchema(UINT nSchema)
    { m_nObjectSchema = nSchema; }
@@ -256,10 +256,10 @@ _AFX_INLINE CArchive& CArchive::operator>>(LONG& l)
 //   { }
 //_AFX_INLINE void CArchive::operator=(const CArchive& /* arSrc */)
 /*   { }
-CLASS_DECL_ca2api00000001 CArchive& operator<<(CArchive& ar, const ::gen::object* pOb);
-_AFX_INLINE CArchive& operator>>(CArchive& ar, ::gen::object*& pOb)
+CLASS_DECL_ca2api00000001 CArchive& operator<<(CArchive& ar, const ::ca::object* pOb);
+_AFX_INLINE CArchive& operator>>(CArchive& ar, ::ca::object*& pOb)
    { pOb = ar.ReadObject(NULL); return ar; }
-_AFX_INLINE CArchive& operator>>(CArchive& ar, const ::gen::object*& pOb)
+_AFX_INLINE CArchive& operator>>(CArchive& ar, const ::ca::object*& pOb)
    { pOb = ar.ReadObject(NULL); return ar; }
 
 _AFX_INLINE void CArchive::EnsureRead(void *lpBuf, UINT nCount)

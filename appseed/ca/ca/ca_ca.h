@@ -69,7 +69,7 @@ namespace cube
 #define Berg(papp) (*Sess(papp).m_pbergedge)
 #define Bergedge (Berg(this->get_app()))
 
-namespace gen
+namespace ca
 {
 
    template < class ca_derived >
@@ -98,7 +98,7 @@ namespace gen
       return pca->get_ref_count();
    }
 
-} // namespace gen
+} // namespace ca
 
 class fixed_alloc_no_sync;
 

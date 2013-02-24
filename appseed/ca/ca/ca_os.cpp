@@ -282,7 +282,7 @@ namespace ca
 
    }
 
-   void os::set_file_status(const char * lpszFileName, const ::gen::file_status& status)
+   void os::set_file_status(const char * lpszFileName, const ::ca::file_status& status)
    {
 
       throw interface_only_exception(get_app());

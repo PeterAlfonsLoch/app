@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -64,21 +64,21 @@ namespace gen
 
       }
 
-      inline bool CLASS_DECL_ca begins_eat(gen::property & property, const char * lpcszPrefix)
+      inline bool CLASS_DECL_ca begins_eat(ca::property & property, const char * lpcszPrefix)
       {
 
          return begins_eat(property.m_var, lpcszPrefix);
 
       }
 
-      inline bool CLASS_DECL_ca begins_eat_ci(gen::property & property, const char * lpcszPrefix) // case insensitive
+      inline bool CLASS_DECL_ca begins_eat_ci(ca::property & property, const char * lpcszPrefix) // case insensitive
       {
 
          return begins_eat_ci(property.m_var, lpcszPrefix);
 
       }
 
-      inline bool CLASS_DECL_ca begins_eat_ci(gen::property & property, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
+      inline bool CLASS_DECL_ca begins_eat_ci(ca::property & property, const char * lpcszPrefix, const char * pszSeparator) // case insensitive
       {
 
          return begins_eat_ci(property.m_var, lpcszPrefix, pszSeparator);
@@ -90,23 +90,23 @@ namespace gen
    } // namespace str
 
 
-   inline static string log_level_name(gen::log::level::e_level elevel)
+   inline static string log_level_name(ca::log::level::e_level elevel)
    {
       switch(elevel)
       {
-      case ::gen::log::level::warning:
+      case ::ca::log::level::warning:
          return "warning";
-      case ::gen::log::level::error:
+      case ::ca::log::level::error:
          return "error";
-      case ::gen::log::level::fatal:
+      case ::ca::log::level::fatal:
          return "fatal";
-      case ::gen::log::level::info:
+      case ::ca::log::level::info:
          return "info";
       default:
          return "undefined log error";
       }
    }
-} // namespace gen
+} // namespace ca
 
 
 

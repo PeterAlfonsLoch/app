@@ -10,12 +10,12 @@ namespace ca
 } // namespace ca
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca command_thread :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -48,7 +48,7 @@ namespace gen
       virtual bool is_thread();
 
       virtual void consolidate(const ::ca::create_context * pcreatecontext);
-      virtual void consolidate(gen::command_thread * pthread);
+      virtual void consolidate(ca::command_thread * pthread);
 
       virtual var & property(const char * pszKey);
       virtual bool has_property(const char * pszKey);

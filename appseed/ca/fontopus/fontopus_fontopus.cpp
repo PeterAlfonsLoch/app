@@ -37,7 +37,7 @@ namespace fontopus
 
    user * fontopus::create_current_user()
    {
-      gen::property_set set(get_app());
+      ca::property_set set(get_app());
       if(m_puser == NULL)
       {
          int32_t iRetry = 3;
@@ -67,7 +67,7 @@ namespace fontopus
          System.userset().add(m_puser);
 
          if(m_puser != NULL && m_papp->m_pappThis->m_strAppId != "app-core/deepfish"
-            && !gen::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
+            && !ca::str::begins(m_papp->m_pappThis->m_strAppName, "app-core/deepfish_")
             && !m_papp->m_pappThis->is_serviceable())
          {
 
@@ -81,7 +81,7 @@ namespace fontopus
       return m_puser;
    }
 
-   user * fontopus::login(gen::property_set & set)
+   user * fontopus::login(ca::property_set & set)
    {
       /*::ca::fontopus * papp;
       if(m_puiInitialPlaceHolderContainer != NULL)

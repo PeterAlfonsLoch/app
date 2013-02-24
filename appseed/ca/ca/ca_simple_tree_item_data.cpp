@@ -1,11 +1,11 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    /*#define ROUND(x,y) (((x)+(y-1))&~(y-1))
    #define ROUND4(x) ROUND(x, 4)
-   __STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::gen::simple_tree_item_data)));*/
+   __STATIC fixed_alloc_no_sync _alloc001SimpleTreeItem(ROUND4(sizeof(::ca::simple_tree_item_data)));*/
 
    simple_tree_item_data::simple_tree_item_data()
    {
@@ -21,13 +21,13 @@ namespace gen
    {
    }
 
-   string simple_tree_item_data::get_text(::gen::tree * ptree)
+   string simple_tree_item_data::get_text(::ca::tree * ptree)
    {
       UNREFERENCED_PARAMETER(ptree);
       return m_str;
    }
    
-   index simple_tree_item_data::get_image(::gen::tree * ptree)
+   index simple_tree_item_data::get_image(::ca::tree * ptree)
    {
       if(ptree->is_selected(this))
       {
@@ -62,4 +62,4 @@ namespace gen
       return _alloc001SimpleTreeItem.Free(p);
    }*/
 
-} // namespace gen
+} // namespace ca

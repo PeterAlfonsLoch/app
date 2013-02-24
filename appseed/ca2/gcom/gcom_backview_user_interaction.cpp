@@ -86,7 +86,7 @@ namespace gcom
             if(m_spfilesetBackgroundImage.is_set())
             {
                string strCurrentImagePath;
-               data_get("gcom::backview::CurrentBackgroundImagePath", ::gen::system::idEmpty, strCurrentImagePath);
+               data_get("gcom::backview::CurrentBackgroundImagePath", ::ca::system::idEmpty, strCurrentImagePath);
                return m_spfilesetBackgroundImage->get_next_file(strCurrentImagePath);
             }
             return "";
@@ -94,7 +94,7 @@ namespace gcom
 
          void interaction::BackViewSetCurrentBackgroundImagePath(const char * psz)
          {
-            data_set("gcom::backview::CurrentBackgroundImagePath", ::gen::system::idEmpty, psz);
+            data_set("gcom::backview::CurrentBackgroundImagePath", ::ca::system::idEmpty, psz);
          }
 
          int32_t interaction::BackViewGetBackgroundUpdateMillis()

@@ -6,7 +6,7 @@ simple_list_view::simple_list_view(::ca::application * papp) :
    ::user::scroll_view(papp),
    ::user::list(papp),
    ::user::form(papp),
-   ::ca2::user::form(papp),
+   ::ca::user::form(papp),
    ::user::form_list(papp),
    ::userbase::form_list(papp),
    m_headerctrl(papp)
@@ -19,7 +19,7 @@ simple_list_view::~simple_list_view()
 {
 }
 
-void simple_list_view::install_message_handling(::gen::message::dispatch * pinterface)
+void simple_list_view::install_message_handling(::ca::message::dispatch * pinterface)
 {
    ::userbase::view::install_message_handling(pinterface);
    ::user::list::install_message_handling(pinterface);

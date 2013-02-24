@@ -1,17 +1,17 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
    class CLASS_DECL_ca buffered_file : 
-      public ::gen::file
+      public ::ca::file
    {
    public:
 
 
-      gen::filesp                m_pfile;
+      ca::filesp                m_pfile;
 
       ::primitive::memory_size   m_uiBufferSize;
       file_position              m_uiPosition;
@@ -23,12 +23,12 @@ namespace gen
       primitive::memory          m_storage;
 
 
-      buffered_file(::ca::application * papp, gen::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
+      buffered_file(::ca::application * papp, ca::filesp pfile, ::primitive::memory_size iBufferSize = 1024 * 128);
       virtual ~buffered_file();
 
 
       virtual bool IsValid() const;
-      file_position seek(file_offset lOff, ::gen::e_seek nFrom);
+      file_position seek(file_offset lOff, ::ca::e_seek nFrom);
       file_position get_position() const;
       file_size get_length() const;
 
@@ -43,6 +43,6 @@ namespace gen
    };
 
 
-} // namespace gen
+} // namespace ca
 
 

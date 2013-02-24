@@ -14,10 +14,10 @@ FileManagerChildFrame::~FileManagerChildFrame()
 {
 }
 
-void FileManagerChildFrame::install_message_handling(::gen::message::dispatch * pinterface)
+void FileManagerChildFrame::install_message_handling(::ca::message::dispatch * pinterface)
 {
    simple_child_frame::install_message_handling(pinterface);
-   IGUI_WIN_MSG_LINK(gen::application::APPM_LANGUAGE, pinterface, this, &FileManagerChildFrame::_001OnAppLanguage);
+   IGUI_WIN_MSG_LINK(ca::application::APPM_LANGUAGE, pinterface, this, &FileManagerChildFrame::_001OnAppLanguage);
    IGUI_WIN_MSG_LINK(WM_SHOWWINDOW, pinterface, this, &FileManagerChildFrame::_001OnShowWindow);
    IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &FileManagerChildFrame::_001OnCreate);
 }
@@ -102,7 +102,7 @@ void FileManagerChildFrame::OnChangeEditSearch()
 
 }
 
-void FileManagerChildFrame::_001OnCreate(gen::signal_object * pobj)
+void FileManagerChildFrame::_001OnCreate(ca::signal_object * pobj)
 {
    if(pobj->m_bRet)
       return;
@@ -114,7 +114,7 @@ void FileManagerChildFrame::_001OnCreate(gen::signal_object * pobj)
 }
 
 
-void FileManagerChildFrame::_001OnAppLanguage(gen::signal_object * pobj)
+void FileManagerChildFrame::_001OnAppLanguage(ca::signal_object * pobj)
 {
    CreateBars();
    pobj->m_bRet = false;
@@ -130,7 +130,7 @@ void FileManagerChildFrame::GetSelected(::fs::item_array &itema)
    }
 }
 
-void FileManagerChildFrame::_001OnShowWindow(gen::signal_object * pobj)
+void FileManagerChildFrame::_001OnShowWindow(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }

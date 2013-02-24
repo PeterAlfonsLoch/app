@@ -16,7 +16,7 @@ namespace n7z
    struct CCoderInfo
    {
       ::libcompress::method_id MethodID;
-      ::gen::byte_buffer Props;
+      ::ca::byte_buffer Props;
       CNum NumInStreams;
       CNum NumOutStreams;
       bool IsSimpleCoder() const { return (NumInStreams == 1) && (NumOutStreams == 1); }

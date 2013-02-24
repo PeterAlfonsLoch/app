@@ -7,7 +7,7 @@ namespace ca
 
    create_context::create_context(::ca::application * papp) :
       ca(papp),
-      ::gen::command(papp),
+      ::ca::command(papp),
       m_spApplicationBias(papp),
       m_spCommandLine(papp)
    {
@@ -23,9 +23,9 @@ namespace ca
 
    }
 
-   create_context::create_context(::gen::command_thread * pthreadParent) :
+   create_context::create_context(::ca::command_thread * pthreadParent) :
       ca(pthreadParent->get_app()),
-      ::gen::command(pthreadParent->get_app()),
+      ::ca::command(pthreadParent->get_app()),
       m_spApplicationBias(pthreadParent->get_app()),
       m_spCommandLine(pthreadParent->get_app()),
       m_pthreadParent(pthreadParent)
@@ -42,9 +42,9 @@ namespace ca
 
    }
 
-   create_context::create_context(::gen::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
+   create_context::create_context(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
       ca(pthreadParent->get_app()),
-      ::gen::command(pthreadParent->get_app()),
+      ::ca::command(pthreadParent->get_app()),
       m_spApplicationBias(pthreadParent->get_app()),
       m_spCommandLine(pthreadParent->get_app()),
       m_pthreadParent(pthreadParent)
@@ -64,7 +64,7 @@ namespace ca
 
    create_context::create_context(const create_context & createcontext) :
       ca(createcontext.get_app()),
-      ::gen::command(createcontext.get_app()),
+      ::ca::command(createcontext.get_app()),
       m_spApplicationBias(createcontext.get_app()),
       m_spCommandLine(createcontext.get_app())
    {
@@ -106,7 +106,7 @@ namespace ca
    {
    }
 
-   create_context_sp::create_context_sp(::gen::command_thread * pthreadParent) :
+   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent) :
       ca(pthreadParent->get_app())
    {
 
@@ -115,7 +115,7 @@ namespace ca
 
    }
 
-   create_context_sp::create_context_sp(::gen::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
+   create_context_sp::create_context_sp(::ca::command_thread * pthreadParent, var varFile, bool bMakeVisible, ::user::interaction * puiParent) :
       ca(pthreadParent->get_app())
    {
       

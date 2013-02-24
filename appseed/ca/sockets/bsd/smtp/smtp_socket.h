@@ -1,7 +1,7 @@
 #pragma once
 
 class CLASS_DECL_ca email :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
    email(::ca::application * papp);

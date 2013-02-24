@@ -20,7 +20,7 @@ void CLASS_DECL_ca __cdecl _ca2_purecall_()
     throw simple_exception(::ca::get_thread_app());
 }
 
-namespace gen
+namespace ca
 {
 
    extern HMODULE g_hmoduleOs;
@@ -84,7 +84,7 @@ namespace plugin
 
       string strMutex = m_phost->m_vssChannel;
 
-      gen::str::begins_eat_ci(strMutex, "\\ca2\\");
+      ca::str::begins_eat_ci(strMutex, "\\ca\\");
 
       m_pmutexBitmap = new simple_mutex("Global\\" + strMutex, false);
 
@@ -117,7 +117,7 @@ namespace plugin
 
          pinitmaindata->m_hInstance             = hInstance;
          pinitmaindata->m_hPrevInstance         = hPrevInstance;
-         pinitmaindata->m_vssCommandLine        = gen::international::unicode_to_utf8(::GetCommandLineW());
+         pinitmaindata->m_vssCommandLine        = ca::international::unicode_to_utf8(::GetCommandLineW());
          pinitmaindata->m_nCmdShow              = nCmdShow;
 
 
@@ -354,7 +354,7 @@ namespace plugin
    void plugin::ca2_login()
    {
 
-      gen::property_set set(m_psystem);
+      ca::property_set set(m_psystem);
 
       set.parse_url_query(m_strCa2LoginRuri);
 
@@ -363,7 +363,7 @@ namespace plugin
       if(strLocation.is_empty())
          strLocation = m_strCa2LoginRuri;
 
-      gen::property_set setUri(m_psystem);
+      ca::property_set setUri(m_psystem);
 
       setUri.parse_url_query(strLocation);
 
@@ -374,7 +374,7 @@ namespace plugin
 
       string strSessId = set["sessid"];
 
-      gen::property_set setLogin(get_app());
+      ca::property_set setLogin(get_app());
 
       ::fontopus::user * puser = NULL;
 
@@ -409,7 +409,7 @@ namespace plugin
 
       m_psystem->m_pfontopus->logout();
 
-      gen::property_set set(m_psystem);
+      ca::property_set set(m_psystem);
 
       set.parse_url_query(m_strCa2LogoutRuri);
 
@@ -421,7 +421,7 @@ namespace plugin
 
       string strUrl;
 
-      strUrl = "https://account.ca2.cc/sec?action=logout";
+      strUrl = "https://account.ca.cc/sec?action=logout";
 
       m_psystem->url().set(strUrl, "ruri", strLocation);
 
@@ -472,14 +472,14 @@ namespace plugin
 
          string strExtension     = System.file().extension(System.url().get_script(strPluginUrl));
 
-         if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
+         if(strExtension.is_empty() || strExtension.compare_no_case("ca") == 0)
          {
             // remark alatel
             // STRESS : ms_get_dup
             // in ca library normally System or Application.http() is used
             string strPluginData;
 
-            ::ca2::http::e_status estatus = ::ca2::http::status_failed;
+            ::ca::http::e_status estatus = ::ca::http::status_failed;
 
             string strUrl = strPluginUrl;
 
@@ -490,18 +490,18 @@ namespace plugin
 
                //strPluginData = ms_get_dup(strPluginUrl, false, &ms_get_dup_status_callback, (void *) &iStatusCode, false);
 
-               gen::property_set post(get_app());
-               gen::property_set headers(get_app());
-               gen::property_set set(get_app());
+               ca::property_set post(get_app());
+               ca::property_set headers(get_app());
+               ca::property_set set(get_app());
 
                Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
 
-               if(estatus == ::ca2::http::status_ok)
+               if(estatus == ::ca::http::status_ok)
                   break;
 
             }
 
-            if(estatus == ::ca2::http::status_ok)
+            if(estatus == ::ca::http::status_ok)
             {
 
                open_ca2_string(strPluginData);
@@ -546,7 +546,7 @@ namespace plugin
          string strPluginScript = m_psystem->url().get_script(m_phost->m_strPluginUrl);
 
 
-         gen::property_set headers(m_psystem);
+         ca::property_set headers(m_psystem);
 
          headers.parse_http_headers(m_phost->m_strPluginHeaders);
 
@@ -556,10 +556,10 @@ namespace plugin
 
          // TODO |) : Should parse Content-type:
          // ALSO: this case only happens if all file has been downloaded before the plugin has initialized
-         if(gen::str::ends_ci(strPluginScript, ".mp3")
-         || gen::str::ends_ci(strPluginScript, ".mid")
-         || gen::str::ends_ci(strPluginScript, ".karaoke")
-         || gen::str::ends_ci(strPluginScript, ".st3"))
+         if(ca::str::ends_ci(strPluginScript, ".mp3")
+         || ca::str::ends_ci(strPluginScript, ".mid")
+         || ca::str::ends_ci(strPluginScript, ".karaoke")
+         || ca::str::ends_ci(strPluginScript, ".st3"))
          {
             //m_psystem->m_puiInitialPlaceHolderContainer = m_puiHost;
             ::ca::application_bias * pbiasCreate = new ::ca::application_bias;
@@ -588,19 +588,19 @@ namespace plugin
             lpszStart = lpszEnd;
             for(; (lpszEnd - lpszAlloc) <= iCount; i++)
             {
-               if(*lpszEnd == '\0' || !gen::ch::is_whitespace(lpszEnd))
+               if(*lpszEnd == '\0' || !ca::ch::is_whitespace(lpszEnd))
                   break;
-               lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
+               lpszEnd = (char *) ca::str::utf8_inc(lpszEnd);
             }
             lpszStart = lpszEnd;
             for(; (lpszEnd - lpszAlloc) <= iCount; i++)
             {
-               if(*lpszEnd == '\0' || gen::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
+               if(*lpszEnd == '\0' || ca::ch::is_space_char(lpszEnd) || (lpszEnd - lpszAlloc) == iCount)
                {
                   str2 = string(lpszStart, lpszEnd - lpszStart);
                   break;
                }
-               lpszEnd = (char *) gen::str::utf8_inc(lpszEnd);
+               lpszEnd = (char *) ca::str::utf8_inc(lpszEnd);
             }
 
             string strId = str2;
@@ -609,7 +609,7 @@ namespace plugin
             {
                strId = strId.Left(iFind);
             }
-            gen::property_set set(get_app());
+            ca::property_set set(get_app());
             set.parse_url_query(str2);
 
             string strBuildNumber =  set["build_number"];
@@ -631,9 +631,9 @@ namespace plugin
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca/fontopus", strLocale, strSchema))
                {
-/*                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
+/*                  Sys(m_psystem).install().start(": app=session session_start=app/ca/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -641,7 +641,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  vsstring strCommandLine(": app=session session_start=app/ca/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 
 #ifdef WINDOWSEX
@@ -671,10 +671,10 @@ namespace plugin
             else if(str1 == "ca2logout")
             {
                // graphical - 2 - user interface for logout - fontopus - through the plugin
-               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca2/fontopus", strLocale, strSchema))
+               if(!m_psystem->install().is(NULL, strBuildNumber, "application", "app/ca/fontopus", strLocale, strSchema))
                {
                   /*
-                  Sys(m_psystem).install().start(": app=session session_start=app/ca2/fontopus app_type=application install");
+                  Sys(m_psystem).install().start(": app=session session_start=app/ca/fontopus app_type=application install");
 #ifdef WINDOWS
                   ::TerminateProcess(::GetCurrentProcess(), 0);
 #else
@@ -682,7 +682,7 @@ namespace plugin
 #endif
                   m_bMainReady = false;*/
 
-                  vsstring strCommandLine(": app=session session_start=app/ca2/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
+                  vsstring strCommandLine(": app=session session_start=app/ca/fontopus app_type=application install ruri=\"" + strRuri + "\" locale=" + strLocale + " schema=" + strSchema);
 
 #ifdef WINDOWSEX
                   PostMessage(m_phost->::small_ipc_tx_channel::m_oswindow, WM_USER + 100, 1, 1);
@@ -871,7 +871,7 @@ namespace plugin
       try
       {
 
-         ::gen::thread * pthread = dynamic_cast < ::gen::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
+         ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (m_psystem->::ca::smart_pointer < ::ca::thread >::m_p);
 
          if(pthread->m_bRun)
          {
@@ -916,7 +916,7 @@ namespace plugin
       {
          try
          {
-            if(!::FreeLibrary(gen::g_hmoduleOs))
+            if(!::FreeLibrary(ca::g_hmoduleOs))
             {
                break;
             }
@@ -975,7 +975,7 @@ namespace plugin
          if(bIsWindow)
          {
 
-            ::ca::smart_pointer < ::gen::message::base > spbase;
+            ::ca::smart_pointer < ::ca::message::base > spbase;
 
             spbase(m_puiHost->get_base(m_puiHost, uiMessage, wparam, lparam));
 

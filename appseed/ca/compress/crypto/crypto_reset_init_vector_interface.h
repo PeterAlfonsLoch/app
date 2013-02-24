@@ -6,10 +6,10 @@ namespace crypto
 {
 
    class CLASS_DECL_ca reset_init_vector_interface :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
-      virtual gen::HRes ResetInitVector() = 0;
+      virtual ca::HRes ResetInitVector() = 0;
    };
 
 } /// namespace crypto

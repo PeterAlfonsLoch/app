@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -47,7 +47,7 @@ namespace ca2
          virtual void ensure_main_document();
          virtual void display_main_frame();
          virtual void page1(const stringa & straMatter = stringa());
-         virtual void pageMessage(const stringa & stra, gen::property_set & set);
+         virtual void pageMessage(const stringa & stra, ca::property_set & set);
 
          //virtual ::fontopus::user * get_user(const char * pszHost = NULL, const char * pszSessid = NULL);
          virtual auth * get_auth();
@@ -70,6 +70,6 @@ namespace ca2
    } // namespace cube // ca8 + cube
 
 
-} // namespace ca2
+} // namespace ca
 
 

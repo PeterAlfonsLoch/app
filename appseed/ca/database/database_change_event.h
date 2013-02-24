@@ -13,7 +13,7 @@ namespace database
 
 
    class CLASS_DECL_ca change_event :
-      public gen::signal_object
+      public ca::signal_object
    {
    public:
 
@@ -28,7 +28,7 @@ namespace database
       change_event(var & var);
 
 
-      bool data_get(gen::byte_serializable & obj);
+      bool data_get(ca::byte_serializable & obj);
 
 
    };

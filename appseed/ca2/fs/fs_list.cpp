@@ -12,7 +12,7 @@ namespace fs
       list_interface(papp),
       user::list(papp),
       user::form(papp),
-      ::ca2::user::form(papp),
+      ::ca::user::form(papp),
       ::userbase::view(papp),
       user::form_list(papp),
       userbase::form_list(papp)
@@ -31,7 +31,7 @@ namespace fs
       str += "<h2>Assinado Camilo Sasuke Tsumanuma.</h2>\n";
       str += "<span>htmlapp dedicado ao Carlos Gustavo Cecyn Lundgren!!</span>";
       str += "<br />";
-      str += unitext("<span>Voc・conhece o ca2?</span>");
+      str += unitext("<span>Voc・conhece o ca?</span>");
       str += "<br />";
       str += "<span>Se positivo, entre com seu nome abaixo e clique em enviar!</span>";
       str += "<br />";
@@ -47,7 +47,7 @@ namespace fs
    {
    }
 
-   void list::install_message_handling(::gen::message::dispatch * pinterface)
+   void list::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::fs::list_interface::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &list::_001OnCreate);
@@ -56,7 +56,7 @@ namespace fs
       IGUI_WIN_MSG_LINK(WM_CANCELMODE, pinterface, this, &list::_001OnCancelMode);
    }
 
-   void list::_001OnCreate(gen::signal_object * pobj)
+   void list::_001OnCreate(ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -66,7 +66,7 @@ namespace fs
    }
 
 
-   void list::_001OnTimer(gen::signal_object * pobj)
+   void list::_001OnTimer(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    }
@@ -126,7 +126,7 @@ namespace fs
    }
 #endif //DEBUG
 
-   void list::on_update(::view * pSender, LPARAM lHint, ::gen::object * phint)
+   void list::on_update(::view * pSender, LPARAM lHint, ::ca::object * phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(lHint);
@@ -159,10 +159,10 @@ namespace fs
       }*/
    }
 
-   void list::_001OnLButtonDblClk(gen::signal_object * pobj)
+   void list::_001OnLButtonDblClk(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj)
 /*         index iItem;
       list_data * pdata = get_fs_list_data();
       if(_001HitTest_(pmouse->m_pt, iItem))
@@ -173,7 +173,7 @@ namespace fs
       }*/
    }
 
-   void list::_001OnCancelMode(gen::signal_object * pobj)
+   void list::_001OnCancelMode(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    // trans   ::userbase::view::OnCancelMode();

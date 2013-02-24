@@ -16,7 +16,7 @@ namespace command
    {
    }
 
-   void view::install_message_handling(::gen::message::dispatch * pinterface)
+   void view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::userbase::view::install_message_handling(pinterface);
 
@@ -91,13 +91,13 @@ namespace command
       cs.style &= ~WS_EX_CLIENTEDGE;
 	   return ::userbase::view::pre_create_window(cs);
    }
-   void view::_001OnInitialUpdate(gen::signal_object * pobj)
+   void view::_001OnInitialUpdate(ca::signal_object * pobj)
    {
       ::userbase::view::_001OnInitialUpdate(pobj);
    }
 
 
-   void view::on_update(::view* pSender, LPARAM lHint, ::gen::object* phint)
+   void view::on_update(::view* pSender, LPARAM lHint, ::ca::object* phint)
    {
       UNREFERENCED_PARAMETER(pSender);
       UNREFERENCED_PARAMETER(phint);
@@ -108,15 +108,15 @@ namespace command
 
    }
 
-   void view::_001OnDestroy(gen::signal_object * pobj)
+   void view::_001OnDestroy(ca::signal_object * pobj)
    {
 	   ::userbase::view::_001OnDestroy(pobj);
    }
 
-   void view::_001OnSize(gen::signal_object * pobj)
+   void view::_001OnSize(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-   //   SCAST_PTR(::gen::message::size, psize, pobj)
+   //   SCAST_PTR(::ca::message::size, psize, pobj)
 
       rect rectDesktop;
       Application.get_screen_rect(rectDesktop);
@@ -139,7 +139,7 @@ namespace command
       }
    }
 
-   void view::_001OnPaint(gen::signal_object * pobj)
+   void view::_001OnPaint(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
    //	CPaintDC spgraphics(this); // device context for winactionareaing
@@ -152,7 +152,7 @@ namespace command
       UNREFERENCED_PARAMETER(pdc);
    }
 
-   void view::_001OnCreate(gen::signal_object * pobj)
+   void view::_001OnCreate(ca::signal_object * pobj)
    {
       if(pobj->previous())
          return;
@@ -160,9 +160,9 @@ namespace command
    }
 
 
-   void view::_001OnContextMenu(gen::signal_object * pobj)
+   void view::_001OnContextMenu(ca::signal_object * pobj)
    {
-//      SCAST_PTR(::gen::message::context_menu, pcontextmenu, pobj)
+//      SCAST_PTR(::ca::message::context_menu, pcontextmenu, pobj)
 //      point point = pcontextmenu->GetPoint();
 
 
@@ -177,7 +177,7 @@ namespace command
       }
    }
 
-   void view::_001OnSetCursor(gen::signal_object * pobj)
+   void view::_001OnSetCursor(ca::signal_object * pobj)
    {
 #ifdef WINDOWSEX
       ::SetCursor(::LoadCursor(NULL, IDC_ARROW));
@@ -195,39 +195,39 @@ namespace command
 
 
 
-   void view::_001OnLButtonDown(gen::signal_object * pobj)
+   void view::_001OnLButtonDown(ca::signal_object * pobj)
    {
-   //   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+   //   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnLButtonUp(gen::signal_object * pobj)
+   void view::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      //SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
       KillTimer(5432180);
 
 
    }
 
-   void view::_001OnRButtonUp(gen::signal_object * pobj)
+   void view::_001OnRButtonUp(ca::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+      //SCAST_PTR(::ca::message::mouse, pmouse, pobj)
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
-   void view::_001OnOp(gen::signal_object * pobj)
+   void view::_001OnOp(ca::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::base, pbase, pobj)
+      //SCAST_PTR(::ca::message::base, pbase, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 
 
-   void view::_001OnTimer(gen::signal_object * pobj)
+   void view::_001OnTimer(ca::signal_object * pobj)
    {
-      //SCAST_PTR(::gen::message::timer, ptimer, pobj)
+      //SCAST_PTR(::ca::message::timer, ptimer, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 
@@ -273,9 +273,9 @@ namespace command
       strDateTime.Format("%s %s %s", strDate, strWeekDay, strTime);
    }
 
-   void view::_001OnShowWindow(gen::signal_object * pobj)
+   void view::_001OnShowWindow(ca::signal_object * pobj)
    {
-   //   SCAST_PTR(::gen::message::show_window, pshowwindow, pobj)
+   //   SCAST_PTR(::ca::message::show_window, pshowwindow, pobj)
       UNREFERENCED_PARAMETER(pobj);
    }
 

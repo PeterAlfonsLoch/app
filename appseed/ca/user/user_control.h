@@ -2,7 +2,7 @@
 
 
 class CLASS_DECL_ca Ex1FormInterfaceComboBox :
-   virtual public ::gen::object
+   virtual public ::ca::object
 {
 public:
 
@@ -190,7 +190,7 @@ namespace user
       virtual ~control();
 
 
-      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
       virtual bool create_control(class control::descriptor * pdescriptor);
 
@@ -207,7 +207,7 @@ namespace user
       virtual void _003CallCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
       virtual bool _003CallCustomWindowProc(::user::interaction * pwnd, UINT message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
       virtual void _003OnCustomDraw(::ca::graphics * pdc, ::user::draw_context * pitem);
-      virtual void _003CustomWindowProc(gen::signal_object * pobj);
+      virtual void _003CustomWindowProc(ca::signal_object * pobj);
 
       virtual form * get_form();
       //virtual form_list * get_form_list();
@@ -238,8 +238,8 @@ namespace user
       virtual void EnableControlCommand(bool bEnable);
 
 
-      virtual void BaseControlExWndProcBefore(gen::signal_object * pobj);
-      virtual void BaseControlExWndProcAfter(gen::signal_object * pobj);
+      virtual void BaseControlExWndProcBefore(ca::signal_object * pobj);
+      virtual void BaseControlExWndProcAfter(ca::signal_object * pobj);
 
       virtual void BaseControlExOnMouseMove(UINT nFlags, point point);
 
@@ -255,7 +255,7 @@ namespace user
    {
    public:
 
-      control_cmd_ui(gen::signal * psignal);
+      control_cmd_ui(ca::signal * psignal);
 
 
       ::collection::map < id, id, id, id > m_mapControlCommand;

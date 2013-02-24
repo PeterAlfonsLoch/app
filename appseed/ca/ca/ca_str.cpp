@@ -4,7 +4,7 @@
 #include <ctype.h>
 #endif
 
-namespace gen
+namespace ca
 {
    namespace str
    {
@@ -22,7 +22,7 @@ namespace gen
 }
 
 
-namespace gen
+namespace ca
 {
 
    int32_t  str::compare(const char * psz1, const char * psz2)
@@ -812,7 +812,7 @@ namespace gen
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !ca::ch::is_letter_or_digit(pszIter + strFind.get_length())))
          {
             return i;
          }
@@ -823,7 +823,7 @@ namespace gen
 
          string strChar = utf8_char(pszIter);
 
-         if(!gen::ch::is_letter_or_digit(strChar))
+         if(!ca::ch::is_letter_or_digit(strChar))
          {
 
             do
@@ -832,13 +832,13 @@ namespace gen
                pszIter = utf8_inc(pszIter);
                strChar = utf8_char(pszIter);
             }
-            while(!gen::ch::is_letter_or_digit(strChar) && *pszIter != '\0');
+            while(!ca::ch::is_letter_or_digit(strChar) && *pszIter != '\0');
 
             if(*pszIter == '\0')
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter_or_digit(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !ca::ch::is_letter_or_digit(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
@@ -876,7 +876,7 @@ namespace gen
       {
 
          if(strFind == string(pszIter, strFind.get_length())
-            && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
+            && (strlen(pszIter) == (size_t) strFind.get_length() || !ca::ch::is_letter(pszIter + strFind.get_length())))
          {
 
             return i;
@@ -890,7 +890,7 @@ namespace gen
 
          string strChar = utf8_char(pszIter);
 
-         if(!gen::ch::is_letter(strChar))
+         if(!ca::ch::is_letter(strChar))
          {
 
             do
@@ -903,13 +903,13 @@ namespace gen
                strChar = utf8_char(pszIter);
 
             }
-            while(!gen::ch::is_letter(strChar) && *pszIter != '\0');
+            while(!ca::ch::is_letter(strChar) && *pszIter != '\0');
 
             if(*pszIter == '\0')
                break;
 
             if(strFind == string(pszIter, strFind.get_length())
-               && (strlen(pszIter) == (size_t) strFind.get_length() || !gen::ch::is_letter(pszIter + strFind.get_length())))
+               && (strlen(pszIter) == (size_t) strFind.get_length() || !ca::ch::is_letter(pszIter + strFind.get_length())))
             {
 
                return iStart + i;
@@ -1012,15 +1012,15 @@ namespace gen
          {
             break;
          }
-         else if(gen::ch::is_digit(qc))
+         else if(ca::ch::is_digit(qc))
          {
             bHasDigit = true;
          }
-         else if(gen::ch::is_lower_case(qc))
+         else if(ca::ch::is_lower_case(qc))
          {
             bHasLower = true;
          }
-         else if(gen::ch::is_upper_case(qc))
+         else if(ca::ch::is_upper_case(qc))
          {
             bHasUpper = true;
          }
@@ -1414,7 +1414,7 @@ namespace gen
 
    const char * str::utf8_inc(const char * psz)
    {
-      char len =  1 + gen::str::trailingBytesForUTF8[(uchar) *psz];
+      char len =  1 + ca::str::trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)      return psz;
       if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
       if(len == 1)      return psz;
@@ -1434,7 +1434,7 @@ namespace gen
    // macos mountain lion near Finados - inha |-) at veriverse on 2012-11-04 with Mom with Carol speaking about Mom Dream with gone Grandma - extrem care feeling
    const char * str::utf8_inc_slide(strsize * pslide, const char * psz)
    {
-      char len =  1 + gen::str::trailingBytesForUTF8[(uchar) *psz];
+      char len =  1 + ca::str::trailingBytesForUTF8[(uchar) *psz];
       if(len == 0)   { *pslide += 0; return psz; }
       if(*psz++ == 0)   throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
       if(len == 1)   { *pslide += 1; return psz; }
@@ -1457,7 +1457,7 @@ namespace gen
 
       strsize count = 0;
 
-      gen::str::utf8_inc_slide(&count, pchSrc);
+      ca::str::utf8_inc_slide(&count, pchSrc);
 
       memcpy(pchDst, pchSrc, count);
 
@@ -1534,7 +1534,7 @@ namespace gen
       return psz - 1;
    }
 
-   const char * str::utf8_dec(::gen::utf8_char * pchar, const char * pszBeg, const char * psz)
+   const char * str::utf8_dec(::ca::utf8_char * pchar, const char * pszBeg, const char * psz)
    {
       if(psz <= pszBeg)
       {
@@ -1640,9 +1640,9 @@ namespace gen
    }
 
 
-   int32_t str::utf8_char(::gen::utf8_char * pchar, const char * psz)
+   int32_t str::utf8_char(::ca::utf8_char * pchar, const char * psz)
    {
-      char chLen =  1 + gen::str::trailingBytesForUTF8[(uchar) *psz];
+      char chLen =  1 + ca::str::trailingBytesForUTF8[(uchar) *psz];
       char ch = 0;
       for(; ch < chLen; ch++)
       {
@@ -1660,7 +1660,7 @@ namespace gen
 
    string str::utf8_char(const char * psz)
    {
-      ::gen::utf8_char ch;
+      ::ca::utf8_char ch;
       int32_t len = utf8_char(&ch, psz);
       if(len < 0)
          return "";
@@ -1748,7 +1748,7 @@ namespace gen
                {
                   return BAD_WCHAR;
                }
-               int64_t hex = gen::hex::to_int64(val);
+               int64_t hex = ca::hex::to_int64(val);
                strsize val_len = val.get_length();
                if(hex < 0 || hex > 0xFFFF)
                {
@@ -1759,7 +1759,7 @@ namespace gen
             }
             else
             {
-               int64_t hex = gen::hex::to_int64(string(&lpcsz[pos+2], 2));
+               int64_t hex = ca::hex::to_int64(string(&lpcsz[pos+2], 2));
                if(int64_t(strlen(lpcsz)) <= pos + 2 || hex== -1)
                {
                   return BAD_WCHAR;
@@ -1804,7 +1804,7 @@ namespace gen
          return false;
       while(*psz != '\0')
       {
-         if(!gen::ch::is_digit(psz))
+         if(!ca::ch::is_digit(psz))
             return false;
          psz = utf8_inc(psz);
       }
@@ -1860,7 +1860,7 @@ namespace gen
    {
       const char * psz = pszXml;
       int32_t i = 0;
-      while(gen::ch::is_whitespace(psz))
+      while(ca::ch::is_whitespace(psz))
       {
          psz = utf8_inc(psz);
          i++;
@@ -1881,7 +1881,7 @@ namespace gen
       const char * psz = pszXml;
       int32_t i = 0;
       uint64_t ui;
-      while(gen::ch::is_digit(psz))
+      while(ca::ch::is_digit(psz))
       {
          psz = utf8_inc(psz);
          i++;
@@ -1890,7 +1890,7 @@ namespace gen
       {
          throw "empty natural found";
       }
-      ui = ::gen::str::to_uint(string(pszXml, psz - pszXml));
+      ui = ::ca::str::to_uint(string(pszXml, psz - pszXml));
       if(ui < uiMin)
       {
          throw "natural less than min";
@@ -1910,7 +1910,7 @@ namespace gen
    {
       const char * psz = pszXml;
       int32_t i = 0;
-      while(gen::ch::is_whitespace(psz, pszEnd))
+      while(ca::ch::is_whitespace(psz, pszEnd))
       {
          psz = __utf8_inc(psz);
          if(psz > pszEnd)
@@ -1930,7 +1930,7 @@ namespace gen
 //      int32_t i = 0;
       while(*psz != '\0')
       {
-         int64_t i = gen::ch::uni_index(pszXml);
+         int64_t i = ca::ch::uni_index(pszXml);
          if(isdigit((int32_t) i) || (i >= 'a' && i <= 'f') || (i >= 'A' && i <= 'F'))
          {
             psz = __utf8_inc(psz);
@@ -1956,7 +1956,7 @@ namespace gen
          // first char
          if(start)
          {
-            if(!gen::ch::is_letter(c) || *c == '\0')
+            if(!ca::ch::is_letter(c) || *c == '\0')
             {
                throw "NCName required here";
             }
@@ -1964,11 +1964,11 @@ namespace gen
          }
          else
          {
-            if(!gen::ch::is_letter_or_digit(c) && *c != '_' && *c != '-')
+            if(!ca::ch::is_letter_or_digit(c) && *c != '_' && *c != '-')
             {
                break;
             }
-            psz = gen::str::utf8_inc(psz);
+            psz = ca::str::utf8_inc(psz);
          }
       }
       string str(pszXml, psz - pszXml);
@@ -1990,7 +1990,7 @@ namespace gen
       {
          psz = utf8_inc(psz);
          qc2 = utf8_char(psz);
-         //string str = gen::international::utf8_to_unicode(qc2);
+         //string str = ca::international::utf8_to_unicode(qc2);
          if(qc2.is_empty())
          {
             throw "Quote character is required here, premature end";
@@ -2061,7 +2061,7 @@ namespace gen
          psz = utf8_inc(psz);
          strPreviousChar = strCurrentChar;
          strCurrentChar = utf8_char(psz);
-         //string str = gen::international::utf8_to_unicode(qc2);
+         //string str = ca::international::utf8_to_unicode(qc2);
          if(strCurrentChar.is_empty())
          {
             throw "Quote character is required here, premature end";
@@ -2109,7 +2109,7 @@ namespace gen
    string str::xml_consume_comment(const char * & pszXml)
    {
       string str;
-      gen::str::consume(pszXml, "<!--");
+      ca::str::consume(pszXml, "<!--");
       while(pszXml[0] != '-' || pszXml[1] != '-' ||pszXml[2] != '>')
       {
 
@@ -2118,7 +2118,7 @@ namespace gen
             break;
          }
          str += *pszXml;
-         pszXml = gen::str::utf8_inc(pszXml);
+         pszXml = ca::str::utf8_inc(pszXml);
       }
       consume(pszXml, "-->");
       return str;
@@ -2506,7 +2506,7 @@ namespace gen
             return false;
          }
       }
-      while(gen::ch::to_lower_case(*lpcsz) == gen::ch::to_lower_case(*lpcszPrefix))
+      while(ca::ch::to_lower_case(*lpcsz) == ca::ch::to_lower_case(*lpcszPrefix))
       {
          lpcsz++;
          lpcszPrefix++;
@@ -2544,11 +2544,11 @@ namespace gen
             return false;
          }
       }
-      while(*lpcsz && gen::ch::is_space_char(*lpcsz))
+      while(*lpcsz && ca::ch::is_space_char(*lpcsz))
          lpcsz++;
       if(!*lpcsz)
          return false;
-      while(gen::ch::to_lower_case(*lpcsz) == gen::ch::to_lower_case(*lpcszPrefix))
+      while(ca::ch::to_lower_case(*lpcsz) == ca::ch::to_lower_case(*lpcszPrefix))
       {
          lpcsz++;
          lpcszPrefix++;
@@ -2606,6 +2606,6 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 
 

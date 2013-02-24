@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -18,7 +18,7 @@ namespace ca2
          m_bVotagusAuth          = bVotagusAuth;
          m_strForm               = pszForm;
          m_bDeferRegistration    = false;
-         ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+         ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
          if(pgenapp != NULL)
          {
             try
@@ -91,7 +91,7 @@ namespace ca2
 
          ::ca::create_context_sp createcontext(get_app());
          createcontext->m_bMakeVisible = false;
-         createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca2 < ::user::interaction > ();
+         createcontext->m_puiParent = Sys(get_app()).oprop("top_parent").ca < ::user::interaction > ();
          createcontext->m_bOuterPopupAlertLike = true;
          //Sleep(15 * 1000);
          m_pdoc = dynamic_cast < form_document * > (m_ptemplatePane->open_document_file(createcontext));
@@ -126,12 +126,12 @@ namespace ca2
 
                m_pdocAuth->get_html_data()->m_propertyset["reason"] = "Licensing";
                string strUrl;
-               strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
+               strUrl = "http://api.ca.cc/spaignition/query?node=install_application&id=";
                strUrl += m_strLicense;
                strUrl += "&key=name";
                m_pdocAuth->get_html_data()->m_propertyset["project"] = System.http().get(strUrl);
 
-               strUrl = "ext://https://account.ca2.cc/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
+               strUrl = "ext://https://account.ca.cc/license?id="+ m_strLicense + "&lang=" + System.get_locale() + "&sessid=" + ApplicationUser.get_sessid(m_loginthread.m_strFontopusServer);
                m_pdocAuth->get_html_data()->m_propertyset["contribute_link"] = strUrl;
 
             }
@@ -257,7 +257,7 @@ namespace ca2
 
       }
 
-      void validate::pageMessage(const stringa & straMatter, gen::property_set & set)
+      void validate::pageMessage(const stringa & straMatter, ca::property_set & set)
       {
          ensure_main_document();
          m_pdocAuth->get_html_data()->m_propertyset = set;
@@ -357,7 +357,7 @@ namespace ca2
             return;
          }
          string strModule;
-         gen::file_system_sp fs(get_app());
+         ca::file_system_sp fs(get_app());
          string strModuleFolder(System.get_ca2_module_folder());
          fs->FullPath(strModuleFolder, strModuleFolder);
          for(uint32_t dw = 0; dw < dwNeeded / (sizeof(HMODULE)); dw++)
@@ -366,7 +366,7 @@ namespace ca2
             GetModuleFileName(pmodulea[dw], strModule.GetBufferSetLength(4096), 4096);
             strModule.ReleaseBuffer();
             fs->FullPath(strModule, strModule);
-            if(gen::str::begins_ci(strModule, strModuleFolder))
+            if(ca::str::begins_ci(strModule, strModuleFolder))
             {
                straSource.add(strModule);
                straHash.add(System.file36().md5(strModule));
@@ -431,10 +431,10 @@ namespace ca2
       // return hash and check if hash is valid
       bool validate::check_ca2_hash()
       {
-         string strUrl("https://api.ca2.cc/account/check_hash");
-         gen::property_set post;
-         gen::property_set headers;
-         gen::property_set set;
+         string strUrl("https://api.ca.cc/account/check_hash");
+         ca::property_set post;
+         ca::property_set headers;
+         ca::property_set set;
          string strResponse;
          stringa straHash;
          stringa straSource;
@@ -565,7 +565,7 @@ namespace ca2
 
          UNREFERENCED_PARAMETER(pszResponse);
 
-         gen::property_set propertyset;
+         ca::property_set propertyset;
 
          string strUsername = m_loginthread.m_strUsername;
 
@@ -584,7 +584,7 @@ namespace ca2
             if(m_bInteractive)
             {
                string strUrl;
-               strUrl = "http://api.ca2.cc/spaignition/query?node=install_application&id=";
+               strUrl = "http://api.ca.cc/spaignition/query?node=install_application&id=";
                strUrl += m_strLicense;
                strUrl += "&key=launch_name";
                string strName = Application.http().get(strUrl);
@@ -635,7 +635,7 @@ namespace ca2
          {
             if(m_bInteractive)
             {
-               propertyset["server"] = "account.ca2.cc";
+               propertyset["server"] = "account.ca.cc";
                pageMessage("err\\user\\network\\connection_timed_out.html", propertyset);
             }
          }
@@ -643,7 +643,7 @@ namespace ca2
          {
             if(m_bInteractive)
             {
-               propertyset["server"] = "account.ca2.cc";
+               propertyset["server"] = "account.ca.cc";
                propertyset["email"] = strUsername;
                pageMessage("err\\user\\authentication\\registration_deferred.html", propertyset);
             }
@@ -715,6 +715,6 @@ namespace ca2
    } // namespace fontopus
 
 
-} // namespace ca2
+} // namespace ca
 
 

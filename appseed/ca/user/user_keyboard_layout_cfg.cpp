@@ -47,7 +47,7 @@ namespace user
 
 
       stringa straPath;
-      System.dir().ls(System.dir().ca2("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
+      System.dir().ls(System.dir().ca("app/appmatter/main/_std/_std/keyboard layout"), &straPath);
       for(int32_t i = 0; i < straPath.get_count(); i++)
       {
          ::user::keyboard_layout_cfg_id layoutid;
@@ -116,7 +116,7 @@ namespace user
          ptext->_001SetText(strProxy);
          pguie = m_pview->get_child_by_name("port");
          ptext = dynamic_cast < text_interface * > (pguie);
-         ptext->_001SetText(gen::str::from(iProxyPort));
+         ptext->_001SetText(ca::str::from(iProxyPort));
       }*/
    }
 

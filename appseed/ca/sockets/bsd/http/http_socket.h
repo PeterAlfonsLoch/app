@@ -79,21 +79,21 @@
          /** Transfer coding 'chunked' */
          bool IsChunked() { return m_b_chunked; }
 
-         gen::property & inattr(const char * pszName);
-         gen::property & lowinattr(const string & strName);
-         gen::property_set & inattrs();
+         ca::property & inattr(const char * pszName);
+         ca::property & lowinattr(const string & strName);
+         ca::property_set & inattrs();
 
-         gen::property & inheader(const char * pszName);
-         gen::property & lowinheader(const string & strName);
-         gen::property_set & inheaders();
+         ca::property & inheader(const char * pszName);
+         ca::property & lowinheader(const string & strName);
+         ca::property_set & inheaders();
 
-         gen::property & outattr(const char * pszName);
-         gen::property & lowoutattr(const string & strName);
-         gen::property_set & outattrs();
+         ca::property & outattr(const char * pszName);
+         ca::property & lowoutattr(const string & strName);
+         ca::property_set & outattrs();
 
-         gen::property & outheader(const char * pszName);
-         gen::property & lowoutheader(const string & strName);
-         gen::property_set & outheaders();
+         ca::property & outheader(const char * pszName);
+         ca::property & lowoutheader(const string & strName);
+         ca::property_set & outheaders();
 
          using tcp_socket::request;
          http::request & request();
@@ -124,62 +124,62 @@
          return m_response;
       }
 
-      inline gen::property & http_socket::inattr(const char * pszName)
+      inline ca::property & http_socket::inattr(const char * pszName)
       {
          return m_request.attr(pszName);
       }
 
-      inline gen::property & http_socket::lowinattr(const string & strName)
+      inline ca::property & http_socket::lowinattr(const string & strName)
       {
          return m_request.lowattr(strName);
       }
 
-      inline gen::property_set & http_socket::inattrs()
+      inline ca::property_set & http_socket::inattrs()
       {
          return m_request.attrs();
       }
 
-      inline gen::property & http_socket::outattr(const char * pszName)
+      inline ca::property & http_socket::outattr(const char * pszName)
       {
          return m_response.attr(pszName);
       }
 
-      inline gen::property & http_socket::lowoutattr(const string & strLowName)
+      inline ca::property & http_socket::lowoutattr(const string & strLowName)
       {
          return m_response.lowattr(strLowName);
       }
 
-      inline gen::property_set & http_socket::outattrs()
+      inline ca::property_set & http_socket::outattrs()
       {
          return m_response.attrs();
       }
 
-      inline gen::property & http_socket::inheader(const char * pszName)
+      inline ca::property & http_socket::inheader(const char * pszName)
       {
          return m_request.header(pszName);
       }
 
-      inline gen::property & http_socket::lowinheader(const string & strName)
+      inline ca::property & http_socket::lowinheader(const string & strName)
       {
          return m_request.lowheader(strName);
       }
 
-      inline gen::property_set & http_socket::inheaders()
+      inline ca::property_set & http_socket::inheaders()
       {
          return m_request.headers();
       }
 
-      inline gen::property & http_socket::outheader(const char * pszName)
+      inline ca::property & http_socket::outheader(const char * pszName)
       {
          return m_response.header(pszName);
       }
 
-      inline gen::property & http_socket::lowoutheader(const string & strName)
+      inline ca::property & http_socket::lowoutheader(const string & strName)
       {
          return m_response.lowheader(strName);
       }
 
-      inline gen::property_set & http_socket::outheaders()
+      inline ca::property_set & http_socket::outheaders()
       {
          return m_response.headers();
       }

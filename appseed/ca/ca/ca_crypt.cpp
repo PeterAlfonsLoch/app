@@ -8,7 +8,7 @@
 #define CA4_CRYPT_V5_SALT_BYTES (CA4_CRYPT_V5_FINAL_HASH_BYTES - NESSIE_DIGESTBYTES)
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -733,7 +733,7 @@ namespace ca2
       string str(pszPassword);
       if(str.get_length() < 6)
          return false;
-      return gen::str::has_all_v1(pszPassword);
+      return ca::str::has_all_v1(pszPassword);
    }
 
    string crypt::v5_get_password_hash(const char * pszPassword, int32_t iOrder)
@@ -806,7 +806,7 @@ namespace ca2
    }
 
 
-} // namespace ca2
+} // namespace ca
 
 
 

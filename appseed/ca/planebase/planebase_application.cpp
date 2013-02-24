@@ -46,7 +46,7 @@ namespace planebase
    {
 
       ::ca::application * pcaapp = NULL;
-      ::ca2::application * papp = NULL;
+      ::ca::application * papp = NULL;
 
       string strId(pszId);
 
@@ -69,13 +69,13 @@ namespace planebase
          if(strId == "bergedge")
          {
 
-            strNewId = "app/ca2/bergedge";
+            strNewId = "app/ca/bergedge";
 
          }
          else if(strId == "cube")
          {
 
-            strNewId = "app/ca2/cube";
+            strNewId = "app/ca/cube";
 
          }
          else
@@ -101,7 +101,7 @@ namespace planebase
             m_psystem->m_psession = m_psession;
          }
 
-         ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (pcaapp);
+         ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (pcaapp);
 
          if(pgenapp != NULL)
          {
@@ -130,9 +130,9 @@ namespace planebase
       //pcaapp->m_papp                               = this;
       pcaapp->m_psystem                            = m_psystem;
 
-      papp = dynamic_cast < ::ca2::application * > (pcaapp);
+      papp = dynamic_cast < ::ca::application * > (pcaapp);
 
-      papp->command_central().consolidate(dynamic_cast < ::gen::command_thread * > (&command_central()));
+      papp->command_central().consolidate(dynamic_cast < ::ca::command_thread * > (&command_central()));
 
       papp->m_bSessionSynchronizedCursor = m_bSessionSynchronizedCursor;
 
@@ -185,7 +185,7 @@ namespace planebase
       if(pcaapp == NULL)
          return NULL;
 
-      ::ca2::application * papp = dynamic_cast < ::ca2::application * > (pcaapp);
+      ::ca::application * papp = dynamic_cast < ::ca::application * > (pcaapp);
 
       if(!papp->start_application(bSynch, pbias))
       {
@@ -250,7 +250,7 @@ namespace planebase
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
                goto InitFailure;
@@ -282,7 +282,7 @@ namespace planebase
             {
                if (GetMainWnd() != NULL)
                {
-                  TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+                  TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                   GetMainWnd()->DestroyWindow();
                }
 
@@ -314,7 +314,7 @@ namespace planebase
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -334,7 +334,7 @@ namespace planebase
                goto run;
             if(GetMainWnd() != NULL)
             {
-               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -408,7 +408,7 @@ namespace planebase
          //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
-         //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
+         //               ca, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
          //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
          //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
          //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
@@ -446,7 +446,7 @@ run:
 
       try
       {
-         ::gen::application_signal_object signal(this, m_psignal, ::ca::application_signal_start);
+         ::ca::application_signal_object signal(this, m_psignal, ::ca::application_signal_start);
          m_psignal->emit(&signal);
       }
       catch(...)
@@ -491,7 +491,7 @@ run:
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -505,7 +505,7 @@ run:
                goto run;
             if (GetMainWnd() != NULL)
             {
-               TRACE(::gen::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: Destroying non-NULL GetMainWnd()\n");
                try
                {
                   GetMainWnd()->DestroyWindow();
@@ -583,7 +583,7 @@ run:
          //           - ::ikaraoke::karaoke file does not open? can open next? do it... may animate with a temporary icon...
          //           - import a little as pepper for the meal, prodevian technology into estamira, so gaming experience relativity can open ligh
          //               speed into cartesian dimensions of
-         //               ca2, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
+         //               ca, estamira and prodevian. Take care not to flood prodevian brand black ink over the floor of the estamira office...
          //               black letters, or colorful and pink are accepted and sometimes desired, for example, hello kity prodevian, pirarucu games,
          //               I think no one likes to be boring, but a entire background in black... I don't know... only for your personal office, may be...
          //           - could an online colaborator investigate crashes promptly in a funny way, and make news and jokes? Like terra and UOL for the real world?
@@ -620,7 +620,7 @@ InitFailure:
       }
       try
       {
-         ::gen::thread * pthread = dynamic_cast < ::gen::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
+         ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
          if(pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
@@ -631,7 +631,7 @@ InitFailure:
       }
       /*try
       {
-         ::gen::thread * pthread = dynamic_cast < ::gen::thread * > (this);
+         ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (this);
          ::SetEvent((HANDLE) pthread->m_peventReady);
       }
       catch(...)
@@ -888,7 +888,7 @@ exit_application:
       try
       {
 
-         m_iReturnCode = ::ca2::application::exit_instance();
+         m_iReturnCode = ::ca::application::exit_instance();
 
       }
       catch(...)
@@ -947,7 +947,7 @@ exit_application:
    }
 
    /*
-      ::gen::application * pgenapp = dynamic_cast < ::gen::application * > (papp);
+      ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
       if(pgenapp != NULL)
       {
          try
@@ -991,7 +991,7 @@ exit_application:
       }
 
 
-      if(!ca2::application::initialize())
+      if(!ca::application::initialize())
          return false;
 
 
@@ -1015,7 +1015,7 @@ exit_application:
       {
 
          string str;
-         // if system locale has changed (compared to last recorded one by ca2)
+         // if system locale has changed (compared to last recorded one by ca)
          // use the system locale
          if(data_get("system_locale", str))
          {
@@ -1060,7 +1060,7 @@ exit_application:
                set_locale(str, false);
             }
          }
-         // if system schema has changed (compared to last recorded one by ca2)
+         // if system schema has changed (compared to last recorded one by ca)
          // use the system schema
          if(data_get("system_schema", str))
          {
@@ -1127,7 +1127,7 @@ exit_application:
    bool application::process_initialize()
    {
 
-      if(!::ca2::application::process_initialize())
+      if(!::ca::application::process_initialize())
          return false;
 
       m_pfontopus = create_fontopus();
@@ -1189,7 +1189,7 @@ exit_application:
          
       }
 
-      if(!ca2::application::initialize1())
+      if(!ca::application::initialize1())
          return false;
 
       m_visual.construct(this);
@@ -1207,7 +1207,7 @@ exit_application:
    bool application::initialize2()
    {
 
-      if(!ca2::application::initialize2())
+      if(!ca::application::initialize2())
          return false;
 
       m_simpledb.construct(this);
@@ -1223,7 +1223,7 @@ exit_application:
    bool application::initialize_instance()
    {
 
-      if(!ca2::application::initialize_instance())
+      if(!ca::application::initialize_instance())
          return false;
 
       if(!m_pfontopus->initialize_instance())
@@ -1390,16 +1390,16 @@ exit_application:
          {
             create_new_service();
             m_pservice->Start(0);
-            return ca2::application::run();
+            return ca::application::run();
          }
          else
          {
-            return ca2::application::run();
+            return ca::application::run();
          }
       }
       else
       {
-         return ca2::application::run();
+         return ca::application::run();
       }
 
       return 0;
@@ -1413,7 +1413,7 @@ exit_application:
          stop_service();
          remove_service();
       }
-      return ::ca2::application::on_uninstall();
+      return ::ca::application::on_uninstall();
    }
 
 
@@ -1532,7 +1532,7 @@ exit_application:
                if(strLibrary.has_char())
                {
 
-                  ::ca2::library library(NULL);
+                  ::ca::library library(NULL);
 
                   if(library.open(this, strLibrary))
                   {
@@ -1585,7 +1585,7 @@ exit_application:
                g_iCountProgress++;
             }
 
-            gen::international::locale_schema localeschema(this);
+            ca::international::locale_schema localeschema(this);
 
             fill_locale_schema(localeschema);
 
@@ -1643,7 +1643,7 @@ exit_application:
 
    }
 
-   void application::fill_locale_schema(gen::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
+   void application::fill_locale_schema(ca::international::locale_schema & localeschema, const char * pszLocale, const char * pszSchema)
    {
 
 
@@ -1670,7 +1670,7 @@ exit_application:
 
    }
 
-   void application::fill_locale_schema(gen::international::locale_schema & localeschema)
+   void application::fill_locale_schema(ca::international::locale_schema & localeschema)
    {
 
 
@@ -1716,7 +1716,7 @@ exit_application:
    bool application::update_appmatter(::sockets::socket_handler & h, ::sockets::http_session * & psession,const char * pszRoot, const char * pszRelative)
    {
 
-      gen::international::locale_schema localeschema(this);
+      ca::international::locale_schema localeschema(this);
 
       fill_locale_schema(localeschema);
 
@@ -1744,15 +1744,15 @@ exit_application:
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot, pszRelative, pszLocale, pszStyle);
       string strRelative = System.dir().path(System.dir().path(pszRoot, "appmatter", pszRelative), App(this).get_locale_schema_dir(pszLocale, pszStyle)) + ".zip";
-      string strFile = System.dir().ca2(strRelative);
+      string strFile = System.dir().ca(strRelative);
       string strUrl;
       if(_ca_is_basis())
       {
-         strUrl = "http://basis.spaignition.api.server.ca2.cc/download?authnone&version=basis&stage=";
+         strUrl = "http://basis.spaignition.api.server.ca.cc/download?authnone&version=basis&stage=";
       }
       else
       {
-         strUrl = "http://stage.spaignition.api.server.ca2.cc/download?authnone&version=stage&stage=";
+         strUrl = "http://stage.spaignition.api.server.ca.cc/download?authnone&version=stage&stage=";
       }
 
       strUrl += System.url().url_encode(strRelative);
@@ -1765,7 +1765,7 @@ exit_application:
          while(true)
          {
 
-            gen::property_set setEmpty(get_app());
+            ca::property_set setEmpty(get_app());
 
             psession = System.http().open(h, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, NULL, NULL);
 
@@ -1789,7 +1789,7 @@ exit_application:
 
          string strDir = strFile;
 
-         gen::str::ends_eat_ci(strDir, ".zip");
+         ca::str::ends_eat_ci(strDir, ".zip");
 
          try
          {
@@ -1815,7 +1815,7 @@ exit_application:
    }
 
 
-   bool application::add_library(::ca2::library * plibrary)
+   bool application::add_library(::ca::library * plibrary)
    {
 
       plibrary->set_app(this);
@@ -1858,7 +1858,7 @@ exit_application:
    void application::assert_valid() const
    {
 
-      ::ca2::application::assert_valid();
+      ::ca::application::assert_valid();
       //::database::server::assert_valid();
 
    }
@@ -1867,7 +1867,7 @@ exit_application:
    void application::dump(dump_context & context) const
    {
 
-      ::ca2::application::dump(context);
+      ::ca::application::dump(context);
       //::database::server::dump(context);
 
    }

@@ -14,7 +14,7 @@ namespace ca
          return;
       static class id idType = Sys(papp).type_info < T > ().m_id;
       if(m_p != NULL)
-         gen::release(m_p);
+         ca::release(m_p);
       m_p = dynamic_cast < T * > (Sys(papp).alloc(papp, idType));
    }
 
@@ -45,7 +45,7 @@ namespace ca
 
 
    template < size_t _Bits >
-   inline ::gen::byte_output_stream & operator << (::gen::byte_output_stream & _Ostr, const bitset<_Bits>& _Right)
+   inline ::ca::byte_output_stream & operator << (::ca::byte_output_stream & _Ostr, const bitset<_Bits>& _Right)
    {	
       // insert bitset as a string
 	   return (_Ostr << _Right.template to_string());
@@ -53,7 +53,7 @@ namespace ca
 
 		// TEMPLATE operator>>
    template < size_t _Bits >
-	inline ::gen::byte_input_stream & operator >>( ::gen::byte_input_stream &  _Istr, bitset<_Bits>& _Right)
+	inline ::ca::byte_input_stream & operator >>( ::ca::byte_input_stream &  _Istr, bitset<_Bits>& _Right)
 	{	
       // extract bitset as a string
    	string _Str;

@@ -69,7 +69,7 @@ namespace user
       m_setEscape.m_bKeyCaseInsensitive = false;
    }
 
-      void keyboard_layout::process_escape(::xml::node * pnode, gen::property_set & set)
+      void keyboard_layout::process_escape(::xml::node * pnode, ca::property_set & set)
       {
          set.m_bKeyCaseInsensitive = false;
          for(int32_t i = 0; i < pnode->get_children_count(); i++)
@@ -177,7 +177,7 @@ namespace user
             }
          }
       }
-      if(gen::str::begins_eat(str, "escape="))
+      if(ca::str::begins_eat(str, "escape="))
       {
          return process_escape(str);
       }
@@ -194,7 +194,7 @@ namespace user
       {
          stringa stra;
          stra.explode(";", m_strEscape);
-         gen::property_set * pset = &m_setEscape;
+         ca::property_set * pset = &m_setEscape;
          for(int32_t i = 0; i < stra.get_size(); i++)
          {
             if(pset->has_property(stra[i]))

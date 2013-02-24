@@ -77,7 +77,7 @@ namespace userbase
 
       void OnUpdateControlBarMenu(cmd_ui * pcmdui);
       bool OnBarCheck(UINT nID);
-      virtual void install_message_handling(::gen::message::dispatch * pinterface);
+      virtual void install_message_handling(::ca::message::dispatch * pinterface);
 
       using ::uinteraction::frame::WorkSetListener::attach;
 

@@ -14,13 +14,13 @@ namespace fs
    {
    }
 
-   void main_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void main_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
       ::userbase::split_view::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(WM_CREATE, pinterface, this, &main_view::_001OnCreate);
    }
 
-   void main_view::_001OnCreate(gen::signal_object * pobj)
+   void main_view::_001OnCreate(ca::signal_object * pobj)
    {
       pobj->previous();
       if(pobj->m_bRet)
@@ -51,10 +51,10 @@ namespace fs
 
    }
 
-   void main_view::_001OnTimer(gen::signal_object * pobj)
+   void main_view::_001OnTimer(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 123)
       {
 //         Application.TimerStep();

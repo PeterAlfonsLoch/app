@@ -8,10 +8,10 @@ namespace ca
 {
 
    class CLASS_DECL_ca window_callback :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
-      virtual void message_window_message_handler(gen::signal_object * pobj) = 0;
+      virtual void message_window_message_handler(ca::signal_object * pobj) = 0;
    };
 
    class CLASS_DECL_ca message_window_simple_callback :

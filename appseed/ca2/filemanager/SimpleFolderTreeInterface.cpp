@@ -81,7 +81,7 @@ namespace filemanager
       for(int32_t i = 0; i < stra.get_size(); i++)
       {
          string strAscendant = stra[i];
-         ::gen::tree_item * pitem = find_item(strAscendant);
+         ::ca::tree_item * pitem = find_item(strAscendant);
          if(pitem == NULL)
          {
             string str;
@@ -100,7 +100,7 @@ namespace filemanager
          if(pitem == NULL)
             break;
 
-         if(!(pitem->m_dwState & ::gen::tree_item_state_expanded))
+         if(!(pitem->m_dwState & ::ca::tree_item_state_expanded))
          {
             _001ExpandItem(pitem, true, false, false);
          }
@@ -119,7 +119,7 @@ namespace filemanager
 
       _StartDelayedListUpdate();
 
-      ::gen::tree_item * pitem = find_item(lpcsz);
+      ::ca::tree_item * pitem = find_item(lpcsz);
 
       if(pitem != NULL)
       {
@@ -142,7 +142,7 @@ namespace filemanager
       _001RedrawWindow();
    }
 
-   ::gen::tree_item * SimpleFolderTreeInterface::find_item(const char * lpcsz)
+   ::ca::tree_item * SimpleFolderTreeInterface::find_item(const char * lpcsz)
    {
       return find_absolute(lpcsz);
    }
@@ -151,7 +151,7 @@ namespace filemanager
    {
       if(!bForceUpdate)
       {
-         ::gen::tree_item * pitem = find_item(lpcsz);
+         ::ca::tree_item * pitem = find_item(lpcsz);
          if(pitem != NULL)
          {
             if(is_selected(pitem))
@@ -180,7 +180,7 @@ namespace filemanager
 
    }
 
-   void SimpleFolderTreeInterface::_017UpdateZipList(const char * lpcsz, ::gen::tree_item * pitemParent, int32_t iLevel)
+   void SimpleFolderTreeInterface::_017UpdateZipList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel)
    {
       index i;
 
@@ -192,9 +192,9 @@ namespace filemanager
       string wstrItemExtra;
 
       index iFind;
-      gen::filesp spfile(get_app());
+      ca::filesp spfile(get_app());
 
-      //spfile->open(szPath, ::gen::file::mode_read | ::gen::file::type_binary);
+      //spfile->open(szPath, ::ca::file::mode_read | ::ca::file::type_binary);
 
       /*base_array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       _vmszipFile zipfile;
@@ -227,7 +227,7 @@ namespace filemanager
       string wstrFolder;
       stringa wstraFolder;
       string wstrItem;
-      gen::tree_item_ptr_array ptraRemove;
+      ca::tree_item_ptr_array ptraRemove;
       pitemParent->get_children(ptraRemove);
 
       for(int32_t i = 0; i < wstraItem.get_size(); i++)
@@ -279,20 +279,20 @@ namespace filemanager
             pitemNew->m_iImage         = m_iDefaultImage;
             pitemNew->m_iImageSelected = m_iDefaultImageSelected;
             //         item.m_flags.signalize(FlagInZip);
-            ::gen::tree_item  * pitem    = find_item(pitemNew->m_strPath);
+            ::ca::tree_item  * pitem    = find_item(pitemNew->m_strPath);
             if(pitem == NULL)
             {
-               pitem = insert_item(pitemNew, gen::RelativeLastChild, pitemParent);
+               pitem = insert_item(pitemNew, ca::RelativeLastChild, pitemParent);
             }
             else
             {
-               pitem = insert_item(pitemNew, gen::RelativeReplace, pitem);
+               pitem = insert_item(pitemNew, ca::RelativeReplace, pitem);
             }
             str = szPath;
             wstraChildItem.remove_all();
             if(zip::Util().HasSubFolder(get_app(), str))
             {
-               pitem->m_dwState |= ::gen::tree_item_state_expandable;
+               pitem->m_dwState |= ::ca::tree_item_state_expandable;
             }
             if(iLevel > 1)
             {
@@ -306,7 +306,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFolderTreeInterface::_017UpdateList(const char * lpcsz, ::gen::tree_item * pitemParent, int32_t iLevel)
+   void SimpleFolderTreeInterface::_017UpdateList(const char * lpcsz, ::ca::tree_item * pitemParent, int32_t iLevel)
    {
       if(lpcsz == NULL)
          lpcsz = "";
@@ -336,9 +336,9 @@ namespace filemanager
 
       stringa straAscendants;
 
-      ::gen::tree_item * pitem;
+      ::ca::tree_item * pitem;
 
-      ::gen::tree_item * pitemBase;
+      ::ca::tree_item * pitemBase;
 
       ::fs::tree_item * pitemChild;
 
@@ -443,7 +443,7 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            //pitem = insert_item(pitemChild, gen::RelativeReplace, pitem);
+            //pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             //pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
@@ -452,12 +452,12 @@ namespace filemanager
          }
          else
          {
-            pitem = insert_item(pitemChild, gen::RelativeLastChild, pitemBase);
+            pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemBase);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
          {
-            pitem->m_dwState |= ::gen::tree_item_state_expandable;
+            pitem->m_dwState |= ::ca::tree_item_state_expandable;
          }
 
 
@@ -536,7 +536,7 @@ namespace filemanager
 
       straNew.trim_right("/\\");
 
-      gen::tree_item_ptr_array ptraRemove;
+      ca::tree_item_ptr_array ptraRemove;
 
       while(pitem != NULL)
       {
@@ -560,7 +560,7 @@ namespace filemanager
       }
 
 
-//      gen::tree_item_ptr_array ptraRemove;
+//      ca::tree_item_ptr_array ptraRemove;
 
 
 
@@ -596,16 +596,16 @@ namespace filemanager
                pitem = find_item(pitemChild->m_strPath);
                if(pitem != NULL)
                {
-                  pitem = insert_item(pitemChild, gen::RelativeReplace, pitem);
+                  pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
                }
                else
                {
-                  pitem = insert_item(pitemChild, gen::RelativeLastChild, pitemParent);
+                  pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemParent);
                }
 
                if(zip::Util().HasSubFolder(get_app(), pitemChild->m_strPath))
                {
-                  pitem->m_dwState |= ::gen::tree_item_state_expandable;
+                  pitem->m_dwState |= ::ca::tree_item_state_expandable;
                }
 
                if(iLevel > 1)
@@ -658,19 +658,19 @@ namespace filemanager
          pitem = find_item(pitemChild->m_strPath);
          if(pitem != NULL)
          {
-            pitem = insert_item(pitemChild, gen::RelativeReplace, pitem);
+            pitem = insert_item(pitemChild, ca::RelativeReplace, pitem);
             // a refresh or a file monitoring event for folder deletion or creation should
             // the most precisely possible way reset this flag
             pitemChild->m_flags.signalize(::fs::FlagHasSubFolderUnknown);
          }
          else
          {
-            pitem = insert_item(pitemChild, gen::RelativeLastChild, pitemParent);
+            pitem = insert_item(pitemChild, ca::RelativeLastChild, pitemParent);
          }
 
          if(pitemChild->m_flags.is_signalized(::fs::FlagHasSubFolder))
          {
-            pitem->m_dwState |= ::gen::tree_item_state_expandable;
+            pitem->m_dwState |= ::ca::tree_item_state_expandable;
          }
 
          if(iLevel > 1)
@@ -684,7 +684,7 @@ namespace filemanager
 
       if(iChildCount == 0)
       {
-         pitemParent->m_dwState &= ~::gen::tree_item_state_expandable;
+         pitemParent->m_dwState &= ~::ca::tree_item_state_expandable;
       }
 
       dwTimeOut = get_tick_count();
@@ -696,7 +696,7 @@ namespace filemanager
 
    }
 
-   void SimpleFolderTreeInterface::_001UpdateImageList(::gen::tree_item * pitem)
+   void SimpleFolderTreeInterface::_001UpdateImageList(::ca::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
       //         Item & item = m_itema.get_item(pitem->m_dwUser);
@@ -711,7 +711,7 @@ namespace filemanager
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,
-      gen::international::utf8_to_unicode(item.m_strExtra),
+      ca::international::utf8_to_unicode(item.m_strExtra),
       _shell::IconNormal);
 
       item.m_iImageSelected =
@@ -720,7 +720,7 @@ namespace filemanager
       lpsf,
       item.m_lpiidlAbsolute,
       item.m_lpiidlRelative,
-      gen::international::utf8_to_unicode(item.m_strExtra),
+      ca::international::utf8_to_unicode(item.m_strExtra),
       _shell::IconOpen);*/
 
 
@@ -767,9 +767,9 @@ namespace filemanager
    }
 
 
-   void SimpleFolderTreeInterface::_001OnMainPostMessage(gen::signal_object * pobj)
+   void SimpleFolderTreeInterface::_001OnMainPostMessage(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj)
+      SCAST_PTR(::ca::message::base, pbase, pobj)
          switch(pbase->m_wparam)
       {
          case MessageMainPostCreateImageListItemRedraw:
@@ -805,7 +805,7 @@ namespace filemanager
       _017Browse(GetFileManagerItem().m_strPath);
    }
 
-   void SimpleFolderTreeInterface::install_message_handling(::gen::message::dispatch *pinterface)
+   void SimpleFolderTreeInterface::install_message_handling(::ca::message::dispatch *pinterface)
    {
       ::fs::tree::install_message_handling(pinterface);
       IGUI_WIN_MSG_LINK(MessageMainPost, pinterface,  this,  &SimpleFolderTreeInterface::_001OnMainPostMessage);
@@ -892,7 +892,7 @@ namespace filemanager
 #endif
 
 
-   void SimpleFolderTreeInterface::_001OnItemExpand(::gen::tree_item * pitem)
+   void SimpleFolderTreeInterface::_001OnItemExpand(::ca::tree_item * pitem)
    {
       if(typeid(*pitem->m_pitemdata) == System.type_info < ::fs::tree_item > ())
       {
@@ -904,7 +904,7 @@ namespace filemanager
       }
    }
 
-   void SimpleFolderTreeInterface::_001OnItemCollapse(::gen::tree_item * pitem)
+   void SimpleFolderTreeInterface::_001OnItemCollapse(::ca::tree_item * pitem)
    {
       UNREFERENCED_PARAMETER(pitem);
    }
@@ -914,7 +914,7 @@ namespace filemanager
       return true;
    }
 
-   void SimpleFolderTreeInterface::_001OnOpenItem(::gen::tree_item * pitem)
+   void SimpleFolderTreeInterface::_001OnOpenItem(::ca::tree_item * pitem)
    {
       ::fs::item item;
       item.m_strPath         = ((::fs::tree_item *) pitem->m_pitemdata)->m_strPath;
@@ -930,7 +930,7 @@ namespace filemanager
 
    void SimpleFolderTreeInterface::_StartCreateImageList()
    {
-      m_pdataitemCreateImageListStep = (::gen::tree_item *) get_base_item()->m_pchild;
+      m_pdataitemCreateImageListStep = (::ca::tree_item *) get_base_item()->m_pchild;
       SetTimer(TimerCreateImageList, 80, NULL);
    }
 
@@ -949,15 +949,15 @@ namespace filemanager
 
       _001UpdateImageList(m_pdataitemCreateImageListStep);
 
-      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(gen::TreeNavigationProperForward);
+      m_pdataitemCreateImageListStep = m_pdataitemCreateImageListStep->get_item(ca::TreeNavigationProperForward);
 
 
    }
 
-   void SimpleFolderTreeInterface::_001OnTimer(gen::signal_object * pobj)
+   void SimpleFolderTreeInterface::_001OnTimer(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
 
       switch(ptimer->m_nIDEvent)
       {
@@ -1011,7 +1011,7 @@ namespace filemanager
       m_bDelayedListUpdate = true;
 
 
-      ::gen::tree_item * pitem = find_item(m_straMissingUpdate[0]);
+      ::ca::tree_item * pitem = find_item(m_straMissingUpdate[0]);
       if(pitem != NULL)
       {
 

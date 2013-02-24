@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -23,7 +23,7 @@ namespace gen
       m_pmemoryfileOut(new ::primitive::memory_file(papp, m_pmemory));
 
       // (uint64_t) -1 - initially unknown size
-      m_ptimeoutfile = new gen::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1); 
+      m_ptimeoutfile = new ca::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1); 
       m_ptimeoutfile->m_spmutex = m_spmutex;
 
       m_spreader = m_ptimeoutfile;
@@ -49,7 +49,7 @@ namespace gen
 
       m_pmemoryfileOut(new ::primitive::memory_file(papp, m_pmemory));
 
-      m_ptimeoutfile = new gen::timeout_file(papp, m_pmemoryfileOut);
+      m_ptimeoutfile = new ca::timeout_file(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;
       
       m_spreader = m_ptimeoutfile;
@@ -65,7 +65,7 @@ namespace gen
 
    }
       
-   file_position transfer_file::seek(file_offset lOff, ::gen::e_seek nFrom)
+   file_position transfer_file::seek(file_offset lOff, ::ca::e_seek nFrom)
    {
       return m_ptimeoutfile->seek(lOff, nFrom);
    }
@@ -76,5 +76,5 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 

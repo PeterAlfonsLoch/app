@@ -8,7 +8,7 @@ namespace fontopus
 } // namespace fontopus
 
 
-namespace ca2
+namespace ca
 {
 
    namespace http
@@ -23,7 +23,7 @@ namespace ca2
       };
 
       class CLASS_DECL_ca signal :
-         public gen::signal_object
+         public ca::signal_object
       {
       public:
 
@@ -33,9 +33,9 @@ namespace ca2
 
 
          string                     m_strUrl;
-         gen::property_set          m_setPost;
-         gen::property_set          m_setHeaders;
-         gen::property_set          m_set;
+         ca::property_set          m_setPost;
+         ca::property_set          m_setHeaders;
+         ca::property_set          m_set;
          ::http::cookies *          m_pcookies;
          ::fontopus::user *         m_puser;
          string                     m_strVersion;
@@ -48,5 +48,5 @@ namespace ca2
    
    } // namespace http
 
-} // namespace ca2
+} // namespace ca
 

@@ -24,7 +24,7 @@ namespace user
       // do not call delete_contents here !
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::gen::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "Warning: destroying an unsaved document_interface.\n");
 #endif
 
       // there should be no views left!
@@ -207,7 +207,7 @@ namespace user
       {
          strPathName = varFile.propset()["url"];
       }
-      else if(varFile.ca2 < ::gen::file > () != NULL)
+      else if(varFile.ca < ::ca::file > () != NULL)
       {
          strPathName = System.datetime().international().get_gmt_date_time() + "." + get_document_template()->m_set["default_extension"];
       }
@@ -220,17 +220,17 @@ namespace user
       //if ( lstrlen(lpszPathName) >= _MAX_PATH )
       //{
       //   ASSERT(FALSE);
-      // ca2 API requires paths with length < _MAX_PATH
+      // ca API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //   gen::ThrowFileException(::gen::file_exception::badPath);
+      //   ca::ThrowFileException(::ca::file_exception::badPath);
       //}
 
-      //   if( gen::FullPath(szFullPath, lpszPathName) == FALSE )
+      //   if( ca::FullPath(szFullPath, lpszPathName) == FALSE )
       //   {
       //      ASSERT(FALSE);
-      // ca2 API requires paths with length < _MAX_PATH
+      // ca API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
-      //      gen::ThrowFileException(::gen::file_exception::badPath);
+      //      ca::ThrowFileException(::ca::file_exception::badPath);
       //   }
 
       // store the path fully qualified
@@ -247,7 +247,7 @@ namespace user
       set_title(strTitle);
 
       //string strPathName;
-      //gen::international::Utf8ToAcp(strPathName, m_wstrPathName);
+      //ca::international::Utf8ToAcp(strPathName, m_wstrPathName);
       // add it to the file MRU list
       /* xxx if (bAddToMRU)
       guserbase::get(get_app())->AddToRecentFileList(lpszPathName);*/
@@ -295,7 +295,7 @@ namespace user
       if(!do_save(var(var::type_empty)))
       {
 
-         TRACE(::gen::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "Warning: File save-as failed.\n");
 
       }
 
@@ -313,7 +313,7 @@ namespace user
          if(!do_save(var(var::type_empty)))
          {
 
-            TRACE(::gen::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
+            TRACE(::ca::trace::category_AppMsg, 0, "Warning: File save with new name failed.\n");
 
             return FALSE;
 
@@ -326,7 +326,7 @@ namespace user
          if(!do_save(m_strPathName))
          {
 
-            TRACE(::gen::trace::category_AppMsg, 0, "Warning: File save failed.\n");
+            TRACE(::ca::trace::category_AppMsg, 0, "Warning: File save failed.\n");
 
             return FALSE;
 
@@ -392,7 +392,7 @@ namespace user
             }
             catch(base_exception * pe)
             {
-               TRACE(::gen::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
+               TRACE(::ca::trace::category_AppMsg, 0, "Warning: failed to delete file after failed SaveAs.\n");
                pe->Delete();
             }
 
@@ -494,11 +494,11 @@ namespace user
             break;
             }
             }
-            else*/ if (base < gen::file_exception >::bases(e))
+            else*/ if (base < ca::file_exception >::bases(e))
             {
-               ::gen::file_exception * pfe = dynamic_cast < ::gen::file_exception * > (e);
+               ::ca::file_exception * pfe = dynamic_cast < ::ca::file_exception * > (e);
                // throw not_implemented(get_app());
-               TRACE(::gen::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+               TRACE(::ca::trace::category_AppMsg, 0, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
                   pfe->m_lOsError);
 
 
@@ -507,26 +507,26 @@ namespace user
 
                if (!pfe->get_error_message(prompt))
                {
-                  /*               switch (((gen::file_exception_sp*)e)->m_cause)
+                  /*               switch (((ca::file_exception_sp*)e)->m_cause)
                   {
-                  case ::gen::file_exception::fileNotFound:
-                  case ::gen::file_exception::badPath:
+                  case ::ca::file_exception::fileNotFound:
+                  case ::ca::file_exception::badPath:
                   nIDP = __IDP_FAILED_INVALID_PATH;
                   break;
-                  case ::gen::file_exception::diskFull:
+                  case ::ca::file_exception::diskFull:
                   nIDP = __IDP_FAILED_DISK_FULL;
                   break;
-                  case ::gen::file_exception::accessDenied:
+                  case ::ca::file_exception::accessDenied:
                   nIDP = bSaving ? __IDP_FAILED_ACCESS_WRITE :
                   __IDP_FAILED_ACCESS_READ;
                   break;
 
-                  case ::gen::file_exception::badSeek:
-                  case ::gen::file_exception::generic:
-                  case ::gen::file_exception::tooManyOpenFiles:
-                  case ::gen::file_exception::invalidFile:
-                  case ::gen::file_exception::hardIO:
-                  case ::gen::file_exception::directoryFull:
+                  case ::ca::file_exception::badSeek:
+                  case ::ca::file_exception::generic:
+                  case ::ca::file_exception::tooManyOpenFiles:
+                  case ::ca::file_exception::invalidFile:
+                  case ::ca::file_exception::hardIO:
+                  case ::ca::file_exception::directoryFull:
                   break;
 
                   default:
@@ -542,7 +542,7 @@ namespace user
             string strTitle = System.file().title_(lpszPathName);
             //throw not_implemented(get_app());
             /*
-            gen::FormatString1(prompt, nIDP, strTitle);*/
+            ca::FormatString1(prompt, nIDP, strTitle);*/
          }
 
          //System.simple_message_box(prompt, MB_ICONEXCLAMATION, nHelpContext);
@@ -561,7 +561,7 @@ namespace user
    {
 #ifdef DEBUG
       if(is_modified())
-         TRACE(::gen::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "Warning: on_new_document replaces an unsaved document_interface.\n");
 #endif
 
       delete_contents();
@@ -575,23 +575,23 @@ namespace user
    {
 #ifdef DEBUG
       if (is_modified())
-         TRACE(::gen::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
+         TRACE(::ca::trace::category_AppMsg, 0, "Warning: on_open_document replaces an unsaved document_interface.\n");
 #endif
 
-      ::gen::byte_stream spfile;
+      ::ca::byte_stream spfile;
 
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary);
+         spfile = Application.file().get_byte_stream(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary);
 
-         /*if(gen::str::begins_ci(varFile, "uifs://"))
+         /*if(ca::str::begins_ci(varFile, "uifs://"))
          {
-         spfile = ifs(get_app(), "").get_file(varFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary, &fe);
+         spfile = ifs(get_app(), "").get_file(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary, &fe);
          }
          else
          {
-         spfile = System.fs()->get_file(varFile, ::gen::file::mode_read | ::gen::file::shareDenyWrite | ::gen::file::type_binary, &fe);
+         spfile = System.fs()->get_file(varFile, ::ca::file::mode_read | ::ca::file::shareDenyWrite | ::ca::file::type_binary, &fe);
          }*/
       }
       catch(base_exception & e)
@@ -632,12 +632,12 @@ namespace user
    bool document_interface::on_save_document(var varFile)
    {
 
-      ::gen::byte_stream spfile;
+      ::ca::byte_stream spfile;
 
       try
       {
 
-         spfile = Application.file().get_byte_stream(varFile, ::gen::file::defer_create_directory | ::gen::file::mode_create | ::gen::file::mode_write | ::gen::file::shareExclusive);
+         spfile = Application.file().get_byte_stream(varFile, ::ca::file::defer_create_directory | ::ca::file::mode_create | ::ca::file::mode_write | ::ca::file::shareExclusive);
 
       }
       catch(base_exception & e)
@@ -655,7 +655,7 @@ namespace user
 
          wait_cursor wait(get_app());
 
-         if(varFile["xmledit"].ca2 < ::primitive::memory_file > () != NULL)
+         if(varFile["xmledit"].ca < ::primitive::memory_file > () != NULL)
          {
 
          }
@@ -759,7 +759,7 @@ namespace user
       return pview;
    }
 
-   void document_interface::update_all_views(::view * pSender, LPARAM lHint, ::gen::object* pHint)
+   void document_interface::update_all_views(::view * pSender, LPARAM lHint, ::ca::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -775,7 +775,7 @@ namespace user
       }
    }
 
-   void document_interface::send_update(::view * pSender, LPARAM lHint, ::gen::object* pHint)
+   void document_interface::send_update(::view * pSender, LPARAM lHint, ::ca::object* pHint)
       // walk through all views
    {
       ASSERT(pSender == NULL || !m_viewptra.is_empty());
@@ -828,7 +828,7 @@ namespace user
 
    void document_interface::dump(dump_context & dumpcontext) const
    {
-      ::gen::object::dump(dumpcontext);
+      ::ca::object::dump(dumpcontext);
 
       dumpcontext << "m_strTitle = " << m_strTitle;
       dumpcontext << "\nm_strPathName = " << m_strPathName;
@@ -850,7 +850,7 @@ namespace user
 
    void document_interface::assert_valid() const
    {
-      ::gen::object::assert_valid();
+      ::ca::object::assert_valid();
 
       count count = get_view_count();
       for(index index = 0; index < count; index++)
@@ -866,12 +866,12 @@ namespace user
       return m_bNew;
    }
 
-   void document_interface::write(gen::byte_output_stream & ostream)
+   void document_interface::write(ca::byte_output_stream & ostream)
    {
       UNREFERENCED_PARAMETER(ostream);
    }
 
-   void document_interface::read(gen::byte_input_stream & istream)
+   void document_interface::read(ca::byte_input_stream & istream)
    {
       UNREFERENCED_PARAMETER(istream);
    }

@@ -6,7 +6,7 @@
 #include "gen_stream.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -15,10 +15,10 @@ namespace gen
    typedef ca::smart_pointer < file > filesp;
 
 
-} // namespace gen
+} // namespace ca
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -154,7 +154,7 @@ namespace gen
    CLASS_DECL_ca HRESULT ReadStream_FAIL(reader * stream, void * data, ::primitive::memory_size size);
    CLASS_DECL_ca HRESULT WriteStream(writer * stream, const void * data, ::primitive::memory_size size);
 
-} // namespace gen
+} // namespace ca
 
 
 

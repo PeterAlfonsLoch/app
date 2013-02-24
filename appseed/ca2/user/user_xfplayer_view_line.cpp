@@ -1669,9 +1669,9 @@ bool XfplayerViewLine::CalcChar(point pt, strsize &iChar)
 }
 
 
-void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
+void XfplayerViewLine::OnMouseMove(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
    strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {
@@ -1763,7 +1763,7 @@ void XfplayerViewLine::OnMouseMove(gen::signal_object * pobj)
    }
 }
 
-void XfplayerViewLine::OnSetCursor(gen::signal_object * pobj)
+void XfplayerViewLine::OnSetCursor(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    //if(IsInHover())
@@ -1774,9 +1774,9 @@ void XfplayerViewLine::OnSetCursor(gen::signal_object * pobj)
 
 }
 
-void XfplayerViewLine::OnLButtonDown(gen::signal_object * pobj)
+void XfplayerViewLine::OnLButtonDown(ca::signal_object * pobj)
 {
-   SCAST_PTR(gen::message::mouse, pmouse, pobj);
+   SCAST_PTR(ca::message::mouse, pmouse, pobj);
    if(GetSelection().OnLButtonDown(*this, (UINT) pmouse->m_nFlags, pmouse->m_pt))
    {
       pmouse->m_bRet = true;
@@ -1784,9 +1784,9 @@ void XfplayerViewLine::OnLButtonDown(gen::signal_object * pobj)
    }
 }
 
-void XfplayerViewLine::OnLButtonUp(gen::signal_object * pobj)
+void XfplayerViewLine::OnLButtonUp(ca::signal_object * pobj)
 {
-   SCAST_PTR(::gen::message::mouse, pmouse, pobj)
+   SCAST_PTR(::ca::message::mouse, pmouse, pobj)
    strsize iChar;
    if(CalcChar(pmouse->m_pt, iChar))
    {
@@ -1805,7 +1805,7 @@ void XfplayerViewLine::OnLButtonUp(gen::signal_object * pobj)
    }
 }
 
-void XfplayerViewLine::OnTimer(gen::signal_object * pobj)
+void XfplayerViewLine::OnTimer(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    //if(GetSelection().OnTimer(*this, user))

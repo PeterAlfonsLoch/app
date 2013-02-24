@@ -21,7 +21,7 @@ namespace userbase
    }
 
 
-   void step_slider::install_message_handling(::gen::message::dispatch * pdispatch)
+   void step_slider::install_message_handling(::ca::message::dispatch * pdispatch)
    {
       ::user::interaction::install_message_handling(pdispatch);
       IGUI_WIN_MSG_LINK(WM_CREATE, pdispatch, this, &step_slider::_001OnCreate);
@@ -31,16 +31,16 @@ namespace userbase
       IGUI_WIN_MSG_LINK(WM_MOUSEMOVE, pdispatch, this, &step_slider::_001OnMouseMove);
    }
 
-   void step_slider::_001OnCreate(gen::signal_object * pobj)
+   void step_slider::_001OnCreate(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::create, pcreate, pobj);
+//      SCAST_PTR(::ca::message::create, pcreate, pobj);
 
    }
 
-   void step_slider::_001OnTimer(gen::signal_object * pobj)
+   void step_slider::_001OnTimer(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::timer, ptimer, pobj);
+      SCAST_PTR(::ca::message::timer, ptimer, pobj);
       if(ptimer->m_nIDEvent == 1)
       {
          if(m_bHover)
@@ -52,15 +52,15 @@ namespace userbase
       }
    }
 
-   void step_slider::_001OnLButtonDown(gen::signal_object * pobj)
+   void step_slider::_001OnLButtonDown(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       m_iLButtonDown = hit_test(pmouse->m_pt);
    }
 
-   void step_slider::_001OnLButtonUp(gen::signal_object * pobj)
+   void step_slider::_001OnLButtonUp(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       int32_t iLButtonUp = hit_test(pmouse->m_pt);
       int32_t iMin, iMax;
       m_pscalar->GetMinScalar(m_iScalar, iMin);
@@ -73,10 +73,10 @@ namespace userbase
       }
    }
 
-   void step_slider::_001OnMouseMove(gen::signal_object * pobj)
+   void step_slider::_001OnMouseMove(ca::signal_object * pobj)
    {
       UNREFERENCED_PARAMETER(pobj);
-//      SCAST_PTR(::gen::message::mouse, pmouse, pobj);
+//      SCAST_PTR(::ca::message::mouse, pmouse, pobj);
       SetTimer(1, 200, NULL);
       m_bHover = true;
       UpdateHover();

@@ -16,7 +16,7 @@ namespace command
 
 
    class CLASS_DECL_sphere pane_view_update_hint :
-      public ::gen::object  
+      public ::ca::object  
    {
    public:
       enum e_type

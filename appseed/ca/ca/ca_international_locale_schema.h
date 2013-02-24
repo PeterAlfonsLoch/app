@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -10,7 +10,7 @@ namespace gen
 
 
       class CLASS_DECL_ca locale_schema : 
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
 
@@ -75,7 +75,7 @@ namespace gen
    }  // namespace international
 
 
-} // namespace gen
+} // namespace ca
 
 
 

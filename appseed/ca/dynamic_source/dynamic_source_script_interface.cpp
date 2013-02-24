@@ -55,7 +55,7 @@ namespace dynamic_source
    }
 
 
-   gen::property & script_interface::get(const char * pszKey)
+   ca::property & script_interface::get(const char * pszKey)
    {
       return oprop(pszKey);
    }

@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2
+namespace ca
 {
 
 
@@ -13,7 +13,7 @@ namespace ca2
    {
       ::sockets::socket_handler handler(get_app());
       ::sockets::smtp_socket socket(handler);
-      if(!socket.open("ca2.com.de", 25))
+      if(!socket.open("ca.com.de", 25))
          return false;
 
       socket.m_estate = ::sockets::smtp_socket::state_initial;
@@ -50,4 +50,4 @@ namespace ca2
 
 
 
-} // namespace ca2
+} // namespace ca

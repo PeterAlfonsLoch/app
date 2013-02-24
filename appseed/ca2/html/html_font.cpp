@@ -76,7 +76,7 @@ namespace html
       }
       
       
-      bool bUnderline = gen::str::find_ci("underline", m_strTextDecoration) >= 0;
+      bool bUnderline = ca::str::find_ci("underline", m_strTextDecoration) >= 0;
 
       m_font->create_point_font(strName, dSize, iWeight, false, bUnderline);
 

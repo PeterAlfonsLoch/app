@@ -73,7 +73,7 @@ namespace filehandler
 
       virtual void _001OnDraw(::ca::graphics * pdc);
       
-      virtual void install_message_handling(::gen::message::dispatch * pdispatch);
+      virtual void install_message_handling(::ca::message::dispatch * pdispatch);
 
       virtual void refresh();
 

@@ -168,7 +168,7 @@ bool virtual_user_interface::create_message_window()
    {
       /*guie_message_wnd * pwnd = new guie_message_wnd(get_app());
       pwnd->m_pguieForward = this;
-      string strName = "ca2::fontopus::guie_message_wnd::";
+      string strName = "ca::fontopus::guie_message_wnd::";
       strName += typeid(*m_pguie).name();
       if(!pwnd->::ca::window::create(NULL, strName, 0,
       rect(0, 0, 0, 0), ::ca::window::from_handle(HWND_MESSAGE), NULL))
@@ -194,7 +194,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
       return FALSE;
    m_bVisible = (dwStyle & WS_VISIBLE) != 0;
 
-   m_pthread = dynamic_cast < ::gen::application * > (get_app());
+   m_pthread = dynamic_cast < ::ca::application * > (get_app());
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -208,7 +208,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
       pwndThis->set_handle(m_oswindow);
    }*/
 #ifndef METROWIN
-   if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
 #endif
    //m_pimpl = new ::ca::window(get_app());
@@ -280,7 +280,7 @@ bool virtual_user_interface::CreateEx(uint32_t dwExStyle, const char * lpszClass
 
    m_pguie->pre_create_window(cs);
 
-   //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
+   //m_pguie->install_message_handling(dynamic_cast < ::ca::message::dispatch * > (this));
 
    send_message(WM_CREATE, 0, (LPARAM) &cs);
 
@@ -305,7 +305,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    m_bCreate = true;
    if(!create_message_window())
       return FALSE;
-   m_pthread = dynamic_cast < ::gen::application * > (get_app());
+   m_pthread = dynamic_cast < ::ca::application * > (get_app());
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -317,7 +317,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
@@ -345,7 +345,7 @@ bool virtual_user_interface::create(const char * lpszClassName, const char * lps
    }
    m_id      = id;
    m_pguie->m_id      = id;
-   //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
+   //m_pguie->install_message_handling(dynamic_cast < ::ca::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.style = dwStyle;
@@ -414,7 +414,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    m_bCreate = true;
    if(!create_message_window())
       return false;
-   m_pthread = dynamic_cast < ::gen::application * > (get_app());
+   m_pthread = dynamic_cast < ::ca::application * > (get_app());
    m_pthread->m_pthread->add(this);
    m_pguie->m_pthread = m_pthread;
    m_pguie->m_pthread->m_pthread->add(m_pguie);
@@ -426,7 +426,7 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    {
       pwndThis->set_handle(m_oswindow);
    }*/
-   if(dynamic_cast < ::gen::message::dispatch * > (pparent->get_guie()) == NULL)
+   if(dynamic_cast < ::ca::message::dispatch * > (pparent->get_guie()) == NULL)
       return false;
    //m_pimpl = new ::ca::window(get_app());
    //m_pimpl->m_pguie = m_pguie;
@@ -454,8 +454,8 @@ bool virtual_user_interface::create(::user::interaction *pparent, id id)
    }
    m_id      = id;
    m_pguie->m_id = id;
-   //install_message_handling(dynamic_cast < ::gen::message::dispatch * > (pparent));
-   //m_pguie->install_message_handling(dynamic_cast < ::gen::message::dispatch * > (this));
+   //install_message_handling(dynamic_cast < ::ca::message::dispatch * > (pparent));
+   //m_pguie->install_message_handling(dynamic_cast < ::ca::message::dispatch * > (this));
    CREATESTRUCT cs;
    cs.dwExStyle = 0;
    cs.lpszClass = NULL;
@@ -541,7 +541,7 @@ void virtual_user_interface::VirtualOnSize()
 }
 
 
-void virtual_user_interface::install_message_handling(::gen::message::dispatch * pinterface)
+void virtual_user_interface::install_message_handling(::ca::message::dispatch * pinterface)
 {
    IGUI_WIN_MSG_LINK(WM_DESTROY     , pinterface, this, &virtual_user_interface::_001OnDestroy);
    IGUI_WIN_MSG_LINK(WM_NCDESTROY   , pinterface, this, &virtual_user_interface::_001OnNcDestroy);
@@ -553,7 +553,7 @@ void virtual_user_interface::install_message_handling(::gen::message::dispatch *
    IGUI_WIN_MSG_LINK(WM_MOVE        , pinterface, this, &virtual_user_interface::_001OnMove);
 }
 
-void virtual_user_interface::_002InstallMessageHandling(::gen::message::dispatch * pinterface)
+void virtual_user_interface::_002InstallMessageHandling(::ca::message::dispatch * pinterface)
 {
    UNREFERENCED_PARAMETER(pinterface);
 }
@@ -594,7 +594,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
 
 
 
-   ::ca::smart_pointer < ::gen::message::base > spbase;
+   ::ca::smart_pointer < ::ca::message::base > spbase;
 
    spbase(get_base(m_pguie, uiMessage, wparam, lparam));
 
@@ -639,7 +639,7 @@ LRESULT virtual_user_interface::send_message(UINT uiMessage, WPARAM wparam, LPAR
 LRESULT virtual_user_interface::send_message(XEvent * pevent)
 {
 
-   ::ca::smart_pointer < ::gen::message::base > spbase;
+   ::ca::smart_pointer < ::ca::message::base > spbase;
 
    spbase(get_base(pevent, m_pguie));
 
@@ -847,7 +847,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 #ifdef WINDOWSEX
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-      TRACE(::gen::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
+      TRACE(::ca::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");
 
 #endif
 
@@ -934,7 +934,7 @@ void virtual_user_interface::RepositionBars(UINT nIDFirst, UINT nIDLast, id nIDL
 
    // move and resize all the windows at once!
    if (layout.hDWP == NULL || !::EndDeferWindowPos(layout.hDWP))
-      TRACE(::gen::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
+      TRACE(::ca::trace::category_AppMsg, 0, "Warning: DeferWindowPos failed - low system resources.\n");*/
 
 }
 
@@ -1149,9 +1149,9 @@ bool virtual_user_interface::DestroyWindow()
 }
 
 
-void virtual_user_interface::message_handler(gen::signal_object * pobj)
+void virtual_user_interface::message_handler(ca::signal_object * pobj)
 {
-   SCAST_PTR(gen::message::base, pbase, pobj);
+   SCAST_PTR(ca::message::base, pbase, pobj);
    //LRESULT lresult = 0;
    if(m_pguie != NULL)
    {
@@ -1159,7 +1159,7 @@ void virtual_user_interface::message_handler(gen::signal_object * pobj)
       if(pobj->m_bRet)
          return;
    }
-   if(pbase->m_uiMessage == ::gen::message_event)
+   if(pbase->m_uiMessage == ::ca::message_event)
    {
       if(m_pguie != this && m_pguie != NULL)
       {
@@ -1366,13 +1366,13 @@ void virtual_user_interface::_001WindowRestore()
    ::user::interaction::_001WindowRestore();
 }
 
-void virtual_user_interface::_001OnDestroy(gen::signal_object * pobj)
+void virtual_user_interface::_001OnDestroy(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 
 }
 
-void virtual_user_interface::_001OnNcDestroy(gen::signal_object * pobj)
+void virtual_user_interface::_001OnNcDestroy(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 
@@ -1440,12 +1440,12 @@ void virtual_user_interface::SendMessageToDescendants(UINT message,   WPARAM wPa
 
 }
 
-void virtual_user_interface::_001OnMove(gen::signal_object * pobj)
+void virtual_user_interface::_001OnMove(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
 }
 
-void virtual_user_interface::_001OnSize(gen::signal_object * pobj)
+void virtual_user_interface::_001OnSize(ca::signal_object * pobj)
 {
    UNREFERENCED_PARAMETER(pobj);
    if(m_pguie != NULL)

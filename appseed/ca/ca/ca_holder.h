@@ -4,12 +4,12 @@
 
 
 // ph - pointer holder
-#define ph(holding_type) ::gen::holder < holding_type >
-#define pha(holding_type) ::gen::holder_array < holding_type >
-#define phm(key, arg_key, holding_type) ::gen::holder_map < key, arg_key, holding_type >
+#define ph(holding_type) ::ca::holder < holding_type >
+#define pha(holding_type) ::ca::holder_array < holding_type >
+#define phm(key, arg_key, holding_type) ::ca::holder_map < key, arg_key, holding_type >
 
 
-namespace gen
+namespace ca
 {
    template < class T >
    class holder_array;
@@ -19,7 +19,7 @@ namespace gen
 
    template < class T >
    class holder :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    protected:
       friend class holder_array < T >;
@@ -119,7 +119,7 @@ namespace gen
 
    template < class T >
    class holder_array :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -323,7 +323,7 @@ namespace gen
 
    template < class KEY, class ARG_KEY, class T >
    class holder_map :
-      virtual public ::gen::object
+      virtual public ::ca::object
    {
    public:
 
@@ -393,7 +393,7 @@ namespace gen
       }
    };
 
- }// namespace gen
+ }// namespace ca
 
 
 
@@ -545,7 +545,7 @@ remove_listener(pointer_array<DERIVED > * plistener)
 
 
 
-namespace gen
+namespace ca
 {
 
    template < class DERIVED >
@@ -559,7 +559,7 @@ namespace gen
       }
    }
 
-} // namespace gen
+} // namespace ca
 
 
 

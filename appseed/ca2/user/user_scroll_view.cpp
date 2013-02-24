@@ -130,25 +130,25 @@ namespace user
 
    }
 
-   void scroll_view::_001OnCreate(gen::signal_object * pobj)
+   void scroll_view::_001OnCreate(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(::gen::message::create, pcreate, pobj);
+      SCAST_PTR(::ca::message::create, pcreate, pobj);
 
       if(pcreate->previous())
          return;
 
    }
 
-   void scroll_view::_001OnSize(gen::signal_object * pobj)
+   void scroll_view::_001OnSize(ca::signal_object * pobj)
    {
       pobj->previous();
       _001LayoutScrollBars();
    }
 
-   void scroll_view::_001OnUser9654(gen::signal_object * pobj)
+   void scroll_view::_001OnUser9654(ca::signal_object * pobj)
    {
-      SCAST_PTR(::gen::message::base, pbase, pobj);
+      SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
          if(pbase->m_lparam == 0)
@@ -158,11 +158,11 @@ namespace user
       }
    }
 
-   void scroll_view::_001OnVScroll(gen::signal_object * pobj)
+   void scroll_view::_001OnVScroll(ca::signal_object * pobj)
    {
 
 
-      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
 
 
       keeper < bool > keepVScroll(&m_scrollinfo.m_bVScroll, true, false, true);
@@ -180,11 +180,11 @@ namespace user
    }
 
 
-   void scroll_view::_001OnHScroll(gen::signal_object * pobj)
+   void scroll_view::_001OnHScroll(ca::signal_object * pobj)
    {
 
 
-      SCAST_PTR(::gen::message::scroll, pscroll, pobj);
+      SCAST_PTR(::ca::message::scroll, pscroll, pobj);
 
 
       keeper < bool > keepHScroll(&m_scrollinfo.m_bHScroll, true, false, true);
@@ -218,10 +218,10 @@ namespace user
    }
 
 
-   void scroll_view::_001OnMouseWheel(gen::signal_object * pobj)
+   void scroll_view::_001OnMouseWheel(ca::signal_object * pobj)
    {
 
-      SCAST_PTR(::gen::message::mouse_wheel, pmousewheel, pobj);
+      SCAST_PTR(::ca::message::mouse_wheel, pmousewheel, pobj);
 
       if(pmousewheel->GetDelta() > 0)
       {
@@ -323,7 +323,7 @@ namespace user
 
 
 
-   void scroll_view::install_message_handling(::gen::message::dispatch * pinterface)
+   void scroll_view::install_message_handling(::ca::message::dispatch * pinterface)
    {
 
 
@@ -474,7 +474,7 @@ namespace user
    }
 
 
-}  // namespace gen
+}  // namespace ca
 
 
 

@@ -4,7 +4,7 @@
 
 CLASS_DECL_ca int64_t strtoi(const char * psz)
 {
-   return gen::str::to_int64(psz);
+   return ca::str::to_int64(psz);
 }
 
 CLASS_DECL_ca int64_t strtoi(const wchar_t * psz)
@@ -51,7 +51,7 @@ void const_empty_string::set_string(const char * psz)
    throw "cannot set const string";
 }
 
-namespace gen
+namespace ca
 {
    CLASS_DECL_ca const_empty_string g_strEmpty;
 

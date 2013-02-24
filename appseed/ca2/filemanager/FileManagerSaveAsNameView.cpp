@@ -13,7 +13,7 @@ FileManagerSaveAsView::FileManagerSaveAsView(::ca::application * papp) :
 
 }
 
-void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::gen::object* phint)
+void FileManagerSaveAsView::on_update(::view * pSender, LPARAM lHint, ::ca::object* phint)
 {
    FileManagerViewInterface::on_update(pSender, lHint, phint);
    if(phint != NULL)

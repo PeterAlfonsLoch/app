@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -44,10 +44,10 @@ namespace gen
          _size += addSize; 
       }
 
-      using ::gen::writer::write;
+      using ::ca::writer::write;
       void write(const void *data, uint_ptr size, uint_ptr *processedSize);
 
 
    };
 
-} // namespace gen
+} // namespace ca

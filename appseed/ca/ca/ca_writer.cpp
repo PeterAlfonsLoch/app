@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -115,7 +115,7 @@ namespace gen
       if(m_spwriter.is_set())
       {
          m_spwriter->close();
-         gen::release(m_spwriter.m_p);
+         ca::release(m_spwriter.m_p);
       }
    }
 
@@ -131,7 +131,7 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca
 
 
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 
-namespace gen
+namespace ca
 {
 
    file_set::file_set()
@@ -87,4 +87,4 @@ namespace gen
    }
 
 
-} // namespace gen
+} // namespace ca

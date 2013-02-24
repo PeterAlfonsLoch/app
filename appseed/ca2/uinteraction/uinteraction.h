@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "ca2/databaseuser/databaseuser.h"
+#include "ca/databaseuser/databaseuser.h"
 
 
 namespace uinteraction
@@ -14,7 +14,7 @@ namespace uinteraction
 } // namespace uinteraction
 
 
-#include "ca2/uinteraction/frame/frame.h"
+#include "ca/uinteraction/frame/frame.h"
 
 
 #include "uinteraction_uinteraction.h"

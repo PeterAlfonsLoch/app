@@ -25,7 +25,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_ca script_manager :
-      virtual public ::gen::thread,
+      virtual public ::ca::thread,
       virtual public ::ca::message_window_simple_callback
    {
    public:
@@ -48,7 +48,7 @@ namespace dynamic_source
 
       
       class CLASS_DECL_ca session :
-         virtual public ::gen::object
+         virtual public ::ca::object
       {
       public:
 
@@ -57,7 +57,7 @@ namespace dynamic_source
 
 
          mutex                   m_mutex;
-         gen::property_set       m_set;
+         ca::property_set       m_set;
 
 
       };
@@ -190,7 +190,7 @@ namespace dynamic_source
 
 
       script_instance * get(const string & strName);
-      using ::gen::thread::handle;
+      using ::ca::thread::handle;
       virtual void handle(::dynamic_source::httpd_socket * psocket);
       script_instance * get_output_internal(::dynamic_source::script_instance * pinstanceParent, const string & strName);
       using thread::run;
@@ -202,7 +202,7 @@ namespace dynamic_source
 
 
 
-      virtual void message_window_message_handler(gen::signal_object * pobj);
+      virtual void message_window_message_handler(ca::signal_object * pobj);
 
       void clear_include_matches();
       static UINT c_cdecl clear_include_matches_FolderWatchThread(LPVOID lpParam); // thread procedure

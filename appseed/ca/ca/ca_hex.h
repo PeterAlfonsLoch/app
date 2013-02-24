@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace gen
+namespace ca
 {
 
 
@@ -21,7 +21,7 @@ namespace gen
    } // namespace hex
 
 
-} // namespace gen
+} // namespace ca
 
 
 
