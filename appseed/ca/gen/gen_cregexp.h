@@ -134,7 +134,7 @@ public:
   SRegInfo();
   ~SRegInfo();
 
-#include "gen_memory_operator.h"
+////#include "gen_memory_operator.h"
 
   EOps op;
   union{

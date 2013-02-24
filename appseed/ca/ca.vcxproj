@@ -939,14 +939,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="ca2\ca2_datetime.h" />
     <ClInclude Include="ca2\ca2_email.h" />
     <ClInclude Include="ca2\ca2_file.h" />
-    <ClInclude Include="ca2\ca2_filehandler_handler.h" />
-    <ClInclude Include="ca2\ca2_filehandler_library.h" />
-    <ClInclude Include="ca2\ca2_filehandler_menu_library.h" />
-    <ClInclude Include="ca2\ca2_filehandler_tree_data.h" />
-    <ClInclude Include="ca2\ca2_filehandler_tree_interface.h" />
-    <ClInclude Include="ca2\ca2_filehandler_tree_item.h" />
-    <ClInclude Include="ca2\ca2_html.h" />
-    <ClInclude Include="ca2\ca2_html_file.h" />
     <ClInclude Include="ca2\ca2_http.h" />
     <ClInclude Include="ca2\ca2_http_application.h" />
     <ClInclude Include="ca2\ca2_http_get_socket.h" />
@@ -1370,13 +1362,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="fs\fs_ifs.h" />
     <ClInclude Include="fs\fs_ifs_file.h" />
     <ClInclude Include="fs\fs_native_fs.h" />
-    <ClInclude Include="gen\aaa_inline_want_to_remove.h" />
-    <ClInclude Include="gen\aaa_kbase_want_to_remove.h" />
-    <ClInclude Include="gen\aaa_keep_ptr_want_to_remove.h" />
-    <ClInclude Include="gen\aaa_language_string_want_to_remove.h" />
-    <ClInclude Include="gen\aaa_want_to_remove_ex17_memory_file.h" />
-    <ClInclude Include="gen\gen0_0.h" />
-    <ClInclude Include="gen\gen0_1.h" />
+    <ClInclude Include="gen\_gen0_0.h" />
+    <ClInclude Include="gen\_gen0_1.h" />
     <ClInclude Include="gen\gen_0.h" />
     <ClInclude Include="gen\gen_1.h" />
     <ClInclude Include="gen\gen_allocate.h" />
@@ -1410,7 +1397,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_file_set.h" />
     <ClInclude Include="gen\gen_file_status.h" />
     <ClInclude Include="gen\gen_file_stream.h" />
-    <ClInclude Include="gen\gen_file_system.h" />
     <ClInclude Include="gen\gen_fixed_alloc.h" />
     <ClInclude Include="gen\gen_flags.h" />
     <ClInclude Include="gen\gen.h" />
@@ -1428,7 +1414,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_file_association.h" />
     <ClInclude Include="gen\gen_folder_watch.h" />
     <ClInclude Include="gen\gen_fs_interface.h" />
-    <ClInclude Include="gen\gen_full_pointer.h" />
     <ClInclude Include="gen\gen_geometry.h" />
     <ClInclude Include="gen\gen_heap.h" />
     <ClInclude Include="gen\gen_hex.h" />
@@ -1448,12 +1433,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_match.h" />
     <ClInclude Include="gen\gen_math.h" />
     <ClInclude Include="gen\gen_math_rng.h" />
-    <ClInclude Include="gen\gen_memory_file.h" />
-    <ClInclude Include="gen\gen_memory_operator.h" />
     <ClInclude Include="gen\gen_message.h" />
     <ClInclude Include="gen\gen_microtimer.h" />
     <ClInclude Include="gen\gen_object.h" />
-    <ClInclude Include="gen\gen_os.h" />
     <ClInclude Include="gen\gen_os_history.h" />
     <ClInclude Include="gen\gen_output_stream_flush_interface.h" />
     <ClInclude Include="gen\gen_out_buffer.h" />
@@ -1462,8 +1444,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_plain_text_serializable.h" />
     <ClInclude Include="gen\gen_plain_text_stream.h" />
     <ClInclude Include="gen\gen_plain_text_string_stream.h" />
-    <ClInclude Include="gen\gen_plain_text_writable.h" />
-    <ClInclude Include="gen\gen_plain_text_writer.h" />
     <ClInclude Include="gen\gen_plex.h" />
     <ClInclude Include="gen\gen_plex_heap.h" />
     <ClInclude Include="gen\gen_pointer_manager.h" />
@@ -1482,12 +1462,9 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_service.h" />
     <ClInclude Include="gen\gen_signal.h" />
     <ClInclude Include="gen\gen_signal_thread.h" />
-    <ClInclude Include="gen\gen_simple_list.h" />
     <ClInclude Include="gen\gen_simple_tree_data.h" />
     <ClInclude Include="gen\gen_simple_tree_item_data.h" />
     <ClInclude Include="gen\gen_size_count_writer.h" />
-    <ClInclude Include="gen\gen_sockets.h" />
-    <ClInclude Include="gen\gen_specialty.h" />
     <ClInclude Include="gen\gen_str.h" />
     <ClInclude Include="gen\gen_istring.h" />
     <ClInclude Include="gen\gen_stream.h" />
@@ -1519,10 +1496,8 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_var_array.h" />
     <ClInclude Include="gen\gen_go_thread.h" />
     <ClInclude Include="gen\gen_muldiv32.h" />
-    <ClInclude Include="gen\gen_muldiv64.h" />
     <ClInclude Include="gen\gen_reference.h" />
     <ClInclude Include="gen\gen_resource.h" />
-    <ClInclude Include="gen\gen_simple_collection.h" />
     <ClInclude Include="gen\gen_simple_thread.h" />
     <ClInclude Include="gen\gen_back_insert_iterator.h" />
     <ClInclude Include="gen\gen_base.h" />
@@ -1536,7 +1511,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include="gen\gen_insert_iterator.h" />
     <ClInclude Include="gen\gen_iterator.h" />
     <ClInclude Include="gen\gen_std_pair.h" />
-    <ClInclude Include="gen\gen_time.h" />
     <ClInclude Include="gen\gen_trace.h" />
     <ClInclude Include="gen\gen_template.h" />
     <ClInclude Include="gen\gen_wait_cursor.h" />
@@ -1666,7 +1640,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClInclude Include=".\primitive\primitive_memory_base.h" />
     <ClInclude Include=".\primitive\primitive_memory_container.h" />
     <ClInclude Include=".\primitive\primitive_memory_file.h" />
-    <ClInclude Include=".\primitive\primitive_memory_operator.h" />
     <ClInclude Include=".\primitive\primitive_natural.h" />
     <ClInclude Include=".\primitive\primitive_numeric_info.h" />
     <ClInclude Include=".\primitive\primitive_point.h" />
@@ -2522,7 +2495,6 @@ copy "$(SolutionDir)..\..\thirdparty\binary\libvorbisfile.dll" "$(OutDir)libvorb
     <ClCompile Include="gen\gen_file_set.cpp" />
     <ClCompile Include="gen\gen_file_sssociation.cpp" />
     <ClCompile Include="gen\gen_file_stream.cpp" />
-    <ClCompile Include="gen\gen_file_system.cpp" />
     <ClCompile Include="gen\gen_fixed_alloc.cpp" />
     <ClCompile Include="gen\gen_flags.cpp" />
     <ClCompile Include="gen\gen_folder_watch.cpp" />

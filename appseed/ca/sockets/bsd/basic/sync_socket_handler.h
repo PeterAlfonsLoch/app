@@ -14,7 +14,7 @@
 
 
          socket *             m_psocket;
-         gen::memory_file     m_file;
+         ::primitive::memory_file     m_file;
          socket_handler       m_handler;
          int32_t                  m_iDefaultTimeout;
 

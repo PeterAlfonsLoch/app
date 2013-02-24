@@ -13,13 +13,13 @@ namespace gen
          
       ::gen::timeout_file *         m_ptimeoutfile;
       sp(::primitive::memory_base)  m_pmemory;
-      sp(::gen::memory_file)        m_pmemoryfileIn;
-      sp(::gen::memory_file)        m_pmemoryfileOut;
+      sp(::primitive::memory_file)        m_pmemoryfileIn;
+      sp(::primitive::memory_file)        m_pmemoryfileOut;
       sp(mutex)                     m_spmutex;                      
 
          
       transfer_file(::ca::application * papp, mutex * pmutex = NULL);
-      transfer_file(::ca::application * papp, ::gen::memory_file * pmemoryfileIn);
+      transfer_file(::ca::application * papp, ::primitive::memory_file * pmemoryfileIn);
       virtual ~transfer_file();
 
 

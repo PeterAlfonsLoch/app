@@ -12,7 +12,7 @@ namespace fs
 
 
       ::ca::smart_pointer < sockets::http::file >  m_httpfile;
-      gen::memory_file                             m_memfile;
+      ::primitive::memory_file                             m_memfile;
       var                                          m_varFile;
 
 

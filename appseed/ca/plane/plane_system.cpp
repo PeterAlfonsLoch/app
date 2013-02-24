@@ -1455,7 +1455,7 @@ namespace plane
       int32_t iLen = strlen(filename);
       gzFile gzf = gzopen(filename, "rb");
       int32_t iRead;
-      gen::memory_file memfile;
+      ::primitive::memory_file memfile;
       int32_t iBufSize = (1024 * 256);
       char * buf = (char *) malloc(iBufSize);
       while((iRead = gzread(gzf, buf, iBufSize)) > 0)
@@ -1473,37 +1473,37 @@ namespace plane
       return bOk;*/
    }
 
-   ::ca4::compress & system::compress()
+   ::ca2::compress & system::compress()
    {
       return m_compress;
    }
 
-   ::ca4::patch & system::patch()
+   ::ca2::patch & system::patch()
    {
       return m_patch;
    }
 
-   class ::ca4::crypt & system::crypt()
+   class ::ca2::crypt & system::crypt()
    {
       return m_spcrypt;
    }
 
-   class ::ca4::email & system::email()
+   class ::ca2::email & system::email()
    {
       return m_email;
    }
 
-   class ::ca4::http::system & system::http()
+   class ::ca2::http::system & system::http()
    {
       return m_http;
    }
 
-   ::ca4::file & system::file36()
+   ::ca2::file & system::file36()
    {
       return m_file4;
    }
 
-   ::ca4::copydesk & system::copydesk()
+   ::ca2::copydesk & system::copydesk()
    {
       return m_spcopydesk;
    }

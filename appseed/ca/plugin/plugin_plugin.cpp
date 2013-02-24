@@ -479,7 +479,7 @@ namespace plugin
             // in ca library normally System or Application.http() is used
             string strPluginData;
 
-            ::ca4::http::e_status estatus = ::ca4::http::status_failed;
+            ::ca2::http::e_status estatus = ::ca2::http::status_failed;
 
             string strUrl = strPluginUrl;
 
@@ -496,12 +496,12 @@ namespace plugin
 
                Application.http().get(strUrl, strPluginData, post, headers, set, NULL, NULL, NULL, &estatus);
 
-               if(estatus == ::ca4::http::status_ok)
+               if(estatus == ::ca2::http::status_ok)
                   break;
 
             }
 
-            if(estatus == ::ca4::http::status_ok)
+            if(estatus == ::ca2::http::status_ok)
             {
 
                open_ca2_string(strPluginData);

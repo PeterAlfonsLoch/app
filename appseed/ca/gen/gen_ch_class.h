@@ -39,9 +39,6 @@ namespace gen
 
       bool in_class(const char *pszUtf8Char) const;
 
-      #undef CNAME
-      #define CNAME "ch_class"
-      #include "ca/primitive/primitive_memory_operator.h"
 
    };
 

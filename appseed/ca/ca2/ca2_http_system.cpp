@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca4
+namespace ca2
 {
 
 
@@ -202,12 +202,12 @@ namespace ca4
 
 
 
-      ::ca4::http::system::proxy * system::get_proxy(const char * pszUrl)
+      ::ca2::http::system::proxy * system::get_proxy(const char * pszUrl)
       {
 
          single_lock sl(&m_mutexProxy, true);
 
-         ::collection::string_map < ::ca4::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
+         ::collection::string_map < ::ca2::http::system::proxy * >::pair * ppair = m_mapProxy.PLookup(pszUrl);
 
          if(ppair == NULL || (::get_tick_count() - ppair->m_value->m_dwLastChecked) > (84 * 1000))
          {
@@ -217,7 +217,7 @@ namespace ca4
                m_mapPac.remove_key(pszUrl);
             }
 
-            class ::ca4::http::system::proxy * pproxy = new class ::ca4::http::system::proxy(get_app());
+            class ::ca2::http::system::proxy * pproxy = new class ::ca2::http::system::proxy(get_app());
 
             pproxy->m_dwLastChecked = get_tick_count();
 
@@ -311,7 +311,7 @@ namespace ca4
 
 #else
 
-         ::ca4::http::system::proxy * pproxy = get_proxy(pszUrl);
+         ::ca2::http::system::proxy * pproxy = get_proxy(pszUrl);
 
          if(pproxy == NULL)
             return;
@@ -332,7 +332,7 @@ namespace ca4
       }
 
 
-      void system::config_proxy(const char * pszUrl, ::ca4::http::system::proxy * pproxy)
+      void system::config_proxy(const char * pszUrl, ::ca2::http::system::proxy * pproxy)
       {
 
          xml::document doc(get_app());
@@ -567,7 +567,7 @@ namespace ca4
             }*/
             delete psession;
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -915,7 +915,7 @@ retry:
                   if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
                      uint32_t dwTimeTelmo2 = get_tick_count();
-                     TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                     TRACE0("Not Licensed Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -929,7 +929,7 @@ retry:
             }
 
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          }
          catch(...)
@@ -1262,7 +1262,7 @@ retry:
             }
             delete psocket;
             uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            TRACE0("Not Opened/Connected Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -1345,7 +1345,7 @@ retry:
                if(gen::str::begins_ci(strCa2Realm, "not licensed: "))
                {
                   uint32_t dwTimeTelmo2 = get_tick_count();
-                  TRACE0("Not Licensed Result Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                  TRACE0("Not Licensed Result Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -1359,7 +1359,7 @@ retry:
          }
 
          uint32_t dwTimeTelmo2 = get_tick_count();
-         TRACE0("Total time ca4::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("Total time ca2::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + gen::str::from(dwTimeTelmo2 - dwTimeTelmo1));
 
          return psocket;
 
@@ -1701,7 +1701,7 @@ retry:
 
       bool system::put(const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
-         gen::memory_file file(get_app(), &memory);
+         ::primitive::memory_file file(get_app(), &memory);
          return put(pszUrl, &file, puser);
       }
 
@@ -1723,7 +1723,7 @@ retry:
       bool system::put(string & strResponse, const char * pszUrl, primitive::memory_base & memory, ::fontopus::user * puser)
       {
 
-         gen::memory_file file(get_app(), &memory);
+         ::primitive::memory_file file(get_app(), &memory);
 
          return put(strResponse, pszUrl, &file, puser);
 
@@ -1750,5 +1750,5 @@ retry:
    } // namespace system
 
 
-} // namespace ca4
+} // namespace ca2
 

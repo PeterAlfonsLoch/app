@@ -13,7 +13,7 @@
       public:
 
          mutex                   m_mutexData;
-         gen::memory_file        m_memoryfile;
+         ::primitive::memory_file        m_memoryfile;
          gen::file *             m_pfile;
 
 

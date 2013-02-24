@@ -4,7 +4,7 @@
 typedef struct MD5state_st MD5_CTX;
 
 
-namespace ca4
+namespace ca2
 {
 
 
@@ -51,6 +51,6 @@ namespace ca4
    };
 
 
-} // namespace ca4
+} // namespace ca2
 
 

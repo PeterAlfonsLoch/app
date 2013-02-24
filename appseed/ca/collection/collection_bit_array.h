@@ -41,8 +41,6 @@ public:
 
 
 
-#define CNAME "bit_array"
-#include "ca/primitive/primitive_memory_operator.h"
 
   void ensure_size(int32_t iSize, bool bSet = false);
   void set_size(int32_t iBitCount, bool set = false);

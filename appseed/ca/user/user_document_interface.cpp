@@ -655,7 +655,7 @@ namespace user
 
          wait_cursor wait(get_app());
 
-         if(varFile["xmledit"].ca2 < gen::memory_file > () != NULL)
+         if(varFile["xmledit"].ca2 < ::primitive::memory_file > () != NULL)
          {
 
          }

@@ -27,7 +27,7 @@
          string      m_strRequest;
          primitive::memory      m_memoryBody;
          primitive::memory      m_memoryBuf;
-         gen::memory_file m_fileBody;
+         ::primitive::memory_file m_fileBody;
          int32_t         m_iContentLength;
          bool        m_bHeaders;
          bool        m_bDirect;

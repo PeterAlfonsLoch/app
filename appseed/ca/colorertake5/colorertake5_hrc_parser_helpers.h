@@ -23,7 +23,7 @@ struct KeywordInfo{
   class region* region;
   int32_t  ssShorter;
 
-//#define CNAME "KeywordInfo"
+////#define CNAME "KeywordInfo"
 //#include "memory_operator.h"
 
 };
@@ -44,9 +44,9 @@ public:
   void sortList();
   void substrIndex();
 
-  #undef CNAME
-#define CNAME "KeywordList"
-#include "ca/gen/gen_memory_operator.h"
+//  //#undef CNAME 
+////#define CNAME "KeywordList"
+////#include "ca/gen/gen_memory_operator.h"
 
 };
 
@@ -66,9 +66,9 @@ public:
   ~VirtualEntry(){
   };
 
-  #undef CNAME
-#define CNAME "VirtualEntry"
-#include "ca/gen/gen_memory_operator.h"
+//  //#undef CNAME 
+////#define CNAME "VirtualEntry"
+////#include "ca/gen/gen_memory_operator.h"
 
 };
 
@@ -100,9 +100,9 @@ public:
   cregexp *start, *end;
   bool innerRegion, lowPriority, lowContentPriority;
 
-#undef CNAME
-#define CNAME "SchemeNode"
-#include "ca/gen/gen_memory_operator.h"
+////#undef CNAME 
+////#define CNAME "SchemeNode"
+////#include "ca/gen/gen_memory_operator.h"
 
   SchemeNode();
   ~SchemeNode();
@@ -120,9 +120,9 @@ public:
   const string getName() const { return schemeName; };
   file_type *getFileType() const { return (file_type*)fileType; };
 
-#undef CNAME
-#define CNAME "scheme_impl"
-#include "ca/gen/gen_memory_operator.h"
+//#undef CNAME 
+//#define CNAME "scheme_impl"
+//#include "ca/gen/gen_memory_operator.h"
 
 protected:
   string schemeName;

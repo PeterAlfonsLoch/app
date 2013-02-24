@@ -538,7 +538,7 @@ void CSHA1::GetHash(UINT_8 *puDest)
 //}
 //
 
-namespace ca4
+namespace ca2
 {
 
  namespace oAuthLibDefaults
@@ -1062,7 +1062,7 @@ namespace ca4
       /* Get url encoded base64 signature using request type, url and parameters */
       getSignature(eType, pureUrl, setSignature, oauthSignature);
 
-      ca4::oAuthKeyValuePairs pairs(get_app());
+      ca2::oAuthKeyValuePairs pairs(get_app());
       /* Now, again build key-value pairs with signature this time */
       buildOAuthTokenKeyValuePairs(includeOAuthVerifierPin, pairs, oauthSignature, setHeader);
 
@@ -1204,5 +1204,5 @@ namespace ca4
    }
 
 
-} // namespace ca4
+} // namespace ca2
 

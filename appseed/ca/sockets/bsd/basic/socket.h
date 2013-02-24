@@ -66,7 +66,7 @@ namespace sockets
 
       SOCKET                  m_socket; ///< File descriptor
       socket_handler_base &   m_handler; ///< Reference of socket_handler_base in control of this socket
-      gen::memory_file        m_memfileInput;
+      ::primitive::memory_file        m_memfileInput;
       bool                    m_bEnd; // should finish by not sending no more writes
       string                  m_strCat;
       callback *              m_pcallback;

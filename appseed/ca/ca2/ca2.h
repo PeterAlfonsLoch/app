@@ -76,7 +76,7 @@ namespace ca2
 #include "ca/compress/compress.h"
 #include "ca/javascript/javascript.h"
 
-// former ca4 - changed to ca2 on 2013-02-21
+// former ca2 - changed to ca2 on 2013-02-21
 ////////////////////////////////////////////////////////////////
 // ca2api
 // Layer level 5

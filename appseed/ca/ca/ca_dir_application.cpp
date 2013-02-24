@@ -79,7 +79,7 @@ namespace ca
             strFile.replace("\\\\", "\\", 2);
             if(Application.file().exists(strFile))
                return strFile;
-            System.file().output(get_app(), strFile, &System.compress(), &::ca4::compress::null, strPath);
+            System.file().output(get_app(), strFile, &System.compress(), &::ca2::compress::null, strPath);
             return strFile;
          }
          else

@@ -6,7 +6,7 @@ namespace gen
 
 
    class CLASS_DECL_ca byte_stream_memory_file :
-      virtual public gen::memory_file,
+      virtual public ::primitive::memory_file,
       virtual public gen::byte_stream
    {
    public:

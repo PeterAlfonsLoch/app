@@ -6,7 +6,7 @@ namespace zip
 {
 
    class CLASS_DECL_ca memory_file :
-      public ::gen::memory_file
+      public ::primitive::memory_file
 
    {
    public:

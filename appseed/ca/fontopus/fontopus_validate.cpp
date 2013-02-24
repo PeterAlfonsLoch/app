@@ -730,7 +730,7 @@ namespace fontopus
 
    int32_t login_thread::run()
    {
-      ca4::http::e_status estatus;
+      ca2::http::e_status estatus;
       string strResponse = Login(&estatus);
       e_result iAuth = result_fail;
       xml::document doc(get_app());
@@ -811,7 +811,7 @@ namespace fontopus
 
          delete m_puser;
 
-         if(estatus == ca4::http::status_connection_timed_out)
+         if(estatus == ca2::http::status_connection_timed_out)
          {
 
             iAuth = result_time_out;
@@ -831,7 +831,7 @@ namespace fontopus
       return TRUE;
    }
 
-   string login_thread::Login(ca4::http::e_status * pestatus)
+   string login_thread::Login(ca2::http::e_status * pestatus)
    {
       if(m_straRequestingServer.get_count() <= 0)
       {
@@ -930,7 +930,7 @@ namespace fontopus
    }
 
 
-   string login_thread::NetLogin(ca4::http::e_status * pestatus)
+   string login_thread::NetLogin(ca2::http::e_status * pestatus)
    {
 
       if(System.m_authmap[m_strUsername].m_mapServer[m_strRequestingServer].get_length() > 32)

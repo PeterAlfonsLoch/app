@@ -294,7 +294,7 @@ namespace ca
                   try
                   {
 
-                     System.file().output(m_papp, strFile, &System.compress(), &::ca4::compress::null, *spfile.m_p);
+                     System.file().output(m_papp, strFile, &System.compress(), &::ca2::compress::null, *spfile.m_p);
 
                   }
                   catch(...)

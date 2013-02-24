@@ -339,7 +339,7 @@ namespace ca
             {
                if(!exists(strFilePath, papp))
                   return "";
-               gen::memory_file memfile(papp, &storage);
+               ::primitive::memory_file memfile(papp, &storage);
                zip::InFile infile(get_app());
                if(!infile.unzip_open(strFilePath, 0))
                   return "";
@@ -1267,6 +1267,27 @@ namespace ca
             iEnd = strFile.get_length();
          strFile = strFile.Left(iEnd) + gen::str::has_char(pszExtension, ".");
       }
+
+   void system::normalize(string & str)
+   {
+      if(str.is_empty())
+         return;
+      while(str.has_char() &&
+         (str.Right(1) == "\\" ||
+         str.Right(1) == "/"))
+      {
+         str = str.Left(str.get_length() - 1);
+      }
+   }
+
+   int32_t system::cmp(const char * psz1, const char * psz2)
+   {
+      string str1(psz1);
+      normalize(str1);
+      string str2(psz2);
+      normalize(str2);
+      return str1.CompareNoCase(str2);
+   }
 
    } // namespace file
 

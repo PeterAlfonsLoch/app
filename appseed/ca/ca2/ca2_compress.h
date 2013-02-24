@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca4
+namespace ca2
 {
 
    class CLASS_DECL_ca compress :
@@ -15,7 +15,7 @@ namespace ca4
       bool ungz(gen::writer & ostreamUncompressed, const char * lpcszGzFileCompressed);
       bool gz(gen::writer & ostreamGzFileCompressed, const char * lpcszUncompressed);
 
-      bool ungz(::gen::memory_file & memoryfile);
+      bool ungz(::primitive::memory_file & memoryfile);
 
       bool unbz(::ca::application * papp, const char * lpcszUncompressed, const char * lpcszBzFileCompressed);
       bool bz(::ca::application * papp, const char * lpcszBzFileCompressed, const char * lpcszUncompressed);
@@ -44,7 +44,7 @@ namespace ca4
 
    };
 
-} // namespace ca4
+} // namespace ca2
 
 
 

@@ -334,19 +334,19 @@ namespace fs
 
       //spfile->open(szPath, ::gen::file::mode_read | ::gen::file::type_binary);
 
-      /*base_array < gen::memory_file, gen::memory_file & > filea;
+      /*base_array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       _vmszipFile zipfile;
 
       zipfile.m_pfile = &file;
 
       unzFile pf = _vmszipApi::unzipOpen(&zipfile);
 
-      base_array < gen::memory_file, gen::memory_file & > filea;
+      base_array < ::primitive::memory_file, ::primitive::memory_file & > filea;
       int32_t iStart = 0;
       int32_t iFind;
       while((iFind  = wstrExtra.find(L".zip:", iStart)) >= 0)
       {
-      filea.add(gen::memory_file());
+      filea.add(::primitive::memory_file());
       pf->dump(filea.last_element(), wstrExtra.Mid(iStart + 5, iFind - iStart + 5));
       iStart = iFind + 1;
       }*/

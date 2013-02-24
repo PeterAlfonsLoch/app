@@ -687,7 +687,7 @@ namespace plane
       if(eexclusive == ::gen::ExclusiveInstanceLocalId)
       {
          /*
-         gen::memory_file file(get_app());
+         ::primitive::memory_file file(get_app());
          file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;

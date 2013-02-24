@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ca4
+namespace ca2
 {
 
 
@@ -15,4 +15,4 @@ namespace ca4
       bool syntax_is_valid(const char * pszCandidate);
    };
 
-} // namespace ca4
+} // namespace ca2

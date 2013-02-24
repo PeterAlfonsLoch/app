@@ -40,7 +40,7 @@ FILE * my_fopen(const char * psz, const char * pszMode)
 
 
 
-namespace ca4
+namespace ca2
 {
 
    bool compress::ungz(gen::writer & ostreamUncompressed, const char * lpcszGzFileCompressed)
@@ -69,7 +69,7 @@ namespace ca4
    }
 
 
-   bool compress::ungz(::gen::memory_file & memoryfile)
+   bool compress::ungz(::primitive::memory_file & memoryfile)
    {
 
       int64_t dataLength = memoryfile.get_length();
@@ -84,7 +84,7 @@ namespace ca4
       strm.zalloc = Z_NULL;
       strm.zfree = Z_NULL;
 
-      ::gen::memory_file memoryfileOut(get_app());
+      ::primitive::memory_file memoryfileOut(get_app());
       class primitive::memory memory;
       memory.allocate(1024 * 256);
       ASSERT(memory.get_size() <= UINT_MAX);
@@ -286,4 +286,4 @@ namespace ca4
    {
    }
 
-} // namespace ca4
+} // namespace ca2

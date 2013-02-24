@@ -7,7 +7,7 @@ namespace http
 
    class CLASS_DECL_ca memory_file : 
       virtual public ::http::file,
-      virtual public ::gen::memory_file
+      virtual public ::primitive::memory_file
    {
    public:
 

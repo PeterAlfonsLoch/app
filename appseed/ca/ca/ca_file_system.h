@@ -145,6 +145,9 @@ namespace ca
          void set_extension(string & str, const char * pszExtension);
 
 
+      void normalize(string & str);
+      int32_t cmp(const char * psz1, const char* psz2);
+
       protected:
          class system::path m_path;
       };

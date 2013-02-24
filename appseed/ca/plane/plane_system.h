@@ -269,14 +269,14 @@ namespace plane
       class ::ca2::datetime *                      m_pdatetime;
       class ::sockets::net                             m_net;
 
-      class ::ca4::compress                        m_compress;
-      class ::ca4::patch                           m_patch;
-      ::ca4::crypt_sp                              m_spcrypt;
-      class ::ca4::http::system                    m_http;
-      class ::ca4::email                           m_email;
-      class ::ca4::file                            m_file4;
-      ::ca4::copydesk_sp                           m_spcopydesk;
-      ::ca4::port_forward_sp                       m_spportforward;
+      class ::ca2::compress                        m_compress;
+      class ::ca2::patch                           m_patch;
+      ::ca2::crypt_sp                              m_spcrypt;
+      class ::ca2::http::system                    m_http;
+      class ::ca2::email                           m_email;
+      class ::ca2::file                            m_file4;
+      ::ca2::copydesk_sp                           m_spcopydesk;
+      ::ca2::port_forward_sp                       m_spportforward;
       ::string_to_string_map                       m_mapAppLibrary;
       colorertake5::ParserFactory *                m_pparserfactory;
 
@@ -436,13 +436,13 @@ namespace plane
 
       ::ca::history                    & hist();
 
-      class ::ca4::compress            & compress();
-      class ::ca4::patch               & patch();
-      class ::ca4::crypt               & crypt();
-      class ::ca4::http::system        & http();
-      class ::ca4::email               & email();
-      class ::ca4::file                & file36();
-      class ::ca4::copydesk            & copydesk();
+      class ::ca2::compress            & compress();
+      class ::ca2::patch               & patch();
+      class ::ca2::crypt               & crypt();
+      class ::ca2::http::system        & http();
+      class ::ca2::email               & email();
+      class ::ca2::file                & file36();
+      class ::ca2::copydesk            & copydesk();
 
       ::fontopus::user_set             & userset();
 

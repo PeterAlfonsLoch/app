@@ -512,7 +512,7 @@ namespace bergedge
       if(eexclusive == ::gen::ExclusiveInstanceLocalId)
       {
 #ifdef WINDOWSEX
-         gen::memory_file file(get_app());
+         ::primitive::memory_file file(get_app());
          file.from_string(command().m_varTopicFile);
          COPYDATASTRUCT data;
          data.dwData = 1984;

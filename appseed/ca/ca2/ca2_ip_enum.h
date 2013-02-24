@@ -11,7 +11,7 @@ Deep modification from callback to ip_array enumeration by Camilo on 14-04-2012
 */
 
 
-namespace ca4
+namespace ca2
 {
 
 
@@ -34,7 +34,7 @@ namespace ca4
    typedef ::ca::smart_pointer < ip_enum > ip_enum_sp;
 
 
-} // namespace ca4
+} // namespace ca2
 
 
 

@@ -822,7 +822,7 @@ namespace gen
 
 
 
-#include "gen_os.h"
+#include "ca/os/os.h"
 
 
 
@@ -1312,7 +1312,7 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 #include "gen_timeout_file.h"
 #include "gen_edit_file.h"
 #include "gen_text_file.h"
-#include "gen_file_system.h"
+//#include "gen_file_system.h"
 #include "gen_resource.h"
 
 #include "gen_simple_tree_item_data.h"
@@ -1377,8 +1377,8 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 #include "gen_base_enum.h"
 #include "gen_holder.h"
 #include "gen_raw_pointer.h"
-#include "gen_full_pointer.h"
-#include "gen_time.h"
+//#include "gen_full_pointer.h"
+//#include "gen_time.h"
 #include "gen_byte_serializable.h"
 #include "ca/collection/collection_stringa.h"
 #include "gen_var.h"
@@ -1409,7 +1409,7 @@ CLASS_DECL_ca char * gen::TaskStringW2A(const wchar_t * lpw);
 #include "ca/primitive/primitive_int_biunique.h"
 
 
-#include "gen_memory_file.h"
+//#include "gen_memory_file.h"
 #include "gen_byte_stream_memory_file.h"
 
 

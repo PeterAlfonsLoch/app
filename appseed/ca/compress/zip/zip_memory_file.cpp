@@ -5,7 +5,7 @@ namespace zip
 {
 
    memory_file::memory_file(::ca::application * papp) :
-      ::gen::memory_file(papp),
+      ::primitive::memory_file(papp),
       ::primitive::memory_container(papp)
    {
       m_filefuncdef.opaque = (voidpf) this;

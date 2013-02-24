@@ -522,7 +522,7 @@ namespace user
       m_pdata->m_ptreeitem          = get_base_item();
 
       pcreate->previous();
-      m_pdata->m_pfile = new gen::memory_file(get_app());
+      m_pdata->m_pfile = new ::primitive::memory_file(get_app());
       if(m_bColorerTake5)
       {
          colorertake5::base_editor::initialize(&m_lines);

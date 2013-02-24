@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube // ca8 + cube)]
+namespace ca2 //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cube)]
 {
 
 
@@ -1165,5 +1165,5 @@ namespace ca2 //namespace _001ca1api00001 + [ca4 = (//namespace cube // ca8 + cu
       return 0;
    }
 
-} //namespace _001ca1api00001 + [ca4 = (//namespace cube // ca8 + cube)]
+} //namespace _001ca1api00001 + [ca2 = (//namespace cube // ca8 + cube)]
 

@@ -18,9 +18,9 @@ namespace gen
       m_pmemory->set_app(papp);
       m_pmemory->m_spmutex = m_spmutex;
          
-      m_pmemoryfileIn(new gen::memory_file(papp, m_pmemory));
+      m_pmemoryfileIn(new ::primitive::memory_file(papp, m_pmemory));
 
-      m_pmemoryfileOut(new gen::memory_file(papp, m_pmemory));
+      m_pmemoryfileOut(new ::primitive::memory_file(papp, m_pmemory));
 
       // (uint64_t) -1 - initially unknown size
       m_ptimeoutfile = new gen::timeout_file(papp, m_pmemoryfileOut, (uint64_t) -1); 
@@ -35,7 +35,7 @@ namespace gen
 
    // it is not currently designed to call open.
    //
-   transfer_file::transfer_file(::ca::application * papp, ::gen::memory_file * pmemoryfileIn) :
+   transfer_file::transfer_file(::ca::application * papp, ::primitive::memory_file * pmemoryfileIn) :
       ca(papp)
    {
 
@@ -47,7 +47,7 @@ namespace gen
       m_pmemory = pmemoryfileIn->get_memory();
       m_pmemoryfileIn = pmemoryfileIn;
 
-      m_pmemoryfileOut(new gen::memory_file(papp, m_pmemory));
+      m_pmemoryfileOut(new ::primitive::memory_file(papp, m_pmemory));
 
       m_ptimeoutfile = new gen::timeout_file(papp, m_pmemoryfileOut);
       m_ptimeoutfile->m_spmutex = m_spmutex;

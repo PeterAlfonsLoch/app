@@ -9,7 +9,7 @@ CLASS_DECL_c void NESSIEadd(const uchar * const source, uint_ptr sourceBits, str
 CLASS_DECL_c void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
 
 
-namespace ca4
+namespace ca2
 {
 
    file::file()

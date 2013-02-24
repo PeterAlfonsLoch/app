@@ -17,7 +17,7 @@ namespace sockets
 
       // it is not currently designed to call open.
       //
-      file::file(::ca::application * papp, ::gen::memory_file * pmemoryfileIn) :
+      file::file(::ca::application * papp, ::primitive::memory_file * pmemoryfileIn) :
          ca(papp),
          transfer_file(papp, pmemoryfileIn)
       {
@@ -34,7 +34,7 @@ namespace sockets
 //         if(!Application.file().exists(lpszFileName))
   //          return false;
 
-         ca4::http::signal * psignal = new ca4::http::signal;
+         ca2::http::signal * psignal = new ca2::http::signal;
 
          psignal->m_set["file"]       = (::ca::ca *) m_pmemoryfileIn;
          psignal->m_set["file_out"]   = (::ca::ca *) m_ptimeoutfile;
@@ -52,7 +52,7 @@ namespace sockets
             m_ptimeoutfile->m_uiExpectedSize = (uint64_t) -1;
          }
 
-         gen::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &ca4::http::application::get, psignal);
+         gen::emit(get_app(), this, &file::on_http_request_response, &Application.http(), &ca2::http::application::get, psignal);
          return TRUE;
       }
 

@@ -15,7 +15,7 @@ namespace planebase
       service_base *                      m_pservice;
       class ::ca::dir::application        m_dir;
       class ::ca::file::application       m_file;
-      class ::ca4::http::application      m_http;
+      class ::ca2::http::application      m_http;
 
       sp(class ::fontopus::license)       m_splicense;
       sp(class ::fs::data)                m_spfsdata;
@@ -69,7 +69,7 @@ namespace planebase
 
       inline class ::ca::dir::application       & dir()        { return m_dir          ; }
       inline class ::ca::file::application      & file()       { return m_file         ; }
-      inline class ::ca4::http::application     & http()       { return m_http         ; }
+      inline class ::ca2::http::application     & http()       { return m_http         ; }
       inline class ::fontopus::license          & license()    { return m_splicense    ; }
       inline class ::fs::data                   * fs()         { return m_spfsdata     ; }
       inline class ::user::user                 & user()       { return *m_puser       ; }
