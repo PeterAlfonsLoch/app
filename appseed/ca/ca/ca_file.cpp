@@ -1,285 +1,384 @@
 #include "framework.h"
-#ifndef METROWIN
-#include <openssl/ssl.h>
-#include <openssl/md5.h>
-#endif
-
-CLASS_DECL_c void NESSIEinit(struct NESSIEstruct * const structpointer);
-CLASS_DECL_c void NESSIEadd(const uchar * const source, uint_ptr sourceBits, struct NESSIEstruct * const structpointer);
-CLASS_DECL_c void NESSIEfinalize(struct NESSIEstruct * const structpointer, uchar * const result);
 
 
-namespace ca2
+
+#include "framework.h"
+
+namespace gen
 {
+
+   __STATIC inline bool IsDirSep(WCHAR ch)
+   {
+      return (ch == '\\' || ch == '/');
+   }
+
 
    file::file()
    {
-      m_path.m_pfile = this;
    }
 
-   file::path & file::path36()
+
+   ::primitive::memory_size file::read(void *lpBuf, ::primitive::memory_size nCount)
    {
-      return m_path;
+      return ::gen::reader::read(lpBuf, nCount);
    }
 
-   bool file::path::rename(const char *pszNew, const char *psz, ::ca::application * papp)
+   void file::write(const void * lpBuf, ::primitive::memory_size nCount)
    {
-      string strDir = System.dir().name(psz);
-      string strDirNew = System.dir().name(pszNew);
-      if(strDir == strDirNew)
+      ::gen::writer::write(lpBuf, nCount);
+   }
+
+
+   void file::write(byte_output_stream & ostream)
+   {
+      seek_to_begin();
+      gen::reader::write(ostream);
+   }
+
+   void file::read(byte_input_stream & istream)
+   {
+      gen::writer::read(istream);
+      seek_to_begin();
+   }
+
+   file::~file()
+   {
+   }
+
+   file* file::Duplicate() const
+   {
+      return NULL;
+   }
+
+   bool file::open(const char * lpszFileName, UINT nOpenFlags)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+      UNREFERENCED_PARAMETER(nOpenFlags);
+      return FALSE;
+   }
+
+   file_position file::seek(file_offset lOff, ::gen::e_seek nFrom)
+   {
+      UNREFERENCED_PARAMETER(lOff);
+      UNREFERENCED_PARAMETER(nFrom);
+      return 0;
+   }
+
+   file_position file::get_position() const
+   {
+      return 0;
+   }
+
+   void file::flush()
+   {
+   }
+
+   void file::close()
+   {
+   }
+
+   void file::Abort()
+   {
+   }
+
+   void file::LockRange(file_position dwPos, file_size dwCount)
+   {
+      UNREFERENCED_PARAMETER(dwPos);
+      UNREFERENCED_PARAMETER(dwCount);
+   }
+
+   void file::UnlockRange(file_position dwPos, file_size dwCount)
+   {
+      UNREFERENCED_PARAMETER(dwPos);
+      UNREFERENCED_PARAMETER(dwCount);
+   }
+
+   void file::set_length(file_size dwNewLen)
+   {
+      UNREFERENCED_PARAMETER(dwNewLen);
+   }
+
+   file_size file::get_length() const
+   {
+      return 0;
+   }
+
+   // file does not support direct buffering (CMemFile does)
+   uint64_t file::GetBufferPtr(UINT nCommand, uint64_t nCount, void ** ppBufStart, void ** ppBufMax)
+   {
+      UNREFERENCED_PARAMETER(nCommand);
+      UNREFERENCED_PARAMETER(nCount);
+      UNREFERENCED_PARAMETER(ppBufStart);
+      UNREFERENCED_PARAMETER(ppBufMax);
+      return 0;
+   }
+
+/*   void file::Rename(const char * lpszOldName, const char * lpszNewName)
+   {
+      UNREFERENCED_PARAMETER(lpszOldName);
+      UNREFERENCED_PARAMETER(lpszNewName);
+   }
+
+   void file::remove(const char * lpszFileName)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+   }*/
+
+   void file::assert_valid() const
+   {
+   //   ::gen::object::assert_valid();
+      // we permit the descriptor m_hFile to be any value for derived classes
+   }
+
+   void file::dump(dump_context & dumpcontext) const
+   {
+      UNREFERENCED_PARAMETER(dumpcontext);
+   //   ::gen::object::dump(dumpcontext);
+
+   //   dumpcontext << "with handle " << (UINT)m_hFile;
+   //   dumpcontext << " and name \"" << m_wstrFileName << "\"";
+   //   dumpcontext << "\n";
+   }
+
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file_exception helpers
+
+/*   #ifdef DEBUG
+   static const char * rgszFileExceptionCause[] =
+   {
+      "none",
+      "generic",
+      "fileNotFound",
+      "badPath",
+      "tooManyOpenFiles",
+      "accessDenied",
+      "invalidFile",
+      "removeCurrentDir",
+      "directoryFull",
+      "badSeek",
+      "hardIO",
+      "sharingViolation",
+      "lockViolation",
+      "diskFull",
+      "endOfFile",
+   };
+   static const char szUnknown[] = "unknown";
+   #endif*/
+
+
+   /*void vfxThrowFileException(int32_t cause, LONG lOsError,
+   //   const char * lpszFileName /* == NULL */
+   /*{
+   #ifdef DEBUG
+      const char * lpsz;
+      if (cause >= 0 && cause < _countof(rgszFileExceptionCause))
+         lpsz = rgszFileExceptionCause[cause];
+      else
+         lpsz = szUnknown;
+      TRACE3("file exception: %hs, file %W, App error information = %ld.\n",
+         lpsz, (lpszFileName == NULL) ? L"Unknown" : lpszFileName, lOsError);
+   #endif
+      THROW(new file_exception(cause, lOsError, lpszFileName));
+   }*/
+
+   /* Error Codes */
+
+   #define EPERM           1
+   #define ENOENT          2
+   #define ESRCH           3
+   #define EINTR           4
+   #define EIO             5
+   #define ENXIO           6
+   #define E2BIG           7
+   #define ENOEXEC         8
+   #define EBADF           9
+   #define ECHILD          10
+#ifndef MACOS
+   #define EAGAIN          11
+#endif
+   #define ENOMEM          12
+   #define EACCES          13
+   #define EFAULT          14
+   #define EBUSY           16
+   #define EEXIST          17
+   #define EXDEV           18
+   #define ENODEV          19
+   #define ENOTDIR         20
+   #define EISDIR          21
+   #define EINVAL          22
+   #define ENFILE          23
+   #define EMFILE          24
+   #define ENOTTY          25
+   #define EFBIG           27
+   #define ENOSPC          28
+   #define ESPIPE          29
+   #define EROFS           30
+   #define EMLINK          31
+   #define EPIPE           32
+   #define EDOM            33
+   #define ERANGE          34
+
+#if defined(WINDOWS)
+
+   #define EDEADLK         36
+   #define ENAMETOOLONG    38
+   #define ENOLCK          39
+   #define ENOSYS          40
+   #define ENOTEMPTY       41
+   #define EILSEQ          42
+
+#endif
+
+   /*
+    * Support EDEADLOCK for compatibiity with older MS-C versions.
+    */
+   #define EDEADLOCK       EDEADLK
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file name handlers
+
+   string file::GetFileName() const
+   {
+      return "";
+   }
+
+   string file::GetFileTitle() const
+   {
+      return "";
+   }
+
+   string file::GetFilePath() const
+   {
+      return "";
+   }
+
+
+
+
+
+
+   // IMPLEMENT_DYNAMIC(file_exception, base_exception)
+
+   /////////////////////////////////////////////////////////////////////////////
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // Help and other support
+
+   // Strings in format ".....%1 .... %2 ...." etc.
+
+
+   /////////////////////////////////////////////////////////////////////////////
+   // file Status implementation
+
+   bool file::GetStatus(file_status & rStatus) const
+   {
+      UNREFERENCED_PARAMETER(rStatus);
+      return FALSE;
+   }
+
+   bool file::GetStatus(const char * lpszFileName, file_status & rStatus)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+      UNREFERENCED_PARAMETER(rStatus);
+      return FALSE;
+   }
+
+
+   void file::SetStatus(const char * lpszFileName, const file_status & status)
+   {
+      UNREFERENCED_PARAMETER(lpszFileName);
+      UNREFERENCED_PARAMETER(status);
+   }
+
+
+
+   bool file::IsOpened()
+   {
+      return false;
+   }
+
+   string file::get_location() const
+   {
+      return GetFileName();
+   }
+
+   bool file::read(char * pch)
+   {
+      if(read(pch, 1) == 1)
       {
-         string strOld = System.file().name_(psz);
+         return true;
       }
-      throw not_implemented(get_app());
-      //if(!System.file_as_string().move(psz, pszNew))
+      else
       {
-         gen::property_set propertyset;
-         System.message_box("err\\::fontopus::user\\file_system\\could_not_rename_file.xml", propertyset);
          return false;
       }
-      return true;
    }
 
-   string file::md5(const char * psz)
+   bool file::read(uchar * puch)
    {
-
-      gen::filesp spfile(get_app());
-
-      try
+      if(read(puch, 1) == 1)
       {
-         if(!spfile->open(psz, ::gen::file::type_binary | ::gen::file::mode_read))
-            return "";
+         return true;
       }
-      catch(gen::file_exception * pe)
+      else
       {
-         gen::del(pe);
-         return "";
+         return false;
       }
-
-
-      int32_t iBufSize = 1024 * 256;
-
-      primitive::memory buf;
-
-      buf.allocate(1024 * 256);
-
-      ::crypto::md5::context ctx(get_app());
-
-      int32_t iRead;
-
-      while((iRead = (int32_t) spfile->read(buf, iBufSize)) > 0)
-      {
-
-         ctx.update(buf.get_data(), iRead);
-
-      }
-
-      return ctx.to_hex();
-
    }
 
-
-   void file::dtf(const char * pszFile, const char * pszDir, ::ca::application * papp)
+   bool file::peek(char * pch)
    {
-      stringa stra;
-      stringa straRelative;
-      System.dir().rls(papp, pszDir, &stra, NULL, &straRelative);
-      dtf(pszFile, stra, straRelative, papp);
+      if(read(pch, 1) == 1)
+      {
+         seek(-1, ::gen::seek_current);
+         return true;
+      }
+      else
+      {
+         return false;
+      }
    }
 
-   void file::dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::ca::application * papp)
+   bool file::peek(uchar * puch)
    {
-
-      gen::filesp spfile = App(papp).file().get_file(pszFile, ::gen::file::mode_create | ::gen::file::mode_write  | ::gen::file::type_binary);
-
-      if(spfile.is_null())
-         throw "failed";
-
-      string strVersion;
-
-      strVersion = "fileset v1";
-
-      ::crypto::md5::context ctx(get_app());
-
-      write_gen_string(spfile, NULL, strVersion);
-
-      gen::filesp file2(get_app());
-
-      ::primitive::memory_size iBufSize = 1024 * 1024;
-
-      ::primitive::memory_size uiRead;
-
-      primitive::memory buf;
-
-      buf.allocate(iBufSize);
-
-      string strMd5 = "01234567012345670123456701234567";
-
-      uint64_t iPos;
-
-      for(int32_t i = 0; i < stra.get_size(); i++)
+      if(read(puch, 1) == 1)
       {
-         if(gen::str::ends_ci(stra[i], ".zip"))
-         {
-         }
-         else if(System.dir().is(stra[i], get_app()))
-            continue;
-         write_n_number(spfile, NULL, 1);
-         iPos = spfile->get_position();
-         write_gen_string(spfile, NULL, strMd5);
-         ctx.reset();
-         write_gen_string(spfile, &ctx, straRelative[i]);
-         if(!file2->open(stra[i], ::gen::file::mode_read | ::gen::file::type_binary))
-            throw "failed";
-         write_n_number(spfile, &ctx, (int32_t) file2->get_length());
-         while((uiRead = file2->read(buf, iBufSize)) > 0)
-         {
-            spfile->write(buf, uiRead);
-            ctx.update(buf, uiRead);
-         }
-         spfile->seek(iPos, ::gen::seek_begin);
-         strMd5 = ctx.to_hex();
-         write_gen_string(spfile, NULL, strMd5);
-         spfile->seek_to_end();
-
+         seek(-1, ::gen::seek_current);
+         return true;
       }
-      write_n_number(spfile, NULL, 2);
+      else
+      {
+         return false;
+      }
    }
 
-   void file::ftd(const char * pszDir, const char * pszFile, ::ca::application * papp)
+   bool file::read(char & ch)
    {
-      string strVersion;
-      gen::filesp spfile = App(papp).file().get_file(pszFile, ::gen::file::mode_read  | ::gen::file::type_binary);
-      if(spfile.is_null())
-         throw "failed";
-      read_gen_string(spfile, NULL, strVersion);
-      int64_t n;
-      string strRelative;
-      string strMd5;
-      string strMd5New;
-      int32_t iBufSize = 1024 * 1024;
-      primitive::memory buf;
-      buf.allocate(iBufSize);
-      int64_t iLen;
-      ::crypto::md5::context ctx(get_app());
-      gen::filesp file2(get_app());
-      ::primitive::memory_size uiRead;
-      if(strVersion == "fileset v1")
-      {
-         while(true)
-         {
-            read_n_number(spfile, NULL, n);
-            if(n == 2)
-               break;
-            read_gen_string(spfile, NULL, strMd5);
-            ctx.reset();
-            read_gen_string(spfile, &ctx, strRelative);
-            string strPath = System.dir().path(pszDir, strRelative);
-            App(papp).dir().mk(System.dir().name(strPath));
-            if(!file2->open(strPath, ::gen::file::mode_create | ::gen::file::type_binary | ::gen::file::mode_write))
-               throw "failed";
-            read_n_number(spfile, &ctx, iLen);
-            while(iLen > 0)
-            {
-             uiRead = spfile->read(buf, (UINT)  (min(iBufSize, iLen )));
-             if(uiRead == 0)
-                break;
-               file2->write(buf, uiRead);
-               ctx.update(buf, uiRead);
-               iLen -= uiRead;
-            }
-            file2->close();
-            strMd5New = ctx.to_hex();
-            if(strMd5 != strMd5New)
-               throw "failed";
-         }
-      }
+      return read(&ch);
    }
 
-   void file::write_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber)
+   bool file::read(uchar & uch)
    {
-
-      string str;
-      
-      str.Format("%I64dn", iNumber);
-
-      pfile->write((const char *) str, str.get_length());
-
-      if(pctx != NULL)
-      {
-
-         pctx->update((const char *) str, (int32_t) str.get_length());
-
-      }
-
+      return read(&uch);
    }
 
-   void file::read_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber)
+   bool file::peek(char & ch)
    {
-      
-      uint64_t uiRead;
-
-      string str;
-
-      char ch;
-
-      while((uiRead = pfile->read(&ch, 1)) == 1)
-      {
-
-         if(ch >= '0' && ch <= '9')
-            str += ch;
-         else
-            break;
-
-         if(pctx != NULL)
-         {
-            pctx->update(&ch, 1);
-         }
-
-      }
-
-      if(ch != 'n')
-         throw "failed";
-
-      if(pctx != NULL)
-      {
-         pctx->update(&ch, 1);
-      }
-
-      iNumber = gen::str::to_int64(str);
-
+      return peek(&ch);
    }
 
-   void file::write_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str)
+
+   bool file::peek(uchar & uch)
    {
-      count iLen = str.get_length();
-      write_n_number(pfile, pctx, iLen);
-      pfile->write((const char *) str, str.get_length());
-      if(pctx != NULL)
-      {
-         pctx->update((const char *) str, (int32_t) str.get_length());
-      }
-   }
-
-   void file::read_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str)
-   {
-      int64_t iLen;
-      read_n_number(pfile, pctx, iLen);
-      LPSTR lpsz = str.GetBufferSetLength((strsize) (iLen + 1));
-      pfile->read(lpsz, (primitive::memory_size) iLen);
-      if(pctx != NULL)
-      {
-         int64_t iProcessed = 0;
-         while(iLen - iProcessed > 0)
-         {
-            int32_t iProcess = (int32_t) min(1024 * 1024, iLen - iProcessed);
-            pctx->update(&lpsz[iProcessed], iProcess);
-            iProcessed += iProcess;
-         }
-      }
-      lpsz[iLen] = '\0';
-      str.ReleaseBuffer();
+      return peek(&uch);
    }
 
 
-} // namespace ca36
+} // namespace gen
+
+
+

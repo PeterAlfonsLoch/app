@@ -1,56 +1,117 @@
 #pragma once
 
 
-typedef struct MD5state_st MD5_CTX;
-
-
-namespace ca2
+namespace gen
 {
+
+   class file_exception;
+   struct file_status;
 
 
    class CLASS_DECL_ca file :
-      public ::gen::object
+      virtual public ::gen::stream,
+      virtual public ::gen::output_stream_flush_interface
    {
    public:
 
-      class CLASS_DECL_ca path :
-         public ::gen::object
-      {
-      public:
-         bool rename(const char * pszNew, const char * psz, ::ca::application * papp);
-         file * m_pfile;
-      };
 
 
-      path m_path;
+
 
       file();
 
+      operator HFILE() const;
 
-      string md5(const char * psz);
-      string nessie(const char * psz);
+      virtual file_position get_position() const;
+      virtual bool GetStatus(file_status& rStatus) const;
+      virtual string GetFileName() const;
+      virtual string GetFileTitle() const;
+      virtual string GetFilePath() const;
+      virtual void SetFilePath(const char * lpszNewName);
 
-      string nessie(gen::file * pfile);
+      
+   // Operations
+      virtual bool open(const char * lpszFileName, UINT nOpenFlags);
 
-      path & path36();
-   
-      void dtf(const char * pszFile, const char * pszDir, ::ca::application * papp);
-      void dtf(const char * pszFile, stringa & stra, stringa & straRelative, ::ca::application * papp);
-      void ftd(const char * pszDir, const char * pszFile, ::ca::application * papp);
+      //virtual void Rename(const char * lpszOldName, const char * lpszNewName);
+      //virtual void remove(const char * lpszFileName);
+      virtual bool GetStatus(const char * lpszFileName, file_status& rStatus);
+      virtual void SetStatus(const char * lpszFileName, const file_status& status);
 
-      void is_valid_fileset(const char * pszFile, ::ca::application * papp);
 
-      // 'n' (natural) terminated ascii number, example: 245765487n
-      static void write_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t iNumber);
-      static void read_n_number(gen::file * pfile, ::crypto::md5::context * pctx, int64_t & iNumber);
+   // Overridables
+      virtual file* Duplicate() const;
 
-      static void write_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str);
-      static void read_gen_string(gen::file * pfile, ::crypto::md5::context * pctx, string & str);
+      virtual file_position seek(file_offset lOff, ::gen::e_seek  nFrom);
+      virtual void set_length(file_size dwNewLen);
+      virtual file_size get_length() const;
+
+      virtual void LockRange(file_position dwPos, file_size dwCount);
+      virtual void UnlockRange(file_position dwPos, file_size dwCount);
+
+      virtual void Abort();
+      virtual void flush();
+      virtual void close();
+
+
+      // io_stream
+      virtual ::primitive::memory_size read(void *lpBuf, ::primitive::memory_size nCount);
+      virtual void write(const void * lpBuf, ::primitive::memory_size nCount);
+      virtual string get_location() const;
+
+      virtual bool read(char * pch);
+      virtual bool read(uchar * pch);
+
+      virtual bool read(char & pch);
+      virtual bool read(uchar & pch);
+
+      virtual bool peek(char * pch);
+      virtual bool peek(uchar * pch);
+
+      virtual bool peek(char & pch);
+      virtual bool peek(uchar & pch);
+
+   // Implementation
+   public:
+      virtual bool IsOpened();
+      virtual ~file();
+      virtual void assert_valid() const;
+      virtual void dump(dump_context & dumpcontext) const;
+      enum BufferCommand { bufferRead, bufferWrite, bufferCommit, bufferCheck };
+      virtual uint64_t GetBufferPtr(UINT nCommand, uint64_t nCount = 0, void ** ppBufStart = NULL, void ** ppBufMax = NULL);
+   public:
+
+
+
+      using ::gen::reader::write;
+      using ::gen::writer::write;
+      void write(byte_output_stream & ostream);
+
+
+      using ::gen::writer::read;
+      using ::gen::reader::read;
+      void read(byte_input_stream & istream);
+
 
 
    };
 
+   typedef ca::smart_pointer < file > filesp;
 
-} // namespace ca2
+   // gen::filesp
+   inline file::operator HFILE() const
+      { return NULL; }
+   inline void file::SetFilePath(const char * lpszNewName)
+   {
+      UNREFERENCED_PARAMETER(lpszNewName);
+   }
+
+
+
+} // namespace gen
+
+
+
+
 
 
