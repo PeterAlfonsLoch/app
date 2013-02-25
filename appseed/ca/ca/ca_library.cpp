@@ -46,7 +46,7 @@ namespace ca
       try
       {
 
-         if(!::ca::library::open(strCa2Name))
+         if(!::c::library::open(strCa2Name))
             return false;
 
       }
@@ -173,7 +173,7 @@ namespace ca
          try
          {
 
-            if(!::ca::library::close())
+            if(!::c::library::close())
                bOk = false;
 
          }

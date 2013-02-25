@@ -12,6 +12,8 @@ namespace ca
    system::system()
    {
 
+      idEmpty = "";
+
    }
 
 
@@ -20,18 +22,6 @@ namespace ca
 
    }
 
-
-   bool system::initialize()
-   {
-
-      if(!::ca::application::initialize())
-         return false;
-
-      idEmpty = "";
-
-      return true;
-
-   }
 
 
    bool system::assert_failed_line(const char * lpszFileName, int32_t iLine)

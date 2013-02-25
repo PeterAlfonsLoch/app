@@ -69,13 +69,13 @@ namespace planebase
          if(strId == "bergedge")
          {
 
-            strNewId = "app/ca/bergedge";
+            strNewId = "app/ca2/bergedge";
 
          }
          else if(strId == "cube")
          {
 
-            strNewId = "app/ca/cube";
+            strNewId = "app/ca2/cube";
 
          }
          else
@@ -621,7 +621,7 @@ InitFailure:
       try
       {
          ::ca::thread * pthread = dynamic_cast < ::ca::thread * > (::ca::smart_pointer < ::ca::thread >::m_p);
-         if(pthread->m_pbReady != NULL)
+         if(pthread != NULL && pthread->m_pbReady != NULL)
          {
             *pthread->m_pbReady = true;
          }

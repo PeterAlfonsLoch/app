@@ -22,8 +22,6 @@ namespace ca
       virtual ::ca::ca * clone(::ca::ca * pobj);
       virtual void discard_to_factory(::ca::ca * pca);
 
-      virtual bool initialize();
-
 
       static id_space                            s_idspace;
 

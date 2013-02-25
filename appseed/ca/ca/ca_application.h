@@ -151,7 +151,8 @@ namespace ca
 
    class CLASS_DECL_ca application_base :
       virtual public ::ca::live_object,
-      virtual public ::ca::thread
+      virtual public ::ca::thread,
+      virtual public ::ca::smart_pointer < ::ca::application_base >
    {
    public:
 
@@ -213,8 +214,7 @@ namespace ca
       virtual public ::ca::application_base,
       virtual public command_target_interface,
       virtual public request_interface,
-      virtual public ::ca::message_window_simple_callback,
-      virtual public ::ca::smart_pointer < ::ca::application_base >
+      virtual public ::ca::message_window_simple_callback
    {
    public:
 

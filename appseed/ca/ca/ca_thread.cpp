@@ -15,12 +15,7 @@ namespace ca
       m_mutex(NULL)
    {
 
-      m_dwAlive                     = ::get_tick_count();
-      m_bReady                      = false;
-      m_bRun                        = true;
-      m_pappDelete                  = NULL;
-      m_pbReady                     = NULL;
-      m_pthread = this;
+      construct();
 
    }
 
@@ -28,7 +23,9 @@ namespace ca
       ca(papp),
       m_mutex(papp)
    {
-      m_pthread = this;
+
+      construct();
+
       if(papp == NULL)
          return;
       set_app(papp);
@@ -37,16 +34,20 @@ namespace ca
       ::ca::thread_sp::create(papp);
       m_p->set_p(this);
       m_p->construct();
+
    }
 
    thread::thread(::ca::application * papp, __THREADPROC pfnThreadProc, LPVOID pParam) :
       ca(papp),
       m_mutex(papp)
    {
-      m_pthread = this;
+      
+      construct();
+
       ::ca::thread_sp::create(papp);
       m_p->set_p(this);
       m_p->construct(pfnThreadProc, pParam);
+
    }
 
    thread::~thread()
@@ -107,6 +108,14 @@ namespace ca
 
    void thread::CommonConstruct()
    {
+
+      m_dwAlive                     = ::get_tick_count();
+      m_bReady                      = false;
+      m_bRun                        = true;
+      m_pappDelete                  = NULL;
+      m_pbReady                     = NULL;
+      m_pthread = this;
+
       m_pappDelete      = NULL;
       m_puiMain         = NULL;
       m_pbReady         = NULL;
@@ -613,8 +622,11 @@ namespace ca
    int32_t thread::exit_instance() // default will 'delete this'
    {
 
+      if(m_p == NULL)
+         return -1;
 
       return m_p->exit_instance();
+
    }
 
    // Advanced: exception handling
@@ -627,13 +639,22 @@ namespace ca
    // Advanced: access to GetMainWnd()
    ::user::interaction* thread::GetMainWnd()
    {
+
+      if(m_p == NULL)
+         return NULL;
+
       return m_p->GetMainWnd();
+
    }
+
 
    ::user::interaction * thread::SetMainWnd(::user::interaction * pui)
    {
+
       return m_p->SetMainWnd(pui);
+
    }
+
 
    void thread::add(::user::interaction * pui)
    {
@@ -780,6 +801,8 @@ namespace ca
       catch(...)
       {
       }*/
+      if(m_p == NULL)
+         return;
       return m_p->step_timer();
    }
 
@@ -804,7 +827,14 @@ namespace ca
    void thread::Delete()
    {
 
-      m_p->Delete();
+      //if(m_p != NULL)
+      //{
+       
+        // m_p->Delete();
+
+         //m_p = NULL;
+
+      //}
 
       thread * pthread = this;
 

@@ -235,16 +235,8 @@ namespace ca
 
    int32_t application::exit()
    {
-      int32_t iExit = 0;
 
-      try
-      {
-         iExit = ::ca::application::exit();
-      }
-      catch(...)
-      {
-         iExit = -1;
-      }
+      int32_t iExit = 0;
 
       try
       {
@@ -255,6 +247,7 @@ namespace ca
       }
 
       return iExit;
+
    }
 
 
@@ -492,8 +485,6 @@ finishedCa2ModuleFolder:;
          System.factory().cloneable_large < raw_pointer > ();
       }
 
-            if(!::ca::application::process_initialize())
-         return false;
 
       if(is_system())
       {
@@ -505,8 +496,8 @@ finishedCa2ModuleFolder:;
       {
          ::ca::thread_sp::create(this);
          ::ca::smart_pointer < application_base >::create(this);
-         smart_pointer < application_base >::m_p->construct();
-         smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
+         ::ca::smart_pointer < application_base >::m_p->construct();
+         ::ca::smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
          ::ca::add_ref(this);
          ::ca::thread_sp::m_p = smart_pointer < application_base >::m_p->::ca::thread_sp::m_p;
          ::ca::add_ref(smart_pointer < application_base >::m_p->::ca::thread_sp::m_p);
@@ -516,8 +507,8 @@ finishedCa2ModuleFolder:;
       else
       {
          ::ca::smart_pointer < application_base >::create(this);
-         smart_pointer < application_base >::m_p->construct();
-         smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
+         ::ca::smart_pointer < application_base >::m_p->construct();
+         ::ca::smart_pointer < application_base >::m_p->smart_pointer < application_base >::m_p = this;
          ::ca::add_ref(this);
          //smart_pointer < application_base >::m_p->::ca::thread_sp::m_p = ::ca::thread_sp::m_p;
          //::ca::add_ref(::ca::thread_sp::m_p);
@@ -552,6 +543,16 @@ finishedCa2ModuleFolder:;
       m_dwAlive = ::get_tick_count();
 
 
+      m_strMatterLocator = System.dir().appmatter_locator(this);
+
+
+      m_puserstrcontext = new ::user::str_context(this);
+      if(m_puserstrcontext == NULL)
+         return false;
+
+
+      if(!ca_initialize1())
+            return false;
 
       string strLocaleSystem;
 
@@ -673,16 +674,6 @@ finishedCa2ModuleFolder:;
 
       //Sleep(15 * 1000);
 
-      m_strMatterLocator = System.dir().appmatter_locator(this);
-
-
-      m_puserstrcontext = new ::user::str_context(this);
-      if(m_puserstrcontext == NULL)
-         return false;
-
-
-      if(!ca_initialize1())
-            return false;
 
 
       if(!smart_pointer < application_base >::m_p->initialize1())
@@ -742,44 +733,17 @@ finishedCa2ModuleFolder:;
    void application::Ex1OnFactoryExchange()
    {
 
-#ifdef WINDOWS
-
       System.factory().creatable_large < ::ca::file_exception > ();
 
-      if(g_hmoduleOs == NULL)
-      {
+      ::c::library library;
 
-#ifdef WINDOWSEX
+      if(!library.open("os"))
+         throw "failed to do factory exchange";
 
-         g_hmoduleOs = ::LoadLibraryA("os.dll");
+      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = library.get < PFN_ca2_factory_exchange > ("ca2_factory_exchange");
 
-#else
-
-         g_hmoduleOs = ::LoadPackagedLibrary(L"os.dll", 0);
-
-#endif
-
-      }
-
-      if(g_hmoduleOs != NULL)
-      {
-         PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::GetProcAddress(g_hmoduleOs, "ca2_factory_exchange");
-         pfn_ca2_factory_exchange(this);
-      }
-
-#elif defined(LINUX)
-      System.factory().creatable_large < ::ca::file_exception > ();
-
-      void * pdl = ::dlopen("libca2os.so", RTLD_NOW | RTLD_GLOBAL);
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
       pfn_ca2_factory_exchange(this);
-#else
-      System.factory().creatable_large < ::ca::file_exception > ();
 
-      void * pdl = ::dlopen("libos.dylib", RTLD_LOCAL);
-      PFN_ca2_factory_exchange pfn_ca2_factory_exchange = (PFN_ca2_factory_exchange) ::dlsym(pdl, "ca2_factory_exchange");
-      pfn_ca2_factory_exchange(this);
-#endif
    }
 
 
@@ -833,18 +797,11 @@ finishedCa2ModuleFolder:;
    bool application::initialize_instance()
    {
 
-//      if(!::ca::application::initialize_instance())
-  //      return FALSE;
-
-
       if(!is_system() && !is_bergedge())
       {
          if(!check_exclusive())
             return false;
       }
-
-//      InitLibId();
-
 
       m_dwAlive = ::get_tick_count();
 
@@ -1097,17 +1054,6 @@ finishedCa2ModuleFolder:;
             }
 
          }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      try
-      {
-
-         ::ca::application::exit_instance();
 
       }
       catch(...)
@@ -4536,16 +4482,8 @@ namespace ca
 
    bool application::finalize()
    {
-      bool bFinalize = false;
 
-      try
-      {
-         bFinalize = ::ca::application::finalize();
-      }
-      catch(...)
-      {
-         bFinalize = false;
-      }
+      bool bFinalize = false;
 
       try
       {
@@ -4556,28 +4494,8 @@ namespace ca
          bFinalize = false;
       }
 
-//      try
-  //    {
-    //     m_spfilesystem.destroy();
-      //}
-//      catch(...)
-  //    {
-    //  }
-      try
-      {
-         if(!::ca::application::finalize())
-         {
-            TRACE("There occurred errors while finalizing ::ca::application virtual member function");
-            bFinalize = false;
-         }
-      }
-      catch(...)
-      {
-         bFinalize = false;
-
-      }
-
       return bFinalize;
+
    }
 
    bool application::app_map_lookup(const char * psz, void * & p)
@@ -5163,9 +5081,6 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
 
       m_dwAlive = ::get_tick_count();
 
-      if(!::ca::application::initialize())
-         return false;
-
       if(is_system())
       {
 
@@ -5204,7 +5119,7 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
          pbase->m_bRet = true;
          return;
       }
-      return ::ca::application::pre_translate_message(pobj);
+      return ::ca::thread::pre_translate_message(pobj);
    }
 
    void application::_001OnApplicationRequest(::ca::signal_object * pobj)

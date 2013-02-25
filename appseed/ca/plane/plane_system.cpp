@@ -205,7 +205,7 @@ namespace plane
       m_bProcessInitialize          = true;
 
 
-      if(!::ca::system::initialize())
+      if(!::planebase::application::process_initialize())
          return false;
 
 
@@ -214,10 +214,10 @@ namespace plane
 
 //      System.factory().creatable < ::ca::log >(System.type_info < ::ca::log > (), 1);
 
-      if(!::plane::application::process_initialize())
+/*      if(!::plane::application::process_initialize())
       {
          return false;
-      }
+      }*/
 
       m_spfile.create(this);
       m_spdir.create(this);
@@ -302,6 +302,11 @@ namespace plane
       if(!m_spcrypt.is_set())
          return false;
 
+
+      if(!::planebase::application::initialize1())
+         return false;
+
+
       if(fontopus().create_system_user("system") == NULL)
          return false;
 
@@ -321,8 +326,6 @@ namespace plane
       if(!str().initialize())
          return false;
 
-      if(!::planebase::application::initialize1())
-         return false;
 
 #if !defined(DEBUG) || defined(WINDOWS)
       try
@@ -532,7 +535,7 @@ namespace plane
       set_enum_name(var::type_bool      , "bool");
       set_enum_name(var::type_double    , "double");*/
 
-      if(!planebase::application::initialize_instance())
+      if(!::planebase::application::initialize_instance())
          return false;
 
       m_pbergedgemap = new ::plane::session::map;
@@ -1559,13 +1562,13 @@ namespace plane
 
       string strApplicationId;
 
-      if(strId == "app/ca/bergedge")
+      if(strId == "app/ca2/bergedge")
       {
 
          strApplicationId = "bergedge";
 
       }
-      else if(strId == "app/ca/cube")
+      else if(strId == "app/ca2/cube")
       {
 
          strApplicationId = "cube";

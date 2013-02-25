@@ -1,6 +1,6 @@
 ; ca.def : Declares the module parameters for the DLL.
 
-LIBRARY  "ca"
+LIBRARY  "ca2"
 ; For Win32 DLLs, only EXPORTs really required.
 
 EXPORTS

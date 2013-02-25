@@ -56,18 +56,18 @@ namespace cube
 
 #define CaSys(pca) (*pca->m_papp->m_psystem)
 #define Sys(papp) (*papp->m_psystem)
-#define System (Sys(this->get_app()))
+#define System (Sys(this->m_papp))
 #define Mathematics(papp) (Sys(papp).math())
-#define Math (Mathematics(this->get_app()))
+#define Math (Mathematics(this->m_papp))
 
 #define Cub(papp) (*Sys(papp).m_pcube)
-#define Cube (Cub(this->get_app()))
+#define Cube (Cub(this->m_papp))
 
 #define Sess(papp) (*papp->m_psession)
-#define Session (Sess(this->get_app()))
+#define Session (Sess(this->m_papp))
 
 #define Berg(papp) (*Sess(papp).m_pbergedge)
-#define Bergedge (Berg(this->get_app()))
+#define Bergedge (Berg(this->m_papp))
 
 namespace ca
 {
