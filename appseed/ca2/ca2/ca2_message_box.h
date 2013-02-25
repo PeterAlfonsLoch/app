@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace cube // ca8 + cube
+namespace ca2 // ca8 + cube
 {
 
 
@@ -19,5 +19,5 @@ namespace cube // ca8 + cube
    };
 
 
-} // namespace cube // ca8 + cube
+} // namespace ca2 // ca8 + cube
 

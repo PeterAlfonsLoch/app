@@ -133,7 +133,7 @@ namespace ca
       string user::message_box(const char * pszMatter, ::ca::property_set & propertyset)
       {
 
-         class ::cube::message_box box(get_app());
+         class ::ca2::message_box box(get_app());
 
          box.show(pszMatter, &propertyset);
 

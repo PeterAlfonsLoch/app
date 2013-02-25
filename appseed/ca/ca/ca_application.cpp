@@ -2542,13 +2542,13 @@ namespace ca
    }
 
 
-   bool application::open_link(const char * pszLink, const char * pszTarget)
+/*   bool application::open_link(const char * pszLink, const char * pszTarget)
    {
       UNREFERENCED_PARAMETER(pszLink);
       UNREFERENCED_PARAMETER(pszTarget);
       return false;
    }
-
+   */
 
 
 

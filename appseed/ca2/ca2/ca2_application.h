@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace cube
+namespace ca2
 {
 
    CLASS_DECL_ca2 UINT c_cdecl application_thread_procedure(LPVOID pvoid);
@@ -32,7 +32,6 @@ namespace cube
 
 
       application();
-      application(const char * pszId);
       virtual ~application();
 
 
@@ -145,7 +144,7 @@ namespace cube
    };
 
    
-} // namespace cube
+} // namespace ca2
 
 
 

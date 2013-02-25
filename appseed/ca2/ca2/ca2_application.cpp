@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
+namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
 {
 
 
@@ -22,14 +22,6 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
       m_bIfs            = true;
       m_bLicense     = false;
 
-      m_pappCube     = this;
-
-   }
-
-
-   application::application(const char * pszId)
-   {
-      construct(pszId);
    }
 
 
@@ -958,7 +950,7 @@ namespace cube // namespace cube + namespace cube + cube2 + cube + ca8
    }
 
 
-} // namespace cube + namespace cube + cube2 + cube + ca8
+} // namespace ca2 + namespace cube + cube2 + cube + ca8
 
 
 

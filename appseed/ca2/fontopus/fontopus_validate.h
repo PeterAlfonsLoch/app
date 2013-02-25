@@ -23,8 +23,8 @@ namespace ca
          form_document *                           m_pdocAuth;
          form_document *                           m_pdocMessage;
          form_view *                               m_pviewAuth;
-         ::cube::network_configuration            m_netcfg;
-         ::cube::keyboard_layout *                m_pkeyboardlayout;
+         ::ca2::network_configuration              m_netcfg;
+         ::ca2::keyboard_layout *                  m_pkeyboardlayout;
          void *                                    m_pvOldWindow;
          
 

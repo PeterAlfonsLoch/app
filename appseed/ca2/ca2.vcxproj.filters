@@ -132,6 +132,9 @@
     <Filter Include="Header Files\ca2">
       <UniqueIdentifier>{b011677a-4cad-4377-93b0-ad5124ef98b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ca2">
+      <UniqueIdentifier>{27449f6a-ada9-41b5-bf7d-701eaa718842}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filemanager\ContextMenu.h">
@@ -800,9 +803,6 @@
     <ClInclude Include="cube\cube.h">
       <Filter>Header Files\cube</Filter>
     </ClInclude>
-    <ClInclude Include="cube\cube_library.h">
-      <Filter>Header Files\cube</Filter>
-    </ClInclude>
     <ClInclude Include="user\user_thread.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
@@ -1181,16 +1181,25 @@
     <ClInclude Include="mail\mail_tree_item.h">
       <Filter>Header Files\mail</Filter>
     </ClInclude>
-    <ClInclude Include="cube\cube_keyboard_layout.h">
-      <Filter>Header Files\cube</Filter>
+    <ClInclude Include="ca2\ca2_application.h">
+      <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="cube\cube_message_box.h">
-      <Filter>Header Files\cube</Filter>
+    <ClInclude Include="ca2\ca2_keyboard_layout.h">
+      <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="cube\cube_network_configuration.h">
-      <Filter>Header Files\cube</Filter>
+    <ClInclude Include="ca2\ca2_message_box.h">
+      <Filter>Header Files\ca2</Filter>
     </ClInclude>
-    <ClInclude Include="cube\cube_wait_message_dialog.h">
+    <ClInclude Include="ca2\ca2_network_configuration.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2_wait_message_dialog.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="ca2\ca2.h">
+      <Filter>Header Files\ca2</Filter>
+    </ClInclude>
+    <ClInclude Include="cube\cube_library.h">
       <Filter>Header Files\cube</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1860,9 +1869,6 @@
     <ClCompile Include="cube\cube_application.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
-    <ClCompile Include="cube\cube_library.cpp">
-      <Filter>Source Files\cube</Filter>
-    </ClCompile>
     <ClCompile Include="fs\fs_document.cpp">
       <Filter>Source Files\fs</Filter>
     </ClCompile>
@@ -2037,16 +2043,22 @@
     <ClCompile Include="fontopus\fontopus_fontopus.cpp">
       <Filter>Source Files\fontopus</Filter>
     </ClCompile>
-    <ClCompile Include="cube\cube_keyboard_layout.cpp">
-      <Filter>Source Files\cube</Filter>
+    <ClCompile Include="ca2\ca2_application.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="cube\cube_message_box.cpp">
-      <Filter>Source Files\cube</Filter>
+    <ClCompile Include="ca2\ca2_keyboard_layout.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="cube\cube_network_configuration.cpp">
-      <Filter>Source Files\cube</Filter>
+    <ClCompile Include="ca2\ca2_message_box.cpp">
+      <Filter>Source Files\ca2</Filter>
     </ClCompile>
-    <ClCompile Include="cube\cube_wait_message_dialog.cpp">
+    <ClCompile Include="ca2\ca2_network_configuration.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="ca2\ca2_wait_message_dialog.cpp">
+      <Filter>Source Files\ca2</Filter>
+    </ClCompile>
+    <ClCompile Include="cube\cube_library.cpp">
       <Filter>Source Files\cube</Filter>
     </ClCompile>
   </ItemGroup>

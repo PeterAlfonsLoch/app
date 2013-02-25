@@ -987,7 +987,7 @@ namespace ca
       using pha(::user::interaction)::on_delete;
       virtual void on_delete(::ca::ca * pobject);
 
-      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
+//      virtual bool open_link(const char * pszLink, const char * pszTarget = NULL);
 
       // Temporary ::collection::map management (locks temp ::collection::map on current thread)
       virtual void LockTempMaps();

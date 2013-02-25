@@ -254,7 +254,7 @@ namespace nature
 
       case PaneViewKeyboardLayout:
          {
-            m_pkeyboardlayout = create_view < ::cube::keyboard_layout > ();
+            m_pkeyboardlayout = create_view < ::ca2::keyboard_layout > ();
             m_pkeyboardlayout->CreateViews();
             pcreatordata->m_pdoc = m_pkeyboardlayout->m_pdoc;
             pcreatordata->m_pwnd = m_pkeyboardlayout;
