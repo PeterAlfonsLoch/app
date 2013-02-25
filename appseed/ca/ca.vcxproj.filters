@@ -96,9 +96,6 @@
     <Filter Include="Header Files\database">
       <UniqueIdentifier>{c2502810-b053-4d32-a0c1-4543afc8d8d8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ca2">
-      <UniqueIdentifier>{320f6ee5-5897-44bb-b4de-b5a7496d7cb8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\multithreading">
       <UniqueIdentifier>{9c411a7b-cf2c-4d36-84c3-e57efc53baa9}</UniqueIdentifier>
     </Filter>
@@ -2714,9 +2711,6 @@
     <ClInclude Include="ca\ca_inline.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
-    <ClInclude Include="ca\ca_io_temp_buffer.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
     <ClInclude Include="ca\ca_ip_enum.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
@@ -2811,9 +2805,6 @@
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_raw_pointer.h">
-      <Filter>Header Files\ca</Filter>
-    </ClInclude>
-    <ClInclude Include="ca\ca_reader.h">
       <Filter>Header Files\ca</Filter>
     </ClInclude>
     <ClInclude Include="ca\ca_reference.h">
@@ -3169,6 +3160,12 @@
     </ClInclude>
     <ClInclude Include="ca\ca_log.h">
       <Filter>Header Files\ca</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_io_temp_buffer.h">
+      <Filter>Header Files\ca\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="ca\ca_reader.h">
+      <Filter>Header Files\ca\io</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

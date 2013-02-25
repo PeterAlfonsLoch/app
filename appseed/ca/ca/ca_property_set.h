@@ -456,3 +456,7 @@ inline var & var::operator[] (const char * pszKey)
 
 
 
+inline ::ca::property_set ca_property_set()
+{
+   return ::ca::property_set();
+}
