@@ -307,7 +307,7 @@ namespace fontopus
       string strAuth;
       post["entered_license"] = m_strLicense;
       //m_puser->set_sessid(ApplicationUser.m_str, strAuthUrl);
-//      uint32_t dwTimeTelmo1 = get_tick_count();
+//      uint32_t dwTimeProfile1 = get_tick_count();
 
       post["entered_license"] = m_strLicense;
 
@@ -1342,11 +1342,11 @@ namespace fontopus
 
          m_puser->set_sessid(strSessId, strAuthUrl);
          set["app"] = papp;
-         uint32_t dwTimeTelmo1 = get_tick_count();
+         uint32_t dwTimeProfile1 = get_tick_count();
          Application.http().get(strAuthUrl, strAuth, post, headers, set, m_puser->m_phttpcookies, m_puser, NULL, pestatus);
-         uint32_t dwTimeTelmo2 = get_tick_count();
+         uint32_t dwTimeProfile2 = get_tick_count();
 
-         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+         TRACE0("login_thread::NetLogin Total time Application.http().get(\"" + strAuthUrl + "\") : " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
 
       }
 

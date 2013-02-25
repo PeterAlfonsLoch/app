@@ -155,20 +155,20 @@ namespace sockets
       if(str.is_empty())
          return false;
 
-      uint32_t dwTimeTelmo1 = get_tick_count();
+      uint32_t dwTimeProfile1 = get_tick_count();
 
       single_lock sl(&m_mutexCache, true);
       dns_cache_item * pitem = NULL;
       if(m_mapCache.Lookup(str, pitem) && ((::get_tick_count() - pitem->m_dwLastChecked) < (((84 + 77) * 1000))))
       {
          l = pitem->m_ipaddr;
-         //         uint32_t dwTimeTelmo2 = get_tick_count();
+         //         uint32_t dwTimeProfile2 = get_tick_count();
          /*TRACE("Got from cache net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (uint32_t)((byte*)&pitem->m_ipaddr)[0],
          (uint32_t)((byte*)&pitem->m_ipaddr)[1],
          (uint32_t)((byte*)&pitem->m_ipaddr)[2],
          (uint32_t)((byte*)&pitem->m_ipaddr)[3],
-         (dwTimeTelmo2 - dwTimeTelmo1));*/
+         (dwTimeProfile2 - dwTimeProfile1));*/
          return pitem->r;
       }
       if(pitem == NULL)
@@ -265,13 +265,13 @@ namespace sockets
       pitem->m_ipaddr = sa.sin_addr;
       pitem->m_dwLastChecked = ::get_tick_count();
       m_mapCache.set_at(str, pitem);
-      uint32_t dwTimeTelmo2 = get_tick_count();
+      uint32_t dwTimeProfile2 = get_tick_count();
       TRACE("DNS Lookup net::u2ip " + str + " : %d.%d.%d.%d (%d ms)",
          (uint32_t)((byte*)&pitem->m_ipaddr)[0],
          (uint32_t)((byte*)&pitem->m_ipaddr)[1],
          (uint32_t)((byte*)&pitem->m_ipaddr)[2],
          (uint32_t)((byte*)&pitem->m_ipaddr)[3],
-         (dwTimeTelmo2 - dwTimeTelmo1));
+         (dwTimeProfile2 - dwTimeProfile1));
       l = pitem->m_ipaddr;
 
       return pitem->r;

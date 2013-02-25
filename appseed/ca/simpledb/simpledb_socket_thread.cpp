@@ -86,9 +86,7 @@ namespace simpledb
       SCAST_PTR(::ca::message::base, pbase, pobj);
       if(pbase->m_wparam == 0)
       {
-         // o Telmo me perguntou hoje no almoço se meu fim-de-semana foi while-true - recursivo - pensamento, apesar de while-true ser iterativo
-         // que lindinho
-         // precisa de um while quase true aqui, inícion de 2011
+
          while(!m_pservice->m_stopping)
          {
             try

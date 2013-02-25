@@ -454,7 +454,7 @@ namespace ca
                      const char * pszVersion)
       {
 
-         uint32_t dwTimeTelmo1 = get_tick_count();
+         uint32_t dwTimeProfile1 = get_tick_count();
 
          UNREFERENCED_PARAMETER(pszVersion);
          string strServer = pszHost;
@@ -566,8 +566,8 @@ namespace ca
                *pestatus = status_failed;
             }*/
             delete psession;
-            uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            uint32_t dwTimeProfile2 = get_tick_count();
+            TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -682,7 +682,7 @@ retry:
          try
          {
 
-            uint32_t dwTimeTelmo1 = get_tick_count();
+            uint32_t dwTimeProfile1 = get_tick_count();
 
             ::ca::application * papp = handler.get_app();
 
@@ -914,8 +914,8 @@ retry:
                   string strCa2Realm = psession->outheader("ca2realm-x");
                   if(::ca::str::begins_ci(strCa2Realm, "not licensed: "))
                   {
-                     uint32_t dwTimeTelmo2 = get_tick_count();
-                     TRACE0("Not Licensed Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                     uint32_t dwTimeProfile2 = get_tick_count();
+                     TRACE0("Not Licensed Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
                      string strLocation = psession->outheader("Location");
                      delete psession;
                      throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -928,8 +928,8 @@ retry:
                }
             }
 
-            uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            uint32_t dwTimeProfile2 = get_tick_count();
+            TRACE0("Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
 
          }
          catch(...)
@@ -1087,7 +1087,7 @@ retry:
 retry:
 #endif
 
-         uint32_t dwTimeTelmo1 = get_tick_count();
+         uint32_t dwTimeProfile1 = get_tick_count();
 
          UNREFERENCED_PARAMETER(pszVersion);
          string strServer = System.url().get_root(pszUrl);
@@ -1261,8 +1261,8 @@ retry:
                *pestatus = status_failed;
             }
             delete psocket;
-            uint32_t dwTimeTelmo2 = get_tick_count();
-            TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+            uint32_t dwTimeProfile2 = get_tick_count();
+            TRACE0("Not Opened/Connected Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\")  " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
             return NULL;
          }
          uint32_t dw2 = ::get_tick_count();
@@ -1344,8 +1344,8 @@ retry:
                string strCa2Realm = psocket->outheader("ca2realm-x");
                if(::ca::str::begins_ci(strCa2Realm, "not licensed: "))
                {
-                  uint32_t dwTimeTelmo2 = get_tick_count();
-                  TRACE0("Not Licensed Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+                  uint32_t dwTimeProfile2 = get_tick_count();
+                  TRACE0("Not Licensed Result Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
                   string strLocation = psocket->outheader("Location");
                   delete psocket;
                   throw not_licensed(get_app(), strCa2Realm, strLocation);
@@ -1358,8 +1358,8 @@ retry:
             }
          }
 
-         uint32_t dwTimeTelmo2 = get_tick_count();
-         TRACE0("Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeTelmo2 - dwTimeTelmo1));
+         uint32_t dwTimeProfile2 = get_tick_count();
+         TRACE0("Total time ::ca::http::system::get(\"" + strUrl.Left(min(255,strUrl.get_length())) + "\") " + ::ca::str::from(dwTimeProfile2 - dwTimeProfile1));
 
          return psocket;
 
