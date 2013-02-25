@@ -474,7 +474,7 @@ namespace plugin
 
          if(strExtension.is_empty() || strExtension.compare_no_case("ca2") == 0)
          {
-            // remark alatel
+            // remark alarm
             // STRESS : ms_get_dup
             // in ca library normally System or Application.http() is used
             string strPluginData;

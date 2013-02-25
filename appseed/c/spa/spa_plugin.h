@@ -43,7 +43,7 @@ namespace spa
       canvas         m_canvas;
       uint32_t          m_dwLastInstallingCheck;
       uint32_t          m_dwLastRestart;
-      // logged in ? alatel comments
+      // logged in ? alarm comments
       bool           m_bLogged;
       // in login process, login screen should be shown
       bool           m_bLogin;
