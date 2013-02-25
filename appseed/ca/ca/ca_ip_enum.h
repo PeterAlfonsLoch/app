@@ -7,7 +7,6 @@ History: None
 Copyright (c) 1998 by PJ Naughter.  
 
 
-Deep modification from callback to ip_array enumeration by Camilo on 14-04-2012
 */
 
 

@@ -33,16 +33,6 @@ namespace dynamic_source
    void script_interface::run()
    {
       
-      /*
-      print("<html>\n");
-      print("<head>\n");
-      print("</head>\n");
-      print("<body>\n");
-      print("<h1>Ti Amo Carlos Gustavo Cecyn Lundgren de 15 de novembro de 1984!</h1>\n");
-      print("<h1>Assinado Camilo Sasuke Tsumanuma de 2 de abril de 1977!</h1>\n");
-      print("<h1>Demais!</h1>\n");
-      print("</body>\n");
-      */
 
    }
 

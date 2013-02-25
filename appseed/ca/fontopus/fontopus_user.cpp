@@ -48,8 +48,8 @@ namespace fontopus
          return false;
 
 
-      if(m_strLogin == carlosgustavocecynlundgren
-      || m_strLogin == camilosasuketsumanuma)
+      if(m_strLogin == system_user_1
+      || m_strLogin == system_user_2)
          return false;
 
       

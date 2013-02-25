@@ -1,5 +1,4 @@
 // OutStreamWithCRC.h
-// from 7-zip at night after the Churrasco Setorial on 2010-12-21
 #pragma once
 
 /*#include "../../../../C/7zCrc.h"

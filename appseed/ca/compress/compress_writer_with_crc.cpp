@@ -1,5 +1,4 @@
 // OutStreamWithCRC.cpp
-// from 7-zip at night after the Churrasco Setorial on 2010-12-21
 #include "framework.h"
 
 //#include "OutStreamWithCRC.h"

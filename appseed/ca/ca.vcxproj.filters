@@ -1568,9 +1568,6 @@
     <ClInclude Include="visual\visual_buffered_graphics.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
-    <ClInclude Include="visual\visual_clip.h">
-      <Filter>Header Files\visual</Filter>
-    </ClInclude>
     <ClInclude Include="visual\visual_dib_pal.h">
       <Filter>Header Files\visual</Filter>
     </ClInclude>
@@ -3584,9 +3581,6 @@
       <Filter>Source Files\visual</Filter>
     </ClCompile>
     <ClCompile Include="visual\visual_buffered_graphics.cpp">
-      <Filter>Source Files\visual</Filter>
-    </ClCompile>
-    <ClCompile Include="visual\visual_clip.cpp">
       <Filter>Source Files\visual</Filter>
     </ClCompile>
     <ClCompile Include="visual\visual_cursor.cpp">

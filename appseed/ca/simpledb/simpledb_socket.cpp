@@ -25,8 +25,6 @@ namespace simpledb
       m_memfileBody << "<head>\n";
       m_memfileBody << "</head>\n";
       m_memfileBody << "<body>\n";
-      m_memfileBody << "<h1>Ti Amo Carlos Gustavo Cecyn Lundgren de 15 de novembro de 1984!</h1>\n";
-      m_memfileBody << "<h1>Assinado Camilo Sasuke Tsumanuma de 2 de abril de 1977!</h1>\n";
       m_memfileBody << "</body>\n";
       m_memfileBody.Truncate(0);*/
    }

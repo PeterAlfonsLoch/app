@@ -131,16 +131,6 @@ namespace ca
    public:
 
 
-      static const char g_szCarlosGustavoCecynLundgren[];
-      static const char g_szCamiloSasukeTsumanuma[];
-      static const char g_szCarlosgustavocecynlundgren[];
-      static const char g_szCamilosasuketsumanuma[];
-      static const char g_szKaarurosu[];
-      static const char g_szKamiiro[];
-      static const char g_szZack[];
-      static const char g_szCa[];
-
-
       enum flag
       {
          flag_auto_clean = 1 << 0,

@@ -77,7 +77,7 @@ namespace fontopus
       {
          m_puser = Application.m_pfontopus->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
-         m_puser->m_strLogin = carlosgustavocecynlundgren;
+         m_puser->m_strLogin = system_user_1;
          return m_puser;
       }
       else if(command_thread().property("app") == "mydns"
@@ -86,7 +86,7 @@ namespace fontopus
       {
          m_puser = Application.m_pfontopus->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
-         m_puser->m_strLogin = carlosgustavocecynlundgren;
+         m_puser->m_strLogin = system_user_1;
          return m_puser;
       }
       //else if(!strcmp(System.get_module_name(), "productionapp")
@@ -99,7 +99,7 @@ namespace fontopus
       {
          m_puser = Application.m_pfontopus->allocate_user();
          m_puser->m_strPathPrefix = "system" + ::ca::str::has_char(Application.command().m_varTopicQuery["systemid"], "-");
-         m_puser->m_strLogin = camilosasuketsumanuma;
+         m_puser->m_strLogin = system_user_2;
          return m_puser;
       }
       string strDir;

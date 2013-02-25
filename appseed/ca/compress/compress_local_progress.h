@@ -1,5 +1,4 @@
 // ProgressUtils.h
-// from 7-zip on 2010-12-21 - dia do Churrasco de Confraternizacao Setorial de 2010 - preparando o programa de Karaoke e indiretamente muitas outras infinitas coisas pela fe
 #pragma once
 
 /*#include "../../Common/MyCom.h"

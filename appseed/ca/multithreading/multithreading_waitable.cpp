@@ -2,7 +2,7 @@
 * \brief	Platform independent waitables
 * \author	Thomas Hoefer
 */
-// from sector8J on 2011-08-09
+
 #include "framework.h"
 
 

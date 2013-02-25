@@ -148,24 +148,6 @@ namespace nature
 
    void view:: _001OnDraw(::ca::graphics * pdc)
    {
-      //m_oswindow = GetSafeoswindow_();
-      pdc->SetBkMode(TRANSPARENT);
-
-      //FIBITMAP * pdib = imaging::LoadImageFile("C:\\screenshot.jpeg");
-
-      /*   ::ca::bitmap bmp2;
-
-      bmp2.attach(imaging::FItoHBITMAP(pdib, true));
-      ::ca::graphics_sp dc2;
-      dc2.CreateCompatibleDC(pdc);
-      dc2.SelectObject(bmp2);*/
-
-      //::SendMessage(::GetDesktopWindow(), WM_PRINT, (WPARAM)(HDC)*pdc, PRF_CHILDREN | PRF_NONCLIENT | PRF_CLIENT);
-
-      //pdc->BitBlt(0, 0, 1280, 1024, &dc2, 0, 0, SRCCOPY);
-      /*      pdc->TextOut(20, 20, "Curitiba, 24 de fevereiro de 2008.");
-      pdc->TextOut(20, 80, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
-      pdc->TextOut(20, 110, "Assinado Camilo Sasuke Tsumanuma.");*/
    }
 
    void view::_001OnCreate(::ca::signal_object * pobj)

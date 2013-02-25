@@ -172,8 +172,6 @@ namespace user
    // Output:
    // True if successfull.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    bool tool_tip_window::CalcRect(::ca::graphics * pdc, LPRECT lprect, LPCRECT lprectTool, const char * lpcsz)
@@ -216,8 +214,6 @@ namespace user
    // Output:
    // See ca API documentation.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnPaint()
@@ -283,8 +279,6 @@ namespace user
    // Output:
    // none
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnTimer(UINT nIDEvent)
@@ -321,8 +315,6 @@ namespace user
    // Output:
    // True if successfull.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    bool tool_tip_window::create(::user::interaction * pwnd, id id)
@@ -350,8 +342,6 @@ namespace user
    // Output:
    // None.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnSize(UINT nType, int32_t cx, int32_t cy)
@@ -371,8 +361,6 @@ namespace user
    // Output:
    // True if successfull.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    bool tool_tip_window::HideTip()
@@ -394,8 +382,6 @@ namespace user
    // Output:
    // None.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    void tool_tip_window::EnableTip(
@@ -418,8 +404,6 @@ namespace user
    // Output:
    // True if successfull.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    bool tool_tip_window::IsTipEnabled()
@@ -437,8 +421,6 @@ namespace user
    // Output:
    // None.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    void tool_tip_window::OnDestroy()
@@ -456,8 +438,6 @@ namespace user
    // Output:
    // True if successfull.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    bool tool_tip_window::ShowTip()
@@ -476,8 +456,6 @@ namespace user
    // Output:
    // None.
    //
-   // Author:
-   // Camilo S. Tsumanuma
    //
    ///////////////////////////////////////////////////////////
    void tool_tip_window::UpdateDrawingObjects()

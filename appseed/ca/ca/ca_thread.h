@@ -19,13 +19,11 @@
 
 } // namespace win*/
 
-// incorporation of sector8J src/lib/pal/windows/thread_windows.hpp on 07/09/2011
 /**
 * \file		src/lib/pal/windows/thread_windows.hpp
 * \brief	Platform independent threads and synchronization objects (windows version)
 * \author	Thomas Nass
 */
-// incorporation of sector8J src/lib/pal/windows/thread_linux.hpp on 23/09/2011
 /**
 * \file		src/lib/pal/linux/thread_linux.hpp
 * \brief	Platform independent threads and synchronization objects (linux version)
@@ -195,7 +193,7 @@ namespace ca
 #endif
       }
 
-      inline bool find(void * p, bool bRemove)  // lAyana e Mi tsuo tsumanumA
+      inline bool find(void * p, bool bRemove)  
       {
          UNREFERENCED_PARAMETER(bRemove);
 
@@ -461,10 +459,6 @@ namespace ca
 
 //#endif // #define GEN_PAL_THREAD_WINDOWS_HPP
 
-//#pragma comment(exestr,"$Id: thread_windows.hpp,v 1.19 2011/02/21 14:09:43 cle Exp $")
-//
-// EoF
-///////
 
 
 

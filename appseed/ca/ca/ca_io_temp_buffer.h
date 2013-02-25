@@ -1,6 +1,4 @@
 // InOutTempBuffer.h
-// at sector8J on afternoon of 13/01/2011 - Thursday
-
 #pragma once
 
 

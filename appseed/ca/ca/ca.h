@@ -43,8 +43,6 @@ namespace plane
 #endif
 
 
-// start ca_base.h Carlos Camilo (ca & ca) base for future ca2 user interface
-// {[(
 #include "ca_enum.h"
 #include "ca_ca.h"
 #include "ca_live_object.h"
@@ -52,10 +50,6 @@ namespace plane
 
 
 #include "ca_main_init_data.h"
-
-
-// )]}
-// end ca_base.h Carlos Camilo (ca & ca) base for future ca2 user interface
 
 
 

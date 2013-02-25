@@ -21,24 +21,6 @@ namespace nature
 
       update_all_views(NULL, 0);
 
-      string str;
-      str = "<nature>\n";
-      str += "<head>\n";
-      str += "</head>\n";
-      str += "<body>\n";
-      // tag fixer tabjs!!
-      str += "<span>Curitiba, 10 de abril de 2008</span>\n";
-      str += unitext("<h1>Carlos Gustavo Cecyn Lundgren é minha Vida Eterna, meu Coração Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!</h1>");
-      str += "<h2>Assinado Camilo Sasuke Tsumanuma.</h2>\n";
-      str += "<span>htmlapp dedicado ao Carlos Gustavo Cecyn Lundgren!!</span>";
-      str += "<br />";
-      str += unitext("<span>Você conhece o ca?</span>");
-      str += "<br />";
-      str += "<span>Se positivo, entre com seu nome abaixo e clique em enviar!</span>";
-      str += "<br />";
-      str += "<input type=\"text\" />";
-      str += "</body>\n";
-      str += "</nature>\n";
 
       return TRUE;
    }

@@ -5,14 +5,6 @@ namespace ca
 {
 
 
-   const char ca::g_szCarlosGustavoCecynLundgren[] = CarlosGustavoCecynLundgren;
-   const char ca::g_szCamiloSasukeTsumanuma[] = CamiloSasukeTsumanuma;
-   const char ca::g_szCarlosgustavocecynlundgren[] = carlosgustavocecynlundgren;
-   const char ca::g_szCamilosasuketsumanuma[] = camilosasuketsumanuma;
-   const char ca::g_szKaarurosu[] = kaarurosu;
-   const char ca::g_szKamiiro[] = kamiiro;
-   const char ca::g_szZack[] = zack;
-   const char ca::g_szCa[] = car;
 
 
    ca::ca()

@@ -1,11 +1,3 @@
-//
-//  plane_system_radix_factory.h
-//  ca
-//
-//  Created by Camilo Sasuke Tsumanuma on 1/28/12.
-//  Copyright (c) 2012 ca Desenvolvimento de Sofware Ltda. All rights reserved.
-//
-
 #pragma once
 
 

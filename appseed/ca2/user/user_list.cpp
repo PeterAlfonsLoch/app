@@ -1268,8 +1268,6 @@ namespace user
    // Output:
    // The index of the first visible item in the list
    //
-   // Author:
-   // Camilo Sasuke Tsumanuma
    //
    /////////////////////////////////////////////////////////////////
    index list::_001CalcDisplayTopIndex()

@@ -1431,7 +1431,7 @@ namespace ca
       throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
    }
 
-   // macos mountain lion near Finados - inha |-) at veriverse on 2012-11-04 with Mom with Carol speaking about Mom Dream with gone Grandma - extrem care feeling
+   
    const char * str::utf8_inc_slide(strsize * pslide, const char * psz)
    {
       char len =  1 + ::ca::str::trailingBytesForUTF8[(uchar) *psz];
@@ -1451,7 +1451,7 @@ namespace ca
       throw invalid_character(::ca::get_thread_app(), "invalid utf8 character");
    }
 
-   // macos mountain lion near Finados - inha |-) at veriverse on 2012-11-04 with Mom with Carol speaking about Mom Dream with gone Grandma - extrem care feeling
+   
    const char * str::utf8_inc_copy_slide_back(strsize * pslideback, char * pchDst, const char * pchSrc)
    {
 

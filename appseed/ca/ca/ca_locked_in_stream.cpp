@@ -1,5 +1,5 @@
 // LockedStream.cpp
-// at sector8J on afternoon of 13/01/2011 - Thursday
+
 #include "framework.h"
 
 namespace ca
@@ -19,4 +19,4 @@ namespace ca
       return realProcessedSize;
    }
 
-} // // at sector8J on afternoon of 13/01/2011 - Thursday
+} // namespace ca

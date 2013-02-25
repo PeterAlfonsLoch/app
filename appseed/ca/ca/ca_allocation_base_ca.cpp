@@ -37,7 +37,6 @@ void * base_ca2_alloc_dbg(size_t nSize, int32_t nBlockUse, const char * szFileNa
    UNREFERENCED_PARAMETER(nBlockUse);
    UNREFERENCED_PARAMETER(szFileName);
    UNREFERENCED_PARAMETER(nLine);
-   //25/07/2011 - Bug DoubleUniqueID for single Call no xpressions no sector 8J analyzed with Cle - Cleber Jaizer - with Caller-Called-StartTime-tuple
    //TODO: to do the dbg version
    //byte * p = (byte *) _malloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
    byte * p = (byte *) ca2_heap_alloc_dbg(nSize + 4 + 32, nBlockUse, szFileName, nLine);
@@ -68,7 +67,6 @@ void * base_ca2_realloc(void * pvoid, size_t nSize, int32_t nBlockUse, const cha
       }
       else if(p[0] == 1)
       {
-         //   //25/07/2011 - Bug DoubleUniqueID for single Call no xpressions no sector 8J analyzed with Cle - Cleber Jaizer - with Caller-Called-StartTime-tuple
    //TODO: to do the dbg version
          p = (byte *) ca2_heap_realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
          //p = (byte *) _realloc_dbg(p, nSize + 4 + 32, nBlockUse, szFileName, nLine);
@@ -107,8 +105,7 @@ void base_ca2_free(void * pvoid, int32_t iBlockType)
       }
       else if(p[0] == 1)
       {
-         //   //25/07/2011 - Bug DoubleUniqueID for single Call no xpressions no sector 8J analyzed with Cle - Cleber Jaizer - with Caller-Called-StartTime-tuple
-   //TODO: to do the dbg version
+            //TODO: to do the dbg version
 
          ca2_heap_free_dbg(p);
          //_free_dbg(p, iBlockType);
@@ -142,8 +139,7 @@ size_t base_ca2_msize(void * pvoid, int32_t iBlockType)
       }
       else if(p[0] == 1)
       {
-         //   //25/07/2011 - Bug DoubleUniqueID for single Call no xpressions no sector 8J analyzed with Cle - Cleber Jaizer - with Caller-Called-StartTime-tuple
-   //TODO: to do the dbg version
+         //TODO: to do the dbg version
 
          return *((size_t *) &p[1]);
          //_free_dbg(p, iBlockType);
