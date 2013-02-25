@@ -173,6 +173,9 @@ namespace gcom
          //         ::ca::bitmap & bmpBuffer = GetBufferBitmap();
 
 
+         //dcSource.FillSolidRect(200, 200, 500, 500, ARGB(255, 255, 0, 0));
+
+
          //         ::ca::dib * pdibSource = GetDib(_graphics::DibSource);
 
          if(dcSource.get_os_data() == NULL)

@@ -132,6 +132,11 @@ namespace sockets
             fclose(fil);
          }
       }
+
+      if(!m_bNoClose)
+      {
+         SetCloseAndDelete();
+      }
       
    }
 

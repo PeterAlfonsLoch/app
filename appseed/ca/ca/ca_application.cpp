@@ -4605,17 +4605,22 @@ namespace ca
       //::ca::smart_pointer < application_base >::m_p->_001OnFileNew();
    }
 
+
    ::user::document_interface * application::_001OpenDocumentFile(var varFile)
    {
-      throw not_implemented(get_app());
-//      return ::ca::smart_pointer < application_base >::m_p->_001OpenDocumentFile(varFile);
+
+      return ::ca::smart_pointer < application_base >::m_p->_001OpenDocumentFile(varFile);
+
    }
+
 
    void application::_001EnableShellOpen()
    {
-      throw not_implemented(get_app());
-       //::ca::smart_pointer < application_base >::m_p->_001EnableShellOpen();
+      
+      ::ca::smart_pointer < application_base >::m_p->_001EnableShellOpen();
+
    }
+
 
    bool application::_001OnDDECommand(const char * lpcsz)
    {
@@ -5338,8 +5343,14 @@ namespace ca //namespace _001ca1api00001 + [ca = (//namespace cube // ca8 + cube
       string strFilePath = System.dir().matter_from_locator(App(this).str_context(), strLocator, strMatter);
       if(!System.file().exists(strFilePath, this))
       {
-         if(m_stringtablemap[pszId] != NULL)
-            delete m_stringtablemap[pszId];
+         try
+         {
+            if(m_stringtablemap[pszId] != NULL)
+               delete m_stringtablemap[pszId];
+         }
+         catch(...)
+         {
+         }
          m_stringtablemapStd.set_at(pszId, new string_to_string_map);
          return;
       }

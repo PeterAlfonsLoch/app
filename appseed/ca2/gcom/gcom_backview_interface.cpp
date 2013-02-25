@@ -276,6 +276,9 @@ namespace gcom
 
          dcTransfer.SelectClipRgn(NULL);
 
+         //dcTransfer.FillSolidRect(10, 10, 100, 100, ARGB(5, 10, 10, 10));
+         pdc->SelectClipRgn(NULL);
+
          pdc->BitBlt(
             x, y,
             w, h,

@@ -1716,6 +1716,7 @@ retry:
          ::ca::property_set headers;
          ::ca::property_set set;
          set["put"] = pfile;
+         set["noclose"] = false;
          return System.http().get(pszUrl, str, post, headers, set, NULL, puser);
       }
 

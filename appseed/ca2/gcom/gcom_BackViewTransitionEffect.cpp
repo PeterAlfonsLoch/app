@@ -33,6 +33,9 @@ namespace gcom
          int32_t iStart  = (int32_t) TransitionEffectFirst;
          int32_t iEnd    = (int32_t) TransitionEffectLast;
 
+         //iStart = (int32_t) TransitionEffectSingleStep;
+         //iEnd   = (int32_t) TransitionEffectSingleStep;
+
          //iStart  = (int32_t) TransitionEffectLinearFadingTopBottom;
          //iEnd    = (int32_t) TransitionEffectLinearFadingRightLeft;
 
@@ -444,7 +447,16 @@ namespace gcom
             {
                if(m_tool001.m_iStep == m_tool001.m_iStepCount / 2)
                {
+                  //dcBack.FillSolidRect(100, 10, 50, 50, ARGB(20, 30, 40, 20));
+
                   rectUpdate = rectClient;
+                  dcBack.BitBlt(
+                     rectUpdate.left, rectUpdate.top,
+                     rectUpdate.width(), rectUpdate.height(),
+                     &dcBuffer,
+                     rectUpdate.left, rectUpdate.top,
+                     SRCCOPY);
+
 /*                  drawdib.draw(
                      &dcBack,
                      rectUpdate.left, rectUpdate.top,
@@ -1911,7 +1923,7 @@ namespace gcom
                if(!peffect->m_bRun)
                   break;
 
-                  event.wait(seconds(3));
+                  //event.wait(seconds(3));
                   event.ResetEvent();
                }
                if(peffect->m_bDestroy)
