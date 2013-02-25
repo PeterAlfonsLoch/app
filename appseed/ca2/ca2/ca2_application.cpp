@@ -553,9 +553,6 @@ namespace ca2 // namespace cube + namespace cube + cube2 + cube + ca8
       return ::cubebase::application::final_handle_exception(e);
    }
 
-// 23 = Carlinhos Gustavinho Cecynzinho Lundgrenzinho
-// monitors all -- que olhões
-
    void application::enum_display_monitors()
    {
 

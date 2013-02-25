@@ -1,5 +1,4 @@
 // ProgressUtils.h
-// from 7-zip on 2010-12-26 Sunday, just after Christmas evening at Music Room with Lucinho at torvon and me at eco - at veriverse - and Mummi and Maninha no quarto da Mummi
 #include "framework.h"
 
 //#include "ProgressUtils.h"
