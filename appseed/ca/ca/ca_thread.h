@@ -22,12 +22,10 @@
 /**
 * \file		src/lib/pal/windows/thread_windows.hpp
 * \brief	Platform independent threads and synchronization objects (windows version)
-* \author	Thomas Nass
 */
 /**
 * \file		src/lib/pal/linux/thread_linux.hpp
 * \brief	Platform independent threads and synchronization objects (linux version)
-* \author	Thomas Nass
 */
 
 //#ifndef GEN_PAL_THREAD_WINDOWS_HPP

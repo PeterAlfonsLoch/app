@@ -1,6 +1,5 @@
 /**
 * \brief	Platform independent waitables (windows version)
-* \author	Thomas Hoefer
 */
 
 

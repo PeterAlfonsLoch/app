@@ -34,7 +34,6 @@ public:
 
 /**
 * \brief	Platform independent waitables (windows version)
-* \author	Thomas Hoefer
 */
 
 	///  \brief		waits for an event forever

@@ -1,6 +1,5 @@
 /**
 * \brief	Platform independent waitables
-* \author	Thomas Hoefer
 */
 #pragma once
 
