@@ -128,7 +128,7 @@ namespace ca
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-      string strFile = System.dir().ca();
+      string strFile = System.dir().ca2();
       strFile = System.dir().path(strFile, pszAuth);
       string strCalling = strFile + " service";
 

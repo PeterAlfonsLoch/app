@@ -136,12 +136,12 @@ namespace ca
          virtual string stageapp(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string netseed(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
-         virtual string ca(const char * lpcsz, const char * lpcsz2 = NULL);
-         virtual string ca();
-         virtual string ca(const string & str);
-         virtual string ca(const string & str, const string & str2);
-         virtual string ca(const char * lpcsz, const string & str2);
-         virtual string ca(const string & str, const char * lpcsz2);
+         virtual string ca2(const char * lpcsz, const char * lpcsz2 = NULL);
+         virtual string ca2();
+         virtual string ca2(const string & str);
+         virtual string ca2(const string & str, const string & str2);
+         virtual string ca2(const char * lpcsz, const string & str2);
+         virtual string ca2(const string & str, const char * lpcsz2);
 
          virtual string module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string ca2module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);

@@ -16,7 +16,7 @@ namespace simpledb
    {
       string strMetaPath;
 
-      strMetaPath = System.dir().ca("database/" + db, "meta.xml");
+      strMetaPath = System.dir().ca2("database/" + db, "meta.xml");
 
       try
       {

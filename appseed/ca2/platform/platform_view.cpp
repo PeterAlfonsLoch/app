@@ -723,7 +723,7 @@ namespace platform
 
 #ifdef WINDOWSEX
 
-         simple_shell_launcher launcher(NULL, NULL, System.dir().ca("cast\\spaadmin.exe"), NULL, NULL, SW_SHOW);
+         simple_shell_launcher launcher(NULL, NULL, System.dir().ca2("cast\\spaadmin.exe"), NULL, NULL, SW_SHOW);
 
          launcher.execute();
 
@@ -782,9 +782,9 @@ namespace platform
       simple_shell_launcher launcher(
       NULL,
       NULL,
-      System.dir().ca("spaadmin.exe"),
+      System.dir().ca2("spaadmin.exe"),
       " uninstall _set_windesk",
-      System.dir().ca(""),
+      System.dir().ca2(""),
       SW_HIDE);
       launcher.execute();
 

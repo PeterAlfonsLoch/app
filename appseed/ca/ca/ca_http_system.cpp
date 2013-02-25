@@ -38,7 +38,7 @@ namespace ca
             string str = System.file_as_string(&System, System.dir().appdata("machine/proxy.xml"));
             if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
             {
-               Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().ca("proxy.xml"), false);
+               Application.file().copy(System.dir().appdata("proxy_original.xml"), System.dir().ca2("proxy.xml"), false);
             }
             if(Application.file().exists(System.dir().appdata("proxy.xml")))
             {

@@ -1744,7 +1744,7 @@ exit_application:
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot, pszRelative, pszLocale, pszStyle);
       string strRelative = System.dir().path(System.dir().path(pszRoot, "appmatter", pszRelative), App(this).get_locale_schema_dir(pszLocale, pszStyle)) + ".zip";
-      string strFile = System.dir().ca(strRelative);
+      string strFile = System.dir().ca2(strRelative);
       string strUrl;
       if(_ca_is_basis())
       {

@@ -469,7 +469,7 @@ namespace userstack
 
       string strSentinelPath;
 
-      strSentinelPath = System.dir().ca("stage/x86/app-sentinel.exe");
+      strSentinelPath = System.dir().ca2("stage/x86/app-sentinel.exe");
 
       System.os().local_machine_set_run("ca app-sentinel", "\"" + strSentinelPath + "\"");
 

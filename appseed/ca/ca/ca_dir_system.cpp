@@ -709,41 +709,41 @@ namespace ca
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca(const char * lpcsz, const char * lpcsz2)
+      string system::ca2(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca(const string & str, const char * lpcsz2)
+      string system::ca2(const string & str, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(str);
          UNREFERENCED_PARAMETER(lpcsz2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca(const char * lpcsz, const string & str2)
+      string system::ca2(const char * lpcsz, const string & str2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
          UNREFERENCED_PARAMETER(str2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca(const string & str, const string & str2)
+      string system::ca2(const string & str, const string & str2)
       {
          UNREFERENCED_PARAMETER(str);
          UNREFERENCED_PARAMETER(str2);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca(const string & str)
+      string system::ca2(const string & str)
       {
          UNREFERENCED_PARAMETER(str);
          throw interface_only_exception(get_app(), "this is an interface");
       }
 
-      string system::ca()
+      string system::ca2()
       {
          throw interface_only_exception(get_app(), "this is an interface");
       }
@@ -1538,7 +1538,7 @@ ret:
 
          appmatter_locators(strRoot, strDomain, papp);
 
-         return ca(simple_path(strRoot, "appmatter", strDomain));
+         return ca2(simple_path(strRoot, "appmatter", strDomain));
 #endif
 
       }
@@ -1551,7 +1551,7 @@ ret:
 
          appmatter_locators(strRoot, strDomain, strLibraryName, strAppName);
 
-         return ca(simple_path(strRoot, "appmatter", strDomain));
+         return ca2(simple_path(strRoot, "appmatter", strDomain));
 
       }
 
@@ -1563,7 +1563,7 @@ ret:
 
          appmatter_locators(strRoot, strDomain, System.m_mapAppLibrary[strAppName], strAppName);
 
-         return ca(simple_path(strRoot, "appmatter", strDomain));
+         return ca2(simple_path(strRoot, "appmatter", strDomain));
 
       }
 
