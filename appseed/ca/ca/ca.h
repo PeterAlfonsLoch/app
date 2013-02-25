@@ -293,7 +293,6 @@ class dump_context;
 #include "ca_equals.h"
 #include "ca_compare.h"
 #include "ca_less.h"
-#include "ca.h"
 
 
 #include "ca_template.h"
@@ -852,12 +851,7 @@ namespace user
 #include "ca_section.h"
 
 
-#pragma once
-
 // former ca
-
-#include "ca.h"
-
 
 #include "ca_os_history.h"
 

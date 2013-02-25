@@ -609,7 +609,7 @@ namespace fontopus
          if(::ca::str::begins_ci(strModule, strModuleFolder))
          {
             straSource.add(strModule);
-            straHash.add(System.file36().md5(strModule));
+            straHash.add(System.file().md5(strModule));
          }
       }
       straHash.QuickSort();
