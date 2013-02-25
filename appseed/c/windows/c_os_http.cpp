@@ -109,7 +109,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    if(g_hSession == NULL)
    {
       g_hSession = InternetOpen(
-         "ccvotagus_ca2_fontopus",
+         "ca2",
          INTERNET_OPEN_TYPE_PRECONFIG,
          NULL,
          NULL,
@@ -357,7 +357,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
 
 
    // Use WinHttpOpen to obtain a session handle.
-   hSession = InternetOpen("ccvotagus_ca2_fontopus", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
+   hSession = InternetOpen("ca2", INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);
 
    if(hSession)
       hConnect = InternetConnect(hSession, strHost, iPort, NULL, NULL, INTERNET_SERVICE_HTTP, iPort == 443 ? INTERNET_FLAG_SECURE : 0, 1);
@@ -594,7 +594,7 @@ GlobalFree((HGLOBAL) pwzAutoUrl);
 
 
 // Use WinHttpOpen to obtain a session handle.
-/*  hSession = WinHttpOpen( L"ccvotagus_ca2_fontopus",
+/*  hSession = WinHttpOpen( L"ca2",
 WINHTTP_ACCESS_TYPE_DEFAULT_PROXY,
 WINHTTP_NO_PROXY_NAME,
 WINHTTP_NO_PROXY_BYPASS, 0);

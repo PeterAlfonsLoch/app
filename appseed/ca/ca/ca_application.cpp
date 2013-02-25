@@ -4404,7 +4404,7 @@ namespace ca
    string application::get_local_mutex_name(const char * pszAppName)
    {
       string strMutex;
-      strMutex.Format("Local\\ca2_fontopus_votagus_application_local_mutex:%s", pszAppName);
+      strMutex.Format("Local\\ca2_application_local_mutex:%s", pszAppName);
       return strMutex;
    }
 
@@ -4412,14 +4412,14 @@ namespace ca
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Local\\ca2_fontopus_votagus_application_local_mutex:%s, id:%s", pszAppName, strId);
+      strMutex.Format("Local\\ca2_application_local_mutex:%s, id:%s", pszAppName, strId);
       return strMutex;
    }
 
    string application::get_global_mutex_name(const char * pszAppName)
    {
       string strMutex;
-      strMutex.Format("Global\\ca2_fontopus_votagus_application_global_mutex:%s", pszAppName);
+      strMutex.Format("Global\\ca2_application_global_mutex:%s", pszAppName);
       return strMutex;
    }
 
@@ -4427,7 +4427,7 @@ namespace ca
    {
       string strId(pszId);
       string strMutex;
-      strMutex.Format("Global\\ca2_fontopus_votagus_application_global_mutex:%s, id:%s", pszAppName,  strId);
+      strMutex.Format("Global\\ca2_application_global_mutex:%s, id:%s", pszAppName,  strId);
       return strMutex;
    }
 

@@ -12,7 +12,7 @@ namespace platform
    {
       m_pimagelist         = NULL;
       m_iFrameData         = 10;
-      m_dataid             = "ca2_fontopus_votagus::platform::frame";
+      m_dataid             = "ca2::platform::frame";
 
       m_bWindowFrame       = true;
       m_bFrameMoveEnable   = false;

@@ -180,8 +180,8 @@ namespace spa
       // Make the security attributes point
       // to the security descriptor
       MutexAttributes.lpSecurityDescriptor = &SD;*/
-      //g_hmutexInstall = ::CreateMutex(&MutexAttributes, FALSE, "Global\\::ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
-      /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\::ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      //g_hmutexInstall = ::CreateMutex(&MutexAttributes, FALSE, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      /*g_hmutexInstall = ::CreateMutex(NULL, FALSE, "Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
       trace("another instance of spa is already running");
@@ -300,7 +300,7 @@ RetryHost:
             if(strInstallFilter.find(strFilter) != vsstring::npos)
             {
                vsstring strKey;
-               strKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ca2_fontopus_votagus_" + strId;
+               strKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\ca2_" + strId;
 
                if(::RegCreateKey(HKEY_LOCAL_MACHINE,
                   strKey,
@@ -314,7 +314,7 @@ RetryHost:
                      (const BYTE *) (const char *) strFile,
                      (uint32_t) strFile.length());
                   vsstring strDisplayName;
-                  strDisplayName = "ca fontopus votagus - ";
+                  strDisplayName = "ca2 - ";
                   strKey = "install_filter_title_" + strId;
                   strDisplayName += load_string(strKey, strId);
                   ::RegSetValueEx(
@@ -658,7 +658,7 @@ RetryHost:
          if(m_straRestartCommandLine.get_count() > 0)
          {
 
-            oswindow oswindowSpaBoot = ::FindWindow(NULL, "::ca::fontopus::ccvotagus::spaboot:callback_window");
+            oswindow oswindowSpaBoot = ::FindWindow(NULL, "::ca2::spaboot:callback_window");
 
             if(oswindowSpaBoot != NULL)
             {
@@ -2194,8 +2194,8 @@ RetryHost:
                      if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "online_default")
                      {
                         m_bOfflineInstall = false;
-                        m_strInstallGz = "http://ccvotagus.net/stage/";
-                        m_strInstall = "http://ccvotagus.net/stage/";
+                        m_strInstallGz = "http://ca2os.com/stage/";
+                        m_strInstall = "http://ca2os.com/stage/";
                      }
                      else if(vsstring(lpnode->childs[ui]->GetAttrValue("type")) == "offline")
                      {
@@ -2497,9 +2497,9 @@ RetryHost:
          trace("");
          trace("Failed to install");
          trace("Manually contact mailto:support.veriwell@ca2mail.com");
-         trace("or Manually go to http://votagus.com/");
+         trace("or Manually go to http://ca2os.com/");
          trace("");
-         trace("In votagus.com you can try to");
+         trace("In ca2os.com you can try to");
          trace("download the most recent release version for installation");
          trace("(Automatic links not availabe by now)");
          trace("");
@@ -2646,9 +2646,9 @@ RetryHost:
 
       m_bOfflineInstall          = false;
 
-      m_strInstallGz             = "http://ccvotagus.net/stage/";
+      m_strInstallGz             = "http://ca2os.com/stage/";
 
-      m_strInstall               = "http://ccvotagus.net/stage/";
+      m_strInstall               = "http://ca2os.com/stage/";
 
       m_strInstallStatusTemplate = defer_ls_get("http://account.ca2.cc/defer_ls_get?id=spa::InstallStatusTemplate", m_strInstallLocale, m_strInstallSchema);
 
@@ -3186,7 +3186,7 @@ RetryHost:
       // to the security descriptor
       //MutexAttributes.lpSecurityDescriptor = &SD;
       vsstring strMutex;
-      strMutex = "Global\\ca2_fontopus_votagus_application_global_mutex:";
+      strMutex = "Global\\ca2_application_global_mutex:";
       strMutex += psz;
       //HANDLE hmutex = ::CreateMutex(&MutexAttributes, FALSE, strMutex);
       simple_mutex mutex(strMutex, false);

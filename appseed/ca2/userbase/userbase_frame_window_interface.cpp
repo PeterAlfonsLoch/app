@@ -370,7 +370,7 @@ namespace userbase
    {
       database::user::interaction::data_on_after_change(pobj);
       SCAST_PTR(database::change_event, phint, pobj);
-      if(phint->m_key.m_idKey == "ca2_fontopus_votagus"
+      if(phint->m_key.m_idKey == "ca2"
          && phint->m_key.m_idIndex == "savings")
       {
          defer_synch_layered();

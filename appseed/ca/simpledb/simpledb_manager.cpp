@@ -30,7 +30,7 @@ namespace simpledb
 
    bool manager::initialize_instance()
    {
-      initialize_message_window("::ca::fontopus::ccvotagus::netnode::cgclcst");
+      initialize_message_window("::ca2::netnode::cgclcst");
 
       return true;
    }

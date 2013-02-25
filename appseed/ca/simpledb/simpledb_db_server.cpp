@@ -128,7 +128,7 @@ bool db_server::initialize()
 #endif
 
    //var varChange;
-   //data_server_load("ca2_fontopus_votagus", "database_change", "change", varChange);
+   //data_server_load("ca2", "database_change", "change", varChange);
    //g_idbchange = varChange;
 
 #if !defined(METROWIN) && !defined(MACOS)
@@ -230,10 +230,10 @@ void db_server::_001OnTimer(::ca::signal_object * pobj)
    {
       /*var varChange;
       var var;
-      data_server_load("ca2_fontopus_votagus", "database_change", "change", varChange);
+      data_server_load("ca2", "database_change", "change", varChange);
       while(g_idbchange <= (int32_t) varChange)
       {
-         if(data_server_load("ca2_fontopus_votagus", "database_change", g_idbchange, var))
+         if(data_server_load("ca2", "database_change", g_idbchange, var))
          {
             if(var.stra().get_count() == 3)
             {
@@ -289,25 +289,25 @@ bool db_server::data_server_save(::database::client * pclient, ::database::id id
    single_lock sl(&m_csImplDatabase, TRUE);
    if(!save(calc_key(pclient, idSection, id, idIndex), readable))
       return false;
-/*   if(idSection.m_id.str() != "ca2_fontopus_votagus" ||
+/*   if(idSection.m_id.str() != "ca2" ||
       id.m_id.str() != "database_change")
    {
       try
       {
          m_pdb->start_transaction();
          var varChange;
-         data_server_load("ca2_fontopus_votagus", "database_change", "change", varChange);
+         data_server_load("ca2", "database_change", "change", varChange);
          varChange++;
          stringa stra;
          stra.add(idSection.m_id);
          stra.add(id.m_id);
          stra.add(idIndex.m_id);
-         if(!data_save("ca2_fontopus_votagus", "database_change", varChange.int32(), stra))
+         if(!data_save("ca2", "database_change", varChange.int32(), stra))
          {
             m_pdb->rollback_transaction();
             goto end_write_change;
          }
-         if(!data_server_save("ca2_fontopus_votagus", "database_change", "change", varChange))
+         if(!data_server_save("ca2", "database_change", "change", varChange))
          {
             m_pdb->rollback_transaction();
             goto end_write_change;

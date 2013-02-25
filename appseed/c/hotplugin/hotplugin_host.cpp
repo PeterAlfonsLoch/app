@@ -312,7 +312,7 @@ namespace hotplugin
       //Sleep(15 * 1000);
       //Sleep(15 * 1000);
       //      update_npca2_installed();
-      simple_mutex * pmutex = new simple_mutex("Global\\::ca::fontopus::ccvotagus_ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
+      simple_mutex * pmutex = new simple_mutex("Global\\::ca::fontopus::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784");
       if(::GetLastError() == ERROR_ALREADY_EXISTS)
       {
          m_bRunningSpaAdmin = true;

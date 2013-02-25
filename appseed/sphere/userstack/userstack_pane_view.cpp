@@ -24,7 +24,7 @@ namespace userstack
 
       m_iDisplay        = -1;
       m_ppropform       = NULL;
-      m_dataid          = "ca2_fontopus_votagus::bergedge::pane_view";
+      m_dataid          = "ca2::bergedge::pane_view";
 
       get_data()->m_matchanyRestore.add(new ::ca::match::prefix("app:"));
 
@@ -548,7 +548,7 @@ namespace userstack
       control.m_id = "save_display_bandwidth";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus",
+            "ca2",
             "savings",
             ::ca::resource_display_bandwidth);
    //   control.add_function(user::control::function_static);
@@ -559,7 +559,7 @@ namespace userstack
       control.m_id = "save_processing";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus",
+            "ca2",
             "savings",
             ::ca::resource_processing);
    //   control.add_function(user::control::function_static);
@@ -570,7 +570,7 @@ namespace userstack
       control.m_id = "save_memory";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus",
+            "ca2",
             "savings",
             ::ca::resource_memory);
    //   control.add_function(user::control::function_static);
@@ -581,7 +581,7 @@ namespace userstack
       control.m_id = "enable_wallpaper";
       control.set_ddx_dbflags(
             "",
-            "ca2_fontopus_votagus",
+            "ca2",
             "bergedge",
             0);
    //   control.add_function(user::control::function_static);

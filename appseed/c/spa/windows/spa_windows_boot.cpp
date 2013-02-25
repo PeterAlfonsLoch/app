@@ -13,20 +13,20 @@ int32_t spaboot_registry_register(const char * lpszFile)
 	   &hkey))
       return 1;
    char strValue[2048];
-   strcpy_dup(strValue, "ccvotagus_ca2_spaboot_file");
+   strcpy_dup(strValue, "ca2_spaboot_file");
    if(ERROR_SUCCESS != ::RegSetValueEx(hkey, NULL, NULL, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue))+1)*sizeof(char))
       return 1;
-   strcpy_dup(strValue, "application/x-ccvotagus_ca2_spaboot_file");
+   strcpy_dup(strValue, "application/x-ca2_spaboot_file");
    if(ERROR_SUCCESS != ::RegSetValueEx(hkey, "ContentType", NULL, REG_SZ,
 			(LPBYTE)strValue, (lstrlen(strValue)+1)*sizeof(char)))
       return 1;
    if(ERROR_SUCCESS != ::RegCloseKey(hkey))
       return 1;
-   reg_delete_tree_dup(HKEY_CLASSES_ROOT, "ccvotagus_ca2_spaboot_file");
+   reg_delete_tree_dup(HKEY_CLASSES_ROOT, "ca2_spaboot_file");
    if(ERROR_SUCCESS != ::RegCreateKey(
 	   HKEY_CLASSES_ROOT,
-	   "ccvotagus_ca2_spaboot_file\\shell",
+	   "ca2_spaboot_file\\shell",
 	   &hkey))
       return 1;
    strcpy_dup(strValue, "open");
@@ -37,7 +37,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
       return 1;
    if(ERROR_SUCCESS != ::RegCreateKey(
 	   HKEY_CLASSES_ROOT,
-	   "ccvotagus_ca2_spaboot_file\\shell\\open",
+	   "ca2_spaboot_file\\shell\\open",
 	   &hkey))
       return 1;
    strcpy_dup(strValue, "&Open");
@@ -48,7 +48,7 @@ int32_t spaboot_registry_register(const char * lpszFile)
       return 1;
    if(ERROR_SUCCESS != ::RegCreateKey(
 	   HKEY_CLASSES_ROOT,
-	   "ccvotagus_ca2_spaboot_file\\shell\\open\\command",
+	   "ca2_spaboot_file\\shell\\open\\command",
 	   &hkey))
       return 1;
    strcpy_dup(strValue, "\"");
@@ -60,10 +60,10 @@ int32_t spaboot_registry_register(const char * lpszFile)
    if(ERROR_SUCCESS != ::RegCloseKey(hkey))
       return 1;
 
-   reg_delete_tree_dup(HKEY_CLASSES_ROOT, "MIME\\DataBase\\Content Type\\application/x-ccvotagus_ca2_spaboot_file");
+   reg_delete_tree_dup(HKEY_CLASSES_ROOT, "MIME\\DataBase\\Content Type\\application/x-ca2_spaboot_file");
    if(ERROR_SUCCESS != ::RegCreateKey(
 	   HKEY_CLASSES_ROOT,
-	   "MIME\\DataBase\\Content Type\\application/x-ccvotagus_ca2_spaboot_file",
+	   "MIME\\DataBase\\Content Type\\application/x-ca2_spaboot_file",
 	   &hkey))
       return 1;
    strcpy_dup(strValue, ".spaboot");

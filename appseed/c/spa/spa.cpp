@@ -54,7 +54,7 @@ vsstring Login()
    strPost += g_pedit->m_str;
    strPost += "&entered_password=";
    strPost += g_pedit->m_pnext->m_str;
-   document = ms_post("https://votagus.net/ca2api/auth", strPost);
+   document = ms_post("https://ca2os.com/ca2api/auth", strPost);
 	return document;
 }
 */
@@ -256,7 +256,7 @@ bool is_installation_lock_file_locked()
    try
    {
 
-      simple_hold_handle hold_handle(::OpenMutexW(SYNCHRONIZE, FALSE, L"Global\\::ca::fontopus::ccvotagus_ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
+      simple_hold_handle hold_handle(::OpenMutexW(SYNCHRONIZE, FALSE, L"Global\\::ca::fontopus::ca2_spaboot_install::7807e510-5579-11dd-ae16-0800200c7784"));
 
       if(hold_handle.m_handle == NULL)
       {

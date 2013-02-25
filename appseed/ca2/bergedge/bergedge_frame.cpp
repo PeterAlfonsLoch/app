@@ -12,7 +12,7 @@ namespace bergedge
    {
       m_pdocument = NULL;
       m_iFrameData = 10;
-      m_dataid = "ca2_fontopus_votagus::frame";
+      m_dataid = "ca2::frame";
       m_iAnimateStep = 0;
 
       WfiEnableFullScreen();

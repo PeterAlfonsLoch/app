@@ -131,13 +131,11 @@ namespace ca
 
          virtual string name(const char * psz);
 
-         virtual string votagus(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string time(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string stage(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string stageapp(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string netseed(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
 
-         // stage in ccvotagus spalib
          virtual string ca(const char * lpcsz, const char * lpcsz2 = NULL);
          virtual string ca();
          virtual string ca(const string & str);
@@ -145,7 +143,6 @@ namespace ca
          virtual string ca(const char * lpcsz, const string & str2);
          virtual string ca(const string & str, const char * lpcsz2);
 
-         virtual string sensitive_ccvotagus(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual string ca2module(const char * lpcsz = NULL, const char * lpcsz2 = NULL);
          virtual void time_square(string &str);

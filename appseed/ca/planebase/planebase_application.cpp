@@ -1109,7 +1109,7 @@ exit_application:
             user().set_keyboard_layout(NULL, false);
          }
 
-         data_pulse_change("ca2_fontopus_votagus", "savings", NULL);
+         data_pulse_change("ca2", "savings", NULL);
 
 
          App(this).fill_locale_schema(*str_context()->m_plocaleschema);

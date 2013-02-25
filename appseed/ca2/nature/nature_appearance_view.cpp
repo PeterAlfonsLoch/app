@@ -115,7 +115,7 @@ namespace nature
       switch(pcreatordata->m_id)
       {
       case view_image_folder:
-         pview->Initialize(&filemanager.std(), "Image", "ca2_fontopus_votagus.nature.ImageDirectorySet", true);
+         pview->Initialize(&filemanager.std(), "Image", "ca2.nature.ImageDirectorySet", true);
          break;
       }
       pview->connect_command("edit_add", &folder_selection_list_view::_001OnAdd);
