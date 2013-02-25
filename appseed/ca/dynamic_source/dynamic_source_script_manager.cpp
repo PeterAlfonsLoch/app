@@ -91,7 +91,7 @@ namespace dynamic_source
       m_iTunnelPluginCount       = 0;
 
 
-      m_strSeedCarlosGustavoCecynLundgrenCarlos = "system/seed_carlosgustavocecynlundgrencarlos";
+      m_strSeed = "system/seed";
 
    }
 
@@ -156,12 +156,12 @@ namespace dynamic_source
    void script_manager::handle(::dynamic_source::httpd_socket * pnetnodesocket)
    {
       string strHead;
-      script_instance * pinstance = get(m_strSeedCarlosGustavoCecynLundgrenCarlos);
+      script_instance * pinstance = get(m_strSeed);
       pnetnodesocket->m_pinstanceCurrent = pinstance;
       if(pinstance != NULL)
       {
          pinstance->m_strDebugRequestUri = pnetnodesocket->inattr("request_uri");
-         pinstance->m_strDebugThisScript = m_strSeedCarlosGustavoCecynLundgrenCarlos;
+         pinstance->m_strDebugThisScript = m_strSeed;
          pinstance->initialize(pinstance, NULL, pnetnodesocket, this);
          pinstance->dinit();
          if(pinstance->m_iDebug > 0)
@@ -663,7 +663,7 @@ namespace dynamic_source
 
    string script_manager::get_root_plugin()
    {
-      return "netnode://script_seed_carlos_gustavo_cecyn_lundgren_carlos";
+      return "netnode://script_seed";
    }
 
 

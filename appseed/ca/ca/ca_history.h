@@ -1,9 +1,10 @@
 #pragma once
 
+
 namespace ca
 {
 
-   // Carlos Gustavo Cecyn Lundgren is my history
+
    class CLASS_DECL_ca history :
       virtual public ::ca::object
    {

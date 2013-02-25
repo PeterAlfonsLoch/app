@@ -115,17 +115,16 @@ namespace calculator
 
    void view::_001OnSize(::ca::signal_object * pobj)
    {
+      
       UNREFERENCED_PARAMETER(pobj);
 
    }
 
    void view::_001OnPaint(::ca::signal_object * pobj)
    {
+
       UNREFERENCED_PARAMETER(pobj);
-      //CPaintDC spgraphics(this); // device context for calculatoring
 
-
-      // spgraphics->TextOut(20, 20, "Carlos Gustavo Cecyn Lundgren ・minha Vida Eterna, meu Cora鈬o Eterno, Todo meu tesouro eterno, meu Universo eterno, meu tudo eterno!!");
    }
 
 

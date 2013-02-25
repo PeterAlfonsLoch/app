@@ -171,7 +171,7 @@ namespace dynamic_source
       string_to_string_map                      m_tagname;
 
 
-      string                                    m_strSeedCarlosGustavoCecynLundgrenCarlos;
+      string                                    m_strSeed;
 
 
       script_manager(::ca::application * papp);
