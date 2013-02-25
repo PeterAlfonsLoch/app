@@ -2359,7 +2359,7 @@ RetryHost:
 
       small_ipc_tx_channel txchannel;
 
-      if(!txchannel.open("ca/fontopus/ccvotagus/spaboot_install_callback"))
+      if(!txchannel.open("ca2/spaboot_install_callback"))
          return;
 
 #endif

@@ -79,14 +79,8 @@ void stringa::add_smallest_tokens(const char * lpcsz, stringa & straSeparator, b
    {
       while(strTokenizer.GetNextSmallestToken(strToken, straSeparator, bWithSeparator))
       {
-         if(straSeparator.get_data() == get_data())
-            __debug_break();
-         if(strToken == "cecyn1.at.hotmail.com")
-            g_add_smallest_tokens++;
          if(!strToken.is_empty())
             string_array::add(strToken);
-         if(straSeparator.get_data() == get_data())
-            __debug_break();
       }
    }
 }

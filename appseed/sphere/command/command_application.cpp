@@ -14,7 +14,7 @@ namespace command
    void application::construct()
    {
       m_strAppName            = _strdup("command");
-      m_strBaseSupportId      = "votagus_ca2_command";
+      m_strBaseSupportId      = "ca2_command";
       m_eexclusiveinstance    = ::ca::ExclusiveInstanceLocal;
    }
 

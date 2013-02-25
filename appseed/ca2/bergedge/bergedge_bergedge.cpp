@@ -64,7 +64,7 @@ namespace bergedge
    {
 
       m_strAppName         = "bergedge";
-      m_strBaseSupportId   = "votagus_ca2_bergedge";
+      m_strBaseSupportId   = "ca2_bergedge";
       m_strInstallToken    = "bergedge";
       m_bLicense           = false;
       m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;

@@ -252,7 +252,7 @@ namespace platform
 
       //pfi = Application.visual().imaging().LoadImageFile(
       // System.dir().standard_square_matter());
-      m_dibV.load_from_matter("votagus_mountains_and_valleys-123.png");
+      m_dibV.load_from_matter("wild_mountains_and_valleys-123.png");
 
       //pfi = Application.visual().imaging().LoadImageFile(
       //System.dir().standard_square_matter());
@@ -723,7 +723,7 @@ namespace platform
 
 #ifdef WINDOWSEX
 
-         simple_shell_launcher launcher(NULL, NULL, System.dir().votagus("cast\\ccvotagus\\spaadmin.exe"), NULL, NULL, SW_SHOW);
+         simple_shell_launcher launcher(NULL, NULL, System.dir().ca("cast\\spaadmin.exe"), NULL, NULL, SW_SHOW);
 
          launcher.execute();
 
@@ -782,9 +782,9 @@ namespace platform
       simple_shell_launcher launcher(
       NULL,
       NULL,
-      System.dir().ca("ccvotagus/spaadmin.exe"),
+      System.dir().ca("spaadmin.exe"),
       " uninstall _set_windesk",
-      System.dir().ca("ccvotagus"),
+      System.dir().ca(""),
       SW_HIDE);
       launcher.execute();
 

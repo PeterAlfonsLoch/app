@@ -188,7 +188,7 @@ HRCParser* ParserFactory::getHRCParser()
          }
          if(Application.dir().is(path))
          {
-            //if(path == "v:\\votagus\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
+            //if(path == "v:\\ca2os\\basis\\app\\appmatter\\main\\_std\\_std\\colorer\\hrc\\auto")
             {
               // __debug_break();
             }

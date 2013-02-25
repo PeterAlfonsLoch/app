@@ -121,15 +121,15 @@ namespace ca
    }
 
 
-   int32_t service::create(const char * psz, const char * pszDisplayName, const char * pszVotagus)
+   int32_t service::create(const char * psz, const char * pszDisplayName, const char * pszAuth)
    {
 
 #ifdef WINDOWSEX
 
       SC_HANDLE hdlSCM = OpenSCManager(0, 0, SC_MANAGER_CREATE_SERVICE);
 
-      string strFile = System.dir().votagus();
-      strFile = System.dir().path(strFile, pszVotagus);
+      string strFile = System.dir().ca();
+      strFile = System.dir().path(strFile, pszAuth);
       string strCalling = strFile + " service";
 
       if (hdlSCM == 0) return ::GetLastError();

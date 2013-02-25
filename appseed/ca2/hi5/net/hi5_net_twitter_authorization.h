@@ -29,13 +29,13 @@ namespace hi5
             form_document *                           m_pdocAuth;
             form_document *                           m_pdocMessage;
             form_view *                               m_pviewAuth;
-            bool                                      m_bVotagusAuth;
+            bool                                      m_bAuth;
             string                                    m_strForm;
             string                                    m_strLicense;
             bool                                      m_bLicense;
             bool                                      m_bInteractive;
 
-            authorization(::ca::application * papp,const char * pszAuthorizationUrl, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);
+            authorization(::ca::application * papp,const char * pszAuthorizationUrl, const char * pszForm, bool bAuth = false, bool bInteractive = true);
             virtual ~authorization();
 
             void ensure_main_document();

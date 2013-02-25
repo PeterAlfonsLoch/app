@@ -1226,7 +1226,7 @@ namespace plane
       UNREFERENCED_PARAMETER(pca);
    }
 
-   int32_t system::________ca2_votagus_logging_Report(
+   int32_t system::__ca2_logging_report(
       int32_t iReportType,
       const char * pszFileName,
       int32_t iLineNumber,
@@ -1308,7 +1308,7 @@ namespace plane
 #else
       va_list list = {};
 #endif
-      bool bResult = ________ca2_votagus_logging_Report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
+      bool bResult = __ca2_logging_report(_CRT_ASSERT, lpszFileName, iLine, NULL, NULL, list) != 0;
 #ifdef WINDOWSEX
       if (bQuit)
          PostQuitMessage((int32_t)msg.wParam);
@@ -1353,7 +1353,7 @@ namespace plane
 
    int32_t system::_001OnDebugReport(int32_t i1, const char * psz1, int32_t i2, const char * psz2, const char * psz3, va_list args)
    {
-      return ________ca2_votagus_logging_Report(i1, psz1, i2, psz2, psz3, args);
+      return __ca2_logging_report(i1, psz1, i2, psz2, psz3, args);
    }
 
    void system::on_request(::ca::create_context * pcreatecontext)

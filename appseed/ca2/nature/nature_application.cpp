@@ -10,7 +10,7 @@ namespace nature
    void application::construct()
    {
       m_strAppName         = "nature";
-      m_strBaseSupportId   = "votagus_ca2_nature";
+      m_strBaseSupportId   = "ca2_nature";
    }
 
    application::~application()

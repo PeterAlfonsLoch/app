@@ -50,15 +50,15 @@ namespace platform
          void show();
       };
 
-      int32_t                    m_iV; // veriwell votagus vida
+      int32_t                    m_iV; 
       int32_t                    m_iVH;
       int32_t                    m_iVW;
       visual::dib_sp             m_dibV;
-      int32_t                    m_i_veriwell; // veriwell votagus vida
+      int32_t                    m_i_veriwell; 
       int32_t                    m_i_veriwell_h;
       int32_t                    m_i_veriwell_w;
       visual::dib_sp             m_dib_veriwell;
-      int32_t                    m_i_winactionarea; // que ponta!!cc
+      int32_t                    m_i_winactionarea; 
       int32_t                    m_i_winactionarea_h;
       int32_t                    m_i_winactionarea_w;
       visual::dib_sp             m_dib_winactionarea;

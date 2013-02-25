@@ -76,7 +76,7 @@ namespace plane
    {
 
       m_strAppName         = "session";
-      m_strBaseSupportId   = "votagus_ca2_bergedge";
+      m_strBaseSupportId   = "ca2_bergedge";
       m_strInstallToken    = "session";
       m_bLicense           = false;
       m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;

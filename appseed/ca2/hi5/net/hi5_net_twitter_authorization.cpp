@@ -15,12 +15,12 @@ namespace hi5
       namespace twitter
       {
 
-         authorization::authorization(::ca::application * papp, const char * pszAuthorizationUrl, const char * pszForm, bool bVotagusAuth, bool bInteractive) :
+         authorization::authorization(::ca::application * papp, const char * pszAuthorizationUrl, const char * pszForm, bool bAuth, bool bInteractive) :
             ca(papp)
          {
             m_strAuthorizationUrl=pszAuthorizationUrl;
             m_bInteractive    = bInteractive;
-            m_bVotagusAuth    = bVotagusAuth;
+            m_bAuth    = bAuth;
             m_strForm         = pszForm;
             m_ptemplatePane   = new ::userbase::single_document_template(
                papp,

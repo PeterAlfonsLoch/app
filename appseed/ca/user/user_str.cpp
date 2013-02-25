@@ -172,7 +172,7 @@ namespace user
 #ifdef METROWIN
       return true;
 #endif
-      string strMain = System.dir().path(System.dir().votagus(), "app\\appmatter\\main");
+      string strMain = System.dir().path(System.dir().ca(), "app\\appmatter\\main");
       if(!load(strMain))
          return false;
       return true;

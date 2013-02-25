@@ -13,7 +13,7 @@ namespace webserver
    typedef array_del_ptr < match_host > match_host_array;
    class ui_redir;
    class fontopus_database;
-   class cynce_database;
+   class way_database;
 
 
 } // namespace webserver
@@ -152,7 +152,7 @@ namespace dynamic_source
       mutex                                     m_mutexSession;
       ::collection::string_map < session >      m_mapSession;
       mutex                                     m_mutexMusicDbPool;
-      mutex                                     m_mutexCynceDbPool;
+      mutex                                     m_mutexWayDbPool;
       script_cache *                            m_pcache;
       script_compiler *                         m_pcompiler;
       uint32_t                                     m_dwBuildTimeWindow;

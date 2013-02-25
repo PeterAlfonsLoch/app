@@ -14,7 +14,7 @@ namespace ca
       int32_t create(
             const char * pszName,
             const char * pszDisplayName,
-            const char * pszVotagus);
+            const char * pszAuth);
       int32_t start(const char * pszName);
    };
 

@@ -93,7 +93,7 @@ namespace dynamic_source
       prepare1(m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat",
                m_strDynamicSourceConfiguration  + "_libl" + m_strPlat1 + ".bat");
 
-      System.dir().mk(System.dir().votagus("stage/front"), get_app());
+      System.dir().mk(System.dir().ca("stage/front"), get_app());
 
       string vars1batSrc;
       string vars2batSrc;
@@ -101,8 +101,8 @@ namespace dynamic_source
       string vars2batDst;
       vars1batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars64.bat");
       vars2batSrc = System.dir().ca("nodeapp/stage/dynamic_source/vc10vars_query_registry.bat");
-      vars1batDst = System.dir().votagus("stage/front", "vc10vars64.bat");
-      vars2batDst = System.dir().votagus("stage/front", "vc10vars_query_registry.bat");
+      vars1batDst = System.dir().ca("stage/front", "vc10vars64.bat");
+      vars2batDst = System.dir().ca("stage/front", "vc10vars_query_registry.bat");
       try
       {
          Application.file().copy(vars1batDst, vars1batSrc, false);
@@ -176,8 +176,8 @@ namespace dynamic_source
 #endif
 
       //strName.replace("/", "\\");
-      //string strVotagusFolder;
-      //strVotagusFolder = System.dir().votagus();
+      //string strFolder;
+      //strFolder = System.dir().ca();
       string str;
       string strB;
       string strO;
@@ -380,7 +380,7 @@ namespace dynamic_source
 
       cppize(pscript);
 
-      string strV(System.dir().votagus());
+      string strV(System.dir().ca());
       strV.replace("\\", "/");
       if(!::ca::str::ends(strV, "/") && !::ca::str::ends(strV, "\\"))
          strV += "/";
@@ -389,7 +389,7 @@ namespace dynamic_source
 
       string strBuildCmd;
    //#ifdef DEBUG
-      strBuildCmd.Format(System.dir().votagus("nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
+      strBuildCmd.Format(System.dir().ca("nodeapp\\stage\\dynamic_source\\" + m_strDynamicSourceConfiguration + "_cl" + m_strPlat1 + ".bat"));
    //#else
      // strBuildCmd.Format(System.dir().stage("front\\dynamic_source_cl.bat"));
    //#endif
@@ -399,7 +399,7 @@ namespace dynamic_source
       str.replace("%ITEM_DIR%", System.dir().name(strTransformName));
       str.replace("%LIBS_LIBS%", m_strLibsLibs);
       str.replace("%VS_VARS%", m_strEnv);
-      str.replace("%VOTAGUS_ROOT%", strV);
+      str.replace("%CA2_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
       str.replace("%CONFIGURATION_NAME%", m_strDynamicSourceConfiguration);
       str.replace("%PLATFORM%", m_strPlatform);
@@ -669,10 +669,10 @@ namespace dynamic_source
 
    void script_compiler::prepare1(const char * lpcszSource, const char * lpcszDest)
    {
-      string strVotagusFolder;
-      strVotagusFolder = System.dir().votagus();
-      if(!::ca::str::ends(strVotagusFolder, "/") && !::ca::str::ends(strVotagusFolder, "\\"))
-         strVotagusFolder += "/";
+      string strFolder;
+      strFolder = System.dir().ca();
+      if(!::ca::str::ends(strFolder, "/") && !::ca::str::ends(strFolder, "\\"))
+         strFolder += "/";
       string strTemplate;
       string strSource = "nodeapp\\stage\\dynamic_source\\";
       strSource += lpcszSource;
@@ -680,9 +680,9 @@ namespace dynamic_source
       string strN = m_pmanager->m_strNetnodePath;
 
    //#ifdef DEBUG
-      strTemplate = System.dir().path(strVotagusFolder, strSource, false );
+      strTemplate = System.dir().path(strFolder, strSource, false );
    //#else
-     // strTemplate = System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
+     // strTemplate = System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\matter\\dynamic_source_cl.bat", false);
    //#endif
       string str;
       str = Application.file().as_string(strTemplate);
@@ -690,17 +690,17 @@ namespace dynamic_source
       System.file().path().eat_end_level(strVars, 2, "\\");
       strVars += "vc\\bin\\vcvars32.bat";*/
       str.replace("%VS_VARS%", m_strEnv);
-      string strV(strVotagusFolder);
+      string strV(strFolder);
       strV.replace("\\", "/");
-      str.replace("%VOTAGUS_ROOT%", strV);
+      str.replace("%CA2_ROOT%", strV);
       str.replace("%NETNODE_ROOT%", strN);
       string strDest = "stage\\front\\";
       strDest += lpcszDest;
       string strCmd;
    //#ifdef DEBUG
-      strCmd = System.dir().path(strVotagusFolder, strDest, false);
+      strCmd = System.dir().path(strFolder, strDest, false);
    //#else
-     // strCmd = System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
+     // strCmd = System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false);
    //#endif
       Application.dir().mk(System.dir().name(strCmd));
       Application.file().put_contents(strCmd, str);
@@ -763,8 +763,8 @@ namespace dynamic_source
       m_strLibsLibs = System.dir().ca("time/library/" + m_strPlatform + "/library/library.lib");
 
       m_memfileLibError.Truncate(0);
-      string strVotagusFolder;
-      strVotagusFolder = System.dir().votagus();
+      string strFolder;
+      strFolder = System.dir().ca();
       m_straLibSourcePath.remove_all();
       m_straLibSourceRelPath.remove_all();
       Application.dir().rls(System.dir().path(m_pmanager->m_strNetseedDsCa2Path, "library\\source", false),  &m_straLibSourcePath, NULL, &m_straLibSourceRelPath);
@@ -820,7 +820,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       m_strLibraryPath.Format(System.dir().stage(m_strPlatform + "\\dynamic_source\\library\\%s.dll"), System.dir().path(System.dir().name(strName), strLib, false));
    //#else
-     // plib->m_strLibraryPath.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
+     // plib->m_strLibraryPath.Format(System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\Release\\%s.dll", false), strName);
    //#endif
 
       Application.dir().mk(System.dir().name(m_strLibraryPath));
@@ -846,7 +846,7 @@ namespace dynamic_source
    //#ifdef DEBUG
          strCmd = System.dir().ca("stage\\front\\" + m_strDynamicSourceConfiguration + "_libc" + m_strPlat1 + ".bat");
    //#else
-     //    strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
+     //    strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_cl.bat", false));
    //#endif
          string str = Application.file().as_string(strCmd);
          str.replace("%ITEM_NAME%", str1);
@@ -927,7 +927,7 @@ namespace dynamic_source
    //#ifdef DEBUG
       strCmd.Format(System.dir().stage("front\\" + m_strDynamicSourceConfiguration + "_libl" + m_strPlat1 + ".bat"));
    //#else
-     // strCmd.Format(System.dir().path(strVotagusFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
+     // strCmd.Format(System.dir().path(strFolder, "app\\stage\\ca\\fontopus\\app\\main\\front\\dynamic_source_libl.bat", false));
    //#endif
       string str = Application.file().as_string(strCmd);
       str.replace("%ITEM_NAME%", "library\\" + strName);

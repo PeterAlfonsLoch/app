@@ -1,6 +1,6 @@
 #include "framework.h"
 
-//#ifndef CCVOTAGUS_CA2_SPA
+//#ifndef CA2_SPA
 //#define PATH_SEPARATOR "\\"
 /*void get_ca2_module_folder_dup(char * lpszModuleFolder)
 {

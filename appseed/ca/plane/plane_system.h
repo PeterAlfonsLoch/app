@@ -382,7 +382,7 @@ namespace plane
 
       virtual int32_t _001OnDebugReport(int32_t i1, const char * psz1, int32_t i2, const char * psz2, const char * psz3, va_list args);
 
-      virtual int32_t ________ca2_votagus_logging_Report(
+      virtual int32_t __ca2_logging_report(
          int32_t _ReportType,
          const char * _Filename,
          int32_t _Linenumber,

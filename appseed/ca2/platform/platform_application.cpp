@@ -8,7 +8,7 @@ namespace platform
    application::application()
    {
       m_strAppName         = "platform";
-      m_strBaseSupportId   = "votagus_ca2_platform";
+      m_strBaseSupportId   = "ca2_platform";
    }
 
    application::~application()

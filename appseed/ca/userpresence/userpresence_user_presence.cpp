@@ -8,7 +8,7 @@ namespace userpresence
    presence::presence(::ca::application * papp) :
       ca(papp)
    {
-      m_iShortStatusCynceTag = status_online;
+      m_iShortStatusWayTag = status_online;
    }
 
    presence::~presence()
@@ -24,15 +24,15 @@ namespace userpresence
    {
       if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 2))
       {
-         m_iShortStatusCynceTag = status_online;
+         m_iShortStatusWayTag = status_online;
       }
       /*else if(::get_tick_count() - m_dwLastActivity < ((1984 + 1977) * 10))
       {
-         m_iShortStatusCynceTag = status_away;
+         m_iShortStatusWayTag = status_away;
       }*/
       else
       {
-         m_iShortStatusCynceTag = status_offline;
+         m_iShortStatusWayTag = status_offline;
       }
 
       pulse_user_presence();
@@ -57,7 +57,7 @@ namespace userpresence
       }
 
       string strUrl = "https://" + strHost + "/i2com/pulse_user_presence";
-      System.url().set(strUrl, "short_status", ::ca::str::from(m_iShortStatusCynceTag));
+      System.url().set(strUrl, "short_status", ::ca::str::from(m_iShortStatusWayTag));
       System.url().set(strUrl, "long_status", m_strLongStatus);
       Application.http().get(strUrl);
    }

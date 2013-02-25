@@ -57,7 +57,7 @@ namespace dynamic_source
       m_mutexRsa(papp),
       m_mutexSession(papp),
       m_mutexMusicDbPool(papp),
-      m_mutexCynceDbPool(papp),
+      m_mutexWayDbPool(papp),
       m_mutexPersistentStr(papp),
       m_mutexUiRedir(papp),
       m_mutexTagId(papp),

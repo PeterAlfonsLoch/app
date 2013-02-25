@@ -9,13 +9,13 @@ namespace ca
    {
 
 
-      validate::validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth, bool bInteractive) :
+      validate::validate(::ca::application * papp, const char * pszForm, bool bAuth, bool bInteractive) :
          ca(papp),
-         ::fontopus::validate(papp, pszForm, bVotagusAuth, bInteractive),
+         ::fontopus::validate(papp, pszForm, bAuth, bInteractive),
          m_netcfg(papp)
       {
          m_bInteractive          = bInteractive;
-         m_bVotagusAuth          = bVotagusAuth;
+         m_bAuth          = bAuth;
          m_strForm               = pszForm;
          m_bDeferRegistration    = false;
          ::ca::application * pgenapp = dynamic_cast < ::ca::application * > (papp);
@@ -481,7 +481,7 @@ namespace ca
                   return true;
                m_pviewAuth->KillTimer(1984);
                m_loginthread.oprop("defer_registration") = oprop("defer_registration");
-               if(m_bVotagusAuth)
+               if(m_bAuth)
                {
                   m_ptabview->GetParentFrame()->ShowWindow(SW_HIDE);
                   ::user::interaction * pguie = m_pviewAuth->get_child_by_name("user");

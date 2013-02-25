@@ -116,7 +116,7 @@ namespace fontopus
       ::fontopus::user *                        m_puser;
       login_thread                              m_loginthread;
       int32_t                                       m_iView;
-      bool                                      m_bVotagusAuth;
+      bool                                      m_bAuth;
       auth *                                    m_pauth;
       string                                    m_strForm;
       string                                    m_strLicense;
@@ -127,7 +127,7 @@ namespace fontopus
       bool                                      m_bDeferRegistration;
 
 
-      validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);
+      validate(::ca::application * papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
       virtual ~validate();
 
 

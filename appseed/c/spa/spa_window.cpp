@@ -298,15 +298,15 @@ namespace spa
       wcex.cbClsExtra	   = 0;
       wcex.cbWndExtra	   = 0;
       wcex.hInstance		   = hInstance;
-      //	wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CCVOTAGUS_CA2_SPA));
+      //	wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CA2_SPA));
       //wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
-      wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CCVOTAGUS_CA2_SPA));
+      wcex.hIcon			   = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CA2_SPA));
       wcex.hCursor		   = LoadCursor(NULL, IDC_ARROW);
       wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-      //wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_CCVOTAGUS_CA2_SPA);
+      //wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_CA2_SPA);
       wcex.lpszMenuName	   = NULL;
       wcex.lpszClassName	= "spa_main_window";
-      wcex.hIconSm		   = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_CCVOTAGUS_CA2_SPA));
+      wcex.hIconSm		   = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_CA2_SPA));
 
       return RegisterClassEx(&wcex);
 #else

@@ -681,13 +681,6 @@ namespace ca
          }
       }
 
-      string system::votagus(const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         throw interface_only_exception(get_app(), "this is an interface");
-      }
-
       string system::time(const char * lpcsz, const char * lpcsz2)
       {
          UNREFERENCED_PARAMETER(lpcsz);
@@ -1722,13 +1715,6 @@ ret:
          UNREFERENCED_PARAMETER(pszDir);
          UNREFERENCED_PARAMETER(pszPath);
          throw interface_only_exception(get_app(), "this is an interface");
-      }
-
-      string system::sensitive_ccvotagus(const char * lpcsz, const char * lpcsz2)
-      {
-         UNREFERENCED_PARAMETER(lpcsz);
-         UNREFERENCED_PARAMETER(lpcsz2);
-         return path(ca("ccvotagus"), lpcsz, lpcsz2);
       }
 
       string system::pathfind(const char * pszEnv, const char * pszTopic, const char * pszMode, ::ca::application * papp)

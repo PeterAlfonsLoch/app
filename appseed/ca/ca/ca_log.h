@@ -26,7 +26,7 @@ namespace ca
 
    CLASS_DECL_ca int32_t SimpleDebugReport(int32_t,const char *,int32_t,const char *,const char * pszFormat, va_list list);
 
-   /*   CLASS_DECL_ca int32_t __cdecl ca2_votagus_logging_Report(
+   /*   CLASS_DECL_ca int32_t __cdecl ca2_logging_report(
    int32_t iReportType,
    const char * pszFileName,
    int32_t iLineNumber,
@@ -35,7 +35,7 @@ namespace ca
    va_list list);
 
 
-   extern CLASS_DECL_ca int32_t  ( __cdecl *  ________ca2_votagus_logging_Report)(
+   extern CLASS_DECL_ca int32_t  ( __cdecl *  __ca2_logging_report)(
    int32_t iReportType,
    const char * pszFileName,
    int32_t iLineNumber,

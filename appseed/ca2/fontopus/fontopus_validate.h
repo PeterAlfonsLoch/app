@@ -28,7 +28,7 @@ namespace ca
          void *                                    m_pvOldWindow;
          
 
-         validate(::ca::application * papp, const char * pszForm, bool bVotagusAuth = false, bool bInteractive = true);
+         validate(::ca::application * papp, const char * pszForm, bool bAuth = false, bool bInteractive = true);
          virtual ~validate();
 
 

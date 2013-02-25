@@ -46,7 +46,7 @@ namespace userstack
    {
 
       m_strAppName         = "userstack";
-      m_strBaseSupportId   = "votagus_ca2_userstack";
+      m_strBaseSupportId   = "ca2_userstack";
       m_strInstallToken    = "userstack";
       m_bLicense           = false;
       m_eexclusiveinstance = ::ca::ExclusiveInstanceNone;

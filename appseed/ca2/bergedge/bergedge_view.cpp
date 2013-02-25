@@ -195,7 +195,7 @@ namespace bergedge
       m_dibBk.load_from_matter("casweden1.png");
 
 
-      m_dibV.load_from_matter("votagus_mountains_and_valleys-123.png");
+      m_dibV.load_from_matter("wild_mountains_and_valleys-123.png");
       m_dib_veriwell.load_from_matter("veriwell_2008_green_h49.png");
       m_dib_winactionarea.load_from_matter("winactionarea.png");
 

@@ -103,7 +103,7 @@ namespace ca
       return 0;
    }
 
-   /*int32_t ca2_votagus_logging_Report(
+   /*int32_t ca2_logging_report(
                                  int32_t iReportType,
                                  const char * pszFileName,
                                  int32_t iLineNumber,
@@ -111,7 +111,7 @@ namespace ca
                                  const char * pszFormat,
                                  va_list list)
    {
-      return System.________ca2_votagus_logging_Report(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
+      return System.__ca2_logging_report(iReportType, pszFileName, iLineNumber, pszModuleName, pszFormat, list);
    }*/
 
    void log::set_extended_log(bool bSet)
