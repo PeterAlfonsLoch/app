@@ -114,7 +114,7 @@ namespace ca
    {
       if(m_spwriter.is_set())
       {
-         m_spwriter->close();
+         //m_spwriter->close();
          ::ca::release(m_spwriter.m_p);
       }
    }
